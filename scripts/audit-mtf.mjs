@@ -6,6 +6,7 @@
  * `--cdf` / `--photopic` select the spectrum; `--list` names the lenses behind every unavailable field;
  * `--limit=N` audits the first N lenses only. `--focus` instead lists lenses whose authored image plane is
  * inconsistent with their own paraxial focus (`mtfImagePlaneOffset`), largest offset first.
+ * `--derive-source-states` emits uncertified first-order/exact-ray evidence at each authored candidate.
  * `--source-states` inventories all prescriptions (including hidden/reference entries); `--lens=KEY` filters output.
  */
 import { sourceStateInventory } from "./source-state-inventory.mjs";
@@ -15,9 +16,11 @@ import { pathToFileURL } from "node:url";
 import buildLens from "../src/optics/buildLens.ts";
 import { prepareRuntimeState } from "../src/optics/compat.ts";
 import { assessMtfSupport, computeMtf, resolveMtfGeometry } from "../src/optics/mtf.ts";
+import { deriveSourceDistance } from "../src/optics/analysis/sourceStateAudit.ts";
 import { mtfImagePlaneOffset } from "../src/optics/analysis/mtfFocus.ts";
 
 const sourceCensus = process.argv.includes("--source-states");
+const deriveSources = process.argv.includes("--derive-source-states");
 const lensKey = process.argv.find((arg) => arg.startsWith("--lens="))?.slice(7);
 
 const spectrum = process.argv.includes("--cdf")
@@ -37,13 +40,39 @@ const unavailable = {};
 const files = readdirSync("src/lens-data", { recursive: true })
   .filter((f) => f.endsWith(".data.ts"))
   .sort();
-if (sourceCensus) {
+if (sourceCensus || deriveSources) {
   const entries = [];
   for (const file of files) {
     const data = (await import(pathToFileURL(resolve("src/lens-data", file)))).default;
     entries.push({ file, data });
   }
-  console.log(JSON.stringify(sourceStateInventory(entries, { lensKey, limit }), null, 2));
+  const inventory = sourceStateInventory(entries, { lensKey, limit });
+  if (!deriveSources) console.log(JSON.stringify(inventory, null, 2));
+  else {
+    const reports = inventory.lenses.map((entry) => {
+      const data = entries.find(({ data }) => data.key === entry.key).data;
+      const L = buildLens(data);
+      return {
+        key: entry.key,
+        file: entry.file,
+        kind: entry.kind,
+        candidates: entry.candidates.map(({ focusT, zoomT, stateId }) => {
+          const declared = entry.states.find((s) => s.id === stateId);
+          const finite = declared?.conjugate.kind === "finite" ? declared.conjugate : undefined;
+          return {
+            focusT,
+            zoomT,
+            stateId,
+            evidence: deriveSourceDistance(prepareRuntimeState(L, focusT, zoomT), {
+              publishedDistance: finite?.distanceProvenance === "published" ? finite : undefined,
+              publishedMagnification: finite?.magnification,
+            }),
+          };
+        }),
+      };
+    });
+    console.log(JSON.stringify({ inventory: inventory.inventory, selected: reports.length, lenses: reports }, null, 2));
+  }
 } else {
   let audited = 0;
   for (const file of files) {

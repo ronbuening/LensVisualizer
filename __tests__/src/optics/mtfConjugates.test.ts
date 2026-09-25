@@ -1,3 +1,4 @@
+import { deriveSourceDistance } from "../../../src/optics/analysis/sourceStateAudit.js";
 import { mtfImagePlaneOffset } from "../../../src/optics/analysis/mtfFocus.js";
 import { prepareSourceFieldLaunch, sourceLaunchRay } from "../../../src/optics/field/sourceLaunch.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
@@ -48,6 +49,70 @@ describe("documented finite MTF", () => {
     finiteConjugates: [conjugate],
   });
   const state = prepareRuntimeState(L, 1, 0);
+  it("derives fixed finite distance independently of declarations and verifies exact rays and published magnification", () => {
+    const report = deriveSourceDistance(prepareRuntimeState(build({ ...L.data, finiteConjugates: undefined }), 0, 0));
+    expect(report.status).toBe("consistent");
+    expect(report.derived!.firstSurfaceDistanceMm).toBeCloseTo(1000, 7);
+    expect(report.derived!.imagePlaneDistanceMm).toBeCloseTo(1000 + state.imgZ, 7);
+    const parallel = atRear(1, 0);
+    const magnification = parallel.y + imageGap * parallel.u;
+    expect(report.derived!.magnification).toBeCloseTo(magnification, 12);
+    for (const sample of report.exactSamples) {
+      expect(sample.exactDistanceMm!).toBeCloseTo(1000, 1);
+      expect(sample.exactMagnification!).toBeCloseTo(magnification, 6);
+      expect(Math.abs(sample.axialResidualMm!)).toBeLessThan(1e-7);
+    }
+    for (const distanceReference of ["first-surface", "image-plane"] as const) {
+      const checked = deriveSourceDistance(state, {
+        publishedDistance: {
+          distanceReference,
+          objectDistanceMm: 1000 + (distanceReference === "image-plane" ? state.imgZ : 0),
+        },
+        publishedMagnification: Math.abs(magnification),
+      });
+      expect(checked.status).toBe("consistent");
+      expect(checked.publishedChecks).toHaveLength(2);
+    }
+    expect(L.data.finiteConjugates).toEqual([conjugate]);
+    expect(report.qualification).toContain("does not certify");
+  });
+  it("retains rounded authored geometry and detects failed independent exact-ray checks", () => {
+    const rounded = build({
+      ...L.data,
+      surfaces: L.data.surfaces.map((s, i) => (i === 2 ? { ...s, d: Number(imageGap.toFixed(3)) } : s)),
+    });
+    const checked = deriveSourceDistance(prepareRuntimeState(rounded, 0, 0), {
+      publishedDistance: { distanceReference: "first-surface", objectDistanceMm: 1000 },
+    });
+    expect(checked.status).toBe("consistent");
+    expect(checked.publishedChecks[0].relativeError).toBeGreaterThan(0);
+    expect(rounded.data.surfaces[2].d).toBe(Number(imageGap.toFixed(3)));
+    const clipped = { ...state, surfaces: state.surfaces.map((s) => ({ ...s, sd: 1e-8 })) };
+    const failed = deriveSourceDistance(clipped);
+    expect(failed.status).toBe("inconsistent");
+    expect(failed.exactSamples.every((s) => s.exactDistanceMm === null)).toBe(true);
+  });
+  it("separates rounded evidence, inconsistent evidence, and failure to establish a finite source", () => {
+    expect(
+      deriveSourceDistance(state, { publishedDistance: { distanceReference: "first-surface", objectDistanceMm: 1004 } })
+        .status,
+    ).toBe("consistent");
+    const inconsistent = deriveSourceDistance(state, { publishedMagnification: 0.5 });
+    expect(inconsistent.status).toBe("inconsistent");
+    expect(inconsistent.blockers.join(" ")).toContain("Published magnification");
+    expect(deriveSourceDistance(state, { publishedRelativeTolerance: NaN }).status).toBe("unavailable");
+    const axialInfinity = atRear(1, 0);
+    const infinity = build({
+      ...base.data,
+      surfaces: base.data.surfaces.map((s, i) => (i === 2 ? { ...s, d: -axialInfinity.y / axialInfinity.u } : s)),
+    });
+    const report = deriveSourceDistance(prepareRuntimeState(infinity, 0, 0));
+    expect(report.status).toBe("unavailable");
+    expect(report.derived).toBeUndefined();
+    expect(report.blockers.join(" ")).toContain("No finite real object");
+    expect(deriveSourceDistance({ ...state, aberrationT: 0.1 }).status).toBe("unavailable");
+    expect(deriveSourceDistance({ ...state, imgZ: state.surfaces.at(-1)!.z - 1 }).status).toBe("unavailable");
+  });
   it("traces a fixed finite source at coordinate zero and skips infinity diagnostics", () => {
     const fixed = build({
       ...L.data,

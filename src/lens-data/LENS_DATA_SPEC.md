@@ -1060,6 +1060,16 @@ Calculated distances additionally require a `derivation` describing first-order 
 verification and relevant source evidence. Optional signed `magnification` is source-published, not a computed label.
 The source remains authoritative when a rounded prescription retains residual defocus: never tune spacing to improve MTF.
 
+For offline distance evidence, run
+`node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --derive-source-states --lens=KEY`.
+This read-only path derives a finite real object from the fixed authored geometry and image plane (`s = -B/A`),
+then independently solves small-height exact rays and checks lateral magnification. It reports both first-surface
+and image-plane distance conventions. Published evidence defaults to a 1% rounding allowance, separately from a
+0.05% exact-ray consistency bound; inspect the actual residuals against the source's precision. An infinity station
+normally has no finite solution and is reported as such, not converted to a finite declaration. A consistent report
+is optical evidence only: source tables, units, geometry and the distance convention still require independent review.
+No report rewrites prescriptions or automatically enables a state.
+
 `finiteConjugates` is the legacy declaration of individual authored states for finite-distance MTF.
 New authoring uses `sourceStates`; legacy entries receive deterministic IDs from their coordinates. Never declare
 the same coordinates in both arrays. Each entry has

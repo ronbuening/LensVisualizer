@@ -42,6 +42,28 @@ describe("source state inventory", () => {
       sourceStateCandidates({ focusPositions: [0, 0.7, 1], var: { "1": [2, 3, 4] } }).map((c) => c.focusT),
     ).toEqual([0, 0.7, 1]);
   });
+  it("emits derivation evidence without converting candidates into certified declarations", () => {
+    const report = JSON.parse(
+      execFileSync(
+        "node",
+        [
+          "--import",
+          "./scripts/ts-js-specifier-hook-register.mjs",
+          "scripts/audit-mtf.mjs",
+          "--derive-source-states",
+          "--limit=1",
+        ],
+        { encoding: "utf8", maxBuffer: 1024 * 1024 },
+      ),
+    );
+    expect(report.selected).toBe(1);
+    expect(report.lenses[0].candidates.length).toBeGreaterThan(0);
+    for (const candidate of report.lenses[0].candidates) {
+      expect(["consistent", "inconsistent", "unavailable"]).toContain(candidate.evidence.status);
+      expect(candidate.evidence.qualification).toContain("does not certify");
+      expect(candidate).not.toHaveProperty("sourceStates");
+    }
+  });
   it("runs the actual CLI and reconciles all source files including hidden entries", () => {
     const report = JSON.parse(
       execFileSync(
