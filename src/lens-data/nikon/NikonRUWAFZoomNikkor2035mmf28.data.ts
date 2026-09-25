@@ -4,8 +4,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8
  *
  * Data source: US 5,490,012, First Embodiment, Table 1 (Kouichi Ohshita / Nikon Corporation).
- * Underwater wide-angle zoom for the Nikonos RS system. 10 physical glass elements in 10 air-spaced groups,
- * including the rear dustproof/drip-proof plane plate; all surfaces are spherical.
+ * Underwater wide-angle zoom for the Nikonos RS system. 9 powered glass elements in 9 air-spaced groups,
+ * plus the rear dustproof/drip-proof plane plate traced through rearPlates; all surfaces are spherical.
  *
  * Object-side medium: the patent prescription is evaluated with water in front of surface 1 (n = 1.33306,
  * vd = 54.0). LensVisualizer starts in air, so this file inserts a zero-power artificial WTR plane immediately
@@ -22,7 +22,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * Verification, with water object medium and the corrected infinity zoom spacings:
  * - EFL: 20.673, 26.602, 34.145 mm vs. patent 20.6007, 26.5009, 34.0012 mm.
  * - BFD: 38.783, 38.701, 38.601 mm vs. patent d20 = 38.563 mm.
- * Residuals are consistent with the degraded scan and the recovered leading digits.
+ * Residuals remain unresolved; the inferred leading digits are not verified source readings.
  *
  * Zoom-only variable gaps: D2 (G1-G2), D8 (G2-G3), D18 (G3-P), D20/BF constant.
  * Focus: the patent states that G2 moves object-ward for close focusing, but does not publish close-focus
@@ -34,6 +34,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * The central G3 clear apertures are constrained by signed cross-gap sag intrusion, especially the 1.70 mm
  * air gap between surfaces 14 and 15; the file intentionally uses conservative clear radii rather than inferred
  * full-field mechanical apertures.
+ *
+ * MTF census remains PARTIAL: local Table 1 contains apparent source misprints
+ * (r8=0.316, r11=9.429, r12=0.582, r14=7.948, d16=40). Existing inferred
+ * repairs are not established transcriptions and do not reproduce all Table 4
+ * conditions. The +0.219790 mm residual already includes the WTR interface;
+ * it is not explained by air-only propagation. No additional focus tuning.
+ * The fully specified rear protective plate now uses rearPlates with d20=38.563.
  */
 
 const LENS_DATA = {
@@ -42,7 +49,7 @@ const LENS_DATA = {
   name: "NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8",
   subtitle: "US 5,490,012 First Embodiment - Nikon / Kouichi Ohshita",
   specs: [
-    "10 elements / 10 groups",
+    "9 powered elements / 9 groups + rear protective plate",
     "f = 20.60-34.00 mm in water",
     "F/2.88 design aperture",
     "2ω = 79.8°-51.4° in water",
@@ -58,8 +65,8 @@ const LENS_DATA = {
   patentAuthors: ["Kouichi Ohshita"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1996,
-  elementCount: 10,
-  groupCount: 10,
+  elementCount: 9,
+  groupCount: 9,
 
   elements: [
     {
@@ -161,17 +168,7 @@ const LENS_DATA = {
       glass: "748523 — E-LAKH1 catalog equivalent (Hikari; production supplier unspecified)",
       role: "Final positive power element of G3b before the rear protective plate.",
     },
-    {
-      id: 10,
-      name: "P",
-      label: "Dustproof Plate",
-      type: "Plane Parallel Plate",
-      nd: 1.5168,
-      vd: 64.1,
-      fl: 1e15,
-      glass: "N-BK7 (Schott; BK7-class, patent nd/vd match)",
-      role: "Rear dustproof and drip-proof plane plate specified by the patent.",
-    },
+
   ],
 
   surfaces: [
@@ -195,9 +192,9 @@ const LENS_DATA = {
     { label: "16", R: -37.179, d: 0.4, nd: 1.0, elemId: 0, sd: 11.0 },
     { label: "17", R: 327.07, d: 4.3, nd: 1.7481, elemId: 9, sd: 13.2 },
     { label: "18", R: -33.237, d: 1.1021, nd: 1.0, elemId: 0, sd: 16.5 },
-    { label: "19", R: 1e15, d: 1.3, nd: 1.5168, elemId: 10, sd: 22.0 },
-    { label: "20", R: 1e15, d: 38.563, nd: 1.0, elemId: 0, sd: 22.0 },
   ],
+
+  rearPlates: [{ label: "P", thicknessMm: 1.3, nd: 1.5168, vd: 64.1, glass: "N-BK7", gapAfterMm: 38.563, source: "US 5,490,012, Table 1 surfaces 19–20 and d20 zoom row" }],
 
   asph: {},
 
@@ -221,18 +218,12 @@ const LENS_DATA = {
       [6.7247, 6.7247],
       [13.8409, 13.8409],
     ],
-    "20": [
-      [38.563, 38.563],
-      [38.563, 38.563],
-      [38.563, 38.563],
-    ],
   },
 
   varLabels: [
     ["2", "D2 G1-G2"],
     ["8", "D8 G2-G3"],
     ["18", "D18 G3-P"],
-    ["20", "BF"],
   ],
 
   groups: [
@@ -240,7 +231,6 @@ const LENS_DATA = {
     { text: "G1", fromSurface: "1", toSurface: "2" },
     { text: "G2", fromSurface: "3", toSurface: "8" },
     { text: "G3", fromSurface: "9", toSurface: "18" },
-    { text: "P", fromSurface: "19", toSurface: "20" },
   ],
   doublets: [],
 

@@ -19,9 +19,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **540** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **8479 / 9117** non-air surfaces use strict catalog Sellmeier data
+- **8478 / 9116** non-air surfaces use strict catalog Sellmeier data
 - **93.0%** strict Sellmeier surface coverage overall
-- **8494 / 9117** non-air surfaces use trusted chromatic data
+- **8493 / 9116** non-air surfaces use trusted chromatic data
 - **93.2%** trusted chromatic coverage overall
 - **118 / 161** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -783,18 +783,18 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 62 | [CANON EF-S 18-55mm f/3.5-5.6](../../src/lens-data/canon/CanonEFS1855mmf3556.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
 | 63 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
 | 64 | [NIKON AI AF-S NIKKOR ED 500mm f/4D IF](../../src/lens-data/nikon/NikonAFSNikkor500mmf4DIFED.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 65 | [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | 90.9% | 90.9% | 10/10 | 10/10 | 1 | constant: 1 |
-| 66 | [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 67 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 68 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | 90.9% | 90.9% | 20/22 | 20/22 | 2 | abbe: 2 |
-| 69 | [NIKON AF-S NIKKOR 500mm f/5.6E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | 90.5% | 90.5% | 19/21 | 19/21 | 2 | abbe: 2 |
-| 70 | [TAMRON 70-180mm f/2.8 Di III VXD](../../src/lens-data/tamron/TamronA05670180mmf28.data.ts) | 90.5% | 90.5% | 19/21 | 19/21 | 2 | abbe: 2 |
-| 71 | [CANON EF 28-90mm f/4-5.6 II USM](../../src/lens-data/canon/CanonEF2890mmf456II.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
-| 72 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
-| 73 | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
-| 74 | [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
-| 75 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
-| 76 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 65 | [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 66 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 67 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | 90.9% | 90.9% | 20/22 | 20/22 | 2 | abbe: 2 |
+| 68 | [NIKON AF-S NIKKOR 500mm f/5.6E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | 90.5% | 90.5% | 19/21 | 19/21 | 2 | abbe: 2 |
+| 69 | [TAMRON 70-180mm f/2.8 Di III VXD](../../src/lens-data/tamron/TamronA05670180mmf28.data.ts) | 90.5% | 90.5% | 19/21 | 19/21 | 2 | abbe: 2 |
+| 70 | [CANON EF 28-90mm f/4-5.6 II USM](../../src/lens-data/canon/CanonEF2890mmf456II.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 71 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 72 | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 73 | [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 74 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 75 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 76 | [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | 90.0% | 90.0% | 9/9 | 9/9 | 1 | constant: 1 |
 | 77 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | 90.0% | 90.0% | 18/20 | 18/20 | 2 | abbe: 2 |
 |  | **85-89.9% coverage** |  |  |  |  |  |  |
 | 78 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | 89.5% | 89.5% | 17/19 | 17/19 | 2 | abbe: 2 |
@@ -1385,12 +1385,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 7 | L13 | abbe | `Unmatched (nd=1.802180, νd=44.69)` | Explicit unmatched/proprietary annotation |
 
-### [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) - 90.9% trusted (10/11); 90.9% Sellmeier (10/11) - US 5,490,012
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| WTR | element | constant | `(none)` | No glass annotation |
-
 ### [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) - 90.9% trusted (10/11); 90.9% Sellmeier (10/11) - US 4,210,388
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -1459,6 +1453,12 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 7 | G41 positive doublet element | abbe | `Unmatched dense flint (595355)` | Explicit unmatched/proprietary annotation |
+
+### [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) - 90.0% trusted (9/10); 90.0% Sellmeier (9/10) - US 5,490,012
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| WTR | element | constant | `(none)` | No glass annotation |
 
 ### [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) - 90.0% trusted (18/20); 90.0% Sellmeier (18/20) - US 2010/0220400 A1
 

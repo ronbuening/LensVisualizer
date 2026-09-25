@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **813** lenses scanned (**801** visible)
-- **8479 / 9117** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **8494 / 9117** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
+- **8478 / 9116** non-air surfaces use strict catalog Sellmeier data (93.0%)
+- **8493 / 9116** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **303** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **166** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -146,9 +146,9 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | WO 2019/220618 A1 | [PDF](../../patents/WO2019220618A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 6A [resin] (L14 aspherical layer: `Unmatched (patent thin-layer medium; polymer identity and supplier unspecified)`) | abbe: 1 |
 | [NIKON AF-S DX ZOOM-NIKKOR 12-24mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1224mmf4GIFED.data.ts) | US 6,940,655 B2 | [PDF](../../patents/US6940655.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 5 [resin] (Bonded Resin Layer: `Unmatched (hybrid aspherical optical resin; nd=1.553890, vd=38.09)`) | abbe: 1 |
 | [HD PENTAX-DA 18-50mm f/4-5.6 DC WR RE](../../src/lens-data/pentax/HDPentaxDA1850mmF456DCWRRE.data.ts) | JP 2016-6455 A | [PDF](../../patents/JP2016006455A.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 4 [resin] (L12 Bonded Resin Layer: `Unmatched (synthetic resin layer; chemistry unpublished)`) | abbe: 1 |
-| [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | US 5,490,012 | [PDF](../../patents/US5490012.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | WTR [other] (element: `no glass annotation`) | constant: 1 |
 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | US 2025/0231383 A1 | Missing from untracked local patents/ references (US20250231383A1, US20250231383, 20250231383) | 90.9% (20/22) | 90.9% (20/22) | 2 | 6A [resin] (L4 hybrid resin asphere: `UV-curable hybrid aspherical resin (patent nd=1.517, νd=52.0)`)<br>40A [glass] (L21 final dual-aspherical meniscus: `K-SKLD200 / K-SKLD120(M) neighborhood, proprietary crown class`) | abbe: 2 |
 | [CANON EF 28-90mm f/4-5.6 II USM](../../src/lens-data/canon/CanonEF2890mmf456II.data.ts) | JP 2009-282554 A | [PDF](../../patents/JP2009282554A.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 16 [plastic] (Group 4 plastic negative asphere: `Unmatched (proprietary optical polymer; patent plastic-asphere class)`) | abbe: 1 |
+| [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | US 5,490,012 | [PDF](../../patents/US5490012.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | WTR [other] (element: `no glass annotation`) | constant: 1 |
 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | WO 2020/012638 A1 | [PDF](../../patents/JPWO2020012638A1.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 2 [resin] (Element 1r (resin layer): `UV-curable optical resin`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | US 2010/0220400 A1 | [PDF](../../patents/US20100220400A1.pdf) | 90.0% (18/20) | 90.0% (18/20) | 2 | 6A [glass] (G2 front aspherical variator lens: `Unmatched (near HIKARI J-LASFH2; patent nd=1.76546, νd=46.73)`)<br>26 [resin] (G4 molded resin layer: `UV-cure optical resin (patent-listed)`) | abbe: 2 |
 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | WO 2022/264542 A1 | [PDF](../../patents/WO2022264542A1.pdf) | 89.5% (17/19) | 89.5% (17/19) | 2 | 15A [resin] (Element 8: `UV-curing resin (composite aspheric layer)`)<br>23A [resin] (Element 13: `UV-curing resin (composite aspheric layer)`) | abbe: 2 |
