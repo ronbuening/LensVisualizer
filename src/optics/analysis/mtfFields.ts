@@ -9,6 +9,7 @@
  * Heights beyond the modeled edge, where authored clear apertures clip the real chief ray, are
  * reported as outside the model rather than traced.
  */
+import { mtfFiniteConjugate } from "./mtfConjugates.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
 import type { MtfFieldGeometry, MtfOptions, MtfSupport } from "../../types/mtf.js";
 import { computeFieldGeometryAtState2, solveFieldAnglesForImageHeightsAccurate2 } from "../field/chiefRay.js";
@@ -51,9 +52,9 @@ const FINITE_TABLE_STEPS = 16;
  * @returns half field in degrees, before any image-format cap
  */
 export function mtfModeledHalfField(state: PreparedOpticalState): number {
-  return state.focusT === 0
-    ? computeFieldGeometryAtState2(0, state.zoomT, state.lens.runtime, state.aberrationT).halfFieldDeg
-    : halfFieldAtZoom(state.zoomT, state.lens.runtime);
+  return mtfFiniteConjugate(state)
+    ? halfFieldAtZoom(state.zoomT, state.lens.runtime)
+    : computeFieldGeometryAtState2(state.focusT, state.zoomT, state.lens.runtime, state.aberrationT).halfFieldDeg;
 }
 
 /**

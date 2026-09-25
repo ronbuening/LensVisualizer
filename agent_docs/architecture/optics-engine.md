@@ -45,6 +45,11 @@ contract in `src/lens-data/LENS_DATA_SPEC.md`; do not add an analysis-specific s
 
 ## Simulated MTF
 
+Explicit source conjugates take precedence over slider-coordinate conventions: fixed finite states may use zero,
+and an authored infinity state may use another coordinate. Undocumented nonzero focus remains unavailable.
+Finite-source states skip the infinity-only image-plane inconsistency diagnostic; best axial focus remains a
+separate optional evaluation-plane shift.
+
 Physical finite sources and stop-aimed chief rays live in `src/optics/field/sourceLaunch.ts`.
 MTF delegates its launch geometry there, preserving one source point across wavelength and pupil samples.
 The helper accepts the reference wavelength/index resolver; spectral policy stays with the analysis caller.

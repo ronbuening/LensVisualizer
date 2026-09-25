@@ -1,3 +1,4 @@
+import { mtfImagePlaneOffset } from "../../../src/optics/analysis/mtfFocus.js";
 import { prepareSourceFieldLaunch, sourceLaunchRay } from "../../../src/optics/field/sourceLaunch.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import { describe, expect, it } from "vitest";
@@ -47,6 +48,56 @@ describe("documented finite MTF", () => {
     finiteConjugates: [conjugate],
   });
   const state = prepareRuntimeState(L, 1, 0);
+  it("traces a fixed finite source at coordinate zero and skips infinity diagnostics", () => {
+    const fixed = build({
+      ...L.data,
+      finiteConjugates: undefined,
+      sourceStates: [
+        {
+          id: "fixed",
+          label: "Fixed conjugate",
+          source: conjugate.source,
+          focusT: 0,
+          zoomT: 0,
+          conjugate: {
+            kind: "finite",
+            objectDistanceMm: conjugate.objectDistanceMm,
+            distanceReference: conjugate.distanceReference,
+            distanceProvenance: "published",
+          },
+        },
+      ],
+    });
+    const fixedState = prepareRuntimeState(fixed, 0, 0);
+    const support = assessMtfSupport(fixedState, options);
+    expect(support.available).toBe(true);
+    expect(support.conjugate?.objectDistanceMm).toBe(conjugate.objectDistanceMm);
+    expect(mtfImagePlaneOffset(fixedState, support)).toBeNull();
+    expect(computeMtf(fixedState, options).fields).toEqual(computeMtf(state, options).fields);
+    expect(assessMtfSupport({ ...fixedState, aberrationT: 0.1 }, options).reason).toBe("finite-conjugate-unavailable");
+    expect(assessMtfSupport(fixedState, { ...options, movementActive: true }).reason).toBe("active-movement");
+  });
+  it("accepts explicit infinity at a nonzero authored coordinate", () => {
+    const infinite = build({
+      ...base.data,
+      sourceStates: [
+        {
+          id: "infinity",
+          label: "Infinity",
+          source: "Synthetic fixed geometry",
+          focusT: 1,
+          zoomT: 0,
+          conjugate: { kind: "infinity" },
+        },
+      ],
+    });
+    const explicit = prepareRuntimeState(infinite, 1, 0);
+    expect(assessMtfSupport(explicit, options).available).toBe(true);
+    expect(assessMtfSupport(explicit, options).conjugate).toBeUndefined();
+    expect(computeMtf(explicit, options).fields).toEqual(
+      computeMtf(prepareRuntimeState(infinite, 0, 0), options).fields,
+    );
+  });
   it("aims the shared finite-source chief at the physical stop", () => {
     const launch = prepareSourceFieldLaunch(state, 0.1, options.pupilSemiDiameterMm, conjugate)!;
     expect(launch).not.toBeNull();

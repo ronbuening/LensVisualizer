@@ -1,5 +1,6 @@
 /** MTF capability checks are per optical state, not per-lens rollout flags. */
 import type { MtfOptions, MtfSpectralLine, MtfSpectrum, MtfSupport, MtfUnavailableReason } from "../../types/mtf.js";
+import { resolveLensSourceState } from "../sourceStates.js";
 import { LINE_NM } from "../spectralLines.js";
 import type { PreparedOpticalState } from "../types.js";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "./mtfConjugates.js";
@@ -158,8 +159,11 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
     state.imagePlane.normal[2] <= 0
   )
     return reject("unsupported-path", "MTF requires an image plane perpendicular to the optical axis.");
-  if (state.focusT !== 0) {
-    const conjugate = mtfFiniteConjugate(state);
+  const declared = resolveLensSourceState(lens.source, state.focusT, state.zoomT);
+  const conjugate = mtfFiniteConjugate(state);
+  // A fixed finite design may use coordinate zero; changing its cam does not establish infinity.
+  const explicitInfinity = declared?.conjugate.kind === "infinity" && state.aberrationT === 0;
+  if (conjugate || declared?.conjugate.kind === "finite" || (state.focusT !== 0 && !explicitInfinity)) {
     if (!conjugate || !mtfFiniteObjectPoint(state, conjugate, 0))
       return reject(
         "finite-conjugate-unavailable",
