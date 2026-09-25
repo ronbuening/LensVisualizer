@@ -19,6 +19,22 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-25",
+    type: "lens",
+    summary: "Added Canon RF 200-800mm f/6.3-9 IS USM and Leica Telyt-S 800mm f/6.3",
+  },
+  {
+    date: "2026-09-25",
+    type: "lens",
+    summary: "Added Sony FE 400-800mm f/6.3-8 G OSS and FE 400mm f/2.8 GM OSS",
+  },
+  {
+    date: "2026-09-25",
+    type: "lens",
+    summary: "Added Sony FE 70-200mm f/4 Macro G OSS II and FE 8-14mm f/3.5 Fisheye G",
+  },
+
+  {
     date: "2026-09-24",
     type: "fix",
     summary: "Enlarged undersized element rims on 68 lenses so their analysis reaches the image corner",

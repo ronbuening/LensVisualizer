@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **813** lenses scanned
-- **1799** total code-only elements found
-- **303** elements in this report
-- **117** distinct lens files affected
-- **4** active unreviewed elements have no review-record hit or explicit disposition
-- **166** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **819** lenses scanned
+- **1819** total code-only elements found
+- **323** elements in this report
+- **119** distinct lens files affected
+- **17** active unreviewed elements have no review-record hit or explicit disposition
+- **173** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -28,7 +28,20 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---:|---:|---:|---|---|---:|---|
 | A | 683315 | 1 / 1 | 1 | 1 | MINOLTA AF 20mm f/2.8 | — | 1/1 | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 4 (1.68300 / 31.52) |
 | C | 682419 | 2 / 1 | 1 | 2 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 3 (1.68169 / 41.90)<br>[CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 4 (1.68169 / 41.90) |
+| D | 576388 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L77 (1.57567 / 38.80) |
+| D | 634299 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L75 (1.63362 / 29.90) |
+| D | 646287 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L711 (1.64579 / 28.70) |
+| D | 656277 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L79 (1.65611 / 27.70) |
+| D | 670266 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L72 (1.66961 / 26.60) |
+| D | 673343 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L52 (1.67300 / 34.30) |
 | D | 681472 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 7 (1.68078 / 47.20) |
+| D | 721234 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L61 (1.72146 / 23.40) |
+| D | 729364 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L22 (1.72884 / 36.40) |
+| D | 827336 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L76 (1.82673 / 33.60) |
+| D | 837333 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L44 (1.83720 / 33.30) |
+| D | 839196 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L32 (1.83909 / 19.60) |
+| D | 868323 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L33 (1.86758 / 32.30) |
+| D | 958300 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L51 (1.95787 / 30.00) |
 
 ## Codes by Frequency
 
@@ -41,12 +54,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 835427 | 4 | 3 | patents/JP2015166834A.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
+| 961323 | 4 | 2 | patents/WO2021200206A1.pdf<br>patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
 | 544561 | 3 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 684313 | 3 | 2 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
 | 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All rows have review records |
-| 961323 | 3 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 930240 | 3 | 3 | patents/WO2021200206A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/WO_2024247472_A1.pdf | All rows have review records |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 531557 | 2 | 2 | patents/WO2022071249A1.pdf<br>patents/US8994842.pdf | All rows explicitly disposed |
 | 540473 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
@@ -80,10 +94,10 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 840433 | 2 | 2 | patents/JPA 1994235857-000000.pdf<br>patents/US5528428.pdf | All rows have review records |
 | 840434 | 2 | 1 | patents/US5734508.pdf | All rows explicitly disposed |
 | 841433 | 2 | 1 | patents/US3771853.pdf | All rows explicitly disposed |
-| 930240 | 2 | 2 | patents/WO2021200206A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 933209 | 2 | 2 | patents/WO2021199923A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
 | 001291 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 009291 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 010255 | 1 | 1 | patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
 | 446672 | 1 | 1 | patents/US3771853.pdf | All rows explicitly disposed |
 | 449670 | 1 | 1 | patents/GB_1050055_A.pdf | All rows explicitly disposed |
 | 460658 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
@@ -116,6 +130,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 570575 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 571560 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 575414 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
+| 576388 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 578671 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 580595 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 581592 | 1 | 1 | patents/US20150131163A1.pdf | All rows explicitly disposed |
@@ -139,23 +154,28 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 625533 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 626357 | 1 | 1 | patents/CN211955966U.pdf | All rows explicitly disposed |
 | 630346 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
+| 634299 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 635232 | 1 | 1 | patents/US8081392.pdf | All rows explicitly disposed |
 | 636239 | 1 | 1 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 639235 | 1 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 640353 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 641589 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 642581 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
+| 646287 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 648337 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 648339 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 650396 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
+| 656277 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 656337 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 658397 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
 | 662331 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 662577 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
 | 666552 | 1 | 1 | patents/US9651761.pdf | All rows explicitly disposed |
 | 667311 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
+| 670266 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 672323 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 672388 | 1 | 1 | patents/JP_S5357028_A.pdf | All rows have review records |
+| 673343 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All rows explicitly disposed |
 | 676440 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 678314 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
@@ -180,12 +200,14 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 712525 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 717295 | 1 | 1 | patents/CN211826699U.pdf | All rows explicitly disposed |
+| 721234 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | All rows have review records |
 | 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
 | 728283 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 728285 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 728380 | 1 | 1 | patents/GB_978797_A.pdf | All rows explicitly disposed |
 | 728403 | 1 | 1 | patents/US6560042.pdf | All rows explicitly disposed |
+| 729364 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 730262 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 732280 | 1 | 1 | patents/US3037426.pdf | All rows explicitly disposed |
 | 732547 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
@@ -240,9 +262,15 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 806333 | 1 | 1 | patents/CN211826699U.pdf | All rows explicitly disposed |
 | 806404 | 1 | 1 | patents/JP2012003015A.pdf | All rows have review records |
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
+| 816228 | 1 | 1 | patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
+| 820466 | 1 | 1 | patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
+| 827336 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 831265 | 1 | 1 | patents/US3615126.pdf | All rows explicitly disposed |
 | 835431 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
+| 837333 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
+| 839196 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
+| 839427 | 1 | 1 | patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
 | 842372 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
 | 842433 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
 | 843242 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
@@ -250,6 +278,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 852428 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 856323 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 866450 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
+| 868323 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 874287 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 876363 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 877370 | 1 | 1 | patents/US20160266350A1.pdf | All rows have review records |
@@ -260,8 +289,10 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 908334 | 1 | 1 | patents/US20140347522A1.pdf | All rows have review records |
 | 910313 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
 | 916364 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
+| 917352 | 1 | 1 | patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
 | 923209 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 946180 | 1 | 1 | patents/CN114755806A.pdf | All rows explicitly disposed |
+| 958300 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | All rows explicitly disposed |
 
 ## Elements by Lens
@@ -1044,6 +1075,24 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L45 (Element 15) | 25A | `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)` | 1.85612 / 40.10 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Reviewed sidecar hit |
 | L72 (Element 19) | 32 | `863252 — dense flint (patent nd=1.86252, νd=25.2)` | 1.86252 / 25.20 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Reviewed sidecar hit |
 
+### [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) - WO 2024/154461 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L22 (Element L22) | 7 | `729364 — catalog unresolved (supplier unconfirmed)` | 1.72884 / 36.40 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L32 (Element L32) | 10 | `839196 — catalog unresolved (supplier unconfirmed)` | 1.83909 / 19.60 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L33 (Element L33) | 12 | `868323 — catalog unresolved (supplier unconfirmed)` | 1.86758 / 32.30 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L44 (Element L44) | 19 | `837333 — catalog unresolved (supplier unconfirmed)` | 1.83720 / 33.30 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L51 (Element L51) | 21 | `958300 — catalog unresolved (supplier unconfirmed)` | 1.95787 / 30.00 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L52 (Element L52) | 22 | `673343 — catalog unresolved (supplier unconfirmed)` | 1.67300 / 34.30 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L61 (Element L61) | 24 | `721234 — catalog unresolved (supplier unconfirmed)` | 1.72146 / 23.40 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L72 (Element L72) | 29 | `670266 — catalog unresolved (supplier unconfirmed)` | 1.66961 / 26.60 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L75 (Element L75) | 34 | `634299 — catalog unresolved (supplier unconfirmed)` | 1.63362 / 29.90 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L76 (Element L76) | 35 | `827336 — catalog unresolved (supplier unconfirmed)` | 1.82673 / 33.60 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L77 (Element L77) | 37 | `576388 — catalog unresolved (supplier unconfirmed)` | 1.57567 / 38.80 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L79 (Element L79) | 41 | `656277 — catalog unresolved (supplier unconfirmed)` | 1.65611 / 27.70 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+| L711 (Element L711) | 44 | `646287 — catalog unresolved (supplier unconfirmed)` | 1.64579 / 28.70 | No catalog entry | abbe | patents/WO2024154461A1.pdf | No review-record hit |
+
 ### [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) - JP 2023-039817 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1057,6 +1106,18 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L61 (Element 13) | 24 | `933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)` | 1.93323 / 20.90 | No catalog entry | abbe | patents/JP2023039817A.pdf | Audit-log hit |
 | L62 (Element 14) | 25 | `658397 — short flint (patent nd=1.65803, nu_d=39.7)` | 1.65803 / 39.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | Audit-log hit |
 | L71 (Element 15) | 27 | `617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)` | 1.61669 / 44.30 | No catalog entry | abbe | patents/JP2023039817A.pdf | Audit-log hit |
+
+### [SONY FE 70-200mm f/4 Macro G OSS II](../../src/lens-data/sony/SonyFE70200mmF4MacroGOSSII.data.ts) - WO 2024/247472 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L22 (Element L22) | 8 | `Unmatched (patent coordinate 961323; supplier unresolved)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO_2024247472_A1.pdf | Explicit disposition in data |
+| L25 (Element L25) | 13 | `Unmatched (patent coordinate 930240; supplier unresolved)` | 1.93024 / 24.00 | No catalog entry | abbe | patents/WO_2024247472_A1.pdf | Explicit disposition in data |
+| L32 (Element L32) | 17 | `Unmatched (patent coordinate 917352; supplier unresolved)` | 1.91695 / 35.20 | No catalog entry | abbe | patents/WO_2024247472_A1.pdf | Explicit disposition in data |
+| L41 (Element L41) | 19 | `Unmatched (patent coordinate 820466; supplier unresolved)` | 1.82017 / 46.60 | No catalog entry | abbe | patents/WO_2024247472_A1.pdf | Explicit disposition in data |
+| L51 (Element L51) | 23 | `Unmatched (patent coordinate 010255; supplier unresolved)` | 2.00996 / 25.50 | No catalog entry | abbe | patents/WO_2024247472_A1.pdf | Explicit disposition in data |
+| L61 (Element L61) | 28 | `Unmatched (patent coordinate 816228; supplier unresolved)` | 1.81643 / 22.80 | No catalog entry | abbe | patents/WO_2024247472_A1.pdf | Explicit disposition in data |
+| L62 (Element L62) | 29 | `Unmatched (patent coordinate 839427; supplier unresolved)` | 1.83945 / 42.70 | No catalog entry | abbe | patents/WO_2024247472_A1.pdf | Explicit disposition in data |
 
 ### [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) - WO 2017/138250 A1
 

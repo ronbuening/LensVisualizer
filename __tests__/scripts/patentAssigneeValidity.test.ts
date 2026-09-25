@@ -45,10 +45,24 @@ describe("patent assignee validity", () => {
     ["Nippon Kogaku Kogyo K.K.", "Nippon Kogaku K.K."],
     ["Voigtländer & Sohn Aktiengesellschaft", "Voigtländer & Sohn AG"],
     ["Voigtländer A.G.", "Voigtländer AG"],
+    ["Firma Ernst Leitz GmbH", "Ernst Leitz GmbH"],
   ])("rejects the spelling-only duplicate %s", (alias, canonical) => {
     expect(() => assertPatentAssigneeValidity([{ key: "alias", patentYear: 1953, patentAssignees: [alias] }])).toThrow(
       `use ${canonical} instead of ${alias}`,
     );
+  });
+
+  it("consolidates the modern Canon translation without rewriting earlier entities", () => {
+    expect(() =>
+      assertPatentAssigneeValidity([{ key: "modern", patentYear: 2024, patentAssignees: ["Canon Kabushiki Kaisha"] }]),
+    ).toThrow("use Canon Inc. instead of Canon Kabushiki Kaisha");
+    expect(() =>
+      assertPatentAssigneeValidity([
+        { key: "historical", patentYear: 1960, patentAssignees: ["Canon Camera Co., Inc."] },
+        { key: "sony", patentYear: 2018, patentAssignees: ["Sony Corporation"] },
+        { key: "sony-group", patentYear: 2024, patentAssignees: ["Sony Group Corporation"] },
+      ]),
+    ).not.toThrow();
   });
 
   it("preserves a legal rename boundary without rejecting delayed publications", () => {

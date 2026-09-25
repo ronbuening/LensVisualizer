@@ -37,6 +37,10 @@ const ASSIGNEE_START_YEAR_OVERRIDES = new Map([
 // https://patents.google.com/patent/US2646721A/en (front page: Aktiengesellschaft)
 // DE 1 157 000 names Jenoptik Jena G.m.b.H.; normalize punctuation only, not legal identity.
 const ASSIGNEE_ALIASES = [
+  // US 2024/0134166 A1 and US 3,536,379: translated corporate style / "Firma"
+  // prefix, not new entities. Keep Canon Camera and later Leica entities distinct.
+  { alias: "Canon Kabushiki Kaisha", canonical: "Canon Inc.", fromYear: 1969 },
+  { alias: "Firma Ernst Leitz GmbH", canonical: "Ernst Leitz GmbH" },
   // US 2,824,495 shortens the same Kreuznach assignee named in US 3,005,379.
   // Retain the later GmbH & Co. KG as a distinct historical legal style.
   { alias: "Jos. Schneider & Co.", canonical: "Jos. Schneider & Co., Optische Werke" },
