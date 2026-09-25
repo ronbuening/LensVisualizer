@@ -31,6 +31,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  - Glass labels are coordinate classes. Supplier/melt identity and        ║
  * ║    element-specific line-index/APD data are not established by the patent.║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: Example 1 pp. 10–11 values match, including all four
+ * aspheres and PT (1.410 mm, nd=1.51680, νd=64.20, rear air 0.800 mm).
+ * EFL 51.962733 vs 51.964; paraxial focus is 0.075274 mm behind the
+ * published image plane. No source-supported correction or explicit designer
+ * best-focus convention found. Retain the printed physical path.
  */
 
 // FIG. 1 optical-rim audit: S1 = 26.5 mm; S20A = 21.5 mm; S21A = 19.5 mm, capped below its slope reversal. Other SDs retain ray-envelope estimates.
