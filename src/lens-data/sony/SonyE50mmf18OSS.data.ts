@@ -24,6 +24,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  shift, direct Figure 8 silhouette comparison, and the 49 mm filter.      ║
  * ║  The stop SD is inferred from the verified EFL and patent f/1.85.          ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: Example 2 ¶0057–0059 matches all radii/gaps/glass values.
+ * CG already preserves 5 + 2 mm glass (nd1.5168) + 9.15 mm physical path.
+ * EFL 51.299977 matches 51.30, but paraxial focus is +0.045653 mm beyond
+ * the published image plane. Finite-aperture best focus is closer to it;
+ * designer intent is unproven, so preserve the printed gaps.
  */
 
 const LENS_DATA = {

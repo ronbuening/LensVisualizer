@@ -203,3 +203,11 @@ The data retains the patent coordinate beside each selected catalog equivalent a
 - SCHOTT optical glass catalog: <https://www.schott.com/en-in/products/optical-glass/>
 - SUMITA optical glass downloads: <https://www.sumita-opt.co.jp/en/download/>
 - CDGM colourless optical glass catalog: <https://www.cdgmgd.com/go.htm?k=Colourless_Optical_Glass&url=goods>
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Example 2 ¶0057–0059 matches all radii/gaps/glass values.
+CG already preserves 5 + 2 mm glass (nd1.5168) + 9.15 mm physical path.
+EFL 51.299977 matches 51.30, but paraxial focus is +0.045653 mm beyond
+the published image plane. Finite-aperture best focus is closer to it;
+designer intent is unproven, so preserve the printed gaps.

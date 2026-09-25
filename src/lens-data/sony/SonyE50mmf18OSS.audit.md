@@ -23,3 +23,13 @@ Patent: JP 2012-242690 A, Example 2
 - Re-read Example 2 on PDF page 11 (¶0057 table): d18 = 5, cover glass CG d19 = 2 with nd10 = 1.5168 / νd10 = 64.2, d20 = 9.15 to the image plane, fixed across all three focus rows. Surface 18 now stores the physical 5.0 mm (legacy 15.468565 = 5 + 2/1.5168 + 9.15) and the plate is a `rearPlates` entry labeled CG with the N-BK7 catalog equivalent, which resolves compatibly for 1.5168 / 64.2.
 - Plate check against the folded version: EFL identical and paraxial defocus unchanged to ≤ 1e-6 mm at infinity, 0.025×, and 0.142×; the physical track grows by 0.681435 mm (= 2.0 × (1 − 1/1.5168)) to 75.8016 mm.
 - `closeFocusM` moves from 0.457 to 0.458 m because it was the traced air-equivalent conjugate (456.98 mm); the physical object-to-image distance is about 457.66 mm. Surface and image-circle audits pass with no undersized surfaces.
+
+## 2026-09-25 — MTF image-plane census
+
+Visually checked `patents/JP2012242690A.pdf`, Example 2 ¶0057–0059, PDF pp. 10–11. Every one of the 17 powered radii, all thicknesses/gaps, nine lens nd/νd pairs and the CG plate match. No scale or aspheres. Infinity D12=1.796, D14=11.829; middle 2.630/10.994 and closest 6.599/7.027 are correctly retained. Rear path is d18=5, CG t=2 / nd=1.5168 / νd=64.2, d20=9.15 to image S21, already in rearPlates.
+
+Independent EFL=51.299977306 agrees with source 51.30. Air BFL=15.514218449 versus reduced rear distance 5+2/1.5168+9.15=15.468565401 leaves +0.045653049 mm. No transcription error or supported plate-distance correction found. The source describes infinity longitudinal/transverse aberrations but does not explicitly label the image surface as designer best focus. Reference-index axial geometric MTF (32 grid, 812 rays, 10/20/40 lp/mm) prefers +0.021446 mm, score .926139→.990901. That supports a finite-aperture/rounding possibility but cannot establish full-field designer intent.
+
+**Cause/action:** small published-image/paraxial discrepancy; document uncertainty and preserve source values. Offset **+0.045653 → +0.045653 mm**; Section E row deleted, no numerical change/changelog.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
