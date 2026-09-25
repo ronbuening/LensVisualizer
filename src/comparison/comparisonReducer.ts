@@ -12,6 +12,7 @@ import type { PaneCoordinates } from "./comparisonTypes.js";
 import type { LensState, LensAction } from "../types/state.js";
 
 /* ── Action type constants ── */
+export const RELINK_COMPARISON = "RELINK_COMPARISON";
 export const SELECT_PANE_SOURCE_STATE = "SELECT_PANE_SOURCE_STATE";
 export const SET_COMPARISON_FOCUS_ZOOM = "SET_COMPARISON_FOCUS_ZOOM";
 export const SET_PANE_COORDINATES = "SET_PANE_COORDINATES";
@@ -31,6 +32,18 @@ export const EXIT_COMPARE = "EXIT_COMPARE";
  */
 export default function comparisonReducer(state: LensState, action: LensAction): LensState | null {
   switch (action.type) {
+    case RELINK_COMPARISON:
+      if (!state.lens.comparing || !validCoordinates({ focusT: action.sharedFocusT, zoomT: action.sharedZoomT }))
+        return state;
+      return {
+        ...state,
+        sharedSliders: {
+          ...state.sharedSliders,
+          focusZoom: { mode: "linked" },
+          sharedFocusT: action.sharedFocusT,
+          sharedZoomT: action.sharedZoomT,
+        },
+      };
     case SELECT_PANE_SOURCE_STATE: {
       if (!state.lens.comparing || action.lensKey !== (action.pane === "a" ? state.lens.lensKeyA : state.lens.lensKeyB))
         return state;
@@ -135,10 +148,18 @@ export default function comparisonReducer(state: LensState, action: LensAction):
     case EXIT_COMPARE:
       return {
         ...state,
-        lens: { ...state.lens, comparing: false },
+        lens: { ...state.lens, comparing: false, selectedConfigurationKey: state.lens.lensKeyA },
         sliders: {
           ...state.sliders,
-          focusT: action.focusA ?? state.sliders.focusT,
+          focusT:
+            state.sharedSliders.focusZoom.mode === "independent"
+              ? state.sharedSliders.focusZoom.a.focusT
+              : (action.focusA ?? state.sliders.focusT),
+          zoomT:
+            state.sharedSliders.focusZoom.mode === "independent"
+              ? state.sharedSliders.focusZoom.a.zoomT
+              : (action.zoomA ?? state.sliders.zoomT),
+          aberrationT: 0,
           stopdownT: action.stopdownA ?? state.sliders.stopdownT,
           shiftMm: action.shiftA ?? state.sliders.shiftMm,
           tiltDeg: action.tiltA ?? state.sliders.tiltDeg,

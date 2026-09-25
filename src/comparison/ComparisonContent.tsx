@@ -13,6 +13,7 @@ import SharedSlidersBar from "./SharedSlidersBar.js";
 import SharedAnalysisDock from "./SharedAnalysisDock.js";
 import { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
 import {
+  RELINK_COMPARISON,
   SELECT_PANE_SOURCE_STATE,
   SET_COMPARISON_FOCUS_ZOOM,
   SET_PANE_COORDINATES,
@@ -20,6 +21,7 @@ import {
 } from "./comparisonReducer.js";
 import { SET_GROUP_MOVEMENT } from "../utils/state/lensReducer.js";
 import { ErrorDisplay } from "../components/errors/ErrorBoundary.js";
+import { linkedCoordinatesForA } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { Theme } from "../types/theme.js";
 import type { LensAction } from "../types/state.js";
@@ -118,26 +120,30 @@ export default function ComparisonContent({
                 padding: 5,
                 borderRadius: 4,
               }}
-              onChange={(event) =>
-                dispatch({
-                  type: SET_COMPARISON_FOCUS_ZOOM,
-                  focusZoom:
-                    event.target.value === "independent"
-                      ? {
-                          mode: "independent",
-                          a: { focusT: focusPair.focusA, zoomT: zoomPair.zoomA },
-                          b: { focusT: focusPair.focusB, zoomT: zoomPair.zoomB },
-                        }
-                      : { mode: "linked" },
-                })
-              }
+              onChange={(event) => {
+                const positions = {
+                  a: { focusT: focusPair.focusA, zoomT: zoomPair.zoomA },
+                  b: { focusT: focusPair.focusB, zoomT: zoomPair.zoomB },
+                };
+                if (event.target.value === "independent") {
+                  dispatch({ type: SET_COMPARISON_FOCUS_ZOOM, focusZoom: { mode: "independent", ...positions } });
+                } else if (isComparisonOk(comparisonLenses)) {
+                  dispatch({
+                    type: RELINK_COMPARISON,
+                    ...linkedCoordinatesForA(positions, comparisonLenses.LA, comparisonLenses.LB),
+                  });
+                }
+              }}
             >
               <option value="linked">Linked</option>
               <option value="independent">Independent</option>
             </select>
           </label>
           <span style={{ marginLeft: 8 }}>
-            Aperture stays shared. Selecting a lens state makes focus and zoom independent.
+            {focusZoom.mode === "independent"
+              ? "Relinking follows A and can move B off its source state. A prime A preserves B’s zoom."
+              : "Selecting a lens state makes focus and zoom independent."}{" "}
+            Aperture stays shared.
           </span>
         </div>
       ) : null}

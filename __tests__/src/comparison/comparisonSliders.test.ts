@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
+  linkedCoordinatesForA,
   computeComparisonGeometry,
   computeFocusPair,
   computeAperturePair,
@@ -329,4 +330,25 @@ it.each([
   expect(changed.focusPair.focusA).toBe(positions.a.focusT);
   expect(changed.focusPair.focusB).toBe(linked.focusPair.focusB);
   expect(changed.zoomPair.zoomB).toBe(linked.zoomPair.zoomB);
+});
+
+it.each([
+  [false, false],
+  [false, true],
+  [true, false],
+  [true, true],
+])("relinks through A without moving A (zoom A %s, zoom B %s)", (aZoom, bZoom) => {
+  const LA = { ...lensA, EFL: 50, isZoom: aZoom, zoomEFLs: [24, 50, 70] } as RuntimeLens;
+  const LB = { ...lensB, EFL: 50, isZoom: bZoom, zoomEFLs: [35, 85, 135] } as RuntimeLens;
+  const positions = {
+    a: { focusT: 0.7123456789, zoomT: aZoom ? 1 / 3 : 0 },
+    b: { focusT: 0.1, zoomT: bZoom ? 0.9 : 0 },
+  };
+  const shared = linkedCoordinatesForA(positions, LA, LB);
+  const linked = computeComparisonGeometry(shared.sharedFocusT, shared.sharedZoomT, { mode: "linked" }, LA, LB);
+  expect(linked.focusPair.focusA).toBeCloseTo(positions.a.focusT, 12);
+  expect(linked.zoomPair.zoomA).toBeCloseTo(positions.a.zoomT, 12);
+  if (!aZoom) expect(linked.zoomPair.zoomB).toBe(positions.b.zoomT);
+  expect(linked.focusPair.focusB).toBeLessThanOrEqual(1);
+  expect(linked.zoomPair.zoomB).toBeGreaterThanOrEqual(0);
 });

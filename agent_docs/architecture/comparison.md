@@ -45,6 +45,11 @@ enters Independent atomically, changes only that pane, and enables focus-followi
 remain below the diagrams when MTF closes; the bottom bar continues to own aperture and movement. Range controls
 preserve authored values between slider steps rather than allowing the browser to round the displayed coordinate.
 
+Relinking computes inverse shared focus/zoom coordinates from A. When A is a prime, B retains its zoom; B's focus
+can change or clamp, and the UI warns that B may leave its source state. Swapping lenses swaps independent coordinates;
+replacement resets only the affected pane. Exiting writes A's actual focus/zoom/aperture and source identity into the
+single-lens destination URL, so route remounting cannot reset its configuration.
+
 ## Scale Modes
 
 Comparison mode can normalize the two panels so users can compare physical scale or framing. Scale ratios are computed

@@ -6,10 +6,10 @@
  * different maximum apertures) with clamping past common points.
  */
 
-import type { ComparisonFocusZoomState } from "./comparisonTypes.js";
+import type { ComparisonPositions, ComparisonFocusZoomState } from "./comparisonTypes.js";
 import { closeFocusAtZoom } from "../optics/focusDistance.js";
 import type { RuntimeLens } from "../types/optics.js";
-import { FOCUS_INFINITY_THRESHOLD } from "../optics/optics.js";
+import { eflAtZoom, FOCUS_INFINITY_THRESHOLD } from "../optics/optics.js";
 import { clampLensMovement, perspectiveControlSteps } from "../optics/lensMovement.js";
 import { snapToStop } from "../utils/style/sliderStops.js";
 
@@ -282,4 +282,33 @@ export function computeComparisonGeometry(
     focusPair.focusB = focusZoom.b.focusT;
   }
   return { focusPair, zoomPair };
+}
+
+/**
+ * Relink around A through the inverse shared mappings; a prime A leaves B's zoom unchanged.
+ * @param positions - actual independent pane positions
+ * @param LA - pane A lens
+ * @param LB - pane B lens
+ * @returns normalized shared coordinates preserving A (and B zoom when A is a prime)
+ */
+export function linkedCoordinatesForA(
+  positions: ComparisonPositions,
+  LA: RuntimeLens,
+  LB: RuntimeLens,
+): {
+  sharedFocusT: number;
+  sharedZoomT: number;
+} {
+  let sharedZoomT = LA.isZoom ? positions.a.zoomT : LB.isZoom ? positions.b.zoomT : 0;
+  if (LA.isZoom && LB.isZoom) {
+    const minFL = Math.min(LA.zoomEFLs![0], LB.zoomEFLs![0]);
+    const maxFL = Math.max(LA.zoomEFLs!.at(-1)!, LB.zoomEFLs!.at(-1)!);
+    sharedZoomT = Math.log(eflAtZoom(positions.a.zoomT, LA) / minFL) / Math.log(maxFL / minFL);
+  }
+  sharedZoomT = Math.max(0, Math.min(1, sharedZoomT));
+  const { zoomA, zoomB } = computeZoomPair(sharedZoomT, LA, LB);
+  const closeA = closeFocusAtZoom(zoomA, LA);
+  const closeB = closeFocusAtZoom(zoomB, LB);
+  const sharedFocusT = Math.max(0, Math.min(1, (positions.a.focusT * Math.min(closeA, closeB)) / closeA));
+  return { sharedFocusT, sharedZoomT };
 }

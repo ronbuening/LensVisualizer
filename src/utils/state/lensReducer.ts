@@ -238,6 +238,12 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
         };
       } else {
         next.panels = { ...state.panels, selectedElementIdA: null };
+        if (state.sharedSliders.focusZoom.mode === "independent" && action.key !== state.lens.lensKeyA) {
+          next.sharedSliders = {
+            ...state.sharedSliders,
+            focusZoom: { ...state.sharedSliders.focusZoom, a: { focusT: 0, zoomT: 0 } },
+          };
+        }
       }
       return next;
     }
@@ -246,6 +252,12 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
         ...state,
         lens: { ...state.lens, lensKeyB: action.key },
         panels: { ...state.panels, selectedElementIdB: null },
+        sharedSliders:
+          state.lens.comparing &&
+          state.sharedSliders.focusZoom.mode === "independent" &&
+          action.key !== state.lens.lensKeyB
+            ? { ...state.sharedSliders, focusZoom: { ...state.sharedSliders.focusZoom, b: { focusT: 0, zoomT: 0 } } }
+            : state.sharedSliders,
       };
     case SET_OPTICAL_CONFIGURATION:
       return {
@@ -256,6 +268,17 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case SWAP_LENSES:
       return {
         ...state,
+        sharedSliders:
+          state.sharedSliders.focusZoom.mode === "independent"
+            ? {
+                ...state.sharedSliders,
+                focusZoom: {
+                  mode: "independent",
+                  a: state.sharedSliders.focusZoom.b,
+                  b: state.sharedSliders.focusZoom.a,
+                },
+              }
+            : state.sharedSliders,
         lens: {
           ...state.lens,
           lensKeyA: state.lens.lensKeyB,

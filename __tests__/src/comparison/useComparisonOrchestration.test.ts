@@ -200,10 +200,13 @@ describe("useComparisonOrchestration", () => {
     expect(dispatch).toHaveBeenCalledWith({
       type: EXIT_COMPARE,
       focusA: 0.3,
+      zoomA: undefined,
       stopdownA: 0.2,
       shiftA: 4,
       tiltA: -3,
     });
-    expect(navigate).toHaveBeenCalledWith("/lens/lens-a/", { replace: false });
+    expect(navigate).toHaveBeenCalledWith("/lens/lens-a/?focus=0.300&aperture=0.200&shift=4.00&tilt=-3.00", {
+      replace: false,
+    });
   });
 });

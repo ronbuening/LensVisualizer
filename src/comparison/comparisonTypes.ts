@@ -31,6 +31,7 @@ export interface SharedSlidersSlice {
 
 /** Comparison-specific action variants. */
 export type ComparisonAction =
+  | { type: "RELINK_COMPARISON"; sharedFocusT: number; sharedZoomT: number }
   | {
       type: "SELECT_PANE_SOURCE_STATE";
       pane: "a" | "b";
@@ -47,4 +48,4 @@ export type ComparisonAction =
   | { type: "SET_SHARED_SHIFT_MM"; value: number }
   | { type: "SET_SHARED_TILT_DEG"; value: number }
   | { type: "ENTER_COMPARE"; catalogKeys?: string[] }
-  | { type: "EXIT_COMPARE"; focusA?: number; stopdownA?: number; shiftA?: number; tiltA?: number };
+  | { type: "EXIT_COMPARE"; focusA?: number; zoomA?: number; stopdownA?: number; shiftA?: number; tiltA?: number };

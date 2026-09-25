@@ -21,6 +21,8 @@ import {
 } from "./comparisonReducer.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { LensState, LensAction } from "../types/state.js";
+import lensReducer from "../utils/state/lensReducer.js";
+import { buildLensViewSearch } from "../utils/state/lensViewUrlSync.js";
 import { canonicalPagePath } from "../utils/seo/siteUrls.js";
 
 export { isComparisonOk } from "./useComparisonMode.js";
@@ -135,13 +137,18 @@ export default function useComparisonOrchestration({
           : lensKeyB;
       void navigate(canonicalPagePath(`/compare/${comparisonKeyA}/${autoB}`), { replace: false });
     } else {
-      dispatch({
+      const action: LensAction = {
         type: EXIT_COMPARE,
         focusA: focusPair?.focusA,
+        zoomA: zoomPair?.zoomA,
         stopdownA: aperturePair?.stopdownA,
         ...(movementPair ? { shiftA: movementPair.shiftA, tiltA: movementPair.tiltA } : {}),
+      };
+      dispatch(action);
+      const restored = lensReducer(state, action);
+      void navigate(canonicalPagePath(`/lens/${lensKeyA}${buildLensViewSearch(restored, null, "")}`), {
+        replace: false,
       });
-      void navigate(canonicalPagePath(`/lens/${lensKeyA}`), { replace: false });
     }
   }, [
     comparing,
@@ -150,7 +157,9 @@ export default function useComparisonOrchestration({
     lens.selectedConfigurationKey,
     focusPair,
     aperturePair,
+    zoomPair,
     movementPair,
+    state,
     dispatch,
     resetSticky,
     navigate,

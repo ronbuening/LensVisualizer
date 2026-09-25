@@ -780,3 +780,23 @@ it("selects either pane's source state without moving the other pane or shared a
   expect(b.sharedSliders.sharedStopdownT).toBe(0.35);
   expect(b.rays.rayTracksF).toBe(true);
 });
+
+it("swaps retained configurations, clears only a replaced pane, and exits with actual A coordinates", () => {
+  const state = makeState();
+  state.lens.comparing = true;
+  const a = { focusT: 0.7123456789, zoomT: 1 / 3 };
+  const b = { focusT: 0.9, zoomT: 0.5 };
+  state.sharedSliders.focusZoom = { mode: "independent", a, b };
+  const swapped = lensReducer(state, { type: "SWAP_LENSES" });
+  expect(swapped.sharedSliders.focusZoom).toEqual({ mode: "independent", a: b, b: a });
+  const replacedA = lensReducer(state, { type: "SET_LENS_A", key: "replacement" });
+  expect(replacedA.sharedSliders.focusZoom).toEqual({ mode: "independent", a: { focusT: 0, zoomT: 0 }, b });
+  const replacedB = lensReducer(state, { type: "SET_LENS_B", key: "replacement" });
+  expect(replacedB.sharedSliders.focusZoom).toEqual({ mode: "independent", a, b: { focusT: 0, zoomT: 0 } });
+  const unchanged = lensReducer(state, { type: "SET_LENS_A", key: state.lens.lensKeyA });
+  expect(unchanged.sharedSliders).toBe(state.sharedSliders);
+  const exited = lensReducer(replacedB, { type: "EXIT_COMPARE", stopdownA: 0.4 });
+  expect(exited.sliders).toMatchObject({ ...a, stopdownT: 0.4, aberrationT: 0 });
+  expect(exited.lens.selectedConfigurationKey).toBe(state.lens.lensKeyA);
+  expect(exited.lens.comparing).toBe(false);
+});
