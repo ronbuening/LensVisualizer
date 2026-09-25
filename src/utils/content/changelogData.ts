@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
+    summary: "Restored source precision in the scaled Hasselblad HC 210mm prescription, reducing its image-plane error",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
     summary:
       "Moved the underwater Nikkor 20–35mm’s protective plate out of the lens diagram while preserving its traced optical path",
   },
