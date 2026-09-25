@@ -290,3 +290,11 @@ Model F004 was introduced in 2012 with VC and USD autofocus. Tamron replaced it 
 - Tamron Co., Ltd., official product-history chronology for the 2012 F004 and 2016 F017.
 - HOYA Corporation, official optical-glass code and property listings for FCD100, FCD515, FDS90, and TAF1.
 - OHARA Inc., Optical Glass Data, catalog release April 2, 2026, for S-LAH66N, S-LAH59, S-FSL 5, S-TIH10, S-LAL12Q, S-BAL35, S-TIH 6, and S-LAL10.
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: US9063253B2 Embodiment 7 (PDF pp. 84–85) reproduces
+all stored prescription values but not its own printed infinity focal length.
+EFL = 92.556419 mm versus 92.74; paraxial BFL = 47.033197 mm versus
+the published air path 44.5749 + 2.1644 = 46.7393 mm (offset +0.293897 mm).
+Surface 27 is a dummy air plane, not a plate. Preserve the source image plane.

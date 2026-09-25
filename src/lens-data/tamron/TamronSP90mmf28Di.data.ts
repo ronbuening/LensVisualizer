@@ -29,6 +29,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Re-review checks: min edge thickness 0.517 mm; max signed gap     ║
  * ║  intrusion 0.879 of its air gap; max sd/|R| 0.701.                ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: US9063253B2 Embodiment 7 (PDF pp. 84–85) reproduces
+ * all stored prescription values but not its own printed infinity focal length.
+ * EFL = 92.556419 mm versus 92.74; paraxial BFL = 47.033197 mm versus
+ * the published air path 44.5749 + 2.1644 = 46.7393 mm (offset +0.293897 mm).
+ * Surface 27 is a dummy air plane, not a plate. Preserve the source image plane.
  */
 
 const LENS_DATA = {
