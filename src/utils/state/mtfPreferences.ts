@@ -35,7 +35,7 @@ export const MTF_PREFERENCES_KEY = "lensvis:mtf:options";
 export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
   method: "geometric-dl",
   spectrum: "photopic",
-  focus: "auto",
+  focus: "best-axial",
   view: "field",
   fieldStepPercent: 10,
   frequencies: Object.freeze([10, 30] as const),

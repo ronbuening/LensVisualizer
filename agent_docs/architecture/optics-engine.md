@@ -119,11 +119,11 @@ judged at and below 50 lp/mm (absolute change ≤0.01), where a sampled geometri
 noise; each field reports `convergedThroughLpMm`. A finer grid that fails keeps the last good curve as unconverged.
 The axial bundle is re-projected without retracing to find the image plane that maximizes mean axial MTF at
 10–50 lp/mm (a scan of the ray-crossing range, then golden-section refinement). It is always reported as a
-diagnostic, and `focus: "best-axial"` applies the shift to every field. `mtfImagePlaneOffset` (`mtfFocus.ts`) also
+diagnostic, and `focus: "best-axial"` (the tab's default) applies the shift to every field. `mtfImagePlaneOffset` (`mtfFocus.ts`) also
 compares the authored plane with the prescription's paraxial focus at infinity: beyond `MTF_IMAGE_PLANE_DEPTHS` (10)
 depths of focus, 2λN² at the d line and the open f-number, the plane is flagged as inconsistent lens data.
 `focus: "auto"` applies best axial focus only to flagged lenses and keeps the design plane otherwise, so the
-spherical-aberration focus shift of fast classic designs stays visible. `scripts/audit-mtf.mjs --focus` lists the
+spherical-aberration focus shift of fast classic designs stays visible there. `scripts/audit-mtf.mjs --focus` lists the
 flagged lenses, and Section E of `agent_docs/sd-audit-queue.md` queues them. Finite rays share one isotropic object
 point and include spherical launch phase and launch-plane solid-angle weights. Only `finiteConjugates` stations are
 eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.

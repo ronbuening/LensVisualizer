@@ -78,7 +78,7 @@ describe("MTF tab", () => {
     expect(screen.getByRole("status").textContent).toContain("tilt or shift");
     expect(worker).not.toHaveBeenCalled();
   });
-  it("defaults to the diffraction-corrected photopic model and notes estimated dispersion", async () => {
+  it("defaults to the diffraction-corrected photopic model at best axial focus and notes estimated dispersion", async () => {
     stubWorker({ target: focusedState });
     render(
       <MtfTab
@@ -94,17 +94,33 @@ describe("MTF tab", () => {
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
     const header = screen.getByText(/^f\/2\.8 · 49\.2 mm · Diffraction-corrected/);
     expect(header.textContent).toContain("photopic spectrum");
-    expect(header.textContent).toContain("Design image plane");
+    expect(header.textContent).toContain("Best axial focus (");
     // The fixture glass has only nd and νd, so its dispersion is estimated and the tab says so.
     expect(screen.getByText("Dispersion of one glass is estimated from nd and νd.")).toBeTruthy();
-    expect(screen.queryByText(/own prescription/)).toBeNull();
+    expect(screen.queryByText(/own prescription's paraxial focus/)).toBeNull();
+  });
+  it("explains each dropdown's options in a tooltip", async () => {
+    stubWorker({ target: focusedState });
+    render(<MtfTab L={focusedL} t={mockTheme} preparedState={focusedState} currentEPSD={1} currentPhysStopSD={1} />);
+    await screen.findByRole("figure", { name: /image height/ });
+    for (const name of ["MTF method", "MTF spectrum", "MTF image plane", "MTF sampling"]) {
+      const description = screen.getByRole("combobox", { name }).getAttribute("aria-describedby")!;
+      expect(document.getElementById(description)!.textContent!.length).toBeGreaterThan(40);
+    }
+    const plane = screen.getByRole("combobox", { name: "MTF image plane" }) as HTMLSelectElement;
+    expect(plane.value).toBe("best-axial");
+    // Keyboard focus opens the explanation at once; Escape dismisses it.
+    fireEvent.focus(plane);
+    expect(screen.getByRole("tooltip").textContent).toContain("Design plane (always): the source's image plane");
+    fireEvent.keyDown(plane, { key: "Escape" });
+    expect(screen.queryByRole("tooltip")).toBeNull();
   });
   it("refocuses a lens whose image plane contradicts its own prescription, and says so", async () => {
     stubWorker();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
     expect(screen.getByText(/· Best axial focus \(/)).toBeTruthy();
-    const note = screen.getByText(/own prescription/).textContent!;
+    const note = screen.getByText(/own prescription's paraxial focus/).textContent!;
     expect(note).toContain(`${Math.abs(offsetMm).toFixed(2)} mm behind`);
     expect(note).toContain("These curves use best axial focus");
   });

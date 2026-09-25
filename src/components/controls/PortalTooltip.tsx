@@ -19,6 +19,8 @@ interface PortalTooltipProps {
   placement?: "above" | "below";
   /** "end" right-aligns with the anchor; "center" centers on it. */
   align?: "end" | "center";
+  /** Tooltip width in px. */
+  width?: number;
   id?: string;
 }
 
@@ -35,6 +37,7 @@ export default function PortalTooltip({
   theme: t,
   placement = "below",
   align = "end",
+  width = TOOLTIP_WIDTH,
   id,
 }: PortalTooltipProps) {
   const [pos, setPos] = useState<TooltipPos | null>(null);
@@ -42,19 +45,15 @@ export default function PortalTooltip({
   useLayoutEffect(() => {
     if (!open || !anchorRef.current) return;
     const rect = anchorRef.current.getBoundingClientRect();
-    const preferredLeft =
-      align === "center" ? rect.left + rect.width / 2 - TOOLTIP_WIDTH / 2 : rect.right - TOOLTIP_WIDTH;
-    const left = Math.min(
-      Math.max(preferredLeft, VIEWPORT_MARGIN),
-      window.innerWidth - TOOLTIP_WIDTH - VIEWPORT_MARGIN,
-    );
+    const preferredLeft = align === "center" ? rect.left + rect.width / 2 - width / 2 : rect.right - width;
+    const left = Math.min(Math.max(preferredLeft, VIEWPORT_MARGIN), window.innerWidth - width - VIEWPORT_MARGIN);
     /* Anchoring "above" by `bottom` avoids measuring the tooltip's own height. */
     setPos(
       placement === "above"
         ? { bottom: window.innerHeight - rect.top + ANCHOR_GAP, left }
         : { top: rect.bottom + ANCHOR_GAP, left },
     );
-  }, [open, anchorRef, placement, align]);
+  }, [open, anchorRef, placement, align, width]);
 
   if (!open || !pos) return null;
 
@@ -62,7 +61,7 @@ export default function PortalTooltip({
     position: "fixed",
     ...pos,
     zIndex: 9999,
-    width: TOOLTIP_WIDTH,
+    width,
     padding: "8px 10px",
     borderRadius: 8,
     background: t.panelBg,
@@ -70,6 +69,8 @@ export default function PortalTooltip({
     color: t.muted,
     fontSize: 9,
     lineHeight: 1.45,
+    // Newlines in the text start new lines; other whitespace collapses as usual.
+    whiteSpace: "pre-line",
     boxShadow: "0 6px 18px rgba(0, 0, 0, 0.18)",
     pointerEvents: "none",
   };

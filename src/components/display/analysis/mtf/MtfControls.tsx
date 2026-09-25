@@ -1,5 +1,5 @@
 /** MTF model, spectrum, focus, sampling, view, field-step and frequency controls. */
-import type { CSSProperties, ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import type { MtfFocusMode, MtfGridCap, MtfMethod, MtfSpectrum } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
 import {
@@ -10,6 +10,7 @@ import {
   type MtfPreferences,
 } from "../../../../utils/state/mtfPreferences.js";
 import { selector, toggleBtn, toggleGroup } from "../../../../utils/style/styles.js";
+import PortalTooltip from "../../../controls/PortalTooltip.js";
 
 interface MtfControlsProps {
   t: Theme;
@@ -33,14 +34,40 @@ const SPECTRA: ReadonlyArray<[MtfSpectrum, string]> = [
 ];
 /** Auto keeps the design plane unless the lens data's plane contradicts its own prescription. */
 const FOCUS: ReadonlyArray<[MtfFocusMode, string]> = [
+  ["best-axial", "Best axial focus"],
   ["auto", "Design plane (auto)"],
   ["design", "Design plane (always)"],
-  ["best-axial", "Best axial focus"],
 ];
 const SAMPLING: ReadonlyArray<[MtfGridCap, string]> = [
   [128, "Standard"],
   [256, "Refine"],
 ];
+
+/* Hover/focus explanations, one line per option in menu order. */
+const METHOD_HELP = [
+  "Diffraction-corrected: ray-traced (geometric) MTF multiplied by the aperture's diffraction limit. The closest match to manufacturer charts.",
+  "Geometric: rays only. Ignores diffraction, so it overstates contrast for sharp or stopped-down lenses.",
+  "Scalar diffraction: computed from the traced wavefront. The reference for well-corrected lenses, but slower, and unavailable where blur or ray angles exceed its validated range.",
+].join("\n");
+const SPECTRUM_HELP = [
+  "Photopic: five wavelengths from 470 to 650 nm, weighted by the eye's sensitivity V(λ), like white-light charts.",
+  "C/d/F: the red, yellow and blue reference lines, weighted equally; gives color error more weight.",
+  "Reference line: one wavelength, so color aberrations drop out.",
+  "Lenses without enough glass dispersion data use the reference line.",
+].join("\n");
+const FOCUS_HELP = [
+  "Best axial focus: moves the image plane to where the on-axis image is sharpest, as focusing a real lens does.",
+  "Design plane (auto): keeps the source's image plane unless it contradicts the lens's own prescription.",
+  "Design plane (always): the source's image plane as authored, even when it is out of focus.",
+].join("\n");
+const SAMPLING_HELP = [
+  "Standard: pupil grids of up to 128 samples across, enough for most lenses.",
+  "Refine: up to 256, for fields that converge slowly, such as thin beams near the edge. Slower.",
+].join("\n");
+/** Wider than the default tooltip so each option fits in a few lines. */
+const HELP_WIDTH = 300;
+/** Matches the analysis dock: hovering opens after a short pause, keyboard focus opens at once. */
+const HELP_HOVER_DELAY_MS = 300;
 
 export default function MtfControls({
   t,
@@ -60,28 +87,36 @@ export default function MtfControls({
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
         <Select
+          t={t}
           label="MTF method"
+          help={METHOD_HELP}
           style={selectStyle}
           value={preferences.method}
           options={METHODS}
           onChange={(method) => onChange({ method })}
         />
         <Select
+          t={t}
           label="MTF spectrum"
+          help={SPECTRUM_HELP}
           style={selectStyle}
           value={preferences.spectrum}
           options={SPECTRA}
           onChange={(spectrum) => onChange({ spectrum })}
         />
         <Select
+          t={t}
           label="MTF image plane"
+          help={FOCUS_HELP}
           style={selectStyle}
           value={preferences.focus}
           options={FOCUS}
           onChange={(focus) => onChange({ focus })}
         />
         <Select
+          t={t}
           label="MTF sampling"
+          help={SAMPLING_HELP}
           style={selectStyle}
           value={preferences.maxGridSize}
           options={SAMPLING}
@@ -154,32 +189,83 @@ export default function MtfControls({
   );
 }
 
+/** Labeled select whose `help` text explains its options in a hover or keyboard-focus tooltip. */
 function Select<T extends string | number>({
+  t,
   label,
+  help,
   style,
   value,
   options,
   onChange,
 }: {
+  t: Theme;
   label: string;
+  help: string;
   style: CSSProperties;
   value: T;
   options: ReadonlyArray<[T, string]>;
   onChange: (value: T) => void;
 }) {
+  const selectRef = useRef<HTMLSelectElement | null>(null);
+  const hoverTimerRef = useRef<number | null>(null);
+  /* A pointer press focuses the select and opens its menu; only keyboard focus opens the tooltip at once. */
+  const pointerFocusRef = useRef(false);
+  const helpId = useId();
+  const [open, setOpen] = useState(false);
+  const clearHoverTimer = () => {
+    if (hoverTimerRef.current === null) return;
+    window.clearTimeout(hoverTimerRef.current);
+    hoverTimerRef.current = null;
+  };
+  const hide = () => {
+    clearHoverTimer();
+    setOpen(false);
+  };
+  useEffect(
+    () => () => {
+      if (hoverTimerRef.current !== null) window.clearTimeout(hoverTimerRef.current);
+    },
+    [],
+  );
   return (
-    <select
-      aria-label={label}
-      style={style}
-      value={value}
-      onChange={(event) => onChange(options.find(([v]) => String(v) === event.target.value)![0])}
-    >
-      {options.map(([v, text]) => (
-        <option key={v} value={v}>
-          {text}
-        </option>
-      ))}
-    </select>
+    <>
+      <select
+        ref={selectRef}
+        aria-label={label}
+        aria-describedby={helpId}
+        style={style}
+        value={value}
+        onChange={(event) => onChange(options.find(([v]) => String(v) === event.target.value)![0])}
+        onPointerDown={() => {
+          pointerFocusRef.current = true;
+          hide();
+        }}
+        onMouseEnter={() => {
+          clearHoverTimer();
+          hoverTimerRef.current = window.setTimeout(() => setOpen(true), HELP_HOVER_DELAY_MS);
+        }}
+        onMouseLeave={hide}
+        onFocus={() => {
+          if (!pointerFocusRef.current) setOpen(true);
+          pointerFocusRef.current = false;
+        }}
+        onBlur={hide}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") hide();
+        }}
+      >
+        {options.map(([v, text]) => (
+          <option key={v} value={v}>
+            {text}
+          </option>
+        ))}
+      </select>
+      <span id={helpId} hidden>
+        {help}
+      </span>
+      <PortalTooltip anchorRef={selectRef} open={open} text={help} theme={t} align="center" width={HELP_WIDTH} />
+    </>
   );
 }
 
