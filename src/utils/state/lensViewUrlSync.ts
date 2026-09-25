@@ -1,10 +1,11 @@
 import { buildComparisonURL } from "./parseComparisonParams.js";
 import { buildLensViewQueryFromState, parseLensViewQuery } from "./lensViewUrlState.js";
 import { LENS_CATALOG } from "../catalog/lensCatalog.js";
-import { SET_SHARED_ZOOM_T, SET_ZOOM_T } from "./lensReducer.js";
+import { SELECT_SOURCE_STATE, SET_SHARED_ZOOM_T, SET_ZOOM_T } from "./lensReducer.js";
 import { focalLengthToZoomT, zoomTToFocalLength, type ZoomConvertibleLens } from "./zoomConversion.js";
 import type { LensAction, LensState } from "../../types/state.js";
 import type { RuntimeLens } from "../../types/optics.js";
+import { lensSourceStates, resolveLensSourceState } from "../../optics/sourceStates.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";
 
 /**
@@ -64,7 +65,16 @@ export function buildLensViewSearch(
   currentSearch: string,
   isComparePage = false,
 ): string {
-  const params = buildLensViewQueryFromState(state, getStateZoom(state, comparisonLenses, currentSearch));
+  const data = LENS_CATALOG[state.lens.selectedConfigurationKey];
+  const sourceState =
+    !state.lens.comparing && data
+      ? resolveLensSourceState(data, state.sliders.focusT, state.sliders.zoomT, state.sliders.aberrationT)
+      : undefined;
+  const params = buildLensViewQueryFromState(
+    state,
+    getStateZoom(state, comparisonLenses, currentSearch),
+    sourceState ? `${data.key}:${sourceState.id}` : undefined,
+  );
   if (isComparePage && !state.lens.comparing) {
     params.delete("a_el");
     params.delete("b_el");
@@ -108,4 +118,23 @@ export function zoomActionFromFocalLength(
   const zoomLens = getUrlZoomLens(state, comparisonLenses);
   if (!zoomLens) return null;
   return { type, value: focalLengthToZoomT(zoom, zoomLens) };
+}
+
+/**
+ * Resolve a lens-scoped URL identity into the same atomic action used by the selector.
+ * @param state - current viewer (or its initial state)
+ * @param identity - parsed lens-key:state-id token
+ * @param configurationKey - optical configuration being restored, when different from current
+ * @returns exact authored selection, or null for unknown/cross-lens IDs and comparison mode
+ */
+export function sourceStateActionFromUrl(
+  state: LensState,
+  identity: string | undefined,
+  configurationKey = state.lens.selectedConfigurationKey,
+): LensAction | null {
+  if (state.lens.comparing || !identity) return null;
+  const data = LENS_CATALOG[configurationKey];
+  if (!data || !identity.startsWith(`${data.key}:`)) return null;
+  const sourceState = lensSourceStates(data).find((s) => identity === `${data.key}:${s.id}`);
+  return sourceState ? { type: SELECT_SOURCE_STATE, lensKey: data.key, sourceState } : null;
 }

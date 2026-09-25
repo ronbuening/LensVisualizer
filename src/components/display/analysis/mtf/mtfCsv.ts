@@ -8,7 +8,7 @@ import type { MtfResult } from "../../../../types/mtf.js";
  *
  * @param result - computed MTF
  * @param frequencies - frequencies to export, in lp/mm
- * @returns CSV text with a header row
+ * @returns CSV data followed by attributed configuration and evaluation-plane metadata
  */
 export function mtfCsv(result: MtfResult, frequencies: readonly number[]): string {
   const columns = frequencies.filter((f) => result.frequenciesPerMm.includes(f));
@@ -32,5 +32,36 @@ export function mtfCsv(result: MtfResult, frequencies: readonly number[]): strin
       field.reason ?? field.status,
     ];
   });
-  return [header, ...rows].map((row) => row.join(",")).join("\n");
+  const { configuration, focus } = result;
+  const source = configuration.sourceState;
+  const conjugate = source?.conjugate;
+  const metadata = [
+    ["Metadata", "Value"],
+    ["Lens", configuration.lensKey],
+    ["Source state ID", source?.id ?? "unverified"],
+    ["Source state label", source?.label ?? "Unverified geometry"],
+    ["Focus coordinate", configuration.focusT],
+    ["Zoom coordinate", configuration.zoomT],
+    ["Aberration coordinate", configuration.aberrationT],
+    ["Conjugate", conjugate?.kind ?? (result.support.conjugate ? "finite" : "unverified")],
+    ["Object distance (mm)", conjugate?.kind === "finite" ? conjugate.objectDistanceMm : ""],
+    ["Distance reference", conjugate?.kind === "finite" ? conjugate.distanceReference : ""],
+    ["Distance provenance", conjugate?.kind === "finite" ? conjugate.distanceProvenance : ""],
+    ["Sourced magnification", conjugate?.kind === "finite" ? (conjugate.magnification ?? "") : ""],
+    ["Source citation", source?.source ?? ""],
+    ["Distance derivation", conjugate?.kind === "finite" ? (conjugate.derivation ?? "") : ""],
+    ["MTF method", result.method],
+    ["Spectrum", result.spectrum],
+    ["Wavelengths (nm)", result.support.spectralLines.map((line) => line.wavelengthNm).join("; ")],
+    ["Requested MTF image plane", focus?.requestedMode ?? "unavailable"],
+    ["Applied MTF image plane", focus?.mode ?? "unavailable"],
+    ["Evaluation-plane shift from authored plane (mm)", focus?.appliedShiftMm ?? ""],
+    ["Qualification", "Simulated prescription estimate; numerical convergence does not establish physical accuracy."],
+  ];
+  return [header, ...rows, [], ...metadata].map((row) => row.map(csvCell).join(",")).join("\n");
+}
+
+function csvCell(value: string | number): string {
+  const text = String(value);
+  return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
 }

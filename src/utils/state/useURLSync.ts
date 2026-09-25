@@ -17,6 +17,7 @@ import {
   buildLegacyLensViewUrl,
   buildRouteLensViewUrl,
   zoomActionFromFocalLength,
+  sourceStateActionFromUrl,
   type ComparisonLensesParam,
 } from "./lensViewUrlSync.js";
 import type { LensState, LensAction } from "../../types/state.js";
@@ -48,10 +49,11 @@ export default function useURLSync(
   }, [state]);
 
   /* ── Parse zoom from URL once ── */
-  const urlZoom = useMemo((): number | null => {
-    if (typeof window === "undefined") return null;
-    return parseLensViewQuery(window.location.search).zoom ?? null;
-  }, []);
+  const initialQuery = useMemo(
+    () => parseLensViewQuery(typeof window === "undefined" ? "" : window.location.search),
+    [],
+  );
+  const urlZoom = initialQuery.zoom ?? null;
 
   /* ── 1. Debounced URL writer covering all v1 view state ──
    * Single source of writes. Reads fresh state via stateRef so the
@@ -103,7 +105,18 @@ export default function useURLSync(
         delete urlState.configurationKey;
       }
       dispatch({ type: APPLY_URL_VIEW_STATE, state: urlState });
-      const zoomAction = zoomActionFromFocalLength(parsed.zoom ?? null, stateRef.current, comparisonLenses);
+      const station = sourceStateActionFromUrl(stateRef.current, parsed.sourceStateId, urlState.configurationKey);
+      if (station) {
+        dispatch(station);
+        return;
+      }
+      const restoredState = urlState.configurationKey
+        ? {
+            ...stateRef.current,
+            lens: { ...stateRef.current.lens, selectedConfigurationKey: urlState.configurationKey },
+          }
+        : stateRef.current;
+      const zoomAction = zoomActionFromFocalLength(parsed.zoom ?? null, restoredState, comparisonLenses);
       if (zoomAction) dispatch(zoomAction);
     },
     [comparisonLenses, dispatch],
@@ -137,6 +150,8 @@ export default function useURLSync(
   }, [
     comparing,
     lens.selectedConfigurationKey,
+    state.sliders,
+    state.sharedSliders,
     panels.selectedElementId,
     panels.selectedElementIdA,
     panels.selectedElementIdB,
@@ -156,11 +171,15 @@ export default function useURLSync(
    * lens is available, which acts as the readiness gate. */
   useEffect(() => {
     if (urlZoomInitialized.current || urlZoom == null) return;
+    if (sourceStateActionFromUrl(stateRef.current, initialQuery.sourceStateId)) {
+      urlZoomInitialized.current = true;
+      return;
+    }
     const action = zoomActionFromFocalLength(urlZoom, stateRef.current, comparisonLenses);
     if (!action) return;
     dispatch(action);
     urlZoomInitialized.current = true;
-  }, [urlZoom, comparing, lensKeyA, comparisonLenses, dispatch]);
+  }, [urlZoom, initialQuery.sourceStateId, comparing, lensKeyA, comparisonLenses, dispatch]);
 
   return { updateURLWithSliders };
 }

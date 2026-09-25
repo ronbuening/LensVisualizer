@@ -21,6 +21,7 @@ type LensViewQueryKey =
   | "shift"
   | "tilt"
   | "configurationKey"
+  | "sourceStateId"
   | "selectedElementId"
   | "selectedElementIdA"
   | "selectedElementIdB"
@@ -164,6 +165,10 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   if (petzvalOverlayOpen !== undefined) state.petzvalOverlayOpen = petzvalOverlayOpen;
   if (analysisDrawerOpen !== undefined) state.analysisDrawerOpen = analysisDrawerOpen;
   if (configurationKey) state.configurationKey = configurationKey;
+  const sourceStateId = params.get("ss");
+  if (version === "1" && sourceStateId && /^[a-z0-9][a-z0-9-]{0,127}:[a-z0-9][a-z0-9-]{0,63}$/.test(sourceStateId)) {
+    state.sourceStateId = sourceStateId;
+  }
   if (isAnalysisTabId(tab)) state.analysisDrawerTab = tab;
   if (isGroupMovementMode(movementMode)) {
     state.groupMovementOpen = true;
@@ -182,6 +187,7 @@ export function buildLensViewQuery({
   shift,
   tilt,
   configurationKey,
+  sourceStateId,
   selectedElementId,
   selectedElementIdA,
   selectedElementIdB,
@@ -200,7 +206,7 @@ export function buildLensViewQuery({
     Boolean(petzvalOverlayOpen) ||
     Boolean(analysisDrawerOpen) ||
     Boolean(groupMovementOpen) ||
-    (!comparing && Boolean(configurationKey));
+    (!comparing && (Boolean(configurationKey) || Boolean(sourceStateId)));
 
   const params = new URLSearchParams();
   if (usesV1ViewState) params.set("v", "1");
@@ -211,6 +217,7 @@ export function buildLensViewQuery({
   if (shift != null && Math.abs(shift) > 1e-9) params.set("shift", shift.toFixed(2));
   if (tilt != null && Math.abs(tilt) > 1e-9) params.set("tilt", tilt.toFixed(2));
   if (!comparing && configurationKey) params.set("cfg", configurationKey);
+  if (!comparing && sourceStateId) params.set("ss", sourceStateId);
 
   if (comparing) {
     if (selectedElementIdA != null) params.set("a_el", String(selectedElementIdA));
@@ -231,7 +238,11 @@ export function buildLensViewQuery({
   return params;
 }
 
-export function buildLensViewQueryFromState(state: LensState, zoom: number | null | undefined): URLSearchParams {
+export function buildLensViewQueryFromState(
+  state: LensState,
+  zoom: number | null | undefined,
+  sourceStateId?: string,
+): URLSearchParams {
   const { comparing } = state.lens;
   const sliders = comparing
     ? {
@@ -252,6 +263,7 @@ export function buildLensViewQueryFromState(state: LensState, zoom: number | nul
     comparing,
     ...sliders,
     zoom,
+    sourceStateId,
     configurationKey:
       !comparing && state.lens.selectedConfigurationKey !== state.lens.lensKeyA
         ? state.lens.selectedConfigurationKey
@@ -278,6 +290,7 @@ export function lensViewQueryToUrlState(state: LensViewQueryState, includeViewDe
   if (state.shift != null) urlState.shift = state.shift;
   if (state.tilt != null) urlState.tilt = state.tilt;
   if (state.configurationKey) urlState.configurationKey = state.configurationKey;
+  if (state.sourceStateId) urlState.sourceStateId = state.sourceStateId;
   for (const { key, default: fallback } of VIEW_STATE_FIELDS) {
     if (includeViewDefaults || key in state) {
       (urlState as Record<string, unknown>)[key] = state[key] ?? fallback;

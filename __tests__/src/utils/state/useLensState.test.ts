@@ -3,11 +3,14 @@
    lensReducer.test.ts createInitialState tests: "uses defaults when prefs and URL are empty", "URL params
    override prefs", "prefs override defaults", and "panel expanded defaults to isWide". This file keeps only
    the hook-specific wiring (tuple shape, URL parsing/validation, prefs handling, dispatch round-trips). */
-import { describe, it, expect, beforeEach } from "vitest";
-import { renderHook, act } from "@testing-library/react";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+import { renderHook, act, cleanup } from "@testing-library/react";
 import useLensState from "../../../../src/utils/state/useLensState.js";
 import { PREFS_KEY } from "../../../../src/utils/state/preferences.js";
-import { CATALOG_KEYS, COMPARISON_CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
+import useURLSync from "../../../../src/utils/state/useURLSync.js";
+import type { LensSourceState } from "../../../../src/types/optics.js";
+import { buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
+import { CATALOG_KEYS, COMPARISON_CATALOG_KEYS, LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { clearBrowserState, installMatchMediaMock } from "../../../testUtils.js";
 
 /* ── Mock window.matchMedia (not implemented in jsdom) ── */
@@ -155,5 +158,87 @@ describe("useLensState — dispatch", () => {
     });
 
     expect(result.current[0].lens.lensKeyA).toBe(newKey);
+  });
+});
+
+describe("source-state URL restoration", () => {
+  const key = "source-url-fixture";
+  const near: LensSourceState = {
+    id: "near",
+    label: "Near",
+    focusT: 0.7123456789,
+    zoomT: 1 / 3,
+    source: "Synthetic station",
+    conjugate: {
+      kind: "finite",
+      objectDistanceMm: 1000,
+      distanceReference: "first-surface",
+      distanceProvenance: "published",
+    },
+  };
+  const query = `?v=1&ss=${key}:near&focus=0.712&zoom=70&aperture=0.4&aberration=0.5`;
+  beforeEach(() => {
+    vi.useFakeTimers();
+    LENS_CATALOG[key] = {
+      ...buildSimplePositiveElementLens().data,
+      key,
+      focusPositions: [0, near.focusT, 1],
+      zoomPositions: [35, 50, 60, 70],
+      sourceStates: [near],
+    };
+  });
+  afterEach(() => {
+    cleanup();
+    delete LENS_CATALOG[key];
+    vi.useRealTimers();
+  });
+  function useViewer() {
+    const [state, dispatch] = useLensState([key], key);
+    useURLSync(state, dispatch, null, true, false);
+    return [state, dispatch] as const;
+  }
+  it("restores exact authored coordinates ahead of rounded focus and conflicting focal length", () => {
+    localStorage.setItem(PREFS_KEY, JSON.stringify({ rayTracksF: false }));
+    window.history.replaceState({}, "", query);
+    const { result, unmount } = renderHook(useViewer);
+    expect(result.current[0].sliders).toMatchObject({
+      focusT: near.focusT,
+      zoomT: near.zoomT,
+      aberrationT: 0,
+      stopdownT: 0.4,
+    });
+    expect(result.current[0].rays.rayTracksF).toBe(true);
+    act(() => vi.advanceTimersByTime(110));
+    const saved = window.location.search;
+    expect(new URLSearchParams(saved).get("ss")).toBe(`${key}:near`);
+    expect(new URLSearchParams(saved).get("zoom")).toBe("50");
+    unmount();
+    const restored = renderHook(useViewer);
+    expect(restored.result.current[0].sliders.focusT).toBe(near.focusT);
+    expect(restored.result.current[0].sliders.zoomT).toBe(near.zoomT);
+    act(() => restored.result.current[1]({ type: "SET_FOCUS_T", value: 0.713 }));
+    act(() => vi.advanceTimersByTime(110));
+    expect(new URLSearchParams(window.location.search).has("ss")).toBe(false);
+  });
+  it("hydrates both directions of popstate without rounding or resetting aperture", () => {
+    window.history.replaceState({}, "", query);
+    const { result } = renderHook(useViewer);
+    act(() => {
+      window.history.replaceState({}, "", "?focus=0&zoom=35&aperture=0.7");
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    expect(result.current[0].sliders).toMatchObject({ focusT: 0, zoomT: 0, stopdownT: 0.7 });
+    act(() => {
+      window.history.replaceState({}, "", query);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    expect(result.current[0].sliders).toMatchObject({ focusT: near.focusT, zoomT: near.zoomT, stopdownT: 0.4 });
+  });
+  it.each([`${key}:missing`, "another-lens:near", "near", `${key}:<script>`])("falls back safely for %s", (id) => {
+    window.history.replaceState({}, "", `?v=1&ss=${encodeURIComponent(id)}&focus=0.25&zoom=60`);
+    const { result } = renderHook(useViewer);
+    expect(result.current[0].sliders).toMatchObject({ focusT: 0.25, zoomT: 2 / 3 });
+    act(() => vi.advanceTimersByTime(110));
+    expect(new URLSearchParams(window.location.search).has("ss")).toBe(false);
   });
 });

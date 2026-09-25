@@ -82,8 +82,10 @@ export default function useDispatchAdapters(): DispatchAdapters {
   /* dispatch and updateURLWithSliders are stable refs, so the memo never recomputes */
   return useMemo(
     () => ({
-      onSelectSourceState: (lensKey: string, sourceState: LensSourceState) =>
-        dispatch({ type: SELECT_SOURCE_STATE, lensKey, sourceState }),
+      onSelectSourceState: (lensKey: string, sourceState: LensSourceState) => {
+        dispatch({ type: SELECT_SOURCE_STATE, lensKey, sourceState });
+        updateURLWithSliders();
+      },
       onFocusChange: (v: number) => dispatch({ type: SET_FOCUS_T, value: v }),
       onZoomChange: (v: number) => dispatch({ type: SET_ZOOM_T, value: v }),
       onAberrationChange: (v: number) => dispatch({ type: SET_ABERRATION_T, value: v }),

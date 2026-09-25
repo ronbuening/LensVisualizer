@@ -7,6 +7,7 @@ import { act, cleanup, fireEvent, render, screen, within } from "@testing-librar
 import LensStateSelector from "../../../../../src/components/display/analysis/mtf/LensStateSelector.js";
 import type { LensSourceState } from "../../../../../src/types/optics.js";
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
+import { mtfCsv } from "../../../../../src/components/display/analysis/mtf/mtfCsv.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import { installMatchMediaMock, mockTheme } from "../../../../testUtils.js";
 import { build, buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
@@ -485,4 +486,40 @@ it("hides superseded station curves and preserves the diagram state when MTF clo
   expect(within(screen.getByRole("region", { name: "Simulated MTF" })).getByRole("status").textContent).toContain(
     "Finite MTF",
   );
+});
+
+it("exports source evidence and evaluation plane from the computed result with CSV escaping", () => {
+  const sourceState: LensSourceState = {
+    id: "near",
+    label: "Near",
+    focusT: 0,
+    zoomT: 0,
+    source: 'Synthetic "Table 1", published geometry',
+    conjugate: {
+      kind: "finite",
+      objectDistanceMm: 1000,
+      distanceReference: "image-plane",
+      distanceProvenance: "calculated",
+      derivation: "First-order solution; exact-ray check",
+      magnification: -0.1,
+    },
+  };
+  const lens = build({ ...focusedL.data, sourceStates: [sourceState] });
+  const result = computeMtf(prepareRuntimeState(lens, 0, 0), {
+    ...referenceOptions,
+    focus: "best-axial",
+    fieldFractions: [0],
+    maxGridSize: 32,
+  });
+  // A later request or metadata change cannot relabel this result's export.
+  lens.data.sourceStates![0].label = "New selection";
+  const csv = mtfCsv(result, [10]);
+  expect(csv).toContain("Source state label,Near");
+  expect(csv).toContain('Source citation,"Synthetic ""Table 1"", published geometry"');
+  expect(csv).toContain("Distance provenance,calculated");
+  expect(csv).toContain("Distance reference,image-plane");
+  expect(csv).toContain("Sourced magnification,-0.1");
+  expect(csv).toContain(`Evaluation-plane shift from authored plane (mm),${result.focus!.appliedShiftMm}`);
+  expect(csv).toContain("Applied MTF image plane,best-axial");
+  expect(csv).not.toContain("New selection");
 });

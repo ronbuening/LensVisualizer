@@ -261,6 +261,8 @@ export interface URLState {
   lensKeyB?: string;
   comparing?: boolean;
   configurationKey?: string;
+  /** Lens-scoped source identity, resolved against authored data before applying coordinates. */
+  sourceStateId?: string;
   focus?: number;
   aberration?: number;
   aperture?: number;

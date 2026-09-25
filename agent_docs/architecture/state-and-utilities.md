@@ -58,6 +58,11 @@ Canonical lens identity stays in route paths: `/lens/:slug` and `/compare/:slugA
 shareable view state:
 
 - Stable slider params remain unversioned: `focus`, `aberration`, `aperture`, `zoom`, `shift`, and `tilt`.
+- `ss` is a v1 lens-scoped source identity (`lens-key:state-id`). The lens-aware initialization and popstate paths
+  resolve it against the selected optical configuration and use `SELECT_SOURCE_STATE` to restore exact coordinates.
+  A valid identity takes precedence over rounded focus/focal-length parameters, resets aberration control, and enables
+  focus-following. Unknown and cross-lens IDs fall back to ordinary sliders. Writers derive identity from current
+  neutral coordinates, so manual movement removes a mismatched token. Comparison support is handled separately.
 - Versioned v1 view params are `v=1`, `el`, `a_el`, `b_el`, `gm`, `chr`, `ptz`, `mv`, `ad`, `tab`, and `cfg`.
 - Single-lens optical configuration uses `cfg`; the parser accepts only a bounded catalog-key shape, and lens-aware
   initialization/popstate handling validates it against the canonical lens's `opticalConfiguration` group. Invalid,

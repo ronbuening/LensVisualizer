@@ -226,6 +226,7 @@ describe("lensViewUrlState", () => {
       shift: -4.5,
       tilt: 3.25,
       configurationKey: "example-configuration",
+      sourceStateId: "example-configuration:near",
       selectedElementId: 4,
       selectedElementIdA: 2,
       selectedElementIdB: 9,
@@ -256,4 +257,14 @@ describe("lensViewUrlState", () => {
     expect(state.analysisDrawerOpen).toBe(true);
     expect(state.analysisDrawerTab).toBe("bokeh");
   });
+});
+
+it("round-trips lens-scoped source identity only in version 1 single-lens links", () => {
+  const sourceStateId = "synthetic-zoom:near";
+  const params = buildLensViewQuery({ sourceStateId, focus: 0.7123456789 });
+  expect(params.get("v")).toBe("1");
+  expect(parseLensViewQuery(`?${params}`).sourceStateId).toBe(sourceStateId);
+  expect(parseLensViewQuery("?ss=synthetic-zoom:near").sourceStateId).toBeUndefined();
+  expect(parseLensViewQuery("?v=2&ss=synthetic-zoom:near").sourceStateId).toBeUndefined();
+  expect(buildLensViewQuery({ comparing: true, sourceStateId }).has("ss")).toBe(false);
 });

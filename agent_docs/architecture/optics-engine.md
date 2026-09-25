@@ -68,6 +68,9 @@ use current viewer coordinates (worker work is independently debounced), and lat
 The evaluation-plane preference changes only the MTF diagnostic; closing the tab retains the selected geometry and rays.
 Interpolated infinity zoom positions are labeled; intermediate finite-focus positions remain unavailable.
 
+CSV exports append configuration/evidence and evaluation-plane metadata from the displayed `MtfResult`, never from
+current slider or preference values. Pending/unavailable field rows retain their explicit status.
+
 Source-state inventory: `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --source-states`
 includes every prescription and separates hidden production configurations from reference fixtures. `--lens=KEY`
 selects one prescription; `--limit=N` limits output while preserving full inventory counts. Candidate coordinates
