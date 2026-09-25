@@ -17,6 +17,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    checked against sd/|R|, aspherical slope, element SD ratio,      ║
  * ║    edge thickness, and signed cross-gap sag-intrusion limits. They ║
  * ║    are not patent-published or production clear apertures.          ║
+ * ║    Surfaces 1-3 were raised to pass the traced chief ray to the    ║
+ * ║    full-frame corner, as FIG. 3 draws the front elements; the      ║
+ * ║    patent's Y = 18.90 mm design image height is reached at 46.4°   ║
+ * ║    (2026-09-24 field-coverage audit).                              ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes only the optical design: glass      ║
  * ║  elements, refracting surfaces, aperture stop, and focus gaps. It   ║
@@ -254,9 +258,9 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 52.423, d: 1.4, nd: 1.60311, elemId: 1, sd: 15.5 },
-    { label: "2", R: 19.691, d: 5.03, nd: 1, elemId: 0, sd: 13.4 },
-    { label: "3", R: 29.399, d: 2, nd: 1.58313, elemId: 2, sd: 13.8 },
+    { label: "1", R: 52.423, d: 1.4, nd: 1.60311, elemId: 1, sd: 20.5 },
+    { label: "2", R: 19.691, d: 5.03, nd: 1, elemId: 0, sd: 16.5 },
+    { label: "3", R: 29.399, d: 2, nd: 1.58313, elemId: 2, sd: 15.3 },
     { label: "4A", R: 17.89, d: 16.43, nd: 1, elemId: 0, sd: 13.8 },
     { label: "5", R: -23.409, d: 1.2, nd: 1.43875, elemId: 3, sd: 14.6 },
     { label: "6", R: -99.819, d: 0.5, nd: 1, elemId: 0, sd: 14.3 },

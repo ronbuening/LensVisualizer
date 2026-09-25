@@ -182,8 +182,8 @@ At the semi-diameters used in the data file, the polynomial departures from the 
 
 | Surface | Data-file semi-diameter | Polynomial departure |
 |---|---:|---:|
-| 3A | 11.60 mm | -0.305 mm |
-| 4A | 9.45 mm | -0.121 mm |
+| 3A | 15.90 mm | -1.211 mm |
+| 4A | 13.30 mm | -0.840 mm |
 | 19A | 17.10 mm | +0.408 mm |
 | 20A | 18.70 mm | +4.691 mm |
 

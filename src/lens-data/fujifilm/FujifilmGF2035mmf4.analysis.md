@@ -207,8 +207,8 @@ At the selected data-file semi-diameters, the exact profiles depart from their c
 
 | Data-file surface | Semi-diameter | Exact departure |
 | ----------------- | ------------: | --------------: |
-| 3A                |     15.000 mm |    +577.975 µm |
-| 4A                |     14.000 mm |     −37.733 µm |
+| 3A                |     17.400 mm |    +882.139 µm |
+| 4A                |     14.300 mm |     −67.281 µm |
 | 10A               |      8.400 mm |    +308.149 µm |
 | 11A               |      8.400 mm |    +329.393 µm |
 | 17A               |     10.500 mm |     −96.106 µm |

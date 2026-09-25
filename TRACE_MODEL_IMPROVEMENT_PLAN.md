@@ -143,6 +143,10 @@ surface without manual browser triage.
   zoom; check diagram, distortion, vignette, pupils, and off-axis/chromatic rays for console `[chiefRaySolver]`
   warnings or nonsensical bundles. `getChiefRayDiagnostics()` should show only `converged` or
   `paraxial-fallback`.
+- **Chief-ray bisection recovery.** The object-plane solve in `src/optics/field/chiefRay.ts` returns
+  `paraxial-fallback` as soon as one bisection probe fails to reach the stop, even when the bracket still holds the
+  root (Nikon AF Nikkor 28mm f/2.8D at 37.8° then misses the stop centre by 0.54 mm). Re-bracketing around the failed
+  probe would keep such edge solves converged; `npm run audit:field-coverage` marks them `edge solve paraxial-fallback`.
 - **Analytic grazing-ray test.** A synthetic one-surface sphere fixture at 89.5°, 90°, 95°, 100°, 110°, and 130°
   compared against closed-form intersections would validate the lifted forward-cone gates against the math rather
   than the algorithm's own self-consistency.

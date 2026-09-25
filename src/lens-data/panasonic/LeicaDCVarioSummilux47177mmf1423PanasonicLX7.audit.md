@@ -76,3 +76,28 @@ The four Panasonic fixed-camera lenses consistently use Panasonic maker metadata
   identical, and defocus changes by less than 1e−6 mm at all three zoom states.
 - Physical track grows by 0.3066 mm (0.9 × (1 − 1/1.5168)) to 62.800 / 57.956 / 65.995 mm. That now matches Table 3's
   overall lengths to within 0.001 mm.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Table 3 (PDF p. 20) prints a wide half view angle of 42.1837° at image height 3.8210 mm (4.2680 mm at middle and tele).
+The wide Y is 82% of the 1/1.7-inch corner (4.65 mm), so it is a design image circle: rims were sized to pass the chief
+ray to Y only, and the corner stays short by design. The traced wide chief ray (solved through the stop centre) reaches
+Y at 42.23°, where it needs surface 4A ≥ 7.77, 5 ≥ 7.62, 6 ≥ 7.62, 7 ≥ 7.69 and 8 ≥ 7.59 mm; the stored rims clipped it
+from 38.3° (3.45 mm, 90% of Y). Values are floor + ~3% rounded up, with L3 and L4 kept equal front/rear. Surface 3A
+(the L2 partner) is unchanged: L2 is a strong meniscus, 3A was measured at its optical rim on Fig. 1, and it sits just
+short of its ~10.8 mm flattening. No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 4A | 7.7 | 8.1 | wide chief ray to Y 7.77 mm + ~3%; scan to 9.72 mm shows no turnover (conic domain ends at 9.715 mm) |
+| 5 | 6.9 | 7.9 | wide chief ray to Y 7.62 mm + ~3%; the 4A→5 gap intrusion rejects 8.1 mm (5.19 > 5.116 mm) |
+| 6 | 6.9 | 7.9 | wide chief ray to Y 7.62 mm + ~3%; L3 kept equal front/rear |
+| 7 | 7.1 | 8.0 | wide chief ray to Y 7.69 mm + ~3% |
+| 8 | 7.1 | 8.0 | L4 scaled with surface 7 (own floor 7.59 mm) |
+
+The validator accepts the new values and the image-circle floor reports nothing undersized. The wide analysis edge now
+reaches 43.7° → 3.96 mm (104% of Y, 85% of the corner), where surface 6 clips beyond Y; the unclipped chief-ray solve
+fails past 45.6° (4.17 mm), so the 4.65 mm corner is not reachable at wide in any case. Middle and tele stay at 100%.
+The 4A rim departure is now −1.0360 mm at 8.1 mm (was −0.7304 mm at 7.7 mm), the largest rim angle 48.418° (4A) and
+the largest shared-gap sag intrusion 0.8639 (4A→5); `LeicaDCVarioSummilux47177mmf1423PanasonicLX7.analysis.md` quotes
+those figures and was updated.

@@ -30,6 +30,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  slope, cross-gap intrusion, and off-axis containment. The STO              ║
  * ║  sd stores the exact wide-state f/4.1 result; runtime zoom construction      ║
  * ║  resolves the larger middle/tele stop openings from nominalFno.              ║
+ * ║  L3 (surfaces 4/5) was raised to the 24.4 mm rim Figure 13 draws, which    ║
+ * ║  passes the traced chief ray to the APS-C corner at every zoom state       ║
+ * ║  (2026-09-24 field-coverage audit).                                        ║
  * ║                                                                            ║
  * ║  No scale factor, cover glass, filter, dummy plane, or mechanical part      ║
  * ║  is included. The patent publishes no nC, nF, ng, or dPgF data.             ║
@@ -272,8 +275,8 @@ const LENS_DATA = {
     { label: "1", R: 285.09, d: 1.8, nd: 1.84666, elemId: 1, sd: 26.0 },
     { label: "2", R: 96.239, d: 5.19, nd: 1.713, elemId: 2, sd: 24.5 },
     { label: "3", R: 3559.161, d: 0.1, nd: 1.0, elemId: 0, sd: 23.0 },
-    { label: "4", R: 49.493, d: 5.49, nd: 1.7725, elemId: 3, sd: 15.0 },
-    { label: "5", R: 106.028, d: 3.1, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "4", R: 49.493, d: 5.49, nd: 1.7725, elemId: 3, sd: 24.4 },
+    { label: "5", R: 106.028, d: 3.1, nd: 1.0, elemId: 0, sd: 24.4 },
 
     { label: "6A", R: 199.217, d: 0.1, nd: 1.527, elemId: 4, sd: 13.2 },
     { label: "7", R: 94.524, d: 1.2, nd: 1.804, elemId: 5, sd: 13.2 },

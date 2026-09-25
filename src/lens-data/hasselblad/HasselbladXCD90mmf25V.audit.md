@@ -77,3 +77,23 @@ Patent: JP 2022-99402 A, Example 1
 - Paraxial check against the previous air-equivalent 15.69272 mm: EFL identical; infinity defocus changes by 0.000009 mm
   at both focus keyframes (rounding in the old fold). Physical track grows by 0.619 mm to 105.06 mm, matching the
   patent's printed total length 83.2058 × the scale factor.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Patent Numerical Example 1 prints f = 71.2800, half-angle 17.1033° and image height Y = 21.6330 mm (Table 1C, ¶0185,
+PDF p. 20); scaled ×1.26265, Y = 27.315 mm is 99.7% of the 44×33 corner (27.39 mm), so the design covers the format.
+The L9 rims, estimated for a chief ray at 60% of the half-field, clipped the real chief ray (solved through the stop
+centre) from 15.4°, leaving the analysis field at 89% of the corner. The traced corner chief ray (17.15°) needs surface
+17A ≥ 17.17 and 18A ≥ 19.82 mm; values are floor + ~0.5 mm. L9 is a strong double-aspheric meniscus (R −20.86 / −65.15),
+so each surface takes its own floor rather than a shared factor. Both aspheres stay physical past the new rims: scanned
+to 1.2× the new sd, 17A's slope keeps steepening through 19.1 mm and never changes sign, and 18A turns over only
+between 23.3 and 24.5 mm. No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 17A | 17.0 | 17.7 | corner chief ray 17.17 mm + clearance; aspheric, no turnover within 21.2 mm |
+| 18A | 17.5 | 20.4 | corner chief ray 19.82 mm + clearance; aspheric, turnover only past 23.3 mm |
+
+The validator accepts the new values, the traced edge now reaches 27.39 mm at 17.2° with every rim clear (100%), and
+the image-circle floor still reports nothing undersized. The analysis quotes L9 departures only at fixed heights (10 and
+12 mm at patent scale), so it needs no change.

@@ -34,3 +34,30 @@ Patent: WO 2016/136352 A1, Example 2
 - Paraxial check against the previous data: EFL identical at all three focus keyframes; defocus changes by 0.0048 mm
   (22.747 + 2.500/1.5168 + 1.000 = 25.3952 vs the rounded 25.4). Physical track grows by 0.847 mm to 145.005 mm,
   matching the analysis's physical S1-to-image figure.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Example 2 prints ω = 13.15° (Table 7, PDF p. 25), and the Fig. 6 infinity aberration plots run to Y = 21.63 mm (PDF
+p. 44), within 0.02 mm of the full-frame corner (21.65 mm), so the design covers the format. The estimated rims (rear
+elements sized for a 40% field) clipped the real chief ray (solved through the stop centre) at surface 27 from 10.3°,
+leaving the infinity-focus analysis field at 77% of the corner (16.71 mm). The traced corner chief ray (13.27°) needs
+surface 1 ≥ 19.06, 2 ≥ 18.18, 3 ≥ 16.87, 4 ≥ 15.83, 26 ≥ 10.67 and 27 ≥ 11.41 mm; every other rim is clear (surface 25
+keeps 0.17 mm). Values are floor + ~0.5 mm, rounded up. Surface 2 also equals G1 scaled with surface 1 (×1.107);
+surface 5, G3's rear face (14.58 mm at the corner), is scaled with the cemented junction 4 (×1.038); G15 is a strong
+meniscus (R −27.80 / −75.22), so surfaces 26 and 27 take their own floors. Fig. 5 (300 dpi, 0.1076 mm/px) draws G1 to
+about 24.9 mm and G13–G15 to about 15 mm, so every new value stays inside the drawn outline; the figure was used only
+as that bound.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 1 | 17.7 | 19.6 | corner chief ray 19.06 mm + clearance |
+| 2 | 16.9 | 18.7 | corner chief ray 18.18 mm + clearance (= G1 scaled ×1.107) |
+| 3 | 16.8 | 17.4 | corner chief ray 16.87 mm + clearance |
+| 4 | 15.8 | 16.4 | corner chief ray 15.83 mm + clearance; cemented G2/G3 junction |
+| 5 | 15.5 | 16.1 | G3 scaled with surface 4 (×1.038); does not clip |
+| 26 | 8.9 | 11.2 | corner chief ray 10.67 mm + clearance |
+| 27 | 8.9 | 12.0 | corner chief ray 11.41 mm + clearance |
+
+The validator accepts the new values, the traced edge now reaches 21.65 mm at 13.3° with every rim clear, and the
+image-circle floor still reports nothing undersized. No aspheric surface changed (the S7 departure the analysis quotes
+is untouched), and the analysis quotes none of the changed rims.

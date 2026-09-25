@@ -19,7 +19,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  No production scaling was applied: Table 2 is already a 10.31–19.39 mm design.  ║
  * ║  Semi-diameters are conservative renderer clear apertures inferred from paraxial ║
  * ║  marginal/chief-ray envelopes and constrained by edge-thickness and cross-gap    ║
- * ║  sag checks. They are not manufacturer-published clear apertures.                ║
+ * ║  sag checks. They are not manufacturer-published clear apertures. Surfaces 1-5   ║
+ * ║  were raised to pass the traced chief ray to the DX corner at the wide end       ║
+ * ║  (55.2°; Table 2 prints Y = 14.25 mm at ω = 55.344°, labelled 2ω) in the         ║
+ * ║  2026-09-24 field-coverage audit.                                                ║
  * ╚════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -243,11 +246,11 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 72.2152, d: 2.4, nd: 1.7725, elemId: 1, sd: 13.6 },
-    { label: "2", R: 18.0784, d: 0.2, nd: 1.56093, elemId: 2, sd: 12.5 },
-    { label: "3A", R: 12.8098, d: 13.5, nd: 1.0, elemId: 0, sd: 11.35 },
-    { label: "4A", R: 38.7253, d: 0.2, nd: 1.55389, elemId: 3, sd: 11.6 },
-    { label: "5", R: 33.7793, d: 1.5, nd: 1.8061, elemId: 4, sd: 11.8 },
+    { label: "1", R: 72.2152, d: 2.4, nd: 1.7725, elemId: 1, sd: 21.9 },
+    { label: "2", R: 18.0784, d: 0.2, nd: 1.56093, elemId: 2, sd: 16.0 },
+    { label: "3A", R: 12.8098, d: 13.5, nd: 1.0, elemId: 0, sd: 15.7 },
+    { label: "4A", R: 38.7253, d: 0.2, nd: 1.55389, elemId: 3, sd: 12.6 },
+    { label: "5", R: 33.7793, d: 1.5, nd: 1.8061, elemId: 4, sd: 12.5 },
     { label: "6", R: 15.4957, d: 6.413, nd: 1.0, elemId: 0, sd: 11.6 },
     { label: "7", R: -222.7658, d: 1.3, nd: 1.68348, elemId: 5, sd: 12.0 },
     { label: "8", R: 47.0349, d: 0.1, nd: 1.0, elemId: 0, sd: 12.0 },

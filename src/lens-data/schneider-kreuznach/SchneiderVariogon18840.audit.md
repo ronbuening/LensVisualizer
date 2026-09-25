@@ -22,3 +22,24 @@ The companion analysis reflects these dispositions. Marketed names remain distin
 Retained the first-pass optical SDs against US3442573 Figure 1 and the live wide/mid/tele diagram. The s10/s11 tele gap still limits enlargement. Corrected L2 to biconcave; authored L1–L12/P diagram labels. Added source-backed Super-8 format (7.08 mm frame diagonal). Verified the reversing III compensator and disabled unmodeled focus. All 13 media retain compatible spectral coverage.
 
 Assignee audit: source-era Schneider names are consolidated as `Jos. Schneider & Co., Optische Werke`; the later GmbH & Co. KG remains distinct. Sony Group Corporation is retained for these source-era filings, separately from older Sony Corporation patents. No additional duplicate assignee spelling was found.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+US 3,442,573 designs for the 4.22 × 5.69 mm 8 mm frame (abstract; col. 1), a 3.542 mm half-diagonal, and col. 2 says
+these frames are fully illuminated even at the minimum focal length. At the wide station the real chief ray (solved
+through the stop centre) reaches that corner at 23.77°, but the estimated 5.10 mm rim of surface 10 clipped it from
+17.8°, leaving the analysis field at 73% of the corner; the middle and tele stations already reached it. The corner chief
+ray crosses surface 10 at 6.94 mm; the new value is that floor + ~3% (small format), rounded up. Surface 11 carries at
+most 2.20 mm of corner chief ray at any station and keeps 5.10 mm: it bounds the radial band that the tele-end
+d10 = 1.78 mm gap check shares with surface 10, so that check is unchanged. Surface 9, surface 10's partner in L6, is a
+cemented junction already at 8.5 mm and is unchanged. No figure measurement was used; the new value stays below the
+~9.8 mm L5/L6 rim drawn in Fig. 1 (2026-09-20 entry).
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 10 | 5.1 | 7.2 | wide-end corner chief ray 6.94 mm + ~3% clearance |
+
+The validator accepts the new value, all three stations now reach 100% of the corner with every rim clear, and the
+image-circle floor still reports nothing undersized. At 0.6 field the outer wide-end pupil rays now clip at surface 11
+rather than surface 10; the analysis paragraph on modeled vignetting was updated to match. Surface 10 is spherical, so no
+aspheric departure changed.

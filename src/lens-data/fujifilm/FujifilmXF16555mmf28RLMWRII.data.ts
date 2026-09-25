@@ -18,6 +18,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  (S1, S11, S25). Remaining values were estimated by marginal/chief ║
  * ║  ray heights and constrained by edge thickness, slope, and cross-  ║
  * ║  gap sag intrusion checks.                                         ║
+ * ║  Surface 6A was raised to pass the traced chief ray to the APS-C   ║
+ * ║  corner at the wide end (2026-09-24 field-coverage audit); the     ║
+ * ║  patent's 2ω = 88.6° design circle is slightly larger.             ║
  * ║                                                                    ║
  * ║  Aspheres: exact Example 1 Table 3 odd/even A3-A10 coefficients   ║
  * ║  are stored on all eight aspheric surfaces. KA = 1 converts to    ║
@@ -328,7 +331,7 @@ const LENS_DATA = {
       d: 2.07,
       nd: 1.8078,
       elemId: 4,
-      sd: 12.5,
+      sd: 14.5,
     },
     {
       label: "7A",

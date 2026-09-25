@@ -26,7 +26,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    for stable rendering from the patent section diagram, the       ║
  * ║    entrance-pupil geometry, spherical/aspherical rim limits, and   ║
  * ║    cross-gap sag clearance. They are not manufacturer clear        ║
- * ║    aperture specifications.                                        ║
+ * ║    aperture specifications. Surfaces 1-2 were raised to pass the   ║
+ * ║    traced chief ray to the FX corner at 47.1° (patent 2Y' =        ║
+ * ║    43.2 mm), and surfaces 14-21 and 24 to pass the full f/1.8      ║
+ * ║    on-axis marginal ray, which the former 3.8-11.0 mm rims cut to  ║
+ * ║    about f/5.6. Figure 4 draws L21-L24 at 12.8-13.4 mm (2026-09-24 ║
+ * ║    field-coverage audit).                                          ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass/resin/cement optical media and surfaces                 ║
@@ -254,8 +259,8 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 44.748, d: 2.05, nd: 1.72916, elemId: 1, sd: 16.0 },
-    { label: "2", R: 21.684, d: 6.42, nd: 1.0, elemId: 0, sd: 13.8 },
+    { label: "1", R: 44.748, d: 2.05, nd: 1.72916, elemId: 1, sd: 21.8 },
+    { label: "2", R: 21.684, d: 6.42, nd: 1.0, elemId: 0, sd: 17.7 },
     { label: "3", R: 37.165, d: 1.7, nd: 1.72916, elemId: 2, sd: 20.0 },
     { label: "4", R: 21.292, d: 0.08, nd: 1.5138, elemId: 3, sd: 16.5 },
     { label: "5A", R: 17.396, d: 10.52, nd: 1.0, elemId: 0, sd: 16.5 },
@@ -267,17 +272,17 @@ const LENS_DATA = {
     { label: "11", R: -217.291, d: 0.15, nd: 1.0, elemId: 0, sd: 14.0 },
     { label: "12", R: 55.437, d: 9.28, nd: 1.80518, elemId: 8, sd: 20.0 },
     { label: "13", R: 508.643, d: 7.51, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "14", R: 173.481, d: 1.0, nd: 1.8042, elemId: 9, sd: 4.5 },
-    { label: "15", R: 40.958, d: 0.2, nd: 1.0, elemId: 0, sd: 3.8 },
-    { label: "16", R: 26.018, d: 6.47, nd: 1.63854, elemId: 10, sd: 11.0 },
-    { label: "17", R: -45.032, d: 0.15, nd: 1.0, elemId: 0, sd: 6.3 },
-    { label: "18", R: -157.818, d: 3.82, nd: 1.59282, elemId: 11, sd: 6.3 },
-    { label: "19", R: -25.619, d: 0.01, nd: 1.514, elemId: 12, sd: 9.0 },
-    { label: "20", R: -25.619, d: 1.1, nd: 1.8061, elemId: 13, sd: 9.0 },
-    { label: "21", R: -86.163, d: 1.5, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "14", R: 173.481, d: 1.0, nd: 1.8042, elemId: 9, sd: 12.8 },
+    { label: "15", R: 40.958, d: 0.2, nd: 1.0, elemId: 0, sd: 12.9 },
+    { label: "16", R: 26.018, d: 6.47, nd: 1.63854, elemId: 10, sd: 13.4 },
+    { label: "17", R: -45.032, d: 0.15, nd: 1.0, elemId: 0, sd: 13.3 },
+    { label: "18", R: -157.818, d: 3.82, nd: 1.59282, elemId: 11, sd: 12.8 },
+    { label: "19", R: -25.619, d: 0.01, nd: 1.514, elemId: 12, sd: 12.6 },
+    { label: "20", R: -25.619, d: 1.1, nd: 1.8061, elemId: 13, sd: 12.6 },
+    { label: "21", R: -86.163, d: 1.5, nd: 1.0, elemId: 0, sd: 12.4 },
     { label: "STO", R: 1e15, d: 7.31, nd: 1.0, elemId: 0, sd: 10.45 },
     { label: "23", R: -18.136, d: 1.1, nd: 1.90366, elemId: 14, sd: 12.0 },
-    { label: "24", R: -663.566, d: 0.4, nd: 1.0, elemId: 0, sd: 10.0 },
+    { label: "24", R: -663.566, d: 0.4, nd: 1.0, elemId: 0, sd: 11.5 },
     { label: "25A", R: 310.584, d: 4.88, nd: 1.6935, elemId: 15, sd: 13.0 },
     { label: "26A", R: -26.434, d: 2.2, nd: 1.0, elemId: 0, sd: 12.5 },
     { label: "27", R: -106.408, d: 5.85, nd: 1.618, elemId: 16, sd: 12.5 },

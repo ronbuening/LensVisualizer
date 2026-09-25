@@ -266,7 +266,7 @@ The patent provides no clear-aperture or semi-diameter table. The data-file diam
 The selected semi-diameters satisfy the project-specific binding checks:
 
 - maximum $sd/|R|=0.8744<0.90$;
-- maximum front/rear semi-diameter ratio within one element is 1.2063, below 1.25;
+- front/rear semi-diameter ratio within one element below 1.25 (largest 1.1944, L5a), except L2 at 1.4113: the 2026-09-24 field-coverage audit raised its front surface from 10.0 to 11.7 mm to pass the corner chief ray, while its rear surface stays at the L2-to-L3 cross-gap limit;
 - minimum computed edge thickness is approximately 0.628 mm;
 - every signed cross-gap sag intrusion is below 90% of its axial air gap.
 

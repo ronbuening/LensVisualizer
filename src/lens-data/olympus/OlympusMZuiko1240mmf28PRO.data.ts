@@ -22,6 +22,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    G1 is kept below the 62 mm filter-thread cap, G4 is opened up, ║
  * ║    and G5 sits near the L14 edge-thickness limit. G2 surfaces      ║
  * ║    5→6 and 8→9 remain the binding air-gap constraints.            ║
+ * ║    Surfaces 4A-5A were raised to pass the traced chief ray to the  ║
+ * ║    patent's IH = 10.82 mm corner at wide (2ω = 88.92°); 5A stops   ║
+ * ║    at 9.65 mm, its 5A→6 air-gap limit (2026-09-24 field-coverage   ║
+ * ║    audit).                                                         ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS:                                              ║
  * ║    Patent close-focus data at 0.25 m object-to-image distance.     ║
@@ -262,8 +266,8 @@ const LENS_DATA = {
     { label: "3", R: 207.849, d: 0.8433, nd: 1.0, elemId: 0, sd: 24.2 }, // L2 rear → air (d3 zoom var)
 
     // ─── G2: L3 / L4+L5 / L6 ───
-    { label: "4A", R: 159.5696, d: 1.5, nd: 1.7432, elemId: 3, sd: 11.0 }, // L3 front (DSA asph)
-    { label: "5A", R: 12.8384, d: 7.332, nd: 1.0, elemId: 0, sd: 9.6 }, // L3 rear (DSA asph) → air
+    { label: "4A", R: 159.5696, d: 1.5, nd: 1.7432, elemId: 3, sd: 14.2 }, // L3 front (DSA asph)
+    { label: "5A", R: 12.8384, d: 7.332, nd: 1.0, elemId: 0, sd: 9.65 }, // L3 rear (DSA asph) → air
     { label: "6", R: -22.1355, d: 1.2, nd: 1.497, elemId: 4, sd: 15.0 }, // L4 front (ED)
     { label: "7", R: 22.1355, d: 4.241, nd: 1.7552, elemId: 5, sd: 15.0 }, // L4→L5 junction
     { label: "8", R: -56.895, d: 1.807, nd: 1.0, elemId: 0, sd: 8.3 }, // L5 rear → air

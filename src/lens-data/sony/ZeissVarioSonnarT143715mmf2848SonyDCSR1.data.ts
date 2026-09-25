@@ -39,6 +39,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ states and representative interpolated zoom states for edge thickness, actual rim   ║
  * ║ slope, conic domain, shared-band cross-gap intrusion, and ray containment.           ║
  * ║ Production render diagnostics passed at five zoom samples and both focus endpoints.      ║
+ * ║ Surfaces 3-4 (G2) were raised to pass the traced chief ray to the patent's           ║
+ * ║ Y = 13.0 mm image height (Figs. 2-4; stored as imageCircleMm = 26) at all three zoom ║
+ * ║ states (2026-09-24 field-coverage audit).                                            ║
  * ║                                                                                      ║
  * ║ Glass labels preserve patent d-line classes/codes only. Catalog coordinate matches   ║
  * ║ do not establish supplier identity. No nC/nF/ng/dPgF data are authored.              ║
@@ -72,6 +75,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.8646783257041806,
   lensMounts: ["fixed-lens-camera"],
+  imageCircleMm: 26, // Figs. 2-4 plot to Y = 13.0 mm; DSC-R1 sensor 21.5 x 14.4 mm (25.9 mm diagonal)
   imageFormat: "aps-c",
   patentNumber: "US 2008/0218875 A1",
   patentAuthors: ["Daisuke Kuroda", "Masafumi Sueyoshi", "Kazuya Watanabe"],
@@ -277,8 +281,8 @@ const LENS_DATA = {
     { label: "1", R: 66.358, d: 5.185, nd: 1.5891, elemId: 1, sd: 23.5 },
     { label: "2", R: 381.552, d: 1.0, nd: 1.0, elemId: 0, sd: 22.8 },
 
-    { label: "3", R: 160.929, d: 1.7, nd: 1.7725, elemId: 2, sd: 12.7 },
-    { label: "4", R: 17.445, d: 6.091, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "3", R: 160.929, d: 1.7, nd: 1.7725, elemId: 2, sd: 18.7 },
+    { label: "4", R: 17.445, d: 6.091, nd: 1.0, elemId: 0, sd: 14.1 },
 
     { label: "5", R: 60.914, d: 1.7, nd: 1.7725, elemId: 3, sd: 14 },
     { label: "6", R: 22.708, d: 0.2, nd: 1.5361, elemId: 4, sd: 13.5 },

@@ -749,6 +749,18 @@ describe("buildLens — rear plates", () => {
     expect(L.S[L.lastLensSurfaceIdx].d).toBe(44);
   });
 
+  /* A plate sits just ahead of the image, where the corner chief ray is nearly at full image height. Sized from the
+   * lens alone, the plate of a compact prime whose rear element is small beside its format set the half-field. */
+  it("sizes generated plate rims to cover the image format as well as the largest lens rim", () => {
+    const plateSds = (L: ReturnType<typeof buildRearPlateLens>) =>
+      L.S.filter((surface) => surface.synthetic === "rearPlate").map((surface) => surface.sd);
+
+    expect(plateSds(buildRearPlateLens())).toEqual([22.5, 22.5]);
+    for (const sd of plateSds(buildRearPlateLens({ imageFormat: "135-full-frame" }))) {
+      expect(sd).toBeCloseTo((1.5 * 43.3) / 2, 10);
+    }
+  });
+
   it("keeps synthetic plates out of drawn spans, element lists and diagram scale", () => {
     const plated = buildRearPlateLens();
     const folded = buildRearPlateAirEquivalentLens();

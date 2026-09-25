@@ -29,14 +29,16 @@ import type { LensDataInput } from "../../types/optics.js";
  *   the patent half-field at wide/middle/tele plus representative inter-state zoom samples,
  *   with clearance, then checked for edge thickness, actual aspheric rim slope, conic domain,
  *   shared-gap sag intrusion, and exact off-axis containment. Production render diagnostics
- *   passed in the repository audit; see the accompanying audit log.
+ *   passed in the repository audit; see the accompanying audit log. Surfaces 4A-8 were
+ *   raised to pass the traced wide chief ray to the patent's Y = 3.821 mm design image
+ *   height (2026-09-24 field-coverage audit).
  *
  * Patent design endpoints are 4.8862-17.1948 mm and f/1.46326-2.37854. Panasonic markets
  * 4.7-17.7 mm and f/1.4-2.3; the two sets are deliberately kept separate.
  */
 
 // SD review (2026-09-15): exact local patent Fig. 1 optical rims; see the audit sidecar.
-// L2 surface 3A extended to 10.7 mm at its optical rim; rear 4A remains 7.7 mm.
+// L2 surface 3A extended to 10.7 mm at its optical rim; rear 4A stayed 7.7 mm then (8.1 mm since 2026-09-24).
 // Revised apertures remain estimates; radii, spacings and calibrated stop are unchanged.
 const LENS_DATA = {
   key: "leica-dc-vario-summilux-47-177mm-f14-23-panasonic-lx7",
@@ -210,11 +212,11 @@ const LENS_DATA = {
     { label: "1", R: 113.4453, d: 1.9, nd: 1.83481, elemId: 1, sd: 13.4 },
     { label: "2", R: -297.1745, d: 0.3, nd: 1.0, elemId: 0, sd: 13.4 },
     { label: "3A", R: 111.987, d: 1.0, nd: 1.805, elemId: 2, sd: 10.7 },
-    { label: "4A", R: 8.9938, d: 5.6842, nd: 1.0, elemId: 0, sd: 7.7 },
-    { label: "5", R: -29.3648, d: 0.5, nd: 1.59282, elemId: 3, sd: 6.9 },
-    { label: "6", R: 69.2114, d: 0.1, nd: 1.0, elemId: 0, sd: 6.9 },
-    { label: "7", R: 23.4562, d: 1.73, nd: 2.00272, elemId: 4, sd: 7.1 },
-    { label: "8", R: 87.7088, d: 26.2611, nd: 1.0, elemId: 0, sd: 7.1 },
+    { label: "4A", R: 8.9938, d: 5.6842, nd: 1.0, elemId: 0, sd: 8.1 },
+    { label: "5", R: -29.3648, d: 0.5, nd: 1.59282, elemId: 3, sd: 7.9 },
+    { label: "6", R: 69.2114, d: 0.1, nd: 1.0, elemId: 0, sd: 7.9 },
+    { label: "7", R: 23.4562, d: 1.73, nd: 2.00272, elemId: 4, sd: 8.0 },
+    { label: "8", R: 87.7088, d: 26.2611, nd: 1.0, elemId: 0, sd: 8.0 },
     { label: "9A", R: 12.035, d: 2.52, nd: 1.60602, elemId: 5, sd: 6.8 },
     { label: "10A", R: -125.1544, d: 1.7359, nd: 1.0, elemId: 0, sd: 6.8 },
     { label: "11", R: 9.5288, d: 1.88, nd: 1.7725, elemId: 6, sd: 5.45 },

@@ -33,6 +33,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  A 600-dpi Figure-1 audit reduced L3 to 14.5/14.0 mm and enlarged L13-L15  ║
  * ║  to 10.0/11.2/12.8 mm, correcting front/rear silhouette proportions. SDs  ║
  * ║  are not presented as patent facts.                                         ║
+ * ║  L3 was later raised to 16.9/16.3 mm: the figure-reduced rims clipped the   ║
+ * ║  traced chief ray to the 24×36 corner at the 97.7 and 146.4 mm states,      ║
+ * ║  and the traced floor takes precedence (2026-09-24 field-coverage audit).   ║
  * ║                                                                              ║
  * ║  GLASS: the patent gives d-line nd/νd only. Coordinate-compatible catalog   ║
  * ║  curves are supplier-neutral coefficient proxies; no production identity is ║
@@ -57,7 +60,7 @@ const LENS_DATA = {
   ],
 
   focalLengthMarketing: [70, 150],
-  focalLengthDesign: [72.06279, 146.196286],
+  focalLengthDesign: [72.06279, 146.196652],
   apertureMarketing: 4,
   apertureDesign: 4.3,
   lensMounts: ["konica-ar"],
@@ -279,8 +282,8 @@ const LENS_DATA = {
     { label: "1", R: 65.376, d: 1.8, nd: 1.80518, elemId: 1, sd: 23.0 },
     { label: "2", R: 40.25, d: 6.2, nd: 1.62299, elemId: 2, sd: 22.5 },
     { label: "3", R: 217.791, d: 0.1, nd: 1.0, elemId: 0, sd: 22.0 },
-    { label: "4", R: 101.646, d: 3.52, nd: 1.62299, elemId: 3, sd: 14.5 },
-    { label: "5", R: -1360.521, d: 3.055, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "4", R: 101.646, d: 3.52, nd: 1.62299, elemId: 3, sd: 16.9 },
+    { label: "5", R: -1360.521, d: 3.055, nd: 1.0, elemId: 0, sd: 16.3 },
     { label: "6", R: -290.812, d: 2.5, nd: 1.80518, elemId: 4, sd: 12.5 },
     { label: "7", R: -108.018, d: 2.01, nd: 1.0, elemId: 0, sd: 12.0 },
     { label: "8", R: -164.525, d: 1.0, nd: 1.6968, elemId: 5, sd: 10.8 },
@@ -320,13 +323,13 @@ const LENS_DATA = {
     ],
     "12": [
       [21.968, 21.968],
-      [14.468, 14.468],
+      [14.466, 14.466],
       [0.3, 0.3],
     ],
     "15": [
       [6.31, 6.31],
       [2.592, 2.592],
-      [6.31, 6.31],
+      [6.318, 6.318],
     ],
     // From the published base state, E12 shifts 1.223080314 / 2.244087999 / 5.264790649 mm
     // at the 0.8 m reconstructed endpoint.

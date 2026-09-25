@@ -36,3 +36,29 @@ Patent: US 7,301,711 B2
 
 - Added the coefficient-backed SUMITA row as `K-SKLD5-M` and relabeled L32/L44 as catalog equivalents with the production supplier unspecified.
 - Both elements now use strict Sellmeier dispersion instead of the patent Abbe fallback.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Table 6 (PDF p. 22) prints half-angles W = 42.0° / 26.7° / 16.2° for Embodiment 6 and no image height; at those angles
+the traced chief ray lands beyond the APS-C corner (14.175 mm), so the design covers it. The estimated rims clipped the
+real chief ray (solved through the stop centre) first: at wide the L21 resin layer and its junction (6A/7, 10.6 mm)
+stopped the field at 35.5° (11.42 mm, 81% of the corner), and at middle and tele surface 1 (25.7 mm) stopped it at
+25.5° and 15.4° (95% and 96%). As the maximum over stations, the corner chief ray needs surface 1 ≥ 27.18 (middle), 2 ≥
+25.97, 3 ≥ 25.38 and 5 ≥ 23.10 (tele), and 6A ≥ 12.95 and 7 ≥ 12.87 mm (wide). Values are floor + ~0.5 mm; the front
+rim stays well inside the 77 mm filter thread (front sd under ~36 mm). No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 1 | 25.7 | 27.7 | middle corner chief ray 27.18 mm + clearance |
+| 2 | 25.3 | 26.5 | tele corner chief ray 25.97 mm + clearance (L11/L12 cemented junction) |
+| 3 | 24.4 | 25.9 | tele corner chief ray 25.38 mm + clearance |
+| 4 | 24.4 | 25.0 | L13 scaled with surface 5 (own tele chief ray 23.95 mm) |
+| 5 | 23.0 | 23.6 | tele corner chief ray 23.10 mm + clearance |
+| 6A | 10.6 | 13.5 | wide corner chief ray 12.95 mm + clearance; scan to 16.2 mm shows no turnover |
+| 7 | 10.6 | 13.5 | wide corner chief ray 12.87 mm; kept equal to the resin layer it carries |
+
+The validator accepts the values, the image-circle floor still reports nothing undersized, and all three stations now
+reach the corner (41.2° / 26.6° / 16.1°, 100%) with every rim clear. Surface 8 (L21 glass rear, R 13.792) passes the
+wide corner chief ray at 9.86 mm inside its 10.0 mm rim and is unchanged, since L21 is a strong meniscus. The resin
+layer's rim thickness falls from 0.206 mm at 10.6 mm to 0.075 mm at 13.5 mm, and the 6A rim departure is now +533.9 µm
+(was +203.1 µm); the analysis file quotes neither, nor any other changed rim.

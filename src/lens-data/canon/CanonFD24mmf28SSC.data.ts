@@ -27,6 +27,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    from paraxial marginal and 0.6-field ray heights, then limited   ║
  * ║    by rim-slope, edge-thickness, front/rear element-ratio, and      ║
  * ║    cross-gap sag-clearance checks for LensVisualizer rendering.     ║
+ * ║    Surfaces 1, 3 and 4 were raised to pass the traced chief ray to  ║
+ * ║    the full-frame corner, just past the patent's ω = 42° field      ║
+ * ║    (2026-09-24 field-coverage audit).                               ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -160,10 +163,10 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 41.938421, d: 1.960751, nd: 1.58913, elemId: 1, sd: 15.8 },
+    { label: "1", R: 41.938421, d: 1.960751, nd: 1.58913, elemId: 1, sd: 18.1 },
     { label: "2", R: 19.039735, d: 7.426796, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "3", R: 431.24254, d: 5.98811, nd: 1.58913, elemId: 2, sd: 13.0 },
-    { label: "4", R: -68.953481, d: 1.563789, nd: 1.0, elemId: 0, sd: 12.2 },
+    { label: "3", R: 431.24254, d: 5.98811, nd: 1.58913, elemId: 2, sd: 14.2 },
+    { label: "4", R: -68.953481, d: 1.563789, nd: 1.0, elemId: 0, sd: 13.3 },
     { label: "5", R: 179.037023, d: 5.295231, nd: 1.57957, elemId: 3, sd: 10.7 },
     { label: "6", R: 11.244847, d: 4.467625, nd: 1.0, elemId: 0, sd: 9.3 },
     { label: "7", R: 44.291322, d: 2.747457, nd: 1.80518, elemId: 4, sd: 9.6 },

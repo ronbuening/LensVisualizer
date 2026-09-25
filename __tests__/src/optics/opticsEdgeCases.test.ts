@@ -17,8 +17,9 @@ import {
   chiefRayImageHeight,
   chiefRayImageHeightAccurate,
   doLayout,
+  traceRay,
 } from "../../../src/optics/optics.js";
-import { sharedApoLanthar50f2, sharedNikkorZ70200, sharedNokton50f1 } from "./testLensFixtures.js";
+import { build, sharedApoLanthar50f2, sharedNikkorZ70200, sharedNokton50f1 } from "./testLensFixtures.js";
 
 /* ── traceParaxialRay ── */
 
@@ -203,6 +204,40 @@ describe("buildLens — half-field refinement", () => {
     for (const v of L.zoomXpSDs!) {
       expect(isFinite(v)).toBe(true);
       expect(v).toBeGreaterThan(0);
+    }
+  });
+});
+
+/* ── First-surface hit search ── */
+
+/* A steep ray drawn from the diagram lead passes well outside the front element before reaching it, and an aspheric
+ * polynomial diverges outside the clear aperture it was fitted on. The search for the first hit must start at the
+ * glass, or wide-field chief rays land on the polynomial's extension and every analysis at those fields breaks. */
+describe("traceRay — first-surface hit search", () => {
+  const L = build({
+    key: "test-diverging-front-asphere",
+    name: "Test diverging front asphere",
+    closeFocusM: 0.5,
+    yScFill: 0.55,
+    nominalFno: 4,
+    fstopSeries: [4, 5.6, 8],
+    elements: [{ id: 1, name: "Fixture element", label: "L1", type: "positive", nd: 1.5168, vd: 64.17 }],
+    surfaces: [
+      { label: "1A", R: 30, nd: 1.5168, sd: 12, d: 4, elemId: 1 },
+      { label: "2", R: -30, nd: 1.0, sd: 12, d: 2, elemId: 0 },
+      { label: "STO", R: 1e15, nd: 1.0, sd: 4, d: 50, elemId: 0 },
+    ],
+    /* Sag bends ~25 mm toward the object by h = 17.7 mm, just outside the 12 mm clear aperture. */
+    asph: { "1A": { K: 0, A4: 0, A6: -1e-6, A8: 0, A10: 0, A12: 0, A14: 0 } },
+  });
+
+  it("lands a steep diagram-lead ray on the glass, not on the front asphere's extension", () => {
+    const layout = doLayout(0, 0, L);
+    for (const fieldDeg of [35, 40]) {
+      const ray = traceRay(4, -Math.tan((fieldDeg * Math.PI) / 180), layout.z, 0, 0, undefined, false, L);
+
+      expect(ray.clipped).toBe(false);
+      expect(Math.abs(ray.pts[1][1])).toBeLessThan(12);
     }
   });
 });

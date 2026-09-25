@@ -29,6 +29,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    inferred from entrance-pupil geometry plus marginal/chief-ray   ║
  * ║    checks, then constrained by element edge thickness, surface rim ║
  * ║    curvature, element SD ratios, and cross-gap sag clearance.      ║
+ * ║    Surfaces 1-5 were raised to pass the traced chief ray to the FX ║
+ * ║    corner (47.9°, matching the patent's 2ω = 94°; 2026-09-24       ║
+ * ║    field-coverage audit). Surface 4 stops at 9.7 mm, the 64.2°     ║
+ * ║    rim-slope limit.                                                ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -206,11 +210,11 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 38.8882, d: 5.4962, nd: 1.62041, elemId: 1, sd: 19.6 },
-    { label: "2", R: 99.2998, d: 0.0982, nd: 1.0, elemId: 0, sd: 17.2 },
-    { label: "3", R: 27.095, d: 1.374, nd: 1.7847, elemId: 2, sd: 11.7 },
-    { label: "4", R: 10.8308, d: 3.9258, nd: 1.0, elemId: 0, sd: 9.4 },
-    { label: "5", R: 19.05, d: 1.1778, nd: 1.713, elemId: 3, sd: 8.9 },
+    { label: "1", R: 38.8882, d: 5.4962, nd: 1.62041, elemId: 1, sd: 20.9 },
+    { label: "2", R: 99.2998, d: 0.0982, nd: 1.0, elemId: 0, sd: 18.3 },
+    { label: "3", R: 27.095, d: 1.374, nd: 1.7847, elemId: 2, sd: 13.9 },
+    { label: "4", R: 10.8308, d: 3.9258, nd: 1.0, elemId: 0, sd: 9.7 },
+    { label: "5", R: 19.05, d: 1.1778, nd: 1.713, elemId: 3, sd: 9.5 },
     { label: "6", R: 10.1384, d: 3.7296, nd: 1.0, elemId: 0, sd: 7.8 },
     { label: "7", R: 75.0028, d: 3.1406, nd: 1.7552, elemId: 4, sd: 7.5 },
     { label: "8", R: -29.5026, d: 1.2758, nd: 1.77279, elemId: 5, sd: 7.25 },

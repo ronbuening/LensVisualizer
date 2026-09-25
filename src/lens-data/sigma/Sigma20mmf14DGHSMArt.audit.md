@@ -66,3 +66,27 @@ Patent: JP 2019-117419 A, Numerical Example 1
   d27 = 41.518534 − 1.4500/1.52301 − 0.9970 = 39.569472 mm.
 - Paraxial check against the previous data: EFL identical and defocus unchanged (worst |Δ| 3.5e-8 mm) at all three
   focus keyframes. Physical track grows by 0.498 mm and now matches the patent's 161.26 mm.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Numerical Example 1 prints f = 20.69 mm, 2ω = 93.69° and Y = 21.63 mm (各種データ, p. 10, ¶0058), so the design covers
+the full-frame corner (21.65 mm). The estimated front rims were sized for paraxial envelopes: rim 1 stopped the real
+chief ray (solved through the stop centre) at 35.4° (67% of the corner), and the undersized E1/E2 rims also kept the
+corner chief ray from solving past 38.0°. With those rims opened, the corner chief ray (46.87°; patent ω 46.85°)
+crosses surface 1 at 31.67, 2 at 26.46, 3A at 24.62 and 4A at 21.37 mm, and clears every later rim. Each new value is
+that height + ~0.5 mm, rounded up. E1 and E2 are strong menisci, so their rear surfaces take their own floors rather
+than scaling with the front (scaling surface 2 with 1, to 31.2 mm, would also exceed its 28.97 mm rim-slope limit).
+Surface 4A now exceeds its vertex radius (sd/|R| = 1.07), which its near-paraboloid base (K = −0.9479) allows: the rim
+slope is 39.6°. No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 1 | 22.5 | 32.2 | corner chief ray 31.67 mm + clearance |
+| 2 | 21.8 | 27.0 | corner chief ray 26.46 mm + clearance; strong meniscus, not scaled with surface 1 |
+| 3A | 19.2 | 25.2 | corner chief ray 24.62 mm + clearance; no aspheric turnover to 30.2 mm |
+| 4A | 18.2 | 21.9 | corner chief ray 21.37 mm + clearance; not scaled with 3A; rim slope 39.6°; no turnover to 26.3 mm |
+
+The validator accepts the new values, the traced edge now reaches the 21.65 mm corner at 46.9° with every rim clear,
+the image-circle floor still reports nothing undersized, and no render trim or gap overlap appears. Surface 3A departs
+from its paraxial sphere by −2421.8 µm at 25.2 mm; 4A's base sphere ends at 20.43 mm, so its rim is given by sag
+instead (10.707 mm at 21.9 mm). The analysis quotes neither and is unchanged.

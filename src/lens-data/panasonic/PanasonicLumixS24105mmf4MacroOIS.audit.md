@@ -49,3 +49,21 @@
 - Close-focus defocus is now at most 4.4e-10 mm; infinity EFL (25.002987 / 50.142962 / 100.568809 mm) and the infinity
   state are unchanged. Tele magnification is 0.494313× (was 0.492597×) and condition (5) 0.136451. Surface and
   image-circle audits pass.
+
+## 2026-09-24 — Surface 7 raised to pass the patent's wide field
+
+Numerical Example 1's Table 3A (JP 2020-118738 A, PDF p. 21) prints the wide state at f 25.0078 mm, ω 40.9808° and
+image height 19.6000 mm, 90.5% of the full-frame corner; middle and tele print 21.6330 mm. So the wide end is a design
+image circle. The real chief ray (solved through the stop centre) at the printed ω lands at 19.60 mm and crosses surface
+7 at 16.37 mm, above its 16.0 mm rim, so the wide analysis field ended at 88.6% of the corner (19.18 mm). Surface 7
+takes its floor + ~0.5 mm; its partner, surface 8 (R 16.21, the concave rear of the L4 meniscus), carries 12.28 mm of
+that chief ray against its 13.1 mm rim and is unchanged.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 7 | 16.0 | 16.9 | wide chief ray at the printed ω crosses it at 16.37 mm + clearance |
+
+The validator accepts the new value and the image-circle floor still reports nothing undersized. The wide analysis field
+now runs to 41.9° (20.17 mm, 93% of the corner), just past the design height, where surface 7 clips again; the corner
+itself (43.8°) would also need a larger surface 1. Middle and tele still reach 100%. The analysis quotes no surface-7
+value.

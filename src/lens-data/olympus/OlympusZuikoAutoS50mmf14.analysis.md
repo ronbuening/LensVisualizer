@@ -271,7 +271,7 @@ The design addresses this through conditions (2) and (3), which intentionally un
 
 Semi-diameters were estimated by tracing a marginal ray at f/1.4 (EP SD = 17.86 mm) and a chief ray at 23° half-field through the scaled prescription. The chief ray contribution was scaled by offAxisFieldFrac = 0.60, and approximately 8% mechanical clearance was applied to the combined beam footprint. The resulting values were then validated against three physical constraints:
 
-1. **Edge thickness ≥ 0.7 mm** for each element
+1. **Edge thickness ≥ 0.7 mm** for each element (L7 was later raised past this; see §9.3)
 2. **Cross-gap sag overlap ≤ 90%** of the air gap thickness for each air space
 3. **Front-group cap at 23 mm SD** imposed by the 49 mm filter thread
 
@@ -301,8 +301,10 @@ The cross-gap constraints were not binding for this design. The thin air gaps d�
 | r₉ | 9 | 13.0 | L5 edge thickness / marginal ray |
 | r₁₀ | 10 | 14.0 | Marginal ray + off-axis |
 | r₁₁ | 11 | 14.0 | L6 edge thickness |
-| r₁₂ | 12 | 14.0 | Marginal ray + off-axis |
-| r₁₃ | 13 | 14.0 | Marginal ray + off-axis |
+| r₁₂ | 12 | 16.5 | Corner chief ray (15.87 mm) + clearance |
+| r₁₃ | 13 | 16.5 | Corner chief ray (15.93 mm) + clearance |
+
+The 2026-09-24 field-coverage audit raised L7 (r₁₂/r₁₃) from 14.0 to 16.5 mm. The 0.6-field estimate clipped the real chief ray (solved through the inferred stop) at 21.5°, short of the 35mm corner; the chief ray that reaches the corner (23.8°, just past the patent's 23° plots) crosses r₁₂ and r₁₃ at 15.87 and 15.93 mm. L7's edge is only 0.38 mm at that floor and 0.20 mm at 16.5 mm, below the 0.7 mm target of §9.1, so the rendered L7 is nearly knife-edged.
 
 ---
 

@@ -337,4 +337,39 @@ describe("Optics engine surface intersections", () => {
       intersectSurfaceProfile({ origin: [100, 0, -10], direction: [0, 0, 1] }, spherical, 0, { maxT: 20 }),
     ).toMatchObject({ ok: false, failureReason: "noBracket" });
   });
+
+  /* Past its domain radius (|R| here) a conic's sag is clamped into a fake extension that no glass occupies. A steep
+   * ray that passes outside the domain on its way in must reach the real surface, not a root on that extension —
+   * the failure that stopped wide-field chief rays on deep front aspheres. */
+  it("ignores the clamped extension past a conic's domain radius", () => {
+    const asphere: AsphericCoefficients = { K: 0, A4: 0, A6: -2e-6, A8: 0, A10: 0, A12: 0, A14: 0 };
+    const profile = createSurfaceProfile({ R: 10 }, asphere);
+    const hit = intersectSurfaceProfile({ origin: [0, 17, -12], direction: normalize([0, -1, 1])! }, profile, 0, {
+      maxT: 40,
+    });
+
+    expect(hit.ok).toBe(true);
+    if (!hit.ok) return;
+    expect(hit.radius).toBeLessThan(10);
+    expectClose(hit.point[2], profile.sag(hit.radius), 1e-9);
+  });
+
+  /* A ray entering the domain from outside can cross the surface between the domain edge and the first scan sample
+   * inside it; that root has no sign change between valid samples, so the search must bracket the edge itself. */
+  it("finds a root just inside a conic's domain edge", () => {
+    const profile = createSurfaceProfile({ R: 4 }, undefined);
+    const angle = (21 * Math.PI) / 180;
+    const hit = intersectSurfaceProfile(
+      { origin: [0, 6, -2], direction: [0, -Math.sin(angle), Math.cos(angle)] },
+      profile,
+      0,
+      { maxT: 24, directionNormalized: true },
+    );
+
+    expect(hit.ok).toBe(true);
+    if (!hit.ok) return;
+    expect(hit.radius).toBeGreaterThan(3.9);
+    expect(hit.radius).toBeLessThan(4);
+    expectClose(hit.point[2], profile.sag(hit.radius), 1e-9);
+  });
 });

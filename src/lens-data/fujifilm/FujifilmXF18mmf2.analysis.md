@@ -28,9 +28,9 @@ The lens is a compact retrofocus design arranged as two lens groups separated by
 
 **Group 2 (G2, positive power):** L3–L4 cemented doublet + L5 (positive, aspheric) + L6 (negative) + L7 (negative meniscus, aspheric) + L8 (positive biconvex, rear element). This group carries the primary converging power and performs the bulk of aberration correction.
 
-The total optical track from S1 to the image plane (excluding cover glass) is 37.62 mm, giving a retrofit ratio of approximately 2.00 — the lens is about twice as long as its focal length. This is a moderate value for a retrofocus wide-angle and reflects the pancake constraint; larger retrofit ratios would produce a longer barrel.
+The total optical track from S1 to the image plane is 43.53 mm with the cover glass in place (42.61 mm counting the plate as its air equivalent), giving a retrofit ratio of approximately 2.3 — the lens is a little over twice as long as its focal length. This is a moderate value for a retrofocus wide-angle and reflects the pancake constraint; larger retrofit ratios would produce a longer barrel.
 
-The back focal distance from the last optical surface (L8 rear) to the image plane is 7.80 mm in air plus the 2.70 mm cover glass plate. The total physical distance to the sensor (10.5 mm) is less than the X-mount flange distance of 17.7 mm, meaning the rear element of L8 protrudes behind the lens mount flange and into the camera body. This is standard practice for short-registration mirrorless mounts and is the architectural reason L8 is positioned as closely to the sensor as possible — reducing the chief ray incidence angle at the sensor edges and thereby minimizing vignetting and color shading.
+The back focal distance from the last optical surface (L8 rear) to the image plane is 7.80 mm of air, the 2.70 mm cover glass plate and 3.21 mm of air (12.79 mm air-equivalent). The total physical distance to the sensor (13.71 mm) is less than the X-mount flange distance of 17.7 mm, meaning the rear element of L8 protrudes behind the lens mount flange and into the camera body. This is standard practice for short-registration mirrorless mounts and is the architectural reason L8 is positioned as closely to the sensor as possible — reducing the chief ray incidence angle at the sensor edges and thereby minimizing vignetting and color shading.
 
 ---
 
@@ -218,7 +218,7 @@ The companion data file transcribes Table 8 directly and converts each patent co
 | A12 | −2.40950739E−11 | −1.17572834E−10 |
 | A14 | 0 | 0 |
 
-At the data-file semi-diameters, the exact profiles depart from their paraxial spheres by −82.367 µm (S9A), +55.663 µm (S10A), +473.799 µm (S13A), and +1034.025 µm (S14A).
+At the data-file semi-diameters, the exact profiles depart from their paraxial spheres by −82.367 µm (S9A), +55.663 µm (S10A), +1001.333 µm (S13A), and +1317.520 µm (S14A). The S13A and S14A values sit at the Table 17 effective radii and reproduce the patent's |Sagsp| − |Sagas| differences there (2.926 − 1.924 = 1.002 mm and 2.222 − 0.904 = 1.318 mm).
 
 ### 5.3 Aspherical Surface Summary
 
@@ -256,17 +256,19 @@ No anomalous partial dispersion (APD) glasses are present in the prescription. T
 
 ## 7. Semi-Diameter Estimation
 
-The patent does not list semi-diameters. SDs were estimated through a multi-step process:
+The patent lists effective radii only for S13 and S14 (Table 17). The other SDs were estimated through a multi-step process:
 
 1. **Paraxial marginal ray trace** at the entrance pupil radius (EP ≈ 4.52 mm for f/2.06) established the on-axis beam footprint at each surface.
 
 2. **Paraxial chief ray trace** at the APS-C production field angle (ω ≈ 37.2°, corresponding to the sensor half-diagonal of 14.14 mm) provided the off-axis beam contribution.
 
-3. **Patent anchor points** from Table 17 — Re1 = 5.80 mm (S13A effective semi-diameter) and Re2 = 6.96 mm (S14A effective semi-diameter) — were used to calibrate the off-axis estimate. The paraxial chief ray overestimates heights by roughly 2× at the rear elements of this wide-angle retrofocus design due to pupil aberration.
+3. **Patent anchor points** from Table 17 — Re1 = 5.800 mm (S13A effective semi-diameter) and Re2 = 6.956 mm (S14A effective semi-diameter) — are used directly for S13A and S14A, and were used to calibrate the off-axis estimate. The paraxial chief ray overestimates heights by roughly 2× at the rear elements of this wide-angle retrofocus design due to pupil aberration.
 
-4. **Cross-gap sag intrusion** was the binding constraint at two locations: the S2–S3 gap (2.20 mm, limited to sd ≤ 6.8 mm by the strongly curved S2 at R = +8.9 mm) and the S12–S13A gap (2.40 mm, limited to sd ≤ 4.9 mm by the combined curvature of S12 and the exact aspherical S13A surface). The S12/S13A constraint is tighter than the patent's Re1 = 5.80 because the strongly curved L7 front and L6 rear close the gap rapidly at the rim.
+4. **Cross-gap sag intrusion** was the binding constraint at two locations: the S2–S3 gap (2.20 mm, limited to sd ≤ 6.8 mm by the strongly curved S2 at R = +8.9 mm) and the S12–S13A gap (2.40 mm as printed), which holds S12 (the L6 rear) at 4.8 mm because the strongly curved L6 rear and L7 front close the gap rapidly toward the rim. The check runs at the smaller of the two rims, so S13A can take the patent's Re1 = 5.800 mm.
 
 5. **Mechanical clearance** of 8% was applied above the raw beam footprint estimates.
+
+6. **Format corner.** S15 and S16 (L8) were raised to 9.1 and 10.1 mm in the 2026-09-24 field-coverage audit: the real chief ray to the APS-C corner (40.9°) crosses them at 8.53 and 9.53 mm.
 
 ---
 
@@ -279,7 +281,7 @@ Unit focusing is the simplest and most mechanically compact focus mechanism, con
 The production lens specifies a minimum focus distance of 0.18 m (macro mode) and 0.80 m (normal mode). For unit focusing at 0.18 m:
 
 - Lens extension ≈ f² / (d_object − f) ≈ 18.84² / (180 − 18.84) ≈ 2.20 mm
-- BFD at close focus ≈ 7.80 + 2.20 = 10.00 mm
+- Air gap from L8 to the cover glass at close focus ≈ 7.80 + 2.20 = 10.00 mm
 
 This modest 2.2 mm of travel is mechanically feasible within the pancake barrel and is driven by the lens's internal DC motor.
 
@@ -289,6 +291,6 @@ This modest 2.2 mm of travel is mechanically feasible within the pancake barrel 
 
 The XF 18mm f/2 R was one of the three launch lenses for the Fujifilm X-mount system in early 2012, alongside the XF 35mm f/1.4 R and XF 60mm f/2.4 R Macro. It was designed to showcase the system's compact potential — at just 33.7 mm from flange and 116 g, it transforms any X-mount body into a near-pocketable camera.
 
-The optical design makes several deliberate tradeoffs in pursuit of compactness. The 8-element configuration with only 2 aspherical elements (4 aspherical surfaces) is relatively modest by modern standards — Fujifilm's later XF 18mm f/1.4 R LM WR uses 15 elements with 3 aspherical and 1 ED glass to achieve superior corner sharpness and less distortion. The f/2 aperture and retrofocus ratio of ~2.0 are both constrained by the pancake dimension target.
+The optical design makes several deliberate tradeoffs in pursuit of compactness. The 8-element configuration with only 2 aspherical elements (4 aspherical surfaces) is relatively modest by modern standards — Fujifilm's later XF 18mm f/1.4 R LM WR uses 15 elements with 3 aspherical and 1 ED glass to achieve superior corner sharpness and less distortion. The f/2 aperture and retrofocus ratio of ~2.3 are both constrained by the pancake dimension target.
 
 The design is a textbook example of how high-index glasses and strategically placed aspheric surfaces can substitute for additional elements. The Petzval sum is controlled not by adding more negative elements, but by using exceptionally dense glass (S-NPH2, nd = 1.923) in L6 and maintaining high average index in the rear pair (NdAB = 1.819). The two aspheric elements handle the spherical aberration and field curvature correction that would otherwise require 2–3 additional spherical elements, which would make the lens too long for pancake proportions.

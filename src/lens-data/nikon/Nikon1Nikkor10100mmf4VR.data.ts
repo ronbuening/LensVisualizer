@@ -17,6 +17,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Sensor cover glass / OLPF intentionally excluded.                  ║
  * ║ Semi-diameters are inferred from marginal + chief ray envelopes     ║
  * ║ and then constrained by rim slope and cross-gap sag checks.         ║
+ * ║ Surfaces 6A, 7 and 8 (L21) were raised to pass the traced           ║
+ * ║ wide-angle chief ray to the 1-inch corner (patent Y = 8.19 mm;      ║
+ * ║ 2026-09-24 field-coverage audit).                                   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -298,9 +301,9 @@ const LENS_DATA = {
     { label: "3", R: -399.3519, d: 0.1, nd: 1, elemId: 0, sd: 20.2 },
     { label: "4", R: 43.2076, d: 6, nd: 1.883, elemId: 3, sd: 20.2 },
     { label: "5", R: 1e15, d: 2.10606, nd: 1, elemId: 0, sd: 19.1 },
-    { label: "6A", R: 436.5967, d: 0.1, nd: 1.55389, elemId: 4, sd: 6.16 },
-    { label: "7", R: 87.0031, d: 1.1, nd: 1.83481, elemId: 5, sd: 6.12 },
-    { label: "8", R: 8.3001, d: 5.35, nd: 1, elemId: 0, sd: 5.75 },
+    { label: "6A", R: 436.5967, d: 0.1, nd: 1.55389, elemId: 4, sd: 8.2 },
+    { label: "7", R: 87.0031, d: 1.1, nd: 1.83481, elemId: 5, sd: 8.1 },
+    { label: "8", R: 8.3001, d: 5.35, nd: 1, elemId: 0, sd: 6.1 },
     { label: "9", R: -12.6073, d: 1, nd: 1.755, elemId: 6, sd: 5.3 },
     { label: "10", R: -32.7993, d: 0.8, nd: 1, elemId: 0, sd: 5.4 },
     { label: "11", R: 41.1197, d: 2.95, nd: 1.80809, elemId: 7, sd: 5.5 },

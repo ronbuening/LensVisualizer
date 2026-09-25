@@ -15,17 +15,26 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    transcribed below, with the renderer conic K = KA − 1.          ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters.  SDs estimated from        ║
- * ║    paraxial marginal + chief ray trace at the APS-C production     ║
- * ║    field (ω ≈ 37°), with 8% mechanical clearance.  S13A and S14A  ║
- * ║    anchored to patent Table 17 effective radii Re1 = 5.80,         ║
- * ║    Re2 = 6.96.  S12/S13A further constrained by cross-gap sag     ║
- * ║    intrusion at the 2.40 mm air gap.                               ║
+ * ║    The patent lists effective radii only for S13 and S14 (Table    ║
+ * ║    17: Re1 = 5.800, Re2 = 6.956), which S13A/S14A use. Other SDs   ║
+ * ║    are estimated from paraxial marginal + chief ray trace at the   ║
+ * ║    APS-C production field (ω ≈ 37°) with 8% mechanical clearance;  ║
+ * ║    S12 stays constrained by cross-gap sag intrusion at the         ║
+ * ║    2.40 mm air gap. S15/S16 were raised to pass the traced chief   ║
+ * ║    ray to the APS-C corner (2026-09-24 field-coverage audit).      ║
+ * ║                                                                    ║
+ * ║  OPTICAL MEMBER PP:                                                ║
+ * ║    Patent Table 7 surfaces 17-18 (2.70 mm, nd 1.51633, νd 64.14)   ║
+ * ║    are modeled in `rearPlates` (traced, not drawn). S16 keeps the  ║
+ * ║    patent's 7.80 mm gap to PP and its focus variation. No gap      ║
+ * ║    after PP is printed; 3.212 mm puts the image plane at the       ║
+ * ║    prescription's paraxial focus with the printed d12 = 2.40 mm,   ║
+ * ║    which the printed f and FIG. 4 suggest is a misprint for ≈3.2.  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gap                         ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -173,10 +182,26 @@ const LENS_DATA = {
     { label: "10A", R: -33.1452, d: 0.43, nd: 1.0, elemId: 0, sd: 6.0 },
     { label: "11", R: -147.1837, d: 0.8, nd: 1.92286, elemId: 6, sd: 5.5 },
     { label: "12", R: 15.9115, d: 2.4, nd: 1.0, elemId: 0, sd: 4.8 },
-    { label: "13A", R: -7.2122, d: 1.7, nd: 1.80348, elemId: 7, sd: 4.8 },
-    { label: "14A", R: -12.0, d: 0.86, nd: 1.0, elemId: 0, sd: 6.5 },
-    { label: "15", R: 52.1174, d: 5.3, nd: 1.834807, elemId: 8, sd: 7.0 },
-    { label: "16", R: -30.0118, d: 7.8, nd: 1.0, elemId: 0, sd: 8.0 },
+    { label: "13A", R: -7.2122, d: 1.7, nd: 1.80348, elemId: 7, sd: 5.8 },
+    { label: "14A", R: -12.0, d: 0.86, nd: 1.0, elemId: 0, sd: 6.956 },
+    { label: "15", R: 52.1174, d: 5.3, nd: 1.834807, elemId: 8, sd: 9.1 },
+    { label: "16", R: -30.0118, d: 7.8, nd: 1.0, elemId: 0, sd: 10.1 }, // physical gap to PP
+  ],
+
+  /* ── Optical member PP (patent Table 7 surfaces 17–18): traced, not drawn ──
+   *  Table 7 prints no gap after PP; 3.212 mm puts the image plane at the prescription's paraxial
+   *  focus (air back focus 12.793 mm from S16 = 7.80 + 2.70/1.51633 + 3.212).
+   */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.7,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 3.212,
+      source: "US 2014/0240851 A1, Example 4 Table 7 surfaces 17–18",
+    },
   ],
 
   /* ── Aspherical coefficients ──

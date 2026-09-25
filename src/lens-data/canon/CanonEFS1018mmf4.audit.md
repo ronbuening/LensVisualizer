@@ -36,3 +36,24 @@ Catalog version: 88dde1c
 
 - Updated `CanonEFS1018mmf4.analysis.md` element narratives for L5, L7-L10, and L12-L14 to match the corrected glass labels.
 - Updated the glass-selection table and source list to reflect S-NBH8, TAFD35, S-TIM5, S-LAH55, S-TIM22, and S-BAL42.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Example 1 (pp. 10–11) prints a wide-end 半画角 of 52.98° with 像高 13.66 mm; the angle is the paraxial atan(Y/f), and
+the traced chief ray reaches Y = 13.66 mm at 54.0° and the 14.175 mm APS-C corner at 55.15°. The estimated rims clipped
+the real chief ray (solved through the stop centre) at surface 4A from 43.3°, leaving the wide station at 9.63 mm (68% of
+the corner); the 13.96 mm and 17.46 mm stations already reached their corners. At the corner the chief ray crosses
+surface 1 at 20.80 mm and 4A at 14.21 mm; every other rim clears it (surface 2 at 15.91 of 16.9, 3 at 15.82 of 16.7).
+New values are those heights plus ~0.5 mm, sized to the corner rather than to Y because 図1 (p. 16), scaled on the
+117.61 mm wide-end track, draws L1 at about 21.7 mm and the 4A rim at about 14.7 mm. Neither partner was scaled: L1 and
+L2 are strong menisci, and surfaces 2 and 3 already sit near their 0.9|R| rim-slope limits. Surface 4A's K = −0.476
+conic is defined out to h = 17.0 mm, so its 14.8 mm rim lies beyond |R| = 12.3 mm legitimately.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 1 | 18.5 | 21.3 | corner chief ray 20.80 mm + clearance (図1 ≈ 21.7) |
+| 4A | 10.9 | 14.8 | corner chief ray 14.21 mm + clearance (図1 ≈ 14.7); the asphere's slope rises monotonically to the conic's 17.0 mm domain edge (45.7° at the rim) |
+
+The validator accepts the new values, all three zoom stations now reach the corner with every rim clear, and the
+image-circle floor still reports nothing undersized. The analysis note quotes 4A departures only at fixed heights (10 and
+11.5 mm), not at the semi-diameter, so it is unchanged.

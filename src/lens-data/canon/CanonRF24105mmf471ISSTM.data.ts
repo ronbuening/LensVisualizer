@@ -32,10 +32,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    at their native Example 1 scale. Patent k is the standard conic K.    ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: inferred, not patent-listed.                              ║
- * ║    SDs were derived from exact meridional on-axis pupil-edge rays and    ║
- * ║    the default 0.60-field off-axis bundle at all three zoom states, then ║
- * ║    constrained by edge thickness, actual rim slope, shared-gap intrusion,║
- * ║    the patent Figure 1 silhouette, and the production 67 mm filter size. ║
+ * ║    SDs were derived from exact meridional on-axis pupil-edge rays and      ║
+ * ║    the default 0.60-field off-axis bundle at all three zoom states, then   ║
+ * ║    constrained by edge thickness, actual rim slope, shared-gap intrusion,  ║
+ * ║    the patent Figure 1 silhouette, and the production 67 mm filter size.   ║
+ * ║    Surfaces 1-8 and 22A-25 were raised to pass the traced chief ray to     ║
+ * ║    the patent image heights: Y = 19.90 mm at wide (a design circle, 92%    ║
+ * ║    of the corner) and 21.64 mm at middle and tele (2026-09-24              ║
+ * ║    field-coverage audit).                                                  ║
  * ║                                                                            ║
  * ║  GLASS: d-line nd/νd are patent data. Vendor identity is unresolved.      ║
  * ║    Generic coordinate/class labels are used; the 1.53110/55.9 aspheric  ║
@@ -256,14 +260,14 @@ const LENS_DATA = {
    * Surface 25 d is the patent d25 gap to the GB block, which is modeled in rearPlates.
    */
   surfaces: [
-    { label: "1", R: 56.962, d: 6.4, nd: 1.60311, elemId: 1, sd: 17.5 },
-    { label: "2", R: 421.715, d: 1.44, nd: 1, elemId: 0, sd: 17 },
-    { label: "3", R: 142.374, d: 1.2, nd: 1.90366, elemId: 2, sd: 11.5 },
-    { label: "4", R: 15.994, d: 8.29, nd: 1, elemId: 0, sd: 11 },
-    { label: "5", R: -85.062, d: 1, nd: 1.60311, elemId: 3, sd: 9.5 },
-    { label: "6", R: 30.559, d: 0.17, nd: 1, elemId: 0, sd: 9.5 },
-    { label: "7", R: 24.88, d: 4.9, nd: 1.84666, elemId: 4, sd: 9.7 },
-    { label: "8", R: 162.207, d: 24.94, nd: 1, elemId: 0, sd: 9.5 },
+    { label: "1", R: 56.962, d: 6.4, nd: 1.60311, elemId: 1, sd: 21.3 },
+    { label: "2", R: 421.715, d: 1.44, nd: 1, elemId: 0, sd: 20.7 },
+    { label: "3", R: 142.374, d: 1.2, nd: 1.90366, elemId: 2, sd: 16.2 },
+    { label: "4", R: 15.994, d: 8.29, nd: 1, elemId: 0, sd: 12.6 },
+    { label: "5", R: -85.062, d: 1, nd: 1.60311, elemId: 3, sd: 12.2 },
+    { label: "6", R: 30.559, d: 0.17, nd: 1, elemId: 0, sd: 12.2 },
+    { label: "7", R: 24.88, d: 4.9, nd: 1.84666, elemId: 4, sd: 11.9 },
+    { label: "8", R: 162.207, d: 24.94, nd: 1, elemId: 0, sd: 11.7 },
     { label: "9", R: 25.551, d: 2.3, nd: 1.90366, elemId: 5, sd: 7.5 },
     { label: "10", R: 1e15, d: 0.82, nd: 1, elemId: 0, sd: 7.3 },
     { label: "11", R: 16.661, d: 4.5, nd: 1.60311, elemId: 6, sd: 6.8 },
@@ -277,10 +281,10 @@ const LENS_DATA = {
     { label: "19", R: 1e15, d: 2.5, nd: 1, elemId: 0, sd: 5.6 },
     { label: "20", R: 42.206, d: 0.7, nd: 1.91082, elemId: 11, sd: 5.5 },
     { label: "21", R: 16.989, d: 15.04, nd: 1, elemId: 0, sd: 5.4 },
-    { label: "22A", R: -51.498, d: 2, nd: 1.5311, elemId: 12, sd: 7.7 },
-    { label: "23A", R: -800, d: 1.16, nd: 1, elemId: 0, sd: 8.3 },
-    { label: "24", R: 144.43, d: 3.6, nd: 1.84666, elemId: 13, sd: 11.5 },
-    { label: "25", R: -116.569, d: 11.12, nd: 1, elemId: 0, sd: 11.8 },
+    { label: "22A", R: -51.498, d: 2, nd: 1.5311, elemId: 12, sd: 11.9 },
+    { label: "23A", R: -800, d: 1.16, nd: 1, elemId: 0, sd: 12.8 },
+    { label: "24", R: 144.43, d: 3.6, nd: 1.84666, elemId: 13, sd: 16.1 },
+    { label: "25", R: -116.569, d: 11.12, nd: 1, elemId: 0, sd: 16.5 },
   ],
 
   /* ── Glass block GB (patent surfaces 26–27): traced, not drawn ── */

@@ -23,6 +23,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  against edge thickness (≥ 0.3 mm), cross-gap sag intrusion       ║
  * ║  (≤ 90% of gap), sd/|R| < 0.90, and element SD ratio ≤ 3.0.      ║
  * ║  Front group constrained by 77 mm filter thread.                   ║
+ * ║  Surfaces 9-10 and 33-35 were raised to pass the traced chief ray  ║
+ * ║  to the APS-C corner at the wide end, as Fig. 1 draws the rear     ║
+ * ║  doublet (2026-09-24 field-coverage audit).                        ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS: Patent publishes only infinity-focus gaps.   ║
  * ║  Close-focus gaps computed via paraxial ray trace for MFD = 0.35 m ║
@@ -400,8 +403,8 @@ const LENS_DATA = {
     { label: "6A", R: 74.29, d: 0.05, nd: 1.5164, elemId: 4, sd: 14.0 }, // Resin1 front (asph)
     { label: "7", R: 59.996, d: 1.2, nd: 1.804, elemId: 5, sd: 13.5 }, // Resin1→L4g junction
     { label: "8", R: 12.277, d: 6.81, nd: 1.0, elemId: 0, sd: 11.0 }, // L4g rear → air
-    { label: "9", R: -37.4, d: 1.0, nd: 1.83481, elemId: 6, sd: 8.0 }, // L5 front
-    { label: "10", R: 37.4, d: 0.15, nd: 1.0, elemId: 0, sd: 8.3 }, // L5 rear → air
+    { label: "9", R: -37.4, d: 1.0, nd: 1.83481, elemId: 6, sd: 8.6 }, // L5 front
+    { label: "10", R: 37.4, d: 0.15, nd: 1.0, elemId: 0, sd: 8.9 }, // L5 rear → air
     { label: "11", R: 27.209, d: 4.93, nd: 1.834, elemId: 7, sd: 9.0 }, // L6 front
     { label: "12", R: -36.493, d: 0.53, nd: 1.0, elemId: 0, sd: 8.5 }, // L6 rear → air
     { label: "13", R: -25.912, d: 0.9, nd: 1.804, elemId: 8, sd: 8.5 }, // L7 front
@@ -434,9 +437,9 @@ const LENS_DATA = {
     { label: "31", R: 36.157, d: 6.47, nd: 1.497, elemId: 19, sd: 12.5 }, // L16a→L17 junction
     { label: "32", R: -36.157, d: 0.15, nd: 1.0, elemId: 0, sd: 12.0 }, // L17 rear → air
     // Cemented doublet: L18 + L19
-    { label: "33", R: 64.804, d: 8.2, nd: 1.497, elemId: 20, sd: 12.5 }, // L18 front
-    { label: "34", R: -23.782, d: 1.7, nd: 1.7495, elemId: 21, sd: 11.0 }, // L18→L19 junction
-    { label: "35", R: -38.936, d: 35.29, nd: 1.0, elemId: 0, sd: 11.5 }, // L19 rear → BFD (var)
+    { label: "33", R: 64.804, d: 8.2, nd: 1.497, elemId: 20, sd: 14.5 }, // L18 front
+    { label: "34", R: -23.782, d: 1.7, nd: 1.7495, elemId: 21, sd: 12.8 }, // L18→L19 junction
+    { label: "35", R: -38.936, d: 35.29, nd: 1.0, elemId: 0, sd: 13.4 }, // L19 rear → BFD (var)
   ],
 
   /* ── Aspherical coefficients ── */

@@ -23,6 +23,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * - Semi-diameters are renderer-safe estimates. The patent does not publish clear apertures; values were
  *   estimated from paraxial marginal/chief-ray envelopes, then reduced where required by edge thickness,
  *   sd/|R|, and cross-gap sag-clearance checks. They should not be read as mechanical barrel dimensions.
+ *   Surfaces 1-4A (E1/E2) were raised to pass the traced chief ray to the patent's Y = 21.63 mm corner
+ *   (2026-09-24 field-coverage audit).
  */
 
 const LENS_DATA = {
@@ -237,10 +239,10 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 55.8667, d: 2.0, nd: 1.92286, elemId: 1, sd: 22.5 },
-    { label: "2", R: 32.188, d: 11.1453, nd: 1.0, elemId: 0, sd: 21.8 },
-    { label: "3A", R: 39.6726, d: 3.0, nd: 1.6935, elemId: 2, sd: 19.2 },
-    { label: "4A", R: 20.4304, d: 19.693, nd: 1.0, elemId: 0, sd: 18.2 },
+    { label: "1", R: 55.8667, d: 2.0, nd: 1.92286, elemId: 1, sd: 32.2 },
+    { label: "2", R: 32.188, d: 11.1453, nd: 1.0, elemId: 0, sd: 27.0 },
+    { label: "3A", R: 39.6726, d: 3.0, nd: 1.6935, elemId: 2, sd: 25.2 },
+    { label: "4A", R: 20.4304, d: 19.693, nd: 1.0, elemId: 0, sd: 21.9 },
     { label: "5", R: 518.9274, d: 1.9, nd: 1.497, elemId: 3, sd: 20.5 },
     { label: "6", R: 46.5995, d: 7.4808, nd: 1.0, elemId: 0, sd: 20.7 },
     { label: "7", R: 88.5605, d: 8.0408, nd: 1.883, elemId: 4, sd: 22.7 },

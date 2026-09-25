@@ -40,6 +40,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ mm by the 2.45 mm S27A-S28 air gap and still contains the 0.60-field envelope.   ║
  * ║ The Fig. 2 optical section and Sony's 72 mm filter / 81 mm barrel were used only ║
  * ║ as reasonableness checks, not as scale-accurate aperture sources.                 ║
+ * ║ Surfaces 1-5, 6A and 7 were raised to pass the traced chief ray to the patent's   ║
+ * ║ Y = 14.40 mm image height (Figs. 3-5; the APS-C corner is 14.175 mm) at all       ║
+ * ║ three zoom stations; S4 is scaled with S5 (2026-09-24 field-coverage audit).      ║
  * ║                                                                                    ║
  * ║ SOURCE CORRECTIONS / OMISSIONS                                                    ║
  * ║ - Paragraph 0099 says D6/D17/D24; Table 4 and the actual group boundaries give   ║
@@ -344,13 +347,13 @@ const LENS_DATA = {
 
   /* ── Surface prescription: US 2012/0307129 A1 Table 1 ── */
   surfaces: [
-    { label: "1", R: 546.11, d: 1.5, nd: 1.84666, elemId: 1, sd: 22.6 },
-    { label: "2", R: 87.316, d: 6.5, nd: 1.8042, elemId: 2, sd: 22.5 },
-    { label: "3", R: -1328.7, d: 0.15, nd: 1.0, elemId: 0, sd: 21.7 },
-    { label: "4", R: 46.384, d: 4.98, nd: 1.8042, elemId: 3, sd: 21.7 },
-    { label: "5", R: 107.566, d: 2.43, nd: 1.0, elemId: 0, sd: 20.1 },
-    { label: "6A", R: 94.01, d: 0.2, nd: 1.5342, elemId: 4, sd: 10.4 },
-    { label: "7", R: 50.611, d: 0.9, nd: 1.91082, elemId: 5, sd: 10.3 },
+    { label: "1", R: 546.11, d: 1.5, nd: 1.84666, elemId: 1, sd: 27.7 },
+    { label: "2", R: 87.316, d: 6.5, nd: 1.8042, elemId: 2, sd: 25.7 },
+    { label: "3", R: -1328.7, d: 0.15, nd: 1.0, elemId: 0, sd: 25.0 },
+    { label: "4", R: 46.384, d: 4.98, nd: 1.8042, elemId: 3, sd: 22.5 },
+    { label: "5", R: 107.566, d: 2.43, nd: 1.0, elemId: 0, sd: 20.8 },
+    { label: "6A", R: 94.01, d: 0.2, nd: 1.5342, elemId: 4, sd: 13.1 },
+    { label: "7", R: 50.611, d: 0.9, nd: 1.91082, elemId: 5, sd: 12.8 },
     { label: "8", R: 14.013, d: 7.27, nd: 1.0, elemId: 0, sd: 9.9 },
     { label: "9", R: -37.64, d: 1.0, nd: 1.883, elemId: 6, sd: 8.2 },
     { label: "10", R: 52.394, d: 0.3, nd: 1.0, elemId: 0, sd: 8.3 },
