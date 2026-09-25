@@ -66,8 +66,9 @@ software. Launch cells are square, `gridSize` across the beam's larger dimension
 meridional field of an x-symmetric lens traces one half and mirrors it. Transmitted rays in the footprint's guard
 band widen it and retrace. A grid with too few transmitted rays refines rather than failing, because the footprint
 scan has already found flux: near the modeled edge cat's-eye vignetting can leave a slit a few cells high. Collimated
-cells carry equal launch flux; finite sources use solid-angle weights. A field with no transmitted scan sample is
-`vignetted`. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less than
+cells carry equal launch flux; finite sources use solid-angle weights. A beam thinner than one scan cell can fall
+between the samples; when the chief ray transmits, its reach along each launch axis sizes a box stretched to the
+beam, which the same scan then resolves. A field whose scan and chief ray both miss is `vignetted`. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less than
 the production lens lower off-axis curves.
 
 **Ray failures** (`mtfRayClassification.ts`). TIR and aperture clips are blocking. A failed intersection blocks only

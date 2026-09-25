@@ -25,6 +25,8 @@ import {
 } from "../../../src/optics/analysis/mtf.js";
 import { mtfChiefHeight, mtfFieldProcessingOrder } from "../../../src/optics/analysis/mtfFields.js";
 import { findAxialBestFocus, mtfImagePlaneOffset } from "../../../src/optics/analysis/mtfFocus.js";
+import { findMtfFootprint } from "../../../src/optics/analysis/mtfFootprint.js";
+import type { MtfRayClass } from "../../../src/optics/analysis/mtfRayClassification.js";
 import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
@@ -267,6 +269,20 @@ describe("MTF pupil footprint", () => {
     expect(reference * grid.step ** 2).toBeGreaterThan(1.1 * axial);
     expect(bundle.rays.length / reference).toBeGreaterThan(0.99);
     expect(bundle.openBorders).toEqual({ x: false, y0: false, y1: false });
+  });
+  it("fits the footprint to a slit beam thinner than the coarse scan when the chief transmits", () => {
+    // A 0.1 mm slit through the chief: the scan of a 10 mm pupil samples y every 1.25 mm and misses it.
+    const slit = (x: number, y: number): MtfRayClass =>
+      Math.abs(x) < 3 && Math.abs(y - 0.02) < 0.05 ? "valid" : "blocked";
+    const footprint = findMtfFootprint(slit, 10, true)!;
+    expect(footprint).not.toBeNull();
+    expect(footprint.y0).toBeLessThan(-0.03);
+    expect(footprint.y1).toBeGreaterThan(0.07);
+    expect(footprint.x1).toBeGreaterThanOrEqual(3);
+    expect(footprint.beamHeightMm).toBeLessThan(0.2);
+    // Without a transmitted chief there is no seed: a missed beam stays unavailable rather than invented.
+    const offset = (_x: number, y: number): MtfRayClass => (Math.abs(y - 0.3) < 0.05 ? "valid" : "blocked");
+    expect(findMtfFootprint(offset, 10, true)).toBeNull();
   });
 });
 
