@@ -92,6 +92,33 @@ describe("documented finite MTF", () => {
     expect(failed.status).toBe("inconsistent");
     expect(failed.exactSamples.every((s) => s.exactDistanceMm === null)).toBe(true);
   });
+  it("refines small-ray heights for cubic aspheres without relaxing the verification bounds", () => {
+    const aspheric = build({
+      ...L.data,
+      asph: { [L.data.surfaces[1].label]: { K: 0, A3: -0.0002, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+    });
+    const checked = deriveSourceDistance(prepareRuntimeState(aspheric, 0, 0));
+    expect(checked.status).toBe("consistent");
+    expect(checked.derived!.firstSurfaceDistanceMm).toBeCloseTo(1000, 7);
+    expect(checked.exactSamples.length).toBeGreaterThan(3);
+    expect(Math.abs(checked.exactSamples[0].axialResidualMm!)).toBeGreaterThan(1e-7);
+    expect(checked.verifiedHeightsMm).toEqual(checked.exactSamples.slice(-3).map((sample) => sample.heightMm));
+    for (const sample of checked.exactSamples.slice(-3)) {
+      expect(Math.abs(sample.axialResidualMm!)).toBeLessThanOrEqual(1e-7);
+      expect(Math.abs(sample.exactDistanceMm! / 1000 - 1)).toBeLessThanOrEqual(5e-4);
+      expect(Math.abs(sample.exactMagnification! / checked.derived!.magnification - 1)).toBeLessThanOrEqual(5e-4);
+    }
+    const stronger = build({
+      ...aspheric.data,
+      surfaces: aspheric.data.surfaces.map((surface) => ({ ...surface, sd: 1 })),
+      asph: { [L.data.surfaces[1].label]: { ...aspheric.data.asph![L.data.surfaces[1].label], A3: -0.02 } },
+    });
+    const rejected = deriveSourceDistance(prepareRuntimeState(stronger, 0, 0));
+    expect(rejected.status).toBe("inconsistent");
+    expect(rejected.verifiedHeightsMm).toEqual([]);
+    expect(rejected.exactSamples).toHaveLength(6);
+    expect(rejected.blockers.join(" ")).toContain("Small-height exact rays");
+  });
   it("separates rounded evidence, inconsistent evidence, and failure to establish a finite source", () => {
     expect(
       deriveSourceDistance(state, { publishedDistance: { distanceReference: "first-surface", objectDistanceMm: 1004 } })

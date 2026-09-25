@@ -29,6 +29,8 @@ export interface SourceDerivationReport {
   matrix?: { A: number; B: number; C: number; D: number };
   derived?: { firstSurfaceDistanceMm: number; imagePlaneDistanceMm: number; magnification: number };
   exactSamples: SourceDerivationSample[];
+  /** Three consecutive decreasing heights satisfying the unchanged exact-ray bounds, or empty on failure. */
+  verifiedHeightsMm: number[];
   publishedChecks: {
     quantity: "distance" | "magnification";
     published: number;
@@ -59,6 +61,7 @@ export function deriveSourceDistance(
     blockers: [],
     coordinates: { focusT: state.focusT, zoomT: state.zoomT, imagePlaneZ: state.imgZ },
     exactSamples: [],
+    verifiedHeightsMm: [],
     publishedChecks: [],
     qualification: QUALIFICATION,
   };
@@ -142,7 +145,16 @@ export function deriveSourceDistance(
     const travel = (state.imgZ - trace.terminalPoint[2]) / trace.terminalDirection[2];
     return travel >= -1e-9 ? trace.terminalPoint[1] + travel * trace.terminalDirection[1] : null;
   };
-  for (const height of [0.01, 0.005, 0.0025]) {
+  const confirmsDerivation = (sample: SourceDerivationSample) =>
+    sample.exactDistanceMm !== null &&
+    sample.exactMagnification !== null &&
+    sample.axialResidualMm !== null &&
+    Math.abs(sample.exactDistanceMm / distance - 1) <= EXACT_RELATIVE_TOLERANCE &&
+    Math.abs(sample.exactMagnification / matrix.A - 1) <= EXACT_RELATIVE_TOLERANCE &&
+    Math.abs(sample.axialResidualMm) <= 1e-7;
+  // Cubic sag terms give O(h²) axial residuals. Refine the ray height to test the paraxial limit;
+  // never relax the distance, magnification or image residual bounds to accept a stronger asphere.
+  for (const height of [0.01, 0.005, 0.0025, 0.00125, 0.000625, 0.0003125]) {
     // Start independently at zero slope; the first-order estimate only bounds the search interval.
     const exact = solveScalarRoot((u) => imageHeight(height, u), {
       initialGuess: 0,
@@ -163,18 +175,19 @@ export function deriveSourceDistance(
         imageHeight(0, height / distance),
       ),
     });
+    if (report.exactSamples.length >= 3) {
+      const lastThree = report.exactSamples.slice(-3);
+      if (lastThree.every(confirmsDerivation)) {
+        report.verifiedHeightsMm = lastThree.map((sample) => sample.heightMm);
+        break;
+      }
+      // Refinement must not hide a clipped or failed trace at the original small heights.
+      if (lastThree.some((sample) => sample.exactDistanceMm === null || sample.exactMagnification === null)) break;
+    }
   }
-  for (const sample of report.exactSamples) {
-    if (
-      sample.exactDistanceMm === null ||
-      sample.exactMagnification === null ||
-      sample.axialResidualMm === null ||
-      Math.abs(sample.exactDistanceMm / distance - 1) > EXACT_RELATIVE_TOLERANCE ||
-      Math.abs(sample.exactMagnification / matrix.A - 1) > EXACT_RELATIVE_TOLERANCE ||
-      Math.abs(sample.axialResidualMm) > 1e-7
-    )
+  if (!report.verifiedHeightsMm.length)
+    for (const sample of report.exactSamples.filter((sample) => !confirmsDerivation(sample)))
       report.blockers.push(`Small-height exact rays do not confirm the derivation at ${sample.heightMm} mm.`);
-  }
   const compare = (quantity: "distance" | "magnification", published: number, calculated: number) => {
     const relativeError = Math.abs(calculated - published) / Math.abs(published);
     report.publishedChecks.push({ quantity, published, calculated, relativeError });

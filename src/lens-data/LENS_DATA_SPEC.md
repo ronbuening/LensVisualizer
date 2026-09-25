@@ -1065,7 +1065,12 @@ For offline distance evidence, run
 This read-only path derives a finite real object from the fixed authored geometry and image plane (`s = -B/A`),
 then independently solves small-height exact rays and checks lateral magnification. It reports both first-surface
 and image-plane distance conventions. Published evidence defaults to a 1% rounding allowance, separately from a
-0.05% exact-ray consistency bound; inspect the actual residuals against the source's precision. An infinity station
+0.05% exact-ray consistency bound and 1e-7 mm axial image residual bound. Starting at 0.01/0.005/0.0025 mm,
+the audit may halve the ray height down to 0.0003125 mm to resolve the paraxial limit of odd-order aspheres.
+Three consecutive heights must meet the same bounds; failed or clipped traces cannot be rescued by refinement.
+All attempted samples remain in the report, with `verifiedHeightsMm` identifying the accepted three (empty if exact
+verification fails). Published evidence can still disagree even when the exact-ray check passes.
+Inspect the actual residuals against the source's precision. An infinity station
 normally has no finite solution and is reported as such, not converted to a finite declaration. A consistent report
 is optical evidence only: source tables, units, geometry and the distance convention still require independent review.
 No report rewrites prescriptions or automatically enables a state.
