@@ -522,6 +522,7 @@ describe("lensReducer", () => {
   describe("ENTER_COMPARE", () => {
     it("sets comparing to true and resets shared sliders", () => {
       state.sharedSliders = {
+        focusZoom: { mode: "linked" },
         sharedFocusT: 0.5,
         sharedStopdownT: 0.3,
         sharedZoomT: 0.2,
@@ -531,6 +532,7 @@ describe("lensReducer", () => {
       const next = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
       expect(next.lens.comparing).toBe(true);
       expect(next.sharedSliders).toEqual({
+        focusZoom: { mode: "linked" },
         sharedFocusT: 0,
         sharedStopdownT: 0,
         sharedZoomT: 0,
@@ -703,4 +705,36 @@ describe("source-state selection", () => {
       ).toBe(state);
     }
   });
+});
+
+it("copies both resolved panes atomically on unlink and retains exact independent changes", () => {
+  const state = makeState();
+  state.lens.comparing = true;
+  state.sharedSliders.sharedStopdownT = 0.45;
+  const positions = {
+    mode: "independent" as const,
+    a: { focusT: 0.7123456789, zoomT: 1 / 3 },
+    b: { focusT: 0.6, zoomT: 0.8 },
+  };
+  const next = lensReducer(state, { type: "SET_COMPARISON_FOCUS_ZOOM", focusZoom: positions });
+  expect(next.sharedSliders).toEqual({ ...state.sharedSliders, focusZoom: positions });
+  positions.a.focusT = 0;
+  expect(next.sharedSliders.focusZoom).toMatchObject({ a: { focusT: 0.7123456789 } });
+  const changed = lensReducer(next, {
+    type: "SET_PANE_COORDINATES",
+    pane: "a",
+    lensKey: state.lens.lensKeyA,
+    coordinates: { focusT: 1, zoomT: 0.5 },
+  });
+  expect(changed.sharedSliders.focusZoom).toMatchObject({ a: { focusT: 1, zoomT: 0.5 }, b: positions.b });
+  expect(changed.sharedSliders.sharedStopdownT).toBe(0.45);
+  expect(changed.sliders).toBe(state.sliders);
+  expect(
+    lensReducer(changed, {
+      type: "SET_PANE_COORDINATES",
+      pane: "a",
+      lensKey: "stale-lens",
+      coordinates: { focusT: 0, zoomT: 0 },
+    }),
+  ).toBe(changed);
 });

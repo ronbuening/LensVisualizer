@@ -6,6 +6,7 @@
  * different maximum apertures) with clamping past common points.
  */
 
+import type { ComparisonFocusZoomState } from "./comparisonTypes.js";
 import { closeFocusAtZoom } from "../optics/focusDistance.js";
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../optics/optics.js";
@@ -252,4 +253,33 @@ function _eflToZoomT(fl: number, efls: number[]): number {
     }
   }
   return 1;
+}
+
+/**
+ * Resolve linked mappings or exact independent pane coordinates while keeping shared-range metadata.
+ * @param sharedFocusT - shared normalized focus
+ * @param sharedZoomT - shared normalized zoom
+ * @param focusZoom - explicit linked/independent configuration
+ * @param LA - pane A runtime lens
+ * @param LB - pane B runtime lens
+ * @returns effective coordinates and shared-control display metadata
+ */
+export function computeComparisonGeometry(
+  sharedFocusT: number,
+  sharedZoomT: number,
+  focusZoom: ComparisonFocusZoomState,
+  LA: RuntimeLens,
+  LB: RuntimeLens,
+): { focusPair: FocusPairResult; zoomPair: ZoomPairResult } {
+  const zoomPair = computeZoomPair(sharedZoomT, LA, LB);
+  if (focusZoom.mode === "independent") {
+    zoomPair.zoomA = LA.isZoom ? focusZoom.a.zoomT : 0;
+    zoomPair.zoomB = LB.isZoom ? focusZoom.b.zoomT : 0;
+  }
+  const focusPair = computeFocusPair(sharedFocusT, LA, LB, zoomPair.zoomA, zoomPair.zoomB);
+  if (focusZoom.mode === "independent") {
+    focusPair.focusA = focusZoom.a.focusT;
+    focusPair.focusB = focusZoom.b.focusT;
+  }
+  return { focusPair, zoomPair };
 }

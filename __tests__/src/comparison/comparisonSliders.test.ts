@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
+  computeComparisonGeometry,
   computeFocusPair,
   computeAperturePair,
   computeZoomPair,
@@ -306,4 +307,26 @@ describe("zoom-dependent focus distance", () => {
     expect(pair.focusA).toBe(1);
     expect(pair.focusB).toBe(0.5);
   });
+});
+
+it.each([
+  [false, false],
+  [false, true],
+  [true, false],
+  [true, true],
+])("retains both mapped positions on unlink (zoom A %s, zoom B %s)", (aZoom, bZoom) => {
+  const LA = { ...lensA, isZoom: aZoom, zoomEFLs: [24, 50, 70] } as RuntimeLens;
+  const LB = { ...lensB, isZoom: bZoom, zoomEFLs: [35, 85, 135] } as RuntimeLens;
+  const linked = computeComparisonGeometry(0.3, 0.42, { mode: "linked" }, LA, LB);
+  const positions = {
+    mode: "independent" as const,
+    a: { focusT: linked.focusPair.focusA, zoomT: linked.zoomPair.zoomA },
+    b: { focusT: linked.focusPair.focusB, zoomT: linked.zoomPair.zoomB },
+  };
+  expect(computeComparisonGeometry(0.3, 0.42, positions, LA, LB)).toEqual(linked);
+  positions.a.focusT = 0.7123456789;
+  const changed = computeComparisonGeometry(0.3, 0.42, positions, LA, LB);
+  expect(changed.focusPair.focusA).toBe(positions.a.focusT);
+  expect(changed.focusPair.focusB).toBe(linked.focusPair.focusB);
+  expect(changed.zoomPair.zoomB).toBe(linked.zoomPair.zoomB);
 });

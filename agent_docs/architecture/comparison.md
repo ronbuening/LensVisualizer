@@ -35,6 +35,11 @@ Shared sliders represent a normalized comparison control surface. `comparisonSli
 lens' actual focus, aperture, zoom, and optional perspective-control movement ranges. This keeps the UI ergonomic while
 preserving each lens' real optical limits; lenses without `perspectiveControl` clamp shared shift/tilt to zero.
 
+The shared slider slice also owns `focusZoom`: Linked mode derives both panes through the existing mappings;
+Independent mode retains exact normalized coordinates for A and B. Entering Independent copies both currently
+resolved positions before a pane changes, avoiding jumps when prime/zoom ranges differ. Aperture and perspective
+movement remain shared. The pure `computeComparisonGeometry` helper resolves the effective coordinates for all panes.
+
 ## Scale Modes
 
 Comparison mode can normalize the two panels so users can compare physical scale or framing. Scale ratios are computed

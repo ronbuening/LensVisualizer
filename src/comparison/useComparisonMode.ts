@@ -14,8 +14,9 @@
 import { useMemo, useState, useCallback } from "react";
 import buildLens from "../optics/buildLens.js";
 import { LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
-import { computeFocusPair, computeAperturePair, computeZoomPair, computeMovementPair } from "./comparisonSliders.js";
+import { computeComparisonGeometry, computeAperturePair, computeMovementPair } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
+import type { ComparisonFocusZoomState } from "./comparisonTypes.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /* ── Comparison result types ── */
@@ -47,6 +48,7 @@ interface UseComparisonModeParams {
   lensKeyA: string;
   lensKeyB: string;
   scaleMode: string;
+  focusZoom?: ComparisonFocusZoomState;
   sharedFocusT: number;
   sharedStopdownT: number;
   sharedZoomT: number;
@@ -65,6 +67,8 @@ interface UseComparisonModeResult {
   maxHeaderHeight: number;
 }
 
+const LINKED: ComparisonFocusZoomState = { mode: "linked" };
+
 /* ── Hook implementation ── */
 
 export default function useComparisonMode({
@@ -72,6 +76,7 @@ export default function useComparisonMode({
   lensKeyA,
   lensKeyB,
   scaleMode,
+  focusZoom = LINKED,
   sharedFocusT,
   sharedStopdownT,
   sharedZoomT,
@@ -97,15 +102,12 @@ export default function useComparisonMode({
   }, [comparisonLenses, scaleMode]);
 
   /* ── Per-lens slider values from shared positions ── */
-  const zoomPair = useMemo(() => {
+  const geometry = useMemo(() => {
     if (!isComparisonOk(comparisonLenses)) return null;
-    return computeZoomPair(sharedZoomT, comparisonLenses.LA, comparisonLenses.LB);
-  }, [sharedZoomT, comparisonLenses]);
-
-  const focusPair = useMemo(() => {
-    if (!isComparisonOk(comparisonLenses)) return null;
-    return computeFocusPair(sharedFocusT, comparisonLenses.LA, comparisonLenses.LB, zoomPair?.zoomA, zoomPair?.zoomB);
-  }, [sharedFocusT, comparisonLenses, zoomPair]);
+    return computeComparisonGeometry(sharedFocusT, sharedZoomT, focusZoom, comparisonLenses.LA, comparisonLenses.LB);
+  }, [sharedFocusT, sharedZoomT, focusZoom, comparisonLenses]);
+  const zoomPair = geometry?.zoomPair ?? null;
+  const focusPair = geometry?.focusPair ?? null;
 
   const aperturePair = useMemo(() => {
     if (!isComparisonOk(comparisonLenses)) return null;

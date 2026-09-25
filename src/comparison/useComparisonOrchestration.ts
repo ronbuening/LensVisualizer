@@ -77,6 +77,7 @@ export default function useComparisonOrchestration({
     lensKeyA,
     lensKeyB,
     scaleMode,
+    focusZoom: sharedSliders.focusZoom,
     sharedFocusT,
     sharedStopdownT,
     sharedZoomT,

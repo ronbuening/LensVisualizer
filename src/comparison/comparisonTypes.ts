@@ -5,7 +5,21 @@
  * keeping the core state types focused on single-lens concerns.
  */
 
+export interface PaneCoordinates {
+  focusT: number;
+  zoomT: number;
+}
+
+export interface ComparisonPositions {
+  a: PaneCoordinates;
+  b: PaneCoordinates;
+}
+
+/** Linked positions are derived; independent positions are retained exactly per pane. */
+export type ComparisonFocusZoomState = { mode: "linked" } | ({ mode: "independent" } & ComparisonPositions);
+
 export interface SharedSlidersSlice {
+  focusZoom: ComparisonFocusZoomState;
   sharedFocusT: number;
   sharedStopdownT: number;
   sharedZoomT: number;
@@ -15,6 +29,8 @@ export interface SharedSlidersSlice {
 
 /** Comparison-specific action variants. */
 export type ComparisonAction =
+  | { type: "SET_COMPARISON_FOCUS_ZOOM"; focusZoom: ComparisonFocusZoomState }
+  | { type: "SET_PANE_COORDINATES"; pane: "a" | "b"; lensKey: string; coordinates: PaneCoordinates }
   | { type: "SET_SCALE_MODE"; scaleMode: "independent" | "normalized" }
   | { type: "SET_SHARED_FOCUS_T"; value: number }
   | { type: "SET_SHARED_STOPDOWN_T"; value: number }

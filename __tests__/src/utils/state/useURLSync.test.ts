@@ -520,7 +520,14 @@ describe("useURLSync — comparison mode slider URL", () => {
     const state: LensState = {
       ...makeState(),
       lens: { ...makeState().lens, comparing: true },
-      sharedSliders: { sharedFocusT: 0.4, sharedStopdownT: 0, sharedZoomT: 0, sharedShiftMm: 0, sharedTiltDeg: 0 },
+      sharedSliders: {
+        focusZoom: { mode: "linked" },
+        sharedFocusT: 0.4,
+        sharedStopdownT: 0,
+        sharedZoomT: 0,
+        sharedShiftMm: 0,
+        sharedTiltDeg: 0,
+      },
     };
     const { result } = renderHook(() => useURLSync(state, dispatch, null));
 
@@ -540,7 +547,14 @@ describe("useURLSync — comparison mode slider URL", () => {
     const state: LensState = {
       ...makeState(),
       lens: { ...makeState().lens, comparing: true, lensKeyA, lensKeyB },
-      sharedSliders: { sharedFocusT: 0.4, sharedStopdownT: 0.2, sharedZoomT: 0, sharedShiftMm: 0, sharedTiltDeg: 0 },
+      sharedSliders: {
+        focusZoom: { mode: "linked" },
+        sharedFocusT: 0.4,
+        sharedStopdownT: 0.2,
+        sharedZoomT: 0,
+        sharedShiftMm: 0,
+        sharedTiltDeg: 0,
+      },
     };
     window.history.replaceState({}, "", `/compare/${lensKeyA}/${lensKeyB}`);
     replaceStateSpy.mockClear();
@@ -561,7 +575,14 @@ describe("useURLSync — comparison mode slider URL", () => {
     const state: LensState = {
       ...makeState(),
       lens: { ...makeState().lens, comparing: true },
-      sharedSliders: { sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0.5, sharedShiftMm: 0, sharedTiltDeg: 0 },
+      sharedSliders: {
+        focusZoom: { mode: "linked" },
+        sharedFocusT: 0,
+        sharedStopdownT: 0,
+        sharedZoomT: 0.5,
+        sharedShiftMm: 0,
+        sharedTiltDeg: 0,
+      },
     };
     const zoomLens = { isZoom: true, zoomPositions: zoomLensPositions } as any;
     const { result } = renderHook(() =>

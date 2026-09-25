@@ -8,9 +8,12 @@
  * the action is not comparison-related (caller falls through).
  */
 
+import type { PaneCoordinates } from "./comparisonTypes.js";
 import type { LensState, LensAction } from "../types/state.js";
 
 /* ── Action type constants ── */
+export const SET_COMPARISON_FOCUS_ZOOM = "SET_COMPARISON_FOCUS_ZOOM";
+export const SET_PANE_COORDINATES = "SET_PANE_COORDINATES";
 export const SET_SCALE_MODE = "SET_SCALE_MODE";
 export const SET_SHARED_FOCUS_T = "SET_SHARED_FOCUS_T";
 export const SET_SHARED_STOPDOWN_T = "SET_SHARED_STOPDOWN_T";
@@ -27,6 +30,44 @@ export const EXIT_COMPARE = "EXIT_COMPARE";
  */
 export default function comparisonReducer(state: LensState, action: LensAction): LensState | null {
   switch (action.type) {
+    case SET_COMPARISON_FOCUS_ZOOM: {
+      if (!state.lens.comparing) return state;
+      const value = action.focusZoom;
+      if (value.mode === "linked")
+        return { ...state, sharedSliders: { ...state.sharedSliders, focusZoom: { mode: "linked" } } };
+      if (value.mode !== "independent" || !validCoordinates(value.a) || !validCoordinates(value.b)) return state;
+      return {
+        ...state,
+        sharedSliders: {
+          ...state.sharedSliders,
+          focusZoom: {
+            mode: "independent",
+            a: { ...value.a },
+            b: { ...value.b },
+          },
+        },
+      };
+    }
+    case SET_PANE_COORDINATES: {
+      const current = state.sharedSliders.focusZoom;
+      if (
+        !state.lens.comparing ||
+        current.mode !== "independent" ||
+        action.lensKey !== (action.pane === "a" ? state.lens.lensKeyA : state.lens.lensKeyB) ||
+        !validCoordinates(action.coordinates)
+      )
+        return state;
+      return {
+        ...state,
+        sharedSliders: {
+          ...state.sharedSliders,
+          focusZoom: {
+            ...current,
+            [action.pane]: { ...action.coordinates },
+          },
+        },
+      };
+    }
     case SET_SCALE_MODE:
       return { ...state, lens: { ...state.lens, scaleMode: action.scaleMode } };
 
@@ -58,7 +99,14 @@ export default function comparisonReducer(state: LensState, action: LensAction):
         ...state,
         lens,
         panels: { ...state.panels, analysisDrawerOpen: false },
-        sharedSliders: { sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0, sharedShiftMm: 0, sharedTiltDeg: 0 },
+        sharedSliders: {
+          focusZoom: { mode: "linked" },
+          sharedFocusT: 0,
+          sharedStopdownT: 0,
+          sharedZoomT: 0,
+          sharedShiftMm: 0,
+          sharedTiltDeg: 0,
+        },
       };
     }
     case EXIT_COMPARE:
@@ -77,4 +125,8 @@ export default function comparisonReducer(state: LensState, action: LensAction):
     default:
       return null;
   }
+}
+
+function validCoordinates(value: PaneCoordinates): boolean {
+  return [value.focusT, value.zoomT].every((n) => Number.isFinite(n) && n >= 0 && n <= 1);
 }

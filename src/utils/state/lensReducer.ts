@@ -166,6 +166,7 @@ export function createInitialState(
       tiltDeg: urlState.tilt ?? 0,
     },
     sharedSliders: {
+      focusZoom: { mode: "linked" },
       sharedFocusT: urlState.comparing ? (urlState.focus ?? 0) : 0,
       sharedStopdownT: urlState.comparing ? (urlState.aperture ?? 0) : 0,
       sharedZoomT: 0,
