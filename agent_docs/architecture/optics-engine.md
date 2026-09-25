@@ -45,6 +45,13 @@ contract in `src/lens-data/LENS_DATA_SPEC.md`; do not add an analysis-specific s
 
 ## Simulated MTF
 
+Source-state inventory: `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --source-states`
+includes every prescription and separates hidden production configurations from reference fixtures. `--lens=KEY`
+selects one prescription; `--limit=N` limits output while preserving full inventory counts. Candidate coordinates
+identify geometry to review, not published configurations or verified conjugates. Only explicit declarations count
+as verified; source-state authoring is documented in `src/lens-data/LENS_DATA_SPEC.md`.
+
+
 `src/optics/mtf.ts` accepts a prepared state and explicit physical aperture, method, spectrum, focus, field and
 frequency options. This estimates the authored prescription; numerical convergence and source-data confidence are
 separate. Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. Both chart

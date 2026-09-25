@@ -5,6 +5,7 @@ declare module "node:child_process" {
     options: {
       cwd?: string;
       encoding: "utf8";
+      maxBuffer?: number;
       stdio?: readonly ["ignore", "pipe", "pipe"];
     },
   ): string;
@@ -16,7 +17,7 @@ declare module "node:fs" {
   export function mkdtempSync(prefix: string): string;
   export function readFileSync(path: string | URL): Uint8Array;
   export function readFileSync(path: string, encoding: string): string;
-  export function readdirSync(path: string): string[];
+  export function readdirSync(path: string, options?: { recursive?: boolean }): string[];
   export function rmSync(path: string, options?: { recursive?: boolean; force?: boolean }): void;
   export function statSync(path: string): { isDirectory(): boolean };
   export function writeFileSync(path: string, data: string, encoding?: string): void;
