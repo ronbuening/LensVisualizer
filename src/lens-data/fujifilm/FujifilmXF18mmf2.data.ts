@@ -25,8 +25,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gap                         ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    Source PP plate awaits its unpublished trailing image gap.    ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Image-plane audit: Table 7 D16 = 7.80 mm ends at PP, not the image.
+ * PP is 2.70 mm, nd = 1.516330, vd = 64.14; D18 is blank. The missing
+ * trailing gap prevents a source-backed rearPlates reconstruction. Retain
+ * the incomplete legacy plane pending that evidence; do not fit a gap.
+ * The printed f = 18.844 mm also differs from the table's 18.626043 mm
+ * paraxial EFL. See the audit sidecar for the unresolved source limits.
  */
 
 const LENS_DATA = {
@@ -226,7 +233,7 @@ const LENS_DATA = {
       A7: -3.89232232e-6,
       A8: -8.50728357e-7,
       A9: 3.21279636e-7,
-      A10: -1.416866834e-8,
+      A10: -1.41686834e-8,
       A11: -9.17275261e-10,
       A12: -2.40950739e-11,
       A14: 0,

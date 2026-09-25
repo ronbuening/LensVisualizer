@@ -28,9 +28,7 @@ The lens is a compact retrofocus design arranged as two lens groups separated by
 
 **Group 2 (G2, positive power):** L3–L4 cemented doublet + L5 (positive, aspheric) + L6 (negative) + L7 (negative meniscus, aspheric) + L8 (positive biconvex, rear element). This group carries the primary converging power and performs the bulk of aberration correction.
 
-The total optical track from S1 to the image plane (excluding cover glass) is 37.62 mm, giving a retrofit ratio of approximately 2.00 — the lens is about twice as long as its focal length. This is a moderate value for a retrofocus wide-angle and reflects the pancake constraint; larger retrofit ratios would produce a longer barrel.
-
-The back focal distance from the last optical surface (L8 rear) to the image plane is 7.80 mm in air plus the 2.70 mm cover glass plate. The total physical distance to the sensor (10.5 mm) is less than the X-mount flange distance of 17.7 mm, meaning the rear element of L8 protrudes behind the lens mount flange and into the camera body. This is standard practice for short-registration mirrorless mounts and is the architectural reason L8 is positioned as closely to the sensor as possible — reducing the chief ray incidence angle at the sensor edges and thereby minimizing vignetting and color shading.
+The authored track is 37.62 mm, but it stops at the cover plate's front face. Table 7 gives D16 = 7.80 mm of air followed by a 2.70 mm plate (nd = 1.516330, vd = 64.14); the distance after surface 18 is blank. Therefore neither 7.80 mm nor 10.50 mm is a documented distance from L8 to the image. The plate cannot yet be modeled in `rearPlates` with a source-backed final gap. The displayed image plane remains an incomplete legacy reconstruction pending that evidence.
 
 ---
 
@@ -46,7 +44,7 @@ An ABCD matrix ray trace through all 16 optical surfaces (excluding the cover gl
 | Petzval sum | 0.00728 mm⁻¹ | — |
 | Petzval radius | 137.4 mm | — |
 
-The ~1.1% discrepancy in EFL is attributable to rounding in the patent's tabulated radii and thicknesses (which are published to limited decimal places). The F-number and all conditional formula values from Table 17 of the patent are reproduced to within rounding tolerance, confirming a clean transcription.
+The printed prescription gives EFL = 18.626043 mm, versus the stated 18.844 mm. The retained R/d/nd values match Table 7, but the cause of this discrepancy is unresolved; it is not established as rounding. Its air-space paraxial back focus is 12.792891 mm, which is +4.992891 mm beyond the incomplete authored 7.80 mm plane. Including the known plate would still leave an unpublished trailing gap; that gap must not be inferred by tuning to focus.
 
 The Petzval sum of 0.00728 mm⁻¹ (Petzval sum × f ≈ 0.136) is quite well-controlled for a fast wide-angle. This is achieved through the use of very high-index glasses in the rear group (L6 at nd = 1.923, L7 and L8 both above nd = 1.80), which allow strong curvatures to be deployed with smaller Petzval contributions per unit of optical power.
 
@@ -213,7 +211,7 @@ The companion data file transcribes Table 8 directly and converts each patent co
 | A7 | −3.89232232E−06 | −1.61504338E−06 |
 | A8 | −8.50728357E−07 | 1.55286768E−07 |
 | A9 | 3.21279636E−07 | 4.00169628E−08 |
-| A10 | −1.416866834E−08 | −1.95650895E−08 |
+| A10 | −1.41686834E−08 | −1.95650895E−08 |
 | A11 | −9.17275261E−10 | 2.66391220E−09 |
 | A12 | −2.40950739E−11 | −1.17572834E−10 |
 | A14 | 0 | 0 |
@@ -279,7 +277,7 @@ Unit focusing is the simplest and most mechanically compact focus mechanism, con
 The production lens specifies a minimum focus distance of 0.18 m (macro mode) and 0.80 m (normal mode). For unit focusing at 0.18 m:
 
 - Lens extension ≈ f² / (d_object − f) ≈ 18.84² / (180 − 18.84) ≈ 2.20 mm
-- BFD at close focus ≈ 7.80 + 2.20 = 10.00 mm
+- Modeled last-surface gap at close focus ≈ 7.80 + 2.20 = 10.00 mm; this is an estimated extension of the incomplete legacy rear path, not a patent image distance.
 
 This modest 2.2 mm of travel is mechanically feasible within the pancake barrel and is driven by the lens's internal DC motor.
 
