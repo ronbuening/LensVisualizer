@@ -227,6 +227,11 @@ Canon's product name identifies STM, and its technical specifications list AF wi
 establishes the optical unit motion but does not specify the production actuator, so motor behavior is not inferred from
 the prescription.
 
+Infinity and half life-size are selectable source states at the two authored endpoints. The finite source
+distance is **calculated**, 71.6754 mm before the first surface (169.4154 mm from the retained image plane).
+Independent small-height exact rays verify this source and reproduce the published -0.5 magnification
+within 0.066%; source rounding remains unchanged. Intermediate travel is not certified for finite-focus MTF.
+
 ## Aspherical Surfaces
 
 Only surface 11 of Numerical Data 1 is aspherical; the data file labels it `11A`. It is the object-side surface of E6.

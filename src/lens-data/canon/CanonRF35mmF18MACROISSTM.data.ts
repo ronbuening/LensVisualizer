@@ -68,6 +68,31 @@ const LENS_DATA = {
   patentYear: 2019,
   elementCount: 11,
   groupCount: 9,
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "US20190113711A1, Numerical Data 1, printed p. 5 (PDF p. 17), infinity d17=0.95 mm; published BF=11.66 mm retained.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "half-life-size",
+      label: "Half life-size",
+      focusT: 1,
+      zoomT: 0,
+      source: "US20190113711A1, Numerical Data 1, printed p. 5 (PDF p. 17), magnification -0.5 column, d17=18.25 mm and BF=11.66 mm. Independent distance evidence in CanonRF35mmF18MACROISSTM.audit.md.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 71.67541205708967,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published -0.5 geometry and image plane: s=-B/A with A=-0.4996718464823261 and B=35.814185489947576 mm. Independent small-height exact rays reproduce the source; published magnification differs by 0.066% with rounded geometry. Calculated object-to-image distance 169.41541205708967 mm.",
+        magnification: -0.5,
+      },
+    },
+  ],
 
   /* ── Elements ── */
   elements: [
