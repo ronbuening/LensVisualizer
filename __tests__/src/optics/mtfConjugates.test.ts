@@ -1,3 +1,5 @@
+import { prepareSourceFieldLaunch, sourceLaunchRay } from "../../../src/optics/field/sourceLaunch.js";
+import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import { describe, expect, it } from "vitest";
 import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
@@ -45,6 +47,24 @@ describe("documented finite MTF", () => {
     finiteConjugates: [conjugate],
   });
   const state = prepareRuntimeState(L, 1, 0);
+  it("aims the shared finite-source chief at the physical stop", () => {
+    const launch = prepareSourceFieldLaunch(state, 0.1, options.pupilSemiDiameterMm, conjugate)!;
+    expect(launch).not.toBeNull();
+    const chief = traceEngineRay2(state, sourceLaunchRay(launch, 0, 0), {
+      stopAt: state.lens.stop.surfaceIndex + 1,
+      checkSemiDiameter: false,
+      directionNormalized: true,
+    });
+    expect(chief.status).toBe("ok");
+    expect(chief.terminalPoint[1]).toBeCloseTo(0, 8);
+    expect(
+      prepareSourceFieldLaunch(state, 0, 1, {
+        ...conjugate,
+        objectDistanceMm: 1,
+        distanceReference: "image-plane",
+      }),
+    ).toBeNull();
+  });
   it("uses a common point source and reproduces paraxial focus and magnification", () => {
     const support = assessMtfSupport(state, options);
     const bundle = traceMtfFieldPupil(state, options, support, 0, 32)!;

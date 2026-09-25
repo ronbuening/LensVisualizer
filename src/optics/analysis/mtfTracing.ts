@@ -1,14 +1,17 @@
 /** Shared pupil sampling for MTF. Exact hits stay in physical millimeters. */
 import type { MtfOptions, MtfSpectralLine, MtfSupport } from "../../types/mtf.js";
-import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import type { PreparedOpticalState, Vec3 } from "../types.js";
 import type { EngineTraceResult, TraceOptions } from "../trace/types.js";
-import { solveChiefRay2 } from "../field/chiefRay.js";
-import { solveScalarRoot } from "../math/rootSolve.js";
 import { traceEngineRay2 } from "../trace/rayAdapters.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
 import { anchoredIndexTable } from "../chromatic/indexResolver.js";
 import type { MtfSpot } from "./mtfMath.js";
-import { mtfFiniteObjectPoint } from "./mtfConjugates.js";
+import {
+  prepareSourceFieldLaunch,
+  sourceLaunchRay as mtfLaunchRay,
+  type SourceFieldLaunch,
+} from "../field/sourceLaunch.js";
+export { sourceLaunchRay as mtfLaunchRay } from "../field/sourceLaunch.js";
 import { findMtfFootprint, type MtfFootprint } from "./mtfFootprint.js";
 import { mtfTraceClassification } from "./mtfRayClassification.js";
 
@@ -51,16 +54,7 @@ export interface MtfBundle {
 }
 
 /** One field's chief-ray launch, shared by every wavelength and refinement level. */
-export interface MtfFieldLaunch {
-  fieldAngleDeg: number;
-  /** Collimated launch direction; a finite source launches every ray from `objectPoint`. */
-  direction: Vec3;
-  objectPoint?: Vec3;
-  /** Axial position of the launch plane in mm. */
-  leadZ: number;
-  /** Chief-ray height on the launch plane in mm. */
-  centerY: number;
-}
+export type MtfFieldLaunch = SourceFieldLaunch;
 
 /** Surface profiles whose sag depends on y or radius only, so a meridional field images symmetrically in x. */
 const X_SYMMETRIC_PROFILES = new Set(["flat", "spherical", "aspheric", "tilted-plane"]);
@@ -153,25 +147,6 @@ export function mtfTraceOptions(
 }
 
 /**
- * Ray launched at an offset from the chief ray on the field's launch plane.
- *
- * @param launch - field launch
- * @param x - sagittal offset in mm
- * @param y - tangential offset in mm
- * @returns collimated ray, or a ray from the finite source point
- */
-export function mtfLaunchRay(launch: MtfFieldLaunch, x: number, y: number): Ray3 {
-  const origin: Vec3 = [x, launch.centerY + y, launch.leadZ];
-  const source = launch.objectPoint;
-  if (!source) return { origin, direction: launch.direction };
-  const dx = origin[0] - source[0];
-  const dy = origin[1] - source[1];
-  const dz = origin[2] - source[2];
-  const length = Math.hypot(dx, dy, dz);
-  return { origin, direction: [dx / length, dy / length, dz / length] };
-}
-
-/**
  * Resolve one field's chief-ray launch.
  *
  * Collimated fields launch along the solved chief direction. Finite sources aim the chief
@@ -190,44 +165,12 @@ export function prepareMtfFieldLaunch(
   support: MtfSupport,
   fieldAngleDeg: number,
 ): MtfFieldLaunch | null {
-  const L = state.lens.runtime;
-  const chief = solveChiefRay2(fieldAngleDeg, state.focusT, state.zoomT, L, undefined, state.aberrationT);
-  const objectPoint = support.conjugate ? mtfFiniteObjectPoint(state, support.conjugate, fieldAngleDeg) : undefined;
-  if (objectPoint === null || (!objectPoint && chief.status !== "converged")) return null;
-  const norm = Math.hypot(1, chief.uField);
-  const direction: Vec3 = [0, chief.uField / norm, 1 / norm];
-  const firstZ = Math.min(0, state.surfaces[0].profile.sag(state.surfaces[0].sd));
-  const leadZ = Math.max(
-    firstZ - Math.max(10, L.rayLead ?? 0),
-    objectPoint ? (objectPoint[2] + firstZ) / 2 : -Infinity,
-  );
-  const seedY = chief.status === "converged" ? chief.yLaunch + leadZ * chief.uField : 0;
-  const launch: MtfFieldLaunch = { fieldAngleDeg, direction, objectPoint, leadZ, centerY: seedY };
-  if (!objectPoint) return launch;
   const referenceNm = support.spectralLines[0]?.wavelengthNm ?? support.referenceWavelengthNm;
-  const aimOptions: TraceOptions = {
-    stopAt: state.lens.stop.surfaceIndex + 1,
-    checkSemiDiameter: false,
-    directionNormalized: true,
+  return prepareSourceFieldLaunch(state, fieldAngleDeg, options.pupilSemiDiameterMm, support.conjugate, {
     wavelengthNm: referenceNm,
     indexAtSurface: mtfIndexResolver(state, support, referenceNm),
-  };
-  const aim = solveScalarRoot(
-    (y) => {
-      const trace = traceEngineRay2(state, mtfLaunchRay(launch, 0, y - seedY), aimOptions);
-      return trace.status === "ok" ? trace.terminalPoint[1] : null;
-    },
-    {
-      initialGuess: seedY,
-      initialHalfWidth: Math.max(1, options.pupilSemiDiameterMm),
-      residualTolerance: 1e-8,
-      scanSamples: 16,
-    },
-  );
-  if (aim.status !== "converged" || aim.root === null) return null;
-  return { ...launch, centerY: aim.root };
+  });
 }
-
 /**
  * Find the launch-plane region whose rays reach the image at the reference wavelength.
  *

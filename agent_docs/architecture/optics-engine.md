@@ -45,6 +45,10 @@ contract in `src/lens-data/LENS_DATA_SPEC.md`; do not add an analysis-specific s
 
 ## Simulated MTF
 
+Physical finite sources and stop-aimed chief rays live in `src/optics/field/sourceLaunch.ts`.
+MTF delegates its launch geometry there, preserving one source point across wavelength and pupil samples.
+The helper accepts the reference wavelength/index resolver; spectral policy stays with the analysis caller.
+
 Source-state inventory: `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --source-states`
 includes every prescription and separates hidden production configurations from reference fixtures. `--lens=KEY`
 selects one prescription; `--limit=N` limits output while preserving full inventory counts. Candidate coordinates

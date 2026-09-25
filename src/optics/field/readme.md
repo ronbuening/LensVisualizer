@@ -14,6 +14,7 @@ flowchart LR
     n_src_optics_field_src_optics_field_fieldGeometry_ts["fieldGeometry.ts"]
     n_src_optics_field_src_optics_field_launch_ts["launch.ts"]
     n_src_optics_field_src_optics_field_projection_ts["projection.ts"]
+    n_src_optics_field_src_optics_field_sourceLaunch_ts["sourceLaunch.ts"]
   end
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_optics_apertureStop_ts["src/optics/apertureStop.ts"]
@@ -25,41 +26,48 @@ flowchart LR
   n_external_src_types["src/types"]
   n_external_src_utils_catalog["src/utils/catalog"]
   n_src_optics_field_src_optics_field_chiefRay_ts --> |3| n_external_src_optics_trace
+  n_src_optics_field_src_optics_field_sourceLaunch_ts --> |2| n_external_src_optics_trace
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_apertureStop_ts
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_math
+  n_src_optics_field_src_optics_field_sourceLaunch_ts --> n_external_src_optics_math
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_prescription
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_raySampling_ts
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_state
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_types_ts
   n_src_optics_field_src_optics_field_launch_ts --> n_external_src_optics_types_ts
+  n_src_optics_field_src_optics_field_sourceLaunch_ts --> n_external_src_optics_types_ts
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_types
   n_src_optics_field_src_optics_field_chiefRayCache_ts --> n_external_src_types
   n_src_optics_field_src_optics_field_launch_ts --> n_external_src_types
   n_src_optics_field_src_optics_field_projection_ts --> n_external_src_types
+  n_src_optics_field_src_optics_field_sourceLaunch_ts --> n_external_src_types
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_utils_catalog
   n_src_optics_field_src_optics_field_chiefRayCache_ts --> n_src_optics_field_src_optics_field_chiefRay_ts
   n_src_optics_field_src_optics_field_fieldGeometry_ts --> n_src_optics_field_src_optics_field_chiefRay_ts
+  n_src_optics_field_src_optics_field_sourceLaunch_ts --> n_src_optics_field_src_optics_field_chiefRay_ts
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_src_optics_field_src_optics_field_chiefRayCache_ts
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_src_optics_field_src_optics_field_launch_ts
   n_src_optics_field_src_optics_field_fieldGeometry_ts --> n_src_optics_field_src_optics_field_launch_ts
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_src_optics_field_src_optics_field_projection_ts
   n_src_optics_field_src_optics_field_chiefRayCache_ts --> n_src_optics_field_src_optics_field_projection_ts
   n_src_optics_field_src_optics_field_launch_ts --> n_src_optics_field_src_optics_field_projection_ts
+  n_src_optics_field_src_optics_field_sourceLaunch_ts --> n_src_optics_field_src_optics_field_projection_ts
 ```
 
 ## Directory Overview
 
-- Direct source files: 5
+- Direct source files: 6
 - Direct subfolders: 0
-- Main outbound areas: same folder (8), src/types (4), src/optics/trace (3), src/optics/types.ts (2), src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, src/optics/raySampling.ts, +2 more
+- Main outbound areas: same folder (10), src/optics/trace (5), src/types (5), src/optics/types.ts (3), src/optics/math (2), src/optics/apertureStop.ts, src/optics/prescription, src/optics/raySampling.ts, +2 more
 - External consumers: src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/perspective, src/optics/runtimeLens.ts
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `chiefRay.ts` | Chief Ray helper module | same folder (3), src/optics/trace (3), src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, +5 more | same folder (2), src/optics/analysis (2) | EntrancePupilState2, ChiefRaySolveResult2, FieldGeometryState2, OffsetVectorFieldRay2, VectorFieldRayLaunch2, computeFieldGeometryAtState2, computeAnalysisFieldGeometryAtState2, traceChiefRayAtAngle2, +10 more |
+| `chiefRay.ts` | Chief Ray helper module | same folder (3), src/optics/trace (3), src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, +5 more | same folder (3), src/optics/analysis | EntrancePupilState2, ChiefRaySolveResult2, FieldGeometryState2, OffsetVectorFieldRay2, VectorFieldRayLaunch2, computeFieldGeometryAtState2, computeAnalysisFieldGeometryAtState2, traceChiefRayAtAngle2, +10 more |
 | `chiefRayCache.ts` | Chief Ray Cache helper module | same folder (2), src/types | same folder, src/optics/compat.ts | ChiefRayStatus2, ChiefRayDiagnostics2, chiefRayCacheKey2, getCachedChiefRaySolve2, setCachedChiefRaySolve2, recordChiefRayStatus2, getChiefRayDiagnostics2, resetChiefRayDiagnostics2 |
 | `fieldGeometry.ts` | Field Geometry helper module | same folder (2) | src/optics/aberration (5), src/optics/analysis, src/optics/chromatic, src/optics/compat.ts | chiefRayImageHeight2, chiefRayImageHeightAccurate2, computeAnalysisFieldGeometryAtState2, computeFieldGeometryAtState2, conjugateK2, entrancePupilAtState2, solveChiefRay2, solveChiefRayBoundingSphere2, +13 more |
 | `launch.ts` | Launch helper module | same folder, src/optics/types.ts, src/types | same folder (2) | FieldGeometryState2, VectorFieldRayLaunch2, OffsetVectorFieldRay2, computeBoundingSphereLaunchRadiusMm2, computeBoundingSphereVectorFieldLaunch2, offsetVectorFieldRay2 |
-| `projection.ts` | Projection helper module | src/types | same folder (3), src/optics/analysis (2), src/optics/perspective (2), src/optics/aberration, src/optics/compat.ts, +1 more | ProjectionReferenceKind, ProjectionReference2, ProjectionFieldSlopes2, ProjectionLaunchSlope2, ProjectionAngularLaunch2, BoundingSphereLaunch2, MAX_FIELD_LAUNCH_DEG, ABSOLUTE_HALF_FIELD_CEILING, +17 more |
+| `projection.ts` | Projection helper module | src/types | same folder (4), src/optics/perspective (2), src/optics/aberration, src/optics/analysis, src/optics/compat.ts, +1 more | ProjectionReferenceKind, ProjectionReference2, ProjectionFieldSlopes2, ProjectionLaunchSlope2, ProjectionAngularLaunch2, BoundingSphereLaunch2, MAX_FIELD_LAUNCH_DEG, ABSOLUTE_HALF_FIELD_CEILING, +17 more |
+| `sourceLaunch.ts` | Source Launch helper module | same folder (2), src/optics/trace (2), src/optics/math, src/optics/types.ts, src/types | src/optics/analysis (2) | SourceFieldLaunch, sourceObjectPoint, sourceLaunchRay, prepareSourceFieldLaunch |
