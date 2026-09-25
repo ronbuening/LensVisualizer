@@ -203,6 +203,47 @@ const LENS_DATA = {
 
   asph: {},
 
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "JP 1991-141313 A, Numerical Example 1, PDF p. 5 (printed p. 77): infinity column, D14=2.50 mm. The retained image plane is the calculated infinity paraxial plane, 42.4201237822 mm after R20; the patent does not tabulate D20.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "half-life-size",
+      label: "Half life-size",
+      focusT: 0.7995997649601272,
+      zoomT: 0,
+      source: "JP 1991-141313 A, Numerical Example 1, PDF p. 5 (printed p. 77): 0.5x reproduction, D14=25.62 mm. Finite object distance and the fixed image-plane position are calculated, not tabulated.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 244.92079191166889,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        magnification: 0.5,
+        derivation: "At the retained infinity-derived image plane, ABCD A=-0.500027257810399, B=122.46707196034315 mm gives s=-B/A=244.92079191166889 mm before R1 (383.7809156938689 mm object-to-image). Independent exact rays at 0.01/0.005/0.0025 mm recover this source within 0.0000011 mm; the magnification differs from the source ratio by 0.0055%. Source radii, spacings and image plane are unchanged. See the audit sidecar.",
+      },
+    },
+    {
+      id: "life-size",
+      label: "Life-size",
+      focusT: 1,
+      zoomT: 0,
+      source: "JP 1991-141313 A, Numerical Example 1, PDF p. 5 (printed p. 77): 1x reproduction, D14=48.74 mm. Finite object distance and the fixed image-plane position are calculated, not tabulated.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 144.89100620253805,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        magnification: 1,
+        derivation: "At the retained infinity-derived image plane, ABCD A=-1.0000545156205864, B=144.89890502565856 mm gives s=-B/A=144.89100620253805 mm before R1 (306.87112998473805 mm object-to-image). Independent exact rays at 0.01/0.005/0.0025 mm recover this source within 0.0000011 mm; the magnification differs from the source ratio by 0.0055%. Source radii, spacings and image plane are unchanged. See the audit sidecar.",
+      },
+    },
+  ],
+
   focusPositions: [0, 0.7995997649601272, 1],
   /* Published D14 states: 2.50 mm (∞), 25.62 mm (0.5×), 48.74 mm (1.0×). */
   var: {

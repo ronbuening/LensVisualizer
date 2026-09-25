@@ -135,6 +135,11 @@ The 0.5× spacing is exactly halfway between the infinity and 1.0× D14 values i
 
 This is not a floating system in the patent's sense: the first and second groups do not move independently. The front two groups and stop behave as one translating assembly while the rear group remains fixed. That choice directly addresses the patent's stated objective of avoiding the mechanical complexity and focus-drive burden associated with independently moving floating groups.
 
+Simulated MTF exposes the three published configurations. The 0.5× and 1× states use calculated first-surface
+object distances of 244.920792 mm and 144.891006 mm, with the existing infinity-derived image plane held fixed.
+Independent exact rays reproduce the published magnification ratios within 0.0055%; the selector explicitly
+qualifies the distances as calculated. Intermediate finite-focus positions remain unavailable for MTF.
+
 ## Aberration Correction Strategy
 
 The patent begins from a problem characteristic of large-aperture macro lenses: as magnification increases, spherical aberration changes substantially and can be accompanied by worsening sagittal field curvature and outward coma. It notes that conventional floating systems can compensate for these changes, but at the cost of multiple independently moving groups, greater mechanical complexity, and increased focusing load (JP 1991-141313 A, PDF p. 2 / patent p. 74).
