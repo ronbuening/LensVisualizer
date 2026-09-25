@@ -7,6 +7,7 @@
  *   "edge"      — project to the paraxial image height on the image plane
  */
 import { useMemo } from "react";
+import { prepareSourceDiagramFan } from "../../optics/diagramGeometry.js";
 import { offsetVectorFieldRay, traceRay, traceRayVector } from "../../optics/optics.js";
 import { cameraDirectionForDiagramField, tracePerspectiveDiagramFan } from "../../optics/perspective/diagramFan.js";
 import type { PerspectiveTraceContext } from "../../optics/perspective/index.js";
@@ -107,13 +108,26 @@ export default function useOffAxisRays({
         return { segments: out, error: null };
       }
 
+      const sourceFan = rayTracksF
+        ? prepareSourceDiagramFan(
+            L,
+            focusT,
+            zoomT,
+            aberrationT,
+            geometry.fieldAngleDeg,
+            currentEPSD,
+            zPos,
+            currentPhysStopSD,
+          )
+        : undefined;
       for (const f of fractions) {
         const h = f * currentEPSD;
         const uConverge = rayTracksF ? h * focusK : 0;
         const vectorInput =
           geometry.kind === "vector" ? offsetVectorFieldRay(geometry.vectorLaunch, 0, h, uConverge) : null;
-        const result =
-          geometry.kind === "vector"
+        const result = sourceFan
+          ? sourceFan(h)
+          : geometry.kind === "vector"
             ? traceRayVector(vectorInput!, zPos, currentPhysStopSD, true, L, focusT, zoomT, aberrationT)
             : traceRay(
                 geometry.yChief + h,

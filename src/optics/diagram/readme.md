@@ -13,18 +13,27 @@ flowchart LR
     n_src_optics_diagram_src_optics_diagram_elementShapes_ts["elementShapes.ts"]
     n_src_optics_diagram_src_optics_diagram_renderDiagnostics_ts["renderDiagnostics.ts"]
     n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts["runtimeDiagramAdapter.ts"]
+    n_src_optics_diagram_src_optics_diagram_sourceRays_ts["sourceRays.ts"]
     n_src_optics_diagram_src_optics_diagram_surfaceOutline_ts["surfaceOutline.ts"]
   end
   n_external_src_optics_constants_ts["src/optics/constants.ts"]
+  n_external_src_optics_field["src/optics/field"]
   n_external_src_optics_internal["src/optics/internal"]
   n_external_src_optics_prescription["src/optics/prescription"]
+  n_external_src_optics_sourceStates_ts["src/optics/sourceStates.ts"]
   n_external_src_optics_state["src/optics/state"]
+  n_external_src_optics_trace["src/optics/trace"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
   n_src_optics_diagram_src_optics_diagram_renderDiagnostics_ts --> n_external_src_optics_constants_ts
+  n_src_optics_diagram_src_optics_diagram_sourceRays_ts --> n_external_src_optics_field
   n_src_optics_diagram_src_optics_diagram_renderDiagnostics_ts --> n_external_src_optics_internal
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_external_src_optics_prescription
+  n_src_optics_diagram_src_optics_diagram_sourceRays_ts --> n_external_src_optics_prescription
+  n_src_optics_diagram_src_optics_diagram_sourceRays_ts --> n_external_src_optics_sourceStates_ts
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_external_src_optics_state
+  n_src_optics_diagram_src_optics_diagram_sourceRays_ts --> n_external_src_optics_state
+  n_src_optics_diagram_src_optics_diagram_sourceRays_ts --> n_external_src_optics_trace
   n_src_optics_diagram_src_optics_diagram_elementShapes_ts --> n_external_src_optics_types_ts
   n_src_optics_diagram_src_optics_diagram_renderDiagnostics_ts --> n_external_src_optics_types_ts
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_external_src_optics_types_ts
@@ -33,6 +42,7 @@ flowchart LR
   n_src_optics_diagram_src_optics_diagram_elementShapes_ts --> n_external_src_types
   n_src_optics_diagram_src_optics_diagram_renderDiagnostics_ts --> n_external_src_types
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_external_src_types
+  n_src_optics_diagram_src_optics_diagram_sourceRays_ts --> n_external_src_types
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_src_optics_diagram_src_optics_diagram_coordinateTransforms_ts
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_src_optics_diagram_src_optics_diagram_elementShapes_ts
   n_src_optics_diagram_src_optics_diagram_elementShapes_ts --> n_src_optics_diagram_src_optics_diagram_renderDiagnostics_ts
@@ -44,10 +54,10 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 5
+- Direct source files: 6
 - Direct subfolders: 0
-- Main outbound areas: same folder (7), src/optics/types.ts (4), src/types (4), src/optics/constants.ts, src/optics/internal, src/optics/prescription, src/optics/state
-- External consumers: src/optics/compat.ts
+- Main outbound areas: same folder (7), src/types (5), src/optics/types.ts (4), src/optics/prescription (2), src/optics/state (2), src/optics/constants.ts, src/optics/field, src/optics/internal, +2 more
+- External consumers: src/optics/compat.ts, src/optics/diagramGeometry.ts
 
 ## Files
 
@@ -57,4 +67,5 @@ flowchart LR
 | `elementShapes.ts` | Element Shapes helper module | same folder (2), src/optics/types.ts, src/types | same folder, src/optics/compat.ts | computeElementShapesForState2 |
 | `renderDiagnostics.ts` | Render Diagnostics helper module | same folder, src/optics/constants.ts, src/optics/internal, src/optics/types.ts, src/types | same folder (2), src/optics/compat.ts | computeElementRenderDiagnosticsForState2 |
 | `runtimeDiagramAdapter.ts` | Runtime Diagram Adapter helper module | same folder (4), src/optics/prescription, src/optics/state, src/optics/types.ts, src/types | src/optics/compat.ts | createCoordinateTransforms2, computeElementRenderDiagnostics2, computeElementShapes2, stateForRuntimeDiagram2, computeStandaloneMirrorPaths2 |
+| `sourceRays.ts` | Source Rays helper module | src/optics/field, src/optics/prescription, src/optics/sourceStates.ts, src/optics/state, src/optics/trace, +1 more | src/optics/diagramGeometry.ts | prepareSourceDiagramFan |
 | `surfaceOutline.ts` | Surface Outline helper module | src/optics/types.ts | same folder (3), src/optics/compat.ts | SVG_PATH_SUBDIVISIONS_2, DiagramPointTransform2, surfaceSag2, renderedSurfaceZ2, surfacePathD2, surfaceMaterialPathD2 |

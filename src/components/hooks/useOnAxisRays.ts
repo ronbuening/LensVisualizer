@@ -7,6 +7,7 @@
  * show the extrapolated path of rays clipped by the aperture stop.
  */
 import { useMemo } from "react";
+import { prepareSourceDiagramFan } from "../../optics/diagramGeometry.js";
 import { traceRay } from "../../optics/optics.js";
 import { tracePerspectiveDiagramFan } from "../../optics/perspective/diagramFan.js";
 import type { PerspectiveTraceContext } from "../../optics/perspective/index.js";
@@ -98,10 +99,15 @@ export default function useOnAxisRays({
         return { segments: out, error: null };
       }
 
+      const sourceFan = rayTracksF
+        ? prepareSourceDiagramFan(L, focusT, zoomT, aberrationT, 0, currentEPSD, zPos, currentPhysStopSD)
+        : undefined;
       for (const f of fractions) {
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
-        const result = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+        const result = sourceFan
+          ? sourceFan(h)
+          : traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
         out.push(
           compileRaySegment(
             result.pts,

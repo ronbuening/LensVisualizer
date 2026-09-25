@@ -53,6 +53,10 @@ separate optional evaluation-plane shift.
 Physical finite sources and stop-aimed chief rays live in `src/optics/field/sourceLaunch.ts`.
 MTF delegates its launch geometry there, preserving one source point across wavelength and pupil samples.
 The helper accepts the reference wavelength/index resolver; spectral policy stays with the analysis caller.
+When diagram rays follow focus at a verified state, `prepareSourceDiagramFan` uses the same physical source and
+chief aiming for axial, off-axis and chromatic fans. It translates rays into the diagram's fixed-image frame
+and keeps the visible lead segment between source and lens. Unverified, folded, fisheye and moved diagrams retain
+their existing paths. An aiming failure at a verified state is surfaced rather than replaced with approximate rays.
 
 Source-state inventory: `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --source-states`
 includes every prescription and separates hidden production configurations from reference fixtures. `--lens=KEY`

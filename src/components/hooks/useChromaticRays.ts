@@ -8,6 +8,7 @@
  * field geometry as the monochrome off-axis fan.
  */
 import { useMemo } from "react";
+import { prepareSourceDiagramFan } from "../../optics/diagramGeometry.js";
 import {
   computeChromaticRayFanSpread,
   computeLongitudinalChromaticFocus,
@@ -214,22 +215,16 @@ export default function useChromaticRays({
             }
           }
         } else {
+          const sourceFan = rayTracksF
+            ? prepareSourceDiagramFan(L, focusT, zoomT, aberrationT, 0, currentEPSD, zPos, currentPhysStopSD)
+            : undefined;
           for (const f of fractions) {
             const h = f * currentEPSD;
             const uIn = rayTracksF ? h * focusK : 0;
             for (const ch of channels) {
-              const result = traceRayChromatic(
-                h,
-                uIn,
-                zPos,
-                focusT,
-                zoomT,
-                currentPhysStopSD,
-                true,
-                L,
-                ch,
-                aberrationT,
-              );
+              const result = sourceFan
+                ? sourceFan(h, ch)
+                : traceRayChromatic(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, ch, aberrationT);
               const seg = compileRaySegment(
                 result.pts,
                 result.ghostPts,
@@ -297,12 +292,25 @@ export default function useChromaticRays({
               }
             }
           } else {
+            const sourceFan = rayTracksF
+              ? prepareSourceDiagramFan(
+                  L,
+                  focusT,
+                  zoomT,
+                  aberrationT,
+                  geometry.fieldAngleDeg,
+                  currentEPSD,
+                  zPos,
+                  currentPhysStopSD,
+                )
+              : undefined;
             for (const f of fractions) {
               const h = f * currentEPSD;
               const uConverge = rayTracksF ? h * focusK : 0;
               for (const ch of channels) {
-                const result =
-                  geometry.kind === "vector"
+                const result = sourceFan
+                  ? sourceFan(h, ch)
+                  : geometry.kind === "vector"
                     ? traceRayVectorChromatic(
                         offsetVectorFieldRay(geometry.vectorLaunch, 0, h, uConverge),
                         zPos,

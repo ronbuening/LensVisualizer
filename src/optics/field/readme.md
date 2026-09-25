@@ -59,7 +59,7 @@ flowchart LR
 - Direct source files: 6
 - Direct subfolders: 0
 - Main outbound areas: same folder (10), src/optics/trace (5), src/types (5), src/optics/types.ts (3), src/optics/math (2), src/optics/apertureStop.ts, src/optics/prescription, src/optics/raySampling.ts, +2 more
-- External consumers: src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/perspective, src/optics/runtimeLens.ts
+- External consumers: src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/perspective, src/optics/runtimeLens.ts
 
 ## Files
 
@@ -70,4 +70,4 @@ flowchart LR
 | `fieldGeometry.ts` | Field Geometry helper module | same folder (2) | src/optics/aberration (5), src/optics/analysis, src/optics/chromatic, src/optics/compat.ts | chiefRayImageHeight2, chiefRayImageHeightAccurate2, computeAnalysisFieldGeometryAtState2, computeFieldGeometryAtState2, conjugateK2, entrancePupilAtState2, solveChiefRay2, solveChiefRayBoundingSphere2, +13 more |
 | `launch.ts` | Launch helper module | same folder, src/optics/types.ts, src/types | same folder (2) | FieldGeometryState2, VectorFieldRayLaunch2, OffsetVectorFieldRay2, computeBoundingSphereLaunchRadiusMm2, computeBoundingSphereVectorFieldLaunch2, offsetVectorFieldRay2 |
 | `projection.ts` | Projection helper module | src/types | same folder (4), src/optics/perspective (2), src/optics/aberration, src/optics/analysis, src/optics/compat.ts, +1 more | ProjectionReferenceKind, ProjectionReference2, ProjectionFieldSlopes2, ProjectionLaunchSlope2, ProjectionAngularLaunch2, BoundingSphereLaunch2, MAX_FIELD_LAUNCH_DEG, ABSOLUTE_HALF_FIELD_CEILING, +17 more |
-| `sourceLaunch.ts` | Source Launch helper module | same folder (2), src/optics/trace (2), src/optics/math, src/optics/types.ts, src/types | src/optics/analysis (2) | SourceFieldLaunch, sourceObjectPoint, sourceLaunchRay, prepareSourceFieldLaunch |
+| `sourceLaunch.ts` | Source Launch helper module | same folder (2), src/optics/trace (2), src/optics/math, src/optics/types.ts, src/types | src/optics/analysis (2), src/optics/diagram | SourceFieldLaunch, sourceObjectPoint, sourceLaunchRay, prepareSourceFieldLaunch |

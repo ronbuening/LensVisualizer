@@ -11,3 +11,5 @@ export {
   createCoordinateTransforms2 as createCoordinateTransforms,
   type DiagramPointTransform2 as DiagramPointTransform,
 } from "./compat.js";
+
+export { prepareSourceDiagramFan } from "./diagram/sourceRays.js";
