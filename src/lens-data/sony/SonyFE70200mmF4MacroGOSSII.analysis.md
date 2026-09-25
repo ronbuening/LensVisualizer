@@ -280,3 +280,9 @@ The integration audit retains every patent index and Abbe value. The following a
 | L53 | 1.76821 / 49.1 | M-TAF101 |
 | L71 | 1.67717 / 38.3 | ADF405 |
 | L72 | 1.77373 / 49.4 | M-TAF105 |
+
+### Diagram glass classifications
+
+L2/L3/L12/L14 receive qualified inferred APD coloring from FCD1/FCD705/S-FPM2 curves. Seven remaining custom coordinates have no further compatible catalog/HOYA candidate; e-line near-matches remain rejected.
+
+Glass-family/APD inferences are display annotations, not additional patent measurements. No catalog-derived line indices or partial-dispersion numbers are authored as patent evidence.

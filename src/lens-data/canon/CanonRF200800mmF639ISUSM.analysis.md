@@ -75,7 +75,7 @@ powers and six-unit in-situ powers are treated separately.
 
 ### L1a — Biconvex Positive
 
-**nd = 1.48749, νd = 70.2. Glass: 48770x crown class (supplier unresolved). f = +314.611 mm.**
+**nd = 1.48749, νd = 70.2. Glass: N-FK5 coordinate-compatible spectral proxy (supplier unconfirmed). f = +314.611 mm.**
 
 L1a is the front element of the positive L1 unit. Its relatively low index and high Abbe number place the largest front
 optic in a low-dispersion crown coordinate class. The patent's condition set explicitly constrains the first unit's power,
@@ -264,7 +264,7 @@ cross-checks from the Stage-1 evidence, not assertions about Canon's actual glas
 
 | Coordinate class | nd | νd | Used at | Catalog-compatible examples retained in evidence |
 |---|---:|---:|---|---|
-| 48770x crown | 1.48749 | 70.2 | L1a | OHARA S-FSL5; SCHOTT N-FK5 |
+| 487702 crown | 1.48749 | 70.2 | L1a | OHARA S-FSL5; SCHOTT N-FK5 |
 | 497816 low-dispersion fluorophosphate | 1.49700 | 81.5 | L1b, L3a, L6a | OHARA S-FPL51; SCHOTT N-PK52A; SUMITA K-PFK80; CDGM H-FK61 |
 | 613443 lanthanum/crown-flint | 1.61340 | 44.3 | L1c, L4b | OHARA S-NBM51 |
 | 805254 dense flint | 1.80518 | 25.4 | L2a | OHARA S-TIH6 |
@@ -430,3 +430,9 @@ The integration audit retains every patent index and Abbe value. The following a
 | Element | Patent nd / vd | Runtime spectral proxy |
 |---|---|---|
 | L1a | 1.48749 / 70.2 | N-FK5 |
+
+### Diagram glass classifications
+
+L1b, L3a, L5b and L6a now carry inferred APD tags from their compatible low-dispersion curves. All 17 resolved glass labels now name qualified spectral proxies. The assignee remains Canon Inc.; the untranslated applicant wording stays in the source discussion.
+
+Glass-family/APD inferences are display annotations, not additional patent measurements. No catalog-derived line indices or partial-dispersion numbers are authored as patent evidence.

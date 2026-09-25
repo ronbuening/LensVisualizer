@@ -97,6 +97,8 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 182.295,
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible FCD1 curve (catalog ΔPgF ≈ +0.0312); not a patent APD designation or supplier identification.",
       glass: "FCD1 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "D1",
     },
@@ -109,6 +111,8 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 305.707,
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible FCD1 curve (catalog ΔPgF ≈ +0.0312); not a patent APD designation or supplier identification.",
       glass: "FCD1 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
@@ -214,6 +218,8 @@ const LENS_DATA = {
       vd: 75.5,
       indexReference: "d",
       fl: 60.485,
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible FCD705 curve (catalog ΔPgF ≈ +0.0232); not a patent APD designation or supplier identification.",
       glass: "FCD705 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
@@ -237,6 +243,8 @@ const LENS_DATA = {
       vd: 67,
       indexReference: "d",
       fl: 67.02,
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible S-FPM2 curve (catalog ΔPgF ≈ +0.0144); not a patent APD designation or supplier identification.",
       glass: "S-FPM2 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "D5",
     },
@@ -441,7 +449,7 @@ const LENS_DATA = {
   closeFocusM: 2.289,
   zoomCloseFocusM: [2.289, 3.709, 5.814],
   focusDescription:
-    "PUBLISHED Table 8 G6 translation. focusT=1 is 2.289 m at Wide, 3.709 m at Mid, and 5.814 m at Tele; zoomCloseFocusM labels the three published endpoints. No production macro/MFD reconstruction.",
+    "Published G6 inner focus: 0.55 / 0.76 / 1.10 mm imageward at Wide / Mid / Tele, reaching 2.289 / 3.709 / 5.814 m respectively. Production macro focus is not modeled.",
 
   zoomApertureModel: "from-nominal-fno",
   nominalFno: [4.12, 4.36, 4.14],

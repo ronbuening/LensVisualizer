@@ -88,7 +88,7 @@ const LENS_DATA = {
       vd: 46.5,
       indexReference: "d",
       fl: -27.330019,
-      glass: "804465 class (supplier unproven)",
+      glass: "N-LASF44 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 2,
@@ -100,7 +100,7 @@ const LENS_DATA = {
       vd: 49.2,
       indexReference: "d",
       fl: -25.030846,
-      glass: "768492 class (supplier unproven)",
+      glass: "M-TAF101 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 3,
@@ -112,7 +112,7 @@ const LENS_DATA = {
       vd: 25.2,
       indexReference: "d",
       fl: 53.675582,
-      glass: "855252 class (supplier unproven)",
+      glass: "NBFD25 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 4,
@@ -124,7 +124,7 @@ const LENS_DATA = {
       vd: 54.7,
       indexReference: "d",
       fl: -18.089579,
-      glass: "729547 class (supplier unproven)",
+      glass: "TAC8 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 5,
@@ -136,7 +136,7 @@ const LENS_DATA = {
       vd: 46.5,
       indexReference: "d",
       fl: -100.498817,
-      glass: "804465 class (supplier unproven)",
+      glass: "N-LASF44 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "C1",
     },
     {
@@ -149,7 +149,7 @@ const LENS_DATA = {
       vd: 35.4,
       indexReference: "d",
       fl: 22.049562,
-      glass: "593354 class (supplier unproven)",
+      glass: "FF5 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "C1",
     },
     {
@@ -162,7 +162,7 @@ const LENS_DATA = {
       vd: 22.8,
       indexReference: "d",
       fl: 78.443548,
-      glass: "808228 class (supplier unproven)",
+      glass: "FD225 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 8,
@@ -174,7 +174,9 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 21.092182,
-      glass: "497816 class (supplier unproven)",
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible H-FK61 curve (catalog ΔPgF ≈ +0.0315); not a patent APD designation or supplier identification.",
+      glass: "H-FK61 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "C2",
     },
     {
@@ -187,7 +189,7 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       fl: -18.02323,
-      glass: "773496 class (supplier unproven)",
+      glass: "J-LASF016 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "C2",
     },
     {
@@ -200,7 +202,9 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 17.032918,
-      glass: "497816 class (supplier unproven)",
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible H-FK61 curve (catalog ΔPgF ≈ +0.0315); not a patent APD designation or supplier identification.",
+      glass: "H-FK61 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "C3",
     },
     {
@@ -213,7 +217,7 @@ const LENS_DATA = {
       vd: 29.1,
       indexReference: "d",
       fl: -74.193082,
-      glass: "001291 class (supplier unproven)",
+      glass: "S-LAH99 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "C3",
     },
     {
@@ -226,7 +230,9 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 64.064303,
-      glass: "497816 class (supplier unproven)",
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible M-FCD1 curve (catalog ΔPgF ≈ +0.0318); not a patent APD designation or supplier identification.",
+      glass: "M-FCD1 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 13,
@@ -238,7 +244,7 @@ const LENS_DATA = {
       vd: 32.2,
       indexReference: "d",
       fl: -74.142851,
-      glass: "730322 class (supplier unproven)",
+      glass: "NBFD32 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 14,
@@ -250,7 +256,9 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 37.026773,
-      glass: "497816 class (supplier unproven)",
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible M-FCD1 curve (catalog ΔPgF ≈ +0.0318); not a patent APD designation or supplier identification.",
+      glass: "M-FCD1 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 15,
@@ -262,7 +270,7 @@ const LENS_DATA = {
       vd: 46.5,
       indexReference: "d",
       fl: -25.787021,
-      glass: "804465 class (supplier unproven)",
+      glass: "N-LASF44 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 16,
@@ -274,7 +282,7 @@ const LENS_DATA = {
       vd: 63.9,
       indexReference: "d",
       fl: 60.236003,
-      glass: "620639 class (supplier unproven)",
+      glass: "PCD40 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
   ],
 
@@ -365,7 +373,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.15,
   focusDescription:
-    "Patent focus group G2B (L13+L14); no finite-focus spacings are published. NO_INTERNAL_RECONSTRUCTION: focus gaps remain at the infinity values; 0.15 m is production MFD metadata only.",
+    "G2B (L13+L14) focuses objectward, but finite-focus spacings are unpublished. Focus travel is not modeled; 0.15 m is the production minimum focus distance.",
 
   zoomApertureModel: "from-nominal-fno",
   nominalFno: [2.9, 2.89],

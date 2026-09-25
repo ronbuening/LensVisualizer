@@ -126,7 +126,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 12.5,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — the patent publishes only the infinity state; production 12.5 m MFD is retained as metadata with no authored focus motion.",
+    "Only the infinity state is published. The production minimum focus distance is 12.5 m; focus travel is not modeled.",
 
   /* ── Aperture configuration ── */
   nominalFno: 5.9,

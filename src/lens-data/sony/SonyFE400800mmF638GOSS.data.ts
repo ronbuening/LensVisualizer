@@ -70,7 +70,9 @@ const LENS_DATA = {
       vd: 75.5,
       indexReference: "d",
       fl: 288.788897966,
-      glass: "550755 — low-dispersion crown class (supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible FCD705 curve (catalog ΔPgF ≈ +0.0232); not a patent APD designation or supplier identification.",
+      glass: "FCD705 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "D1",
     },
     {
@@ -83,7 +85,9 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 317.093914177,
-      glass: "497816 — fluorophosphate/low-dispersion crown class (supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible H-FK61 curve (catalog ΔPgF ≈ +0.0315); not a patent APD designation or supplier identification.",
+      glass: "H-FK61 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 4,
@@ -121,7 +125,7 @@ const LENS_DATA = {
       vd: 39.5,
       indexReference: "d",
       fl: -142.788388680,
-      glass: "654395 — dense-flint/KZFS-adjacent class (supplier unconfirmed)",
+      glass: "H-TF5 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "D3",
     },
     {
@@ -159,7 +163,9 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 165.247638524,
-      glass: "497816 — fluorophosphate/low-dispersion crown class (supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible H-FK61 curve (catalog ΔPgF ≈ +0.0315); not a patent APD designation or supplier identification.",
+      glass: "H-FK61 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 10,
@@ -171,7 +177,9 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 128.182936091,
-      glass: "497816 — fluorophosphate/low-dispersion crown class (supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible H-FK61 curve (catalog ΔPgF ≈ +0.0315); not a patent APD designation or supplier identification.",
+      glass: "H-FK61 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 11,
@@ -183,7 +191,9 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 99.239514740,
-      glass: "497816 — fluorophosphate/low-dispersion crown class (supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible H-FK61 curve (catalog ΔPgF ≈ +0.0315); not a patent APD designation or supplier identification.",
+      glass: "H-FK61 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "D4",
     },
     {
@@ -261,7 +271,7 @@ const LENS_DATA = {
       vd: 16.5,
       indexReference: "d",
       fl: -37.359242341,
-      glass: "986165 — very-high-index flint class (supplier unconfirmed)",
+      glass: "FDS16-W (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "D7",
     },
     {
@@ -351,6 +361,8 @@ const LENS_DATA = {
       vd: 80.5,
       indexReference: "d",
       fl: -40.112438513,
+      apd: "inferred",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible FCD1 curve (catalog ΔPgF ≈ +0.0312); not a patent APD designation or supplier identification.",
       glass: "FCD1 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
@@ -376,7 +388,7 @@ const LENS_DATA = {
       vd: 29.1,
       indexReference: "d",
       fl: -11.065535741,
-      glass: "001291 — ultra-high-index lanthanum flint class (supplier unconfirmed)",
+      glass: "S-LAH99 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       cemented: "D10",
     },
     {

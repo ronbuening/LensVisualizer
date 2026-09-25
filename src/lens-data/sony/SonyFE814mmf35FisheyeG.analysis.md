@@ -423,3 +423,9 @@ remain integration-stage checks and are not represented here as completed by the
    https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf (retrieved 2026-09-17).
 9. SUMITA OPTICAL GLASS, Inc., **Optical Glass Data Book**, revision 14.02.00,
    https://www.sumita-opt.co.jp/download_files/en/data/glassdatabook_ver14.02.00.pdf (retrieved 2026-09-17).
+
+### Diagram glass classifications
+
+All 16 glass annotations now name their coordinate-compatible catalog proxy. L8/L10/L12/L14 carry inferred APD tags; inspected L8 on site confirms the inferred badge, cemented C2 membership, qualified H-FK61 annotation and Sellmeier status.
+
+Glass-family/APD inferences are display annotations, not additional patent measurements. No catalog-derived line indices or partial-dispersion numbers are authored as patent evidence.

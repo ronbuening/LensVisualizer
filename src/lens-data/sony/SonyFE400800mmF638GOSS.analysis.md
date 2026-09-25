@@ -408,3 +408,9 @@ The integration audit retains every patent index and Abbe value. The following a
 | L73 | 1.95268 / 25.7 | NBFD265 |
 | L74 | 1.61889 / 47.9 | S-BSM28 |
 | L78 | 1.49883 / 80.5 | FCD1 |
+
+### Diagram glass classifications
+
+L12, L13, L41, L42, L43 and L78 now carry inferred low-dispersion/APD coloring. Resolved coordinate labels name the guarded proxy explicitly. The 13 unmatched elements have no compatible current-catalog or additional HOYA AGF candidate; they remain unresolved.
+
+Glass-family/APD inferences are display annotations, not additional patent measurements. No catalog-derived line indices or partial-dispersion numbers are authored as patent evidence.

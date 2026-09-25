@@ -15,3 +15,13 @@ Corrected the Canon assignee to catalog-canonical Canon Inc. The marketed RF 200
 Final trusted catalog coverage: **17/17 elements**. Catalog curves are spectral proxies, not proof of production supplier or melt. Original patent coordinates and reference lines remain authoritative.
 
 The existing nominal f-number stations now opt into `zoomApertureModel: "from-nominal-fno"`. Without that integration field the runtime held the wide-end iris fixed despite the source-model aperture schedule. These radii remain inferred; they are not published physical iris measurements.
+
+## 2026-09-25 — local-site follow-up
+
+Compared the live diagram directly with Figure 1, PDF p. 2 of US20240134166A1.pdf.
+
+The 15 mm rear doublet rims now reproduce L6 much more closely. Retained these and the remaining SDs: front-rim differences are below the figure-estimation threshold; L2 leader/IS-arrow ink must not become glass.
+
+Wide-to-Tele camera-frame motion is objectward for L1/L3/L4/L5/L6 (89.97/40.59/39.60/57.97/58.29 mm); L2 stays fixed within 0.01 mm table rounding. Infinity-to-near focus remains disabled because no finite spacings are published.
+
+L1b, L3a, L5b and L6a now carry inferred APD tags from their compatible low-dispersion curves. All 17 resolved glass labels now name qualified spectral proxies. The assignee remains Canon Inc.; the untranslated applicant wording stays in the source discussion.

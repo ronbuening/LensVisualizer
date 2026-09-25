@@ -201,7 +201,7 @@ Its runtime spectral proxy uses the same coordinate-class evidence as L21; no me
 
 L40 is a low-dispersion negative element cemented to L41. The patent gives `θgF = 0.5441`; with `νd = 68.63`, the verified deviation from the patent's normal line is 0.01944063. L40 also satisfies the patent's negative-element focal-length and image-plane-distance conditions: `|f3cn/f| = 0.067475` and `D3cnImg/f = 0.126005`. [JP 2025-63175 A, ¶0036–¶0039 and ¶0044–¶0051; Tables 34 and 38.]
 
-The `dPgF` value stored in the data is this computed normal-line deviation derived from the patent's published `θgF` and `νd`. It is not a separately published catalog melt measurement.
+The patent-normal-line deviation above is used only for the patent condition. Runtime `dPgF` is 0.01573566, converted to the engine normal line `0.6438 − 0.001682νd` so the published θgF is reproduced. It is not a catalog melt measurement.
 
 ### L41 — Positive Meniscus, cemented GR3c member
 
@@ -278,7 +278,7 @@ For L12/L14/L16, the patent's `νd = 95.23` and `θgF = 0.5387` produce a verifi
 
 The rear group uses a different mechanism. L40 and L43 are negative lenses with verified positive normal-line deviations of 0.01944063 and 0.01508996, respectively, while L43 and L38 also fall below the patent's `νd < 31` threshold. Conditions (8) and (9) then constrain the focal strength and image-side location of selected negative GR3c elements. The patent states that these rear negative elements support lateral-color correction near the image plane. [JP 2025-63175 A, ¶0036–¶0051.]
 
-The spectral model remains deliberately qualified. Patent-derived `dPgF` values are computed from the published `θgF` and `νd` under the patent's stated normal-line equation. C/F/g indices are resolved at runtime from coordinate-compatible catalog curves; catalog values are not authored as measured patent indices. These two evidence types are not interchangeable and neither identifies a production melt without further source support.
+The spectral model remains deliberately qualified. Runtime `dPgF` values are computed from the published `θgF` and `νd` using the engine normal line `0.6438 − 0.001682νd`. The patent condition values above instead use `0.648262 − 0.001801νd`; those two deviations must not be interchanged. C/F/g indices are resolved at runtime from coordinate-compatible catalog curves; catalog values are not authored as measured patent indices. These two evidence types are not interchangeable and neither identifies a production melt without further source support.
 
 ## Conditional Expressions
 
@@ -350,4 +350,10 @@ Repository integration checks are recorded in the companion audit log; they rema
 14. HOYA Corporation. **TAFD55-W datasheet**. https://www.hoya-opticalworld.com/common/pdf2019/TAFD55-W.pdf
 15. HOYA Corporation. **FDS24-SW optical data**. https://www.hoya-opticalworld.com/common/pdf2024/FDS24-SW_02.pdf
 
-The seven elements with patent-derived partial-dispersion deviations (L12–L16, L40 and L43) carry the patent APD display classification. This records the source material conditions; it does not establish a production glass supplier or whole-lens APO performance.
+Patent APD coloring is limited to L12, L14, L16, L40 and L43, which the source explicitly describes as anomalous-dispersion material. L13 and L15 retain their published partial-dispersion ratios but use ordinary high-index coloring: conditions (10)–(11) alone do not designate them APD. L34 uses inferred APD coloring from its compatible FCD1 low-dispersion family. None of these classifications proves a production supplier or whole-lens APO performance.
+
+### Diagram glass classifications
+
+Corrected a normal-line convention error: the source uses 0.648262 − 0.001801νd, while the engine expects 0.6438 − 0.001682νd. Runtime dPgF is now 0.05507686 (L12/L14/L16), 0.01011360 (L13/L15), 0.01573566 (L40), and 0.01670072 (L43), recovering the published θgF ratios. Conditions (10)–(11) constrain L13/L15 dispersion but do not call them anomalous; removed their patent APD tags. Kept patent APD for L12/L14/L16/L40/L43 and added qualified inferred APD for FCD1-compatible L34. All 22 elements retain trusted spectral coverage.
+
+Glass-family/APD inferences are display annotations, not additional patent measurements. No catalog-derived line indices or partial-dispersion numbers are authored as patent evidence.
