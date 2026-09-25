@@ -58,6 +58,11 @@ chief aiming for axial, off-axis and chromatic fans. It translates rays into the
 and keeps the visible lead segment between source and lens. Unverified, folded, fisheye and moved diagrams retain
 their existing paths. An aiming failure at a verified state is surfaced rather than replaced with approximate rays.
 
+Every MTF result (including partial and unavailable results) carries its lens key, exact geometry coordinates,
+and a detached copy of any verified source state. Worker and main-thread results use the same attribution.
+Cache keys include the complete geometry/options request; changing the lens data creates a new client, and worker
+initialization clears partial-field caches, so source evidence cannot leak between prescription revisions.
+
 Source-state inventory: `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --source-states`
 includes every prescription and separates hidden production configurations from reference fixtures. `--lens=KEY`
 selects one prescription; `--limit=N` limits output while preserving full inventory counts. Candidate coordinates

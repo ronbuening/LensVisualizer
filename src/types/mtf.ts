@@ -1,5 +1,5 @@
 /** Explicit inputs and serializable outputs for simulated, image-space lens MTF. */
-import type { FiniteConjugate } from "./optics.js";
+import type { FiniteConjugate, LensSourceState } from "./optics.js";
 /**
  * `geometric` sums ray landings; `geometric-dl` multiplies each wavelength's geometric OTF by the
  * diffraction limit of the traced exit pupil; `diffraction` is the strict scalar pupil autocorrelation.
@@ -126,7 +126,18 @@ export interface MtfFieldResult {
   convergedThroughLpMm: number | null;
 }
 
+/** Immutable attribution of the optical geometry actually evaluated by the worker. */
+export interface MtfConfiguration {
+  lensKey: string;
+  focusT: number;
+  zoomT: number;
+  aberrationT: number;
+  /** Null denotes unverified geometry, not an unavailable calculation. */
+  sourceState: LensSourceState | null;
+}
+
 export interface MtfResult {
+  configuration: MtfConfiguration;
   method: MtfMethod;
   spectrum: MtfSpectrum;
   support: MtfSupport;

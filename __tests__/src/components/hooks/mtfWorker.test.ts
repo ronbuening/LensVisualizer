@@ -87,3 +87,58 @@ it("drops cancelled requests and reuses finished fields when only the field list
   expect(fine.result.fields[2]).toEqual(coarse.result.fields[1]);
   expect(fine.result.fields[1].status).not.toBe("pending");
 });
+
+it("attributes exact stations and invalidates source metadata when the prescription is reinitialized", async () => {
+  const { send, finished } = await loadWorker();
+  const base = buildChromaticPositiveElementLens();
+  const options: MtfOptions = {
+    method: "geometric",
+    spectrum: "reference",
+    pupilSemiDiameterMm: 0.1,
+    stopSemiDiameterMm: 0.1,
+    fieldFractions: [0],
+    frequenciesPerMm: [0, 1],
+    maxGridSize: 32,
+  };
+  let id = 100;
+  for (const distance of [1000, 2000]) {
+    const lens = build({
+      ...base.data,
+      focusPositions: [0, 0.7123456789, 1],
+      sourceStates: [
+        {
+          id: "published-near",
+          label: "Near",
+          focusT: 0.7123456789,
+          zoomT: 0,
+          source: "Synthetic spacing table",
+          conjugate: {
+            kind: "finite",
+            objectDistanceMm: distance,
+            distanceReference: "first-surface",
+            distanceProvenance: "calculated",
+            derivation: "Synthetic independently specified source",
+          },
+        },
+      ],
+      rearPlates: [REAR_PLATE_FIXTURE],
+    });
+    send({ type: "init", data: structuredClone(lens.data) });
+    for (const focusT of [0, 0.7123456789, 0.713]) {
+      const job = { focusT, zoomT: 0, aberrationT: 0, options };
+      send({ type: "compute", id: ++id, job });
+      const expected = computeMtf(prepareRuntimeState(lens, focusT, 0), options);
+      expect(await finished(id)).toEqual({ type: "result", id, result: expected });
+      expect(expected.configuration.focusT).toBe(focusT);
+      if (focusT === 0.7123456789) {
+        expect(expected.configuration.sourceState?.conjugate).toMatchObject({
+          objectDistanceMm: distance,
+          distanceProvenance: "calculated",
+        });
+        // Result consumers cannot rewrite the prescription by mutating attribution metadata.
+        expected.configuration.sourceState!.label = "Changed export label";
+        expect(lens.data.sourceStates![0].label).toBe("Near");
+      } else expect(expected.configuration.sourceState).toBeNull();
+    }
+  }
+});

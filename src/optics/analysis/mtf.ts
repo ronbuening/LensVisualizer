@@ -9,6 +9,7 @@ import type {
   MtfSupport,
   MtfUnavailableReason,
 } from "../../types/mtf.js";
+import { resolveLensSourceState } from "../sourceStates.js";
 import type { PreparedOpticalState } from "../types.js";
 import { assessMtfSupport, MTF_FIELDS, MTF_FREQUENCIES } from "./mtfSupport.js";
 import {
@@ -416,7 +417,15 @@ export function* computeMtfSteps(
   const support = assessMtfSupport(state, options);
   const frequencies = [...(options.frequenciesPerMm ?? MTF_FREQUENCIES)];
   const fractions = options.fieldFractions ?? MTF_FIELDS;
+  const source = resolveLensSourceState(state.lens.source, state.focusT, state.zoomT, state.aberrationT);
   const result: MtfResult = {
+    configuration: {
+      lensKey: state.lens.source.key,
+      focusT: state.focusT,
+      zoomT: state.zoomT,
+      aberrationT: state.aberrationT,
+      sourceState: source ? { ...source, conjugate: { ...source.conjugate } } : null,
+    },
     method: options.method,
     spectrum: options.spectrum,
     support,
