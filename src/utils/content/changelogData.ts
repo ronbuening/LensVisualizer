@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
+    summary: "Restored the Viltrox AF 50mm f/1.8 FE's physical patent filter path",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
     summary: "Restored the Viltrox AF 14mm f/4 AIR's physical patent filter path",
   },
   {

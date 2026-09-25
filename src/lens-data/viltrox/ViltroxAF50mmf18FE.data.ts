@@ -17,10 +17,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  15→17A, and 16→18A. Raw row labels are not reused as physical       ║
  * ║  surface labels.                                                           ║
  * ║                                                                            ║
- * ║  FILTER NORMALIZATION:                                                     ║
- * ║  Patent GL (2.00 mm, nd=1.52) is excluded as a filter. Surface 22 d is   ║
- * ║  the air-equivalent rear spacing: 28.44 + 2.00/1.52 + 1.00 =             ║
- * ║  30.75578947368421 mm.                                                    ║
+ * ║  REAR FILTER: Source GL is traced in rearPlates, hidden from drawing. ║
+ * ║  S22 d=28.44 mm; GL t=2.00 mm, nd=1.52, vd=64.2; final air=1.00 mm. ║
+ * ║  Source contradiction: physical BFL 32.428687 vs image distance 31.44 ║
+ * ║  mm. Restoring GL leaves the +0.988687 mm paraxial offset unchanged.   ║
+ * ║  The published rounded prescription is retained without focus tuning. ║
  * ║                                                                            ║
  * ║  SCALE: s=1. No uniform scaling is applied.                               ║
  * ║                                                                            ║
@@ -33,7 +34,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  gapSagFrac=0.97; the modeled surfaces remain non-intersecting.           ║
  * ║                                                                            ║
  * ║  GLASS ANNOTATION:                                                        ║
- * ║  L11, L12/L13, and L14 remain explicitly Unmatched because the         ║
+ * ║  L11, L14, and L41 remain explicitly Unmatched because the         ║
  * ║  nearest public catalog-family nd differs from the rounded patent value   ║
  * ║  by more than the project direct-resolution window (Δn > 0.003).          ║
  * ║                                                                            ║
@@ -222,7 +223,18 @@ const LENS_DATA = {
     { label: "19", R: 49.05, d: 7.3, nd: 1.51, elemId: 10, sd: 14.6 },
     { label: "20", R: -40.26, d: 0.1, nd: 1, elemId: 0, sd: 14.6 },
     { label: "21", R: 927.62, d: 1, nd: 1.67, elemId: 11, sd: 13.9 },
-    { label: "22", R: 41.83, d: 30.75578947368421, nd: 1, elemId: 0, sd: 13.5 },
+    { label: "22", R: 41.83, d: 28.44, nd: 1, elemId: 0, sd: 13.5 },
+  ],
+
+  rearPlates: [
+    {
+      label: "GL",
+      thicknessMm: 2,
+      nd: 1.52,
+      vd: 64.2,
+      gapAfterMm: 1,
+      source: "CN 211955966 U, Example 1 Table 1 S23-S24",
+    },
   ],
 
   asph: {

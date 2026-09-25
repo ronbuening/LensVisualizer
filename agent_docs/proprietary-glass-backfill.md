@@ -88,7 +88,6 @@ tasks:
 | [sony/SonyFE2870mmf2GM.data.ts](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | WO 2025/263124 A1 | Element 2 (1.59489 / 68.6); Element 3 (1.59561 / 67) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 | [viltrox/ViltroxAF33mmf14E.data.ts](../src/lens-data/viltrox/ViltroxAF33mmf14E.data.ts) | CN 211826699 U | Element L14 (1.51 / 81.59) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 | [viltrox/ViltroxAF35mmf18FE.data.ts](../src/lens-data/viltrox/ViltroxAF35mmf18FE.data.ts) | CN 211955963 U | Element 9 (1.49 / 81.59) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
-| [viltrox/ViltroxAF50mmf18FE.data.ts](../src/lens-data/viltrox/ViltroxAF50mmf18FE.data.ts) | CN 211955966 U | Element 10 (L41) (1.51 / 81.4) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 | [voigtlander/VoigtlanderNokton60mmf95.data.ts](../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) | JP 2021-076740 A | Element 5 (1.57774 / 67.11) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 
 ## Tier B — likely infeasible (vintage proprietary)
