@@ -45,6 +45,31 @@ const LENS_DATA = {
   elementCount: 10,
   groupCount: 9,
   apertureBlades: 7,
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "US20160313535A1, Numerical Example 1, printed p. 6 (PDF p. 20), infinity column; physical rear plate at surfaces 23–24 retained.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "super-macro",
+      label: "Super Macro",
+      focusT: 1,
+      zoomT: 0,
+      source: "US20160313535A1, Numerical Example 1, printed p. 6 (PDF p. 20), third finite column; paragraph 0024 specifies 1.20x. Physical rear plate retained. Independent distance evidence in CanonEFM28mmf34MacroISSTM.audit.md.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 15.54509035998528,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed third-finite source geometry including the 1 mm rear plate and 12.28 mm final air: s=-B/A with A=-1.1988909826105107 and B=18.63686865645193 mm. Independent small-height exact rays reproduce the source and published 1.2x ratio within 0.093%; calculated object-to-image distance 92.59509035998528 mm.",
+        magnification: 1.2,
+      },
+    },
+  ],
 
   elements: [
     {
