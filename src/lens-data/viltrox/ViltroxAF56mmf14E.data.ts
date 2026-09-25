@@ -12,8 +12,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    is modeled as the one and only STO. The following powered row printed  ║
  * ║    "STP" (R=+34.11) is retained as surface 11, the L21→L22 cemented       ║
  * ║    interface, with downstream L22 elemId/index.                            ║
- * ║  - GL filter surfaces 21-22 are omitted. S20-to-IMG is replaced by the    ║
- * ║    air-equivalent 13.67 + 2.00/1.52 + 1.00 = 15.985789473684 mm.          ║
+ * ║  - GL filter surfaces 21–22 are traced via rearPlates at source gaps.   ║
  * ║  - Patent indices are retained exactly as printed (two decimals). Their   ║
  * ║    rounded precision yields EFL 56.234583 mm from the active arrays versus ║
  * ║    the patent's 55.90 mm; no radius, thickness, or index is silently fixed.║
@@ -33,6 +32,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║  No scaling, aspheres, zoom, folded path, dummy surfaces, or internal      ║
  * ║  focus reconstruction is used.                                             ║
+ *
+ * MTF audit: Example 1 R/d/nd/vd all match. GL is now traced at its
+ * physical gaps in rearPlates. Physical BFL 17.180324 mm differs from
+ * source image distance 16.67 mm; +0.510324 mm offset is unchanged.
+ * Coarse source indices are a plausible cause, not proven glass identity.
+ * Keep the source values; no supported single misprint resolves the mismatch.
  */
 
 // Manufacturer identity/specification sources:
@@ -238,7 +243,12 @@ const LENS_DATA = {
     { label: "17", R: 29.01, d: 10.0, nd: 1.5, elemId: 9, sd: 13.4 },
     { label: "18", R: -29.92, d: 3.48, nd: 1.0, elemId: 0, sd: 13.2 },
     { label: "19", R: -26.39, d: 1.23, nd: 1.57, elemId: 10, sd: 11.8 },
-    { label: "20", R: -62.64, d: 15.98578947368421, nd: 1.0, elemId: 0, sd: 12.2 },
+    { label: "20", R: -62.64, d: 13.67, nd: 1.0, elemId: 0, sd: 12.2 },
+  ],
+
+  rearPlates: [
+    { label: "GL", thicknessMm: 2.0, nd: 1.52, vd: 64.2, gapAfterMm: 1.0,
+      source: "CN 211955965 U, Example 1 Table 1, surfaces 21–22" },
   ],
 
   asph: {},
