@@ -34,3 +34,62 @@ Reviewed display formatting and romanized inventor metadata against existing can
 Compared the localhost infinity silhouette directly with Fig. 1, retaining the revised 11 mm G2 rims. Exercised the focus slider through its authored states: G1 moves 52.77403 mm objectward and G2 moves 42.90576 mm objectward at 1:1; G3 and the image plane remain fixed. The order is correct, but the default framing clipped the front group at close focus. Reduced scFill to 0.43 to keep all groups visible through travel without changing optics or SDs. This is a prime; no zoom travel exists. All eight glasses remain catalog-backed qualified proxies.
 
 Assignee review: all three Kinoptiks use the same canonical Les Appareils de Precision Kinoptik; all three Nikons use Nikon Corporation. The corpus contains no additional spelling duplicate to consolidate. The older Nippon Kogaku K.K. is a historical legal name linked to Nikon, not a spelling alias.
+
+
+## 2026-09-25 — Source-state review
+
+Source-state review outcome: verified. All three authored candidates reviewed; infinity and two finite states enabled.
+Finite distances are calculated, not printed patent object distances. No unsupported or unreviewed candidate remains
+for this prescription; intermediate focus travel is not certified.
+
+Source: local `patents/US5751485.pdf`, visually inspected PDF page 26, printed columns 27–28, First Embodiment / Table 1.
+The introductory text identifies the first column as infinity focal length and the other two as photographing
+magnifications. All 15 source radii, glass indices, fixed spacings, and Bf reproduce the retained prescription.
+The synthetic stop divides source d6 in half; its position and diameter remain inferred/calibrated as documented above.
+
+| State ID | Exact focusT | Source d6 (mm) | Source d11 (mm) | Bf (mm) | Published beta |
+|---|---:|---:|---:|---:|---:|
+| infinity | 0 | 6.04963 | 1.23344 | 39.38439 | — (infinity column) |
+| half-life-size | 0.857059122392607 | 10.97933 | 21.77380 | 39.38439 | -0.50000 |
+| life-size | 1 | 15.91790 | 44.13920 | 39.38439 | -1.00000 |
+
+### Independent finite-distance evidence
+
+Run `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --derive-source-states --lens=nikon-af-micro-nikkor-60mm-f28d`.
+The d-line first-order matrix runs from source surface 1 to the fixed authored image plane. Solving `A*s+B=0`
+derives object distance `s` before surface 1; `A` gives signed lateral magnification. No spacing, glass, aperture,
+image plane or focus coordinate was adjusted for agreement.
+
+| State | A | B (mm) | Derived s (mm) | Object-to-image (mm) |
+|---|---:|---:|---:|---:|
+| half-life-size | -0.4999992544473916 | 77.19360608206878 | 154.3874423720583 | 255.5249623720583 |
+| life-size | -1.0000009164240917 | 90.43825253713268 | 90.4381696574152 | 218.87965965741523 |
+
+Independently aiming exact rays to the authored image plane, starting each solve at zero slope, gives:
+
+| State | Launch height (mm) | Exact recovered s (mm) | Exact beta |
+|---|---:|---:|---:|
+| half-life-size | 0.01 | 154.3874389122436 | -0.4999992545293766 |
+| half-life-size | 0.005 | 154.38744150935125 | -0.4999992544589096 |
+| half-life-size | 0.0025 | 154.38744215638152 | -0.4999992544487694 |
+| life-size | 0.01 | 90.4381674253969 | -1.000000916842186 |
+| life-size | 0.005 | 90.43816909941064 | -1.0000009165273092 |
+| life-size | 0.0025 | 90.43816952054618 | -1.000000916434233 |
+
+The largest finite axial residual is 2.47e-10 mm. Published magnifications agree within 1.5 parts per million in
+relative terms. Extra numeric digits preserve repeatable geometry, not source or production accuracy. At infinity,
+the rounded data leave matrix A=-2.84e-7; a formal enormous finite distance is not a new source state. Table 1's
+explicit infinity designation controls, with the existing authored-plane rounding retained.
+
+The production 0.219 m specification is not used to derive either finite distance. Patent geometry and magnification
+provide the verification. Stop location, clear apertures, glass proxies, and production correlation remain qualified.
+
+
+### MTF acceptance
+
+Reference-line geometric MTF at the authored design plane, wide-open physical stop, 10/30 lp/mm and
+center/half-height/full reference-height fields is available at all three states. With a 64-cell grid cap,
+infinity center and edge converge, half life-size center converges, and the remaining fields remain explicitly
+unconverged. No field is hidden or reclassified as converged; these checks establish supported computation,
+not numerical convergence or production accuracy. Exact source d6 (the sum of both stop-adjacent gaps), d11,
+and Bf reproduce Table 1 at all three selected coordinates.

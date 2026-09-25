@@ -35,6 +35,15 @@ The patent does not numerically locate or size the aperture. Fig. 1 only places 
 
 The patent also does not publish surface semi-diameters. The data file therefore uses modeled semi-diameters derived from exact spherical-ray envelopes and the current geometry policy. Those dimensions describe the visualization/model, not manufacturing drawings.
 
+## Selectable Source States
+
+Simulated MTF offers Table 1's infinity, half life-size (0.5×), and life-size (1×) configurations. The latter two use
+calculated object distances of 154.387442 mm and 90.438170 mm before the first surface, respectively (255.524962 mm
+and 218.879660 mm object-to-image). First-order derivation at the fixed published image plane and independent
+small-height exact rays reproduce the source magnifications. These are prescription calculations, not measured
+production focus distances. The selector marks them as calculated; intermediate focus positions remain unavailable
+for finite-source MTF. Selecting a state retains its element positions and focus-following source rays in the diagram.
+
 ## Element-by-Element Analysis
 
 ### L1 — Biconvex Positive

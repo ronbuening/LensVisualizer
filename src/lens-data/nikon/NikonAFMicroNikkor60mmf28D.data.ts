@@ -185,6 +185,47 @@ const LENS_DATA = {
 
   asph: {},
 
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "US 5,751,485, First Embodiment, Table 1 (PDF p. 26): f=59.9998 mm, d6=6.04963 mm, d11=1.23344 mm, Bf=39.38439 mm; Fig. 1 shows the infinity configuration.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "half-life-size",
+      label: "Half life-size",
+      focusT: 0.857059122392607,
+      zoomT: 0,
+      source: "US 5,751,485, First Embodiment, Table 1 (PDF p. 26): beta=-0.50000, d6=10.97933 mm, d11=21.77380 mm, Bf=39.38439 mm. Object distance is calculated from these fixed published spacings.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 154.3874423720583,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        magnification: -0.5,
+        derivation: "Fixed Table 1 geometry at the authored image plane: ABCD A=-0.4999992544473916, B=77.19360608206878 mm, so s=-B/A=154.3874423720583 mm before surface 1 (255.5249623720583 mm object-to-image). Independent exact rays at heights 0.01/0.005/0.0025 mm recover the distance within 0.0000035 mm and beta within 0.00000075 of the published -0.5. See the lens audit sidecar; no geometry or image-plane refocus was fitted.",
+      },
+    },
+    {
+      id: "life-size",
+      label: "Life-size",
+      focusT: 1,
+      zoomT: 0,
+      source: "US 5,751,485, First Embodiment, Table 1 (PDF p. 26): beta=-1.00000, d6=15.91790 mm, d11=44.13920 mm, Bf=39.38439 mm. Object distance is calculated from these fixed published spacings.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 90.4381696574152,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        magnification: -1,
+        derivation: "Fixed Table 1 geometry at the authored image plane: ABCD A=-1.0000009164240917, B=90.43825253713268 mm, so s=-B/A=90.4381696574152 mm before surface 1 (218.87965965741523 mm object-to-image). Independent exact rays at heights 0.01/0.005/0.0025 mm recover the distance within 0.0000023 mm and beta within 0.00000092 of the published -1. See the lens audit sidecar; no geometry or image-plane refocus was fitted.",
+      },
+    },
+  ],
+
   /* ── Published focus keyframes ── */
   focusPositions: [0, 0.857059122392607, 1],
   var: {
