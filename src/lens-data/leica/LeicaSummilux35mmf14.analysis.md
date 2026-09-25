@@ -246,3 +246,12 @@ The following curves are approximate spectral proxies within the catalog coordin
 | L2 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
 | L4 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
 | L6 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
+
+## Image-plane source audit (2026-09-25)
+
+MTF image-plane audit (2026-09-25): FR1233449 Tableau 1 (PDF p. 1,
+repeated p. 2) matches every R/d and native ne/ve coordinate at scale 35.
+The printed rear distance a5=0.5469 becomes 19.1415 mm, versus native-e
+paraxial BFL 19.116417 mm; offset -0.025083 mm. No plates, aspherics or
+other focus state are listed. The source does not establish a best-focus
+interpretation or a single correctable misprint; retain its published plane.

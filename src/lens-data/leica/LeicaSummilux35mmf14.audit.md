@@ -62,3 +62,15 @@ Additional compatible curves (catalog minus source coordinates):
 | L2 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
 | L4 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
 | L6 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
+
+## 2026-09-25 — MTF image-plane census
+
+Classification: small source prescription/image-distance mismatch; no transcription fix supported.
+
+Opened and visually compared local `patents/FR_1233449_A.pdf`, all three pages, especially Tableau 1 (p. 1), its repeated claim table (p. 2), and Fig. 1. Every one of the 12 radii, seven glass thicknesses, five air spaces and seven native ne/ve coordinates agrees after uniform ×35 scaling. R1=0.84171 and R12=−0.8417 intentionally differ in the last digit. The a2=0.2309 stop gap is merely split 75%/25%; its sum is unchanged. L7 retains the primary FR ve=47.69, as already documented, instead of the discrepant US family 47.59. All surfaces are spherical, with no cover/filter plate, scaling of refractive indices, or separate close-focus prescription.
+
+The final a5=0.5469 scales to 19.1415 mm. Native-e paraxial EFL is 1.004090767 normalized (35.143176829 mm) rather than printed 1.0; BFL is 0.546183354 normalized (19.116417375 mm). Offset remains **−0.025082625 mm**, just over the census's d-line depth threshold of 0.023032423 mm; the propagation uses the source's native e indices. No single source misprint is identified.
+
+The source discusses sagittal field and coma correction, but does not define the image distance as a best-focus compromise. A native-reference, axial geometric MTF diagnostic (812 rays, pupil grid 32, 10/20/40 lp/mm) selects −0.143916125 mm, score 0.146621 → 0.517552. That substantial finite-aperture shift does not establish that the printed image plane was chosen by a designer-best-focus criterion. Keep the published geometry and explicitly qualify the mismatch; remove the completed Section E row. No changelog entry.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
