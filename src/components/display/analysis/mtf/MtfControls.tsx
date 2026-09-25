@@ -10,7 +10,9 @@ import {
   type MtfPreferences,
 } from "../../../../utils/state/mtfPreferences.js";
 import { selector, toggleBtn, toggleGroup } from "../../../../utils/style/styles.js";
+import HelpTooltipButton from "../../../controls/HelpTooltipButton.js";
 import PortalTooltip from "../../../controls/PortalTooltip.js";
+import useMediaQuery from "../../../../utils/useMediaQuery.js";
 
 interface MtfControlsProps {
   t: Theme;
@@ -66,6 +68,8 @@ const SAMPLING_HELP = [
 ].join("\n");
 /** Wider than the default tooltip so each option fits in a few lines. */
 const HELP_WIDTH = 300;
+/** Devices whose primary pointer cannot hover (touch) get a tap-able help button beside each dropdown. */
+const HOVERLESS_QUERY = "(hover: none)";
 /** Matches the analysis dock: hovering opens after a short pause, keyboard focus opens at once. */
 const HELP_HOVER_DELAY_MS = 300;
 
@@ -77,6 +81,7 @@ export default function MtfControls({
   compareF8Available,
 }: MtfControlsProps) {
   const selectStyle: CSSProperties = { ...selector(t, false), fontSize: 11, padding: "5px 26px 5px 8px" };
+  const touchHelp = useMediaQuery(HOVERLESS_QUERY, { ssrDefault: false });
   const toggleFrequency = (frequency: MtfChartFrequency) => {
     const selected = preferences.frequencies.includes(frequency)
       ? preferences.frequencies.filter((f) => f !== frequency)
@@ -90,6 +95,7 @@ export default function MtfControls({
           t={t}
           label="MTF method"
           help={METHOD_HELP}
+          touchHelp={touchHelp}
           style={selectStyle}
           value={preferences.method}
           options={METHODS}
@@ -99,6 +105,7 @@ export default function MtfControls({
           t={t}
           label="MTF spectrum"
           help={SPECTRUM_HELP}
+          touchHelp={touchHelp}
           style={selectStyle}
           value={preferences.spectrum}
           options={SPECTRA}
@@ -108,6 +115,7 @@ export default function MtfControls({
           t={t}
           label="MTF image plane"
           help={FOCUS_HELP}
+          touchHelp={touchHelp}
           style={selectStyle}
           value={preferences.focus}
           options={FOCUS}
@@ -117,6 +125,7 @@ export default function MtfControls({
           t={t}
           label="MTF sampling"
           help={SAMPLING_HELP}
+          touchHelp={touchHelp}
           style={selectStyle}
           value={preferences.maxGridSize}
           options={SAMPLING}
@@ -189,11 +198,15 @@ export default function MtfControls({
   );
 }
 
-/** Labeled select whose `help` text explains its options in a hover or keyboard-focus tooltip. */
+/**
+ * Labeled select whose `help` text explains its options in a mouse-hover or keyboard-focus tooltip, and
+ * through a help button beside it on touch devices, where a tap opens the native menu instead.
+ */
 function Select<T extends string | number>({
   t,
   label,
   help,
+  touchHelp,
   style,
   value,
   options,
@@ -202,6 +215,7 @@ function Select<T extends string | number>({
   t: Theme;
   label: string;
   help: string;
+  touchHelp: boolean;
   style: CSSProperties;
   value: T;
   options: ReadonlyArray<[T, string]>;
@@ -229,7 +243,7 @@ function Select<T extends string | number>({
     [],
   );
   return (
-    <>
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
       <select
         ref={selectRef}
         aria-label={label}
@@ -241,11 +255,15 @@ function Select<T extends string | number>({
           pointerFocusRef.current = true;
           hide();
         }}
-        onMouseEnter={() => {
+        /* Only a mouse hovers: a tap's compatibility mouseenter would open the tooltip over the native menu. */
+        onPointerEnter={(event) => {
+          if (event.pointerType !== "mouse") return;
           clearHoverTimer();
           hoverTimerRef.current = window.setTimeout(() => setOpen(true), HELP_HOVER_DELAY_MS);
         }}
-        onMouseLeave={hide}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse") hide();
+        }}
         onFocus={() => {
           if (!pointerFocusRef.current) setOpen(true);
           pointerFocusRef.current = false;
@@ -261,11 +279,14 @@ function Select<T extends string | number>({
           </option>
         ))}
       </select>
+      {touchHelp ? (
+        <HelpTooltipButton theme={t} label={`About the ${label} options`} text={help} width={HELP_WIDTH} />
+      ) : null}
       <span id={helpId} hidden>
         {help}
       </span>
       <PortalTooltip anchorRef={selectRef} open={open} text={help} theme={t} align="center" width={HELP_WIDTH} />
-    </>
+    </span>
   );
 }
 

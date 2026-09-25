@@ -1,9 +1,9 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
-import { mockTheme } from "../../../../testUtils.js";
+import { installMatchMediaMock, mockTheme } from "../../../../testUtils.js";
 import { build, buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
 import { assessMtfSupport, computeMtf } from "../../../../../src/optics/mtf.js";
@@ -62,6 +62,7 @@ const legendColor = (label: string) =>
   within(screen.getByRole("figure")).getByText(label).closest("span")!.querySelector("line")!.getAttribute("stroke");
 
 beforeEach(() => {
+  installMatchMediaMock(false);
   localStorage.clear();
   resetMtfPreferencesCache();
 });
@@ -114,6 +115,45 @@ describe("MTF tab", () => {
     expect(screen.getByRole("tooltip").textContent).toContain("Design plane (always): the source's image plane");
     fireEvent.keyDown(plane, { key: "Escape" });
     expect(screen.queryByRole("tooltip")).toBeNull();
+    // A mouse hover opens it after a short pause; there is no touch help button on a hover-capable device.
+    vi.useFakeTimers();
+    try {
+      fireEvent.pointerEnter(plane, { pointerType: "mouse" });
+      act(() => vi.advanceTimersByTime(400));
+      expect(screen.getByRole("tooltip")).toBeTruthy();
+      fireEvent.pointerLeave(plane, { pointerType: "mouse" });
+      expect(screen.queryByRole("tooltip")).toBeNull();
+    } finally {
+      vi.useRealTimers();
+    }
+    expect(screen.queryByRole("button", { name: /^About the MTF/ })).toBeNull();
+  });
+  it("gives touch devices a tap-able help button beside each dropdown", async () => {
+    installMatchMediaMock(true);
+    stubWorker({ target: focusedState });
+    render(<MtfTab L={focusedL} t={mockTheme} preparedState={focusedState} currentEPSD={1} currentPhysStopSD={1} />);
+    await screen.findByRole("figure", { name: /image height/ });
+    for (const name of ["MTF method", "MTF spectrum", "MTF image plane", "MTF sampling"]) {
+      expect(screen.getByRole("button", { name: `About the ${name} options` })).toBeTruthy();
+    }
+    // A tap on the dropdown opens its native menu, never the hover tooltip.
+    const plane = screen.getByRole("combobox", { name: "MTF image plane" });
+    vi.useFakeTimers();
+    try {
+      fireEvent.pointerEnter(plane, { pointerType: "touch" });
+      fireEvent.pointerDown(plane, { pointerType: "touch" });
+      fireEvent.mouseEnter(plane);
+      act(() => vi.advanceTimersByTime(400));
+      expect(screen.queryByRole("tooltip")).toBeNull();
+    } finally {
+      vi.useRealTimers();
+    }
+    // The first tap on the help button opens the explanation (a tap also fires compatibility mouseenter).
+    const help = screen.getByRole("button", { name: "About the MTF image plane options" });
+    fireEvent.pointerEnter(help, { pointerType: "touch" });
+    fireEvent.mouseEnter(help);
+    fireEvent.click(help);
+    expect(screen.getByRole("tooltip").textContent).toContain("Best axial focus: moves the image plane");
   });
   it("refocuses a lens whose image plane contradicts its own prescription, and says so", async () => {
     stubWorker();

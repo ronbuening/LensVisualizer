@@ -90,7 +90,7 @@ flowchart LR
 | `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2) | default, CollapseButton |
 | `DiagramControls.tsx` | React component module | src/types (3), same folder (2), package:react, src/components/hooks, src/optics/groupMovement.ts, +4 more | src/components/layout | default, DiagramControls |
 | `DiagramHeader.tsx` | React component module | same folder (4), src/types (3), src/components/content (2), package:react, src/optics/optics.ts, +4 more | src/components/layout | default |
-| `HelpTooltipButton.tsx` | React component module | package:react, same folder, src/types | src/components/display | default, HelpTooltipButton |
+| `HelpTooltipButton.tsx` | React component module | package:react, same folder, src/types | src/components/display (2) | default, HelpTooltipButton |
 | `LensSelector.tsx` | React component module | package:react, src/components/layout, src/types, src/utils/style | src/components/layout, src/pages/AuthorsIndexPage.tsx | default, LensSelector |
 | `PortalTooltip.tsx` | React component module | package:react, package:react-dom, src/types | same folder, src/components/display, src/components/layout | default, PortalTooltip |
 | `RayToggles.tsx` | React component module | src/types (2), package:react, src/utils/featureFlags.ts, src/utils/style | same folder | default, RayToggles |

@@ -7,11 +7,14 @@
  * the diagram is the tab switcher.
  */
 
-import { useEffect, useCallback, type ReactNode, type CSSProperties } from "react";
+import { useEffect, useCallback, useLayoutEffect, useRef, type CSSProperties, type ReactNode, type Ref } from "react";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import type { Theme } from "../../types/theme.js";
 import { panelCard } from "../../utils/style/styles.js";
 import type { AnalysisTabId } from "../../types/state.js";
+
+/** Space kept beside the active tab when the strip scrolls, so a neighbor shows that the strip scrolls. */
+const TAB_SCROLL_MARGIN = 24;
 
 export interface AnalysisTab {
   id: AnalysisTabId;
@@ -46,6 +49,8 @@ export default function AnalysisDrawer({
   children,
 }: AnalysisDrawerProps) {
   const reducedMotion = usePrefersReducedMotion();
+  const tabBarRef = useRef<HTMLDivElement | null>(null);
+  const activeTabRef = useRef<HTMLButtonElement | null>(null);
 
   /* ── Escape key closes the drawer ── */
   const handleKeyDown = useCallback(
@@ -60,6 +65,16 @@ export default function AnalysisDrawer({
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [open, handleKeyDown]);
+
+  /* ── Keep the active tab in view: a deep link or a tap can select a tab beyond the strip's visible part ──
+   * Scrolls the strip itself rather than calling scrollIntoView, which would also scroll the page. */
+  useLayoutEffect(() => {
+    if (!open || !showTabs) return;
+    const bar = tabBarRef.current;
+    const tab = activeTabRef.current;
+    if (!bar || !tab) return;
+    bar.scrollLeft += tabScrollDelta(bar.getBoundingClientRect(), tab.getBoundingClientRect());
+  }, [open, showTabs, activeTab]);
 
   /* ── Drawer positioning and animation ── */
   const drawerStyle: CSSProperties = {
@@ -134,9 +149,16 @@ export default function AnalysisDrawer({
     >
       {/* ── Tab bar ── */}
       {showTabs ? (
-        <div style={tabBarStyle}>
+        <div ref={tabBarRef} style={tabBarStyle}>
           {tabs.map((tab) => (
-            <TabButton key={tab.id} tab={tab} active={activeTab === tab.id} onClick={() => onTabChange(tab.id)} t={t} />
+            <TabButton
+              key={tab.id}
+              ref={activeTab === tab.id ? activeTabRef : undefined}
+              tab={tab}
+              active={activeTab === tab.id}
+              onClick={() => onTabChange(tab.id)}
+              t={t}
+            />
           ))}
         </div>
       ) : null}
@@ -152,9 +174,34 @@ export default function AnalysisDrawer({
   );
 }
 
+/**
+ * Horizontal scroll that brings a tab fully into its strip with TAB_SCROLL_MARGIN to spare.
+ *
+ * @param strip - visible rectangle of the scrolling strip
+ * @param tab - rectangle of the tab to reveal
+ * @returns scrollLeft change, 0 when the tab already sits inside the margins
+ */
+function tabScrollDelta(strip: DOMRect, tab: DOMRect): number {
+  if (tab.left < strip.left + TAB_SCROLL_MARGIN) return tab.left - strip.left - TAB_SCROLL_MARGIN;
+  if (tab.right > strip.right - TAB_SCROLL_MARGIN) return tab.right - strip.right + TAB_SCROLL_MARGIN;
+  return 0;
+}
+
 /* ── Tab button ── */
 
-function TabButton({ tab, active, onClick, t }: { tab: AnalysisTab; active: boolean; onClick: () => void; t: Theme }) {
+function TabButton({
+  ref,
+  tab,
+  active,
+  onClick,
+  t,
+}: {
+  ref?: Ref<HTMLButtonElement>;
+  tab: AnalysisTab;
+  active: boolean;
+  onClick: () => void;
+  t: Theme;
+}) {
   const style: CSSProperties = {
     flex: "1 0 88px",
     padding: "6px 10px",
@@ -172,7 +219,7 @@ function TabButton({ tab, active, onClick, t }: { tab: AnalysisTab; active: bool
   };
 
   return (
-    <button onClick={onClick} style={style}>
+    <button ref={ref} aria-pressed={active} onClick={onClick} style={style}>
       {tab.label}
     </button>
   );

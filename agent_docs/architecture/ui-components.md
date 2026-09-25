@@ -18,7 +18,8 @@ generated `src/components/**/readme.md` files; viewer orchestration and the SVG 
 - `SidebarLayout` is a sticky column on wide viewports (>= 1200 px) and stacks above the content on narrow ones; the
   stacked layout is the SSR/first-render default so crawlers see the links.
 - `DropdownPanel` (used by `LensSelector`) and `HelpTooltipButton` render through portals with viewport positioning and
-  Escape handling; reuse them instead of adding inline dropdowns.
+  Escape handling; reuse them instead of adding inline dropdowns. `HelpTooltipButton` opens on mouse hover only (pointer
+  events), so a tap's compatibility `mouseenter` cannot open it before the tap's click toggles it.
 
 ## Controls
 
@@ -56,7 +57,8 @@ viewport. How it is launched depends on `AnalysisControlsMode` (`lensDiagram/pan
 `LensDiagramPanel`:
 
 - `pill` (mobile, below the 900px `isWide` breakpoint): the "ABERRATIONS & DISTORTIONS" pill and ZOOM button float on the
-  diagram; the drawer slides down with its own horizontal tab strip.
+  diagram; the drawer slides down with its own horizontal tab strip, which scrolls itself (never the page) to keep
+  the active tab in view with a margin, and marks it `aria-pressed`.
 - `dock` (desktop single-lens): `AnalysisDock` renders two rows of buttons (one per `ANALYSIS_TABS` entry plus ZOOM) in
   the bottom band of `DiagramViewport`, below a `position: relative` stage that holds the SVG, overlays, and drawer. The
   drawer has no tab strip and slides up over the stage, so the dock stays visible as the tab switcher; clicking the lit
@@ -83,7 +85,8 @@ distortion and vignetting tabs consume deferred/frozen inputs through `analysisJ
 estimated from nd/νd, or the reference line and the reason when a glass blocks spectral sampling), best axial focus
 (with an explanatory note when the lens data's plane contradicts its own paraxial focus; "Design plane (auto)" and
 "Design plane (always)" remain) and the image-height view at 10 % field steps showing 10 and 30 lp/mm. Each dropdown
-explains its options in a hover or keyboard-focus `PortalTooltip`, also linked through `aria-describedby`. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
+explains its options in a mouse-hover or keyboard-focus `PortalTooltip`, also linked through `aria-describedby`; on
+hover-less (touch) devices a `HelpTooltipButton` beside each dropdown gives tap access. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
 (10–50 lp/mm) persist in localStorage through `src/utils/state/mtfPreferences.ts` and `useMtfPreferences`, which
 comparison panes share; the existing `tab=mtf` URL selects the tab. Every request computes 0–100 lp/mm for every
 field, so chart-only changes never recompute. `useMtfComputation` debounces settled inputs for 150 ms, keeps earlier
