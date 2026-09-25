@@ -110,3 +110,15 @@ and focus 1, and the focus readout showed 89 cm. The order and direction are cor
 
 - The stop conflict between Table 5 (S15) and the prose (S22) remains unchanged. So does the difference between the
   patent F3 distance (0.889 m) and the marketed 0.99 m close focus.
+
+## 2026-09-25 — MTF image-plane census
+
+Classification: small published-plane/paraxial mismatch, with no newly identified transcription error.
+
+Visually inspected local `patents/US_8508864_B2.pdf`, PDF pp. 30–31, Example 3/Table 5 including its continuation and aspheric footnote. All S3–S26 radii/spacings and 13 named OHARA glass assignments match; nd/vd values retain the named-glass interpretation of the rounded codes, not unpublished melt measurements. No scaling. All K and A4–A14 terms at S7/S22 match the existing disclosed interpretations of malformed S7 A4 and S22 A8. The truncated S23 glass code and stop-location prose conflict were already documented and are not silently changed.
+
+F1 uses D12=1.810, D14=14.200 and D26=44.800. F2 and F3 arrays also match (1.313/7.672/51.824 and 0.800/1.300/58.709). The only plate is the front S1–S2 S-BSL7, 3 mm plus 2 mm air to S3, with zero paraxial effect at infinity. No rear plate or folded distance: S26 directly precedes image S27. The source labels F1 infinity while using a finite 1,000,010 mm object distance; its approximately +0.0098 mm finite-distance correction is relevant but insufficient to remove the −0.036203 mm infinity residual.
+
+Independent matrix: EFL 99.242551936 mm (the prose says substantially 100 mm), BFL 44.763797375 mm versus printed 44.800. Offset remains **−0.036202625 mm**, exceeding the 0.022954016 mm limit. The source discusses full-aperture, multi-field polychromatic MTF but does not identify the tabulated plane as a Gaussian or designer-best-focus plane. A reference-index on-axis geometric diagnostic (812 rays, grid 32, 10/20/40 lp/mm) selects −0.007622504 mm, score 0.966085 → 0.993739. Finite-aperture/spectral compromise is plausible; the diagnostic does not establish it. Preserve all published values and disclosed source emendations; Section E row deleted. No changelog entry.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
