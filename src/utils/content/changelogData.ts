@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-25",
+    type: "fix",
+    summary: "Restored the Fujifilm X100's patent cover plate and image distance",
+  },
+  {
     date: "2026-09-24",
     type: "fix",
     summary:

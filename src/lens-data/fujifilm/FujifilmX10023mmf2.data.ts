@@ -37,8 +37,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass (PP), filters, mechanical parts ║
+ * ║    Source PP is traced through rearPlates, hidden from drawing. ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Rear path: Table 1 D15 = 2.80 mm precedes PP (2.33 mm, nd 1.51680,
+ * vd 64.2). Table 11 defines BF = 5.53 mm in air, so its physical
+ * trailing gap is 5.53 - 2.80 - 2.33/1.51680 mm. This reconstructs the
+ * published BF, not a fitted paraxial plane; residual offset is -0.003651 mm.
  */
 
 const LENS_DATA = {
@@ -190,8 +195,18 @@ const LENS_DATA = {
     { label: "12", R: -12.593, d: 1.1, nd: 1.80809, elemId: 7, sd: 8.0 }, // L7 front
     { label: "13", R: -45.06, d: 0.2, nd: 1.0, elemId: 0, sd: 8.6 }, // L7 rear → air
     { label: "14", R: 46.628, d: 3.08, nd: 1.883, elemId: 8, sd: 11.2 }, // L8 front
-    { label: "15", R: 1e15, d: 2.8, nd: 1.0, elemId: 0, sd: 11.9 }, // L8 rear → air (BFD to PP)
-    // BFD from S15 to image plane ≈ 5.53 mm in air (includes air-equiv. of PP cover glass)
+    { label: "15", R: 1e15, d: 2.8, nd: 1.0, elemId: 0, sd: 11.9 }, // L8 rear → physical air gap to PP
+  ],
+
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.33,
+      nd: 1.5168,
+      vd: 64.2,
+      gapAfterMm: 5.53 - 2.8 - 2.33 / 1.5168,
+      source: "US 2012/0069456 A1, Example 1 Table 1 S16-S17; Table 11 air-equivalent BF",
+    },
   ],
 
   /* ── Aspherical coefficients ──

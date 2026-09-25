@@ -137,7 +137,6 @@ the row. Offset is paraxial focus minus the authored plane (positive: the plane 
 | Lens | File | Offset (mm) | Depths | Cause | Status |
 |---|---|---|---|---|---|
 | FUJIFILM FUJINON XF 18mm f/2 R | `fujifilm/FujifilmXF18mmf2.data.ts` | +4.993 | 1062 | D16 ends at omitted PP; Table 7 leaves its trailing image gap blank; EFL also differs | partial (source image distance missing; S13 A10 typo corrected, no paraxial effect) |
-| FUJIFILM FUJINON 23mm f/2 (Fujifilm X100) | `fujifilm/FujifilmX10023mmf2.data.ts` | +2.726 | 580 | Offset (2.7 mm) far exceeds any cover glass; check the transcription | todo |
 | CANON EF 24mm f/1.4 L USM | `canon/CanonEF24mmf14L.data.ts` | +1.748 | 759 | Not yet diagnosed; check the source image distance | todo |
 | VILTROX AF 14mm f/4 AIR | `viltrox/ViltroxAF14mmf4Air.data.ts` | -1.072 | 57 | Plate folded to air-equivalent; offset is the source image distance, not the fold | todo |
 | SIGMA 24mm f/1.4 DG DN \| Art | `sigma/Sigma24mmf14ArtDN.data.ts` | -1.048 | 455 | Patent BF 23.0355 mm kept vs 21.9873 mm paraxial; likely an omitted plate whose values are not recorded | todo |
