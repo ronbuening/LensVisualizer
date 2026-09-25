@@ -26,3 +26,27 @@ Patent: JP 2023-074094 A, Example 1 (`patents/JP2023074094A.pdf`)
 
 - Updated the analysis to clarify that the patent deviation column is retained for all glasses, but APD designation/highlighting applies only to L2, L11, and L14.
 - Removed repeated ordinary-glass `ΔθgF` callouts from the element-by-element first lines so the special FLD/SLD elements stand out.
+
+## 2026-09-25 - MTF image-plane census: source contradiction
+
+Reopened local `patents/JP2023074094A.pdf`, Example 1, PDF pages 14-16,
+paragraphs 0085-0101 and the surface/asphere/variable-spacing tables.
+No scaling; INF column d10 = 3.7171, d12 = 8.1632, BF = 23.0355 mm.
+
+- Checked every S1-S32 radius, thickness, index and all 17 vd/dispersion
+  entries. They match the source.
+- Checked K and every A4-A16 coefficient on S1, S2, S9, S10, S15, S16,
+  S31 and S32, including zeros. They match; no omitted nonzero odd terms.
+- S32 is followed directly by the source image row. No plate radii,
+  thickness, index, or trailing gap is supplied; the queue's suggested
+  omitted plate is not supported by this patent.
+- Independent ABCD propagation gives EFL 24.003700 mm versus stated
+  23.86 mm, and BFL 21.987349 mm versus BF 23.0355 mm. Axial spacings
+  total 116.762 mm versus the stated 113.95 mm lens length. No single
+  supported transcription correction explains the contradictions.
+
+Retain every published prescription value and BF. Offset before/after:
+-1.048151 -> -1.048151 mm. Added explicit source limitations to the header
+and analysis. Section E row deleted; remaining in the numerical census is
+expected. Existing source dispersion and qualified glass labels are unchanged.
+No user-visible data correction, so no changelog entry.

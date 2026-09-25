@@ -137,7 +137,6 @@ the row. Offset is paraxial focus minus the authored plane (positive: the plane 
 | Lens | File | Offset (mm) | Depths | Cause | Status |
 |---|---|---|---|---|---|
 | FUJIFILM FUJINON XF 18mm f/2 R | `fujifilm/FujifilmXF18mmf2.data.ts` | +4.993 | 1062 | D16 ends at omitted PP; Table 7 leaves its trailing image gap blank; EFL also differs | partial (source image distance missing; S13 A10 typo corrected, no paraxial effect) |
-| SIGMA 24mm f/1.4 DG DN \| Art | `sigma/Sigma24mmf14ArtDN.data.ts` | -1.048 | 455 | Patent BF 23.0355 mm kept vs 21.9873 mm paraxial; likely an omitted plate whose values are not recorded | todo |
 | MAMIYA AF APO 300mm f/4.5 IF | `mamiya/MamiyaAFAPO300mmf45IF.data.ts` | -1.026 | 41 | Not yet diagnosed; check the source image distance | todo |
 | VILTROX AF 50mm f/1.8 FE | `viltrox/ViltroxAF50mmf18FE.data.ts` | +0.989 | 260 | Plate folded to air-equivalent; offset is the source image distance, not the fold | todo |
 | Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S | `nikon/NikonAIZoomNikkor35105mmf3545.data.ts` | +0.942 | 66 | Not yet diagnosed; check the source image distance | todo |
