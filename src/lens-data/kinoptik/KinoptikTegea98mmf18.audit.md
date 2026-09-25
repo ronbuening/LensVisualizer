@@ -35,3 +35,11 @@ Canonicalized the shared Kinoptik assignee spelling and registered the Kinoptik 
 The localhost silhouette was compared directly with Fig. 2. Retained the corrected SDs: increasing the cemented pair/triplet to the literal drawing envelopes would cross the numerical table surfaces. Added the missing L8+L9 and L10+L11+L12 diagram annotations; the inspector correctly identifies C2 as a triplet. The manufacturer brochure (page 2) specifies 108° on 16 × 22 mm and 130° on 24 × 36 mm with slight vignetting. Authored the conservative 22 × 16 mm cinema format (27.20 mm minimum diagonal), not an unqualified full-frame circle. The patent has only an infinity state; focus stays disabled and no zoom travel exists.
 
 Assignee review: all three Kinoptiks use the same canonical Les Appareils de Precision Kinoptik; all three Nikons use Nikon Corporation. The corpus contains no additional spelling duplicate to consolidate. The older Nippon Kogaku K.K. is a historical legal name linked to Nikon, not a spelling alias.
+
+## 2026-09-25 — MTF image-plane census
+
+Source: local `patents/US3037426.pdf`, Example 2/Table 2, PDF p.5 (columns 3–4). Visually checked all 15 optical surfaces, nine nd/νd pairs and every physical thickness/gap. Cemented duplicate faces collapse correctly; source d12=5.97 is split 3.00+2.97 about the explicitly located stop. The rear paraboloid of L7 has parameter 15, represented by R=15/K=-1 with zero polynomial coefficients; the identical Example 1 geometry corroborates this convention. No scaling, rear plate or finite-focus state is supplied.
+
+**Cause: source contradiction.** The independent native-scale EFL is 9.784066724 mm versus printed 9.759; BFL 22.377889324 versus the image distance 21.841 printed at the top of column 4. The source also contradicts itself on L7's focal length (-22.109 versus -21.691033 from its geometry; see existing analysis). No single source-backed correction resolves these residuals. Keep the table and image distance unchanged, without assuming an undocumented best-focus intent. Runtime offset **+0.536889 → +0.536889 mm**. Section E row deleted. No data change or changelog.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.

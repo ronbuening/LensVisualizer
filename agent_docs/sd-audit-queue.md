@@ -137,7 +137,6 @@ the row. Offset is paraxial focus minus the authored plane (positive: the plane 
 | Lens | File | Offset (mm) | Depths | Cause | Status |
 |---|---|---|---|---|---|
 | FUJIFILM FUJINON XF 18mm f/2 R | `fujifilm/FujifilmXF18mmf2.data.ts` | +4.993 | 1062 | D16 ends at omitted PP; Table 7 leaves its trailing image gap blank; EFL also differs | partial (source image distance missing; S13 A10 typo corrected, no paraxial effect) |
-| KINOPTIK TEGEA 9.8mm f/1.8 | `kinoptik/KinoptikTegea98mmf18.data.ts` | +0.537 | 114 | Not yet diagnosed; check the source image distance | todo |
 | VILTROX AF 56mm f/1.4 E | `viltrox/ViltroxAF56mmf14E.data.ts` | +0.510 | 218 | Plate folded to air-equivalent; offset is the source image distance, not the fold | todo |
 | CANON EF 600mm f/4 L IS USM | `canon/CanonEF600mmf4LISUSM.data.ts` | -0.493 | 25 | Rear filter folded to air-equivalent; offset is the source image distance, not the fold | todo |
 | SONY SONNAR T* FE 35mm f/2.8 ZA | `sony/SonyFE35mmf28ZA.data.ts` | +0.471 | 51 | Not yet diagnosed; check the source image distance | todo |
