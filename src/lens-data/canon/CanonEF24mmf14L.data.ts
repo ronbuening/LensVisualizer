@@ -3,7 +3,7 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * CANON EF 24mm f/1.4 L USM
  *
- * Source: JP 1999-030743 A, Numerical Example 6, Table 7 / Figure 7.
+ * Source: JP 1999-030743 A, Numerical Example 6, Table 6 / Figure 7.
  * The prescription is retained at patent scale; no 24.6-to-24.0 mm rescaling is applied.
  *
  * Patent-table emendations used here:
@@ -12,9 +12,12 @@ import type { LensDataInput } from "../../types/optics.js";
  *     The emended value reproduces νd = 60.6997, the 603/607 glass class, and the
  *     patent's own f2b/f = 1.47 correspondence value.
  *
- * Corrected d-line paraxial trace: EFL = 24.815116 mm; Gaussian BFL from surface 22
- * = 38.214989 mm. The final d = 36.467 mm remains the patent's listed image-plane
+ * Corrected d-line paraxial trace: EFL = 24.599402 mm; Gaussian BFL from surface 22
+ * = 38.133626 mm. The final d = 36.467 mm remains the patent's listed image-plane
  * spacing rather than being silently replaced with the computed Gaussian BFL.
+ * Source contradiction: after correcting D2 to 6.050 mm and S18 A10 to
+ * -1.48493e-13, EFL agrees with the printed 24.6 mm, but the image plane
+ * remains 1.666626 mm before paraxial focus. No rear plate is listed.
  *
  * Semi-diameters are inferred because the patent publishes none. They were constrained
  * by the f/1.45 entrance-pupil trace, the 41.35° half-field, the production 77 mm filter
@@ -38,7 +41,7 @@ const LENS_DATA = {
   ],
 
   focalLengthMarketing: 24,
-  focalLengthDesign: 24.8151156047,
+  focalLengthDesign: 24.5994023367,
   apertureMarketing: 1.4,
   apertureDesign: 1.45,
   lensMounts: ["canon-ef"],
@@ -217,7 +220,7 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 62.718, d: 2.8, nd: 1.696797, elemId: 1, sd: 26.2 },
-    { label: "2", R: 30.193, d: 5.05, nd: 1.0, elemId: 0, sd: 21.0 },
+    { label: "2", R: 30.193, d: 6.05, nd: 1.0, elemId: 0, sd: 21.0 },
     { label: "3", R: 57.228, d: 2.3, nd: 1.696797, elemId: 2, sd: 21.0 },
     { label: "4", R: 32.815, d: 6.591, nd: 1.0, elemId: 0, sd: 20.0 },
     { label: "5", R: 212.09, d: 4.834, nd: 1.712995, elemId: 3, sd: 20.5 },
@@ -246,7 +249,7 @@ const LENS_DATA = {
       A4: 2.04769e-5,
       A6: 2.22129e-8,
       A8: -2.10838e-11,
-      A10: -1.46493e-13,
+      A10: -1.48493e-13,
       A12: 2.10282e-16,
       A14: 0,
     },
