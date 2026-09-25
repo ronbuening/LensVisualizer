@@ -42,6 +42,11 @@ State modules live under `src/utils/state/`.
 load/save handling in `preferences.ts` / `usePreferences.ts`, and reducer field guard in sync when adding density modes.
 Cardinal overlay toggles (`showCardinals`, `showCardinalDimensions`) are also local preferences, not URL parameters.
 
+`SELECT_SOURCE_STATE` applies the verified state selected by the UI to the current optical configuration in one
+reducer update: exact focus/zoom coordinates, neutral aberration control, and focus-following rays. It preserves
+aperture, movement, analysis panels, and preferences. Movement therefore still blocks MTF through the optical support
+checks. Source identity is resolved from coordinates rather than stored as a second copy of slider state.
+
 ## Shareable View URLs
 
 Canonical lens identity stays in route paths: `/lens/:slug` and `/compare/:slugA/:slugB`. Query params encode the

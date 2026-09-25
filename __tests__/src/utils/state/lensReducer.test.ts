@@ -657,3 +657,50 @@ describe("lensReducer — action constant exports", () => {
     }
   });
 });
+
+describe("source-state selection", () => {
+  const sourceState = {
+    id: "near",
+    label: "Published near",
+    focusT: 0.7123456789,
+    zoomT: 1 / 3,
+    source: "Synthetic authored station",
+    conjugate: { kind: "infinity" as const },
+  };
+  it("applies exact coordinates and focus-following in one update, preserving unrelated controls", () => {
+    const state = makeState();
+    state.sliders = { focusT: 0.2, zoomT: 0.5, aberrationT: 0.8, stopdownT: 0.4, shiftMm: 3, tiltDeg: 2 };
+    state.rays.rayTracksF = false;
+    const next = lensReducer(state, { type: "SELECT_SOURCE_STATE", lensKey: "nikon_58", sourceState });
+    expect(next.sliders).toEqual({
+      ...state.sliders,
+      focusT: sourceState.focusT,
+      zoomT: sourceState.zoomT,
+      aberrationT: 0,
+    });
+    expect(next.rays).toEqual({ ...state.rays, rayTracksF: true });
+    for (const slice of ["lens", "display", "sharedSliders", "panels", "overlays"] as const) {
+      expect(next[slice]).toBe(state[slice]);
+    }
+    expect(state.sliders.focusT).toBe(0.2);
+  });
+  it("ignores a stale selection after changing optical configuration", () => {
+    const state = makeState();
+    state.lens.selectedConfigurationKey = "other-configuration";
+    expect(lensReducer(state, { type: "SELECT_SOURCE_STATE", lensKey: "nikon_58", sourceState })).toBe(state);
+    const selected = lensReducer(state, { type: "SELECT_SOURCE_STATE", lensKey: "other-configuration", sourceState });
+    expect(selected.sliders.focusT).toBe(sourceState.focusT);
+  });
+  it("rejects invalid coordinates without partially changing rays or sliders", () => {
+    const state = makeState();
+    for (const coordinates of [{ focusT: NaN }, { focusT: -1 }, { zoomT: Infinity }, { zoomT: 1.1 }]) {
+      expect(
+        lensReducer(state, {
+          type: "SELECT_SOURCE_STATE",
+          lensKey: "nikon_58",
+          sourceState: { ...sourceState, ...coordinates },
+        }),
+      ).toBe(state);
+    }
+  });
+});

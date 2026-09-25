@@ -35,6 +35,7 @@ export const SET_HIGH_CONTRAST = "SET_HIGH_CONTRAST";
 export const SET_MOBILE_VIEW = "SET_MOBILE_VIEW";
 export const SET_DESKTOP_VIEW = "SET_DESKTOP_VIEW";
 export const SET_RAY_TOGGLE = "SET_RAY_TOGGLE";
+export const SELECT_SOURCE_STATE = "SELECT_SOURCE_STATE";
 export const SET_FOCUS_T = "SET_FOCUS_T";
 export const SET_ZOOM_T = "SET_ZOOM_T";
 export const SET_ABERRATION_T = "SET_ABERRATION_T";
@@ -280,6 +281,25 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       return { ...state, rays: { ...state.rays, [action.field]: action.value } };
 
     /* ── Single-lens sliders ── */
+    case SELECT_SOURCE_STATE: {
+      const { focusT, zoomT } = action.sourceState;
+      if (
+        state.lens.comparing ||
+        action.lensKey !== state.lens.selectedConfigurationKey ||
+        !Number.isFinite(focusT) ||
+        focusT < 0 ||
+        focusT > 1 ||
+        !Number.isFinite(zoomT) ||
+        zoomT < 0 ||
+        zoomT > 1
+      )
+        return state;
+      return {
+        ...state,
+        sliders: { ...state.sliders, focusT, zoomT, aberrationT: 0 },
+        rays: { ...state.rays, rayTracksF: true },
+      };
+    }
     case SET_FOCUS_T:
       return { ...state, sliders: { ...state.sliders, focusT: action.value } };
     case SET_ZOOM_T:

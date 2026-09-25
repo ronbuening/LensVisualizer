@@ -33,12 +33,13 @@ flowchart LR
     n_src_components_hooks_src_components_hooks_useSvgViewport_ts["useSvgViewport.ts"]
     n_src_components_hooks_src_components_hooks_useViewBoxZoom_ts["useViewBoxZoom.ts"]
   end
+  n_external_src_types["src/types"]
   n_external_pkg_react["pkg:react"]
   n_external_src_optics_lensMovement_ts["src/optics/lensMovement.ts"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_perspective["src/optics/perspective"]
-  n_external_src_types["src/types"]
   n_external_src_utils_state["src/utils/state"]
+  n_src_components_hooks_src_components_hooks_useDispatchAdapters_ts --> |3| n_external_src_types
   n_src_components_hooks_src_components_hooks_useHeaderHeight_ts --> |2| n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useSideLayoutDetection_ts --> |2| n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> |2| n_external_src_optics_lensMovement_ts
@@ -50,7 +51,6 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_mtfWorkerClient_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_offAxisRayUtils_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_useChromaticRays_ts --> |2| n_external_src_types
-  n_src_components_hooks_src_components_hooks_useDispatchAdapters_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_useMtfComputation_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_useOffAxisRays_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_useOnAxisRays_ts --> |2| n_external_src_types
@@ -82,7 +82,7 @@ flowchart LR
 
 - Direct source files: 23
 - Direct subfolders: 0
-- Main outbound areas: package:react (21), src/types (21), same folder (15), src/optics/perspective (8), src/optics/optics.ts (7), src/optics/diagramGeometry.ts (4), src/utils/state (4), src/optics/raySampling.ts (3), +11 more
+- Main outbound areas: src/types (22), package:react (21), same folder (15), src/optics/perspective (8), src/optics/optics.ts (7), src/optics/diagramGeometry.ts (4), src/utils/state (4), src/optics/raySampling.ts (3), +11 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search
 
 ## Files
@@ -95,7 +95,7 @@ flowchart LR
 | `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
 | `useChromaticRays.ts` | React hook module | same folder (3), src/optics/perspective (2), src/types (2), package:react, src/optics/diagramGeometry.ts, +2 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
 | `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap, src/components/search | default, useDismissableDropdown |
-| `useDispatchAdapters.ts` | React hook module | src/types (2), src/utils/state (2), package:react | src/comparison, src/components/layout | DispatchAdapters, default, useDispatchAdapters |
+| `useDispatchAdapters.ts` | React hook module | src/types (3), src/utils/state (2), package:react | src/comparison, src/components/layout | DispatchAdapters, default, useDispatchAdapters |
 | `useFlashOverlay.ts` | React hook module | package:react | src/components/layout | default, useFlashOverlay |
 | `useHeaderHeight.ts` | React hook module | package:react (2) | src/components/layout | default, useHeaderHeight |
 | `useInteractionSignal.ts` | React hook module | package:react | src/components/controls | InteractionSignal, default, useInteractionSignal |

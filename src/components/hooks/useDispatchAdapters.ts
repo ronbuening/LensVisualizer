@@ -10,6 +10,7 @@
 import { useMemo } from "react";
 import { useLensCtx, useLensDispatch } from "../../utils/state/LensContext.js";
 import {
+  SELECT_SOURCE_STATE,
   SET_FOCUS_T,
   SET_ZOOM_T,
   SET_ABERRATION_T,
@@ -22,9 +23,11 @@ import {
   SET_GROUP_MOVEMENT,
 } from "../../utils/state/lensReducer.js";
 import type { AnalysisTabId, OffAxisMode, RayDensity } from "../../types/state.js";
+import type { LensSourceState } from "../../types/optics.js";
 import type { GroupMovementMode } from "../../types/groupMovement.js";
 
 export interface DispatchAdapters {
+  onSelectSourceState: (lensKey: string, sourceState: LensSourceState) => void;
   onFocusChange: (v: number) => void;
   onZoomChange: (v: number) => void;
   onAberrationChange: (v: number) => void;
@@ -79,6 +82,8 @@ export default function useDispatchAdapters(): DispatchAdapters {
   /* dispatch and updateURLWithSliders are stable refs, so the memo never recomputes */
   return useMemo(
     () => ({
+      onSelectSourceState: (lensKey: string, sourceState: LensSourceState) =>
+        dispatch({ type: SELECT_SOURCE_STATE, lensKey, sourceState }),
       onFocusChange: (v: number) => dispatch({ type: SET_FOCUS_T, value: v }),
       onZoomChange: (v: number) => dispatch({ type: SET_ZOOM_T, value: v }),
       onAberrationChange: (v: number) => dispatch({ type: SET_ABERRATION_T, value: v }),

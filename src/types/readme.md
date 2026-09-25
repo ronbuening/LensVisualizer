@@ -32,6 +32,7 @@ flowchart LR
   n_src_types_src_types_state_ts --> n_src_types_src_types_groupMovement_ts
   n_src_types_src_types_index_ts --> n_src_types_src_types_optics_ts
   n_src_types_src_types_mtf_ts --> n_src_types_src_types_optics_ts
+  n_src_types_src_types_state_ts --> n_src_types_src_types_optics_ts
   n_src_types_src_types_theme_ts --> n_src_types_src_types_optics_ts
   n_src_types_src_types_index_ts --> n_src_types_src_types_state_ts
   n_src_types_src_types_index_ts --> n_src_types_src_types_theme_ts
@@ -41,7 +42,7 @@ flowchart LR
 
 - Direct source files: 10
 - Direct subfolders: 0
-- Main outbound areas: same folder (11), src/utils/catalog (3), src/comparison (2)
+- Main outbound areas: same folder (12), src/utils/catalog (3), src/comparison (2)
 - External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/homepage, src/components/hooks, +49 more
 
 ## Files
@@ -55,6 +56,6 @@ flowchart LR
 | `index.ts` | Shared TypeScript types | same folder (6), src/utils/catalog | none | ImageFormatId, ImageFormatMetadata, LensMountId, LensMountMetadata, SurfaceData, AsphericCoefficients, ElementData, AnnotationData, +93 more |
 | `mount.ts` | Shared TypeScript types | src/utils/catalog | src/optics/mount (9), same folder, src/components/mount | MOUNT_SCHEMA_VERSION, MountSchemaVersion, MountProfileId, ResearchStatus, MvpStatus, DiagramStatus, MountMechanism, MountLockType, +40 more |
 | `mtf.ts` | Shared TypeScript types | same folder | src/components/display (6), src/optics/analysis (6), src/components/hooks (3), src/utils/state | MtfMethod, MtfSpectrum, MtfFocusMode, MtfGridCap, MtfUnavailableReason, MtfOptions, MtfSpectralLine, MtfSupport, +6 more |
-| `optics.ts` | Shared TypeScript types | same folder (2), src/utils/catalog | src/components/display (25), src/components/diagram (14), src/components/hooks (10), src/optics/analysis (10), src/optics/perspective (10), +41 more | RadialPhaseTerm, DiffractivePhaseSurface, SurfaceData, SyntheticOpticsKind, RearPlateData, SurfaceIncidentSide, SurfaceInactiveSideBehavior, SurfaceInteractionType, +55 more |
-| `state.ts` | Shared TypeScript types | src/comparison (2), same folder | src/components/layout (12), src/utils/state (8), src/components/hooks (7), src/comparison (4), src/components/controls (2), +6 more | SharedSlidersSlice, ComparisonAction, OFF_AXIS_MODES, RAY_DENSITIES, MOBILE_VIEWS, DESKTOP_VIEWS, ANALYSIS_TAB_IDS, OffAxisMode, +27 more |
+| `optics.ts` | Shared TypeScript types | same folder (2), src/utils/catalog | src/components/display (25), src/components/diagram (14), src/components/hooks (11), src/optics/analysis (10), src/optics/perspective (10), +41 more | RadialPhaseTerm, DiffractivePhaseSurface, SurfaceData, SyntheticOpticsKind, RearPlateData, SurfaceIncidentSide, SurfaceInactiveSideBehavior, SurfaceInteractionType, +55 more |
+| `state.ts` | Shared TypeScript types | same folder (2), src/comparison (2) | src/components/layout (12), src/utils/state (8), src/components/hooks (7), src/comparison (4), src/components/controls (2), +6 more | SharedSlidersSlice, ComparisonAction, OFF_AXIS_MODES, RAY_DENSITIES, MOBILE_VIEWS, DESKTOP_VIEWS, ANALYSIS_TAB_IDS, OffAxisMode, +27 more |
 | `theme.ts` | Shared TypeScript types | same folder | src/components/display (59), src/components/layout (22), src/components/diagram (16), src/components/controls (11), src/components/content (8), +13 more | ThemeInternalTokens, ThemeColorTokens, Theme, ThemeVariant |

@@ -39,6 +39,15 @@ type AdapterName = keyof ReturnType<typeof useDispatchAdapters>;
  * call the adapter with `args`, expect `dispatch` to receive `expected`.
  */
 const DISPATCH_CASES: Array<{ adapter: AdapterName; args: unknown[]; expected: Record<string, unknown> }> = [
+  {
+    adapter: "onSelectSourceState",
+    args: ["test-lens-a", { id: "near", focusT: 0.7123456789, zoomT: 0 }],
+    expected: {
+      type: "SELECT_SOURCE_STATE",
+      lensKey: "test-lens-a",
+      sourceState: { id: "near", focusT: 0.7123456789, zoomT: 0 },
+    },
+  },
   /* ── Sliders ── */
   { adapter: "onFocusChange", args: [0.5], expected: { type: SET_FOCUS_T, value: 0.5 } },
   { adapter: "onZoomChange", args: [0.75], expected: { type: SET_ZOOM_T, value: 0.75 } },

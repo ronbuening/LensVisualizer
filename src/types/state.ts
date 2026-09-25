@@ -3,6 +3,7 @@
  */
 
 import type { SharedSlidersSlice, ComparisonAction } from "../comparison/comparisonTypes.js";
+import type { LensSourceState } from "./optics.js";
 import type { GroupMovementMode } from "./groupMovement.js";
 
 /* Re-export comparison types for backward compatibility */
@@ -195,6 +196,7 @@ export type LensAction =
   | { type: "SET_RAY_TOGGLE"; field: "showOffAxis"; value: OffAxisMode }
   | { type: "SET_RAY_TOGGLE"; field: "rayDensity"; value: RayDensity }
   | { type: "SET_RAY_TOGGLE"; field: BooleanRayField; value: boolean }
+  | { type: "SELECT_SOURCE_STATE"; lensKey: string; sourceState: LensSourceState }
   | { type: "SET_FOCUS_T"; value: number }
   | { type: "SET_ZOOM_T"; value: number }
   | { type: "SET_ABERRATION_T"; value: number }
