@@ -1030,6 +1030,74 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     }
   }
 
+  /* Source coordinates describe authored geometry, never an interpolated focus estimate. */
+  if (data.sourceStates !== undefined) {
+    if (!Array.isArray(data.sourceStates) || data.sourceStates.length === 0) {
+      errors.push('"sourceStates" must be a non-empty array');
+    } else {
+      const ids = new Set<string>();
+      const coordinates: { focusT: number; zoomT: number }[] = [];
+      const focusStations = data.focusPositions ?? [0, 1];
+      const zoomCount = Array.isArray(data.zoomPositions) ? data.zoomPositions.length : 1;
+      for (const state of data.sourceStates) {
+        if (!state || typeof state !== "object" || Array.isArray(state)) {
+          errors.push('"sourceStates" requires configuration objects');
+          continue;
+        }
+        if (typeof state.id !== "string" || !/^[a-z0-9][a-z0-9-]{0,63}$/.test(state.id))
+          errors.push('"sourceStates" requires stable lowercase IDs (1–64 letters, digits or hyphens)');
+        if (ids.has(state.id)) errors.push('"sourceStates" contains a duplicate ID');
+        ids.add(state.id);
+        if (
+          typeof state.label !== "string" ||
+          !state.label.trim() ||
+          typeof state.source !== "string" ||
+          !state.source.trim()
+        )
+          errors.push('"sourceStates" requires a label and source evidence');
+        if (
+          !Number.isFinite(state.focusT) ||
+          state.focusT < 0 ||
+          state.focusT > 1 ||
+          !Number.isFinite(state.zoomT) ||
+          state.zoomT < 0 ||
+          state.zoomT > 1 ||
+          !Array.isArray(focusStations) ||
+          !focusStations.some((f: number) => Math.abs(f - state.focusT) < 1e-8) ||
+          (zoomCount <= 1
+            ? state.zoomT !== 0
+            : Math.abs(state.zoomT * (zoomCount - 1) - Math.round(state.zoomT * (zoomCount - 1))) > 1e-8)
+        )
+          errors.push('"sourceStates" must identify authored focus and zoom stations');
+        if (coordinates.some((c) => Math.abs(c.focusT - state.focusT) < 1e-8 && Math.abs(c.zoomT - state.zoomT) < 1e-8))
+          errors.push('"sourceStates" contains conflicting coordinates');
+        coordinates.push(state);
+        const c = state.conjugate;
+        if (!c || typeof c !== "object" || !["infinity", "finite"].includes(c.kind)) {
+          errors.push('"sourceStates" requires an explicit infinity or finite conjugate');
+        } else if (c.kind === "finite") {
+          if (
+            !Number.isFinite(c.objectDistanceMm) ||
+            c.objectDistanceMm <= 0 ||
+            !["first-surface", "image-plane"].includes(c.distanceReference) ||
+            !["published", "calculated"].includes(c.distanceProvenance)
+          )
+            errors.push('"sourceStates" finite conjugates require a positive distance, reference and provenance');
+          if (c.distanceProvenance === "calculated" && (typeof c.derivation !== "string" || !c.derivation.trim()))
+            errors.push('"sourceStates" calculated distances require derivation evidence');
+          if (c.magnification !== undefined && (!Number.isFinite(c.magnification) || c.magnification === 0))
+            errors.push('"sourceStates" magnification must be finite and nonzero');
+        } else if (
+          ["objectDistanceMm", "distanceReference", "distanceProvenance", "derivation", "magnification"].some(
+            (key) => c[key] !== undefined,
+          )
+        ) {
+          errors.push('"sourceStates" infinity conjugates cannot carry finite-distance fields');
+        }
+      }
+    }
+  }
+
   /* ── Explicit finite conjugates ── */
   if (data.finiteConjugates !== undefined) {
     if (!Array.isArray(data.finiteConjugates) || data.finiteConjugates.length === 0) {

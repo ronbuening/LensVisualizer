@@ -1047,6 +1047,19 @@ var: {
 object-to-image distance is available, its coordinate is `closeFocusM / focusDistanceM`. Values between authored
 positions are piecewise-linearly interpolated and should not be presented as source-published mechanical positions.
 
+`sourceStates` certifies source configurations for selection and analysis. Each entry has a lens-local stable
+`id` (1–64 lowercase letters, digits or hyphens), a human-readable `label`, exact authored `focusT` and `zoomT`,
+and a `source` identifying the publication, embodiment and spacing tables. IDs must remain stable once published.
+Coordinates and IDs must be unique; a zoom coordinate is its station index divided by `zoomPositions.length - 1`.
+The neutral aberration-control setting is implicit. Geometry must be source-backed, not calculated movement.
+
+The `conjugate` is explicitly `{ kind: "infinity" }` or `{ kind: "finite", objectDistanceMm,
+distanceReference, distanceProvenance }`. A finite conjugate can occupy `focusT: 0` for a fixed-conjugate design.
+`distanceReference` is `"first-surface"` or `"image-plane"`; `distanceProvenance` is `"published"` or `"calculated"`.
+Calculated distances additionally require a `derivation` describing first-order derivation, independent exact-ray
+verification and relevant source evidence. Optional signed `magnification` is source-published, not a computed label.
+The source remains authoritative when a rounded prescription retains residual defocus: never tune spacing to improve MTF.
+
 `finiteConjugates` optionally certifies individual authored states for finite-distance MTF. Each entry has
 `focusT` (an authored nonzero focus station), `zoomT` (0 for a prime; source zoom station index divided by
 `zoomPositions.length - 1` for a zoom), positive `objectDistanceMm`, `distanceReference` (`"first-surface"` or

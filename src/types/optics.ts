@@ -340,6 +340,29 @@ export interface FiniteConjugate {
   source: string;
 }
 
+/** A verified source configuration, independent of the viewer's approximate distance scale. */
+export interface LensSourceState {
+  /** Lens-local, stable URL identifier. */
+  id: string;
+  label: string;
+  focusT: number;
+  zoomT: number;
+  /** Publication, embodiment and tables establishing the actual spacings. */
+  source: string;
+  conjugate:
+    | { kind: "infinity" }
+    | {
+        kind: "finite";
+        objectDistanceMm: number;
+        distanceReference: "first-surface" | "image-plane";
+        distanceProvenance: "published" | "calculated";
+        /** Required for calculated distances: independent verification and derivation evidence. */
+        derivation?: string;
+        /** Signed lateral magnification explicitly supplied by the source. */
+        magnification?: number;
+      };
+}
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
@@ -394,6 +417,7 @@ export interface LensData {
   /** Normalized focusT coordinates for each authored focus thickness; defaults to [0, 1]. */
   focusPositions?: number[];
   finiteConjugates?: FiniteConjugate[];
+  sourceStates?: LensSourceState[];
   groups?: AnnotationData[];
   doublets?: AnnotationData[];
   zoomPositions?: number[];

@@ -62,6 +62,74 @@ function makeValid(overrides: Record<string, unknown> = {}): Record<string, unkn
 }
 
 describe("validateLensData", () => {
+  it("validates source configurations independently of the focus slider distance convention", () => {
+    const station = {
+      id: "near",
+      label: "Close focus",
+      focusT: 0,
+      zoomT: 0,
+      source: "Synthetic published spacings",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 700,
+        distanceReference: "first-surface",
+        distanceProvenance: "published",
+      },
+    };
+    expect(validateLensData(makeValid({ sourceStates: [station] }))).toEqual([]);
+    expect(validateLensData(makeValid({ sourceStates: [{ ...station, conjugate: { kind: "infinity" } }] }))).toEqual(
+      [],
+    );
+    expect(
+      validateLensData(
+        makeValid({
+          focusPositions: [0, 0.7, 1],
+          zoomPositions: [24, 50, 70],
+          sourceStates: [{ ...station, focusT: 0.7, zoomT: 0.5 }],
+        }),
+      ),
+    ).toEqual([]);
+    expect(
+      validateLensData(
+        makeValid({
+          sourceStates: [
+            {
+              ...station,
+              conjugate: {
+                ...station.conjugate,
+                distanceProvenance: "calculated",
+                derivation: "Independent ABCD and exact-ray check",
+              },
+            },
+          ],
+        }),
+      ),
+    ).toEqual([]);
+    for (const sourceStates of [
+      [],
+      [null],
+      [station, { ...station, focusT: 1 }],
+      [station, { ...station, id: "other" }],
+      [{ ...station, id: "Bad ID" }],
+      [{ ...station, source: "" }],
+      [{ ...station, label: "" }],
+      [{ ...station, focusT: 0.5 }],
+      [{ ...station, zoomT: 0.5 }],
+      [{ ...station, conjugate: null }],
+      ...[
+        { objectDistanceMm: -1 },
+        { distanceReference: "principal-plane" },
+        { distanceProvenance: "estimated" },
+        { distanceProvenance: "calculated" },
+        { magnification: 0 },
+        { magnification: NaN },
+        { kind: "infinity" },
+      ].map((patch) => [{ ...station, conjugate: { ...station.conjugate, ...patch } }]),
+    ]) {
+      expect(validateLensData(makeValid({ sourceStates })).join(" ")).toContain("sourceStates");
+    }
+  });
+
   it("requires finite-conjugate source evidence, distance conventions and authored stations", () => {
     const station = {
       focusT: 1,
