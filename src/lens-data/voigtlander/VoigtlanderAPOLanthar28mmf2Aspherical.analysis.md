@@ -15,12 +15,12 @@ The data file correlates Example 2 with the **VOIGTLÄNDER APO-LANTHAR 28mm f/2 
 2. The manufacturer gives a 74.0° angle of view; Example 2 gives a 37.02° half field, or 74.04° full field.
 3. Both sources specify 12 elements in 8 groups.
 4. The manufacturer identifies six anomalous-partial-dispersion elements, two double-sided aspherical elements, and a floating mechanism. Example 2 contains four aspherical surfaces on two elements, publishes $\Delta P_{gF}$ for every glass, and moves G1 and G2 independently during close focusing.
-5. The production VM lens focuses to 0.5 m. Example 2 normalizes to about 0.50085 m from object to image plane when the printed D0 and close-state track are combined.
+5. The production VM lens focuses to 0.5 m. Example 2 normalizes to about 0.50115 m from object to image plane when the printed D0 and close-state track are combined.
 6. The patent application was filed before the VM lens entered production; Cosina lists the VM release date as 2025-07-24.
 
 The VM scope is deliberate. Cosina's later Sony E- and Nikon Z-mount versions specify 0.28 m minimum focus and mount-optimized optics, whereas Example 2 provides a 0.5 m-class focus endpoint. A common published section drawing does not establish numerical identity across those variants.
 
-The manufacturer values remain marketing specifications: 28 mm, f/2, 74.0°, 0.5 m, and 12/8 construction. The data model retains the patent F-number of 2.06 and uses the paraxial EFL recomputed from the authored arrays, 29.126006 mm, as `focalLengthDesign`. The patent summary value of 28.84 mm is preserved as a source fact rather than substituted for the array result.
+The manufacturer values remain marketing specifications: 28 mm, f/2, 74.0°, 0.5 m, and 12/8 construction. The data model retains the patent F-number of 2.06 and uses the paraxial EFL recomputed from the authored arrays, 28.942108 mm, as `focalLengthDesign`. The patent summary value of 28.84 mm is preserved as a source fact rather than substituted for the array result.
 
 ## Optical Architecture
 
@@ -38,9 +38,9 @@ G2 is divided into:
 - **G2b:** the strong positive biconvex singlet L14;
 - **G2c:** the net-negative cemented doublet L15f/L15r followed by the weak negative, double-sided-aspherical L16.
 
-Independent d-line tracing of the final data gives G1 an EFL of +58.393064 mm and G2 an EFL of +54.220839 mm. The ratio is 1.07695, close to the near-symmetric stop-side power balance described by the patent in connection with condition (3). The front negative subsections G1a+G1b have a combined air-to-air EFL of −29.801877 mm; they expand the angular field before G1c restores positive power. Behind the stop, the negative G2a and G2c sections bracket the strong +20.625740 mm G2b singlet.
+Independent d-line tracing of the final data gives G1 an EFL of +58.393064 mm and G2 an EFL of +53.746561 mm. The ratio is 1.08645, close to the near-symmetric stop-side power balance described by the patent in connection with condition (3). The front negative subsections G1a+G1b have a combined air-to-air EFL of −29.801877 mm; they expand the angular field before G1c restores positive power. Behind the stop, the negative G2a and G2c sections bracket the strong +20.625740 mm G2b singlet.
 
-The complete authored prescription has an EFL of 29.126006 mm, a first-surface-to-image track of 71.25 mm, and a BFL from S21A of 18.582765 mm. Under the project definitions it is neither telephoto ($TL/EFL=2.4463$) nor retrofocus ($BFD/EFL=0.6252<1$). The important architectural feature is instead the approximately balanced pair of positive floating macro-groups around the stop.
+The complete authored prescription has an EFL of 28.942108 mm, a first-surface-to-image track of 71.55 mm, and a BFL from S21A of 18.144592 mm. Under the project definitions it is neither telephoto ($TL/EFL=2.4722$) nor retrofocus ($BFD/EFL=0.6269<1$). The important architectural feature is instead the approximately balanced pair of positive floating macro-groups around the stop.
 
 The optical path contains no sensor cover, filter, inactive dummy plane, flare cutter, folded-path surface, or synthetic cement layer. Surface 11 is absent only because the active aperture plane is labeled `STO` and carries the patent's D11 spacing.
 
@@ -114,7 +114,7 @@ The complete L13 doublet remains net negative, with a net air-to-air EFL of −4
 
 **nd = 1.90525, νd = 35.04. Glass: S-LAH93 (OHARA) equivalent, 905350. Standalone f = +20.625740 mm.**
 
-L14 forms G2b and is the strongest positive component in the rear macro-group. The patent requires $f_2/f_{2b}>2.5$ and $\Delta P_{gF}>-0.001$ for the strongest positive lens in G2. The authored array gives a ratio of 2.62879 and L14 has $\Delta P_{gF}=-0.0005$.
+L14 forms G2b and is the strongest positive component in the rear macro-group. The patent requires $f_2/f_{2b}>2.5$ and $\Delta P_{gF}>-0.001$ for the strongest positive lens in G2. The authored array gives a ratio of 2.60580 and L14 has $\Delta P_{gF}=-0.0005$.
 
 Its high index and symmetric biconvex form concentrate positive power near the center of G2, between two net-negative subassemblies.
 
@@ -122,7 +122,7 @@ Its high index and symmetric biconvex form concentrate positive power near the c
 
 #### L15f — Low-Dispersion Positive Biconvex Element
 
-**nd = 1.55032, νd = 75.50. Glass: FCD705 (HOYA) equivalent, 550755. Standalone f = +33.532749 mm.**
+**nd = 1.55032, νd = 75.50. Glass: FCD705 (HOYA) equivalent, 550755. Standalone f = +33.539224 mm.**
 
 L15f carries the largest positive anomalous-partial-dispersion value in the prescription, $\Delta P_{gF}=+0.0277$. Its high Abbe number and large positive deviation make it the clearest low-dispersion chromatic corrector in the rear group.
 
@@ -132,7 +132,7 @@ L15f carries the largest positive anomalous-partial-dispersion value in the pres
 
 L15r repeats the L13f glass class and its $\Delta P_{gF}=-0.0025$ sign. Cementing it to L15f produces a large partial-dispersion contrast while making the pair net negative.
 
-The L15 cemented EFL is −80.346997 mm. It therefore contributes negative rear-section power despite the positive component's lower dispersion and positive standalone power.
+The L15 cemented EFL is −80.359602 mm. It therefore contributes negative rear-section power despite the positive component's lower dispersion and positive standalone power.
 
 ### L16 — Weak Negative Biconcave Element, Double-Sided Asphere
 
@@ -173,7 +173,7 @@ The patent describes a two-unit floating focus system. G1 and G2 both move towar
 
 These changes encode approximately 1.60 mm forward travel for G1 and 2.07 mm for G2, compared with the patent summary values $X_1=1.61$ mm and $X_2=2.08$ mm. The 0.01 mm differences are consistent with the displayed precision of the spacing table.
 
-The printed endpoint is internally inconsistent at first order. With D0 = 428.00 mm, D11 = 3.36 mm, and D21 = 20.28 mm, the object-to-image matrix has $B=+6.097174$ mm rather than zero. Holding the two internal gaps would require D0 = 539.855548 mm; holding D0 and D11 would require D21 = 20.700829 mm. Neither diagnostic replacement is adopted. The analysis therefore treats the movement as published kinematics, not as a validated exact paraxial conjugate.
+The printed endpoint is internally inconsistent at first order. With D0 = 428.00 mm, D11 = 3.36 mm, and D21 = 20.28 mm, the object-to-image matrix has $B=-0.647619$ mm rather than zero. Holding the two internal gaps would require D0 = 418.763140 mm; holding D0 and D11 would require D21 = 20.235592 mm. Neither diagnostic replacement is adopted. The analysis therefore treats the movement as published kinematics, not as a validated exact paraxial conjugate.
 
 No focus reconstruction extends Example 2 to the 0.28 m endpoints of the E- or Z-mount production versions.
 
@@ -223,10 +223,10 @@ The following values were recomputed from the authored TypeScript arrays and sto
 | No. | Condition | Authored-model value | Result |
 |---:|---|---:|:---:|
 | 1 | $X_2-X_1>0$ | 0.4700 | Pass |
-| 2 | $2<TL/f<2.5$ | 2.44627 | Pass |
-| 3 | $1<f_1/f_2<1.14$ | 1.07695 | Pass |
+| 2 | $2<TL/f<2.5$ | 2.47218 | Pass |
+| 3 | $1<f_1/f_2<1.14$ | 1.08645 | Pass |
 | 4 | $f_1/f_{1ab}<-1.95$ | −1.95938 | Pass |
-| 5 | $TL_{ab}/TL\leq0.15$ | 0.146947 | Pass |
+| 5 | $TL_{ab}/TL\leq0.15$ | 0.146331 | Pass |
 | 6 | $n_{d1bp}>1.76$ | 1.85150 | Pass |
 | 7 | $1.86>n_{d1bm}>1.76$ | 1.78880 | Pass |
 | 8 | $\nu_{d1bp}>29$ | 40.78 | Pass |
@@ -239,31 +239,31 @@ The following values were recomputed from the authored TypeScript arrays and sto
 | 15 | $f_{2abal}/f_{2abalm}>3.75$ | 3.77918 | Pass |
 | 16 | $\Delta P_{gF2abalp}>0.013$ | +0.0139 | Pass |
 | 17 | $\Delta P_{gF2abalm}<-0.002$ | −0.0025 | Pass |
-| 18 | $f_2/f_{2b}>2.5$ | 2.62879 | Pass |
+| 18 | $f_2/f_{2b}>2.5$ | 2.60580 | Pass |
 | 19 | $\Delta P_{gF2bp}>-0.001$ | −0.0005 | Pass |
 
 The recomputed ratios differ slightly from the patent's Table 5 ratios because the raw prescription produces EFL and subgroup powers that do not exactly reproduce every printed summary value. The pass/fail conclusions are unchanged.
 
 ## Verification Summary
 
-The final data file was checked against the patent tables and independently traced at the d line. The height/reduced-angle and conventional ABCD matrices agree to $3.55\times10^{-15}$, and the air-to-air determinant is 1.000000.
+The final data file was checked against the patent tables and independently traced at the d line. An independent reduced-angle ABCD calculation after the S17 correction gives an air-to-air determinant of 1.000000.
 
 | Quantity | Authored-array result | Patent comparator |
 |---|---:|---:|
-| EFL | 29.126006 mm | 28.84 mm summary value |
-| BFL from S21A | 18.582765 mm | D21 = 18.21 mm |
-| S1-to-image track | 71.250000 mm | TL = 71.19 mm |
+| EFL | 28.942108 mm | 28.84 mm summary value |
+| BFL from S21A | 18.144592 mm | D21 = 18.21 mm |
+| S1-to-image track | 71.550000 mm | TL = 71.19 mm |
 | Modeled f-number | 2.060000 | F/2.06 |
-| Petzval sum $\sum\phi/(nn')$ | 0.002241700 mm⁻¹ | not tabulated |
-| Petzval radius | 446.089996 mm | not tabulated |
+| Petzval sum $\sum\phi/(nn')$ | 0.002241384 mm⁻¹ | not tabulated |
+| Petzval radius | 446.152944 mm | not tabulated |
 
-The discrepancies between Table 5 and the raw prescription are retained rather than silently reconciled. A source-precision sensitivity analysis does not bring the patent's 28.84 mm EFL or 18.21 mm BFL inside the range produced by the printed prescription.
+The discrepancies between Table 5 and the raw prescription are retained rather than silently reconciled. The earlier source-precision trials used the miscopied S17 and are superseded. The corrected source still differs in EFL, BFL and total length; no further source-backed adjustment is justified.
 
-The stop diameter is not published. The authored `STO.sd` of 7.914161 mm is an inference selected to make the 29.126006 mm model operate at F/2.06; it is not a measured production aperture. The remaining semi-diameters are also model-derived. Their relative sequence was measured from Figure 3 and the final values pass the repository's edge-thickness, rim-slope, conic-domain, shared-gap, and image-circle-floor checks at both focus states.
+The stop diameter is not published. The authored `STO.sd` of 7.864192 mm is an inference selected to make the 28.942108 mm model operate at F/2.06; it is not a measured production aperture. The remaining semi-diameters are also model-derived. Their relative sequence was measured from Figure 3 and the final values pass the repository's edge-thickness, rim-slope, conic-domain, shared-gap, and image-circle-floor checks at both focus states.
 
 At the full 37.02° half field, the verified sampled pupil range is approximately −0.40 to +0.70. The front aspheric meniscus limits negative-side pupil samples, while L14 limits the most positive samples. This is a model-containment result, not a manufacturer vignetting specification.
 
-Two patent text errors are interpreted without changing numerical data. The Example 2 definitions on p. 14 copy forward L5/L5f from Example 1; the surrounding Example 2 description and ¶0065 require L13/L13f. Paragraph ¶0048 also refers to optical system 100 where the context requires system 200. No radius, spacing, index, Abbe number, $\Delta P_{gF}$ value, or asphere coefficient is altered.
+Two patent text errors are interpreted without changing numerical data. The Example 2 definitions on p. 14 copy forward L5/L5f from Example 1; the surrounding Example 2 description and ¶0065 require L13/L13f. Paragraph ¶0048 also refers to optical system 100 where the context requires system 200. S17 radius and thickness have been corrected to Table 6; the source indices, Abbe numbers, $\Delta P_{gF}$ values and aspheres are retained.
 
 No uniform scale was applied, no plate was omitted and replaced by an air-equivalent gap, and no inactive optical surface was removed from Example 2.
 
@@ -277,3 +277,12 @@ No uniform scale was applied, no plate was omitted and replaced by an air-equiva
 - HOYA Optics Division, [Optical-glass data and characteristic diagrams](https://www.hoya-opticalworld.com/english/).
 - HIKARI GLASS, [Optical Glass Catalog](https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf) and [J-PSKH8 data sheet](https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/PSK/J-PSKH8.pdf).
 - CDGM, [H-K9LGT data sheet](https://www.cdgmgd.com/webapp/pdf/H-K9LGT.pdf).
+
+## Image-plane source audit (2026-09-25)
+
+2026-09-25 source recheck: Table 6 S17 is R=580.403, d=5.45 mm,
+correcting 580.103/5.15. Updated EFL is 28.942108 mm; BFL 18.144592
+versus printed D21=18.21, so offset is now -0.065408 mm. Source TL
+71.19 also disagrees with the 71.55 mm sum. Retain the remaining source
+contradiction; the earlier audit's S17 transcription and calculations
+are superseded. No focus-fitting or inferred plate is introduced.

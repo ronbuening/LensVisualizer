@@ -1,5 +1,8 @@
 # VoigtlanderAPOLanthar28mmf2Aspherical — Stage 4 Independent Audit
 
+> Superseded numerical baseline: the 2026-09-25 audit below found two S17 transcription errors. Earlier calculations and source-precision trials used those errors; use the latest section and current analysis for corrected results.
+
+
 ## Job Card and Scope
 
 - **Patent:** JP 2026-98935 A / JP2026098935A
@@ -62,7 +65,7 @@ The fresh calculation used both height/reduced-angle (`y–ν`) and conventional
 | 14 |  | −34.531 | 0.30 | 0.30 | 1.00000 | — | — |
 | 15 |  | 36.135 | 4.92 | 4.92 | 1.90525 | 35.04 | −0.0005 |
 | 16 |  | −36.135 | 0.15 | 0.15 | 1.00000 | — | — |
-| 17 |  | 580.103 | 5.15 | 5.15 | 1.55032 | 75.50 | +0.0277 |
+| 17 (corrected 2026-09-25) |  | 580.403 | 5.45 | 5.45 | 1.55032 | 75.50 | +0.0277 |
 | 18 |  | −19.000 | 1.00 | 1.00 | 1.72047 | 34.71 | −0.0025 |
 | 19 |  | 161.504 | 5.64 | 5.64 | 1.00000 | — | — |
 | 20 | yes | −116.659 | 2.10 | 2.10 | 1.80610 | 40.73 | −0.0056 |
@@ -251,3 +254,15 @@ Local Stage 4 audit: **PASS**. Repository-specific integration checks remain for
 ## 2026-08-01 Repository Integration Gate
 
 This final integration gate supersedes the earlier environment-availability notes. The stored prescription passes the repository surface and image-circle audits; refreshed glass reports show 11/12 strict and 12/12 trusted chromatic coverage with zero catalog mismatches. Typecheck, format check, all 2,528 tests in 213 files, and the 990-route production build pass. Lint reports only the repository's three pre-existing type-assertion warnings and no errors.
+
+## 2026-09-25 — MTF image-plane census
+
+Source reopened: local `patents/JPA 2026098935-000000.pdf`, Example 2 Tables 5–8, PDF pp.14–17, Fig.4 p.24. Compared all 21 R/d rows, twelve nd/νd/ΔPgF tuples, both infinity/close spacing rows and all four K/A4–A14 blocks visually. Native scale and standard K; no plate is present.
+
+**Cause: transcription errors plus remaining source inconsistency.** Table 6 S17 clearly prints **R=580.403, D=5.45**, not 580.103/5.15 in the old data and earlier audit's extraction. Corrected both. Other source values match. Recomputed EFL 28.942108012 (source 28.84), BFL 18.144591739 (D21=18.21), and physical TL 71.55 (summary 71.19). Runtime offset **+0.372765 → -0.065408 mm**, still above the 0.049868 mm threshold. The source is not fully self-consistent and no additional single supported correction was found.
+
+Checked the small residual against Fig.4 and a 32-grid, d-line axial MTF diagnostic at 10/20/40 lp/mm: the retained plane is not the sampled best focus (best shift about -0.087 mm; score 0.434→0.964 before the minor stop recalibration). This does not establish designer intent or a whole-field optimum; preserve D21. Do not relabel the residual as proven best focus.
+
+Updated dependent EFL, L15f power, group/track/Petzval/close-conjugate calculations and the inferred stop calibration (7.864192220 mm to retain source f/2.06). The close object-to-image matrix B is now -0.647619051 mm, not +6.097174; its source endpoint is retained. **Earlier extraction, source-precision trials and quantitative conclusions in this historical audit are superseded wherever they depend on S17.** The erroneous source-table row below is corrected and labeled. Section E row deleted; changelog records the material data correction.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
