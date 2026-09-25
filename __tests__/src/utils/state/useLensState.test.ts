@@ -241,4 +241,83 @@ describe("source-state URL restoration", () => {
     act(() => vi.advanceTimersByTime(110));
     expect(new URLSearchParams(window.location.search).has("ss")).toBe(false);
   });
+  function useComparisonViewer() {
+    const [state, dispatch] = useLensState([key, CATALOG_KEYS[0]], key, CATALOG_KEYS[0]);
+    useURLSync(state, dispatch, null, false, true);
+    return [state, dispatch] as const;
+  }
+  const comparisonQuery = `?v=1&fz=independent&a_ss=${key}:near&a_focus=0.7&a_zoom=0.9&b_focus=0.3456789012&b_zoom=0.2&aperture=0.4`;
+  it("restores independent panes exactly, clears only a moved pane identity, and preserves the other on replacement", () => {
+    window.history.replaceState({}, "", comparisonQuery);
+    const { result, unmount } = renderHook(useComparisonViewer);
+    expect(result.current[0].sharedSliders.focusZoom).toEqual({
+      mode: "independent",
+      a: { focusT: near.focusT, zoomT: near.zoomT },
+      b: { focusT: 0.3456789012, zoomT: 0.2 },
+    });
+    act(() => vi.advanceTimersByTime(110));
+    expect(new URLSearchParams(window.location.search).get("a_ss")).toBe(`${key}:near`);
+    unmount();
+    const restored = renderHook(useComparisonViewer);
+    expect(restored.result.current[0].sharedSliders.focusZoom).toEqual(result.current[0].sharedSliders.focusZoom);
+    act(() =>
+      restored.result.current[1]({
+        type: "SET_PANE_COORDINATES",
+        pane: "a",
+        lensKey: key,
+        coordinates: { focusT: 0.712, zoomT: near.zoomT },
+      }),
+    );
+    act(() => vi.advanceTimersByTime(110));
+    expect(new URLSearchParams(window.location.search).has("a_ss")).toBe(false);
+    expect(new URLSearchParams(window.location.search).get("b_focus")).toBe("0.3456789012");
+    act(() => restored.result.current[1]({ type: "SET_LENS_B", key: CATALOG_KEYS[1] }));
+    expect(restored.result.current[0].sharedSliders.focusZoom).toEqual({
+      mode: "independent",
+      a: { focusT: 0.712, zoomT: near.zoomT },
+      b: { focusT: 0, zoomT: 0 },
+    });
+  });
+  it("hydrates independent and legacy linked history entries without carrying stale station coordinates", () => {
+    window.history.replaceState({}, "", comparisonQuery);
+    const { result } = renderHook(useComparisonViewer);
+    act(() => {
+      window.history.replaceState({}, "", "?focus=0.25&aperture=0.7");
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    expect(result.current[0].sharedSliders).toMatchObject({
+      focusZoom: { mode: "linked" },
+      sharedFocusT: 0.25,
+      sharedStopdownT: 0.7,
+    });
+    act(() => {
+      window.history.replaceState({}, "", comparisonQuery);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    expect(result.current[0].sharedSliders.focusZoom).toEqual({
+      mode: "independent",
+      a: { focusT: near.focusT, zoomT: near.zoomT },
+      b: { focusT: 0.3456789012, zoomT: 0.2 },
+    });
+    expect(result.current[0].sharedSliders.sharedStopdownT).toBe(0.4);
+  });
+  it.each([`${key}:missing`, `${CATALOG_KEYS[0]}:near`, "near", `${key}:<script>`])(
+    "rejects incompatible pane identity %s",
+    (id) => {
+      window.history.replaceState(
+        {},
+        "",
+        `?v=1&fz=independent&a_ss=${encodeURIComponent(id)}&b_ss=${key}:near&a_focus=0.25&a_zoom=0.2&b_focus=0.5`,
+      );
+      const { result } = renderHook(useComparisonViewer);
+      expect(result.current[0].sharedSliders.focusZoom).toEqual({
+        mode: "independent",
+        a: { focusT: 0.25, zoomT: 0.2 },
+        b: { focusT: 0.5, zoomT: 0 },
+      });
+      act(() => vi.advanceTimersByTime(110));
+      expect(new URLSearchParams(window.location.search).has("a_ss")).toBe(false);
+      expect(new URLSearchParams(window.location.search).has("b_ss")).toBe(false);
+    },
+  );
 });

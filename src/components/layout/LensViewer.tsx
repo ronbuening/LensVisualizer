@@ -45,7 +45,7 @@ import { stripFrontmatter } from "../../utils/content/homepageContent.js";
 import useLensState from "../../utils/state/useLensState.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 import { ENABLE_ANALYSIS_VIEW } from "../../utils/featureFlags.js";
-import {
+import lensReducer, {
   SET_LENS_A,
   SET_LENS_B,
   SWAP_LENSES,
@@ -58,6 +58,7 @@ import useOverlays from "../hooks/useOverlays.js";
 import ViewerChrome from "./lensViewer/ViewerChrome.js";
 import ViewerContent from "./lensViewer/ViewerContent.js";
 import ViewerOverlays from "./lensViewer/ViewerOverlays.js";
+import { buildLensViewSearch } from "../../utils/state/lensViewUrlSync.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
 const ABOUT_ME_MD = stripFrontmatter(_ABOUT_ME_MD);
@@ -224,30 +225,45 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     (key: string) => {
       dispatch({ type: SET_LENS_A, key });
       if (isComparePage) {
-        void navigate(canonicalPagePath(`/compare/${key}/${lensKeyB}`), { replace: true });
+        void navigate(
+          canonicalPagePath(
+            `/compare/${key}/${lensKeyB}${buildLensViewSearch(lensReducer(state, { type: SET_LENS_A, key }), null, "")}`,
+          ),
+          { replace: true },
+        );
       } else if (isLensPage && !state.lens.comparing) {
         void navigate(canonicalPagePath(`/lens/${key}`), { replace: true });
       }
     },
-    [dispatch, isLensPage, isComparePage, lensKeyB, state.lens.comparing, navigate],
+    [dispatch, isLensPage, isComparePage, lensKeyB, state, navigate],
   );
 
   const switchLensB = useCallback(
     (key: string) => {
       dispatch({ type: SET_LENS_B, key });
       if (isComparePage) {
-        void navigate(canonicalPagePath(`/compare/${lensKeyA}/${key}`), { replace: true });
+        void navigate(
+          canonicalPagePath(
+            `/compare/${lensKeyA}/${key}${buildLensViewSearch(lensReducer(state, { type: SET_LENS_B, key }), null, "")}`,
+          ),
+          { replace: true },
+        );
       }
     },
-    [dispatch, isComparePage, lensKeyA, navigate],
+    [dispatch, isComparePage, lensKeyA, state, navigate],
   );
 
   const swapLenses = useCallback(() => {
     dispatch({ type: SWAP_LENSES });
     if (isComparePage) {
-      void navigate(canonicalPagePath(`/compare/${lensKeyB}/${lensKeyA}`), { replace: true });
+      void navigate(
+        canonicalPagePath(
+          `/compare/${lensKeyB}/${lensKeyA}${buildLensViewSearch(lensReducer(state, { type: SWAP_LENSES }), null, "")}`,
+        ),
+        { replace: true },
+      );
     }
-  }, [dispatch, isComparePage, lensKeyA, lensKeyB, navigate]);
+  }, [dispatch, isComparePage, lensKeyA, lensKeyB, state, navigate]);
 
   /* ── Context value (replaces sharedProps prop drilling) ── */
   const ctxValue = useMemo(

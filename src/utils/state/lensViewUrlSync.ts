@@ -1,6 +1,7 @@
 import { buildComparisonURL } from "./parseComparisonParams.js";
 import { buildLensViewQueryFromState, parseLensViewQuery } from "./lensViewUrlState.js";
 import { LENS_CATALOG } from "../catalog/lensCatalog.js";
+import { SELECT_PANE_SOURCE_STATE } from "../../comparison/comparisonReducer.js";
 import { SELECT_SOURCE_STATE, SET_SHARED_ZOOM_T, SET_ZOOM_T } from "./lensReducer.js";
 import { focalLengthToZoomT, zoomTToFocalLength, type ZoomConvertibleLens } from "./zoomConversion.js";
 import type { LensAction, LensState } from "../../types/state.js";
@@ -43,7 +44,9 @@ export function getCatalogZoomLens(lensKey: string): ZoomConvertibleLens | null 
 
 export function getUrlZoomLens(state: LensState, comparisonLenses: ComparisonLensesParam): ZoomConvertibleLens | null {
   return state.lens.comparing
-    ? getComparisonZoomLens(comparisonLenses)
+    ? (getComparisonZoomLens(comparisonLenses) ??
+        getCatalogZoomLens(state.lens.lensKeyA) ??
+        getCatalogZoomLens(state.lens.lensKeyB))
     : getCatalogZoomLens(state.lens.selectedConfigurationKey);
 }
 
@@ -70,10 +73,21 @@ export function buildLensViewSearch(
     !state.lens.comparing && data
       ? resolveLensSourceState(data, state.sliders.focusT, state.sliders.zoomT, state.sliders.aberrationT)
       : undefined;
+  const paneSourceIds: { a?: string; b?: string } = {};
+  const positions = state.sharedSliders.focusZoom;
+  if (state.lens.comparing && positions.mode === "independent") {
+    for (const pane of ["a", "b"] as const) {
+      const paneData = LENS_CATALOG[pane === "a" ? state.lens.lensKeyA : state.lens.lensKeyB];
+      const coordinates = positions[pane];
+      const station = paneData && resolveLensSourceState(paneData, coordinates.focusT, coordinates.zoomT);
+      if (station) paneSourceIds[pane] = `${paneData.key}:${station.id}`;
+    }
+  }
   const params = buildLensViewQueryFromState(
     state,
     getStateZoom(state, comparisonLenses, currentSearch),
     sourceState ? `${data.key}:${sourceState.id}` : undefined,
+    paneSourceIds,
   );
   if (isComparePage && !state.lens.comparing) {
     params.delete("a_el");
@@ -137,4 +151,18 @@ export function sourceStateActionFromUrl(
   if (!data || !identity.startsWith(`${data.key}:`)) return null;
   const sourceState = lensSourceStates(data).find((s) => identity === `${data.key}:${s.id}`);
   return sourceState ? { type: SELECT_SOURCE_STATE, lensKey: data.key, sourceState } : null;
+}
+
+/** Resolve a pane identity only within its own lens and an explicitly independent comparison. */
+export function paneSourceStateActionFromUrl(
+  state: LensState,
+  pane: "a" | "b",
+  identity: string | undefined,
+): LensAction | null {
+  const positions = state.sharedSliders.focusZoom;
+  if (!state.lens.comparing || positions.mode !== "independent" || !identity) return null;
+  const key = pane === "a" ? state.lens.lensKeyA : state.lens.lensKeyB;
+  const data = LENS_CATALOG[key];
+  const sourceState = data && lensSourceStates(data).find((s) => identity === `${data.key}:${s.id}`);
+  return sourceState ? { type: SELECT_PANE_SOURCE_STATE, pane, lensKey: key, sourceState, positions } : null;
 }

@@ -42,7 +42,7 @@ flowchart LR
   n_external_src_comparison["src/comparison"]
   n_external_src_components_controls["src/components/controls"]
   n_src_components_layout_src_components_layout_LensDiagramPanel_tsx --> |8| n_external_src_components_hooks
-  n_src_components_layout_src_components_layout_LensViewer_tsx --> |5| n_external_src_utils_state
+  n_src_components_layout_src_components_layout_LensViewer_tsx --> |6| n_external_src_utils_state
   n_src_components_layout_src_components_layout_DiagramControlPanel_tsx --> |4| n_external_src_types
   n_src_components_layout_src_components_layout_BreadcrumbBar_tsx --> |3| n_external_src_pages_lensIndex
   n_src_components_layout_src_components_layout_BreadcrumbBar_tsx --> |3| n_external_src_utils_catalog
@@ -84,7 +84,7 @@ flowchart LR
 
 - Direct source files: 17
 - Direct subfolders: 2
-- Main outbound areas: src/types (23), src/components/hooks (13), package:react (11), same folder (11), src/utils/state (10), src/utils/style (10), src/utils/theme (9), src/utils/catalog (5), +21 more
+- Main outbound areas: src/types (23), src/components/hooks (13), package:react (11), same folder (11), src/utils/state (11), src/utils/style (10), src/utils/theme (9), src/utils/catalog (5), +21 more
 - External consumers: src/comparison, src/components/controls, src/components/layout, src/components/relationshipMap, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +16 more
 
 ## Subfolders
@@ -105,7 +105,7 @@ flowchart LR
 | `DiagramControlPanel.tsx` | React component module | src/types (4), src/components/display (2), src/components/controls | same folder | default, DiagramControlPanel |
 | `DropdownPanel.tsx` | React component module | package:react (2), package:react-dom, src/components/hooks, src/types | src/components/controls, src/components/relationshipMap | DropdownPanelPos, default |
 | `LensDiagramPanel.tsx` | React component module | src/components/hooks (8), same folder (3), src/types (2), src/utils/state (2), package:react, +8 more | same folder, src/comparison | default, LensDiagramPanel |
-| `LensViewer.tsx` | React component module | src/utils/state (5), same folder (3), src/components/hooks (2), src/utils/theme (2), package:react, +13 more | src/pages/ComparePage.tsx, src/pages/LensPage.tsx | default, LensVisualization |
+| `LensViewer.tsx` | React component module | src/utils/state (6), same folder (3), src/components/hooks (2), src/utils/theme (2), package:react, +13 more | src/pages/ComparePage.tsx, src/pages/LensPage.tsx | default, LensVisualization |
 | `OverlayModal.tsx` | React component module | package:react, src/components/hooks, src/types, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder (2) | default, OverlayModal |
 | `PageNavBar.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/style, +2 more | same folder, src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx | default, PageNavBar |
 | `PanelOverlay.tsx` | React component module | package:react, src/components/hooks, src/types, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder | default, PanelOverlay |

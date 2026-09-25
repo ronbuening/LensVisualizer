@@ -166,7 +166,7 @@ export function createInitialState(
       tiltDeg: urlState.tilt ?? 0,
     },
     sharedSliders: {
-      focusZoom: { mode: "linked" },
+      focusZoom: urlState.comparing && urlState.comparisonFocusZoom ? urlState.comparisonFocusZoom : { mode: "linked" },
       sharedFocusT: urlState.comparing ? (urlState.focus ?? 0) : 0,
       sharedStopdownT: urlState.comparing ? (urlState.aperture ?? 0) : 0,
       sharedZoomT: 0,
@@ -384,6 +384,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
 
       const sliders = { ...state.sliders };
       const sharedSliders = { ...state.sharedSliders };
+      if (state.lens.comparing && urlState.comparisonFocusZoom) sharedSliders.focusZoom = urlState.comparisonFocusZoom;
       if ("focus" in urlState) {
         if (state.lens.comparing) sharedSliders.sharedFocusT = urlState.focus ?? 0;
         else sliders.focusT = urlState.focus ?? 0;

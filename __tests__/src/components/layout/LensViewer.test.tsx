@@ -339,6 +339,28 @@ describe("LensViewer", () => {
     expect(mocks.navigate).toHaveBeenCalledWith("/compare/sonnar-50f15/apo-lanthar-50f2/", { replace: true });
   });
 
+  it("writes independent swap and replacement coordinates before compare navigation", () => {
+    const base = makeState();
+    mocks.state = makeState({
+      lens: { ...base.lens, lensKeyA: "apo-lanthar-50f2", lensKeyB: "sonnar-50f15", comparing: true },
+      sharedSliders: {
+        ...base.sharedSliders,
+        focusZoom: { mode: "independent", a: { focusT: 0.7123456789, zoomT: 0 }, b: { focusT: 0.4, zoomT: 0 } },
+      },
+    });
+    render(<LensViewer initialLensKey="apo-lanthar-50f2" initialLensKeyB="sonnar-50f15" />);
+    fireEvent.click(screen.getByText("swap"));
+    let url = new URL(mocks.navigate.mock.calls.at(-1)![0], "https://example.test");
+    expect(url.pathname).toBe("/compare/sonnar-50f15/apo-lanthar-50f2/");
+    expect(url.searchParams.get("a_focus")).toBe("0.4");
+    expect(url.searchParams.get("b_focus")).toBe("0.7123456789");
+    fireEvent.click(screen.getByText("switch B"));
+    url = new URL(mocks.navigate.mock.calls.at(-1)![0], "https://example.test");
+    expect(url.searchParams.get("fz")).toBe("independent");
+    expect(url.searchParams.get("a_focus")).toBe("0.7123456789");
+    expect(url.searchParams.has("b_focus")).toBe(false);
+  });
+
   it("offers configuration variants in compare without exposing debug fixtures", () => {
     const configuredKey = COMPARISON_CATALOG_KEYS.find((key) => key.endsWith("-tc-in"));
     expect(configuredKey).toBeDefined();

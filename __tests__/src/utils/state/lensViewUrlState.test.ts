@@ -227,6 +227,13 @@ describe("lensViewUrlState", () => {
       tilt: 3.25,
       configurationKey: "example-configuration",
       sourceStateId: "example-configuration:near",
+      comparisonFocusZoom: {
+        mode: "independent",
+        a: { focusT: 0.7123456789, zoomT: 1 / 3 },
+        b: { focusT: 0.1, zoomT: 0.9 },
+      },
+      sourceStateIdA: "example-a:near",
+      sourceStateIdB: "example-b:far",
       selectedElementId: 4,
       selectedElementIdA: 2,
       selectedElementIdB: 9,
@@ -240,7 +247,14 @@ describe("lensViewUrlState", () => {
     };
 
     const single = parseLensViewQuery(`?${buildLensViewQuery(fixture).toString()}`);
-    const { selectedElementIdA: _a, selectedElementIdB: _b, ...singleLensFields } = fixture;
+    const {
+      selectedElementIdA: _a,
+      selectedElementIdB: _b,
+      comparisonFocusZoom: _positions,
+      sourceStateIdA: _stationA,
+      sourceStateIdB: _stationB,
+      ...singleLensFields
+    } = fixture;
     expect(single).toMatchObject(singleLensFields);
 
     // Comparison mode serializes a_el/b_el instead of el and drops aberration.
@@ -248,6 +262,9 @@ describe("lensViewUrlState", () => {
     expect(comparing.selectedElementIdA).toBe(fixture.selectedElementIdA);
     expect(comparing.selectedElementIdB).toBe(fixture.selectedElementIdB);
     expect(comparing.selectedElementId).toBeUndefined();
+    expect(comparing.comparisonFocusZoom).toEqual(fixture.comparisonFocusZoom);
+    expect(comparing.sourceStateIdA).toBe(fixture.sourceStateIdA);
+    expect(comparing.sourceStateIdB).toBe(fixture.sourceStateIdB);
   });
 
   it("ignores the removed beta bokeh overlay URL flag", () => {
@@ -267,4 +284,22 @@ it("round-trips lens-scoped source identity only in version 1 single-lens links"
   expect(parseLensViewQuery("?ss=synthetic-zoom:near").sourceStateId).toBeUndefined();
   expect(parseLensViewQuery("?v=2&ss=synthetic-zoom:near").sourceStateId).toBeUndefined();
   expect(buildLensViewQuery({ comparing: true, sourceStateId }).has("ss")).toBe(false);
+});
+
+it("bounds independent coordinates and ignores unversioned, unknown-mode, and malformed identities", () => {
+  const query = "fz=independent&a_focus=Infinity&a_zoom=-1&b_focus=2&b_zoom=NaN&a_ss=bad&b_ss=example-b:near";
+  const parsed = parseLensViewQuery(`?v=1&${query}`);
+  expect(parsed.comparisonFocusZoom).toEqual({
+    mode: "independent",
+    a: { focusT: 0, zoomT: 0 },
+    b: { focusT: 1, zoomT: 0 },
+  });
+  expect(parsed.sourceStateIdA).toBeUndefined();
+  expect(parsed.sourceStateIdB).toBe("example-b:near");
+  for (const prefix of ["", "v=2&"])
+    expect(parseLensViewQuery(`?${prefix}${query}`).comparisonFocusZoom).toBeUndefined();
+  expect(parseLensViewQuery("?v=1&fz=unknown&a_ss=example-a:near").sourceStateIdA).toBeUndefined();
+  const linked = buildLensViewQuery({ comparing: true, focus: 0.7123456789, comparisonFocusZoom: { mode: "linked" } });
+  expect(linked.has("fz")).toBe(false);
+  expect(parseLensViewQuery(`?${linked}`).focus).toBe(0.7123456789);
 });

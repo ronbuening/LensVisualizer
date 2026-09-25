@@ -94,7 +94,7 @@ export default function ComparePage() {
           </div>
         }
       >
-        <LensVisualization initialLensKey={slugA} initialLensKeyB={slugB} />
+        <LensVisualization key={`${slugA}:${slugB}`} initialLensKey={slugA} initialLensKeyB={slugB} />
       </ClientOnly>
     </>
   );

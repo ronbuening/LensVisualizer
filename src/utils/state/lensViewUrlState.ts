@@ -22,6 +22,9 @@ type LensViewQueryKey =
   | "tilt"
   | "configurationKey"
   | "sourceStateId"
+  | "comparisonFocusZoom"
+  | "sourceStateIdA"
+  | "sourceStateIdB"
   | "selectedElementId"
   | "selectedElementIdA"
   | "selectedElementIdB"
@@ -64,6 +67,7 @@ export type ViewStateField = (typeof VIEW_STATE_FIELDS)[number];
 export type ViewStateFieldKey = ViewStateField["key"];
 
 const DEFAULT_URL_STATE: Partial<URLState> = {
+  comparisonFocusZoom: { mode: "linked" },
   focus: 0,
   aberration: 0,
   aperture: 0,
@@ -130,6 +134,11 @@ function parseConfigurationKey(params: URLSearchParams): string | undefined {
   return key;
 }
 
+function parseSourceStateId(params: URLSearchParams, key: string): string | undefined {
+  const id = params.get(key);
+  return id && /^[a-z0-9][a-z0-9-]{0,127}:[a-z0-9][a-z0-9-]{0,63}$/.test(id) ? id : undefined;
+}
+
 export function parseLensViewQuery(search: string): LensViewQueryState {
   const params = new URLSearchParams(search);
   const state: LensViewQueryState = {
@@ -165,9 +174,20 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   if (petzvalOverlayOpen !== undefined) state.petzvalOverlayOpen = petzvalOverlayOpen;
   if (analysisDrawerOpen !== undefined) state.analysisDrawerOpen = analysisDrawerOpen;
   if (configurationKey) state.configurationKey = configurationKey;
-  const sourceStateId = params.get("ss");
-  if (version === "1" && sourceStateId && /^[a-z0-9][a-z0-9-]{0,127}:[a-z0-9][a-z0-9-]{0,63}$/.test(sourceStateId)) {
-    state.sourceStateId = sourceStateId;
+  if (version === "1") {
+    const sourceStateId = parseSourceStateId(params, "ss");
+    if (sourceStateId) state.sourceStateId = sourceStateId;
+    if (params.get("fz") === "independent") {
+      state.comparisonFocusZoom = {
+        mode: "independent",
+        a: { focusT: parseUnitParam(params, "a_focus") ?? 0, zoomT: parseUnitParam(params, "a_zoom") ?? 0 },
+        b: { focusT: parseUnitParam(params, "b_focus") ?? 0, zoomT: parseUnitParam(params, "b_zoom") ?? 0 },
+      };
+      const a = parseSourceStateId(params, "a_ss");
+      const b = parseSourceStateId(params, "b_ss");
+      if (a) state.sourceStateIdA = a;
+      if (b) state.sourceStateIdB = b;
+    }
   }
   if (isAnalysisTabId(tab)) state.analysisDrawerTab = tab;
   if (isGroupMovementMode(movementMode)) {
@@ -188,6 +208,9 @@ export function buildLensViewQuery({
   tilt,
   configurationKey,
   sourceStateId,
+  comparisonFocusZoom,
+  sourceStateIdA,
+  sourceStateIdB,
   selectedElementId,
   selectedElementIdA,
   selectedElementIdB,
@@ -201,6 +224,7 @@ export function buildLensViewQuery({
 }: BuildLensViewQueryOptions): URLSearchParams {
   const usesV1ViewState =
     (comparing ? selectedElementIdA != null || selectedElementIdB != null : selectedElementId != null) ||
+    (comparing && comparisonFocusZoom?.mode === "independent") ||
     Boolean(glassMapOpen) ||
     Boolean(chromaticOverlayOpen) ||
     Boolean(petzvalOverlayOpen) ||
@@ -211,7 +235,8 @@ export function buildLensViewQuery({
   const params = new URLSearchParams();
   if (usesV1ViewState) params.set("v", "1");
   if (zoom != null && zoom > 0) params.set("zoom", String(zoom));
-  if (focus != null && focus > 0) params.set("focus", focus.toFixed(3));
+  if (focus != null && focus > 0)
+    params.set("focus", comparing && Number(focus.toFixed(3)) !== focus ? String(focus) : focus.toFixed(3));
   if (!comparing && aberration != null && Math.abs(aberration) > 1e-9) params.set("aberration", aberration.toFixed(3));
   if (aperture != null && aperture > 0) params.set("aperture", aperture.toFixed(3));
   if (shift != null && Math.abs(shift) > 1e-9) params.set("shift", shift.toFixed(2));
@@ -219,6 +244,16 @@ export function buildLensViewQuery({
   if (!comparing && configurationKey) params.set("cfg", configurationKey);
   if (!comparing && sourceStateId) params.set("ss", sourceStateId);
 
+  if (comparing && comparisonFocusZoom?.mode === "independent") {
+    params.set("fz", "independent");
+    for (const pane of ["a", "b"] as const) {
+      const coordinates = comparisonFocusZoom[pane];
+      if (coordinates.focusT > 0) params.set(`${pane}_focus`, String(coordinates.focusT));
+      if (coordinates.zoomT > 0) params.set(`${pane}_zoom`, String(coordinates.zoomT));
+    }
+    if (sourceStateIdA) params.set("a_ss", sourceStateIdA);
+    if (sourceStateIdB) params.set("b_ss", sourceStateIdB);
+  }
   if (comparing) {
     if (selectedElementIdA != null) params.set("a_el", String(selectedElementIdA));
     if (selectedElementIdB != null) params.set("b_el", String(selectedElementIdB));
@@ -242,6 +277,7 @@ export function buildLensViewQueryFromState(
   state: LensState,
   zoom: number | null | undefined,
   sourceStateId?: string,
+  paneSourceIds: { a?: string; b?: string } = {},
 ): URLSearchParams {
   const { comparing } = state.lens;
   const sliders = comparing
@@ -264,6 +300,9 @@ export function buildLensViewQueryFromState(
     ...sliders,
     zoom,
     sourceStateId,
+    comparisonFocusZoom: state.sharedSliders.focusZoom,
+    sourceStateIdA: paneSourceIds.a,
+    sourceStateIdB: paneSourceIds.b,
     configurationKey:
       !comparing && state.lens.selectedConfigurationKey !== state.lens.lensKeyA
         ? state.lens.selectedConfigurationKey
@@ -291,6 +330,9 @@ export function lensViewQueryToUrlState(state: LensViewQueryState, includeViewDe
   if (state.tilt != null) urlState.tilt = state.tilt;
   if (state.configurationKey) urlState.configurationKey = state.configurationKey;
   if (state.sourceStateId) urlState.sourceStateId = state.sourceStateId;
+  if (state.comparisonFocusZoom) urlState.comparisonFocusZoom = state.comparisonFocusZoom;
+  if (state.sourceStateIdA) urlState.sourceStateIdA = state.sourceStateIdA;
+  if (state.sourceStateIdB) urlState.sourceStateIdB = state.sourceStateIdB;
   for (const { key, default: fallback } of VIEW_STATE_FIELDS) {
     if (includeViewDefaults || key in state) {
       (urlState as Record<string, unknown>)[key] = state[key] ?? fallback;

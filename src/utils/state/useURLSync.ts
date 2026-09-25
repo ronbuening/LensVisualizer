@@ -11,13 +11,14 @@
 
 import { useEffect, useRef, useMemo, useCallback, type Dispatch } from "react";
 import { lensViewQueryToUrlState, parseLensViewQuery } from "./lensViewUrlState.js";
-import { APPLY_URL_VIEW_STATE } from "./lensReducer.js";
+import lensReducer, { APPLY_URL_VIEW_STATE } from "./lensReducer.js";
 import {
   buildLegacyLensIdentityUrl,
   buildLegacyLensViewUrl,
   buildRouteLensViewUrl,
   zoomActionFromFocalLength,
   sourceStateActionFromUrl,
+  paneSourceStateActionFromUrl,
   type ComparisonLensesParam,
 } from "./lensViewUrlSync.js";
 import type { LensState, LensAction } from "../../types/state.js";
@@ -104,18 +105,28 @@ export default function useURLSync(
            reach the lens slice (mirrors the init path in useLensState). */
         delete urlState.configurationKey;
       }
-      dispatch({ type: APPLY_URL_VIEW_STATE, state: urlState });
-      const station = sourceStateActionFromUrl(stateRef.current, parsed.sourceStateId, urlState.configurationKey);
+      const applyAction: LensAction = { type: APPLY_URL_VIEW_STATE, state: urlState };
+      dispatch(applyAction);
+      let restoredState = lensReducer(stateRef.current, applyAction);
+      if (restoredState.lens.comparing && restoredState.sharedSliders.focusZoom.mode === "independent") {
+        for (const pane of ["a", "b"] as const) {
+          const action = paneSourceStateActionFromUrl(
+            restoredState,
+            pane,
+            pane === "a" ? parsed.sourceStateIdA : parsed.sourceStateIdB,
+          );
+          if (action) {
+            dispatch(action);
+            restoredState = lensReducer(restoredState, action);
+          }
+        }
+        return;
+      }
+      const station = sourceStateActionFromUrl(restoredState, parsed.sourceStateId);
       if (station) {
         dispatch(station);
         return;
       }
-      const restoredState = urlState.configurationKey
-        ? {
-            ...stateRef.current,
-            lens: { ...stateRef.current.lens, selectedConfigurationKey: urlState.configurationKey },
-          }
-        : stateRef.current;
       const zoomAction = zoomActionFromFocalLength(parsed.zoom ?? null, restoredState, comparisonLenses);
       if (zoomAction) dispatch(zoomAction);
     },
@@ -171,7 +182,10 @@ export default function useURLSync(
    * lens is available, which acts as the readiness gate. */
   useEffect(() => {
     if (urlZoomInitialized.current || urlZoom == null) return;
-    if (sourceStateActionFromUrl(stateRef.current, initialQuery.sourceStateId)) {
+    if (
+      (stateRef.current.lens.comparing && stateRef.current.sharedSliders.focusZoom.mode === "independent") ||
+      sourceStateActionFromUrl(stateRef.current, initialQuery.sourceStateId)
+    ) {
       urlZoomInitialized.current = true;
       return;
     }

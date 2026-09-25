@@ -44,6 +44,7 @@ flowchart LR
   n_src_utils_state_src_utils_state_useLensState_ts --> n_external_pkg_react
   n_src_utils_state_src_utils_state_usePreferences_ts --> n_external_pkg_react
   n_src_utils_state_src_utils_state_useURLSync_ts --> n_external_pkg_react
+  n_src_utils_state_src_utils_state_lensViewUrlSync_ts --> n_external_src_comparison
   n_src_utils_state_src_utils_state_parseComparisonParams_ts --> n_external_src_comparison
   n_src_utils_state_src_utils_state_lensViewUrlState_ts --> n_external_src_optics_lensMovement_ts
   n_src_utils_state_src_utils_state_lensViewUrlSync_ts --> n_external_src_optics_sourceStates_ts
@@ -70,7 +71,6 @@ flowchart LR
   n_src_utils_state_src_utils_state_useLensState_ts --> n_src_utils_state_src_utils_state_lensViewUrlState_ts
   n_src_utils_state_src_utils_state_useURLSync_ts --> n_src_utils_state_src_utils_state_lensViewUrlState_ts
   n_src_utils_state_src_utils_state_useLensState_ts --> n_src_utils_state_src_utils_state_lensViewUrlSync_ts
-  n_src_utils_state_src_utils_state_useURLSync_ts --> n_src_utils_state_src_utils_state_lensViewUrlSync_ts
   n_src_utils_state_truncated["additional relationships omitted"]
 ```
 
@@ -78,7 +78,7 @@ flowchart LR
 
 - Direct source files: 13
 - Direct subfolders: 0
-- Main outbound areas: same folder (16), src/types (13), package:react (4), src/comparison (3), src/utils/catalog (3), src/optics/lensMovement.ts, src/optics/sourceStates.ts, src/optics/validateLensData.ts, +5 more
+- Main outbound areas: same folder (16), src/types (13), package:react (4), src/comparison (4), src/utils/catalog (3), src/optics/lensMovement.ts, src/optics/sourceStates.ts, src/optics/validateLensData.ts, +5 more
 - External consumers: src/comparison, src/components/display, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/pages/AuthorsIndexPage.tsx, src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx, +1 more
 
 ## Files
@@ -89,7 +89,7 @@ flowchart LR
 | `LensContext.ts` | Lens Context helper module | src/types (2), package:react | src/components/layout (3), src/comparison, src/components/hooks | LensCtxValue, LensStateContext, LensDispatchContext, useLensCtx, useLensDispatch, PanelStateContext, usePanelCtx |
 | `lensReducer.ts` | Lens Reducer module with default export | src/comparison (2), src/types (2), same folder, src/utils/appConfig.ts, src/utils/featureFlags.ts, +1 more | src/components/layout (5), same folder (3), src/comparison (2), src/components/hooks (2) | SET_LENS_A, SET_LENS_B, SET_OPTICAL_CONFIGURATION, SWAP_LENSES, SET_DARK, SET_HIGH_CONTRAST, SET_MOBILE_VIEW, SET_DESKTOP_VIEW, +27 more |
 | `lensViewUrlState.ts` | Lens View Url State helper module | src/types (2), src/optics/lensMovement.ts, src/optics/validateLensData.ts | same folder (5) | LensViewQueryState, BuildLensViewQueryOptions, VIEW_STATE_FIELDS, ViewStateField, ViewStateFieldKey, parseLensViewQuery, buildLensViewQuery, buildLensViewQueryFromState, +1 more |
-| `lensViewUrlSync.ts` | Lens View Url Sync helper module | same folder (4), src/types (2), src/optics/sourceStates.ts, src/utils/catalog, src/utils/seo | same folder (2), src/comparison | ComparisonLenses, ComparisonError, ComparisonLensesParam, getComparisonZoomLens, getCatalogZoomLens, getUrlZoomLens, getStateZoom, buildLensViewSearch, +5 more |
+| `lensViewUrlSync.ts` | Lens View Url Sync helper module | same folder (4), src/types (2), src/comparison, src/optics/sourceStates.ts, src/utils/catalog, +1 more | same folder (2), src/comparison, src/components/layout | ComparisonLenses, ComparisonError, ComparisonLensesParam, getComparisonZoomLens, getCatalogZoomLens, getUrlZoomLens, getStateZoom, buildLensViewSearch, +6 more |
 | `mtfPreferences.ts` | Mtf Preferences helper module | src/types | src/components/display (4), src/components/hooks | MtfChartView, MTF_FIELD_STEPS, MtfFieldStepPercent, MTF_CHART_FREQUENCIES, MtfChartFrequency, MtfPreferences, MTF_PREFERENCES_KEY, DEFAULT_MTF_PREFERENCES, +7 more |
 | `parseComparisonParams.ts` | Parse Comparison Params helper module | same folder (2), src/comparison | same folder (2), src/comparison | focalLengthToZoomT, zoomTToFocalLength, buildComparePath, BuildURLSliders, parseLensKeysFromSearch, parseComparisonParams, encodeSliderParams, buildComparisonURL |
 | `preferences.ts` | Preferences helper module | src/types | same folder (2), src/utils/theme (2), src/components/HolidayFavicon.tsx | PREFS_KEY, PREFS_VERSION, loadPrefs |

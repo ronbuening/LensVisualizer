@@ -7,7 +7,7 @@
 
 import { useReducer, type Dispatch } from "react";
 import lensReducer, { createInitialState } from "./lensReducer.js";
-import { sourceStateActionFromUrl } from "./lensViewUrlSync.js";
+import { sourceStateActionFromUrl, paneSourceStateActionFromUrl } from "./lensViewUrlSync.js";
 import { loadPrefs } from "./preferences.js";
 import { parseLensKeysFromSearch } from "./parseComparisonParams.js";
 import { lensViewQueryToUrlState, parseLensViewQuery } from "./lensViewUrlState.js";
@@ -58,7 +58,15 @@ export default function useLensState(
       } else if (canonicalLensKey) {
         urlState.configurationKey = resolveOpticalConfigurationKey(canonicalLensKey, parsedViewState.configurationKey);
       }
-      const initial = createInitialState(prefs, urlState, wide, keys);
+      let initial = createInitialState(prefs, urlState, wide, keys);
+      for (const pane of ["a", "b"] as const) {
+        const action = paneSourceStateActionFromUrl(
+          initial,
+          pane,
+          pane === "a" ? parsedViewState.sourceStateIdA : parsedViewState.sourceStateIdB,
+        );
+        if (action) initial = lensReducer(initial, action);
+      }
       const station = sourceStateActionFromUrl(initial, parsedViewState.sourceStateId);
       return station ? lensReducer(initial, station) : initial;
     },

@@ -68,3 +68,11 @@ variant, follow `agent_docs/adding_url_state.md`.
 Compare identity may be a hidden member of a visible lens's `opticalConfiguration` group. The selector allow-list is
 the visible catalog plus those group members; unrelated hidden debug/reference fixtures remain unavailable. This makes
 configurations such as TC OUT versus TC IN directly comparable without an ambiguous pane-specific `cfg` query.
+
+Independent comparison links use versioned `fz=independent`, exact normalized `a_focus`/`a_zoom` and
+`b_focus`/`b_zoom` coordinates, and optional lens-scoped `a_ss`/`b_ss` identities. Valid identities override
+coordinate fallbacks with the authored station; unknown or cross-lens identities retain the bounded coordinate
+fallback. Back/forward restores the mode as well as both panes. Legacy shared-slider links remain linked.
+Manual movement removes mismatched identities, and swapping/replacing lenses writes the resulting pane state
+into the destination URL before navigation. The compare route keys the viewer by the lens pair so route history
+changes initialize from that entry rather than retaining the previous pair.

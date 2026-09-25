@@ -2,7 +2,7 @@
  * Type definitions for state management: reducer state, actions, preferences.
  */
 
-import type { SharedSlidersSlice, ComparisonAction } from "../comparison/comparisonTypes.js";
+import type { SharedSlidersSlice, ComparisonAction, ComparisonFocusZoomState } from "../comparison/comparisonTypes.js";
 import type { LensSourceState } from "./optics.js";
 import type { GroupMovementMode } from "./groupMovement.js";
 
@@ -263,6 +263,9 @@ export interface URLState {
   configurationKey?: string;
   /** Lens-scoped source identity, resolved against authored data before applying coordinates. */
   sourceStateId?: string;
+  comparisonFocusZoom?: ComparisonFocusZoomState;
+  sourceStateIdA?: string;
+  sourceStateIdB?: string;
   focus?: number;
   aberration?: number;
   aperture?: number;
