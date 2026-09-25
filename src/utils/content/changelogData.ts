@@ -36,84 +36,8 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
-    summary: "Brought the Fujifilm XF 18mm f/2 into focus by adding its patent cover plate",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored the Viltrox AF 27mm f/1.2’s patent cover plate and physical image-plane gaps",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored the Samyang AF 35mm f/2.8’s patent filter and physical image-plane gaps",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored source precision in the scaled Hasselblad HC 210mm prescription, reducing its image-plane error",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
     summary:
-      "Moved the underwater Nikkor 20–35mm’s protective plate out of the lens diagram while preserving its traced optical path",
-  },
-  { date: "2026-09-25", type: "fix", summary: "Corrected the Konica Hexanon 50mm f/1.8's patent-transcribed air gap" },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored the Viltrox AF 33mm's source rear filter and physical image-plane spacing",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Corrected the APO-Lanthar 28mm's miscopied rear-doublet radius and thickness from its patent",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored the Canon EF 600mm's source rear filter and physical image-plane spacing",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored the Viltrox AF 56mm's source rear filter and physical image-plane spacing",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored the Viltrox AF 35mm's published rear filter and physical image-plane spacing",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored the Canon EF 500mm's source-listed rear filter and physical image-plane spacing",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Corrected the Nikon AF-S 28-300mm's miscopied air gap from its patent",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored the Viltrox AF 50mm f/1.8 FE's physical patent filter path",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored the Viltrox AF 14mm f/4 AIR's physical patent filter path",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Corrected a lens gap and asphere coefficient in the Canon EF 24mm f/1.4 L",
-  },
-  {
-    date: "2026-09-25",
-    type: "fix",
-    summary: "Restored the Fujifilm X100's patent cover plate and image distance",
+      "Corrected 17 lenses against their patents: miscopied or over-rounded values, and cover plates and filters now traced at their physical spacing",
   },
   {
     date: "2026-09-24",
