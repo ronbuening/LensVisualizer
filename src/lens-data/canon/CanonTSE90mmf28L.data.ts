@@ -232,6 +232,31 @@ const LENS_DATA = {
   ],
 
   asph: {},
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity · scaled design",
+      focusT: 0,
+      zoomT: 0,
+      source: "JP2018205474A, Numerical Data 1, pp. 8–9, infinity column. Existing model scale 90/55.986 retained; published d17=1.59 and BF=44.70 mm become 2.556 and 71.85725 mm. Centered configuration only for MTF.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "half-life-size",
+      label: "Half life-size · scaled design",
+      focusT: 1,
+      zoomT: 0,
+      source: "JP2018205474A, Numerical Data 1, pp. 8–9, close column; paragraph 0012 specifies -0.5 magnification. Existing scale 90/55.986 retained: d17=10.48119 and BF=103.10792 mm. Independent evidence in CanonTSE90mmf28L.audit.md; centered configuration only for MTF.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 227.30808776917183,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed source geometry at the model's retained 90/55.986 scale: s=-B/A with A=-0.5006135195750713 and B=113.79350184600432 mm. Independent small-height exact rays reproduce the source; magnification differs from published -0.5 by 0.123% with rounded source gaps. Calculated scaled object-to-image distance 401.09973776917184 mm; not a production-distance measurement.",
+        magnification: -0.5,
+      },
+    },
+  ],
 
   var: {
     "17": [2.556, 10.48119],

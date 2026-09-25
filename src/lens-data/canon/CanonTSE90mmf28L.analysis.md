@@ -191,3 +191,12 @@ The patent cites JP 2008-298840 and JP 2013-231941 as prior art. The criticized 
 - Ohara optical glass catalog. Catalog-equivalent references for S-NSL36, S-LAH55V, S-NBH52, S-LAM7, S-LAH66, S-FPM2, S-LAH60V, and S-FPL51-class glass; S-BAL3 remains an unresolved local-catalog fallback.
 - Schott optical glass catalog. Catalog-equivalent reference for N-KZFS5-class short flint.
 - Hoya optical glass catalog. Catalog-equivalent reference for TAFD35 and FCD1-class equivalents.
+
+## Selectable source configurations
+
+Infinity and the published −0.5× configuration are selectable at the model's existing 90/55.986 scale.
+The labels identify the **scaled design**. The finite distance is **calculated**, 227.3081 mm before the
+first surface (401.0997 mm from the image plane), and independently verified with small-height exact rays.
+The computed magnification differs from the source's rounded −0.5 by 0.123%. This is evidence for the
+scaled prescription, not a production-distance measurement. Intermediate finite travel and active tilt/shift
+remain unavailable for MTF; all existing geometry and aperture estimates are retained.

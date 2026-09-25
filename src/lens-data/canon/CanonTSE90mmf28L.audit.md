@@ -2,6 +2,41 @@
 
 Patent: JP 2018-205474 A, Numerical Data 1 (Yamagishi / Canon)
 
+## 2026-09-25 — Source-state review
+
+Source-state review outcome: verified. Both authored candidates reviewed; scaled-design infinity and half
+life-size are enabled. The finite distance is calculated at the retained model scale. Intermediate travel
+is not certified, and active tilt/shift remains unavailable for MTF.
+
+The original [JP2018205474A PDF](https://patentimages.storage.googleapis.com/24/1c/42/ab05bb98ff035f/JP2018205474A.pdf)
+was retrieved because it is absent from the local patent collection. Visually inspected pages 4, 8 and 9:
+paragraph 0012 identifies Example 1's close state as -0.5; Numerical Data 1 supplies 21 source rows and the
+infinity/close columns. Source indices match the retained data. R12 is STO; the example is all-spherical.
+
+This model already scales the source by 90/55.986=1.6075447433286894. Every retained finite radius and
+infinity gap reproduces that scaling within 0.000005 mm (five-decimal storage rounding). The patent prints
+f=55.99 mm; the retained normalization denominator is a model convention, not extra published precision.
+Nothing is rescaled in this review. The declaration certifies the source configuration at the existing model
+scale, not the production lens's construction or measured object distance.
+
+| Gap (mm) | Source infinity | Source close | Model infinity | Model close |
+|---|---:|---:|---:|---:|
+| d17 | 1.59 | 6.52 | 2.556 | 10.48119 |
+| d21 / BF | 44.70 | 64.14 | 71.85725 | 103.10792 |
+
+At focusT=1, the scaled first-vertex-to-image matrix gives A=-0.5006135195750713 and B=113.79350184600432 mm.
+Thus s=-B/A=227.30808776917183 mm before R1, or 401.09973776917184 mm object-to-image.
+Independent exact-ray roots at 0.01/0.005/0.0025 mm first-vertex heights give distances
+227.308085989593/227.308087319315/227.308087663323 mm, with axial image residuals below 3.93e-11 mm.
+The signed exact magnification approaches -0.500613519576, within 0.1228% of the published -0.5.
+The source's two-decimal gaps and three-decimal radii remain untouched. Its rounded infinity table gives
+a formal finite solution near 232 m at model scale; that is not declared as a finite state.
+
+Reproduce with `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --derive-source-states --lens=canon-tse-90mm-f28l-macro`.
+Numeric precision supports repeatability, not source accuracy. Inferred apertures, qualified glass matches
+and the production-correlation limitations remain. Selecting a state preserves tilt/shift and cannot bypass
+the movement guard. No prescription geometry, aperture, movement or image plane is changed.
+
 ## 2026-06-23 - Patent geometry and glass review
 
 ### Source note
