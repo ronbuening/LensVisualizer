@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **819** lenses scanned (**807** visible)
-- **8560 / 9220** non-air surfaces use strict catalog Sellmeier data (92.8%)
-- **8575 / 9220** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.0%)
+- **825** lenses scanned (**813** visible)
+- **8616 / 9280** non-air surfaces use strict catalog Sellmeier data (92.8%)
+- **8631 / 9280** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.0%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **323** code-only missing-Sellmeier elements in Sweep 2: **17** active unreviewed, **173** self-recording explicit dispositions, **0** dispositions missing any review record
+- **325** code-only missing-Sellmeier elements in Sweep 2: **17** active unreviewed, **175** self-recording explicit dispositions, **0** dispositions missing any review record
 - **1** unresolved named-token elements in Sweep 2B, producing **1** token occurrences across **1** distinct tokens
 - **21** Tier A proprietary backfill rows in Sweep 3
 
@@ -86,6 +86,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | JP 1999-231209 A | [PDF](../../patents/JPA 1999231209-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | US 4,773,745 | [PDF](../../patents/US4773745.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 8: `Unmatched (479/587 low-index crown; vendor unspecified)`) | abbe: 1 |
+| [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | US 8,169,718 B2 | [PDF](../../patents/US8169718.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 4 [glass] (Gr1B thin composite layer: `Unmatched (thin composite-asphere layer coordinate 536412; no public catalog identity established)`)<br>24A [glass] (Rear thin composite layer: `Unmatched (thin composite-asphere layer coordinate 515500; no public catalog identity established)`) | abbe: 2 |
 | [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) | US 2,397,565 | [PDF](../../patents/US2397565.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 3 [glass] (Element II: `Unmatched (vintage barium-flint class, N_D=1.617, V=38.5)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) | JP 1987-244010 A | [PDF](../../patents/JPA 1987244010-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 8 [glass] (Element 5: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) | US 4,621,909 | [PDF](../../patents/US4621909.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 1 [glass] (Element 1: `Unmatched Nikon/Hikari lanthanum glass (797/455; J-LASF017 / TAF2 class)`) | abbe: 1 |
@@ -161,6 +162,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) | WO 2023/190222 A1 | [PDF](../../patents/WO2023190222A1.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14A [resin] (Element 8a (resin): `Resin layer (patent composite asphere; chemistry and supplier unspecified)`) | abbe: 1 |
 | [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) | US 7,411,746 B2 | [PDF](../../patents/US7411746.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 12A [resin] (Hybrid resin layer: `Compound UV-curing resin (patent; no catalog glass match)`) | abbe: 1 |
 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) | JP 2014-089352 A | [PDF](../../patents/JP2014089352A.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 4A [resin] (L113 composite resin layer: `UV-curable optical resin (patent nd=1.540, νd=41.200)`) | abbe: 1 |
+| [NIKON AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR](../../src/lens-data/nikon/NikonAFSDXNikkor1680mmf284EEDVR.data.ts) | US 2018/0252903 A1 | [PDF](../../patents/US20180252903A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [resin] (L21 Bonded Resin Layer: `Unmatched bonded aspherical resin (patent medium; no published dispersion coefficients)`)<br>23A [glass] (L41: `Unmatched (nd=1.79050, vd=45.0; glass-molded asphere)`) | abbe: 2 |
 | [NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6G IF-ED](../../src/lens-data/nikon/NikonAFSDXVRZoomNikkor18200mmf3556GIFED.data.ts) | US 2006/0072213 A1 | [PDF](../../patents/US20060072213A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [resin] (L21r — Bonded Aspheric Resin Layer: `Unmatched (optical resin layer; patent nd=1.553890, νd=38.09)`)<br>21A [resin] (L34r — Bonded Aspheric Resin Layer: `Unmatched (optical resin layer; patent nd=1.553890, νd=38.09)`) | abbe: 2 |
 | [NIKON AF-S NIKKOR 300mm f/4E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) | JP 2015-102852 A | [PDF](../../patents/JP2015102852A.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 7 [resin] (DOE resin 1: `Unmatched (UV-curing DOE resin; patent nd=1.5278, vd=33.4)`)<br>8 [resin] (DOE resin 2: `Unmatched (UV-curing DOE resin; patent nd=1.5572, vd=50.0)`) | abbe: 2 |
 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) | US 2014/0347522 A1 | [PDF](../../patents/US20140347522A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 7A [resin] (L4 Hybrid Resin Layer: `Unmatched (hybrid-asphere resin, nd=1.51460, vd=49.96)`)<br>22 [glass] (Element 11: `908334 class (catalog unresolved)`) | abbe: 2 |

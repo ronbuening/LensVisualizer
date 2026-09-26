@@ -19,6 +19,16 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-26",
+    type: "lens",
+    summary: "Added Miranda Auto EC 35mm f/2.8, 135mm f/2.8, and 200mm f/3.5",
+  },
+  {
+    date: "2026-09-26",
+    type: "lens",
+    summary: "Added Nikon 1 NIKKOR VR 10-30mm PD-ZOOM and AF-S DX 10-24mm and 16-80mm zooms",
+  },
+  {
     date: "2026-09-25",
     type: "lens",
     summary: "Added Canon RF 200-800mm f/6.3-9 IS USM and Leica Telyt-S 800mm f/6.3",

@@ -23,6 +23,7 @@ export const MAKER_PREFIXES = [
   { prefix: "MEYER GÖRLITZ", display: "Meyer Optik Görlitz", slug: "meyer-optik-goerlitz" },
   { prefix: "MEYER GOERLITZ", display: "Meyer Optik Görlitz", slug: "meyer-optik-goerlitz" },
   { prefix: "MEYER", display: "Meyer Optik Görlitz", slug: "meyer-optik-goerlitz" },
+  { prefix: "MIRANDA", display: "Miranda", slug: "miranda" },
   { prefix: "MINOLTA", display: "Minolta", slug: "minolta" },
   { prefix: "ROKKOR", display: "Minolta", slug: "minolta" },
   { prefix: "VENUS OPTICS", display: "Laowa", slug: "laowa" },

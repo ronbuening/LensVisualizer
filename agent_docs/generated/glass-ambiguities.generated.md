@@ -12,8 +12,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **819** lenses scanned
-- **9215** glass elements examined
+- **825** lenses scanned
+- **9275** glass elements examined
 - **2820** elements have multiple coordinate-compatible candidates
 - **524** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
@@ -1384,7 +1384,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-NPH53 (OHARA, 847239) / SF57 class` | 1.84666 / 23.90 (d) | S-NPH53 — direct name evidence outranks alias evidence. | S-TIH53 (Ohara, alias, vendor ✓)<br>S-TIH53WN (Ohara, code, vendor ✓, alternate code row)<br>PBH53 (Ohara, code, vendor ✓, alternate code row) | 1 | [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) L8 |
 | `713539 — LaK21 / LAC11-class lanthanum crown (no exact public catalog match)` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) L9 |
 | `Path-splitter prism glass (516/641, patent-listed)` | 1.51633 / 64.14 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, code, alternate code row)<br>L-BSL7 (Ohara, code, alternate code row) | 1 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) P1 |
-| `S-BAL35 class (OHARA; SK5 / 589/610 equivalent)` | 1.58910 / 61.00 (d) | S-BAL35 — Annotation vendor context matches Ohara. | SK5 (Sumita, name, vendor ✗) | 2 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L1 |
+| `S-BAL35 class (OHARA; SK5 / 589/610 equivalent)` | 1.58910 / 61.00 (d) | S-BAL35 — Annotation vendor context matches Ohara. | SK5 (Sumita, name, vendor ✗)<br>S-BAL35R (Ohara, code, vendor ✓, preferred code row) | 2 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L1 |
 | `S-TIH11 class (OHARA; SF11 / 785/256 equivalent)` | 1.78470 / 25.60 (d) | S-TIH11 — Annotation vendor context matches Ohara. | SF11 (Schott, name, vendor ✗)<br>J-SF11 (Hikari, code, vendor ✗, preferred code row) | 1 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L2 |
 | `J-LAK02 class (Hikari; 670/573)` | 1.67000 / 57.30 (d) | J-LAK02 — direct name evidence outranks six-digit code evidence. | S-LAL52 (Ohara, code, vendor ✗, preferred code row) | 1 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L4 |
 | `H-ZF39 class (CDGM; 667/330)` | 1.66680 / 33.00 (d) | H-ZF39 — direct name evidence outranks six-digit code evidence. | S-TIM39 (Ohara, code, vendor ✗, preferred code row) | 1 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L5 |

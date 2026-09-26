@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **819** lenses scanned
-- **1819** total code-only elements found
-- **1819** elements in this report
-- **288** distinct lens files affected
+- **825** lenses scanned
+- **1821** total code-only elements found
+- **1821** elements in this report
+- **289** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -240,6 +240,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
+| 515500 | 1 | 1 | patents/US8169718.pdf | All rows explicitly disposed |
 | 516499 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 516506 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
@@ -255,6 +256,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 534555 | 1 | 1 | patents/US4110006.pdf | All rows explicitly disposed |
 | 534556 | 1 | 1 | patents/US20230367186A1.pdf | All rows have review records |
 | 534557 | 1 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
+| 536412 | 1 | 1 | patents/US8169718.pdf | All rows explicitly disposed |
 | 540509 | 1 | 1 | patents/GB_775944_A.pdf | All rows explicitly disposed |
 | 540597 | 1 | 1 | patents/US20200073096A1.pdf | No review-record hit |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
@@ -1986,6 +1988,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L12 (L12) | 3 | `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)` | 1.61155 / 31.26 | No catalog entry | abbe | patents/US20210026133A1.pdf | Reviewed sidecar hit |
+
+### [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) - US 8,169,718 B2
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L2c (Gr1B thin composite layer) | 4 | `Unmatched (thin composite-asphere layer coordinate 536412; no public catalog identity established)` | 1.53610 / 41.21 | No catalog entry | abbe | patents/US8169718.pdf | Explicit disposition in data |
+| L14c (Rear thin composite layer) | 24A | `Unmatched (thin composite-asphere layer coordinate 515500; no public catalog identity established)` | 1.51460 / 49.96 | No catalog entry | abbe | patents/US8169718.pdf | Explicit disposition in data |
 
 ### [NIKON AF-S DX ZOOM-NIKKOR 12-24mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1224mmf4GIFED.data.ts) - US 6,940,655 B2
 
