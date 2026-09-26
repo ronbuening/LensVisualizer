@@ -27,6 +27,31 @@ const LENS_DATA = {
   patentYear: 2018,
   elementCount: 16,
   groupCount: 12,
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "US 2018/0246292 A1, Example 1 Tables 1–4, INF column.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "life-size",
+      label: "Life-size",
+      focusT: 1,
+      zoomT: 0,
+      source: "US 2018/0246292 A1, Example 1 Tables 1–4, β=-1.0 column; centered OIS group.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 106.24928706318647,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed-image-plane ABCD s=-B/A with the physical source rear plate; independent exact rays at 0.01/0.005/0.0025 mm verify distance and magnification -1.000957102 versus published -1.0. See audit sidecar; distance is not published.",
+        magnification: -1,
+      },
+    },
+  ],
   focusDescription:
     "Floating focus: G2 moves toward image, G3 moves toward object; G1 and G4 stationary. The patent identifies lateral stabilization by G4a; the centered diagram does not simulate OIS motion.",
 

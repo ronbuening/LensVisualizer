@@ -2,6 +2,35 @@
 
 Patent: US 2018/0246292 A1 — Example 1
 
+## 2026-09-26 — Source-state review
+
+Source-state review outcome: verified. Both authored candidates reviewed; infinity and life-size are
+enabled, with a calculated finite distance and centered OIS group. Intermediate focus is not certified.
+
+Visually inspected local `patents/US20180246292A1.pdf` page 40 (printed page 6), Example 1 Tables 1–4.
+All 31 source rows and the two source aspheres match the retained prescription. The rear plate is
+2.85 mm of nd=1.51680 glass with 27.42 mm preceding air and 1.00 mm following air, expanded exactly once.
+Table 2 explicitly labels INF and β=-1.0; no published object distance is substituted from production specs.
+
+| Gap (mm) | Infinity | Life-size |
+|---|---:|---:|
+| DD8 | 2.34 | 17.69 |
+| DD13 | 20.39 | 5.04 |
+| DD14 / STO | 19.53 | 3.58 |
+| DD19 | 6.50 | 22.45 |
+
+At focusT=1 the fixed first-vertex-to-image matrix gives A=-1.000957101654417 and
+B=106.35097843161527 mm, hence s=-B/A=106.24928706318647 mm before the first surface,
+or 246.42928706318645 mm object-to-image. Independent exact-ray roots at 0.01/0.005/0.0025 mm
+first-vertex heights give 106.249286961142/106.249287038448/106.249287057002 mm, with axial image
+residuals below 9.55e-12 mm. Signed exact magnification approaches -1.000957101918, within 0.0958%
+of the published -1.0. The two-decimal source gaps remain untouched. The rounded infinity table's
+formal finite solution near 2.36 km is not treated as a finite state.
+
+The physical iris remains fixed during focus; source working f/3.99 is not a new aperture schedule.
+Estimated rims, inferred glass counterparts and centered-only OIS remain limitations. No geometry,
+aperture, image-plane or glass changes.
+
 ## 2026-05-11 — Patent glass relabel + prescription verification
 
 ### Phase 1 — Glass corrections

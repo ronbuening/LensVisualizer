@@ -76,6 +76,12 @@ Paragraph 76 and Figure 1 identify G1/G4 as stationary relative to the image. G2
 
 The four gaps sum to 48.76 mm at both endpoints. An independent paraxial calculation using the rounded source prescription gives magnification −1.00096, EFL 59.26 mm and approximately 0.24643 m physical object-to-image distance at the near station. The distance is reconstructed, while the source explicitly labels the station β=−1.0. Intermediate slider positions and inverse-distance labels are estimates between the two published endpoints.
 
+The MTF Lens state selector enables the two published focus endpoints. The life-size state uses a
+**calculated** object distance of 106.249287 mm ahead of the first surface (246.429287 mm object-to-image),
+with the source rear plate included. Independent small-height exact rays confirm the distance and published
+magnification within source rounding. Intermediate finite-focus states remain unavailable for MTF; the
+selector does not certify the production lens's measured performance.
+
 ## Stabilization
 
 The patent identifies G4a as the subgroup that moves transversely for camera-shake correction. The diagram shows the centered axial prescription and its focus motion; it does not animate lateral OIS displacement. The source supports the subgroup identification, but does not establish a five-stop production performance rating.
