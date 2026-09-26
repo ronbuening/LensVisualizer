@@ -335,6 +335,17 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "60mm f/2.8 2X Ultra-Macro, 15mm f/4 Wide Angle Macro, 12mm f/2.8 Zero-D, 24mm f/14 2X Macro Probe, 9mm f/5.6 FF RL, 100mm f/2.8 2X Ultra Macro APO, 10mm f/2.8 Zero-D AF, Nanomorph anamorphic cine lenses",
   },
+  // Miranda dx-3 manufacturer's manual, historical introduction and Auto EC lens table:
+  // https://www.cameramanuals.org/miranda_pdf/miranda_dx-3.pdf
+  miranda: {
+    founded: 1946,
+    headquarters: "Tokyo, Japan",
+    summary:
+      "Japanese camera and lens maker known for its Miranda 35 mm SLR systems and Auto Miranda and Auto EC interchangeable lenses.",
+    history:
+      "Miranda's own dx-3 manual dates its predecessor's establishment in Tokyo to 1946. The business initially serviced professional photographic equipment and made accessories for rangefinder cameras, including the Mirax reflex housing and Focabell bellows. Its Orion camera development led to the Miranda T and a line of 35 mm single-lens reflex cameras.\n\nMiranda developed its cameras as interchangeable-lens systems. The later dx-3 manual presents the compact Auto EC lens series alongside the camera's bayonet and internal screw mount. The Auto EC range includes wide-angle, normal, and telephoto lenses, including 35mm f/2.8, 135mm f/2.8, and 200mm f/3.5 models. Patent prescriptions associated with these lenses document optical designs assigned to Miranda Camera Co., Ltd.; a design's correlation with a marketed lens does not by itself establish the exact production prescription or glass supplier.",
+    notableDesigns: "Miranda T, Sensorex, dx-3, Auto Miranda lenses, Auto EC lenses",
+  },
   minolta: {
     founded: 1928,
     headquarters: "Osaka, Japan",
