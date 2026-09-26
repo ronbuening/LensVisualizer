@@ -335,16 +335,24 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "60mm f/2.8 2X Ultra-Macro, 15mm f/4 Wide Angle Macro, 12mm f/2.8 Zero-D, 24mm f/14 2X Macro Probe, 9mm f/5.6 FF RL, 100mm f/2.8 2X Ultra Macro APO, 10mm f/2.8 Zero-D AF, Nanomorph anamorphic cine lenses",
   },
-  // Miranda dx-3 manufacturer's manual, historical introduction and Auto EC lens table:
+  // Sources: manufacturer's Sensorex manual, pp. 4 and 44–46 (early lens designs),
+  // Auto Sensorex EE manual (E lenses / exposure), and dx-3 manual (origins / EC series).
+  // https://www.pacificrimcamera.com/rl/02328/02328.pdf
+  // https://butkus.org/chinon/miranda/miranda_ee/miranda_auto_sensorex_ee.pdf
   // https://www.cameramanuals.org/miranda_pdf/miranda_dx-3.pdf
+  // Company chronology and later branding; founding dates differ (1946 in Miranda's
+  // own account, 1947 in later histories), so the text identifies the source of 1946.
+  // https://mirandageek.eu/about-miranda
+  // https://japb.net/business/company-profiles/miranda/
   miranda: {
     founded: 1946,
     headquarters: "Tokyo, Japan",
     summary:
-      "Japanese camera and lens maker known for its Miranda 35 mm SLR systems and Auto Miranda and Auto EC interchangeable lenses.",
+      "Japanese camera company known for its adaptable 35 mm SLR systems, interchangeable viewfinders, and Auto Miranda and Auto EC lens ranges.",
     history:
-      "Miranda's own dx-3 manual dates its predecessor's establishment in Tokyo to 1946. The business initially serviced professional photographic equipment and made accessories for rangefinder cameras, including the Mirax reflex housing and Focabell bellows. Its Orion camera development led to the Miranda T and a line of 35 mm single-lens reflex cameras.\n\nMiranda developed its cameras as interchangeable-lens systems. The later dx-3 manual presents the compact Auto EC lens series alongside the camera's bayonet and internal screw mount. The Auto EC range includes wide-angle, normal, and telephoto lenses, including 35mm f/2.8, 135mm f/2.8, and 200mm f/3.5 models. Patent prescriptions associated with these lenses document optical designs assigned to Miranda Camera Co., Ltd.; a design's correlation with a marketed lens does not by itself establish the exact production prescription or glass supplier.",
-    notableDesigns: "Miranda T, Sensorex, dx-3, Auto Miranda lenses, Auto EC lenses",
+      "Miranda grew out of Orion Seiki, a postwar Tokyo camera workshop founded by Akira Ogihara and Shintarō Ōtsuka, both trained in aeronautical engineering. Miranda's own company history dates its beginnings to 1946. Repairs, lens adapters, the Mirax reflex housing, and Focabell bellows preceded the company's move into complete cameras. The Miranda T, introduced in 1955, was among the earliest Japanese 35 mm SLRs with an eye-level pentaprism; its removable finder established a defining feature of the system. Orion adopted the Miranda company name in the 1950s.\n\nMiranda built its reputation around adaptable SLRs: interchangeable finders, a lens mount combining an external bayonet with an internal 44 mm screw thread, and accessories for close-up and scientific photography. The Sensorex brought through-the-lens metering into this modular system, while the Auto Sensorex EE added shutter-priority automatic exposure with Auto Miranda E lenses. Allied Impex, the American distributor behind the Soligor brand, became Miranda's owner during the 1960s. Soligor-branded lenses formed part of the early system alongside the later Auto Miranda ranges.\n\nThe lenses deserve attention in their own right. The early Auto Miranda 50mm f/1.4 supplied for the Sensorex used an eight-element, six-group Gauss-type design, distinct from later lenses carrying the same focal length and aperture. The Auto Miranda 25mm f/2.8 covered an 82° angle of view with eight elements in seven groups and focused down to 0.25 m; the 105mm f/2.8 provided a compact portrait option. In the 1970s, the Auto EC series emphasized smaller, lighter lenses for bodies such as the dx-3, spanning fast 50mm standards, wide-angles, and telephotos including the 35mm f/2.8, 135mm f/2.8, and 200mm f/3.5.\n\nThe compact dx-3 exchanged the traditional removable finder for a fixed prism and an electronically controlled shutter. It could not reverse the company's decline: Miranda entered bankruptcy and ended camera production in 1976. Dixons later revived the name on cameras, lenses, and accessories sourced from other manufacturers. Those later Miranda-branded products belong to a separate chapter from the original Japanese SLR system.",
+    notableDesigns:
+      "Auto Miranda 50mm f/1.4 (eight-element), Auto Miranda 25mm f/2.8, Auto Miranda 105mm f/2.8, Auto EC 35mm f/2.8, Auto EC 135mm f/2.8, Auto EC 200mm f/3.5",
   },
   minolta: {
     founded: 1928,
