@@ -31,3 +31,9 @@ Coefficient-backed catalog coverage: **9/9 → 9/9 material entries**. Source co
 Source W total length 63.0 mm conflicts with the 59.995 mm table sum; no compensating spacing is introduced. Published zoom/focus gaps and inferred stop remain unchanged. No supplier identity or measured anomalous partial dispersion is inferred from the marketed ED designation.
 
 Surface geometry and image-circle floors pass with no undersized or skipped entries. The runtime renderer produces zero trim across sampled zoom/focus states, and the live optical silhouettes were compared with the figures. These checks do not remove the source/model limitations above.
+
+### Second live-diagram review — ED inference and travel
+
+Fig. 30A/B and the local wide/tele silhouettes support the retained SDs and seven aspheric-surface markings. Table 11 orders the zoom stations 10.2 → 20.0 → 29.4 mm. With the image plane fixed, G1 first travels imageward 3.820 mm then objectward 3.040 mm; G2/G3 travel objectward and G4 stays fixed. Infinity-to-near focus moves G3 imageward by 0.410/1.580/3.190 mm at W/M/T. The 0.010-mm middle-state shift of the preceding groups follows the source's rounded D13/D15 sum and is retained.
+
+L24 changes from unflagged to `apd: "inferred"`: its coordinate-compatible J-FKH1 curve has catalog dPgF approximately +0.0337 against the engine baseline. This fills the ED-class diagram color and inspector badge without asserting patent-measured dispersion or a production supplier. No per-lens spectral values are copied from the proxy. Coverage remains 9/9; no new catalog row is needed. The source Nikon Corporation spelling already matches the canonical assignee node.

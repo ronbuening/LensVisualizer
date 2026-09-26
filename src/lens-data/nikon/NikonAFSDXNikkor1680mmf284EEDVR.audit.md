@@ -40,3 +40,13 @@ Coefficient-backed catalog coverage: **16/18 → 16/18 material entries**. Sourc
 Polynomial rim departure at enlarged S6A is 0.511811 mm, replacing 0.218951 mm at 11 mm. The analysis was updated. All W/M/T infinity stations reach the format corner. The bonded resin (1.56093/36.6) and molded L41 (1.79050/45.0) remain unmatched. Display name corrected from f/2.8-4 E to f/2.8-4E, matching Nikon’s product designation.
 
 Surface geometry and image-circle floors pass with no undersized or skipped entries. The runtime renderer produces zero trim across sampled zoom/focus states, and the live optical silhouettes were compared with the figures. These checks do not remove the source/model limitations above.
+
+### Second live-diagram review — shape label, ED inference, and travel
+
+The updated front and hybrid rims align with Fig. 1 in the live site; remaining SDs are retained. L12's type changes from “Biconvex Positive” to “Positive Meniscus”: Table 1 gives positive front/rear radii 61.989/2234.55748 mm. Its positive power is unchanged.
+
+L12/L34/L51/L52 gain `apd: "inferred"` from their compatible J-PSKH1/J-FKH1 curves (catalog dPgF approximately +0.0144/+0.0337). The distinction from patent-listed APD is explicit in the inspector; no per-lens catalog-derived line indices or dPgF are authored. Coverage remains 16/18. The bonded resin lacks a published dispersion curve, and L41's closest catalog alternatives TAF2/J-LASF017 miss the index guard by 0.0040/0.0045. No supported additional catalog row was found.
+
+Table 3 and the local sliders order zoom 16.49 → 35.00 → 77.79 mm with all groups traveling objectward relative to the fixed image plane. Infinity-to-near focus moves only G2 objectward by 1.215/1.954/3.923 mm at W/M/T; all other groups remain fixed at each zoom station. The source Nikon Corporation spelling already matches the canonical assignee node.
+
+The hybrid layer/substrate pairs retain their H-group diagram brackets and explicit layer descriptions, but omit the glass-doublet inspector tag. A bonded aspheric layer is part of one physical lens; displaying “DOUBLET” solely because it has two modeled media was misleading. Actual glass doublet/triplet tags are retained. Catalog labels were shortened to “supplier-neutral catalog proxy” to keep the qualification readable in the inspector.

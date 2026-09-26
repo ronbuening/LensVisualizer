@@ -184,7 +184,7 @@ therefore names coordinate-compatible spectral proxies without asserting a melt 
 
 The glass palette spans low- and high-dispersion materials, but the source does not provide the spectral line data needed
 to quantify anomalous partial dispersion for the implemented elements. No element in the final data carries `nC`, `nF`,
-`ng`, or `dPgF`, and all `apd` flags remain false. The lens therefore should not be described as apochromatic or as using
+`ng`, or `dPgF`. L24 now carries **inferred APD** from its compatible J-FKH1 curve (catalog deviation approximately +0.0337 from the engine normal line); the other elements remain unflagged. The lens therefore should not be described as apochromatic or as using
 a specifically identified anomalous-dispersion melt on the basis of this prescription alone.
 
 The L24 coordinate deserves separate treatment because it is unusually low in dispersion and aligns with Nikon's marketed

@@ -38,3 +38,15 @@ Coefficient-backed catalog coverage: **14/16 → 14/16 material entries**. Sourc
 The production field audit reaches only about 12.00 mm image height (85% of the APS-C half-diagonal) at wide, stopping near 49.9°. Formula (14) gives Ymax/Fw=1.254, or about 12.91 mm, itself below the 14.18-mm format corner. The existing wide-field modeling limitation remains unresolved; the image-circle floor check passing is not full-field success. The thin 536412 and 515500 media have no sourced catalog dispersion and remain unmatched.
 
 Surface geometry and image-circle floors pass with no undersized or skipped entries. The runtime renderer produces zero trim across sampled zoom/focus states, and the live optical silhouettes were compared with the figures. These checks do not remove the source/model limitations above.
+
+### Second live-diagram review — G3 rims, physical labels, and ED inference
+
+Fig. 10's directly measured G3 half-height is approximately 8 mm at 32.77 µm/px, consistent with the 7.80–8.06-mm RIM readings. The initial live diagram made G3 nearly as tall as G4, unlike the source. S15/S16/S17 change from 11.8/10.3/10.3 to 8.2/8.2/8.2 mm. Unlike the earlier combined trial, this change only corrects G3 and does not attempt to cure the existing wide-field limitation. The wide 12.00-mm image-height limit and middle/tele format-corner coverage are unchanged.
+
+Diagram labels now use physical L1–L14 names with L2c/L14c for the two extra modeled layers, avoiding misleading sequential numbering up to 16. L10/L12 gain `apd: "inferred"` from the compatible FCD1 curve (catalog dPgF approximately +0.0312); no patent APD designation, measured spectral values, or production supplier is asserted.
+
+Zoom runs 10.295 → 15.598 → 23.393 mm. Relative to the image plane, G1 first moves imageward 1.971 mm then objectward 7.267 mm; G2/G3/G4 move objectward throughout. Focus remains disabled: Fig. 10 establishes objectward Gr1B travel, but Example 4 gives no numerical near-focus station.
+
+Coverage remains 14/16. The unmatched layers remain unsupported: KF8 misses the L14c index guard (Δn=0.00342), and E-CF6 misses its Abbe guard (Δν=2.19); L2c's nearest FTM8 also misses both guards. No tolerance is relaxed or glass curve substituted for an unidentified composite layer. The patent cover confirms both Tamron Co., Ltd. and Nikon Corporation; these are already canonical distinct nodes, and co-assignment does not prove manufacturing.
+
+The hybrid layer/substrate pairs retain their H-group diagram brackets and explicit layer descriptions, but omit the glass-doublet inspector tag. A bonded aspheric layer is part of one physical lens; displaying “DOUBLET” solely because it has two modeled media was misleading. Actual glass doublet/triplet tags are retained. Catalog labels were shortened to “supplier-neutral catalog proxy” to keep the qualification readable in the inspector.

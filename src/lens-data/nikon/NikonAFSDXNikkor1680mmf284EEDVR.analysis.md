@@ -95,13 +95,12 @@ with the much higher-Abbe L12. The pair is only weakly positive as an isolated c
 length in air is +612.786341 mm. The patent does not isolate an aberration contribution for L11, so the safer description
 is structural: L11 and L12 form the front cemented component of the positive first zoom group (¶0143).
 
-### L12 — Biconvex Positive
+### L12 — Positive Meniscus
 
 **$n_d=1.59319$, $\nu_d=67.9$. Glass: 593679 class (supplier unresolved). $f=+107.357663$ mm.**
 
 L12 is cemented to L11 and completes the first compound member of G1. The coordinate is consistent with a low-dispersion
-crown class, but the patent does not name a glass supplier or label this element as ED. The data file therefore retains a
-class designation instead of a vendor glass name, and it does not import candidate catalog line indices.
+crown class, but the patent does not name a glass supplier or label this element as ED. The data file uses J-PSKH1 as a qualified spectral proxy and does not import candidate catalog line indices. Both vertex radii are positive (61.989 and 2234.55748 mm), so the element is a positive meniscus, not biconvex.
 
 ### L13 — Positive Meniscus
 
@@ -259,8 +258,7 @@ proof of Nikon's production supplier or melt.
 
 No `nC`, `nF`, `ng`, or `dPgF` values are authored in the final data. The dossier's catalog evidence records some candidate
 line-index data, but those values belong to candidate catalog glasses rather than to a patent-identified or production-
-identified melt. They are therefore not promoted into the model. The analysis consequently makes no apochromatic or
-anomalous-partial-dispersion claim.
+identified melt. They are therefore not promoted into the model. The diagram marks L12, L34, L51, and L52 as **inferred APD** from their compatible J-PSKH1/J-FKH1 curves (catalog deviations approximately +0.0144/+0.0337 from the engine normal line). These are material-class inferences, not patent-measured partial dispersions, production supplier identifications, or an apochromatic-performance claim.
 
 The material strategy visible directly from the patent is nevertheless broad: high-index, low-Abbe media appear alongside
 moderate- and high-Abbe positive media across multiple groups, and the three 1.49782/82.6 lenses plus L12 provide the four

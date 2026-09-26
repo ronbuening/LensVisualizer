@@ -29,3 +29,9 @@ The OHARA S-BAL35R addition uses the [manufacturer 25-04 datasheet](https://www.
 The printed normalized f=100 and BFD=46.916 do not reproduce exactly from the table. The existing uniformly scaled prescription and its computed image-plane distance remain unchanged; this audit does not force agreement. The patent cover reads 島田 邦夫 (Kunio Shimada), not the draft transcription 富田 錦夫.
 
 Surface geometry and image-circle floors pass with no undersized or skipped entries. The runtime renderer produces zero trim across sampled zoom/focus states, and the live optical silhouettes were compared with the figures. These checks do not remove the source/model limitations above.
+
+### Second live-diagram review — optical rims and labels
+
+At the same 39.1 µm/px scale, direct top/bottom readings in Fig. 1 place L3/L5/L6 near 7.3–7.8 mm. Leader curves inflated the automated envelope readings. The live diagram showed the rear positive lenses standing above L2, unlike the figure. S5/S6/S10/S11/S12 change from 9.5/8.2/9.1/9.65/9.65 to 8.0/8.0/8.0/8.0/8.0 mm; the modest allowance preserves the format-corner chief ray. Other rims remain unchanged. Labels now read L1–L6, matching the source element names.
+
+All six catalog curves remain compatible. Ordinary glass colors remain appropriate; there is no new source-backed APD classification. The focus control correctly reads “Not modeled”: the static patent does not establish travel direction or endpoints. There is no zoom control. The source applicant remains consolidated under Miranda Camera Co., Ltd.

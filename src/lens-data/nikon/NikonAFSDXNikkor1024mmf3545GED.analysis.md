@@ -231,8 +231,7 @@ extend to a specific FCD1 or D-FK61 supplier because the patent does not name on
 
 The patent publishes only d-line index and Abbe number. It does not publish per-element `nC`, `nF`, `ng`, or `dPgF`.
 Some catalog candidates have such data, but using those line indices would silently assume the candidate glass identity.
-The final data therefore does not author those spectral fields, and this analysis makes no APO or anomalous-partial-
-dispersion performance claim.
+The final data therefore does not author those spectral fields. L10 and L12 carry **inferred APD** display tags from their compatible FCD1 curve (catalog deviation approximately +0.0312 from the engine normal line). This inference does not establish the production melt, patent-measured partial dispersion, or APO performance.
 
 ## Focus Mechanism
 
@@ -434,3 +433,5 @@ computed S26-to-image distance.
     https://www.hikari-g.co.jp/optical_glass/catalog/
 11. SUMITA OPTICAL GLASS, Inc. **Optical Glass Data Downloads.**
     https://www.sumita-opt.co.jp/en/download/
+
+The second local-diagram review on 2026-09-26 reduces the G3 optical rims S15/S16/S17 from 11.8/10.3/10.3 to 8.2/8.2/8.2 mm. Fig. 10 places them near 8 mm, level with G2, rather than approaching the larger G4 rim. Source radii, powers, and zoom gaps are unchanged. This refinement preserves the existing wide-field limit and the middle/tele format-corner coverage. Diagram labels now follow physical names L1–L14 with separate L2c/L14c layer labels.

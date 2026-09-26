@@ -28,3 +28,7 @@ Coefficient-backed catalog coverage: **6/6 → 6/6 material entries**. Source co
 The source visibly prints N5=1.59680, V5=55.6. The incoming model already uses an explicitly disclosed 1.69680 correction hypothesis to reconcile EFL/BFD/Petzval. This audit retains that hypothesis, does not establish it as a source value, and qualifies the K-LaK14 proxy accordingly. The cover reads 島田 邦夫 (Kunio Shimada), not 富田 邦夫. The full-format corner chief ray clears.
 
 Surface geometry and image-circle floors pass with no undersized or skipped entries. The runtime renderer produces zero trim across sampled zoom/focus states, and the live optical silhouettes were compared with the figures. These checks do not remove the source/model limitations above.
+
+### Second live-diagram review — retained geometry and metadata
+
+The local silhouette and cemented L5/L6 rims agree with Fig. 1 within its measurement uncertainty; SDs are retained. Labels now read L1–L6. The L5 inspector explicitly qualifies K-LaK14 as a proxy for the existing inferred index correction, not the printed source value; this limitation remains unresolved. Other compatible catalog labels and ordinary index colors are retained, with no unsupported APD tag. The focus control correctly reads “Not modeled” and zoom is absent. The source applicant remains consolidated under Miranda Camera Co., Ltd.
