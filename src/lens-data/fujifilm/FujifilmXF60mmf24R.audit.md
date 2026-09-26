@@ -2,6 +2,37 @@
 
 Patent: US 2014/0247506 A1, Example 1
 
+## 2026-09-25 — Source-state review
+
+Source-state review outcome: verified. All three authored candidates reviewed; infinity, -0.2× and -0.5×
+are enabled. Finite distances are calculated for the retained image plane; intermediate movement is not certified.
+
+Visually inspected local `patents/US20140247506A1.pdf` pages 23–24 (printed pages 6–7), Example 1 Tables 1–3.
+All 21 source rows match, including physical GC surfaces 20–21. Table 2 gives D13=1.80/10.57/23.73 mm
+for infinity/-0.2×/-0.5×. The exact stored focus coordinates remain 0/0.6115561181433857/1.
+Table 1 leaves the gap after GC blank. The existing inferred 0.001 mm gap is retained and explicitly
+qualified in each derivation; no production MFD is substituted for an object plane. Table 3's odd coefficients
+and K conversion are unchanged.
+
+| State | First-surface distance (mm) | Object-to-image distance (mm) | Matrix A | Matrix B (mm) |
+|---|---:|---:|---:|---:|
+| -0.2× | 363.1222763250309 | 437.56327632503087 | -0.19994588596937968 | 72.6048052550262 |
+| -0.5× | 179.87873967230937 | 267.4797396723094 | -0.49993075528776365 | 89.92691418458864 |
+
+Distances use s=-B/A. Relative magnification differences are 0.0271% and 0.0139%, consistent with two-decimal
+source gaps and four-decimal radii. Independent exact-ray roots at 0.005/0.0025/0.00125 mm first-vertex heights
+give 363.135387472417/363.128849049520/363.125566884909 mm and
+179.882684242720/179.880717830810/179.879730253864 mm, respectively. Axial residuals at these heights stay
+below 5.49e-8 mm. Signed magnifications at the smallest height are -0.199945891198 and -0.499930778685.
+
+The initial 0.01 mm samples have residuals 1.44e-7/2.18e-7 mm because the published cubic sag terms produce
+quadratic ray errors; refinement establishes the paraxial limit without loosening the 1e-7 mm/0.05% bounds.
+All samples remain in the offline audit report. The rounded infinity table's ill-conditioned formal source
+near 1.91 km fails the finite exact-ray check and is not declared finite; its published infinity state is explicit.
+
+The inferred rear gap, estimated apertures, source L15 Abbe discrepancy and unresolved spectral data remain
+limitations. No prescription, image plane, aperture or glass changes.
+
 ## 2026-05-19 - Missing-Sellmeier queue audit
 
 ### Phase 1 - Glass corrections

@@ -271,6 +271,14 @@ All three Table 2 states are stored as focus keyframes. A paraxial check of the 
 
 At maximum magnification (−0.5×), G1 has extended 21.93 mm forward from its infinity position. This is a substantial extension — approximately 36% of the design focal length — which is typical of macro lenses achieving 0.5× reproduction ratios. In practice, the front element protrudes significantly from the lens barrel at close focus, which is why the production lens ships with a deep metal hood.
 
+The MTF Lens state selector enables infinity, −0.2× and −0.5× at the exact authored keyframes.
+The finite object distances are **calculated**: 363.122276 mm and 179.878740 mm ahead of the first surface
+(437.563276 mm and 267.479740 mm object-to-image). These use the physical GC plate and the retained,
+inferred 0.001 mm gap after it; the patent does not print that final gap. Independent small-height exact
+rays confirm the first-order distances and published magnifications. Intermediate slider positions remain
+unverified for finite MTF. Estimated apertures, unresolved glass dispersion and source rounding still limit
+the prescription estimate.
+
 ### Why single-group focus?
 
 The patent explicitly contrasts this design against floating-focus systems (para [0064]), arguing that single-group focus "can simplify the mechanism for moving lenses while focusing, and miniaturization of the lens and low cost can be achieved as a result." The trade-off is that chromatic and field curvature aberrations change more with focus distance than in a floating system, but the cemented doublets and G2's corrector architecture mitigate this. The aberration diagrams in the patent (Figs. 7–9) show well-controlled performance across the full focus range from infinity to −0.5×.
