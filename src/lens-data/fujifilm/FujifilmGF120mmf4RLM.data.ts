@@ -52,6 +52,29 @@ const LENS_DATA = {
   patentYear: 2018,
   elementCount: 14,
   groupCount: 9,
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "US 2018/0059384 A1, Example 1 Tables 1–3, INF column.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "closest",
+      label: "Closest published state",
+      focusT: 1,
+      zoomT: 0,
+      source: "US 2018/0059384 A1, Example 1 Tables 1–3 and Figure 7, MOD distance 0.28075 m; first-surface reference independently confirmed by fixed-plane optics (see audit).",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 280.75,
+        distanceReference: "first-surface",
+        distanceProvenance: "published",
+      },
+    },
+  ],
 
   /* ── Elements ── */
   elements: [
@@ -306,7 +329,8 @@ const LENS_DATA = {
   /* ── Variable air spacings (dual-group inner focus) ──
    *  G2 moves toward image at close focus; G4 moves toward object.
    *  Total track conserved to < 0.001 mm.
-   *  Patent close-focus: 0.28075 m from front vertex (β = −0.5×).
+   *  Published close distance: 0.28075 m; first-vertex convention verified optically.
+   *  Calculated magnification is about −0.5011, not a source-published β label.
    */
   var: {
     "7": [3.232, 16.729],

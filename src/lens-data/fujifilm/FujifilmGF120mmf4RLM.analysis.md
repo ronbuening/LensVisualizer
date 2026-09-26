@@ -21,7 +21,7 @@ The identification of Example 1 as the production Fujinon GF120mmF4 R LM OIS WR 
 
 5. **Angle of view.** The patent states 2ω = 26.4° at infinity; the manufacturer lists 25.7°. The small difference is within the range of nominal rounding and field-angle definition differences (geometric vs. vignetted).
 
-6. **Macro capability with 0.5× magnification.** The patent's close-focus state is labeled "MOD" (minimum object distance) and the figures show β = −0.5×, matching the manufacturer's maximum magnification of 0.5×. The patent lists a close-focus distance of 0.28075 m from the front vertex; the physical length from front vertex to image plane (cover glass included) is approximately 173 mm, so the predicted sensor-to-subject distance is 280.8 + 173.0 ≈ 454 mm, consistent with the manufacturer's 0.45 m MFD.
+6. **Macro capability near 0.5× magnification.** Figure 7 labels the close-focus state "MOD (DISTANCE: 0.28075 m)"; it does not publish a β = −0.5× label. Independent fixed-plane optics give approximately −0.5011×. Table 2 publishes the same distance without naming its reference plane; the optical check identifies the first-surface convention. With approximately 173 mm of physical track (cover glass included), this corresponds to about 454 mm object-to-image, consistent with the production lens's rounded 0.45 m MFD.
 
 7. **OIS (camera shake correction).** The patent specifies that the third lens group G3 moves perpendicular to the optical axis for image stabilization, consistent with Fujifilm's 5-stop OIS specification.
 
@@ -188,6 +188,12 @@ The variable air gaps at infinity and close focus are:
 The sum of all four variable gaps is conserved at 75.83 mm (to within rounding), confirming constant overall length. Both focus groups are driven by linear motors (LM), as indicated by the lens designation, providing fast and silent autofocus performance suitable for video recording on the GFX platform.
 
 At close focus, the effective focal length shortens from 116.4 mm to 84.3 mm and the effective f-number increases from F/4.12 to F/5.94, as is characteristic of internal-focusing macro designs. The half-field angle narrows from 13.2° to 8.4°.
+
+The MTF Lens state selector enables infinity and the closest published state. It retains the source's
+280.75 mm distance ahead of the first surface. The independently calculated distance is 280.756419 mm,
+a 0.006419 mm difference consistent with the rounded gaps. The 172.980 mm physical track includes PP
+exactly once. Intermediate finite-focus positions remain unverified for MTF. This verifies a source
+configuration; inferred apertures and glass proxies still limit the resulting prescription estimate.
 
 ## Aspherical Surfaces
 

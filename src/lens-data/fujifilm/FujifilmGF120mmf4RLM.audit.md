@@ -2,6 +2,40 @@
 
 Patent: US 2018/0059384 A1, Example 1
 
+## 2026-09-26 — Source-state review
+
+Source-state review outcome: verified. Both authored candidates reviewed; infinity and the closest
+published state are enabled. Intermediate movement is not certified.
+
+Visually inspected local `patents/US20180059384A1.pdf` pages 8, 20–21: Figure 7 and Example 1 Tables 1–3.
+All 26 source rows reproduce the retained prescription. PP remains 3.200 mm of nd=1.51680 glass after
+36.746 mm air, followed by 1.022 mm air, expanded exactly once. Table 2 and Figure 7 publish the close
+distance as 0.28075 m; paragraph 0180 calls it an imaging distance without naming a reference plane.
+The first-surface convention is independently established by the calculation below. It is not an
+image-plane distance or a substitution of the production lens's 0.45 m specification.
+
+| Gap (mm) | Infinity | Closest |
+|---|---:|---:|
+| DD7 | 3.232 | 16.729 |
+| DD12 | 20.862 | 7.364 |
+| DD16 | 24.855 | 12.408 |
+| DD21 | 26.884 | 39.331 |
+
+At focusT=1, A=-0.5011221057848434 and B=140.69324784606192 mm give
+s=-B/A=280.75641888859025 mm before the first surface and 453.73641888859026 mm object-to-image.
+The former agrees with published 280.75 mm within 0.00229%; an image-plane interpretation does not.
+The declaration retains the published value. Independent exact-ray roots at 0.01/0.005/0.0025 mm
+first-vertex heights give 280.756418381983/280.756418757853/280.756418855906 mm; axial residuals stay
+below 9.08e-12 mm and signed magnification approaches -0.501122105792.
+
+Figure 7 does not print the -0.5× label previously claimed in the analysis. Corrected that attribution;
+the optional sourced magnification is omitted, while the calculated value remains qualified evidence.
+The 0.001 mm total-track difference between endpoints is retained source rounding. The formal finite
+solution near 9.70 km at the rounded infinity geometry is not declared finite. The source working FNo
+5.94 remains distinct from the fixed physical iris and the viewer's estimated effective aperture.
+
+No geometry, physical aperture, image plane or glass changes. Estimated rims and glass proxies remain limitations.
+
 ## 2026-05-19 — Glass relabel audit
 
 ### Phase 1 — Glass corrections
