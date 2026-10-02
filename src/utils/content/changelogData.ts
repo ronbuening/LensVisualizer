@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-02",
+    type: "improvement",
+    summary: "Improved universal map labels, navigation, and rendering at different zoom levels",
+  },
+  {
+    date: "2026-10-02",
     type: "fix",
     summary: "Corrected aperture readouts, focus behavior, presets, and saved slider precision",
   },

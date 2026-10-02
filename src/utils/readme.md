@@ -39,7 +39,7 @@ flowchart LR
 - Direct source files: 12
 - Direct subfolders: 6
 - Main outbound areas: package:react, src/utils/mediaQuery.ts, src/utils/useMediaQuery.ts
-- External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/errors, src/components/HolidayFavicon.tsx, +23 more
+- External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/errors, src/components/HolidayFavicon.tsx, +24 more
 
 ## Subfolders
 
@@ -60,11 +60,11 @@ flowchart LR
 | `chunkLoadRetry.ts` | Chunk Load Retry helper module | none | src/router.tsx, src/utils/catalog | loadChunkWithReload |
 | `errorBeacon.ts` | Error Beacon helper module | none | src/components/errors (3), src/main.tsx | sanitizeErrorMessage, errorBeaconKey, reportErrorBeacon, installGlobalErrorBeacons, resetErrorBeaconSessionForTests |
 | `errorReporting.ts` | Error Reporting helper module | none | src/components/errors | REPO_URL, buildIssueURL |
-| `featureFlags.ts` | Feature Flags helper module | none | src/components/layout (5), src/components/controls (2), src/components/diagram (2), src/components/display (2), src/components/hooks (2), +3 more | ENABLE_UNIFORM_SCALING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION, ENABLE_REAL_RAY_LSA_DIAGNOSTIC, ENABLE_ANALYSIS_VIEW, ENABLE_CARDINAL_ELEMENTS |
+| `featureFlags.ts` | Feature Flags helper module | none | src/components/layout (5), src/components/controls (2), src/components/diagram (2), src/components/display (2), src/components/hooks (2), +5 more | ENABLE_UNIFORM_SCALING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION, ENABLE_REAL_RAY_LSA_DIAGNOSTIC, ENABLE_ANALYSIS_VIEW, ENABLE_CARDINAL_ELEMENTS, ENABLE_UNIVERSAL_MAP_EXTRA_VIEWS, ENABLE_REVISED_UNIVERSAL_MAP |
 | `holidays.ts` | Holidays helper module | none | src/utils/theme (2), src/components/HolidayFavicon.tsx | HolidayId, HOLIDAY_IDS, isHolidayId, nthWeekdayOfMonth, computeEaster, getActiveHoliday, HolidayOverride, holidayOverrideFromSearch |
 | `mediaQuery.ts` | Media Query helper module | none | src/utils/useMediaQuery.ts | subscribeToMediaQuery |
 | `perfProbe.ts` | Perf Probe helper module | none | src/components/display (6), src/benchmarks | probe, resetPerfProbe |
-| `svgCoordinates.ts` | Svg Coordinates helper module | none | src/components/hooks, src/components/relationshipMap | SvgBounds, clientPointToSvg, visibleSvgBounds |
-| `text.ts` | Text helper module | none | src/components/relationshipMap (4), src/components/search (2), src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +7 more | pluralize |
-| `useMediaQuery.ts` | React hook module | package:react, src/utils/mediaQuery.ts | src/components/layout (3), src/components/content (2), src/components/homepage (2), src/comparison, src/components/display, +4 more | default, useMediaQuery |
+| `svgCoordinates.ts` | Svg Coordinates helper module | none | src/components/relationshipMap (2), src/components/hooks | SvgBounds, clientPointToSvg, visibleSvgBounds |
+| `text.ts` | Text helper module | none | src/components/relationshipMap (5), src/components/search (2), src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +7 more | pluralize |
+| `useMediaQuery.ts` | React hook module | package:react, src/utils/mediaQuery.ts | src/components/layout (3), src/components/content (2), src/components/homepage (2), src/comparison, src/components/display, +6 more | default, useMediaQuery |
 | `usePrefersReducedMotion.ts` | React hook module | src/utils/useMediaQuery.ts | src/components/layout (3), src/components/diagram (2) | REDUCED_MOTION_QUERY, default, usePrefersReducedMotion |

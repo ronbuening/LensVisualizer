@@ -2,7 +2,7 @@
 
 /** Interaction coverage for the universal relationship SVG and entity panel. */
 
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent } from "@testing-library/react";
 import UniversalEntityDetailCard from "../../../../src/components/relationshipMap/UniversalEntityDetailCard.js";
 import UniversalRelationshipMap from "../../../../src/components/relationshipMap/UniversalRelationshipMap.js";
@@ -14,6 +14,22 @@ import type {
 import themes from "../../../../src/utils/theme/themes.js";
 import { installResizeObserverMock, renderWithRouter } from "../../../testUtils.js";
 import { layoutUniversalRelationshipGraph } from "../../../../src/components/relationshipMap/universalLayout.js";
+import * as universalLayout from "../../../../src/components/relationshipMap/universalLayout.js";
+
+const mapFlags = vi.hoisted(() => ({ revised: true, extraViews: false }));
+vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("../../../../src/utils/featureFlags.js")>()),
+  get ENABLE_REVISED_UNIVERSAL_MAP() {
+    return mapFlags.revised;
+  },
+  get ENABLE_UNIVERSAL_MAP_EXTRA_VIEWS() {
+    return mapFlags.extraViews;
+  },
+}));
+beforeEach(() => {
+  mapFlags.revised = true;
+  mapFlags.extraViews = false;
+});
 
 afterEach(() => {
   cleanup();
@@ -158,6 +174,69 @@ function makeMultiHubGraph(): UniversalRelationshipGraph {
 }
 
 describe("UniversalRelationshipMap", () => {
+  it("reveals selection actions only after selecting a node and clears through the shared callback", () => {
+    const onSelectNode = vi.fn();
+    const props = { graph, theme: themes.dark, onSelectNode };
+    const { getByRole, queryByRole, rerender } = renderWithRouter(
+      <UniversalRelationshipMap {...props} selectedNodeId={null} />,
+    );
+    expect(queryByRole("button", { name: "Center selection" })).toBeNull();
+    expect(queryByRole("button", { name: "Fit neighborhood" })).toBeNull();
+    expect(queryByRole("button", { name: "Emphasize connections" })).toBeNull();
+    rerender(<UniversalRelationshipMap {...props} selectedNodeId={author.id} />);
+    expect(getByRole("button", { name: "Center selection" })).toBeDefined();
+    expect(getByRole("button", { name: "Fit neighborhood" })).toBeDefined();
+    fireEvent.click(getByRole("button", { name: "Clear selection" }));
+    expect(onSelectNode).toHaveBeenCalledWith(null);
+    expect(document.activeElement).toBe(getByRole("button", { name: "Fit all" }));
+  });
+
+  it.each([false, true])("restores previous rendering independently of extra views=%s", (extraViews) => {
+    mapFlags.revised = false;
+    mapFlags.extraViews = extraViews;
+    const select = vi.fn();
+    const { container, getByRole, queryByRole } = renderWithRouter(
+      <UniversalRelationshipMap
+        graph={graph}
+        theme={themes.light}
+        selectedNodeId={assignee.id}
+        onSelectNode={select}
+      />,
+    );
+    expect(queryByRole("button", { name: "Fit neighborhood" })).toBeNull();
+    expect(container.querySelectorAll('g[role="button"][tabindex="0"]')).toHaveLength(graph.nodes.length);
+    expect(container.querySelectorAll("[data-node-label]")).toHaveLength(0);
+    expect(container.querySelector("svg")!.querySelectorAll('[vector-effect="non-scaling-stroke"]')).toHaveLength(0);
+    expect(
+      getByRole("button", { name: `Select assignee ${assignee.name}` })
+        .querySelector("text")
+        ?.getAttribute("font-size"),
+    ).toBe("9");
+    for (let i = 0; i < 4; i++) fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    expect(container.querySelectorAll('g[role="button"]')).toHaveLength(graph.nodes.length);
+    expect(container.querySelectorAll("path[data-edge-id]")).toHaveLength(graph.edges.length);
+    fireEvent.click(getByRole("button", { name: `Select inventor ${author.name}` }));
+    expect(select).toHaveBeenCalledWith(author.id);
+  });
+  it("keeps one node tab stop, supports directional focus, and retains geometry and camera across view switches", () => {
+    const compute = vi.spyOn(universalLayout, "layoutUniversalRelationshipGraph");
+    const props = { graph, theme: themes.dark, selectedNodeId: null, onSelectNode: vi.fn() };
+    const { container, getByRole, rerender } = renderWithRouter(<UniversalRelationshipMap {...props} />);
+    expect(compute).toHaveBeenCalledTimes(1);
+    const controls = () => [...container.querySelectorAll('g[role="button"][tabindex="0"]')];
+    expect(controls()).toHaveLength(1);
+    const first = controls()[0];
+    fireEvent.focus(first);
+    for (const key of ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"]) fireEvent.keyDown(first, { key });
+    expect(controls()).toHaveLength(1);
+    expect(container.querySelector("svg")!.contains(document.activeElement)).toBe(true);
+    fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    const camera = container.querySelector("svg")!.getAttribute("viewBox");
+    rerender(<UniversalRelationshipMap {...props} isVisible={false} />);
+    rerender(<UniversalRelationshipMap {...props} isVisible />);
+    expect(container.querySelector("svg")!.getAttribute("viewBox")).toBe(camera);
+    expect(compute).toHaveBeenCalledTimes(1);
+  });
   it("renders catalog maker/model links and exposes model navigation without patent claims", () => {
     const maker = { id: "maker:book", kind: "maker", name: "Book Optics", slug: "book" } as const;
     const lens = {
@@ -203,7 +282,7 @@ describe("UniversalRelationshipMap", () => {
         />
       </>,
     );
-    expect(container.querySelector("line title")?.textContent).toBe(
+    expect(container.querySelector("path[data-edge-id] title")?.textContent).toBe(
       "Book Model grouped under catalog maker Book Optics",
     );
     expect(getByRole("link", { name: "Open maker page →" }).getAttribute("href")).toBe("/makers/book/");
@@ -250,11 +329,17 @@ describe("UniversalRelationshipMap", () => {
     expect(main.parentElement?.contains(overview)).toBe(true);
     width = 390;
     act(() => observer.trigger(main));
+    const tools = getByRole("button", { name: "Selection tools" });
+    expect(tools.getAttribute("aria-expanded")).toBe("false");
+    expect(container.textContent).not.toContain("Fit neighborhood");
+    fireEvent.click(tools);
+    expect(getByRole("button", { name: "Fit neighborhood" })).toBeDefined();
+    fireEvent.click(tools);
     overview = getByRole("group", { name: "Map overview" });
     expect(main.parentElement?.contains(overview)).toBe(false);
-    fireEvent.click(getByRole("button", { name: "Overview" }));
+    fireEvent.click(getByRole("button", { name: "Mini map" }));
     expect(container.querySelector('[aria-label="Map overview"]')).toBeNull();
-    fireEvent.click(getByRole("button", { name: "Overview" }));
+    fireEvent.click(getByRole("button", { name: "Mini map" }));
     expect(getByRole("group", { name: "Map overview" })).toBeDefined();
   });
   it("moves the main viewport through the overview while retaining zoom, selection, and emphasis", () => {
@@ -297,7 +382,7 @@ describe("UniversalRelationshipMap", () => {
       node.getAttribute("cx"),
       node.getAttribute("cy"),
     ]);
-    const edgeCount = container.querySelectorAll("line").length;
+    const edgeCount = container.querySelectorAll("path[data-edge-id]").length;
     const toggle = getByRole("button", { name: "Emphasize connections" });
     expect(toggle.getAttribute("aria-pressed")).toBe("false");
     fireEvent.click(toggle);
@@ -309,15 +394,15 @@ describe("UniversalRelationshipMap", () => {
     expect(assigneeButton.getAttribute("opacity")).toBe("0.15");
     fireEvent.click(assigneeButton);
     expect(props.onSelectNode).toHaveBeenCalledWith(assignee.id);
-    expect(container.querySelectorAll("line")).toHaveLength(edgeCount);
+    expect(container.querySelectorAll("path[data-edge-id]")).toHaveLength(edgeCount);
     expect(
       [...container.querySelectorAll("circle")].map((node) => [node.getAttribute("cx"), node.getAttribute("cy")]),
     ).toEqual(positions);
     rerender(<UniversalRelationshipMap {...props} selectedNodeId={null} />);
-    expect((toggle as HTMLButtonElement).disabled).toBe(true);
-    expect(toggle.getAttribute("aria-pressed")).toBe("true");
+    expect(container.contains(toggle)).toBe(false);
     expect(assigneeButton.getAttribute("opacity")).toBe("1");
     rerender(<UniversalRelationshipMap {...props} selectedNodeId={"family:example"} />);
+    expect(getByRole("button", { name: "Emphasize connections" }).getAttribute("aria-pressed")).toBe("true");
     expect(getByRole("button", { name: "Select inventor Ada Inventor" }).getAttribute("opacity")).toBe("0.15");
     expect(assigneeButton.getAttribute("opacity")).toBe("1");
   });
@@ -334,12 +419,16 @@ describe("UniversalRelationshipMap", () => {
           onSelectNode={vi.fn()}
         />,
       );
-      const lines = [...container.querySelectorAll("line")];
+      const lines = [...container.querySelectorAll("path[data-edge-id]")];
       const opacities = lines.map((line) => Number(line.getAttribute("opacity")));
       fireEvent.click(getByRole("button", { name: "Emphasize connections" }));
       lines.forEach((line, i) =>
         expect(Number(line.getAttribute("opacity"))).toBeCloseTo(
-          opacities[i] * (edges[i].from === author.id || edges[i].to === author.id ? 1 : 0.15),
+          opacities[i] *
+            (edges.find((e) => e.id === line.getAttribute("data-edge-id"))!.from === author.id ||
+            edges.find((e) => e.id === line.getAttribute("data-edge-id"))!.to === author.id
+              ? 1
+              : 0.15),
         ),
       );
     },
@@ -378,7 +467,7 @@ describe("UniversalRelationshipMap", () => {
     const svg = container.querySelector("svg")!;
     const initial = svg.getAttribute("viewBox");
     expect((getByRole("button", { name: "Zoom out" }) as HTMLButtonElement).disabled).toBe(true);
-    expect((getByRole("button", { name: "Center selection" }) as HTMLButtonElement).disabled).toBe(true);
+    expect(container.querySelector('[aria-label="Clear selection"]')).toBeNull();
     Object.defineProperties(svg, { setPointerCapture: { value: vi.fn() }, releasePointerCapture: { value: vi.fn() } });
     fireEvent.pointerDown(svg, { button: 0, clientX: 200, clientY: 200, pointerId: 1 });
     fireEvent.pointerMove(svg, { clientX: 250, clientY: 230, pointerId: 1 });
@@ -439,7 +528,9 @@ describe("UniversalRelationshipMap", () => {
     );
     const button = getByRole("button", { name: "Select assignee Example Optics" });
     fireEvent.focus(button);
-    const activeLines = [...container.querySelectorAll("line")].filter((line) => line.getAttribute("opacity") === "1");
+    const activeLines = [...container.querySelectorAll("path[data-edge-id]")].filter(
+      (line) => line.getAttribute("opacity") === "1",
+    );
     expect(activeLines).toHaveLength(2);
   });
 
@@ -454,13 +545,13 @@ describe("UniversalRelationshipMap", () => {
     );
     expect(container.querySelector("svg")!.querySelectorAll("ellipse")).toHaveLength(2);
 
-    const authorshipLines = [...container.querySelectorAll("line")].filter((line) =>
+    const authorshipLines = [...container.querySelectorAll("path[data-edge-id]")].filter((line) =>
       line.querySelector("title")?.textContent?.includes("Shared Inventor named on"),
     );
     expect(authorshipLines).toHaveLength(2);
     expect(new Set(authorshipLines.map((line) => line.getAttribute("opacity")))).toEqual(new Set(["0.3"]));
 
-    const acquisitionLine = [...container.querySelectorAll("line")].find(
+    const acquisitionLine = [...container.querySelectorAll("path[data-edge-id]")].find(
       (line) => line.querySelector("title")?.textContent === "Alpha Optics acquired by Beta Optics",
     );
     expect(acquisitionLine?.getAttribute("opacity")).toBe("0.62");
