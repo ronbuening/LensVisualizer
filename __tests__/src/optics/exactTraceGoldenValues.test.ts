@@ -151,6 +151,19 @@ function buildCatalogLens(key: string): RuntimeLens {
 }
 
 describe("exact trace golden values — refractive designs", () => {
+  it("admits the source wide-open marginal ray through a tight inferred double-Gauss aperture", () => {
+    // Near-axis catalog smoke rays do not detect a body rim narrowing the source aperture.
+    // Retain this exact, aperture-enforced reference ray rather than pinning authored SDs.
+    const L = buildCatalogLens("agfa-solagon-50mm-f2");
+    const layout = doLayout(0, 0, L);
+    for (const sign of [-1, 1]) {
+      const trace = traceRay((sign * L.EFL) / (2 * 2), 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+      expect(trace.clipped).toBe(false);
+      expect(Number.isFinite(trace.y)).toBe(true);
+      expect(Number.isFinite(trace.u)).toBe(true);
+    }
+  });
+
   it.each(GOLDEN_LENSES)("$key ($design) reproduces pinned first-order values", (g) => {
     const L = buildCatalogLens(g.key);
     const layout = doLayout(0, 0, L);

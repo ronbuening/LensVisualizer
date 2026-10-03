@@ -411,7 +411,15 @@ export interface LensData {
   yScFill: number;
   clipMargin: number;
   maxRimAngleDeg: number;
+  /** Maximum shared-gap sag intrusion fraction; > 0 and <= 1. */
   gapSagFrac: number;
+  /** Authoring contract for inferred surface apertures only; never rescales authored sd. */
+  inferredApertures?: {
+    /** Fractional radial reserve above the required ray envelope; > 0 and <= 1. */
+    marginFrac: number;
+    /** Ray-required semi-diameter in mm by surface label, excluding published clear apertures and stops. */
+    requiredSemiDiameters: Record<string, number>;
+  };
   maxAspectRatio: number;
   lensShiftFrac?: number;
   rayFractions: number[];

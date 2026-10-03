@@ -62,6 +62,104 @@ function makeValid(overrides: Record<string, unknown> = {}): Record<string, unkn
 }
 
 describe("validateLensData", () => {
+  // Shared authoring contracts: tight clear gaps must remain distinct from real intersections.
+  function tightGap(gapSagFrac = 0.9, sd = 5.98) {
+    return makeValid({
+      gapSagFrac,
+      elements: [
+        { id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 },
+        { id: 2, name: "L2", label: "E2", type: "test", nd: 1.5, vd: 50 },
+      ],
+      surfaces: [
+        { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 4 },
+        { label: "1", R: 1e15, d: 5, nd: 1.5, elemId: 1, sd },
+        { label: "2", R: 20, d: 2, nd: 1, elemId: 0, sd },
+        { label: "3", R: -20, d: 5, nd: 1.5, elemId: 2, sd },
+        { label: "4", R: 1e15, d: 40, nd: 1, elemId: 0, sd },
+      ],
+    });
+  }
+
+  it("retains the default reserve and accepts explicit bounded tight-gap overrides", () => {
+    expect(LENS_DEFAULTS.gapSagFrac).toBe(0.9);
+    expect(validateLensData(tightGap()).some((e) => e.includes("reserve-policy failure"))).toBe(true);
+    for (const fraction of [0.92, 0.95, 1]) {
+      expect(validateLensData(tightGap(fraction))).toEqual([]);
+    }
+    for (const fraction of [0, -1, 1.01, NaN, Infinity, "0.95", null]) {
+      expect(validateLensData({ ...tightGap(), gapSagFrac: fraction }).some((e) => e.includes("gapSagFrac"))).toBe(
+        true,
+      );
+    }
+  });
+
+  it("allows a justified 1% inferred margin while larger margins truly intersect", () => {
+    const requiredSd = 5.99;
+    const data = {
+      ...tightGap(0.95, requiredSd * 1.01),
+      inferredApertures: { marginFrac: 0.01, requiredSemiDiameters: { "2": requiredSd, "3": requiredSd } },
+    };
+    expect(validateLensData(data)).toEqual([]);
+    expect(validateLensData({ ...data, gapSagFrac: 0.92 }).some((e) => e.includes("reserve-policy failure"))).toBe(
+      true,
+    );
+    for (const marginFrac of [0.08, 0.12]) {
+      expect(
+        validateLensData({
+          ...tightGap(0.95, requiredSd * (1 + marginFrac)),
+          inferredApertures: { marginFrac, requiredSemiDiameters: { "2": requiredSd, "3": requiredSd } },
+        }).some((e) => e.includes("physical surface intersection")),
+      ).toBe(true);
+    }
+  });
+
+  it("rejects physical intersections even at the largest allowed fraction", () => {
+    const errors = validateLensData(tightGap(1, 7));
+    expect(errors.some((e) => e.includes("physical surface intersection"))).toBe(true);
+    expect(errors.some((e) => e.includes("reserve-policy failure"))).toBe(false);
+  });
+
+  it("enforces an opt-in inferred margin without changing authored or published apertures", () => {
+    const data = makeValid();
+    const original = structuredClone(data);
+    expect(validateLensData(data)).toEqual([]);
+    expect(
+      validateLensData({ ...data, inferredApertures: { marginFrac: 0.01, requiredSemiDiameters: { "1": 9.9 } } }),
+    ).toEqual([]);
+    expect(
+      validateLensData({ ...data, inferredApertures: { marginFrac: 0.08, requiredSemiDiameters: { "1": 9.9 } } }).some(
+        (e) => e.includes("including marginFrac"),
+      ),
+    ).toBe(true);
+    expect(data).toEqual(original);
+  });
+
+  it("rejects invalid inferred margin contracts", () => {
+    for (const marginFrac of [0, -0.01, 1.01, NaN, Infinity, "0.01", null]) {
+      expect(
+        validateLensData(makeValid({ inferredApertures: { marginFrac, requiredSemiDiameters: { "1": 9 } } })).some(
+          (e) => e.includes("marginFrac"),
+        ),
+      ).toBe(true);
+    }
+    for (const requiredSemiDiameters of [
+      {},
+      [],
+      null,
+      { missing: 1 },
+      { STO: 1 },
+      { "1": 0 },
+      { "1": -1 },
+      { "1": Infinity },
+      { "1": NaN },
+      { "1": "9" },
+    ]) {
+      expect(
+        validateLensData(makeValid({ inferredApertures: { marginFrac: 0.01, requiredSemiDiameters } })).length,
+      ).toBeGreaterThan(0);
+    }
+  });
+
   it("requires finite-conjugate source evidence, distance conventions and authored stations", () => {
     const station = {
       focusT: 1,

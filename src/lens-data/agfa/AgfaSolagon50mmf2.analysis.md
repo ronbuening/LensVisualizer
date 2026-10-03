@@ -31,6 +31,8 @@ At patent scale, the computed equivalent focal length is 100.1697 mm and the fir
 
 The aperture stop lies in the large central air space between surfaces R5 and R6. In the data file this 10.44 mm scaled space is split equally into 5.22 mm before and after the stop. The resulting physical stop semi-diameter is 8.587 mm at the scaled focal length, giving an entrance-pupil semi-diameter of 12.521 mm and F/2.0 by paraxial trace.
 
+Clear apertures are inferred. The exact infinity F/2 marginal ray requires 11.590381 mm at S3; its former 11.2 mm radius clipped that ray and restricted the unobstructed axis bundle to about F/2.076. S3 now uses 12.52 mm, with an 8% declared allowance above that infinity on-axis footprint. This does not establish an all-field or finite-focus aperture envelope. All prescription values, other rims and the default 90% air-gap reserve policy are retained; off-axis vignetting remains a separate limitation.
+
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus, convex to object

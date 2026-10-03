@@ -736,6 +736,43 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       errors.push(`"gapSagFrac" must be > 0 and <= 1 so validation and rendering cannot allow overlap`);
     }
   }
+  if (data.inferredApertures !== undefined) {
+    const policy = data.inferredApertures;
+    if (!policy || typeof policy !== "object" || Array.isArray(policy)) {
+      errors.push('"inferredApertures" must be an object');
+    } else {
+      const margin = policy.marginFrac;
+      if (typeof margin !== "number" || !Number.isFinite(margin) || margin <= 0 || margin > 1) {
+        errors.push('"inferredApertures.marginFrac" must be finite, > 0 and <= 1');
+      }
+      const required = policy.requiredSemiDiameters;
+      if (!required || typeof required !== "object" || Array.isArray(required) || !Object.keys(required).length) {
+        errors.push('"inferredApertures.requiredSemiDiameters" must be a non-empty surface-label map');
+      } else {
+        for (const [label, radius] of Object.entries(required)) {
+          const surface = Array.isArray(data.surfaces)
+            ? data.surfaces.find((s: UntrustedLensData) => s.label === label)
+            : undefined;
+          if (!surface || label === "STO") {
+            errors.push(`Inferred aperture "${label}" must reference an existing non-stop surface`);
+          }
+          if (typeof radius !== "number" || !Number.isFinite(radius) || radius <= 0) {
+            errors.push(`Inferred aperture "${label}" requires a positive finite ray-envelope semi-diameter`);
+          } else if (
+            surface &&
+            Number.isFinite(margin) &&
+            margin > 0 &&
+            margin <= 1 &&
+            surface.sd < radius * (1 + margin) - 1e-9
+          ) {
+            errors.push(
+              `Inferred aperture "${label}": sd=${surface.sd} mm is below the required ${(radius * (1 + margin)).toFixed(6)} mm including marginFrac=${margin}`,
+            );
+          }
+        }
+      }
+    }
+  }
   for (const f of requiredArrays) {
     if (!Array.isArray(data[f]) || data[f].length === 0) errors.push(`Missing or empty required array field: "${f}"`);
   }
@@ -1559,9 +1596,15 @@ function _checkCrossGapOverlap(
     const sagBack = conicPolySag(sdCheck, next.R, asphByIdx[i + 1]);
     const intrusion = sagFwd - sagBack;
     const maxIntrusion = gapD * Math.min(gapSagFrac, 1);
-    if (intrusion > maxIntrusion)
+    const clearance = gapD - intrusion;
+    if (clearance <= 0) {
       errors.push(
-        `Air gap "${curr.label}"→"${next.label}": combined surface sag (${intrusion.toFixed(2)} mm) exceeds allowed gap intrusion (${maxIntrusion.toFixed(3)} mm of ${gapD.toFixed(3)} mm) at sd=${sdCheck.toFixed(1)}${context} — elements will overlap in rendering`,
+        `Air gap "${curr.label}"→"${next.label}": physical surface intersection or contact (clearance ${clearance.toFixed(6)} mm) at sd=${sdCheck.toFixed(3)}${context}`,
       );
+    } else if (intrusion > maxIntrusion) {
+      errors.push(
+        `Air gap "${curr.label}"→"${next.label}": gapSagFrac reserve-policy failure; positive physical clearance ${clearance.toFixed(6)} mm, required fraction ${(intrusion / gapD).toFixed(9)} exceeds gapSagFrac=${gapSagFrac} at sd=${sdCheck.toFixed(3)}${context}`,
+      );
+    }
   }
 }

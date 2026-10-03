@@ -25,6 +25,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    estimated from paraxial marginal/chief-ray traces, the Fig. 1     ║
  * ║    relative element proportions, edge-thickness checks, and the      ║
  * ║    renderer's spherical-rim and same-element diameter constraints.   ║
+ * ║    S3 uses an 8% allowance above the exact infinity F/2 marginal   ║
+ * ║    footprint (11.5903813122 mm); the patent does not publish this SD. ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -125,7 +127,7 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 34.9215, d: 3.33, nd: 1.623, elemId: 1, sd: 14.2 },
     { label: "2", R: 105.8665, d: 0.305, nd: 1.0, elemId: 0, sd: 13.2 },
-    { label: "3", R: 16.9125, d: 5.795, nd: 1.6667, elemId: 2, sd: 11.2 },
+    { label: "3", R: 16.9125, d: 5.795, nd: 1.6667, elemId: 2, sd: 12.52 },
     { label: "4", R: 1e15, d: 1.445, nd: 1.6254, elemId: 3, sd: 11.2 },
     { label: "5", R: 11.7815, d: 5.22, nd: 1.0, elemId: 0, sd: 10.0 },
 
@@ -140,6 +142,12 @@ const LENS_DATA = {
   ],
 
   asph: {},
+
+  // Evidence basis: exact infinity on-axis F/2 marginal ray, not an all-field/focus envelope.
+  inferredApertures: {
+    marginFrac: 0.08,
+    requiredSemiDiameters: { "3": 11.5903813122 },
+  },
 
   var: {
     "10": [34.301821, 37.37203],
