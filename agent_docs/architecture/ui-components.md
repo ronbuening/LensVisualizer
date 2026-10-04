@@ -131,12 +131,15 @@ the highest-degree node); shared inventors never absorb a small assignee into an
 deterministic hub in capacity-limited local rings, and the neighborhoods are contracted into a hierarchical-affinity hub
 graph. Center, orbit, and angular-neighbor selection use lexicographic priority: corporate-history edge count, then
 unique cross-neighborhood patent count, then neighborhood node count. `UniversalRelationshipMap.tsx` renders labeled
-halos inside each disconnected-network boundary, keeps every edge at its edge-kind brightness within and between
-neighborhoods, and draws nodes above both boundary layers. Non-patent catalog models use distinct `lens` and `maker`
+halos inside each disconnected-network boundary. It preserves every node and edge in the layout while culling
+offscreen SVG elements, including conservative curve bounds for edges crossing the viewport. Highlighted edges draw
+last, followed by nodes and collision-managed labels at 13 CSS pixels. `universalMapGeometry.ts` owns screen-space
+label packing and directional keyboard navigation; the SVG uses one roving node tab stop. Fit neighborhood, fit all,
+selection centering, and the minimap reuse the existing camera hook. Non-patent catalog models use distinct `lens` and `maker`
 nodes with `catalog-maker` edges derived only from an explicit lens `maker` field; these edges do not count as patents,
 corporate history, or corporate affinity. Maker hubs center their models, and details link to the model and maker pages.
 
-`UniversalMapSearch` searches only graph nodes and uses the shared portal dropdown with combobox keyboard semantics.
+`UniversalMapSearch` searches graph nodes and patent-backed lens-name aliases (selecting the source patent) and uses the shared portal dropdown with combobox keyboard semantics.
 `src/utils/catalog/universalRelationshipSearch.ts` normalizes names and compact patent numbers, ranking exact matches,
 prefixes, then reordered word matches with deterministic catalog sorting. The dropdown shows at most eight results;
 Enter selects the highlighted or first result and never navigates to a search page; it is ignored during text composition.
@@ -151,14 +154,49 @@ and families. Explicit focused-map and source links remain available. Keyboard n
 replacement heading without scrolling; pointer navigation leaves page focus alone.
 The page owns selection history and camera intent; see [Routing and content](routing-and-content.md#pages-and-routes)
 for the fragment, hydration, and Back/Forward contract.
-The optional connection emphasis uses memoized adjacency to retain the selected node, its immediate neighbors, and
-incident edges at normal opacity while multiplying other node/edge opacity by 0.15. Hover does not change membership,
-all elements remain operable, and clearing selection temporarily suspends emphasis without forgetting the toggle.
-`UniversalMapOverview` reuses the same layout for a cached simplified scene and shows the visible viewport measured
-through the main SVG's inverse screen transform (`useSvgViewport` / `svgCoordinates`). Click/tap centers without
-changing selection or zoom; double-click centers and doubles the zoom; arrow keys pan and Home fits the map. The
-overview sits inside wide viewports and below viewports narrower than 600 CSS pixels, with a local visibility
-toggle. It does not run another layout or filter the graph.
+`ENABLE_UNIVERSAL_MAP_EXTRA_VIEWS` in `src/utils/featureFlags.ts` defaults to true, exposing tabs in Full map, Explore,
+Research order with shared selection and filters. Full map is the default view. The flag can be disabled to expose
+Full map only.
+When disabled, Explore/Research are not mounted, path queries do not run, and their saved URL views fall back to Full map
+without rewriting the fragment. Hidden features are omitted from the page's introduction and help.
+`ENABLE_REVISED_UNIVERSAL_MAP` independently defaults to true and controls the Full map presentation described above.
+Turning it off restores unculled nodes and straight edges, zoom-threshold labels, scaling strokes, and the previous
+node tab stops; Fit neighborhood is omitted. Selection, search, filters, the minimap, and camera history remain available.
+When extra views are enabled, panels stay mounted across tab switches, preserving cameras and local query/pagination state; entering Full map with
+a different selection frames it. Details sit beside the workspace from 1100 CSS pixels, or in an expandable panel below.
+`StaticPageShell.maxWidth` lets this workspace use 1600 pixels without changing other page widths.
+The workspace starts with search and a collapsed relationship-filter panel; its button reports all or partial
+coverage, and hidden relationships remain called out even when the panel is closed. The initial toolbar contains
+zoom, fit-all, and minimap controls. Selection adds the entity name and relevant actions; below 600 map pixels,
+secondary actions collapse under Tools. Below the side-panel breakpoint, View details and Back to map move focus
+and scroll between the diagram and the expanded evidence panel without changing history or the camera.
+The map key, keyboard help, and evidence explanation are collapsed below the diagram. Disclosure state is local.
+
+`UniversalMapExplore` uses `universalExploreLayout.ts` to contract the complete layout into fixed-size neighborhood
+cards, ordered by the existing corporate/patent affinities and packed into separate network regions. Every node belongs
+to one summary; each edge appears once in either a neighborhood or a typed inter-neighborhood bridge. Summary counts
+always describe the complete neighborhood; relationship filters select the bridge evidence and local adjacency without
+reassigning nodes. Below 900 pixels, a searchable card directory replaces the summary SVG. Opening a neighborhood or
+selecting an entity shows at most 25 direct neighbors per page, ordered by role, patent year, and name. The accompanying
+searchable list exposes full names and each recorded edge, including parallel relationships. The named center card and
+heading offer Open full map, which retains the entity and active filters, explicitly frames the entity, and moves
+keyboard focus to the Full map tab. The heading action remains available when the local diagram is scrolled.
+
+`UniversalMapResearch` provides sortable, searchable 50-row entity/relationship tables and a two-endpoint path finder.
+Opening the Research tab from another view uses the selected entity as the starting endpoint. The destination stays
+intact, including an unsubmitted picker choice; explicit Research URLs and Back/Forward restore their recorded endpoints.
+`universalRelationshipQueries.ts` runs BFS on original edges, then enumerates at most three shortest paths through the
+resulting distance DAG. Traversal is bidirectional, but `UniversalRelationshipEvidence` phrases each step in the source
+edge's direction, showing dates, notes, corporate sources, patent links, or the explicit catalog grouping provenance.
+Paths are historical record connections, not claims of simultaneous relationships or current ownership. Empty results
+distinguish disconnected entities from paths removed by the active filters. Entity lists retain all nodes; connection
+counts and relationship rows use the enabled edge kinds. Query text and table sort/page remain local.
+
+Revised Full map's optional connection emphasis uses filtered adjacency: the selected node, its neighbors and incident edges
+retain their brightness; other elements multiply opacity by 0.15. Clearing selection suspends emphasis without clearing
+the preference. `UniversalMapOverview` reuses the full layout with measured, letterbox-aware viewport bounds; click/tap
+centers, double-click zooms, arrow keys pan, and Home fits. It sits inside viewports at least 600 pixels wide and below
+narrower ones. Geometry, adjacency, summaries, and path queries are independent of camera movements.
 
 ## Markdown Renderer
 

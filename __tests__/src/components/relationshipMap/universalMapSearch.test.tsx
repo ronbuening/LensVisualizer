@@ -39,6 +39,13 @@ describe("universal map search", () => {
       searchUniversalNodes(buildUniversalSearchIndex([patent]), patent.name.replace(/[^\p{L}\p{N}]/gu, "")),
     ).toEqual([patent]);
   });
+  it("selects the source patent when searching a represented lens name", () => {
+    const patent = graph.nodes.find((n) => n.kind === "patent" && n.patent.lenses.length > 0)!;
+    if (patent.kind !== "patent") throw new Error("Missing fixture patent");
+    const results = searchUniversalNodes(buildUniversalSearchIndex(graph.nodes), patent.patent.lenses[0].name);
+    expect(results).toContain(patent);
+    expect(new Set(results.map((n) => n.id)).size).toBe(results.length);
+  });
 
   it("selects the highlighted result with Enter and keeps focus without navigation", () => {
     const pick = vi.fn();

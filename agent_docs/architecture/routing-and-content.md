@@ -47,7 +47,7 @@ always `/relationships/`. Assignee slugs come from the build-generated `assignee
 `src/utils/catalog/assigneeCorporateHistory.ts`. Those fields are deliberately not consumed by the selected-party ego
 graph: `relationshipGraph.ts` continues to derive its nodes and edges only from patent attribution.
 
-`/relationships/universal` is a separate, client-rendered clustered SVG that combines every visible patent-party edge
+`/relationships/universal` is a separate, client-rendered workspace that combines every visible patent-party edge
 with those corporate-history records. Shared corporate families become hub nodes, uncataloged parents/predecessors
 become external-organization nodes, and disconnected components are packed into separate outlined networks. Selecting
 a patent opens the shared patent detail card; selecting any other entity exposes its dated corporate records and links
@@ -61,8 +61,14 @@ The selected node is read from the committed router location after hydration; ke
 can become stale when Back interrupts a concurrent navigation. Changed selections and explicit deselection push history;
 reselecting the same node can recenter without another history entry. Search and detail navigation carry pending camera
 intent, consumed only when the corresponding URL commits. Direct SVG selection and closing details preserve the camera.
-Reload and Back/Forward restore selection, details, and readable framing; absent, malformed, or unknown targets restore
-the overview. Query text, pan/zoom, emphasis, and overview visibility remain local. Unrelated URL parameters are preserved,
+The fragment also owns `view=explore|full|research`, `neighborhood=<cluster-id>`, comma-separated `relations=<edge-kinds>`
+(`none` disables every kind), and submitted path endpoints `from=<node-id>&to=<node-id>`. Full map and the complete
+relationship set are omitted when writing URLs. The parser validates views, graph IDs, neighborhood IDs, and edge kinds;
+unknown views become Full map, invalid IDs are ignored, and wholly unknown relationship sets fall back to all kinds.
+Legacy `#node` links select that entity in the available default view. Feature flags gate available views after parsing;
+see [UI components](ui-components.md#relationship-map-components) for defaults and fallbacks. Reload restores selection, details and framing; Back/Forward reframes
+only when the selected entity changes, preserving the Full map camera for mode/filter-only history changes. Query text,
+pan/zoom, emphasis, and overview visibility remain local. Unrelated URL parameters are preserved,
 and the canonical URL remains `/relationships/universal/`. Component interactions are documented in
 [UI components](ui-components.md#relationship-map-components).
 

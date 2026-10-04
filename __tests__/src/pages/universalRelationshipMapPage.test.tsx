@@ -12,6 +12,15 @@ import { universalMapHash } from "../../../src/utils/state/universalMapUrl.js";
 import type { UniversalRelationshipGraph } from "../../../src/utils/catalog/universalRelationshipGraph.js";
 import UniversalRelationshipMapPage from "../../../src/pages/UniversalRelationshipMapPage.js";
 import { clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
+import * as relationshipQueries from "../../../src/utils/catalog/universalRelationshipQueries.js";
+
+const mapFlags = vi.hoisted(() => ({ extraViews: true }));
+vi.mock("../../../src/utils/featureFlags.js", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("../../../src/utils/featureFlags.js")>()),
+  get ENABLE_UNIVERSAL_MAP_EXTRA_VIEWS() {
+    return mapFlags.extraViews;
+  },
+}));
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
   default: function SEOHead() {
@@ -23,15 +32,19 @@ vi.mock("../../../src/components/relationshipMap/UniversalRelationshipMap.js", (
   default: function UniversalRelationshipMapMock({
     graph,
     onSelectNode,
+    onShowDetails,
     selectedNodeId,
     focusRequest,
     viewResetRequest,
+    pathNodeIds,
   }: {
     graph: UniversalRelationshipGraph;
     onSelectNode: (nodeId: string) => void;
+    onShowDetails?: () => void;
     selectedNodeId: string | null;
     focusRequest?: { nodeId: string; requestId: number };
     viewResetRequest?: number;
+    pathNodeIds?: readonly string[];
   }) {
     const patent = graph.nodes.find((node) => node.kind === "patent")!;
     const assignee = graph.nodes.find((node) => node.kind === "assignee")!;
@@ -44,6 +57,7 @@ vi.mock("../../../src/components/relationshipMap/UniversalRelationshipMap.js", (
         data-focus={focusRequest?.nodeId}
         data-request={focusRequest?.requestId}
         data-reset={viewResetRequest}
+        data-path={pathNodeIds?.join(",")}
       >
         <button type="button" onClick={() => onSelectNode(patent.id)}>
           Select test patent
@@ -54,6 +68,11 @@ vi.mock("../../../src/components/relationshipMap/UniversalRelationshipMap.js", (
         <button type="button" onClick={() => onSelectNode(family.id)}>
           Select test family
         </button>
+        {selectedNodeId && onShowDetails && (
+          <button type="button" onClick={onShowDetails}>
+            View details
+          </button>
+        )}
       </div>
     );
   },
@@ -72,6 +91,10 @@ function HistoryControls() {
 }
 
 function renderUniversalPage(initialEntry = "/relationships/universal") {
+  const entry = new URL(initialEntry, "https://example.test");
+  const fragment = new URLSearchParams(entry.hash.slice(1));
+  fragment.set("view", "full");
+  entry.hash = fragment.toString();
   return renderPage(
     <Routes>
       <Route
@@ -84,21 +107,225 @@ function renderUniversalPage(initialEntry = "/relationships/universal") {
         }
       />
     </Routes>,
-    { initialEntries: [initialEntry] },
+    { initialEntries: [entry.pathname + entry.search + entry.hash] },
   );
 }
 
 describe("UniversalRelationshipMapPage", () => {
   beforeEach(() => {
+    mapFlags.extraViews = true;
     clearBrowserState();
     installMatchMediaMock(false);
   });
 
-  afterEach(cleanup);
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
+  });
+
+  it.each(["", "explore", "research"])(
+    "shows only Full map when extra views are disabled, including saved view=%s",
+    async (view) => {
+      mapFlags.extraViews = false;
+      const findPaths = vi.spyOn(relationshipQueries, "findUniversalPaths");
+      const edge = buildUniversalRelationshipGraph().edges.find((e) => e.kind === "assignment")!;
+      const fragment = new URLSearchParams({ view, node: edge.to, from: edge.from, to: edge.to, keep: "yes" });
+      const router = createMemoryRouter(
+        [{ path: "/relationships/universal", Component: UniversalRelationshipMapPage }],
+        {
+          initialEntries: [`/relationships/universal#${fragment}`],
+        },
+      );
+      render(<RouterProvider router={router} />);
+      const map = await screen.findByRole("group", { name: "Universal relationship map test double" });
+      expect(screen.getByRole("region", { name: "Full map" })).toBeDefined();
+      expect(screen.queryByRole("tablist", { hidden: true })).toBeNull();
+      expect(screen.queryByRole("tabpanel", { hidden: true })).toBeNull();
+      expect(screen.queryByRole("region", { name: "Research records", hidden: true })).toBeNull();
+      expect(screen.queryByRole("searchbox", { name: "Find a neighborhood", hidden: true })).toBeNull();
+      expect(map.getAttribute("data-selected")).toBe(edge.to);
+      expect(map.getAttribute("data-focus")).toBe(edge.to);
+      expect(map.getAttribute("data-path")).toBeNull();
+      expect(findPaths).not.toHaveBeenCalled();
+      expect(router.state.location.hash).toBe(`#${fragment}`);
+      fireEvent.click(screen.getByRole("button", { name: "Select test patent" }));
+      await act(async () => {
+        await router.navigate(-1);
+      });
+      expect(map.getAttribute("data-selected")).toBe(edge.to);
+      expect(screen.getByRole("region", { name: "Full map" })).toBeDefined();
+      router.dispose();
+    },
+  );
+
+  it("restores partial relationship filters and shares the research path with Full map", async () => {
+    const edge = buildUniversalRelationshipGraph().edges.find((e) => e.kind === "assignment")!;
+    const fragment = new URLSearchParams({ relations: "assignment", from: edge.from, to: edge.to, view: "full" });
+    renderUniversalPage(`/relationships/universal#${fragment}`);
+    const map = await screen.findByRole("group", { name: "Universal relationship map test double" });
+    expect(map.getAttribute("data-path")).toBe(`${edge.from},${edge.to}`);
+    fireEvent.click(screen.getByRole("button", { name: /^Filters/ }));
+    expect((screen.getByRole("checkbox", { name: "Patent relationships" }) as HTMLInputElement).indeterminate).toBe(
+      true,
+    );
+    fireEvent.click(screen.getByRole("checkbox", { name: "Patent relationships" }));
+    await waitFor(() =>
+      expect((screen.getByRole("checkbox", { name: "Patent relationships" }) as HTMLInputElement).indeterminate).toBe(
+        false,
+      ),
+    );
+  });
+
+  it("keeps filters out of the initial workspace and exposes hidden relationships with a reset", async () => {
+    mapFlags.extraViews = false;
+    renderUniversalPage("/relationships/universal#relations=&keep=yes");
+    const toggle = await screen.findByRole("button", { name: /^Filters · None/ });
+    expect(toggle.getAttribute("aria-expanded")).toBe("false");
+    expect(screen.queryByRole("checkbox", { name: "Corporate history" })).toBeNull();
+    expect(screen.getByText(/All connections are hidden/)).toBeDefined();
+    const location = screen.getByRole("status", { name: "Current location" }).textContent;
+    fireEvent.click(toggle);
+    expect(screen.getByRole("status", { name: "Current location" }).textContent).toBe(location);
+    fireEvent.click(screen.getByRole("button", { name: "Show all relationships" }));
+    await waitFor(() => expect(toggle.textContent).toContain("All"));
+    expect(screen.queryByText(/All connections are hidden/)).toBeNull();
+    expect((screen.getByRole("checkbox", { name: "Corporate history" }) as HTMLInputElement).checked).toBe(true);
+    expect(screen.getByRole("status", { name: "Current location" }).textContent).toContain("keep=yes");
+    fireEvent.click(toggle);
+    expect(screen.queryByRole("checkbox", { name: "Corporate history" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Back" }));
+    await waitFor(() => expect(toggle.textContent).toContain("None"));
+    expect(toggle.getAttribute("aria-expanded")).toBe("false");
+  });
+
+  it("opens details and returns to the map on narrow screens without changing selection or history", async () => {
+    mapFlags.extraViews = false;
+    renderUniversalPage();
+    fireEvent.click(await screen.findByRole("button", { name: "Select test assignee" }));
+    const details = screen.getByText("Details & sources").closest("details")!;
+    const map = screen.getByRole("region", { name: "Full map" });
+    details.scrollIntoView = vi.fn();
+    map.scrollIntoView = vi.fn();
+    details.open = false;
+    const location = screen.getByRole("status", { name: "Current location" }).textContent;
+    fireEvent.click(screen.getByRole("button", { name: "View details" }));
+    expect(details.open).toBe(true);
+    expect(details.scrollIntoView).toHaveBeenCalledOnce();
+    expect(document.activeElement).toBe(within(details).getByRole("heading", { level: 3 }));
+    fireEvent.click(screen.getByRole("button", { name: "Back to map" }));
+    expect(map.scrollIntoView).toHaveBeenCalledOnce();
+    expect(document.activeElement).toBe(map);
+    expect(screen.getByRole("status", { name: "Current location" }).textContent).toBe(location);
+  });
+
+  it("places Full map first, defaults legacy node links to it, and shares selection and filters across views and history", async () => {
+    const node = buildUniversalRelationshipGraph().nodes.find((n) => n.kind === "assignee")!;
+    const router = createMemoryRouter([{ path: "/relationships/universal", Component: UniversalRelationshipMapPage }], {
+      initialEntries: [`/relationships/universal${universalMapHash("#keep=yes", node.id)}`],
+    });
+    render(<RouterProvider router={router} />);
+    expect((await screen.findByRole("tab", { name: "Full map" })).getAttribute("aria-selected")).toBe("true");
+    expect(
+      within(screen.getByRole("tablist"))
+        .getAllByRole("tab")
+        .map((tab) => tab.textContent),
+    ).toEqual(["Full map", "Explore", "Research"]);
+    fireEvent.keyDown(screen.getByRole("tab", { name: "Full map" }), { key: "ArrowRight" });
+    expect(screen.getByRole("tab", { name: "Explore" }).getAttribute("aria-selected")).toBe("true");
+    expect(router.state.location.hash).toContain("view=explore");
+    fireEvent.keyDown(screen.getByRole("tab", { name: "Explore" }), { key: "Home" });
+    expect(screen.getByRole("tab", { name: "Full map" }).getAttribute("aria-selected")).toBe("true");
+    expect(router.state.location.hash).not.toContain("view=");
+    expect(screen.getByRole("heading", { level: 3, name: node.name })).toBeDefined();
+    fireEvent.click(screen.getByRole("button", { name: /^Filters/ }));
+    fireEvent.click(screen.getByRole("checkbox", { name: "Corporate history" }));
+    fireEvent.click(screen.getByRole("tab", { name: "Research" }));
+    expect(router.state.location.hash).toContain("view=research");
+    expect(router.state.location.hash).toContain("keep=yes");
+    expect(screen.getByRole("heading", { level: 3, name: node.name })).toBeDefined();
+    await act(async () => {
+      await router.navigate(-1);
+    });
+    expect(screen.getByRole("tab", { name: "Full map" }).getAttribute("aria-selected")).toBe("true");
+    expect((screen.getByRole("checkbox", { name: "Corporate history" }) as HTMLInputElement).checked).toBe(false);
+    router.dispose();
+  });
+
+  it("opens the explored entity in Full map, preserving filters and history and framing repeated selections", async () => {
+    const node = buildUniversalRelationshipGraph().nodes.find((n) => n.kind === "assignee")!;
+    const fragment = new URLSearchParams({ view: "explore", node: node.id, relations: "assignment", keep: "yes" });
+    const router = createMemoryRouter([{ path: "/relationships/universal", Component: UniversalRelationshipMapPage }], {
+      initialEntries: [`/relationships/universal#${fragment}`],
+    });
+    render(<RouterProvider router={router} />);
+    const action = await screen.findByRole("button", { name: `Open full map with ${node.name} selected` });
+    action.focus();
+    fireEvent.click(action);
+    const map = await screen.findByRole("group", { name: "Universal relationship map test double" });
+    expect(map.getAttribute("data-selected")).toBe(node.id);
+    expect(map.getAttribute("data-focus")).toBe(node.id);
+    expect(document.activeElement).toBe(screen.getByRole("tab", { name: "Full map" }));
+    expect(Object.fromEntries(new URLSearchParams(router.state.location.hash.slice(1)))).toEqual({
+      keep: "yes",
+      node: node.id,
+      relations: "assignment",
+    });
+    const firstRequest = Number(map.getAttribute("data-request"));
+    await act(async () => {
+      await router.navigate(-1);
+    });
+    expect(router.state.location.hash).toBe(`#${fragment}`);
+    expect(screen.getByRole("tab", { name: "Explore" }).getAttribute("aria-selected")).toBe("true");
+    fireEvent.click(screen.getByRole("button", { name: "Open full map" }));
+    await waitFor(() => expect(Number(map.getAttribute("data-request"))).toBeGreaterThan(firstRequest));
+    expect(map.getAttribute("data-selected")).toBe(node.id);
+    expect(map.getAttribute("data-focus")).toBe(node.id);
+    router.dispose();
+  });
+
+  it.each(["full", "explore"])(
+    "prefills Research from the selection in %s and preserves its saved destination",
+    async (view) => {
+      const graph = buildUniversalRelationshipGraph();
+      const node = graph.nodes.find((n) => n.kind === "assignee")!;
+      const destination = graph.nodes.find((n) => n.kind === "patent")!;
+      const fragment = new URLSearchParams({
+        view,
+        node: node.id,
+        to: destination.id,
+        relations: "assignment",
+        keep: "yes",
+      });
+      const router = createMemoryRouter(
+        [{ path: "/relationships/universal", Component: UniversalRelationshipMapPage }],
+        {
+          initialEntries: [`/relationships/universal#${fragment}`],
+        },
+      );
+      render(<RouterProvider router={router} />);
+      fireEvent.click(await screen.findByRole("tab", { name: "Research" }));
+      await waitFor(() => expect(new URLSearchParams(router.state.location.hash.slice(1)).get("from")).toBe(node.id));
+      const finder = screen.getByRole("region", { name: "Find a connection" });
+      expect(within(finder).getByText(node.name)).toBeDefined();
+      expect(within(finder).getByText(destination.name)).toBeDefined();
+      expect(new URLSearchParams(router.state.location.hash.slice(1)).get("to")).toBe(destination.id);
+      expect(router.state.location.hash).toContain("relations=assignment");
+      expect(router.state.location.hash).toContain("keep=yes");
+      await act(async () => {
+        await router.navigate(-1);
+      });
+      expect(router.state.location.hash).toBe(`#${fragment}`);
+      await act(async () => {
+        await router.navigate(1);
+      });
+      expect(within(screen.getByRole("region", { name: "Find a connection" })).getByText(node.name)).toBeDefined();
+      router.dispose();
+    },
+  );
 
   it("keeps selection consistent when Back interrupts a pending data-router navigation", async () => {
     const router = createMemoryRouter([{ path: "/relationships/universal", Component: UniversalRelationshipMapPage }], {
-      initialEntries: ["/relationships/universal"],
+      initialEntries: ["/relationships/universal#view=full"],
     });
     render(<RouterProvider router={router} />);
     const button = await screen.findByRole("button", { name: "Select test assignee" });
@@ -106,7 +333,7 @@ describe("UniversalRelationshipMapPage", () => {
       fireEvent.click(button);
       await router.navigate(-1);
     });
-    expect(router.state.location.hash).toBe("");
+    expect(router.state.location.hash).toBe("#view=full");
     expect(
       screen.getByRole("group", { name: "Universal relationship map test double" }).getAttribute("data-selected"),
     ).toBeNull();
@@ -126,16 +353,16 @@ describe("UniversalRelationshipMapPage", () => {
           ),
         },
       ],
-      { initialEntries: ["/relationships/universal"] },
+      { initialEntries: ["/relationships/universal#view=full"] },
     );
     render(<RouterProvider router={router} />);
     fireEvent.click(await screen.findByRole("button", { name: "Select test assignee" }));
     await waitFor(() =>
-      expect(screen.getByRole("status", { name: "Current location" }).textContent).toContain("#node=assignee"),
+      expect(screen.getByRole("status", { name: "Current location" }).textContent).toContain("node=assignee"),
     );
     fireEvent.click(screen.getByRole("button", { name: "Select test patent" }));
     await waitFor(() =>
-      expect(screen.getByRole("status", { name: "Current location" }).textContent).toContain("#node=patent"),
+      expect(screen.getByRole("status", { name: "Current location" }).textContent).toContain("node=patent"),
     );
     fireEvent.click(screen.getByRole("button", { name: "Back" }));
     await waitFor(() =>
@@ -164,7 +391,7 @@ describe("UniversalRelationshipMapPage", () => {
     fireEvent.click(screen.getByRole("button", { name: "Select test assignee" }));
     const assigneeId = map.getAttribute("data-selected");
     expect(map.getAttribute("data-focus")).toBeNull();
-    expect(screen.getByRole("status", { name: "Current location" }).textContent).toContain("#node=assignee");
+    expect(screen.getByRole("status", { name: "Current location" }).textContent).toContain("node=assignee");
     fireEvent.click(screen.getByRole("button", { name: "Select test patent" }));
     fireEvent.click(screen.getByRole("button", { name: "Back" }));
     await waitFor(() => expect(map.getAttribute("data-focus")).toBe(assigneeId));
@@ -174,7 +401,7 @@ describe("UniversalRelationshipMapPage", () => {
     fireEvent.click(screen.getByRole("button", { name: "Close patent details" }));
     expect(map.getAttribute("data-selected")).toBeNull();
     expect(map.getAttribute("data-reset")).toBe(reset);
-    expect(screen.getByRole("status", { name: "Current location" }).textContent).not.toContain("#node=");
+    expect(screen.getByRole("status", { name: "Current location" }).textContent).not.toContain("node=");
   });
 
   it("repeats search focus without duplicating history", async () => {
@@ -190,7 +417,7 @@ describe("UniversalRelationshipMapPage", () => {
     fireEvent.click(screen.getByRole("button", { name: "Back" }));
     await waitFor(() => expect(map.getAttribute("data-selected")).toBeNull());
     expect(screen.getByRole("status", { name: "Current location" }).textContent).toBe(
-      "/relationships/universal?keep=yes#extra=ok",
+      "/relationships/universal?keep=yes#extra=ok&view=full",
     );
   });
 
@@ -205,8 +432,8 @@ describe("UniversalRelationshipMapPage", () => {
   it("renders catalog totals and the client map", async () => {
     renderUniversalPage();
     expect(screen.getByRole("heading", { level: 1, name: "Universal Relationship Map" })).toBeDefined();
-    expect(screen.getByText("corporate links")).toBeDefined();
-    expect(screen.getByText("connected networks")).toBeDefined();
+    expect(screen.getByText(/corporate links ·/)).toBeDefined();
+    expect(screen.getByText(/connected networks$/)).toBeDefined();
     expect(await screen.findByRole("group", { name: "Universal relationship map test double" })).toBeDefined();
   });
 
