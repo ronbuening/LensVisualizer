@@ -163,6 +163,7 @@ Keep it normalized even when the product's official styling varies by source:
 | `var` | `object` | | Variable air gaps for focus (see below) |
 | `varLabels` | `array` | | Display labels for variable gaps |
 | `focusPositions` | `number[]` | `[0, 1]` | Optional normalized `focusT` coordinates for multi-keyframe focus interpolation |
+| `publishedStations` | `object` | | Which authored zoom stations and focus keyframes the source tabulates. See [Published Stations](#published-stations-publishedstations). |
 | `aberrationControl` | `object` | | Optional independent soft-focus or spherical-aberration-control slider (see below) |
 | `groups` | `array` | | Group annotations for SVG diagram |
 | `doublets` | `array` | | Cemented doublet annotations for SVG diagram |
@@ -1079,6 +1080,7 @@ var: {
 `focusPositions` follows the existing focus control: `0` is infinity and `1` is `closeFocusM`. When a published
 object-to-image distance is available, its coordinate is `closeFocusM / focusDistanceM`. Values between authored
 positions are piecewise-linearly interpolated and should not be presented as source-published mechanical positions.
+Which authored keyframes the source itself tabulates is recorded in `publishedStations`.
 
 `finiteConjugates` optionally certifies individual authored states for finite-distance MTF. Each entry has
 `focusT` (an authored nonzero focus station), `zoomT` (0 for a prime; source zoom station index divided by
@@ -1087,7 +1089,8 @@ positions are piecewise-linearly interpolated and should not be presented as sou
 Distance is axial, from the object plane to the current first vertex or fixed image plane. Duplicate stations
 are invalid. MTF never infers these entries from `closeFocusM`, production MFD, or interpolated slider labels;
 undocumented intermediate states remain unavailable. Do not certify calculated focus travel as a published
-configuration. Source-rounded prescriptions may retain residual defocus: MTF evaluates the authored image plane
+configuration. Every entry also counts as a published station (see
+[Published Stations](#published-stations-publishedstations)). Source-rounded prescriptions may retain residual defocus: MTF evaluates the authored image plane
 by default, reports the axial best-focus shift as a diagnostic, and moves the plane only when the viewer asks.
 Do not edit the authored image distance to improve simulated MTF.
 
@@ -1191,7 +1194,7 @@ Array of focal lengths in mm at each defined zoom position. Must have at least 2
 zoomPositions: [24, 50, 70],
 ```
 
-These are interpolation control points, not discrete stops. The zoom slider is continuous — between any two defined positions, spacing values are linearly interpolated, giving smooth movement at every intermediate focal length.
+These are interpolation control points, not discrete stops. The zoom slider is continuous — between any two defined positions, spacing values are linearly interpolated, giving smooth movement at every intermediate focal length. When some control points are solved or sampled, not tabulated by the source, list the tabulated ones in `publishedStations.zoom`.
 
 **Non-monotonic (reversing) groups:** Some zoom designs have groups that move forward then reverse direction. This is naturally handled by the piecewise-linear interpolation — if a gap's spacing goes `[2.0, 5.0, 3.0]` across three zoom positions, the interpolation correctly produces the forward-then-backward motion. Include enough zoom positions to bracket any reversals (standard zoom patents provide 3–5 positions, which is sufficient).
 
@@ -1246,6 +1249,53 @@ When `zoomPositions` is present:
 
 ---
 
+## Published Stations (`publishedStations`)
+
+Authored stations are interpolation control points; not all of them come from the source. `publishedStations` records
+which ones the cited patent or publication tabulates, so the viewer's patent-positions mode can step through source
+configurations only. "Published" means the source tabulates that configuration. It does not promise verbatim values:
+a station whose rounded source row was re-solved for paraxial consistency is still published.
+
+```typescript
+publishedStations: {
+  zoom: [0, 16, 32],   // indices into zoomPositions
+  focus: [1],          // indices into focusPositions, applied at every published zoom station
+},
+```
+
+| Field | Type | When omitted | Meaning |
+|---|---|---|---|
+| `zoom` | `number[]` | every authored zoom station | Indices into `zoomPositions` whose infinity row the source tabulates. Zoom lenses only. |
+| `focus` | `number[]` or `number[][]` | infinity only | Indices (≥ 1) into `focusPositions` (or the implicit `[0, 1]`) the source tabulates beyond infinity. A flat list applies at every published zoom station; a nested list gives one list per `zoomPositions` entry. |
+
+- Omit the whole field when the defaults are right: every authored zoom station is a source row, and only the
+  infinity-focus spacings are tabulated.
+- Infinity focus (keyframe 0) is implied at every published zoom station and is never listed.
+- Use the nested `focus` form when the tabulated focus keyframe differs by zoom station, with `[]` where a station
+  has infinity only:
+
+  ```typescript
+  publishedStations: { focus: [[4, 5], [3, 5], [2, 5], [1, 5]] },
+  ```
+
+- A zoom with more than three authored stations must declare `zoom`, even when every station is a source row. Dense
+  station lists usually mix source rows with solved or sampled cam points, so the corpus test asks for an explicit
+  answer.
+- Every `finiteConjugates` entry is treated as published without being repeated here. Use `focus` for a tabulated
+  focus row that cannot carry a certified object distance.
+- Do not list a reconstructed close-focus endpoint, a production minimum-focus distance, or a code-solved keyframe.
+- A teleconverter cannot declare the field. A composed host + converter system keeps the host's stations; its focal
+  lengths and f-numbers at those stations are computed, not tabulated.
+
+Validation: `publishedStations` must be an object declaring `zoom` and/or `focus` and nothing else. `zoom` is a
+non-empty, strictly increasing list of valid `zoomPositions` indices on a zoom lens. `focus` lists are strictly
+increasing indices from 1 to the last focus keyframe; the nested form needs one list per zoom position, at least one
+non-empty list, and an empty list at every zoom station `zoom` omits. Each listed focus keyframe must move at least
+one `var` gap away from its infinity value at that zoom station. A `finiteConjugates` entry may not sit on a zoom
+station that `zoom` omits.
+
+---
+
 ## Group & Doublet Annotations
 
 Visual brackets shown on the SVG diagram.
@@ -1297,7 +1347,9 @@ doublets: [
     `synthetic` field
 21. `acceptsTeleconverters`, when present, is a boolean; authored surface labels may not start with the reserved
     `TC` prefix, and the composer-written `attachedTeleconverter` descriptor is not an authorable field
-22. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
+22. `publishedStations`, when present, satisfies the index, shape, and focus-travel rules in
+    [Published Stations](#published-stations-publishedstations)
+23. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
 
 On failure, `buildLens()` throws with all errors listed.
 
@@ -1336,13 +1388,14 @@ When transcribing from an optical patent:
 
 ### Zoom-Specific Sourcing (additional steps for zoom lenses)
 
-12. **Variable spacing tables at multiple focal lengths** — Look for tables giving air gap values at 3–5 focal length positions (wide/mid/tele). The column header focal lengths become `zoomPositions`; each gap row provides the per-position `var` pairs
+12. **Variable spacing tables at multiple focal lengths** — Look for tables giving air gap values at 3–5 focal length positions (wide/mid/tele). The column header focal lengths become `zoomPositions`; each gap row provides the per-position `var` pairs. If you add solved or sampled control points between the source columns, list the source columns in `publishedStations.zoom`
 13. **Zoom-only vs zoom+focus gaps** — Identify which variable gaps change only with zoom (the patent's infinity-focus spacing varies across focal lengths, but the close-focus table shows the same change pattern) vs gaps that change with both zoom and focus (different infinity/close values at each position). Document which is which in the file header
 14. **Non-monotonic (reversing) groups** — Check whether any gap's spacing goes up then down (or vice versa) across zoom positions — e.g., `[28.12, 22.59, 27.71]`. This is handled automatically by piecewise-linear interpolation, but include enough zoom positions to bracket any reversals. Note reversals in the file header
 15. **EFL verification at each zoom position** — After transcribing all surfaces and variable gaps, verify the computed EFL at each zoom position (from `buildLens()` → `zoomEFLs`) against the patent's stated focal lengths. Mismatches usually indicate a transcription error in the variable gap table
 
 For prime or zoom lenses with three or more published focus states, use `focusPositions` and preserve every published
 spacing row. This supports non-linear and reversing focus travel without changing the zoom or aberration-control axes.
+Flag the focus rows the source tabulates in `publishedStations.focus`.
 
 ---
 

@@ -41,6 +41,7 @@ const LENS_ONLY_FIELDS = [
   "varLabels",
   "zoomPositions",
   "focusPositions",
+  "publishedStations",
   "aberrationControl",
   "opticalPath",
   "perspectiveControl",

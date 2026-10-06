@@ -455,6 +455,123 @@ function validateAttachedTeleconverter(data: UntrustedLensData, errors: string[]
   }
 }
 
+/** True for a strictly increasing list of integers within `[min, max]`; an empty list passes. */
+function isStationIndexList(value: unknown, min: number, max: number): value is number[] {
+  return (
+    Array.isArray(value) &&
+    value.every(
+      (entry, i) => Number.isInteger(entry) && entry >= min && entry <= max && (i === 0 || entry > value[i - 1]),
+    )
+  );
+}
+
+/**
+ * Check the source-provenance station list against the authored zoom and focus stations.
+ *
+ * Infinity focus is implied at every published zoom station, so focus lists start at keyframe 1. A listed focus
+ * keyframe must move at least one variable gap: that is what separates a tabulated finite state from an infinity row
+ * copied into the close-focus slot.
+ *
+ * @param data - untrusted lens data whose `publishedStations` is defined
+ * @param focusPositionCount - authored focus keyframes per variable gap (2 without `focusPositions`)
+ * @param errors - collector for validation messages
+ */
+function validatePublishedStations(data: UntrustedLensData, focusPositionCount: number, errors: string[]): void {
+  const stations = data.publishedStations;
+  if (!stations || typeof stations !== "object" || Array.isArray(stations)) {
+    errors.push(`"publishedStations" must be an object when provided`);
+    return;
+  }
+  const unknownFields = Object.keys(stations).filter((field) => field !== "zoom" && field !== "focus");
+  if (unknownFields.length > 0) errors.push(`"publishedStations" has unknown field(s): ${unknownFields.join(", ")}`);
+  if (stations.zoom === undefined && stations.focus === undefined) {
+    errors.push(`"publishedStations" must declare "zoom" and/or "focus"`);
+    return;
+  }
+
+  const zoomCount = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2 ? data.zoomPositions.length : 0;
+  const isZoom = zoomCount > 0;
+
+  /* ── Zoom stations ── */
+  let publishedZoom: number[] = isZoom ? Array.from({ length: zoomCount }, (_, i) => i) : [0];
+  if (stations.zoom !== undefined) {
+    if (!isZoom) {
+      errors.push(`"publishedStations.zoom" is only valid on a zoom lens`);
+    } else if (!isStationIndexList(stations.zoom, 0, zoomCount - 1) || stations.zoom.length === 0) {
+      errors.push(
+        `"publishedStations.zoom" must be a non-empty, strictly increasing list of zoomPositions indices (0..${zoomCount - 1})`,
+      );
+    } else {
+      publishedZoom = stations.zoom;
+    }
+  }
+
+  /* ── Focus keyframes, resolved per published zoom station ── */
+  const focusByZoom = new Map<number, number[]>();
+  if (stations.focus !== undefined) {
+    const focus = stations.focus;
+    const maxFocus = focusPositionCount - 1;
+    const indexRule = `strictly increasing focusPositions indices (1..${maxFocus})`;
+    if (!Array.isArray(focus) || focus.length === 0) {
+      errors.push(`"publishedStations.focus" must be a non-empty list of ${indexRule}, or one list per zoom position`);
+    } else if (focus.every((entry: unknown) => Array.isArray(entry))) {
+      if (!isZoom) {
+        errors.push(`"publishedStations.focus" may hold per-zoom lists only on a zoom lens`);
+      } else if (focus.length !== zoomCount) {
+        errors.push(`"publishedStations.focus" must hold one list per zoom position (${zoomCount})`);
+      } else if (!focus.every((entry: unknown) => isStationIndexList(entry, 1, maxFocus))) {
+        errors.push(`"publishedStations.focus" per-zoom lists must each be empty or ${indexRule}`);
+      } else if (focus.every((entry: number[]) => entry.length === 0)) {
+        errors.push(`"publishedStations.focus" must publish at least one focus keyframe`);
+      } else {
+        focus.forEach((entry: number[], zoomIndex: number) => {
+          if (entry.length === 0) return;
+          if (publishedZoom.includes(zoomIndex)) focusByZoom.set(zoomIndex, entry);
+          else
+            errors.push(
+              `"publishedStations.focus"[${zoomIndex}] must be empty: "publishedStations.zoom" omits that zoom station`,
+            );
+        });
+      }
+    } else if (focus.some((entry: unknown) => Array.isArray(entry))) {
+      errors.push(`"publishedStations.focus" must not mix flat indices with per-zoom lists`);
+    } else if (!isStationIndexList(focus, 1, maxFocus)) {
+      errors.push(`"publishedStations.focus" must be a non-empty list of ${indexRule}, or one list per zoom position`);
+    } else {
+      for (const zoomIndex of publishedZoom) focusByZoom.set(zoomIndex, focus);
+    }
+  }
+
+  /* ── Every listed focus keyframe must carry real focus travel ── */
+  const ranges: unknown[] = data.var && typeof data.var === "object" ? Object.values(data.var) : [];
+  for (const [zoomIndex, focusIndices] of focusByZoom) {
+    for (const focusIndex of focusIndices) {
+      const moves = ranges.some((range) => {
+        const keyframes: unknown = isZoom ? (Array.isArray(range) ? range[zoomIndex] : undefined) : range;
+        if (!Array.isArray(keyframes)) return false;
+        const infinity: unknown = keyframes[0];
+        const focused: unknown = keyframes[focusIndex];
+        return typeof infinity === "number" && typeof focused === "number" && Math.abs(focused - infinity) > 1e-9;
+      });
+      if (!moves) {
+        const where = isZoom ? ` at zoom station ${zoomIndex}` : "";
+        errors.push(`"publishedStations.focus": focus keyframe ${focusIndex}${where} has no focus travel in "var"`);
+      }
+    }
+  }
+
+  /* ── A certified finite conjugate cannot sit on a zoom station the list excludes ── */
+  if (isZoom && Array.isArray(data.finiteConjugates)) {
+    for (const conjugate of data.finiteConjugates) {
+      if (!conjugate || typeof conjugate !== "object" || !Number.isFinite(conjugate.zoomT)) continue;
+      const zoomIndex = Math.round(conjugate.zoomT * (zoomCount - 1));
+      if (!publishedZoom.includes(zoomIndex)) {
+        errors.push(`"finiteConjugates" names zoom station ${zoomIndex}, which "publishedStations.zoom" omits`);
+      }
+    }
+  }
+}
+
 function validateYzNormal(value: unknown, label: string, errors: string[]): void {
   if (value === undefined) return;
   if (
@@ -1321,6 +1438,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       }
     }
   }
+
+  /* ── Source provenance of the authored stations ── */
+  if (data.publishedStations !== undefined) validatePublishedStations(data, focusPositionCount, errors);
 
   /* ── varLabels reference real surface labels ── */
   if (Array.isArray(data.varLabels)) {

@@ -345,6 +345,17 @@ export interface FiniteConjugate {
   source: string;
 }
 
+/** Which authored zoom/focus stations the cited source tabulates; see LENS_DATA_SPEC.md § Published Stations. */
+export interface PublishedStations {
+  /** Indices into `zoomPositions` whose infinity row the source tabulates. Omitted: every authored station. Zoom only. */
+  zoom?: number[];
+  /**
+   * Indices (>= 1) into `focusPositions` the source tabulates beyond infinity: one list applied at every published
+   * zoom station, or one list per `zoomPositions` entry. Omitted: infinity only.
+   */
+  focus?: number[] | number[][];
+}
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
@@ -404,6 +415,8 @@ export interface LensData {
   /** Normalized focusT coordinates for each authored focus thickness; defaults to [0, 1]. */
   focusPositions?: number[];
   finiteConjugates?: FiniteConjugate[];
+  /** Source provenance for the authored stations; absent means every zoom station at infinity focus. */
+  publishedStations?: PublishedStations;
   groups?: AnnotationData[];
   doublets?: AnnotationData[];
   zoomPositions?: number[];

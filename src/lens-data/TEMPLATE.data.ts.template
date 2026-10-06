@@ -191,6 +191,11 @@ const LENS_DATA = {
 
   // focusPositions: [0, 0.72, 1], // optional normalized focusT coordinates for 3+ published states
 
+  /* ── Published stations (optional) ── which authored stations the source tabulates. Omit when every zoom station
+   *    is a source row and only infinity focus is tabulated. See LENS_DATA_SPEC.md § Published Stations. */
+  // publishedStations: { focus: [1] },                 // close-focus row is tabulated too
+  // publishedStations: { zoom: [0, 16, 32] },          // other zoom stations are solved or sampled
+
   varLabels: [
     // ["17", "BF"],             // [surface_label, display_text]
   ],

@@ -86,6 +86,72 @@ describe("validateLensData", () => {
       expect(validateLensData(makeValid({ finiteConjugates })).join(" ")).toContain("finiteConjugates");
     }
   });
+  it("checks publishedStations against the authored zoom and focus stations", () => {
+    const station = { focusT: 1, objectDistanceMm: 700, distanceReference: "image-plane", source: "Synthetic table" };
+    const prime = (publishedStations: unknown) =>
+      validateLensData(makeValid({ var: { "2": [50, 52, 55] }, focusPositions: [0, 0.4, 1], publishedStations }));
+    /* The tele station repeats its infinity gap, so a focus keyframe listed there has no travel. */
+    const zoom = (publishedStations: unknown, extra: Record<string, unknown> = {}) =>
+      validateLensData(
+        makeValid({
+          zoomPositions: [24, 50, 100],
+          var: {
+            "2": [
+              [50, 55],
+              [50, 56],
+              [50, 50],
+            ],
+          },
+          publishedStations,
+          ...extra,
+        }),
+      );
+
+    for (const valid of [{ focus: [1] }, { focus: [1, 2] }]) expect(prime(valid)).toEqual([]);
+    for (const valid of [
+      { zoom: [0, 2] },
+      { zoom: [0, 1, 2] },
+      { focus: [[1], [1], []] },
+      { zoom: [0, 1], focus: [1] },
+    ]) {
+      expect(zoom(valid)).toEqual([]);
+    }
+    expect(zoom({ zoom: [0, 1] }, { finiteConjugates: [{ ...station, zoomT: 0.5 }] })).toEqual([]);
+
+    for (const invalid of [
+      {},
+      [],
+      null,
+      { focus: [1], pages: [3] },
+      { zoom: [0] },
+      { focus: [] },
+      { focus: [0] },
+      { focus: [3] },
+      { focus: [2, 1] },
+      { focus: [[1]] },
+    ]) {
+      expect(prime(invalid).join(" ")).toContain("publishedStations");
+    }
+    for (const invalid of [
+      { zoom: [] },
+      { zoom: [0, 0] },
+      { zoom: [2, 0] },
+      { zoom: [0, 9] },
+      { zoom: [0.5] },
+      { focus: [[1], [1]] },
+      { focus: [[], [], []] },
+      { focus: [1, [1], []] },
+      { zoom: [1, 2], focus: [[1], [1], []] },
+      { focus: [1] },
+    ]) {
+      expect(zoom(invalid).join(" ")).toContain("publishedStations");
+    }
+    expect(zoom({ focus: [1] }).join(" ")).toContain("no focus travel");
+    expect(zoom({ zoom: [0, 2] }, { finiteConjugates: [{ ...station, zoomT: 0.5 }] }).join(" ")).toContain(
+      '"publishedStations.zoom" omits',
+    );
+  });
+
   it("returns empty array for valid data", () => {
     expect(validateLensData(makeValid())).toEqual([]);
   });

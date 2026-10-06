@@ -398,6 +398,9 @@ describe("validateTeleconverterData", () => {
     ).toBe(true);
     expect(has(validateTeleconverterData({ ...tc, var: { "2": [1, 2] } }), '"var" is a lens field')).toBe(true);
     expect(
+      has(validateTeleconverterData({ ...tc, publishedStations: { focus: [1] } }), '"publishedStations" is a lens'),
+    ).toBe(true);
+    expect(
       has(
         errorsFor({ elements: [{ ...tc.elements[0], fromSurface: "1", toSurface: "2" }] }),
         "spans are not supported",
