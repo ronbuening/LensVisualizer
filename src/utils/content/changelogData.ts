@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-05",
+    type: "feature",
+    summary: "Added a patent positions mode that steps zoom and focus through source-tabulated states",
+  },
+  {
+    date: "2026-10-05",
     type: "lens",
     summary: "Added the Sigma 12mm f/1.4 DC Contemporary patent model",
   },

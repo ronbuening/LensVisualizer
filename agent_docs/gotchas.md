@@ -31,6 +31,9 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   station, measuring on the plate-expanded prescription; see `agent_docs/architecture/optics-engine.md`.
 - Entering or leaving compare mode changes route and mounts a fresh viewer initialized from the URL, before the debounced
   URL writer runs. State that must survive goes in the navigation's own query (`agent_docs/adding_url_state.md`).
+- In patent-positions mode `state.sliders` (and the `zoom` / `focus` / `aperture` URL params) may be off-station until
+  the first step. Anything that draws or analyses the single lens must use the resolved `focusT` / `zoomT` /
+  `aberrationT` / `stopdownT` returned by `useLensComputation`, not `state.sliders`.
 - Some zoom patents publish only infinity-focus spacing tables; copying them unchanged into the close-focus slot leaves
   the focus slider visually static. Infer close-focus pairs only for the true focusing gaps, preserve the mechanism
   constraint (a single rigid translator keeps the adjacent-gap sum constant), and document the approximation in the
