@@ -43,6 +43,8 @@ export const SET_STOPDOWN_T = "SET_STOPDOWN_T";
 export const SET_SHIFT_MM = "SET_SHIFT_MM";
 export const SET_TILT_DEG = "SET_TILT_DEG";
 export const RESET_SLIDERS = "RESET_SLIDERS";
+export const SET_PATENT_POSITIONS = "SET_PATENT_POSITIONS";
+export const SET_PATENT_STATION = "SET_PATENT_STATION";
 export const SET_PANEL_EXPANDED = "SET_PANEL_EXPANDED";
 export const SET_ANALYSIS_TAB = "SET_ANALYSIS_TAB";
 export const SET_GROUP_MOVEMENT = "SET_GROUP_MOVEMENT";
@@ -194,6 +196,7 @@ export function createInitialState(
       zoomPanActive: false,
       groupMovementOpen: urlState.groupMovementOpen ?? false,
       groupMovementMode: urlState.groupMovementMode ?? "focus",
+      patentPositions: urlState.patentPositions ?? prefs.patentPositions ?? false,
       selectedElementId: urlState.selectedElementId ?? null,
       selectedElementIdA: urlState.selectedElementIdA ?? null,
       selectedElementIdB: urlState.selectedElementIdB ?? null,
@@ -321,6 +324,18 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case RESET_SLIDERS:
       return { ...state, sliders: { focusT: 0, zoomT: 0, aberrationT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 } };
 
+    /* ── Patent-positions mode ──
+     * The flag alone never moves the sliders: the viewer resolves them to the nearest published station at render
+     * time. A station step writes only `sliders`, so the `panels` reference panel consumers depend on stays stable. */
+    case SET_PATENT_POSITIONS:
+      if (state.panels.patentPositions === action.enabled) return state;
+      return { ...state, panels: { ...state.panels, patentPositions: action.enabled } };
+    case SET_PATENT_STATION:
+      return {
+        ...state,
+        sliders: { ...state.sliders, zoomT: action.zoomT, focusT: action.focusT, aberrationT: 0, stopdownT: 0 },
+      };
+
     /* ── Panel expand/collapse (generic) ── */
     case SET_PANEL_EXPANDED:
       if (!PANEL_FIELDS.has(action.panel)) return state;
@@ -368,6 +383,10 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       if (urlState.analysisDrawerTab) panels.analysisDrawerTab = urlState.analysisDrawerTab;
       if (urlState.groupMovementMode && isGroupMovementMode(urlState.groupMovementMode)) {
         panels.groupMovementMode = urlState.groupMovementMode;
+      }
+      /* Preference-backed: only an explicit `pp` value changes it, so history entries without one leave it alone. */
+      if (!state.lens.comparing && typeof urlState.patentPositions === "boolean") {
+        panels.patentPositions = urlState.patentPositions;
       }
 
       const sliders = { ...state.sliders };

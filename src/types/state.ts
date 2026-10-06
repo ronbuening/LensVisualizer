@@ -162,6 +162,8 @@ export interface PanelsSlice {
   zoomPanActive: boolean;
   groupMovementOpen: boolean;
   groupMovementMode: GroupMovementMode;
+  /** Single-lens zoom/focus step through source-published stations instead of continuous sliders. */
+  patentPositions: boolean;
   selectedElementId: number | null;
   selectedElementIdA: number | null;
   selectedElementIdB: number | null;
@@ -208,6 +210,9 @@ export type LensAction =
   | { type: "SET_SHIFT_MM"; value: number }
   | { type: "SET_TILT_DEG"; value: number }
   | { type: "RESET_SLIDERS" }
+  | { type: "SET_PATENT_POSITIONS"; enabled: boolean }
+  /* Lands on a published station: zoom and focus are written together, aberration control and aperture reset. */
+  | { type: "SET_PATENT_STATION"; zoomT: number; focusT: number }
   | { type: "SET_PANEL_EXPANDED"; panel: PanelField; expanded: boolean }
   | { type: "SET_ANALYSIS_TAB"; tab: AnalysisTabId }
   | { type: "SET_GROUP_MOVEMENT"; open: boolean; mode?: GroupMovementMode }
@@ -255,6 +260,7 @@ export interface Preferences {
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
   analysisDrawerTab: AnalysisTabId;
+  patentPositions: boolean;
 }
 
 /* ── URL state (from query params) ── */
@@ -288,6 +294,8 @@ export interface URLState {
   analysisDrawerTab?: AnalysisTabId;
   groupMovementOpen?: boolean;
   groupMovementMode?: GroupMovementMode;
+  /** Single-lens `pp` query value; absent leaves the stored preference in charge. */
+  patentPositions?: boolean;
 }
 
 export type SelectedElementPanelId = "main" | "a" | "b";

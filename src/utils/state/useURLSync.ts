@@ -107,6 +107,7 @@ export default function useURLSync(
            reach the lens slice (mirrors the init path in useLensState). */
         delete urlState.configurationKey;
         delete urlState.teleconverterKey;
+        delete urlState.patentPositions;
         const { lensKeyA: paneLensA, lensKeyB: paneLensB } = stateRef.current.lens;
         urlState.teleconverterKeyA = resolveTeleconverterKey(paneLensA, parsed.teleconverterKeyA);
         urlState.teleconverterKeyB = resolveTeleconverterKey(paneLensB, parsed.teleconverterKeyB);
@@ -156,6 +157,7 @@ export default function useURLSync(
     panels.analysisDrawerTab,
     panels.groupMovementOpen,
     panels.groupMovementMode,
+    panels.patentPositions,
     isLensPage,
     isComparePage,
     updateURLWithSliders,

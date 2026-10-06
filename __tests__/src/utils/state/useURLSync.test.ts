@@ -195,6 +195,30 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}/?v=1&el=3&gm=1&ad=1&tab=coma`);
   });
 
+  it("writes patent-positions mode on lens pages and never on compare pages", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const base = makeState();
+    const single: LensState = { ...base, panels: { ...base.panels, patentPositions: true } };
+    window.history.replaceState({}, "", `/lens/${CATALOG_KEYS[0]}`);
+    replaceStateSpy.mockClear();
+
+    const { unmount } = renderHook(() => useURLSync(single, dispatch, null, true, false));
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+    expect(replaceStateSpy.mock.calls.at(-1)![2]).toBe(`/lens/${CATALOG_KEYS[0]}/?v=1&pp=1`);
+    unmount();
+
+    const comparing: LensState = { ...single, lens: { ...single.lens, comparing: true } };
+    window.history.replaceState({}, "", `/compare/${CATALOG_KEYS[0]}/${CATALOG_KEYS[1]}`);
+    replaceStateSpy.mockClear();
+    renderHook(() => useURLSync(comparing, dispatch, null, false, true));
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+    for (const call of replaceStateSpy.mock.calls) expect(String(call[2])).not.toContain("pp=");
+  });
+
   it("writes configuration identity and removes stale configuration params", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const configuredState: LensState = {
@@ -304,6 +328,21 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     });
   });
 
+  it("leaves patent-positions mode alone on history entries that do not mention it", () => {
+    const dispatchMock = vi.fn();
+    const dispatch = dispatchMock as unknown as Dispatch<LensAction>;
+    renderHook(() => useURLSync(makeState(), dispatch, null, true, false));
+    const applied = () => dispatchMock.mock.calls.filter(([action]) => action.type === "APPLY_URL_VIEW_STATE");
+
+    window.history.replaceState({}, "", `/lens/${CATALOG_KEYS[0]}?v=1&gm=1`);
+    act(() => window.dispatchEvent(new PopStateEvent("popstate")));
+    expect(applied().at(-1)![0].state).not.toHaveProperty("patentPositions");
+
+    window.history.replaceState({}, "", `/lens/${CATALOG_KEYS[0]}?v=1&pp=1`);
+    act(() => window.dispatchEvent(new PopStateEvent("popstate")));
+    expect(applied().at(-1)![0].state.patentPositions).toBe(true);
+  });
+
   it("hydrates valid configuration history and rejects cross-group history", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state: LensState = {
@@ -400,6 +439,11 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     const applied = dispatchMock.mock.calls.find(([action]) => action.type === "APPLY_URL_VIEW_STATE");
     expect(applied).toBeDefined();
     expect(applied![0].state).not.toHaveProperty("configurationKey");
+
+    window.history.replaceState({}, "", "?v=1&pp=1");
+    act(() => window.dispatchEvent(new PopStateEvent("popstate")));
+    const last = dispatchMock.mock.calls.filter(([action]) => action.type === "APPLY_URL_VIEW_STATE").at(-1)!;
+    expect(last[0].state).not.toHaveProperty("patentPositions");
   });
 
   it("does not call replaceState immediately when invoked", () => {

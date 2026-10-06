@@ -289,6 +289,7 @@ describe("lensViewUrlState", () => {
       analysisDrawerTab: "distortion",
       groupMovementOpen: true,
       groupMovementMode: "zoom",
+      patentPositions: true,
     };
 
     const single = parseLensViewQuery(`?${buildLensViewQuery(fixture).toString()}`);
@@ -306,6 +307,22 @@ describe("lensViewUrlState", () => {
     expect(comparing.selectedElementIdA).toBe(fixture.selectedElementIdA);
     expect(comparing.selectedElementIdB).toBe(fixture.selectedElementIdB);
     expect(comparing.selectedElementId).toBeUndefined();
+    expect(comparing.patentPositions).toBeUndefined();
+  });
+
+  it("round-trips patent-positions mode as a tri-state v1 flag that never defaults", () => {
+    expect(buildLensViewQuery({ patentPositions: true }).toString()).toBe("v=1&pp=1");
+    expect(buildLensViewQuery({ patentPositions: false }).toString()).toBe("");
+    expect(buildLensViewQuery({ patentPositions: true, comparing: true }).toString()).toBe("");
+
+    expect(parseLensViewQuery("?v=1&pp=1").patentPositions).toBe(true);
+    expect(parseLensViewQuery("?v=1&pp=0").patentPositions).toBe(false);
+    for (const search of ["?pp=1", "?v=2&pp=1", "?v=1&pp=yes", "?v=1"]) {
+      expect(parseLensViewQuery(search)).not.toHaveProperty("patentPositions");
+    }
+    /* Popstate hydration materializes defaults for every other field; this one must stay absent. */
+    expect(lensViewQueryToUrlState(parseLensViewQuery(""), true)).not.toHaveProperty("patentPositions");
+    expect(lensViewQueryToUrlState(parseLensViewQuery("?v=1&pp=0"), true).patentPositions).toBe(false);
   });
 
   it("ignores the removed beta bokeh overlay URL flag", () => {

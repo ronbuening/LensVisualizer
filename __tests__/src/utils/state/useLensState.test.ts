@@ -70,6 +70,25 @@ describe("useLensState — URL params override defaults", () => {
     expect(result.current[0].sliders.stopdownT).toBeCloseTo(0.4, 5);
   });
 
+  it("opens in patent-positions mode from ?pp=1, from the stored preference, but not from a compare URL", () => {
+    window.history.replaceState({}, "", "?v=1&pp=1");
+    expect(renderHook(() => useLensState(CATALOG_KEYS)).result.current[0].panels.patentPositions).toBe(true);
+
+    window.history.replaceState({}, "", "?focus=0.2");
+    expect(renderHook(() => useLensState(CATALOG_KEYS)).result.current[0].panels.patentPositions).toBe(false);
+    localStorage.setItem(PREFS_KEY, JSON.stringify({ patentPositions: true }));
+    expect(renderHook(() => useLensState(CATALOG_KEYS)).result.current[0].panels.patentPositions).toBe(true);
+    window.history.replaceState({}, "", "?v=1&pp=0");
+    expect(renderHook(() => useLensState(CATALOG_KEYS)).result.current[0].panels.patentPositions).toBe(false);
+
+    localStorage.clear();
+    window.history.replaceState({}, "", "?v=1&pp=1");
+    const [keyA, keyB] = COMPARISON_CATALOG_KEYS;
+    const compare = renderHook(() => useLensState(COMPARISON_CATALOG_KEYS, keyA, keyB)).result.current[0];
+    expect(compare.lens.comparing).toBe(true);
+    expect(compare.panels.patentPositions).toBe(false);
+  });
+
   it("hydrates a valid optical configuration on the first render", () => {
     window.history.replaceState({}, "", `/lens/${canonicalConfigurationKey}/?v=1&cfg=${alternateConfigurationKey}`);
     const { result } = renderHook(() => useLensState(CATALOG_KEYS, canonicalConfigurationKey));

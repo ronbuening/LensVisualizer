@@ -66,6 +66,9 @@ legacy query URLs parse through `src/utils/state/parseComparisonParams.ts`, and 
 debounced callback in `src/utils/state/useURLSync.ts`. To add a shareable field, including a pane-specific `a_`/`b_`
 variant, follow `agent_docs/adding_url_state.md`.
 
+Patent-positions mode is single-lens only. Compare panes render with `showSliders={false}`, the `pp` param is neither
+read nor written on compare routes, and the flag stays in state so the stored preference survives a compare session.
+
 Compare identity may be a hidden member of a visible lens's `opticalConfiguration` group. The selector allow-list is
 the visible catalog plus those group members; unrelated hidden debug/reference fixtures remain unavailable. This makes
 configurations such as TC OUT versus TC IN directly comparable without an ambiguous pane-specific `cfg` query.

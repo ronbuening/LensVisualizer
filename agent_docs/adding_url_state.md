@@ -30,7 +30,7 @@ Every new field touches exactly these three places. Using `myOverlayOpen` → pa
    `parseBooleanParam(params, "myo")` and assign only when not `undefined`; in `buildLensViewQuery()` destructure the
    option, `params.set("myo", "1")` when true, and add it to the `usesV1ViewState` disjunction; in
    `buildLensViewQueryFromState()` read `state.panels.myOverlayOpen`. Pick a short, unused param key — existing keys:
-   `el`, `a_el`, `b_el`, `gm`, `chr`, `ptz`, `ad`, `tab`, `mv`, `cfg`, `tc`, `a_tc`, `b_tc`.
+   `el`, `a_el`, `b_el`, `gm`, `chr`, `ptz`, `ad`, `tab`, `mv`, `cfg`, `tc`, `a_tc`, `b_tc`, `pp`.
 
 ### Custom-Encoded Fields
 
@@ -38,6 +38,11 @@ A non-boolean field (compare `analysisDrawerTab` → `tab` and `groupMovementMod
 entry in step 1 and instead needs a validated parse (an `isAnalysisTabId(tab)`-style guard in `src/types/`), an explicit
 build branch that omits the param at its default, and an explicit line in both `lensViewQueryToUrlState()` and the
 reducer's `APPLY_URL_VIEW_STATE` branch.
+
+A boolean that is also a stored preference (compare `patentPositions` → `pp`) is custom-encoded too. A
+`VIEW_STATE_FIELDS` boolean reads an absent param as `false`, which would override the preference on every load and
+reset it on every history entry. Parse it as tri-state, leave it out of `DEFAULT_URL_STATE`, and seed it in
+`createInitialState` as `urlState.x ?? prefs.x ?? false`.
 
 ## Tests
 

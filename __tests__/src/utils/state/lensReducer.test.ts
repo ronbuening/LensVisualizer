@@ -32,6 +32,8 @@ import lensReducer, {
   SET_SHARED_SHIFT_MM,
   SET_SHARED_TILT_DEG,
   RESET_SLIDERS,
+  SET_PATENT_POSITIONS,
+  SET_PATENT_STATION,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
   SET_GROUP_MOVEMENT,
@@ -465,6 +467,51 @@ describe("lensReducer", () => {
     });
   });
 
+  describe("patent-positions mode", () => {
+    it("takes the initial flag from the URL before the stored preference", () => {
+      const init = (prefs: Partial<Preferences>, patentPositions?: boolean) =>
+        createInitialState(prefs, { patentPositions }, true, CATALOG_KEYS).panels.patentPositions;
+      expect(init({})).toBe(false);
+      expect(init({ patentPositions: true })).toBe(true);
+      expect(init({ patentPositions: true }, false)).toBe(false);
+      expect(init({}, true)).toBe(true);
+    });
+
+    it("toggles the flag without moving the sliders", () => {
+      state.sliders = { focusT: 0.5, zoomT: 0.3, aberrationT: 0.4, stopdownT: 0.2, shiftMm: 5, tiltDeg: -3 };
+      const next = lensReducer(state, { type: SET_PATENT_POSITIONS, enabled: true });
+      expect(next.panels.patentPositions).toBe(true);
+      expect(next.sliders).toBe(state.sliders);
+      expect(lensReducer(next, { type: SET_PATENT_POSITIONS, enabled: true })).toBe(next);
+    });
+
+    it("steps to a station wide open at the neutral aberration setting without touching panels or movement", () => {
+      state.sliders = { focusT: 0.5, zoomT: 0.3, aberrationT: 0.4, stopdownT: 0.2, shiftMm: 5, tiltDeg: -3 };
+      const next = lensReducer(state, { type: SET_PATENT_STATION, zoomT: 1, focusT: 0.25 });
+      expect(next.sliders).toEqual({ focusT: 0.25, zoomT: 1, aberrationT: 0, stopdownT: 0, shiftMm: 5, tiltDeg: -3 });
+      expect(next.panels).toBe(state.panels);
+    });
+
+    it("keeps the flag when the lens changes", () => {
+      const on = lensReducer(state, { type: SET_PATENT_POSITIONS, enabled: true });
+      expect(lensReducer(on, { type: SET_LENS_A, key: "canon_50" }).panels.patentPositions).toBe(true);
+    });
+
+    it("hydrates only an explicit URL value, and never while comparing", () => {
+      const on = lensReducer(state, { type: APPLY_URL_VIEW_STATE, state: { patentPositions: true } });
+      expect(on.panels.patentPositions).toBe(true);
+      expect(lensReducer(on, { type: APPLY_URL_VIEW_STATE, state: { focus: 0.2 } }).panels.patentPositions).toBe(true);
+      expect(
+        lensReducer(on, { type: APPLY_URL_VIEW_STATE, state: { patentPositions: false } }).panels.patentPositions,
+      ).toBe(false);
+
+      const comparing = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
+      expect(
+        lensReducer(comparing, { type: APPLY_URL_VIEW_STATE, state: { patentPositions: true } }).panels.patentPositions,
+      ).toBe(false);
+    });
+  });
+
   /* ── Panels ── */
   describe("SET_PANEL_EXPANDED", () => {
     /* All valid panels flow through the same PANEL_FIELDS-guarded generic case */
@@ -758,6 +805,8 @@ describe("lensReducer — action constant exports", () => {
       SET_SHARED_SHIFT_MM,
       SET_SHARED_TILT_DEG,
       RESET_SLIDERS,
+      SET_PATENT_POSITIONS,
+      SET_PATENT_STATION,
       SET_PANEL_EXPANDED,
       SET_ANALYSIS_TAB,
       SET_SELECTED_ELEMENT,

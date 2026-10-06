@@ -40,6 +40,7 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 
 ## Rejected approaches
 
+- 2026-10-05 — Adding `patentPositions` to `VIEW_STATE_FIELDS` is rejected: the table reads an absent param as `false`, which would override the stored preference on every load and popstate. It is custom-encoded as the tri-state `pp` param (`agent_docs/adding_url_state.md`). (patent-positions PR)
 - 2026-09-24 — Solving the real chief ray inside `computeFieldGeometryAtState2` was measured and rejected: it moved the raw half-field at ~600 of 1,422 stations, redrawing the off-axis diagram fan site-wide and splitting it from the legend's static `L.halfField`. Real-chief-ray coverage lives in `computeAnalysisFieldGeometryAtState2`; move the raw bound only together with `buildLens`'s `halfField`/`zoomHalfFields`. (field-coverage PR)
 - 2026-09-09 — Gitignoring `agent_docs/generated/` reports or `agent_docs/benchmarks/runs/*.json`, and rewriting git history to shrink them, are rejected (reaffirmed in the documentation rationalization); nothing reads them back, but they stay committed. Slim payloads instead. (code-health plan D5/D6; 2026-09-09 review)
 - 2026-09-09 — Replacing `AGENTS.md` with a symlink to `CLAUDE.md` is rejected (Windows checkouts, some loaders); it stays a byte copy guarded by `__tests__/docDrift.test.ts`. (2026-09-09 review)

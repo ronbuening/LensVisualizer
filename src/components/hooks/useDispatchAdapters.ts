@@ -16,6 +16,8 @@ import {
   SET_STOPDOWN_T,
   SET_SHIFT_MM,
   SET_TILT_DEG,
+  SET_PATENT_POSITIONS,
+  SET_PATENT_STATION,
   SET_RAY_TOGGLE,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
@@ -32,6 +34,9 @@ export interface DispatchAdapters {
   onShiftChange: (v: number) => void;
   onTiltChange: (v: number) => void;
   onSliderPointerUp: () => void;
+  onPatentPositionsChange: (enabled: boolean) => void;
+  /** Step to a published station; `zoomT` / `focusT` are canonical station coordinates. */
+  onPatentStationChange: (zoomT: number, focusT: number) => void;
   onShowOnAxisChange: (v: boolean) => void;
   onShowOffAxisChange: (v: OffAxisMode) => void;
   onRayDensityChange: (v: RayDensity) => void;
@@ -87,6 +92,8 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onShiftChange: (v: number) => dispatch({ type: SET_SHIFT_MM, value: v }),
       onTiltChange: (v: number) => dispatch({ type: SET_TILT_DEG, value: v }),
       onSliderPointerUp: updateURLWithSliders,
+      onPatentPositionsChange: (enabled: boolean) => dispatch({ type: SET_PATENT_POSITIONS, enabled }),
+      onPatentStationChange: (zoomT: number, focusT: number) => dispatch({ type: SET_PATENT_STATION, zoomT, focusT }),
       onShowOnAxisChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: v }),
       onShowOffAxisChange: (v: OffAxisMode) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v }),
       onRayDensityChange: (v: RayDensity) => dispatch({ type: SET_RAY_TOGGLE, field: "rayDensity", value: v }),

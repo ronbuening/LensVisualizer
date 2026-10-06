@@ -56,6 +56,7 @@ export default function useLensState(
       if (urlState.comparing) {
         delete urlState.configurationKey;
         delete urlState.teleconverterKey;
+        delete urlState.patentPositions;
         /* Each pane's converter is checked against that pane's own lens. */
         urlState.teleconverterKeyA = resolveTeleconverterKey(
           urlState.lensKeyA ?? "",

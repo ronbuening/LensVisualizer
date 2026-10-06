@@ -33,7 +33,8 @@ type LensViewQueryKey =
   | "analysisDrawerOpen"
   | "analysisDrawerTab"
   | "groupMovementOpen"
-  | "groupMovementMode";
+  | "groupMovementMode"
+  | "patentPositions";
 type NullableLensViewQueryKey = "focus" | "aberration" | "aperture" | "zoom" | "shift" | "tilt";
 
 export type LensViewQueryState = Partial<
@@ -179,6 +180,11 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
     state.groupMovementOpen = true;
     state.groupMovementMode = movementMode;
   }
+  /* `pp` changes how the slider params are read, so it needs an explicit v=1. It is tri-state: an absent or
+     malformed value leaves the key unset and the stored preference in charge. */
+  const patentPositions = version === "1" ? params.get("pp") : null;
+  if (patentPositions === "1") state.patentPositions = true;
+  else if (patentPositions === "0") state.patentPositions = false;
 
   return state;
 }
@@ -205,6 +211,7 @@ export function buildLensViewQuery({
   analysisDrawerTab,
   groupMovementOpen,
   groupMovementMode,
+  patentPositions,
 }: BuildLensViewQueryOptions): URLSearchParams {
   const usesV1ViewState =
     (comparing ? selectedElementIdA != null || selectedElementIdB != null : selectedElementId != null) ||
@@ -213,6 +220,7 @@ export function buildLensViewQuery({
     Boolean(petzvalOverlayOpen) ||
     Boolean(analysisDrawerOpen) ||
     Boolean(groupMovementOpen) ||
+    (!comparing && Boolean(patentPositions)) ||
     (!comparing && Boolean(configurationKey)) ||
     (comparing ? Boolean(teleconverterKeyA) || Boolean(teleconverterKeyB) : Boolean(teleconverterKey));
 
@@ -247,6 +255,7 @@ export function buildLensViewQuery({
     params.set("tab", analysisDrawerTab);
   }
   if (groupMovementOpen) params.set("mv", groupMovementMode ?? "focus");
+  if (!comparing && patentPositions) params.set("pp", "1");
 
   return params;
 }
@@ -289,6 +298,7 @@ export function buildLensViewQueryFromState(state: LensState, zoom: number | nul
     analysisDrawerTab: state.panels.analysisDrawerTab,
     groupMovementOpen: state.panels.groupMovementOpen,
     groupMovementMode: state.panels.groupMovementMode,
+    patentPositions: comparing ? undefined : state.panels.patentPositions,
   });
 }
 
@@ -311,5 +321,7 @@ export function lensViewQueryToUrlState(state: LensViewQueryState, includeViewDe
   }
   if (state.analysisDrawerTab) urlState.analysisDrawerTab = state.analysisDrawerTab;
   if (state.groupMovementMode) urlState.groupMovementMode = state.groupMovementMode;
+  /* No view default: a preference-backed flag must survive a URL that does not mention it. */
+  if (state.patentPositions !== undefined) urlState.patentPositions = state.patentPositions;
   return urlState;
 }

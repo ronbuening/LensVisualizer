@@ -95,6 +95,14 @@ describe("usePreferences — persisted fields", () => {
     expect(typeof parsed.headerInfoExpanded).toBe("boolean");
     expect(typeof parsed.abbeShowGlassType).toBe("boolean");
     expect(typeof parsed.showEffectiveFocalLength).toBe("boolean");
+    expect(parsed.patentPositions).toBe(false);
+  });
+
+  it("persists patent-positions mode when it is switched on", () => {
+    const base = makeState();
+    const { rerender } = renderHook(({ state }) => usePreferences(state), { initialProps: { state: base } });
+    rerender({ state: { ...base, panels: { ...base.panels, patentPositions: true } } });
+    expect((JSON.parse(localStorage.getItem(PREFS_KEY)!) as Record<string, unknown>).patentPositions).toBe(true);
   });
 
   it("does NOT persist slider positions", () => {
