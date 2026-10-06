@@ -2,7 +2,7 @@
 
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
-import { build, buildVariableStopGapLens } from "../../optics/testLensFixtures.js";
+import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from "../../optics/testLensFixtures.js";
 import DiagramControls from "../../../../src/components/controls/DiagramControls.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import themes from "../../../../src/utils/theme/themes.js";
@@ -21,6 +21,8 @@ function renderControls(
     showEffectiveFocalLength?: boolean;
     shiftMm?: number;
     tiltDeg?: number;
+    zoomT?: number;
+    patentPositions?: boolean;
   } = {},
 ) {
   const callbacks = {
@@ -33,6 +35,7 @@ function renderControls(
     onOpenGroupMovement: vi.fn(),
     onSliderPointerUp: vi.fn(),
     onToggleEffectiveFocalLength: vi.fn(),
+    onPatentStationChange: vi.fn(),
   };
   return {
     ...render(
@@ -41,7 +44,7 @@ function renderControls(
         t={themes.dark}
         compact={false}
         useSideLayout={false}
-        zoomT={0}
+        zoomT={options.zoomT ?? 0}
         onZoomChange={callbacks.onZoomChange}
         aberrationT={0}
         onAberrationChange={callbacks.onAberrationChange}
@@ -72,6 +75,8 @@ function renderControls(
         onSliderPointerUp={callbacks.onSliderPointerUp}
         showSliders={true}
         onOpenGroupMovement={callbacks.onOpenGroupMovement}
+        patentPositions={options.patentPositions}
+        onPatentStationChange={callbacks.onPatentStationChange}
       />,
     ),
     callbacks,
@@ -281,5 +286,101 @@ describe("DiagramControls", () => {
     expect(within(focusBox).queryByText(/Show effective focal length/i)).toBeNull();
     fireEvent.click(within(zoomBox).getByText(/Show effective focal length/i));
     expect(callbacks.onToggleEffectiveFocalLength).toHaveBeenCalledTimes(1);
+  });
+
+  describe("patent-positions mode", () => {
+    /* Wide and tele tabulate a close-focus row; the middle station tabulates infinity only. */
+    const steppedZoom = () =>
+      buildVariableStopGapLens(
+        [
+          [1, 2],
+          [1.5, 2.5],
+          [2, 3],
+        ],
+        "test-controls-stepped-zoom",
+        undefined,
+        { publishedStations: { focus: [[1], [], [1]] } },
+      );
+
+    it("keeps the sliders when the mode is off", () => {
+      renderControls(steppedZoom());
+      expect(screen.queryByRole("radiogroup")).toBeNull();
+      expect(screen.getByRole("slider", { name: "ZOOM" })).toBeTruthy();
+    });
+
+    it("replaces the zoom and focus sliders with station buttons and keeps the motion actions", () => {
+      renderControls(steppedZoom(), { patentPositions: true, focusT: 1 });
+
+      expect(screen.queryByRole("slider", { name: "ZOOM" })).toBeNull();
+      expect(screen.queryByRole("slider", { name: "FOCUS" })).toBeNull();
+      const zoom = within(screen.getByRole("radiogroup", { name: "Zoom position" })).getAllByRole("radio");
+      expect(zoom.map((radio) => radio.textContent)).toEqual(["24 mm", "50 mm", "100 mm"]);
+      expect(zoom.map((radio) => radio.getAttribute("aria-checked"))).toEqual(["true", "false", "false"]);
+      const focus = within(screen.getByRole("radiogroup", { name: "Focus position" })).getAllByRole("radio");
+      expect(focus.map((radio) => radio.textContent)).toEqual(["\u221e", "50 cm"]);
+      expect(focus.map((radio) => radio.getAttribute("aria-checked"))).toEqual(["false", "true"]);
+      expect(screen.getByRole("button", { name: /open zoom group motion chart/i })).toBeTruthy();
+      expect(screen.getByRole("button", { name: /open focus group motion chart/i })).toBeTruthy();
+    });
+
+    it("steps zoom to a station, keeping focus only where that station tabulates the same row", () => {
+      const { callbacks } = renderControls(steppedZoom(), { patentPositions: true, focusT: 1 });
+
+      fireEvent.click(screen.getByRole("radio", { name: "Zoom 100 mm" }));
+      expect(callbacks.onPatentStationChange).toHaveBeenLastCalledWith(1, 1);
+      expect(callbacks.onSliderPointerUp).toHaveBeenCalledTimes(1);
+      fireEvent.click(screen.getByRole("radio", { name: "Zoom 50 mm" }));
+      expect(callbacks.onPatentStationChange).toHaveBeenLastCalledWith(0.5, 0);
+      expect(callbacks.onZoomChange).not.toHaveBeenCalled();
+    });
+
+    it("steps focus at the current zoom station", () => {
+      const { callbacks } = renderControls(steppedZoom(), { patentPositions: true, focusT: 1, zoomT: 1 });
+
+      fireEvent.click(screen.getByRole("radio", { name: "Focus infinity" }));
+      expect(callbacks.onPatentStationChange).toHaveBeenCalledWith(1, 0);
+      expect(callbacks.onSliderPointerUp).toHaveBeenCalledTimes(1);
+      expect(callbacks.onFocusChange).not.toHaveBeenCalled();
+    });
+
+    it("says why a zoom station offers infinity only", () => {
+      renderControls(steppedZoom(), { patentPositions: true, zoomT: 0.5 });
+
+      expect(within(screen.getByRole("radiogroup", { name: "Focus position" })).getAllByRole("radio")).toHaveLength(1);
+      expect(screen.getByText("Close focus is not tabulated at 50 mm")).toBeTruthy();
+    });
+
+    it("holds the aperture wide open and removes the f-stop shortcuts", () => {
+      const { callbacks } = renderControls(steppedZoom(), { patentPositions: true, apertureExpanded: true });
+      const aperture = screen.getByRole("slider", { name: "APERTURE" }) as HTMLInputElement;
+
+      expect(aperture.disabled).toBe(true);
+      expect(aperture.value).toBe("0");
+      expect(screen.getByText("Held wide open at this position's f-number")).toBeTruthy();
+      expect(screen.queryByRole("button", { name: /Set aperture to/ })).toBeNull();
+      fireEvent.change(aperture, { target: { value: "0.5" } });
+      expect(callbacks.onStopdownChange).not.toHaveBeenCalled();
+    });
+
+    it("shows a single prescription for a lens with no moving gap", () => {
+      renderControls(buildSimplePositiveElementLens("test-controls-fixed-prime"), { patentPositions: true });
+
+      expect(screen.queryByRole("radiogroup", { name: "Zoom position" })).toBeNull();
+      const focus = within(screen.getByRole("radiogroup", { name: "Focus position" })).getAllByRole("radio");
+      expect(focus).toHaveLength(1);
+      expect((focus[0] as HTMLButtonElement).disabled).toBe(true);
+      expect(screen.getByText("Single patent prescription \u2014 no other tabulated positions")).toBeTruthy();
+    });
+
+    it("holds an aberration control at its neutral setting", () => {
+      const { callbacks } = renderControls(buildLens(LENS_CATALOG["varisoft-rokkor-85f28"]), {
+        patentPositions: true,
+      });
+      const soft = screen.getByRole("slider", { name: "SOFT" }) as HTMLInputElement;
+
+      expect(soft.disabled).toBe(true);
+      fireEvent.change(soft, { target: { value: "0.5" } });
+      expect(callbacks.onAberrationChange).not.toHaveBeenCalled();
+    });
   });
 });
