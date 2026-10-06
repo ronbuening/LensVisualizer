@@ -19,7 +19,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-10-05",
+    date: "2026-10-06",
     type: "feature",
     summary: "Added a patent positions mode that steps zoom and focus through source-tabulated states",
   },

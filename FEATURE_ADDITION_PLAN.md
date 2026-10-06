@@ -105,7 +105,7 @@ Verified in code on 2026-07-06 (pins re-checked 2026-09-09):
 - **Patent-positions mode** — a SLIDERS / PATENT POSITIONS toggle on single-lens pages steps zoom and focus through
   source-published stations with the aperture held wide open (`panels.patentPositions`, URL `pp`, stored
   preference). Stations come from `LensData.publishedStations` via `src/optics/publishedStations.ts`. Open
-  follow-ups: the focus-row backfill in `agent_docs/published-stations-backfill.md`, and stepping in comparison mode.
+  follow-up: stepping in comparison mode.
 - **F8** (field-selectable coma fans) is the shipped row above; **F25** (patent relationship map,
   `/relationships`) shipped 2026-07-22 — outcome record
   `agent_docs/records/relationship-map-2026-07-22.md`; its original spec lives in git history as

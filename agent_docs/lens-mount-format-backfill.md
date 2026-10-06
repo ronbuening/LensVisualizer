@@ -7,16 +7,16 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **858**
-- Files with both `lensMounts` and `imageFormat`: **820**
-- Files missing `lensMounts`: **29** (20 public lenses and 9 hidden reference fixtures)
-- Files missing `imageFormat`: **28** (19 public lenses and 9 hidden reference fixtures)
-- Files missing both fields: **19**
+- Total lens data files: **877**
+- Files with both `lensMounts` and `imageFormat`: **836**
+- Files missing `lensMounts`: **32** (23 public lenses and 9 hidden reference fixtures)
+- Files missing `imageFormat`: **31** (22 public lenses and 9 hidden reference fixtures)
+- Files missing both fields: **22**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
   `16mm-cinema`, `2-3-inch-type`, `35mm-cinema`, `44x33`, `4x5`, `5x7`, `645`, `6x6`, `6x7`, `6x9`, `8x10`,
   `aps-c`, `four-thirds`, `normal-8`, `super-35-1.9`, `super-35-cinema`, `super-8`
-- Mounts currently in use: `agfa-ambi-silette`, `alpa`, `arri-pl`, `arri-standard`, `c-mount`, `canon-ef`, `canon-ef-m`, `canon-ef-s`, `canon-fd`, `canon-fl`, `canon-r`, `canon-rf`, `contax-rf`, `contax-yashica`, `d-mount`, `dkl`, `enlarging-lens`, `exakta`, `fixed-lens-camera`, `four-thirds`, `fujica-x`, `fujifilm-g`, `fujifilm-x`, `graflex-xl`, `hasselblad-h`, `hasselblad-xcd`, `konica-ar`, `konica-f`, `l-mount`, `large-format-lens-board`, `leica-ltm`, `leica-m`, `leica-r`, `m42`, `mamiya-645`, `mamiya-7`, `mamiya-nc`, `mamiya-rb67`, `mamiya-ze`, `micro-four-thirds`, `minolta-sr`, `miranda-bayonet`, `nikon-1`, `nikon-f`, `nikon-s`, `nikon-z`, `nikonos-rs`, `olympus-om`, `pentacon-six`, `pentax-110`, `pentax-645`, `pentax-67`, `pentax-k`, `pentax-q`, `praktica-b`, `praktina`, `samsung-nx`, `sigma-sa`, `sony-a`, `sony-fe`, `voigtlander-prominent`, `zeiss-contaflex`, `zeiss-contarex`
+- Mounts currently in use: `agfa-ambi-silette`, `alpa`, `arri-pl`, `arri-standard`, `c-mount`, `canon-ef`, `canon-ef-m`, `canon-ef-s`, `canon-fd`, `canon-fl`, `canon-r`, `canon-rf`, `contax-rf`, `contax-yashica`, `d-mount`, `dkl`, `enlarging-lens`, `exakta`, `fixed-lens-camera`, `four-thirds`, `fujica-x`, `fujifilm-g`, `fujifilm-x`, `graflex-xl`, `hasselblad-h`, `hasselblad-xcd`, `konica-ar`, `konica-f`, `l-mount`, `large-format-lens-board`, `leica-ltm`, `leica-m`, `leica-r`, `m42`, `mamiya-645`, `mamiya-7`, `mamiya-nc`, `mamiya-rb67`, `mamiya-ze`, `micro-four-thirds`, `minolta-sr`, `miranda-bayonet`, `nikon-1`, `nikon-f`, `nikon-s`, `nikon-z`, `nikonos`, `nikonos-rs`, `olympus-om`, `pentacon-six`, `pentax-110`, `pentax-645`, `pentax-67`, `pentax-k`, `pentax-q`, `praktica-b`, `praktina`, `samsung-nx`, `sigma-sa`, `sony-a`, `sony-fe`, `voigtlander-prominent`, `zeiss-contaflex`, `zeiss-contarex`
 
 ## Source-Review Queue
 
@@ -43,6 +43,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Historical barrel/specimen evidence and normalized patent scaling do not select a standard factory camera mount. |
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
 | KMZ Industar ITMO Variant 2; Voigtländer Dynar | Teaching/normalized patent models lack a selected commercial installation; leave mount and format unset. |
+| Zeiss S-Biogon 40mm f/5.6; Voigtländer Cine-Tele-Anastigmat 100mm f/4.5; Voigtländer Tele-Dynar 100mm f/6.3 | Added after the last source review; neither field has been reviewed against sources yet. |
 
 ### Hidden reference fixtures
 
@@ -67,6 +68,7 @@ patent scaling, angular field, or circular image into an unsupported rectangular
 | Fujinar 210mm | The manufacturer history and museum record establish the large-format family and 21 cm product, but no specific frame or image-circle class for this example. Do not substitute Fujinon/SC specifications. |
 | Agfa Color-Magnolar II 100mm; Kodak Enlarging Ektar 100mm | Finite-conjugate enlarger objectives: Kodak’s cited brochure describes a negative up to 2¼ × 3¼ inches, not the modeled image-plane frame. A catalog format needs an explicit object/image-side convention; no arbitrary output-print format is assigned. |
 | Voigtländer Dynar; symmetric Heliar; second asymmetric Heliar | Normalized patent examples are not tied to a uniquely chosen production focal length/frame combination. |
+| Zeiss S-Biogon 40mm f/5.6; Voigtländer Cine-Tele-Anastigmat 100mm f/4.5; Voigtländer Tele-Dynar 100mm f/6.3 | Added after the last source review; neither field has been reviewed against sources yet. |
 
 Source details and the product/patent qualifications remain in each lens’s analysis. Sources for completed compact-camera,
 tube and cinema assignments are centralized in `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md`; completed production
