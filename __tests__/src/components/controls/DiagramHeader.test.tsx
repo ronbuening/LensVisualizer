@@ -179,8 +179,18 @@ describe("DiagramHeader", () => {
     expect(onShowOnAxisChange).toHaveBeenCalledWith(false);
   });
 
+  it("offers the position-mode toggle beside the other desktop options", () => {
+    const onPatentPositionsChange = vi.fn();
+    renderHeader({ patentPositions: false, onPatentPositionsChange });
+
+    expect(screen.getByRole("button", { name: "SLIDERS" }).getAttribute("aria-pressed")).toBe("true");
+    fireEvent.click(screen.getByRole("button", { name: "PATENT POSITIONS" }));
+    expect(onPatentPositionsChange).toHaveBeenCalledWith(true);
+  });
+
   it("hides desktop controls and Flickr search in compact comparison headers", () => {
     renderHeader({ compact: true, minHeaderHeight: 88 });
+    expect(screen.queryByRole("group", { name: "Zoom and focus positions" })).toBeNull();
 
     expect(screen.queryByText("flickr ↗")).toBeNull();
     expect(screen.queryByRole("button", { name: "COLOR" })).toBeNull();

@@ -105,6 +105,7 @@ export default function LensDiagramLoadedState({
     showEffectiveFocalLength,
     showEffectiveAperture,
     abbeShowGlassType,
+    patentPositions,
   } = displayFlags;
   const { onHover, onSelect, zoomHook, onZoomPanToggle, onSliderInteractionChange } = interactions;
   const rootStyle = fillAvailableHeight
@@ -265,6 +266,8 @@ export default function LensDiagramLoadedState({
               onSliderPointerUp={adapters.onSliderPointerUp}
               onSliderInteractionChange={onSliderInteractionChange}
               onOpenGroupMovement={adapters.onGroupMovementOpen}
+              patentPositions={patentPositions}
+              onPatentStationChange={adapters.onPatentStationChange}
               info={info}
               showOnAxis={showOnAxis}
               showOffAxis={showOffAxis}

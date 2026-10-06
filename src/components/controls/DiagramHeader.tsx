@@ -20,6 +20,7 @@ import CollapseButton from "./CollapseButton.js";
 import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
+import PositionModeToggle from "./PositionModeToggle.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import { lensDisplaySubtitle, lensPatentAttribution } from "../../utils/catalog/lensPatentMetadata.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -40,6 +41,9 @@ interface DiagramHeaderProps {
   onShowOffAxisChange?: (value: OffAxisMode) => void;
   rayDensity: RayDensity;
   onRayDensityChange?: (value: RayDensity) => void;
+  /** Single-lens patent-positions mode; the toggle is drawn only in the wide, non-compact option column. */
+  patentPositions?: boolean;
+  onPatentPositionsChange?: (value: boolean) => void;
   rayTracksF: boolean;
   onRayTracksFChange?: (value: boolean) => void;
   showChromatic: boolean;
@@ -97,6 +101,8 @@ const DiagramHeader = memo(
       onShowOffAxisChange,
       rayDensity,
       onRayDensityChange,
+      patentPositions = false,
+      onPatentPositionsChange,
       rayTracksF,
       onRayTracksFChange,
       showChromatic,
@@ -402,6 +408,13 @@ const DiagramHeader = memo(
                     </button>
                   ))}
                 </div>
+                {/* Zoom/focus position mode */}
+                <PositionModeToggle
+                  t={t}
+                  patentPositions={patentPositions}
+                  onChange={(value) => onPatentPositionsChange?.(value)}
+                  width="100%"
+                />
                 {/* Chromatic */}
                 <ChromaticControls
                   t={t}

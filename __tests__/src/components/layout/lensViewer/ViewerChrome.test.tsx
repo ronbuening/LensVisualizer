@@ -1,9 +1,10 @@
 // @vitest-environment jsdom
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import type { ComponentProps } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import ViewerChrome from "../../../../../src/components/layout/lensViewer/ViewerChrome.js";
-import { SET_RAY_TOGGLE } from "../../../../../src/utils/state/lensReducer.js";
+import { SET_PATENT_POSITIONS, SET_RAY_TOGGLE } from "../../../../../src/utils/state/lensReducer.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 
 vi.mock("../../../../../src/utils/featureFlags.js", async (importOriginal) => {
@@ -33,7 +34,7 @@ vi.mock("../../../../../src/components/layout/ViewToggleBar.js", () => ({
 
 afterEach(() => cleanup());
 
-function renderChrome(dispatch = vi.fn()) {
+function renderChrome(dispatch = vi.fn(), overrides: Partial<ComponentProps<typeof ViewerChrome>> = {}) {
   return {
     dispatch,
     ...render(
@@ -85,6 +86,7 @@ function renderChrome(dispatch = vi.fn()) {
         desktopViewOptions={[]}
         effectiveDesktopView="both"
         onDesktopViewChange={vi.fn()}
+        {...overrides}
       />,
     ),
   };
@@ -107,5 +109,21 @@ describe("ViewerChrome mobile cardinal control paging", () => {
     expect(screen.queryByRole("button", { name: "ON" })).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "CARD" }));
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showCardinals", value: true });
+  });
+});
+
+describe("ViewerChrome position-mode toggle", () => {
+  it("offers the toggle in the mobile single-lens strip and dispatches the mode", () => {
+    const { dispatch } = renderChrome();
+
+    fireEvent.click(screen.getByRole("button", { name: "PATENT" }));
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_PATENT_POSITIONS, enabled: true });
+  });
+
+  it("leaves the toggle out of the comparison controls", () => {
+    renderChrome(vi.fn(), { comparing: true });
+
+    expect(screen.getByRole("button", { name: "ON-AXIS" })).toBeTruthy();
+    expect(screen.queryByRole("group", { name: "Zoom and focus positions" })).toBeNull();
   });
 });

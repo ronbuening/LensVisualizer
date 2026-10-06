@@ -100,7 +100,7 @@ export default function LensDiagramPanel({
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
   const dispatch = useLensDispatch();
-  const { rays: raysState, display, sliders } = state;
+  const { rays: raysState, display, sliders, lens } = state;
   const panels = usePanelCtx();
   const {
     showOnAxis,
@@ -145,11 +145,15 @@ export default function LensDiagramPanel({
     groupMovementMode,
   } = panels;
 
-  /* Per-instance sliders: use props if provided (comparison mode), else context */
-  const focusT = focusTProp ?? sliders.focusT;
-  const zoomT = zoomTProp ?? sliders.zoomT;
-  const aberrationT = aberrationTProp ?? sliders.aberrationT ?? 0;
-  const stopdownT = stopdownTProp ?? sliders.stopdownT;
+  /* Per-instance sliders: use props if provided (comparison mode), else context. These are the requested values;
+     the ones this panel renders with come back from useLensComputation, which resolves them to a published
+     station in patent-positions mode. */
+  const requestedFocusT = focusTProp ?? sliders.focusT;
+  const requestedZoomT = zoomTProp ?? sliders.zoomT;
+  const requestedAberrationT = aberrationTProp ?? sliders.aberrationT ?? 0;
+  const requestedStopdownT = stopdownTProp ?? sliders.stopdownT;
+  /* Single-lens only: comparison panes take their sliders from the shared bar and never show their own. */
+  const patentPositionsActive = panels.patentPositions && showSliders && !lens.comparing;
   const shiftMm = shiftMmProp ?? sliders.shiftMm;
   const tiltDeg = tiltDegProp ?? sliders.tiltDeg;
 
@@ -189,6 +193,10 @@ export default function LensDiagramPanel({
   const {
     L,
     buildError,
+    focusT,
+    zoomT,
+    aberrationT,
+    stopdownT,
     IMG_MM,
     zPos,
     sx,
@@ -220,15 +228,16 @@ export default function LensDiagramPanel({
     lensKey,
     teleconverterKey,
     runtimeLens,
-    focusT,
-    zoomT,
-    aberrationT,
-    stopdownT,
+    focusT: requestedFocusT,
+    zoomT: requestedZoomT,
+    aberrationT: requestedAberrationT,
+    stopdownT: requestedStopdownT,
     shiftMm,
     tiltDeg,
     scaleRatio,
     panelId,
     includeCardinalExtents: ENABLE_CARDINAL_ELEMENTS && (showCardinals || showCardinalDimensions),
+    snapToPublishedStations: patentPositionsActive,
   });
   const resolvedMovement = movement ?? { shiftMm: 0, tiltDeg: 0, active: false };
   const foldedHitOrderLabels = useMemo(
@@ -455,6 +464,7 @@ export default function LensDiagramPanel({
             showEffectiveFocalLength,
             showEffectiveAperture,
             abbeShowGlassType,
+            patentPositions: patentPositionsActive,
           }}
           overlays={panelOverlays}
           adapters={adapters}
@@ -517,6 +527,8 @@ export default function LensDiagramPanel({
                 onShowOffAxisChange={adapters.onShowOffAxisChange}
                 rayDensity={rayDensity}
                 onRayDensityChange={adapters.onRayDensityChange}
+                patentPositions={panels.patentPositions}
+                onPatentPositionsChange={adapters.onPatentPositionsChange}
                 rayTracksF={rayTracksF}
                 onRayTracksFChange={adapters.onRayTracksFChange}
                 showChromatic={showChromatic}

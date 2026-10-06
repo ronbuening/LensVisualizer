@@ -325,6 +325,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     showCardinalHiatus,
     showCardinalTotalTrack,
     scaleMode,
+    patentPositions: panels.patentPositions,
     dispatch,
   } as const;
 

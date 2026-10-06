@@ -116,6 +116,8 @@ export interface PanelDisplayFlagsModel {
   showEffectiveFocalLength: boolean;
   showEffectiveAperture: boolean;
   abbeShowGlassType: boolean;
+  /** Patent-positions mode is in effect for this panel (never in comparison panes). */
+  patentPositions: boolean;
 }
 
 export interface PanelOverlaysModel {
@@ -152,6 +154,7 @@ export interface PanelAdaptersModel {
   onApertureExpandedChange: (expanded: boolean) => void;
   onLegendExpandedChange: (expanded: boolean) => void;
   onSliderPointerUp: () => void;
+  onPatentStationChange: (zoomT: number, focusT: number) => void;
   onAbbeShowGlassTypeChange: (value: boolean) => void;
   onGlassMapOpenChange: (value: boolean) => void;
 }

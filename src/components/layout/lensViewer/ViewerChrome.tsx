@@ -45,7 +45,7 @@ interface ViewerChromeProps {
   teleconverterOptionsB: ReadonlyArray<TeleconverterOption>;
   activeTeleconverterKeyB: string | null;
   onTeleconverterChange: (panel: "a" | "b", key: string | null) => void;
-  controlsBarProps: Omit<ComponentProps<typeof ControlsBar>, "compact" | "showScaleMode">;
+  controlsBarProps: Omit<ComponentProps<typeof ControlsBar>, "compact" | "showScaleMode" | "showPositionMode">;
   mobileView: MobileView;
   onMobileViewChange: (value: MobileView) => void;
   showDesktopToggle: boolean;
@@ -183,7 +183,7 @@ export default function ViewerChrome({
         !comparing &&
         effectiveMobileView === "diagram" &&
         (!showMobileControlSwitcher || mobileControlPage === "standard") && (
-          <ControlsBar {...controlsBarProps} compact={true} showScaleMode={false} />
+          <ControlsBar {...controlsBarProps} compact={true} showScaleMode={false} showPositionMode={true} />
         )}
 
       {showMobileControlSwitcher && mobileControlPage === "cardinals" && (
