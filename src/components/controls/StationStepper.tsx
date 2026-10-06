@@ -59,6 +59,10 @@ export default function StationStepper({
     ...toggleBtn(t, active, { hasRightBorder: false }),
     cursor: disabled ? "not-allowed" : "pointer",
   });
+  /* Separators for a wrapping row: each button paints the 1px gap to its right and below it, and the group's
+     overflow clips the ones on the outer edge. The toggle colours are translucent, so a backing colour behind the
+     buttons would tint them away from the ray controls they are meant to match. */
+  const separators = `1px 0 0 ${t.toggleBorder}, 0 1px 0 ${t.toggleBorder}`;
   const noteLine = note ? <div style={{ marginTop: 5, fontSize: 9, color: t.focusEndpoint }}>{note}</div> : null;
 
   if (stations.length > MAX_STATION_BUTTONS) {
@@ -123,8 +127,7 @@ export default function StationStepper({
         role="radiogroup"
         aria-label={ariaLabel}
         aria-disabled={disabled || undefined}
-        /* The 1px gap over the border colour draws the separators in both directions once the row wraps. */
-        style={{ ...toggleGroup(t, { width: "100%" }), flexWrap: "wrap", gap: 1, background: t.toggleBorder }}
+        style={{ ...toggleGroup(t, { width: "100%" }), flexWrap: "wrap", gap: 1 }}
       >
         {stations.map((station, index) => (
           <button
@@ -141,7 +144,11 @@ export default function StationStepper({
             tabIndex={index === tabStopIndex ? 0 : -1}
             onClick={() => select(index)}
             onKeyDown={(event) => onKeyDown(event, index)}
-            style={{ ...buttonStyle(station.id === activeId), flex: `1 0 ${STATION_BUTTON_MIN_WIDTH}px` }}
+            style={{
+              ...buttonStyle(station.id === activeId),
+              flex: `1 0 ${STATION_BUTTON_MIN_WIDTH}px`,
+              boxShadow: separators,
+            }}
           >
             {station.label}
           </button>
