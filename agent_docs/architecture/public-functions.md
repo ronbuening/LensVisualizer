@@ -31,6 +31,7 @@ this document only records where to import from and the contracts that are not v
 | `src/optics/analysisJobs.ts`, `src/optics/analysis/analysisContext.ts` | Grouped analysis job facades and the memoized per-panel analysis context | The context carries the complete perspective trace context and cache key; active movement is routed without centered-result fallback (`src/optics/analysis/analysisMovementSupport.ts` classifies section availability). |
 | `src/optics/perspective/index.ts`, `src/optics/perspective/analysis/index.ts` | Perspective pose/trace context, chief solving, field sampling, and the fixed-sensor analysis variants | Failed field-sample requests are retained with explicit statuses rather than dropped. |
 | `src/optics/lensMovement.ts` | Perspective-control clamping and diagram transform adapters | Keep movement here unless explicitly upgrading full moved-optics analysis. |
+| `src/optics/publishedStations.ts` | `publishedZoomStations`, `publishedFocusStations`, `nearestPublishedStation`, `isOnPublishedStation`, `publishedStationAvailability`, and the data-level `publishedStationGrid` | The only reader of station provenance. Returned `zoomT` / `focusT` are canonical station coordinates; `distanceM` is a slider-convention label, and only `conjugate` is a source claim. |
 
 ## Runtime Lens Contracts
 

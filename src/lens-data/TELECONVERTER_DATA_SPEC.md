@@ -147,3 +147,5 @@ Authors do not write composed data, but the conventions matter when reading the 
   records how many.
 - The composed data carries an `attachedTeleconverter` descriptor. It is written only by the composer and is not an
   authorable lens field.
+- The host's `publishedStations` carry over unchanged: the composed system steps through the host's stations, and its
+  focal lengths and f-numbers there are computed, not tabulated. A converter cannot declare the field.

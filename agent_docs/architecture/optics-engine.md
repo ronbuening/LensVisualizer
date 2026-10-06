@@ -269,6 +269,8 @@ is the host's. Built-in converters stay on `opticalConfiguration`.
 - **Image-referenced object distances grow by the converter's extension**, because only the image plane moves:
   `closeFocusM`, `zoomCloseFocusM`, and every `finiteConjugates` entry measured from the image plane. Entries measured
   from the first surface are unchanged.
+- **Station provenance rides through unchanged:** composition keeps the host's station counts, so `publishedStations`
+  indices stay valid and `publishedStationAvailability()` reports the pairing as `composed`.
 - **Identity:** converter surface labels take the reserved `TC` prefix, element ids continue after the host's, and the
   composed data carries an `attachedTeleconverter` descriptor. `validateLensData()` accepts the prefix only with the
   descriptor and requires the prefixed surfaces to be exactly the trailing block; `LensDataInput` omits the descriptor
@@ -668,6 +670,16 @@ are absent. It samples focus and zoom states through `doLayout()`, applies the s
 the viewer, and reports each group center as a signed axial position relative to the fixed focus plane (`0` on the image
 side, negative toward the object side). The overlay consumes these pure profiles; do not move the calculations into
 React components or `buildLens()`.
+
+## Published Stations
+
+`publishedStations.ts` answers which authored stations the source tabulates. It reads `L.data.publishedStations` and
+`L.data.finiteConjugates` (field semantics: `src/lens-data/LENS_DATA_SPEC.md` § Published Stations) and returns them
+in slider coordinates: zoom station `i` of `n` at `zoomT = i / (n - 1)`, focus keyframe `j` at `focusPositions[j]`.
+`publishedStationGrid()` works on lens data alone; the `L`-taking helpers add focal lengths, wide-open f-numbers,
+distance labels, snapping (`nearestPublishedStation`) and the reasons a lens offers few stations. Nothing here feeds
+tracing. `buildLens()` does not normalize the field onto `RuntimeLens`, and aberration-control keyframes are not
+stations: any non-neutral setting is off-station.
 
 ## Aberration Analysis
 

@@ -63,6 +63,7 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 
 ## Standing maintainer decisions
 
+- 2026-10-05 — `publishedStations` (with `finiteConjugates`) is the only machine-read station provenance. The `Focus status:` tokens in lens-file comments stay free text: do not parse or formalize them. The field is read lazily by `src/optics/publishedStations.ts` and is not normalized onto `RuntimeLens`, so `buildLens()` and the analyses stay unaware of it. (patent-positions PR)
 - 2026-09-09 — The PR description is the branch record; per-branch notes under `agent_docs/records/` are no longer written, and 47 unreferenced records were deleted (recoverable via `git log --diff-filter=D -- agent_docs/records`). (2026-09-09 review)
 - 2026-08-04 — Cloudflare Pages is production and `.github/workflows/deploy.yml` (GitHub Pages) is a mirror; `public/_headers` security headers apply only on Cloudflare, and docs must describe the dual setup. (code-health plan D3)
 - 2026-08-04 — Keep every committed file under `agent_docs/generated/` below ~300 KB by slimming payloads (`find agent_docs/generated -type f -size +300k` should be empty). (code-health plan D5)

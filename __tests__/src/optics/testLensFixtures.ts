@@ -105,6 +105,7 @@ export function buildVariableStopGapLens(
   range: VarRange,
   key = "test-variable-stop-gap",
   focusPositions?: number[],
+  overrides: Partial<LensData> = {},
 ): RuntimeLens {
   const surfaces = simplePositiveSurfaces(Array.isArray(range[0]) ? (range[0] as [number, number])[0] : range[0]);
   return buildFixture({
@@ -114,6 +115,7 @@ export function buildVariableStopGapLens(
     focusPositions,
     zoomPositions: Array.isArray(range[0]) ? [24, 50, 100] : undefined,
     nominalFno: Array.isArray(range[0]) ? [2, 2, 2] : 2,
+    ...overrides,
   });
 }
 
