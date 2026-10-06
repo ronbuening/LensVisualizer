@@ -359,6 +359,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.85,
+  // Patent read 2026-10-06: Close-focus gaps (d9 = 7.02, d19 = 14.60) are the patent's tabulated 846 mm shooting-
+  // distance row for Example 2 (WO 2025/239028 A1, Table 8), unscaled.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus — G2 (L5–L10, 6 elements) translates 11.17 mm toward object. G1 and G3 fixed. XD linear motor drive.",
 

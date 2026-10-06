@@ -357,6 +357,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.44,
+  // Patent read 2026-10-06: Close-focus gaps are the patent's Table 3C close-object column for Example 3 (-0.15x, d0
+  // = 291.4803 mm): d16 7.5963, d18 12.3145, d20 3.2779.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual inner focus: L9 (Fn, linear motor) translates toward image, L10 (Fp, stepping motor) counter-translates toward object. G1 and G4 fixed.",
 

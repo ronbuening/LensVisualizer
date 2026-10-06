@@ -217,6 +217,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.39,
+  // Patent read 2026-10-06: Close-focus D13 = 61.46812 is JP 2004-302170 A Table 4's printed 1:1 (等倍) value 51.78443
+  // scaled x1.187; the patent tabulates only infinity and 1:1.
+  publishedStations: { focus: [1] },
   focusDescription: "Front-group unit focus (L1–L6 translate forward, rear group fixed). Infinity to 1:1.",
 
   /* ── Aperture configuration ── */

@@ -329,6 +329,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.312,
+  // Patent read 2026-10-06: Focus keyframes 1 and 2 are the patent's Example 4 variable-spacing columns for 1:2 and
+  // 1:1 magnification, transcribed unscaled.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Floating inner focus. L2a (E5-E7) moves imageward and L2c (E9-E11) moves objectward from infinity to 1:1 while L1, L2b/stop, L3a, and L3b remain fixed relative to the image plane.",
 

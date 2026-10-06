@@ -307,6 +307,9 @@ const LENS_DATA = {
   focusDescription:
     "Internal focus by unit translation of GR2: d10 closes from 7.87 mm to 2.84 mm while d22 opens from 2.91 mm to 7.94 mm, moving GR2 5.03 mm toward the object at close focus.",
   closeFocusM: 0.24,
+  // Patent read 2026-10-06: Close-focus gaps d10 = 2.84 and d22 = 7.94 are the patent's Table 3 near-focus row for
+  // Numerical Example 1 (beta = -0.172), used unscaled.
+  publishedStations: { focus: [1] },
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 11,

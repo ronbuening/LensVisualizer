@@ -256,6 +256,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.253, // Nikon spec: 0.83 ft ≈ 0.253 m (MFD from focal plane)
+  // Patent read 2026-10-06: Close-focus d4 = 5.28 and d9 = 2.21 are US 7,656,591 Table 1's minimum-imaging-distance
+  // row (beta = -0.50, d0 = 72.3 mm); close BF 78.14 is computed, not printed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CRC floating focus: G1+G3 move as a linked unit; G2 moves at a different rate. ΔD1 = −ΔD2 ≈ 4.28 mm. Maximum reproduction ratio 1:2 (β = −0.50).",
 

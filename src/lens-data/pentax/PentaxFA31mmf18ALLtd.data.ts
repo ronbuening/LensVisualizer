@@ -234,6 +234,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.3,
+  // Patent read 2026-10-06: Close-focus gaps (d8 3.87, BF 41.88) are the US 6,560,042 Table 3 row for m = -0.155, u
+  // = 0.30 m; the patent's m = -0.070 row (4.77 / 39.15) is not authored.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Two-group differential-advance (floating) inner focus with non-linear cam. Fa (L1–L4) and Fb (L5–L9) advance toward object; Fb travels further, closing the Fa–Fb gap.",
 

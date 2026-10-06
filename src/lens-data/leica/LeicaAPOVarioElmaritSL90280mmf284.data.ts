@@ -526,6 +526,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.2, // Patent Example 1 close-focus object distance (1200 mm)
+  // Patent read 2026-10-06: Close-focus gaps at all three zoom stations are the patent's Example 1 Data 3 values for
+  // a 1200 mm object distance, unscaled.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual inner focus (Leica 'Dual Syncro Drive'): G5 (neg cemented doublet L19–L20) moves image-side; " +
     "G6 (pos singlet L21) moves object-side. Opposing motion cancels field curvature during focus.",

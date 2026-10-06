@@ -406,6 +406,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.25,
+  // Patent read 2026-10-06: Close-focus gaps (d16 3.14, d32 60.01) are the patent's Example 1 POS2 row, printed for
+  // an object 80.48 mm ahead of surface 1 (about 0.25 m from the image plane).
+  publishedStations: { focus: [1] },
   focusDescription:
     "Rear-group focus: Gr2 and aperture stop translate axially toward object (3.67 mm travel). Gr1 remains fixed relative to image plane.",
 

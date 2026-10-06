@@ -235,6 +235,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.16,
+  // Patent read 2026-10-06: Close-focus gaps D12 = 5.133 and D14 = 3.474 are the patent's Table 6 short-range row
+  // for Example 2 at beta = -0.25, unscaled.
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus: single negative meniscus G7 (GR2) translates axially. Linear AF motor.",
 
   /* ── Aperture configuration ── */
