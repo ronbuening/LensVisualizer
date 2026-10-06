@@ -386,6 +386,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED double-floating endpoints: G1 and G2 move independently toward the object; " +
     "D11 3.83→3.36 mm and BF 18.21→20.28 mm. The printed endpoint is preserved although " +

@@ -267,6 +267,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED patent states only: infinity to 300 mm object-to-image-plane focus. Group I shifts 0.10 mm imageward while Group II shifts 0.14 mm objectward; the stop remains fixed. The production 1 cm macro endpoint is not reconstructed.",
   nominalFno: 1.93,

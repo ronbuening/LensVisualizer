@@ -56,6 +56,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) — trace-model status, deferred items, suggested next work
 - [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, MTF field and image-plane censuses, traced field-coverage shortfalls, prescription errors found in passing, the in-progress diagram sweep
 - [queue] [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) — mount/format metadata coverage and review queue
+- [queue] [`published-stations-backfill.md`](published-stations-backfill.md) — lens files whose source-tabulated focus rows are not yet flagged in `publishedStations`
 - [queue] [`glass-relabel-followup.md`](glass-relabel-followup.md) — catalog-mismatch relabel status and closed families
 - [queue] [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) — patent line-index backfill for proprietary glasses
 - [queue] [`dispersion-estimate-exploration.md`](dispersion-estimate-exploration.md) — paused proposal: narrow the MTF warning's estimated-dispersion blur and refit the nd/νd estimate; findings and the audit script

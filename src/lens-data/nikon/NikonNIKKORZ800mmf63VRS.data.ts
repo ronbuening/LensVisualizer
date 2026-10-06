@@ -479,6 +479,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED two-state internal focus: G2 (L21) translates 23.75122 mm imageward from infinity to 5.0 m; d1+d2 remains 68.50000 mm. Intermediate slider positions are linear viewer interpolation, not a published motor law.",
 

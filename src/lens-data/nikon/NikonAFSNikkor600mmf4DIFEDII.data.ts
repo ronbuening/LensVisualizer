@@ -273,6 +273,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 6.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: G2 translates imageward by 10.8634 mm from infinity to the patent R=6000 mm object-to-image state; d11 33.4177→44.2811 mm and d16 16.5738→5.7105 mm. This endpoint is not Nikon's marketed 5.4/5.6 m MFD.",
 

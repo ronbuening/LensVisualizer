@@ -335,6 +335,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.3,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Three-group floating inner focus. G2 translates 18.049 mm imageward; G3 and G4 translate 12.300 mm and 17.570 mm objectward from infinity to 1:1. The infinity, 1:2, and 1:1 patent rows are exact focus keyframes.",
 

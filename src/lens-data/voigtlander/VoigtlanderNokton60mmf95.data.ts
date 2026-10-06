@@ -265,6 +265,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.34,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED two-unit floating focus: G1+G2 move together while STO+G3 move independently. The infinity, 0.10×, and 0.20× patent rows are exact focus keyframes. closeFocusM=0.34 m is the manufacturer product specification; no 0.25× internal state is reconstructed.",
 

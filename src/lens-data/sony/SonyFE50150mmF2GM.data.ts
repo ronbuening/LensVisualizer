@@ -468,6 +468,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.397,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   zoomCloseFocusM: [0.397, 0.521, 0.746],
   focusDescription: "Published two-group floating focus: G5 moves imageward and G6 moves objectward. The authored close states are the patent Table 3 values at 0.397 m, 0.521 m, and 0.746 m for Wide/Mid/Tele; no internal focus reconstruction is used.",
 

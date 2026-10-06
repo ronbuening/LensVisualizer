@@ -443,6 +443,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focusing: G1R (L14-L15) translates 9.71956 mm toward the object from infinity to the patent's R=1500 mm object-to-image condition; D5 decreases and D9 increases by the same amount at all three zoom stations.",
 

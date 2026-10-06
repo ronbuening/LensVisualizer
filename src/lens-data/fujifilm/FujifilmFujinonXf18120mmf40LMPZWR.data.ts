@@ -450,6 +450,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.6,
+  // Source-tabulated focus rows differ by zoom station.
+  publishedStations: { focus: [[], [1]] },
   focusDescription:
     "Single-group inner focus. G4 (L41-L42) moves imageward while D19 + D22 remains 23.060 mm. " +
     "The tele middle keyframe preserves the patent-published near row. The matching wide middle keyframe and " +

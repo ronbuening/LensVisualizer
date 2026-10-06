@@ -452,6 +452,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 5.8,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED inner focus: G2 moves imageward. Patent d11/d16 values are retained at infinity, β=-0.033, and β=-0.155; the intermediate UI coordinate is derived from the verified conjugate distance, with no reconstructed internal spacing.",
 

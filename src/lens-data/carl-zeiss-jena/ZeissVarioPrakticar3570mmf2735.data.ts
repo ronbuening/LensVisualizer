@@ -386,6 +386,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.8,
+  // Source rows only; the other zoom stations are solved or sampled control points.
+  publishedStations: { zoom: [0, 9] },
   focusDescription:
     "RECONSTRUCTED, not published: rigid unit extension of the whole powered system against the plane plate that claim 2 fixes to the camera, so only l7 changes (+1.78 mm at 35 mm rising to +6.58 mm at 65 mm for the secondary-sourced 0.80 m object-to-image minimum, solved at each of the ten zoom stations). Eight of those stations are code-solved fixed-image-plane states, not published. The separate 1:3 macro mode at the long end is not modelled.",
 

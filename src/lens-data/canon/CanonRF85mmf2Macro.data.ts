@@ -258,6 +258,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.35,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Unit focus — entire front group L1 (6 elements, 5 groups + aperture stop) translates toward the object. Rear group L2 (6 elements, 6 groups) fixed. Patent d12 grows 2.52 → 3.60 → 29.52 mm (∞, β = −0.02, β = −0.5): 27.0 mm extension at 0.5×.",
 

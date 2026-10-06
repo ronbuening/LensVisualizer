@@ -385,6 +385,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.39925,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED three-state internal focus: fixed G1; G2 (STO plus source L12-L16) translates 6.190 mm toward object space from F1 to F3. The patent/model close object-to-image distance is 0.39925 m; the marketed 0.45 m close-focus specification is not substituted.",
 

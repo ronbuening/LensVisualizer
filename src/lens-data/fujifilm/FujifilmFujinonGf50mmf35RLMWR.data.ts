@@ -271,6 +271,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.55,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus: G1, the stop, and G3 remain fixed while G2 translates toward the object. Infinity and the 2000 mm object-to-surface-1 row are patent-published; the 0.55 m endpoint is a mechanism-constrained reconstruction after PP-to-air-equivalent rear-plane normalization. The intermediate focus coordinate uses the restored physical focal-plane distance before PP compression.",
 

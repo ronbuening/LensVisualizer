@@ -289,6 +289,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.6,
+  // Source rows only; the other zoom stations are solved or sampled control points.
+  publishedStations: { zoom: [0, 4] },
   focusDescription:
     "Not modeled — the patent publishes no finite-object focus spacings; 0.6 m is production MFD metadata only and all authored focus pairs are identical.",
 

@@ -248,6 +248,8 @@ const LENS_DATA = {
 
   // Patent R=2500 mm is measured object-plane to the source-defined image/reference plane.
   closeFocusM: 2.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: negative G2 (surfaces 10-14) translates 10.8889 mm imageward; D9 increases and D14 decreases by the same amount. The authored image plane is fixed at the rounded prescription's infinity bare-air conjugate; the patent's approximately 0.685 mm Bf offset is unresolved and no unprescribed plate is modeled.",
 

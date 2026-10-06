@@ -250,6 +250,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
   closeFocusM: 0.314,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Published three-block floating focus to 1:1. G1 and G2 move objectward; G2 moves farther. " +
     "G3F (L7-L8) moves imageward at beta=-0.5 and returns at beta=-1.0; G3R and Bf remain fixed. " +

@@ -16,7 +16,8 @@ Model source-listed rear cover/filter plates with `rearPlates` (physical gaps as
 Exclude front filters, inactive dummy/flare-cutter planes, and mechanical parts. Keep only active mirror/blocking surfaces that the
 modeled path can hit. Use exactly one `STO`; keep cemented-interface `elemId` assignments, variable-gap base values, and
 zoom-position counts consistent. Never invent missing close-focus spacings: either keep the published state or label a
-constrained reconstruction in the header, `focusDescription`, and analysis. If scaling by `s`, scale every length
+constrained reconstruction in the header, `focusDescription`, and analysis. Flag the rows the source tabulates in
+`publishedStations`. If scaling by `s`, scale every length
 (`R`, `d`, `sd`, image-plane coordinates) and transform `A_p` to `A_p / s^(p-1)` while leaving `K` unchanged.
 
 Add complete structured patent attribution (`patentNumber`, all `patentAuthors`, all `patentAssignees`, and

@@ -446,6 +446,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.37,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED dual-group focus. From infinity to the patent shortest-range state, negative G5 moves imageward " +
     "and negative G6 moves objectward while G7 remains fixed. The published object-to-image-plane distance is " +

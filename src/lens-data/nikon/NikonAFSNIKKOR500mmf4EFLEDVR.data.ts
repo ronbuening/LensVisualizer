@@ -411,6 +411,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 3.588203,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED internal focus: G2 (surfaces 12–16) translates imageward with d11 14.505→28.403 mm and d16 36.105→22.207 mm; d11+d16 remains 50.610 mm and the stop is fixed. The patent intermediate row (17.427/33.183 mm) lies exactly at t=0.210246 of this motion. FLG is omitted and the rear air is normalized to 87.868557 mm; the resulting modeled near focal-plane distance is 3.588203 m versus Nikon's rounded 3.6 m specification.",
 

@@ -580,6 +580,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 2.5,
+  // Source rows only; the other zoom stations are solved or sampled control points.
+  publishedStations: { zoom: [0, 17, 49] },
   focusDescription:
     "Infinity zoom prescription only. The production lens focuses to 2.5 m; no finite-focus motion is modeled. Intermediate zoom positions approximate the patent’s fixed-image motion.",
 

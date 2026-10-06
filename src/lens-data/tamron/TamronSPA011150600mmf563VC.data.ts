@@ -407,6 +407,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 2.7,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: G4 moves objectward at close focus; source D29/D36 pairs conserve their sum at each zoom position.",
 

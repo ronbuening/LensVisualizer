@@ -251,6 +251,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.413,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED two-group floating focus. From infinity to -0.50:1, G1 and G2 move objectward by 35.368 mm and 29.090 mm; D15 changes 5.680-11.958 mm and BFD changes 69.090-98.180 mm.",
 

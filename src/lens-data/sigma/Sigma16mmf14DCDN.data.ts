@@ -350,6 +350,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.25,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Single-element inner focus: G3 / L31 moves toward the object. The patent beta=-1/40 row is exact, followed by a constrained endpoint matching Sigma's published 0.25 m / 1:9.9 specification.",
 

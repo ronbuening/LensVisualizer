@@ -427,6 +427,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "PUBLISHED focus model: G4/Gf moves imageward from infinity to the patent 500 mm-from-image-plane state; DD[26] and DD[32] preserve their sum at each zoom endpoint. The production 0.25 m MFD is not reconstructed.",
 
   nominalFno: 2.88,

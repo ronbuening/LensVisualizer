@@ -239,6 +239,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
   closeFocusM: 0.3,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CRC (Close-Range Correction): the converter-to-master gap d9 closes by the published 0.616 mm at β = −1/10 (≈0.37 m) while the whole lens extends; the 0.3 m production MFD keyframe holds that d9 and is calculated.",
 

@@ -337,6 +337,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.5,
+  // Source-tabulated focus rows differ by zoom station.
+  publishedStations: { focus: [[1], [], [1]] },
   focusDescription:
     "PUBLISHED: surfaces 1–13 translate together toward the object for focus. The 1.5 m model state uses the " +
     "published Table 8 wide/tele shifts of 4.694/22.040 mm; the 92.433 mm mid shift of 9.458720 mm is " +

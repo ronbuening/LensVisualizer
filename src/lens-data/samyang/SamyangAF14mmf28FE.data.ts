@@ -371,6 +371,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.2,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED inner focus: G21 translates imageward while G11 and G31 remain fixed; infinity, MAG=-1/30, and TL=0.2 m D1/D2 states are retained. The 2.500 mm rear plate is traced (not drawn) at fixed D3 = 22.66 mm with the fixed D4 + D5 = 0.500 mm trailing gap; D5 is not modeled as a signed gap.",
 

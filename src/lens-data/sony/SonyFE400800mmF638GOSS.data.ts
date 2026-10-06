@@ -508,6 +508,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 3.799,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED G6 inner-focus state at 3.799 m: G6 moves imageward by 4.80 / 9.69 / 16.07 mm at Wide / Mid / Tele; production MFD is not reconstructed.",
 

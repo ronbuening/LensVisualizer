@@ -242,6 +242,8 @@ const LENS_DATA = {
 
   // Computed object-to-image-plane distance at the patent's published 17 mm focus endpoint.
   closeFocusM: 2.331245682553977,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   nominalFno: 2.000005314861276,
   fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
   yScFill: 0.72,

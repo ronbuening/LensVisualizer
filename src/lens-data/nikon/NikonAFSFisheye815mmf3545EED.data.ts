@@ -405,6 +405,8 @@ const LENS_DATA = {
   doublets: [],
 
   closeFocusM: 0.3524603,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED: G2A (L21–L24) translates imageward. The patent close rows use β = −0.03333 and " +
     "object distances from the focal plane of 0.352460, 0.461387, and 0.573028 m at W/M/T; they do not " +

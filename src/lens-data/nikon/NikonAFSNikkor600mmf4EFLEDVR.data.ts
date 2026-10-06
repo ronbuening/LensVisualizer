@@ -386,6 +386,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 4.4,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focus: cemented negative G2 (L21+L22) translates imageward by 15.559 mm; " +
     "D11 increases 17.545→33.104 mm while D14 decreases 45.385→29.826 mm, conserving D11+D14=62.930 mm. " +

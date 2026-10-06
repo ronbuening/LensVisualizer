@@ -509,6 +509,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.5,
+  // Source rows only; the other zoom stations are solved or sampled control points.
+  publishedStations: { zoom: [0, 10, 20] },
   focusDescription:
     "PATENT_CAM_SAMPLED: patent group L6 translates imageward with D25 + D31 conserved. The W/M/T close pairs evaluate the printed focus-cam polynomial at the reconstructed zoom coordinates; Table 2 independently rounds the endpoint shifts to 0.71 and 7.93 mm at 1.5 m. The marketed 1.4 m MFD is metadata only.",
 

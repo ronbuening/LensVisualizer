@@ -371,6 +371,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.25465765322580375, // Paraxial conjugate of published 1.4× station.
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Patent normal SA setting: L2 and L4 move toward the image through the published infinity, 0.5× and 1.4× stations. Distances are calculated from the rounded prescription (0.37518 m and 0.25466 m). SA adjustment is not simulated.",
 

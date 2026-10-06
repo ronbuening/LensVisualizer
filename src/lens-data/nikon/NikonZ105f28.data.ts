@@ -347,6 +347,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.287563,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Dual inner focus — G2 moves image-ward (+19.0 mm), G3 moves object-ward (+20.7 mm). G1, aperture stop, and G4 are fixed. Constant overall length. Source 1:2 and 1:1 states are retained; closest object-to-image distance is 0.287563 m.",
 

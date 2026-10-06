@@ -305,6 +305,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.48,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2, 3] },
   focusDescription:
     "PUBLISHED floating focus: L2 moves imageward and L3 moves objectward while the stop, L1, L4, and image plane remain fixed. The infinity, 0.1×, 0.5×, and 1.0× patent rows are exact focus keyframes.",
 

@@ -214,6 +214,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.15,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION — rigid whole-lens unit focus with all internal gaps fixed. " +
     "The patent's 180 mm object-space state is exact. At the production 0.15 m object-to-image distance, " +

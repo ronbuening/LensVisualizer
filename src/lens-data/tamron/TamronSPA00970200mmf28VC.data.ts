@@ -530,6 +530,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED Example-1 focus states: LG3 alone translates objectward from infinity to the 1.3 m state; " +
     "d10 shortens exactly as d17 lengthens at each zoom position. No internal focus reconstruction is used.",

@@ -647,6 +647,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.85,
+  // Every authored zoom station is a source row.
+  publishedStations: { zoom: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
   focusDescription: "Only infinity-focus zoom states are modeled; the patent describes L1 focusing without numerical travel. The 0.85 m close-focus value is secondary product metadata.",
 
   nominalFno: [

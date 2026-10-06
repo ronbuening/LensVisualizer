@@ -263,6 +263,8 @@ const LENS_DATA = {
   // Required UI field. This is the computed Example-4 close-state object-to-image-plane distance,
   // not a substituted manufacturer MFD (the patent itself publishes the 21 mm G2 travel, not MFD).
   closeFocusM: 4.097300490934653,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focus: the complete negative G2 group translates 21.0 mm toward the image. Source D8 grows 102.701→123.701 mm while source D13 shrinks 28.388→7.388 mm; the inferred stop is fixed 1.500 mm ahead of G3, so authored D13→STO is 26.888→5.888 mm. Patent β=-0.089; direct paraxial trace gives β=-0.086422.",
 

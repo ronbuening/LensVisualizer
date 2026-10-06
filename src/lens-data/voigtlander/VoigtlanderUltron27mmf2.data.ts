@@ -207,6 +207,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.24906,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED unit focus: the complete optical assembly translates 4.1312 mm toward the object. D11 changes from 15.2788 mm at infinity to 19.41 mm at the published 0.24906 m object-plane-to-image-plane conjugate; all internal gaps remain fixed.",
 

@@ -357,6 +357,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.22,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus by G2 only. The patent beta=-0.041 row is stored exactly before the constrained production 0.22 m endpoint; G1 and G3 remain fixed.",
 

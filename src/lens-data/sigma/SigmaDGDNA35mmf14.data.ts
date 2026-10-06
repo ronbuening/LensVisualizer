@@ -82,6 +82,8 @@ export const sigmaDgDnA35mmF14Data = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.3,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus by the single-element negative middle group L9. The patent 1.47 m row is exact before the constrained 0.30 m endpoint; lens length remains fixed.",
 

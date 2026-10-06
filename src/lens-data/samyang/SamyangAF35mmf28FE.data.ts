@@ -237,6 +237,8 @@ const LENS_DATA = {
   doublets: [{ text: "J1", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 0.35,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED inner focus: L34 + L44 (G24) translates toward image space while G14/G34 remain fixed. Table 12 D1/D2 states are preserved at infinity, MAG=-1/40, and the raw close row headed TL=0.3m. The close heading is internally inconsistent with D0+OAL≈0.3485m and Samyang's 0.35m sensor-to-object MFD; no spacing is reconstructed.",
 

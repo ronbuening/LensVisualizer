@@ -294,6 +294,8 @@ const LENS_DATA = {
   doublets: [{ text: "J1", fromSurface: "12", toSurface: "14" }],
 
   closeFocusM: 0.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED: G3/L31 alone translates 5.75 mm imageward from infinity to the patent's 0.5 m object-distance state; the patent does not define that distance's reference plane, so this is not asserted as the production sensor-plane MFD.",
 

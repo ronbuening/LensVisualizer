@@ -395,6 +395,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.3,
+  // Source-tabulated focus rows differ by zoom station.
+  publishedStations: { focus: [[3, 4], [2, 4], [1, 4]] },
   focusDescription:
     "Internal focus via the patent's L1 (E7+E8 cemented doublet), which moves toward the image: 4.43 mm (wide) to 4.01 mm (18 mm and tele) from infinity to a 300 mm object-to-image distance.",
 

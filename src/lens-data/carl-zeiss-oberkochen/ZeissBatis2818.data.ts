@@ -350,6 +350,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.25,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: G12/L121 translates 0.846 mm imageward from infinity to the patent 158.000 mm close state while G11/G13 remain fixed. The patent does not state the 158 mm datum; the supported front-vertex interpretation normalizes to the manufacturer's 0.25 m sensor-plane MFD. No internal focus reconstruction is used.",
 

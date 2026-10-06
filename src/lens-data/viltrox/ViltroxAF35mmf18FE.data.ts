@@ -266,6 +266,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED patent focus: L31/G3 alone translates 4.92 mm imageward; " +
     "D1 1.00→5.92 mm and D2 8.69→3.77 mm, with D1+D2=9.69 mm. " +

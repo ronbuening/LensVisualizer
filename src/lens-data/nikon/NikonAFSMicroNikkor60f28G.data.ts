@@ -287,6 +287,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.1772020326630215,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Internal floating focus: G2 moves toward image, G3 moves toward object. G1, G4, and aperture stop fixed. Source stations: infinity, half-size (inferred 0.229 m), life-size (inferred 0.177 m). Track about 124.2 mm; source middle station differs by 0.00137 mm. G2 travel: 11.2 mm, G3 travel: 21.4 mm.",
 

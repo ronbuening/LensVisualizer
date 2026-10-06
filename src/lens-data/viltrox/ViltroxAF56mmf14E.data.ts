@@ -272,6 +272,8 @@ const LENS_DATA = {
   doublets: [{ text: "J1", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 0.63,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: L31/G3 translates 4.01 mm imageward; D1 1.00→5.01 mm and D2 7.86→3.85 mm. " +
     "The modeled close endpoint is the patent's 0.63 m state; Viltrox markets the production lens at 0.6 m MFD.",

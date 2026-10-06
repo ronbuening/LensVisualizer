@@ -280,6 +280,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 2.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focus: negative G2 translates imageward by 10.8239 mm; D10 increases 29.5505→40.3744 mm while D15 decreases 19.2807→8.4568 mm. The rear image spacing is fixed.",
 

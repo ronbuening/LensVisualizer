@@ -311,6 +311,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.19,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED inner focus: G21 (L71 + L81) translates objectward while G11/G31 stay fixed. " +
     "D1/D2 are 10.562/1.000 mm at infinity, 10.155/1.407 mm at the published intermediate state, " +

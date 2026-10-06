@@ -476,6 +476,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED: G6 (L13-L14) translates objectward between infinity and the patent's 1.000 m object-to-image state; travel is 2.6344 / 6.2169 / 16.7858 mm at wide / middle / tele. The marketed 0.92 m state is not reconstructed.",
 

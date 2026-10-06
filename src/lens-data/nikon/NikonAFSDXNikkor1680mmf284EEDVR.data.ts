@@ -408,6 +408,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.350001,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "PUBLISHED: G2 translates objectward between the patent Table 3 infinity and short-distance states; W/M/T endpoints preserve source D5/D14 pairs while D22, D27, and BF are zoom-only.",
 
   nominalFno: [2.72, 3.38, 4.16],

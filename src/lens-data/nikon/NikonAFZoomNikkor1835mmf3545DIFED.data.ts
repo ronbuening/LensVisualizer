@@ -301,6 +301,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.33,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner-focus states: G2a translates imageward while d9+d12 is conserved at each zoom position; " +
     "near rows are labeled R=0.33 m. The printed Example 2 d0 row is internally inconsistent with the patent's " +

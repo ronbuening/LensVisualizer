@@ -498,6 +498,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focus: G1m (L15-L17) translates 17.49408 mm imageward from infinity to the patent's 2 m state; G2/G3 zoom gaps are published. G4m VR decenter is transverse and is not represented as an axial var state.",
 

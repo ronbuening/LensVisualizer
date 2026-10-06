@@ -411,6 +411,8 @@ const LENS_DATA = {
     "the tele-state paraxial magnification is -0.25749 (|m|≈0.26). Close-focus d8 values are reconstructed, not " +
     "patent-published.",
   closeFocusM: 0.28,
+  // Every authored zoom station is a source row.
+  publishedStations: { zoom: [0, 1, 2, 3] },
   nominalFno: 4.1,
   fstopSeries: [4.1, 5.6, 8, 11, 16, 22],
   maxFstop: 22,

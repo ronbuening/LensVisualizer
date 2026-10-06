@@ -294,6 +294,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "8", toSurface: "10A" }],
 
   closeFocusM: 0.3,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Published double-floating focus: GR2 (with STO) and GR3 move independently objectward while GR1 and GR4 remain fixed; infinity, intermediate, and shortest source states are preserved.",
 

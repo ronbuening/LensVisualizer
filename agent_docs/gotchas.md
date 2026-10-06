@@ -35,6 +35,9 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   the focus slider visually static. Infer close-focus pairs only for the true focusing gaps, preserve the mechanism
   constraint (a single rigid translator keeps the adjacent-gap sum constant), and document the approximation in the
   file header and `focusDescription`.
+- A zoom with more than three authored stations must declare `publishedStations.zoom`, even when every station is a
+  source row; `__tests__/src/lens-data/publishedStations.test.ts` fails otherwise. A flagged focus keyframe that moves
+  no `var` gap fails validation (`src/lens-data/LENS_DATA_SPEC.md` § Published Stations).
 - The `import.meta.glob` patterns in `src/utils/catalog/lensCatalog.ts` are relative to that file (`../../lens-data/`),
   and analysis files match by relative stem path — naming and placement matter for auto-registration.
 - `scripts/prerender.mjs` validates that every route pattern in `src/routes/routeManifest.tsx` is covered by

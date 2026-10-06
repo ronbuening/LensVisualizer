@@ -285,6 +285,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.30984563,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   nominalFno: 2.88,
   maxFstop: 32,
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22, 32],

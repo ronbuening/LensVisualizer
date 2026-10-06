@@ -331,6 +331,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED — G2 translates 10.84 mm imageward from infinity to the patent 5 m state; no production-MFD extrapolation.",
 

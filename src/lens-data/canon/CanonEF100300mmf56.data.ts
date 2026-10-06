@@ -361,6 +361,8 @@ const LENS_DATA = {
 
   /* ── Product / aperture metadata ── */
   closeFocusM: 2,
+  // Every authored zoom station is a source row.
+  publishedStations: { zoom: [0, 1, 2, 3] },
   nominalFno: 5.6,
   fstopSeries: [5.6, 8, 11, 16, 22],
   maxFstop: 22,

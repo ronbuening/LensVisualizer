@@ -443,6 +443,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.35,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED: Gr2a (cemented L6+L7, surfaces 10-12) translates imageward to the patent's nominal 0.35 m state. The marketed 0.25 m MFD is metadata only; no internal 0.25 m reconstruction is authored.",
 

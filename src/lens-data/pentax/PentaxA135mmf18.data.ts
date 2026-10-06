@@ -161,6 +161,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "3", toSurface: "5" }],
 
   closeFocusM: 1.2,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Fixed rear-element focus: the patent beta=-0.1 state is exact before the constrained 1.2 m endpoint; L1-L6 move together while L7 remains fixed.",
   nominalFno: 1.8,

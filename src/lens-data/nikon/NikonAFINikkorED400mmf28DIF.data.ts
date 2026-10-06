@@ -290,6 +290,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 3.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focus: negative unit G2 translates 17.8317 mm imageward from infinity to the patent R=3.300 m endpoint; d9 expands 8.2485→26.0802 mm while d14 contracts 23.0326→5.2009 mm, preserving d9+d14=31.2811 mm. No reconstructed focus state is used.",
 

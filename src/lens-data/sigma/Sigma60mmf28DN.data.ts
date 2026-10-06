@@ -236,6 +236,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.5,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus: the patent 800 mm state is exact before the constrained 0.50 m endpoint. The positive G2 moves objectward while G1, the stop, and G3 remain fixed.",
 

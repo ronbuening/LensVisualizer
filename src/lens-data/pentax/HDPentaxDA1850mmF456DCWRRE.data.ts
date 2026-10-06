@@ -298,6 +298,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED: G1b (hybrid L12 + L13) moves objectward from infinity to the patent's 300 mm state; D2 decreases while D7 increases by the same travel at each zoom station. No internal focus reconstruction is used.",
 

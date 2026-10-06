@@ -345,6 +345,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.276,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual-group floating internal focus: L1 is fixed; the patent finite state is stored exactly, followed by a constrained extrapolation of the L2:L3 motion ratio to Sigma's published 0.276 m / 1:7.1 limit.",
 

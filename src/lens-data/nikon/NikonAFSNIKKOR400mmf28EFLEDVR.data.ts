@@ -414,6 +414,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 2.6,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED: G2 moves 15.400 mm imageward from infinity to the patent close-focus state (β = −0.173). " +
     "The source also increases Bf by 0.024 mm; this is preserved as a 0.024 mm increase in the gap ahead of the " +

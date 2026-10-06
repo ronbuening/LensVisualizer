@@ -219,6 +219,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 0.306871129985,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED — Groups I + II and the diaphragm translate toward the object while Group III and the image plane remain fixed. In R1-normalized coordinates only D14 changes: 2.50 mm at infinity, 25.62 mm at 0.5×, and 48.74 mm at 1.0×. The modeled 1× subject-to-image distance is 0.30687 m; Canon markets 0.31 m.",
 

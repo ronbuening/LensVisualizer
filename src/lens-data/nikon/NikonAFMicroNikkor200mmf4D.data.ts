@@ -298,6 +298,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.5,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED focus keyframes from US 5,402,268 Example 1. G3 moves imageward while G2/G4 remain fixed; source d8 is represented as fixed S8.d plus variable STO.d. G1 reverses at beta=-0.5, where d5 reaches 14.2044 mm before returning to 6.6432 mm at 1:1. STO placement is inferred, not patent-published.",
 

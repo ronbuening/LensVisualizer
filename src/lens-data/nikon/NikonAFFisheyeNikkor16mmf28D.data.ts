@@ -257,6 +257,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.25,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Fixed-stop CRC focus: the patent beta=-1/30 calibration and constrained 0.25 m endpoint are exact keyframes; G1 and G2 move objectward at X2/X1 approximately 0.6.",
 

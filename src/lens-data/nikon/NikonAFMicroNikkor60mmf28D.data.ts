@@ -206,6 +206,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
   closeFocusM: 0.219,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription: "Published focus states: G1 and G2 move toward the object; G3 remains fixed.",
 
   nominalFno: 2.82,

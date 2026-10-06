@@ -189,6 +189,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED — L1-L6 translate together relative to fixed L7 and the image plane; patent d11 increases from 0.880 mm at infinity to 16.339 mm at close focus (β ≈ -0.126).",
 

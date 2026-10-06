@@ -257,6 +257,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.3,
+  // Source rows only; the other zoom stations are solved or sampled control points.
+  publishedStations: { zoom: [0, 2, 4] },
   focusDescription:
     "Front group I (L1–L4) extends as a unit by about 4.1 mm while group II and the image plane stay fixed. Close-focus spacings are a paraxial reconstruction for 0.3 m from the film plane, not patent data.",
 

@@ -315,6 +315,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.7,
+  // Source rows only; the other zoom stations are solved or sampled control points.
+  publishedStations: { zoom: [0, 3, 6] },
   focusDescription:
     "Reconstructed front-group focus: the patent publishes infinity states only. Group I translates toward the object (D11 grows) while group II and the film plane stay fixed; the 2.34-2.37 mm extension is solved at each zoom station for an object 0.7 m from the film plane (Minolta 2.3 ft minimum focus). Minolta does not state which group focuses.",
 

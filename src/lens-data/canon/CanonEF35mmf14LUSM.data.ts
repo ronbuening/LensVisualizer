@@ -261,6 +261,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED floating focus: L1 remains fixed; d6 changes 5.20→0.43 mm and d13 changes 3.70→2.06 mm. " +
     "L2 moves 4.77 mm objectward and L3 plus the stop moves 6.41 mm objectward at the 300 mm state. " +
