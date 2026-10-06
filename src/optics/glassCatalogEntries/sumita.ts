@@ -602,4 +602,16 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for discontinued LAKN12.",
   },
+  {
+    // SUMITA publishes this molding-state row as K-PG395(M); the hyphenated
+    // suffix keeps the vendor variant directly tokenizable.
+    name: "K-PG395-M",
+    vendor: "Sumita",
+    polynomial: [2.6598043, -0.0097241142, 0.023341531, 0.0010595162, -0.000049515252, 0.0000075464331],
+    nd: 1.65296,
+    vd: 36.8,
+    PgF: 0.588,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor K-PG395(M) formula-1 polynomial and molding-state optical coordinate. The catalog reuses base-glass product code 658369, so code6 is omitted because that code does not encode the molding-state nd/vd pair.",
+  },
 ];

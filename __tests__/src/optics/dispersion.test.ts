@@ -519,6 +519,18 @@ describe("resolveGlass", () => {
     expect(resolveGlass("911353")?.name).toBe("TAFD35");
   });
 
+  it("resolves vendor rows that share a product code without moving the bare code", () => {
+    expect(resolveCompatibleGlass("E-FEL2 (HOYA)", 1.54072, 47.2)?.name).toBe("E-FEL2");
+    expect(resolveGlass("541472")?.name).toBe("S-TIL2");
+    expect(resolveCompatibleGlass("E-FD15L (HOYA)", 1.69895, 30.05)?.name).toBe("E-FD15L");
+    expect(resolveGlass("699301")?.name).toBe("S-TIM35");
+    expect(resolveCompatibleGlass("J-LASF03 (Hikari)", 1.8061, 40.97)?.name).toBe("J-LASF03");
+    expect(resolveGlass("806410")?.name).toBe("H-ZLaF52A");
+    // Molding-state row: the base-glass code 658369 does not encode 1.65296 / 36.8.
+    expect(resolveCompatibleGlass("K-PG395-M (SUMITA K-PG395(M))", 1.65296, 36.79)?.name).toBe("K-PG395-M");
+    expect(resolveGlass("658369")).toBeNull();
+  });
+
   it("resolves named Ohara PGM curves before remaining catalog aliases", () => {
     expect(resolveGlass("L-BAL42 (OHARA)")?.name).toBe("L-BAL42");
     expect(resolveGlass("S-YGH51 (OHARA)")?.name).toBe("S-YGH51");

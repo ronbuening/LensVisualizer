@@ -7,8 +7,8 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **884**
-- Files with both `lensMounts` and `imageFormat`: **843**
+- Total lens data files: **891**
+- Files with both `lensMounts` and `imageFormat`: **850**
 - Files missing `lensMounts`: **32** (23 public lenses and 9 hidden reference fixtures)
 - Files missing `imageFormat`: **31** (22 public lenses and 9 hidden reference fixtures)
 - Files missing both fields: **22**

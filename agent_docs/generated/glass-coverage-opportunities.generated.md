@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **884** lenses scanned (**872** visible)
-- **9265 / 9983** non-air surfaces use strict catalog Sellmeier data (92.8%)
-- **9280 / 9983** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.0%)
+- **891** lenses scanned (**879** visible)
+- **9358 / 10071** non-air surfaces use strict catalog Sellmeier data (92.9%)
+- **9368 / 10071** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.0%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **345** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **191** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -168,7 +168,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | WO 2020/012638 A1 | [PDF](../../patents/JPWO2020012638A1.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 2 [resin] (Element 1r (resin layer): `UV-curable optical resin`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | US 2010/0220400 A1 | [PDF](../../patents/US20100220400A1.pdf) | 90.0% (18/20) | 90.0% (18/20) | 2 | 6A [glass] (G2 front aspherical variator lens: `Unmatched (near HIKARI J-LASFH2; patent nd=1.76546, νd=46.73)`)<br>26 [resin] (G4 molded resin layer: `UV-cure optical resin (patent-listed)`) | abbe: 2 |
 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | WO 2022/264542 A1 | [PDF](../../patents/WO2022264542A1.pdf) | 89.5% (17/19) | 89.5% (17/19) | 2 | 15A [resin] (Element 8: `UV-curing resin (composite aspheric layer)`)<br>23A [resin] (Element 13: `UV-curing resin (composite aspheric layer)`) | abbe: 2 |
-| [HD PENTAX-DA645 28-45mm f/4.5 ED AW SR](../../src/lens-data/pentax/HDPentaxDA6452845mmF45EDAWSR.data.ts) | JP 2015-87681 A | [PDF](../../patents/JP2015087681A.pdf) | 89.5% (17/19) | 73.7% (14/19) | 2 | 2 [resin] (Lens 11 hybrid resin layer: `Unmatched (synthetic resin hybrid-asphere layer, nd=1.52972, vd=42.7)`)<br>29A [resin] (Lens 44 hybrid resin layer: `Unmatched (synthetic resin hybrid-asphere layer, nd=1.52972, vd=42.7)`) | abbe: 2 |
+| [HD PENTAX-DA645 28-45mm f/4.5 ED AW SR](../../src/lens-data/pentax/HDPentaxDA6452845mmF45EDAWSR.data.ts) | JP 2015-87681 A | [PDF](../../patents/JP2015087681A.pdf) | 89.5% (17/19) | 89.5% (17/19) | 2 | 2 [resin] (Lens 11 hybrid resin layer: `Unmatched (synthetic resin hybrid-asphere layer, nd=1.52972, vd=42.7)`)<br>29A [resin] (Lens 44 hybrid resin layer: `Unmatched (synthetic resin hybrid-asphere layer, nd=1.52972, vd=42.7)`) | abbe: 2 |
 | [PENTAX SMC DA 17-70mm f/4 AL [IF] SDM](../../src/lens-data/pentax/PentaxDA1770mmf4ALSDM.data.ts) | US 7,804,652 B2 | [PDF](../../patents/US7804652.pdf) | 89.5% (17/19) | 89.5% (17/19) | 2 | 6A [resin] (Element 4 resin layer: `Unmatched (hybrid aspherical resin nd=1.52700, vd=43.7)`)<br>28A [resin] (Element 16 resin layer: `Unmatched (hybrid aspherical resin nd=1.52972, vd=42.7)`) | abbe: 2 |
 | [SONY E 18-200mm f/3.5-6.3 OSS LE](../../src/lens-data/sony/SonyE18200mmf3563OSSLE.data.ts) | US 8,553,339 B2 | [PDF](../../patents/US8553339.pdf) | 89.5% (17/19) | 89.5% (17/19) | 2 | 6A [resin] (L4 Bonded Resin: `Unmatched (optical resin layer; vendor not identified)`)<br>28 [resin] (L15 Bonded Resin: `Unmatched (optical resin layer; vendor not identified)`) | abbe: 2 |
 | [CANON EF 28-105mm f/4-5.6](../../src/lens-data/canon/CanonEF28105mmf456.data.ts) | US 2004/0223070 A1 | Missing from untracked local patents/ references (US20040223070A1, US20040223070, 20040223070) | 88.9% (8/9) | 88.9% (8/9) | 1 | 17 [plastic] (Element L42: `Unmatched (polycarbonate-class optical resin inferred from nd=1.583060, νd=30.2)`) | abbe: 1 |
