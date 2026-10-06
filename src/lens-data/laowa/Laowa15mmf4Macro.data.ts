@@ -267,6 +267,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.122,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual-group floating focus: SF (L1–L6) moves 2.71 mm and MF (stop + L7–L9) moves 12.41 mm toward object. " +
     "Patent max 0.78×; production extends to 1:1 at MFD 0.122 m (~5 mm working distance).",

@@ -174,6 +174,8 @@ const LENS_DATA = {
   focusDescription:
     "Patent three-unit floating short-distance correction; variable-gap endpoint is d0 = 514.966 mm from the first surface and m ≈ -0.10. Production AI-S specification is 0.5 m and 1:7.9.",
   closeFocusM: 0.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   nominalFno: 1.2,
   fstopSeries: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
   scFill: 0.5,

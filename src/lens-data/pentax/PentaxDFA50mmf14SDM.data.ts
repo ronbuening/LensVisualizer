@@ -345,6 +345,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.4,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Rear-group unit focusing. The first group is stationary; the complete second group translates toward the object. Patent Example 1 changes D11 from 10.407 mm to 1.012 mm and D25 (last lens surface to the cover plate) from 37.310 mm to 46.706 mm.",
 

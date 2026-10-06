@@ -294,6 +294,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus — G2 (single FLD biconcave L2a) moves forward toward the object. " +
     "Gap conservation: Δd4 + Δd6 = 0; total track and BFD fixed. " +

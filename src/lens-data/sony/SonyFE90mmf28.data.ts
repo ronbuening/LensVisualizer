@@ -363,6 +363,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.28,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Floating dual-group inner focus (Dual DDSSM). GR2 retreats toward image; GR4 advances toward object. 1:1 macro capable.",
 

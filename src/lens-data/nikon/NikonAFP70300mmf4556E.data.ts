@@ -377,6 +377,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Rear internal focus: the negative G4/RN group (L41-L42) translates imageward. Patent short-distance travel is 0.657 mm at wide, 0.820 mm at middle, and 1.719 mm at telephoto; Nikon's production MFD is 1.2 m.",
 

@@ -542,6 +542,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.38,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual-group floating inner focus: G5 (L51, negative) moves toward image, " +
     "G6 (L61, positive) moves toward object. Four XD linear motors (two per group).",

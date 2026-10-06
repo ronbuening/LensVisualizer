@@ -302,6 +302,8 @@ const LENS_DATA = {
    * production minimum focus distance (0.30 m).
    */
   closeFocusM: 0.567,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent close-range correction: the air gap inside the split L5 component closes from 0.432 to 0.314 mm at 1/25× magnification while the image distance grows. The near image distance is calculated from that published state, and intermediate positions are a linear interpolation. The production lens focuses to 0.30 m, which the patent does not tabulate.",
 

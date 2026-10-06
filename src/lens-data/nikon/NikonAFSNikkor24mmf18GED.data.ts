@@ -300,6 +300,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.23,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Rear-group inner focus: Gr1 is fixed; Gr2 moves 4.98 mm object-ward from infinity to close focus while BFD increases by 4.98 mm.",
 

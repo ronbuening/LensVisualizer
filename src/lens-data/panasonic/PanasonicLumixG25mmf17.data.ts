@@ -310,6 +310,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.25,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Inner focus: the single negative L6 element (G2) moves imageward; patent plate M is modeled in rearPlates (traced, not drawn).",
 

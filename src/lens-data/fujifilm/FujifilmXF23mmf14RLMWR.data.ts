@@ -367,6 +367,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.19,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus: G2 (surfaces 13-22A) translates objectward as a unit; G1, the stop, and G3 remain fixed.",
   nominalFno: 1.4,

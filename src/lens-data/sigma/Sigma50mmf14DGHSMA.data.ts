@@ -23,6 +23,8 @@ const LENS_DATA = {
   apertureDesign: 1.46,
   nominalFno: 1.4,
   closeFocusM: 0.4,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   lensMounts: ["l-mount", "sony-fe", "sigma-sa", "canon-ef", "nikon-f", "sony-a"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2015-114366 A",

@@ -365,6 +365,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.4,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Floating inner focus. G2 and G3 move toward the object with differential travel (G3 moves ~1 mm farther than G2). G1 fixed; stop attached to G3. HSM ring-type ultrasonic drive.",
 

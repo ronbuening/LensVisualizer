@@ -345,6 +345,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.85,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus by single negative meniscus L7 (G2 / LF). L7 translates rigidly toward the image at close focus over a 9.6026 mm throw. Stepping-motor drive (Sigma published spec); BFD held constant.",
 

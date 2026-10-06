@@ -304,6 +304,8 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   // Production MFD 0.267 m; patent −0.5× conjugate = 266.5 mm object-to-image (air-equivalent), 267.5 mm physical.
   closeFocusM: 0.267,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription: "Unit focus — entire G1 (L11–L17 + aperture stop) translates forward as a rigid unit; G2 fixed.",
 
   /* ── Aperture configuration ── */

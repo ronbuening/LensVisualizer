@@ -391,6 +391,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.630805,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent Example 1: F1 moves 7.727 mm and F2 6.143 mm objectward relative to the front/rear groups. Source close object distance is 467.50 mm from the first surface, 0.630805 m from the physical image plane. The 0.001 mm d36 change follows rounded source stations and is carried in d34; intermediate motion is interpolated.",
 

@@ -378,6 +378,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Internal focus by L12/G3: d22 decreases and d24 increases by 1.6864 mm from infinity to 0.20 m.",
 
   nominalFno: 1.4,

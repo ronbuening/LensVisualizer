@@ -295,6 +295,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription: "Inner focus — GR2 (L21 + L22, 2 elements) translates axially; GR1 and GR3 fixed. Ring Drive SSM.",
 
   /* ── Aperture configuration ── */

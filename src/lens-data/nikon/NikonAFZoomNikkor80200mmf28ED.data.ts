@@ -357,6 +357,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.8,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Published front-group focus: G1 moves 10.496 mm objectward at both zoom endpoints; D13 and D18 remain fixed. The patent close states (beta = -0.055 / -0.135) normalize to approximately 1.800 m object-to-image-plane distance.",
 

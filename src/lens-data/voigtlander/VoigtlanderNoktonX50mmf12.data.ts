@@ -221,6 +221,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.44,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Unit focusing (entire optical assembly extends toward the object). The close endpoint is the patent's tabulated state (ZD0 = 369.5 mm from surface 1, BF 19.36 mm, 441.3 mm object-to-image); the production specification is 0.45 m.",
 

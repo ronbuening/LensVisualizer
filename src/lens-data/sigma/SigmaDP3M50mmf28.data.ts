@@ -271,6 +271,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.225, // Sigma spec: 22.5 cm from front of lens
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Unit focus — G1 (L1–L6 with aperture stop) extends toward the object; G2 and sensor are stationary. Only d11 (L6-rear to L7-front gap) changes during focusing.",
 

@@ -297,6 +297,8 @@ const LENS_DATA = {
   focusDescription:
     "Rear focusing: the complete second lens group Gr2 translates 4.410 mm toward the object side from infinity to close focus while Gr1 remains fixed.",
   closeFocusM: 0.25,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 9,

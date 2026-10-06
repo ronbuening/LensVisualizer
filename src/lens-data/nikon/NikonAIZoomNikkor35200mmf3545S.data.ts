@@ -334,6 +334,8 @@ const LENS_DATA = {
 
   nominalFno: [3.5, 4.5],
   closeFocusM: 0.245,
+  // Source-tabulated focus rows differ by zoom station.
+  publishedStations: { focus: [[], [1]] },
   focusDescription:
     "Normal focusing is by the first lens group. The close-focus endpoint modeled here is the patent telephoto-end macro state at β = -0.25.",
   fstopSeries: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22, 32],

@@ -496,6 +496,8 @@ const LENS_DATA = {
 
   nominalFno: 5.75019,
   closeFocusM: 3,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   maxFstop: 32,
   fstopSeries: [5.6, 8, 11, 16, 22, 32],
   focusDescription: "Published G2-dominant internal focus; D1, D2, and BF vary from infinity to 3.0 m",

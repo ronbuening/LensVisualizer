@@ -447,6 +447,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 2.289,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   zoomCloseFocusM: [2.289, 3.709, 5.814],
   focusDescription:
     "Published G6 inner focus: 0.55 / 0.76 / 1.10 mm imageward at Wide / Mid / Tele, reaching 2.289 / 3.709 / 5.814 m respectively. Production macro focus is not modeled.",

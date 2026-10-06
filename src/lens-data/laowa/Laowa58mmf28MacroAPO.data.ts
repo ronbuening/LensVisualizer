@@ -305,6 +305,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.185,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual-group internal focusing. G2 (L3–L9 + STO) advances 47.0 mm toward object; " +
     "G3 (L10–L14) advances 8.1 mm. G1 (L1–L2) fixed. Constant barrel length (internal focusing).",

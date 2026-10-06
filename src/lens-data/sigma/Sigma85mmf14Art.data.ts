@@ -355,6 +355,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.85,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Floating rear focus — G1 fixed, G2A and G2B move independently toward object at close focus.",
 
   /* ── Aperture configuration ── */

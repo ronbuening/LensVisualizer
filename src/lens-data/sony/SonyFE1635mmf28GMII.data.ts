@@ -475,6 +475,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.22,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent Example 1 uses dual floating focus: G4 is the focus lens group and G5 is the floating lens group. The data file's close-focus spacings correspond to the patent close state at 247 mm; the metadata closeFocusM follows Sony's production specification of 0.22 m.",
 

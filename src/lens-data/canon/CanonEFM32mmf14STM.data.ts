@@ -286,6 +286,8 @@ const LENS_DATA = {
   focusDescription:
     "Patent first-group focusing: surfaces 1-20A, including the stop, move objectward while rear group 21-23 remains fixed. The implemented variable gap is patent d20 = 1.10 mm at infinity and 9.71 mm at the patent close state (β≈-0.188).",
   closeFocusM: 0.23,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
   scFill: 0.58,

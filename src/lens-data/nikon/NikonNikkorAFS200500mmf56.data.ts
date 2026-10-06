@@ -454,6 +454,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 2.2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Internal focus via G5 (L5) axial translation toward image. G5 is a negative cemented doublet.",
 
   /* ── Aperture configuration ──

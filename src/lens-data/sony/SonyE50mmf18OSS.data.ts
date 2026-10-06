@@ -242,6 +242,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.458,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED — L221 translates imageward by 4.803 mm from infinity to the patent 0.142× row; " +
     "the physical model object-to-image conjugate is about 0.458 m. Sony's production 0.39 m / 0.16× endpoint is correlation " +

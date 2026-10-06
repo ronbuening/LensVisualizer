@@ -256,6 +256,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.25,
+  // Only the listed focus rows are source-tabulated; the others are reconstructed.
+  publishedStations: { focus: [1] },
   nominalFno: 3.5,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],
   scFill: 0.62,

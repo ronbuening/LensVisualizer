@@ -239,6 +239,8 @@ const LENS_DATA = {
 
   focusDescription: "Inner focus: G2 + G3 translate toward the object; D2 decreases while D15 increases.",
   closeFocusM: 0.167,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,

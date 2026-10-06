@@ -416,6 +416,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.7,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Dual VCM floating focus: G4 (VCM 1) and G5 (VCM 2) move independently.",
 
   /* ── Aperture configuration ── */

@@ -277,6 +277,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "6", toSurface: "8" }],
 
   closeFocusM: 0.24,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Internal focusing by translating G2 (L3-L5) 3.480 mm toward the object; G1, stop, and G3 remain fixed.",
 

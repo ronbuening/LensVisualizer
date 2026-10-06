@@ -281,6 +281,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.45495,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent F36 floating focus: front group, Jb, and Ja+LE move 8.94, 8.54, and 5.53 mm toward the object. Close endpoint is 0.455 m from the image plane (370 mm from surface 1). Intermediate motion is interpolated.",
 

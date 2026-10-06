@@ -353,6 +353,8 @@ const LENS_DATA = {
 
   // §8 — Focus configuration
   closeFocusM: 0.4,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent inner focus: G2 translates 7.911 mm toward the object; G1, stop and G3 stay fixed. Source close distance is 0.4 m object-to-image (307.67 mm to the first surface plus the 92.330 mm physical track including filter FL).",
 

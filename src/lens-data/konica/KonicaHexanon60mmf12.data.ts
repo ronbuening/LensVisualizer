@@ -188,6 +188,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 0.800033079,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: JP H11-160615 Example 1 publishes D(STO→r10) = 6.70 mm at infinity and 7.90 mm at β = -0.085, with whole-lens extension plus increased front/rear spacing. A fixed-image paraxial solve gives r14→IMG = 33.547968454 mm at the close state and MFD = 0.800033079 m.",
 

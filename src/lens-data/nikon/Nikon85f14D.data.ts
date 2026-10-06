@@ -218,6 +218,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.955706213056126,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus — G2 (L4–L7, five elements) and the stop move 10.3438 mm objectward. The source beta=-0.1 station implies about 0.956 m object-to-image distance; G1, G3 and rear BF stay fixed.",
 
   /* ── Aperture configuration ── */

@@ -253,6 +253,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.38,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Floating two-group inner focus. Groups 1 and 2 extend forward on a helicoid; Group 3 fixed. Manual focus, no AF motor. 9 rounded aperture blades.",
 

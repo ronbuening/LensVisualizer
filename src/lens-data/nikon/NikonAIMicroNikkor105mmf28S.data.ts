@@ -217,6 +217,8 @@ const LENS_DATA = {
   doublets: [{ text: "L21", fromSurface: "7", toSurface: "9" }],
 
   closeFocusM: 0.41,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CRC floating focus: G1 and G2 move objectward relative to the fixed rear divergent group G3 while D6 and D11 increase; the diaphragm moves with G2.",
 

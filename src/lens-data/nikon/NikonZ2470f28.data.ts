@@ -436,6 +436,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.8442451232175309,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   // Derived object-to-image conjugates of the published near states (approximately β = −1/30).
   zoomCloseFocusM: [0.8442451232175309, 1.5820322546720436, 2.095597522564697],
   focusDescription:

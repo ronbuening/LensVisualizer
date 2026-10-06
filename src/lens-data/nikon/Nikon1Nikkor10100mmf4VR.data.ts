@@ -46,6 +46,8 @@ const LENS_DATA = {
   elementCount: 19,
   groupCount: 12,
   closeFocusM: 0.35,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   nominalFno: [4, 5.6, 5.6],
   fstopSeries: [4, 5.6, 8, 11, 16],
   zoomPositions: [10.3026, 30, 96.99284],

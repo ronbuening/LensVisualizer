@@ -453,6 +453,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0, // Patent model at 1000 mm; production lens achieves 0.40 m (W) / 0.82 m (T)
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Floating inner focus — GR6 (neg.) moves image-ward, GR7 (pos.) moves object-ward. 4× XD Linear Motors.",
 

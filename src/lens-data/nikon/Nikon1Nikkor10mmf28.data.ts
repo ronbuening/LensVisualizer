@@ -235,6 +235,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 0.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Rear focusing by translating the entire second lens group G2 toward the object; data file close state follows the patent 0.50 m table, not the production 0.20 m MFD.",
 

@@ -328,6 +328,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.095,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus via G2 (L10+L11 cemented doublet); linear motor AF.",
 
   /* ── Aperture configuration ── */

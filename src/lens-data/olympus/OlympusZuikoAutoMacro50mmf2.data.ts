@@ -240,6 +240,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.24,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Floating element: entire lens advances while the air gap between Group I (L1+L2) and Group II (L3+L4) increases, maintaining aberration correction from infinity to 1:2 magnification.",
 

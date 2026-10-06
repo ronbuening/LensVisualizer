@@ -324,6 +324,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.7,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Floating inner focus: GR2 (3 elements) moves toward image, GR3 (2 elements) moves toward object. Four XD linear motors, two per group.",
 

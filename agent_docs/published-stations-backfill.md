@@ -1,19 +1,24 @@
 # Published Stations Backfill
 
-Open work for `publishedStations` in `src/lens-data/**/*.data.ts`: lens files whose source-tabulated focus rows are not
-flagged yet. Field semantics and validation live in `src/lens-data/LENS_DATA_SPEC.md` § Published Stations.
+Open work for `publishedStations` in `src/lens-data/**/*.data.ts`. Field semantics and validation live in
+`src/lens-data/LENS_DATA_SPEC.md` § Published Stations.
 
 A lens without the field offers every authored zoom station at infinity focus in patent-positions mode, and nothing
-else. That default is safe but incomplete: a close-focus row the source really tabulates stays unreachable until it is
-flagged. Flag a row only when the file's sources show it is a source row. A reconstructed endpoint, a production
+else. Flag a focus row only when the lens's sources show it is a source row. A reconstructed endpoint, a production
 minimum-focus distance, or a code-solved keyframe is never flagged. Delete a row here in the commit that settles it.
+
+## Status
+
+Every lens with modeled focus travel was reviewed on 2026-10-06 against its own notes: the data-file header,
+`focusDescription`, `*.analysis.md` and `*.audit.md`. No patent was re-read. 282 files now declare the field.
+A lens with focus travel and no focus flag was judged a reconstruction from those notes, unless it is listed below.
+A new lens is reviewed when it is added (`agent_docs/adding_a_lens.md`).
 
 ## How To Settle A File
 
-1. Read the file header, `focusDescription`, and the `*.audit.md` / `*.analysis.md` notes for which rows are source
-   rows. Go back to the patent when they do not say.
-2. Add `publishedStations.focus` (and `zoom`, when some zoom stations are solved). Use the per-zoom form when the
-   tabulated focus row differs by zoom station.
+1. Read the patent's focus table for the cited embodiment and compare it with the authored `var` rows.
+2. Add `publishedStations.focus` when a row is tabulated; use the per-zoom form when it differs by zoom station.
+   Record the finding in the lens's notes either way, so the next reader does not need the patent.
 3. Run `npx vitest run __tests__/src/lens-data/publishedStations.test.ts`. Validation rejects a flagged keyframe that
    moves no gap.
 
@@ -21,55 +26,32 @@ The free-text `Focus status:` tokens in file comments are triage hints only (`ag
 
 ## Queue
 
-### Keyframed primes whose notes do not say which keyframes are source rows
+### Notes do not settle the focus rows — needs the patent
 
-Each declares `focusPositions` with three keyframes. Decide which of keyframes 1 and 2 the source tabulates.
-
-| Maker folder | Files |
+| File | What the notes leave open |
 |---|---|
-| `canon` | `CanonFD35mmf2` |
-| `carl-zeiss-oberkochen` | `ZeissTouit50mmf28Macro` |
-| `fujifilm` | `FujifilmXF60mmf24R` |
-| `hasselblad` | `HasselbladXCD120mmf35Macro` |
-| `leica` | `LeicaAPO43mmf2` |
-| `minolta` | `MinoltaAF100mmf28Macro` |
-| `nikon` | `NikonAFNikkor35mmf2D`, `NikonAFSNikkor500mmf56EPFEDVR`, `NikonNikkorAFS24mmf14G`, `NikonRUWMicroNikkor50mmf28` |
-| `olympus` | `OlympusZuikoAutoMacro90mmf2`, `OlympusZuikoAutoW18mmf35` |
-| `panasonic` | `PanasonicLumixG25mmf17` |
-| `pentax` | `PentaxA200mmf4MacroED`, `PentaxDA35mmf28MacroLimited` |
-| `samsung` | `Samsung20mmf28` |
-| `sigma` | `SigmaAPOMacro105mmf28OSHSM`, `SigmaAPOMacro150mmf28OSHSM`, `SigmaAPOMacro180mmf28` |
-| `sony` | `SonyE50mmf18OSS`, `SonyFE135mmf18GM`, `SonyFE90mmf28`, `SonyPlanarFE50mmf14ZA` |
-| `tamron` | `TamronSPAF60mmf2Di` |
+| `fujifilm/FujifilmGF120mmf4RLM` | A comment gives the patent close-focus distance and β = −0.5×; the gaps are not attributed and the back focus may be computed. |
+| `hasselblad/HasselbladHC120mmf4Macro` | The 1:1 gap (D13 = 51.784) is listed, but no note says it is a patent row. |
+| `hasselblad/HasselbladHC50mmf4` | Notes cite the patent's normalized focusing amount, not a tabulated close row. |
+| `leica/LeicaAPOMacroElmaritTL60mmf28` | The 1:1 gaps are listed beside the patent's β = −1.0, but are never called a tabulated row. |
+| `leica/LeicaAPOVarioElmaritSL90280mmf284` | Notes say 'patent Example 1' for the 1200 mm close state without naming the zoom stations it covers. |
+| `minolta/MinoltaVarisoft85mmf28` | The close d_A7 sits in a 'patent' column of the notes table; nothing else ties it to a source row. |
+| `nikon/NikonMicroNikkorPCE45mmf28D` | Notes cite the patent's d0 and β = −0.50; the close back focus is computed and the gap rows are not attributed. |
+| `nikon/NikonNikkorPCE19mmf4E` | Close gaps are listed without saying whether they are patent rows or derived. |
+| `nikon/NikonZDX18140mmf3563VR` | Notes cite patent close-focus magnifications but not the gap rows. |
+| `olympus/OlympusMZuiko1442mmf3556II` | The patent's close state is 243.2 mm; the model uses its group motions toward a 0.25 m endpoint. |
+| `panasonic/PanasonicSPro50mmf14` | Notes say the patent states −0.15× at close focus and list the gaps; they do not call them a table row. |
+| `pentax/PentaxFA31mmf18ALLtd` | Notes give u = 0.30 m and m = −0.155 but do not call the d8/BF rows patent rows. |
+| `pentax/PentaxSMC67100mmf4` | The close d11 is a patent row for use with the close-up attachment, shown here as the 0.443 m standalone endpoint. |
+| `sigma/SigmaAPOMacro105mmf28OSHSM` | A three-state spacing table sits beside patent magnifications but is not called the patent's table. |
+| `sony/SonyFE2470mmf28GMII` | Close distances are stated for wide and tele only; the middle station is inferred. |
+| `sony/SonyFE24mmf14GM` | Only the patent close-focus β is cited; the gap rows are not attributed. |
+| `sony/SonyFE24mmf18ZA` | Only the patent's β = −0.25 is cited; the gap rows are not attributed. |
+| `sony/SonyFE85mmf14GMII` | Notes say the patent states 846 mm while the close table gives d0 = 722.07 mm; the link between them is not stated. |
+| `viltrox/ViltroxAF14mmf4Air` | Patent Table 3 prints the close row; the model changes D2 by 0.09 mm to keep D1 + D2 constant and calls it a constrained reconstruction. |
 
-### Header says the focus state is published, but the row is not flagged
-
-The header carries `Focus status: PUBLISHED` while `focusDescription` does not name the source row.
-
-| Maker folder | Files |
-|---|---|
-| `canon` | `CanonRF35mmF18MACROISSTM` |
-| `nikon` | `NikonAFZoomNikkor80200mmf28ED`, `NikonAiAFDCNikkor105mmf2D`, `NikonAiAFNikkor85mmf18S` |
-| `panasonic` | `PanasonicLumixS70300mmf4556MacroOIS` |
-| `samyang` | `SamyangXP35mmf12` |
-| `sony` | `SonyFE50mmf12GM`, `SonyFE70200mmF4MacroGOSSII` |
-| `voigtlander` | `VoigtlanderNokton50mmf15AsphericalVM`, `VoigtlanderSuperWideHeliar15mmf45AsphericalSL` |
-
-### Single questions
+### Zoom stations
 
 | File | Question |
 |---|---|
-| `nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII` | `focusDescription` calls Example 4 focus published, but says the closest endpoints "solve to about 0.250 m". Are the close spacings source rows at each zoom station? |
 | `canon/CanonEF100300mmf56` | All four zoom stations are declared published from the header. Confirm that 69 mm and 100 mm are columns of the patent spacing table, not only named states. |
-| `canon/CanonEF70300mmf4556DOISUSM` | The 1.5 m pairs are evaluated from the printed focus-cam polynomial at W/M/T; Table 2 prints rounded W/T shifts. Decide whether the W and T close rows count as tabulated. |
-
-### Everything else
-
-Files with no statement about focus provenance keep the default until a patent audit reads their focus tables. Two
-things are known from the first pass:
-
-- No solved or derived station was found among zooms with two or three authored stations. That was a keyword search of
-  file comments, not a patent read.
-- A `Focus status:` of `NO_INTERNAL_RECONSTRUCTION` means the close-focus slot repeats infinity, and
-  `CONSTRAINED_RECONSTRUCTION` without `focusPositions` means the close endpoint is reconstructed. Both are already
-  correct under the default.

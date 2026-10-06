@@ -482,6 +482,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Internal focus — G4 moves toward the object (¶0053); G1, G3 and G5 stay fixed and the overall length is constant. The patent's finite-distance gaps focus at 1.00 m object-to-image (calculated); the production lens focuses to 1.1 m.",
 

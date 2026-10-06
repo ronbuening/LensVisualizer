@@ -256,6 +256,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.4921574,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Source near station: ZD0=430 mm plus LT=60.2274 mm and 1.93 mm extension gives 49.22 cm. All lenses and stop move together. The rounded prescription instead computes about 50.98 cm; this source discrepancy remains unresolved.",
 

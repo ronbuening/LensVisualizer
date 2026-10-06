@@ -475,6 +475,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent focus stations: G7 moves toward the image and G8 toward the object. The tabulated gaps imply approximately 1.0 m object-to-image distance; tele travel is ±11.53 mm.",
 

@@ -177,6 +177,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.85,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Published rear focus: L4-L6 translate 12.6617 mm objectward as a rigid group. The inferred fixed stop splits patent d6, so STO-to-L4 changes 18.2330→5.5713 mm while BF changes 38.2080→50.8697 mm; the fixed image plane is preserved and the computed close conjugate is 0.849892 m from the image plane.",
 

@@ -278,6 +278,8 @@ const LENS_DATA = {
   doublets: [{ text: "L2 focus", fromSurface: "20", toSurface: "22" }],
 
   closeFocusM: 0.093,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent rear-focus mechanism: L2 cemented doublet moves imageward within each focus mode; L1 and L2 shift objectward for the Super Macro mode. This file interpolates from infinity to the 1.2× third finite state; the patent rear plate is modeled in rearPlates.",
 

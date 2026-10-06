@@ -365,6 +365,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.4999126452981072,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Source near station beta−0.194 corresponds to about 49.99 cm object-to-image, including the FL plate. GF and stop move 18.61 mm objectward; GR stays fixed. Intermediate motion is interpolated.",
 

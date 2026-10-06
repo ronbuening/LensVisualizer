@@ -349,6 +349,8 @@ const LENS_DATA = {
 
   // Inferred finite conjugate: physical object-to-image distance including the 2.85 mm rear plate.
   closeFocusM: 0.24642928706318645,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   nominalFno: 2.88,
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16],
 

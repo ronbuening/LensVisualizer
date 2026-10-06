@@ -346,6 +346,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.8245543747338308,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Source focus: G2 (negative L7) moves imageward 13.597 mm and G4 (positive L13) objectward 6.184 mm. Other groups remain fixed within 0.001 mm table rounding. Near distance is inferred from the finite conjugate, including the physical filter thickness.",
 

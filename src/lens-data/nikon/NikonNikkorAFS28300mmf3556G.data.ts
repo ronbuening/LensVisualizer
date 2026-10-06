@@ -62,6 +62,8 @@ const LENS_DATA = {
   apertureBlades: 9,
   apertureBladeRoundedness: 0.85,
   closeFocusM: 0.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Internal focusing by moving the complete second lens group G2 toward the object; d5 decreases while d13A increases by the same amount.",
 

@@ -381,6 +381,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.47,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Floating internal focus: L2 moves imageward while L3 moves objectward; L1, L4, L5/OS, and L6 remain fixed relative to the image plane.",
 

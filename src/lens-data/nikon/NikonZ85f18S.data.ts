@@ -301,6 +301,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.8,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Source POS2 is 0.8 m object-to-image: Gr2 moves imageward 3.838 mm and Gr3 objectward 6.762 mm. Gr1, stop and Gr4 are fixed (0.001 mm table rounding). Intermediate motion is interpolated; the rounded prescription gives about 0.803 m at POS2.",
 

@@ -336,6 +336,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.17,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus — G2 (L3–L9, 7 elements) translates 35 mm forward as a rigid unit. " +
     "G1 (L1–L2) and G3 (L10–L14) are fixed. Manual focus only, ~270° helicoid rotation. " +

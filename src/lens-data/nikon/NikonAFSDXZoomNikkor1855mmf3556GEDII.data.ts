@@ -242,6 +242,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.25,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED Example 4 focus: G1 translates toward the object while G2-to-image spacing is unchanged at each zoom position; closest endpoints solve to about 0.250 m from the focal plane. Production MFD 0.28 m is not used to alter the patent model.",
 

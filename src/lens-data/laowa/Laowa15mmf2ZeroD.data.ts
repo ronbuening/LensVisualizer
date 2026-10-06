@@ -301,6 +301,8 @@ const LENS_DATA = {
   focusDescription:
     "Patent rear/inner focus: Gr1 fixed; the stop plus Gr2 translate objectward by 0.298 mm at the patent 0.020x state. The production 0.15 m / 0.25x close-focus spacing is not published in the patent and is not extrapolated here.",
   closeFocusM: 0.97,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   nominalFno: 2,
   maxFstop: 22,
   fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],

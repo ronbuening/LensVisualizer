@@ -247,6 +247,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.19999123089734902,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Source unit focus: all optics and the stop move objectward 5.113 mm. The near object-to-image distance is inferred as 0.200 m from the source BFD; intermediate distances are estimates.",
 

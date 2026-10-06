@@ -326,6 +326,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.25,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus: L8-L13 (G2F) moves objectward by 1.69 mm; G1 and L14 remain fixed.",
 
   nominalFno: 1.8,

@@ -340,6 +340,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus (IF). G2 cemented doublet (L21+L22) translates 12 mm toward the image side from infinity to the patent close station (β = −0.132, approximately 1 m). G1 and G3 fixed. Lens does not change external length.",
 

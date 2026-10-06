@@ -354,6 +354,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.23,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Inner focus: G1 and G4 remain fixed; G2 travels 15.8404 mm imageward and G3 travels 11.7179 mm objectward from infinity to 1:1; the stop remains fixed.",
 

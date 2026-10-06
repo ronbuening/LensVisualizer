@@ -454,6 +454,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.8, // patent 1.57 m from surface 1 + 219.0 mm to image = 1.79 m; production MFD 1.8 m
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus — cemented doublet G2 (L2a+L2b) translates 11.55 mm toward the object between infinity and the patent's close state (1.57 m from the front vertex, ≈1.8 m from the image plane). Driven by twin linear motors for quiet, high-speed autofocus; small moving mass.",
 

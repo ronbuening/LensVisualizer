@@ -214,6 +214,8 @@ const LENS_DATA = {
 
   focusDescription: "Single-element inner focus: G12 / L121 moves image-ward; G11 and G13 remain fixed.",
   closeFocusM: 0.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   nominalFno: 1.8,
   maxFstop: 22,
   fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],

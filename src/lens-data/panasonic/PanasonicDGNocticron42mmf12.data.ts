@@ -378,6 +378,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Internal focus by L9/G2 only; L9 moves 4.9449 mm toward the image side between infinity and 0.5 m.",
 

@@ -189,6 +189,8 @@ const LENS_DATA = {
   doublets: [{ text: "L21", fromSurface: "6", toSurface: "8" }],
 
   closeFocusM: 0.2217,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent-tabulated two-gap inner/floating focus from infinity to beta = -0.1x; production 0.15 m MFD is not extrapolated.",
 

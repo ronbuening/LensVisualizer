@@ -252,6 +252,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.9,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Single-element internal focus: negative meniscus G320 moves image-ward by 5.053 mm.",
 
   nominalFno: 1.4,

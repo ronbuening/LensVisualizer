@@ -162,6 +162,8 @@ const LENS_DATA = {
   doublets: [{ text: "L2+L3", fromSurface: "3", toSurface: "5" }],
 
   closeFocusM: 0.25,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription: "Published whole-lens focus; the patent mechanism differs from production rear focusing.",
 
   nominalFno: 2.006,

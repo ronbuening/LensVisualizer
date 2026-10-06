@@ -210,6 +210,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "9", toSurface: "11" }],
 
   closeFocusM: 0.55,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   nominalFno: 4,
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,

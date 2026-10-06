@@ -337,6 +337,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.699370427048457,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent inner focus: only plano-concave element L7 (unit L2) moves 18.21 mm toward the image. L1, the stop and L3 remain fixed. Closest distance 69.94 cm is calculated from the published near gaps. Stabilization displacement is not simulated.",
 

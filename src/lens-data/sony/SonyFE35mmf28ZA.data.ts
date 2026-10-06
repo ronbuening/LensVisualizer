@@ -262,6 +262,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.35,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus — single negative element (L121/G2) moves object→image. Linear AF motor.",
 
   /* ── Aperture configuration ── */
