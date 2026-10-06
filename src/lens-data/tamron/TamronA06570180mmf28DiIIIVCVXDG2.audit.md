@@ -53,7 +53,7 @@ Every surface Petzval term, principal plane, individual material power, cemented
 
 The historical ordinary-0.90 comparison remains a FAIL observation: the source-F2.9103 tele pupil needs a shared radius of at least 14.2084805 mm, while that ordinary rule permits only 13.9639747 mm. The retained comparison is not relabeled a numerical match. The actual current constructor still rejects the revised radii when the ordinary 0.90 setting is restored in a negative control.
 
-With the authorized radii and 0.94 setting, actual boundary 13–14 has intrusion fraction 0.932720940703, leaving 0.255102009 mm physical air. Its margin below the 0.94 allowed intrusion is 0.027600009 mm. The greatest other air-gap fraction is 0.893119438101 at 9–10. The smallest material separation is the unchanged hybrid resin's 0.014236620 mm; the smallest air separation is 0.200000000 mm. These are mathematical optical-surface clearances, not manufacturing feasibility or tolerance certification.
+With the authorized radii and 0.94 setting, actual boundary 13–14 has intrusion fraction 0.932720940703, leaving 0.255102009 mm physical air. Its margin below the 0.94 allowed intrusion is 0.027600009 mm. The greatest other air-gap fraction is 0.893119438101 at 9–10. The smallest material separation is the unchanged hybrid resin's 0.014236620 mm; the smallest air separation is 0.200000000 mm. These are mathematical optical-surface clearances, not manufacturing feasibility or tolerance certification. (Current value after the 2026-10-06 final review, last section: the resin rim is 15.0 mm and the smallest material separation is 0.143034573 mm; the 13–14 and 9–10 fractions above are unchanged.)
 
 Shared-band geometry is checked at every published control corner. Fixed surface shapes and piecewise-bilinear axial gaps mean each interpolation cell's extreme gap occurs at a control corner. Actual rim slopes, conic domains, material thicknesses and air-gap intrusion remain valid. Native render diagnostics show zero hidden trimming at all 231 sampled zoom/focus states.
 
@@ -73,7 +73,7 @@ Polynomial departure from the spherical base at each final modeled aperture, ind
 | 34A | 16.50 | +0.391482816 |
 | 35A | 16.40 | +1.051350725 |
 
-These are modeled-rim quantities, never published-aperture measurements.
+These are modeled-rim quantities, never published-aperture measurements. The 35A row is the Stage 2 record; since the 2026-10-06 final review (last section) surface 35A is modeled to 15.00 mm, where the departure is +0.704012049 mm. The other four rows are current.
 
 ## Current UI and finite-conjugate checks
 
@@ -164,7 +164,7 @@ The ordinary 0.90 aperture-policy comparison likewise remains FAIL. Its resoluti
 
 A third exact calculation path, the reviewer's independently authored 3D vector-Snell engine, uses bracketed physical-iris aiming and executes 4,851 axial samples over 21 zoom and 11 focus positions. It reproduces the final native envelope within 1e-6 mm. All six published endpoints retain exact source conjugates; intermediate inverse-distance diagnostics remain estimates. No rejected ray or ghost continuation is counted as transmitted.
 
-The independent 1001-point shared-band scans confirm positive material/air separations, actual rim slopes below the ordinary limit, exception fraction 0.932720940703, retained air 0.255102009 mm, and maximum other-air fraction 0.893119438101. The minimum material thickness remains the unchanged resin's 0.014236620 mm. The approved SDs are minimal ray-derived upward rounding, not manufacturing margins. Final aspheric departures agree with both the frozen coefficient convention and native profile evaluation.
+The independent 1001-point shared-band scans confirm positive material/air separations, actual rim slopes below the ordinary limit, exception fraction 0.932720940703, retained air 0.255102009 mm, and maximum other-air fraction 0.893119438101. The minimum material thickness remains the unchanged resin's 0.014236620 mm (0.143034573 mm since the 2026-10-06 final review moved the resin rim to 15.0 mm). The approved SDs are minimal ray-derived upward rounding, not manufacturing margins. Final aspheric departures agree with both the frozen coefficient convention and native profile evaluation.
 
 Figure1 is consistent with the small revised clear radii but does not publish them. The 13/14 change is under two pixels at the independent 2x source scale, while the schematic includes flanges. It cannot itself prove an exact clear-aperture diameter or create a policy exception. The original coarse-figure and source-only solver limitations remain in the frozen record; the later bracketed final-candidate checks resolve the modeled aperture question without rewriting that history.
 
@@ -204,6 +204,9 @@ When the final clean-package checks recorded in the manifest and external receip
   `135-full-frame` retained.
 
 ## 2026-10-06 — Patent-figure semi-diameter pass
+
+*Superseded in part by the final review at the end of this log, which changed L20 (35A/36/37) and surface 10 and
+re-read the rims on both sides of the figure. The numbers below are this pass's record.*
 
 **Outcome: no semi-diameter changed.** The stored rims already reproduce Figure 1; the A065-only `gapSagFrac`
 0.94 exception and its five inferred rims (13/14/27/28A/29A = 14.25/14.21/14.54/14.90/14.92 mm) are untouched, so
@@ -294,3 +297,170 @@ The drawn stop marks have inner ends 210 px (15.15 mm) from the axis; the engine
   height it therefore over-reads the wide half-field as 16.92° (patent 16.3157°). This is a tool limitation, not a
   resin-layer solver failure and not a lens defect; the patent half-fields were used for the clearance statements
   above.
+
+## 2026-10-06 — Final diagram, label and movement review
+
+Second pass over the local lens page against JP2025033505A FIG. 1 (PDF page 34) and Numerical Example 1 (PDF pages
+19–22, ¶0106–0131, Tables 1–6). Four semi-diameters, the group and cemented-pair annotations, the spec line, four
+inferred-APD tags, element roles, variable-gap labels and the cover-plate glass label changed. No R, d, nd, νd,
+aspheric coefficient, variable gap, `STO` value, `gapSagFrac` or exception rim (13/14/27/28A/29A) was touched.
+
+### Figure SD review
+
+- **Scale re-derived.** At the page's native 318 dpi raster the surface-1 and surface-37 vertices are 2096 px apart
+  for the wide-end 151.2196 mm: 13.861 px/mm, as the first pass found. Radial check on L20: the flat seat lies
+  67.7 px (4.88 mm) in front of the 35A vertex, the prescription sag of 35A at 14.55 mm, and the 35A line reaches
+  the seat 201.5 px (14.54 mm) from the element centre. Axial and radial scales agree.
+- **Both-side readings.** Every element outline is symmetric about a line 2 px to the right of the drawn dash-dot
+  axis, and the outline pen is 4 px wide. The first pass read outermost ink on the right side from the drawn axis,
+  which over-reads each rim by about 4 px (0.3 mm). Read on both sides at line centres the outer rims are:
+
+  | Element | Larger stored SD mm | Figure outer rim mm | Figure ÷ stored |
+  |---|---:|---:|---:|
+  | L1–L2 | 32 | 31.85 | 0.995 |
+  | L3 | 31 | 30.91 | 0.997 |
+  | L4 | 18.8 | 18.65 | 0.992 |
+  | L5 | 17.4 | 17.35 | 0.997 |
+  | L6 | 15.5 | 15.44 | 0.996 |
+  | L7 | 15.8 | 15.55 | 0.984 |
+  | L8 | 15.8 | 15.76 | 0.997 |
+  | L9 | 17 | 16.95 | 0.997 |
+  | L10 | 16.2 | 16.20 | 1.000 |
+  | L11 | 15.5 | 15.55 | 1.003 |
+  | L12–L13 | 15 | 14.83 | 0.989 |
+  | L14–L15 | 14.54 | 14.39 | 0.990 |
+  | L16 | 14.92 | 14.61 | 0.979 |
+  | L17–L18 | 13.1 | 13.02 | 0.994 |
+  | L19 | 16.5 | 16.49 | 0.999 |
+  | L20 (before this pass) | 16.4 | 17.03 | 1.038 |
+
+  The stop marks' inner ends are 208 px (15.01 mm) from the centre; the engine's wide-end iris radius is 15.0202 mm.
+- **Changes (before → after).**
+
+  | Surface | Before mm | After mm | Evidence |
+  |---|---:|---:|---|
+  | 10 (L6 front) | 14.95 | 15.5 | FIG. 1 draws L6 as a square-edged plate, both faces to 15.44 mm. The stored 14.95/15.5 pair rendered a slanted edge. The 9–10 gap is checked over the shared band, still 14.95 mm, so its fraction stays 0.893119438101. |
+  | 35A (resin face) | 16.4 | 15.0 | FIG. 1 ends the concave resin face at a flat seat: the 35A line at 14.55 mm, the junction line at 14.8 mm, the outer edge of the resin stroke at 15.0 mm. 16.4 mm was the last 0.1 mm step with positive resin thickness, not a drawn extent. |
+  | 36 (junction) | 16.4 | 15.0 | Same seat; kept equal to 35A. |
+  | 37 (L20 rear) | 16.4 | 17.0 | The rear face runs to the 17.03 mm outer rim, above L19's 16.49 mm. The stored value drew L20 below L19. |
+
+- **Why 15.0 mm and not the drawn 14.6–14.7 mm.** A 14.6 mm resin rim cuts the sampled corner transmission at
+  infinity focus from 0.5685 to 0.5381 (wide) and from 0.4724 to 0.4171 (long); 14.7 mm gives 0.5533 and 0.4322 and
+  lowers the engine's wide half-field bound to 17.99°. Rays that pass every other aperture reach at most 14.90 mm on
+  35A and 14.92 mm on 36 (infinity focus, 21 zoom states, fields 0.5–1.0 of the corner, 61 × 121 pupil grid), so
+  15.0 mm is the smallest 0.1 mm value that clips none of them. The same scan gives 14.63 mm on surface 10 and
+  16.15 mm on surface 37.
+- **Numbers that moved with the rims.** Polynomial departure of 35A at its rim: +1.051350725 mm at 16.40 mm →
+  +0.704012049 mm at 15.00 mm. Resin rim thickness, still the smallest material separation: 0.014236620 mm →
+  0.143034573 mm (the layer is 0.2000 mm on axis, 0.3020 mm near 10 mm height, and would reach zero just past
+  16.5 mm). The next thinnest edge is L11 at 0.421576560 mm. The 13–14 boundary keeps fraction 0.932720940703 and
+  0.255102009 mm of air. The header note, the analysis asphere table and the L6, L20r and L20 paragraphs were
+  updated, and the three earlier statements of the old values in this log now point here.
+- **Engine build.** EFL 72.0672 / 120.0134 / 174.6542 mm, f/2.9104 / 2.9109 / 2.9103 and iris radii 15.0202 /
+  14.6402 / 14.9100 mm are unchanged. The half-field bound, the largest field whose chief ray clears every rim, moved
+  from 18.3256° / 11.2159° / 7.6308° to 18.3348° / 11.3124° / 7.6777°: it was set by surface 37 at 16.4 mm and is
+  now set by surface 36 at 15.0 mm. Both sets lie 12–16 % beyond the patent half-fields 16.3157° / 9.7406° /
+  6.7314°. The default off-axis display field at the wide end goes from 10.995° to 11.001°. This is the only
+  engine-derived change and follows from giving the rear face its drawn rim.
+- **Checks on the edited file.** Surface validator: no errors. Image-circle floor: 0 undersized. Traced corner
+  coverage: 100 % at 72.07, 120.01 and 174.65 mm. Corner chief ray over 21 zoom × 11 focus states: reaches 21.65 mm
+  in all 231 with no rim clipped; its largest heights are 9.30 mm on 10, 13.02 mm on 35A, 13.07 mm on 36 and
+  14.19 mm on 37. Relative-illumination curves (13 fields × 201 pupil rays) at the same 231 states: identical to
+  the curves of the file before this pass. Exact meridional trace at the patent half-fields with infinity and
+  850 mm gaps: no axial clip and no blocked chief ray; tightest axial margins are still 14.24 against 14.25 mm on
+  13 and 14.21 against 14.21 mm on 14. Render diagnostics: zero trimmed surfaces over the 231 states. On-axis
+  marginal heights on the changed surfaces are 14.31 mm (10, now larger) and at most 3.63 mm (35A/36/37).
+- **Rendered page.** Re-shot at 72.07, 120.01 and 174.65 mm, each at infinity and at 0.85 m, and compared with
+  FIG. 1 at the wide end: L6 is now a square-edged plate, L20 ends its concave face inside a thick rim that stands
+  above L19, and no elements overlap at any station.
+- **Differences that remain.**
+  - Flat mounting seats become straight chamfers because the renderer joins a front rim and a rear rim with one
+    line: L5 (rear seat from 14.95 to 17.4 mm; surface 9 cannot grow, since the 9–10 gap fraction is 0.893 at
+    14.95 mm and passes 0.90 at 15.0 mm), L8 (front seat outside the locked 14.21 mm rim), L10 (junction 20 runs
+    into L11's knife edge just short of 15.9 mm) and L20 (seat from 15.0 to 17.0 mm). L1's rear annulus outside
+    the cemented surface is not drawn; L1–L2 share a 32 mm rim.
+  - L7 and L8 are drawn touching at about 14.7 mm; the model keeps the authorised 14.25 / 14.21 mm rims. L16 is
+    drawn to 14.61 mm against the authorised 14.90 / 14.92 mm (+2 %). L7's front rim is 1.6 % above the drawing.
+    Each is under 1.5 px on the rendered page, and the first two are fixed by the exception.
+  - L20's resin face stops 0.2–0.45 mm outside the drawn 14.55–14.8 mm for the transmitted-ray reason above.
+  - FIG. 1 is a wide-end section only; the middle and long stations have no drawn counterpart.
+
+### Diagram labels and movement order
+
+- **Elements.** 21 material entries for 20 lenses, labelled L1–L19, L20r (resin) and L20, in patent order. Every
+  `type` string was checked against the signed radii and ¶0112–0116: L1 negative meniscus and L2 biconvex
+  (cemented), L3 positive meniscus; L4 positive, L5 and L6 negative, L7 positive menisci convex to the object, L8
+  negative meniscus concave to the object; L9 positive meniscus, L10 negative and L11 positive menisci (cemented),
+  L12 biconcave and L13 positive meniscus (cemented), L14 biconvex and L15 biconcave (cemented), L16 biconvex; L17
+  biconvex and L18 biconcave (cemented); L19 biconvex, L20 negative meniscus concave to the object with the resin
+  layer on its object side. No type changed. Asphere markers sit on 28A, 29A, 33A, 34A and 35A, the five ASPH rows
+  of Table 1, and the "(Asph)" suffixes on L16, L19 and L20r agree.
+- **Groups.** Ranges match ¶0119 (1–5, 6–15, 16–29 including the stop, 30–32, 33–37). Labels changed from
+  `G1`…`G5` to FIG. 1's own bracket labels `G1 (P)`, `G2 (M1)`, `G3 (M2)`, `G4 (F)`, `G5 (R)`.
+- **Cemented pairs.** `doublets` was empty, so the diagram drew no cemented labels. Added D1 (1–3), D2 (19–21),
+  D3 (V) (22–24), D4 (25–27), D5 (30–32) and H1 (35A–37), each spanning exactly the bonded surfaces. Element
+  `cemented` names `VC` and `F` became `D3` and `D5` so the series is continuous; "V" is the patent's name for the
+  vibration-compensation pair and "F" stays on the group label.
+- **Stop, plate, readouts.** `STO` is source surface 16, 1.0000 mm ahead of L9, labelled S in the figure. The
+  cover glass stays a traced, undrawn rear plate (2.5 mm after 17.2805 mm of air, 1.0 mm to the image). Added
+  `varLabels` D(5), D(15), D(29), D(32) in the patent's d(n) notation; the page had no gap readouts.
+- **Spec line, roles.** Added `specs` (20 elements / 15 groups, design f = 72.07–174.65 mm, design F/2.91, 5
+  aspherical surfaces on 3 elements, 1 XLD + 3 LD inferred). Added a one-line `role` to every element stating its
+  group, cemented partner and any function the patent assigns (V pair, focusing pair, glass-molded L16, hybrid L20).
+- **Zoom order and direction.** Stations run 72.0664 → 120.0114 → 174.6514 mm and every `var` row lists
+  wide / middle / long in that order; all twelve infinity values and all twelve 850 mm values equal Tables 3 and 4.
+  Front-vertex positions from the image plane, wide / middle / long: G1 172.0001 / 189.0483 / 197.8684 mm
+  (objectward 17.0482 then 8.8201, total 25.8683); G2 154.1188 / 137.2686 / 128.8043 mm (imageward 16.8502 then
+  8.4643, total 25.3145); G3 104.7992 / 102.2525 / 104.6145 mm (imageward 2.5467, then objectward 2.3620); G4
+  60.7549 / 57.8347 / 63.1778 mm (imageward 2.9202, then objectward 5.3431); G5 43.0343 mm throughout. This is
+  ¶0109 and the figure arrows exactly: G1 to the object, G2 to the image, G3 and G4 on loci convex toward the image
+  (the documented G3/G4 reversal), G5 fixed. Nothing was mis-ordered.
+- **Focus order and direction.** `focusPositions` is infinity → 0.85 m. Only d(29) and d(32) change. G4 moves
+  toward the image by 2.2707 / 6.4626 / 12.6742 mm at wide / middle / long, as ¶0110 states; d(32) falls by
+  2.2706 / 6.4626 / 12.6741 mm, equal and opposite within the 0.0001 mm table rounding. d(0) plus the near-state
+  physical track is 850.0002 / 850.0000 / 850.0001 mm, so `closeFocusM` 0.85 and the three `finiteConjugates` distances
+  (678.0000 / 660.9517 / 652.1316 mm from the first vertex) are right. Patent-positions mode offers all three
+  stations with both focus states.
+- **Overlays.** The zoom overlay shows G1 moving objectward and G2 imageward with 25.87 mm maximum travel, G3 and
+  G4 short reversing tracks and G5 fixed; the focus overlay shows only G4 moving toward the image (12.67 mm at the
+  long end). Both agree with the arrows.
+- **Focus text.** `focusDescription` reworded to name G4 as the patent's group F and to quote the three travels;
+  the direction it stated was already correct.
+
+### Glass and color completeness
+
+- All 20 glass spans resolve to a catalog Sellmeier row whose coordinates match the stored pair (largest residuals
+  |Δnd| 4.9 × 10⁻⁶ at NBFD25 and |Δνd| 0.02 at FCD1). The 0.2 mm resin L20r traces on the Abbe estimate by design.
+- The cover plate carried no glass label and traced on the Abbe estimate. Labelled it
+  `BSC7 (HOYA coordinate-equivalent class; supplier unconfirmed)`, the exact 1.51680 / 64.20 row already listed in
+  the analysis; it now traces on that curve. EFL and f-number are unchanged.
+- The patent prints no θgF, PgF or line indices and never calls a material anomalous or low-dispersion, so no
+  `dPgF`, `nC`, `nF` or `ng` was authored and no element is tagged `apd: "patent"`.
+- Added `apd: "inferred"` with a note to four elements by the corpus class convention: L3 (FCD100 class, catalogue
+  ΔPgF ≈ +0.050), L2 (FCD1 class, +0.031), L11 and L14 (FCD515 class, +0.016). Tamron's product page lists one XLD
+  and three LD elements, the same count. Which production element is which grade is not confirmed. The dense
+  flints with positive catalogue ΔPgF (L17 E-FDS1 class, L7 FDS90 class, L8/L10 TAFD40L-W class) stay untagged.
+
+### Identity and metadata
+
+- Front page: publication 特開2025-33505, published 2025-03-13, applicant 株式会社タムロン, sole inventor 山中 久幸.
+  `patentNumber` `JP 2025-033505 A`, `patentAuthors` `Hisayuki Yamanaka`, `patentAssignees` `Tamron Co., Ltd.` and
+  `patentYear` 2025 are correct. `subtitle` names Numerical Example 1.
+- Tamron's Model A065 page (read 2026-10-06): 70-180mm F/2.8 Di III VC VXD G2, 20 elements in 15 groups, one XLD,
+  three LD, two GM and one hybrid aspherical element, Sony E and Nikon Z mounts, full frame, minimum object
+  distance 0.3 m at 70 mm and 0.85 m at 180 mm. `elementCount` 20, `groupCount` 15 (2 + 5 + 5 + 1 + 2 air-separated
+  components), `lensMounts`, `imageFormat`, `focalLengthMarketing` [70, 180] and `apertureMarketing` 2.8 agree.
+  The two GM positions correspond to L16 and L19 and the hybrid to L20.
+- `focalLengthDesign` (72.0672–174.6542 mm computed, patent 72.0664–174.6514), `apertureDesign` 2.9104,
+  `nominalFno`, `zoomPositions` and `closeFocusM` 0.85 (the patent's 850 mm states, not the 0.3 m production wide
+  limit) are retained. Display name `TAMRON 70-180mm f/2.8 Di III VC VXD G2` left as normalised.
+
+### Open limitations
+
+- The half-field bound is an engine construct beyond the format corner; its small rise is recorded above. No
+  analysis field, f-number or relative-illumination value changed.
+- Stage 2–4 hashes and the bounded-scope comparison earlier in this log describe the frozen package pair. The file
+  now differs from it by today's integration labels and by this pass's four ordinary rims and annotations; the five
+  authorised rims and `gapSagFrac` are as approved.
+- The 4,851-ray on-axis physical-iris grid of Stage 2 was not re-run. The changed rims cannot affect it: surface 10
+  grew, and the axial bundle stays below 4 mm on 35A, 36 and 37.

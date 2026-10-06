@@ -288,6 +288,15 @@ L-LAH91 has catalog νd 49.096913 versus source 49.09; that residual is retained
 than silently replacing the source Abbe number. Relevant coefficients are evaluated
 at the catalog spectral wavelengths as a separate dispersion round-trip check.
 
+Sigma's specification lists four aspherical elements and no SLD or FLD element. The
+example agrees: its highest Abbe number is 52.32 (L8 and L12), no element has a
+fluorophosphate or other extra-low-dispersion coordinate, and the only material the
+patent treats as anomalous is the dense flint of L10. The patent states the contrast
+itself, naming HOYA FCD1 as the usual low-dispersion choice for a positive lens and
+its low index as the reason a high-index Lp material is used instead. The partial
+dispersion ratio is printed for L10 alone; no other element carries a published PgF.
+[1, ¶0027; 2]
+
 The source defines anomalous partial dispersion with a different normal line from
 the model's chromatic implementation. For L10:
 

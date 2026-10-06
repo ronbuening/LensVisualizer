@@ -10,14 +10,20 @@ import type { LensDataInput } from "../../types/optics.js";
  * NOTE ON SEMI-DIAMETERS: estimated from supporting grant JP5952167B2 FIG. 1 (PDF p26, wide end, infinity)
  * plus traced clearance; none is a published clear aperture. The drawing is axially true to the prescription
  * (7.056 px/mm at 600 dpi) but about 1.093x taller, so heights use a curvature-calibrated vertical scale.
- * Figure-fitted 2026-10-06: 1A 26.3, 3A 21.1, 5 19.7, 8 15.4 (the concave curve ends at a flat front annulus),
- * 9/10 18.3, 13 20.1, 22/23 14.1. Held below the drawing by geometry: 2, 4, 20/21 (12.3) and 28/29A by the
- * cross-gap rule; 14A (18.6) by its slope reversal at 18.6445 mm, so the f/1.86 tele axial marginal ray
- * (18.70 mm there) loses its outer 0.10 mm. A-publication supplies every prescription number.
+ * Figure-fitted 2026-10-06: 1A 26.3, 3A 21.1, 5-7 19.7, 9/10 18.3, G2 rims (11-13, 15-17) 20.0, 19 13.3,
+ * 21-23 14.1, 24/25 14.9, 26/27 15.1, 29A/30A 15.3. The renderer joins unequal rims with a straight edge, so a
+ * curve is carried to the element rim where the figure draws a square block and nothing forbids it (21, 29A).
+ * Held below the drawn rim: 2 (19.7), 4 (18), 20 (12.3) and 28 (13.9) by the cross-gap rule (28 and 29A meet at
+ * 14.26 mm); 8 (17.0; the figure ends that curve near 15.4 at a flat annulus) because a larger front lets the
+ * default off-axis fan clip first at cemented surface 9; 14A (18.6) by its slope reversal at 18.6445 mm, so the
+ * f/1.86 tele axial marginal ray (18.70 mm there) loses its outer 0.10 mm. Those six faces draw as chamfers;
+ * the figure has flat annuli on five of them and carries 14A to the rim. A-publication supplies every
+ * prescription number.
  * NOTE ON STOP: position is published surface18; radius is inferred by f/1.86
  * calibration (actual runtime uses an exact marginal ray). f-number agreement is not independent iris-size evidence.
  * Glass classes indicate coordinate-compatible catalogs, not actual suppliers/melts.
- * No source nC/nF/ng/PgF/dPgF is available; no APO claim is made.
+ * No source nC/nF/ng/PgF/dPgF is available; no APO claim is made. apd "inferred" marks the FCD1- and
+ * FCD505-coordinate elements L3, L7, L10, L14, L15, the five SLD positions of Sigma's construction diagram.
  * Exact production prescription identity remains manufacturer-unconfirmed.
  */
 const LENS_DATA = {
@@ -92,6 +98,8 @@ const LENS_DATA = {
       "vd": 81.61,
       "fl": -70.6467552345233,
       "glass": "FCD1 (HOYA catalog equivalent; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "FCD1 / S-FPL51-class fluorophosphate crown inferred from nd/vd; one of the five SLD positions in Sigma's construction diagram. The patent publishes no partial dispersion.",
       "role": "Negative member of G1A cemented doublet",
       "cemented": "D1"
     },
@@ -140,6 +148,8 @@ const LENS_DATA = {
       "vd": 68.62,
       "fl": 73.43747924795352,
       "glass": "FCD505 (HOYA catalog equivalent; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "FCD505-class fluorophosphate crown inferred from nd/vd; one of the five SLD positions in Sigma's construction diagram. The patent publishes no partial dispersion.",
       "role": "First positive singlet of G2"
     },
     {
@@ -174,6 +184,8 @@ const LENS_DATA = {
       "vd": 68.62,
       "fl": 37.11935996109328,
       "glass": "FCD505 (HOYA catalog equivalent; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "FCD505-class fluorophosphate crown inferred from nd/vd; one of the five SLD positions in Sigma's construction diagram. The patent publishes no partial dispersion.",
       "role": "Positive member of G2 cemented doublet",
       "cemented": "D3"
     },
@@ -221,6 +233,8 @@ const LENS_DATA = {
       "vd": 68.62,
       "fl": 51.90189384334206,
       "glass": "FCD505 (HOYA catalog equivalent; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "FCD505-class fluorophosphate crown inferred from nd/vd; one of the five SLD positions in Sigma's construction diagram. The patent publishes no partial dispersion.",
       "role": "First positive singlet of G4"
     },
     {
@@ -232,6 +246,8 @@ const LENS_DATA = {
       "vd": 68.62,
       "fl": 56.50978750377593,
       "glass": "FCD505 (HOYA catalog equivalent; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "FCD505-class fluorophosphate crown inferred from nd/vd; one of the five SLD positions in Sigma's construction diagram. The patent publishes no partial dispersion.",
       "role": "Positive member of G4 cemented doublet",
       "cemented": "D5"
     },
@@ -322,7 +338,7 @@ const LENS_DATA = {
       "d": 1.0,
       "nd": 1.62588,
       "elemId": 5,
-      "sd": 15.4
+      "sd": 17
     },
     {
       "label": "9",
@@ -346,7 +362,7 @@ const LENS_DATA = {
       "d": 5.8519,
       "nd": 1.592824,
       "elemId": 7,
-      "sd": 20.5
+      "sd": 20
     },
     {
       "label": "12",
@@ -354,7 +370,7 @@ const LENS_DATA = {
       "d": 0.15,
       "nd": 1,
       "elemId": 0,
-      "sd": 20.5
+      "sd": 20
     },
     {
       "label": "13",
@@ -362,7 +378,7 @@ const LENS_DATA = {
       "d": 4.1642,
       "nd": 1.592014,
       "elemId": 8,
-      "sd": 20.1
+      "sd": 20
     },
     {
       "label": "14A",
@@ -378,7 +394,7 @@ const LENS_DATA = {
       "d": 1.2,
       "nd": 1.62588,
       "elemId": 9,
-      "sd": 20.5
+      "sd": 20
     },
     {
       "label": "16",
@@ -386,7 +402,7 @@ const LENS_DATA = {
       "d": 11.473,
       "nd": 1.592824,
       "elemId": 10,
-      "sd": 20.5
+      "sd": 20
     },
     {
       "label": "17",
@@ -394,7 +410,7 @@ const LENS_DATA = {
       "d": 1.0,
       "nd": 1,
       "elemId": 0,
-      "sd": 20.5
+      "sd": 20
     },
     {
       "label": "STO",
@@ -410,7 +426,7 @@ const LENS_DATA = {
       "d": 1.0,
       "nd": 1.883,
       "elemId": 11,
-      "sd": 13
+      "sd": 13.3
     },
     {
       "label": "20",
@@ -426,7 +442,7 @@ const LENS_DATA = {
       "d": 1.0,
       "nd": 1.883,
       "elemId": 12,
-      "sd": 12.3
+      "sd": 14.1
     },
     {
       "label": "22",
@@ -450,7 +466,7 @@ const LENS_DATA = {
       "d": 5.2037,
       "nd": 1.592824,
       "elemId": 14,
-      "sd": 16
+      "sd": 14.9
     },
     {
       "label": "25",
@@ -458,7 +474,7 @@ const LENS_DATA = {
       "d": 0.7186,
       "nd": 1,
       "elemId": 0,
-      "sd": 16
+      "sd": 14.9
     },
     {
       "label": "26",
@@ -466,7 +482,7 @@ const LENS_DATA = {
       "d": 5.0907,
       "nd": 1.592824,
       "elemId": 15,
-      "sd": 15.5
+      "sd": 15.1
     },
     {
       "label": "27",
@@ -474,7 +490,7 @@ const LENS_DATA = {
       "d": 1.0,
       "nd": 1.72825,
       "elemId": 16,
-      "sd": 15.5
+      "sd": 15.1
     },
     {
       "label": "28",
@@ -490,7 +506,7 @@ const LENS_DATA = {
       "d": 5.2229,
       "nd": 1.592014,
       "elemId": 17,
-      "sd": 13.9
+      "sd": 15.3
     },
     {
       "label": "30A",
@@ -498,7 +514,7 @@ const LENS_DATA = {
       "d": 38.56,
       "nd": 1,
       "elemId": 0,
-      "sd": 15
+      "sd": 15.3
     }
   ],
   "asph": {
@@ -657,8 +673,13 @@ const LENS_DATA = {
   ],
   "groups": [
     {
-      "text": "G1",
+      "text": "G1A",
       "fromSurface": "1A",
+      "toSurface": "7"
+    },
+    {
+      "text": "G1B",
+      "fromSurface": "8",
       "toSurface": "10"
     },
     {
@@ -707,7 +728,7 @@ const LENS_DATA = {
   "closeFocusM": 0.2799999,
   "zoomCloseFocusM": [
     0.2799999,
-    0.28000010000000003,
+    0.2800001,
     0.2800012
   ],
   "focusDescription": "PUBLISHED: G1B (L5–L6) moves objectward; all infinity/111.5000 mm first-vertex object-distance states retained at three zoom stations. closeFocusM uses object-to-image distance. Intermediate slider spacing is linear interpolation, not a recovered cam law. Tiny printed BF/total-track variations are retained.",

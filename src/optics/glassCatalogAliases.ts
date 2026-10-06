@@ -109,12 +109,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
   { alias: "LA-F21", target: "N-LAF21", kind: "legacy-name", note: "Alternate legacy token for N-LAF21." },
   { alias: "SK2", target: "N-SK2", kind: "legacy-name", note: "Legacy Schott name superseded by N-SK2." },
   {
-    alias: "TAFD35L",
-    target: "TAFD35",
-    kind: "catalog-variant",
-    note: "Hoya PGM/pressed-glass row sharing TAFD35 911/353 optical constants.",
-  },
-  {
     alias: "MC-TAFD305",
     target: "M-TAFD305",
     kind: "catalog-variant",

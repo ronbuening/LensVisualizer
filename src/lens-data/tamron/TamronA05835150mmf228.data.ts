@@ -6,11 +6,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * rearPlates thickness 2.5 mm, final air 1.0 mm. Supplier/melt identities are unconfirmed.
  * NOTE ON SEMI-DIAMETERS: the patent publishes none. Element rims are estimated from
  * JP2023004721A FIG. 1 (wide end, infinity; PDF page 32, 0.06505 mm/px at 421 dpi) and held
- * to traced clearance; the drawn outer rims agree with FIG. 1 within about 5%. Two concave
- * faces that FIG. 1 ends at a flat mounting annulus stop near the optical extent instead of
- * the outer blank: s7=20.4 mm and s36A=15.5 mm (figure 19.0 and 14.9-15.2 mm). They are the
- * smallest 0.1 mm values that leave the engine-derived half-fields unchanged, and they lie
- * outside every transmitted ray sampled to the corner field (maxima 18.28 and 14.89 mm).
+ * to traced clearance; the drawn outer rims agree with FIG. 1 within about 3%. Two concave
+ * faces that FIG. 1 ends at a flat mounting annulus stop at the optical extent instead of
+ * the outer blank: s7=19.2 mm and s36A=15.2 mm (figure 19.0 and 14.7-15.0 mm). They lie
+ * outside every transmitted ray sampled to the corner field (maxima 18.30 and 14.90 mm) and
+ * keep the engine-derived half-fields (31.11/17.86/9.58 deg) at or above the source
+ * half-fields (30.97/15.37/8.06 deg); s7 now sets the wide value and s36A the middle one.
+ * The L19/L20 doublet follows the figure's L19 blank (s33=15.2 mm) with the cemented and
+ * rear faces at 14.7 mm, just inside the 14.9 mm radius where L20 closes to a knife edge.
+ * The renderer joins unequal front and rear rims with one straight edge, so L4, L7, L9, L12,
+ * L14, L15, L19 and L21 show a chamfer where FIG. 1 draws a flat annulus and a cylinder edge.
+ * Diagram APD tags: L10 patent-listed (paragraph 0054); L2/L3/L7/L11 inferred LD class.
  * Inferred clear semi-diameters include s15=14.86 mm and s26A=14.41 mm;
  * gapSagFrac=0.932 preserves positive modeled air. Nominal minimum radial headroom is
  * 3.451 micrometres; this is not a manufacturing tolerance or rounding-robustness claim.
@@ -34,8 +40,9 @@ const LENS_DATA = {
   "subtitle": "JP 2023-004721 A, Numerical Example 1; construction-correlated production lens",
   "specs": [
     "21 ELEMENTS / 15 GROUPS",
-    "5 ASPHERICAL SURFACES",
-    "PUBLISHED 0.8 m TEST STATES"
+    "DESIGN f = 36.03–145.53 mm",
+    "DESIGN F/2.06–2.91",
+    "5 ASPHERICAL SURFACES / 3 ELEMENTS"
   ],
   "focalLengthMarketing": [
     35,
@@ -72,6 +79,7 @@ const LENS_DATA = {
       "vd": 35.25,
       "fl": -230.38983074,
       "glass": "TAFD35L (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Front negative meniscus of G1, convex to the object; cemented to L2 (D1).",
       "cemented": "D1"
     },
     {
@@ -83,6 +91,9 @@ const LENS_DATA = {
       "vd": 81.61,
       "fl": 145.47039055,
       "glass": "FCD1 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "LD-class inference from the coordinate-compatible FCD1 curve (catalogue ΔPgF ≈ +0.031); the patent prints only nd and νd for this element and names no special glass. One of four such elements (L2, L3, L7, L11), matching Tamron's count of four LD elements.",
+      "role": "Biconvex low-dispersion positive member of D1; the cemented pair is net positive.",
       "cemented": "D1"
     },
     {
@@ -93,7 +104,10 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.61,
       "fl": 225.29470062,
-      "glass": "FCD1 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "FCD1 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "LD-class inference from the coordinate-compatible FCD1 curve (catalogue ΔPgF ≈ +0.031); the patent prints only nd and νd for this element and names no special glass. One of four such elements (L2, L3, L7, L11), matching Tamron's count of four LD elements.",
+      "role": "Positive meniscus, convex to the object, completing positive G1."
     },
     {
       "id": 4,
@@ -103,7 +117,8 @@ const LENS_DATA = {
       "nd": 1.8707,
       "vd": 40.73,
       "fl": -51.08492885,
-      "glass": "TAFD32 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "TAFD32 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Front negative meniscus of the negative zoom group G2, convex to the object."
     },
     {
       "id": 5,
@@ -113,7 +128,8 @@ const LENS_DATA = {
       "nd": 1.80518,
       "vd": 25.46,
       "fl": 85.49319857,
-      "glass": "FD60-W (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "FD60-W (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Air-spaced biconvex positive element within negative G2."
     },
     {
       "id": 6,
@@ -123,7 +139,8 @@ const LENS_DATA = {
       "nd": 1.8707,
       "vd": 40.73,
       "fl": -85.78709186,
-      "glass": "TAFD32 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "TAFD32 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Biconcave negative element of G2 ahead of the L7/L8 doublet."
     },
     {
       "id": 7,
@@ -134,6 +151,9 @@ const LENS_DATA = {
       "vd": 68.62,
       "fl": -34.74317692,
       "glass": "FCD515 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "LD-class inference from the coordinate-compatible FCD515 curve (catalogue ΔPgF ≈ +0.016); the patent prints only nd and νd for this element and names no special glass. One of four such elements (L2, L3, L7, L11), matching Tamron's count of four LD elements.",
+      "role": "Low-dispersion biconcave member of cemented doublet D2 in G2.",
       "cemented": "D2"
     },
     {
@@ -145,6 +165,7 @@ const LENS_DATA = {
       "vd": 35.25,
       "fl": 37.43176914,
       "glass": "TAFD35L (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Biconvex positive member of D2; the cemented pair is weakly negative.",
       "cemented": "D2"
     },
     {
@@ -155,7 +176,8 @@ const LENS_DATA = {
       "nd": 1.72916,
       "vd": 54.67,
       "fl": -117.50700909,
-      "glass": "TAC8 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "TAC8 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Rear negative meniscus of G2, concave to the object, ahead of the variable gap to the stop."
     },
     {
       "id": 10,
@@ -168,7 +190,8 @@ const LENS_DATA = {
       "glass": "E-FDS1-W (HOYA coordinate-equivalent class; supplier unconfirmed)",
       "apd": "patent",
       "dPgF": 0.03033631999999986,
-      "apdNote": "Patent paragraph 0054 identifies anomalous partial dispersion; native departure 0.0313 converted to engine baseline."
+      "apdNote": "Patent paragraph 0054 identifies anomalous partial dispersion; native departure 0.0313 converted to engine baseline.",
+      "role": "Positive lens P at the front of G3 (M): high-dispersion positive meniscus bound by patent conditions (5) and (6)."
     },
     {
       "id": 11,
@@ -178,7 +201,10 @@ const LENS_DATA = {
       "nd": 1.59282,
       "vd": 68.62,
       "fl": 91.26216451,
-      "glass": "FCD515 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "FCD515 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "LD-class inference from the coordinate-compatible FCD515 curve (catalogue ΔPgF ≈ +0.016); the patent prints only nd and νd for this element and names no special glass. One of four such elements (L2, L3, L7, L11), matching Tamron's count of four LD elements.",
+      "role": "Second positive meniscus of G3 (M), convex to the object."
     },
     {
       "id": 12,
@@ -189,6 +215,7 @@ const LENS_DATA = {
       "vd": 23.78,
       "fl": -29.25627529,
       "glass": "FDS90-SG (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Front negative meniscus of cemented triplet T1; its junction with L13 is the first divergent cemented surface.",
       "cemented": "T1"
     },
     {
@@ -200,6 +227,7 @@ const LENS_DATA = {
       "vd": 63.39,
       "fl": 21.08370196,
       "glass": "PCD4 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Thick biconvex centre of T1, between the two divergent cemented surfaces.",
       "cemented": "T1"
     },
     {
@@ -211,27 +239,30 @@ const LENS_DATA = {
       "vd": 31.31,
       "fl": -26.79245738,
       "glass": "TAFD25L (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Biconcave rear member of T1; its junction with L13 is the second divergent cemented surface.",
       "cemented": "T1"
     },
     {
       "id": 15,
       "name": "L15",
       "label": "Element 15",
-      "type": "Negative Meniscus (Asph)",
+      "type": "Negative Meniscus (1× Asph)",
       "nd": 1.80625,
       "vd": 40.91,
       "fl": -140.49570288,
-      "glass": "L-LAH53 (OHARA coordinate equivalent; supplier unconfirmed)"
+      "glass": "L-LAH53 (OHARA coordinate equivalent; supplier unconfirmed)",
+      "role": "Glass-molded negative meniscus, concave to the object, with an aspheric object-side face; follows the negative air lens behind T1."
     },
     {
       "id": 16,
       "name": "L16",
       "label": "Element 16",
-      "type": "Biconvex Positive (Asph)",
+      "type": "Biconvex Positive (2× Asph)",
       "nd": 1.77377,
       "vd": 47.17,
       "fl": 26.65996173,
-      "glass": "M-TAF401 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "M-TAF401 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Glass-molded biconvex positive element with both faces aspheric; closes G3 (M)."
     },
     {
       "id": 17,
@@ -242,6 +273,7 @@ const LENS_DATA = {
       "vd": 20.88,
       "fl": 53.93651064,
       "glass": "E-FDS1-W (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Biconvex positive member of the cemented focus doublet G4 (F).",
       "cemented": "D3"
     },
     {
@@ -253,6 +285,7 @@ const LENS_DATA = {
       "vd": 34.97,
       "fl": -26.75221007,
       "glass": "S-LAM66 (OHARA coordinate equivalent; supplier unconfirmed)",
+      "role": "Biconcave negative member of G4 (F); the net-negative doublet moves toward the image for close focus.",
       "cemented": "D3"
     },
     {
@@ -264,6 +297,7 @@ const LENS_DATA = {
       "vd": 35.25,
       "fl": -32.0294572,
       "glass": "TAFD35L (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "Front negative meniscus of G5 (R), convex to the object; cemented to L20 (D4).",
       "cemented": "D4"
     },
     {
@@ -275,17 +309,19 @@ const LENS_DATA = {
       "vd": 35.31,
       "fl": 24.28419944,
       "glass": "S-FTM16 (OHARA coordinate equivalent; supplier unconfirmed)",
+      "role": "Biconvex positive member of D4; the cemented pair is net positive.",
       "cemented": "D4"
     },
     {
       "id": 21,
       "name": "L21",
       "label": "Element 21",
-      "type": "Negative Meniscus (Asph)",
+      "type": "Negative Meniscus (2× Asph)",
       "nd": 1.6935,
       "vd": 53.18,
       "fl": -48.29528143,
-      "glass": "L-LAL13 (OHARA coordinate equivalent; supplier unconfirmed)"
+      "glass": "L-LAL13 (OHARA coordinate equivalent; supplier unconfirmed)",
+      "role": "Glass-molded rear negative meniscus, concave to the object, with both faces aspheric; makes G5 (R) net negative."
     }
   ],
   "surfaces": [
@@ -343,7 +379,7 @@ const LENS_DATA = {
       "d": 8.6177,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 20.4
+      "sd": 19.2
     },
     {
       "label": "8",
@@ -551,7 +587,7 @@ const LENS_DATA = {
       "d": 1.2,
       "nd": 1.91082,
       "elemId": 19,
-      "sd": 14.5
+      "sd": 15.2
     },
     {
       "label": "34",
@@ -559,7 +595,7 @@ const LENS_DATA = {
       "d": 9.5794,
       "nd": 1.5927,
       "elemId": 20,
-      "sd": 14.5
+      "sd": 14.7
     },
     {
       "label": "35",
@@ -567,7 +603,7 @@ const LENS_DATA = {
       "d": 6.1999,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 14.5
+      "sd": 14.7
     },
     {
       "label": "36A",
@@ -575,7 +611,7 @@ const LENS_DATA = {
       "d": 1.8,
       "nd": 1.6935,
       "elemId": 21,
-      "sd": 15.5
+      "sd": 15.2
     },
     {
       "label": "37A",
@@ -795,17 +831,17 @@ const LENS_DATA = {
       "toSurface": "16"
     },
     {
-      "text": "G3",
+      "text": "G3 (M)",
       "fromSurface": "18",
       "toSurface": "29A"
     },
     {
-      "text": "G4",
+      "text": "G4 (F)",
       "fromSurface": "30",
       "toSurface": "32"
     },
     {
-      "text": "G5",
+      "text": "G5 (R)",
       "fromSurface": "33",
       "toSurface": "37A"
     }

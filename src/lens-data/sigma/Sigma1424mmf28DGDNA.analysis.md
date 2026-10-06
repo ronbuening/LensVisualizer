@@ -104,9 +104,15 @@ absolute motion relative to the image plane.
 | G4 | -57.8080 | -63.5126 | -71.3435 |
 
 With imageward positive, G1 moves imageward across the tabulated zoom sequence;
-G2, G3 and G4 move objectward. The source Figure 1 brackets and arrows are
-consistent with this group assignment. The implementation interpolates the
-three gap vectors linearly; intermediate settings are model interpolation,
+G2, G3 and G4 move objectward. From wide to tele the travels are 6.13 mm for
+G1 (4.27 then 1.87 mm), 8.17 mm for G2 (3.85 then 4.31 mm), 7.005 mm for G3
+(2.07 then 4.93 mm) and 13.54 mm for G4 with the stop (5.70 then 7.83 mm,
+equal to the BF change). No group reverses. The four arrows under Figure 1
+point the same way: toward the image under G1 and toward the object under G2,
+G3 and G4, with the arrow under G3 drawn curved.
+The figure labels G2 as GF and G3 as GP and brackets G2 through G4 as the
+succeeding group GR; the diagram labels follow that notation. The
+implementation interpolates the three gap vectors linearly; intermediate settings are model interpolation,
 not additional patent-prescribed states or a demonstrated continuous cam law.
 
 ## Element-by-Element Analysis
@@ -284,8 +290,17 @@ chromatic balancing, but isolated power sign and Abbe number do not determine
 each element’s chromatic contribution in the complete zoom. The available
 partial ratios improve the material description; they do not by themselves
 verify apochromatic performance, secondary-spectrum suppression, or a unique
-production melt. The data’s APD display flags therefore do not assert a
-patent-named anomalous glass.
+production melt. The patent prints θgF for every element but nowhere calls a
+glass anomalous, extra-low-dispersion or fluorite-like, so no element carries
+the patent-listed APD display tag. Six carry the inferred tag: L11 (FCD100
+class, ΔPgF +0.0497), L2 and L4 (FCD515 class, +0.0156), L13 and L17 (FCD705
+class, +0.0231) and L18 (MP-FCD500-20 fluorophosphate preform class, +0.0165).
+That count equals Sigma’s one FLD plus five SLD elements. Sigma’s page gives
+the counts and a diagram legend but no element positions in text, so the
+positions are an inference from glass class; L18 in particular is taken as
+the fifth SLD element by count, the aspheric phosphate-crown L3 (ΔPgF
++0.0054) being the only other candidate. L3 and the dense flints with
+positive ΔPgF stay untagged.
 
 The application resolves all 18 annotations to compatible catalogue entries.
 L3 was first authored with an Unmatched marker, because the runtime then routed
@@ -321,7 +336,11 @@ model does not measure actual motor wobble or finite-focus aberrations.
 [1, abstract, ¶¶0001–0009, 0063]
 
 Focus status is NO_INTERNAL_RECONSTRUCTION. Only infinity spacings are
-published for the three zoom stations. The model repeats each infinity spacing
+published for the three zoom stations: the variable-spacing table heads all
+three columns with an infinite shooting distance, as do the tables of the
+other four examples, and Figures 1 to 7 are all infinity states. The focus
+arrow under G2 in Figure 1 points toward the image, in agreement with the
+text. The model repeats each infinity spacing
 at both endpoints of the schema’s focus dimension, so it adds no internal
 near-focus motion. The production 0.28 m MFD is product metadata only; no
 finiteConjugates record certifies it. Neither focus travel nor close-focus
@@ -422,8 +441,14 @@ sag at which each spherical surface meets its rim fix the radial scale, which
 is finer by a factor of about 1.14. Read with one scale for both axes, every
 rim comes out about 14 % too large and several exceed what the surfaces
 allow. Read with the two-axis calibration, the drawn rims, rim sags and edge
-thicknesses agree with the prescription to about one pixel, 0.15 mm. The
-values are optical extents, not mechanical blank diameters, and are also
+thicknesses agree with the prescription to about one pixel, 0.15 mm. A
+second, independent calibration followed every drawn surface curve over its
+whole height on the native 400 dpi bitmap and fitted the radial scale surface
+by surface. The strongly curved surfaces give 0.1472 mm per pixel against
+0.1672 mm per pixel axially, a ratio of 1.136, with residuals near 0.4 pixel
+where a single-scale reading misses by 3 to 12 pixels. The drawn stop opening,
+about 8.7 mm on that scale, also agrees with the inferred 8.59 mm wide-end
+iris. The values are optical extents, not mechanical blank diameters, and are also
 bounded by exact-ray clearance, actual surface slopes, conic domains, glass
 edge thicknesses and shared-band gap intrusion. No radius, axial separation,
 index, conic or aspheric term is altered to obtain clearance, and no layout

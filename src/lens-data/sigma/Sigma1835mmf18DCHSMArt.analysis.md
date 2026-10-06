@@ -20,7 +20,7 @@ The correlation rests on several independent observations:
 
 1. The prescription has 17 physical glass elements in 12 air-separated groups, matching the manufacturer's stated construction.
 2. Its three infinity focal lengths are close to the marketed APS-C 18–35 mm range, although the numbers are not identical.
-3. It has five aspherical surfaces on four elements. Sigma documents molded glass aspherics and SLD glass, but does not identify the source table as its production formula.
+3. It has five aspherical surfaces on four elements. Sigma documents molded glass aspherics and SLD glass, but does not identify the source table as its production formula. Sigma's construction diagram marks four aspherical lenses and five SLD elements; they fall on L1, L2, L8 and L17, the four elements that carry the example's aspheres, and on L3, L7, L10, L14 and L15, the five elements with the FCD1- and FCD505-class coordinates.
 4. The finite-conjugate tables correspond to approximately 0.28 m object-to-image distance, consistent with the production minimum focusing distance.
 5. The application was filed in 2012, before the A013 product generation. [1, ¶0091; 3]
 
@@ -56,6 +56,7 @@ They are not sums of isolated element powers.
 
 G1 is fixed relative to the image in the infinity zoom table.
 G2 moves objectward, G3 and the stop move imageward, and G4 moves objectward.
+From the tabulated gaps, between the 18.60 mm and 33.78 mm stations G2 travels 15.48 mm toward the object, G3 with the stop 11.09 mm toward the image, and G4 1.35 mm toward the object.
 The three published zoom stations bracket monotonic endpoint motion for each of these functional groups; no reversal is introduced.
 Linear slider interpolation connects the published stations, without claiming to reproduce an actual manufacturing cam curve. [1, ¶0033–0039, ¶0091]
 
@@ -119,6 +120,7 @@ The pair is part of the negative G1A subgroup, but the pair itself has positive 
 
 The dispersion contrast is consistent with an achromatizing pairing in a qualitative sense.
 A numerical claim of secondary-spectrum cancellation would require evidence beyond the published nd/νd pair.
+Sigma's construction diagram draws this position as SLD glass, so the data file tags L3 as inferred anomalous-dispersion glass; no partial-dispersion value is authored. [3]
 
 ### L4 — Biconvex Positive
 
@@ -141,8 +143,9 @@ The patent constrains the front curvature of this subgroup in condition (4). [1,
 
 The high negative subgroup power arises from the complete cemented pair.
 Focus displacement is copied from the source spacing tables rather than inferred from production MFD.
-The grant figure ends the concave front curve at a flat annulus well inside the doublet's rim, so the modeled front semi-diameter is 15.4 mm against 18.3 mm for surfaces 9 and 10.
-That front value still clears the f/1.86 telephoto axial marginal ray, which reaches about 15.19 mm there.
+The grant figure ends the concave front curve near 15.4 mm at a flat annulus and draws the doublet as a square block out to 18.3 mm.
+The renderer joins unequal rims with a straight edge, so the modeled front semi-diameter is carried out to 17.0 mm against 18.3 mm for surfaces 9 and 10; a larger front lets the default off-axis ray fan clip first at cemented surface 9.
+The f/1.86 telephoto axial marginal ray reaches about 15.19 mm on surface 8.
 
 ### L6 — Positive Meniscus
 
@@ -165,6 +168,7 @@ That explanation applies to the group arrangement, rather than proving an isolat
 
 Its low-dispersion catalog equivalent is repeated elsewhere in the prescription.
 The stored index remains the patent's coordinate, not the catalog's rounded nd.
+L7, L10, L14 and L15 share this FCD505-class coordinate and are the remaining four SLD positions of Sigma's construction diagram; all four carry the inferred anomalous-dispersion tag. [3]
 
 ### L8 — Biconvex Positive (1× Asph)
 
@@ -174,7 +178,7 @@ The second positive singlet of G2 has its asphere on rear surface 14A.
 The positive even-order polynomial offsets the negative sag of the spherical base over the modeled aperture.
 This profile is particularly sensitive to extending the clear radius beyond the supported domain of the aperture model. [1, ¶0036, ¶0086, ¶0091]
 
-The adopted 18.6 mm rear semi-diameter stays below the calculated rim-slope reversal near 18.6445 mm, while the spherical front surface 13 follows the grant figure at 20.1 mm.
+The adopted 18.6 mm rear semi-diameter stays below the calculated rim-slope reversal near 18.6445 mm, while the spherical front surface 13 follows the grant figure at 20.0 mm, level with L7 and D3.
 The f/1.86 telephoto axial marginal ray reaches about 18.70 mm on 14A, so its outer 0.10 mm is cut off at this rim.
 The source coefficients remain unaltered; the resulting exterior clipping is retained rather than hidden by widening the aperture past the reversal.
 
@@ -261,8 +265,8 @@ The biconcave L16 completes D5 and faces the final positive lens across the narr
 Its rear radius is one of the quantities in condition (6), which governs the shape of this air lens.
 The patent associates that curvature relationship with astigmatism control, rather than attributing the result to L16 alone. [1, ¶0026–0028]
 
-The shared modeled radial band at surfaces 28 and 29A is constrained by the actual sag intrusion into the printed gap.
-The gap is not increased to manufacture clearance.
+The modeled aperture of surface 28 is held at 13.9 mm by the actual sag intrusion into the printed gap; the two surfaces would meet at 14.26 mm.
+The gap is not increased to manufacture clearance, so L16's rear face draws as a chamfer where the grant figure has a flat annulus.
 
 ### L17 — Biconvex Positive (2× Asph)
 
@@ -273,7 +277,8 @@ It closes the positive G4 group before the final physical air distance to the im
 The source lists no rear cover plate or filter stack after this element. [1, ¶0039, ¶0091]
 
 Both polynomial profiles are retained through A12.
-The front clear radius is constrained by the preceding narrow air lens; the rear radius is separately inferred and labeled.
+Both modeled radii follow the grant figure at 15.3 mm, just inside the 15.325 mm slope reversal of surface 29A.
+The band shared with surface 28 still ends at 13.9 mm, so rays above that height are stopped at L16's rear rim before they reach L17.
 
 The net cemented-pair calculations below use the original media at every shared boundary.
 These values are separate from the isolated element focal lengths above.
@@ -311,6 +316,10 @@ The current optical runtime resolves all 17 named elements to the declared HOYA 
 | 2.001000 | 29.13 | TAFD55 (HOYA) | +0.00000299 | +0.00471 | L6 |
 
 The manufacturer describes SLD material and molded-glass aspheres in the product, but the patent does not explicitly assign an SLD brand to individual numerical rows. [3]
+Sigma's construction diagram marks five SLD elements at the positions of L3, L7, L10, L14 and L15.
+Those are exactly the elements whose coordinates match FCD1 (the S-FPL51 class) and FCD505, so the data file tags these five as inferred anomalous-dispersion glass for the diagram.
+The four aspherical elements, L1, L2, L8 and L17, match the molding glasses M-TAF1 and M-PCD51 and are left untagged.
+The tag is an inference from nd/νd and the manufacturer's diagram; it adds no spectral data.
 The native coordinates are retained without conversion: d=587.56 nm is stated in paragraph 0083.
 There is no patent-specific normal-line deviation to convert, because no PgF or ΔPgF table is supplied for this example.
 No catalog C/F/g indices are entered as though they had been measured for the patent glasses.
@@ -374,12 +383,13 @@ These are descriptions of calculated profiles, not isolated aberration-correctio
 | 1A | 26.3 | +3.540241041 | 39.187355 |
 | 3A | 21.1 | -1.276580394 | 12.289213 |
 | 14A | 18.6 | +0.401146308 | 0.026868 |
-| 29A | 13.9 | -0.292021866 | 7.998899 |
-| 30A | 15.0 | -0.264863439 | 21.058980 |
+| 29A | 15.3 | -0.588989349 | 0.225609 |
+| 30A | 15.3 | -0.326966240 | 23.326900 |
 
 These departures are evaluated at explicitly modeled apertures, not published effective diameters.
 The large front-surface departure is retained as a result of the exact source polynomial, rather than reduced by replacing it with a lower-order fit.
-The supporting Figure 1 sets the modeled radii of 1A and 3A, but it does not supply manufacturing tolerances or establish the usable aspheric radius independently.
+The supporting Figure 1 sets the modeled radii of 1A, 3A, 29A and 30A, but it does not supply manufacturing tolerances or establish the usable aspheric radius independently.
+The 29A rim is almost perpendicular to the axis because 15.3 mm lies just inside that surface's slope reversal at 15.325 mm.
 
 ## Conditional Expressions
 
@@ -428,7 +438,7 @@ Current-state pupil sensitivity, rather than the cached nominal entrance-pupil r
 All modeled apertures satisfy the unchanged rim-slope, edge-thickness, real-conic-domain, shared-band gap-intrusion and surface-slope-turnover checks over the stated finite sampling.
 Production element-render diagnostics give zero hidden material trim on the 25-state focus/zoom geometry grid.
 A separate 25-state by 3-aperture native check traces 825 actual default on-axis/off-axis UI rays.
-Sixty-three first clip events occur at the diaphragm or exterior element/air boundaries (forty at the diaphragm, ten at surface 8, seven at surface 28, four at surface 14A and two at surface 11); none occurs first at a cemented interface or as an intersection failure.
+Sixty-two first clip events occur at the diaphragm or exterior element/air boundaries (forty at the diaphragm, six at surface 8, five at surface 14A, four at surface 28, three at surface 24, two at surface 11 and one each at surfaces 7 and 10); none occurs first at a cemented interface or as an intersection failure.
 The later ghost continuation of an already-clipped ray is not counted as a newly transmitted physical path.
 
 The modeled source corner chief rays reach image semi-height 14.2 mm.
@@ -443,6 +453,6 @@ All source-listed optical surfaces and focus/zoom endpoint states are preserved.
 
 1. Japan Patent Office, JP 2014-89365 A, Optical System, published 2014-05-15. Original supplied PDF with PAJ wrapper: pp1–2 for identity; p10 / printed p9, ¶0034–0039 for construction; p14 / printed p13, ¶0083–0090 for conventions and equation; pp15–16 / printed pp14–15, ¶0091 for Numerical Example 1; p27 / printed p26, ¶0098 for condition values. [Original publication](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=JP2014089365A).
 2. Japan Patent Office, JP 5952167 B2, published 2016-07-13, original supplied PDF p26, Figure 1. Supporting illustration and basis of the modeled semi-diameter estimates only; all prescription authority remains source 1. Original JP5952167B2.pdf is included in the dossier.
-3. Sigma Corporation, [18–35mm F1.8 DC HSM | Art product specifications and features](https://www.sigma-global.com/en/lenses/a013_18_35_18/?tab=specification), read 2026-10-04. Production facts and mechanical reference planes only.
+3. Sigma Corporation, [18–35mm F1.8 DC HSM | Art product specifications and features](https://www.sigma-global.com/en/lenses/a013_18_35_18/?tab=specification), read 2026-10-04; specification table and lens-construction diagram re-read 2026-10-06. Production facts, special-element positions and mechanical reference planes only.
 4. HOYA, [Optical glass data downloads](https://www.hoya-opticalworld.com/english/datadownload/), catalog 20260707 including obsolete glasses, [original AGF](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf). Relevant catalog coefficients, coordinates and residuals are preserved in the evidence and numerical companions.
 

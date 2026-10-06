@@ -255,3 +255,92 @@ The local lens page was rendered headlessly at infinity, at the −0.5× control
 - **Metadata.** Display name changed to `SIGMA 105mm f/2.8 DG DN MACRO | Art`, following Sigma's product name and the
   catalog's `| Art` convention. `lensMounts` (`l-mount`, `sony-fe`) and `imageFormat` (`135-full-frame`) re-checked and
   retained.
+
+## 2026-10-06 — Final diagram, label and movement review
+
+Second pass of the day, against JP2021148808A Numerical Example 1 and its Figure 1 (PDF p. 30, top-left panel, infinity). It builds on the two sections above. No radius, spacing, index, Abbe number, variable gap, focus keyframe or iris value was touched; all 30 table rows and all 17 PgF entries were re-compared with the patent text layer and agree.
+
+### Figure SD review
+
+**Method.** The figure was measured on the embedded raster itself (815 × 379 px at 300 ppi, one pixel = 0.2277 mm) instead of a resampled render, and the model outline was overlaid on it pixel for pixel. The axis is row 184; the surface 1 vertex is at column 93.5 and the image plane at column 738, so 644.5 px span the 146.7268 mm track (4.3925 px/mm). The 23 vertex crossings between those anchors land within 0.67 px of the prescription. As a radial check, the drawn arcs of nine strongly curved faces (7, 9, 15, 18, 24, 26, 27, 29, 30) were fitted with the axial scale fixed: the best radial scale is 0.95–1.03 of the axial one (median 1.00) and the residual at equal scales is 0.3–0.7 px rms. The image-plane mark is 91.5 px (20.8 mm) long per side against the printed Y = 21.63 mm; it is a symbol and was not used. A rim reading is therefore good to about one pixel (0.23 mm) plus up to 3 % of radial scale, and height ratios between elements are firmer than absolute heights.
+
+**Rim rows.** Flat rim strokes, pixels above / below the axis row (stroke centre), before this pass:
+
+| Element | Rows up / down, px | Figure, mm | Stored, mm | Stored − figure, mm |
+|---|---:|---:|---:|---:|
+| L1 | 117 / 117 | 26.64 | 26.5 | −0.14 |
+| L2 | 115 / 115 | 26.18 | 26.5 | +0.32 |
+| L3 | 76 / 76–77 | 17.3–17.5 | 17.5 | 0 to +0.2 |
+| CL1 | 72 / 72 | 16.39 | 16.5 | +0.11 |
+| CL2 | 63 / 64 | 14.46 | 14.5 | +0.04 |
+| CL3 | 59 / 60 | 13.55 | 14.0 | +0.45 |
+| CL4 | 55 / 55 | 12.52 | 12.5 | −0.02 |
+| L13 | 51 / 52 | 11.72 | 12.0 | +0.28 |
+| L14 | 43 / 44 | 9.90 | 10.0 | +0.10 |
+| L15 | 56 / 56 | 12.75 | 13.0 | +0.25 |
+| L16 | 66 / 66 | 15.03 | 13.3 front, 15.5 rear | −1.73, +0.47 |
+| L17 | 73 / 73 | 16.62 | 17.0 | +0.38 |
+
+**Changes.**
+
+| Surface | Before | After | Evidence |
+|---|---:|---:|---|
+| 27 (L16 front) | 13.3 | 15.0 | Figure 1 draws L16 as a square-topped block 66 px (15.03 mm) high on both sides, with a 22 px flat rim stroke. With unequal rims the renderer joined 13.3 mm to 15.5 mm by a 5.4 mm edge inclined 24°, cutting 1.5 mm inside the drawn top corner. Measured against the drawn outline, the mismatch per half-section is 3.41 mm² for the chamfer, 3.89 mm² for the original 15.5 / 15.5 and 1.15 mm² for 15.0 / 15.0. |
+| 28 (L16 rear) | 15.5 | 15.0 | Same 66 px rim on both sides; the stored value stood 2 px above it. Equal rims give the drawn square edge. |
+| 29, 30 (L17) | 17.0 | 16.6 | Rim at 73 px on both sides (16.62 mm). Lowering L16 alone would have taken the L16 : L17 height ratio from 0.912 to 0.882 against the drawn 66 / 73 = 0.904; 15.0 / 16.6 gives 0.904. The drawn rim flat is 6 px wide including both outline strokes, which fits the 1.24 mm edge at 16.6 mm better than the 0.98 mm edge at 17.0 mm. |
+
+Surface 27 is now a rendering rim, not a clear-aperture claim: the flange face of the drawn step sits at column 551 on both sides, 3.05–3.28 mm ahead of the surface 27 vertex, which puts the end of the concave curve at 12.8–13.2 mm (the first pass read 13.1–13.3 mm). The data header and the analysis say that the outer 1.7 mm is blank. The statements in the first-pass section that surface 27 stops at 13.3 mm, that the rear face stays at 15.5 mm and that L16 renders with a chamfer are superseded by this table.
+
+**Checks on the trial set, before and after editing.**
+
+- Validator: no errors. Largest rim slope is now 32.11° at surface 27 (it was 28.12° there and 29.10° at surface 18 after the first pass). Minimum glass thickness is now the 1.000 mm centre of L5, L7, L9, L11 and L16; the thinnest edge is L3 at 1.126 mm, and the L17 edge grows from 0.979 mm to 1.237 mm. The corresponding figures in the earlier sections describe the earlier rims.
+- Image-circle floor: 0 undersized surfaces. Traced field coverage: 100 % (11.7° reaching 21.65 mm of 21.65 mm, corner clear).
+- Exact meridional trace at image height 21.6 mm with the infinity, −0.5× and −1× gaps: no clipped axial marginal ray and no blocked chief ray; infinity half-field 11.62° against the patent's 11.64°. Chief-ray heights are at most 11.00 / 12.15 / 12.99 / 13.73 mm on surfaces 27–30, and the unvignetted infinity bundle needs 13.21 / 14.68 / 15.87 / 16.20 mm, all inside 15.0 / 15.0 / 16.6 / 16.6.
+- Dense meridional fans (infinity fields to 13°, object points at the two published conjugates) admit exactly the same rays that land inside the 21.6 mm image circle before and after: 362,367, 236,763 and 184,422. The highest such ray is at 13.25 mm on surface 27, 14.73 mm on 28, 15.93 mm on 29 and 16.25 mm on 30.
+- Fixed-iris results quoted earlier are unchanged: admitted on-axis working F 4.013750 at −0.5× and 5.225883 at −1×, surface 17 limiting in both, stop fractions 0.961335 and 0.907501, first clip of the full iris-edge ray at surface 17 and surface 10.
+- Engine build unchanged line for line: EFL 103.4768 mm, open aperture F2.9, half-field 13.66°, calibrated iris radius 9.611937886008489 mm. Render diagnostics at 22 focus controls (748 surface states) show zero hidden trim.
+- The local page was rendered headlessly at infinity, at the −0.5× control (0.7728) and at closest focus. L16 now shows the drawn flat-topped block and the G3 staircase reads 10.0 / 13.0 / 15.0 / 16.6 mm against the drawn 9.9 / 12.75 / 15.03 / 16.62 mm.
+
+**Differences seen and left.**
+
+- L16 front corner. The rendered concave face runs on to the 15.0 mm rim and ends 4.32 mm ahead of its vertex, 1.1 mm ahead of the drawn flange face; the corner sits 0.29 mm behind the L15 rear vertex where the figure shows 1.3 mm. The renderer has no flange step, so this is the residue of choosing the square edge over the chamfer.
+- CL3 is 0.45 mm (2 px, 3 %) taller than drawn, so the CL2 → CL3 → CL4 steps read 0.5 / 1.5 mm against the drawn 0.9 / 1.0 mm. Not closed: rays that land inside the image circle reach 13.64 mm on surface 14 at both finite states, so the drawn 13.55 mm would clip them, and any value below 13.81 mm would also move the first clip of the −0.5× iris-edge ray from surface 17 to surface 14.
+- L13 is 0.28 mm taller than drawn; in-format rays reach 11.85 mm on surface 20 at −1×.
+- L15 is 0.25 mm (1.1 px) taller than drawn and L2 0.32 mm (1.4 px); the figure draws L2 two pixels shorter than L1 where the model draws them equal. Both are inside the reading precision and were left.
+- L1, L3, CL1, CL2, CL4 and L14 agree within 0.2 mm; in-format rays use the full stored rim on surfaces 1, 5, 10, 17, 23 and 24.
+- Surface 25 (L15 front): the drawn rim corner is at column 525 on both sides, 1–2 px behind the sphere, so a flat annulus could begin near 12.0 mm. A 12.0 / 13.0 pair would turn the drawn square edge into a 29° chamfer, so the equal rims stay.
+- Surface 24 (L14 rear) and surface 19 (CL4 rear): the drawn rim corners are within 1.4 px of the spheres; no annulus is measurable (on surface 24 it could not begin below 9.7 mm).
+- The stop is drawn as two ticks 11.4 mm from the axis, a symbol; the 9.61 mm iris is unchanged.
+
+### Diagram labels and movement order
+
+- **Elements and types.** 17 elements numbered 1–17 front to rear in 12 air-separated groups. Every `type` string was checked against the signed radii and paragraphs 0108–0110: L1 negative meniscus concave to the object; L2, L3, L4, L8, L10, L13, L17 biconvex; L5, L7, L9, L16 biconcave; L6 and L15 positive menisci convex to the image; L11 and L14 negative menisci and L12 a positive meniscus convex to the object. No change. Example 1 has no aspheric surface and the page draws no asphere marker.
+- **Labels.** `label` Element 4 → `Element 4 (G2LPL)`, Element 5 / 7 / 9 → `… (G2LN)`, Element 10 → `Element 10 (G2LPH)`, Element 14 / 16 → `… (G3LN)`: these are the designations Figure 1 prints and paragraphs 0109–0110 assign. The `role` texts of the same seven elements now name the designation, the conditions it serves and the position in its cemented group. The other ten labels and roles were verified and left; the patent does not number individual elements, so L1–L17 remain model slot names.
+- **Cemented groups.** CL1 = surfaces 7–9 (L4 + L5), CL2 = 10–13 (L6 + L7 + L8), CL3 = 14–16 (L9 + L10), CL4 = 17–19 (L11 + L12), matching the start surfaces 7 / 10 / 14 / 17 of the patent's group table and the brackets of Figure 1. Recomputed focal lengths +463.48 / +946.83 / +366.26 / −86.97 mm against the printed +463.44 / +946.89 / +366.25 / −86.97. No change.
+- **Groups and stop.** G1 = 1–4, G2 = 5–21, G3 = 23–30 match the patent's start surfaces 1 / 5 / 23 and powers (+477.96 / +70.37 / −132.66 mm). The stop is patent surface 22 between G2 and G3 and belongs to neither. Added a stop-only annotation `S` (the patent's symbol) so the group row reads G1 · G2 · S · G3 as in the claims; the `STO` marker is unchanged.
+- **Spec line.** The page showed none. Added `specs`: 17 ELEMENTS / 12 GROUPS, f = 103.48 mm, F/2.90 and 2ω = 23.28° (patent infinity values) and ALL SPHERICAL. `subtitle` names the right example and was left. No rear plate is listed by the source and none is modelled.
+- **Focus order.** The three `var` vectors list the patent columns in slider order, infinity → −0.5× → −1×: D4 42.2916 / 21.2405 / 1.7259, D21 2.3594 / 11.2153 / 19.4249, D22 1.6794 / 13.8745 / 25.1795. `focusPositions` 0 / 0.7728 / 1 equals 296.9112 mm divided by each state's object-to-image distance (∞, 384.2080, 296.9112 mm); `closeFocusM` 0.2969112 is the −1× object distance 150.1845 mm plus the 146.7267 mm track. Both finite keyframes carry `finiteConjugates` entries and so count as published stations.
+- **Focus direction and travel.** Relative to the fixed image plane, the G2 front vertex stands at 99.750 / 120.801 / 140.316 mm and the stop at 60.404 / 72.599 / 83.904 mm, while the G1 rear vertex (142.042 mm) and the G3 front vertex (58.725 mm) do not move. G2 therefore travels 21.051 mm and 40.566 mm toward the object and the stop 12.195 mm and 23.500 mm, 0.579 of the G2 travel at both states. This is what claim 1, claim 7 and paragraph 0107 state (G2 and S move to the object side at different speeds) and what the two objectward "focus" arrows under G2 and under S in Figure 1 show. The three gaps sum to 46.3304 / 46.3303 / 46.3303 mm, so the change in D4 is balanced by D21 + D22 to table rounding. Nothing was mis-ordered.
+- **Movement overlay.** The focus overlay of the local page shows G1 and G3 as fixed points and G2 moving toward the object with a maximum travel of 40.57 mm. It does not plot the stop, because it skips single-surface annotations; the stop's own travel is visible on the section and in the D21 / D22 readouts.
+- **Focus text.** `focusDescription` already gave the right direction and groups. It now states the travel of G2 and of the stop at both finite states, marked as derived, and no longer says the semi-diameters are retained.
+
+### Glass and color completeness
+
+- All 17 elements trace on catalog Sellmeier data. Each resolved HOYA row reproduces the stored nd within 5e-6 and νd within 0.01, and its dPgF is within 0.0002 of the authored value. Nothing is missing from the shared catalog.
+- `dPgF` is authored for all 17 elements, each equal to the printed PgF minus (0.6438 − 0.001682 νd). The patent prints no line indices, so none are stored.
+- `apd: "patent"` added to L4 (G2LPL) and L10 (G2LPH). Paragraphs 0053–0058 call the G2LPL material a low-dispersion glass with anomalous partial dispersion and condition (4) requires ΔPgF > 0.0050 (printed 0.0192); paragraphs 0059–0062 call the G2LPH material a high-index glass with large anomalous partial dispersion and condition (7) requires ΔPgF > 0.0100 (printed 0.0283).
+- `apd: "inferred"` added to L16: its coordinates (1.55032 / 75.50, PgF 0.5401) are those of the FCD705 low-dispersion crown class. The patent constrains this G3LN element only by nd < 1.67 and νd > 55, which is not a statement about partial dispersion.
+- Left untagged: L5, L7 and L9 (G2LN), because condition (8) is an upper limit on ΔPgF; L14 (G3LN, νd 60.35), an ordinary crown; and the dense flints L3 and L11, whose positive deviations the patent does not single out.
+- Sigma's product page lists one SLD element. The model has two low-dispersion crowns of SLD-like class, L4 (νd 68.62) and L16 (νd 75.50), and the patent does not say which slot the production SLD element occupies; the SLD brand is not assigned to either.
+
+### Identity and metadata
+
+- Front page (PDF p. 2): JP 2021-148808 A, published 27 September 2021, application 2020-44913 filed 16 March 2020, applicant 株式会社シグマ, sole inventor 植田 裕輝. `patentNumber`, `patentAuthors` (`Yuki Ueda`), `patentAssignees` (`Sigma Corporation`) and `patentYear` 2021 agree.
+- Sigma's product page, read on 6 October 2026: 17 elements in 12 groups, one SLD element, angle of view 23.3°, nine rounded blades, minimum aperture F22, minimum focusing distance 29.5 cm, 1:1, L-Mount and Sony E-mount. `elementCount`, `groupCount`, `lensMounts`, `imageFormat`, `focalLengthMarketing` 105, `apertureMarketing` 2.8, `maxFstop` 22 and `apertureBlades` 9 agree.
+- `focalLengthDesign` 103.4768 and `apertureDesign` 2.9 are the patent's 103.48 mm and F2.90. `closeFocusM` stays at the patent's 296.9 mm, 1.9 mm longer than the production figure. The display name `SIGMA 105mm f/2.8 DG DN MACRO | Art` was reviewed and left.
+
+### Open limitations
+
+- The renderer cannot draw the stepped front of L16; see the first item under "Differences seen and left".
+- The figure is a 300 ppi raster. Rims that differ from it by one or two pixels were only changed where a second measurement supported the move (L16, L17) and no in-format ray was affected.
+- Only meridional rays were traced. The off-axis toggle, which needs a click, was not exercised on the live page.

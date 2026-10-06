@@ -514,6 +514,9 @@ describe("resolveGlass", () => {
     expect(resolveCompatibleGlass("BSC7 (HOYA)", 1.5168, 64.2)?.name).toBe("BSC7");
     expect(resolveCompatibleGlass("S-BSL7 (OHARA) / BSC7 (HOYA) class", 1.51633, 64.1)?.name).toBe("S-BSL7");
     expect(resolveGlass("517642")?.name).toBe("N-BK7");
+    // TAFD35L has its own vendor curve (PgF 0.5833 against TAFD35's 0.5822).
+    expect(resolveCompatibleGlass("TAFD35L (HOYA)", 1.91082, 35.25)?.name).toBe("TAFD35L");
+    expect(resolveGlass("911353")?.name).toBe("TAFD35");
   });
 
   it("resolves named Ohara PGM curves before remaining catalog aliases", () => {

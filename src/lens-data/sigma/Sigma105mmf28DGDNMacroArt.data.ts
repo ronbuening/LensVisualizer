@@ -8,8 +8,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * Semi-diameters are model estimates from JP2021148808A FIG. 1 (PDF p. 30, infinity
  * section; 0.1138 mm/px at 600 dpi from the surface 1 to image-plane span), checked by
  * traced clearance; they are not published clear apertures. Rims follow the drawn
- * element heights. Surface 27 stops at 13.3 mm, where the figure's concave L16 front
- * meets its flat annulus; the L16 blank continues to the 15.5 mm rear rim.
+ * element heights. L16 is drawn as the figure's square-edged 15.0 mm blank on both
+ * faces: FIG. 1 ends the concave surface 27 curve at a flat annulus near 13.1 mm,
+ * which the straight-edge renderer cannot show, so the outer 1.7 mm of surface 27 is
+ * blank rather than clear aperture (no in-format meridional ray passes it above
+ * 13.3 mm). L17 follows its drawn 16.6 mm rim. CL3 (14.0) and L13 (12.0) stay 0.3 to
+ * 0.45 mm above their drawn rims because in-format finite-focus rays use that height.
  * Source finite F4.32/F5.73 are not reproduced: admitted cones are about F4.014/F5.226.
  * Close-focus exposure, illumination and full-pupil fidelity are not verified.
  * Current UI pupil/focusK fan and effective-F/Summary readouts have different,
@@ -18,6 +22,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Between published focus stations, linear gap interpolation is a visualization
  * approximation, not a measured production cam law. Original source optics retained.
  * Every absolute source PgF is converted to the runtime normal line in dPgF.
+ * APD tags: L4 (G2LPL) and L10 (G2LPH) are the glasses the patent itself describes as
+ * anomalous partial dispersion (conditions 4 and 7); L16 is inferred from its
+ * FCD705-class coordinates. Sigma lists one SLD element without naming its slot.
  * Glass labels name the HOYA catalog glass whose nd, vd and PgF reproduce each source row;
  * they are coordinate equivalents and do not assert the production supplier or melt.
  * Yuki Ueda is the public transliteration of the source inventor 植田 裕輝.
@@ -27,6 +34,13 @@ const LENS_DATA = {
   "maker": "Sigma",
   "name": "SIGMA 105mm f/2.8 DG DN MACRO | Art",
   "subtitle": "JP 2021-148808 A · Numerical Example 1 · Construction correlation",
+  "specs": [
+    "17 ELEMENTS / 12 GROUPS",
+    "DESIGN f = 103.48 mm",
+    "DESIGN F/2.90",
+    "2ω = 23.28°",
+    "ALL SPHERICAL"
+  ],
   "focalLengthMarketing": 105,
   "focalLengthDesign": 103.47677047771677,
   "apertureMarketing": 2.8,
@@ -86,27 +100,29 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
-      "label": "Element 4",
+      "label": "Element 4 (G2LPL)",
       "type": "Biconvex Positive",
       "nd": 1.59282,
       "vd": 68.62,
       "fl": 58.06113265,
       "glass": "FCD515 (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.01561884,
-      "role": "Moving positive group G2; standalone element power is not an isolated in-situ aberration contribution.",
+      "apd": "patent",
+      "apdNote": "Patent G2LPL: low-dispersion glass with anomalous partial dispersion (¶0053–0058); condition (4) ΔPgF > 0.0050, printed 0.0192 on the patent normal line. Source PgF 0.5440; runtime dPgF +0.01562.",
+      "role": "Moving positive group G2, front of CL1; patent G2LPL, the low-dispersion anomalous-partial-dispersion positive lens of conditions (4)–(5). Standalone element power is not an isolated in-situ aberration contribution.",
       "cemented": "CL1"
     },
     {
       "id": 5,
       "name": "L5",
-      "label": "Element 5",
+      "label": "Element 5 (G2LN)",
       "type": "Biconcave Negative",
       "nd": 1.85451,
       "vd": 25.15,
       "fl": -62.25679754,
       "glass": "NBFD25 (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.0088023,
-      "role": "Moving positive group G2; standalone element power is not an isolated in-situ aberration contribution.",
+      "role": "Moving positive group G2, rear of CL1; patent G2LN, a negative lens of conditions (8)–(9). Standalone element power is not an isolated in-situ aberration contribution.",
       "cemented": "CL1"
     },
     {
@@ -125,14 +141,14 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "L7",
-      "label": "Element 7",
+      "label": "Element 7 (G2LN)",
       "type": "Biconcave Negative",
       "nd": 1.77047,
       "vd": 29.74,
       "fl": -31.60853012,
       "glass": "NBFD29 (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.00132268,
-      "role": "Moving positive group G2; standalone element power is not an isolated in-situ aberration contribution.",
+      "role": "Moving positive group G2, middle of CL2; patent G2LN, a negative lens of conditions (8)–(9). Standalone element power is not an isolated in-situ aberration contribution.",
       "cemented": "CL2"
     },
     {
@@ -151,27 +167,29 @@ const LENS_DATA = {
     {
       "id": 9,
       "name": "L9",
-      "label": "Element 9",
+      "label": "Element 9 (G2LN)",
       "type": "Biconcave Negative",
       "nd": 1.77047,
       "vd": 29.74,
       "fl": -33.44672956,
       "glass": "NBFD29 (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.00132268,
-      "role": "Moving positive group G2; standalone element power is not an isolated in-situ aberration contribution.",
+      "role": "Moving positive group G2, front of CL3; patent G2LN, a negative lens of conditions (8)–(9). Standalone element power is not an isolated in-situ aberration contribution.",
       "cemented": "CL3"
     },
     {
       "id": 10,
       "name": "L10",
-      "label": "Element 10",
+      "label": "Element 10 (G2LPH)",
       "type": "Biconvex Positive",
       "nd": 1.92286,
       "vd": 20.88,
       "fl": 31.58099029,
       "glass": "E-FDS1-W (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.03032016,
-      "role": "Moving positive group G2; standalone element power is not an isolated in-situ aberration contribution.",
+      "apd": "patent",
+      "apdNote": "Patent G2LPH: high-index glass with large anomalous partial dispersion (¶0059–0062); condition (7) ΔPgF > 0.0100, printed 0.0283 on the patent normal line. Source PgF 0.6390; runtime dPgF +0.03032.",
+      "role": "Moving positive group G2, rear of CL3; patent G2LPH, the high-index anomalous-partial-dispersion positive lens of conditions (6)–(7). Standalone element power is not an isolated in-situ aberration contribution.",
       "cemented": "CL3"
     },
     {
@@ -215,14 +233,14 @@ const LENS_DATA = {
     {
       "id": 14,
       "name": "L14",
-      "label": "Element 14",
+      "label": "Element 14 (G3LN)",
       "type": "Negative Meniscus",
       "nd": 1.62041,
       "vd": 60.35,
       "fl": -72.01390605,
       "glass": "BACD16 (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": -0.0028913,
-      "role": "Fixed negative group G3; standalone element power is not an isolated in-situ aberration contribution."
+      "role": "Fixed negative group G3; patent G3LN, a low-index, low-dispersion negative lens of conditions (2)–(3). Standalone element power is not an isolated in-situ aberration contribution."
     },
     {
       "id": 15,
@@ -239,14 +257,16 @@ const LENS_DATA = {
     {
       "id": 16,
       "name": "L16",
-      "label": "Element 16",
+      "label": "Element 16 (G3LN)",
       "type": "Biconcave Negative",
       "nd": 1.55032,
       "vd": 75.5,
       "fl": -45.09888995,
       "glass": "FCD705 (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.023291,
-      "role": "Fixed negative group G3; standalone element power is not an isolated in-situ aberration contribution."
+      "apd": "inferred",
+      "apdNote": "Inferred from coordinates: FCD705-class low-dispersion anomalous crown (νd 75.50; source PgF 0.5401, runtime dPgF +0.02329). The patent's G3LN conditions (2)–(3) limit only nd and νd. Sigma lists one SLD element without naming its position.",
+      "role": "Fixed negative group G3; patent G3LN, a low-index, low-dispersion negative lens of conditions (2)–(3). Standalone element power is not an isolated in-situ aberration contribution."
     },
     {
       "id": 17,
@@ -476,7 +496,7 @@ const LENS_DATA = {
       "d": 1.0,
       "nd": 1.55032,
       "elemId": 16,
-      "sd": 13.3
+      "sd": 15.0
     },
     {
       "label": "28",
@@ -484,7 +504,7 @@ const LENS_DATA = {
       "d": 0.15,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 15.5
+      "sd": 15.0
     },
     {
       "label": "29",
@@ -492,7 +512,7 @@ const LENS_DATA = {
       "d": 6.3956,
       "nd": 1.5168,
       "elemId": 17,
-      "sd": 17.0
+      "sd": 16.6
     },
     {
       "label": "30",
@@ -500,7 +520,7 @@ const LENS_DATA = {
       "d": 31.7486,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 17.0
+      "sd": 16.6
     }
   ],
   "asph": {},
@@ -568,6 +588,11 @@ const LENS_DATA = {
       "toSurface": "21"
     },
     {
+      "text": "S",
+      "fromSurface": "STO",
+      "toSurface": "STO"
+    },
+    {
       "text": "G3",
       "fromSurface": "23",
       "toSurface": "30"
@@ -596,7 +621,7 @@ const LENS_DATA = {
     }
   ],
   "closeFocusM": 0.2969112,
-  "focusDescription": "Published infinity, −0.5× and −1× states. G1/G3 fixed; G2 and stop move objectward independently. Intermediate gaps are linear visualization interpolation, not production cam data. Native closest object-to-image distance 296.9112 mm; commercial MFD 295 mm is not substituted. Fixed-iris diagnostic visualization (FIXED_IRIS_DIAGNOSTIC_V1): physical iris 9.611937886 mm and inferred SDs retained. Patent close-focus F4.32/F5.73 are not reproduced; admitted modeled cones are approximately F4.014/F5.226. Close-focus exposure, illumination and full-pupil fidelity are not verified. Current app aperture readouts and diagram fan sampling remain approximate.",
+  "focusDescription": "Published infinity, −0.5× and −1× states. G1/G3 fixed; G2 and the stop move toward the object at different rates: G2 by 21.05 mm at −0.5× and 40.57 mm at −1×, the stop by 12.20 and 23.50 mm (derived from the published gaps). Intermediate gaps are linear visualization interpolation, not production cam data. Native closest object-to-image distance 296.9112 mm; commercial MFD 295 mm is not substituted. Fixed-iris diagnostic visualization (FIXED_IRIS_DIAGNOSTIC_V1): physical iris 9.611937886 mm retained; semi-diameters are figure-based estimates. Patent close-focus F4.32/F5.73 are not reproduced; admitted modeled cones are approximately F4.014/F5.226. Close-focus exposure, illumination and full-pupil fidelity are not verified. Current app aperture readouts and diagram fan sampling remain approximate.",
   "nominalFno": 2.9,
   "fstopSeries": [
     2.9,

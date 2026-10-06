@@ -11,10 +11,17 @@ Source 850 mm finite states preserved at all three zoom stations, including meas
 G4 is the inner-focus doublet; G3/G4 zoom positions reverse. Continuous linear interpolation is a UI
 approximation, not a published cam law. VC subgroup L12–L13 is centered, without invented lateral motion.
 SDs are estimated from JP2025033505A FIG. 1 (PDF p. 34, wide end at infinity) proportions and exact ray/geometry
-checks, not mechanical dimensions. The 2026-10-06 figure re-measurement (13.861 px/mm at the 318 dpi native raster)
-found the drawn outer rim of every element except L20 within 2 % of that element's larger stored SD and changed
-no SD. Largest residual, deliberately left: the figure ends L20's concave resin face at about 14.6 mm inside a
-flat seat and carries its rear face to about 17.3 mm, against 16.4 mm stored on 35A/36/37.
+checks, not mechanical dimensions. The 2026-10-06 figure re-measurements (13.861 px/mm at the 318 dpi native raster;
+rims read on both sides at line centres, the elements being centred 2 px off the drawn axis) put every drawn outer
+rim except L20's within 2 % of that element's larger stored SD. The final review then set two figure-led rims.
+L20 follows the drawn hybrid outline: FIG. 1 ends the concave resin face at a flat seat (35A at 14.55 mm, junction 36
+at 14.8 mm, stroke edge 15.0 mm) and carries the rear face to 17.03 mm. 35A/36 = 15.0 mm is the smallest 0.1 mm
+value outside every transmitted ray sampled to the corner (maxima 14.90 / 14.92 mm) and 37 = 17.0 mm is the drawn
+rim; all three were 16.4 mm, the last 0.1 mm step with positive resin thickness. The resin is now 0.143034573 mm
+thick at its rim. Surface 36, not 37, now bounds the engine half-fields: 18.3348 / 11.3124 / 7.6777 deg (were
+18.3256 / 11.2159 / 7.6308). L6's nearly flat front face 10 = 15.5 mm equals its rear (was 14.95 mm); the 9-10
+shared band stays 14.95 mm. The renderer joins unequal rims with a straight edge, so the drawn seats of L5, L8, L10
+and L20 appear as chamfers.
 The from-nominal-fno iris schedule is inferred from published F-numbers, not published diaphragm radii.
 Glass labels are coordinate-equivalent catalog classes (HOYA; HIKARI for 1.61266/44.46 and 1.85108/40.12),
 not manufacturer/melt identity; the resin stays unmatched and no nC/nF/ng/dPgF is inferred.
@@ -27,6 +34,13 @@ const LENS_DATA = {
   "maker": "Tamron",
   "name": "TAMRON 70-180mm f/2.8 Di III VC VXD G2",
   "subtitle": "JP 2025-033505 A — Numerical Example 1; research construction correlation",
+  "specs": [
+    "20 ELEMENTS / 15 GROUPS",
+    "DESIGN f = 72.07–174.65 mm",
+    "DESIGN F/2.91",
+    "5 ASPHERICAL SURFACES / 3 ELEMENTS",
+    "1 XLD + 3 LD (INFERRED)"
+  ],
   "focalLengthMarketing": [
     70,
     180
@@ -70,7 +84,7 @@ const LENS_DATA = {
   "maxFstop": 22,
   "yScFill": 0.65,
   "apertureBlades": 9,
-  "focusDescription": "Published G4 (L17–L18) inner focus, imageward from infinity to the 0.85 m source configurations; interpolated paths are not a factory cam law. Production 0.3 m wide-end spacings are unavailable.",
+  "focusDescription": "Inner focus by G4 (patent group F, cemented L17–L18): it moves toward the image from infinity to the published 0.85 m object-to-image states, by 2.27 / 6.46 / 12.67 mm at wide / middle / tele. Interpolated paths are not a factory cam law. Production 0.3 m wide-end spacings are unavailable.",
   "zoomPositions": [
     72.0664,
     120.0114,
@@ -173,6 +187,7 @@ const LENS_DATA = {
       "vd": 33.27,
       "fl": -226.681344,
       "glass": "NBFD15-W (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G1 (P): negative meniscus cemented in front of L2 (doublet D1).",
       "cemented": "D1"
     },
     {
@@ -185,6 +200,9 @@ const LENS_DATA = {
       "vd": 81.61,
       "fl": 161.214496,
       "glass": "FCD1 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "LD-class inference from the coordinate-compatible FCD1 curve (catalogue ΔPgF ≈ +0.031); counted among Tamron's three LD elements by construction match. The patent prints only Nd and νd and names no special glass.",
+      "role": "G1 (P): biconvex positive member of cemented doublet D1.",
       "cemented": "D1"
     },
     {
@@ -196,7 +214,10 @@ const LENS_DATA = {
       "nd": 1.437,
       "vd": 95.1,
       "fl": 198.671738,
-      "glass": "FCD100 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "FCD100 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "XLD-class inference from the coordinate-compatible FCD100 curve (catalogue ΔPgF ≈ +0.050); taken as Tamron's single XLD element by construction match. The patent prints only Nd and νd and names no special glass.",
+      "role": "G1 (P): separate positive meniscus closing the front group."
     },
     {
       "id": 4,
@@ -207,7 +228,8 @@ const LENS_DATA = {
       "nd": 1.85883,
       "vd": 30.0,
       "fl": 60.123659,
-      "glass": "NBFD30 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "NBFD30 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G2 (M1): leading positive meniscus of the negative second group."
     },
     {
       "id": 5,
@@ -218,7 +240,8 @@ const LENS_DATA = {
       "nd": 1.755,
       "vd": 52.32,
       "fl": -35.464462,
-      "glass": "TAC6L (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "TAC6L (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G2 (M1): first negative meniscus, with the strongly curved rear face."
     },
     {
       "id": 6,
@@ -229,7 +252,8 @@ const LENS_DATA = {
       "nd": 1.72916,
       "vd": 54.67,
       "fl": -78.900439,
-      "glass": "TAC8 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "TAC8 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G2 (M1): second negative meniscus, nearly flat front face."
     },
     {
       "id": 7,
@@ -240,7 +264,8 @@ const LENS_DATA = {
       "nd": 1.84666,
       "vd": 23.78,
       "fl": 59.229709,
-      "glass": "FDS90-SG (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "FDS90-SG (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G2 (M1): positive meniscus ahead of the tight 13–14 air gap."
     },
     {
       "id": 8,
@@ -251,7 +276,8 @@ const LENS_DATA = {
       "nd": 2.00069,
       "vd": 25.46,
       "fl": -53.859163,
-      "glass": "TAFD40L-W (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "TAFD40L-W (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G2 (M1): negative meniscus, concave toward the object, closing the group."
     },
     {
       "id": 9,
@@ -262,7 +288,8 @@ const LENS_DATA = {
       "nd": 1.7433,
       "vd": 49.22,
       "fl": 54.470229,
-      "glass": "NBF1 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "NBF1 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G3 (M2): positive meniscus directly behind the aperture stop S."
     },
     {
       "id": 10,
@@ -274,6 +301,7 @@ const LENS_DATA = {
       "vd": 25.46,
       "fl": -39.418811,
       "glass": "TAFD40L-W (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G3 (M2): negative meniscus cemented in front of L11 (doublet D2).",
       "cemented": "D2"
     },
     {
@@ -286,6 +314,9 @@ const LENS_DATA = {
       "vd": 68.62,
       "fl": 37.145466,
       "glass": "FCD515 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "LD-class inference from the coordinate-compatible FCD515 curve (catalogue ΔPgF ≈ +0.016); counted among Tamron's three LD elements by construction match. The patent prints only Nd and νd and names no special glass.",
+      "role": "G3 (M2): positive meniscus of cemented doublet D2.",
       "cemented": "D2"
     },
     {
@@ -298,7 +329,8 @@ const LENS_DATA = {
       "vd": 44.46,
       "fl": -34.481017,
       "glass": "J-KZFH1 (HIKARI coordinate-equivalent class; supplier unconfirmed)",
-      "cemented": "VC"
+      "role": "G3 (M2): biconcave front member of the cemented vibration-compensation subgroup V (doublet D3), which the patent shifts perpendicular to the axis.",
+      "cemented": "D3"
     },
     {
       "id": 13,
@@ -310,7 +342,8 @@ const LENS_DATA = {
       "vd": 25.15,
       "fl": 65.515749,
       "glass": "NBFD25 (HOYA coordinate-equivalent class; supplier unconfirmed)",
-      "cemented": "VC"
+      "role": "G3 (M2): positive meniscus of the vibration-compensation subgroup V (doublet D3).",
+      "cemented": "D3"
     },
     {
       "id": 14,
@@ -322,6 +355,9 @@ const LENS_DATA = {
       "vd": 68.62,
       "fl": 26.911271,
       "glass": "FCD515 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "LD-class inference from the coordinate-compatible FCD515 curve (catalogue ΔPgF ≈ +0.016); counted among Tamron's three LD elements by construction match. The patent prints only Nd and νd and names no special glass.",
+      "role": "G3 (M2): biconvex positive member of cemented doublet D4.",
       "cemented": "D4"
     },
     {
@@ -334,6 +370,7 @@ const LENS_DATA = {
       "vd": 40.73,
       "fl": -26.163938,
       "glass": "TAFD32 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G3 (M2): biconcave negative member of cemented doublet D4.",
       "cemented": "D4"
     },
     {
@@ -345,7 +382,8 @@ const LENS_DATA = {
       "nd": 1.85108,
       "vd": 40.12,
       "fl": 33.14334,
-      "glass": "Q-LASFH58S (HIKARI coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "Q-LASFH58S (HIKARI coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G3 (M2): biconvex element with both faces aspherical; the patent calls it a glass-molded asphere."
     },
     {
       "id": 17,
@@ -357,7 +395,8 @@ const LENS_DATA = {
       "vd": 20.88,
       "fl": 80.218113,
       "glass": "E-FDS1-W (HOYA coordinate-equivalent class; supplier unconfirmed)",
-      "cemented": "F"
+      "role": "G4 (F): biconvex front member of the cemented focusing doublet D5, which moves toward the image for near focus.",
+      "cemented": "D5"
     },
     {
       "id": 18,
@@ -369,7 +408,8 @@ const LENS_DATA = {
       "vd": 54.67,
       "fl": -30.813379,
       "glass": "TAC8 (HOYA coordinate-equivalent class; supplier unconfirmed)",
-      "cemented": "F"
+      "role": "G4 (F): biconcave rear member of the cemented focusing doublet D5.",
+      "cemented": "D5"
     },
     {
       "id": 19,
@@ -380,7 +420,8 @@ const LENS_DATA = {
       "nd": 1.58313,
       "vd": 59.46,
       "fl": 68.321068,
-      "glass": "M-BACD12 (HOYA coordinate-equivalent class; supplier unconfirmed)"
+      "glass": "M-BACD12 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G5 (R): biconvex element with both faces aspherical, in the rear group that stays fixed during zoom."
     },
     {
       "id": 20,
@@ -392,6 +433,7 @@ const LENS_DATA = {
       "vd": 41.21,
       "fl": -505.512786,
       "glass": "Unmatched (hybrid resin; no compatible HOYA coordinate)",
+      "role": "G5 (R): 0.2 mm aspherical resin layer bonded to the object side of L20 (hybrid asphere H1); not a separate lens.",
       "cemented": "H1"
     },
     {
@@ -404,6 +446,7 @@ const LENS_DATA = {
       "vd": 31.31,
       "fl": -53.132439,
       "glass": "TAFD25L (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      "role": "G5 (R): glass substrate of the hybrid aspherical negative meniscus L20, concave toward the object.",
       "cemented": "H1"
     }
   ],
@@ -486,7 +529,7 @@ const LENS_DATA = {
       "d": 1.0,
       "nd": 1.72916,
       "elemId": 6,
-      "sd": 14.95
+      "sd": 15.5
     },
     {
       "label": "11",
@@ -686,7 +729,7 @@ const LENS_DATA = {
       "d": 0.2,
       "nd": 1.5361,
       "elemId": 20,
-      "sd": 16.4
+      "sd": 15
     },
     {
       "label": "36",
@@ -694,7 +737,7 @@ const LENS_DATA = {
       "d": 1.7,
       "nd": 1.90366,
       "elemId": 21,
-      "sd": 16.4
+      "sd": 15
     },
     {
       "label": "37",
@@ -702,7 +745,7 @@ const LENS_DATA = {
       "d": 17.2805,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 16.4
+      "sd": 17
     }
   ],
   "rearPlates": [
@@ -711,6 +754,7 @@ const LENS_DATA = {
       "thicknessMm": 2.5,
       "nd": 1.5168,
       "vd": 64.2,
+      "glass": "BSC7 (HOYA coordinate-equivalent class; supplier unconfirmed)",
       "gapAfterMm": 1,
       "source": "JP2025033505A Example 1 Table 1, surfaces 38–39; paragraph 0107 identifies camera cover glass."
     }
@@ -764,32 +808,81 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "G1",
+      "text": "G1 (P)",
       "fromSurface": "1",
       "toSurface": "5"
     },
     {
-      "text": "G2",
+      "text": "G2 (M1)",
       "fromSurface": "6",
       "toSurface": "15"
     },
     {
-      "text": "G3",
+      "text": "G3 (M2)",
       "fromSurface": "STO",
       "toSurface": "29A"
     },
     {
-      "text": "G4",
+      "text": "G4 (F)",
       "fromSurface": "30",
       "toSurface": "32"
     },
     {
-      "text": "G5",
+      "text": "G5 (R)",
       "fromSurface": "33A",
       "toSurface": "37"
     }
   ],
-  "doublets": [],
+  "doublets": [
+    {
+      "text": "D1",
+      "fromSurface": "1",
+      "toSurface": "3"
+    },
+    {
+      "text": "D2",
+      "fromSurface": "19",
+      "toSurface": "21"
+    },
+    {
+      "text": "D3 (V)",
+      "fromSurface": "22",
+      "toSurface": "24"
+    },
+    {
+      "text": "D4",
+      "fromSurface": "25",
+      "toSurface": "27"
+    },
+    {
+      "text": "D5",
+      "fromSurface": "30",
+      "toSurface": "32"
+    },
+    {
+      "text": "H1",
+      "fromSurface": "35A",
+      "toSurface": "37"
+    }
+  ],
+  "varLabels": [
+    [
+      "5",
+      "D(5)"
+    ],
+    [
+      "15",
+      "D(15)"
+    ],
+    [
+      "29A",
+      "D(29)"
+    ],
+    [
+      "32",
+      "D(32)"
+    ]
+  ],
   "gapSagFrac": 0.94
 } satisfies LensDataInput;
 export default LENS_DATA;

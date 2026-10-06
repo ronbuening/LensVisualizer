@@ -191,3 +191,182 @@ Aspheric departures at the new semi-diameters: 1A +5069.946 µm at 33.5 mm (was 
 - **Analysis.** The L3 element line, the glass table row and the two paragraphs on runtime resolution were rewritten.
 - **Metadata.** Display name changed to `SIGMA 14-24mm f/2.8 DG DN | Art` (the catalog's `| Art` convention).
   `lensMounts` (`l-mount`, `sony-fe`) and `imageFormat` (`135-full-frame`) re-checked and retained.
+
+## 2026-10-06 — Final diagram, label and movement review
+
+Sources: local JP2020042221A PDF (front pages 1–2, text pages 10–13, Figure 1 on page 27) and Sigma's official
+product page for the 14-24mm F2.8 DG DN | Art. The local lens page was compared with Figure 1 at the wide end and
+infinity, then shot again at 17.97 and 23.15 mm and with the group-movement overlay open. There is no closest-focus
+state to shoot: the focus slider is not modeled, for the reason given below.
+
+### Figure SD review
+
+The earlier pass today reduced nearly every rim by about 12 % on the strength of a two-axis reading of Figure 1.
+Because that change was global, the calibration was redone from scratch by a different method.
+
+- **Bitmap and axial scale.** The figure's embedded 1023 × 712 px one-bit image was extracted and measured in its own
+  pixels. The axis is row 329. Surface 1 crosses it at x = 130, surface 32 at 845 and the image plane at 974, so
+  844 px span 141.1414 mm: 0.16723 mm/px. The 27 distinct vertex crossings (four close pairs merge) sit within
+  about half a pixel of the prescription.
+- **Radial scale from whole curves.** Each drawn surface curve was followed row by row from its vertex to its end,
+  above and below the axis, and the radial scale was fitted to the prescription sag (full polynomial for the
+  aspheres). This uses every pixel of the curve, not only the point where it meets the rim. The well-conditioned
+  surfaces give, upper / lower half: s1 0.1470 / 0.1475, s2 0.1470 / 0.1474, s3 0.1470 / 0.1477, s4 0.1468 / 0.1473,
+  s6 0.1469 / 0.1475, s12 0.1471 / 0.1481, s17 0.1474 / 0.1480, s20 0.1464 / 0.1473, s23 0.1463 / 0.1472,
+  s26 0.1460 / 0.1470, s29 0.1461 / 0.1470 mm/px. Fit residuals are 0.3–0.5 px. With one scale for both axes the
+  same curves miss by 11.6 px (s1), 9.6 px (s3), 6.6 px (s6), 3.4 px (s5), 2.7 px (s20) and 3.6 px (s26) rms. The
+  sensitivity-weighted mean is 0.14715 mm/px. The lower half reads about 0.0007 higher than the upper half on every
+  surface, which is a half-pixel axis offset, not a scale difference.
+- **Two further radial checks.** The image-plane line is 296 px long, 148 above and 147 below the axis, which is
+  21.63 mm at 0.1462–0.1471 mm/px. The stop is drawn as dashes starting 59 px from the axis, an opening of about
+  8.7 mm against the inferred 8.5946 mm wide-end iris; read with the axial scale it would be 9.9 mm.
+- **Result.** Radial 0.1472 mm/px against axial 0.1672 mm/px, ratio 1.136. The earlier pass used 0.1470 and 0.1670.
+  The two calibrations agree to 0.1 %, so the global reduction stands.
+
+Rim half-heights re-measured as the mean of the upper and lower flat-top rows, at 0.14715 mm/px:
+
+| Surfaces | Element | Drawn (px) | Figure (mm) | Stored (mm) | Difference |
+|---|---|---:|---:|---:|---:|
+| 1A | L1 front | 228.5 | 33.62 | 33.5 | −0.12 |
+| 2 | L1 rear, lower end of the vertical edge | 157 | 23.10 | 23.0 | −0.10 |
+| 3 | L2 front | 163.5 | 24.06 | 24.0 | −0.06 |
+| 4 | L2 rear, lower end of the vertical edge | 127 | 18.69 | 18.36 | −0.33 |
+| 5A | L3 front | 131.5 | 19.35 | 19.3 | −0.05 |
+| 6A | L3 rear, lower end of the vertical edge | 107 | 15.74 | 15.1 | −0.64 |
+| 7, 8 | L4 | 111 | 16.33 | 16.2 | −0.13 |
+| 9, 10 | L5 | 108.5 | 15.97 | 15.9 | −0.07 |
+| 11–13 | L6/L7 | 76 | 11.18 | 11.1 | −0.08 |
+| 14, 15 | L8 | 79.5 | 11.70 | 11.6 | −0.10 |
+| 16–18 | L9/L10 | 84 | 12.36 | 12.3 | −0.06 |
+| 20, 21 | L11 | 87 | 12.80 | 12.7 | −0.10 |
+| 22–24 | L12/L13 | 80.5 | 11.85 | 11.8 | −0.05 |
+| 25–27 | L14/L15 | 74 | 10.89 | 10.8 | −0.09 |
+| 28, 29 | L16/L17 | 84 | 12.36 | 12.3 | −0.06 |
+| 30 | L17 rear, drawn level with the doublet | 84 | 12.36 | 11.9 | −0.46 |
+| 31A, 32A | L18 | 89 | 13.10 | 13.0 | −0.10 |
+
+- Fourteen of the seventeen rows, s2 among them, are within 0.13 mm, less than one pixel (0.15 mm). The uniform
+  −0.05 to −0.13 mm offset is the half-pixel difference between measuring to the centre of the outline and to its
+  inner edge. It is below the measurement resolution and was not chased.
+- The three larger rows are the capped surfaces. Each cap was re-tested with the repository validator: s4 at 18.4 mm
+  gives a rim slope of 2.09 against the 2.06 limit (s2 at 23.1 mm gives 2.08), s6A at 15.2 mm gives a combined sag
+  of 7.48 mm against the 7.387 mm allowed in the 8.208 mm gap to s7, and s30 at 12.0 mm gives 1.27 mm against
+  1.262 mm of the 1.402 mm gap to s31A. The drawing explains the two gap cases: L3's vertical rear edge runs into
+  L4's front corner, and the rear rim of L16/L17 meets the front of L18, so the figure shows edge contact where the
+  validator requires a tenth of the axial gap to stay open.
+- s4 also remains the wide-corner chief-ray limiter and was not reduced.
+- Flat-top widths, read with the axial scale, match the computed edge thicknesses: L4 3.85 against 3.96 mm, L5 1.0
+  against 1.05, L7 0.84 against 0.78, L8 1.59 against 1.82, L10 1.59 against 1.43, L11 1.34 against 1.26, L13 1.42
+  against 1.20, L18 1.84 against 1.97 mm.
+- The curves at the rear of L4 and L5 and the front of L14 leave the prescription and turn vertical at
+  14.7–15.3 mm, 14.3–15.4 mm and 9.4–9.6 mm. The earlier pass read 14.6, 15.0 and 9.3 mm; the pixel steps of these
+  shallow curves do not resolve the difference. Those faces stay at the element's outer height, which keeps the
+  drawn square outline.
+
+**No semi-diameter was changed in this pass.**
+
+Differences from the figure that remain visible on the page:
+
+- The printed figure is 1.136 times taller than the model for the same length.
+- L1, L2 and L3 are drawn with a flat top 5.9, 3.1 and 5.9 mm long and a vertical rear edge. The renderer joins the
+  front rim to the much lower rear rim with a straight line, so each shows a chamfer. Equal rims are impossible
+  there: the rear surfaces reach their rim-slope or gap limit at 23.0, 18.36 and 15.1 mm.
+- L2's rear rim sits 0.3 mm, L3's 0.6 mm and L17's 0.5 mm below the drawn height, at the limits above.
+- The figure gives L6, L9, L12 and L16 their own short flat rim with a notch before the cemented curve reaches the
+  outer rim. The renderer draws each cemented pair with one outline.
+- L4's rear, L5's rear and L14's front are drawn with a short vertical annulus above the curve; the model carries
+  the curve to the rim, which moves those three corners by at most 0.3 mm.
+
+Results on the unchanged apertures: the surface validator reports no errors at any zoom position; the image-circle
+floor reports no undersized surface; traced field coverage is 100 % at 14.50, 17.97 and 23.15 mm with s4 the only
+limiter at the wide corner; the 41 × 41 chief grid has no failure in 1,681 rays, with corner fields of 57.147°,
+50.342° and 42.461° (patent half-fields 57.145°, 50.34° and 42.46°), a tightest margin of 0.001717 mm at s4 and
+then 0.141 mm at s2 and 0.189 mm at s6A; the axial marginal ray at f/2.93 has at least 0.94 mm (s15, tele). The
+Newton-based clear-aperture probe still locks onto 46.1° and 47.5° at the wide and middle stations and solves the
+tele station at 42.46° without a flag, as before. The engine build is unchanged: EFL 14.5005 / 17.9679 / 23.1510 mm,
+f/2.93, wide stop radius 8.5946 mm. Aspheric rim departures are unchanged (1A +5069.946, 5A −580.595,
+6A −1161.289, 31A −725.314, 32A +140.540 µm).
+
+### Diagram labels and movement order
+
+- **Prescription.** All 32 surface rows (r, d, nd, νd, θgF, asterisks, stop) and all 95 aspheric entries (K and
+  A3–A20 on five surfaces) were compared by script with the patent table and match. The three variable-spacing
+  columns were read on the rendered page. No transcription error was found.
+- **Elements.** Eighteen elements, numbered 1–18 and named L1–L18 as in the patent. Every `type` string agrees with
+  the signed radii and with paragraphs 0062–0065: L1–L3 negative menisci convex to the object, L4 biconcave, L5
+  positive meniscus, L6 negative and L7 positive meniscus, L8 negative meniscus convex to the image, L9 negative
+  meniscus, L10 and L11 biconvex, L12 negative meniscus, L13 biconvex, L14 biconcave, L15 positive meniscus, L16
+  negative and L17 positive meniscus, L18 positive meniscus convex to the image. Asphere markers sit on 1A, 5A, 6A,
+  31A and 32A, the five starred surfaces, and the `(1× Asph)` / `(2× Asph)` suffixes on L1, L3 and L18 only.
+- **Cemented pairs.** D1 (11–13, L6/L7), D2 (16–18, L9/L10), D3 (22–24, L12/L13), D4 (25–27, L14/L15) and D5 (28–30,
+  L16/L17) cover exactly the cemented surfaces, and the `cemented` tags agree.
+- **Groups.** Ranges 1A–10, 11–13, 14–18 and STO–32A match the patent's group table (first surfaces 1, 11, 14, 19).
+  Figure 1 prints `(GF)` under G2 and `(GP)` under G3, so the labels changed: `G2` → `G2 (GF)`, `G3` → `G3 (GP)`.
+  The figure's GR bracket spans G2–G4; it overlaps the other ranges and is recorded in the header comment instead.
+  The longer labels do not collide at any of the three stations.
+- **Stop and plates.** `STO` is source surface 19, between G3 and L11, where the figure draws S. The example lists
+  no cover glass or filter and none is modeled.
+- **Specs line.** `NATIVE f = 14.50–23.15 mm` → `DESIGN f = 14.50–23.15 mm`; `5 ASPHERICAL SURFACES` →
+  `5 ASPHERICAL SURFACES / 3 ELEMENTS`; added `1 FLD + 5 SLD (INFERRED)`. `18 ELEMENTS / 13 GROUPS` and
+  `DESIGN F/2.93` retained. The subtitle names the right publication and example and was retained.
+- **Roles.** The role texts now carry the group they belong to: `G1 front negative group member`,
+  `G2 (GF) inner-focus doublet member; the pair moves imageward for near focus`,
+  `G3 (GP) pre-stop positive group member`, `G4 rear positive group member`.
+- **Zoom order.** `zoomPositions` is 14.5, 17.97, 23.15, strictly wide to tele, and each `var` array lists its rows
+  in that order: d10 17.4502 / 9.3308 / 3.1517, d13 8.4183 / 10.2009 / 9.5800, d18 9.1955 / 5.5627 / 2.6650,
+  BF 21.5383 / 27.2429 / 35.0738, equal to the patent table row for row. Nothing was mis-ordered.
+- **Zoom direction.** First-vertex positions relative to the image plane, wide / middle / tele: G1 −141.1414 /
+  −136.8764 / −135.0096 (6.13 mm toward the image), G2 −87.5007 / −91.3551 / −95.6674 (8.17 mm toward the object),
+  G3 −73.8589 / −75.9307 / −80.8639 (7.005 mm toward the object), G4 with the stop −57.8080 / −63.5126 / −71.3435
+  (13.54 mm toward the object, equal to the BF change). No group reverses. Paragraph 0066 states the same gap
+  behaviour: G1–G2 narrows, G2–G3 widens and then narrows from mid-zoom, G3–G4 narrows. The four arrows under
+  Figure 1 point toward the image under G1 and toward the object under G2, G3 (curved) and G4. The page's zoom
+  overlay shows the same four directions and a maximum travel of 13.54 mm.
+- **Focus.** Paragraph 0063 and the focus arrow under G2 in Figure 1 both say G2 moves toward the image for near
+  focus. The variable-spacing table was re-read for finite-distance rows: its shooting-distance row reads infinity
+  in all three columns, the tables of Examples 2–5 are the same, and the figure list describes Figures 1–7 as
+  infinity states. No near spacing exists to model, so each `var` row keeps equal infinity and close values, the
+  focus slider reads "Not modeled", the overlay's focus option is disabled, and no `publishedStations` entry is
+  needed. `focusDescription` kept its direction and now names GF, the paragraph and the figure arrow.
+
+### Glass and color completeness
+
+- All 18 elements trace on catalogue Sellmeier data, each on a row matching the stored pair: L-LAL13, FCD515 (L2,
+  L4), MP-PCD51-70, FDS90, FDS24, FF8, FD225, FDS18, S-TIH4, FCD100, S-NBH8, FCD705 (L13, L17), TAFD45L, E-FDS1,
+  TAFD30 and MP-FCD500-20. The largest index residual is 5.5e-6 and the largest νd residual 0.02. Nothing is
+  missing from the shared catalogue.
+- The patent prints θgF for every element and the file already carried `dPgF` on all 18. Each value was recomputed
+  from the printed θgF as θgF − (0.6438 − 0.001682 νd) and matches to the last digit. Against the catalogue curves
+  the authored values differ by at most 0.0004 (L16). No line indices are authored.
+- **APD tags.** Every element was `apd: false`. The patent text never identifies a glass as anomalous, low-dispersion
+  or fluorite-like and has no condition on partial dispersion, so nothing is tagged `"patent"`. Six elements changed
+  from `false` to `"inferred"`, each with an `apdNote`: L11 (FCD100 class, ΔPgF +0.0497), L2 and L4 (FCD515 class,
+  +0.0156), L13 and L17 (FCD705 class, +0.0231) and L18 (MP-FCD500-20 fluorophosphate preform class, +0.0165).
+  Sigma's page lists one FLD and five SLD elements, six in all, which is the same count. The page gives no element
+  positions in text, so L11 as the FLD element and the other five as SLD are inferences from glass class. L18 is
+  the least certain: it is the fifth SLD element by count, and the aspheric phosphate-crown L3 (ΔPgF +0.0054) is
+  the only other candidate.
+- L3 and the dense flints with positive ΔPgF (L5–L10, L15) keep `apd: false`; the explicit flag was left in place
+  because the file now mixes tagged and untagged elements.
+
+### Identity and metadata
+
+- Front page: publication 特開2020-42221, kind A, published 19 March 2020; application 特願2018-171267 filed
+  13 September 2018; applicant 株式会社シグマ; one inventor, 塩田 了 (PAJ: SHIODA RYO). `patentNumber`
+  `JP 2020-042221 A`, `patentAuthors` `["Ryo Shioda"]`, `patentAssignees` `["Sigma Corporation"]` and `patentYear`
+  2020 are correct and unchanged.
+- Sigma's page: 18 elements in 13 groups, 1 FLD and 5 SLD, 3 aspherical lenses, 11 rounded blades, minimum aperture
+  F22, minimum focusing distance 28 cm, L-Mount and Sony E-mount. `elementCount` 18, `groupCount` 13, `lensMounts`
+  (`l-mount`, `sony-fe`), `imageFormat` `135-full-frame`, `closeFocusM` 0.28, `maxFstop` 22 and `apertureBlades` 11
+  agree and are unchanged.
+- `focalLengthMarketing` [14, 24] and `apertureMarketing` 2.8 are the product values; `focalLengthDesign`
+  [14.5005, 23.1510] and `apertureDesign` 2.93 are the computed and printed design values (patent 14.50–23.15 mm,
+  F2.93 at all three stations).
+- The display name `SIGMA 14-24mm f/2.8 DG DN | Art` was set by the integration pass and was not touched.
+
+### Open limitations
+
+- The flange chamfers on L1–L3 and the three capped rims (s4, s6A, s30) cannot be closed with semi-diameters alone.
+- No focus travel is modeled, because the patent tabulates none.
+- The FLD and SLD positions are inferred from glass class and count. Sigma's construction diagram was not read.
+- The 1,440-sample pupil classification of the first sections still describes the older, larger apertures.

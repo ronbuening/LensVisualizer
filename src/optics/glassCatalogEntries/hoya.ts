@@ -1774,4 +1774,13 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published BSC7 formula-1 row; product code 517-642 omitted so bare-code annotations stay on N-BK7.",
   },
+  {
+    name: "TAFD35L",
+    vendor: "Hoya",
+    polynomial: [3.5269868, -0.014402448, 0.040047918, 0.0016950661, -0.000073210899, 0.000010814479],
+    nd: 1.91082,
+    vd: 35.25,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published TAFD35L formula-1 row; product code 911-353 omitted so bare-code annotations stay on TAFD35.",
+  },
 ];

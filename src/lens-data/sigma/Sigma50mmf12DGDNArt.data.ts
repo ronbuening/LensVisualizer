@@ -11,13 +11,21 @@ import type { LensDataInput } from "../../types/optics.js";
  * performance and all-azimuth clearance are NOT certified. Post-clip paths are not transmission.
  * Native d-line prescription; no scaling, omissions, invented plates or coefficient orders.
  * Focus PUBLISHED: infinity and source 395 mm test state. Intermediate movement is linear only.
- * Other clear apertures inferred from Figure1 and ray/geometry checks; stop radius inferred
+ * Other clear apertures inferred from Figure 1 and ray/geometry checks; stop radius inferred
  * from infinity EFL/(2*1.24), not a published physical diameter.
  * NOTE ON SEMI-DIAMETERS: estimated from JP 2025-124346 A FIG. 1 (PDF p24) rim heights plus
  * traced clearance; none is source-tabulated. 2026-10-06 figure pass: S28 clear radius
  * 17.5 -> 14.7mm, where the drawn rear bowl of L16 ends (its flat outer annulus is not
  * modeled). No other semi-diameter changed: S2, S11 and S20 keep their outer-rim heights
  * and S29A/S30A stay 15.7mm. Normal-fan and wider-pupil S14 results above are unchanged.
+ * 2026-10-06 final review: no semi-diameter changed. The concave faces FIG. 1 draws with a
+ * flat annulus (S2, S11, S13, S20) keep the outer-rim height so each element has a square
+ * edge; L16 is the one chamfer (S27 17.5 / S28 14.7mm). S22/S23 stay 19.4mm against the
+ * drawn 18.6-18.7mm: 18.7mm puts normal-fan first clips on cement S22. S29A/S30A stay
+ * 15.7mm against the drawn 16.4mm rim (S30A curve end about 15.2mm): S30A sets the engine
+ * half-field estimate, 24.58 deg against the patent's 23.95 deg, and 16.4mm raises it.
+ * DIAGRAM LABELS: FIG. 1 names only G2asp (L3), Lp (L10), the air lens AL (S28-S29A gap),
+ * stop S and groups G1-G5; L1-L17 and D1-D5 are this file's sequential names.
  * L10 PgF normal-line conversion: patent 0.046934 -> runtime dPgF 0.04951936.
  * Catalog glass names are coordinate equivalents, not identified factory suppliers.
  */
@@ -28,10 +36,10 @@ const LENS_DATA = {
   "subtitle": "JP 2025-124346 A Example 1 — Sigma / Yuki Ueda; construction correlation",
   "specs": [
     "17 ELEMENTS / 12 GROUPS",
-    "f = 48.27 mm (PATENT INFINITY)",
-    "F/1.24 (PATENT)",
-    "2ω = 47.90° (PATENT INFINITY)",
-    "6 ASPHERICAL SURFACES"
+    "DESIGN f = 48.27 mm",
+    "DESIGN F/1.24",
+    "2ω = 47.90°",
+    "6 ASPHERICAL SURFACES / 4 ELEMENTS"
   ],
   "focalLengthMarketing": 50,
   "focalLengthDesign": 48.27,
@@ -88,7 +96,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 76.308057,
       "glass": "L-LAH91 (OHARA equivalent)",
-      "role": "Element in G2; power is standalone in air, not an isolated in-situ aberration contribution.",
+      "role": "Patent G2asp, the object-side aspheric positive lens of focus group G2; power is standalone in air, not an isolated in-situ aberration contribution.",
       "cemented": "D1"
     },
     {
@@ -101,7 +109,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -158.898069,
       "glass": "FF5 (HOYA equivalent)",
-      "role": "Element in G2; power is standalone in air, not an isolated in-situ aberration contribution.",
+      "role": "Element in focus group G2, cemented behind G2asp; power is standalone in air, not an isolated in-situ aberration contribution.",
       "cemented": "D1"
     },
     {
@@ -176,11 +184,11 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 58.937234,
       "glass": "FDS16-W (HOYA equivalent)",
-      "role": "Element in G3; power is standalone in air, not an isolated in-situ aberration contribution.",
+      "role": "Patent Lp, the high-index positive lens of G3 governed by conditions (2) and (3); power is standalone in air, not an isolated in-situ aberration contribution.",
       "cemented": "D3",
       "apd": "patent",
       "dPgF": 0.04951936,
-      "apdNote": "Patent PgF=0.6656; source-normal-line deviation 0.046934; runtime Schott-normal-line deviation 0.04951936. No measured line indices published."
+      "apdNote": "Patent Lp: condition (2) bounds its anomalous partial dispersion. Patent PgF=0.6656; source-normal-line deviation 0.046934; runtime Schott-normal-line deviation 0.04951936. No measured line indices published."
     },
     {
       "id": 11,
@@ -205,7 +213,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 38.073644,
       "glass": "TAC6L (HOYA equivalent)",
-      "role": "Element in G4; power is standalone in air, not an isolated in-situ aberration contribution.",
+      "role": "Element in focus group G4; power is standalone in air, not an isolated in-situ aberration contribution.",
       "cemented": "D4"
     },
     {
@@ -218,7 +226,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -52.708953,
       "glass": "NBFD25 (HOYA equivalent)",
-      "role": "Element in G4; power is standalone in air, not an isolated in-situ aberration contribution.",
+      "role": "Element in focus group G4; power is standalone in air, not an isolated in-situ aberration contribution.",
       "cemented": "D4"
     },
     {
@@ -231,7 +239,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 53.567056,
       "glass": "NBFD13 (HOYA equivalent)",
-      "role": "Element in G4; power is standalone in air, not an isolated in-situ aberration contribution."
+      "role": "Element in focus group G4; power is standalone in air, not an isolated in-situ aberration contribution."
     },
     {
       "id": 15,
@@ -256,7 +264,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -32.818488,
       "glass": "LAF45 (HOYA equivalent)",
-      "role": "Element in G5; power is standalone in air, not an isolated in-situ aberration contribution.",
+      "role": "Element in G5; its rear surface is the object side of the patent's air lens AL. Standalone power in air, not an isolated in-situ aberration contribution.",
       "cemented": "D5"
     },
     {
@@ -269,7 +277,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -165.837958,
       "glass": "M-TAFD305 (HOYA equivalent)",
-      "role": "Element in G5; power is standalone in air, not an isolated in-situ aberration contribution."
+      "role": "Element in G5; its front surface is the image side of the patent's air lens AL. Standalone power in air, not an isolated in-situ aberration contribution."
     }
   ],
   "surfaces": [

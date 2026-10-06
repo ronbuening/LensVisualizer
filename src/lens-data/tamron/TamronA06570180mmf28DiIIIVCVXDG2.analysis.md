@@ -49,6 +49,13 @@ negative G4 and weakly negative G5. G1 and G2 form the patent's front section;
 G3–G5 form its rear section. The diaphragm is source surface 16, immediately
 before the refractive portion of G3. The cover glass is camera-side, following G5.
 
+Figure 1 also letters the groups by claimed role, and the diagram's group labels
+carry those letters: G1 is lens group P, G2 the intermediate group M1 (and its
+lens group N), G3 the intermediate group M2, G4 the focusing lens group F and G5
+the rear group R. The cemented pairs are labelled D1 (L1–L2), D2 (L10–L11),
+D3 (L12–L13, the patent's vibration-compensation group V), D4 (L14–L15) and
+D5 (L17–L18, which is all of G4); H1 marks the L20 resin-on-glass hybrid.
+
 The source distinguishes physical lens identities from functional group labels.
 The implemented hybrid layer is a separate optical medium, so 21 material records
 represent 20 physical lenses. The camera cover is traced separately and does not
@@ -169,6 +176,8 @@ nd = 1.72916, νd = 54.67. Glass: TAC8 (HOYA coordinate-equivalent class; suppli
 L6 is another separated negative member of G2. Its front face has weak curvature relative to its rear face.
 
 It shares the same native nd/νd coordinate as L18, but repeated coordinates are not proof of a common commercial melt. The two positions have different shapes and different group functions.
+
+Both faces are modeled to 15.5 mm, matching the square-edged plate drawn in Figure 1. The air gap toward L5 is still checked over the 14.95 mm band the two lenses share.
 
 [1, ¶0113, Table 1]
 
@@ -308,7 +317,7 @@ nd = 1.53610, νd = 41.21. Glass: Unmatched (hybrid resin; no compatible HOYA co
 
 L20r is the 0.2000 mm center-thickness resin layer attached to the front of physical L20. Its separate index and thickness are retained, with aspherical outer surface 35A.
 
-The layer is only a component of physical L20, not an extra manufactured lens. Its small positive edge thickness is an optical-model result and should not be read as a production tolerance specification.
+The layer is only a component of physical L20, not an extra manufactured lens. Its modeled clear radius is 15.0 mm, where Figure 1 ends the concave resin face at the substrate's flat seat. The layer thickens from 0.2000 mm on axis to 0.3020 mm near 10 mm height and thins to 0.1430 mm at that rim; the polynomial would drive it to zero just beyond 16.5 mm. These are optical-model results and should not be read as production tolerances.
 
 [1, ¶0116, Table 1]
 
@@ -319,6 +328,8 @@ nd = 1.90366, νd = 31.31. Glass: TAFD25L (HOYA coordinate-equivalent class; sup
 The substrate supplies the remaining glass span of physical L20. Its front boundary refracts from the resin into this glass; its rear boundary exits to air.
 
 Together the substrate and resin form the source's hybrid asphere. The combined hybrid power is different from either isolated material value. The cover glass after it belongs to the camera-side model.
+
+The rear face is modeled to 17.0 mm, the outer rim Figure 1 draws for L20. The diagram joins that rim to the 15.0 mm front rim with a straight edge where the figure shows a flat mounting seat.
 
 [1, ¶0116, Table 1]
 
@@ -362,6 +373,13 @@ or Sumita. No supplier inference is drawn from the Tamron brand. Two coordinates
 have no exact HOYA row but match HIKARI rows exactly: J-KZFH1 for 1.61266/44.46 and
 Q-LASFH58S for 1.85108/40.12, so those two elements carry the HIKARI class label.
 All catalog-equivalent labels and the unmatched resin retain that limitation.
+
+Four elements carry the diagram's inferred anomalous-dispersion tint: L3 (FCD100
+class), L2 (FCD1 class), and L11 and L14 (FCD515 class). Their count matches
+Tamron's one XLD and three LD elements. The tag is a class inference from the
+coordinate-equivalent catalog curves, not a patent designation: the patent names
+no special glass. The camera cover plate is traced as the coordinate-equivalent
+BSC7 class.
 
 The original table supplies no element-level nC, nF, ng or partial-dispersion
 deviation. Consequently, color simulations may use coordinate-compatible catalog
@@ -411,6 +429,11 @@ with negative coordinates on the object side.
 | G4 | -60.7549 | -57.8347 | -63.1778 |
 | G5 | -43.0343 | -43.0343 | -43.0343 |
 
+From wide to long G1 travels 25.8683 mm toward the object and G2 25.3145 mm
+toward the image, each without reversal. The patent describes G3 and G4 as moving
+along loci convex toward the image: from wide to middle they move imageward by
+2.5467 and 2.9202 mm, and from middle to long objectward by 2.3620 and 5.3431 mm.
+
 For G3 the listed front reference is the group's stop plane, matching its source
 surface span. The material group remains rigid relative to that stop. Zoom and
 focus interpolation preserve all endpoint spacings without inventing a smooth
@@ -451,7 +474,7 @@ A14 is zero padding required by the schema. No nonzero odd terms are supplied.
 | 29A | 14.92 | -0.060193596 |
 | 33A | 16.50 | +0.674712147 |
 | 34A | 16.50 | +0.391482816 |
-| 35A | 16.40 | +1.051350725 |
+| 35A | 15.00 | +0.704012049 |
 
 At 28A and 29A the net polynomial departure is objectward of the spherical base
 at the listed rim. At 33A, 34A and 35A it is imageward. These signs describe the
@@ -530,6 +553,19 @@ The original ordinary-0.90 conflict remains observable. The source nominal pupil
 requires a larger common radius than that rule permits. The disclosed lens-specific
 treatment resolves the model's acceptance condition; it does not make the original
 0.90 numerical comparison true.
+
+### Figure-matched rims outside the exception
+
+Every other semi-diameter is an estimate fitted to Figure 1 and checked by ray
+trace under the ordinary 0.90 gap rule. Two were set from the drawing. L6's
+front face runs to 15.5 mm like its rear, as the figure's square-edged plate.
+L20 follows the drawn hybrid outline: the resin face and its junction stop at
+15.0 mm, the smallest 0.1 mm value outside every transmitted ray sampled to the
+format corner (maxima 14.90 and 14.92 mm), and the rear face runs to the drawn
+17.0 mm rim. The sampled relative-illumination curves are the same as with the
+earlier 16.4 mm rims. The first rim a widening chief ray meets is now the resin
+junction instead of the rear face, which puts the model's field bound at 18.33°,
+11.31° and 7.68°, beyond the source half-fields of 16.3157°, 9.7406° and 6.7314°.
 
 ### Physical pupil and viewer rays
 

@@ -289,3 +289,69 @@ Surfaces 11, 25 and 26 differ by about 10–13 % and were not trialled. The meas
 - **Metadata.** Display name corrected from `DI III` to Tamron's `Di III` casing; run-together words in the header
   comment and `focusDescription` ("Fno5.8166") were separated. `lensMounts` (`sony-fe`, `nikon-z`) and `imageFormat`
   (`135-full-frame`) re-checked against Tamron's F072 product page and retained.
+
+## 2026-10-06 — Final diagram, label and movement review
+
+Scope: second and final comparison of the local lens page with FIG. 1 of JP2026057675A (PDF page 19, INF and MOD panels) and with the Example 1 text and tables (PDF pages 11–13). No radius, spacing, index, Abbe number, variable gap, iris value, `gapSagFrac` or semi-diameter changed. The pass changes two diagram labels and one group range, three element roles, the focus description, two run-together source strings, adds four inferred APD tags, and brings the header comment and analysis into step.
+
+### Figure SD review
+
+- **Compared.** Page renders at twice the device scale, at infinity and at closest focus, beside the native 1280 × 720 px, 203 dpi figure raster. Each element was checked for rim height, front/rear rim relationship, edge flat, corner position and spacing.
+- **Scale re-derived.** The drawn vertex crossings of all 27 lens surfaces in the INF panel fall within 1 px of the prescription at 0.16941 mm/px (surface 16 by 1.4 px), with surface 1 at x = 306, surface 28 at 991 and the image plane at 1127. A radial check was added: the drawn curves of surfaces 9, 19, 23, 24, 26 and 27 were tracked row by row and fitted for a radial-to-axial scale ratio, giving 1.008, 0.999, 0.997, 0.980, 0.983 and 1.012. The figure is drawn isotropically within about 2 %, so heights read at the axial scale are valid.
+- **Rims re-read.** L1 109.5 px (18.55 mm), L2 101.5 (17.19), D1 95.5 (16.18), L5 97.5 (16.52), L6 90 (15.25), D2 83.5 (14.15), L9 85.5 (14.48), L10 87.5 (14.82), D3 79.5 (13.47), L13 89 (15.08), L14 92.5 (15.67), L15 104.5 (17.70). These repeat the first pass's readings, and the MOD panel draws the same heights. Every element is drawn with a square outer edge, which the equal front and rear semi-diameters reproduce.
+- **Edge flats.** Drawn against modeled edge thickness at the stored rim: L1 1.0 / 0.91 mm, L5 0.7 / 0.53, L9 1.2 / 1.12, L10 0.85 / 0.60, L13 0.85 / 0.60, L15 0.85 / 0.73. All agree within about 1.5 raster pixels.
+- **No semi-diameter changed.** The three rims the first pass left short of the drawing were re-trialled, and each is held by a constraint:
+
+| Item | Drawing | Stored | Finding |
+|---|---:|---:|---|
+| D1 (5, 6, 7) | 16.18 mm | 15.8 | The drawing ends L3 in a knife edge at the D1 rim. The prescription puts that crossing at 16.022 mm (94.6 px), one raster pixel below the drawn line, so 16.2 mm is not reachable: the validator reports −0.079 mm at 16.1 and −0.181 mm at 16.2. A 16.0 mm trial passes with 0.022 mm of edge, but it gains 0.2 mm (under one screen pixel) while cutting the smallest edge thickness of the model from 0.2213 to 0.0221 mm and moving the surface 6 rim that the cemented-joint sidewall record above depends on. Left at 15.8. |
+| D2 (13, 14, 15) | 14.15 mm | 13.7 | The drawing closes surface 15 onto surface 16 at the rim; the two spheres meet at 14.108 mm. The 0.95 gap limit allows 13.757 mm, and the validator rejects a common 13.8 mm (1.97 mm of sag against 1.956 mm allowed). Raising only surfaces 13 and 14 to 14.1 passes the validator but slopes the top of L8 and widens the cement seam, which the adopted common-rim model and the surface 14 sidewall record rule out. Left at 13.7. |
+| L10 (18, 19) | 14.82 mm | 15.0 | The close-focus axial marginal ray reaches 14.946 mm at surface 18; 14.9 clips it by 0.046 mm. Left at 15.0. |
+| L2 (3, 4) | 17.19 mm | 17.3 | 0.11 mm over the drawing; unchanged. |
+
+- **Flat annuli on concave faces.** The drawn annulus planes were located directly from the raster and compared with the modeled corners. Curve ends by drawn sag are 14.1 mm (surface 4), 13.8 (11), 11.5 (22), 13.95 (25) and 14.6 (26); by height they are 13.7, 13.7, 11.2, 13.7 and 14.2 mm. The modeled corners overshoot the annulus planes by 2.32 mm (L2 rear), 0.50 (L6 rear), 0.75 (L12 rear), 0.99 (L14 front) and 0.31 (L14 rear). The renderer joins front and rear rims with a straight edge, so the choice is between carrying the curve to the rim and cutting the rear rim to the curve end. Measured as outline area that differs from the drawing, per side: L2 3.5 mm² as stored against 11.7 mm² with surface 4 at 14.0; L12 0.7 against 5.6 mm² with surface 22 at 11.6; L14 1.0 mm² as stored against 8.8 mm² if both faces were cut to 14.3 mm, which would also drop the element 9 % below its drawn height. The stored values are the closer outline in every case and keep the square outer edges, so they stand. L14's drawn block is 6.27 mm thick against a modeled 7.56 mm edge.
+- **Other visible differences, not defects.** The figure draws the cover glass CG; the page traces it as a rear plate and does not draw it. The drawn stop ticks begin 76 px (12.87 mm) from the axis against the 12.981 mm iris. At closest focus the modeled D3 rear corner stays 2.2 mm clear of L13's front face at the same height.
+- **Check results.** Surface validator: no errors. Image-circle floor: 0 undersized. Traced field coverage: 100 %, 14.1° reaching 21.63 mm of 21.63 mm with the corner clear. Engine build: EFL 87.3062 mm, F/2.9093, stop radius 12.981452 mm, half-field estimate 15.524°, all unchanged. Axial marginal ray through the fixed iris at five focus states: no clip, smallest margins 0.040 mm at surface 15 and 0.054 mm at surface 18. The meridional clearance trace at the patent's 14.0522° reports only ordinary corner vignetting from surface 15 rearward and no axial clip or chief-ray block.
+
+### Diagram labels and movement order
+
+- **Group labels.** FIG. 1 prints G1, G2 (F1), G3 (P), G4 (F2) and G5, and brackets PN over the front cemented pair of G3. `groups[2].text` changed from `G3` to `G3 (P)`, and the doublet annotation on surfaces 13–15 from `D2` to `D2 (PN)`. The element `cemented` names stay D1–D3, so the inspector's doublet badge still matches.
+- **G3 range.** Paragraph 0066 lists the aperture stop as the first member of G3, and the figure's G3 bracket starts ahead of the stop. `groups[2].fromSurface` changed from `13` to `STO`. The patent's group table gives 13–19 for the group focal length; the stop has no power, and the calculated +38.6247 mm is unaffected.
+- **Roles.** L6, L11 and L12 now name the patent's focus groups F1 and F2 and the direction of travel. The other twelve roles were checked and left.
+- **Focus description.** It gave the close-distance caveat but neither the moving groups nor their direction. It now opens with the mechanism: G2 (F1) and G4 (F2) both move toward the image, by 13.40 and 15.00 mm, with G1, the stop with G3 (P), and G5 fixed. The close-distance and iris statements are unchanged.
+- **Source strings.** Run-together words separated in `rearPlates[0].source` ("paragraph 0076, surfaces 29–30") and `finiteConjugates[0].source` ("prints 227.4085 mm").
+- **Table re-read.** All 30 rows of the lens-data table, the specification table, the variable-spacing table and the group table were compared with the data file from the PDF text layer and confirmed on the rendered pages. No row differs; no transcription correction was needed.
+- **Verified and left.** Fifteen elements numbered 1–15. Types against the signed radii: L1, L3, L5, L10 and L13 biconvex; L2, L6, L8, L12 and L14 biconcave; L4 a negative meniscus concave to the object; L7, L9 and L11 positive menisci convex to the image; L15 a positive meniscus convex to the object. The two documented text conflicts stand (paragraph 0064's sixth G1 element and paragraph 0066's "biconvex" L7). No aspheric surface, empty `asph`, and no asphere marker. Cemented surfaces 6, 14 and 21 match D1 (5–7), D2 (13–15) and D3 (20–22). Group ranges 1–9, 10–11, 20–22 and 23–28 match the patent, with calculated focal lengths +47.3446, −52.6772, +38.6247, −42.2130 and +228.7999 mm against the printed 47.3434, −52.6768, 38.6246, −42.2133 and 228.7960. The stop is surface 12, 2.0000 mm ahead of surface 13. The rear plate is 2.5000 mm of 1.51633 / 64.14 with 19.4558 mm before it and 1.0000 mm after. `specs`, `subtitle` and the `D(9)`–`D(22)` gap labels match the source.
+- **Focus direction and order.** The `var` arrays list infinity first and MOD second, matching the slider. Positions computed from the stored gaps:
+
+| Group | Front vertex to image, infinity (mm) | At MOD (mm) | Travel | Patent |
+|---|---:|---:|---|---|
+| G1 | 138.9986 | 138.9982 | 0.0004 mm (rounding) | fixed |
+| G2 (F1) | 109.7245 | 96.3239 | 13.4006 mm toward the image; 13.4002 from surface 1 | moves to the image side |
+| G3 (P) | 88.2987 | 88.2984 | 0.0003 mm (rounding) | fixed |
+| G4 (F2) | 71.6437 | 56.6431 | 15.0006 mm toward the image; 15.0002 from surface 1 | moves to the image side |
+| G5 | 50.8931 | 50.8931 | 0 | fixed |
+
+- **Gap pairs.** D(9) +13.4002 against D(11) −13.4003 mm, and D(19) +15.0003 against D(22) −15.0006 mm. The pairs are equal and opposite to 0.0001 and 0.0003 mm, which is the patent's own four-decimal rounding; nothing is mis-ordered.
+- **Close distance.** Recomputed independently: the stored MOD gaps image an object 85.2374 mm ahead of surface 1 onto the fixed image plane, 224.2356 mm object to image at −0.99406×. The printed 227.4085 mm leaves best focus 2.900 mm ahead of the sensor at −0.9195×. `closeFocusM` and its "calculated" wording are correct. An exact −1.0× conjugate would need 224.00 mm object to sensor with 0.23 mm of defocus.
+- **On the page.** The focus-movement overlay shows G2 (F1) and G4 (F2) running toward the image side with G1, G3 (P) and G5 stationary, and a 15.00 mm maximum travel. The patent-positions control offers the two published states, infinity and 22 cm, with gaps 15.50 / 5.13 / 17.10 / 2.65 mm and EFL 38.88 mm at the close state. The closest-focus render places G2 beside the stop and D3 beside L13 as in the MOD panel.
+
+### Glass and color completeness
+
+- **Resolution.** All 15 elements and the cover plate trace on a catalogue Sellmeier curve whose nd agrees with the stored value within 5e-6; the lens-level dispersion quality is `sellmeier`. The largest Abbe difference is 0.02 (FCD1, catalogue 81.59 against the patent's 81.61).
+- **APD tags added.** The patent text contains no statement about anomalous or low dispersion, partial dispersion ratio or special glass, so no element is tagged `patent`. Four elements are now tagged `inferred`, each with a short `apdNote`: L3 and L5 (1.59282 / 68.62, FCD515 class), L7 (1.49700 / 81.61, FCD1 class) and L13 (1.43700 / 95.10, FCD100 class). Tamron's F072 product page states "four special glass LD (Low Dispersion) lens elements", which equals this count. Tamron's text does not say which elements they are, so the match is by number only.
+- **Left untagged.** L6 (PCD51 class, catalogue ΔPgF about +0.005) and L15 (FC5 class, about +0.005) are not ED classes by the corpus convention; tagging either would also exceed Tamron's count. The dense flints L1, L8, L9 and L11 have positive catalogue ΔPgF but the patent says nothing about them.
+- **Spectral fields.** The patent prints only Nd and the Abbe number. No `nC`, `nF`, `ng` or `dPgF` is authored, and none was added; the ΔPgF figures in the notes and analysis are prose references to the catalogue curves.
+
+### Identity and metadata
+
+- `patentNumber` JP 2026-57675 A (特開2026-57675, published 2026-04-03), `patentYear` 2026, sole inventor 小林 知広 as `Tomohiro Kobayashi`, applicant 株式会社タムロン as `Tamron Co., Ltd.`: confirmed on the front page and retained.
+- Tamron's F072 specification page gives 90 mm, F/2.8, 15 elements in 12 groups, 0.23 m minimum object distance, 1:1, a 12-blade diaphragm, F16 minimum aperture and Sony E and Nikon Z mounts. `focalLengthMarketing`, `apertureMarketing`, `elementCount`, `groupCount`, `apertureBlades`, the f-stop series ending at 16, `lensMounts` and `imageFormat` agree. The display name `TAMRON 90mm f/2.8 Di III MACRO VXD` matches Tamron's product name.
+- `focalLengthDesign` 87.3062 mm is the calculated value of the unchanged prescription (printed 87.3000), `apertureDesign` 2.9093 is the printed Fno, and `imageCircleMm` 43.266 is twice the printed image height 21.633 mm.
+- `closeFocusM` 0.224236 m stays the calculated conjugate of the published MOD spacings. The patent prints 0.2274 m and Tamron publishes a rounded 0.23 m; neither is substituted.
+
+### Open limitations
+
+- The five flat annuli remain undrawn, D1 and D2 remain 0.4 mm below the drawing, and L10 remains 0.2 mm above it, for the reasons in the table.
+- Which production elements Tamron counts as LD is not published in text, so the four inferred tags are a glass-class reading of the patent example, not a confirmed production map.
+- The native dense corner-boundary sampling recorded in the earlier sections was not re-run; no semi-diameter changed in this pass.

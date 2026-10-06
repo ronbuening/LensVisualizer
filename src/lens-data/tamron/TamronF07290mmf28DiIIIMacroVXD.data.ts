@@ -4,23 +4,34 @@ import type { LensDataInput } from "../../types/optics.js";
  * JP 2026-57675 A, Numerical Example 1. Native dimensions; scale = 1.
  * 15 spherical lens elements / 12 air-separated components / 5 motion groups.
  * Source planes 29–30 are retained physically as camera-side rearPlates.
+ * Group labels follow FIG. 1: G1, G2 (F1), G3 (P), G4 (F2), G5; the G3 front cemented pair D2 is the
+ * patent's subgroup PN. The stop is the first member of G3 (paragraph 0066), so the G3 label spans STO–19;
+ * the patent's group-focal-length table lists the powered surfaces 13–19.
+ * FOCUS: both negative focus groups move toward the image from infinity to MOD (paragraph 0063 and the
+ * FIG. 1 arrows): G2 (F1) by 13.4002 mm and G4 (F2) by 15.0002 mm from surface 1; G1, STO + G3 and G5 fixed.
  * PUBLISHED focus spacings; calculated close distance 224.235550734 mm from image plane,
  * about 0.99406×. Patent 227.4085 mm and 1:1 claims do not reproduce together.
  * Fixed physical iris inferred from exact infinity F/2.9093 calibration: radius 12.981452 mm.
  * Printed MOD Fno 5.8166 is not reproduced; no inferred shrinking-iris schedule.
  * NOTE ON SEMI-DIAMETERS: estimated from JP 2026-57675 A FIG. 1 (INF panel, PDF p19; native 203 dpi raster,
  * 0.1694 mm/px from the 685 px s1–s28 span) plus traced clearance; not patent-published clear apertures.
- * Outer rims match the drawing within about 0.1 mm except where a constraint governs: D1 15.8 (drawn 16.2;
- * L3 edge thickness turns negative there), D2 13.7 (drawn 14.15; s15→s16 gap policy) and L10 15.0 (drawn 14.8;
+ * Outer rims match the drawing within about 0.1 mm except where a constraint governs: D1 15.8 (drawn 16.2,
+ * which is the L3 knife edge: the surfaces cross at 16.02 mm, the validator rejects 16.1, and 15.8 keeps
+ * 0.22 mm of edge), D2 13.7 (drawn 14.15, where s15 touches s16; s15→s16 gap policy) and L10 15.0 (drawn 14.8;
  * the close-focus axial marginal ray needs 14.946). L9 is the drawn 14.5. The drawing ends the concave faces
  * s4/s11/s22/s25/s26 in flat annuli (curves stop near 13.7/13.7/11.3/14.0/14.4 mm); those faces are carried
- * to the element rim because the renderer joins front and rear rims with a straight edge.
+ * to the element rim because the renderer joins front and rear rims with a straight edge, so the rear corners
+ * of L2/L6/L12 run 2.3/0.5/0.75 mm and the front/rear corners of L14 1.0/0.3 mm past the drawn annuli.
  * See audit for sampled coverage.
  * Lens-specific gapSagFrac 0.95: s15→s16 retains 0.11950043 mm actual air at SD 13.7.
  * Common rims; no widened cement seam. Significant corner vignetting remains.
  * Source Table 1 numerical summaries 2/3/6/8b disagree; actual inequality bounds pass.
  * Glass names are coordinate-compatible catalog proxies, not supplier proof. The patent prints only
  * Nd and Abbe numbers, so no nC/nF/ng/dPgF is authored; dispersion comes from the named catalog curves.
+ * APD tags: the patent names no anomalous- or low-dispersion material, so nothing is tagged "patent".
+ * L3, L5 (FCD515 class), L7 (FCD1 class) and L13 (FCD100 class) are tagged "inferred" from their glass
+ * coordinates; their count equals the four LD elements Tamron lists for the F072, whose positions it does not
+ * give in text.
  */
 
 const LENS_DATA = {
@@ -89,6 +100,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 32.63639606,
       "glass": "FCD515 class (HOYA; coordinate-compatible)",
+      "apd": "inferred",
+      "apdNote": "ED-class inference from the coordinate-compatible FCD515 curve (catalogue ΔPgF ≈ +0.016); the patent prints only Nd and Abbe numbers and names no special glass.",
       "role": "Positive member of G1 cemented doublet D1.",
       "cemented": "D1"
     },
@@ -115,6 +128,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 43.76577031,
       "glass": "FCD515 class (HOYA; coordinate-compatible)",
+      "apd": "inferred",
+      "apdNote": "ED-class inference from the coordinate-compatible FCD515 curve (catalogue ΔPgF ≈ +0.016); the patent prints only Nd and Abbe numbers and names no special glass.",
       "role": "Positive rear component of G1."
     },
     {
@@ -127,7 +142,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -52.67716123,
       "glass": "PCD51 class (HOYA; coordinate-compatible)",
-      "role": "Single negative element forming first moving focus group G2."
+      "role": "Single negative element forming G2, the first focus group F1; moves toward the image for close focus."
     },
     {
       "id": 7,
@@ -139,6 +154,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 85.66625456,
       "glass": "FCD1 class (HOYA; coordinate-compatible)",
+      "apd": "inferred",
+      "apdNote": "ED-class inference from the coordinate-compatible FCD1 curve (catalogue ΔPgF ≈ +0.03); the patent prints only Nd and Abbe numbers and names no special glass.",
       "role": "Positive meniscus member of the negative PN cemented pair.",
       "cemented": "D2"
     },
@@ -189,7 +206,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 78.2524039,
       "glass": "FDS20-W class (HOYA; coordinate-compatible)",
-      "role": "Positive meniscus member of the moving negative doublet G4.",
+      "role": "Positive meniscus member of the negative doublet G4, the second focus group F2.",
       "cemented": "D3"
     },
     {
@@ -202,7 +219,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -27.61110381,
       "glass": "S-LAL14 class (OHARA; coordinate-compatible)",
-      "role": "Negative member of moving doublet D3.",
+      "role": "Negative member of doublet D3 (G4 / F2), which moves toward the image for close focus.",
       "cemented": "D3"
     },
     {
@@ -215,6 +232,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 50.02737429,
       "glass": "FCD100 class (HOYA; coordinate-compatible)",
+      "apd": "inferred",
+      "apdNote": "ED-class inference from the coordinate-compatible FCD100 curve (catalogue ΔPgF ≈ +0.05); the patent prints only Nd and Abbe numbers and names no special glass.",
       "role": "Low-dispersion positive component in fixed rear group G5."
     },
     {
@@ -477,7 +496,7 @@ const LENS_DATA = {
       "glass": "S-BSL7 class (OHARA; coordinate-compatible)",
       "indexReference": "d",
       "gapAfterMm": 1,
-      "source": "JP 2026-57675 A, Example 1, PDF p12 paragraph0076, surfaces29–30. Physical plate and trailing gap retained."
+      "source": "JP 2026-57675 A, Example 1, PDF p12 paragraph 0076, surfaces 29–30. Physical plate and trailing gap retained."
     }
   ],
   "asph": {},
@@ -529,8 +548,8 @@ const LENS_DATA = {
       "toSurface": "11"
     },
     {
-      "text": "G3",
-      "fromSurface": "13",
+      "text": "G3 (P)",
+      "fromSurface": "STO",
       "toSurface": "19"
     },
     {
@@ -551,7 +570,7 @@ const LENS_DATA = {
       "toSurface": "7"
     },
     {
-      "text": "D2",
+      "text": "D2 (PN)",
       "fromSurface": "13",
       "toSurface": "15"
     },
@@ -568,10 +587,10 @@ const LENS_DATA = {
       "zoomT": 0,
       "objectDistanceMm": 224.235550734,
       "distanceReference": "image-plane",
-      "source": "Calculated d-line paraxial conjugate of unchanged JP2026057675A Example 1 MOD spacings, PDF pp12–13, retaining the physical cover plate and authored sensor; matrix B=0 independently checked. Patent prints227.4085mm, which does not reproduce this conjugate."
+      "source": "Calculated d-line paraxial conjugate of unchanged JP2026057675A Example 1 MOD spacings, PDF pp12–13, retaining the physical cover plate and authored sensor; matrix B=0 independently checked. Patent prints 227.4085 mm, which does not reproduce this conjugate."
     }
   ],
-  "focusDescription": "Published Example 1 spacing endpoints; close distance is the calculated d-line paraxial object-to-image conjugate, 0.224235550734 m (0.99406×). The patent prints 0.2274085 m, which does not focus on the unchanged image plane. Intermediate gap interpolation and distance labels are approximate. The infinity-calibrated physical iris remains fixed; printed close Fno 5.8166 is not reproduced.",
+  "focusDescription": "Internal two-group focus: G2 (F1, element 6) and G4 (F2, cemented elements 11–12) both move toward the image from infinity to close focus, by 13.40 mm and 15.00 mm; G1, the stop with G3 (P) and G5 stay fixed. Published Example 1 spacing endpoints; close distance is the calculated d-line paraxial object-to-image conjugate, 0.224235550734 m (0.99406×). The patent prints 0.2274085 m, which does not focus on the unchanged image plane. Intermediate gap interpolation and distance labels are approximate. The infinity-calibrated physical iris remains fixed; printed close Fno 5.8166 is not reproduced.",
   "nominalFno": 2.9093,
   "fstopSeries": [
     2.9093,

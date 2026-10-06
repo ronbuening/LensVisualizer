@@ -18,7 +18,7 @@ The prescription follows the original Japanese publication, including the three 
 3. The prescription includes a native life-size state. Its object-to-image distance is 296.9112 mm, rather than the commercial minimum focus distance of 295 mm.
 4. The application was filed before the September 2020 announcement and October 2020 launch. Sigma lists L-Mount and Sony E-mount versions for full-frame mirrorless cameras.
 
-The implemented model is a fixed-iris diagnostic visualization. It preserves the source optics, inferred semi-diameters and all three published spacing states. Close-focus exposure, illumination and full-pupil fidelity are not verified: the patent's finite-aperture values are not reproduced by the retained fixed-iris candidate. This boundary is important when interpreting displayed rays and aperture readouts.
+The implemented model is a fixed-iris diagnostic visualization. It preserves the source optics and all three published spacing states, with semi-diameters inferred from Figure 1. Close-focus exposure, illumination and full-pupil fidelity are not verified: the patent's finite-aperture values are not reproduced by the retained fixed-iris candidate. This boundary is important when interpreting displayed rays and aperture readouts.
 
 ## Optical Architecture
 
@@ -177,6 +177,8 @@ Five public manufacturer catalogs were examined: HOYA, OHARA, SCHOTT, HIKARI and
 
 The implemented labels name the HOYA catalog glass whose nd, νd and PgF reproduce each source row: E-CF6, TAF3D, TAFD65, FCD515, NBFD25, TAC8, NBFD29, TAFD5G, E-FDS1-W, FDS90-SG, E-FEL1, TAFD32, BACD16, TAFD35, FCD705 and BSC7. Each catalog curve evaluates to a dPgF within 0.0002 of the converted patent value. Chromatic tracing therefore uses catalog Sellmeier data at C, d and F and rebuilds g from the patent PgF through the stored dPgF, so the source partial dispersion stays authoritative. These are coordinate equivalents, not a confirmed production supplier or melt. The patent’s numerical partial-dispersion constraints can be checked, but they do not establish verified APO performance or complete wavelength-dependent image quality.
 
+The diagram's anomalous-dispersion tags follow the patent's own wording. L4 (G2LPL) and L10 (G2LPH) carry the patent-listed tag: paragraphs 0053–0062 describe the first as a low-dispersion glass with anomalous partial dispersion and the second as a high-index glass with large anomalous partial dispersion, and conditions (4) and (7) set lower limits on their ΔPgF. L16 carries the inferred tag, because its coordinates are those of the FCD705 low-dispersion crown class while the patent constrains that G3LN element only through nd and νd. The G2LN elements L5, L7 and L9 are untagged, since condition (8) caps their deviation instead of requiring one, and the dense flints L3 and L11 are untagged despite positive deviations because the patent makes no such statement about them. Sigma lists one SLD element for the production lens; the patent does not say which slot that is, and both L4 and L16 are low-dispersion candidates. [1, PDF pp. 10–11; 2]
+
 ## Focus Mechanism
 
 G1 and G3 remain fixed while G2 and the diaphragm move objectward at different rates. The source distinguishes this diaphragm motion from motion rigidly attached to G2. Paragraphs 0077–0086 relate that separation to mechanical flare interception and exit-pupil positioning; no quantitative stray-light or teleconverter-performance result is inferred here.
@@ -192,13 +194,15 @@ G1 and G3 remain fixed while G2 and the diaphragm move objectward at different r
 | Recomputed EFL, mm | 103.476770 | 80.010754 | 65.345921 |
 | Physical track, mm | 146.7268 | 146.7267 | 146.7267 |
 
+From the published gaps, G2 advances 21.0511 mm toward the object at −0.5× and 40.5657 mm at −1×, and the diaphragm 12.1951 mm and 23.5001 mm, which is 0.579 of the G2 travel at both finite states. The three variable gaps sum to 46.3304 mm at infinity and 46.3303 mm at each finite state, so G1, G3 and the image plane stay fixed to table rounding. Figure 1 marks the same two motions with separate objectward "focus" arrows under G2 and under the stop. These travel figures are derived from the table, not separately published.
+
 The native close-focus distance is used for the model, while the commercial 295 mm value remains a separate production specification. The middle focus control is normalized from the two source object-to-image distances. All three source spacing columns are represented; interpolation between them is not a production cam law. The two finiteConjugates entries use the exact first-vertex distance reference, which the existing finite-source runtime can resolve without inventing focus positions. [1, PDF p. 16; 2]
 
 The production lens uses HSM autofocus according to Sigma. This does not independently establish that the commercial lens uses the exact group paths or mechanical iris behavior of Example 1. [2]
 
 ## Aperture Model and Readout Limitations
 
-The fixed physical iris radius is 9.611937886 mm, inferred from the infinity F2.90 target by exact ray calibration. It is not a patent-published diameter. The builder recalculates the same radius within numerical precision. Figure-guided semi-diameters are neither enlarged to clear approximate UI launches nor shrunk to force finite-F agreement. Surface 27, the concave front of L16, is carried to 13.3 mm, where Figure 1 ends the curve at a flat annulus, rather than to the 15.5 mm rim of the blank; that zone lies outside every admitted axial cone and does not enter the table below.
+The fixed physical iris radius is 9.611937886 mm, inferred from the infinity F2.90 target by exact ray calibration. It is not a patent-published diameter. The builder recalculates the same radius within numerical precision. Figure-guided semi-diameters are neither enlarged to clear approximate UI launches nor shrunk to force finite-F agreement. L16 is drawn to the 15.0 mm rim of its blank on both faces, so that it renders with the square edge of Figure 1. The figure ends the concave curve of surface 27 at a flat annulus near 13.1 mm, so the outer 1.7 mm of that surface is blank, not clear aperture: no meridional ray that reaches the 21.6 mm image circle passes surface 27 above 13.3 mm, and the zone lies outside every admitted axial cone and does not enter the table below.
 
 | Aperture definition | Infinity | −0.5× | −1× |
 |---|---:|---:|---:|

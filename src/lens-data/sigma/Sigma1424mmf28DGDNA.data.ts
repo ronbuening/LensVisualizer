@@ -21,6 +21,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * Glass labels are coordinate-equivalent classes, not supplier/melt claims.
  * dPgF is converted from patent absolute theta_gF using the engine normal line;
  * no unsupported individual nC/nF/ng values or patent APD labels are invented.
+ * Six inferred APD display tags (L11 FCD100 class; L2, L4 FCD515 class; L13,
+ * L17 FCD705 class; L18 MP-FCD500-20 class) follow the coordinate classes and
+ * Sigma's 1 FLD + 5 SLD count. The patent prints theta_gF for every element
+ * but names no anomalous or low-dispersion glass, so none is tagged "patent".
+ * Group labels G2 (GF) and G3 (GP) are Figure 1's own; GR is G2 through G4.
  */
 
 const LENS_DATA = {
@@ -30,9 +35,10 @@ const LENS_DATA = {
   "subtitle": "JP 2020-042221 A, Numerical Example 1; construction correlation, not factory confirmation",
   "specs": [
     "18 ELEMENTS / 13 GROUPS",
-    "NATIVE f = 14.50–23.15 mm",
+    "DESIGN f = 14.50–23.15 mm",
     "DESIGN F/2.93",
-    "5 ASPHERICAL SURFACES"
+    "5 ASPHERICAL SURFACES / 3 ELEMENTS",
+    "1 FLD + 5 SLD (INFERRED)"
   ],
   "focalLengthMarketing": [
     14,
@@ -72,7 +78,7 @@ const LENS_DATA = {
       "glass": "L-LAL13 class (OHARA coordinate equivalent; supplier unconfirmed)",
       "dPgF": -0.00615124,
       "apd": false,
-      "role": "Front negative group member"
+      "role": "G1 front negative group member"
     },
     {
       "id": 2,
@@ -85,8 +91,9 @@ const LENS_DATA = {
       "fl": -98.9717938,
       "glass": "FCD515 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.01561884,
-      "apd": false,
-      "role": "Front negative group member"
+      "apd": "inferred",
+      "apdNote": "FCD515-class coordinate with patent θgF 0.5440 (ΔPgF +0.0156); counted among Sigma's five SLD elements by inference, not a patent ED designation.",
+      "role": "G1 front negative group member"
     },
     {
       "id": 3,
@@ -100,7 +107,7 @@ const LENS_DATA = {
       "glass": "MP-PCD51-70 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.00544354,
       "apd": false,
-      "role": "Front negative group member"
+      "role": "G1 front negative group member"
     },
     {
       "id": 4,
@@ -113,8 +120,9 @@ const LENS_DATA = {
       "fl": -75.5328031,
       "glass": "FCD515 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.01561884,
-      "apd": false,
-      "role": "Front negative group member"
+      "apd": "inferred",
+      "apdNote": "FCD515-class coordinate with patent θgF 0.5440 (ΔPgF +0.0156); counted among Sigma's five SLD elements by inference, not a patent ED designation.",
+      "role": "G1 front negative group member"
     },
     {
       "id": 5,
@@ -128,7 +136,7 @@ const LENS_DATA = {
       "glass": "FDS90-SG class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.01529796,
       "apd": false,
-      "role": "Front negative group member"
+      "role": "G1 front negative group member"
     },
     {
       "id": 6,
@@ -142,7 +150,7 @@ const LENS_DATA = {
       "glass": "FDS24-W class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.01660072,
       "apd": false,
-      "role": "Published inner-focus doublet member",
+      "role": "G2 (GF) inner-focus doublet member; the pair moves imageward for near focus",
       "cemented": "D1"
     },
     {
@@ -157,7 +165,7 @@ const LENS_DATA = {
       "glass": "FF8 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.0174341,
       "apd": false,
-      "role": "Published inner-focus doublet member",
+      "role": "G2 (GF) inner-focus doublet member; the pair moves imageward for near focus",
       "cemented": "D1"
     },
     {
@@ -172,7 +180,7 @@ const LENS_DATA = {
       "glass": "FD225 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.02298232,
       "apd": false,
-      "role": "Pre-stop positive group member"
+      "role": "G3 (GP) pre-stop positive group member"
     },
     {
       "id": 9,
@@ -186,7 +194,7 @@ const LENS_DATA = {
       "glass": "FDS18-W class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.04084236,
       "apd": false,
-      "role": "Pre-stop positive group member",
+      "role": "G3 (GP) pre-stop positive group member",
       "cemented": "D2"
     },
     {
@@ -201,7 +209,7 @@ const LENS_DATA = {
       "glass": "S-TIH4 class (OHARA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.01267182,
       "apd": false,
-      "role": "Pre-stop positive group member",
+      "role": "G3 (GP) pre-stop positive group member",
       "cemented": "D2"
     },
     {
@@ -215,8 +223,9 @@ const LENS_DATA = {
       "fl": 46.9368687,
       "glass": "FCD100 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.0496582,
-      "apd": false,
-      "role": "Rear positive group member"
+      "apd": "inferred",
+      "apdNote": "FCD100-class coordinate (1.43700 / 95.10) with patent θgF 0.5335 (ΔPgF +0.0497); matches Sigma's single FLD element by inference, not a patent ED designation.",
+      "role": "G4 rear positive group member"
     },
     {
       "id": 12,
@@ -230,7 +239,7 @@ const LENS_DATA = {
       "glass": "S-NBH8 class (OHARA coordinate equivalent; supplier unconfirmed)",
       "dPgF": -0.00201778,
       "apd": false,
-      "role": "Rear positive group member",
+      "role": "G4 rear positive group member",
       "cemented": "D3"
     },
     {
@@ -244,8 +253,9 @@ const LENS_DATA = {
       "fl": 24.8924876,
       "glass": "FCD705 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.023091,
-      "apd": false,
-      "role": "Rear positive group member",
+      "apd": "inferred",
+      "apdNote": "FCD705-class coordinate with patent θgF 0.5399 (ΔPgF +0.0231); counted among Sigma's five SLD elements by inference, not a patent ED designation.",
+      "role": "G4 rear positive group member",
       "cemented": "D3"
     },
     {
@@ -260,7 +270,7 @@ const LENS_DATA = {
       "glass": "TAFD45L class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.00056224,
       "apd": false,
-      "role": "Rear positive group member",
+      "role": "G4 rear positive group member",
       "cemented": "D4"
     },
     {
@@ -275,7 +285,7 @@ const LENS_DATA = {
       "glass": "E-FDS1-W class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.03012016,
       "apd": false,
-      "role": "Rear positive group member",
+      "role": "G4 rear positive group member",
       "cemented": "D4"
     },
     {
@@ -290,7 +300,7 @@ const LENS_DATA = {
       "glass": "TAFD30 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": -0.0097744,
       "apd": false,
-      "role": "Rear positive group member",
+      "role": "G4 rear positive group member",
       "cemented": "D5"
     },
     {
@@ -304,8 +314,9 @@ const LENS_DATA = {
       "fl": 30.5927378,
       "glass": "FCD705 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.023091,
-      "apd": false,
-      "role": "Rear positive group member",
+      "apd": "inferred",
+      "apdNote": "FCD705-class coordinate with patent θgF 0.5399 (ΔPgF +0.0231); counted among Sigma's five SLD elements by inference, not a patent ED designation.",
+      "role": "G4 rear positive group member",
       "cemented": "D5"
     },
     {
@@ -319,8 +330,9 @@ const LENS_DATA = {
       "fl": 165.8293717,
       "glass": "MP-FCD500-20 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.01653304,
-      "apd": false,
-      "role": "Rear positive group member"
+      "apd": "inferred",
+      "apdNote": "MP-FCD500-20-class fluorophosphate preform coordinate with patent θgF 0.5397 (ΔPgF +0.0165); taken as the fifth SLD element by count, not a patent ED designation or a Sigma-published position.",
+      "role": "G4 rear positive group member"
     }
   ],
   "surfaces": [
@@ -754,12 +766,12 @@ const LENS_DATA = {
       "toSurface": "10"
     },
     {
-      "text": "G2",
+      "text": "G2 (GF)",
       "fromSurface": "11",
       "toSurface": "13"
     },
     {
-      "text": "G3",
+      "text": "G3 (GP)",
       "fromSurface": "14",
       "toSurface": "18"
     },
@@ -797,7 +809,7 @@ const LENS_DATA = {
     }
   ],
   "closeFocusM": 0.28,
-  "focusDescription": "NO_INTERNAL_RECONSTRUCTION: patent G2 (L6/L7) moves imageward for near focus, but no finite-focus spacings are published. All authored zoom gaps retain their infinity values at both focus endpoints. 0.28 m is production metadata only; finite-conjugate simulation is not certified.",
+  "focusDescription": "NO_INTERNAL_RECONSTRUCTION: patent G2 (GF, cemented L6/L7) moves imageward for near focus (¶0063, Figure 1 focus arrow), but the patent tabulates infinity spacings only at all three zoom stations. All authored zoom gaps retain their infinity values at both focus endpoints. 0.28 m is production metadata only; finite-conjugate simulation is not certified.",
   "nominalFno": 2.93,
   "fstopSeries": [
     2.93,
