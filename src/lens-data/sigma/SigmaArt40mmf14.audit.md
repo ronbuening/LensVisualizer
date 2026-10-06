@@ -40,3 +40,15 @@ Patent: JP 2020-012952 A, Example 1
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Corrected L9 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.88 row.
+
+## 2026-10-06 - L10 / L15 glass label
+
+- Rechecked JP 2020-012952 A Example 1 rows 17 and 26 in the local PDF text: both print nd 1.59282, νd 68.63 and
+  θgF 0.54, matching the stored values.
+- Corrected L10 and L15 from `PCD51 (HOYA)` to `FCD515 (HOYA) / FCD505 class`. HOYA PCD51 is the 593/670 phosphate
+  crown (nd 1.59349, νd 67.00, ΔPgF +0.0055); the patent pair is the HOYA fluorophosphate FCD515 / FCD505 coordinate
+  (1.59282, νd 68.63 before HOYA's 2019 value update, 68.62 since; ΔPgF +0.0156), which also agrees with the stored
+  dPgF 0.015. The label previously resolved to M-PCD51 through an alias (Δnd −8e-4, Δνd −1.6) and now resolves to
+  FCD515 (Δnd 4e-6, Δνd −0.01).
+- Synchronized the two element lines, the glass table, the `apdNote` wording (fluorophosphate, not phosphate) and the
+  catalog source line. No geometry, nd, νd or dPgF changed.

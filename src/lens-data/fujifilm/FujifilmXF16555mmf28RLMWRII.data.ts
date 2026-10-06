@@ -278,7 +278,7 @@ const LENS_DATA = {
       nd: 1.51625,
       vd: 64.05,
       fl: 98.324,
-      glass: "BSC7 / BK7-class moldable crown (517/642 family)",
+      glass: "L-BSL7 (OHARA) class moldable crown (516/641 family; BSC7 / BK7 type)",
       dPgF: 9.2e-5,
       role: "Fixed rear aspheric field-trimming group.",
     },

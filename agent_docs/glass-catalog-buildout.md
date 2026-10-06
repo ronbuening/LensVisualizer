@@ -152,7 +152,7 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
    or a six-digit code that does not encode the listed coordinates. Fix the transcription or source — never relax the
    tolerance to admit a bad row.
 
-6. **If the glass has a common informal alias** (`BSC7` for `S-BSL7`, `BK7` for `N-BK7`) add a structured entry to
+6. **If the glass has a common informal alias** (`BK7` for `N-BK7`, `SK16` for `N-SK16`) add a structured entry to
    `ALIAS_RECORDS` in [src/optics/glassCatalogAliases.ts](../src/optics/glassCatalogAliases.ts), including the alias
    `kind` and a short note explaining why the alias is safe. `ALIASES` is derived from those records.
 
@@ -173,6 +173,10 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
 - **Partial-dispersion sign conflicts.** When a vendor's published ΔPgF has the opposite sign from the patent's `dPgF` / θgF evidence, the curve is the wrong glass family even if nd/νd fall inside the compatibility window. Leave the row explicitly unmatched.
 - **Variants sharing a six-digit code.** Suffix variants (`S-NBH53` vs `S-NBH53V`, `H-K9L` vs `H-K9LGT`, molding-state `(M)` grades) are distinct rows even when they share a code and coefficients. For a molding-state row, omit a reused base-glass product code so the bare code stays bound to its established coordinate.
 - **Internally inconsistent vendor records.** If a record's nominal `nd` disagrees with the value its own polynomial evaluates to, do not add it until another source resolves the discrepancy.
+- **Never alias a vendor name onto a neighbour with a different six-digit code.** A "cross-vendor equivalent" is a
+  class, not a coordinate: HOYA BSC7 is 517/642 while OHARA S-BSL7 is 516/641, and HOYA BACD5 is 589/613 while Schott
+  N-SK16 is 620/603 (its HOYA counterpart is BACD16). Add the vendor's own row instead; an alias is safe only when the
+  two names share published optical constants.
 - **Do not invent evidence.** Never add a nominal resin, a duplicate six-digit curve, or a patent `dPgF` value to close a coverage gap; unpublished bonded/compound layers stay on the fallback path.
 
 ## When to Stop

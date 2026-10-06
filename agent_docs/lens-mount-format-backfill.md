@@ -7,8 +7,8 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **877**
-- Files with both `lensMounts` and `imageFormat`: **836**
+- Total lens data files: **884**
+- Files with both `lensMounts` and `imageFormat`: **843**
 - Files missing `lensMounts`: **32** (23 public lenses and 9 hidden reference fixtures)
 - Files missing `imageFormat`: **31** (22 public lenses and 9 hidden reference fixtures)
 - Files missing both fields: **22**
@@ -77,7 +77,7 @@ assignments also cite the manufacturer document in their analysis. Hidden synthe
 Useful scan commands:
 
 ```bash
-rg -n "lensMounts:|imageFormat:" src/lens-data -g "*.data.ts"
-rg --files-without-match "lensMounts:" src/lens-data -g "*.data.ts"
-rg --files-without-match "imageFormat:" src/lens-data -g "*.data.ts"
+rg -n '^\s*"?(lensMounts|imageFormat)"?:' src/lens-data -g "*.data.ts"
+rg --files-without-match '^\s*"?lensMounts"?:' src/lens-data -g "*.data.ts"
+rg --files-without-match '^\s*"?imageFormat"?:' src/lens-data -g "*.data.ts"
 ```

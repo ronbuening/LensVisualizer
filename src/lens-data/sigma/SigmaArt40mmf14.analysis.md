@@ -99,7 +99,7 @@ L9 is the leading element of the focus group G2. Its exceptionally high refracti
 
 ### L10 — Biconvex Positive, cemented with L11 (G2 doublet)
 
-nd = 1.59282, νd = 68.63. Glass: PCD51 (HOYA) — SLD phosphate crown. f = +41.8 mm (standalone).
+nd = 1.59282, νd = 68.63. Glass: FCD515 (HOYA) / FCD505 class — SLD fluorophosphate crown. f = +41.8 mm (standalone).
 
 L10 is the crown element of G2's cemented doublet. Its SLD glass provides low dispersion (νd = 68.63, ΔPgF ≈ +0.015) while the biconvex shape (R17 = +55.64, R18 = −44.61 mm) concentrates the beam toward the aperture stop. The nearly symmetric radii distribute refraction between the front and rear surfaces, controlling spherical aberration at full aperture.
 
@@ -131,7 +131,7 @@ L14 is the concentric negative meniscus that the patent identifies as the critic
 
 ### L15 (L34) — Biconvex Positive (G3, SLD)
 
-nd = 1.59282, νd = 68.63. Glass: PCD51 (HOYA) — SLD phosphate crown, same glass as L10. f = +42.2 mm.
+nd = 1.59282, νd = 68.63. Glass: FCD515 (HOYA) / FCD505 class — SLD fluorophosphate crown, same glass as L10. f = +42.2 mm.
 
 L15 provides convergent power in the rear of G3, relaying the corrected beam toward the image plane. Its SLD glass minimizes chromatic contribution at a position where residual secondary spectrum from the front groups would otherwise accumulate. The biconvex shape (R26 = +64.69, R27 = −40.83 mm) is moderately asymmetric, bending the beam progressively to reduce surface-angle errors at full aperture.
 
@@ -154,7 +154,7 @@ The design uses eleven distinct glass types across sixteen elements, drawing fro
 | L6 | 1.55032 | 75.50 | +0.028 | FCD705 | HOYA | SLD | Fluorophosphate crown |
 | L7 | 1.60342 | 38.01 | ±0.000 | S-TIM5 | OHARA | Standard | Flint |
 | L9 | 1.92286 | 20.88 | +0.029 | PBH21 | OHARA | Standard | Super-dense lanthanum flint |
-| L10, L15 | 1.59282 | 68.63 | +0.015 | PCD51 | HOYA | SLD | Phosphate crown |
+| L10, L15 | 1.59282 | 68.63 | +0.015 | FCD515 / FCD505 | HOYA | SLD | Fluorophosphate crown |
 | L11 | 1.58144 | 40.89 | +0.005 | E-FL5 | HOYA | Standard | Light flint |
 | L14 | 1.62588 | 35.74 | +0.006 | E-F1 | HOYA | Standard | Flint |
 | L16 | 1.85135 | 40.10 | −0.006 | M-TAFD305 | HOYA | PGM | Moldable lanthanum/tantalum glass |
@@ -268,7 +268,7 @@ The patent was filed by inventor Yamanaka Kenji, with the publication appearing 
 - Sigma Corporation product page: "40mm F1.4 DG HSM | Art" — specifications, lens construction diagram, and technology descriptions. https://www.sigma-global.com/en/lenses/a018_40_14/
 - Sigma Corporation press release (September 2018): development announcement confirming cine-lens origin of the optical design.
 - Kazuto Yamaki (Sigma CEO), interview with Imaging Resource (September 2020): discussion of FLD glass equivalence to fluorite and Sigma's glass selection methodology.
-- HOYA Corporation optical glass catalog: FCD100, FCD705, M-TAFD305, PCD51, E-FD2, E-F1, E-FL5 catalog entries.
+- HOYA Corporation optical glass catalog: FCD100, FCD705, FCD515, M-TAFD305, E-FD2, E-F1, E-FL5 catalog entries.
 - OHARA Corporation optical glass catalog (May 2023 pocket edition): S-LAH66, S-LAH55V, PBH21, S-TIM5 catalog entries.
 
 ## Image-format reference

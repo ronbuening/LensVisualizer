@@ -246,7 +246,7 @@ const LENS_DATA = {
       nd: 1.6134,
       vd: 44.27,
       fl: -33.9,
-      glass: "LAF45 (HOYA) / S-NBM51 class",
+      glass: "S-NBM51 (OHARA) / LAF45 (HOYA) class",
       apd: false,
       cemented: "D3",
       role: "Negative flint partner giving G6 net divergence.",

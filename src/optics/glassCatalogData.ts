@@ -646,6 +646,14 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "J-SFH8",
   "BACD13",
   "LAKN12",
+  "LAF45",
+  "PCD51",
+  "MP-PCD51-70",
+  "BACD5",
+  "BACD16",
+  "TAFD25L",
+  "L-LAH53",
+  "BSC7",
 ] as const;
 
 const GLASS_CATALOG_ENTRIES_BY_NAME: ReadonlyMap<string, GlassEntry> = new Map(
@@ -768,6 +776,7 @@ export const DUPLICATE_CODE6_PRECEDENCE: ReadonlyMap<string, string> = new Map([
   ["001291", "S-LAH99"],
   ["517522", "E-CF6"],
   ["613369", "F3"],
+  ["593670", "J-PSKH4"],
 ]);
 
 function entryByName(name: string): GlassEntry {

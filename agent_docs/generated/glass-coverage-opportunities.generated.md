@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **876** lenses scanned (**864** visible)
-- **9126 / 9843** non-air surfaces use strict catalog Sellmeier data (92.7%)
-- **9141 / 9843** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.9%)
+- **884** lenses scanned (**872** visible)
+- **9265 / 9983** non-air surfaces use strict catalog Sellmeier data (92.8%)
+- **9280 / 9983** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.0%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **345** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **191** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -133,6 +133,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [CANON RF 24-105mm f/2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) | US 2024/0192474 A1 | [PDF](../../patents/US20240192474A1.pdf) | 95.8% (23/24) | 95.8% (23/24) | 1 | 22A [resin] (Element 12 (resin): `UV-curing optical resin (replica aspheric)`) | abbe: 1 |
 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | US 2020/0142167 A1 | [PDF](../../patents/US20200142167A1.pdf) | 95.2% (20/21) | 95.2% (20/21) | 1 | 25A [resin] (Element 14: `Unmatched (531559; material not stated in patent, resin-class coordinate; patent nd=1.53110, vd=55.9)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | US 2020/0142168 A1 | [PDF](../../patents/US20200142168A1.pdf) | 95.2% (20/21) | 95.2% (20/21) | 1 | 3A [resin] (Element 2r: `UV-curing resin`) | abbe: 1 |
+| [TAMRON 70-180mm f/2.8 Di III VC VXD G2](../../src/lens-data/tamron/TamronA06570180mmf28DiIIIVCVXDG2.data.ts) | JP 2025-033505 A | [PDF](../../patents/JP2025033505A.pdf) | 95.2% (20/21) | 95.2% (20/21) | 1 | 35A [resin] (L20 resin: `Unmatched (hybrid resin; no compatible HOYA coordinate)`) | abbe: 1 |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | US 2020/0348497 A1 | [PDF](../../patents/US20200348497A1.pdf) | 95.0% (19/20) | 95.0% (19/20) | 1 | 6A [resin] (L21 resin: `Patent-listed compound asphere resin`) | abbe: 1 |
 | [TAMRON 28-300mm f/3.5-6.3 Di VC PZD](../../src/lens-data/tamron/TamronA01028300mmf3563.data.ts) | JP 2013-254160 A | [PDF](../../patents/JP2013254160A.pdf) | 95.0% (19/20) | 95.0% (19/20) | 1 | 33A [resin] (Hybrid resin layer: `Unmatched (hybrid asphere resin layer, nd=1.51460, νd=49.96)`) | abbe: 1 |
 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) | US 2025/0389929 A1 | [PDF](../../patents/US-20250389929-A1.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 20 [resin] (Element 11: `Unmatched (Canon BR optical resin)`) | abbe: 1 |

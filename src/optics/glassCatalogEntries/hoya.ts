@@ -1707,4 +1707,71 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete BACD13 formula-1 row.",
   },
+  {
+    name: "LAF45",
+    vendor: "Hoya",
+    polynomial: [2.5507417, -0.01280666, 0.018744935, 0.00050796407, -0.000007286607, 0.0000021911277],
+    nd: 1.61396,
+    vd: 44.29,
+    code6: "614443",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published LAF45 formula-1 row.",
+  },
+  {
+    name: "PCD51",
+    vendor: "Hoya",
+    polynomial: [2.5046638, -0.010149448, 0.012653769, 0.00016566642, 0.00000053871747, 0.00000005584093],
+    nd: 1.59349,
+    vd: 67.0,
+    code6: "593670",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published PCD51 formula-1 row.",
+  },
+  {
+    name: "MP-PCD51-70",
+    vendor: "Hoya",
+    polynomial: [2.5025436, -0.010321437, 0.012433636, 0.00021866535, -0.0000055793977, 0.00000030188383],
+    nd: 1.59271,
+    vd: 66.97,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published MP-PCD51-70 precision-molding preform formula-1 row; shared PCD51 product code 593-670 omitted.",
+  },
+  {
+    name: "BACD5",
+    vendor: "Hoya",
+    polynomial: [2.4861499, -0.0095684845, 0.014685059, -0.00011216487, 0.000041978777, -0.000001885619],
+    nd: 1.58913,
+    vd: 61.25,
+    code6: "589613",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published BACD5 formula-1 row.",
+  },
+  {
+    name: "BACD16",
+    vendor: "Hoya",
+    polynomial: [2.5859898, -0.011940432, 0.013995502, 0.00048974502, -0.000039120717, 0.0000022611915],
+    nd: 1.62041,
+    vd: 60.35,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published BACD16 formula-1 row; product code 620-603 omitted so bare-code annotations stay on N-SK16.",
+  },
+  {
+    name: "TAFD25L",
+    vendor: "Hoya",
+    polynomial: [3.4892744, -0.015818546, 0.042076777, 0.0024534904, -0.00015625006, 0.00002046371],
+    nd: 1.90366,
+    vd: 31.32,
+    code6: "904313",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published TAFD25L formula-1 row.",
+  },
+  {
+    name: "BSC7",
+    vendor: "Hoya",
+    polynomial: [2.2702566, -0.0091988101, 0.011609706, -0.000076123911, 0.000028558727, -0.0000012566486],
+    nd: 1.5168,
+    vd: 64.2,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published BSC7 formula-1 row; product code 517-642 omitted so bare-code annotations stay on N-BK7.",
+  },
 ];

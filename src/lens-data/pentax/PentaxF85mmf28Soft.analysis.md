@@ -115,7 +115,7 @@ The biconvex shape distributes the positive power between two surfaces, minimizi
 
 ### Group 2 (Rear): L5 — Negative Meniscus, Concave to Image
 
-nd = 1.51633, νd = 64.1. Glass: BSC7 (HOYA) — equivalent to Schott N-BK7. f = −258.7 mm (scaled to 85mm).
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) / BSC7 (HOYA) class — the BK7-type borosilicate crown. f = −258.7 mm (scaled to 85mm).
 
 L5 is a single negative element that constitutes the entire rear group. It is a weak negative meniscus (f = −258.7 mm) with a nearly flat front surface (R₈ = +999.6 mm at 85mm scale) and a moderately curved rear surface (R₉ = +117.7 mm). The element is thin (d = 2.50 mm at 85mm scale) and made of ordinary borosilicate crown glass — the least expensive optical glass in the system.
 
@@ -147,7 +147,7 @@ All five glasses in Example 1 are identified with high confidence against histor
 | L2 | 1.78472 | 25.7 | FD110 | S-TIH11 / N-SF11 class (785257) | Dense flint; chromatic corrector |
 | L3 | 1.72825 | 28.5 | S-TIH10 | OHARA (728285) | Dense flint; field flattener + chromatic |
 | L4 | 1.80440 | 39.6 | S-LAH63 | OHARA | Lanthanum flint; primary converger |
-| L5 | 1.51633 | 64.1 | BSC7 | S-BSL7 (OHARA), N-BK7 (Schott) | Borosilicate crown; field flattener/relay |
+| L5 | 1.51633 | 64.1 | S-BSL7 (OHARA) | BSC7 (HOYA), N-BK7 (Schott) | Borosilicate crown; field flattener/relay |
 
 The modern equivalent rows round-trip the patent nd/vd values closely enough for coefficient-backed dispersion. The HOYA names are retained as historical glass-family labels because Pentax commonly sourced glass from HOYA for domestic optical production.
 

@@ -42,3 +42,12 @@ above the new value, inside the noise band, so the drawing was not used.
 
 The validator accepts the new value, the traced edge now reaches 14.17 mm at every station with every rim clear, and the
 image-circle floor reports nothing undersized. The analysis departure table now quotes 6A at 14.5 mm (+635.885 µm).
+
+## 2026-10-06 — L51 glass label after the HOYA BSC7 catalog row
+
+- The shared catalog gained the true HOYA BSC7 row (HOYA 2026-07-07 AGF: nd 1.51680, νd 64.20) and the old
+  `BSC7 → S-BSL7` alias was retired. L51 stores 1.51625/64.05, which the BSC7 curve misses by 5.5e-4 in nd.
+- Relabeled L51 from `BSC7 / BK7-class moldable crown (517/642 family)` to
+  `L-BSL7 (OHARA) class moldable crown (516/641 family; BSC7 / BK7 type)`. It now resolves to the OHARA L-BSL7
+  low-softening-temperature curve (1.51633/64.07; Δnd 8e-5, Δνd 0.02) instead of S-BSL7 (Δνd 0.09). Stored nd, νd and
+  dPgF are unchanged; the analysis element line and glass table follow.

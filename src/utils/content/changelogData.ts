@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-06",
+    type: "lens",
+    summary: "Added four Sigma Art and three Tamron Di III models, from the 14-24mm f/2.8 to the 90mm Macro VXD",
+  },
+  {
+    date: "2026-10-06",
     type: "feature",
     summary: "Added a patent positions mode that steps zoom and focus through source-tabulated states",
   },

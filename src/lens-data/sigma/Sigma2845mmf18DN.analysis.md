@@ -124,7 +124,7 @@ G5 is a net-negative doublet immediately behind the stop. Because marginal-ray h
 
 **L14 + L15 - Cemented doublet, G6.**
 L14: nd = 1.59282, νd = 68.62. Glass: HOYA FCD515 / FCD505 class. f = +59.4 mm.
-L15: nd = 1.61340, νd = 44.27. Glass: HOYA LAF45 / OHARA S-NBM51 class. f = -33.9 mm.
+L15: nd = 1.61340, νd = 44.27. Glass: OHARA S-NBM51 / HOYA LAF45 class. f = -33.9 mm.
 Cemented pair focal length = -74.48 mm.
 
 G6 is the second negative rear doublet. It moves slightly imageward as the lens zooms to tele, so it trims the zoom-dependent rear conjugate while continuing the axial-color correction strategy established by G5.
@@ -166,7 +166,7 @@ The patent lists nd and νd but does not name glass catalogs. The data file ther
 | L12 | 1.55032 | 75.50 | HOYA FCD705 | Low-dispersion doublet member |
 | L13 | 1.84666 | 23.78 | HOYA FDS90-SG/FDS90-SGP / N-SF57HT / S-TIH53W class | Dense-flint doublet member |
 | L14 | 1.59282 | 68.62 | HOYA FCD515 / FCD505 class | Low-dispersion positive meniscus |
-| L15 | 1.61340 | 44.27 | HOYA LAF45 / OHARA S-NBM51 class | Flint partner in G6 |
+| L15 | 1.61340 | 44.27 | OHARA S-NBM51 / HOYA LAF45 class | Flint partner in G6 |
 | L16 | 1.98612 | 16.48 | HOYA FDS16-W | Extreme dense flint |
 | L17 | 1.87070 | 40.73 | HOYA TAFD32 | High-index positive |
 | L18 | 1.80610 | 40.73 | HOYA M-NBFD130 | Molded final asphere |

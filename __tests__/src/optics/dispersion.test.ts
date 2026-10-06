@@ -491,17 +491,29 @@ describe("resolveGlass", () => {
     expect(resolveGlass("517642 — N-BK7 (Schott)")?.name).toBe("N-BK7");
   });
 
-  it("resolves an alias (BSC7 → S-BSL7, BK7 → N-BK7)", () => {
-    expect(resolveGlass("BSC7 (HOYA)")?.name).toBe("S-BSL7");
+  it("resolves an alias (BK7 → N-BK7)", () => {
     expect(resolveGlass("BK7")?.name).toBe("N-BK7");
   });
 
   it("resolves Hoya patent-class aliases to coefficient-backed rows", () => {
     expect(resolveGlass("TAF1 (HOYA)")?.name).toBe("S-LAH66");
-    expect(resolveGlass("PCD51 (HOYA)")?.name).toBe("M-PCD51");
-    expect(resolveGlass("MP-PCD51-70 precision-mold preform")?.name).toBe("M-PCD51");
     expect(resolveGlass("M-NBFD130 (HOYA)")?.name).toBe("NBFD13");
     expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("NBFD13");
+  });
+
+  it("resolves Hoya names that once aliased to a neighbouring row to their own curves", () => {
+    expect(resolveGlass("PCD51 (HOYA)")?.name).toBe("PCD51");
+    expect(resolveGlass("MP-PCD51-70 precision-mold preform")?.name).toBe("MP-PCD51-70");
+    expect(resolveCompatibleGlass("M-PCD51 (HOYA)", 1.59201, 67.02)?.name).toBe("M-PCD51");
+    // BACD5 is the 589/613 crown; the 620/603 N-SK16 counterpart is BACD16.
+    expect(resolveCompatibleGlass("BACD5 (HOYA)", 1.58913, 61.25)?.name).toBe("BACD5");
+    expect(resolveCompatibleGlass("BACD5 (HOYA)", 1.62041, 60.35)).toBeNull();
+    expect(resolveCompatibleGlass("BACD16 (HOYA)", 1.62041, 60.35)?.name).toBe("BACD16");
+    expect(resolveGlass("620603")?.name).toBe("N-SK16");
+    // BSC7 is the 517/642 crown, not the 516/641 S-BSL7 its old alias pointed at.
+    expect(resolveCompatibleGlass("BSC7 (HOYA)", 1.5168, 64.2)?.name).toBe("BSC7");
+    expect(resolveCompatibleGlass("S-BSL7 (OHARA) / BSC7 (HOYA) class", 1.51633, 64.1)?.name).toBe("S-BSL7");
+    expect(resolveGlass("517642")?.name).toBe("N-BK7");
   });
 
   it("resolves named Ohara PGM curves before remaining catalog aliases", () => {

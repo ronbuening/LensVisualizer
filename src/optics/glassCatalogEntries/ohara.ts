@@ -2142,4 +2142,15 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA vendor Zemax catalog, https://refractiveindex.info/download/data/2017/ohara_2017-11-30.agf; accessed 2026-09-11 via refractiveindex.info vendor-data mirror.",
   },
+  {
+    name: "L-LAH53",
+    vendor: "Ohara",
+    nd: 1.806249,
+    vd: 40.907302,
+    B: [1.87409991, 0.297921402, 1.35064285],
+    C: [0.00993318344, 0.0405501825, 100.5022],
+    code6: "806409",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published low-softening-temperature L-LAH53 Sellmeier row.",
+  },
 ];

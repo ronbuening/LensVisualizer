@@ -14,12 +14,6 @@ export interface GlassAliasRecord {
 export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
   { alias: "BK7", target: "N-BK7", kind: "informal", note: "Common shorthand for the Schott N-BK7 catalog row." },
   {
-    alias: "BSC7",
-    target: "S-BSL7",
-    kind: "vendor-equivalent",
-    note: "Hoya crown shorthand used as an S-BSL7-class match.",
-  },
-  {
     alias: "BSL7",
     target: "S-BSL7",
     kind: "legacy-name",
@@ -65,12 +59,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
   },
   { alias: "SK16", target: "N-SK16", kind: "legacy-name", note: "Legacy Schott name superseded by N-SK16." },
   {
-    alias: "BACD5",
-    target: "N-SK16",
-    kind: "vendor-equivalent",
-    note: "Hoya trade name for N-SK16-equivalent optical constants.",
-  },
-  {
     alias: "L-TIM28",
     target: "S-TIM28",
     kind: "catalog-variant",
@@ -81,12 +69,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     target: "S-BAL35",
     kind: "catalog-variant",
     note: "Ohara low-softening / PGM variant sharing the S-BAL35 optical constants.",
-  },
-  {
-    alias: "L-LAH53",
-    target: "S-LAH53",
-    kind: "catalog-variant",
-    note: "Ohara low-softening / PGM variant sharing the S-LAH53 optical constants.",
   },
   {
     alias: "L-LAM60",
@@ -143,18 +125,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     target: "S-LAH66",
     kind: "vendor-equivalent",
     note: "Hoya TAF1 annotations share the 773/496 optical-constant class with S-LAH66 when the stored d-line index agrees.",
-  },
-  {
-    alias: "PCD51",
-    target: "M-PCD51",
-    kind: "vendor-equivalent",
-    note: "Hoya PCD51-family annotations route to the coefficient-backed M-PCD51 row; mismatch checks reject incompatible rows.",
-  },
-  {
-    alias: "MP-PCD51-70",
-    target: "M-PCD51",
-    kind: "catalog-variant",
-    note: "Hoya molded preform notation for the PCD51 family, using the coefficient-backed M-PCD51 row.",
   },
   {
     alias: "M-NBFD130",

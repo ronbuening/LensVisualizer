@@ -199,8 +199,8 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
    * SF2: legacy dense flint (648/339), fills the gap between SF1 and N-BK7 in
    *   pre-1990 Schott-dominant double-Gauss and Sonnar designs.
    * N-SK16: dense lanthanum crown (620/603) ubiquitous in Zeiss, classic Nikon,
-   *   Leica Elmarit, and other pre-1990 normal/standard designs (also sold as
-   *   Hoya BACD5 — same glass, different vendor name).
+   *   Leica Elmarit, and other pre-1990 normal/standard designs (Hoya's
+   *   620/603 counterpart is BACD16; BACD5 is the 589/613 SK5-class crown).
    * N-KZFS4: KZFS family with negative ΔPgF; APO paired glass for ED crowns.
    * N-FK51A: fluorcrown with strong positive ΔPgF (+0.034); APO-relevant in
    *   Zeiss and Nikon telephoto designs.
@@ -231,7 +231,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5412,
     code6: "620603",
     source:
-      "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Dense lanthanum crown; Hoya BACD5-equivalent.",
+      "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Dense lanthanum crown; Hoya BACD16-equivalent.",
   },
   {
     name: "N-KZFS4",
