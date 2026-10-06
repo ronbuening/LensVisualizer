@@ -195,6 +195,24 @@ describe("page, markdown, and breadcrumb coverage", () => {
     expect(container.textContent).toBe("");
   });
 
+  it("offers the position-mode toggle beside the page-level switches on a single-lens page only", () => {
+    const dispatch = vi.fn();
+    renderBreadcrumb({ dispatch });
+
+    expect(screen.getByRole("button", { name: "SLIDERS" }).getAttribute("aria-pressed")).toBe("true");
+    fireEvent.click(screen.getByRole("button", { name: "PATENT POSITIONS" }));
+    expect(dispatch).toHaveBeenCalledWith({ type: "SET_PATENT_POSITIONS", enabled: true });
+
+    cleanup();
+    const on = makeState({ panels: { patentPositions: true } as LensState["panels"] });
+    renderBreadcrumb({ state: on, isWide: false });
+    expect(screen.getByRole("button", { name: "PATENT" }).getAttribute("aria-pressed")).toBe("true");
+
+    cleanup();
+    renderBreadcrumb({ state: makeState({ lens: { comparing: true } as LensState["lens"] }) });
+    expect(screen.queryByRole("group", { name: "Zoom and focus positions" })).toBeNull();
+  });
+
   it("renders source-aware lens breadcrumbs for library, mount, and format sources", () => {
     const lensKey = CATALOG_KEYS[0];
     const state = makeState({ lens: { lensKeyA: lensKey } as LensState["lens"] });

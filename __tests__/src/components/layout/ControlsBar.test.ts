@@ -12,7 +12,7 @@ import { createElement } from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ControlsBar from "../../../../src/components/layout/ControlsBar.js";
-import { SET_PATENT_POSITIONS, SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../../../src/utils/state/lensReducer.js";
+import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../../../src/utils/state/lensReducer.js";
 import themes from "../../../../src/utils/theme/themes.js";
 
 vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
@@ -104,35 +104,5 @@ describe("ControlsBar", () => {
 
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "chromG", value: true });
     expect(dispatch).toHaveBeenCalledWith({ type: SET_SCALE_MODE, scaleMode: "normalized" });
-  });
-
-  it("draws the position-mode group only when asked to, and dispatches the mode", () => {
-    const props = {
-      theme: themes.dark,
-      compact: true,
-      showScaleMode: false,
-      showOnAxis: true,
-      showOffAxis: "off" as const,
-      rayDensity: "normal" as const,
-      rayTracksF: false,
-      showChromatic: false,
-      chromR: true,
-      chromG: true,
-      chromB: true,
-      chromV: false,
-      showPupils: false,
-      showCardinals: false,
-      showCardinalDimensions: false,
-      scaleMode: "independent" as const,
-      patentPositions: false,
-      dispatch,
-    };
-    const { unmount } = render(createElement(ControlsBar, props));
-    expect(screen.queryByRole("group", { name: "Zoom and focus positions" })).toBeNull();
-    unmount();
-
-    render(createElement(ControlsBar, { ...props, showPositionMode: true }));
-    fireEvent.click(screen.getByRole("button", { name: "PATENT" }));
-    expect(dispatch).toHaveBeenCalledWith({ type: SET_PATENT_POSITIONS, enabled: true });
   });
 });

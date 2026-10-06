@@ -4,13 +4,11 @@
  * (full labels) and as the mobile controls strip (compact labels).
  *
  * Props control presentation differences; logic is identical in both modes.
- * The zoom/focus position-mode group is single-lens only, so only the mobile strip asks for it.
  */
 
 import CardinalControls from "../controls/CardinalControls.js";
-import PositionModeToggle from "../controls/PositionModeToggle.js";
 import { ENABLE_CARDINAL_ELEMENTS, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
-import { SET_PATENT_POSITIONS, SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/state/lensReducer.js";
+import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/state/lensReducer.js";
 import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/style/styles.js";
 import type { Theme } from "../../types/theme.js";
 import type { BooleanRayField, LensAction, OffAxisMode, RayDensity } from "../../types/state.js";
@@ -42,9 +40,6 @@ interface ControlsBarProps {
   showCardinalHiatus?: boolean;
   showCardinalTotalTrack?: boolean;
   scaleMode: "independent" | "normalized";
-  /** Draw the SLIDERS / PATENT group; off in comparison, where sliders are shared and never step. */
-  showPositionMode?: boolean;
-  patentPositions?: boolean;
   dispatch: Dispatch<LensAction>;
 }
 
@@ -74,8 +69,6 @@ export default function ControlsBar({
   showCardinalHiatus = true,
   showCardinalTotalTrack = true,
   scaleMode,
-  showPositionMode = false,
-  patentPositions = false,
   dispatch,
 }: ControlsBarProps) {
   const padding = compact || inlineGroups ? "6px 12px" : "8px 16px";
@@ -254,16 +247,6 @@ export default function ControlsBar({
           </button>
         ))}
       </div>
-
-      {/* Zoom/focus position mode */}
-      {showPositionMode && (
-        <PositionModeToggle
-          t={t}
-          compact={compact}
-          patentPositions={patentPositions}
-          onChange={(enabled) => dispatch({ type: SET_PATENT_POSITIONS, enabled })}
-        />
-      )}
 
       {/* Chromatic */}
       <div

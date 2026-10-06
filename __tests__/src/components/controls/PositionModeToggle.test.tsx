@@ -31,12 +31,19 @@ describe("PositionModeToggle", () => {
     expect(onChange).toHaveBeenCalledWith(true);
   });
 
-  it("uses the short label in the compact strip and switches back to sliders", () => {
+  it("collapses to a single on/off button in the compact layout", () => {
     const onChange = vi.fn();
-    render(<PositionModeToggle t={mockTheme} patentPositions compact onChange={onChange} />);
+    const { rerender } = render(<PositionModeToggle t={mockTheme} patentPositions compact onChange={onChange} />);
 
-    expect(screen.getByRole("button", { name: "PATENT" }).getAttribute("aria-pressed")).toBe("true");
-    fireEvent.click(screen.getByRole("button", { name: "SLIDERS" }));
-    expect(onChange).toHaveBeenCalledWith(false);
+    expect(screen.queryByRole("button", { name: "SLIDERS" })).toBeNull();
+    const patent = screen.getByRole("button", { name: "PATENT" });
+    expect(patent.getAttribute("aria-pressed")).toBe("true");
+    fireEvent.click(patent);
+    expect(onChange).toHaveBeenLastCalledWith(false);
+
+    rerender(<PositionModeToggle t={mockTheme} patentPositions={false} compact onChange={onChange} />);
+    expect(screen.getByRole("button", { name: "PATENT" }).getAttribute("aria-pressed")).toBe("false");
+    fireEvent.click(screen.getByRole("button", { name: "PATENT" }));
+    expect(onChange).toHaveBeenLastCalledWith(true);
   });
 });

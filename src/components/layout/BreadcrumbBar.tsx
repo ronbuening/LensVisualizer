@@ -6,6 +6,9 @@
  * Right-aligned search link and inline theme selectors (High Contrast and
  * Auto/Dark/Light) match PageNavBar on the static pages.
  *
+ * The single-lens SLIDERS / PATENT POSITIONS toggle sits ahead of them: it changes how the whole page's zoom and
+ * focus controls behave, so it lives with the page-level switches and not with the ray toggles.
+ *
  * Reads theme state and dispatches theme changes directly via context,
  * consistent with how LensDiagramPanel and ControlsBar wire theme actions.
  */
@@ -23,7 +26,7 @@ import {
   isLensMountId,
 } from "../../utils/catalog/lensTaxonomy.js";
 import { useLensCtx, useLensDispatch } from "../../utils/state/LensContext.js";
-import { SET_DARK, SET_HIGH_CONTRAST } from "../../utils/state/lensReducer.js";
+import { SET_DARK, SET_HIGH_CONTRAST, SET_PATENT_POSITIONS } from "../../utils/state/lensReducer.js";
 import { FILTER_BOUNDS } from "../../pages/lensIndex/catalog.js";
 import { isValidLensLibraryReturnPath } from "../../pages/lensIndex/urlState.js";
 import type { LensBreadcrumbSource, LensNavigationState } from "../../pages/lensIndex/clusterLinks.js";
@@ -34,6 +37,7 @@ import {
   themeModeFromDarkPreference,
   type ThemeMode,
 } from "../../utils/theme/themePreferences.js";
+import PositionModeToggle from "../controls/PositionModeToggle.js";
 import ThemeToggleGroup from "./ThemeToggleGroup.js";
 
 interface BreadcrumbBarProps {
@@ -222,6 +226,15 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: 12, flexShrink: 0 }}>
+          {/* Single-lens only: comparison shares its sliders between two lenses and never steps. */}
+          {!comparing && (
+            <PositionModeToggle
+              t={t}
+              compact={!isWide}
+              patentPositions={state.panels.patentPositions}
+              onChange={(enabled) => dispatch({ type: SET_PATENT_POSITIONS, enabled })}
+            />
+          )}
           <Link to="/search/" aria-label="Search" style={headerSearchBtn(t)}>
             ⌕
           </Link>

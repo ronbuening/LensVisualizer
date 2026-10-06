@@ -44,9 +44,11 @@ modeled group movement is available. Without modeled focus travel, the disabled 
 Shift/tilt sliders expose independent zero-reset actions through the shared
 `SliderResetButton`, which comparison mode's shared sliders reuse.
 
-Patent-positions mode is the SLIDERS / PATENT POSITIONS group drawn by the shared `PositionModeToggle`: in the
-`DiagramHeader` option column after ray density on desktop, and in the compact `ControlsBar` strip on mobile
-(`showPositionMode`). It is single-lens only, so comparison's `ControlsBar` and compact pane headers never draw it.
+Patent-positions mode is the SLIDERS / PATENT POSITIONS group drawn by `PositionModeToggle` in `BreadcrumbBar`, ahead
+of the search link and theme toggles. Below the wide breakpoint it collapses to one PATENT on/off button so the
+breadcrumb trail keeps its room. It changes how the page's zoom and
+focus controls behave, so it sits with the page-level switches; do not move it in with the ray toggles in
+`DiagramHeader` or `ControlsBar`. It is single-lens only: the breadcrumb bar omits it while comparing.
 With the mode on, `DiagramControls` hands `SliderControl` a `track` (a `StationStepper`) in place of the zoom and
 focus range inputs, keeping the label, readout, MOTION action and collapsible section. The buttons are the lens's
 source-published stations from `src/optics/publishedStations.ts`, labeled by `patentStations.ts`; a station list
