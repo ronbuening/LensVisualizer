@@ -143,7 +143,7 @@ export function assessMtfDataLimitations(
       blocking: false,
       text:
         corrected.length === 1
-          ? `One printed value (${values}) contradicts the source's own data and is corrected here: the source prints ${corrected[0].printed}, this prescription uses ${corrected[0].applied}.`
+          ? `A printed value (${values}) contradicts the source's own data and is corrected here: the source prints ${corrected[0].printed}, this prescription uses ${corrected[0].applied}.`
           : `${corrected.length} printed values (${values}) contradict the source's own data and are corrected here.`,
     });
   }

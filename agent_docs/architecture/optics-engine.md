@@ -75,9 +75,10 @@ the production lens lower off-axis curves.
 **Traced aperture** (`mtfAperture.ts`). The label f-number sizes the iris, but an authored clear aperture can stop the
 axial marginal ray first, and stop-down scales the wide-open iris linearly. One meridional bisection between the
 chief ray and a blocked launch height finds the rim of the transmitted axial beam at the reference line:
-`MtfResult.aperture.tracedFNumber` is 1 / (2 n′ sin U′) of the last transmitted ray, and `limitingSurfaceLabel`
-names the surface that stops the next ray outward (null for the iris). It is cached with the focus search and is the
-working f-number at a finite conjugate.
+`MtfResult.aperture.tracedFNumber` is the rim height times the near-axis slope n′ sin U′ per launch height (f / (2 ×
+pupil radius) at infinity, the paraxial working f-number at a finite conjugate), so spherical aberration of the rim
+ray cannot pose as an aperture change. `limitingSurfaceLabel` names the surface that stops the next ray outward
+(null for the iris). Both are cached with the focus search.
 
 **Ray failures** (`mtfRayClassification.ts`). TIR and aperture clips are blocking. A failed intersection blocks only
 when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz

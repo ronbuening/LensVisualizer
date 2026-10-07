@@ -170,7 +170,8 @@ function readAnchors(): Anchor[] {
 function curvesAt(result: MtfResult, fieldIndex: number, frequency: number): Curves | null {
   const field = result.fields[fieldIndex];
   const index = result.frequenciesPerMm.indexOf(frequency);
-  if (index < 0 || (field.status !== "converged" && field.status !== "unconverged")) return null;
+  // An unsupported request returns no fields at all; its samples are then listed as missing, not thrown on.
+  if (!field || index < 0 || (field.status !== "converged" && field.status !== "unconverged")) return null;
   return { sagittal: field.sagittal[index], tangential: field.tangential[index] };
 }
 
@@ -259,7 +260,7 @@ function reproductionTable(configurations: Configuration[]): string[] {
         gaps.length,
         ...gapCells(gaps),
         `${converged}/${result.fields.length}`,
-        coarsest === finest ? coarsest : `${coarsest}-${finest}`,
+        !grids.length ? "n/a" : coarsest === finest ? coarsest : `${coarsest}-${finest}`,
       ]),
     );
   }

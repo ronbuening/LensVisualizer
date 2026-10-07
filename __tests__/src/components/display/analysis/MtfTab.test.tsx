@@ -122,6 +122,26 @@ describe("MTF tab", () => {
     expect(screen.getByText("Dispersion of one glass is estimated from nd and νd.")).toBeTruthy();
     expect(screen.queryByText(/own prescription's paraxial focus/)).toBeNull();
   });
+  it("drops the traced-aperture note while the result belongs to an earlier request", async () => {
+    stubWorker({ target: focusedState });
+    const tab = (fNumber: number, stop: number) => (
+      <MtfTab
+        L={focusedL}
+        t={mockTheme}
+        preparedState={focusedState}
+        currentEPSD={stop}
+        currentPhysStopSD={stop}
+        fNumber={fNumber}
+        focalLengthMm={49.2}
+      />
+    );
+    const { rerender } = render(tab(2.8, 1));
+    await screen.findByText(/^f\/2\.8 \(traced f\/2[45]\.\d+\)/);
+    // The new label must not be compared with the previous request's beam.
+    rerender(tab(4, 0.7));
+    expect(screen.getByText(/^f\/4\.0 · 49\.2 mm/)).toBeTruthy();
+    expect(await screen.findByText(/^f\/4\.0 \(traced f\/3[45]\.\d+\)/)).toBeTruthy();
+  });
   it("explains each dropdown's options in a tooltip", async () => {
     stubWorker({ target: focusedState });
     render(<MtfTab L={focusedL} t={mockTheme} preparedState={focusedState} currentEPSD={1} currentPhysStopSD={1} />);
@@ -341,7 +361,8 @@ describe("MTF export and aperture comparison", () => {
     );
     await screen.findByRole("figure", { name: /image height/ });
     fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
-    expect(await screen.findByText("f/8 (thin lines)")).toBeTruthy();
+    // The fixture's stopped-down iris is far from f/8, so the overlay label carries its traced aperture too.
+    expect(await screen.findByText(/^f\/8 \(traced f\/\d+(\.\d+)?\) \(thin lines\)$/)).toBeTruthy();
     const stopped = calls.jobs.at(-1)!.options;
     expect(stopped.pupilSemiDiameterMm).toBeCloseTo(2.8 / 8, 12);
     expect(stopped.stopSemiDiameterMm).toBeCloseTo(2.8 / 8, 12);

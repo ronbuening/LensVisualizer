@@ -342,6 +342,13 @@ function validateSourceErrata(
     const carried = isCoefficient
       ? data.asph?.[entry.surface]?.[entry.field]
       : data.surfaces.find((surface: UntrustedLensData) => surface?.label === entry.surface)?.[entry.field];
+    // A mounted converter replaces the host's last gap with the junction gap; the bare host still checks that value.
+    const converterFirst = data.attachedTeleconverter?.firstSurfaceLabel;
+    const junction =
+      converterFirst === undefined
+        ? undefined
+        : data.surfaces[data.surfaces.findIndex((surface: UntrustedLensData) => surface?.label === converterFirst) - 1];
+    if (entry.field === "d" && junction?.label === entry.surface) return;
     if (carried !== entry.applied)
       errors.push(`${at}: surface "${entry.surface}" ${entry.field} must carry the applied value ${entry.applied}`);
   });

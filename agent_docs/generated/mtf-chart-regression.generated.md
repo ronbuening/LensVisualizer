@@ -87,13 +87,13 @@ authored image plane, in mm. Each comparison lists mean signed and mean absolute
 | Lens | zoomT | Maker | Chart convention | Label f/ | Traced f/ | Limited by | Focus shift | Audit: signed | absolute | Convention: signed | absolute |
 |---|---:|---|---|---:|---:|---|---:|---:|---:|---:|---:|
 | `nikkor-z-14-30f4s` | 0 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | -0.0494 | -0.0801 | 0.0801 | -0.0248 | 0.0535 |
-| `nikkor-z-14-30f4s` | 1 | Nikon | geometric (inferred) | 4.00 | 4.01 | iris | -0.0314 | -0.0743 | 0.0743 | -0.0199 | 0.0290 |
+| `nikkor-z-14-30f4s` | 1 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | -0.0314 | -0.0743 | 0.0743 | -0.0199 | 0.0290 |
 | `nikkor-z-35f18s` | 0 | Nikon | geometric (inferred) | 1.80 | 1.85 | 9 | +0.0147 | +0.0199 | 0.0257 | +0.0480 | 0.0480 |
 | `nikkor-z-85f18s` | 0 | Nikon | geometric (inferred) | 1.80 | 1.85 | iris | -0.0800 | -0.1455 | 0.1455 | -0.1282 | 0.1291 |
 | `nikkor-z50f12` | 0 | Nikon | geometric (inferred) | 1.20 | 1.23 | iris | -0.0515 | -0.0171 | 0.0287 | -0.0008 | 0.0219 |
 | `nikon-z-135f18-plena` | 0 | Nikon | geometric (inferred) | 1.80 | 1.85 | iris | -0.0109 | -0.0181 | 0.0182 | +0.0062 | 0.0153 |
 | `nikon-z-24-70f4s` | 0 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | -0.0734 | -0.0454 | 0.0461 | +0.0066 | 0.0460 |
-| `nikon-z-24-70f4s` | 1 | Nikon | geometric (inferred) | 4.00 | 4.01 | iris | +0.0181 | -0.0566 | 0.0566 | -0.0044 | 0.0260 |
+| `nikon-z-24-70f4s` | 1 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | +0.0181 | -0.0566 | 0.0566 | -0.0044 | 0.0260 |
 | `nikon-z-mc-105f28` | 0 | Nikon | geometric (inferred) | 2.80 | 2.89 | iris | +0.0294 | -0.0329 | 0.0329 | +0.0125 | 0.0178 |
 | `sigma-105mm-f14-dg-hsm-art` | 0 | Sigma | diffraction (documented) | 1.40 | 1.40 | iris | -0.0258 | -0.0496 | 0.0496 | -0.0496 | 0.0496 |
 | `sigma-105mm-f28-dg-dn-macro-art` | 0 | Sigma | diffraction (documented) | 2.80 | 2.90 | iris | -0.0215 | -0.0609 | 0.0609 | -0.0609 | 0.0609 |
@@ -101,7 +101,7 @@ authored image plane, in mm. Each comparison lists mean signed and mean absolute
 | `sigma-20mm-f14-dg-hsm-art` | 0 | Sigma | diffraction (documented) | 1.40 | 1.43 | 26A | -0.0151 | -0.0511 | 0.0532 | -0.0511 | 0.0532 |
 | `sigma-23mm-f14-dc-dn-c` | 0 | Sigma | diffraction (documented) | 1.40 | 1.42 | 15 | -0.0313 | -0.2324 | 0.2324 | -0.2324 | 0.2324 |
 | `sigma-35mm-f14-dg-hsm-a` | 0 | Sigma | diffraction (documented) | 1.40 | 1.49 | 14 | -0.0256 | -0.0554 | 0.0569 | -0.0554 | 0.0569 |
-| `sigma-45mm-f28-dg-dn-contemporary` | 0 | Sigma | diffraction (documented) | 2.80 | 2.79 | iris | -0.0319 | -0.0220 | 0.0243 | -0.0220 | 0.0243 |
+| `sigma-45mm-f28-dg-dn-contemporary` | 0 | Sigma | diffraction (documented) | 2.80 | 2.80 | iris | -0.0319 | -0.0220 | 0.0243 | -0.0220 | 0.0243 |
 | `sigma-50f14-dg-hsm-a` | 0 | Sigma | diffraction (documented) | 1.40 | 1.40 | iris | -0.0077 | -0.0273 | 0.0361 | -0.0273 | 0.0361 |
 | `sigma-85f14-art` | 0 | Sigma | diffraction (documented) | 1.40 | 1.50 | 27A | -0.0226 | +0.0229 | 0.0363 | +0.0229 | 0.0363 |
 | `sigma-art-85mm-f14-dgdn` | 0 | Sigma | diffraction (documented) | 1.40 | 1.40 | iris | +0.0008 | -0.0700 | 0.0701 | -0.0700 | 0.0701 |

@@ -100,7 +100,10 @@ export interface MtfFocus {
  * limit the axial beam before the iris does, and a stopped-down iris is scaled from the wide-open one.
  */
 export interface MtfAperture {
-  /** Image-space working f-number of the axial rim ray, 1 / (2 n′ sin U′). */
+  /**
+   * F-number of the transmitted axial beam: its rim height times the near-axis slope n′ sin U′ per launch height.
+   * At infinity this is f / (2 × pupil radius); at a finite conjugate it is the paraxial working f-number.
+   */
   tracedFNumber: number;
   /** Label of the surface that stops the next ray outward; null when that surface is the iris. */
   limitingSurfaceLabel: string | null;

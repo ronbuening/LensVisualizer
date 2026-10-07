@@ -1941,6 +1941,23 @@ describe("source errata", () => {
     expect(errataErrors([{ ...corrected, applied: 90 }]).join(" ")).toContain("must carry the applied value 90");
     expect(errataErrors([{ ...corrected, field: "A4" }]).join(" ")).toContain("must carry the applied value");
   });
+  it("checks the host's last gap on the bare host only, since a converter replaces it", () => {
+    const host = teleconverterHostData();
+    const last = host.surfaces.at(-1)!;
+    const sourceErrata = [{ ...corrected, surface: last.label, field: "d", printed: last.d + 1, applied: last.d }];
+    expect(validateLensData({ ...host, sourceErrata }).filter((e) => e.includes("sourceErrata"))).toEqual([]);
+    const composed = attachTeleconverter({ ...host, sourceErrata } as typeof host, teleconverterFixture());
+    expect(composed.surfaces.find((surface) => surface.label === last.label)!.d).not.toBe(last.d);
+    expect(validateLensData(composed).filter((e) => e.includes("sourceErrata"))).toEqual([]);
+    // Any other value of the host must still match on the composed system.
+    const first = host.surfaces[0];
+    const wrong = [{ ...corrected, surface: first.label, field: "R", printed: first.R + 1, applied: first.R + 2 }];
+    expect(
+      validateLensData(attachTeleconverter({ ...host, sourceErrata: wrong } as typeof host, teleconverterFixture()))
+        .filter((e) => e.includes("sourceErrata"))
+        .join(" "),
+    ).toContain("must carry the applied value");
+  });
   it("rejects thin, external or malformed evidence", () => {
     expect(errataErrors([{ ...corrected, evidence: ["sibling-example"] }]).join(" ")).toContain("at least 2 kinds");
     expect(errataErrors([{ ...corrected, evidence: ["sibling-example", "sibling-example"] }]).join(" ")).toContain(

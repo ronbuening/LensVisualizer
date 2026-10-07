@@ -114,12 +114,17 @@ export default function MtfTab({
     return { ...job, options: stopped };
   }, [job, compareF8Available, preferences.compareF8, fNumber]);
   const comparison = useMtfComputation(L, comparisonJob);
+  const comparisonShown = comparisonJob && !comparison.stale ? comparison.result : null;
+  // A result kept from an earlier request, or one at a finite conjugate, says nothing about the label on screen.
+  const apertureOf = (result: MtfResult | null, superseded: boolean) =>
+    superseded || support.conjugate ? null : (result?.aperture ?? null);
+  const comparisonLabel = `f/${COMPARISON_F_NUMBER}${tracedApertureNote(COMPARISON_F_NUMBER, apertureOf(comparisonShown, false))}`;
   const muted = { color: t.muted, margin: "4px 0" };
   return (
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">
       <h3 style={{ margin: "0 0 4px", fontSize: 14 }}>Simulated MTF</h3>
       <p style={muted}>
-        {headerLine(options, support.referenceWavelengthNm, fNumber, focalLengthMm, shown, !!support.conjugate)}
+        {headerLine(options, support.referenceWavelengthNm, fNumber, focalLengthMm, shown, apertureOf(shown, stale))}
       </p>
       {spectrum.note ? <p style={muted}>{spectrum.note}</p> : null}
       <ImagePlaneNote result={shown} t={t} onUseAuto={() => updatePreferences({ focus: "auto" })} />
@@ -163,8 +168,8 @@ export default function MtfTab({
               frequencies={preferences.frequencies}
               t={t}
               stale={stale}
-              comparison={comparisonJob && !comparison.stale ? comparison.result : null}
-              comparisonLabel="f/8"
+              comparison={comparisonShown}
+              comparisonLabel={comparisonLabel}
             />
             <MtfFieldSummary result={shown} frequencies={preferences.frequencies} t={t} />
           </MtfDataWarning>
@@ -204,13 +209,10 @@ function headerLine(
   fNumber: number | undefined,
   focalLengthMm: number | undefined,
   result: MtfResult | null,
-  finiteConjugate: boolean,
+  aperture: MtfAperture | null,
 ): string {
   const parts: string[] = [];
-  if (fNumber)
-    parts.push(
-      `f/${formatFNumber(fNumber)}${finiteConjugate ? "" : tracedApertureNote(fNumber, result?.aperture ?? null)}`,
-    );
+  if (fNumber) parts.push(`f/${formatFNumber(fNumber)}${tracedApertureNote(fNumber, aperture)}`);
   if (focalLengthMm) parts.push(`${focalLengthMm.toFixed(1)} mm`);
   parts.push(METHOD_LABELS[options.method]);
   parts.push(
@@ -229,9 +231,9 @@ function headerLine(
 }
 
 /**
- * Qualify the label f-number when the axial beam traces at a different aperture: a clear aperture can stop the
- * marginal ray before the iris, and stop-down scales the wide-open iris linearly. Finite conjugates are left
- * alone, where the working f-number differs from the label by design.
+ * Qualify a label f-number when the axial beam traces at a different aperture: a clear aperture can stop the
+ * marginal ray before the iris, and stop-down scales the wide-open iris linearly. Callers pass no aperture for a
+ * superseded result or a finite conjugate, where the working f-number differs from the label by design.
  */
 function tracedApertureNote(fNumber: number, aperture: MtfAperture | null): string {
   if (!aperture || Math.abs(aperture.tracedFNumber / fNumber - 1) <= TRACED_APERTURE_NOTE_FRACTION) return "";
