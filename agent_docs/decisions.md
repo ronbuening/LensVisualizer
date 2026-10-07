@@ -21,6 +21,8 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 - 2026-05-20 — Keep the z-projected `maxT` as the primary intersection bound with `launchBoundT` (2 × launch radius) only as the fallback when `direction.z` is not safely positive; grazing rays seed Newton at the bracket midpoint and validate the converged radius against the surface SD. (trace plan PR 8)
 - 2026-05-21 — Only non-rectilinear `projection.kind` values activate projection-aware paths, and diagram off-axis rays promote to vector launch only when the declared fisheye field exceeds `tracingHalfField`; rectilinear diagram rendering must stay visually unchanged. (trace plan, PR #506)
 
+- 2026-10-07 — The MTF core is verified against an independent ray tracer and optiland's conventions: the exact trace, `geometricOtf`, units, sagittal (image x) / tangential (image y) naming, the complex spectral sum before modulus, and the equal-flux launch lattice. Drift against manufacturer charts comes from lens data, the aperture model, chart conventions and the diffraction product, not from these; do not rebuild them. (MTF accuracy audit, 2026-10)
+
 ### UI and analysis components
 
 - 2026-07-06 — `formatSignedUm` exists in both `src/components/display/analysis/aberrations/format.ts` and `src/components/display/analysis/chromaticChartUtils.ts` on purpose (different suffix and thresholds); `formatUmMagnitude` is not a duplicate of `formatSpreadUmFromMm`; the six local formatters in `OpticalSummaryTab.tsx` stay local. (efficiency plan E3–E6)
@@ -63,7 +65,11 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 - 2026-05-20 — Do not "consolidate" chief-ray solvers as a cure for repeated solves; the gap was per-frame memoization, fixed by the per-`RuntimeLens` `WeakMap` cache. Do not plan a structural rewrite of the exact tracer for vector support; it is vector-native internally. (trace plan)
 - 2026-06-22 — Do not reintroduce `fallbackSurfacePoint`-style post-miss ghost geometry into the diagram path; prepared-state traces terminate on a missed surface and the display draws clipped ghost rays from the last solid point. The internal helper in `src/optics/internal/exactSurfaceTrace.ts` is for low-level callers only. (PR #557)
 
+- 2026-10-07 — Do not tune MTF to manufacturer charts. A uniform 0.90 clear-aperture scale zeroes the mean outer-field bias but damages both lenses with patent-listed apertures; monochromatic, C/d/F and broad-white spectra all fit worse than photopic; a per-lens focus plane is a one-parameter fit to the chart. Chart agreement is reported by `reports/mtfChartRegression.report.ts` and never asserted in a test. (MTF accuracy audit, 2026-10)
+
 ## Standing maintainer decisions
+
+- 2026-10-07 — A value the source prints is corrected only under the source-errata standard in `agent_docs/lens-patent-audit.md` (two kinds of source-internal evidence, never an MTF chart) and is recorded in `sourceErrata`; "wide open" means the patent design f-number, not the marketed one. (MTF accuracy audit, 2026-10)
 
 - 2026-10-05 — `publishedStations` (with `finiteConjugates`) is the only machine-read station provenance. The `Focus status:` tokens in lens-file comments stay free text: do not parse or formalize them. The field is read lazily by `src/optics/publishedStations.ts` and is not normalized onto `RuntimeLens`, so `buildLens()` and the analyses stay unaware of it. (patent-positions PR)
 - 2026-09-09 — The PR description is the branch record; per-branch notes under `agent_docs/records/` are no longer written, and 47 unreferenced records were deleted (recoverable via `git log --diff-filter=D -- agent_docs/records`). (2026-09-09 review)

@@ -73,7 +73,7 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 - Patent and semi-diameter audits: `agent_docs/lens-patent-audit.md`, `agent_docs/patent-figure-sd-audit-procedure.md`;
   open queues: `agent_docs/sd-audit-queue.md`, `agent_docs/lens-mount-format-backfill.md`, glass queues via the index
 - Planned features: `FEATURE_ADDITION_PLAN.md`; open efficiency items: `EFFICIENCY_IMPROVEMENT_PLAN.md`; trace-model status
-  and deferred work: `TRACE_MODEL_IMPROVEMENT_PLAN.md`
+  and deferred work: `TRACE_MODEL_IMPROVEMENT_PLAN.md`; MTF accuracy findings and open stages: `MTF_ACCURACY_PLAN.md`
 - Standing "do not rebuild / do not fix" decisions: `agent_docs/decisions.md`; failure modes: `agent_docs/gotchas.md`
 - Conventions and process: `agent_docs/code_conventions.md`, `agent_docs/commenting_guide.md`, `agent_docs/workflow.md`,
   `agent_docs/changelog.md`, `agent_docs/article_formatting.md`; what to document where: `agent_docs/documentation-policy.md`

@@ -158,6 +158,14 @@ A lens with a converter is assessed as one system; no separate gap is raised for
 the reader chose has no glass gap. A paused proposal to narrow the `estimated-dispersion` blur and refit the
 estimate is in `agent_docs/dispersion-estimate-exploration.md`.
 
+**Validation.** `__tests__/src/optics/mtfDiffraction.test.ts` holds the analytic controls: a Hopkins quadrature on
+synthetic aberrated pupils against the kernels, with `it.fails` markers on the two known biases of the product
+method. `reports/mtfChartRegression.report.ts` compares the catalog with digitized manufacturer chart values
+(`reports/data/mtfChartAnchors.csv`) under the audit's settings and under each maker's chart convention
+(`reports/data/mtfChartConventions.ts`: geometric, diffraction-inclusive or measured, with a documented / inferred
+basis), by frequency and field band. It is a report, never a test threshold: maker focus and spectrum are
+undocumented, and a patent example is not proven to be the production lens.
+
 The MTF tab lazily creates a worker from serializable lens data. Worker initialization removes engine-generated
 synthetic surfaces/elements from `RuntimeLens.data` and rebuilds them once from `rearPlates`, preserving physical
 gaps and plate dispersion. The typed protocol (`init | compute | cancel` → `progress | result | error`) runs
