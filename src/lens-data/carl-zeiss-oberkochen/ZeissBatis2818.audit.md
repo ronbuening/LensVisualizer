@@ -86,3 +86,39 @@ a re-traced envelope (axial plus 0.60 field through the 7.559 mm stop, ×1.10) i
 Surfaces 15A–22A are the Fig. 1 rims. The pre-figure rear values (21A 13.1 mm, 22A 13.8 mm) match the as-printed
 full-field bundle (12.67 / 13.30 mm) to about 4 %; with the corrected sign that bundle reaches 10.66 / 10.69 mm,
 against the 10.8 mm rim measured from Fig. 1. Rim of 14A at 9.4 mm: slope 17.3° → 30.2°, no turnover.
+
+## 2026-10-07 — Source erratum: d22 is the back focus, not the gap to the cover glass
+
+Supersedes the 2026-09-23 statement "The printed d22 = 25.606 remains an apparent table error. Surface 22A now stores
+the derived correction d22 = 22.083 mm": that value was a paraxial solve of the model, not a reading of the source.
+
+| Surface | Field | Printed (Example 1, p. 13, ¶0095) | Applied | Evidence |
+|---|---|---|---|---|
+| 22A | `d` | 25.606 | 22.106 | `sibling-example`, `aberration-figure` |
+
+Paraxial trace of the four printed tables on the d line (gap from surface 22 to the cover glass, then 2.500 mm of
+nd 1.5168 and 1.000 mm of air):
+
+| Example | Printed d22 | Image plane minus paraxial focus | Sum of thicknesses | Stated L | Stated BF |
+|---|---:|---:|---:|---:|---:|
+| 1 | 25.606 | +3.523 mm | 95.501 | 95.501 | 29.106 |
+| 1 with d22 = 22.106 | — | +0.023 mm | 92.001 | — | — |
+| 2 | 22.428 | +0.020 mm | 92.000 | 92.000 | 25.928 |
+| 3 | 20.338 | +0.021 mm | 92.000 | 92.000 | 23.838 |
+| 4 | 25.606 | +2.842 mm | 94.801 | 94.801 | 29.106 |
+
+- `sibling-example` — Examples 2 and 3 are designed to a 92.000 mm total length, state BF = d22 + 2.500 + 1.000, and
+  place the image plane 0.020 and 0.021 mm behind paraxial focus. Example 1 meets all three only if its printed
+  25.606 is read as the back focus: d22 = 25.606 − 3.500 = 22.106 gives 92.001 mm, BF 25.606 and +0.023 mm. Example 4
+  repeats Example 1's 25.606 and 29.106; its +2.842 mm also carries the 0.70 mm D(16) discrepancy noted in the A10
+  entry above.
+- `aberration-figure` — Fig. 2 (p. 27) plots the infinity spherical aberration within 0.06 mm of the image plane on a
+  ±0.50 mm axis. The printed gap puts paraxial focus 3.523 mm in front of that plane; 22.106 puts it 0.023 mm in front.
+
+Not counted as evidence: the stated BF 29.106 and L 95.501 agree with the printed column because they are sums of
+it, so they repeat the double count instead of testing it. The stated f, FNO and ω do not depend on d22.
+
+Model change: surface 22A d 22.083 → 22.106 mm, so the authored image plane moves 0.023 mm away from the lens. EFL and
+every other value are unchanged. Analysis sync: physical track 91.978 → 92.001 mm, TL/EFL 4.960644 → 4.961884,
+condition (5) 0.463078 → 0.462962, object-to-image distance at the 158.000 mm state 249.978 → 250.001 mm, close-state
+paraxial residual +0.055374 → +0.032374 mm.
