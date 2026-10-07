@@ -76,13 +76,13 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 41 | [Ai AF Nikkor 85mm F1.4D (IF)](https://imaging.nikon.com/imaging/information/story/0041/) | [AF Nikkor 85mm F1.4D](/lens/nikkor-85f14d) |
 | No. 40 | [Nikkor-S Auto 5.8cm F1.4](https://imaging.nikon.com/imaging/information/story/0040/) | [Nikkor-S Auto 5.8cm F1.4](/lens/nikon-nikkor-s-auto-58mm-f1-4) |
 | No. 39 | [Ai AF Zoom-Nikkor 35–70mm F2.8S](https://imaging.nikon.com/imaging/information/story/0039/) | [AF Zoom-Nikkor 35–70mm](/lens/nikon-af-zoom-nikkor-35-70mm-f28d) |
-| No. 38 | [From Nikkor-S Auto 35mm f/2.8 to New Nikkor 35mm f/2.8](https://imaging.nikon.com/imaging/information/story/0038/) | — |
+| No. 38 | [From Nikkor-S Auto 35mm f/2.8 to New Nikkor 35mm f/2.8](https://imaging.nikon.com/imaging/information/story/0038/) | [New Nikkor 35mm f/2.8](/lens/nikon-nikkor-35mm-f28) |
 | No. 37 | [W-Nikkor 3.5cm F2.5](https://imaging.nikon.com/imaging/information/story/0037/) | — |
 | No. 36 | [Nikkor P·C 8.5cm F2](https://imaging.nikon.com/imaging/information/story/0036/) | — |
 | No. 35 | [Ai AF VR Zoom-Nikkor 80–400mm f/4.5–5.6D ED](https://imaging.nikon.com/imaging/information/story/0035/) | [AI AF VR Zoom-Nikkor 80–400mm](/lens/nikon-ai-af-vr-zoom-nikkor-80-400mm-f45-56d-ed) |
 | No. 34 | [NIKKOR-H·C 5cm F2](https://imaging.nikon.com/imaging/information/story/0034/) | — |
 | No. 33 | ["Pikaichi" L35AF 35mm f/2.8](https://imaging.nikon.com/imaging/information/story/0033/) | [L35AF 35mm f/2.8](/lens/nikon-l35af-35f28) |
-| No. 32 | [Ai AF DC Nikkor 135mm F2S](https://imaging.nikon.com/imaging/information/story/0032/) | — |
+| No. 32 | [Ai AF DC Nikkor 135mm F2S](https://imaging.nikon.com/imaging/information/story/0032/) | [AF DC-Nikkor 135mm f/2D — later D version](/lens/nikon-af-dc-nikkor-135mm-f2) |
 | No. 31 | [Ai Nikkor ED 200mm F2S (IF)](https://imaging.nikon.com/imaging/information/story/0031/) | [AI Nikkor ED 200mm f/2S IF](/lens/nikon-ai-nikkor-200mm-f2-if-ed) |
 | No. 30 | [Ai Nikkor 135mm F2](https://imaging.nikon.com/imaging/information/story/0030/) | [AI Nikkor 135mm F2](/lens/nikon-ai-nikkor-135f2) |
 | No. 29 | [W-Nikkor·C 2.5cm F4](https://imaging.nikon.com/imaging/information/story/0029/) | — |
@@ -94,7 +94,7 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 23 | [AI AF Nikkor 80mm F2.8S](https://imaging.nikon.com/imaging/information/story/0023/) | — |
 | No. 22 | [COOLPIX 4300](https://imaging.nikon.com/imaging/information/story/0022/) | [COOLPIX 4300 8–24mm](/lens/nikon-zoom-nikkor-8-24-f28-49-coolpix-4300) · [COOLPIX SQ 5.6–16.8mm — comparison design in Fig. 2](/lens/nikon-zoom-nikkor-56-168-f27-48-coolpix-sq) |
 | No. 21 | [Nikkor-T 10.5cm F4](https://imaging.nikon.com/imaging/information/story/0021/) | — |
-| No. 20 | [Nikkor Auto 20mm f/4 from New Nikkor-UD Auto 20mm f/3.5](https://imaging.nikon.com/imaging/information/story/0020/) | — |
+| No. 20 | [Nikkor Auto 20mm f/4 from New Nikkor-UD Auto 20mm f/3.5](https://imaging.nikon.com/imaging/information/story/0020/) | [New Nikkor 20mm f/4](/lens/nikon-nikkor-20mm-f4) |
 | No. 19 | [Nikkor-S·C 8.5cm F1.5](https://imaging.nikon.com/imaging/information/story/0019/) | — |
 | No. 18 | [AF Zoom-Micro Nikkor ED 70–180mm F4.5–5.6D](https://imaging.nikon.com/imaging/information/story/0018/) | [AF Zoom-Micro 70–180mm](/lens/nikon-af-zoom-micro-70-180mm-f45-56d) |
 | No. 17 | [New PC-Nikkor 28mm F4](https://imaging.nikon.com/imaging/information/story/0017/) | — |
@@ -115,7 +115,7 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 2 | [AI Nikkor 50mm F2](https://imaging.nikon.com/imaging/information/story/0002/) | — |
 | No. 1 | [NIKKOR-O 2.1cm F4](https://imaging.nikon.com/imaging/information/story/0001/) | [NIKKOR-O 2.1cm F4](/lens/nikon-nikkor-o-21mm-f4) |
 
-Tale 74 distinguishes the original 1989 S version from its 1993 D update, which added an absolute distance encoder; the catalog link points to that D version. Tale 22 illustrates both the COOLPIX 4300 lens and the COOLPIX SQ lens, so both are linked with their roles identified.
+Tale 74 distinguishes the original 1989 S version from its 1993 D update, which added an absolute distance encoder; the catalog link points to that D version. Tale 32 likewise covers the original AF DC 135mm f/2S of 1991, and the catalog link points to its later D version. Tale 22 illustrates both the COOLPIX 4300 lens and the COOLPIX SQ lens, so both are linked with their roles identified.
 
 ## Nikon Research Reports
 

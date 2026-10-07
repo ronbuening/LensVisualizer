@@ -100,7 +100,7 @@ The [Minolta Varisoft Rokkor 85mm f/2.8](/lens/varisoft-rokkor-85f28/) uses a va
 
 A defocus-control lens uses a smaller residual and compensates the accompanying image-plane movement. The main subject can remain concentrated while the radial distribution of foreground and background points changes.
 
-The [Nikon AF DC-Nikkor 135mm f/2D](/lens/nikon-af-dc-nikkor-135mm-f2/) uses **R** for an undercorrected state favoring softer-edged background blur and **F** for an overcorrected state favoring foreground blur.[^4] [^8]
+The [Nikon AF DC-Nikkor 135mm f/2 D](/lens/nikon-af-dc-nikkor-135mm-f2/) uses **R** for an undercorrected state favoring softer-edged background blur and **F** for an overcorrected state favoring foreground blur.[^4] [^8]
 
 ### A user-adjustable under–sharp–over range
 

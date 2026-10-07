@@ -23,7 +23,7 @@ The key geometric fact is that at surfaces before the stop, the chief ray height
 
 A particularly effective variant places a **negative-power** focusing group ahead of the stop. When such a group changes conjugate, the dominant induced aberration is spherical aberration — through the leading Wynne conjugate-shift term $\Delta S_I \approx 4\delta S_{II}$ [^2]. The negative power provides a natural compensating mechanism: negative elements contribute negative spherical aberration that partially counterbalances the overcorrection tendency at close focus. This self-compensation is the principal aberration advantage of the negative-power front-of-stop architecture.
 
-### Case Example: Nikon AF-S Nikkor 105mm f/1.4E ED
+### Case Example: Nikon AF-S Nikkor 105mm f/1.4 E ED
 
 - **Patent:** WO 2019/116563, Example 3 [^3]
 - **Production lens:** 14 elements in 9 groups; three ED elements; Nano Crystal Coat; no aspherical surfaces

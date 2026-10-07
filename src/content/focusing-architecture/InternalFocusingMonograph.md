@@ -20,7 +20,7 @@ The five case studies were selected to span the principal architecture patterns 
 
 | Architecture | Case Study | Patent |
 |---|---|---|
-| Front-of-stop focusing | [Nikon AF-S Nikkor 105mm f/1.4E ED](/lens/nikkor-105-f14e-ed) | WO 2019/116563 Ex. 3 [^12] |
+| Front-of-stop focusing | [Nikon AF-S Nikkor 105mm f/1.4 E ED](/lens/nikkor-105-f14e-ed) | WO 2019/116563 Ex. 3 [^12] |
 | Rear-of-stop focusing | [Canon RF 135mm f/1.8 L IS USM](/lens/canon-rf-135f18) | US 2023/0213745 A1 Ex. 4 [^13] |
 | Dual-side focusing | [Nikon AF-S Micro-Nikkor 105mm f/2.8G VR](/lens/nikon-afs-105f28-vr-micro) | US 7,218,457 Ex. 3 [^14] |
 | Monolithic group focusing | [Nikon AF-S Nikkor 85mm f/1.4G](/lens/nikkor-85f14g) | US 8,767,319 Ex. 1 [^16] |
@@ -145,7 +145,7 @@ See the dedicated primers for a deeper treatment:
 
 ---
 
-## Case Study I: Front-of-Stop Focusing — Nikon AF-S Nikkor 105mm f/1.4E ED
+## Case Study I: Front-of-Stop Focusing — Nikon AF-S Nikkor 105mm f/1.4 E ED
 
 - **Patent:** WO 2019/116563, Example 3 [^12]
 - **Production lens:** 14 elements in 9 groups; three ED elements; Nano Crystal Coat; no aspherical surfaces

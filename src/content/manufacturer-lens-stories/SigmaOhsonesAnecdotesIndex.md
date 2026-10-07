@@ -45,7 +45,7 @@ SIGMA's eight-part _GROUND BREAKING_ collection covers the products, materials, 
 | Vol. 5 | Aizu factory and vertically integrated lens production | [Made in Aizu — our identity](https://www.sigma-global.com/en/our-community/sein/groundbreaking/made-in-aizu--our-identity/) | — |
 | Vol. 4 | dp camera line and dp0 Quattro 14mm F4 | [Taking things back to “0”](https://www.sigma-global.com/en/our-community/sein/groundbreaking/taking-things-back-to-0/) | [dp0 Quattro 14mm F4](/lens/sigma-dp0-quattro-14-f4) |
 | Vol. 3 | SIGMA Global Vision and the Art, Sports, and Contemporary lines | [Innovators of a new standard](https://www.sigma-global.com/en/our-community/sein/groundbreaking/innovators-of-a-new-standard/) | — |
-| Vol. 2 | Ultra-wide zoom lineage and 18–35mm F1.8 DC HSM \| Art | [Intuition opens the doors of possibility](https://www.sigma-global.com/en/our-community/sein/groundbreaking/intuition-opens-the-doors-of-possibility/) | — |
+| Vol. 2 | Ultra-wide zoom lineage and 18–35mm F1.8 DC HSM \| Art | [Intuition opens the doors of possibility](https://www.sigma-global.com/en/our-community/sein/groundbreaking/intuition-opens-the-doors-of-possibility/) | [18–35mm F1.8 DC HSM \| Art](/lens/sigma-18-35-f18-dc-hsm-art) |
 | Vol. 1 | SIGMA's foundation, rear converter, and YS mount | [With independence comes the energy to lead to the future](https://www.sigma-global.com/en/our-community/sein/groundbreaking/with-independence-comes-the-energy-to-lead-to-the-future/) | — |
 
 ## RETICENCE
