@@ -1914,3 +1914,51 @@ describe("published image-circle diameter", () => {
     expect(validateLensData(makeValid({ imageCircleMm })).some((error) => error.includes("imageCircleMm"))).toBe(true);
   });
 });
+
+describe("source errata", () => {
+  const corrected = {
+    status: "corrected",
+    surface: "1",
+    field: "R",
+    printed: -100,
+    applied: 100,
+    evidence: ["source-summary", "sibling-example"],
+    note: "Printed sign contradicts the stated focal length.",
+  };
+  const errataErrors = (sourceErrata: unknown) =>
+    validateLensData(makeValid({ sourceErrata })).filter((error) => error.includes("sourceErrata"));
+  it("accepts a correction the file carries and an unresolved contradiction", () => {
+    expect(
+      errataErrors([corrected, { status: "unresolved", note: "Table and summary focal lengths differ." }]),
+    ).toEqual([]);
+    const coefficient = { ...corrected, field: "A4", printed: 1e-6, applied: -1e-6 };
+    const asph = { "1": { K: 0, A4: -1e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } };
+    expect(
+      validateLensData(makeValid({ asph, sourceErrata: [coefficient] })).filter((e) => e.includes("sourceErrata")),
+    ).toEqual([]);
+  });
+  it("requires the applied value to be the one in the file", () => {
+    expect(errataErrors([{ ...corrected, applied: 90 }]).join(" ")).toContain("must carry the applied value 90");
+    expect(errataErrors([{ ...corrected, field: "A4" }]).join(" ")).toContain("must carry the applied value");
+  });
+  it("rejects thin, external or malformed evidence", () => {
+    expect(errataErrors([{ ...corrected, evidence: ["sibling-example"] }]).join(" ")).toContain("at least 2 kinds");
+    expect(errataErrors([{ ...corrected, evidence: ["sibling-example", "sibling-example"] }]).join(" ")).toContain(
+      "at least 2 kinds",
+    );
+    expect(errataErrors([{ ...corrected, evidence: ["source-summary", "manufacturer-chart"] }]).join(" ")).toContain(
+      "source-internal kinds",
+    );
+  });
+  it.each([
+    ["a non-array", { status: "unresolved", note: "x" }, "must be an array"],
+    ["a missing note", [{ status: "unresolved" }], "non-empty note"],
+    ["an unknown status", [{ status: "fixed", note: "x" }], "status must be"],
+    ["an unknown surface", [{ ...corrected, surface: "99" }], "must match a surface label"],
+    ["an unknown field", [{ ...corrected, field: "sd" }], "asph coefficient key"],
+    ["an unchanged value", [{ ...corrected, printed: 100 }], "differs from the printed one"],
+    ["a non-finite value", [{ ...corrected, printed: NaN }], "printed must be a finite number"],
+  ])("rejects %s", (_label, sourceErrata, message) => {
+    expect(errataErrors(sourceErrata).join(" ")).toContain(message);
+  });
+});

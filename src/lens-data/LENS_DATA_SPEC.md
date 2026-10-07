@@ -153,6 +153,7 @@ Keep it normalized even when the product's official styling varies by source:
 | `patentAuthors` | `string[]` | | Inventors named by the source patent, in source order. Use one complete personal name per entry. An empty array means the patent names no individual inventor. |
 | `patentAssignees` | `string[]` | | Organizational assignees named by the source patent, or organizational applicants when that jurisdiction publishes applicants rather than assignees. Use one canonical display name for each historical legal entity. When the front page omits the organization, a verified same-application assignment predating publication may supply the assignee; document its source and dates in the analysis/audit. An empty array means no organizational attribution is supported by these sources. |
 | `patentYear` | `number` | | Year the patent was published or granted (e.g. `2019`). |
+| `sourceErrata` | `object[]` | | Values this file carries that differ from what the source prints, and contradictions in the source that are not yet isolated. See [Source Errata](#source-errata-sourceerrata). |
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
 | `perspectiveControl` | `object` | | Optional shift-Y/tilt-X limits and camera-frame tilt pivot for perspective-control lenses. Omit for all ordinary and folded lenses. |
@@ -277,6 +278,37 @@ patentAssignees: ["Canon Inc."],
 - Build metadata generation checks curated historical assignee aliases and legal-form start years derived from the
   corporate-history registry's successor dates, plus a short list of curated overrides. These checks flag
   impossible or non-canonical values for source review; they never infer or rewrite an assignee automatically.
+
+## Source Errata (`sourceErrata`)
+
+A source can contradict itself: a printed coefficient whose sign disagrees with the patent's own field angle,
+distortion and aberration plots, or a table whose focal length differs from the stated one. `sourceErrata` records
+both cases in a form the validator checks and the MTF tab discloses. The evidence standard for a correction is in
+`agent_docs/lens-patent-audit.md`.
+
+```ts
+sourceErrata: [
+  {
+    status: "corrected",
+    surface: "27A",            // surface label
+    field: "A10",              // asph coefficient key, or surface R / d / nd
+    printed: -1.29299e-13,     // as the source prints it
+    applied: 1.29299e-13,      // the value this file carries
+    evidence: ["source-summary", "sibling-example", "aberration-figure"],
+    note: "Printed sign gives 2ω 23.08° against the stated 24.06°; Example 2 carries the positive sign.",
+  },
+  { status: "unresolved", note: "Table traces to f = 82.22 mm; the summary states 83.00 mm." },
+],
+```
+
+- `corrected`: the file must carry `applied` at `surface` / `field`, and `evidence` must cite at least two of
+  `source-summary` (stated f, F-number, field angle, back focus, total length), `sibling-example` (another example
+  of the same source), `aberration-figure` (the source's own aberration plots) and `claims`. A manufacturer chart,
+  a measured lens or "the trace looks better" is never evidence.
+- `unresolved`: the source disagrees with itself and the cause is not isolated. Keep the printed values and state
+  the contradiction in `note`.
+- Place the field after the identity block (`key`, `name`, `maker`), and keep the erratum explained in the file
+  header and the `*.audit.md` sidecar as well.
 
 ## Rear Plates (`rearPlates`)
 
@@ -1348,6 +1380,9 @@ doublets: [
     `synthetic` field
 21. `acceptsTeleconverters`, when present, is a boolean; authored surface labels may not start with the reserved
     `TC` prefix, and the composer-written `attachedTeleconverter` descriptor is not an authorable field
+22. `sourceErrata`, when present, is an array whose `corrected` entries name an existing surface and field, carry
+    the `applied` value in the file, differ from `printed`, and cite at least two kinds of source-internal
+    evidence; every entry has a non-empty `note`
 22. `publishedStations`, when present, satisfies the index, shape, and focus-travel rules in
     [Published Stations](#published-stations-publishedstations)
 23. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above

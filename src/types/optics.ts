@@ -356,6 +356,33 @@ export interface PublishedStations {
   focus?: number[] | number[][];
 }
 
+/** Evidence a source erratum may cite. Every kind is internal to the source document; an MTF chart is never one. */
+export type SourceErratumEvidence = "source-summary" | "sibling-example" | "aberration-figure" | "claims";
+
+/** A value the source prints that contradicts the source's own data and is corrected in this file. */
+export interface CorrectedSourceErratum {
+  status: "corrected";
+  /** Label of the surface the value belongs to. */
+  surface: string;
+  /** `asph` coefficient key (`K`, `A4`, …) or surface field (`R`, `d`, `nd`). */
+  field: string;
+  /** Value as the source prints it. */
+  printed: number;
+  /** Value this file carries instead. */
+  applied: number;
+  /** At least two independent kinds. */
+  evidence: SourceErratumEvidence[];
+  note: string;
+}
+
+/** A contradiction inside the source whose cause is not isolated; the file keeps the printed values. */
+export interface UnresolvedSourceErratum {
+  status: "unresolved";
+  note: string;
+}
+
+export type SourceErratum = CorrectedSourceErratum | UnresolvedSourceErratum;
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
@@ -381,6 +408,8 @@ export interface LensData {
   /** Organizational assignees or applicants named by the source patent; empty when no organization is named. */
   patentAssignees?: string[];
   patentYear?: number;
+  /** Departures from, and unresolved contradictions in, the source's printed values; see LENS_DATA_SPEC.md. */
+  sourceErrata?: SourceErratum[];
   elementCount?: number;
   groupCount?: number;
   visible?: boolean;
