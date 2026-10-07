@@ -44,9 +44,10 @@ import {
 import { expandMtfFootprint, type MtfFootprint } from "./mtfFootprint.js";
 import { pupilOtf, reconstructMtfPupil } from "./mtfDiffraction.js";
 import { diffractionLimitFromBundle, type MtfDiffractionLimit } from "./mtfDiffractionLimit.js";
-import { findAxialBestFocus, mtfImagePlaneOffset } from "./mtfFocus.js";
+import { findAxialBestFocus, mtfImagePlaneOffset, mtfNearestImagePlaneZ } from "./mtfFocus.js";
 import { resolveMtfAperture } from "./mtfAperture.js";
 import {
+  mtfBeamHeight,
   mtfChiefHeight,
   mtfFieldProcessingOrder,
   mtfModeledHalfField,
@@ -56,11 +57,13 @@ import {
 } from "./mtfFields.js";
 
 /**
- * Results an identical earlier request may share: the axial focus search, the traced aperture and
- * finished fields, keyed by fraction. Callers key a cache by everything in the request except
- * `fieldFractions`.
+ * Results an identical earlier request may share: the field axis, the axial focus search, the
+ * traced aperture and finished fields, keyed by fraction. Callers key a cache by everything in the
+ * request except `fieldFractions`.
  */
 export interface MtfJobCache {
+  /** Field axis; null when no chief ray reaches the image. */
+  geometry?: MtfFieldGeometry | null;
   focus?: MtfFocus;
   /** Stored with `focus`; both come from the axial beam. */
   aperture?: MtfAperture | null;
@@ -140,6 +143,10 @@ export function assessUnresolvedFlux(failedRays: number, unknownFluxFraction: nu
 
 /* ── One field at one grid size ── */
 
+/** Field note where the beam images although its chief ray does not pass. */
+const MTF_CLIPPED_CHIEF_NOTE =
+  "A clear aperture stops the chief ray at this height; the curve comes from the part of the beam that still passes.";
+
 interface WeightedOtf {
   otf: ComplexOtf;
   weight: number;
@@ -196,12 +203,25 @@ function fieldAtGrid(
   const sagittal: WeightedOtf[] = [];
   const tangential: WeightedOtf[] = [];
   let commonReference: MtfSpot | undefined;
+  /** Whether the reference wavelength's chief ray is stopped by a clear aperture. */
+  let chiefClipped: boolean | undefined;
   let limit: MtfDiffractionLimit | null = null;
   let launchedWeight = 0;
   let failedWeight = 0;
   for (const line of support.spectralLines) {
-    const bundle = traceMtfBundle(state, options, support, launch, footprint, size, line, context.imagePlaneZ);
+    const bundle = traceMtfBundle(
+      state,
+      options,
+      support,
+      launch,
+      footprint,
+      size,
+      line,
+      context.imagePlaneZ,
+      commonReference,
+    );
     if (!bundle) return unavailable("chief-ray-failed", "No valid chief ray reaches the image plane.");
+    chiefClipped ??= bundle.chiefClipped;
     commonReference ??= bundle.chief;
     field.imageHeightMm = Math.hypot(commonReference.x, commonReference.y);
     field.validRays += bundle.rays.length;
@@ -231,6 +251,7 @@ function fieldAtGrid(
   const unresolved = assessUnresolvedFlux(field.failedRays, field.unknownFluxFraction);
   if (!unresolved.acceptable) return unavailable("trace-failed", "Numerical ray failures prevent an MTF estimate.");
   if (unresolved.note) field.notes.push(unresolved.note);
+  if (chiefClipped) field.notes.push(MTF_CLIPPED_CHIEF_NOTE);
   field.sagittal = otfMagnitude(combineOtfs(sagittal));
   field.tangential = otfMagnitude(combineOtfs(tangential));
   return { kind: "curves", field, openBorders };
@@ -387,7 +408,7 @@ function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Mt
     if (!bundle) return focus;
     bundles.push({ bundle, weight: line.weight });
   }
-  const best = findAxialBestFocus(bundles, state.imgZ, MTF_FOCUS_FREQUENCIES);
+  const best = findAxialBestFocus(bundles, state.imgZ, MTF_FOCUS_FREQUENCIES, mtfNearestImagePlaneZ(state));
   if (!best) return focus;
   focus.bestAxialShiftMm = best.shiftMm;
   focus.designScore = best.designScore;
@@ -402,11 +423,12 @@ function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Mt
 /* ── Job ── */
 
 function outsideModelMessage(geometry: MtfFieldGeometry): string {
-  return `Outside the modeled field: the model's clear apertures clip the chief ray beyond ${geometry.modeledEdgeHeightMm.toFixed(1)} mm.`;
+  return `Outside the modeled field: beyond ${geometry.modeledEdgeHeightMm.toFixed(1)} mm the model's clear apertures pass no light, or no chief ray to place it by.`;
 }
 
 /**
- * Field axis of a request without tracing any pupil, for charts and audits.
+ * Field axis of a request without tracing its pupils, for charts and audits. Past the chief ray's own clip each probe
+ * of the edge runs the coarse footprint scan.
  *
  * @param state - prepared optical state
  * @param options - MTF request
@@ -415,7 +437,10 @@ function outsideModelMessage(geometry: MtfFieldGeometry): string {
 export function resolveMtfGeometry(state: PreparedOpticalState, options: MtfOptions): MtfFieldGeometry | null {
   const support = assessMtfSupport(state, options);
   if (!support.available) return null;
-  return resolveMtfFieldGeometry(state, mtfModeledHalfField(state), mtfChiefHeight(state, options, support));
+  return resolveMtfFieldGeometry(state, mtfModeledHalfField(state), mtfChiefHeight(state, options, support), {
+    reference: mtfChiefHeight(state, options, support, false),
+    beam: mtfBeamHeight(state, options, support),
+  });
 }
 
 /**
@@ -453,8 +478,17 @@ export function* computeMtfSteps(
     ladder: MTF_GRID_LADDER.filter((size) => size <= cap && (options.method !== "diffraction" || size >= 32)),
     imagePlaneZ: state.imgZ,
   };
-  const chiefHeight = mtfChiefHeight(state, options, support);
-  const geometry = resolveMtfFieldGeometry(state, mtfModeledHalfField(state), chiefHeight);
+  // Heights past the chief's own clip are placed by the chief traced through every surface.
+  const referenceHeight = mtfChiefHeight(state, options, support, false);
+  // The field axis does not depend on the field list, so a cached job already holds it.
+  const geometry =
+    cache?.geometry !== undefined
+      ? cache.geometry
+      : resolveMtfFieldGeometry(state, mtfModeledHalfField(state), mtfChiefHeight(state, options, support), {
+          reference: referenceHeight,
+          beam: mtfBeamHeight(state, options, support),
+        });
+  if (cache) cache.geometry = geometry;
   result.geometry = geometry;
   if (!geometry) {
     result.fields = fractions.map((fraction) =>
@@ -462,7 +496,7 @@ export function* computeMtfSteps(
     );
     return result;
   }
-  const targets = resolveMtfFieldTargets(state, geometry, fractions, chiefHeight, !support.conjugate);
+  const targets = resolveMtfFieldTargets(state, geometry, fractions, referenceHeight, !support.conjugate);
   result.fields = targets.map((target) =>
     target.outsideModel
       ? markUnavailable(emptyMtfField(target.fraction, target), "outside-modeled-field", outsideModelMessage(geometry))

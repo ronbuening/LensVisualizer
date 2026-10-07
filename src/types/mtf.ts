@@ -70,10 +70,17 @@ export interface MtfSupport {
 export interface MtfFieldGeometry {
   /** Height of the 100 % field in mm: the declared format-corner radius, else the modeled edge. */
   referenceHeightMm: number;
-  /** Largest height whose chief ray passes every authored clear aperture, capped at the reference. */
+  /**
+   * Largest charted height, capped at the reference: where the chief ray passes every authored clear aperture,
+   * extended toward a declared format corner for as long as any of the beam still reaches the image.
+   */
   modeledEdgeHeightMm: number;
   /** Chief-ray field angle at the modeled edge, in degrees; its chief reaches `modeledEdgeHeightMm`. */
   modeledEdgeAngleDeg: number;
+  /** Largest height whose chief ray itself passes every clear aperture, capped at the reference; never past the edge. */
+  chiefEdgeHeightMm: number;
+  /** Chief-ray field angle at `chiefEdgeHeightMm`, in degrees. */
+  chiefEdgeAngleDeg: number;
   basis: "format-corner" | "modeled-edge";
 }
 

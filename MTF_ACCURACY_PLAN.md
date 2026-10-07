@@ -74,7 +74,6 @@ investigation and are replaced by regenerated ones as stages land. The analytic 
 | G | Chart conventions are not shown to the reader | −0.02 / −0.05 uniform against geometric-chart makers | 8 |
 | H | Clear apertures inferred from drawings, undisclosed | −5 % semi-diameter ≈ +0.02 / +0.04 off axis | 8 |
 | I | One axial focus plane; field foci sit 20–125 µm away | 0.005 mean; up to 0.28 at 30 lp/mm tangential on four lenses | 8 |
-| J | A negative focus shift can pass the last surface; the focus scan range is fragile; fields with a clipped chief ray are dropped | Fields become unavailable | 6 |
 | K | 214 lenses are limited on axis by a clear aperture, not the iris | Traced aperture differs from the label | 5 |
 | L | No external validation of a real lens | — | optional tool |
 
@@ -116,7 +115,7 @@ focus choice or stop sizing; those need analytic controls.
 
 ## Open Stages
 
-Order: 4 ∥ 5 ∥ 6 ∥ 7, then 8, then 9. Each stage is one PR (Stage 5 is two) and quotes the chart report before
+Order: 4 ∥ 5 ∥ 7, then 8, then 9. Each stage is one PR (Stage 5 is two) and quotes the chart report before
 and after.
 
 ### Stage 4 — Prescription self-consistency screen
@@ -151,18 +150,6 @@ and after.
   committed static SVGs and tests that pin f-numbers.
 - **Acceptance.** Patent stop radii within 0.2 % (primes) and 0.1 % (tele); the traced f-number within 3 % of the
   stated one at every station, or the lens is queued as rim-limited.
-
-### Stage 6 — Engine hygiene
-
-- **Why.** J. Gaps between the last surface and the image as small as 0.02 mm exist, so a negative focus shift can
-  leave every field without a chief ray; one wild ray inflates the focus scan step to 0.5 mm; a corner whose chief
-  ray is clipped still forms an image.
-- **Changes.** `src/optics/analysis/mtfFocus.ts`: clamp candidate planes ahead of the last surface; a
-  percentile-based search range. `src/optics/analysis/mtfFields.ts`: the modeled edge becomes the last height with
-  transmitted flux, the unclipped chief still defining height. Move two Sigma `dPgF` values onto the engine's
-  normal line.
-- **Acceptance.** The analytic controls and corpus sweeps are unchanged; the chart report moves by 0.002 at most
-  except on newly available fields.
 
 ### Stage 7 — Diffraction estimator
 

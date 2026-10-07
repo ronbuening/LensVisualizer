@@ -66,8 +66,8 @@ laboratory testing.
 
 The **Simulated MTF** tab opens with diffraction-corrected photopic curves at 10 and 30 lp/mm against image height out
 to the format corner; 20/40/50 lp/mm and 5/2/1 % field steps are a click away, and its frequency view covers
-0–100 lp/mm. It supports infinity focus and explicitly documented finite-conjugate stations. Heights where the model's
-clear apertures clip the chief ray are hatched rather than traced. Geometric mode excludes diffraction, while scalar
+0–100 lp/mm. It supports infinity focus and explicitly documented finite-conjugate stations. Heights the model's
+clear apertures cannot image are hatched rather than traced. Geometric mode excludes diffraction, while scalar
 diffraction has conservative aperture and field limits. Missing samples remain gaps, and a converged result only
 establishes sampling stability. Omitted sensor optics can affect MTF and other ray-based
 diagnostics; see the [optical-model limitations](agent_docs/architecture/optics-engine.md#omitted-sensor-optics).

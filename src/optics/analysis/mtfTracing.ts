@@ -235,6 +235,7 @@ export function prepareMtfFieldLaunch(
  * @param options - MTF request
  * @param support - support record
  * @param launch - field launch
+ * @param growths - doublings of the scanned box before giving up; the full search by default
  * @returns footprint box relative to the chief launch point, or null when the field is vignetted
  */
 export function findMtfFieldFootprint(
@@ -242,6 +243,7 @@ export function findMtfFieldFootprint(
   options: MtfOptions,
   support: MtfSupport,
   launch: MtfFieldLaunch,
+  growths?: number,
 ): MtfFootprint | null {
   const traceOptions = mtfTraceOptions(state, options, support, support.spectralLines[0]);
   return findMtfFootprint(
@@ -253,6 +255,7 @@ export function findMtfFieldFootprint(
       ),
     options.pupilSemiDiameterMm,
     mtfMirrorSymmetric(state),
+    growths,
   );
 }
 
@@ -311,7 +314,8 @@ export function mtfMirrorSymmetric(state: PreparedOpticalState): boolean {
  * @param gridSize - cells across the beam's larger dimension
  * @param line - traced spectral line
  * @param imagePlaneZ - axial image-plane position in mm
- * @returns traced bundle, or null when the reference chief ray cannot reach the image plane
+ * @param reference - image point that stands in when this wavelength's chief cannot be traced to the plane
+ * @returns traced bundle, or null when no reference chief point exists
  */
 export function traceMtfBundle(
   state: PreparedOpticalState,
@@ -322,13 +326,15 @@ export function traceMtfBundle(
   gridSize: number,
   line: MtfSpectralLine,
   imagePlaneZ = state.imgZ,
+  reference?: MtfSpot,
 ): MtfBundle | null {
   const traceOptions = mtfTraceOptions(state, options, support, line);
   // The chief is a geometric reference, not a pupil sample: trace it through every surface even
   // when an aperture clips it, and record the clipping separately.
   const chiefRay = mtfLaunchRay(launch, 0, 0);
   const chiefTrace = traceEngineRay2(state, chiefRay, { ...traceOptions, checkSemiDiameter: false, stopOnClip: false });
-  const chiefPoint = mtfImagePoint(state, chiefTrace, imagePlaneZ);
+  // A clipped chief runs over surface zones beyond their rims, where another wavelength can lose it.
+  const chiefPoint = mtfImagePoint(state, chiefTrace, imagePlaneZ) ?? reference;
   if (!chiefPoint) return null;
   const chiefClipped =
     mtfTraceClassification(traceEngineRay2(state, chiefRay, traceOptions), state, options.stopSemiDiameterMm) !==

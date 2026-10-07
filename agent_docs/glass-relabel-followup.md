@@ -34,6 +34,18 @@ proprietary glass lives in [proprietary-glass-backfill.md](proprietary-glass-bac
   lanthanum flint on its existing Abbe model. Closing it needs source line indices; Leitz mil-spec documentation is
   sparse, so this may stay open indefinitely.
 
+- **`dPgF` stored on a source normal line (2026-10).** `src/lens-data/LENS_DATA_SPEC.md` requires
+  `dPgF = PgF − normalLinePgF(νd)` on the engine's line (0.6438 − 0.001682·νd). Comparing each catalog-resolved
+  element's `dPgF` with its catalog PgF finds 28 files where at least one value instead fits the line many patents
+  define, 0.64833 − 0.0018·νd; the two differ by up to 0.007. Every decidable element fits the patent line in
+  `Sigma1018mmf28DCDN`, `Sigma1740mmf18DCA`, `Sigma85mmf14Art`, `SigmaDGDNA35mmf14`, `SigmaDGDNA85mmf14`,
+  `PanasonicDGSummilux12mmf14`, `PanasonicSPro50mmf14`, `FujifilmXF23mmf14RLMWR`,
+  `VoigtlanderAPOLanthar28mmf2Aspherical`, `VoigtlanderColorSkopar28mmf28` and
+  `LeicaSuperVarioElmarSL1635mmf3545Asph`; the other 17 are mixed and need their source read. The Sellmeier tier
+  rebuilds the g line from an authored `dPgF`, so only the violet channel of chromatic traces moves (g-line index
+  about 3e-5); spectral MTF reads the catalog curve and does not. Close a file by recovering PgF from its source
+  table, as `Sigma45mmf28DGDN` and `Sigma23mmf14DCDNC` were, never by subtracting a constant.
+
 ## Closed families — do not re-audit
 
 Engine and reporting decisions:

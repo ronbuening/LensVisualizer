@@ -3,7 +3,13 @@ import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
-import { resolveMtfGeometry } from "../../../src/optics/mtf.js";
+import {
+  mtfChiefHeight,
+  mtfModeledHalfField,
+  resolveMtfFieldGeometry,
+} from "../../../src/optics/analysis/mtfFields.js";
+import { assessMtfSupport } from "../../../src/optics/mtf.js";
+import type { MtfOptions } from "../../../src/types/mtf.js";
 import { doLayout, epAtZoom, traceRay, traceSkewRay } from "../../../src/optics/optics.js";
 import {
   attachTeleconverter,
@@ -36,17 +42,22 @@ function zoomStations(L: RuntimeLens): number[] {
 }
 
 /**
- * Share of the format corner the real chief ray reaches through every clear aperture, wide open at infinity: the
- * field axis the MTF tab charts, so a shortfall here is the tab's "short of the format corner" warning.
+ * Share of the format corner the real chief ray reaches through every clear aperture, wide open at infinity. This is
+ * the chief's own edge, not the edge the MTF tab charts to: part of a beam still passes a rim that stops its chief ray,
+ * and a converter rim that does that is undersized all the same.
  */
 function cornerCoverage(L: RuntimeLens, zoomT: number): number {
-  const geometry = resolveMtfGeometry(prepareRuntimeState(L, 0, zoomT), {
+  const state = prepareRuntimeState(L, 0, zoomT);
+  const options: MtfOptions = {
     method: "geometric",
     spectrum: "reference",
     focus: "design",
     pupilSemiDiameterMm: epAtZoom(zoomT, L),
     stopSemiDiameterMm: wideOpenStopAtZoom(zoomT, L),
-  });
+  };
+  const support = assessMtfSupport(state, options);
+  if (!support.available) return 0;
+  const geometry = resolveMtfFieldGeometry(state, mtfModeledHalfField(state), mtfChiefHeight(state, options, support));
   return geometry ? geometry.modeledEdgeHeightMm / geometry.referenceHeightMm : 0;
 }
 

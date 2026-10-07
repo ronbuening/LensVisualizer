@@ -53,12 +53,20 @@ views share the same computed fields, one image plane and physical lp/mm units.
 
 **Field axis** (`mtfFields.ts`). Field fractions are fractions of a reference image height: the declared format-corner
 radius (`imageCircleMm`, else the canonical format diagonal), or the modeled edge when neither is declared. The
-modeled edge is the largest height whose real, stop-aimed chief ray passes every authored clear aperture. It starts
-from the shared field geometry, which tests a paraxially launched chief and can stop short in wide-angle designs with
-strong pupil aberration, and walks outward; a chief that passes the format corner is solved back to it, so the edge
-angle always lands on the edge height. Targets map to chief angles through the shared exact inversion (infinity) or a
-bracketed root solve on the aimed finite-source chief. Heights beyond the modeled edge are
-`outside-modeled-field` and are not traced. Fields run center, corner, then coarse to fine.
+modeled edge is first the largest height whose real, stop-aimed chief ray passes every authored clear aperture. It
+starts from the shared field geometry, which tests a paraxially launched chief and can stop short in wide-angle
+designs with strong pupil aberration, and walks outward; a chief that passes the format corner is solved back to it,
+so the edge angle always lands on the edge height. Where that edge falls short of a declared format corner the rest of
+the beam still forms an image, so the edge continues out to the last height at which a footprint scan finds
+transmitted rays (`mtfBeamHeight`). The chief traced without aperture checks keeps defining image height there, never
+a flux centroid, which moves with coma; such a field carries a note. That chief runs over surface zones beyond their
+rims, so the extension is kept only if its height rises steadily all the way, and another wavelength that loses the
+chief there borrows the reference line's image point. Without a declared format the chief's own edge stays the
+reference, because the height where the beam vanishes cannot be charted. Targets map to chief angles through the
+shared exact inversion (infinity) or a bracketed root solve on the aimed chief (finite sources). The inversion serves
+heights up to the chief's own clip (`chiefEdgeHeightMm`); past it its chief ignores rims in its own way, so those
+heights take the root solve too. Heights beyond the modeled edge are `outside-modeled-field` and are not traced.
+Fields run center, corner, then coarse to fine.
 
 **Pupil sampling** (`mtfFootprint.ts`, `mtfTracing.ts`). Each field scans a 20 × 20 launch-plane grid at the
 reference wavelength, doubling until no transmitted sample touches its border, then traces the whole transmitted
@@ -129,7 +137,11 @@ retains lateral color. Every chromatic trace sets `wavelengthNm` beside its indi
 judged at and below 50 lp/mm (absolute change ≤0.01), where a sampled geometric sum is not yet dominated by aliasing
 noise; each field reports `convergedThroughLpMm`. A finer grid that fails keeps the last good curve as unconverged.
 The axial bundle is re-projected without retracing to find the image plane that maximizes mean axial MTF at
-10–50 lp/mm (a scan of the ray-crossing range, then golden-section refinement). It is always reported as a
+10–50 lp/mm (a scan, then golden-section refinement). The scan spans the flux-weighted axial crossings of the rays
+with 2 % of the flux ignored at each end, so a stray ray cannot stretch its steps past the focus, and it counts the
+virtual crossing of a ray that is already diverging. No candidate plane lies in front of the rearmost point of the
+last surface (`mtfNearestImagePlaneZ`): gaps of hundredths of a millimetre exist, and a ray cannot land on a plane it
+has passed. It is always reported as a
 diagnostic, and `focus: "best-axial"` (the tab's default) applies the shift to every field. `mtfImagePlaneOffset` (`mtfFocus.ts`) also
 compares the authored plane with the prescription's paraxial focus at infinity: beyond `MTF_IMAGE_PLANE_DEPTHS` (10)
 depths of focus, 2λN² at the d line and the open f-number, the plane is flagged as inconsistent lens data.
