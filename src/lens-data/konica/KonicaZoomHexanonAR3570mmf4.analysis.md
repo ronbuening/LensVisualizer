@@ -52,9 +52,10 @@ only that the stop lies inside the 3.00 mm air interval between patent surfaces 
 exact axial coordinate or diameter.
 
 For visualization, the stop is therefore a modeling inference at the midpoint of that interval: 1.50 mm after surface 9
-and 1.50 mm before surface 10. The stored stop semi-diameter, 11.130963 mm, is a **clear envelope**, not a claim about the
-physical production iris. The independently modeled f/3.5 stop openings required at the wide, middle, and tele states are
-8.307744, 9.541456, and 11.130963 mm in semi-diameter, respectively.
+and 1.50 mm before surface 10. The stored stop semi-diameter, 11.130963 mm, is the paraxial tele-state opening, not a
+claim about the physical production iris. The paraxial f/3.5 stop openings required at the wide, middle, and tele states
+are 8.307744, 9.541456, and 11.130963 mm in semi-diameter, respectively. The wide-open iris radii traced from f/3.5 at
+those states are 8.468, 9.831, and 11.786 mm, so the tele opening is larger than the stored semi-diameter.
 
 The image-space distance is also not tabulated in the patent. The authored D15 values are paraxially solved infinity-image
 distances for the three zoom states. Under the project's geometric terminology, the system is not telephoto at any of the

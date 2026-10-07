@@ -349,6 +349,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: front positive component only; common 27.690051647 mm objectward extension solved from the 0.7 m film-plane MFD. Patent supplies no close-focus spacing table.",
 
   nominalFno: 4,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16],
 
   gapSagFrac: 0.98,

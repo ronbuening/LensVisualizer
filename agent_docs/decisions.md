@@ -72,6 +72,7 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 ## Standing maintainer decisions
 
 - 2026-10-07 — A value the source prints is corrected only under the source-errata standard in `agent_docs/lens-patent-audit.md` (two kinds of source-internal evidence, never an MTF chart) and is recorded in `sourceErrata`; "wide open" means the patent design f-number, not the marketed one. (MTF accuracy audit, 2026-10)
+- 2026-10-07 — The `clipMargin` multiplier is not to return (one lens used it, at 1.05), and a zoom's default iris is the per-station one, not the wide-end radius. The zoom-iris, hard-clip and rim rules are in `src/lens-data/LENS_DATA_SPEC.md` (zoom aperture); rims that clip the stated axial beam are queued in `sd-audit-queue.md` Section I. (MTF accuracy audit, 2026-10)
 
 - 2026-10-05 — `publishedStations` (with `finiteConjugates`) is the only machine-read station provenance. The `Focus status:` tokens in lens-file comments stay free text: do not parse or formalize them. The field is read lazily by `src/optics/publishedStations.ts` and is not normalized onto `RuntimeLens`, so `buildLens()` and the analyses stay unaware of it. (patent-positions PR)
 - 2026-09-09 — The PR description is the branch record; per-branch notes under `agent_docs/records/` are no longer written, and 47 unreferenced records were deleted (recoverable via `git log --diff-filter=D -- agent_docs/records`). (2026-09-09 review)

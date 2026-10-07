@@ -485,6 +485,9 @@ const LENS_DATA = {
   closeFocusM: 0.49,
   focusDescription: "NO_INTERNAL_RECONSTRUCTION — patent Example 7 publishes infinity-focus zoom states only; product MOD 0.49 m is metadata and no close-focus internal motion is invented.",
   nominalFno: [3.628, 3.628, 6.459],
+  // One iris radius (9.50 mm) reproduces the wide and tele FNO to 0.01 %; the middle 3.628 repeats the wide value and
+  // would need a 14.24 mm iris, wider than the rims behind the stop.
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 40],
   apertureBlades: 7,
   maxFstop: 40,

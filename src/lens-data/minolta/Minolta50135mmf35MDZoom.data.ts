@@ -302,6 +302,7 @@ const LENS_DATA = {
     "Front-group (V1) focus is inferred, not patent-stated; no finite-focus spacings (NO_INTERNAL_RECONSTRUCTION).",
 
   nominalFno: 3.6,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.6, 4, 5.6, 8, 11, 16],
 
   yScFill: 0.38,

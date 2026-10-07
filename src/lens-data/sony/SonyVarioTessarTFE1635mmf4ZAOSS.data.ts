@@ -25,8 +25,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Semi-diameters are modeled, not patent-published. They were derived from real sequential ray bundles ║
  * ║ at all three zoom states and both focus endpoints, including on-axis marginal rays and full-field    ║
  * ║ chief/fan rays, then checked for edge thickness, actual aspheric rim slope, shared-gap intrusion,     ║
- * ║ and conic limits. STO.sd is the maximum modeled wide-open iris radius (tele); nominalFno controls     ║
- * ║ operational opening is ~6.535 / 7.603 / 8.959 mm at wide/mid/tele; STO.sd adds clearance.            ║
+ * ║ and conic limits. STO.sd is the paraxial tele wide-open stop radius (8.959 mm) plus clearance; the   ║
+ * ║ wide-open iris traced from nominalFno is 6.553 / 7.669 / 9.160 mm at wide/mid/tele.                  ║
  * ║ No sensor cover glass, filters, inactive dummy planes, or mechanical parts are included.             ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝
  */

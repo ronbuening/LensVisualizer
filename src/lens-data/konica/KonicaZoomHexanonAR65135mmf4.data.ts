@@ -346,6 +346,7 @@ const LENS_DATA = {
     "patent U is object-to-image distance and is not silently equated to the product MFD reference plane.",
 
   nominalFno: 4,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16],
 
   yScFill: 0.36,

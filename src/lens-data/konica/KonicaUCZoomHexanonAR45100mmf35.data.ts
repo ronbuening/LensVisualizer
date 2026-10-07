@@ -260,6 +260,7 @@ const LENS_DATA = {
     "no close-focus group motion is modeled.",
 
   nominalFno: 3.5,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],
 
   yScFill: 0.38,

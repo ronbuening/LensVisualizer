@@ -298,6 +298,7 @@ const LENS_DATA = {
     "not exposed.",
 
   nominalFno: 4,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
 

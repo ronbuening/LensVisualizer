@@ -369,6 +369,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: patent-published infinity zoom states with a code-solved 0.5 m endpoint. Only G2 moves for focus; d16 + d26 is conserved while d31 and Bf remain fixed at each zoom position. The telephoto endpoint traces to approximately 0.21756x (about 1:4.60), rather than the rounded marketed 1:4.8.",
 
   nominalFno: [3.6, 4.68, 5.9],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

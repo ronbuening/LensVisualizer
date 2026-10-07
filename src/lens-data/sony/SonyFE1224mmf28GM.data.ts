@@ -8,8 +8,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Semi-diameters are patent effective diameters (phi/2), not inferred blank diameters,
  * except S7, which is reduced 0.055 mm from phi/2 to preserve rendered
  * clearance across the tight S6-S7 air gap.
- * The stop semi-diameter stores the largest Table 9 phi15/2 value because the current
- * data schema does not carry a zoom-varying stop aperture diameter.
+ * The stop semi-diameter stores the largest Table 9 phi15/2 value (telephoto). The wide-open
+ * iris radius at each zoom station is traced from nominalFno: 8.112 / 9.563 / 11.813 mm,
+ * against Table 9 phi15/2 = 8.115 / 9.565 / 11.815 mm.
  */
 const LENS_DATA = {
   key: "sony-fe-1224f28-gm",

@@ -85,7 +85,8 @@ The aperture stop is source-defined at R11 and is stored as the required single 
 publish its physical diameter. The data file therefore uses an inferred base semi-diameter of 12.263999865 mm, constrained
 by the wide-state f/4.65 chart value. Re-inverting the three patent chart f-numbers gives the effective stop semi-diameters
 required to reproduce those chart values: 12.264, 12.341, and 12.405 mm. The source does not provide enough information
-to distinguish chart/prescription rounding from unreported iris motion, so no separate iris-motion law is reconstructed.
+to distinguish chart/prescription rounding from unreported iris motion, so no iris schedule is stored; the wide-open
+iris at each zoom state is traced from that state's chart f-number.
 
 Numerical Embodiment 3 contains no FP fixed flare-cutter plane and no SSP moving sub-flare-cutter plane. Those symbols
 belong to other patent embodiments. No sensor cover glass, filter plate, dummy plane, mirror, folded path, or diffractive

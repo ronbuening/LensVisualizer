@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * all 21 zoom knots, at infinity and 1.5 m focus. They are modeling apertures, not patent dimensions. The patent
  * gives only rounded endpoint f-numbers and no stop radius; nominalFno therefore uses the published 4.6/5.8
  * endpoints plus a disclosed 5.2 middle interpolation. STO.sd=10.5 mm is a clearance envelope for the largest exact
- * marginal-ray opening (10.408 mm at tele); the current scalar runtime opening remains a documented engine limitation.
+ * marginal-ray opening (10.408 mm at tele); the runtime wide-open iris follows nominalFno at each zoom station.
  * Surface SDs 4/5 and 7/8 contain that tele marginal ray and remain consistent with the 600 dpi Figure 1 outline.
  *
  * The zero-distance, equal-radius air split at source surfaces 29/30 is collapsed to one direct E15-to-E16 interface

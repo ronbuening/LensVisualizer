@@ -35,8 +35,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * meridional ray envelopes at all three infinity zoom states using the modeled
  * wide-open stop, the full on-axis pupil, the default 0.6x off-axis field bundle,
  * and the full-field chief ray, then given a small mechanical margin. The STO.sd value
- * is the maximum required mechanical clear radius across the defined zoom states; the
- * nominalFno array supplies the effective per-position wide-open aperture. They were
+ * is the authored stop semi-diameter; the nominalFno array sets the per-position
+ * wide-open iris radius, 6.424 / 6.423 / 7.000 mm at wide / middle / tele. They were
  * checked for positive edge thickness, actual rim slope, conic domain, shared-band
  * cross-gap intrusion, ray containment, and absence of geometry-forced render trim.
  *

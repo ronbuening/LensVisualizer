@@ -463,6 +463,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: production 0.5 m subject-to-image-plane MOD solved by translating G4 only, with the rear plate traced physically; D28 + D32 is conserved at each zoom position. Patent Table 12 itself represents an approximately 1.0 m subject-to-image state.",
 
   nominalFno: [3.6909409460450076, 5.387525251923575, 5.9052849086316925],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 7,
   maxFstop: 22,

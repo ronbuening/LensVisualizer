@@ -1898,11 +1898,13 @@ describe("zoom source schedules", () => {
         ),
       ).toBe(true);
     }
-    expect(
-      validateLensData(makeValid({ zoomPositions: [20, 35, 50], zoomApertureModel: "unknown" })).some((e) =>
-        e.includes("zoomApertureModel"),
-      ),
-    ).toBe(true);
+    const modelErrors = (overrides: Record<string, unknown>) =>
+      validateLensData(makeValid(overrides)).filter((e) => e.includes("zoomApertureModel"));
+    expect(modelErrors({ zoomPositions: [20, 35, 50], zoomApertureModel: "unknown" })).toHaveLength(1);
+    expect(modelErrors({ zoomApertureModel: "fixed-iris" })).toHaveLength(1);
+    for (const zoomApertureModel of ["from-nominal-fno", "fixed-iris"]) {
+      expect(modelErrors({ zoomPositions: [20, 35, 50], zoomApertureModel })).toHaveLength(0);
+    }
   });
 });
 

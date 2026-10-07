@@ -323,7 +323,7 @@ The inferred semi-diameter model passes the available geometry gate at all publi
 
 These geometric quantities are computed modeling results, not patent clear-aperture specifications. The binding clearance occurs across the 0.36590 mm air gap between surfaces 23 and 24. Layout controls are not used to conceal an overlap or conic-domain violation.
 
-The stop radii implied by the patent's f-numbers and the traced entrance pupil are 10.123452, 11.606576, and 13.416779 mm from wide to tele. Because the patent gives no physical stop diameter, these values are normalized consequences of the published f-number rather than independent aperture measurements.
+The paraxial stop radii implied by the patent's f-numbers and the traced entrance pupil are 10.123452, 11.606576, and 13.416779 mm from wide to tele; the wide-open iris radii traced from the same f-numbers are 10.215, 11.821, and 13.903 mm. Because the patent gives no physical stop diameter, these values are normalized consequences of the published f-number rather than independent aperture measurements.
 
 ## Sources
 

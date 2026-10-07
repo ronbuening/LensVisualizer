@@ -13,9 +13,10 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * NOTE ON APERTURE:
  *   The patent lists F2.93 at all three zoom positions but does not tabulate the physical
- *   stop diameter. The fixed STO semi-diameter below, 8.43 mm, is the paraxially verified
+ *   stop diameter. The STO semi-diameter below, 8.43 mm, is the paraxially verified
  *   wide-end value required to reproduce F2.93 with the Example 1 prescription. The top-level
- *   nominalFno carries that F2.93; apertureMarketing records the marketed F2.8.
+ *   nominalFno carries that F2.93 and sizes the wide-open iris at each station (traced radii
+ *   8.63 / 9.43 / 10.69 mm); apertureMarketing records the marketed F2.8.
  *
  * NOTE ON ASPHERES:
  *   Patent surfaces 5 and 6 contain odd polynomial terms A3, A5, A7, ... A15. The viewer's

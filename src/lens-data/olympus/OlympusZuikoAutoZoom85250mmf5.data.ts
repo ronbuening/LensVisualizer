@@ -309,6 +309,7 @@ const LENS_DATA = {
   focusDescription:
     "Front-group focusing. Group I advances for close focus; close-focus D1 values are paraxially inferred for 2.0 m because the patent gives 3 m aberration curves but no close-focus spacing table.",
   nominalFno: 5,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [5, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
   scFill: 0.82,

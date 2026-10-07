@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-07",
     type: "fix",
+    summary: "Zoom lenses now open their iris to the stated f-number at every focal length, not only the wide end",
+  },
+  {
+    date: "2026-10-07",
+    type: "fix",
     summary: "156 lenses now open to their patent design f-number, with the marketed value shown beside it",
   },
   {

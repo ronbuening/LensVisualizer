@@ -256,6 +256,15 @@ projections (fisheye, rectilinear `fullFieldDeg`/`maxTraceFieldDeg`) and folded 
 the format. `npm run audit:field-coverage` reports each lens's modeled edge against its corner and names the stopping
 rim.
 
+**Wide-open iris.** `nominalFno` sizes the iris: the builder real-traces the marginal ray at the entrance-pupil radius
+that f-number names and takes its height at the stop. A zoom does this at every source station (`zoomStopSDs`, read
+through `wideOpenStopAtZoom()` in `src/optics/apertureStop.ts`), so each station traces at its stated f-number;
+`zoomStopSemiDiameters` substitutes a published schedule and `zoomApertureModel: "fixed-iris"` keeps the first
+station's radius. A stop that is a surface of drawn glass keeps its authored radius. Every other semi-diameter is a
+hard clip with no margin, so a rim smaller than the stated beam makes the lens trace slower than its label;
+`npm run audit:aperture` lists those stations and what limits each. The data rules are in
+`src/lens-data/LENS_DATA_SPEC.md` (zoom aperture).
+
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 
 ### Rear Plates
@@ -381,7 +390,7 @@ step crosses the domain edge the edge is bisected and sampled, so a root just in
 Aspheric hits are then restricted to the authored cap (`selectAsphericCapHit` in `math/intersection.ts`, reached from
 both solvers with the surface's `sd`): the first root inside the radial cylinder `r <= sd`, in ray order, wins over
 any polynomial-continuation root outside it, while a ray with no cap root keeps its exterior hit so aperture clipping
-still reports the first clip. The cap is the authored `sd`, independent of the iris, inner holes and clip margin, and a
+still reports the first clip. The cap is the authored `sd`, independent of the iris and inner holes, and a
 physical hit blocked by the iris is never skipped for a later clear one. To avoid a second solve, a conservative
 slope certificate (`SurfaceProfile.maxAbsSlope`; `|dz| > maxAbsSlope * |dxy|` makes the sag equation strictly
 monotone over the covered radii) reuses the established hit or proves a cap miss from the cylinder endpoints; any

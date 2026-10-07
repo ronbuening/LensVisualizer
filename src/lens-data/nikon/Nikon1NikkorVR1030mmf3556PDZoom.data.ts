@@ -255,6 +255,7 @@ const LENS_DATA = {
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
   nominalFno: [3.596331920009204, 5.046339542821676, 6.406521031094748],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16],
   yScFill: 0.44,
 } satisfies LensDataInput;

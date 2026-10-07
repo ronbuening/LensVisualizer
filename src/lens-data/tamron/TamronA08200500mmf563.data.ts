@@ -321,6 +321,7 @@ const LENS_DATA = {
     "code-solved at the production 2.5 m MOD with the normalized image plane fixed and D20 + BF conserved.",
 
   nominalFno: [5.165510882857218, 5.726845528563873, 6.2380323447524],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [5.6, 6.3, 8, 11, 16, 22, 32],
   apertureBlades: 9,
   maxFstop: 32,

@@ -537,6 +537,7 @@ const LENS_DATA = {
     "d10 shortens exactly as d17 lengthens at each zoom position. No internal focus reconstruction is used.",
 
   nominalFno: 2.9,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 9,
   maxFstop: 32,

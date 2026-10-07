@@ -383,6 +383,7 @@ const LENS_DATA = {
     "Rear internal focus: the negative G4/RN group (L41-L42) translates imageward. Patent short-distance travel is 0.657 mm at wide, 0.820 mm at middle, and 1.719 mm at telephoto; Nikon's production MFD is 1.2 m.",
 
   nominalFno: [4.5, 4.86, 5.6],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32, 40],
   maxFstop: 40,
 

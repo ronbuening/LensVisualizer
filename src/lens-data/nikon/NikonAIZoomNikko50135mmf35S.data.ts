@@ -318,6 +318,7 @@ const LENS_DATA = {
     "Front-group unit focus in production and patent text; patent close-focus spacings are not published, so this file models only the infinity-focus zoom states.",
   closeFocusM: 0.6,
   nominalFno: 3.5,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 7,
   apertureBladeRoundedness: 0.1,

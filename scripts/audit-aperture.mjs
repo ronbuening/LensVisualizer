@@ -1,0 +1,200 @@
+/**
+ * Aperture census: does each lens pass the axial beam its stated f-number names?
+ *
+ * For every visible lens and zoom station at infinity focus, wide open, this script reports:
+ *
+ *   stated    `nominalFno` at the station
+ *   traced    the stated value scaled by (stated entrance-pupil radius ÷ the largest on-axis ray height that clears
+ *             the iris and every clear aperture)
+ *   limiter   what stops the next ray: the iris, a rim, or a trace failure at the surface named
+ *
+ * Diagnoses (stations more than `--over` away from the stated value, 3 % by default):
+ *
+ *   rim       a clear aperture clips the stated axial beam, so the lens is traced slower than its label
+ *   trace     no rim clips the beam, but the next ray cannot be continued: it is totally reflected at the surface
+ *             named, or it leaves a surface beyond the next one's vertex plane (`noBracket`)
+ *   iris      the iris itself is not the stated one: `zoomApertureModel: "fixed-iris"`, a published
+ *             `zoomStopSemiDiameters` schedule, an embedded glass stop that keeps its authored radius, or a derived
+ *             iris at its paraxial radius because the stated marginal ray cannot be real-traced to the stop
+ *   failed    no usable on-axis ray reaches the image plane; the limiter names where a near-axis ray stops
+ *
+ * A rim-limited row is not automatically a data error, and it is never fixed by enlarging the rim to fit. Check
+ * whether the semi-diameter is printed in the source or was inferred from a drawing, then follow
+ * agent_docs/patent-figure-sd-audit-procedure.md. Open rows live in agent_docs/sd-audit-queue.md, Section I.
+ *
+ * Folded paths are skipped: their aperture is annular. Read-only. Usage:
+ *   node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-aperture.mjs [data.ts ...]
+ *     --over=<fraction>    list stations whose traced f-number differs by more than this (default 0.03)
+ *     --markdown           queue-table output
+ *     --json=<path>        write every station as JSON
+ *     --all                include hidden lenses in the full census (a named file is always audited)
+ */
+
+import { readdirSync, writeFileSync } from "node:fs";
+import { join, relative, resolve } from "node:path";
+import { pathToFileURL } from "node:url";
+
+const ROOT = join(import.meta.dirname, "..");
+const LENS_DIR = join(ROOT, "src", "lens-data");
+const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
+
+const buildLens = (await load("src/optics/buildLens.ts")).default;
+const { prepareRuntimeState } = await load("src/optics/compat.ts");
+const { traceEngineRay2 } = await load("src/optics/trace/rayAdapters.ts");
+
+const args = process.argv.slice(2);
+const flag = (name) => args.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3);
+const OVER = Number(flag("over") ?? 0.03);
+const MARKDOWN = args.includes("--markdown");
+const JSON_PATH = flag("json");
+const ALL = args.includes("--all");
+const SCAN_STEPS = 64;
+/** Share of the stated pupil radius at which a ray must still pass for the lens to have an axial beam at all. */
+const NEAR_AXIS = 1e-3;
+const BISECTIONS = 40;
+
+/**
+ * Largest on-axis ray height that clears the iris and every clear aperture, and the surface the next ray leaves.
+ *
+ * Rims are compared on the unclipped (ghost) path, in ray order, so the first event is the one that limits the ray.
+ * A ghost trace runs on unrefracted past a failed refraction; nothing after that hit is read.
+ */
+function axialBeam(state, statedRadius) {
+  const first = state.surfaces[0];
+  const lead = Math.max(1, Math.abs(first.profile.sag(first.sd ?? 0)) + 1);
+  const firstClip = (height) => {
+    const trace = traceEngineRay2(
+      state,
+      { origin: [0, height, (state.z[0] ?? 0) - lead], direction: [0, 0, 1] },
+      { ghost: true },
+    );
+    for (const hit of trace.hits) {
+      const sd = state.surfaces[hit.surfaceIndex].sd;
+      if (typeof sd === "number" && hit.radius > sd * (1 + 1e-9)) {
+        return { label: hit.surfaceLabel, index: hit.surfaceIndex };
+      }
+      if (hit.failureReason) {
+        return { label: `${hit.surfaceLabel} (${hit.failureReason})`, index: hit.surfaceIndex, failed: true };
+      }
+    }
+    if (trace.failureReason === null) return null;
+    /* No hit failed, so the ray missed the surface after the last one it reached. */
+    const index = trace.terminalSurfaceIndex + 1;
+    return { label: `${state.surfaces[index]?.label ?? "?"} (${trace.failureReason})`, index, failed: true };
+  };
+  const nearAxis = firstClip(NEAR_AXIS * statedRadius);
+  if (nearAxis) return { radius: null, limiter: nearAxis };
+  const ceiling = 2 * Math.max(statedRadius, first.sd ?? 0);
+  let pass = 0;
+  let fail = null;
+  for (let step = 1; step <= SCAN_STEPS; step++) {
+    const height = (ceiling * step) / SCAN_STEPS;
+    if (firstClip(height)) {
+      fail = height;
+      break;
+    }
+    pass = height;
+  }
+  if (fail === null) return { radius: ceiling, limiter: null };
+  for (let i = 0; i < BISECTIONS; i++) {
+    const middle = (pass + fail) / 2;
+    if (firstClip(middle)) fail = middle;
+    else pass = middle;
+  }
+  return { radius: pass, limiter: firstClip(fail) };
+}
+
+const requested = args.filter((arg) => arg.endsWith(".data.ts")).map((arg) => resolve(arg));
+const files = requested.length
+  ? requested
+  : readdirSync(LENS_DIR, { recursive: true })
+      .filter((file) => file.endsWith(".data.ts"))
+      .sort()
+      .map((file) => join(LENS_DIR, file));
+
+const rows = [];
+let lenses = 0;
+let folded = 0;
+for (const path of files) {
+  const data = (await import(pathToFileURL(path).href)).default;
+  if (data.visible === false && !ALL && requested.length === 0) continue;
+  const L = buildLens(data);
+  if (L.isFoldedOptics) {
+    folded++;
+    continue;
+  }
+  lenses++;
+  const stations = L.isZoom ? data.zoomPositions.length : 1;
+  const stopLabel = L.S[L.stopIdx].label;
+  for (let zi = 0; zi < stations; zi++) {
+    const zoomT = stations > 1 ? zi / (stations - 1) : 0;
+    const state = prepareRuntimeState(L, 0, zoomT);
+    const stated = Array.isArray(data.nominalFno) ? data.nominalFno[zi] : data.nominalFno;
+    const statedRadius = L.zoomEPs?.[zi] ?? L.EP.epSD;
+    const beam = axialBeam(state, statedRadius);
+    const traced = beam.radius === null ? null : (stated * statedRadius) / beam.radius;
+    const limiter = beam.limiter;
+    const diagnosis =
+      traced === null
+        ? "failed"
+        : Math.abs(traced / stated - 1) <= OVER
+          ? "ok"
+          : limiter?.failed
+            ? "trace"
+            : limiter === null || limiter.index === L.stopIdx
+              ? "iris"
+              : "rim";
+    rows.push({
+      key: data.key,
+      name: data.name,
+      file: relative(LENS_DIR, path),
+      station: stations > 1 ? `${Number(data.zoomPositions[zi].toFixed(2))} mm` : "",
+      stated,
+      traced,
+      ratio: traced === null ? null : traced / stated,
+      limiter: limiter?.label ?? "none",
+      diagnosis,
+      stopLabel,
+      stopModel: data.zoomStopSemiDiameters
+        ? "published schedule"
+        : data.zoomApertureModel === "fixed-iris"
+          ? "fixed iris"
+          : state.surfaces[L.stopIdx].stopPlacement === "inside-element"
+            ? "embedded stop"
+            : "derived",
+    });
+  }
+}
+
+if (JSON_PATH) writeFileSync(JSON_PATH, JSON.stringify(rows, null, 2));
+
+const listed = rows.filter((row) => row.diagnosis !== "ok");
+const byLens = (diagnosis) => new Set(listed.filter((row) => row.diagnosis === diagnosis).map((row) => row.key)).size;
+const fNumber = (value) => (value === null ? "n/a" : `f/${value.toFixed(2)}`);
+const percent = (ratio) => (ratio === null ? "n/a" : `${ratio >= 1 ? "+" : ""}${((ratio - 1) * 100).toFixed(1)} %`);
+listed.sort((a, b) => Math.abs((b.ratio ?? Infinity) - 1) - Math.abs((a.ratio ?? Infinity) - 1));
+
+if (MARKDOWN) {
+  console.log("| Lens | File | Station | Stated | Traced | Difference | Limiter | Diagnosis | Status |");
+  console.log("|---|---|---|---:|---:|---:|---|---|---|");
+  for (const row of listed) {
+    console.log(
+      `| ${row.name.replaceAll("|", "\\|")} | \`${row.file}\` | ${row.station || "prime"} | ${fNumber(row.stated)} | ${fNumber(row.traced)} | ${percent(row.ratio)} | ${row.limiter} | ${row.diagnosis}${row.stopModel === "derived" ? "" : ` (${row.stopModel})`} | todo |`,
+    );
+  }
+} else {
+  for (const row of listed) {
+    console.log(
+      `${row.diagnosis.padEnd(6)} ${percent(row.ratio).padStart(9)}  ${fNumber(row.stated)} -> ${fNumber(row.traced)}  ${row.limiter.padEnd(8)} ${row.key}${row.station ? ` @ ${row.station}` : ""}${row.stopModel === "derived" ? "" : ` [${row.stopModel}]`}`,
+    );
+  }
+}
+console.error(
+  `${lenses} lenses, ${rows.length} stations (${folded} folded skipped): ${rows.length - listed.length} within ${(OVER * 100).toFixed(0)} % of the stated f-number; ` +
+    ["rim", "trace", "iris", "failed"]
+      .map((diagnosis, i) => {
+        const stationCount = listed.filter((row) => row.diagnosis === diagnosis).length;
+        return `${diagnosis} ${stationCount}${i ? "" : " stations"} / ${byLens(diagnosis)}${i ? "" : " lenses"}`;
+      })
+      .join(", "),
+);

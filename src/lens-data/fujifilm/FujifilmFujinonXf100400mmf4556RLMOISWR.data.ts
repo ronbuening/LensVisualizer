@@ -531,6 +531,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: G5 alone moves imageward to 1.75 m; D29 increases and D34 decreases by equal amounts at each zoom state. Close-focus spacings are code-solved for a 1.75 m object-to-image distance with the PP rear plates traced physically, not patent-published.",
 
   nominalFno: [4.614445088540655, 4.784521400670022, 5.791672588725861],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   maxFstop: 22,

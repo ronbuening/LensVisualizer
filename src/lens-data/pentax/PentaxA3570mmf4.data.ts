@@ -237,6 +237,7 @@ const LENS_DATA = {
    * Modeled fixed-stop f-numbers, not a claim about the production iris law.
    */
   nominalFno: [4.1, 5.394215],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.1, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

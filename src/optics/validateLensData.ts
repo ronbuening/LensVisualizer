@@ -945,7 +945,6 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     "svgH",
     "scFill",
     "yScFill",
-    "clipMargin",
     "maxRimAngleDeg",
     "gapSagFrac",
     "rayLeadFrac",
@@ -977,11 +976,11 @@ export default function validateLensData(data: UntrustedLensData): string[] {
 
   if (
     data.zoomApertureModel !== undefined &&
-    (data.zoomApertureModel !== "from-nominal-fno" ||
+    ((data.zoomApertureModel !== "from-nominal-fno" && data.zoomApertureModel !== "fixed-iris") ||
       !Array.isArray(data.zoomPositions) ||
       data.zoomPositions.length < 2)
   ) {
-    errors.push('"zoomApertureModel" must be "from-nominal-fno" on a zoom lens');
+    errors.push('"zoomApertureModel" must be "from-nominal-fno" or "fixed-iris" on a zoom lens');
   }
   if (data.zoomStopSemiDiameters !== undefined) {
     if (

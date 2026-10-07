@@ -3,6 +3,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useLensComputation from "../../../../src/components/hooks/useLensComputation.js";
+import { wideOpenStopAtZoom } from "../../../../src/optics/apertureStop.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
 import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
 import buildLens from "../../../../src/optics/buildLens.js";
@@ -230,12 +231,12 @@ describe("useLensComputation", () => {
           }),
         { initialProps: { zoomT: 0, stopdownT: 0 } },
       );
-      const iris = result.current.L!.stopPhysSD;
       for (const zoomT of [0, 0.5, 1]) {
         rerender({ zoomT, stopdownT: 0 });
+        const L = result.current.L!;
+        const iris = wideOpenStopAtZoom(zoomT, L);
         expect(result.current.currentPhysStopSD).toBeCloseTo(iris, 10);
         expect(result.current.currentEPSD).toBeCloseTo(result.current.baseEPSD, 10);
-        const L = result.current.L!;
         const stopdownT = Math.log(8 / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN);
         rerender({ zoomT, stopdownT });
         expect(result.current.fNumber).toBeCloseTo(8, 10);

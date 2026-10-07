@@ -318,6 +318,7 @@ const LENS_DATA = {
     "NO_INTERNAL_RECONSTRUCTION. The patent describes G1 focusing and coupled G1+G2 macro motion but publishes no quantitative close-focus spacings; the model therefore retains only the two published infinity zoom states. Nikon's 0.71 m minimum applies only to the 100 mm macro mode and is metadata, not a solved internal state.",
 
   nominalFno: 5.6,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
 

@@ -25,8 +25,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  as `apertureMarketing`. The patent locates the stop somewhere inside       ║
  * ║  the 3.00 mm S9-S10 air interval but gives no coordinate; the interval is   ║
  * ║  split 1.50/1.50 mm as a disclosed neutral midpoint inference. STO `sd` is  ║
- * ║  the clear envelope required by the largest modeled f/3.5 stop opening      ║
- * ║  (tele state), not a claim of a patent-published iris diameter.              ║
+ * ║  the paraxial f/3.5 stop radius at the tele state, not a claim of a          ║
+ * ║  patent-published iris diameter. The wide-open iris radius traced from f/3.5 ║
+ * ║  is 8.468 / 9.831 / 11.786 mm at wide / middle / tele.                       ║
  * ║                                                                              ║
  * ║  Semi-diameters are inferred. They were derived from the patent Y=21.6 mm   ║
  * ║  field, modeled f/3.5 marginal/chief rays, the Fig. 1 optical-section        ║

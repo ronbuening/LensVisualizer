@@ -428,8 +428,11 @@ export interface LensData {
   zoomCloseFocusM?: number[];
   /** Published physical iris semi-diameters in mm, one per source zoom station. */
   zoomStopSemiDiameters?: number[];
-  /** Infer physical iris radii at source zoom stations from their nominal f-numbers. */
-  zoomApertureModel?: "from-nominal-fno";
+  /**
+   * How a zoom's wide-open iris follows the zoom. Omitted or `"from-nominal-fno"`: each station's radius is traced
+   * from its nominal f-number. `"fixed-iris"`: the first station's radius is kept at every station.
+   */
+  zoomApertureModel?: "from-nominal-fno" | "fixed-iris";
   focusStep: number;
   maxFstop: number;
   apertureStep: number;
@@ -456,7 +459,6 @@ export interface LensData {
   svgH: number;
   scFill: number;
   yScFill: number;
-  clipMargin: number;
   maxRimAngleDeg: number;
   gapSagFrac: number;
   maxAspectRatio: number;
@@ -480,7 +482,6 @@ type DefaultedFields =
   | "svgW"
   | "svgH"
   | "scFill"
-  | "clipMargin"
   | "maxRimAngleDeg"
   | "gapSagFrac"
   | "maxAspectRatio"
@@ -566,7 +567,6 @@ export interface RuntimeLens {
   readonly maxRimSin: number;
   readonly maxRimTan: number;
   readonly gapSagFrac: number;
-  readonly clipMargin: number;
   readonly gridPitch: number;
   readonly gridCount: number;
   readonly lyDoublet: number;

@@ -64,6 +64,7 @@ const LENS_DATA = {
 
   closeFocusM: 6,
   nominalFno: 11,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [11, 16, 22, 32],
   maxFstop: 32,
   focusDescription:

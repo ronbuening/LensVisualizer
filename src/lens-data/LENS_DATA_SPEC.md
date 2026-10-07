@@ -92,7 +92,6 @@ These are merged automatically. Override only when needed.
 |-------|---------|-------------|
 | `svgW` | `1080` | SVG viewport width (px) |
 | `svgH` | `490` | SVG viewport height (px) |
-| `clipMargin` | `1.0` | Clipping margin for element trimming |
 | `maxRimAngleDeg` | `~64.2` | Maximum actual spherical/aspherical rim-slope angle; the default equals the old `sd/|R| = 0.9` threshold for a sphere |
 | `gapSagFrac` | `0.90` | Cross-gap sag intrusion fraction, synchronized with validation and rendering; must be > 0 and ≤ 1 |
 | `maxAspectRatio` | `1.6` | Max YSC/SC ratio — clamps vertical scale to prevent horizontal squashing on long lenses |
@@ -1104,9 +1103,15 @@ var: {
 },
 ```
 
-`zoomStopSemiDiameters: [8.26, 10.465, 13.325]` supplies published physical iris radii in mm, one per source zoom station. Values must be positive and finite. The first radius is the baseline iris; intermediate radii are interpolated and focus retains the current zoom iris. Do not combine this source schedule with `zoomApertureModel`.
+A zoom's wide-open iris follows the zoom. At every source zoom station the builder traces the entrance-pupil radius the station's `nominalFno` names (a scalar applies to every station) to the stop and keeps that radius, so each station traces at its stated f-number. Radii between stations are interpolated, and focus keeps the current zoom radius. These radii are calculated from the f-numbers, not read from the source. `zoomApertureModel: "from-nominal-fno"` names this default explicitly and changes nothing.
 
-`zoomApertureModel: "from-nominal-fno"` opts a zoom into a physical iris schedule inferred from the source station f-numbers. The builder traces each nominal infinity entrance-pupil radius to the stop and retains that station radius. Intermediate radii are interpolated; focus keeps the current zoom radius. This is a calculated aperture model, not a patent-published diameter schedule, and must be identified as inferred in the analysis. Omission retains the existing fixed physical iris.
+`zoomStopSemiDiameters: [8.26, 10.465, 13.325]` supplies published physical iris radii in mm instead, one per source zoom station. Values must be positive and finite. The first radius is the baseline iris; intermediate radii are interpolated and focus retains the current zoom iris. Do not combine this source schedule with `zoomApertureModel`.
+
+`zoomApertureModel: "fixed-iris"` keeps the first station's radius at every station. Declare it only when the source states that the stop diameter does not change with zoom, or when the file's own stop model is one iris radius whose traced f-numbers are what `nominalFno` stores. The station f-numbers then label the readout without sizing the iris, so they must be the ones that radius gives: a corpus sweep (`__tests__/src/lens-data/zoomApertureModel.test.ts`) fails when a station's traced radius differs from the fixed one by more than 3 %.
+
+An aperture stop that is a surface of drawn glass (`stopPlacement: "inside-element"`) keeps its authored semi-diameter at every station.
+
+Semi-diameters are physical clear radii: a ray beyond one is clipped, with no margin. When a station's stated beam does not fit through a rim, the lens traces slower than its label there; `npm run audit:aperture` lists those stations (see `agent_docs/sd-audit-queue.md`, Section I). Do not enlarge a rim to pass the beam.
 
 `zoomCloseFocusM` preserves zoom-dependent near-focus conjugates when a patent publishes different object distances at its zoom stations (for example, states at approximately constant magnification). Supply one positive finite distance in metres per `zoomPositions` entry. Distances between stations interpolate in the same normalized zoom coordinates; labels at intermediate focus use inverse-distance interpolation and remain estimates. Source-derived endpoints should be identified as calculated in the analysis. Single-lens labels, breathing, summary, effective-f-number estimates and comparison focus mapping use the current zoom endpoint. Omit the field for the existing scalar behavior.
 

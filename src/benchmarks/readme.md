@@ -22,6 +22,7 @@ flowchart LR
   n_external_pkg_react_dom["pkg:react-dom"]
   n_external_src_components_diagram["src/components/diagram"]
   n_external_src_optics_analysis["src/optics/analysis"]
+  n_external_src_optics_apertureStop_ts["src/optics/apertureStop.ts"]
   n_external_src_optics_buildLens_ts["src/optics/buildLens.ts"]
   n_external_src_optics_cardinalElements_ts["src/optics/cardinalElements.ts"]
   n_external_src_optics_diagramGeometry_ts["src/optics/diagramGeometry.ts"]
@@ -42,6 +43,7 @@ flowchart LR
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_pkg_react_dom
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_components_diagram
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_analysis
+  n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_apertureStop_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_buildLens_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_cardinalElements_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_diagramGeometry_ts
@@ -58,7 +60,7 @@ flowchart LR
 
 - Direct source files: 3
 - Direct subfolders: 0
-- Main outbound areas: src/components/display (8), src/components/hooks (4), same folder (2), src/optics/compat.ts (2), src/optics/optics.ts (2), src/types (2), package:react, package:react-dom, +12 more
+- Main outbound areas: src/components/display (8), src/components/hooks (4), same folder (2), src/optics/compat.ts (2), src/optics/optics.ts (2), src/types (2), package:react, package:react-dom, +13 more
 - External consumers: none
 
 ## Files
@@ -67,4 +69,4 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `benchmarkReport.ts` | Benchmark Report helper module | none | same folder | BENCHMARK_SCHEMA_VERSION, BenchmarkStatus, MainBenchmarkCategory, LegacyMainBenchmarkCategory, AnalysisBenchmarkCategory, BenchmarkScenarioConfigSnapshot, NumericSummary, BenchmarkStats, +14 more |
 | `mtfCases.ts` | Mtf Cases helper module | none | none | MTF_BENCHMARK_CASES, MTF_BENCHMARK_GRIDS, MTF_FINITE_BENCHMARK_CASE |
-| `opticsRenderingBenchmark.tsx` | React component module | src/components/display (8), src/components/hooks (4), same folder (2), src/optics/compat.ts (2), src/optics/optics.ts (2), +15 more | none | buildBenchmarkReport, formatRunFileName, DEFAULT_BENCHMARK_LENS_KEYS, BENCHMARK_SCENARIOS, BenchmarkOutput, OpticsRenderingBenchmarkOptions, ScenarioSnapshot, RayWorkOutput, +4 more |
+| `opticsRenderingBenchmark.tsx` | React component module | src/components/display (8), src/components/hooks (4), same folder (2), src/optics/compat.ts (2), src/optics/optics.ts (2), +16 more | none | buildBenchmarkReport, formatRunFileName, DEFAULT_BENCHMARK_LENS_KEYS, BENCHMARK_SCENARIOS, BenchmarkOutput, OpticsRenderingBenchmarkOptions, ScenarioSnapshot, RayWorkOutput, +4 more |

@@ -425,6 +425,7 @@ const LENS_DATA = {
     "Internal focusing by imageward translation of G3. Close-focus spacing is a paraxial reconstruction constrained by Nikon's published 1.4 m minimum focus distance.",
 
   nominalFno: 2.89,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.89, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

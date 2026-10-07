@@ -415,6 +415,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: rear G1 subgroup L4-L5 translates 8.59615 mm toward the object for the 1.5 m close state at the three published zoom control columns. The patent close-focus d9 row is inconsistent with its rigid-group mechanism by 0.00710 mm; d9 is corrected to 10.59521 / 24.64596 / 31.46770 mm so the d5+d9 sum remains constant at each control column. G2 and G3 remain at their published zoom positions during focus. Between source columns, the viewer's piecewise-linear spacing interpolation is visualization only and is not asserted as the actual Nikon cam law or an exact 1.5 m conjugate.",
 
   nominalFno: 2.88,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   maxFstop: 22,

@@ -310,6 +310,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: the patent specifies first-group focusing toward the object but gives no close-focus spacing row. Nikon specifies 2.5 m MFD from the focal plane. Code solving moves G1 objectward by 13.184948 / 13.175210 / 13.174286 mm at 50 / 122.458 / 295.2 mm; the sequential model represents this as the corresponding increase in d5 only, leaving G2-G5 and the image plane fixed relative to one another.",
 
   nominalFno: 4.5,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

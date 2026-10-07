@@ -474,6 +474,7 @@ const LENS_DATA = {
   focusDescription: "Published two-group floating focus: G5 moves imageward and G6 moves objectward. The authored close states are the patent Table 3 values at 0.397 m, 0.521 m, and 0.746 m for Wide/Mid/Tele; no internal focus reconstruction is used.",
 
   nominalFno: 2.06,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
 
   gapSagFrac: 0.98,

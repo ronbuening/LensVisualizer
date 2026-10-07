@@ -304,6 +304,7 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: 2.88, // Patent FNo. 2.88 / 2.89 / 2.88 (W/M/T); one fixed iris holds it at every station
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.88, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
   maxFstop: 22, // Production minimum aperture f/22
   apertureBlades: 7,

@@ -304,6 +304,7 @@ const LENS_DATA = {
     "PUBLISHED: G1b (hybrid L12 + L13) moves objectward from infinity to the patent's 300 mm state; D2 decreases while D7 increases by the same travel at each zoom station. No internal focus reconstruction is used.",
 
   nominalFno: [4.001065, 4.596028, 5.73828],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 7,
   maxFstop: 32,

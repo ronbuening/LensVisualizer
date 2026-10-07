@@ -759,6 +759,7 @@ const LENS_DATA = {
     "prescription.",
 
   nominalFno: [4.120049565275637, 4.119950434724363],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 9,
   maxFstop: 32,

@@ -383,6 +383,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: L4 alone moves objectward from infinity to 0.39 m; d15+d17 is conserved at each zoom position. The patent gives the focus direction but no close-focus spacing rows, so these finite-focus states are code-solved modeling states, not published patent data.",
 
   nominalFno: [3.59, 4.88, 5.97],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],
   apertureBlades: 7,
 

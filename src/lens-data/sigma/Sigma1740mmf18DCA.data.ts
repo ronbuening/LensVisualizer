@@ -23,9 +23,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  The patent does not publish clear-aperture semi-diameters.         ║
  * ║                                                                    ║
  * ║  Aperture note: the patent tabulates Fno = 1.86 at all zoom         ║
- * ║  positions. This file uses one physical stop radius, set to the     ║
- * ║  largest paraxial clear stop required among the three positions;    ║
- * ║  nominalFno carries the patent's 1.86; apertureMarketing is F1.8.   ║
+ * ║  positions. STO sd is the largest paraxial clear stop among the     ║
+ * ║  three; nominalFno carries the patent's 1.86 and sizes the iris at  ║
+ * ║  each station (9.28 / 10.11 / 11.20 mm). apertureMarketing is F1.8. ║
  * ║                                                                    ║
  * ║  Sensor cover glass, filters, mounts, and barrel mechanics are      ║
  * ║  intentionally excluded.                                           ║

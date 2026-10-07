@@ -314,6 +314,7 @@ const LENS_DATA = {
   zoomStep: 0.004,
   zoomLabels: ["Wide", "Tele"],
   nominalFno: [4.5, 5.1, 5.6],
+  zoomApertureModel: "fixed-iris",
 
   var: {
     "10": [

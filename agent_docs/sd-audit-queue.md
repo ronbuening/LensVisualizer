@@ -9,7 +9,7 @@ that seeded Sections B and C is written up in
 Take **Section A top-down** — those rows have physics behind them. Section B is figure-evidence only and is lower
 value per hour. Sections D and E hold the MTF field and image-plane censuses. Section F holds traced field-coverage
 shortfalls that need a source, a decision or engine support rather than a larger rim. Section H holds lenses whose
-stop still opens to the marketed f-number.
+stop still opens to the marketed f-number. Section I holds stations whose stated axial beam does not pass.
 
 Status values: `todo` · `in progress` · `blocked (reason)` · `partial (what remains)`.
 
@@ -225,6 +225,77 @@ when a lens joins or leaves it, so delete the key there with the row here.
 Also check, without a row each: 11 files whose `nominalFno` is slower than `apertureDesign` by more than 0.5 %
 (three mirror lenses, where the central obstruction separates the two; `PanasonicLumixG8mmf35`, `OlympusMZuiko17mmf18`,
 `Pentax645FA120mmf4`, `CanonEF2890mmf456II` and others), where one of the two fields is likely mislabelled.
+
+The test compares only the wide entry of `nominalFno`, and only in files that set `apertureDesign`. These
+variable-aperture zooms carry marketed values at one or more stations it does not see, and quote the patent's
+station f-numbers in their own header or note; replace each array from the source the same way:
+`nikon/Nikon1Nikkor10100mmf4VR`, `nikon/NikonAFPDX1855mmf3556G`, `nikon/NikonAFSDX55300mmf4556G`,
+`nikon/NikonAFSDX55200mmf456G`, `nikon/NikonAFSNikkor1835mmf3545GED`, `nikon/NikonAFZoomNikkor2880mmf3356`,
+`nikon/NikonAFZoomNikkor2885mmf3545`, `nikon/NikonNikkorZ1228mmf3556PZ`, `nikon/NikonZDX50250mmf4564VR`,
+`canon/CanonEFS1855mmf3556IS`, `canon/CanonEFS1022mmf3545`, `canon/CanonEF28105mmf456`,
+`canon/CanonPowerShotG1X1560mmf28`, `canon/CanonPowerShotG1XIII1545mmf2856`, `fujifilm/FujifilmGF3570mmf4556`,
+`olympus/OlympusMZuiko1260mmf284ED`, `olympus/OlympusMZuiko1442mmf3556II`, `olympus/OlympusZuiko936mmf224`,
+`sony/SonyFE2870mmf3556`.
+
+`__tests__/src/lens-data/zoomApertureModel.test.ts` lists the five fixed-iris files whose stated station f-numbers
+are not the ones their iris gives; delete a key there when its file is corrected. `nikon/NikonAFP70300mmf4556E`
+stores the marketed f/5.6 at tele where its Table 1 gives 5.88. `tamron/TamronA01028300mmf3563` carries f/3.628 at
+both its wide and 91.5 mm stations, as its header says the patent figure does, although the wide and tele values
+share one iris radius to 0.01 %: read the middle FNO in the source. `nikon/NikonAFSDX55200mmf456G` is in the list
+above; the two Vivitar Series 1 zooms are rim-limited at tele (Section I).
+
+## Section I — stated axial beam does not pass
+
+Stations whose traced on-axis f-number is more than 3 % from the stated one; the aperture semantics are in
+`src/lens-data/LENS_DATA_SPEC.md` (zoom aperture). Regenerate the list at any time (a few seconds):
+
+```bash
+npm run audit:aperture -- --markdown
+```
+
+1,440 of 1,622 stations are within 3 %. Of the rest, a rim clips the beam at 170 stations on 126 lenses (`rim`);
+work the largest differences first. For each row, read whether the limiting semi-diameter is printed in the source or
+was inferred from a drawing, then follow
+[patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
+f-number may be defined on a vignetted beam, and the row is then recorded in [decisions.md](decisions.md). An inferred
+rim is re-derived from the figure. Notes that state the axial beam clears every rim are corrected with the row.
+
+The other diagnoses are not rim problems:
+
+- `trace`, six lenses: no rim clips, but the next ray cannot be continued. Five are `STO (noBracket)`: beyond that
+  height the ray leaves the preceding surface past the stop plane, which sits inside that surface's sag. The Fujinon
+  XF 23mm f/1.4 R is totally reflected at surface 14A, inside its rim (a prescription suspect).
+- `failed`, the Vivitar Series 1 70-210mm f/3.5 of Section D: the same stop-plane geometry at every height.
+- `iris`, four lenses: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8); a declared fixed
+  iris that does not give a stated station f-number (Nikon AF-P 70-300mm and Tamron 28-300mm, both in Section H);
+  and the Viltrox AF 27mm f/1.2, whose f/1.2 marginal ray cannot be traced to the stop, so its iris takes the
+  paraxial radius.
+
+Start with these zooms. Each has a station that a wide-end iris would limit, where the stated, wider beam is stopped
+first by a rim or, on the two Nikon AI zooms, by the stop-plane geometry above. The Sigma 10-18mm is rim-limited at
+every station:
+
+| Lens | File | Station: stated, traced, limiter | Status |
+|---|---|---|---|
+| CANON EF 24-70mm f/2.8 L II USM | `canon/CanonEF2470mmf28LII.data.ts` | 67.88 mm: f/2.91 traces f/3.22 (+10.7 %), rim 18 | todo |
+| CANON EF 24-70mm f/2.8 L USM | `canon/CanonEF2470mmf28L.data.ts` | 68.14 mm: f/2.92 traces f/3.06 (+4.7 %), rim 19 | todo |
+| CANON EF 28-105mm f/4-5.6 | `canon/CanonEF28105mmf456.data.ts` | 101.35 mm: f/5.6 traces f/5.89 (+5.2 %), rim 14 | todo |
+| CANON EF 28-70mm f/3.5-4.5 II | `canon/CanonEF2870mmf3545II.data.ts` | 67.89 mm: f/4.5 traces f/4.85 (+7.8 %), rim 8 | todo |
+| FUJIFILM FUJINON GF 32-64mm f/4 R LM WR | `fujifilm/FujifilmGF3264mmf4.data.ts` | 62.24 mm: f/4.12 traces f/4.27 (+3.6 %), rim 13 | todo |
+| KONICA ZOOM-HEXANON AR 35-70mm f/3.5 | `konica/KonicaZoomHexanonAR3570mmf35.data.ts` | 50.16 mm: f/3.5 traces f/3.64 (+4.0 %), rim 11; 69.14 mm: f/3.5 traces f/4.35 (+24.3 %), rim 11 | todo |
+| MINOLTA AF 28-75mm f/2.8 (D) | `minolta/MinoltaAF2875mmf28D.data.ts` | 72.65 mm: f/2.91 traces f/3.11 (+7.0 %), rim 18 | todo |
+| MINOLTA AF ZOOM 35-70mm f/4 | `minolta/MinoltaAF3570mmf4.data.ts` | 68.2 mm: f/4.1 traces f/4.33 (+5.6 %), rim 8 | todo |
+| NIKON AF ZOOM-MICRO NIKKOR 70-180mm f/4.5-5.6 D ED | `nikon/NikonAFZoomMicro70180mmf4556D.data.ts` | 194 mm: f/5.6 traces f/5.95 (+6.2 %), rim 20 | todo |
+| NIKON AF-S NIKKOR 24-70mm f/2.8 G ED | `nikon/NikonAFS2470mmf28G.data.ts` | 67.7 mm: f/2.91 traces f/3.00 (+3.2 %), rim 17 | todo |
+| NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5 | `nikon/NikonAIZoomNikkor3570mmf35.data.ts` | 68.79 mm: f/3.5 traces f/3.62 (+3.4 %), trace failure at STO (noBracket) | todo |
+| NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: f/4 traces f/4.91 (+22.8 %), trace failure at STO (noBracket) | todo |
+| NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | 34 mm: f/2.88 traces f/3.21 (+11.3 %), rim 10 | todo |
+| OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD | `olympus/OlympusMZuiko1435mmf2ED.data.ts` | 22.08 mm: f/2.04 traces f/2.16 (+5.9 %), rim 30; 34.28 mm: f/2.04 traces f/2.36 (+15.5 %), rim 30 | todo |
+| PENTAX HD DA* 11-18mm f/2.8 ED DC AW | `pentax/PentaxD1118mmF28EDDCWR.data.ts` | 17.7 mm: f/2.8 traces f/2.92 (+4.2 %), rim 17 | todo |
+| PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR | `pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts` | 30 mm: f/2.9 traces f/3.06 (+5.6 %), rim 16 | todo |
+| SIGMA 10-18mm f/2.8 DC DN \| Contemporary | `sigma/Sigma1018mmf28DCDN.data.ts` | 10.3 mm: f/2.92 traces f/3.09 (+5.9 %), rim 10; 13.5 mm: f/2.92 traces f/3.35 (+14.6 %), rim 10; 17.5 mm: f/2.92 traces f/3.70 (+26.7 %), rim 10 | todo |
+| SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM | `sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts` | 67.95 mm: f/2.9 traces f/3.31 (+14.1 %), rim 17 | todo |
+| SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA | `sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts` | 78 mm: f/4.64 traces f/4.84 (+4.3 %), rim 22 | todo |
 
 ## In-progress diagram sweep
 

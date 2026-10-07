@@ -325,6 +325,7 @@ const LENS_DATA = {
 
   // Modeled f-numbers of one fixed iris (STO sd 7.697 mm); printed F3.6 / 4.0 / 4.63.
   nominalFno: [3.637, 3.967, 4.63],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 4.5, 5.6, 8, 11, 16, 22],
   maxFstop: 22, // third-party minimum aperture
 

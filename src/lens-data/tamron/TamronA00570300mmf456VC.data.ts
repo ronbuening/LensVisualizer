@@ -375,6 +375,7 @@ const LENS_DATA = {
     "NO_INTERNAL_RECONSTRUCTION: Example 2 publishes infinity-focus zoom spacings only. Tamron's 1.5 m production MOD is retained as metadata; no internal close-focus motion is modeled.",
 
   nominalFno: [4.121870954179845, 4.826957005511833, 5.852625229580979],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32, 45],
   apertureBlades: 9,
   maxFstop: 45,

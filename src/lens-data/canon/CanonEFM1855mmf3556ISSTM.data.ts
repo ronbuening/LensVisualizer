@@ -385,6 +385,7 @@ const LENS_DATA = {
    * Constant physical STO diameter = 9.44 mm. The modeled wide/mid/tele f-numbers below are independently recomputed.
    */
   nominalFno: [3.604671087827174, 4.2649779005790345, 5.693923234962015],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
   apertureBlades: 7,
   maxFstop: 22,

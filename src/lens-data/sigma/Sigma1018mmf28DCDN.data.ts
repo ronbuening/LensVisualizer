@@ -66,7 +66,6 @@ const LENS_DATA = {
 
   yScFill: 0.62,
   scFill: 0.58,
-  clipMargin: 1.05,
   focusStep: 0.004,
   apertureStep: 0.004,
 

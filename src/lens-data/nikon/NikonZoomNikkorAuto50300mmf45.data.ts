@@ -586,6 +586,7 @@ const LENS_DATA = {
     "Infinity zoom prescription only. The production lens focuses to 2.5 m; no finite-focus motion is modeled. Intermediate zoom positions approximate the patent’s fixed-image motion.",
 
   nominalFno: 4.5,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

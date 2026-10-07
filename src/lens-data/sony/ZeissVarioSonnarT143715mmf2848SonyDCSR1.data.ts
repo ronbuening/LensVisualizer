@@ -452,6 +452,7 @@ const LENS_DATA = {
     "Patent-published infinity zoom states only. GR4/G8 is the axial focusing group, but no numerical close-focus spacing is published; no internal focus reconstruction is authored, and every focus pair is identical. The 0.35 m closeFocusM value records the marketed minimum macro distance rather than a modeled close-focus state.",
 
   nominalFno: [2.8646783257041806, 3.7174215126729098, 5.03730193692091],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
 
   yScFill: 0.42,

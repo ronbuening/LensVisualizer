@@ -25,6 +25,7 @@ import {
   type NumericSummary,
 } from "./benchmarkReport.js";
 export { buildBenchmarkReport, formatRunFileName } from "./benchmarkReport.js";
+import { wideOpenStopAtZoom } from "../optics/apertureStop.js";
 import buildLens from "../optics/buildLens.js";
 import { analysisJobsForState2, createAnalysisComputationContext, prepareRuntimeState } from "../optics/compat.js";
 import {
@@ -497,9 +498,10 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   const currentFOPEN = fopenAtZoom(zoomT, L);
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
   const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = (L.stopPhysSD * currentFOPEN) / fNumber;
+  const wideOpenStopSD = wideOpenStopAtZoom(zoomT, L);
+  const currentPhysStopSD = (wideOpenStopSD * currentFOPEN) / fNumber;
   const baseEPSD = fieldGeometry
-    ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD
+    ? entrancePupilAtState(wideOpenStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD
     : L.EP.epSD;
   const currentEPSD = (baseEPSD * currentFOPEN) / fNumber;
   const dynamicEFL = eflAtFocus(focusT, zoomT, L, aberrationT);

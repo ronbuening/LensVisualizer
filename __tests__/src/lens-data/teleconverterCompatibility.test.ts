@@ -111,8 +111,9 @@ describe("teleconverter catalog", () => {
         const host = buildLens(hostData);
 
         if (Math.abs(L.stopPhysSD - host.stopPhysSD) > 1e-9) offenders.push(`${pair}: stop radius changed`);
-        (host.zoomStopSDs ?? []).forEach((sd, station) => {
-          if (Math.abs((L.zoomStopSDs?.[station] ?? NaN) - sd) > 1e-9) {
+        /* Read through the station accessor, so a fixed-iris host that came back with a schedule is caught too. */
+        zoomStations(host).forEach((zoomT, station) => {
+          if (!(Math.abs(wideOpenStopAtZoom(zoomT, L) - wideOpenStopAtZoom(zoomT, host)) <= 1e-9)) {
             offenders.push(`${pair}: stop radius changed at zoom station ${station}`);
           }
         });
@@ -191,7 +192,7 @@ describe("teleconverter catalog", () => {
       const host = buildLens(hostData);
       const drift = Math.max(
         Math.abs(L.stopPhysSD - host.stopPhysSD),
-        ...(host.zoomStopSDs ?? []).map((sd, station) => Math.abs((L.zoomStopSDs?.[station] ?? NaN) - sd)),
+        ...zoomStations(host).map((zoomT) => Math.abs(wideOpenStopAtZoom(zoomT, L) - wideOpenStopAtZoom(zoomT, host))),
         ...(host.zoomEPs ?? []).map((epSD, station) => Math.abs((L.zoomEPs?.[station] ?? NaN) - epSD)),
       );
       if (!(drift <= 1e-9)) offenders.push(`${lensKey}: stop or pupil moved by ${drift.toExponential(2)} mm`);

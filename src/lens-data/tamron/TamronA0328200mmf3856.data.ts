@@ -410,6 +410,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: patent-published G2-only inner focus, solved at the Tamron A03 0.49 m MFD with a fixed paraxial image plane; G1/G3/G4 remain fixed, only G2 translates, and D6 + D15 is conserved at every zoom station.",
 
   nominalFno: [3.696023631890291, 5.021169537267115, 5.820482752595908],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

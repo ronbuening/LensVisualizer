@@ -296,6 +296,7 @@ const LENS_DATA = {
 
   // Modeled wide-open f-number from the inferred fixed STO at each zoom keyframe.
   nominalFno: [4.5, 4.6863957198004, 4.85165978554429, 4.99579219723201, 5.11890624441235],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
 
   yScFill: 0.42,

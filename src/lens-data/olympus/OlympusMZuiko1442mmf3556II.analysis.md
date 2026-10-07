@@ -66,7 +66,7 @@ L3 is the positive dense-flint member inside the negative front group. It balanc
 
 ### Aperture Stop
 
-The stop is surface 7 in the patent and sits immediately before G2. It travels with G2 during zooming. The patent lists stop semi-diameters of 5.36785 / 5.56235 / 5.97654 mm for the close-focus states; the data file uses a 6.0 mm stop semi-diameter so that the diagram clears the telephoto wide-open state.
+The stop is surface 7 in the patent and sits immediately before G2. It travels with G2 during zooming. The patent lists stop semi-diameters of 5.36785 / 5.56235 / 5.97654 mm for the close-focus states; the data file authors a 6.0 mm stop semi-diameter, and the wide-open iris traced from `nominalFno` is 5.678 / 5.689 / 6.204 mm at the wide, middle, and telephoto stations.
 
 ### G2 — Positive Main Group
 

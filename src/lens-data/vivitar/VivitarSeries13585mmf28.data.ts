@@ -40,7 +40,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    mm R17–R18 gap. That gap is split 4.15 (R17→STO) + 7.38         ║
  * ║    (STO→R18); the split is figure-derived. The f/2.8 marginal ray ║
  * ║    reaches the iris at 11.58 mm at both stations, so one fixed    ║
- * ║    iris gives f/2.8 across the zoom (no zoomApertureModel).       ║
+ * ║    iris gives f/2.8 across the zoom (zoomApertureModel fixed).    ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent lists none. Values are estimated from Fig. 1 (page  ║
@@ -344,6 +344,7 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: 2.8,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
