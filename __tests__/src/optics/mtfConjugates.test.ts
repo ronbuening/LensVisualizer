@@ -12,6 +12,7 @@ import type { FiniteConjugate } from "../../../src/types/optics.js";
 const options: MtfOptions = {
   method: "diffraction",
   spectrum: "reference",
+  focus: "design",
   pupilSemiDiameterMm: 0.1,
   stopSemiDiameterMm: 0.1,
   fieldFractions: [0],

@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-07",
     type: "improvement",
+    summary: "MTF header now shows the traced f-number when it differs from the label",
+  },
+  {
+    date: "2026-10-07",
+    type: "improvement",
     summary: "Standardized display names on 135 lenses: capitals, hyphens and aperture-suffix spacing",
   },
   {

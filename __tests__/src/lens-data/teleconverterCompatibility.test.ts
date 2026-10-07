@@ -43,6 +43,7 @@ function cornerCoverage(L: RuntimeLens, zoomT: number): number {
   const geometry = resolveMtfGeometry(prepareRuntimeState(L, 0, zoomT), {
     method: "geometric",
     spectrum: "reference",
+    focus: "design",
     pupilSemiDiameterMm: epAtZoom(zoomT, L),
     stopSemiDiameterMm: wideOpenStopAtZoom(zoomT, L),
   });

@@ -38,6 +38,7 @@ function withGlass(patch: { nd?: number; vd?: number; dPgF?: number }) {
 const options: MtfOptions = {
   method: "geometric",
   spectrum: "cdf",
+  focus: "design",
   pupilSemiDiameterMm: 0.1,
   stopSemiDiameterMm: 0.1,
   fieldFractions: [0.15],

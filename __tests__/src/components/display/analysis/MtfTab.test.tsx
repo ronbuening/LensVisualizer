@@ -4,7 +4,11 @@ import { act, cleanup, fireEvent, render, screen, within } from "@testing-librar
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import { installMatchMediaMock, mockTheme } from "../../../../testUtils.js";
-import { build, buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
+import {
+  build,
+  buildChromaticPositiveElementLens,
+  buildSimplePositiveElementLens,
+} from "../../../optics/testLensFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
 import { assessMtfSupport, computeMtf } from "../../../../../src/optics/mtf.js";
 import { mtfImagePlaneOffset } from "../../../../../src/optics/analysis/mtfFocus.js";
@@ -19,6 +23,7 @@ const state = prepareRuntimeState(L, 0, 0);
 const referenceOptions = {
   method: "geometric",
   spectrum: "reference",
+  focus: "design",
   pupilSemiDiameterMm: 1,
   stopSemiDiameterMm: 1,
 } as const;
@@ -109,7 +114,8 @@ describe("MTF tab", () => {
       />,
     );
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
-    const header = screen.getByText(/^f\/2\.8 · 49\.2 mm · Diffraction-corrected/);
+    // The fixture opens its iris to 1 mm, far from the f/2.8 label, so the header reports the traced aperture.
+    const header = screen.getByText(/^f\/2\.8 \(traced f\/2[45]\.\d+\) · 49\.2 mm · Diffraction-corrected/);
     expect(header.textContent).toContain("photopic spectrum");
     expect(header.textContent).toContain("Best axial focus (");
     // The fixture glass has only nd and νd, so its dispersion is estimated and the tab says so.
@@ -205,6 +211,21 @@ describe("MTF tab", () => {
     fireEvent.change(screen.getByRole("combobox", { name: "MTF spectrum" }), { target: { value: "reference" } });
     await vi.waitFor(() => expect(screen.queryByText(/Limited data for this chart/)).toBeNull());
   });
+  it("lists a source erratum beside the chart without holding the chart back", async () => {
+    // Catalog glass leaves no dispersion gap, so the unresolved source contradiction is the only item.
+    const noted = build({
+      ...buildChromaticPositiveElementLens("test-source-erratum").data,
+      sourceErrata: [{ status: "unresolved", note: "The table traces to a shorter focal length than stated." }],
+    });
+    const notedState = prepareRuntimeState(noted, 0, 0);
+    stubWorker({ target: notedState });
+    render(<MtfTab L={noted} t={mockTheme} preparedState={notedState} currentEPSD={1} currentPhysStopSD={1} />);
+    const chart = await screen.findByRole("figure", { name: /image height/ });
+    expect(screen.queryByRole("note")).toBeNull();
+    expect(chart.closest("[inert]")).toBeNull();
+    expect(screen.getByText(/Notes on this lens's data \(1\)/)).toBeTruthy();
+    expect(screen.getByText(/these curves describe the printed table: The table traces/)).toBeTruthy();
+  });
   it("switches chart views and frequencies from one computed result, keeping color slots fixed", async () => {
     const { calls } = stubWorker();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
@@ -256,6 +277,7 @@ describe("MTF chart", () => {
   const result = computeMtf(state, {
     method: "geometric",
     spectrum: "reference",
+    focus: "design",
     pupilSemiDiameterMm: 1,
     stopSemiDiameterMm: 1,
     fieldFractions: [0, 0.5, 1],

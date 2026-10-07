@@ -28,6 +28,7 @@ for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
     const options = {
       method,
       spectrum,
+      focus: "design",
       maxGridSize,
       fieldFractions,
       pupilSemiDiameterMm: L.EP.epSD * apertureScale,

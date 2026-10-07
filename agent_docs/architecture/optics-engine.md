@@ -46,7 +46,8 @@ contract in `src/lens-data/LENS_DATA_SPEC.md`; do not add an analysis-specific s
 ## Simulated MTF
 
 `src/optics/mtf.ts` accepts a prepared state and explicit physical aperture, method, spectrum, focus, field and
-frequency options. This estimates the authored prescription; numerical convergence and source-data confidence are
+frequency options. Every request names its focus mode: the engine has no default plane, and a request without one is
+`invalid-input`. This estimates the authored prescription; numerical convergence and source-data confidence are
 separate. Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. Both chart
 views share the same computed fields, one image plane and physical lp/mm units.
 
@@ -71,6 +72,13 @@ between the samples; when the chief ray transmits, its reach along each launch a
 beam, which the same scan then resolves. A field whose scan and chief ray both miss is `vignetted`. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less than
 the production lens lower off-axis curves.
 
+**Traced aperture** (`mtfAperture.ts`). The label f-number sizes the iris, but an authored clear aperture can stop the
+axial marginal ray first, and stop-down scales the wide-open iris linearly. One meridional bisection between the
+chief ray and a blocked launch height finds the rim of the transmitted axial beam at the reference line:
+`MtfResult.aperture.tracedFNumber` is 1 / (2 n′ sin U′) of the last transmitted ray, and `limitingSurfaceLabel`
+names the surface that stops the next ray outward (null for the iris). It is cached with the focus search and is the
+working f-number at a finite conjugate.
+
 **Ray failures** (`mtfRayClassification.ts`). TIR and aperture clips are blocking. A failed intersection blocks only
 when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz
 interval test for aspheres. Unresolved flux ε up to 0.5% of launch flux is omitted with a note bounding the geometric
@@ -81,8 +89,10 @@ without aperture checks, so a clipped chief still fixes the common image referen
 diffraction-corrected method (`geometric-dl`, `mtfDiffractionLimit.ts`) multiplies each wavelength's geometric OTF by
 the zero-phase OTF of the traced exit pupil: √flux autocorrelated on the regular launch lattice, with lags mapped into
 image-space direction cosines by the fitted pupil scale per axis. It needs no scalar-FFT validity gates. On test
-pupils it matches the analytic circular OTF within 0.005 from 32 rays across; like any geometric × diffraction-limit
-product it can understate contrast where residual aberrations are comparable to a wavelength.
+pupils it matches the analytic circular OTF within 0.003 from 64 rays across. Against exact Hopkins integrals the
+product is exact as frequency goes to zero and reads low once the shear is a few percent of the pupil, because the
+true overlap integral excludes the pupil rim where aberration is largest; a lattice wider than 128 cells is binned,
+which reads the limit itself slightly high.
 
 Scalar diffraction opts into sequential `recordOpticalPath`, which accumulates incident-medium optical length
 from the input origin to the final hit without changing ordinary trace outputs. `mtfWavefront.ts` includes the
@@ -129,8 +139,9 @@ point and include spherical launch phase and launch-plane solid-angle weights. O
 eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.
 
 **Data limitations** (`mtfDataLimitations.ts`). `MtfSupport.limitations` are the model's standing assumptions;
-`assessMtfDataLimitations` lists what the lens data lacks for the chart on screen, and the tab holds the chart behind
-a warning until the reader has seen them. A gap is listed only when it changes that display:
+`assessMtfDataLimitations` lists what the lens data lacks for the chart on screen. Each item is `blocking` (the tab
+holds the chart behind a warning until the reader has seen it) or a note listed beside the chart. A gap is listed
+only when it changes that display; the first five are blocking:
 
 - `reference-only`: a glass blocks the preferred spectrum, so the chart is the reference wavelength alone.
 - `estimated-dispersion`: a spectral chart uses nd/νd-only glasses. They are named, and split between lens and
@@ -140,6 +151,8 @@ a warning until the reader has seen them. A gap is listed only when it changes t
   never uses the authored plane, so it has no gap.
 - `short-field`: requested field positions are `outside-modeled-field`.
 - `scale`: the prescription and marketed focal lengths differ by more than 10 % (`mtfPrescriptionScale`).
+- `source-erratum` (note): the lens carries `corrected` `sourceErrata`, so a printed source value was replaced.
+- `source-inconsistent` (note): the lens carries `unresolved` `sourceErrata`; the curves describe the printed table.
 
 A lens with a converter is assessed as one system; no separate gap is raised for the pairing. A reference-line chart
 the reader chose has no glass gap. A paused proposal to narrow the `estimated-dispersion` blur and refit the

@@ -6,7 +6,7 @@
  * behavior cannot drift apart.
  */
 
-import type { MtfGridCap } from "../../types/mtf.js";
+import type { MtfFocusMode, MtfGridCap } from "../../types/mtf.js";
 
 /** Pupil-grid refinement ladder; geometric runs start at 16, scalar diffraction at 32. */
 export const MTF_GRID_LADDER = Object.freeze([16, 32, 64, 128, 256] as const);
@@ -14,6 +14,9 @@ export const MTF_GRID_LADDER = Object.freeze([16, 32, 64, 128, 256] as const);
 /** Grid sizes a request may cap refinement at. */
 export const MTF_GRID_CAPS: readonly MtfGridCap[] = Object.freeze([32, 64, 128, 256]);
 export const MTF_DEFAULT_GRID_CAP: MtfGridCap = 128;
+
+/** Image-plane policies a request may name; a request must name one. */
+export const MTF_FOCUS_MODES: readonly MtfFocusMode[] = Object.freeze(["auto", "design", "best-axial"]);
 
 /** Absolute MTF change between successive grids that counts as converged. */
 export const MTF_CONVERGENCE_TOLERANCE = 0.01;

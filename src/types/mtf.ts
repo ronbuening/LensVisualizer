@@ -6,7 +6,6 @@ import type { FiniteConjugate } from "./optics.js";
  */
 export type MtfMethod = "geometric" | "geometric-dl" | "diffraction";
 export type MtfSpectrum = "reference" | "cdf" | "photopic";
-/** `design` keeps the authored image plane; `best-axial` moves it to the axial best focus for every field. */
 /**
  * `auto` keeps the authored image plane unless it is inconsistent with the prescription's own paraxial focus, then
  * uses best axial focus; `design` and `best-axial` always apply their plane.
@@ -41,8 +40,8 @@ export interface MtfOptions {
   frequenciesPerMm?: readonly number[];
   /** Largest pupil grid side; refinement starts at 16 (32 for diffraction) and never exceeds 256. */
   maxGridSize?: MtfGridCap;
-  /** Image plane for every field; defaults to the authored design plane. */
-  focus?: MtfFocusMode;
+  /** Image plane for every field. Required: the engine has no default, so scripts and the tab cannot disagree. */
+  focus: MtfFocusMode;
 }
 
 /** One sampled wavelength and its incident (pre-throughput) intensity weight. */
@@ -96,13 +95,33 @@ export interface MtfFocus {
   imagePlaneInconsistent: boolean;
 }
 
-/** What a lens's data lacks for the chart on screen; see `assessMtfDataLimitations`. */
-export type MtfDataLimitationKind = "reference-only" | "estimated-dispersion" | "image-plane" | "short-field" | "scale";
+/**
+ * Aperture the axial beam actually traces at, as opposed to the f-number on the label. Authored clear apertures can
+ * limit the axial beam before the iris does, and a stopped-down iris is scaled from the wide-open one.
+ */
+export interface MtfAperture {
+  /** Image-space working f-number of the axial rim ray, 1 / (2 n′ sin U′). */
+  tracedFNumber: number;
+  /** Label of the surface that stops the next ray outward; null when that surface is the iris. */
+  limitingSurfaceLabel: string | null;
+}
 
-/** One data gap, worded for the reader of the chart it qualifies. */
+/** What a lens's data lacks for the chart on screen; see `assessMtfDataLimitations`. */
+export type MtfDataLimitationKind =
+  | "reference-only"
+  | "estimated-dispersion"
+  | "image-plane"
+  | "short-field"
+  | "scale"
+  | "source-erratum"
+  | "source-inconsistent";
+
+/** One data gap or note, worded for the reader of the chart it qualifies. */
 export interface MtfDataLimitation {
   kind: MtfDataLimitationKind;
   text: string;
+  /** True when the chart stays behind the warning until the reader dismisses it; false for a note beside it. */
+  blocking: boolean;
 }
 
 export type MtfFieldStatus = "converged" | "unconverged" | "unavailable" | "pending";
@@ -143,4 +162,6 @@ export interface MtfResult {
   fields: MtfFieldResult[];
   geometry: MtfFieldGeometry | null;
   focus: MtfFocus | null;
+  /** Traced axial aperture; null when the request is unsupported or no axial rim ray can be found. */
+  aperture: MtfAperture | null;
 }

@@ -72,6 +72,7 @@ it("rebuilds serializable prescriptions in the worker and matches the pure engin
         const options: MtfOptions = {
           method,
           spectrum,
+          focus: "design",
           pupilSemiDiameterMm: 0.1,
           stopSemiDiameterMm: 0.1,
           fieldFractions: [0],
@@ -97,6 +98,7 @@ it("drops cancelled requests and reuses finished fields when only the field list
   const options: MtfOptions = {
     method: "geometric",
     spectrum: "reference",
+    focus: "design",
     pupilSemiDiameterMm: 0.5,
     stopSemiDiameterMm: 0.5,
     fieldFractions: Array.from({ length: 101 }, (_, i) => i / 100),

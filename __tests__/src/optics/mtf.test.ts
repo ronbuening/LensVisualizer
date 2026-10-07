@@ -33,6 +33,7 @@ import {
   type MtfGridOutcome,
 } from "../../../src/optics/analysis/mtf.js";
 import { mtfChiefHeight, mtfFieldProcessingOrder } from "../../../src/optics/analysis/mtfFields.js";
+import { resolveMtfAperture } from "../../../src/optics/analysis/mtfAperture.js";
 import { findAxialBestFocus, mtfImagePlaneOffset } from "../../../src/optics/analysis/mtfFocus.js";
 import { findMtfFootprint } from "../../../src/optics/analysis/mtfFootprint.js";
 import type { MtfRayClass } from "../../../src/optics/analysis/mtfRayClassification.js";
@@ -43,6 +44,7 @@ import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 export const mtfTestOptions: MtfOptions = {
   method: "geometric",
   spectrum: "reference",
+  focus: "design",
   pupilSemiDiameterMm: 1,
   stopSemiDiameterMm: 1,
   fieldFractions: [0],
@@ -400,6 +402,41 @@ describe("MTF refinement and focus", () => {
   });
 });
 
+describe("MTF traced aperture", () => {
+  const base = buildSimplePositiveElementLens();
+  const tracedAperture = (lens = base, stopSemiDiameterMm = 1) => {
+    const state = prepareRuntimeState(lens, 0, 0);
+    const options = { ...mtfTestOptions, stopSemiDiameterMm };
+    const support = assessMtfSupport(state, options);
+    const launch = prepareMtfFieldLaunch(state, options, support, 0)!;
+    return resolveMtfAperture(state, options, support, launch, findMtfFieldFootprint(state, options, support, launch)!);
+  };
+  it("reports the working f-number of the axial rim ray when the iris limits the beam", () => {
+    // The fixture's stop is its entrance pupil, so a slow beam traces at f / (2 × stop radius).
+    const aperture = tracedAperture()!;
+    expect(aperture.limitingSurfaceLabel).toBeNull();
+    expect(Math.abs(aperture.tracedFNumber / (base.EFL / 2) - 1)).toBeLessThan(0.005);
+    expect(computeMtf(prepareRuntimeState(base, 0, 0), mtfTestOptions).aperture).toEqual(aperture);
+  });
+  it("names the clear aperture that stops the axial beam before the iris does", () => {
+    // The element rims (6 mm) are smaller than the iris (8 mm), so the first rim sets the beam, not the label.
+    const rimmed = build({
+      ...base.data,
+      surfaces: base.data.surfaces.map((surface) => (surface.label === "STO" ? surface : { ...surface, sd: 6 })),
+    });
+    const aperture = tracedAperture(rimmed, 8)!;
+    expect(aperture.limitingSurfaceLabel).toBe("1");
+    expect(Math.abs(aperture.tracedFNumber / (rimmed.EFL / 12) - 1)).toBeLessThan(0.05);
+    expect(tracedAperture(base, 8)!.limitingSurfaceLabel).toBeNull();
+  });
+  it("is absent when no ray can be traced and survives a JSON round trip otherwise", () => {
+    const unsupported = computeMtf(prepareRuntimeState(base, 0, 0), { ...mtfTestOptions, movementActive: true });
+    expect(unsupported.aperture).toBeNull();
+    const aperture = tracedAperture()!;
+    expect(JSON.parse(JSON.stringify(aperture))).toEqual(aperture);
+  });
+});
+
 describe("MTF data limitations", () => {
   const base = buildSimplePositiveElementLens();
   const state = prepareRuntimeState(base, 0, 0);
@@ -458,5 +495,33 @@ describe("MTF data limitations", () => {
     expect(field.text).toContain("1 of 2 field positions lies beyond it and is not charted");
     expect(scale.kind).toBe("scale");
     expect(scale.text).toContain("differs from the marketed 58 mm by 14%");
+  });
+  it("discloses authored source errata as notes that never block the chart", () => {
+    // A corrected printed value and an unresolved contradiction each give one note; gaps stay blocking.
+    const front = base.data.surfaces.find((surface) => surface.label === "1")!;
+    const noted = build({
+      ...base.data,
+      sourceErrata: [
+        {
+          status: "corrected",
+          surface: "1",
+          field: "R",
+          printed: -front.R,
+          applied: front.R,
+          evidence: ["source-summary", "sibling-example"],
+          note: "Printed sign contradicts the stated focal length.",
+        },
+        { status: "unresolved", note: "The table traces to a shorter focal length than the summary states." },
+      ],
+    });
+    const notes = assessMtfDataLimitations(prepareRuntimeState(noted, 0, 0), { ...reference, result: null });
+    expect(notes.map(({ kind, blocking }) => [kind, blocking])).toEqual([
+      ["source-erratum", false],
+      ["source-inconsistent", false],
+    ]);
+    expect(notes[0].text).toContain(`surface 1, R) contradicts the source's own data`);
+    expect(notes[0].text).toContain(`the source prints ${-front.R}, this prescription uses ${front.R}`);
+    expect(notes[1].text).toContain("these curves describe the printed table: The table traces to a shorter");
+    expect(assessMtfDataLimitations(state, photopic).every(({ blocking }) => blocking)).toBe(true);
   });
 });

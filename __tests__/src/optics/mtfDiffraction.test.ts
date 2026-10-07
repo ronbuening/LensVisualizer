@@ -126,6 +126,7 @@ describe("scalar diffraction MTF", () => {
     const options: MtfOptions = {
       method: "diffraction",
       spectrum: "reference",
+      focus: "design",
       pupilSemiDiameterMm: 0.1,
       stopSemiDiameterMm: 0.1,
       fieldFractions: [0],
@@ -237,6 +238,7 @@ describe("diffraction limit of a traced pupil", () => {
     const options: MtfOptions = {
       method: "diffraction",
       spectrum: "reference",
+      focus: "design",
       pupilSemiDiameterMm: 0.1,
       stopSemiDiameterMm: 0.1,
       fieldFractions: [0],

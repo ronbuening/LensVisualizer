@@ -1,12 +1,15 @@
-/** Holds the MTF chart behind a blurred warning until the reader has seen which data the lens lacks. */
+/**
+ * Holds the MTF chart behind a blurred warning until the reader has seen which data the lens lacks.
+ * Non-blocking notes never blur the chart; they are listed in the collapsed line above it.
+ */
 import type { CSSProperties, ReactNode } from "react";
 import type { MtfDataLimitation } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
 
 interface MtfDataWarningProps {
-  /** Gaps that qualify the chart on screen; none renders the chart untouched. */
+  /** Gaps and notes that qualify the chart on screen; none renders the chart untouched. */
   limitations: readonly MtfDataLimitation[];
-  /** True once the reader has dismissed every kind of gap listed. */
+  /** True once the reader has dismissed every blocking kind listed. */
   acknowledged: boolean;
   onAcknowledge: () => void;
   t: Theme;
@@ -15,11 +18,14 @@ interface MtfDataWarningProps {
 }
 
 const TITLE = "Limited data for this chart";
+/** Heading when every listed item is a note that leaves the chart readable. */
+const NOTES_TITLE = "Notes on this lens's data";
 
 const BLURRED: CSSProperties = { filter: "blur(4px)", pointerEvents: "none", userSelect: "none" };
 
 export default function MtfDataWarning({ limitations, acknowledged, onAcknowledge, t, children }: MtfDataWarningProps) {
-  const blocked = limitations.length > 0 && !acknowledged;
+  const blocking = limitations.some((limitation) => limitation.blocking);
+  const blocked = blocking && !acknowledged;
   const list = (
     <ul style={{ margin: "8px 0 0", paddingLeft: 18 }}>
       {limitations.map(({ kind, text }) => (
@@ -31,10 +37,10 @@ export default function MtfDataWarning({ limitations, acknowledged, onAcknowledg
   );
   return (
     <>
-      {limitations.length > 0 && acknowledged ? (
+      {limitations.length > 0 && !blocked ? (
         <details style={{ color: t.muted, fontSize: 11, margin: "4px 0" }}>
           <summary style={{ cursor: "pointer" }}>
-            <WarningIcon color={t.stopLabel} size={12} /> {TITLE} ({limitations.length})
+            <WarningIcon color={t.stopLabel} size={12} /> {blocking ? TITLE : NOTES_TITLE} ({limitations.length})
           </summary>
           {list}
         </details>

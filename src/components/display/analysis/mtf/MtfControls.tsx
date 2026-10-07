@@ -47,9 +47,9 @@ const SAMPLING: ReadonlyArray<[MtfGridCap, string]> = [
 
 /* Hover/focus explanations, one line per option in menu order. */
 const METHOD_HELP = [
-  "Diffraction-corrected: ray-traced (geometric) MTF multiplied by the aperture's diffraction limit. The closest match to manufacturer charts.",
-  "Geometric: rays only. Ignores diffraction, so it overstates contrast for sharp or stopped-down lenses.",
-  "Scalar diffraction: computed from the traced wavefront. The reference for well-corrected lenses, but slower, and unavailable where blur or ray angles exceed its validated range.",
+  "Diffraction-corrected: ray-traced (geometric) MTF multiplied by the aperture's diffraction limit. Compare with charts that include diffraction, such as Sigma's Diffraction MTF and Zeiss; it can read a few points low at 30 lp/mm.",
+  "Geometric: rays only. Ignores diffraction, so it overstates contrast for sharp or stopped-down lenses. Compare with design charts that omit diffraction, as Nikon's, Sony's and Tamron's appear to.",
+  "Scalar diffraction: computed from the traced wavefront. Slower, and unavailable where blur or ray angles exceed its validated range.",
 ].join("\n");
 const SPECTRUM_HELP = [
   "Photopic: five wavelengths from 470 to 650 nm, weighted by the eye's sensitivity V(λ), like white-light charts.",

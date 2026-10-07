@@ -1,5 +1,6 @@
 /** Pure MTF orchestration with explicit per-field convergence and unavailable results. */
 import type {
+  MtfAperture,
   MtfFieldGeometry,
   MtfFieldResult,
   MtfFocus,
@@ -44,6 +45,7 @@ import { expandMtfFootprint, type MtfFootprint } from "./mtfFootprint.js";
 import { pupilOtf, reconstructMtfPupil } from "./mtfDiffraction.js";
 import { diffractionLimitFromBundle, type MtfDiffractionLimit } from "./mtfDiffractionLimit.js";
 import { findAxialBestFocus, mtfImagePlaneOffset } from "./mtfFocus.js";
+import { resolveMtfAperture } from "./mtfAperture.js";
 import {
   mtfChiefHeight,
   mtfFieldProcessingOrder,
@@ -54,11 +56,14 @@ import {
 } from "./mtfFields.js";
 
 /**
- * Results an identical earlier request may share: the axial focus search and finished fields,
- * keyed by fraction. Callers key a cache by everything in the request except `fieldFractions`.
+ * Results an identical earlier request may share: the axial focus search, the traced aperture and
+ * finished fields, keyed by fraction. Callers key a cache by everything in the request except
+ * `fieldFractions`.
  */
 export interface MtfJobCache {
   focus?: MtfFocus;
+  /** Stored with `focus`; both come from the axial beam. */
+  aperture?: MtfAperture | null;
   fields: Map<number, MtfFieldResult>;
 }
 
@@ -341,14 +346,27 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
 
 /* ── Focus ── */
 
+/** Axial launch and footprint, shared by the focus search and the traced aperture. */
+interface MtfAxialBeam {
+  launch: MtfFieldLaunch;
+  footprint: MtfFootprint;
+}
+
+function resolveAxialBeam(context: MtfJobContext): MtfAxialBeam | null {
+  const { state, options, support } = context;
+  const launch = prepareMtfFieldLaunch(state, options, support, 0);
+  const footprint = launch ? findMtfFieldFootprint(state, options, support, launch) : null;
+  return launch && footprint ? { launch, footprint } : null;
+}
+
 /**
  * Axial best focus from the center bundle, and the image-plane consistency check. The search
  * always runs so results can report it; `best-axial` requests apply the shift to every field, and
  * `auto` requests apply it only when the authored plane is inconsistent with the prescription.
  */
-function resolveMtfFocus(context: MtfJobContext): MtfFocus {
+function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): MtfFocus {
   const { state, options, support } = context;
-  const requestedMode = options.focus ?? "design";
+  const requestedMode = options.focus;
   const offset = mtfImagePlaneOffset(state, support);
   const focus: MtfFocus = {
     requestedMode,
@@ -360,9 +378,8 @@ function resolveMtfFocus(context: MtfJobContext): MtfFocus {
     imagePlaneOffsetMm: offset?.offsetMm ?? null,
     imagePlaneInconsistent: offset?.inconsistent ?? false,
   };
-  const launch = prepareMtfFieldLaunch(state, options, support, 0);
-  const footprint = launch ? findMtfFieldFootprint(state, options, support, launch) : null;
-  if (!launch || !footprint) return focus;
+  if (!axial) return focus;
+  const { launch, footprint } = axial;
   const size = Math.min(MTF_FOCUS_GRID, context.ladder.at(-1) ?? MTF_FOCUS_GRID);
   const bundles = [];
   for (const line of support.spectralLines) {
@@ -424,6 +441,7 @@ export function* computeMtfSteps(
     fields: [],
     geometry: null,
     focus: null,
+    aperture: null,
   };
   if (!support.available) return result;
   const cap = options.maxGridSize ?? MTF_DEFAULT_GRID_CAP;
@@ -451,8 +469,18 @@ export function* computeMtfSteps(
       : emptyMtfField(target.fraction, target),
   );
   // Every field shares one image plane, so the axial focus search runs before any field.
-  result.focus = cache?.focus ?? resolveMtfFocus(context);
-  if (cache) cache.focus = result.focus;
+  if (cache?.focus) {
+    result.focus = cache.focus;
+    result.aperture = cache.aperture ?? null;
+  } else {
+    const axial = resolveAxialBeam(context);
+    result.focus = resolveMtfFocus(context, axial);
+    result.aperture = axial ? resolveMtfAperture(state, options, support, axial.launch, axial.footprint) : null;
+    if (cache) {
+      cache.focus = result.focus;
+      cache.aperture = result.aperture;
+    }
+  }
   context.imagePlaneZ = state.imgZ + result.focus.appliedShiftMm;
   yield result;
   for (const index of mtfFieldProcessingOrder(fractions)) {

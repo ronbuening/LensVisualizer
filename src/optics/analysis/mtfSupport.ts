@@ -8,6 +8,7 @@ import {
   MTF_DIFFRACTION_LIMITS,
   MTF_ESTIMATED_DISPERSION_MAX_VD,
   MTF_FIELDS,
+  MTF_FOCUS_MODES,
   MTF_FREQUENCIES,
   MTF_GRID_CAPS,
   MTF_MAX_FIELDS,
@@ -224,6 +225,9 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
     !MTF_GRID_CAPS.includes(options.maxGridSize ?? MTF_DEFAULT_GRID_CAP)
   )
     return reject("invalid-input", "MTF requires finite physical apertures, fields and image-space frequencies.");
+  // Untyped callers (audit scripts) must name the plane too: no silent default exists.
+  if (!MTF_FOCUS_MODES.includes(options.focus))
+    return reject("invalid-input", "MTF requires an explicit image-plane focus mode.");
   const scale = mtfPrescriptionScale(lens.source);
   if (scale && (scale.designMm / scale.marketingMm < 0.5 || scale.designMm / scale.marketingMm > 2)) {
     return reject("unverified-scale", "Prescription scale needs verification before reporting lp/mm.");
