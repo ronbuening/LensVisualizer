@@ -371,8 +371,8 @@ const LENS_DATA = {
     "Floating inner focus. G2 and G3 move toward the object with differential travel (G3 moves ~1 mm farther than G2). G1 fixed; stop attached to G3. HSM ring-type ultrasonic drive.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

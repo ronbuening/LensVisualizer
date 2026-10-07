@@ -187,7 +187,7 @@ The prescription was re-transcribed directly from claim 7 and verified by an ind
 
 Computed group and component focal lengths also reproduce the patent values to the expected rounding precision: Group IV f = +117.564 mm, IVa f = +102.258 mm, IVc f = -33.862 mm, and IVbcd f = -271.121 mm. The computed back focal distance is 43.656-43.658 mm across the three zoom positions.
 
-The stop semi-diameter used in the data file is 13.724 mm. With the front zoom groups' pupil magnification, this yields an inferred design aperture of approximately F/4.24 at all three zoom positions. The marketed f/4 aperture is stored separately as the nominal f-number.
+The stop semi-diameter used in the data file is 13.724 mm. With the front zoom groups' pupil magnification, this yields an inferred design aperture of approximately F/4.24 at all three zoom positions. The marketed f/4 aperture is stored separately in `apertureMarketing`; `nominalFno`, the f-number the stop opens to, is the inferred design value 4.24.
 
 The Petzval sum is +0.0008982 mm^-1, corresponding to a Petzval radius of approximately 1113 mm. This is a mildly positive Petzval sum for a conventional all-spherical telephoto zoom. The semi-diameters in the data file are estimated because the patent does not publish clear apertures; they were checked against edge thickness, surface-slope, element-ratio, and cross-gap sag constraints rather than asserted as measured production clear apertures. The limiting inferred-aperture case is the L6-to-L7 airspace: the rear L6 semi-diameter is constrained by the 0.640 mm d10 gap so that signed sag intrusion remains below 90% of the gap.
 

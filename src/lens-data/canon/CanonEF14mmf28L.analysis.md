@@ -409,8 +409,8 @@ These values are sufficient for the default LensVisualizer ray display and geome
 not factory clear apertures or barrel dimensions, which the patent does not provide.
 
 The design stop semi-diameter is $6.149168\ \mathrm{mm}$. It gives a paraxial entrance-pupil semi-diameter of
-$2.455265\ \mathrm{mm}$ and therefore the patent design aperture $f/2.892$. The marketed `nominalFno` remains f/2.8 in
-accordance with Canon's product specification.
+$2.455265\ \mathrm{mm}$ and therefore the patent design aperture $f/2.892$. `nominalFno` is that design value, 2.892;
+`apertureMarketing` records Canon's marketed f/2.8.
 
 The final estimates pass the following checks:
 

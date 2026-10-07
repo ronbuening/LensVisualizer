@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-07",
+    type: "fix",
+    summary: "156 lenses now open to their patent design f-number, with the marketed value shown beside it",
+  },
+  {
+    date: "2026-10-07",
     type: "improvement",
     summary: "Diffraction-corrected MTF now shears the traced pupil instead of scaling by a limit, removing a low bias",
   },

@@ -24,9 +24,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    (3.768 mm) limiting both surfaces to ≤ 7.71 mm, and the        ║
  * ║    L2r→L3f air gap (0.916 mm) limiting both surfaces to ≤ 7.80   ║
  * ║    mm. The L6 rear SD is limited to 8.8 mm by element edge        ║
- * ║    thickness (ET = 0.24 mm at that SD). Stop SD is set to the     ║
- * ║    marketed f/2.8 physical aperture (5.4 mm); no mechanical       ║
- * ║    clearance margin is applied to the diaphragm surface.          ║
+ * ║    thickness (ET = 0.24 mm at that SD). The authored stop SD is   ║
+ * ║    the marketed f/2.8 aperture (5.4 mm) with no clearance margin; ║
+ * ║    the runtime sizes the iris from the design F2.9129 (5.30 mm).  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -152,7 +152,7 @@ const LENS_DATA = {
     { label: "6", R: -50.8028, d: 0.7032, nd: 1.0, elemId: 0, sd: 8.5 }, // L3 rear → air
     { label: "7", R: 22.9236, d: 3.3836, nd: 1.883, elemId: 4, sd: 9.0 }, // L4 front
     { label: "8", R: -53.9477, d: 5.3, nd: 1.0, elemId: 0, sd: 8.5 }, // L4 rear → air
-    { label: "STO", R: 1e15, d: 5.3072, nd: 1.0, elemId: 0, sd: 5.4 }, // aperture stop — marketed f/2.8
+    { label: "STO", R: 1e15, d: 5.3072, nd: 1.0, elemId: 0, sd: 5.4 }, // aperture stop — authored at the marketed f/2.8; the runtime opens to nominalFno
     { label: "10", R: -15.3911, d: 0.8, nd: 1.72825, elemId: 5, sd: 7.7 }, // L5 front (doublet)
     { label: "11", R: 24.9748, d: 4.4049, nd: 1.7418, elemId: 6, sd: 8.1 }, // L5/L6 junction — elemId: 6
     { label: "12A", R: -15.1814, d: 9.3255, nd: 1.0, elemId: 0, sd: 8.8 }, // L6 rear (asph) → air; var D12
@@ -212,8 +212,8 @@ const LENS_DATA = {
     "Rear focus: G2 (L7) translates toward object for close focus, shortening D12 while BF increases. G1 (including stop and doublet G1b) is mechanically fixed.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11],
+  nominalFno: 2.9129,
+  fstopSeries: [2.9129, 4, 5.6, 8, 11],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

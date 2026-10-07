@@ -367,8 +367,8 @@ const LENS_DATA = {
   focusDescription:
     "Group I unit focus to about 2 m from the image plane; tele-end macro focus by equal objectward movement of Groups II and III at fixed 6.000 mm separation.",
 
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 3.65,
+  fstopSeries: [3.65, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.63,

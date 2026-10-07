@@ -428,9 +428,9 @@ const LENS_DATA = {
   closeFocusM: 0.3,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
-  nominalFno: 5.6,
+  nominalFno: 5.76,
   maxFstop: 32,
-  fstopSeries: [5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [5.76, 8, 11, 16, 22, 32],
   focusDescription:
     "Inner focus: Group 2, including the aperture stop, translates objectward from infinity to 0.3 m; Groups 1 and 3 remain stationary and the DD[12]+DD[23] sum is conserved.",
   scFill: 0.58,

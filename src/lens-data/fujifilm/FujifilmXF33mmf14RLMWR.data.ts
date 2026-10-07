@@ -58,11 +58,11 @@ const LENS_DATA = {
   apertureBlades: 9,
   apertureBladeRoundedness: 1,
 
-  nominalFno: 1.4,
+  nominalFno: 1.44,
   closeFocusM: 0.3,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [1.44, 2, 2.8, 4, 5.6, 8, 11, 16],
   yScFill: 0.72,
   scFill: 0.62,
   offAxisFieldFrac: 0.5,

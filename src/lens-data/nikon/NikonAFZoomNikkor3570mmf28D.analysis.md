@@ -199,7 +199,7 @@ The prescription was re-entered directly from Table 3 and checked with an indepe
 | Petzval sum    |   0.00349015 |            - |           - |
 | Petzval radius |    286.52 mm |            - |           - |
 
-The Petzval sum was computed surface by surface as φ / (n n'), not from thin-lens element approximations. The semi-diameters in the data file are estimated because the patent table omits clear-aperture data. They were constrained to keep element edge thickness positive, front/rear element semi-diameter ratios within the project limit, sd/|R| below 0.90, and signed cross-gap sag intrusion within 90 percent of each adjacent air gap. The inserted aperture stop semi-diameter is set by the larger tele-end clear-aperture requirement implied by FNO = 2.86, while the nominal f-number field preserves the marketed f/2.8 behavior.
+The Petzval sum was computed surface by surface as φ / (n n'), not from thin-lens element approximations. The semi-diameters in the data file are estimated because the patent table omits clear-aperture data. They were constrained to keep element edge thickness positive, front/rear element semi-diameter ratios within the project limit, sd/|R| below 0.90, and signed cross-gap sag intrusion within 90 percent of each adjacent air gap. The inserted aperture stop semi-diameter is set by the larger tele-end clear-aperture requirement implied by FNO = 2.86, while the nominal f-number field, `nominalFno` (the f-number the stop opens to), holds the patent's wide-end design value, FNO = 2.85; `apertureMarketing` records the marketed f/2.8.
 
 ## Design Heritage and Context
 

@@ -133,7 +133,7 @@ The scaled production-size computed EFL is 28.0006 mm. The final-surface back fo
 
 The patent does not publish semi-diameters. The data file therefore uses inferred clear apertures constrained by four checks: spherical rim height below $sd/|R| = 0.90$, front/rear semi-diameter ratio no greater than 1.25 for each element, positive element edge thickness, and cross-gap sag intrusion no greater than 90% of each air gap. Surface 4 is the limiting curvature surface at $sd/|R| \approx 0.890$. The tightest non-stop air-gap clearance is the surface 8 to surface 9 gap at about 88% of the allowed 0.6412 mm scaled gap.
 
-The patent does not split the stop gap numerically. The data file places `STO` inside the 18.08 normalized air gap after surface 6 by splitting the gap as 14.00 + 4.08 before scaling. This agrees with FIG. 1 and preserves the total patent spacing. The stop semi-diameter is set to 6.4 mm; in the adopted stop placement this gives an entrance-pupil semi-diameter of about 5.00 mm and an effective f-number of about f/2.80 at the scaled EFL.
+The patent does not split the stop gap numerically. The data file places `STO` inside the 18.08 normalized air gap after surface 6 by splitting the gap as 14.00 + 4.08 before scaling. This agrees with FIG. 1 and preserves the total patent spacing. The authored stop semi-diameter is 6.4 mm; in the adopted stop placement this corresponds paraxially to an entrance-pupil semi-diameter of about 5.00 mm and an effective f-number of about f/2.80 at the scaled EFL, the marketed aperture. The runtime instead sizes the iris from `nominalFno`, the patent design value 2.9, by real-ray trace, giving a stop semi-diameter of about 6.33 mm and an entrance-pupil semi-diameter of about 4.83 mm.
 
 ## Manufacturer Specifications vs. Patent
 
@@ -142,7 +142,7 @@ Where the manufacturer and the patent differ, the manufacturer’s production sp
 | Specification | Patent Example 1, scaled | Ricoh archived production specification | Adopted in data file |
 |---|---:|---:|---:|
 | Focal length | 28.0 mm | 28 mm | 28 mm |
-| Maximum aperture | F.No. 1:2.9 | F2.8 | f/2.8 nominal |
+| Maximum aperture | F.No. 1:2.9 | F2.8 | `nominalFno` 2.9; `apertureMarketing` f/2.8 |
 | Diagonal field | 75.8° from $2\omega$ | 75° | 75° production metadata |
 | Elements / groups | 5 / 5 | 5 / 5 | 5 / 5 |
 | Minimum focus | not published | 0.25 m | 0.25 m |

@@ -120,9 +120,9 @@ const LENS_DATA = {
   doublets: [{ text: "L12", fromSurface: "1", toSurface: "3" }],
 
   closeFocusM: 0.64,
-  nominalFno: 4.5,
-  maxFstop: 4.5,
-  fstopSeries: [4.5],
+  nominalFno: 4.6,
+  maxFstop: 4.6,
+  fstopSeries: [4.6],
   scFill: 0.58,
   yScFill: 0.42,
 } satisfies LensDataInput;

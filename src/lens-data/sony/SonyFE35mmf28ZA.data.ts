@@ -267,9 +267,9 @@ const LENS_DATA = {
   focusDescription: "Inner focus — single negative element (L121/G2) moves object→image. Linear AF motor.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
+  nominalFno: 2.884,
   apertureBlades: 7,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.884, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

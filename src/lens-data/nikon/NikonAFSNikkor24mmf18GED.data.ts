@@ -305,8 +305,8 @@ const LENS_DATA = {
   focusDescription:
     "Rear-group inner focus: Gr1 is fixed; Gr2 moves 4.98 mm object-ward from infinity to close focus while BFD increases by 4.98 mm.",
 
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.86,
+  fstopSeries: [1.86, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
 
   scFill: 0.58,

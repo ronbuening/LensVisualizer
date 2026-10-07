@@ -58,10 +58,10 @@ const LENS_DATA = {
   elementCount: 21,
   groupCount: 15,
 
-  nominalFno: 4,
+  nominalFno: 4.13,
   closeFocusM: 1.0,
   maxFstop: 22,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [4.13, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   apertureBladeRoundedness: 0.8,
   yScFill: 0.74,

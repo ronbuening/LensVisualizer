@@ -39,12 +39,12 @@ const LENS_DATA = {
   patentYear: 2011,
   elementCount: 15,
   groupCount: 12,
-  nominalFno: 2.8,
+  nominalFno: 2.92,
   closeFocusM: 0.3,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
   maxFstop: 32,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [2.92, 4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 9,
   focusDescription:
     "Floating inner focus: negative L2 moves imageward and positive L4 moves objectward from infinity to 1×; L1, L3, and L5 remain stationary.",

@@ -286,7 +286,7 @@ The data file uses the patent's effective diameters from Table 6, divided by two
 
 The sensor cover glass or any camera-side filter stack is not included. The final surface distance d33 is the patent back focal distance to IMG.
 
-The current data schema does not support a zoom-varying stop semi-diameter. Table 9 gives φ15 = 16.23, 19.13, and 23.63 mm from wide to telephoto; the data file stores the maximum semi-diameter, 11.815 mm, and leaves the design aperture value in `apertureDesign: 2.91`.
+The current data schema does not support a zoom-varying stop semi-diameter. Table 9 gives φ15 = 16.23, 19.13, and 23.63 mm from wide to telephoto; the data file stores the maximum semi-diameter, 11.815 mm, and carries the design aperture value, 2.91, in both `nominalFno` and `apertureDesign`.
 
 The stop placement follows the numerical prescription. Table 6 marks surface 15 as `STO`, Table 7 starts GP3 at surface 15, and Figure 6 draws the stop at the object-side edge of GP3. The later prose statement placing the stop between GP3 and GP4 is treated as a descriptive slip, not as a prescription edit.
 

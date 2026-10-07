@@ -176,8 +176,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.0,
-  nominalFno: 5.6,
-  fstopSeries: [5.6, 8, 11, 16, 22, 32, 45, 64],
+  nominalFno: 5.8,
+  fstopSeries: [5.8, 8, 11, 16, 22, 32, 45, 64],
   maxFstop: 64,
   scFill: 0.62,
   yScFill: 0.42,

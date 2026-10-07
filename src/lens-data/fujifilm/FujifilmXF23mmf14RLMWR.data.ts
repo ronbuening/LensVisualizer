@@ -371,8 +371,8 @@ const LENS_DATA = {
   publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus: G2 (surfaces 13-22A) translates objectward as a unit; G1, the stop, and G3 remain fixed.",
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.44,
+  fstopSeries: [1.44, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
   scFill: 0.56,
   yScFill: 0.58,

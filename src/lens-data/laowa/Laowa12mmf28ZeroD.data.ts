@@ -370,8 +370,8 @@ const LENS_DATA = {
   publishedStations: { focus: [1] },
   focusDescription:
     "Floating focus: G1 fixed; G2 and G3 move. The patent variable-gaps encode infinity and a beta=0.02x finite-focus check, not the production 0.2x minimum-focus endpoint.",
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.87,
+  fstopSeries: [2.87, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   scFill: 0.64,
   yScFill: 0.42,

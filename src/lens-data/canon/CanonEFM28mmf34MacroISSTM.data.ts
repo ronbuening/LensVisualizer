@@ -283,8 +283,8 @@ const LENS_DATA = {
   focusDescription:
     "Patent rear-focus mechanism: L2 cemented doublet moves imageward within each focus mode; L1 and L2 shift objectward for the Super Macro mode. This file interpolates from infinity to the 1.2× third finite state; the patent rear plate is modeled in rearPlates.",
 
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 3.61,
+  fstopSeries: [3.61, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.52,

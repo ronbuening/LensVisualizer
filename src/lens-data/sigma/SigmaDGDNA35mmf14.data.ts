@@ -23,11 +23,10 @@ import type { LensDataInput } from "../../types/optics.js";
  *   Back focus   20.9607 mm (S27 to image plane)
  * Filter thread (manufacturer): 67 mm.
  *
- * F-number convention: nominalFno = 1.4 (manufacturer-published value, takes
- * precedence per project policy). Patent's design F/1.46 (apertureDesign)
- * yields a slightly smaller marginal-ray cone; semi-diameters in this file
- * are sized for F/1.4 marginal-ray heights to keep the renderer's marginal
- * ray inside every element.
+ * F-number convention: nominalFno = 1.46, the patent's design F-number
+ * (apertureDesign); apertureMarketing records the published F/1.4.
+ * Semi-diameters in this file were sized for F/1.4 marginal-ray heights,
+ * so they clear the slightly smaller design cone.
  *
  * Close-focus state: Sigma publishes MFD = 0.30 m. The patent tabulates only
  * one finite-focus state (subject distance 1.47 m). The close-focus var
@@ -88,8 +87,8 @@ export const sigmaDgDnA35mmF14Data = {
     "Inner focus by the single-element negative middle group L9. The patent 1.47 m row is exact before the constrained 0.30 m endpoint; lens length remains fixed.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning (yScFill required, no default) ── */
   yScFill: 0.3,

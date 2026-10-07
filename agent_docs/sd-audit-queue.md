@@ -8,7 +8,8 @@ that seeded Sections B and C is written up in
 
 Take **Section A top-down** — those rows have physics behind them. Section B is figure-evidence only and is lower
 value per hour. Sections D and E hold the MTF field and image-plane censuses. Section F holds traced field-coverage
-shortfalls that need a source, a decision or engine support rather than a larger rim.
+shortfalls that need a source, a decision or engine support rather than a larger rim. Section H holds lenses whose
+stop still opens to the marketed f-number.
 
 Status values: `todo` · `in progress` · `blocked (reason)` · `partial (what remains)`.
 
@@ -187,6 +188,43 @@ standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 | Nikon Fisheye-Nikkor 6mm f/2.8 | The file's surfaces trace to EFL 37.41 mm and a back focus of 273 mm; US 3,737,214 Example I states f = 6.3 and B.f. = 37.657. The table prints `R18 = −45.0`; `+45.0` gives EFL 6.300 and back focus 37.658. The file also places the stop ahead of the filter, while Fig. 1 draws it behind R17, and omits the listed filter plate R11/R12 (1.8 mm, n 1.51823). | Re-audit: correct R18 and the element types it changes, move the stop per Fig. 1, draw the filter plate, re-derive semi-diameters, and rewrite the analysis, which treats 37.4 mm as the Gaussian focal length. |
 | Nikkor Z 85mm f/1.8 S | The printed Example 3 table of JP 2020-173366 A traces to EFL 82.222 mm and a total length of 110.81 mm; the patent states 83.00 and 111.35, and its spherical-aberration plot does not show the −0.13 mm undercorrection the table produces. Recorded as an `unresolved` `sourceErrata` entry. Single changes near the second group (R8, R10, the L9 index) restore the focal length and axial correction, but none restores the off-axis correction as well. | Isolate the misprint against the patent text and its sibling examples, then correct it under the source-errata standard; leave it unresolved if no single cause meets that standard. |
 | Files with comment-only source corrections | Lens files whose headers describe an erratum or misprint in the source but carry no `sourceErrata` entry, from before the field existed (`grep -rli "erratum\|misprint" src/lens-data --include="*.data.ts"`). The MTF tab discloses nothing for them. | Record each as a `corrected` or `unresolved` entry under the standard, then delete this row. |
+
+## Section H — stop opens wider than the source design f-number
+
+`nominalFno` sizes the iris, and "wide open" means the source's design f-number (`apertureDesign`), with the marketed
+value in `apertureMarketing`. These files still open the stop to the faster, marketed number, which traces a beam the
+prescription was not corrected for. `__tests__/src/lens-data/patentMetadata.test.ts` holds the same list and fails
+when a lens joins or leaves it, so delete the key there with the row here.
+
+| Lens | File | nominalFno | apertureDesign | What to read | Status |
+|---|---|---|---:|---|---|
+| CANON 12.5-62.5mm f/2-3.9 (Canon PowerShot G1 X Mark II) | `canon/CanonPowerShotG1XII125625mmf239.data.ts` | [2, 3.5, 3.9] | 2.06 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| CANON 8.8-36.8mm f/1.8-2.8 (Canon PowerShot G7 X) | `canon/CanonPowerShotG7X88368mmf1828.data.ts` | [1.8, 2.54, 2.8] | 1.85 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| CANON EF 28-105mm f/3.5-4.5 II USM | `canon/CanonEF28105mmf3545II.data.ts` | [3.5, 4, 4.5] | 3.63 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| CANON EF 28-135mm f/3.5-5.6 IS USM | `canon/CanonEF28135mmf3556IS.data.ts` | [3.5, 4.24, 5.6] | 3.6 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| CANON EF 28-70mm f/3.5-4.5 II | `canon/CanonEF2870mmf3545II.data.ts` | [3.5, 4, 4.5] | 3.6 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| CANON EF 70-300mm f/4-5.6 IS USM | `canon/CanonEF70300mmf456ISUSM.data.ts` | [4.0333081, 4.74696994, 5.94591516] | 4.1 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| CANON EF-S 10-18mm f/4.5-5.6 IS STM | `canon/CanonEFS1018mmf4.data.ts` | [4.5, 5.1, 5.6] | 4.64 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| CANON TS-E 50mm f/2.8 L MACRO | `canon/CanonTSE50mmf28L.data.ts` | 2.8 | 2.88 | The header says the stop was calibrated to a value that is not the design stop; reconcile the two from the source | todo |
+| MINOLTA AF 35-105mm f/3.5-4.5 New (v2) | `minolta/MinoltaAF35105mmf3545v2.data.ts` | [3.5, 4.2, 4.5] | 3.6 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6 | `nikon/Nikon1Nikkor1030mmf3556.data.ts` | [3.5, 4.35, 5.6] | 3.63 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR | `nikon/NikonAFPDX1020mmf4556G.data.ts` | [4.5, 5.1, 5.6] | 4.625 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| NIKON FUWATTO SOFT 90mm f/4.8 | `nikon/NikonFuwattoSoft90mmf48.data.ts` | 4.8 | 4.95 | The file's STO semi-diameter reproduces the marketed f-number; check whether the source lists a stop diameter, then open to the design value | todo |
+| NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S | `nikon/NikonNikkorZ100400f4556.data.ts` | [4.58, 5.76] | 5.76 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR | `nikon/NikonZDX1650mmf3563VR.data.ts` | [3.5, 5.3, 6.3] | 3.56 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR | `nikon/NikonZDX18140mmf3563VR.data.ts` | [3.5, 5, 6.3] | 3.604 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| OLYMPUS ZUIKO AUTO-MACRO 90mm f/2 | `olympus/OlympusZuikoAutoMacro90mmf2.data.ts` | 2 | 2.06 | The file's STO semi-diameter reproduces the marketed f-number; check whether the source lists a stop diameter, then open to the design value | todo |
+| OLYMPUS ZUIKO AUTO-T 85mm f/2 | `olympus/OlympusZuiko85mmf2.data.ts` | 2 | 2.04 | The file's STO semi-diameter reproduces the marketed f-number; check whether the source lists a stop diameter, then open to the design value | todo |
+| PENTAX DA 70mm f/2.4 Limited | `pentax/PentaxDA70mmf24Limited.data.ts` | 2.4 | 2.5 | The file's STO semi-diameter reproduces the marketed f-number; check whether the source lists a stop diameter, then open to the design value | todo |
+| SAMYANG AF 35-150mm f/2-2.8 FE / L | `samyang/SamyangAF35150mmf228.data.ts` | [2, 2.5, 2.8] | 2.07 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| SONY 70-400mm f/4-5.6 G SSM II | `sony/SonySAL70400mmf456G.data.ts` | [4, 4.5, 5.6] | 4.11 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| SONY E 18-55mm f/3.5-5.6 OSS | `sony/SonyE1855mmf3556.data.ts` | [3.5, 4, 5.6] | 3.74 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
+| SONY FE 24mm f/2.8 G | `sony/SonyFE24mmf28G.data.ts` | 2.8 | 2.884 | The patent's stop H = 5.769 reproduces f/2.884 by real-ray trace; the file's paraxially adjusted STO sd 5.6105 does not. Restore the listed H and open to 2.884 | todo |
+| TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004) | `tamron/TamronSP90mmf28Di.data.ts` | 2.8 | 2.89 | The header says the stop was calibrated to a value that is not the design stop; reconcile the two from the source | todo |
+
+Also check, without a row each: 11 files whose `nominalFno` is slower than `apertureDesign` by more than 0.5 %
+(three mirror lenses, where the central obstruction separates the two; `PanasonicLumixG8mmf35`, `OlympusMZuiko17mmf18`,
+`Pentax645FA120mmf4`, `CanonEF2890mmf456II` and others), where one of the two fields is likely mislabelled.
 
 ## In-progress diagram sweep
 

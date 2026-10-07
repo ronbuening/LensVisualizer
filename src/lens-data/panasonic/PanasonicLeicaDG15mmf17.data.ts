@@ -271,8 +271,8 @@ const LENS_DATA = {
   focusDescription: "Inner focus — G2 (L6–L8) translates toward object. Stepping motor drive.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.7,
-  fstopSeries: [1.7, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.77,
+  fstopSeries: [1.77, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

@@ -166,8 +166,8 @@ const LENS_DATA = {
   focusDescription: "Unit focus — entire optical assembly translates. Built-in leaf shutter moves with optics.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

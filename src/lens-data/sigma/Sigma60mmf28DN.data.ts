@@ -241,9 +241,9 @@ const LENS_DATA = {
   focusDescription:
     "Inner focus: the patent 800 mm state is exact before the constrained 0.50 m endpoint. The positive G2 moves objectward while G1, the stop, and G3 remain fixed.",
 
-  nominalFno: 2.8,
+  nominalFno: 2.92,
   maxFstop: 22,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.92, 4, 5.6, 8, 11, 16, 22],
 
   scFill: 0.62,
   yScFill: 0.62,

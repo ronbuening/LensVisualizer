@@ -25,7 +25,7 @@ Numerical Example 2 is the embodiment that best matches the production **Sigma A
 
 Example 2 is preferable to the sibling examples because it is the only 19-element, 13-group embodiment at the nominal 150 mm focal length. Examples 1 and 3 share much of the construction but are shorter in focal length. Examples 4 and 5 are also nominally 150 mm, but they use simpler 18-element prescriptions and do not match the production optical construction as closely.
 
-Manufacturer specifications used as hard production references are: 150 mm nominal focal length, F2.8 maximum aperture, F22 minimum aperture, 19 elements in 13 groups, full-frame DG coverage, 16.4° diagonal angle of view, nine rounded diaphragm blades, 38 cm minimum focusing distance, 1:1 maximum magnification, 72 mm filter, and Sigma SA / Canon EF / Nikon F / Sony A production mounts. The patent's $F2.92$ design aperture is therefore recorded as a design value, while the data file keeps F2.8 as the marketed aperture.
+Manufacturer specifications used as hard production references are: 150 mm nominal focal length, F2.8 maximum aperture, F22 minimum aperture, 19 elements in 13 groups, full-frame DG coverage, 16.4° diagonal angle of view, nine rounded diaphragm blades, 38 cm minimum focusing distance, 1:1 maximum magnification, 72 mm filter, and Sigma SA / Canon EF / Nikon F / Sony A production mounts. The patent's $F2.92$ design aperture is therefore recorded as a design value, and it is also the `nominalFno` the stop opens to; the data file keeps F2.8 only as the marketed aperture (`apertureMarketing`).
 
 ## Optical Architecture
 

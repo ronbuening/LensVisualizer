@@ -330,8 +330,8 @@ const LENS_DATA = {
     "Floating inner focus: GR2 (3 elements) moves toward image, GR3 (2 elements) moves toward object. Four XD linear motors, two per group.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.5, 2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 1.854,
+  fstopSeries: [1.854, 2, 2.5, 2.8, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.52,

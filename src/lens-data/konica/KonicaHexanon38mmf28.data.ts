@@ -135,8 +135,8 @@ const LENS_DATA = {
   focusDescription:
     "Unit focus: all four glass elements translate together; the data file varies only the back-focus gap from infinity to 1.0m.",
   closeFocusM: 1.0,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.824,
+  fstopSeries: [2.824, 4, 5.6, 8, 11, 16, 22],
 
   // Rear-stop compact lenses vignette substantially off-axis at full aperture; use a conservative off-axis bundle for display.
   offAxisFieldFrac: 0.33,

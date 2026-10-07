@@ -256,8 +256,8 @@ const LENS_DATA = {
   publishedStations: { focus: [1] },
   focusDescription: "Single-element internal focus: negative meniscus G320 moves image-ward by 5.053 mm.",
 
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.47,
+  fstopSeries: [1.47, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   scFill: 0.58,
   yScFill: 0.72,

@@ -303,8 +303,8 @@ const LENS_DATA = {
   focusDescription: "Unit focusing — entire optical assembly translates along the optical axis.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.06,
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

@@ -182,8 +182,8 @@ const LENS_DATA = {
   focusDescription:
     "Production CRC changes the L4-L5 interval while the whole lens extends; patent Example 2 lists only infinity spacing, so close focus is approximated by BFD extension to the published 1:3.9 reproduction ratio.",
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.89,
+  fstopSeries: [2.89, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.58,

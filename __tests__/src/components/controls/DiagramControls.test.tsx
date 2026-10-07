@@ -111,6 +111,16 @@ describe("DiagramControls", () => {
     expect(screen.queryByText(`f/${nominalFno.toFixed(1)}`)).toBeNull();
   });
 
+  it("names the marketed f-number beside a wide-open design value that differs from it", () => {
+    const base = LENS_CATALOG["sonnar-50f15"];
+    renderControls(buildLens({ ...base, nominalFno: 1.46, apertureDesign: 1.46, apertureMarketing: 1.4 }));
+    expect(screen.getByText("marketed f/1.4")).toBeTruthy();
+    cleanup();
+    // The same aperture printed to different precision needs no second number.
+    renderControls(buildLens({ ...base, nominalFno: 1.403, apertureDesign: 1.403, apertureMarketing: 1.4 }));
+    expect(screen.queryByText(/marketed/)).toBeNull();
+  });
+
   it("offers the actual wide-open aperture without a faster, unreachable shortcut", () => {
     const L = buildLens(LENS_CATALOG["fujifilm-xf50-f1"]);
     const { callbacks } = renderControls(L, { apertureExpanded: true });

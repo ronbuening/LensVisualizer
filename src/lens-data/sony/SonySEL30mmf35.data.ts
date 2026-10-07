@@ -66,12 +66,12 @@ const LENS_DATA = {
   focusDescription:
     "Internal focus by axial movement of the single negative G12/L121 hybrid focus element; G11 and G13 remain fixed. Patent Example 1 varies D11 from 1.51 to 7.57 mm and D14 from 12.43 to 6.36 mm.",
 
-  nominalFno: 3.5,
+  nominalFno: 3.6,
   closeFocusM: 0.095,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
   maxFstop: 22,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [3.6, 4, 5.6, 8, 11, 16, 22],
   scFill: 0.58,
   yScFill: 0.72,
 

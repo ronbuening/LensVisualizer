@@ -360,8 +360,8 @@ const LENS_DATA = {
   focusDescription: "Floating rear focus — G1 fixed, G2A and G2B move independently toward object at close focus.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

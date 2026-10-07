@@ -300,9 +300,9 @@ const LENS_DATA = {
   focusDescription: "Inner focus — GR2 (L21 + L22, 2 elements) translates axially; GR1 and GR3 fixed. Ring Drive SSM.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
+  nominalFno: 1.45,
   apertureBlades: 11,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
 
   /* ── Layout tuning ── */

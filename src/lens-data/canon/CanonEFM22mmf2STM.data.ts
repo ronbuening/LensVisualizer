@@ -194,9 +194,9 @@ const LENS_DATA = {
   focusDescription:
     "Patent-tabulated two-gap inner/floating focus from infinity to beta = -0.1x; production 0.15 m MFD is not extrapolated.",
 
-  nominalFno: 2.0,
+  nominalFno: 2.05,
   maxFstop: 22,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.05, 2.8, 4, 5.6, 8, 11, 16, 22],
 
   scFill: 0.58,
   yScFill: 0.52,

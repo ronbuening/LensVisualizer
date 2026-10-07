@@ -25,7 +25,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Aperture note: the patent tabulates Fno = 1.86 at all zoom         ║
  * ║  positions. This file uses one physical stop radius, set to the     ║
  * ║  largest paraxial clear stop required among the three positions;    ║
- * ║  nominalFno records the marketed constant F1.8 value.               ║
+ * ║  nominalFno carries the patent's 1.86; apertureMarketing is F1.8.   ║
  * ║                                                                    ║
  * ║  Sensor cover glass, filters, mounts, and barrel mechanics are      ║
  * ║  intentionally excluded.                                           ║
@@ -57,10 +57,10 @@ const LENS_DATA = {
   patentYear: 2026,
   elementCount: 17,
   groupCount: 11,
-  nominalFno: 1.8,
+  nominalFno: 1.86,
   closeFocusM: 0.28,
   maxFstop: 16,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [1.86, 2, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 11,
   apertureBladeRoundedness: 1,
   yScFill: 0.78,

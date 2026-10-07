@@ -207,11 +207,11 @@ const LENS_DATA = {
     { label: "21", R: -1000.0, d: 15.0407, nd: 1.0, elemId: 0, sd: 8.5 },
   ],
 
-  nominalFno: 2.0,
+  nominalFno: 2.051,
   closeFocusM: 0.2,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.051, 2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   apertureBlades: 7,
   yScFill: 0.58,

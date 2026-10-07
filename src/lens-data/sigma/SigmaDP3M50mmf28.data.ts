@@ -277,8 +277,8 @@ const LENS_DATA = {
     "Unit focus — G1 (L1–L6 with aperture stop) extends toward the object; G2 and sensor are stationary. Only d11 (L6-rear to L7-front gap) changes during focusing.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.91,
+  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

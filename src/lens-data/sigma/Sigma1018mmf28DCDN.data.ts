@@ -55,9 +55,9 @@ const LENS_DATA = {
   elementCount: 13,
   groupCount: 10,
 
-  nominalFno: 2.8,
+  nominalFno: 2.92,
   closeFocusM: 0.116,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.92, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   zoomPositions: [10.3, 13.5, 17.5],

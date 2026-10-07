@@ -347,9 +347,9 @@ const LENS_DATA = {
     "Two linear motors, constant overall length. MFD 0.45 m (β = −0.5×).",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4.0,
+  nominalFno: 4.12,
   apertureBlades: 9,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [4.12, 5.6, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

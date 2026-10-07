@@ -37,9 +37,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  filter thread envelope.                                           ║
  * ║                                                                    ║
  * ║  NOTE ON F-NUMBER: Sigma markets this lens as F/1.4. The patent    ║
- * ║  design F-number is F/1.46. Per project convention, nominalFno     ║
- * ║  uses the manufacturer-published value (1.4); apertureMarketing    ║
- * ║  and apertureDesign are stored separately.                         ║
+ * ║  design F-number is F/1.46, which nominalFno and apertureDesign    ║
+ * ║  carry; apertureMarketing records the published 1.4.               ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -351,10 +350,9 @@ const LENS_DATA = {
     "Inner focus by single negative meniscus L7 (G2 / LF). L7 translates rigidly toward the image at close focus over a 9.6026 mm throw. Stepping-motor drive (Sigma published spec); BFD held constant.",
 
   /* ── Aperture configuration ── */
-  // Per project convention: nominalFno uses the manufacturer-marketed value (F/1.4),
-  // even though the patent design F-number is F/1.46.
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 1.6, 1.8, 2, 2.2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
+  // The patent design F-number; Sigma markets the lens as F/1.4.
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 1.6, 1.8, 2, 2.2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

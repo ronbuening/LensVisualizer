@@ -350,8 +350,8 @@ const LENS_DATA = {
   focusDescription:
     "Rear-group unit focusing. The first group is stationary; the complete second group translates toward the object. Patent Example 1 changes D11 from 10.407 mm to 1.012 mm and D25 (last lens surface to the cover plate) from 37.310 mm to 46.706 mm.",
 
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   scFill: 0.53,
   yScFill: 0.72,

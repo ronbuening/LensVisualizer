@@ -421,8 +421,8 @@ const LENS_DATA = {
   focusDescription: "Dual VCM floating focus: G4 (VCM 1) and G5 (VCM 2) move independently.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

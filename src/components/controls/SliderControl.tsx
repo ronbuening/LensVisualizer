@@ -18,6 +18,8 @@ interface SliderControlProps {
   labelMinWidth: number;
   displayValue: string;
   displayValueStyle?: React.CSSProperties;
+  /** Secondary reading shown small beside the value, e.g. a marketed figure. */
+  displayNote?: string;
   value: number;
   step: number;
   min?: number;
@@ -51,6 +53,7 @@ export default function SliderControl({
   labelMinWidth,
   displayValue,
   displayValueStyle,
+  displayNote,
   value,
   step,
   min = 0,
@@ -117,6 +120,7 @@ export default function SliderControl({
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
         <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: labelMinWidth }}>{label}</span>
         <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist, ...displayValueStyle }}>{displayValue}</span>
+        {displayNote && <span style={{ fontSize: 9.5, color: t.desc, whiteSpace: "nowrap" }}>{displayNote}</span>}
         {action && <span style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>{action}</span>}
         {collapsible && (
           <CollapseButton

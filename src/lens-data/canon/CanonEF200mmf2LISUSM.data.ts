@@ -362,8 +362,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.9,
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 2.05,
+  fstopSeries: [2.05, 2.8, 4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
   apertureBlades: 8,
   focusDescription:

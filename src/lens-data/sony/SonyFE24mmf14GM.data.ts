@@ -310,8 +310,8 @@ const LENS_DATA = {
   // Patent read 2026-10-06: Close-focus gaps d10 = 2.84 and d22 = 7.94 are the patent's Table 3 near-focus row for
   // Numerical Example 1 (beta = -0.172), used unscaled.
   publishedStations: { focus: [1] },
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.44,
+  fstopSeries: [1.44, 2, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 11,
 
   offAxisFieldFrac: 0.4,

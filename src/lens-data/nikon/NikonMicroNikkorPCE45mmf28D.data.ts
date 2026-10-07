@@ -263,8 +263,8 @@ const LENS_DATA = {
     "CRC floating focus: G1+G3 move as a linked unit; G2 moves at a different rate. ΔD1 = −ΔD2 ≈ 4.28 mm. Maximum reproduction ratio 1:2 (β = −0.50).",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8, // Nikon marketed f/2.8 (patent design FNO = 2.89)
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 2.89, // patent design FNO; Nikon markets f/2.8
+  fstopSeries: [2.89, 4, 5.6, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

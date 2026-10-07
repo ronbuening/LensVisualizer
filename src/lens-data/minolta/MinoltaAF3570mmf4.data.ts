@@ -200,8 +200,8 @@ const LENS_DATA = {
   focusDescription:
     "Front-group focus. The patent states that Group I alone shifts during focusing; close-focus spacings are paraxial estimates because the patent publishes no close-focus table.",
   closeFocusM: 1,
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16],
+  nominalFno: 4.1,
+  fstopSeries: [4.1, 5.6, 8, 11, 16],
   scFill: 0.64,
   yScFill: 0.5,
 } satisfies LensDataInput;

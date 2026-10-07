@@ -380,8 +380,8 @@ const LENS_DATA = {
   closeFocusM: 0.38,
   focusDescription:
     "Internal focus by imageward movement of G2a (hybrid asphere L4 plus L5/L6 cemented doublet); close-focus spacings are paraxial estimates because the patent gives infinity data only.",
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.91,
+  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   apertureBlades: 9,
   apertureBladeRoundedness: 0.7,

@@ -21,8 +21,9 @@ with.** The one approximation in the engine itself, the diffraction product, has
    contradiction (`agent_docs/sd-audit-queue.md` Section G), and Sigma 23mm f/1.4 DC DN (−0.23 mean; its first-order
    values match the patent) is undiagnosed. A screen flags 77 of 846 lenses (9 %) for the same class of
    self-inconsistency. *Stage 4.*
-3. **The aperture is wrong for many lenses.** 176 files open the stop to the marketed f-number although the patent
-   design is slower, and 76 constant-aperture zooms are traced up to 1.7 stops slow at the tele end. *Stage 5.*
+3. **The aperture is wrong for many lenses.** 23 files still open the stop to the marketed f-number although the
+   patent design is slower (`agent_docs/sd-audit-queue.md` Section H; 156 were corrected), and 76 constant-aperture
+   zooms are traced up to 1.7 stops slow at the tele end. *Stage 5.*
 4. **Charts follow different conventions.** Nikon, Sony and Tamron charts exceed the diffraction limit, so they are
    geometric; Sigma, Zeiss and recent Canon include diffraction. *Stage 8.*
 5. **A field slope remains**: slightly high on axis, low by about 0.02 / 0.06 at 10 / 30 lp/mm by 70 % field. It
@@ -61,7 +62,7 @@ investigation and are replaced by regenerated ones as stages land.
 | # | Problem | Measured effect | Stage |
 |---|---|---|---|
 | A | Source values that contradict their own source; `focalLengthDesign` is often the computed EFL, so the data cannot expose a mismatch | 0.27 and 0.50 mean error on the two corrected lenses | 4 |
-| B | Stop sized from marketed `nominalFno` in 176 files (`src/optics/runtimeLens.ts`) | +0.016 / +0.028 on axis at 10 / 30 lp/mm, up to +0.06 | 5 |
+| B | Stop sized from marketed `nominalFno` in 23 files still queued (`agent_docs/sd-audit-queue.md` Section H) | +0.016 / +0.028 on axis at 10 / 30 lp/mm, up to +0.06 | queue |
 | C | Zooms reuse the wide-end iris at tele (`src/optics/apertureStop.ts`) | 76 files more than 0.1 stop slow, 23 by 0.9 stop or more | 5 |
 | G | Chart conventions are not shown to the reader | −0.02 / −0.03 against geometric-chart makers, largest near the axis (−0.04 at 30 lp/mm) | 8 |
 | H | Clear apertures inferred from drawings, undisclosed | −5 % semi-diameter ≈ +0.02 / +0.04 off axis | 8 |
@@ -128,18 +129,15 @@ and after.
 
 ### Stage 5 — Aperture model
 
-- **Why.** B, C, K: seven patent-listed stop diameters reproduce `apertureDesign`, not the marketed value, to 0.2 %
-  through our own trace, and patent rims clip a marketed-aperture beam. 290 files already use the design value.
-- **Changes.** A dry-run-by-default codemod sets `nominalFno` to `apertureDesign` in the 176 files (skipping
-  faster-than-nominal and large-ratio cases) with a generated before/after report; a validator ties the two fields;
-  the marketed value becomes a secondary label. Zooms derive a per-station iris by default in
+- **Why.** C, K: a constant-aperture zoom keeps its wide-end iris at every focal length, and patent rims clip a beam
+  they were not sized for.
+- **Changes.** Zooms derive a per-station iris by default in
   `src/optics/runtimeLens.ts`, with `zoomApertureModel: "fixed-iris"` as the opt-out, and
   `src/lens-data/LENS_DATA_SPEC.md` is rewritten to match. `clipMargin` stops multiplying physical clip radii
   (`src/optics/trace/aperture.ts`, `src/optics/internal/exactSurfaceTrace.ts`). A queue rule for the 121 lenses
   whose heuristic rim clips the stated axial beam. Lowest priority: a pure real-ray stop-down solve replacing linear
   scaling (median 1.35 % too open at f/8).
-- **Ripple.** Aperture labels, `fstopSeries`, ray fans, vignetting, bokeh, spherical aberration, analysis markdown,
-  committed static SVGs and tests that pin f-numbers.
+- **Ripple.** Ray fans, vignetting, bokeh, spherical aberration and tests that pin zoom f-numbers.
 - **Acceptance.** Patent stop radii within 0.2 % (primes) and 0.1 % (tele); the traced f-number within 3 % of the
   stated one at every station, or the lens is queued as rim-limited.
 

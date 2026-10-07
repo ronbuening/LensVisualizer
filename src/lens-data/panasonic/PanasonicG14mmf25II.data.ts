@@ -234,8 +234,8 @@ const LENS_DATA = {
   focusDescription:
     "Inner focus: front unit and rear unit fixed; positive G2 moves 0.909 mm toward the object at 0.18 m. Close spacings are paraxially inferred from official 0.10× magnification because the patent publishes only infinity spacing.",
 
-  nominalFno: 2.5,
-  fstopSeries: [2.5, 2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.52134,
+  fstopSeries: [2.52134, 2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.44,

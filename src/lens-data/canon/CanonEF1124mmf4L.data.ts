@@ -431,9 +431,9 @@ const LENS_DATA = {
   focusDescription:
     "Rear focusing by moving the complete second powered unit L2 (surfaces 15-20). The patent publishes infinity-focus zoom spacings only; the data file does not synthesize finite-focus travel. Canon specifies 0.32 m MFD at 11 mm and 0.28 m at 24 mm.",
   closeFocusM: 0.28,
-  nominalFno: 4,
+  nominalFno: 4.12,
   maxFstop: 22,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [4.12, 5.6, 8, 11, 16, 22],
 
   maxRimAngleDeg: 72,
   gapSagFrac: 0.96,

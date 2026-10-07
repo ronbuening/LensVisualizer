@@ -309,8 +309,8 @@ const LENS_DATA = {
   focusDescription: "Inner focus: Gr2 (L21–L23) moves toward object; Gr1, stop, and Gr3 fixed. β = −1.0 (1:1) at MFD.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

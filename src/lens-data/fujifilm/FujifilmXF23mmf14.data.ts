@@ -325,8 +325,8 @@ const LENS_DATA = {
   focusDescription: "Inner focus: L21 + cemented triplet (L22–L24) translate toward object; G1 and L25 fixed.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

@@ -57,10 +57,10 @@ const LENS_DATA = {
   groupCount: 13,
   apertureBlades: 9,
 
-  nominalFno: 5.6,
+  nominalFno: 5.7,
   closeFocusM: 0.6,
   maxFstop: 32,
-  fstopSeries: [5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [5.7, 8, 11, 16, 22, 32],
   yScFill: 0.78,
   scFill: 0.58,
   focusDescription:

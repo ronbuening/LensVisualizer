@@ -8,8 +8,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * 2 FLD + 5 SLD + 2 aspherical elements.
  *
  * Prescription notes:
- * - Patent focal length is f = 20.69 mm and F-number is 1.46. The data file uses
- *   the manufacturer-marketed nominalFno of 1.4 and records the patent value as apertureDesign.
+ * - Patent focal length is f = 20.69 mm and F-number is 1.46. nominalFno and apertureDesign
+ *   carry that patent value; apertureMarketing records the marketed 1.4.
  * - The patent lists a 1.45 mm LPF plate (surfaces 28–29; nd 1.52301, νd 58.59) after surface 27.
  *   It is modeled in `rearPlates` (traced, not drawn); surface 27A keeps the patent's physical d27 to
  *   the plate (36.5001 mm at infinity, 37.0527 mm in the tabulated finite state). BF is printed only
@@ -350,8 +350,8 @@ const LENS_DATA = {
   focusDescription:
     "Dual-group floating internal focus: L1 is fixed; the patent finite state is stored exactly, followed by a constrained extrapolation of the L2:L3 motion ratio to Sigma's published 0.276 m / 1:7.1 limit.",
 
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
 
   scFill: 0.54,

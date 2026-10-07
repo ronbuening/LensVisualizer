@@ -240,9 +240,9 @@ const LENS_DATA = {
   focusDescription:
     "Inner focus: only L6 / G2 moves imageward. The close-focus state is paraxially solved for Sony's 0.25 m MF minimum focus distance; AF minimum focus is 0.29 m with shorter travel.",
 
-  nominalFno: 2.0,
+  nominalFno: 2.06,
   maxFstop: 22,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22],
 
   scFill: 0.58,
   yScFill: 0.46,

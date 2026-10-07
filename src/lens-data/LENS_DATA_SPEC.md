@@ -79,7 +79,7 @@ propagation, not higher-order or chromatic behavior. See
 | `name` | `string` | Full UI display name following the display-name convention below (e.g. `"NIKON NIKKOR Z 50mm f/1.8 S"`) |
 | `elements` | `array` | Physical glass/mirror elements (min 1); ordinary lenses list front to rear, while folded models document their stable model order |
 | `surfaces` | `array` | Optical surfaces (min 1); ordinary lenses list front to rear, while folded models may use signed displacements and explicit path order |
-| `nominalFno` | `number \| number[]` | Nominal f-number — single value for primes/constant-aperture zooms, or array (one per zoom position) for variable-aperture zooms (e.g. `[4.5, 5.76]`) |
+| `nominalFno` | `number \| number[]` | F-number the stop opens to: the source's design value (`apertureDesign`) when it states one, never the faster marketed number, which belongs in `apertureMarketing`. Single value for primes/constant-aperture zooms, or array (one per zoom position) for variable-aperture zooms (e.g. `[4.5, 5.76]`) |
 | `closeFocusM` | `number` | Minimum focus distance in meters |
 | `zoomCloseFocusM` | `number[]` (optional) | Positive object-to-image endpoint distances matching `zoomPositions`; overrides the scalar at each zoom station |
 | `fstopSeries` | `array` | F-stop values for quick-select UI buttons |
@@ -144,8 +144,8 @@ Keep it normalized even when the product's official styling varies by source:
 | `specs` | `string[]` | | Spec strings displayed in header |
 | `focalLengthMarketing` | `number \| [number, number]` | | Marketed/nominal focal length in mm. Single number for primes (e.g. `50`); `[wide, tele]` tuple for zooms (e.g. `[70, 200]`). |
 | `focalLengthDesign` | `number \| [number, number]` | | Design/patent focal length in mm (computed EFL). Single number for primes; `[wide, tele]` for zooms. May differ from marketing value. |
-| `apertureMarketing` | `number` | | Marketed/nominal maximum f-number (e.g. `1.8` for an "f/1.8" lens). |
-| `apertureDesign` | `number` | | Design/patent maximum f-number (precise computed value, e.g. `1.85`). May differ from marketing value. |
+| `apertureMarketing` | `number` | | Marketed maximum f-number (e.g. `1.8` for an "f/1.8" lens). Shown beside the wide-open readout when it differs from the design value. |
+| `apertureDesign` | `number` | | Design/patent maximum f-number as the source states it (e.g. `1.85`). `nominalFno` must not be faster than this by more than 0.5 %; a corpus sweep enforces it. |
 | `lensMounts` | `LensMountId[]` | | Canonical mount ids for production variants represented by this optical formula. May contain multiple ids, e.g. `["nikon-z", "sony-fe"]`. |
 | `imageCircleMm` | `number` | | Optional published circular image diameter in millimetres, independent of projection law. Positive and finite; overrides the format diagonal for analysis-field bounds and the image-circle audit. Does not imply a projection law or certify reconstructed edge performance. |
 | `imageFormat` | `ImageFormatId` | | Single canonical image-circle/format id, e.g. `"135-full-frame"`, `"aps-c"`, or `"110"`. Required for normalized fixed-sensor perspective field sampling. |

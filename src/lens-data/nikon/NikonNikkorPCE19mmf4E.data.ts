@@ -413,8 +413,8 @@ const LENS_DATA = {
     "Rear-group focus: Gr2 and aperture stop translate axially toward object (3.67 mm travel). Gr1 remains fixed relative to image plane.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4,
-  fstopSeries: [4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32],
+  nominalFno: 4.08,
+  fstopSeries: [4.08, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

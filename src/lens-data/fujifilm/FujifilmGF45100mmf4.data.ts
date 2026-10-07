@@ -407,9 +407,9 @@ const LENS_DATA = {
   closeFocusM: 0.65,
   focusDescription:
     "Internal focus by L25 moving toward the object. Example 1 publishes infinity-focus zoom separations only, so close-focus travel is not modeled.",
-  nominalFno: 4,
+  nominalFno: 4.1,
   maxFstop: 32,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [4.1, 5.6, 8, 11, 16, 22, 32],
   scFill: 0.72,
   yScFill: 0.7,
 } satisfies LensDataInput;

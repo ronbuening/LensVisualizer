@@ -382,8 +382,8 @@ const LENS_DATA = {
   publishedStations: { focus: [1] },
   focusDescription: "Internal focus by L12/G3: d22 decreases and d24 increases by 1.6864 mm from infinity to 0.20 m.",
 
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   scFill: 0.56,
   yScFill: 0.46,

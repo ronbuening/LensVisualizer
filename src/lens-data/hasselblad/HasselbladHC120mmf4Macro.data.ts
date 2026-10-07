@@ -223,8 +223,8 @@ const LENS_DATA = {
   focusDescription: "Front-group unit focus (L1–L6 translate forward, rear group fixed). Infinity to 1:1.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4.0,
-  fstopSeries: [4, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 45],
+  nominalFno: 4.1,
+  fstopSeries: [4.1, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 45],
 
   /* ── Layout tuning ── */
   scFill: 0.5,
