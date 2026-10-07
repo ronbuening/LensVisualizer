@@ -103,7 +103,9 @@ The rule integrates the slope exactly through sixth-order aberration along the s
 sampling, which the grid ladder refines (at a 32-cell pupil two waves of balanced spherical read 0.011 low). The pupil is √flux on the regular launch lattice, with
 amplitude and landing error interpolated linearly along each lattice line. The shear is fixed in direction cosine:
 each pair opens by the lattice cells that λν spans at its own centre, from the rays' own cosines, because a
-wide-angle corner maps the lattice onto the exit pupil unevenly. Every wavelength shears its own lattice
+wide-angle corner maps the lattice onto the exit pupil unevenly. That correction is first order and grid refinement
+does not remove its residual: within 0.003 up to 55 % of the cutoff on catalog corners, 0.009 near the cutoff of
+a 55° corner. Every wavelength shears its own lattice
 against the field's one image reference, so lateral color stays in the phase that `combineOtfs` sums. It needs no
 optical path, reference sphere or validity gate, and tends to the geometric OTF as ν → 0. Its kernel costs two to five
 times the geometric sum, which the ray trace dwarfs: request time did not rise. `MtfFieldResult.diffractionLimit` is the same overlap with zero phase: the response the traced pupil

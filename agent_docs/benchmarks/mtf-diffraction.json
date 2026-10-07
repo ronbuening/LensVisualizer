@@ -1,6 +1,6 @@
 {
-  "createdAt": "2026-10-07T18:54:36.894Z",
-  "commit": "336627aeda9c48e783ff62c5e8c0a1588cfa16ca",
+  "createdAt": "2026-10-07T18:59:38.372Z",
+  "commit": "359f74ea61cc80a479a2bcd2db43edd012456545",
   "node": "v24.15.0",
   "cpu": "Apple M4 Pro",
   "method": "diffraction",
@@ -17,7 +17,7 @@
       "key": "canon-serenar-50f18",
       "maxGridSize": 32,
       "support": "candidate",
-      "medianMs": 23.77,
+      "medianMs": 23.15,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -57,7 +57,7 @@
       "key": "canon-serenar-50f18",
       "maxGridSize": 64,
       "support": "candidate",
-      "medianMs": 68.97,
+      "medianMs": 68.9,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -97,7 +97,7 @@
       "key": "canon-serenar-50f18",
       "maxGridSize": 128,
       "support": "candidate",
-      "medianMs": 167.59,
+      "medianMs": 168.42,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -137,7 +137,7 @@
       "key": "canon-serenar-50f18",
       "maxGridSize": 256,
       "support": "candidate",
-      "medianMs": 164.09,
+      "medianMs": 164.61,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -177,7 +177,7 @@
       "key": "sony-fe-24-70mm-f28-gm-ii",
       "maxGridSize": 32,
       "support": "candidate",
-      "medianMs": 100.18,
+      "medianMs": 99.42,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -217,7 +217,7 @@
       "key": "sony-fe-24-70mm-f28-gm-ii",
       "maxGridSize": 64,
       "support": "candidate",
-      "medianMs": 225.73,
+      "medianMs": 224.14,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -257,7 +257,7 @@
       "key": "sony-fe-24-70mm-f28-gm-ii",
       "maxGridSize": 128,
       "support": "candidate",
-      "medianMs": 497.04,
+      "medianMs": 496.77,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -297,7 +297,7 @@
       "key": "sony-fe-24-70mm-f28-gm-ii",
       "maxGridSize": 256,
       "support": "candidate",
-      "medianMs": 499.55,
+      "medianMs": 495.69,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -337,7 +337,7 @@
       "key": "sony-fe-1224f28-gm",
       "maxGridSize": 32,
       "support": "candidate",
-      "medianMs": 169.84,
+      "medianMs": 169.37,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -377,7 +377,7 @@
       "key": "sony-fe-1224f28-gm",
       "maxGridSize": 64,
       "support": "candidate",
-      "medianMs": 295.58,
+      "medianMs": 295.19,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -417,7 +417,7 @@
       "key": "sony-fe-1224f28-gm",
       "maxGridSize": 128,
       "support": "candidate",
-      "medianMs": 295.83,
+      "medianMs": 294.93,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -457,7 +457,7 @@
       "key": "sony-fe-1224f28-gm",
       "maxGridSize": 256,
       "support": "candidate",
-      "medianMs": 298.79,
+      "medianMs": 295.02,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -497,7 +497,7 @@
       "key": "sony-fe-28-70mm-f2-gm",
       "maxGridSize": 32,
       "support": "candidate",
-      "medianMs": 105.18,
+      "medianMs": 103.52,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -537,7 +537,7 @@
       "key": "sony-fe-28-70mm-f2-gm",
       "maxGridSize": 64,
       "support": "candidate",
-      "medianMs": 360.99,
+      "medianMs": 354.42,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -577,7 +577,7 @@
       "key": "sony-fe-28-70mm-f2-gm",
       "maxGridSize": 128,
       "support": "candidate",
-      "medianMs": 858.46,
+      "medianMs": 826.24,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,
@@ -617,7 +617,7 @@
       "key": "sony-fe-28-70mm-f2-gm",
       "maxGridSize": 256,
       "support": "candidate",
-      "medianMs": 3170.55,
+      "medianMs": 3049.07,
       "geometry": {
         "referenceHeightMm": 21.65,
         "modeledEdgeHeightMm": 21.65,

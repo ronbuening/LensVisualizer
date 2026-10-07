@@ -191,7 +191,7 @@ describe("sheared-ray diffraction MTF", () => {
   });
   it("opens each pair by the lattice cells its shear spans where the lattice maps unevenly onto the pupil", () => {
     // Rows map to direction cosine as y = v + 0.2 (1 - v²): the lattice pitch varies 2.3 to 1 across the pupil,
-    // far more than the 10 % of a real wide-angle corner. Rays carry the Jacobian as flux, so the pupil is uniform.
+    // far more than the 10 to 20 % of real wide-angle corners. Rays carry the Jacobian as flux, so the pupil is uniform.
     const samples = 64;
     const rays = [];
     const h = 1e-5;

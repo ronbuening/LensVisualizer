@@ -1,6 +1,6 @@
 {
-  "createdAt": "2026-10-07T18:55:45.746Z",
-  "commit": "336627aeda9c48e783ff62c5e8c0a1588cfa16ca",
+  "createdAt": "2026-10-07T19:00:45.383Z",
+  "commit": "359f74ea61cc80a479a2bcd2db43edd012456545",
   "node": "v24.15.0",
   "cpu": "Apple M4 Pro",
   "method": "diffraction",
@@ -24,7 +24,7 @@
         "distanceReference": "first-surface",
         "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
       },
-      "medianMs": 102.07,
+      "medianMs": 99.87,
       "geometry": {
         "referenceHeightMm": 27.39,
         "modeledEdgeHeightMm": 26.62160700835025,
@@ -71,7 +71,7 @@
         "distanceReference": "first-surface",
         "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
       },
-      "medianMs": 188.83,
+      "medianMs": 190.29,
       "geometry": {
         "referenceHeightMm": 27.39,
         "modeledEdgeHeightMm": 26.62160700835025,
@@ -118,7 +118,7 @@
         "distanceReference": "first-surface",
         "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
       },
-      "medianMs": 188.27,
+      "medianMs": 186.4,
       "geometry": {
         "referenceHeightMm": 27.39,
         "modeledEdgeHeightMm": 26.62160700835025,
@@ -165,7 +165,7 @@
         "distanceReference": "first-surface",
         "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
       },
-      "medianMs": 187.13,
+      "medianMs": 186.55,
       "geometry": {
         "referenceHeightMm": 27.39,
         "modeledEdgeHeightMm": 26.62160700835025,

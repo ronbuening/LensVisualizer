@@ -18,8 +18,10 @@
  * unevenly (one lag for the whole pupil read a 43° corner 0.005 high). No optical path, reference
  * sphere or validity gate is involved, and the estimate tends to the geometric OTF as ν → 0. What
  * limits it is sampling: the landing error must change slowly from one lattice cell to the next,
- * which grid refinement checks. The per-pair lag is a first-order correction (the five rays stay
- * evenly spaced in cells), enough for the 10 % unevenness of real 42° to 60° corners.
+ * which grid refinement checks. The per-pair lag is a first-order correction: the five rays stay
+ * evenly spaced in cells and the pair carries no Jacobian, and a finer grid does not remove what
+ * that leaves. On catalog corners it is within 0.003 up to 55 % of the cutoff, and reaches 0.009
+ * near the cutoff, where MTF is under 0.05, on a 55° f/8 corner whose pitch varies 20 %.
  *
  * A pair whose centre has no ray, because a gap in the beam separates its ends, has no landing
  * errors between them, so the mean of the two ends stands in. The overlap (the aberration-free
