@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { pupilOtf, reconstructMtfPupil, type ComplexPupil } from "../../../src/optics/analysis/mtfDiffraction.js";
 import { diffractionLimitFromBundle } from "../../../src/optics/analysis/mtfDiffractionLimit.js";
-import { otfMagnitude } from "../../../src/optics/analysis/mtfMath.js";
+import { geometricOtf, multiplyOtf, otfMagnitude } from "../../../src/optics/analysis/mtfMath.js";
 import { traceMtfFieldPupil, type MtfBundle } from "../../../src/optics/analysis/mtfTracing.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtfSupport.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
@@ -250,5 +250,155 @@ describe("diffraction limit of a traced pupil", () => {
     expect(scalar.reason).toBeNull();
     expect(corrected.reason).toBeNull();
     corrected.sagittal.forEach((value, i) => expect(Math.abs(value - scalar.sagittal[i])).toBeLessThan(0.01));
+  });
+});
+
+/** Wave aberration in waves over the unit pupil disc; y is the meridional axis. */
+type WaveAberration = (x: number, y: number) => number;
+
+/** Diffraction-limited MTF of a circular pupil at s = ν / ν_c, where ν_c = 2 NA / λ. */
+function circularMtf(s: number): number {
+  return s >= 1 ? 0 : (2 / Math.PI) * (Math.acos(s) - s * Math.sqrt(1 - s * s));
+}
+
+/** Hopkins' exact incoherent MTF of an aberrated circular pupil at s = ν / ν_c: 1/π times the integral of
+ * exp(i2π[W(p + s) - W(p - s)]) over the overlap of the unit discs centred at ±s on the cut axis.
+ * Midpoint rule with v = sin t across the cut, which keeps the integrand smooth to the overlap's tips. */
+function hopkinsMtf(aberration: WaveAberration, s: number, axis: "x" | "y", samples = 200): number {
+  const wave: WaveAberration = axis === "x" ? aberration : (u, v) => aberration(v, u);
+  const span = Math.acos(s);
+  let real = 0,
+    imaginary = 0;
+  for (let i = 0; i < samples; i++) {
+    const t = ((2 * (i + 0.5)) / samples - 1) * span;
+    const v = Math.sin(t);
+    // The chord at height v has half-width cos t - s, and dv = cos t dt.
+    const half = Math.cos(t) - s;
+    const area = Math.cos(t) * half;
+    for (let j = 0; j < samples; j++) {
+      const u = ((2 * (j + 0.5)) / samples - 1) * half;
+      const phase = 2 * Math.PI * (wave(u + s, v) - wave(u - s, v));
+      real += area * Math.cos(phase);
+      imaginary += area * Math.sin(phase);
+    }
+  }
+  return (Math.hypot(real, imaginary) * 4 * span) / (samples * samples * Math.PI);
+}
+
+/** Geometric bundle consistent with a wave aberration: a circular pupil `discCells` lattice cells across,
+ * each ray landing at its transverse aberration -(λ / NA) ∇W. */
+function aberratedLattice(
+  aberration: WaveAberration,
+  na: number,
+  wavelengthMm: number,
+  samples: number,
+  discCells = samples,
+): MtfBundle {
+  const bundle = latticePupil((qx, qy) => Math.hypot(qx, qy) <= na, (na * samples) / discCells, samples);
+  // A central difference is accurate to ~1e-9 for the low-order polynomial aberrations used here.
+  const h = 1e-5;
+  const scale = -wavelengthMm / (2 * h * na);
+  for (const ray of bundle.rays) {
+    const x = ray.trace.terminalDirection[0] / na,
+      y = ray.trace.terminalDirection[1] / na;
+    ray.x = scale * (aberration(x + h, y) - aberration(x - h, y));
+    ray.y = scale * (aberration(x, y + h) - aberration(x, y - h));
+  }
+  return bundle;
+}
+
+describe("analytic wave-optics controls", () => {
+  const wavelengthMm = 0.00055;
+  const na = 0.1;
+  const cutoff = (2 * na) / wavelengthMm;
+  const unaberrated: WaveAberration = () => 0;
+  const defocus: WaveAberration = (x, y) => x * x + y * y;
+  // Two waves of spherical aberration balanced by defocus.
+  const balancedSpherical: WaveAberration = (x, y) => 2 * ((x * x + y * y) ** 2 - (x * x + y * y));
+  // Meridional coma and astigmatism, so the sagittal and tangential cuts differ.
+  const comaAstigmatism: WaveAberration = (x, y) => 2 * (x * x + y * y) * y + y * y;
+
+  /** Engine estimates and the Hopkins reference on the [sagittal, tangential] cuts at s = ν / ν_c. */
+  const cuts = (aberration: WaveAberration, s: number, samples = 64, discCells = samples) => {
+    const bundle = aberratedLattice(aberration, na, wavelengthMm, samples, discCells);
+    const frequencies = [s * cutoff];
+    const gain = diffractionLimitFromBundle(bundle)!.sample(wavelengthMm, frequencies);
+    return (["x", "y"] as const).map((axis) => {
+      const limit = (axis === "x" ? gain.sagittal : gain.tangential)[0];
+      const geometric = geometricOtf(bundle.rays, frequencies, axis);
+      return {
+        limit,
+        geometric: otfMagnitude(geometric)[0],
+        // The diffraction-corrected estimator: geometric OTF times the pupil's aberration-free OTF.
+        product: otfMagnitude(multiplyOtf(geometric, [limit]))[0],
+        hopkins: hopkinsMtf(aberration, s, axis),
+      };
+    });
+  };
+  const productError = (aberration: WaveAberration, s: number) =>
+    Math.max(...cuts(aberration, s).map((cut) => Math.abs(cut.product - cut.hopkins)));
+  const limitError = (s: number, samples: number, discCells = samples) =>
+    Math.max(...cuts(unaberrated, s, samples, discCells).map((cut) => Math.abs(cut.limit - circularMtf(s))));
+
+  it("integrates Hopkins' formula to the circular aperture response for an unaberrated pupil", () => {
+    for (const s of [0.005, 0.05, 0.2, 0.5, 0.9])
+      expect(Math.abs(hopkinsMtf(unaberrated, s, "x") - circularMtf(s))).toBeLessThan(1e-4);
+  });
+  it("integrates Hopkins' formula in agreement with scalar diffraction of aberrated pupils", () => {
+    // Independent route: FFT autocorrelation of the complex pupil raster, at whole-cell lags so nothing
+    // is interpolated. The raster's pupil radius is 0.05, so a lag of k cells is s = k / size.
+    const lags = [4, 16, 32, 64, 128];
+    for (const aberration of [defocus, balancedSpherical, comaAstigmatism]) {
+      const pupil = disk(256, (qx, qy) => 2 * Math.PI * aberration(qx / 0.05, qy / 0.05));
+      const scalar = pupilOtf(
+        pupil,
+        wavelengthMm,
+        lags.map((lag) => (lag * pupil.step) / wavelengthMm),
+      );
+      const sagittal = otfMagnitude(scalar.sagittal),
+        tangential = otfMagnitude(scalar.tangential);
+      lags.forEach((lag, i) => {
+        expect(Math.abs(sagittal[i] - hopkinsMtf(aberration, lag / pupil.size, "x"))).toBeLessThan(0.001);
+        expect(Math.abs(tangential[i] - hopkinsMtf(aberration, lag / pupil.size, "y"))).toBeLessThan(0.001);
+      });
+    }
+  });
+  it("reproduces the circular aperture response from an unbinned lattice", () => {
+    for (const s of [0.01, 0.05, 0.1, 0.2]) expect(limitError(s, 64)).toBeLessThan(0.003);
+  });
+  it("matches Hopkins at low frequency under defocus and balanced spherical aberration", () => {
+    expect(productError(defocus, 0.01)).toBeLessThan(0.003);
+    expect(productError(balancedSpherical, 0.01)).toBeLessThan(0.003);
+  });
+  it("matches Hopkins at low frequency on both cuts under coma and astigmatism", () => {
+    const [sagittal, tangential] = cuts(comaAstigmatism, 0.01);
+    // The meridional aberration costs the tangential cut far more contrast than the sagittal one.
+    expect(sagittal.hopkins - tangential.hopkins).toBeGreaterThan(0.01);
+    expect(Math.abs(sagittal.product - sagittal.hopkins)).toBeLessThan(0.003);
+    expect(Math.abs(tangential.product - tangential.hopkins)).toBeLessThan(0.003);
+  });
+  it("leaves geometric MTF alone above Hopkins by just the diffraction deficit, which vanishes as s -> 0", () => {
+    for (const aberration of [defocus, balancedSpherical, comaAstigmatism]) {
+      for (const s of [0.001, 0.0025, 0.005])
+        for (const cut of cuts(aberration, s))
+          expect(Math.abs(cut.geometric - cut.hopkins - (1 - circularMtf(s)))).toBeLessThan(0.0005);
+      for (const cut of cuts(aberration, 0.001)) expect(Math.abs(cut.geometric - cut.hopkins)).toBeLessThan(0.002);
+    }
+  });
+  it("keeps the two known estimator biases bounded", () => {
+    // The same two errors as the expected failures below, so those cannot pass on a thrown error.
+    expect(productError(balancedSpherical, 0.05)).toBeLessThan(0.1);
+    expect(limitError(0.05, 144, 128)).toBeLessThan(0.01);
+  });
+  // Known biases pinned with `it.fails`: the marker flips red once the estimator is fixed and must then be removed
+  // (MTF_ACCURACY_PLAN.md, diffraction estimator stage).
+  it.fails("holds the product within 0.005 of Hopkins at s = 0.05 under two waves of balanced spherical", () => {
+    // Hopkins' overlap excludes the pupil rim, where ray errors are largest; the product keeps it.
+    expect(productError(balancedSpherical, 0.05)).toBeLessThan(0.005);
+  });
+  it.fails("holds a binned lattice within 0.002 of the circular aperture response", () => {
+    // A 128-cell pupil with its blocked margin spans 144 cells, so flux is summed per 2x2 bin and then
+    // square-rooted, which overweights the partly filled rim bins.
+    expect(limitError(0.05, 144, 128)).toBeLessThan(0.002);
   });
 });
