@@ -162,3 +162,31 @@ Open limitations: flat lands cannot be drawn, so the lands on surfaces 4, 5 and 
   within 5×10⁻⁶ and νd within 0.01 of the patent pairs. No label changed.
 - Display name, mounts (L-Mount, Sony E) and format follow the catalog convention for Sigma's DG DN lenses and the
   product facts cited in the analysis; left as authored.
+
+## 2026-10-06 — Second review: diagram, labels and movement
+
+Compared: the local lens page at infinity and at the 255 mm state, with the focus-movement overlay, against 【図1】
+(PDF p. 20) and ¶0066–0069 of JP 2022-073433 A.
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| `sd` of surface 17 (L21 rear) | 8.2 | 9.6 | Figure 1 draws L21 as a squared block with its edge at 9.36 mm; the first pass had cut the rear face to its curve end, which rendered a bevel the drawing does not show. |
+| `sd` of surface 19 (L22 rear) | 8.8 | 10.1 | Same for L22, drawn edge 9.97 mm. Both values equal the front faces of their elements (surfaces 16 and 18). |
+| `label` of L21 / L22 | L21 / L22 | L21 (Ln) / L22 (Lp) | ¶0068 names L21 as the negative lens Ln and L22 as the positive lens Lp of the conditional expressions; Figure 1 prints both tags. |
+| Element `role` strings | "Standalone … power; see source group context." on all 13 | Shape, group and cemented partner of each element | ¶0067–0069: G1 = L11, L12, cemented L13+L14, L15, L16 (both faces aspheric), cemented L17+L18; G2 = L21 (Ln), L22 (Lp); G3 = L31 (both faces aspheric), L32, L33. |
+
+Rims after the change. The surface validator reports no errors, the image-circle floor nothing undersized, and
+traced corner coverage is complete. An exact meridional trace shows no clipped axial bundle and no blocked chief ray
+at infinity or the 255 mm state; the F/2.07 axial marginal ray is 8.08 mm high at surface 17, now 1.5 mm inside the
+rim instead of 0.12 mm. The engine values are unchanged: F/2.07, half-field 45.04°. L11 and L32 keep bevelled rims:
+surface 2 at the drawn 13.7 mm fails the 2→3 gap check and surface 23 at 12.8 mm fails the 23→24 gap check. Every
+other rim agrees with the figure within 3%.
+
+Checked and found correct: element designations L11–L33, element types against the signs of R, aspheric surfaces
+10, 11, 20 and 21, the stop between L18 and L21, cemented brackets D1 (surfaces 5–7) and D2 (12–14), the group
+bracket ranges and the D15 / D19 gap labels. The patent designates no anomalous-dispersion glass, so the three
+low-dispersion tags stay `inferred`.
+
+Focus movement. Index 0 of each variable gap is infinity (D15 3.2000, D19 8.2253) and index 1 the 255 mm state
+(8.5816, 2.8436): G2 moves 5.3816 mm toward the image while G1, the stop and G3 stay fixed, as ¶0066 states and the
+figure's focus arrow shows. The movement overlay on the page shows the same 5.38 mm imageward travel.

@@ -420,3 +420,80 @@ publishes no partial dispersion, so no `dPgF` is authored and the tag is a displ
 
 Spec lines. `specs` now reads design f = 51.53–223.44 mm and design F/4.63–6.92 in the catalog's usual form, with
 the inferred ED element added.
+
+## 2026-10-06 — Second review: diagram, labels and movement
+
+Compared: the local lens page at 51.53, 80, 107.31, 150 and 223.44 mm, at the far focus endpoint, with the element
+inspector open on L21, L31, L32 and L41 and with the group-movement overlay at both zoom ends, against
+`patents/US10095009B2.pdf` — FIG. 6 wide and telephoto panels (PDF p. 8), Table 16 (p. 25), Table 17 (p. 26),
+columns 9 and 10 (p. 21), claims 5 and 6 (p. 27) and the front page. The figure was re-measured independently at the native
+300 dpi: axis row y = 1438, 6.537 px/mm on the surface 1 to surface 24 span, readings less 1 px for the stroke.
+
+Re-measured rims (upper / lower side of the wide panel, px): L11 134–136; L12 + L13 128; L21 and L22 60 with L23
+stepping down to 54; stop 47; L31 58–59; L32 61–62; L33 65–67 / 65–67; L41 56–57; L51 + L52 68–69; L61 97–98.
+These agree with the first pass to within 1 px on every element, so its scale and its retained values stand.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `sd` of surface 7 (L21 rear) | 7.1 | 9.0 | The site drew L21 as a wedge, 9.0 mm tall in front and 7.1 mm behind, where the figure draws a squared plate 60 px (9.0 mm) tall on both faces. The cross-gap check compares only the band the two facing surfaces share, so one of the pair can carry the blank height while surface 8 keeps 7.1 mm; the surface validator accepts it and the renderer needs 0.000 mm trim. The modeled L21 edge is 1.84 mm thick against about 1.6 mm drawn (front rim at x = 1189–1191, contact line at x = 1200–1201). |
+| `sd` of surfaces 16 and 17 (L33) | 9.5 | 10.0 | Drawn edge 65–67 px on both sides of the wide panel and 65–66 px in the telephoto panel, 10.0 ± 0.15 mm, three readings 3 px above the stored value. L33 is drawn 0.7 mm taller than L32 and 0.3 mm shorter than L51 + L52; the site showed it level with L32. The traced full-field bundle needs 9.24 and 8.96 mm, so neither value clips. |
+| `diagramLabel` of all 13 elements | absent (diagram showed 1–13) | L11, L12, L13, L21, L22, L23, L31, L32, L33, L41, L51, L52, L61 | FIG. 6 telephoto panel leader labels; the text of columns 6–7 uses the same designations. |
+| `groups` text of G2 and G4 | G2, G4 | G2 (OIS), G4 (FOCUS) | Column 10 lines 33–60 and claims 5 and 6: focusing by moving the fourth lens group along the axis, image-blur correction by moving the second lens group with a component perpendicular to the axis. The patent names no other stabilizing group; G5 has no such role in it. Power-sign suffixes were tried and dropped because adjacent labels touch between 80 and 107 mm. |
+| `role` of L21 | Negative leading element of G2. | Adds that the patent shifts G2 across the axis for camera-shake correction. | Same passage. |
+| `focusDescription` | Began with the workflow token NO_INTERNAL_RECONSTRUCTION. | Plain statement that focus travel is not modeled, that the patent moves G4 (L41) toward the object, and that 1.1 m is Fujifilm's figure. | Readability on the focus panel; no fact changed. |
+
+Why surface 7 and not surface 8. Raising surface 8 to 9.0 mm instead leaves the engine values untouched but keeps
+L21 a wedge and tucks its slanted edge inside a 9.0 mm L22 front, which reads as two nested wedges. Raising
+surface 7 gives L21 the drawn plate shape and leaves L22 with the front chamfer (7.1 mm in front, 8.0 mm at the
+cemented junction) it already had. Both facing surfaces cannot reach 9.0 mm: their sags sum to 1.67 mm there
+against a 1.200 mm gap, and they meet at h = 7.64 mm.
+
+Engine values before and after: runtime half-field 21.059° / 10.096° / 4.216° before and 22.478° / 10.096° / 4.216°
+after; open apertures F/4.63 / 5.76 / 6.92 and stop radii 7.1659 / 7.1512 / 7.1589 mm unchanged. The wide-angle
+half-field rises because its limiting rim moves from surface 7 to surface 8, 1.2 mm closer to the stop, at the same
+7.1 mm. The drawn contact height of about 7.6 mm on surface 7 would give 22.4°, so the new value is the one the
+figure supports; the earlier 21.06° reflected the 90% gap rule holding both rims at 7.1 mm. The patent half-field is
+15.4°, and the default off-axis fan moves from 12.64° to 13.49°.
+
+Clearance on the edited file, exact meridional trace at the patent half-fields 15.4° / 7.3° / 3.5°: the axial
+marginal ray needs 6.60 mm on surface 7 (stored 9.0), 6.59 mm on surface 8 (7.1) and 7.20 / 6.92 mm on surfaces
+16 / 17 (10.0); the chief ray needs 4.86, 4.63, 2.23 and 2.27 mm. The full-field bundle needs 8.99 mm on surface 7,
+now clear, and 9.12 mm on surface 8, which clips 45% of that side where surface 7 clipped 46%. No axial bundle is
+clipped and no chief ray is blocked at any station, also with the field over-driven to 16.46° / 7.67° / 3.63° and
+at the far focus endpoint. The surface validator reports no validation errors, the image-circle check 0 undersized,
+the traced field-coverage check 100% at all three stations (15.3° / 7.3° / 3.5° reaching 14.17 of 14.18 mm), and
+the renderer diagnostics 0.000 mm hidden trim at nine zoom samples and both focus endpoints.
+
+Checked and found correct, no change:
+
+- Table 16 rows 1–32 against the file: every R, d, Nd and νd, the stop at row 11, the asterisks on rows 12 and 13
+  only, and the plate rows 25–32. Table 17: f 51.53 / 107.31 / 223.44, F 4.63 / 5.76 / 6.92, 2ω 30.8 / 14.6 / 7.0,
+  and all 15 DD values in wide, intermediate, telephoto order, the order of `zoomPositions` and of every `var` array.
+- Group brackets: G1 surfaces 1–5, G2 6–10, G3 12A–17, G4 18–19, G5 20–22, G6 23–24, as bracketed in FIG. 6, with
+  the stop drawn between L23 and L31. Cemented brackets D1 (3–5, L12 + L13), D2 (8–10, L22 + L23) and D3 (20–22,
+  L51 + L52) match the three shared-index rows of Table 16 and the `cemented` fields.
+- Element `type` strings against the signs of R for all 13 elements; L31 is the only aspheric element and carries
+  both `A` suffixes and both `asph` entries. Inspector values read on the page for L21, L31, L32 and L41 match the file.
+- Zoom direction. Relative to the fixed image plane, wide to intermediate to telephoto: G1 moves 30.97 then 35.04 mm
+  toward the object (66.01 mm), G2 6.88 then 10.32 mm (17.20 mm), G3 18.28 then 15.58 mm (33.86 mm), G4 9.31 then
+  2.24 mm (11.55 mm), G5 9.81 then 16.08 mm (25.89 mm), and G6 does not move. No group reverses. FIG. 6 draws
+  object-ward trajectories for G1–G5 and a straight vertical line for G6, and the text states G6 is fixed against the
+  image surface, the G2–G3 distance decreases throughout, the G3–G4 distance is shortest at the wide end, the G4–G5
+  distance is shorter and the G5–G6 distance longer at the telephoto end; DD[10] 20.55 / 9.15 / 3.89, DD[17]
+  6.18 / 15.15 / 28.49, DD[19] 17.24 / 16.74 / 2.90 and DD[22] 5.93 / 15.74 / 31.82 agree. The page overlay shows
+  the same six tracks with a 66.01 mm maximum.
+- Focus. Both entries of every `var` pair are equal, the focus slider is shown as not modeled, the overlay offers
+  no focus mode, and the diagram at the far focus endpoint is pixel-identical to infinity. The patent gives the
+  direction (G4 toward the object for nearer subjects) but no close-focus spacing.
+- `apd: "inferred"` on L32: the patent text assigns no dispersion class or glass name to any element, so no
+  `"patent"` tag applies. L32 is the only glass of the prescription with νd above 71, and the product has one ED
+  element. Fujifilm's construction diagram could not be opened from this session, so its ED position was not re-read.
+- `varLabels` DD[5], DD[10], DD[17], DD[19], DD[22] are the patent's own symbols. Front page: US 10,095,009 B2,
+  Oct. 9, 2018, Tetsuya Ori and Michio Cho, FUJIFILM Corporation.
+
+Open limitations: the front of L22 stays 1.9 mm below its drawn 9.0 mm blank and its rear face ends at the L23 step,
+because one `sd` per surface cannot carry a flat annulus; raising the lens-level gap fraction from 0.90 to 1.00
+would allow about 7.6 mm on surface 8 and was not in scope. The modeled rear rim of L33 sits about 0.8 mm behind the
+drawn corner for the same reason. On the page the STO label overlaps the `A` marker of surface 12A, 1.0 mm behind
+the stop, and the L12 label sits on the lower rim of G1; both come from the label layout, not from this file. The
+480-ray and 544-ray samples of the earlier stages were not repeated at the new rims.

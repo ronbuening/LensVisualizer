@@ -121,16 +121,10 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     note: "Hoya TAF1 annotations share the 773/496 optical-constant class with S-LAH66 when the stored d-line index agrees.",
   },
   {
-    alias: "M-NBFD130",
-    target: "NBFD13",
-    kind: "vendor-equivalent",
-    note: "Hoya cross-reference places M-NBFD130 in the 806/407 NBFD13 optical-constant family.",
-  },
-  {
     alias: "MP-NBFD130",
-    target: "NBFD13",
+    target: "M-NBFD130",
     kind: "catalog-variant",
-    note: "Hoya molded preform notation for the 806/407 NBFD13 family.",
+    note: "Hoya molded-preform row publishing the same dispersion coefficients as M-NBFD130.",
   },
 ];
 

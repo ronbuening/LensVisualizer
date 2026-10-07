@@ -13,13 +13,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * manufacturer diagram and exact ray geometry, then measured on the FIG. 6 wide-angle panel
  * (0.153 mm/px at the 300 dpi scan, scaled on the S1–S24 vertex span; the telephoto panel
  * agrees) and floor-checked by real-ray trace at all three zoom stations. Every element is
- * within about 5 % of its drawn rim. Surface 6 follows the drawn 9.0 mm L21 rim; 7 and 8 stay
- * at 7.1 mm because the facing concave surfaces close the 1.2 mm airgap near h ≈ 7.6 mm
- * (the figure draws flat contact annuli from there to the 9.0 mm edge); 9 and 10 follow the
- * smaller L23 (drawn 8.1 mm), not the 9.0 mm L22 blank. L31 rims (12A/13A) are held at 8.6 mm
- * (drawn ≈ 8.8 mm), inside the slope turnover of 13A at h ≈ 8.83 mm. L33's rear face (17) is
- * drawn curved only to ≈ 8 mm with a flat annulus beyond; both faces keep 9.5 mm against a
- * drawn 10.0 mm edge. Iris schedule is inferred by calibration to
+ * within about 5 % of its drawn rim except the front of L22. Both faces of L21 (6 and 7) carry
+ * the drawn 9.0 mm blank height, so L21 renders as the squared plate of the figure. Surface 8
+ * (L22 front) stays at 7.1 mm because the facing concave surfaces 7 and 8 close the 1.2 mm
+ * airgap near h ≈ 7.6 mm (the figure draws flat contact annuli from there to the 9.0 mm edge);
+ * 8 is therefore the working aperture of that pair, and the part of 7 outside it is drawn
+ * glass, not clear aperture. 9 and 10 follow the smaller L23 (drawn 8.1 mm), not the 9.0 mm
+ * L22 blank. L31 rims (12A/13A) are held at 8.6 mm (drawn ≈ 8.8 mm), inside the slope turnover
+ * of 13A at h ≈ 8.83 mm. L33 (16/17) carries its drawn 10.0 mm edge on both faces; its rear
+ * face is drawn curved only to ≈ 7.5–8 mm with a flat annulus beyond, which one sd per surface
+ * cannot carry. Iris schedule is inferred by calibration to
  * native F/4.63, 5.76, 6.92; calibration-target agreement is not independent stop evidence.
  * Zoom gaps: DD5, DD10, DD17, DD19, DD22. Only source infinity zoom states published.
  * Focus: NO_INTERNAL_RECONSTRUCTION; no internal focus motion. closeFocusM=1.1 is the
@@ -73,6 +76,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L11",
+      "diagramLabel": "L11",
       "label": "L11",
       "type": "Biconvex Positive",
       "nd": 1.48749,
@@ -85,6 +89,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L12",
+      "diagramLabel": "L12",
       "label": "L12",
       "type": "Negative Meniscus",
       "nd": 1.60342,
@@ -98,6 +103,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L13",
+      "diagramLabel": "L13",
       "label": "L13",
       "type": "Positive Meniscus",
       "nd": 1.48749,
@@ -111,6 +117,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L21",
+      "diagramLabel": "L21",
       "label": "L21",
       "type": "Biconcave Negative",
       "nd": 1.7495,
@@ -118,11 +125,12 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -54.28731335620799,
       "glass": "S-NBH51 (OHARA coordinate equivalent; supplier unresolved)",
-      "role": "Negative leading element of G2."
+      "role": "Negative leading element of G2, the group the patent shifts across the axis for camera-shake correction."
     },
     {
       "id": 5,
       "name": "L22",
+      "diagramLabel": "L22",
       "label": "L22",
       "type": "Biconcave Negative",
       "nd": 1.7859,
@@ -136,6 +144,7 @@ const LENS_DATA = {
     {
       "id": 6,
       "name": "L23",
+      "diagramLabel": "L23",
       "label": "L23",
       "type": "Positive Meniscus",
       "nd": 1.92286,
@@ -149,6 +158,7 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "L31",
+      "diagramLabel": "L31",
       "label": "L31",
       "type": "Pos. Meniscus (2× Asph)",
       "nd": 1.65296,
@@ -161,6 +171,7 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "L32",
+      "diagramLabel": "L32",
       "label": "L32",
       "type": "Biconvex Positive",
       "nd": 1.497,
@@ -175,6 +186,7 @@ const LENS_DATA = {
     {
       "id": 9,
       "name": "L33",
+      "diagramLabel": "L33",
       "label": "L33",
       "type": "Negative Meniscus",
       "nd": 1.84666,
@@ -187,6 +199,7 @@ const LENS_DATA = {
     {
       "id": 10,
       "name": "L41",
+      "diagramLabel": "L41",
       "label": "L41",
       "type": "Positive Meniscus",
       "nd": 1.59282,
@@ -199,6 +212,7 @@ const LENS_DATA = {
     {
       "id": 11,
       "name": "L51",
+      "diagramLabel": "L51",
       "label": "L51",
       "type": "Positive Meniscus",
       "nd": 1.92286,
@@ -212,6 +226,7 @@ const LENS_DATA = {
     {
       "id": 12,
       "name": "L52",
+      "diagramLabel": "L52",
       "label": "L52",
       "type": "Biconcave Negative",
       "nd": 1.62299,
@@ -225,6 +240,7 @@ const LENS_DATA = {
     {
       "id": 13,
       "name": "L61",
+      "diagramLabel": "L61",
       "label": "L61",
       "type": "Positive Meniscus",
       "nd": 1.61293,
@@ -290,7 +306,7 @@ const LENS_DATA = {
       "d": 1.2,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 7.1
+      "sd": 9.0
     },
     {
       "label": "8",
@@ -362,7 +378,7 @@ const LENS_DATA = {
       "d": 0.8,
       "nd": 1.84666,
       "elemId": 9,
-      "sd": 9.5
+      "sd": 10.0
     },
     {
       "label": "17",
@@ -370,7 +386,7 @@ const LENS_DATA = {
       "d": 6.18,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 9.5
+      "sd": 10.0
     },
     {
       "label": "18",
@@ -585,7 +601,7 @@ const LENS_DATA = {
       "toSurface": "5"
     },
     {
-      "text": "G2",
+      "text": "G2 (OIS)",
       "fromSurface": "6",
       "toSurface": "10"
     },
@@ -595,7 +611,7 @@ const LENS_DATA = {
       "toSurface": "17"
     },
     {
-      "text": "G4",
+      "text": "G4 (FOCUS)",
       "fromSurface": "18",
       "toSurface": "19"
     },
@@ -628,7 +644,7 @@ const LENS_DATA = {
     }
   ],
   "closeFocusM": 1.1,
-  "focusDescription": "NO_INTERNAL_RECONSTRUCTION. Patent describes G4 objectward focusing but tabulates infinity-only zoom states. All focus endpoints are identical; the production 1.1 m MFD is retained as product metadata and no finite-focus internal movement is invented.",
+  "focusDescription": "Focus travel is not modeled. The patent focuses by moving G4 (L41) toward the object but tabulates infinity-focus zoom states only, so every gap is the same at both focus endpoints. The 1.1 m minimum focus distance is Fujifilm's production figure, kept as product metadata.",
   "nominalFno": [
     4.63,
     5.76,

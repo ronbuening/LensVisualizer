@@ -12,8 +12,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * published clear apertures. Concave faces 4 and 29 end where the figure's flat
  * annulus begins (17.7 and 14.7 mm), so L2 and L16 draw a chamfered edge; faces
  * 2 and 9 keep the drawn rim height. G4 follows its drawn 19.3-19.5 mm rim and
- * L17 its 16.3 mm rim. STO location is published; its radius is calibrated
- * from the source F1.24 by exact tracing.
+ * L17 its 16.3 mm rim. L4's front face 7 follows its drawn 15.2 mm rim; its
+ * rear face 8 stays at 14.5 mm (bowl end 14.0 mm, axial ray 14.09 mm), because
+ * the gap rule against face 9 rejects more than 14.6 mm there. STO location is
+ * published; its radius is calibrated from the source F1.24 by exact tracing.
+ * LABELS: the patent names groups G1, G2, G3 (G3a / stop S / G3b), G4, G5 and
+ * no individual elements, so the brackets use its group notation and L1-L17
+ * are sequential. apd "patent" on L6, L11 and L15 follows paragraphs 0061-0070
+ * and 0101-0111, which specify high-anomalous-dispersion glass for the positive
+ * lenses of conditions (9), (8) and (2).
  * Absolute source PgF is converted to dPgF using the engine normal line,
  * 0.6438 - 0.001682*vd. No spectral line indices or glass supplier are invented.
  * No source-listed rear plate or dummy plane exists. No source correction.
@@ -62,7 +69,7 @@ const LENS_DATA = {
       "fl": 265.451863,
       "glass": "FD225 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.02318232,
-      "role": "Source functional group G1; standalone positive power."
+      "role": "Fixed front group G1 (the whole group; patent group f = +265.45 mm); standalone positive power."
     },
     {
       "id": 2,
@@ -74,7 +81,7 @@ const LENS_DATA = {
       "fl": -61.024396,
       "glass": "E-FEL2 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.0033904,
-      "role": "Source functional group G2; standalone negative power."
+      "role": "Front focus group G2, which moves toward the object for close focus; standalone negative power."
     },
     {
       "id": 3,
@@ -86,7 +93,7 @@ const LENS_DATA = {
       "fl": 56.06063,
       "glass": "NBFD13 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": -0.00589214,
-      "role": "Source functional group G2; standalone positive power."
+      "role": "Front focus group G2, which moves toward the object for close focus; standalone positive power."
     },
     {
       "id": 4,
@@ -98,7 +105,7 @@ const LENS_DATA = {
       "fl": -51.990103,
       "glass": "FC5 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.00528008,
-      "role": "Source functional group G3; standalone negative power."
+      "role": "Fixed group G3, negative sub-group G3a ahead of the stop; standalone negative power."
     },
     {
       "id": 5,
@@ -110,8 +117,8 @@ const LENS_DATA = {
       "fl": -37.039241,
       "glass": "E-FD15 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.0095441,
-      "role": "Source functional group G3; standalone negative power.",
-      "cemented": "L5–L6"
+      "role": "Fixed group G3, negative sub-group G3a ahead of the stop; standalone negative power.",
+      "cemented": "D1"
     },
     {
       "id": 6,
@@ -123,8 +130,10 @@ const LENS_DATA = {
       "fl": 56.236396,
       "glass": "FDS18-W class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.04104236,
-      "role": "Source functional group G3; standalone positive power.",
-      "cemented": "L5–L6"
+      "apd": "patent",
+      "apdNote": "Patent ¶0101–0103 and ¶0109–0111: the lowest-Abbe positive lens of G3 is a high-index, high-dispersion glass with high anomalous dispersion; condition (9) θgF − 0.6483 + 0.0018·νd > 0.0200, printed 0.0387 for Example 2. Source θgF 0.6546; runtime dPgF +0.04104.",
+      "role": "Fixed group G3, negative sub-group G3a ahead of the stop; standalone positive power. The lowest-Abbe positive lens of G3 in patent condition (9).",
+      "cemented": "D1"
     },
     {
       "id": 7,
@@ -136,7 +145,7 @@ const LENS_DATA = {
       "fl": 41.779603,
       "glass": "M-TAF401 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": -0.00876006,
-      "role": "Source functional group G3; standalone positive power."
+      "role": "Fixed group G3, positive sub-group G3b behind the stop; standalone positive power."
     },
     {
       "id": 8,
@@ -148,8 +157,8 @@ const LENS_DATA = {
       "fl": -38.423866,
       "glass": "S-NBH58 class (OHARA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.00491926,
-      "role": "Source functional group G3; standalone negative power.",
-      "cemented": "L8–L9"
+      "role": "Fixed group G3, positive sub-group G3b behind the stop; standalone negative power.",
+      "cemented": "D2"
     },
     {
       "id": 9,
@@ -161,8 +170,8 @@ const LENS_DATA = {
       "fl": 60.657377,
       "glass": "TAC6L class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": -0.00849776,
-      "role": "Source functional group G3; standalone positive power.",
-      "cemented": "L8–L9"
+      "role": "Fixed group G3, positive sub-group G3b behind the stop; standalone positive power.",
+      "cemented": "D2"
     },
     {
       "id": 10,
@@ -174,8 +183,8 @@ const LENS_DATA = {
       "fl": -67.576374,
       "glass": "NBFD25 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.0088023,
-      "role": "Source functional group G3; standalone negative power.",
-      "cemented": "L10–L11"
+      "role": "Fixed group G3, positive sub-group G3b behind the stop; standalone negative power.",
+      "cemented": "D3"
     },
     {
       "id": 11,
@@ -187,8 +196,10 @@ const LENS_DATA = {
       "fl": 36.7992,
       "glass": "FCD515 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.01561884,
-      "role": "Source functional group G3; standalone positive power.",
-      "cemented": "L10–L11"
+      "apd": "patent",
+      "apdNote": "Patent ¶0101–0108: the highest-Abbe positive lens of G3 is a low-index, low-dispersion glass with high anomalous dispersion; condition (8) θgF − 0.6483 + 0.0018·νd > 0.0120, printed 0.0192 for Example 2. Source θgF 0.5440; runtime dPgF +0.01562. Sigma lists one SLD element without naming its position; this FCD515-class lens is the likely one, by inference only.",
+      "role": "Fixed group G3, positive sub-group G3b behind the stop; standalone positive power. The highest-Abbe positive lens of G3 in patent condition (8).",
+      "cemented": "D3"
     },
     {
       "id": 12,
@@ -200,7 +211,7 @@ const LENS_DATA = {
       "fl": -169.899519,
       "glass": "E-FD15 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.0095441,
-      "role": "Source functional group G4; standalone negative power."
+      "role": "Rear focus group G4, which moves toward the object for close focus; standalone negative power."
     },
     {
       "id": 13,
@@ -212,7 +223,7 @@ const LENS_DATA = {
       "fl": 38.688914,
       "glass": "L-LAH91 class (OHARA coordinate equivalent; supplier unconfirmed)",
       "dPgF": -0.00843062,
-      "role": "Source functional group G4; standalone positive power."
+      "role": "Rear focus group G4, which moves toward the object for close focus; standalone positive power."
     },
     {
       "id": 14,
@@ -224,7 +235,7 @@ const LENS_DATA = {
       "fl": 102.710602,
       "glass": "TAC6L class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": -0.00849776,
-      "role": "Source functional group G5; standalone positive power."
+      "role": "Fixed rear group G5; standalone positive power."
     },
     {
       "id": 15,
@@ -236,8 +247,10 @@ const LENS_DATA = {
       "fl": 43.43823,
       "glass": "FDS16-W class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.04951936,
-      "role": "Source functional group G5; standalone positive power.",
-      "cemented": "L15–L16"
+      "apd": "patent",
+      "apdNote": "Patent ¶0061–0070: the lowest-Abbe positive lens of G5 is a high-index, high-dispersion glass with high anomalous dispersion; conditions (2) θgF − 0.6483 + 0.0018·νd > 0.0250 and (3) νd < 24.00, printed 0.0470 and 16.48 for Example 2. Source θgF 0.6656; runtime dPgF +0.04952.",
+      "role": "Fixed rear group G5; standalone positive power. The lowest-Abbe positive lens of G5 in patent conditions (2)–(3).",
+      "cemented": "D4"
     },
     {
       "id": 16,
@@ -249,8 +262,8 @@ const LENS_DATA = {
       "fl": -23.411813,
       "glass": "S-NBH58 class (OHARA coordinate equivalent; supplier unconfirmed)",
       "dPgF": 0.00491926,
-      "role": "Source functional group G5; standalone negative power.",
-      "cemented": "L15–L16"
+      "role": "Fixed rear group G5; standalone negative power.",
+      "cemented": "D4"
     },
     {
       "id": 17,
@@ -262,7 +275,7 @@ const LENS_DATA = {
       "fl": -169.956281,
       "glass": "M-TAFD305 class (HOYA coordinate equivalent; supplier unconfirmed)",
       "dPgF": -0.0068518,
-      "role": "Source functional group G5; standalone negative power."
+      "role": "Fixed rear group G5; standalone negative power."
     }
   ],
   "surfaces": [
@@ -320,7 +333,7 @@ const LENS_DATA = {
       "d": 1.1795,
       "nd": 1.48749,
       "elemId": 4,
-      "sd": 14.5
+      "sd": 15.2
     },
     {
       "label": "8",
@@ -631,49 +644,54 @@ const LENS_DATA = {
   ],
   "groups": [
     {
-      "text": "G1",
+      "text": "G1 (+)",
       "fromSurface": "1",
       "toSurface": "2"
     },
     {
-      "text": "G2",
+      "text": "G2 (+) focus",
       "fromSurface": "3",
       "toSurface": "6A"
     },
     {
-      "text": "G3",
+      "text": "G3a (−)",
       "fromSurface": "7",
+      "toSurface": "11"
+    },
+    {
+      "text": "G3b (+)",
+      "fromSurface": "13A",
       "toSurface": "20"
     },
     {
-      "text": "G4",
+      "text": "G4 (+) focus",
       "fromSurface": "21",
       "toSurface": "24A"
     },
     {
-      "text": "G5",
+      "text": "G5 (−)",
       "fromSurface": "25",
       "toSurface": "31A"
     }
   ],
   "doublets": [
     {
-      "text": "L5–L6",
+      "text": "D1",
       "fromSurface": "9",
       "toSurface": "11"
     },
     {
-      "text": "L8–L9",
+      "text": "D2",
       "fromSurface": "15",
       "toSurface": "17"
     },
     {
-      "text": "L10–L11",
+      "text": "D3",
       "fromSurface": "18",
       "toSurface": "20"
     },
     {
-      "text": "L15–L16",
+      "text": "D4",
       "fromSurface": "27",
       "toSurface": "29"
     }
@@ -688,7 +706,7 @@ const LENS_DATA = {
       "source": "US 2025/0334778 A1, Numerical Example 2, PDF p43, Variable distance data: d0 and d2/d6/d20/d24/BF."
     }
   ],
-  "focusDescription": "Published two-group inner focus: G2 and G4 move objectward to the 1.4774622 m test state; G3 is nominally fixed but the source gaps retain a -0.0004 mm discrepancy; intermediate gaps are linear interpolation, with no extrapolation to the marketed 0.28 m MFD.",
+  "focusDescription": "Published two-group inner focus: G2 (L2–L3) moves 0.5258 mm and G4 (L12–L13) 0.6211 mm toward the object between infinity and the patent's 1.477 m test state. G1, G3 (G3a, stop, G3b) and G5 stay fixed, apart from a −0.0004 mm G3 residual in the printed gaps. Intermediate gaps are linearly interpolated; nothing is extrapolated to the marketed 0.28 m MFD.",
   "nominalFno": 1.24,
   "fstopSeries": [
     1.24,

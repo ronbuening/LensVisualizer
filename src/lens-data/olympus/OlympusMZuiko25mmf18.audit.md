@@ -167,3 +167,37 @@ Open limitations: flat lands cannot be drawn; surface 15 is 0.5 mm and surface 1
   half-field, three aspherical surfaces on two elements); the file had none.
 - Display name, mount (Micro Four Thirds), format id (`four-thirds`, as on the other Micro Four Thirds models) and
   the 21.6 mm image circle were reviewed and left as authored.
+
+## 2026-10-07 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity and at the 250 mm endpoint, the focus-movement overlay at both ends and the element inspectors of L1, L3, L5, L7, L8 and L9, against 【図1】 (PDF p.24), the construction text ¶0080–0084 (PDF p.12), claim 1, and the surface, asphere and variable-spacing tables of Numerical Example 1 (PDF pp.16–17).
+
+The figure was re-measured independently on a 400 dpi render. The axis is row 882 and the seventeen lens vertices run from x = 460 px (surface 1) to x = 1227 px (surface 17), 17.637 px/mm; the filter faces and image plane fall at 1442, 1512 and 1530 px. Readings below / above the axis: L1 outer edge 262 px (14.86 mm), D1 197 / 195 px (11.11 mm), D2 142 / 141 px (8.02 mm), L7 163 / 162 px (9.21 mm), L8 177 / 175 px (9.98 mm) with its flat top from x = 1155 to 1193 px, and L9 189 / 187 px (10.66 mm) with its flat top from x = 1228 to 1245 px. The rear lands convert, through the surface sag at their axial position, to curve ends of 9.0 mm on surface 15 and 9.6 mm on surface 17, and 7.15 mm on surface 7. Every value agrees with the first pass within 0.1 mm. The automatic figure screen now reads figure/data 1.03, 0.98, 1.01, 1.02, 0.92, 0.92, 0.95, 1.00 and 1.02 for L1–L9.
+
+Visible differences between the page and the figure before this review: L1, L4, L5 and L8 were bevelled where the figure draws squared blocks with a flat land; D2 and L7 stand 9 % and 6 % taller than drawn; the order of heights (D2 < L7 < L8 < L9 < D1 < L2 < L1) was already as drawn.
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Surface 14 semi-diameter | 10.25 | 10.0 | Drawn outer rim of L8 is 9.98 mm |
+| Surface 15 semi-diameter | 9.4 | 10.0 | L8 is drawn as a squared block; at 10.0 mm the rear rim stays 0.90 mm clear of L9, inside L9's taller rim, as drawn |
+| Group labels | G1 FIXED (1–7), G2 FOCUS (9–13A), G3 FIXED (14–17) | G1a (1–2), G1b (3–4), G1c (5A–7), G2 FOCUS (9–13A), G3a (14–15), G3b (16–17) | Figure 1 brackets and ¶0081, ¶0083 |
+| Element `role` | none | one sentence per element | ¶0080–0083 and the signs of R |
+| `focusDescription` | "PUBLISHED: G2 (L5-L7, surfaces9-13) translates …" | "PUBLISHED inner focus: G2 (L5-L7, surfaces 9-13) moves …"; names the fixed sub-groups and the stop | ¶0080, variable-spacing table |
+
+L8 squared. The renderer joins unequal front and rear rims with a straight edge, so 10.25 / 9.4 drew a slanted top where the figure has a flat one. Both faces at the drawn 10.0 mm give the flat top. The trial set passed the surface validator and the real-ray clearance trace before it was applied. On the nine-position, eleven-field, 201-ray fan (19,899 rays, rear plate included) passing rays move from 18,542 to 18,567: the 25 rays the first pass lost at surface 15 in the corner sample return, so the corner fraction is 74 % at infinity and 86 % at 250 mm, and no ray is clipped at surface 14 or 15 (largest passing heights 9.70 and 9.45 mm). First clips are 1,085 at surface 9, 30 at 11, 42 at 12A and 59 at 13A, none at the cemented surfaces.
+
+L1, L4 and L5 keep their bevels. Squaring them would put surface 2 at 14.5 mm (rim 3.0 mm further toward L2 than the drawn land and a 56° rim), surface 7 at 11 mm (rim past the stop plane) and surface 9 at 8.75 mm (the interface clipping Stage 4 removed). The measured curve ends stay.
+
+Rims 16 and 17 stay at 10.5 mm. They are 1.5 % below the drawn outer rim and already render L9 squared as drawn. The engine half-field of 28.25° is the angle at which the real chief ray first clips, here at surface 16 (10.48 mm at 28.25°); it is not the format field. At the published 24.05° the chief ray needs only 8.29 mm at surfaces 16 and 17. Taking surface 17 to its drawn curve end of 9.6 mm would lower the engine value only to about 26.8° (chief 9.19 mm at 26°, 9.70 mm at 27°), would bevel L9, and would cost 93 corner rays (corner fraction 74 → 69 % at infinity, 86 → 80 % at 250 mm). No rim consistent with the drawing brings the engine value to 24.05°.
+
+G2 rims stay at 8.75 and 9.75 mm. A trial with surfaces 10 and 11 at the drawn 8.0 mm puts 198 first clips on cemented surface 10 and 301 on surface 11 and lowers the 0.5–0.9 field fractions at infinity by 1–5 points; adding surface 9 at 6.0 mm clears the interface but clips fields 0.2–0.4, because the 250 mm axial marginal ray already stands at 5.90 mm. The first pass's retention is confirmed.
+
+Labels. The patent names no individual lens element; it names G1a (one negative meniscus), G1b (one biconvex lens), G1c (the cemented biconvex–biconcave pair), G2, G3a (negative meniscus) and G3b (positive meniscus). The group row now carries those six names, each under its own element or pair, in place of the three top-level names; G1 and G3 are implied by the names and stated in `focusDescription` and the element roles. Nesting both tiers was rejected because it puts eight rows in the movement overlay and a second label row under the lens. The overlay now lists six units, five of them fixed. Doublet labels D1 (5A–7) and D2 (9–11) are unchanged; D1 coincides with G1c. Element names stay L1–L9 with numeric diagram labels.
+
+Checked and found correct: element types against the signs of R (L1, L8 negative menisci convex to the object; L2, L3, L6, L7 biconvex; L4, L5 biconcave; L9 positive meniscus convex to the object); aspheric markers 5A, 12A and 13A against the table's starred surfaces 5, 12 and 13, with one aspheric face on L3 and two on L7; the stop at surface 8 between L4 and L5; no anomalous-dispersion tags, since the patent text names no low-dispersion, anomalous-dispersion or fluorite material and the Olympus construction cited in the analysis lists two aspherical elements; gap labels D8 and D13; patent number, inventor, applicant and year against the front page.
+
+Focus movement. The table gives d8 = 8.0395 → 5.1012 mm and d13 = 1.6000 → 4.5383 mm from INF to 250 mm; both `var` arrays hold infinity first. The sum stays 9.6395 mm, so G2 moves 2.9383 mm toward the object, as ¶0080 states and as the arrow under the G2 bracket in Figure 1 points. On the page the overlay moves the G2 centre from 28.7 to 31.7 mm ahead of the focal plane with 2.94 mm maximum travel, the five fixed units do not move, the far end of the slider reads 25 cm, and the readout there shows D8 5.10, D13 4.54 and EFL 23.58 mm. There is no zoom.
+
+Engine comparison before → after: wide-open f-number 1.82 → 1.82, half-field 28.248° → 28.248°, corner coverage 10.80 of 10.80 mm at 24.1° in both, image-circle floor clear, surface validator without errors, no axial clip and no blocked corner chief at either focus end. No aspheric semi-diameter changed, so the departure table stands.
+
+Open limitations: flat lands cannot be drawn, so L1, L4 and L5 remain bevelled; the L8 rear rim sits 0.65 mm nearer L9 than the drawn land; D2 and L7 remain 9 % and 6 % taller than drawn; the movement overlay counts six annotated units for a three-group lens.

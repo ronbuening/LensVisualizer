@@ -337,3 +337,91 @@ published partial-dispersion bound alone is not an anomalous-dispersion designat
 Spec lines. `specs` now gives the design focal range and f-number, five aspherical surfaces on three elements
 (L1, L13, L14) and the two inferred ED positions, in the form used by the other catalog zooms; the internal
 "functional groups" and "six-state prescription" notes were dropped from the display line and remain in the header.
+
+## 2026-10-06 — Second review: diagram, labels and movement
+
+An independent second look at the lens as the local site draws it. The page was captured at 24.7, 50 and 67.87 mm,
+each at infinity and at closest focus, with both group-movement overlays and the element inspector, and set beside
+`patents/WO2024214585A1.pdf`: Figure 3 (PDF page 69), the Example 2 text ¶0164–0176 (PDF pages 32–34), Table 2
+(PDF pages 34–36), the condition (3-2) text ¶0057–0060 (PDF page 14) and the front page.
+
+Silhouette. Figure 3 was measured again from the 300 dpi raster without reusing the earlier readings. The first
+vertex is at y = 2655.5–2656 px and the image plane at y = 576.5 px, 13.46 px/mm for the 154.461 mm track; all
+24 lens-surface vertex crossings sit within 3 px of the wide/infinity prescription. Outer ink edges on the
+right-hand side read L1 29.9–30.2 mm, L2 23.7, L3 22.3, L4/L5 17.7, L6 and L7 18.5, L8 17.7, L9 13.1, L10 13.6,
+L11 12.2, L12 13.0, L13 14.1 and L14 18.0 mm (line centres about 0.1 mm less). L1's flat rear annulus begins 24.2 mm
+from the axis on the right and 23.9 mm on the left. L14's front annulus begins at 16.1 mm (right) and 15.95 mm
+(left), 5.72 mm ahead of the surface-24 vertex, which is where the R = −25.2494 mm sphere is 16.0 mm high. Every
+reading agrees with the earlier pass to 0.1 mm, so no semi-diameter was changed. The places where page and figure
+still differ are the ones already recorded: L1 and L14 draw a straight chamfer where the figure has a flat annulus
+and a cylindrical rim, and the drawn steps inside the cemented pairs (L3 1.3 mm, L8 0.75 mm and L11 0.8 mm below
+their partners) are not reproduced. Squaring L1 or L14 is not available: surface 2A at 30 mm sags 20.88 mm into a
+14.774 mm gap, and surface 24 at 18 mm puts L14's corner ahead of L13's rim at the tele end. L6 and L7 are drawn
+0.75 mm taller than G2 and L8 and render 0.2 mm taller than G2, so the drawn order of heights is kept.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `doublets` bracket text | L2/L3, L4/L5, L7/L8, L11/L12 | D1, D2, D3, D4 | At 67.87 mm D5 closes to 1.238 mm and the first two labels sat about 3 px apart on the page. The patent gives the cemented lenses no names (¶0166–0170 call them cemented negative or positive lenses), and D1–Dn is the bracket convention of the other NIKKOR Z zooms in the catalog. Surface ranges 3–5, 6–8, 11–13 and 19–21 are unchanged and match the four junctions at surfaces 4, 7, 12 and 20. |
+| Element `cemented` | absent | D1 on L2 and L3, D2 on L4 and L5, D3 on L7 and L8, D4 on L11 and L12 | The inspector now shows a doublet badge that names the same bracket. |
+
+Checked and found correct, nothing changed:
+
+- Group brackets G1 to G7 are the patent's notation and cover surfaces 1–5, 6–8, 9–13, 14–18 (stop, L9, L10),
+  19–21, 22–23 and 24–25, the start surfaces of the patent's group focal-length table (1, 6, 9, 14, 19, 22, 24).
+- Element names L1 to L14 are the figure's own designations. Every `type` string agrees with the signs of the
+  radii and with ¶0166–0172. The types carry no aspheric count; the inspector adds its own badge, ×2 for L1 and
+  L13 and ×1 for L14.
+- The aspheric suffix is on surfaces 1, 2, 22, 23 and 25, the five rows Table 2 marks with an asterisk, and on no
+  other. The stop is drawn between L8 and L9, as source surface 14.
+- L8 and L11 keep `apd: "inferred"`. Nikon's specification page lists 10 groups and 14 elements with two ED and
+  three aspherical lenses, eleven blades and multi-focus internal focusing. Its construction drawing could not be
+  opened in this review, so the two ED positions rest on the earlier reading of that drawing.
+- L10 keeps `apd: false`. ¶0057–0060 bound its partial dispersion and say the lens corrects the secondary spectrum
+  of lateral colour, without calling the glass anomalous or naming it.
+- `varLabels` D5, D8, D13, D18, D21, D23 and D25 are Table 2's names; `zoomLabels` and `focusDescription` read
+  correctly, and the focus slider ends at 32 cm against the calculated 0.3195 m object-to-image distance.
+- Front page: WO 2024/214585 A1, published 17 October 2024, inventor Fumiaki Ohtake, applicant Nikon Corporation.
+
+Zoom travel. All 42 variable-gap values were read again from PDF page 36 and equal the stored `var` arrays, which
+list wide, middle and tele in the order of `zoomPositions` (24.7, 49.999, 67.87). Front-vertex positions measured
+from the image plane at infinity:
+
+| Group | Wide | Middle | Tele | Wide to middle | Middle to tele |
+|---|---:|---:|---:|---:|---:|
+| G1 | −154.461 | −154.461 | −154.469 | 0.000 | −0.008 |
+| G2 | −87.384 | −124.723 | −128.752 | −37.339 | −4.029 |
+| G3 | −78.828 | −105.576 | −120.247 | −26.748 | −14.671 |
+| G4 | −63.978 | −78.179 | −83.997 | −14.201 | −5.818 |
+| G5 | −41.777 | −54.768 | −60.798 | −12.991 | −6.030 |
+| G6 | −29.018 | −32.527 | −37.558 | −3.509 | −5.031 |
+| G7 | −13.155 | −23.779 | −30.795 | −10.624 | −7.016 |
+
+G1 is fixed to the table's rounding and G2 to G7 move toward the object in both intervals with no reversal, as
+¶0174 states and as Figure 3's arrows show (vertical for G1, sloping toward the object for the rest, shallowest
+for G6). The page's zoom overlay shows the same seven tracks and a largest travel of 41.42 mm.
+
+Focus travel. Index 0 of each `var` pair is the infinity row and index 1 the 165 mm row. From infinity to near G5
+moves −2.656, −7.544 and −10.795 mm and G6 −2.390, −6.413 and −10.579 mm at wide, middle and tele, both toward the
+object as ¶0175 and the figure's two focus arrows state; G1 to G4 and G7 stay within 0.001 mm. The focus overlay
+shows only G5 and G6 moving, 2.66 mm at the wide end and 10.80 mm at the tele end.
+
+Display rays at closest focus. In all three near states the outermost on-axis display ray stops at the iris. The
+page launches that ray at 0.83 of the entrance-pupil radius at the first-surface plane, diverging from the object
+point 164.9 mm ahead. It reaches the stop plane at 8.53, 11.40 and 12.96 mm against the modelled iris radii of
+8.453, 11.125 and 12.391 mm, which are calibrated at infinity and held through focus because the patent prints no
+near-state f-number. Its last drawn point is surface 13 and it clears every element rim before the stop (16.4 mm
+at surfaces 9 to 11 against 18 mm at tele), so the cut is the modelled fixed iris and not a semi-diameter. The
+entrance-pupil radius itself is the same at infinity and near, since both focusing groups lie behind the stop.
+
+Results on the edited file: the surface validator reports no errors, the image-circle audit no undersized surface,
+and the traced corner coverage is 21.70 of 21.70 mm at all three stations. The real-ray trace output is identical
+before and after: half-fields 42.72°, 22.62° and 17.01° at infinity, f/2.91 with iris radii 8.453, 11.125 and
+12.391 mm, no on-axis clipping and no blocked chief ray in the infinity or near rows. The engine's raw paraxial
+half-fields stay 37.15°, 25.95° and 21.37°. The page was captured again in the six states; the four brackets read
+D1 to D4 without crowding at the tele end, and the inspector shows the doublet badge on the eight cemented elements.
+
+Open limitations:
+
+- The chamfered rims of L1 and L14 and the unreproduced cemented steps remain as described in the previous section.
+- The ED positions were not re-read from Nikon's construction drawing in this review.
+- The near-state iris is a modelling assumption; a diaphragm that opened with focus would pass the display ray.

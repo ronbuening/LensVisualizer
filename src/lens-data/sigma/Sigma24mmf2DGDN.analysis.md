@@ -345,12 +345,14 @@ rounding without introducing a changing iris schedule.
 
 All other semi-diameters are estimated from Figure 1, which is drawn to the
 prescription's own vertex spacing, and are floor-checked by exact-ray clearance
-and shared-band geometry. Element rims follow the drawn edges. Where the drawing
-ends a concave surface at a flat land, the modeled surface stops there: the rear
-of the front element at 13.1 mm, the rear of L21 at 8.2 mm, the rear of L22 at
-8.8 mm, and the rear of L32, which is held at 12.7 mm against a drawn 12.9 mm by
-the inter-element gap clearance. The shorter lands drawn on surfaces 4, 5 and 8
-are not modeled, and the L17–L18 junction is carried to the L18 rim. No
+and shared-band geometry. Element rims follow the drawn edges, so each element
+renders as the squared block the figure shows. The flat lands drawn on surfaces
+4, 5, 8, 17 and 19 are not modeled: the rears of L21 and L22 are carried to their
+element edges at 9.6 and 10.1 mm, where the drawn curves end at 8.2 and 8.8 mm,
+and the L17–L18 junction is carried to the L18 rim. Only the rear of the front
+element (13.1 mm) and the rear of L32 (held at 12.7 mm against a drawn 12.9 mm by
+the inter-element gap clearance) stop at the drawn curve end, because the full
+edge height is not geometrically possible there. No
 source-listed clear diameter is changed, because the prescription does not
 publish one.
 
@@ -361,10 +363,9 @@ the finite chief at 21.63 mm independently recovers an 83.267736° full incoming
 field. These results support retaining the native field values, without assuming
 the unverified digital-correction explanation for the commercial field difference.
 
-Outer-pupil rays can be clipped. At infinity the modeled L21 rear surface ends
-only 0.12 mm outside the F/2.07 axial marginal ray (8.08 mm), so one pupil edge
-is trimmed from small field angles outward, and the front and rear groups trim
-the bundle further toward the corner. Some outer aims also fail
+Outer-pupil rays can be clipped: the front and rear groups trim the bundle
+toward the corner. The L21 rear rim (9.6 mm) stands 1.5 mm outside the F/2.07
+axial marginal ray, which is 8.08 mm high there at infinity. Some outer aims also fail
 to find a valid intersection and remain numerically unresolved; they are not
 relabeled as proven physical vignetting. The polar sample counts are not area-weighted illumination or transmission
 measurements. Independent meridional checks at 17 focus positions also contain

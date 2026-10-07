@@ -194,3 +194,126 @@ The two changed faces, S10 and S13, are ones the drawing ends at a land well ins
   νd changed, and the three source-derived `dPgF` values stay authoritative at the g line.
 - `specs` lines for the design focal length and f-number were put in the catalog's usual upper-case form.
 - Display name, mounts (L-Mount, Sony E), format and the 43.26 mm image circle were reviewed and left as authored.
+
+## 2026-10-06 — Second review: diagram, labels and movement
+
+**What was compared.** The lens as drawn on the local site (infinity, mid focus, closest focus, the focus-movement chart and
+the element inspector for elements 2, 4, 6, 7, 10 and 12) against 【図1】 on PDF page 22 of `patents/JP2021128263A.pdf`
+and the Example 1 text and tables (¶0022, ¶0031–0049, ¶0072–0075, ¶0097, ¶0108, ¶0114, ¶0115). The figure was measured
+again from scratch on the native 855 × 576 raster, and the site's own element outlines were laid over that raster at a
+matched axial scale. Sections above this one use the former names: elements L1–L12 and groups G1–G3.
+
+**Scale, measured independently.** S1 to S22 is 551 px for 69.6699 mm, 0.12644 mm/px along the axis. For the vertical
+scale, the drawn arcs of S4, S9, S13, S14 and S15 were fitted to their tabulated radii over both halves (122 to 212 ink
+points each, residual 0.30–0.38 px): 0.12365, 0.12375, 0.12390, 0.12400 and 0.12370 mm/px, so 0.1238 mm/px. The raster
+is 2.1% taller than isotropic, and the page places it at 402 × 395 ppi, 3.9% in all on a rendered page. Three checks
+that do not depend on the fit agree: the iris dashes end at ±97.5 px (12.07 mm against the modeled 11.996 mm), the S20
+and S21 lines meet at 119–120 px (14.8 mm against the 14.95 mm at which the two surfaces intersect), and the S3 corner
+of D1 lies 26 px behind its vertex (3.29 mm of sag; the asphere gives 3.365 mm at 17.4 mm and 3.630 mm at 18.1 mm).
+
+**What the overlay showed before this pass.** With the raster stretched to its page aspect the outer rims coincided
+with the site but the cemented arcs S4, S9 and S15 did not; at the fitted scale the arcs coincided along their whole
+length, D2 sat exactly on its drawn rim, and every other rim stood 3.9–4.1% above the drawing. The mixed scale made D2
+look squat: 4% short against D1 and element 4, and lower than D3 (15.5 against 15.9 mm) where the figure draws it
+higher (125.5 against 123.5 px). The semi-diameters were therefore put on the one fitted scale. This is the set the
+first pass logged and did not apply, re-measured here; two values differ from it by 0.1 mm (S19, and S1/S2 at the rim).
+
+| Surface | Before | Figure outer rim, line centre (px) | Figure (mm at 0.1238) | After |
+|---|---:|---:|---:|---:|
+| 1, 2 | 18.8 | 146.5 | 18.14 | 18.1 |
+| 3A, 4, 5 | 18.1 | 140.5 | 17.39 | 17.4 |
+| 6, 7 | 17.2 | 133.5 | 16.53 | 16.5 |
+| 8, 9 | 15.5 | 125.5 | 15.54 | 15.5 (unchanged) |
+| 10 | 13.8 | curve ends at 104–110 | 12.9–13.6 | 13.8 (unchanged) |
+| 12 | 12.9 | 100.5 | 12.44 | 12.4 |
+| 13 | 11.0 | curve ends at 86–87 (2.15 mm of sag) | 10.6–10.8 | 11.0 (unchanged) |
+| 14, 15, 16 | 15.9 | 123.5 | 15.29 | 15.3 |
+| 17A, 18A | 17.0 | 131.5 | 16.28 | 16.3 |
+| 19 | 16.8 | 130.5 | 16.16 | 16.2 |
+| 20, 21 | 14.1 | edge contact at 119–120 | 14.8 | 14.1 (unchanged) |
+| 22 | 17.2 | 133.5 | 16.53 | 16.5 |
+
+After the change the site outlines lie on the drawn outlines for every rim, corner and cemented arc. The drawn order of
+heights is kept throughout: element 1 above D1, D1 above element 4, element 4 above D2, D2 above D3, element 10 just
+above element 11, element 12 above both.
+
+**Clearance and engine values after the change.** The surface validator reports no errors, the image-circle floor
+reports nothing undersized and traced corner coverage is 100% (18.5° to 21.63 mm).
+
+- Engine-derived EFL 63.101 mm, F/2.07, stop radius 11.9958 mm and half-field 21.005° are all unchanged; the half-field
+  is still set by S21, with S20 at 23.0° and S22 now at 23.8° (24.7° before).
+- The F/2.07 axial marginal ray clears every rim at both focus endpoints. The smallest margins at infinity are 0.15 mm
+  at S13, 1.21 mm at S8 and 1.28 mm at S10 (all three unchanged), then 1.01 mm at S12, 1.29 mm at S6 and 1.54 mm at S3
+  among the changed rims.
+- The corner chief ray (18.52° at infinity, and from the real object point at the closest station) is not blocked; its
+  largest height is 12.48 mm at S22 against 16.5 mm.
+- Corner vignetting rises a little. At infinity the trimmed share of the half-bundle goes from 28 to 32% at S1, 28 to
+  33% at S3, 29 to 33% at S4, 23 to 28% at S14, 25 to 31% at S15, about 10 to 21% at S17/S18, 6 to 16% at S19 and 0 to
+  11% at S22; S13 (14%) and S21 (53%, the largest) are unchanged. At the closest station S1 goes from 16 to 20%, S4
+  from 18 to 23% and S12 from 6 to 12%, with S13 (31%) and S21 (25%) unchanged.
+- The default display bundle (12.6° field, 75% pupil) stays untrimmed: its largest heights are about 16.6 mm at S1
+  against 18.1 mm and 16.5 mm at S3 against 17.4 mm. The element render diagnostics report no trim at focus 0, 0.5 and 1.
+- Aspheric departures at the new radii, as now quoted in the analysis: −0.295871 mm at S3 (17.4 mm), −0.102304 mm at
+  S17 and +0.413386 mm at S18 (both 16.3 mm). No element is thinner than its 0.9 mm centre thickness; the thinnest rim
+  is 1.299 mm (element 4 at 16.5 mm) and the steepest surface is still S9, 52.70° at 15.5 mm.
+
+**Labels changed.**
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Group brackets | `G1 + (fixed)`, `G2 - (focus)`, `G3 + (fixed)` | `L1 + (fixed)`, `L2 - (focus)`, `L3 + (fixed)` | The patent names the groups L1, L2, L3 in Fig. 1, in ¶0072 and in the group-data table (L1 from surface 1, L2 from 12, L3 from 14) |
+| Element `name` | L1 … L12 | E1 … E12 | The patent names no element; an L-number is a group in this patent, so L1–L3 would have meant two things |
+| Element `role` text | groups written G1–G3 | groups written L1–L3; P1/P2 named on elements 2, 4, 6; meniscus orientation added | ¶0073–0075, Fig. 1 leaders |
+| `apdNote` on elements 2, 4, 6 | converted value only | adds the patent designation (P1, P2, P1) | below |
+| `focusDescription` | G-names | L-names, with the moving element and the direction spelled out | ¶0072, variable-gap table |
+
+The diagram shows the numerals 1–12 under the elements and the L-brackets under those, so nothing on it reads two ways.
+The E-number scheme under L-named groups is the one already used by the Canon EF 24mm f/1.4L II file.
+
+**Checked and left as authored.**
+
+- Bracket ranges: L1 = surfaces 1–10, L2 = 12–13, L3 = 14–22, with the stop (surface 11) outside all three as in the
+  patent. Cemented brackets D1 = 3A–5, D2 = 8–10, D3 = 14–16, one per cemented pair of ¶0073 and ¶0075.
+- Element `type` strings against the signs of R and ¶0073–0075: biconcave; biconvex cemented to a negative meniscus
+  concave to the object; positive meniscus; negative and positive menisci cemented, all convex to the object; negative
+  meniscus convex to the object; biconvex cemented to biconcave; biconvex; biconcave; biconcave.
+- Aspheres: the table stars surfaces 3, 17 and 18, and those are the only `A` labels and `asph` entries; the inspector
+  shows one aspheric face on element 2 and two on element 10.
+- Stop: drawn at surface 11, 3.113 mm behind S10, where the figure draws its dashes (330 px against a predicted 329.6).
+- `apd: "patent"` on elements 2, 4 and 6 stands. ¶0097 defines the ΔPgF column as the anomalous dispersion of the glass
+  and the table fills it for surfaces 3, 6 and 9 only; Fig. 1 points P1 at elements 2 and 6 and P2 at element 4; ¶0022
+  and ¶0031–0036 require P1 to be a low-dispersion, anomalous-dispersion positive lens of group L1 and ¶0044–0049 the
+  same of the high-index P2; ¶0114 enters element 6 (75.50, 0.027) and element 4 (1.95, 0.038) as the condition values.
+  Element 2 qualifies narrowly (νd 67.02, ΔPgF 0.0081 against a floor of 0.008; +0.0047 on the application's line).
+  No `"inferred"` tag is present. Sigma lists one SLD element; element 6 (νd 75.5) is its natural counterpart, which
+  this pass did not check against Sigma's construction drawing.
+- `varLabels` d11 and d13 are the patent's own names for the two variable gaps.
+
+**Focus movement.** The patent table gives d11 = 2.0000 → 11.7694 mm and d13 = 12.4912 → 2.7218 mm from infinity to the
+closest state, with BF 19.3302 mm at both. The file stores the pairs in that order (index 0 infinity, index 1 closest),
+their sum is 14.4912 mm at both ends, and the only moving glass is element 7, which travels 9.7694 mm toward the image,
+the direction of the focus arrow under L2 in Fig. 1. On the site the movement chart shows L2 travelling 9.77 mm toward
+the focus plane with L1 and L3 as fixed points, the closest-focus view shows element 7 against D3 with d11 11.77 and
+d13 2.72, EFL 57.83 mm, and the slider's far end reads 55 cm. Order and direction were correct; nothing was changed.
+
+**Open limitations.**
+
+- Element 7 keeps a bevelled rim (S12 at 12.4, S13 at 11.0 mm) where the figure draws a square shoulder. Raising S13 to
+  the rim passes the validator, but its sag there (2.94 mm) exceeds the 2.72 mm gap to S14 at closest focus, so the rim
+  would reach past the S14 vertex plane, and it would remove the 14% and 31% corner trims the drawn land implies.
+- Elements 11 and 12 show a V-shaped notch between their rims where the figure draws flat lands in contact; S20/S21
+  cannot go above 14.1 mm under the air-gap policy.
+- Element 1 is drawn with its curves running to the 18.1 mm rim; the figure ends them at short lands near 17.1 mm
+  (front) and 16–17 mm (rear), so its tips sit 0.2–0.3 mm outside the drawn block.
+- S10 is 0.2–0.9 mm above its drawn curve end and S9 runs 0.3 mm past the drawn rear land of D2; both are inside one
+  pixel or two of the raster and were left.
+- Beside the PDF page the site now looks about 4% less tall than the figure, because the page stretches the drawing;
+  the prescription arcs show the site, not the page, has the true proportions.
+
+## 2026-10-07 — Glass catalog backfill
+
+E10 (`M-NBFD130 class`, 1.80610 / 40.73, both faces aspheric) had resolved through an alias to HOYA NBFD13. HOYA
+publishes a separate M-NBFD130 row with its own coefficients (catalog ΔPgF −0.0056 against NBFD13's −0.0078 on the
+vendor's normal line), so that row was added to the project catalog from the vendor AGF of 2026-07-07 and the alias
+retired; E10 now traces on the molded glass's own curve. Stored nd and νd are unchanged. The stale "root-level
+draft" line was removed from the data-file header.

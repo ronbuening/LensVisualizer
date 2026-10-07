@@ -40,6 +40,10 @@ factory prescription is not established by these similarities. [S1–S3]
 This is a five-functional-group, two-group inner-focusing, large-aperture prime. Its signed
 power sequence is positive–positive–positive–positive–negative. The broad middle group G3
 is split into a negative front subgroup, the aperture diaphragm, and a positive rear subgroup.
+The patent names these G3a (surfaces 7–11, printed f = −35.31 mm), S and G3b (surfaces 13–20,
+printed f = +39.46 mm), and Figure 6 brackets them inside G3. The diagram's group labels
+use the same notation: G1, G2, G3a, G3b, G4 and G5, with the stop drawn between G3a and G3b.
+The patent gives no designations to individual elements, so L1–L17 number them in order.
 This arrangement is explicitly described in ¶0152–0157. It should not be reduced to a named
 historical design family without additional evidence.
 
@@ -107,7 +111,7 @@ This negative element is cemented to positive L6 at source surface 10. It is the
 
 nd = 1.94594, νd = 17.98. Glass: FDS18-W class (HOYA coordinate equivalent; supplier unconfirmed). f = +56.236 mm.
 
-The positive high-index, high-dispersion partner completes L5–L6. Its published partial-dispersion ratio is retained explicitly. G3a is negative as a whole even though this member is positive (¶0155).
+The positive high-index, high-dispersion partner completes L5–L6. Its published partial-dispersion ratio is retained explicitly. G3a is negative as a whole even though this member is positive (¶0155). It is the lowest-Abbe positive lens of G3, for which the patent specifies a high-index, high-dispersion glass with high anomalous dispersion (¶0103, ¶0109–0111). Condition (9) evaluates to 0.0387 against a 0.0200 floor, so the element carries the patent anomalous-dispersion tag.
 
 ### L7 — Biconvex Positive (2x Asph)
 
@@ -137,7 +141,7 @@ This negative meniscus forms the front member of L10–L11. Together with the po
 
 nd = 1.59282, νd = 68.62. Glass: FCD515 class (HOYA coordinate equivalent; supplier unconfirmed). f = +36.799 mm.
 
-The positive biconvex partner uses the lowest-dispersion positive glass in G3. Its absolute θgF=0.5440 and νd=68.62 satisfy the patent normal-line condition for that G3 positive member. This is the coordinate-compatible FCD515 family; source supplier and exact melt remain unconfirmed.
+The positive biconvex partner uses the lowest-dispersion positive glass in G3. Its absolute θgF=0.5440 and νd=68.62 satisfy the patent normal-line condition for that G3 positive member. The patent specifies a low-index, low-dispersion glass with high anomalous dispersion for this lens (¶0101–0108); condition (8) evaluates to 0.0192 against a 0.0120 floor, so the element carries the patent anomalous-dispersion tag. This is the coordinate-compatible FCD515 family; source supplier and exact melt remain unconfirmed. Sigma lists one SLD element for the production lens without locating it. [S2] L11 is the likely position, but that is an inference.
 
 ### L12 — Biconcave Negative
 
@@ -161,7 +165,7 @@ This biconvex element begins fixed rear group G5. It is the higher-Abbe positive
 
 nd = 1.98612, νd = 16.48. Glass: FDS16-W class (HOYA coordinate equivalent; supplier unconfirmed). f = +43.438 mm.
 
-This high-index biconvex element is the positive member of the rear L15–L16 cemented pair. It has the minimum positive-element Abbe number in G5, νd=16.48. The source explicitly uses its high partial-dispersion deviation in the chromatic design conditions (¶0061–0070). Those conditions are material evidence, not proof of apochromatic system performance.
+This high-index biconvex element is the positive member of the rear L15–L16 cemented pair. It has the minimum positive-element Abbe number in G5, νd=16.48. The source explicitly uses its high partial-dispersion deviation in the chromatic design conditions (¶0061–0070), which call for a high-index, high-dispersion glass with high anomalous dispersion in this position. Condition (2) evaluates to 0.0470 against a 0.0250 floor, so the element carries the patent anomalous-dispersion tag. Those conditions are material evidence, not proof of apochromatic system performance.
 
 ### L16 — Biconcave Negative
 
@@ -374,7 +378,9 @@ carry its edge past the front vertex of the next element. The renderer joins une
 front and rear rims with a straight edge, so L2 and L16 show a chamfer where the figure
 has a square annulus. Surfaces 2, 9 and 22 keep the drawn rim height, which leaves the
 bowl 0.7, 1.8 and 0.2 mm deeper at the rim than drawn. G4 follows its drawn 19.3–19.5 mm
-rim and L17 its drawn 16.3 mm rim.
+rim and L17 its drawn 16.3 mm rim. L4 is drawn as a 15.3 mm block; its front face is
+modeled at 15.2 mm and its rear face at 14.5 mm, between the 14.0 mm bowl end and the
+14.6 mm at which its bowl would crowd the L5 bowl behind it.
 
 The baseline calibrated entrance-pupil radius is 13.951844 mm. The actual UI's
 current-pupil helper yields 14.907547 mm at infinity; these values support different launch
@@ -384,10 +390,11 @@ is 32.721789°, limited by rear surfaces 29 and 31A, so the default 60% field is
 the source's 60%-field angle would be 19.122°. A replay of the diagram fans through the
 actual current-state pupil, field, ray-density and trace helpers covered five focus
 samples, four apertures and both focus-tracking settings. All 240 on-axis normal samples,
-187 of 200 default off-axis normal samples and 427 of 440 default off-axis dense samples
-reached the last lens without clipping. The 13 clipped rays are all ±0.75-pupil rays at
-F1.24. Ten stop first at surface 21 and three at surface 7, both air-side faces; this is
-wide-open vignetting at the drawn G4 and L4 apertures. The package's earlier tallies, in
+190 of 200 default off-axis normal samples and 430 of 440 default off-axis dense samples
+reached the last lens without clipping. The 10 clipped rays are all −0.75-pupil rays at
+F1.24 and stop first at surface 21, an air-side face; this is wide-open vignetting at the
+drawn G4 aperture. Passing them would need 20.6–21.4 mm on L12 and L13, against drawn
+rims of 19.3–19.6 mm. The package's earlier tallies, in
 which all 200 baseline/current-UI launch samples and every default-fan sample were clear,
 were recorded with its original semi-diameters and an 18.411691° default field, and they
 no longer describe the stored model. These are sampled source-helper checks, not a
@@ -427,7 +434,8 @@ integration checks are not asserted by the optical account.
   and conditional-expression values on PDF p49.
   [Original publication service](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=US20250334778A1).
 - [S2] Sigma, [35mm F1.2 DG II | Art product specifications](https://www.sigma-global.com/en/lenses/a025_35_12/),
-  accessed October 4, 2026.
+  accessed October 4, 2026; lens-construction line (17 elements in 13 groups, one SLD and four
+  aspherical elements) rechecked October 6, 2026.
 - [S3] Sigma, [Launch schedule of Sigma 35mm F1.2 DG II | Art](https://www.sigma-global.com/en/news/2025/09/09/011116/),
   September 9, 2025.
 - [S4] HOYA GROUP Optics Division, [official glass data downloads](https://www.hoya-opticalworld.com/english/datadownload/)

@@ -10,9 +10,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * Stop position published; its diameter is calibrated from rounded f/1.82.
  * Lens semi-diameters are estimates from ray geometry and Fig. 1 (PDF p.24, drawn to the
  * prescription's own scale), floor-checked by real-ray trace at infinity and 250 mm.
- * Concave-side SDs follow the drawn curve ends, not the larger flat flanges: surface 2 is
- * 12.0 mm (figure 12.0), 7 is 7.8 (figure 7.1), 9 is 6.3 (figure 5.95), 15 is 9.4 (figure 8.9;
- * 9.4 keeps the chief-ray-limited field unchanged). The renderer bevels these rims.
+ * Concave-side SDs follow the drawn curve ends where the full-height rim would wrap the next
+ * element or the stop: surface 2 is 12.0 mm (figure 12.0), 7 is 7.8 (figure 7.1), 9 is 6.3
+ * (figure 5.95). The renderer bevels those rims (L1, L4, L5). L8 and L9 are squared at the drawn
+ * outer rims instead (14/15 = 10.0, figure 9.98; 16/17 = 10.5, figure 10.66); their drawn rear
+ * lands start at 8.9-9.0 and 9.6 mm and cannot be rendered.
+ * Group labels use the patent's sub-group notation (G1a, G1b, G1c, G2, G3a, G3b); the patent names
+ * no individual elements, so L1-L9 are sequential.
  * Glass labels name coordinate-equal HOYA catalog rows as dispersion proxies, not confirmed
  * patent melts; no catalog line index is stored on the elements.
  * Raw weak-G3/pupil discrepancies and source-rounding limits remain disclosed.
@@ -59,7 +63,8 @@ const LENS_DATA = {
       "vd": 35.74,
       "fl": -32.844605,
       "glass": "E-F1 (HOYA equivalent)",
-      "indexReference": "d"
+      "indexReference": "d",
+      "role": "G1a (negative sub-group of the fixed, positive G1): negative meniscus, convex to the object."
     },
     {
       "id": 2,
@@ -70,7 +75,8 @@ const LENS_DATA = {
       "vd": 40.14,
       "fl": 23.196267,
       "glass": "TAFD33 (HOYA equivalent)",
-      "indexReference": "d"
+      "indexReference": "d",
+      "role": "G1b (positive sub-group of G1): biconvex positive lens; its image-side surface is very weak (R = -1000 mm)."
     },
     {
       "id": 3,
@@ -82,7 +88,8 @@ const LENS_DATA = {
       "fl": 25.958471,
       "glass": "NBFD13 (HOYA equivalent)",
       "indexReference": "d",
-      "cemented": "D1"
+      "cemented": "D1",
+      "role": "G1c (negative cemented sub-group of G1): biconvex positive front member of doublet D1, with L4; object-side surface aspheric."
     },
     {
       "id": 4,
@@ -94,7 +101,8 @@ const LENS_DATA = {
       "fl": -20.197695,
       "glass": "E-F5 (HOYA equivalent)",
       "indexReference": "d",
-      "cemented": "D1"
+      "cemented": "D1",
+      "role": "G1c: biconcave negative rear member of doublet D1, with L3; its concave rear surface faces the stop."
     },
     {
       "id": 5,
@@ -106,7 +114,8 @@ const LENS_DATA = {
       "fl": -10.866943,
       "glass": "E-FD15 (HOYA equivalent)",
       "indexReference": "d",
-      "cemented": "D2"
+      "cemented": "D2",
+      "role": "G2 (focus, positive): biconcave negative front member of cemented doublet D2, with L6. Moves objectward with L6 and L7 for close focus."
     },
     {
       "id": 6,
@@ -118,7 +127,8 @@ const LENS_DATA = {
       "fl": 13.56298,
       "glass": "TAFD33 (HOYA equivalent)",
       "indexReference": "d",
-      "cemented": "D2"
+      "cemented": "D2",
+      "role": "G2 (focus): biconvex positive rear member of cemented doublet D2, with L5."
     },
     {
       "id": 7,
@@ -129,7 +139,8 @@ const LENS_DATA = {
       "vd": 53.2,
       "fl": 23.141445,
       "glass": "M-LAC130 (HOYA equivalent)",
-      "indexReference": "d"
+      "indexReference": "d",
+      "role": "G2 (focus): biconvex positive lens with both surfaces aspheric; last lens of the moving group."
     },
     {
       "id": 8,
@@ -140,7 +151,8 @@ const LENS_DATA = {
       "vd": 27.76,
       "fl": -39.036595,
       "glass": "E-FD13 (HOYA equivalent)",
-      "indexReference": "d"
+      "indexReference": "d",
+      "role": "G3a (negative sub-group of the fixed, weakly negative G3): negative meniscus, convex to the object."
     },
     {
       "id": 9,
@@ -151,7 +163,8 @@ const LENS_DATA = {
       "vd": 42.72,
       "fl": 42.597165,
       "glass": "TAFD5F (HOYA equivalent)",
-      "indexReference": "d"
+      "indexReference": "d",
+      "role": "G3b (positive sub-group of G3): positive meniscus, convex to the object; last lens ahead of the rear filter."
     }
   ],
   "surfaces": [
@@ -265,7 +278,7 @@ const LENS_DATA = {
       "d": 0.8,
       "nd": 1.74077,
       "elemId": 8,
-      "sd": 10.25
+      "sd": 10
     },
     {
       "label": "15",
@@ -273,7 +286,7 @@ const LENS_DATA = {
       "d": 1.4476,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 9.4
+      "sd": 10
     },
     {
       "label": "16",
@@ -354,8 +367,18 @@ const LENS_DATA = {
   ],
   "groups": [
     {
-      "text": "G1 FIXED",
+      "text": "G1a",
       "fromSurface": "1",
+      "toSurface": "2"
+    },
+    {
+      "text": "G1b",
+      "fromSurface": "3",
+      "toSurface": "4"
+    },
+    {
+      "text": "G1c",
+      "fromSurface": "5A",
       "toSurface": "7"
     },
     {
@@ -364,8 +387,13 @@ const LENS_DATA = {
       "toSurface": "13A"
     },
     {
-      "text": "G3 FIXED",
+      "text": "G3a",
       "fromSurface": "14",
+      "toSurface": "15"
+    },
+    {
+      "text": "G3b",
+      "fromSurface": "16",
       "toSurface": "17"
     }
   ],
@@ -381,7 +409,7 @@ const LENS_DATA = {
       "toSurface": "11"
     }
   ],
-  "focusDescription": "PUBLISHED: G2 (L5-L7, surfaces9-13) translates 2.9383 mm toward the object from infinity to the published 250 mm shooting-distance state; G1/G3 and image remain fixed. Intermediate gaps interpolate linearly; no additional focus law reconstructed.",
+  "focusDescription": "PUBLISHED inner focus: G2 (L5-L7, surfaces 9-13) moves 2.9383 mm toward the object from infinity to the patent's 250 mm shooting distance. G1 (G1a-G1c), the stop, G3 (G3a, G3b) and the image plane stay fixed. Intermediate gaps are interpolated linearly between the two published states.",
   "closeFocusM": 0.25,
   "nominalFno": 1.82,
   "fstopSeries": [

@@ -262,3 +262,88 @@ Metadata. `focalLengthDesign: 24.0` was missing and was added from the source fo
 23.996 mm). `specs` now uses the catalog's usual form and gives four aspherical surfaces on three elements and the
 inferred SLD element. Display name, mounts (L-Mount, Sony E), format and the 43.26 mm image circle were reviewed
 and left as authored.
+
+## 2026-10-06 — Second review: diagram, labels and movement
+
+An independent second look at the lens as the local site draws it. The page was captured at infinity and at the
+closest focus endpoint, with the focus-movement overlay at both ends and the element inspector for L11, L12, L13,
+L21, L23 and L31, and set beside `patents/JP2022067328A.pdf`: Figure 1 (PDF page 21), the Example 1 text
+¶0058–0062 and tables (PDF pages 9–11), the condition text ¶0023–0032 (PDF pages 6–7), the condition table and
+reference signs ¶0095–0096 (PDF page 20) and the front page.
+
+Silhouette. Figure 1 was measured again from the 300 dpi raster without reusing the earlier readings. The axis is
+row 759; the vertex crossings are at x = 458.5, 482, 634.5, 649.5, 652.5, 704.5, 708, 750.5, 766, 964.5, 1045.5,
+1061, 1086, 1186.5, 1215.5, 1238.5, 1300.5 and 1331.5 px, which is 19.176 px/mm over the 45.5257 mm from surface 1
+to surface 19 and puts every vertex within 1 px of the infinity spacings (surface 15 to 16 is 29 px, 1.51 mm). Line
+centres read L11 12.0 mm, L12 8.9, L13 8.85 (upper) and 8.8 (lower), the L14–L15 pair 7.25, the L21–L22 pair 8.0,
+L23 10.4, L31 10.8 and L32 11.8 mm. The vertical lands end at 9.2 mm on the rear of L11, at 4.95–5.1 mm on the rear
+of L15 and at 9.7–9.8 mm where surfaces 17 and 18 meet; L12 has 0.6 mm lands on both faces above 8.4 mm. The stop
+ticks run from 4.2 to 5.1 mm against the modelled iris radius of 4.196 mm and the 5.2 mm housing the page draws.
+Every reading agrees with the earlier pass to 0.1 mm.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `sd` of surfaces 5 and 6 (L13) | 9.0 | 8.8 | The figure draws L12 and L13 level, L12 one to two pixels the taller (172 and 172 px outer ink against 171 and 170 px). The page drew L13 0.2 mm taller than L12. L12 cannot rise: 8.9 mm is rejected by the air-gap rule behind L11 (combined sag 7.25 mm against 7.213 mm allowed). L13 at 8.8 mm is 0.05 mm under its drawn height where 9.0 mm was 0.15 mm over it; its flat top is 1.18 mm wide against about 1.15 mm drawn (1.11 mm before). |
+| L11 `role` | Object-facing negative meniscus in fixed G1 … | adds "Patent's negative lens L1m (Figure 1)" | ¶0060 and the Figure 1 leader. |
+| L12 `role` | Negative lens in fixed G1 carrying the published anomalous partial dispersion coordinate. | Names it the patent's negative lens L2m and the lens whose νd and ΔPgF the patent lists for conditions (2) and (3). | ¶0060, the Figure 1 leader, the ΔPgF column of the surface table and the ¶0095 table. |
+| L13 `role` | Positive high-index meniscus in fixed G1; satisfies the source index condition. | Names it the patent's positive lens L1p and quotes condition (4), NdL1p > 1.85, against nd 2.0509. | ¶0027, ¶0060 and the Figure 1 leader. |
+| `focusDescription` | Quoted the field name `closeFocusM=0.1052878`. | Says the 0.105 m close limit is the patent's object-to-image distance, d0 40.068 mm plus the 65.22 mm track. | Readability on the page; the numbers are unchanged. |
+
+The analysis was brought into line: the L11, L12 and L13 notes and the conditional-expression paragraph now give
+the three designations, the reconstruction paragraph records the L13 rim, and the sentence saying most elements
+trace on an Abbe approximation was replaced, because all ten glass labels now resolve to catalog curves.
+
+Places where page and figure still differ, each tried again and left as the earlier pass set it:
+
+- L11 rear. The figure has a flat top 2.7 mm wide and a vertical land down to 9.2 mm; the page joins 12.1 mm to
+  9.3 mm with a straight edge. Surface 2 cannot go higher: 9.4 mm is rejected for rim slope (64.7° against 64.2°).
+- L15 rear. Restoring surface 9 to 7.3 mm squares the pair and passes the validator, but the rim of the pair then
+  spans 3.43 mm along the axis against 2.45 mm drawn, the rear bowl is 1.85 mm deep against 0.86 mm, and the stop
+  housing is drawn out to 7.3 mm against ticks that end at 5.1 mm. At 5.2 mm the rim spans 2.49 mm, the bowl depth
+  and the stop ticks match, and only the corner is cut. 5.2 mm is kept.
+- L31 rear and L32 front. Surface 17A at 9.5 mm is rejected by the air-gap rule (2.96 mm against 2.933 mm), so the
+  9.4 mm value and the forward-pointing front rim of L32 stay as described in the semi-diameter section.
+
+Checked and found correct, nothing changed:
+
+- Group brackets G1, G2 and G3 are the patent's notation and cover surfaces 1–9, 11–15 and 16–19, the start
+  surfaces of the patent's group table (1, 11, 16); the signs in the bracket text agree with the printed group
+  focal lengths +340.56, +17.20 and −30.27 mm. The stop sits outside the brackets, between L15 and L21, as source
+  surface 10.
+- Brackets D1 (surfaces 7–9) and D2 (11–13) cover the two cemented pairs of ¶0059 and ¶0061, and the four
+  elements carry the matching `cemented` value.
+- Element names L11–L15, L21–L23, L31 and L32 are the designations of ¶0059–0062. Figure 1 prints only the claim
+  designations L1m, L2m and L1p, which now appear in the three roles. Every `type` string agrees with the signs of
+  the radii and with the patent's wording, and the aspheric counts are 1, 2 and 1.
+- The aspheric suffix and an `asph` entry are on surfaces 1, 14, 15 and 17, the four starred rows, and on no other.
+- L12 keeps `apd: "patent"`: the surface table gives it the only ΔPgF entry (0.0469), which ¶0050 and ¶0023 call
+  anomalous dispersion. In all six examples the surface-3 lens is the only one with that entry, so the symbols
+  νd1m and ΔPgF1m describe the lens ¶0060 calls L2m; the earlier notes on this conflict name L1m and L11 only.
+- L21 keeps `apd: "inferred"`. Sigma's product page lists 10 elements in 8 groups with one SLD and three
+  aspherical lenses. L21 (νd 81.61) is the only glass in the example above νd 67. The construction drawing on that
+  page could not be read in this review, so the position rests on the coordinates.
+- `varLabels` D10 and D15 are the patent's names. The focus slider ends at 11 cm against 0.1053 m.
+- Front page: JP 2022-067328 A, published 6 May 2022, application 2020-175981, inventor Daichi Tanoue, applicant
+  Sigma Corporation.
+
+Focus travel. Index 0 of each `var` pair is the patent's INF column and index 1 its −0.5× column: D10 7.0307 to
+3.1949 mm and D15 1.5000 to 5.3358 mm, a sum of 8.5307 mm at both ends. The front vertex of G2 goes from 26.4307 to
+22.5949 mm behind surface 1, 3.8358 mm toward the object, as ¶0058 states and as the arrow under the G2 bracket in
+Figure 1 points. G1, the stop and G3 do not move. The page's focus overlay shows only G2 moving, away from the image
+plane, with a largest travel of 3.84 mm; the near state reads D10 3.19, D15 5.34 and EFL 19.45 mm against the
+patent's 19.45 mm.
+
+Results on the edited file: the surface validator reports no errors, the image-circle audit no undersized surface,
+and the traced corner coverage is 21.63 of 21.63 mm at 40.6°. The real-ray trace is unchanged apart from the two
+stored values: half-field 40.63° at infinity, no on-axis clipping and no blocked chief ray at either focus state;
+surfaces 5 and 6 need 4.21 and 4.48 mm for the axial bundle and 4.15 and 3.77 mm for the corner chief ray. The
+meridional share of the stop that passes every rim is the same before and after at every sampled height (100%,
+89%, 56% and 15% at 10.9, 15, 18 and 21.63 mm at infinity; 99%, 100%, 96% and 59% at 11.3, 15, 18 and 21.63 mm at
+−0.5×). Engine values are identical: EFL 23.9960 mm, F/3.62, stop radius 4.1960 mm, half-field estimate 38.80°.
+The page was captured again at infinity and at closest focus: L12 and L13 now end level, and the inspector shows
+the three new roles.
+
+Open limitations. The engine half-field estimate stays 1.8° under the patent's 40.635°; it is a paraxial estimate
+limited by surface 17A, which would need about 10.0 mm to reach the patent angle against the 9.46 mm the air-gap
+rule allows. The corner chief ray itself clears 17A (9.37 mm needed). The aperture read-out stays F/3.62 at the
+near end, where the patent prints 3.92. The three chamfers listed above remain.

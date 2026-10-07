@@ -261,3 +261,135 @@ The renderer joins unequal front and rear rims with a straight edge. L2 (22.5 / 
   four elements.
 - Display name (`SIGMA 35mm f/1.2 DG II | Art`, without the first version's "DN"), mounts (L-Mount, Sony E) and
   format were reviewed and left as authored.
+
+## 2026-10-06 — Second review: diagram, labels and movement
+
+An independent second look at the lens as the local site draws it. Compared: the page at infinity and at the
+finite state, the focus-movement overlay at both ends, and the element inspector for L3, L4, L6, L7, L11, L13, L15
+and L17, against FIG. 6 (PDF p7), the Example 2 description (PDF p39, ¶0151–0157), the tables on PDF pp42–44, the
+condition values on PDF p49 and the condition text on PDF pp34–37. One semi-diameter, the group labels, the element
+roles, three dispersion tags and the focus description changed. No `R`, `d`, `nd`, `vd`, asphere coefficient, gap
+value, glass string or `STO` value was touched.
+
+### Silhouette, re-measured
+
+The figure was profiled again from the 300 dpi page raster without reusing the first pass's readings. The axis is at
+x = 1416 px. All 28 crossing bands from surface 1 (y = 2860) to the image plane (y = 497.5) fall within 2 px of the
+Example 2 infinity spacings at 18.362 px/mm; three bands hold two surfaces each. Rims were read as the outermost ink on both sides of the axis; the
+dithered edge lines make each reading a 3–4 px band.
+
+| Element | Outermost ink (px from axis) | Rim (mm) | Stored (mm) |
+|---|---:|---:|---|
+| L1 | 539–542 | 29.4–29.5 | 29.5 |
+| L2 | 412–415 | 22.4–22.6 | 22.5 front, 17.7 rear bowl |
+| L3 | 336–340 | 18.3–18.5 | 18.4 |
+| L4 | 279–282 | 15.2–15.4 | was 14.5 both faces |
+| L5 | 326–330 | 17.8–18.0 | 18.0 |
+| L6 | 338–341 | 18.4–18.6 | 18.5 |
+| L7 | 394–397 | 21.5–21.6 | 21.5 |
+| L8–L9 | 387–390 | 21.1–21.2 | 21.1 / 21.4 / 21.4 |
+| L10 | 394–397 | 21.5–21.6 | 21.5 |
+| L11 | 380–384 | 20.7–20.9 | 20.8 |
+| L12 | 358–361 | 19.5–19.7 | 19.5 |
+| L13 | 354–357 | 19.3–19.4 | 19.3 |
+| L14 | 338–341 | 18.4–18.6 | 18.9 |
+| L15 | 326–329 | 17.8–17.9 | 17.8 |
+| L16 | 322–325 | 17.5–17.7 | 17.8 front, 14.7 rear bowl |
+| L17 | 299–301 | 16.3–16.4 | 16.3 |
+
+The flat annuli were located as horizontal ink runs. Their inner ends put the bowl ends at 17.4–17.7 mm on surface 4,
+13.8–14.1 mm on surface 8, 14.1–14.5 mm on surface 9 and 14.4–14.7 mm on surface 29. These agree with the first
+pass's 17.7, 14.0, 14.5 and 14.7 mm. Every element except L4 was already within 3 % of the drawing.
+
+Where the site still differs from the figure, and why it stays:
+
+- **L2 and L16 chamfers.** The figure draws both as squared blocks with a flat rear annulus. The renderer joins
+  the front and rear rim points with a straight line, so 22.5 / 17.7 and 17.8 / 14.7 draw a chamfer. Surface 4 at
+  the rim height wraps L3, as the first pass found. A compromise of 19.3 mm on surface 4 was rendered and rejected:
+  the validator accepts it, but the horn of L2 then reaches the front rim of L3, where the figure leaves about
+  2 mm of air between L2's annulus (19.5 mm behind the first vertex) and L3's rim (21.7 mm). On surface 29 the
+  validator rejects 15.2 mm (combined sag 4.88 mm against 4.811 mm allowed), so there is no room above 14.7 mm.
+- **Surface 9 horn.** Kept at 18.0 mm for the first pass's reason; cutting it to the bowl end turns the whole
+  edge of L5 into a chamfer.
+- **L14.** Stored 18.9 mm is 2–3 % above the drawn rim. Left alone; the drawn height order L13 > L14 > L15 holds.
+
+### Change to a semi-diameter
+
+| Surface | Element | Before | Figure | After | Evidence |
+|---|---|---:|---:|---:|---|
+| 7 | L4 front, R = −148.27 | 14.5 | rim 15.2–15.4 | 15.2 | The figure draws L4 as a block whose front face runs to the rim; the stored value was 5 % short. The +0.75-pupil ray of the default off-axis fan needs 14.66 mm here and clipped. |
+
+Surface 8 stays at 14.5 mm. The validator accepts 14.6 mm and rejects 14.7 mm against surface 9 (6.84 mm against
+6.751 mm allowed), the drawn bowl ends at 14.0 mm, and the F1.24 axial marginal ray needs 14.09 mm. L4 therefore
+draws a 0.7 mm taper over its 5.6 mm edge where the figure has a square corner.
+
+Results with the edited file, before → after:
+
+- Validator: no errors → no errors. Image-circle floor: 0 undersized. Corner chief ray: 100 % at 31.9°, clear.
+- Engine half-field 32.7218° → 32.7218°, still limited by surfaces 29 and 31A. F-number 1.24 and the iris
+  (18.0003 mm) unchanged. Default off-axis field 19.633° unchanged.
+- Exact meridional trace at F1.24 and Y = 21.63 mm (ω = 31.87° at infinity, 31.89° at the finite state): no axial
+  or chief-ray clipping. Surface 7 carries 14.04 mm axial and 6.52–6.55 mm chief height.
+- Diagram-fan replay (five focus samples, four apertures, both focus-tracking settings): on-axis 240 / 240;
+  default off-axis normal 187 / 200 → 190 / 200; dense 427 / 440 → 430 / 440. The three surface 7 clips are gone.
+- Fan at the 31.87° source half-field: 160 / 200, first clips at surfaces 1 (10), 18 (10) and 29 (20), unchanged.
+- Minimum sampled thickness 0.789964 mm and maximum rim angle 49.880833° unchanged. Zero hidden render trim at
+  five focus samples.
+
+The ten remaining clips are the −0.75-pupil ray at F1.24, stopping first at surface 21. Traced with the rims opened,
+that ray needs 20.59 mm on surface 21, 20.73 mm on 22, 21.36 mm on 23A, 21.35 mm on 24A and 19.14 mm on 25. The
+drawn rims are 19.5–19.7 mm (L12), 19.3–19.4 mm (L13) and 18.4–18.6 mm (L14). Clearing it would put L13 about 10 %
+above the drawing and taller than L11, reversing the drawn step down from G3b to G4. At a 17.5° field the ray still
+needs 20.5 mm on 23A. No rim choice consistent with the figure removes these clips; they are wide-open vignetting
+at the drawn G4 aperture.
+
+### Labels and tags
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Group labels | G1, G2, G3 (7–20), G4, G5 | G1 (+), G2 (+) focus, G3a (−) on 7–11, G3b (+) on 13A–20, G4 (+) focus, G5 (−) | FIG. 6 brackets G3a, S and G3b inside G3. ¶0152 and ¶0155 give the signs. The group table on PDF p44 lists G3a from surface 7 (−35.31 mm) and G3b from surface 13 (+39.46 mm). The arrows under G2 and G4 mark the focus groups. |
+| Element `role` | "Source functional group Gn; standalone … power" | Group, fixed or focusing, and G3a / G3b membership | Same paragraphs; claim 1 on PDF p49 for which groups stay fixed. |
+| L6 `apd` | none | `patent` | ¶0103 and ¶0109–0111: high-index, high-dispersion glass with high anomalous dispersion for the lowest-Abbe positive lens of G3. Condition (9) printed 0.0387 against a 0.0200 floor. |
+| L11 `apd` | none | `patent` | ¶0101–0108: low-index, low-dispersion glass with high anomalous dispersion for the highest-Abbe positive lens of G3. Condition (8) printed 0.0192 against a 0.0120 floor. |
+| L15 `apd` | none | `patent` | ¶0061–0070: the same specification for the lowest-Abbe positive lens of G5. Condition (2) printed 0.0470 against a 0.0250 floor; condition (3) 16.48 against a 24.00 ceiling. |
+| `focusDescription` | Directions only, distance to seven decimals | Adds the two travel amounts and names the fixed groups | Variable-distance table, PDF p43. |
+
+Sigma's specification page, read on 2026-10-06, lists 17 elements in 13 groups with one SLD and four aspherical
+elements, and mentions SLD glass and high-index glass with high anomalous dispersion without locating them. L11
+(FCD515 class) is the likely SLD element; that is an inference and is recorded only in its `apdNote`. No `inferred`
+tag was added.
+
+Checked and left as they are:
+
+- **Cemented brackets.** `L5–L6` (9–11), `L8–L9` (15–17), `L10–L11` (18–20) and `L15–L16` (27–29) match the four
+  cemented lenses of ¶0155 and ¶0157, and the elements' `cemented` fields.
+- **Element names.** The patent describes the lenses by shape only and gives them no designations, so sequential
+  L1–L17 stand. All seventeen `type` strings agree with the signs of the radii and with ¶0153–0157.
+- **Aspheric markers.** The table stars surfaces 5, 6, 13, 14, 23, 24, 30 and 31. The file carries the `A` suffix
+  and an `asph` entry on exactly those eight.
+- **Stop.** Surface 12 in the table, between L6 and L7, as drawn.
+- **`varLabels`.** D2, D6, D20, D24 match the patent's d2, d6, d20, d24. The focus slider ends at 1.48 m.
+- **Transcription.** The R, d, nd and νd of the 31 surface rows, the variable distances and the front-page
+  inventor, assignee and date were read against the file while the pages were open. Nothing differs.
+
+### Focus movement
+
+- Order: index 0 of each `var` pair is the INF column and index 1 the 1477 mm column of the table on PDF p43.
+- G2: d2 7.5696 → 7.0438 and d6 3.5035 → 4.0289. The group moves 0.5258 mm toward the object, as its arrow shows.
+- G4: d20 6.9518 → 6.3311 and d24 2.2921 → 2.9132. The group moves 0.6211 mm toward the object, as its arrow shows.
+- G1, G3 and G5 stay fixed, as ¶0152 and claim 1 state; BF is 17.4972 mm in both columns. The −0.0004 mm G3
+  residual recorded earlier in this log is unchanged.
+- The movement overlay shows six groups. G2 and G4 end on the object side of their starting marks, and the
+  largest travel reads 0.62 mm. The other four markers do not move.
+
+### Limits
+
+- L2 and L16 chamfers, the surface 9 horn and the L4 taper are renderer limits, not measurements.
+- The fan tallies come from replaying the project's pupil, field, ray-density and trace helpers. The off-axis fan
+  was not switched on in a browser.
+- The 65-target physical-iris survey was not repeated.
+
+Cemented-group labels. After that review the four cemented brackets and the matching element `cemented` fields were
+renamed from `L5–L6`, `L8–L9`, `L10–L11` and `L15–L16` to `D1`–`D4`, the short form used on the other six lenses of
+this batch; the long labels of the second and third pairs nearly touched on the diagram. Surface ranges are
+unchanged, and the analysis still names the pairs by their elements.

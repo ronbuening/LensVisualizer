@@ -212,14 +212,15 @@ Its exit surface 25 is aspherical; the following native D25 is the complete fina
 G7 translates during zoom and is stationary between infinity and the published near row to the source table's rounding precision at a fixed zoom station.
 No third-party rear plate is attached to this element in the source-first model.
 
-The calculated cemented-component focal lengths are distinct from the individual numbers above:
+The calculated cemented-component focal lengths are distinct from the individual numbers above.
+The diagram brackets the four cemented components as D1 to D4, front to rear; the patent does not name them.
 
-| Cemented component | Net focal length in air (mm) |
-|---|---:|
-| L2/L3 | -789.174 |
-| L4/L5 | +146.660 |
-| L7/L8 | +95.074 |
-| L11/L12 | +82.731 |
+| Cemented component | Diagram bracket | Net focal length in air (mm) |
+|---|---|---:|
+| L2/L3 | D1 | -789.174 |
+| L4/L5 | D2 | +146.660 |
+| L7/L8 | D3 | +95.074 |
+| L11/L12 | D4 | +82.731 |
 
 ## Glass Identification and Selection
 

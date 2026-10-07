@@ -73,6 +73,7 @@ No long-back-focus or telephoto performance claim is inferred from the group nam
 nd = 1.59271, νd = 66.97. Glass: MP-PCD51-70 (HOYA coordinate equivalent; production supplier unconfirmed). f = -34.105933 mm.
 
 The first element is a negative meniscus with its convex face toward the object; surface 1A is aspheric.
+Figure 1 and ¶0060 also designate it negative lens L1m.
 Its negative power is part of the source's front negative–negative–positive sequence.
 The patent identifies that arrangement as useful for wide-angle coverage (¶0028, ¶0059).
 The element's individual aberration budget has not been separated from the rest of the system.
@@ -84,14 +85,15 @@ nd = 1.98613, νd = 16.48. Glass: FDS16-W (HOYA coordinate equivalent; productio
 The second element is a negative meniscus with its concave face toward the object.
 It is the only Example 1 glass with a tabulated anomalous partial-dispersion value.
 The numerical condition table identifies this 16.48-Abbe material for the source's chromatic-material inequalities.
-Its label conflicts with the prose L1m assignment; the discrepancy is retained in the condition discussion below.
+Figure 1 and ¶0060 designate it negative lens L2m, although the symbols of those inequalities carry the subscript 1m; the notation is discussed with the conditions below.
 
 ### L13 — Positive Meniscus
 
 nd = 2.05090, νd = 26.94. Glass: TAFD65 (HOYA coordinate equivalent; production supplier unconfirmed). f = +25.128215 mm.
 
 The third element is a positive meniscus with a concave object-side face.
-Its index exceeds the lower bound assigned to the positive front-group lens in condition (4).
+Figure 1 and ¶0060 designate it positive lens L1p.
+Its index exceeds the lower bound that condition (4) assigns to that lens.
 The patent connects this high-index choice with compactness and Petzval control (¶0029–0030).
 That source rationale is distinct from an independently isolated aberration contribution for L13.
 
@@ -201,7 +203,7 @@ The catalog curves are dispersion proxies for coordinate-equal glasses, not meas
 The low-dispersion L21 and dispersive negative L22 give a plausible chromatic-balancing pair.
 The patent separately associates the high-dispersion/anomalous negative front material with lateral-color correction (¶0023–0026).
 Those material strategies do not by themselves establish apochromatic performance.
-For most elements the active spectral model remains an Abbe-based approximation.
+In the viewer all ten labels resolve to those catalog dispersion curves; they stand in for the unidentified production glasses.
 
 ## Focus Mechanism
 
@@ -292,9 +294,9 @@ The following values are recomputed from the source model; glass inequalities re
 | beta3^2*(1-beta2^2) | 3.10005075 | 2.5 < value < 3.5 |
 
 The seven inequalities hold for the numerical interpretation supported by the tables.
-There is a source naming discrepancy: ¶0060 associates L1m with L11, but the printed νd1m = 16.48 and ΔPgF1m = 0.0469 refer to L12.
+There is a source naming discrepancy: ¶0060 and the Figure 1 leaders name L11 as negative lens L1m, L12 as negative lens L2m and L13 as positive lens L1p, but the printed νd1m = 16.48 and ΔPgF1m = 0.0469 are the values of L12 (L2m).
 L11 instead has νd = 66.97.
-The general condition text requires a qualifying negative lens within G1 (¶0023), and L12 supplies the published condition coordinates.
+The general condition text requires a qualifying negative lens within G1 without naming it (¶0023), and L12 supplies the published condition coordinates; in all six examples the surface-3 lens is the only one with a tabulated ΔPgF.
 This treatment preserves both the physical prescription and the contradictory notation.
 It does not claim that L11 satisfies those glass bounds.
 
@@ -307,6 +309,7 @@ Flat drawing rims are not treated automatically as optical clear apertures.
 The rear face of L15 (surface 9) is the clearest case: its bowl is drawn ending near 5.0 mm under a flat annulus that runs out to the 7.3 mm rim of the doublet, so the file uses 5.2 mm, the smallest 0.1 mm step that still passes the full-stop bundle at 60% of the source field.
 Surface 17A is held at 9.4 mm, below the drawn 9.75–9.9 mm, because the L31–L32 air space closes at the rim and the viewer's cross-gap rule keeps a tenth of the vertex gap open.
 Surface 18 keeps the drawn 11.9 mm outer rim of L32 so that the element retains its flat top; its bowl is drawn ending near 9.8 mm, and rays reaching it are already limited by surface 17A.
+L12 and L13 are drawn level at about 8.9 mm; the air-gap rule behind L11 caps L12 at 8.8 mm, and L13 uses the same 8.8 mm so that the pair renders level.
 The physical stop radius is inferred as approximately 4.196005 mm by tracing the nominal infinity entrance-pupil edge to the published stop plane.
 F/3.62 agreement is consequently an aperture calibration, not independent physical diaphragm evidence.
 

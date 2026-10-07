@@ -497,8 +497,7 @@ describe("resolveGlass", () => {
 
   it("resolves Hoya patent-class aliases to coefficient-backed rows", () => {
     expect(resolveGlass("TAF1 (HOYA)")?.name).toBe("S-LAH66");
-    expect(resolveGlass("M-NBFD130 (HOYA)")?.name).toBe("NBFD13");
-    expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("NBFD13");
+    expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("M-NBFD130");
   });
 
   it("resolves Hoya names that once aliased to a neighbouring row to their own curves", () => {
@@ -529,6 +528,9 @@ describe("resolveGlass", () => {
     // Molding-state row: the base-glass code 658369 does not encode 1.65296 / 36.8.
     expect(resolveCompatibleGlass("K-PG395-M (SUMITA K-PG395(M))", 1.65296, 36.79)?.name).toBe("K-PG395-M");
     expect(resolveGlass("658369")).toBeNull();
+    // M-NBFD130 has its own vendor curve (ΔPgF −0.0056 against NBFD13's −0.0078).
+    expect(resolveCompatibleGlass("M-NBFD130 (HOYA)", 1.8061, 40.73)?.name).toBe("M-NBFD130");
+    expect(resolveGlass("806407")?.name).toBe("NBFD13");
   });
 
   it("resolves named Ohara PGM curves before remaining catalog aliases", () => {

@@ -85,6 +85,7 @@ const LENS_DATA = {
       glass: "J-PSKH4 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Negative member of the G1 cemented pair.",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -98,6 +99,7 @@ const LENS_DATA = {
       glass: "NBFD25 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Positive member of the G1 cemented pair.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -111,6 +113,7 @@ const LENS_DATA = {
       glass: "J-LASF03 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Positive member of moving G2.",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -124,6 +127,7 @@ const LENS_DATA = {
       glass: "J-SF03 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Negative partner in the net-positive G2 doublet.",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -150,6 +154,7 @@ const LENS_DATA = {
       glass: "NBFD25 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Negative partner in the G3 cemented pair.",
+      cemented: "D3",
     },
     {
       id: 8,
@@ -165,6 +170,7 @@ const LENS_DATA = {
       apdNote:
         "Inferred from coordinates: J-FKH1-class low-dispersion crown (νd 82.57; catalog dPgF +0.034) at a position Nikon marks as ED. The patent does not designate it.",
       role: "Low-dispersion positive member in G3.",
+      cemented: "D3",
     },
     {
       id: 9,
@@ -209,6 +215,7 @@ const LENS_DATA = {
       apdNote:
         "Inferred from coordinates and position: J-PSKH4-class phosphate crown (νd 67.00; catalog dPgF +0.005) at the second position Nikon marks as ED. L2 and L6 share the pair but are not marked. The patent does not designate it.",
       role: "Positive member of first focusing group G5.",
+      cemented: "D4",
     },
     {
       id: 12,
@@ -222,6 +229,7 @@ const LENS_DATA = {
       glass: "NBFD29 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Negative partner in the G5 focusing doublet.",
+      cemented: "D4",
     },
     {
       id: 13,
@@ -590,22 +598,22 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "L2/L3",
+      text: "D1",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "L4/L5",
+      text: "D2",
       fromSurface: "6",
       toSurface: "8",
     },
     {
-      text: "L7/L8",
+      text: "D3",
       fromSurface: "11",
       toSurface: "13",
     },
     {
-      text: "L11/L12",
+      text: "D4",
       fromSurface: "19",
       toSurface: "21",
     },

@@ -410,13 +410,19 @@ policy used elsewhere; no aperture, slope or hidden-trim exception is applied.
 
 Measured on the wide-angle panel of Figure 6 at 0.153 mm per pixel (scaled on the
 104.10 mm span from surface 1 to surface 24), the drawn element half-heights are within
-about 5% of the modeled rims on every element. The front of L21 (surface 6) follows the
-drawn 9.0 mm rim. Surfaces 7 and 8 are held at 7.1 mm because the two facing concave
-surfaces close their 1.2 mm airgap near h ≈ 7.6 mm; the figure draws the two lenses in
-flat edge contact from about that height out to the 9.0 mm edge, so the outer band is a
-mounting annulus rather than an optical surface. Surfaces 9 and 10 follow the smaller
-L23, drawn at 8.1 mm, rather than the 9.0 mm L22 blank. The modeled G2 therefore shows
-a waist at the airgap that the patent section draws as a solid rectangular block.
+about 5% of the modeled rims on every element except the front of L22. Both faces of
+L21 (surfaces 6 and 7) carry the drawn 9.0 mm blank height, so L21 renders as the
+squared plate of the figure. Surface 8, the front of L22, is held at 7.1 mm because the
+two facing concave surfaces close their 1.2 mm airgap near h ≈ 7.6 mm; the figure draws
+the two lenses in flat edge contact from about that height out to the 9.0 mm edge, so
+the outer band is a mounting annulus rather than an optical surface. Surface 8 is
+therefore the working aperture of the pair, and the part of surface 7 outside it is
+drawn glass rather than clear aperture. Surfaces 9 and 10 follow the smaller L23, drawn
+at 8.1 mm, rather than the 9.0 mm L22 blank. The modeled L22 therefore starts 1.9 mm
+lower at its front edge than the solid rectangular block of the patent section. L33
+carries its drawn 10.0 mm edge on both faces; the figure curves its rear face only to
+about 7.5–8 mm and continues with a flat annulus, so the modeled rear rim sits about
+0.8 mm behind the drawn corner.
 
 The authored wide-state stop radius is 7.1474003 mm. The runtime's exact-ray calibration
 uses 7.1658703 mm and supplies the station schedule 7.1658703, 7.1512169 and 7.1588578 mm.
@@ -436,15 +442,20 @@ runtime half-field, while testing the patent's full-field stations separately. T
 28 clips at exterior rims or the stop, including 6 default off-axis and 22 full-source-field
 samples. No tested default axial ray clips and none of the sampled clips occurs inside
 a cemented group. Natural field vignetting is retained; this is not an all-rays-pass claim.
-These counts were taken with 9.0 mm rims on L31 and an 8.2 mm rim on surface 6, and were
-not repeated at the present 8.6 mm and 9.0 mm. Surface 7, 0.84 mm behind surface 6 and
-held at 7.1 mm, remains the tighter rim of L21, so a ray entering surface 6 between 8.2
-and 9.0 mm is stopped at surface 7 and the traced field and aperture are unchanged.
-An exact meridional trace of the full-field bundle through the wide-open iris reaches at
-most 7.76 mm on 12A and 8.24 mm on 13A, so neither rim is a first clipping surface at
-either value.
+These counts were taken with 9.0 mm rims on L31, 8.2 mm and 7.1 mm on surfaces 6 and 7
+and 9.5 mm on L33, and were not repeated at the present 8.6, 9.0, 9.0 and 10.0 mm. With
+L21 at its full drawn height, surface 8 at 7.1 mm is the rim of G2 that limits the
+wide-angle field, 1.2 mm behind the surface 7 vertex where that limit sat before. The
+traced aperture is unchanged at every station. An exact meridional trace of the patent's
+full-field bundle through the wide-open iris needs 8.99 mm on surface 7 and 9.12 mm on
+surface 8, so the 7.1 mm rim clips the same side of that bundle as before, and at most
+9.24 mm and 8.96 mm on surfaces 16 and 17, inside either L33 rim. The same trace reaches
+at most 7.76 mm on 12A and 8.24 mm on 13A, so neither aspheric rim is a first clipping
+surface at either value.
 
-The runtime half-fields are 21.05875°, 10.09571° and 4.21649°. They are model-dependent,
+The runtime half-fields are 22.47769°, 10.09571° and 4.21649°. The wide-angle value was
+21.05875° while surface 7 carried the 7.1 mm rim; the drawn contact height of about
+7.6 mm on surface 7 would give 22.4°. They are model-dependent,
 geometry-limited values and must not be substituted for the source half-fields of 15.4°,
 7.3° and 3.5°. The prescription's inferred rims, unreconstructed finite focus, physical
 source image-plane offset and catalog dispersion proxies limit performance interpretation.

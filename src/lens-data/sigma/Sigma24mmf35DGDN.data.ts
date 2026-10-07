@@ -13,6 +13,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * 17A stop where the drawn bowl meets a flat annulus: 9 is 5.2 mm (drawn 5.0–5.1; the 60%-field
  * full-stop bundle needs 5.12) and 17A is held at 9.4 mm (drawn 9.75–9.9) by the cross-gap rule.
  * Surface 18 keeps the drawn 11.9 mm outer rim although its bowl is drawn ending near 9.8 mm.
+ * L13 (5, 6) is 8.8 mm (drawn 8.85) so it renders level with L12, which the 2→3 gap rule caps at 8.8.
+ * Figure 1 leaders L1m / L2m / L1p point at L11 / L12 / L13 (¶0060); element names keep L11–L32.
  * STOP DIAMETER: INFERRED by exact transfer of EFL/(2×3.62) to the published stop plane.
  * Matching F/3.62 is calibration, not independent evidence of a physical iris diameter.
  * No source camera plates, dummy planes or omitted optics. No added camera stack.
@@ -66,7 +68,7 @@ const LENS_DATA = {
       "vd": 66.97,
       "fl": -34.10593343,
       "glass": "MP-PCD51-70 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Object-facing negative meniscus in fixed G1; source surface 1 is aspheric."
+      "role": "Patent's negative lens L1m (Figure 1): object-side-convex negative meniscus leading fixed G1; source surface 1 is aspheric."
     },
     {
       "id": 2,
@@ -78,7 +80,7 @@ const LENS_DATA = {
       "vd": 16.48,
       "fl": -32.37363594,
       "glass": "FDS16-W (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Negative lens in fixed G1 carrying the published anomalous partial dispersion coordinate.",
+      "role": "Patent's negative lens L2m (Figure 1) in fixed G1; the one glass with a tabulated ΔPgF, and the lens whose νd and ΔPgF the patent lists for conditions (2) and (3).",
       "dPgF": 0.04948536,
       "apd": "patent",
       "apdNote": "Patent ΔPgF=.0469 on its .64833−.0018νd line; absolute PgF=.665566; runtime dPgF=.04948536 after baseline conversion."
@@ -93,7 +95,7 @@ const LENS_DATA = {
       "vd": 26.94,
       "fl": 25.128215,
       "glass": "TAFD65 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Positive high-index meniscus in fixed G1; satisfies the source index condition."
+      "role": "Patent's positive lens L1p (Figure 1): high-index positive meniscus in fixed G1; nd 2.0509 satisfies condition (4), NdL1p > 1.85."
     },
     {
       "id": 4,
@@ -225,7 +227,7 @@ const LENS_DATA = {
       "d": 2.6943,
       "nd": 2.0509,
       "elemId": 3,
-      "sd": 9
+      "sd": 8.8
     },
     {
       "label": "6",
@@ -233,7 +235,7 @@ const LENS_DATA = {
       "d": 0.15,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 9
+      "sd": 8.8
     },
     {
       "label": "7",
@@ -443,7 +445,7 @@ const LENS_DATA = {
       "source": "JP 2022-067328 A, Numerical Example 1, PDF p.11 / printed p.10, -0.5x variable-spacing column d0=40.0680 mm."
     }
   ],
-  "focusDescription": "Published inner focus: G2 (L21–L23) translates 3.8358 mm toward the object; G1, stop and G3 remain fixed. Both patent infinity and −0.5× states are preserved. closeFocusM=0.1052878 is source d0 plus track, not the marketed 0.108 m. Intermediate gaps are linearly interpolated; intermediate distance labels are approximations.",
+  "focusDescription": "Published inner focus: G2 (L21–L23) translates 3.8358 mm toward the object between infinity and −0.5×; G1, the stop and G3 stay fixed. Both patent states are preserved. The 0.105 m close limit is the patent's object-to-image distance (d0 40.068 mm plus the 65.22 mm track), not the marketed 0.108 m. Intermediate gaps are linearly interpolated, so intermediate distance labels are approximate.",
   "nominalFno": 3.62,
   "fstopSeries": [
     3.62,

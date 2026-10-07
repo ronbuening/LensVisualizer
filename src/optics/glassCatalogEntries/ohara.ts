@@ -928,6 +928,7 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0104074567, 0.0557440088, 144.878733],
     nd: 1.60342,
     vd: 38.03,
+    PgF: 0.5835,
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
   },
   {
@@ -956,6 +957,7 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0107724134, 0.0488593504, 136.359013],
     nd: 1.749504,
     vd: 35.33,
+    PgF: 0.5819,
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
   },
   {
@@ -1650,6 +1652,7 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0116812775, 0.0540847347, 188.7857],
     nd: 1.7888,
     vd: 28.42865,
+    PgF: 0.6009,
     code6: "789284",
     source: "Ohara Zemax OpticStudio DATA 2025-06-27 (OHARA_250627.AGF), vendor-published catalog data.",
   },
@@ -2025,6 +2028,7 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00572512582, 0.0219829752, 88.04822],
     nd: 1.7645,
     vd: 49.096913,
+    PgF: 0.5529,
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published low-softening-temperature glass data.",
   },

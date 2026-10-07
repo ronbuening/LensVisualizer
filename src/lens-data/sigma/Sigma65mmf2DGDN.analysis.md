@@ -29,20 +29,22 @@ The data file retains native design values and separates them from marketing met
 
 This is a positive–negative–positive internal-focus architecture. The stop is fixed immediately after the positive front group;
 the single negative middle element moves, while the front group, rear group and image plane remain fixed (¶0072–0075).
-Here G1, G2 and G3 denote the patent's functional groups L1, L2 and L3. Individual elements are numbered L1–L12 in the model.
+The three functional groups keep the patent's own names, L1, L2 and L3 (Fig. 1 brackets and the group-data table of ¶0108).
+The patent names no individual element, so the model numbers them E1–E12; a letter L followed by a number always means a group here.
+The only element marks in Fig. 1 are P1 and P2, the patent's anomalous-dispersion positive lenses: P1 points at E2 and E6, P2 at E4.
 Nine air-separated components are a different count from the three functional groups.
 
 | Functional group | Elements / source surfaces | Computed paraxial EFL | Printed EFL |
 |---|---|---:|---:|
-| G1 | L1–L6 / S1–S10 | +58.655190 mm | +58.65 mm |
-| G2 | L7 / S12–S13 | -64.786371 mm | -64.79 mm |
-| G3 | L8–L12 / S14–S22 | +72.764754 mm | +72.77 mm |
+| L1 | E1–E6 / S1–S10 | +58.655190 mm | +58.65 mm |
+| L2 | E7 / S12–S13 | -64.786371 mm | -64.79 mm |
+| L3 | E8–E12 / S14–S22 | +72.764754 mm | +72.77 mm |
 
 The front group contains a negative singlet, a positive–negative cemented pair, a positive meniscus,
-and a negative–positive cemented pair. G2 is a negative meniscus. G3 combines a positive–negative cemented pair,
+and a negative–positive cemented pair. Group L2 is a negative meniscus. Group L3 combines a positive–negative cemented pair,
 a dual-aspheric positive singlet and two final negative singlets.
 
-The computed group values are derived from the rounded source table. G1 and G3 lie just beyond the simple half-unit
+The computed group values are derived from the rounded source table. Groups L1 and L3 lie just beyond the simple half-unit
 rounding intervals of their printed two-decimal focal lengths. Propagating the source's independently rounded radii,
 thicknesses and indices establishes compatibility; the prescription and the printed comparison values are both retained.
 
@@ -60,80 +62,82 @@ The focal lengths below are computed for each physical element bounded by its tw
 They are standalone thick-lens values, not in-situ powers within cemented groups. Catalog labels are coordinate classes;
 they do not identify the supplier or production melt.
 
-### L1: Biconcave Negative
+### E1: Biconcave Negative
 
 nd = 1.54072, νd = 47.20. Glass: E-FEL2 class (HOYA; coordinate match, supplier unconfirmed). f = -91.935 mm.
 
-The biconcave front element supplies negative standalone power ahead of the net-positive G1.
+The biconcave front element supplies negative standalone power at the head of the net-positive group L1.
 The patent explains that an object-side negative lens offsets distortion contributed by positive front-group lenses (¶0055–0056).
 That is the patent's design rationale, not a computed allocation of this element's distortion contribution.
 
-### L2: Biconvex Positive (1x Asph)
+### E2: Biconvex Positive (1x Asph)
 
 nd = 1.59201, νd = 67.02. Glass: M-PCD51 class (HOYA; coordinate match, supplier unconfirmed). f = +33.417 mm.
 
 The positive member of cemented doublet D1 carries the first geometric asphere on S3.
-The source identifies a biconvex element cemented to a negative meniscus (¶0073), and Fig.1 marks this positive region P1.
+The source identifies a biconvex element cemented to a negative meniscus (¶0073), and a P1 leader in Fig.1 ends on this element.
+It meets the P1 conditions (νd = 67.02 above 58; ΔPgF = 0.0081 above 0.008), although the patent's condition table quotes E6 instead.
 Its native partial-dispersion value is retained separately from the application's converted deviation.
 
-### L3: Negative Meniscus
+### E3: Negative Meniscus
 
 nd = 1.62004, νd = 36.30. Glass: E-F2 class (HOYA; coordinate match, supplier unconfirmed). f = -76.763 mm.
 
-The negative meniscus is the rear member of D1 and shares the S4 refracting boundary with L2.
+The negative meniscus, concave toward the object, is the rear member of D1 and shares the S4 refracting boundary with E2.
 The glass after S4 is this element's glass; there is no added cement layer or air gap.
 The full cemented component has positive net power, with computed EFL +56.303019 mm, distinct from the standalone focal lengths of both constituents.
 
-### L4: Positive Meniscus
+### E4: Positive Meniscus
 
 nd = 1.94595, νd = 17.98. Glass: FDS18-W class (HOYA; coordinate match, supplier unconfirmed). f = +71.396 mm.
 
-This positive meniscus is the patent's high-index P2 component (Fig.1 and ¶0044–0049).
+This positive meniscus, convex toward the object, is the patent's high-index positive lens P2 (Fig.1 and ¶0044–0049).
 The patent links high index and anomalous partial dispersion in a positive front-group lens to compact ray-height control
 and axial secondary-spectrum correction. Its native ΔPgF is 0.0385; that value is not copied unchanged into the runtime field.
 
-### L5: Negative Meniscus
+### E5: Negative Meniscus
 
 nd = 1.76182, νd = 26.61. Glass: FD140 class (HOYA; coordinate match, supplier unconfirmed). f = -38.689 mm.
 
-The negative meniscus forms the front member of D2, sharing S9 with the lower-dispersion positive L6.
+The negative meniscus, convex toward the object, forms the front member of D2, sharing S9 with the lower-dispersion positive E6.
 The refractive-index step at this cemented interface is preserved exactly.
 The calculated standalone negative power does not by itself establish an independent aberration contribution.
 
-### L6: Positive Meniscus
+### E6: Positive Meniscus
 
 nd = 1.55032, νd = 75.50. Glass: FCD705 class (HOYA; coordinate match, supplier unconfirmed). f = +46.798 mm.
 
-This positive meniscus is the low-dispersion P1 used by the example's published conditions (3) and (4).
-The patent explicitly associates a high-Abbe, anomalous-dispersion positive lens in G1 with primary and secondary axial
+This positive meniscus, convex toward the object, is the low-dispersion positive lens P1 whose values the patent enters for
+conditions (3) and (4) of this example (¶0114: 75.50 and 0.027); the second P1 leader of Fig.1 ends on it.
+The patent explicitly associates a high-Abbe, anomalous-dispersion positive lens in group L1 with primary and secondary axial
 chromatic correction (¶0031–0036). The D2 combination nevertheless has weak negative net paraxial power:
 its computed cemented EFL is −184.860426 mm. Chromatic purpose and net first-order power are different properties.
 
-### L7: Negative Meniscus
+### E7: Negative Meniscus
 
 nd = 1.48749, νd = 70.44. Glass: FC5 class (HOYA; coordinate match, supplier unconfirmed). f = -64.786 mm.
 
-L7 is the complete negative focus group G2. It is a meniscus convex toward the object, as stated in ¶0074.
+E7 is the complete negative focus group L2. It is a meniscus convex toward the object, as stated in ¶0074.
 Only this element translates during focusing. The patent favors a focus group of at most two elements to limit moving mass (¶0059–0060).
 No additional floating element or unreported actuator law is introduced.
 
-### L8: Biconvex Positive
+### E8: Biconvex Positive
 
 nd = 1.90043, νd = 37.37. Glass: TAFD37A class (HOYA; coordinate match, supplier unconfirmed). f = +20.412 mm.
 
-The biconvex element begins the fixed rear group and forms the positive member of D3.
-It is followed immediately by a higher-dispersion negative cemented partner, L9 (¶0075).
+The biconvex element begins the fixed rear group L3 and forms the positive member of D3.
+It is followed immediately by a higher-dispersion negative cemented partner, E9 (¶0075).
 The combined D3 component has computed EFL +82.712684 mm; the larger standalone positive and negative powers must not be added naively.
 
-### L9: Biconcave Negative
+### E9: Biconcave Negative
 
 nd = 1.73037, νd = 32.23. Glass: NBFD32 class (HOYA; coordinate match, supplier unconfirmed). f = -24.642 mm.
 
-L9 is the biconcave negative member of D3. S15 is the shared glass-to-glass boundary and belongs to L9 in the medium-after-surface model.
+E9 is the biconcave negative member of D3. S15 is the shared glass-to-glass boundary and belongs to E9 in the medium-after-surface model.
 Its negative standalone power counteracts the positive member in first-order power balance.
 No isolated claim for its coma or astigmatism correction is inferred solely from that sign.
 
-### L10: Biconvex Positive (2x Asph)
+### E10: Biconvex Positive (2x Asph)
 
 nd = 1.80610, νd = 40.73. Glass: M-NBFD130 class (HOYA; coordinate match, supplier unconfirmed). f = +38.156 mm.
 
@@ -141,19 +145,19 @@ The rear positive singlet carries both S17 and S18 aspheres. Its two geometric f
 The M-NBFD130 coordinate class is compatible with molding, but the prescription does not name a glass supplier or manufacturing process.
 Sigma's statement that the production lens uses glass-molded aspheres supports the construction correlation rather than proving this exact glass identity.
 
-### L11: Biconcave Negative
+### E11: Biconcave Negative
 
 nd = 1.69895, νd = 30.05. Glass: E-FD15L class (HOYA; coordinate match, supplier unconfirmed). f = -62.386 mm.
 
-The penultimate element is biconcave and remains fixed in G3.
+The penultimate element is biconcave and remains fixed in group L3.
 The patent explains that a negative final or penultimate rear element helps rays reach a large image height while avoiding excessive
 rear-element size in a short-back-focus system (¶0057–0058). The model's facing rear clear aperture is explicitly inferred.
 
-### L12: Biconcave Negative
+### E12: Biconcave Negative
 
 nd = 1.62004, νd = 36.30. Glass: E-F2 class (HOYA; coordinate match, supplier unconfirmed). f = -79.272 mm.
 
-The final biconcave element uses the same native nd/νd pair as L3, but its curvature and standalone power differ.
+The final biconcave element uses the same native nd/νd pair as E3, but its curvature and standalone power differ.
 Its last surface is followed by the published BF = 19.3302 mm. The element is retained as refracting glass;
 there is no substituted sensor plate, omitted surface or artificial image-plane correction.
 
@@ -166,17 +170,17 @@ The HOYA formula used here is a polynomial series for n², not a Sellmeier ratio
 
 | Elements | Native nd | Native νd | Preferred HOYA coordinate class | Important ambiguity |
 |---|---:|---:|---|---|
-| L1 | 1.54072 | 47.20 | E-FEL2 | Legacy FEL2 is also close |
-| L2 | 1.59201 | 67.02 | M-PCD51 | PCD51 and MP/MC variants are distinct |
-| L3, L12 | 1.62004 | 36.30 | E-F2 | Legacy F2 also fits closely |
-| L4 | 1.94595 | 17.98 | FDS18-W | FDS18 has the same displayed pair |
-| L5 | 1.76182 | 26.61 | FD140 | FD14 is a close but different row |
-| L6 | 1.55032 | 75.50 | FCD705 | No supplier attribution |
-| L7 | 1.48749 | 70.44 | FC5 | OHARA S-FSL5 has a different νd |
-| L8 | 1.90043 | 37.37 | TAFD37A | TAFD37 has the same displayed pair |
-| L9 | 1.73037 | 32.23 | NBFD32 | No supplier attribution |
-| L10 | 1.80610 | 40.73 | M-NBFD130 | NBFD13 and MP/MC variants also share this pair |
-| L11 | 1.69895 | 30.05 | E-FD15L | E-FD15 shares the displayed pair |
+| E1 | 1.54072 | 47.20 | E-FEL2 | Legacy FEL2 is also close |
+| E2 | 1.59201 | 67.02 | M-PCD51 | PCD51 and MP/MC variants are distinct |
+| E3, E12 | 1.62004 | 36.30 | E-F2 | Legacy F2 also fits closely |
+| E4 | 1.94595 | 17.98 | FDS18-W | FDS18 has the same displayed pair |
+| E5 | 1.76182 | 26.61 | FD140 | FD14 is a close but different row |
+| E6 | 1.55032 | 75.50 | FCD705 | No supplier attribution |
+| E7 | 1.48749 | 70.44 | FC5 | OHARA S-FSL5 has a different νd |
+| E8 | 1.90043 | 37.37 | TAFD37A | TAFD37 has the same displayed pair |
+| E9 | 1.73037 | 32.23 | NBFD32 | No supplier attribution |
+| E10 | 1.80610 | 40.73 | M-NBFD130 | NBFD13 and MP/MC variants also share this pair |
+| E11 | 1.69895 | 30.05 | E-FD15L | E-FD15 shares the displayed pair |
 
 OHARA's official pocket catalog supplies nearby alternatives, including S-TIL2, S-TIM2, S-TIH14, S-FSL5,
 S-LAH53/S-LAH53V and S-TIM35. These are not automatically equivalent melts; the S- and L-series names are distinct.
@@ -190,11 +194,13 @@ The application instead uses a normal line 0.6438 − 0.001682νd. Recovering ab
 
 | Element / surface | Native patent ΔPgF | Absolute PgF | Application dPgF |
 |---|---:|---:|---:|
-| L2 / S3 | 0.0081 | 0.535794 | 0.00472164 |
-| L4 / S6 | 0.0385 | 0.654466 | 0.04090836 |
-| L6 / S9 | 0.0274 | 0.539830 | 0.02302100 |
+| E2 / S3 (P1) | 0.0081 | 0.535794 | 0.00472164 |
+| E4 / S6 (P2) | 0.0385 | 0.654466 | 0.04090836 |
+| E6 / S9 (P1) | 0.0274 | 0.539830 | 0.02302100 |
 
-The patent calls these values anomalous-dispersion characteristics. The numeric application fields preserve their absolute
+The patent defines this table column as the anomalous dispersion of the glass (¶0097) and fills it for these three surfaces only,
+the same three elements that Fig.1 marks P1, P2 and P1; that designation, not the bare numbers, is the basis of the
+patent-listed anomalous-dispersion tag on E2, E4 and E6. The numeric application fields preserve their absolute
 partial-dispersion meaning, while the original deviations remain the inputs to the patent conditions.
 Candidate catalog line indices are not presented as patent-measured nC, nF or ng. A catalog-supported spectral approximation
 is still not a measurement of the production glass or a verification of apochromatic performance.
@@ -202,14 +208,15 @@ is still not a measurement of the production glass or a verification of apochrom
 ## Focus Mechanism
 
 Focus status is PUBLISHED. Both tabulated stations are retained without reconstruction.
-G2/L7 moves 9.7694 mm toward the image. G1, the stop, G3 and the image plane remain fixed (¶0072 and Fig.1).
+Group L2, the single element E7, moves 9.7694 mm toward the image from infinity to the closest state, the direction of the
+focus arrow under L2 in Fig.1. Groups L1 and L3, the stop and the image plane remain fixed (¶0072).
 The two variable air gaps change equally and oppositely; no lens thickness or rear BF changes.
 
 | Source quantity | Infinity | Closest published state |
 |---|---:|---:|
 | d0, object plane to first vertex | ∞ | 460.9959 mm |
-| d11, stop to G2 | 2.0000 mm | 11.7694 mm |
-| d13, G2 to G3 | 12.4912 mm | 2.7218 mm |
+| d11, stop to L2 | 2.0000 mm | 11.7694 mm |
+| d13, L2 to L3 | 12.4912 mm | 2.7218 mm |
 | BF, last vertex to image | 19.3302 mm | 19.3302 mm |
 | Printed EFL | 63.10 mm | 57.83 mm |
 | Printed F-number | 2.07 | 2.32 |
@@ -233,7 +240,7 @@ Sigma documents autofocus support; the retrieved sources used here do not establ
 
 ## Aspherical Surfaces
 
-S3 on L2 and S17/S18 on L10 are the three geometric aspheres. The source equation is
+S3 on E2 and S17/S18 on E10 are the three geometric aspheres. The source equation is
 
 z = (y²/R) / [1 + √(1 − (1 + K)(y/R)²)] + A4y⁴ + A6y⁶ + A8y⁸ + A10y¹⁰.
 
@@ -249,8 +256,8 @@ Lengths are native millimetres; A_p has units mm^(1−p). No dimensional scaling
 | A10 | 0.00000E+00 | 0.00000E+00 | −3.84670E−14 |
 
 A12 and A14 are zero-valued application slots because the source equation stops at A10; no absent higher-order source term is invented.
-At the modeled clear radii, departure from the base sphere is −0.347393359 mm at S3 (h = 18.1 mm),
-−0.122428398 mm at S17 (h = 17.0 mm), and +0.487221472 mm at S18 (h = 17.0 mm).
+At the modeled clear radii, departure from the base sphere is −0.295871477 mm at S3 (h = 17.4 mm),
+−0.102303580 mm at S17 (h = 16.3 mm), and +0.413385838 mm at S18 (h = 16.3 mm).
 These signs reduce the positive sag of S3/S17 and reduce the magnitude of the negative sag of S18 at those radii.
 They do not, by themselves, quantify a separate spherical-aberration or coma budget.
 
@@ -259,7 +266,7 @@ Their exact production manufacturing process and clear apertures are not specifi
 
 ## Conditional Expressions
 
-The following values are recomputed from the native final model. G1/G2/G3 focal lengths and group magnifications use paraxial optics.
+The following values are recomputed from the native final model. The focal lengths of groups L1, L2 and L3 (f1, f2, f3) and the group magnifications use paraxial optics.
 ΔPgF below is the patent's native deviation, not the converted application dPgF.
 P is the exit-pupil-to-image distance in the source's image-side geometry.
 
@@ -289,12 +296,18 @@ The model infers a stop radius of 11.995819909 mm by tracing an axial parallel r
 F-number agreement at this calibration point is not independent evidence of a published diaphragm diameter.
 
 Clear apertures are estimated from Fig. 1 and floor-checked by exact real-ray tracing at both published focus endpoints.
+The published raster is about 2% taller than isotropic, so heights are read at a vertical scale fitted to the drawn arcs of
+S4, S9, S13, S14 and S15 (0.1238 mm per pixel, against 0.1264 mm per pixel along the axis); at that scale every modeled outer rim
+is the drawn one: 18.1 mm for E1, 17.4 mm for D1, 16.5 mm for E4, 15.5 mm for D2, 12.4 mm for E7, 15.3 mm for D3,
+16.3 mm for E10, 16.2 mm for E11 and 16.5 mm for E12.
 Where the drawing ends a curved face at a flat land, the modeled radius follows the curve rather than the outer rim:
 S10 uses 13.8 mm behind the 15.5 mm S8/S9 faces of D2, and S13 uses 11.0 mm,
-just above the 10.85 mm axial marginal-ray height at F/2.07. L1 keeps its drawn outer rim (18.8 mm), so that it stands above D1 as in the figure. The facing S20/S21 radii are 14.1 mm with broader outer faces;
+just above the 10.85 mm axial marginal-ray height at F/2.07, so E7 is drawn with a bevelled rim where the figure shows a square shoulder.
+E1 keeps its drawn outer rim and stands above D1 as in the figure. The facing S20/S21 radii are 14.1 mm with broader outer faces;
 the figure draws those two elements in edge contact near 14.9 mm, which the air-gap policy does not permit.
 These choices preserve positive edge thickness and rear air-gap clearance. No table radius, spacing, medium or asphere is altered.
-At the data-file radii the minimum element thickness is 0.808966 mm (L8 rim) and the maximum surface slope angle is 52.703283° (S9).
+At the data-file radii no element is thinner than its 0.9 mm centre thickness, the thinnest rim is 1.299003 mm (E4 at 16.5 mm),
+and the maximum surface slope angle is 52.703283° (S9).
 The rear S20–S21 shared-band intrusion is 3.618473 mm within a 3.669570 mm policy limit, leaving 0.458827 mm of physical gap.
 
 Separate sequential and ABCD calculations agree. A surface-by-surface calculation gives a Petzval sum of +0.0011739291 mm⁻¹.

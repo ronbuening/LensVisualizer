@@ -11,8 +11,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * measurement of the physical iris. Other SDs are ESTIMATED from patent Figure 1
  * (PDF p. 20, drawn to prescription scale; 0.0303 mm/px at 600 dpi) and floor-checked
  * by exact real-ray trace at infinity and the 255 mm state. Rims follow the drawn
- * element edges; surfaces 2, 17, 19 and 23 end where the drawn curve meets a flat
- * land (23 held at 12.7 by gap clearance to 24; drawn 12.9). The patent publishes no
+ * element edges, so each element renders as the squared block the figure shows; the
+ * flat lands drawn on surfaces 4, 5, 8, 13 (L17 side), 17 and 19 are not modeled
+ * (17 and 19 are carried to the L21 / L22 edges; the drawn curves end at 8.2 and
+ * 8.8 mm). Only surfaces 2 and 23 end where the drawn curve meets its land, because
+ * the full edge height is geometrically impossible there (R2 = 15.31 mm; 23 held at
+ * 12.7 by gap clearance to 24, drawn 12.9), so L11 and L32 render a bevelled rim.
+ * The patent publishes no
  * clear apertures. Edge bundle vignetting is retained; this is not a claim
  * of unvignetted full pupil over the native field. No geometry-policy overrides.
  * Native nd/vd retained; glass labels are coordinate equivalents, not supplier identity.
@@ -62,7 +67,7 @@ const LENS_DATA = {
       "vd": 67.0,
       "fl": -39.553211,
       "glass": "PCD51 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Standalone negative power; see source group context."
+      "role": "G1 (fixed, positive): front negative meniscus, convex to the object."
     },
     {
       "id": 2,
@@ -76,7 +81,7 @@ const LENS_DATA = {
       "glass": "FCD705 (HOYA coordinate equivalent; production supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "Inferred from coordinates: FCD705-class low-dispersion crown (νd 75.50; catalog dPgF +0.023), consistent with one of the two marketed SLD elements. The patent does not designate it.",
-      "role": "Standalone negative power; see source group context."
+      "role": "G1: second negative meniscus, convex to the object."
     },
     {
       "id": 3,
@@ -90,7 +95,7 @@ const LENS_DATA = {
       "glass": "FCD100 (HOYA coordinate equivalent; production supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "Inferred from coordinates: FCD100-class fluorophosphate crown (νd 95.10; catalog dPgF +0.050), consistent with the marketed FLD element. The patent does not designate it.",
-      "role": "Standalone negative power; see source group context.",
+      "role": "G1: biconcave negative member of cemented doublet D1, with L14.",
       "cemented": "D1"
     },
     {
@@ -103,7 +108,7 @@ const LENS_DATA = {
       "vd": 23.96,
       "fl": 30.707828,
       "glass": "FDS24 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Standalone positive power; see source group context.",
+      "role": "G1: biconvex positive member of cemented doublet D1, with L13.",
       "cemented": "D1"
     },
     {
@@ -116,7 +121,7 @@ const LENS_DATA = {
       "vd": 25.15,
       "fl": -23.01313,
       "glass": "NBFD25 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Standalone negative power; see source group context."
+      "role": "G1: negative meniscus, convex to the image."
     },
     {
       "id": 6,
@@ -128,7 +133,7 @@ const LENS_DATA = {
       "vd": 40.1,
       "fl": 19.818006,
       "glass": "M-TAFD305 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Standalone positive power; see source group context."
+      "role": "G1: biconvex positive lens with both surfaces aspheric."
     },
     {
       "id": 7,
@@ -140,7 +145,7 @@ const LENS_DATA = {
       "vd": 25.15,
       "fl": -37.823553,
       "glass": "NBFD25 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Standalone negative power; see source group context.",
+      "role": "G1: negative meniscus, convex to the object; negative member of cemented doublet D2, with L18.",
       "cemented": "D2"
     },
     {
@@ -155,32 +160,32 @@ const LENS_DATA = {
       "glass": "FCD705 (HOYA coordinate equivalent; production supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "Inferred from coordinates: FCD705-class low-dispersion crown (νd 75.50; catalog dPgF +0.023), consistent with one of the two marketed SLD elements. The patent does not designate it.",
-      "role": "Standalone positive power; see source group context.",
+      "role": "G1: biconvex positive member of cemented doublet D2, with L17; last lens ahead of the stop.",
       "cemented": "D2"
     },
     {
       "id": 9,
       "name": "L21",
       "diagramLabel": "L21",
-      "label": "L21",
+      "label": "L21 (Ln)",
       "type": "Negative Meniscus",
       "nd": 1.64769,
       "vd": 33.84,
       "fl": -41.560032,
       "glass": "E-FD2 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Standalone negative power; see source group context."
+      "role": "G2 (focus, negative): negative meniscus, convex to the object; the patent's negative lens Ln. Moves imageward with L22 for close focus."
     },
     {
       "id": 10,
       "name": "L22",
       "diagramLabel": "L22",
-      "label": "L22",
+      "label": "L22 (Lp)",
       "type": "Positive Meniscus",
       "nd": 1.98613,
       "vd": 16.48,
       "fl": 91.645309,
       "glass": "FDS16-W (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Standalone positive power; see source group context."
+      "role": "G2 (focus): positive meniscus, convex to the object; the patent's positive lens Lp. Moves imageward with L21 for close focus."
     },
     {
       "id": 11,
@@ -192,7 +197,7 @@ const LENS_DATA = {
       "vd": 53.2,
       "fl": 32.457173,
       "glass": "M-LAC130 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Standalone positive power; see source group context."
+      "role": "G3 (fixed, positive): biconvex positive lens with both surfaces aspheric."
     },
     {
       "id": 12,
@@ -204,7 +209,7 @@ const LENS_DATA = {
       "vd": 25.15,
       "fl": -96.839158,
       "glass": "NBFD25 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Standalone negative power; see source group context."
+      "role": "G3: negative meniscus, convex to the object."
     },
     {
       "id": 13,
@@ -216,7 +221,7 @@ const LENS_DATA = {
       "vd": 25.15,
       "fl": -171.71534,
       "glass": "NBFD25 (HOYA coordinate equivalent; production supplier unconfirmed)",
-      "role": "Standalone negative power; see source group context."
+      "role": "G3: negative meniscus, convex to the image; last element."
     }
   ],
   "surfaces": [
@@ -354,7 +359,7 @@ const LENS_DATA = {
       "d": 1.596,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 8.2
+      "sd": 9.6
     },
     {
       "label": "18",
@@ -370,7 +375,7 @@ const LENS_DATA = {
       "d": 8.2253,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 8.8
+      "sd": 10.1
     },
     {
       "label": "20A",
