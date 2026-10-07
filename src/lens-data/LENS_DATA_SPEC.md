@@ -1383,9 +1383,9 @@ doublets: [
 22. `sourceErrata`, when present, is an array whose `corrected` entries name an existing surface and field, carry
     the `applied` value in the file, differ from `printed`, and cite at least two kinds of source-internal
     evidence; every entry has a non-empty `note`
-22. `publishedStations`, when present, satisfies the index, shape, and focus-travel rules in
+23. `publishedStations`, when present, satisfies the index, shape, and focus-travel rules in
     [Published Stations](#published-stations-publishedstations)
-23. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
+24. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
 
 On failure, `buildLens()` throws with all errors listed.
 

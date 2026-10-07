@@ -13,10 +13,13 @@ difference −0.063, mean absolute 0.073, with four drastic cases. A review agai
 found that **the MTF mathematics is sound; the drift comes from what the engine is fed, what it is compared with,
 and one approximation.**
 
-1. **The core is correct.** Ray trace, geometric OTF, units, signs, sagittal/tangential naming and the polychromatic
-   combination agree with an independent tracer and with optiland's conventions.
-2. **The drastic cases were lens-data errors.** Two patents print an aspheric coefficient with the wrong sign (Nikon
-   Z MC 105, Zeiss Batis 18); both are corrected. A screen flags 77 of 846 lenses (9 %) for the same class of
+1. **The core is correct.** Ray trace, geometric OTF, units, signs and sagittal/tangential naming agree with an
+   independent d-line tracer and with optiland's conventions; the polychromatic combination is pinned by analytic
+   tests only, since neither reference is polychromatic.
+2. **Two of the four drastic cases were lens-data errors.** Two patents print an aspheric coefficient with the wrong
+   sign (Nikon Z MC 105, Zeiss Batis 18); both are corrected. Nikkor Z 85mm f/1.8 S is an unresolved source
+   contradiction (`agent_docs/sd-audit-queue.md` Section G), and Sigma 23mm f/1.4 DC DN (−0.23 mean; its first-order
+   values match the patent) is undiagnosed. A screen flags 77 of 846 lenses (9 %) for the same class of
    self-inconsistency. *Stage 4.*
 3. **The aperture is wrong for many lenses.** 176 files open the stop to the marketed f-number although the patent
    design is slower, and 76 constant-aperture zooms are traced up to 1.7 stops slow at the tele end. *Stage 5.*
@@ -141,9 +144,9 @@ and after.
   h²; aspheres with every coefficient zero. `scripts/audit-prescription.mjs` with a report-only `--probe` that tries
   single-coefficient sign and exponent changes; a generated report; a cheap corpus sweep in
   `__tests__/src/lens-data/` as a shrink-only ratchet; rows in Section G of `agent_docs/sd-audit-queue.md`.
-- **First suspects.** Fujifilm GF 80/1.7, Leica APO-Summicron-M 35, Pentax 645 35/3.5, Fujinon XF 23/1.4 R, Laowa
-  15/2, Tamron A03 28-200, Sony FE 20/1.8 G, and Schneider Super-Symmar XL 110 and Ricoh GR IIIx (aspheres whose
-  coefficients are all zero).
+- **First suspects.** Sigma 23mm f/1.4 DC DN (the largest remaining chart residual), Fujifilm GF 80/1.7, Leica
+  APO-Summicron-M 35, Pentax 645 35/3.5, Fujinon XF 23/1.4 R, Laowa 15/2, Tamron A03 28-200, Sony FE 20/1.8 G, and
+  Schneider Super-Symmar XL 110 and Ricoh GR IIIx (aspheres whose coefficients are all zero).
 - **Acceptance.** Reproduces 77 flagged / 20 multi-flag; `--probe` isolates each corrected erratum uniquely.
 
 ### Stage 5 — Aperture model
