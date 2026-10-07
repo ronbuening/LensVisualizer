@@ -31,7 +31,8 @@ and one approximation.**
 6. **A field slope remains**: slightly high on axis, low by about 0.02 / 0.06 at 10 / 30 lp/mm by 70 % field. It
    tracks clear apertures inferred from drawings and the single axial focus plane, which cannot be verified and are
    to be shown as uncertainty, not tuned. *Stage 8.*
-7. **No real lens has been compared with another tool.** *Stage 2c.*
+7. **No real lens has been compared with another tool.** That check is an optional diagnostic (last section); no
+   stage depends on it.
 
 Where the comparison stands (19 digitized configurations, mean signed / mean absolute, from
 `agent_docs/generated/mtf-chart-regression.generated.md`): −0.056 / 0.064 under the audit's settings and
@@ -75,7 +76,7 @@ investigation and are replaced by regenerated ones as stages land. The analytic 
 | I | One axial focus plane; field foci sit 20–125 µm away | 0.005 mean; up to 0.28 at 30 lp/mm tangential on four lenses | 8 |
 | J | A negative focus shift can pass the last surface; the focus scan range is fragile; fields with a clipped chief ray are dropped | Fields become unavailable | 6 |
 | K | 214 lenses are limited on axis by a clear aperture, not the iris | Traced aperture differs from the label | 5 |
-| L | No external validation of a real lens | — | 2c |
+| L | No external validation of a real lens | — | optional tool |
 
 ### Cannot be known — surface, never fit
 
@@ -97,7 +98,8 @@ focus choice or stop sizing; those need analytic controls.
   secondary label.
 - **Source errata are corrected with evidence**, under the standard in `agent_docs/lens-patent-audit.md`.
 - **Zoom iris radii are derived per station by default in the runtime**, with an explicit fixed-iris opt-out.
-- **optiland runs on demand in a Python virtualenv**, outside `npm test`; only its reference numbers are committed.
+- **optiland is an optional diagnostic, not a gate.** No stage's acceptance depends on it. If it is built, it runs
+  on demand in a Python virtualenv outside `npm test`, and only its reference numbers are committed.
 - **Digitized chart values are committed as numbers** with source URL and hash, never chart images.
 - **A public validation article** follows the estimator stage and quotes only regenerated numbers.
 
@@ -106,32 +108,16 @@ focus choice or stop sizing; those need analytic controls.
 - Chart agreement is reported, never a test threshold. `npm test` asserts physics only.
 - Nothing is tuned per lens. Conventions are per maker with a basis tag (documented, inferred, unknown).
 - The 33 undigitized audit configurations stay an untouched holdout.
-- Wording: "about 0.03 remains unexplained after the factors we tested"; "rays and monochromatic diffraction MTF
-  agree with optiland within stated tolerances given identical indices and apertures; dispersion, white-light
-  weighting and focus choice are not covered"; "19 configurations from two makers, digitized with a heuristic
-  ±0.035 allowance".
+- Wording: "about 0.03 remains unexplained after the factors we tested"; "19 configurations from two makers,
+  digitized with a heuristic ±0.035 allowance"; "the kernels are checked against exact Hopkins integrals; no real
+  lens has been compared with another tool". Only if the optional cross-check has been run, the last becomes "rays
+  and monochromatic diffraction MTF agree with optiland within stated tolerances given identical indices and
+  apertures; dispersion, white-light weighting and focus choice are not covered".
 
 ## Open Stages
 
-Order: 2c ∥ 4 ∥ 5 ∥ 6 ∥ 7, then 8, then 9. Each stage is one PR (Stage 5 is two) and quotes the chart report before
+Order: 4 ∥ 5 ∥ 6 ∥ 7, then 8, then 9. Each stage is one PR (Stage 5 is two) and quotes the chart report before
 and after.
-
-### Stage 2c — optiland ladder
-
-- **Why.** L: the analytic controls prove the kernels, not a multi-element lens. Rung-by-rung agreement separates
-  engine error from data error for good.
-- **Changes.** `scripts/mtf-crossval-export.mjs` exports the prepared state (resolved gaps, rear plates, runtime
-  stop, clear radii), per-wavelength fixed indices, our launch rays and an input hash. A Python script under
-  `scripts/optiland/` builds each case with `IdealMaterial`, `RadialAperture` on every surface and the stop,
-  `float_by_stop_size`, robust aiming, angle fields on +Y (mirrored), and never `image_solve` or the `.zmx` reader
-  (it drops A18/A20). It injects our rays and runs `ScalarFFTMTF` with explicit sampling (512 rays, 1024 grid).
-  Committed `reports/data/mtfOptilandReference.json`; a parity report that marks a case STALE on a hash mismatch.
-  Only optiland's `DoubleGauss` sample enters `npm test`, as an inline synthetic prescription.
-- **Acceptance.** Paraxial 1e-9; single rays 1e-8 mm; geometric MTF on identical rays 1e-7; optical path 2e-5
-  waves; FFT MTF differences recorded as the Stage 7 baseline. Ray rungs run at all five spectral lines.
-- **Benchmark set.** canon-ef-135-f2l-usm, fujifilm-fujinon-gf-63mm-f28-r-wr, sigma-35mm-f14-dg-hsm-a, nikkor-z50f12,
-  sony-fe-20mm-f18-g, sony-fe-400mm-f28-gm-oss, sigma-105mm-f28-dg-dn-macro-art, nikon-z-24-70f4s (both ends),
-  nikon-z-mc-105f28, nikon-z-135f18-plena, sigma-45mm-f28-dg-dn-contemporary.
 
 ### Stage 4 — Prescription self-consistency screen
 
@@ -175,8 +161,8 @@ and after.
   percentile-based search range. `src/optics/analysis/mtfFields.ts`: the modeled edge becomes the last height with
   transmitted flux, the unclipped chief still defining height. Move two Sigma `dPgF` values onto the engine's
   normal line.
-- **Acceptance.** The optiland ladder is unchanged; the chart report moves by 0.002 at most except on newly
-  available fields.
+- **Acceptance.** The analytic controls and corpus sweeps are unchanged; the chart report moves by 0.002 at most
+  except on newly available fields.
 
 ### Stage 7 — Diffraction estimator
 
@@ -191,8 +177,10 @@ and after.
   `geometric-dl` preferences map to `diffraction`. The product path, the binned limit, the triangulated raster and
   its gates are deleted; `src/optics/analysis/mtfWavefront.ts` and a lattice optical-path autocorrelation stay as a
   test reference. The aberration-free curve is exposed in the field result.
-- **Acceptance.** The analytic controls hold within 0.004 and their `it.fails` markers are removed; optiland FFT MTF
-  within 0.005 on axis and 0.01 off axis on the benchmark set; cost no more than +10 %. Known limit, shown as a
+- **Acceptance.** The analytic controls hold within 0.004 and their `it.fails` markers are removed. On the chart
+  regression lenses, the new estimator and the lattice optical-path autocorrelation agree within 0.004 wherever the
+  phase step is under a quarter wave per cell (reported, not asserted): the two routes share only the ray trace, one
+  using ray landings and the other optical path. Cost no more than +10 %. Known limit, shown as a
   field note: sixth-order zonal terms at ν/ν_cutoff ≥ 0.2, where MTF ≤ 0.1.
 - **Never** fix the binning bias alone: the two errors partly cancel.
 
@@ -210,5 +198,29 @@ and after.
 ### Stage 9 — Validation statement and close-out
 
 - **Changes.** A site article quoting only regenerated report numbers with the wording above;
-  `agent_docs/architecture/optics-engine.md` § Simulated MTF rewritten in place; `agent_docs/gotchas.md` entries for
-  optiland's defaults; this file deleted.
+  `agent_docs/architecture/optics-engine.md` § Simulated MTF rewritten in place; this file deleted.
+
+## Optional: External Cross-Check Tool (optiland)
+
+A standalone diagnostic, outside the stage order. Build it when an outside reference is wanted, for example before
+publishing a validation claim that names third-party software.
+
+- **What it adds.** L: the analytic controls prove the kernels and two in-engine routes cross-check each other, but
+  no real multi-element lens has been traced by other code in this repo. Rung-by-rung agreement with optiland would
+  separate engine error from data error with an outside witness.
+- **What it does not add.** Accuracy: every measured error in this plan was found and can be fixed without it. It is
+  monochromatic, so it cannot check dispersion, the white-light sum, focus choice or stop sizing.
+- **Changes.** `scripts/mtf-crossval-export.mjs` exports the prepared state (resolved gaps, rear plates, runtime
+  stop, clear radii), per-wavelength fixed indices, our launch rays and an input hash. A Python script under
+  `scripts/optiland/` builds each case with `IdealMaterial`, `RadialAperture` on every surface and the stop,
+  `float_by_stop_size`, robust aiming, angle fields on +Y (mirrored), and never `image_solve` or the `.zmx` reader
+  (it drops A18/A20). It injects our rays and runs `ScalarFFTMTF` with explicit sampling (512 rays, 1024 grid).
+  Committed `reports/data/mtfOptilandReference.json`; a parity report that marks a case STALE on a hash mismatch.
+  Only optiland's `DoubleGauss` sample enters `npm test`, as an inline synthetic prescription.
+- **Acceptance.** Paraxial 1e-9; single rays 1e-8 mm; geometric MTF on identical rays 1e-7; optical path 2e-5
+  waves; FFT MTF differences recorded against the current estimator. Ray rungs run at all five spectral lines.
+- **Benchmark set.** canon-ef-135-f2l-usm, fujifilm-fujinon-gf-63mm-f28-r-wr, sigma-35mm-f14-dg-hsm-a, nikkor-z50f12,
+  sony-fe-20mm-f18-g, sony-fe-400mm-f28-gm-oss, sigma-105mm-f28-dg-dn-macro-art, nikon-z-24-70f4s (both ends),
+  nikon-z-mc-105f28, nikon-z-135f18-plena, sigma-45mm-f28-dg-dn-contemporary.
+- **If built.** Add `agent_docs/gotchas.md` entries for optiland's defaults (paraxial aiming, non-clipping stop,
+  inconsistent T/S labels in `ThroughFocusMTF` and `MTFvsField`).
