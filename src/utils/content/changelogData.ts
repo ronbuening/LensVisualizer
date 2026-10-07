@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-07",
+    type: "improvement",
+    summary: "Diffraction-corrected MTF now shears the traced pupil instead of scaling by a limit, removing a low bias",
+  },
+  {
+    date: "2026-10-07",
     type: "fix",
     summary: "MTF now charts format corners where the chief ray is clipped but part of the beam still passes",
   },

@@ -1,10 +1,10 @@
 /** Explicit inputs and serializable outputs for simulated, image-space lens MTF. */
 import type { FiniteConjugate } from "./optics.js";
 /**
- * `geometric` sums ray landings; `geometric-dl` multiplies each wavelength's geometric OTF by the
- * diffraction limit of the traced exit pupil; `diffraction` is the strict scalar pupil autocorrelation.
+ * `geometric` sums ray landings; `diffraction` shears the traced pupil against itself and weights each overlap by the
+ * rays' landing errors, which adds the diffraction of the actual aperture.
  */
-export type MtfMethod = "geometric" | "geometric-dl" | "diffraction";
+export type MtfMethod = "geometric" | "diffraction";
 export type MtfSpectrum = "reference" | "cdf" | "photopic";
 /**
  * `auto` keeps the authored image plane unless it is inconsistent with the prescription's own paraxial focus, then
@@ -26,8 +26,7 @@ export type MtfUnavailableReason =
   | "trace-failed"
   | "empty-pupil"
   | "vignetted"
-  | "outside-modeled-field"
-  | "diffraction-domain";
+  | "outside-modeled-field";
 
 export interface MtfOptions {
   method: MtfMethod;
@@ -38,7 +37,7 @@ export interface MtfOptions {
   /** Fractions of the reference image height (`MtfFieldGeometry.referenceHeightMm`), 0 to 1. */
   fieldFractions?: readonly number[];
   frequenciesPerMm?: readonly number[];
-  /** Largest pupil grid side; refinement starts at 16 (32 for diffraction) and never exceeds 256. */
+  /** Largest pupil grid side; refinement starts at 16 and never exceeds 256. */
   maxGridSize?: MtfGridCap;
   /** Image plane for every field. Required: the engine has no default, so scripts and the tab cannot disagree. */
   focus: MtfFocusMode;
@@ -162,6 +161,11 @@ export interface MtfFieldResult {
   maxDelta: number | null;
   /** Highest reported frequency through which every change stays within tolerance. */
   convergedThroughLpMm: number | null;
+  /**
+   * Response the same traced pupil would give with no aberration, per frequency and weighted across the spectrum
+   * like the curves; null for geometric MTF, which has no diffraction limit.
+   */
+  diffractionLimit: { sagittal: number[]; tangential: number[] } | null;
 }
 
 export interface MtfResult {

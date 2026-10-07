@@ -115,7 +115,7 @@ describe("MTF tab", () => {
     );
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
     // The fixture opens its iris to 1 mm, far from the f/2.8 label, so the header reports the traced aperture.
-    const header = screen.getByText(/^f\/2\.8 \(traced f\/2[45]\.\d+\) · 49\.2 mm · Diffraction-corrected/);
+    const header = screen.getByText(/^f\/2\.8 \(traced f\/2[45]\.\d+\) · 49\.2 mm · Diffraction-corrected · /);
     expect(header.textContent).toContain("photopic spectrum");
     expect(header.textContent).toContain("Best axial focus (");
     // The fixture glass has only nd and νd, so its dispersion is estimated and the tab says so.

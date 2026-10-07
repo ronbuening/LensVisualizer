@@ -33,7 +33,7 @@ export interface MtfPreferences {
 export const MTF_PREFERENCES_KEY = "lensvis:mtf:options";
 
 export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
-  method: "geometric-dl",
+  method: "diffraction",
   spectrum: "photopic",
   focus: "best-axial",
   view: "field",
@@ -47,7 +47,9 @@ const oneOf =
   <T extends string | number>(values: readonly T[]) =>
   (value: unknown): value is T =>
     values.includes(value as T);
-const isMethod = oneOf<MtfMethod>(["geometric", "geometric-dl", "diffraction"]);
+const isMethod = oneOf<MtfMethod>(["geometric", "diffraction"]);
+/** Method names stored by earlier versions: the diffraction-corrected product became the diffraction estimate. */
+const RETIRED_METHODS: ReadonlyMap<unknown, MtfMethod> = new Map([["geometric-dl", "diffraction"]]);
 const isSpectrum = oneOf<MtfSpectrum>(["reference", "cdf", "photopic"]);
 const isFocus = oneOf<MtfFocusMode>(["auto", "design", "best-axial"]);
 const isView = oneOf<MtfChartView>(["field", "frequency"]);
@@ -68,7 +70,7 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
     : [];
   const defaults = DEFAULT_MTF_PREFERENCES;
   return {
-    method: isMethod(stored.method) ? stored.method : defaults.method,
+    method: isMethod(stored.method) ? stored.method : (RETIRED_METHODS.get(stored.method) ?? defaults.method),
     spectrum: isSpectrum(stored.spectrum) ? stored.spectrum : defaults.spectrum,
     focus: isFocus(stored.focus) ? stored.focus : defaults.focus,
     view: isView(stored.view) ? stored.view : defaults.view,

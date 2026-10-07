@@ -6,7 +6,6 @@ import type {
   MtfFocus,
   MtfOptions,
   MtfResult,
-  MtfSpectralLine,
   MtfSupport,
   MtfUnavailableReason,
 } from "../../types/mtf.js";
@@ -23,27 +22,18 @@ import {
   MTF_MAX_FOOTPRINT_EXPANSIONS,
   MTF_MAX_UNKNOWN_FLUX,
   MTF_MIN_RAYS,
+  MTF_STRADDLING_NOTE_SHARE,
 } from "./mtfConstants.js";
-import {
-  combineOtfs,
-  geometricOtf,
-  multiplyOtf,
-  otfMagnitude,
-  translateOtf,
-  type ComplexOtf,
-  type MtfSpot,
-} from "./mtfMath.js";
+import { combineOtfs, geometricOtf, otfMagnitude, type ComplexOtf, type MtfSpot } from "./mtfMath.js";
 import {
   findMtfFieldFootprint,
   prepareMtfFieldLaunch,
   traceMtfBundle,
-  type MtfBundle,
   type MtfFieldLaunch,
   type MtfOpenBorders,
 } from "./mtfTracing.js";
 import { expandMtfFootprint, type MtfFootprint } from "./mtfFootprint.js";
-import { pupilOtf, reconstructMtfPupil } from "./mtfDiffraction.js";
-import { diffractionLimitFromBundle, type MtfDiffractionLimit } from "./mtfDiffractionLimit.js";
+import { shearedOtf } from "./mtfShearedOtf.js";
 import { findAxialBestFocus, mtfImagePlaneOffset, mtfNearestImagePlaneZ } from "./mtfFocus.js";
 import { resolveMtfAperture } from "./mtfAperture.js";
 import {
@@ -107,6 +97,7 @@ export function emptyMtfField(fraction: number, target?: MtfFieldTarget): MtfFie
     unknownFluxFraction: 0,
     maxDelta: null,
     convergedThroughLpMm: null,
+    diffractionLimit: null,
   };
 }
 
@@ -156,32 +147,19 @@ export type MtfGridOutcome =
   | { kind: "curves"; field: MtfFieldResult; openBorders?: MtfOpenBorders }
   | { kind: "unavailable"; field: MtfFieldResult; refine: boolean };
 
-/** Complex OTF of one wavelength's bundle, relative to the field's common image reference. */
-function bundleOtf(
-  context: MtfJobContext,
-  bundle: MtfBundle,
-  line: MtfSpectralLine,
-  commonReference: MtfSpot,
-  limit: MtfDiffractionLimit | null,
-): { sagittal: ComplexOtf; tangential: ComplexOtf } | { failure: string; refine: boolean } {
-  const { state, options, frequencies } = context;
-  const wavelengthMm = line.wavelengthNm * 1e-6;
-  if (options.method === "diffraction") {
-    const reconstruction = reconstructMtfPupil(state, bundle, wavelengthMm, context.imagePlaneZ);
-    if (!reconstruction.pupil) return { failure: reconstruction.message, refine: reconstruction.refine };
-    const otf = pupilOtf(reconstruction.pupil, wavelengthMm, frequencies);
-    return {
-      sagittal: translateOtf(otf.sagittal, frequencies, reconstruction.reference.x - commonReference.x),
-      tangential: translateOtf(otf.tangential, frequencies, reconstruction.reference.y - commonReference.y),
-    };
-  }
-  // One translation for the entire spectrum preserves lateral color and a common physical plane.
-  const points = bundle.rays.map((p) => ({ x: p.x - commonReference.x, y: p.y - commonReference.y, weight: p.weight }));
-  const sagittal = geometricOtf(points, frequencies, "x");
-  const tangential = geometricOtf(points, frequencies, "y");
-  if (!limit) return { sagittal, tangential };
-  const gain = limit.sample(wavelengthMm, frequencies);
-  return { sagittal: multiplyOtf(sagittal, gain.sagittal), tangential: multiplyOtf(tangential, gain.tangential) };
+/** Real per-frequency response on both cuts, with the weight it carries in a spectral mean. */
+interface WeightedLimit {
+  sagittal: number[];
+  tangential: number[];
+  weight: number;
+}
+
+/** Spectral mean of per-wavelength aberration-free responses, weighted like the OTFs they bound. */
+function combineLimits(limits: readonly WeightedLimit[]): { sagittal: number[]; tangential: number[] } {
+  const total = limits.reduce((sum, limit) => sum + limit.weight, 0);
+  const mean = (cut: "sagittal" | "tangential") =>
+    limits[0][cut].map((_, i) => limits.reduce((sum, limit) => sum + limit.weight * limit[cut][i], 0) / total);
+  return { sagittal: mean("sagittal"), tangential: mean("tangential") };
 }
 
 function fieldAtGrid(
@@ -202,24 +180,18 @@ function fieldAtGrid(
   const openBorders: MtfOpenBorders = { x: false, y0: false, y1: false };
   const sagittal: WeightedOtf[] = [];
   const tangential: WeightedOtf[] = [];
+  const limits: WeightedLimit[] = [];
+  /** Largest share of any wavelength's overlap that comes from pairs straddling a gap in the beam. */
+  let straddling = 0;
   let commonReference: MtfSpot | undefined;
   /** Whether the reference wavelength's chief ray is stopped by a clear aperture. */
   let chiefClipped: boolean | undefined;
-  let limit: MtfDiffractionLimit | null = null;
   let launchedWeight = 0;
   let failedWeight = 0;
   for (const line of support.spectralLines) {
-    const bundle = traceMtfBundle(
-      state,
-      options,
-      support,
-      launch,
-      footprint,
-      size,
-      line,
-      context.imagePlaneZ,
-      commonReference,
-    );
+    const bundle = traceMtfBundle(state, options, support, launch, footprint, size, line, context.imagePlaneZ, {
+      reference: commonReference,
+    });
     if (!bundle) return unavailable("chief-ray-failed", "No valid chief ray reaches the image plane.");
     chiefClipped ??= bundle.chiefClipped;
     commonReference ??= bundle.chief;
@@ -233,27 +205,42 @@ function fieldAtGrid(
     const transmitted = bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
     launchedWeight += transmitted + bundle.failedWeight;
     failedWeight += bundle.failedWeight;
-    if (options.method === "diffraction" && bundle.failed > 0)
-      return unavailable("trace-failed", "Numerical ray failures prevent a scalar diffraction estimate.");
     // The footprint scan already found transmitted flux, so too few rays means this grid is too
     // coarse for a thin (for example cat's-eye vignetted) beam; a finer grid may resolve it.
     if (bundle.rays.length < MTF_MIN_RAYS || !(transmitted > 0))
       return unavailable("empty-pupil", "Too little pupil remains to estimate MTF.", true);
-    // The exit pupil is nearly achromatic, so the reference line's pupil serves every wavelength.
-    if (options.method === "geometric-dl") limit ??= diffractionLimitFromBundle(bundle);
-    const otf = bundleOtf(context, bundle, line, commonReference, limit);
-    if ("failure" in otf) return unavailable("diffraction-domain", otf.failure, otf.refine);
     // Incident line weight times transmitted flux: clipping and bulk absorption shape each line's share.
-    sagittal.push({ otf: otf.sagittal, weight: line.weight * transmitted });
-    tangential.push({ otf: otf.tangential, weight: line.weight * transmitted });
+    const weight = line.weight * transmitted;
+    if (options.method === "diffraction") {
+      // Every wavelength shears its own lattice; one image reference keeps lateral color in the phase.
+      const sheared = shearedOtf(bundle, commonReference, line.wavelengthNm * 1e-6, context.frequencies);
+      sagittal.push({ otf: sheared.sagittal, weight });
+      tangential.push({ otf: sheared.tangential, weight });
+      limits.push({ ...sheared.limit, weight });
+      // Judged where convergence is: above the band, sampling noise outweighs it.
+      sheared.straddling.forEach((share, i) => {
+        if (context.frequencies[i] <= MTF_CONVERGENCE_BAND_LPMM) straddling = Math.max(straddling, share);
+      });
+      continue;
+    }
+    // One translation for the entire spectrum preserves lateral color and a common physical plane.
+    const reference = commonReference;
+    const points = bundle.rays.map((p) => ({ x: p.x - reference.x, y: p.y - reference.y, weight: p.weight }));
+    sagittal.push({ otf: geometricOtf(points, context.frequencies, "x"), weight });
+    tangential.push({ otf: geometricOtf(points, context.frequencies, "y"), weight });
   }
   field.unknownFluxFraction = launchedWeight > 0 ? failedWeight / launchedWeight : 0;
   const unresolved = assessUnresolvedFlux(field.failedRays, field.unknownFluxFraction);
   if (!unresolved.acceptable) return unavailable("trace-failed", "Numerical ray failures prevent an MTF estimate.");
   if (unresolved.note) field.notes.push(unresolved.note);
   if (chiefClipped) field.notes.push(MTF_CLIPPED_CHIEF_NOTE);
+  if (straddling > MTF_STRADDLING_NOTE_SHARE)
+    field.notes.push(
+      `${(straddling * 100).toFixed(1)}% of the sheared ray pairs straddle a gap in the transmitted beam; the diffraction estimate approximates their phase.`,
+    );
   field.sagittal = otfMagnitude(combineOtfs(sagittal));
   field.tangential = otfMagnitude(combineOtfs(tangential));
+  if (limits.length) field.diffractionLimit = combineLimits(limits);
   return { kind: "curves", field, openBorders };
 }
 
@@ -475,7 +462,7 @@ export function* computeMtfSteps(
     options,
     support,
     frequencies,
-    ladder: MTF_GRID_LADDER.filter((size) => size <= cap && (options.method !== "diffraction" || size >= 32)),
+    ladder: MTF_GRID_LADDER.filter((size) => size <= cap),
     imagePlaneZ: state.imgZ,
   };
   // Heights past the chief's own clip are placed by the chief traced through every surface.
@@ -542,6 +529,10 @@ function copyField(field: MtfFieldResult): MtfFieldResult {
     sagittal: [...field.sagittal],
     tangential: [...field.tangential],
     notes: [...field.notes],
+    diffractionLimit: field.diffractionLimit && {
+      sagittal: [...field.diffractionLimit.sagittal],
+      tangential: [...field.diffractionLimit.tangential],
+    },
   };
 }
 

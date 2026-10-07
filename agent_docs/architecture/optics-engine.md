@@ -91,32 +91,36 @@ ray cannot pose as an aperture change. `limitingSurfaceLabel` names the surface 
 **Ray failures** (`mtfRayClassification.ts`). TIR and aperture clips are blocking. A failed intersection blocks only
 when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz
 interval test for aspheres. Unresolved flux ε up to 0.5% of launch flux is omitted with a note bounding the geometric
-MTF error at 2ε; more makes the field unavailable. Scalar diffraction needs every ray. The reference chief is traced
-without aperture checks, so a clipped chief still fixes the common image reference.
+MTF error at 2ε; more makes the field unavailable. The reference chief is traced without aperture checks, so a
+clipped chief still fixes the common image reference.
 
-**Methods.** Geometric OTF is the normalized intensity-weighted Fourier sum of exact landing points. The
-diffraction-corrected method (`geometric-dl`, `mtfDiffractionLimit.ts`) multiplies each wavelength's geometric OTF by
-the zero-phase OTF of the traced exit pupil: √flux autocorrelated on the regular launch lattice, with lags mapped into
-image-space direction cosines by the fitted pupil scale per axis. It needs no scalar-FFT validity gates. On test
-pupils it matches the analytic circular OTF within 0.003 from 64 rays across. Against exact Hopkins integrals the
-product is exact as frequency goes to zero and reads low once the shear is a few percent of the pupil, because the
-true overlap integral excludes the pupil rim where aberration is largest; a lattice wider than 128 cells is binned,
-which reads the limit itself slightly high.
+**Methods.** Geometric OTF is the normalized intensity-weighted Fourier sum of exact landing points. The diffraction
+method (`mtfShearedOtf.ts`, the tab's default, labelled "Diffraction-corrected") evaluates Hopkins' OTF from the same rays. At frequency ν the pupil
+overlaps itself sheared by λν, and each overlapping pair carries the phase exp(i2π[W(p+s) − W(p−s)]). That wavefront
+difference is the integral of the wavefront slope along the shear, which is what a ray's landing error measures
+(ε = −(λ/NA) ∂W/∂p), so five rays per pair (centre, ±s/2, ±s, Boole's rule) give the phase from landings alone.
+The rule integrates the slope exactly through sixth-order aberration along the shear; what remains is lattice
+sampling, which the grid ladder refines (at a 32-cell pupil two waves of balanced spherical read 0.011 low). The pupil is √flux on the regular launch lattice, with
+amplitude and landing error interpolated linearly along each lattice line. The shear is fixed in direction cosine:
+each pair opens by the lattice cells that λν spans at its own centre, from the rays' own cosines, because a
+wide-angle corner maps the lattice onto the exit pupil unevenly. Every wavelength shears its own lattice
+against the field's one image reference, so lateral color stays in the phase that `combineOtfs` sums. It needs no
+optical path, reference sphere or validity gate, and tends to the geometric OTF as ν → 0. Its kernel costs two to five
+times the geometric sum, which the ray trace dwarfs: request time did not rise. `MtfFieldResult.diffractionLimit` is the same overlap with zero phase: the response the traced pupil
+would give with no aberration. A pair whose rays straddle a gap in the beam has no landing errors between them, so its
+phase is right only for defocus. MTF rejects obstructed systems, which would need the optical-path route; on a
+refractive lens this happens only where a detached arc of rays transmits beside the main beam (13 of 5,723 catalog
+field bundles), and a field whose overlap is more than 1 % such pairs says so (`MTF_STRADDLING_NOTE_SHARE`).
 
-Scalar diffraction opts into sequential `recordOpticalPath`, which accumulates incident-medium optical length
-from the input origin to the final hit without changing ordinary trace outputs. `mtfWavefront.ts` includes the
-incident plane/spherical phase and signed transfer to an image-centered reference sphere whose radius is the paraxial
-exit-pupil distance when positive, else the reference ray's last-surface distance; a clipped chief uses the
-transmitted-flux centroid instead. Piston is removed, but wavelengths are not refocused or independently recentered.
-`mtfDiffraction.ts` triangulates unwrapped path onto transverse direction-cosine coordinates; its Jacobian and
-square-root transmission conserve pupil flux. A double-precision FFT of a 2× padded pupil produces linear
-autocorrelation. Image frequency shifts the pupil by wavelength × frequency. The scalar approximation is restricted
-to air image space, perpendicular image planes, chief incidence ≤15°, pupil cone radius ≤0.25 and blur ≤2% of
-reference radius (`MTF_DIFFRACTION_LIMITS`). Folded/singular pupil maps and insufficient phase sampling are
-unavailable. These are conservative suitability limits, not an accuracy guarantee; see [Ansys FFT MTF](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/FFT_MTF.html).
-The ray-cone restriction excludes many lenses wider than approximately f/2 even when geometric tracing
-succeeds. More grid samples cannot remove this domain restriction. The source-prescription result must not be
-presented as the manufacturer's production MTF; the shared omitted-sensor limitations above also apply.
+`mtfWavefront.ts` is the reference the estimator is held against, not a product path. With `recordOpticalPath` the
+sequential trace accumulates incident-medium optical length; `rayOpticalPathToImageMm` carries it to the foot of the
+perpendicular from the image point (a reference sphere at infinity, whose pupil coordinate is the ray's own direction
+cosine), and `waveLatticeOtf` autocorrelates the complex pupil on the launch lattice, pairing cells by direction
+cosine at each exact shear. It reads how
+far the rays travelled where the estimator reads where they land, so the two share only the trace. It is valid only
+while the phase turns less than a quarter wave per lattice cell (`waveLatticePhaseStep`). The source-prescription
+result must not be presented as the manufacturer's production MTF; the shared omitted-sensor limitations above also
+apply.
 
 **Spectra.** Monochromatic runs retain native d/e indices; mixed references require usable physical conversion. C/d/F
 (equal weights) and photopic (470/510/555/610/650 nm, CIE 1924 V(λ) weights on an equal-energy source, 555 nm
@@ -133,7 +137,7 @@ keeps the design's focus at its reference line. Compatible catalog glass is expl
 spectral proxy. Complex OTFs combine, weighted by incident line weight × transmitted flux, before magnitude, which
 retains lateral color. Every chromatic trace sets `wavelengthNm` beside its indices.
 
-**Convergence and focus.** Grids refine 16 → 256 (scalar diffraction from 32) up to `maxGridSize`. Convergence is
+**Convergence and focus.** Grids refine 16 → 256 up to `maxGridSize`. Convergence is
 judged at and below 50 lp/mm (absolute change ≤0.01), where a sampled geometric sum is not yet dominated by aliasing
 noise; each field reports `convergedThroughLpMm`. A finer grid that fails keeps the last good curve as unconverged.
 The axial bundle is re-projected without retracing to find the image plane that maximizes mean axial MTF at
@@ -172,12 +176,20 @@ the reader chose has no glass gap. A paused proposal to narrow the `estimated-di
 estimate is in `agent_docs/dispersion-estimate-exploration.md`.
 
 **Validation.** `__tests__/src/optics/mtfDiffraction.test.ts` holds the analytic controls: a Hopkins quadrature on
-synthetic aberrated pupils against the kernels, with `it.fails` markers on the two known biases of the product
-method. `reports/mtfChartRegression.report.ts` compares the catalog with digitized manufacturer chart values
-(`reports/data/mtfChartAnchors.csv`) under the audit's settings and under each maker's chart convention
-(`reports/data/mtfChartConventions.ts`: geometric, diffraction-inclusive or measured, with a documented / inferred
-basis), by frequency and field band. It is a report, never a test threshold: maker focus and spectrum are
-undocumented, and a patent example is not proven to be the production lens.
+synthetic aberrated pupils that the diffraction estimate meets within 0.004 at every shear (defocus, balanced
+spherical and coma with astigmatism on a 64-cell pupil, sixth-order spherical on 128), the lattice optical-path
+reference against the same quadrature, and the two routes against each other on a traced singlet. Outside those
+controls the error is rim sampling: other aberrations and vignetted pupil shapes read up to 0.007 off on a 64-cell
+pupil and 0.004 on 128, inside the 0.01 convergence tolerance. `reports/mtfChartRegression.report.ts`
+compares the catalog with digitized manufacturer chart values (`reports/data/mtfChartAnchors.csv`) with diffraction
+for every maker and under each maker's chart convention (`reports/data/mtfChartConventions.ts`: geometric,
+diffraction-inclusive or measured, with a documented / inferred basis), by frequency and field band; it repeats the
+two-route cross-check on those lenses and keeps the audit's own values, computed with the retired product, as a
+frozen reference. That cross-check samples wide open at 10 and 30 lp/mm; a stopped-down probe at 50 lp/mm found two
+wide-angle corners where the routes differ by 0.004 to 0.006 at every grid, with neither shown to be the more
+accurate. It is a report, never a test threshold: maker focus and spectrum are undocumented, and a patent
+example is not proven to be the production lens. The kernels are checked against exact Hopkins integrals; no real
+lens has been compared with another tool.
 
 The MTF tab lazily creates a worker from serializable lens data. Worker initialization removes engine-generated
 synthetic surfaces/elements from `RuntimeLens.data` and rebuilds them once from `rearPlates`, preserving physical

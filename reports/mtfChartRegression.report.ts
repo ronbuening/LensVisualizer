@@ -3,9 +3,10 @@
  *
  * An audit digitized the makers' published MTF charts of a set of lens configurations into "anchors": one chart
  * value per field position at 10 and 30 lp/mm (reports/data/mtfChartAnchors.csv). This report recomputes the
- * simulated MTF at every anchor and tabulates how far it sits from the chart, under the audit's own settings and
- * under each maker's chart convention (reports/data/mtfChartConventions.ts), and how closely the engine still
- * reproduces the values the audit recorded.
+ * simulated MTF at every anchor and tabulates how far it sits from the chart, with diffraction for every maker and
+ * under each maker's chart convention (reports/data/mtfChartConventions.ts). It also holds the diffraction estimate
+ * against an optical-path autocorrelation of the same rays, and keeps the audit's own values as a frozen reference:
+ * the audit ran a method that no longer exists.
  *
  * It traces every configuration at a 256 pupil-grid cap, so it runs only with MTF_CHART_REPORT=1 and is skipped by a
  * plain `npm run generate:reports`. Chart agreement is reported and never asserted, here or in any test.
@@ -15,12 +16,16 @@
 import { describe, expect, it } from "vitest";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { env } from "node:process";
-import { MTF_CONVERGENCE_TOLERANCE } from "../src/optics/analysis/mtfConstants.js";
+import { combineOtfs, otfMagnitude, type ComplexOtf, type MtfSpot } from "../src/optics/analysis/mtfMath.js";
+import { shearedOtf } from "../src/optics/analysis/mtfShearedOtf.js";
+import { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "../src/optics/analysis/mtfTracing.js";
+import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/analysis/mtfWavefront.js";
 import { wideOpenStopAtZoom } from "../src/optics/apertureStop.js";
 import buildLens from "../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../src/optics/compat.js";
-import { computeMtf } from "../src/optics/mtf.js";
+import { assessMtfSupport, computeMtf } from "../src/optics/mtf.js";
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/optics.js";
+import type { PreparedOpticalState } from "../src/optics/types.js";
 import type { MtfMethod, MtfOptions, MtfResult } from "../src/types/mtf.js";
 import type { LensData } from "../src/types/optics.js";
 import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
@@ -38,16 +43,34 @@ const ANCHOR_COUNT = 392;
 const RECORDED_MEAN_SIGNED = -0.0631;
 const RECORDED_MEAN_ABSOLUTE = 0.0731;
 
-/** The audit's request; pupil, stop and fields are sized per configuration. */
-const AUDIT_METHOD: MtfMethod = "geometric-dl";
+/** Method of the one-method comparison; pupil, stop and fields are sized per configuration. */
+const DIFFRACTION_METHOD: MtfMethod = "diffraction";
 const FREQUENCIES = [0, 10, 20, 30, 40, 50];
 /** Engine method that stands in for each chart method. Only a geometric chart leaves diffraction out. */
 const ENGINE_METHOD: Record<MtfChartMethod, MtfMethod> = {
   geometric: "geometric",
-  diffraction: "geometric-dl",
-  measured: "geometric-dl",
-  unknown: "geometric-dl",
+  diffraction: "diffraction",
+  measured: "diffraction",
+  unknown: "diffraction",
 };
+/**
+ * The audit recorded its own S and T with the diffraction-corrected product, geometric OTF times the diffraction
+ * limit, which the engine no longer has. The last run of this report that still had it reproduced those values as
+ * below, over the configurations whose prescription was unchanged since the audit.
+ */
+const RETIRED_AUDIT_METHOD = "geometric-dl";
+const LAST_REPRODUCTION = {
+  configurations: 18,
+  values: 744,
+  maxAbsolute: 0.0127,
+  meanAbsolute: 0.0047,
+  meanSigned: -0.0047,
+};
+/** Pupil grid, frequencies and gates of the estimator cross-check. */
+const CROSS_CHECK_GRID = 128;
+const CROSS_CHECK_FREQUENCIES = [10, 30];
+const CROSS_CHECK_PHASE_STEP_WAVES = 0.25;
+const CROSS_CHECK_TOLERANCE = 0.004;
 /** Field bands by upper bound, set between the tenths of the field the anchors sit on. */
 const FIELD_BANDS = [
   { label: "0-0.3", upTo: 0.35 },
@@ -80,9 +103,22 @@ interface Curves {
 interface Sample {
   anchor: Anchor;
   maker: string;
-  /** Recomputed under the audit's settings and under the maker's convention; null where the field has no curve. */
-  audit: Curves | null;
+  /** Recomputed with diffraction and under the maker's convention; null where the field has no curve. */
+  diffraction: Curves | null;
   convention: Curves | null;
+}
+
+/** Diffraction estimate against the optical-path autocorrelation of the same rays, over one configuration. */
+interface CrossCheck {
+  /** Fields whose phase step stays under the gate at every wavelength, and the fields it rules out. */
+  compared: number;
+  undersampled: number;
+  /** Fields with curves that could not be traced again for the check. */
+  untraced: number;
+  /** |estimate - reference| of every compared S and T value. */
+  gaps: number[];
+  /** Largest phase step of the compared fields, in waves per lattice cell. */
+  largestStep: number;
 }
 
 /** One lens at one zoom position: a single published chart. */
@@ -93,9 +129,10 @@ interface Configuration {
   convention: MtfChartConvention;
   /** True when a source erratum was corrected in the lens file, which the audit predates. */
   corrected: boolean;
-  /** Result under the audit's settings; focus and aperture do not depend on the method. */
+  /** Result of the diffraction method; focus and aperture do not depend on the method. */
   result: MtfResult;
   samples: Sample[];
+  crossCheck: CrossCheck;
 }
 
 /** Delta of one sample under one comparison; null when the comparison has no curve there. */
@@ -103,7 +140,7 @@ type Comparison = (sample: Sample) => number | null;
 
 const delta = (curves: Curves, anchor: Anchor) =>
   (curves.sagittal + curves.tangential) / 2 - (anchor.pairMin + anchor.pairMax) / 2;
-const AUDIT_SETTINGS: Comparison = (sample) => sample.audit && delta(sample.audit, sample.anchor);
+const DIFFRACTION: Comparison = (sample) => sample.diffraction && delta(sample.diffraction, sample.anchor);
 const MAKER_CONVENTION: Comparison = (sample) => sample.convention && delta(sample.convention, sample.anchor);
 const RECORDED: Comparison = (sample) => delta(sample.anchor.recorded, sample.anchor);
 
@@ -175,7 +212,72 @@ function curvesAt(result: MtfResult, fieldIndex: number, frequency: number): Cur
   return { sagittal: field.sagittal[index], tangential: field.tangential[index] };
 }
 
-/** Trace one chart's configuration under the audit's settings and, when it differs, the maker's convention. */
+/**
+ * Hold the diffraction estimate against the optical-path autocorrelation, field by field.
+ *
+ * Both are computed from one bundle per wavelength, traced again with optical paths at a fixed grid: the estimate
+ * reads where the rays land, the reference reads how far they travelled. A field counts only where the reference
+ * is itself sampled finely enough, a phase step under a quarter wave per cell at every wavelength.
+ */
+function crossCheckConfiguration(state: PreparedOpticalState, options: MtfOptions, result: MtfResult): CrossCheck {
+  const charted = result.fields.filter((field) => field.status === "converged" || field.status === "unconverged");
+  const check: CrossCheck = { compared: 0, undersampled: 0, untraced: charted.length, gaps: [], largestStep: 0 };
+  const support = assessMtfSupport(state, options);
+  if (!support.available || !result.focus) return check;
+  const planeZ = state.imgZ + result.focus.appliedShiftMm;
+  for (const field of charted) {
+    if (field.fieldAngleDeg === null) continue;
+    const launch = prepareMtfFieldLaunch(state, options, support, field.fieldAngleDeg);
+    const footprint = launch && findMtfFieldFootprint(state, options, support, launch);
+    if (!launch || !footprint) continue;
+    const estimate = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
+    const reference = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
+    let common: MtfSpot | undefined;
+    let step = 0;
+    let complete = true;
+    for (const line of support.spectralLines) {
+      const bundle = traceMtfBundle(state, options, support, launch, footprint, CROSS_CHECK_GRID, line, planeZ, {
+        reference: common,
+        opticalPath: true,
+      });
+      const lattice = bundle && mtfWaveLattice(bundle, (common ??= bundle.chief), planeZ);
+      if (!bundle || !lattice || !common) {
+        complete = false;
+        break;
+      }
+      const wavelengthMm = line.wavelengthNm * 1e-6;
+      step = Math.max(step, waveLatticePhaseStep(lattice, wavelengthMm));
+      const weight = line.weight * bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
+      const sheared = shearedOtf(bundle, common, wavelengthMm, CROSS_CHECK_FREQUENCIES);
+      const wave = waveLatticeOtf(lattice, wavelengthMm, CROSS_CHECK_FREQUENCIES);
+      for (const cut of ["sagittal", "tangential"] as const) {
+        estimate[cut].push({ otf: sheared[cut], weight });
+        reference[cut].push({ otf: wave[cut], weight });
+      }
+    }
+    if (!complete) continue;
+    check.untraced--;
+    if (!(step < CROSS_CHECK_PHASE_STEP_WAVES)) {
+      check.undersampled++;
+      continue;
+    }
+    check.compared++;
+    check.largestStep = Math.max(check.largestStep, step);
+    for (const cut of ["sagittal", "tangential"] as const) {
+      const ours = otfMagnitude(combineOtfs(estimate[cut]));
+      const theirs = otfMagnitude(combineOtfs(reference[cut]));
+      ours.forEach((value, i) => check.gaps.push(Math.abs(value - theirs[i])));
+    }
+  }
+  return check;
+}
+
+interface Weighted {
+  otf: ComplexOtf;
+  weight: number;
+}
+
+/** Trace one chart's configuration with diffraction and, when it differs, under the maker's convention. */
 function runConfiguration(lens: LensData, zoomT: number, anchors: Anchor[]): Configuration {
   const L = buildLens(lens);
   const state = prepareRuntimeState(L, 0, zoomT);
@@ -196,8 +298,9 @@ function runConfiguration(lens: LensData, zoomT: number, anchors: Anchor[]): Con
   const maker = lens.maker ?? "Unknown";
   const convention = mtfChartConvention(lens.maker);
   const conventionMethod = ENGINE_METHOD[convention.method];
-  const result = computeMtf(state, options(AUDIT_METHOD));
-  const conventionResult = conventionMethod === AUDIT_METHOD ? result : computeMtf(state, options(conventionMethod));
+  const result = computeMtf(state, options(DIFFRACTION_METHOD));
+  const conventionResult =
+    conventionMethod === DIFFRACTION_METHOD ? result : computeMtf(state, options(conventionMethod));
   return {
     key: lens.key,
     zoomT,
@@ -210,10 +313,11 @@ function runConfiguration(lens: LensData, zoomT: number, anchors: Anchor[]): Con
       return {
         anchor,
         maker,
-        audit: curvesAt(result, fieldIndex, anchor.frequency),
+        diffraction: curvesAt(result, fieldIndex, anchor.frequency),
         convention: curvesAt(conventionResult, fieldIndex, anchor.frequency),
       };
     }),
+    crossCheck: crossCheckConfiguration(state, options(DIFFRACTION_METHOD), result),
   };
 }
 
@@ -225,31 +329,28 @@ function deltaCells(samples: Sample[], comparison: Comparison): string[] {
   return [signed(mean(deltas)), fixed(mean(deltas.map(Math.abs))), `${fixed((100 * negative) / deltas.length, 1)}%`];
 }
 
-/** recomputed - recorded for the sagittal and tangential value of every sample, under the audit's settings. */
-const reproductionGaps = (samples: Sample[]) =>
-  samples.flatMap(({ audit, anchor }) =>
-    audit ? [audit.sagittal - anchor.recorded.sagittal, audit.tangential - anchor.recorded.tangential] : [],
+/** diffraction estimate - recorded product for the sagittal and tangential value of every sample. */
+const recordedGaps = (samples: Sample[]) =>
+  samples.flatMap(({ diffraction, anchor }) =>
+    diffraction
+      ? [diffraction.sagittal - anchor.recorded.sagittal, diffraction.tangential - anchor.recorded.tangential]
+      : [],
   );
 
-/** Largest and mean absolute gap, mean signed gap, and the count beyond the convergence tolerance. */
+/** Largest and mean absolute gap and the mean signed gap. */
 function gapCells(gaps: number[]): (string | number)[] {
-  if (!gaps.length) return ["n/a", "n/a", "n/a", 0];
+  if (!gaps.length) return ["n/a", "n/a", "n/a"];
   const sizes = gaps.map(Math.abs);
-  return [
-    fixed(Math.max(...sizes)),
-    fixed(mean(sizes)),
-    signed(mean(gaps)),
-    sizes.filter((size) => size > MTF_CONVERGENCE_TOLERANCE).length,
-  ];
+  return [fixed(Math.max(...sizes)), fixed(mean(sizes)), signed(mean(gaps))];
 }
 
-function reproductionTable(configurations: Configuration[]): string[] {
+function recordedTable(configurations: Configuration[]): string[] {
   const lines = [
-    `| Lens | zoomT | Values | Max abs | Mean abs | Mean signed | Above ${MTF_CONVERGENCE_TOLERANCE} | Fields converged | Final grids |`,
-    "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
+    "| Lens | zoomT | Values | Max abs | Mean abs | Mean signed | Fields converged | Final grids |",
+    "|---|---:|---:|---:|---:|---:|---:|---:|",
   ];
   for (const { key, zoomT, result, samples } of configurations) {
-    const gaps = reproductionGaps(samples);
+    const gaps = recordedGaps(samples);
     const grids = result.fields.map((field) => field.gridSize);
     const [coarsest, finest] = [Math.min(...grids), Math.max(...grids)];
     const converged = result.fields.filter((field) => field.status === "converged").length;
@@ -308,10 +409,12 @@ function renderReport(configurations: Configuration[]): string {
     "",
     "Two comparisons are tabulated:",
     "",
-    `- **Audit settings**: method \`${AUDIT_METHOD}\` for every maker, as the audit that digitized the charts ran it.`,
+    `- **Diffraction**: method \`${DIFFRACTION_METHOD}\` for every maker, the tab's default. The audit that digitized the`,
+    `  charts also ran one method for every maker, the diffraction-corrected product \`${RETIRED_AUDIT_METHOD}\`, which`,
+    "  the engine no longer has; its values are kept under The Audit's Recorded Values.",
     "- **Maker convention**: the method the maker's charts are computed with, from",
     "  `reports/data/mtfChartConventions.ts`. A geometric chart is simulated as `geometric`, every other as",
-    `  \`${AUDIT_METHOD}\`. The basis of a convention is part of the claim.`,
+    `  \`${DIFFRACTION_METHOD}\`. The basis of a convention is part of the claim.`,
     "",
     "| Maker | Chart method | Basis | Simulated as | Evidence |",
     "|---|---|---|---|---|",
@@ -322,7 +425,7 @@ function renderReport(configurations: Configuration[]): string {
   }
   lines.push("");
 
-  const missing = samples.filter((sample) => !sample.audit || !sample.convention);
+  const missing = samples.filter((sample) => !sample.diffraction || !sample.convention);
   if (missing.length) {
     lines.push(`**${missing.length} samples have no simulated curve** and are left out of every mean below:`, "");
     for (const { anchor } of missing)
@@ -337,17 +440,18 @@ function renderReport(configurations: Configuration[]): string {
   lines.push(
     "## Summary",
     "",
-    "`Recorded by the audit` is the audit's own S and T from the anchor file, not a recomputation." +
+    `\`Recorded by the audit\` is the audit's own S and T from the anchor file, computed with \`${RETIRED_AUDIT_METHOD}\`; it` +
+      " is a frozen reference, not a recomputation." +
       (correctedSamples
         ? ` ${correctedSamples} of its samples belong to prescriptions corrected since the audit (listed under` +
-          " Reproduction of the Audit), so those rows still include the printed, uncorrected tables."
+          " The Audit's Recorded Values), so those rows still include the printed, uncorrected tables."
         : ""),
     "",
     "| Maker | Comparison | Samples | Mean signed | Mean absolute | Negative |",
     "|---|---|---:|---:|---:|---:|",
   );
   const comparisons: [string, Comparison][] = [
-    ["Audit settings", AUDIT_SETTINGS],
+    ["Diffraction", DIFFRACTION],
     ["Maker convention", MAKER_CONVENTION],
     ["Recorded by the audit", RECORDED],
   ];
@@ -364,7 +468,7 @@ function renderReport(configurations: Configuration[]): string {
     "Field is the fraction of the reference image height. Each comparison lists mean signed delta, mean absolute",
     "delta and the share of negative samples.",
     "",
-    "| Maker | lp/mm | Field | Samples | Audit: signed | absolute | negative | Convention: signed | absolute | negative |",
+    "| Maker | lp/mm | Field | Samples | Diffraction: signed | absolute | negative | Convention: signed | absolute | negative |",
     "|---|---:|---|---:|---:|---:|---:|---:|---:|---:|",
   );
   for (const [group, members] of groups)
@@ -379,7 +483,7 @@ function renderReport(configurations: Configuration[]): string {
             frequency,
             band.label,
             inBand.length,
-            ...deltaCells(inBand, AUDIT_SETTINGS),
+            ...deltaCells(inBand, DIFFRACTION),
             ...deltaCells(inBand, MAKER_CONVENTION),
           ]),
         );
@@ -393,7 +497,7 @@ function renderReport(configurations: Configuration[]): string {
     "beam, and `Limited by` the surface that bounds it. Focus shift is the best axial focus plane relative to the",
     "authored image plane, in mm. Each comparison lists mean signed and mean absolute delta.",
     "",
-    "| Lens | zoomT | Maker | Chart convention | Label f/ | Traced f/ | Limited by | Focus shift | Audit: signed | absolute | Convention: signed | absolute |",
+    "| Lens | zoomT | Maker | Chart convention | Label f/ | Traced f/ | Limited by | Focus shift | Diffraction: signed | absolute | Convention: signed | absolute |",
     "|---|---:|---|---|---:|---:|---|---:|---:|---:|---:|---:|",
   );
   for (const { key, zoomT, maker, convention, result, samples: own } of configurations)
@@ -407,38 +511,87 @@ function renderReport(configurations: Configuration[]): string {
         result.aperture ? fixed(result.aperture.tracedFNumber, 2) : "n/a",
         result.aperture ? (result.aperture.limitingSurfaceLabel ?? "iris") : "n/a",
         result.focus ? signed(result.focus.appliedShiftMm) : "n/a",
-        ...deltaCells(own, AUDIT_SETTINGS).slice(0, 2),
+        ...deltaCells(own, DIFFRACTION).slice(0, 2),
         ...deltaCells(own, MAKER_CONVENTION).slice(0, 2),
       ]),
     );
   lines.push("");
 
+  const checks = configurations.map((configuration) => configuration.crossCheck);
+  const allGaps = checks.flatMap((check) => check.gaps);
+  const comparedFields = checks.reduce((sum, check) => sum + check.compared, 0);
+  const undersampledFields = checks.reduce((sum, check) => sum + check.undersampled, 0);
+  const untracedFields = checks.reduce((sum, check) => sum + check.untraced, 0);
+  lines.push(
+    "## Estimator Cross-Check",
+    "",
+    "The diffraction estimate is computed from where the rays land. As a check that shares only the ray trace, the",
+    "same bundles are traced with their optical path and the complex pupil is autocorrelated on the launch lattice",
+    "(`waveLatticeOtf`). Both are summed over the photopic lines on the best axial focus plane at a",
+    `${CROSS_CHECK_GRID} pupil grid, and compared at ${CROSS_CHECK_FREQUENCIES.join(" and ")} lp/mm on both cuts. The optical-path route is only`,
+    `valid where its phase turns by less than ${CROSS_CHECK_PHASE_STEP_WAVES} wave from one lattice cell to the next, so a field enters`,
+    "only when every wavelength meets that; fast or strongly aberrated beams do not, and are counted as",
+    "undersampled. This is a consistency check between two routes in one engine, not a comparison with another tool.",
+    "",
+    `| Lens | zoomT | Fields compared | Undersampled | Largest step (waves) | Values | Max abs | Mean abs | Above ${CROSS_CHECK_TOLERANCE} |`,
+    "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
+  );
+  for (const { key, zoomT, crossCheck } of configurations)
+    lines.push(
+      row([
+        `\`${key}\``,
+        zoomT,
+        crossCheck.compared,
+        crossCheck.undersampled,
+        crossCheck.compared ? fixed(crossCheck.largestStep, 3) : "n/a",
+        crossCheck.gaps.length,
+        crossCheck.gaps.length ? fixed(Math.max(...crossCheck.gaps)) : "n/a",
+        crossCheck.gaps.length ? fixed(mean(crossCheck.gaps)) : "n/a",
+        crossCheck.gaps.filter((gap) => gap > CROSS_CHECK_TOLERANCE).length,
+      ]),
+    );
+  lines.push(
+    "",
+    allGaps.length
+      ? `Over ${comparedFields} fields (${allGaps.length} values): max absolute ${fixed(Math.max(...allGaps))}, mean absolute ` +
+          `${fixed(mean(allGaps))}, ${allGaps.filter((gap) => gap > CROSS_CHECK_TOLERANCE).length} above ${CROSS_CHECK_TOLERANCE}. ` +
+          `${undersampledFields} fields were undersampled for the optical-path route and are not compared` +
+          (untracedFields ? `; ${untracedFields} more could not be traced again for the check.` : ".")
+      : "No field met the phase-step gate.",
+    "",
+  );
+
   const unchanged = configurations.filter((configuration) => !configuration.corrected);
   const corrected = configurations.filter((configuration) => configuration.corrected);
-  const gaps = reproductionGaps(unchanged.flatMap((configuration) => configuration.samples));
-  const [largest, meanSize, meanGap, above] = gapCells(gaps);
+  const gaps = recordedGaps(unchanged.flatMap((configuration) => configuration.samples));
+  const [largest, meanSize, meanGap] = gapCells(gaps);
   lines.push(
-    "## Reproduction of the Audit",
+    "## The Audit's Recorded Values",
     "",
-    "The anchor file keeps the S and T the audit itself computed at every sample, with the settings of the",
-    "`Audit settings` comparison and a pupil grid forced through 128 and 256. This report refines up to the same",
-    `cap but stops once successive grids agree within ${MTF_CONVERGENCE_TOLERANCE}, usually on a coarser grid. Gaps of about that size`,
-    "therefore come from sampling alone, and they carry into the `Audit settings` rows above; larger ones mean the",
-    "engine or the lens data changed. A small negative mean is consistent with the diffraction-limit lattice being",
-    "binned above 128 cells, which reads the audit's forced grids slightly high. Each row summarizes",
-    "`recomputed - recorded` over the S and T of every sample.",
+    "The anchor file keeps the S and T the audit itself computed at every sample. It computed them with",
+    `\`${RETIRED_AUDIT_METHOD}\`, the geometric OTF multiplied by the diffraction limit of the traced pupil, on a pupil grid`,
+    "forced through 128 and 256. The engine no longer has that method: the product double-counts blur at the pupil",
+    "rim and read low, and it was replaced by the diffraction estimate tabulated above. The recorded columns are",
+    "therefore a frozen reference and cannot be recomputed.",
     "",
-    ...reproductionTable(unchanged),
+    `The last run of this report that still had the product reproduced them over ${LAST_REPRODUCTION.configurations} configurations`,
+    `(${LAST_REPRODUCTION.values} values) within max absolute ${fixed(LAST_REPRODUCTION.maxAbsolute)}, mean absolute ${fixed(LAST_REPRODUCTION.meanAbsolute)}, mean signed`,
+    `${signed(LAST_REPRODUCTION.meanSigned)}: sampling differences only.`,
+    "",
+    "Each row below is `diffraction estimate - recorded product` over the S and T of every sample. It measures the",
+    "change of method on the same prescription, not agreement with a chart.",
+    "",
+    ...recordedTable(unchanged),
     "",
     `Over these ${unchanged.length} configurations (${gaps.length} values): max absolute ${largest}, mean absolute`,
-    `${meanSize}, mean signed ${meanGap}, ${above} above ${MTF_CONVERGENCE_TOLERANCE}.`,
+    `${meanSize}, mean signed ${meanGap}.`,
     "",
     "### Prescription corrected since the audit",
     "",
     "Lenses with a `sourceErrata` entry of status `corrected` no longer carry the prescription the audit traced, so",
-    "they are left out of the aggregate above.",
+    "their rows also include the correction and are left out of the aggregate above.",
     "",
-    ...(corrected.length ? reproductionTable(corrected) : ["None."]),
+    ...(corrected.length ? recordedTable(corrected) : ["None."]),
     "",
     "## Chart Sources",
     "",
@@ -478,7 +631,7 @@ describe.skipIf(!ENABLED)("MTF chart regression report", () => {
       // Structural only: every requested field must return curves. How close they sit to a chart is never asserted.
       const withoutCurves = configurations
         .flatMap((configuration) => configuration.samples)
-        .filter((sample) => !sample.audit || !sample.convention)
+        .filter((sample) => !sample.diffraction || !sample.convention)
         .map(({ anchor }) => `${anchor.key}|${anchor.zoomT}|${anchor.fieldFraction}`);
       expect(withoutCurves).toEqual([]);
     },

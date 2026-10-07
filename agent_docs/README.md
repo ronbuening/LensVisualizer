@@ -54,7 +54,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md) — planned features; owns the per-item template and the "already shipped" list
 - [queue] [`../EFFICIENCY_IMPROVEMENT_PLAN.md`](../EFFICIENCY_IMPROVEMENT_PLAN.md) — open cleanup and performance items with verification gates
 - [queue] [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) — trace-model status, deferred items, suggested next work
-- [queue] [`../MTF_ACCURACY_PLAN.md`](../MTF_ACCURACY_PLAN.md) — MTF audit findings, assumption review, and the open stages (prescription screen, aperture model, estimator, uncertainty display); optional optiland cross-check tool
+- [queue] [`../MTF_ACCURACY_PLAN.md`](../MTF_ACCURACY_PLAN.md) — MTF audit findings, assumption review, and the open stages (prescription screen, aperture model, uncertainty display); optional optiland cross-check tool
 - [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, MTF field and image-plane censuses, traced field-coverage shortfalls, prescription errors found in passing, the in-progress diagram sweep
 - [queue] [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) — mount/format metadata coverage and review queue
 - [queue] [`glass-relabel-followup.md`](glass-relabel-followup.md) — catalog-mismatch relabel status and closed families
@@ -95,7 +95,7 @@ except the MTF chart regression, which takes minutes and runs only with `MTF_CHA
 - [generated] [`generated/sellmeier-coverage.generated.md`](generated/sellmeier-coverage.generated.md) — `npm run generate:reports -- sellmeierCoverageScan`
 - [generated] [`generated/glass-coverage-opportunities.generated.md`](generated/glass-coverage-opportunities.generated.md) — `npm run generate:reports -- glassCoverageOpportunitiesScan`
 - [generated] [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm run generate:reports -- mirrorFixtureAuthoringReport`
-- [generated] [`generated/mtf-chart-regression.generated.md`](generated/mtf-chart-regression.generated.md) — `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`; simulated MTF against digitized manufacturer chart values (`reports/data/`), under the audit's settings and each maker's chart convention. A report, never a test threshold
+- [generated] [`generated/mtf-chart-regression.generated.md`](generated/mtf-chart-regression.generated.md) — `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`; simulated MTF against digitized manufacturer chart values (`reports/data/`), with diffraction for every maker and under each maker's chart convention, plus the estimator's cross-check against optical path. A report, never a test threshold
 - [generated] [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) — `npm run generate:reports -- mountSvgSpecificationsReport`; figure counts and content hashes, with full SVG markup in [`generated/mounts/`](generated/mounts/) and diffable geometry in `src/mounts/`
 - [generated] [`benchmarks/README.md`](benchmarks/README.md) — on-demand `npm run benchmark:optics-rendering`; one JSON per run in [`benchmarks/runs/`](benchmarks/runs/), latest report in [`benchmarks/benchmark-report.md`](benchmarks/benchmark-report.md)
 

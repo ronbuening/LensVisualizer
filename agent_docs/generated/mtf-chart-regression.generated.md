@@ -26,30 +26,32 @@ Without the variable the run is skipped, because it traces every configuration a
 
 Two comparisons are tabulated:
 
-- **Audit settings**: method `geometric-dl` for every maker, as the audit that digitized the charts ran it.
+- **Diffraction**: method `diffraction` for every maker, the tab's default. The audit that digitized the
+  charts also ran one method for every maker, the diffraction-corrected product `geometric-dl`, which
+  the engine no longer has; its values are kept under The Audit's Recorded Values.
 - **Maker convention**: the method the maker's charts are computed with, from
   `reports/data/mtfChartConventions.ts`. A geometric chart is simulated as `geometric`, every other as
-  `geometric-dl`. The basis of a convention is part of the claim.
+  `diffraction`. The basis of a convention is part of the claim.
 
 | Maker | Chart method | Basis | Simulated as | Evidence |
 |---|---|---|---|---|
 | Nikon | geometric | inferred | `geometric` | Charts exceed the diffraction limit at the stated aperture: f/4 zooms read 0.99 / 0.95 at 10 / 30 lp/mm against a limit of 0.972 / 0.915 at 555 nm. https://imaging.nikon.com/imaging/lineup/lens/mtf_chart/ |
-| Sigma | diffraction | documented | `geometric-dl` | Sigma publishes a "Diffraction MTF" and a "Geometrical MTF" chart for each lens; the anchors are digitized from the diffraction charts. https://www.sigma-global.com/en/lenses/a020_105_28/ |
+| Sigma | diffraction | documented | `diffraction` | Sigma publishes a "Diffraction MTF" and a "Geometrical MTF" chart for each lens; the anchors are digitized from the diffraction charts. https://www.sigma-global.com/en/lenses/a020_105_28/ |
 
 ## Summary
 
-`Recorded by the audit` is the audit's own S and T from the anchor file, not a recomputation. 20 of its samples belong to prescriptions corrected since the audit (listed under Reproduction of the Audit), so those rows still include the printed, uncorrected tables.
+`Recorded by the audit` is the audit's own S and T from the anchor file, computed with `geometric-dl`; it is a frozen reference, not a recomputation. 20 of its samples belong to prescriptions corrected since the audit (listed under The Audit's Recorded Values), so those rows still include the printed, uncorrected tables.
 
 | Maker | Comparison | Samples | Mean signed | Mean absolute | Negative |
 |---|---|---:|---:|---:|---:|
-| All | Audit settings | 392 | -0.0556 | 0.0639 | 85.2% |
-| All | Maker convention | 392 | -0.0376 | 0.0576 | 62.2% |
+| All | Diffraction | 392 | -0.0424 | 0.0544 | 78.8% |
+| All | Maker convention | 392 | -0.0309 | 0.0531 | 58.7% |
 | All | Recorded by the audit | 392 | -0.0631 | 0.0731 | 80.9% |
-| Nikon | Audit settings | 184 | -0.0510 | 0.0573 | 88.6% |
+| Nikon | Diffraction | 184 | -0.0373 | 0.0467 | 82.6% |
 | Nikon | Maker convention | 184 | -0.0127 | 0.0439 | 39.7% |
 | Nikon | Recorded by the audit | 184 | -0.0719 | 0.0796 | 83.2% |
-| Sigma | Audit settings | 208 | -0.0597 | 0.0697 | 82.2% |
-| Sigma | Maker convention | 208 | -0.0597 | 0.0697 | 82.2% |
+| Sigma | Diffraction | 208 | -0.0470 | 0.0612 | 75.5% |
+| Sigma | Maker convention | 208 | -0.0470 | 0.0612 | 75.5% |
 | Sigma | Recorded by the audit | 208 | -0.0553 | 0.0674 | 78.8% |
 
 ## By Frequency and Field Band
@@ -57,26 +59,26 @@ Two comparisons are tabulated:
 Field is the fraction of the reference image height. Each comparison lists mean signed delta, mean absolute
 delta and the share of negative samples.
 
-| Maker | lp/mm | Field | Samples | Audit: signed | absolute | negative | Convention: signed | absolute | negative |
+| Maker | lp/mm | Field | Samples | Diffraction: signed | absolute | negative | Convention: signed | absolute | negative |
 |---|---:|---|---:|---:|---:|---:|---:|---:|---:|
-| All | 10 | 0-0.3 | 76 | -0.0164 | 0.0226 | 75.0% | -0.0068 | 0.0192 | 40.8% |
-| All | 10 | 0.4-0.7 | 76 | -0.0411 | 0.0425 | 93.4% | -0.0306 | 0.0363 | 71.1% |
-| All | 10 | 0.8-1.0 | 44 | -0.0591 | 0.0658 | 84.1% | -0.0476 | 0.0571 | 72.7% |
-| All | 30 | 0-0.3 | 76 | -0.0367 | 0.0619 | 75.0% | -0.0103 | 0.0650 | 43.4% |
-| All | 30 | 0.4-0.7 | 76 | -0.0948 | 0.0982 | 93.4% | -0.0689 | 0.0876 | 75.0% |
-| All | 30 | 0.8-1.0 | 44 | -0.1098 | 0.1144 | 93.2% | -0.0862 | 0.0966 | 84.1% |
-| Nikon | 10 | 0-0.3 | 36 | -0.0187 | 0.0203 | 83.3% | +0.0015 | 0.0133 | 11.1% |
-| Nikon | 10 | 0.4-0.7 | 36 | -0.0370 | 0.0372 | 97.2% | -0.0150 | 0.0240 | 50.0% |
-| Nikon | 10 | 0.8-1.0 | 20 | -0.0568 | 0.0568 | 100.0% | -0.0314 | 0.0377 | 75.0% |
-| Nikon | 30 | 0-0.3 | 36 | -0.0315 | 0.0543 | 77.8% | +0.0244 | 0.0608 | 11.1% |
-| Nikon | 30 | 0.4-0.7 | 36 | -0.0787 | 0.0860 | 86.1% | -0.0242 | 0.0636 | 47.2% |
-| Nikon | 30 | 0.8-1.0 | 20 | -0.1135 | 0.1143 | 95.0% | -0.0617 | 0.0753 | 75.0% |
-| Sigma | 10 | 0-0.3 | 40 | -0.0143 | 0.0246 | 67.5% | -0.0143 | 0.0246 | 67.5% |
-| Sigma | 10 | 0.4-0.7 | 40 | -0.0447 | 0.0473 | 90.0% | -0.0447 | 0.0473 | 90.0% |
-| Sigma | 10 | 0.8-1.0 | 24 | -0.0611 | 0.0732 | 70.8% | -0.0611 | 0.0732 | 70.8% |
-| Sigma | 30 | 0-0.3 | 40 | -0.0415 | 0.0687 | 72.5% | -0.0415 | 0.0687 | 72.5% |
-| Sigma | 30 | 0.4-0.7 | 40 | -0.1092 | 0.1092 | 100.0% | -0.1092 | 0.1092 | 100.0% |
-| Sigma | 30 | 0.8-1.0 | 24 | -0.1066 | 0.1144 | 91.7% | -0.1066 | 0.1144 | 91.7% |
+| All | 10 | 0-0.3 | 76 | -0.0137 | 0.0205 | 75.0% | -0.0046 | 0.0176 | 40.8% |
+| All | 10 | 0.4-0.7 | 76 | -0.0370 | 0.0386 | 92.1% | -0.0280 | 0.0339 | 69.7% |
+| All | 10 | 0.8-1.0 | 44 | -0.0531 | 0.0615 | 81.8% | -0.0454 | 0.0565 | 72.7% |
+| All | 30 | 0-0.3 | 76 | -0.0193 | 0.0527 | 60.5% | +0.0003 | 0.0596 | 36.8% |
+| All | 30 | 0.4-0.7 | 76 | -0.0717 | 0.0809 | 82.9% | -0.0571 | 0.0784 | 67.1% |
+| All | 30 | 0.8-1.0 | 44 | -0.0799 | 0.0905 | 84.1% | -0.0751 | 0.0894 | 79.5% |
+| Nikon | 10 | 0-0.3 | 36 | -0.0176 | 0.0194 | 83.3% | +0.0015 | 0.0133 | 11.1% |
+| Nikon | 10 | 0.4-0.7 | 36 | -0.0339 | 0.0341 | 97.2% | -0.0150 | 0.0240 | 50.0% |
+| Nikon | 10 | 0.8-1.0 | 20 | -0.0482 | 0.0487 | 95.0% | -0.0314 | 0.0377 | 75.0% |
+| Nikon | 30 | 0-0.3 | 36 | -0.0170 | 0.0463 | 61.1% | +0.0244 | 0.0608 | 11.1% |
+| Nikon | 30 | 0.4-0.7 | 36 | -0.0551 | 0.0688 | 80.6% | -0.0242 | 0.0636 | 47.2% |
+| Nikon | 30 | 0.8-1.0 | 20 | -0.0722 | 0.0777 | 85.0% | -0.0617 | 0.0753 | 75.0% |
+| Sigma | 10 | 0-0.3 | 40 | -0.0102 | 0.0214 | 67.5% | -0.0102 | 0.0214 | 67.5% |
+| Sigma | 10 | 0.4-0.7 | 40 | -0.0398 | 0.0427 | 87.5% | -0.0398 | 0.0427 | 87.5% |
+| Sigma | 10 | 0.8-1.0 | 24 | -0.0571 | 0.0721 | 70.8% | -0.0571 | 0.0721 | 70.8% |
+| Sigma | 30 | 0-0.3 | 40 | -0.0215 | 0.0585 | 60.0% | -0.0215 | 0.0585 | 60.0% |
+| Sigma | 30 | 0.4-0.7 | 40 | -0.0867 | 0.0918 | 85.0% | -0.0867 | 0.0918 | 85.0% |
+| Sigma | 30 | 0.8-1.0 | 24 | -0.0863 | 0.1011 | 83.3% | -0.0863 | 0.1011 | 83.3% |
 
 ## Per Configuration
 
@@ -84,70 +86,109 @@ delta and the share of negative samples.
 beam, and `Limited by` the surface that bounds it. Focus shift is the best axial focus plane relative to the
 authored image plane, in mm. Each comparison lists mean signed and mean absolute delta.
 
-| Lens | zoomT | Maker | Chart convention | Label f/ | Traced f/ | Limited by | Focus shift | Audit: signed | absolute | Convention: signed | absolute |
+| Lens | zoomT | Maker | Chart convention | Label f/ | Traced f/ | Limited by | Focus shift | Diffraction: signed | absolute | Convention: signed | absolute |
 |---|---:|---|---|---:|---:|---|---:|---:|---:|---:|---:|
-| `nikkor-z-14-30f4s` | 0 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | -0.0494 | -0.0801 | 0.0801 | -0.0248 | 0.0535 |
-| `nikkor-z-14-30f4s` | 1 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | -0.0314 | -0.0743 | 0.0743 | -0.0199 | 0.0290 |
-| `nikkor-z-35f18s` | 0 | Nikon | geometric (inferred) | 1.80 | 1.85 | 9 | +0.0147 | +0.0199 | 0.0257 | +0.0480 | 0.0480 |
-| `nikkor-z-85f18s` | 0 | Nikon | geometric (inferred) | 1.80 | 1.85 | iris | -0.0800 | -0.1455 | 0.1455 | -0.1282 | 0.1291 |
-| `nikkor-z50f12` | 0 | Nikon | geometric (inferred) | 1.20 | 1.23 | iris | -0.0515 | -0.0171 | 0.0287 | -0.0008 | 0.0219 |
-| `nikon-z-135f18-plena` | 0 | Nikon | geometric (inferred) | 1.80 | 1.85 | iris | -0.0109 | -0.0181 | 0.0182 | +0.0062 | 0.0153 |
-| `nikon-z-24-70f4s` | 0 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | -0.0734 | -0.0454 | 0.0461 | +0.0066 | 0.0460 |
-| `nikon-z-24-70f4s` | 1 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | +0.0181 | -0.0566 | 0.0566 | -0.0044 | 0.0260 |
-| `nikon-z-mc-105f28` | 0 | Nikon | geometric (inferred) | 2.80 | 2.89 | iris | +0.0294 | -0.0329 | 0.0329 | +0.0125 | 0.0178 |
-| `sigma-105mm-f14-dg-hsm-art` | 0 | Sigma | diffraction (documented) | 1.40 | 1.40 | iris | -0.0258 | -0.0496 | 0.0496 | -0.0496 | 0.0496 |
-| `sigma-105mm-f28-dg-dn-macro-art` | 0 | Sigma | diffraction (documented) | 2.80 | 2.90 | iris | -0.0215 | -0.0609 | 0.0609 | -0.0609 | 0.0609 |
-| `sigma-16mm-f14-dc-dn` | 0 | Sigma | diffraction (documented) | 1.40 | 1.47 | 16 | -0.0052 | -0.0351 | 0.0625 | -0.0351 | 0.0625 |
-| `sigma-20mm-f14-dg-hsm-art` | 0 | Sigma | diffraction (documented) | 1.40 | 1.43 | 26A | -0.0151 | -0.0511 | 0.0532 | -0.0511 | 0.0532 |
-| `sigma-23mm-f14-dc-dn-c` | 0 | Sigma | diffraction (documented) | 1.40 | 1.42 | 15 | -0.0313 | -0.2324 | 0.2324 | -0.2324 | 0.2324 |
-| `sigma-35mm-f14-dg-hsm-a` | 0 | Sigma | diffraction (documented) | 1.40 | 1.49 | 14 | -0.0256 | -0.0554 | 0.0569 | -0.0554 | 0.0569 |
-| `sigma-45mm-f28-dg-dn-contemporary` | 0 | Sigma | diffraction (documented) | 2.80 | 2.80 | iris | -0.0319 | -0.0220 | 0.0243 | -0.0220 | 0.0243 |
-| `sigma-50f14-dg-hsm-a` | 0 | Sigma | diffraction (documented) | 1.40 | 1.40 | iris | -0.0077 | -0.0273 | 0.0361 | -0.0273 | 0.0361 |
-| `sigma-85f14-art` | 0 | Sigma | diffraction (documented) | 1.40 | 1.50 | 27A | -0.0226 | +0.0229 | 0.0363 | +0.0229 | 0.0363 |
-| `sigma-art-85mm-f14-dgdn` | 0 | Sigma | diffraction (documented) | 1.40 | 1.40 | iris | +0.0008 | -0.0700 | 0.0701 | -0.0700 | 0.0701 |
+| `nikkor-z-14-30f4s` | 0 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | -0.0494 | -0.0643 | 0.0643 | -0.0248 | 0.0535 |
+| `nikkor-z-14-30f4s` | 1 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | -0.0314 | -0.0602 | 0.0602 | -0.0199 | 0.0290 |
+| `nikkor-z-35f18s` | 0 | Nikon | geometric (inferred) | 1.80 | 1.85 | 9 | +0.0147 | +0.0320 | 0.0327 | +0.0480 | 0.0480 |
+| `nikkor-z-85f18s` | 0 | Nikon | geometric (inferred) | 1.80 | 1.85 | iris | -0.0800 | -0.1323 | 0.1325 | -0.1282 | 0.1291 |
+| `nikkor-z50f12` | 0 | Nikon | geometric (inferred) | 1.20 | 1.23 | iris | -0.0515 | -0.0060 | 0.0201 | -0.0008 | 0.0219 |
+| `nikon-z-135f18-plena` | 0 | Nikon | geometric (inferred) | 1.80 | 1.85 | iris | -0.0109 | -0.0085 | 0.0114 | +0.0062 | 0.0153 |
+| `nikon-z-24-70f4s` | 0 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | -0.0734 | -0.0292 | 0.0336 | +0.0066 | 0.0460 |
+| `nikon-z-24-70f4s` | 1 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | +0.0181 | -0.0355 | 0.0355 | -0.0044 | 0.0260 |
+| `nikon-z-mc-105f28` | 0 | Nikon | geometric (inferred) | 2.80 | 2.89 | iris | +0.0294 | -0.0229 | 0.0229 | +0.0125 | 0.0178 |
+| `sigma-105mm-f14-dg-hsm-art` | 0 | Sigma | diffraction (documented) | 1.40 | 1.40 | iris | -0.0258 | -0.0387 | 0.0387 | -0.0387 | 0.0387 |
+| `sigma-105mm-f28-dg-dn-macro-art` | 0 | Sigma | diffraction (documented) | 2.80 | 2.90 | iris | -0.0215 | -0.0452 | 0.0456 | -0.0452 | 0.0456 |
+| `sigma-16mm-f14-dc-dn` | 0 | Sigma | diffraction (documented) | 1.40 | 1.47 | 16 | -0.0052 | -0.0265 | 0.0592 | -0.0265 | 0.0592 |
+| `sigma-20mm-f14-dg-hsm-art` | 0 | Sigma | diffraction (documented) | 1.40 | 1.43 | 26A | -0.0151 | -0.0401 | 0.0429 | -0.0401 | 0.0429 |
+| `sigma-23mm-f14-dc-dn-c` | 0 | Sigma | diffraction (documented) | 1.40 | 1.42 | 15 | -0.0313 | -0.2221 | 0.2221 | -0.2221 | 0.2221 |
+| `sigma-35mm-f14-dg-hsm-a` | 0 | Sigma | diffraction (documented) | 1.40 | 1.49 | 14 | -0.0256 | -0.0443 | 0.0468 | -0.0443 | 0.0468 |
+| `sigma-45mm-f28-dg-dn-contemporary` | 0 | Sigma | diffraction (documented) | 2.80 | 2.80 | iris | -0.0319 | +0.0060 | 0.0154 | +0.0060 | 0.0154 |
+| `sigma-50f14-dg-hsm-a` | 0 | Sigma | diffraction (documented) | 1.40 | 1.40 | iris | -0.0077 | -0.0148 | 0.0317 | -0.0148 | 0.0317 |
+| `sigma-85f14-art` | 0 | Sigma | diffraction (documented) | 1.40 | 1.50 | 27A | -0.0226 | +0.0298 | 0.0383 | +0.0298 | 0.0383 |
+| `sigma-art-85mm-f14-dgdn` | 0 | Sigma | diffraction (documented) | 1.40 | 1.40 | iris | +0.0008 | -0.0573 | 0.0576 | -0.0573 | 0.0576 |
 
-## Reproduction of the Audit
+## Estimator Cross-Check
 
-The anchor file keeps the S and T the audit itself computed at every sample, with the settings of the
-`Audit settings` comparison and a pupil grid forced through 128 and 256. This report refines up to the same
-cap but stops once successive grids agree within 0.01, usually on a coarser grid. Gaps of about that size
-therefore come from sampling alone, and they carry into the `Audit settings` rows above; larger ones mean the
-engine or the lens data changed. A small negative mean is consistent with the diffraction-limit lattice being
-binned above 128 cells, which reads the audit's forced grids slightly high. Each row summarizes
-`recomputed - recorded` over the S and T of every sample.
+The diffraction estimate is computed from where the rays land. As a check that shares only the ray trace, the
+same bundles are traced with their optical path and the complex pupil is autocorrelated on the launch lattice
+(`waveLatticeOtf`). Both are summed over the photopic lines on the best axial focus plane at a
+128 pupil grid, and compared at 10 and 30 lp/mm on both cuts. The optical-path route is only
+valid where its phase turns by less than 0.25 wave from one lattice cell to the next, so a field enters
+only when every wavelength meets that; fast or strongly aberrated beams do not, and are counted as
+undersampled. This is a consistency check between two routes in one engine, not a comparison with another tool.
 
-| Lens | zoomT | Values | Max abs | Mean abs | Mean signed | Above 0.01 | Fields converged | Final grids |
+| Lens | zoomT | Fields compared | Undersampled | Largest step (waves) | Values | Max abs | Mean abs | Above 0.004 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| `nikkor-z-14-30f4s` | 0 | 40 | 0.0089 | 0.0060 | -0.0060 | 0 | 10/10 | 32-64 |
-| `nikkor-z-14-30f4s` | 1 | 40 | 0.0075 | 0.0059 | -0.0059 | 0 | 10/10 | 32-64 |
-| `nikkor-z-35f18s` | 0 | 40 | 0.0088 | 0.0056 | -0.0056 | 0 | 10/10 | 32-64 |
-| `nikkor-z-85f18s` | 0 | 44 | 0.0068 | 0.0025 | -0.0023 | 0 | 11/11 | 64-128 |
-| `nikkor-z50f12` | 0 | 40 | 0.0081 | 0.0035 | -0.0033 | 0 | 10/10 | 32-128 |
-| `nikon-z-135f18-plena` | 0 | 40 | 0.0105 | 0.0059 | -0.0059 | 1 | 10/10 | 32-64 |
-| `nikon-z-24-70f4s` | 0 | 44 | 0.0082 | 0.0056 | -0.0056 | 0 | 11/11 | 32-64 |
-| `nikon-z-24-70f4s` | 1 | 40 | 0.0116 | 0.0061 | -0.0061 | 3 | 10/10 | 32-128 |
-| `sigma-105mm-f14-dg-hsm-art` | 0 | 40 | 0.0075 | 0.0033 | -0.0033 | 0 | 10/10 | 64-128 |
-| `sigma-105mm-f28-dg-dn-macro-art` | 0 | 44 | 0.0127 | 0.0073 | -0.0073 | 4 | 11/11 | 32-64 |
-| `sigma-16mm-f14-dc-dn` | 0 | 44 | 0.0069 | 0.0037 | -0.0036 | 0 | 11/11 | 32-256 |
-| `sigma-20mm-f14-dg-hsm-art` | 0 | 40 | 0.0089 | 0.0044 | -0.0044 | 0 | 10/10 | 32-64 |
-| `sigma-23mm-f14-dc-dn-c` | 0 | 44 | 0.0060 | 0.0024 | -0.0021 | 0 | 11/11 | 64-128 |
-| `sigma-35mm-f14-dg-hsm-a` | 0 | 40 | 0.0066 | 0.0033 | -0.0033 | 0 | 10/10 | 32-256 |
-| `sigma-45mm-f28-dg-dn-contemporary` | 0 | 40 | 0.0102 | 0.0066 | -0.0066 | 1 | 10/10 | 64 |
-| `sigma-50f14-dg-hsm-a` | 0 | 40 | 0.0069 | 0.0035 | -0.0035 | 0 | 10/10 | 64-128 |
-| `sigma-85f14-art` | 0 | 40 | 0.0087 | 0.0053 | -0.0053 | 0 | 10/10 | 32-64 |
-| `sigma-art-85mm-f14-dgdn` | 0 | 44 | 0.0077 | 0.0042 | -0.0042 | 0 | 11/11 | 64-128 |
+| `nikkor-z-14-30f4s` | 0 | 10 | 0 | 0.073 | 40 | 0.0006 | 0.0002 | 0 |
+| `nikkor-z-14-30f4s` | 1 | 10 | 0 | 0.057 | 40 | 0.0009 | 0.0002 | 0 |
+| `nikkor-z-35f18s` | 0 | 9 | 1 | 0.223 | 36 | 0.0016 | 0.0006 | 0 |
+| `nikkor-z-85f18s` | 0 | 2 | 9 | 0.245 | 8 | 0.0020 | 0.0011 | 0 |
+| `nikkor-z50f12` | 0 | 2 | 8 | 0.224 | 8 | 0.0014 | 0.0009 | 0 |
+| `nikon-z-135f18-plena` | 0 | 8 | 2 | 0.191 | 32 | 0.0011 | 0.0004 | 0 |
+| `nikon-z-24-70f4s` | 0 | 11 | 0 | 0.098 | 44 | 0.0024 | 0.0003 | 0 |
+| `nikon-z-24-70f4s` | 1 | 8 | 2 | 0.241 | 32 | 0.0015 | 0.0004 | 0 |
+| `nikon-z-mc-105f28` | 0 | 10 | 0 | 0.125 | 40 | 0.0010 | 0.0002 | 0 |
+| `sigma-105mm-f14-dg-hsm-art` | 0 | 2 | 8 | 0.239 | 8 | 0.0022 | 0.0019 | 0 |
+| `sigma-105mm-f28-dg-dn-macro-art` | 0 | 11 | 0 | 0.142 | 44 | 0.0007 | 0.0003 | 0 |
+| `sigma-16mm-f14-dc-dn` | 0 | 3 | 8 | 0.200 | 12 | 0.0015 | 0.0006 | 0 |
+| `sigma-20mm-f14-dg-hsm-art` | 0 | 1 | 9 | 0.148 | 4 | 0.0010 | 0.0008 | 0 |
+| `sigma-23mm-f14-dc-dn-c` | 0 | 0 | 11 | n/a | 0 | n/a | n/a | 0 |
+| `sigma-35mm-f14-dg-hsm-a` | 0 | 1 | 9 | 0.201 | 4 | 0.0008 | 0.0007 | 0 |
+| `sigma-45mm-f28-dg-dn-contemporary` | 0 | 10 | 0 | 0.213 | 40 | 0.0024 | 0.0006 | 0 |
+| `sigma-50f14-dg-hsm-a` | 0 | 0 | 10 | n/a | 0 | n/a | n/a | 0 |
+| `sigma-85f14-art` | 0 | 8 | 2 | 0.199 | 32 | 0.0017 | 0.0008 | 0 |
+| `sigma-art-85mm-f14-dgdn` | 0 | 3 | 8 | 0.232 | 12 | 0.0018 | 0.0012 | 0 |
 
-Over these 18 configurations (744 values): max absolute 0.0127, mean absolute
-0.0047, mean signed -0.0047, 9 above 0.01.
+Over 109 fields (436 values): max absolute 0.0024, mean absolute 0.0005, 0 above 0.004. 87 fields were undersampled for the optical-path route and are not compared.
+
+## The Audit's Recorded Values
+
+The anchor file keeps the S and T the audit itself computed at every sample. It computed them with
+`geometric-dl`, the geometric OTF multiplied by the diffraction limit of the traced pupil, on a pupil grid
+forced through 128 and 256. The engine no longer has that method: the product double-counts blur at the pupil
+rim and read low, and it was replaced by the diffraction estimate tabulated above. The recorded columns are
+therefore a frozen reference and cannot be recomputed.
+
+The last run of this report that still had the product reproduced them over 18 configurations
+(744 values) within max absolute 0.0127, mean absolute 0.0047, mean signed
+-0.0047: sampling differences only.
+
+Each row below is `diffraction estimate - recorded product` over the S and T of every sample. It measures the
+change of method on the same prescription, not agreement with a chart.
+
+| Lens | zoomT | Values | Max abs | Mean abs | Mean signed | Fields converged | Final grids |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `nikkor-z-14-30f4s` | 0 | 40 | 0.1138 | 0.0162 | +0.0098 | 10/10 | 32-64 |
+| `nikkor-z-14-30f4s` | 1 | 40 | 0.0905 | 0.0128 | +0.0082 | 10/10 | 32-64 |
+| `nikkor-z-35f18s` | 0 | 40 | 0.0821 | 0.0104 | +0.0064 | 10/10 | 32-64 |
+| `nikkor-z-85f18s` | 0 | 44 | 0.0375 | 0.0113 | +0.0109 | 11/11 | 32-128 |
+| `nikkor-z50f12` | 0 | 40 | 0.0451 | 0.0088 | +0.0078 | 10/10 | 32-64 |
+| `nikon-z-135f18-plena` | 0 | 40 | 0.0379 | 0.0077 | +0.0038 | 10/10 | 32-64 |
+| `nikon-z-24-70f4s` | 0 | 44 | 0.0845 | 0.0147 | +0.0105 | 11/11 | 32-64 |
+| `nikon-z-24-70f4s` | 1 | 40 | 0.0624 | 0.0174 | +0.0150 | 10/10 | 32-128 |
+| `sigma-105mm-f14-dg-hsm-art` | 0 | 40 | 0.0353 | 0.0088 | +0.0076 | 10/10 | 32-128 |
+| `sigma-105mm-f28-dg-dn-macro-art` | 0 | 44 | 0.0461 | 0.0135 | +0.0084 | 11/11 | 32-64 |
+| `sigma-16mm-f14-dc-dn` | 0 | 44 | 0.0283 | 0.0069 | +0.0050 | 11/11 | 32-128 |
+| `sigma-20mm-f14-dg-hsm-art` | 0 | 40 | 0.0339 | 0.0085 | +0.0066 | 10/10 | 32-64 |
+| `sigma-23mm-f14-dc-dn-c` | 0 | 44 | 0.0186 | 0.0081 | +0.0081 | 11/11 | 64-128 |
+| `sigma-35mm-f14-dg-hsm-a` | 0 | 40 | 0.0315 | 0.0087 | +0.0078 | 10/10 | 32-128 |
+| `sigma-45mm-f28-dg-dn-contemporary` | 0 | 40 | 0.0570 | 0.0223 | +0.0214 | 10/10 | 64 |
+| `sigma-50f14-dg-hsm-a` | 0 | 40 | 0.0240 | 0.0093 | +0.0090 | 10/10 | 64 |
+| `sigma-85f14-art` | 0 | 40 | 0.0210 | 0.0058 | +0.0016 | 10/10 | 32-64 |
+| `sigma-art-85mm-f14-dgdn` | 0 | 44 | 0.0431 | 0.0099 | +0.0085 | 11/11 | 64-128 |
+
+Over these 18 configurations (744 values): max absolute 0.1138, mean absolute
+0.0112, mean signed +0.0087.
 
 ### Prescription corrected since the audit
 
 Lenses with a `sourceErrata` entry of status `corrected` no longer carry the prescription the audit traced, so
-they are left out of the aggregate above.
+their rows also include the correction and are left out of the aggregate above.
 
-| Lens | zoomT | Values | Max abs | Mean abs | Mean signed | Above 0.01 | Fields converged | Final grids |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| `nikon-z-mc-105f28` | 0 | 40 | 0.8973 | 0.2393 | +0.2342 | 20 | 10/10 | 32-64 |
+| Lens | zoomT | Values | Max abs | Mean abs | Mean signed | Fields converged | Final grids |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `nikon-z-mc-105f28` | 0 | 40 | 0.9002 | 0.2467 | +0.2443 | 10/10 | 32-64 |
 
 ## Chart Sources
 

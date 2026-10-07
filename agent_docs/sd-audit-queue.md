@@ -101,8 +101,9 @@ light the production lens transmits. Regenerate at any time (about three minutes
 node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --fields --list
 ```
 
-Rows are lenses at infinity, wide open, at the wide end. "Edge" is the largest image height whose real chief ray
-passes every clear aperture; lenses whose edge merely misses the format corner are not listed here, and fisheyes
+Rows are lenses at infinity, wide open, at the wide end. "Edge" is the modeled edge: the largest image height whose
+real chief ray passes every clear aperture, continued toward a declared format corner for as long as part of the beam
+still passes; lenses whose edge merely misses the format corner are not listed here, and fisheyes
 without a declared `projection` are queued in Section F. Later rows are
 full-beam findings where the edge is reached but the authored clear apertures pass too little or too much of the beam
 there; check them against the patent figure.

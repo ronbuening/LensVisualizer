@@ -33,9 +33,8 @@ const COMPARISON_F_NUMBER = 8;
 const TRACED_APERTURE_NOTE_FRACTION = 0.02;
 
 const METHOD_LABELS: Record<MtfMethod, string> = {
-  "geometric-dl": "Diffraction-corrected",
+  diffraction: "Diffraction-corrected",
   geometric: "Geometric",
-  diffraction: "Scalar diffraction",
 };
 const SPECTRUM_LABELS: Record<MtfSpectrum, string> = {
   photopic: "photopic",

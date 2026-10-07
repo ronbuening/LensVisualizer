@@ -56,7 +56,7 @@ it("rebuilds serializable prescriptions in the worker and matches the pure engin
       { ...converterData, elements: [{ ...converterData.elements[0], glass: "N-BK7" }] },
     ),
   );
-  const methods = ["geometric", "geometric-dl", "diffraction"] as const;
+  const methods = ["geometric", "diffraction"] as const;
   const spectra = ["reference", "cdf", "photopic"] as const;
   // The full method × spectrum grid proves dispatch once; the plated rebuild needs only one combination.
   const cases = [

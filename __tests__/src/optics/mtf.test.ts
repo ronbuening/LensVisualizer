@@ -85,6 +85,10 @@ describe("MTF support", () => {
     expect(assessMtfSupport(state, { ...mtfTestOptions, movementActive: true }).reason).toBe("active-movement");
     expect(assessMtfSupport(prepareRuntimeState(L, 1, 0), mtfTestOptions).reason).toBe("finite-conjugate-unavailable");
     expect(assessMtfSupport(state, { ...mtfTestOptions, pupilSemiDiameterMm: NaN }).reason).toBe("invalid-input");
+    // A retired method name from an untyped caller is refused, not computed as something else.
+    const retired = { ...mtfTestOptions, method: "geometric-dl" } as unknown as MtfOptions;
+    expect(assessMtfSupport(state, retired).reason).toBe("invalid-input");
+    expect(computeMtf(state, retired).fields).toEqual([]);
   });
   it("rejects unverified normalized prescription scale", () => {
     const normalized = build({
@@ -395,7 +399,7 @@ describe("MTF refinement and focus", () => {
     });
     const failure = (refine: boolean): MtfGridOutcome => ({
       kind: "unavailable",
-      field: { ...emptyMtfField(0), status: "unavailable", reason: "diffraction-domain" },
+      field: { ...emptyMtfField(0), status: "unavailable", reason: "empty-pupil" },
       refine,
     });
     const run = (outcomes: MtfGridOutcome[]) =>

@@ -76,7 +76,7 @@ function chartOptions(L, zoomT, overrides) {
   const stop = wideOpenStopAtZoom(zoomT, L);
   const geometry = computeAnalysisFieldGeometryAtState(0, zoomT, L, 0);
   return {
-    method: "geometric-dl",
+    method: "diffraction",
     spectrum: "photopic",
     focus: "best-axial",
     maxGridSize: 64,
