@@ -329,10 +329,18 @@ function renderReport(configurations: Configuration[]): string {
     lines.push("");
   }
 
+  // The audit's recorded curves predate any correction, so its rows keep describing the printed table.
+  const correctedSamples = configurations
+    .filter((configuration) => configuration.corrected)
+    .reduce((count, configuration) => count + configuration.samples.length, 0);
   lines.push(
     "## Summary",
     "",
-    "`Recorded by the audit` is the audit's own S and T from the anchor file, not a recomputation.",
+    "`Recorded by the audit` is the audit's own S and T from the anchor file, not a recomputation." +
+      (correctedSamples
+        ? ` ${correctedSamples} of its samples belong to prescriptions corrected since the audit (listed under` +
+          " Reproduction of the Audit), so those rows still include the printed, uncorrected tables."
+        : ""),
     "",
     "| Maker | Comparison | Samples | Mean signed | Mean absolute | Negative |",
     "|---|---|---:|---:|---:|---:|",
@@ -415,7 +423,9 @@ function renderReport(configurations: Configuration[]): string {
     "`Audit settings` comparison and a pupil grid forced through 128 and 256. This report refines up to the same",
     `cap but stops once successive grids agree within ${MTF_CONVERGENCE_TOLERANCE}, usually on a coarser grid. Gaps of about that size`,
     "therefore come from sampling alone, and they carry into the `Audit settings` rows above; larger ones mean the",
-    "engine or the lens data changed. Each row summarizes `recomputed - recorded` over the S and T of every sample.",
+    "engine or the lens data changed. A small negative mean is consistent with the diffraction-limit lattice being",
+    "binned above 128 cells, which reads the audit's forced grids slightly high. Each row summarizes",
+    "`recomputed - recorded` over the S and T of every sample.",
     "",
     ...reproductionTable(unchanged),
     "",

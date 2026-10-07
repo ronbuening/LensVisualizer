@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-07",
+    type: "fix",
+    summary: "Corrected two patent misprints that blurred Nikon Z MC 105mm and Zeiss Batis 18mm MTF",
+  },
+  {
+    date: "2026-10-07",
     type: "improvement",
     summary: "MTF header now shows the traced f-number when it differs from the label",
   },

@@ -105,3 +105,29 @@ Figure1 p55 inspected (figure600dpi).
   EFL49.28 at29cm; EFL70.48 at38cm; f16iris4.63mm diameter.
 
 Four focused physical regressions and TypeScript pass. Full batch gates due at20.
+
+## 2026-10-07 — Source erratum: surface 27 A10 sign
+
+Supersedes, for A10 only, the 2026-09-08 statement "All28surface radii/thicknesses/indices and the full asphere
+retained after source verification." The transcription was faithful; the printed sign is wrong.
+
+| Surface | Field | Printed (Table 1, PDF p. 28, ¶0101) | Applied | Evidence |
+|---|---|---|---|---|
+| 27A | `A10` | −1.29299E-13 | +1.29299E-13 | `source-summary`, `aberration-figure`, `sibling-example` |
+
+Traced at infinity on the d line, printed sign → corrected sign (EFL 102.8607 mm either way):
+
+- `source-summary` — Table 1 states 2ω = 24.06° at Ymax = 21.70 (PDF p. 27). The stop-centred chief ray that reaches
+  21.70 mm needs 2ω = 23.08° → 24.05°; the chief ray launched at ω = 12.03° lands at 22.994 → 21.707 mm.
+- `aberration-figure` — Fig. 2(A) (PDF p. 56) at 600 dpi. Distortion at Y = 21.70 reads −0.96 % on the 2.000 % scale;
+  the trace gives +3.33 % → −0.97 %. Every astigmatism curve lies between −0.28 and +0.07 mm on the 0.500 mm scale;
+  the tangential focus at Ymax sits +16.68 → −0.11 mm from the image plane (sagittal +1.09 → +0.03 mm).
+- `sibling-example` — Example 2 (Table 2, PDF pp. 30–32; G2–G4 built as in Example 1, ¶0105) prints surface 27 as
+  A4 +1.19399E-05, A6 +2.04728E-08, A8 −7.55581E-11, A10 +2.43965E-13, A12 −1.86360E-16: the Example 1 signs with
+  A10 positive. Traced as printed it reproduces its stated f = 102.90, TL = 149.44 and 2ω = 24.05° (102.899, 149.440,
+  24.05°); with its A10 negated it gives 22.61°. A8, A10 and A12 alternate in sign in Examples 2–5 (PDF pp. 32, 35,
+  38, 42); the printed Example 1 is the only exception.
+
+Rim of 27A at the stored 18.3 mm semi-diameter: slope 49.4° → 29.7°, no turnover. The analysis half-field at the
+21.65 mm format corner moves from 11.52° to 12.00°. Header note, inline comment, `sourceErrata` and the analysis
+asphere table are synchronized. No other value changed.

@@ -130,9 +130,10 @@ node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs 
 ```
 
 Work each row with [lens-patent-audit.md](lens-patent-audit.md) and the source PDF. Correct transcription errors,
-and model plates the source lists in `rearPlates`. Where the source itself is inconsistent, keep the published value
-and document the contradiction in the lens header and `*.audit.md`, as the Voigtländer 28/2 audit does, then delete
-the row. Offset is paraxial focus minus the authored plane (positive: the plane sits in front of focus).
+and model plates the source lists in `rearPlates`. Where the source itself is inconsistent, apply the source-errata
+standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata): correct a value only on two kinds of
+source-internal evidence; otherwise keep the published value and document the contradiction in the lens header,
+`sourceErrata` and `*.audit.md`, as the Voigtländer 28/2 audit does. Then delete the row. Offset is paraxial focus minus the authored plane (positive: the plane sits in front of focus).
 
 | Lens | File | Offset (mm) | Depths | Cause | Status |
 |---|---|---|---|---|---|
@@ -178,11 +179,13 @@ hidden lenses, and files with no usable `imageFormat` (the same backfill as Sect
 ## Section G — prescription errors found in passing
 
 Files whose authored surfaces do not reproduce the source's own first-order values. Fisheye projections skip the
-Gaussian focal-length check in `buildLens()`, so these do not fail validation.
+Gaussian focal-length check in `buildLens()`, so these do not fail validation. Work each row under the source-errata
+standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 
 | Lens | Finding | Fix |
 |---|---|---|
 | Nikon Fisheye-Nikkor 6mm f/2.8 | The file's surfaces trace to EFL 37.41 mm and a back focus of 273 mm; US 3,737,214 Example I states f = 6.3 and B.f. = 37.657. The table prints `R18 = −45.0`; `+45.0` gives EFL 6.300 and back focus 37.658. The file also places the stop ahead of the filter, while Fig. 1 draws it behind R17, and omits the listed filter plate R11/R12 (1.8 mm, n 1.51823). | Re-audit: correct R18 and the element types it changes, move the stop per Fig. 1, draw the filter plate, re-derive semi-diameters, and rewrite the analysis, which treats 37.4 mm as the Gaussian focal length. |
+| Nikkor Z 85mm f/1.8 S | The printed Example 3 table of JP 2020-173366 A traces to EFL 82.222 mm and a total length of 110.81 mm; the patent states 83.00 and 111.35, and its spherical-aberration plot does not show the −0.13 mm undercorrection the table produces. Recorded as an `unresolved` `sourceErrata` entry. Single changes near the second group (R8, R10, the L9 index) restore the focal length and axial correction, but none restores the off-axis correction as well. | Isolate the misprint against the patent text and its sibling examples, then correct it under the source-errata standard; leave it unresolved if no single cause meets that standard. |
 
 ## In-progress diagram sweep
 

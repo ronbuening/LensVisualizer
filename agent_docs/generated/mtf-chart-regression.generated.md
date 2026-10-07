@@ -38,15 +38,15 @@ Two comparisons are tabulated:
 
 ## Summary
 
-`Recorded by the audit` is the audit's own S and T from the anchor file, not a recomputation.
+`Recorded by the audit` is the audit's own S and T from the anchor file, not a recomputation. 20 of its samples belong to prescriptions corrected since the audit (listed under Reproduction of the Audit), so those rows still include the printed, uncorrected tables.
 
 | Maker | Comparison | Samples | Mean signed | Mean absolute | Negative |
 |---|---|---:|---:|---:|---:|
-| All | Audit settings | 392 | -0.0678 | 0.0761 | 85.2% |
-| All | Maker convention | 392 | -0.0506 | 0.0700 | 63.8% |
+| All | Audit settings | 392 | -0.0556 | 0.0639 | 85.2% |
+| All | Maker convention | 392 | -0.0376 | 0.0576 | 62.2% |
 | All | Recorded by the audit | 392 | -0.0631 | 0.0731 | 80.9% |
-| Nikon | Audit settings | 184 | -0.0769 | 0.0833 | 88.6% |
-| Nikon | Maker convention | 184 | -0.0404 | 0.0704 | 42.9% |
+| Nikon | Audit settings | 184 | -0.0510 | 0.0573 | 88.6% |
+| Nikon | Maker convention | 184 | -0.0127 | 0.0439 | 39.7% |
 | Nikon | Recorded by the audit | 184 | -0.0719 | 0.0796 | 83.2% |
 | Sigma | Audit settings | 208 | -0.0597 | 0.0697 | 82.2% |
 | Sigma | Maker convention | 208 | -0.0597 | 0.0697 | 82.2% |
@@ -59,18 +59,18 @@ delta and the share of negative samples.
 
 | Maker | lp/mm | Field | Samples | Audit: signed | absolute | negative | Convention: signed | absolute | negative |
 |---|---:|---|---:|---:|---:|---:|---:|---:|---:|
-| All | 10 | 0-0.3 | 76 | -0.0164 | 0.0226 | 75.0% | -0.0069 | 0.0192 | 40.8% |
-| All | 10 | 0.4-0.7 | 76 | -0.0504 | 0.0518 | 93.4% | -0.0402 | 0.0457 | 72.4% |
-| All | 10 | 0.8-1.0 | 44 | -0.0956 | 0.1023 | 84.1% | -0.0854 | 0.0942 | 77.3% |
-| All | 30 | 0-0.3 | 76 | -0.0369 | 0.0620 | 75.0% | -0.0104 | 0.0648 | 43.4% |
-| All | 30 | 0.4-0.7 | 76 | -0.1090 | 0.1125 | 93.4% | -0.0844 | 0.1018 | 77.6% |
-| All | 30 | 0.8-1.0 | 44 | -0.1408 | 0.1454 | 93.2% | -0.1206 | 0.1299 | 86.4% |
-| Nikon | 10 | 0-0.3 | 36 | -0.0188 | 0.0204 | 83.3% | +0.0014 | 0.0132 | 11.1% |
-| Nikon | 10 | 0.4-0.7 | 36 | -0.0567 | 0.0569 | 97.2% | -0.0353 | 0.0439 | 52.8% |
-| Nikon | 10 | 0.8-1.0 | 20 | -0.1371 | 0.1371 | 100.0% | -0.1145 | 0.1194 | 85.0% |
-| Nikon | 30 | 0-0.3 | 36 | -0.0318 | 0.0546 | 77.8% | +0.0241 | 0.0605 | 11.1% |
-| Nikon | 30 | 0.4-0.7 | 36 | -0.1088 | 0.1161 | 86.1% | -0.0568 | 0.0935 | 52.8% |
-| Nikon | 30 | 0.8-1.0 | 20 | -0.1818 | 0.1826 | 95.0% | -0.1373 | 0.1484 | 80.0% |
+| All | 10 | 0-0.3 | 76 | -0.0164 | 0.0226 | 75.0% | -0.0068 | 0.0192 | 40.8% |
+| All | 10 | 0.4-0.7 | 76 | -0.0411 | 0.0425 | 93.4% | -0.0306 | 0.0363 | 71.1% |
+| All | 10 | 0.8-1.0 | 44 | -0.0591 | 0.0658 | 84.1% | -0.0476 | 0.0571 | 72.7% |
+| All | 30 | 0-0.3 | 76 | -0.0367 | 0.0619 | 75.0% | -0.0103 | 0.0650 | 43.4% |
+| All | 30 | 0.4-0.7 | 76 | -0.0948 | 0.0982 | 93.4% | -0.0689 | 0.0876 | 75.0% |
+| All | 30 | 0.8-1.0 | 44 | -0.1098 | 0.1144 | 93.2% | -0.0862 | 0.0966 | 84.1% |
+| Nikon | 10 | 0-0.3 | 36 | -0.0187 | 0.0203 | 83.3% | +0.0015 | 0.0133 | 11.1% |
+| Nikon | 10 | 0.4-0.7 | 36 | -0.0370 | 0.0372 | 97.2% | -0.0150 | 0.0240 | 50.0% |
+| Nikon | 10 | 0.8-1.0 | 20 | -0.0568 | 0.0568 | 100.0% | -0.0314 | 0.0377 | 75.0% |
+| Nikon | 30 | 0-0.3 | 36 | -0.0315 | 0.0543 | 77.8% | +0.0244 | 0.0608 | 11.1% |
+| Nikon | 30 | 0.4-0.7 | 36 | -0.0787 | 0.0860 | 86.1% | -0.0242 | 0.0636 | 47.2% |
+| Nikon | 30 | 0.8-1.0 | 20 | -0.1135 | 0.1143 | 95.0% | -0.0617 | 0.0753 | 75.0% |
 | Sigma | 10 | 0-0.3 | 40 | -0.0143 | 0.0246 | 67.5% | -0.0143 | 0.0246 | 67.5% |
 | Sigma | 10 | 0.4-0.7 | 40 | -0.0447 | 0.0473 | 90.0% | -0.0447 | 0.0473 | 90.0% |
 | Sigma | 10 | 0.8-1.0 | 24 | -0.0611 | 0.0732 | 70.8% | -0.0611 | 0.0732 | 70.8% |
@@ -94,7 +94,7 @@ authored image plane, in mm. Each comparison lists mean signed and mean absolute
 | `nikon-z-135f18-plena` | 0 | Nikon | geometric (inferred) | 1.80 | 1.85 | iris | -0.0109 | -0.0181 | 0.0182 | +0.0062 | 0.0153 |
 | `nikon-z-24-70f4s` | 0 | Nikon | geometric (inferred) | 4.00 | 4.00 | iris | -0.0734 | -0.0454 | 0.0461 | +0.0066 | 0.0460 |
 | `nikon-z-24-70f4s` | 1 | Nikon | geometric (inferred) | 4.00 | 4.01 | iris | +0.0181 | -0.0566 | 0.0566 | -0.0044 | 0.0260 |
-| `nikon-z-mc-105f28` | 0 | Nikon | geometric (inferred) | 2.80 | 2.89 | iris | +0.0294 | -0.2716 | 0.2716 | -0.2423 | 0.2615 |
+| `nikon-z-mc-105f28` | 0 | Nikon | geometric (inferred) | 2.80 | 2.89 | iris | +0.0294 | -0.0329 | 0.0329 | +0.0125 | 0.0178 |
 | `sigma-105mm-f14-dg-hsm-art` | 0 | Sigma | diffraction (documented) | 1.40 | 1.40 | iris | -0.0258 | -0.0496 | 0.0496 | -0.0496 | 0.0496 |
 | `sigma-105mm-f28-dg-dn-macro-art` | 0 | Sigma | diffraction (documented) | 2.80 | 2.90 | iris | -0.0215 | -0.0609 | 0.0609 | -0.0609 | 0.0609 |
 | `sigma-16mm-f14-dc-dn` | 0 | Sigma | diffraction (documented) | 1.40 | 1.47 | 16 | -0.0052 | -0.0351 | 0.0625 | -0.0351 | 0.0625 |
@@ -112,7 +112,9 @@ The anchor file keeps the S and T the audit itself computed at every sample, wit
 `Audit settings` comparison and a pupil grid forced through 128 and 256. This report refines up to the same
 cap but stops once successive grids agree within 0.01, usually on a coarser grid. Gaps of about that size
 therefore come from sampling alone, and they carry into the `Audit settings` rows above; larger ones mean the
-engine or the lens data changed. Each row summarizes `recomputed - recorded` over the S and T of every sample.
+engine or the lens data changed. A small negative mean is consistent with the diffraction-limit lattice being
+binned above 128 cells, which reads the audit's forced grids slightly high. Each row summarizes
+`recomputed - recorded` over the S and T of every sample.
 
 | Lens | zoomT | Values | Max abs | Mean abs | Mean signed | Above 0.01 | Fields converged | Final grids |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -124,7 +126,6 @@ engine or the lens data changed. Each row summarizes `recomputed - recorded` ove
 | `nikon-z-135f18-plena` | 0 | 40 | 0.0105 | 0.0059 | -0.0059 | 1 | 10/10 | 32-64 |
 | `nikon-z-24-70f4s` | 0 | 44 | 0.0082 | 0.0056 | -0.0056 | 0 | 11/11 | 32-64 |
 | `nikon-z-24-70f4s` | 1 | 40 | 0.0116 | 0.0061 | -0.0061 | 3 | 10/10 | 32-128 |
-| `nikon-z-mc-105f28` | 0 | 40 | 0.0086 | 0.0045 | -0.0044 | 0 | 10/10 | 32-256 |
 | `sigma-105mm-f14-dg-hsm-art` | 0 | 40 | 0.0075 | 0.0033 | -0.0033 | 0 | 10/10 | 64-128 |
 | `sigma-105mm-f28-dg-dn-macro-art` | 0 | 44 | 0.0127 | 0.0073 | -0.0073 | 4 | 11/11 | 32-64 |
 | `sigma-16mm-f14-dc-dn` | 0 | 44 | 0.0069 | 0.0037 | -0.0036 | 0 | 11/11 | 32-256 |
@@ -136,7 +137,7 @@ engine or the lens data changed. Each row summarizes `recomputed - recorded` ove
 | `sigma-85f14-art` | 0 | 40 | 0.0087 | 0.0053 | -0.0053 | 0 | 10/10 | 32-64 |
 | `sigma-art-85mm-f14-dgdn` | 0 | 44 | 0.0077 | 0.0042 | -0.0042 | 0 | 11/11 | 64-128 |
 
-Over these 19 configurations (784 values): max absolute 0.0127, mean absolute
+Over these 18 configurations (744 values): max absolute 0.0127, mean absolute
 0.0047, mean signed -0.0047, 9 above 0.01.
 
 ### Prescription corrected since the audit
@@ -144,7 +145,9 @@ Over these 19 configurations (784 values): max absolute 0.0127, mean absolute
 Lenses with a `sourceErrata` entry of status `corrected` no longer carry the prescription the audit traced, so
 they are left out of the aggregate above.
 
-None.
+| Lens | zoomT | Values | Max abs | Mean abs | Mean signed | Above 0.01 | Fields converged | Final grids |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `nikon-z-mc-105f28` | 0 | 40 | 0.8973 | 0.2393 | +0.2342 | 20 | 10/10 | 32-64 |
 
 ## Chart Sources
 

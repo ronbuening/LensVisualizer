@@ -153,31 +153,33 @@ $$
 Z(h)=\frac{c h^2}{1+\sqrt{1-(1+k)c^2h^2}}+A_4h^4+A_6h^6+A_8h^8+A_{10}h^{10}.
 $$
 
-Here $c=1/R$, and the patent's $k$ maps directly to LensVisualizer `K`; all eight Example 1 conic constants are zero. The coefficients therefore require no conic-convention conversion and, because no uniform scale is applied, no coefficient rescaling. The rendered patent page 14 confirms that surface 14A has a positive A10 term of +2.3692×10^-11 mm^-9 (JP 2016-188967 A, ¶0096; asphere equation at ¶0165–¶0166).
+Here $c=1/R$, and the patent's $k$ maps directly to LensVisualizer `K`; all eight Example 1 conic constants are zero. The coefficients therefore require no conic-convention conversion and, because no uniform scale is applied, no coefficient rescaling (JP 2016-188967 A, ¶0096; asphere equation at ¶0165–¶0166).
+
+One coefficient departs from the printed table. Patent page 14 prints the A10 term of surface 14A as +2.3692×10^-11 mm^-9, and the model uses −2.3692×10^-11 mm^-9. Example 4 reprints the same surface as its surface 13, with the same radius, glass, A4, A6 and A8, but with the negative sign (page 24, ¶0153), and the corresponding surface of Examples 2 and 3 is also negative (¶0115, ¶0134). With the printed sign, the axial marginal ray at the published F/2.88 focuses 15.07 mm behind the paraxial image and converges at F/4.03, whereas the patent's Example 1 spherical-aberration plot (Fig. 2) stays within about 0.06 mm on a ±0.50 mm axis. With the negative sign the same ray focuses 0.024 mm ahead of the paraxial image and converges at F/2.878.
 
 | Surface | A4 (mm^-3) | A6 (mm^-5) | A8 (mm^-7) | A10 (mm^-9) |
 |---|---:|---:|---:|---:|
 | 5A | −2.6625×10^-5 | +3.0031×10^-7 | −1.7989×10^-9 | +5.7847×10^-12 |
 | 6A | −6.8334×10^-5 | +8.4364×10^-9 | −1.2228×10^-9 | −9.8374×10^-12 |
 | 13A | −2.2269×10^-5 | +1.1253×10^-9 | −1.0562×10^-9 | −3.1969×10^-12 |
-| 14A | +5.1791×10^-5 | −5.2286×10^-7 | +4.0083×10^-9 | +2.3692×10^-11 |
+| 14A | +5.1791×10^-5 | −5.2286×10^-7 | +4.0083×10^-9 | −2.3692×10^-11 |
 | 15A | +2.0348×10^-5 | −1.1141×10^-6 | +1.4175×10^-8 | −5.7786×10^-11 |
 | 16A | +2.1580×10^-5 | −8.9505×10^-7 | +1.2780×10^-8 | −5.7413×10^-11 |
 | 21A | −2.4151×10^-5 | −1.3394×10^-7 | +2.2182×10^-9 | −7.5852×10^-12 |
 | 22A | −3.5206×10^-6 | −1.2925×10^-7 | +2.2655×10^-9 | −8.5817×10^-12 |
 
-The patent gives no clear semi-diameters. The final model therefore uses modeled semi-diameters derived from exact d-line construction traces rather than claiming source-published apertures. At those modeled radii, the independently evaluated polynomial departures from the K=0 conic bases are:
+The patent gives no clear semi-diameters. The final model therefore uses modeled semi-diameters rather than claiming source-published apertures: exact d-line construction traces for surfaces 5A–14A and the Fig. 1 optical rims for surfaces 15A–22A. At those modeled radii, the independently evaluated polynomial departures from the K=0 conic bases are:
 
 | Surface | Modeled semi-diameter | Polynomial departure at rim |
 |---|---:|---:|
 | 5A | 9.5 mm | −0.080814 mm |
 | 6A | 9.1 mm | −0.559620 mm |
 | 13A | 9.3 mm | −0.240431 mm |
-| 14A | 9.4 mm | +0.415595 mm |
-| 15A | 10.0 mm | −0.070980 mm |
-| 16A | 9.9 mm | +0.024660 mm |
-| 21A | 13.1 mm | −0.593282 mm |
-| 22A | 13.8 mm | −0.190148 mm |
+| 14A | 9.4 mm | +0.160377 mm |
+| 15A | 8.3 mm | −0.038075 mm |
+| 16A | 8.3 mm | +0.008548 mm |
+| 21A | 10.8 mm | −0.294303 mm |
+| 22A | 10.8 mm | −0.018945 mm |
 
 These departure signs and magnitudes describe the implemented surface shapes at the modeled apertures; they are not used by themselves to assign a unique aberration contribution to each surface. Patent-level functional statements remain broader: the patent associates a positive asphere in G11 with spherical-aberration correction, G12 aspherization with field-curvature control and its focus variation, and G13 aspherization with field-curvature correction (JP 2016-188967 A, ¶0083–¶0085).
 
@@ -206,7 +208,7 @@ The normalized model preserves the raw source value in the supporting evidence b
 
 The physical stop diameter is also absent from the patent. The model stop semi-diameter, 7.559068 mm, is calibrated to reproduce the published infinity FNO of 2.88. Paraxial pupil tracing then gives an entrance-pupil semi-diameter of 3.219018 mm and modeled F/2.880000. That agreement is calibration by construction and is not independent evidence for the manufactured diaphragm diameter.
 
-Surface semi-diameters are modeled because the source publishes none. The integration audit of Fig. 1 at 600 dpi enlarges S1/S2 to 19.8/14.0 mm and S3/S4 to 14.4/10.3 mm. The rear rim of S2 is capped below the drawn extent by the surface-slope limit. The remaining construction apertures are retained. Repository surface and image-circle audits pass; this does not establish full-pupil edge-field transmission.
+Surface semi-diameters are modeled because the source publishes none. The integration audit of Fig. 1 at 600 dpi enlarges S1/S2 to 19.8/14.0 mm and S3/S4 to 14.4/10.3 mm. The rear rim of S2 is capped below the drawn extent by the surface-slope limit. A second Fig. 1 review sets G12 to 8.3 mm and the three rear elements to 10.2/10.8/10.8 mm. The remaining construction apertures are retained. Repository surface and image-circle audits pass; this does not establish full-pupil edge-field transmission.
 
 Surface-by-surface Petzval summation, using φ/(n·n′) for each refracting surface, gives +0.002354795797 mm^-1, corresponding to a signed Petzval radius of −424.665273 mm under the verifier's sign convention. This value is a paraxial design diagnostic, not a claim that the realized image surface or measured field curvature equals that radius.
 
@@ -214,7 +216,7 @@ The final data file was verified by separate sequential height/reduced-angle tra
 
 ## Sources / References
 
-1. Japan Patent Office, **JP 2016-188967 A**, *Inner focusing lens (インナーフォーカス式レンズ)*, published 2016-11-04. Example 1 prescription and focus data: pp. 12–15, ¶0088–¶0106; definitions and asphere equation: p. 26, ¶0164–¶0166; Example 1 section/aberration figures: p. 27.
+1. Japan Patent Office, **JP 2016-188967 A**, *Inner focusing lens (インナーフォーカス式レンズ)*, published 2016-11-04. Example 1 prescription and focus data: pp. 12–15, ¶0088–¶0106; definitions and asphere equation: p. 26, ¶0164–¶0166; Example 1 section/aberration figures: p. 27; aspheric data of Examples 2–4 cited for the surface 14A sign: pp. 17, 21 and 24, ¶0115, ¶0134, ¶0153.
 2. ZEISS, **ZEISS Batis 2.8/18 — Technical Specifications**, datasheet 01/16: https://www.zeiss.com/content/dam/consumer-products/downloads/photography/datasheets/en/batis-lenses/datasheet-zeiss-batis-2818.pdf
 3. ZEISS, **ZEISS Batis 2.8/18 — Technical data**, last updated 2016-04-14: https://www.zeiss.com/content/dam/media/Download/zeiss_batis_2_8_18_f_technical_data.pdf
 4. ZEISS, **Batis Lenses — ZEISS Batis 2.8/18**, current product/archive page: https://www.zeiss.com/photonics-and-optics/en/photography/products/lenses-for-mirrorless-system-cameras/batis-lenses.html

@@ -6,6 +6,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * G2 moves imageward and G3 objectward; source half-life-size/life-size states.
  * Rims inferred from the original figure at 600 dpi and checked for clearance.
  * Numerical glass coordinates are source values; catalog names are inferred.
+ *
+ * NOTE ON SURFACE 27 A10 (PATENT MISPRINT, SIGN CORRECTED):
+ *   Table 1 prints A10 = -1.29299E-13; this file carries +1.29299E-13. With the printed sign the
+ *   table gives 2ω = 23.08° at Ymax = 21.70 against the stated 24.06°, +3.33 % distortion at Ymax
+ *   against about -0.96 % in Fig. 2(A), and a tangential focus 16.7 mm behind the image plane where
+ *   Fig. 2(A) plots every curve within 0.3 mm. The positive sign gives 24.05°, -0.97 % and -0.11 mm.
+ *   Example 2 (same G2–G4 construction) prints a positive A10 and reproduces its own 2ω = 24.05°
+ *   only with it. Every other value is the patent value.
  */
 
 const LENS_DATA = {
@@ -26,6 +34,17 @@ const LENS_DATA = {
   patentAuthors: ["Tomonori Kuribayashi"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 2022,
+  sourceErrata: [
+    {
+      status: "corrected",
+      surface: "27A",
+      field: "A10",
+      printed: -1.29299e-13,
+      applied: 1.29299e-13,
+      evidence: ["source-summary", "aberration-figure", "sibling-example"],
+      note: "Printed sign gives 2ω 23.08° at Ymax 21.70 against the stated 24.06° and +3.33 % distortion against about −0.96 % in Fig. 2(A); Example 2 prints the positive sign.",
+    },
+  ],
   elementCount: 16,
   groupCount: 11,
 
@@ -295,6 +314,7 @@ const LENS_DATA = {
   /* ── Aspherical coefficients ──
    *  Patent equation form B uses κ in place of (1+K).
    *  κ = 1.000 → K = 0 (base is a sphere; all departure from polynomial terms).
+   *  A10 is sign-corrected from the printed -1.29299E-13 (see header and sourceErrata).
    */
   asph: {
     "27A": {
@@ -302,7 +322,7 @@ const LENS_DATA = {
       A4: 9.61768e-6,
       A6: 1.56877e-8,
       A8: -4.92862e-11,
-      A10: -1.29299e-13,
+      A10: 1.29299e-13, // patent prints -1.29299E-13
       A12: -7.4654e-17,
       A14: 0,
     },

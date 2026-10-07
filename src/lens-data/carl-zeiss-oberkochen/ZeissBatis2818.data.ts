@@ -10,6 +10,11 @@ import type { LensDataInput } from "../../types/optics.js";
  *   22A. The printed cover glass CG (surfaces 23–24: 2.500 mm, nd 1.5168, νd 64.20) and the printed 1.000 mm
  *   air space to the image plane are modeled in `rearPlates` (traced, not drawn). The paraxial equivalent is
  *   the former air-equivalent final gap 22.083 + 2.500/1.5168 + 1.000 = 24.731206751055 mm.
+ * - Surface 14A A10 is a corrected source erratum. Example 1 prints +2.3692e-11 (¶0096); this file carries
+ *   -2.3692e-11. Example 4 reprints the surface as its surface 13 (same radius, glass and A4–A8) with the negative
+ *   sign (¶0153), and the corresponding surface of Examples 2 and 3 is negative too (¶0115, ¶0134). With the
+ *   printed sign the F/2.88 axial marginal ray focuses 15.07 mm behind the paraxial image and converges at F/4.03,
+ *   where Fig. 2 plots spherical aberration within 0.06 mm; the negative sign gives -0.024 mm and F/2.878.
  * - Focus status is PUBLISHED. G12/L121 moves imageward; D14 increases 1.472 -> 2.318 mm and D16 decreases
  *   6.519 -> 5.674 mm. G11 and G13 remain fixed. No production-MFD-driven internal reconstruction is used.
  * - The physical stop diameter is not published. STO semi-diameter 7.559068469367 mm is calibrated from the
@@ -49,6 +54,17 @@ const LENS_DATA = {
   patentAuthors: ["Keisuke Omori"],
   patentAssignees: ["Tamron Co., Ltd."],
   patentYear: 2016,
+  sourceErrata: [
+    {
+      status: "corrected",
+      surface: "14A",
+      field: "A10",
+      printed: 2.3692e-11,
+      applied: -2.3692e-11,
+      evidence: ["sibling-example", "aberration-figure"],
+      note: "Example 4 reprints the surface with −2.3692e-11; the printed sign puts the F/2.88 marginal focus 15.07 mm behind the paraxial image where Fig. 2 plots spherical aberration within 0.06 mm.",
+    },
+  ],
   elementCount: 11,
   groupCount: 10,
 
@@ -288,7 +304,7 @@ const LENS_DATA = {
       A4: 5.1791e-5,
       A6: -5.2286e-7,
       A8: 4.0083e-9,
-      A10: 2.3692e-11,
+      A10: -2.3692e-11, // Example 1 prints +2.3692e-11; see header and sourceErrata
       A12: 0,
       A14: 0,
     },
