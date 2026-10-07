@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6G ED II                                     ║
+ * ║  LENS DATA — NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6 G ED II                                     ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2006/0007559 A1, Example 4, Table 4 / Figs. 13-16 (Haruo Sato; Nikon Corporation). ║
  * ║  Correlation: selected ED II target; optical evidence is family-level and also overlaps the 2005 ED lens. ║
@@ -51,7 +51,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-dx-zoom-nikkor-18-55-f35-56g-ed-ii",
   maker: "Nikon",
-  name: "NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6G ED II",
+  name: "NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6 G ED II",
   subtitle:
     "US 2006/0007559 A1 Example 4 — Haruo Sato / Nikon Corporation; selected ED II correlation, not unique within the 18-55 ED family",
   specs: [

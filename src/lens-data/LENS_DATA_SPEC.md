@@ -125,10 +125,11 @@ Keep it normalized even when the product's official styling varies by source:
   `FUJIFILM FUJINON`, `OLYMPUS M.ZUIKO`, `LEICA SUMMICRON`, `CARL ZEISS PLANAR`.
 - Separate mount, system, and series tokens from the focal length. Use `CANON RF 24-105mm`, `FUJIFILM FUJINON XF 23mm`,
   `NIKON NIKKOR Z DX 16-50mm`, not `RF24-105mm`, `XF23mm`, or `ZDX16-50mm`.
-- Write focal lengths as `<number>mm` or `<wide>-<tele>mm`, followed by a space and aperture as `f/<number>`.
-  Keep characteristics separated after the aperture, e.g. `f/2.8 L`, `f/1.4 G`, `f/5.6 R LM OIS WR`.
-- For fixed-lens cameras, put the camera body name in parentheses after the lens name and leave the camera name in
-  normal product-title case, e.g. `FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)`.
+- Write focal lengths as `<number>mm` or `<wide>-<tele>mm` with a plain hyphen, never an en dash, followed by a space
+  and aperture as `f/<number>`. Keep characteristics separated after the aperture, single suffix letters included:
+  `f/2.8 L`, `f/1.4 G`, `f/2.8 D IF-ED`, `f/5.6 R LM OIS WR`.
+- For fixed-lens cameras, put the camera body name, with its maker, in parentheses after the lens name and leave the
+  camera name in normal product-title case, e.g. `FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)`.
 
 ### Optional
 

@@ -1,4 +1,4 @@
-# NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8G IF-ED
+# NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8 G IF-ED
 
 ## Patent Reference and Design Identification
 

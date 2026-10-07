@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED             ║
+ * ║ LENS DATA — NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED             ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 2003/0133200 A1, Example 1 (Susumu Sato / Nikon Corp.).    ║
  * ║ Production correlation: Nikon AF-S VR Zoom-Nikkor 70-200mm f/2.8G IF-ED. ║
@@ -49,7 +49,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-afs-vr-zoom-nikkor-70-200-f28g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED",
+  name: "NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED",
   subtitle: "US 2003/0133200 A1 Example 1 — strong production correlation; tele source label corrected to 196 mm",
   specs: [
     "21 ELEMENTS / 15 GROUPS",

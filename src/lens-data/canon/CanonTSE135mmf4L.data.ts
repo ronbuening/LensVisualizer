@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — CANON TS-E 135mm f/4L MACRO                  ║
+ * ║           LENS DATA — CANON TS-E 135mm f/4 L MACRO                  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP 2018-132674 A, Numerical Example 1.               ║
  * ║  Canon / Mizuma Akira; all-spherical 11-element tilt-shift macro.  ║
@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-tse-135mm-f4l",
   maker: "Canon",
-  name: "CANON TS-E 135mm f/4L MACRO",
+  name: "CANON TS-E 135mm f/4 L MACRO",
   subtitle: "JP 2018-132674 A Example 1 — Canon / Mizuma Akira",
   specs: [
     "11 elements / 7 groups",

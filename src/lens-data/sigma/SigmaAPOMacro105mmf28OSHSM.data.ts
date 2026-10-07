@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║        LENS DATA — Sigma APO Macro 105mm F2.8 EX DG OS HSM                ║
+ * ║        LENS DATA — Sigma MACRO 105mm F2.8 EX DG OS HSM                    ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP 2012-58682 A, Example 4 (Sigma / Noriyuki Ogasawara).    ║
  * ║  16 elements / 11 air-separated groups, all spherical surfaces.           ║
@@ -26,7 +26,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-apo-macro-105mm-f28-os-hsm",
   maker: "Sigma",
-  name: "SIGMA APO Macro 105mm f/2.8 EX DG OS HSM",
+  name: "SIGMA MACRO 105mm f/2.8 EX DG OS HSM",
   subtitle: "JP 2012-58682 A Example 4 — Sigma / Ogasawara",
   specs: [
     "16 elements / 11 groups",

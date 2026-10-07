@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x IN
+ * NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x IN
  *
  * Source: WO 2019/131993 A1, second embodiment, Example 1, Figure 9 and Tables 8-10.
  * Table 10 explicitly states that object and surfaces 1-45 are identical to Table 8,
@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in",
   maker: "Nikon",
   visible: false,
-  name: "NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged",
+  name: "NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged",
   subtitle: "WO 2019/131993 A1 second embodiment Example 1 — TC in; constrained 2.0 m focus reconstruction",
   specs: [
     "TC 1.4x IN — EXAMPLE 1",

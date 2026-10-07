@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — TAMRON AF 28-200mm SUPER XR f/3.8-5.6 Aspherical [IF] MACRO          ║
+ * ║  LENS DATA — TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO          ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 6,437,923 B1, Example 1 / Table 1 (Yasuharu Yamada, Tamron).      ║
  * ║  Production correlation: Tamron Model A03. Manufacturer metadata is kept separate ║
@@ -43,7 +43,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "tamron-a03-28-200mm-f3p8-5p6",
   maker: "Tamron",
-  name: "TAMRON AF 28-200mm SUPER XR f/3.8-5.6 Aspherical [IF] MACRO",
+  name: "TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO",
   subtitle: "US 6,437,923 B1 Example 1 — Model A03 correlation; documented surface-31 source correction",
   specs: [
     "28-200mm marketing / 29.07-193.0mm patent design",

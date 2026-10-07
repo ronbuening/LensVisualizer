@@ -13,7 +13,7 @@
 **Worked examples:** 3
 **Embodiment analyzed:** Third Embodiment, Table 5 and FIG. 3
 
-US 5,557,473 discloses a compact retrofocus wide-angle lens comprising a negative front group G₁ and a positive rear group G₂. The patent states the design goal directly: a lens of about 75° total field and about f/2.8 aperture ratio, with long back focus and improved correction of coma, distortion, and field curvature for SLR use. The Third Embodiment in Table 5 is transcribed here as the working prescription for the Nikon AF Nikkor 28mm f/2.8D.
+US 5,557,473 discloses a compact retrofocus wide-angle lens comprising a negative front group G₁ and a positive rear group G₂. The patent states the design goal directly: a lens of about 75° total field and about f/2.8 aperture ratio, with long back focus and improved correction of coma, distortion, and field curvature for SLR use. The Third Embodiment in Table 5 is transcribed here as the working prescription for the NIKON AF NIKKOR 28mm f/2.8 D.
 
 The identification is supported by the following convergent evidence:
 

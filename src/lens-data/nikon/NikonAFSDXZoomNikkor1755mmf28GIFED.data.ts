@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8G IF-ED                       ║
+ * ║  LENS DATA — NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8 G IF-ED                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2005/0013015 A1, Example 5 (Nikon Corporation / Takayuki Sensui). ║
  * ║  Production correlation: Nikon AF-S DX Zoom-Nikkor 17-55mm f/2.8G IF-ED.          ║
@@ -48,7 +48,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-dx-zoom-nikkor-17-55mm-f28g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8G IF-ED",
+  name: "NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8 G IF-ED",
   subtitle: "US 2005/0013015 A1 Example 5 — Nikon / Takayuki Sensui",
   specs: [
     "14 ELEMENTS / 10 GROUPS",

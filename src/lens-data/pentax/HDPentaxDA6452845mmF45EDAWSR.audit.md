@@ -27,3 +27,9 @@ analysis files and resolve to the existing OHARA catalog rows (catalog 1.72047 /
 1.48749 / 70.24 against the stored 34.7, 25.4 and 70.2). No index, Abbe number, line index or identification
 changed, and the authored line indices still drive tracing; seventeen of the nineteen labels now match a catalog
 row, the other two being the unpublished hybrid-asphere resin layers.
+
+## 2026-10-07 — Display name
+
+Display name changed from `HD PENTAX-DA645 28-45mm f/4.5 ED AW SR` to `PENTAX HD DA645 28-45mm f/4.5 ED AW SR`. The
+2026-08-14 pass had adopted Ricoh's own styling; the catalog convention puts the maker first, as the other HD D FA
+and HD DA* entries already did, so all Pentax names now start with PENTAX. The lens key is unchanged.

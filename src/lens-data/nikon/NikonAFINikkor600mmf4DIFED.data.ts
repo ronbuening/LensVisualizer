@@ -48,7 +48,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-i-nikkor-600mm-f4d-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-I NIKKOR 600mm f/4D IF-ED",
+  name: "NIKON AF-I NIKKOR 600mm f/4 D IF-ED",
   subtitle: "JP H04-238311 A Example 5 — constrained 6 m production-focus reconstruction",
   specs: [
     "9 ELEMENTS / 7 GROUPS",

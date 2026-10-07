@@ -1,4 +1,4 @@
-# NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED
+# NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Title:** *Vibration Reduction Zoom Lens System*
 **Embodiment analyzed:** Example 2
 
-The prescription modeled here is Example 2 of US 2004/0218274 A1. The production correlation is the one fixed for this lens: the NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED. The patent does not state that Example 2 is the commercial product prescription, so the identification is a correlation rather than a manufacturer-confirmed disclosure.
+The prescription modeled here is Example 2 of US 2004/0218274 A1. The production correlation is the one fixed for this lens: the NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED. The patent does not state that Example 2 is the commercial product prescription, so the identification is a correlation rather than a manufacturer-confirmed disclosure.
 
 Several independent characteristics converge on that correlation:
 

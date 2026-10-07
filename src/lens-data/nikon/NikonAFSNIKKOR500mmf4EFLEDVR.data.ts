@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S NIKKOR 500mm f/4E FL ED VR                      ║
+ * ║  LENS DATA — NIKON AF-S NIKKOR 500mm f/4 E FL ED VR                      ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Source: JP 2015-215560 A, Example 1 (Nikon Corporation).                 ║
  * ║  Native patent scale; no uniform scaling is applied.                       ║
@@ -58,7 +58,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-nikkor-500mm-f4e-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 500mm f/4E FL ED VR",
+  name: "NIKON AF-S NIKKOR 500mm f/4 E FL ED VR",
   subtitle: "JP 2015-215560 A Example 1 — FLG omitted; active rear focus normalized",
   specs: [
     "16 ELEMENTS / 12 GROUPS",

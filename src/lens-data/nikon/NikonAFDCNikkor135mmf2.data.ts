@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF DC-NIKKOR 135mm f/2D                               ║
+ * ║ LENS DATA — NIKON AF DC-NIKKOR 135mm f/2 D                               ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 4,908,639 A, Example 2 (Masaaki Yanagisawa / Nikon).     ║
  * ║ Patent prescription: 7 elements / 6 groups, all spherical.               ║
@@ -47,7 +47,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-dc-nikkor-135mm-f2",
   maker: "Nikon",
-  name: "NIKON AF DC-NIKKOR 135mm f/2D",
+  name: "NIKON AF DC-NIKKOR 135mm f/2 D",
   subtitle: "US 4,908,639 A — Example 2; high-confidence production correlation",
   specs: [
     "7 ELEMENTS / 6 GROUPS",

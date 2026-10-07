@@ -40,7 +40,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-powershot-g1-x-mark-ii-125-625-f20-39",
   maker: "Canon",
-  name: "CANON 12.5-62.5mm f/2.0-3.9 (PowerShot G1 X Mark II)",
+  name: "CANON 12.5-62.5mm f/2-3.9 (Canon PowerShot G1 X Mark II)",
   subtitle: "US 2015/0219882 A1 Numerical Example 2 — Canon / Shuichi Mogi",
   specs: [
     "14 elements / 11 groups",

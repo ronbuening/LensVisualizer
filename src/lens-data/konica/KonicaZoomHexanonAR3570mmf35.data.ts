@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║      LENS DATA — KONICA ZOOM-HEXANON AR 35–70mm f/3.5                   ║
+ * ║      LENS DATA — KONICA ZOOM-HEXANON AR 35-70mm f/3.5                   ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JPS55-21005A, Example 1 (JP1980-021005 job-card id).       ║
  * ║  Two-component zoom: negative L1-L4 front component and positive L5-L9   ║
@@ -43,7 +43,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "konica-zoom-hexanon-ar-35-70mm-f3-5",
   maker: "Konica",
-  name: "KONICA ZOOM-HEXANON AR 35–70mm f/3.5",
+  name: "KONICA ZOOM-HEXANON AR 35-70mm f/3.5",
   subtitle: "JPS55-21005A Example 1 — production correlation to Cat. No. 703-172",
   specs: ["9 ELEMENTS / 9 GROUPS", "35–70mm", "f/3.5-f/22", "63°-34°", "MFD 0.35m"],
 

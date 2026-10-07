@@ -12,7 +12,7 @@
 
 The modeled prescription is Example 4 of US 6,239,919 B1, retained at its native patent scale. The patent gives a focal length of 392.0 mm and F-number 2.88 for this embodiment. Independent paraxial tracing of the final authored prescription gives an effective focal length of 391.998755 mm, so no dimensional scaling has been applied. The production name, marketing focal length, and marketing aperture remain separate in the data file as 400 mm and f/2.8.
 
-The production correlation to the **NIKON AI AF-S NIKKOR ED 400mm f/2.8D II IF** rests on several convergent features rather than focal length alone:
+The production correlation to the **NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II** rests on several convergent features rather than focal length alone:
 
 1. Nikon specifies 11 lens elements in 9 groups, plus one protective glass. Setting aside the patent's plane-parallel source plates (the front plate is omitted; the rear filter is drawn as a plane-parallel plate element but not counted in `elementCount`), Example 4 contains exactly 11 active glass elements in 9 air-separated groups.
 2. Nikon identifies three ED elements at production element positions 1, 2, and 5. The final data file places the same low-dispersion coordinate, `nd = 1.497820`, `νd = 82.52`, at L11, L12, and L15, which occupy those same active-element positions.

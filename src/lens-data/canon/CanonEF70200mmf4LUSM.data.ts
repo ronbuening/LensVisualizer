@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — CANON EF 70-200mm f/4L USM                                  ║
+ * ║ LENS DATA — CANON EF 70-200mm f/4 L USM                                  ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Source prescription: JP2000284174A, Numerical Example 1 (Canon Inc.).     ║
  * ║ Production correlation: Canon EF70-200mm F4L USM, marketed Sep. 1999.     ║
@@ -56,7 +56,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-ef-70-200mm-f4-l-usm",
   maker: "Canon",
-  name: "CANON EF 70-200mm f/4L USM",
+  name: "CANON EF 70-200mm f/4 L USM",
   subtitle: "JP2000284174A Example 1 — constrained L1b close-focus reconstruction",
   specs: [
     "16 ELEMENTS / 13 GROUPS",

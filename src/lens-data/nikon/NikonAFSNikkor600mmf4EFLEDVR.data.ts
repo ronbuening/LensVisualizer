@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S NIKKOR 600mm f/4E FL ED VR                       ║
+ * ║  LENS DATA — NIKON AF-S NIKKOR 600mm f/4 E FL ED VR                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2018/0031811 A1, Example 4 (Miwa / Yamashita / Nikon).   ║
  * ║  Production correlation: Nikon AF-S NIKKOR 600mm f/4E FL ED VR (2015).   ║
@@ -46,7 +46,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-nikkor-600mm-f4e-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 600mm f/4E FL ED VR",
+  name: "NIKON AF-S NIKKOR 600mm f/4 E FL ED VR",
   subtitle: "US 2018/0031811 A1 — Example 4; correlated to the 2015 AF-S production lens",
   specs: [
     "16 IMAGING ELEMENTS / 12 GROUPS + PROTECTIVE MENISCUS",

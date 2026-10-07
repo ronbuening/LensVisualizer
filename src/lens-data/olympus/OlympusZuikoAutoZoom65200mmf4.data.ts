@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║   LENS DATA — OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4              ║
+ * ║   LENS DATA — OLYMPUS ZUIKO AUTO-ZOOM 65-200mm f/4              ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 4,568,150, Embodiment 4 / claim 7, Olympus Optical.       ║
  * ║  Four-group positive-negative-positive-positive telephoto zoom.             ║
@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "olympus-zuiko-auto-zoom-65-200mm-f4",
   maker: "Olympus",
-  name: "OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4",
+  name: "OLYMPUS ZUIKO AUTO-ZOOM 65-200mm f/4",
   subtitle: "US 4,568,150 Embodiment 4 — Olympus Optical / Ikari & Fujii",
   specs: [
     "14 elements / 11 groups",

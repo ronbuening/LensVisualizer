@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5E ED              ║
+ * ║  LENS DATA — NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5 E ED              ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Source: JP 2017-068114 A, Example 1 (Nikon Corporation).                 ║
  * ║  Exact 1:1 transcription of the patent embodiment: 18 elements in         ║
@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-fisheye-nikkor-8-15mm-f35-45e-ed",
   maker: "Nikon",
-  name: "NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5E ED",
+  name: "NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5 E ED",
   subtitle: "JP 2017-068114 A Example 1 — approximate product correlation; not the production prescription",
   specs: [
     "18 ELEMENTS / 13 GROUPS — PATENT EXAMPLE",

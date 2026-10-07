@@ -43,3 +43,9 @@ Patent: US 3,850,509, Example 1
   assumed index of 1.51633.
 - Olympus counts the built-in filter in its 11 elements / 8 groups; the header keeps that note and now states why the
   plate is left out.
+
+## 2026-10-07 — Display name
+
+Display name changed from `OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye` to `OLYMPUS ZUIKO AUTO-FISHEYE 16mm f/3.5`, the name
+the lens carries (Zuiko Auto-Fisheye 16mm 1:3.5) and the form already used for the 8mm entry. The lens key is
+unchanged.

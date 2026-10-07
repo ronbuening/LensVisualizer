@@ -1,4 +1,4 @@
-# KONICA ZOOM-HEXANON AR 65–135mm f/4
+# KONICA ZOOM-HEXANON AR 65-135mm f/4
 
 ## Patent Reference and Design Identification
 
@@ -11,7 +11,7 @@
 **Title:** ３レンズ群の１体移動によるズームレンズのフォーカシング方式 — focusing method for a zoom lens by integral movement of three lens groups
 **Embodiment analyzed:** Example 3
 
-Example 3 is the selected prescription for the KONICA ZOOM-HEXANON AR 65–135mm f/4. The patent describes a four-or-more-group zoom in which the three object-side functional groups can be translated together for focusing. Its Example 3 is explicitly a 65–135 mm class design with positive, negative, positive, positive functional-group powers.
+Example 3 is the selected prescription for the KONICA ZOOM-HEXANON AR 65-135mm f/4. The patent describes a four-or-more-group zoom in which the three object-side functional groups can be translated together for focusing. Its Example 3 is explicitly a 65–135 mm class design with positive, negative, positive, positive functional-group powers.
 
 The production correlation rests on converging, but distinct, evidence. Konica's own Hexanon sales literature lists a 65–135mm f/4 Auto lens with 13 elements in 9 groups, a 36°–18° viewing-angle range, 5 ft minimum focus, f/4–16 aperture range, and 55 mm filter thread. The patent prescription independently decomposes into 13 glass elements in 9 air-separated physical groups and covers 66.288–135.090 mm in its published numerical states. The manufacturer literature does not identify JPS58-149014A; the correlation is therefore a source-supported identification, not a claim of manufacturer confirmation of the patent relationship.
 

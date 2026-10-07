@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S NIKKOR ED 500mm f/4D IF                      ║
+ * ║ LENS DATA — NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED                      ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 5,745,306 A, Example 2 / Fig. 4 / Table 2 (Sato/Nikon). ║
  * ║ Native patent scale: F=490.0 mm; independent EFL=489.960550 mm.          ║
@@ -49,7 +49,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-s-nikkor-500mm-f4d-if-ed",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR ED 500mm f/4D IF",
+  name: "NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED",
   subtitle: "US 5,745,306 A — Example 2 / second embodiment (Fig. 4, Table 2)",
   specs: [
     "11 ELEMENTS / 9 GROUPS",

@@ -96,7 +96,7 @@ describe("LensIndexPage custom filters", () => {
     fireEvent.click(screen.getByRole("button", { name: /^Sony E \(\d+\)$/ }));
     fireEvent.click(screen.getByRole("button", { name: /^135 \/ Full-frame \(\d+\)$/ }));
 
-    expect(screen.getByRole("link", { name: /VOIGTLÄNDER APO-LANTHAR 50mm f\/2\.0 Aspherical/i })).toBeTruthy();
+    expect(screen.getByRole("link", { name: /VOIGTLÄNDER APO-LANTHAR 50mm f\/2 Aspherical/i })).toBeTruthy();
     expect(screen.queryByRole("link", { name: /NIKON NIKKOR Z 26mm f\/2.8/i })).toBeNull();
 
     fireEvent.click(screen.getByRole("button", { name: "Clear Filters" }));

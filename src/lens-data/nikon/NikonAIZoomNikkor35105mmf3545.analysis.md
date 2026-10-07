@@ -1,4 +1,4 @@
-# Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S
+# NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S
 
 ## Patent Reference and Design Identification
 
@@ -13,7 +13,7 @@
 
 US 4,699,475 describes a compact normal zoom for the 35mm still-camera format. Its basic form is a positive first group, negative second group, and positive third group. In the fourth through seventh embodiments, the rear positive group is divided into independently moving G31 and G32 units, so the practical construction is a four-moving-unit positive-negative-positive-positive zoom.
 
-The prescription represented here is the Table 7 35–105mm f/3.5–4.5 design, which is the source-supported match for the Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S.
+The prescription represented here is the Table 7 35–105mm f/3.5–4.5 design, which is the source-supported match for the NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S.
 
 The identification rests on the following convergent evidence.
 

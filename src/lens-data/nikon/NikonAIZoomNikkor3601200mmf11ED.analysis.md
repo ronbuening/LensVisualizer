@@ -9,7 +9,7 @@
 **Embodiment analyzed:** Example I / Claim 4
 **Certificate of Correction:** March 5, 1974
 
-Example I of US 3,743,384 is the prescription transcribed here. The patent states a 35 mm still-camera zoom lens with $f = 360$-$1200$ mm, F/11 relative aperture, and telephoto ratio 0.61. The prescription contains 32 refracting surfaces defining 20 glass elements in 12 air-separated groups. Those values match the production Nikon AI Zoom-Nikkor 360-1200mm f/11 ED specification: 360-1200 mm, f/11, 20 elements in 12 groups, Nikon F mount, and 6 m minimum marked focusing distance.
+Example I of US 3,743,384 is the prescription transcribed here. The patent states a 35 mm still-camera zoom lens with $f = 360$-$1200$ mm, F/11 relative aperture, and telephoto ratio 0.61. The prescription contains 32 refracting surfaces defining 20 glass elements in 12 air-separated groups. Those values match the production NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED specification: 360-1200 mm, f/11, 20 elements in 12 groups, Nikon F mount, and 6 m minimum marked focusing distance.
 
 The patent's Certificate of Correction is material. It corrects $r_{12}$ placement, $r_{28}$, $r_{29}$, $d_{29}$, and $r_{32}$ for Example I, along with several Example II errors. The rendered patent pages were checked directly rather than relying on OCR alone. Surface $r_{15}$ is used as $+444.7$ mm. The OCR text can misread this sign, but the rendered Example I table and Claim 4 table show the plus sign, and that value gives the biconcave L9 form required by the patent prose. It is not treated as an additional certificate-unlisted patent error.
 

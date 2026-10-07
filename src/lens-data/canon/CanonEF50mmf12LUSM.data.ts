@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — CANON EF 50mm f/1.2L USM                                  ║
+ * ║  LENS DATA — CANON EF 50mm f/1.2 L USM                                  ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║  Optical source: JP2007333790A, Numerical Example 1, Canon Inc.          ║
  * ║  Production correlation: Canon EF 50mm f/1.2L USM.                      ║
@@ -50,7 +50,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-ef-50mm-f1p2l-usm",
   maker: "Canon",
-  name: "CANON EF 50mm f/1.2L USM",
+  name: "CANON EF 50mm f/1.2 L USM",
   subtitle: "JP2007333790A Example 1 — production correlation; constrained unit-focus reconstruction",
   specs: [
     "8 ELEMENTS / 6 GROUPS",

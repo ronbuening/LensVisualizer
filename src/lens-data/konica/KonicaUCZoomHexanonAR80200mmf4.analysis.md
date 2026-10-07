@@ -11,7 +11,7 @@
 
 The prescription is the first numerical example of JP S51-37247 A. The patent front page identifies Hideo Shizume as inventor and Konishiroku Photo Industry Co., Ltd. as applicant. Example 1 is tabulated on patent page 303 of the supplied publication scan, with its optical section and aberration plots beginning on page 304.
 
-The selected production correlation is the **KONICA UC ZOOM HEXANON AR 80–200mm f/4**. The correlation rests on convergent, but not manufacturer-confirmed, evidence:
+The selected production correlation is the **KONICA UC ZOOM HEXANON AR 80-200mm f/4**. The correlation rests on convergent, but not manufacturer-confirmed, evidence:
 
 1. The Konica/Berkey product sheet specifies an 80–200mm f/4 Automatic Macro Zoom Hexanon UC with 14 elements in 10 groups. The patent example is likewise a 14-element, 10-group constant-f/4 zoom whose printed focal range is 79.925–196.158mm.
 2. Konica literature gives a 30°–12° angle of view and 0.7m minimum focus measured from the film plane. The patent shows full-format image heights near 21.6mm and supplies close-focus aberration plots at 0.7m.

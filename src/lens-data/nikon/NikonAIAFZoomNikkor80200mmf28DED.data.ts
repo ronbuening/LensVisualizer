@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED                                            ║
+ * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 D ED                                            ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Optical source: US 5,579,171 A, Example 3 / third embodiment, Table 4 (Nikon Corporation).         ║
  * ║  Production correlation: Nikon AI AF Zoom-Nikkor 80-200mm f/2.8D ED, Nikon F, FX/35mm.             ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-zoom-nikkor-80-200-f28d-ed",
   maker: "Nikon",
-  name: "NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED",
+  name: "NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 D ED",
   subtitle: "US 5,579,171 A Example 3 — centered prescription; patent G3 stabilization is not production VR",
   specs: [
     "16 ELEMENTS / 11 GROUPS",

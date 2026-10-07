@@ -1,4 +1,4 @@
-# NIKON AI AF-S NIKKOR ED 500mm f/4D IF
+# NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED
 
 ## Patent Reference and Design Identification
 
@@ -14,7 +14,7 @@
 
 The prescription is the second embodiment of US 5,745,306 A. The patent publishes a 490.0 mm, f/4.08 internal-focusing telephoto system in which a positive first group G1, negative focusing group G2, and positive rear group G3 form the principal power sequence. Table 2 is a d-line prescription: its refractive indices and Abbe numbers refer to 587.6 nm. The companion data file retains that native patent scale; no uniform rescaling is applied.
 
-The production correlation is fixed to the NIKON AI AF-S NIKKOR ED 500mm f/4D IF named in the job card. It is a correlation rather than a manufacturer statement that this patent example is the production prescription. Several independent features converge:
+The production correlation is fixed to the NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED named in the job card. It is a correlation rather than a manufacturer statement that this patent example is the production prescription. Several independent features converge:
 
 1. The modeled prescription draws 11 powered elements in 9 air-separated groups plus the rear filter plate, after exclusion of the patent's front plane-glass filter plate; the rear filter plate is traced by every analysis but is not counted in `elementCount`. Nikon's official legacy product page specifies 11 elements in 9 groups plus one protective glass.
 2. The patent's three elements at L11, L12, and L14b use the same very-low-dispersion coordinate pair, nd = 1.497820 and νd = 82.52. Nikon specifies three ED elements at production positions 1, 2, and 5, which are the corresponding active-element positions in this model.

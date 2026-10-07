@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S NIKKOR ED 400mm f/2.8D II IF                    ║
+ * ║ LENS DATA — NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II                    ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 6,239,919 B1, Example 4 / Embodiment 4 (Susumu Sato,       ║
  * ║ Nikon Corporation). The active prescription is kept at the patent scale.   ║
@@ -60,7 +60,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-s-nikkor-400mm-f28d-if-ed-ii",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR ED 400mm f/2.8D II IF",
+  name: "NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II",
   subtitle: "US 6,239,919 B1 — Example 4; constrained active-model close-focus reconstruction",
   specs: [
     "11 ELEMENTS / 9 GROUPS",

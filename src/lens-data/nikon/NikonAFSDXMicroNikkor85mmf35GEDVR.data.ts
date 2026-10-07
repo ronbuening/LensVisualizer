@@ -49,7 +49,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-dx-micro-nikkor-85mm-f35g-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR",
+  name: "NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR",
   subtitle: "US 2009/0190220 A1 Example 1 — production correlation inferred; published focus keyframes",
   specs: [
     "14 ELEMENTS / 10 GROUPS",

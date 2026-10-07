@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * NIKON AF-S NIKKOR 70-200mm f/4G ED VR — patent-correlated model.
+ * NIKON AF-S NIKKOR 70-200mm f/4 G ED VR — patent-correlated model.
  * Source: US 2017/0315337 A1, First Example / Example 1.
  * 20 elements / 14 physical optical groups; all-spherical prescription.
  *
@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-70-200mm-f4g-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 70-200mm f/4G ED VR",
+  name: "NIKON AF-S NIKKOR 70-200mm f/4 G ED VR",
   subtitle: "US 2017/0315337 A1 — Example 1; strong production correlation, not manufacturer-confirmed attribution",
   specs: [
     "20 ELEMENTS / 14 GROUPS",

@@ -1,4 +1,4 @@
-# NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6G IF-ED
+# NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6 G IF-ED
 
 ## Patent Reference and Design Identification
 

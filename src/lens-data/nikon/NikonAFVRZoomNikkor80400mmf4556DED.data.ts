@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED - US 6,141,156 A, Working Example 4.
+ * NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6 D ED - US 6,141,156 A, Working Example 4.
  *
  * Strong production correlation, not an explicit product identification in the patent. The active model preserves
  * Working Example 4 at native scale: 17 physical elements in 11 air-separated optical units, organized as six
@@ -34,7 +34,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-af-vr-zoom-nikkor-80-400mm-f45-56d-ed",
   maker: "Nikon",
-  name: "NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED",
+  name: "NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6 D ED",
   subtitle: "US 6,141,156 A Working Example 4 - constrained 2.3 m G1 focus reconstruction",
   specs: [
     "17 ELEMENTS / 11 GROUPS",

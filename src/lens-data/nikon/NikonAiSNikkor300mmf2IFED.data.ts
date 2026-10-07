@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON NIKKOR 300mm f/2S IF-ED                              ║
+ * ║  LENS DATA — NIKON AI NIKKOR 300mm f/2 S IF-ED                              ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 4,732,459 A, Example 4 (Kiyoshi Hayashi / Nippon Kogaku) ║
  * ║  Native-scale 300 mm f/2 positive-negative-positive internal-focus design.║
@@ -39,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ais-nikkor-300mm-f2-if-ed",
   maker: "Nikon",
-  name: "NIKON NIKKOR 300mm f/2S IF-ED",
+  name: "NIKON AI NIKKOR 300mm f/2 S IF-ED",
   subtitle: "US 4,732,459 A — Example 4 / fourth embodiment",
   specs: ["11 ELEMENTS / 8 GROUPS", "f = 300.0007 mm", "F/2.0", "21.0 mm INTERNAL FOCUS TRAVEL"],
 

@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * LENS DATA — CANON EF 70-200mm f/4L IS USM
+ * LENS DATA — CANON EF 70-200mm f/4 L IS USM
  *
  * Source: JP2008070450A, Example 1 (Canon Inc.; Yoshiyuki Taki).
  * Production correlation: strong inference. The embodiment has the production lens's 20 elements / 15 groups,
@@ -48,7 +48,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-ef-70-200mm-f4l-is-usm",
   maker: "Canon",
-  name: "CANON EF 70-200mm f/4L IS USM",
+  name: "CANON EF 70-200mm f/4 L IS USM",
   subtitle: "JP2008070450A Example 1 — strong production correlation; unscaled patent prescription",
   specs: [
     "20 ELEMENTS / 15 GROUPS",

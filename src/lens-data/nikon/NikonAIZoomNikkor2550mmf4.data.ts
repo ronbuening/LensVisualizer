@@ -1,6 +1,6 @@
 import type { LensDataInput } from "../../types/optics.js";
 
-// Nikon AI Zoom-Nikkor 25-50mm f/4
+// NIKON AI ZOOM-NIKKOR 25-50mm f/4
 // Source: US 4,189,212, Example 8 (Nippon Kogaku K.K., Mizutani/Nakamura).
 // The Example 8 table prints r11 as +219.5, but Claim 20 repeats the same prescription with r11 = -219.5.
 // Paraxial verification confirms that the negative sign is required: +219.5 gives a wide EFL of ~57.55 mm;
@@ -18,7 +18,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   key: "nikon-ai-zoom-nikkor-25-50mm-f4",
-  name: "Nikon AI Zoom-Nikkor 25-50mm f/4",
+  name: "NIKON AI ZOOM-NIKKOR 25-50mm f/4",
   maker: "Nikon",
   subtitle: "US 4,189,212 Example 8 — Nippon Kogaku wide-angle zoom",
   specs: [

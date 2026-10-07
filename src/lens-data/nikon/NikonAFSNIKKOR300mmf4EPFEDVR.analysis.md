@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 300mm f/4E PF ED VR
+# NIKON AF-S NIKKOR 300mm f/4 E PF ED VR
 
 ## Patent Reference and Design Identification
 

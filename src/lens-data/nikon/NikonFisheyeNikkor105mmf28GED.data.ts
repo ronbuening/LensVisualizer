@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════╗
- * ║ NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8G ED                         ║
+ * ║ NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8 G ED                         ║
  * ╠════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 7,161,746 B2, Example 9, Table 9 and FIG. 17.        ║
  * ║ Corrected transcription of the all-spherical patent prescription.    ║
@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-fisheye-nikkor-105mm-f28g-ed",
   maker: "Nikon",
-  name: "NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8G ED",
+  name: "NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8 G ED",
   subtitle: "US 7,161,746 B2 Example 9 — Nikon / Keiko Mizuguchi",
   specs: [
     "10 elements / 7 groups",

@@ -1,4 +1,4 @@
-# Olympus OM Zuiko 16mm f/3.5 Fisheye — Patent Example 1 Analysis
+# Olympus Zuiko Auto-Fisheye 16mm f/3.5 — Patent Example 1 Analysis
 
 ## Patent Reference and Design Identification
 

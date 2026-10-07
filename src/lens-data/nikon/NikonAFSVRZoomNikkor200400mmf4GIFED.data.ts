@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Lens data - NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED
+ * Lens data - NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED
  *
  * Source: US 2005/0157403 A1, Example 1 (Susumu Sato / Nikon Corporation).
  * Production correlation: Nikon's original 2003 AF-S VR Zoom-Nikkor 200-400mm f/4G IF-ED.
@@ -43,7 +43,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-afs-vr-200400f4g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED",
+  name: "NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED",
   subtitle: "US 2005/0157403 A1 Example 1 - Susumu Sato / Nikon Corporation",
   specs: [
     "24 ELEMENTS / 17 GROUPS",

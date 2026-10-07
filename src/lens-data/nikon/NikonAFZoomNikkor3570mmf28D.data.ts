@@ -28,7 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-zoom-nikkor-35-70mm-f28d",
   maker: "Nikon",
-  name: "NIKON AF ZOOM-NIKKOR 35-70mm f/2.8D",
+  name: "NIKON AF ZOOM-NIKKOR 35-70mm f/2.8 D",
   subtitle: "US 6,320,698 B1 Example 3 - Nikon / Suzuki",
   specs: [
     "15 elements / 12 groups",

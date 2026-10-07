@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AI AF-S NIKKOR ED 300mm f/2.8D IF                     ║
+ * ║  LENS DATA — NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED                     ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 5,745,306 A, Example 1 (Susumu Sato / Nikon Corporation).║
  * ║  Production correlation: Nikon AF-S Nikkor 300mm f/2.8D IF-ED (1996).     ║
@@ -51,7 +51,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-s-nikkor-300mm-f28d-if-ed",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR ED 300mm f/2.8D IF",
+  name: "NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED",
   subtitle: "US 5,745,306 A — Example 1; correlated to the 1996 AF-S production lens",
   specs: [
     "11 ELEMENTS / 8 GROUPS",

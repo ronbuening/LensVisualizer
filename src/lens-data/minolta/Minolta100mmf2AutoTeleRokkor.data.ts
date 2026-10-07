@@ -34,7 +34,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "minolta-auto-tele-rokkor-100f2",
   maker: "Minolta",
-  name: "Minolta Auto Tele Rokkor-PF 100mm f/2",
+  name: "MINOLTA AUTO TELE ROKKOR-PF 100mm f/2",
   subtitle: "JP1963-011590 Example 2 — production correlation inferred",
   specs: ["6 ELEMENTS / 5 GROUPS", "f = 100 mm", "f/2", "2ω = 24°", "ALL-SPHERICAL"],
 

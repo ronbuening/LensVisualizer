@@ -1,4 +1,4 @@
-# NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED — Optical Analysis
+# NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED — Optical Analysis
 
 ## Patent Reference and Design Identification
 

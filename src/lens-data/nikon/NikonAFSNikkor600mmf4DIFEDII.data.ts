@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S NIKKOR ED 600mm f/4D II IF                      ║
+ * ║ LENS DATA — NIKON AI AF-S NIKKOR 600mm f/4 D IF-ED II                      ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 5,745,306 A, Example 3 (Susumu Sato / Nikon Corporation).       ║
  * ║ Correlation: Nikon AI AF-S Nikkor ED 600mm f/4D II IF.                     ║
@@ -50,7 +50,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-nikkor-600mm-f4d-if-ed-ii",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR ED 600mm f/4D II IF",
+  name: "NIKON AI AF-S NIKKOR 600mm f/4 D IF-ED II",
   subtitle: "US 5,745,306 A — Example 3 — Nikon internal-focus telephoto correlation",
   specs: [
     "10 ELEMENTS / 7 GROUPS",

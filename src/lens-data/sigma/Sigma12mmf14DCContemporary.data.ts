@@ -21,7 +21,7 @@ const LENS_DATA = {
   // Published with the asphere-cap engine fix it depends on, not at the earlier draft addition commit.
   publishedAt: "2026-10-05T14:11:00Z",
   maker: "Sigma",
-  name: "SIGMA 12mm f/1.4 DC Contemporary",
+  name: "SIGMA 12mm f/1.4 DC | Contemporary",
   subtitle: "JP 2025-186709 A, Numerical Example 1; construction correlation, not confirmed production prescription",
   specs: [
     "14 ELEMENTS / 12 GROUPS",

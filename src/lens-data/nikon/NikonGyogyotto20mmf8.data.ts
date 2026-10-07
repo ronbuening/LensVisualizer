@@ -36,7 +36,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-gyogyotto-20mm-f8",
   maker: "Nikon",
-  name: "NIKON Gyogyotto 20mm f/8",
+  name: "NIKON GYOGYOTTO 20mm f/8",
   subtitle: "US 5,949,588 Table 8 — Ohshita / Shibayama",
   specs: [
     "3 elements / 2 groups",

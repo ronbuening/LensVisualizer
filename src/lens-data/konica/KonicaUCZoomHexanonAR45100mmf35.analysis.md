@@ -10,7 +10,7 @@
 **Embodiment analyzed:** Example 1
 
 The LensVisualizer prescription corresponds to Example 1 of JP S51-34741 A and is presented as the selected production
-correlation for the **KONICA UC ZOOM HEXANON AR 45–100mm f/3.5**. The primary Japanese publication scan controls the
+correlation for the **KONICA UC ZOOM HEXANON AR 45-100mm f/3.5**. The primary Japanese publication scan controls the
 historical applicant attribution: its front page names 小西六写真工業株式会社, normalized in the data file as
 Konishiroku Photo Industry Co., Ltd. The searchable Google Patents record is useful for dates and inventor metadata, but
 its modern assignee normalization is not substituted for the applicant printed on the original publication.

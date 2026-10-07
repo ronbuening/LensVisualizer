@@ -10,14 +10,14 @@
 **Title:** *Telephoto Lens with Large Relative Aperture*\
 **Embodiment analyzed:** Example 2 / Second Embodiment (FIG. 2)
 
-The prescription modeled here is the Second Embodiment of US 4,176,913 A. The patent publishes a 200.0 mm, f/2.0, positive–negative–positive internal-focus system for 35 mm still photography and gives the complete numerical prescription for FIG. 2. The production correlation is the user-selected Nikon Ai Nikkor ED 200mm F2S (IF); the prescription itself remains patent-derived rather than manufacturer-published.
+The prescription modeled here is the Second Embodiment of US 4,176,913 A. The patent publishes a 200.0 mm, f/2.0, positive–negative–positive internal-focus system for 35 mm still photography and gives the complete numerical prescription for FIG. 2. The production correlation is the user-selected Nikon Ai Nikkor 200mm f/2S IF-ED, which Nikon's history page titles Ai Nikkor ED 200mm F2S (IF); the prescription itself remains patent-derived rather than manufacturer-published.
 
 The correlation rests on several convergent features:
 
 1. The patent's Second Embodiment is exactly 200.0 mm at f/2.0, matching the production lens's marketed focal length and maximum aperture.
 2. The modeled prescription has 10 elements in 8 air-separated groups. Nikon's historical account gives the same 10-element architecture and identifies the first two front elements as ED glass.
 3. Both sources describe a fixed three-element front group, a three-element concave internal-focusing group, and a fixed rear positive group. Nikon additionally states that the final concave element of the rear group reduces the Petzval sum, matching L33 in FIG. 2.
-4. Nikon records Kiyoshi Hayashi as the optical designer, with the optical design completed in 1976, production drawings released in November 1976, and the initial press-only Ai Nikkor ED 200mm F2S (IF) release in April 1977. Hayashi is also one of the two inventors named on the patent, whose priority date is April 28, 1977.
+4. Nikon records Kiyoshi Hayashi as the optical designer, with the optical design completed in 1976, production drawings released in November 1976, and the initial press-only release in April 1977 as the Ai Nikkor 200mm f/2 IF-ED, followed by general sale in April 1982 as the Ai Nikkor 200mm f/2S IF-ED. Hayashi is also one of the two inventors named on the patent, whose priority date is April 28, 1977.
 
 Nikon does not state on the historical product page that US 4,176,913 A is the production prescription. The identification is therefore a production-to-patent correlation supported by architecture, chronology, designer attribution, and optical specifications rather than an explicit manufacturer patent citation.
 

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — MEYER-OPTIK GÖRLITZ PRIMAGON 35mm f/4.5              ║
+ * ║ LENS DATA — MEYER OPTIK GÖRLITZ PRIMAGON 35mm f/4.5              ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║ Source: DE 1 749 770 U, numerical example / claim 4.               ║
  * ║ Four air-spaced spherical elements: negative meniscus followed by   ║
@@ -38,7 +38,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "meyer-optik-gorlitz-primagon-35f45",
   maker: "Meyer Optik Görlitz",
-  name: "MEYER-OPTIK GÖRLITZ PRIMAGON 35mm f/4.5",
+  name: "MEYER OPTIK GÖRLITZ PRIMAGON 35mm f/4.5",
   subtitle: "DE 1 749 770 U — Example 1; 0.35× scaled patent prescription",
   specs: [
     "4 ELEMENTS / 4 GROUPS",

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — RICOH LENS A16 24-85mm F3.5-5.5 (Ricoh GXR A16)              ║
+ * ║ LENS DATA — RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16) (Ricoh GXR A16)              ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 2012/0307375 A1, Embodiment 3 / FIG. 9 / Table 3.              ║
  * ║ Production correlation: Ricoh A16 camera unit; 11 elements / 9 groups,     ║
@@ -50,7 +50,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "ricoh-lens-a16-24-85-f35-55",
   maker: "Ricoh",
-  name: "RICOH LENS A16 24-85mm F3.5-5.5",
+  name: "RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)",
   subtitle: "US 2012/0307375 A1 — Embodiment 3; Ricoh GXR camera-unit correlation",
   specs: [
     "11 ELEMENTS / 9 GROUPS",

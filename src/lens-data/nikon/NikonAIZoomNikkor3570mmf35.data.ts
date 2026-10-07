@@ -2,14 +2,14 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ Nikon AI-S Zoom-Nikkor 35–70mm f/3.5                                    ║
+ * ║ NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5                                    ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 4,266,860, Second Embodiment / Claim 8.                  ║
  * ║ Inventor: Kiyoshi Hayashi; Assignee: Nippon Kogaku K.K.                  ║
  * ║                                                                          ║
  * ║ 10 elements / 9 air-spaced groups; all spherical surfaces.               ║
  * ║ Patent focal range: f = 36.0–68.8 mm, F/3.5.                             ║
- * ║ Production lens: Nikon AI-S Zoom-Nikkor 35–70mm f/3.5.                   ║
+ * ║ Production lens: NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5.                   ║
  * ║                                                                          ║
  * ║ Zoom variables:                                                          ║
  * ║   D8: L1–L2 separation, 33.45 mm at wide and 0.65 mm at tele.            ║
@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-s-zoom-nikkor-35-70mm-f35",
   maker: "Nikon",
-  name: "Nikon AI-S Zoom-Nikkor 35–70mm f/3.5",
+  name: "NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5",
   subtitle: "US 4,266,860, Second Embodiment — Nippon Kogaku / Hayashi",
   specs: [
     "10 elements / 9 groups",

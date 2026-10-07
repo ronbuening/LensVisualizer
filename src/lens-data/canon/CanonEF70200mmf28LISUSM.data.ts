@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — CANON EF 70-200mm f/2.8L IS USM                                    ║
+ * ║  LENS DATA — CANON EF 70-200mm f/2.8 L IS USM                                    ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Source prescription: JP2002162564A, Example 1 / Numerical Example 1.             ║
  * ║  Patent applicant: Canon Inc.; inventor: Akira Harada.                             ║
@@ -52,7 +52,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-ef-70-200f28l-is-usm",
   maker: "Canon",
-  name: "CANON EF 70-200mm f/2.8L IS USM",
+  name: "CANON EF 70-200mm f/2.8 L IS USM",
   subtitle: "JP2002162564A Example 1 — correlated patent embodiment; not the exact 23/18 production formula",
   specs: [
     "PATENT EXAMPLE: 21 ELEMENTS / 19 GROUPS",

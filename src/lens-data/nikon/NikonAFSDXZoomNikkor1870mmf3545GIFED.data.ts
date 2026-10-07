@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED        ║
+ * ║ LENS DATA — NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5 G IF-ED        ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 2005/0068636 A1, Example 1 (Satoshi Hayakawa / Nikon).       ║
  * ║ Native-scale d-line prescription; no dimensional scaling is applied.     ║
@@ -55,7 +55,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-dx-zoom-nikkor-18-70-f35-45g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED",
+  name: "NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5 G IF-ED",
   subtitle: "US 2005/0068636 A1 Example 1 — close focus constrained reconstruction",
   specs: [
     "15 elements / 13 groups (physical count)",

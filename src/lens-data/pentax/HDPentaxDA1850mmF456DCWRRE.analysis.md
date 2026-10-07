@@ -9,7 +9,7 @@
 **Title:** *Zoom lens system* (変倍レンズ系)\
 **Embodiment analyzed:** Numerical Example 2 (Fig. 10; Tables 5–8)
 
-The prescription modeled here is Numerical Example 2 of JP 2016-6455 A. The job card fixes its production correlation to the **HD PENTAX-DA 18-50mm f/4-5.6 DC WR RE**. The patent itself does not identify that retail product by name, so the correlation is treated as the selected dataset identity rather than as a manufacturer-confirmed statement.
+The prescription modeled here is Numerical Example 2 of JP 2016-6455 A. The job card fixes its production correlation to the **PENTAX HD DA 18-50mm f/4-5.6 DC WR RE**. The patent itself does not identify that retail product by name, so the correlation is treated as the selected dataset identity rather than as a manufacturer-confirmed statement.
 
 Several independent points make the fixed correlation technically coherent:
 

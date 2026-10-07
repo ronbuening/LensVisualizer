@@ -54,7 +54,7 @@ describe("LensIndexPage", () => {
     expect(screen.getByRole("link", { name: "Nikon Z" }).getAttribute("href")).toBe("/mounts/nikon-z/");
     expect(screen.getByRole("link", { name: "Sony E" }).getAttribute("href")).toBe("/mounts/sony-fe/");
     expect(screen.getByText("Unknown Mount")).toBeTruthy();
-    expect(screen.getAllByRole("link", { name: /VOIGTLÄNDER APO-LANTHAR 50mm f\/2\.0 Aspherical/i }).length).toBe(2);
+    expect(screen.getAllByRole("link", { name: /VOIGTLÄNDER APO-LANTHAR 50mm f\/2 Aspherical/i }).length).toBe(2);
 
     fireEvent.click(screen.getByRole("button", { name: "By Format" }));
     expect(screen.getByRole("link", { name: "135 / Full-frame" }).getAttribute("href")).toBe(

@@ -49,7 +49,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-dx-vr-zoom-nikkor-18-200-f35-56g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6G IF-ED",
+  name: "NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6 G IF-ED",
   subtitle: "US 2006/0072213 A1 Example 2 — constrained 0.5 m focus reconstruction",
   specs: [
     "16 PHYSICAL ELEMENTS / 12 GROUPS",

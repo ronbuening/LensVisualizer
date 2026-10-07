@@ -47,7 +47,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "olympus-zuiko-16mmf35-fisheye",
   maker: "Olympus",
-  name: "OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye",
+  name: "OLYMPUS ZUIKO AUTO-FISHEYE 16mm f/3.5",
   subtitle: "US 3,850,509 Example 1 — Olympus / Nakagawa",
   specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 16.0 mm", "F/3.5", "2ω = 180°", "ALL SPHERICAL"],
 

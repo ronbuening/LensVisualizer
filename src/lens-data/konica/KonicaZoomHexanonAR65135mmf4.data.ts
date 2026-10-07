@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * LENS DATA — KONICA ZOOM-HEXANON AR 65–135mm f/4
+ * LENS DATA — KONICA ZOOM-HEXANON AR 65-135mm f/4
  *
  * Source: JP S58-149014 / JPS58-149014A, Example 3. The publication is a 1983 focusing-method disclosure
  * using a 65–135 mm, 13-element / 9-group formula strongly correlated with the earlier production lens;
@@ -46,7 +46,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "konica-zoom-hexanon-ar-65-135mm-f4",
   maker: "Konica",
-  name: "KONICA ZOOM-HEXANON AR 65–135mm f/4",
+  name: "KONICA ZOOM-HEXANON AR 65-135mm f/4",
   subtitle: "JPS58-149014A Example 3 — later focusing-method disclosure; production correlation",
   specs: [
     "13 ELEMENTS / 9 GROUPS",

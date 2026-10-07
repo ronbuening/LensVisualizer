@@ -54,7 +54,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-400mm-f28e-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR",
+  name: "NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR",
   subtitle: "JP 2015-215559 A Example 1 — FLG omitted; rear filter FL drawn",
   specs: [
     "16 ELEMENTS / 12 GROUPS",

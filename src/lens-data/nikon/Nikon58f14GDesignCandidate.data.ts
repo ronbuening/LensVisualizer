@@ -15,7 +15,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-af-s-58f14g",
   maker: "Nikon",
-  name: "Nikon AF-S NIKKOR 58mm f/1.4 G (patent design candidate)",
+  name: "NIKON AF-S NIKKOR 58mm f/1.4 G (patent design candidate)",
   subtitle: "JP 2013-019993 A EXAMPLE 2 — HARUO SATO; related to AF-S NIKKOR 58mm f/1.4G",
   specs: [
     "9 ELEMENTS / 5 GROUPS · PATENT DESIGN CANDIDATE",

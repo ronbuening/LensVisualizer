@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH          ║
+ * ║  LENS DATA — PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH.          ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP 2013-3324 A Example 2 (Sigma / Uemura).          ║
  * ║  Modified double-Gauss with inner-focus negative G2.               ║
@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "panasonic-leica-dg-25f14",
   maker: "Panasonic",
-  name: "PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH",
+  name: "PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH.",
   subtitle: "JP 2013-3324 A EXAMPLE 2 — SIGMA / UEMURA",
   specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 25.0 mm", "F/1.44", "2ω ≈ 48.6°", "3 ASPHERICAL SURFACES (2 ELEMENTS)"],
 

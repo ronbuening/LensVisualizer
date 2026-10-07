@@ -42,7 +42,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "konica-varifocal-hexanon-ar-35-100-f28",
   maker: "Konica",
-  name: "KONICA VARIFOCAL HEXANON AR 35–100mm f/2.8",
+  name: "KONICA VARIFOCAL HEXANON AR 35-100mm f/2.8",
   subtitle: "US 3,584,935, Example 1 — strong production correlation; attribution not manufacturer-confirmed",
   specs: ["15 ELEMENTS / 10 GROUPS", "35.992-100.000 mm DESIGN", "F/2.8", "62° MAX FIELD", "ALL-SPHERICAL"],
 

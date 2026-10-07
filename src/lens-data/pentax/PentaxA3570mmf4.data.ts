@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — SMC PENTAX-A ZOOM 35-70mm f/4                             ║
+ * ║  LENS DATA — PENTAX SMC A ZOOM 35-70mm f/4                             ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║  Optical source: US 4,812,022, Example 3 (Shigetada Sato / Asahi Kogaku).║
  * ║  Product metadata source: Pentax Lenses & Accessories A-series catalog.  ║
@@ -55,7 +55,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-a-35-70f4",
   maker: "Pentax",
-  name: "SMC PENTAX-A ZOOM 35-70mm f/4",
+  name: "PENTAX SMC A ZOOM 35-70mm f/4",
   subtitle: "US 4,812,022 Example 3 — patent-scale 36-68.5mm f/4.1; production correlation to 35-70mm f/4",
   specs: [
     "7 ELEMENTS / 7 GROUPS",

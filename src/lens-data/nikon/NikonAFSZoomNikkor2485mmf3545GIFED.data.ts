@@ -26,7 +26,7 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 const LENS_DATA = {
   key: "nikon-af-s-zoom-nikkor-24-85mm-f35-45g-if-ed",
-  name: "NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5G IF-ED",
+  name: "NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5 G IF-ED",
   maker: "Nikon",
   subtitle: "JP 2003-241093 A · Example 2 — production correlation",
   specs: [

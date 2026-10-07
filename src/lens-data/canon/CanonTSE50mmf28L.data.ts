@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║       LENS DATA — CANON TS-E 50mm f/2.8L MACRO                     ║
+ * ║       LENS DATA — CANON TS-E 50mm f/2.8 L MACRO                     ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 10,571,651 B2, Numerical Data 1 (Hideki Sakai,    ║
  * ║  Canon Kabushiki Kaisha).                                          ║
@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-tse-50f28l-macro",
   maker: "Canon",
-  name: "CANON TS-E 50mm f/2.8L MACRO",
+  name: "CANON TS-E 50mm f/2.8 L MACRO",
   subtitle: "US 10,571,651 B2 Numerical Data 1 — Canon / Hideki Sakai",
   specs: [
     "12 elements / 9 groups",

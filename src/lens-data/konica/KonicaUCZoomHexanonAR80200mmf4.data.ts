@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — KONICA UC ZOOM HEXANON AR 80–200mm f/4                       ║
+ * ║ LENS DATA — KONICA UC ZOOM HEXANON AR 80-200mm f/4                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: JP S51-37247 A (JP1976-037247), Example 1, Hideo Shizume /          ║
  * ║ Konishiroku Photo Industry Co., Ltd.                                      ║
@@ -57,7 +57,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "konica-uc-zoom-hexanon-ar-80-200-f4",
   maker: "Konica",
-  name: "KONICA UC ZOOM HEXANON AR 80–200mm f/4",
+  name: "KONICA UC ZOOM HEXANON AR 80-200mm f/4",
   subtitle: "JP S51-37247 A Example 1 — raw prescription with disclosed stop/focus reconstruction",
   specs: ["14 ELEMENTS / 10 GROUPS", "80–200mm f/4", "0.7 m MFD", "ALL SPHERICAL"],
 

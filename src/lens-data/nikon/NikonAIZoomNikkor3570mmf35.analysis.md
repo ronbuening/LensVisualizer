@@ -12,7 +12,7 @@
 
 US 4,266,860 discloses a negative-positive two-group wide-angle zoom in which the first, divergent group is also the focusing group. The invention is not merely a two-group zoom; its distinguishing feature is the subdivision of the first group into a divergent forward portion L11 and a convergent rearward portion L12, with the air space between them increased during close focusing to improve spherical-aberration correction.
 
-The Second Embodiment is the closest patent match to the production Nikon AI-S Zoom-Nikkor 35–70mm f/3.5. The patent example gives 10 glass elements in 9 air-spaced groups, a focal-length range of 36.0–68.8 mm, and a constant F-number of 3.5. Nikon's user literature for the AI-S production lens gives 35–70 mm, f/3.5, 10 elements in 9 groups, Nikon bayonet mount, 62 mm filters, 0.7 m normal minimum focus, and macro focusing at 70 mm down to 0.35 m with 1/4× reproduction. The optical formula, focal-length range, aperture, and close-focus mechanism therefore converge on the Second Embodiment rather than the First or Third Embodiment.
+The Second Embodiment is the closest patent match to the production NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5. The patent example gives 10 glass elements in 9 air-spaced groups, a focal-length range of 36.0–68.8 mm, and a constant F-number of 3.5. Nikon's user literature for the AI-S production lens gives 35–70 mm, f/3.5, 10 elements in 9 groups, Nikon bayonet mount, 62 mm filters, 0.7 m normal minimum focus, and macro focusing at 70 mm down to 0.35 m with 1/4× reproduction. The optical formula, focal-length range, aperture, and close-focus mechanism therefore converge on the Second Embodiment rather than the First or Third Embodiment.
 
 The analysis treats the patent numerical prescription as authoritative for optical values. Production specifications are used only for identification and marketing metadata. The aperture stop is not specified by the patent, so the stop in the companion data file is explicitly modeled rather than patent-stated.
 
@@ -162,7 +162,7 @@ The design is entirely spherical. The aberration plots for the Second Embodiment
 ## Sources
 
 - US Patent 4,266,860, "Wide Angle Zoom Lens System Having Shortened Closeup Focal Length," Kiyoshi Hayashi, Nippon Kogaku K.K., granted May 12, 1981.
-- Nikon AI-S Zoom-Nikkor 35–70mm f/3.5 user manual/specification page, used only for production-lens identification metadata.
+- NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5 user manual/specification page, used only for production-lens identification metadata.
 - SUMITA optical-glass data for K-BaSF5 / BASF5-class 603/425 glass consulted for L1.
 - OHARA manufacturer catalog/datasheet entries consulted for S-LAL12, S-LAL8, S-BSM16, and S-TIH6 class matches.
 - SCHOTT N-BK7 manufacturer datasheet consulted for L8.

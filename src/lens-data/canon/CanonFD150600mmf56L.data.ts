@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   key: "canon-fd-150-600mm-f56-l",
-  name: "CANON NEW FD 150-600mm f/5.6L",
+  name: "CANON NEW FD 150-600mm f/5.6 L",
   maker: "Canon",
   subtitle: "US 4,110,006 Example 4",
   specs: [

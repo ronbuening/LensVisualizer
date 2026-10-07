@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — Canon FD 24mm f/2.8 S.S.C.                  ║
+ * ║           LENS DATA — CANON FD 24mm f/2.8 S.S.C.                  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 3,748,021, Example 2 (Canon / Tajima-Momiyama).  ║
  * ║  Reverse-telephoto 24 mm wide-angle with front floating gap D4.    ║
@@ -36,7 +36,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-fd-24mm-f28-ssc",
   maker: "Canon",
-  name: "Canon FD 24mm f/2.8 S.S.C.",
+  name: "CANON FD 24mm f/2.8 S.S.C.",
   subtitle: "US 3,748,021 Example 2 — Canon Floating System retrofocus wide-angle",
   specs: [
     "24mm f/2.8",

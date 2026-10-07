@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 70-200mm f/4G ED VR
+# NIKON AF-S NIKKOR 70-200mm f/4 G ED VR
 
 ## Patent Reference and Design Identification
 

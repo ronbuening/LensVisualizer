@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Lens data - Minolta MD 135mm f/2.8
+ * Lens data - MINOLTA MD 135mm f/2.8
  *
  * Source: US 4,214,816, Example 1 / Table 1 (Tamikazu Yamaguchi; Minolta Camera Kabushiki Kaisha).
  * The patent prescription is normalized to f = 100 and is uniformly scaled by 1.35 for the modeled 135 mm class.
@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-md-135f28",
   maker: "Minolta",
-  name: "Minolta MD 135mm f/2.8",
+  name: "MINOLTA MD 135mm f/2.8",
   subtitle: "US 4,214,816 Example 1 - 1.35x scaled correlation; production attribution inferred",
   specs: ["5 ELEMENTS / 5 GROUPS", "135mm", "f/2.8", "18 DEG FULL FIELD", "ALL-SPHERICAL"],
 

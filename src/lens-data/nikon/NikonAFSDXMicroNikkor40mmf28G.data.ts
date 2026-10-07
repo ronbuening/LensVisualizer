@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G                       ║
+ * ║ LENS DATA — NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 2011/0170195 A1, Example 1 (Muratani / Tanaka / Nikon).    ║
  * ║ Patent model: 9 refractive elements / 8 air-separated glass assemblies,    ║
@@ -59,7 +59,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-dx-micro-nikkor-40mm-f28g",
   maker: "Nikon",
-  name: "NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G",
+  name: "NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G",
   subtitle: "US 2011/0170195 A1 — Example 1; strong production correlate with documented group-count mismatch",
   specs: [
     "PATENT: 9 ELEMENTS / 8 GROUPS",

@@ -39,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   key: "vivitar-series1-200f3",
-  name: "VIVITAR SERIES 1 200mm f/3.0 VMC",
+  name: "VIVITAR SERIES 1 200mm f/3 VMC",
   maker: "Vivitar",
   subtitle: "US 3,942,876 Table IV (FIG. 5) — Betensky / Ponder & Best",
   specs: [

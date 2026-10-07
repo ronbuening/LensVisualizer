@@ -29,7 +29,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-a-200mm-f4-macro-ed",
   maker: "Pentax",
-  name: "PENTAX SMC PENTAX-A★ 200mm f/4 MACRO ED",
+  name: "PENTAX SMC A* 200mm f/4 MACRO ED",
   subtitle: "US 4,666,260 Example 1 — Asahi Kogaku / Takayuki Itoh",
   specs: [
     "10 elements / 9 groups",

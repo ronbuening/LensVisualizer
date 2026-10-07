@@ -17,7 +17,7 @@ field angle of 62°. Its prescription is entirely spherical. The example tabulat
 35.992, 50.991, and 100.000 mm and gives the focal lengths of the first three components as +126.000, −40.000, and
 +36.364 mm. [US 3,584,935, cols. 5–8, prescription and variable-spacing tables; Figs. 1–5.](https://patents.google.com/patent/US3584935A/en)
 
-The association with the production KONICA VARIFOCAL HEXANON AR 35–100mm f/2.8 is strong but is not presented as a
+The association with the production KONICA VARIFOCAL HEXANON AR 35-100mm f/2.8 is strong but is not presented as a
 manufacturer-confirmed patent attribution. Several independent identifiers converge:
 
 1. The patent's 35.99–100.00 mm range and f/2.8 aperture match the marketed 35–100mm f/2.8 specification.

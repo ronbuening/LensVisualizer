@@ -1,4 +1,4 @@
-# PENTAX SMC D FA645 25mm f/4 AL[IF] SDM AW
+# PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW
 
 ## Patent Reference and Design Identification
 

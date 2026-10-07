@@ -42,19 +42,19 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 713539 | 19 | 16 | patents/JP_2000047107_A.pdf<br>patents/JP_2007003600_A.pdf<br>patents/JPA 1980017129-000000.pdf<br>patents/JPA 1979030821-000000.pdf | 4/19 rows have review records |
 | 620603 | 18 | 12 | patents/US2968221.pdf<br>patents/US4158482.pdf<br>patents/US20120063011A1.pdf<br>patents/US3584935.pdf | No review-record hit |
 | 583594 | 16 | 15 | patents/US4826301.pdf<br>patents/JPA 1989189622-000000.pdf<br>patents/JP2013054269A.pdf<br>patents/JP_H11211978_A.pdf | No review-record hit |
-| 618634 | 16 | 14 | patents/US20140368925A1.pdf<br>patents/US20160327774A1.pdf<br>patents/JP2016114800A.pdf<br>patents/JP2016006455A.pdf | 2/16 rows have review records |
+| 618634 | 16 | 14 | patents/US20140368925A1.pdf<br>patents/JP2016133764A.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/US_5249079_A.pdf | 2/16 rows have review records |
 | 804465 | 16 | 10 | patents/US20020015231A1.pdf<br>patents/US20220171174A1.pdf<br>patents/WO2025013477A1.pdf<br>patents/US20100194930A1.pdf | No review-record hit |
 | 497815 | 15 | 8 | patents/JP2018049102A.pdf<br>patents/US6115188.pdf<br>patents/JP_2007003600_A.pdf<br>patents/US20140098253A1.pdf | No review-record hit |
-| 717295 | 14 | 10 | patents/JP2018049102A.pdf<br>patents/US20160327774A1.pdf<br>patents/US3584935.pdf<br>patents/JPA 1989039542-000000.pdf | 1/14 rows have review records |
+| 717295 | 14 | 10 | patents/JP2018049102A.pdf<br>patents/US3584935.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US4908639.pdf | 1/14 rows have review records |
 | 001291 | 13 | 12 | patents/JP2016148731A.pdf<br>patents/US20190113711A1.pdf<br>patents/US20200166730A1.pdf<br>patents/US20160282590A1.pdf | 2/13 rows have review records |
 | 923209 | 13 | 12 | patents/JP2023033114A.pdf<br>patents/DE112013006887B4.pdf<br>patents/JP2020118738A.pdf<br>patents/WO2020230915A1.pdf | 1/13 rows have review records |
 | 517642 | 12 | 8 | patents/US7158320.pdf<br>patents/JPA 1999231209-000000.pdf<br>patents/US_5249079_A.pdf<br>patents/JP_2003241093_A.pdf | 1/12 rows have review records |
 | 648338 | 12 | 12 | patents/US20110090576A1.pdf<br>patents/US2968221.pdf<br>patents/US20200166730A1.pdf<br>patents/US3635546.pdf | 1/12 rows have review records |
 | 437951 | 11 | 7 | patents/WO2025013477A1.pdf<br>patents/JP2020118738A.pdf<br>patents/US20210132345A1.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
 | 720502 | 11 | 8 | patents/JP2018049102A.pdf<br>patents/US6115188.pdf<br>patents/US20110090576A1.pdf<br>patents/US20060023317A1.pdf | 1/11 rows have review records |
-| 589612 | 10 | 10 | patents/US20160327774A1.pdf<br>patents/JP_2003241093_A.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf | No review-record hit |
+| 589612 | 10 | 10 | patents/JP_2003241093_A.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20160327774A1.pdf | No review-record hit |
 | 593686 | 10 | 9 | patents/JP2016148731A.pdf<br>patents/US20130308041A1.pdf<br>patents/JP2023033114A.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
-| 603655 | 10 | 6 | patents/US20220011542A1.pdf<br>patents/JP2023001878A.pdf<br>patents/JP2015011156A.pdf<br>patents/JP2011221421A.pdf | No review-record hit |
+| 603655 | 10 | 6 | patents/US20220011542A1.pdf<br>patents/JP2023001878A.pdf<br>patents/JP2011221421A.pdf<br>patents/US20050157403A1.pdf | No review-record hit |
 | 851401 | 10 | 8 | patents/JP2016148731A.pdf<br>patents/US20130335830A1.pdf<br>patents/JP2022140076A.pdf<br>patents/JP2023044106A.pdf | No review-record hit |
 | 486815 | 9 | 4 | patents/US3743384.pdf<br>patents/US3774991.pdf | All rows have review records |
 | 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf | All rows have review records |
@@ -66,9 +66,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 620363 | 8 | 6 | patents/JP_2005092056_A.pdf<br>patents/JPA 1982019708-000000.pdf<br>patents/JPA 2000019398-000000.pdf<br>patents/US20080212200A1.pdf | 1/8 rows have review records |
 | 623582 | 8 | 5 | patents/US20150146044A1.pdf<br>patents/US4826301.pdf<br>patents/US20130308041A1.pdf<br>patents/JP_2005092056_A.pdf | No review-record hit |
 | 640602 | 8 | 5 | patents/US3584935.pdf<br>patents/JP_2003177313_A.pdf<br>patents/US3459469.pdf<br>patents/US20080212200A1.pdf | No review-record hit |
-| 762265 | 8 | 7 | patents/US20130308041A1.pdf<br>patents/US20020015231A1.pdf<br>patents/US4158482.pdf<br>patents/JP2016114800A.pdf | No review-record hit |
-| 788474 | 8 | 8 | patents/US20170242219A1.pdf<br>patents/JP2016006455A.pdf<br>patents/JP2015011156A.pdf<br>patents/US20050157403A1.pdf | 1/8 rows have review records |
-| 806409 | 8 | 7 | patents/JPA 1991141313-000000.pdf<br>patents/US20110090576A1.pdf<br>patents/US20160327774A1.pdf<br>patents/JPA 1982019708-000000.pdf | 2/8 rows have review records |
+| 762265 | 8 | 7 | patents/US20130308041A1.pdf<br>patents/US20020015231A1.pdf<br>patents/US4158482.pdf<br>patents/JP_2000028919_A.pdf | No review-record hit |
+| 788474 | 8 | 8 | patents/US20170242219A1.pdf<br>patents/US20050157403A1.pdf<br>patents/JP_2003241093_A.pdf<br>patents/US20010030812A1.pdf | 1/8 rows have review records |
+| 806409 | 8 | 7 | patents/JPA 1991141313-000000.pdf<br>patents/US20110090576A1.pdf<br>patents/JPA 1982019708-000000.pdf<br>patents/JP2011221421A.pdf | 2/8 rows have review records |
 | 517696 | 7 | 2 | patents/JPA 1994082698-000000.pdf<br>patents/US3481666.pdf | No review-record hit |
 | 518590 | 7 | 7 | patents/US4158482.pdf<br>patents/JPA 1981119109-000000.pdf<br>patents/US4223981.pdf<br>patents/US20010007512A1.pdf | No review-record hit |
 | 728285 | 7 | 7 | patents/JP_2000047107_A.pdf<br>patents/US20110090576A1.pdf<br>patents/JP_2007333790_A.pdf<br>patents/US20210033835A1.pdf | 1/7 rows have review records |
@@ -87,8 +87,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 720347 | 6 | 6 | patents/US20130308041A1.pdf<br>patents/US20220171174A1.pdf<br>patents/US20200073096A1.pdf<br>patents/WO2023153076A1.pdf | No review-record hit |
 | 728283 | 6 | 6 | patents/US2968221.pdf<br>patents/US20130222925A1.pdf | 1/6 rows have review records |
 | 785257 | 6 | 6 | patents/US7158320.pdf<br>patents/US20150146044A1.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/US20040218274A1.pdf | 1/6 rows have review records |
-| 786442 | 6 | 4 | patents/JPA 1991141313-000000.pdf<br>patents/US6115188.pdf<br>patents/US20160327774A1.pdf<br>patents/JPA 1988201614-000000.pdf | No review-record hit |
-| 800422 | 6 | 6 | patents/US4110006.pdf<br>patents/US20210263286A1.pdf<br>patents/JP2016114800A.pdf<br>patents/JPA 1994082698-000000.pdf | No review-record hit |
+| 786442 | 6 | 4 | patents/JPA 1991141313-000000.pdf<br>patents/US6115188.pdf<br>patents/JPA 1988201614-000000.pdf<br>patents/US20160327774A1.pdf | No review-record hit |
+| 800422 | 6 | 6 | patents/US4110006.pdf<br>patents/US20210263286A1.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/JP2016114800A.pdf | No review-record hit |
 | 806407 | 6 | 6 | patents/JP2023033114A.pdf<br>patents/US20220011542A1.pdf<br>patents/US20130222925A1.pdf<br>patents/US9538088.pdf | No review-record hit |
 | 808228 | 6 | 6 | patents/US20110090576A1.pdf<br>patents/US20190113711A1.pdf<br>patents/US6621643.pdf<br>patents/JP2011221421A.pdf | No review-record hit |
 | 816466 | 6 | 5 | patents/US20170242219A1.pdf<br>patents/JP2011221421A.pdf<br>patents/US20040218274A1.pdf<br>patents/US20170068075A1.pdf | 1/6 rows have review records |
@@ -110,10 +110,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 596392 | 4 | 4 | patents/US20150146044A1.pdf<br>patents/US20130088622A1.pdf<br>patents/WO2025013477A1.pdf<br>patents/JP2016133764A.pdf | No review-record hit |
 | 613370 | 4 | 4 | patents/US20150205081A1.pdf<br>patents/US20200166730A1.pdf<br>patents/JPA 1999231209-000000.pdf<br>patents/JPA 1999030748-000000.pdf | No review-record hit |
 | 623581 | 4 | 3 | patents/DE_1170157_B.pdf<br>patents/US4158482.pdf<br>patents/US3442573.pdf | No review-record hit |
-| 658509 | 4 | 3 | patents/US20160327774A1.pdf<br>patents/JPA 1982019708-000000.pdf<br>patents/US4812022.pdf | No review-record hit |
+| 658509 | 4 | 3 | patents/JPA 1982019708-000000.pdf<br>patents/US20160327774A1.pdf<br>patents/US4812022.pdf | No review-record hit |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 673322 | 4 | 3 | patents/JP_H0219814_A.pdf<br>patents/DE_927540_C.pdf<br>patents/JP2012181525A.pdf | No review-record hit |
-| 717479 | 4 | 3 | patents/JP2015011156A.pdf<br>patents/JPA 1980017129-000000.pdf<br>patents/JPB 1969024068-000000.pdf | No review-record hit |
+| 717479 | 4 | 3 | patents/JPA 1980017129-000000.pdf<br>patents/JP2015011156A.pdf<br>patents/JPB 1969024068-000000.pdf | No review-record hit |
 | 723380 | 4 | 4 | patents/JPA 1981119109-000000.pdf<br>patents/JPA 1999231209-000000.pdf<br>patents/US4806003.pdf | No review-record hit |
 | 734515 | 4 | 4 | patents/US6115188.pdf<br>patents/US20060023317A1.pdf<br>patents/US20210263286A1.pdf | No review-record hit |
 | 750353 | 4 | 3 | patents/JP_2007003600_A.pdf<br>patents/US20130088622A1.pdf<br>patents/US20160327774A1.pdf | No review-record hit |
@@ -149,7 +149,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 720521 | 3 | 3 | patents/US4444473.pdf<br>patents/US4124276.pdf | All rows have review records |
 | 740282 | 3 | 3 | patents/DE_1980417_U.pdf<br>patents/US3635546.pdf<br>patents/US3481666.pdf | No review-record hit |
 | 741278 | 3 | 3 | patents/JP2018049102A.pdf<br>patents/US3459469.pdf<br>patents/JPWO2019187633A1.pdf | No review-record hit |
-| 743493 | 3 | 3 | patents/JP2016114800A.pdf<br>patents/JP2015011156A.pdf<br>patents/JPA 1994082698-000000.pdf | No review-record hit |
+| 743493 | 3 | 3 | patents/JPA 1994082698-000000.pdf<br>patents/JP2016114800A.pdf<br>patents/JP2015011156A.pdf | No review-record hit |
 | 755276 | 3 | 2 | patents/US4452513.pdf<br>patents/JP2021189351A.pdf | 1/3 rows have review records |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
 | 795453 | 3 | 1 | patents/US20010030812A1.pdf | No review-record hit |
@@ -218,7 +218,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 750501 | 2 | 2 | patents/US4277149.pdf<br>patents/JPA 1981150717-000000.pdf | All rows have review records |
 | 755516 | 2 | 1 | patents/JP2004109559A.pdf | All rows have review records |
 | 755523 | 2 | 2 | patents/US9651761.pdf<br>patents/US20040218274A1.pdf | No review-record hit |
-| 757478 | 2 | 2 | patents/US20160327774A1.pdf<br>patents/JP_2000028919_A.pdf | No review-record hit |
+| 757478 | 2 | 2 | patents/JP_2000028919_A.pdf<br>patents/US20160327774A1.pdf | No review-record hit |
 | 770297 | 2 | 2 | patents/JP2022140076A.pdf<br>patents/JP2023044106A.pdf | No review-record hit |
 | 772496 | 2 | 2 | patents/US6115188.pdf<br>patents/JPWO2019187633A1.pdf | No review-record hit |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All rows have review records |
@@ -493,7 +493,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 4 | `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)` | 1.54041 / 50.90 | No catalog entry | abbe | patents/GB_775944_A.pdf | Explicit disposition in data |
 
-### [APPLE iPhone 12 Wide 4.36mm f/1.6 (inferred patent model)](../../src/lens-data/apple/AppleiPhone12MainWideCameraLens.data.ts) - US 2018/0364457 A1
+### [APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12)](../../src/lens-data/apple/AppleiPhone12MainWideCameraLens.data.ts) - US 2018/0364457 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -826,7 +826,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3c-1 (L3c positive singlet) | 25 | `697555 — lanthanum crown coordinate class` | 1.69680 / 55.50 | S-LAL14 (trusted Sellmeier) | sellmeier | patents/US6115188.pdf | No review-record hit |
 | L3c-2 (L3c positive doublet member) | 27 | `517524 — crown coordinate class` | 1.51742 / 52.40 | S-NSL36 (trusted Sellmeier) | sellmeier | patents/US6115188.pdf | No review-record hit |
 
-### [CANON EF 50mm f/1.2L USM](../../src/lens-data/canon/CanonEF50mmf12LUSM.data.ts) - JP 2007-333790 A
+### [CANON EF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonEF50mmf12LUSM.data.ts) - JP 2007-333790 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -861,7 +861,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3c-2 (L3c cemented positive) | 27 | `750350 lanthanum-flint class (vendor unresolved)` | 1.74950 / 35.00 | H-LaF4 (trusted Sellmeier) | sellmeier | patents/US6115188.pdf | No review-record hit |
 | L3c-3 (L3c cemented negative) | 28 | `847238/847239 dense-flint class (vendor unresolved; source vd rounded 23.9)` | 1.84666 / 23.90 | PBH53 (trusted Sellmeier) | sellmeier | patents/US6115188.pdf | No review-record hit |
 
-### [CANON EF 70-200mm f/4L IS USM](../../src/lens-data/canon/CanonEF70200mmf4LISUSM.data.ts) - JP 2008-070450 A
+### [CANON EF 70-200mm f/4 L IS USM](../../src/lens-data/canon/CanonEF70200mmf4LISUSM.data.ts) - JP 2008-070450 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1013,7 +1013,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L5 (Element 5) | 9 | `774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)` | 1.77370 / 49.20 | No catalog entry | abbe | patents/US3748022.pdf | Reviewed sidecar hit |
 | L8 (Element 8) | 14 | `774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)` | 1.77370 / 49.20 | No catalog entry | abbe | patents/US3748022.pdf | Reviewed sidecar hit |
 
-### [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) - US 4,110,006
+### [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) - US 4,110,006
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1300,6 +1300,19 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L31 (L31) | 15 | `697555 — lanthanum crown class` | 1.69680 / 55.53 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/US20170242219A1.pdf | No review-record hit |
 | L33 (L33) | 18 | `516641 — crown class` | 1.51633 / 64.14 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US20170242219A1.pdf | No review-record hit |
 
+### [FUJIFILM FUJINON XC 15-45mm f/3.5-5.6 OIS PZ](../../src/lens-data/fujifilm/FujifilmFujinonXC1545mmf3556OISPZ.data.ts) - JP 2021-15312 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1b (Element L1b) | 3A | `Unmatched (nd=1.53409, vd=55.89; 534559 coordinate class)` | 1.53409 / 55.89 | No catalog entry | abbe | patents/JP2021015312A.pdf | Explicit disposition in data |
+
+### [FUJIFILM FUJINON XC 16-50mm f/3.5-5.6 OIS II](../../src/lens-data/fujifilm/FujifilmFujinonXC1650mmf3556OISII.data.ts) - US 2014/0368925 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L12 (L12) | 2 | `835427 lanthanum class (supplier unconfirmed)` | 1.83481 / 42.73 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/US20140368925A1.pdf | No review-record hit |
+| L41 (L41) | 18 | `618634 crown/phosphate-crown class (supplier unconfirmed)` | 1.61800 / 63.33 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/US20140368925A1.pdf | No review-record hit |
+
 ### [FUJIFILM FUJINON XF 10-24mm f/4 R OIS](../../src/lens-data/fujifilm/FujifilmFujinonXf1024mmf4ROIS.data.ts) - US 2015/0131163 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1429,19 +1442,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L22 (Element L22) | 16 | `457903 fluorophosphate/ED class (supplier unconfirmed)` | 1.45650 / 90.27 | H-FK71 (trusted Sellmeier) | sellmeier | patents/JP2023001878A.pdf | No review-record hit |
 | L25 (Element L25) | 21 | `497816 fluorophosphate/ED class (supplier unconfirmed)` | 1.49700 / 81.54 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2023001878A.pdf | No review-record hit |
 
-### [Fujinon XC 15-45mm f/3.5-5.6 OIS PZ](../../src/lens-data/fujifilm/FujifilmFujinonXC1545mmf3556OISPZ.data.ts) - JP 2021-15312 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1b (Element L1b) | 3A | `Unmatched (nd=1.53409, vd=55.89; 534559 coordinate class)` | 1.53409 / 55.89 | No catalog entry | abbe | patents/JP2021015312A.pdf | Explicit disposition in data |
-
-### [Fujinon XC 16-50mm f/3.5-5.6 OIS II](../../src/lens-data/fujifilm/FujifilmFujinonXC1650mmf3556OISII.data.ts) - US 2014/0368925 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L12 (L12) | 2 | `835427 lanthanum class (supplier unconfirmed)` | 1.83481 / 42.73 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/US20140368925A1.pdf | No review-record hit |
-| L41 (L41) | 18 | `618634 crown/phosphate-crown class (supplier unconfirmed)` | 1.61800 / 63.33 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/US20140368925A1.pdf | No review-record hit |
-
 ### [HASSELBLAD HC 50mm f/3.5 II](../../src/lens-data/hasselblad/HasselbladHC3550II.data.ts) - US 2012/0063011 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1471,76 +1471,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L7 (Element 7) | 12 | `850323 class (vendor unproven)` | 1.85026 / 32.27 | S-LAH71 (trusted Sellmeier) | sellmeier | patents/JPWO2017221949A1.pdf | No review-record hit |
 | L8 (Element 8) | 14 | `835427 class (vendor unproven)` | 1.83481 / 42.72 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/JPWO2017221949A1.pdf | No review-record hit |
 | L9 (Element 9) | 16 | `487702 class (vendor unproven)` | 1.48749 / 70.24 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/JPWO2017221949A1.pdf | No review-record hit |
-
-### [HD PENTAX-D FA 150-450mm f/4.5-5.6 ED DC AW](../../src/lens-data/pentax/HDPentaxDFA150450mmF4556EDDCAW.data.ts) - US 2016/0327774 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L11 (Element 11) | 1 | `750353 (vendor unresolved; patent nd/νd coordinate)` | 1.74950 / 35.30 | J-LAF7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L12 (Element 12) | 3 | `497816 (vendor unresolved; patent nd/νd coordinate)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L13 (Element 13) | 5 | `538747 (vendor unresolved; patent nd/νd coordinate)` | 1.53775 / 74.70 | S-FPM3 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L21 (Element 21) | 7 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L22 (Element 22) | 8 | `786442 (vendor unresolved; patent nd/νd coordinate)` | 1.78590 / 44.20 | S-LAH51 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L31 (Element 31) | 10 | `516641 (vendor unresolved; patent nd/νd coordinate)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L32 (Element 32) | 12 | `806409 (vendor unresolved; patent nd/νd coordinate)` | 1.80610 / 40.90 | P-LASF47 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L34 (Element 34) | 15 | `757478 (vendor unresolved; patent nd/νd coordinate)` | 1.75700 / 47.80 | S-LAM54 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L41 (Element 41) | 18 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L42 (Element 42) | 20 | `618634 (vendor unresolved; patent nd/νd coordinate)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L43 (Element 43) | 22 | `589612 (vendor unresolved; patent nd/νd coordinate)` | 1.58913 / 61.20 | J-SK5 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L44 (Element 44) | 23 | `750353 (vendor unresolved; patent nd/νd coordinate)` | 1.74950 / 35.30 | J-LAF7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L45 (Element 45) | 25 | `658509 (vendor unresolved; patent nd/νd coordinate)` | 1.65844 / 50.90 | N-SSK5 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L51 (Element 51) | 27 | `835427 (vendor unresolved; patent nd/νd coordinate)` | 1.83481 / 42.70 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L52 (Element 52) | 29 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L53 (Element 53) | 30 | `497816 (vendor unresolved; patent nd/νd coordinate)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L54 (Element 54) | 32 | `804466 (vendor unresolved; patent nd/νd coordinate)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-
-### [HD PENTAX-DA 16-85mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/HDPentaxDA1685mmF3556EDDCWR.data.ts) - JP 2016-114800 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L11 (L11) | 1 | `847238 (vendor-neutral optical code)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L12 (L12) | 2 | `773496 (vendor-neutral optical code)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L13 (L13) | 4 | `804466 (vendor-neutral optical code)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L21g (L21 glass substrate) | 7 | `883408 (vendor-neutral optical code)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L22 (L22) | 9 | `773496 (vendor-neutral optical code)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L23 (L23) | 11 | `762265 (vendor-neutral optical code)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L24 (L24) | 13 | `804466 (vendor-neutral optical code)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L25 (L25) | 14 | `762265 (vendor-neutral optical code)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L31 (L31) | 17 | `516641 (vendor-neutral optical code)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L32 (L32) | 19 | `516641 (vendor-neutral optical code)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L33 (L33) | 20 | `800422 (vendor-neutral optical code)` | 1.79952 / 42.20 | S-LAH52Q (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L34 (L34) | 22A | `743493 (vendor-neutral optical code)` | 1.74330 / 49.30 | M-NBF1 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L41 (L41) | 24 | `497816 (vendor-neutral optical code)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L42 (L42) | 26 | `618634 (vendor-neutral optical code)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L43 (L43) | 27 | `883408 (vendor-neutral optical code)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L44 (L44) | 29 | `538747 (vendor-neutral optical code)` | 1.53775 / 74.70 | S-FPM3 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-
-### [HD PENTAX-DA 18-50mm f/4-5.6 DC WR RE](../../src/lens-data/pentax/HDPentaxDA1850mmF456DCWRRE.data.ts) - JP 2016-6455 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L11 (L11) | 1 | `804466 (vendor unresolved)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L12g (L12 Glass Substrate) | 3 | `497816 (vendor unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L13 (L13) | 6 | `805254 (vendor unresolved)` | 1.80518 / 25.40 | N-SF6 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L21 (L21) | 8 | `618634 (vendor unresolved)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | Audit-log hit |
-| L22 (L22) | 10 | `487702 (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L23 (L23) | 11 | `847238 (vendor unresolved)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L31 (L31) | 14 | `805254 (vendor unresolved)` | 1.80518 / 25.40 | N-SF6 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L32 (L32) | 15 | `788474 (vendor unresolved)` | 1.78800 / 47.40 | J-LASF014 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L41 (L41) | 17 | `618634 (vendor unresolved)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | Audit-log hit |
-
-### [HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) - JP 2015-11156 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L11 (L11) | 1 | `729547 (vendor/catalog identity unresolved)` | 1.72916 / 54.70 | TAC8 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L13 (L13) | 5 | `762265 (vendor/catalog identity unresolved)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L21 (L21) | 7 | `743493 (vendor/catalog identity unresolved)` | 1.74320 / 49.30 | S-LAM60 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L22 (L22) | 9 | `497816 (vendor/catalog identity unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L23 (L23) | 10 | `788474 (vendor/catalog identity unresolved)` | 1.78800 / 47.40 | J-LASF014 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L25 (L25) | 13 | `717479 (vendor/catalog identity unresolved)` | 1.71700 / 47.90 | S-LAM3 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L26 (L26) | 15 | `847238 (vendor/catalog identity unresolved)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L27 (L27) | 17 | `603655 (vendor/catalog identity unresolved)` | 1.60300 / 65.50 | S-PHM53 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
 
 ### [KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE](../../src/lens-data/kinoptik/KinoptikSuperTegea19mmf19Fisheye.data.ts) - US 3,037,426
 
@@ -1641,7 +1571,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L5 (Element 5) | 8 | `720437 — supplier-neutral code (patent nd=1.72000, vd=43.7)` | 1.72000 / 43.70 | S-LAM52 (trusted Sellmeier) | sellmeier | patents/JPA 1982108817-000000.pdf | No review-record hit |
 | L6 (Element 6) | 10 | `702412 — supplier-neutral code (patent nd=1.70154, vd=41.2)` | 1.70154 / 41.20 | BAFD7 (trusted Sellmeier) | sellmeier | patents/JPA 1982108817-000000.pdf | No review-record hit |
 
-### [KONICA VARIFOCAL HEXANON AR 35–100mm f/2.8](../../src/lens-data/konica/KonicaVarifocalHexanonAR35100mmf28.data.ts) - US 3,584,935
+### [KONICA VARIFOCAL HEXANON AR 35-100mm f/2.8](../../src/lens-data/konica/KonicaVarifocalHexanonAR35100mmf28.data.ts) - US 3,584,935
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1661,7 +1591,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L14 (Element 14) | 23 | `755524 — lanthanum-crown class (supplier unproven)` | 1.75500 / 52.40 | K-LaSKn1 (trusted Sellmeier) | sellmeier | patents/US3584935.pdf | No review-record hit |
 | L15 (Element 15) | 24 | `755275 — dense flint class (supplier unproven)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/US3584935.pdf | No review-record hit |
 
-### [KONICA ZOOM-HEXANON AR 35–70mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.data.ts) - JP 1982-019708 A
+### [KONICA ZOOM-HEXANON AR 35-70mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.data.ts) - JP 1982-019708 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1682,7 +1612,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L5 (Element 5) | 8 | `835447 - high-index lanthanum class (patent nd=1.83481, vd=44.72; unresolved)` | 1.83481 / 44.72 | No catalog entry | abbe | patents/CN205720849U.pdf | Reviewed sidecar hit |
 | L12 (Element 12) | 19 | `904293 - dense flint class (patent nd=1.90366, vd=29.31; unresolved)` | 1.90366 / 29.31 | No catalog entry | abbe | patents/CN205720849U.pdf | Reviewed sidecar hit |
 
-### [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) - CN 116520542 A
+### [LAOWA 58mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) - CN 116520542 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1814,6 +1744,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L2 (Element 5) | 8 | `Unmatched (540473 — historical D-line low-index flint / LLF-FEL-class coordinate; supplier unresolved)` | 1.53980 / 47.30 | No catalog entry | abbe | patents/GB_135853_A.pdf | Explicit disposition in data |
 | L3 (Element 6) | 9 | `Unmatched (621569 — historical D-line crown-class coordinate; supplier unresolved)` | 1.62070 / 56.90 | No catalog entry | abbe | patents/GB_135853_A.pdf | Explicit disposition in data |
 
+### [MEYER OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz500mmf56Orestegor.data.ts) - DE 1 980 417
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (510619 crown-class coordinate; supplier unresolved)` | 1.50977 / 61.90 | No catalog entry | abbe | patents/DE_1980417_U.pdf | Explicit disposition in data |
+| L2 (Element 2) | 3 | `740282 - dense-flint class (supplier unresolved)` | 1.74000 / 28.20 | FD3 (trusted Sellmeier) | sellmeier | patents/DE_1980417_U.pdf | No review-record hit |
+
 ### [MEYER OPTIK GÖRLITZ ORESTOR 135mm f/2.8](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz135mmf28Orestor.data.ts) - DE 1 282 311
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1821,13 +1758,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3 (Cemented negative component) | 4 | `699301 class (supplier unconfirmed)` | 1.69895 / 30.10 | E-FD15 (trusted Sellmeier) | sellmeier | patents/DE_1282311_B.pdf | No review-record hit |
 | L4 (Rear negative singlet) | 6 | `639555 class (supplier unconfirmed)` | 1.63854 / 55.50 | K-SK18 (trusted Sellmeier) | sellmeier | patents/DE_1282311_B.pdf | No review-record hit |
 | L5 (Rear positive singlet) | 8 | `699301 class (supplier unconfirmed)` | 1.69895 / 30.10 | E-FD15 (trusted Sellmeier) | sellmeier | patents/DE_1282311_B.pdf | No review-record hit |
-
-### [MEYER-OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz500mmf56Orestegor.data.ts) - DE 1 980 417
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (510619 crown-class coordinate; supplier unresolved)` | 1.50977 / 61.90 | No catalog entry | abbe | patents/DE_1980417_U.pdf | Explicit disposition in data |
-| L2 (Element 2) | 3 | `740282 - dense-flint class (supplier unresolved)` | 1.74000 / 28.20 | FD3 (trusted Sellmeier) | sellmeier | patents/DE_1980417_U.pdf | No review-record hit |
 
 ### [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) - JP 1987-244010 A
 
@@ -1947,7 +1877,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L15 (Element 15) | 26 | `834372 class (vendor unresolved)` | 1.83400 / 37.20 | J-LASF010 (trusted Sellmeier) | sellmeier | patents/JPA 1989039542-000000.pdf | No review-record hit |
 | L16 (Element 16) | 28 | `689311 class (vendor unresolved)` | 1.68893 / 31.10 | S-TIM28 (trusted Sellmeier) | sellmeier | patents/JPA 1989039542-000000.pdf | No review-record hit |
 
-### [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) - US 4,786,152
+### [MINOLTA AF APO TELE 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) - US 4,786,152
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1962,13 +1892,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `682366 - dense flint class (catalog unresolved)` | 1.68150 / 36.64 | No catalog entry | abbe | Missing from untracked local patents/ references (US4518229, 4518229) | Audit-log hit |
 
-### [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) - US 4,560,253
+### [MINOLTA AF ZOOM 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) - US 4,560,253
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L5 (Component II-3) | 9 | `750251 - dense/fluor flint (catalog unresolved)` | 1.75000 / 25.14 | No catalog entry | abbe | Missing from untracked local patents/ references (US4560253, 4560253) | Audit-log hit |
 
-### [Minolta Auto Tele Rokkor-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) - JP1963-011590
+### [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) - JP1963-011590
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1994,7 +1924,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L2 (Element 2) | 3 | `Unmatched (805445 coordinate; supplier unresolved)` | 1.80500 / 44.53 | No catalog entry | abbe | patents/US_4493536_A.pdf | Explicit disposition in data |
 | L3 (Element 3) | 5 | `Unmatched (750251 coordinate; supplier unresolved)` | 1.75000 / 25.14 | No catalog entry | abbe | patents/US_4493536_A.pdf | Explicit disposition in data |
 
-### [Minolta MD 50mm f/2](../../src/lens-data/minolta/Minolta50mmf20MD.data.ts) - US 4,444,473
+### [MINOLTA MD 50mm f/2](../../src/lens-data/minolta/Minolta50mmf20MD.data.ts) - US 4,444,473
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2112,7 +2042,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L12 (L12) | 3 | `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)` | 1.61155 / 31.26 | No catalog entry | abbe | patents/US20210026133A1.pdf | Reviewed sidecar hit |
 
-### [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) - US 8,169,718 B2
+### [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) - US 8,169,718 B2
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2131,7 +2061,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L8 (Element 8) | 14 | `804466 — lanthanum-flint class (vendor unresolved)` | 1.80400 / 46.58 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No review-record hit |
 | L9 (Element 9) | 16 | `804396 — dense-lanthanum-flint class (vendor unresolved)` | 1.80440 / 39.59 | J-LASF013 (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No review-record hit |
 
-### [NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1755mmf28GIFED.data.ts) - US 2005/0013015 A1
+### [NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1755mmf28GIFED.data.ts) - US 2005/0013015 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2139,7 +2069,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L7 (Element 7) | 11A | `Unmatched (740493; nd=1.739929, vd=49.25)` | 1.73993 / 49.25 | No catalog entry | abbe | patents/US20050013015A1.pdf | Explicit disposition in data |
 | L12 (Element 12) | 21 | `618634 phosphate-crown class` | 1.61800 / 63.38 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/US20050013015A1.pdf | No review-record hit |
 
-### [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) - US 2006/0007559 A1
+### [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6 G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) - US 2006/0007559 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2148,7 +2078,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L2an (L2an) | 10 | `773496 class (vendor ambiguous; patent nd=1.772500, vd=49.61)` | 1.77250 / 49.61 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/US20060007559A1.pdf | No review-record hit |
 | Lbn (Lbn) | 12 | `834372 high-index class (vendor/composition ambiguous)` | 1.83400 / 37.17 | J-LASF010 (trusted Sellmeier) | sellmeier | patents/US20060007559A1.pdf | No review-record hit |
 
-### [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) - US 2005/0068636 A1
+### [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) - US 2005/0068636 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2169,7 +2099,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L4 (Element 3 resin layer) | 6 | `554381 — hybrid-asphere resin layer (inferred; patent nd=1.55389, νd=38.09; not catalog glass)` | 1.55389 / 38.09 | No catalog entry | abbe | patents/US7359125.pdf | Audit-log hit |
 
-### [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) - WO 2019/131993 A1
+### [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) - WO 2019/131993 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2182,7 +2112,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L49 (Element L49) | 47 | `806418 lanthanum flint class (catalog unresolved)` | 1.80592 / 41.79 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
 | L410 (Element L410) | 48 | `627376 flint class (catalog unresolved)` | 1.62730 / 37.62 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
 
-### [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) - WO 2019/131993 A1
+### [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) - WO 2019/131993 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2216,7 +2146,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L4r (Element 4 resin layer) | 7A | `553381 — unmatched UV-cure replicated resin (patent nd=1.55389, νd=38.09; not catalog glass)` | 1.55389 / 38.09 | No catalog entry | abbe | patents/US7508592.pdf | Explicit disposition in data |
 
-### [NIKON AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR](../../src/lens-data/nikon/NikonAFSNikkor2485mmf3545GEDVR.data.ts) - JP 2011-221421 A
+### [NIKON AF-S NIKKOR 24-85mm f/3.5-4.5 G ED VR](../../src/lens-data/nikon/NikonAFSNikkor2485mmf3545GEDVR.data.ts) - JP 2011-221421 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2242,7 +2172,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L25 (Element 11) | 21 | `806333 — dense flint (inferred coordinate counterpart; patent coordinate; vendor unresolved)` | 1.80610 / 33.30 | J-LASFH6 (trusted Sellmeier) | sellmeier | patents/JP2017227799A.pdf | Audit-log hit |
 
-### [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) - US 2005/0157403 A1
+### [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) - US 2005/0157403 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2265,7 +2195,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L47 (L47) | 39 | `498826 - low-dispersion crown class (vendor identity unproven)` | 1.49782 / 82.56 | J-FKH1 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | Audit-log hit |
 | L49 (L49) | 42 | `847238 - dense-flint class` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
 
-### [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) - US 2004/0218274 A1
+### [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) - US 2004/0218274 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2284,7 +2214,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L52 (L52) | 26 | `487702/487704 — low-index FK/FSL crown class (vendor unresolved)` | 1.48749 / 70.24 | N-FK5 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
 | L53 (L53) | 28 | `847238 — dense-flint class (vendor unresolved)` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
 
-### [NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor70200mmf28GIFED.data.ts) - US 2003/0133200 A1
+### [NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor70200mmf28GIFED.data.ts) - US 2003/0133200 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2304,14 +2234,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L48 (L48) | 37 | `741527 — vendor unresolved` | 1.74100 / 52.67 | LAK011 (trusted Sellmeier) | sellmeier | patents/US20030133200A1.pdf | No review-record hit |
 | L49 (L49) | 38 | `847238 — vendor unresolved` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20030133200A1.pdf | No review-record hit |
 
-### [NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor1735mmf28DIFED.data.ts) - JP 2001-083421 A
+### [NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor1735mmf28DIFED.data.ts) - JP 2001-083421 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L2g (Element 2 glass substrate) | 4 | `773495 — lanthanum class (supplier unresolved)` | 1.77279 / 49.45 | M-TAF1 (trusted Sellmeier) | sellmeier | patents/JP_2001083421_A.pdf | No review-record hit |
 | L8 (Element 8) | 15 | `748523 — class unresolved` | 1.74810 / 52.30 | E-LAKH1 (trusted Sellmeier) | sellmeier | patents/JP_2001083421_A.pdf | No review-record hit |
 
-### [NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor2485mmf3545GIFED.data.ts) - JP 2003-241093 A
+### [NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor2485mmf3545GIFED.data.ts) - JP 2003-241093 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2344,7 +2274,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L4 (Element 4) | 7 | `626357 class (supplier-neutral)` | 1.62588 / 35.70 | E-F1 (trusted Sellmeier) | sellmeier | patents/JP_H0219814_A.pdf | No review-record hit |
 | L7 (Element 7) | 12 | `805255 class (supplier-neutral)` | 1.80458 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | patents/JP_H0219814_A.pdf | No review-record hit |
 
-### [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) - US 6,141,156 A
+### [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6 D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) - US 6,141,156 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2359,7 +2289,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L52 (L52) | 24 | `487704 - low-dispersion crown class (vendor unresolved)` | 1.48749 / 70.41 | N-FK5 (trusted Sellmeier) | sellmeier | patents/US6141156.pdf | No review-record hit |
 | L61b (L61b) | 27 | `805254 - dense-flint class (vendor unresolved; vd=25.35)` | 1.80518 / 25.35 | SF6 (trusted Sellmeier) | sellmeier | patents/US6141156.pdf | No review-record hit |
 
-### [NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5D IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor1835mmf3545DIFED.data.ts) - US 2001/0030812 A1
+### [NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5 D IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor1835mmf3545DIFED.data.ts) - US 2001/0030812 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2388,7 +2318,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L24 (L24) | 10 | `805255 flint class (catalog unresolved)` | 1.80458 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | patents/JP_S62108218_A.pdf | No review-record hit |
 | L42b (L42b) | 22 | `805255 flint class (catalog unresolved)` | 1.80458 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | patents/JP_S62108218_A.pdf | No review-record hit |
 
-### [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) - JP 2000-19398 A
+### [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) - JP 2000-19398 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2421,7 +2351,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L6 (Element 6) | 9 | `Legacy 744/494 lanthanum-flint class (exact melt uncertain)` | 1.74443 / 49.40 | No catalog entry | abbe | patents/US3507558.pdf | Reviewed sidecar hit |
 | L7 (Element 7) | 11 | `Legacy 767/462 dense lanthanum-flint class (exact melt uncertain)` | 1.76684 / 46.20 | No catalog entry | abbe | patents/US3507558.pdf | Reviewed sidecar hit |
 
-### [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) - US 4,189,212
+### [NIKON AI ZOOM-NIKKOR 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) - US 4,189,212
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2429,7 +2359,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L7 (Element 7) | 14 | `K10 class (501/565)` | 1.50137 / 56.50 | K10 (trusted Sellmeier) | sellmeier | patents/US4189212.pdf | Reviewed sidecar hit |
 | L9b (Element 9b) | 20 | `K10 class (501/565)` | 1.50137 / 56.50 | K10 (trusted Sellmeier) | sellmeier | patents/US4189212.pdf | Reviewed sidecar hit |
 
-### [Nikon AI Zoom-Nikkor 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) - US 3,743,384
+### [NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) - US 3,743,384
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2665,6 +2595,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L41 (L41) | 15 | `501565 - K10 catalog equivalent (production supplier unspecified)` | 1.50137 / 56.46 | K10 (trusted Sellmeier) | sellmeier | patents/US4641928.pdf | No review-record hit |
 | L42 (L42) | 17 | `717295 - flint class (vendor unresolved)` | 1.71736 / 29.48 | SF1 (trusted Sellmeier) | sellmeier | patents/US4641928.pdf | No review-record hit |
 
+### [NIKON ZOOM-NIKKOR 200-400mm f/4 ED](../../src/lens-data/nikon/NikonAISZoomNikkorED200400mmf4.data.ts) - US 4,452,513 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L2a (L2a) | 6 | `788475 — lanthanum-flint class (vendor unresolved)` | 1.78797 / 47.50 | TAF4 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No review-record hit |
+| L42 (L42) | 17 | `788475 — lanthanum-flint class (vendor unresolved)` | 1.78797 / 47.50 | TAF4 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No review-record hit |
+
 ### [NIKON ZOOM-NIKKOR 28-45mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) - US 3,771,853 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -2706,13 +2643,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L17 (Element 17) | 28 | `465658 — low-index crown coordinate class (supplier unresolved)` | 1.46450 / 65.80 | FC3 (trusted Sellmeier) | sellmeier | patents/US3481666.pdf | No review-record hit |
 | L19 (Element 19) | 31 | `465658 — low-index crown coordinate class (supplier unresolved)` | 1.46450 / 65.80 | FC3 (trusted Sellmeier) | sellmeier | patents/US3481666.pdf | No review-record hit |
 
-### [NIKON ZOOM-NIKKOR ED 200-400mm f/4](../../src/lens-data/nikon/NikonAISZoomNikkorED200400mmf4.data.ts) - US 4,452,513 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L2a (L2a) | 6 | `788475 — lanthanum-flint class (vendor unresolved)` | 1.78797 / 47.50 | TAF4 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No review-record hit |
-| L42 (L42) | 17 | `788475 — lanthanum-flint class (vendor unresolved)` | 1.78797 / 47.50 | TAF4 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No review-record hit |
-
 ### [OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R](../../src/lens-data/olympus/OlympusMZuiko1442mmf3556II.data.ts) - US 8,994,842 B2
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -2745,7 +2675,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L10 (Element 10) | 20A | `684313 — Unmatched exact public catalog identity` | 1.68400 / 31.30 | No catalog entry | abbe | patents/US20150124127A1.pdf | Explicit disposition in data |
 | L11 (Element 11) | 22A | `636239 — Unmatched exact public catalog identity` | 1.63550 / 23.90 | No catalog entry | abbe | patents/US20150124127A1.pdf | Explicit disposition in data |
 
-### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) - US 2015/0268449 A1
+### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) - US 2015/0268449 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2756,7 +2686,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L6 (Element 6) | 11 | `786275 — dense flint (patent nd=1.78630, nu_d=27.5)` | 1.78630 / 27.50 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | Audit-log hit |
 | L7 (Element 7) | 12 | `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)` | 1.76864 / 49.70 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | Audit-log hit |
 
-### [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) - US 2023/0367186 A1
+### [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) - US 2023/0367186 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -2904,6 +2834,28 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L8 (Element 8) | 13 | `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | Explicit disposition in data |
 
+### [PENTAX HD D FA 150-450mm f/4.5-5.6 ED DC AW](../../src/lens-data/pentax/HDPentaxDFA150450mmF4556EDDCAW.data.ts) - US 2016/0327774 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (Element 11) | 1 | `750353 (vendor unresolved; patent nd/νd coordinate)` | 1.74950 / 35.30 | J-LAF7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L12 (Element 12) | 3 | `497816 (vendor unresolved; patent nd/νd coordinate)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L13 (Element 13) | 5 | `538747 (vendor unresolved; patent nd/νd coordinate)` | 1.53775 / 74.70 | S-FPM3 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L21 (Element 21) | 7 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L22 (Element 22) | 8 | `786442 (vendor unresolved; patent nd/νd coordinate)` | 1.78590 / 44.20 | S-LAH51 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L31 (Element 31) | 10 | `516641 (vendor unresolved; patent nd/νd coordinate)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L32 (Element 32) | 12 | `806409 (vendor unresolved; patent nd/νd coordinate)` | 1.80610 / 40.90 | P-LASF47 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L34 (Element 34) | 15 | `757478 (vendor unresolved; patent nd/νd coordinate)` | 1.75700 / 47.80 | S-LAM54 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L41 (Element 41) | 18 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L42 (Element 42) | 20 | `618634 (vendor unresolved; patent nd/νd coordinate)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L43 (Element 43) | 22 | `589612 (vendor unresolved; patent nd/νd coordinate)` | 1.58913 / 61.20 | J-SK5 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L44 (Element 44) | 23 | `750353 (vendor unresolved; patent nd/νd coordinate)` | 1.74950 / 35.30 | J-LAF7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L45 (Element 45) | 25 | `658509 (vendor unresolved; patent nd/νd coordinate)` | 1.65844 / 50.90 | N-SSK5 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L51 (Element 51) | 27 | `835427 (vendor unresolved; patent nd/νd coordinate)` | 1.83481 / 42.70 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L52 (Element 52) | 29 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L53 (Element 53) | 30 | `497816 (vendor unresolved; patent nd/νd coordinate)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L54 (Element 54) | 32 | `804466 (vendor unresolved; patent nd/νd coordinate)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+
 ### [PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/PentaxDFA28105mmF3556EDDCWR.data.ts) - US 2017/0068075 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -2955,6 +2907,54 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L22 (Element L22) | 18 | `806333 - high-index lanthanum flint class (vendor unresolved)` | 1.80610 / 33.30 | J-LASFH6 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
 | L23 (Element L23) | 20 | `569560 - barium crown class (vendor unresolved)` | 1.56883 / 56.00 | BAC4 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
 
+### [PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/HDPentaxDA1685mmF3556EDDCWR.data.ts) - JP 2016-114800 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (L11) | 1 | `847238 (vendor-neutral optical code)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L12 (L12) | 2 | `773496 (vendor-neutral optical code)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L13 (L13) | 4 | `804466 (vendor-neutral optical code)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L21g (L21 glass substrate) | 7 | `883408 (vendor-neutral optical code)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L22 (L22) | 9 | `773496 (vendor-neutral optical code)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L23 (L23) | 11 | `762265 (vendor-neutral optical code)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L24 (L24) | 13 | `804466 (vendor-neutral optical code)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L25 (L25) | 14 | `762265 (vendor-neutral optical code)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L31 (L31) | 17 | `516641 (vendor-neutral optical code)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L32 (L32) | 19 | `516641 (vendor-neutral optical code)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L33 (L33) | 20 | `800422 (vendor-neutral optical code)` | 1.79952 / 42.20 | S-LAH52Q (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L34 (L34) | 22A | `743493 (vendor-neutral optical code)` | 1.74330 / 49.30 | M-NBF1 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L41 (L41) | 24 | `497816 (vendor-neutral optical code)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L42 (L42) | 26 | `618634 (vendor-neutral optical code)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L43 (L43) | 27 | `883408 (vendor-neutral optical code)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L44 (L44) | 29 | `538747 (vendor-neutral optical code)` | 1.53775 / 74.70 | S-FPM3 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+
+### [PENTAX HD DA 18-50mm f/4-5.6 DC WR RE](../../src/lens-data/pentax/HDPentaxDA1850mmF456DCWRRE.data.ts) - JP 2016-6455 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (L11) | 1 | `804466 (vendor unresolved)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L12g (L12 Glass Substrate) | 3 | `497816 (vendor unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L13 (L13) | 6 | `805254 (vendor unresolved)` | 1.80518 / 25.40 | N-SF6 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L21 (L21) | 8 | `618634 (vendor unresolved)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | Audit-log hit |
+| L22 (L22) | 10 | `487702 (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L23 (L23) | 11 | `847238 (vendor unresolved)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L31 (L31) | 14 | `805254 (vendor unresolved)` | 1.80518 / 25.40 | N-SF6 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L32 (L32) | 15 | `788474 (vendor unresolved)` | 1.78800 / 47.40 | J-LASF014 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L41 (L41) | 17 | `618634 (vendor unresolved)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | Audit-log hit |
+
+### [PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) - JP 2015-11156 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (L11) | 1 | `729547 (vendor/catalog identity unresolved)` | 1.72916 / 54.70 | TAC8 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L13 (L13) | 5 | `762265 (vendor/catalog identity unresolved)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L21 (L21) | 7 | `743493 (vendor/catalog identity unresolved)` | 1.74320 / 49.30 | S-LAM60 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L22 (L22) | 9 | `497816 (vendor/catalog identity unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L23 (L23) | 10 | `788474 (vendor/catalog identity unresolved)` | 1.78800 / 47.40 | J-LASF014 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L25 (L25) | 13 | `717479 (vendor/catalog identity unresolved)` | 1.71700 / 47.90 | S-LAM3 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L26 (L26) | 15 | `847238 (vendor/catalog identity unresolved)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L27 (L27) | 17 | `603655 (vendor/catalog identity unresolved)` | 1.60300 / 65.50 | S-PHM53 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+
 ### [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) - US 2018/0164556 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -2974,7 +2974,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L43 (Element 15) | 25 | `497816 ED-crown class (vendor unproven)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |
 | L44 (Element 16) | 27A | `516641 crown class (vendor unproven)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |
 
-### [PENTAX SMC D FA645 25mm f/4 AL[IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) - US 8,422,143 B2
+### [PENTAX SMC A ZOOM 35-70mm f/4](../../src/lens-data/pentax/PentaxA3570mmf4.data.ts) - US 4,812,022
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `834372 class (vendor unresolved)` | 1.83400 / 37.20 | J-LASF010 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+| L2 (Element 2) | 3 | `806409 class (vendor unresolved)` | 1.80610 / 40.90 | P-LASF47 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+| L3 (Element 3) | 5 | `805254 class (vendor unresolved)` | 1.80518 / 25.40 | N-SF6 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+| L5 (Element 5) | 9 | `658509 class (vendor unresolved)` | 1.65844 / 50.90 | N-SSK5 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+| L6 (Element 6) | 11 | `805254 class (vendor unresolved)` | 1.80518 / 25.40 | N-SF6 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+| L7 (Element 7) | 13 | `581408 class (vendor unresolved)` | 1.58144 / 40.80 | PBL25 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+
+### [PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) - US 8,422,143 B2
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -3069,7 +3080,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3A | `806404 — lanthanum flint (catalog unresolved; nd 1.8061, νd 40.4)` | 1.80610 / 40.40 | No catalog entry | abbe | patents/JP2012003015A.pdf | Audit-log hit |
 
-### [RICOH LENS A16 24-85mm F3.5-5.5](../../src/lens-data/ricoh/RicohLensA162485mmf3555.data.ts) - US 2012/0307375 A1
+### [RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)](../../src/lens-data/ricoh/RicohLensA162485mmf3555.data.ts) - US 2012/0307375 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -3103,7 +3114,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3 | `Unmatched (684316 dense-flint class; vendor unresolved)` | 1.68384 / 31.60 | No catalog entry | abbe | patents/US20100149663A1.pdf | Explicit disposition in data |
 
-### [SAMSUNG 4.3mm f/1.5 (Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) - US 2021/0149156 A1
+### [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) - US 2021/0149156 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -3269,17 +3280,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `589612-class crown (supplier/melt unresolved)` | 1.58900 / 61.20 | S-BAL35 (trusted Sellmeier) | sellmeier | patents/DE_753329_C.pdf | No review-record hit |
-
-### [SMC PENTAX-A ZOOM 35-70mm f/4](../../src/lens-data/pentax/PentaxA3570mmf4.data.ts) - US 4,812,022
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `834372 class (vendor unresolved)` | 1.83400 / 37.20 | J-LASF010 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-| L2 (Element 2) | 3 | `806409 class (vendor unresolved)` | 1.80610 / 40.90 | P-LASF47 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-| L3 (Element 3) | 5 | `805254 class (vendor unresolved)` | 1.80518 / 25.40 | N-SF6 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-| L5 (Element 5) | 9 | `658509 class (vendor unresolved)` | 1.65844 / 50.90 | N-SSK5 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-| L6 (Element 6) | 11 | `805254 class (vendor unresolved)` | 1.80518 / 25.40 | N-SF6 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-| L7 (Element 7) | 13 | `581408 class (vendor unresolved)` | 1.58144 / 40.80 | PBL25 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
 
 ### [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) - WO 2021/200206 A1
 
@@ -3667,7 +3667,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L18 (Element 18) | 33 | `911353 — high-index optical glass (vendor unresolved)` | 1.91082 / 35.25 | H-ZLaF4LA (trusted Sellmeier) | sellmeier | patents/JP2021043375A.pdf | No review-record hit |
 | L19 (Element 19) | 35A | `851401 — high-index optical glass (vendor unresolved)` | 1.85108 / 40.12 | Q-LASFH58S (trusted Sellmeier) | sellmeier | patents/JP2021043375A.pdf | No review-record hit |
 
-### [TAMRON AF 28-200mm SUPER XR f/3.8-5.6 Aspherical [IF] MACRO](../../src/lens-data/tamron/TamronA0328200mmf3856.data.ts) - US 6,437,923 B1
+### [TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO](../../src/lens-data/tamron/TamronA0328200mmf3856.data.ts) - US 6,437,923 B1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|

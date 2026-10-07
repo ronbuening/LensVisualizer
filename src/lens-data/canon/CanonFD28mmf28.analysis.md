@@ -1,4 +1,4 @@
-# Canon FD 28mm f/2.8 S.C. — Optical Analysis
+# CANON FD 28mm f/2.8 S.C. — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -15,7 +15,7 @@
 
 US 4,046,459 describes a compact retrofocus wide-angle objective for single-lens-reflex cameras. Example 2 is normalized to a focal length of unity, relative aperture F/2.8, and half-field ω = 38°. The prescription has seven air-spaced singlet elements in seven groups: two front negative menisci, a positive third lens, a biconvex fourth lens, a biconcave fifth lens, and two rear positive lenses.
 
-The production match is strongest to the Canon FD 28mm f/2.8 S.C. family rather than to a later generic 28mm lens designation:
+The production match is strongest to the CANON FD 28mm f/2.8 S.C. family rather than to a later generic 28mm lens designation:
 
 1. Canon is both the patent assignee and the manufacturer of the FD lens family.
 2. Canon's official FD28mm f/2.8 S.C. data lists a 7-element / 7-group construction, matching the patent's seven air-spaced singlets.
@@ -159,7 +159,7 @@ Semi-diameters in the data file are inferred because the patent does not list cl
 
 This design belongs to the 1970s SLR retrofocus wide-angle tradition: strong negative menisci in front, a positive correction element close behind them, and a compact positive rear group. The patent's contribution is not an exotic material or aspherical surface; it is the placement and spacing of the third and fourth elements and the controlled radii γ4, γ6, and γ8. Those choices let a seven-singlet 28 mm f/2.8 lens reach SLR back focus while preserving a field of roughly 75°.
 
-For catalog use, the delivered data file represents the Canon FD 28mm f/2.8 S.C. optical family using the patent's Example-2 prescription scaled by 28.0. It should not be read as a teardown of a particular serial-numbered copy.
+For catalog use, the delivered data file represents the CANON FD 28mm f/2.8 S.C. optical family using the patent's Example-2 prescription scaled by 28.0. It should not be read as a teardown of a particular serial-numbered copy.
 
 ## Sources and References
 

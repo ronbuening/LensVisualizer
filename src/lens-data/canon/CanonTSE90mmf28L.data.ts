@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — CANON TS-E 90mm f/2.8L MACRO                 ║
+ * ║           LENS DATA — CANON TS-E 90mm f/2.8 L MACRO                 ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP2018205474A, Numerical Example 1 (Canon).          ║
  * ║  Modified double-Gauss macro perspective-control lens.             ║
@@ -41,7 +41,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-tse-90mm-f28l-macro",
   maker: "Canon",
-  name: "CANON TS-E 90mm f/2.8L MACRO",
+  name: "CANON TS-E 90mm f/2.8 L MACRO",
   subtitle: "JP2018205474A Example 1 — Canon / Yamagishi",
   specs: [
     "11 elements / 9 groups",

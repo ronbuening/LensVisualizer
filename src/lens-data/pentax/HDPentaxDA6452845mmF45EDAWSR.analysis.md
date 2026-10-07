@@ -11,7 +11,7 @@
 
 The prescription corresponds to Numerical Example 1 of JP 2015-87681 A. The patent describes a four-group negative-positive-negative-positive wide-angle zoom for single-lens-reflex cameras, with the aperture stop between the second and third functional groups and with the second group divided into a moving focus subgroup G2a and a fixed-within-G2 subgroup G2b (¶¶0021, 0049–0055). The LensVisualizer data file preserves the patent's native d-line prescription and uses the patent's three infinity-focus zoom states at 28.70, 35.00, and 43.87 mm.
 
-The LensVisualizer record uses the manufacturer product styling **HD PENTAX-DA645 28-45mm f/4.5 ED AW SR**. This is the production correlation selected for this project, not a manufacturer statement that the production lens was built directly from Example 1. Several independent features converge:
+The LensVisualizer record uses the manufacturer product styling **PENTAX HD DA645 28-45mm f/4.5 ED AW SR**. This is the production correlation selected for this project, not a manufacturer statement that the production lens was built directly from Example 1. Several independent features converge:
 
 1. Ricoh Imaging specifies the production lens as 17 elements in 12 groups. Example 1 has 17 physical lenses in 12 air-separated groups when the two thin hybrid-resin layers are treated as bonded layers on physical lenses rather than as additional marketed lenses. The sequential data model therefore contains 19 material entries while retaining `elementCount: 17`.
 2. Ricoh identifies two hybrid aspherical elements at physical positions L1 rear and L16 front. Example 1 places a synthetic-resin hybrid asphere on the image-side face of patent lens 11 and another on the object-side face of patent lens 44. In physical front-to-rear counting these are the first and sixteenth lenses, respectively (¶¶0024, 0029, 0051, 0054).
@@ -277,7 +277,7 @@ Condition (7) formalizes the dispersion split inside G4a, while conditions (8) a
 
 ## Image Stabilization
 
-The production HD PENTAX-DA645 28-45mm f/4.5 ED AW SR includes an in-lens Shake Reduction mechanism according to Ricoh Imaging. The selected patent, however, describes only centered axial zoom and focus behavior and gives no stabilization-group decenter prescription, no lateral travel, and no tilted or shifted optical states.
+The production PENTAX HD DA645 28-45mm f/4.5 ED AW SR includes an in-lens Shake Reduction mechanism according to Ricoh Imaging. The selected patent, however, describes only centered axial zoom and focus behavior and gives no stabilization-group decenter prescription, no lateral travel, and no tilted or shifted optical states.
 
 The LensVisualizer prescription therefore does not invent an SR motion. All surfaces remain centered, and the data file contains no stabilization decenter model. The presence of SR is a production identity and mechanical-feature fact, not a numerical property of the selected Example-1 sequential prescription.
 

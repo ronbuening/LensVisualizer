@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * NIKON AI ZOOM-NIKKOR ED 50-300mm f/4.5
+ * NIKON AI ZOOM-NIKKOR 50-300mm f/4.5 ED
  *
  * Source: US 4,189,213 A, Example 3, Yutaka Iizuka / Nippon Kogaku K.K.
  * Patent prescription: 15 elements in 5 patent groups, all spherical, f = 50.000-295.200 mm, f/4.5.
@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-zoom-nikkor-ed-50-300-f45",
   maker: "Nikon",
-  name: "NIKON AI ZOOM-NIKKOR ED 50-300mm f/4.5",
+  name: "NIKON AI ZOOM-NIKKOR 50-300mm f/4.5 ED",
   subtitle: "US 4,189,213 A Example 3 — Yutaka Iizuka / Nippon Kogaku K.K.",
   specs: ["15 ELEMENTS / 5 PATENT GROUPS", "50-300mm", "f/4.5", "ED", "ALL-SPHERICAL"],
 

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI NIKKOR ED 200mm f/2S IF                           ║
+ * ║ LENS DATA — NIKON AI NIKKOR 200mm f/2 S IF-ED                           ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 4,176,913 A, Example 2 / Second Embodiment.              ║
  * ║ Production correlation: Nikon NIKKOR — The Thousand and One Nights No.31.║
@@ -39,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-nikkor-200mm-f2-if-ed",
   maker: "Nikon",
-  name: "NIKON AI NIKKOR ED 200mm f/2S IF",
+  name: "NIKON AI NIKKOR 200mm f/2 S IF-ED",
   subtitle: "US 4,176,913 A — Example 2 / Second Embodiment",
   specs: [
     "10 ELEMENTS / 8 GROUPS",

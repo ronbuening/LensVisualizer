@@ -20,3 +20,9 @@ Patent: JP 2012-58682 A, Example 4
 
 - Updated the E16 element note and glass-selection table from the legacy BACD5/S-BAL35 wording to M-BACD5N.
 - Added a HOYA M-BACD5N source note to the analysis references.
+
+## 2026-10-07 — Display name
+
+Display name changed from `SIGMA APO Macro 105mm f/2.8 EX DG OS HSM` to `SIGMA MACRO 105mm f/2.8 EX DG OS HSM`. Sigma's
+name for this lens is MACRO 105mm F2.8 EX DG OS HSM; the APO prefix belongs to the 150mm and 180mm macro lenses of
+the same generation. The lens key and file name are unchanged.

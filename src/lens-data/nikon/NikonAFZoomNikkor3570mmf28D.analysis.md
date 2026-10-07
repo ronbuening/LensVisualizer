@@ -1,4 +1,4 @@
-# NIKON AF ZOOM-NIKKOR 35-70mm f/2.8D
+# NIKON AF ZOOM-NIKKOR 35-70mm f/2.8 D
 
 ## Patent Reference and Design Identification
 

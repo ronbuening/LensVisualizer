@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKON AF-S NIKKOR 105mm f/1.4E ED           ║
+ * ║           LENS DATA — NIKON AF-S NIKKOR 105mm f/1.4 E ED           ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: WO2019/116563 A1 Example 3 (Nikon / Yamashita).     ║
  * ║  Three-group telephoto prime with APD glass for secondary          ║
@@ -22,7 +22,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-105-f14e-ed",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 105mm f/1.4E ED",
+  name: "NIKON AF-S NIKKOR 105mm f/1.4 E ED",
   subtitle: "WO2019/116563 A1 Example 3 — Nikon / Yamashita, Ito et al.",
   specs: ["14 ELEMENTS / 9 GROUPS", "f = 102.148 mm", "F/1.45", "2ω = 23.842°", "ALL SPHERICAL"],
 

@@ -38,7 +38,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "minolta-md-50f2",
   maker: "Minolta",
-  name: "Minolta MD 50mm f/2",
+  name: "MINOLTA MD 50mm f/2",
   subtitle: "US 4,444,473 — Example 5; ×0.5 scaled production correlation",
   specs: ["6 ELEMENTS / 5 GROUPS", "50 mm f/2", "PATENT 2ω = 46°", "ALL-SPHERICAL"],
 

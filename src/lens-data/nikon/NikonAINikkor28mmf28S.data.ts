@@ -27,7 +27,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-nikkor-28mm-f28s",
   maker: "Nikon",
-  name: "NIKON AI NIKKOR 28mm f/2.8S",
+  name: "NIKON AI NIKKOR 28mm f/2.8 S",
   subtitle: "US 5,917,663 Example 2 - Nikon / Kenzaburo Suzuki",
   specs: ["8 elements / 8 groups", "f = 28.610 mm", "FNO = 2.89", "2omega = 74.1 deg", "all-spherical"],
 

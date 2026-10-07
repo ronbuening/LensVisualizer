@@ -41,7 +41,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-hd-da-18-50-f4-56-dc-wr-re",
   maker: "Pentax",
-  name: "HD PENTAX-DA 18-50mm f/4-5.6 DC WR RE",
+  name: "PENTAX HD DA 18-50mm f/4-5.6 DC WR RE",
   subtitle: "JP 2016-6455 A — Numerical Example 2; production-correlated prescription",
   specs: [
     "11 ELEMENTS / 8 GROUPS",

@@ -26,7 +26,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   key: "canon-fdn-50f12",
-  name: "CANON New FD 50mm f/1.2",
+  name: "CANON NEW FD 50mm f/1.2",
   maker: "Canon",
   subtitle: "US 4,364,643 · Embodiment 3 (Momiyama, 1982)",
   specs: ["7 elements / 6 groups", "46° field of view", "MFD 0.5 m", "52 mm filter thread"],

@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Lens:** KONICA ZOOM-HEXANON AR 70–150mm f/4
+**Lens:** KONICA ZOOM-HEXANON AR 70-150mm f/4
 **Patent:** JPS58137812A (特開昭58-137812)
 **Application Number:** JP57018900A (特願昭57-18900)
 **Filed:** 1982-02-10

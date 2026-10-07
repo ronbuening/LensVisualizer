@@ -40,7 +40,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-500mm-f56e-pf-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 500mm f/5.6E PF ED VR",
+  name: "NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR",
   subtitle: "JP 2018-017857 A Example 2 — unscaled Phase Fresnel prescription",
   specs: [
     "19 elements / 11 groups",

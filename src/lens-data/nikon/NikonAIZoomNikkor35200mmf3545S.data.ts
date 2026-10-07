@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║      LENS DATA — Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S          ║
+ * ║      LENS DATA — NIKON AI ZOOM-NIKKOR 35-200mm f/3.5-4.5 S          ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 4,770,511, Example 2 / Table 2 (Nippon Kogaku).   ║
  * ║  Positive-lead four-group zoom: G1(+), G2(-), G3(+), G4(+).        ║
@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-zoom-nikkor-35-200mm-f3-5-4-5s",
   maker: "Nikon",
-  name: "Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S",
+  name: "NIKON AI ZOOM-NIKKOR 35-200mm f/3.5-4.5 S",
   subtitle: "US 4,770,511 Example 2 — Nippon Kogaku / Yonezawa, Aono & Takahashi",
   specs: [
     "17 elements / 13 groups",

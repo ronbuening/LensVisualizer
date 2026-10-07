@@ -21,7 +21,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "apo-lanthar-50f2",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical",
+  name: "VOIGTLÄNDER APO-LANTHAR 50mm f/2 Aspherical",
   subtitle: "JP2021-43376A EXAMPLE 5 — COSINA / SUGANO",
   specs: [
     "10 ELEMENTS / 8 GROUPS",

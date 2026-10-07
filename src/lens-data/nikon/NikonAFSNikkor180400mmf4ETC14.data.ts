@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC OUT
+ * NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC OUT
  *
  * Source: WO 2019/131993 A1, second embodiment, Example 1, Figures 7-8 and Tables 8-9.
  * This is the patent's published converter-out prescription. The primary and TC-in
@@ -43,7 +43,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR",
+  name: "NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR",
   subtitle: "WO 2019/131993 A1 second embodiment Example 1 — TC out; constrained 2.0 m focus reconstruction",
   specs: [
     "TC OUT — EXAMPLE 1",

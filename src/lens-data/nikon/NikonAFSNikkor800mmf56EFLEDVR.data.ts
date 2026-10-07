@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S NIKKOR 800mm f/5.6E FL ED VR                            ║
+ * ║ LENS DATA — NIKON AF-S NIKKOR 800mm f/5.6 E FL ED VR                            ║
  * ╠════════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: JP 2013-250293 A, Example 1. Research correlation to the production    ║
  * ║ lens is strong but is not manufacturer-confirmed patent attribution.           ║
@@ -48,7 +48,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-800f56e-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 800mm f/5.6E FL ED VR",
+  name: "NIKON AF-S NIKKOR 800mm f/5.6 E FL ED VR",
   subtitle: "JP 2013-250293 A, Example 1 — strong production correlation; not manufacturer-confirmed",
   specs: [
     "20 LENS ELEMENTS / 13 GROUPS + PROTECTIVE GLASS",

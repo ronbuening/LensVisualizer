@@ -1,4 +1,4 @@
-# SIGMA 12mm f/1.4 DC Contemporary
+# SIGMA 12mm f/1.4 DC | Contemporary
 
 ## Patent Reference and Design Identification
 

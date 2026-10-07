@@ -1,4 +1,4 @@
-# NIKON AI AF-S NIKKOR ED 600mm f/4D II IF
+# NIKON AI AF-S NIKKOR 600mm f/4 D IF-ED II
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Title:** *Internal Focusing Telephoto Lens*\
 **Embodiment analyzed:** Example 3 / Table 3 / Fig. 7
 
-The modeled prescription is the third embodiment of Sato's internal-focusing telephoto patent. The patent itself does not identify a commercial product. The association with the NIKON AI AF-S NIKKOR ED 600mm f/4D II IF is therefore a production-correlation inference rather than a manufacturer-confirmed patent attribution.
+The modeled prescription is the third embodiment of Sato's internal-focusing telephoto patent. The patent itself does not identify a commercial product. The association with the NIKON AI AF-S NIKKOR 600mm f/4 D IF-ED II is therefore a production-correlation inference rather than a manufacturer-confirmed patent attribution.
 
 Several independent features converge on that correlation:
 

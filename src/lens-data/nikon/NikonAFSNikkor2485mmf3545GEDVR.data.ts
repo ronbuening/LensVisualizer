@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR                  ║
+ * ║ LENS DATA — NIKON AF-S NIKKOR 24-85mm f/3.5-4.5 G ED VR                  ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: JP 2011-221421 A, Example 4.                                     ║
  * ║ Selected research correlation to the production 24-85mm is convergent but ║
@@ -45,7 +45,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-24-85mm-f35-45g-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR",
+  name: "NIKON AF-S NIKKOR 24-85mm f/3.5-4.5 G ED VR",
   subtitle: "JP 2011-221421 A, Example 4 — selected production correlation; unconfirmed",
   specs: [
     "16 PHYSICAL ELEMENTS / 11 AIR-SPACED COMPONENTS / 5 ZOOM GROUPS",

@@ -9,7 +9,7 @@
 **Title:** Zoom lens system\
 **Embodiment analyzed:** Numerical Example 1
 
-This analysis treats Numerical Example 1 as the fixed production correlation for the **HD PENTAX-DA 16-85mm f/3.5-5.6 ED DC WR**. The correlation is convergent rather than an explicit manufacturer statement that the production lens uses this patent example.
+This analysis treats Numerical Example 1 as the fixed production correlation for the **PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR**. The correlation is convergent rather than an explicit manufacturer statement that the production lens uses this patent example.
 
 Several independent characteristics support the correlation:
 

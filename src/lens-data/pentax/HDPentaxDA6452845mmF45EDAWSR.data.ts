@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * LENS DATA — HD PENTAX-DA645 28-45mm f/4.5 ED AW SR
+ * LENS DATA — PENTAX HD DA645 28-45mm f/4.5 ED AW SR
  *
  * Data source: JP 2015-87681 A, Numerical Example 1 (RICOH IMAGING COMPANY, LTD.; Tatsuyuki Onozaki).
  * Production correlation: HD PENTAX-DA645 28-45mm F4.5 ED AW SR.
@@ -52,8 +52,8 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hd-pentax-da645-28-45mm-f45-ed-aw-sr",
   maker: "Pentax",
-  name: "HD PENTAX-DA645 28-45mm f/4.5 ED AW SR",
-  subtitle: "JP 2015-87681 A Example 1 — strong HD PENTAX-DA645 28-45mm f/4.5 ED AW SR correlation",
+  name: "PENTAX HD DA645 28-45mm f/4.5 ED AW SR",
+  subtitle: "JP 2015-87681 A Example 1 — strong PENTAX HD DA645 28-45mm f/4.5 ED AW SR correlation",
   specs: [
     "17 PHYSICAL LENSES / 12 GROUPS",
     "28-45mm f/4.5 MARKETED",

@@ -1,4 +1,4 @@
-# RICOH LENS A16 24-85mm F3.5-5.5
+# RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)
 
 ## Patent Reference and Design Identification
 
@@ -17,7 +17,7 @@
 **Title:** Zoom Lens, Imaging Device and Information Device
 **Embodiment analyzed:** Embodiment 3 / FIG. 9 / Table 3
 
-The prescription modeled here is Embodiment 3 of US 2012/0307375 A1. The patent identifies FIG. 9 as the optical layout for Embodiment 3, FIGS. 10–12 as its wide, intermediate, and telephoto aberration plots, and Table 3 as its variable-spacing table (¶¶0302–0346). The selected production correlation is the **RICOH LENS A16 24-85mm F3.5-5.5** GXR camera unit. This correlation is a source-based identification rather than a manufacturer statement that the patent example is the production prescription.
+The prescription modeled here is Embodiment 3 of US 2012/0307375 A1. The patent identifies FIG. 9 as the optical layout for Embodiment 3, FIGS. 10–12 as its wide, intermediate, and telephoto aberration plots, and Table 3 as its variable-spacing table (¶¶0302–0346). The selected production correlation is the **RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)** GXR camera unit. This correlation is a source-based identification rather than a manufacturer statement that the patent example is the production prescription.
 
 The A1 front page names Takano and Atsuumi under **(76) Inventors**, but identifies no organizational assignee or applicant. Separately, [Google Patents' record for the later grant US 8,705,180 B2](https://patents.google.com/patent/US8705180B2/en), covering the same application **13/482,401**, lists **Ricoh Company, Ltd.** as original assignee. Its legal-events table reports an assignment from Takano and Atsuumi effective **May 22, 2012**, with a recorded event date of **May 29, 2012**, at reel/frame **028282/0090**. Both dates precede the A1 publication on December 6, 2012. The catalog records the assignee using the canonical name **Ricoh Co., Ltd.**, based on this same-application assignment history that predates the selected publication; this attribution is not printed on the A1 front page. The underlying assignment instrument was not independently inspected.
 
@@ -223,7 +223,7 @@ The two source corrections remain explicit: surface 6 uses `nd = 1.77030` rather
 
 - **US 2012/0307375 A1**, Yohei Takano and Hiromichi Atsuumi, *Zoom Lens, Imaging Device and Information Device*, published December 6, 2012. Embodiment 3: FIG. 9, FIGS. 10–12, Table 3, ¶¶0302–0346; architecture and focus: ¶¶0097–0104, ¶¶0117–0122, ¶¶0162–0188; asphere convention: ¶¶0202–0210.
 - **JP 2012-247715 A (JP2012247715A)**, corresponding priority-family publication from JP 2011-121122. Claim 5 prints `θg,F < −1.2×10⁻3νd3 + 0.62`, resolving the missing minus sign in the supplied US publication: https://patents.google.com/patent/JP2012247715A/ja
-- Ricoh, **RICOH LENS A16 24-85mm F3.5-5.5** announcement, February 2, 2012: https://www.ricoh-imaging.co.jp/english/r_dc/press/release/nr_gxr_unit7.html
+- Ricoh, **RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)** announcement, February 2, 2012: https://www.ricoh-imaging.co.jp/english/r_dc/press/release/nr_gxr_unit7.html
 - Ricoh, **GXR Major Specifications**: https://www.ricoh-imaging.co.jp/english/products/gxr/specs.html
 - OHARA, **Material Property Catalog** including obsolete L-LAH87 and S-BSM71 data: https://www.ohara-inc.co.jp/wp-content/uploads/2019/12/OHARA_MaterialPropertyCatalog_202207.txt
 - SCHOTT, **TIE-29: Refractive Index and Dispersion** normal-line convention used for `dPgF`: https://media.schott.com/api/public/content/aaa572afd854434fb7b3faa4bc46103f?v=c0f4fa52

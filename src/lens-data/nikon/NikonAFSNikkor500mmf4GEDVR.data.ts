@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * NIKON AF-S NIKKOR 500mm f/4G ED VR — patent-correlated model.
+ * NIKON AF-S NIKKOR 500mm f/4 G ED VR — patent-correlated model.
  *
  * Source prescription: US 2009/0190239 A1, Example 1 (Figs. 6-7), unscaled.
  * The optical-specification correlation to Nikon's production lens is substantial but not manufacturer-confirmed;
@@ -40,7 +40,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-500mm-f4g-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 500mm f/4G ED VR",
+  name: "NIKON AF-S NIKKOR 500mm f/4 G ED VR",
   subtitle: "US 2009/0190239 A1 Example 1 — optical-specification correlation; attribution not manufacturer-confirmed",
   specs: [
     "14 ELEMENTS / 11 GROUPS + PROTECTIVE GLASS",

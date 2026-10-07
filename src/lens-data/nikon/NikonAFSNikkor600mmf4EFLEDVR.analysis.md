@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 600mm f/4E FL ED VR — Optical Design Analysis
+# NIKON AF-S NIKKOR 600mm f/4 E FL ED VR — Optical Design Analysis
 
 ## Patent Reference and Design Identification
 
@@ -14,7 +14,7 @@
 
 The data model transcribes the fourth numerical example of US 2018/0031811 A1. The patent describes a positive first group G1, a negative internal-focus group G2, an aperture stop, and a positive third group G3, with a transversely movable vibration-reduction subassembly and a rear adjustment subassembly intended to compensate manufacturing errors (¶0303–0312). Table 4 supplies the complete d-line prescription, two published focus states, group focal lengths, overall focal length, f-number, field, track length, back focus, and the values associated with eighteen conditional expressions (¶0313).
 
-The project treats Example 4 as the fixed production correlation for the NIKON AF-S NIKKOR 600mm f/4E FL ED VR. This is a convergent identification, not a manufacturer statement that the commercial lens uses this exact patent example. The principal correlations are:
+The project treats Example 4 as the fixed production correlation for the NIKON AF-S NIKKOR 600mm f/4 E FL ED VR. This is a convergent identification, not a manufacturer statement that the commercial lens uses this exact patent example. The principal correlations are:
 
 1. The patent gives a design focal length of 587.80 mm and FNO 4.08, while Nikon markets the production lens as 600 mm f/4.
 2. The patent gives a full field of 4.19° at Y = 21.60 mm; Nikon specifies 4°10′ on FX format.

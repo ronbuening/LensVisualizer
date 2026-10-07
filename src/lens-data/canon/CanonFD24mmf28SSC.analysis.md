@@ -1,4 +1,4 @@
-# Canon FD 24mm f/2.8 S.S.C. — Optical Analysis
+# CANON FD 24mm f/2.8 S.S.C. — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -14,7 +14,7 @@
 
 US 3,748,021 describes a reverse-telephoto wide-angle lens whose close-range correction is obtained by reducing a front-group air space as the whole lens is advanced for focusing. The patent is the primary prescription source; the relevant optical layout is Fig. 11 and the relevant numerical table is Embodiment 2.
 
-The identification with the Canon FD 24mm f/2.8 S.S.C. rests on convergent evidence:
+The identification with the CANON FD 24mm f/2.8 S.S.C. rests on convergent evidence:
 
 1. **Aperture and field.** Example 2 is stated at F/2.8 and `2ω = 84°`. A 24 mm rectilinear lens on the 43.27 mm diagonal of the 135 format gives `2·atan(21.63 / 24) = 84.1°`, matching the patent field.
 2. **Element and group count.** The prescription resolves to 9 elements in 8 air-spaced groups, with one cemented doublet behind the stop. Canon's official Camera Museum entry for the FD24mm f/2.8 S.S.C. lists 9 elements in 8 groups.

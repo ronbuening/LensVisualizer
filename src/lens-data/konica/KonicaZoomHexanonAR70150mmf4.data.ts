@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — KONICA ZOOM-HEXANON AR 70–150mm f/4                         ║
+ * ║  LENS DATA — KONICA ZOOM-HEXANON AR 70-150mm f/4                         ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Source: JPS58137812A, Example 1 (Konishiroku Photo Industry Co., Ltd.).   ║
  * ║  Native patent scale, 15 elements / 12 groups, all spherical.              ║
@@ -49,7 +49,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "konica-zoom-hexanon-ar-70-150mm-f4",
   maker: "Konica",
-  name: "KONICA ZOOM-HEXANON AR 70–150mm f/4",
+  name: "KONICA ZOOM-HEXANON AR 70-150mm f/4",
   subtitle: "JPS58137812A Example 1 — inner-focus +−++ four-group zoom",
   specs: [
     "15 ELEMENTS / 12 GROUPS",

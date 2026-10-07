@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-i-nikkor-400mm-f28d-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-I NIKKOR 400mm f/2.8D IF-ED",
+  name: "NIKON AF-I NIKKOR 400mm f/2.8 D IF-ED",
   subtitle: "US 5,438,455 A — Example 1; production-lens correlation",
   specs: [
     "10 ELEMENTS / 7 GROUPS",

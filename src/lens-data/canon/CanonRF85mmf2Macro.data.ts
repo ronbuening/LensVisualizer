@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-rf-85f2-macro",
   maker: "Canon",
-  name: "CANON RF 85mm f/2 Macro IS STM",
+  name: "CANON RF 85mm f/2 MACRO IS STM",
   subtitle: "US 2021/0072505 A1 EXAMPLE 1 — CANON / KOBAYASHI",
   specs: ["12 ELEMENTS / 11 GROUPS", "f ≈ 82.45 mm", "F/2.06", "2ω ≈ 29.4°", "ALL SPHERICAL"],
 

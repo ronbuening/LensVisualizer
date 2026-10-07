@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — Nikon AI Zoom-Nikkor 360-1200mm f/11 ED               ║
+ * ║  LENS DATA — NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED               ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 3,743,384 Example I / Claim 4, Soichi Nakamura,   ║
  * ║  Nippon Kogaku K.K.; Certificate of Correction dated 1974-03-05.   ║
@@ -39,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-zoom-nikkor-360-1200mm-f11-ed",
   maker: "Nikon",
-  name: "Nikon AI Zoom-Nikkor 360-1200mm f/11 ED",
+  name: "NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED",
   subtitle: "US 3,743,384 Example I — Nippon Kogaku / Soichi Nakamura",
   specs: [
     "20 elements / 12 groups",

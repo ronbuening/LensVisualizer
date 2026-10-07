@@ -9,7 +9,7 @@
 **Title:** ズームレンズ及びそれを用いた光学機器 (Zoom lens and optical apparatus using the same)\
 **Embodiment analyzed:** Example 1 / Numerical Example 1
 
-The prescription modeled here is Numerical Example 1 of JP2002162564A. The data file preserves that embodiment rather than modifying it to force agreement with the production lens. The correlation to the CANON EF 70-200mm f/2.8L IS USM rests on several convergent facts, but it is not manufacturer confirmation of the patent-to-product identity.
+The prescription modeled here is Numerical Example 1 of JP2002162564A. The data file preserves that embodiment rather than modifying it to force agreement with the production lens. The correlation to the CANON EF 70-200mm f/2.8 L IS USM rests on several convergent facts, but it is not manufacturer confirmation of the patent-to-product identity.
 
 1. The patent application was filed on 28 November 2000. Canon lists the production EF70-200mm f/2.8L IS USM as marketed in September 2001, placing the patent work immediately before the commercial lens.
 2. Numerical Example 1 is a large-aperture zoom with published control points at 72.50, 99.50, and 194.99 mm and a source f-number of 2.9. The production lens is marketed as 70-200mm f/2.8.

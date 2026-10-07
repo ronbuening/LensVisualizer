@@ -2,14 +2,14 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — Nikon AI Micro-Nikkor 105mm f/2.8S                    ║
+ * ║  LENS DATA — NIKON AI MICRO-NIKKOR 105mm f/2.8 S                    ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 4,392,724, Example 1, Yoshinari Hamanishi /       ║
  * ║  Nippon Kogaku K.K.                                                ║
  * ║                                                                    ║
  * ║  Patent prescription: f = 105 mm, F/2.8, 2ω = 23.25°,              ║
  * ║  β = -0.5 at close focus.                                          ║
- * ║  Production identification: Nikon AI Micro-Nikkor 105mm f/2.8S.    ║
+ * ║  Production identification: NIKON AI MICRO-NIKKOR 105mm f/2.8 S.    ║
  * ║                                                                    ║
  * ║  10 elements / 9 air-separated groups, all spherical.              ║
  * ║  Focus: CRC-style floating focus; G1 and G2 move objectward        ║
@@ -34,7 +34,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-micro-nikkor-105mm-f28s",
   maker: "Nikon",
-  name: "Nikon AI Micro-Nikkor 105mm f/2.8S",
+  name: "NIKON AI MICRO-NIKKOR 105mm f/2.8 S",
   subtitle: "US 4,392,724 Example 1 — Hamanishi / Nippon Kogaku",
   specs: [
     "10 elements / 9 groups",

@@ -302,7 +302,7 @@ Minolta's user instructions describe a concentrated subject point surrounded by 
 
 The Varisoft therefore illustrates controlled soft focus rather than a simple increase in one coefficient: its moving-group geometry varies spherical aberration while restraining astigmatism and coma, and the linked model exposes the actual spacing changes.
 
-### 11.3 NIKON AF DC-NIKKOR 135mm f/2D: Controlling Defocus While Retaining the Subject
+### 11.3 NIKON AF DC-NIKKOR 135mm f/2 D: Controlling Defocus While Retaining the Subject
 
 The [Nikon AF DC-Nikkor 135mm f/2D model](/lens/nikon-af-dc-nikkor-135mm-f2/)[^9] pursues a different goal. US 4,908,639 describes a long-focus, large-aperture system in which spacing within the positive forward group is varied to change spherical aberration, coma, and associated astigmatism while a positive rear group performs focusing and image-plane compensation.[^8] The second embodiment is a full-scale 135mm f/2 prescription with seven elements in six groups, closely matching Nikon's published production cross-section and design history.[^18]
 
@@ -318,7 +318,7 @@ The correlated patent embodiment is an all-spherical positive-negative-positive 
 
 Cosina states that overcorrection retains a focused core while making the background blur harder and more bubble-like; undercorrection softens the focused subject, introduces highlight flare, and makes the background blur smoother.[^19] In the terminology of Section 6, those descriptions are consistent with a shift toward more edge-weighted versus more center-weighted background disks, but the exact appearance remains lens- and scene-dependent.
 
-> **Sidebar: NIKON Fuwatto Soft 90mm f/4.8—changing the architecture rather than turning a control.** The [Nikon Fuwatto Soft 90mm f/4.8 model](/lens/nikon-fuwatto-soft-90mm-f48/) shows another route. Nikon's inexpensive 1995 Fun Fun LensSet used one convertible optical assembly for a 120mm macro state and a 90mm soft-focus state. For the Fuwatto configuration, the rear negative corrector is removed and the front cemented doublet is reversed.[^22] [^23] [^24] The first-order power of the doublet remains similar when reversed, but its higher-order aberration balance changes substantially. The result is a fixed soft-focus lens rather than a continuously adjustable one. It is a compact demonstration that orientation and group topology can be creative controls as consequential as adding a specialized surface.
+> **Sidebar: NIKON FUWATTO SOFT 90mm f/4.8—changing the architecture rather than turning a control.** The [Nikon Fuwatto Soft 90mm f/4.8 model](/lens/nikon-fuwatto-soft-90mm-f48/) shows another route. Nikon's inexpensive 1995 Fun Fun LensSet used one convertible optical assembly for a 120mm macro state and a 90mm soft-focus state. For the Fuwatto configuration, the rear negative corrector is removed and the front cemented doublet is reversed.[^22] [^23] [^24] The first-order power of the doublet remains similar when reversed, but its higher-order aberration balance changes substantially. The result is a fixed soft-focus lens rather than a continuously adjustable one. It is a compact demonstration that orientation and group topology can be creative controls as consequential as adding a specialized surface.
 
 ---
 
@@ -529,7 +529,7 @@ Across this lineage, the mechanism changes but the underlying design decision re
 
 [^8]: M. Yanagisawa, "Optical system having a variable out-of-focus state," U.S. Patent 4,908,639, Mar. 13, 1990. [Online]. Available: https://patents.google.com/patent/US4908639A/en. [Accessed: Aug. 6, 2026].
 
-[^9]: Surface & Stop, "NIKON AF DC-NIKKOR 135mm f/2D." [Online]. Available: https://surfaceandstop.com/lens/nikon-af-dc-nikkor-135mm-f2/. [Accessed: Aug. 6, 2026].
+[^9]: Surface & Stop, "NIKON AF DC-NIKKOR 135mm f/2 D." [Online]. Available: https://surfaceandstop.com/lens/nikon-af-dc-nikkor-135mm-f2/. [Accessed: Aug. 6, 2026].
 
 [^10]: Surface & Stop, "From Achromat to APO." [Online]. Available: https://surfaceandstop.com/articles/achromat-apochromat/. [Accessed: Aug. 6, 2026].
 
@@ -559,7 +559,7 @@ Across this lineage, the mechanism changes but the underlying design decision re
 
 [^23]: K. Ohshita, "Lens system with switchable soft focus," U.S. Patent 5,796,530, Aug. 18, 1998. [Online]. Available: https://patents.google.com/patent/US5796530A/en. [Accessed: Aug. 6, 2026].
 
-[^24]: Surface & Stop, "NIKON Fuwatto Soft 90mm f/4.8." [Online]. Available: https://surfaceandstop.com/lens/nikon-fuwatto-soft-90mm-f48/. [Accessed: Aug. 6, 2026].
+[^24]: Surface & Stop, "NIKON FUWATTO SOFT 90mm f/4.8." [Online]. Available: https://surfaceandstop.com/lens/nikon-fuwatto-soft-90mm-f48/. [Accessed: Aug. 6, 2026].
 
 [^25]: Surface & Stop, "About Surface & Stop." [Online]. Available: https://surfaceandstop.com/articles/about-site/. [Accessed: Aug. 6, 2026].
 

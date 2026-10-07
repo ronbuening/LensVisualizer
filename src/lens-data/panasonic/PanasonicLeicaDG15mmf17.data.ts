@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH (H-X015) ║
+ * ║  LENS DATA — PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH. (H-X015) ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2015/0268449 A1, Numerical Example 2              ║
  * ║  (Kurioka, Nishioka; Panasonic IP Management).                     ║
@@ -27,7 +27,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "panasonic-leica-dg-15f17",
   maker: "Panasonic",
-  name: "PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH",
+  name: "PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.",
   subtitle: "US 2015/0268449 A1 Example 2 — Panasonic / Kurioka, Nishioka",
   specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 15.5 mm", "F/1.77", "2ω ≈ 70.5°", "5 ASPHERICAL SURFACES"],
 

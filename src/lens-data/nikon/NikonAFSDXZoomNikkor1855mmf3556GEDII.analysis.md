@@ -1,4 +1,4 @@
-# NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6G ED II — Optical Design Analysis
+# NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6 G ED II — Optical Design Analysis
 
 ## Patent Reference and Design Identification
 
@@ -20,7 +20,7 @@
 
 **Embodiment analyzed:** Example 4, Fig. 13 and Table 4; aberration plots in Figs. 14–16
 
-The prescription represented here is Example 4 of the patent's second embodiment. The selected production correlation is the NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6G ED II. The patent itself does not identify that retail product by name, so the correlation is a source-based identification rather than a manufacturer statement that the marketed lens is literally Example 4.
+The prescription represented here is Example 4 of the patent's second embodiment. The selected production correlation is the NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6 G ED II. The patent itself does not identify that retail product by name, so the correlation is a source-based identification rather than a manufacturer statement that the marketed lens is literally Example 4.
 
 Several independent features support that selected correlation, but only at the 18–55 mm ED-family level:
 

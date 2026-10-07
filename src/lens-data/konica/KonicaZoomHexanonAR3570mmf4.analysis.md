@@ -9,7 +9,7 @@
 **Title:** Zoom lens (ズームレンズ)\
 **Embodiment analyzed:** Example 1 (実施例1)
 
-Example 1 is the prescription represented by the data file for the **KONICA ZOOM-HEXANON AR 35–70mm f/4**. The
+Example 1 is the prescription represented by the data file for the **KONICA ZOOM-HEXANON AR 35-70mm f/4**. The
 identification is a production correlation rather than a manufacturer statement that the released lens used this exact
 patent example. The correlation rests on several convergent facts:
 

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF FISHEYE-NIKKOR 16mm f/2.8D                   ║
+ * ║ LENS DATA — NIKON AF FISHEYE-NIKKOR 16mm f/2.8 D                   ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 5,434,713 A, Example 1 / First Embodiment (Haruo Sato). ║
  * ║ Production identity: Nikon's official lens history and product     ║
@@ -52,7 +52,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-fisheye-nikkor-16mm-f28d",
   maker: "Nikon",
-  name: "NIKON AF FISHEYE-NIKKOR 16mm f/2.8D",
+  name: "NIKON AF FISHEYE-NIKKOR 16mm f/2.8 D",
   subtitle: "US 5,434,713 A — Example 1 / First Embodiment; strong production correlation",
   specs: [
     "8 ELEMENTS / 5 GROUPS",

@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-a-star-135mm-f18",
   maker: "Pentax",
-  name: "PENTAX SMC PENTAX-A★ 135mm f/1.8",
+  name: "PENTAX SMC A* 135mm f/1.8",
   subtitle: "US4447137 Example 2 — Asahi / Yasunori Arai",
   specs: ["7 elements / 6 groups", "f = 134.99 mm", "F/1.8", "2ω = 18°", "all-spherical", "fixed rear element focus"],
 

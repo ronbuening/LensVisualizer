@@ -13,7 +13,7 @@ The Japanese publication names the inventor as `西尾 彰宏`; the normalized L
 
 The prescription modeled here is Numerical Example 1 of JP2000284174A. The patent presents a four-group inner-focusing zoom whose first group is subdivided into a fixed positive L1a subgroup and a positive L1b subgroup that moves toward the object for close focusing. L2 is the negative variator, L3 is the positive compensator, SP is the aperture stop, and L4 is the fixed positive relay group (¶0024–¶0027). The numerical table on patent PDF p. 6 gives `f = 71.92–194.57 mm`, `Fno = 4.1`, and the three published variable gaps D8, D15, and D18; Figure 1 on PDF p. 8 shows the corresponding L1/L2/L3/SP/L4 arrangement.
 
-The fixed production correlation is the CANON EF 70-200mm f/4L USM. It is a correlation from convergent optical and product evidence, not a statement that Canon has identified this patent as the production prescription:
+The fixed production correlation is the CANON EF 70-200mm f/4 L USM. It is a correlation from convergent optical and product evidence, not a statement that Canon has identified this patent as the production prescription:
 
 1. Canon lists the production lens as 16 elements in 13 groups, exactly matching the decomposition of Numerical Example 1.
 2. Canon marketed the production lens in September 1999. The patent was filed on 1999-03-29 and published on 2000-10-13, placing the application in the production-development period.

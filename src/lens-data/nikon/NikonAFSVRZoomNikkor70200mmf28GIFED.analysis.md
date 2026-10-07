@@ -12,7 +12,7 @@
 
 The modeled prescription is Example 1 of the first embodiment in US 2003/0133200 A1. The patent describes a four-power-group large-aperture internal-focusing zoom with axial motion of G2 and G3, axial focusing by the rear portion of G1, and transverse vibration-reduction motion within G4 (¶¶0092–0108). Example 1 then specifies the 21-element prescription, its cemented relationships, the three zoom stations, the close-focus state, and the vibration-reduction offsets (¶¶0109–0114).
 
-The project treats this example as the fixed production correlation for the **NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED**. That correlation is supported by convergent evidence rather than an explicit Nikon statement tying the commercial lens to this patent:
+The project treats this example as the fixed production correlation for the **NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED**. That correlation is supported by convergent evidence rather than an explicit Nikon statement tying the commercial lens to this patent:
 
 1. Nikon specifies the production lens as a 70–200 mm f/2.8 Nikon F-mount lens for FX/35 mm with 21 elements in 15 groups, five ED elements, VR, AF-S, internal focusing, and a 1.5 m minimum focus distance.
 2. Example 1 contains 21 elements in 15 air-separated groups, a design focal range of approximately 71.4–196.0 mm at f/2.88, five occurrences of the same very-low-dispersion coordinate pair `nd = 1.497820, νd = 82.52`, axial internal focusing, transverse vibration reduction, and a published closest-focus condition of 1500 mm.

@@ -1,4 +1,4 @@
-# NIKON NIKKOR-H Auto 2.8cm f/3.5
+# NIKON NIKKOR-H AUTO 2.8cm f/3.5
 
 ## Patent Reference and Design Identification
 

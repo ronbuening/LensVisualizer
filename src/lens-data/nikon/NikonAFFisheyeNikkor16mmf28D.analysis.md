@@ -1,4 +1,4 @@
-# NIKON AF FISHEYE-NIKKOR 16mm f/2.8D
+# NIKON AF FISHEYE-NIKKOR 16mm f/2.8 D
 
 ## Patent Reference and Design Identification
 

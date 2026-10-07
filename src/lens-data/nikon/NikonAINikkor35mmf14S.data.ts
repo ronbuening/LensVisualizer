@@ -23,7 +23,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-nikkor-35mm-f14-s",
   maker: "Nikon",
-  name: "NIKON AI NIKKOR 35mm f/1.4S",
+  name: "NIKON AI NIKKOR 35mm f/1.4 S",
   subtitle: "US 3,576,360 Embodiment 1 — Nippon Kogaku / Shimizu",
   specs: ["9 elements / 7 groups", "35.0 mm design EFL", "f/1.4", "62° field", "All spherical"],
   focalLengthMarketing: 35,

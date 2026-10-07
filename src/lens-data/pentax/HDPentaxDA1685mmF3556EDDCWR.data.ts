@@ -49,7 +49,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hd-pentax-da-16-85mm-f35-56-ed-dc-wr",
   maker: "Pentax",
-  name: "HD PENTAX-DA 16-85mm f/3.5-5.6 ED DC WR",
+  name: "PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR",
   subtitle: "JP 2016-114800 A Example 1 — Ricoh Imaging / Yoichi Nomura",
   specs: [
     "16 ELEMENTS / 12 GROUPS",

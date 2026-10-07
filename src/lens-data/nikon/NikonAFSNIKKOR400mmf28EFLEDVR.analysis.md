@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR — Optical Design Analysis
+# NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR — Optical Design Analysis
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Embodiment analyzed:** Example 1 / 第1実施例\
 
 The prescription is the first numerical embodiment in JP 2015-215559 A, described in ¶0122–0133 and tabulated in
-Table 1. The production correlation is to the **NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR**. This correlation is an
+Table 1. The production correlation is to the **NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR**. This correlation is an
 analytical identification of the selected patent embodiment; Nikon does not publish a statement identifying Example 1
 as the production prescription.
 

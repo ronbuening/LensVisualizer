@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-I NIKKOR 300mm f/2.8D IF-ED                        ║
+ * ║  LENS DATA — NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED                        ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP H04-294310 A, Example 1 (Nikon / Susumu Sato).              ║
  * ║  Production correlation is strong but inferential; the patent does not     ║
@@ -44,7 +44,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-i-nikkor-300mm-f2-8d-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-I NIKKOR 300mm f/2.8D IF-ED",
+  name: "NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED",
   subtitle: "JP H04-294310 A Example 1 — production correlation inferred from timing and architecture",
   specs: [
     "300mm f/2.8",

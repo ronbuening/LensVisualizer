@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Nikon AF-S NIKKOR 24mm f/1.8G ED
+ * NIKON AF-S NIKKOR 24mm f/1.8 G ED
  *
  * Data source: JP 2017-3807 A, Example 4 (Konica Minolta / Nikon).
  * Prescription is retained at patent scale: computed d-line EFL = 24.423 mm;
@@ -25,7 +25,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-24mm-f18g-ed",
   maker: "Nikon",
-  name: "Nikon AF-S NIKKOR 24mm f/1.8G ED",
+  name: "NIKON AF-S NIKKOR 24mm f/1.8 G ED",
   subtitle: "JP 2017-3807 A Example 4 — Konica Minolta / Nikon",
   specs: [
     "12 elements / 9 groups",

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED                   ║
+ * ║ LENS DATA — NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED                   ║
  * ╠════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: JP 2000-19398 A, Example 1 (Nikon Corporation / Susumu Sato).            ║
  * ║ Strong production correlation to the marketed 80-200mm f/2.8D IF-ED.            ║
@@ -61,7 +61,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed",
   maker: "Nikon",
-  name: "NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED",
+  name: "NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED",
   subtitle: "JP 2000-19398 A Example 1 — strong production correlation",
   specs: [
     "18 ELEMENTS / 14 GROUPS",
