@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-08",
     type: "fix",
+    summary: "Sony FE 12-24mm f/2.8 GM now traces at d-line indices; all 17 glasses use catalog dispersion curves",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
     summary:
       "Sony FE 12-24mm f/2.8 GM rear ED element's partial dispersion now uses the chromatic trace's reference line",
   },

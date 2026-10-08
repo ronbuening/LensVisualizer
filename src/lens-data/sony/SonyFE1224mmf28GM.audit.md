@@ -35,3 +35,44 @@ Patent: WO 2021/200206 A1, Example 2 / FIG. 6
 - The catalog-curve screen (`npm run audit:dpgf`) had not listed the element: the repo's HOYA FCD1 curve reads PgF 0.5377 against the patent's 0.5389, which put the stored 0.0376 outside the screen's source-line window (+0.0363) as well as the engine-line one (+0.0312).
 - L56 is the only element in the file that carries `dPgF`. L14 and L53 are tagged `apd: "inferred"` with no number, and no element authors nC, nF or ng.
 - The analysis keeps the patent's own 0.0376 for condition (2) and now states the line it is measured from.
+
+## 2026-10-08 - Index column re-referenced from the e line to the d line
+
+- Reviewed local `patents/WO2021200206A1.pdf`. ¶0060 (PDF page 16) defines "ndi" as the index at the d line (587.6 nm) and "νdi" as the d-line Abbe number. Table 6 (PDF page 27) nevertheless prints, for all 17 elements, the e-line index of a catalog glass beside that glass's νd: every printed value equals a catalog ne to five decimals and none equals a catalog nd.
+- Sibling examples. Table 1 (Example 1, PDF page 21) and Table 16 (Example 4, PDF page 39) print d-line values under the same heading (1.49700 / 81.6, 1.43700 / 95.1, 1.95375 / 32.3). Table 11 (Example 3, PDF page 33) prints e-line values like Table 6. Table 21 (PDF page 42) gives Nd2G at the d line for every example: 1.9212 for Example 2, where Table 6 prints 1.93024 for that element. The analysis had read 1.9212 as a carryover from Example 1; it is the same glass printed at two lines.
+- Deciding check: wide-end paraxial group focal lengths against Table 7 (PDF page 28).
+
+| Group | Table 7 | Table 6 indices as printed | d-line indices |
+| --- | ---: | ---: | ---: |
+| GP1 | −20.31 | −20.297 | −20.308 |
+| GP2 | 58.02 | 57.761 | 58.019 |
+| GP3 | 362.10 | 368.783 | 362.134 |
+| GP4 | 46.40 | 46.488 | 46.408 |
+| GP5 | −78.16 | −77.662 | −78.163 |
+
+- The focal lengths follow: 12.367 / 16.936 / 23.283 mm against Table 8's 12.37 / 16.94 / 23.29 (12.361 / 16.931 / 23.280 with the printed column).
+- Decision: store d-line indices rather than mark the file `indexReference: "e"`. The patent's stated reference and its group data are d-line, and the printed column pairs ne with νd, which is not the ne / νe pair the e-line mode expects.
+
+| Elements | Table 6 | Stored nd | νd | Source of the d-line value | Label |
+| --- | ---: | ---: | ---: | --- | --- |
+| L11 | 1.58547 | 1.58313 | 59.5 | Table 1 surface 18; Table 16 surface 1 | M-BACD12 / L-BAL42 class |
+| L12 | 1.77173 | 1.76802 | 49.2 | Table 1 surfaces 1, 3 | M-TAF101 class |
+| L13, L42 | 1.55206 | 1.55032 | 75.5 | catalog: FCD705 | FCD705 class |
+| L14, L53 | 1.43810 | 1.43700 | 95.1 | Table 1 surfaces 5, 27 | FCD100 class |
+| L15 | 1.85649 | 1.85026 | 32.3 | catalog: S-LAH71 | S-LAH71 class |
+| L21 | 1.93024 | 1.92119 | 24.0 | Table 1 surface 12; Table 21 Nd2G | FDS24 class |
+| L22 | 1.67764 | 1.67270 | 32.2 | catalog: E-FD5, SF5, H-ZF2 | E-FD5 / S-TIM25 class |
+| L31, L41, L52 | 1.96073 | 1.95375 | 32.3 | Table 1 surfaces 9, 20 | TAFD45 / S-LAH98 class |
+| L32 | 1.59412 | 1.59201 | 67.0 | Table 16 surface 20 | M-PCD51 class |
+| L51 | 1.90314 | 1.89286 | 20.4 | catalog: S-NPH4 | S-NPH4 class |
+| L54 | 2.00912 | 2.00100 | 29.1 | Table 16 surfaces 7, 14, 23 | TAFD55 / S-LAH99 class |
+| L55 | 1.85639 | 1.85135 | 40.1 | Table 1 surface 31 (Table 16 prints 1.85134) | M-TAFD305 class |
+| L56 | 1.49845 | 1.49700 | 81.6 | Table 1 surfaces 7, 21, 33; Table 16 | FCD1 / S-FPL51 / N-PK52A class |
+
+- The four catalog-sourced rows are glass types the patent prints only at the e line. For each, every catalog glass whose ne and νd equal the printed pair has the same nd to five decimals, so the stored value does not depend on which vendor is right.
+- Labels stay class-level with the supplier unstated. Eleven of the thirteen types are HOYA catalog coordinates; L15 and L51 are OHARA's. The earlier D-ZK2, M-TAF1, S-FPL53, PCD51 and D-ZLaF85 labels were nearest-name fits to the e-line numbers.
+- This supersedes the conclusions of the two 2026-07-30 entries above. 1.96073 / 32.3 is the e-line index of TAFD45 / S-LAH98, and 1.67764 / 32.2 is the e-line index of the SF5 family: the 0.0049 by which SF5 "missed" was ne − nd.
+- Changed: `nd` on 17 elements and their 17 surfaces, 17 `fl` values, the glass labels, `specs`, `focalLengthDesign`, and the header comment. Unchanged: radii, thicknesses, aspheres, variable gaps, semi-diameters, and L56 `dPgF` 0.0324, which comes from the printed θgF and νd.
+- The traced wide-open iris radii are now 8.112 / 9.559 / 11.799 mm against Table 9's 8.115 / 9.565 / 11.815, and the stated f/2.91 beam is still iris-limited at all three stations.
+- All 17 elements now resolve to a catalog Sellmeier curve. Eight did before, five of them to a neighbouring glass inside the ±0.003 window.
+- Other files that show the same e-line pattern are queued in `agent_docs/glass-relabel-followup.md`; none was changed here.
