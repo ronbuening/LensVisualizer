@@ -215,10 +215,10 @@ const DiagramHeader = memo(
                   }}
                 >
                   {patentAttribution ? (
-                    <>
+                    <span>
                       <PatentNumberLink patentNumber={patentAttribution.patentNumber} color={t.descLinkColor} />
                       {patentAttribution.authors.length > 0 && (
-                        <>
+                        <span>
                           {" — "}
                           <InventorLinks
                             names={patentAttribution.authors}
@@ -229,18 +229,18 @@ const DiagramHeader = memo(
                               transition: "color 0.3s, border-color 0.3s",
                             }}
                           />
-                        </>
+                        </span>
                       )}
-                    </>
+                    </span>
                   ) : (
-                    displaySubtitle
+                    <span>{displaySubtitle}</span>
                   )}
                   {teleconverterPatent && (
-                    <>
+                    <span>
                       {" · TC "}
                       <PatentNumberLink patentNumber={teleconverterPatent.patentNumber} color={t.descLinkColor} />
                       {teleconverterPatent.authors.length > 0 && (
-                        <>
+                        <span>
                           {" — "}
                           <InventorLinks
                             names={teleconverterPatent.authors}
@@ -251,9 +251,9 @@ const DiagramHeader = memo(
                               transition: "color 0.3s, border-color 0.3s",
                             }}
                           />
-                        </>
+                        </span>
                       )}
-                    </>
+                    </span>
                   )}
                 </span>
               )}
@@ -302,9 +302,9 @@ const DiagramHeader = memo(
                   fontVariantNumeric: "tabular-nums",
                 }}
               >
-                {L.isZoom && <span>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>}
+                {L.isZoom && <span>{`${eflAtZoom(zoomT, L).toFixed(0)} mm`}</span>}
                 <span>{formatDist(focusT, L, zoomT)}</span>
-                <span>f/{formatFNumber(fNumber)}</span>
+                <span>{`f/${formatFNumber(fNumber)}`}</span>
                 <span>{compactFocalReadout}</span>
               </div>
             )}

@@ -280,10 +280,9 @@ export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: F
               transition: "color 0.3s",
             }}
           >
-            {currentBreathingPercent >= 0 ? "+" : ""}
-            {currentBreathingPercent.toFixed(1)}%
+            {`${currentBreathingPercent >= 0 ? "+" : ""}${currentBreathingPercent.toFixed(1)}%`}
           </span>
-          <span style={{ fontSize: 9, color: t.muted, transition: "color 0.3s" }}>({breathingLabel})</span>
+          <span style={{ fontSize: 9, color: t.muted, transition: "color 0.3s" }}>{`(${breathingLabel})`}</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>EFL</span>
@@ -296,7 +295,7 @@ export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: F
               transition: "color 0.3s",
             }}
           >
-            {dynamicEFL.toFixed(1)} mm
+            {`${dynamicEFL.toFixed(1)} mm`}
           </span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -324,8 +323,7 @@ export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: F
               transition: "color 0.3s",
             }}
           >
-            {closeSample.breathingPercent >= 0 ? "+" : ""}
-            {closeSample.breathingPercent.toFixed(1)}%
+            {`${closeSample.breathingPercent >= 0 ? "+" : ""}${closeSample.breathingPercent.toFixed(1)}%`}
           </span>
         </div>
       </div>

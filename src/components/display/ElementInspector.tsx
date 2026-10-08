@@ -264,9 +264,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
             <div key={label} style={{ gridColumn: "1 / -1" }}>
               <span style={{ color: t.asphLabel, fontSize: 9.5 }}>Asph ({label}): </span>
               <span style={{ color: t.muted, fontSize: 9 }}>
-                K={coeffs.K?.toExponential(2)}
-                {coeffs.A4 ? ` A4=${coeffs.A4.toExponential(2)}` : ""}
-                {coeffs.A6 ? ` A6=${coeffs.A6.toExponential(2)}` : ""}
+                {`K=${coeffs.K?.toExponential(2) ?? ""}${coeffs.A4 ? ` A4=${coeffs.A4.toExponential(2)}` : ""}${coeffs.A6 ? ` A6=${coeffs.A6.toExponential(2)}` : ""}`}
               </span>
             </div>
           ));
@@ -296,11 +294,10 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
             <div key={row.surfaceLabel} style={{ display: "contents" }}>
               <div>
                 <span style={{ color: t.propLabel }}>
-                  Dispersion{dispersionRows.length > 1 ? ` ${row.surfaceLabel}` : ""}:{" "}
+                  {`Dispersion${dispersionRows.length > 1 ? ` ${row.surfaceLabel}` : ""}: `}
                 </span>
                 <span style={{ color: t.value }}>
-                  {row.qualityLabel}
-                  {row.glassName ? ` (${row.glassName})` : ""}
+                  {`${row.qualityLabel}${row.glassName ? ` (${row.glassName})` : ""}`}
                 </span>
               </div>
               <div>

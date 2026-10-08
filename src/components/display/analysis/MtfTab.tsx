@@ -236,17 +236,14 @@ function ImagePlaneNote({ result, t, onUseAuto }: { result: MtfResult | null; t:
   const shift = focus.appliedShiftMm;
   return (
     <p style={{ color: t.muted, margin: "4px 0" }}>
-      The lens data places the image plane {Math.abs(offset).toFixed(2)} mm {offset > 0 ? "in front of" : "behind"} its
-      own prescription&apos;s paraxial focus: the printed back focus, or its transcription, disagrees with the
-      prescription.{" "}
+      <span>{`The lens data places the image plane ${Math.abs(offset).toFixed(2)} mm ${offset > 0 ? "in front of" : "behind"} its own prescription's paraxial focus: the printed back focus, or its transcription, disagrees with the prescription.`}</span>{" "}
       {focus.mode === "best-axial" ? (
-        <>
-          These curves use best axial focus ({shift >= 0 ? "+" : "−"}
-          {Math.abs(shift).toFixed(3)} mm); choose “Design plane (always)” to see the authored plane.
-        </>
+        <span>
+          {`These curves use best axial focus (${shift >= 0 ? "+" : "−"}${Math.abs(shift).toFixed(3)} mm); choose “Design plane (always)” to see the authored plane.`}
+        </span>
       ) : focus.requestedMode === "design" ? (
-        <>
-          Curves at the authored plane are out of focus.{" "}
+        <span>
+          <span>Curves at the authored plane are out of focus. </span>
           <button
             type="button"
             onClick={onUseAuto}
@@ -261,7 +258,7 @@ function ImagePlaneNote({ result, t, onUseAuto }: { result: MtfResult | null; t:
           >
             Refocus automatically
           </button>
-        </>
+        </span>
       ) : null}
     </p>
   );

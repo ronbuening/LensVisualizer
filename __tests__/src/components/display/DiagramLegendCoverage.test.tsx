@@ -2,6 +2,7 @@
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { replaceTextForTranslation } from "../../../translationTestUtils.js";
 import DiagramLegend from "../../../../src/components/display/DiagramLegend.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
@@ -86,6 +87,40 @@ function renderLegend({
 }
 
 describe("DiagramLegend", () => {
+  it("updates and removes translated chromatic summaries while preserving unaffected translated labels", () => {
+    const props: Parameters<typeof DiagramLegend>[0] = {
+      L: lens(),
+      t: themes.dark,
+      isWide: true,
+      zoomT: 0,
+      showOnAxis: true,
+      showOffAxis: "off",
+      showChromatic: true,
+      chromR: true,
+      chromG: false,
+      chromB: true,
+      chromV: false,
+      rayTracksF: false,
+      legendExpanded: true,
+      chromaticRayFanSpread: defaultAxialSpread,
+    };
+    const { container, rerender, unmount } = render(<DiagramLegend {...props} />);
+    const staticLabel = screen.getByText("Aspheric surface");
+    replaceTextForTranslation(container);
+    staticLabel.querySelector("font font")!.textContent = "비구면";
+    rerender(<DiagramLegend {...props} showOnAxis={false} />);
+    expect(screen.getByText("Chromatic (R/B)")).toBeTruthy();
+    expect(container.textContent).not.toContain("LoCA");
+    expect(staticLabel.textContent).toBe("비구면");
+    replaceTextForTranslation(container);
+    rerender(<DiagramLegend {...props} rayTracksF={true} />);
+    expect(screen.getByText("On-axis rays (tracks focus)")).toBeTruthy();
+    expect(screen.getByText(/Chromatic \(R\/B\) · LoCA/)).toBeTruthy();
+    replaceTextForTranslation(container);
+    rerender(<DiagramLegend {...props} showChromatic={false} />);
+    expect(container.textContent).not.toContain("Chromatic (");
+    unmount();
+  });
   afterEach(() => cleanup());
 
   it("collapses on mobile and expands through the legend toggle", () => {

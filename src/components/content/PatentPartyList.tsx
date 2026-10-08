@@ -6,10 +6,11 @@ interface PatentPartyListProps {
 }
 
 export default function PatentPartyList({ names, renderName }: PatentPartyListProps) {
+  // Translators replace text nodes. Keep removable separators and names inside React-owned elements.
   return names.map((name, index) => (
     <Fragment key={`${name}-${index}`}>
-      {index > 0 && ", "}
-      {renderName(name)}
+      {index > 0 && <span>, </span>}
+      <span>{renderName(name)}</span>
     </Fragment>
   ));
 }

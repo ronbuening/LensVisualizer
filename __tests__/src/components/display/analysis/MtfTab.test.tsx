@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { replaceTextForTranslation } from "../../../../translationTestUtils.js";
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import { installMatchMediaMock, mockTheme } from "../../../../testUtils.js";
@@ -88,6 +89,31 @@ afterEach(() => {
 });
 
 describe("MTF tab", () => {
+  it("switches translated image-plane explanations as worker results change", async () => {
+    stubWorker();
+    const { container, unmount } = render(
+      <MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />,
+    );
+    await screen.findByRole("figure", { name: /image height/ });
+    expect(screen.getByText(/own prescription's paraxial focus/).closest("p")!.textContent).toContain(
+      "best axial focus",
+    );
+    replaceTextForTranslation(container);
+    fireEvent.change(screen.getByRole("combobox", { name: "MTF image plane" }), { target: { value: "design" } });
+    await screen.findByRole("button", { name: "Refocus automatically" });
+    replaceTextForTranslation(container);
+    fireEvent.change(screen.getByRole("combobox", { name: "MTF image plane" }), { target: { value: "best-axial" } });
+    await screen.findByText(/These curves use best axial focus/);
+    replaceTextForTranslation(container);
+    fireEvent.change(screen.getByRole("combobox", { name: "MTF image plane" }), { target: { value: "design" } });
+    await screen.findByRole("button", { name: "Refocus automatically" });
+    replaceTextForTranslation(container);
+    fireEvent.click(screen.getByRole("button", { name: "Refocus automatically" }));
+    await screen.findByText(/These curves use best axial focus/);
+    expect(screen.queryByRole("button", { name: "Refocus automatically" })).toBeNull();
+    replaceTextForTranslation(container);
+    unmount();
+  });
   it("blocks moved optics without starting background work", () => {
     const worker = vi.fn();
     vi.stubGlobal("Worker", worker);
@@ -176,7 +202,7 @@ describe("MTF tab", () => {
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
     expect(screen.getByText(/· Best axial focus \(/)).toBeTruthy();
-    const note = screen.getByText(/own prescription's paraxial focus/).textContent!;
+    const note = screen.getByText(/own prescription's paraxial focus/).closest("p")!.textContent!;
     expect(note).toContain(`${Math.abs(offsetMm).toFixed(2)} mm behind`);
     expect(note).toContain("These curves use best axial focus");
   });

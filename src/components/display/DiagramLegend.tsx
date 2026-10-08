@@ -76,7 +76,7 @@ export default function DiagramLegend({
         }}
       >
         <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>
-          {isWide ? "Hover" : "Tap"} an element for optical details
+          {`${isWide ? "Hover" : "Tap"} an element for optical details`}
         </span>
         {!isWide && (
           <CollapseButton
@@ -167,7 +167,7 @@ export default function DiagramLegend({
                 <line x1="0" y1="7" x2="14" y2="7" stroke={t.rayCool} strokeWidth="1.5" />
               </svg>
               <span style={{ color: t.legendText }}>
-                On-axis rays{rayTracksF ? " (tracks focus)" : " (from \u221e)"}
+                {`On-axis rays${rayTracksF ? " (tracks focus)" : " (from \u221e)"}`}
               </span>
             </div>
           )}
@@ -194,10 +194,7 @@ export default function DiagramLegend({
                 />
               </svg>
               <span style={{ color: t.legendText }}>
-                Off-axis rays ({(halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac).toFixed(1)}
-                {"\u00b0"}
-                {ENABLE_EDGE_PROJECTION && showOffAxis === "edge" ? ", edge proj" : ""})
-                {rayTracksF ? " tracks focus" : " from \u221e"}
+                {`Off-axis rays (${(halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac).toFixed(1)}\u00b0${ENABLE_EDGE_PROJECTION && showOffAxis === "edge" ? ", edge proj" : ""})${rayTracksF ? " tracks focus" : " from \u221e"}`}
               </span>
             </div>
           )}
@@ -240,10 +237,7 @@ export default function DiagramLegend({
                     {chromB && <line x1="0" y1="11" x2="22" y2="11" stroke={t.rayChromB} strokeWidth="1.8" />}
                     {chromV && <line x1="0" y1="15" x2="22" y2="15" stroke={t.rayChromV} strokeWidth="1.8" />}
                   </svg>
-                  <span style={{ color: t.legendText }}>
-                    {chromLabel}
-                    {spreadSummary}
-                  </span>
+                  <span style={{ color: t.legendText }}>{`${chromLabel}${spreadSummary}`}</span>
                 </div>
               );
             })()}
