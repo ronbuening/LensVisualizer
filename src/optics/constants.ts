@@ -15,8 +15,8 @@ export { DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN };
 export const VECTOR_EPSILON = 1e-12;
 /** Intersection root tolerance in millimeters along the surface equation. */
 export const INTERSECTION_TOLERANCE = 1e-12;
-/** Newton/bisection iteration cap for one surface-intersection solve. */
-export const INTERSECTION_MAX_ITERATIONS = 32;
+/** Cap includes margin for bisection-dominated solves to attain the tightened residual target. */
+export const INTERSECTION_MAX_ITERATIONS = 48;
 /** Number of coarse samples used to bracket a surface intersection. */
 export const INTERSECTION_BRACKET_SAMPLES = 24;
 

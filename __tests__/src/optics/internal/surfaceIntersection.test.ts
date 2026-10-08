@@ -139,6 +139,51 @@ describe.each(["production", "legacy"] as const)("%s intersection accuracy", (en
   });
 });
 
+describe("legacy clipped diagnostics at tightened accuracy", () => {
+  it("allows enough bisections to preserve an exterior aperture clip without a loose residual", () => {
+    // Captured Nokton 50/1 first-surface ray. This legacy clamped extension is
+    // outside the conic domain and the aperture; it is a diagnostic clip, not
+    // a physical conic hit. The production domain rejection remains unchanged.
+    const asphere: AsphericCoefficients = {
+      K: -0.02238,
+      A4: -1.0281e-6,
+      A6: 6.04388e-10,
+      A8: -4.31143e-12,
+      A10: 5.62572e-15,
+      A12: -3.29805e-18,
+      A14: -5.97602e-23,
+    };
+    const surface = { label: "1A", R: 40.765, d: 4.89, nd: 1.90525, sd: 27 };
+    const lens = { S: [surface], asphByIdx: { 0: asphere } };
+    const ray: SurfaceIntersectionRay = {
+      origin: [-4.3626017234355216e-15, -43.94943189209652, -10.312310421674399],
+      direction: [0, 0.36739419447650656, 0.9300653234396813],
+    };
+    const options = { maxT: 22.175454049907273 };
+    expect(intersectSagSurface(ray, 0, 0, lens, { ...options, maxIterations: 32 })).toMatchObject({
+      ok: false,
+      failureReason: "noConvergedIntersection",
+    });
+    const hit = intersectSagSurface(ray, 0, 0, lens, options);
+    expect(hit.ok).toBe(true);
+    if (!hit.ok) return;
+    expect(Math.abs(hit.residual)).toBeLessThanOrEqual(1e-12);
+    expect(hit.effectiveTolerance).toBe(1e-12);
+    expect(hit.radius).toBeGreaterThan(surface.sd);
+    const profile = createSurfaceProfile(surface, asphere);
+    expect(hit.radius).toBeGreaterThan(profile.finiteRadiusLimit()!);
+    expect(intersectSurfaceProfile(ray, profile, 0, { ...options, clearRadius: surface.sd })).toMatchObject({
+      ok: false,
+      failureReason: "noBracket",
+    });
+    const trace = traceExactSurfaceStackVector(lens, ray, { zPos: [0], checkSemiDiameter: true, stopOnClip: true });
+    expect(trace.failureReason).toBeNull();
+    expect(trace.clipped).toBe(true);
+    expect(trace.hits).toHaveLength(1);
+    expect(trace.hits[0]).toMatchObject({ clipped: true, fallback: false, clipReason: "semi-diameter" });
+  });
+});
+
 describe("tilted mirror accuracy", () => {
   it.each([
     { y: 1, z: 1 },

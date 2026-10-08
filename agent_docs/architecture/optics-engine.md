@@ -421,6 +421,11 @@ the legacy `internal/surfaceIntersection.ts`, share the same safeguarded Newton 
 only inside the sign-changing bracket and when it moves at most half the step before last; otherwise the solver
 bisects, so grazing and steep-rim roots cannot stall. A zero or non-finite derivative bisects instead of failing.
 
+Both paths share a 48-iteration cap. This gives bisection-dominated cases room to meet the tighter target without
+restoring the old loose exhaustion fallback: a captured legacy exterior aperture-clip diagnostic needs 43 iterations
+for a raw residual below `1e-12` mm, whereas its old 32-step result used the tenfold fallback. Explicit caller budgets
+remain supported. This is an empirical safety margin, not a convergence guarantee for arbitrary profiles or bounds.
+
 The shipped residual target is `INTERSECTION_TOLERANCE = 1e-12` mm for both solvers and the legacy generalized
 tilted-plane path. Sag profiles measure axial `z_ray - (vertexZ + sag)`; tilted planes measure signed normal distance
 `n · (point - planePoint)`. Dividing the latter by `n.z` gives the axial residual only for a nonvertical plane;
