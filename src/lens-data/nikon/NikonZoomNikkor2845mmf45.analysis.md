@@ -58,9 +58,9 @@ relations. Those interior states are modeling results, not additional patent-pub
 
 The aperture stop is not numerically dimensioned in Embodiment III. Figure 2 places it topologically between the second
 and third functional groups. The implemented model therefore inserts exactly one `STO` in the source 4.8 mm air interval
-between surfaces 10 and 11, splitting that gap into 2.4 mm + 2.4 mm. This midpoint station is an inference. The stop
-semi-diameter is separately calibrated so that the wide endpoint evaluates to f/4.5; it is not a recovered physical iris
-measurement. [US 3,771,853, PDF p. 3, Fig. 2; PDF pp. 11–12, Embodiment III.]
+between surfaces 10 and 11, splitting that gap into 2.4 mm + 2.4 mm. This midpoint station is an inference. The
+wide-open iris radius is separately traced at each zoom keyframe from the patent's F/4.5; it is not a recovered physical
+iris measurement. [US 3,771,853, PDF p. 3, Fig. 2; PDF pp. 11–12, Embodiment III.]
 
 ## Element-by-Element Analysis
 
@@ -210,20 +210,26 @@ kinematics at the selected image focus; they do not constitute finite-object foc
 
 The aperture ratio f/4.5 is a patent assertion, but Embodiment III does not publish a numerical iris station or physical
 diameter. The implemented stop is therefore explicitly modeled. Its station is the midpoint of the 4.8 mm air gap between
-functional groups 2 and 3, and its semi-diameter is 4.62743549 mm. That radius was solved so the wide-end entrance pupil
-gives f/4.5. Agreement with f/4.5 at the wide endpoint is thus a calibration condition, not independent evidence of the
-physical diaphragm size.
+functional groups 2 and 3. The authored `STO` semi-diameter, 4.62743549 mm, is the paraxial radius that gives f/4.5 at
+the wide endpoint.
 
-Because the model keeps that inferred stop radius fixed, the calculated wide-open f-number is not constant across zoom.
-The five modeled values are approximately f/4.5000, f/4.6864, f/4.8517, f/4.9958, and f/5.1189. The production product is
-marketed as f/4.5. No undocumented zoom-coupled iris law is introduced merely to force the model to reproduce that marketing
-specification at every focal length.
+The patent states one aperture ratio, F/4.5, for the whole 28.85–44.19 mm range, and its spherical-aberration plots
+carry F/4.5 as the full-aperture ordinate at the minimum, medium, and maximum focal points. The data file therefore
+stores `nominalFno` 4.5 for every keyframe, and the wide-open iris at each keyframe is the radius that a real f/4.5
+marginal ray reaches at the stop: 4.718, 4.919, 5.096, 5.246, and 5.369 mm from wide to tele. One radius cannot deliver
+the patent's constant F/4.5, because the tele keyframe needs about 13.8 % more stop radius than the wide keyframe. The
+iris is the limiting aperture for the axial beam at all five keyframes, and the traced on-axis f-number is f/4.50 at
+each. The patent prints no stop diameter, so these radii are a calibration to its stated F/4.5; they are not a
+recovered iris law and not independent evidence of the physical diaphragm size. [US 3,771,853, col. 8 lines 44–47, PDF
+p. 11; Figs. 12(a)–(c), PDF p. 7; col. 9 lines 2–8, PDF p. 12.]
 
 The 600 dpi Figure 5 review reduced surfaces 14–16 to 6.2 mm and 17–18 to 8.0 mm, following the optical rims rather than annotation leaders. The patent also publishes no semi-diameters. The final clear apertures are modeled from exact meridional spherical-ray
 envelopes and then checked at all five keyframes. In the portable Stage 2 geometry test, the minimum glass edge thickness
 is 0.3201 mm, the maximum actual rim-slope angle is 50.254°, and the largest positive shared-gap sag-intrusion fraction is
-0.88779 against the 0.90 policy limit. All sampled pupil rays at 0.6× the 135-format half-field and all full-frame chief rays
-survive at every keyframe. Full-field outer-pupil samples vignette progressively toward tele; the final model retains those sampled losses while
+0.88779 against the 0.90 policy limit. All full-frame chief rays survive at every keyframe. At 0.6× the 135-format
+half-field the complete f/4.5 pupil bundle survives at the wide keyframe; toward tele the 6.2 mm rims of surfaces 14–16
+clip a growing share of its outer edge, roughly a fifth of the meridional fan at the tele keyframe. Full-field
+outer-pupil samples vignette progressively toward tele; the final model retains those sampled losses while
 the authored apertures otherwise satisfy the stated edge-thickness checks.
 
 These are portable construction checks, not LensVisualizer production-render validation. The repository renderer and its
@@ -271,13 +277,16 @@ The final data file was traced directly from its parsed TypeScript payload. Sequ
 independently implemented height/angle ABCD calculation agree across all five authored zoom states. The endpoint focal
 lengths reproduce the patent's 28.85 mm and 44.19 mm values within half of the source's 0.01 mm display unit.
 
-| State | Computed EFL (mm) | Implemented BFL (mm) | Modeled wide-open f/# |
-|---|---:|---:|---:|
-| Wide | 28.8476729420 | 37.7231870887 | 4.5000 |
-| Interior 1 | 32.7792359464 | 40.5063855415 | 4.6864 |
-| Interior 2 | 36.6464438139 | 43.2895839943 | 4.8517 |
-| Interior 3 | 40.4492965446 | 46.0727824470 | 4.9958 |
-| Tele | 44.1877941384 | 48.8556954434 | 5.1189 |
+| State | Computed EFL (mm) | Implemented BFL (mm) | Wide-open f/# | Wide-open iris radius (mm) |
+|---|---:|---:|---:|---:|
+| Wide | 28.8476729420 | 37.7231870887 | 4.5 | 4.7182 |
+| Interior 1 | 32.7792359464 | 40.5063855415 | 4.5 | 4.9195 |
+| Interior 2 | 36.6464438139 | 43.2895839943 | 4.5 | 5.0957 |
+| Interior 3 | 40.4492965446 | 46.0727824470 | 4.5 | 5.2459 |
+| Tele | 44.1877941384 | 48.8556954434 | 4.5 | 5.3690 |
+
+The f-number column is the patent's F/4.5, stored as `nominalFno` for every keyframe. The iris radii are traced from it
+with a real marginal ray by the LensVisualizer engine and are not patent-published values.
 
 The patent prints a back-focus range of 37.768–48.895 mm. The rounded prescription does not reproduce those values at the
 printed 0.001 mm precision. The final model therefore uses the self-consistent paraxial BFL values shown above as the image

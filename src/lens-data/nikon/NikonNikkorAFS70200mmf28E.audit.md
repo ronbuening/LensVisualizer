@@ -119,3 +119,45 @@ Catalog version: 952b877
 - The iris, the near-state distance and all special-glass identities are derived or inferred; the patent publishes none of them.
 - The patent's near state (1.00 m, 0.23× at tele) is closer than production (1.1 m, 0.21×). The published gaps are kept
   and are not extrapolated to production.
+
+## 2026-10-07 — Zoom iris and station f-numbers against the patent
+
+Source pages were read from the local scan `patents/WO2019097669A1.pdf` (PDF page = printed page + 2 in the text;
+drawing sheet 2/38 is PDF p. 75). The FIG. 2 labels were read from 900 dpi crops of that sheet.
+
+| Field | Before | After | Source |
+|---|---|---|---|
+| `nominalFno`, 135 mm station | 2.85 (scalar applied to every station) | 2.90 (second entry of `[2.85, 2.9, 2.86]`) | FIG. 2B, drawing sheet 2/38 (PDF p. 75), spherical-aberration plot: FNO=2.90. ¶0062 (printed p. 21) defines the FNO on these plots as the f-number at maximum aperture. Table 1 general data (printed p. 19), column M: FNo 2.9 |
+| `nominalFno`, 196 mm station | 2.85 (scalar applied to every station) | 2.86 (third entry of `[2.85, 2.9, 2.86]`) | FIG. 2C, drawing sheet 2/38 (PDF p. 75), spherical-aberration plot: FNO=2.86. Table 1 general data (printed p. 19), column T: FNo 2.9 |
+
+- The 71.5 mm station stays 2.85 (FIG. 2A: FNO=2.85; Table 1 column W: FNo 2.9). Because the wide value is unchanged,
+  `apertureDesign` 2.85, `fstopSeries` (starting at 2.85) and the authored STO `sd` 19.5 are unchanged.
+- `zoomApertureModel: "fixed-iris"` is kept. The iris is the real-ray radius for f/2.85 at the wide station,
+  19.4826 mm, held at every station. Through it the on-axis trace gives f/2.850 / 2.893 / 2.847 against the stated
+  2.85 / 2.90 / 2.86, a difference of 0.0 % / 0.2 % / 0.4 %. The iris is the limiter at all three stations; no rim
+  limits the axial beam.
+- This entry replaces the wording "no zoom aperture model is used" in the 2026-09-23 change table: the data file
+  declares the fixed-iris model, in which the wide value sizes the iris and the 135 mm and 196 mm values label the
+  readout without sizing it.
+- Example identity confirmed: Example 1, Table 1 (printed pp. 17–19). All 41 rows of r and d were compared with the
+  file and agree, including 13 288.683 / D2, 14(S) ∞ / 2.500, 15 581.555 / 3.700 and 36 0.000 / 1.600 (stored flat).
+- Focal lengths confirmed: Table 1 prints F 71.5 / 135.0 / 196.0; the prescription computes 71.4978 / 134.9962 /
+  195.9996 mm.
+- Gaps confirmed: D1–D4 in both the infinity and finite-distance columns (printed p. 19), with D3 16.922 / 14.105 /
+  16.921 and D4 1.903 / 4.720 / 1.903 at infinity; BF 54 at every station.
+- Stop position confirmed: surface 14(S) with d 2.500 at the front of G3 (¶0049, printed p. 14). ¶0052 (printed p. 15)
+  fixes G1, G3 and G5 relative to the image plane during zooming, so the stop does not move.
+- Prose: the data-file header and the analysis Aperture section state the traced f/2.85 / 2.89 / 2.85 and the 0.5 %
+  agreement with FIG. 2 in place of saying one stop reproduces the three figure values. The analysis also gives the
+  traced corner half-angle at 135 mm as 8.86° against the 8.87° printed on FIG. 2B (16.82° and 6.10° agree at the
+  other two stations), and its semi-diameter section gives the stored STO `sd` 19.5 as the 19.48 mm iris radius to
+  one decimal place.
+
+### Left open
+
+- The patent prints no stop diameter and no effective-diameter column, and does not say whether the stop opening is
+  constant during zooming. The fixed-iris model rests on G3 being fixed and on the FIG. 2 f-number pattern (2.85 and
+  2.86 at the two ends, 2.90 at mid-zoom), which one radius follows to within 0.5 %.
+- No single radius lands inside all three two-decimal FIG. 2 rounding intervals: the values taken one at a time need
+  19.4826 / 19.4342 / 19.3972 mm (real ray), a spread of 0.44 %, and the intervals miss each other by 0.09 %. The
+  tele station therefore reads f/2.86 stated against f/2.847 traced.

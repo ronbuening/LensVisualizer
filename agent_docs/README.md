@@ -69,6 +69,7 @@ Kept only while a living doc or a lens `*.audit.md` sidecar links them; see [`re
 - [record] [`records/README.md`](records/README.md) — admission rule and where deleted records went
 - [record] [`records/lens-shape-audit-first-200-2026-09-08.md`](records/lens-shape-audit-first-200-2026-09-08.md) — in-progress diagram sweep, paused at lens 40 of 200, with resume handoff
 - [record] [`records/patent-figure-sd-audit-2026-07.md`](records/patent-figure-sd-audit-2026-07.md) — 2026-07 semi-diameter audit report of the odd-asphere lenses
+- [record] [`records/fixed-iris-patent-audit-2026-10.md`](records/fixed-iris-patent-audit-2026-10.md) — the 88 fixed-iris zooms read against their patents: verdict per lens and the findings queued from it
 - [record] [`records/konica-ar-september5-audit.md`](records/konica-ar-september5-audit.md) — Konica AR batch audit linked from its lens audit logs
 - [record] [`records/relationship-map-2026-07-22.md`](records/relationship-map-2026-07-22.md) — patent relationship map (F25) outcome record
 - [record] [`records/mirror-lens-tracing-and-authoring.md`](records/mirror-lens-tracing-and-authoring.md) — historical mirror/folded implementation notes

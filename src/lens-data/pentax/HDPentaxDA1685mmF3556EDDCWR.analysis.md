@@ -47,7 +47,7 @@ The patent's generic motion diagram states that all four groups can move objectw
 
 Negative values are objectward and positive values imageward. Thus G2 makes a small imageward excursion from wide to the intermediate state and then reverses objectward toward tele. This behavior follows the numerical spacing table and does not require a patent-value correction.
 
-The stop **location** is source-published, but its clear diameter is not. The model uses an inferred stop semi-diameter of **6.95 mm**. With the actual prescription, this single physical stop gives modeled wide/mid/tele f-numbers of **3.585229851, 4.435970318, and 5.763925078**, which round to the patent's 3.6/4.4/5.8 table. The modeled f-numbers, rather than the marketing 3.5-5.6 range, govern the LensVisualizer aperture geometry.
+The stop **location** is source-published, but its clear diameter is not: Table 1 lists surface 16 as a bare plane, and the only aperture figures are the one-decimal FNO values 3.6/4.4/5.8 of Table 2. The model keeps one wide-open iris radius across the zoom range. Traced with a real marginal ray, any single radius between 7.0156 and 7.0716 mm reproduces all three printed values within their rounding, and the model's iris sits at the midpoint of that interval: **7.0435 mm** (midpoint 7.0436 mm). That one radius gives wide/mid/tele f-numbers of **3.5647, 4.432, and 5.776**, which are the values stored in `nominalFno` and which round to the patent's 3.6/4.4/5.8 table. The `STO` row's 6.95 mm semi-diameter is superseded by the traced radius when the lens is built. The modeled f-numbers, rather than the marketing 3.5-5.6 range, govern the LensVisualizer aperture geometry.
 
 Clear semi-diameters are also not published. The data file therefore uses inferred modeling apertures derived from the verified ray envelopes, the patent optical sections, and current edge/rim/gap geometry constraints. They are not patent aperture data. No sensor cover glass, filter, inactive dummy plane, flare-cutter plane, or other non-participating plate is present in the Example 1 sequential prescription, so none is included and no air-equivalent rear-spacing compensation is required.
 
@@ -234,11 +234,13 @@ The focal-length ratios use independently recomputed standalone L41/L44 powers a
 
 Paraxial evaluation of the authored Example 1 prescription in reduced-angle `[y, ν]` form and ordinary `[y, θ]` ABCD form gives the following results; the two forms agree to numerical precision.
 
-| State | EFL from data | Patent f | BFD from data | Patent fB | Modeled f/# |
-|---|---:|---:|---:|---:|---:|
-| Wide | 16.480103489 mm | 16.48 mm | 38.986048461 mm | 38.99 mm | 3.585229851 |
-| Mid | 34.998832290 mm | 35.00 mm | 57.540077230 mm | 57.54 mm | 4.435970318 |
-| Tele | 82.441996888 mm | 82.45 mm | 83.456191676 mm | 83.47 mm | 5.763925078 |
+| State | EFL from data | Patent f | BFD from data | Patent fB | Modeled f/# | Patent FNO |
+|---|---:|---:|---:|---:|---:|---:|
+| Wide | 16.480103489 mm | 16.48 mm | 38.986048461 mm | 38.99 mm | 3.5647 | 3.6 |
+| Mid | 34.998832290 mm | 35.00 mm | 57.540077230 mm | 57.54 mm | 4.432 | 4.4 |
+| Tele | 82.441996888 mm | 82.45 mm | 83.456191676 mm | 83.47 mm | 5.776 | 5.8 |
+
+The focal lengths and back focal distances are the paraxial results. The modeled f-numbers are real-ray values: they are what the single 7.0435 mm iris gives at each station, and the traced on-axis beam is limited by that iris, not by a lens rim, at all three.
 
 The modeled semi-diameters maintain positive element edge thickness; the minimum verified edge thickness is **0.099436 mm** in the L21 resin layer (at its 13.1 mm rim). Maximum actual rim slope is **61.702°** (surface 8), and the largest shared-gap sag-intrusion ratio is **0.831372** against the current 0.90 limit. The default 0.6-field first-order bundle is contained at all three authored zoom states.
 

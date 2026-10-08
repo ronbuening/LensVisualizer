@@ -18,15 +18,13 @@ const modules = import.meta.glob<{ default: LensDataInput }>("../../../src/lens-
 const FIXED_IRIS_TOLERANCE = 0.03;
 
 /**
- * Fixed-iris files outside the tolerance, each queued in Section H or I of agent_docs/sd-audit-queue.md. Three state
- * a station f-number their iris does not give. On the two Vivitar Series 1 zooms the stated tele marginal ray cannot
- * be traced to the stop, so the radius compared with the fixed one is the paraxial fallback. The sweep compares for
- * equality, so a corrected file must leave this list and no file may join it.
+ * Fixed-iris files outside the tolerance, each queued in Section H or I of agent_docs/sd-audit-queue.md. The Nikon
+ * states station f-numbers its iris does not give (its patent is not held locally). On the two Vivitar Series 1 zooms
+ * the stated tele marginal ray cannot be traced to the stop, so the radius compared with the fixed one is the
+ * paraxial fallback. The sweep compares for equality, so a corrected file must leave this list and no file may join.
  */
 const FIXED_IRIS_OFF_STATED: readonly string[] = [
-  "nikon-af-p-70-300-f45-56e-ed-vr",
   "nikon-af-s-dx-55-200-f4-5-6g-ed-vr-ii",
-  "tamron-a010-28-300-f35-63",
   "vivitar-s1-35-85-f28",
   "vivitar-s1-70-210-f28-4",
 ];

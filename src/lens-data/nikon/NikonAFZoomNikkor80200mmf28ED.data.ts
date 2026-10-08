@@ -6,6 +6,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP S62-108218 A, Example 3 / Table 3 / Figure 1.          ║
  * ║  16 elements / 11 air-separated groups; all spherical.                    ║
+ * ║  Surface 17 thickness is 1.700 mm per the applicant's amendment appended   ║
+ * ║  to the publication; Table 3 as first printed gives 1.800 mm. The surface  ║
+ * ║  gaps sum to the amended total length, T.L. = 217.133 mm.                  ║
  * ║  Focus status: PUBLISHED. At either zoom endpoint only G1 moves for focus. ║
  * ║  Published close-focus stroke: G1 shifts 10.496 mm objectward.             ║
  * ║                                                                            ║
@@ -21,10 +24,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  The patent places stop S inside the published 11.400 mm d23 air gap but  ║
  * ║  does not tabulate its axial offset or diameter. STO is modeled at the     ║
  * ║  midpoint: 5.700 mm after surface 23 and 5.700 mm before surface 24.      ║
- * ║  The physical stop SD, 14.759011 mm, is solved from the wide-infinity      ║
- * ║  paraxial entrance pupil for the patent's F/2.88. The same fixed stop      ║
- * ║  gives F/2.88002 at the tele endpoint. The 5.700 + 5.700 mm split          ║
- * ║  preserves the source d23 optical spacing exactly.                         ║
+ * ║  The physical stop SD, 14.759011 mm, matches the patent's F/2.88 through   ║
+ * ║  the paraxial entrance pupil: F/2.88004 at wide infinity and, with the     ║
+ * ║  same fixed stop, F/2.88006 at the tele endpoint. The 5.700 + 5.700 mm     ║
+ * ║  split preserves the source d23 optical spacing exactly.                   ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS                                                           ║
  * ║  The patent does not tabulate clear semi-diameters. Authored SDs were      ║
@@ -58,7 +61,7 @@ const LENS_DATA = {
   specs: ["16 ELEMENTS / 11 GROUPS", "80-196 mm DESIGN", "F/2.88", "3 LOW-DISPERSION ELEMENTS"],
 
   focalLengthMarketing: [80, 200],
-  focalLengthDesign: [79.99278, 195.98427],
+  focalLengthDesign: [79.9999, 196.00205],
   apertureMarketing: 2.8,
   apertureDesign: 2.88,
   lensMounts: ["nikon-f"],
@@ -211,7 +214,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.75692,
       vd: 31.7,
-      fl: -77.421006,
+      fl: -77.414233,
       glass:
         "757317 — E-LAF11 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
       apd: false,
@@ -301,7 +304,7 @@ const LENS_DATA = {
     { label: "14", R: 861.84, d: 4.5, nd: 1.51835, elemId: 9, sd: 19.2 },
     { label: "15", R: -67.73, d: 0.2, nd: 1, elemId: 0, sd: 19.2 },
     { label: "16", R: 104.039, d: 7.5, nd: 1.56384, elemId: 10, sd: 19.5 },
-    { label: "17", R: -52.847, d: 1.8, nd: 1.75692, elemId: 11, sd: 19.5 },
+    { label: "17", R: -52.847, d: 1.7, nd: 1.75692, elemId: 11, sd: 19.5 },
     { label: "18", R: -546.069, d: 18.005, nd: 1, elemId: 0, sd: 19.5 },
     { label: "19", R: 50.319, d: 5.8, nd: 1.49782, elemId: 12, sd: 19.5 },
     { label: "20", R: 885.62, d: 0.2, nd: 1, elemId: 0, sd: 19.2 },

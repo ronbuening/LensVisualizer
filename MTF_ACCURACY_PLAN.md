@@ -22,7 +22,7 @@ with.** The one approximation in the engine itself, the diffraction product, has
    values match the patent) is undiagnosed. A screen flags 77 of 846 lenses (9 %) for the same class of
    self-inconsistency. *Stage 4.*
 3. **The traced aperture still differs from the label on some lenses.** Queued in
-   `agent_docs/sd-audit-queue.md`: Section H (stops still sized from a marketed f-number) and Section I (137 lenses
+   `agent_docs/sd-audit-queue.md`: Section H (stops still sized from a marketed f-number) and Section I (136 lenses
    that trace more than 3 % from their label on axis).
 4. **Charts follow different conventions.** Nikon, Sony and Tamron charts exceed the diffraction limit, so they are
    geometric; Sigma, Zeiss and recent Canon include diffraction. *Stage 8.*
@@ -66,7 +66,7 @@ investigation and are replaced by regenerated ones as stages land.
 | G | Chart conventions are not shown to the reader | −0.02 / −0.03 against geometric-chart makers, largest near the axis (−0.04 at 30 lp/mm) | 8 |
 | H | Clear apertures inferred from drawings, undisclosed | −5 % semi-diameter ≈ +0.02 / +0.04 off axis | 8 |
 | I | One axial focus plane; field foci sit 20–125 µm away | 0.005 mean; up to 0.28 at 30 lp/mm tangential on four lenses | 8 |
-| K | 137 lenses trace more than 3 % from their label on axis: a rim on 126, a trace failure or the iris itself on the rest (`npm run audit:aperture`) | Traced aperture differs from the label | queue |
+| K | 136 lenses trace more than 3 % from their label on axis: a rim on 127, a trace failure or the iris itself on the rest (`npm run audit:aperture`) | Traced aperture differs from the label | queue |
 | M | Stop-down scales the iris radius linearly with 1/N instead of re-tracing the marginal ray | Median 1.35 % too open at f/8 | deferred |
 | L | No external validation of a real lens | — | optional tool |
 

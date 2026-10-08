@@ -92,6 +92,9 @@ Nothing can be audited on these until the source is available.
 | GFX100RF 35mm f/4 (front group) | `US_2025362482_A1.pdf` has no text layer | OCR — FIG. 5 defines `hE2` as a surface's effective radius, so the tables may publish clear apertures outright |
 | Sigma 10-18mm f/2.8 | 図8 printed as a thumbnail; <20 px per element edge at 600 dpi | a higher-resolution copy of JP 2024-104911 A |
 | Sigma 14-24mm f/2.8 | 図1 exists only as the front-page abstract drawing (the drawing section starts at 図3) | a higher-resolution copy of JP 2018-189733 A |
+| Fujifilm X10 7.1-28.4mm f/2-2.8 | `US 2014/0133036 A1` not in `patents/`; its fixed iris and station f-numbers are unchecked | adding the PDF |
+| Nikon AF-S DX 55-200mm f/4-5.6G ED VR II | `WO 2015/141574 A1` not in `patents/`; its fixed iris is unchecked and its `nominalFno` mixes marketed ends with the patent's middle value | adding the PDF |
+| Olympus Zuiko Auto-Zoom 65-200mm f/4 | `US 4,568,150` not in `patents/`; its fixed iris and station f-numbers are unchecked | adding the PDF |
 
 ## Section D — MTF field census
 
@@ -187,6 +190,11 @@ standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 |---|---|---|
 | Nikon Fisheye-Nikkor 6mm f/2.8 | The file's surfaces trace to EFL 37.41 mm and a back focus of 273 mm; US 3,737,214 Example I states f = 6.3 and B.f. = 37.657. The table prints `R18 = −45.0`; `+45.0` gives EFL 6.300 and back focus 37.658. The file also places the stop ahead of the filter, while Fig. 1 draws it behind R17, and omits the listed filter plate R11/R12 (1.8 mm, n 1.51823). | Re-audit: correct R18 and the element types it changes, move the stop per Fig. 1, draw the filter plate, re-derive semi-diameters, and rewrite the analysis, which treats 37.4 mm as the Gaussian focal length. |
 | Nikkor Z 85mm f/1.8 S | The printed Example 3 table of JP 2020-173366 A traces to EFL 82.222 mm and a total length of 110.81 mm; the patent states 83.00 and 111.35, and its spherical-aberration plot does not show the −0.13 mm undercorrection the table produces. Recorded as an `unresolved` `sourceErrata` entry. Single changes near the second group (R8, R10, the L9 index) restore the focal length and axial correction, but none restores the off-axis correction as well. | Isolate the misprint against the patent text and its sibling examples, then correct it under the source-errata standard; leave it unresolved if no single cause meets that standard. |
+| Tamron AF 28-200mm Super XR (A03) | The asphere US 6,437,923 B1 prints for surface 30 gives marginal spherical aberration of about +12 / +51 / +85 mm at the three zoom states, against the ±0.5 mm scale of its Figs. 2-4. Negating the four polynomial terms gives about −0.7 / −1.3 / −2.6 mm. Recorded as an `unresolved` `sourceErrata` entry; the printed values are kept. | Find a second kind of source-internal evidence (the claimed conditions, or the resin-layer orientation of the composite asphere in Fig. 1) before correcting. |
+| Vivitar Series 1 35-85mm f/2.8 | The prescription computes 38.46 / 89.08 mm where US 3,975,089 states 36-83 mm, and Group IV computes a power of 0.0319 against the Table III value 0.0333. | Re-read the Group IV rows against the patent table. |
+| Konica UC Zoom-Hexanon AR 80-200mm f/4 | The prescription computes 80.88 / 199.75 mm where JP S51-37247 A prints f = 79.925~196.158 (+1.2 % / +1.8 %). | Re-read the table rows; check whether the patent normalizes its example. |
+| Schneider TV-Variogon 20-600mm | The nine station focal lengths compute −0.8 % to +3.7 % from Table IB of US 3,912,373, and the 592 mm station carries f/4.54 where the patent prints 1:6.3 for the unchanged diaphragm (its own focal lengths give 4.29). | Re-read the variable gaps; decide which of the patent's two diaphragm modes the tele label follows. |
+| Stop position not as the source gives it | Konica UC Zoom-Hexanon AR 45-100mm f/3.5 places the stop 2.0 mm ahead of r14 where the patent says 1.5 mm. Nikon Zoom-Nikkor Auto 50-300mm f/4.5 places it between components III and IV where Fig. 2 draws it inside IV. Olympus Zuiko Auto-Zoom 85-250mm f/5 describes its stop as taken from Fig. 2, which draws none. Details in [records/fixed-iris-patent-audit-2026-10.md](records/fixed-iris-patent-audit-2026-10.md). | Correct the Konica gap split; restate the other two as inferred. |
 | Files with comment-only source corrections | Lens files whose headers describe an erratum or misprint in the source but carry no `sourceErrata` entry, from before the field existed (`grep -rli "erratum\|misprint" src/lens-data --include="*.data.ts"`). The MTF tab discloses nothing for them. | Record each as a `corrected` or `unresolved` entry under the standard, then delete this row. |
 
 ## Section H — stop opens wider than the source design f-number
@@ -208,7 +216,6 @@ when a lens joins or leaves it, so delete the key there with the row here.
 | CANON TS-E 50mm f/2.8 L MACRO | `canon/CanonTSE50mmf28L.data.ts` | 2.8 | 2.88 | The header says the stop was calibrated to a value that is not the design stop; reconcile the two from the source | todo |
 | MINOLTA AF 35-105mm f/3.5-4.5 New (v2) | `minolta/MinoltaAF35105mmf3545v2.data.ts` | [3.5, 4.2, 4.5] | 3.6 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
 | NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6 | `nikon/Nikon1Nikkor1030mmf3556.data.ts` | [3.5, 4.35, 5.6] | 3.63 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
-| NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR | `nikon/NikonAFPDX1020mmf4556G.data.ts` | [4.5, 5.1, 5.6] | 4.625 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
 | NIKON FUWATTO SOFT 90mm f/4.8 | `nikon/NikonFuwattoSoft90mmf48.data.ts` | 4.8 | 4.95 | The file's STO semi-diameter reproduces the marketed f-number; check whether the source lists a stop diameter, then open to the design value | todo |
 | NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S | `nikon/NikonNikkorZ100400f4556.data.ts` | [4.58, 5.76] | 5.76 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
 | NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR | `nikon/NikonZDX1650mmf3563VR.data.ts` | [3.5, 5.3, 6.3] | 3.56 | Variable-aperture zoom: read the design f-number at every zoom station from the source and replace the marketed array | todo |
@@ -237,12 +244,17 @@ station f-numbers in their own header or note; replace each array from the sourc
 `olympus/OlympusMZuiko1260mmf284ED`, `olympus/OlympusMZuiko1442mmf3556II`, `olympus/OlympusZuiko936mmf224`,
 `sony/SonyFE2870mmf3556`.
 
-`__tests__/src/lens-data/zoomApertureModel.test.ts` lists the five fixed-iris files whose stated station f-numbers
-are not the ones their iris gives; delete a key there when its file is corrected. `nikon/NikonAFP70300mmf4556E`
-stores the marketed f/5.6 at tele where its Table 1 gives 5.88. `tamron/TamronA01028300mmf3563` carries f/3.628 at
-both its wide and 91.5 mm stations, as its header says the patent figure does, although the wide and tele values
-share one iris radius to 0.01 %: read the middle FNO in the source. `nikon/NikonAFSDX55200mmf456G` is in the list
-above; the two Vivitar Series 1 zooms are rim-limited at tele (Section I).
+`__tests__/src/lens-data/zoomApertureModel.test.ts` lists the three fixed-iris files whose stated station f-numbers
+are not the ones their iris gives; delete a key there when its file is corrected. `nikon/NikonAFSDX55200mmf456G` is
+in the list above and its patent is not held locally (Section C); the two Vivitar Series 1 zooms are rim-limited at
+tele (Section I).
+
+Five files store a paraxial stop radius below the stop diameter their patent prints, and say the printed diameter
+cannot give the f-numbers; by real marginal ray it does, and the engine's iris already equals it. Set `STO` sd to
+the printed half-diameter and correct the header and note: `canon/CanonEF200400mmf4LISUSMExtender14x` and its
+`ExtenderIn` sibling (39.75 mm), `canon/CanonEFM1855mmf3556ISSTM` (9.86 mm), `canon/CanonEFS18135mmf3556ISSTM`
+(14.52 mm), `sony/SonyFE50150mmF2GM` (42.00 mm). Source:
+[records/fixed-iris-patent-audit-2026-10.md](records/fixed-iris-patent-audit-2026-10.md).
 
 ## Section I — stated axial beam does not pass
 
@@ -253,7 +265,7 @@ Stations whose traced on-axis f-number is more than 3 % from the stated one; the
 npm run audit:aperture -- --markdown
 ```
 
-1,440 of 1,622 stations are within 3 %. Of the rest, a rim clips the beam at 170 stations on 126 lenses (`rim`);
+1,441 of 1,622 stations are within 3 %. Of the rest, a rim clips the beam at 171 stations on 127 lenses (`rim`);
 work the largest differences first. For each row, read whether the limiting semi-diameter is printed in the source or
 was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
@@ -266,14 +278,13 @@ The other diagnoses are not rim problems:
   height the ray leaves the preceding surface past the stop plane, which sits inside that surface's sag. The Fujinon
   XF 23mm f/1.4 R is totally reflected at surface 14A, inside its rim (a prescription suspect).
 - `failed`, the Vivitar Series 1 70-210mm f/3.5 of Section D: the same stop-plane geometry at every height.
-- `iris`, four lenses: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8); a declared fixed
-  iris that does not give a stated station f-number (Nikon AF-P 70-300mm and Tamron 28-300mm, both in Section H);
-  and the Viltrox AF 27mm f/1.2, whose f/1.2 marginal ray cannot be traced to the stop, so its iris takes the
-  paraxial radius.
+- `iris`, two lenses: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8), and the Viltrox
+  AF 27mm f/1.2, whose f/1.2 marginal ray cannot be traced to the stop, so its iris takes the paraxial radius.
 
 Start with these zooms. Each has a station that a wide-end iris would limit, where the stated, wider beam is stopped
 first by a rim or, on the two Nikon AI zooms, by the stop-plane geometry above. The Sigma 10-18mm is rim-limited at
-every station:
+every station. The patent audit of the fixed-iris zooms confirmed the rim limit against the printed f-number on
+fifteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fixed-iris-patent-audit-2026-10.md)):
 
 | Lens | File | Station: stated, traced, limiter | Status |
 |---|---|---|---|
@@ -291,6 +302,7 @@ every station:
 | NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: f/4 traces f/4.91 (+22.8 %), trace failure at STO (noBracket) | todo |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | 34 mm: f/2.88 traces f/3.21 (+11.3 %), rim 10 | todo |
 | OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD | `olympus/OlympusMZuiko1435mmf2ED.data.ts` | 22.08 mm: f/2.04 traces f/2.16 (+5.9 %), rim 30; 34.28 mm: f/2.04 traces f/2.36 (+15.5 %), rim 30 | todo |
+| PENTAX SMC A ZOOM 35-70mm f/4 | `pentax/PentaxA3570mmf4.data.ts` | 68.5 mm: f/4.1 traces f/4.61 (+12.4 %), rim 7; Fig. 9 of US 4,812,022 measures the rear group about 1-2 mm wider than the file | todo |
 | PENTAX HD DA* 11-18mm f/2.8 ED DC AW | `pentax/PentaxD1118mmF28EDDCWR.data.ts` | 17.7 mm: f/2.8 traces f/2.92 (+4.2 %), rim 17 | todo |
 | PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR | `pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts` | 30 mm: f/2.9 traces f/3.06 (+5.6 %), rim 16 | todo |
 | SIGMA 10-18mm f/2.8 DC DN \| Contemporary | `sigma/Sigma1018mmf28DCDN.data.ts` | 10.3 mm: f/2.92 traces f/3.09 (+5.9 %), rim 10; 13.5 mm: f/2.92 traces f/3.35 (+14.6 %), rim 10; 17.5 mm: f/2.92 traces f/3.70 (+26.7 %), rim 10 | todo |

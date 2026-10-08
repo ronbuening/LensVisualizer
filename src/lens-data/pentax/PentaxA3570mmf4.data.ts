@@ -25,23 +25,34 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    publishes no close-focus spacing table, object distance, magnification, ║
  * ║    or focus cam law, so every authored focus pair is identical.           ║
  * ║                                                                            ║
- * ║  STOP MODEL (explicit inference; source is underdetermined):               ║
- * ║    The patent states that the iris lies in d6 and moves with the rear      ║
- * ║    group but gives neither coordinate nor radius. The modeled STO is       ║
- * ║    fixed 1.9105 mm objectward of r7, i.e. the midpoint of the minimum      ║
- * ║    published d6 at 68.5 mm. Its 7.752338441 mm physical semi-diameter is   ║
- * ║    calibrated to reproduce f/4.1 at the wide endpoint. With this one fixed ║
- * ║    stop radius and rigid rear-group placement, the modeled tele endpoint  ║
- * ║    is f/5.394215. nominalFno therefore records the modeled geometry, while ║
- * ║    apertureDesign preserves the patent's published f/4.1. This is not a   ║
- * ║    claim that the production lens is variable-aperture; the real iris      ║
- * ║    opening law is not published and is not reconstructable from Example 3.║
+ * ║  STOP MODEL (position inferred; iris traced from the patent f-number):     ║
+ * ║    The patent states that the aperture lies in d6 and moves with the rear  ║
+ * ║    group but gives neither coordinate nor diameter. The modeled STO sits   ║
+ * ║    1.9105 mm objectward of r7, the midpoint of the minimum published d6 at ║
+ * ║    68.5 mm, and rides with the rear group. Example 3 prints F number 1:4.1 ║
+ * ║    for F = 36-68.5, and Figs. 10-12 are headed 1:4.1 at minimum, medium    ║
+ * ║    and maximum focal length, so nominalFno is 4.1 at both stations. The    ║
+ * ║    wide-open iris is traced per station from that f-number: 7.7842 mm      ║
+ * ║    radius at 36 mm and 10.3442 mm at 68.5 mm. No single radius gives f/4.1 ║
+ * ║    at both ends. The authored STO sd, 7.752338441 mm, is the paraxial      ║
+ * ║    f/4.1 radius at 36 mm.                                                  ║
+ * ║    At 36 mm the iris limits the axial beam and the station traces f/4.10.  ║
+ * ║    At 68.5 mm the f/4.1 marginal ray reaches 10.762 mm at surface 7 (L4    ║
+ * ║    front, sd 9.5 mm), so that rim limits the beam, not the iris, and the   ║
+ * ║    station traces f/4.61. The rear-group semi-diameters are inferred from  ║
+ * ║    Fig. 9 and ray bundles, not patent values, so f/4.61 describes those    ║
+ * ║    inferred rims; it is not a published property of the design.            ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS (inferred, not patent-listed):                             ║
  * ║    Derived from exact spherical meridional ray bundles at the patent      ║
  * ║    endpoint fields, then constrained by edge thickness, actual rim slope, ║
  * ║    the Fig. 9 silhouette, and the default 0.90 shared-band cross-gap rule. ║
- * ║    and the default 0.60-field ray fan are contained at both zoom endpoints.║
+ * ║    The rear group (L4 9.5, L5 9.8, L6 9.4, L7 7.2 mm) is figure-inferred   ║
+ * ║    and sits inside the Fig. 9 outline, a schematic view that draws L4 at   ║
+ * ║    about 11.3 mm. These rims pass the f/4.1 axial beam at 36 mm and cut it ║
+ * ║    at 68.5 mm beyond 0.89 of the pupil radius (surface 7, traced f/4.61).  ║
+ * ║    The 0.60-field and full-field chief rays pass at both endpoints; the    ║
+ * ║    lowest ray of the default 0.60-field fan is cut at L7.                  ║
  * ║    The extreme wide-field outer-pupil ray is allowed to vignette at L2;   ║
  * ║    increasing L2 enough to pass that ray violates the d2 cross-gap rule.  ║
  * ║                                                                            ║
@@ -234,10 +245,10 @@ const LENS_DATA = {
     "NO_INTERNAL_RECONSTRUCTION: Example 3 publishes zoom-only infinity data. The production 0.25 m MFD is metadata only; no close-focus internal motion is modeled.",
 
   /* ── Aperture configuration ──
-   * Modeled fixed-stop f-numbers, not a claim about the production iris law.
+   * Patent F number 1:4.1 at both stations. The wide-open iris is traced per station from it: 7.7842 mm at 36 mm
+   * and 10.3442 mm at 68.5 mm. Surface 7 (sd 9.5 mm, figure-inferred) limits the 68.5 mm axial beam to f/4.61.
    */
-  nominalFno: [4.1, 5.394215],
-  zoomApertureModel: "fixed-iris",
+  nominalFno: 4.1,
   fstopSeries: [4.1, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

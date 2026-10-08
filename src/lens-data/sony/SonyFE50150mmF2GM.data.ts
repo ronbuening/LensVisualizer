@@ -21,9 +21,20 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║  Semi-diameters: refracting-surface SDs use the patent effective diameter  ║
  * ║  φ_i / 2. These are source effective/clear apertures, not claimed measured ║
- * ║  manufactured rim diameters. The physical iris diameter is not separately  ║
- * ║  published. STO sd = 19.916712 mm is calibrated from the three Table 2     ║
- * ║  f/2.06 states; this is a modeling inference, not a measured stop opening. ║
+ * ║  manufactured rim diameters.                                               ║
+ * ║                                                                            ║
+ * ║  Stop: Table 1 prints φ17 = 42.00 mm for the stop surface and Table 2      ║
+ * ║  prints Fno 2.06 at Wide, Mid, and Tele. The wide-open iris is traced per  ║
+ * ║  station from that f-number: the real f/2.06 marginal ray crosses the stop ║
+ * ║  at 20.879 / 21.001 / 20.887 mm, and the Mid radius matches φ17 / 2. An    ║
+ * ║  iris held at the Wide radius gives f/2.07 at Mid. The patent does not     ║
+ * ║  state how the opening behaves in zooming; these radii are calculated      ║
+ * ║  from the printed f-numbers, not a published iris schedule.                ║
+ * ║  Traced on axis: Wide f/2.060, limited by the iris; Mid f/2.060, limited   ║
+ * ║  by the surface 23 rim (the f/2.06 ray exceeds φ23 / 2 by 2.8 µm); Tele    ║
+ * ║  f/2.061, limited by the surface 10 rim (5.4 µm over φ10 / 2). The STO     ║
+ * ║  row's authored sd, 19.916712 mm, is a paraxial calibration to the same    ║
+ * ║  f/2.06 states and does not size the traced iris.                          ║
  * ║                                                                            ║
  * ║  Geometry policy: gapSagFrac = 0.98 is a per-lens override required by the ║
  * ║  published effective apertures. The tightest printed source geometry is    ║
@@ -317,7 +328,8 @@ const LENS_DATA = {
     { label: "14", R: -103.248, d: 46.8, nd: 1, elemId: 0, sd: 20.215 },
     { label: "15A", R: 69.114, d: 6.64, nd: 1.6935, elemId: 8, sd: 21.34 },
     { label: "16A", R: -157.293, d: 4.03, nd: 1, elemId: 0, sd: 21.325 },
-    // Physical iris SD calibrated from the three published f/2.06 infinity states.
+    // Authored stop SD: paraxial calibration to the Table 2 f/2.06 states; Table 1 prints φ17 = 42.00 (radius 21.00).
+    // The wide-open iris is traced per station from nominalFno and is not read from this row.
     { label: "STO", R: 1e15, d: 1.64, nd: 1, elemId: 0, sd: 19.916712 },
     { label: "18", R: -372.93, d: 1.45, nd: 1.95375, elemId: 9, sd: 20.925 },
     { label: "19", R: 76.22, d: 3.12, nd: 1, elemId: 0, sd: 20.885 },
@@ -474,7 +486,6 @@ const LENS_DATA = {
   focusDescription: "Published two-group floating focus: G5 moves imageward and G6 moves objectward. The authored close states are the patent Table 3 values at 0.397 m, 0.521 m, and 0.746 m for Wide/Mid/Tele; no internal focus reconstruction is used.",
 
   nominalFno: 2.06,
-  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
 
   gapSagFrac: 0.98,

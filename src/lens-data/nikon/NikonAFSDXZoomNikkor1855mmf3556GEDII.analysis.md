@@ -42,7 +42,7 @@ The physical lens contains seven elements in five air-separated construction gro
 
 `G2` begins with the low-dispersion positive `L2a`, then the aperture stop, then the front cemented pair `L2ap + L2an`. After an 11.2 mm pneumatic space comes the rear cemented pair `Lbn + Lbp`. The final TypeScript-array computation gives `G2-1` a focal length of approximately +47.0566 mm, `G2-2` approximately +101.5105 mm, and the complete `G2` approximately +38.5000 mm.
 
-The aperture stop position is source-published: it lies 1.8 mm behind surface 7 and 2.0 mm ahead of surface 9. Its physical semi-diameter is not published. The modeled 7.799 mm semi-diameter is a first-order inference constrained by the wide-state F/3.56 condition and by independent ray/geometry checks.
+The aperture stop position is source-published: it lies 1.8 mm behind surface 7 and 2.0 mm ahead of surface 9. Its physical semi-diameter is not published. The 7.799 mm semi-diameter stored on the stop row of the prescription is a first-order inference from the wide-state F/3.56 condition. The wide-open iris used for tracing is solved at each zoom station from the published F-number with a real marginal ray, and measures 7.893, 7.962, and 8.007 mm at wide, mid, and tele.
 
 Zooming is performed by varying the air space between `G1` and `G2` (¶0133). At infinity the `D5` gap contracts from 44.09357 mm at 18.5 mm to 13.18951 mm at 35.0 mm and 1.20774 mm at 53.5 mm. With the image plane used as the fixed reference, `G1` moves imageward from wide to mid and then reverses direction toward the object from mid to tele, while `G2` continues objectward. The three patent zoom stations are therefore retained as interpolation anchors rather than reducing the motion to a monotonic two-point model.
 
@@ -208,7 +208,15 @@ The load-bearing paraxial quantities were recomputed from the final TypeScript a
 
 The surface-by-surface Petzval sum, evaluated as `φ/(n·n′)`, is `+0.0034091601 mm⁻¹`, corresponding to a signed Petzval radius of approximately −293.327 mm under the project's `−1/ΣP` convention.
 
-The fixed modeled stop semi-diameter of 7.799 mm reproduces F/3.5600 at the wide position. With that same physical stop, the paraxial calculation gives approximately F/4.6451 and F/5.8617 at the mid and tele positions. The patent prints 4.65 and 5.90, so the final `nominalFno` array retains the source values while the small discrepancy is treated as rounding rather than evidence for a zoom-dependent physical stop diameter.
+The `nominalFno` array holds the wide-open F-numbers printed on the spherical-aberration plots of Figs. 14–16; Table 4 gives only the end values, as 3.56–5.9. The wide-open iris is solved separately at each zoom station by tracing a real marginal ray for that station's F-number to the stop plane.
+
+| State | Published FNO | Iris semi-diameter (real marginal ray) | First-order equivalent | Traced on-axis FNO | Axial limiter |
+|---|---:|---:|---:|---:|---|
+| Wide | 3.56 | 7.893 mm | 7.799 mm | 3.56 | Iris |
+| Mid | 4.65 | 7.962 mm | 7.791 mm | 4.65 | Iris |
+| Tele | 5.90 | 8.007 mm | 7.748 mm | 5.90 | Iris |
+
+The three stations do not share one stop radius within the rounding of the printed values. The real-ray radii spread by 1.43% and grow toward the telephoto end; the first-order radii spread by 0.65% and shrink. A single 7.799 mm first-order stop gives approximately F/4.6451 at mid, which rounds to the printed 4.65, and F/5.8617 at tele, which agrees with Table 4's one-decimal 5.9 but not with the 5.90 of Fig. 16. A single 7.893 mm real-ray stop gives F/4.69 and F/5.98. Example 4 gives the aperture stop a position but no diameter; the only fixed-diameter statement in its description concerns the flare stopper `F` (¶0133). The model therefore follows the printed station values, and no lens rim limits the axial beam at any of the three stations.
 
 Because the patent supplies no clear apertures, every modeled semi-diameter is an inference. The patent-figure-refined
 front-group rims pass the independent surface, image-circle, and exact non-paraxial checks over every authored infinity

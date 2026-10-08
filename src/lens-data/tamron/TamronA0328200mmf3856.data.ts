@@ -60,6 +60,12 @@ const LENS_DATA = {
   patentAuthors: ["Yasuharu Yamada"],
   patentAssignees: ["Tamron Co., Ltd."],
   patentYear: 2002,
+  sourceErrata: [
+    {
+      status: "unresolved",
+      note: "The asphere printed for surface 30 gives marginal spherical aberration of about +12 / +51 / +85 mm at the three zoom states, where Figs. 2-4 plot it inside ±0.5 mm. Negating its four polynomial terms gives about −0.7 / −1.3 / −2.6 mm; the patent has no second listing to settle the cause.",
+    },
+  ],
   elementCount: 15,
   groupCount: 14,
 
@@ -351,7 +357,7 @@ const LENS_DATA = {
       K: 1.3716,
       A4: 6.11041e-7,
       A6: 1.08319e-7,
-      A8: -2.76656e-10,
+      A8: 2.76656e-10,
       A10: 1.51768e-11,
       A12: 0,
       A14: 0,

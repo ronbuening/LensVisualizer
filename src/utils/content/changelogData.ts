@@ -21,6 +21,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-07",
     type: "fix",
+    summary:
+      "19 zoom lenses corrected against their patents: station f-numbers, iris model and four prescription values",
+  },
+  {
+    date: "2026-10-07",
+    type: "fix",
     summary: "Zoom lenses now open their iris to the stated f-number at every focal length, not only the wide end",
   },
   {

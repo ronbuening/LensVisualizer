@@ -72,3 +72,43 @@ The validator accepts the new values, all three states now reach 100% of the 13.
 (42.64° / 21.91° / 10.56°), and the image-circle floor still reports nothing undersized. Surface 4 now carries the
 largest rim angle (53.9°, previously surface 21 at 50.1°) and the S4-S5 air gap is the tightest (0.68 mm at 14.0 mm);
 the analysis quotes neither, and no aspheric surface changed.
+
+## 2026-10-07 — Zoom iris and station f-numbers against the patent
+
+Table 2 (PDF p. 19, printed p. 5; introduced by ¶0060) prints Fno. 2.8501 / 3.7238 / 5.0545 at f = 14.71 / 32.0597 /
+69.8725 mm. The file stored the f-numbers of one calibrated stop instead (+0.51% / −0.17% / −0.34% against that column)
+and declared `zoomApertureModel: "fixed-iris"`. The patent gives no basis for one iris radius: it prints no stop
+diameter and never says how the opening behaves in zooming. Its only iris statements for Example 1 are the placement
+of iris S in GR3 (¶0056, PDF p. 18), the Table 1 Iris row (R INFINITY, D 3.000; PDF p. 19) and the
+spherical-aberration axis scaled to the open F value (¶0063, PDF p. 19); Examples 2 and 3 carry the same three kinds
+of statement, and ¶0083 (PDF p. 22) adds only that GR3 lies near the iris. Traced by a real marginal ray, the Table 2
+column needs iris radii of 6.9318 / 6.8859 / 6.8524 mm, a 1.15% spread falling from wide to tele (6.6323 / 6.5872 /
+6.5760 mm paraxially, 0.85%), about ten times the 0.03–0.09% by which the rounded prescription misses the printed
+focal lengths. The file therefore carries the patent column and the default per-station iris.
+
+| Field | Before | After | Source |
+|---|---|---|---|
+| `nominalFno` | [2.8646783257041806, 3.7174215126729098, 5.03730193692091] | [2.8501, 3.7238, 5.0545] | Table 2, row "Fno.", all three columns (PDF p. 19) |
+| `zoomApertureModel` | `"fixed-iris"` | field removed (default per-station iris) | Patent silent on stop diameter (¶0056 p. 18; Table 1 Iris row p. 19; ¶0063 p. 19; ¶0083 p. 22); Table 2 f-numbers need three different radii |
+| `apertureDesign` | 2.8646783257041806 | 2.8501 | Table 2, row "Fno.", f = 14.71 column (PDF p. 19) |
+| `specs[3]` | MODELED MAX APERTURE f/2.865-f/5.037 | PATENT MAX APERTURE f/2.8501-f/5.0545 | Table 2, row "Fno.", wide and tele columns (PDF p. 19) |
+
+- Wide-open iris radii are 6.9318 / 6.8859 / 6.8524 mm at 14.71 / 32.06 / 69.87 mm. The iris limits the on-axis beam
+  at all three stations and each traces its stated f-number (f/2.85, f/3.72, f/5.05); no rim limits a station.
+- Example identity confirmed unchanged: Table 1 rows around the stop (s12 R −113.994 / D 4.441; Iris INFINITY / D
+  3.000; s14 R 28.726 / D 1.200 / Nd 1.9037) and the Table 2 focal lengths match the file. Examples 2 and 3 run to
+  85.2599 and 83.7453 mm.
+- Focal lengths unchanged: computed EFL 14.7230 / 32.0757 / 69.8532 mm against the printed 14.71 / 32.0597 / 69.8725.
+- All six Table 2 variable gaps (D2, D9, D16, D18, D20, D25) and the stop position (4.441 mm after surface 12, 3.000
+  mm before surface 14 at every station) unchanged.
+- `fstopSeries` unchanged: it starts at the marketed 2.8, not at the former wide value.
+- No semi-diameter changed. The authored `STO` sd of 6.5985 mm stays; it is the mean of the three paraxial radii and
+  the traced iris replaces it. The header and the analysis note state this.
+- The analysis note's paraxial entrance-pupil radii follow the Table 2 column: 2.582887 / 4.306844 / 6.910001 mm
+  (previously 2.569742 / 4.314234 / 6.933592 mm from the 6.5985 mm stop).
+- Direction word corrected in the same note paragraph: the entrance-pupil planes lie 25.071189 / 55.696224 /
+  107.637386 mm imageward of surface 1, where the note said objectward. A paraxial trace from surface 1 to the stop
+  (71.907 / 68.613 / 78.878 mm behind surface 1) puts the pupil 46.836 mm ahead of the stop at wide, 12.917 mm ahead
+  at intermediate and 28.759 mm behind it at tele. The distances do not depend on the iris radius and are unchanged.
+- Left open: whether the 1.15% spread reflects a stop that closes slightly toward tele in the design or a different
+  F-number definition in the design software cannot be told from the patent.
