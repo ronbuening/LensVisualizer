@@ -44,9 +44,30 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ published endpoints; edge thickness, rim slope, conic domain, and ║
  * ║ cross-gap intrusion. Repository checks are in the audit log.      ║
  * ║                                                                    ║
- * ║ Glass labels preserve the patent's literal d-line n/v coordinates ║
- * ║ with qualified catalog proxies where compatible. No nC/nF/ng,     ║
- * ║ dPgF, APO, or anomalous-dispersion claim is authored.              ║
+ * ║ Index column: Table 6 heads it ndi and paragraph 0064 states the  ║
+ * ║ d line (587.6 nm), but the printed values are e-line indices      ║
+ * ║ paired with d-line Abbe numbers. 18 of the 19 equal a HOYA or     ║
+ * ║ OHARA catalog ne to all five printed decimals, each with that     ║
+ * ║ glass's vd at the printed one decimal; none equals a catalog      ║
+ * ║ glass at the d line. The patent's own Tables 36-37 agree: they    ║
+ * ║ give L61's d-line index as 1.81 with vd 22.76 and L31's index as  ║
+ * ║ 1.76, the catalog nd of FD225 (1.80809) and S-LAH96 (1.76385),    ║
+ * ║ where Table 6 prints 1.81643 and 1.76760. The printed values are  ║
+ * ║ stored unchanged and all 19 elements are e-referenced             ║
+ * ║ (indexReference "e").                                             ║
+ * ║                                                                    ║
+ * ║ Glass labels: the 18 carry their catalog names and trace on       ║
+ * ║ catalog curves anchored to the printed index (HOYA FCD1 x2,       ║
+ * ║ E-CF6, TAFD45, TAC8, FDS24, TAFD35, TAF5, FCD705, TAFD40, PCD51,  ║
+ * ║ FD225, TAFD5G; OHARA S-NBH51, S-LAH96 x2, L-LAH91, S-NBH52V). L72 ║
+ * ║ (1.77373 / 49.4) matches no vendor row at either line and stays   ║
+ * ║ Unmatched on the Abbe estimate. The vd slot keeps the printed     ║
+ * ║ d-line Abbe number (catalog ve is 0.2 to 0.4 lower). The names    ║
+ * ║ select dispersion curves; they do not identify Sony's supplier.   ║
+ * ║                                                                    ║
+ * ║ Table 6 lists no cover glass or filter row, so there are no rear  ║
+ * ║ plates. No nC/nF/ng or dPgF is authored; the APD tags are display ║
+ * ║ inferences from the catalog curves, not patent designations.      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -83,9 +104,10 @@ const LENS_DATA = {
       type: "Negative Meniscus, convex to object",
       nd: 1.75453,
       vd: 35.3,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -314.824,
-      glass: "NBFD6 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "S-NBH51 (OHARA; catalog ne 1.75453 as printed, vd 35.33 for the printed 35.3; supplier unconfirmed)",
       cemented: "D1",
     },
     {
@@ -95,11 +117,12 @@ const LENS_DATA = {
       type: "Positive Meniscus, convex to object",
       nd: 1.49845,
       vd: 81.6,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 182.295,
       apd: "inferred",
       apdNote: "Low-dispersion family inferred from patent coordinates and the compatible FCD1 curve (catalog ΔPgF ≈ +0.0312); not a patent APD designation or supplier identification.",
-      glass: "FCD1 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "FCD1 (HOYA; catalog ne 1.49845 as printed, vd 81.61 for the printed 81.6; supplier unconfirmed)",
       cemented: "D1",
     },
     {
@@ -109,11 +132,12 @@ const LENS_DATA = {
       type: "Positive Meniscus, convex to object",
       nd: 1.49845,
       vd: 81.6,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 305.707,
       apd: "inferred",
       apdNote: "Low-dispersion family inferred from patent coordinates and the compatible FCD1 curve (catalog ΔPgF ≈ +0.0312); not a patent APD designation or supplier identification.",
-      glass: "FCD1 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "FCD1 (HOYA; catalog ne 1.49845 as printed, vd 81.61 for the printed 81.6; supplier unconfirmed)",
     },
     {
       id: 4,
@@ -122,9 +146,10 @@ const LENS_DATA = {
       type: "Positive Meniscus, concave to object",
       nd: 1.51978,
       vd: 52.1,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 65.591,
-      glass: "S-NSL36 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "E-CF6 (HOYA; catalog ne 1.51978 as printed, vd 52.15 for the printed 52.1; supplier unconfirmed)",
       cemented: "D2",
     },
     {
@@ -134,9 +159,10 @@ const LENS_DATA = {
       type: "Negative Meniscus, concave to object",
       nd: 1.96073,
       vd: 32.3,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -126.051,
-      glass: "Unmatched (patent coordinate 961323; supplier unresolved)",
+      glass: "TAFD45 (HOYA; catalog ne 1.96073 as printed, vd 32.32 for the printed 32.3; supplier unconfirmed)",
       cemented: "D2",
     },
     {
@@ -146,9 +172,10 @@ const LENS_DATA = {
       type: "Negative Meniscus, convex to object",
       nd: 1.7676,
       vd: 48.5,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -74.827,
-      glass: "M-TAF101 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "S-LAH96 (OHARA; catalog ne 1.76760 as printed, vd 48.49 for the printed 48.5; supplier unconfirmed)",
     },
     {
       id: 7,
@@ -157,9 +184,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.73234,
       vd: 54.7,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -23.397,
-      glass: "MP-TAC80-60 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "TAC8 (HOYA; catalog ne 1.73234 as printed, vd 54.67 for the printed 54.7; supplier unconfirmed)",
       cemented: "D3",
     },
     {
@@ -169,9 +197,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.93024,
       vd: 24,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 43.588,
-      glass: "Unmatched (patent coordinate 930240; supplier unresolved)",
+      glass: "FDS24 (HOYA; catalog ne 1.93024 as printed, vd 23.96 for the printed 24.0; supplier unconfirmed)",
       cemented: "D3",
     },
     {
@@ -181,9 +210,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7676,
       vd: 48.5,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 30.484,
-      glass: "M-TAF101 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "S-LAH96 (OHARA; catalog ne 1.76760 as printed, vd 48.49 for the printed 48.5; supplier unconfirmed)",
       cemented: "D4",
     },
     {
@@ -193,9 +223,10 @@ const LENS_DATA = {
       type: "Negative Meniscus, concave to object",
       nd: 1.91695,
       vd: 35.2,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -85.665,
-      glass: "Unmatched (patent coordinate 917352; supplier unresolved)",
+      glass: "TAFD35 (HOYA; catalog ne 1.91695 as printed, vd 35.25 for the printed 35.2; supplier unconfirmed)",
       cemented: "D4",
     },
     {
@@ -205,9 +236,10 @@ const LENS_DATA = {
       type: "Negative Meniscus, concave to object",
       nd: 1.82017,
       vd: 46.6,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -48.516,
-      glass: "Unmatched (patent coordinate 820466; supplier unresolved)",
+      glass: "TAF5 (HOYA; catalog ne 1.82017 as printed, vd 46.57 for the printed 46.6; supplier unconfirmed)",
     },
     {
       id: 12,
@@ -216,11 +248,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.55206,
       vd: 75.5,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 60.485,
       apd: "inferred",
       apdNote: "Low-dispersion family inferred from patent coordinates and the compatible FCD705 curve (catalog ΔPgF ≈ +0.0232); not a patent APD designation or supplier identification.",
-      glass: "FCD705 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "FCD705 (HOYA; catalog ne 1.55206 as printed, vd 75.50 for the printed 75.5; supplier unconfirmed)",
     },
     {
       id: 13,
@@ -229,9 +262,10 @@ const LENS_DATA = {
       type: "Negative Meniscus, concave to object",
       nd: 2.00996,
       vd: 25.5,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -34.644,
-      glass: "Unmatched (patent coordinate 010255; supplier unresolved)",
+      glass: "TAFD40 (HOYA; catalog ne 2.00996 as printed, vd 25.46 for the printed 25.5; supplier unconfirmed)",
       cemented: "D5",
     },
     {
@@ -241,11 +275,12 @@ const LENS_DATA = {
       type: "Positive Meniscus, concave to object",
       nd: 1.59561,
       vd: 67,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 67.02,
       apd: "inferred",
-      apdNote: "Low-dispersion family inferred from patent coordinates and the compatible S-FPM2 curve (catalog ΔPgF ≈ +0.0144); not a patent APD designation or supplier identification.",
-      glass: "S-FPM2 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      apdNote: "Low-dispersion family inferred from patent coordinates and the matched PCD51 curve (catalog ΔPgF ≈ +0.0055); not a patent APD designation or supplier identification.",
+      glass: "PCD51 (HOYA; catalog ne 1.59561 as printed, vd 67.00 for the printed 67.0; supplier unconfirmed)",
       cemented: "D5",
     },
     {
@@ -255,9 +290,10 @@ const LENS_DATA = {
       type: "Biconvex Positive (2x Asph)",
       nd: 1.76821,
       vd: 49.1,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 32.412,
-      glass: "M-TAF101 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "L-LAH91 (OHARA; catalog ne 1.76821 as printed, vd 49.10 for the printed 49.1; supplier unconfirmed)",
     },
     {
       id: 16,
@@ -266,9 +302,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.81643,
       vd: 22.8,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 75.627,
-      glass: "Unmatched (patent coordinate 816228; supplier unresolved)",
+      glass: "FD225 (HOYA; catalog ne 1.81643 as printed, vd 22.76 for the printed 22.8; supplier unconfirmed)",
       cemented: "D6",
     },
     {
@@ -278,9 +315,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.83945,
       vd: 42.7,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -30.889,
-      glass: "Unmatched (patent coordinate 839427; supplier unresolved)",
+      glass: "TAFD5G (HOYA; catalog ne 1.83945 as printed, vd 42.72 for the printed 42.7; supplier unconfirmed)",
       cemented: "D6",
     },
     {
@@ -290,9 +328,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.67717,
       vd: 38.3,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 76.819,
-      glass: "ADF405 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "S-NBH52V (OHARA; catalog ne 1.67717 as printed, vd 38.26 for the printed 38.3; supplier unconfirmed)",
     },
     {
       id: 19,
@@ -301,9 +340,10 @@ const LENS_DATA = {
       type: "Biconcave Negative (2x Asph)",
       nd: 1.77373,
       vd: 49.4,
-      indexReference: "d",
+      indexReference: "e",
+      indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -48.399,
-      glass: "M-TAF105 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      glass: "Unmatched (printed coordinates; nearest e-line rows are HOYA MC-TAF101-100 at 1.77273 and M-TAF105 at 1.77622; no vendor row at either line)",
     },
   ],
 

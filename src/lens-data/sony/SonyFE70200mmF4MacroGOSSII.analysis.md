@@ -43,147 +43,153 @@ The aperture stop is similarly modeled. The source φ15 = 25.23 mm is an effecti
 
 ## Element-by-Element Analysis
 
-The patent does not assign a complete element-by-element aberration budget, and the available source does not establish vendor glass identities for the Example-2 coordinates. The discussion below therefore limits element-level interpretation to verified shape, standalone power, cemented relationships, group placement, and published motion. A standalone element focal length is the power of that element in air; it must not be confused with the net power of a cemented component or with the behavior of the element in situ inside the full zoom system.
+The patent does not assign a complete element-by-element aberration budget and names no glass. The catalog names below come from exact e-line coordinate matches, set out under Glass Identification and Selection; they select dispersion curves and do not establish a supplier. The discussion below limits element-level interpretation to verified shape, standalone power, cemented relationships, group placement, and published motion. A standalone element focal length is the power of that element in air; it must not be confused with the net power of a cemented component or with the behavior of the element in situ inside the full zoom system.
 
 ### L11 — Negative Meniscus, convex to object
 
-nd = 1.75453, νd = 35.3. Glass: NBFD6 (coordinate-compatible spectral proxy; supplier unconfirmed). f = −314.824 mm.
+ne = 1.75453, νd = 35.3. Glass: S-NBH51 (OHARA), from the exact e-line match; supplier unconfirmed. f = −314.824 mm.
 
 L11 is the front member of the cemented D1 pair in positive group G1. Its standalone power is weakly negative. At the shared R = 67.753 mm cemented interface it passes directly into L12 in the normalized model; the zero-thickness source duplicate S2 is not modeled as an intervening air surface. The D1 pair as a whole is weakly positive, with a verified cemented focal length of about +446.71 mm.
 
 ### L12 — Positive Meniscus, convex to object
 
-nd = 1.49845, νd = 81.6. Glass: FCD1 (coordinate-compatible spectral proxy; supplier unconfirmed). f = +182.295 mm.
+ne = 1.49845, νd = 81.6. Glass: FCD1 (HOYA), from the exact e-line match; supplier unconfirmed. f = +182.295 mm.
 
-L12 is the positive partner of D1 and provides substantially more standalone positive power than L11's negative power. It shares its source coordinate with L13 but remains a distinct physical element. The unusually high νd is retained exactly as a patent coordinate; a coordinate-compatible catalog curve does not justify claiming a specific ED grade or anomalous partial-dispersion behavior.
+L12 is the positive partner of D1 and provides substantially more standalone positive power than L11's negative power. It shares its source coordinate with L13 but remains a distinct physical element. The printed pair equals HOYA FCD1, a fluorophosphate crown whose catalog curve lies well above the normal partial-dispersion line (ΔPgF ≈ +0.031). The match identifies a catalog coordinate; it does not say which Sony ED grade the production element uses.
 
 ### L13 — Positive Meniscus, convex to object
 
-nd = 1.49845, νd = 81.6. Glass: FCD1 (coordinate-compatible spectral proxy; supplier unconfirmed). f = +305.707 mm.
+ne = 1.49845, νd = 81.6. Glass: FCD1 (HOYA), from the exact e-line match; supplier unconfirmed. f = +305.707 mm.
 
 L13 is an air-spaced positive singlet behind D1. Together with the weakly positive D1 pair it yields the net positive G1 power of approximately +184.26 mm focal length. G1 moves substantially toward object space relative to the fixed image plane as the lens is zoomed from Wide to Tele.
 
 ### L21 — Positive Meniscus, concave to object
 
-nd = 1.51978, νd = 52.1. Glass: S-NSL36 (coordinate-compatible spectral proxy; supplier unconfirmed). f = +65.591 mm.
+ne = 1.51978, νd = 52.1. Glass: E-CF6 (HOYA), from the exact e-line match; supplier unconfirmed. f = +65.591 mm.
 
 L21 is the positive first member of cemented pair D2 within the strongly negative G2 group. Its positive standalone power is partly opposed by L22. The cemented D2 pair remains net positive, with a verified focal length of about +140.22 mm, so the negative sign of G2 arises from the complete five-element group rather than from D2 alone.
 
 ### L22 — Negative Meniscus, concave to object
 
-nd = 1.96073, νd = 32.3. Glass: Unmatched (patent coordinate 961323; supplier unresolved). f = −126.051 mm.
+ne = 1.96073, νd = 32.3. Glass: TAFD45 (HOYA), from the exact e-line match; supplier unconfirmed. f = −126.051 mm.
 
-L22 completes D2. It is a high-index, lower-Abbe coordinate in the patent table, but no vendor identity is assigned. In the full G2 sequence, D2 is followed by negative L23 and then cemented D3, producing the verified net G2 focal length of approximately −37.97 mm.
+L22 completes D2. Its printed pair equals HOYA TAFD45 at the e line; OHARA S-LAH98 shares the coordinate. In the full G2 sequence, D2 is followed by negative L23 and then cemented D3, producing the verified net G2 focal length of approximately −37.97 mm.
 
 ### L23 — Negative Meniscus, convex to object
 
-nd = 1.76760, νd = 48.5. Glass: Unmatched (patent coordinate 768485; supplier unresolved). f = −74.827 mm.
+ne = 1.76760, νd = 48.5. Glass: S-LAH96 (OHARA), from the exact e-line match; supplier unconfirmed. f = −74.827 mm.
 
 L23 is an air-spaced negative singlet between D2 and D3. Its substantial negative standalone power contributes directly to G2's strong negative net power. Table 8 keeps G2 fixed relative to the image plane across the three published infinity zoom states.
 
 ### L24 — Biconcave Negative
 
-nd = 1.73234, νd = 54.7. Glass: MP-TAC80-60 (coordinate-compatible spectral proxy; supplier unconfirmed). f = −23.397 mm.
+ne = 1.73234, νd = 54.7. Glass: TAC8 (HOYA), from the exact e-line match; supplier unconfirmed. f = −23.397 mm.
 
 L24 is the strongly negative first member of cemented pair D3. Its standalone focal length is the shortest-magnitude element focal length in G2. It is cemented to positive L25 at surface 13.
 
 ### L25 — Biconvex Positive
 
-nd = 1.93024, νd = 24.0. Glass: Unmatched (patent coordinate 930240; supplier unresolved). f = +43.588 mm.
+ne = 1.93024, νd = 24.0. Glass: FDS24 (HOYA), from the exact e-line match; supplier unconfirmed. f = +43.588 mm.
 
 L25 opposes L24 within D3, but the pair remains net negative: the verified cemented D3 focal length is approximately −51.55 mm. D3 therefore reinforces, rather than cancels, the negative net power of G2.
 
 ### L31 — Biconvex Positive
 
-nd = 1.76760, νd = 48.5. Glass: Unmatched (patent coordinate 768485; supplier unresolved). f = +30.484 mm.
+ne = 1.76760, νd = 48.5. Glass: S-LAH96 (OHARA), from the exact e-line match; supplier unconfirmed. f = +30.484 mm.
 
 L31 is the positive member of cemented pair D4 in G3. The aperture stop lies immediately before this pair in the normalized sequential model. L31 supplies the dominant positive standalone power of D4.
 
 ### L32 — Negative Meniscus, concave to object
 
-nd = 1.91695, νd = 35.2. Glass: Unmatched (patent coordinate 917352; supplier unresolved). f = −85.665 mm.
+ne = 1.91695, νd = 35.2. Glass: TAFD35 (HOYA), from the exact e-line match; supplier unconfirmed. f = −85.665 mm.
 
 L32 completes D4. Despite its negative standalone power, the cemented D4 pair is net positive, with a verified focal length of approximately +47.46 mm; this equals the computed G3 focal length because D4 constitutes the refracting content of G3.
 
 ### L41 — Negative Meniscus, concave to object
 
-nd = 1.82017, νd = 46.6. Glass: Unmatched (patent coordinate 820466; supplier unresolved). f = −48.516 mm.
+ne = 1.82017, νd = 46.6. Glass: TAF5 (HOYA), from the exact e-line match; supplier unconfirmed. f = −48.516 mm.
 
 L41 is the negative front singlet of G4. It is separated by a 0.20 mm air gap from positive L42 in the Wide base state. The complete air-spaced pair has only weak net negative power compared with the neighboring G3 and G5 groups.
 
 ### L42 — Biconvex Positive
 
-nd = 1.55206, νd = 75.5. Glass: FCD705 (coordinate-compatible spectral proxy; supplier unconfirmed). f = +60.485 mm.
+ne = 1.55206, νd = 75.5. Glass: FCD705 (HOYA), from the exact e-line match; supplier unconfirmed. f = +60.485 mm.
 
-L42 provides positive power against L41's negative power. The combination leaves G4 at approximately −270.34 mm focal length in the final-data calculation. Its high νd coordinate is preserved without converting it into a named low-dispersion catalog glass.
+L42 provides positive power against L41's negative power. The combination leaves G4 at approximately −270.34 mm focal length in the final-data calculation. Its printed pair equals HOYA FCD705 at the e line, a low-dispersion fluorophosphate crown.
 
 ### L51 — Negative Meniscus, concave to object
 
-nd = 2.00996, νd = 25.5. Glass: Unmatched (patent coordinate 010255; supplier unresolved). f = −34.644 mm.
+ne = 2.00996, νd = 25.5. Glass: TAFD40 (HOYA), from the exact e-line match; supplier unconfirmed. f = −34.644 mm.
 
-L51 begins cemented pair D5 in G5 and has strong negative standalone power. Its refractive index is the highest literal coordinate in Example 2. The data treats that value as a patent coordinate only; no supplier or melt identity is inferred.
+L51 begins cemented pair D5 in G5 and has strong negative standalone power. Its refractive index is the highest in Example 2. The printed pair equals HOYA TAFD40 at the e line; no supplier or melt identity is inferred.
 
 ### L52 — Positive Meniscus, concave to object
 
-nd = 1.59561, νd = 67.0. Glass: Unmatched (patent coordinate 596670; supplier unresolved). f = +67.020 mm.
+ne = 1.59561, νd = 67.0. Glass: PCD51 (HOYA), from the exact e-line match; supplier unconfirmed. f = +67.020 mm.
 
 L52 is the positive second member of D5. The pair remains net negative, with a verified cemented focal length of approximately −79.97 mm. G5 becomes strongly positive only after the addition of L53.
 
 ### L53 — Biconvex Positive, two aspherical surfaces
 
-nd = 1.76821, νd = 49.1. Glass: M-TAF101 (coordinate-compatible spectral proxy; supplier unconfirmed). f = +32.412 mm.
+ne = 1.76821, νd = 49.1. Glass: L-LAH91 (OHARA), from the exact e-line match; supplier unconfirmed. f = +32.412 mm.
 
 L53 is a strong positive singlet whose front and rear surfaces, 26A and 27A, are both aspherical. Its standalone positive power more than offsets the negative D5 component so that the full G5 group has a verified focal length of approximately +44.16 mm. D27, the air gap immediately behind L53, participates in both zoom and the published focus translation of G6.
 
 ### L61 — Biconvex Positive
 
-nd = 1.81643, νd = 22.8. Glass: Unmatched (patent coordinate 816228; supplier unresolved). f = +75.627 mm.
+ne = 1.81643, νd = 22.8. Glass: FD225 (HOYA), from the exact e-line match; supplier unconfirmed. f = +75.627 mm.
 
 L61 is the positive member of cemented focus pair D6. The patent identifies the G6/Unmax group as the movable focus group in Example 2. L61's positive standalone power is more than offset by L62 in the cemented combination.
 
 ### L62 — Biconcave Negative
 
-nd = 1.83945, νd = 42.7. Glass: Unmatched (patent coordinate 839427; supplier unresolved). f = −30.889 mm.
+ne = 1.83945, νd = 42.7. Glass: TAFD5G (HOYA), from the exact e-line match; supplier unconfirmed. f = −30.889 mm.
 
 L62 completes D6. The cemented pair has a verified net focal length of approximately −53.27 mm, the same as G6. During each published finite-focus move, D27 increases while D30 decreases by the same amount, translating the intact cemented group without changing the sum of the adjacent gaps.
 
 ### L71 — Biconvex Positive
 
-nd = 1.67717, νd = 38.3. Glass: ADF405 (coordinate-compatible spectral proxy; supplier unconfirmed). f = +76.819 mm.
+ne = 1.67717, νd = 38.3. Glass: S-NBH52V (OHARA), from the exact e-line match; supplier unconfirmed. f = +76.819 mm.
 
 L71 is the positive front singlet of the final functional group G7. Table 8 places G7 at a fixed axial station relative to the image plane throughout the three published infinity zoom states.
 
 ### L72 — Biconcave Negative, two aspherical surfaces
 
-nd = 1.77373, νd = 49.4. Glass: M-TAF105 (coordinate-compatible spectral proxy; supplier unconfirmed). f = −48.399 mm.
+ne = 1.77373, νd = 49.4. Glass: Unmatched (printed coordinates; no vendor row at either the d or the e line). f = −48.399 mm.
 
 L72 is the negative rear singlet and carries the two rear aspherical surfaces 33A and 34A. In combination with L71 it leaves G7 only weakly negative, approximately −381.91 mm focal length. Surface 34A is the final modeled refracting surface; the base rear spacing from that vertex to the image plane is 31.32 mm.
 
 ## Glass Identification and Selection
 
-The Example-2 patent table supplies refractive index and Abbe-number coordinates but does not name glass suppliers or publish element-specific nC, nF, ng, or dPgF values. The patent states that the tabulated n values are d-line quantities (WO 2024/247472 A1, ¶0064). Several coordinates resemble public catalog e-line values more closely than d-line values, so the final data deliberately preserves the source coordinates without relabeling them to a vendor glass.
+The Example-2 table supplies a refractive index and an Abbe number for each element. It names no glass and publishes no element-specific nC, nF, ng, or dPgF values. Table 6 heads the index column `ndi`, and ¶0064 defines it as the refractive index at the d line (587.6 nm) and `νdi` as the Abbe number at the d line. The printed indices are nevertheless e-line values (546.07 nm) paired with d-line Abbe numbers. Eighteen of the nineteen rows equal a HOYA or OHARA catalog glass at the e line to all five printed decimals, and the catalog νd of each of those glasses agrees with the printed one-decimal Abbe number (E-CF6 at 52.15 and TAFD35 at 35.25 sit on the rounding boundary and are printed as 52.1 and 35.2). No row equals a catalog glass at the d line. The model stores the printed values unchanged and treats the whole index column as e-line (`indexReference: "e"` on all nineteen elements).
 
-| Patent coordinate | nd | νd | Elements | Data-file disposition |
-|---|---:|---:|---|---|
-| 755353 | 1.75453 | 35.3 | L11 | NBFD6 spectral proxy; supplier unconfirmed |
-| 498816 | 1.49845 | 81.6 | L12, L13 | Unmatched; supplier unresolved |
-| 520521 | 1.51978 | 52.1 | L21 | S-NSL36 spectral proxy; supplier unconfirmed |
-| 961323 | 1.96073 | 32.3 | L22 | Unmatched; supplier unresolved |
-| 768485 | 1.76760 | 48.5 | L23, L31 | Unmatched; supplier unresolved |
-| 732547 | 1.73234 | 54.7 | L24 | MP-TAC80-60 spectral proxy; supplier unconfirmed |
-| 930240 | 1.93024 | 24.0 | L25 | Unmatched; supplier unresolved |
-| 917352 | 1.91695 | 35.2 | L32 | Unmatched; supplier unresolved |
-| 820466 | 1.82017 | 46.6 | L41 | Unmatched; supplier unresolved |
-| 552755 | 1.55206 | 75.5 | L42 | FCD705 spectral proxy; supplier unconfirmed |
-| 010255 | 2.00996 | 25.5 | L51 | Unmatched; supplier unresolved |
-| 596670 | 1.59561 | 67.0 | L52 | S-FPM2 spectral proxy; supplier unconfirmed |
-| 768491 | 1.76821 | 49.1 | L53 | M-TAF101 spectral proxy; supplier unconfirmed |
-| 816228 | 1.81643 | 22.8 | L61 | Unmatched; supplier unresolved |
-| 839427 | 1.83945 | 42.7 | L62 | Unmatched; supplier unresolved |
-| 677383 | 1.67717 | 38.3 | L71 | ADF405 spectral proxy; supplier unconfirmed |
-| 774494 | 1.77373 | 49.4 | L72 | M-TAF105 spectral proxy; supplier unconfirmed |
+The patent's own condition tables agree. ¶0037 defines Nnp and νnp as the d-line index and Abbe number of L61. Table 36 prints them as 1.81 and 22.76, and Table 37 prints Nnp + 0.1·νnp = 4.08; the Table 6 index of L61, 1.81643, gives 4.09. HOYA FD225, whose ne is 1.81643, has nd 1.80809 and νd 22.76, which give 4.084. Table 37 also prints Np3 = 1.76 for L31, whose Table 6 index 1.76760 rounds to 1.77 (the other Table 37 entries are rounded, not truncated); OHARA S-LAH96, whose ne is 1.76760, has nd 1.76385.
 
-The wide spread in nd and νd is sufficient to show that the design uses materially different dispersion classes, but Abbe data alone does not establish anomalous partial dispersion or apochromatic behavior. No APO, Super ED, ED, fluorite-equivalent, or anomalous-partial-dispersion claim is therefore attached to an individual patent element. Sony's production literature separately states that the marketed lens contains ED and Super ED elements; the present evidence does not identify which Example-2 patent coordinates, if any, correspond to those production materials.
+HOYA (including obsolete glasses), OHARA, SUMITA, HIKARI, SCHOTT and CDGM catalog data were checked at both lines. HOYA and OHARA both list a glass at the printed pair of L12/L13, L22, L24, L41, L61 and L62; the HOYA name is used there because HOYA covers the most elements of this lens (thirteen, six of them matched by no OHARA row). L11, L23, L31, L53 and L71 match OHARA rows only. L11's pair is shared by OHARA S-NBH51 and S-LAM7, which have the same ne and the same one-decimal Abbe number; S-NBH51 is used. L53's match, L-LAH91, is a low-softening-point moulding glass on a two-asphere element. L72, the other two-asphere element, matches no row at either line and keeps an explicit Unmatched disposition; the nearest e-line rows with its Abbe number are HOYA MC-TAF101-100 (1.77273) and M-TAF105 (1.77622).
+
+| Element | Printed n (e line) | Printed νd | Catalog glass | Catalog ne / νd | Catalog nd |
+|---|---:|---:|---|---|---:|
+| L11 | 1.75453 | 35.3 | OHARA S-NBH51 | 1.75453 / 35.33 | 1.74950 |
+| L12, L13 | 1.49845 | 81.6 | HOYA FCD1 | 1.49845 / 81.61 | 1.49700 |
+| L21 | 1.51978 | 52.1 | HOYA E-CF6 | 1.51978 / 52.15 | 1.51742 |
+| L22 | 1.96073 | 32.3 | HOYA TAFD45 | 1.96073 / 32.32 | 1.95375 |
+| L23, L31 | 1.76760 | 48.5 | OHARA S-LAH96 | 1.76760 / 48.49 | 1.76385 |
+| L24 | 1.73234 | 54.7 | HOYA TAC8 | 1.73234 / 54.67 | 1.72916 |
+| L25 | 1.93024 | 24.0 | HOYA FDS24 | 1.93024 / 23.96 | 1.92119 |
+| L32 | 1.91695 | 35.2 | HOYA TAFD35 | 1.91695 / 35.25 | 1.91082 |
+| L41 | 1.82017 | 46.6 | HOYA TAF5 | 1.82017 / 46.57 | 1.81600 |
+| L42 | 1.55206 | 75.5 | HOYA FCD705 | 1.55206 / 75.50 | 1.55032 |
+| L51 | 2.00996 | 25.5 | HOYA TAFD40 | 2.00996 / 25.46 | 2.00069 |
+| L52 | 1.59561 | 67.0 | HOYA PCD51 | 1.59561 / 67.00 | 1.59349 |
+| L53 | 1.76821 | 49.1 | OHARA L-LAH91 | 1.76821 / 49.10 | 1.76450 |
+| L61 | 1.81643 | 22.8 | HOYA FD225 | 1.81643 / 22.76 | 1.80809 |
+| L62 | 1.83945 | 42.7 | HOYA TAFD5G | 1.83945 / 42.72 | 1.83481 |
+| L71 | 1.67717 | 38.3 | OHARA S-NBH52V | 1.67717 / 38.26 | 1.67300 |
+| L72 | 1.77373 | 49.4 | Unmatched | no vendor row at either line | — |
+
+The eighteen named elements trace on their catalog dispersion curves, anchored to the printed index. L72 uses the Abbe estimate. Every element is traced at the same lines (C′, e, F′ and g), which requires all nineteen to share the e reference. Because the Abbe number in each e-referenced slot is the printed d-line value (catalog νe is 0.2 to 0.4 lower), the estimated dispersion of L72 is understated by under 1 %. The matches identify catalog coordinates; they do not establish Sony's supplier or melt.
+
+The matched glasses span fluorophosphate and phosphate crowns (FCD1, FCD705, PCD51), lanthanum crowns and flints, and dense flints (FDS24, FD225). The patent publishes no partial-dispersion data, so no APO, Super ED, ED, or fluorite-equivalent claim is attached to an individual element on patent evidence; the inferred APD display tags on L12, L13, L42 and L52 rest on the matched catalog curves. Sony's production literature separately states that the marketed lens contains ED and Super ED elements; the patent does not say which Example-2 elements, if any, correspond to those production materials.
 
 ## Focus Mechanism
 
@@ -235,6 +241,8 @@ The patent supplies six design conditions and tabulates Example-2 values in Tabl
 
 Condition (1) illustrates why the rounded source tables must not be treated as exact hidden-precision values: direct division of the printed f2 = −37.99 mm and f3 = 47.64 mm gives −0.79744, slightly above the literal −0.8 upper bound, while Table 37 prints −0.80. The dossier therefore records this as a source-rounding discrepancy rather than rewriting the inequality or widening the underlying prescription. Condition (5) similarly recomputes to 4.086 from the rounded inputs while Table 37 prints 4.08. Neither discrepancy changes the implemented prescription.
 
+Conditions (5) and (6) also bear on which line Table 6 is printed at. Table 36 gives Nnp = 1.81 and νnp = 22.76 for L61, the d-line values of HOYA FD225 (nd 1.80809, νd 22.76), and those give 4.084 for condition (5), the printed 4.08; the Table 6 index 1.81643 gives 4.09. For condition (6) the table above takes Np3 from the Table 6 index of L31, 1.76760, which rounds to 1.77; Table 37 prints 1.76, the d-line index of OHARA S-LAH96 (1.76385). Both agree with Table 6 carrying e-line indices, as set out under Glass Identification and Selection.
+
 ## Image Stabilization
 
 Sony markets the production FE 70–200mm F4 Macro G OSS II with Optical SteadyShot. The selected Example-2 numerical prescription, however, supplies only axial zoom and focus spacing states; it does not provide a decenter or tilt state for an image-stabilization group in Tables 6–10. The final data therefore models no stabilization displacement and does not identify a specific Example-2 group as the production OSS actuator. The production mechanical feature and the patent's executable sequential prescription are kept separate.
@@ -253,7 +261,7 @@ The verified Petzval sum of the normalized physical prescription is +0.000325159
 
 The inferred semi-diameter model was checked with a 96-state broad endpoint/intermediate sweep using 1,104 exact meridional rays, supplemented by a 0.01-step axial-marginal sweep at three focus samples using 1,212 rays and a dense 0.6-field sweep using 3,636 rays across both piecewise-linear zoom segments. The minimum non-stop radial clearance over those checks is 0.2030 mm; the minimum computed element edge thickness is 0.9862 mm, the maximum authored-rim sag slope is 0.5288 (27.87°), and the minimum shared-band cross-gap margin is 1.0465 mm. All tested conic-domain checks also pass. These portable checks do not substitute for LensVisualizer's production render diagnostics, which remain an integration-stage task.
 
-The production-lens correlation, calibrated iris, and modeled clearance margins remain qualified. Rear S31–S34 effective diameters are source-published; compatible catalog curves improve spectral modeling without establishing the production melts.
+The production-lens correlation, calibrated iris, and modeled clearance margins remain qualified. Rear S31–S34 effective diameters are source-published; the matched catalog curves improve spectral modeling without establishing the production melts.
 
 ## Sources and References
 
@@ -262,27 +270,34 @@ The production-lens correlation, calibrated iris, and modeled clearance margins 
 3. Sony Electronics, **FE 70-200mm F4 Macro G OSS II product page (SEL70200G2)**: https://electronics.sony.com/imaging/lenses/all-e-mount/p/sel70200g2
 4. Sony Support, **SEL70200G2 specifications**: https://www.sony.com/electronics/support/lenses-e-mount-lenses/sel70200g2/specifications
 
-## Catalog spectral proxy audit
+## Catalog glass audit
 
-The integration audit retains every patent index and Abbe value. The following annotations now select coordinate-compatible catalog curves at runtime, without identifying the production supplier or melt. Earlier coordinate-only descriptions above remain source descriptions; an unresolved supplier does not mean that no spectral proxy is available. No measured line indices or unsupported APD tags are added.
+The data file retains every printed index and Abbe value and treats the index column as e-line. The following names select catalog dispersion curves at runtime, each anchored to the printed index, without identifying the production supplier or melt. They replace the earlier d-line proxies (NBFD6, S-NSL36, M-TAF101, MP-TAC80-60, S-FPM2, ADF405 and M-TAF105), which sat 0.0002 to 0.0027 from the printed values at the d line. No measured line indices are added.
 
-| Element | Patent nd / vd | Runtime spectral proxy |
+| Element | Printed ne / νd | Runtime catalog glass |
 |---|---|---|
-| L11 | 1.75453 / 35.3 | NBFD6 |
-| L12 | 1.49845 / 81.6 | FCD1 |
-| L13 | 1.49845 / 81.6 | FCD1 |
-| L21 | 1.51978 / 52.1 | S-NSL36 |
-| L23 | 1.7676 / 48.5 | M-TAF101 |
-| L24 | 1.73234 / 54.7 | MP-TAC80-60 |
-| L31 | 1.7676 / 48.5 | M-TAF101 |
-| L42 | 1.55206 / 75.5 | FCD705 |
-| L52 | 1.59561 / 67 | S-FPM2 |
-| L53 | 1.76821 / 49.1 | M-TAF101 |
-| L71 | 1.67717 / 38.3 | ADF405 |
-| L72 | 1.77373 / 49.4 | M-TAF105 |
+| L11 | 1.75453 / 35.3 | S-NBH51 (OHARA) |
+| L12 | 1.49845 / 81.6 | FCD1 (HOYA) |
+| L13 | 1.49845 / 81.6 | FCD1 (HOYA) |
+| L21 | 1.51978 / 52.1 | E-CF6 (HOYA) |
+| L22 | 1.96073 / 32.3 | TAFD45 (HOYA) |
+| L23 | 1.76760 / 48.5 | S-LAH96 (OHARA) |
+| L24 | 1.73234 / 54.7 | TAC8 (HOYA) |
+| L25 | 1.93024 / 24.0 | FDS24 (HOYA) |
+| L31 | 1.76760 / 48.5 | S-LAH96 (OHARA) |
+| L32 | 1.91695 / 35.2 | TAFD35 (HOYA) |
+| L41 | 1.82017 / 46.6 | TAF5 (HOYA) |
+| L42 | 1.55206 / 75.5 | FCD705 (HOYA) |
+| L51 | 2.00996 / 25.5 | TAFD40 (HOYA) |
+| L52 | 1.59561 / 67.0 | PCD51 (HOYA) |
+| L53 | 1.76821 / 49.1 | L-LAH91 (OHARA) |
+| L61 | 1.81643 / 22.8 | FD225 (HOYA) |
+| L62 | 1.83945 / 42.7 | TAFD5G (HOYA) |
+| L71 | 1.67717 / 38.3 | S-NBH52V (OHARA) |
+| L72 | 1.77373 / 49.4 | none; Abbe estimate |
 
 ### Diagram glass classifications
 
-L2/L3/L12/L14 receive qualified inferred APD coloring from FCD1/FCD705/S-FPM2 curves. Seven remaining custom coordinates have no further compatible catalog/HOYA candidate; e-line near-matches remain rejected.
+Elements 2, 3, 12 and 14 (L12, L13, L42 and L52) keep their qualified inferred APD coloring, now from the FCD1, FCD705 and PCD51 curves (catalog ΔPgF ≈ +0.031, +0.023 and +0.006). The PCD51 deviation is less than half that of the S-FPM2 proxy L52 carried before (+0.014).
 
 Glass-family/APD inferences are display annotations, not additional patent measurements. No catalog-derived line indices or partial-dispersion numbers are authored as patent evidence.
