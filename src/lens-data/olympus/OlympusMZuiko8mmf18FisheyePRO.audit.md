@@ -197,3 +197,58 @@ This supersedes "Required latest-contract filter normalization" above; the fold-
 | Near-axis focus against d at C / F / g (µm) | +23.97 / −29.25 / −21.25 | +19.66 / −19.58 / −4.17 |
 
 The printed 11.60 / 11.71 mm image heights are now met within 0.005 mm at both states. Conditions (9) and (11) come out at 0.174227 and 0.225980 from the model track itself, and EXP/f stays 5.775570 with the exit pupil taken behind the plate (printed 0.17, 0.23, 5.78). Paraxial focus sits 0.018 µm from the image plane at infinity and 0.004 µm for the near object, as before. Ahead of the plate nothing moves: the 168 chief rays (21 focus positions, eight fields to 98.54°) converge unclipped with surface heights equal within 2e-10 mm, and the default 59.124° fan still loses its ±0.75 rays first at surfaces 24 and 12. The spectral row uses catalog-equivalent curves, not source line indices; the Abbe estimate for the plate gives the same figures within 0.05 µm. The surface validator reports no errors and the image-circle check 0 undersized; the corner-coverage audit skips fisheye projections. The drawn image plane moves 1.362052 mm away from the lens.
+
+## 2026-10-08 — Second review: diagram, labels and movement
+
+Compared: the local lens page at infinity and at 0.12 m, its focus-movement overlay at both ends and the element inspectors, against Figure 25 (local `patents/JP2016184136A.pdf`, PDF page 34), the Example 7 description in paragraphs 0024 and 0102–0103, the surface and group tables on PDF pages 25–26, and the OM System cutaway. No semi-diameter, gap, glass, tag or movement value changed; the changes are labels and prose.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `diagramLabel`, elements 1, 2, 4 | none (diagram showed 1, 2, 4) | L1N1, L2N1, L3N2, withdrawn by the integrator the same day: the row read "L1N1 L2N1 3 L3N2 5 6 …", with L3N2 on the fourth element beside a plain 3. The designations stay in the role text | Figure 25 prints these three designations under the elements; paragraphs 0024 and 0102 use them, and conditions (1)–(3) are written in them. The patent's index counts the negative lenses of G1, so L3N2 is the fourth element. Names stay L1–L17 |
+| `role`, all 17 elements | "Front negative group…", "Moving positive G2 doublet…", "Fixed positive rear group…" with a standalone-power caveat | sub-group, patent designation where one exists, shape and position | The old text gave a positive lens (L3) and four negative lenses the bare role of their group. Sub-group membership follows the patent group table: G1N1 from surface 1, G1P1 from 5, G1N2 from 7, G3a from 12, G3b from 19 |
+| `focusDescription` | named `finiteConjugates` and `closeFocusM` | same facts in reader terms | 7.0212 mm, 120 mm, 23.4602 mm and 96.5398 mm unchanged |
+| Header comment | — | NOTE ON LABELS added | records the choices in the two rows above |
+| Analysis | — | one paragraph on Figure 25's labels; L1, L2 and L4 sections name L1N1, L2N1, L3N2 | same |
+
+Group row kept as G1 − (1–8), G2 + FOCUS (9A–11), G3 + (12–33). Figure 25 draws two bracket levels, G1 / G2 / G3 and beneath them G1N1, G1P1, G1N2, G3a, G3b. The standalone focal lengths of all eight ranges reproduce the patent group table (−8.93, 159.08, 23.60, −12.40, 54.73, −30.99, 34.44, 26.92 mm), so the three ranges on the page bracket the right elements. The page has a single row of centred group labels and no bracket lines, and the same list feeds the movement overlay. A six-label trial (G1N1, G1P1, G1N2, G2, G3a, G3b) was rendered and withdrawn: G1P1 and G1N2 sit 27 px apart on labels about 24 px wide, and at 0.12 m "G2 + FOCUS" stops 7 px short of "G3a +", so the row reads as one expression. The sub-groups are carried by the element labels and roles instead.
+
+Silhouette, re-measured independently at 400 dpi with the axis at row 804. Scale 0.093734 mm/px (surface 1 at column 378, surface 33 at 1219). All 33 vertex crossings fall within 0.1 mm of the tabulated positions; the G1–G2 gap is 35 px, 3.28 mm, so the drawing is the infinity state. Outer rims, upper / lower side in px and the mean in mm against the stored value:
+
+| Element | px | Figure (mm) | Stored (mm) |
+|---|---|---:|---:|
+| L1 front | 296 / 295 | 27.70 | 27.7 |
+| L2 | 170 / 169 | 15.89 | 15.9 |
+| L3 | 144 / 143 | 13.45 | 13.4 |
+| L4 | 126 / 126 | 11.81 | 11.8 |
+| L5+L6 | 117 / 118 | 11.01 | 11.0 |
+| L7 | 105 / 104 | 9.80 | 9.8 |
+| L8 | 101 / 100 | 9.42 | 9.5 |
+| L9 | 94 / 93 | 8.76 | 8.8 |
+| L10 | 89 / 88 | 8.30 | 8.3 |
+| L11+L12 | 85 / 85 | 7.97 | 7.9 |
+| L13 | 81 / 80 | 7.55 | 7.5 |
+| L14 | 84 / 83 | 7.83 | 7.8 front, 7.4 rear |
+| L15 | 91 / 90 | 8.48 | 8.5 |
+| L16 | 108 / 108 | 10.12 | 10.1 |
+| L17 | 114 / 114 | 10.69 | 10.6 |
+
+Every rim is within 0.9 % of the drawing and the drawn order of heights between neighbours is kept, so the first pass stands and no semi-diameter was changed. The concave faces end at flat lands in the drawing (surface 2 at 15.5 mm, 4 at 13.0, 7 at 11.2, 17 at 8.0, 27 at 6.9 mm); surfaces 2, 4 and 27 are already at the largest value the validator admits, and the others keep the element's single drawn rim height.
+
+Checked and found correct:
+
+- Cemented brackets D1 (9A–11) and D2 (21–23) are the patent's two cemented lenses; `cemented` tags match.
+- The only aspheric marker is on surface 9A, the one starred surface; L5 alone carries the asphere note.
+- The stop is drawn 54.04 mm from the first vertex, between L9 and L10, where the table puts surface 18.
+- All 17 `type` strings agree with the signs of R and with the shapes listed in paragraph 0102.
+- The five `apd: "inferred"` tags (L10, L11, L13, L16, L17) are the five G3b positive lenses with νd above 60. The patent asks for two or more such lenses, preferably one at 80 or above (paragraphs 0069–0072), and names no ED or anomalous-dispersion glass, so "inferred" is the right level. The cutaway's callouts mark the same five positions (3: L10, L13; 4: L11, L16, L17), with 1 on L1 and L12, 2 on L8 and 5 on L5.
+- Focus order and direction: index 0 of both gaps is infinity (3.2000 / 10.3358 mm) and index 1 the 120 mm state (10.2212 / 3.3146 mm), as tabulated. On the page elements 5 and 6 move 43.2 px at 6.153 px/mm, 7.02 mm, toward the image; every other element and the image plane keep their positions. The overlay shows G1 fixed at −83.7 mm, G2 from −66.0 to −58.9 mm and G3 fixed at −35.9 mm from the focus plane, maximum travel 7.02 mm. Paragraph 0102 and the arrow under G2 in Figure 25 give the same direction.
+- The readouts show G1–G2 3.20 / G2–G3 10.34 at infinity and 10.22 / 3.31 with EFL 7.60 mm at the near end; the slider's far end reads 12 cm.
+- The image plane is drawn 96.54 mm from the first vertex, 17.71 mm behind surface 33. Figure 25 draws it 17.8 mm behind.
+- Engine values are identical before and after: EFL 7.896959 mm, F/1.82, half-field 98.54°. The surface validator reports no errors, the image-circle check 0 undersized, and the meridional pupil fill at 0–98.54° is unchanged at both focus states.
+
+Open, none of it changeable from this file:
+
+- L1 and L2 render with a slanted edge between their front and rear rims (27.7 → 15.4 mm and 15.9 → 13.2 mm). The figure and the cutaway draw both as square-edged blocks with a flat rear land; surface 2 is held by the 73° rim limit and surface 4 by the 4→5 gap limit (4.13 mm at 13.3 mm against 4.126 mm allowed).
+- Filter F is not drawn, as for every `rearPlates` entry. The traced rays still bend at its two faces, 5 mm and 1 mm ahead of the image plane, with nothing drawn there. Figure 25 draws the plate 12.65 mm tall on each side of the axis.
+- At 0.12 m the page's on-axis fan is too wide. It enters surface 1 at ±0.37, ±1.10 and ±1.83 mm, the same heights as at infinity, while the stop-filling ray from the 23.4602 mm object enters at 1.31 mm. The outer pair reaches 10.11 mm on surface 9A and 10.77 mm on surface 11 and ends at L7's 9.8 mm rim; the middle pair meets the stop at 6.23 mm, 0.84 of its radius. The fan is sized by the entrance-pupil radius applied at the first surface, and this lens's entrance pupil lies 15 mm behind that surface with the object 23 mm in front. No rim is at fault: the stop-filling ray needs 7.45 mm on G2.
+- The aperture readout stays at f/1.82 at the near end; the patent prints 1.83 there.

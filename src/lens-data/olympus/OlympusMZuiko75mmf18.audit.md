@@ -152,3 +152,49 @@ Open limitations. The renderer joins unequal front and rear rims with a straight
 - Glass. The ten class labels are replaced by the HOYA row at each coordinate: BACD5 (L1, L6), FCD1 (L2, L3, L5), E-FD5 (L4), FD60 (L7), TAFD25 (L8), E-LAF7 (L9) and TAFD35 (L10). HOYA is the one vendor with a row at all seven coordinates to the printed precision, and the published nC, nF and ng of L1 to L4 equal the HOYA catalog values to five decimals (L4's ng 1.69999 is E-FD5; OHARA S-TIM25 gives 1.70011). L1 to L4 keep their published line indices; L5 to L10 moved from the Abbe estimate to the catalog curves, so all ten elements carry trusted dispersion data. Stored nd and νd are unchanged.
 - `apd: "inferred"` added to L2, L3 and L5, the three positions Olympus's diagram marks ED.
 - Subtitle recased to the catalog form and now names the Sigma patent. Display name, mount, format, `specs` and the nine-blade count reviewed and left as authored.
+
+## 2026-10-08 — Second review: diagram, labels and movement
+
+An independent second look at the lens as the local site draws it, against `patents/JP2013161076A.pdf` Fig. 1 (PDF page 29), the Example 1 tables on PDF pages 17–18, paragraph 0068 and Olympus's construction diagram. The page was shot at infinity, at the |β| = 0.10 end, with the focus-movement overlay at both ends and with the element inspector open on elements 2, 5, 6, 8 and 10. Every figure height below was measured again from the 400 dpi raster, not copied from the section above.
+
+Scale, re-derived. Fig. 1 is embedded at 401 × 403 ppi, so the PDF does not stretch it; the difference is in the drawing. Along the axis the surface 1 vertex is at x = 447.5 px, surface 20 at 1261 px and the image line at 1461.5 px, which is 11.66 px/mm, and the other vertex crossings sit within 1.5 px (0.13 mm) of the infinity prescription. Across the axis, fitting the drawn arcs to their tabulated radii gives 12.61 (surface 1), 12.56 (surface 3), 12.66 (surface 5), 12.65 (surface 8) and 12.7 px/mm (surface 10), mean 12.63. Two features the first pass did not use agree: the image line is 273 px long, so its half-length is the printed Y = 10.80 mm at 12.64 px/mm, and the stop marks end 302 px apart, 11.96 mm from the axis against the 11.993 mm iris. The sheet is therefore drawn 8.3% taller than wide; the first pass's 12.65 px/mm and 8.5% are confirmed to 0.2%. The axis slopes 5 px across the figure, so heights are half the top-to-bottom distance.
+
+Figure heights at 12.63 px/mm: L1 26.0 mm, L2 22.9, L3 17.2, L4 15.7, L5 12.5, L6 10.1, L7/L8 11.2, L9 11.05 and L10 11.5 mm, against 25, 22, 17, 15.3, 12.4, 10.1, 11.5, 11.3 and 11.7 mm stored; all within 4%, and the drawn order of heights is the stored order. Concave curves end short of the rim, at a flat annulus, on surface 4 (20.4 mm by the junction, 21.5 mm by the plane of the annulus), surface 6 (14.3 to 14.9 mm), surface 8 (12.9 to 13.2 mm), surface 13 (9.2 to 9.4 mm), surface 17 (10.1 mm) and surface 18 (9.9 mm).
+
+Where the site and Fig. 1 visibly differed before this pass: L3 ended in a pointed tip, L4 had a sloping top from 15.3 mm at the front to 13 mm at the rear, and L6 had a sloping top from 10.1 to 9.3 mm, where the figure draws all three square-cut with a flat annulus and a cylindrical rim. L9's rim drew 4.9 mm long against 4.3 mm. The group labels under L5 and L6 ran together as "G1b +G2 − IF".
+
+Each of the three bevelled elements was judged on one test: carried to the drawn rim height, does the concave face stay in front of the next drawn object, as it does in Fig. 1?
+
+| Element | Full-height rear face | Fig. 1 | Decision |
+|---|---|---|---|
+| L6 (surface 13) | at 10.1 mm the rim is 3.24 mm long and stays 2.9 mm clear of L7 at the near end of the focus travel; nothing is passed | flat top 2.9 mm long, annulus 0.9 mm high | squared: surface 13 9.3 → 10.1 mm |
+| L3 (surface 6) | at 17 mm the rim reaches z = 25.77 mm, 0.37 mm behind L4's front corner (z = 25.40 mm at 15.3 mm), and the rim is 2.04 mm long; the glass does not touch (0.18 mm air at L4's rim) | annulus 0.3 mm in front of L4's front face, rim 1.0 to 1.1 mm long | curve end kept at 14.5 mm |
+| L4 (surface 8) | at 15.3 mm the sag is 5.95 mm against the 5.76 mm gap, 0.19 mm behind the stop plane | annulus 1.5 mm in front of the stop marks | curve end kept at 13 mm |
+
+Changes.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| surface 13 `sd` | 9.3 | 10.1 | Fig. 1 draws L6 square-cut at 10.10 mm (255 px top to bottom); the full-height face passes no neighbour at any focus position; the validator accepts it |
+| `groups` text | G1a +, G1b +, G2 − IF, G3 + | G1a, G1b, G2 IF, G3 | the patent's own group notation; the longer labels collided under L5 and L6 at infinity. Surface ranges unchanged |
+| L4 and L10 `role` | "condition8", "Example1" | "condition (8)", "Numerical Example 1" | missing spaces |
+| `focusDescription` | "\|beta\|=0.10" | "\|β\| = 0.10" | the patent's symbol |
+| header note, analysis | — | — | rim rationale and the pupil-census figures follow the new surface 13 value |
+
+Clearance after the edit. The validator accepts the file, the image-circle floor lists no surface, traced field coverage is 100% (10.82 of 10.82 mm at 8.3°), the aperture census is within 3% of f/1.79, and no face is trimmed at 21 focus positions. Engine focal length 74.5617 mm, half-field 10.558° and f/1.79 are unchanged. The exact F/1.79 axial ray clears every rim (least margin 0.25 mm at surface 6; 8.52 mm needed at surface 13) and the chief ray to Y = 10.80 mm (ω = 8.24° at infinity) is unobstructed at both focus ends. The skew-ray pupil census moves, before → after: 81.9% → 82.7% of the on-axis pupil area at Y = 10.80 mm at infinity, 93.7% → 96.6% at 7.2 mm, and 88.6% → 93.5% at the corner at |β| = 0.10. Surface 12 at 10.1 mm and surface 6 at 14.5 mm still cut the mid-field bundle, and the rear group still limits the corner. These figures replace those in the first-pass section above.
+
+Checked and found correct.
+
+- Prescription: the 20 surface rows, both d11/d13 states, image height and the group focal lengths on PDF pages 17–18 agree with the file.
+- Groups: the patent's group table starts G1a at surface 1, G1b at 10, G2 at 12 and G3 at 14, with the stop at surface 9; the four `groups` ranges (1–8, 10–11, 12–13, 14–20) bracket L1–L4, L5, L6 and L7–L10. Fig. 1 also brackets G1 over G1a, the stop and G1b; the site draws one row of labels, so the outer bracket is not repeated.
+- Cemented component: one, L7 + L8, surfaces 14–16, labelled D1 on the bracket and on both elements.
+- Element names: Fig. 1 carries no element reference signs. The text uses L1ap, L1am, L2m and L3p only as symbols in conditions (7) to (10), so the sequential L1–L10 stand and do not clash with the G-numbered groups.
+- Element types against the signs of R: L1–L3 and L5 positive menisci convex to the object, L4, L6 and L7 negative menisci convex to the object, L8 biconvex, L9 biconcave, L10 plano-convex by the table (paragraph 0068 calls it a meniscus; already recorded).
+- No aspheric surface in the table; none is marked on the site.
+- Stop drawn at surface 9 between L4 and L5.
+- Tags: the patent calls the G1a positive glass "low dispersion" (paragraph 0059) and nowhere names anomalous dispersion or a special glass, so no element is tagged from the patent. The three `inferred` tags sit on L2, L3 and L5, where the maker's diagram is coloured ED; its two HR elements are L8 and L10, the two highest indices.
+- Focus: index 0 of both `var` pairs is infinity (2.67 and 11.24 mm) and index 1 is |β| = 0.10 (8.587 and 5.323 mm). d11 grows and d13 shrinks by 5.917 mm, so G2 moves 5.917 mm toward the image, as paragraph 0068 and the arrow under G2 state; G1a, G1b and G3 do not move. The overlay shows one moving group with 5.92 mm of travel toward the focus plane, and the slider's far end reads 85 cm for the calculated 0.847 m.
+
+Maker diagram. Ten elements in nine groups with L7 and L8 cemented, ED at elements 2, 3 and 5 and HR at 8 and 10, the same order of heights as Fig. 1. It draws L4, L6 and L9 with stepped rims, consistent with the flats in Fig. 1, and it draws L3's rear face to the tip, resting against L4's front corner, where Fig. 1 draws a flat annulus; the patent figure governs.
+
+Open limitations. The renderer has no flat annulus, so L3 keeps a pointed tip and L4 a sloping top where Fig. 1 draws square-cut blocks. Setting surface 6 to 17 mm would square L3, passes the validator and raises the census to 84.4%, 98.8% and 96.0%, at the cost of a rim twice as long as drawn that reaches 0.37 mm behind L4's front corner; it was tried on the page and not kept. Surface 4 and both faces of L9 keep rims beyond the drawn curve ends, as before.

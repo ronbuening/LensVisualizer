@@ -140,3 +140,54 @@ Open limitations. The renderer joins front and rear rim points with a straight l
 - `apd: "inferred"` added to L2, L3 and L7, the three positions Laowa's diagram marks extra-low dispersion.
 - Mounts reviewed. Micro Four Thirds stays beside Sony FE, Nikon Z, Canon RF and L-Mount: Laowa added a Micro Four Thirds version in early 2026.
 - `specs` restated in the catalog form (13 elements / 10 groups, design f = 87.06 mm, design F/2.9); subtitle and the analysis header use the catalog spellings of the patent number, inventor and applicant. Display name reviewed and left as authored.
+
+## 2026-10-08 — Second review: diagram, labels and movement
+
+Independent second look at the lens as the local site draws it, against `patents/CN116520542A.pdf` (Figure 1 on PDF page 10, prescription and gap table on PDF pages 5–6, text ¶0006, ¶0030 and ¶0038) and Laowa's construction diagram. Figure 3 (Example 2) was not used.
+
+Re-measurement of Figure 1. The figure was read again from scratch on the embedded 150 dpi raster with a line-centre (darkness centroid) reading on both halves, so the result does not depend on where the axis is placed. The 19 resolved vertex crossings (three close pairs merge into one each) and the image line fall within 4 px at 600 dpi (0.16 mm) of the prescription at infinity, and surface 1 to surface 24 spans 2682 px for 109.1713 mm, 24.567 px/mm, the same scale the first pass found. Half-heights: L1 25.5, L2 13.70, L3 12.92, L4 block 11.35, L5 tip 11.36, L6/L7 10.50, L8 9.39, L9 8.15, L10/L11 11.79, L12 13.70, L13 16.35 mm; the inner ends of the stop ticks are at 8.47 mm against the stored 8.456 mm. These agree with the first pass to 0.1 mm. The figure hugs the f/2.9 axial beam (13.79, 12.86, 11.09, 10.09, 9.38 and 7.92 mm on surfaces 3, 5, 7, 10, 13 and 16), so its heights read as real clear apertures.
+
+Where the rendered section still differed from Figure 1:
+
+1. The L4/L5 doublet. The figure draws the L4 block and the L5 tip at one height. The site drew 12 mm at the L4 front and the junction and 11.5 mm at the L5 rear, so L5 ended in a slanted bevel, and the doublet stood 1.5 mm above L6/L7 where the figure draws 0.85 mm. It also stood level with L10/L11, which the figure draws 0.44 mm taller.
+2. L8. The figure draws it 1.11 mm lower than L6/L7; the site drew 0.5 mm.
+3. The flat lands on the concave faces of L4 (rear), L6 (rear), L10 (front) and L12 (front), already listed as not modeled. On the site the L10 front corner sits 2.15 mm ahead of its vertex against about 0.9 mm drawn, and the L12 front corner 5.13 mm against about 3.7 mm. Lowering only the concave face would replace the squared corner with a longer diagonal, so both stay at the outer height.
+
+| Surface | Before | After | Figure 1 | Maker diagram | Basis |
+| --- | --- | --- | --- | --- | --- |
+| 7 (L4 front) | 12 | 11.5 | 11.35 | 11.8 | doublet drawn square-cut at one height; axial ray 11.09 |
+| 8 (L4/L5 junction) | 12 | 11.5 | 11.35 | — | moves with the doublet; axial ray 10.37 |
+| 9 (L5 rear) | 11.5 | 11.5 | 11.36 | 11.0 | unchanged; now level with surfaces 7 and 8 |
+| 13 (L8 front) | 10 | 9.5 | 9.39 | 10.0 | patent figure over maker diagram; axial ray 9.375 |
+| 14 (L8 rear) | 10 | 9.5 | 9.39 | 10.0 | square-cut, both faces one height; axial ray 9.25 |
+
+Four surfaces changed, each by 0.5 mm. The rims of G2 now read 14.0, 13.0, 11.5, 10.5, 9.5 against the figure's 13.70, 12.92, 11.35, 10.50, 9.39, every one within about 2 % of the drawing, and L10/L11 stands 0.5 mm above L4/L5 as drawn. L5's edge at 11.5 mm is 1.65 mm and L8's at 9.5 mm is 1.53 mm. All other rims are as the first pass left them: L1, L2, L3, L6/L7, L9, L10/L11 and L12 are within about 2 % of the figure and L13 is 4 % above it. L13 and L1 were not lowered, because L13 would add clipping at 2.0× and surface 1 sets the engine half-field.
+
+The L8 change is the one judgement call. The first pass kept 10 mm because the maker diagram draws 10.0 mm and its figure reading of 9.3 mm fell below the axial ray. Read at line centre the figure gives 9.39 mm, which is on the ray and not below it, and the two drawings then simply disagree by 0.6 mm; the patent figure of the modeled example takes precedence. Restoring 10 mm on surfaces 13 and 14 would undo it with no other consequence.
+
+Clearance. The validator reports no errors, the image-circle check 0 undersized surfaces, and traced field coverage is unchanged at 100 % (13.8° to 21.65 mm). Engine half-field 15.593° and f/2.9 before and after; the built lens is identical in every derived quantity. The f/2.9 axial marginal ray was traced at 251 interpolated focus positions from infinity to 2.0×: infinity governs on every surface, with margins of 0.41 mm on surface 7 and 0.125 mm on surface 13 (surface 5 remains at 0.14 mm). An independent three-dimensional exact trace (analytic sphere intersections, 256,725 rays per source state over a full pupil grid including skew rays and fields out to 110 % of the full-frame corner) transmits 62,058, 29,903 and 28,325 rays at infinity, 1.0× and 2.0× with either set of rims, and not one ray changes between transmitted and clipped. Meridional pass fractions at 0.5 / 0.7 / 0.85 / 1.0 of the corner are unchanged at 81 / 73 / 65 / 56 %, 100 / 100 / 90 / 78 % and 100 / 100 / 86 / 68 %. L2 at 14.0 mm is the governing rim ahead of the stop, which is why the two lowered rims are optically inert.
+
+Labels changed.
+
+| Field | Before | After | Reason |
+| --- | --- | --- | --- |
+| `groups` text | G1, G2, G3 | G1 (FIXED), G2 (FOCUS), G3 (AUX) | patent notation kept; suffixes are the roles ¶0006, ¶0030 and ¶0038 give (G1 does not move, G2 is the main focusing group, G3 assists) and match the 58 mm sibling from Example 2 |
+| `varLabels` | D2, D15, BF | D2 (G1–G2), D15 (STO–G3), D24 (BF) | patent gap names D(2), D(15), D(24) with what each gap separates |
+| `focusDescription` | internal field names and review shorthand | plain description of which group moves, which way and how far | readable on the page; same facts and caveats |
+
+Checked and found correct. Element designations: the patent names only G1, G2 and G3 and uses "L" for the overall length and "DL2" (drawn "DL12") for the G1–G2 distance, so sequential L1 to L13 is the right choice and clashes with nothing. All thirteen `type` strings agree with the signs of R (L1, L3 and L5 positive menisci convex to the object; L6 and L9 negative menisci convex to the object; L12 negative meniscus concave to the object; L2, L7, L8, L11 and L13 biconvex; L4 and L10 biconcave) and with the element focal lengths. Group brackets cover surfaces 1–2, 3–STO and 16–24 as the figure brackets them, with the stop travelling with G2 because D(15) is the gap behind it. Doublet brackets D1, D2 and D3 cover surfaces 7–9, 10–12 and 18–20, the three cemented pairs. The stop is drawn at surface 15 between L8 and L9. There are no aspheric surfaces in the patent and none in the file. The `apd: "inferred"` tags on L2, L3 and L7 match the three elements Laowa marks extra-low dispersion, and the patent text designates no special glass, so no element is tagged `"patent"`. The element inspector was read on the page for L1, L2, L4, L5, L7, L8, L12 and L13 and shows the stored type, index, Abbe number, focal length and glass; no element has a `role` string, so the inspector shows none. All 24 prescription rows, the 13 index and Abbe pairs and the nine gap values were re-read from the page images and match the file.
+
+Movement, against the gap table on PDF page 6 (columns 87.0609, 1.0 倍, 2.0 倍). The three `var` stations are in the source order infinity, 1.0×, 2.0×, and `focusPositions` 0, 0.868, 1 ascend with them (0.868 is 202.15 / 232.89, the ratio of the two calculated object-to-image distances).
+
+| Group | Infinity to 1.0× | Infinity to 2.0× | Patent | Verdict |
+| --- | --- | --- | --- | --- |
+| G1 (surfaces 1–2) | 0 | 0 | fixed (ground symbol in Figure 1, ¶0038) | correct |
+| G2 with stop (3–15) | 25.2007 mm toward the object | 42.5279 mm toward the object | moves from the image side toward the object | correct, monotonic |
+| G3 (16–24) | 5.9067 mm toward the object | 1.2099 mm toward the object | assists G2; table gives the reversal | correct, reverses between 1.0× and 2.0× |
+| Back focus D(24) | 19.6820 to 25.6255 | 21.0222 | as printed | rises then falls |
+
+The page shows D2 / D15 / D24 of 43.82 / 1.20 / 19.68 at the infinity end, 18.62 / 20.49 / 25.63 at the middle station and 1.30 / 42.52 / 21.02 at the close end, and the patent-positions control lists exactly three stations (∞, 23 cm, 20 cm) in that order. The movement overlay draws G1 as a fixed point, G2 travelling toward the object, and G3 with a short track whose end point lies between its start and its farthest excursion; it reports a maximum travel of 42.66 mm, which is G2's 42.53 mm plus the 0.13 mm by which the printed gaps lengthen the track. The 20 cm label at the close end of the slider is the calculated 202 mm object-to-image distance at 2.0×, close to the 20.4 to 20.5 cm Laowa states. Figure 1 draws the G3 arrow as a single curve ending toward the object and does not show the reversal; the numerical table governs and nothing was reordered.
+
+Maker diagram (measured again: 7.16 px/mm from first to last vertex, heights good to about ±0.4 mm). Thirteen elements in ten groups with cemented pairs L4+L5, L6+L7 and L10+L11; extra-low dispersion on L2, L3 and L7; ultra-high refraction on L5, L8 and L11; no aspherical element. Heights read L2 14.3, L3 13.2, L4 11.8, L5 11.0, L6 10.8, L7 10.0, L8 10.0, L9 8.6, L10/L11 10.3, L12 14.0, L13 16.5 mm. It differs from Figure 1 in four places, and the patent figure is kept in each: it steps each cemented pair down toward the rear (L4 to L5 and L6 to L7 by about 0.8 mm) where the figure draws them level; it draws L8 level with L7 at 10.0 mm where the figure draws 9.39 mm; and it draws L10/L11 lower than L4 where the figure draws it higher.
+
+Open limitations. Flat lands on concave faces are still not modeled (item 3 above). At 1.0× the outermost on-axis ray the diagram draws ends at the L2 rim, as the first pass recorded; it is outside the stop-limited beam. The ray tallies quoted in the analysis from the authoring stage were not re-run.

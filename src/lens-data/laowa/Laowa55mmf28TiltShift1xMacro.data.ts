@@ -9,11 +9,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * NOTE ON SEMI-DIAMETERS: no clear apertures are published. Rims are estimated from Figure 1
  * (150 dpi raster, 0.285 mm/px, axial scale checked on three vertex spans) and floor-checked by
  * exact real-ray trace at infinity, 0.5x and 1.0x. Surface 22 is 11.5 mm with 23 and 24, because
- * Figure 1 and Laowa's construction diagram both draw the L12/L13 doublet square-cut. Surfaces 2
- * and 3 are 29.5 mm: Figure 1 draws the L1 rear and L2 front rims meeting near 30 mm (the
- * spheres touch at 29.86 mm), and the chief ray of the 33.5 mm image height needs 29.46 /
- * 29.41 mm. gapSagFrac 0.98 is the smallest two-decimal cross-gap limit that admits those rims
- * (combined sag 17.40 of the 17.912 mm gap); the surfaces do not cross.
+ * Figure 1 and Laowa's construction diagram both draw the L12/L13 doublet square-cut. Surface 2
+ * is 29.5 mm: Figure 1 ends the L1 rear arc near 30 mm where it meets L2 (the spheres touch at
+ * 29.86 mm), and the chief ray of the 33.5 mm image height needs 29.46 mm there and 29.41 mm on
+ * surface 3. Surfaces 3 and 4 are both 32.5 mm, the height of L3: both drawings show L2 as a
+ * square-cut block level with L3 (Figure 1 block 33.2 mm, L3 tips 33.4 mm), so surface 3 runs
+ * past its drawn arc end (30.0 mm) to the block height. gapSagFrac 0.98 is the smallest
+ * two-decimal cross-gap limit that admits the shared 29.5 mm height of surfaces 2 and 3
+ * (combined sag 17.40 of the 17.912 mm gap); the surfaces do not cross inside it. L1 keeps
+ * 38.5 / 29.5 mm and renders tapered where both drawings show a flanged block: its rear sphere
+ * cannot run past 29.86 mm without passing through L2. Surfaces 20 and 21 are 11.0 mm
+ * (Figure 1 11.05 mm, drawn just below the 11.45 mm rear doublet).
  * 67 mm is published coverage; exact edge transmission is not certified.
  * No aspheres or cover plate. Tilt/shift uses the official ±12 mm / ±10° limits as a rigid
  * movement of the coaxial prescription about a rear-vertex fallback pivot; no hinge is published.
@@ -79,7 +85,7 @@ const LENS_DATA = {
       2
     ]
   },
-  "focusDescription": "PUBLISHED coaxial spacings at infinity, source 0.5x and source 1.0x labels. G1 fixed; G2/G3 independently move objectward. Source labels retained; Gaussian endpoint magnification -0.962488. closeFocusM is the calculated source-endpoint object-to-image distance, not marketed MFD. Intermediate focusT is the derived endpoint/intermediate object-to-image distance ratio; interpolated gaps and distance labels do not certify focus. No noncoaxial prescription or mechanical hinge is supplied.",
+  "focusDescription": "Floating internal focus; the patent tabulates infinity, 0.5× and 1.0×. G1 fixed. G2 with the stop advances 46.29 mm toward the object and G3 advances 37.92 mm, opening the stop-to-G3 gap from 1.47 to 9.84 mm at constant overall length. The printed 1.0× state computes to −0.96× paraxially at 265 mm object-to-image (Laowa quotes 27 cm). Spacings between the three states are interpolated, not published. All three states are coaxial; the patent gives no tilted or shifted prescription.",
   "specs": [
     "14 ELEMENTS / 11 GROUPS",
     "DESIGN f = 55.02 mm",
@@ -292,7 +298,7 @@ const LENS_DATA = {
       "d": 3.0,
       "nd": 1.497,
       "elemId": 2,
-      "sd": 29.5
+      "sd": 32.5
     },
     {
       "label": "4",
@@ -300,7 +306,7 @@ const LENS_DATA = {
       "d": 0.15,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 33.5
+      "sd": 32.5
     },
     {
       "label": "5",
@@ -428,7 +434,7 @@ const LENS_DATA = {
       "d": 1.0,
       "nd": 1.78346,
       "elemId": 11,
-      "sd": 12
+      "sd": 11
     },
     {
       "label": "21",
@@ -436,7 +442,7 @@ const LENS_DATA = {
       "d": 6.3864,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 12
+      "sd": 11
     },
     {
       "label": "22",
@@ -500,11 +506,11 @@ const LENS_DATA = {
   "varLabels": [
     [
       "6",
-      "D12"
+      "D6 (G1–G2)"
     ],
     [
       "STO",
-      "D19"
+      "D19 (STO–G3)"
     ],
     [
       "26",
@@ -516,6 +522,11 @@ const LENS_DATA = {
       "text": "G1",
       "fromSurface": "1",
       "toSurface": "6"
+    },
+    {
+      "text": "G1a",
+      "fromSurface": "1",
+      "toSurface": "4"
     },
     {
       "text": "G2",

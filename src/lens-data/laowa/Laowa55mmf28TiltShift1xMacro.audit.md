@@ -147,3 +147,48 @@ Open limitations: the render tapers L1 and L2 between unequal front and rear rim
 - `apd: "inferred"` added to L9 and L12, the two positions Laowa's diagram marks extra-low dispersion.
 - Display name written with the multiplication sign (1× Macro), as on the 2× Laowa entries; `specs` restated in the catalog form; subtitle and the analysis header use the catalog spellings of the patent number, inventor and applicant.
 - Mounts (Sony FE, Canon RF, Nikon Z, L-Mount, Fujifilm G, Hasselblad XCD), format and the 67 mm image circle reviewed and left as authored.
+
+## 2026-10-08 — Second review: diagram, labels and movement
+
+Independent second look at the lens as the local site draws it, against `patents/CN118671950A.pdf` (Figure 1 on PDF page 11, prescription table on page 6, variable-spacing table on page 7, text paragraphs 0005–0008 and 0053) and Laowa's construction diagram. The page was shot at infinity, at the 0.5x keyframe and at 1.0x, with the focus-movement overlay at both ends, before and after the edits.
+
+Figure 1 was measured again from scratch on a 600 dpi resampling of the 150 dpi raster. Axis at row 1128; vertex crossings at columns 864 (surface 1), 888, 1138.5, 1181.5, 1404, 2063, 2106.5, 2157.5, 2226, 2271.5, 2371.5, 2389.5, 2403, 2494, 2530.5, 2571 (surface 20), 2586, 2674, 2689, 2737.5, 2827, 2870.5 and the image line at 3524.5. Surface 1 to image is 190.11 mm over 2660.5 px, 0.07146 mm/px (0.2858 mm per native pixel); every other vertex falls within 3 px (0.2 mm, under one native pixel) of its prescription position at that scale. Heights are read on both sides of the axis and quoted at the line centre.
+
+| Element | Surfaces | Figure 1 | Maker diagram (relative) | Stored before | Stored after |
+|---|---|---:|---|---:|---:|
+| L1 front block | 1 | 38.2 | tallest, flat front, bevelled rear corner | 38.5 | 38.5 |
+| L1 rear arc end | 2 | 30.2–30.4 | meets L2 at the rim | 29.5 | 29.5 |
+| L2 front | 3 | arc ends 30.0–30.4, flat land up to the 33.2 block top | square block, arc runs to the block corner | 29.5 | 32.5 |
+| L2 rear | 4 | 33.2 block | square block, 0.94 of L1 | 33.5 | 32.5 |
+| L3 | 5, 6 | 33.4, knife-edge tips | level with L2, small flat tip | 32.5 | 32.5 |
+| L4 | 7, 8 | 17.1 | tallest behind the gap | 17 | 17 |
+| L5 | 9, 10 | 15.9 | 0.97 of L4 | 16 | 16 |
+| L6/L7 | 11–13 | 14.8, one block | L7 stepped below L6 | 15 | 15 |
+| L8/L9 | 14–16 | 13.65, one block | L9 stepped below L8 | 14 | 14 |
+| L10 | 17, 18 | 12.4 | 0.81 of L4 | 13 | 13 |
+| L11 | 20, 21 | 11.05 | level with L12/L13 | 12 | 11.0 |
+| L12/L13 | 22–24 | 11.45, square block | square block | 11.5 | 11.5 |
+| L14 | 25, 26 | 16.5 | 0.76 of L4 | 16 | 16 |
+
+Changes and their evidence:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Surface 3 `sd` | 29.5 | 32.5 | Both drawings show L2 as a square-cut block with a flat top. With unequal faces the site drew a slanted top rising 4 mm from front to rear. The validator evaluates the surface 2 to 3 gap at the shared 29.5 mm height, so the combined sag stays 17.40 mm of 17.912 mm and `gapSagFrac` 0.98 is still the value needed. |
+| Surface 4 `sd` | 33.5 | 32.5 | Figure 1 draws L3 a fraction taller than the L2 block (33.4 against 33.2) and the maker diagram draws them level; the site drew L2 1 mm taller than L3. L3 cannot be raised to meet it: its two faces cross at 33.35 mm. |
+| Surfaces 20, 21 `sd` | 12 | 11.0 | Figure 1 draws L11 at 11.05 mm, below the 11.45 mm rear doublet, on both sides of the axis; the site drew it 0.5 mm taller than the doublet. The first pass listed this as an open limitation. |
+| `groups` | G1, G2, G3 | G1, G1a, G2, G3 | Figure 1 brackets G1a over the two front negative elements, and claim 1 and paragraph 0053 define it. G1a spans surfaces 1–4. |
+| `varLabels` | D12, D19, BF | D6 (G1–G2), D19 (STO–G3), BF | The variable-spacing table names the rows D(6), D(19) and BF. D12 is the figure's symbol for the infinity value of D(6); next to a surface-numbered D19 it read as surface 12, a cemented interface. Same form as the Laowa 58 mm and 65 mm entries. |
+| `focusDescription` | packaging wording with schema field names | plain statement of the three states, the travel of each group and the computed endpoint | Numbers below. |
+
+Rims judged and left alone. L1 stays 38.5 / 29.5 mm and still renders as a taper where both drawings show a flat-fronted flanged block. No admissible pair squares it. The surface 2 sphere touches the surface 3 sphere at 29.862 mm, so any larger surface 2 rim passes through L2, and with L2 squared the validator refuses each one tried: 29.8 mm (combined sag 17.82 mm against the 17.554 mm allowance), 30.3 mm (18.55 mm), 33 mm and 36.2 mm (22.03 mm at the 32.5 mm shared height); 38.5 mm also exceeds the rim-slope limit (72.8° against 64.2°). Before L2 was squared, 33 mm and 36.2 mm passed the validator, because the check ran at the 29.5 mm surface 3 rim, while wrapping L1 around L2 by 3.8 mm and past its rear vertex. Squaring L1 the other way, with surface 1 at 29.5 mm, passes the validator but blocks the chief ray of the 33.5 mm image point, which needs 34.86 mm on surface 1, and makes L1 shorter than L2 against both drawings. L3, L4, L5, both G2 doublets, L10, the rear doublet and L14 agree with Figure 1 within 5% and keep the drawn order of heights. The stop semi-diameter is unchanged.
+
+Clearance and engine values before and after: validator clean; image-circle floor clean; traced corner coverage 31.5° reaching 33.50 mm of 33.50 mm; engine half-field estimate 27.84° and f/2.87 in both; stop radius 10.927 mm in both. The exact meridional trace shows no clipped axial ray and no blocked chief ray at 21.63 mm or 33.5 mm image height at infinity, 0.5x or 1.0x. Axial marginal height on surface 20 is 10.16 mm at infinity, 9.16 mm at 0.5x and 8.88 mm at 1.0x against the new 11.0 mm rim. The engine's geometric-transmission curve is identical to three decimals at all 13 field samples in each of the three states (0.903 at 15.8°, 0.688 at 26.3°, 0.339 at 31.5° at infinity). A meridional sweep of every field angle and entry height transmits the same rays before and after (83,009 at infinity, 38,709 at 0.5x, 24,655 at 1.0x; none gained, none lost): rays that reach surface 20 above 11.0 mm were already stopped at the 11.5 mm doublet rims, and the highest transmitted ray on surface 3 is at 29.48 mm. The only derived display value that moved is the drawn stop housing, which follows the smaller neighbouring rim and went from 12 mm to 11 mm.
+
+Labels and tags checked and found correct. Group spans G1 surfaces 1–6 (L1–L3), G2 7–18 (L4–L10), G3 20–26 (L11–L14), as the figure brackets them; the patent gives powers negative, positive, negative. Doublet brackets D1 11–13, D2 14–16, D3 22–24 match the three cemented pairs of the table. The patent names no individual elements, so L1–L14 is sequential. All fourteen `type` strings agree with the signs of the radii (L1 has R1 = +20184.6, a meniscus that is plano to the eye; L4 has a printed plane rear). No surface is aspheric in the table and none is marked. The stop is the table's surface 19, between L10 and L11. The patent text designates no special glass, so no element carries a patent tag; the two inferred tags sit on L9 and L12, the two elements the maker diagram colours extra-low dispersion, and the maker's ultra-high-refraction element is L7 (1.92286). The inspector shows the expected type, glass, focal length and tag for L1, L2, L7, L9 and L12.
+
+Movement checked against the variable-spacing table and the figure arrows. Keyframe order is infinity, 0.5x, 1.0x in all three `var` rows: D(6) 47.3370 / 27.0548 / 1.0500, D(19) 1.4700 / 6.7287 / 9.8404, BF 46.8077 / 61.8312 / 84.7243, each column summing to 95.6147 mm, so G1 and the image plane are fixed. G2 with the stop moves toward the object by 20.2822 mm and 46.2870 mm; G3 moves toward the object by 15.0235 mm and 37.9166 mm. The ratios 1.350 and 1.221 are the printed values of conditions 6 and 7, and both figure arrows point toward the object. The overlay shows G1 and G1a fixed, G2 and G3 travelling toward the object, maximum travel 46.29 mm. The slider's far end reads 27 cm for the computed 265.5 mm object-to-image distance, and the 0.5x keyframe reads 30 cm for 298.0 mm.
+
+Maker diagram against the render after the edits: counts, cemented pairs and special-glass positions agree. L2 is now a square block level with L3 as the maker draws it. Remaining differences, where Figure 1 is followed: the maker steps L7 and L9 below their cemented partners, draws L11 level with the rear doublet, and draws L14 at 0.76 of the L4 height against 0.97 in Figure 1.
+
+Open limitations: the L1 taper described above. The L2 front face is drawn as one curve up to the block height, where Figure 1 ends the curve at about 30 mm and continues with a flat land; the block corner sits about 1 mm further forward than drawn. L3 keeps a 0.86 mm flat tip where Figure 1 draws a knife edge. The drawn stop housing reaches 11 mm where Figure 1 draws the stop line to 12.9 mm. The engine's half-field estimate stays at 27.84° against the printed 31.543°, limited by surface 2 in that estimate, although the traced chief ray reaches the full 33.5 mm.

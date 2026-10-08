@@ -25,6 +25,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * drawn square-cut at 11.0 mm, so 9A/10/11 share 11 mm (surface 10 was 11.5 mm; the transmitted
  * bundle is unchanged). Flat lands on the concave faces 7, 15, 17, 23 and 27 are not modelled.
  * Wide-open exterior vignetting remains; no all-rays/full-continuum claim.
+ * NOTE ON LABELS: groups carry the patent's G1 / G2 / G3 (surfaces 1-8, 9-11, 12-33; G3 spans stop S).
+ * Figure 25 also brackets G1N1 (1-4), G1P1 (5-6), G1N2 (7-8), G3a (12-17) and G3b (19-33); the
+ * diagram has one row of group labels, so those sub-groups are named in each element's role. The
+ * patent designates three elements only, L1N1, L2N1 and L3N2 (its count runs over the negative
+ * lenses of G1, so L3N2 is the fourth element). They are named in the roles of elements 1, 2 and
+ * 4 and not on the diagram, where "L3N2" beside a plain "3" reads as the third lens; the diagram
+ * numbers all seventeen elements in sequence.
  * STO size is a modeled calibration to published infinity F/1.82, not a patent diameter.
  * Equisolid is an application reference law, not a claim that the patent is exactly
  * equisolid. Source197.08° and image radius11.60mm retained; marketing180° is separate.
@@ -84,7 +91,7 @@ const LENS_DATA = {
     "imageCircleMm": 23.2,
     "maxTraceFieldDeg": 98.54
   },
-  "focusDescription": "Published G2 inner focus: surfaces 9A–11 translate 7.0212 mm imageward; G1, G3, filter F and the image plane stay fixed. Source near distance is 120 mm object-to-image; finiteConjugates places the object 23.4602 mm ahead of the first vertex (120 mm minus the 96.5398 mm track), and closeFocusM carries the same published shooting distance. Intermediate travel is interpolation.",
+  "focusDescription": "Inner focus: G2, the cemented doublet (surfaces 9A–11), moves 7.0212 mm toward the image from infinity to the closest published state; G1, G3, filter F and the image plane stay fixed. The patent publishes two states, infinity and a 120 mm object-to-image distance, which puts the object 23.4602 mm ahead of the front vertex on the 96.5398 mm track. Positions in between are interpolated.",
   "focusPositions": [
     0,
     1
@@ -109,7 +116,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -25.097136,
       "glass": "TAFD55 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Front negative group; standalone power, not an isolated aberration attribution."
+      "role": "Patent L1N1: first negative meniscus of sub-group G1N1 in the fixed negative front group G1, convex to the object. Condition (1) sets its bending."
     },
     {
       "id": 2,
@@ -121,7 +128,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -36.15863,
       "glass": "TAF1 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Front negative group; standalone power, not an isolated aberration attribution."
+      "role": "Patent L2N1: second negative meniscus of sub-group G1N1 in the fixed front group G1, convex to the object. Condition (2) sets its bending."
     },
     {
       "id": 3,
@@ -133,7 +140,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 54.733028,
       "glass": "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Front negative group; standalone power, not an isolated aberration attribution."
+      "role": "Sub-group G1P1: the one positive lens inside the fixed negative front group G1. The patent credits it with a narrower beam at the focus group G2 (condition 5)."
     },
     {
       "id": 4,
@@ -145,7 +152,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -30.987556,
       "glass": "TAF1 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Front negative group; standalone power, not an isolated aberration attribution."
+      "role": "Patent L3N2, the third negative lens of G1 and the whole of sub-group G1N2: negative meniscus concave to the object, last fixed lens ahead of the focus group. Condition (3) sets its shape."
     },
     {
       "id": 5,
@@ -157,7 +164,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 52.341655,
       "glass": "NBFD13 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Moving positive G2 doublet; standalone power, not an isolated aberration attribution.",
+      "role": "Positive member of the G2 focus doublet. Its object-side surface 9 is the only asphere, placed in G2 against focus-dependent spherical aberration.",
       "cemented": "D1"
     },
     {
@@ -170,7 +177,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -77.140711,
       "glass": "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Moving positive G2 doublet; standalone power, not an isolated aberration attribution.",
+      "role": "Negative member of the G2 focus doublet, cemented to L5; the pair is weakly positive (f = +159.08 mm) and moves as one unit.",
       "cemented": "D1"
     },
     {
@@ -183,7 +190,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 36.937561,
       "glass": "TAFD45 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution."
+      "role": "First lens of sub-group G3a, the part of the fixed positive rear group G3 between the focus group and the stop."
     },
     {
       "id": 8,
@@ -195,7 +202,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 45.347366,
       "glass": "TAFD55 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution."
+      "role": "Second lens of sub-group G3a (fixed, ahead of the stop): positive meniscus convex to the object."
     },
     {
       "id": 9,
@@ -207,7 +214,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -40.086569,
       "glass": "FC5 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution."
+      "role": "Last lens of sub-group G3a, directly ahead of the stop: negative meniscus convex to the object."
     },
     {
       "id": 10,
@@ -221,7 +228,7 @@ const LENS_DATA = {
       "glass": "FCD100 (HOYA coordinate equivalent; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "Fluorophosphate-class coordinate at one of the five positions Olympus's construction diagram marks ED or Super ED; inferred from the glass family, not a patent designation.",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution."
+      "role": "First lens of sub-group G3b, directly behind the stop; νd 95.06."
     },
     {
       "id": 11,
@@ -235,7 +242,7 @@ const LENS_DATA = {
       "glass": "FCD100 (HOYA coordinate equivalent; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "Fluorophosphate-class coordinate at one of the five positions Olympus's construction diagram marks ED or Super ED; inferred from the glass family, not a patent designation.",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution.",
+      "role": "Positive member of cemented pair D2 in sub-group G3b; νd 95.06 against L12's 23.95.",
       "cemented": "D2"
     },
     {
@@ -248,7 +255,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -22.211152,
       "glass": "FDS24 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution.",
+      "role": "Negative member of the cemented pair D2 in sub-group G3b; the pair is net negative (f = −94.53 mm) inside the positive rear group.",
       "cemented": "D2"
     },
     {
@@ -263,7 +270,7 @@ const LENS_DATA = {
       "glass": "FCD505 (HOYA coordinate equivalent; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "Fluorophosphate-class coordinate at one of the five positions Olympus's construction diagram marks ED or Super ED; inferred from the glass family, not a patent designation.",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution."
+      "role": "Positive lens of sub-group G3b behind the cemented pair D2; νd 68.60."
     },
     {
       "id": 14,
@@ -275,7 +282,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -27.801197,
       "glass": "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution."
+      "role": "Negative meniscus of sub-group G3b (fixed, behind the stop), convex to the object, between the positive lenses L13 and L15."
     },
     {
       "id": 15,
@@ -287,7 +294,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 46.781404,
       "glass": "TAF3 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution."
+      "role": "Biconvex positive lens of sub-group G3b (fixed, behind the stop), between the negative meniscus L14 and the two rear positive lenses."
     },
     {
       "id": 16,
@@ -301,7 +308,7 @@ const LENS_DATA = {
       "glass": "FCD100 (HOYA coordinate equivalent; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "Fluorophosphate-class coordinate at one of the five positions Olympus's construction diagram marks ED or Super ED; inferred from the glass family, not a patent designation.",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution."
+      "role": "Positive meniscus of sub-group G3b, convex to the object; νd 95.06."
     },
     {
       "id": 17,
@@ -315,7 +322,7 @@ const LENS_DATA = {
       "glass": "FCD100 (HOYA coordinate equivalent; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "Fluorophosphate-class coordinate at one of the five positions Olympus's construction diagram marks ED or Super ED; inferred from the glass family, not a patent designation.",
-      "role": "Fixed positive rear group; standalone power, not an isolated aberration attribution."
+      "role": "Last lens of sub-group G3b and of the system: plano-convex, flat face toward the image."
     }
   ],
   "surfaces": [

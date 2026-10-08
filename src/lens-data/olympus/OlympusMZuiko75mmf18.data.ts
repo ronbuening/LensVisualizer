@@ -11,11 +11,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * All other semi-diameters are estimates, not factory apertures: rims inferred from
  * the source/product sections and exact rays, then checked against patent Fig. 1
  * (400 dpi; 11.66 px/mm along the axis, 12.65 px/mm across it — the sheet is drawn
- * about 8.5% taller than wide). Surfaces 6, 8 and 13 stop where Fig. 1 ends the
- * concave curve at a flat mounting annulus (14.5 / 13 / 9.3 mm) and surface 12
- * follows the drawn 10.1 mm rim; the renderer joins unequal faces with a straight
- * edge where the figure steps. Every rim clears the exact F/1.79 axial ray and the
- * Y = 10.80 mm chief ray. No geometry-policy override or optical fitting.
+ * about 8.5% taller than wide; a second reading gave 12.63 px/mm from the arcs
+ * and 12.64 from the image line drawn to Y = 10.80 mm). Fig. 1 draws L3, L4 and
+ * L6 square-cut, each concave rear curve ending at a flat annulus. L6 keeps both
+ * faces at its drawn 10.1 mm rim. Surfaces 6 and 8 stop where the drawn curves
+ * end (14.5 and 13 mm): carried to the rim, surface 6 would pass 0.37 mm behind
+ * L4's front corner and surface 8 0.19 mm behind the stop plane, where Fig. 1
+ * keeps both in front. The renderer joins those unequal faces with a straight
+ * edge where the figure shows a flat annulus and a cylindrical rim. Every rim
+ * clears the exact F/1.79 axial ray and the Y = 10.80 mm chief ray. No
+ * geometry-policy override or optical fitting.
  * Source surface20 is planar; this overrides the source prose's meniscus label.
  * Only L1–L4 have published line indices. Glass labels name the coordinate-equal HOYA row
  * (the published L1–L4 line indices equal HOYA's catalog values); they are not supplier identities.
@@ -114,7 +119,7 @@ const LENS_DATA = {
       "fl": -40.12679737,
       "glass": "E-FD5 (HOYA; published nC/nF/ng equal the catalog values; supplier unconfirmed)",
       "indexReference": "d",
-      "role": "Negative partner in fixed G1a; source condition8 addresses the positive/negative glass combination.",
+      "role": "Negative partner in fixed G1a; the patent's condition (8) addresses the positive/negative glass combination.",
       "nC": 1.66661,
       "nF": 1.68752,
       "ng": 1.69999,
@@ -194,7 +199,7 @@ const LENS_DATA = {
       "fl": 33.72455589,
       "glass": "TAFD35 (HOYA coordinate equivalent; supplier unconfirmed)",
       "indexReference": "d",
-      "role": "High-index positive terminal element; rear surface is planar in numerical Example1."
+      "role": "High-index positive terminal element; rear surface is planar in Numerical Example 1."
     }
   ],
   "surfaces": [
@@ -300,7 +305,7 @@ const LENS_DATA = {
       "d": 11.24,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 9.3
+      "sd": 10.1
     },
     {
       "label": "14",
@@ -387,22 +392,22 @@ const LENS_DATA = {
   ],
   "groups": [
     {
-      "text": "G1a +",
+      "text": "G1a",
       "fromSurface": "1",
       "toSurface": "8"
     },
     {
-      "text": "G1b +",
+      "text": "G1b",
       "fromSurface": "10",
       "toSurface": "11"
     },
     {
-      "text": "G2 − IF",
+      "text": "G2 IF",
       "fromSurface": "12",
       "toSurface": "13"
     },
     {
-      "text": "G3 +",
+      "text": "G3",
       "fromSurface": "14",
       "toSurface": "20"
     }
@@ -415,7 +420,7 @@ const LENS_DATA = {
     }
   ],
   "closeFocusM": 0.846926821765851,
-  "focusDescription": "PUBLISHED endpoint spacings: G2/L6 moves 5.9170 mm imageward; G1 and G3/image remain fixed. Native near state is |beta|=0.10, calculated object-to-image distance 0.846927 m, separate from marketed 0.84 m. Intermediate gaps are interpolated; UI distance labels are approximate, not a published focus law.",
+  "focusDescription": "PUBLISHED endpoint spacings: G2/L6 moves 5.9170 mm imageward; G1 and G3/image remain fixed. Native near state is |β| = 0.10, calculated object-to-image distance 0.846927 m, separate from marketed 0.84 m. Intermediate gaps are interpolated; UI distance labels are approximate, not a published focus law.",
   "nominalFno": 1.79,
   "fstopSeries": [
     1.79,

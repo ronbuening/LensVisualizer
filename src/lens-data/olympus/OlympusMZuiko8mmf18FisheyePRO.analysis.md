@@ -44,6 +44,8 @@ Behind surface 33 come the 12.7099 mm air gap, the 4.0000 mm plate and 1.0000 mm
 
 The stop is source surface 18, between G3a and G3b. G1 contains two front negative menisci, an intervening positive lens, and a final negative meniscus; G2 is a cemented positive/negative doublet. The patent links the positive lens within G1 to reduced ray-bundle diameter at the focusing group (¶0037–0039). G3 distributes positive and negative elements on both sides of the stop rather than concentrating all rear power in one element. [1]
 
+Figure 25 brackets the three groups and, beneath them, the sub-groups G1N1, G1P1, G1N2, G3a and G3b, with the stop S between G3a and G3b, filter F and image plane I behind G3, and a focus arrow under G2 pointing toward the image. The patent designates only three elements individually: L1N1 and L2N1, the two menisci of G1N1 (L1 and L2 here), and L3N2, the single lens of G1N2 (L4 here; the patent's index counts the negative lenses of G1, so its third negative lens is the fourth element). The diagram numbers all seventeen elements in sequence; the three patent designations appear in the role text of L1, L2 and L4, because "L3N2" printed under the fourth element beside a plain "3" reads as the third lens. Its group row carries G1, G2 and G3; the sub-groups are named in each element's role text.
+
 ## Element-by-Element Analysis
 
 The focal lengths in this section are calculated for each glass element standing alone in air, using its two bounding curvatures and center thickness. At a cemented junction these are explanatory isolated-element values; the net cemented-group power is calculated separately. Catalog names identify coordinate equivalents, not the source's supplier or melt. Surface numbers below are those of the patent, with 9A denoting its starred asphere.
@@ -52,13 +54,13 @@ The focal lengths in this section are calculated for each glass element standing
 
 nd = 2.00100, νd = 29.12. Glass: TAFD55 (HOYA coordinate equivalent; supplier unconfirmed). f = -25.097136 mm.
 
-L1 is the first negative meniscus of G1N1, convex toward the object. Its high index and strongly curved rear face permit substantial negative power in the front section. The patent's first shape condition governs this meniscus together with the wide-field/aberration compromise discussed in ¶0025–0027. The inferred rear semi-diameter is 15.4 mm; its steep rim is treated explicitly in the model limits below.
+L1 is the patent's L1N1, the first negative meniscus of G1N1, convex toward the object. Its high index and strongly curved rear face permit substantial negative power in the front section. The patent's first shape condition governs this meniscus together with the wide-field/aberration compromise discussed in ¶0025–0027. The inferred rear semi-diameter is 15.4 mm; its steep rim is treated explicitly in the model limits below.
 
 ### L2: Negative Meniscus
 
 nd = 1.77250, νd = 49.60. Glass: TAF1 (HOYA coordinate equivalent; supplier unconfirmed). f = -36.158630 mm.
 
-L2 is the second negative meniscus of G1N1. Together with L1 it forms the front negative subassembly, rather than an isolated front diverger followed immediately by the focus unit. Condition (2) concerns this element's bending; the patent discusses its relationship to field coverage and off-axis correction in ¶0028–0029.
+L2 is the patent's L2N1, the second negative meniscus of G1N1, convex toward the object. Together with L1 it forms the front negative subassembly, rather than an isolated front diverger followed immediately by the focus unit. Condition (2) concerns this element's bending; the patent discusses its relationship to field coverage and off-axis correction in ¶0028–0029.
 
 ### L3: Biconvex Positive
 
@@ -70,7 +72,7 @@ L3 is the positive G1P1 lens between the two negative subassemblies of G1. Its b
 
 nd = 1.77250, νd = 49.60. Glass: TAF1 (HOYA coordinate equivalent; supplier unconfirmed). f = -30.987556 mm.
 
-L4 is the final negative meniscus of G1, concave toward the object, and forms G1N2. It precedes the first moving air gap. The source ties its shape to the aberration balance with the adjacent focus group (¶0030–0032). It remains fixed while G2 moves.
+L4 is the patent's L3N2, the final negative meniscus of G1, concave toward the object, and forms G1N2. It precedes the first moving air gap. The source ties its shape to the aberration balance with the adjacent focus group (¶0030–0032). It remains fixed while G2 moves.
 
 ### L5: Biconvex Positive (1× Asph)
 

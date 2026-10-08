@@ -7,8 +7,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * NOTE ON SEMI-DIAMETERS: the source has no aperture column. Rims are estimated from patent Figure 1, which is
  * drawn to scale at infinity (24.57 px/mm at 600 dpi), and floor-checked by real-ray trace at f/2.9 in all three
  * focus states. L2 at 14.0, L3 at 13.0 and the L6/L7 doublet at 10.5 follow the figure (13.7, 12.9 and 10.5; maker
- * diagram about 14.2, 13.2 and 10.8/9.9); the other rims agree with the figure within about 7 % and keep their
- * first-authored values. Flat lands the figure draws on concave faces (L4, L6, L10, L12) are not modeled.
+ * diagram about 14.2, 13.2 and 10.8/9.9). A second reading of the same figure set the L4/L5 doublet to one height,
+ * 11.5 (figure 11.35 for both the L4 block and the L5 tip), and L8 to 9.5 (figure 9.39; axial ray 9.38), so the
+ * G2 taper steps as drawn; a 3-D trace shows these two rims pass every ray the other rims pass. The remaining rims
+ * agree with the figure within about 4 % and keep their first-authored values. Flat lands the figure draws on
+ * concave faces (L4, L6, L10, L12) are not modeled.
  * No aspheres or source cover plate. Published 1.0x/2.0x labels are retained literally.
  * Derived paraxial magnifications, finite conjugates and BFD residuals are separate.
  * D24 is nonmonotonic; source total-track changes are retained, not corrected.
@@ -57,7 +60,7 @@ const LENS_DATA = {
       2
     ]
   },
-  "focusDescription": "PUBLISHED native infinity, 1.0x and 2.0x gap states. G1 fixed; G2 moves objectward. G3 and D24 follow the native nonmonotonic trajectory. Labels are literal source labels; their paraxial magnifications are -0.996798 and -1.959517. closeFocusM is the calculated final object-to-image conjugate, not marketed MFD. Source sums have small track changes; none is corrected. Intermediate gaps and distance labels are interpolation estimates, not a measured cam law. No finiteConjugates certification.",
+  "focusDescription": "Floating focus through the patent's three tabulated states: infinity, 1.0× and 2.0×. G1 (L1) is fixed. G2 (L2–L8 with the stop) moves 25.2 mm toward the object by 1.0× and 42.5 mm by 2.0×. G3 (L9–L13) moves 5.9 mm toward the object by 1.0×, then partly returns, ending 1.2 mm objectward of its infinity position at 2.0×, so the back focus D24 rises and then falls. The 1.0× and 2.0× names are the patent's; the paraxial magnifications of those states are −0.997× and −1.960×. The printed gaps lengthen the track by 0.04 and 0.13 mm and are kept as printed. Positions between the three states are linear interpolations, not a cam law, and the 20 cm end of the slider is the calculated object-to-image distance at 2.0×, not Laowa's stated minimum focus.",
   "specs": [
     "13 ELEMENTS / 10 GROUPS",
     "DESIGN f = 87.06 mm",
@@ -290,7 +293,7 @@ const LENS_DATA = {
       "d": 1.2,
       "nd": 1.71736,
       "elemId": 4,
-      "sd": 12
+      "sd": 11.5
     },
     {
       "label": "8",
@@ -298,7 +301,7 @@ const LENS_DATA = {
       "d": 3.2,
       "nd": 1.92286,
       "elemId": 5,
-      "sd": 12
+      "sd": 11.5
     },
     {
       "label": "9",
@@ -338,7 +341,7 @@ const LENS_DATA = {
       "d": 2.6984,
       "nd": 1.90366,
       "elemId": 8,
-      "sd": 10
+      "sd": 9.5
     },
     {
       "label": "14",
@@ -346,7 +349,7 @@ const LENS_DATA = {
       "d": 1.4,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 10
+      "sd": 9.5
     },
     {
       "label": "STO",
@@ -450,30 +453,30 @@ const LENS_DATA = {
   "varLabels": [
     [
       "2",
-      "D2"
+      "D2 (G1–G2)"
     ],
     [
       "STO",
-      "D15"
+      "D15 (STO–G3)"
     ],
     [
       "24",
-      "BF"
+      "D24 (BF)"
     ]
   ],
   "groups": [
     {
-      "text": "G1",
+      "text": "G1 (FIXED)",
       "fromSurface": "1",
       "toSurface": "2"
     },
     {
-      "text": "G2",
+      "text": "G2 (FOCUS)",
       "fromSurface": "3",
       "toSurface": "STO"
     },
     {
-      "text": "G3",
+      "text": "G3 (AUX)",
       "fromSurface": "16",
       "toSurface": "24"
     }
