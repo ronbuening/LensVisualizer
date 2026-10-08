@@ -25,6 +25,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-10-08",
+    type: "fix",
+    summary: "Fixed false color-focus error on lenses with e-line glass data, mostly Leica and Rodenstock",
+  },
+  {
+    date: "2026-10-08",
     type: "improvement",
     summary: "Improved MTF: diffraction from traced rays, clipped corners charted, traced f-number shown",
   },
