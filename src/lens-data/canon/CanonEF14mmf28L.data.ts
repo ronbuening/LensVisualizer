@@ -333,8 +333,8 @@ const LENS_DATA = {
   focusDescription:
     "Rear focus: fixed negative Group I; complete positive Group II translates objectward. The close endpoint is inferred from Canon's 0.25 m / 0.10× production specification; the patent publishes only infinity/25 cm aberration plots, not a spacing table.",
   closeFocusM: 0.25,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.892,
+  fstopSeries: [2.892, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 5,
   maxFstop: 22,
 

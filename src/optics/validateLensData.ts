@@ -288,6 +288,72 @@ function validateImagePlane(value: unknown, errors: string[]): void {
   validateYzNormal(imagePlane.normal, `"opticalPath.imagePlane.normal"`, errors);
 }
 
+const SOURCE_ERRATUM_EVIDENCE = new Set(["source-summary", "sibling-example", "aberration-figure", "claims"]);
+const SOURCE_ERRATUM_SURFACE_FIELDS = new Set(["R", "d", "nd"]);
+/** A correction needs this many independent kinds of source-internal evidence. */
+const SOURCE_ERRATUM_MIN_EVIDENCE = 2;
+
+/**
+ * Check `sourceErrata`: a corrected entry must name a real value, carry the applied value in this file, and cite
+ * enough source-internal evidence; an unresolved entry only needs its note.
+ *
+ * @param value - authored `sourceErrata`
+ * @param data - lens data the entries refer to
+ * @param surfaceLabels - labels of the authored surfaces
+ * @param errors - collected validation messages
+ */
+function validateSourceErrata(
+  value: unknown,
+  data: UntrustedLensData,
+  surfaceLabels: Set<string>,
+  errors: string[],
+): void {
+  if (!Array.isArray(value)) {
+    errors.push(`"sourceErrata" must be an array when provided`);
+    return;
+  }
+  value.forEach((entry: UntrustedLensData, index: number) => {
+    const at = `"sourceErrata[${index}]"`;
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      errors.push(`${at} must be an object`);
+      return;
+    }
+    if (typeof entry.note !== "string" || !entry.note.trim()) errors.push(`${at} needs a non-empty note`);
+    if (entry.status === "unresolved") return;
+    if (entry.status !== "corrected") {
+      errors.push(`${at}.status must be "corrected" or "unresolved"`);
+      return;
+    }
+    const isCoefficient = KNOWN_ASPHERIC_COEFFICIENTS.has(entry.field);
+    if (!isCoefficient && !SOURCE_ERRATUM_SURFACE_FIELDS.has(entry.field))
+      errors.push(`${at}.field must be an asph coefficient key or one of R, d, nd`);
+    for (const key of ["printed", "applied"])
+      if (typeof entry[key] !== "number" || !isFinite(entry[key])) errors.push(`${at}.${key} must be a finite number`);
+    if (entry.printed === entry.applied) errors.push(`${at} must apply a value that differs from the printed one`);
+    const kinds = new Set(Array.isArray(entry.evidence) ? entry.evidence : []);
+    if ([...kinds].some((kind) => !SOURCE_ERRATUM_EVIDENCE.has(kind as string)))
+      errors.push(`${at}.evidence may only cite source-internal kinds`);
+    if (kinds.size < SOURCE_ERRATUM_MIN_EVIDENCE)
+      errors.push(`${at} needs at least ${SOURCE_ERRATUM_MIN_EVIDENCE} kinds of source-internal evidence`);
+    if (typeof entry.surface !== "string" || !surfaceLabels.has(entry.surface)) {
+      errors.push(`${at}.surface must match a surface label`);
+      return;
+    }
+    const carried = isCoefficient
+      ? data.asph?.[entry.surface]?.[entry.field]
+      : data.surfaces.find((surface: UntrustedLensData) => surface?.label === entry.surface)?.[entry.field];
+    // A mounted converter replaces the host's last gap with the junction gap; the bare host still checks that value.
+    const converterFirst = data.attachedTeleconverter?.firstSurfaceLabel;
+    const junction =
+      converterFirst === undefined
+        ? undefined
+        : data.surfaces[data.surfaces.findIndex((surface: UntrustedLensData) => surface?.label === converterFirst) - 1];
+    if (entry.field === "d" && junction?.label === entry.surface) return;
+    if (carried !== entry.applied)
+      errors.push(`${at}: surface "${entry.surface}" ${entry.field} must carry the applied value ${entry.applied}`);
+  });
+}
+
 function validateOpticalPath(value: unknown, surfaceLabels: Set<string>, errors: string[]): void {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     errors.push(`"opticalPath" must be an object when provided`);
@@ -879,7 +945,6 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     "svgH",
     "scFill",
     "yScFill",
-    "clipMargin",
     "maxRimAngleDeg",
     "gapSagFrac",
     "rayLeadFrac",
@@ -911,11 +976,11 @@ export default function validateLensData(data: UntrustedLensData): string[] {
 
   if (
     data.zoomApertureModel !== undefined &&
-    (data.zoomApertureModel !== "from-nominal-fno" ||
+    ((data.zoomApertureModel !== "from-nominal-fno" && data.zoomApertureModel !== "fixed-iris") ||
       !Array.isArray(data.zoomPositions) ||
       data.zoomPositions.length < 2)
   ) {
-    errors.push('"zoomApertureModel" must be "from-nominal-fno" on a zoom lens');
+    errors.push('"zoomApertureModel" must be "from-nominal-fno" or "fixed-iris" on a zoom lens');
   }
   if (data.zoomStopSemiDiameters !== undefined) {
     if (
@@ -1172,6 +1237,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       }
     }
   }
+
+  /* ── Source errata name real values and carry the corrected ones ── */
+  if (data.sourceErrata !== undefined) validateSourceErrata(data.sourceErrata, data, surfaceLabels, errors);
 
   /* ── Zoom lens fields ── */
   const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;

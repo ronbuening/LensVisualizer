@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **891** lenses scanned
 - **10071** non-air surfaces examined
 - **10081** element glass declarations examined
-- **237** non-explicit-unmatched annotations did not resolve
-- **129** distinct unresolved glass-like tokens found
+- **236** non-explicit-unmatched annotations did not resolve
+- **128** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -22,7 +22,6 @@ or per-lens patent backfills.
 | 662561 | 4 | 1 | |
 | 863252 | 4 | 2 | |
 | 531559 | 3 | 2 | |
-| 856401 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | 486815 | 2 | 1 | |
 | 514428 | 2 | 1 | |
@@ -46,6 +45,7 @@ or per-lens patent backfills.
 | 807316 | 2 | 2 | |
 | 815233 | 2 | 2 | |
 | 819287 | 2 | 2 | |
+| 856401 | 2 | 1 | |
 | G2 | 2 | 1 | |
 | LAF10 | 2 | 1 | |
 | 499801 | 1 | 1 | |
@@ -141,7 +141,6 @@ or per-lens patent backfills.
 | 930240 | 1 | 1 | |
 | 933209 | 1 | 1 | |
 | 958300 | 1 | 1 | |
-| D-ZLAF85 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
 | KF5 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
@@ -178,12 +177,6 @@ or per-lens patent backfills.
 - [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) 3A: `531559 — optical resin coordinate (COP class; patent ¶0062 allows resin for G2, material not named)`
 - [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) 17A: `531559 — optical resin coordinate (same as G2; material not named in patent)`
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 25: `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)`
-
-### 856401 — 3 occurrences
-
-- [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 30A: `D-ZLaF85 class (lanthanum flint, 856/401)`
-- [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
-- [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 
 ### 863248 — 3 occurrences
 
@@ -300,6 +293,11 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 44: `819287 dense flint class (catalog unresolved)`
 - [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 44: `819287 dense flint class (catalog unresolved)`
+
+### 856401 — 2 occurrences
+
+- [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
+- [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 
 ### G2 — 2 occurrences
 
@@ -682,10 +680,6 @@ or per-lens patent backfills.
 ### 958300 — 1 occurrence
 
 - [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 21: `958300 — catalog unresolved (supplier unconfirmed)`
-
-### D-ZLAF85 — 1 occurrence
-
-- [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 30A: `D-ZLaF85 class (lanthanum flint, 856/401)`
 
 ### FPL51 — 1 occurrence
 

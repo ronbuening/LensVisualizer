@@ -34,6 +34,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON GLASS CATALOG MATCHES:                                    ║
  * ║    Names and line data are catalog matches to the stored nd/νd,    ║
  * ║    not confirmation of the melts used in production.               ║
+ * ║                                                                    ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                       ║
+ * ║    The patent prints no PgF and defines no ΔPgF line. `dPgF` is    ║
+ * ║    PgF of the stored nC/nF/ng minus the engine's normal line       ║
+ * ║    (0.6438 − 0.001682·νd), not HOYA's catalog ΔPg,F, which HOYA    ║
+ * ║    states against its own C7–F2 line (≈ 0.6484 − 0.0018·νd).       ║
+ * ║    L5/L6 keep −0.0093, within 0.0003 of the engine-line value.     ║
+ * ║    The trace uses nC/nF/ng, so `dPgF` is an annotation here.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -93,7 +101,7 @@ const LENS_DATA = {
       nC: 1.90324,
       nF: 1.92907,
       ng: 1.94414,
-      dPgF: -0.0016,
+      dPgF: -0.001079,
       apd: false,
       role: "Strong positive member of the front cemented doublet J1.",
       cemented: "J1",
@@ -110,10 +118,10 @@ const LENS_DATA = {
       nC: 1.83649,
       nF: 1.87209,
       ng: 1.89413,
-      dPgF: 0.0137,
+      dPgF: 0.015299,
       apd: "inferred",
       apdNote:
-        "Cosina marks the corresponding production-diagram position as extraordinary partial dispersion; the patent correlation remains inferential.",
+        "Cosina marks the corresponding production-diagram position as extraordinary partial dispersion; the patent correlation remains inferential. The patent prints no PgF; the stored nC/nF/ng give PgF = 0.6191, runtime dPgF +0.01530 (HOYA's catalog ΔPg,F +0.0137 is against HOYA's own line).",
       role: "Negative, strongly dispersive rear member of J1; the cemented interface carries this downstream element.",
       cemented: "J1",
     },
@@ -129,10 +137,10 @@ const LENS_DATA = {
       nC: 1.68251,
       nF: 1.70462,
       ng: 1.71786,
-      dPgF: 0.0067,
+      dPgF: 0.007435,
       apd: "inferred",
       apdNote:
-        "Cosina marks the corresponding production-diagram position as extraordinary partial dispersion; the patent correlation remains inferential.",
+        "Cosina marks the corresponding production-diagram position as extraordinary partial dispersion; the patent correlation remains inferential. The patent prints no PgF; the stored nC/nF/ng give PgF = 0.5988, runtime dPgF +0.00744 (HOYA's catalog ΔPg,F +0.0067 is against HOYA's own line).",
       role: "Strong negative front member of the nearly afocal rear cemented doublet J2.",
       cemented: "J2",
     },
@@ -182,7 +190,7 @@ const LENS_DATA = {
       nC: 1.6421,
       nF: 1.66124,
       ng: 1.67258,
-      dPgF: 0.0049,
+      dPgF: 0.005595,
       apd: false,
       role: "Negative rear member of J3; moderates the positive assembly before the final field-correcting element.",
       cemented: "J3",

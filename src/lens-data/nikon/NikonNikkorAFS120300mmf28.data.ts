@@ -511,8 +511,9 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   // Stop sits in fixed G5 and everything behind it is fixed, so one physical iris gives F/2.91 at all
-  // three stations (derived); the patent publishes no iris diameter and no zoom aperture model is needed.
+  // three stations (derived); the patent publishes no iris diameter, so zoomApertureModel declares that fixed iris.
   nominalFno: 2.91,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

@@ -15,6 +15,14 @@ async function healthy(page: Page) {
   await expect(page.locator('[translate="no"],.notranslate,meta[name="google"][content="notranslate"]')).toHaveCount(0);
 }
 
+async function readyHeading(page: Page) {
+  // The client removes prerendered head tags after its first React commit.
+  await expect(page.locator("[data-prerender-head]")).toHaveCount(0);
+  const heading = page.getByRole("heading", { level: 1 }).first();
+  await expect(heading).toBeVisible();
+  return heading;
+}
+
 async function selectAnalysisTab(page: Page, name: string) {
   const button = page.getByRole("button", { name: name.toUpperCase(), exact: true }).last();
   await button.click();
@@ -41,7 +49,7 @@ for (const route of TRANSLATION_ROUTES) {
       await page.goto(route.url);
     } else {
       await page.goto(route.index);
-      await expect(page.getByRole("heading", { level: 1 }).first()).toBeVisible();
+      await readyHeading(page);
       const details = page.locator(`main a[href^="${route.index}/"]`);
       if (await details.count()) {
         const indexHeading = await page.getByRole("heading", { level: 1 }).first().innerText();
@@ -60,10 +68,11 @@ for (const route of TRANSLATION_ROUTES) {
         await page.goto(`${route.index}/translation-missing-converter`);
       }
     }
-    const heading = page.getByRole("heading", { level: 1 }).first();
-    await expect(heading).toBeVisible();
-    // Comparison URLs use the homepage HTML fallback until the client route loads.
-    if (route.pattern === "/compare/:slugA/:slugB") await expect(heading).toHaveText(lensName);
+    const heading = await readyHeading(page);
+    if (route.pattern === "/lens/:slug" || route.pattern === "/compare/:slugA/:slugB") {
+      await expect(heading).toHaveText(lensName);
+      await expect(page.getByRole("slider", { name: "FOCUS", exact: true })).toBeVisible();
+    }
     const initialHeading = await heading.innerText();
     expect(await translate(page)).toBeGreaterThan(0);
     const theme = page.getByRole("button", { name: /theme/i }).first();
@@ -416,12 +425,18 @@ for (const [tab, label] of [
 }
 
 test("translated MTF table matches clean aperture results from the real worker", async ({ page }, testInfo) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("lensvis:mtf:options", JSON.stringify({ method: "geometric-dl" }));
+  });
   await page.goto(lensUrl);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(lensName);
   if (testInfo.project.name === "compact")
     await page.getByRole("button", { name: /ABERRATIONS & DISTORTIONS/ }).click();
   await selectAnalysisTab(page, "mtf");
   const mtf = page.getByRole("region", { name: "Simulated MTF", exact: true });
+  const method = mtf.getByRole("combobox", { name: "MTF method", exact: true });
+  await expect(method).toHaveValue("diffraction");
+  await expect(method.locator("option")).toHaveText(["Diffraction-corrected", "Geometric"]);
   await mtf.getByRole("combobox", { name: "MTF image plane", exact: true }).selectOption("design");
   const summary = mtf
     .locator("details")
@@ -429,22 +444,55 @@ test("translated MTF table matches clean aperture results from the real worker",
     .locator("summary");
   await expect(mtf.getByRole("status")).toHaveCount(0, { timeout: 60_000 });
   await summary.click();
-  const value = mtf.getByRole("table").locator("tbody tr").first().locator("td").first();
+  const table = mtf.getByRole("table");
+  const value = table.locator("tbody tr").first().locator("td").first();
   await expect(value).toHaveText(/\d\.\d{3} \/ \d\.\d{3}/);
   const wide = await value.textContent();
+  const diffractionTable = await table.textContent();
+  await method.selectOption("geometric");
+  await expect(mtf.getByRole("status")).toHaveCount(0, { timeout: 60_000 });
+  await expect(mtf.getByRole("alert")).toHaveCount(0);
+  await expect(value).toHaveText(/\d\.\d{3} \/ \d\.\d{3}/);
+  const geometricTable = await table.textContent();
+  expect(geometricTable).not.toBe(diffractionTable);
+  await method.selectOption("diffraction");
+  await expect(mtf.getByRole("status")).toHaveCount(0, { timeout: 60_000 });
+  await expect(table).toHaveText(diffractionTable!);
   const aperture = page.getByRole("slider", { name: "APERTURE", exact: true });
+  const marketed = page.getByText("marketed f/1.4", { exact: true });
+  await expect(marketed).toBeVisible();
   await aperture.press("End");
+  await expect(marketed).toHaveCount(0);
   await expect(value).not.toHaveText(wide!, { timeout: 60_000 });
   await expect(mtf.getByRole("status")).toHaveCount(0, { timeout: 60_000 });
   const stopped = await value.textContent();
   await aperture.press("Home");
   await expect(value).toHaveText(wide!, { timeout: 60_000 });
+  await expect(marketed).toBeVisible();
   await translate(page);
   await aperture.press("End");
   await expect(value).toHaveText(stopped!, { timeout: 60_000 });
+  await expect(marketed).toHaveCount(0);
   await translate(page);
   await aperture.press("Home");
   await expect(value).toHaveText(wide!, { timeout: 60_000 });
+  await expect(marketed).toBeVisible();
+  await expect(mtf.getByRole("status")).toHaveCount(0, { timeout: 60_000 });
+  const header = mtf.locator(":scope > p").first();
+  const diffractionHeader = await header.textContent();
+  await translate(page);
+  await method.selectOption("geometric");
+  await expect(header).toContainText(" · Geometric · ");
+  await expect(mtf.getByRole("status")).toHaveCount(0, { timeout: 60_000 });
+  await expect(mtf.getByRole("alert")).toHaveCount(0);
+  await expect(table).toHaveText(geometricTable!);
+  await translate(page);
+  await method.selectOption("diffraction");
+  await expect(header).toHaveText(diffractionHeader!);
+  await expect(value).toHaveText(wide!, { timeout: 60_000 });
+  await expect(mtf.getByRole("status")).toHaveCount(0, { timeout: 60_000 });
+  await expect(mtf.getByRole("alert")).toHaveCount(0);
+  await expect(table).toHaveText(diffractionTable!);
   await healthy(page);
 });
 

@@ -434,6 +434,7 @@ const LENS_DATA = {
     "Two-group floating internal focus (patent ¶0140): G5 moves toward the image and G6 toward the object; G1–G4, G7 and the image plane stay fixed. Close-focus spacings are a constrained reconstruction, not patent data: solved for Nikon's 0.38 / 0.6 / 0.8 m minimum focus distances, with 0.30× at wide and 0.25× at tele. The 135 mm state uses a declared travel-ratio rule (β ≈ 0.25×), and intermediate states are interpolated.",
 
   nominalFno: [2.891, 2.904, 2.905],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   apertureBlades: 11,

@@ -11,11 +11,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes zoom spacings only. The manufacturer's
  * 0.35 m MFD is retained as product metadata, not as a solved close-focus optical state.
  *
- * STO MODEL — inferred, not patent-tabulated:
- * Figure 1 places the diaphragm in D13 between r13 and r14. It is modeled fixed with C4, 2.0 mm in front
- * of r14, leaving r13→STO = 4.5 / 0.5 / 5.1 mm at wide / mid / tele. STO sd = 10.2029784318 mm gives
- * paraxial f/3.500000 at wide; source rounding yields f/3.498983 and f/3.497335 at mid and tele.
- * nominalFno remains 3.5.
+ * STO MODEL — position from the patent text, diameter modeled:
+ * The prescription table has no stop row. The figure description (printed p. 273) gives the abscissa of the
+ * lateral-aberration plots as ray height at the stop, taken 1.5 mm in front of the most object-side surface of
+ * C4 (r14) for Example 1; Figure 1 draws the diaphragm in D13 close to r14. The stop therefore stays with the
+ * fixed C4, leaving r13→STO = 5.0 / 1.0 / 5.6 mm at wide / mid / tele (patent d13 = 6.5 / 2.5 / 7.1). No stop
+ * diameter is printed: STO sd = 10.2029784318 mm is a model value giving paraxial f/3.500030, f/3.499004, and
+ * f/3.497341 at wide, mid, and tele. nominalFno remains 3.5.
  *
  * SEMI-DIAMETERS — modeled, not patent-tabulated:
  * Derived from exact spherical rays, the modeled stop, patent Y = 21.63 mm image height, and Figure 1's
@@ -204,8 +206,8 @@ const LENS_DATA = {
     { label: "10", R: 31.163, d: 2.8, nd: 1.80518, elemId: 6, sd: 11.2 },
     { label: "11", R: 73.021, d: 25.0, nd: 1.0, elemId: 0, sd: 11.2 },
     { label: "12", R: 108.094, d: 2.5, nd: 1.62299, elemId: 7, sd: 11.4 },
-    { label: "13", R: -108.092, d: 4.5, nd: 1.0, elemId: 0, sd: 11.4 },
-    { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 10.202978431785846 },
+    { label: "13", R: -108.092, d: 5.0, nd: 1.0, elemId: 0, sd: 11.4 },
+    { label: "STO", R: 1e15, d: 1.5, nd: 1.0, elemId: 0, sd: 10.202978431785846 },
     { label: "14", R: 30.145, d: 5.0, nd: 1.51823, elemId: 8, sd: 13.0 },
     { label: "15", R: -788.456, d: 5.5, nd: 1.0, elemId: 0, sd: 13.0 },
     { label: "16", R: -32.124, d: 2.5, nd: 1.69895, elemId: 9, sd: 13.0 },
@@ -230,9 +232,9 @@ const LENS_DATA = {
       [1.6, 1.6],
     ],
     "13": [
-      [4.5, 4.5],
-      [0.5, 0.5],
-      [5.1, 5.1],
+      [5.0, 5.0],
+      [1.0, 1.0],
+      [5.6, 5.6],
     ],
   },
 
@@ -260,6 +262,7 @@ const LENS_DATA = {
     "no close-focus group motion is modeled.",
 
   nominalFno: 3.5,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],
 
   yScFill: 0.38,

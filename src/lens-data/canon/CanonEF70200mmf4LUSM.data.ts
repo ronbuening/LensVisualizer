@@ -2,52 +2,59 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — CANON EF 70-200mm f/4 L USM                                  ║
+ * ║ LENS DATA — CANON EF 70-200mm f/4 L USM                                      ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source prescription: JP2000284174A, Numerical Example 1 (Canon Inc.).     ║
- * ║ Production correlation: Canon EF70-200mm F4L USM, marketed Sep. 1999.     ║
- * ║ Patent model: 16 elements / 13 air-separated groups, all spherical.        ║
- * ║ No uniform scale is applied; patent dimensions are retained.               ║
- * ║                                                                            ║
- * ║ Zoom: published infinity gaps D8, D15, D18 at 71.92 / 118.29 / 194.57 mm. ║
- * ║ L2 moves imageward monotonically. L3 reverses slightly between the middle  ║
- * ║ and tele states; D18 therefore runs 19.00 -> 3.78 -> 4.11 mm.             ║
- * ║                                                                            ║
- * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The patent states that L1b       ║
- * ║ (R3-R8) translates rigidly toward the object, but publishes no close-focus ║
- * ║ spacing table. Close-focus D2/D8 pairs below were code-solved at Canon's   ║
- * ║ published 1.2 m MFD, measured from the image plane, with D2 + D8 conserved ║
- * ║ at each zoom state. No other focus movement is introduced.                 ║
- * ║                                                                            ║
- * ║ Image plane: Example 1 publishes no BFD. Independent d-line traces give    ║
- * ║ 53.134605 / 53.131905 / 53.126058 mm from R30; the fixed model uses their ║
- * ║ mean, 53.13085583884338 mm. The 0.008547 mm spread is source-rounding      ║
- * ║ residual, not a modeled image-plane movement.                              ║
- * ║                                                                            ║
- * ║ Stop: the patent gives the stop location and f/4.1 but no diameter. The    ║
- * ║ physical stop semi-diameter 14.25845124506584 mm is the common paraxial    ║
- * ║ value fitted to the three published zoom states.                           ║
- * ║                                                                            ║
- * ║ Semi-diameters: not published. They were inferred from d-line marginal-ray ║
- * ║ envelopes, the Canon/patent optical sections, and the current geometry     ║
- * ║ constraints. Front-group values were reduced where the generic marginal-  ║
- * ║ ray rule over-sizes the nearly touching R4/R5 pair. Sampled off-axis rays  ║
- * ║ may vignette only at air-separated element edges/gaps, never at cemented   ║
- * ║ interfaces. Edge thickness, actual spherical rim slope, cross-gap sag, and ║
- * ║ all six authored zoom/focus endpoint states are checked by the independent ║
- * ║ verification artifact.                                                     ║
- * ║                                                                            ║
+ * ║ Source prescription: JP2000284174A, Numerical Example 1 (Canon Inc.).        ║
+ * ║ Production correlation: Canon EF70-200mm F4L USM, marketed Sep. 1999.        ║
+ * ║ Patent model: 16 elements / 13 air-separated groups, all spherical.          ║
+ * ║ No uniform scale is applied; patent dimensions are retained.                 ║
+ * ║                                                                              ║
+ * ║ Zoom: published infinity gaps D8, D15, D18 at 71.92 / 118.29 / 194.57 mm.    ║
+ * ║ L2 moves imageward monotonically. L3 reverses slightly between the middle    ║
+ * ║ and tele states; D18 therefore runs 19.00 -> 3.78 -> 4.11 mm.                ║
+ * ║                                                                              ║
+ * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The patent states that L1b         ║
+ * ║ (R3-R8) translates rigidly toward the object, but publishes no close-focus   ║
+ * ║ spacing table. Close-focus D2/D8 pairs below were code-solved at Canon's     ║
+ * ║ published 1.2 m MFD, measured from the image plane, with D2 + D8 conserved   ║
+ * ║ at each zoom state. No other focus movement is introduced.                   ║
+ * ║                                                                              ║
+ * ║ Image plane: Example 1 publishes no BFD. Independent d-line traces give      ║
+ * ║ 53.134605 / 53.131905 / 53.126058 mm from R30; the fixed model uses their    ║
+ * ║ mean, 53.13085583884338 mm. The 0.008547 mm spread is source-rounding        ║
+ * ║ residual, not a modeled image-plane movement.                                ║
+ * ║                                                                              ║
+ * ║ Stop: the patent gives the stop location and f/4.1 but no diameter. The      ║
+ * ║ authored 14.25845124506584 mm semi-diameter is the common paraxial f/4.1     ║
+ * ║ radius fitted to the three published zoom states. The fixed iris is traced   ║
+ * ║ from nominalFno at 14.3750 mm, the height the real f/4.1 marginal ray        ║
+ * ║ reaches at the stop at 71.92 mm.                                             ║
+ * ║                                                                              ║
+ * ║ Semi-diameters: not published. They are inferred from d-line marginal-ray    ║
+ * ║ envelopes, the Canon/patent optical sections, and the current geometry       ║
+ * ║ constraints. R4/R5, the two faces of the 0.10 mm air space between E2 and    ║
+ * ║ E3, share a 21 mm rim; the default cross-gap rule allows at most 21.13 mm    ║
+ * ║ there. Wide open at infinity the 71.92 and 118.29 mm stations trace f/4.10   ║
+ * ║ on the iris; the 194.57 mm station traces f/4.36 on the R5 rim. The f/4.1    ║
+ * ║ on-axis ray reaches R4 at 22.30 mm at 194.57 mm, and the printed R4, R5      ║
+ * ║ and D4 bring the two faces together at 22.15 mm, so no rim value passes      ║
+ * ║ that ray; the printed table passes f/4.13 at most at that station. Sampled   ║
+ * ║ off-axis rays may vignette only at air-separated element edges/gaps, never   ║
+ * ║ at cemented interfaces. Edge thickness, actual spherical rim slope,          ║
+ * ║ cross-gap sag, and all six authored zoom/focus endpoint states are checked   ║
+ * ║ by the independent verification artifact.                                    ║
+ * ║                                                                              ║
  * ║ Spectral model: the patent publishes nd/vd only. Compatible catalog curves   ║
- * ║ provide dispersion; no surrogate line indices are marked as measured data.  ║
+ * ║ provide dispersion; no surrogate line indices are marked as measured data.   ║
  * ║ S-TIH53WN is a current proxy introduced in 2025, not a historical identity.  ║
  * ║ Fluorite/UD APD tags are inferred from production correlation, not published ║
- * ║ partial-dispersion measurements of these patent elements.                   ║
- * ║                                                                            ║
- * ║ Product source: https://global.canon/en/c-museum/product/ef356.html        ║
- * ║ Patent text: https://patents.google.com/patent/JP2000284174A/ja            ║
- * ║ OHARA: https://www.ohara-inc.co.jp/en/product/01000/                       ║
- * ║ HIKARI: https://www.hikari-g.co.jp/optical_glass/general_optical_glass/    ║
- * ║ SCHOTT: https://www.schott.com/en-us/products/optical-glass-p1000267       ║
+ * ║ partial-dispersion measurements of these patent elements.                    ║
+ * ║                                                                              ║
+ * ║ Product source: https://global.canon/en/c-museum/product/ef356.html          ║
+ * ║ Patent text: https://patents.google.com/patent/JP2000284174A/ja              ║
+ * ║ OHARA: https://www.ohara-inc.co.jp/en/product/01000/                         ║
+ * ║ HIKARI: https://www.hikari-g.co.jp/optical_glass/general_optical_glass/      ║
+ * ║ SCHOTT: https://www.schott.com/en-us/products/optical-glass-p1000267         ║
  * ║ Canon Optron CaF2: https://optron.canon/ja/img/fluorite/pamphlet_caf2_en.pdf ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
@@ -373,6 +380,7 @@ const LENS_DATA = {
 
   closeFocusM: 1.2,
   nominalFno: 4.1,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.1, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 8,
   maxFstop: 32,

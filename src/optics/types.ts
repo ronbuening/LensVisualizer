@@ -175,7 +175,6 @@ export interface DisplaySpec {
   svgH: number;
   scFill: number;
   yScFill: number;
-  clipMargin: number;
   maxRimAngleDeg: number;
   maxRimTan: number;
   gapSagFrac: number;

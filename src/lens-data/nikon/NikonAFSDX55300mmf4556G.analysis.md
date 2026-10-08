@@ -233,7 +233,7 @@ All prescription values in the delivered data file are copied from Example 1 Tab
 
 The group focal lengths computed independently are +120.20 mm, -28.84 mm, +36.07 mm, -47.54 mm, and +107.10 mm for G1 through G5, respectively. The surface-by-surface Petzval sum is +0.0012855 mm^-1, corresponding to a paraxial Petzval radius of approximately 778 mm. This Petzval calculation uses the surface formula $\Phi/(n n')$, not a thin-element approximation.
 
-The stop semi-diameter implied by the patent f-numbers is approximately 10.63 mm at the wide position, 10.65 mm at the mid position, and 11.48 mm at the telephoto position. The data file uses 11.5 mm as the maximum physical opening, with marketed nominal f-numbers supplied separately for the zoom slider.
+The stop semi-diameter implied by the patent f-numbers is approximately 10.63 mm at the wide position, 10.65 mm at the mid position, and 11.48 mm at the telephoto position. The data file stores 11.5 mm as the STO semi-diameter, and the wide-open iris at each zoom station is traced from the marketed nominal f-numbers: 10.979 mm at the wide position, 10.505 mm at the mid position, and 12.168 mm at the telephoto position.
 
 ## Sources
 

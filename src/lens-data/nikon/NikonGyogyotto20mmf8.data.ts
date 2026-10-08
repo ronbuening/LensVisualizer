@@ -21,8 +21,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    The patent states that no aperture stop is provided in the       ║
  * ║    embodiments, but that a stop may be placed just posterior to L3. ║
  * ║    The STO surface here is inserted 0.5 mm behind L3 and sized to   ║
- * ║    the patent design FNO ≈ 8.25. nominalFno remains the marketed   ║
- * ║    f/8 value.                                                      ║
+ * ║    the patent design FNO ≈ 8.25, which nominalFno also carries;    ║
+ * ║    apertureMarketing records f/8.                                  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent Table 8 does not list clear apertures. SDs are inferred  ║
@@ -133,8 +133,8 @@ const LENS_DATA = {
     "Fixed-focus production lens. The patent notes optional whole-lens extension or L1-only focusing, but Table 8 provides no close-focus spacing data.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 8,
-  fstopSeries: [8, 11, 16],
+  nominalFno: 8.25,
+  fstopSeries: [8.25, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.58,

@@ -22,9 +22,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * Scaling: none. Patent radii, thicknesses, spacings, and asphere coefficients are used at source scale.
  * The patent uses the standard conic constant K directly; all Example 1 K values are 0.
  *
- * Aperture stop: the patent publishes the stop plane but not its clear diameter. STO sd = 6.95 mm is an
- * inferred single physical stop semi-diameter consistent with all three one-decimal patent FNO values.
- * nominalFno stores the exact modeled f-numbers produced by that stop and the transcribed prescription.
+ * Aperture stop: the patent publishes the stop plane but not its clear diameter (Table 1 row 16 is a bare
+ * plane), and Table 2 prints FNO 3.6 / 4.4 / 5.8 to one decimal. The model is one wide-open iris radius for
+ * the whole zoom range (zoomApertureModel "fixed-iris"). By real marginal ray, any single radius from 7.0156
+ * to 7.0716 mm gives all three printed values within their rounding. The three nominalFno values are those of
+ * one real-ray iris radius at the midpoint of that interval consistent with the printed 3.6 / 4.4 / 5.8:
+ * 3.5647 sizes the iris at the wide station (7.0435 mm traced; midpoint 7.0436 mm), and 4.432 / 5.776 are the
+ * f-numbers that radius gives at the mid and tele stations. The STO row's sd of 6.95 mm is superseded at
+ * build time by the radius traced from nominalFno[0]. No apertureDesign is set: the printed 3.6 is a one-decimal
+ * rounding of the 3.5647 the model uses.
  *
  * Semi-diameters: not published. They are modeling values derived from independent marginal/chief-ray
  * envelopes across all three zoom states, the patent Fig. 1/Fig. 4 silhouettes, and the current geometry
@@ -54,7 +60,7 @@ const LENS_DATA = {
   specs: [
     "16 ELEMENTS / 12 GROUPS",
     "16-85mm f/3.5-5.6 (marketing)",
-    "16.48-82.45mm, modeled f/3.585-5.764 (Example 1)",
+    "16.48-82.45mm, modeled f/3.565-5.776 (Example 1)",
     "3 ASPHERICAL SURFACES",
     "1 PRODUCTION ED ELEMENT",
     "APS-C / PENTAX K",
@@ -383,7 +389,8 @@ const LENS_DATA = {
     "the production 0.35 m MFD is metadata and does not define internal focus travel.",
 
   /* ── Aperture configuration ── */
-  nominalFno: [3.585229851, 4.435970318, 5.763925078],
+  nominalFno: [3.5647, 4.432, 5.776],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 7,
 

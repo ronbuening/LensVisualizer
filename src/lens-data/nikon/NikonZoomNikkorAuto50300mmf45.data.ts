@@ -31,9 +31,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * Focus: NO_INTERNAL_RECONSTRUCTION. The 2.5 m closeFocusM is production metadata from the 1969 Nikon F Instructions
  * lens table; no finite-object focus gaps are authored.
  *
- * Stop: the patent gives f/4.5 and depicts a diaphragm-like plane between components III and IV, but publishes no
- * numerical stop coordinate or diameter. One STO is inferred 2.53 mm ahead of r18 (the W-state midpoint of d17); its
- * 11.75729955 mm semi-diameter is calibrated from the W-state f/4.5 target. This is not a physical diaphragm measurement.
+ * Stop: the patent gives f/4.5 but tabulates no stop surface, position or diameter for any example, and its text
+ * never mentions a diaphragm. Its only stop marks belong to other lenses. Fig. 2, the 24-surface Example 1, draws
+ * paired ticks inside component IV, in the air gap behind IV's first element (between that example's r17 and r18).
+ * Fig. 5, an alternative negative component IV that matches no tabulated example, draws them between its first and
+ * second elements. Neither figure marks the III-IV air space, and no figure draws Example 3. The STO position is
+ * therefore a modeling inference without figure support: one flat stop in the III-IV air space d17, fixed 2.53 mm
+ * ahead of r18 (the W-state midpoint of d17). Like the drawn stops it is stationary with component IV, behind every
+ * moving component. Its authored 11.75729955 mm semi-diameter is a paraxial calibration to the W-state f/4.5 target,
+ * not a physical diaphragm measurement.
  *
  * Semi-diameters are modeled, not patent-published. They were sized from exact spherical-ray envelopes and checked for
  * positive edge thickness, actual rim slope, shared-band gap intrusion, and off-axis containment. Nikon's production
@@ -321,7 +327,9 @@ const LENS_DATA = {
     { label: "15", R: 118.75, d: 12.9, nd: 1.62041, elemId: 9, sd: 21 },
     { label: "16", R: -48.68, d: 1.7, nd: 1.79504, elemId: 10, sd: 20 },
     { label: "17", R: -209.519, d: 2.53, nd: 1, elemId: 0, sd: 19.5 },
-    // Inferred stop: fixed 2.53 mm ahead of r18; stop SD calibrated to f/4.5 at W.
+    // STO position is a modeling inference: the patent tabulates no stop and no figure draws Example 3. It splits
+    // d17 (5.06 / 18.83 / 37.59 at W/M/T) into the variable gap above plus this fixed 2.53 mm ahead of r18. The
+    // authored SD is a paraxial calibration to f/4.5 at W.
     { label: "STO", R: 1e15, d: 2.53, nd: 1, elemId: 0, sd: 11.757299549451394 },
     { label: "18", R: -152, d: 10, nd: 1.51728, elemId: 11, sd: 12 },
     { label: "19", R: 152, d: 3.5, nd: 1, elemId: 0, sd: 11.5 },
@@ -586,6 +594,7 @@ const LENS_DATA = {
     "Infinity zoom prescription only. The production lens focuses to 2.5 m; no finite-focus motion is modeled. Intermediate zoom positions approximate the patent’s fixed-image motion.",
 
   nominalFno: 4.5,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

@@ -424,7 +424,6 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
       S,
       asphByIdx,
       stopIdx,
-      clipMargin: data.clipMargin,
       opticalPath,
       imagePlane,
       isFoldedOptics: true,
@@ -490,7 +489,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     const tracingHalfField = halfField;
     const totalTrack = axialExtent;
 
-    const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
+    const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac } = data;
     const SC = (svgW * scFill) / totalTrack;
     let YSC: number;
     let effectiveSvgH: number;
@@ -565,7 +564,6 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
       maxRimSin,
       maxRimTan,
       gapSagFrac,
-      clipMargin,
       gridPitch,
       gridCount,
       lyDoublet,
@@ -825,7 +823,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
   /* Synthetic rear plates carry generous non-clipping rims; keep them out of the diagram's vertical scale. */
   const maxSD = Math.max(...S.filter((s) => !s.synthetic).map((s) => s.sd));
 
-  const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
+  const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac } = data;
   const SC = (svgW * scFill) / totalTrack;
   let YSC: number;
   let effectiveSvgH: number;
@@ -874,8 +872,10 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
    *  - zoomYRatios:   marginal ray height ratio at stop (for EP scaling)
    *  - zoomBs:        chief ray height at stop (for off-axis ray placement)
    */
+  /* A zoom's wide-open iris follows its station f-numbers unless the file publishes a schedule, declares one fixed
+   * iris, or the stop is a surface of drawn glass. */
   const zoomStopSDs: number[] | null =
-    (data.zoomStopSemiDiameters || (data.zoomApertureModel === "from-nominal-fno" && !preserveAuthoredStopSD)) && isZoom
+    isZoom && (data.zoomStopSemiDiameters || (data.zoomApertureModel !== "fixed-iris" && !preserveAuthoredStopSD))
       ? []
       : null;
   let zoomEFLs: number[] | null = null,
@@ -1059,7 +1059,6 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     maxRimSin,
     maxRimTan,
     gapSagFrac,
-    clipMargin,
     gridPitch,
     gridCount,
     lyDoublet,

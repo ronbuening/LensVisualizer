@@ -20,6 +20,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    below are stored as renderer semi-diameters, i.e. patent        ║
  * ║    effective diameter / 2.                                          ║
  * ║                                                                    ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                       ║
+ * ║    The patent lists PgF per glass. `dPgF` is PgF minus the         ║
+ * ║    engine's normal line (0.6438 − 0.001682·νd), not the patent's   ║
+ * ║    ΔPgF = PgF − 0.64833 + 0.00180·νd, which the analysis quotes.   ║
+ * ║                                                                    ║
  * ║  NOTE ON FILTER / SENSOR GLASS:                                    ║
  * ║    Patent surfaces 17-18 are a plane-parallel filter plate F       ║
  * ║    (d = 2.5000 mm, nd 1.51633, νd 64.14, PgF 0.5353) followed by   ║
@@ -75,7 +80,7 @@ const LENS_DATA = {
       fl: 35.62,
       glass: "M-TAF105 (HOYA)",
       apd: false,
-      dPgF: -0.00733,
+      dPgF: -0.008641,
       role: "Aspherical high-index front collector; starts convergence and corrects spherical aberration/coma.",
     },
     {
@@ -88,7 +93,7 @@ const LENS_DATA = {
       fl: -50.02,
       glass: "E-CF6 (HOYA)",
       apd: false,
-      dPgF: 0.00444,
+      dPgF: 0.002816,
       role: "Negative meniscus behind L1; relaxes marginal-ray angle before the stop and G2.",
     },
     {
@@ -102,7 +107,7 @@ const LENS_DATA = {
       glass: "E-FD15 (HOYA)",
       cemented: "D1",
       apd: false,
-      dPgF: 0.00856,
+      dPgF: 0.009544,
       role: "High-dispersion negative member of the G2 cemented doublet.",
     },
     {
@@ -116,7 +121,7 @@ const LENS_DATA = {
       glass: "TAFD32 (HOYA)",
       cemented: "D1",
       apd: false,
-      dPgF: -0.006816,
+      dPgF: -0.007092,
       role: "High-index positive member of the G2 cemented doublet; achromatizes L3 and reduces decenter sensitivity.",
     },
     {
@@ -129,7 +134,7 @@ const LENS_DATA = {
       fl: 25.55,
       glass: "M-BACD5N (HOYA)",
       apd: false,
-      dPgF: -0.00078,
+      dPgF: -0.003478,
       role: "Main positive power of the moving G2 focus group; aspheres stabilize spherical aberration and astigmatism through focus.",
     },
     {
@@ -142,7 +147,7 @@ const LENS_DATA = {
       fl: -39.19,
       glass: "S-NBH52V (OHARA)",
       apd: false,
-      dPgF: -0.003762,
+      dPgF: -0.003747,
       role: "Strong negative front member of G3; expands the image circle and contributes negative Petzval power.",
     },
     {
@@ -155,7 +160,7 @@ const LENS_DATA = {
       fl: -79.59,
       glass: "FF8 (HOYA)",
       apd: false,
-      dPgF: 0.01586,
+      dPgF: 0.017434,
       role: "Rear negative meniscus for astigmatism and field-balance correction near the image side.",
     },
     {
@@ -168,8 +173,9 @@ const LENS_DATA = {
       fl: 83.6,
       glass: "FDS16-W (HOYA)",
       apd: "patent",
-      dPgF: 0.046934,
-      apdNote: "PgF = 0.6656; ΔPgF = +0.0469 by the patent's normal-line formula.",
+      dPgF: 0.049519,
+      apdNote:
+        "Patent PgF = 0.6656; ΔPgF = +0.0469 by the patent's line (PgF − 0.64833 + 0.00180·νd), runtime dPgF +0.04952.",
       role: "High-index, high-dispersion anomalous-dispersion positive rear element for lateral chromatic correction.",
     },
   ],
@@ -282,8 +288,8 @@ const LENS_DATA = {
   focusDescription:
     "Internal focusing by translating G2 (L3-L5) 3.480 mm toward the object; G1, stop, and G3 remain fixed.",
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.56,

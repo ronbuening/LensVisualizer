@@ -23,9 +23,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    edge thickness, and cross-gap sag intrusion.                    ║
  * ║                                                                    ║
  * ║  NOTE ON APERTURE:                                                 ║
- * ║    The patent prescription is f/2.1.  nominalFno records the       ║
- * ║    marketed f/2 lens, while apertureDesign and the physical stop   ║
- * ║    semi-diameter preserve the patent f/2.1 optical state.          ║
+ * ║    The patent prescription is f/2.1. nominalFno, apertureDesign    ║
+ * ║    and the physical stop semi-diameter all carry that value;       ║
+ * ║    apertureMarketing records the marketed f/2.                     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -192,8 +192,8 @@ const LENS_DATA = {
   focusDescription:
     "Production Contax/Yashica literature identifies floating close-range correction, but DE 2359156 A1 Example 12 provides only the infinity-focus prescription; the model keeps the infinity BFD fixed.",
   closeFocusM: 0.24,
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.1,
+  fstopSeries: [2.1, 2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   scFill: 0.5,
   yScFill: 0.45,

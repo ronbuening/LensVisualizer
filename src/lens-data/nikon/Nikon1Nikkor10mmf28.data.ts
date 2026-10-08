@@ -240,8 +240,8 @@ const LENS_DATA = {
   focusDescription:
     "Rear focusing by translating the entire second lens group G2 toward the object; data file close state follows the patent 0.50 m table, not the production 0.20 m MFD.",
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11],
+  nominalFno: 2.92,
+  fstopSeries: [2.92, 4, 5.6, 8, 11],
   maxFstop: 11,
 
   scFill: 0.62,

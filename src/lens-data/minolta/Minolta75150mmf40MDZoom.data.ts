@@ -130,6 +130,7 @@ const LENS_DATA = {
   focusDescription: "NO_INTERNAL_RECONSTRUCTION: the patent identifies F as the focusing group but publishes only infinity-focus zoom spacings. The production 1.2 m MFD is retained as product metadata; no finite-focus internal movement is invented.",
 
   nominalFno: 4.1,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.1, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
 

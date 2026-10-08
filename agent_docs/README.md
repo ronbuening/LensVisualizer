@@ -54,7 +54,8 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md) — planned features; owns the per-item template and the "already shipped" list
 - [queue] [`../EFFICIENCY_IMPROVEMENT_PLAN.md`](../EFFICIENCY_IMPROVEMENT_PLAN.md) — open cleanup and performance items with verification gates
 - [queue] [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) — trace-model status, deferred items, suggested next work
-- [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, MTF field and image-plane censuses, traced field-coverage shortfalls, prescription errors found in passing, the in-progress diagram sweep
+- [queue] [`../MTF_ACCURACY_PLAN.md`](../MTF_ACCURACY_PLAN.md) — MTF audit findings, assumption review, and the open stages (prescription screen, uncertainty display, validation statement); optional optiland cross-check tool
+- [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, MTF field and image-plane censuses, traced field-coverage shortfalls, prescription errors found in passing, stops still opened to the marketed f-number, stations whose stated axial beam does not pass, the in-progress diagram sweep
 - [queue] [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) — mount/format metadata coverage and review queue
 - [queue] [`glass-relabel-followup.md`](glass-relabel-followup.md) — catalog-mismatch relabel status and closed families
 - [queue] [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) — patent line-index backfill for proprietary glasses
@@ -68,6 +69,7 @@ Kept only while a living doc or a lens `*.audit.md` sidecar links them; see [`re
 - [record] [`records/README.md`](records/README.md) — admission rule and where deleted records went
 - [record] [`records/lens-shape-audit-first-200-2026-09-08.md`](records/lens-shape-audit-first-200-2026-09-08.md) — in-progress diagram sweep, paused at lens 40 of 200, with resume handoff
 - [record] [`records/patent-figure-sd-audit-2026-07.md`](records/patent-figure-sd-audit-2026-07.md) — 2026-07 semi-diameter audit report of the odd-asphere lenses
+- [record] [`records/fixed-iris-patent-audit-2026-10.md`](records/fixed-iris-patent-audit-2026-10.md) — the 88 fixed-iris zooms read against their patents: verdict per lens and the findings queued from it
 - [record] [`records/konica-ar-september5-audit.md`](records/konica-ar-september5-audit.md) — Konica AR batch audit linked from its lens audit logs
 - [record] [`records/relationship-map-2026-07-22.md`](records/relationship-map-2026-07-22.md) — patent relationship map (F25) outcome record
 - [record] [`records/mirror-lens-tracing-and-authoring.md`](records/mirror-lens-tracing-and-authoring.md) — historical mirror/folded implementation notes
@@ -78,7 +80,8 @@ Kept only while a living doc or a lens `*.audit.md` sidecar links them; see [`re
 
 Regenerate instead of hand-editing. Reports are deterministic, so `git diff` after regeneration shows only real data
 changes. Judge glass coverage by the share of surfaces with trusted chromatic data, not by absolute missing counts.
-The generators live in `reports/` and never run in `npm test`. `npm run generate:reports` rewrites every report;
+The generators live in `reports/` and never run in `npm test`. `npm run generate:reports` rewrites every report
+except the MTF chart regression, which takes minutes and runs only with `MTF_CHART_REPORT=1`;
 `npm run generate:glass-reports` rewrites all glass reports, `npm run generate:mirror-reports` the mirror fixtures, and
 `npm run generate:mount-svgs` the mount SVG specification plus per-view SVGs. Individual reports:
 
@@ -93,6 +96,7 @@ The generators live in `reports/` and never run in `npm test`. `npm run generate
 - [generated] [`generated/sellmeier-coverage.generated.md`](generated/sellmeier-coverage.generated.md) — `npm run generate:reports -- sellmeierCoverageScan`
 - [generated] [`generated/glass-coverage-opportunities.generated.md`](generated/glass-coverage-opportunities.generated.md) — `npm run generate:reports -- glassCoverageOpportunitiesScan`
 - [generated] [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm run generate:reports -- mirrorFixtureAuthoringReport`
+- [generated] [`generated/mtf-chart-regression.generated.md`](generated/mtf-chart-regression.generated.md) — `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`; simulated MTF against digitized manufacturer chart values (`reports/data/`), with diffraction for every maker and under each maker's chart convention, plus the estimator's cross-check against optical path. A report, never a test threshold
 - [generated] [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) — `npm run generate:reports -- mountSvgSpecificationsReport`; figure counts and content hashes, with full SVG markup in [`generated/mounts/`](generated/mounts/) and diffable geometry in `src/mounts/`
 - [generated] [`benchmarks/README.md`](benchmarks/README.md) — on-demand `npm run benchmark:optics-rendering`; one JSON per run in [`benchmarks/runs/`](benchmarks/runs/), latest report in [`benchmarks/benchmark-report.md`](benchmarks/benchmark-report.md)
 

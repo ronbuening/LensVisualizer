@@ -90,3 +90,35 @@ The visible and TC-engaged prescriptions retain their authored labels and patent
   392.285 / 392.285 / 392.284 mm, the sums of the printed spacings. Recomputed Dc/Σ4 = 41.203 / 117.219 = 0.351505
   (patent 0.352; the old folded value was 0.353044). The 2.0 m close solve now images at 2.001193 m physical, with
   unchanged magnifications.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+- Read local `patents/WO2019131993A1.pdf` (image-only scan, 96 pages; printed page = PDF page − 2). ¶0155–0158
+  (PDF p. 32) define θgF ≡ (ng − nF)/(nF − nC) and the patent's deviation from its own normal line,
+  ΔθgF = θgF − (0.648327 − 0.0018024·νd), for condition (2-11); ¶0162 (PDF p. 33) repeats the same formula for
+  condition (2-12).
+- Table 8 (PDF pp. 59–62) has columns m, r, d, nd, νd only; the patent prints no θgF column. The only
+  partial-dispersion figures for Example 1 are the Table 11 deviations (PDF pp. 65–66, values on p. 66):
+  ΔθgF1 = 0.0649, 0.0391 (the two G1A positives listed from the object side per ¶0268, so L11 and L12) and
+  ΔθgF2 = 0.0649 (L11).
+- The file had copied those two deviations straight into `dPgF`. The engine rebuilds ng from `dPgF` against
+  0.6438 − 0.001682·νd, so each value is now the θgF recovered from the patent's deviation
+  (θgF = ΔθgF + 0.648327 − 0.0018024·νd) minus the engine's line at the element's stored νd. The two lines differ by
+  0.004527 − 0.0001204·νd.
+
+| Element | νd | Patent ΔθgF (Table 11) | Recovered θgF | Stored before | Stored after |
+|---|---:|---:|---:|---:|---:|
+| L11 | 95.23 | +0.0649 | 0.541584 | +0.0649 | +0.057961 |
+| L12 | 82.57 | +0.0391 | 0.538603 | +0.0391 | +0.033686 |
+
+- Converting the stored values back to the patent's line returns 0.0649 and 0.0391, so the condition (2-11) and (2-12)
+  rows in the analysis are unchanged and stay labelled as the patent's ΔθgF.
+- L12's recovered θgF (0.5386) matches the Hikari J-FKH1 catalog figure (0.5386, engine-line +0.033679). L11's
+  recovered θgF (0.5416) sits 0.0029 above the repository's CaF2 curve (0.5387); the patent's printed deviation decides
+  and nothing was fitted to the catalog.
+- Left: nothing in this file. No other element carries `dPgF` and none was added; no element is e-line referenced and
+  none authors nC/nF/ng. The TC-engaged file is a separate data file with its own audit log and was not edited in this
+  pass.
+- nd, νd, glass labels, `apd` tags and surfaces are untouched. The two `apdNote` strings now quote the patent's
+  deviation on the patent's line, the recovered θgF and the runtime value; a header note in the data file names both
+  lines; the analysis now labels 0.0649 and 0.0391 as the patent's ΔθgF and states what the file stores.

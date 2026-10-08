@@ -17,6 +17,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    thickness, and cross-gap sag intrusion ≤ 90% of gap.  Front    ║
  * ║    element capped against 82 mm filter thread constraint.         ║
  * ║                                                                    ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                       ║
+ * ║    `dPgF` is PgF minus the engine's normal line                    ║
+ * ║    (0.6438 − 0.001682·νd), not the patent's ΔPgF = PgF − 0.64833   ║
+ * ║    + 0.00180·νd (¶0017), which the analysis quotes.  The patent    ║
+ * ║    prints PgF to two decimals only, so L2/L3/L12 use the PgF       ║
+ * ║    implied by condition (9) (5.36 / νd 95.10 → PgF 0.5335) and     ║
+ * ║    L6, L10 and L15 are catalog-derived (FCD705 0.5400, FCD515      ║
+ * ║    0.5441); each agrees with the printed two-decimal PgF.          ║
+ * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
@@ -70,8 +79,9 @@ const LENS_DATA = {
       fl: -82.2,
       glass: "FCD100 (HOYA)",
       apd: "patent",
-      apdNote: "ΔPgF ≈ +0.053; FLD fluorite-equivalent fluorophosphate",
-      dPgF: 0.053,
+      apdNote:
+        "Patent condition (9) VnA × ΔPgFnA = 5.36 at νd 95.10: ΔPgF = +0.0564 by the patent's line (PgF − 0.64833 + 0.00180·νd), PgF = 0.5335 (table prints 0.53), runtime dPgF +0.04967; FLD fluorite-equivalent fluorophosphate",
+      dPgF: 0.04967,
       role: "FLD negative meniscus in G1A; provides retrofocus divergence with secondary-spectrum correction (¶0043–0044).",
     },
     {
@@ -84,8 +94,9 @@ const LENS_DATA = {
       fl: -132.1,
       glass: "FCD100 (HOYA)",
       apd: "patent",
-      apdNote: "ΔPgF ≈ +0.053; FLD fluorite-equivalent fluorophosphate",
-      dPgF: 0.053,
+      apdNote:
+        "Patent condition (9) VnA × ΔPgFnA = 5.36 at νd 95.10: ΔPgF = +0.0564 by the patent's line (PgF − 0.64833 + 0.00180·νd), PgF = 0.5335 (table prints 0.53), runtime dPgF +0.04967; FLD fluorite-equivalent fluorophosphate",
+      dPgF: 0.04967,
       role: "Second FLD negative meniscus; distributes G1A negative power across two elements (¶0021).",
     },
     // G1B — positive subgroup (fixed)
@@ -125,8 +136,9 @@ const LENS_DATA = {
       fl: 60.6,
       glass: "FCD705 (HOYA)",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.028; SLD PGM-compatible fluorophosphate crown",
-      dPgF: 0.028,
+      apdNote:
+        "Patent prints PgF = 0.54 (two decimals; ΔPgF ≈ +0.028 by the patent's line PgF − 0.64833 + 0.00180·νd). Catalog-derived: HOYA FCD705 PgF 0.5400, runtime dPgF +0.02318; SLD PGM-compatible fluorophosphate crown",
+      dPgF: 0.023177,
       cemented: "Y",
       role: "LY1 — positive element of Component Y (old-achromatism doublet); high-order SA correction (¶0026).",
     },
@@ -178,8 +190,9 @@ const LENS_DATA = {
       fl: 41.8,
       glass: "FCD515 (HOYA) / FCD505 class",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.015; SLD fluorophosphate crown",
-      dPgF: 0.015,
+      apdNote:
+        "Patent prints PgF = 0.54 (two decimals; ΔPgF ≈ +0.015 by the patent's line PgF − 0.64833 + 0.00180·νd). Catalog-derived: HOYA FCD515 PgF 0.5441 (ΔPgF +0.0193 by the patent's line), runtime dPgF +0.01575; SLD fluorophosphate crown",
+      dPgF: 0.015751,
       cemented: "D2",
       role: "Crown element of G2 doublet; SLD glass for axial-color trimming near the stop.",
     },
@@ -207,8 +220,9 @@ const LENS_DATA = {
       fl: 53.3,
       glass: "FCD100 (HOYA)",
       apd: "patent",
-      apdNote: "ΔPgF ≈ +0.053; FLD fluorite-equivalent — third and final FLD element",
-      dPgF: 0.053,
+      apdNote:
+        "Same glass row as L2/L3 (nd 1.43700, νd 95.10, table PgF 0.53), so PgF = 0.5335 from patent condition (9): ΔPgF = +0.0564 by the patent's line (PgF − 0.64833 + 0.00180·νd), runtime dPgF +0.04967; FLD fluorite-equivalent — third and final FLD element",
+      dPgF: 0.04967,
       cemented: "L3a",
       role: "L31 — positive crown of Component L3a; axial-color and SA correction immediately after stop (¶0049).",
     },
@@ -247,8 +261,9 @@ const LENS_DATA = {
       fl: 42.2,
       glass: "FCD515 (HOYA) / FCD505 class",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.015; SLD fluorophosphate crown",
-      dPgF: 0.015,
+      apdNote:
+        "Patent prints PgF = 0.54 (two decimals; ΔPgF ≈ +0.015 by the patent's line PgF − 0.64833 + 0.00180·νd). Catalog-derived: HOYA FCD515 PgF 0.5441 (ΔPgF +0.0193 by the patent's line), runtime dPgF +0.01575; SLD fluorophosphate crown",
+      dPgF: 0.015751,
       role: "L34 — convergent relay element; SLD glass minimises rear-group chromatic residual.",
     },
     {
@@ -371,8 +386,8 @@ const LENS_DATA = {
     "Floating inner focus. G2 and G3 move toward the object with differential travel (G3 moves ~1 mm farther than G2). G1 fixed; stop attached to G3. HSM ring-type ultrasonic drive.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

@@ -24,16 +24,23 @@ import type { LensDataInput } from "../../types/optics.js";
  * APERTURE STOP:
  *   The patent gives F/5.6 but no stop station or diameter. The single modeled STO is an explicit
  *   inference placed 3.000 mm behind r20 within the published 49.000 mm G41-G42 air gap, leaving
- *   46.000 mm to r21. STO sd = 11.387365 mm is solved from the authored prescription so the
- *   modeled endpoint f-numbers are 5.59996 and 5.60004.
+ *   46.000 mm to r21. STO sd = 11.387365 mm is the paraxial solve for f/5.6 (paraxial endpoint
+ *   f-numbers 5.59996 and 5.60004). The fixed iris is traced from nominalFno by real ray and opens
+ *   to 11.7515 mm, giving f/5.600 at 102 mm and f/5.603 at 294.784 mm with the iris as the limiter
+ *   at both stations.
  *
  * SEMI-DIAMETERS:
  *   The patent publishes no clear semi-diameters. Values are derived from f/5.6 marginal rays,
  *   0.6-field chief/marginal envelopes, a high-resolution review of the Fig. 2A optical section,
- *   and Nikon's 62 mm attachment / 74 mm barrel dimensions. That review supports matching L12
- *   to the 30 mm front-group rim and reducing G3 to 13.5 mm. Values remain constrained by
- *   edge-thickness and shared-gap geometry. At the default off-axis fan, any modeled clipping
- *   first occurs at the front surface, never at a cemented junction.
+ *   and Nikon's 62 mm attachment / 74 mm barrel dimensions. L12 matches the 30 mm rim of L11;
+ *   Fig. 2A draws the two level. G3 (surfaces 12-14) carries one 14.9 mm rim. The f/5.6 on-axis
+ *   ray reaches 14.514 / 14.606 / 14.829 mm there at 102 mm, and Fig. 2A draws the L3 doublet with
+ *   a square-cut common rim, so all three surfaces take the highest of those heights rounded up to
+ *   0.1 mm: the smallest square rim that passes the stated beam. Fig. 2A draws L3 at about 16.7 mm
+ *   on its axial scale, level with L41 and slightly above G2. Values remain constrained by
+ *   edge-thickness and shared-gap geometry. At the default off-axis fan the bundle is bounded by
+ *   surfaces 14 and 24 at 102 mm and by surfaces 1 and 24 at 294.784 mm; no cemented junction
+ *   limits it.
  *
  * GLASS / SPECTRAL DATA:
  *   The patent publishes d-line nd and vd only. Glass fields retain those coordinates while naming
@@ -258,9 +265,10 @@ const LENS_DATA = {
     { label: "9", R: -58.963, d: 1.0, nd: 1.713, elemId: 6, sd: 14.8 },
     { label: "10", R: 66.292, d: 2.7, nd: 1.80518, elemId: 7, sd: 15.0 },
     { label: "11", R: 643.454, d: 37.463, nd: 1.0, elemId: 0, sd: 15.1 },
-    { label: "12", R: 108.117, d: 6.0, nd: 1.51835, elemId: 8, sd: 13.5 },
-    { label: "13", R: -36.4, d: 1.0, nd: 1.71736, elemId: 9, sd: 13.5 },
-    { label: "14", R: -68.495, d: 23.112, nd: 1.0, elemId: 0, sd: 13.5 },
+    // G3 has one square rim: the f/5.6 on-axis ray height on surface 14 at 102 mm (14.829 mm), rounded up to 0.1 mm.
+    { label: "12", R: 108.117, d: 6.0, nd: 1.51835, elemId: 8, sd: 14.9 },
+    { label: "13", R: -36.4, d: 1.0, nd: 1.71736, elemId: 9, sd: 14.9 },
+    { label: "14", R: -68.495, d: 23.112, nd: 1.0, elemId: 0, sd: 14.9 },
     { label: "15", R: 59.608, d: 4.5, nd: 1.50137, elemId: 10, sd: 15.5 },
     { label: "16", R: -89.577, d: 7.5, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "17", R: -65.081, d: 1.5, nd: 1.71736, elemId: 11, sd: 14.0 },
@@ -318,6 +326,7 @@ const LENS_DATA = {
     "NO_INTERNAL_RECONSTRUCTION. The patent describes G1 focusing and coupled G1+G2 macro motion but publishes no quantitative close-focus spacings; the model therefore retains only the two published infinity zoom states. Nikon's 0.71 m minimum applies only to the 100 mm macro mode and is metadata, not a solved internal state.",
 
   nominalFno: 5.6,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
 

@@ -50,7 +50,6 @@ export interface ExactTraceLens {
   S: readonly ExactTraceSurface[];
   asphByIdx: Record<number, AsphericCoefficients>;
   stopIdx?: number;
-  clipMargin?: number;
   opticalPath?: ResolvedOpticalPath;
   imagePlane?: ResolvedImagePlane;
   isFoldedOptics?: boolean;
@@ -944,7 +943,7 @@ function apertureSemiDiameter(
 ): number | null {
   if (surfaceIdx === lens.stopIdx && stopSemiDiameter !== undefined) return stopSemiDiameter;
   if (typeof surface.sd !== "number") return null;
-  return surface.sd * (lens.clipMargin ?? 1);
+  return surface.sd;
 }
 
 function radiusWithinTraceAperture(radius: number, surface: ExactTraceSurface, semiDiameter: number): boolean {

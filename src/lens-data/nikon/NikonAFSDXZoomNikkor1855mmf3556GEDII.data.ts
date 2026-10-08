@@ -35,8 +35,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  first-order stop solution, exact non-paraxial chief/marginal ray traces at all zoom/focus endpoints,   ║
  * ║  the default 0.6-field off-axis bundle, the full published chief-ray fields, Fig. 13 proportions,       ║
  * ║  edge thickness, actual rim slope, conic domain, shared-gap intrusion, and render-trim proxy checks.    ║
- * ║  The 7.799 mm stop semi-diameter is the wide-state first-order solution for F/3.56; the published       ║
- * ║  rounded mid/tele FNO values imply 7.791 / 7.748 mm, a 0.65% spread consistent with one physical iris. ║
+ * ║  The 7.799 mm semi-diameter on the STO row is the wide-state first-order solution for F/3.56. The        ║
+ * ║  wide-open iris is traced at each zoom station from nominalFno with a real marginal ray, giving          ║
+ * ║  7.893 / 7.962 / 8.007 mm for F/3.56 / 4.65 / 5.90 (first-order equivalents 7.799 / 7.791 / 7.748 mm).   ║
+ * ║  Neither set fits one radius within the print rounding of Figs. 14-16, and Example 4 gives the stop a    ║
+ * ║  position but no diameter. The iris, not a lens rim, limits the axial beam at all three stations.        ║
  * ║                                                                                                          ║
  * ║  Glass labels are deliberately conservative. Example 4 publishes only nd/vd, not trade names or       ║
  * ║  nC/nF/ng/dPgF. Ambiguous media therefore use six-digit/classes or Unmatched(...) instead of a         ║

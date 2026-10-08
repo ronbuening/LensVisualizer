@@ -259,8 +259,8 @@ const LENS_DATA = {
     "Floating two-group inner focus. Groups 1 and 2 extend forward on a helicoid; Group 3 fixed. Manual focus, no AF motor. 9 rounded aperture blades.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.5,
-  fstopSeries: [2.5, 2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.53,
+  fstopSeries: [2.53, 2.8, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

@@ -386,8 +386,8 @@ const LENS_DATA = {
   focusDescription:
     "Floating internal focus: L2 moves imageward while L3 moves objectward; L1, L4, L5/OS, and L6 remain fixed relative to the image plane.",
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
+  nominalFno: 2.92,
+  fstopSeries: [2.92, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.62,

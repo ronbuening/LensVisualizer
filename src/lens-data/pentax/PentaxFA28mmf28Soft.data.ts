@@ -150,8 +150,8 @@ const LENS_DATA = {
   focusDescription:
     "Patent publishes infinity only. Close focus is modeled as inferred unit focus: final back-focus gap increases by about 5.04 mm from the Ricoh 0.18× maximum-magnification specification.",
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.54,

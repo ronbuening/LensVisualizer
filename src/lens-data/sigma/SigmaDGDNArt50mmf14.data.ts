@@ -373,8 +373,8 @@ const LENS_DATA = {
     "Single-element inner focus. L8 (GR1) — negative meniscus with 2× aspherical surfaces — translates toward image. GF, stop, and GR2 fixed. HLA linear motor drive.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

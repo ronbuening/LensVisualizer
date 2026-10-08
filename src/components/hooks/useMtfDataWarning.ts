@@ -12,8 +12,8 @@ import {
  * Track the dismissal of one lens system's data warning.
  *
  * @param systemKey - lens key, or the composed key of a lens with a converter
- * @param limitations - gaps the warning currently lists
- * @returns whether every listed kind has been dismissed, and a callback that dismisses them
+ * @param limitations - gaps and notes the warning currently lists
+ * @returns whether every blocking kind has been dismissed, and a callback that dismisses them
  */
 export function useMtfDataWarning(
   systemKey: string,
@@ -28,9 +28,9 @@ export function useMtfDataWarning(
     () =>
       dismissMtfDataWarnings(
         systemKey,
-        limitations.map(({ kind }) => kind),
+        limitations.filter(({ blocking }) => blocking).map(({ kind }) => kind),
       ),
     [systemKey, limitations],
   );
-  return [limitations.every(({ kind }) => dismissed.has(kind)), acknowledge];
+  return [limitations.every(({ kind, blocking }) => !blocking || dismissed.has(kind)), acknowledge];
 }

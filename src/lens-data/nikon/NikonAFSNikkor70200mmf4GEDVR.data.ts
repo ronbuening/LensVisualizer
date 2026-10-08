@@ -382,6 +382,7 @@ const LENS_DATA = {
   closeFocusM: 1.0,
   focusDescription: "Patent-published G1B internal focusing mechanism; numerical prescription is infinity-only at W/M/T, so no close-focus internal reconstruction is authored. The 1.0 m value is the production MFD observable only.",
   nominalFno: 4.0997,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22],
   yScFill: 0.34,
 } satisfies LensDataInput;

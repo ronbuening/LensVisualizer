@@ -342,7 +342,7 @@ The corresponding Petzval radius is about -852 mm in this sign convention. This 
 
 The patent does not provide clear-aperture semi-diameters. The `.data.ts` file therefore uses conservative renderer semi-diameter estimates constrained by element edge thickness, element front/rear diameter ratios, cross-gap sag intrusion, the 82 mm filter diameter, and the aspherical rim geometry. These semi-diameters should be treated as visualization apertures, not as a claim about Canon's production clear-aperture drawings.
 
-The aperture stop semi-diameter used in the renderer is 12.94 mm. This corresponds to the telephoto design-aperture requirement for the patent's F/2.91 beam. At shorter focal lengths the physical diaphragm would stop down relative to that maximum aperture to maintain the effective entrance pupil required by the constant-aperture zoom behavior.
+The aperture stop semi-diameter authored in the data file is 12.94 mm. This corresponds to the paraxial telephoto design-aperture requirement for the patent's F/2.91 beam. At shorter focal lengths the physical diaphragm would stop down relative to that maximum aperture to maintain the effective entrance pupil required by the constant-aperture zoom behavior. The renderer traces the wide-open iris radius from F/2.91 at each zoom position: 9.656 mm at the wide end, 10.820 mm at the middle position, and 13.486 mm at the telephoto end, where the surface-18 rim limits the traced beam to about f/3.22.
 
 ## Sources
 

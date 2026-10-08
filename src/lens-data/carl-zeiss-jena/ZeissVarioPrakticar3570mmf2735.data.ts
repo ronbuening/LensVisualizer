@@ -394,6 +394,7 @@ const LENS_DATA = {
   /* ── Aperture configuration ── one modelled f-number per zoom station, from a single fixed
    *   iris of 9.241 mm semi-diameter calibrated to the patent's published k = 2.7 at wide. */
   nominalFno: [2.7, 2.8122, 2.9242, 3.0362, 3.1482, 3.2602, 3.3722, 3.4842, 3.5962, 3.6678],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.7, 3.5, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22, // marketed minimum aperture, half-stop detents
 

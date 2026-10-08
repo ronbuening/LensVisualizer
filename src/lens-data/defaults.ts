@@ -24,7 +24,6 @@ const LENS_DEFAULTS: Partial<LensData> = {
   svgW: 1080,
   svgH: 490,
   scFill: 0.55,
-  clipMargin: 1.0,
   maxRimAngleDeg: DEFAULT_MAX_RIM_ANGLE_DEG,
   gapSagFrac: 0.9,
   maxAspectRatio: 1.6,

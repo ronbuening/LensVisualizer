@@ -48,3 +48,39 @@ falls to 0.0994 mm at 13.1 mm (was 0.1766 mm at 11.0 mm), and the 6A rim departu
 `HDPentaxDA1685mmF3556EDDCWR.analysis.md` quotes both and was updated; the same sentence's maximum rim slope, still
 51.301° from the pre-2026-08-14 rims, now reads the stored 61.702° (surface 8), and a sentence notes that the chief
 ray is no longer clipped.
+
+## 2026-10-07 — Zoom iris and station f-numbers against the patent
+
+The file keeps `zoomApertureModel: "fixed-iris"`: one wide-open iris radius, sized by a real marginal ray from the wide
+`nominalFno`, held at every station. The patent prints FNO 3.6 / 4.4 / 5.8 to one decimal and no stop diameter. By real
+marginal ray those three values need 6.9734 / 7.0953 / 7.0128 mm, and a single radius gives all three within print
+rounding anywhere from 7.0156 to 7.0716 mm (midpoint 7.0436 mm). The earlier values were the paraxial f-numbers of a
+6.95 mm stop; the engine sized the iris from the first of them by real ray, 7.0025 mm, which is 0.013 mm below that
+interval and traced f/4.457 at 35 mm, rounding to 4.5 against the printed 4.4. The wide value is set so the iris sits
+at the interval midpoint, and the other two stations state what that iris gives.
+
+| Field | Before | After | Source |
+|---|---|---|---|
+| `nominalFno[0]` (16.48 mm) | 3.585229851 | 3.5647 | Table 2 (PDF p. 10), FNO. row, short-focal-length column: 3.6. f/3.5647 traces a 7.0435 mm iris, the midpoint of the real-ray interval consistent with the printed 3.6 / 4.4 / 5.8 |
+| `nominalFno[1]` (35 mm) | 4.435970318 | 4.432 | Table 2 (PDF p. 10), FNO. row, intermediate column: 4.4. f-number the 7.0435 mm iris gives at this station |
+| `nominalFno[2]` (82.45 mm) | 5.763925078 | 5.776 | Table 2 (PDF p. 10), FNO. row, long-focal-length column: 5.8. f-number the 7.0435 mm iris gives at this station |
+| `specs[2]` | `modeled f/3.585-5.764` | `modeled f/3.565-5.776` | Follows `nominalFno` |
+
+- The wide-open iris the engine traces is 7.0435 mm (was 7.0025 mm). With it the three stations trace on axis at
+  f/3.565 / f/4.432 / f/5.776, each within 0.02 % of its stated value and each limited by the iris; no rim clips the
+  axial beam.
+- Station 2 lies on a rounding edge: the iris gives f/4.4315, stored as 4.432 (0.011 % from the traced value).
+- Example identity confirmed against Table 1 (PDF pp. 9–10): all 30 rows of R, d, N(d) and ν(d) match the file,
+  including 15 (−65.048 / d15), 16 stop (∞ / 0.800, no diameter) and 17 (30.478 / 4.950 / 1.51633 / 64.1).
+- Focal lengths confirmed: Table 2 prints f 16.48 / 35.00 / 82.45; the prescription computes 16.4801 / 34.9988 /
+  82.4420 mm.
+- Variable gaps and back focus confirmed against Table 2: d5 2.523 / 22.037 / 44.543, d15 25.030 / 10.550 / 1.825,
+  d23 7.451 / 3.240 / 1.500, fB 38.99 / 57.54 / 83.47.
+- Stop position confirmed: ¶0039 (PDF p. 9) places stop S between G2 and G3, directly in front of G3, moving as one
+  with G3; the file's `STO` row sits between surfaces 15 and 17 with the fixed 0.800 mm gap behind it.
+- No semi-diameter changed. The `STO` row keeps its authored 6.95 mm, which the builder replaces with the traced
+  radius; the header and the analysis note state the 7.0435 mm iris.
+- Open: the patent gives no stop diameter, so the midpoint of the rounding interval is a modeling choice, not a source
+  value. Any radius in 7.0156–7.0716 mm is equally consistent with Table 2.
+- `apertureDesign` is not set. `nominalFno[0]` 3.5647 is 0.98 % faster than the printed 3.6: inside the one-decimal
+  print band (3.55–3.65), outside the 0.5 % the design-f-number sweep treats as the same aperture.

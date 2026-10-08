@@ -55,7 +55,7 @@ At the three published infinity states, the computed focal lengths are 24.7011, 
 
 Only the three patent-tabulated states are treated as source-defined. Piecewise interpolation may be used by the viewer, but the patent contains contradictory prose about whether G3R follows a linear or nonlinear cam law. No continuous motion law is inferred from those three samples.
 
-The source's wide-angle `F/2.6` entry is inconsistent with the Working Example 1 aberration sheet, the commercial lens specification, and the nearly constant physical iris implied by the prescription. The data file therefore uses nominal design values of f/3.60, f/4.68, and f/5.90. A modeled stop semi-diameter of 7.92 mm yields paraxial f-numbers of 3.6315, 4.6708, and 5.8813, respectively.
+The source's wide-angle `F/2.6` entry is inconsistent with the Working Example 1 aberration sheet, the commercial lens specification, and the nearly constant physical iris implied by the prescription. The data file therefore uses nominal design values of f/3.60, f/4.68, and f/5.90. The patent prints no stop diameter. The model traces one fixed iris of 8.1162 mm radius, set by a real marginal ray at f/3.60 in the wide state and held through the zoom; it gives f/4.66 at 50 mm and f/5.89 at 116.5 mm, each within 0.5% of the printed value. The 7.92 mm semi-diameter on the `STO` row is a paraxial inference, corresponding to paraxial f-numbers of 3.6315, 4.6708, and 5.8813, and does not size the traced beam.
 
 The system is not a telephoto construction under the strict compactness criterion `total track / EFL < 1`; the ratios are 5.051, 2.944, and 1.526. The wide and middle states are retrofocus by the strict criterion `BFD > EFL`, whereas the long state is not.
 
@@ -196,22 +196,28 @@ Nikon's design history explains that second-group focusing reduces the required 
 
 ## Aspherical Surfaces
 
-Working Example 1 uses the standard conic form
+The patent's EQ. 3 prints the aspheric sag as
 
-`Z(h) = (h²/R) / [1 + sqrt(1 - (1 + K)(h/R)²)] + A4 h⁴ + A6 h⁶ + A8 h⁸ + A10 h¹⁰`.
+`X(y) = (y²/r) / [1 + sqrt(1 - k y²)] + C2 y² + C4 y⁴ + C6 y⁶ + C8 y⁸ + C10 y¹⁰`.
 
-The patent's coefficient `k` is therefore the same convention as the data file's `K`; no `K = k - 1` conversion is required. Both surfaces use `K = 0`, so the polynomial departure is referenced to a spherical base.
+The conic coefficient `k` multiplies the height term directly, with no `(1 + k)` factor, so `k = 1` is a sphere and `k = 0` leaves the paraboloid `y²/(2r)`. The data file uses
+
+`Z(h) = (h²/R) / [1 + sqrt(1 - (1 + K)(h/R)²)] + A4 h⁴ + A6 h⁶ + A8 h⁸ + A10 h¹⁰`,
+
+in which `K = 0` is the sphere, so `K = k - 1`. Both Working Example 1 aspheres print `k = 0.0000` and are entered as `K = -1`: the polynomial departure rides on a paraboloid base. The patent's other examples confirm the convention. Working Examples 2 and 4 print `k = 1.0000` for surfaces 132 and 332, and Working Example 2's condition (5) reproduces its printed 0.00513 only with a spherical base on surface 132. `C2` is printed as zero on both surfaces.
 
 | Surface | Physical element | Construction | `K` | `A4` | `A6` | `A8` | `A10` |
 |---|---|---|---:|---:|---:|---:|---:|
-| 17A | L21, element 4 | Composite resin on glass substrate | 0 | +1.56850e-5 | -2.03900e-8 | +2.61860e-11 | +8.50420e-14 |
-| 34A | L3R2, element 13 | Glass asphere | 0 | -3.43240e-5 | -7.40540e-8 | -3.47150e-10 | -1.08970e-12 |
+| 17A | L21, element 4 | Composite resin on glass substrate | -1 | +1.56850e-5 | -2.03900e-8 | +2.61860e-11 | +8.50420e-14 |
+| 34A | L3R2, element 13 | Glass asphere | -1 | -3.43240e-5 | -7.40540e-8 | -3.47150e-10 | +1.08970e-12 |
 
-Surface 17A has a patent-published clear diameter of 27.3 mm. At the verified semi-height of 13.65 mm, its departure from the reference sphere is `+0.463287528 mm`, giving `|AS1-S1|/fw = 0.0187566`. The positive net departure is consistent with the patent's use of this surface to alter the peripheral power of the negative G2 front element and suppress wide-angle distortion.
+Surface 17A has a patent-published clear diameter of 27.3 mm. At the verified semi-height of 13.65 mm, its departure from the reference sphere is `+0.462994588 mm`, giving `|AS1-S1|/fw = 0.0187447`. The positive net departure is consistent with the patent's use of this surface to alter the peripheral power of the negative G2 front element and suppress wide-angle distortion. The base radius is long enough that the paraboloid and the sphere differ by only 0.0003 mm at this height.
 
-Surface 34A has a patent-published clear diameter of 15.6 mm. At the verified semi-height of 7.80 mm, its departure is `-0.149392111 mm`, giving `|AS2-S2|/fw = 0.00604826`. Nikon identifies the corresponding 13th physical element as the glass-molded asphere used for fourth-group spherical-aberration and coma correction.
+Surface 34A has a patent-published clear diameter of 15.6 mm. At the verified semi-height of 7.80 mm, its departure from the reference sphere is `-0.149509090 mm`, giving `|AS2-S2|/fw = 0.00605300`. Nikon identifies the corresponding 13th physical element as the glass-molded asphere used for fourth-group spherical-aberration and coma correction. The axial marginal ray at the printed f-numbers meets this surface at 6.70, 7.11, and 7.34 mm in the three zoom states, close to its 7.80 mm clear semi-diameter, so the conic base and the positive tenth-order term both act on the axial beam.
 
-No dimensional scaling was applied. All radii, thicknesses, semi-diameters, and image-plane spacings remain in patent millimeters, and the aspheric coefficients are copied without transformation. Had a scale factor `s` been used, each coefficient would require `A_p / s^(p-1)` while `K` remained unchanged; that operation is not present here.
+Traced at d-line against the paraxial focus, with full aperture taken at the printed f-numbers, the longitudinal spherical aberration at full aperture and at the 0.7 zone is -0.099 and -0.155 mm at 24.7 mm, -0.028 and -0.143 mm at 50 mm, and -0.193 and -0.041 mm at 116.5 mm. These follow the patent's FIGS. 3A(I), 3B(I), and 3C(I): undercorrected through the zone at the wide and middle states, and nearly flat to the 0.7 zone with a negative turn at the margin at the long end.
+
+No dimensional scaling was applied. All radii, thicknesses, semi-diameters, and image-plane spacings remain in patent millimeters, and the polynomial coefficients are copied without transformation; the conic constant is the only converted value. Had a scale factor `s` been used, each coefficient would require `A_p / s^(p-1)` while `K` remained unchanged; that operation is not present here.
 
 ## Source Corrections and Modeling Boundaries
 
@@ -224,9 +230,10 @@ The model preserves source values where possible and records the following bound
 5. **Spectral nomenclature:** The general definition calls D light 589.3 nm, while the Working Example defines its stored index at approximately 587.6 nm. The data treats the tabulated values as standard photographic `nd` and `νd` at the helium d line.
 6. **Focus endpoint:** The 0.5 m state is a code-solved, mechanism-constrained reconstruction, not a patent-tabulated row.
 7. **Semi-diameters:** Only surfaces 17A and 34A have patent-published clear diameters. Other semi-diameters were inferred from exact d-line ray envelopes, the patent section drawing, and current geometry constraints. Surface 34A is retained as a genuine wide-angle vignetting boundary rather than enlarged to pass every sampled off-axis ray.
-8. **Stop geometry:** The axial stop placement is published, but the 7.92 mm physical stop semi-diameter is inferred from the verified f-number sequence and entrance-pupil calculation.
+8. **Stop geometry:** The axial stop placement is published; no stop diameter is. The traced iris is one fixed radius of 8.1162 mm set by the wide-state f/3.60 marginal ray. The `STO` row's 7.92 mm semi-diameter is a paraxial inference from the f-number sequence and entrance-pupil calculation.
 9. **Excluded planes:** Working Example 1 contains no sensor cover plate, filter plate, inactive dummy plane, flare cutter, or mechanical optical plane requiring omission or air-equivalent replacement. No plate correction is folded into the rear spacing.
 10. **Product correlation:** The commercial identity is strongly supported but remains an inference because neither the patent nor Nikon explicitly states that Working Example 1 is the production prescription.
+11. **Conic convention:** The patent's `k` is converted as `K = k - 1`, so its printed `k = 0.0000` on surfaces 17 and 34 is entered as `K = -1`. EQ. 3 as printed omits the `/r²` of the conic height term; with `k = 0` the term vanishes and the reading is unaffected.
 
 ## Conditional Expressions
 
@@ -237,8 +244,8 @@ All ten patent conditions pass when evaluated against the final data arrays and 
 | 1 | `|f2| / fw` | 0.534394 | 0.3-0.8; table 0.534 | Pass |
 | 2 | `X2T / fw` | -0.756798 | -1.5 to -0.3; table -0.757 | Pass |
 | 3 | `f3F / f3R` | 0.626642 | 0.35-0.8; table 0.627 | Pass |
-| 4 | `|AS1-S1| / fw` | 0.0187566 | 0-0.1; table 0.01877 | Pass |
-| 5 | `|AS2-S2| / fw` | 0.00604826 | 0-0.05; table 0.00610 | Pass |
+| 4 | `|AS1-S1| / fw` | 0.0187447 | 0-0.1; table 0.01877 | Pass |
+| 5 | `|AS2-S2| / fw` | 0.00605300 | 0-0.05; table 0.00610 | Pass |
 | 6 | `f21 / f2` | 1.356294 | 0.7-1.6; table 1.356 | Pass |
 | 7 | `nnegative - npositive` in C4 | 0.315770 | 0.15-0.45; table 0.316 | Pass |
 | 8 | `qG2` for L24, surfaces 23-24 | -0.182246 | -1 to 1; table -0.182 | Pass |

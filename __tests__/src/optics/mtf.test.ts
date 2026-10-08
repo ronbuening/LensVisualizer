@@ -11,6 +11,7 @@ import {
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtfSupport.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
+import type { FiniteConjugate } from "../../../src/types/optics.js";
 import { LINE_NM } from "../../../src/optics/spectralLines.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtfMath.js";
 import { assessMtfDataLimitations, computeMtf } from "../../../src/optics/mtf.js";
@@ -32,17 +33,36 @@ import {
   refineMtfField,
   type MtfGridOutcome,
 } from "../../../src/optics/analysis/mtf.js";
-import { mtfChiefHeight, mtfFieldProcessingOrder } from "../../../src/optics/analysis/mtfFields.js";
-import { findAxialBestFocus, mtfImagePlaneOffset } from "../../../src/optics/analysis/mtfFocus.js";
+import {
+  mtfBeamHeight,
+  mtfChiefHeight,
+  mtfFieldProcessingOrder,
+  resolveMtfFieldGeometry,
+} from "../../../src/optics/analysis/mtfFields.js";
+import { resolveMtfAperture } from "../../../src/optics/analysis/mtfAperture.js";
+import {
+  findAxialBestFocus,
+  mtfImagePlaneOffset,
+  mtfNearestImagePlaneZ,
+} from "../../../src/optics/analysis/mtfFocus.js";
 import { findMtfFootprint } from "../../../src/optics/analysis/mtfFootprint.js";
 import type { MtfRayClass } from "../../../src/optics/analysis/mtfRayClassification.js";
 import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 
+const FINITE_CONJUGATE: FiniteConjugate = {
+  focusT: 1,
+  zoomT: 0,
+  objectDistanceMm: 1000,
+  distanceReference: "first-surface",
+  source: "Synthetic thick-lens conjugate",
+};
+
 export const mtfTestOptions: MtfOptions = {
   method: "geometric",
   spectrum: "reference",
+  focus: "design",
   pupilSemiDiameterMm: 1,
   stopSemiDiameterMm: 1,
   fieldFractions: [0],
@@ -65,6 +85,10 @@ describe("MTF support", () => {
     expect(assessMtfSupport(state, { ...mtfTestOptions, movementActive: true }).reason).toBe("active-movement");
     expect(assessMtfSupport(prepareRuntimeState(L, 1, 0), mtfTestOptions).reason).toBe("finite-conjugate-unavailable");
     expect(assessMtfSupport(state, { ...mtfTestOptions, pupilSemiDiameterMm: NaN }).reason).toBe("invalid-input");
+    // A retired method name from an untyped caller is refused, not computed as something else.
+    const retired = { ...mtfTestOptions, method: "geometric-dl" } as unknown as MtfOptions;
+    expect(assessMtfSupport(state, retired).reason).toBe("invalid-input");
+    expect(computeMtf(state, retired).fields).toEqual([]);
   });
   it("rejects unverified normalized prescription scale", () => {
     const normalized = build({
@@ -190,6 +214,78 @@ describe("geometric MTF", () => {
     expect(result.fields[0].reason).toBeNull();
     expect(result.fields[1]).toMatchObject({ status: "unavailable", reason: "outside-modeled-field", gridSize: 0 });
   });
+  it.each([
+    ["at infinity", undefined],
+    ["at a documented finite conjugate", FINITE_CONJUGATE],
+  ])("charts a declared format corner whose chief ray is clipped while part of the beam passes, %s", (_, conjugate) => {
+    const base = buildSimplePositiveElementLens();
+    // One millimetre behind the stop, a 0.3 mm air baffle clips every chief beyond about 16.7°.
+    const [stop, ...lens] = base.data.surfaces;
+    const surfaces = [{ ...stop, d: 1 }, { label: "B", R: 1e15, nd: 1, sd: 0.3, d: 0.5, elemId: 0 }, ...lens];
+    const data = { ...base.data, surfaces, ...(conjugate ? { finiteConjugates: [conjugate] } : {}) };
+    const prepare = (imageCircleMm?: number) =>
+      prepareRuntimeState(build(imageCircleMm ? { ...data, imageCircleMm } : data), conjugate ? 1 : 0, 0);
+    const options = { ...mtfTestOptions, fieldFractions: [0.5, 0.9, 1] };
+    const unformatted = prepare();
+    const support = assessMtfSupport(unformatted, options);
+    // Without a declared format the reference stays the chief's own edge.
+    const chiefEdge = computeMtf(unformatted, options).geometry!;
+    expect(chiefEdge.basis).toBe("modeled-edge");
+    expect(Math.abs(chiefEdge.modeledEdgeAngleDeg - (Math.atan(0.3) * 180) / Math.PI)).toBeLessThan(0.5);
+    expect(mtfChiefHeight(unformatted, options, support)(chiefEdge.modeledEdgeAngleDeg + 0.1)).toBeNaN();
+    expect(mtfBeamHeight(unformatted, options, support)(chiefEdge.modeledEdgeAngleDeg + 0.1)).toBeGreaterThan(
+      chiefEdge.modeledEdgeHeightMm,
+    );
+    // A format corner 30 % beyond that edge is still lit by the lower part of the beam.
+    const cornerMm = 1.3 * chiefEdge.modeledEdgeHeightMm;
+    const result = computeMtf(prepare(2 * cornerMm), options);
+    expect(result.geometry).toMatchObject({ basis: "format-corner" });
+    expect(result.geometry!.modeledEdgeHeightMm).toBeCloseTo(cornerMm, 9);
+    const [inside, between, corner] = result.fields;
+    expect(inside.notes).toEqual([]);
+    // 90 % of the corner lies past the chief's edge: its angle is solved on the chief traced through the baffle,
+    // which still defines the height the curve is plotted at.
+    for (const [field, fraction] of [
+      [between, 0.9],
+      [corner, 1],
+    ] as const) {
+      expect(field.reason).toBeNull();
+      expect(field.validRays).toBeGreaterThan(16);
+      expect(field.imageHeightMm).toBeCloseTo(fraction * cornerMm, 3);
+      expect(field.notes.join(" ")).toContain("chief ray");
+    }
+    // Past the last transmitted ray the field is outside the model, as before.
+    const dark = computeMtf(prepare(600), options);
+    expect(dark.geometry!.modeledEdgeHeightMm).toBeGreaterThan(cornerMm);
+    expect(dark.geometry!.modeledEdgeHeightMm).toBeLessThan(300);
+    expect(dark.fields[2]).toMatchObject({ status: "unavailable", reason: "outside-modeled-field" });
+  });
+  it("keeps an edge extension only while the unchecked chief's height keeps rising", () => {
+    const state = { lens: { source: { imageCircleMm: 60 } } } as unknown as Parameters<
+      typeof resolveMtfFieldGeometry
+    >[0];
+    // Heights in mm equal the field angle in degrees: the chief clips at 10°, the beam goes dark at 20°.
+    const chief = (angle: number) => (angle <= 10 ? angle : NaN);
+    const lit = (height: (angle: number) => number) => (angle: number) => (angle <= 20 ? height(angle) : NaN);
+    const rising = (angle: number) => angle;
+    const extended = resolveMtfFieldGeometry(state, 8, chief, { reference: rising, beam: lit(rising) })!;
+    expect(extended.modeledEdgeHeightMm).toBeCloseTo(20, 2);
+    expect(extended.modeledEdgeAngleDeg).toBeCloseTo(20, 2);
+    // A reference height that turns back at 15° is the chief on surface zones beyond their rims: no extension.
+    const folding = (angle: number) => (angle <= 15 ? angle : 30 - angle);
+    const kept = resolveMtfFieldGeometry(state, 8, chief, { reference: folding, beam: lit(folding) })!;
+    expect(kept.modeledEdgeHeightMm).toBeCloseTo(10, 6);
+    expect(resolveMtfFieldGeometry(state, 8, chief)!.modeledEdgeHeightMm).toBeCloseTo(10, 6);
+    // The extension stops at the format corner like the chief's own edge does.
+    const corner = resolveMtfFieldGeometry(
+      { lens: { source: { imageCircleMm: 30 } } } as unknown as typeof state,
+      8,
+      chief,
+      { reference: rising, beam: lit(rising) },
+    )!;
+    expect(corner).toMatchObject({ modeledEdgeHeightMm: 15, basis: "format-corner" });
+    expect(corner.modeledEdgeAngleDeg).toBeCloseTo(15, 3);
+  });
 });
 
 describe("MTF at awkward geometry", () => {
@@ -303,7 +399,7 @@ describe("MTF refinement and focus", () => {
     });
     const failure = (refine: boolean): MtfGridOutcome => ({
       kind: "unavailable",
-      field: { ...emptyMtfField(0), status: "unavailable", reason: "diffraction-domain" },
+      field: { ...emptyMtfField(0), status: "unavailable", reason: "empty-pupil" },
       refine,
     });
     const run = (outcomes: MtfGridOutcome[]) =>
@@ -362,6 +458,68 @@ describe("MTF refinement and focus", () => {
     expect(best.shiftMm).toBeCloseTo(0.2, 2);
     expect(best.bestScore).toBeGreaterThan(best.designScore);
   });
+  it("bounds the focus search by where most of the flux crosses the axis", () => {
+    // An f/1 cone focused 3.2 mm behind the authored plane, sampled on a sunflower spiral: a regular lattice
+    // far out of focus lands as a grating whose harmonics would pose as sharp focus.
+    const cone = (stray: number[] = []) => {
+      const rays: unknown[] = [];
+      const add = (x: number, y: number, crossingZ: number) => {
+        const length = Math.hypot(x, y, crossingZ + 20);
+        rays.push({
+          x,
+          y,
+          weight: 1,
+          trace: {
+            terminalPoint: [x, y, -20],
+            terminalDirection: [-x / length, -y / length, (crossingZ + 20) / length],
+          },
+        });
+      };
+      for (let i = 0; i < 600; i++) {
+        const radius = 11.6 * Math.sqrt((i + 0.5) / 600);
+        add(radius * Math.cos(i * 2.399963), radius * Math.sin(i * 2.399963), 3.2);
+      }
+      stray.forEach((crossingZ) => add(11.6, 0, crossingZ));
+      return [{ bundle: { rays } as unknown as MtfBundle, weight: 1 }];
+    };
+    const frequencies = [10, 20, 30, 40, 50];
+    const clean = findAxialBestFocus(cone(), 0, frequencies)!;
+    expect(clean.shiftMm).toBeCloseTo(3.2, 3);
+    // Two stray crossings hundreds of millimetres away must not stretch the scan until its steps miss the focus.
+    const stray = findAxialBestFocus(cone([400, -300]), 0, frequencies)!;
+    expect(stray.shiftMm).toBeCloseTo(3.2, 2);
+    expect(stray.bestScore).toBeGreaterThan(0.9);
+  });
+  it("never moves the image plane in front of the last surface", () => {
+    // Rays already past their focus: a cone whose apex lies 0.2 mm in front of the plane, leaving a last
+    // surface 0.05 mm in front of it. The search reaches toward the apex but stops at the surface.
+    const rays = [];
+    for (let row = 0; row < 16; row++)
+      for (let column = 0; column < 16; column++) {
+        const x = ((column + 0.5) / 16 - 0.5) * 0.03;
+        const y = ((row + 0.5) / 16 - 0.5) * 0.03;
+        if (x * x + y * y > 0.015 ** 2) continue;
+        const length = Math.hypot(x, y, 0.15);
+        rays.push({
+          x,
+          y,
+          weight: 1,
+          trace: { terminalPoint: [x, y, -0.05], terminalDirection: [x / length, y / length, 0.15 / length] },
+        });
+      }
+    const bundles = [{ bundle: { rays } as unknown as MtfBundle, weight: 1 }];
+    expect(findAxialBestFocus(bundles, 0, [10, 20, 30, 40, 50])!.shiftMm).toBeCloseTo(-0.2, 3);
+    expect(findAxialBestFocus(bundles, 0, [10, 20, 30, 40, 50], -0.05)!.shiftMm).toBeCloseTo(-0.05, 9);
+    // On a real state: the beam focuses inside a cover plate whose rear face is 0.02 mm from the image.
+    const plates = [{ ...REAR_PLATE_FIXTURE, gapAfterMm: 0.02 }];
+    const probe = prepareRuntimeState(buildRearPlateLens({ plates }), 0, 0);
+    const offset = mtfImagePlaneOffset(probe, assessMtfSupport(probe, mtfTestOptions))!.offsetMm;
+    const state = prepareRuntimeState(buildRearPlateLens({ plates, gapBefore: 44 + offset + 1 }), 0, 0);
+    expect(mtfNearestImagePlaneZ(state)).toBeCloseTo(state.imgZ - 0.02, 12);
+    const result = computeMtf(state, { ...mtfTestOptions, focus: "best-axial", fieldFractions: [0, 1] });
+    expect(result.focus!.appliedShiftMm).toBeCloseTo(-0.02, 9);
+    result.fields.forEach((field) => expect(field.reason).toBeNull());
+  });
   it("moves every field to the axial best focus only when requested", () => {
     const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
     const options = { ...mtfTestOptions, fieldFractions: [0, 0.5], pupilSemiDiameterMm: 2, stopSemiDiameterMm: 2 };
@@ -397,6 +555,41 @@ describe("MTF refinement and focus", () => {
     });
     expect(focused.focus).toMatchObject({ mode: "design", appliedShiftMm: 0, imagePlaneInconsistent: false });
     expect(Math.abs(focused.focus!.imagePlaneOffsetMm!)).toBeLessThan(1e-9);
+  });
+});
+
+describe("MTF traced aperture", () => {
+  const base = buildSimplePositiveElementLens();
+  const tracedAperture = (lens = base, stopSemiDiameterMm = 1) => {
+    const state = prepareRuntimeState(lens, 0, 0);
+    const options = { ...mtfTestOptions, stopSemiDiameterMm };
+    const support = assessMtfSupport(state, options);
+    const launch = prepareMtfFieldLaunch(state, options, support, 0)!;
+    return resolveMtfAperture(state, options, support, launch, findMtfFieldFootprint(state, options, support, launch)!);
+  };
+  it("reports the working f-number of the axial rim ray when the iris limits the beam", () => {
+    // The fixture's stop is its entrance pupil, so a slow beam traces at f / (2 × stop radius).
+    const aperture = tracedAperture()!;
+    expect(aperture.limitingSurfaceLabel).toBeNull();
+    expect(Math.abs(aperture.tracedFNumber / (base.EFL / 2) - 1)).toBeLessThan(0.005);
+    expect(computeMtf(prepareRuntimeState(base, 0, 0), mtfTestOptions).aperture).toEqual(aperture);
+  });
+  it("names the clear aperture that stops the axial beam before the iris does", () => {
+    // The element rims (6 mm) are smaller than the iris (8 mm), so the first rim sets the beam, not the label.
+    const rimmed = build({
+      ...base.data,
+      surfaces: base.data.surfaces.map((surface) => (surface.label === "STO" ? surface : { ...surface, sd: 6 })),
+    });
+    const aperture = tracedAperture(rimmed, 8)!;
+    expect(aperture.limitingSurfaceLabel).toBe("1");
+    expect(Math.abs(aperture.tracedFNumber / (rimmed.EFL / 12) - 1)).toBeLessThan(0.05);
+    expect(tracedAperture(base, 8)!.limitingSurfaceLabel).toBeNull();
+  });
+  it("is absent when no ray can be traced and survives a JSON round trip otherwise", () => {
+    const unsupported = computeMtf(prepareRuntimeState(base, 0, 0), { ...mtfTestOptions, movementActive: true });
+    expect(unsupported.aperture).toBeNull();
+    const aperture = tracedAperture()!;
+    expect(JSON.parse(JSON.stringify(aperture))).toEqual(aperture);
   });
 });
 
@@ -458,5 +651,33 @@ describe("MTF data limitations", () => {
     expect(field.text).toContain("1 of 2 field positions lies beyond it and is not charted");
     expect(scale.kind).toBe("scale");
     expect(scale.text).toContain("differs from the marketed 58 mm by 14%");
+  });
+  it("discloses authored source errata as notes that never block the chart", () => {
+    // A corrected printed value and an unresolved contradiction each give one note; gaps stay blocking.
+    const front = base.data.surfaces.find((surface) => surface.label === "1")!;
+    const noted = build({
+      ...base.data,
+      sourceErrata: [
+        {
+          status: "corrected",
+          surface: "1",
+          field: "R",
+          printed: -front.R,
+          applied: front.R,
+          evidence: ["source-summary", "sibling-example"],
+          note: "Printed sign contradicts the stated focal length.",
+        },
+        { status: "unresolved", note: "The table traces to a shorter focal length than the summary states." },
+      ],
+    });
+    const notes = assessMtfDataLimitations(prepareRuntimeState(noted, 0, 0), { ...reference, result: null });
+    expect(notes.map(({ kind, blocking }) => [kind, blocking])).toEqual([
+      ["source-erratum", false],
+      ["source-inconsistent", false],
+    ]);
+    expect(notes[0].text).toContain(`surface 1, R) contradicts the source's own data`);
+    expect(notes[0].text).toContain(`the source prints ${-front.R}, this prescription uses ${front.R}`);
+    expect(notes[1].text).toContain("these curves describe the printed table: The table traces to a shorter");
+    expect(assessMtfDataLimitations(state, photopic).every(({ blocking }) => blocking)).toBe(true);
   });
 });

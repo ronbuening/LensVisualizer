@@ -37,14 +37,12 @@ export interface MtfBundle {
   /** Launch flux of rays the tracer could not resolve, in the same units as ray weights. */
   failedWeight: number;
   chief: MtfSpot;
-  chiefTrace: EngineTraceResult;
   /** True when the reference chief ray is itself stopped by an aperture. */
   chiefClipped: boolean;
-  direction: Vec3;
-  /** Launch cells across the beam's larger dimension; also the scalar-diffraction raster size. */
-  gridSize: number;
   columns: number;
   rows: number;
+  /** True when one half pupil was traced and mirrored about the meridional plane. */
+  mirrored: boolean;
   launchStepMm: number;
   objectPoint?: Vec3;
   openBorders: MtfOpenBorders;
@@ -133,6 +131,7 @@ export function mtfIndexResolver(
  * @param options - MTF request
  * @param support - support record selecting authored or resolved indices
  * @param line - traced spectral line
+ * @param opticalPath - true to accumulate each ray's optical path, for the wave-optics reference
  * @returns aperture-checked options that stop at the first clip
  */
 export function mtfTraceOptions(
@@ -140,6 +139,7 @@ export function mtfTraceOptions(
   options: MtfOptions,
   support: MtfSupport,
   line: MtfSpectralLine,
+  opticalPath = false,
 ): TraceOptions {
   return {
     checkSemiDiameter: true,
@@ -147,7 +147,7 @@ export function mtfTraceOptions(
     stopOnClip: true,
     directionNormalized: true,
     wavelengthNm: line.wavelengthNm,
-    recordOpticalPath: options.method === "diffraction",
+    recordOpticalPath: opticalPath,
     indexAtSurface: mtfIndexResolver(state, support, line.wavelengthNm),
   };
 }
@@ -235,6 +235,7 @@ export function prepareMtfFieldLaunch(
  * @param options - MTF request
  * @param support - support record
  * @param launch - field launch
+ * @param growths - doublings of the scanned box before giving up; the full search by default
  * @returns footprint box relative to the chief launch point, or null when the field is vignetted
  */
 export function findMtfFieldFootprint(
@@ -242,6 +243,7 @@ export function findMtfFieldFootprint(
   options: MtfOptions,
   support: MtfSupport,
   launch: MtfFieldLaunch,
+  growths?: number,
 ): MtfFootprint | null {
   const traceOptions = mtfTraceOptions(state, options, support, support.spectralLines[0]);
   return findMtfFootprint(
@@ -253,6 +255,7 @@ export function findMtfFieldFootprint(
       ),
     options.pupilSemiDiameterMm,
     mtfMirrorSymmetric(state),
+    growths,
   );
 }
 
@@ -311,7 +314,9 @@ export function mtfMirrorSymmetric(state: PreparedOpticalState): boolean {
  * @param gridSize - cells across the beam's larger dimension
  * @param line - traced spectral line
  * @param imagePlaneZ - axial image-plane position in mm
- * @returns traced bundle, or null when the reference chief ray cannot reach the image plane
+ * @param extras - `reference`: image point that stands in when this wavelength's chief cannot be traced to the
+ *   plane; `opticalPath`: record each ray's optical path
+ * @returns traced bundle, or null when no reference chief point exists
  */
 export function traceMtfBundle(
   state: PreparedOpticalState,
@@ -322,38 +327,38 @@ export function traceMtfBundle(
   gridSize: number,
   line: MtfSpectralLine,
   imagePlaneZ = state.imgZ,
+  extras: { reference?: MtfSpot; opticalPath?: boolean } = {},
 ): MtfBundle | null {
-  const traceOptions = mtfTraceOptions(state, options, support, line);
+  const traceOptions = mtfTraceOptions(state, options, support, line, extras.opticalPath);
   // The chief is a geometric reference, not a pupil sample: trace it through every surface even
   // when an aperture clips it, and record the clipping separately.
   const chiefRay = mtfLaunchRay(launch, 0, 0);
   const chiefTrace = traceEngineRay2(state, chiefRay, { ...traceOptions, checkSemiDiameter: false, stopOnClip: false });
-  const chiefPoint = mtfImagePoint(state, chiefTrace, imagePlaneZ);
+  // A clipped chief runs over surface zones beyond their rims, where another wavelength can lose it.
+  const chiefPoint = mtfImagePoint(state, chiefTrace, imagePlaneZ) ?? extras.reference;
   if (!chiefPoint) return null;
   const chiefClipped =
     mtfTraceClassification(traceEngineRay2(state, chiefRay, traceOptions), state, options.stopSemiDiameterMm) !==
     "valid";
   const grid = mtfLaunchGrid(footprint, gridSize);
+  // A meridional field of an x-symmetric lens images each half pupil as the mirror of the other.
+  const mirror = mtfMirrorSymmetric(state);
   const bundle: MtfBundle = {
     rays: [],
     blocked: 0,
     failed: 0,
     failedWeight: 0,
     chief: chiefPoint,
-    chiefTrace,
     chiefClipped,
-    direction: chiefTrace.input.direction,
-    gridSize,
     columns: grid.columns,
     rows: grid.rows,
+    mirrored: mirror,
     launchStepMm: grid.step,
     objectPoint: launch.objectPoint,
     openBorders: { x: false, y0: false, y1: false },
   };
   const source = launch.objectPoint;
   const chiefDistance = source ? Math.hypot(...chiefTrace.input.origin.map((v, i) => v - source[i])) : 0;
-  // A meridional field of an x-symmetric lens images each half pupil as the mirror of the other.
-  const mirror = mtfMirrorSymmetric(state);
   const firstColumn = mirror ? grid.columns / 2 : 0;
   for (let row = 0; row < grid.rows; row++) {
     for (let column = firstColumn; column < grid.columns; column++) {
@@ -422,6 +427,7 @@ function mirrorPupilRay(ray: MtfPupilRay, columns: number): MtfPupilRay {
  * @param gridSize - cells across the beam's larger dimension
  * @param line - traced spectral line, the reference line by default
  * @param imagePlaneZ - axial image-plane position in mm
+ * @param opticalPath - true to record each ray's optical path, for the wave-optics reference
  * @returns traced bundle, or null when the field has no chief ray or no transmitted beam
  */
 export function traceMtfFieldPupil(
@@ -432,10 +438,11 @@ export function traceMtfFieldPupil(
   gridSize: number,
   line: MtfSpectralLine = support.spectralLines[0],
   imagePlaneZ = state.imgZ,
+  opticalPath = false,
 ): MtfBundle | null {
   const launch = prepareMtfFieldLaunch(state, options, support, fieldAngleDeg);
   const footprint = launch ? findMtfFieldFootprint(state, options, support, launch) : null;
   return launch && footprint
-    ? traceMtfBundle(state, options, support, launch, footprint, gridSize, line, imagePlaneZ)
+    ? traceMtfBundle(state, options, support, launch, footprint, gridSize, line, imagePlaneZ, { opticalPath })
     : null;
 }

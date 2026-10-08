@@ -4,6 +4,7 @@ import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import SliderControl from "../../../../src/components/controls/SliderControl.js";
 import type { Theme } from "../../../../src/types/theme.js";
+import { replaceTextForTranslation } from "../../../translationTestUtils.js";
 
 afterEach(() => cleanup());
 
@@ -36,6 +37,26 @@ describe("SliderControl", () => {
     expect(screen.getByText("2.5m")).toBeTruthy();
     expect(screen.getByText("INF")).toBeTruthy();
     expect(screen.getByText("CLOSE")).toBeTruthy();
+  });
+
+  it("updates and removes a translated marketed-aperture note", () => {
+    const { container, rerender, unmount } = render(
+      <SliderControl {...baseProps} label="APERTURE" displayValue="f/1.45" displayNote="marketed f/1.4" />,
+    );
+    replaceTextForTranslation(container);
+    rerender(<SliderControl {...baseProps} label="APERTURE" displayValue="f/1.85" displayNote="marketed f/1.8" />);
+    expect(screen.getByText("f/1.85")).toBeTruthy();
+    expect(screen.getByText("marketed f/1.8")).toBeTruthy();
+    expect(screen.queryByText("marketed f/1.4")).toBeNull();
+    replaceTextForTranslation(container);
+    rerender(<SliderControl {...baseProps} label="APERTURE" displayValue="f/8" />);
+    expect(screen.getByText("f/8")).toBeTruthy();
+    expect(screen.queryByText(/marketed f\//)).toBeNull();
+    replaceTextForTranslation(container);
+    rerender(<SliderControl {...baseProps} label="APERTURE" displayValue="f/1.45" displayNote="marketed f/1.4" />);
+    expect(screen.getByText("marketed f/1.4")).toBeTruthy();
+    replaceTextForTranslation(container);
+    unmount();
   });
 
   it("renders a range input with correct attributes", () => {

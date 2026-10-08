@@ -366,8 +366,8 @@ const LENS_DATA = {
     "Inner focus — G2 (L5–L10, 6 elements) translates 11.17 mm toward object. G1 and G3 fixed. XD linear motor drive.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

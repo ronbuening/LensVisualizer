@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **891** lenses scanned
-- **1917** total code-only elements found
-- **345** elements in this report
-- **131** distinct lens files affected
+- **1909** total code-only elements found
+- **337** elements in this report
+- **130** distinct lens files affected
 - **23** active unreviewed elements have no review-record hit or explicit disposition
-- **191** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **183** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -59,7 +59,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 835427 | 4 | 3 | patents/JP2015166834A.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
-| 961323 | 4 | 2 | patents/WO2021200206A1.pdf<br>patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
 | 544561 | 3 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 684313 | 3 | 2 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 720521 | 3 | 3 | patents/US4444473.pdf<br>patents/US4124276.pdf | All rows have review records |
@@ -67,8 +66,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 841433 | 3 | 2 | patents/JP_S4871634_A.pdf<br>patents/US3771853.pdf | All rows explicitly disposed |
 | 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All rows have review records |
-| 930240 | 3 | 3 | patents/WO2021200206A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/WO_2024247472_A1.pdf | All rows have review records |
-| 009291 | 2 | 2 | patents/WO2021200206A1.pdf<br>patents/JP2023039817A.pdf | All rows explicitly disposed |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 531557 | 2 | 2 | patents/WO2022071249A1.pdf<br>patents/US8994842.pdf | All rows explicitly disposed |
 | 540473 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
@@ -104,8 +101,10 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 830427 | 2 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 840433 | 2 | 2 | patents/JPA 1994235857-000000.pdf<br>patents/US5528428.pdf | All rows have review records |
 | 840434 | 2 | 1 | patents/US5734508.pdf | All rows explicitly disposed |
+| 930240 | 2 | 2 | patents/WO_2025263124_A1.pdf<br>patents/WO_2024247472_A1.pdf | All rows have review records |
 | 933209 | 2 | 2 | patents/WO2021199923A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
 | 001291 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
+| 009291 | 1 | 1 | patents/JP2023039817A.pdf | All rows explicitly disposed |
 | 010255 | 1 | 1 | patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
 | 446672 | 1 | 1 | patents/US3771853.pdf | All rows explicitly disposed |
 | 448672 | 1 | 1 | patents/JP_S4871634_A.pdf | All rows explicitly disposed |
@@ -194,7 +193,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All rows explicitly disposed |
 | 676440 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 678314 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
-| 678322 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 678490 | 1 | 1 | patents/US_4192577_A.pdf | All rows explicitly disposed |
 | 680312 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 681472 | 1 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
@@ -292,14 +290,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 843242 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 850440 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 852428 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
-| 856323 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 866450 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
 | 868323 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 874287 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 876363 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 877370 | 1 | 1 | patents/US20160266350A1.pdf | All rows have review records |
 | 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
-| 903204 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 904293 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 907303 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 908334 | 1 | 1 | patents/US20140347522A1.pdf | All rows have review records |
@@ -309,6 +305,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 923209 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 946180 | 1 | 1 | patents/CN114755806A.pdf | All rows explicitly disposed |
 | 958300 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
+| 961323 | 1 | 1 | patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
 | 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | All rows explicitly disposed |
 
 ## Elements by Lens
@@ -1128,19 +1125,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 8) | 13 | `Unmatched (479/587 low-index crown; vendor unspecified)` | 1.47870 / 58.70 | No catalog entry | abbe | patents/US4773745.pdf | Explicit disposition in data |
-
-### [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) - WO 2021/200206 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L15 (L15 dense-flint positive) | 9 | `Unmatched (dense lanthanum flint, 856/323)` | 1.85649 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
-| L21 (L21 focus-group negative) | 12 | `Unmatched (ultra-dense short flint, 930/240)` | 1.93024 / 24.00 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
-| L22 (L22 focus-group positive) | 13 | `Unmatched 678322 dense flint (patent-listed; supplier unidentified)` | 1.67764 / 32.20 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
-| L31 (L31 stop-region negative) | 16 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
-| L41 (L41 focus-group negative) | 20 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
-| L51 (L51 GP5 positive) | 23 | `Unmatched (ultra-dense short flint, 903/204)` | 1.90314 / 20.40 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
-| L52 (L52 GP5 negative) | 24 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
-| L54 (L54 La negative) | 28 | `Unmatched (ultra-high-index lanthanum flint, 009/291)` | 2.00912 / 29.10 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
 
 ### [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) - WO 2021/199923 A1
 

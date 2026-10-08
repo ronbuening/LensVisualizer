@@ -70,7 +70,7 @@ Verified in code on 2026-07-06 (pins re-checked 2026-09-09):
 - **Analysis summary tab** — `src/optics/analysis/summary.ts` +
   `src/components/display/analysis/OpticalSummaryTab.tsx`. (AO#1.)
 - **Simulated MTF** — `src/optics/mtf.ts` + `src/components/display/analysis/MtfTab.tsx`; diffraction-corrected
-  photopic default, geometric and scalar diffraction methods, image-height fields to the format corner in 1–10 % steps,
+  photopic default with a geometric alternative, image-height fields to the format corner in 1–10 % steps,
   10–50 lp/mm chart frequencies, full-beam pupil sampling, optional best-axial focus, both chart views, a keyboard
   crosshair readout, CSV copy, an f/8 comparison overlay, qualified spectra and documented finite conjugates. Current eligibility and limitations live in
   `agent_docs/architecture/optics-engine.md`. Open follow-up: a worker pool if photopic 1–2 % sweeps prove slow on
@@ -380,7 +380,7 @@ model is intentionally the scope until exhausted.
 Carried from the analysis roadmap so nobody re-proposes them as "quick":
 
 - **Production-lens MTF / Strehl / wavefront error** — manufactured-lens claims require measured
-  data. Simulated geometric and scalar diffraction MTF can use complete authored prescriptions;
+  data. Simulated geometric and diffraction MTF can use complete authored prescriptions;
   source precision, omitted optics, spectral data, pupil mapping and numerical convergence limit
   their validity. See `agent_docs/architecture/optics-engine.md` for the simulated MTF contract.
   Extensions to folded mirrors, diffractive surfaces, fisheyes, active tilt/shift, tolerances or

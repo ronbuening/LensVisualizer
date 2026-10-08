@@ -204,7 +204,6 @@ function compileDisplay(runtime: RuntimeLens): DisplaySpec {
     svgH: runtime.svgH,
     scFill: runtime.data.scFill,
     yScFill: runtime.data.yScFill,
-    clipMargin: runtime.clipMargin,
     maxRimAngleDeg: runtime.data.maxRimAngleDeg,
     maxRimTan: runtime.maxRimTan,
     gapSagFrac: runtime.gapSagFrac,

@@ -92,8 +92,9 @@ const LENS_DATA = {
       fl: 86.6,
       glass: "FDS18 (HOYA, anomalous-dispersion dense flint)",
       apd: "patent",
-      dPgF: 0.038634,
-      apdNote: "Patent lists PgF = 0.6546; ΔPgF = PgF + 0.0018νd − 0.64833 = +0.0386.",
+      dPgF: 0.041042,
+      apdNote:
+        "Patent lists PgF = 0.6546; ΔPgF = PgF + 0.0018νd − 0.64833 = +0.0386 on the patent's line, runtime dPgF +0.04104.",
       role: "Positive L1p element satisfying the patent's low-Abbe / anomalous-dispersion condition for lateral color correction.",
     },
     {
@@ -297,8 +298,8 @@ const LENS_DATA = {
   closeFocusM: 0.25,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
   yScFill: 0.72,
 } satisfies LensDataInput;
 

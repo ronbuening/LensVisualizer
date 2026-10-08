@@ -30,7 +30,7 @@ Independent paraxial calculation from the final data gives a front-group focal l
 
 The patent's design rationale emphasizes Petzval balance between the negative front group and positive rear group. Surface-by-surface computation from the final prescription gives a front-group Petzval sum of **-0.00901770 mm⁻¹**, a rear-group sum of **+0.01053300 mm⁻¹**, and a residual total of **+0.00151529 mm⁻¹**. The opposite group signs reproduce the qualitative balancing mechanism described in the patent.
 
-The physical stop geometry is not fully published. The final model places `STO` 1.9105 mm objectward of surface 7, the midpoint of the minimum published 3.821 mm intergroup gap, and assigns it a physical semi-diameter of 7.752338441 mm. This position and radius are modeling inferences, not patent table values. The stop remains rigidly referenced to the rear group in the zoom model.
+The physical stop geometry is not fully published. The final model places `STO` 1.9105 mm objectward of surface 7, the midpoint of the minimum published 3.821 mm intergroup gap, and keeps it rigidly referenced to the rear group in the zoom model. This position is a modeling inference, not a patent table value. The wide-open iris radius is traced at each zoom station from the patent's f/4.1: 7.7842 mm at 36 mm and 10.3442 mm at 68.5 mm. The 7.752338441 mm semi-diameter on the `STO` row is the paraxial f/4.1 radius at 36 mm.
 
 ## Element-by-Element Analysis
 
@@ -101,7 +101,29 @@ The final data uses **NO_INTERNAL_RECONSTRUCTION**. Example 3 publishes zoom geo
 
 Every `[infinity, close]` spacing pair in `var` is identical. The model consequently contains no optically distinct close-focus prescription. Its only defined movement is zoom: the intergroup gap and the computed image-space distance change between the 36 mm and 68.5 mm endpoints.
 
-The aperture model requires a separate qualification. The patent and its aberration plots identify the design as f/4.1 across the plotted zoom range, but the patent does not give an exact physical stop position, stop radius, or zoom-dependent iris-opening law. With the model's inferred stop fixed to the rear group and calibrated to f/4.1 at 36 mm, the same physical stop produces a calculated **f/5.394215** at 68.5 mm. For that reason, `nominalFno` is `[4.1, 5.394215]`, because this field is required to describe the modeled pupil geometry. `apertureDesign` remains 4.1 and `apertureMarketing` remains 4. The f/5.394215 value is not a claim that the production 35-70 mm lens becomes an f/5.39 lens at the long end; it is a disclosed limitation of the underdetermined fixed-stop model.
+The aperture model requires a separate qualification. Example 3 prints one F number, 1:4.1, for the whole 36-68.5 mm range, and its aberration plots (Figures 10-12) are headed 1:4.1 at minimum, medium, and maximum focal length. The patent gives no stop coordinate, stop diameter, or iris-opening law. `nominalFno` is therefore 4.1 at both stations, `apertureDesign` is 4.1, and `apertureMarketing` is 4. The wide-open iris is traced from that f-number at each station. With the stop riding on the rear group, f/4.1 needs an iris radius of 7.7842 mm at 36 mm and 10.3442 mm at 68.5 mm, about 33 % more, so no single iris radius gives the printed value at both ends.
+
+| Station | Stated | Iris radius | Traced on axis | Limiter |
+|---|---:|---:|---:|---|
+| 36 mm | f/4.1 | 7.7842 mm | f/4.10 | iris (`STO`) |
+| 68.5 mm | f/4.1 | 10.3442 mm | f/4.10 | iris (`STO`) |
+
+The model reaches f/4.1 at both stations, and the iris is the limiter at each. At 68.5 mm, where the axial beam is widest in the rear group, the f/4.1 marginal ray stays inside every rear rim:
+
+| Surface | f/4.1 marginal ray at 68.5 mm | Semi-diameter | Clearance |
+|---|---:|---:|---:|
+| 7 (L4 front) | 10.762 mm | 10.8 mm | 0.038 mm |
+| 8 (L4 rear) | 10.681 mm | 10.8 mm | 0.119 mm |
+| 9 (L5 front) | 10.201 mm | 10.3 mm | 0.099 mm |
+| 10 (L5 rear) | 9.698 mm | 10.3 mm | 0.602 mm |
+| 11 (L6 front) | 9.612 mm | 9.7 mm | 0.088 mm |
+| 12 (L6 rear) | 7.731 mm | 9.4 mm | 1.669 mm |
+| 13 (L7 front) | 7.714 mm | 7.8 mm | 0.086 mm |
+| 14 (L7 rear) | 7.755 mm | 7.8 mm | 0.045 mm |
+
+The patent prints no clear apertures, so every semi-diameter in the file is inferred. The rear group is sized to the stated beam: the height the f/4.1 on-axis ray reaches at 68.5 mm, rounded up to 0.1 mm, is at that precision the smallest rim that passes the printed f-number. Figure 9 draws L4, L5 and L7 with square-cut rims, one rim line parallel to the axis joining the front and rear faces (on L5 the rear corner is cut by about 0.5 mm, little more than the width of a drawn line), so each of those elements carries one value on both faces, the higher of its two rounded ray heights: 10.8 mm from surface 7, 10.3 mm from surface 9, and 7.8 mm, which surfaces 13 and 14 both round up to. Figure 9 draws L6 with a chamfer on its rear, so its two faces are sized separately: surface 11 carries its rounded ray height, 9.7 mm, and surface 12 carries 9.4 mm, inferred from ray bundles and the Figure 9 silhouette. The rims on L4, on the fronts of L5 and L6 and on L7 sit 0.4 to 1.1 % outside the marginal ray; surface 10 sits 6.2 % outside it and surface 12 21.6 %.
+
+Figure 9, which the patent calls a schematic view, is the check on these values and not their source. Read as half the distance between each element's upper and lower rim lines, on two scales that agree to 0.5 %, it draws L4 at 11.3 mm, L5 at 10.7 mm, L6 at 10.2 mm and L7 at 8.2 mm, each at least as large as that element's rims in the file. The figure ends the rear arc of L6 at a chamfer corner 8.4 mm from the axis; surface 12, at 9.4 mm, lies between that corner and the element's drawn outer rim.
 
 ## Conditional Expressions
 
@@ -122,7 +144,7 @@ Here `fI` is the front-group focal length, `fII` the rear-group focal length, `f
 
 The final data reproduces the patent-scale focal endpoints. Independent sequential y-ν tracing and an ABCD cross-check give **35.999849 mm** at the 36 mm state and **68.500182 mm** at the 68.5 mm state. The corresponding modeled rear vertex-to-image distances are **42.386857 mm** and **62.019383 mm**. These rear distances are computed image-space values; they are not rows printed in the patent prescription.
 
-The patent does not publish semi-diameters. All authored surface semi-diameters are inferred from meridional ray bundles and constrained by edge thickness, actual rim slope, shared-band cross-gap clearance, and field containment. In the authored geometry, the minimum element edge thickness is **0.735335 mm**, the maximum spherical rim angle is **48.515°**, and the smallest remaining clearance to the 0.90 shared-band cross-gap limit is **0.064313 mm**. The required on-axis, default 0.60-field, and full-field chief-ray checks are contained at both endpoints. An extreme wide-angle, extreme-pupil test ray vignettes at surface 3 by approximately **0.586 mm**; enlarging that element enough to pass the ray conflicts with the adopted cross-gap limit, so that extreme vignetting is retained rather than hidden by layout controls.
+The patent does not publish semi-diameters. The front-group semi-diameters (surfaces 1-6) are inferred from meridional ray bundles and constrained by edge thickness, actual rim slope, shared-band cross-gap clearance, and field containment. In the rear group, L4, L5 and L7, which Figure 9 draws with square-cut rims, each carry one value on both faces, 10.8, 10.3 and 7.8 mm: the height of the stated f/4.1 on-axis ray at 68.5 mm on the face that needs more, rounded up to 0.1 mm. L6, which the figure draws with a chamfered rear, carries 9.7 mm on surface 11 for the same ray and the inferred 9.4 mm on surface 12. Figure 9 checks those values on the 300 dpi patent scan, on two scales: the r7-r14 vertex span, 354.6 px for the printed 23.250 mm (15.25 px/mm), and circles fitted to eight drawn arcs (median 15.17 px/mm). It draws every rear element at least as large as the file does. In the authored geometry, the minimum element edge thickness is **1.470464 mm** (L7), the maximum spherical rim angle is **48.515°** (surface 2), and the smallest remaining clearance to the 0.90 shared-band cross-gap limit is **0.064313 mm**, in the 4.240 mm air gap between L1 and L2. The chief ray to the 21.65 mm format corner is clear at both endpoints, at 32.2° at 36 mm and 17.4° at 68.5 mm. The on-axis f/4.1 beam is contained at both endpoints with the iris as its limiter, as tabulated under Focus Mechanism. The diagram's default fan at 0.60 of the chief-ray-limited field passes whole at 36 mm; at 68.5 mm its lowest ray is cut at surface 13, the front of L7. An extreme wide-angle, extreme-pupil test ray vignettes at surface 3 by approximately **0.586 mm**; enlarging that element enough to pass the ray conflicts with the adopted cross-gap limit, so that extreme vignetting is retained rather than hidden by layout controls.
 
 No sensor cover glass, filter, inactive dummy plane, flare-cutter plane, or mechanical part is included. Example 3 contains no such optical prescription entries, and no omitted plate requires an air-equivalent compensation. The design is entirely spherical, so there are no aspheric coefficients or conic conventions to transform. The scale factor is **1.0**, so neither dimensions nor coefficients are rescaled.
 

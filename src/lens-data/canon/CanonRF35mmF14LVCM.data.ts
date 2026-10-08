@@ -4,7 +4,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — CANON RF 35mm f/1.4 L VCM                                   ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Patent: US 2024/0302626 A1, Numerical Example 2 (Takahiro Ode / Canon).  ║
+ * ║  Patent: US 2024/0302626 A1, Numerical Example 2                         ║
+ * ║  (Takashi Ode, Takahiro Hatada / Canon).                                 ║
  * ║  Production correlation: Canon RF35mm F1.4 L VCM.                        ║
  * ║  14 physical elements / 11 air-separated groups; 3 aspherical surfaces.  ║
  * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent states that B2 and  ║
@@ -36,10 +37,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║      layout concealment.                                                   ║
  * ║                                                                            ║
  * ║  SPECTRAL MODEL:                                                           ║
- * ║    Patent nd/νd values are retained exactly. nC/nF/ng/dPgF values are     ║
- * ║    catalog-proxy data from the closest defensible OHARA or HOYA coordinate║
- * ║    matches documented in the audit. They are dispersion-model proxies,    ║
+ * ║    Patent nd/νd values are retained exactly. nC/nF/ng values are           ║
+ * ║    catalog-proxy data from the closest defensible OHARA or HOYA coordinate ║
+ * ║    matches documented in the audit. They are dispersion-model proxies,     ║
  * ║    not claims that Canon used those suppliers or exact melts.              ║
+ * ║                                                                            ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                               ║
+ * ║    The patent prints no PgF / θgF and states no normal line of its own     ║
+ * ║    (Table 3 carries nd and νd only). `dPgF` is PgF minus the engine's      ║
+ * ║    normal line (0.6438 − 0.001682·νd), with PgF = (ng − nF)/(nF − nC)      ║
+ * ║    taken from each element's authored proxy indices. It is not the OHARA   ║
+ * ║    or HOYA catalog ΔPgF, which each vendor quotes against its own normal   ║
+ * ║    line. L11 and L14 were already within 0.0003 of the engine-line value   ║
+ * ║    and keep their four-decimal figures.                                    ║
  * ║                                                                            ║
  * ║  FIELD MODEL:                                                              ║
  * ║    imageFormat records the production full-frame format. Example 2 itself ║
@@ -76,7 +86,7 @@ const LENS_DATA = {
   lensMounts: ["canon-rf"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2024/0302626 A1",
-  patentAuthors: ["Takahiro Ode"],
+  patentAuthors: ["Takashi Ode", "Takahiro Hatada"],
   patentAssignees: ["Canon Inc."],
   patentYear: 2024,
   elementCount: 14,
@@ -96,7 +106,7 @@ const LENS_DATA = {
       nC: 1.58014,
       nF: 1.58996,
       ng: 1.5953,
-      dPgF: -0.002,
+      dPgF: -0.000135,
     },
     {
       id: 2,
@@ -110,7 +120,7 @@ const LENS_DATA = {
       nC: 1.51386,
       nF: 1.52191,
       ng: 1.52621,
-      dPgF: -0.0024,
+      dPgF: -0.001755,
     },
     {
       id: 3,
@@ -124,7 +134,7 @@ const LENS_DATA = {
       nC: 1.75913,
       nF: 1.77488,
       ng: 1.78369,
-      dPgF: -0.0041,
+      dPgF: -0.002875,
       cemented: "C1",
     },
     {
@@ -139,7 +149,7 @@ const LENS_DATA = {
       nC: 1.84488,
       nF: 1.87935,
       ng: 1.90045,
-      dPgF: 0.0109,
+      dPgF: 0.010040,
       cemented: "C1",
     },
     {
@@ -154,7 +164,7 @@ const LENS_DATA = {
       nC: 1.98941,
       nF: 2.02872,
       ng: 2.05284,
-      dPgF: 0.0111,
+      dPgF: 0.012608,
     },
     {
       id: 6,
@@ -168,7 +178,7 @@ const LENS_DATA = {
       nC: 1.59255,
       nF: 1.60134,
       ng: 1.60612,
-      dPgF: 0.0123,
+      dPgF: 0.013938,
     },
     {
       id: 7,
@@ -182,7 +192,7 @@ const LENS_DATA = {
       nC: 1.76293,
       nF: 1.78884,
       ng: 1.80426,
-      dPgF: 0.0003,
+      dPgF: 0.001360,
     },
     {
       id: 8,
@@ -195,12 +205,12 @@ const LENS_DATA = {
       glass: "S-FPL51 (OHARA) coordinate proxy; patent vendor unresolved",
       apd: "inferred",
       apdNote:
-        "First of the two patent 1.497/81.54 elements correlated with Canon's published two-UD production count.",
+        "First of the two patent 1.497/81.54 elements correlated with Canon's published two-UD production count. The patent prints no PgF; the S-FPL51 proxy's authored nC/nF/ng give PgF = 0.5386 (OHARA's catalog ΔPgF +0.0280 is against OHARA's own normal line), runtime dPgF +0.03194.",
       role: "First product-correlated UD element in the moving B4 unit.",
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.028,
+      dPgF: 0.031938,
       cemented: "C2",
     },
     {
@@ -215,7 +225,7 @@ const LENS_DATA = {
       nC: 1.76293,
       nF: 1.78884,
       ng: 1.80426,
-      dPgF: 0.0003,
+      dPgF: 0.001360,
       cemented: "C2",
     },
     {
@@ -229,12 +239,12 @@ const LENS_DATA = {
       glass: "S-FPL51 (OHARA) coordinate proxy; patent vendor unresolved",
       apd: "inferred",
       apdNote:
-        "Second of the two patent 1.497/81.54 elements correlated with Canon's published two-UD production count.",
+        "Second of the two patent 1.497/81.54 elements correlated with Canon's published two-UD production count. The patent prints no PgF; the S-FPL51 proxy's authored nC/nF/ng give PgF = 0.5386 (OHARA's catalog ΔPgF +0.0280 is against OHARA's own normal line), runtime dPgF +0.03194.",
       role: "Second product-correlated UD element in the moving B4 unit.",
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.028,
+      dPgF: 0.031938,
     },
     {
       id: 11,
@@ -262,7 +272,7 @@ const LENS_DATA = {
       nC: 1.99105,
       nF: 2.0254,
       ng: 2.046,
-      dPgF: 0.0036,
+      dPgF: 0.004906,
       cemented: "C3",
     },
     {
@@ -277,7 +287,7 @@ const LENS_DATA = {
       nC: 1.76293,
       nF: 1.78884,
       ng: 1.80426,
-      dPgF: 0.0003,
+      dPgF: 0.001360,
       cemented: "C3",
     },
     {

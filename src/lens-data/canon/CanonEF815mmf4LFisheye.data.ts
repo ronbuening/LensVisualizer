@@ -331,8 +331,8 @@ const LENS_DATA = {
   focusDescription:
     "Inner focus by translating L12 (element L5, surfaces 9A-10). Close-focus D8/D10 values are paraxial estimates to the official 0.15 m MFD because the patent publishes infinity zoom spacings only.",
 
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  nominalFno: 4.12,
+  fstopSeries: [4.12, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.58,

@@ -18,6 +18,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Surface 20 in the patent is labeled STO here as required by the   ║
  * ║  project schema.                                                   ║
  * ║                                                                    ║
+ * ║  Aperture: nominalFno holds the Table 1 FNO row, 4.49 / 4.86 /     ║
+ * ║  5.88 at W / M / T, and apertureDesign the wide value. The stop is ║
+ * ║  one fixed opening (fixed-iris): the radius a real marginal ray    ║
+ * ║  needs for FNO 4.49 at the wide station, 11.6075 mm, is kept at    ║
+ * ║  every station and traces f/4.49, f/4.87 and f/5.89, limited by    ║
+ * ║  the iris at all three. The patent prints no stop diameter; the    ║
+ * ║  11.2 mm on the STO row is a paraxial estimate and does not size   ║
+ * ║  the wide-open iris.                                               ║
+ * ║                                                                    ║
  * ║  Semi-diameters are inferred. The patent omits clear apertures, so ║
  * ║  the SDs below were estimated from paraxial marginal/chief-ray     ║
  * ║  envelopes, constrained by the production 67 mm filter class and   ║
@@ -382,8 +391,10 @@ const LENS_DATA = {
   focusDescription:
     "Rear internal focus: the negative G4/RN group (L41-L42) translates imageward. Patent short-distance travel is 0.657 mm at wide, 0.820 mm at middle, and 1.719 mm at telephoto; Nikon's production MFD is 1.2 m.",
 
-  nominalFno: [4.5, 4.86, 5.6],
-  fstopSeries: [4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32, 40],
+  apertureDesign: 4.49,
+  nominalFno: [4.49, 4.86, 5.88],
+  zoomApertureModel: "fixed-iris",
+  fstopSeries: [4.49, 5, 5.6, 6.3, 8, 11, 16, 22, 32, 40],
   maxFstop: 40,
 
   scFill: 0.62,

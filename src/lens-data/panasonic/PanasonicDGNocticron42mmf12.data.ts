@@ -19,8 +19,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ infinity to the 0.5 m object-distance state.                               ║
  * ║                                                                            ║
  * ║ Aperture note: Panasonic markets the production lens as f/1.2. Example 5   ║
- * ║ tabulates F-number = 1.284 at infinity. nominalFno therefore follows the   ║
- * ║ manufacturer specification, while apertureDesign records the patent value. ║
+ * ║ tabulates F-number = 1.284 at infinity. nominalFno and apertureDesign carry║
+ * ║ that patent value; apertureMarketing records the manufacturer's f/1.2.     ║
  * ║                                                                            ║
  * ║ Semi-diameters: patent does not publish clear apertures. Values below are  ║
  * ║ inferred from marginal/chief paraxial ray traces, then constrained for     ║
@@ -384,8 +384,8 @@ const LENS_DATA = {
     "Internal focus by L9/G2 only; L9 moves 4.9449 mm toward the image side between infinity and 0.5 m.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.2,
-  fstopSeries: [1.2, 1.4, 1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.284,
+  fstopSeries: [1.284, 1.4, 1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.58,

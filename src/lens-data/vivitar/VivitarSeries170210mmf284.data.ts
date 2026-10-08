@@ -2,41 +2,56 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — VIVITAR SERIES 1 70–210mm f/2.8–4 VMC (Version 4)    ║
+ * ║  LENS DATA — VIVITAR SERIES 1 70–210mm f/2.8–4 VMC (Version 4)       ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 4,758,073 Example 4 / Table IV (Moskovich /      ║
- * ║  Vivitar Corp.). Three-group telephoto zoom, plus–minus–plus.     ║
- * ║  14 elements / 10 groups, all spherical.                           ║
- * ║  Focus: front-group unit focus (G1 moves; G2, G3 stationary).     ║
- * ║                                                                    ║
- * ║  Zoom variable gaps: D1 (S5), D2 (S11), BFL (S24).               ║
- * ║  G2 moves rearward, G3 moves forward; G1 stationary during zoom. ║
- * ║  All zoom motions are monotonic — no reversing groups.            ║
- * ║                                                                    ║
- * ║  NOTE ON D2 AT WIDE:                                               ║
- * ║    Patent Table IV prints D2 = 3.490 mm at the wide position.     ║
- * ║    Total-track conservation across zoom positions yields           ║
- * ║    D2_wide ≈ 37.49 mm (consistent with mid/tele tracks to        ║
- * ║    ±0.006 mm). The same digit-drop error appears in Table III.    ║
- * ║    The Certificate of Correction (Aug 15, 1989) does not address  ║
- * ║    this value. The corrected D2 = 37.490 is used here.           ║
- * ║                                                                    ║
- * ║  NOTE ON CLOSE-FOCUS DATA:                                         ║
- * ║    The patent does not publish close-focus spacing data for        ║
- * ║    Example 4. Close-focus S5 values are derived from a paraxial    ║
- * ║    finite-conjugate solve at the production 0.9 m MFD, treating   ║
- * ║    G1 as the front focusing unit and keeping G2/G3/BFL fixed.     ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    SDs estimated from combined marginal + chief ray traces at     ║
- * ║    60% field across all three zoom positions, with ~8–10%         ║
- * ║    mechanical clearance. Front group constrained by the 62 mm     ║
- * ║    filter thread of the later Cosina production variant.          ║
- * ║                                                                    ║
- * ║  IMPORTANT: This file describes ONLY the optical design:           ║
- * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
- * ║    ✓ Aperture stop and variable zoom gaps                         ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║  Data source: US 4,758,073 Example 4 / Table IV (Moskovich /         ║
+ * ║  Vivitar Corp.). Three-group telephoto zoom, plus–minus–plus.        ║
+ * ║  14 elements / 10 groups, all spherical.                             ║
+ * ║  Focus: front-group unit focus (G1 moves; G2, G3 stationary).        ║
+ * ║                                                                      ║
+ * ║  Zoom variable gaps: D1 (S5), D2 (S11), BFL (S24).                   ║
+ * ║  G2 moves rearward, G3 moves forward; G1 stationary during zoom.     ║
+ * ║  All zoom motions are monotonic — no reversing groups.               ║
+ * ║                                                                      ║
+ * ║  NOTE ON D2 AT WIDE:                                                 ║
+ * ║    Patent Table IV prints D2 = 3.490 mm at the wide position.        ║
+ * ║    Total-track conservation across zoom positions yields             ║
+ * ║    D2_wide ≈ 37.49 mm (consistent with mid/tele tracks to            ║
+ * ║    ±0.006 mm). The same digit-drop error appears in Table III.       ║
+ * ║    The Certificate of Correction (Aug 15, 1989) does not address     ║
+ * ║    this value. The corrected D2 = 37.490 is used here.               ║
+ * ║                                                                      ║
+ * ║  NOTE ON CLOSE-FOCUS DATA:                                           ║
+ * ║    The patent does not publish close-focus spacing data for          ║
+ * ║    Example 4. Close-focus S5 values are derived from a paraxial      ║
+ * ║    finite-conjugate solve at the production 0.9 m MFD, treating      ║
+ * ║    G1 as the front focusing unit and keeping G2/G3/BFL fixed.        ║
+ * ║                                                                      ║
+ * ║  NOTE ON APERTURE:                                                   ║
+ * ║    Table IV prints f/NO. 2.89 / 3.49 / 4.01 and no stop diameter.    ║
+ * ║    zoomApertureModel "fixed-iris": the engine opens the iris to      ║
+ * ║    the wide-end real-ray radius, 15.9182 mm, and holds it. Traced    ║
+ * ║    on axis: f/2.89 at 72.13 mm and f/3.46 at 134.91 mm, both on      ║
+ * ║    the iris; f/4.36 at 203.79 mm on the rim of surface 8 (see        ║
+ * ║    NOTE ON SEMI-DIAMETERS).                                          ║
+ * ║                                                                      ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                             ║
+ * ║    The patent prints no semi-diameters. SDs estimated from           ║
+ * ║    combined marginal + chief ray traces at 60% field across all      ║
+ * ║    three zoom positions, with ~8–10% mechanical clearance. Front     ║
+ * ║    group constrained by the 62 mm filter thread of the later         ║
+ * ║    Cosina production variant.                                        ║
+ * ║    S8/S9, the facing concave surfaces of L5 and L6, are the          ║
+ * ║    exception. With the printed R8 = 37.576, R9 = −40.656 and         ║
+ * ║    6.210 mm spacing they meet 15.26 mm from the axis, below the      ║
+ * ║    15.62 mm the f/4.01 on-axis ray reaches at 203.79 mm, so no       ║
+ * ║    rim value passes that ray. Both are held at 14.45 mm, inside      ║
+ * ║    the cross-gap sag limit (90% of the gap, reached at 14.506 mm).   ║
+ * ║                                                                      ║
+ * ║  IMPORTANT: This file describes ONLY the optical design:             ║
+ * ║    ✓ Glass elements and surfaces (front element to image plane)      ║
+ * ║    ✓ Aperture stop and variable zoom gaps                            ║
+ * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts         ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -342,6 +357,7 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: [2.89, 3.49, 4.01],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
 

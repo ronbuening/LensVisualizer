@@ -7,7 +7,7 @@
 **Priority:** Japanese Patent Application 2023-035919, filed March 8, 2023\
 **Filed:** March 5, 2024\
 **Published:** September 12, 2024\
-**Inventor:** Takahiro Ode\
+**Inventors:** Takashi Ode, Takahiro Hatada\
 **Applicant:** Canon Kabushiki Kaisha\
 **Title:** *Optical System and Image Pickup Apparatus Having the Same*\
 **Embodiment analyzed:** Numerical Example 2
@@ -52,7 +52,7 @@ $n_d = 1.583$, $\nu_d = 59.38$. Glass: S-BAL42 (OHARA) coordinate proxy; patent 
 
 L1 is the large-diameter front negative meniscus. Its rear surface, `2A`, is the first of the design's three aspherical surfaces. The weakly curved front face and much stronger rear face make L1 a negative entrance element while preserving a broad front aperture. In the model, the rear asphere acts where marginal and off-axis ray heights are still large, giving it substantial leverage over peripheral ray geometry.
 
-The S-BAL42 label is a catalog-coordinate proxy selected because its current OHARA coordinates closely reproduce the patent's rounded $n_d/\nu_d$ pair. It is not a supplier attribution. The stored C-, F-, and g-line indices and $dP_{gF}$ likewise belong to that proxy and are used only for dispersion modeling.
+The S-BAL42 label is a catalog-coordinate proxy selected because its current OHARA coordinates closely reproduce the patent's rounded $n_d/\nu_d$ pair. It is not a supplier attribution. The stored C-, F-, and g-line indices likewise belong to that proxy, and the stored $dP_{gF}$ is computed from them against the LensVisualizer engine's normal line; they are used only for dispersion modeling.
 
 ### L2 — Biconcave Negative
 
@@ -162,21 +162,21 @@ Its moderate index and Abbe number differ from both the dense C3 front element a
 
 The patent itself names no glass manufacturer. It publishes only rounded d-line $n_d$ and $\nu_d$ values. The data file therefore preserves those patent coordinates as the design values and adds current OHARA or HOYA catalog entries only as explicitly labeled **coordinate proxies**. The proxy labels were selected for small coordinate residuals and for direct availability of C-, F-, and g-line data plus $dP_{gF}$.[4][5]
 
-| Catalog proxy in data file | Patent $n_d$ | Patent $\nu_d$ | Elements | Proxy $dP_{gF}$ | Status |
-|---|---:|---:|---|---:|---|
-| S-BAL42 (OHARA) | 1.583 | 59.38 | L1 | -0.0020 | Coordinate proxy; vendor unresolved |
-| S-BSL7 (OHARA) | 1.516 | 64.14 | L2 | -0.0024 | Coordinate proxy; vendor unresolved |
-| S-LAH96 (OHARA) | 1.764 | 48.49 | L3 | -0.0041 | Coordinate proxy; vendor unresolved |
-| S-NBH56 (OHARA) | 1.855 | 24.80 | L4 | +0.0109 | Coordinate proxy; vendor unresolved |
-| TAFD40 (HOYA) | 2.001 | 25.46 | L5 | +0.0111 | Coordinate proxy; vendor unresolved |
-| S-FPM2 (OHARA) | 1.595 | 67.74 | L6 | +0.0123 | Coordinate proxy; vendor unresolved |
-| NBFD29 (HOYA) | 1.770 | 29.74 | L7, L9, L13 | +0.0003 | Coordinate proxy; vendor unresolved |
-| S-FPL51 (OHARA) | 1.497 | 81.54 | L8, L10 | +0.0280 | Coordinate proxy; vendor unresolved |
-| S-LAH65VS (OHARA) | 1.804 | 46.53 | L11 | -0.0085 | Coordinate proxy; vendor unresolved |
-| TAFD55 (HOYA) | 2.001 | 29.13 | L12 | +0.0036 | Coordinate proxy; vendor unresolved |
-| S-NBM51 (OHARA) | 1.613 | 44.27 | L14 | -0.0065 | Coordinate proxy; vendor unresolved |
+| Catalog proxy in data file | Patent $n_d$ | Patent $\nu_d$ | Elements | Vendor catalog $\Delta P_{gF}$ (vendor's own line) | Stored $dP_{gF}$ (engine line) | Status |
+|---|---:|---:|---|---:|---:|---|
+| S-BAL42 (OHARA) | 1.583 | 59.38 | L1 | -0.0020 | -0.000135 | Coordinate proxy; vendor unresolved |
+| S-BSL7 (OHARA) | 1.516 | 64.14 | L2 | -0.0024 | -0.001755 | Coordinate proxy; vendor unresolved |
+| S-LAH96 (OHARA) | 1.764 | 48.49 | L3 | -0.0041 | -0.002875 | Coordinate proxy; vendor unresolved |
+| S-NBH56 (OHARA) | 1.855 | 24.80 | L4 | +0.0109 | +0.010040 | Coordinate proxy; vendor unresolved |
+| TAFD40 (HOYA) | 2.001 | 25.46 | L5 | +0.0111 | +0.012608 | Coordinate proxy; vendor unresolved |
+| S-FPM2 (OHARA) | 1.595 | 67.74 | L6 | +0.0123 | +0.013938 | Coordinate proxy; vendor unresolved |
+| NBFD29 (HOYA) | 1.770 | 29.74 | L7, L9, L13 | +0.0003 | +0.001360 | Coordinate proxy; vendor unresolved |
+| S-FPL51 (OHARA) | 1.497 | 81.54 | L8, L10 | +0.0280 | +0.031938 | Coordinate proxy; vendor unresolved |
+| S-LAH65VS (OHARA) | 1.804 | 46.53 | L11 | -0.0085 | -0.0085 | Coordinate proxy; vendor unresolved |
+| TAFD55 (HOYA) | 2.001 | 29.13 | L12 | +0.0036 | +0.004906 | Coordinate proxy; vendor unresolved |
+| S-NBM51 (OHARA) | 1.613 | 44.27 | L14 | -0.0065 | -0.0065 | Coordinate proxy; vendor unresolved |
 
-The maximum coordinate difference between a selected proxy and the patent value is $|\Delta n_d|=0.000470$; all selected proxies match the patent $\nu_d$ values to the quoted precision. The line indices and $dP_{gF}$ stored on the elements reproduce the selected catalog rows to the authored precision. These fields therefore permit line-index-based dispersion modeling, but they do not establish that Canon used the named catalog melts.
+The maximum coordinate difference between a selected proxy and the patent value is $|\Delta n_d|=0.000470$; all selected proxies match the patent $\nu_d$ values to the quoted precision. The line indices stored on the elements reproduce the selected catalog rows to the authored precision. The stored $dP_{gF}$ is not the catalog $\Delta P_{gF}$ column: OHARA and HOYA each quote that figure against their own normal line, whereas the LensVisualizer engine measures $dP_{gF}$ from $0.6438-0.001682\,\nu_d$. Each stored value is therefore $P_{gF}=(n_g-n_F)/(n_F-n_C)$ of the stored line indices minus that engine line; the L11 and L14 catalog figures already agree with that value within 0.0003 and are kept. The patent itself prints no partial-dispersion data and states no normal line. These fields therefore permit line-index-based dispersion modeling, but they do not establish that Canon used the named catalog melts.
 
 The strongest production-level glass statement that can be made is Canon's own count of two UD elements.[1][2] The patent's two $1.497/81.54$ elements, L8 and L10, are consistent with that count and are modeled with S-FPL51 coordinate proxies. They are tagged as inferred anomalous-dispersion elements in the diagram so that production-supported special-element count is visible without turning it into a patent melt identification. No apochromatic designation is inferred, and the proxy $dP_{gF}$ values are not transferred into a claim about the commercial lens's actual glass chemistry.
 
@@ -265,7 +265,7 @@ No uniform scale is applied: $s=1$. Consequently all radii, spacings, semi-diame
 3. Canon U.S.A., **Canon Announces First Lens in Series of Fixed Focal Length RF Hybrid Lenses — RF35mm F1.4 L VCM**, June 5, 2024. https://www.usa.canon.com/newsroom/2024/20240605-lens-flash
 4. OHARA, **Optical Glass — Detailed Data**, catalog PDF used for the coordinate-proxy and line-index checks. https://oharacorp.com/wp-content/uploads/2025/04/all-detailed-data-20250418.pdf
 5. HOYA Optical World, **Optical Glass Data**, catalog spreadsheet used for the coordinate-proxy and line-index checks. https://www.hoya-opticalworld.com/common/xls/HOYA20260601.xlsx
-6. Takahiro Ode, **Optical System and Image Pickup Apparatus Having the Same**, US 2024/0302626 A1, published September 12, 2024; Numerical Example 2, Fig. 4, Tables 3–4 and 9, ¶0031, ¶0038, ¶0047–¶0048, ¶0071, ¶0078–¶0081.
+6. Takashi Ode and Takahiro Hatada, **Optical System and Image Pickup Apparatus Having the Same**, US 2024/0302626 A1, published September 12, 2024; Numerical Example 2, Fig. 4, Tables 3–4 and 9, ¶0031, ¶0038, ¶0047–¶0048, ¶0071, ¶0078–¶0081.
 
 ## Image-plane source audit (2026-09-25)
 

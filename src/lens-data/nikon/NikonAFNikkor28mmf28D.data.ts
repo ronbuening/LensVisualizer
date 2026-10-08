@@ -161,8 +161,8 @@ const LENS_DATA = {
     "by increasing BF from 38.09 mm to 43.17 mm at a 0.25 m metric reference state.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.86,
+  fstopSeries: [2.86, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   /* ── Layout tuning ── */

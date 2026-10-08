@@ -173,7 +173,7 @@ The data file preserves the patent's radii, thicknesses, refractive indices, and
 
 The rounded prescription gives PD = 16.12 mm, while Table 1 prints 16.13 mm; the 0.01 mm difference is treated as rounding in the tabulated example constants.
 
-The stop position follows the patent exactly. Because the patent reports F/2.90 but Canon markets the production lens as f/2.8 and does not publish the actual stop radius, the file records `apertureDesign: 2.9`, `apertureMarketing: 2.8`, and uses an inferred stop semi-diameter for the marketed aperture.
+The stop position follows the patent exactly. Because the patent reports F/2.90 but Canon markets the production lens as f/2.8 and does not publish the actual stop radius, the file records `apertureDesign: 2.9`, `apertureMarketing: 2.8`, and an authored stop semi-diameter that was inferred for the marketed aperture. At runtime the iris is sized from `nominalFno` (the f-number the stop opens to), which is the patent design value 2.9.
 
 The file records Canon RF mount and 135 full-frame format metadata. The optical trace field is kept at the patent's plotted 52.9°, while the production diagonal field is stored as projection metadata. That separation is necessary because the patent's 18.20 mm image height is not the full-frame half-diagonal.
 

@@ -259,8 +259,8 @@ const LENS_DATA = {
 
   focusDescription: "Two-group floating focus: front group and rear group move objectward by unequal amounts.",
   closeFocusM: 0.2,
-  nominalFno: 3.2,
-  fstopSeries: [3.2, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 3.3,
+  fstopSeries: [3.3, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   scFill: 0.58,
   yScFill: 0.5,

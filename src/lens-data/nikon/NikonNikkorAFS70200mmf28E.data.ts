@@ -23,9 +23,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  FIG. 3 object heights agree). Production MFD is 1.1 m.              ║
  * ║                                                                      ║
  * ║  APERTURE: fixed iris. Table 1 rounds FNo to 2.9; FIG. 2 prints      ║
- * ║  2.85 / 2.90 / 2.86 (W/M/T), which one fixed stop of ≈19.5 mm        ║
- * ║  radius reproduces (real-ray iris for those values 19.48 / 19.43 /   ║
- * ║  19.40 mm), so nominalFno 2.85 with a single iris is used.           ║
+ * ║  2.85 / 2.90 / 2.86 (W/M/T), stored as nominalFno. The iris is the   ║
+ * ║  real-ray radius for f/2.85 at wide, 19.48 mm, kept at M and T,      ║
+ * ║  where it traces f/2.89 and f/2.85, within 0.5 % of FIG. 2 (each     ║
+ * ║  figure value alone needs 19.48 / 19.43 / 19.40 mm).                 ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
  * ║    The patent publishes no clear apertures. Rims were measured       ║
@@ -488,7 +489,8 @@ const LENS_DATA = {
     "Internal focus — G4 moves toward the object (¶0053); G1, G3 and G5 stay fixed and the overall length is constant. The patent's finite-distance gaps focus at 1.00 m object-to-image (calculated); the production lens focuses to 1.1 m.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.85,
+  nominalFno: [2.85, 2.9, 2.86],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.85, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
   maxFstop: 22,
 

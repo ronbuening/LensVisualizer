@@ -48,13 +48,13 @@ The MTF benchmark is separate from render-time analysis. Run it with the TypeScr
 
 ```bash
 node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.mjs
-node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.mjs --method=geometric-dl --spectrum=photopic --fields=11
+node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.mjs --method=diffraction --spectrum=photopic --fields=11
 node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.mjs --method=diffraction --spectrum=cdf --stopped-down --sweep
 node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.mjs --method=diffraction --finite --stopped-down
 ```
 
 It warms once, reports the median of three runs at grid caps 32/64/128/256, and includes the image-height axis and
-per-field availability and convergence. `--method` is `geometric` (default), `geometric-dl` or `diffraction`;
+per-field availability and convergence. `--method` is `geometric` (default) or `diffraction`;
 `--spectrum` is `reference` (default), `cdf` or `photopic`. `--fields=N` requests N evenly spaced fractions of the
 reference image height (default 3; `--sweep` is 9). `--stopped-down` uses one quarter of the wide-open pupil/stop
 radii. `--finite` selects the documented GF80mm station. `--diffraction` and `--cdf` remain aliases. Redirect stdout to JSON;

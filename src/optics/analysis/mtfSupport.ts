@@ -5,9 +5,9 @@ import type { PreparedOpticalState } from "../types.js";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "./mtfConjugates.js";
 import {
   MTF_DEFAULT_GRID_CAP,
-  MTF_DIFFRACTION_LIMITS,
   MTF_ESTIMATED_DISPERSION_MAX_VD,
   MTF_FIELDS,
+  MTF_FOCUS_MODES,
   MTF_FREQUENCIES,
   MTF_GRID_CAPS,
   MTF_MAX_FIELDS,
@@ -224,6 +224,12 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
     !MTF_GRID_CAPS.includes(options.maxGridSize ?? MTF_DEFAULT_GRID_CAP)
   )
     return reject("invalid-input", "MTF requires finite physical apertures, fields and image-space frequencies.");
+  // Untyped callers (audit scripts) must name the plane too: no silent default exists.
+  if (!MTF_FOCUS_MODES.includes(options.focus))
+    return reject("invalid-input", "MTF requires an explicit image-plane focus mode.");
+  // Untyped callers can still pass a retired method name, which would otherwise compute as geometric.
+  if (options.method !== "geometric" && options.method !== "diffraction")
+    return reject("invalid-input", "MTF method must be geometric or diffraction.");
   const scale = mtfPrescriptionScale(lens.source);
   if (scale && (scale.designMm / scale.marketingMm < 0.5 || scale.designMm / scale.marketingMm > 2)) {
     return reject("unverified-scale", "Prescription scale needs verification before reporting lp/mm.");
@@ -270,17 +276,9 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
     support.limitations.push(
       "Geometric MTF excludes diffraction and can overstate contrast for well-corrected lenses near the diffraction limit.",
     );
-  if (options.method === "geometric-dl")
+  if (options.method === "diffraction")
     support.limitations.push(
-      "Diffraction-corrected geometric MTF multiplies each wavelength's geometric OTF by the aberration-free OTF of the traced exit pupil. This engineering approximation to diffraction MTF can understate contrast where residual aberrations are comparable to a wavelength.",
+      "Diffraction-corrected MTF is computed from the traced rays: the pupil is sheared against itself and each overlap takes its phase from where the rays land. It includes the diffraction of the lens's actual aperture; it is a scalar estimate, without polarization or coating effects.",
     );
-  if (options.method === "diffraction") {
-    const limits = MTF_DIFFRACTION_LIMITS;
-    support.limitations.push(
-      `Scalar FFT: image-ray incidence ≤${limits.maxChiefIncidenceDeg}°, direction-cosine pupil radius ≤${limits.maxConeDirectionCosine}, blur ≤${Math.round(
-        limits.maxBlurToReferenceRadius * 100,
-      )}% of reference radius; other states are unavailable.`,
-    );
-  }
   return support;
 }

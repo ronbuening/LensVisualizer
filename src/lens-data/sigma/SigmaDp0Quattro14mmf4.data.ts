@@ -302,9 +302,9 @@ const LENS_DATA = {
     "Patent close focus at 200 mm (object to image); production dp0 Quattro specifies MFD = 18 cm.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4.0,
+  nominalFno: 4.13,
   apertureBlades: 7,
-  fstopSeries: [4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
+  fstopSeries: [4.13, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

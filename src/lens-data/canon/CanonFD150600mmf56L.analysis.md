@@ -214,9 +214,24 @@ All load-bearing first-order quantities were recalculated from the transcribed p
 
 The surface-by-surface Petzval sum, computed as $\sum \Phi/(n n')$, is $1.588 \times 10^{-4}\ \mathrm{mm}^{-1}$, corresponding to a Petzval radius of about 6297 mm. This is a very weak residual Petzval curvature for a system of this focal length and is consistent with the strong cancellation among the large positive and negative sub-group powers.
 
-The aperture stop semi-diameter used in the data file is 18.38928 mm. It was placed 0.5 mm before R25 inside the patent $l_3$ air space and chosen so that the paraxial entrance pupil gives f/5.6 at all three zoom positions.
+The aperture stop semi-diameter stored in the data file is 18.38928 mm. The stop is placed 0.5 mm before R25 inside the patent $l_3$ air space, and the stored value is the radius at which the paraxial entrance pupil gives f/5.6 at all three zoom positions. The model declares a fixed iris: the wide-open opening is sized by real ray at the 150 mm station, 18.457 mm, and held across the zoom range. Traced on axis, the model gives f/5.60 at 150 mm and f/5.59 at 300 mm, both limited by the iris, and f/5.60 at 600 mm, where the rim of surface 9 sits on the stated ray.
 
-The patent does not publish clear semi-diameters. The data file uses conservative inferred semi-diameters constrained by the official 123 mm maximum barrel diameter, the patent cross-section, minimum edge thickness, element front/rear diameter ratios, $sd/|R| < 0.90$, and cross-gap sag clearance. These apertures are renderer-safe layout apertures, not a guarantee of zero vignetting at the full 35 mm diagonal.
+The patent does not publish clear semi-diameters, and it draws no cross-section of Example 4: FIG. 1, FIG. 3, and FIG. 7 show Examples 1, 2, and 3, and Example 4 has aberration plots only. The data file uses inferred semi-diameters constrained by the official 123 mm maximum barrel diameter, the patent cross-sections of the sister examples, minimum edge thickness, element front/rear diameter ratios, $sd/|R| < 0.90$, and cross-gap sag clearance.
+
+Surfaces 5 to 10, the diverger III and the front element of focusing group IV, are sized from the stated f/5.6 on-axis ray at the 600 mm station. The patent ties the front-group diameter to this ray: it states that the effective diameter of the convergent front group is almost determined by the maximum-aperture beam at the telescopic end. Each of L3, L4, and L5 carries one semi-diameter on both faces, the height its taller face needs rounded up to 0.1 mm, because FIG. 1 and FIG. 3 draw these elements in the sister examples with a square-cut rim.
+
+| Surface | Face | f/5.6 on-axis ray height at 600 mm | Semi-diameter | Basis |
+|---:|---|---:|---:|---|
+| 5 | L3 front | 45.22 mm | 45.3 mm | Ray height |
+| 6 | L3 rear | 44.05 mm | 45.3 mm | Square rim with surface 5 |
+| 7 | L4 front | 43.78 mm | 43.8 mm | Ray height |
+| 8 | L4 rear | 43.00 mm | 43.8 mm | Square rim with surface 7 |
+| 9 | L5 front | 43.40 mm | 43.4 mm | Ray height |
+| 10 | L5 rear | 43.31 mm | 43.4 mm | Ray height |
+
+The rear faces of L3 and L4 stand 1.25 mm and 0.80 mm above the ray; the other four faces stand within 0.09 mm of it. At these values the edge thicknesses of L3, L4, and L5 are 8.38 mm, 7.82 mm, and 2.49 mm; the air space inside sub-group III keeps 2.46 mm at the rim, the two facing surfaces taking 45 % of the 4.488 mm gap; and S1 keeps 37.75 mm at the rim at infinity and 3.51 mm in the 3 m focus state. The front collector clears the same ray by 6.2 to 6.6 mm and surfaces 11 to 14 clear it by 0.02 to 0.64 mm.
+
+These apertures are layout apertures, not a guarantee of zero vignetting at the full 35 mm diagonal. A traced field-coverage check reaches the 21.65 mm image corner at all three zoom stations.
 
 ## Design Heritage and Context
 

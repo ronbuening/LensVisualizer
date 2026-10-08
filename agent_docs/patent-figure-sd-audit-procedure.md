@@ -21,6 +21,22 @@ Change an `sd` only when you have one of these:
   a design whose printed image height reaches that corner (Step 1). Always fix these.
 - **Strong figure evidence** — the patent drawing disagrees by more than ~25%, both measurements agree, and you
   confirmed it on a zoomed render (Steps 3–4).
+- **A clipped stated beam** — an inferred rim clips the on-axis beam of the f-number the source prints
+  (`npm run audit:aperture`). The on-axis ray is a physical floor: a lens cannot have its design f-number with a rim
+  below it. Make the change that alters shape and comparative size the least: only the surfaces that clip move, and
+  each rises only to the height the stated ray reaches there (`npm run audit:aperture -- <file> --raise`), rounded
+  up at the precision the file uses. A surface that does not clip keeps its value, so rims stay as tight as the
+  f-number allows and the modeled vignetting is kept. Two things keep the silhouette as the patent draws it:
+  - **Square rims stay square.** An element whose two faces carry one value, and which the figure draws with a
+    square-cut rim, keeps one value: both faces take the higher of the two ray heights (the tool's second column).
+    An element the figure draws stepped or chamfered is raised face by face.
+  - **Facing surfaces that nearly meet.** Where the raise is refused by the validator's cross-gap limit although the
+    surfaces do not cross and the figure draws the elements meeting at the rim, set `gapSagFrac` for that lens to
+    the smallest value that admits the raise, and name the pair in the header.
+
+  The figure is a check, not the source of the value: where it draws the element smaller than the ray needs, or the
+  raise is over ~15%, leave the row in [sd-audit-queue.md](sd-audit-queue.md) Section I and read the figure and the
+  prescription before changing anything. Compare the rendered section with the figure afterwards (Step 8).
 
 Anything inside ~15% is noise. Leave it and say so in the log.
 

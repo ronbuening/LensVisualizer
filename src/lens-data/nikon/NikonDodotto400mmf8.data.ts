@@ -12,8 +12,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON APERTURE:                                                 ║
  * ║    The patent table gives FNO = 8.13. The production lens is       ║
  * ║    marketed as f/8 and has no adjustable diaphragm. `nominalFno`   ║
- * ║    and the stop SD are therefore set to the marketed f/8 value;    ║
- * ║    `apertureDesign` records the patent value.                      ║
+ * ║    follows the patent value, as `apertureDesign` does, and the     ║
+ * ║    runtime sizes the stop from it; `apertureMarketing` is f/8.     ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent does not publish SDs. Values here are inferred from  ║
@@ -141,9 +141,9 @@ const LENS_DATA = {
   focusDescription:
     "Unit focus; the whole optical assembly translates, modeled by increasing the final BFD gap from 174.594 mm to 211.603 mm at 4.5 m.",
 
-  nominalFno: 8,
-  fstopSeries: [8],
-  maxFstop: 8,
+  nominalFno: 8.13,
+  fstopSeries: [8.13],
+  maxFstop: 8.13,
 
   scFill: 0.58,
   yScFill: 0.28,

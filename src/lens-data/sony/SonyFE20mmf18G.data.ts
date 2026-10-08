@@ -12,6 +12,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * front-element profiles were tuned to follow patent FIG. 4's stepped taper.
  * The S23-S24 air lens remains intentionally conservative.
  * Sensor cover glass is not included.
+ *
+ * Partial dispersion: the patent tabulates only nd and νd (Table 5) and states no partial-dispersion formula or
+ * normal line of its own. `dPgF` is PgF minus the engine's normal line (0.6438 − 0.001682·νd), with PgF taken from
+ * each element's authored nC/nF/ng. The OHARA and HOYA catalog ΔPg,F figures are taken against each vendor's own
+ * normal line (the HOYA ones fit PgF − 0.64833 + 0.00180·νd) and are not stored, except L27's −0.0067, which already
+ * agrees with its own indices (−0.006875) within 0.0003 and is kept as written.
  */
 
 const LENS_DATA = {
@@ -56,7 +62,7 @@ const LENS_DATA = {
       vd: 54.7,
       fl: -52.372854,
       glass: "S-LAL18 (OHARA)",
-      dPgF: -0.0086,
+      dPgF: -0.007567,
       nC: 1.7251,
       nF: 1.73844,
       ng: 1.7457,
@@ -71,13 +77,14 @@ const LENS_DATA = {
       vd: 75.5,
       fl: -97.402519,
       glass: "FCD705 (HOYA)",
-      dPgF: 0.0276,
+      dPgF: 0.023657,
       nC: 1.5481,
       nF: 1.55539,
       ng: 1.55933,
       role: "Low-dispersion front negative meniscus.",
       apd: "inferred",
-      apdNote: "Catalog ΔPgF = +0.0276; ED-role mapping inferred from the patent glass data.",
+      apdNote:
+        "Patent prints no PgF. Authored nC/nF/ng give PgF = 0.5405, runtime dPgF +0.023657; the HOYA catalog ΔPgF = +0.0276 is by HOYA's own line (PgF − 0.64833 + 0.00180·νd). ED-role mapping inferred from the patent glass data.",
     },
     {
       id: 3,
@@ -88,7 +95,7 @@ const LENS_DATA = {
       vd: 59.5,
       fl: -71.770708,
       glass: "M-BACD12 (HOYA)",
-      dPgF: -0.0008,
+      dPgF: -0.001884,
       nC: 1.58014,
       nF: 1.58994,
       ng: 1.59525,
@@ -103,7 +110,7 @@ const LENS_DATA = {
       vd: 22.7,
       fl: 74.316363,
       glass: "S-NPH5 (OHARA)",
-      dPgF: 0.0237,
+      dPgF: 0.022742,
       nC: 1.848209,
       nF: 1.886001,
       ng: 1.909748,
@@ -118,7 +125,7 @@ const LENS_DATA = {
       vd: 27.8,
       fl: -57.544646,
       glass: "S-TIH13 (OHARA)",
-      dPgF: 0.013,
+      dPgF: 0.012481,
       nC: 1.733089,
       nF: 1.759746,
       ng: 1.775994,
@@ -133,7 +140,7 @@ const LENS_DATA = {
       vd: 40.8,
       fl: 31.647434,
       glass: "S-LAH58 (OHARA)",
-      dPgF: -0.0088,
+      dPgF: -0.008442,
       nC: 1.87656,
       nF: 1.898221,
       ng: 1.910497,
@@ -163,7 +170,7 @@ const LENS_DATA = {
       vd: 27.5,
       fl: -64.284898,
       glass: "S-TIH4 (OHARA)",
-      dPgF: 0.0133,
+      dPgF: 0.012728,
       nC: 1.747295,
       nF: 1.774745,
       ng: 1.791497,
@@ -194,7 +201,7 @@ const LENS_DATA = {
       vd: 24.8,
       fl: -24.50596,
       glass: "S-NBH56 (OHARA)",
-      dPgF: 0.0109,
+      dPgF: 0.010145,
       nC: 1.844876,
       nF: 1.879345,
       ng: 1.900448,
@@ -210,7 +217,7 @@ const LENS_DATA = {
       vd: 18.0,
       fl: 26.794472,
       glass: "FDS18 (HOYA)",
-      dPgF: 0.0386,
+      dPgF: 0.041039,
       nC: 1.93123,
       nF: 1.98383,
       ng: 2.01826,
@@ -225,7 +232,7 @@ const LENS_DATA = {
       vd: 24.8,
       fl: -35.507387,
       glass: "S-NBH56 (OHARA)",
-      dPgF: 0.0109,
+      dPgF: 0.010145,
       nC: 1.844876,
       nF: 1.879345,
       ng: 1.900448,
@@ -255,7 +262,7 @@ const LENS_DATA = {
       vd: 64.2,
       fl: 273.799816,
       glass: "BSC7 (HOYA)",
-      dPgF: 0.0015,
+      dPgF: -0.001654,
       nC: 1.51432,
       nF: 1.52237,
       ng: 1.52667,
@@ -353,8 +360,8 @@ const LENS_DATA = {
   closeFocusM: 0.18,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 1.85,
+  fstopSeries: [1.85, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   maxFstop: 22,
   scFill: 0.62,

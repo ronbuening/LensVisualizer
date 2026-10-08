@@ -19,7 +19,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON SCALING: None. Patent prescription is at production focal   ║
  * ║  lengths (205.04–486.97 mm). No scaling applied.                     ║
  * ║                                                                      ║
- * ║  NOTE ON APERTURE: fixed physical iris (no zoomApertureModel). ¶0016 ║
+ * ║  NOTE ON APERTURE: one iris (zoomApertureModel "fixed-iris"). ¶0016  ║
  * ║  says the independently moving stop keeps the iris diameter          ║
  * ║  constant; a real-ray trace confirms one iris radius (14.05–14.06    ║
  * ║  mm) reproduces the patent FNo 4.62 / 5.24 / 5.78 at every station.  ║
@@ -459,10 +459,11 @@ const LENS_DATA = {
   focusDescription: "Internal focus via G5 (L5) axial translation toward image. G5 is a negative cemented doublet.",
 
   /* ── Aperture configuration ──
-   *  Patent Example 2: FNo = 4.62 / 5.24 / 5.78 with a constant iris (¶0016); the fixed-iris default
+   *  Patent Example 2: FNo = 4.62 / 5.24 / 5.78 with a constant iris (¶0016); the fixed-iris model
    *  reproduces all three (stop radius 14.05–14.06 mm). Production: constant f/5.6, minimum f/32.
    */
   nominalFno: [4.62, 5.24, 5.78] as number[],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.62, 5.6, 6.3, 8, 11, 16, 22, 32],
   maxFstop: 32,
 

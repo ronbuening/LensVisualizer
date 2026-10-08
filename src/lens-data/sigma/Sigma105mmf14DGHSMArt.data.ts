@@ -386,8 +386,8 @@ const LENS_DATA = {
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
   focusDescription: "Internal rear-group focus: G2 moves objectward; G1 and the image plane remain fixed.",
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
   scFill: 0.64,
   yScFill: 0.42,
 } satisfies LensDataInput;

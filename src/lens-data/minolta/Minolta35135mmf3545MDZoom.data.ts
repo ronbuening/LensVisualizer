@@ -339,6 +339,7 @@ const LENS_DATA = {
     "NO_INTERNAL_RECONSTRUCTION — US 5,249,079 publishes zoom spacings only. The 1.5 m close-focus value is product metadata; no finite-focus or macro internal motion is synthesized in this model.",
 
   nominalFno: [3.610666, 4.55663],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22],
   maxFstop: 22, // production minimum aperture per the MINOLTA Manual Lens List (A min 22); the patent publishes none
 

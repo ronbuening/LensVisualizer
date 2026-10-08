@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
-import { launchPhaseMm, sampleReferenceWavefront } from "../../../src/optics/analysis/mtfWavefront.js";
+import { launchPhaseMm, rayOpticalPathToImageMm } from "../../../src/optics/analysis/mtfWavefront.js";
 import type { Ray3 } from "../../../src/optics/types.js";
 
 describe("sequential optical path capture", () => {
@@ -38,7 +38,7 @@ describe("sequential optical path capture", () => {
         { origin: [0, 0, z], direction: [0, 0, 1] },
         { stopAt: 3, recordOpticalPath: true },
       );
-      return sampleReferenceWavefront(trace, [0, 0, 27], 20)!.opticalPathMm;
+      return rayOpticalPathToImageMm(trace, [0, 0, 27])!;
     });
     expect(values[0]).toBeCloseTo(values[1], 11);
   });
@@ -51,7 +51,7 @@ describe("sequential optical path capture", () => {
   });
   it("rejects rays without captured phase and accounts for a finite source", () => {
     const trace = traceEngineRay2(state, { origin: [0, 0, -10], direction: [0, 0, 1] });
-    expect(sampleReferenceWavefront(trace, [0, 0, 27], 20)).toBeNull();
+    expect(rayOpticalPathToImageMm(trace, [0, 0, 27])).toBeNull();
     expect(launchPhaseMm(trace, [0, 0, -100])).toBe(90);
   });
 });

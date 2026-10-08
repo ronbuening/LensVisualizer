@@ -2,29 +2,33 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — FUJIFILM GF 100-200mm F5.6 R LM OIS WR               ║
+ * ║  LENS DATA — FUJIFILM GF 100-200mm F5.6 R LM OIS WR                  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2019/0361195 A1, Example 1 (FUJIFILM / Kondo).    ║
- * ║  Positive-negative-positive-positive four-group telephoto zoom.     ║
- * ║  20 elements / 13 groups, one double-sided aspherical element.      ║
- * ║  Focus: patent assigns focusing to G3 only; close-focus spacings    ║
- * ║  are not tabulated, so this file encodes the infinity zoom states.  ║
- * ║  OIS: G4B anti-vibration subgroup, moving transverse to the axis.   ║
- * ║                                                                    ║
- * ║  Zoom variable gaps: DD[5], DD[13], DD[18].                         ║
- * ║  Reversing group: DD[18] is non-monotonic across W/M/T positions.   ║
- * ║  Cover glass PP (S35–36) is modeled in `rearPlates` (traced, not    ║
- * ║  drawn); d34 stores the patent's 57.4777 mm gap to the plate.       ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║  Patent omits clear apertures. SDs were estimated from paraxial      ║
- * ║  marginal/chief-ray envelopes and clipped against edge-thickness,    ║
- * ║  element-SD-ratio, and cross-gap sag-intrusion constraints.         ║
- * ║  L48 asphere SD = 14.5 mm leaves ~0.43 mm edge thickness.           ║
- * ║                                                                    ║
- * ║  NOTE ON ASPHERES:                                                 ║
- * ║  Surfaces 31A/32A store exact Table 3 odd/even A4–A20 terms.       ║
- * ║  Zero A3 is omitted; patent KA converts with K = KA − 1.           ║
+ * ║  Data source: US 2019/0361195 A1, Example 1 (FUJIFILM / Kondo).      ║
+ * ║  Positive-negative-positive-positive four-group telephoto zoom.      ║
+ * ║  20 elements / 13 groups, one double-sided aspherical element.       ║
+ * ║  Focus: patent assigns focusing to G3 only; close-focus spacings     ║
+ * ║  are not tabulated, so this file encodes the infinity zoom states.   ║
+ * ║  OIS: G4B anti-vibration subgroup, moving transverse to the axis.    ║
+ * ║                                                                      ║
+ * ║  Zoom variable gaps: DD[5], DD[13], DD[18].                          ║
+ * ║  Reversing group: DD[18] is non-monotonic across W/M/T positions.    ║
+ * ║  Cover glass PP (S35–36) is modeled in `rearPlates` (traced, not     ║
+ * ║  drawn); d34 stores the patent's 57.4777 mm gap to the plate.        ║
+ * ║                                                                      ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                             ║
+ * ║  Patent omits clear apertures. SDs are estimated from paraxial       ║
+ * ║  marginal/chief-ray envelopes and held inside edge-thickness,        ║
+ * ║  element-SD-ratio, and cross-gap sag-intrusion constraints.          ║
+ * ║  Surfaces 21 and 22 (L41 rear, L42 front) follow the F5.70 on-axis   ║
+ * ║  ray instead: it reaches 10.72 / 10.48 mm there at 101.68 mm, and    ║
+ * ║  the rows store 10.8 / 10.5 mm. The fixed iris (11.12 mm real-ray    ║
+ * ║  radius) limits the on-axis beam at every zoom station.              ║
+ * ║  L48 asphere SD = 14.5 mm leaves ~0.43 mm edge thickness.            ║
+ * ║                                                                      ║
+ * ║  NOTE ON ASPHERES:                                                   ║
+ * ║  Surfaces 31A/32A store exact Table 3 odd/even A4–A20 terms.         ║
+ * ║  Zero A3 is omitted; patent KA converts with K = KA − 1.             ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -57,10 +61,11 @@ const LENS_DATA = {
   groupCount: 13,
   apertureBlades: 9,
 
-  nominalFno: 5.6,
+  nominalFno: 5.7,
+  zoomApertureModel: "fixed-iris",
   closeFocusM: 0.6,
   maxFstop: 32,
-  fstopSeries: [5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [5.7, 8, 11, 16, 22, 32],
   yScFill: 0.78,
   scFill: 0.58,
   focusDescription:
@@ -337,8 +342,8 @@ const LENS_DATA = {
     { label: "18", R: -438.8309, d: 18.27, nd: 1.0, elemId: 0, sd: 14.0 },
     { label: "STO", R: 1e15, d: 0.2, nd: 1.0, elemId: 0, sd: 11.06 },
     { label: "20", R: 25.1162, d: 5.03, nd: 1.43875, elemId: 12, sd: 11.3 },
-    { label: "21", R: 73.3817, d: 0.65, nd: 1.0, elemId: 0, sd: 9.2 },
-    { label: "22", R: 29.4303, d: 4.97, nd: 1.56883, elemId: 13, sd: 9.2 },
+    { label: "21", R: 73.3817, d: 0.65, nd: 1.0, elemId: 0, sd: 10.8 }, // f/5.70 on-axis ray: 10.72 mm
+    { label: "22", R: 29.4303, d: 4.97, nd: 1.56883, elemId: 13, sd: 10.5 }, // f/5.70 on-axis ray: 10.48 mm
     { label: "23", R: -75.04, d: 0.94, nd: 1.83481, elemId: 14, sd: 10.5 },
     { label: "24", R: 17.605, d: 5.45, nd: 1.48749, elemId: 15, sd: 11.0 },
     { label: "25", R: -75.4013, d: 4.1, nd: 1.0, elemId: 0, sd: 11.0 },

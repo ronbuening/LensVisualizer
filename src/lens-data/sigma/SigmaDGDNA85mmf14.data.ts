@@ -37,9 +37,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  filter thread envelope.                                           ║
  * ║                                                                    ║
  * ║  NOTE ON F-NUMBER: Sigma markets this lens as F/1.4. The patent    ║
- * ║  design F-number is F/1.46. Per project convention, nominalFno     ║
- * ║  uses the manufacturer-published value (1.4); apertureMarketing    ║
- * ║  and apertureDesign are stored separately.                         ║
+ * ║  design F-number is F/1.46, which nominalFno and apertureDesign    ║
+ * ║  carry; apertureMarketing records the published 1.4.               ║
+ * ║                                                                    ║
+ * ║  NOTE ON PARTIAL DISPERSION: The patent tabulates θgF only for L5  ║
+ * ║  (surface 8, 0.6103). `dPgF` is that θgF minus the engine's normal ║
+ * ║  line (0.6438 − 0.001682·νd), not the patent's condition (8)       ║
+ * ║  deviation θgF − (0.648285 − 0.00180123·νd), which the analysis    ║
+ * ║  quotes.                                                           ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -137,8 +142,8 @@ const LENS_DATA = {
       glass: "NBFD25 catalog equivalent (patent coordinate; production supplier unspecified)",
       apd: "patent",
       apdNote:
-        "θgF = 0.6103 (patent-listed); ΔPgF = +0.0073 (above the Abbe-Buchdahl normal line). The LN element of patent claims 4–5.",
-      dPgF: 0.0073,
+        "Patent θgF = 0.6103; +0.0073 by the patent's condition (8) line (θgF − 0.648285 + 0.00180123·νd), runtime dPgF +0.008802. The LN element of patent claims 4–5.",
+      dPgF: 0.008802,
       cemented: "D1",
       role: "LN element (claims 4–5): strongest negative power in GA; secondary g-line spectrum corrector via positive ΔPgF.",
     },
@@ -351,10 +356,9 @@ const LENS_DATA = {
     "Inner focus by single negative meniscus L7 (G2 / LF). L7 translates rigidly toward the image at close focus over a 9.6026 mm throw. Stepping-motor drive (Sigma published spec); BFD held constant.",
 
   /* ── Aperture configuration ── */
-  // Per project convention: nominalFno uses the manufacturer-marketed value (F/1.4),
-  // even though the patent design F-number is F/1.46.
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 1.6, 1.8, 2, 2.2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
+  // The patent design F-number; Sigma markets the lens as F/1.4.
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 1.6, 1.8, 2, 2.2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

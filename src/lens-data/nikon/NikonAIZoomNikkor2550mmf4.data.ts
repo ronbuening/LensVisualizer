@@ -9,8 +9,9 @@ import type { LensDataInput } from "../../types/optics.js";
 // Patent d8 is the variable separation from r8 to r9. The data model inserts STO in this gap, just ahead of
 // the converging group, so surface 8 stores d8 - 0.1 mm and STO.d stores the remaining 0.1 mm.
 // Nikon's design note describes a zoom-cammed aperture that moves with the second group and changes diameter
-// to preserve f/4. The current data schema uses one fixed STO semi-diameter, so STO.sd is set to the wide-end
-// f/4 model aperture for layout while nominalFno remains the production constant f/4.
+// to preserve f/4. STO.sd is set to the wide-end f/4 model aperture for layout; the wide-open iris radius is
+// traced from nominalFno, the production constant f/4, at each zoom station (8.356 / 9.616 / 11.479 mm).
+// At the tele station the beam is limited at the stop surface and traces about f/4.91.
 //
 // Semi-diameters: the patent does not publish per-surface clear apertures. Values are visualization estimates
 // from marginal/chief ray envelopes, reduced where needed for positive edge thickness, sane adjacent-surface

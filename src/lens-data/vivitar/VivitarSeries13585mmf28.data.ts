@@ -5,8 +5,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  LENS DATA — VIVITAR SERIES 1 35–85 mm f/2.8 VMC                  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 3,975,089 Table I / Fig. 1 (Ellis I. Betensky /   ║
- * ║  Ponder & Best, Inc., granted Aug. 17, 1976; Certificate of        ║
- * ║  Correction Jan. 25, 1977 fixes only claim 17's "5.93" → 5.98).   ║
+ * ║  Ponder & Best, Inc., granted Aug. 17, 1976). The Certificate of   ║
+ * ║  Correction of Jan. 25, 1977 touches one table value, claim 17's   ║
+ * ║  "5.93" → 5.98; its other items are a formula and a claim          ║
+ * ║  dependency.                                                       ║
  * ║  Table I is printed in mm, "as scaled to a 36–83mm focal length"; ║
  * ║  the prescription is stored native (scale factor 1).               ║
  * ║  12 elements / 9 groups (4 functional groups), all spherical.     ║
@@ -16,23 +18,34 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  Zoom variable gaps (patent footnotes (1)–(3), wide → tele):       ║
  * ║    D6 = 0.47 → 19.48, D9 = 15.94 → 5.01, D12 = 9.33 → 1.19.        ║
- * ║  Table II travels (19.07 / 8.14 mm) and the Fig. 2 cam plot are    ║
- * ║  reproduced by these gaps. Only the two end stations are           ║
- * ║  tabulated, so intermediate motion is linear interpolation.        ║
+ * ║  Table II's Group II / III travels (19.07 / 8.14 mm) and the ends  ║
+ * ║  of their Fig. 2 curves are reproduced by these gaps; the Group I  ║
+ * ║  curve plots about 0.7 mm above the R6–R13 distance. Only the two  ║
+ * ║  end stations are tabulated, so intermediate motion is linear      ║
+ * ║  interpolation.                                                    ║
  * ║  BF (surface 21) is the paraxial back focus of each station        ║
  * ║  (45.82 wide / 46.37 tele — the design is varifocal by 0.55 mm),  ║
  * ║  plus the common unit-focus extension at close focus.              ║
  * ║                                                                    ║
- * ║  NOTE ON EFL DISCREPANCY:                                          ║
- * ║    Table I as printed computes to f = 38.46 / 89.08 mm, BF 45.8,   ║
- * ║    ~7 % longer than the 36–83 mm / BF 40.06 mm the text states.   ║
- * ║    Table III group powers I–III (.0157 / −.0395 / −.0098) match   ║
- * ║    the printed rows, but Group IV computes to .0319 vs the         ║
- * ║    published .0333, so the disagreement sits in the Group IV rows ║
- * ║    and is not a uniform scale error. No single printed value can  ║
- * ║    be corrected to reconcile EFL, BF and FVD at once (the claim   ║
- * ║    tables repeat Table I verbatim), so the table is kept as        ║
- * ║    printed; focalLengthDesign records the computed EFL.            ║
+ * ║  NOTE ON EFL DISCREPANCY (sourceErrata: unresolved):               ║
+ * ║    Every row of Table I matches this file, and so do the copies in ║
+ * ║    claims 7, 8 and 17 (claim 17 as corrected), except that claim 8 ║
+ * ║    prints R21 as −35.95.                                           ║
+ * ║    As printed the table computes to f = 38.46 / 89.08 mm, BF 45.82 ║
+ * ║    / 46.37 mm and a front-vertex distance of 138.9 / 139.4 mm; the ║
+ * ║    text states 36–83 mm, 40.06 mm and 133.7 / 135.7 mm. Computed   ║
+ * ║    group powers against Table III: I .0158 (.0157), II −.0395      ║
+ * ║    (−.0395), III −.0100 (−.0098), I–III −.0306 (−.0301), IV .0319  ║
+ * ║    (.0333), whole lens at wide .0260 (.0277). Nearly all of the    ║
+ * ║    focal-length gap comes from Group IV, and it is not a uniform   ║
+ * ║    scale error: Table II's Group II / III travels follow from the  ║
+ * ║    printed gaps.                                                   ║
+ * ║    No single Group IV radius, thickness or index reproduces f, BF  ║
+ * ║    and the Group IV power together, and claim 8's R21 moves f      ║
+ * ║    further off (38.86 / 90.02 mm). The patent has no aberration    ║
+ * ║    plots and no second example, and the printed rows satisfy every ║
+ * ║    claimed condition, so the table is kept as printed;             ║
+ * ║    focalLengthDesign records the computed EFL.                     ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                            ║
  * ║    Fig. 1 draws the iris symbol between L10 and L11, inside the    ║
@@ -40,7 +53,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    mm R17–R18 gap. That gap is split 4.15 (R17→STO) + 7.38         ║
  * ║    (STO→R18); the split is figure-derived. The f/2.8 marginal ray ║
  * ║    reaches the iris at 11.58 mm at both stations, so one fixed    ║
- * ║    iris gives f/2.8 across the zoom (no zoomApertureModel).       ║
+ * ║    iris gives f/2.8 across the zoom (zoomApertureModel fixed).    ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent lists none. Values are estimated from Fig. 1 (page  ║
@@ -88,6 +101,12 @@ const LENS_DATA = {
   patentAuthors: ["Ellis I. Betensky"],
   patentAssignees: ["Ponder & Best, Inc."],
   patentYear: 1976,
+  sourceErrata: [
+    {
+      status: "unresolved",
+      note: "Table I as printed computes to f = 38.46 / 89.08 mm and a back focus of 45.82 mm; the text states 36–83 mm and 40.06 mm. Group IV computes to a power of 0.0319 against Table III's .0333. The claim copies of the table carry the same Group IV rows (claim 17 as corrected by the Certificate), apart from claim 8's R21 of −35.95, which moves f further off, and no single Group IV value reproduces the stated focal lengths, back focus and group power together.",
+    },
+  ],
   elementCount: 12,
   groupCount: 9,
 
@@ -344,6 +363,7 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: 2.8,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */

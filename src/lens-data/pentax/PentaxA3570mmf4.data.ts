@@ -2,52 +2,89 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — PENTAX SMC A ZOOM 35-70mm f/4                             ║
+ * ║  LENS DATA — PENTAX SMC A ZOOM 35-70mm f/4                                 ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Optical source: US 4,812,022, Example 3 (Shigetada Sato / Asahi Kogaku).║
- * ║  Product metadata source: Pentax Lenses & Accessories A-series catalog.  ║
- * ║  Patent prescription: 7 elements / 7 groups, all spherical, d-line.      ║
- * ║  Patent design range: 36-68.5 mm, f/4.1, 2ω = 64.5°-34.7°.              ║
- * ║  Production metadata: 35-70 mm f/4, Pentax K/KA, 135 format, MFD 0.25 m.║
+ * ║  Optical source: US 4,812,022, Example 3 (Shigetada Sato / Asahi Kogaku).  ║
+ * ║  Product metadata source: Pentax Lenses & Accessories A-series catalog.    ║
+ * ║  Patent prescription: 7 elements / 7 groups, all spherical, d-line.        ║
+ * ║  Patent design range: 36-68.5 mm, f/4.1, 2ω = 64.5°-34.7°.                 ║
+ * ║  Production metadata: 35-70 mm f/4, Pentax K/KA, 135 format, MFD 0.25 m.   ║
  * ║                                                                            ║
- * ║  SCALE: none. Patent dimensions are preserved at Example 3 scale.         ║
+ * ║  SCALE: none. Patent dimensions are preserved at Example 3 scale.          ║
  * ║                                                                            ║
  * ║  ZOOM MODEL:                                                               ║
- * ║    - The patent publishes only d6 = 41.111 mm (wide) and 3.821 mm (tele). ║
- * ║    - The required rear image-space distances are independently computed   ║
- * ║      infinity-focus BFDs, not patent table rows: 42.386856744 mm wide and ║
+ * ║    - The patent publishes only d6 = 41.111 mm (wide) and 3.821 mm (tele).  ║
+ * ║    - The required rear image-space distances are independently computed    ║
+ * ║      infinity-focus BFDs, not patent table rows: 42.386856744 mm wide and  ║
  * ║      62.019383234 mm tele.                                                 ║
- * ║    - Only those two endpoint states are defined; no intermediate cam law  ║
+ * ║    - Only those two endpoint states are defined; no intermediate cam law   ║
  * ║      or reversal is inferred.                                              ║
  * ║                                                                            ║
  * ║  FOCUS STATUS: NO_INTERNAL_RECONSTRUCTION.                                 ║
- * ║    The production 0.25 m MFD is retained as metadata only. The patent     ║
+ * ║    The production 0.25 m MFD is retained as metadata only. The patent      ║
  * ║    publishes no close-focus spacing table, object distance, magnification, ║
- * ║    or focus cam law, so every authored focus pair is identical.           ║
+ * ║    or focus cam law, so every authored focus pair is identical.            ║
  * ║                                                                            ║
- * ║  STOP MODEL (explicit inference; source is underdetermined):               ║
- * ║    The patent states that the iris lies in d6 and moves with the rear      ║
- * ║    group but gives neither coordinate nor radius. The modeled STO is       ║
- * ║    fixed 1.9105 mm objectward of r7, i.e. the midpoint of the minimum      ║
- * ║    published d6 at 68.5 mm. Its 7.752338441 mm physical semi-diameter is   ║
- * ║    calibrated to reproduce f/4.1 at the wide endpoint. With this one fixed ║
- * ║    stop radius and rigid rear-group placement, the modeled tele endpoint  ║
- * ║    is f/5.394215. nominalFno therefore records the modeled geometry, while ║
- * ║    apertureDesign preserves the patent's published f/4.1. This is not a   ║
- * ║    claim that the production lens is variable-aperture; the real iris      ║
- * ║    opening law is not published and is not reconstructable from Example 3.║
+ * ║  STOP MODEL (position inferred; iris traced from the patent f-number):     ║
+ * ║    The patent states that the aperture lies in d6 and moves with the rear  ║
+ * ║    group but gives neither coordinate nor diameter. The modeled STO sits   ║
+ * ║    1.9105 mm objectward of r7, the midpoint of the minimum published d6 at ║
+ * ║    68.5 mm, and rides with the rear group. Example 3 prints F number 1:4.1 ║
+ * ║    for F = 36-68.5, and Figs. 10-12 are headed 1:4.1 at minimum, medium    ║
+ * ║    and maximum focal length, so nominalFno is 4.1 at both stations. The    ║
+ * ║    wide-open iris is traced per station from that f-number: 7.7842 mm      ║
+ * ║    radius at 36 mm and 10.3442 mm at 68.5 mm. No single radius gives f/4.1 ║
+ * ║    at both ends. The authored STO sd, 7.752338441 mm, is the paraxial      ║
+ * ║    f/4.1 radius at 36 mm.                                                  ║
+ * ║    The iris limits the axial beam at both stations, and both trace f/4.10. ║
+ * ║    At 68.5 mm the f/4.1 marginal ray reaches 10.762 mm at surface 7 and    ║
+ * ║    10.681 mm at surface 8 (L4, sd 10.8 mm), 10.201 mm at surface 9 and     ║
+ * ║    9.698 mm at surface 10 (L5, sd 10.3 mm), 9.612 mm at surface 11 (L6     ║
+ * ║    front, sd 9.7 mm), 7.731 mm at surface 12 (L6 rear, sd 9.4 mm), and     ║
+ * ║    7.714 mm at surface 13 and 7.755 mm at surface 14 (L7, sd 7.8 mm), so   ║
+ * ║    no rear-group rim cuts it.                                              ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS (inferred, not patent-listed):                             ║
- * ║    Derived from exact spherical meridional ray bundles at the patent      ║
- * ║    endpoint fields, then constrained by edge thickness, actual rim slope, ║
- * ║    the Fig. 9 silhouette, and the default 0.90 shared-band cross-gap rule. ║
- * ║    and the default 0.60-field ray fan are contained at both zoom endpoints.║
- * ║    The extreme wide-field outer-pupil ray is allowed to vignette at L2;   ║
- * ║    increasing L2 enough to pass that ray violates the d2 cross-gap rule.  ║
+ * ║    Front group (surfaces 1-6): inferred from exact spherical meridional    ║
+ * ║    ray bundles at the patent endpoint fields, then constrained by edge     ║
+ * ║    thickness, actual rim slope, the Fig. 9 silhouette, and the default     ║
+ * ║    0.90 shared-band cross-gap rule.                                        ║
+ * ║    Rear group (surfaces 7-14): sized to the stated beam. At 68.5 mm the    ║
+ * ║    f/4.1 on-axis ray reaches 10.762, 10.681, 10.201, 9.698, 9.612, 7.731,  ║
+ * ║    7.714 and 7.755 mm at surfaces 7 to 14. Rounded up to 0.1 mm, a ray     ║
+ * ║    height is the smallest rim at that precision that passes the printed    ║
+ * ║    f/4.1.                                                                  ║
+ * ║    Square rims: Fig. 9 draws L4, L5 and L7 square-cut, one rim line        ║
+ * ║    parallel to the axis joining the front and rear faces (L5's rear corner ║
+ * ║    is cut by about 0.5 mm, little more than a drawn line width), so each   ║
+ * ║    carries one value on both faces, the higher of its two rounded ray      ║
+ * ║    heights: 10.8 mm (set by surface 7), 10.3 mm (set by surface 9) and     ║
+ * ║    7.8 mm (surfaces 13 and 14 alike).                                      ║
+ * ║    Fig. 9 draws L6 with a chamfer on its rear, so its two faces are sized  ║
+ * ║    separately: surface 11 carries its rounded ray height, 9.7 mm, and      ║
+ * ║    surface 12 carries 9.4 mm, inferred the same way as the front group.    ║
+ * ║    Fig. 9 (sheet 5, the 36 mm section) is the check on those values, not   ║
+ * ║    their source. Read as half the distance between the centres of each     ║
+ * ║    element's upper and lower rim lines on the 300 dpi scan, at 15.25 px/mm ║
+ * ║    (r7-r14 vertex span) and 15.17 px/mm (circles fitted to eight drawn     ║
+ * ║    arcs), it draws L4 at 11.3 mm, L5 at 10.7 mm, L6 at 10.2 mm and L7 at   ║
+ * ║    8.2 mm, each at least as large as that element's rims here. It ends     ║
+ * ║    the r12 arc at a chamfer corner 8.4 mm from the axis; surface 12, at    ║
+ * ║    9.4 mm, lies between that corner and L6's drawn outer rim. The patent   ║
+ * ║    calls Fig. 9 a schematic view.                                          ║
+ * ║    The rear rims pass the f/4.1 axial beam at both endpoints; at 68.5 mm   ║
+ * ║    they stand outside its marginal ray by 0.04 mm (surface 7) to 0.12 mm   ║
+ * ║    (surface 8) on L4, on the fronts of L5 and L6 and on L7, by 0.60 mm at  ║
+ * ║    surface 10 and by 1.67 mm at surface 12. The format-corner chief ray is ║
+ * ║    clear at both endpoints (32.2° at 36 mm, 17.4° at 68.5 mm, 21.65 mm     ║
+ * ║    image height). The default 0.60-field fan passes whole at 36 mm; at     ║
+ * ║    68.5 mm its lowest ray is cut at L7 (surface 13).                       ║
+ * ║    The extreme wide-field outer-pupil ray is allowed to vignette at L2;    ║
+ * ║    increasing L2 enough to pass that ray violates the d2 cross-gap rule.   ║
  * ║                                                                            ║
- * ║  GLASS: patent nd/νd only. Vendor identity is not unique; the `glass`     ║
- * ║    strings therefore use coordinate-class codes. nC/nF/ng/dPgF are omitted║
- * ║    because the patent does not publish them. No APD/APO claim is modeled. ║
+ * ║  GLASS: patent nd/νd only. Vendor identity is not unique; the `glass`      ║
+ * ║    strings therefore use coordinate-class codes. nC/nF/ng/dPgF are omitted ║
+ * ║    because the patent does not publish them. No APD/APO claim is modeled.  ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -188,14 +225,14 @@ const LENS_DATA = {
     { label: "5", R: 31.885, d: 5.37, nd: 1.80518, elemId: 3, sd: 18 },
     { label: "6", R: 89.072, d: 39.2005, nd: 1, elemId: 0, sd: 18 },
     { label: "STO", R: 1e15, d: 1.9105, nd: 1, elemId: 0, sd: 7.752338441 },
-    { label: "7", R: 39.6, d: 3.5, nd: 1.744, elemId: 4, sd: 9.5 },
-    { label: "8", R: -132.321, d: 0.1, nd: 1, elemId: 0, sd: 9.5 },
-    { label: "9", R: 21.2, d: 4.04, nd: 1.65844, elemId: 5, sd: 9.8 },
-    { label: "10", R: 193.485, d: 0.64, nd: 1, elemId: 0, sd: 9.8 },
-    { label: "11", R: -206.849, d: 6.04, nd: 1.80518, elemId: 6, sd: 9.4 },
+    { label: "7", R: 39.6, d: 3.5, nd: 1.744, elemId: 4, sd: 10.8 },
+    { label: "8", R: -132.321, d: 0.1, nd: 1, elemId: 0, sd: 10.8 },
+    { label: "9", R: 21.2, d: 4.04, nd: 1.65844, elemId: 5, sd: 10.3 },
+    { label: "10", R: 193.485, d: 0.64, nd: 1, elemId: 0, sd: 10.3 },
+    { label: "11", R: -206.849, d: 6.04, nd: 1.80518, elemId: 6, sd: 9.7 },
     { label: "12", R: 16.57, d: 6.7, nd: 1, elemId: 0, sd: 9.4 },
-    { label: "13", R: -92.459, d: 2.23, nd: 1.58144, elemId: 7, sd: 7.2 },
-    { label: "14", R: -28.475, d: 42.386856744, nd: 1, elemId: 0, sd: 7.2 },
+    { label: "13", R: -92.459, d: 2.23, nd: 1.58144, elemId: 7, sd: 7.8 },
+    { label: "14", R: -28.475, d: 42.386856744, nd: 1, elemId: 0, sd: 7.8 },
   ],
 
   asph: {},
@@ -234,9 +271,10 @@ const LENS_DATA = {
     "NO_INTERNAL_RECONSTRUCTION: Example 3 publishes zoom-only infinity data. The production 0.25 m MFD is metadata only; no close-focus internal motion is modeled.",
 
   /* ── Aperture configuration ──
-   * Modeled fixed-stop f-numbers, not a claim about the production iris law.
+   * Patent F number 1:4.1 at both stations. The wide-open iris is traced per station from it: 7.7842 mm at 36 mm
+   * and 10.3442 mm at 68.5 mm. The iris limits the axial beam at both stations, and both trace f/4.10.
    */
-  nominalFno: [4.1, 5.394215],
+  nominalFno: 4.1,
   fstopSeries: [4.1, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

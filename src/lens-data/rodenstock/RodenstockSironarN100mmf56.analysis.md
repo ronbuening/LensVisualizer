@@ -147,7 +147,7 @@ The data file follows the patent's optical order from $r_1$ to $r_{10}$ and adds
 
 Semi-diameters are estimated. The patent does not publish clear apertures, and the two tight air gaps adjacent to the menisci prevent using a naive full-field marginal-ray envelope as the lens outline. The final SDs are therefore deliberately conservative and should be read as renderer-safe approximate clear apertures, not as measured production lens diameters. The limiting signed cross-gap clearances are the $r_3$–$r_4$ and $r_7$–$r_8$ air gaps; at the modeled shared semi-diameter of 7.78 mm, their remaining axial clearances are about 0.131 mm and 0.128 mm, respectively.
 
-The f-stop controls follow the production catalog rather than the patent claim: the patent design aperture is 1:5.8, but the cataloged Sironar-N 100 mm is 1:5.6 and the 100 mm shutter entries stop down to f/45.
+The f-stop controls open to the patent design aperture rather than the catalog value: `nominalFno` (the f-number the stop opens to) is the patent's 1:5.8, while `apertureMarketing` records the cataloged 1:5.6 of the Sironar-N 100 mm; the catalog's 100 mm shutter entries stop down to f/45.
 
 ## Design Heritage and Context
 

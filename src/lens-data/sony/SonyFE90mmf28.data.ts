@@ -22,6 +22,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    ω = 13.15° and Fig. 6 Y = 21.63 mm); S5 is scaled with S4      ║
  * ║    (2026-09-24 field-coverage audit).                             ║
  * ║                                                                    ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                       ║
+ * ║    The patent prints no partial dispersion and defines no normal   ║
+ * ║    line. `dPgF` on G2 and G11 is catalog-derived: the catalog      ║
+ * ║    glass PgF minus the engine line (0.6438 − 0.001682·νd), not a   ║
+ * ║    vendor ΔPg,F (HOYA: against 0.64833 − 0.00180·νd; OHARA: its    ║
+ * ║    own line), which the analysis quotes.                           ║
+ * ║                                                                    ║
  * ║  NOTE ON OPTICAL FILTER:                                           ║
  * ║    Patent Table 5 surfaces 28–29 (optical filter FL [0094],       ║
  * ║    2.500 mm, nd 1.5168, νd 64.1983) and the 1.000 mm air gap to   ║
@@ -81,7 +88,9 @@ const LENS_DATA = {
       fl: 134.1,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
-      dPgF: 0.038, apdNote: "ED glass; ΔPg,F ≈ +0.038 above normal line per S-FPL51 datasheet",
+      dPgF: 0.030928,
+      apdNote:
+        "ED glass. Patent prints no partial dispersion; catalog-derived: S-FPL51 catalog PgF = 0.5375 (OHARA's ΔPg,F = +0.0280 is against OHARA's own line), runtime dPgF +0.03093.",
       role: "ED anomalous-low-dispersion crown; cemented to G3 for secondary-spectrum correction in GR1",
       cemented: "Da",
     },
@@ -196,7 +205,9 @@ const LENS_DATA = {
       fl: 63.47,
       glass: "FCD100 (HOYA)",
       apd: "inferred",
-      dPgF: 0.056, apdNote: "Super ED glass; ΔPg,F ≈ +0.056 above normal line per HOYA FCD100 datasheet",
+      dPgF: 0.049777,
+      apdNote:
+        "Super ED glass. Patent prints no partial dispersion; catalog-derived: FCD100 catalog PgF = 0.5336; ΔPg,F = +0.0564 by HOYA's line (PgF − 0.64833 + 0.00180·νd), runtime dPgF +0.04978.",
       role: "Super ED fluorophosphate in GR4; cemented to G12 for apochromatic correction in the 2nd focus group",
       cemented: "Dd",
     },
@@ -369,8 +380,8 @@ const LENS_DATA = {
     "Floating dual-group inner focus (Dual DDSSM). GR2 retreats toward image; GR4 advances toward object. 1:1 macro capable.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22],
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

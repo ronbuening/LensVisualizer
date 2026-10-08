@@ -26,10 +26,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Stop: the patent publishes only that the stop lies between functional     ║
  * ║ groups 2 and 3. This model places STO at the midpoint of the published    ║
  * ║ 4.8 mm d10 gap (2.4 mm + 2.4 mm), consistent with Fig. 2 topology.        ║
- * ║ STO.sd is calibrated so the wide endpoint has paraxial f/4.5. This        ║
- * ║ calibration is not independent evidence of the unpublished physical iris. ║
- * ║ With that fixed modeled stop, the five modeled wide-open f-numbers are    ║
- * ║ stored in nominalFno; the production/marketing aperture remains f/4.5.    ║
+ * ║                                                                            ║
+ * ║ Aperture: the patent gives one aperture ratio, F/4.5, for the whole        ║
+ * ║ 28.85-44.19 mm range (col. 8) and plots F/4.5 as full aperture at the      ║
+ * ║ minimum, medium and maximum focal points (Fig. 12(a)-(c)). nominalFno is   ║
+ * ║ 4.5 at every keyframe, and the wide-open iris at each keyframe is the      ║
+ * ║ radius the real f/4.5 marginal ray reaches at the stop: 4.718 / 4.919 /    ║
+ * ║ 5.096 / 5.246 / 5.369 mm from wide to tele. The iris limits the axial      ║
+ * ║ beam at all five keyframes. The patent prints no stop diameter, so these   ║
+ * ║ radii are a calibration to its F/4.5, not a recovered iris law. The        ║
+ * ║ authored STO.sd, 4.6274 mm, is the paraxial f/4.5 radius at the wide end.  ║
  * ║                                                                            ║
  * ║ September 14 SD review: rear surfaces 14–16 use 6.2 mm; 17–18 use 8.0 mm,
  * ║ estimated from Fig. 5 optical rims, excluding leaders and brackets.
@@ -64,6 +70,7 @@ const LENS_DATA = {
   focalLengthMarketing: [28, 45],
   focalLengthDesign: [28.8476729420341, 44.1877941383985],
   apertureMarketing: 4.5,
+  apertureDesign: 4.5,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "US 3,771,853 A",
@@ -294,8 +301,8 @@ const LENS_DATA = {
   focusDescription:
     "Not modeled — the patent publishes no finite-object focus spacings; 0.6 m is production MFD metadata only and all authored focus pairs are identical.",
 
-  // Modeled wide-open f-number from the inferred fixed STO at each zoom keyframe.
-  nominalFno: [4.5, 4.6863957198004, 4.85165978554429, 4.99579219723201, 5.11890624441235],
+  // Patent aperture ratio F/4.5 for the whole focal range (col. 8; Fig. 12(a)-(c)); the iris is traced per keyframe.
+  nominalFno: 4.5,
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
 
   yScFill: 0.42,

@@ -60,14 +60,17 @@ back focal distance exceeds EFL only at the wide state, not across the zoom as a
 
 ### Modeled aperture stop and clear apertures
 
-The patent drawing places the diaphragm in the `d13` air space between surfaces r13 and r14, but Example 1 does not
-numerically tabulate either the diaphragm's axial split or its physical diameter. The LensVisualizer model therefore
-introduces one explicit `STO` as a disclosed modeling inference. It is fixed with C4, **2.0 mm in front of r14**. The
-remaining r13-to-stop spacing is consequently 4.5 mm at wide, 0.5 mm at the middle state, and 5.1 mm at tele; adding the
-fixed 2.0 mm stop-to-r14 spacing reconstructs the patent's original `d13` value exactly at all three zoom positions.
+The patent drawing places the diaphragm in the `d13` air space between surfaces r13 and r14, and the Example 1
+prescription table has no stop row. The axial position comes from the figure description instead: the abscissa of the
+lateral-aberration plots (Figs. 9–12) is the ray height at the stop, with the stop taken 1.5 mm, 3.2 mm, 3.5 mm, and
+1.5 mm in front of the most object-side surface of C4 for Examples 1 through 4 respectively. The LensVisualizer model
+therefore places one explicit `STO` **1.5 mm in front of r14**, fixed with C4. The remaining r13-to-stop spacing is
+5.0 mm at wide, 1.0 mm at the middle state, and 5.6 mm at tele; adding the fixed 1.5 mm stop-to-r14 spacing reconstructs
+the patent's `d13` value exactly at all three zoom positions. The patent prints no stop diameter, so the size of the
+stop is a disclosed modeling inference.
 
 The modeled stop semi-diameter is **10.2029784318 mm**. With the final TypeScript prescription this produces paraxial
-f-numbers of **3.500000000**, **3.498983119**, and **3.497334575** at wide, middle, and tele. The small drift is consistent
+f-numbers of **3.500030361**, **3.499004476**, and **3.497341337** at wide, middle, and tele. The small drift is consistent
 with rounding in the printed prescription, so the constant-aperture data field remains `nominalFno: 3.5`.
 
 The patent likewise gives no tabulated surface semi-diameters. The clear apertures in the data file are therefore model
@@ -150,7 +153,7 @@ C1 or C4.
 **nd = 1.51823, νd = 59.0. Glass: E-C3 coefficient proxy (patent 518590; production supplier unspecified). f = +56.144127 mm.**
 
 L8 is the first element of the fixed rear component C4 and is its strongest standalone positive element. In architectural
-terms it begins the rear positive relay/basic lens after the moving C3 compensator and inferred diaphragm. Its specific
+terms it begins the rear positive relay/basic lens after the moving C3 compensator and the diaphragm. Its specific
 aberration allocation is not separately stated by the patent; the interpretation here is limited to its position, shape,
 and computed power within the fixed positive rear block.
 
@@ -251,9 +254,9 @@ surface arrays at every zoom state. The two formulations agree to a worst absolu
 
 | Zoom state | Patent control point (mm) | Computed EFL (mm) | Computed BFD (mm) | Modeled f/# |
 |---|---:|---:|---:|---:|
-| Wide | 46.76 | 46.814620785 | 63.284367390 | 3.500000000 |
-| Middle | 67.38 | 67.432230924 | 63.258150401 | 3.498983119 |
-| Tele | 99.18 | 99.190322558 | 63.215648063 | 3.497334575 |
+| Wide | 46.76 | 46.814620785 | 63.284367390 | 3.500030361 |
+| Middle | 67.38 | 67.432230924 | 63.258150401 | 3.499004476 |
+| Tele | 99.18 | 99.190322558 | 63.215648063 | 3.497341337 |
 
 The patent gives one back-focus value, **63.24 mm**. The computed BFD residuals are +0.044367 mm, +0.018150 mm, and
 −0.024352 mm at wide, middle, and tele respectively, consistent with the source precision of the printed prescription.
@@ -265,11 +268,12 @@ and tele. The second-principal-plane positions are respectively **+16.469747, �
 last refracting vertex. The corresponding Gaussian first-surface-to-image tracks are **146.984367, 146.958150, and
 146.915648 mm**; each remains longer than EFL, so none satisfies the project's telephoto criterion.
 
-Under the inferred stop model, the entrance-pupil semi-diameters are **6.687803, 9.635975, and 14.180846 mm**, at
-**+39.292739, +66.503042, and +91.970899 mm** from the first refracting vertex. The fixed rear component makes the modeled
-exit pupil invariant across zoom at **−26.951778 mm** from the last refracting vertex, with semi-diameter **12.890878 mm**.
-These pupil quantities follow from the disclosed inferred stop and are model results rather than measured production
-pupil dimensions.
+With the stop at the patent's stated plane and the modeled stop semi-diameter, the entrance-pupil semi-diameters are
+**6.687745, 9.635917, and 14.180818 mm**, at **+39.507562, +66.949011, and +92.936770 mm** from the first refracting
+vertex. The fixed rear component makes the modeled exit pupil invariant across zoom at **−26.160639 mm** from the last
+refracting vertex, with semi-diameter **12.777747 mm**. The pupil positions follow from the patent's stop plane; the
+pupil sizes follow from the modeled stop diameter and are model results rather than measured production pupil
+dimensions.
 
 A surface-by-surface d-line Petzval evaluation using $\phi/(n n')$ gives a total of
 **+2.563553 × 10⁻3 mm⁻1** (reciprocal magnitude **390.083606 mm**). The component contributions are C1
@@ -286,16 +290,17 @@ No aspheric-surface section is present because the selected embodiment is entire
 filter, dummy plane, flare-cutter plane, or other inactive optical bookkeeping surface is present in the selected
 prescription, and no omitted plate requires an air-equivalent rear-spacing correction.
 
-The only structural addition to the patent's refracting prescription is the explicit inferred `STO` inside source `d13`.
-No patent radius, center thickness, refractive index, Abbe number, zoom control point, or source variable-gap total is
-rescaled or otherwise altered.
+The only structural addition to the patent's tabulated prescription is the explicit `STO` inside source `d13`, placed at
+the stop plane the figure description gives and sized by the model. No patent radius, center thickness, refractive
+index, Abbe number, zoom control point, or source variable-gap total is rescaled or otherwise altered.
 
 ## Sources / References
 
 - **JP S51-34741 A**, 準広角ズームレンズ, Tadashi Kojima, applicant 小西六写真工業株式会社, published 1976-03-24.
   Original 12-page Japanese publication scan supplied with the lens-patent job. Example 1 prescription and component data
   are on the numerical-example pages; Fig. 1 on the patent drawing page shows the four-component layout and diaphragm
-  between C3 and C4. Searchable metadata cross-check: <https://patents.google.com/patent/JP S51-34741 A/ja>.
+  between C3 and C4, and the figure description on printed p. 273 gives the stop's distance in front of C4 for each
+  example. Searchable metadata cross-check: <https://patents.google.com/patent/JP S51-34741 A/ja>.
 - **Konica, UC HEXANON lenses leaflet**, section “UC ZOOM HEXANON AR 45-100mm.” The manufacturer literature gives the
   marketed 45–100 mm identity, f/3.5, 10 groups / 11 elements, 52°–24° taking angle, 0.35 m closest distance, 55 mm
   filter, pull-out hood, and 570 g weight. Archival scan: <https://cameramanuals.org/lenses/konica_uc_hexanon_lenses.pdf>.

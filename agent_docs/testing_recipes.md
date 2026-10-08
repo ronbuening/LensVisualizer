@@ -86,6 +86,9 @@ Petzval lifecycle, aspheric mode/exaggeration/zoom and group-motion modes. Mount
 views and the legend; relationship tests exercise focused headings, search selection and detail changes.
 SVG-only bokeh/glass/mount readouts are checked after HTML replacement, without mutating SVG text.
 Universal map search exercises its supported Enter selection.
+MTF integration checks cover translated blocking/informational warning titles and counts, stale traced-aperture
+notes, and comparison labels. Browser checks migrate legacy method preferences and compare both method tables
+with clean baselines; marketed-aperture notes must disappear and return with aperture changes.
 
 ```sh
 npx playwright install chromium

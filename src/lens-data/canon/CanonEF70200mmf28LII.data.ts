@@ -500,9 +500,9 @@ const LENS_DATA = {
   focusDescription:
     "Inner-focus design using the L1R subunit (L4-L5). US 2009/0296231 A1 does not tabulate close-focus spacings for Numerical Embodiment 2, so the data file models infinity-focus zoom kinematics only.",
 
-  nominalFno: 2.8,
+  nominalFno: 2.9,
   maxFstop: 32,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
 
   scFill: 0.76,
   yScFill: 0.34,

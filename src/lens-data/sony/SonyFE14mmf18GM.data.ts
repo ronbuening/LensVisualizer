@@ -330,8 +330,8 @@ const LENS_DATA = {
   publishedStations: { focus: [1] },
   focusDescription: "Inner focus: L8-L13 (G2F) moves objectward by 1.69 mm; G1 and L14 remain fixed.",
 
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.85,
+  fstopSeries: [1.85, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
 
   scFill: 0.56,

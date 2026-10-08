@@ -13,6 +13,7 @@ import {
   sharedNikkorZ50f18,
   sharedNokton50f1,
   sharedSonnar50f15,
+  teleconverterZoomHostData,
 } from "./testLensFixtures.js";
 import type { LensData, SurfaceData } from "../../../src/types/optics.js";
 
@@ -613,6 +614,30 @@ describe("published zoom iris schedule", () => {
     expect(L.zoomStopSDs).toEqual(radii);
     expect(wideOpenStopAtZoom(0.5 / (radii.length - 1), L)).toBe(9);
     expect(wideOpenStopAtZoom(1, L)).toBe(radii.at(-1));
+  });
+});
+
+describe("zoom iris model", () => {
+  it("opens each station's iris to its nominal f-number by default", () => {
+    const stationFno = [4, 4.5, 5.6];
+    const variable = buildLens(teleconverterZoomHostData({ nominalFno: stationFno }));
+    const constant = buildLens(teleconverterZoomHostData());
+
+    /* The fixture's stop is its first surface, so the iris is the entrance pupil. */
+    variable.zoomStopSDs!.forEach((radius, station) =>
+      expect(radius).toBeCloseTo(variable.zoomEFLs![station] / (2 * stationFno[station]), 9),
+    );
+    constant.zoomStopSDs!.forEach((radius, station) =>
+      expect(radius).toBeCloseTo(constant.zoomEFLs![station] / (2 * 4), 9),
+    );
+    expect(wideOpenStopAtZoom(1, constant)).toBeGreaterThan(constant.stopPhysSD);
+  });
+
+  it("keeps the first station's iris at every station when the file declares a fixed iris", () => {
+    const L = buildLens(teleconverterZoomHostData({ zoomApertureModel: "fixed-iris" }));
+
+    expect(L.zoomStopSDs).toBeNull();
+    expect(wideOpenStopAtZoom(1, L)).toBe(L.stopPhysSD);
   });
 });
 

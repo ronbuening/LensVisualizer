@@ -68,7 +68,7 @@ The patent labels its second gap column only "finite distance" and prints no obj
 
 ### Aperture
 
-The aperture stop S sits at the front of G3, which is fixed, and does not move during zoom. Table 1 rounds the f-number to 2.9 at every position, while the infinity aberration plots (FIG. 2A–2C) print FNO = 2.85, 2.90 and 2.86. A real-ray trace shows that one iris of about 19.5 mm radius gives those three values (the iris needed for each is 19.48, 19.43 and 19.40 mm). The small change comes from G4 moving behind the stop. The patent publishes no iris diameter; the model therefore uses one fixed iris at f/2.85, the calculated wide-open value, and does not use a per-station aperture schedule.
+The aperture stop S sits at the front of G3, which is fixed, and does not move during zoom. Table 1 rounds the f-number to 2.9 at every position, while the infinity aberration plots (FIG. 2A–2C) print FNO = 2.85, 2.90 and 2.86. The patent publishes no iris diameter and does not say whether the stop opening changes during zoom. The model uses one fixed iris: the real-ray radius for f/2.85 at the wide end, 19.48 mm, kept at every zoom position. Through that iris the trace gives f/2.85, f/2.89 and f/2.85 (2.850 / 2.893 / 2.847) at wide, mid and tele, within 0.5 % of the FIG. 2 values, which the data file stores as the station f-numbers. Taken one at a time, the three figure values would need irises of 19.48, 19.43 and 19.40 mm. The rise at mid-zoom comes from G4 moving behind the stop; G4 sits at the same place at the wide and tele ends, so the two ends come out nearly equal.
 
 ### Vibration Reduction (VR)
 
@@ -197,12 +197,12 @@ G5 has a net negative focal length, making the complete system shorter than G1�
 
 ## 6. Semi-Diameter Estimation
 
-The patent publishes no clear apertures. The rims in the data file are measured from the Example 1 cross-section (FIG. 1, 300 dpi scan). The drawing scale, 9.69 px/mm, comes from the 192.01 mm span between the first and last surface vertices. The measured rims were then checked with an exact real-ray trace at the full-frame image height Y = 21.6 mm and the FIG. 2 f-numbers. That trace reaches the image corner at ω = 16.82° / 8.86° / 6.10°, the same half-angles printed on FIG. 2.
+The patent publishes no clear apertures. The rims in the data file are measured from the Example 1 cross-section (FIG. 1, 300 dpi scan). The drawing scale, 9.69 px/mm, comes from the 192.01 mm span between the first and last surface vertices. The measured rims were then checked with an exact real-ray trace at the full-frame image height Y = 21.6 mm and the FIG. 2 f-numbers. That trace reaches the image corner at ω = 16.82° / 8.86° / 6.10°, against the 16.82° / 8.87° / 6.10° printed on FIG. 2.
 
 - **G1**: FIG. 1 draws the L11+L12 doublet rim at about 36.8 mm and L13 at about 34.4 mm, so the stored 36.5 / 35.0 mm are kept. They fit inside the production 77 mm filter thread. At the tele end the axial f/2.86 beam is about 34.3 mm high at the front surface, so it is not clipped. A full-field bundle would need about 56 mm, so the image corner is mechanically vignetted by roughly 60 % on one side, as is normal for this class of lens.
 - **G2**: The earlier L23 rear and L24 front rims (18.2 mm) clipped the f/2.85 axial beam, which needs about 18.8 mm there. L24 is now 20.4 mm, matching the figure. L23 is 20.1 mm at the front and 19.0 mm at the rear, where its edge meets L24's front edge. L22 was 21.0 / 22.5 mm against a figure rim of 19.3 mm and is now 19.5 mm.
 - **G3**: The L33 rear and L34 front rims (18.4 mm) also clipped the axial beam, which needs about 19.0 mm. L34 is now 20.0 mm (figure 20.0), and L33 is 20.3 mm at the front and 19.2 mm at the rear (figure rim 20.3). In FIG. 1 the edges of L23/L24 and of L33/L34 touch, so the data file allows 97 % of those air gaps for rim sag (`gapSagFrac` 0.97) rather than the default 90 %.
-- **Stop**: stored at the fixed iris radius of 19.5 mm (see Aperture above). FIG. 1 draws S at about 20.5 mm.
+- **Stop**: stored at 19.5 mm, the 19.48 mm fixed iris radius to one decimal place (see Aperture above). FIG. 1 draws S at about 20.5 mm.
 - **G4 / G5**: The stored rims are within about 12 % of the figure (L41 17.7, the L42+L43 doublet 16.8, L51 16.1, the L52+L53 doublet 14.7, L55 17.4, L56 18.7 mm measured) and are kept. The flat front of L54 was 13.7 mm against a drawn 16.1 mm and is now 16.0 mm, the same as its rear. The rear of the L52+L53 doublet stays at 13.7 mm, because at a larger radius its steep R = 42.059 mm surface would reach into the 2.583 mm gap in front of L54.
 
 Every surface passes the repository's edge-thickness, rim-slope and gap-intrusion checks at all three zoom positions. No surface clips the axial beam or blocks the full-field chief ray, at infinity or at the near state.
@@ -257,7 +257,7 @@ Petzval sum = +0.001491 mm⁻¹, corresponding to a Petzval radius of −671 mm.
 | (7) | nd1 | 1.9500 | 1.950000 |
 | (8) | ωw | 11.200° | 16.82° (see note) |
 
-Note on condition (8) and the 2ω row: Table 1 prints 2ω = 22.4 / 41.1 / 57.9 and condition (8) ωw = 11.200. These values cannot be reconciled with f = 71.5–196 mm and Y = 21.6 mm. The FIG. 2 plots print half-angles of 16.82°, 8.87° and 6.10°, and the real-ray trace reaches the 21.6 mm image corner at those same angles. The model follows the 21.6 mm image height, which gives the FIG. 2 angles; the tabulated angles appear to be a source error.
+Note on condition (8) and the 2ω row: Table 1 prints 2ω = 22.4 / 41.1 / 57.9 and condition (8) ωw = 11.200. These values cannot be reconciled with f = 71.5–196 mm and Y = 21.6 mm. The FIG. 2 plots print half-angles of 16.82°, 8.87° and 6.10°, and the real-ray trace reaches the 21.6 mm image corner within 0.01° of them (16.82°, 8.86° and 6.10°). The model follows the 21.6 mm image height, which gives the FIG. 2 angles; the tabulated angles appear to be a source error.
 
 ---
 

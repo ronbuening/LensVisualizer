@@ -88,6 +88,8 @@ $$\frac{1}{f} = (n_d - 1)\left[\frac{1}{R_1} - \frac{1}{R_2} + \frac{(n_d - 1) d
 
 and agree with the patent's tabulated [レンズ群データ] sub-group sums to within 0.005 mm. Glass identifications are explained in Section 4.
 
+ΔθgF throughout this note is the patent's own deviation, ΔθgF = θgF − (0.648285 − 0.00180123·νd), as defined in claim 1 and ¶0009; it is the quantity the conditional expressions in Section 7 use. The data file's `dPgF` field holds the same patent θgF measured from the ray-trace engine's normal line, 0.6438 − 0.001682·νd, so the stored numbers differ from the ΔθgF quoted here (for example L2: patent ΔθgF = +0.0565, stored `dPgF` = +0.049674).
+
 ### 3.1 GFA — Negative Front Sub-group (L1–L5, f = −83.96 mm)
 
 GFA is the entry collector. Its job is to widen the field of view (the negative power increases the angular field) and — because it sits where the chief-ray height is largest — to supply most of the system's lateral-chromatic correction. The patent realises this with a five-element stack (front to rear): negative meniscus, biconcave high-νd crown, biconvex high-index lanthanum, biconvex+biconcave cemented doublet (positive-then-negative).
@@ -138,7 +140,7 @@ L6 is the negative-power front of the L6/L7 cemented doublet. Its weak negative 
 
 nd = 1.45860, νd = 90.19, ΔθgF = +0.049. Glass: **459902 — HOYA FCD10A** (high-confidence; the six-digit cross-reference, the **ELD** of Sigma's marketing). f = +47.4 mm.
 
-L7 is GFB's chromatic workhorse. The cemented junction at R = +25.47 mm bends the beam strongly while the high anomalous dispersion of FCD10A cancels the secondary spectrum of the cemented pair. ΔθgF = +0.0492 sits ~0.05 above the Schott normal line — the deviation is what produces apochromatic-like correction across d-, F- and C-line foci. The "ELD" branding is appropriate: FCD10A's νd of 90 sits just below fluorite's 95 (FCD100), placing it in the second tier of anomalously dispersive crowns.
+L7 is GFB's chromatic workhorse. The cemented junction at R = +25.47 mm bends the beam strongly while the high anomalous dispersion of FCD10A cancels the secondary spectrum of the cemented pair. ΔθgF = +0.0492 sits ~0.05 above the patent's reference line — the deviation is what produces apochromatic-like correction across d-, F- and C-line foci. The "ELD" branding is appropriate: FCD10A's νd of 90 sits just below fluorite's 95 (FCD100), placing it in the second tier of anomalously dispersive crowns.
 
 #### L8 — Biconvex (S13–S14)
 
@@ -168,7 +170,7 @@ GRA does the heavy lifting of finishing the image-side correction. Its three ele
 
 #### L10 — Negative meniscus, convex to object (S18–S19)
 
-nd = 1.85451, νd = 25.15, ΔθgF = +0.007. Glass: **HOYA NBFD25** (high confidence; code 855/252, exact match in nd and νd. NBFD25 is the original member of HOYA's NBFD series — niobium dense flints characterized specifically by *low* partial-dispersion ratio in the g-to-F region, with PgF = 0.6103 per HOYA's published data. Converting HOYA's PgF to a ΔθgF on the same Schott normal line that the patent uses gives ΔθgF ≈ +0.0085, against the patent's tabulated +0.0072 — a residual of ~0.0013, small but nonzero. The residual is well within the spread expected from melt-to-melt variation in this glass family and from rounding in the patent's published θgF figure, so the identification is secure even though the dPgF agreement is not as tight as for, say, FCD705). f = −78.0 mm.
+nd = 1.85451, νd = 25.15, ΔθgF = +0.007. Glass: **HOYA NBFD25** (high confidence; code 855/252, exact match in nd and νd. NBFD25 is the original member of HOYA's NBFD series — niobium dense flints characterized specifically by *low* partial-dispersion ratio in the g-to-F region, with PgF = 0.6103 per HOYA's published data. The patent's tabulated θgF = 0.610160 agrees with that figure to within 0.0002, so the identification is secure. The same θgF reads +0.0072 on the patent's own line (the ΔθgF used in this note) and +0.0087 on the Schott normal line 0.6438 − 0.001682·νd that the data file's `dPgF` uses; the ~0.0015 gap is the offset between the two reference lines at νd = 25.15, not a melt residual). f = −78.0 mm.
 
 L10 is the achromatising flint of the L10/L11 cemented doublet. Its very low νd (25.15) and high index are typical for image-side achromats in fast normal-class designs. The slightly positive ΔθgF (+0.007) is characteristic of the NBFD family and entirely consistent with the patent's emphasis on choosing flints with positive ΔθgF on the image side (Eqs. 14–15 govern the broader image-side ΔθgF balance).
 
@@ -238,7 +240,7 @@ The remaining eleven elements split between glasses with high catalog confidence
 | L4, L14 | 1.77250 | 49.50 | HOYA **M-TAF105** | High | Code 773/495; M-prefix indicates HOYA's moldable-glass series for press-molded aspheres — directly consistent with both being aspherical |
 | L5 | 1.59270 | 35.45 | HOYA **FF5** catalog equivalent | High | Public FF5 curve reproduces nd/νd and the patent θgF; code 593354 versus patent-rounded 593355; supplier unspecified |
 | L6, L13 | 1.61340 | 44.27 | OHARA **S-NBM51** | High | Code 613/443; one of OHARA's most-used niobium-baryum medium-flints; published dPgF = −0.0065 closely matches patent ΔθgF = −0.0053 |
-| L10 | 1.85451 | 25.15 | HOYA **NBFD25** | High | Code 855/252, exact nd/νd match. HOYA's published PgF = 0.6103 → ΔθgF ≈ +0.0085 vs patent +0.0072 (residual +0.0013, within melt-spread; identification secure) |
+| L10 | 1.85451 | 25.15 | HOYA **NBFD25** | High | Code 855/252, exact nd/νd match. HOYA's published PgF = 0.6103 agrees with the patent θgF = 0.610160 to within 0.0002; patent ΔθgF = +0.0072, or +0.0087 on the Schott normal line (same θgF, different reference line; identification secure) |
 | L12 | 1.95375 | 32.32 | HOYA **TAFD45 / OHARA S-LAH98** | High | Code 953/323, exact match in three vendors' catalogs (HOYA TAFD45, OHARA S-LAH98, HIKARI J-LASFH21); among the highest-index polished glasses in current production |
 | L15 | 1.77047 | 29.74 | HOYA **NBFD29** | High | Code 770/297, exact nd/νd match; HOYA publishes PgF = 0.5951 |
 

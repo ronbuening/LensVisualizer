@@ -362,8 +362,8 @@ const LENS_DATA = {
   focusDescription:
     "Inner focus by G2 only. The patent beta=-0.041 row is stored exactly before the constrained production 0.22 m endpoint; G1 and G3 remain fixed.",
 
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.06,
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
 
   scFill: 0.55,

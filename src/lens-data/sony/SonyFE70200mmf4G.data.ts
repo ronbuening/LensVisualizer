@@ -16,6 +16,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * All Table 1-3 entries match. Retain the published track and -0.812006 mm
  * offset rather than fitting BF to focus; see the audit sidecar.
  *
+ * Aperture:
+ *   The patent prints no stop diameter. nominalFno holds the Table 3 f-numbers, 4.1474 / 4.0559 / 4.1269
+ *   at wide / middle / telephoto, and the wide-open iris radius at each zoom station is traced from them
+ *   by a real marginal ray: 12.6067 / 12.5997 / 12.4248 mm. No single radius gives all three (spread
+ *   1.45 %). The stop limits the axial beam at every station; no element rim clips it.
+ *
  * Variable gaps:
  *   - d5, d12, d17: zoom-only gaps from patent Table 3.
  *   - d25, d28: zoom gaps from Table 3 plus a paraxial close-focus approximation for G42.
@@ -48,7 +54,7 @@ const LENS_DATA = {
   focalLengthMarketing: [70, 200],
   focalLengthDesign: [72.0974, 193.9726],
   apertureMarketing: 4,
-  apertureDesign: 4.13,
+  apertureDesign: 4.1474,
   lensMounts: ["sony-fe"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2015/0226945 A1",
@@ -58,10 +64,10 @@ const LENS_DATA = {
   elementCount: 21,
   groupCount: 15,
 
-  nominalFno: 4,
+  nominalFno: [4.1474, 4.0559, 4.1269],
   closeFocusM: 1.0,
   maxFstop: 22,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [4.1474, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   apertureBladeRoundedness: 0.8,
   yScFill: 0.74,

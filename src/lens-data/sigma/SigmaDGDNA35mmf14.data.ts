@@ -23,11 +23,10 @@ import type { LensDataInput } from "../../types/optics.js";
  *   Back focus   20.9607 mm (S27 to image plane)
  * Filter thread (manufacturer): 67 mm.
  *
- * F-number convention: nominalFno = 1.4 (manufacturer-published value, takes
- * precedence per project policy). Patent's design F/1.46 (apertureDesign)
- * yields a slightly smaller marginal-ray cone; semi-diameters in this file
- * are sized for F/1.4 marginal-ray heights to keep the renderer's marginal
- * ray inside every element.
+ * F-number convention: nominalFno = 1.46, the patent's design F-number
+ * (apertureDesign); apertureMarketing records the published F/1.4.
+ * Semi-diameters in this file were sized for F/1.4 marginal-ray heights,
+ * so they clear the slightly smaller design cone.
  *
  * Close-focus state: Sigma publishes MFD = 0.30 m. The patent tabulates only
  * one finite-focus state (subject distance 1.47 m). The close-focus var
@@ -56,6 +55,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * elemId assignments follow LENS_DATA_SPEC: each element's *front* surface
  * carries its elemId; junction surfaces in cemented groups carry the *next*
  * element's elemId; air-side rear surfaces and the STO carry elemId: 0.
+ *
+ * Partial dispersion: the patent prints θgF for every glass (Example 1
+ * surface data, PDF p. 15) and defines its own deviation in claim 1 and
+ * [0009] (PDF pp. 2, 4) as
+ * ΔθgF = θgF − (0.648285 − 0.00180123·νd). `dPgF` in this file is θgF minus
+ * the ENGINE's normal line (0.6438 − 0.001682·νd), not that patent ΔθgF,
+ * which the analysis and the role strings keep quoting for the patent's
+ * conditions. The per-glass figures are tabulated above the element
+ * registry.
  */
 
 export const sigmaDgDnA35mmF14Data = {
@@ -88,8 +96,8 @@ export const sigmaDgDnA35mmF14Data = {
     "Inner focus by the single-element negative middle group L9. The patent 1.47 m row is exact before the constrained 0.30 m endpoint; lens length remains fixed.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning (yScFill required, no default) ── */
   yScFill: 0.3,
@@ -237,10 +245,28 @@ export const sigmaDgDnA35mmF14Data = {
    * the four anomalous-partial-dispersion crowns that Sigma flags as F-/E-
    * /S-LD elements (FLD = L2, ELD = L7, SLD = L8 and L11); other elements
    * are flagged false even when ΔθgF is mildly anomalous, to keep apd
-   * aligned with Sigma's marketing taxonomy. dPgF values are computed from
-   * the patent's published θgF on the same Schott normal line used in the
-   * analysis. cemented tags pair members of each doublet to their group
-   * label. */
+   * aligned with Sigma's marketing taxonomy. cemented tags pair members of
+   * each doublet to their group label.
+   *
+   * dPgF is the patent's printed θgF minus the engine's normal line
+   * (0.6438 − 0.001682·νd), to six decimals. The patent's own
+   * ΔθgF = θgF − (0.648285 − 0.00180123·νd) is listed beside it because the
+   * analysis and the role strings quote that figure:
+   *   element   νd     θgF       patent ΔθgF   dPgF (stored)
+   *   L1, L9    70.44  0.530491  +0.009085     +0.005171
+   *   L2        95.10  0.533516  +0.056528     +0.049674
+   *   L3        40.14  0.569968  −0.006016     −0.006317
+   *   L4, L14   49.50  0.551804  −0.007320     −0.008737
+   *   L5        35.45  0.592569  +0.008138     +0.0081  (see below)
+   *   L6, L13   44.27  0.563261  −0.005284     −0.006077
+   *   L7        90.19  0.535032  +0.049200     +0.042932
+   *   L8, L11   75.50  0.539881  +0.027589     +0.023072
+   *   L10       25.15  0.610160  +0.007176     +0.008662
+   *   L12       32.32  0.590002  −0.000067     +0.000564
+   *   L15       29.74  0.594996  +0.000280     +0.001219
+   * L5 keeps its earlier four-decimal value: the two lines cross near
+   * νd ≈ 37.6, so at νd = 35.45 it already sits within 0.0003 of the
+   * engine-line figure +0.008396. */
   elements: [
     {
       id: 1,
@@ -252,7 +278,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: -55.3,
       glass: "HOYA FC5 (487/704)",
       apd: false,
-      dPgF: 0.0091,
+      dPgF: 0.005171,
       role: "Front collector, convex to object; FK-class crown chosen for low mass and mild lateral-CA contribution.",
     },
     {
@@ -265,7 +291,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: -68.9,
       glass: "HOYA FCD100 (437/951)",
       apd: "patent",
-      dPgF: 0.0565,
+      dPgF: 0.049674,
       role: "FLD — extreme anomalous-dispersion crown; primary load-bearer for lateral-CA correction in GFA.",
     },
     {
@@ -278,7 +304,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: 47.6,
       glass: "HOYA TAFD33 (881/401)",
       apd: false,
-      dPgF: -0.006,
+      dPgF: -0.006317,
       role: "Strong front-group converger; high index keeps element thin and reduces GFA Petzval contribution.",
     },
     {
@@ -291,7 +317,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: 48.4,
       glass: "HOYA M-TAF105 (773/495)",
       apd: false,
-      dPgF: -0.0073,
+      dPgF: -0.008737,
       cemented: "D1",
       role: "Aspherical front of D1 doublet; S7 carries the bulk of front-group high-order spherical-aberration correction.",
     },
@@ -319,7 +345,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: -94.6,
       glass: "OHARA S-NBM51 (613/443)",
       apd: false,
-      dPgF: -0.0053,
+      dPgF: -0.006077,
       cemented: "D2",
       role: "Negative front of D2, convex to object; offsets L7's strongly positive ΔθgF across the cement junction.",
     },
@@ -333,7 +359,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: 47.4,
       glass: "459902 — HOYA FCD10A (ELD fluorophosphate crown; no coefficient-backed catalog entry yet)",
       apd: "patent",
-      dPgF: 0.0492,
+      dPgF: 0.042932,
       cemented: "D2",
       role: "ELD — anomalous-dispersion crown; cancels secondary spectrum of the D2 cemented pair.",
     },
@@ -347,7 +373,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: 56.4,
       glass: "HOYA FCD705 (550/755)",
       apd: "patent",
-      dPgF: 0.0276,
+      dPgF: 0.023072,
       role: "SLD — final converger before the stop; with L7 raises GFB-positive ΔθgF average to +0.0384.",
     },
     {
@@ -360,7 +386,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: -48.3,
       glass: "HOYA FC5 (487/704)",
       apd: false,
-      dPgF: 0.0091,
+      dPgF: 0.005171,
       role: "Sole element of GM — the focus group; FK-class glass chosen for minimum mass on the moving cam.",
     },
     {
@@ -373,7 +399,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: -78.0,
       glass: "HOYA NBFD25 (855/252)",
       apd: false,
-      dPgF: 0.0072,
+      dPgF: 0.008662,
       cemented: "D3",
       role: "Achromatising flint of D3, convex to object; very low νd typical for image-side achromats in fast normal-class designs.",
     },
@@ -387,7 +413,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: 39.0,
       glass: "HOYA FCD705 (550/755)",
       apd: "patent",
-      dPgF: 0.0276,
+      dPgF: 0.023072,
       cemented: "D3",
       role: "SLD #2 — anomalous-dispersion converger of D3; image-side counterpart to L8.",
     },
@@ -401,7 +427,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: 30.9,
       glass: "HOYA TAFD45 / OHARA S-LAH98 (953/323)",
       apd: false,
-      dPgF: -0.0001,
+      dPgF: 0.000564,
       role: "Highest-index lens in the system; carries strong positive power with minimum Petzval contribution.",
     },
     {
@@ -414,7 +440,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: -32.6,
       glass: "OHARA S-NBM51 (613/443)",
       apd: false,
-      dPgF: -0.0053,
+      dPgF: -0.006077,
       role: "Entry of GRB; begins back-focus shortening with weak negative power.",
     },
     {
@@ -427,7 +453,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: 31.8,
       glass: "HOYA M-TAF105 (773/495)",
       apd: false,
-      dPgF: -0.0073,
+      dPgF: -0.008737,
       cemented: "D4",
       role: "Aspherical front of D4; S25 balances residual SA + coma in the post-stop diverging cone.",
     },
@@ -441,7 +467,7 @@ export const sigmaDgDnA35mmF14Data = {
       fl: -35.2,
       glass: "HOYA NBFD29 (770/297)",
       apd: false,
-      dPgF: 0.0003,
+      dPgF: 0.001219,
       cemented: "D4",
       role: "Rear element of the lens; high-index biconcave finishing the back-focus shortening function of GRB.",
     },

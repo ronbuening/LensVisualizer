@@ -179,6 +179,35 @@ Targeted edits to make in the analysis:
 
 If `*.analysis.md` does not exist, do not create one as part of an audit — analysis authoring is its own pass. The `*.audit.md` log captures the data-file-only outcome.
 
+## Source errata
+
+A source can contradict itself: a printed coefficient whose sign disagrees with the patent's own field angle and
+aberration plots, or a table that does not reproduce its stated focal length. A faithful transcription of such a
+value is still wrong, and no analysis can recover it. This section owns the standard; other docs point here.
+
+Correct a printed value only when **at least two independent kinds of source-internal evidence** agree that it is
+wrong and that the replacement is right:
+
+- `source-summary` — the source's stated focal length, F-number, field angle or image height, back focus or total
+  length, traced for both the printed and the corrected value.
+- `sibling-example` — another example of the same source that reprints the surface, or carries the consistent form.
+- `aberration-figure` — the source's own spherical-aberration, astigmatism, distortion or lateral-aberration plots.
+- `claims` — a claimed condition the printed value violates.
+
+A manufacturer MTF chart, a measured lens and "the trace looks better" are never evidence. That only one
+single-value change repairs the prescription supports a correction; it does not count as a kind.
+
+A block misprinted in one way (minus signs dropped down a coefficient listing, for example) is corrected as one unit
+when one kind isolates the whole set, alone among every combination of the same slip, and a second kind rejects the
+printed block and accepts the corrected one. The second kind need not isolate each value; each entry's note says
+which kind isolates it. (Maintainer ruling, 2026-10-08, on the Tamron A03 aspheres.)
+
+Record a correction in four places: the value itself with an inline comment, a header note in the data file, a
+`corrected` entry in `sourceErrata` (`src/lens-data/LENS_DATA_SPEC.md`, which the validator checks against the file),
+and a dated audit-log entry with the before/after numbers. When the contradiction is real but its cause is not
+isolated, keep the printed values, add an `unresolved` entry, and queue the lens in Section G of
+[sd-audit-queue.md](sd-audit-queue.md). The MTF tab shows both kinds to the reader as notes beside the chart.
+
 ## The audit log: `*.audit.md`
 
 After every audit, write or append to a sibling `*.audit.md` file in the maker folder. The format is parser-ignored — `lensCatalog.ts`, `lens-data-lib.mjs`, `extract-dpgf.mjs`, and the metadata pipeline all filter strictly on `.data.ts` and `.analysis.md`, so `*.audit.md` is invisible to the build.

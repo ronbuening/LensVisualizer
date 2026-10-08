@@ -321,7 +321,7 @@ The VR subgroup (L2B) sits behind a 2.0 mm air gap between S11 (R = +99.3 mm) an
 
 ### 11.2 Nominal F-Number
 
-The data file uses the patent's f-numbers as a variable-aperture array: `nominalFno: [4.62, 5.24, 5.78]`. No `zoomApertureModel` is set, so the engine keeps one physical iris for the whole zoom range. This is what paragraph [0016] describes. A real-ray trace confirms that a single stop radius (14.05–14.06 mm) reproduces all three published f-numbers. The marketed constant f/5.6 (`apertureMarketing: 5.6`) is a production diaphragm limit. The f-stop list starts at the patent's wide-open value and runs to the production minimum aperture of f/32 (`maxFstop: 32`).
+The data file uses the patent's f-numbers as a variable-aperture array: `nominalFno: [4.62, 5.24, 5.78]`. `zoomApertureModel: "fixed-iris"` is set, so the engine keeps one physical iris for the whole zoom range. This is what paragraph [0016] describes. A real-ray trace confirms that a single stop radius (14.05–14.06 mm) reproduces all three published f-numbers. The marketed constant f/5.6 (`apertureMarketing: 5.6`) is a production diaphragm limit. The f-stop list starts at the patent's wide-open value and runs to the production minimum aperture of f/32 (`maxFstop: 32`).
 
 ### 11.3 Zoom Variable Gaps
 

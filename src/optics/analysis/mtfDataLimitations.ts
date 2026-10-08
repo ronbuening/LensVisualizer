@@ -4,7 +4,8 @@
  * `assessMtfSupport` says whether MTF can run and lists the model's general assumptions. This module answers a
  * narrower question for the chart on screen: what is this lens, or lens plus converter, missing that the most
  * accurate model would need? Every gap is tied to the display it changes, so a single-wavelength chart the reader
- * asked for carries no dispersion gap, and an inconsistent image plane is no gap at best axial focus.
+ * asked for carries no dispersion gap, and an inconsistent image plane is no gap at best axial focus. Gaps hold the
+ * chart behind a warning (`blocking`); authored source errata are notes that leave it readable.
  */
 import type { MtfDataLimitation, MtfResult, MtfSpectrum } from "../../types/mtf.js";
 import type { PreparedOpticalState } from "../types.js";
@@ -55,6 +56,7 @@ export function assessMtfDataLimitations(
     if (input.spectrum === "reference" && spectral.blocker) {
       limitations.push({
         kind: "reference-only",
+        blocking: true,
         text: `${label} MTF is not available for this prescription: ${spectral.blocker}. The chart shows the ${input.referenceWavelengthNm.toFixed(1)} nm reference wavelength alone, so chromatic aberration is left out.`,
       });
     } else if (input.spectrum !== "reference") {
@@ -83,6 +85,7 @@ export function assessMtfDataLimitations(
       if (count > 0)
         limitations.push({
           kind: "estimated-dispersion",
+          blocking: true,
           text:
             (count === glasses.length
               ? "Every glass is known only by nd and νd, so all dispersion is estimated."
@@ -98,6 +101,7 @@ export function assessMtfDataLimitations(
     const offset = focus.imagePlaneOffsetMm;
     limitations.push({
       kind: "image-plane",
+      blocking: true,
       text:
         `The authored image plane sits ${Math.abs(offset).toFixed(2)} mm ${offset > 0 ? "in front of" : "behind"} this prescription's paraxial focus, so the back focus in the lens data disagrees with its surfaces. ` +
         (focus.mode === "best-axial"
@@ -113,6 +117,7 @@ export function assessMtfDataLimitations(
     const mm = formatHeights(geometry.referenceHeightMm - geometry.modeledEdgeHeightMm);
     limitations.push({
       kind: "short-field",
+      blocking: true,
       text: `The modeled clear apertures end the field at ${mm(geometry.modeledEdgeHeightMm)} mm, short of the ${mm(geometry.referenceHeightMm)} mm format corner. ${uncharted} of ${fields.length} field positions ${uncharted === 1 ? "lies beyond it and is" : "lie beyond it and are"} not charted.`,
     });
   }
@@ -121,9 +126,33 @@ export function assessMtfDataLimitations(
   if (mtfScaleNeedsNote(scale)) {
     limitations.push({
       kind: "scale",
+      blocking: true,
       text: `The prescription's focal length (${scale.designMm.toFixed(1)} mm) differs from the marketed ${scale.marketingMm} mm by ${Math.round(
         scale.fraction * 100,
       )}%, so frequencies in lp/mm are at the prescription's scale, not the production lens's.`,
+    });
+  }
+
+  // Authored errata describe the prescription itself, so they qualify every chart of the lens without hiding it.
+  const errata = source.sourceErrata ?? [];
+  const corrected = errata.filter((erratum) => erratum.status === "corrected");
+  if (corrected.length > 0) {
+    const values = corrected.map((erratum) => `surface ${erratum.surface}, ${erratum.field}`).join("; ");
+    limitations.push({
+      kind: "source-erratum",
+      blocking: false,
+      text:
+        corrected.length === 1
+          ? `A printed value (${values}) contradicts the source's own data and is corrected here: the source prints ${corrected[0].printed}, this prescription uses ${corrected[0].applied}.`
+          : `${corrected.length} printed values (${values}) contradict the source's own data and are corrected here.`,
+    });
+  }
+  const unresolved = errata.filter((erratum) => erratum.status === "unresolved");
+  if (unresolved.length > 0) {
+    limitations.push({
+      kind: "source-inconsistent",
+      blocking: false,
+      text: `The source prescription contradicts itself and the cause is not isolated, so these curves describe the printed table: ${unresolved.map((erratum) => erratum.note).join(" ")}`,
     });
   }
 

@@ -299,8 +299,8 @@ const LENS_DATA = {
     "Inner focus via G2 (L5–L6 cemented doublet). G2 translates toward image during close focus; G1, stop, and G3 remain fixed. Linear stepping motor drive.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.5,
-  fstopSeries: [2.5, 2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 2.56,
+  fstopSeries: [2.56, 2.8, 4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
 
   /* ── Layout tuning ── */

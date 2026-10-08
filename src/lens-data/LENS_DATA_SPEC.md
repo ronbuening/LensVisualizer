@@ -79,7 +79,7 @@ propagation, not higher-order or chromatic behavior. See
 | `name` | `string` | Full UI display name following the display-name convention below (e.g. `"NIKON NIKKOR Z 50mm f/1.8 S"`) |
 | `elements` | `array` | Physical glass/mirror elements (min 1); ordinary lenses list front to rear, while folded models document their stable model order |
 | `surfaces` | `array` | Optical surfaces (min 1); ordinary lenses list front to rear, while folded models may use signed displacements and explicit path order |
-| `nominalFno` | `number \| number[]` | Nominal f-number — single value for primes/constant-aperture zooms, or array (one per zoom position) for variable-aperture zooms (e.g. `[4.5, 5.76]`) |
+| `nominalFno` | `number \| number[]` | F-number the stop opens to: the source's design value (`apertureDesign`) when it states one, never the faster marketed number, which belongs in `apertureMarketing`. Single value for primes/constant-aperture zooms, or array (one per zoom position) for variable-aperture zooms (e.g. `[4.5, 5.76]`) |
 | `closeFocusM` | `number` | Minimum focus distance in meters |
 | `zoomCloseFocusM` | `number[]` (optional) | Positive object-to-image endpoint distances matching `zoomPositions`; overrides the scalar at each zoom station |
 | `fstopSeries` | `array` | F-stop values for quick-select UI buttons |
@@ -92,7 +92,6 @@ These are merged automatically. Override only when needed.
 |-------|---------|-------------|
 | `svgW` | `1080` | SVG viewport width (px) |
 | `svgH` | `490` | SVG viewport height (px) |
-| `clipMargin` | `1.0` | Clipping margin for element trimming |
 | `maxRimAngleDeg` | `~64.2` | Maximum actual spherical/aspherical rim-slope angle; the default equals the old `sd/|R| = 0.9` threshold for a sphere |
 | `gapSagFrac` | `0.90` | Cross-gap sag intrusion fraction, synchronized with validation and rendering; must be > 0 and ≤ 1 |
 | `maxAspectRatio` | `1.6` | Max YSC/SC ratio — clamps vertical scale to prevent horizontal squashing on long lenses |
@@ -144,8 +143,8 @@ Keep it normalized even when the product's official styling varies by source:
 | `specs` | `string[]` | | Spec strings displayed in header |
 | `focalLengthMarketing` | `number \| [number, number]` | | Marketed/nominal focal length in mm. Single number for primes (e.g. `50`); `[wide, tele]` tuple for zooms (e.g. `[70, 200]`). |
 | `focalLengthDesign` | `number \| [number, number]` | | Design/patent focal length in mm (computed EFL). Single number for primes; `[wide, tele]` for zooms. May differ from marketing value. |
-| `apertureMarketing` | `number` | | Marketed/nominal maximum f-number (e.g. `1.8` for an "f/1.8" lens). |
-| `apertureDesign` | `number` | | Design/patent maximum f-number (precise computed value, e.g. `1.85`). May differ from marketing value. |
+| `apertureMarketing` | `number` | | Marketed maximum f-number (e.g. `1.8` for an "f/1.8" lens). Shown beside the wide-open readout when it differs from the design value. |
+| `apertureDesign` | `number` | | Design/patent maximum f-number as the source states it (e.g. `1.85`). `nominalFno` must not be faster than this by more than 0.5 %; a corpus sweep enforces it. |
 | `lensMounts` | `LensMountId[]` | | Canonical mount ids for production variants represented by this optical formula. May contain multiple ids, e.g. `["nikon-z", "sony-fe"]`. |
 | `imageCircleMm` | `number` | | Optional published circular image diameter in millimetres, independent of projection law. Positive and finite; overrides the format diagonal for analysis-field bounds and the image-circle audit. Does not imply a projection law or certify reconstructed edge performance. |
 | `imageFormat` | `ImageFormatId` | | Single canonical image-circle/format id, e.g. `"135-full-frame"`, `"aps-c"`, or `"110"`. Required for normalized fixed-sensor perspective field sampling. |
@@ -153,6 +152,7 @@ Keep it normalized even when the product's official styling varies by source:
 | `patentAuthors` | `string[]` | | Inventors named by the source patent, in source order. Use one complete personal name per entry. An empty array means the patent names no individual inventor. |
 | `patentAssignees` | `string[]` | | Organizational assignees named by the source patent, or organizational applicants when that jurisdiction publishes applicants rather than assignees. Use one canonical display name for each historical legal entity. When the front page omits the organization, a verified same-application assignment predating publication may supply the assignee; document its source and dates in the analysis/audit. An empty array means no organizational attribution is supported by these sources. |
 | `patentYear` | `number` | | Year the patent was published or granted (e.g. `2019`). |
+| `sourceErrata` | `object[]` | | Values this file carries that differ from what the source prints, and contradictions in the source that are not yet isolated. See [Source Errata](#source-errata-sourceerrata). |
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
 | `perspectiveControl` | `object` | | Optional shift-Y/tilt-X limits and camera-frame tilt pivot for perspective-control lenses. Omit for all ordinary and folded lenses. |
@@ -277,6 +277,37 @@ patentAssignees: ["Canon Inc."],
 - Build metadata generation checks curated historical assignee aliases and legal-form start years derived from the
   corporate-history registry's successor dates, plus a short list of curated overrides. These checks flag
   impossible or non-canonical values for source review; they never infer or rewrite an assignee automatically.
+
+## Source Errata (`sourceErrata`)
+
+A source can contradict itself: a printed coefficient whose sign disagrees with the patent's own field angle,
+distortion and aberration plots, or a table whose focal length differs from the stated one. `sourceErrata` records
+both cases in a form the validator checks and the MTF tab discloses. The evidence standard for a correction is in
+`agent_docs/lens-patent-audit.md`.
+
+```ts
+sourceErrata: [
+  {
+    status: "corrected",
+    surface: "27A",            // surface label
+    field: "A10",              // asph coefficient key, or surface R / d / nd
+    printed: -1.29299e-13,     // as the source prints it
+    applied: 1.29299e-13,      // the value this file carries
+    evidence: ["source-summary", "sibling-example", "aberration-figure"],
+    note: "Printed sign gives 2ω 23.08° against the stated 24.06°; Example 2 carries the positive sign.",
+  },
+  { status: "unresolved", note: "Table traces to f = 82.22 mm; the summary states 83.00 mm." },
+],
+```
+
+- `corrected`: the file must carry `applied` at `surface` / `field`, and `evidence` must cite at least two of
+  `source-summary` (stated f, F-number, field angle, back focus, total length), `sibling-example` (another example
+  of the same source), `aberration-figure` (the source's own aberration plots) and `claims`. A manufacturer chart,
+  a measured lens or "the trace looks better" is never evidence.
+- `unresolved`: the source disagrees with itself and the cause is not isolated. Keep the printed values and state
+  the contradiction in `note`.
+- Place the field after the identity block (`key`, `name`, `maker`), and keep the erratum explained in the file
+  header and the `*.audit.md` sidecar as well.
 
 ## Rear Plates (`rearPlates`)
 
@@ -835,6 +866,14 @@ If the source defines a different normal line, recover its absolute `P_g,F` firs
 `dPgF = P_g,F − normalLinePgF(vd)` using the engine's baseline in
 [`dispersion.ts`](../optics/dispersion.ts). Do not copy a patent-specific deviation directly.
 Keep the source's original deviation separately in the analysis when evaluating its conditions.
+A catalog deviation is on its maker's own line too (HOYA's runs near 0.6483 − 0.0018·vd) and is
+converted the same way. Where a source prints a deviation without stating its line, take the line
+from the same applicant's stated formula or from printed figures that equal a maker's catalog
+deviations; if neither settles it, keep the printed figure and queue the element in
+[`glass-relabel-followup.md`](../../agent_docs/glass-relabel-followup.md). Where the source prints
+nothing, use the resolved catalog glass's `P_g,F` and say so in `apdNote`. A stored value within
+0.0003 of the correct one is left as written. `npm run audit:dpgf` lists stored values that fit a
+source line and miss the engine's.
 A published partial-dispersion ratio alone does not justify `apd: "patent"`; that display tag
 requires the source to identify the material as anomalous.
 
@@ -1072,9 +1111,15 @@ var: {
 },
 ```
 
-`zoomStopSemiDiameters: [8.26, 10.465, 13.325]` supplies published physical iris radii in mm, one per source zoom station. Values must be positive and finite. The first radius is the baseline iris; intermediate radii are interpolated and focus retains the current zoom iris. Do not combine this source schedule with `zoomApertureModel`.
+A zoom's wide-open iris follows the zoom. At every source zoom station the builder traces the entrance-pupil radius the station's `nominalFno` names (a scalar applies to every station) to the stop and keeps that radius, so each station traces at its stated f-number. Radii between stations are interpolated, and focus keeps the current zoom radius. These radii are calculated from the f-numbers, not read from the source. `zoomApertureModel: "from-nominal-fno"` names this default explicitly and changes nothing.
 
-`zoomApertureModel: "from-nominal-fno"` opts a zoom into a physical iris schedule inferred from the source station f-numbers. The builder traces each nominal infinity entrance-pupil radius to the stop and retains that station radius. Intermediate radii are interpolated; focus keeps the current zoom radius. This is a calculated aperture model, not a patent-published diameter schedule, and must be identified as inferred in the analysis. Omission retains the existing fixed physical iris.
+`zoomStopSemiDiameters: [8.26, 10.465, 13.325]` supplies published physical iris radii in mm instead, one per source zoom station. Values must be positive and finite. The first radius is the baseline iris; intermediate radii are interpolated and focus retains the current zoom iris. Do not combine this source schedule with `zoomApertureModel`.
+
+`zoomApertureModel: "fixed-iris"` keeps the first station's radius at every station. Declare it only when the source states that the stop diameter does not change with zoom, or when the file's own stop model is one iris radius whose traced f-numbers are what `nominalFno` stores. The station f-numbers then label the readout without sizing the iris, so they must be the ones that radius gives: a corpus sweep (`__tests__/src/lens-data/zoomApertureModel.test.ts`) fails when a station's traced radius differs from the fixed one by more than 3 %.
+
+An aperture stop that is a surface of drawn glass (`stopPlacement: "inside-element"`) keeps its authored semi-diameter at every station.
+
+Semi-diameters are physical clear radii: a ray beyond one is clipped, with no margin. When a station's stated beam does not fit through a rim, the lens traces slower than its label there; `npm run audit:aperture` lists those stations (see `agent_docs/sd-audit-queue.md`, Section I). Do not enlarge a rim to pass the beam.
 
 `zoomCloseFocusM` preserves zoom-dependent near-focus conjugates when a patent publishes different object distances at its zoom stations (for example, states at approximately constant magnification). Supply one positive finite distance in metres per `zoomPositions` entry. Distances between stations interpolate in the same normalized zoom coordinates; labels at intermediate focus use inverse-distance interpolation and remain estimates. Source-derived endpoints should be identified as calculated in the analysis. Single-lens labels, breathing, summary, effective-f-number estimates and comparison focus mapping use the current zoom endpoint. Omit the field for the existing scalar behavior.
 
@@ -1348,9 +1393,12 @@ doublets: [
     `synthetic` field
 21. `acceptsTeleconverters`, when present, is a boolean; authored surface labels may not start with the reserved
     `TC` prefix, and the composer-written `attachedTeleconverter` descriptor is not an authorable field
-22. `publishedStations`, when present, satisfies the index, shape, and focus-travel rules in
+22. `sourceErrata`, when present, is an array whose `corrected` entries name an existing surface and field, carry
+    the `applied` value in the file, differ from `printed`, and cite at least two kinds of source-internal
+    evidence; every entry has a non-empty `note`
+23. `publishedStations`, when present, satisfies the index, shape, and focus-travel rules in
     [Published Stations](#published-stations-publishedstations)
-23. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
+24. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
 
 On failure, `buildLens()` throws with all errors listed.
 

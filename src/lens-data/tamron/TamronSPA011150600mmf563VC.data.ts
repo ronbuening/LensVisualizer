@@ -413,6 +413,7 @@ const LENS_DATA = {
     "PUBLISHED inner focus: G4 moves objectward at close focus; source D29/D36 pairs conserve their sum at each zoom position.",
 
   nominalFno: [4.994152, 5.871856, 6.540615],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [5, 5.6, 6.3, 8, 11, 16, 22, 32, 40],
   maxFstop: 40,
   apertureBlades: 9,

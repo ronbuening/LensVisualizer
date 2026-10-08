@@ -162,7 +162,7 @@ The patent gives nd, νd, and θgF for each element, but it does not name glass 
 
 The published production count of three FLD elements is best mapped to L3, L9, and L12, all νd = 95.10 FCD100 matches. The single SLD element is most plausibly L10, the M-FCD500 element with νd = 71.68 and ΔPgF = +0.0210. L2 is a secondary low-dispersion moldable crown and could be considered an alternative SLD candidate, but its lower ΔPgF makes L10 the stronger assignment.
 
-The data file keeps the patent-derived ΔPgF value on every element for chromatic tracing, but the APD display tag is limited to the three FLD elements and the strongest SLD candidate. Ordinary dense flints and mild near-normal glasses are not marked as APD merely because the patent publishes θgF for them.
+The data file carries a `dPgF` value on every element for chromatic tracing. That field is the patent's θgF minus the engine's normal line (0.6438 - 0.001682 × νd), not the patent's ΔPgF tabulated above; L1 and L7, where the two lines nearly cross, keep four-decimal figures that agree with it within 0.0003. The APD display tag is limited to the three FLD elements and the strongest SLD candidate. Ordinary dense flints and mild near-normal glasses are not marked as APD merely because the patent publishes θgF for them.
 
 ## Focus Mechanism
 
@@ -256,7 +256,7 @@ The following implementation details are reflected in the data file:
 - The optical prescription is unscaled; all R, d, nd, and νd values follow Example 2 directly.
 - The data file uses the patent infinity zoom spacings only. Manufacturer close-focus distance is recorded as metadata, but no close-focus optical travel is synthesized.
 - Semi-diameters are conservative diagrammatic estimates because the patent does not publish clear apertures. They were checked for sd/|R| < 0.90, element front/rear SD ratio ≤ 1.25 (except L1, 1.37), positive edge thickness, and signed cross-gap sag clearance. The second review changed only these estimated SD values; it did not change the patent prescription radii, thicknesses, glasses, zoom spacings, or computed paraxial values. The 2026-09-24 field-coverage pass raised surfaces 1A/2, 22 and 23A, with partners 21 and 24A, so the traced wide-end chief ray reaches the Y = 14.20 mm corner. That chief ray crosses surface 1A at 16.28 mm while sd/|R| < 0.90 caps surface 2 near 12.7 mm, so L1's ratio cannot stay at 1.25.
-- APD UI tagging is intentionally restricted to L3, L9, L10, and L12. The remaining elements still retain patent-derived ΔPgF values where available, but they are not highlighted as special anomalous-dispersion elements.
+- APD UI tagging is intentionally restricted to L3, L9, L10, and L12. The remaining elements still carry `dPgF` values derived from the patent's θgF (referred to the engine's normal line), but they are not highlighted as special anomalous-dispersion elements.
 - Surface 4 retains the original patent's complete odd/even polynomial through A14.
 
 ## Deviations Between Patent and Production Specifications

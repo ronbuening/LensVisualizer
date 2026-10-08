@@ -190,6 +190,8 @@ At the marketed maximum aperture (f/2.8), the physical stop semi-diameter calcul
 - Marginal ray amplification factor from entrance pupil to stop: 1.2536 (traced)
 - Physical stop semi-diameter = 4.31 × 1.2536 = **5.40 mm**
 
+The model opens the stop to the patent's design F-number of 2.91 instead, where the entrance pupil semi-diameter is 24.1472 / (2 × 2.9129) = 4.14 mm.
+
 The entrance pupil — the image of the stop formed by the front lens elements in object space — is located 10.17 mm behind the L1 front surface, placing it inside the lens barrel. This is a real pupil conjugate, not a virtual one: the front group has net positive power, so it forms a real image of the stop in image space rather than a virtual image in object space. From the perspective of an object at infinity, incoming ray bundles are intercepted as if the pupil were located 10.17 mm inside the lens body. The exit pupil, which determines how telecentric the illumination is at the sensor, is pushed substantially further behind the image plane by the retrofocus geometry — this is the property that enables near-telecentric chief ray delivery to the Foveon sensor.
 
 ---
@@ -410,7 +412,7 @@ A thin-lens estimate of the system's primary axial chromatic balance — the sum
 
 ### Estimated Element Semi-Diameters
 
-Semi-diameters were estimated from a combined marginal and chief ray trace at the marketed maximum aperture (f/2.8) and full field (2ω = 56.76°). A 10% mechanical clearance margin was applied to all optical surfaces except the aperture stop. Stop SD is set to the marketed f/2.8 physical aperture without additional margin.
+Semi-diameters were estimated from a combined marginal and chief ray trace at the marketed maximum aperture (f/2.8) and full field (2ω = 56.76°). A 10% mechanical clearance margin was applied to all optical surfaces except the aperture stop. The authored stop SD is set to the marketed f/2.8 physical aperture without additional margin; the runtime sizes the iris from the design F-number of 2.9129 instead, giving a 5.30 mm stop SD.
 
 Several front-group surfaces required downward revision from the raw ray-trace values due to cross-gap sag intrusion constraints. The L1r→L2f air gap (3.768 mm) limits both bounding surfaces to ≤ 7.71 mm at the rim; the L2r→L3f air gap (0.916 mm) independently limits both bounding surfaces to ≤ 7.80 mm. As a result, surfaces 2 through 5 (L1 rear and all of L2) are constrained well below the marginal-plus-chief-ray estimate. Similarly, the L6 rear semi-diameter (surface 12A) is limited to 8.8 mm by the element's edge thickness — the tight concave rear radius (R = −15.18 mm) accumulates sag rapidly with increasing height, and exceeding 8.8 mm would reduce the rim edge thickness below a practical minimum.
 

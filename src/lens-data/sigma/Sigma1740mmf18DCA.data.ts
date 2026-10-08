@@ -23,9 +23,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  The patent does not publish clear-aperture semi-diameters.         ║
  * ║                                                                    ║
  * ║  Aperture note: the patent tabulates Fno = 1.86 at all zoom         ║
- * ║  positions. This file uses one physical stop radius, set to the     ║
- * ║  largest paraxial clear stop required among the three positions;    ║
- * ║  nominalFno records the marketed constant F1.8 value.               ║
+ * ║  positions. STO sd is the largest paraxial clear stop among the     ║
+ * ║  three; nominalFno carries the patent's 1.86 and sizes the iris at  ║
+ * ║  each station (9.28 / 10.11 / 11.20 mm). apertureMarketing is F1.8. ║
+ * ║                                                                    ║
+ * ║  Partial dispersion: the patent lists θgF per glass. `dPgF` is       ║
+ * ║  θgF minus the engine's normal line (0.6438 − 0.001682·νd), not      ║
+ * ║  the patent's dPgF = θgF − (0.648285 − 0.00180123·νd), which the     ║
+ * ║  analysis quotes as ΔPgF for conditions (8) and (9).                 ║
  * ║                                                                    ║
  * ║  Sensor cover glass, filters, mounts, and barrel mechanics are      ║
  * ║  intentionally excluded.                                           ║
@@ -57,10 +62,10 @@ const LENS_DATA = {
   patentYear: 2026,
   elementCount: 17,
   groupCount: 11,
-  nominalFno: 1.8,
+  nominalFno: 1.86,
   closeFocusM: 0.28,
   maxFstop: 16,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [1.86, 2, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 11,
   apertureBladeRoundedness: 1,
   yScFill: 0.78,
@@ -82,7 +87,7 @@ const LENS_DATA = {
       vd: 66.97,
       fl: -53.05,
       glass: "MP-PCD51-70 (Hoya precision-mold preform; PCD51 class)",
-      dPgF: 0.009043,
+      dPgF: 0.005544,
       role: "Front molded aspherical negative meniscus; wide-end distortion and field-curvature control.",
     },
     {
@@ -94,7 +99,7 @@ const LENS_DATA = {
       vd: 71.72,
       fl: -193.43,
       glass: "MP-FCD500-20 (Hoya precision-mold ED preform)",
-      dPgF: 0.020699,
+      dPgF: 0.016633,
       role: "Low-dispersion double-aspherical front-group meniscus.",
     },
     {
@@ -106,7 +111,7 @@ const LENS_DATA = {
       vd: 70.44,
       fl: -50.62,
       glass: "FC5 (Hoya)",
-      dPgF: 0.009194,
+      dPgF: 0.005280,
       cemented: "D1",
       role: "Low-dispersion negative member of the G1 cemented doublet.",
     },
@@ -119,7 +124,7 @@ const LENS_DATA = {
       vd: 42.7,
       fl: 51.28,
       glass: "TAFD34 (Hoya)",
-      dPgF: -0.006772,
+      dPgF: -0.007379,
       cemented: "D1",
       role: "High-index positive partner closing the fixed negative front group.",
     },
@@ -132,7 +137,7 @@ const LENS_DATA = {
       vd: 75.5,
       fl: 47.11,
       glass: "FCD705 (Hoya)",
-      dPgF: 0.027808,
+      dPgF: 0.023291,
       cemented: "D2",
       role: "SLD positive element of G2; anomalous partial dispersion for secondary-spectrum control.",
     },
@@ -145,7 +150,7 @@ const LENS_DATA = {
       vd: 29.74,
       fl: -109.5,
       glass: "NBFD29 (Hoya)",
-      dPgF: 0.000384,
+      dPgF: 0.001323,
       cemented: "D2",
       role: "Dense flint partner in the first positive variator.",
     },
@@ -158,7 +163,7 @@ const LENS_DATA = {
       vd: 25.05,
       fl: -122.43,
       glass: "FF8 (Hoya)",
-      dPgF: 0.016036,
+      dPgF: 0.017534,
       cemented: "D3",
       role: "High-dispersion negative member of the second positive variator.",
     },
@@ -171,7 +176,7 @@ const LENS_DATA = {
       vd: 52.32,
       fl: 46.53,
       glass: "TAC6L (Hoya)",
-      dPgF: -0.006745,
+      dPgF: -0.008498,
       cemented: "D3",
       role: "High-index positive member of G3 with near-index-matched cement interface.",
     },
@@ -184,7 +189,7 @@ const LENS_DATA = {
       vd: 43.94,
       fl: -24.33,
       glass: "NBFD11 (Hoya)",
-      dPgF: -0.007939,
+      dPgF: -0.008693,
       cemented: "D4",
       role: "Strong negative element immediately behind the stop.",
     },
@@ -197,7 +202,7 @@ const LENS_DATA = {
       vd: 16.48,
       fl: 61.71,
       glass: "FDS16-W (Hoya)",
-      dPgF: 0.046999,
+      dPgF: 0.049519,
       cemented: "D4",
       role: "Very-high-index, high-dispersion positive partner in G4.",
     },
@@ -210,7 +215,7 @@ const LENS_DATA = {
       vd: 32.23,
       fl: -34.22,
       glass: "NBFD32 (Hoya)",
-      dPgF: -0.000331,
+      dPgF: 0.000311,
       cemented: "D5",
       role: "Negative flint opening the strong positive master group G5.",
     },
@@ -223,7 +228,7 @@ const LENS_DATA = {
       vd: 68.62,
       fl: 29.09,
       glass: "FCD505/FCD515 family (Hoya, 593/686 anomalous ED)",
-      dPgF: 0.019315,
+      dPgF: 0.015619,
       cemented: "D5",
       role: "SLD positive partner in the G5 front doublet.",
     },
@@ -236,7 +241,7 @@ const LENS_DATA = {
       vd: 68.62,
       fl: 35.08,
       glass: "FCD505/FCD515 family (Hoya, 593/686 anomalous ED)",
-      dPgF: 0.019315,
+      dPgF: 0.015619,
       role: "Air-spaced SLD positive element in G5.",
     },
     {
@@ -248,7 +253,7 @@ const LENS_DATA = {
       vd: 66.97,
       fl: 70.91,
       glass: "MP-PCD51-70 (Hoya precision-mold preform; PCD51 class)",
-      dPgF: 0.009043,
+      dPgF: 0.005544,
       role: "Double-aspherical positive meniscus closing G5.",
     },
     {
@@ -260,7 +265,7 @@ const LENS_DATA = {
       vd: 49.22,
       fl: -39.78,
       glass: "NBF1 (Hoya)",
-      dPgF: -0.010128,
+      dPgF: -0.011512,
       role: "Single-element G6 internal focusing group.",
     },
     {
@@ -272,7 +277,7 @@ const LENS_DATA = {
       vd: 40.73,
       fl: 43.37,
       glass: "MP-NBFD130 (Hoya precision-mold preform)",
-      dPgF: -0.005521,
+      dPgF: -0.005892,
       cemented: "D6",
       role: "Molded aspherical positive front member of the nearly afocal rear corrector.",
     },
@@ -285,7 +290,7 @@ const LENS_DATA = {
       vd: 25.15,
       fl: -46.96,
       glass: "NBFD25 (Hoya)",
-      dPgF: 0.007316,
+      dPgF: 0.008802,
       cemented: "D6",
       role: "Rear dense flint member of G7.",
     },

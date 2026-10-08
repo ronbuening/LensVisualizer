@@ -211,9 +211,9 @@ const LENS_DATA = {
     { label: "18", R: -44.74, d: 41.114155, nd: 1, elemId: 0, sd: 10.3 },
   ],
 
-  nominalFno: 2.8,
+  nominalFno: 2.88,
   closeFocusM: 0.14,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   focusDescription:
     "CRC / floating-group focus is described by the patent and Nikon, but Example 9 publishes only the infinity prescription.",

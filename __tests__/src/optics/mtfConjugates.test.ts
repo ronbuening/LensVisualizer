@@ -5,13 +5,20 @@ import { assessMtfSupport } from "../../../src/optics/analysis/mtfSupport.js";
 import { mtfFiniteObjectPoint } from "../../../src/optics/analysis/mtfConjugates.js";
 import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtfTracing.js";
 import { computeMtf } from "../../../src/optics/mtf.js";
-import { sampleReferenceWavefront } from "../../../src/optics/analysis/mtfWavefront.js";
+import { shearedOtf } from "../../../src/optics/analysis/mtfShearedOtf.js";
+import {
+  mtfWaveLattice,
+  rayOpticalPathToImageMm,
+  waveLatticeOtf,
+  waveLatticePhaseStep,
+} from "../../../src/optics/analysis/mtfWavefront.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 import type { FiniteConjugate } from "../../../src/types/optics.js";
 
 const options: MtfOptions = {
   method: "diffraction",
   spectrum: "reference",
+  focus: "design",
   pupilSemiDiameterMm: 0.1,
   stopSemiDiameterMm: 0.1,
   fieldFractions: [0],
@@ -114,11 +121,33 @@ describe("documented finite MTF", () => {
     expect(assessMtfSupport(documented, options).available).toBe(true);
     expect(assessMtfSupport(prepareRuntimeState(lens, 1, 0.49), options).reason).toBe("finite-conjugate-unavailable");
   });
+  it("reads the same OTF from ray landings and from optical path with a spherical incident wave", () => {
+    // f/8 from 1 m: a plane-wave launch phase would put a metre-scale sphere error on the wavefront.
+    const request: MtfOptions = { ...options, pupilSemiDiameterMm: 3, stopSemiDiameterMm: 3 };
+    const support = assessMtfSupport(state, request);
+    const line = support.spectralLines[0];
+    const lambda = line.wavelengthNm * 1e-6;
+    const frequencies = [10, 30, 60];
+    for (const fieldAngleDeg of [0, 4]) {
+      const bundle = traceMtfFieldPupil(state, request, support, fieldAngleDeg, 128, line, state.imgZ, true)!;
+      const lattice = mtfWaveLattice(bundle, bundle.chief, state.imgZ)!;
+      expect(waveLatticePhaseStep(lattice, lambda)).toBeLessThan(0.25);
+      const landings = shearedOtf(bundle, bundle.chief, lambda, frequencies);
+      const paths = waveLatticeOtf(lattice, lambda, frequencies);
+      frequencies.forEach((_, i) => {
+        for (const cut of ["sagittal", "tangential"] as const) {
+          expect(Math.abs(landings[cut].real[i] - paths[cut].real[i])).toBeLessThan(0.004);
+          expect(Math.abs(landings[cut].imaginary[i] - paths[cut].imaginary[i])).toBeLessThan(0.004);
+        }
+      });
+    }
+  });
   it("keeps spherical launch phase invariant when moving the input plane along a ray", () => {
-    const bundle = traceMtfFieldPupil(state, options, assessMtfSupport(state, options), 0, 32)!;
+    const support = assessMtfSupport(state, options);
+    const bundle = traceMtfFieldPupil(state, options, support, 0, 32, support.spectralLines[0], state.imgZ, true)!;
     const ray = bundle.rays[0].trace;
     const image = [0, 0, state.imgZ] as const;
-    const before = sampleReferenceWavefront(ray, image, imageGap, bundle.objectPoint)!;
+    const before = rayOpticalPathToImageMm(ray, image, bundle.objectPoint)!;
     const moved = {
       ...ray,
       opticalPathLengthMm: ray.opticalPathLengthMm! - 1,
@@ -127,9 +156,6 @@ describe("documented finite MTF", () => {
         origin: ray.input.origin.map((v, i) => v + ray.input.direction[i]) as [number, number, number],
       },
     };
-    expect(sampleReferenceWavefront(moved, image, imageGap, bundle.objectPoint)!.opticalPathMm).toBeCloseTo(
-      before.opticalPathMm,
-      10,
-    );
+    expect(rayOpticalPathToImageMm(moved, image, bundle.objectPoint)).toBeCloseTo(before, 10);
   });
 });

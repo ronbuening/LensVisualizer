@@ -439,8 +439,8 @@ const LENS_DATA = {
   closeFocusM: 0.33,
   focusDescription:
     "Inner focus by movement of G2 only. Close-focus spacings are solved from a 0.33 m image-plane-referenced object distance; the patent gives infinity-focus zoom positions only.",
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 2.91,
+  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
   scFill: 0.56,
   yScFill: 0.52,

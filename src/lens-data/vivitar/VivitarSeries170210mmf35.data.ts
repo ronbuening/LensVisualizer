@@ -19,9 +19,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  normal focus and tele-end maximum macro focus. Intermediate focus-slider   ║
  * ║  positions do not reproduce the lens's two-stage front-focus/macro cam path.║
  * ║                                                                              ║
- * ║  BFD: the patent omits a final image-plane distance. A fixed 40.873732 mm    ║
+ * ║  BFD: the patent omits a final image-plane distance. A fixed 40.003152 mm    ║
  * ║  BFD is the mean of independently traced wide/tele paraxial BFL values      ║
- * ║  (40.861589 and 40.885874 mm), leaving only ±0.012143 mm endpoint defocus.  ║
+ * ║  (39.991236 and 40.015068 mm), leaving only ±0.011916 mm endpoint defocus.  ║
  * ║                                                                              ║
  * ║  SEMI-DIAMETERS: the patent gives no clear apertures. Values were inferred  ║
  * ║  from paraxial marginal/chief-ray envelopes, the production 67 mm accessory ║
@@ -48,7 +48,7 @@ const LENS_DATA = {
   ],
 
   focalLengthMarketing: [70, 210],
-  focalLengthDesign: [72.662091, 204.940289],
+  focalLengthDesign: [71.979219, 203.013778],
   apertureMarketing: 3.5,
   apertureDesign: 3.65,
   lensMounts: ["m42", "minolta-sr", "canon-fl", "canon-fd", "nikon-f", "konica-ar", "olympus-om", "pentax-k"],
@@ -234,7 +234,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70,
-      fl: 58.5,
+      fl: 58.3,
       glass: "FK5 class (SUMITA legacy / HIKARI J-FK5)",
       nC: 1.48535,
       nF: 1.49227,
@@ -307,14 +307,14 @@ const LENS_DATA = {
     { label: "16", R: -56.17, d: 0.3, nd: 1, elemId: 0, sd: 17.0 },
     { label: "17", R: 61.15, d: 3.87, nd: 1.48749, elemId: 11, sd: 17.0 },
     { label: "18", R: 284.27, d: 0.3, nd: 1, elemId: 0, sd: 17.0 },
-    { label: "19", R: 38.55, d: 6, nd: 1.48749, elemId: 12, sd: 17.0 },
+    { label: "19", R: 38.35, d: 6, nd: 1.48749, elemId: 12, sd: 17.0 },
     { label: "20", R: -104.13, d: 1.023, nd: 1.64328, elemId: 13, sd: 17.0 },
     { label: "21", R: 94.78, d: 0, nd: 1, elemId: 0, sd: 15 },
     { label: "STO", R: 1e15, d: 49.846, nd: 1, elemId: 0, sd: 14.457801 },
     { label: "22", R: -20.19, d: 1.48, nd: 1.697, elemId: 14, sd: 16.0 },
     { label: "23", R: -53.33, d: 0.267, nd: 1, elemId: 0, sd: 16.0 },
     { label: "24", R: 135.84, d: 4, nd: 1.58921, elemId: 15, sd: 16.0 },
-    { label: "25", R: -53.64, d: 40.873732, nd: 1, elemId: 0, sd: 16.0 },
+    { label: "25", R: -53.64, d: 40.003152, nd: 1, elemId: 0, sd: 16.0 },
   ],
 
   asph: {},
@@ -367,8 +367,9 @@ const LENS_DATA = {
   focusDescription:
     "Group I unit focus to about 2 m from the image plane; tele-end macro focus by equal objectward movement of Groups II and III at fixed 6.000 mm separation.",
 
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 3.65,
+  zoomApertureModel: "fixed-iris",
+  fstopSeries: [3.65, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.63,

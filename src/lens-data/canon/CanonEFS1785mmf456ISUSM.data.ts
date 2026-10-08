@@ -29,9 +29,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                              ║
  * ║ Maximum-aperture design states use Figure 2 values f/4.11, f/4.45, and      ║
  * ║ f/5.77. The header's rounded wide f/4.0 and the marketed f/4-5.6 range      ║
- * ║ remain metadata only. STO sd = 5.42 mm is the maximum derived physical      ║
- * ║ iris radius required among the three design states; active wide/tele        ║
- * ║ openings are smaller; 5.42 mm includes 0.01 mm of clearance above 5.4096.    ║
+ * ║ remain metadata only. STO sd = 5.42 mm is the maximum paraxial iris radius   ║
+ * ║ required among the three design states (5.4096 mm at 35 mm) plus 0.01 mm of  ║
+ * ║ clearance; the traced wide-open iris radii are 4.637 / 5.463 / 4.877 mm.     ║
  * ║                                                                              ║
  * ║ Semi-diameters are inferred, not patent-published. They were derived from   ║
  * ║ full-pupil paraxial marginal/chief bundles through 0.60 x the published     ║

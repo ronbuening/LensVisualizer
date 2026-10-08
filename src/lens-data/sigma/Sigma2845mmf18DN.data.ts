@@ -47,8 +47,8 @@ const LENS_DATA = {
   apertureBladeRoundedness: 1,
 
   closeFocusM: 0.3,
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.86,
+  fstopSeries: [1.86, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
   zoomPositions: [28.84, 35.06, 43.66],
   zoomStep: 0.004,

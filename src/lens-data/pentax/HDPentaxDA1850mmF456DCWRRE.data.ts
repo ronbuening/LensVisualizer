@@ -18,9 +18,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Zoom-only gaps: D12, D16, and rear spacing D21. D7 also varies with zoom.        ║
  * ║ G1 reverses direction over wide→mid→tele; G2 and G4 share a trajectory.          ║
  * ║                                                                                  ║
- * ║ Stop SD: inferred, not patent-published. The adopted 5.31736 mm radius is the    ║
- * ║ mean of six independent radii solved from the patent FNO rows. `nominalFno`      ║
- * ║ stores the modeled infinity-state F-numbers produced by this physical stop.      ║
+ * ║ Stop SD: inferred, not patent-published. The STO row's 5.31736 mm is the mean of ║
+ * ║ six paraxial radii solved from the patent FNO rows. `nominalFno` stores the      ║
+ * ║ Table 6 infinity FNOs 3.98 / 4.60 / 5.74. The wide-open iris is the radius a     ║
+ * ║ real marginal ray at f/3.98 reaches at the wide station, 5.4161 mm, and          ║
+ * ║ `zoomApertureModel: "fixed-iris"` keeps it at every station, where it traces     ║
+ * ║ f/3.980 / 4.596 / 5.738. Taken singly the three FNOs need 5.4161 / 5.4119 /      ║
+ * ║ 5.4144 mm, a 0.08 % spread, so one stop reproduces the row.                      ║
  * ║                                                                                  ║
  * ║ Surface SDs: inferred, not patent-published. They were derived from the Fig. 10  ║
  * ║ optical section plus exact/paraxial marginal/chief-ray envelopes, then checked  ║
@@ -54,7 +58,7 @@ const LENS_DATA = {
   focalLengthMarketing: [18, 50],
   focalLengthDesign: [18.500561, 48.605212],
   apertureMarketing: 4,
-  apertureDesign: 4.001065,
+  apertureDesign: 3.98,
   lensMounts: ["pentax-k"],
   imageFormat: "aps-c",
   patentNumber: "JP 2016-6455 A",
@@ -303,8 +307,9 @@ const LENS_DATA = {
   focusDescription:
     "PUBLISHED: G1b (hybrid L12 + L13) moves objectward from infinity to the patent's 300 mm state; D2 decreases while D7 increases by the same travel at each zoom station. No internal focus reconstruction is used.",
 
-  nominalFno: [4.001065, 4.596028, 5.73828],
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: [3.98, 4.6, 5.74],
+  zoomApertureModel: "fixed-iris",
+  fstopSeries: [3.98, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 7,
   maxFstop: 32,
 

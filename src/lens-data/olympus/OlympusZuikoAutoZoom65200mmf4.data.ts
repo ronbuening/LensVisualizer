@@ -295,8 +295,9 @@ const LENS_DATA = {
   closeFocusM: 0.85,
   focusDescription:
     "Front-group manual focus in production; patent US 4,568,150 publishes only infinity-focus zoom spacings, so close-focus travel is intentionally not modeled.",
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 4.24,
+  zoomApertureModel: "fixed-iris",
+  fstopSeries: [4.24, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
   scFill: 0.72,
   yScFill: 0.62,

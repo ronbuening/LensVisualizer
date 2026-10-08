@@ -2,58 +2,68 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED                   ║
+ * ║ LENS DATA — NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED                       ║
  * ╠════════════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP 2000-19398 A, Example 1 (Nikon Corporation / Susumu Sato).            ║
- * ║ Strong production correlation to the marketed 80-200mm f/2.8D IF-ED.            ║
- * ║ 18 elements / 14 air-spaced groups; all spherical; native patent scale.          ║
- * ║ Functional power sequence: G1 positive, G2 negative, G3 positive, G4 positive.   ║
- * ║ G2 and G3 move for zoom; G3 reverses direction between mid and tele.             ║
- * ║ G1 (G1F + G1R) and G4 remain fixed during zoom; G1R moves only for focus.       ║
- * ║                                                                                   ║
- * ║ FOCUS — CONSTRAINED_RECONSTRUCTION                                               ║
- * ║ The patent requires rigid translation of rear subgroup G1R only. The published   ║
- * ║ close-focus d5 shift is 8.59615 mm, while its published d9 increase is            ║
- * ║ 8.60325 mm, a 0.00710 mm internal contradiction. This model preserves the        ║
- * ║ published close d5 = 8.48886 mm and applies the same rigid 8.59615 mm shift to   ║
- * ║ d9, giving close d9 = 10.59521 / 24.64596 / 31.46770 mm. The raw patent d9      ║
- * ║ values 10.60231 / 24.65306 / 31.47480 mm are retained in the audit only.        ║
- * ║                                                                                   ║
- * ║ ZOOM CONTROL COLUMNS                                                              ║
- * ║ zoomPositions preserve the patent table headings 81.55 / 135 / 194 mm. The      ║
- * ║ tele column independently computes to EFL = 195.999955682 mm; this source-table  ║
- * ║ contradiction is preserved rather than silently relabeling the control column.   ║
- * ║ Infinity spacings otherwise reproduce the patent table exactly.                   ║
- * ║ Between the three published zoom columns, LensVisualizer uses its standard        ║
- * ║ piecewise-linear spacing interpolation. That visualization is not asserted as     ║
- * ║ Nikon's actual continuous cam law or as an exact finite-conjugate reconstruction. ║
- * ║                                                                                   ║
- * ║ APERTURE / PUPIL                                                                  ║
- * ║ Table 1 rounds FNO to 2.9; the Example 1 aberration figures print FNO = 2.88.    ║
- * ║ nominalFno therefore uses the independently verified modeled value 2.88. The     ║
- * ║ physical STO semi-diameter 18.801412058 mm is inferred by solving the wide-state ║
- * ║ entrance pupil for f/2.88 and reproduces approximately f/2.88 at all three       ║
- * ║ zoom control columns.                                                             ║
- * ║                                                                                   ║
- * ║ SEMI-DIAMETERS                                                                    ║
- * ║ Patent Table 1 publishes effective diameters at surfaces 1, 6, 10, and 17;      ║
- * ║ those are retained exactly as sd = 35.75, 28.00, 17.40, and 18.40 mm. Other     ║
- * ║ SDs are modeling values constrained by the Example 1 optical section, paraxial   ║
- * ║ marginal bundles, edge thickness, actual spherical rim slope, shared-band        ║
- * ║ cross-gap intrusion, and off-axis containment. They are not patent source data.  ║
- * ║ The L43, L44 and L45 relay elements (surfaces 28-33) follow Figure 1, which is   ║
- * ║ drawn to scale: calibrated on the published diameters it gives about 16.6, 17.7  ║
- * ║ and 18.8 mm, clear of the corner chief ray (11.2-12.7 mm at surfaces 30-33) that ║
- * ║ the former 10.4-11.2 mm values clipped (2026-09-24 field-coverage audit).        ║
- * ║                                                                                   ║
- * ║ GLASS                                                                             ║
- * ║ The patent publishes nd/vd coordinates only. Compatible coefficient-backed       ║
- * ║ catalog equivalents model dispersion without asserting production suppliers.     ║
- * ║ The five production-correlated ED positions are tagged APD-inferred; no patent ║
- * ║ nC/nF/ng/dPgF values or quantitative APD claim is authored.                    ║
- * ║                                                                                   ║
- * ║ No cover glass, filter, dummy plane, mechanical part, folded path, or asphere is ║
- * ║ included. Surface 22 is the single active aperture stop and is labeled STO.       ║
+ * ║ Source: JP 2000-19398 A, Example 1 (Nikon Corporation / Susumu Sato).              ║
+ * ║ Strong production correlation to the marketed 80-200mm f/2.8D IF-ED.               ║
+ * ║ 18 elements / 14 air-spaced groups; all spherical; native patent scale.            ║
+ * ║ Functional power sequence: G1 positive, G2 negative, G3 positive, G4 positive.     ║
+ * ║ G2 and G3 move for zoom; G3 reverses direction between mid and tele.               ║
+ * ║ G1 (G1F + G1R) and G4 remain fixed during zoom; G1R moves only for focus.          ║
+ * ║                                                                                    ║
+ * ║ FOCUS — CONSTRAINED_RECONSTRUCTION                                                 ║
+ * ║ The patent requires rigid translation of rear subgroup G1R only. The published     ║
+ * ║ close-focus d5 shift is 8.59615 mm, while its published d9 increase is             ║
+ * ║ 8.60325 mm, a 0.00710 mm internal contradiction. This model preserves the          ║
+ * ║ published close d5 = 8.48886 mm and applies the same rigid 8.59615 mm shift to     ║
+ * ║ d9, giving close d9 = 10.59521 / 24.64596 / 31.46770 mm. The raw patent d9         ║
+ * ║ values 10.60231 / 24.65306 / 31.47480 mm are retained in the audit only.           ║
+ * ║                                                                                    ║
+ * ║ ZOOM CONTROL COLUMNS                                                               ║
+ * ║ zoomPositions preserve the patent table headings 81.55 / 135 / 194 mm. The         ║
+ * ║ tele column independently computes to EFL = 195.999955682 mm; this source-table    ║
+ * ║ contradiction is preserved rather than silently relabeling the control column.     ║
+ * ║ Infinity spacings otherwise reproduce the patent table exactly.                    ║
+ * ║ Between the three published zoom columns, LensVisualizer uses its standard         ║
+ * ║ piecewise-linear spacing interpolation. That visualization is not asserted as      ║
+ * ║ Nikon's actual continuous cam law or as an exact finite-conjugate reconstruction.  ║
+ * ║                                                                                    ║
+ * ║ APERTURE / PUPIL                                                                   ║
+ * ║ Table 1 rounds FNO to 2.9; the Example 1 aberration figures print FNO = 2.88 at    ║
+ * ║ all three stations, so nominalFno is 2.88. The patent prints no stop diameter.     ║
+ * ║ The STO row holds 18.801412058 mm, the paraxial stop radius for f/2.88. The        ║
+ * ║ engine solves the wide-open iris by real-ray trace at the wide station, 19.2041    ║
+ * ║ mm, and zoomApertureModel "fixed-iris" holds it at every station. Traced wide      ║
+ * ║ open at infinity, all three stations are iris-limited, at f/2.880, f/2.881 and     ║
+ * ║ f/2.883; no rim stops the f/2.88 on-axis ray.                                      ║
+ * ║                                                                                    ║
+ * ║ SEMI-DIAMETERS                                                                     ║
+ * ║ Patent Table 1 publishes effective diameters at surfaces 1, 6, 10, and 17;         ║
+ * ║ those are retained exactly as sd = 35.75, 28.00, 17.40, and 18.40 mm. Other        ║
+ * ║ SDs are modeling values constrained by the Example 1 optical section, the          ║
+ * ║ f/2.88 on-axis ray, edge thickness, actual spherical rim slope, shared-band        ║
+ * ║ cross-gap intrusion, and off-axis containment. They are not patent source data.    ║
+ * ║ Surfaces 7, 8, 9, 11, 12, 13, 14, 15, 16, 21, 23, 24 and 26 stand at the           ║
+ * ║ greatest height the f/2.88 on-axis ray reaches on them at any station, rounded     ║
+ * ║ up to 0.1 mm: 27.0, 27.0, 26.5, 16.2, 16.2, 17.1, 17.1, 17.1, 17.6, 19.1, 19.4,    ║
+ * ║ 19.2 and 18.2 mm. Each face takes its own ray height; none is squared to the       ║
+ * ║ other face of its element.                                                         ║
+ * ║ gapSagFrac is 0.98 for two facing pairs that Figure 1 draws meeting at the rim.    ║
+ * ║ Surfaces 7-8 at 27.0 mm close 97.2 % of the 1.81 mm L13-L14 air gap and stand      ║
+ * ║ 0.05 mm apart; surfaces 14-15 at 17.1 mm close 92.8 % of the 2.11 mm L22-L23       ║
+ * ║ air gap and stand 0.15 mm apart. The spheres would touch at 27.29 and 17.74 mm.    ║
+ * ║ The L43, L44 and L45 relay elements (surfaces 28-33) follow Figure 1, which is     ║
+ * ║ drawn to scale: calibrated on the published diameters it gives about 16.6, 17.7    ║
+ * ║ and 18.8 mm, clear of the corner chief ray (11.2-12.7 mm at surfaces 30-33).       ║
+ * ║                                                                                    ║
+ * ║ GLASS                                                                              ║
+ * ║ The patent publishes nd/vd coordinates only. Compatible coefficient-backed         ║
+ * ║ catalog equivalents model dispersion without asserting production suppliers.       ║
+ * ║ The five production-correlated ED positions are tagged APD-inferred; no patent     ║
+ * ║ nC/nF/ng/dPgF values or quantitative APD claim is authored.                        ║
+ * ║                                                                                    ║
+ * ║ No cover glass, filter, dummy plane, mechanical part, folded path, or asphere is   ║
+ * ║ included. Surface 22 is the single active aperture stop and is labeled STO.        ║
  * ╚════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -330,26 +340,26 @@ const LENS_DATA = {
     { label: "4", R: 157.7721, d: 5.3, nd: 1.49782, elemId: 3, sd: 33.5 },
     { label: "5", R: 894.9563, d: 17.08501, nd: 1, elemId: 0, sd: 33 },
     { label: "6", R: 50.7516, d: 2.2, nd: 1.84666, elemId: 4, sd: 28 },
-    { label: "7", R: 44.4939, d: 1.81, nd: 1, elemId: 0, sd: 26.1 },
-    { label: "8", R: 53.1452, d: 9, nd: 1.48749, elemId: 5, sd: 26.1 },
-    { label: "9", R: 17654.599, d: 1.99906, nd: 1, elemId: 0, sd: 26.2 },
+    { label: "7", R: 44.4939, d: 1.81, nd: 1, elemId: 0, sd: 27 },
+    { label: "8", R: 53.1452, d: 9, nd: 1.48749, elemId: 5, sd: 27 },
+    { label: "9", R: 17654.599, d: 1.99906, nd: 1, elemId: 0, sd: 26.5 },
     { label: "10", R: 365.8054, d: 1.5, nd: 1.796681, elemId: 6, sd: 17.4 },
-    { label: "11", R: 33.8586, d: 7.52, nd: 1, elemId: 0, sd: 16.1 },
-    { label: "12", R: -51.2952, d: 1.8, nd: 1.48749, elemId: 7, sd: 16.1 },
-    { label: "13", R: 45.0578, d: 6, nd: 1.84666, elemId: 8, sd: 16.6 },
-    { label: "14", R: -287.2535, d: 2.11, nd: 1, elemId: 0, sd: 16.7 },
-    { label: "15", R: -60.5102, d: 1.8, nd: 1.796681, elemId: 9, sd: 16.7 },
-    { label: "16", R: 8969.214, d: 32.0553, nd: 1, elemId: 0, sd: 17.2 },
+    { label: "11", R: 33.8586, d: 7.52, nd: 1, elemId: 0, sd: 16.2 },
+    { label: "12", R: -51.2952, d: 1.8, nd: 1.48749, elemId: 7, sd: 16.2 },
+    { label: "13", R: 45.0578, d: 6, nd: 1.84666, elemId: 8, sd: 17.1 },
+    { label: "14", R: -287.2535, d: 2.11, nd: 1, elemId: 0, sd: 17.1 },
+    { label: "15", R: -60.5102, d: 1.8, nd: 1.796681, elemId: 9, sd: 17.1 },
+    { label: "16", R: 8969.214, d: 32.0553, nd: 1, elemId: 0, sd: 17.6 },
     { label: "17", R: 165.9894, d: 4.5, nd: 1.49782, elemId: 10, sd: 18.4 },
     { label: "18", R: -106.8038, d: 0.2, nd: 1, elemId: 0, sd: 18.6 },
     { label: "19", R: 772.1751, d: 7.1, nd: 1.49782, elemId: 11, sd: 18.6 },
     { label: "20", R: -40.2253, d: 2, nd: 1.744, elemId: 12, sd: 18.8 },
-    { label: "21", R: -100.1483, d: 3.43076, nd: 1, elemId: 0, sd: 19 },
+    { label: "21", R: -100.1483, d: 3.43076, nd: 1, elemId: 0, sd: 19.1 },
     { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 18.801412058 },
-    { label: "23", R: 78.6671, d: 3.5, nd: 1.787971, elemId: 13, sd: 19.2 },
-    { label: "24", R: 216.2251, d: 0.2, nd: 1, elemId: 0, sd: 19 },
+    { label: "23", R: 78.6671, d: 3.5, nd: 1.787971, elemId: 13, sd: 19.4 },
+    { label: "24", R: 216.2251, d: 0.2, nd: 1, elemId: 0, sd: 19.2 },
     { label: "25", R: 39.9627, d: 6, nd: 1.49782, elemId: 14, sd: 19 },
-    { label: "26", R: 168.823, d: 4.4, nd: 1.62004, elemId: 15, sd: 18.1 },
+    { label: "26", R: 168.823, d: 4.4, nd: 1.62004, elemId: 15, sd: 18.2 },
     { label: "27", R: 38.2994, d: 30.5, nd: 1, elemId: 0, sd: 17.5 },
     { label: "28", R: 272.261, d: 5, nd: 1.531721, elemId: 16, sd: 16.6 },
     { label: "29", R: -62.3609, d: 14.8, nd: 1, elemId: 0, sd: 16.3 },
@@ -415,10 +425,13 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: rear G1 subgroup L4-L5 translates 8.59615 mm toward the object for the 1.5 m close state at the three published zoom control columns. The patent close-focus d9 row is inconsistent with its rigid-group mechanism by 0.00710 mm; d9 is corrected to 10.59521 / 24.64596 / 31.46770 mm so the d5+d9 sum remains constant at each control column. G2 and G3 remain at their published zoom positions during focus. Between source columns, the viewer's piecewise-linear spacing interpolation is visualization only and is not asserted as the actual Nikon cam law or an exact 1.5 m conjugate.",
 
   nominalFno: 2.88,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   maxFstop: 22,
 
+  // Surfaces 7-8 (L13-L14) close 97.2 % of their 1.81 mm air gap at 27.0 mm; 14-15 (L22-L23) close 92.8 % at 17.1 mm.
+  gapSagFrac: 0.98,
   yScFill: 0.5,
 } satisfies LensDataInput;
 

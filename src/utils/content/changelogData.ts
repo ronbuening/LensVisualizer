@@ -19,6 +19,21 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-08",
+    type: "improvement",
+    summary: "Improved MTF: diffraction from traced rays, clipped corners charted, traced f-number shown",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
+    summary: "Opened lenses to their patent design f-number; zooms now hold it at every focal length",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
+    summary: "Corrected patent misprints, zoom f-numbers, clipped apertures and glass dispersion data",
+  },
+  {
     date: "2026-10-07",
     type: "improvement",
     summary: "Standardized display names on 135 lenses: capitals, hyphens and aperture-suffix spacing",

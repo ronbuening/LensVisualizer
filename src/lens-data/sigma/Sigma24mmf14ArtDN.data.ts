@@ -23,11 +23,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    edge thickness, and cross-gap sag clearance. Stop SD=12.90 mm  ║
  * ║    is derived from patent f=23.86 mm at F1.46.                    ║
  * ║                                                                    ║
- * ║  NOTE ON DISPERSION FLAGS:                                         ║
- * ║    The patent lists signed g-F partial-dispersion deviations for  ║
- * ║    every glass. Those values are retained as dPgF, but APD        ║
- * ║    highlighting is limited to the production FLD/SLD elements:    ║
- * ║    L2, L11, and L14.                                               ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                       ║
+ * ║    The patent's θgF column prints, for every glass, the signed     ║
+ * ║    deviation ΔθgF = θgF − (0.648285 − 0.00180123·νd). `dPgF` is    ║
+ * ║    the recovered θgF minus the engine's normal line                ║
+ * ║    (0.6438 − 0.001682·νd), not the patent's ΔθgF, which the        ║
+ * ║    analysis quotes. APD highlighting is limited to the production  ║
+ * ║    FLD/SLD elements: L2, L11, and L14.                             ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes only the optical design: glass     ║
  * ║  elements, optical surfaces, aperture stop, and focus spacings.   ║
@@ -67,12 +69,12 @@ const LENS_DATA = {
   groupCount: 14,
   apertureBlades: 11,
 
-  nominalFno: 1.4,
+  nominalFno: 1.46,
   closeFocusM: 0.25,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
   maxFstop: 16,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
   focusDescription:
     "Internal focus by the single positive G2 element; d10 increases and d12 decreases by 5.5797 mm from infinity to the patent close-focus state.",
   scFill: 0.62,
@@ -88,7 +90,7 @@ const LENS_DATA = {
       vd: 59.38,
       fl: -54.9,
       glass: "583594 crown class (S-BAL42 / SK12 / D-ZK2 equivalents; patent vendor unspecified)",
-      dPgF: 0.000922,
+      dPgF: -0.001673,
       role: "Front aspheric negative meniscus; primary wide-field distortion and astigmatism control.",
     },
     {
@@ -101,8 +103,9 @@ const LENS_DATA = {
       fl: -125.0,
       glass: "437951 fluorophosphate ED class (FCD100 / S-FPL53 equivalents; Sigma FLD class)",
       apd: "patent",
-      dPgF: 0.056526,
-      apdNote: "FLD-class fluorophosphate; patent ΔθgF = +0.056526",
+      dPgF: 0.049672,
+      apdNote:
+        "FLD-class fluorophosphate; patent ΔθgF = +0.056526 by the patent's line (θgF − 0.648285 + 0.00180123·νd), so θgF = 0.533514; runtime dPgF +0.049672.",
       role: "Low-dispersion negative meniscus in G1; lateral-color and secondary-spectrum correction.",
     },
     {
@@ -114,7 +117,7 @@ const LENS_DATA = {
       vd: 25.46,
       fl: 83.2,
       glass: "001255 high-index dense flint class (TAFD40 / H-ZLaF90A equivalents)",
-      dPgF: 0.011062,
+      dPgF: 0.012511,
       role: "High-index positive element in G1; contributes convergence and Petzval control.",
     },
     {
@@ -126,7 +129,7 @@ const LENS_DATA = {
       vd: 44.27,
       fl: -33.8,
       glass: "613443 lanthanum-flint class (S-NBM51 / LAF45 equivalents)",
-      dPgF: -0.005289,
+      dPgF: -0.006082,
       role: "Negative element balancing the front-group positive power.",
     },
     {
@@ -138,7 +141,7 @@ const LENS_DATA = {
       vd: 40.5,
       fl: 92.7,
       glass: "731405 lanthanum glass class (M-LAF81 / D-LaF79 equivalents)",
-      dPgF: -0.003978,
+      dPgF: -0.004322,
       role: "Rear aspheric positive meniscus in G1; residual spherical and coma correction before the focus group.",
     },
     {
@@ -150,7 +153,7 @@ const LENS_DATA = {
       vd: 67.0,
       fl: 48.6,
       glass: "593670 low-dispersion crown class (PCD51 / PSKH4 equivalents)",
-      dPgF: 0.00894,
+      dPgF: 0.005437,
       role: "Single moving focus element in G2.",
     },
     {
@@ -162,7 +165,7 @@ const LENS_DATA = {
       vd: 29.74,
       fl: -60.9,
       glass: "770297 dense flint class (NBFD29 equivalent class)",
-      dPgF: 0.000271,
+      dPgF: 0.00121,
       role: "Leading negative meniscus of G3; pre-diverges the bundle before the strong positive G3 lenses.",
     },
     {
@@ -174,7 +177,7 @@ const LENS_DATA = {
       vd: 49.5,
       fl: 38.0,
       glass: "773495 high-index lanthanum glass class (M-TAF105 equivalent class)",
-      dPgF: -0.007316,
+      dPgF: -0.008733,
       role: "Strong aspheric positive lens in G3; principal pre-stop spherical-aberration correction.",
     },
     {
@@ -186,7 +189,7 @@ const LENS_DATA = {
       vd: 29.13,
       fl: 52.6,
       glass: "001291 high-index lanthanum glass class (TAFD55 / S-LAH99 equivalents)",
-      dPgF: 0.003566,
+      dPgF: 0.004578,
       role: "Positive member of the G3 cemented doublet; high-index Petzval control.",
       cemented: "D1",
     },
@@ -199,7 +202,7 @@ const LENS_DATA = {
       vd: 44.27,
       fl: -89.4,
       glass: "613443 lanthanum-flint class (S-NBM51 / LAF45 equivalents)",
-      dPgF: -0.005289,
+      dPgF: -0.006082,
       role: "Negative member of the G3 cemented doublet.",
       cemented: "D1",
     },
@@ -213,8 +216,9 @@ const LENS_DATA = {
       fl: 37.6,
       glass: "550755 ED crown class (FCD705 / H-FK55 equivalents; Sigma SLD class)",
       apd: "patent",
-      dPgF: 0.02758,
-      apdNote: "SLD-class ED crown; patent ΔθgF = +0.027580",
+      dPgF: 0.023063,
+      apdNote:
+        "SLD-class ED crown; patent ΔθgF = +0.027580 by the patent's line (θgF − 0.648285 + 0.00180123·νd), so θgF = 0.539872; runtime dPgF +0.023063.",
       role: "Positive ED member of the first G4 doublet; axial-color correction.",
       cemented: "D2",
     },
@@ -227,7 +231,7 @@ const LENS_DATA = {
       vd: 25.15,
       fl: -21.2,
       glass: "855252 dense flint class (NBFD25 / S-NBH56 equivalents)",
-      dPgF: 0.007183,
+      dPgF: 0.008669,
       role: "Dense-flint negative member of the first G4 doublet.",
       cemented: "D2",
     },
@@ -240,7 +244,7 @@ const LENS_DATA = {
       vd: 29.74,
       fl: -70.8,
       glass: "770297 dense flint class (NBFD29 equivalent class)",
-      dPgF: 0.000271,
+      dPgF: 0.00121,
       role: "Negative high-index member of the second G4 doublet.",
       cemented: "D3",
     },
@@ -254,8 +258,9 @@ const LENS_DATA = {
       fl: 67.4,
       glass: "437951 fluorophosphate ED class (FCD100 / S-FPL53 equivalents; Sigma FLD class)",
       apd: "patent",
-      dPgF: 0.056526,
-      apdNote: "FLD-class fluorophosphate; patent ΔθgF = +0.056526",
+      dPgF: 0.049672,
+      apdNote:
+        "FLD-class fluorophosphate; patent ΔθgF = +0.056526 by the patent's line (θgF − 0.648285 + 0.00180123·νd), so θgF = 0.533514; runtime dPgF +0.049672.",
       role: "Positive fluorophosphate member of the second G4 doublet; anomalous-dispersion correction.",
       cemented: "D3",
     },
@@ -268,7 +273,7 @@ const LENS_DATA = {
       vd: 29.13,
       fl: 24.5,
       glass: "001291 high-index lanthanum glass class (TAFD55 / S-LAH99 equivalents)",
-      dPgF: 0.003566,
+      dPgF: 0.004578,
       role: "Leading and only positive element in G5; high-index field/Petzval control.",
     },
     {
@@ -280,7 +285,7 @@ const LENS_DATA = {
       vd: 44.27,
       fl: -127.5,
       glass: "613443 lanthanum-flint class (S-NBM51 / LAF45 equivalents)",
-      dPgF: -0.005289,
+      dPgF: -0.006082,
       role: "Weak negative meniscus in G5.",
     },
     {
@@ -292,7 +297,7 @@ const LENS_DATA = {
       vd: 40.73,
       fl: -118.9,
       glass: "806407 lanthanum-flint class (M-NBFD130 equivalent class)",
-      dPgF: -0.005657,
+      dPgF: -0.006028,
       role: "Rear biconcave aspheric field element; field curvature and distortion correction.",
     },
   ],

@@ -2,37 +2,56 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — TAMRON SP 70-200mm f/2.8 Di VC USD (A009)                    ║
+ * ║ LENS DATA — TAMRON SP 70-200mm f/2.8 Di VC USD (A009)                        ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: US 8,867,144 B2, Example 1 / Embodiment 1 (Hisayuki Yamanaka).   ║
- * ║ Unscaled d-line prescription: 23 elements / 17 air-separated groups.      ║
- * ║ The 41-plane source prescription is all-spherical; source surface 23 is STO.║
- * ║ Zoom groups: LG2, LG3, and LG4 move imageward; LG1 and LG5 are fixed.     ║
- * ║ Focus status: PUBLISHED. LG3 alone moves objectward at close focus.        ║
- * ║ Zoom-only gaps: d7 and d22. Zoom+focus gaps: d10 and d17.                 ║
- * ║ LG2/LG3 separation d10 narrows, then widens across the zoom positions.   ║
- * ║                                                                            ║
- * ║ Stop SD is inferred, not patent-published: 17.292248 mm fixed radius.      ║
- * ║ It is the mean paraxial stop radius required for the source FNo.=2.90 at  ║
- * ║ the three infinity states; modeled F/# is 2.90142 / 2.89654 / 2.90205.    ║
- * ║                                                                            ║
- * ║ Semi-diameters are MODELING VALUES because Example 1 publishes no SDs.    ║
- * ║ Their profile was initialized from paraxial marginal/chief-ray envelopes  ║
- * ║ and Tamron's A009 optical-construction section, then reduced only where    ║
- * ║ required by current edge-thickness/cross-gap geometry. They are not       ║
- * ║ presented as patent or factory clear-aperture dimensions.                 ║
- * ║ Tamron sources:                                                            ║
- * ║ https://www.tamron.com/global/consumer/lenses/a009/spec.html              ║
- * ║ https://www.tamron.com/product/pc_file/file/a009_lens-construction_en.svg ║
- * ║                                                                            ║
- * ║ Glass labels are HOYA catalog-coordinate equivalents selected because all ║
- * ║ 14 patent nd/νd pairs follow that family closely. The patent does not name║
- * ║ the glass vendor; these labels do not assert production melt identity.     ║
- * ║ nC/nF/ng/dPgF are catalog-derived from the matching HOYA 2026 data rows. ║
- * ║ They are modeling values for the stated HOYA equivalents, not patent-     ║
- * ║ published line data or claims about the production melts.                 ║
- * ║                                                                            ║
- * ║ No scaling, omitted cover/filter plate, dummy plane, or folded path.       ║
+ * ║ Source: US 8,867,144 B2, Example 1 / Embodiment 1 (Hisayuki Yamanaka).       ║
+ * ║ Unscaled d-line prescription: 23 elements / 17 air-separated groups.         ║
+ * ║ The 41-plane source prescription is all-spherical; source surface 23 is STO. ║
+ * ║ Zoom groups: LG2, LG3, and LG4 move imageward; LG1 and LG5 are fixed.        ║
+ * ║ Focus status: PUBLISHED. LG3 alone moves objectward at close focus.          ║
+ * ║ Zoom-only gaps: d7 and d22. Zoom+focus gaps: d10 and d17.                    ║
+ * ║ LG2/LG3 separation d10 narrows, then widens across the zoom positions.       ║
+ * ║                                                                              ║
+ * ║ Stop SD is inferred, not patent-published: 17.292248 mm fixed radius.        ║
+ * ║ It is the mean paraxial stop radius required for the source FNo.=2.90 at     ║
+ * ║ the three infinity states; modeled F/# is 2.90142 / 2.89654 / 2.90205.       ║
+ * ║                                                                              ║
+ * ║ Semi-diameters are MODELING VALUES because Example 1 publishes no SDs.       ║
+ * ║ Their profile was initialized from paraxial marginal/chief-ray envelopes     ║
+ * ║ and Tamron's A009 optical-construction section, then reduced only where      ║
+ * ║ required by current edge-thickness/cross-gap geometry. They are not          ║
+ * ║ presented as patent or factory clear-aperture dimensions.                    ║
+ * ║ Every rim clears the on-axis f/2.90 ray at all three zoom positions.         ║
+ * ║ Surface 15 (L9 rear, 17.1) and surface 27 (L15 rear, 14.9) sit at the        ║
+ * ║ height that ray reaches at 194.5 mm (17.02 and 14.85 mm), rounded up to      ║
+ * ║ 0.1 mm. Both elements keep stepped rims: front faces 14 and 26 carry 20.0    ║
+ * ║ and 18.6 mm, and the air gaps behind the rear faces close at 17.70 mm        ║
+ * ║ (15/16) and 14.90 mm (27/28). Figure 1 draws D3 and L15 square-cut, at       ║
+ * ║ about 18.6 and 17.2 mm.                                                      ║
+ * ║ gapSagFrac = 1.00 admits two pairs that Figure 1 draws meeting at the rim:   ║
+ * ║   27/28 (L15/L16): 99.98 % of the 1.8091 mm gap, 0.0004 mm rim clearance.    ║
+ * ║   15/16 (L9/L10):  93.3 % of the 3.1602 mm gap, 0.213 mm rim clearance.      ║
+ * ║ Tamron sources:                                                              ║
+ * ║ https://www.tamron.com/global/consumer/lenses/a009/spec.html                 ║
+ * ║ https://www.tamron.com/product/pc_file/file/a009_lens-construction_en.svg    ║
+ * ║                                                                              ║
+ * ║ Glass labels are HOYA catalog-coordinate equivalents selected because all    ║
+ * ║ 14 patent nd/νd pairs follow that family closely. The patent does not name   ║
+ * ║ the glass vendor; these labels do not assert production melt identity.       ║
+ * ║ nC/nF/ng are catalog-derived from the matching HOYA 2026 data rows.          ║
+ * ║ They are modeling values for the stated HOYA equivalents, not patent-        ║
+ * ║ published line data or claims about the production melts.                    ║
+ * ║                                                                              ║
+ * ║ NOTE ON PARTIAL DISPERSION:                                                  ║
+ * ║ The patent prints nd and νd only and defines no partial-dispersion           ║
+ * ║ deviation of its own. `dPgF` is PgF minus the engine's normal line           ║
+ * ║ (0.6438 − 0.001682·νd), with PgF = (ng − nF)/(nF − nC) taken from each       ║
+ * ║ element's stored HOYA line indices; the trace reads those indices, so        ║
+ * ║ `dPgF` is the matching annotation. It is not HOYA's catalog ΔPgF, which      ║
+ * ║ fits the line 0.64833 − 0.00180·νd and was stored here before. L10, L13      ║
+ * ║ and L20 already sat within 0.0003 and keep their four-decimal values.        ║
+ * ║                                                                              ║
+ * ║ No scaling, omitted cover/filter plate, dummy plane, or folded path.         ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -73,7 +92,7 @@ const LENS_DATA = {
       nC: 1.79902,
       nF: 1.82324,
       ng: 1.83750,
-      dPgF: 0,
+      dPgF: 0.000930,
       fl: -231.302011,
       glass: "NBFD15-W (Hoya)",
       cemented: "D1",
@@ -89,9 +108,12 @@ const LENS_DATA = {
       nC: 1.43559,
       nF: 1.44019,
       ng: 1.44264,
-      dPgF: 0.0564,
+      dPgF: 0.048767,
       apd: "inferred",
-      apdNote: "Official construction identifies this correlated patent position as the single XLD element.",
+      apdNote:
+        "Official construction identifies this correlated patent position as the single XLD element. " +
+        "The patent prints no partial dispersion; PgF = 0.5326 from the stored HOYA-equivalent nC/nF/ng, " +
+        "runtime dPgF +0.04877 (HOYA's catalog ΔPgF for the equivalent, +0.0564, is against HOYA's own line).",
       fl: 205.604442,
       glass: "FCD100 (Hoya)",
       cemented: "D1",
@@ -107,9 +129,12 @@ const LENS_DATA = {
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.0374,
+      dPgF: 0.032056,
       apd: "inferred",
-      apdNote: "Official construction identifies this correlated patent position as one of four LD elements.",
+      apdNote:
+        "Official construction identifies this correlated patent position as one of four LD elements. " +
+        "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
+        "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       fl: 380.997734,
       glass: "FCD1 (Hoya)",
       role: "LG1 low-dispersion positive element.",
@@ -124,9 +149,12 @@ const LENS_DATA = {
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.0374,
+      dPgF: 0.032056,
       apd: "inferred",
-      apdNote: "Official construction identifies this correlated patent position as one of four LD elements.",
+      apdNote:
+        "Official construction identifies this correlated patent position as one of four LD elements. " +
+        "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
+        "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       fl: 174.034148,
       glass: "FCD1 (Hoya)",
       role: "LG1 low-dispersion positive element.",
@@ -141,7 +169,7 @@ const LENS_DATA = {
       nC: 1.89526,
       nF: 1.92412,
       ng: 1.94128,
-      dPgF: 0.0028,
+      dPgF: 0.003458,
       fl: 124.402681,
       glass: "TAFD25 (Hoya)",
       cemented: "D2",
@@ -157,7 +185,7 @@ const LENS_DATA = {
       nC: 1.69297,
       nF: 1.70553,
       ng: 1.71235,
-      dPgF: -0.006,
+      dPgF: -0.007523,
       fl: -49.825149,
       glass: "LAC14 (Hoya)",
       cemented: "D2",
@@ -173,7 +201,7 @@ const LENS_DATA = {
       nC: 1.61503,
       nF: 1.62478,
       ng: 1.63004,
-      dPgF: 0.0059,
+      dPgF: 0.002309,
       fl: -133.058375,
       glass: "PCD4 (Hoya)",
       role: "LG3 front negative focus member.",
@@ -188,7 +216,7 @@ const LENS_DATA = {
       nC: 1.48535,
       nF: 1.49227,
       ng: 1.49594,
-      dPgF: 0.009,
+      dPgF: 0.005027,
       fl: -91.103951,
       glass: "FC5 (Hoya)",
       cemented: "D3",
@@ -204,7 +232,7 @@ const LENS_DATA = {
       nC: 1.79611,
       nF: 1.82774,
       ng: 1.84721,
-      dPgF: 0.0132,
+      dPgF: 0.014579,
       fl: 60.87657,
       glass: "FD60 (Hoya)",
       cemented: "D3",
@@ -235,7 +263,7 @@ const LENS_DATA = {
       nC: 1.76780,
       nF: 1.78336,
       ng: 1.79193,
-      dPgF: -0.0086,
+      dPgF: -0.009568,
       fl: 97.092797,
       glass: "TAF1 (Hoya)",
       role: "LG4 front positive element.",
@@ -250,7 +278,7 @@ const LENS_DATA = {
       nC: 1.48535,
       nF: 1.49227,
       ng: 1.49594,
-      dPgF: 0.009,
+      dPgF: 0.005027,
       fl: 53.859844,
       glass: "FC5 (Hoya)",
       cemented: "D4",
@@ -282,7 +310,7 @@ const LENS_DATA = {
       nC: 1.72510,
       nF: 1.73844,
       ng: 1.74571,
-      dPgF: -0.0046,
+      dPgF: -0.006868,
       fl: 47.424167,
       glass: "TAC8 (Hoya)",
       role: "LG5/5A front positive element immediately behind the stop.",
@@ -297,9 +325,12 @@ const LENS_DATA = {
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.0374,
+      dPgF: 0.032056,
       apd: "inferred",
-      apdNote: "Official construction identifies this correlated patent position as one of four LD elements.",
+      apdNote:
+        "Official construction identifies this correlated patent position as one of four LD elements. " +
+        "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
+        "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       fl: 123.858442,
       glass: "FCD1 (Hoya)",
       role: "LG5/5A low-dispersion positive element.",
@@ -314,7 +345,7 @@ const LENS_DATA = {
       nC: 1.79902,
       nF: 1.82324,
       ng: 1.83750,
-      dPgF: 0,
+      dPgF: 0.000930,
       fl: -25.791243,
       glass: "NBFD15-W (Hoya)",
       cemented: "D5",
@@ -330,9 +361,12 @@ const LENS_DATA = {
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.0374,
+      dPgF: 0.032056,
       apd: "inferred",
-      apdNote: "Official construction identifies this correlated patent position as one of four LD elements.",
+      apdNote:
+        "Official construction identifies this correlated patent position as one of four LD elements. " +
+        "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
+        "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       fl: 41.780761,
       glass: "FCD1 (Hoya)",
       cemented: "D5",
@@ -348,7 +382,7 @@ const LENS_DATA = {
       nC: 1.79611,
       nF: 1.82774,
       ng: 1.84721,
-      dPgF: 0.0132,
+      dPgF: 0.014579,
       fl: 53.828264,
       glass: "FD60 (Hoya)",
       cemented: "D6",
@@ -364,7 +398,7 @@ const LENS_DATA = {
       nC: 1.56575,
       nF: 1.57590,
       ng: 1.58147,
-      dPgF: 0.001,
+      dPgF: -0.000772,
       fl: -43.586293,
       glass: "BAC4 (Hoya)",
       cemented: "D6",
@@ -395,7 +429,7 @@ const LENS_DATA = {
       nC: 1.69297,
       nF: 1.70553,
       ng: 1.71235,
-      dPgF: -0.006,
+      dPgF: -0.007523,
       fl: 42.996061,
       glass: "LAC14 (Hoya)",
       role: "LG5/5C front positive element.",
@@ -410,7 +444,7 @@ const LENS_DATA = {
       nC: 1.89526,
       nF: 1.92412,
       ng: 1.94128,
-      dPgF: 0.0028,
+      dPgF: 0.003458,
       fl: -45.473562,
       glass: "TAFD25 (Hoya)",
       role: "LG5/5C high-index negative element.",
@@ -425,7 +459,7 @@ const LENS_DATA = {
       nC: 1.83649,
       nF: 1.87209,
       ng: 1.89413,
-      dPgF: 0.0137,
+      dPgF: 0.015299,
       fl: 63.698882,
       glass: "FDS90 (Hoya)",
       role: "LG5/5C final positive element satisfying the patent νd ≤ 30 condition.",
@@ -447,7 +481,7 @@ const LENS_DATA = {
     { label: "12", R: 60.1827, d: 3.2285, nd: 1.0, elemId: 0, sd: 18.9 },
     { label: "13", R: 407.1084, d: 1.3, nd: 1.48749, elemId: 8, sd: 20.1 },
     { label: "14", R: 40.0019, d: 4.8, nd: 1.80518, elemId: 9, sd: 20.0 },
-    { label: "15", R: 205.8653, d: 3.1602, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "15", R: 205.8653, d: 3.1602, nd: 1.0, elemId: 0, sd: 17.1 }, // f/2.90 axial ray: 17.02 mm at 194.5 mm
     { label: "16", R: -66.4978, d: 1.3, nd: 1.83481, elemId: 10, sd: 19.2 },
     { label: "17", R: 230.8342, d: 21.2237, nd: 1.0, elemId: 0, sd: 19.3 },
     { label: "18", R: 378.2306, d: 3.8, nd: 1.7725, elemId: 11, sd: 20.4 },
@@ -459,7 +493,7 @@ const LENS_DATA = {
     { label: "24", R: 48.2164, d: 7.9959, nd: 1.72916, elemId: 14, sd: 20.2 },
     { label: "25", R: -113.7175, d: 0.2, nd: 1.0, elemId: 0, sd: 20.3 },
     { label: "26", R: 45.1106, d: 4.5932, nd: 1.497, elemId: 15, sd: 18.6 },
-    { label: "27", R: 163.1315, d: 1.8091, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "27", R: 163.1315, d: 1.8091, nd: 1.0, elemId: 0, sd: 14.9 }, // f/2.90 axial ray: 14.85 mm at 194.5 mm
     { label: "28", R: -99.0801, d: 1.5, nd: 1.8061, elemId: 16, sd: 16.4 },
     { label: "29", R: 26.4891, d: 8.349, nd: 1.497, elemId: 17, sd: 16.1 },
     { label: "30", R: -86.0385, d: 1.7067, nd: 1.0, elemId: 0, sd: 14.9 },
@@ -537,10 +571,12 @@ const LENS_DATA = {
     "d10 shortens exactly as d17 lengthens at each zoom position. No internal focus reconstruction is used.",
 
   nominalFno: 2.9,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 9,
   maxFstop: 32,
 
+  gapSagFrac: 1, // rims meet in Figure 1: 27/28 (L15/L16) uses 99.98 % of its gap, 15/16 (L9/L10) 93.3 %; see header
   scFill: 0.55,
   yScFill: 0.38,
 } satisfies LensDataInput;

@@ -429,6 +429,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: G2 translates toward the object while D5 decreases and D14 increases by the same δ at a fixed image plane. The 500.000 mm object-plane-to-image-plane states use solved δ = 0.954821883 / 2.944389620 / 9.421757313 mm at W/M/T. The US wide row prints 0.855 mm, which images 547.193 mm; M/T agree with 500 mm to source precision.",
 
   nominalFno: [3.5816638444059583, 5.0811697605592, 5.809460935611039],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
   maxFstop: 22,
   apertureBlades: 7,

@@ -15,6 +15,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    only post-stop) with 8% mechanical clearance.  All validated   ║
  * ║    against edge-thickness, sd/|R|, and cross-gap sag constraints. ║
  * ║                                                                    ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                       ║
+ * ║    The patent lists PgF per glass. `dPgF` is PgF minus the         ║
+ * ║    engine's normal line (0.6438 − 0.001682·νd), not the patent's   ║
+ * ║    ΔPgF = PgF − 0.64833 + 0.00180·νd, which the analysis quotes.   ║
+ * ║    L8, L12 and L14 already sat within 0.0003 of the engine-line    ║
+ * ║    value (the lines cross near νd 38.4) and keep four decimals.    ║
+ * ║                                                                    ║
  * ║  LPF (patent surfaces 28–29: 1.45 mm, nd 1.52301, νd 58.59)       ║
  * ║  is modeled in `rearPlates` (traced, not drawn); 27A keeps the    ║
  * ║  patent d27 to the LPF: 37.0799 mm (inf) / 47.4637 mm (close).    ║
@@ -60,7 +67,7 @@ const LENS_DATA = {
       fl: 364.5,
       glass: "TAC8 (HOYA)",
       apd: false,
-      dPgF: -0.0047,
+      dPgF: -0.006645,
       role: "Front collector — positive meniscus convex to object, minimizes SA at full aperture",
     },
     {
@@ -73,8 +80,9 @@ const LENS_DATA = {
       fl: 180.9,
       glass: "FCD705 (HOYA)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.0275 — SLD (Special Low Dispersion) glass, Lp1 in patent framework",
-      dPgF: 0.0275,
+      apdNote:
+        "Patent PgF = 0.5399; ΔPgF = +0.0275 by the patent's line (PgF − 0.64833 + 0.00180·νd), runtime dPgF +0.02309 — SLD (Special Low Dispersion) glass, Lp1 in patent framework",
+      dPgF: 0.023091,
       role: "Primary SLD element — highest νd positive element in G1, governs condition (1)",
     },
     {
@@ -87,7 +95,7 @@ const LENS_DATA = {
       fl: -164.3,
       glass: "S-NBM51 (OHARA; exact 613443 coordinate)",
       apd: false,
-      dPgF: -0.0053,
+      dPgF: -0.006038,
       role: "Secondary-spectrum corrector — strongest negative ΔPgF, paired with L2 for g-line correction",
     },
     {
@@ -100,7 +108,7 @@ const LENS_DATA = {
       fl: -118.4,
       glass: "J-KZFH9 (Hikari)",
       apd: false,
-      dPgF: -0.0005,
+      dPgF: 0.000261,
       role: "Petzval-sum corrector — strongest negative element in G1, flattens field curvature",
     },
     {
@@ -113,7 +121,7 @@ const LENS_DATA = {
       fl: -141.1,
       glass: "J-KZFH9 (Hikari)",
       apd: false,
-      dPgF: -0.0005,
+      dPgF: 0.000261,
       role: "Symmetric biconcave — zero coma/distortion for axial beam, clean Petzval correction",
     },
     {
@@ -126,8 +134,9 @@ const LENS_DATA = {
       fl: 165.5,
       glass: "E-FDS1-W (HOYA)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.0281 — ultra-high-index anomalous-dispersion element, Lp2 in patent framework",
-      dPgF: 0.0281,
+      apdNote:
+        "Patent PgF = 0.6388; ΔPgF = +0.0281 by the patent's line (PgF − 0.64833 + 0.00180·νd), runtime dPgF +0.03012 — ultra-high-index anomalous-dispersion element, Lp2 in patent framework",
+      dPgF: 0.03012,
       role: "High-index APD corrector — shares positive power while enabling secondary-spectrum correction",
     },
     {
@@ -140,8 +149,9 @@ const LENS_DATA = {
       fl: 114.2,
       glass: "FCD705 (HOYA)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.0275 — second SLD element, same glass as L2",
-      dPgF: 0.0275,
+      apdNote:
+        "Patent PgF = 0.5399; ΔPgF = +0.0275 by the patent's line (PgF − 0.64833 + 0.00180·νd), runtime dPgF +0.02309 — second SLD element, same glass as L2",
+      dPgF: 0.023091,
       role: "Rear G1 convergence — strongest positive in G1, final convergence before G1-G2 gap",
     },
     {
@@ -167,7 +177,7 @@ const LENS_DATA = {
       fl: 83.8,
       glass: "TAF3D (HOYA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
-      dPgF: -0.0075,
+      dPgF: -0.008487,
       cemented: "L9L10",
       role: "Cemented doublet front — strong positive meniscus, controls beam angles entering stop",
     },
@@ -181,7 +191,7 @@ const LENS_DATA = {
       fl: -60.3,
       glass: "E-FD15 (HOYA)",
       apd: false,
-      dPgF: 0.0086,
+      dPgF: 0.009544,
       cemented: "L9L10",
       role: "Cemented doublet rear — chromatic corrector for G2A, steep rear radius controls off-axis angles",
     },
@@ -195,7 +205,7 @@ const LENS_DATA = {
       fl: -26.8,
       glass: "J-KZFH9 (Hikari)",
       apd: false,
-      dPgF: -0.0005,
+      dPgF: 0.000261,
       cemented: "L11L12",
       role: "G2B doublet front (Sm1) — coma correction via concave-to-object surface, Petzval flattening",
     },
@@ -223,7 +233,7 @@ const LENS_DATA = {
       fl: -66.7,
       glass: "S-TIM25 (OHARA)",
       apd: false,
-      dPgF: 0.0058,
+      dPgF: 0.00651,
       role: "Field flattener (Sm2) — distributes coma correction per condition (7), Petzval corrector",
     },
     {
@@ -360,8 +370,8 @@ const LENS_DATA = {
   focusDescription: "Floating rear focus — G1 fixed, G2A and G2B move independently toward object at close focus.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

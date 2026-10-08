@@ -234,7 +234,8 @@ const LENS_DATA = {
   focusDescription:  "Description of the focus mechanism.",  // optional: shown in UI
 
   /* ── Aperture configuration ── */
-  nominalFno:   2.0,             // REQUIRED: nominal f-number — used to derive stop SD; variable-aperture zooms use
+  nominalFno:   2.0,             // REQUIRED: f-number the stop opens to — the source's design value (apertureDesign),
+                                   //   not the marketed one; sizes the stop SD. Variable-aperture zooms use
                                    //   one value per zoom position, e.g. [4.5, 5.76] for f/4.5-5.6
   fstopSeries:  [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],  // REQUIRED: f-stop quick-select values
   // apertureBlades: 9,                  // optional; reserved for future polygonal bokeh rendering

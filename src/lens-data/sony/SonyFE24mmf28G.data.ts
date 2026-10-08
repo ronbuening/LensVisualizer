@@ -28,6 +28,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  as the local clear/effective radius rather than the aperture stop  ║
  * ║  diameter used for entrance-pupil sizing.                           ║
  * ║                                                                    ║
+ * ║  Note on partial dispersion: the patent prints only ΔPgF, the      ║
+ * ║  deviation from its own line through glasses C7 (PgF 0.5393,       ║
+ * ║  νd 60.49) and F2 (PgF 0.5829, νd 36.30), i.e. ΔPgF = PgF −        ║
+ * ║  0.648327 + 0.0018024·νd. `dPgF` is the implied PgF minus the      ║
+ * ║  engine normal line (0.6438 − 0.001682·νd), not the patent ΔPgF,   ║
+ * ║  which the analysis quotes: L5 +0.0374 → +0.032101, L7 +0.0369 →   ║
+ * ║  +0.031607.                                                        ║
+ * ║                                                                    ║
  * ║  IMPORTANT: This file describes only the optical design. Filters,  ║
  * ║  motors, aperture blades, barrel, and mount mechanics are not      ║
  * ║  modeled; the cover glass is carried in `rearPlates`.              ║
@@ -140,8 +148,9 @@ const LENS_DATA = {
       fl: 15.19,
       glass: "FCD1 (HOYA) / S-FPL51 (OHARA) class",
       apd: "patent",
-      apdNote: "Patent ΔPgF = +0.0374; positive Lp used in conditional expression (4).",
-      dPgF: 0.0374,
+      apdNote:
+        "Patent ΔPgF = +0.0374 by the patent's line through C7 and F2 (PgF − 0.648327 + 0.0018024·νd), implying PgF = 0.5386; runtime dPgF +0.03210. Positive Lp used in conditional expression (4).",
+      dPgF: 0.032101,
       cemented: "D1",
       role: "Fluorophosphate ED positive element in the primary G1b achromatizing doublet.",
     },
@@ -179,8 +188,9 @@ const LENS_DATA = {
       fl: 25.4,
       glass: "FCD1B (HOYA) / S-FPL51 (OHARA) class",
       apd: "patent",
-      apdNote: "Patent ΔPgF = +0.0369.",
-      dPgF: 0.0369,
+      apdNote:
+        "Patent ΔPgF = +0.0369 by the patent's line through C7 and F2 (PgF − 0.648327 + 0.0018024·νd), implying PgF = 0.5382; runtime dPgF +0.03161.",
+      dPgF: 0.031607,
       role: "Positive ED meniscus and principal powered element of the moving G2 focus group.",
     },
     {

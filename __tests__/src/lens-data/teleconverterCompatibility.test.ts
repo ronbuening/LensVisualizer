@@ -3,7 +3,13 @@ import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
-import { resolveMtfGeometry } from "../../../src/optics/mtf.js";
+import {
+  mtfChiefHeight,
+  mtfModeledHalfField,
+  resolveMtfFieldGeometry,
+} from "../../../src/optics/analysis/mtfFields.js";
+import { assessMtfSupport } from "../../../src/optics/mtf.js";
+import type { MtfOptions } from "../../../src/types/mtf.js";
 import { doLayout, epAtZoom, traceRay, traceSkewRay } from "../../../src/optics/optics.js";
 import {
   attachTeleconverter,
@@ -36,16 +42,22 @@ function zoomStations(L: RuntimeLens): number[] {
 }
 
 /**
- * Share of the format corner the real chief ray reaches through every clear aperture, wide open at infinity: the
- * field axis the MTF tab charts, so a shortfall here is the tab's "short of the format corner" warning.
+ * Share of the format corner the real chief ray reaches through every clear aperture, wide open at infinity. This is
+ * the chief's own edge, not the edge the MTF tab charts to: part of a beam still passes a rim that stops its chief ray,
+ * and a converter rim that does that is undersized all the same.
  */
 function cornerCoverage(L: RuntimeLens, zoomT: number): number {
-  const geometry = resolveMtfGeometry(prepareRuntimeState(L, 0, zoomT), {
+  const state = prepareRuntimeState(L, 0, zoomT);
+  const options: MtfOptions = {
     method: "geometric",
     spectrum: "reference",
+    focus: "design",
     pupilSemiDiameterMm: epAtZoom(zoomT, L),
     stopSemiDiameterMm: wideOpenStopAtZoom(zoomT, L),
-  });
+  };
+  const support = assessMtfSupport(state, options);
+  if (!support.available) return 0;
+  const geometry = resolveMtfFieldGeometry(state, mtfModeledHalfField(state), mtfChiefHeight(state, options, support));
   return geometry ? geometry.modeledEdgeHeightMm / geometry.referenceHeightMm : 0;
 }
 
@@ -99,8 +111,9 @@ describe("teleconverter catalog", () => {
         const host = buildLens(hostData);
 
         if (Math.abs(L.stopPhysSD - host.stopPhysSD) > 1e-9) offenders.push(`${pair}: stop radius changed`);
-        (host.zoomStopSDs ?? []).forEach((sd, station) => {
-          if (Math.abs((L.zoomStopSDs?.[station] ?? NaN) - sd) > 1e-9) {
+        /* Read through the station accessor, so a fixed-iris host that came back with a schedule is caught too. */
+        zoomStations(host).forEach((zoomT, station) => {
+          if (!(Math.abs(wideOpenStopAtZoom(zoomT, L) - wideOpenStopAtZoom(zoomT, host)) <= 1e-9)) {
             offenders.push(`${pair}: stop radius changed at zoom station ${station}`);
           }
         });
@@ -179,7 +192,7 @@ describe("teleconverter catalog", () => {
       const host = buildLens(hostData);
       const drift = Math.max(
         Math.abs(L.stopPhysSD - host.stopPhysSD),
-        ...(host.zoomStopSDs ?? []).map((sd, station) => Math.abs((L.zoomStopSDs?.[station] ?? NaN) - sd)),
+        ...zoomStations(host).map((zoomT) => Math.abs(wideOpenStopAtZoom(zoomT, L) - wideOpenStopAtZoom(zoomT, host))),
         ...(host.zoomEPs ?? []).map((epSD, station) => Math.abs((L.zoomEPs?.[station] ?? NaN) - epSD)),
       );
       if (!(drift <= 1e-9)) offenders.push(`${lensKey}: stop or pupil moved by ${drift.toExponential(2)} mm`);

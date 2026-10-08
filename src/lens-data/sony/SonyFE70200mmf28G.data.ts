@@ -443,9 +443,9 @@ const LENS_DATA = {
   focusDescription:
     "Dual floating internal focus in the patent: G1R moves toward the object and G5 moves toward the image plane from infinity to close focus. Close-focus spacings are not tabulated in the patent, so this data file models the published infinity-focus zoom positions only.",
 
-  nominalFno: 2.8,
+  nominalFno: 2.8823,
   maxFstop: 22,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.8823, 4, 5.6, 8, 11, 16, 22],
 
   scFill: 0.55,
   yScFill: 0.82,

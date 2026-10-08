@@ -398,6 +398,7 @@ const LENS_DATA = {
     "NO_INTERNAL_RECONSTRUCTION: JP2008070450A Example 1 identifies L2 (surfaces 9-15) as the focus group but publishes no finite-focus spacing state. The data preserves only the three published infinity zoom states; 1.2 m is Canon production metadata and the zoom gaps repeat their infinity values at the close-focus endpoint.",
 
   nominalFno: 4.1,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.1, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 8,
   maxFstop: 32,

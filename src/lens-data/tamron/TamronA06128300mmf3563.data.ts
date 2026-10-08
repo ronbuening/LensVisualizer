@@ -18,8 +18,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * fixed image plane. D22 and BF are zoom-only. The tele reconstruction gives |m|^-1 = 2.89177, independently
  * matching the manufacturer's 1:2.9 specification.
  *
- * Aperture: nominalFno uses the modeled values from one fixed physical stop (r = 9.5122691439 mm), not the
- * marketed f/3.5-6.3 endpoint label.
+ * Aperture: nominalFno carries the patent's printed Fno = 3.50 / 5.37 / 6.50 (paragraph [0041]), not the marketed
+ * f/3.5-6.3 endpoint label. zoomApertureModel "fixed-iris" holds one iris radius over the whole range: the radius
+ * whose real marginal ray gives f/3.5 at wide, 9.6459 mm, which traces f/3.500 / 5.377 / 6.506 at the three
+ * stations. The patent prints no stop radius; the STO row's authored sd (9.5122691439 mm) is the paraxial
+ * marginal-ray height for f/3.50 at wide.
  *
  * Scaling: none. Patent d-line coordinates and dimensions stay at source scale. The patent conic convention already
  * matches the project's standard K=e form.
@@ -44,7 +47,7 @@ const LENS_DATA = {
     "US 2003/0156333 A1 — sole preferred numerical embodiment; A061 correlation via its A06 optical-system base",
   specs: [
     "28-300mm marketed / 28.9958-289.5284mm modeled",
-    "f/3.5-6.3 marketed / f/3.5000-6.5122 modeled wide-open",
+    "f/3.5-6.3 marketed / f/3.50-6.50 patent wide-open",
     "13 groups / 15 physical lens pieces",
     "3 bonded aspherical resin surfaces",
     "0.49m MFD / 1:2.9 at 300mm",
@@ -473,7 +476,9 @@ const LENS_DATA = {
   ],
 
   /* ── Aperture, focus, and layout ── */
-  nominalFno: [3.5, 5.354420347256757, 6.512207548012089],
+  apertureDesign: 3.5,
+  nominalFno: [3.5, 5.37, 6.5],
+  zoomApertureModel: "fixed-iris",
   closeFocusM: 0.49,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,

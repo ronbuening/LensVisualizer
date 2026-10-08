@@ -21,6 +21,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * the air-equivalent track, so the physical object-to-image distance is 2.001193 m.
  * No uniform scaling is applied. The source uses d-line nd and vd and is all-spherical.
  *
+ * Partial dispersion: the patent prints no θgF column. Table 11 gives only its own
+ * deviation for L11 and L12, ΔθgF = θgF − (0.648327 − 0.0018024·νd) (¶0155-0158).
+ * `dPgF` is the recovered θgF minus the engine's normal line (0.6438 − 0.001682·νd),
+ * not the patent's ΔθgF, which the analysis quotes for conditions (2-11) and (2-12).
+ *
  * Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes axial movement of
  * cemented G1B (L16+L17) but no finite-focus spacing table. The close-focus rows are
  * code-solved at Nikon's marketed 2.0 m minimum distance from the image plane while
@@ -81,8 +86,9 @@ const LENS_DATA = {
       fl: 402.95402032801616,
       glass: "Fluorite (CaF2; production-correlation supported)",
       apd: "patent",
-      apdNote: "dPgF = +0.0649 (WO 2019/131993 A1, Table 11)",
-      dPgF: 0.0649,
+      apdNote:
+        "Patent Table 11 ΔθgF = +0.0649 by the patent's line (θgF − 0.648327 + 0.0018024·νd), so θgF = 0.5416; runtime dPgF +0.05796.",
+      dPgF: 0.057961,
       role: "Positive front collector in G1A.",
     },
     {
@@ -95,8 +101,9 @@ const LENS_DATA = {
       fl: 218.16887759143026,
       glass: "J-FKH1 class (HIKARI exact nd/νd pair)",
       apd: "patent",
-      apdNote: "dPgF = +0.0391 (WO 2019/131993 A1, Table 11)",
-      dPgF: 0.0391,
+      apdNote:
+        "Patent Table 11 ΔθgF = +0.0391 by the patent's line (θgF − 0.648327 + 0.0018024·νd), so θgF = 0.5386; runtime dPgF +0.03369.",
+      dPgF: 0.033686,
       role: "Second low-dispersion positive collector in G1A.",
     },
     {
@@ -472,6 +479,7 @@ const LENS_DATA = {
   zoomPositions: [183.6, 300, 392],
   zoomLabels: ["Wide", "Tele"],
   nominalFno: [4.080000000000006, 4.081544793063073, 4.083208878350958],
+  zoomApertureModel: "fixed-iris",
   var: {
     "9": [[6.984, 26.882423397487095], [6.984, 26.890745187758498], [6.984, 26.893432193826733]],
     "13": [[27.415, 7.516576602512906], [27.415, 7.5082548122415], [27.415, 7.505567806173268]],

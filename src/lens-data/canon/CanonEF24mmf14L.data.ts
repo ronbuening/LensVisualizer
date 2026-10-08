@@ -272,10 +272,10 @@ const LENS_DATA = {
   focusDescription:
     "Production floating rear focus. Patent ¶0039 prefers fixed B1 with B2a and B2b moving objectward while approaching one another; finite-focus spacings are not published and are not modeled.",
 
-  nominalFno: 1.4,
+  nominalFno: 1.45,
   apertureBlades: 7,
   maxFstop: 22,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
 
   yScFill: 0.55,
 } satisfies LensDataInput;

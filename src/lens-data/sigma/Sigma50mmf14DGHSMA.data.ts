@@ -21,7 +21,7 @@ const LENS_DATA = {
   focalLengthDesign: 49.58,
   apertureMarketing: 1.4,
   apertureDesign: 1.46,
-  nominalFno: 1.4,
+  nominalFno: 1.46,
   closeFocusM: 0.4,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
@@ -34,7 +34,7 @@ const LENS_DATA = {
   elementCount: 13,
   groupCount: 8,
   apertureBlades: 9,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
   yScFill: 0.56,
   scFill: 0.62,
   offAxisFieldFrac: 0.35,

@@ -26,6 +26,7 @@ const LENS_DATA = {
   groupCount: 15,
   closeFocusM: 3.0,
   nominalFno: 5.6,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
   apertureBlades: 9,
@@ -259,19 +260,27 @@ const LENS_DATA = {
     },
   ],
 
-  // Example 4 of US 4,110,006. Semi-diameters are conservative inferred clear apertures, not patent values.
-  // The diaphragm is modeled 0.5 mm in front of R25, splitting the patent l3 variable air space.
+  // Example 4 of US 4,110,006. Semi-diameters are inferred clear apertures, not patent values; the patent prints none
+  // and draws no section of Example 4 (FIG. 1 is Example 1, drawn at f = 300; FIG. 3 is Example 2).
+  // The stated f/5.6 on-axis ray reaches 45.22, 44.05, 43.78, 43.00, 43.40, 43.31 mm on surfaces 5-10 at the 600 mm
+  // station. Surfaces 5, 7, 9 and 10 sit at that height rounded up to 0.1 mm. L3, L4 and L5 each carry one height on
+  // both faces, the square-cut rim FIG. 1 and FIG. 3 draw: surfaces 6 and 8 take the value of their element's front
+  // face (45.3, 43.8) and stand 1.25 and 0.80 mm above the ray. Surfaces 1-4 clear that ray by 6.2-6.6 mm and
+  // surfaces 11-14 by 0.02-0.64 mm.
+  // The diaphragm is modeled 0.5 mm in front of R25, splitting the patent l3 variable air space. The STO row holds the
+  // paraxial f/5.6 radius; the fixed wide-open iris is sized by real ray at 150 mm, 18.457 mm. On axis the model traces
+  // f/5.60 at 150 mm and f/5.59 at 300 mm (iris) and f/5.60 at 600 mm (rim of surface 9 on the stated ray).
   surfaces: [
     { label: "1", R: 344.101, d: 8.34, nd: 1.48749, elemId: 1, sd: 59.4 },
     { label: "2", R: -621.384, d: 0.2, nd: 1.0, elemId: 0, sd: 59.3 },
     { label: "3", R: 145.355, d: 8.16, nd: 1.48749, elemId: 2, sd: 58.0 },
     { label: "4", R: 399.767, d: 27.966, nd: 1.0, elemId: 0, sd: 57.8 },
-    { label: "5", R: 1756.358, d: 4.61, nd: 1.7725, elemId: 3, sd: 43.5 },
-    { label: "6", R: 237.941, d: 4.488, nd: 1.0, elemId: 0, sd: 43.5 },
-    { label: "7", R: 470.798, d: 4.49, nd: 1.8061, elemId: 4, sd: 43.0 },
-    { label: "8", R: 181.34, d: 40.03, nd: 1.0, elemId: 0, sd: 43.0 },
-    { label: "9", R: 316.069, d: 8.15, nd: 1.43387, elemId: 5, sd: 43.0 },
-    { label: "10", R: -354.921, d: 0.15, nd: 1.0, elemId: 0, sd: 43.0 },
+    { label: "5", R: 1756.358, d: 4.61, nd: 1.7725, elemId: 3, sd: 45.3 },
+    { label: "6", R: 237.941, d: 4.488, nd: 1.0, elemId: 0, sd: 45.3 }, // square rim with surface 5
+    { label: "7", R: 470.798, d: 4.49, nd: 1.8061, elemId: 4, sd: 43.8 },
+    { label: "8", R: 181.34, d: 40.03, nd: 1.0, elemId: 0, sd: 43.8 }, // square rim with surface 7
+    { label: "9", R: 316.069, d: 8.15, nd: 1.43387, elemId: 5, sd: 43.4 },
+    { label: "10", R: -354.921, d: 0.15, nd: 1.0, elemId: 0, sd: 43.4 },
     { label: "11", R: 145.135, d: 7.07, nd: 1.43387, elemId: 6, sd: 43.0 },
     { label: "12", R: 465.758, d: 3.0, nd: 1.0, elemId: 0, sd: 42.5 },
     { label: "13", R: 714.028, d: 3.9, nd: 1.51633, elemId: 7, sd: 41.5 },

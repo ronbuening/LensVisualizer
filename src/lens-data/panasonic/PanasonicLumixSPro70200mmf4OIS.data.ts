@@ -482,6 +482,7 @@ const LENS_DATA = {
     "PUBLISHED: G6 (L13-L14) translates objectward between infinity and the patent's 1.000 m object-to-image state; travel is 2.6344 / 6.2169 / 16.7858 mm at wide / middle / tele. The marketed 0.92 m state is not reconstructed.",
 
   nominalFno: [4.15, 4.11, 4.14],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   maxFstop: 22,

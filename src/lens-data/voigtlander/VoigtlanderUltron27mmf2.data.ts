@@ -35,9 +35,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ SPECTRAL DATA:                                                              ║
  * ║ - nd and νd are the patent's d-line prescription values.                    ║
- * ║ - nC, nF, ng, and dPgF are vendor-catalog values. HOYA line indices were    ║
+ * ║ - nC, nF, and ng are vendor-catalog values. HOYA line indices were          ║
  * ║   evaluated from the catalog dispersion formula; HIKARI and OHARA values    ║
- * ║   were transcribed from their current data sheets.                           ║
+ * ║   were transcribed from their current data sheets.                          ║
+ * ║                                                                            ║
+ * ║ NOTE ON PARTIAL DISPERSION:                                                 ║
+ * ║ - The patent prints no PgF and defines no deviation formula. `dPgF` is      ║
+ * ║   the PgF of the authored nC/nF/ng minus the engine's normal line           ║
+ * ║   (0.6438 − 0.001682·νd). It is not a vendor data-sheet ΔPgF: each vendor   ║
+ * ║   measures that from its own line (the HOYA FDS90 and TAFD55 figures fit    ║
+ * ║   0.64833 − 0.0018·νd).                                                     ║
+ * ║ - All six elements author nC/nF/ng, so the trace uses those indices and     ║
+ * ║   `dPgF` is an annotation.                                                  ║
  * ║                                                                            ║
  * ║ OMITTED: No sensor cover glass, filter, inactive dummy plane, flare cutter, ║
  * ║ or mechanical component is part of the sequential optical model.            ║
@@ -100,11 +109,12 @@ const LENS_DATA = {
       fl: -27.3216,
       glass: "J-SF14 (HIKARI)",
       apd: "inferred",
-      apdNote: "Cosina's production section marks this element as anomalous-dispersion glass; HIKARI ΔPgF = +0.0130.",
+      apdNote:
+        "Cosina's production section marks this element as anomalous-dispersion glass. The patent prints no partial dispersion; the authored HIKARI nC/nF/ng give PgF = 0.6127 (HIKARI data-sheet ΔPgF = +0.0130 on the vendor's own line), runtime dPgF +0.013637.",
       nC: 1.75358,
       nF: 1.782237,
       ng: 1.799796,
-      dPgF: 0.013,
+      dPgF: 0.013637,
       cemented: "D1",
       role: "Negative cemented partner providing axial-color and off-axis-aberration correction.",
     },
@@ -120,7 +130,7 @@ const LENS_DATA = {
       nC: 1.836492,
       nF: 1.872089,
       ng: 1.89413,
-      dPgF: 0.0137,
+      dPgF: 0.015379,
       cemented: "D2",
       role: "Strong negative front member of the second cemented component behind the stop.",
     },
@@ -152,7 +162,7 @@ const LENS_DATA = {
       nC: 1.991046,
       nF: 2.025404,
       ng: 2.046001,
-      dPgF: 0.0036,
+      dPgF: 0.004679,
       role: "High-index positive singlet satisfying the patent's nd > 1.9 condition.",
     },
     {
@@ -165,11 +175,12 @@ const LENS_DATA = {
       fl: -43.7707,
       glass: "S-NBH5 (OHARA)",
       apd: "patent",
-      apdNote: "Patent-designated anomalous-dispersion rear meniscus; OHARA Δθg,F = -0.0036.",
+      apdNote:
+        "Patent-designated anomalous-dispersion rear meniscus; the patent prints no partial dispersion. The authored OHARA nC/nF/ng give PgF = 0.5740 (OHARA data-sheet Δθg,F = -0.0036 on the vendor's own line), runtime dPgF -0.003029.",
       nC: 1.64923,
       nF: 1.66571,
       ng: 1.67517,
-      dPgF: -0.0036,
+      dPgF: -0.003029,
       role: "Rear negative meniscus used to shorten back focus and control field aberrations.",
     },
   ],

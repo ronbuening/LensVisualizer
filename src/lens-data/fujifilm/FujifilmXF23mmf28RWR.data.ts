@@ -219,8 +219,8 @@ const LENS_DATA = {
   closeFocusM: 0.2,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.89,
+  fstopSeries: [2.89, 4, 5.6, 8, 11, 16],
   focusDescription:
     "Unit/full-group focus. Patent Example 4 moves the full optical system and changes only DD[15] from 11.087 mm at infinity to 14.713 mm at beta = -0.16x.",
   scFill: 0.56,

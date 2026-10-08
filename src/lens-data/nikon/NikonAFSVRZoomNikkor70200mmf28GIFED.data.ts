@@ -449,6 +449,7 @@ const LENS_DATA = {
     "PUBLISHED internal focusing: G1R (L14-L15) translates 9.71956 mm toward the object from infinity to the patent's R=1500 mm object-to-image condition; D5 decreases and D9 increases by the same amount at all three zoom stations.",
 
   nominalFno: 2.88,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   maxFstop: 22,

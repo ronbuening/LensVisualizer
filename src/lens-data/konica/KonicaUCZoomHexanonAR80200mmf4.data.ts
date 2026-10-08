@@ -21,6 +21,25 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   while `focalLengthDesign` stores the independently traced EFLs. The      ║
  * ║   model uses the traced paraxial BFDs for r24->IMG.                         ║
  * ║                                                                            ║
+ * ║ SOURCE CONTRADICTION — UNRESOLVED (`sourceErrata`)                         ║
+ * ║ - Every row of the p.303 table (24 radii, 23 spacings, 14 nd/vd pairs,     ║
+ * ║   both gap states) matches this file, and the printed spacings sum to the  ║
+ * ║   printed Σd = 142.822 at both ends. The mismatch with the printed f and   ║
+ * ║   fB is inside the patent.                                                 ║
+ * ║ - The table zoom ratio 2.4697 agrees with the aberration-plot labels       ║
+ * ║   (f = 80.0 / 197.5 mm, ratio 2.469), not with the header ratio 2.4543.    ║
+ * ║   196.158 divided by the table ratio is 79.425, one digit from the header  ║
+ * ║   value 79.925.                                                            ║
+ * ║ - The traced spherical aberration and distortion have the form of Figs. 2A ║
+ * ║   and 2C but differ from them by up to about 0.1 mm and 0.4 percentage     ║
+ * ║   points. r22 or r23 solved for the stated fB brings the wide-end marginal ║
+ * ║   spherical aberration and the distortion closer to the figures.           ║
+ * ║ - The printed telephoto ratio 0.97 is the rounded (Σd + fB) / f only for a ║
+ * ║   long focal length of 196.3 to 198.3 mm; the table itself gives 0.963.    ║
+ * ║ - No single misprint-style change to one printed value reproduces the      ║
+ * ║   stated f pair and fB together, and the patent has no second example, so  ║
+ * ║   every printed value is kept.                                             ║
+ * ║                                                                            ║
  * ║ FOCUS MODEL — CONSTRAINED_RECONSTRUCTION                                  ║
  * ║ - The patent specifies close focusing by moving only the front positive    ║
  * ║   component toward the object. The patent gives no close-focus spacing     ║
@@ -70,6 +89,12 @@ const LENS_DATA = {
   patentAuthors: ["Hideo Shizume"],
   patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
   patentYear: 1976,
+  sourceErrata: [
+    {
+      status: "unresolved",
+      note: "The printed table traces to f = 80.88 / 199.75 mm and back focus 49.50 / 49.49 mm; the patent states f = 79.925~196.158 and fB = 48.523. The table reproduces the stated total length 142.822, and its zoom ratio matches the focal lengths labelled on the aberration plots (80.0 / 197.5 mm); 196.158 divided by that ratio is 79.425, one digit from the stated 79.925. Its spherical aberration and distortion have the form of Figs. 2A and 2C but differ from them by up to about 0.1 mm and 0.4 percentage points. No single misprinted value reproduces the stated focal lengths and back focus together.",
+    },
+  ],
   elementCount: 14,
   groupCount: 10,
 
@@ -349,6 +374,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: front positive component only; common 27.690051647 mm objectward extension solved from the 0.7 m film-plane MFD. Patent supplies no close-focus spacing table.",
 
   nominalFno: 4,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16],
 
   gapSagFrac: 0.98,

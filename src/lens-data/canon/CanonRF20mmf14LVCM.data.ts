@@ -342,8 +342,8 @@ const LENS_DATA = {
   closeFocusM: 0.2,
   // The close-focus row is source-tabulated.
   publishedStations: { focus: [1] },
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
   focusDescription: "Inner focus by positive L2; patent tabulates 1.61 mm objectward travel from infinity to β=-0.1.",
 

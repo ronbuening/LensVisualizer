@@ -313,7 +313,8 @@ const LENS_DATA = {
   zoomPositions: [10.30993, 14.99222, 19.39397],
   zoomStep: 0.004,
   zoomLabels: ["Wide", "Tele"],
-  nominalFno: [4.5, 5.1, 5.6],
+  nominalFno: [4.625, 5.233, 5.828],
+  zoomApertureModel: "fixed-iris",
 
   var: {
     "10": [
@@ -361,7 +362,7 @@ const LENS_DATA = {
   focusDescription:
     "Internal focus by G3 (L31-L32) moving image-side. Close-focus gaps are paraxially inferred from the official 0.22 m MFD because Example 2 publishes only infinity zoom spacings.",
   closeFocusM: 0.22,
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22, 29],
+  fstopSeries: [4.625, 5.6, 8, 11, 16, 22, 29],
   maxFstop: 29,
   scFill: 0.55,
   yScFill: 0.44,

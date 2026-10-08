@@ -14,15 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **891** lenses scanned
 - **10066** glass elements examined
-- **3116** elements have multiple coordinate-compatible candidates
+- **3121** elements have multiple coordinate-compatible candidates
 - **565** lens files are affected
 - **306** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **205** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1793 |
-| Evidence-source priority | 1005 |
+| Smallest reference-index residual | 1797 |
+| Evidence-source priority | 1006 |
 | Vendor context | 305 |
 | Stable canonical-name order | 11 |
 | Smallest Abbe residual | 2 |
@@ -1991,8 +1991,12 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `J-SF6 (HIKARI catalog equivalent; production supplier unspecified; patent class 805255)` | 1.80518 / 25.46 (d) | J-SF6 — direct name evidence outranks six-digit code evidence. | H-ZF7LA (CDGM, code, vendor ✗, preferred code row)<br>FD60 (Hoya, code, vendor ✗, alternate code row) | 1 | [SONY E 50mm f/1.8 OSS](../../src/lens-data/sony/SonyE50mmf18OSS.data.ts) L232 |
 | `697-555 — HOYA LAC14/M-LAC14 coordinate family` | 1.69680 / 55.46 (d) | LAC14 — direct name evidence outranks six-digit code evidence. | J-LAK14 (Hikari, code, vendor ✗, alternate code row)<br>S-LAL14 (Ohara, code, vendor ✗, preferred code row) | 1 | [SONY E PZ 16-50mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyEPZ1650mmf3556OSS.data.ts) L8 |
 | `806407 — NBFD13 / M-NBFD130 coordinate family (supplier unresolved)` | 1.80610 / 40.73 (d) | M-NBFD130 — smallest d-line \|Δn\| (2.4e-7 vs 4.6e-6) | NBFD13 (Hoya, name) | 1 | [SONY E PZ 16-50mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyEPZ1650mmf3556OSS.data.ts) L9 |
-| `S-FPL53 / FCD100 class (Super ED fluorophosphate, 438/951)` | 1.43810 / 95.10 (d) | S-FPL53 — smallest d-line \|Δn\| (6.5e-4 vs 1.1e-3) | FCD100 (Hoya, name) | 2 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L14 |
-| `S-FPL51 / FCD1 / N-PK52A class (ED fluorophosphate, 498/816)` | 1.49845 / 81.60 (d) | FCD1 — smallest d-line \|Δn\| (1.5e-3 vs 1.5e-3) | S-FPL51 (Ohara, name) | 1 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L56 |
+| `M-BACD12 / L-BAL42 class (PGM barium crown, 583/595)` | 1.58313 / 59.50 (d) | M-BACD12 — smallest d-line \|Δn\| (1.6e-8 vs 4.4e-6) | L-BAL42 (Ohara, name)<br>Q-SK52S (Hikari, code, preferred code row) | 1 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L11 |
+| `E-FD5 / S-TIM25 class (dense flint, 673/322)` | 1.67270 / 32.20 (d) | S-TIM25 — smallest d-line \|Δn\| (1.9e-7 vs 2.0e-7) | E-FD5 (Hoya, name)<br>H-ZF2 (CDGM, code, alternate code row)<br>SF5 (Schott, code, alternate code row) | 1 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L22 |
+| `TAFD45 / S-LAH98 class (ultra-dense lanthanum flint, 954/323)` | 1.95375 / 32.30 (d) | S-LAH98 — smallest d-line \|Δn\| (5.9e-7 vs 2.6e-6) | TAFD45 (Hoya, name)<br>J-LASFH21 (Hikari, code, alternate code row)<br>TAFD45L (Hoya, code, alternate code row) | 3 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L31 |
+| `TAFD55 / S-LAH99 class (ultra-high-index lanthanum flint, 001/291)` | 2.00100 / 29.10 (d) | S-LAH99 — smallest d-line \|Δn\| (3.6e-10 vs 3.0e-6) | TAFD55 (Hoya, name)<br>J-LASFH16 (Hikari, code, alternate code row) | 1 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L54 |
+| `M-TAFD305 class (PGM lanthanum flint, 851/401)` | 1.85135 / 40.10 (d) | M-TAFD305 — direct name evidence outranks six-digit code evidence. | Q-LASFH58S (Hikari, code, alternate code row) | 1 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L55 |
+| `FCD1 / S-FPL51 / N-PK52A class (ED fluorophosphate, 497/816)` | 1.49700 / 81.60 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name)<br>H-FK61 (CDGM, code, alternate code row)<br>M-FCD1 (Hoya, code, alternate code row) | 1 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L56 |
 | `Titanium flint (741/278, class S-TIH)` | 1.74077 / 27.76 (d) | E-FD13 — smallest d-line \|Δn\| (2.3e-7 vs 1.2e-6) | S-TIH13 (Ohara, code, preferred code row) | 1 | [SONY FE 135mm f/1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) L31 |
 | `NBFD15 (HOYA, 806333)` | 1.80610 / 33.27 (d) | NBFD15 — direct name evidence outranks six-digit code evidence. | J-LASFH6 (Hikari, code, vendor ✗, alternate code row) | 1 | [SONY FE 135mm f/1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) L41 |
 | `S-FPL53/S-FPL55-class super-ED fluorophosphate (OHARA; soft match, 438/951)` | 1.43810 / 95.10 (d) | S-FPL55 — smallest d-line \|Δn\| (6.5e-4 vs 6.5e-4) | S-FPL53 (Ohara, name, vendor ✓) | 1 | [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) L8 |

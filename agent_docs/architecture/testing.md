@@ -91,7 +91,9 @@ Existing tests cover:
   (`exactTraceCatalog.test.ts`), catalog and summary invariants under `__tests__/src/utils/catalog/`, and the
   data-contract sweeps under `__tests__/src/lens-data/`: structured patent metadata (`patentMetadata.test.ts`), the
   analysis-file metadata/section floor (`analysisFiles.test.ts`), exact focus-keyframe reproduction
-  (`focusKeyframes.test.ts`), and shared-prescription parity across switchable configuration groups
+  (`focusKeyframes.test.ts`), fixed-iris declarations that match their stated station f-numbers
+  (`zoomApertureModel.test.ts`), `dPgF` stored against the engine's normal line
+  (`partialDispersionLine.test.ts`), and shared-prescription parity across switchable configuration groups
   (`opticalConfigurationParity.test.ts`, which requires a contract entry for every `opticalConfiguration` group).
 - Teleconverters, which never enter `LENS_CATALOG` (`teleconverterCompatibility.test.ts`): every converter validates;
   every converter–host pair the fit predicate allows composes, builds, passes the axial beam, keeps the host's stop

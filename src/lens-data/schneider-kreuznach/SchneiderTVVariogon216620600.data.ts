@@ -10,17 +10,35 @@ import type { LensDataInput } from "../../types/optics.js";
  * Prism P is represented as rearPlates, not as a 32nd lens element. The authored 3.24 mm gap after the prism is
  * the patent's 0.162 mm rear-face BFD scaled by 20. Rounded Table I/IB does not paraxially refocus to this plane.
  *
+ * Source contradiction (sourceErrata, unresolved): every radius, thickness, index and Table IB gap below is the
+ * printed value x20, yet the tables compute 19.83 / 39.60 / 79.01 / 137.66 / 196.05 / 283.25 / 394.67 / 503.89 /
+ * 613.64 mm against the stated 20 ... 592 mm (-0.8 % at 20 mm, -2.3 % at 290 mm, +3.7 % at 592 mm), and the paraxial
+ * image lies 1.41 mm behind the stated plane at 20 mm and 14.19 mm behind it at 592 mm. Component 1 as printed
+ * computes 138.63 mm against Table IA's 138.02 mm (+0.44 %) and component 7 computes 55.19 mm against 55.46 mm
+ * (-0.49 %); Example 2, which prints components 1-6 at 1.257x, has the same excess in its first component. With
+ * component 1 scaled to Table IA's focal length the stations compute within -0.7 % to +0.9 % of the stated values and
+ * the image stays 0.66-1.40 mm behind the stated plane. No single printed value is isolated, so the printed values
+ * are kept.
+ *
  * STO: the patent places diaphragm D inside d28 but gives neither a split nor physical diameter. The 2.4 mm scaled
- * gap is split 1.2 + 1.2 mm at the figure midpoint. STO sd is calibrated from the parsed wide-state EFL to f/2.1;
- * this is a dependent calibration, not independent evidence of the physical iris diameter. The iris is then held fixed.
- * nominalFno is the recomputed fixed-iris model at each source zoom station; it intentionally does not copy the
- * patent prose f/6.3 tele endpoint or the product-name f/6.6 endpoint, which the rounded prescription does not reproduce.
+ * gap is split 1.2 + 1.2 mm at the figure midpoint. The authored STO sd, 22.201 mm, is the paraxial marginal height
+ * of f/2.1 at 20 mm: a dependent calibration, not independent evidence of the physical iris diameter. The wide-open
+ * iris is the radius the real f/2.1 marginal ray reaches at 20 mm, 22.353 mm, kept at every station
+ * (zoomApertureModel "fixed-iris"). nominalFno stations 2-9 are the f-numbers that one radius gives: 2.094 / 2.087 /
+ * 2.087 / 2.096 by real marginal ray through 200 mm, and 2.081 / 2.899 / 3.701 / 4.507 paraxially from 290 mm, where
+ * the real ray of that aperture cannot be traced to the stop. The patent prints no per-station f-number. Its prose
+ * (col. 5) gives, for an unchanged diaphragm opening, a constant 1:2.1 from fmin to fmed (20-290 mm) falling to a
+ * final 1:6.3 at fmax (592 mm), and 1:2.1 throughout when the diaphragm is coupled to the zoom mechanism as shown in
+ * FIG. 1. Nothing ahead of the stop moves above fmed, so by the patent's own focal lengths an unchanged iris gives
+ * 2.1 x 29.6 / 14.5 = 4.29 at fmax, not 6.3; the file's 4.507 is the same ratio with its computed focal lengths
+ * (2.0806 x 613.64 / 283.25). Neither the 1:6.3 nor the product-name f/6.6 is adopted.
  *
  * Semi-diameters are modeled, not published: the profile is constrained by the patent/manufacturer silhouettes,
  * secondary 130 mm front / 38.6 mm rear clear-aperture context, spherical edge/rim/cross-gap checks, and portable
  * exact meridional sampling. The stored profile is schematic/interior-pupil geometry only: wider physical-stop tracing
  * exceeds S39 before half-pupil, while a full-stop 8% clearance envelope would make the rounded prescription fail
- * element-edge and cross-gap geometry. It is not a production clear-aperture reconstruction. Production buildLens and corpus render diagnostics passed during the integration audit.
+ * element-edge and cross-gap geometry. It is not a production clear-aperture reconstruction. Production buildLens and
+ * corpus render diagnostics passed during the integration audit.
  *
  * Focus status: NO_INTERNAL_RECONSTRUCTION. Table IB supplies infinity-focus zoom motion only. The patent says L1 may
  * move for focusing but gives no travel. closeFocusM = 0.85 is secondary product metadata only; all authored focus
@@ -48,6 +66,12 @@ const LENS_DATA = {
   patentAuthors: ["Karl Macher"],
   patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
   patentYear: 1975,
+  sourceErrata: [
+    {
+      status: "unresolved",
+      note: "Tables I and IB as printed compute 19.83-613.64 mm at the nine stations against the stated 20-592 mm (−0.8 % at 20 mm, −2.3 % at 290 mm, +3.7 % at 592 mm), and the paraxial image moves 12.8 mm over the zoom range where the patent states a fixed back focus. The first component computes 138.63 mm against Table IA's 138.02 mm and the seventh 55.19 mm against 55.46 mm; Example 2 prints the first six components at 1.257× with the same first-component excess, and no single printed value is isolated.",
+    },
+  ],
   elementCount: 31,
   groupCount: 22,
 
@@ -651,17 +675,22 @@ const LENS_DATA = {
   publishedStations: { zoom: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
   focusDescription: "Only infinity-focus zoom states are modeled; the patent describes L1 focusing without numerical travel. The 0.85 m close-focus value is secondary product metadata.",
 
+  // Stations 2-9 are what the one wide-open iris (22.353 mm, the real f/2.1 marginal ray at 20 mm) gives: by real
+  // marginal ray through 200 mm, paraxially from 290 mm, where the real ray of that aperture cannot be traced to the
+  // stop. The patent prints 1:2.1 up to fmed and 1:6.3 at fmax for an unchanged opening; its own focal lengths give
+  // 2.1 x 29.6 / 14.5 = 4.29 at fmax.
   nominalFno: [
     2.100000000,
-    2.099891286,
-    2.099542680,
-    2.098667507,
-    2.097437825,
-    2.094863161,
-    2.918846214,
-    3.726649438,
-    4.538315909,
+    2.093952547,
+    2.087397331,
+    2.087298253,
+    2.095640066,
+    2.080619899,
+    2.899000578,
+    3.701311436,
+    4.507459276,
   ],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.1, 2.8, 4, 5.6, 8, 11, 16],
 
   scFill: 0.78,

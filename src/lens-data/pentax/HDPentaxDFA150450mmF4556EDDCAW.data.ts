@@ -386,6 +386,7 @@ const LENS_DATA = {
   focusDescription: "CONSTRAINED_RECONSTRUCTION: the patent publishes infinity zoom states and specifies G5 rear focus. Close-focus values are code-solved at the official 2.0 m MFD with only G5 moving imageward; D26 + BF is conserved at each zoom position. These close-focus spacings are not patent-published.",
 
   nominalFno: [4.6, 5.1, 5.7],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   maxFstop: 27,

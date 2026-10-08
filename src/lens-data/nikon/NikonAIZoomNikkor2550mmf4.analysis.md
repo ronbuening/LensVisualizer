@@ -22,7 +22,7 @@ At the wide position, the design is retrofocus in the strict optical sense: the 
 
 Zooming is produced by changing the air separation d8 between the two principal groups from 35.412 mm at 25.50 mm to 15.342 mm at 35.15 mm and 0.503 mm at 48.805 mm. The patent describes both the diverging and converging groups as movable while maintaining a fixed image plane. Nikon's design history adds the production detail that the first group moves internally without moving the front end or filter thread, and that the aperture moves with the second group while its diameter is adjusted to preserve f/4 across the zoom range.
 
-The current data model represents the aperture stop as a fixed stop surface in the inter-group gap immediately ahead of L5. The physical production iris was zoom-cammed, but the current lens-data schema does not support zoom-dependent stop semi-diameter. The stop in the data file is therefore a layout and nominal-aperture approximation, not a separate patent-published surface.
+The current data model represents the aperture stop as a stop surface in the inter-group gap immediately ahead of L5. The physical production iris was zoom-cammed, and the model traces its wide-open radius from the constant f/4 at each zoom station: 8.356 mm at 25.50 mm, 9.616 mm at 35.15 mm, and 11.479 mm at 48.805 mm, where the beam is limited at the stop surface and traces about f/4.91. The stop in the data file is therefore a layout and nominal-aperture approximation, not a separate patent-published surface.
 
 ## Element-by-Element Analysis
 

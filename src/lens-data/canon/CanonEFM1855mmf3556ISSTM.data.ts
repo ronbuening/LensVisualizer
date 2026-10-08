@@ -23,11 +23,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  2.727722857 mm air-equivalent path, added to the published d25 at every zoom    ║
  * ║  state. No uniform prescription scaling is applied.                              ║
  * ║                                                                                  ║
- * ║  Patent effective diameters are used as clear diameters (sd = diameter/2),       ║
- * ║  except the aperture stop: the published 9.86 mm effective diameter is retained  ║
- * ║  as a source fact in the audit, while a 9.44 mm physical iris diameter           ║
- * ║  (sd = 4.72 mm) is modeled because it reproduces the published F-numbers.         ║
- * ║  nominalFno therefore stores the independently modeled values for that iris.      ║
+ * ║  Patent effective diameters are used as clear diameters (sd = diameter/2), the   ║
+ * ║  aperture stop included: surface 17 prints 9.86 mm, stored as sd = 4.93 mm.      ║
+ * ║  nominalFno stores the patent F-numbers 3.60 / 4.27 / 5.69. The iris is one      ║
+ * ║  fixed opening sized from the wide value: a real marginal ray at f/3.60 meets    ║
+ * ║  the stop at 4.928 mm, a 9.856 mm diameter. Through the published clear          ║
+ * ║  apertures the axial beam traces f/3.6003 / 4.2709 / 5.6856. The rim of surface  ║
+ * ║  13 (9.67 mm) limits the middle and telephoto states, where the iris alone       ║
+ * ║  passes about f/4.25 and f/5.65.                                                 ║
  * ║                                                                                  ║
  * ║  Patent movement-sign contradiction: ¶0055 defines image-side motion positive,   ║
  * ║  while ¶0078 says object-side positive. The spacing table and Table 2 agree with  ║
@@ -230,7 +233,7 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   * Patent effective diameters are halved for sd, except STO as documented above.
+   * Patent effective diameters are halved for sd, the stop row (surface 17, 9.86 mm) included.
    * Patent surfaces 26-29 (optical block G) are omitted; their air-equivalent path is folded into d25.
    */
   surfaces: [
@@ -250,7 +253,7 @@ const LENS_DATA = {
     { label: "14", R: 14.081, d: 3.8, nd: 1.6968, elemId: 8, sd: 5.475 },
     { label: "15", R: -14.081, d: 0.8, nd: 1.84666, elemId: 9, sd: 5.35 },
     { label: "16", R: -24.638, d: 0.8, nd: 1.0, elemId: 0, sd: 5.305 },
-    { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 4.72 },
+    { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 4.93 },
     { label: "18A", R: 23.987, d: 2.0, nd: 1.58313, elemId: 10, sd: 4.545 },
     { label: "19A", R: 82.591, d: 2.8, nd: 1.0, elemId: 0, sd: 4.68 },
     { label: "20", R: -42.91, d: 0.6, nd: 1.90366, elemId: 11, sd: 5.025 },
@@ -382,9 +385,12 @@ const LENS_DATA = {
     "marketed 0.25× maximum magnification.",
 
   /* ── Aperture configuration ──
-   * Constant physical STO diameter = 9.44 mm. The modeled wide/mid/tele f-numbers below are independently recomputed.
+   * nominalFno is the patent's F-number row. The fixed iris is sized from the wide value: 4.928 mm radius, 9.856 mm
+   * diameter, against the 9.86 mm effective diameter the patent prints for the stop. The patent offers zoom-dependent
+   * aperture control only as a possible modification (¶0093).
    */
-  nominalFno: [3.604671087827174, 4.2649779005790345, 5.693923234962015],
+  nominalFno: [3.6, 4.27, 5.69],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
   apertureBlades: 7,
   maxFstop: 22,

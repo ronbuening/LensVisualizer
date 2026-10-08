@@ -23,16 +23,25 @@ import type { LensDataInput } from "../../types/optics.js";
  * G2-G5 and the image plane therefore remain fixed relative to one another. These close-focus values are reconstructed,
  * not patent-published spacing rows.
  *
- * Semi-diameters are modeled clear apertures, not patent-published values. They were derived from the verified physical
- * stop (12.7246 mm semi-diameter), the patent half-field angles, paraxial marginal/chief-ray envelopes at the viewer's
- * representative 0.6 field fraction with +/-0.83 pupil sampling, the patent optical section, and physical edge-thickness,
- * rim-slope, cross-gap, and render-clearance constraints. The G1 and G5 rims were normalized against the G2/G3 silhouette
- * in Example 3's FIG. 3 so the rendered group-height progression follows the source drawing more closely. No layout
- * control is used to conceal invalid geometry.
+ * Stop: the patent prints F/4.5 for the whole range and at each FIG. 6 station, and no stop diameter. The iris is
+ * fixed. The authored STO semi-diameter, 12.72462 mm, is the paraxial f/4.5 stop radius (12.72440 / 12.72462 /
+ * 12.72475 mm at the three states). The engine opens the iris to the real-ray f/4.5 radius at 50 mm, 12.7356 mm, and
+ * holds it through the zoom: wide open, the on-axis beam traces f/4.50, f/4.51, and f/4.49 at 50, 122.458, and
+ * 295.2 mm, with the iris the limiter at each station.
  *
- * Spectral limitation: Example 3 publishes only nd and vd. It does not publish nC, nF, ng, PgF, or dPgF, so those fields
- * are intentionally not invented. Glass strings retain the patent coordinates while naming coefficient-backed catalog
- * equivalents only where the resolver's coordinate guard passes; none asserts the production supplier.
+ * Semi-diameters are modeled clear apertures, not patent-published values. They are derived from that stop, the patent
+ * half-field angles, paraxial marginal/chief-ray envelopes at the viewer's representative 0.6 field fraction with
+ * +/-0.83 pupil sampling, the patent optical section, and physical edge-thickness, rim-slope, cross-gap, and
+ * render-clearance constraints. The G1 and G5 rims are normalized against the G2/G3 silhouette in Example 3's FIG. 3 so
+ * the rendered group-height progression follows the source drawing. Surfaces 19 and 20 (L12, 2.0 mm behind the stop)
+ * both carry 12.6 mm, one square-cut rim as FIG. 3 draws it. The f/4.5 on-axis marginal ray reaches 12.533 mm at
+ * surface 19 and 12.360 mm at surface 20 at 122.458 mm, the station that needs most; both faces take the higher of
+ * the two, rounded up to 0.1 mm. FIG. 3 draws L12 level with L13 and a little taller than this value, about
+ * 13.0-13.7 mm on its vertex scales. No layout control is used to conceal invalid geometry.
+ *
+ * Spectral limitation: Example 3 publishes only nd and vd. It does not publish nC, nF, ng, PgF, or dPgF, so those
+ * fields are intentionally not invented. Glass strings retain the patent coordinates while naming coefficient-backed
+ * catalog equivalents only where the resolver's coordinate guard passes; none asserts the production supplier.
  */
 
 const LENS_DATA = {
@@ -252,8 +261,8 @@ const LENS_DATA = {
     { label: "17", R: -70.59, d: 2.0, nd: 1.80518, elemId: 11, sd: 21.0 },
     { label: "18", R: -393.102, d: 1.249, nd: 1.0, elemId: 0, sd: 20.5 },
     { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 12.72462 },
-    { label: "19", R: -116.3, d: 2.0, nd: 1.713, elemId: 12, sd: 11.0 },
-    { label: "20", R: 99.709, d: 0.963, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "19", R: -116.3, d: 2.0, nd: 1.713, elemId: 12, sd: 12.6 },
+    { label: "20", R: 99.709, d: 0.963, nd: 1.0, elemId: 0, sd: 12.6 },
     { label: "21", R: 33.76, d: 5.2, nd: 1.56732, elemId: 13, sd: 14.0 },
     { label: "22", R: 82.393, d: 54.7, nd: 1.0, elemId: 0, sd: 14.0 },
     { label: "23", R: -20.4, d: 2.3, nd: 1.76684, elemId: 14, sd: 15.5 },
@@ -310,6 +319,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: the patent specifies first-group focusing toward the object but gives no close-focus spacing row. Nikon specifies 2.5 m MFD from the focal plane. Code solving moves G1 objectward by 13.184948 / 13.175210 / 13.174286 mm at 50 / 122.458 / 295.2 mm; the sequential model represents this as the corresponding increase in d5 only, leaving G2-G5 and the image plane fixed relative to one another.",
 
   nominalFno: 4.5,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

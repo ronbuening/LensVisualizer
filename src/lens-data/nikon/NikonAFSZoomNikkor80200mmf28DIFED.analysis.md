@@ -42,9 +42,11 @@ The selected prescription is entirely spherical and is modeled at native patent 
 
 The patent and Nikon both use “telephoto zoom” in the ordinary design/product sense. LensVisualizer's stricter descriptive rule reserves “telephoto” for `TL/EFL < 1`. With first-surface-to-image track near `250.8296 mm`, the modeled control states have `TL/EFL` greater than 1, so this analysis does not apply the project's strict telephoto classification to the prescription itself.
 
-The aperture location is source-published, but its physical semi-diameter is not. The authored stop semi-diameter, `18.801412058 mm`, is a modeling inference obtained from the source's f/2.88 aberration figure. A single stop of that size reproduces approximately f/2.88 at all three zoom control states. This is distinct from the marketed f/2.8 aperture.
+The aperture location is source-published, but its physical semi-diameter is not. The authored stop semi-diameter, `18.801412058 mm`, is the paraxial stop radius for the f/2.88 that the source's aberration figures print at all three control states. The traced model solves the wide-open iris with real rays at the wide state, `19.2041 mm`, and holds that one radius through the zoom range (`zoomApertureModel: "fixed-iris"`); it gives f/2.880, f/2.881, and f/2.883 at the three control states. Traced wide open at infinity focus, all three states are limited by the iris at those values; no rim stops the f/2.88 on-axis ray. These figures are distinct from the marketed f/2.8 aperture.
 
 Patent Table 1 publishes effective diameters only at source surfaces 1, 6, 10, and 17. Those four values are preserved directly as semi-diameters `35.75`, `28.00`, `17.40`, and `18.40 mm`. The remaining semi-diameters are modeling values constrained by the Example 1 optical section and the validated geometry of the final data file; they are not patent measurements.
+
+Thirteen of those modeling values (surfaces 7, 8, 9, 11, 12, 13, 14, 15, 16, 21, 23, 24, and 26) stand at the greatest height the f/2.88 on-axis ray reaches on them at any control state, rounded up to 0.1 mm: `27.0`, `27.0`, `26.5`, `16.2`, `16.2`, `17.1`, `17.1`, `17.1`, `17.6`, `19.1`, `19.4`, `19.2`, and `18.2 mm`. Each face takes its own ray height; none is squared to the other face of its element. Two facing pairs nearly meet at the rim, as the patent's Figure 1 draws them. Surfaces 7 and 8 at `27.0 mm` close 97.2% of the `1.81 mm` air gap between L4 and L5 and stand `0.05 mm` apart; surfaces 14 and 15 at `17.1 mm` close 92.8% of the `2.11 mm` air gap between L8 and L9 and stand `0.15 mm` apart. The facing spheres would touch at `27.29 mm` and `17.74 mm`. The model's default cross-gap rule keeps 10% of an air gap clear at the rim; the data file sets `gapSagFrac: 0.98` for these two pairs.
 
 ## Element-by-Element Analysis
 
@@ -240,7 +242,7 @@ The wide and middle states reproduce the patent headings to source precision. Th
 
 The surface-by-surface Petzval sum, using `φ/(n·n′)` at every refracting surface, is `+0.00137533239976616 mm⁻¹`. This is a first-order surface-power diagnostic and is not presented as a measured or optimized best-focus field-curvature radius.
 
-The modeled stop is fixed at the source-published aperture plane. Its semi-diameter is inferred, not source-tabulated. The same stop reproduces approximately f/2.88 at wide, middle, and tele control states; accordingly `nominalFno` and `apertureDesign` are 2.88, while `apertureMarketing` remains 2.8.
+The modeled stop is fixed at the source-published aperture plane. Its semi-diameter is inferred, not source-tabulated. One traced iris radius, `19.2041 mm`, gives f/2.880, f/2.881, and f/2.883 at the wide, middle, and tele control states by the iris alone; accordingly `nominalFno` and `apertureDesign` are 2.88, while `apertureMarketing` remains 2.8. The on-axis beam traced wide open at infinity focus is limited by the iris at all three control states, at f/2.88.
 
 Only four semi-diameters are direct patent values. The remaining clear apertures are inferred from the source optical section and the validated ray/geometry model. They are therefore modeling data and should not be read as Nikon manufacturing dimensions.
 

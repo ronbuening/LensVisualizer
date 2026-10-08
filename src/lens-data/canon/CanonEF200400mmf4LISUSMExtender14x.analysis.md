@@ -26,7 +26,7 @@ The data model therefore preserves the patent dimensions without scaling. Market
 
 Two source issues require explicit normalization. First, rendered inspection of patent page 17 shows surface 38 as `R = +174.462 mm`; parsed text can lose the leading `1` and read `+74.462`. Second, the inserted table prints `d56 = 68.46 mm`, while the same page gives `BF = 68.49 mm` and ¶0059 defines BF as the final lens surface to image plane. Calculations of the patent's inserted state use 68.49 mm; the raw 68.46 mm value remains a documented source discrepancy. No aspherical surfaces are present, so no conic conversion or asphere scaling is applicable.
 
-The production rear filter is excluded from the sequential prescription. No sensor cover glass, inactive dummy surface, flare-cutter plane, or mechanical component is added. The patent publishes an effective diameter for each numerical surface; the model uses one-half of those values as clear semi-diameters except at the aperture stop. The stop is patent surface 30, but its listed 39.75 mm effective diameter does not reproduce the patent f-number as a physical iris. A single physical iris diameter of 38.73079 mm was solved from the two EXT-OUT f/4.12 endpoints and is used for the `STO` semi-diameter.
+The production rear filter is excluded from the sequential prescription. No sensor cover glass, inactive dummy surface, flare-cutter plane, or mechanical component is added. The patent publishes an effective diameter for each numerical surface; the model uses one-half of those values as clear semi-diameters, the aperture stop included. The stop is patent surface 30, and its listed 39.75 mm effective diameter, a `STO` semi-diameter of 19.875 mm, is the opening that sets the patent f-number: a real marginal ray through its edge gives f/4.119 and f/4.120 at the two EXT-OUT endpoints, which the patent prints as f/4.12. Only a paraxial f-number for that opening differs, at f/4.014. The stop sits in the fixed fourth unit ahead of the extender slot, so the one opening serves both zoom endpoints and both extender states.
 
 ## Optical Architecture
 
@@ -329,14 +329,16 @@ With the patent's stated `β > 1`, `Sk > 0`, and `e > 0`, the right-hand side is
 
 ## Verification Summary
 
-Independent reduced-angle y–ν tracing and an ABCD matrix calculation agree to numerical precision when applied to the final TypeScript surface arrays. The resulting first-order values are:
+Independent reduced-angle y–ν tracing and an ABCD matrix calculation agree to numerical precision when applied to the final TypeScript surface arrays. The resulting first-order focal lengths are listed with the f-number that a real marginal ray through the edge of the 39.75 mm stop gives at each endpoint:
 
-| Configuration | Zoom endpoint | Computed EFL | Patent EFL | Modeled F/# | Patent F/# |
+| Configuration | Zoom endpoint | Computed EFL | Patent EFL | F/# from the 39.75 mm stop | Patent F/# |
 |---|---|---:|---:|---:|---:|
-| EXT OUT | Wide | 204.9911 mm | 205.00 mm | 4.12005 | 4.12 |
-| EXT OUT | Tele | 389.9736 mm | 389.99 mm | 4.11995 | 4.12 |
-| EXT IN | Wide | 286.8354 mm | 287.00 mm | 5.76501 | 5.77 |
-| EXT IN | Tele | 545.6471 mm | 545.98 mm | 5.76459 | 5.77 |
+| EXT OUT | Wide | 204.9911 mm | 205.00 mm | 4.1195 | 4.12 |
+| EXT OUT | Tele | 389.9736 mm | 389.99 mm | 4.1200 | 4.12 |
+| EXT IN | Wide | 286.8354 mm | 287.00 mm | 5.7642 | 5.77 |
+| EXT IN | Tele | 545.6471 mm | 545.98 mm | 5.7646 | 5.77 |
+
+The stop admits an axial beam of 24.881 mm radius at the wide endpoint and 47.327 mm at the tele endpoint in either extender state, because everything ahead of the extender slot is shared. The EXT-IN f-numbers fall 0.1 % short of the printed 5.77 mostly because the rounded prescription's EXT-IN focal lengths fall 0.06 % short of the printed ones; the printed focal lengths over the same beam give f/5.767 and f/5.768. These are figures for the stop alone. The ray through the stop's edge lies 0.001–0.004 mm outside the printed half-diameters of surfaces 20, 22, 23, and 24 at the wide endpoint and less than 0.001 mm outside those of surfaces 9 and 15 at the tele endpoint, so with every printed clear aperture applied the axial beam is 24.876 mm and 47.326 mm in radius, limited at surface 22 and at surface 15: f/4.120 at both EXT-OUT endpoints and f/5.765 at both EXT-IN endpoints. The data files state `nominalFno` 4.12005 / 4.11995 with EXT out and 5.76501 / 5.76459 with EXT in, and the wide value sizes the traced wide-open iris at a 19.872 mm semi-diameter in both states, 0.015 % under the printed 19.875 mm.
 
 The rounded prescription sums to 389.85 mm from the first surface to the image plane in each normalized endpoint, while the patent summary prints 389.84 mm. The 0.01 mm difference is consistent with independently rounded row values. Gaussian back focal distances from the rounded arrays are 68.4566 and 68.4523 mm with EXT out and 68.4083 and 68.3998 mm with EXT in; these are calculation results and do not replace the patent's published 68.49 mm BF.
 

@@ -241,9 +241,9 @@ const LENS_DATA = {
   focusDescription: "Inner focus: single negative meniscus G7 (GR2) translates axially. Linear AF motor.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.8,
+  nominalFno: 1.85,
   apertureBlades: 7,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [1.85, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

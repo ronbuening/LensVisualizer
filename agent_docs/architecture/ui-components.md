@@ -95,10 +95,12 @@ To add a tab, follow the five registration points in `agent_docs/adding_an_analy
 thin container over the section components and data hooks in `src/components/display/analysis/aberrations/`; the
 distortion and vignetting tabs consume deferred/frozen inputs through `analysisJobsForState2`.
 
-`MtfTab` defaults to the diffraction-corrected method, a photopic spectrum (with a note when glass dispersion is
+`MtfTab` defaults to the diffraction-corrected method (`diffraction`), a photopic spectrum (with a note when glass dispersion is
 estimated from nd/νd, or the reference line and the reason when a glass blocks spectral sampling), best axial focus
 (with an explanatory note when the lens data's plane contradicts its own paraxial focus; "Design plane (auto)" and
-"Design plane (always)" remain) and the image-height view at 10 % field steps showing 10 and 30 lp/mm. Each dropdown
+"Design plane (always)" remain) and the image-height view at 10 % field steps showing 10 and 30 lp/mm. The header
+qualifies the label f-number with the traced one ("f/1.4 (traced f/1.49, limited by surface 14)") when
+`MtfResult.aperture` differs from it by more than 2 %, except at finite conjugates. Each dropdown
 explains its options in a mouse-hover or keyboard-focus `PortalTooltip`, also linked through `aria-describedby`; on
 hover-less (touch) devices a `HelpTooltipButton` beside each dropdown gives tap access. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
 (10–50 lp/mm) persist in localStorage through `src/utils/state/mtfPreferences.ts` and `useMtfPreferences`, which
@@ -111,10 +113,11 @@ on unmount. `MtfChart` gives each frequency a fixed `chartSeries` slot, labels c
 f/8 and the lens reaches it, "Compare f/8" runs a second worker request with pupil and stop radii scaled by N/8 and
 draws it with thin lines in the same slots. `mtf/MtfControls`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
 the controls, status counts and per-field values; the table copies as CSV (`mtf/mtfCsv.ts`). When
-`assessMtfDataLimitations` lists a gap, `mtf/MtfDataWarning` blurs the chart and field summary, marks them `inert`
-and covers them with a warning card that lists each gap. "Show chart anyway" records the listed kinds for that lens
-system in `src/utils/state/mtfDataWarnings.ts` (`useMtfDataWarning`); the warning then collapses to a `<details>` line
-above the chart. Dismissals are in memory only: they survive tab switches, reset on reload, and a kind of gap not yet
+`assessMtfDataLimitations` lists a `blocking` gap, `mtf/MtfDataWarning` blurs the chart and field summary, marks them
+`inert` and covers them with a warning card that lists every item. "Show chart anyway" records the blocking kinds for
+that lens system in `src/utils/state/mtfDataWarnings.ts` (`useMtfDataWarning`); the warning then collapses to a
+`<details>` line above the chart. Non-blocking notes (source errata) never blur the chart and appear in that line
+from the start. Dismissals are in memory only: they survive tab switches, reset on reload, and a kind of gap not yet
 dismissed on that lens brings the card back. Worker caching, numerical status, the gap kinds and
 optical eligibility are documented in [`Simulated MTF`](optics-engine.md#simulated-mtf).
 

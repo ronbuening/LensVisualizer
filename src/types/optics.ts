@@ -356,6 +356,33 @@ export interface PublishedStations {
   focus?: number[] | number[][];
 }
 
+/** Evidence a source erratum may cite. Every kind is internal to the source document; an MTF chart is never one. */
+export type SourceErratumEvidence = "source-summary" | "sibling-example" | "aberration-figure" | "claims";
+
+/** A value the source prints that contradicts the source's own data and is corrected in this file. */
+export interface CorrectedSourceErratum {
+  status: "corrected";
+  /** Label of the surface the value belongs to. */
+  surface: string;
+  /** `asph` coefficient key (`K`, `A4`, …) or surface field (`R`, `d`, `nd`). */
+  field: string;
+  /** Value as the source prints it. */
+  printed: number;
+  /** Value this file carries instead. */
+  applied: number;
+  /** At least two independent kinds. */
+  evidence: SourceErratumEvidence[];
+  note: string;
+}
+
+/** A contradiction inside the source whose cause is not isolated; the file keeps the printed values. */
+export interface UnresolvedSourceErratum {
+  status: "unresolved";
+  note: string;
+}
+
+export type SourceErratum = CorrectedSourceErratum | UnresolvedSourceErratum;
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
@@ -381,6 +408,8 @@ export interface LensData {
   /** Organizational assignees or applicants named by the source patent; empty when no organization is named. */
   patentAssignees?: string[];
   patentYear?: number;
+  /** Departures from, and unresolved contradictions in, the source's printed values; see LENS_DATA_SPEC.md. */
+  sourceErrata?: SourceErratum[];
   elementCount?: number;
   groupCount?: number;
   visible?: boolean;
@@ -399,8 +428,11 @@ export interface LensData {
   zoomCloseFocusM?: number[];
   /** Published physical iris semi-diameters in mm, one per source zoom station. */
   zoomStopSemiDiameters?: number[];
-  /** Infer physical iris radii at source zoom stations from their nominal f-numbers. */
-  zoomApertureModel?: "from-nominal-fno";
+  /**
+   * How a zoom's wide-open iris follows the zoom. Omitted or `"from-nominal-fno"`: each station's radius is traced
+   * from its nominal f-number. `"fixed-iris"`: the first station's radius is kept at every station.
+   */
+  zoomApertureModel?: "from-nominal-fno" | "fixed-iris";
   focusStep: number;
   maxFstop: number;
   apertureStep: number;
@@ -427,7 +459,6 @@ export interface LensData {
   svgH: number;
   scFill: number;
   yScFill: number;
-  clipMargin: number;
   maxRimAngleDeg: number;
   gapSagFrac: number;
   maxAspectRatio: number;
@@ -451,7 +482,6 @@ type DefaultedFields =
   | "svgW"
   | "svgH"
   | "scFill"
-  | "clipMargin"
   | "maxRimAngleDeg"
   | "gapSagFrac"
   | "maxAspectRatio"
@@ -537,7 +567,6 @@ export interface RuntimeLens {
   readonly maxRimSin: number;
   readonly maxRimTan: number;
   readonly gapSagFrac: number;
-  readonly clipMargin: number;
   readonly gridPitch: number;
   readonly gridCount: number;
   readonly lyDoublet: number;

@@ -134,6 +134,8 @@ The patent gives refractive index and Abbe number, not manufacturer names. For t
 | L14 | 1.55032 / 75.50 | FCD705 | 0.5400 | +0.0277 | single ED-class rear element |
 | L15 | 1.84666 / 23.78 | FDS90 | 0.6191 | +0.0137 | dense-flint rear partner |
 
+The θgF and ΔPgF columns are HOYA's catalog figures; HOYA measures ΔPgF from its own normal line through C7 and F2 (≈ 0.6483 − 0.0018·νd), and the patent itself prints no partial dispersion. The data file does not store that catalog deviation: its `dPgF` is the PgF of the stored nC/nF/ng line indices minus the engine's normal line, 0.6438 − 0.001682·νd, so the two numbers differ (FCD100: catalog +0.0564, stored +0.048767; FCD705: catalog +0.0277, stored +0.023657). NBFD15 and E-F5 are the exception: their catalog figure already lies within 0.0003 of the engine-line value and is stored unchanged.
+
 The chromatic strategy is distributed. The two FCD100 elements give the design its strongest anomalous-dispersion correction, one in the front-group cemented pair and one in the second-group cemented pair. FCD705 in the rear doublet supplies a weaker but still significant ED-class correction in the region where off-axis chief-ray height is large. FC5 in the moving focus group is a light high-Abbe fluoro-crown, but its ΔPgF is not in the same category as the FCD100 and FCD705 elements.
 
 ## Focus Mechanism
@@ -211,4 +213,4 @@ The numerical checks confirm the Example 1 transcription, the focus-variable gap
 1. JP 2017-167327 A, Sigma Corporation / Masakazu Hibino, "Inner-Focus Optical System" (インナーフォーカス光学系), filed 16 March 2016, published 21 September 2017. Prescription, aspherical data, variable-gap table, group focal lengths, and conditional-expression table from 数値実施例1 and ¶0094; design rationale from ¶0019-¶0055; element descriptions from ¶0066-¶0072.
 2. Panasonic official specifications for LEICA DG SUMMILUX 12 mm / F1.4 ASPH. (H-X012): element/group count, special-element count, Micro Four Thirds mount, F1.4 maximum aperture, 0.20 m closest focusing distance, approximately 0.1× maximum magnification, 84° diagonal angle of view, 62 mm filter size, and 9-blade aperture.
 3. Panasonic LEICA DG lens story for H-X012: manufacturer explanation of the 15-element/12-group internal rear-focus optics and special-glass strategy.
-4. HOYA Optical Glass Catalog data file `HOYA20150615.xls`: catalog-equivalent glass names, line indices, θgF, and ΔPgF values used for the `.data.ts` spectral fields.
+4. HOYA Optical Glass Catalog data file `HOYA20150615.xls`: catalog-equivalent glass names and line indices used for the `.data.ts` spectral fields, and the θgF and ΔPgF values quoted in the glass table. The `.data.ts` `dPgF` values are on the engine's normal line, computed from those line indices rather than copied from the catalog's ΔPgF column (see the note under the glass table).

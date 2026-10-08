@@ -375,6 +375,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: G1R (L3-L5) moves 19.124 mm objectward to 0.95 m; D3 decreases and D8 increases by the same amount at each zoom position, preserving the adjacent-gap sum. The patent's printed 9.124 mm value does not reproduce 0.95 m.",
 
   nominalFno: 2.88,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 9,
   maxFstop: 32,

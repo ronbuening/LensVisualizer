@@ -2,46 +2,61 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED                    ║
+ * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP S62-108218 A, Example 3 / Table 3 / Figure 1.          ║
- * ║  16 elements / 11 air-separated groups; all spherical.                    ║
- * ║  Focus status: PUBLISHED. At either zoom endpoint only G1 moves for focus. ║
- * ║  Published close-focus stroke: G1 shifts 10.496 mm objectward.             ║
- * ║                                                                            ║
- * ║  ZOOM / FOCUS GAPS                                                        ║
- * ║    d5:  zoom + focus (G1 -> G2)                                           ║
- * ║    d13: zoom only (G2 -> G3)                                              ║
- * ║    d18: zoom only (G3 -> G4)                                              ║
- * ║  Example 3 publishes only 80 mm and 196 mm endpoints. LensVisualizer      ║
- * ║  therefore linearly interpolates the three published endpoint gaps; no     ║
- * ║  intermediate patent state is asserted.                                   ║
- * ║                                                                            ║
- * ║  STOP MODELING                                                            ║
- * ║  The patent places stop S inside the published 11.400 mm d23 air gap but  ║
- * ║  does not tabulate its axial offset or diameter. STO is modeled at the     ║
- * ║  midpoint: 5.700 mm after surface 23 and 5.700 mm before surface 24.      ║
- * ║  The physical stop SD, 14.759011 mm, is solved from the wide-infinity      ║
- * ║  paraxial entrance pupil for the patent's F/2.88. The same fixed stop      ║
- * ║  gives F/2.88002 at the tele endpoint. The 5.700 + 5.700 mm split          ║
- * ║  preserves the source d23 optical spacing exactly.                         ║
- * ║                                                                            ║
- * ║  SEMI-DIAMETERS                                                           ║
- * ║  The patent does not tabulate clear semi-diameters. Authored SDs were      ║
- * ║  derived from code-traced on-axis marginal and off-axis chief/marginal     ║
- * ║  rays over all four published zoom/focus states at y' = 21.6 mm, then     ║
- * ║  constrained by spherical edge thickness, actual rim slope, shared-gap     ║
- * ║  sag intrusion, and the production mechanical envelope. The 38.0 mm       ║
- * ║  front SD remains inside the 77 mm filter diameter published by Nikon for ║
- * ║  the later optically continuous D version.                                 ║
- * ║                                                                            ║
- * ║  GLASS / SPECTRAL DATA                                                    ║
- * ║  Example 3 publishes d-line nd and vd only. Supplier-neutral labels retain ║
- * ║  those coordinates; compatible catalog curves are spectral proxies only.  ║
- * ║  Source nC, nF, ng, and dPgF values are unavailable and remain omitted.   ║
- * ║                                                                            ║
- * ║  No scale factor is applied. No cover glass, filter, dummy plane, or       ║
- * ║  mechanical component is included.                                        ║
+ * ║  Data source: JP S62-108218 A, Example 3 / Table 3 / Figure 1.               ║
+ * ║  16 elements / 11 air-separated groups; all spherical.                       ║
+ * ║  Surface 17 thickness is 1.700 mm per the applicant's amendment appended     ║
+ * ║  to the publication; Table 3 as first printed gives 1.800 mm. The surface    ║
+ * ║  gaps sum to the amended total length, T.L. = 217.133 mm.                    ║
+ * ║  Focus status: PUBLISHED. At either zoom endpoint only G1 moves for focus.   ║
+ * ║  Published close-focus stroke: G1 shifts 10.496 mm objectward.               ║
+ * ║                                                                              ║
+ * ║  ZOOM / FOCUS GAPS                                                           ║
+ * ║    d5:  zoom + focus (G1 -> G2)                                              ║
+ * ║    d13: zoom only (G2 -> G3)                                                 ║
+ * ║    d18: zoom only (G3 -> G4)                                                 ║
+ * ║  Example 3 publishes only 80 mm and 196 mm endpoints. LensVisualizer         ║
+ * ║  therefore linearly interpolates the three published endpoint gaps; no       ║
+ * ║  intermediate patent state is asserted.                                      ║
+ * ║                                                                              ║
+ * ║  STOP MODELING                                                               ║
+ * ║  The patent places stop S inside the published 11.400 mm d23 air gap but     ║
+ * ║  does not tabulate its axial offset or diameter. STO is modeled at the       ║
+ * ║  midpoint: 5.700 mm after surface 23 and 5.700 mm before surface 24.         ║
+ * ║  The authored STO SD, 14.759011 mm, matches the patent's F/2.88 through      ║
+ * ║  the paraxial entrance pupil: F/2.88004 at wide infinity and, with the       ║
+ * ║  same fixed stop, F/2.88006 at the tele endpoint. The traced iris is set     ║
+ * ║  from nominalFno by the real marginal ray: 15.6801 mm at 80 mm, held at      ║
+ * ║  196 mm (fixed iris), where F/2.88 needs 15.7146 mm. From the iris alone     ║
+ * ║  the stations trace f/2.880 and f/2.886. The 5.700 + 5.700 mm split          ║
+ * ║  preserves the source d23 optical spacing exactly.                           ║
+ * ║                                                                              ║
+ * ║  SEMI-DIAMETERS                                                              ║
+ * ║  The patent does not tabulate clear semi-diameters. Authored SDs were        ║
+ * ║  derived from code-traced on-axis marginal and off-axis chief/marginal       ║
+ * ║  rays over all four published zoom/focus states at y' = 21.6 mm, then        ║
+ * ║  constrained by spherical edge thickness, actual rim slope, shared-gap       ║
+ * ║  sag intrusion, and the production mechanical envelope. Surfaces 7, 9,       ║
+ * ║  10, 12, 13, 15, 16 and 18-23 sit at the height the stated F/2.88 on-axis    ║
+ * ║  ray reaches at the 196 mm station, rounded up to 0.1 mm. Figure 1 draws     ║
+ * ║  L24, L31 and D4 with square-cut rims, and each carries on every face the    ║
+ * ║  highest value any of its faces needs: 18.8 mm on surfaces 10-11, 19.7 mm    ║
+ * ║  on 14-15 and 20.0 mm on 16-18. gapSagFrac = 0.92 is required at the d11     ║
+ * ║  air gap between D3 and L25: at 18.7 mm surfaces 11 and 12 take 0.9103 of    ║
+ * ║  its 2.500 mm and stand 0.224 mm apart, where Figure 1 draws the two         ║
+ * ║  faces meeting at the rim. The iris limits the on-axis beam at both          ║
+ * ║  stations: f/2.88 at 80 mm and f/2.89 at 196 mm. The 38.0 mm front SD        ║
+ * ║  remains inside the 77 mm filter diameter published by Nikon for the         ║
+ * ║  later optically continuous D version.                                       ║
+ * ║                                                                              ║
+ * ║  GLASS / SPECTRAL DATA                                                       ║
+ * ║  Example 3 publishes d-line nd and vd only. Supplier-neutral labels retain   ║
+ * ║  those coordinates; compatible catalog curves are spectral proxies only.     ║
+ * ║  Source nC, nF, ng, and dPgF values are unavailable and remain omitted.      ║
+ * ║                                                                              ║
+ * ║  No scale factor is applied. No cover glass, filter, dummy plane, or         ║
+ * ║  mechanical component is included.                                           ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  *
  * Production metadata sources (identity / mount / format / marketed values only):
@@ -58,7 +73,7 @@ const LENS_DATA = {
   specs: ["16 ELEMENTS / 11 GROUPS", "80-196 mm DESIGN", "F/2.88", "3 LOW-DISPERSION ELEMENTS"],
 
   focalLengthMarketing: [80, 200],
-  focalLengthDesign: [79.99278, 195.98427],
+  focalLengthDesign: [79.9999, 196.00205],
   apertureMarketing: 2.8,
   apertureDesign: 2.88,
   lensMounts: ["nikon-f"],
@@ -211,7 +226,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.75692,
       vd: 31.7,
-      fl: -77.421006,
+      fl: -77.414233,
       glass:
         "757317 — E-LAF11 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
       apd: false,
@@ -291,23 +306,26 @@ const LENS_DATA = {
     { label: "4", R: 103.02, d: 7.2, nd: 1.49782, elemId: 3, sd: 36 },
     { label: "5", R: 2355.419, d: 1.834, nd: 1, elemId: 0, sd: 35 },
     { label: "6", R: -661.36, d: 3.9, nd: 1.62588, elemId: 4, sd: 20 },
-    { label: "7", R: -73.993, d: 1.6, nd: 1.56384, elemId: 5, sd: 19.5 },
+    { label: "7", R: -73.993, d: 1.6, nd: 1.56384, elemId: 5, sd: 19.7 },
     { label: "8", R: 48.003, d: 7.1, nd: 1, elemId: 0, sd: 18.5 },
-    { label: "9", R: -65.921, d: 1.5, nd: 1.5168, elemId: 6, sd: 18.2 },
-    { label: "10", R: 52.925, d: 4.7, nd: 1.80458, elemId: 7, sd: 18.3 },
-    { label: "11", R: 557.45, d: 2.5, nd: 1, elemId: 0, sd: 18.3 },
-    { label: "12", R: -90.1, d: 1.6, nd: 1.713, elemId: 8, sd: 18.3 },
-    { label: "13", R: 221.989, d: 26.536, nd: 1, elemId: 0, sd: 18.6 },
-    { label: "14", R: 861.84, d: 4.5, nd: 1.51835, elemId: 9, sd: 19.2 },
-    { label: "15", R: -67.73, d: 0.2, nd: 1, elemId: 0, sd: 19.2 },
-    { label: "16", R: 104.039, d: 7.5, nd: 1.56384, elemId: 10, sd: 19.5 },
-    { label: "17", R: -52.847, d: 1.8, nd: 1.75692, elemId: 11, sd: 19.5 },
-    { label: "18", R: -546.069, d: 18.005, nd: 1, elemId: 0, sd: 19.5 },
-    { label: "19", R: 50.319, d: 5.8, nd: 1.49782, elemId: 12, sd: 19.5 },
-    { label: "20", R: 885.62, d: 0.2, nd: 1, elemId: 0, sd: 19.2 },
-    { label: "21", R: 43.598, d: 6.4, nd: 1.48749, elemId: 13, sd: 18.5 },
-    { label: "22", R: -29900, d: 1.8, nd: 1.80458, elemId: 14, sd: 18 },
-    { label: "23", R: 292.52, d: 5.7, nd: 1, elemId: 0, sd: 17.5 },
+    { label: "9", R: -65.921, d: 1.5, nd: 1.5168, elemId: 6, sd: 18.3 },
+    { label: "10", R: 52.925, d: 4.7, nd: 1.80458, elemId: 7, sd: 18.8 },
+    // 11 shares L24's square rim with 10; 11 and 12 take 0.9103 of the 2.5 mm gap between them (gapSagFrac 0.92)
+    { label: "11", R: 557.45, d: 2.5, nd: 1, elemId: 0, sd: 18.8 },
+    { label: "12", R: -90.1, d: 1.6, nd: 1.713, elemId: 8, sd: 18.7 },
+    { label: "13", R: 221.989, d: 26.536, nd: 1, elemId: 0, sd: 19.2 },
+    // L31 has a square rim: 14 carries the height 15 needs
+    { label: "14", R: 861.84, d: 4.5, nd: 1.51835, elemId: 9, sd: 19.7 },
+    { label: "15", R: -67.73, d: 0.2, nd: 1, elemId: 0, sd: 19.7 },
+    { label: "16", R: 104.039, d: 7.5, nd: 1.56384, elemId: 10, sd: 20 },
+    // D4 has one square rim: the junction carries the height 16 and 18 need
+    { label: "17", R: -52.847, d: 1.7, nd: 1.75692, elemId: 11, sd: 20 },
+    { label: "18", R: -546.069, d: 18.005, nd: 1, elemId: 0, sd: 20 },
+    { label: "19", R: 50.319, d: 5.8, nd: 1.49782, elemId: 12, sd: 20 },
+    { label: "20", R: 885.62, d: 0.2, nd: 1, elemId: 0, sd: 19.8 },
+    { label: "21", R: 43.598, d: 6.4, nd: 1.48749, elemId: 13, sd: 18.9 },
+    { label: "22", R: -29900, d: 1.8, nd: 1.80458, elemId: 14, sd: 18.3 },
+    { label: "23", R: 292.52, d: 5.7, nd: 1, elemId: 0, sd: 17.8 },
     { label: "STO", R: 1e15, d: 5.7, nd: 1, elemId: 0, sd: 14.759011 },
     { label: "24", R: 567.53, d: 1.5, nd: 1.744, elemId: 15, sd: 14.8 },
     { label: "25", R: 28.808, d: 16.7, nd: 1, elemId: 0, sd: 14.8 },
@@ -364,10 +382,13 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: 2.88,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   /* ── Layout ── */
+  // Surfaces 11 and 12 (D3 rear, L25 front) take 0.9103 of the 2.500 mm d11 air gap at 18.7 mm
+  gapSagFrac: 0.92,
   yScFill: 0.44,
 } satisfies LensDataInput;
 

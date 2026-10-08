@@ -76,7 +76,7 @@ function chartOptions(L, zoomT, overrides) {
   const stop = wideOpenStopAtZoom(zoomT, L);
   const geometry = computeAnalysisFieldGeometryAtState(0, zoomT, L, 0);
   return {
-    method: "geometric-dl",
+    method: "diffraction",
     spectrum: "photopic",
     focus: "best-axial",
     maxGridSize: 64,
@@ -223,7 +223,10 @@ async function census() {
       spectrum,
       referenceWavelengthNm: support.referenceWavelengthNm,
       result,
-    }).map((gap) => gap.kind);
+    })
+      // Non-blocking notes never blur a chart, which is what this census counts.
+      .filter((gap) => gap.blocking)
+      .map((gap) => gap.kind);
     const glasses = drawnGlasses(L, state);
     const estimatedIds = new Set(assessMtfSpectralData(state).estimatedElementIds);
     const estimated = glasses.filter((element) => estimatedIds.has(element.id));

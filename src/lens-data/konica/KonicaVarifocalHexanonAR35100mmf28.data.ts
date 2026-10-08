@@ -328,6 +328,7 @@ const LENS_DATA = {
   focusDescription: "The patent supplies infinity zoom states only. The product minimum focus is 0.2667 m; finite-focus motion is not modeled.",
 
   nominalFno: 2.8,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
 
   yScFill: 0.46,

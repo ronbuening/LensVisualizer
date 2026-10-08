@@ -2,26 +2,36 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — Nikon AF-S NIKKOR 70-200mm f/2.8G ED VR II           ║
+ * ║  LENS DATA — Nikon AF-S NIKKOR 70-200mm f/2.8G ED VR II              ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 8,416,506 B2, Example 6, Table 6.                ║
- * ║  Positive-negative-positive-negative-positive internal zoom.       ║
- * ║  21 elements / 16 groups, all-spherical prescription.              ║
- * ║  Focus: G3 internal focus; G5b is the vibration-reduction group.   ║
- * ║                                                                    ║
- * ║  Zoom variable gaps: 7 (d1), 15 (d2), 20 (d3), 22 (d4).           ║
- * ║  Focus variable gaps: 15 (d2) and 20 (d3), reconstructed           ║
- * ║    paraxially from Nikon's published 1.4 m minimum focus distance. ║
- * ║  Fixed patent back focus: 38 (BF).                                 ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    The patent does not tabulate clear apertures. Semi-diameters    ║
- * ║    are inferred from the f/2.89 stop geometry and paraxial ray      ║
- * ║    envelopes, then reduced where necessary to preserve element      ║
- * ║    edge thickness and cross-gap sag clearance. The front collector ║
- * ║    is constrained by the production 77 mm filter thread; the        ║
- * ║    diagram therefore represents a mechanically plausible clear      ║
- * ║    aperture rather than an unvignetted full-field ray envelope.     ║
+ * ║  Data source: US 8,416,506 B2, Example 6, Table 6.                   ║
+ * ║  Positive-negative-positive-negative-positive internal zoom.         ║
+ * ║  21 elements / 16 groups, all-spherical prescription.                ║
+ * ║  Focus: G3 internal focus; G5b is the vibration-reduction group.     ║
+ * ║                                                                      ║
+ * ║  Zoom variable gaps: 7 (d1), 15 (d2), 20 (d3), 22 (d4).              ║
+ * ║  Focus variable gaps: 15 (d2) and 20 (d3), reconstructed             ║
+ * ║    paraxially from Nikon's published 1.4 m minimum focus distance.   ║
+ * ║  Fixed patent back focus: 38 (BF).                                   ║
+ * ║                                                                      ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                             ║
+ * ║    The patent does not tabulate clear apertures. Semi-diameters      ║
+ * ║    are inferred from the f/2.89 stop geometry and paraxial ray       ║
+ * ║    envelopes, then reduced where necessary to preserve element       ║
+ * ║    edge thickness and cross-gap sag clearance. The front collector   ║
+ * ║    is constrained by the production 77 mm filter thread; the         ║
+ * ║    diagram therefore represents a mechanically plausible clear       ║
+ * ║    aperture rather than an unvignetted full-field ray envelope.      ║
+ * ║    In G2 the f/2.89 on-axis ray reaches 18.796 / 18.791 / 19.048     ║
+ * ║    mm on surfaces 12-14 at 196 mm and infinity focus. Surfaces 12    ║
+ * ║    and 14 carry that height rounded up to 0.1 mm: 18.8 and 19.1      ║
+ * ║    mm. FIG. 26 cuts the L24 rim square, so surface 13 carries        ║
+ * ║    surface 14's 19.1 mm. L23 rear (12) and L24 front (13) use        ║
+ * ║    95.4 % of their 4.2 mm air gap at the 18.8 mm rim, 0.19 mm        ║
+ * ║    clear, and would touch at 19.24 mm; FIG. 26 draws the two         ║
+ * ║    elements meeting at the rim, so gapSagFrac is 0.96 for that       ║
+ * ║    pair. Wide open at infinity all three zoom stations trace         ║
+ * ║    f/2.89 on the iris.                                               ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -328,9 +338,11 @@ const LENS_DATA = {
     { label: "9", R: 33.2041, d: 10.0, nd: 1.0, elemId: 0, sd: 20.4 },
     { label: "10", R: -117.4258, d: 2.1, nd: 1.48749, elemId: 6, sd: 21.1 },
     { label: "11", R: 37.996, d: 6.2, nd: 1.84666, elemId: 7, sd: 21.1 },
-    { label: "12", R: 287.5696, d: 4.2, nd: 1.0, elemId: 0, sd: 17.9 },
-    { label: "13", R: -53.8038, d: 3.3, nd: 1.805181, elemId: 8, sd: 17.9 },
-    { label: "14", R: -38.973, d: 2.1, nd: 1.816, elemId: 9, sd: 17.9 },
+    // Surfaces 12 and 14: the f/2.89 on-axis ray height at 196 mm, infinity focus, rounded up to 0.1 mm.
+    // Surface 13 carries the surface-14 value: FIG. 26 cuts the L24 rim square.
+    { label: "12", R: 287.5696, d: 4.2, nd: 1.0, elemId: 0, sd: 18.8 },
+    { label: "13", R: -53.8038, d: 3.3, nd: 1.805181, elemId: 8, sd: 19.1 },
+    { label: "14", R: -38.973, d: 2.1, nd: 1.816, elemId: 9, sd: 19.1 },
     { label: "15", R: -2687.3318, d: 25.896, nd: 1.0, elemId: 0, sd: 22.0 },
 
     { label: "16", R: -1365.0388, d: 3.8, nd: 1.743997, elemId: 10, sd: 25.0 },
@@ -424,10 +436,12 @@ const LENS_DATA = {
   focusDescription:
     "Internal focusing by imageward translation of G3. Close-focus spacing is a paraxial reconstruction constrained by Nikon's published 1.4 m minimum focus distance.",
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.89,
+  zoomApertureModel: "fixed-iris",
+  fstopSeries: [2.89, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
+  gapSagFrac: 0.96, // L23 rear (12) / L24 front (13): 95.4 % of the 4.2 mm gap at the 18.8 mm rim, 0.19 mm clear
   scFill: 0.62,
   yScFill: 0.78,
 } satisfies LensDataInput;

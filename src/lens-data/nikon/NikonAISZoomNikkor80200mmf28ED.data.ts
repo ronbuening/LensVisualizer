@@ -340,6 +340,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: the patent assigns focusing to G1 but gives no finite-object table. Close-focus D5 values are solved at each zoom position for a 2.5 m object distance measured from the image plane, with G1 translating objectward and G2-G4 plus the image plane fixed relative to one another.",
 
   nominalFno: 2.8,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
 

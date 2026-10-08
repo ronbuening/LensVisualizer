@@ -1898,11 +1898,13 @@ describe("zoom source schedules", () => {
         ),
       ).toBe(true);
     }
-    expect(
-      validateLensData(makeValid({ zoomPositions: [20, 35, 50], zoomApertureModel: "unknown" })).some((e) =>
-        e.includes("zoomApertureModel"),
-      ),
-    ).toBe(true);
+    const modelErrors = (overrides: Record<string, unknown>) =>
+      validateLensData(makeValid(overrides)).filter((e) => e.includes("zoomApertureModel"));
+    expect(modelErrors({ zoomPositions: [20, 35, 50], zoomApertureModel: "unknown" })).toHaveLength(1);
+    expect(modelErrors({ zoomApertureModel: "fixed-iris" })).toHaveLength(1);
+    for (const zoomApertureModel of ["from-nominal-fno", "fixed-iris"]) {
+      expect(modelErrors({ zoomPositions: [20, 35, 50], zoomApertureModel })).toHaveLength(0);
+    }
   });
 });
 
@@ -1912,5 +1914,70 @@ describe("published image-circle diameter", () => {
   });
   it.each([0, -1, NaN, Infinity, "8.7"])("rejects invalid diameter %s", (imageCircleMm) => {
     expect(validateLensData(makeValid({ imageCircleMm })).some((error) => error.includes("imageCircleMm"))).toBe(true);
+  });
+});
+
+describe("source errata", () => {
+  const corrected = {
+    status: "corrected",
+    surface: "1",
+    field: "R",
+    printed: -100,
+    applied: 100,
+    evidence: ["source-summary", "sibling-example"],
+    note: "Printed sign contradicts the stated focal length.",
+  };
+  const errataErrors = (sourceErrata: unknown) =>
+    validateLensData(makeValid({ sourceErrata })).filter((error) => error.includes("sourceErrata"));
+  it("accepts a correction the file carries and an unresolved contradiction", () => {
+    expect(
+      errataErrors([corrected, { status: "unresolved", note: "Table and summary focal lengths differ." }]),
+    ).toEqual([]);
+    const coefficient = { ...corrected, field: "A4", printed: 1e-6, applied: -1e-6 };
+    const asph = { "1": { K: 0, A4: -1e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } };
+    expect(
+      validateLensData(makeValid({ asph, sourceErrata: [coefficient] })).filter((e) => e.includes("sourceErrata")),
+    ).toEqual([]);
+  });
+  it("requires the applied value to be the one in the file", () => {
+    expect(errataErrors([{ ...corrected, applied: 90 }]).join(" ")).toContain("must carry the applied value 90");
+    expect(errataErrors([{ ...corrected, field: "A4" }]).join(" ")).toContain("must carry the applied value");
+  });
+  it("checks the host's last gap on the bare host only, since a converter replaces it", () => {
+    const host = teleconverterHostData();
+    const last = host.surfaces.at(-1)!;
+    const sourceErrata = [{ ...corrected, surface: last.label, field: "d", printed: last.d + 1, applied: last.d }];
+    expect(validateLensData({ ...host, sourceErrata }).filter((e) => e.includes("sourceErrata"))).toEqual([]);
+    const composed = attachTeleconverter({ ...host, sourceErrata } as typeof host, teleconverterFixture());
+    expect(composed.surfaces.find((surface) => surface.label === last.label)!.d).not.toBe(last.d);
+    expect(validateLensData(composed).filter((e) => e.includes("sourceErrata"))).toEqual([]);
+    // Any other value of the host must still match on the composed system.
+    const first = host.surfaces[0];
+    const wrong = [{ ...corrected, surface: first.label, field: "R", printed: first.R + 1, applied: first.R + 2 }];
+    expect(
+      validateLensData(attachTeleconverter({ ...host, sourceErrata: wrong } as typeof host, teleconverterFixture()))
+        .filter((e) => e.includes("sourceErrata"))
+        .join(" "),
+    ).toContain("must carry the applied value");
+  });
+  it("rejects thin, external or malformed evidence", () => {
+    expect(errataErrors([{ ...corrected, evidence: ["sibling-example"] }]).join(" ")).toContain("at least 2 kinds");
+    expect(errataErrors([{ ...corrected, evidence: ["sibling-example", "sibling-example"] }]).join(" ")).toContain(
+      "at least 2 kinds",
+    );
+    expect(errataErrors([{ ...corrected, evidence: ["source-summary", "manufacturer-chart"] }]).join(" ")).toContain(
+      "source-internal kinds",
+    );
+  });
+  it.each([
+    ["a non-array", { status: "unresolved", note: "x" }, "must be an array"],
+    ["a missing note", [{ status: "unresolved" }], "non-empty note"],
+    ["an unknown status", [{ status: "fixed", note: "x" }], "status must be"],
+    ["an unknown surface", [{ ...corrected, surface: "99" }], "must match a surface label"],
+    ["an unknown field", [{ ...corrected, field: "sd" }], "asph coefficient key"],
+    ["an unchanged value", [{ ...corrected, printed: 100 }], "differs from the printed one"],
+    ["a non-finite value", [{ ...corrected, printed: NaN }], "printed must be a finite number"],
+  ])("rejects %s", (_label, sourceErrata, message) => {
+    expect(errataErrors(sourceErrata).join(" ")).toContain(message);
   });
 });

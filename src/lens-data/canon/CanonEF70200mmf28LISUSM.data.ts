@@ -454,6 +454,7 @@ const LENS_DATA = {
     "Patent g2 is the axial focusing unit, but Example 1 has no published close-focus spacing table. This data model therefore keeps all internal focus endpoints identical; 1.4 m is Canon production metadata only.",
 
   nominalFno: 2.9,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 8,
   maxFstop: 32,
