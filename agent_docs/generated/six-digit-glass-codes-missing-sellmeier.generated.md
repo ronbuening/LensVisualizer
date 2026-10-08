@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **900** lenses scanned
-- **1934** total code-only elements found
-- **336** elements in this report
+- **1929** total code-only elements found
+- **331** elements in this report
 - **129** distinct lens files affected
 - **23** active unreviewed elements have no review-record hit or explicit disposition
-- **183** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **178** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -57,12 +57,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 531559 | 4 | 3 | patents/US20200142167A1.pdf<br>patents/US20230213739A1.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
 | 545560 | 4 | 1 | patents/US20180364457A1.pdf | All rows explicitly disposed |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
-| 835427 | 4 | 3 | patents/JP2015166834A.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 544561 | 3 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 684313 | 3 | 2 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 720521 | 3 | 3 | patents/US4444473.pdf<br>patents/US4124276.pdf | All rows have review records |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
+| 835427 | 3 | 2 | patents/JP2015166834A.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 841433 | 3 | 2 | patents/JP_S4871634_A.pdf<br>patents/US3771853.pdf | All rows explicitly disposed |
 | 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All rows have review records |
@@ -160,8 +160,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All rows have review records |
 | 617308 | 1 | 1 | patents/US5528428.pdf | All rows have review records |
 | 617443 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
-| 620363 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
-| 620364 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 622639 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
 | 624584 | 1 | 1 | patents/JP2025052870A.pdf | All rows have review records |
 | 625533 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
@@ -175,8 +173,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 640433 | 1 | 1 | patents/US2516724.pdf | All rows explicitly disposed |
 | 641589 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 646287 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
-| 648337 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
-| 648339 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 650396 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 656277 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 656337 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
@@ -203,8 +199,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 683330 | 1 | 1 | patents/US20160266350A1.pdf | All rows have review records |
 | 684316 | 1 | 1 | patents/US20100149663A1.pdf | All rows explicitly disposed |
 | 685309 | 1 | 1 | patents/US20160154221A1.pdf | All rows explicitly disposed |
-| 689311 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
-| 689313 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
+| 689312 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 691536 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 693495 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
 | 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
@@ -218,8 +213,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 721234 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | All rows have review records |
 | 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
-| 728283 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
-| 728285 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 728380 | 1 | 1 | patents/GB_978797_A.pdf | All rows explicitly disposed |
 | 728403 | 1 | 1 | patents/US6560042.pdf | All rows explicitly disposed |
 | 729364 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
@@ -279,7 +272,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 820466 | 1 | 1 | patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
 | 827336 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 831265 | 1 | 1 | patents/US3615126.pdf | All rows explicitly disposed |
-| 835431 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 837333 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 839196 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
@@ -301,7 +293,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 910313 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
 | 916364 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 917352 | 1 | 1 | patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
-| 923209 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 946180 | 1 | 1 | patents/CN114755806A.pdf | All rows explicitly disposed |
 | 958300 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 961323 | 1 | 1 | patents/WO_2024247472_A1.pdf | All rows explicitly disposed |
@@ -1098,13 +1089,8 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (728283-728285 class; mixed e-line-like n / d-line νd)` | 1.73432 / 28.32 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
-| L2 (Element 2) | 3A | `Unmatched (773496 class; mixed e-line-like n / d-line νd)` | 1.77641 / 49.70 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
-| L3 (Element 3) | 6 | `Unmatched (620363-620364 class; mixed e-line-like n / d-line νd)` | 1.62408 / 36.30 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
-| L4 (Element 4) | 8 | `Unmatched (923209 class; mixed e-line-like n / d-line νd)` | 1.93323 / 20.88 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
-| L5 (Element 5) | 10 | `Unmatched (835427-835431 class; mixed e-line-like n / d-line νd)` | 1.83945 / 42.72 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
-| L6 (Element 6) | 11 | `Unmatched (648337-648339 class; mixed e-line-like n / d-line νd)` | 1.65222 / 33.84 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
-| L7 (Element 7) | 13A | `Unmatched (689311-689313 class; mixed e-line-like n / d-line νd)` | 1.69385 / 31.19 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
+| L2 (Element 2) | 3A | `Unmatched (printed coordinates; nearest e-line row is the 773496 class at 1.77621; no vendor row at either line)` | 1.77641 / 49.70 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
+| L7 (Element 7) | 13A | `Unmatched (printed coordinates; nearest e-line row is the 689312 class at 1.69415; no vendor row at either line)` | 1.69385 / 31.19 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
 
 ### [SAMYANG AF 50mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF50mmf14FE.data.ts)
 
