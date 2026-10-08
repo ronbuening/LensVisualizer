@@ -236,3 +236,39 @@ Final repository verification for this follow-up passed `audit:surface`, `audit:
 files / 2,527 tests, and the 984-route production build. The in-app browser exposed no runnable browser session, so the
 final application-page visual check could not be repeated; the high-resolution patent measurement, geometry validator,
 and built SVG data are the recorded comparison evidence.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+Checked against local `patents/JPA 2024167569-000000.pdf` (13 pages; confirmed as JP 2024-167569 A, Cosina, Example 1).
+
+- **Patent formula:** none. The patent defines no partial-dispersion deviation and prints no `PgF` / `θgF` anywhere.
+  Table 1 (PDF p. 7) lists only `Glass`, `nd`, and `νd` per element; Tables 2 and 3 (PDF pp. 9 and 11) print no
+  partial dispersion either, and Table 4 (PDF p. 12) carries only system specifications. Paragraphs 0012 and 0025
+  (PDF pp. 4 and 6) call the L4 glass anomalous-dispersion qualitatively, through the `nd`–`νd` band of Claim 5, with
+  no number attached.
+- **What the file stored:** vendor data-sheet deviations, each measured from the vendor's own normal line. The HOYA
+  FDS90 and TAFD55 figures fit `PgF − 0.64833 + 0.0018·νd` to four decimals. The engine's line is
+  `0.6438 − 0.001682·νd`, so those figures were not runtime-line values.
+- **Rule applied:** all six elements author `nC`, `nF`, and `ng`, so the trace uses those indices and `dPgF` is an
+  annotation. With no patent figure, each `dPgF` is now `(ng − nF)/(nF − nC)` of the element's own stored indices minus
+  `0.6438 − 0.001682·νd`. A stored value already within 0.0003 of that figure was left exactly as it was. No `nd`,
+  `νd`, `nC`, `nF`, `ng`, glass label, or `apd` tag changed.
+
+| Element | Glass | νd | Source figure (own `nC`/`nF`/`ng`) | Repo catalog `PgF` | Stored before | Stored after |
+|---|---|---:|---:|---:|---:|---:|
+| L1f | TAFD37A (HOYA) | 37.37 | `PgF` 0.576682 → −0.004262 | 0.5769 | −0.0043 | −0.0043 (unchanged) |
+| L1r | J-SF14 (HIKARI) | 26.58 | `PgF` 0.612730 → +0.013637 | 0.6127 | +0.013 | +0.013637 |
+| L2f | FDS90 (HOYA) | 23.78 | `PgF` 0.619181 → +0.015379 | 0.6192 | +0.0137 | +0.015379 |
+| L2r | TAFD37A (HOYA) | 37.37 | `PgF` 0.576682 → −0.004262 | 0.5769 | −0.0043 | −0.0043 (unchanged) |
+| L3 | TAFD55 (HOYA) | 29.13 | `PgF` 0.599482 → +0.004679 | 0.5995 | +0.0036 | +0.004679 |
+| L4 | S-NBH5 (OHARA) | 39.68 | `PgF` 0.574029 → −0.003029 | 0.5738 | −0.0036 | −0.003029 |
+
+- **Left as stored:** L1f and L2r (TAFD37A). The stored −0.0043 is 0.000038 from the own-index figure −0.004262, inside
+  the 0.0003 tolerance, so it was not re-rounded.
+- **Precision note for L4:** the OHARA indices are stored to five decimals, which limits the own-index `PgF` to roughly
+  ±0.0005. The repo's S-NBH5 catalog curve gives `PgF` 0.5738, i.e. −0.003302 on the engine line; the stored −0.003029
+  follows the authored indices because those are what the trace uses.
+- **Notes updated:** the L1r and L4 `apdNote` strings now quote the own-index `PgF`, the vendor's data-sheet deviation
+  labelled as the vendor's, and the runtime value. The data-file header gained a partial-dispersion note, and the
+  analysis sentences and glass table that quoted the old figures now quote the stored ones.
+- The helper `.lens-work/audit-tools/dpgfcheck.mjs` reports the edited file builds and validates.

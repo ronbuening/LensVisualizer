@@ -29,10 +29,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ from this prescription.                                            ║
  * ║                                                                    ║
  * ║ GLASS: names are catalog-equivalent matches or explicitly          ║
- * ║ disclosed proxies, not patent-stated vendors. Patent dPgF is       ║
- * ║ retained directly. L9 and L13r use exact catalog curves; L16 uses  ║
- * ║ a disclosed line-index proxy. APD flags follow the six positions   ║
- * ║ marked in Cosina's production section, mapped by topology.         ║
+ * ║ disclosed proxies, not patent-stated vendors. L9 and L13r use      ║
+ * ║ exact catalog curves; L16 uses a disclosed line-index proxy. APD   ║
+ * ║ flags follow the six positions marked in Cosina's production       ║
+ * ║ section, mapped by topology.                                       ║
+ * ║                                                                    ║
+ * ║ NOTE ON PARTIAL DISPERSION: Table 6 prints only the patent's       ║
+ * ║ deviation ΔPgF = PgF − 0.64833 + 0.00180·νd (¶0061), which the     ║
+ * ║ analysis quotes. `dPgF` is PgF minus the engine's normal line      ║
+ * ║ (0.6438 − 0.001682·νd), with PgF recovered from the printed        ║
+ * ║ ΔPgF. L10f, L12f and L16 keep the printed figure: it is within     ║
+ * ║ 0.0003 of the engine-line value. Every element authors nC/nF/ng,   ║
+ * ║ so the trace uses those indices and `dPgF` is an annotation.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  *
  * 2026-09-25 source recheck: Table 6 S17 is R=580.403, d=5.45 mm,
@@ -83,8 +91,8 @@ const LENS_DATA = {
       glass: "H-K9LGT (CDGM) equivalent — 517642",
       apd: false,
       apdNote:
-        "Patent ΔPgF = +0.0031; this position is not one of the six APD elements marked in Cosina's production section.",
-      dPgF: 0.0031,
+        "Patent ΔPgF = +0.0031 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.535870; runtime dPgF +0.000054. This position is not one of the six APD elements marked in Cosina's production section.",
+      dPgF: 0.000054,
       nC: 1.5143265355014959,
       nF: 1.522376656476826,
       ng: 1.5266903171582615,
@@ -120,8 +128,8 @@ const LENS_DATA = {
       glass: "S-NBH58 (OHARA) equivalent — 789284",
       apd: "inferred",
       apdNote:
-        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0037.",
-      dPgF: 0.0037,
+        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0037 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.600856; runtime dPgF +0.004875.",
+      dPgF: 0.004875,
       nC: 1.78076,
       nF: 1.8085,
       ng: 1.82518,
@@ -139,8 +147,8 @@ const LENS_DATA = {
       glass: "TAFD55 (HOYA) equivalent — 001291",
       apd: false,
       apdNote:
-        "Patent ΔPgF = +0.0036; this position is not one of the six APD elements marked in Cosina's production section.",
-      dPgF: 0.0036,
+        "Patent ΔPgF = +0.0036 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.599496; runtime dPgF +0.004693. This position is not one of the six APD elements marked in Cosina's production section.",
+      dPgF: 0.004693,
       nC: 1.9910461402030342,
       nF: 2.025403881691904,
       ng: 2.0460011117376657,
@@ -176,8 +184,8 @@ const LENS_DATA = {
       glass: "NBFD25 (HOYA) equivalent — 855252",
       apd: "inferred",
       apdNote:
-        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0072.",
-      dPgF: 0.0072,
+        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0072 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.610260; runtime dPgF +0.008762.",
+      dPgF: 0.008762,
       nC: 1.8447296685445198,
       nF: 1.878699672495783,
       ng: 1.8994309735035382,
@@ -195,8 +203,8 @@ const LENS_DATA = {
       glass: "S-NBH8 (OHARA) equivalent — 720347",
       apd: "inferred",
       apdNote:
-        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = -0.0025.",
-      dPgF: -0.0025,
+        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = -0.0025 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.583352; runtime dPgF -0.002066.",
+      dPgF: -0.002066,
       nC: 1.71437,
       nF: 1.73512,
       ng: 1.74723,
@@ -214,8 +222,8 @@ const LENS_DATA = {
       glass: "J-PSKH8 (HIKARI) equivalent — 628592",
       apd: "inferred",
       apdNote:
-        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0139.",
-      dPgF: 0.0139,
+        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0139 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.555724; runtime dPgF +0.011448.",
+      dPgF: 0.011448,
       nC: 1.625268,
       nF: 1.635889,
       ng: 1.641791,
@@ -233,8 +241,8 @@ const LENS_DATA = {
       glass: "S-LAH93 (OHARA) equivalent — 905350",
       apd: false,
       apdNote:
-        "Patent ΔPgF = -0.0005; this position is not one of the six APD elements marked in Cosina's production section.",
-      dPgF: -0.0005,
+        "Patent ΔPgF = -0.0005 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.584758; runtime dPgF -0.000105. This position is not one of the six APD elements marked in Cosina's production section.",
+      dPgF: -0.000105,
       nC: 1.89768,
       nF: 1.92351,
       ng: 1.93862,
@@ -251,8 +259,8 @@ const LENS_DATA = {
       glass: "FCD705 (HOYA) equivalent — 550755",
       apd: "inferred",
       apdNote:
-        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0277.",
-      dPgF: 0.0277,
+        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0277 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.540130; runtime dPgF +0.023321.",
+      dPgF: 0.023321,
       nC: 1.5481010815705685,
       nF: 1.5553904824529587,
       ng: 1.559326656732765,
@@ -270,8 +278,8 @@ const LENS_DATA = {
       glass: "S-NBH8 (OHARA) equivalent — 720347",
       apd: "inferred",
       apdNote:
-        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = -0.0025.",
-      dPgF: -0.0025,
+        "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = -0.0025 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.583352; runtime dPgF -0.002066.",
+      dPgF: -0.002066,
       nC: 1.71437,
       nF: 1.73512,
       ng: 1.74723,

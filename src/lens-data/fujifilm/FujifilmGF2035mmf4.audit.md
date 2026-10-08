@@ -58,3 +58,44 @@ only as an upper bound.
 The validator accepts the new values, `--scan` shows no turnover on 3A or 4A to 1.2× the new heights, the traced edge
 reaches 27.39 mm with every rim clear at all three stations, and the image-circle floor reports nothing undersized. The
 analysis departure table now quotes 3A at 17.4 mm (+882.139 µm) and 4A at 14.3 mm (−67.281 µm).
+
+## 2026-10-08 - dPgF checked against the patent
+
+- Reviewed local `patents/US20220236544A1.pdf` (57 pages). ¶[0034] on PDF page 31 defines the partial dispersion ratio
+  as θgF = (Ng − NF)/(NF − NC). The patent's own deviation is conditional expression (18), θMp + 0.0018 × νMp − 0.64833,
+  i.e. measured against the line 0.64833 − 0.0018·νd: ¶[0090] on PDF page 35 (printed page 7, where the body text sets
+  the parentheses as "(θMp+0.0018)×(νMp−0.64833)") and the expression rows of Tables 31–33 on PDF pages 54–55. Table 33
+  (PDF page 55, printed page 27) prints 0.037 for Example 10, which the νd 81.61 / θgF 0.53887 middle-group glass
+  reproduces (0.53887 + 0.0018 × 81.61 − 0.64833 = 0.03744).
+- Table 28 (Example 10, PDF page 53, printed page 25) prints an absolute θgF for every glass row. The digits below were
+  read from the rendered page and agree with the text layer.
+- Every stored `dPgF` equals the Table 28 θgF minus the engine's line 0.6438 − 0.001682·νd, to within 0.000005 (the
+  five-decimal rounding of the stored figure). None is the patent's own deviation. No `dPgF`, `apdNote` or comment
+  changed in the data file, and the analysis sidecar needed no edit: its statement that Table 28's θgF values were
+  converted to the project's `dPgF` convention is correct. The rear plate PP (row 26, νd 64.20, θgF 0.53430) is likewise
+  already on the engine's line (−0.001516 against the stored −0.00152).
+- A screen that compares stored values with catalog curves flagged this file. That is a false alarm. Table 28's θgF
+  differs from the catalog curve of the labelled glass on several rows: S-NPH3 0.65862 against 0.6599 (L11), S-TIH53
+  0.61771 against 0.6205 (L14), E-FD8 0.60109 against 0.5990 (L22), N-FK5 0.52933 against 0.5290 (L31), FCD1 0.53887
+  against 0.5377 (L33, L42), MC-FCD1-M20 0.53743 against 0.5360 (L34) and N-LASF46B 0.59481 against 0.5956 (L41). The
+  stored values follow the patent's printed figures, not the catalog curves, so a mismatch against the catalog says
+  nothing about which line they are on.
+- Left: nothing. All fourteen elements carry a patent-printed θgF, none uses `indexReference: "e"`, and none authors
+  nC/nF/ng.
+
+| Element | νd | Source figure (Table 28, PDF page 53) | Stored before | Stored after |
+| --- | ---: | --- | ---: | ---: |
+| L11 | 17.47 | Row 1: θgF 0.65862; minus the engine line = +0.044205 | 0.0442 | 0.0442 (unchanged) |
+| L12 | 59.46 | Row 3: θgF 0.54056; minus the engine line = −0.003228 | −0.00323 | −0.00323 (unchanged) |
+| L13 | 81.60 | Row 5: θgF 0.53774; minus the engine line = +0.031191 | 0.03119 | 0.03119 (unchanged) |
+| L14 | 23.79 | Row 6: θgF 0.61771; minus the engine line = +0.013925 | 0.01392 | 0.01392 (unchanged) |
+| L21 | 35.25 | Row 8: θgF 0.58224; minus the engine line = −0.002270 | −0.00227 | −0.00227 (unchanged) |
+| L22 | 31.20 | Row 10: θgF 0.60109; minus the engine line = +0.009768 | 0.00977 | 0.00977 (unchanged) |
+| L31 | 70.44 | Row 13: θgF 0.52933; minus the engine line = +0.004010 | 0.00401 | 0.00401 (unchanged) |
+| L32 | 47.71 | Row 14: θgF 0.55566; minus the engine line = −0.007892 | −0.00789 | −0.00789 (unchanged) |
+| L33 | 81.61 | Row 15: θgF 0.53887; minus the engine line = +0.032338 | 0.03234 | 0.03234 (unchanged) |
+| L34 | 81.30 | Row 17: θgF 0.53743; minus the engine line = +0.030377 | 0.03038 | 0.03038 (unchanged) |
+| L41 | 31.31 | Row 19: θgF 0.59481; minus the engine line = +0.003673 | 0.00367 | 0.00367 (unchanged) |
+| L42 | 81.61 | Row 20: θgF 0.53887; minus the engine line = +0.032338 | 0.03234 | 0.03234 (unchanged) |
+| L43 | 53.20 | Row 22: θgF 0.54661; minus the engine line = −0.007708 | −0.00771 | −0.00771 (unchanged) |
+| L51 | 40.73 | Row 24: θgF 0.56825; minus the engine line = −0.007042 | −0.00704 | −0.00704 (unchanged) |

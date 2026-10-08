@@ -181,7 +181,7 @@ L21 is the first element of the focus group, positioned immediately behind the s
 | R₁ / R₂ (patent → mm) | +2.1244 / −1.3918 → +45.89 / −30.06 |
 | nd / νd | 1.59282 / 68.62 |
 | Thick-lens fl | +31.6 mm (scaled) |
-| θgF / ΔθgF | 0.5441 / +0.019 (from patent Table 2) |
+| θgF / ΔθgF | 0.5441 (patent Table 2) / +0.019 (patent Table 1, condition 6 on the patent's own line) |
 | Glass ID | HOYA FCD515 catalog equivalent; production supplier unspecified |
 
 L22 is the strongest positive element in Gr2 and the second ED element. It is the only element in the lens for which the patent explicitly provides θgF data (condition 6), confirming it has significant positive anomalous partial dispersion: ΔθgF = +0.019, well above the 0.009 minimum required by condition (6).

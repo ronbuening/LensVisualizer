@@ -50,6 +50,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    the printed value) so the nominal axial beam is not clipped.   ║
  * ║    The patent also lists the stop radius at POS2 (0.509 →         ║
  * ║    10.99 mm); the file keeps the single infinity iris.            ║
+ * ║                                                                    ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                       ║
+ * ║    `dPgF` is PgF minus the engine's normal line                   ║
+ * ║    (0.6438 − 0.001682·νd). The patent prints θgF only for L22     ║
+ * ║    (Table 2: 0.5441); its own deviation, condition (6)            ║
+ * ║    θgF − (−0.0018·νd + 0.6484) = 0.019, is on a different line    ║
+ * ║    and is quoted in the analysis, not stored. L16 has no patent   ║
+ * ║    θgF: its `dPgF` is the OHARA S-FPL51 catalog curve on the      ║
+ * ║    engine's line, replacing OHARA's own-line ΔPgF = +0.028.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -146,8 +155,9 @@ const LENS_DATA = {
       fl: 39.81,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
-      dPgF: 0.028,
-      apdNote: "ΔPgF = +0.028 (OHARA catalog θgF = 0.5375). Fluorophosphate ED crown with very high νd = 81.6.",
+      dPgF: 0.030928,
+      apdNote:
+        "Catalog-derived (the patent prints no θgF for L16): OHARA S-FPL51 catalog θgF = 0.5375; ΔPgF = +0.028 by OHARA's own normal line, runtime dPgF +0.03093 from the catalog curve at the patent νd. Fluorophosphate ED crown with very high νd = 81.6.",
       role: "ED element #1. Extremely low dispersion for primary + secondary chromatic correction. Positioned before stop at full marginal ray height for maximum chromatic efficiency.",
     },
     {
@@ -184,9 +194,9 @@ const LENS_DATA = {
       fl: 31.58,
       glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
       apd: "patent",
-      dPgF: 0.019,
+      dPgF: 0.015719,
       apdNote:
-        "Patent θgF = 0.5441 and ΔθgF = +0.019 (condition 6). HOYA FCD515 reproduces the patent nd/νd/θgF triple; production supplier remains unspecified.",
+        "Patent θgF = 0.5441; ΔθgF = +0.019 by the patent's line (θgF − 0.6484 + 0.0018·νd, condition 6), runtime dPgF +0.01572. HOYA FCD515 reproduces the patent nd/νd/θgF triple; production supplier remains unspecified.",
       role: "ED element #2. Strongest positive element in Gr2. Anomalous partial dispersion maintains chromatic correction stability across the entire focus range.",
     },
     {

@@ -33,8 +33,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   infinity and the reconstructed 0.7 m state.                            ║
  * ║                                                                            ║
  * ║ GLASS DATA:                                                               ║
- * ║   nd, νd, and dPgF are patent values. Named glasses are compatible     ║
- * ║   catalog matches, not production-supplier claims. L10f remains unmatched.║
+ * ║   nd and νd are patent values; dPgF is derived from the patent's ΔPgF      ║
+ * ║   (note below). Named glasses are compatible catalog matches, not          ║
+ * ║   production-supplier claims. L10f remains unmatched.                      ║
+ * ║                                                                            ║
+ * ║ NOTE ON PARTIAL DISPERSION:                                                ║
+ * ║   Table 10 prints only the patent's own deviation, to three decimals:      ║
+ * ║   ΔPgF = PgF − 0.64833 + 0.00180·νd. It prints no absolute PgF. `dPgF`     ║
+ * ║   is the PgF recovered from that deviation minus the engine's normal       ║
+ * ║   line (0.6438 − 0.001682·νd), to six decimals; the analysis quotes the    ║
+ * ║   patent's ΔPgF. L10r keeps the printed −0.009: at νd 40.81 the two        ║
+ * ║   lines differ by 0.000286, inside the 0.0003 keep-as-is tolerance.        ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  *
  * Manufacturer sources:
@@ -81,7 +90,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.91082,
       vd: 35.25,
-      dPgF: -0.003,
+      dPgF: -0.00263,
       fl: 13.799161,
       glass: "TAFD35 (HOYA catalog equivalent; production supplier unspecified)",
       cemented: "L9",
@@ -94,7 +103,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80809,
       vd: 22.76,
-      dPgF: 0.021,
+      dPgF: 0.022844,
       fl: -17.571227,
       glass: "FD225 (HOYA catalog equivalent; production supplier unspecified)",
       cemented: "L9",
@@ -107,7 +116,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6134,
       vd: 44.27,
-      dPgF: -0.005,
+      dPgF: -0.005694,
       fl: -17.457979,
       glass: "S-NBM51 catalog equivalent (patent 613443; production supplier unspecified)",
       cemented: "L10",
@@ -133,7 +142,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      dPgF: 0.037,
+      dPgF: 0.0319,
       fl: 31.911859,
       glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Low-dispersion positive element and the strongest positive member of G2b.",
@@ -145,7 +154,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (2× Asph)",
       nd: 1.51633,
       vd: 64.06,
-      dPgF: 0,
+      dPgF: -0.003029,
       fl: -66.426138,
       glass:
         "S-BSL7 / K-BK7 catalog-equivalent borosilicate crown class (production supplier unspecified)",

@@ -38,9 +38,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Glass labels are HOYA catalog-coordinate equivalents selected because all    ║
  * ║ 14 patent nd/νd pairs follow that family closely. The patent does not name   ║
  * ║ the glass vendor; these labels do not assert production melt identity.       ║
- * ║ nC/nF/ng/dPgF are catalog-derived from the matching HOYA 2026 data rows.     ║
+ * ║ nC/nF/ng are catalog-derived from the matching HOYA 2026 data rows.          ║
  * ║ They are modeling values for the stated HOYA equivalents, not patent-        ║
  * ║ published line data or claims about the production melts.                    ║
+ * ║                                                                              ║
+ * ║ NOTE ON PARTIAL DISPERSION:                                                  ║
+ * ║ The patent prints nd and νd only and defines no partial-dispersion           ║
+ * ║ deviation of its own. `dPgF` is PgF minus the engine's normal line           ║
+ * ║ (0.6438 − 0.001682·νd), with PgF = (ng − nF)/(nF − nC) taken from each       ║
+ * ║ element's stored HOYA line indices; the trace reads those indices, so        ║
+ * ║ `dPgF` is the matching annotation. It is not HOYA's catalog ΔPgF, which      ║
+ * ║ fits the line 0.64833 − 0.00180·νd and was stored here before. L10, L13      ║
+ * ║ and L20 already sat within 0.0003 and keep their four-decimal values.        ║
  * ║                                                                              ║
  * ║ No scaling, omitted cover/filter plate, dummy plane, or folded path.         ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -83,7 +92,7 @@ const LENS_DATA = {
       nC: 1.79902,
       nF: 1.82324,
       ng: 1.83750,
-      dPgF: 0,
+      dPgF: 0.000930,
       fl: -231.302011,
       glass: "NBFD15-W (Hoya)",
       cemented: "D1",
@@ -99,9 +108,12 @@ const LENS_DATA = {
       nC: 1.43559,
       nF: 1.44019,
       ng: 1.44264,
-      dPgF: 0.0564,
+      dPgF: 0.048767,
       apd: "inferred",
-      apdNote: "Official construction identifies this correlated patent position as the single XLD element.",
+      apdNote:
+        "Official construction identifies this correlated patent position as the single XLD element. " +
+        "The patent prints no partial dispersion; PgF = 0.5326 from the stored HOYA-equivalent nC/nF/ng, " +
+        "runtime dPgF +0.04877 (HOYA's catalog ΔPgF for the equivalent, +0.0564, is against HOYA's own line).",
       fl: 205.604442,
       glass: "FCD100 (Hoya)",
       cemented: "D1",
@@ -117,9 +129,12 @@ const LENS_DATA = {
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.0374,
+      dPgF: 0.032056,
       apd: "inferred",
-      apdNote: "Official construction identifies this correlated patent position as one of four LD elements.",
+      apdNote:
+        "Official construction identifies this correlated patent position as one of four LD elements. " +
+        "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
+        "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       fl: 380.997734,
       glass: "FCD1 (Hoya)",
       role: "LG1 low-dispersion positive element.",
@@ -134,9 +149,12 @@ const LENS_DATA = {
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.0374,
+      dPgF: 0.032056,
       apd: "inferred",
-      apdNote: "Official construction identifies this correlated patent position as one of four LD elements.",
+      apdNote:
+        "Official construction identifies this correlated patent position as one of four LD elements. " +
+        "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
+        "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       fl: 174.034148,
       glass: "FCD1 (Hoya)",
       role: "LG1 low-dispersion positive element.",
@@ -151,7 +169,7 @@ const LENS_DATA = {
       nC: 1.89526,
       nF: 1.92412,
       ng: 1.94128,
-      dPgF: 0.0028,
+      dPgF: 0.003458,
       fl: 124.402681,
       glass: "TAFD25 (Hoya)",
       cemented: "D2",
@@ -167,7 +185,7 @@ const LENS_DATA = {
       nC: 1.69297,
       nF: 1.70553,
       ng: 1.71235,
-      dPgF: -0.006,
+      dPgF: -0.007523,
       fl: -49.825149,
       glass: "LAC14 (Hoya)",
       cemented: "D2",
@@ -183,7 +201,7 @@ const LENS_DATA = {
       nC: 1.61503,
       nF: 1.62478,
       ng: 1.63004,
-      dPgF: 0.0059,
+      dPgF: 0.002309,
       fl: -133.058375,
       glass: "PCD4 (Hoya)",
       role: "LG3 front negative focus member.",
@@ -198,7 +216,7 @@ const LENS_DATA = {
       nC: 1.48535,
       nF: 1.49227,
       ng: 1.49594,
-      dPgF: 0.009,
+      dPgF: 0.005027,
       fl: -91.103951,
       glass: "FC5 (Hoya)",
       cemented: "D3",
@@ -214,7 +232,7 @@ const LENS_DATA = {
       nC: 1.79611,
       nF: 1.82774,
       ng: 1.84721,
-      dPgF: 0.0132,
+      dPgF: 0.014579,
       fl: 60.87657,
       glass: "FD60 (Hoya)",
       cemented: "D3",
@@ -245,7 +263,7 @@ const LENS_DATA = {
       nC: 1.76780,
       nF: 1.78336,
       ng: 1.79193,
-      dPgF: -0.0086,
+      dPgF: -0.009568,
       fl: 97.092797,
       glass: "TAF1 (Hoya)",
       role: "LG4 front positive element.",
@@ -260,7 +278,7 @@ const LENS_DATA = {
       nC: 1.48535,
       nF: 1.49227,
       ng: 1.49594,
-      dPgF: 0.009,
+      dPgF: 0.005027,
       fl: 53.859844,
       glass: "FC5 (Hoya)",
       cemented: "D4",
@@ -292,7 +310,7 @@ const LENS_DATA = {
       nC: 1.72510,
       nF: 1.73844,
       ng: 1.74571,
-      dPgF: -0.0046,
+      dPgF: -0.006868,
       fl: 47.424167,
       glass: "TAC8 (Hoya)",
       role: "LG5/5A front positive element immediately behind the stop.",
@@ -307,9 +325,12 @@ const LENS_DATA = {
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.0374,
+      dPgF: 0.032056,
       apd: "inferred",
-      apdNote: "Official construction identifies this correlated patent position as one of four LD elements.",
+      apdNote:
+        "Official construction identifies this correlated patent position as one of four LD elements. " +
+        "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
+        "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       fl: 123.858442,
       glass: "FCD1 (Hoya)",
       role: "LG5/5A low-dispersion positive element.",
@@ -324,7 +345,7 @@ const LENS_DATA = {
       nC: 1.79902,
       nF: 1.82324,
       ng: 1.83750,
-      dPgF: 0,
+      dPgF: 0.000930,
       fl: -25.791243,
       glass: "NBFD15-W (Hoya)",
       cemented: "D5",
@@ -340,9 +361,12 @@ const LENS_DATA = {
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.0374,
+      dPgF: 0.032056,
       apd: "inferred",
-      apdNote: "Official construction identifies this correlated patent position as one of four LD elements.",
+      apdNote:
+        "Official construction identifies this correlated patent position as one of four LD elements. " +
+        "The patent prints no partial dispersion; PgF = 0.5386 from the stored HOYA-equivalent nC/nF/ng, " +
+        "runtime dPgF +0.03206 (HOYA's catalog ΔPgF for the equivalent, +0.0374, is against HOYA's own line).",
       fl: 41.780761,
       glass: "FCD1 (Hoya)",
       cemented: "D5",
@@ -358,7 +382,7 @@ const LENS_DATA = {
       nC: 1.79611,
       nF: 1.82774,
       ng: 1.84721,
-      dPgF: 0.0132,
+      dPgF: 0.014579,
       fl: 53.828264,
       glass: "FD60 (Hoya)",
       cemented: "D6",
@@ -374,7 +398,7 @@ const LENS_DATA = {
       nC: 1.56575,
       nF: 1.57590,
       ng: 1.58147,
-      dPgF: 0.001,
+      dPgF: -0.000772,
       fl: -43.586293,
       glass: "BAC4 (Hoya)",
       cemented: "D6",
@@ -405,7 +429,7 @@ const LENS_DATA = {
       nC: 1.69297,
       nF: 1.70553,
       ng: 1.71235,
-      dPgF: -0.006,
+      dPgF: -0.007523,
       fl: 42.996061,
       glass: "LAC14 (Hoya)",
       role: "LG5/5C front positive element.",
@@ -420,7 +444,7 @@ const LENS_DATA = {
       nC: 1.89526,
       nF: 1.92412,
       ng: 1.94128,
-      dPgF: 0.0028,
+      dPgF: 0.003458,
       fl: -45.473562,
       glass: "TAFD25 (Hoya)",
       role: "LG5/5C high-index negative element.",
@@ -435,7 +459,7 @@ const LENS_DATA = {
       nC: 1.83649,
       nF: 1.87209,
       ng: 1.89413,
-      dPgF: 0.0137,
+      dPgF: 0.015299,
       fl: 63.698882,
       glass: "FDS90 (Hoya)",
       role: "LG5/5C final positive element satisfying the patent νd ≤ 30 condition.",

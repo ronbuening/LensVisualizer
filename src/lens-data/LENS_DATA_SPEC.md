@@ -866,6 +866,14 @@ If the source defines a different normal line, recover its absolute `P_g,F` firs
 `dPgF = P_g,F − normalLinePgF(vd)` using the engine's baseline in
 [`dispersion.ts`](../optics/dispersion.ts). Do not copy a patent-specific deviation directly.
 Keep the source's original deviation separately in the analysis when evaluating its conditions.
+A catalog deviation is on its maker's own line too (HOYA's runs near 0.6483 − 0.0018·vd) and is
+converted the same way. Where a source prints a deviation without stating its line, take the line
+from the same applicant's stated formula or from printed figures that equal a maker's catalog
+deviations; if neither settles it, keep the printed figure and queue the element in
+[`glass-relabel-followup.md`](../../agent_docs/glass-relabel-followup.md). Where the source prints
+nothing, use the resolved catalog glass's `P_g,F` and say so in `apdNote`. A stored value within
+0.0003 of the correct one is left as written. `npm run audit:dpgf` lists stored values that fit a
+source line and miss the engine's.
 A published partial-dispersion ratio alone does not justify `apd: "patent"`; that display tag
 requires the source to identify the material as anomalous.
 

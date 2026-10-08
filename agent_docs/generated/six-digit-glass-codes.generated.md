@@ -18,13 +18,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |
 |---|---:|---:|---|---|
-| 847238 | 100 | 53 | patents/US7158320.pdf<br>patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/US20110090576A1.pdf | 6/100 rows have review records |
-| 497816 | 92 | 47 | patents/JPA 1997211319-000000.pdf<br>patents/US20130308041A1.pdf<br>patents/US6115188.pdf<br>patents/US20130088622A1.pdf | 8/92 rows have review records |
+| 847238 | 100 | 53 | patents/US7158320.pdf<br>patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/US20110090576A1.pdf | 8/100 rows have review records |
+| 497816 | 92 | 47 | patents/JPA 1997211319-000000.pdf<br>patents/US20130308041A1.pdf<br>patents/US6115188.pdf<br>patents/US20130088622A1.pdf | 12/92 rows have review records |
 | 835427 | 65 | 42 | patents/JP2016148731A.pdf<br>patents/US7158320.pdf<br>patents/US20130308041A1.pdf<br>patents/US6115188.pdf | 10/65 rows have review records |
-| 773496 | 56 | 43 | patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JP2018049102A.pdf<br>patents/JP2013054269A.pdf | 2/56 rows have review records |
+| 773496 | 56 | 43 | patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JP2018049102A.pdf<br>patents/JP2013054269A.pdf | 3/56 rows have review records |
 | 805254 | 51 | 37 | patents/US7158320.pdf<br>patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JPA 1991141313-000000.pdf | No review-record hit |
 | 487702 | 50 | 33 | patents/JP2016148731A.pdf<br>patents/US7158320.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JP2018049102A.pdf | 1/50 rows have review records |
-| 697555 | 39 | 31 | patents/US20130308041A1.pdf<br>patents/JP2013054269A.pdf<br>patents/US6115188.pdf<br>patents/US20150205081A1.pdf | 3/39 rows have review records |
+| 697555 | 39 | 31 | patents/US20130308041A1.pdf<br>patents/JP2013054269A.pdf<br>patents/US6115188.pdf<br>patents/US20150205081A1.pdf | 4/39 rows have review records |
 | 883408 | 34 | 24 | patents/US20150146044A1.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/US20130308041A1.pdf<br>patents/US20150205081A1.pdf | 5/34 rows have review records |
 | 804466 | 33 | 21 | patents/US20110090576A1.pdf<br>patents/US20020015231A1.pdf<br>patents/JP_2007333790_A.pdf<br>patents/US6115188.pdf | 3/33 rows have review records |
 | 847239 | 31 | 16 | patents/JP2018049102A.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/JPA 1989189622-000000.pdf<br>patents/US6115188.pdf | 1/31 rows have review records |
@@ -1248,23 +1248,23 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L12 (Element L12) | 3 | `497816 class — vendor unresolved` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
+| L12 (Element L12) | 3 | `497816 class — vendor unresolved` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | Audit-log hit |
 | L13 (Element L13) | 5 | `437951 class — vendor unresolved` | 1.43700 / 95.10 | FCD100 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
 | L14 (Element L14) | 7 | `804465 class — vendor unresolved` | 1.80420 / 46.50 | N-LASF44 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
 | L15 (Element L15) | 8 | `437951 class — vendor unresolved` | 1.43700 / 95.10 | FCD100 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
-| L21 (Element L21) | 10 | `697555 class — vendor unresolved` | 1.69680 / 55.46 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
-| L31 (Element L31) | 12 | `497816 class — vendor unresolved` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
+| L21 (Element L21) | 10 | `697555 class — vendor unresolved` | 1.69680 / 55.46 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | Audit-log hit |
+| L31 (Element L31) | 12 | `497816 class — vendor unresolved` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | Audit-log hit |
 | L32 (Element L32) | 15 | `921240 class — vendor unresolved` | 1.92119 / 23.96 | FDS24 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
 | L33 (Element L33) | 16 | `550755 class — vendor unresolved` | 1.55032 / 75.50 | FCD705 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
-| L34 (Element L34) | 18 | `847238 class — vendor unresolved` | 1.84666 / 23.84 | J-SF03 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
+| L34 (Element L34) | 18 | `847238 class — vendor unresolved` | 1.84666 / 23.84 | J-SF03 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | Audit-log hit |
 | L35 (Element L35) | 19 | `835427 class — vendor unresolved` | 1.83481 / 42.72 | J-LASF05 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
 | L36 (Element L36) | 21 | `946180 class — vendor unresolved` | 1.94595 / 17.98 | FDS18 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
-| L38 (Element L38) | 24 | `773496 class — vendor unresolved` | 1.77250 / 49.62 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
+| L38 (Element L38) | 24 | `773496 class — vendor unresolved` | 1.77250 / 49.62 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | Audit-log hit |
 | L39 (Element L39) | 26 | `596392 class — vendor unresolved` | 1.59551 / 39.24 | E-F8 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
-| L40 (Element L40) | 27 | `497816 class — vendor unresolved` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
+| L40 (Element L40) | 27 | `497816 class — vendor unresolved` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | Audit-log hit |
 | L41 (Element L41) | 29 | `871407 class — vendor unresolved` | 1.87070 / 40.73 | TAFD32 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
-| L42 (Element L42) | 30 | `847238 class — vendor unresolved` | 1.84666 / 23.84 | J-SF03 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
-| L43 (Element L43) | 32 | `497816 class — vendor unresolved` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
+| L42 (Element L42) | 30 | `847238 class — vendor unresolved` | 1.84666 / 23.84 | J-SF03 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | Audit-log hit |
+| L43 (Element L43) | 32 | `497816 class — vendor unresolved` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | Audit-log hit |
 | L45 (Element L45) | 35 | `986165 class — vendor unresolved` | 1.98613 / 16.48 | FDS16-W (trusted Sellmeier) | sellmeier | patents/WO2025013477A1.pdf | No review-record hit |
 
 ### [FUJIFILM FUJINON GF 50mm f/3.5 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonGf50mmf35RLMWR.data.ts) - US 2020/0166730 A1

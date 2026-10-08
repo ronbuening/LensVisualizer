@@ -117,3 +117,36 @@ native; every Example 4 number was also confirmed on the rendered page image.
 - Against the previous folded data, EFL is identical and paraxial defocus changes by ≤ 3 × 10⁻⁶ mm (fold rounding) at
   infinity and POS2. Physical track grows by t(1 − 1/n) = 0.545 mm, from 97.80 to 98.34 mm, now matching the patent
   TL 4.553 × 21.6. `closeFocusM` (Nikon 0.25 m) is unchanged. Surface validator and image-circle check pass.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+- Patent formula: condition (6), `θgF − (−0.0018·νd + 0.6484) > 0.009` with `θgF = (Ng − NF)/(NF − NC)` — claim 6
+  (local `patents/JP2019090947A.pdf` p. 2), ¶0014 (p. 5) and ¶0041 (p. 9). The patent's normal line is therefore
+  `0.6484 − 0.0018·νd`; the engine's is `0.6438 − 0.001682·νd`.
+- Printed partial dispersion (p. 18, tables are images, read on the page rendered at 300 dpi): Table 1 gives the
+  condition (6) value `0.019 (L22)` for EX4 and Table 2 gives `θgF(L22) = 0.5441`, `νd(L22) = 68.62`. The Example 4
+  surface table (p. 17) carries only nd and νd, so L22 is the one element with a patent θgF. Check:
+  0.5441 − (0.6484 − 0.0018 × 68.62) = 0.019216, the printed 0.019.
+- L22 stored the patent's deviation `+0.019` directly, which the engine read as PgF = 0.528381 + 0.019 = 0.547381,
+  0.0033 above the printed 0.5441. Corrected from the absolute figure: 0.5441 − (0.6438 − 0.001682 × 68.62) =
+  0.5441 − 0.528381 = `+0.015719`. (HOYA FCD515's catalog curve gives PgF 0.544115, the same number.)
+- L16 has no patent θgF. Its stored `+0.028` was OHARA's catalog ΔPg,F for S-FPL51 (the local OHARA AGF data file lists
+  2.80E−02), which OHARA states against its own normal line: with the catalog θgF = 0.5375 quoted in the old `apdNote`,
+  the engine line at νd = 81.61 gives 0.5375 − 0.506532 = +0.030968 and the patent's line +0.035998, so the number sat
+  on neither. The label `S-FPL51 (OHARA)` resolves to the repo's OHARA S-FPL51 curve, PgF = 0.537460, so the value is
+  now catalog-derived: 0.537460 − 0.506532 = `+0.030928`. The old value made the runtime PgF 0.534532, 0.0029 low.
+
+| Element | νd | Source figure | Stored before | Stored after |
+|---|---:|---|---:|---:|
+| L16 | 81.61 | Patent prints none; OHARA S-FPL51 catalog curve PgF = 0.537460 (catalog θgF 0.5375) | 0.028 | 0.030928 |
+| L22 | 68.62 | Patent Table 2 θgF = 0.5441 (Table 1 deviation 0.019 on the patent's line) | 0.019 | 0.015719 |
+
+- Both `apdNote` strings now quote the source figure, the source's own deviation and the runtime value (L16 marked
+  catalog-derived); a header note in the data file states that `dPgF` is PgF minus the engine line and names the
+  patent's formula. `nd`, `νd`, glass labels and `apd` tags are unchanged; the file still builds and validates.
+- Left: nothing. The other nine elements carry no `dPgF` and none was added. The analysis quotes only the patent's
+  condition (6) deviation (+0.019, with the patent's formula and tables) and OHARA's catalog ΔPgF for S-FPL51 (+0.028,
+  introduced as "From the OHARA catalog"); it makes no statement about the stored `dPgF`, so its figures are unchanged.
+- Second read against the rendered p. 18: formula, both printed figures and both recomputed values confirmed. One
+  analysis fix: the L22 property table attributed θgF and the deviation both to Table 2; it now cites Table 2 for
+  `0.5441` and Table 1 for the condition (6) value `+0.019` on the patent's own line.

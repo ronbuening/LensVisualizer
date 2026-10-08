@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-08",
     type: "fix",
+    summary: "Partial-dispersion values on 27 lenses now use the same reference line as the chromatic trace",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
     summary: "Thirteen zooms had lens apertures too small for their patent f-number; the clipping surfaces are raised",
   },
   {

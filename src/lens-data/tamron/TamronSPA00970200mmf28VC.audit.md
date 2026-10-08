@@ -135,3 +135,61 @@ Screenshots at 194.5 mm and 71.8 mm, set beside the tele and wide rows of Figure
 - The L10 front corner sits inside the drawn edge of L9 as described above; it predates this pass.
 - Surface 33 (D6 rear, 11.8 mm) is 15 % below the 13.9 mm the figure draws for D6. It clears the stated ray by
   0.505 mm and was not changed.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+- Read local `patents/US8867144.pdf` (US 8,867,144 B2, cover on PDF page 1). The patent has no formula for a
+  partial-dispersion deviation and no normal line. Its conditions (1)-(5) are f2/ft, f3/ft, f5B/f5, νd ≤ 30 and 2ω
+  (stated in column 4, PDF page 31; discussed in columns 6-8, PDF pages 32-33). The abbreviation key in column 10
+  (PDF page 34) lists f, bf, FNo., ω, r, d, nd and νd only.
+- The Embodiment 1 table (columns 10-11, PDF pages 34-35) prints r, d, nd and νd. It has no PgF / θgF column and no
+  deviation for any glass, so no stored value can be checked against a patent figure.
+- All 23 elements author `nC`, `nF` and `ng`, so the trace reads those indices and ignores `dPgF`; the field is an
+  annotation. The stored values were HOYA's catalog ΔPgF for the catalog-equivalent glasses, copied straight into the
+  field. They fit the line 0.64833 − 0.0018·νd, not the engine's 0.6438 − 0.001682·νd: on that line the repo's HOYA
+  curves land within 0.0001 of twelve of the fourteen figures, eight of them exactly at four decimals. The two that do
+  not check are FCD1 (the repo curve gives +0.0363 against the stored +0.0374) and TAF1 (the label resolves to an
+  Ohara curve in the repo). The two lines differ by 0.00453 − 0.000118·νd.
+- With no patent figure to use, each value is now the PgF of the element's own line indices,
+  (ng − nF)/(nF − nC), minus the engine's line at the stored νd, written to six decimals.
+
+| Element | Label | νd | Source figure: PgF of stored nC/nF/ng | Stored before (HOYA catalog deviation) | Stored after (engine line) |
+|---|---|---:|---:|---:|---:|
+| L1 | NBFD15-W | 33.27 | 0.588770 | 0 | +0.000930 |
+| L2 | FCD100 | 95.10 | 0.532609 | +0.0564 | +0.048767 |
+| L3 | FCD1 | 81.61 | 0.538588 | +0.0374 | +0.032056 |
+| L4 | FCD1 | 81.61 | 0.538588 | +0.0374 | +0.032056 |
+| L5 | TAFD25 | 31.31 | 0.594595 | +0.0028 | +0.003458 |
+| L6 | LAC14 | 55.46 | 0.542994 | −0.006 | −0.007523 |
+| L7 | PCD4 | 63.39 | 0.539487 | +0.0059 | +0.002309 |
+| L8 | FC5 | 70.44 | 0.530347 | +0.009 | +0.005027 |
+| L9 | FD60 | 25.46 | 0.615555 | +0.0132 | +0.014579 |
+| L10 | TAFD5G | 42.72 | 0.564995 | −0.0067 | −0.0067 (unchanged) |
+| L11 | TAF1 | 49.62 | 0.550771 | −0.0086 | −0.009568 |
+| L12 | FC5 | 70.44 | 0.530347 | +0.009 | +0.005027 |
+| L13 | TAFD5G | 42.72 | 0.564995 | −0.0067 | −0.0067 (unchanged) |
+| L14 | TAC8 | 54.67 | 0.544978 | −0.0046 | −0.006868 |
+| L15 | FCD1 | 81.61 | 0.538588 | +0.0374 | +0.032056 |
+| L16 | NBFD15-W | 33.27 | 0.588770 | 0 | +0.000930 |
+| L17 | FCD1 | 81.61 | 0.538588 | +0.0374 | +0.032056 |
+| L18 | FD60 | 25.46 | 0.615555 | +0.0132 | +0.014579 |
+| L19 | BAC4 | 56.04 | 0.548768 | +0.001 | −0.000772 |
+| L20 | E-F5 | 38.01 | 0.582494 | +0.0029 | +0.0029 (unchanged) |
+| L21 | LAC14 | 55.46 | 0.542994 | −0.006 | −0.007523 |
+| L22 | TAFD25 | 31.31 | 0.594595 | +0.0028 | +0.003458 |
+| L23 | FDS90 | 23.78 | 0.619101 | +0.0137 | +0.015299 |
+
+- Left unchanged: L10 and L13 (TAFD5G; the indices give −0.006950, 0.000250 from the stored −0.0067) and L20 (E-F5;
+  the indices give +0.002627, 0.000273 from the stored +0.0029). All three were already within 0.0003 of the
+  engine-line value and keep their four-decimal figures. No element is e-line referenced.
+- Precision of the source figure: the line indices are five-decimal catalog values, so PgF from them is good to about
+  ±0.001 on the low-dispersion glasses (nF − nC is 0.00460 for FCD100). The repo's HOYA curves give +0.049777 for
+  FCD100 and +0.031200 for FCD1 on the engine's line, against +0.048767 and +0.032056 here. The stored indices were
+  used because they are what the trace reproduces.
+- `nC`, `nF`, `ng`, nd, νd, glass labels, `apd` tags and surfaces are untouched. The five existing `apdNote` strings
+  (L2, L3, L4, L15, L17) now quote the PgF of the stored indices, the runtime value and the HOYA catalog deviation
+  that was stored before; no `apdNote` was added. The header box of the data file gained a "NOTE ON PARTIAL DISPERSION".
+- `TamronSPA00970200mmf28VC.analysis.md`: the statements about what the file stores were corrected (the L2 and L23
+  paragraphs, the glass-selection paragraph and its table, the chromatic-strategy sentence and source 5). The note
+  evaluates no partial-dispersion condition, because the patent has none.
+- The file builds and validates after the edit.

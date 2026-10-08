@@ -19,6 +19,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * Surfaces 21A, 22A, 25A, and 26A store the exact Example 7 odd/even asphere polynomials through A14.
  * Because the prescription is scaled by s = 0.973614465993, each patent coefficient is transformed with
  * A_n(scaled) = A_n(patent) / s^(n-1). The patent's KA = 1 converts to the standard conic constant K = 0.
+ *
+ * Partial dispersion: the patent tabulates only Nd and νd and states no partial-dispersion formula or normal line of
+ * its own. `dPgF` on the three FCD505 elements is therefore catalog-derived: PgF of the repo's HOYA FCD505 catalog
+ * curve (0.544337) minus the engine's normal line (0.6438 − 0.001682·νd) = +0.015956. HOYA's catalog ΔPg,F (+0.0194)
+ * is taken against HOYA's own normal line (through C7 and F2, about 0.6484 − 0.0018·νd) and is not stored.
  */
 
 const LENS_DATA = {
@@ -146,8 +151,9 @@ const LENS_DATA = {
       fl: 25.84,
       glass: "FCD505 (HOYA) ED fluorophosphate crown",
       apd: "patent",
-      dPgF: 0.0194,
-      apdNote: "FCD505 catalog: positive anomalous partial dispersion",
+      dPgF: 0.015956,
+      apdNote:
+        "Catalog-derived (patent lists only nd and νd): the repo's HOYA FCD505 catalog curve gives PgF = 0.5443, runtime dPgF +0.01596; HOYA's catalog ΔPgF +0.0194 is on HOYA's own line.",
       role: "ED positive at G2 entrance.",
       cemented: "D21-22",
     },
@@ -200,8 +206,9 @@ const LENS_DATA = {
       fl: 22.676,
       glass: "FCD505 (HOYA) ED fluorophosphate crown",
       apd: "patent",
-      dPgF: 0.0194,
-      apdNote: "FCD505 catalog: positive anomalous partial dispersion",
+      dPgF: 0.015956,
+      apdNote:
+        "Catalog-derived (patent lists only nd and νd): the repo's HOYA FCD505 catalog curve gives PgF = 0.5443, runtime dPgF +0.01596; HOYA's catalog ΔPgF +0.0194 is on HOYA's own line.",
       role: "Lp lens: strongest positive lens in G2.",
     },
     {
@@ -226,8 +233,9 @@ const LENS_DATA = {
       fl: 56.305,
       glass: "FCD505 (HOYA) ED fluorophosphate crown",
       apd: "patent",
-      dPgF: 0.0194,
-      apdNote: "FCD505 catalog: positive anomalous partial dispersion",
+      dPgF: 0.015956,
+      apdNote:
+        "Catalog-derived (patent lists only nd and νd): the repo's HOYA FCD505 catalog curve gives PgF = 0.5443, runtime dPgF +0.01596; HOYA's catalog ΔPgF +0.0194 is on HOYA's own line.",
       role: "Stationary rear-group ED positive.",
     },
     {

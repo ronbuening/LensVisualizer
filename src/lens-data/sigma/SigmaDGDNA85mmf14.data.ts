@@ -40,6 +40,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  design F-number is F/1.46, which nominalFno and apertureDesign    ║
  * ║  carry; apertureMarketing records the published 1.4.               ║
  * ║                                                                    ║
+ * ║  NOTE ON PARTIAL DISPERSION: The patent tabulates θgF only for L5  ║
+ * ║  (surface 8, 0.6103). `dPgF` is that θgF minus the engine's normal ║
+ * ║  line (0.6438 − 0.001682·νd), not the patent's condition (8)       ║
+ * ║  deviation θgF − (0.648285 − 0.00180123·νd), which the analysis    ║
+ * ║  quotes.                                                           ║
+ * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps (D12, D14)             ║
@@ -136,8 +142,8 @@ const LENS_DATA = {
       glass: "NBFD25 catalog equivalent (patent coordinate; production supplier unspecified)",
       apd: "patent",
       apdNote:
-        "θgF = 0.6103 (patent-listed); ΔPgF = +0.0073 (above the Abbe-Buchdahl normal line). The LN element of patent claims 4–5.",
-      dPgF: 0.0073,
+        "Patent θgF = 0.6103; +0.0073 by the patent's condition (8) line (θgF − 0.648285 + 0.00180123·νd), runtime dPgF +0.008802. The LN element of patent claims 4–5.",
+      dPgF: 0.008802,
       cemented: "D1",
       role: "LN element (claims 4–5): strongest negative power in GA; secondary g-line spectrum corrector via positive ΔPgF.",
     },

@@ -40,6 +40,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 11.8/11.5/11.5, L18 10.9/12.8. S2, S4A and S30 sit a little below the      ║
  * ║ drawn rims, capped by the 90% cross-gap sag-intrusion limit. S31 was also  ║
  * ║ below the tele chief-ray height (9.62 mm) before the change.               ║
+ * ║                                                                              ║
+ * ║ NOTE ON PARTIAL DISPERSION: the patent prints no absolute PgF, only the      ║
+ * ║ Example 1 deviation ΔPgf = 0.028 (Table 1) against its own line, ΔPgf =      ║
+ * ║ Pgf + 0.0018·νd − 0.64842 (¶0041). For L16 (νd 20.88), the only positive     ║
+ * ║ Gr4 element, that is PgF = 0.638836. `dPgF` stores PgF minus the engine's    ║
+ * ║ normal line (0.6438 − 0.001682·νd), i.e. +0.030156, not the patent's ΔPgf,   ║
+ * ║ which the analysis quotes.                                                   ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -271,8 +278,9 @@ const LENS_DATA = {
       fl: 15.29294,
       glass: "E-FDS1 (HOYA catalog equivalent; supplier unspecified)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.028 (JP 2018-087903 A Table 1)",
-      dPgF: 0.028,
+      apdNote:
+        "Patent Table 1 ΔPgf = +0.028 by the patent's line (Pgf + 0.0018·νd − 0.64842), so PgF = 0.6388; runtime dPgF +0.03016.",
+      dPgF: 0.030156,
       cemented: "D6",
       role: "Positive member of Gr4 cemented pair D6; patent condition-(6) glass",
     },

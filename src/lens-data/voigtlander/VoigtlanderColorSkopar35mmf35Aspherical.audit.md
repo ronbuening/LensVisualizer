@@ -258,3 +258,24 @@ incompatible label was changed to an explicit unmatched 009/291 class; no compat
 - Visually rechecked `patents/JPA 2026121744-000000.pdf`, PDF page 14. L10f remains patent code `613443`, `nd = 1.61340`, `νd = 44.27`, `ΔPgF = -0.005`.
 - OHARA S-NBM51 reproduces the coordinate essentially exactly (`Δnd = -0.000003`, `Δνd = -0.0023`); its catalog `dPgF` is about `-0.00584`, close to the patent's rounded value.
 - Relabeled L10f as an S-NBM51 optical equivalent while retaining the patent-authored `dPgF` and leaving the production supplier unspecified. No prescription or asphere geometry changed.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+- Source: local `patents/JPA 2026121744-000000.pdf` (JP 2026-121744 A, 18 pages). The patent defines `ΔPgF = PgF − 0.64833 + 0.00180·νd` with `PgF = (ng − nF)/(nF − nC)`: claims 5 and 6 on PDF page 2, ¶0010–¶0011 on PDF page 4, and ¶0085 for Example 3 on PDF page 14.
+- Table 10 (PDF page 14, rendered at 200 dpi and read from the image) prints only that deviation, to three decimals, for all six glasses. It prints no absolute PgF column. ¶0086 (page 14) and ¶0087 (page 15) repeat −0.005 for L10f and 0.037 for L11.
+- The data file had copied the six printed deviations straight into `dPgF`. The engine measures `dPgF` from `0.6438 − 0.001682·νd`, so each value was off by `0.00453 − 0.000118·νd`. Each stored value is now `ΔPgF + 0.64833 − 0.00180·νd − (0.6438 − 0.001682·νd)`, written to six decimals. Because the source figure has three decimals, the recovered PgF carries the patent's ±0.0005 rounding; no catalog value was substituted.
+
+| Element | νd | Patent ΔPgF (Table 10) | Recovered PgF | Stored before | Stored after |
+|---|---:|---:|---:|---:|---:|
+| L9f | 35.25 | −0.003 | 0.581880 | −0.003 | −0.002630 |
+| L9r | 22.76 | +0.021 | 0.628362 | +0.021 | +0.022844 |
+| L10f | 44.27 | −0.005 | 0.563644 | −0.005 | −0.005694 |
+| L10r | 40.81 | −0.009 | 0.565872 | −0.009 | −0.009 (kept) |
+| L11 | 81.61 | +0.037 | 0.538432 | +0.037 | +0.031900 |
+| L12 | 64.06 | 0.000 | 0.533022 | 0 | −0.003029 |
+
+- Left: L10r. Its engine-line value is −0.009286, which is 0.000286 from the stored −0.009 and inside the 0.0003 keep-as-is tolerance, so the number was not re-rounded.
+- No element authors `nC`/`nF`/`ng` and none uses `indexReference: "e"`, so the authored `dPgF` sets the g-line index on all six elements. Only `dPgF` numbers and the header comment changed in the data file; nd, νd, glass labels, surfaces, and aspheres are untouched.
+- For reference only, not used: the repo's catalog curves give engine-line values of −0.002290 (TAFD35), +0.023135 (FD225), −0.005966 (S-NBM51), −0.009458 (TAFD30), +0.031200 (FCD1), and −0.000766 (S-BSL7). L12 is the one element whose patent figure and compatible catalog glass disagree by more than the patent's rounding (PgF 0.5330 from the printed 0.000 against 0.5353 for S-BSL7); the patent figure is kept and the vendor remains not uniquely identified.
+- Analysis: statements about what the file stores now give the engine-line values; every evaluation of the patent's conditions still quotes the patent's ΔPgF (−0.005 for L10f, +0.037 for L11).
+- Checked with `.lens-work/audit-tools/dpgfcheck.mjs`: the file builds and validates. No test, typecheck, lint, format, or build command was run in this pass.

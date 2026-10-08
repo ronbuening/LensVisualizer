@@ -34,17 +34,20 @@ proprietary glass lives in [proprietary-glass-backfill.md](proprietary-glass-bac
   lanthanum flint on its existing Abbe model. Closing it needs source line indices; Leitz mil-spec documentation is
   sparse, so this may stay open indefinitely.
 
-- **`dPgF` stored on a source normal line (2026-10).** `src/lens-data/LENS_DATA_SPEC.md` requires
-  `dPgF = PgF − normalLinePgF(νd)` on the engine's line (0.6438 − 0.001682·νd). Comparing each catalog-resolved
-  element's `dPgF` with its catalog PgF finds 28 files where at least one value instead fits the line many patents
-  define, 0.64833 − 0.0018·νd; the two differ by up to 0.007. Every decidable element fits the patent line in
-  `Sigma1018mmf28DCDN`, `Sigma1740mmf18DCA`, `Sigma85mmf14Art`, `SigmaDGDNA35mmf14`, `SigmaDGDNA85mmf14`,
-  `PanasonicDGSummilux12mmf14`, `PanasonicSPro50mmf14`, `FujifilmXF23mmf14RLMWR`,
-  `VoigtlanderAPOLanthar28mmf2Aspherical`, `VoigtlanderColorSkopar28mmf28` and
-  `LeicaSuperVarioElmarSL1635mmf3545Asph`; the other 17 are mixed and need their source read. The Sellmeier tier
-  rebuilds the g line from an authored `dPgF`, so only the violet channel of chromatic traces moves (g-line index
-  about 3e-5); spectral MTF reads the catalog curve and does not. Close a file by recovering PgF from its source
-  table, as `Sigma45mmf28DGDN` and `Sigma23mmf14DCDNC` were, never by subtracting a constant.
+- **`dPgF` still on a source line (2026-10).** `npm run audit:dpgf` lists the candidates and the rule is in
+  `src/lens-data/LENS_DATA_SPEC.md`. Two files are open after the corpus pass. `FujifilmX1071284mmf228`: US
+  2014/0133036 A1 is not held locally, and both values (L32, L35) are annotations beside authored line indices.
+  `LeicaDCVarioElmarit88176mmf2845ASPHPanasonicFZ2500FZ2000FZH1`: US 2018/0081156 A1 prints a deviation without
+  stating its line; the rows that equal a HOYA catalog figure were converted on HOYA's line, while L7, L12 and L13
+  match no HOYA glass and L10 prints FCD515's figure on an FCD705-class glass, so those four keep the printed value.
+
+- **Labels the partial-dispersion pass called into question (2026-10).** Each resolves to a curve whose νd or PgF
+  disagrees with the patent's printed figure; the stored `dPgF` follows the patent or the label as it stands.
+  `SonyFE90mmf28` G2 and `VoigtlanderApoLanthar50f2` Lfb are labelled S-FPL51 at 1.49700 / 81.61, which is HOYA
+  FCD1's coordinate (the Sony patent prints νd 81.6084). `TamronSPA00970200mmf28VC` "TAF1 (Hoya)" resolves to OHARA
+  S-LAH66. `Sigma24mmf14ArtDN` L1 (S-BAL42, patent θgF 0.5423 against 0.5434) and `Sigma85mmf14Art` L13 (S-TIM25,
+  patent PgF 0.5962 against 0.5989) differ from their labels by more than 0.001. Also to check on the Tamron: L21
+  stores nd 1.6968 where the patent's surface 36 prints 1.6980.
 
 ## Closed families — do not re-audit
 

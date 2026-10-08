@@ -96,8 +96,8 @@ standalone value does not describe the element's effective contribution inside t
 
 `nd = 1.43385, νd = 95.23. Glass: Fluorite (CaF2; production-correlation supported). f = +402.954 mm.`
 
-L11 is the most object-side collector. Its low index, very high Abbe number, and directly published
-`dPgF = +0.0649` make it the strongest documented anomalous-dispersion component in the prescription. Nikon's product
+L11 is the most object-side collector. Its low index, very high Abbe number, and directly published patent deviation
+`ΔθgF = +0.0649` make it the strongest documented anomalous-dispersion component in the prescription. Nikon's product
 specification independently states that the commercial lens contains one fluorite element, supporting the material-class
 correlation without proving that every detail of the patent element was carried into production.
 
@@ -105,9 +105,9 @@ correlation without proving that every detail of the patent element was carried 
 
 `nd = 1.49782, νd = 82.57. Glass: J-FKH1 class (HIKARI exact nd/νd pair). f = +218.169 mm.`
 
-L12 supplies more standalone positive power than L11 while retaining high dispersion control. Table 11 publishes
-`dPgF = +0.0391` for this element. HIKARI's J-FKH1 catalog coordinate reproduces the patent's `nd`/`νd` pair exactly; the
-class label does not establish Nikon's procurement source.
+L12 supplies more standalone positive power than L11 while retaining high dispersion control. Table 11 publishes the
+patent's deviation `ΔθgF = +0.0391` for this element. HIKARI's J-FKH1 catalog coordinate reproduces the patent's
+`nd`/`νd` pair exactly; the class label does not establish Nikon's procurement source.
 
 #### L13 — Biconcave Negative
 
@@ -373,8 +373,10 @@ back, so the same keyframes give a physical object-to-image distance of 2.001193
 ## Chromatic Correction Strategy
 
 Table 11 publishes anomalous-partial-dispersion deviations of +0.0649 for L11 and +0.0391 for L12. Both exceed the
-patent's condition (2-11) threshold of 0.025, and L11 exceeds the condition (2-12) threshold of 0.045. These values are
-stored directly as `dPgF` on the two elements.
+patent's condition (2-11) threshold of 0.025, and L11 exceeds the condition (2-12) threshold of 0.045. These are the
+patent's own `ΔθgF = θgF − (0.648327 − 0.0018024·νd)` (¶0155–0158), not the engine's deviation. Both data files, converter
+out and converter in, store the recovered `θgF` (0.5416 and 0.5386) minus the engine's normal line `0.6438 − 0.001682·νd`:
+`dPgF = +0.057961` for L11 and `+0.033686` for L12.
 
 G1A places the two documented low-dispersion positives ahead of L13 and the L14+L15 cemented pair. G2 and G3 each combine
 a high-Abbe member with a much lower-Abbe, high-index partner. G4 continues this pattern around the stop, VR group, and
@@ -405,7 +407,9 @@ the complete centered prescriptions; it is not a claim about final off-axis imag
 ## Conditional Expressions
 
 The second embodiment defines thirteen conditions. The table compares the patent's Table 11 value with a fresh
-calculation from the converter-out TypeScript arrays, which carry FL1 at its printed physical thickness.
+calculation from the converter-out TypeScript arrays, which carry FL1 at its printed physical thickness. The two `ΔθgF`
+rows are the patent's own deviation; their active-model figures convert the stored engine-line `dPgF` back to the
+patent's line.
 
 | Condition | Patent bound | Table 11 | Active model | Result |
 | --- | --- | ---: | ---: | --- |
