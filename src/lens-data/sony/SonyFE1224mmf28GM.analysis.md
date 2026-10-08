@@ -292,7 +292,7 @@ The data file uses the patent's effective diameters from Table 6, divided by two
 
 The sensor cover glass or any camera-side filter stack is not included. The final surface distance d33 is the patent back focal distance to IMG.
 
-The stop's open diameter varies with zoom. Table 9 gives φ15 = 16.23, 19.13, and 23.63 mm from wide to telephoto; the data file stores the maximum semi-diameter, 11.815 mm, and carries the design aperture value, 2.91, in both `nominalFno` and `apertureDesign`. The wide-open iris radius at each zoom position is traced from that f-number, giving 8.112, 9.559, and 11.799 mm, within 0.14% of the Table 9 semi-diameters.
+The stop's open diameter varies with zoom. Table 9 gives φ15 = 16.23, 19.13, and 23.63 mm from wide to telephoto, and the data file uses half of each as the wide-open iris radius at that zoom position (`zoomStopSemiDiameters`: 8.115, 9.565, and 11.815 mm). The design aperture value, 2.91, stays in `nominalFno` and `apertureDesign`. The radii that give exactly F/2.91 are 8.112, 9.559, and 11.799 mm, within 0.14% of the published ones, so the published schedule traces to f/2.909, f/2.908, and f/2.906.
 
 The stop placement follows the numerical prescription. Table 6 marks surface 15 as `STO`, Table 7 starts GP3 at surface 15, and Figure 6 draws the stop at the object-side edge of GP3. The later prose statement placing the stop between GP3 and GP4 is treated as a descriptive slip, not as a prescription edit.
 

@@ -76,3 +76,37 @@ Patent: WO 2021/200206 A1, Example 2 / FIG. 6
 - The traced wide-open iris radii are now 8.112 / 9.559 / 11.799 mm against Table 9's 8.115 / 9.565 / 11.815, and the stated f/2.91 beam is still iris-limited at all three stations.
 - All 17 elements now resolve to a catalog Sellmeier curve. Eight did before, five of them to a neighbouring glass inside the ±0.003 window.
 - Other files that show the same e-line pattern are queued in `agent_docs/glass-relabel-followup.md`; none was changed here.
+
+## 2026-10-08 - Index correction recorded in sourceErrata
+
+- Pages checked in local `patents/WO2021200206A1.pdf` (no text layer; pages rendered and read): ¶0060 (PDF page 16), Table 1 (page 21), Table 6 (page 27), Tables 7, 8 and 9 (page 28), Table 16 (page 39), Table 21 (page 42).
+- Table 6's printed index column was read again on the page. It equals the 17 values the file held before the d-line change.
+- Added 17 `corrected` entries to `sourceErrata`, one per surface whose `nd` differs from Table 6. Each element's index sits on its front surface only, cemented elements included, so no surface is listed twice. Each of the 17 surface rows carries an inline comment with the printed figure. No `nd`, `vd`, R, d, sd, label, asphere or `dPgF` value changed.
+- Every entry cites `source-summary` and `sibling-example`. The last column is the paraxial focal length of the entry's group with that one surface left at the printed index, against Table 7. With all 17 applied the groups compute −20.308 / 58.019 / 362.134 / 46.408 / −78.163 mm.
+
+| Surface | Table 6 prints | Applied | Kind that isolates the value | Group with this entry as printed / Table 7 |
+| --- | ---: | ---: | --- | --- |
+| 1A (L11) | 1.58547 | 1.58313 | sibling example: Table 1 surface 18, Table 16 surface 1 | GP1 −20.25 / −20.31 |
+| 3A (L12) | 1.77173 | 1.76802 | sibling example: Table 1 surfaces 1, 3 | GP1 −20.26 / −20.31 |
+| 5 (L13) | 1.55206 | 1.55032 | source summary only (Table 7); value is catalog nd | GP1 −20.28 / −20.31 |
+| 7 (L14) | 1.43810 | 1.43700 | sibling example: Table 1 surfaces 5, 27 | GP1 −20.29 / −20.31 |
+| 9 (L15) | 1.85649 | 1.85026 | source summary only (Table 7); value is catalog nd | GP1 −20.45 / −20.31 |
+| 12 (L21) | 1.93024 | 1.92119 | sibling example: Table 1 surface 12; source summary: Table 21 Nd2G 1.9212 | GP2 58.70 / 58.02 |
+| 13 (L22) | 1.67764 | 1.67270 | source summary only (Table 7); value is catalog nd | GP2 57.10 / 58.02 |
+| 16 (L31) | 1.96073 | 1.95375 | sibling example: Table 1 surfaces 9, 20 | GP3 378.51 / 362.10 |
+| 18A (L32) | 1.59412 | 1.59201 | sibling example: Table 16 surface 20 | GP3 353.22 / 362.10 |
+| 20 (L41) | 1.96073 | 1.95375 | sibling example: Table 1 surfaces 9, 20 | GP4 46.81 / 46.40 |
+| 21 (L42) | 1.55206 | 1.55032 | source summary only (Table 7); value is catalog nd | GP4 46.09 / 46.40 |
+| 23 (L51) | 1.90314 | 1.89286 | source summary only (Table 7); value is catalog nd | GP5 −81.44 / −78.16 |
+| 24 (L52) | 1.96073 | 1.95375 | sibling example: Table 1 surfaces 9, 20 | GP5 −76.13 / −78.16 |
+| 26 (L53) | 1.43810 | 1.43700 | sibling example: Table 1 surfaces 5, 27 | GP5 −78.65 / −78.16 |
+| 28 (L54) | 2.00912 | 2.00100 | sibling example: Table 16 surfaces 7, 14, 23 | GP5 −76.60 / −78.16 |
+| 30A (L55) | 1.85639 | 1.85135 | sibling example: Table 1 surface 31 (Table 16 prints 1.85134) | GP5 −77.60 / −78.16 |
+| 32 (L56) | 1.49845 | 1.49700 | sibling example: Table 1 surfaces 7, 21, 33; Table 16 surfaces 5, 15, 18, 27 | GP5 −78.28 / −78.16 |
+
+- Five entries (surfaces 5, 9, 13, 21, 23; four glass types) have no d-line value anywhere in the patent. Their applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 shows each printed value is wrong and that the applied one reproduces the group focal length; it does not fix the fifth decimal. Tables 1 and 16 show the slip for the block, not for these values. They are corrected with the block as one unit under the ruling in `agent_docs/lens-patent-audit.md`.
+- Table 21 prints fw = 12.363 for Example 2 where Table 8 prints f = 12.37. The file computes 12.367 mm (12.361 with the printed column), so this one figure does not separate the two columns and is not cited.
+- Stop schedule: added `zoomStopSemiDiameters: [8.115, 9.565, 11.815]`. ¶0060 defines φi as the effective diameter of surface i, STO as the aperture stop and Fno as the open F-number. Table 6 leaves the stop's diameter as the variable φ15, and Table 9 lists φ15 = 16.23 / 19.13 / 23.63 mm at Wide / Mid / Tele (the same at infinity and at 280 mm) beside Table 8's Fno 2.91 at all three. The three columns are the file's three zoom stations.
+- The STO surface row keeps sd 11.815; the engine takes each station's radius from the schedule. `zoomApertureModel` is not set.
+- Traced with the schedule: f/2.909 / 2.908 / 2.906 (the radii for exactly 2.91 are 8.1122 / 9.5586 / 11.7985 mm), 0.14 % at most from 2.91. `npm run audit:aperture` lists no rim-, trace- or iris-limited station.
+- Header comment and the analysis sentence on iris sizing updated to match.
