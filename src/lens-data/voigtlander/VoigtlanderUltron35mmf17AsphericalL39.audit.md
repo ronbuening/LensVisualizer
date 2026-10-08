@@ -194,3 +194,89 @@ curved.
 - `specs` restated in the catalog form (design f = 36.05 mm, design F/1.64, one aspherical surface on one element, infinity prescription only); `apertureBlades` 10 added.
 - Glass labels reviewed and left as authored: the patent prints νd to one decimal, so the six-digit code labels are the honest form, and all eight resolve to catalog curves. Neither drawing marks a special glass, so no `apd` tag is set.
 - Display name, mount (`leica-ltm`) and format reviewed and left as authored. The focus control reads "Not modeled" for this infinity-only prescription.
+
+## 2026-10-08 — Second review: diagram, labels and movement
+
+Compared: the local page (infinity view, `focus=1`, both movement overlays and the inspector for elements 1, 3,
+4, 5 and 8) against `patents/JP2000321490A.pdf` — FIG. 1 on PDF page 7, Tables 1 and 2 on PDF page 4, claims 1–3
+and ¶0009–0010 on PDF page 3 — and against the Cosina construction drawing.
+
+### Semi-diameters: re-measured, no change
+
+FIG. 1 was read again from the native 816 × 528 px, 200 dpi bitmap embedded in the PDF, without resampling.
+Each rim is a straight ink run that the drawn rays cross but do not follow, so top and bottom were read
+separately.
+
+Scale. Vertex strokes on the axis: surface 1 at x = 135.5, surface 9 at 388, surface 15 at 609, image plane at
+808. Against 24.0435, 45 and 64 mm these give 10.50, 10.52 and 10.51 px/mm. The vertical scale was checked on
+two features that do not depend on any rim: the outermost bundle meets the image plane 231.5 to 232.3 px above
+the axis, which taken as the 21.99 mm maximum image height of FIG. 2 gives 10.53 to 10.56 px/mm, and the two
+axial marginal rays enter 233 px apart, which is the traced 2 × 10.99 mm at 10.60 px/mm. The drawing is
+isotropic within 1 %; 10.53 px/mm is used below and the range 10.51 to 10.60 moves no reading by more than
+0.1 mm. The sheet is rotated 0.75° (the axis shifts 0.0132 px per px), so each height is taken from the fitted
+axis at that element.
+
+| Element | Top edge (px) | Bottom edge (px) | Above / below axis (px) | FIG. 1 (mm) | Stored | Pre-first-pass |
+|---|---:|---:|---|---:|---:|---:|
+| 11 (L1), surfaces 1, 2 | 146.5 | 422.0 | 137.9 / 137.6 | 13.08 | 13.1 | 14.0 |
+| 12 (L2) | 136.0 | 431.5 | 147.8 | 14.03 | 14.2 | 14.2 |
+| 13a (L3) apex | 119.5 | 445.5 | 163.0 | 15.48 | 15.0 | 15.0 |
+| 13b (L4) | 123.5 | 441.3 | 158.9 | 15.09 | 15.0 | 15.0 |
+| 14 (L5 + L6), surfaces 9–11 | 148.0 | 414.0 | 132.9 / 133.1 | 12.63 | 12.6 | 13.35 |
+| 15 (L7) | 148.5 | 411.3 | 131.4 | 12.48 | 12.5 | 12.5 |
+| 16 (L8), surfaces 14A, 15 | 147.5 | 409.3 | 131.1 / 130.8 | 12.43 | 12.4 | 13.2 |
+
+The three first-pass values hold. The rim edges of L1, the rear cemented pair and L8 are 61, 115 and 46 px long
+and symmetric about the fitted axis within half a pixel; the earlier 14.0, 13.35 and 13.2 mm would sit 9.7, 7.6
+and 8.1 px outside those edges, against a reading error of about 1 px. The flat annuli were also re-read: the
+curve of surface 1 ends 115 px (10.9 mm) from the axis, where the drawn axial marginal ray enters; surface 2
+near 12.0 mm; surface 9 at 11.2 mm; surface 14A at 10.3 to 10.4 mm, with the annulus plane 2.2 mm in front of
+the vertex as the asphere's sag at that height requires. Curve-end heights on the concave faces were looked at
+again in the first-pass renders and again rejected: the renderer joins unequal rim points with a straight
+edge and turns the three square blocks of the drawing into wedge-topped trapezoids.
+
+Cosina drawing, measured independently from its rim edges at 15.13 px/mm (surface 1 to surface 15, 681 px):
+L1 12.7 mm and L8 12.3 mm, the rear pair and L7 level at 11.4 mm, L2 13.0 mm, L3 14.0 mm. Its vertex spacings
+follow Table 1 within about 0.6 mm. It supports the lowered L1 and L8 in absolute terms and the level rear pair
+and L7 in relative terms; it draws L8 taller than L7 where FIG. 1 draws the two level, and the figure of the
+modeled example governs.
+
+Nothing in the ray floors changes because no `sd` changed: engine half-field 35.40° and f/1.64 before and
+after, validator clean, image-circle floor clean, traced corner coverage 21.65 of 21.65 mm.
+
+### Labels
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| `groups` | none | G1 − (1–2), G2 + (3–4), G3 + (5–7), G4 − (9–11), G5 + (12–13), G6 − (14A–15) | Claim 1 and ¶0009: first to sixth lens groups 11–16 with negative, positive, positive, negative, positive, negative power. Traced group focal lengths −31.24, +84.32, +25.40, −46.98, +28.44, −55.50 mm carry the same signs |
+| `diagramLabel` | none (the diagram showed 1 to 8) | 11, 12, 13a, 13b, 14a, 14b, 15, 16 | FIG. 1 numerals; ¶0010 names biconvex lens 13a, negative meniscus lens 13b, biconcave lens 14a and biconvex lens 14b |
+| `focusDescription` | opened with the pipeline token NO_INTERNAL_RECONSTRUCTION | plain sentence: infinity-only, close focus not modeled, production lens focuses to 0.9 m | readability on the page |
+
+Element `name` stays L1 to L8: the patent designates only the four cemented components individually, and
+numerals 11, 12, 15 and 16 are group numerals that each cover one lens. Numeral 16a in FIG. 1 is the aspherical
+object-side surface of the sixth group (¶0009), which is surface 14A here, so no element carries it.
+
+Checked and left as found. Cemented brackets D1 (surfaces 5–7) and D2 (9–11) span the cemented third and
+fourth groups of claims 2 and 3. The stop is Table 1 surface 8, drawn between 13b and 14a as numeral 17 is.
+Element types agree with the signs in Table 1: L1 biconcave (−30.95 / +38.97), L2 biconvex, L3 biconvex, L4
+negative meniscus concave to the object (−28.27 / −106.75), L5 biconcave, L6 biconvex, L7 biconvex, L8 negative
+meniscus concave to the object (−37.74 / −2000). Table 1 marks only surface 14 with an asterisk and Table 2
+gives K = 0 and four coefficients for it; the file has one `asph` entry, 14A, with the same values. All fifteen
+rows of Table 1 were read again from the page image and agree with the file. The patent names no glass and no
+special dispersion, and the Cosina drawing marks only "Aspherical Surface" on the front of the last element,
+so no `apd` tag is right. Front-page inventor, applicant, number and year agree with the file.
+
+### Movement
+
+The patent publishes one infinity prescription and no focusing data, so there is no direction or order to
+check. `var` is empty, the focus slider is disabled with "Not modeled" at its far end, and the movement overlay
+reports six groups with no modeled movement.
+
+### Open limitations
+
+- A URL carrying `focus=1` still moves the disabled slider and prints the `closeFocusM` sentinel as
+  "1000000000000000 m" in the focus readout. This is viewer behaviour for every infinity-only lens, not data.
+- FIG. 1 draws the L3 apex at 15.48 mm with a 0.75 mm land, which Table 1 does not allow (the faces meet at
+  15.14 mm); the model stays at 15.0 mm.
+- The renderer has no flat annulus, so the front tips of L1, L5 and L8 remain sharper than drawn and the L5
+  front rim stands 0.3 mm behind the stop plane where FIG. 1 draws about 1.0 mm.

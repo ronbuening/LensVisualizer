@@ -8,6 +8,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * L3 is capped at 15.0 mm, just inside its 15.14 mm knife edge (FIG. 1 draws about 15.5 mm). FIG. 1 ends
  * surfaces 1, 9 and 14A at flat annuli (about 11.0, 11.1 and 10.2 mm); the model runs those faces to the drawn
  * outer rim so each element stays square-cut. Rims are not widened to contain off-axis fans.
+ * LABELS: the patent names six lens groups 11–16 (claim 1: negative, positive, positive, negative, positive,
+ * negative) with stop 17 between the third and fourth; `groups` G1–G6 follow that order. `diagramLabel` carries
+ * the FIG. 1 numerals: 11, 12, 15 and 16 are single-lens groups, 13a/13b and 14a/14b the components of the two
+ * cemented groups (D1 = group 13, D2 = group 14). Numeral 16a in FIG. 1 is the aspherical surface 14A, not a lens.
  * Glass labels are coordinate classes, not supplier or melt identifications.
  * No rear plate is listed in the patent; none is introduced.
  */
@@ -45,6 +49,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "diagramLabel": "11",
       "label": "Element 1",
       "type": "Biconcave Negative",
       "nd": 1.54814,
@@ -56,6 +61,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L2",
+      "diagramLabel": "12",
       "label": "Element 2",
       "type": "Biconvex Positive",
       "nd": 1.7725,
@@ -67,6 +73,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L3",
+      "diagramLabel": "13a",
       "label": "Element 3",
       "type": "Biconvex Positive",
       "nd": 1.8042,
@@ -79,6 +86,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
+      "diagramLabel": "13b",
       "label": "Element 4",
       "type": "Negative Meniscus",
       "nd": 1.64769,
@@ -91,6 +99,7 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "L5",
+      "diagramLabel": "14a",
       "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.69895,
@@ -103,6 +112,7 @@ const LENS_DATA = {
     {
       "id": 6,
       "name": "L6",
+      "diagramLabel": "14b",
       "label": "Element 6",
       "type": "Biconvex Positive",
       "nd": 1.8042,
@@ -115,6 +125,7 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "L7",
+      "diagramLabel": "15",
       "label": "Element 7",
       "type": "Biconvex Positive",
       "nd": 1.8061,
@@ -126,6 +137,7 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "L8",
+      "diagramLabel": "16",
       "label": "Element 8",
       "type": "Negative Meniscus (1× Asph)",
       "nd": 1.6935,
@@ -270,7 +282,38 @@ const LENS_DATA = {
   },
   "var": {},
   "varLabels": [],
-  "groups": [],
+  "groups": [
+    {
+      "text": "G1 −",
+      "fromSurface": "1",
+      "toSurface": "2"
+    },
+    {
+      "text": "G2 +",
+      "fromSurface": "3",
+      "toSurface": "4"
+    },
+    {
+      "text": "G3 +",
+      "fromSurface": "5",
+      "toSurface": "7"
+    },
+    {
+      "text": "G4 −",
+      "fromSurface": "9",
+      "toSurface": "11"
+    },
+    {
+      "text": "G5 +",
+      "fromSurface": "12",
+      "toSurface": "13"
+    },
+    {
+      "text": "G6 −",
+      "fromSurface": "14A",
+      "toSurface": "15"
+    }
+  ],
   "doublets": [
     {
       "text": "D1",
@@ -285,7 +328,7 @@ const LENS_DATA = {
   ],
   "closeFocusM": 1000000000000000.0,
   "apertureBlades": 10,
-  "focusDescription": "NO_INTERNAL_RECONSTRUCTION. Infinity-only published prescription; close focus is not modeled. Production manual rangefinder focus reaches 0.9 m, but no optical motion law is published.",
+  "focusDescription": "Infinity-only published prescription; close focus is not modeled. The production lens focuses manually with rangefinder coupling down to 0.9 m, but the patent publishes no focusing movement.",
   "nominalFno": 1.64,
   "fstopSeries": [
     1.64,

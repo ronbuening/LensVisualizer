@@ -34,6 +34,12 @@ The third and fourth groups are cemented doublets, so six groups contain eight p
 The diaphragm is the explicitly listed plane 8, between the two doublets; it is labeled STO in the model.
 No optical plane is removed, and no rear sensor plate or filter is present in the source table.
 
+Patent Fig. 1 numbers the six groups 11 to 16 and the diaphragm 17, and names the cemented components 13a, 13b,
+14a and 14b (¶0009–0010). The diagram carries those numerals under the elements and G1 to G6, with the sign of
+each group's power, for the groups. In this analysis they are L1 (11), L2 (12), L3 (13a), L4 (13b), L5 (14a),
+L6 (14b), L7 (15) and L8 (16); D1 and D2 are the cemented third and fourth groups, 13 and 14. Numeral 16a in the
+figure is the aspherical object-side surface of the sixth group, surface 14A here, not an element.
+
 Tracing the final prescription gives EFL = 36.050652 mm and BFD = 19.000655 mm from the last lens vertex.
 The source image-plane spacing is 19.0000 mm. The first-to-last-vertex track is 45.000000 mm,
 and the first vertex to the tabulated image plane is 64.000000 mm.
