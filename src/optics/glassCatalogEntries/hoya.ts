@@ -235,6 +235,17 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for TAC8.",
   },
   {
+    name: "TAC8P",
+    vendor: "Hoya",
+    polynomial: [2.9312694, -0.013849509, 0.021679031, -0.000079212106, 0.000066098714, -0.0000033369837],
+    nd: 1.72916,
+    vd: 54.54,
+    PgF: 0.5453,
+    code6: "729545",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published TAC8P formula-1 row.",
+  },
+  {
     name: "LAC14",
     vendor: "Hoya",
     polynomial: [2.8255229, -0.013632902, 0.019791402, 0.000015032564, 0.000040761368, -0.0000017527267],
@@ -363,6 +374,16 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5474,
     code6: "755523",
     source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for TAC6L.",
+  },
+  {
+    name: "TAC6",
+    vendor: "Hoya",
+    polynomial: [3.0182184, -0.015381633, 0.021520137, 0.00064608303, -0.000032355748, 0.0000020791593],
+    nd: 1.755,
+    vd: 52.32,
+    PgF: 0.5473,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published TAC6 formula-1 row; product code 755-523 omitted so bare-code annotations keep their existing row.",
   },
   {
     name: "BACED5",

@@ -9,7 +9,7 @@
 **Published:** 2023-08-01
 **Embodiment analyzed:** Example 2 (实施例2, ¶0051–0064)
 
-The patent discloses two numerical examples. Example 1 is a longer-focal-length variant ($f = 87.1$ mm) that does not correspond to any known production lens. Example 2 is identified as the production Laowa 58 mm f/2.8 2× Ultra-Macro APO by the following convergent evidence:
+The patent discloses two numerical examples. Example 1 is a longer-focal-length variant ($f = 87.1$ mm, 13 elements in 10 groups) that correlates with the Laowa 90 mm f/2.8 2× Ultra Macro APO and is modeled separately. Example 2 is identified as the production Laowa 58 mm f/2.8 2× Ultra-Macro APO by the following convergent evidence:
 
 1. **Element and group count.** Example 2 contains 14 elements in 11 air-separated groups. The production lens is marketed as "14 elements in 11 groups" (Laowa product page; B&H product listing).
 2. **Focal length.** The patent states $f = 59.2122$ mm (¶0054). Independent paraxial ray trace confirms $f = 59.21$ mm. The production lens is marketed at 58 mm — a standard rounding.

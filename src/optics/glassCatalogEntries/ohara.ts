@@ -2157,4 +2157,15 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published low-softening-temperature L-LAH53 Sellmeier row.",
   },
+  {
+    name: "L-LAH81",
+    vendor: "Ohara",
+    nd: 1.8061,
+    vd: 40.400738,
+    B: [1.89927344, 0.270978866, 1.33163819],
+    C: [0.0102901828, 0.0424227173, 100.967566],
+    code6: "806404",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued low-softening-temperature L-LAH81 Sellmeier row.",
+  },
 ];

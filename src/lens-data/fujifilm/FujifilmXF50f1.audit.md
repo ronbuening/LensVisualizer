@@ -62,3 +62,7 @@ Production and local browser views inspected. Corrected local midpoint gaps show
   now the physical one; the stored BF label is now "G2–PP".
 - Paraxial check against the previous data: EFL identical and defocus unchanged at both focus keyframes (the old fold
   was exact). Physical track grows by 0.971 mm to the source's 111.268 mm.
+
+## 2026-10-08 — Glass coverage: catalog row for one unresolved element
+
+L1g (1.80809 / 22.76, patent θgF 0.63073) was labelled with a family description that named no glass and traced on the Abbe estimate. It is now labelled S-NPH1 (OHARA 1.80810 / 22.76, catalog θgF 0.6307), in the same catalog-compatible form as the file's S-NPH3 and S-NPH4 elements, and traces on that curve. Stored nd, νd and dPgF are unchanged.

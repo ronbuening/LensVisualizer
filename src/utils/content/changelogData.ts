@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-08",
+    type: "lens",
+    summary: "Added nine Zeiss, Laowa, Olympus, Sigma and Voigtländer lenses, from 8mm fisheye to 135mm f/1.4",
+  },
+  {
+    date: "2026-10-08",
     type: "improvement",
     summary: "Improved MTF: diffraction from traced rays, clipped corners charted, traced f-number shown",
   },

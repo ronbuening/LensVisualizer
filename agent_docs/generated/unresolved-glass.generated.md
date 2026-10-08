@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **891** lenses scanned
-- **10071** non-air surfaces examined
-- **10081** element glass declarations examined
-- **236** non-explicit-unmatched annotations did not resolve
-- **128** distinct unresolved glass-like tokens found
+- **900** lenses scanned
+- **10186** non-air surfaces examined
+- **10196** element glass declarations examined
+- **234** non-explicit-unmatched annotations did not resolve
+- **127** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -124,7 +124,6 @@ or per-lens patent backfills.
 | 803405 | 1 | 1 | |
 | 803456 | 1 | 1 | |
 | 805410 | 1 | 1 | |
-| 806404 | 1 | 1 | |
 | 827336 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 837333 | 1 | 1 | |
@@ -612,10 +611,6 @@ or per-lens patent backfills.
 ### 805410 — 1 occurrence
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 22: `805410 - dense lanthanum-flint / LASF-class glass (unresolved)`
-
-### 806404 — 1 occurrence
-
-- [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 3A: `806404 — lanthanum flint (catalog unresolved; nd 1.8061, νd 40.4)`
 
 ### 827336 — 1 occurrence
 
