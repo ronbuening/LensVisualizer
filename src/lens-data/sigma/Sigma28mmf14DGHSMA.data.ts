@@ -10,13 +10,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * Stop position is published. Its radius is inferred by exact axial Snell
  * tracing at EFL/(2*1.46), consistent with ordinary current-runtime aperture
  * calibration. The f-number match is calibration, not independent iris data.
- * Semi-diameters are estimated from Figure 21 (Example 5 at infinity, scaled
- * 0.1926 mm/px from its vertex crossings) with Sigma's construction diagram as
- * a secondary check, floor-checked by exact d-line real-ray trace at both
- * published focus states and by the edge/rim/shared-gap rules. Surfaces 2, 4A
- * and 7 stop at the shared-gap limit, below the rims the figure draws; 21 ends
- * at the drawn optical extent inside the flat rear annulus of L12.
+ * Semi-diameters are estimated from Figure 21 (Example 5 at infinity) with
+ * Sigma's construction diagram as a secondary check, floor-checked by exact
+ * d-line real-ray trace at both published focus states and by the
+ * edge/rim/shared-gap rules. The figure is drawn at 0.1923 mm/px along the
+ * axis (vertex crossings) but 0.186 mm/px in height (drawn curvatures and the
+ * stop tick), so the stored rims, first read at the axial scale, stand about
+ * 3 % above the drawn heights; that uniform offset is left in place. Surface
+ * 10 ends where both drawings end the front face of E6, 19.3 mm. Surfaces 2,
+ * 4A and 7 stop at the shared-gap limit, below the rims the figure draws; 21
+ * ends at the drawn optical extent inside the flat rear annulus of E12.
  * They are not published dimensions; field vignetting remains an inference.
+ * Elements are named E1–E17 because the patent reserves L1 and L2 for its two
+ * lens groups and names no single element; its L2c is the triplet T1.
  * Glass labels name the coordinate-equal HOYA/OHARA catalog row so each
  * element traces on a vendor curve; they do not identify the factory supplier. E11's source-normal-line anomaly is converted to the
  * current runtime dPgF convention; no individual spectral indices invented.
@@ -62,7 +68,7 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "E1",
       "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.76385,
@@ -70,11 +76,11 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -75.520502,
       "glass": "S-LAH96 (OHARA coordinate equivalent, 764485; supplier unconfirmed)",
-      "role": "Front negative meniscus preceding the positive front group."
+      "role": "Front negative meniscus, convex to the object; first element of the fixed group L1."
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "E2",
       "label": "Element 2",
       "type": "Neg. Meniscus (2× Asph)",
       "nd": 1.59201,
@@ -86,7 +92,7 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "E3",
       "label": "Element 3",
       "type": "Biconvex Positive",
       "nd": 1.95375,
@@ -98,7 +104,7 @@ const LENS_DATA = {
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "E4",
       "label": "Element 4",
       "type": "Biconcave Negative",
       "nd": 1.437,
@@ -113,7 +119,7 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "E5",
       "label": "Element 5",
       "type": "Biconvex Positive",
       "nd": 1.91082,
@@ -126,7 +132,7 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "E6",
       "label": "Element 6",
       "type": "Biconcave Negative",
       "nd": 1.738,
@@ -139,7 +145,7 @@ const LENS_DATA = {
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "E7",
       "label": "Element 7",
       "type": "Biconvex Positive",
       "nd": 1.59282,
@@ -154,7 +160,7 @@ const LENS_DATA = {
     },
     {
       "id": 8,
-      "name": "L8",
+      "name": "E8",
       "label": "Element 8",
       "type": "Biconvex Positive",
       "nd": 1.8042,
@@ -166,7 +172,7 @@ const LENS_DATA = {
     },
     {
       "id": 9,
-      "name": "L9",
+      "name": "E9",
       "label": "Element 9",
       "type": "Biconvex Positive",
       "nd": 1.76385,
@@ -178,7 +184,7 @@ const LENS_DATA = {
     },
     {
       "id": 10,
-      "name": "L10",
+      "name": "E10",
       "label": "Element 10",
       "type": "Biconvex Positive (2× Asph)",
       "nd": 1.76802,
@@ -190,7 +196,7 @@ const LENS_DATA = {
     },
     {
       "id": 11,
-      "name": "L11",
+      "name": "E11",
       "label": "Element 11",
       "type": "Biconvex Positive",
       "nd": 1.92286,
@@ -198,7 +204,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 57.941901,
       "glass": "E-FDS1-W (HOYA coordinate equivalent, 923209; supplier unconfirmed)",
-      "role": "Positive anomalous-dispersion member of D3, constrained by patent conditions4–5.",
+      "role": "Positive anomalous-dispersion member of D3, constrained by patent conditions 4–5.",
       "cemented": "D3",
       "dPgF": 0.03036615999999992,
       "apd": "patent",
@@ -206,7 +212,7 @@ const LENS_DATA = {
     },
     {
       "id": 12,
-      "name": "L12",
+      "name": "E12",
       "label": "Element 12",
       "type": "Biconcave Negative",
       "nd": 1.738,
@@ -219,7 +225,7 @@ const LENS_DATA = {
     },
     {
       "id": 13,
-      "name": "L13",
+      "name": "E13",
       "label": "Element 13",
       "type": "Positive Meniscus",
       "nd": 1.4586,
@@ -229,12 +235,12 @@ const LENS_DATA = {
       "glass": "FCD10A (HOYA coordinate equivalent, 459902; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "Low-dispersion fluorophosphate-class coordinate at one of the five positions Sigma's construction diagram colours as FLD or SLD glass; inferred from the glass family, not a patent designation.",
-      "role": "Front positive low-dispersion member of the post-stop cemented triplet.",
+      "role": "Front positive low-dispersion member of the post-stop cemented triplet, which the patent labels L2c.",
       "cemented": "T1"
     },
     {
       "id": 14,
-      "name": "L14",
+      "name": "E14",
       "label": "Element 14",
       "type": "Biconcave Negative",
       "nd": 1.738,
@@ -247,7 +253,7 @@ const LENS_DATA = {
     },
     {
       "id": 15,
-      "name": "L15",
+      "name": "E15",
       "label": "Element 15",
       "type": "Biconvex Positive",
       "nd": 1.497,
@@ -262,7 +268,7 @@ const LENS_DATA = {
     },
     {
       "id": 16,
-      "name": "L16",
+      "name": "E16",
       "label": "Element 16",
       "type": "Biconvex Positive",
       "nd": 1.59282,
@@ -276,7 +282,7 @@ const LENS_DATA = {
     },
     {
       "id": 17,
-      "name": "L17",
+      "name": "E17",
       "label": "Element 17",
       "type": "Pos. Meniscus (2× Asph)",
       "nd": 1.76802,
@@ -366,7 +372,7 @@ const LENS_DATA = {
       "d": 1.5,
       "nd": 1.738,
       "elemId": 6,
-      "sd": 18.3
+      "sd": 19.3
     },
     {
       "label": "11",
@@ -614,7 +620,7 @@ const LENS_DATA = {
     ],
     [
       "30A",
-      "D30 (to LPF)"
+      "D30"
     ]
   ],
   "groups": [
@@ -661,7 +667,7 @@ const LENS_DATA = {
       "source": "JP 2019-219472 A Example 5, PDF p22 printed p21: published d0=1122.9079 mm, d14=6.2577 mm, d30=37.2626 mm, BF=1.0 mm; caption 1275 mm."
     }
   ],
-  "focusDescription": "PUBLISHED infinity and approximately 1.275 m test states. Rear group, surfaces 15–30 including STO, moves 0.7338 mm toward the object; front group, LPF and image stay fixed. Between-state spacing interpolation is a model approximation. The production 0.28 m minimum focus is not reconstructed.",
+  "focusDescription": "Rear focus between the two states the patent publishes, infinity and 1.275 m. Group L2 (surfaces 15–30, including the stop) moves 0.7338 mm toward the object; group L1, the LPF and the image plane stay fixed. Spacings between the two states are interpolated. The production 0.28 m minimum focus is not reconstructed.",
   "nominalFno": 1.46,
   "fstopSeries": [
     1.46,

@@ -295,3 +295,59 @@ Open limitations: the renderer joins an element's two rim points with a straight
 - `apd: "inferred"` added to L4 and L13 (FLD by count on Sigma's diagram) and L7, L15 and L16 (SLD by count); L11 keeps its patent tag.
 - `specs` added (17 elements / 12 groups, design f = 28.72 mm, design F/1.46, six aspherical surfaces on three elements); the file had none. Missing spaces repaired in `focusDescription` and two `source` strings; subtitle punctuated.
 - Display name, mounts (Sigma SA, Canon EF, Nikon F, Sony FE, L-Mount), format and the nine-blade count reviewed and left as authored. `closeFocusM` stays at the patent's 1.275 m test state, the only finite state the source tabulates.
+
+## 2026-10-08 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity, at the 1.275 m end, with the focus-movement overlay and with the inspector open on elements 1, 2, 4, 7, 10, 11, 13, 15, 16 and 17, against Figure 21 (`patents/JP2019219472A.pdf`, PDF page 29, the embedded 898 × 538 bilevel raster read pixel by pixel), the Example 5 text and tables (¶0080 to ¶0084, PDF pages 20 to 22) and Sigma's construction diagram. Elements named L1 to L17 in the sections above are the elements now named E1 to E17.
+
+### Figure scale
+
+- Along the axis the vertices of surfaces 1 and 30 sit at x = 57 and x = 645, 588 px for 113.0815 mm, so 0.1923 mm/px; the filter faces and the image plane (x = 835, 843, 848) and every intermediate vertex fall within 1 px of the prescription at that scale.
+- In height the figure is drawn smaller. Overlaying each prescription surface on the raster and counting rows where the drawn line falls on the predicted pixel, the strongly curved surfaces all peak at 0.185 to 0.186 mm/px: surface 24 matches 68 of 73 rows at 0.186 against 24 of 70 at 0.192, surface 11 92 of 97 against 32 of 94, surface 2 77 of 102 against 16 of 98, surface 1 118 of 142 at 0.185 against 27 of 137. The stop tick's inner end is 75 px from the axis, 13.95 mm at 0.186, against the calibrated 14.04 mm; the first pass read it as 14.45 mm.
+- Heights in the first-pass table were converted at 0.1926 mm/px and are therefore 3 to 3.5 % high. Read at 0.186 mm/px the flat tops are: E1 28.0, E2 23.1, E3 21.3, D1 21.0, D2 20.0, E8 21.3, E9 20.4, E10 19.5, D3 18.3, T1 16.1, E16 17.0, E17 17.3 mm, and the concave rear face of E12 ends at 14.8 mm. Every stored rim stands 1 to 4 % above these. The offset is uniform, it keeps the drawn order of heights, and it is inside the reading band, so no rim was lowered.
+
+### Semi-diameter change
+
+| Surface | Before | Figure 21 | Maker diagram | After | Evidence |
+|---|---:|---:|---:|---:|---|
+| 10 (E6 front) | 18.3 | 19.1 to 19.4 | 19.3 to 19.6 | 19.3 | The concave face runs to the square front edge of D2 at x = 237, 23 px ahead of its vertex, which is 19.3 to 19.4 mm on R = −44.8985 whatever the height scale; by height the curve leaves the edge 102.5 to 103 px from the axis on both sides, 19.1 to 19.2 mm, 4.5 px under the flat top. Sigma's diagram ends the same face 114.5 px from the axis, 19.6 mm at 0.1708 mm/px or 19.3 mm when its stop tick is set to 14.04 mm. At 18.3 the page drew the top of D2 as a 2.3 mm taper over the edge of E6; the figure draws a squared block. |
+
+Values re-measured and kept:
+
+- Surface 2 (21.4): the concave face meets the flat rear land of E1 117.5 px from the axis on both sides, 21.85 mm, and the land plane at x = 133 gives 21.84 mm from the sag. The stored value is 2 % lower and the unrelaxed shared-gap rule admits at most 21.6.
+- Surface 4A (19.6): the figure runs the face past the front corner of E3, which it touches 113 to 114.5 px from the axis (21.0 to 21.3 mm; the prescription profiles of 4A and 5 meet at 21.14 mm), up to the flat top of E2 at 23.0 mm. Sigma's diagram ends the face against the front of E3 119 to 120 px from the axis, 20.0 to 20.5 mm. The shared-gap rule admits at most 19.7.
+- Surface 7 (19.2): the figure merges the lines of surfaces 6 and 7 from 107 to 108 px upward (19.9 to 20.1 mm; the profiles meet at 20.43 mm) and ends the face at the top-left corner of D1. Sigma's diagram ends it against the rear of E3 119 px from the axis, 20.0 to 20.3 mm. The shared-gap rule admits at most 19.4.
+- Surfaces 23 and 24 (14.5 and 16): the front face of E13 ends 74.5 px from the axis under a flat land (13.9 mm by height, 14.1 to 14.35 mm from the sag) and surface 24 reaches the corner of the triplet 85 px out, 15.8 mm. Surface 24 is already at the rim-slope limit (63.6°), so the 0.7 mm rise of the top of E14 toward surface 25 stays.
+- E1 and E12 are drawn with square flanges behind a concave face that cannot reach the outer rim, so the page tapers them; no semi-diameter removes that.
+
+Rims that only a per-lens shared-gap limit would admit (not applied here; `gapSagFrac` is outside this pass): both drawings end the rear face of E2 and the front face of E4 against E3, and at the default 0.9 the validator refuses them. With 4A = 20.7 and 7 = 20.2 it reports `Air gap "4A"→"5": combined surface sag (7.22 mm) exceeds allowed gap intrusion (6.704 mm of 7.449 mm) at sd=20.7` and `Air gap "6"→"7": combined surface sag (3.71 mm) exceeds allowed gap intrusion (3.424 mm of 3.805 mm) at sd=20.2`. The intrusion fractions are 0.9693 and 0.9761, so 0.98 is the smallest two-decimal limit that admits both (0.97 still refuses surface 7); at 0.98 the validator reports no errors and no element is trimmed in the render. The faces do not cross: 0.228 mm of air remains at the rim between 4A and 5 and 0.091 mm between 6 and 7. A more cautious pair, 4A = 20.5 and 7 = 20.0, has fractions 0.9551 and 0.9551, passes at 0.96 and leaves 0.335 and 0.171 mm. Neither face clips the axial beam or the corner chief ray (10.98 and 13.51 mm axial, 16.77 and 15.29 mm chief). With surface 10 at 19.3, surface 7 at 19.2 is the lower-side limit at 0.85 of the image height; at 20.2 the transmitted bundle there goes from 55.5 to 57.1 % at infinity and from 57.0 to 58.3 % at close focus, and no other field changes. If 4A moves, the departure quoted in the analysis moves with it: −3.307188 mm at 20.5 and −3.491762 mm at 20.7, against −2.594722 mm at 19.6.
+
+### Labels, tags and metadata
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Element `name` | L1 to L17 | E1 to E17 | The patent uses L1 and L2 for its two lens groups (claim 1, ¶0080, Figure 21 brackets) and gives no designation to any single element, so L1 and L2 named both a group bracket and an element. Analysis headings and prose follow. |
+| `varLabels`, gap after 30A | D30 (to LPF) | D30 | The page appends "(to plate)" to the last gap of a lens with a rear plate, so the slider read "D30 (to LPF) (to plate)". |
+| `focusDescription` | generic "rear group" and "front group" | names groups L2 and L1 | Same facts, in the patent's group notation used by the brackets. |
+| `role`, element 1 | "preceding the positive front group" | first element of the fixed group L1 | Element 1 belongs to L1 (surfaces 1 to 14, ¶0081). |
+| `role`, element 11 | "conditions4–5" | "conditions 4–5" | Missing space. |
+| `role`, element 13 | post-stop cemented triplet | adds the patent's label L2c | ¶0082 and the L2c bracket in Figure 21. |
+
+Checked and left as they are:
+
+- Group brackets L1 (surfaces 1 to 14) and L2 (15 to 30A) match the Figure 21 brackets and the group table (L1 from surface 1, f = 186.69; L2 from surface 15, f = 54.14). The figure's Lsf bracket, all lenses ahead of the stop, overlaps both and is not drawn.
+- Cemented brackets D1 (7 to 9), D2 (10 to 12), D3 (19 to 21) and T1 (23 to 26) cover the four cemented components of ¶0081 and ¶0082; T1 is the patent's L2c.
+- Element types agree with the signs of the radii and with ¶0081 and ¶0082: two negative menisci convex to the object, biconvex, biconcave plus biconvex twice, biconvex; then biconvex, biconvex, biconvex plus biconcave, stop, positive meniscus concave to the object plus biconcave plus biconvex, biconvex, positive meniscus concave to the object.
+- Aspheric markers are on 3A, 4A, 17A, 18A, 29A and 30A, the six starred rows of the table, and nowhere else. The stop is surface 22 of the table, between E12 and E13.
+- The `apd: "patent"` tag on E11 rests on conditions 4 and 5 (νd below 30 and the anomalous-dispersion term the patent defines for a positive element ahead of the stop). The five `"inferred"` tags sit on the elements Sigma's diagram colours: yellow on the fourth and thirteenth, blue on the seventh, fifteenth and sixteenth; its three aspherical outlines are the second, tenth and seventeenth. The patent text names no low-dispersion glass.
+- The inspector shows the stored type, glass, focal length, tag and role for each element opened.
+
+### Focus movement
+
+The variable-spacing table gives d14 = 6.9915 and d30 = 36.5288 at infinity and d14 = 6.2577 and d30 = 37.2626 at the 1275 mm distance (d0 = 1122.9079). Index 0 of both `var` pairs is the infinity state and index 1 the close state. Surfaces 15 to 30A with the stop move 0.7338 mm toward the object, as the arrow over the L2 bracket and ¶0080 say; L1, the filter and the image plane stay fixed and the two gaps sum to 43.5203 mm in both states. The overlay reports two groups and a maximum travel of 0.73 mm with the end dot of L2 on the object side of its start, and the slider's far end reads 1.27 m.
+
+### Results after the edits
+
+The surface validator reports no errors, the image-circle check lists no undersized surface, field coverage is 100 % at 21.63 mm with the corner chief ray clear at 37.4°, the aperture audit is within 3 % of the stated f-number and no element is trimmed in the render. Engine values are identical before and after: focal length 28.7182 mm, f/1.46, stop radius 14.0416 mm, paraxial half-field estimate 34.124° (set by surface 2; the real corner chief ray passes at 37.375° against the patent's 37.37°). The axial stop-edge ray is at 15.33 mm on surface 10 at infinity and 15.16 mm at close focus, the corner chief ray at 13.16 and 12.79 mm. The transmitted tangential bundle at 0.3, 0.5, 0.7, 0.85 and 1.0 of the image height is 94.1, 83.6, 70.0, 55.5 and 38.1 % of the stop diameter at infinity (before: 94.1, 81.5, 66.6, 53.8, 38.1) and 94.5, 84.2, 71.1, 57.0 and 40.0 % at close focus (before: 94.5, 82.5, 67.7, 55.0, 40.0). The lower-side limits are now 13/14, 13/14, 10, 7 and 2. The smallest independent rim closure is still 0.312796 mm at E13 and the largest rim slope 63.600577° on surface 24. The shared clear-aperture script does not converge on a chief ray for this lens, so chief-ray and bundle heights come from the first pass's exact meridional tracer with the filter in place.
+
+Open limitations: the stored rims keep the uniform 1 to 4 % excess over Figure 21 read at its true height scale. Surfaces 2, 4A and 7 remain below the drawn rims until a per-lens shared-gap limit is set. Sigma's diagram differs from Example 5 in axial detail (its E5 is about 3.8 mm thick on axis against 6.32 mm, and its stop sits about 1.1 mm nearer the front), so it was used for relative heights and markings only.

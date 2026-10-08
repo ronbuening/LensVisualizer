@@ -32,7 +32,8 @@ but neither provides a factory prescription confirmation. [2]
 ## Optical Architecture
 
 The design combines a weak positive fixed front group with a stronger positive
-rear-focus group. The negative menisci at the front create the negative lead-in
+rear-focus group; the patent calls them L1 and L2. The negative menisci at
+the front create the negative lead-in
 typical of a retrofocus wide-angle construction, even though the complete fixed
 front group has positive net power. The stop lies within the moving rear group.
 The rear plate is camera-side and remains fixed with the image plane. [1, ¶¶0080–0082]
@@ -51,13 +52,13 @@ internal spacings. They are distinct from the standalone element powers below.
 
 | Assembly | Source surfaces | Computed focal length (mm) | Interpretation |
 |---|---|---:|---|
-| Fixed front group | 1–14 | +186.693469 | Weak net positive assembly |
-| Moving rear group | 15–30 | +54.139419 | Positive rear-focus assembly, including stop |
+| Fixed front group L1 | 1–14 | +186.693469 | Weak net positive assembly |
+| Moving rear group L2 | 15–30 | +54.139419 | Positive rear-focus assembly, including stop |
 | All lenses before stop | 1–21 | +53.192947 | Patent Lsf, evaluated at infinity |
 | D1 | 7–9 | +136.070948 | First front cemented pair |
 | D2 | 10–12 | -51.760429 | Second front cemented pair |
 | D3 | 19–21 | -55.811637 | Cemented pair before stop |
-| T1 | 23–26 | -40.186953 | Negative post-stop triplet |
+| T1 | 23–26 | -40.186953 | Negative post-stop triplet, the patent's L2c |
 
 The full physical system's front principal plane is +52.324489 mm
 from the first vertex. Its rear principal plane is +10.260739 mm
@@ -71,12 +72,14 @@ measure; it does not separately determine sagittal or tangential best-focus surf
 
 ## Element-by-Element Analysis
 
-The element labels below are the model's physical front-to-rear slots.
-Quoted focal lengths are standalone thick-lens values in air, not contributions
+The element labels E1–E17 below are the model's physical front-to-rear slots.
+The patent reserves L1 and L2 for its two lens groups and names no single
+element; of the cemented components it labels only the triplet, L2c, which is
+T1 here. Quoted focal lengths are standalone thick-lens values in air, not contributions
 that can be added to recover the assembled system power. Glass labels describe
 coordinate classes; vendor candidates are discussed separately.
 
-### L1 — Negative Meniscus
+### E1 — Negative Meniscus
 
 nd = 1.76385, νd = 48.49. Glass: S-LAH96 (OHARA coordinate equivalent, 764485; supplier unconfirmed). f = -75.521 mm.
 
@@ -85,7 +88,7 @@ the aspheric negative meniscus and the positive members of the fixed group.
 Its sign follows the numerical prescription and the description in ¶0081;
 a unique aberration allocation is not established by that sign alone.
 
-### L2 — Neg. Meniscus (2× Asph)
+### E2 — Neg. Meniscus (2× Asph)
 
 nd = 1.59201, νd = 67.02. Glass: M-PCD51 (HOYA coordinate equivalent, 592670; supplier unconfirmed). f = -76.563 mm.
 
@@ -94,7 +97,7 @@ front uses a spherical conic base. This negative meniscus adds independent
 peripheral-shape variables to the front section without changing the axial
 paraxial power from the higher-order polynomial terms. [1, ¶¶0052–0053, 0081, 0084]
 
-### L3 — Biconvex Positive
+### E3 — Biconvex Positive
 
 nd = 1.95375, νd = 32.32. Glass: TAFD45L (HOYA coordinate equivalent, 954323; supplier unconfirmed). f = +113.483 mm.
 
@@ -103,131 +106,131 @@ group. It is biconvex despite its relatively weak front curvature. The source
 explicitly describes the element as biconvex; it is not modeled as a plane-faced
 lens or merged with the following doublet. [1, ¶0081]
 
-### L4 — Biconcave Negative
+### E4 — Biconcave Negative
 
 nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA coordinate equivalent, 437951; supplier unconfirmed). f = -67.525 mm.
 
-L4 is the negative, very-low-dispersion member of D1 and shares surface 8 with
-L5. The low-dispersion/high-index pairing contributes to the patent's first
+E4 is the negative, very-low-dispersion member of D1 and shares surface 8 with
+E5. The low-dispersion/high-index pairing contributes to the patent's first
 front-group chromatic balance. Its very high Abbe number is compatible with
 the manufacturer's first FLD position, but does not name the supplier. [1, ¶¶0019–0027, 0081]
 
-### L5 — Biconvex Positive
+### E5 — Biconvex Positive
 
 nd = 1.91082, νd = 35.25. Glass: TAFD35L (HOYA coordinate equivalent, 911353; supplier unconfirmed). f = +46.995 mm.
 
-L5 is the positive member of D1. The shared interface carries the downstream
-L5 medium; an artificial air gap or generic cement layer would change the
+E5 is the positive member of D1. The shared interface carries the downstream
+E5 medium; an artificial air gap or generic cement layer would change the
 published construction. The assembled D1 is positive, while its chromatic
 power-over-Abbe balance is evaluated using the two standalone elements. [1, ¶0081]
 
-### L6 — Biconcave Negative
+### E6 — Biconcave Negative
 
 nd = 1.73800, νd = 32.33. Glass: S-NBH53V (OHARA coordinate equivalent, 738323; supplier unconfirmed). f = -25.066 mm.
 
-L6 begins D2 as a negative biconcave element. Its dispersion contrast with L7
+E6 begins D2 as a negative biconcave element. Its dispersion contrast with E7
 makes the pair's first-order chromatic balance opposite in sign to D1.
 The source's strategy is cancellation between the two front cemented pairs,
 not a claim that either pair is independently achromatic. [1, ¶¶0024–0027]
 
-### L7 — Biconvex Positive
+### E7 — Biconvex Positive
 
 nd = 1.59282, νd = 68.63. Glass: FCD515 (HOYA coordinate equivalent, 593686; supplier unconfirmed). f = +50.120 mm.
 
-L7 is the positive, lower-dispersion member of D2 and is cemented to L6 at
+E7 is the positive, lower-dispersion member of D2 and is cemented to E6 at
 surface 11. Its coordinate closely matches HOYA FCD515/FCD505 class data.
 The assembled D2 nevertheless has negative net power: the standalone positive
-power of L7 is not the power of the complete cemented assembly. [1, ¶0081; 3]
+power of E7 is not the power of the complete cemented assembly. [1, ¶0081; 3]
 
-### L8 — Biconvex Positive
+### E8 — Biconvex Positive
 
 nd = 1.80420, νd = 46.50. Glass: TAF3D (HOYA coordinate equivalent, 804465; supplier unconfirmed). f = +46.337 mm.
 
 This positive biconvex singlet ends the fixed front group. The following air
-gap, d14, is the first focus variable. L8 remains fixed relative to the image
+gap, d14, is the first focus variable. E8 remains fixed relative to the image
 while the following group moves toward the object for the finite state.
 No independent production focus mechanism is inferred from its shape. [1, ¶0080]
 
-### L9 — Biconvex Positive
+### E9 — Biconvex Positive
 
 nd = 1.76385, νd = 48.49. Glass: S-LAH96 (OHARA coordinate equivalent, 764485; supplier unconfirmed). f = +88.019 mm.
 
-L9 is the first element of the moving rear group. Its positive biconvex form
+E9 is the first element of the moving rear group. Its positive biconvex form
 is retained even though the rear curvature is comparatively weak. The element
 moves rigidly with the following lenses and the stop in the source mechanism.
 [1, ¶¶0080, 0082]
 
-### L10 — Biconvex Positive (2× Asph)
+### E10 — Biconvex Positive (2× Asph)
 
 nd = 1.76802, νd = 49.24. Glass: M-TAF101 (HOYA coordinate equivalent, 768492; supplier unconfirmed). f = +86.716 mm.
 
-L10 is a positive biconvex aspheric element with surfaces 17A and 18A.
+E10 is a positive biconvex aspheric element with surfaces 17A and 18A.
 The source lists a single glass medium through the element; no resin layer
 is modeled. The moldable HOYA M-TAF101 coordinate is compatible, but catalog
 compatibility alone is not evidence of the manufacturing process. [1, ¶0084; 3]
 
-### L11 — Biconvex Positive
+### E11 — Biconvex Positive
 
 nd = 1.92286, νd = 20.88. Glass: E-FDS1-W (HOYA coordinate equivalent, 923209; supplier unconfirmed). f = +57.942 mm.
 
-L11 is the positive member of D3 before the stop. The patent's low-Abbe and
+E11 is the positive member of D3 before the stop. The patent's low-Abbe and
 anomalous-partial-dispersion conditions identify this positive element.
 Its source-backed anomaly is retained after conversion of the patent's normal
 line to the model convention; the conversion is explained below. [1, ¶¶0028–0032]
 
-### L12 — Biconcave Negative
+### E12 — Biconcave Negative
 
 nd = 1.73800, νd = 32.33. Glass: S-NBH53V (OHARA coordinate equivalent, 738323; supplier unconfirmed). f = -28.043 mm.
 
-L12 is the negative biconcave member of D3 and ends the refracting pre-stop
+E12 is the negative biconcave member of D3 and ends the refracting pre-stop
 section. The following air contains the aperture stop at the published axial
 position. D3 is net negative, while the complete moving rear group is positive.
 These descriptions refer to different assembled optical subsystems. [1, ¶0082]
 
-### L13 — Positive Meniscus
+### E13 — Positive Meniscus
 
 nd = 1.45860, νd = 90.20. Glass: FCD10A (HOYA coordinate equivalent, 459902; supplier unconfirmed). f = +63.994 mm.
 
-L13 is a positive meniscus concave toward the object, forming the front of T1.
+E13 is a positive meniscus concave toward the object, forming the front of T1.
 Its very-low-dispersion coordinate agrees with HOYA FCD10A class data. The source
 uses this positive element, a negative middle member and a second positive
 member in one cemented triplet after the stop. [1, ¶¶0033–0038, 0082; 3]
 
-### L14 — Biconcave Negative
+### E14 — Biconcave Negative
 
 nd = 1.73800, νd = 32.33. Glass: S-NBH53V (OHARA coordinate equivalent, 738323; supplier unconfirmed). f = -21.831 mm.
 
-L14 is the strongly negative middle member of T1. The two cemented interfaces
+E14 is the strongly negative middle member of T1. The two cemented interfaces
 are retained as actual changes of glass medium. The patent constrains the
 triplet's summed power-over-Abbe balance and the difference between the mean
 positive-element partial dispersion and this negative member. [1, ¶¶0033–0038]
 
-### L15 — Biconvex Positive
+### E15 — Biconvex Positive
 
 nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA coordinate equivalent, 497816; supplier unconfirmed). f = +140.146 mm.
 
-L15 is the positive rear member of T1. Its coordinate agrees with HOYA FCD1
+E15 is the positive rear member of T1. Its coordinate agrees with HOYA FCD1
 class data. Its positive standalone power does not negate the triplet's negative
 assembled power; the two positive members bracket the stronger negative middle
 member in the source construction. [1, ¶0082; 3]
 
-### L16 — Biconvex Positive
+### E16 — Biconvex Positive
 
 nd = 1.59282, νd = 68.63. Glass: FCD515 (HOYA coordinate equivalent, 593686; supplier unconfirmed). f = +38.444 mm.
 
 This positive, lower-dispersion singlet follows the triplet and shares the
-same native nd/νd coordinate as L7. It is separated from the final meniscus by
+same native nd/νd coordinate as E7. It is separated from the final meniscus by
 a real air gap. The prescription supports the placement and power, but does not
-uniquely assign a particular off-axis aberration correction to L16 alone. [1, ¶0084]
+uniquely assign a particular off-axis aberration correction to E16 alone. [1, ¶0084]
 
-### L17 — Pos. Meniscus (2× Asph)
+### E17 — Pos. Meniscus (2× Asph)
 
 nd = 1.76802, νd = 49.24. Glass: M-TAF101 (HOYA coordinate equivalent, 768492; supplier unconfirmed). f = +113.282 mm.
 
 The last lens element is a positive meniscus concave toward the object, with
 aspheric surfaces 29A and 30A. It moves with the rear-focus group; the following
 air spacing to the fixed LPF increases in the finite state. The same medium as
-L10 is retained without assigning an unverified glass supplier. [1, ¶¶0080, 0082, 0084]
+E10 is retained without assigning an unverified glass supplier. [1, ¶¶0080, 0082, 0084]
 
 ## Glass Identification and Selection
 
@@ -240,18 +243,18 @@ of other vendors does not exclude alternatives. [3, 4]
 
 | nd / νd | Model elements | Catalog comparison | Residual (catalog minus patent) |
 |---|---|---|---|
-| 1.43700 / 95.10 | L4 | FCD100 (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
-| 1.45860 / 90.20 | L13 | FCD10A (HOYA), coordinate equivalent | Δn +0.00000; Δν -0.01 |
-| 1.49700 / 81.61 | L15 | FCD1 (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
-| 1.59201 / 67.02 | L2 | M-PCD51 (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
-| 1.59282 / 68.63 | L7, L16 | FCD515 (HOYA), coordinate equivalent | Δn +0.00000; Δν -0.01 |
-| 1.73800 / 32.33 | L6, L12, L14 | S-NBH53V (OHARA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
-| 1.76385 / 48.49 | L1, L9 | S-LAH96 (OHARA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
-| 1.76802 / 49.24 | L10, L17 | M-TAF101 (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
-| 1.80420 / 46.50 | L8 | TAF3D (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
-| 1.91082 / 35.25 | L5 | TAFD35L (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
-| 1.92286 / 20.88 | L11 | E-FDS1-W (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
-| 1.95375 / 32.32 | L3 | TAFD45L (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
+| 1.43700 / 95.10 | E4 | FCD100 (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
+| 1.45860 / 90.20 | E13 | FCD10A (HOYA), coordinate equivalent | Δn +0.00000; Δν -0.01 |
+| 1.49700 / 81.61 | E15 | FCD1 (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
+| 1.59201 / 67.02 | E2 | M-PCD51 (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
+| 1.59282 / 68.63 | E7, E16 | FCD515 (HOYA), coordinate equivalent | Δn +0.00000; Δν -0.01 |
+| 1.73800 / 32.33 | E6, E12, E14 | S-NBH53V (OHARA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
+| 1.76385 / 48.49 | E1, E9 | S-LAH96 (OHARA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
+| 1.76802 / 49.24 | E10, E17 | M-TAF101 (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
+| 1.80420 / 46.50 | E8 | TAF3D (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
+| 1.91082 / 35.25 | E5 | TAFD35L (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
+| 1.92286 / 20.88 | E11 | E-FDS1-W (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
+| 1.95375 / 32.32 | E3 | TAFD45L (HOYA), coordinate equivalent | Δn +0.00000; Δν +0.00 |
 
 HOYA also lists FCD505 at the FCD515 coordinate, and several polished/moldable
 variants share other coordinates. The data file names the tabulated row beside
@@ -267,11 +270,11 @@ The public catalog spectra are evidence for candidate comparison, not measured
 spectra of the patent melts. No nC, nF or ng values have been fabricated for the
 patent elements. A targeted execution of the pinned current runtime resolved
 all seventeen class-labeled elements to compatible catalog curves. This can
-select a different equivalent from the comparison table: L3 resolved to
-J-LASFH21, L5 to H-ZLaF4LA, L6/L12/L14 to J-KZFH9, L8 to N-LASF44,
-L11 to N-SF66 and L15 to H-FK61. These are runtime selections, not revised
+select a different equivalent from the comparison table: E3 resolved to
+J-LASFH21, E5 to H-ZLaF4LA, E6/E12/E14 to J-KZFH9, E8 to N-LASF44,
+E11 to N-SF66 and E15 to H-FK61. These are runtime selections, not revised
 supplier identities. The LPF uses Abbe approximation. The runtime preserves
-L11's authored PgF = 0.639046 by reconstructing its g-line index from that
+E11's authored PgF = 0.639046 by reconstructing its g-line index from that
 ratio and the selected catalog's C/F span. Thus the converted dPgF is active
 even when the six-digit class resolves to a catalog curve.
 
@@ -310,7 +313,7 @@ adds no missing optical spacings. [1, ¶0080 and ¶0084; 2]
 
 ## Aspherical Surfaces
 
-The three aspheric elements are L2 (3A, 4A), L10 (17A, 18A) and L17 (29A, 30A).
+The three aspheric elements are E2 (3A, 4A), E10 (17A, 18A) and E17 (29A, 30A).
 The patent defines the conic-plus-polynomial sag as
 
 z(h) = (h²/R) / [1 + √(1 − (1 + K)(h/R)²)] + A4h⁴ + A6h⁶ + A8h⁸ + A10h¹⁰ + A12h¹².
@@ -344,7 +347,7 @@ inferred model semi-diameters, departures from the same-radius vertex sphere are
 
 At 3A and 17A the total sag is lower than the corresponding vertex sphere.
 At 18A it is higher; the opposing departures provide distinct shape freedoms
-on the two faces of L10. Surface 4A's much larger negative departure includes
+on the two faces of E10. Surface 4A's much larger negative departure includes
 its parabolic conic base and must not be attributed solely to the polynomial.
 The final meniscus has negative departure at 29A and positive departure at 30A.
 These statements describe geometry, not uniquely identified aberration corrections.
@@ -364,7 +367,7 @@ partial cancellation in the total. This is the source's stated first-order
 balance; it is not a substitute for a full polychromatic aberration evaluation.
 [1, ¶¶0019–0032]
 
-The L11 material satisfies the source's low-Abbe and anomalous-dispersion
+The E11 material satisfies the source's low-Abbe and anomalous-dispersion
 conditions. Its printed ΔPgf = 0.0283 uses the patent baseline
 0.64833 − 0.0018νd. At νd = 20.88 this yields absolute PgF = 0.639046.
 The model's baseline is 0.6438 − 0.001682νd, so its structured dPgF is 0.03036616.
@@ -393,8 +396,8 @@ group, consistently with the reproduced source quantities.
 | 1 | &#124;ΣAc&#124; < 0.0015 | 0.0005 | 0.000495327 | Bound satisfied |
 | 2 | Ac for one front pair > 0 | 0.0004 | 0.000447934 | Bound satisfied |
 | 3 | Ac for the other front pair < 0 | -0.0009 | -0.000943261 | Bound satisfied |
-| 4 | νd(L11) < 30 | 20.88 | 20.880000000 | Bound satisfied |
-| 5 | Patent ΔPgf(L11) > 0.0090 | 0.0283 | 0.0283 | Source spectral input; bound satisfied |
+| 4 | νd(E11) < 30 | 20.88 | 20.880000000 | Bound satisfied |
+| 5 | Patent ΔPgf(E11) > 0.0090 | 0.0283 | 0.0283 | Source spectral input; bound satisfied |
 | 6 | &#124;AL2c&#124; < 0.0020 | 0.0012 | 0.001156173 | Bound satisfied |
 | 7 | &#124;mean PgF(positive) − PgF(negative)&#124; < 0.065 | 0.053 | 0.053 | Source spectral input; bound satisfied |
 | 8 | 1.50 < φ/φsf < 3.80 | 1.85 | 1.852237823 | Bound satisfied |
@@ -417,8 +420,13 @@ The inferred lens semi-diameters are informed by Figure 21 and constrained by
 actual sag, conic domain, rim slope, element thickness, shared-gap clearance
 and off-axis ray containment. Surfaces 11, 25 and 26 take the heights at which
 Figure 21 draws the flat tops of D2 and T1, and surface 21 ends where the
-figure ends the concave rear face of L12, inside its flat annulus. Surfaces 2,
-4A and 7 stop at the shared-gap limit, below the rims the figure draws.
+figure ends the concave rear face of E12, inside its flat annulus. Surface 10
+ends at 19.3 mm, where Figure 21 and Sigma's construction diagram both end the
+concave front face of E6. Surfaces 2, 4A and 7 stop at the shared-gap limit,
+below the rims the figure draws. Figure 21 is drawn at 0.1923 mm/px along the
+axis but 0.186 mm/px in height, as its drawn curvatures and its stop tick
+show; the stored rims were first read at the axial scale and stand about 3 %
+above the drawn heights, a uniform offset that is left in place.
 The apertures are not obtained by equating filter
 thread or barrel diameter with optical radius. Model corner chiefs and on-axis
 bundles pass the sampled states; peripheral lens-edge vignetting is retained.
@@ -441,10 +449,14 @@ meridional trace agreed with the runtime intercepts within 1.1 × 10⁻⁹ mm an
 found no material-boundary excursion at 63 interior samples per glass segment.
 This sampling does not establish clearance over a continuous domain or measure
 production vignetting. Both ray samples predate the figure-based values of
-surfaces 11, 21, 25 and 26; an exact meridional re-trace at both published
-focus states transmits the same bundle before and after at 20 image heights.
+surfaces 10, 11, 21, 25 and 26. An exact meridional re-trace at both published
+focus states transmits the same bundle with the values of 11, 21, 25 and 26 as
+before them. The higher rim of surface 10 widens the transmitted tangential
+bundle at infinity from 81.5, 66.6 and 53.8 % to 83.6, 70.0 and 55.5 % of the
+stop diameter at 0.5, 0.7 and 0.85 of the image height, and leaves the axial
+beam and the corner bundle unchanged.
 
-The most restrictive independent rim-closure thickness is 0.312796 mm, at L13;
+The most restrictive independent rim-closure thickness is 0.312796 mm, at E13;
 the maximum actual rim slope is 63.600577°. Optical dimensions remain inferred,
 especially at tapered cemented-group rims. The actual targeted
 buildLens/validateLensData execution passed. Full project type checking,
