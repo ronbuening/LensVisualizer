@@ -95,7 +95,7 @@ prescription errors found on the way were corrected (82 files declare a fixed ir
 | `pentax/HDPentaxDA1850mmF456DCWRRE` | JP 2016-6455 A | f-numbers fit one radius | 0.08 % | kept; station f-numbers set to Table 6 |
 | `pentax/HDPentaxDFA150450mmF4556EDDCAW` | US 2016/0327774 A1 | f-numbers fit one radius | 0.44 % | kept |
 | `pentax/Pentax06TelephotoZoom1545mmF28` | US 9,784,950 B2 | f-numbers fit one radius | 0.38 % | kept |
-| `pentax/PentaxA3570mmf4` | US 4,812,022 | f-numbers need different radii | 28.24 % | fixed iris removed; f-number 4.1 at both stations; rear-group rims set from Fig. 9 |
+| `pentax/PentaxA3570mmf4` | US 4,812,022 | f-numbers need different radii | 28.24 % | fixed iris removed; f-number 4.1 at both stations; six rear-group rims raised to the stated ray |
 | `pentax/PentaxDFA28105mmF3556EDDCWR` | US 2017/0068075 A1 | f-numbers fit one radius | 1.53 % | kept |
 | `pentax/PentaxDFA70200mmF28EDDCWR` | US 2016/0103303 A1 | f-numbers fit one radius | 0.05 % | kept |
 | `schneider-kreuznach/SchneiderTeleVariogon4080240` | US 3,336,094 | f-numbers fit one radius | 0.21 % | kept |
@@ -129,8 +129,9 @@ The queued rows were worked on the same day; what remains:
   f/2.8, Nikon AF 80-200mm f/2.8 ED, Nikon AF-S 70-200mm f/2.8G VR II, Nikon AF-S 80-200mm f/2.8D, Nikon AI 80-200mm
   f/4, Nikon AI-S 100-300mm f/5.6, Nikon AI ED 50-300mm f/4.5, Tamron A005, Tamron A009, Tamron A03 and Vivitar
   Series 1 70-210mm f/2.8-4. The Nikon AI 80-200mm f/4 and AI-S 100-300mm f/5.6 rims were reduced below the beam by
-  the 2026-07 and 2026-09 semi-diameter audits. The Pentax-A 35-70mm rear group, measured on Fig. 9 at 8-19 % over
-  the file, took the figure's values on a maintainer ruling (2026-10-08) and traces the printed f/4.1 at tele.
+  the 2026-07 and 2026-09 semi-diameter audits. On the Pentax-A 35-70mm the six rear-group surfaces that
+  clipped were raised to the stated on-axis ray's height under the least-change rule (2026-10-08); Fig. 9 draws each
+  element at least that large, and the lens traces the printed f/4.1 at tele.
 - **Tables that contradict their own patent** (Section G, each an `unresolved` `sourceErrata` entry): Vivitar Series 1
   35-85mm, Konica UC 80-200mm and Schneider TV-Variogon focal lengths. Every row of each was re-read and matches the
   file. The Tamron A03 aspheres, which gave about +12 / +51 / +85 mm of spherical aberration as printed, were

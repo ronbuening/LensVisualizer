@@ -38,29 +38,38 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    f/4.1 radius at 36 mm.                                                  ║
  * ║    The iris limits the axial beam at both stations, and both trace f/4.10. ║
  * ║    At 68.5 mm the f/4.1 marginal ray reaches 10.762 mm at surface 7 (L4    ║
- * ║    front, sd 11.3 mm), 10.201 mm at surface 9 (sd 10.7 mm), 9.612 mm at    ║
- * ║    surface 11 (sd 10.2 mm), 7.731 mm at surface 12 (sd 8.4 mm) and         ║
- * ║    7.755 mm at surface 14 (sd 8.2 mm), so no rear-group rim cuts it.       ║
+ * ║    front, sd 10.8 mm), 10.681 mm at surface 8 (sd 10.7 mm), 10.201 mm at   ║
+ * ║    surface 9 (sd 10.3 mm), 9.612 mm at surface 11 (sd 9.7 mm), 7.714 mm at ║
+ * ║    surface 13 and 7.755 mm at surface 14 (sd 7.8 mm each), so no           ║
+ * ║    rear-group rim cuts it.                                                 ║
  * ║                                                                            ║
- * ║  SEMI-DIAMETERS (not patent-listed):                                       ║
+ * ║  SEMI-DIAMETERS (inferred, not patent-listed):                             ║
  * ║    Front group (surfaces 1-6): inferred from exact spherical meridional    ║
  * ║    ray bundles at the patent endpoint fields, then constrained by edge     ║
  * ║    thickness, actual rim slope, the Fig. 9 silhouette, and the default     ║
  * ║    0.90 shared-band cross-gap rule.                                        ║
- * ║    Rear group (surfaces 7-14): read from Fig. 9 (sheet 5, the 36 mm        ║
- * ║    section) as half the distance between the centres of each element's     ║
- * ║    upper and lower rim lines on the 300 dpi scan. Two scales agree to      ║
- * ║    0.5 %: the r7-r14 vertex span (354.6 px for the printed 23.250 mm,      ║
- * ║    15.25 px/mm) and circles fitted to eight drawn arcs (median             ║
- * ║    15.17 px/mm). L4 reads 11.3 mm, L5 10.7 mm, L6 10.2 mm at surface 11    ║
- * ║    and 8.4 mm at surface 12 inside the drawn chamfer, and L7 8.2 mm. The   ║
- * ║    patent calls Fig. 9 a schematic view, so these are drawing readings,    ║
- * ║    not published clear apertures.                                          ║
- * ║    The rear rims pass the f/4.1 axial beam at both endpoints and stand     ║
- * ║    0.44 to 1.00 mm outside its marginal ray at 68.5 mm. The format-corner  ║
- * ║    chief ray is clear at both endpoints (32.2° at 36 mm, 17.4° at 68.5 mm, ║
- * ║    21.65 mm image height). The default 0.60-field fan passes whole at      ║
- * ║    36 mm; at 68.5 mm its lowest ray is cut at L7 (surface 13).             ║
+ * ║    Rear group (surfaces 7-14): surfaces 7, 8, 9, 11, 13 and 14 are sized   ║
+ * ║    to the stated beam. Each carries the height the f/4.1 on-axis ray       ║
+ * ║    reaches there at 68.5 mm, rounded up to 0.1 mm: 10.8, 10.7, 10.3, 9.7,  ║
+ * ║    7.8 and 7.8 mm for 10.762, 10.681, 10.201, 9.612, 7.714 and 7.755 mm.   ║
+ * ║    At 0.1 mm precision each is the smallest rim that passes the printed    ║
+ * ║    f/4.1. Surfaces 10 and 12 carry the values inferred the same way as the ║
+ * ║    front group, 9.8 and 9.4 mm, which clear the ray's 9.698 and 7.731 mm.  ║
+ * ║    Fig. 9 (sheet 5, the 36 mm section) is the check on those values, not   ║
+ * ║    their source. Read as half the distance between the centres of each     ║
+ * ║    element's upper and lower rim lines on the 300 dpi scan, at 15.25 px/mm ║
+ * ║    (r7-r14 vertex span) and 15.17 px/mm (circles fitted to eight drawn     ║
+ * ║    arcs), it draws L4 at 11.3 mm, L5 at 10.7 mm, L6 at 10.2 mm and L7 at   ║
+ * ║    8.2 mm, each at least as large as that element's rims here. It ends     ║
+ * ║    the r12 arc at a chamfer corner 8.4 mm from the axis; surface 12, at    ║
+ * ║    9.4 mm, lies between that corner and L6's drawn outer rim. The patent   ║
+ * ║    calls Fig. 9 a schematic view.                                          ║
+ * ║    The rear rims pass the f/4.1 axial beam at both endpoints; at 68.5 mm   ║
+ * ║    the six sized rims stand 0.02 to 0.10 mm outside its marginal ray. The  ║
+ * ║    format-corner chief ray is clear at both endpoints (32.2° at 36 mm,     ║
+ * ║    17.4° at 68.5 mm, 21.65 mm image height). The default 0.60-field fan    ║
+ * ║    passes whole at 36 mm; at 68.5 mm its lowest ray is cut at L7           ║
+ * ║    (surface 13).                                                           ║
  * ║    The extreme wide-field outer-pupil ray is allowed to vignette at L2;    ║
  * ║    increasing L2 enough to pass that ray violates the d2 cross-gap rule.   ║
  * ║                                                                            ║
@@ -207,14 +216,14 @@ const LENS_DATA = {
     { label: "5", R: 31.885, d: 5.37, nd: 1.80518, elemId: 3, sd: 18 },
     { label: "6", R: 89.072, d: 39.2005, nd: 1, elemId: 0, sd: 18 },
     { label: "STO", R: 1e15, d: 1.9105, nd: 1, elemId: 0, sd: 7.752338441 },
-    { label: "7", R: 39.6, d: 3.5, nd: 1.744, elemId: 4, sd: 11.3 },
-    { label: "8", R: -132.321, d: 0.1, nd: 1, elemId: 0, sd: 11.3 },
-    { label: "9", R: 21.2, d: 4.04, nd: 1.65844, elemId: 5, sd: 10.7 },
-    { label: "10", R: 193.485, d: 0.64, nd: 1, elemId: 0, sd: 10.7 },
-    { label: "11", R: -206.849, d: 6.04, nd: 1.80518, elemId: 6, sd: 10.2 },
-    { label: "12", R: 16.57, d: 6.7, nd: 1, elemId: 0, sd: 8.4 },
-    { label: "13", R: -92.459, d: 2.23, nd: 1.58144, elemId: 7, sd: 8.2 },
-    { label: "14", R: -28.475, d: 42.386856744, nd: 1, elemId: 0, sd: 8.2 },
+    { label: "7", R: 39.6, d: 3.5, nd: 1.744, elemId: 4, sd: 10.8 },
+    { label: "8", R: -132.321, d: 0.1, nd: 1, elemId: 0, sd: 10.7 },
+    { label: "9", R: 21.2, d: 4.04, nd: 1.65844, elemId: 5, sd: 10.3 },
+    { label: "10", R: 193.485, d: 0.64, nd: 1, elemId: 0, sd: 9.8 },
+    { label: "11", R: -206.849, d: 6.04, nd: 1.80518, elemId: 6, sd: 9.7 },
+    { label: "12", R: 16.57, d: 6.7, nd: 1, elemId: 0, sd: 9.4 },
+    { label: "13", R: -92.459, d: 2.23, nd: 1.58144, elemId: 7, sd: 7.8 },
+    { label: "14", R: -28.475, d: 42.386856744, nd: 1, elemId: 0, sd: 7.8 },
   ],
 
   asph: {},

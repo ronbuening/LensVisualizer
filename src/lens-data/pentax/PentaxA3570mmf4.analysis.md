@@ -112,16 +112,18 @@ The model reaches f/4.1 at both stations, and the iris is the limiter at each. A
 
 | Surface | f/4.1 marginal ray at 68.5 mm | Semi-diameter | Clearance |
 |---|---:|---:|---:|
-| 7 (L4 front) | 10.762 mm | 11.3 mm | 0.538 mm |
-| 8 (L4 rear) | 10.681 mm | 11.3 mm | 0.619 mm |
-| 9 (L5 front) | 10.201 mm | 10.7 mm | 0.499 mm |
-| 10 (L5 rear) | 9.698 mm | 10.7 mm | 1.002 mm |
-| 11 (L6 front) | 9.612 mm | 10.2 mm | 0.588 mm |
-| 12 (L6 rear) | 7.731 mm | 8.4 mm | 0.669 mm |
-| 13 (L7 front) | 7.714 mm | 8.2 mm | 0.486 mm |
-| 14 (L7 rear) | 7.755 mm | 8.2 mm | 0.445 mm |
+| 7 (L4 front) | 10.762 mm | 10.8 mm | 0.038 mm |
+| 8 (L4 rear) | 10.681 mm | 10.7 mm | 0.019 mm |
+| 9 (L5 front) | 10.201 mm | 10.3 mm | 0.099 mm |
+| 10 (L5 rear) | 9.698 mm | 9.8 mm | 0.102 mm |
+| 11 (L6 front) | 9.612 mm | 9.7 mm | 0.088 mm |
+| 12 (L6 rear) | 7.731 mm | 9.4 mm | 1.669 mm |
+| 13 (L7 front) | 7.714 mm | 7.8 mm | 0.086 mm |
+| 14 (L7 rear) | 7.755 mm | 7.8 mm | 0.045 mm |
 
-The patent prints no clear apertures. The rear-group semi-diameters are read from Figure 9, which the patent calls a schematic view: half the distance between each element's upper and lower rim lines, converted on two scales that agree to 0.5 %. L4 reads 11.3 mm, L5 10.7 mm, L6 10.2 mm at its front surface and 8.4 mm at its rear surface inside the drawn chamfer, and L7 8.2 mm. They are drawing readings, not published values, and they are not sized to the beam: the tightest rim of each element sits 4.9 to 6.1 % outside the f/4.1 marginal ray (surface 7 for L4, 9 for L5, 11 for L6, 14 for L7).
+The patent prints no clear apertures, so every semi-diameter in the file is inferred. Six rear-group surfaces (7, 8, 9, 11, 13 and 14) are sized to the stated beam: each carries the height the f/4.1 on-axis ray reaches there at 68.5 mm, rounded up to 0.1 mm, and at that precision each is the smallest rim that passes the printed f-number. They sit 0.2 to 1.1 % outside the marginal ray. Surfaces 10 and 12 carry the values inferred from ray bundles and the Figure 9 silhouette, 9.8 mm and 9.4 mm, which clear the ray by 1.1 % and 21.6 %.
+
+Figure 9, which the patent calls a schematic view, is the check on these values and not their source. Read as half the distance between each element's upper and lower rim lines, on two scales that agree to 0.5 %, it draws L4 at 11.3 mm, L5 at 10.7 mm, L6 at 10.2 mm and L7 at 8.2 mm, each at least as large as that element's rims in the file. The figure ends the rear arc of L6 at a chamfer corner 8.4 mm from the axis; surface 12, at 9.4 mm, lies between that corner and the element's drawn outer rim.
 
 ## Conditional Expressions
 
@@ -142,7 +144,7 @@ Here `fI` is the front-group focal length, `fII` the rear-group focal length, `f
 
 The final data reproduces the patent-scale focal endpoints. Independent sequential y-ν tracing and an ABCD cross-check give **35.999849 mm** at the 36 mm state and **68.500182 mm** at the 68.5 mm state. The corresponding modeled rear vertex-to-image distances are **42.386857 mm** and **62.019383 mm**. These rear distances are computed image-space values; they are not rows printed in the patent prescription.
 
-The patent does not publish semi-diameters. The front-group semi-diameters (surfaces 1-6) are inferred from meridional ray bundles and constrained by edge thickness, actual rim slope, shared-band cross-gap clearance, and field containment. The rear-group semi-diameters (surfaces 7-14) are read from Figure 9 on the 300 dpi patent scan, on two scales: the r7-r14 vertex span, 354.6 px for the printed 23.250 mm (15.25 px/mm), and circles fitted to eight drawn arcs (median 15.17 px/mm). In the authored geometry, the minimum element edge thickness is **1.370140 mm** (L4), the maximum spherical rim angle is **48.515°** (surface 2), and the smallest remaining clearance to the 0.90 shared-band cross-gap limit is **0.055314 mm**, in the 0.640 mm air gap between L5 and L6. The chief ray to the 21.65 mm format corner is clear at both endpoints, at 32.2° at 36 mm and 17.4° at 68.5 mm. The on-axis f/4.1 beam is contained at both endpoints with the iris as its limiter, as tabulated under Focus Mechanism. The diagram's default fan at 0.60 of the chief-ray-limited field passes whole at 36 mm; at 68.5 mm its lowest ray is cut at surface 13, the front of L7. An extreme wide-angle, extreme-pupil test ray vignettes at surface 3 by approximately **0.586 mm**; enlarging that element enough to pass the ray conflicts with the adopted cross-gap limit, so that extreme vignetting is retained rather than hidden by layout controls.
+The patent does not publish semi-diameters. The front-group semi-diameters (surfaces 1-6) are inferred from meridional ray bundles and constrained by edge thickness, actual rim slope, shared-band cross-gap clearance, and field containment. In the rear group, surfaces 7, 8, 9, 11, 13 and 14 carry the height of the stated f/4.1 on-axis ray at 68.5 mm, rounded up to 0.1 mm, and surfaces 10 and 12 carry the inferred 9.8 mm and 9.4 mm. Figure 9 checks those values on the 300 dpi patent scan, on two scales: the r7-r14 vertex span, 354.6 px for the printed 23.250 mm (15.25 px/mm), and circles fitted to eight drawn arcs (median 15.17 px/mm). It draws every rear element at least as large as the file does. In the authored geometry, the minimum element edge thickness is **1.470464 mm** (L7), the maximum spherical rim angle is **48.515°** (surface 2), and the smallest remaining clearance to the 0.90 shared-band cross-gap limit is **0.064313 mm**, in the 4.240 mm air gap between L1 and L2. The chief ray to the 21.65 mm format corner is clear at both endpoints, at 32.2° at 36 mm and 17.4° at 68.5 mm. The on-axis f/4.1 beam is contained at both endpoints with the iris as its limiter, as tabulated under Focus Mechanism. The diagram's default fan at 0.60 of the chief-ray-limited field passes whole at 36 mm; at 68.5 mm its lowest ray is cut at surface 13, the front of L7. An extreme wide-angle, extreme-pupil test ray vignettes at surface 3 by approximately **0.586 mm**; enlarging that element enough to pass the ray conflicts with the adopted cross-gap limit, so that extreme vignetting is retained rather than hidden by layout controls.
 
 No sensor cover glass, filter, inactive dummy plane, flare-cutter plane, or mechanical part is included. Example 3 contains no such optical prescription entries, and no omitted plate requires an air-equivalent compensation. The design is entirely spherical, so there are no aspheric coefficients or conic conventions to transform. The scale factor is **1.0**, so neither dimensions nor coefficients are rescaled.
 

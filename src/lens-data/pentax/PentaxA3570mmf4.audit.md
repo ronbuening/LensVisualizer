@@ -142,3 +142,65 @@ Left open:
 
 - L2 is drawn at about 18.6 mm against 17.6 mm in the file. No front-group rim clips the stated beam, so the ruling does not reach it.
 - The rendered cross-section has not been compared with Fig. 9 in the browser (figure-audit procedure, Step 8).
+
+Superseded the same day: the semi-diameters this section set for surfaces 7-14 were replaced by the values in the section that follows.
+
+## 2026-10-08 — Rear-group semi-diameters by the least-change rule
+
+Rule (maintainer, 2026-10-08, replacing the ruling in the section above): an inferred rim that clips the on-axis beam of the f-number the source prints is corrected by the change that alters shape and comparative size the least. Only the surfaces that clip move, and each rises only to the height the stated on-axis ray reaches there at the station that needs most, rounded up at the precision the file's semi-diameters use. A surface that does not clip keeps its value. The patent figure is a check, not the source of the value: a raised rim must not exceed what the figure draws.
+
+The stated ray is the f/4.1 on-axis marginal ray (Example 3 header, col. 5, PDF p. 10: F number 1:4.1 for F = 36-68.5). Every rear surface needs most at 68.5 mm; at 36 mm the same ray reaches 7.960 mm at surface 7 and less behind it. The file's semi-diameters are written to 0.1 mm. The After values are the ones the repository's proposal listing (`audit:aperture` with `--raise`) prints for the file as it stood before 2026-10-08: 7: 9.5 → 10.8, 8: 9.5 → 10.7, 9: 9.8 → 10.3, 11: 9.4 → 9.7, 13: 7.2 → 7.8, 14: 7.2 → 7.8, with surfaces 10 and 12 not listed.
+
+| Field | Before (to 2026-10-07 → Fig. 9 value set earlier on 2026-10-08) | After | Source |
+|---|---:|---:|---|
+| Surface 7 `sd` (L4 front) | 9.5 mm → 11.3 mm | 10.8 mm | Stated ray reaches 10.762 mm at 68.5 mm; 9.5 mm clipped it |
+| Surface 8 `sd` (L4 rear) | 9.5 mm → 11.3 mm | 10.7 mm | Stated ray reaches 10.681 mm at 68.5 mm; 9.5 mm clipped it |
+| Surface 9 `sd` (L5 front) | 9.8 mm → 10.7 mm | 10.3 mm | Stated ray reaches 10.201 mm at 68.5 mm; 9.8 mm clipped it |
+| Surface 10 `sd` (L5 rear) | 9.8 mm → 10.7 mm | 9.8 mm | Stated ray reaches 9.698 mm at 68.5 mm; 9.8 mm did not clip it, so the value from before 2026-10-08 stands |
+| Surface 11 `sd` (L6 front) | 9.4 mm → 10.2 mm | 9.7 mm | Stated ray reaches 9.612 mm at 68.5 mm; 9.4 mm clipped it |
+| Surface 12 `sd` (L6 rear) | 9.4 mm → 8.4 mm | 9.4 mm | Stated ray reaches 7.731 mm at 68.5 mm; 9.4 mm did not clip it, so the value from before 2026-10-08 stands |
+| Surface 13 `sd` (L7 front) | 7.2 mm → 8.2 mm | 7.8 mm | Stated ray reaches 7.714 mm at 68.5 mm; 7.2 mm clipped it |
+| Surface 14 `sd` (L7 rear) | 7.2 mm → 8.2 mm | 7.8 mm | Stated ray reaches 7.755 mm at 68.5 mm; 7.2 mm clipped it |
+
+Against the values from before 2026-10-08 the six raises are +13.7 % (surface 7), +12.6 % (8), +5.1 % (9), +3.2 % (11) and +8.3 % (13 and 14); surfaces 10 and 12 are back at those values exactly. The largest raise is under the roughly 15 % above which the procedure asks for the figure to be read before anything changes. At 0.1 mm each raised value is the smallest that passes the ray: one step lower is 10.7, 10.6, 10.2, 9.6, 7.7 and 7.7 mm, each below the ray height. The raised rims stand 0.019 mm (surface 8) to 0.099 mm (surface 9) outside the ray; surfaces 10 and 12 stand 0.102 mm and 1.669 mm outside it.
+
+Figure check, against the Fig. 9 readings recorded in the two sections above (L4 11.3 mm, L5 10.7 mm, L6 outer rim 10.2 mm, L7 8.2 mm); the figure was not measured again in this pass:
+
+- Every raised value is below the reading for its element: 10.8 and 10.7 mm against 11.3 mm, 10.3 mm against 10.7 mm, 9.7 mm against 10.2 mm, 7.8 mm against 8.2 mm. No raised rim exceeds what the figure draws.
+- Surface 12 is not raised. Its 9.4 mm lies between the chamfer corner Fig. 9 draws on the r12 arc at 8.4 mm and L6's 10.2 mm outer rim, so the file carries the r12 arc 1.0 mm further out than the drawing does.
+
+Shape and comparative size, against the file before 2026-10-08:
+
+- By largest rim the rear elements ranked L5 (9.8 mm), L4 (9.5 mm), L6 (9.4 mm), L7 (7.2 mm). They now rank L4 (10.8 mm), L5 (10.3 mm), L6 (9.7 mm), L7 (7.8 mm). L4 passes L5 because the stated ray is higher at surface 7 (10.762 mm) than anywhere on L5 (10.201 mm); keeping L5 the larger would mean raising it past its own ray height. Fig. 9 draws the same order as the file now has.
+- L4, L5 and L6 had one value for both surfaces. Their front and rear semi-diameters now differ by 0.1, 0.5 and 0.3 mm, because each surface rises only to its own ray height. L7 keeps one value.
+
+Traced at infinity focus, wide open:
+
+| Station | Values before 2026-10-08 | Fig. 9 values | Values now | Limiter now |
+|---|---|---|---|---|
+| 36 mm | f/4.10 → f/4.10, iris (`STO`) | f/4.10 → f/4.10, iris (`STO`) | f/4.10 → f/4.10 (0.0 %) | iris (`STO`) |
+| 68.5 mm | f/4.10 → f/4.61 (+12.4 %), rim of surface 7 (sd 9.5 mm) | f/4.10 → f/4.10, iris (`STO`) | f/4.10 → f/4.10 (0.0 %) | iris (`STO`) |
+
+Run on the file as it now stands, the proposal listing names no surface below the stated ray.
+
+Validation of the new values: the file builds and the validator reports nothing. Edge thickness, taken at the smaller of each element's two semi-diameters, is 1.594 mm (L4, at 10.7 mm), 1.887 mm (L5, at 9.8 mm), 9.178 mm (L6, at 9.4 mm) and 1.470 mm (L7). Rim slope is 15.8° at surface 7, 29.1° at surface 9, 34.6° at surface 12 and 15.9° at surface 14, against the 64.2° limit. The cross-gap intrusion is negative across d8, 0.471 mm of the 0.576 mm allowed across d10, and 2.280 mm of 6.030 mm across d12. The element outlines need no render trim at either endpoint or at mid-zoom.
+
+Moved with the values, given as before 2026-10-08 → with the Fig. 9 values → now:
+
+- Minimum element edge thickness: 1.585461 mm (L7) → 1.370140 mm (L4) → 1.470464 mm (L7).
+- Smallest cross-gap clearance: 0.064313 mm across d2 → 0.055314 mm across d10 → 0.064313 mm across d2 (surfaces 2 and 3, 4.240 mm gap). The d10 clearance itself is 0.133831 → 0.055314 → 0.105140 mm.
+- Chief-ray-limited half-field computed by the engine: 32.128° → 34.398° → 34.228° at 36 mm and 23.471° → 26.313° → 25.192° at 68.5 mm, so the diagram's default 0.60-field fan launches at 19.28° → 20.64° → 20.54° and at 14.08° → 15.79° → 15.12°. Its lowest ray (pupil fraction -0.75) at 36 mm: cut at surface 14 by 0.137 mm → passes → passes. At 68.5 mm it is cut at surface 13 by 1.780 mm → 1.137 mm → 1.397 mm. The other four rays of the fan pass at both stations in all three states.
+- Rewritten to the traced state: the data-file header's stop-model sentences on the 68.5 mm ray and its semi-diameter block, and the note's per-surface clearance table, the two paragraphs after it and the semi-diameter sentences under Verification Summary and Modeling Limits.
+
+Confirmed unchanged:
+
+- The `STO` row (sd 7.752338441 mm), the semi-diameters of surfaces 1-6, every radius, thickness and index, the `var` gaps, `nominalFno` 4.1, `fstopSeries`, and the comment above `nominalFno`.
+- Wide-open iris radii 7.7842 mm at 36 mm and 10.3442 mm at 68.5 mm; computed focal lengths 35.9998 and 68.5002 mm.
+- Both stations trace f/4.10 on the iris, as they did with the Fig. 9 values, so the note's aperture table stands as written.
+- Traced field coverage: 100 % at 36 mm (32.2°) and at 68.5 mm (17.4°), corner chief ray clear at 21.65 mm. Image-circle floor: no surface listed.
+- Maximum rim angle 48.515° at surface 2, and the wide-field clip at surface 3, which involves only surfaces ahead of the stop: the 32.25° bundle through the traced iris still reads 18.20 mm there against the 17.6 mm rim.
+
+Left open:
+
+- L2 is drawn at about 18.6 mm against 17.6 mm in the file. No front-group rim clips the stated beam, so the rule does not reach it.
+- The rendered cross-section at 36 mm was compared by eye with Fig. 9 (figure-audit procedure, Step 8): the element order L4 > L5 > L6 > L7 and the rear group at about half the height of L1 agree with the drawing. The chamfer the figure draws on the rear of L6 is not modeled; surface 12 carries its inferred 9.4 mm.

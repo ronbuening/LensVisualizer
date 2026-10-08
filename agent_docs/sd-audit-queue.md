@@ -261,9 +261,10 @@ work the largest differences first. For each row, read whether the limiting semi
 was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
 f-number may be defined on a vignetted beam, and the row is then recorded in [decisions.md](decisions.md). An inferred
-rim takes the figure's value where the figure, on two scales that agree, shows a wider one (the procedure's
-"clipped stated beam" case); it is never sized to the beam. Notes that state the axial beam clears every rim are
-corrected with the row.
+rim rises only to the height the stated on-axis ray needs, on the surfaces that clip (the procedure's "clipped
+stated beam" case; `npm run audit:aperture -- --raise` lists the values). The stated f-number must be the source's
+design value first: rows that are also in Section H wait for that. Notes that state the axial beam clears every rim
+are corrected with the row.
 
 The other diagnoses are not rim problems:
 
