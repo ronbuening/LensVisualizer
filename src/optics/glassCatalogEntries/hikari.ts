@@ -1208,7 +1208,7 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     ],
     nd: 1.79504,
     vd: 28.692277,
-    PgF: 0.6058,
+    PgF: 0.6065,
     code6: "795287",
     source: "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; J-LAFH3 page (formula 3 power series).",
   },
@@ -1227,7 +1227,7 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     ],
     nd: 1.6516,
     vd: 58.618566,
-    PgF: 0.5401,
+    PgF: 0.5409,
     source: "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; J-LAK7R page (formula 3 power series).",
   },
   /* ────── Phase 40 Nikon AF zoom coverage additions (July 2026) ────── */
