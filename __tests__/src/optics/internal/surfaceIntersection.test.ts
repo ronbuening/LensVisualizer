@@ -6,6 +6,9 @@ import {
   type SurfaceIntersectionRay,
 } from "../../../../src/optics/internal/surfaceIntersection.js";
 import { conicPolySag, sag } from "../../../../src/optics/internal/surfaceMath.js";
+import { intersectSurfaceProfile } from "../../../../src/optics/math/intersection.js";
+import { createSurfaceProfile, createTiltedPlaneProfile } from "../../../../src/optics/math/surfaceProfile.js";
+import { traceExactSurfaceStackVector } from "../../../../src/optics/internal/exactSurfaceTrace.js";
 import type { AsphericCoefficients, RuntimeLens } from "../../../../src/types/optics.js";
 
 function lensWithSurface(R: number, asph?: AsphericCoefficients): RuntimeLens {
@@ -18,6 +21,133 @@ function lensWithSurface(R: number, asph?: AsphericCoefficients): RuntimeLens {
 function axialRay(y: number, z = -5): SurfaceIntersectionRay {
   return { origin: [0, y, z], direction: [0, 0, 1] };
 }
+
+// Keep these analytic cases shared by both engines: the default accuracy is a shipped contract.
+describe.each(["production", "legacy"] as const)("%s intersection accuracy", (engine) => {
+  const intersect = (
+    ray: SurfaceIntersectionRay,
+    R: number,
+    vertexZ: number,
+    options: { minT?: number; maxT: number; maxIterations?: number; tolerance?: number },
+    asphere?: AsphericCoefficients,
+    sd?: number,
+  ) =>
+    engine === "production"
+      ? intersectSurfaceProfile(ray, createSurfaceProfile({ R }, asphere), vertexZ, { ...options, clearRadius: sd })
+      : intersectSagSurface(ray, 0, vertexZ, { S: [{ R, sd }], asphByIdx: asphere ? { 0: asphere } : {} }, options);
+
+  it("refines a bracket endpoint that met the former 1e-9 default", () => {
+    const root = 5 + sag(1, 5);
+    const hit = intersect(axialRay(1), 5, 0, { maxT: root + 5e-10 });
+    expect(hit.ok).toBe(true);
+    if (!hit.ok) return;
+    expect(Math.abs(hit.residual)).toBeLessThanOrEqual(1e-12);
+    expect(hit.effectiveTolerance).toBe(1e-12);
+    expect(Math.abs(hit.point[2] - 1 / (5 + Math.sqrt(24)))).toBeLessThanOrEqual(1e-12);
+  });
+
+  it("does not grant a tenfold residual after an exhausted iteration budget", () => {
+    const root = 5 + sag(1, 5);
+    const hit = intersect(axialRay(1), 5, 0, { minT: root - 1, maxT: root + 1 + 1e-11, maxIterations: 0 });
+    expect(hit).toMatchObject({ ok: false, failureReason: "noConvergedIntersection" });
+  });
+
+  it("does not substitute a large coordinate envelope for attainable refinement", () => {
+    const asphere = { K: 0, A4: 0.125, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+    const ray: SurfaceIntersectionRay = { origin: [0, 1, 1e12], direction: [0, 0, 1] };
+    // The exact root t=0.125 is representable. The midpoint t=0.13 is inside the
+    // roundoff envelope but still needs a Newton step, even at this translation.
+    expect(intersect(ray, 1e15, 1e12, { maxT: 0.26, maxIterations: 0 }, asphere)).toMatchObject({
+      ok: false,
+      failureReason: "noConvergedIntersection",
+    });
+    const refined = intersect(ray, 1e15, 1e12, { maxT: 0.26, maxIterations: 1 }, asphere);
+    expect(refined).toMatchObject({ ok: true, residual: 0, effectiveTolerance: 1e-12 });
+  });
+
+  it("uses the tightened parametric bounds for an analytic plane", () => {
+    expect(intersect(axialRay(1), 1e15, 0, { maxT: 5 - 1e-10 })).toMatchObject({
+      ok: false,
+      failureReason: "noBracket",
+    });
+    expect(intersect(axialRay(1), 1e15, 0, { maxT: 5 - 1e-10, tolerance: 1e-9 }).ok).toBe(true);
+  });
+
+  it("converges on a steep quartic at the authored cap boundary", () => {
+    // z = r^4/8 meets z = r at r=2; dz/dr=4 there, and t=sqrt(2).
+    const asphere = { K: 0, A4: 0.125, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+    const hit = intersect(
+      { origin: [0, 1, 1], direction: normalizeVector3([0, 1, 1])! },
+      1e15,
+      0,
+      { maxT: 3 },
+      asphere,
+      2,
+    );
+    expect(hit.ok).toBe(true);
+    if (!hit.ok) return;
+    expect(Math.abs(hit.residual)).toBeLessThanOrEqual(1e-12);
+    expect(Math.abs(hit.t - Math.sqrt(2))).toBeLessThanOrEqual(1e-12);
+  });
+
+  it.each([-1e8, -1e12])("reports the attainable residual when the axial operands cancel (%s mm)", (originZ) => {
+    const hit = intersect(axialRay(1, originZ), 5, 0, { maxT: -originZ + 2 });
+    expect(hit.ok).toBe(true);
+    if (!hit.ok) return;
+    // t is quantized at the large launch distance even though final z is only 0.101 mm.
+    const analyticSag = 1 / (5 + Math.sqrt(24));
+    const nearestPoint = originZ + (analyticSag - originZ);
+    expect(hit.point[2]).toBe(nearestPoint);
+    expect(Math.abs(hit.residual)).toBeGreaterThan(1e-12);
+    expect(Math.abs(hit.residual)).toBeLessThanOrEqual(hit.effectiveTolerance!);
+  });
+
+  it("accounts for transverse cancellation amplified by a steep asphere", () => {
+    const asphere = { K: 0, A4: 100, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+    // z=100*r^4 at z=101: the first radial root is (1.01)^(1/4).
+    const hit = intersect(
+      { origin: [1e8, 0, 101], direction: [-1, 0, 0] },
+      1e15,
+      0,
+      { minT: 1e8 - 2, maxT: 1e8 },
+      asphere,
+    );
+    expect(hit.ok).toBe(true);
+    if (!hit.ok) return;
+    expect(Math.abs(hit.radius - 1.01 ** 0.25)).toBeLessThan(2e-8);
+    expect(Math.abs(hit.residual)).toBeGreaterThan(1e-12);
+    expect(Math.abs(hit.residual)).toBeLessThanOrEqual(hit.effectiveTolerance!);
+  });
+});
+
+describe("tilted mirror accuracy", () => {
+  it.each([
+    { y: 1, z: 1 },
+    { y: 1, z: 1e-14 },
+    { y: 1, z: 0 },
+  ])("checks normal-distance residual without dividing by normal.z ($z)", (normal) => {
+    const ray: SurfaceIntersectionRay = { origin: [0, 1, 3], direction: [0, -1, 0] };
+    const production = intersectSurfaceProfile(ray, createTiltedPlaneProfile(normal), 1, { maxT: 10 });
+    const legacy = traceExactSurfaceStackVector(
+      {
+        S: [{ label: "M", R: 1e15, nd: 1, d: 1, sd: 10, interaction: { type: "reflect", normal } }],
+        asphByIdx: {},
+        opticalPath: { mode: "sequential", surfaceOrder: [0], surfaceLabels: ["M"], maxInteractions: 4 },
+        isFoldedOptics: true,
+      },
+      ray,
+      { zPos: [1], launchBoundT: 10 },
+    );
+    expect(production.ok).toBe(true);
+    expect(legacy.hits).toHaveLength(1);
+    const points = [...(production.ok ? [production.point] : []), legacy.hits[0].point];
+    for (const point of points) {
+      const residual = (normal.y * point[1] + normal.z * (point[2] - 1)) / Math.hypot(normal.y, normal.z);
+      expect(Math.abs(residual)).toBeLessThanOrEqual(1e-12);
+      expect(point.every(Number.isFinite)).toBe(true);
+    }
+  });
+});
 
 describe("surface intersection helpers", () => {
   it("normalizes finite 3D direction vectors", () => {
@@ -184,7 +314,7 @@ describe("intersectSagSurface — past-forward-cone rays (PR 8 surgery)", () => 
   it("traces a grazing ray with direction[2] = 0 to the analytic intersection", () => {
     // Ray at z=5, traveling in -y from y=30. Surface z=5 occurs at r=sqrt(475)≈21.79.
     // Expected intersection: t = 30 - sqrt(475), point (0, sqrt(475), 5).
-    // Tolerance 1e-8 matches the intersection algorithm's own 1e-9 residual cap.
+    // The analytic geometry also guards the backward/grazing launch convention.
     const expectedY = Math.sqrt(475);
     const expectedT = 30 - expectedY;
     const result = intersectSagSurface({ origin: [0, 30, 5], direction: [0, -1, 0] }, 0, 0, L, { maxT: 30 });
