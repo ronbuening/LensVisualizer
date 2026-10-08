@@ -1847,4 +1847,14 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published M-NBFD130 formula-1 row (MP-NBFD130 lists the same coefficients); product code 806-407 omitted so bare-code annotations stay on NBFD13.",
   },
+  {
+    name: "FD110",
+    vendor: "Hoya",
+    polynomial: [3.0534415, -0.01275181, 0.040609369, 0.0022706109, -0.000078086606, 0.000019874026],
+    nd: 1.78472,
+    vd: 25.72,
+    PgF: 0.6158,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published FD110 formula-1 row; product code 785-257 omitted so bare-code annotations keep their existing row.",
+  },
 ];
