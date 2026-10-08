@@ -53,7 +53,7 @@ node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.
 node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.mjs --method=diffraction --finite --stopped-down
 ```
 
-It warms once, reports the median of three runs at grid caps 32/64/128/256, and includes the image-height axis and
+It warms once, reports the median and all three timing samples (`samplesMs`) at grid caps 32/64/128/256, and includes the image-height axis and
 per-field availability and convergence. `--method` is `geometric` (default) or `diffraction`;
 `--spectrum` is `reference` (default), `cdf` or `photopic`. `--fields=N` requests N evenly spaced fractions of the
 reference image height (default 3; `--sweep` is 9). `--stopped-down` uses one quarter of the wide-open pupil/stop

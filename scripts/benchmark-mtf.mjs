@@ -49,6 +49,7 @@ for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
       support: result.support.reason ?? "candidate",
       ...(result.support.conjugate ? { conjugate: result.support.conjugate } : {}),
       medianMs: +times[1].toFixed(2),
+      samplesMs: times,
       geometry: result.geometry,
       fields: result.fields.map(({ fieldFraction, imageHeightMm, status, reason, gridSize, maxDelta }) => ({
         fieldFraction,
