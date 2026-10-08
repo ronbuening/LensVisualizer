@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — Venus Laowa 15mm f/4 Wide Angle 1:1 Macro            ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: CN 205427291 U, Example 2 (Anhui ChangGeng Optical  ║
+ * ║  Data source: CN 205427291 U, Example 2 (Anhui Changgeng Optics   ║
  * ║  / Venus Optics, inventor Zhang Xiaohua).                          ║
  * ║  Retrofocus ultra-wide-angle macro, all-spherical design.          ║
  * ║  12 elements / 9 groups, 0 aspherical surfaces.                   ║
@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "laowa-15f4-macro",
   maker: "Laowa",
   name: "LAOWA 15mm f/4 Wide Angle 1:1 Macro",
-  subtitle: "CN 205427291 U Example 2 — Anhui ChangGeng / Zhang Xiaohua",
+  subtitle: "CN 205427291 U Example 2 — Anhui Changgeng Optics Technology / Zhang Xiaohua",
   specs: ["12 ELEMENTS / 9 GROUPS", "f = 16.00 mm", "F/4.1", "2ω = 110.4°", "ALL SPHERICAL"],
 
   /* ── Metadata ── */

@@ -3,7 +3,7 @@
 ## Patent Reference and Design Identification
 
 **Patent:** CN 116520542 A, "一种高倍率微距镜头" (*A High-Magnification Macro Lens*)
-**Applicant:** 安徽长庚光学科技有限公司 (Anhui ChangGeng Optical Technology Co., Ltd. — Laowa)
+**Applicant:** 安徽长庚光学科技有限公司 (Anhui Changgeng Optics Technology Co., Ltd. — Laowa)
 **Inventor:** 李大勇 (Li Dayong)
 **Filed:** 2023-02-16
 **Published:** 2023-08-01
@@ -18,7 +18,7 @@ The patent discloses two numerical examples. Example 1 is a longer-focal-length 
 5. **Maximum magnification.** The patent publishes variable spacing data for infinity, 1× (equal magnification), and 2× positions (¶0059–0060). The production lens is marketed as "2:1 magnification" — a direct match.
 6. **Focus mechanism.** The patent describes G1 fixed, G2 and G3 moving toward the object during close focus (¶0052), consistent with the production lens's "internal focusing" claim and the absence of front-element rotation or barrel extension noted in all published reviews.
 7. **ED and high-index element count.** The prescription contains four elements of H-FK61 (CDGM) ED fluorophosphate glass and four elements with $n_d > 1.85$ (ultra-high refractive index). The production lens is marketed as having "3 ED glasses and 3 glasses with Ultra-High Refractive Index." The small count discrepancy (4 vs. 3 in each category) is discussed in the Glass Identification section below.
-8. **Applicant identity.** Anhui ChangGeng Optical is the corporate entity behind the Laowa brand. The lens was announced September 2022; the patent was filed five months later, a routine lag for Chinese patent filings by domestic optics firms.
+8. **Applicant identity.** Anhui Changgeng Optics Technology is the corporate entity behind the Laowa brand. The lens was announced September 2022; the patent was filed five months later, a routine lag for Chinese patent filings by domestic optics firms.
 9. **All-spherical construction.** The patent publishes no aspheric coefficient table for Example 2, and no surfaces are marked as aspherical. This is consistent with all available teardown and review evidence, none of which mentions aspheric elements.
 
 No production lens from Laowa other than the Laowa 58 mm f/2.8 2× Ultra-Macro APO matches this combination of parameters.
@@ -138,7 +138,7 @@ L14 is unusually thick for a rear field flattener ($6.55$ mm center thickness), 
 
 ## Glass Identification and Selection
 
-All fourteen elements match CDGM (Chengdu Guangming) catalog glasses with residuals at or below instrument precision ($\Delta n_d \le 5 \times 10^{-5}$, $\Delta\nu_d \le 0.1$). This is expected for a lens designed and manufactured by Anhui ChangGeng Optical, a Chinese firm that would naturally source from the domestic catalog. The table below summarizes the identifications.
+All fourteen elements match CDGM (Chengdu Guangming) catalog glasses with residuals at or below instrument precision ($\Delta n_d \le 5 \times 10^{-5}$, $\Delta\nu_d \le 0.1$). This is expected for a lens designed and manufactured by Anhui Changgeng Optics Technology, a Chinese firm that would naturally source from the domestic catalog. The table below summarizes the identifications.
 
 | Element | $n_d$ | $\nu_d$ | Glass (CDGM) | Cross-Reference | Class |
 |---------|------:|--------:|--------------|-----------------|-------|

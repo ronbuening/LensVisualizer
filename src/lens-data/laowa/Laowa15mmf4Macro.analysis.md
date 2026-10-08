@@ -3,7 +3,7 @@
 ## Patent Reference and Design Identification
 
 **Patent:** CN 205427291 U (Chinese Utility Model), "超广角微距镜头" (Ultra Wide-Angle Macro Lens).
-**Applicant:** 安徽长庚光学科技有限公司 (Anhui ChangGeng Optical Technology Co., Ltd.) — the parent company of the Venus Optics / Laowa brand.
+**Applicant:** 安徽长庚光学科技有限公司 (Anhui Changgeng Optics Technology Co., Ltd.) — the parent company of the Venus Optics / Laowa brand.
 **Inventor:** 张小华 (Zhang Xiaohua).
 **Filed:** 2015-04-08. **Granted:** 2016-08-03.
 
@@ -180,7 +180,7 @@ All values agree to within rounding precision of the patent's tabulated data. Th
 
 ## Sources
 
-1. CN 205427291 U, "超广角微距镜头," Anhui ChangGeng Optical Technology Co., Ltd., granted 2016-08-03.
+1. CN 205427291 U, "超广角微距镜头," Anhui Changgeng Optics Technology Co., Ltd., granted 2016-08-03.
 2. Venus Optics official product page, "Laowa 15mm f/4 Wide Angle Macro," https://www.venuslens.net/product/laowa-15mm-f4-wide-angle-macro/.
 3. DPReview, "From another planet: Venus LAOWA 15mm F4 Wide Angle Macro quick review," 2016-03-13.
 4. ePHOTOzine, "Laowa 15mm f/4 1:1 Macro Lens Review" (distortion measurement of $-4.85\%$).
