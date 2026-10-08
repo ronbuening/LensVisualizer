@@ -159,3 +159,11 @@ Open limitations. The figure's flat mounting annuli cannot be drawn, so L1, L3, 
 - `apd: "inferred"` added to L2, L3, L6, L7 and L8, the five elements ZEISS's data sheet draws as special glass.
 - `specs` completed (design f = 41.19 mm, design F/2.08, 2ω = 54.9° from the printed 27.4433° half-field, six aspherical surfaces on three elements); the subtitle names the Tamron patent; `apertureBlades` 9 added.
 - Display name, mount (`sony-fe`) and format reviewed and left as authored; the name follows the other two BATIS entries.
+
+## 2026-10-08 — E-line reference and catalog names
+
+- Supersedes the disposition in the entry above. All nine elements are now `indexReference: "e"` with the printed values unchanged. L1, L3, L4, L6 and L7 carry their catalog names (HOYA FCD1, FDS90-SG, M-PCD51 and M-FCD1; OHARA S-NBH56) and resolve to catalog dispersion; FDS90-SG resolves to the site catalog's FDS90 row. L2, L5, L8 and L9 stay Unmatched on the Abbe estimate. The `indexReferenceNote` on each element now says the column is traced at the e line with the printed d-line Abbe numbers.
+- Basis. The dispersion engine traces every e-line element at C′, e, F′ and g on both the catalog and the Abbe tier and anchors catalog curves to the authored index, so a partly resolved e-line lens no longer mixes lines. Paraxial focus against the green channel is red +28 µm, blue +26 µm, violet +104 µm and reference 0 µm; the all-Abbe, d-referenced data gave +25, +16 and +98 µm.
+- All nine change together. With only the five named elements e-referenced, the four others trace at C/F beside C′/F′: red +207 µm, blue +199 µm, violet +335 µm.
+- The `vd` slot keeps the printed d-line Abbe number. Catalog νe for the five is 81.19, 23.60, 66.76, 81.16 and 24.61 against the printed 81.61, 23.78, 67.02, 81.56 and 24.80, inside the ±2 match window. The engine reads the slot as νe for the four Unmatched elements; lowering it by 0.2 moves no channel focus by more than 1 µm.
+- Dependency. This needs the engine's e-line channel convention (C′/e/F′/g on every tier). On an engine without it the same data gives red −152 µm, blue −156 µm and reference −231 µm against green.

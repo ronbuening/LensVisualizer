@@ -15,8 +15,11 @@ Patent source image plane is retained despite Gaussian focus offsets.
 No source-listed rear plates. The patent heads its index column Nd and states the d-line, but the printed values
 are e-line indices paired with d-line Abbe numbers: five of the nine equal HOYA/OHARA catalog ne to five decimals
 (FCD1 1.49845, FDS90 1.85505, M-PCD51 1.59412, M-FCD1 1.49856, S-NBH56 1.86290). The printed values are stored
-unchanged and stay d-referenced and Unmatched: resolving five of nine elements on catalog curves while four stay
-on the Abbe estimate would mix reference lines between elements and distort the colour channels.
+unchanged and all nine elements are e-referenced (indexReference "e"). The five carry their catalog names and trace
+on catalog curves anchored to the printed index; L2, L5, L8 and L9 match no vendor row and stay Unmatched on the Abbe
+estimate. The vd slot keeps the printed d-line Abbe number (catalog ve is 0.2 to 0.4 lower), which understates the
+estimated dispersion of the four Unmatched elements by under 1 %. All nine must share one reference: leaving the four
+d-referenced traces them at C/F beside C'/F' and moves the red and blue foci about 0.2 mm.
 */
 import type { LensDataInput } from "../../types/optics.js";
 
@@ -58,10 +61,10 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.49845,
       "vd": 81.61,
-      "indexReference": "d",
-      "indexReferenceNote": "Patent states the d line, but this table's indices match catalog e-line values; traced as printed.",
+      "indexReference": "e",
+      "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": -56.98843859,
-      "glass": "Unmatched as printed (equals HOYA FCD1 at the e line: ne 1.49845, vd 81.61)"
+      "glass": "FCD1 (HOYA; catalog ne 1.49845, vd 81.61 as printed; supplier unconfirmed)"
     },
     {
       "id": 2,
@@ -70,8 +73,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.94136,
       "vd": 21.13,
-      "indexReference": "d",
-      "indexReferenceNote": "Patent states the d line, but this table's indices match catalog e-line values; traced as printed.",
+      "indexReference": "e",
+      "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": 52.28456991,
       "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
       "apd": "inferred",
@@ -84,10 +87,10 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.85505,
       "vd": 23.78,
-      "indexReference": "d",
-      "indexReferenceNote": "Patent states the d line, but this table's indices match catalog e-line values; traced as printed.",
+      "indexReference": "e",
+      "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": -45.75756786,
-      "glass": "Unmatched as printed (equals HOYA FDS90-SG at the e line: ne 1.85505, vd 23.78)",
+      "glass": "FDS90-SG (HOYA; catalog ne 1.85505, vd 23.78 as printed; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "ZEISS's construction diagram marks this element special glass; anomalous partial dispersion is inferred from that marking, not a patent designation."
     },
@@ -98,10 +101,10 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.59412,
       "vd": 67.02,
-      "indexReference": "d",
-      "indexReferenceNote": "Patent states the d line, but this table's indices match catalog e-line values; traced as printed.",
+      "indexReference": "e",
+      "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": 26.0129493,
-      "glass": "Unmatched as printed (equals HOYA M-PCD51 at the e line: ne 1.59412, vd 67.02)"
+      "glass": "M-PCD51 (HOYA; catalog ne 1.59412, vd 67.02 as printed; supplier unconfirmed)"
     },
     {
       "id": 5,
@@ -110,8 +113,8 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.80655,
       "vd": 25.3,
-      "indexReference": "d",
-      "indexReferenceNote": "Patent states the d line, but this table's indices match catalog e-line values; traced as printed.",
+      "indexReference": "e",
+      "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": -38.61053884,
       "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)"
     },
@@ -122,10 +125,10 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.49856,
       "vd": 81.56,
-      "indexReference": "d",
-      "indexReferenceNote": "Patent states the d line, but this table's indices match catalog e-line values; traced as printed.",
+      "indexReference": "e",
+      "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": 37.52379197,
-      "glass": "Unmatched as printed (equals HOYA M-FCD1 at the e line: ne 1.49856, vd 81.56)",
+      "glass": "M-FCD1 (HOYA; catalog ne 1.49856, vd 81.56 as printed; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "ZEISS's construction diagram marks this element special glass; anomalous partial dispersion is inferred from that marking, not a patent designation."
     },
@@ -136,10 +139,10 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.8629,
       "vd": 24.8,
-      "indexReference": "d",
-      "indexReferenceNote": "Patent states the d line, but this table's indices match catalog e-line values; traced as printed.",
+      "indexReference": "e",
+      "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": 43.70662239,
-      "glass": "Unmatched as printed (equals OHARA S-NBH56 at the e line: ne 1.86290, vd 24.80)",
+      "glass": "S-NBH56 (OHARA; catalog ne 1.86290, vd 24.80 as printed; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "ZEISS's construction diagram marks this element special glass; anomalous partial dispersion is inferred from that marking, not a patent designation.",
       "cemented": "D1"
@@ -151,8 +154,8 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.65965,
       "vd": 33.72,
-      "indexReference": "d",
-      "indexReferenceNote": "Patent states the d line, but this table's indices match catalog e-line values; traced as printed.",
+      "indexReference": "e",
+      "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": -31.96427666,
       "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
       "apd": "inferred",
@@ -166,8 +169,8 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.61599,
       "vd": 38.71,
-      "indexReference": "d",
-      "indexReferenceNote": "Patent states the d line, but this table's indices match catalog e-line values; traced as printed.",
+      "indexReference": "e",
+      "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": -91.954741,
       "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)"
     }

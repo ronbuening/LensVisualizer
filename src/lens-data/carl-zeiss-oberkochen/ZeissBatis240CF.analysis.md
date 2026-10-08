@@ -36,7 +36,7 @@ The calculated functional-unit focal lengths at the source reference state are:
 | G4 focus | 12A–13A | +37.523792 |
 | G5 | 14–18 | -63.918863 |
 
-The d-line Gaussian EFL at the infinity spacing is 41.194754 mm. The Gaussian BFD from the final lens vertex is 17.533647 mm, while the source image plane is placed at the separately published final gap. The first-vertex-to-source-image track is 100.4477 mm. Neither a telephoto track ratio nor a retrofocus BFD/EFL condition is satisfied, so neither term is used as a quantitative classification here.
+The Gaussian EFL at the printed indices and the infinity spacing is 41.194754 mm. The Gaussian BFD from the final lens vertex is 17.533647 mm, while the source image plane is placed at the separately published final gap. The first-vertex-to-source-image track is 100.4477 mm. Neither a telephoto track ratio nor a retrofocus BFD/EFL condition is satisfied, so neither term is used as a quantitative classification here.
 
 The per-surface Petzval sum, using each refracting interface's power divided by its incident and emergent indices, is 0.001948 mm⁻¹. This is a paraxial surface sum, not a calculated best-focus field curvature or proof of off-axis correction.
 
@@ -46,79 +46,79 @@ The focal lengths below are those of individual thick elements isolated in air. 
 
 ### L1 — Biconcave Negative
 
-nd = 1.49845, νd = 81.61. Glass: Unmatched as printed (equals HOYA FCD1 at the e line: ne 1.49845, νd 81.61). f = -56.99 mm.
+ne = 1.49845, νd = 81.61. Glass: FCD1 (HOYA), from the exact e-line match; supplier unconfirmed. f = -56.99 mm.
 
 The negative front element has both surfaces aspherical. Together with positive L2 and their separation, it forms the weakly positive G1. The large difference between its two vertex curvatures is retained; the nearly flat front vertex is not replaced by a plane. The published optical section supports its broad front aperture, but supplies no numerical clear diameter.
 
 ### L2 — Biconvex Positive
 
-nd = 1.94136, νd = 21.13. Glass: Unmatched (printed coordinates; no vendor row at either the d or the e line). f = +52.28 mm.
+ne = 1.94136, νd = 21.13. Glass: Unmatched (printed coordinates; no vendor row at either the d or the e line). f = +52.28 mm.
 
 This positive element completes G1. Its isolated positive power is stronger than the magnitude of L1’s isolated negative power, but the net unit power also depends on their air spacing. It is the front positive element relevant to the patent’s G1 material conditions. The inconsistent Table 1 Abbe value is discussed below rather than being substituted for its actual prescription coordinate.
 
 ### L3 — Negative Meniscus
 
-nd = 1.85505, νd = 23.78. Glass: Unmatched as printed (equals HOYA FDS90-SG at the e line: ne 1.85505, νd 23.78). f = -45.76 mm.
+ne = 1.85505, νd = 23.78. Glass: FDS90-SG (HOYA), from the exact e-line match; supplier unconfirmed. f = -45.76 mm.
 
 This negative meniscus precedes positive L4 inside the first focusing unit. Both move together, with their internal separation fixed. The low Abbe number is a published material coordinate; it does not on its own establish a particular chromatic correction or anomalous-partial-dispersion property.
 
 ### L4 — Biconvex Positive
 
-nd = 1.59412, νd = 67.02. Glass: Unmatched as printed (equals HOYA M-PCD51 at the e line: ne 1.59412, νd 67.02). f = +26.01 mm.
+ne = 1.59412, νd = 67.02. Glass: M-PCD51 (HOYA), from the exact e-line match; supplier unconfirmed. f = +26.01 mm.
 
 The double-aspheric positive element provides the main positive contribution to G2. The complete group remains positive and moves objectward for near focus. The patent connects the relative powers of the two focusing units with the amount of required focus travel (paragraphs 0016–0019). The data does not assign an uncalculated share of spherical aberration correction to this element.
 
 ### L5 — Negative Meniscus
 
-nd = 1.80655, νd = 25.30. Glass: Unmatched (printed coordinates; no vendor row at either the d or the e line). f = -38.61 mm.
+ne = 1.80655, νd = 25.30. Glass: Unmatched (printed coordinates; no vendor row at either the d or the e line). f = -38.61 mm.
 
 The negative meniscus constitutes fixed G3 behind the aperture stop. Paragraphs 0020–0023 discuss the role of a negative unit between positive focusing units in increasing the relevant lateral magnifications and reducing required motion. That patent rationale is reported as design context; the present calculation verifies the unit’s negative power, not a counterfactual performance optimization.
 
 ### L6 — Biconvex Positive
 
-nd = 1.49856, νd = 81.56. Glass: Unmatched as printed (equals HOYA M-FCD1 at the e line: ne 1.49856, νd 81.56). f = +37.52 mm.
+ne = 1.49856, νd = 81.56. Glass: M-FCD1 (HOYA), from the exact e-line match; supplier unconfirmed. f = +37.52 mm.
 
 This single positive, double-aspheric element is G4, the second focusing unit. Paragraphs 0026–0027 emphasize a focusing component without internal air separation as a way to limit moving mass. It has stronger net power than the complete G2 unit. Its motion is specified independently of G2 by the published complementary gaps.
 
 ### L7 — Positive Meniscus
 
-nd = 1.86290, νd = 24.80. Glass: Unmatched as printed (equals OHARA S-NBH56 at the e line: ne 1.86290, νd 24.80). f = +43.71 mm.
+ne = 1.86290, νd = 24.80. Glass: S-NBH56 (OHARA), from the exact e-line match; supplier unconfirmed. f = +43.71 mm.
 
 This positive meniscus is the front part of the rear cemented pair. Its rear surface is the shared interface to L8, whose refractive index is therefore the medium after source surface 15. Its listed isolated focal length is not the power of that cemented interface in situ.
 
 ### L8 — Negative Meniscus
 
-nd = 1.65965, νd = 33.72. Glass: Unmatched (printed coordinates; no vendor row at either the d or the e line). f = -31.96 mm.
+ne = 1.65965, νd = 33.72. Glass: Unmatched (printed coordinates; no vendor row at either the d or the e line). f = -31.96 mm.
 
 The negative element completes the rear cemented pair. The shared interface is represented once and is owned by the downstream element in the data schema. No synthetic cement layer is inserted. The compound pair and L9, separated by the published air gap, make up the net negative G5 unit.
 
 ### L9 — Negative Meniscus
 
-nd = 1.61599, νd = 38.71. Glass: Unmatched (printed coordinates; no vendor row at either the d or the e line). f = -91.95 mm.
+ne = 1.61599, νd = 38.71. Glass: Unmatched (printed coordinates; no vendor row at either the d or the e line). f = -91.95 mm.
 
 The final negative meniscus is fixed relative to the image plane and the other members of G5. Paragraphs 0024–0025 explain the patent’s use of a negative unit behind the second focus group to keep peripheral ray heights in that moving unit smaller. The source provides no prescription for a separate rear sensor cover stack in this example.
 
 ## Glass Identification and Selection
 
-Paragraph 0043 explicitly identifies the refractive-index and Abbe coordinates with the d line, and the printed coordinates are retained under that label. The printed indices nevertheless behave as e-line values paired with d-line Abbe numbers: five of the nine rows equal a current catalog glass at the e line to all five printed decimals, each with that glass's exact νd. The model does not change the source convention on that evidence, but records it.
+Paragraph 0043 explicitly identifies the refractive-index and Abbe coordinates with the d line. The printed indices are nevertheless e-line values paired with d-line Abbe numbers: five of the nine rows equal a current catalog glass at the e line to all five printed decimals, each with that glass's exact νd. The model stores the printed values unchanged and treats the whole index column as e-line (`indexReference: "e"` on all nine elements).
 
-OHARA, HOYA, SCHOTT, HIKARI, SUMITA and CDGM catalog snapshots were reviewed at both lines. No row matches at the d line. At the e line L1, L3, L4, L6 and L7 match exactly and L2, L5, L8 and L9 match nothing. All elements keep an explicit Unmatched disposition, and no catalog line indices or Sellmeier coefficients are imported: tracing five elements on catalog curves and four on the Abbe estimate would mix reference lines between elements, which shifts the model's colour channels by about 0.15 mm of focus. The matches do not establish a supplier or melt.
+OHARA, HOYA, SCHOTT, HIKARI, SUMITA and CDGM catalog snapshots were reviewed at both lines. No row matches at the d line. At the e line L1, L3, L4, L6 and L7 match exactly and L2, L5, L8 and L9 match nothing. The five matched elements carry the catalog name and trace on that glass's dispersion curve, anchored to the printed index. The other four keep an explicit Unmatched disposition and the Abbe estimate. Every element is traced at the same lines (C′, e, F′ and g), which requires all nine to share the e reference: with only the five matched elements e-referenced, the red and blue foci move about 0.2 mm. The matches identify catalog coordinates; they do not establish a supplier or melt.
 
 | Element | Printed n | νd | Material disposition |
 |---|---:|---:|---|
-| L1 | 1.49845 | 81.61 | Unmatched as printed; equals HOYA FCD1 at the e line (nd 1.49700) |
+| L1 | 1.49845 | 81.61 | HOYA FCD1, exact at the e line (nd 1.49700) |
 | L2 | 1.94136 | 21.13 | Unmatched; no vendor row at either line |
-| L3 | 1.85505 | 23.78 | Unmatched as printed; equals HOYA FDS90-SG at the e line (nd 1.84666) |
-| L4 | 1.59412 | 67.02 | Unmatched as printed; equals HOYA M-PCD51 at the e line (nd 1.59201) |
+| L3 | 1.85505 | 23.78 | HOYA FDS90-SG, exact at the e line (nd 1.84666) |
+| L4 | 1.59412 | 67.02 | HOYA M-PCD51, exact at the e line (nd 1.59201) |
 | L5 | 1.80655 | 25.30 | Unmatched; no vendor row at either line |
-| L6 | 1.49856 | 81.56 | Unmatched as printed; equals HOYA M-FCD1 at the e line (nd 1.49710) |
-| L7 | 1.86290 | 24.80 | Unmatched as printed; equals OHARA S-NBH56 at the e line (nd 1.85478) |
+| L6 | 1.49856 | 81.56 | HOYA M-FCD1, exact at the e line (nd 1.49710) |
+| L7 | 1.86290 | 24.80 | OHARA S-NBH56, exact at the e line (nd 1.85478) |
 | L8 | 1.65965 | 33.72 | Unmatched; no vendor row at either line |
 | L9 | 1.61599 | 38.71 | Unmatched; no vendor row at either line |
 
 The palette contains relatively high-Abbe materials in L1 and L6, and lower-Abbe materials in several negative and high-index elements. These are coordinate observations. They do not establish apochromatic correction, secondary-spectrum performance, or an anomalous-dispersion material identity.
 
-Table 1 gives G1vd = 20.8800, although the selected front positive element has νd = 21.13 in the numerical prescription. The table also reports G1dPgF = 0.0282 and G2dPgF = 0.0137 without specifying a normal-line equation adequate to identify the engine’s dPgF convention. The contradictory row and the unspecified baseline are retained as limitations; neither deviation is copied into the element spectral fields. The model consequently has only source nd/νd spectral support. The actual current runtime selects its Abbe-based dispersion fallback for all nine explicit Unmatched labels. Its C/F/g estimates are calculated proxies, not patent-measured line indices or confirmed catalog melts.
+Table 1 gives G1vd = 20.8800, although the selected front positive element has νd = 21.13 in the numerical prescription. The table also reports G1dPgF = 0.0282 and G2dPgF = 0.0137 without specifying a normal-line equation adequate to identify the engine’s dPgF convention. The contradictory row and the unspecified baseline are retained as limitations; neither deviation is copied into the element spectral fields. The source therefore supplies only the printed index and Abbe number for each element. The runtime uses catalog dispersion curves for the five named glasses and its Abbe-based estimate for the four Unmatched elements; the resulting channel indices are catalog or calculated proxies, not patent-measured line indices or confirmed melts. Because the Abbe number in each e-referenced slot is the printed d-line value (catalog νe is 0.2 to 0.4 lower), the estimated dispersion of the four Unmatched elements is understated by under 1 %.
 
 ## Focus Mechanism
 

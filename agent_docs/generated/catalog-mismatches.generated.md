@@ -17,8 +17,8 @@ with words like "probable" or "approx").
 - **900** lenses scanned
 - **10379** glass surfaces examined
 - **10355** surfaces with non-empty `glass` strings
-- **151 / 196** native e-line surfaces resolve by explicit name or alias
-- **9634** of those resolved to a catalog entry
+- **156 / 205** native e-line surfaces resolve by explicit name or alias
+- **9639** of those resolved to a catalog entry
 - **0** mismatches found (0.0% of resolved surfaces)
 - **0** distinct lens files affected
 
