@@ -15,6 +15,23 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    opening. The STO `sd` is therefore derived from the verified     ║
  * ║    design focal length and F/1.85 entrance pupil geometry.          ║
  * ║                                                                    ║
+ * ║  NOTE ON THE INDEX COLUMN:                                         ║
+ * ║    Table 1 heads the column nd and paragraph 0114 states the d     ║
+ * ║    line (587.6 nm), but the printed values are e-line indices      ║
+ * ║    paired with d-line Abbe numbers. All fourteen match a HOYA      ║
+ * ║    catalog glass at the e line (thirteen to all five decimals,     ║
+ * ║    L4 to 0.00001) with that glass's vd at the printed one          ║
+ * ║    decimal: M-BACD12, TAC8, FCD515, E-FD8, TAFD25, NBFD29,         ║
+ * ║    M-TAF101, FCD100, FCD1, NBFD25 (L10 and L12), E-FDS1,           ║
+ * ║    M-TAFD305 and PCD40. None matches a catalog row at the d        ║
+ * ║    line. M-BACD12 also has the specific gravity 3.01 that          ║
+ * ║    Table 51 gives for L1. The printed values are stored            ║
+ * ║    unchanged and all fourteen elements are indexReference "e",     ║
+ * ║    traced on their catalog curves anchored to the printed index.   ║
+ * ║    The vd slot keeps the printed d-line Abbe number (catalog ve    ║
+ * ║    is 0.2 to 0.4 lower). The names select dispersion curves;       ║
+ * ║    Sony's supplier is unconfirmed. No source-listed rear plates.   ║
+ * ║                                                                    ║
  * ║  Verification: paraxial EFL = 14.4219367 mm; BFD = 15.44 mm        ║
  * ║  from total optical length 114.70 mm. Table 2 field-height and      ║
  * ║  half-angle rows are not used for the production format metadata.    ║
@@ -57,8 +74,11 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.58547,
       vd: 59.5,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -50.3116,
-      glass: "S-BAL42-class (OHARA; patent index aligns with catalog ne, 585/595)",
+      glass: "M-BACD12 (HOYA; catalog ne 1.58547 as printed, vd 59.46 printed as 59.5; supplier unconfirmed)",
       role: "Low-density high-curvature front negative meniscus for retrofocus field expansion and sagittal-coma control.",
     },
     {
@@ -69,8 +89,10 @@ const LENS_DATA = {
       nd: 1.73234,
       vd: 54.7,
       indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -49.2208,
-      glass: "Unmatched (732547 patent e-line value; no verified d-line catalog identity)",
+      glass: "TAC8 (HOYA; catalog ne 1.73234 as printed, vd 54.67 printed as 54.7; supplier unconfirmed)",
       role: "Shares the front negative power with L1 while using higher index to reduce surface curvature.",
     },
     {
@@ -80,10 +102,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.59489,
       vd: 68.6,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -34.07,
-      glass: "S-FPM2-class ED fluorophosphate (OHARA; soft match, 595/686)",
+      glass: "FCD515 (HOYA; catalog ne 1.59489 as printed, vd 68.62 printed as 68.6; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class from patent nd/vd and production ED count; patent gives no dPgF table.",
+      apdNote:
+        "ED fluorophosphate class from the printed index and Abbe number and production ED count; patent gives no dPgF table.",
       role: "Low-dispersion negative element at high chief-ray height for lateral-color correction.",
     },
     {
@@ -93,19 +119,25 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.69416,
       vd: 31.2,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 29.1009,
-      glass: "694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)",
+      glass: "E-FD8 (HOYA; catalog ne 1.69415 for the printed 1.69416, vd 31.16 printed as 31.2; supplier unconfirmed)",
       role: "Positive high-dispersion partner after the zero air gap from L3; begins the positive recovery section of G1.",
     },
     {
       id: 5,
       name: "L5",
       label: "LN front element",
-      type: "Negative Meniscus",
+      type: "Biconcave Negative",
       nd: 1.91048,
       vd: 31.3,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -12.5008,
-      glass: "910313 - dense lanthanum flint (Sony patent nd=1.91048, vd=31.3; no exact public catalog match)",
+      glass: "TAFD25 (HOYA; catalog ne 1.91048 as printed, vd 31.32 printed as 31.3; supplier unconfirmed)",
       cemented: "LN",
       role: "Strong high-index negative element of the cemented LN unit before the stop.",
     },
@@ -113,11 +145,14 @@ const LENS_DATA = {
       id: 6,
       name: "L6",
       label: "LN rear element",
-      type: "Positive Meniscus",
+      type: "Biconvex Positive",
       nd: 1.7766,
       vd: 29.7,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 22.1391,
-      glass: "Unmatched (777/297 dense short flint; no close OHARA public-catalog match)",
+      glass: "NBFD29 (HOYA; catalog ne 1.77660 as printed, vd 29.74 printed as 29.7; supplier unconfirmed)",
       cemented: "LN",
       role: "Positive cemented partner in LN; with L5 gives the unit a verified focal length of -31.20 mm.",
     },
@@ -128,8 +163,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.77173,
       vd: 49.2,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 27.7553,
-      glass: "S-LAH66-class dense lanthanum flint (OHARA; soft match, 772/492)",
+      glass: "M-TAF101 (HOYA; catalog ne 1.77173 as printed, vd 49.24 printed as 49.2; supplier unconfirmed)",
       role: "Strong positive aspherical lens immediately before the stop; the patent's LP element.",
     },
     {
@@ -139,11 +177,14 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.4381,
       vd: 95.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 34.0183,
-      glass: "S-FPL53/S-FPL55-class super-ED fluorophosphate (OHARA; soft match, 438/951)",
+      glass: "FCD100 (HOYA; catalog ne 1.43810 as printed, vd 95.10 printed as 95.1; supplier unconfirmed)",
       apd: "inferred",
       apdNote:
-        "Super-ED fluorophosphate class from patent nd/vd and production Super ED count; patent gives no dPgF table.",
+        "Super-ED fluorophosphate class from the printed index and Abbe number and production Super ED count; patent gives no dPgF table.",
       role: "Low-dispersion positive element at the entrance of the moving G2F focus group.",
     },
     {
@@ -153,10 +194,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49845,
       vd: 81.6,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 31.1897,
-      glass: "S-FPL51-class ED fluorophosphate (OHARA; patent index aligns with catalog ne, 498/816)",
+      glass: "FCD1 (HOYA; catalog ne 1.49845 as printed, vd 81.61 printed as 81.6; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class from patent nd/vd; patent gives no dPgF table.",
+      apdNote: "ED fluorophosphate class from the printed index and Abbe number; patent gives no dPgF table.",
       cemented: "D2",
       role: "ED crown element in the rear cemented doublet.",
     },
@@ -167,8 +211,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.86252,
       vd: 25.2,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -15.5537,
-      glass: "863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)",
+      glass: "NBFD25 (HOYA; catalog ne 1.86252 as printed, vd 25.15 printed as 25.2; supplier unconfirmed)",
       cemented: "D2",
       role: "Dense flint cemented partner to L9; the doublet focal length verifies as -32.55 mm.",
     },
@@ -179,8 +226,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.93323,
       vd: 20.9,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 21.165,
-      glass: "Unmatched (933/209 ultra-high-index short flint)",
+      glass: "E-FDS1 (HOYA; catalog ne 1.93323 as printed, vd 20.88 printed as 20.9; supplier unconfirmed)",
       role: "Very-high-index positive relay element that supplies strong rear-group power with moderated Petzval contribution.",
     },
     {
@@ -190,8 +240,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.86252,
       vd: 25.2,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -36.1899,
-      glass: "863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)",
+      glass: "NBFD25 (HOYA; catalog ne 1.86252 as printed, vd 25.15 printed as 25.2; supplier unconfirmed)",
       role: "Negative element before the patent's strongest negative air lens LA.",
     },
     {
@@ -202,8 +255,10 @@ const LENS_DATA = {
       nd: 1.85639,
       vd: 40.1,
       indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -218.1765,
-      glass: "Unmatched (856401 patent e-line value; no verified d-line catalog identity)",
+      glass: "M-TAFD305 (HOYA; catalog ne 1.85639 as printed, vd 40.10 printed as 40.1; supplier unconfirmed)",
       role: "Weak-base-power rear asphere for field-dependent correction behind the LA air lens.",
     },
     {
@@ -214,8 +269,10 @@ const LENS_DATA = {
       nd: 1.62228,
       vd: 63.9,
       indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 166.8523,
-      glass: "Unmatched (622639 patent e-line value; no verified d-line catalog identity)",
+      glass: "PCD40 (HOYA; catalog ne 1.62228 as printed, vd 63.88 printed as 63.9; supplier unconfirmed)",
       role: "Stationary weak positive rear meniscus for final field and chief-ray-angle trim.",
     },
   ],
