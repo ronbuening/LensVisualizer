@@ -65,6 +65,25 @@ describe.each(["production", "legacy"] as const)("%s intersection accuracy", (en
     expect(refined).toMatchObject({ ok: true, residual: 0, effectiveTolerance: 1e-12 });
   });
 
+  it("accepts an irreducible residual when the safeguarded bracket cannot advance", () => {
+    const asphere = { K: 0, A4: 10000, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+    // Adjacent represented radii straddle the exact quartic root. Raw Newton
+    // changes t, but lies outside the final bracket; its midpoint rounds to t.
+    const hit = intersect(
+      { origin: [1.1, 0, 10000.000000000002], direction: [-1, 0, 0] },
+      1e15,
+      0,
+      { minT: 0, maxT: 0.2 },
+      asphere,
+    );
+    expect(hit.ok).toBe(true);
+    if (!hit.ok) return;
+    expect(hit.radius).toBe(1);
+    expect(hit.residual).toBe(1.8189894035458565e-12);
+    expect(hit.effectiveTolerance).toBeGreaterThan(1e-12);
+    expect(Math.abs(hit.residual)).toBeLessThanOrEqual(hit.effectiveTolerance!);
+  });
+
   it("uses the tightened parametric bounds for an analytic plane", () => {
     expect(intersect(axialRay(1), 1e15, 0, { maxT: 5 - 1e-10 })).toMatchObject({
       ok: false,

@@ -430,7 +430,8 @@ neither widens the forward search. The asphere uniqueness certificate also requi
 requested tolerance. Its separate conservative slope/radius safety margins remain proof guards, not acceptance limits.
 
 Curved solves attempt the raw target at every bracket sample and Newton evaluation. Only when a Newton correction cannot
-change the floating-point ray parameter may the residual use the
+change the floating-point ray parameter, or the safeguarded midpoint cannot advance within its floating-point bracket,
+may the residual use the
 operand-based roundoff envelope in `math/intersectionTolerance.ts`. It includes absolute `origin` and `direction*t`
 terms (even when their sum cancels), vertex position, sag operand magnitudes, and transverse error multiplied by a
 conservative slope bound. For aspheres, the absolute-term slope bound also bounds cancelling polynomial terms.

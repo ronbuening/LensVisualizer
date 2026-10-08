@@ -280,9 +280,18 @@ function intersectProfile(
     }
     const acceptNewton =
       isFinite(newtonT) && newtonT > lo && newtonT < hi && Math.abs(newtonT - t) <= Math.abs(stepBeforeLast) / 2;
+    const nextT = acceptNewton ? newtonT : lo + (hi - lo) / 2;
+    // The safeguarded midpoint can round to this endpoint even when the raw
+    // Newton correction differs: an adjacent-float bracket cannot shrink further.
+    if (nextT === t) {
+      const effectiveTolerance = roundoffTolerance(current);
+      if (Math.abs(current.value) <= effectiveTolerance) {
+        return makeSuccess(current, profile, vertexZ, effectiveTolerance, refractiveIndex, iterations);
+      }
+    }
     stepBeforeLast = lastStep;
     lastStep = acceptNewton ? newtonT - t : (hi - lo) / 2;
-    t = acceptNewton ? newtonT : lo + lastStep;
+    t = nextT;
   }
 
   // Evaluate the pending step; discarding it can lose the last Newton improvement.
