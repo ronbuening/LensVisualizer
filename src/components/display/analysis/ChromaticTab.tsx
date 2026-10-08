@@ -1,6 +1,11 @@
 import { useMemo } from "react";
 import { analysisJobsForState2, summarizeChromaticFieldFocus2 } from "../../../optics/compat.js";
-import { CHROMATIC_CHANNEL_ORDER } from "../../../optics/chromatic/channels.js";
+import {
+  CHROMATIC_CHANNEL_ORDER,
+  chromaticChannelLineList,
+  chromaticChannelWavelengthLabel,
+  lensChromaticReference,
+} from "../../../optics/chromatic/channels.js";
 import { probe } from "../../../utils/perfProbe.js";
 import ChromaticFieldCurvaturePlot from "./ChromaticFieldCurvaturePlot.js";
 import LateralColorChart from "./LateralColorChart.js";
@@ -122,6 +127,7 @@ function CenteredChromaticTab({
   analysisContext,
 }: ChromaticTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
+  const channelReference = lensChromaticReference(L.elements);
   const analysis = useMemo(
     () =>
       probe(
@@ -185,9 +191,13 @@ function CenteredChromaticTab({
         <section style={{ ...sectionStyle(t), borderTop: "none", paddingTop: 0 }}>
           <span style={sectionTitleStyle(t)}>Chromatic Analysis</span>
           <span style={sectionCopyStyle(t)}>
-            Geometric traces at C, d, F, and g spectral lines. These readouts report focus and image-height spread; they
-            do not classify apochromatic correction, diffraction, transmission, flare, or sensor response. Spectral set:
-            C-line 656.3 nm, d-line 587.6 nm, F-line 486.1 nm, g-line 435.8 nm.
+            Geometric traces at {chromaticChannelLineList(channelReference)} spectral lines. These readouts report focus
+            and image-height spread; they do not classify apochromatic correction, diffraction, transmission, flare, or
+            sensor response. Spectral set:{" "}
+            {CHROMATIC_CHANNEL_ORDER.map((channel) => chromaticChannelWavelengthLabel(channel, channelReference)).join(
+              ", ",
+            )}
+            .
           </span>
           <div style={metricsStyle}>
             <AnalysisMetricRow

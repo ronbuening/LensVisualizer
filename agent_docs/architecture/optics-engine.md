@@ -231,8 +231,9 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
   is the authored `ne` plus the catalog's index difference from the e line, and its Abbe tier reaches g from F′ with
   `normalLinePgFPrime`, because P_g,F′ runs about 0.06 below P_g,F. Catalog matches are accepted within 0.003 of the
   stored index, so catalog values at other lines beside Abbe-tier neighbors read that mismatch as color-focus error
-  (1.8 mm on a 100 mm lens). The channel wavelength labels (`CHROMATIC_CHANNEL_METADATA`) are therefore nominal on an
-  e-line lens, and the inspector prints the real lines. The d-line Sellmeier tier is not anchored: its G is the
+  (1.8 mm on a 100 mm lens). `CHROMATIC_CHANNEL_METADATA` stays the d-line set the tracer's channel
+  wavelengths are keyed to; the inspector, the channel tooltips, the chromatic overlay and the Chromatic tab print
+  C′/e/F′ through `lensChromaticReference` when every element of the lens is e-referenced. The d-line Sellmeier tier is not anchored: its G is the
   catalog nd, which can differ from the authored nd by the match tolerance. An e-line element that authors `nC` /
   `nF` / `ng` is read as written; none exists in the catalog.
 - Folded-path metadata: resolved `opticalPath`, explicit `imagePlane`, `isFoldedOptics`, and normalized surface/image-plane
