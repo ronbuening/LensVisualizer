@@ -26,10 +26,12 @@ The prescription is a large-aperture portrait objective with a positive–negati
 
 | Functional group | Elements | Source surfaces | Computed standalone group EFL (mm) | Motion |
 |---|---|---|---:|---|
-| G1 | L1–L8 | 1–15 | +93.785 | Fixed |
-| G2 | L9 | 17–18 | -53.348 | Imageward for close focus |
-| G3 | L10–L11 | 19–21 | -243.220 | Objectward for close focus |
-| G4 | L12–L17 | 22–31 | +55.416 | Fixed |
+| G1 (GrF) | L1–L8 | 1–15 | +93.785 | Fixed |
+| G2 (GrFC1) | L9 | 17–18 | -53.348 | Imageward for close focus |
+| G3 (GrFC2) | L10–L11 | 19–21 | -243.220 | Objectward for close focus |
+| G4 (GrR) | L12–L17 | 22–31 | +55.416 | Fixed |
+
+The patent's lens-group table numbers the groups G1–G4; its text and Figure 1 name them GrF, GrFC1, GrFC2 and GrR, which are the labels on the diagram.
 
 The computed infinity EFL is 131.001861 mm. The first-vertex-to-image distance is 152.5496 mm, and the collimated back focal distance from the last glass vertex is 28.444780 mm. The authored final air gap is 28.4437 mm; the small first-order residual is retained rather than removed by moving the image plane.
 
@@ -215,8 +217,8 @@ The positive conic constant at 14A and negative leading polynomial terms must be
 |---|---:|---:|---:|
 | 14A | 26.8 | +8.145801 | -0.157738 |
 | 15A | 26.8 | +3.427294 | +0.465692 |
-| 30A | 17.0 | -1.686566 | +0.345176 |
-| 31A | 17.0 | +1.117300 | +0.538631 |
+| 30A | 17.8 | -1.817957 | +0.412625 |
+| 31A | 17.8 | +1.295529 | +0.661044 |
 
 These departures refer only to the inferred clear apertures in the companion data file. They are not measurements at patent-published diameters. The exact surface profiles retain real conic domains and pass the modeled rim-slope, edge-thickness and shared-band separation checks. Neither the numerical table nor the catalog-equivalent material name establishes a specific production asphere-manufacturing process.
 
@@ -260,7 +262,7 @@ Condition (6) uses the axial distance between marginal-ray hits on the two curve
 
 The neutral source plane 32 lies at the image because its BF value is zero. It is omitted, while d31 remains the physical rear-vertex-to-image gap. There is no source-listed cover-glass plate in this example and no synthetic cement layer or housing surface is inserted.
 
-The iris is inferred by exact tracing from the nominal F1.46 value. All lens semi-diameters are modeled from Figure 1 proportions, ray clearance and physical surface geometry. They are not patent-published clear apertures. Figure 1 is drawn 0.92 as tall as it is long, and the readings correct for that. The concave rear faces of L5, L7 and L9 end where Figure 1 and the Sigma construction diagram end the polished curve, short of the flanged blank, so those three elements draw a straight bevel at the rim. Current native geometry and element-render checks require no hidden material trim. Default off-axis bundles can vignette at air-entry edges; outer full-field stress probes do not establish full-cone transmission. Clear corner chief rays should not be mistaken for zero vignetting.
+The iris is inferred by exact tracing from the nominal F1.46 value. All lens semi-diameters are modeled from Figure 1 proportions, ray clearance and physical surface geometry. They are not patent-published clear apertures. Figure 1 is drawn 0.92 as tall as it is long, and the readings correct for that. Figure 1 and the Sigma construction diagram draw L5, L7 and L9 as flanged blocks whose concave rear curve stops at a flat annulus short of the blank height. The model has no annulus, so those three rear faces are set between the drawn curve end and the blank height, at 36.0, 26.5 and 20.5 mm, and each rim draws as a block with a shallow slope where the drawings show a square corner. Current native geometry and element-render checks require no hidden material trim. Default off-axis bundles can vignette at air-entry edges; outer full-field stress probes do not establish full-cone transmission. Clear corner chief rays should not be mistaken for zero vignetting.
 
 The exact printed infinity field reaches the stated image-height rounding, while the finite field-angle reference is not assumed. The tabulated finite object distances and unchanged image plane govern finite conjugates. The source-rounded focus residuals are preserved rather than removed to improve simulated image quality.
 

@@ -14,11 +14,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * All surface SDs are estimated from Figure 1 (PDF page 2, infinity state) and floor-checked
  * by exact ray trace; they are not patent-listed clear apertures. Figure 1 is drawn 0.92 as
  * tall as it is long (surface-curve fits and the drawn stop opening agree), and the readings
- * correct for that. Concave faces 9, 13 and 18 end where Figure 1 and Sigma's construction
- * diagram end the polished curve (32.7, 25.5 and 19.0 mm; the axial F1.46 ray needs 32.51,
- * 25.30 and 18.78 mm). The flat annulus beyond is not modeled, so L5, L7 and L9 draw a
- * straight bevel where the figure shows a flanged block. L16 stays at 16.4 mm against
- * 17.8 mm drawn: the 27-28 and 29-30A gap limits stop it at 16.6 and 16.9 mm. Source radii,
+ * correct for that. Figure 1 and Sigma's construction diagram draw L5, L7 and L9 as flanged
+ * blocks: the concave rear curve ends at 32.7, 25.3 and 18.8 mm and a flat annulus runs out
+ * to the 37.6, 29.7 and 21.8 mm blank. The annulus is not modeled. Rear faces 9, 13 and 18
+ * sit between the two at 36.0, 26.5 and 20.5 mm (Sigma steps those corners at 36.2, 27.1 and
+ * 20.3 mm), so each rim draws as a block with a shallow slope whose lip stays more than
+ * 1 mm short of the next element's rim; the axial F1.46 ray needs 32.51, 25.30 and
+ * 18.78 mm there. L16 and L17 share the 17.8 mm rim line
+ * FIG. 1 and Sigma's diagram draw and surface 27 ends at its drawn 17.0 mm; gapSagFrac 0.97 is
+ * the smallest two-decimal cross-gap limit that admits them (the 29-30A faces close 0.969 of
+ * their 1.299 mm gap without crossing). Source radii,
  * spacings, indices and coefficients are never adjusted for aperture, geometry or
  * performance. Final diagnostics govern SDs.
  * Glass labels are coordinate/PgF-compatible catalog equivalents; supplier/melt unknown.
@@ -48,6 +53,7 @@ const LENS_DATA = {
   ],
   "imageFormat": "135-full-frame",
   "imageCircleMm": 43.26,
+  "gapSagFrac": 0.97,
   "patentNumber": "US 2026/0086332 A1",
   "patentAuthors": [
     "Yukihiro Yamamoto"
@@ -68,6 +74,8 @@ const LENS_DATA = {
       "vd": 20.02,
       "fl": 366.484444,
       "glass": "FDS20-W (HOYA)",
+      "apd": "patent",
+      "apdNote": "Patent conditions (10) and (11) bound the Abbe number and the g-F anomalous dispersion of the positive lens closest to the object: ΔPgF = θgF − 0.64833 + 0.00180·νd = +0.031 for this element, inside the claimed 0.010 to 0.100. The same θgF 0.6435 is +0.0334 from the engine's normal line.",
       "dPgF": 0.03337364,
       "role": "Fixed front-group element"
     },
@@ -351,7 +359,7 @@ const LENS_DATA = {
       "d": 0.15,
       "nd": 1,
       "elemId": 0,
-      "sd": 32.7
+      "sd": 36.0
     },
     {
       "label": "10",
@@ -383,7 +391,7 @@ const LENS_DATA = {
       "d": 3.6698,
       "nd": 1,
       "elemId": 0,
-      "sd": 25.5
+      "sd": 26.5
     },
     {
       "label": "14A",
@@ -423,7 +431,7 @@ const LENS_DATA = {
       "d": 20.3908,
       "nd": 1,
       "elemId": 0,
-      "sd": 19.0
+      "sd": 20.5
     },
     {
       "label": "19",
@@ -495,7 +503,7 @@ const LENS_DATA = {
       "d": 1.9463,
       "nd": 1,
       "elemId": 0,
-      "sd": 19.0
+      "sd": 17.0
     },
     {
       "label": "28",
@@ -503,7 +511,7 @@ const LENS_DATA = {
       "d": 3.1455,
       "nd": 2.00069,
       "elemId": 16,
-      "sd": 16.4
+      "sd": 17.8
     },
     {
       "label": "29",
@@ -511,7 +519,7 @@ const LENS_DATA = {
       "d": 1.2989,
       "nd": 1,
       "elemId": 0,
-      "sd": 16.4
+      "sd": 17.8
     },
     {
       "label": "30A",
@@ -519,7 +527,7 @@ const LENS_DATA = {
       "d": 1.4004,
       "nd": 1.58313,
       "elemId": 17,
-      "sd": 17.0
+      "sd": 17.8
     },
     {
       "label": "31A",
@@ -527,7 +535,7 @@ const LENS_DATA = {
       "d": 28.4437,
       "nd": 1,
       "elemId": 0,
-      "sd": 17.0
+      "sd": 17.8
     }
   ],
   "asph": {
