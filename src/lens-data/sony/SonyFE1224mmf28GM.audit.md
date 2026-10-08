@@ -27,3 +27,11 @@ Patent: WO 2021/200206 A1, Example 2 / FIG. 6
 - Rechecked the current and discontinued-inclusive first-party vendor catalogs. No coefficient row reproduces both coordinates inside the runtime compatibility window.
 - Schott SF5/N-SF5 and their cross-vendor equivalents are centered near `nd = 1.6727`, about `0.0049` below the patent index and outside the guard.
 - Removed the unsupported Schott-family attribution and retained an explicit unmatched dense-flint annotation on the patent Abbe fallback.
+
+## 2026-10-08 - L56 dPgF moved onto the engine's normal line
+
+- Reviewed local `patents/WO2021200206A1.pdf`. ¶0029 on PDF page 10 defines the deviation on the patent's own line, ΔθgF = θgF − 0.6483 + 0.001802·νd, with θgF = (ng − nF)/(nF − nC). Table 21 on PDF page 42 prints, for Example 2's Lc (L56), νd = 81.6, θgF = 0.5389 and ΔθgF = 0.0376; the formula reproduces the printed deviation (0.03764).
+- The data file had copied the patent's 0.0376. The patent prints the absolute θgF, so the stored value is θgF − (0.6438 − 0.001682·νd) = 0.5389 − 0.50655 = +0.03235, stored to the source's four decimals as 0.0324. `dPgF` and `apdNote` changed; no prescription value changed.
+- The catalog-curve screen (`npm run audit:dpgf`) had not listed the element: the repo's HOYA FCD1 curve reads PgF 0.5377 against the patent's 0.5389, which put the stored 0.0376 outside the screen's source-line window (+0.0363) as well as the engine-line one (+0.0312).
+- L56 is the only element in the file that carries `dPgF`. L14 and L53 are tagged `apd: "inferred"` with no number, and no element authors nC, nF or ng.
+- The analysis keeps the patent's own 0.0376 for condition (2) and now states the line it is measured from.

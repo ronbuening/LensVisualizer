@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-10-08",
     type: "fix",
     summary:
+      "Sony FE 12-24mm f/2.8 GM rear ED element's partial dispersion now uses the chromatic trace's reference line",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
+    summary:
       "Canon RF 35mm f/1.4 L VCM credits both patent inventors; Fujifilm XF 23mm f/1.4 R LM WR ED glass is marked inferred, not patent-stated",
   },
   {

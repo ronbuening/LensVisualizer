@@ -166,7 +166,7 @@ L55 is the patent's Lb component and carries aspherical surfaces on both sides. 
 
 nd = 1.49845, νd = 81.6. Glass: S-FPL51 / FCD1 / N-PK52A class ED fluorophosphate, 498/816 code. f = +155.1 mm.
 
-L56 is the patent's Lc component, the positive element closest to the image plane. Table 21 gives θgF = 0.5389 and ΔθgF = +0.0376 for this element. The high Abbe number and positive anomalous partial dispersion allow the rear element to reduce chief-ray incidence angle without adding excessive lateral color.
+L56 is the patent's Lc component, the positive element closest to the image plane. Table 21 gives θgF = 0.5389 and ΔθgF = +0.0376 for this element. That deviation is on the patent's own line, ΔθgF = θgF − 0.6483 + 0.001802·νd (¶0029); the data file stores the same θgF against the engine's normal line, 0.6438 − 0.001682·νd, as dPgF = +0.0324. The high Abbe number and positive anomalous partial dispersion allow the rear element to reduce chief-ray incidence angle without adding excessive lateral color.
 
 ## Glass Identification and Selection
 
