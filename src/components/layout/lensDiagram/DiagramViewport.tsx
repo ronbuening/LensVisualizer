@@ -12,6 +12,7 @@ import { elementHasAsphericSurface } from "../../display/asphericElementUtils.js
 import type { AnalysisTabId } from "../../../types/state.js";
 import type { ChromaticRayFanSpreadByAxis } from "../../../types/optics.js";
 import type { AnalysisControlsMode } from "./panelModel.js";
+import { textRun } from "../../../utils/text.js";
 
 interface DiagramViewportProps extends Omit<
   ComponentProps<typeof DiagramSVG>,
@@ -414,7 +415,7 @@ export default function DiagramViewport({
           }}
         >
           {zoomLevel > 1.01 ? (
-            <span style={{ color: t.muted, fontSize: 10, marginRight: 2 }}>{zoomLevel.toFixed(1)}x</span>
+            <span style={{ color: t.muted, fontSize: 10, marginRight: 2 }}>{textRun(zoomLevel.toFixed(1), "x")}</span>
           ) : null}
           <button
             aria-label="Reset zoom"

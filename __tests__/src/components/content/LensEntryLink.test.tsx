@@ -4,8 +4,23 @@ import { describe, expect, it } from "vitest";
 import LensEntryLink from "../../../../src/components/content/LensEntryLink.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { renderWithRouter } from "../../../testUtils.js";
+import { replaceTextForTranslation } from "../../../translationTestUtils.js";
 
 describe("LensEntryLink", () => {
+  it("updates translated link labels and removes optional metadata without replacing the link", () => {
+    const { container, getByRole, rerender } = renderWithRouter(
+      <LensEntryLink lensKey="sample-lens" text="First Lens" meta="50 mm" theme={themes.dark} />,
+    );
+    const link = getByRole("link");
+    link.focus();
+    expect(replaceTextForTranslation(container)).toBeGreaterThan(0);
+    rerender(<LensEntryLink lensKey="other-lens" text="Second Lens" meta={null} theme={themes.dark} />);
+    expect(getByRole("link", { name: "Second Lens" })).toBe(link);
+    expect(link.textContent).toBe("Second Lens");
+    expect(link.getAttribute("href")).toBe("/lens/other-lens/");
+    expect(document.activeElement).toBe(link);
+  });
+
   it("links to the canonical lens page and shows two specs by default", () => {
     const { getByRole } = renderWithRouter(
       <LensEntryLink

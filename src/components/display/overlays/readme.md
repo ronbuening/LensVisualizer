@@ -19,6 +19,7 @@ flowchart LR
   n_external_src_optics_asphericComparison_ts["src/optics/asphericComparison.ts"]
   n_external_src_optics_groupMovement_ts["src/optics/groupMovement.ts"]
   n_external_src_optics_internal["src/optics/internal"]
+  n_external_src_utils_text_ts["src/utils/text.ts"]
   n_src_components_display_overlays_src_components_display_overlays_LensGroupMovementOverlay_tsx --> |3| n_external_src_components_display
   n_src_components_display_overlays_src_components_display_overlays_LensGroupMovementOverlay_tsx --> |3| n_external_src_types
   n_src_components_display_overlays_src_components_display_overlays_AsphericComparisonOverlay_tsx --> |2| n_external_pkg_react
@@ -28,18 +29,19 @@ flowchart LR
   n_src_components_display_overlays_src_components_display_overlays_AsphericComparisonOverlay_tsx --> n_external_src_optics_asphericComparison_ts
   n_src_components_display_overlays_src_components_display_overlays_LensGroupMovementOverlay_tsx --> n_external_src_optics_groupMovement_ts
   n_src_components_display_overlays_src_components_display_overlays_AsphericComparisonOverlay_tsx --> n_external_src_optics_internal
+  n_src_components_display_overlays_src_components_display_overlays_AsphericComparisonOverlay_tsx --> n_external_src_utils_text_ts
 ```
 
 ## Directory Overview
 
 - Direct source files: 2
 - Direct subfolders: 0
-- Main outbound areas: src/types (5), package:react (3), src/components/display (3), src/components/hooks, src/optics/asphericComparison.ts, src/optics/groupMovement.ts, src/optics/internal
+- Main outbound areas: src/types (5), package:react (3), src/components/display (3), src/components/hooks, src/optics/asphericComparison.ts, src/optics/groupMovement.ts, src/optics/internal, src/utils/text.ts
 - External consumers: src/components/layout
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `AsphericComparisonOverlay.tsx` | React component module | package:react (2), src/types (2), src/components/hooks, src/optics/asphericComparison.ts, src/optics/internal | src/components/layout | default, AsphericComparisonOverlay |
+| `AsphericComparisonOverlay.tsx` | React component module | package:react (2), src/types (2), src/components/hooks, src/optics/asphericComparison.ts, src/optics/internal, +1 more | src/components/layout | default, AsphericComparisonOverlay |
 | `LensGroupMovementOverlay.tsx` | React component module | src/components/display (3), src/types (3), package:react, src/optics/groupMovement.ts | src/components/layout | default, LensGroupMovementOverlay |

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { pluralize } from "../../../src/utils/text.js";
+import { pluralize, textRun } from "../../../src/utils/text.js";
 
 describe("pluralize", () => {
   it("keeps singular words unchanged only for a count of one", () => {
@@ -16,5 +16,12 @@ describe("pluralize", () => {
 
   it("handles consonant-y plurals", () => {
     expect(pluralize(2, "company")).toBe("companies");
+  });
+});
+
+describe("textRun", () => {
+  it("preserves spaces, zero and React's omission of empty or boolean children", () => {
+    expect(textRun("A: ", 0, " mm", false, null, undefined, true)).toBe("A: 0 mm");
+    expect(textRun("T ", "+2", " / S ", "-3")).toBe("T +2 / S -3");
   });
 });

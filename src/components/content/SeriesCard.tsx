@@ -12,6 +12,7 @@ import { formatDisplayDate } from "../../utils/content/changelogHelpers.js";
 import type { SeriesSummary } from "../../utils/content/homepageContent.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import { withAlpha } from "../../utils/style/styles.js";
+import { textRun } from "../../utils/text.js";
 
 interface SeriesCardProps {
   series: SeriesSummary;
@@ -47,7 +48,7 @@ export default function SeriesCard({ series, theme: t }: SeriesCardProps) {
               fontWeight: 600,
             }}
           >
-            {members.length}-part series
+            {textRun(members.length, "-part series")}
           </span>
         </div>
         <div style={{ fontSize: "0.7rem", color: t.label, marginBottom: "0.3rem" }}>

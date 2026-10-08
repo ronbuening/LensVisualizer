@@ -62,6 +62,52 @@ For URL state changes, the standard test is parse→build→parse identity plus 
 dropped without `v=1`). Grep `parseLensViewQuery` in `__tests__/` and extend the existing file
 rather than creating a parallel one.
 
+## Translation DOM Replacement
+
+Use `replaceTextForTranslation` from `__tests__/translationTestUtils.ts` after rendering, then update
+props or interact with the view. The helper **replaces**, rather than moves, Text nodes with nested
+`font` elements. It skips already simulated text, form options, scripts and SVG text, and includes
+HTML inside `foreignObject`. It is closure-free so the same function runs through Playwright's
+`locator.evaluate`. Assert current visible values, absence of old values, removal/reinsertion, and
+preservation of unaffected translated text or focus; absence of an exception alone misses stale text.
+The quality workflow runs the browser suite before its build job and uploads failure screenshots/traces.
+
+The browser inventory is `__tests__/translationCoverage.ts`; its unit test compares the route manifest
+and analysis tab list, requiring an explicit coverage decision when either grows. Browser route checks
+cover representative catalog entries, theme rerenders and route removal. Interaction checks separately
+cover lens navigation/inspector/modes, ten drawers (including the MTF worker result), comparison
+aperture/details, search, catalog grouping and filters, author filters, and primer/about dialogs at
+desktop and compact widths. Additional cases cover perspective movement, representative folded
+analysis, and comparison layout changes at 1200/900/899/390/1440px with a short viewport.
+Readout tests capture clean-page values, then repeat focus/aperture changes after replacement: one
+representative value per regular tab (including the real MTF worker), perspective readout changes and
+restoration, and current inspector glass. Overlay cases cover glass labels, chromatic close/change/reopen,
+Petzval lifecycle, aspheric mode/exaggeration/zoom and group-motion modes. Mount profiles exercise both
+views and the legend; relationship tests exercise focused headings, search selection and detail changes.
+SVG-only bokeh/glass/mount readouts are checked after HTML replacement, without mutating SVG text.
+Universal map search exercises its supported Enter selection.
+
+```sh
+npx playwright install chromium
+npm run test:browser
+# Use an already running development or production-preview server/system browser:
+PLAYWRIGHT_BASE_URL=http://127.0.0.1:5173 \
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:browser
+```
+
+These are **scripted DOM-replacement tests in Chromium**, not actual Chrome Translate. They do not
+certify every catalog lens/state combination, SVG translation, translation before hydration, disabled
+feature-flag views, or all third-party renderers. Perspective/folded/unavailable states also need their
+component regressions. If no teleconverter is published, that detail-route browser check explicitly
+annotates its unknown-key-only coverage. A successful build/prerender does not exercise translation
+before hydration. Updating source text may replace its translated copy with source-language text until
+the translator processes it again; unchanged translated text must remain intact.
+
+When Chrome's translation service is available, manually translate the lens and comparison routes,
+change lenses, hover/select elements, adjust focus/aperture, cycle drawer tabs and MTF modes, close and
+reopen drawers, switch display modes, and repeat at compact width. Record the actual browser/service
+capability separately from simulated results; service/network failures are unrun coverage, not passes.
+
 ## Recipe: Lens-Data Validation Test
 
 Validation failures are tested by passing intentionally broken prescriptions to `buildLens()` and

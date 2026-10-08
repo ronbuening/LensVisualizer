@@ -24,7 +24,7 @@ import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredDat
 import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
 import { countSuffix, panelCard } from "../utils/style/styles.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 
 interface PatentCardProps {
   patent: PatentRecord;
@@ -57,7 +57,7 @@ function PatentCard({ patent, groupedAssignee, theme: t }: PatentCardProps) {
 
       {otherAssignees.length > 0 && (
         <p style={{ color: t.muted, fontSize: "0.7rem", lineHeight: 1.5, margin: "0.2rem 0" }}>
-          Also assigned to: {otherAssignees.join(", ")}
+          {textRun("Also assigned to: ", otherAssignees.join(", "))}
         </p>
       )}
 
@@ -117,13 +117,17 @@ export default function PatentsIndexPage() {
         <>
           <h1 style={H1_STYLE}>Lens Patents by Country and Assignee</h1>
           <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.6, marginBottom: "0.5rem" }}>
-            {PATENTS.length} unique source patents represented in the Surface &amp; Stop catalog. Country identifies the
-            publication authority at the start of each patent number; WO publications appear under International (WIPO).
+            {textRun(
+              PATENTS.length,
+              " unique source patents represented in the Surface & Stop catalog. Country identifies the publication authority at the start of each patent number; WO publications appear under International (WIPO).",
+            )}
           </p>
           <p style={{ color: t.label, fontSize: "0.7rem", lineHeight: 1.5, margin: "0 0 1.5rem" }}>
-            Jointly assigned patents appear in each named assignee section. Patents without a published assignee are
-            collected under “{PATENT_ASSIGNEE_FALLBACK}.” Patent numbers open their worldwide Espacenet record search in
-            a new tab.
+            {textRun(
+              "Jointly assigned patents appear in each named assignee section. Patents without a published assignee are collected under “",
+              PATENT_ASSIGNEE_FALLBACK,
+              ".” Patent numbers open their worldwide Espacenet record search in a new tab.",
+            )}
           </p>
 
           <SidebarLayout
@@ -159,9 +163,15 @@ export default function PatentsIndexPage() {
                     margin: "0 0 1rem",
                   }}
                 >
-                  {country.jurisdiction.label}
+                  <span>{country.jurisdiction.label}</span>
                   <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-                    {country.jurisdiction.code} · {country.patentCount} {pluralize(country.patentCount, "patent")}
+                    {textRun(
+                      country.jurisdiction.code,
+                      " · ",
+                      country.patentCount,
+                      " ",
+                      pluralize(country.patentCount, "patent"),
+                    )}
                   </span>
                 </h2>
 
@@ -185,8 +195,10 @@ export default function PatentsIndexPage() {
                         borderBottom: `1px solid ${t.panelBorder}`,
                       }}
                     >
-                      {assignee.label}
-                      <span style={countSuffix(t, { fontSize: "0.68rem" })}>({assignee.patents.length})</span>
+                      <span>{assignee.label}</span>
+                      <span style={countSuffix(t, { fontSize: "0.68rem" })}>
+                        {textRun("(", assignee.patents.length, ")")}
+                      </span>
                     </h3>
                     {assignee.patents.map((patent) => (
                       <PatentCard

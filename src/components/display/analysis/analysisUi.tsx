@@ -3,7 +3,7 @@ import type { Theme } from "../../../types/theme.js";
 
 interface AnalysisMetricRowProps {
   label: string;
-  value: ReactNode;
+  value: string | number;
   t: Theme;
   suffix?: string;
   note?: ReactNode;
@@ -34,8 +34,8 @@ export function AnalysisMetricRow({ label, value, t, suffix, note }: AnalysisMet
           transition: "color 0.3s",
         }}
       >
-        {value}
-        {suffix ? <span style={{ color: t.muted, fontWeight: 500 }}> {suffix}</span> : null}
+        <span>{value}</span>
+        {suffix ? <span style={{ color: t.muted, fontWeight: 500 }}>{` ${suffix}`}</span> : null}
       </span>
       {note ? <span style={{ color: t.muted, fontSize: 10, transition: "color 0.3s" }}>{note}</span> : null}
     </div>
@@ -53,7 +53,7 @@ export function AnalysisEmptyState({ children, t }: AnalysisEmptyStateProps) {
 
 interface AberrationValueDisplayProps {
   label: string;
-  value: ReactNode;
+  value: string | number;
   t: Theme;
 }
 

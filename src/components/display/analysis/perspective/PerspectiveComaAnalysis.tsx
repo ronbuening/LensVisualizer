@@ -12,6 +12,7 @@ import {
   PerspectiveSection,
   PerspectiveUnavailable,
 } from "./perspectiveAnalysisUi.js";
+import { textRun } from "../../../../utils/text.js";
 
 interface PerspectiveComaAnalysisProps {
   result: PerspectiveFieldAberrationAnalysis;
@@ -41,11 +42,7 @@ export default function PerspectiveComaAnalysis({ result, t }: PerspectiveComaAn
       first
       title="Fixed-Sensor Coma Footprints & Ray Fans"
       copy={
-        <>
-          Circular-pupil points are measured relative to the physical chief hit on the stationary sensor. Each tile also
-          extracts field-radial tangential and perpendicular sagittal fans from the same retained bundle. Signed top and
-          bottom positions are shown independently; crosses and status text identify unavailable samples.
-        </>
+        "Circular-pupil points are measured relative to the physical chief hit on the stationary sensor. Each tile also extracts field-radial tangential and perpendicular sagittal fans from the same retained bundle. Signed top and bottom positions are shown independently; crosses and status text identify unavailable samples."
       }
       t={t}
     >
@@ -166,17 +163,30 @@ function ComaTile({ sample, halfRange, t }: { sample: PerspectiveComaFieldSample
       {sample.usable ? (
         <div style={{ color: t.muted, fontSize: 8, lineHeight: 1.45, fontVariantNumeric: "tabular-nums" }}>
           <div>
-            RMS {formatUnsignedUm(sample.rmsRadiusMm)} · {sample.usableSampleCount}/{sample.sampleCount} rays
+            {textRun(
+              "RMS ",
+              formatUnsignedUm(sample.rmsRadiusMm),
+              " · ",
+              sample.usableSampleCount,
+              "/",
+              sample.sampleCount,
+              " rays",
+            )}
           </div>
           <div>
-            T {formatUnsignedUm(sample.tangentialSpanMm)} · S {formatUnsignedUm(sample.sagittalSpanMm)}
+            {textRun("T ", formatUnsignedUm(sample.tangentialSpanMm), " · S ", formatUnsignedUm(sample.sagittalSpanMm))}
           </div>
           <div>
-            Tail {sample.tailDirection ?? "n/a"}
-            {sample.tailSkewRatio === null ? "" : ` ${sample.tailSkewRatio.toFixed(2)}x`}
+            {textRun(
+              "Tail ",
+              sample.tailDirection ?? "n/a",
+              sample.tailSkewRatio === null ? "" : ` ${sample.tailSkewRatio.toFixed(2)}x`,
+            )}
           </div>
           {unavailableStatuses.length > 0 ? (
-            <div>Unavailable pupil positions: {unavailableStatuses.map(perspectiveStatusLabel).join(", ")}</div>
+            <div>
+              {textRun("Unavailable pupil positions: ", unavailableStatuses.map(perspectiveStatusLabel).join(", "))}
+            </div>
           ) : null}
         </div>
       ) : (

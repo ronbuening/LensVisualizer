@@ -54,6 +54,24 @@ Optics-engine modules under `src/optics/` export helpers with a historical `2` s
 - **Monospace font stack** for UI: `'JetBrains Mono','SF Mono','Fira Code'`
 - **Theme color tokens** prefixed with `_` are internal to the `createTheme()` factory — update all 4 themes when changing colors
 
+## Translator-Safe Display Text
+
+Page translators can replace a Text node with nested elements, leaving React's Text reference detached.
+Keep each changing HTML text run in a React-owned element with **one primitive child**:
+`<span>{textRun("A: f/", formatFNumber(value))}</span>` (or one template string).
+`<span>A: f/{value}</span>` still creates multiple children and can leave stale text. For mixed rich content,
+give the text run its own span beside links, buttons or styled suffixes. Preserve the existing whitespace.
+The shared `textRun` utility only accepts primitive display parts; it must not stringify `ReactNode`.
+Shared numeric/readout components should accept `string | number` values and own their text element.
+
+`translation/owned-text` flags this known JSX pattern across source views, including router links.
+The shared Markdown renderer applies the same ownership rule to mixed text in its parsed tree, because
+JSX lint cannot inspect generated Markdown. The guard deliberately does not prove opaque `ReactNode`
+props, other third-party renderers, SVG, or pre-hydration DOM safe. Do not disable translation,
+patch DOM prototypes, swallow rendering exceptions, rewrite the DOM with an observer, or remount entire
+views to hide failures. Behavioral regressions and browser coverage are described in
+`agent_docs/testing_recipes.md` under "Translation DOM Replacement".
+
 ## Commenting
 
 See `agent_docs/commenting_guide.md` for full commenting standards. Key rule: **comment the WHY, not the WHAT.**

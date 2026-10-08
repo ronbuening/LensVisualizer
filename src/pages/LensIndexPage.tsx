@@ -47,6 +47,7 @@ import { lensLinkFromLibrary } from "./lensIndex/clusterLinks.js";
 import type { LensLibraryBreadcrumbContext } from "./lensIndex/clusterLinks.js";
 import { parseLensIndexUrlState, parseLensIndexViewMode, serializeLensIndexUrlState } from "./lensIndex/urlState.js";
 import { LENS_FEED_PATH } from "../utils/content/feedMetadata.js";
+import { textRun } from "../utils/text.js";
 
 export default function LensIndexPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -324,8 +325,13 @@ export default function LensIndexPage() {
           }}
         >
           <p style={{ fontSize: "0.875rem", color: t.muted, margin: 0 }}>
-            Showing {filteredEntries.length} of {totalLenses} interactive optical cross-section diagrams built from
-            patent data.
+            {textRun(
+              "Showing ",
+              filteredEntries.length,
+              " of ",
+              totalLenses,
+              " interactive optical cross-section diagrams built from patent data.",
+            )}
           </p>
           <div
             style={{

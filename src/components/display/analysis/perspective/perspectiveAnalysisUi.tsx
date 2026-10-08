@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
 import type { PerspectiveFieldStatus, SensorUv } from "../../../../optics/perspective/index.js";
 import type { Theme } from "../../../../types/theme.js";
+import { textRun } from "../../../../utils/text.js";
 
 interface PerspectiveSectionProps {
   title: string;
-  copy: ReactNode;
+  copy: string;
   t: Theme;
   children: ReactNode;
   first?: boolean;
@@ -98,7 +99,7 @@ export function formatTransmission(value: number): string {
 export function PerspectiveUnavailable({ status, t }: { status: PerspectiveFieldStatus; t: Theme }) {
   return (
     <span style={{ color: t.muted, fontSize: 9, fontStyle: "italic" }} data-perspective-status={status}>
-      Unavailable — {perspectiveStatusLabel(status)}
+      {textRun("Unavailable — ", perspectiveStatusLabel(status))}
     </span>
   );
 }

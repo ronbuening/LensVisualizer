@@ -2,6 +2,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { MtfDataLimitation } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
+import { textRun } from "../../../../utils/text.js";
 
 interface MtfDataWarningProps {
   /** Gaps that qualify the chart on screen; none renders the chart untouched. */
@@ -34,7 +35,8 @@ export default function MtfDataWarning({ limitations, acknowledged, onAcknowledg
       {limitations.length > 0 && acknowledged ? (
         <details style={{ color: t.muted, fontSize: 11, margin: "4px 0" }}>
           <summary style={{ cursor: "pointer" }}>
-            <WarningIcon color={t.stopLabel} size={12} /> {TITLE} ({limitations.length})
+            <WarningIcon color={t.stopLabel} size={12} />
+            <span>{textRun(" ", TITLE, " (", limitations.length, ")")}</span>
           </summary>
           {list}
         </details>
@@ -68,7 +70,7 @@ export default function MtfDataWarning({ limitations, acknowledged, onAcknowledg
           >
             <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600 }}>
               <WarningIcon color={t.stopLabel} size={18} />
-              {TITLE}
+              <span>{TITLE}</span>
             </div>
             {list}
             <button

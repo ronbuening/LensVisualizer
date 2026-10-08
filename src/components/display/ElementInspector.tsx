@@ -17,6 +17,7 @@ import {
 } from "../../optics/chromatic/channels.js";
 import { getAsphericEntriesForElement } from "./asphericElementUtils.js";
 import { withAlpha } from "../../utils/style/styles.js";
+import { textRun } from "../../utils/text.js";
 
 interface ElementInspectorProps {
   info: ElementData;
@@ -183,7 +184,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
               transition: "all 0.3s",
             }}
           >
-            {cementedLabel} {info.cemented}
+            {textRun(cementedLabel, " ", info.cemented)}
           </span>
         )}
         {(() => {
@@ -234,11 +235,15 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
       )}
       <div style={INSPECTOR_GRID}>
         <div>
-          <span style={{ color: t.propLabel }}>{info.indexReferenceNote ? "n (source)" : `n${indexReference}`} = </span>
+          <span style={{ color: t.propLabel }}>
+            {textRun(info.indexReferenceNote ? "n (source)" : `n${indexReference}`, " = ")}
+          </span>
           <span style={{ color: t.value }}>{info.nd}</span>
         </div>
         <div>
-          <span style={{ color: t.propLabel }}>{info.indexReferenceNote ? "ν (source)" : `ν${indexReference}`} = </span>
+          <span style={{ color: t.propLabel }}>
+            {textRun(info.indexReferenceNote ? "ν (source)" : `ν${indexReference}`, " = ")}
+          </span>
           <span style={{ color: t.value }}>{info.vd}</span>
         </div>
         <div>
@@ -254,7 +259,9 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
         {info.absorptionCoefficientPerMm !== undefined && (
           <div>
             <span style={{ color: t.propLabel }}>Bulk absorption: </span>
-            <span style={{ color: t.value }}>α = {fmtNumber(info.absorptionCoefficientPerMm)} mm⁻¹</span>
+            <span style={{ color: t.value }}>
+              {textRun("α = ", fmtNumber(info.absorptionCoefficientPerMm), " mm⁻¹")}
+            </span>
           </div>
         )}
         {(() => {
@@ -262,7 +269,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
           if (entries.length === 0) return null;
           return entries.map(({ label, coeffs }) => (
             <div key={label} style={{ gridColumn: "1 / -1" }}>
-              <span style={{ color: t.asphLabel, fontSize: 9.5 }}>Asph ({label}): </span>
+              <span style={{ color: t.asphLabel, fontSize: 9.5 }}>{textRun("Asph (", label, "): ")}</span>
               <span style={{ color: t.muted, fontSize: 9 }}>
                 {`K=${coeffs.K?.toExponential(2) ?? ""}${coeffs.A4 ? ` A4=${coeffs.A4.toExponential(2)}` : ""}${coeffs.A6 ? ` A6=${coeffs.A6.toExponential(2)}` : ""}`}
               </span>
@@ -274,15 +281,22 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
         <div style={{ ...INSPECTOR_GRID, marginTop: 6, paddingTop: 5, borderTop: `1px solid ${t.panelBorder}` }}>
           {foldedSurfaceRows.map(({ surface, summary }) => (
             <div key={surface.label} style={{ gridColumn: "1 / -1" }}>
-              <span style={{ color: t.propLabel }}>{surface.label}: </span>
+              <span style={{ color: t.propLabel }}>{textRun(surface.label, ": ")}</span>
               <span style={{ color: t.value }}>{summary}</span>
             </div>
           ))}
           {imagePlane && (
             <div style={{ gridColumn: "1 / -1" }}>
-              <span style={{ color: t.propLabel }}>Image plane {imagePlane.label}: </span>
+              <span style={{ color: t.propLabel }}>{textRun("Image plane ", imagePlane.label, ": ")}</span>
               <span style={{ color: t.value }}>
-                z={fmtMm(imagePlane.z)} y={fmtMm(imagePlane.y)} normal {fmtNormal(imagePlane.normal)}
+                {textRun(
+                  "z=",
+                  fmtMm(imagePlane.z),
+                  " y=",
+                  fmtMm(imagePlane.y),
+                  " normal ",
+                  fmtNormal(imagePlane.normal),
+                )}
               </span>
             </div>
           )}
@@ -302,7 +316,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
               </div>
               <div>
                 <span style={{ color: t.propLabel }}>
-                  {indexReference === "e" && row.quality !== "sellmeier" ? "nF′−nC′" : "nF−nC"} ={" "}
+                  {textRun(indexReference === "e" && row.quality !== "sellmeier" ? "nF′−nC′" : "nF−nC", " =", " ")}
                 </span>
                 <span style={{ color: t.value }}>{(row.indices.B - row.indices.R).toFixed(5)}</span>
               </div>
@@ -330,7 +344,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
                           : CHROMATIC_CHANNEL_METADATA[ch].wavelengthLabel;
                   return (
                     <span key={ch} style={{ marginLeft: idx === 0 ? 0 : 10, whiteSpace: "nowrap" }}>
-                      <span style={{ color: t.propLabel }}>{indexLabel} </span>
+                      <span style={{ color: t.propLabel }}>{textRun(indexLabel, " ")}</span>
                       <span style={{ color }} title={wavelengthLabel}>
                         {row.indices[ch].toFixed(5)}
                       </span>

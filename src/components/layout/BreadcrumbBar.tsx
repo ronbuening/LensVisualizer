@@ -39,6 +39,7 @@ import {
 } from "../../utils/theme/themePreferences.js";
 import PositionModeToggle from "../controls/PositionModeToggle.js";
 import ThemeToggleGroup from "./ThemeToggleGroup.js";
+import { textRun } from "../../utils/text.js";
 
 interface BreadcrumbBarProps {
   theme: Theme;
@@ -144,9 +145,7 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
                 Lenses
               </Link>
               <span style={separatorStyle}>/</span>
-              <span style={{ color: t.body }}>
-                {lensA.name} vs {lensB.name}
-              </span>
+              <span style={{ color: t.body }}>{textRun(lensA.name, " vs ", lensB.name)}</span>
             </>
           ) : (
             <>

@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
+import rehypeOwnedText from "./rehypeOwnedText.js";
 /* KaTeX styles ride along with this component's chunk so pages that never
  * render markdown don't download them (previously imported in main.tsx). */
 import "katex/dist/katex.min.css";
@@ -275,7 +276,7 @@ export default function ThemedMarkdown({
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm, remarkMath]}
-      rehypePlugins={article ? [rehypeSlug, rehypeKatex] : [rehypeKatex]}
+      rehypePlugins={article ? [rehypeSlug, rehypeKatex, rehypeOwnedText] : [rehypeKatex, rehypeOwnedText]}
       components={components}
     >
       {markdown}

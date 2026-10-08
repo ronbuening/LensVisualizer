@@ -19,6 +19,7 @@ import type {
 import type { Theme } from "../../types/theme.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import { countSuffix } from "../../utils/style/styles.js";
+import { textRun } from "../../utils/text.js";
 
 interface LensIndexFilterPanelProps {
   theme: Theme;
@@ -114,7 +115,7 @@ function FilterChipSection<TOption, TId extends string>({
   return (
     <section>
       <h3 style={FILTER_TITLE_STYLE}>
-        {title}
+        <span>{title}</span>
         <span style={countSuffix(t, { fontSize: "0.78rem" })}>
           {allSelected ? allLabel : `${selectedIds.length} selected`}
         </span>
@@ -379,7 +380,7 @@ export default function LensIndexFilterPanel({
           <h3 style={FILTER_TITLE_STYLE}>
             Focal Length
             <span style={countSuffix(t, { fontSize: "0.78rem" })}>
-              {formatFilterValue(customFilter.focalMin)}–{formatFilterValue(customFilter.focalMax)}mm
+              {textRun(formatFilterValue(customFilter.focalMin), "–", formatFilterValue(customFilter.focalMax), "mm")}
             </span>
           </h3>
           <div style={rangeGridStyle}>
@@ -402,7 +403,12 @@ export default function LensIndexFilterPanel({
           <h3 style={FILTER_TITLE_STYLE}>
             Aperture
             <span style={countSuffix(t, { fontSize: "0.78rem" })}>
-              f/{formatFilterValue(customFilter.apertureMin)}–f/{formatFilterValue(customFilter.apertureMax)}
+              {textRun(
+                "f/",
+                formatFilterValue(customFilter.apertureMin),
+                "–f/",
+                formatFilterValue(customFilter.apertureMax),
+              )}
             </span>
           </h3>
           <div style={rangeGridStyle}>
@@ -425,7 +431,7 @@ export default function LensIndexFilterPanel({
           <h3 style={FILTER_TITLE_STYLE}>
             Patent Date
             <span style={countSuffix(t, { fontSize: "0.78rem" })}>
-              {customFilter.patentYearMin}–{customFilter.patentYearMax}
+              {textRun(customFilter.patentYearMin, "–", customFilter.patentYearMax)}
             </span>
           </h3>
           <div style={rangeGridStyle}>

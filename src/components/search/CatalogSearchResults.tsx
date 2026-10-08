@@ -12,7 +12,7 @@ import LensEntryLink from "../content/LensEntryLink.js";
 import type { Theme } from "../../types/theme.js";
 import { searchCatalog } from "../../utils/catalog/searchCatalog.js";
 import { countSuffix } from "../../utils/style/styles.js";
-import { pluralize } from "../../utils/text.js";
+import { pluralize, textRun } from "../../utils/text.js";
 
 interface CatalogSearchResultsProps {
   query: string;
@@ -41,12 +41,14 @@ function ResultSection({ title, count, theme: t, children }: ResultSectionProps)
           marginBottom: "0.5rem",
         }}
       >
-        {title}
-        <span style={countSuffix(t, { fontSize: "0.72rem" })}>({count})</span>
+        <span>{title}</span>
+        <span style={countSuffix(t, { fontSize: "0.72rem" })}>{textRun("(", count, ")")}</span>
       </h2>
       {children}
       {count > RESULT_LIMIT && (
-        <p style={{ color: t.muted, fontSize: "0.72rem" }}>Showing the first {RESULT_LIMIT}; refine your search.</p>
+        <p style={{ color: t.muted, fontSize: "0.72rem" }}>
+          {textRun("Showing the first ", RESULT_LIMIT, "; refine your search.")}
+        </p>
       )}
     </section>
   );
@@ -80,7 +82,11 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
   if (total === 0) {
     return (
       <p aria-live="polite" style={{ color: t.muted, fontSize: "0.82rem" }}>
-        No results for “{trimmedQuery}”. Try a shorter name or enter the patent number without punctuation.
+        {textRun(
+          "No results for “",
+          trimmedQuery,
+          "”. Try a shorter name or enter the patent number without punctuation.",
+        )}
       </p>
     );
   }
@@ -88,7 +94,7 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
   return (
     <div aria-live="polite">
       <p style={{ color: t.muted, fontSize: "0.75rem", margin: 0 }}>
-        {total} {pluralize(total, "match")} for “{trimmedQuery}”
+        {textRun(total, " ", pluralize(total, "match"), " for “", trimmedQuery, "”")}
       </p>
 
       <ResultSection title="Lens names" count={results.lenses.length} theme={t}>
@@ -110,8 +116,15 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
           <Link key={key} to={`/teleconverters/${key}/`} style={resultLinkStyle(t)}>
             <span>{data.name}</span>
             <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem" }}>
-              — {data.magnification}× · {data.compatibleLensKeys.length} compatible{" "}
-              {pluralize(data.compatibleLensKeys.length, "lens")}
+              {textRun(
+                "— ",
+                data.magnification,
+                "× · ",
+                data.compatibleLensKeys.length,
+                " compatible",
+                " ",
+                pluralize(data.compatibleLensKeys.length, "lens"),
+              )}
             </span>
           </Link>
         ))}
@@ -136,7 +149,7 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
           <Link key={author.slug} to={`/authors/${author.slug}/`} style={resultLinkStyle(t)}>
             <span>{author.name}</span>
             <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem" }}>
-              — {author.patentCount} {pluralize(author.patentCount, "patent")}
+              {textRun("— ", author.patentCount, " ", pluralize(author.patentCount, "patent"))}
             </span>
           </Link>
         ))}

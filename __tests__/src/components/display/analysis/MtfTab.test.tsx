@@ -75,7 +75,7 @@ function stubWorker({ progress = false, target = state }: { progress?: boolean; 
 }
 
 const legendColor = (label: string) =>
-  within(screen.getByRole("figure")).getByText(label).closest("span")!.querySelector("line")!.getAttribute("stroke");
+  within(screen.getByRole("figure")).getByText(label).parentElement!.querySelector("line")!.getAttribute("stroke");
 
 beforeEach(() => {
   installMatchMediaMock(false);

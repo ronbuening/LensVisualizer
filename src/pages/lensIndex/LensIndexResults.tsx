@@ -35,6 +35,7 @@ import type {
 import type { Theme } from "../../types/theme.js";
 import type { PatentPartyRole } from "../../types/catalog.js";
 import { countSuffix } from "../../utils/style/styles.js";
+import { textRun } from "../../utils/text.js";
 
 function MakerSections({
   groups,
@@ -59,7 +60,7 @@ function MakerSections({
               <Link to={`/makers/${group.slug}/`} style={{ color: "inherit", textDecoration: "none" }}>
                 {group.display}
               </Link>
-              <span style={countSuffix(theme)}>({group.lenses.length})</span>
+              <span style={countSuffix(theme)}>{textRun("(", group.lenses.length, ")")}</span>
             </h2>
             {details && (
               <p
@@ -116,9 +117,13 @@ function FocalSections({
               marginTop: "2rem",
             }}
           >
-            {section.label}
+            <span>{section.label}</span>
             <span style={countSuffix(theme)}>
-              ({section.subGroups.reduce((count, group) => count + group.lenses.length, 0)})
+              {textRun(
+                "(",
+                section.subGroups.reduce((count, group) => count + group.lenses.length, 0),
+                ")",
+              )}
             </span>
           </h2>
           {section.subGroups.map((group) => (
@@ -136,8 +141,8 @@ function FocalSections({
                   marginBottom: "0.5rem",
                 }}
               >
-                {group.label}
-                <span style={countSuffix(theme)}>({group.lenses.length})</span>
+                <span>{group.label}</span>
+                <span style={countSuffix(theme)}>{textRun("(", group.lenses.length, ")")}</span>
               </h3>
               {group.lenses.map((entry) => (
                 <LensEntryLink
@@ -179,8 +184,8 @@ function PatentPartySections({
           style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
         >
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
-            {group.label}
-            <span style={countSuffix(theme)}>({group.lenses.length})</span>
+            <span>{group.label}</span>
+            <span style={countSuffix(theme)}>{textRun("(", group.lenses.length, ")")}</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink
@@ -216,8 +221,8 @@ function PatentYearSections({
           style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
         >
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
-            {group.decade}
-            <span style={countSuffix(theme)}>({group.lenses.length})</span>
+            <span>{group.decade}</span>
+            <span style={countSuffix(theme)}>{textRun("(", group.lenses.length, ")")}</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink
@@ -256,7 +261,7 @@ function MountSections({
             ) : (
               group.label
             )}
-            <span style={countSuffix(theme)}>({group.lenses.length})</span>
+            <span style={countSuffix(theme)}>{textRun("(", group.lenses.length, ")")}</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink
@@ -301,7 +306,7 @@ function ImageFormatSections({
             ) : (
               group.label
             )}
-            <span style={countSuffix(theme)}>({group.lenses.length})</span>
+            <span style={countSuffix(theme)}>{textRun("(", group.lenses.length, ")")}</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink

@@ -237,7 +237,7 @@ const DiagramHeader = memo(
                   )}
                   {teleconverterPatent && (
                     <span>
-                      {" · TC "}
+                      <span>{" · TC "}</span>
                       <PatentNumberLink patentNumber={teleconverterPatent.patentNumber} color={t.descLinkColor} />
                       {teleconverterPatent.authors.length > 0 && (
                         <span>

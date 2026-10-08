@@ -29,7 +29,7 @@ import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
 import roleChip from "../components/relationshipMap/roleChip.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 import { panelCard } from "../utils/style/styles.js";
 import { universalMapHash } from "../utils/state/universalMapUrl.js";
 
@@ -110,7 +110,7 @@ export default function RelationshipMapPage() {
                 {/* h1: the focused view renders no other h1, so this heading must
                  * be the document heading for the outline to stay intact. */}
                 <h1 style={{ fontSize: "1.3rem", fontWeight: 600, margin: "0 0 0.35rem" }}>
-                  {focus.name}
+                  <span>{focus.name}</span>
                   <span style={roleChip(t, focus.role)}>{focus.role === "assignee" ? "assignee" : "inventor"}</span>
                 </h1>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem 1rem" }}>
@@ -222,7 +222,7 @@ export default function RelationshipMapPage() {
                           {author.name}
                         </Link>
                         <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.4rem" }}>
-                          {author.patentCount} {pluralize(author.patentCount, "patent")}
+                          {textRun(author.patentCount, " ", pluralize(author.patentCount, "patent"))}
                         </span>
                       </li>
                     ))}
@@ -243,7 +243,7 @@ export default function RelationshipMapPage() {
                           {assignee.name}
                         </Link>
                         <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.4rem" }}>
-                          {assignee.patentCount} {pluralize(assignee.patentCount, "patent")}
+                          {textRun(assignee.patentCount, " ", pluralize(assignee.patentCount, "patent"))}
                         </span>
                       </li>
                     ))}

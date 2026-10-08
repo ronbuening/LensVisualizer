@@ -81,7 +81,7 @@ flowchart LR
 
 - Direct source files: 15
 - Direct subfolders: 0
-- Main outbound areas: src/types (21), same folder (12), src/utils/style (11), package:react (10), src/optics/optics.ts (3), src/components/content (2), src/optics/projection.ts (2), src/optics/publishedStations.ts (2), +9 more
+- Main outbound areas: src/types (21), same folder (12), src/utils/style (11), package:react (10), src/optics/optics.ts (3), src/components/content (2), src/optics/projection.ts (2), src/optics/publishedStations.ts (2), +10 more
 - External consumers: src/comparison, src/components/display, src/components/layout, src/pages/AuthorsIndexPage.tsx
 
 ## Files
@@ -91,7 +91,7 @@ flowchart LR
 | `CardinalControls.tsx` | React component module | src/types, src/utils/style | src/components/layout (2), same folder | default, CardinalControls |
 | `ChromaticControls.tsx` | React component module | src/types (2), src/optics/chromatic, src/utils/style | same folder | default, ChromaticControls |
 | `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2) | default, CollapseButton |
-| `DiagramControls.tsx` | React component module | same folder (4), src/types (3), package:react, src/components/hooks, src/optics/focusDistance.ts, +6 more | src/components/layout | default, DiagramControls |
+| `DiagramControls.tsx` | React component module | same folder (4), src/types (3), package:react, src/components/hooks, src/optics/focusDistance.ts, +7 more | src/components/layout | default, DiagramControls |
 | `DiagramHeader.tsx` | React component module | same folder (4), src/types (3), src/components/content (2), package:react, src/optics/optics.ts, +4 more | src/components/layout | default |
 | `HelpTooltipButton.tsx` | React component module | package:react, same folder, src/types | src/components/display (2) | default, HelpTooltipButton |
 | `LensSelector.tsx` | React component module | package:react, src/components/layout, src/types, src/utils/style | same folder, src/components/layout, src/pages/AuthorsIndexPage.tsx | default, LensSelector |
@@ -101,5 +101,5 @@ flowchart LR
 | `RayToggles.tsx` | React component module | src/types (2), package:react, src/utils/featureFlags.ts, src/utils/style | same folder | default, RayToggles |
 | `SliderControl.tsx` | React component module | package:react, same folder, src/types, src/utils/style | same folder | default, SliderControl |
 | `SliderResetButton.tsx` | React component module | src/types | same folder, src/comparison | default, SliderResetButton |
-| `StationStepper.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2) | StationOption, MAX_STATION_BUTTONS, default, StationStepper |
+| `StationStepper.tsx` | React component module | package:react, src/types, src/utils/style, src/utils/text.ts | same folder (2) | StationOption, MAX_STATION_BUTTONS, default, StationStepper |
 | `TeleconverterControl.tsx` | React component module | package:react, same folder, src/types, src/utils/catalog, src/utils/style | src/components/layout | default, TeleconverterControl |

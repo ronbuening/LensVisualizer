@@ -1,4 +1,5 @@
 import type { Theme } from "../../../../types/theme.js";
+import { textRun } from "../../../../utils/text.js";
 
 export interface PerspectiveSignedChartPoint {
   v: number;
@@ -127,10 +128,12 @@ export default function PerspectiveSignedChart({ title, valueLabel, series, t }:
               aria-hidden="true"
               style={{ width: 13, borderTop: `2px ${entry.dashed ? "dashed" : "solid"} ${entry.color}` }}
             />
-            {entry.label}
+            <span>{entry.label}</span>
           </span>
         ))}
-        {unavailableCount > 0 ? <span>{unavailableCount} unavailable sample(s) retained as crosses</span> : null}
+        {unavailableCount > 0 ? (
+          <span>{textRun(unavailableCount, " unavailable sample(s) retained as crosses")}</span>
+        ) : null}
       </div>
     </div>
   );

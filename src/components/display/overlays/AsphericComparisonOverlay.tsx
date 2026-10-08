@@ -20,6 +20,7 @@ import {
 import { sag, conicPolySag } from "../../../optics/internal/surfaceMath.js";
 import type { AsphericCoefficients, ElementData, RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
+import { textRun } from "../../../utils/text.js";
 
 interface AsphericComparisonOverlayProps {
   L: RuntimeLens;
@@ -298,7 +299,9 @@ export default function AsphericComparisonOverlay({ L, info, theme: t }: Aspheri
       }}
     >
       <div style={headerStyle}>
-        <span style={{ fontSize: 14, fontWeight: 700, color: t.title }}>{info.label} · Aspheric departure</span>
+        <span style={{ fontSize: 14, fontWeight: 700, color: t.title }}>
+          {textRun(info.label, " · Aspheric departure")}
+        </span>
         <span style={{ fontSize: 11, color: t.muted }}>{surfaces.map((s) => `S${s.label}`).join(" · ")}</span>
       </div>
 
@@ -323,7 +326,7 @@ export default function AsphericComparisonOverlay({ L, info, theme: t }: Aspheri
             onChange={(e) => setExag(exagFromSlider(parseFloat(e.target.value)))}
             style={{ flex: 1, accentColor: t.sliderAccent }}
           />
-          <span style={{ fontSize: 10.5, color: t.value, minWidth: 48, textAlign: "right" }}>{exag}×</span>
+          <span style={{ fontSize: 10.5, color: t.value, minWidth: 48, textAlign: "right" }}>{textRun(exag, "×")}</span>
         </div>
       </div>
 
@@ -455,19 +458,19 @@ export default function AsphericComparisonOverlay({ L, info, theme: t }: Aspheri
           const R_sphere = departureBySurf[s.surfIdx].R_sphere;
           return (
             <div key={s.surfIdx} style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <span style={{ color: t.asphLabel, fontWeight: 600 }}>S{s.label}</span>
+              <span style={{ color: t.asphLabel, fontWeight: 600 }}>{textRun("S", s.label)}</span>
               <span>
                 R<sub>sphere</sub> = <span style={{ color: t.value }}>{R_sphere.toFixed(3)}</span> mm
               </span>
               <span>
-                peak <span style={{ color: t.value }}>{peakUm.toFixed(2)} μm</span>
-                {"  ·  "}rms <span style={{ color: t.value }}>{rmsUm.toFixed(2)} μm</span>
+                peak <span style={{ color: t.value }}>{textRun(peakUm.toFixed(2), " μm")}</span>
+                {"  ·  "}rms <span style={{ color: t.value }}>{textRun(rmsUm.toFixed(2), " μm")}</span>
               </span>
             </div>
           );
         })}
         <div style={{ marginLeft: "auto", display: "flex", gap: 4, alignItems: "center" }}>
-          <span style={{ marginRight: 4 }}>{zoom.state.zoom.toFixed(1)}×</span>
+          <span style={{ marginRight: 4 }}>{textRun(zoom.state.zoom.toFixed(1), "×")}</span>
           <button onClick={zoom.zoomOut} style={zoomBtn} aria-label="zoom out">
             −
           </button>
@@ -481,8 +484,8 @@ export default function AsphericComparisonOverlay({ L, info, theme: t }: Aspheri
       </div>
       <div style={{ marginTop: 6, fontSize: 9.5, color: t.muted, lineHeight: 1.4 }}>
         Solid line: aspheric (true). Dashed: spherical replacement, displayed with{" "}
-        <span style={{ color: t.value }}>{exag}×</span> departure exaggeration. Click anywhere to read the true Δsag.
-        Scroll/drag to zoom and pan.
+        <span style={{ color: t.value }}>{textRun(exag, "×")}</span> departure exaggeration. Click anywhere to read the
+        true Δsag. Scroll/drag to zoom and pan.
       </div>
     </div>
   );

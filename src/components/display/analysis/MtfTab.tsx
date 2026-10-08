@@ -14,6 +14,7 @@ import MtfChart from "./MtfChart.js";
 import MtfControls from "./mtf/MtfControls.js";
 import MtfDataWarning from "./mtf/MtfDataWarning.js";
 import MtfFieldSummary from "./mtf/MtfFieldSummary.js";
+import { textRun } from "../../../utils/text.js";
 
 interface MtfTabProps {
   L: RuntimeLens;
@@ -175,9 +176,16 @@ export default function MtfTab({
         <p>{support.message}</p>
         {support.conjugate ? (
           <p>
-            Finite object {support.conjugate.objectDistanceMm.toFixed(1)} mm from{" "}
-            {support.conjugate.distanceReference === "image-plane" ? "the image plane" : "the first surface"}. Source:{" "}
-            {support.conjugate.source}
+            {textRun(
+              "Finite object ",
+              support.conjugate.objectDistanceMm.toFixed(1),
+              " mm from",
+              " ",
+              support.conjugate.distanceReference === "image-plane" ? "the image plane" : "the first surface",
+              ". Source:",
+              " ",
+              support.conjugate.source,
+            )}
           </p>
         ) : null}
         <ul>

@@ -19,7 +19,7 @@ import { TELECONVERTER_SUMMARIES } from "../utils/catalog/teleconverterSummaries
 import { canonicalPageUrl } from "../utils/seo/siteUrls.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE, SECTION_HEADING_BASE_STYLE } from "../utils/style/pageStyles.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 import { lensLinkFromTeleconverter } from "./lensIndex/clusterLinks.js";
 
 export default function TeleconverterPage() {
@@ -64,10 +64,10 @@ export default function TeleconverterPage() {
         <>
           <h1 style={H1_STYLE}>{teleconverter.name}</h1>
           <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1rem" }}>
-            {teleconverter.magnification}× rear teleconverter for{" "}
+            <span>{textRun(teleconverter.magnification, "× rear teleconverter for", " ")}</span>
             {teleconverter.lensMounts.map((mountId, index) => (
               <span key={mountId}>
-                {index > 0 && ", "}
+                <span>{index > 0 && ", "}</span>
                 <Link to={`/mounts/${mountId}/`} style={{ color: t.descLinkColor, textDecoration: "none" }}>
                   {LENS_MOUNT_BY_ID[mountId].label}
                 </Link>
@@ -86,7 +86,7 @@ export default function TeleconverterPage() {
               <PatentNumberLink patentNumber={teleconverter.patentNumber} color={t.descLinkColor} />
               {teleconverter.patentAuthors && teleconverter.patentAuthors.length > 0 && (
                 <>
-                  {" — "}
+                  <span>{" — "}</span>
                   <InventorLinks names={teleconverter.patentAuthors} theme={t} />
                 </>
               )}
@@ -100,15 +100,17 @@ export default function TeleconverterPage() {
           )}
 
           <p style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "1.5rem" }}>
-            {teleconverter.universal
-              ? "A universal converter: it mounts on any catalog lens for the same mount that leaves room behind its rear element."
-              : "A dedicated converter: it mounts only on lenses made to accept it."}{" "}
-            A teleconverter has no aperture stop of its own, so it is shown attached to a host lens, where the lens's
-            stop stays the system stop and the focal length and f-number both grow by the converter's factor.
+            {textRun(
+              teleconverter.universal
+                ? "A universal converter: it mounts on any catalog lens for the same mount that leaves room behind its rear element."
+                : "A dedicated converter: it mounts only on lenses made to accept it.",
+              " ",
+              "A teleconverter has no aperture stop of its own, so it is shown attached to a host lens, where the lens's stop stays the system stop and the focal length and f-number both grow by the converter's factor.",
+            )}
           </p>
 
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, color: t.title }}>
-            Mount it on a lens ({hostKeys.length} {pluralize(hostKeys.length, "lens")})
+            {textRun("Mount it on a lens (", hostKeys.length, " ", pluralize(hostKeys.length, "lens"), ")")}
           </h2>
           <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
             {hostKeys.length === 0 ? (

@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import type { Theme } from "../../types/theme.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import { LENS_LINK_BASE_STYLE } from "../../utils/style/pageStyles.js";
+import { textRun } from "../../utils/text.js";
 
 interface LensEntryTarget {
   to: string;
@@ -37,10 +38,10 @@ export default function LensEntryLink({
 
   return (
     <Link to={target.to} state={target.state} style={{ ...LENS_LINK_BASE_STYLE, color: theme.descLinkColor, ...style }}>
-      {text}
+      <span>{text}</span>
       {displayMeta && (
         <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", ...metaStyle }}>
-          — {displayMeta}
+          {textRun("— ", displayMeta)}
         </span>
       )}
     </Link>

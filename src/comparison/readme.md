@@ -81,7 +81,7 @@ flowchart LR
 
 - Direct source files: 14
 - Direct subfolders: 0
-- Main outbound areas: same folder (28), src/types (14), package:react (8), src/utils/state (5), src/components/layout (3), src/optics/optics.ts (3), src/utils/style (3), src/optics/groupMovement.ts (2), +11 more
+- Main outbound areas: same folder (28), src/types (14), package:react (8), src/utils/state (5), src/components/layout (3), src/optics/optics.ts (3), src/utils/style (3), src/optics/groupMovement.ts (2), +12 more
 - External consumers: src/components/layout, src/pages/ComparePage.tsx, src/types, src/utils/catalog, src/utils/state
 
 ## Files
@@ -95,8 +95,8 @@ flowchart LR
 | `comparisonTypes.ts` | Comparison Types helper module | none | src/types | SharedSlidersSlice, ComparisonAction |
 | `comparisonURLSync.ts` | Comparison URLSync helper module | src/utils/state (2), src/types, src/utils/seo | src/pages/ComparePage.tsx, src/utils/catalog, src/utils/state | buildComparePath, comparePageTitle, comparePageDescription, compareCanonicalURL |
 | `SharedAnalysisDock.tsx` | React component module | src/components/layout (2), src/components/hooks, src/types, src/utils/state | same folder | default, SharedAnalysisDock |
-| `SharedFStopQuickSelect.tsx` | React component module | package:react | same folder | default, SharedFStopQuickSelect |
-| `SharedSlidersBar.tsx` | React component module | same folder (4), src/types (3), src/components/controls, src/optics/groupMovement.ts, src/optics/lensMovement.ts, +2 more | same folder | default, SharedSlidersBar |
+| `SharedFStopQuickSelect.tsx` | React component module | package:react, src/utils/text.ts | same folder | default, SharedFStopQuickSelect |
+| `SharedSlidersBar.tsx` | React component module | same folder (4), src/types (3), src/components/controls, src/optics/groupMovement.ts, src/optics/lensMovement.ts, +3 more | same folder | default, SharedSlidersBar |
 | `SharedSliderSection.tsx` | React component module | package:react, src/types, src/utils/style | same folder | default, SharedSliderSection |
 | `useComparisonDisplayValues.ts` | React hook module | same folder (3), package:react, src/optics/optics.ts | same folder | default, useComparisonDisplayValues |
 | `useComparisonMode.ts` | React hook module | same folder (2), package:react, src/optics/buildLens.ts, src/types, src/utils/catalog | same folder (4), src/components/layout | ComparisonLensesOk, ComparisonLensesResult, isComparisonOk, default, useComparisonMode |

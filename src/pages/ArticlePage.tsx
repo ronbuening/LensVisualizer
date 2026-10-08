@@ -15,6 +15,7 @@ import ThemedMarkdown from "../components/markdown/ThemedMarkdown.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { articleJsonLd, breadcrumbJsonLd } from "../utils/seo/structuredData.js";
 import { ARTICLE_CONTENT, ARTICLE_SERIES } from "../utils/content/homepageContent.js";
+import { textRun } from "../utils/text.js";
 
 const NAV_STYLE: CSSProperties = { marginTop: "1.5rem", marginBottom: "1.5rem", fontSize: "0.8rem" };
 
@@ -84,7 +85,7 @@ export default function ArticlePage() {
         <>
           <nav style={NAV_STYLE}>
             <Link to={backPath} style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.8rem" }}>
-              ← {backLabel}
+              {textRun("← ", backLabel)}
             </Link>
           </nav>
 

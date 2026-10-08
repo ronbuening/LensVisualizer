@@ -12,6 +12,7 @@ import {
   PerspectiveSection,
   PerspectiveUnavailable,
 } from "./perspectiveAnalysisUi.js";
+import { textRun } from "../../../../utils/text.js";
 
 interface PerspectiveFieldCurvesProps {
   result: PerspectiveFieldAberrationAnalysis;
@@ -48,12 +49,7 @@ export default function PerspectiveFieldCurves({ result, t }: PerspectiveFieldCu
     <PerspectiveSection
       title="Fixed-Sensor Field Focus & Astigmatism"
       copy={
-        <>
-          Tangential and sagittal best-focus offsets are solved along the fixed sensor normal at signed top-to-bottom
-          format positions. Positive is imageward along the sensor normal; negative is lensward. Missing positions stay
-          visible instead of being interpolated. The Petzval sum/reference remains intrinsic and lens-local, so it is
-          not overlaid on these fixed-sensor curves where that would mix coordinate frames.
-        </>
+        "Tangential and sagittal best-focus offsets are solved along the fixed sensor normal at signed top-to-bottom format positions. Positive is imageward along the sensor normal; negative is lensward. Missing positions stay visible instead of being interpolated. The Petzval sum/reference remains intrinsic and lens-local, so it is not overlaid on these fixed-sensor curves where that would mix coordinate frames."
       }
       t={t}
     >
@@ -186,9 +182,16 @@ export default function PerspectiveFieldCurves({ result, t }: PerspectiveFieldCu
             <span style={{ color: t.label, fontSize: 9.5 }}>{perspectiveFieldLabel(sample.requestedSensorUv)}</span>
             {sample.tangential.bestFocus && sample.sagittal.bestFocus ? (
               <span style={{ color: t.value, fontSize: 9, fontVariantNumeric: "tabular-nums" }}>
-                T {formatSignedMm(sample.tangential.bestFocus.normalOffsetMm)} · S{" "}
-                {formatSignedMm(sample.sagittal.bestFocus.normalOffsetMm)} · T-S{" "}
-                {formatSignedUm(sample.astigmaticDifferenceMm)}
+                {textRun(
+                  "T ",
+                  formatSignedMm(sample.tangential.bestFocus.normalOffsetMm),
+                  " · S",
+                  " ",
+                  formatSignedMm(sample.sagittal.bestFocus.normalOffsetMm),
+                  " · T-S",
+                  " ",
+                  formatSignedUm(sample.astigmaticDifferenceMm),
+                )}
               </span>
             ) : (
               <PerspectiveUnavailable status={sample.status} t={t} />
@@ -197,7 +200,7 @@ export default function PerspectiveFieldCurves({ result, t }: PerspectiveFieldCu
         ))}
       </div>
       <span style={{ color: t.muted, fontSize: 8.5 }}>
-        Statuses: {analysis.samples.map((sample) => perspectiveStatusLabel(sample.status)).join(" · ")}
+        {textRun("Statuses: ", analysis.samples.map((sample) => perspectiveStatusLabel(sample.status)).join(" · "))}
       </span>
     </PerspectiveSection>
   );

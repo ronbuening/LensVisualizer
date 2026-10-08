@@ -218,7 +218,7 @@ function ModeRail({
               onChange={() => enabled && onModeChange(mode)}
               style={{ accentColor: t.sliderAccent }}
             />
-            {MODE_LABELS[mode]}
+            <span>{MODE_LABELS[mode]}</span>
           </label>
         );
       })}

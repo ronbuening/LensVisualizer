@@ -2,6 +2,7 @@
 import type { MtfResult } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
 import type { MtfChartFrequency } from "../../../../utils/state/mtfPreferences.js";
+import { textRun } from "../../../../utils/text.js";
 
 interface MtfValueTableProps {
   result: MtfResult;
@@ -27,7 +28,7 @@ export default function MtfValueTable({ result, frequencies, t }: MtfValueTableP
             </th>
             {columns.map((f) => (
               <th key={f} style={cell} scope="col">
-                {f} lp/mm
+                {textRun(f, " lp/mm")}
               </th>
             ))}
             <th style={cell} scope="col">
