@@ -167,3 +167,72 @@ Open limitations. The figure's flat mounting annuli cannot be drawn, so L1, L3, 
 - All nine change together. With only the five named elements e-referenced, the four others trace at C/F beside C′/F′: red +207 µm, blue +199 µm, violet +335 µm.
 - The `vd` slot keeps the printed d-line Abbe number. Catalog νe for the five is 81.19, 23.60, 66.76, 81.16 and 24.61 against the printed 81.61, 23.78, 67.02, 81.56 and 24.80, inside the ±2 match window. The engine reads the slot as νe for the four Unmatched elements; lowering it by 0.2 moves no channel focus by more than 1 µm.
 - Dependency. This needs the engine's e-line channel convention (C′/e/F′/g on every tier). On an engine without it the same data gives red −152 µm, blue −156 µm and reference −231 µm against green.
+
+## 2026-10-08 — Second review: diagram, labels and movement
+
+What was compared. The lens as drawn on the local site (infinity, the close endpoint, the focus-movement chart at both ends, and the element inspector for elements 1, 2, 3, 4, 6, 7, 8 and 9) against FIG. 1 on PDF page 18 of `patents/JP2019191502A.pdf` (both panels), the Example 1 text and tables (paragraphs 0047–0050, pages 10–11), claims 1, 9 and 10, Table 1 (page 17), the reference-sign list (page 17) and the ZEISS data-sheet section. Sections above this one use the former names: elements L1–L9 and groups G1–G5.
+
+Scale, measured again from scratch on the native 400 dpi raster. The axis is row 814.5. Sixteen vertex crossings run from surface 1 at x = 427.5 px to surface 18 at 1355.5 px and the image plane at 1552.5 px: 1125 px for 100.4477 mm, 11.200 px/mm, with every intermediate crossing within 1 px of the prescription. Rim heights are half the distance between the top and bottom rim lines (line centres).
+
+| Element | Surfaces | Figure outer rim (mm) | Figure curve end where a flat land is drawn (mm) | Before | After |
+|---|---|---:|---:|---:|---:|
+| E1 | 1A, 2A | 19.67 | rear 16.6 | 19.2 | 19.2 |
+| E2 | 3, 4 | 16.12 | – | 16.0 | 16.0 |
+| E3 | 5, 6 | 13.24 | front 12.0 | 13.2 | 13.2 |
+| E4 | 7A, 8A | 14.73 | – | 14.7 | 14.7 |
+| E5 | 10, 11 | 12.66 | rear 11.4 | 13.3 | 12.7 |
+| E6 | 12A, 13A | 12.39 | – | 12.3 | 12.3 |
+| E7 + E8 | 14, 15, 16 | 13.28 | rear 11.5 | 13.2 | 13.2 |
+| E9 front | 17 | 14.29 | front 12.5 | 13.0 | 14.2 |
+| E9 rear | 18 | 14.29 | – | 14.2 | 14.2 |
+
+The first pass's readings are confirmed within 0.1 mm on every element. Seven of the nine were already on the drawing; two differed visibly on the page.
+
+E5 (surfaces 10 and 11, 13.3 → 12.7). The page drew E5 level with E3 and the doublet (13.3 against 13.2 and 13.2). The figure draws it 0.6 mm below both (12.66 against 13.24 and 13.28), and the ZEISS section also draws it shorter than its neighbours. Every other fitted rim agrees with this figure within 0.1 mm, so 0.64 mm is a real difference although it is under 5 %. At 12.7 the rim thickness is 3.90 mm (4.22 before, 3.30 drawn). E5 sits 0.2 mm behind the stop, so the stop limits the beam there: the largest height any transmitted ray reaches is 11.92 mm on surface 10 and 11.28 mm on surface 11, at any field up to 27.44° and any focus position. The stop's drawn blade stubs now end at 12.7 mm instead of 13.3 mm; the figure extends its stop ticks to 14.7 mm, which the renderer does not follow.
+
+E9 front (surface 17, 13.0 → 14.2). The page joined a 13.0 mm front rim to a 14.2 mm rear rim with a slanted edge. The figure draws a squared rim: a flat top at 14.29 mm between a cylindrical front edge and the rear curve, and the ZEISS section draws a flat top too. With both faces at 14.2 the top is flat, as drawn. The price is a front horn that follows the curve 1.2 mm further forward than the drawn land (rim length 3.7 mm against 2.5 mm drawn); its tip stays 1.5 mm behind the rear tip of E8. The first pass kept 13.0 because 14.2 raises the engine's half-field. That value is a paraxial estimate (27.519° with surface 17 limiting, 28.685° with surface 18 limiting), and no real ray changes: within the patent's 27.44° field the largest transmitted height on surface 17 is 12.60 mm, the figure's own curve end is 12.5 mm, and a 4001-ray meridional fan at each of six fields and five focus positions passes exactly the same rays with either value, also at 30° and 32°.
+
+E1 stays at 19.2 mm, 2.4 % under the drawn 19.67 mm. Its rear rim already runs 1.8 mm beyond the drawn land (8.9 mm against 7.1 mm), and a taller rim would lengthen it further and admit off-axis rays the present rim stops. E3 and E8 keep one height on both faces; the flat lands drawn on the E1 rear, E3 front, E5 rear, E8 rear and E9 front cannot be rendered.
+
+Clearance and engine values. The whole trial set passed the surface validator and the real-ray clearance trace before it was applied. Afterwards the validator reports no errors, the image-circle check lists no undersized surface, traced corner coverage is 100 % (27.5°, 21.65 of 21.65 mm, no rim clip), the aperture census stays within 3 % of F/2.0834 and render trim is zero at focus 0, 0.25, 0.5, 0.75 and 1. Focal length 41.1948 mm, F/2.0834 and stop radius 12.15912 mm are unchanged. The engine half-field moves from 27.519° to 28.685° and the default off-axis fan from 16.51° to 17.21°. The stop-filling axial ray still clears every rim (least margin 0.03 mm at 7A at the close endpoint), the corner chief ray needs 11.29 mm at surface 17 and 12.27 mm at surface 18, the tangential pupil ranges at 0.50, 0.70, 0.90 and full field are unchanged (−0.89/+0.73, −0.82/+0.57, −0.72/+0.40, −0.63/+0.32), and the default-ray census is unchanged at 16 first clips in 440 rays (five at 12A, three at 5, two at 7A, two at 6, four at the stop). No aspheric semi-diameter changed, so the departure table in the analysis stands.
+
+Labels changed.
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Group brackets | G1, G2 focus, G3, G4 focus, G5 | L1, L2 focus, L3, L4 focus, L5 | FIG. 1 brackets, paragraph 0047 and the reference-sign list name the five groups L1–L5 |
+| Element `name` | L1 … L9 | E1 … E9 | The patent names no element, and an L-number is a group in this patent; the E-numbers follow the catalog's other L-grouped patents |
+| Element `type` on E1, E4, E6 | no aspheric count | adds "(2× Asph)" | ASPH on surfaces 1, 2, 7, 8, 12 and 13 in the prescription table |
+| Element `role` | none | one sentence per element | paragraph 0047, claims 9 and 10, the signs of R |
+| `apd` on E2 and E3 | inferred | patent | below |
+| `focusDescription` | G-names | L-names; names the moving elements and the fixed units | paragraph 0047, the variable-spacing table |
+
+Anomalous-dispersion tags. Claims 9 and 10 define G1dPgF and G2dPgF as the g–F anomalous dispersion of the positive element ahead of the first focus group (E2) and of the negative element inside it (E3), and Table 1 fills both for Example 1: 0.0282 with νd 20.88, and 0.0137 with νd 23.78. The patent text therefore designates both elements, and their tags are now `patent`. Both rows equal HOYA catalog entries exactly (E-FDS1: νd 20.88, ΔPgF 0.0282; FDS90 and FDS90-SG: νd 23.78, ΔPgF 0.0137), so the deviations are on HOYA's own line and were not copied into `dPgF`. E6, E7 and E8 stay `inferred`: the patent says nothing about them and ZEISS draws them as special glass. E1, E4, E5 and E9 carry no tag, as on the ZEISS drawing.
+
+Checked and left as authored.
+
+- Bracket ranges: L1 = surfaces 1A–4, L2 = 5–8A, L3 = 10–11, L4 = 12A–13A, L5 = 14–18, as the figure brackets them. The figure's L3 bracket also spans the stop tick; the stop is surface 9, 0.2 mm ahead of E5 and fixed with it, and is drawn there between E4 and E5.
+- Cemented bracket D1 = 14–16, the only cemented pair (surface 15 has glass on both sides).
+- Element types against the signs of R: E1 biconcave (−1212.5 / +29.1), E2, E4 and E6 biconvex, E3 and E9 negative menisci concave to the object, E5 and E8 negative menisci convex to the object, E7 a positive meniscus convex to the object.
+- Aspheres: 1A, 2A, 7A, 8A, 12A and 13A are the only `A` labels and `asph` entries; the inspector shows two aspheric faces on each of E1, E4 and E6.
+- Gap labels D4, D8, D11 and D13 are the patent's own names for the four variable spacings.
+- Front-page data: JP 2019-191502 A, published 2019-10-31, Tamron, inventor Naoyuki Sato (page 27).
+
+Focus movement. The table gives D(4) 6.1277 → 2.6108, D(8) 2.7571 → 6.2740, D(11) 15.5621 → 11.2121 and D(13) 0.2000 → 4.5500 from infinity to the close state; each `var` pair holds infinity first. The sums D(4) + D(8) = 8.8848 mm and D(11) + D(13) = 15.7621 mm are constant, so L2 moves 3.5169 mm and L4 4.3500 mm toward the object while L1, the stop, L3, L5 and the image plane stay fixed, as claim 1 states and as the two F arrows under L2 and L4 point. The figure's close panel shows the same: the L2 vertices sit 39–40 px (3.5 mm) and the L4 vertices 49 px (4.4 mm) further left than in the infinity panel, and every other vertex is unmoved. On the page the movement chart lists five groups, three of them fixed; L2 moves from 69.6 to 73.1 mm and L4 from 41.3 to 45.6 mm ahead of the focal plane, with 4.35 mm maximum travel. At the far end the slider reads 23 cm and the readout shows D4 2.61, D8 6.27, D11 11.21, D13 4.55 and EFL 36.12 mm (patent 36.1160). There is no zoom.
+
+Maker diagram. The ZEISS section agrees on 9 elements in 8 groups with E7 + E8 cemented, on the shape of every element, on E5 and E6 being the smallest and on E9 standing above the doublet with a flat top. It differs from the patent figure in drawing E3 as tall as E4, E8 a step above E7 and E9 without a land; the patent figure of the modeled example governs. ZEISS marks E1 and E4 aspherical, E2, E3, E7 and E8 special glass, E6 special glass plus aspherical, and E5 and E9 unmarked.
+
+Open limitations, including fields outside this review's edit list.
+
+- E2's glass label stays Unmatched. Table 1 treats the element as an E-FDS1-class glass (nd 1.92286, ne 1.93323, νd 20.88), which the printed 1.94136 and 21.13 do not reproduce; the same table row repeats for Example 4, whose prescription prints 1.94531 and 20.32. On the engine's line the tabulated deviation is about +0.030; no `dPgF` was entered.
+- E1 is HOYA FCD1 in this example, a strongly anomalous glass, but ZEISS marks the production front element aspherical only, so it carries no tag.
+- The engine's half-field estimate (28.685°) now exceeds the patent's 27.4433°; analyses follow the format-corner chief ray (27.46°), not this estimate.
+- The flat mounting lands cannot be drawn, so E1, E5, E8 and E9 show longer rims than the figure.
+
+## 2026-10-08 — Integration after the second review: E2 partial dispersion
+
+The second review above renamed the elements E1–E9 (the patent calls its groups L1–L5) and found that the two Table 1 deviations equal HOYA catalog rows: νd 20.88 with ΔPgF 0.0282 is E-FDS1, and νd 23.78 with 0.0137 is FDS90. That fixes the line they are quoted on as HOYA's.
+
+- E2 `dPgF` 0.0307 entered. Absolute P_g,F = 0.0282 + 0.6483 − 0.0018 × 20.88 = 0.6389; the engine's normal line at the printed νd 21.13 is 0.6083. E2 stays Unmatched on the Abbe estimate, where the value places its g-line index. Paraxial g-line focus against green moved from +104 µm to +31 µm; red and blue are unchanged at +28 µm and +26 µm.
+- E3 needs no entry: it traces on the FDS90 catalog curve, whose own deviation is the 0.0137 the patent prints.
+- The Table 1 row still pairs the deviation with νd 20.88 where the prescription prints 21.13 and an index E-FDS1 does not reproduce; that contradiction is in `apdNote` and the analysis.

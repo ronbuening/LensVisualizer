@@ -3,20 +3,24 @@ Research correlation with ZEISS Batis 2/40 CF; not manufacturer-confirmed.
 PUBLISHED focus endpoints; no reconstructed marketing MFD.
 Scale 1.0. Patent epsilon maps to K=epsilon-1. All published nonzero coefficients retained.
 Physical stop inferred by exact on-axis F/2.0834 calibration, not an independently published aperture.
+NAMES: the patent calls its five lens groups L1-L5 (FIG. 1, paragraph 0047, reference-sign list) and names no single
+element, so the group brackets read L1-L5 and the elements are E1-E9.
 NOTE ON SEMI-DIAMETERS: the patent prints no clear apertures. Rims are estimated from patent FIG. 1 (infinity
 panel, 11.2 px/mm at 400 dpi; scale set by 16 vertex crossings, and the drawn stop opening reads 12.1 mm against the
-calibrated 12.159 mm): L2 16.0, L3 13.2, L4 14.7, L6 12.3, L7/L8 13.2, L9 rear 14.2. L1 (19.2; figure 19.6),
-L5 (13.3; figure 12.6) and the L9 front (13.0; drawn curve ends 12.6 below a flat annulus) are the as-authored values,
-within measurement noise of the figure. Square-cut elements carry one height on both faces. Floor-checked by real-ray
-trace: the stop-filling axial beam clears every rim from infinity to the close endpoint (least margin 0.03 mm at 7A
-at close focus) and the corner chief ray is clear; off-axis vignetting at the drawn rims is retained (the patent's own
-FIG. 2B fans are truncated more than the model's).
+calibrated 12.159 mm): E2 16.0, E3 13.2, E4 14.7, E5 12.7, E6 12.3, E7/E8 13.2, E9 14.2. E1 (19.2; figure 19.7) is
+the as-authored value, within measurement noise of the figure. The figure draws every element square-cut, so each
+carries one height on both faces; the flat lands it draws beyond the curve ends on the E1 rear, E3 front, E5 rear,
+E8 rear and E9 front (curve ends 12.5) cannot be rendered. Floor-checked by real-ray trace: the stop-filling axial
+beam clears every rim from infinity to the close endpoint (least margin 0.03 mm at 7A at close focus) and the corner
+chief ray is clear; off-axis vignetting at the drawn rims is retained (the patent's own FIG. 2B fans are truncated
+more than the model's). With both E9 faces at 14.2 the engine's paraxial half-field estimate is 28.68 deg (27.52 deg
+with the front at 13.0); no real ray inside the patent's 27.44 deg field reaches surface 17 above 12.6 mm.
 Patent source image plane is retained despite Gaussian focus offsets.
 No source-listed rear plates. The patent heads its index column Nd and states the d-line, but the printed values
 are e-line indices paired with d-line Abbe numbers: five of the nine equal HOYA/OHARA catalog ne to five decimals
 (FCD1 1.49845, FDS90 1.85505, M-PCD51 1.59412, M-FCD1 1.49856, S-NBH56 1.86290). The printed values are stored
 unchanged and all nine elements are e-referenced (indexReference "e"). The five carry their catalog names and trace
-on catalog curves anchored to the printed index; L2, L5, L8 and L9 match no vendor row and stay Unmatched on the Abbe
+on catalog curves anchored to the printed index; E2, E5, E8 and E9 match no vendor row and stay Unmatched on the Abbe
 estimate. The vd slot keeps the printed d-line Abbe number (catalog ve is 0.2 to 0.4 lower), which understates the
 estimated dispersion of the four Unmatched elements by under 1 %. All nine must share one reference: leaving the four
 d-referenced traces them at C/F beside C'/F' and moves the red and blue foci about 0.2 mm.
@@ -56,9 +60,10 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "E1",
       "label": "Element 1",
-      "type": "Biconcave Negative",
+      "type": "Biconcave Negative (2× Asph)",
+      "role": "Front negative element of the fixed positive group L1: a nearly flat front and a strongly concave rear, both aspherical.",
       "nd": 1.49845,
       "vd": 81.61,
       "indexReference": "e",
@@ -68,37 +73,41 @@ const LENS_DATA = {
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "E2",
       "label": "Element 2",
       "type": "Biconvex Positive",
+      "role": "Positive element completing the fixed group L1; the patent's conditions (3) and (4) bound its anomalous dispersion and Abbe number.",
       "nd": 1.94136,
       "vd": 21.13,
       "indexReference": "e",
       "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": 52.28456991,
       "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
-      "apd": "inferred",
-      "apdNote": "ZEISS's construction diagram marks this element special glass; anomalous partial dispersion is inferred from that marking, not a patent designation."
+      "apd": "patent",
+      "dPgF": 0.0307,
+      "apdNote": "Patent Table 1 lists this element's g-F anomalous dispersion (G1dPgF) as 0.0282, the limit of condition (3), beside vd 20.88 where the prescription prints 21.13. The pair equals HOYA E-FDS1's catalog deviation, so it is on HOYA's line: P_g,F = 0.0282 + 0.6483 - 0.0018 x 20.88 = 0.6389, which is +0.0307 from the engine's normal line at the printed vd 21.13. ZEISS's construction diagram also marks the element special glass."
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "E3",
       "label": "Element 3",
       "type": "Negative Meniscus",
+      "role": "Negative meniscus, concave to the object, leading the first focus group L2; the patent's conditions (5) and (6) apply to it.",
       "nd": 1.85505,
       "vd": 23.78,
       "indexReference": "e",
       "indexReferenceNote": "Patent heads this column Nd, but five of its nine indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       "fl": -45.75756786,
       "glass": "FDS90-SG (HOYA; catalog ne 1.85505, vd 23.78 as printed; supplier unconfirmed)",
-      "apd": "inferred",
-      "apdNote": "ZEISS's construction diagram marks this element special glass; anomalous partial dispersion is inferred from that marking, not a patent designation."
+      "apd": "patent",
+      "apdNote": "Patent Table 1 lists this element's g-F anomalous dispersion (G2dPgF) as 0.0137 with vd 23.78, satisfying condition (5); both figures are HOYA's catalog values for FDS90, so the deviation is on HOYA's line, not the engine's. ZEISS's construction diagram also marks the element special glass."
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "E4",
       "label": "Element 4",
-      "type": "Biconvex Positive",
+      "type": "Biconvex Positive (2× Asph)",
+      "role": "Double-aspheric biconvex element carrying the positive power of the first focus group L2; moves with E3 toward the object for close focus.",
       "nd": 1.59412,
       "vd": 67.02,
       "indexReference": "e",
@@ -108,9 +117,10 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "E5",
       "label": "Element 5",
       "type": "Negative Meniscus",
+      "role": "Negative meniscus, convex to the object, forming the fixed group L3 directly behind the aperture stop.",
       "nd": 1.80655,
       "vd": 25.3,
       "indexReference": "e",
@@ -120,9 +130,10 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "E6",
       "label": "Element 6",
-      "type": "Biconvex Positive",
+      "type": "Biconvex Positive (2× Asph)",
+      "role": "Double-aspheric biconvex singlet forming the second focus group L4; moves toward the object by more than L2.",
       "nd": 1.49856,
       "vd": 81.56,
       "indexReference": "e",
@@ -134,9 +145,10 @@ const LENS_DATA = {
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "E7",
       "label": "Element 7",
       "type": "Positive Meniscus",
+      "role": "Positive meniscus, convex to the object, cemented to E8 at the front of the fixed negative group L5.",
       "nd": 1.8629,
       "vd": 24.8,
       "indexReference": "e",
@@ -149,9 +161,10 @@ const LENS_DATA = {
     },
     {
       "id": 8,
-      "name": "L8",
+      "name": "E8",
       "label": "Element 8",
       "type": "Negative Meniscus",
+      "role": "Negative meniscus, convex to the object, cemented behind E7 in the fixed group L5.",
       "nd": 1.65965,
       "vd": 33.72,
       "indexReference": "e",
@@ -164,9 +177,10 @@ const LENS_DATA = {
     },
     {
       "id": 9,
-      "name": "L9",
+      "name": "E9",
       "label": "Element 9",
       "type": "Negative Meniscus",
+      "role": "Rear negative meniscus, concave to the object, closing the fixed negative group L5 ahead of the image plane.",
       "nd": 1.61599,
       "vd": 38.71,
       "indexReference": "e",
@@ -253,7 +267,7 @@ const LENS_DATA = {
       "R": 104.2271,
       "d": 1.0224,
       "nd": 1.80655,
-      "sd": 13.3,
+      "sd": 12.7,
       "elemId": 5
     },
     {
@@ -261,7 +275,7 @@ const LENS_DATA = {
       "R": 23.8723,
       "d": 15.5621,
       "nd": 1.0,
-      "sd": 13.3,
+      "sd": 12.7,
       "elemId": 0
     },
     {
@@ -309,7 +323,7 @@ const LENS_DATA = {
       "R": -20.7323,
       "d": 1.2,
       "nd": 1.61599,
-      "sd": 13,
+      "sd": 14.2,
       "elemId": 9
     },
     {
@@ -415,27 +429,27 @@ const LENS_DATA = {
   ],
   "groups": [
     {
-      "text": "G1",
+      "text": "L1",
       "fromSurface": "1A",
       "toSurface": "4"
     },
     {
-      "text": "G2 focus",
+      "text": "L2 focus",
       "fromSurface": "5",
       "toSurface": "8A"
     },
     {
-      "text": "G3",
+      "text": "L3",
       "fromSurface": "10",
       "toSurface": "11"
     },
     {
-      "text": "G4 focus",
+      "text": "L4 focus",
       "fromSurface": "12A",
       "toSurface": "13A"
     },
     {
-      "text": "G5",
+      "text": "L5",
       "fromSurface": "14",
       "toSurface": "18"
     }
@@ -449,7 +463,7 @@ const LENS_DATA = {
   ],
   "closeFocusM": 0.2349601,
   "apertureBlades": 9,
-  "focusDescription": "PUBLISHED: G2 and G4 move objectward by 3.5169 and 4.3500 mm between patent endpoints. D0 is 134.5124 mm from object to first vertex; object-to-source-image distance is 0.2349601 m. Intermediate interpolation is not a measured production cam. Source image-plane offsets from Gaussian focus are retained.",
+  "focusDescription": "PUBLISHED inner focus: L2 (E3-E4) and L4 (E6) move toward the object by 3.5169 and 4.3500 mm between the patent's infinity and close endpoints; L1, the stop, L3 and L5 stay fixed. At the close endpoint the object is 134.5124 mm ahead of the first vertex, 0.2349601 m from the image plane. Intermediate positions are interpolated, not a measured production cam. Source image-plane offsets from Gaussian focus are retained.",
   "nominalFno": 2.0834,
   "fstopSeries": [
     2.0834,
