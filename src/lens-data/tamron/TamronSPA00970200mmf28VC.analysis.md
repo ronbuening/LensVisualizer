@@ -454,7 +454,7 @@ clear aperture.
 
 ## Sources and References
 
-1. **US 8,867,144 B2**, Hisayuki Yamanaka, *Inner Focusing Telephotographing Zoom Lens*, Tamron Co., Ltd., granted October 21, 2014. Example 1 numerical prescription and spacing tables are on patent pp. 10–11; architecture and conditional-expression discussion are on pp. 3–8.
+1. **US 8,867,144 B2**, Hisayuki Yamanaka, *Inner Focusing Telephotographing Zoom Lens*, Tamron Co., Ltd., granted October 21, 2014. Example 1 numerical prescription and spacing tables are in patent columns 10–11; architecture and conditional-expression discussion are in columns 3–8.
 2. **Tamron, A009 specifications**, *SP 70-200mm F/2.8 Di VC USD (Model A009)* — production construction count, 1.3 m MOD, 1:8 maximum magnification, nine rounded blades, mount variants, and release dates. [Tamron specification page][tamron-spec]
 3. **Tamron, A009 product overview**, *SP 70-200mm F/2.8 Di VC USD (Model A009)* — VC/USD description and one-XLD/four-LD statement. [Tamron product page][tamron-product]
 4. **Tamron, A009 optical-construction drawing** — relative element layout and XLD/LD markings. [Manufacturer SVG][tamron-construction]

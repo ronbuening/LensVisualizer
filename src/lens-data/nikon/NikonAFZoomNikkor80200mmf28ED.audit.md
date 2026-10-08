@@ -56,3 +56,109 @@ Left open:
 - Traced on-axis f-number with the file's clear apertures is f/2.95 at 80 mm (rim of surface 20) and f/2.96 at 196 mm (rim of surface 13) against the stated f/2.88, the same before and after this correction. The patent prints no clear apertures, so the rims are file-derived; none was changed here.
 - The authored `STO` semi-diameter 14.759011 mm is the paraxial F/2.88 radius of the first-printed prescription; with the amended thickness that radius is 14.759220 mm. The header and note describe 14.759011 mm as the physical stop on the paraxial reading, while the engine opens the iris to 15.6801 mm from the real marginal ray. The semi-diameter and that description are left as they were, with only the paraxial f-numbers restated.
 - Stop position is not tabulated. Fig. 1 (PDF p. 10) draws S close to the object side of L43 rather than at mid-gap; the file's midpoint remains a modeling choice.
+
+## 2026-10-08 — Rims raised to the stated on-axis ray; surfaces 11 and 12 held at the gap limit
+
+Rule (maintainer, 2026-10-08): where an inferred rim clips the on-axis beam of the f-number the patent prints, only the clipping surfaces move, each only to the height the stated ray reaches there at the station that needs most, rounded up at the file's 0.1 mm precision; every other surface and the `STO` row keep their values.
+
+Sixteen surfaces sat below the stated ray. Fourteen were raised. Surfaces 11 and 12 were not: at the listed 18.7 mm the file fails validation, so both were put back to 18.3 mm and the 196 mm station is still rim-limited.
+
+| Field | Before | After | Source |
+|---|---:|---:|---|
+| Surface 7 `sd` (D2 junction, L21 / L22) | 19.5 mm | 19.7 mm | Stated ray 19.681 mm at 196 mm (12.484 mm at 80 mm) |
+| Surface 9 `sd` (L23 front) | 18.2 mm | 18.3 mm | Stated ray 18.229 mm at 196 mm (12.338 mm at 80 mm) |
+| Surface 10 `sd` (D3 junction, L23 / L24) | 18.3 mm | 18.8 mm | Stated ray 18.707 mm at 196 mm (12.710 mm at 80 mm) |
+| Surface 11 `sd` (L24 rear) | 18.3 mm | 18.3 mm, not raised | Stated ray 18.695 mm at 196 mm (12.822 mm at 80 mm); the listed 18.7 mm fails the cross-gap check with surface 12 |
+| Surface 12 `sd` (L25 front) | 18.3 mm | 18.3 mm, not raised | Stated ray 18.698 mm at 196 mm (12.935 mm at 80 mm); the listed 18.7 mm fails the cross-gap check with surface 11 |
+| Surface 13 `sd` (L25 rear) | 18.6 mm | 19.2 mm | Stated ray 19.118 mm at 196 mm (13.248 mm at 80 mm) |
+| Surface 14 `sd` (L31 front) | 19.2 mm | 19.5 mm | Stated ray 19.417 mm at 196 mm (19.351 mm at 80 mm) |
+| Surface 15 `sd` (L31 rear) | 19.2 mm | 19.7 mm | Stated ray 19.614 mm at 196 mm (19.550 mm at 80 mm) |
+| Surface 16 `sd` (L32 front) | 19.5 mm | 20.0 mm | Stated ray 19.925 mm at 196 mm (19.857 mm at 80 mm) |
+| Surface 17 `sd` (D4 junction, L32 / L33) | 19.5 mm | 19.9 mm | Stated ray 19.873 mm at 196 mm (19.803 mm at 80 mm) |
+| Surface 18 `sd` (L33 rear) | 19.5 mm | 20.0 mm | Stated ray 19.962 mm at 196 mm (19.891 mm at 80 mm) |
+| Surface 19 `sd` (L41 front) | 19.5 mm | 20.0 mm | Stated ray 19.978 mm at 196 mm (19.941 mm at 80 mm) |
+| Surface 20 `sd` (L41 rear) | 19.2 mm | 19.8 mm | Stated ray 19.715 mm at 196 mm (19.677 mm at 80 mm) |
+| Surface 21 `sd` (L42a front) | 18.5 mm | 18.9 mm | Stated ray 18.864 mm at 196 mm (18.829 mm at 80 mm) |
+| Surface 22 `sd` (D5 junction, L42a / L42b) | 18.0 mm | 18.3 mm | Stated ray 18.259 mm at 196 mm (18.221 mm at 80 mm) |
+| Surface 23 `sd` (L42b rear) | 17.5 mm | 17.8 mm | Stated ray 17.712 mm at 196 mm (17.675 mm at 80 mm) |
+
+The stated ray is the f/2.88 on-axis marginal ray, entering at 13.889 mm at the 80 mm station and 34.028 mm at the 196 mm station. The patent prints F-number 2.88 for the whole 80.0–196.0 range and no semi-diameters. The fourteen raises run from 0.5 % (surface 9) to 3.2 % (surface 13), far under the 15 % figure-review threshold.
+
+Surfaces 11 and 12 face each other across the 2.500 mm d11 air gap between D3 and L25. With both at 18.7 mm their combined sag is 2.276 mm, 0.9103 of the gap, and the validator's default limit is 0.90 (2.250 mm): the build stops on the air gap from surface 11 to surface 12 ("combined surface sag (2.28 mm) exceeds allowed gap intrusion (2.250 mm of 2.500 mm) at sd=18.7") for the base prescription and both zoom stations. The largest common semi-diameter that passes is 18.59 mm, below what the ray needs, and a value between 18.3 and 18.7 would be neither the authored value nor the ray height, so the pair stays at 18.3 mm (0.8714 of the gap, as before).
+
+### Traced f-number and limiter
+
+| Station | Stated | Before | After |
+|---|---:|---|---|
+| 80 mm | f/2.88 | f/2.95 (+2.3 %), rim of surface 20 | f/2.88 (0.0 %), iris |
+| 196 mm | f/2.88 | f/2.96 (+2.7 %), rim of surface 13 | f/2.94 (+2.1 %), rim of surface 12 |
+
+The fixed iris opens to 15.6801 mm at both stations before and after; from the iris alone the stations give f/2.880 and f/2.886. `audit:aperture --raise` lists only surfaces 11 and 12 (18.3 → 18.7) after the edit.
+
+### Figure check
+
+The patent prints no section of Example 3. Figure 1 (第1図, PDF p. 10, patent p. 144) is the section of Example 1 at the wide end, and the text under Table 1 (continued) on PDF p. 5 says Examples 2–4 have the same lens configuration as Example 1 with different glasses. Examples 1 and 3 both print f = 80.0–196.0 and F-number 2.88 (Table 1 header, PDF p. 5; Table 3 header, PDF p. 6). Figure 1 is the only drawing there is for this prescription and it is read with Example 1's spacings.
+
+The page was rendered at 600 dpi (axis vertical on the page, object side at the bottom). Scale from the first vertex to the image plane: 2590.5 px for Example 1's printed T.L. of 217.290 mm, 11.92 px/mm (0.0839 mm/px). The vertices of surfaces 13, 14, 19, 23, 24, 26 and 27 fall within 3.5 px (0.3 mm) of where Table 1's wide-end spacings put them at that scale. Example 3's 217.133 mm gives 11.93 px/mm, the same to 0.1 %.
+
+Half-heights are half the distance between the two rim strokes of each element, stroke centre to stroke centre, on columns clear of labels, brackets and leader lines. The strokes are about 6 px (0.5 mm) wide, so each reading is good to about ±0.3 mm. The figure gives every element one flat rim. D2, D3 and D4 carry a single rim across both cemented elements; D1 and D5 step between theirs, L11 about 8 px (0.7 mm) above L12 and L42a about 4 px (0.3 mm) above L42b. The D1 row is L11's rim.
+
+| Element (surfaces) | Drawn (px, rim to rim / 2) | Drawn | Stated ray needs | File after | File / drawn |
+|---|---:|---:|---:|---:|---:|
+| D1, L11 + L12 (1–3) | 400.0 | 33.5 mm | 34.03 / 33.24 / 33.07 mm | 38.0 / 36.8 / 36.8 mm | 1.10–1.13 |
+| L13 (4–5) | 384.8 | 32.3 mm | 32.37 / 31.94 mm | 36.0 / 35.0 mm | 1.08–1.12 |
+| D2, L21 + L22 (6–8) | 246.2 | 20.6 mm | 19.93 / 19.68 / 18.28 mm | 20.0 / 19.7 / 18.5 mm | 0.90–0.97 |
+| D3, L23 + L24 (9–11) | 225.0 | 18.9 mm | 18.23 / 18.71 / 18.70 mm | 18.3 / 18.8 / 18.3 mm | 0.97–1.00 |
+| L25 (12–13) | 227.8 | 19.1 mm | 18.70 / 19.12 mm | 18.3 / 19.2 mm | 0.96–1.01 |
+| L31 (14–15) | 234.5 | 19.7 mm | 19.42 / 19.61 mm | 19.5 / 19.7 mm | 0.99–1.00 |
+| D4, L32 + L33 (16–18) | 238.0 | 20.0 mm | 19.93 / 19.87 / 19.96 mm | 20.0 / 19.9 / 20.0 mm | 1.00 |
+| L41 (19–20) | 237.0 | 19.9 mm | 19.98 / 19.72 mm | 20.0 / 19.8 mm | 1.00–1.01 |
+| L42a (21–22) | 225.0 | 18.9 mm | 18.86 / 18.26 mm | 18.9 / 18.3 mm | 0.97–1.00 |
+| L42b (22–23) | 220.9 | 18.5 mm | 18.26 / 17.71 mm | 18.3 / 17.8 mm | 0.96–0.99 |
+| L43 (24–25) | 164.5 | 13.8 mm | 13.45 / 12.51 mm | 14.8 / 14.8 mm | 1.07 |
+| L44 (26–27) | 176 | 14.7 mm | 11.93 / 11.76 mm | 18.5 / 18.5 mm | 1.25 |
+
+No element that was raised is drawn below what the ray needs by more than the reading error: the largest shortfall is L41, drawn 19.9 mm against 19.98 mm (0.5 %), and every other raised element is drawn at or up to 5 % above the ray height. There is no figure conflict, so no surface was held back on the figure's account. The figure in fact draws the rear groups almost exactly at the stated-ray heights, and the raised values now sit within 5 % of the drawing on every raised surface.
+
+The figure also bears on the two surfaces that were not raised. It draws D3 at 18.9 mm and L25 at 19.1 mm, both above the 18.70 mm the ray needs, and it draws D3's rear face and L25's front face running together at the rim: at 18.9 mm the two faces take 0.91 of the 2.500 mm gap with Example 1's radii (579.750 and -91.294) and 0.93 with Example 3's (557.450 and -90.100). The drawing therefore shows the pair nearly in edge contact at the height the ray needs; the 0.90 limit that stops the raise is the validator's default, not something the figure supports.
+
+### Render comparison
+
+Screenshots of `/lens/nikon-af-zoom-nikkor-80-200mm-f28-ed/?v=1&zoom=80` (the wide end, the state Figure 1 draws) were taken before and after the edit.
+
+- Element order and grouping match the figure: D1, L13 | D2, D3, L25 | L31, D4 | L41, D5, stop, L43, L44, with the same gaps open (d13 and d18 wide, d5 nearly closed).
+- Rear groups: the rendered heights follow the figure's order apart from one tie. D2, D4 and L41 are the tallest behind G1, all 20.0 mm at their tallest surface where the figure has D2 slightly ahead; then L31, L25, D5 and D3, with L43 the smallest. D5 tapers toward the stop as drawn (18.9 mm at L42a, 18.5 mm at L42b in the figure; 18.9 / 18.3 / 17.8 mm in the file).
+- Departures from the drawing that this pass did not create and did not touch: G1 renders 8–13 % taller than drawn (38.0–35.0 mm against 33.5 and 32.3 mm), so the front group is 1.90 times the tallest rear-group surface where the figure has 1.63; L44 renders 25 % taller than drawn (18.5 against about 14.7 mm) and nearly as tall as D5, where the figure draws it only a little taller than L43; D2 renders as a taper from 20.0 mm to 18.5 mm where the figure draws a flat rim at 20.6 mm.
+- Departures that this pass did create are in the next section; both come from surfaces 11 and 12 staying at 18.3 mm.
+
+### Where comparative size changed
+
+- D3: the junction (surface 10, 18.8 mm) now stands 0.5 mm above both outer faces (18.3 mm), so the doublet renders with a slight peak at the cemented surface. It was 18.2 / 18.3 / 18.3 mm. The figure draws D3 with one flat rim at 18.9 mm; the step is not in the figure.
+- L25: 18.3 mm front against 19.2 mm rear, a 0.9 mm difference where it was 0.3 mm (18.3 / 18.6 mm). The figure draws one flat rim at 19.1 mm. L25's rear face is now 0.7 mm taller than D2's rear face (18.5 mm), which it used to match within 0.1 mm.
+- D4 and the front of L41 (20.0 mm) now equal D2's front face (20.0 mm); they were 0.5 mm shorter (19.5 mm). The figure draws D2 (20.6 mm) about 3 % taller than D4 (20.0 mm) and L41 (19.9 mm), a difference the file no longer shows.
+- L31: 19.5 mm front, 19.7 mm rear; it was 19.2 mm on both faces. It stays shorter than D4, as drawn (19.7 against 20.0 mm).
+- D4: the junction (19.9 mm) is 0.1 mm below the two faces (20.0 mm); all three were 19.5 mm.
+- D5: 18.9 / 18.3 / 17.8 mm, the same taper as 18.5 / 18.0 / 17.5 mm. Its front face is now 0.4 mm taller than D2's rear face and than L44 (both 18.5 mm), which it used to equal. The figure draws L42a (18.9 mm) well above L44 (14.7 mm).
+- D3 by its tallest surface (18.8 mm) is now above L44 (18.5 mm); it was below (18.3 mm). The figure draws D3 well above L44.
+- Front against rear: unchanged. Surface 1 is 38.0 mm and the tallest rear-group surface is 20.0 mm before and after.
+
+### Prose brought into line
+
+- Data file header: the stop block names 14.759011 mm as the authored `STO` semi-diameter on the paraxial reading and states the traced iris (15.6801 mm, held at both stations; f/2.880 and f/2.886 from the iris alone). The semi-diameter block states which surfaces sit at the stated-ray height, why surfaces 11 and 12 do not, and the traced f-number and limiter per station. The box's right border, which was 2–5 columns short of the frame on every text line, is aligned. A one-line comment above surface 11 marks the pair.
+- Analysis note: the stop paragraph and the verification summary state the traced iris and the traced f-number per station; the semi-diameter paragraph states the raised surfaces and the 11 / 12 exception; the worst shared-gap sag intrusion reads 0.875508 at the 7.100 mm d8 gap (surface 9 at 18.3 mm against 18.2 mm before, when that gap stood at 0.865660), with the d11 gap at 0.871386 second.
+
+### Confirmed unchanged
+
+- No `R`, `d`, `nd`, glass, variable gap, `nominalFno`, `zoomApertureModel` or stop position changed. The `STO` row keeps 14.759011 mm. Surfaces 1–6, 8, 11, 12 and 24–27 keep their semi-diameters; none of 1–6, 8 or 24–27 is below the stated ray.
+- The file builds and validates with the fourteen raises. Computed focal lengths 79.9999 / 196.0021 mm and the iris radius 15.6801 mm are as before.
+- Minimum element edge thickness 0.261662 mm (L12) and maximum rim slope 30.914° (surface 25) are unchanged; neither sits on a raised surface. The thinnest raised element is L31 at 1.412 mm (1.508 mm before), taken as the validator takes it at the smaller of the element's two semi-diameters, and the steepest raised surface is 21 at 25.69° (25.11° before).
+- Field coverage is 100 % at both stations (21.65 of 21.65 mm, corner clear) before and after, and `audit:image-circle` reports no undersized surface.
+- The 60 %-field bundles at all four published states are bounded by the iris and by surface 5 (196 mm) or the faces of L31 (80 mm), never by a cemented interface, before and after.
+
+### Left open
+
+- Surfaces 11 and 12 are 0.40 mm (2.1 %) below the stated ray and limit the 196 mm station to f/2.94. Raising both to 18.7 mm needs the cross-gap limit for this file at 0.9103 or more, for example `gapSagFrac: 0.92`, which is outside a semi-diameter-only pass. Figure 1 supports it: it draws the two faces meeting at the rim at about 19 mm. Tried on a scratch copy, not in the repository: with that field set and 11 and 12 at 18.7 mm, `--raise` lists nothing, both stations are iris-limited (f/2.88 and f/2.89, +0.2 %), field coverage stays 100 %, D3 becomes 18.3 / 18.8 / 18.7 mm and L25 18.7 / 19.2 mm. Raising only one of the two to 18.7 mm builds and validates, but the station stays at f/2.94 on the rim of the other.
+- Until then D3's junction and L25's rear face stand above their neighbours on surfaces 11 and 12, the two shape changes the figure does not draw.
+- Figure 1 is Example 1's section. No section of Example 3 exists in the patent, so the drawn heights are a check at the level of the shared configuration, not of this prescription's exact radii.
+- Figure differences on surfaces that do not clip, and so were not moved: G1 (38.0–35.0 mm against 33.5 and 32.3 mm drawn, with the stated ray needing 34.03 mm at surface 1), L44 (18.5 against about 14.7 mm drawn), L43 (14.8 against 13.8 mm) and D2's rear face (18.5 against 20.6 mm). L44's 25 % is the only one over the 15 % figure threshold.
+- The stop position and the authored `STO` semi-diameter remain as recorded in the 2026-10-07 entry.

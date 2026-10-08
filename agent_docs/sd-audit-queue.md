@@ -193,6 +193,8 @@ standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 | Vivitar Series 1 35-85mm f/2.8 | Every row of Table I of US 3,975,089 and its three claim copies matches the file, yet the table computes 38.46 / 89.08 mm and a back focus of 45.82 mm where the text states 36-83 mm and 40.06 mm, and Group IV computes a power of 0.0319 against Table III's .0333. No single Group IV value repairs all three, and the patent has no aberration plots. Recorded as `unresolved`. | A second printing of the prescription (a foreign counterpart of application 462,366). |
 | Konica UC Zoom-Hexanon AR 80-200mm f/4 | Every row of the table of JP S51-37247 A matches the file and the example is not normalized, yet it traces to 80.88 / 199.75 mm and a back focus of 49.50 mm where the patent prints f = 79.925~196.158 and fB = 48.523. The table's zoom ratio matches the focal lengths on the patent's own plots (80.0 / 197.5 mm), and no single misprint-style change among 7,444 tried reproduces focal lengths and back focus together. Recorded as `unresolved`. | A second printing of the table (a counterpart of application S49-110764). |
 | Schneider TV-Variogon 20-600mm | The file is Tables I and IB of US 3,912,373 times 20 at every value, yet the nine stations compute 19.83-613.64 mm against the stated 20-592 mm and the paraxial image drifts 12.8 mm over the range. Most of it is component 1, which computes 138.63 mm against Table IA's 138.02; eight single values in L6-L8 would each repair it and none can be singled out. Recorded as `unresolved`. The station f-numbers are those of the file's one iris; the patent's 1:6.3 at 592 mm is not what its own focal lengths give (4.29). | A second kind of source-internal evidence for one of the candidate values. |
+| Canon EF 70-200mm f/4L USM | The printed table of JP 2000-284174 A cannot pass its own f/4.1 at 194.57 mm: the 0.10 mm air space between the second and third elements (R 58.007 / 59.256) closes at 22.15 mm, below the 22.30 mm the ray needs, so the largest on-axis beam the table passes there is f/4.128. The file traces f/4.36 on the rim of surface 5. Not a rim question. | Decide whether the tele label is the printed 4.1 or what the table passes (4.13, which also prints as 4.1), then raise the two rims to the edge-contact height. |
+| Vivitar Series 1 70-210mm f/2.8-4 | The printed table of US 4,758,073 cannot pass its own f/4.01 at 203.786 mm: surfaces 8 and 9 (R 37.576, gap 6.210, R −40.656) meet at 15.26 mm, below the 15.62 mm the ray needs, so the geometry tops out at f/4.11. The file traces f/4.36 on the rim of surface 8. Not a rim question. | A second kind of source-internal evidence for the gap or a radius; until then the tele label is unreachable. |
 | Files with comment-only source corrections | Lens files whose headers describe an erratum or misprint in the source but carry no `sourceErrata` entry, from before the field existed (`grep -rli "erratum\|misprint" src/lens-data --include="*.data.ts"`). The MTF tab discloses nothing for them. | Record each as a `corrected` or `unresolved` entry under the standard, then delete this row. |
 
 ## Section H — stop opens wider than the source design f-number
@@ -256,7 +258,7 @@ Stations whose traced on-axis f-number is more than 3 % from the stated one; the
 npm run audit:aperture -- --markdown
 ```
 
-1,442 of 1,622 stations are within 3 %. Of the rest, a rim clips the beam at 170 stations on 126 lenses (`rim`);
+1,453 of 1,622 stations are within 3 %. Of the rest, a rim clips the beam at 159 stations on 120 lenses (`rim`);
 work the largest differences first. For each row, read whether the limiting semi-diameter is printed in the source or
 was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
@@ -274,6 +276,22 @@ The other diagnoses are not rim problems:
 - `failed`, the Vivitar Series 1 70-210mm f/3.5 of Section D: the same stop-plane geometry at every height.
 - `iris`, two lenses: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8), and the Viltrox
   AF 27mm f/1.2, whose f/1.2 marginal ray cannot be traced to the stop, so its iris takes the paraxial radius.
+
+Seven lenses cannot take the raise the rule gives because two facing surfaces would come closer at the rim than the
+validator's cross-gap limit allows (`gapSagFrac`, 0.90 of the air gap by default), although the surfaces do not cross:
+
+| Lens | Blocked pair | Share of the gap at the rule's value | State |
+|---|---|---|---|
+| Minolta AF 80-200mm f/2.8 APO | 9/10 and 12/13 | 96.8 % and 94.8 % | untouched; 195 mm traces f/3.20 against f/2.88 |
+| Nikon AF-S 70-200mm f/2.8G VR II | 12/13 | 95.4 % | untouched; 196 mm traces f/3.08 against f/2.89 |
+| Tamron SP 70-200mm f/2.8 (A009) | 15/16 | gap closes at 14.90 mm, ray needs 14.85 | untouched; f/3.07 against f/2.90 at every station |
+| Tamron 28-200mm (A03) | 21/22 | 90 % is reached at 8.7595 mm, ray needs 8.7546 | untouched; +1.2 % and +1.5 % at the two longer stations |
+| Nikon AF 80-200mm f/2.8 ED | 11/12 | 91.0 % | other 14 surfaces raised; 196 mm traces f/2.94 against f/2.88 |
+| Nikon AF-S 80-200mm f/2.8D | 7/8 and 14/15 | 97.2 % | other 9 surfaces raised; 194 mm traces f/2.98 against f/2.88 |
+| Tamron 70-300mm (A005) | 7/8 | 91.9 % | other 6 surfaces raised; 292 mm traces f/5.94 against f/5.85 |
+
+Their patent figures draw these elements at least as large as the ray needs. Whether to raise `gapSagFrac` per lens
+to admit the rule's value is undecided.
 
 Start with these zooms. Each has a station that a wide-end iris would limit, where the stated, wider beam is stopped
 first by a rim or, on the two Nikon AI zooms, by the stop-plane geometry above. The Sigma 10-18mm is rim-limited at

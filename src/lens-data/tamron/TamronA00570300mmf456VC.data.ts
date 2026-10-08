@@ -1,16 +1,16 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — TAMRON SP 70-300mm f/4-5.6 Di VC USD (A005)                  ║
- * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: US 8,228,605 B2, Example 2 (Arakawa / Wei; Tamron Co., Ltd.).     ║
- * ║ Correlation: 17 elements / 12 air-spaced groups, 135/full-frame coverage, ║
+ * ╔════════════════════════════════════════════════════════════════════════════╗
+ * ║ LENS DATA — TAMRON SP 70-300mm f/4-5.6 Di VC USD (A005)                    ║
+ * ╠════════════════════════════════════════════════════════════════════════════╣
+ * ║ Source: US 8,228,605 B2, Example 2 (Arakawa / Wei; Tamron Co., Ltd.).      ║
+ * ║ Correlation: 17 elements / 12 air-spaced groups, 135/full-frame coverage,  ║
  * ║ four functional zoom groups (+/−/+/+), and IV-2 transverse VC subgroup.    ║
  * ║                                                                            ║
  * ║ DESIGN / SOURCE NORMALIZATION                                              ║
  * ║ - Scale factor s = 1.0. No production-focal-length rescaling is applied.   ║
- * ║ - Marketing 70–300mm is kept separate from the verified Example 2 design. ║
+ * ║ - Marketing 70–300mm is kept separate from the verified Example 2 design.  ║
  * ║ - Example 2 summary gives 71.75–150.00–292.00mm. The adjacent spacing      ║
  * ║   table prints 292.50 in its tele header; that raw typo is preserved in    ║
  * ║   the audit, while the modeled tele state is 292.00mm. Independent trace   ║
@@ -21,27 +21,43 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ ZOOM / FOCUS                                                               ║
  * ║ - Zoom-only variables: D5, D12, D18, BF. All infinity/close pairs are      ║
- * ║   intentionally identical because Example 2 publishes no focus movement.  ║
+ * ║   intentionally identical because Example 2 publishes no focus movement.   ║
  * ║ - D18 reverses (4.3009 → 2.0000 → 6.0952mm); the group-II path also        ║
  * ║   reverses in the fixed-image reference frame. Piecewise zoom interpolation║
  * ║   must retain the intermediate 150mm state.                                ║
  * ║ - Focus status: NO_INTERNAL_RECONSTRUCTION. Tamron's 1.5m production MOD   ║
  * ║   is metadata only and is not used to invent internal focus travel.        ║
  * ║                                                                            ║
- * ║ STOP / F-NUMBER                                                           ║
- * ║ - Patent stop diameter is not published. STO sd=13.9203457027mm is the     ║
- * ║   midpoint of the fixed-stop interval consistent with all three printed    ║
- * ║   F-number rounding intervals.                                             ║
- * ║ - nominalFno uses independently modeled values at the three zoom states:   ║
- * ║   4.1218709542, 4.8269570055, 5.8526252296.                                ║
+ * ║ STOP / F-NUMBER                                                            ║
+ * ║ - The patent prints Fno. 4.1 / 4.83 / 5.85 and no stop diameter. STO       ║
+ * ║   sd=13.9203457027mm is the midpoint of the paraxial fixed-stop interval   ║
+ * ║   (13.9147–13.9260mm) that fits all three printed F-number rounding        ║
+ * ║   ranges.                                                                  ║
+ * ║ - nominalFno carries the paraxial f-numbers of that stop at the three      ║
+ * ║   zoom states: 4.1218709542, 4.8269570055, 5.8526252296.                   ║
+ * ║ - zoomApertureModel "fixed-iris": the engine opens the iris to the         ║
+ * ║   wide-end real-ray radius, 14.0201mm, and holds it. The iris alone gives  ║
+ * ║   f/4.122, f/4.838 and f/5.875.                                            ║
+ * ║ - Traced on axis: f/4.12 at 71.75mm and f/4.84 at 150mm, both on the       ║
+ * ║   iris; f/5.94 at 292mm on the rim of surface 8, 1.6% slower than the      ║
+ * ║   stated f/5.85 (see SEMI-DIAMETERS).                                      ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS                                                             ║
  * ║ - The patent does not publish clear semi-diameters. Values below are a     ║
  * ║   constrained model inferred from paraxial marginal/chief-ray envelopes,   ║
  * ║   the Fig. 12 optical section, the production 62mm filter context, and the ║
- * ║   current edge-thickness/rim-slope/cross-gap rules.                         ║
- * ║ - The 7→8 air gap binds group-II SD: 12.24mm gives sag intrusion           ║
- * ║   ≈0.89085×gap, below the default 0.90 limit.                              ║
+ * ║   current edge-thickness/rim-slope/cross-gap rules.                        ║
+ * ║ - Surfaces 6, 9, 10, 12, 14 and 15 sit at the height the stated on-axis    ║
+ * ║   ray (f/5.8526 at 292mm) reaches there, rounded up at the file's          ║
+ * ║   precision: 12.70, 12.90, 13.06, 13.5, 14.6 and 14.6mm for ray heights    ║
+ * ║   of 12.695, 12.896, 13.055, 13.452, 14.554 and 14.581mm.                  ║
+ * ║ - Surfaces 7 and 8 sit at 12.24mm, below the 12.424 / 12.427mm that ray    ║
+ * ║   reaches there. The 7→8 air gap (3.0571mm) binds them: 12.24mm gives      ║
+ * ║   sag intrusion ≈0.89085×gap, and the 12.43mm the ray needs gives          ║
+ * ║   ≈0.91908×gap (0.247mm of rim air), over the default 0.90 limit.          ║
+ * ║   These two rims are the tele limit.                                       ║
+ * ║ - L104, L105, L106 and L107 each carry different front and rear            ║
+ * ║   semi-diameters; group II spans 12.24mm to 13.5mm.                        ║
  * ║ - The L115/L116 VC doublet is limited to 11.80mm by L115 edge thickness;   ║
  * ║   the modeled L115 rim retains ≈0.265mm physical edge thickness.           ║
  * ║ - Default on/off-axis rendered ray fans are contained by every cemented    ║
@@ -49,13 +65,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ GLASS                                                                      ║
  * ║ - The patent publishes nd/νd only. Glass strings are conservative six-digit║
- * ║   coordinate classes; vendor/melt identity is intentionally not asserted. ║
+ * ║   coordinate classes; vendor/melt identity is intentionally not asserted.  ║
  * ║ - No nC, nF, ng, or dPgF values are authored because none are published or ║
  * ║   independently established for the patent elements.                       ║
  * ║                                                                            ║
  * ║ No sensor cover glass, filter, inactive dummy plane, or mechanical part is ║
  * ║ included.                                                                  ║
- * ╚══════════════════════════════════════════════════════════════════════════════╝
+ * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
 const LENS_DATA = {
@@ -290,16 +306,16 @@ const LENS_DATA = {
     { label: "3", R: 65.4212, d: 1.5, nd: 1.69895, elemId: 2, sd: 24.8 },
     { label: "4", R: 46.5711, d: 8.4101, nd: 1.43875, elemId: 3, sd: 24.8 },
     { label: "5", R: -648.0663, d: 3.5, nd: 1.0, elemId: 0, sd: 24.8 },
-    { label: "6", R: -213.5045, d: 1.2, nd: 1.7725, elemId: 4, sd: 12.24 },
+    { label: "6", R: -213.5045, d: 1.2, nd: 1.7725, elemId: 4, sd: 12.7 },
     { label: "7", R: 56.253, d: 3.0571, nd: 1.0, elemId: 0, sd: 12.24 },
     { label: "8", R: -55.1425, d: 1.2, nd: 1.7725, elemId: 5, sd: 12.24 },
-    { label: "9", R: 47.9635, d: 4.1563, nd: 1.84666, elemId: 6, sd: 12.24 },
-    { label: "10", R: -133.8489, d: 1.3243, nd: 1.0, elemId: 0, sd: 12.24 },
+    { label: "9", R: 47.9635, d: 4.1563, nd: 1.84666, elemId: 6, sd: 12.9 },
+    { label: "10", R: -133.8489, d: 1.3243, nd: 1.0, elemId: 0, sd: 13.06 },
     { label: "11", R: -49.3822, d: 1.2, nd: 1.618, elemId: 7, sd: 13.4 },
-    { label: "12", R: -169.9332, d: 31.2341, nd: 1.0, elemId: 0, sd: 13.4 },
+    { label: "12", R: -169.9332, d: 31.2341, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "STO", R: 1e15, d: 1.0, nd: 1.0, elemId: 0, sd: 13.920345702691526 },
-    { label: "14", R: 79.138, d: 4.3069, nd: 1.883, elemId: 8, sd: 14.5 },
-    { label: "15", R: -79.138, d: 0.2, nd: 1.0, elemId: 0, sd: 14.5 },
+    { label: "14", R: 79.138, d: 4.3069, nd: 1.883, elemId: 8, sd: 14.6 },
+    { label: "15", R: -79.138, d: 0.2, nd: 1.0, elemId: 0, sd: 14.6 },
     { label: "16", R: 56.1087, d: 5.8909, nd: 1.497, elemId: 9, sd: 14.5 },
     { label: "17", R: -45.5752, d: 1.2, nd: 1.90366, elemId: 10, sd: 14.5 },
     { label: "18", R: 156.9544, d: 4.3009, nd: 1.0, elemId: 0, sd: 14.5 },
