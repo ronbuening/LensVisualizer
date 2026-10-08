@@ -30,7 +30,7 @@ flowchart LR
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
   n_external_src_optics_vignetteAnalysis_ts["src/optics/vignetteAnalysis.ts"]
   n_external_src_utils_state["src/utils/state"]
-  n_src_components_display_analysis_React_components --> |42| n_external_src_types
+  n_src_components_display_analysis_React_components --> |43| n_external_src_types
   n_src_components_display_analysis_React_components --> |18| n_src_components_display_analysis_src_components_display_analysis_charts
   n_src_components_display_analysis_React_components --> |15| n_external_src_optics_compat_ts
   n_src_components_display_analysis_React_components --> |14| n_external_pkg_react
@@ -61,7 +61,7 @@ flowchart LR
 
 - Direct source files: 31
 - Direct subfolders: 4
-- Main outbound areas: src/components/display (70), src/types (45), src/optics/compat.ts (18), package:react (16), src/optics/aberrationAnalysis.ts (11), src/optics/types.ts (11), src/optics/optics.ts (10), src/utils/perfProbe.ts (4), +7 more
+- Main outbound areas: src/components/display (70), src/types (46), src/optics/compat.ts (18), package:react (16), src/optics/aberrationAnalysis.ts (11), src/optics/types.ts (11), src/optics/optics.ts (10), src/utils/perfProbe.ts (4), +7 more
 - External consumers: src/benchmarks, src/components/diagram, src/components/display, src/components/layout
 
 ## Subfolders
@@ -95,7 +95,7 @@ flowchart LR
 | `FieldCurvaturePlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display (2) | default, FieldCurvaturePlot |
 | `FocusBreathingTab.tsx` | React component module | src/types (2), package:react, src/optics/optics.ts | src/components/layout | default, FocusBreathingTab |
 | `LateralColorChart.tsx` | React component module | src/components/display (4), src/types (2), src/optics/compat.ts | src/components/display | default, LateralColorChart |
-| `LongitudinalChromaticFocusChart.tsx` | React component module | src/components/display (4), src/optics/compat.ts, src/types | src/components/display | default, LongitudinalChromaticFocusChart |
+| `LongitudinalChromaticFocusChart.tsx` | React component module | src/components/display (4), src/types (2), src/optics/compat.ts | src/components/display | default, LongitudinalChromaticFocusChart |
 | `MeridionalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, MeridionalComaPlot |
 | `MtfChart.tsx` | React component module | src/components/display (2), src/types (2), package:react, src/utils/state | src/components/display | default, MtfChart |
 | `MtfTab.tsx` | React component module | src/components/display (5), src/components/hooks (3), src/types (3), package:react, src/optics/mtf.ts, +2 more | src/components/layout | mtfFieldFractions, default, MtfTab |

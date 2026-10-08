@@ -107,6 +107,9 @@ export function chromaticChannelLineList(reference: RefractiveIndexReferenceLine
   return `${first}, ${second}, ${third}, and ${last}`;
 }
 
-export function chromaticChannelIndexLabel(channel: ChromaticChannel): string {
-  return `n${CHROMATIC_CHANNEL_METADATA[channel].spectralLine}`;
+export function chromaticChannelIndexLabel(
+  channel: ChromaticChannel,
+  reference: RefractiveIndexReferenceLine = "d",
+): string {
+  return `n${channelText(reference)[channel].spectralLine}`;
 }

@@ -39,6 +39,10 @@ describe("chromatic channel metadata", () => {
     expect(chromaticChannelWavelengthLabel("V", "e")).toBe("g-line 435.8 nm");
     expect(chromaticChannelDescription("G", "e")).toBe("green e-line");
     expect(chromaticChannelDescription("G")).toBe("green d-line");
+    expect(chromaticChannelIndexLabel("R", "e")).toBe("nC′");
+    expect(chromaticChannelIndexLabel("G", "e")).toBe("ne");
+    expect(chromaticChannelIndexLabel("B", "e")).toBe("nF′");
+    expect(chromaticChannelIndexLabel("V", "e")).toBe("ng");
     expect(chromaticChannelLineList("e")).toBe("C′, e, F′, and g");
     expect(chromaticChannelLineList()).toBe("C, d, F, and g");
   });

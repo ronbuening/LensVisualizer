@@ -86,7 +86,11 @@ export default function ChromaticTab(props: ChromaticTabProps) {
               lens itself and does not represent wavelength focus or transverse color on the stationary sensor after
               tilt/shift.
             </span>
-            <LongitudinalChromaticFocusChart result={intrinsicLongitudinal} t={t} />
+            <LongitudinalChromaticFocusChart
+              result={intrinsicLongitudinal}
+              t={t}
+              channelReference={lensChromaticReference(props.L.elements)}
+            />
             <div style={metricsStyle}>
               <AnalysisMetricRow
                 label="Intrinsic LoCA"
@@ -252,7 +256,7 @@ function CenteredChromaticTab({
             On-axis LoCA from the outermost usable marginal chromatic ray. The chart is relative to the selected
             reference line, so common defocus is not counted as chromatic focus separation.
           </span>
-          <LongitudinalChromaticFocusChart result={longitudinal} t={t} />
+          <LongitudinalChromaticFocusChart result={longitudinal} t={t} channelReference={channelReference} />
           {longitudinal ? (
             <div style={metricsStyle}>
               <AnalysisMetricRow
@@ -290,7 +294,7 @@ function CenteredChromaticTab({
             Chief-ray image-height spread at the current image plane. This is chromatic magnification error across the
             field, separate from axial focus shift.
           </span>
-          <LateralColorChart result={lateral} t={t} />
+          <LateralColorChart result={lateral} t={t} channelReference={channelReference} />
           {lateral ? (
             <div style={metricsStyle}>
               <AnalysisMetricRow

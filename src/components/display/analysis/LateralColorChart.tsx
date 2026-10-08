@@ -1,5 +1,5 @@
 import type { LateralColorCurveResult } from "../../../optics/compat.js";
-import type { ChromaticChannel } from "../../../types/optics.js";
+import type { ChromaticChannel, RefractiveIndexReferenceLine } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import { AnalysisEmptyState } from "./analysisUi.js";
 import { SvgChartFrame, ChartLegend } from "./charts/SvgChartFrame.js";
@@ -20,6 +20,8 @@ interface LateralColorChartProps {
   t: Theme;
   width?: number;
   height?: number;
+  /** Lines the lens's channels are traced at; "e" labels the indices nC′ / ne / nF′. */
+  channelReference?: RefractiveIndexReferenceLine;
 }
 
 interface ChannelPoint {
@@ -27,7 +29,13 @@ interface ChannelPoint {
   shiftUm: number;
 }
 
-export default function LateralColorChart({ result, t, width = 320, height = 230 }: LateralColorChartProps) {
+export default function LateralColorChart({
+  result,
+  t,
+  width = 320,
+  height = 230,
+  channelReference = "d",
+}: LateralColorChartProps) {
   if (!result || result.fields.length < 2) {
     return <AnalysisEmptyState t={t}>Not enough field data to plot lateral color.</AnalysisEmptyState>;
   }
@@ -62,7 +70,7 @@ export default function LateralColorChart({ result, t, width = 320, height = 230
   const xScale = linearScale(0, 1, margin.left, margin.left + plotW);
   const yScale = linearScale(yMin, yMax, margin.top + plotH, margin.top);
   const yTicks = niceTicks(yMin, yMax, 5);
-  const referenceLabel = chromaticChannelLegendLabel(result.referenceChannel);
+  const referenceLabel = chromaticChannelLegendLabel(result.referenceChannel, channelReference);
 
   return (
     <SvgChartFrame
@@ -109,7 +117,7 @@ export default function LateralColorChart({ result, t, width = 320, height = 230
         y={margin.top + 8}
         t={t}
         items={plottedChannels.map((channel) => ({
-          label: chromaticChannelLegendLabel(channel),
+          label: chromaticChannelLegendLabel(channel, channelReference),
           color: chromaticChannelColor(t, channel),
         }))}
       />
