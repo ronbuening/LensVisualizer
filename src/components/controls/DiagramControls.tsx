@@ -346,7 +346,8 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="FOCUS"
           labelMinWidth={85}
-          displayValue={formatDist(focusT, L, zoomT)}
+          /* A lens with no modeled focus travel stays at infinity whatever focusT a shared URL carries. */
+          displayValue={groupMovementAvailability.focus ? formatDist(focusT, L, zoomT) : "\u221e"}
           value={focusT}
           step={L.focusStep}
           onPointerDown={beginInteraction}
