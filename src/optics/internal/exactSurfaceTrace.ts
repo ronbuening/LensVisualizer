@@ -19,6 +19,8 @@ import type {
   DiffractivePhaseSurface,
 } from "../../types/optics.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
+import { INTERSECTION_TOLERANCE } from "../constants.js";
+import { planeResidualRoundoff } from "../math/intersectionTolerance.js";
 import { interactRefractiveSurface, rearMediumSurfaceIndex } from "../trace/interactions.js";
 import { FLAT_R_THRESHOLD, conicPolySag } from "./surfaceMath.js";
 import {
@@ -1241,7 +1243,7 @@ function intersectTiltedMeridionalPlane(
   {
     minT = 0,
     maxT = Infinity,
-    tolerance = 1e-9,
+    tolerance = INTERSECTION_TOLERANCE,
     refractiveIndex,
   }: Pick<SurfaceIntersectionOptions, "minT" | "maxT" | "tolerance" | "refractiveIndex"> = {},
 ): SurfaceIntersectionResult {
@@ -1280,6 +1282,16 @@ function intersectTiltedMeridionalPlane(
     ray.origin[2] + direction[2] * clampedT,
   ];
   const residual = normalY * point[1] + normalZ * (point[2] - vertexZ);
+  const effectiveTolerance =
+    Math.abs(residual) <= tolerance
+      ? tolerance
+      : Math.max(
+          tolerance,
+          planeResidualRoundoff(ray.origin, direction, clampedT, [0, 0, vertexZ], [0, normalY, normalZ]),
+        );
+  if (!Number.isFinite(residual) || !(Math.abs(residual) <= effectiveTolerance)) {
+    return surfaceIntersectionFailure(surfaceIdx, "noConvergedIntersection", residual, 0);
+  }
   return {
     ok: true,
     surfaceIdx,
@@ -1288,6 +1300,7 @@ function intersectTiltedMeridionalPlane(
     radius: Math.hypot(point[0], point[1]),
     normal: [0, normalY, normalZ],
     residual,
+    effectiveTolerance,
     iterations: 0,
     segmentLength: clampedT,
     opticalPathLength: refractiveIndex === undefined ? null : refractiveIndex * clampedT,

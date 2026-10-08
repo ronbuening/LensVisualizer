@@ -14,6 +14,7 @@ import {
 import type { Ray3, SurfaceProfile, Vec3 } from "../types.js";
 import { clamp } from "./numerics.js";
 import { dot, normalize, subtract } from "./vector.js";
+import { planeResidualRoundoff, sagResidualRoundoff } from "./intersectionTolerance.js";
 
 /** Typed reason for an exact surface-intersection failure. */
 export type SurfaceIntersectionFailureReason =
@@ -48,6 +49,8 @@ export interface SurfaceIntersectionSuccess {
   radius: number;
   normal: Vec3;
   residual: number;
+  /** Accepted residual bound in mm; larger than requested only for coordinate roundoff. */
+  effectiveTolerance?: number;
   iterations: number;
   segmentLength: number;
   opticalPathLength: number | null;
@@ -180,7 +183,7 @@ export function selectAsphericCapHit(
   // A numerical failure inside the cap is unresolved, not proof that only the exterior root exists.
   if (!capHit.ok && capHit.failureReason === "noBracket") return hit;
   // Keep established numerics when the ordered cap search confirms the same root.
-  if (capHit.ok && hit.ok && Math.abs(capHit.t - hit.t) <= INTERSECTION_TOLERANCE * 10) return hit;
+  if (capHit.ok && Math.abs(capHit.t - hit.t) <= (options.tolerance ?? INTERSECTION_TOLERANCE)) return hit;
   return capHit;
 }
 
@@ -233,6 +236,24 @@ function intersectProfile(
    * well-conditioned rim root elsewhere in it. */
   let stepBeforeLast = hi - lo;
   let lastStep = stepBeforeLast;
+  const roundoffTolerance = (value: SurfaceEvaluation): number => {
+    const slopeMagnitude =
+      profile.kind === "aspheric"
+        ? (profile.maxAbsSlope?.(value.radius) ?? NaN)
+        : Math.abs(profile.slope(value.radius));
+    return Math.max(
+      tolerance,
+      sagResidualRoundoff(
+        ray.origin,
+        direction,
+        value.t,
+        vertexZ,
+        value.radius,
+        profile.sag(value.radius),
+        slopeMagnitude,
+      ),
+    );
+  };
 
   for (let iterations = 1; iterations <= maxIterations; iterations++) {
     const current = evalAt(t);
@@ -249,6 +270,14 @@ function intersectProfile(
     }
 
     const newtonT = isFiniteEvaluation(current) ? t - current.value / current.derivative : NaN;
+    // A correction smaller than one representable t cannot improve this point.
+    // Try the raw target first; use the operand-based envelope only at a stall.
+    if (newtonT === t) {
+      const effectiveTolerance = roundoffTolerance(current);
+      if (Math.abs(current.value) <= effectiveTolerance) {
+        return makeSuccess(current, profile, vertexZ, effectiveTolerance, refractiveIndex, iterations);
+      }
+    }
     const acceptNewton =
       isFinite(newtonT) && newtonT > lo && newtonT < hi && Math.abs(newtonT - t) <= Math.abs(stepBeforeLast) / 2;
     stepBeforeLast = lastStep;
@@ -256,9 +285,16 @@ function intersectProfile(
     t = acceptNewton ? newtonT : lo + lastStep;
   }
 
-  const finalEval = evalAt((lo + hi) / 2);
-  if (isFiniteEvaluation(finalEval) && Math.abs(finalEval.value) <= tolerance * 10) {
+  // Evaluate the pending step; discarding it can lose the last Newton improvement.
+  const finalEval = evalAt(t);
+  if (isFiniteValueEvaluation(finalEval) && Math.abs(finalEval.value) <= tolerance) {
     return makeSuccess(finalEval, profile, vertexZ, tolerance, refractiveIndex, maxIterations);
+  }
+  if (isFiniteEvaluation(finalEval) && t - finalEval.value / finalEval.derivative === t) {
+    const effectiveTolerance = roundoffTolerance(finalEval);
+    if (Math.abs(finalEval.value) <= effectiveTolerance) {
+      return makeSuccess(finalEval, profile, vertexZ, effectiveTolerance, refractiveIndex, maxIterations);
+    }
   }
 
   return failure("noConvergedIntersection", isFiniteValueEvaluation(finalEval) ? finalEval.value : null, maxIterations);
@@ -287,6 +323,13 @@ function intersectProfilePlane(
   const clampedT = clamp(t, minT, maxT);
   const point = addRay(origin, direction, clampedT);
   const residual = dot(normal, subtract(point, planePoint));
+  const effectiveTolerance =
+    Math.abs(residual) <= tolerance
+      ? tolerance
+      : Math.max(tolerance, planeResidualRoundoff(origin, direction, clampedT, planePoint, normal));
+  if (!Number.isFinite(residual) || !(Math.abs(residual) <= effectiveTolerance)) {
+    return failure("noConvergedIntersection", residual, 0);
+  }
   return {
     ok: true,
     t: clampedT,
@@ -294,6 +337,7 @@ function intersectProfilePlane(
     radius: Math.hypot(point[0], point[1]),
     normal,
     residual,
+    effectiveTolerance,
     iterations: 0,
     segmentLength: clampedT,
     opticalPathLength: refractiveIndex === undefined ? null : refractiveIndex * clampedT,
@@ -419,7 +463,7 @@ function makeSuccess(
   evaluation: SurfaceEvaluation,
   profile: SurfaceProfile,
   vertexZ: number,
-  _tolerance: number,
+  effectiveTolerance: number,
   refractiveIndex: number | undefined,
   iterations: number,
 ): SurfaceIntersectionSuccess {
@@ -430,6 +474,7 @@ function makeSuccess(
     radius: evaluation.radius,
     normal: profile.normalAt(evaluation.point, vertexZ),
     residual: evaluation.value,
+    effectiveTolerance,
     iterations,
     segmentLength: evaluation.t,
     opticalPathLength: refractiveIndex === undefined ? null : refractiveIndex * evaluation.t,
