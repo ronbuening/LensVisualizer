@@ -53,3 +53,39 @@ Left open:
 - The lowest ray of the default 0.60-field fan is cut at L7 at both endpoints (surface 14 at 36 mm, surface 13 at 68.5 mm). The data-file header states this; it follows from the 7.2 mm L7 value and is part of the same semi-diameter question.
 - The note's edge-thickness, rim-angle and cross-gap figures depend only on the unchanged semi-diameters and were not re-derived.
 - The note's 0.586 mm wide-field clip at surface 3 reproduces for the 32.25° ray through the edge of the authored 7.752338441 mm stop radius at 36 mm. Through the traced 7.7842 mm iris, which this pass leaves as it was at 36 mm, the same ray is 0.601 mm over. The note keeps the 0.586 mm figure.
+
+## 2026-10-07 — Patent-audit queue: rear-group rim audit
+
+No value changed. Fig. 9 draws all four rear elements larger than the file, by 8 to 19 %. That is under the roughly 25 % the figure-audit procedure requires before a semi-diameter is changed, and three of the four elements are inside its roughly 15 % noise band.
+
+Fig. 9 (sheet 5, PDF p. 6) is drawn at the 36 mm position. The page is a 300 dpi one-bit scan, so heights were read on the native pixels and checked by eye on 600 dpi renders. A height is half the distance between the centres of an element's upper and lower rim lines. Two scales were used:
+
+- Axial vertices: r7 to r14 measures 354.6 px for the 23.250 mm that the printed d7 to d13 sum to, 15.25 px/mm. The other vertex spans give 15.08 px/mm (d6, 41.111 mm), 14.89 px/mm (r1 to r6, 16.420 mm) and 15.09 px/mm (r1 to r14, 80.781 mm).
+- Drawn curvature: circles fitted to eight drawn arcs and divided by their printed radii (r2, r3, r4, r5, r7, r9, r12, r14) give a median of 15.16 px/mm. Six lie between 14.8 and 15.3; r7 reads 12.7 and r9 16.3.
+
+| Element (surfaces) | File sd | Fig. 9 half-height | Vertex scale | Curvature scale | Figure ÷ file |
+|---|---:|---:|---:|---:|---:|
+| L4 (7, 8) | 9.5 mm | 171.75 px | 11.26 mm | 11.33 mm | 1.19 |
+| L5 (9, 10) | 9.8 mm | 163.25 px | 10.70 mm | 10.77 mm | 1.09-1.10 |
+| L6 front (11), outer rim | 9.4 mm | 154.75 px | 10.15 mm | 10.21 mm | 1.08-1.09 |
+| L6 rear (12), inside the drawn chamfer | 9.4 mm | 127.5 px | 8.36 mm | 8.41 mm | 0.89 |
+| L7 (13, 14) | 7.2 mm | 124.75 px | 8.18 mm | 8.23 mm | 1.14 |
+
+Checked:
+
+- Image-circle floor: no surface listed. Traced field coverage: 100 % at 36 mm and at 68.5 mm, corner chief ray clear. Neither gives proof that a rear rim is short.
+- The two scales agree to 0.6 %, so the reading is not a scale artefact. The front group read the same way gives L1 21.4 mm, L2 18.6 mm and L3 17.8 mm on the vertex scale, against 21.5, 17.6 and 18 mm in the file.
+- The drawing is accurate to a few pixels per feature, not uniformly to scale. r7 is drawn with a radius of about 33 mm against the printed 39.600, the d10 air gap at about 0.9 mm against 0.640, and single vertices sit up to 4 px (0.27 mm) from the printed spacings. The patent calls Fig. 9 a schematic view (col. 1 lines 56-58, PDF p. 8).
+- `audit:patent-figure` cannot screen this sheet. The scanned axis line is 5 px thick, the tool's minimum rim run at 300 dpi, and runs past the glass at both ends, and the r and d leader lines straddle the axis over the rear group. Of six crops, five raised the crop-edge warning and the sixth ended its glass span on the axis line 130 px past r14; full-height crops read L4-L6 at 16 to 20 mm, which are leader-line heights. Limited to the rear group's height band the tool read L4 at 11.4-11.5 mm and L6 at 10.4 mm, in line with the hand reading; its L5 and L7 rows followed leader lines.
+
+Confirmed unchanged:
+
+- Semi-diameters of surfaces 7-14 (9.5, 9.5, 9.8, 9.8, 9.4, 9.4, 7.2, 7.2 mm) and the `STO` row.
+- Traced f-number and limiter, the same before and after this pass: 36 mm f/4.10 → f/4.10, iris (`STO`); 68.5 mm f/4.10 → f/4.61 (+12.4 %), rim of surface 7.
+- The header and note statement that Fig. 9 draws L4 at about 11.3 mm.
+
+Left open:
+
+- The 68.5 mm station stays rim-limited. The printed 1:4.1 needs 10.762 mm at surface 7, 10.201 at 9, 9.612 at 11 and 7.755 mm at 14; the file's 9.5, 9.8, 9.4 and 7.2 mm are below it on all four elements.
+- The Fig. 9 reading rounded to 0.1 mm is L4 11.3, L5 10.7, L6 10.2 (surface 11) and 8.4 (surface 12), L7 8.2 mm. It sits 5 to 6 % above the f/4.1 marginal ray on every element. Substituted without editing the file, these values pass the validator (edge thickness, rim slope, cross-gap) and the 68.5 mm station traces f/4.10 on the iris. Adopting them means accepting a figure difference below the procedure's threshold on the strength of the printed f-number; that decision was not taken in this pass.
+- L2 is drawn at about 18.6 mm against 17.6 mm in the file; the front group was outside this pass.

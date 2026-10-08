@@ -33,8 +33,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Traced on axis: Wide f/2.060, limited by the iris; Mid f/2.060, limited   ║
  * ║  by the surface 23 rim (the f/2.06 ray exceeds φ23 / 2 by 2.8 µm); Tele    ║
  * ║  f/2.061, limited by the surface 10 rim (5.4 µm over φ10 / 2). The STO     ║
- * ║  row's authored sd, 19.916712 mm, is a paraxial calibration to the same    ║
- * ║  f/2.06 states and does not size the traced iris.                          ║
+ * ║  row carries the printed φ17 / 2 = 21.00 mm; it does not size the traced   ║
+ * ║  iris.                                                                     ║
  * ║                                                                            ║
  * ║  Geometry policy: gapSagFrac = 0.98 is a per-lens override required by the ║
  * ║  published effective apertures. The tightest printed source geometry is    ║
@@ -328,9 +328,9 @@ const LENS_DATA = {
     { label: "14", R: -103.248, d: 46.8, nd: 1, elemId: 0, sd: 20.215 },
     { label: "15A", R: 69.114, d: 6.64, nd: 1.6935, elemId: 8, sd: 21.34 },
     { label: "16A", R: -157.293, d: 4.03, nd: 1, elemId: 0, sd: 21.325 },
-    // Authored stop SD: paraxial calibration to the Table 2 f/2.06 states; Table 1 prints φ17 = 42.00 (radius 21.00).
+    // Stop SD: Table 1 row 17(STO) prints φ17 = 42.00 mm; the row stores φ17 / 2, as every other surface row does.
     // The wide-open iris is traced per station from nominalFno and is not read from this row.
-    { label: "STO", R: 1e15, d: 1.64, nd: 1, elemId: 0, sd: 19.916712 },
+    { label: "STO", R: 1e15, d: 1.64, nd: 1, elemId: 0, sd: 21 },
     { label: "18", R: -372.93, d: 1.45, nd: 1.95375, elemId: 9, sd: 20.925 },
     { label: "19", R: 76.22, d: 3.12, nd: 1, elemId: 0, sd: 20.885 },
     { label: "20", R: 52.368, d: 8.59, nd: 1.76385, elemId: 10, sd: 22.32 },

@@ -9,7 +9,7 @@
 **Title:** *Compact Zoom Lens* (コンパクトズームレンズ)\
 **Embodiment analyzed:** Example 1
 
-The prescription is the first numerical example of JP S51-37247 A. The patent front page identifies Hideo Shizume as inventor and Konishiroku Photo Industry Co., Ltd. as applicant. Example 1 is tabulated on patent page 303 of the supplied publication scan, with its optical section and aberration plots beginning on page 304.
+The prescription is the single numerical example of JP S51-37247 A, which the patent leaves unnumbered and this note calls Example 1. The patent front page identifies Hideo Shizume as inventor and Konishiroku Photo Industry Co., Ltd. as applicant. Example 1 is tabulated on patent page 303 of the supplied publication scan, with its optical section and aberration plots beginning on page 304.
 
 The selected production correlation is the **KONICA UC ZOOM HEXANON AR 80-200mm f/4**. The correlation rests on convergent, but not manufacturer-confirmed, evidence:
 
@@ -179,6 +179,10 @@ The patent prints `f = 79.925–196.158mm`, `F4`, `fB = 48.523mm`, and a first-t
 
 Instead, the model separates the rounded marketing designation from the computed design values and places the image plane at the independently traced paraxial focus of the raw prescription. The small difference between the two endpoint BFDs is therefore a model normalization of the image plane, not a correction to a patent surface.
 
+The disagreement is internal to the patent, not a transcription fault. All 24 radii, 23 axial spacings, and 14 index/Abbe pairs in the data, and both sets of variable spacings, match the table on page 303, and the printed spacings sum to the printed 142.822mm at both zoom states. Three further checks compare the table with the rest of the publication. Its zoom ratio, 2.4697, agrees with the focal lengths labelled on the aberration plots (80.0mm and 197.5mm, a ratio of 2.469) rather than with the header's 2.4543. Its traced on-axis spherical aberration at f/4 is -0.12mm at half aperture and +0.51mm at the margin at the wide endpoint, and -0.17mm at the margin at the tele endpoint; Figures 2C and 2A plot about -0.14mm, +0.4mm, and -0.16mm. Its distortion at the 21.63mm image height is -1.4% at the wide endpoint and +3.2% at the tele endpoint, against about -1.8% and +3.0% on the same figures. The traced curves have the form of the plotted ones, but the wide-endpoint margin lies about 0.1mm and the wide-endpoint distortion about 0.4 percentage points from the figures.
+
+The printed summary values agree less well with one another. The patent's telephoto ratio of 0.97 is what its printed length plus back focus, divided by the long focal length, rounds to only if that focal length lies between 196.3mm and 198.3mm; the printed 196.158mm gives 0.975. Dividing that 196.158mm by the table's zoom ratio gives 79.425mm, one digit from the header's 79.925mm; against the pair 79.425–196.158mm the table is 1.83% long at both endpoints. A change confined to the compensator or the fixed rear section cannot produce the header pair as printed, because it leaves the zoom ratio at 2.4697, and a change in the focusing or variator component that alters the ratio also drives the two endpoint image planes apart. Solving r22 or r23 alone for the stated back focus (48.770mm or 46.571mm) gives focal lengths within 0.06% of 79.425–196.158mm, a wide-endpoint marginal spherical aberration of +0.40mm or +0.39mm, and full-field distortion of -1.7% or -1.9% at the wide endpoint and +3.1% or +2.9% at the tele endpoint, closer to the figures than the table as printed; the two solutions name different surfaces and neither radius is a digit variant of its printed value. No single misprint-style change to one printed value (a substituted digit, transposed digits, a sign, a decimal shift, or two exchanged rows) reproduces the stated focal lengths and back focus together, and the patent contains no second example to compare. The data file therefore records the contradiction as an `unresolved` `sourceErrata` entry and keeps every printed value.
+
 ### Aperture stop and semi-diameter model
 
 Figure 1 shows the stop inside the air gap between surfaces 13 and 14, but the patent does not tabulate its station or diameter. The data places the stop 2.530mm objectward of surface 14 and adopts a fixed radius of 15.628207mm. The fixed stop gives traced endpoint f-numbers of 4.000299 and 3.999701. Because this is a constant-aperture zoom, the data stores a scalar modeled nominal f-number of 4 rather than treating the minute raw-prescription endpoint difference as a variable maximum aperture; the marketed aperture is likewise f/4.
@@ -191,7 +195,7 @@ Example 1 contains no sensor cover glass, filter plate, inactive dummy surface, 
 
 Two source inconsistencies remain visible in the interpretation. First, the patent prose describes F5 as positive even though the numerical Example 1 computes to a weak negative F5, while F4+F5 is positive. Second, the Figure 1 legend appears to give L10 the wrong sign; the numerical radii and index produce a positive L10. The final data follows the numerical prescription in both cases.
 
-The patent's printed EFL/BFD discrepancy is likewise preserved as a source-level inconsistency. It is not resolved by changing a surface radius or glass index.
+The patent's printed EFL/BFD discrepancy is likewise preserved as a source-level inconsistency. It is not resolved by changing a surface radius or glass index; the data file carries it as an `unresolved` `sourceErrata` entry.
 
 ### Spectral, aspherical, and scaling scope
 

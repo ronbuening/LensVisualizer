@@ -120,22 +120,24 @@ prescription errors found on the way were corrected (82 files declare a fixed ir
 | `vivitar/VivitarSeries170210mmf284` | US 4,758,073 | f-numbers need different radii | 0.86 % | kept; one radius explains the f-numbers to within 1 %, just outside print rounding |
 | `vivitar/VivitarSeries170210mmf35` | JP S51-63635 A | f-numbers fit one radius | 0.11 % | kept; surface 19 radius corrected, 38.55 to 38.35 |
 
-## Findings not acted on
+## Findings still open
+
+The queued rows were worked on the same day; what remains:
 
 - **Rims below the patent's stated axial beam** (inferred semi-diameters; `npm run audit:aperture` lists those more
-  than 3 % off, Section I): Canon EF 70-200mm f/4L, Canon FD 150-600mm, Fujifilm GF 100-200mm, Minolta AF 80-200mm f/2.8, Nikon AF
-  80-200mm f/2.8 ED, Nikon AF-S 70-200mm f/2.8G VR II, Nikon AF-S 80-200mm f/2.8D, Nikon AI 80-200mm f/4, Nikon AI-S
-  100-300mm f/5.6, Nikon AI ED 50-300mm f/4.5, Pentax-A 35-70mm f/4, Tamron A005, Tamron A009, Tamron A03 and
-  Vivitar Series 1 70-210mm f/2.8-4. The Nikon AI 80-200mm f/4 and AI-S 100-300mm f/5.6 rims were reduced below the
-  beam by the 2026-07 and 2026-09 semi-diameter audits.
-- **Authored stop radius against a printed stop diameter** (Section H): the patent prints one stop effective diameter
-  and the real-ray iris reproduces it, while the file stores a smaller paraxial radius and says the printed diameter
-  cannot give the f-numbers. Canon EF 200-400mm f/4L Extender 1.4x, both files (39.75 mm), Canon EF-M 18-55mm
-  (9.86 mm), Canon EF-S 18-135mm STM (14.52 mm), Sony FE 50-150mm f/2 GM (42.00 mm).
-- **Prescription against the patent** (Section G): Tamron A03 asphere, Vivitar Series 1 35-85mm and Konica UC 80-200mm
-  focal lengths, Schneider TV-Variogon focal lengths and tele f-number.
-- **Stop position** (Section G): Konica UC 45-100mm, Nikon Zoom-Nikkor Auto 50-300mm, Olympus Zuiko 85-250mm.
+  than 3 % off, Section I): Canon EF 70-200mm f/4L, Canon FD 150-600mm, Fujifilm GF 100-200mm, Minolta AF 80-200mm
+  f/2.8, Nikon AF 80-200mm f/2.8 ED, Nikon AF-S 70-200mm f/2.8G VR II, Nikon AF-S 80-200mm f/2.8D, Nikon AI 80-200mm
+  f/4, Nikon AI-S 100-300mm f/5.6, Nikon AI ED 50-300mm f/4.5, Pentax-A 35-70mm f/4, Tamron A005, Tamron A009, Tamron
+  A03 and Vivitar Series 1 70-210mm f/2.8-4. The Nikon AI 80-200mm f/4 and AI-S 100-300mm f/5.6 rims were reduced
+  below the beam by the 2026-07 and 2026-09 semi-diameter audits. The Pentax-A rear group was measured on Fig. 9 and
+  left unchanged pending a ruling (Section I).
+- **Tables that contradict their own patent** (Section G, each an `unresolved` `sourceErrata` entry): Tamron A03
+  aspheres, Vivitar Series 1 35-85mm, Konica UC 80-200mm and Schneider TV-Variogon focal lengths. Every row of each
+  was re-read and matches the file.
+- **Stop positions with no source**: Nikon Zoom-Nikkor Auto 50-300mm and Olympus Zuiko 85-250mm keep modeled stop
+  positions, described as such; their patents place no stop for the transcribed examples.
 - **Stale stored values with no effect on the trace**: Vivitar Series 1 70-210mm f/3.5 `STO` sd (14.457801, the
   paraxial 1:3.65 radius of the uncorrected table; 14.317096 for the corrected one).
 - **Prose**: about 120 low-severity wording and precision findings in the files left unedited, mostly notes that
   quote paraxial stop radii or f-numbers the real-ray trace does not reproduce.
+- **No local patent** (Section C): Fujifilm X10, Nikon AF-S DX 55-200mm VR II, Olympus Zuiko 65-200mm f/4.

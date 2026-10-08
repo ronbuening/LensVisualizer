@@ -63,7 +63,7 @@ const LENS_DATA = {
   sourceErrata: [
     {
       status: "unresolved",
-      note: "The asphere printed for surface 30 gives marginal spherical aberration of about +12 / +51 / +85 mm at the three zoom states, where Figs. 2-4 plot it inside ±0.5 mm. Negating its four polynomial terms gives about −0.7 / −1.3 / −2.6 mm; the patent has no second listing to settle the cause.",
+      note: "The aspheres printed for surfaces 7 and 30 give marginal spherical aberration of about +12 / +51 / +85 mm at the three zoom states, where Figs. 2-4 plot it inside ±0.5 mm. One set of signs reproduces the plotted spherical aberration, astigmatism and distortion at all three states to about 0.03 mm: A6 and A8 of surface 7 and A6, A8 and A10 of surface 30 negative. The figures alone isolate four of those five signs, so the printed values are kept.",
     },
   ],
   elementCount: 15,

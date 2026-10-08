@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-07",
+    type: "improvement",
+    summary: "Four zooms whose patent tables contradict the patent's own figures now say so beside the MTF chart",
+  },
+  {
+    date: "2026-10-07",
     type: "fix",
     summary:
       "19 zoom lenses corrected against their patents: station f-numbers, iris model and four prescription values",
