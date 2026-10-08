@@ -209,3 +209,106 @@ now follow the figure. The lens has no focus or zoom states, so one section cove
 - `specs` restated in the catalog form (design f = 11.98 mm, design F/5.66, 2ω = 121°, one aspherical surface on one element, infinity prescription only); `apertureBlades` 9 added; the subtitle states the ×12 scale.
 - Glass labels reviewed and left as authored: the patent prints νd to one decimal, so the six-digit code labels are the honest form, and all ten resolve to catalog curves. Neither drawing marks a special glass, so no `apd` tag is set.
 - Display name, mount (`leica-ltm`) and format reviewed and left as authored. The focus control reads "Not modeled" for this infinity-only prescription.
+
+## 2026-10-08 — Second review: diagram, labels and movement
+
+Compared: the local lens page (section at infinity and with the focus parameter forced to its far end, both movement
+overlays, the inspector of elements 1, 6, 9 and 10) against JP 2001-124985 A 【図1】 (PDF page 11), the claim and
+¶0010–0012 (PDF pages 3–4), Table 1 and Table 2 (PDF page 5), the front page, and the 190 × 113 px copy of Cosina's
+section. The figure was re-measured independently at its native 200 dpi; the first pass's readings were not reused.
+
+Element names. Sections above this one use the sequential names L1–L10. The patent gives reference numerals, not
+letters, so the elements now carry them: L1–L3 are L11, L12, L13 (first lens group 10), L4–L6 are L21, L22, L23
+(second lens group 20), L7–L8 are L31, L32 (third lens group 30) and L9–L10 are L41, L42 (fourth lens group 40).
+The rest of this section uses the new names.
+
+Figure scale. Axis at row 917.5. Vertex columns: surface 1 at 458.5, surface 19 at 881, image plane at 1005.5, so
+422.5 px for 46.56 mm (0.1102 mm/px) and 547 px for 60.12 mm (0.1099 mm/px); 0.110 mm/px is used and one pixel is
+0.11 mm. Rim heights are half the distance between an element's upper and lower flat rim lines.
+
+| Element | Rim lines apart (px) | Figure (mm) | Stored before | Now |
+|---|---:|---:|---|---|
+| L11 | 316 | 17.38 | 17 front | 17 |
+| L12 | 229 | 12.60 | 12.6 front | 12.6 |
+| L13 | 176.5 | 9.71 | 10 | 10 |
+| L21 | 146.5 | 8.06 | 8 front | 8 |
+| L22 | 125.5 | 6.90 | 6.9 | 6.9 |
+| L23 | 93 | 5.12 | 4.8 | 5.1 |
+| L31 | 77.5 | 4.26 | 4.2 | 4.2 |
+| L32 | 89 | 4.90 | 4.9 rear | 4.9 |
+| L41 + L42 | 150 | 8.25 | 8.2 | 8.2 |
+
+Curve ends, each read where the concave leaves the flat annulus line and cross-checked by the sag of the prescription
+sphere at the annulus position: surface 2 at 11.5 and 11.55 mm (stored 11.3, rim-slope limit), surface 4 at 8.7 and
+9.0 mm (stored 8.5, cross-gap limit), surface 8 at 6.77 and 6.62 mm (stored 6.5), surface 17 at 4.79 and 4.82 mm.
+
+Changes to semi-diameters.
+
+| Surface | Before | After | Evidence |
+|---|---:|---:|---|
+| 11, 12 (L23) | 4.8 | 5.1 | The figure draws L23 at 5.12 mm, 2 px a side taller than L32 (4.90 mm); at 4.8 it rendered 0.1 mm shorter than L32, reversing the drawn order across the stop. Square-cut, one height on both faces; rim thickness 1.81 mm against about 2.0 mm drawn. The full-field bundle reaches 4.29 and 3.26 mm here, so nothing traced changes. |
+| 17 (L41 front) | 4.7 | 5.2 | See below. |
+
+Surface 17. The figure ends L41's concave at 4.8 mm, level with L32's top corner, and continues the face as a flat
+annulus 1.43 mm ahead of the vertex out to the 8.25 mm rim: a flat-fronted block. The outline joins the front and
+rear rim of an element with one straight edge, so any value below the 8.2 mm rear rim renders a truncated cone and
+no value renders the block. The trial renders were 4.7, 4.9, 5.2, 6.0, 6.5 and 7.5 mm, all accepted by the validator
+(8.2 is refused for rim slope). L32's rear rim lies 1.704 mm ahead of vertex 17; the sag of surface 17 is 1.693 mm
+at 5.2 and 1.767 mm at 5.3, so 5.2 is the largest value whose front rim does not pass in front of the doublet.
+At 6.0 the rim stands 0.65 mm ahead of L32's rear rim and at 7.5 it wraps the whole doublet. Against the drawn
+outline, the area between the rendered and drawn half-section of L41 falls from 4.85 mm² at 4.7 to 3.80 mm² at
+5.2 (3.05 mm² at 6.0, 4.21 mm² at 7.5), the front face grows from 9.4 to 10.4 mm of the drawn 16.5 mm, and the
+edge slants 46° from the axis in place of 54°. The cost is a concave drawn 0.4 mm taller than the figure's. The full-field bundle reaches
+4.47 mm on this surface, so the change is to the picture only.
+
+Clearance and engine values, before and after: focal length 11.977 mm, f/5.66, runtime stop radius 1.80829 mm,
+declared half-field 60.5°, tracing half-field 40.98°; meridional stop-filling bundle 100 % at 30°, 45°, 55° and 58°
+and 73.8 % at 60.5°, cut by surface 2; the application's vignetting curve is identical at all 22 field samples
+(96.9 % geometric transmission and 5.7 % relative illumination at 60.5°). The validator reports no error, the
+image-circle floor reports no undersized surface, and field coverage still reaches 20.69 mm of 21.65 mm at 60.5°.
+No surface clips the axial beam or blocks the chief ray. The stop and surface 3 with its `gapSagFrac` were not
+touched.
+
+Labels changed.
+
+- Elements: `name` L11 … L42, `diagramLabel` 11 … 42 (the diagram now prints the numerals of 【図1】), `label`
+  Element 11 … Element 42, and a `role` for each stating its place in the patent's groups and, where one applies,
+  the condition it enters. f12 = −10.45 mm and the group focal lengths −21.53, +12.74, −58.24 and +123.34 mm quoted
+  in the roles were recomputed paraxially.
+- Group brackets: G1 (−), G2 (+), G3 (−), G4 (+). G1–G4 abbreviate the patent's first to fourth lens groups 10–40;
+  the signs are the claimed negative, positive, negative, positive powers and agree with the computed focal lengths.
+- `focusDescription` rewritten in plain words; it began with the internal status token.
+
+Checked and found correct.
+
+- Bracket ranges against Table 1's row blocks and 【図1】: 10 = surfaces 1–6 (lenses 11, 12, 13), 20 = 7–12 (21, 22,
+  23), 30 = 14–16 (31, 32), 40 = 17–19 (41, 42). Stop 50 is table row 13, drawn between lenses 23 and 31.
+- Cemented brackets D1 (surfaces 14–16) and D2 (17–19A): ¶0012 states that 31 and 32, and 41 and 42, are cemented.
+- Element types against the signs of R and ¶0012: 11 and 12 negative menisci convex to the object, 13 biconvex,
+  21 negative meniscus convex to the object, 22 and 23 biconvex, 31 positive meniscus concave to the object,
+  32 negative meniscus concave to the object, 41 biconcave (R = −8.832 and +1759.704), 42 biconvex.
+- Aspheric marker: Table 1 stars only surface 19 and ¶0012 names surface 42b; only 19A carries the suffix and an
+  `asph` entry. Table 2 gives K = 0 and A through D as stored after the ×12 scaling.
+- All 19 radii and spacings of Table 1 times 12, and the ten index and Abbe pairs, re-read from the page image.
+- No `apd` tag: neither the patent text nor Cosina's section designates a special glass.
+- Front page: publication 2001-124985 A of 11 May 2001, application 11-307371 filed 28 October 1999, applicant
+  Cosina Co Ltd, inventor Yomogida Yoshihisa; the file's patent fields agree.
+- Movement: the patent publishes one infinity prescription, `var` and `varLabels` are empty, the focus control
+  reads "Not modeled", and both movement overlays state that the lens has no modeled focus or zoom group movement.
+  The section with the focus parameter forced to 1 is identical to the infinity section.
+
+Maker diagram. Heights relative to L11 (26.5 px), read from the pixels: L12 0.74, L13 0.58, L21 0.49, L22 0.40,
+L23 0.28, L31 0.25, L32 0.28, L41 + L42 0.47; the patent figure gives 0.72, 0.56, 0.46, 0.40, 0.29, 0.24, 0.28 and
+0.47. Cosina draws L23 and L32 the same height to the pixel where the patent draws L23 0.2 mm taller; one maker
+pixel is 0.65 mm, so the patent figure decides. Cosina also draws L41 as a flat-fronted block and marks only the
+rear surface of L42 (非球面).
+
+Open limitations.
+
+- L41 still renders as a truncated cone. Drawing the block needs an outline with a flat annulus, which the element
+  outline does not have; no semi-diameter supplies it.
+- L11, L12, L21 and L32 are likewise drawn with a flat top and a flat annulus and render with a slanted edge.
+  Surface 2 is at its rim-slope limit and surface 4 at its cross-gap limit.
+- With `?focus=1` in the address the focus readout prints the infinity sentinel as "1000000000000000 m". The
+  slider cannot be moved to that state by hand; the readout belongs to the application, not to this file.
+- The element names L31–L42 sit beside the product name's mount designation L39, which is not an element.

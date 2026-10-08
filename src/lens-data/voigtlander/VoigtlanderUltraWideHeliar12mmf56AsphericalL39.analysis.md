@@ -32,6 +32,12 @@ The patent defines four functional groups, G1–G4, with negative–positive–n
 Those functional groups contain eight air-separated groups and ten glass elements. The two meanings of “group”
 are kept separate: the application metadata counts air-separated groups, while the diagram brackets retain G1–G4.
 
+The patent identifies its parts by reference numeral rather than by letter. Figure 1 and ¶0010–0012 call the
+four lens groups 10, 20, 30 and 40, the lenses 11, 12, 13 / 21, 22, 23 / 31, 32 / 41, 42, the stop 50 and the
+aspherical surface 42b. The elements here are named L11 … L42 after those numerals, so the first digit is the
+group and the second the position inside it; the diagram prints the bare numerals as Figure 1 does. G1–G4
+stand for the first to fourth lens groups 10–40, and the brackets carry the power signs the claim assigns them.
+
 The front functional group contains the two negative menisci and a positive singlet.
 G2 contains a negative meniscus followed by two positive singlets. G3 is a net-negative cemented meniscus pair;
 G4 is the rear cemented pair containing the final asphere. The explicitly named stop is source plane 13,
@@ -58,65 +64,65 @@ and tangential aberration plots.
 
 ## Element-by-Element Analysis
 
-### L1 — Negative Meniscus
+### L11 — Negative Meniscus
 
 nd = 1.77250, νd = 49.6. Glass: 773496 — coordinate class (supplier unconfirmed). f = -37.934897 mm.
 
-The first convex-to-object negative meniscus begins G1. Together with L2 it forms the negative pair used in the patent's |f12|/f condition. The source section shows stepped/beveled outer boundaries; the modeled front and rear clear apertures are consequently distinguished from a single blank diameter.
+The first convex-to-object negative meniscus begins G1. Together with L12 it forms the negative pair used in the patent's |f12|/f condition. The source section shows stepped/beveled outer boundaries; the modeled front and rear clear apertures are consequently distinguished from a single blank diameter.
 
-### L2 — Negative Meniscus
+### L12 — Negative Meniscus
 
 nd = 1.77250, νd = 49.6. Glass: 773496 — coordinate class (supplier unconfirmed). f = -16.892186 mm.
 
-The second convex-to-object negative meniscus shares the same native glass coordinates as L1. It completes the negative pair before the positive L3. Its standalone focal length is distinct from the compound focal length of the pair, which includes the intervening air space.
+The second convex-to-object negative meniscus shares the same native glass coordinates as L11. It completes the negative pair before the positive L13. Its standalone focal length is distinct from the compound focal length of the pair, which includes the intervening air space.
 
-### L3 — Biconvex Positive
+### L13 — Biconvex Positive
 
 nd = 1.80518, νd = 25.5. Glass: 805255 — coordinate class (supplier unconfirmed). f = +34.288050 mm.
 
-The positive biconvex singlet completes G1 without reversing that functional group's net negative power. It is air-separated from L2 and from the next negative meniscus. Its dispersion differs substantially from those of the first two elements; the patent does not provide its individual spectral or aberration budget.
+The positive biconvex singlet completes G1 without reversing that functional group's net negative power. It is air-separated from L12 and from the next negative meniscus. Its dispersion differs substantially from those of the first two elements; the patent does not provide its individual spectral or aberration budget.
 
-### L4 — Negative Meniscus
+### L21 — Negative Meniscus
 
 nd = 1.84666, νd = 23.8. Glass: 847238 — coordinate class (supplier unconfirmed). f = -37.181467 mm.
 
 This negative meniscus begins G2. Its convex surface faces the object, followed by the more strongly curved concave rear surface. The next two elements provide positive power, making the three-element functional group net positive.
 
-### L5 — Biconvex Positive
+### L22 — Biconvex Positive
 
 nd = 1.51680, νd = 64.2. Glass: 517642 — coordinate class (supplier unconfirmed). f = +14.530051 mm.
 
-This biconvex crown-coordinate singlet is the first positive component of G2. Its lower dispersion relative to L4 supplies a material contrast within the group, but an Abbe-number contrast alone does not establish apochromatic correction or identify an exact melt.
+This biconvex crown-coordinate singlet is the first positive component of G2. Its lower dispersion relative to L21 supplies a material contrast within the group, but an Abbe-number contrast alone does not establish apochromatic correction or identify an exact melt.
 
-### L6 — Biconvex Positive
+### L23 — Biconvex Positive
 
 nd = 1.48749, νd = 70.4. Glass: 487704 — coordinate class (supplier unconfirmed). f = +23.430937 mm.
 
 The second positive singlet completes G2 ahead of the stop. Its native Abbe number is the highest in this prescription. Neither the source nor the adopted class label identifies it as anomalous-partial-dispersion glass, so no such label is assigned.
 
-### L7 — Positive Meniscus
+### L31 — Positive Meniscus
 
 nd = 1.83400, νd = 37.3. Glass: 834373 — coordinate class (supplier unconfirmed). f = +17.811963 mm.
 
-The first component of D1/G3 is a positive meniscus with its concave face toward the object. It is cemented to L8 at source surface 15. Its standalone sign does not determine the sign of the cemented pair, which is negative.
+The first component of D1/G3 is a positive meniscus with its concave face toward the object. It is cemented to L32 at source surface 15. Its standalone sign does not determine the sign of the cemented pair, which is negative.
 
-### L8 — Negative Meniscus
+### L32 — Negative Meniscus
 
 nd = 1.71736, νd = 29.5. Glass: 717295 — coordinate class (supplier unconfirmed). f = -14.366253 mm.
 
 The negative meniscus completes D1/G3. Surface 15 carries its outgoing medium in the data model. The pair retains the real shared glass interface rather than an invented cement layer or two coincident air surfaces.
 
-### L9 — Biconcave Negative
+### L41 — Biconcave Negative
 
 nd = 1.62004, νd = 36.3. Glass: 620363 — coordinate class (supplier unconfirmed). f = -14.169427 mm.
 
 The biconcave component begins D2/G4. Its strongly concave front face is followed by a weakly curved positive-radius cemented interface. The next positive element leaves the two-element functional group with weak net positive power.
 
-### L10 — Biconvex Positive (1× Asph)
+### L42 — Biconvex Positive (1× Asph)
 
 nd = 1.58913, νd = 61.3. Glass: 589613 — coordinate class (supplier unconfirmed). f = +15.797921 mm.
 
-The final biconvex positive element completes D2/G4. Its rear face is the aspheric source surface 19, labeled 19A. The weak finite front radius remains in the prescription; neither the cemented interface nor the aspheric rear face is silently replaced by a plane.
+The final biconvex positive element completes D2/G4. Its rear face, which the patent marks 42b, is the aspheric source surface 19, labeled 19A. The weak finite front radius remains in the prescription; neither the cemented interface nor the aspheric rear face is silently replaced by a plane.
 
 ## Glass Identification and Selection
 
@@ -133,15 +139,15 @@ OHARA S- and L-prefix distinctions are preserved.
 
 | Elements | nd | νd | Coordinate class | Representative compatible catalog candidates |
 |---|---:|---:|---|---|
-| L6 | 1.48749 | 70.4 | 487704 | SUMITA K-FK5; SCHOTT FK5; HOYA FC5 |
-| L5 | 1.51680 | 64.2 | 517642 | HOYA BSC7; CDGM H-K9L; SCHOTT N-BK7 |
-| L10 | 1.58913 | 61.3 | 589613 | SCHOTT N-SK5; CDGM H-ZK3; HOYA BACD5 |
-| L9 | 1.62004 | 36.3 | 620363 | HOYA E-F2; SUMITA F2; SCHOTT F2 |
-| L8 | 1.71736 | 29.5 | 717295 | HOYA E-FD1L; SUMITA K-SFLD1; CDGM H-ZF3 |
-| L1, L2 | 1.77250 | 49.6 | 773496 | SUMITA K-LaSFn7; CDGM H-LAF50B; SCHOTT N-LAF34 |
-| L3 | 1.80518 | 25.5 | 805255 | SUMITA SF6; HOYA FD60-W; CDGM H-ZF7LA |
-| L7 | 1.83400 | 37.3 | 834373 | SUMITA K-LaSFn14; HOYA NBFD10; CDGM H-ZLAF53B |
-| L4 | 1.84666 | 23.8 | 847238 | HIKARI J-SF03; CDGM H-ZF52; HOYA FDS90-SG |
+| L23 | 1.48749 | 70.4 | 487704 | SUMITA K-FK5; SCHOTT FK5; HOYA FC5 |
+| L22 | 1.51680 | 64.2 | 517642 | HOYA BSC7; CDGM H-K9L; SCHOTT N-BK7 |
+| L42 | 1.58913 | 61.3 | 589613 | SCHOTT N-SK5; CDGM H-ZK3; HOYA BACD5 |
+| L41 | 1.62004 | 36.3 | 620363 | HOYA E-F2; SUMITA F2; SCHOTT F2 |
+| L32 | 1.71736 | 29.5 | 717295 | HOYA E-FD1L; SUMITA K-SFLD1; CDGM H-ZF3 |
+| L11, L12 | 1.77250 | 49.6 | 773496 | SUMITA K-LaSFn7; CDGM H-LAF50B; SCHOTT N-LAF34 |
+| L13 | 1.80518 | 25.5 | 805255 | SUMITA SF6; HOYA FD60-W; CDGM H-ZF7LA |
+| L31 | 1.83400 | 37.3 | 834373 | SUMITA K-LaSFn14; HOYA NBFD10; CDGM H-ZLAF53B |
+| L21 | 1.84666 | 23.8 | 847238 | HIKARI J-SF03; CDGM H-ZF52; HOYA FDS90-SG |
 
 These candidate examples denote coordinate compatibility, not an accepted supplier assignment. No catalog
 line indices are copied onto the elements as measured properties of the patent glasses. The runtime may use
@@ -161,7 +167,7 @@ No close-focus magnification, travel, or breathing curve is synthesized from tha
 
 ## Aspherical Surfaces
 
-Only source surface 19, the image-side face of L10, is aspheric in Example 1.
+Only source surface 19, the image-side face of L42 (the patent's surface 42b), is aspheric in Example 1.
 The source equation uses sqrt(1 − (1 + K)c²h²) followed by A h⁴ + B h⁶ + C h⁸ + D h¹⁰ (¶0017).
 The model therefore retains K = 0 with no conic offset. All lengths are scaled uniformly by s = 12,
 while each Aₚ is transformed as Aₚ,scaled = Aₚ,source / 12⁽ᵖ⁻¹⁾. Indices and Abbe numbers are unchanged.
@@ -197,7 +203,7 @@ Using the actual final scaled prescription gives:
 | 0.7 < abs(f12)/f < 1.5 | 0.872603543 | 0.87 |
 | fB/f > 1.0 | 1.133137492 | 1.13 |
 
-All three strict inequalities hold. Here f12 is the composite focal length of L1 and L2 only; it is not the
+All three strict inequalities hold. Here f12 is the composite focal length of L11 and L12 only; it is not the
 focal length of the entire three-element G1. f2 denotes the whole three-element G2, while fB is the last-vertex
 paraxial back focus. Uniform scaling leaves these ratios invariant.
 The patent discusses balancing wide-angle correction, peripheral illumination and lens size around these
@@ -215,10 +221,14 @@ neither is a source-measured iris dimension.
 
 Clear semi-diameters are estimated from the patent's Figure 1, which is drawn to the prescription's axial scale,
 taking the height where each drawn curve ends, and are floor-checked by exact ray geometry; none is a published
-value. Surface 2 is held at its rim-slope limit and surface 4 at its air-gap limit. The front of L2 is the 12.6 mm
-blank the figure draws; it closes 92% of the L1–L2 air gap without touching L1, so this lens sets its air-gap
-limit to 92% in place of the default 90%. L9's front concave
-ends at 4.7 mm, where the figure starts that element's flat front annulus.
+value. Surface 2 is held at its rim-slope limit and surface 4 at its air-gap limit. The front of L12 is the 12.6 mm
+blank the figure draws; it closes 92% of the L11–L12 air gap without touching L11, so this lens sets its air-gap
+limit to 92% in place of the default 90%. L23 carries the 5.1 mm rim the figure draws, which stands above the
+L31–L32 doublet behind the stop. The figure ends L41's front concave at 4.8 mm and continues that face as a flat
+annulus out to the 8.25 mm rim, so L41 is drawn as a flat-fronted block. The cross-section joins the front and
+rear rims of an element with one straight edge and cannot draw that annulus; the concave is therefore carried
+to 5.2 mm, 0.4 mm past its drawn end and the largest height at which L41's front rim stays behind L32's rear
+rim, which leaves L41 as a truncated cone that is as full as it can be without cupping the doublet.
 Positive edge thickness, real rim angle, conic domain and shared-radial-band air-gap intrusion were checked.
 The minimum sampled element edge thickness is 0.960000000 mm.
 Real state-native project render diagnostics show zero hidden trim; no geometry exception is introduced.
