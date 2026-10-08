@@ -283,30 +283,34 @@ approximately 0.12 mm of the patent's `h∞` datum.
 
 The patent also omits clear-aperture data. Surface semi-diameters are inferred from the f/4 axial bundle, the 21.6 mm
 image-height field, the patent's Fig. 3 section, and the production lens's 62 mm attachment and 73 mm barrel envelope.
-The first group carries the heights the f/4 on-axis ray reaches at 195.2 mm and infinity focus, rounded up to 0.1 mm:
+Every first-group surface passes the f/4 on-axis ray at 195.2 mm and infinity focus. Surfaces 1, 3 and 4 carry the
+height that ray reaches, rounded up to 0.1 mm. Fig. 3 cuts the rims of L11a and L12 square, so surfaces 2 and 5 carry
+the semi-diameter of the front face of their element:
 
-| Surface | Element | f/4 on-axis ray height at 195.2 mm | Semi-diameter |
-|---|---|---:|---:|
-| 1 | L11a front | 24.400 mm | 24.5 mm |
-| 2 | L11 cemented interface | 24.021 mm | 24.1 mm |
-| 3 | L11b rear | 23.826 mm | 23.9 mm |
-| 4 | L12 front | 23.491 mm | 23.5 mm |
-| 5 | L12 rear | 23.145 mm | 23.2 mm |
+| Surface | Element | f/4 on-axis ray height at 195.2 mm | Semi-diameter | Rim |
+|---|---|---:|---:|---|
+| 1 | L11a front | 24.400 mm | 24.5 mm | Ray height, rounded up |
+| 2 | L11 cemented interface | 24.021 mm | 24.5 mm | Square with surface 1 |
+| 3 | L11b rear | 23.826 mm | 23.9 mm | Ray height, rounded up; 0.6 mm inside the L11a rim |
+| 4 | L12 front | 23.491 mm | 23.5 mm | Ray height, rounded up |
+| 5 | L12 rear | 23.145 mm | 23.5 mm | Square with surface 4 |
 
 At 80 mm the same ray reaches no more than 10.000 mm on these five surfaces. Traced wide open at infinity focus, the
 80 mm station is f/4.00 with the iris as the limiter, and the 195.2 mm station is f/4.00 with the surface-4 rim
-0.009 mm outside the ray; the traced iris radius is 14.1233 mm at both stations. Behind the first group the f/4 ray
-at 195.2 mm clears surfaces 6-18 by 2.7-6.9 % and surfaces 19-22 by more than a factor of three, and the ray that
-fills the iris from 1.2 m clears surfaces 6-22 as well. At 1.2 m and 195.2 mm the surface-4 rim bounds the on-axis
-beam and the iris is filled to 87 % of its radius; the ray that would fill it reaches 27.83 mm on surface 1 and
-26.91 mm on surface 4.
+0.009 mm outside the ray; the rims of surfaces 1, 2, 3 and 5 stand 0.100, 0.479, 0.074 and 0.355 mm outside it, and
+the traced iris radius is 14.1233 mm at both stations. Behind the first group the f/4 ray at 195.2 mm clears surfaces
+6-18 by 2.7-6.9 % and surfaces 19-22 by more than a factor of three, and the ray that fills the iris from 1.2 m clears
+surfaces 6-22 as well. At 1.2 m and 195.2 mm the surface-4 rim bounds the on-axis beam and the iris is filled to 87 %
+of its radius; the ray that would fill it reaches 27.83 mm on surface 1 and 26.91 mm on surface 4.
 
 Fig. 3 draws the 80 mm infinity state. Scaled by its axial vertex spacings, it shows L11 at a half-height of about
-28.1 mm and L12 at about 26.2 mm, so the modeled first group is 10-14 % smaller than the drawing while keeping the
-drawn order: L11 the tallest element, L12 slightly shorter, and both taller than every element of G2-G4. Line d of
-the patent's Fig. 2, which the text ties to the first-group aperture needed for the lens brightness, sits at about
-1.78 `h∞`, or 29.0 mm. The prescription passes the surface-clearance and image-circle validators; off-axis mechanical
-vignetting is retained rather than hidden by layout controls.
+28.1 mm and L12 at about 26.2 mm, so the modeled first group is 10-13 % smaller than the drawing while keeping the
+drawn order: L11 the tallest element, L12 slightly shorter, and both taller than every element of G2-G4. The figure
+ends both faces of L11a at one height and both faces of L12 at one height, and it ends the rear face of L11b about
+0.9 mm inside the L11a rim; the model has the same two square rims and steps L11b in by 0.6 mm. Line d of the patent's
+Fig. 2, which the text ties to the first-group aperture needed for the lens brightness, sits at about 1.78 `h∞`, or
+29.0 mm. The prescription passes the surface-clearance and image-circle validators; off-axis mechanical vignetting is
+retained rather than hidden by layout controls.
 
 ### Source corrections and exclusions
 

@@ -33,12 +33,14 @@ import type { LensDataInput } from "../../types/optics.js";
  *   The patent publishes no clear semi-diameters. Values are derived from f/5.6 marginal rays,
  *   0.6-field chief/marginal envelopes, a high-resolution review of the Fig. 2A optical section,
  *   and Nikon's 62 mm attachment / 74 mm barrel dimensions. L12 matches the 30 mm rim of L11;
- *   Fig. 2A draws the two level. G3 (surfaces 12-14) is 14.6 / 14.7 / 14.9 mm: the height the
- *   f/5.6 on-axis ray reaches there at 102 mm (14.514 / 14.606 / 14.829 mm) rounded up to 0.1 mm,
- *   the smallest rims that pass the stated beam. Fig. 2A draws L3 at about 16.7 mm on its axial
- *   scale, level with L41 and slightly above G2. Values remain constrained by edge-thickness and
- *   shared-gap geometry. At the default off-axis fan the bundle is bounded by surfaces 12 and 24
- *   at 102 mm and by surfaces 1 and 24 at 294.784 mm; no cemented junction limits it.
+ *   Fig. 2A draws the two level. G3 (surfaces 12-14) carries one 14.9 mm rim. The f/5.6 on-axis
+ *   ray reaches 14.514 / 14.606 / 14.829 mm there at 102 mm, and Fig. 2A draws the L3 doublet with
+ *   a square-cut common rim, so all three surfaces take the highest of those heights rounded up to
+ *   0.1 mm: the smallest square rim that passes the stated beam. Fig. 2A draws L3 at about 16.7 mm
+ *   on its axial scale, level with L41 and slightly above G2. Values remain constrained by
+ *   edge-thickness and shared-gap geometry. At the default off-axis fan the bundle is bounded by
+ *   surfaces 14 and 24 at 102 mm and by surfaces 1 and 24 at 294.784 mm; no cemented junction
+ *   limits it.
  *
  * GLASS / SPECTRAL DATA:
  *   The patent publishes d-line nd and vd only. Glass fields retain those coordinates while naming
@@ -263,9 +265,9 @@ const LENS_DATA = {
     { label: "9", R: -58.963, d: 1.0, nd: 1.713, elemId: 6, sd: 14.8 },
     { label: "10", R: 66.292, d: 2.7, nd: 1.80518, elemId: 7, sd: 15.0 },
     { label: "11", R: 643.454, d: 37.463, nd: 1.0, elemId: 0, sd: 15.1 },
-    // G3 rims sit at the f/5.6 on-axis ray height (14.514 / 14.606 / 14.829 mm at 102 mm), rounded up to 0.1 mm.
-    { label: "12", R: 108.117, d: 6.0, nd: 1.51835, elemId: 8, sd: 14.6 },
-    { label: "13", R: -36.4, d: 1.0, nd: 1.71736, elemId: 9, sd: 14.7 },
+    // G3 has one square rim: the f/5.6 on-axis ray height on surface 14 at 102 mm (14.829 mm), rounded up to 0.1 mm.
+    { label: "12", R: 108.117, d: 6.0, nd: 1.51835, elemId: 8, sd: 14.9 },
+    { label: "13", R: -36.4, d: 1.0, nd: 1.71736, elemId: 9, sd: 14.9 },
     { label: "14", R: -68.495, d: 23.112, nd: 1.0, elemId: 0, sd: 14.9 },
     { label: "15", R: 59.608, d: 4.5, nd: 1.50137, elemId: 10, sd: 15.5 },
     { label: "16", R: -89.577, d: 7.5, nd: 1.0, elemId: 0, sd: 15.5 },

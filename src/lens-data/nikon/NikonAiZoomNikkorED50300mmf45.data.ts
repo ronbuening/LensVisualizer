@@ -34,9 +34,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * +/-0.83 pupil sampling, the patent optical section, and physical edge-thickness, rim-slope, cross-gap, and
  * render-clearance constraints. The G1 and G5 rims are normalized against the G2/G3 silhouette in Example 3's FIG. 3 so
  * the rendered group-height progression follows the source drawing. Surfaces 19 and 20 (L12, 2.0 mm behind the stop)
- * carry 12.6 and 12.4 mm: the heights the f/4.5 on-axis marginal ray reaches there at 122.458 mm, the station that
- * needs most (12.533 and 12.360 mm), rounded up to 0.1 mm. FIG. 3 draws L12 level with L13 and a little taller than
- * these two values, about 13.0-13.7 mm on its vertex scales. No layout control is used to conceal invalid geometry.
+ * both carry 12.6 mm, one square-cut rim as FIG. 3 draws it. The f/4.5 on-axis marginal ray reaches 12.533 mm at
+ * surface 19 and 12.360 mm at surface 20 at 122.458 mm, the station that needs most; both faces take the higher of
+ * the two, rounded up to 0.1 mm. FIG. 3 draws L12 level with L13 and a little taller than this value, about
+ * 13.0-13.7 mm on its vertex scales. No layout control is used to conceal invalid geometry.
  *
  * Spectral limitation: Example 3 publishes only nd and vd. It does not publish nC, nF, ng, PgF, or dPgF, so those
  * fields are intentionally not invented. Glass strings retain the patent coordinates while naming coefficient-backed
@@ -261,7 +262,7 @@ const LENS_DATA = {
     { label: "18", R: -393.102, d: 1.249, nd: 1.0, elemId: 0, sd: 20.5 },
     { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 12.72462 },
     { label: "19", R: -116.3, d: 2.0, nd: 1.713, elemId: 12, sd: 12.6 },
-    { label: "20", R: 99.709, d: 0.963, nd: 1.0, elemId: 0, sd: 12.4 },
+    { label: "20", R: 99.709, d: 0.963, nd: 1.0, elemId: 0, sd: 12.6 },
     { label: "21", R: 33.76, d: 5.2, nd: 1.56732, elemId: 13, sd: 14.0 },
     { label: "22", R: 82.393, d: 54.7, nd: 1.0, elemId: 0, sd: 14.0 },
     { label: "23", R: -20.4, d: 2.3, nd: 1.76684, elemId: 14, sd: 15.5 },

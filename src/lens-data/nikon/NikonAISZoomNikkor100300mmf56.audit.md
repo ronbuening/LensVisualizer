@@ -140,3 +140,126 @@ The cross-section was screenshotted at 102 mm, the state Figure 2A draws, before
 - The authored STO `sd` of 11.387365 mm is the paraxial solve; the engine opens the iris to 11.7515 mm by real ray. The
   row was not touched.
 - The stop station, 3.000 mm behind r20, remains an inference. The patent neither draws nor tabulates a stop.
+
+The three G3 faces carry one value again; see "2026-10-08 — Square rims kept square" below.
+
+## 2026-10-08 — Square rims kept square
+
+Rule points 1 and 2 (maintainer rulings, 2026-10-08): a clipping face rises only to the height the stated on-axis ray
+reaches there, and an element whose faces carried one value before any rim was raised, and which the figure draws with
+a square-cut rim, keeps one value, the higher of its faces' heights; cemented elements drawn with one common rim are
+treated as one. Point 3 was not needed: no target is refused by the cross-gap limit and `gapSagFrac` is not set (0.90
+default).
+
+| Field | Before | After | Source |
+|---|---:|---:|---|
+| Surface 12 `sd` (L3a front) | 14.6 mm | 14.9 mm | Squared to the higher face, figure draws a square rim |
+| Surface 13 `sd` (L3 junction) | 14.7 mm | 14.9 mm | Squared to the higher face, figure draws a square rim |
+| Surface 14 `sd` (L3b rear) | 14.9 mm | 14.9 mm | Unchanged: stated ray 14.829 mm at 102 mm (14.810 mm at 294.784 mm) |
+
+### Starting point and targets
+
+At commit 2c813a34, before any rim was raised, surfaces 12, 13 and 14 all carried 13.5 mm. `audit:aperture --raise`
+on that copy lists the three as clipping and gives a square-rim height of 14.7 mm for L3a (surfaces 12/13) and 14.9 mm
+for L3b (surfaces 13/14).
+
+| Surface | Stated ray at 102 / 294.784 mm | Face by face (point 1) | Target (point 2) |
+|---|---:|---:|---:|
+| 12 (L3a front) | 14.514 / 14.495 mm | 14.6 mm | 14.9 mm |
+| 13 (L3 junction) | 14.606 / 14.588 mm | 14.7 mm | 14.9 mm |
+| 14 (L3b rear) | 14.829 / 14.810 mm | 14.9 mm | 14.9 mm |
+
+The junction belongs to both elements, and the figure draws the doublet with one common rim, so the doublet is treated
+as one element and all three surfaces take the highest of the three heights. From 13.5 mm each face has risen 10.4 %,
+under the 15 % figure-review threshold; this pass adds 0.3 mm (2.1 %) to surface 12 and 0.2 mm (1.4 %) to surface 13.
+
+### How the figure draws the rim
+
+Figure 2A (PDF page 5) was rendered at 300 dpi (9667 by 14200 px; lens-body scale 37.6 px/mm) and the L3 outline read
+row by row to the outer edge of the stroke on each side of the axis.
+
+| Element | Faces | Drawn rim | Drawn half-heights (px, two sides) | Drawn |
+|---|---|---|---:|---:|
+| L3a | 12 (front) / 13 (junction) | Square-cut | front 620 / 641; junction ends on the same rim line | 16.8 mm |
+| L3b | 13 (junction) / 14 (rear) | Square-cut | junction on the rim line; rear 620 / 637 | 16.7 mm |
+
+- The L3 doublet has one common rim: a single straight stroke parallel to the axis on each side, running from the
+  corner where r12 ends to the corner where r14 ends. Its outer edge holds 620 px on one side over the full edge and
+  637–641 px on the other. The front face and the rear face end 0 px apart on one side and 4 px (0.1 mm, less than the
+  stroke width) apart on the other. There is no step and no chamfer.
+- The junction r13 meets that rim line 20–40 px (0.5–1.1 mm) behind the front corner, and the rim is 133–157 px
+  (3.5–4.2 mm) long. The prescription gives 0.6 mm and 3.6 mm at the drawn 16.7 mm height, so the outline is the
+  prescription's own edge cut square.
+- Point 4: the figure draws L3 larger than the 14.9 mm value (16.7–16.8 mm), not smaller, so there is no conflict.
+
+### Cross-gap limit
+
+No `gapSagFrac` pair is set. At 14.9 mm the facing surfaces on both sides of G3 curve away from each other at the rim,
+so neither air gap is intruded on and the file builds at the 0.90 default.
+
+| Pair | Station | Vertex gap | Share of the gap used | Rim clearance |
+|---|---:|---:|---:|---:|
+| 11 → 12 (G2 to G3) | 102 mm | 37.463 mm | 0 % | 38.322 mm |
+| 11 → 12 (G2 to G3) | 294.784 mm | 1.061 mm | 0 % | 1.920 mm (was 1.886 mm) |
+| 14 → 15 (G3 to L41) | 102 mm | 23.112 mm | 0 % | 26.645 mm |
+| 14 → 15 (G3 to L41) | 294.784 mm | 7.214 mm | 0 % | 10.747 mm |
+
+### Traced f-number and limiter
+
+| Station | Stated | At 2c813a34 (13.5 mm) | Before this pass | After |
+|---|---:|---|---|---|
+| 102 mm | f/5.6 | f/6.14 (+9.7 %), rim of surface 14 | f/5.600, iris | f/5.600, iris |
+| 294.784 mm | f/5.6 | f/6.14 (+9.6 %), rim of surface 14 | f/5.603 (+0.1 %), iris | f/5.603 (+0.1 %), iris |
+
+The fixed iris opens to 11.7515 mm at both stations; the 294.784 mm station needs 11.7581 mm, which is the 0.1 %.
+`audit:aperture --raise` lists no surface for this file. The on-axis ray clears surface 14 by 0.071 mm, surface 13 by
+0.294 mm and surface 12 by 0.386 mm at 102 mm.
+
+### Render comparison
+
+The cross-section was screenshotted at 102 mm, the state Figure 2A draws, and at 294.784 mm, before and after the edit.
+
+- Element order matches the figure at 102 mm: the L11 doublet, L12, the L21 and L22 doublets directly behind G1, the
+  L3 doublet alone in the long air space, L41, L42, L43, then L44 and L45 ahead of the image. The render adds the
+  inferred STO behind L43; the figure draws none.
+- Proportions match: G1 is about twice the height of everything behind it, G2, L3 and L41 form the next tier, L42 and
+  L43 sit lower, and the L44/L45 pair is the smallest.
+- L3 renders with a flat rim parallel to the axis, its front face, junction and rear face ending at one height, as the
+  figure draws it. Before the edit the rim sloped outward from front to rear by 0.3 mm.
+- L3 sits 0.6 mm below L41 on every face (was 0.6–0.9 mm) and 0.2 mm below surface 11, the G2 face it meets at the
+  long end. Its front face is 0.1 mm above surface 9 of G2 (was 0.2 mm below). The figure draws L3 level with L41 and
+  slightly above G2.
+- At 294.784 mm G2 closes up against L3 with 1.920 mm between the rims and no overlap. The renderer trims no element
+  at either station or at 21 interpolated zoom positions.
+- Rims of the elements this pass did not touch: L12, L41, L42, L44 and L45 carry one value each and render with level
+  faces, as drawn, and L11 (30.0 / 30.2 / 30.2 mm) renders within 0.2 mm of square. The two G2 doublets and L43 render
+  with 0.3–0.5 mm between their faces where the figure draws square rims (see "Left open").
+
+### Confirmed unchanged
+
+- The STO row (`sd` 11.387365), `nominalFno`, `zoomApertureModel`, every `R`, `d`, `nd` and glass, and the other 22
+  semi-diameters. Computed EFL stays 101.9935 / 294.7686 mm.
+- The file builds and validates. L3a edge thickness is 1.779 mm (was 1.953 mm) and L3b 2.549 mm (was 2.504 mm). The
+  rim slope at the cemented junction is 24.2° (was 23.8°).
+- Field coverage is 100 % at both stations (21.65 of 21.65 mm) and the image-circle check lists no undersized surface.
+- At the viewer's default off-axis fan the bundle at 102 mm is bounded by surfaces 14 and 24 (was 12 and 24) and is
+  1.2 % wider (14.16 mm against 13.99 mm at launch); at 294.784 mm it is bounded by surfaces 1 and 24 and is 40.07 mm
+  wide, as before. At the 12.2° corner field at 102 mm it is bounded by surfaces 6 and 24 and is 10.92 mm wide, as
+  before. In a scan of field angles out to the engine's half-field at each station, no cemented junction is a first
+  limiter.
+
+### Left open
+
+- Figure 2A draws L3 at 16.7–16.8 mm, level with L41 and slightly above G2. The file holds it at 14.9 mm, 11 % inside
+  the drawing. The rule stops at the ray height, so the remaining difference is a figure-fit question for the
+  semi-diameter audit procedure.
+- The rear face of G3 is 0.07 mm outside the on-axis ray, so surface 14 is the first off-axis limiter on one side of
+  the bundle from about 0.14° of field at 102 mm to about 11.4°; surface 12 takes over to about 11.8° and surface 6
+  beyond. At 294.784 mm surface 14 limits from about 0.10° to about 1.26°, where surface 1 takes over. That is the
+  vignetting the rule keeps.
+- Figure 2A also draws both G2 doublets and L43 with square rims; G2 is drawn as one block with a common rim. The file
+  steps them: L21 15.5 / 15.6 / 15.2 mm, L22 14.8 / 15.0 / 15.1 mm, L43 13.5 / 13.0 mm. None of those faces clips the
+  stated ray and none of those elements carried one value before, so rule point 2 does not reach them; squaring them
+  is a figure-fit decision.
+- The authored STO `sd` of 11.387365 mm is the paraxial solve; the engine opens the iris to 11.7515 mm by real ray.
+  The stop station, 3.000 mm behind r20, remains an inference. Neither was touched.

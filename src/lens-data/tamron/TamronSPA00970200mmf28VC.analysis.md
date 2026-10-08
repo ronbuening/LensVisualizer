@@ -445,12 +445,20 @@ The inferred fixed stop radius gives entrance-pupil radii of approximately 12.37
 to telephoto and reproduces the patent's FNo. 2.90 within about five thousandths at all three states. These pupil and
 stop dimensions are computed model quantities, not published mechanical dimensions.
 
-The modeled semi-diameters also remain author inferences. Under the current geometry policy, the smallest element edge
-thickness is 0.423867 mm, the largest actual spherical rim angle is 37.430°, and the maximum shared-band cross-gap
-intrusion ratio is 0.882172 against the 0.90 limit. No conic check applies because the design is all-spherical. The
-modeled geometry requires no hidden trimming. One outer configured off-axis ray at telephoto/infinity first clips at
-the front surface; that is retained as modeled front-element vignetting rather than concealed by enlarging the inferred
-clear aperture.
+The modeled semi-diameters also remain author inferences. Every rim clears the on-axis f/2.90 ray at all three zoom
+positions, so the iris is the limiting aperture on axis and the traced wide-open f-number is 2.90, 2.89, and 2.90 from
+wide to telephoto. The rear faces of L9 (surface 15, 17.1 mm) and L15 (surface 27, 14.9 mm) sit at the heights that ray
+reaches at 194.5 mm, 17.02 mm and 14.85 mm, rounded up to 0.1 mm; both elements have stepped rims, with front faces at
+20.0 mm and 18.6 mm, where Figure 1 draws square-cut ones.
+
+Under the current geometry policy, the smallest element edge thickness is 0.423867 mm and the largest actual spherical
+rim angle is 37.430°. The maximum shared-band cross-gap intrusion ratio is 0.999752 at the L15–L16 air gap, where the
+two rims are 0.0004 mm apart at the 14.9 mm semi-diameter and the surfaces themselves meet at 14.902 mm; the L9–L10 gap
+follows at 0.932749 with 0.213 mm of air at 17.1 mm. Figure 1 draws both pairs meeting at the rim, and the data file
+sets `gapSagFrac` to 1.00 in place of the 0.90 default to admit them. No conic check applies because the design is
+all-spherical. The modeled geometry requires no hidden trimming. One outer configured off-axis ray at
+telephoto/infinity first clips at the front surface; that is retained as modeled front-element vignetting rather than
+concealed by enlarging the inferred clear aperture.
 
 ## Sources and References
 

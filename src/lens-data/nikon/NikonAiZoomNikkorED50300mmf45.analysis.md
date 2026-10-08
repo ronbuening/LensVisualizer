@@ -316,14 +316,14 @@ The patent does not publish clear semi-diameters. The `sd` values in the data fi
 from the verified physical stop, published field angles, representative marginal/chief-ray envelopes, the optical section,
 and geometry limits. They are not asserted as manufacturing apertures. The 35/35/34/34/33 mm G1 and
 14/14/15.5/15.5/15.5/15.5 mm G5 profiles are set against the median G2/G3 height in a 600-dpi reading of Example 3's FIG. 3,
-so that the group-height progression follows the patent drawing. The two G4 surfaces carry 12.6 and 12.4 mm: the heights the
-f/4.5 on-axis marginal ray reaches at surfaces 19 and 20 in the 122.458 mm state, the largest of the three (12.533 and
-12.360 mm), rounded up to 0.1 mm. FIG. 3 draws L12 level with L13, at about 13.0-13.7 mm on the figure's vertex scales, and
-draws its stop marks slightly wider than L12, as the 12.7356 mm iris is in the model. At these values L12 has 3.437 mm of
-edge thickness, rim slopes of 6.2° and 7.1°, and an air gap to L13 that widens from 0.963 mm on axis to 2.549 mm at the
-12.4 mm rim. Across the three infinity and three reconstructed close-focus endpoint states, the model retains positive
-representative off-axis clearance, positive element edge thickness, rim slopes below the project limit, and shared-band
-cross-gap intrusion below the configured 0.90 fraction.
+so that the group-height progression follows the patent drawing. The two G4 surfaces both carry 12.6 mm, one square-cut rim
+as FIG. 3 draws L12. The f/4.5 on-axis marginal ray reaches 12.533 mm at surface 19 and 12.360 mm at surface 20 in the
+122.458 mm state, the largest of the three, and both faces take the higher of the two, rounded up to 0.1 mm. FIG. 3 draws
+L12 level with L13, at about 13.0-13.7 mm on the figure's vertex scales, and draws its stop marks slightly wider than L12,
+as the 12.7356 mm iris is in the model. At this value L12 has 3.484 mm of edge thickness, rim slopes of 6.2° and 7.3°, and
+an air gap to L13 that widens from 0.963 mm on axis to 2.603 mm at the 12.6 mm rim. Across the three infinity and three
+reconstructed close-focus endpoint states, the model retains positive representative off-axis clearance, positive element
+edge thickness, rim slopes below the project limit, and shared-band cross-gap intrusion below the configured 0.90 fraction.
 
 No plate, filter, dummy optical surface, or patent lens surface has been removed. The neutral `STO` plane only splits the
 published G3-to-G4 air gap at the stated diaphragm station. No source number was silently corrected, no uniform scale factor was

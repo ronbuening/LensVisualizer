@@ -164,3 +164,152 @@ below the old values everywhere except surface 15 at 150 mm (14.516 mm).
   doublet clips beyond the values above, so nothing moved on the figure's account.
 - The 2026-08-10 entry found no figure evidence strong enough to change a semi-diameter. The raises
   in this entry come from the ray trace; the figure only confirms that none is drawn smaller.
+- Surfaces 7 and 8, and the front and rear faces that differ on L104, L105, L106 and L107, are taken
+  up in the section that follows ("Square rims kept square and cross-gap limit raised").
+
+## 2026-10-08 — Square rims kept square and cross-gap limit raised
+
+Rule points applied (maintainer rulings of 2026-10-08): point 2, an element whose two faces carried one
+value before any rim was raised and which the figure draws square-cut keeps one value, the higher of
+its faces' ray heights; and point 3, where the cross-gap limit refuses such a value although the
+surfaces do not cross and the figure draws the elements meeting at the rim, `gapSagFrac` is set to the
+smallest two-decimal value that admits it. The ray heights of point 1 are those of the preceding
+section.
+
+Result: done. L104, the L105 + L106 doublet and L107 each carry one value again, no surface is below
+the stated on-axis ray, and all three stations are limited by the iris.
+
+| Field | Before | After | Source |
+|---|---:|---:|---|
+| Surface 7 `sd` (L104 rear) | 12.24 | 12.7 | Squared to the higher face, figure draws a square rim: surface 6 needs 12.695 mm at 292 mm (own ray height 12.424 mm) |
+| Surface 8 `sd` (L105 front) | 12.24 | 13.06 | Squared to the higher face, figure draws one common square rim for L105 + L106: surface 10 needs 13.055 mm at 292 mm (own ray height 12.427 mm) |
+| Surface 9 `sd` (L105/L106 cemented face) | 12.9 | 13.06 | Squared to the higher face of the doublet, figure draws one common square rim: surface 10, 13.055 mm at 292 mm (own ray height 12.896 mm) |
+| Surface 11 `sd` (L107 front) | 13.4 | 13.5 | Squared to the higher face, figure draws a square rim: surface 12 needs 13.452 mm at 292 mm (own ray height 13.072 mm, clear at 13.4) |
+| `gapSagFrac` | default 0.90 | 0.96 | Smallest two-decimal value that admits 12.7 mm on surface 7 against surface 8 (pair 7→8, 0.959985 of the gap) |
+
+Surfaces 6 (12.7), 10 (13.06), 12 (13.5), 14 and 15 (14.6) already sat at their ray heights and did not
+move in this pass.
+
+### Targets under points 1 and 2
+
+| Surface | Stated ray at 292 mm | Face by face (point 1) | Element rim (point 2) | Value |
+|---|---:|---:|---|---:|
+| 6 (L104 front) | 12.695 | 12.7 | L104 square | 12.7 |
+| 7 (L104 rear) | 12.424 | 12.43 | L104 square | 12.7 |
+| 8 (L105 front) | 12.427 | 12.43 | L105 + L106 one common square rim | 13.06 |
+| 9 (cemented face) | 12.896 | 12.9 | L105 + L106 one common square rim | 13.06 |
+| 10 (L106 rear) | 13.055 | 13.06 | L105 + L106 one common square rim | 13.06 |
+| 11 (L107 front) | 13.072 | 13.4 (clear) | L107 square | 13.5 |
+| 12 (L107 rear) | 13.452 | 13.5 | L107 square | 13.5 |
+| 14 (L109 front) | 14.554 | 14.6 | L109 square | 14.6 |
+| 15 (L109 rear) | 14.581 | 14.6 | L109 square | 14.6 |
+
+- The raise listing run on a scratch copy of the file at commit 2c813a34 (surfaces 6–10 at 12.24,
+  11–12 at 13.4, 14–18 at 14.5) names surfaces 6, 7, 8, 9, 10, 12, 14 and 15 and gives the square-rim
+  heights 6/7: 12.7, 8/9: 12.9, 9/10: 13.06 and 11/12: 13.5. L105 and L106 are drawn with one common
+  rim, so the 8/9 pair takes the doublet's 13.06 instead of 12.9.
+- No value is above the higher face's ray height rounded up at the file's precision (two decimals on
+  surfaces 6–10, one decimal on 11–15).
+
+### How Fig. 12 draws each rim
+
+Fig. 12 (Embodiment 2, wide state), PDF page 13 at 600 dpi, axis at x = 2770 px, object side at the
+bottom. Half-heights are the outermost ink of the outline in px from the axis, right side / left side,
+read row by row along the axis; the axial scale is 24.70 px/mm.
+
+| Element | Front face ends at | Rear face ends at | Mean (mm, axial scale) | Rim as drawn | One value at 2c813a34 |
+|---|---|---|---:|---|---|
+| L104 | 347 / 348 | 347–349 / 348 | 14.1 | Square-cut; straight for the full 78 px of its length | Yes, 12.24 |
+| L105 + L106 | L105 front 387 / 392 | L106 rear 387 / 392 | 15.8 | One common square-cut rim over both elements, with a 4 px (right) to 8 px (left) notch at the cement line | Yes, 12.24 on 8, 9 and 10 |
+| L107 | 367 / 370–371 | 367 / 372 | 15.0 | Square-cut | Yes, 13.4 |
+| L109 | 399 / 400 | 399 / 400 | 16.2 | Square-cut: a flat edge about 50 px long between the two convex faces, 399–402 px along it | Yes, 14.5; already one value (14.6) |
+
+- No element with a raised face is drawn stepped or chamfered; on each the two faces end within 2 px
+  (0.08 mm) of each other, less than the 12 to 14 px outline width.
+- Every element is drawn at least as tall as its value (L104 +11 %, doublet +21 %, L107 +11 %, L109
+  +11 % on the axial scale), so point 4 holds nothing back.
+
+### Cross-gap pair 7→8 (L104 rear / L105 front)
+
+- With the targets and the default limit the validator rejects the file at every zoom position: air
+  gap 7→8, combined sag 2.93 mm against an allowed 2.751 mm of the 3.057 mm gap, at sd = 12.7.
+- Share of the gap: 2.9348 mm of 3.0571 mm, 0.959985, evaluated at the shared 12.70 mm rim. Rim
+  clearance there: 0.122 mm.
+- `gapSagFrac` 0.96 admits it (allowed 2.9348 mm, 0.00005 mm to spare). 0.95 does not: "Air gap 7→8:
+  combined surface sag (2.93 mm) exceeds allowed gap intrusion (2.904 mm of 3.057 mm) at sd=12.7", in
+  the fixed-gap check and at each of the three zoom positions. Both were established with the values
+  substituted in memory, so the file was never saved in a failing state.
+- The surfaces do not cross. The two spheres would meet at 12.958 mm and L104 ends at 12.70 mm. L105's
+  front face runs on to 13.06 mm outboard of the L104 rim; its corner there lies 0.036 mm to the image
+  side of the L104 rear corner and 0.36 mm outside it, and the nearest approach of the L104 rear corner
+  to the L105 front face is 0.119 mm.
+- Fig. 12 draws the pair meeting at the rim: the L104 rear corners touch the L105 front face inside
+  the L105 rim (on the right side the L105 outline ends at y = 4631 px and the L104 outline begins at
+  y = 4632 px).
+- Gap 10→11 (L106 rear / L107 front) is unchanged at 0.845430 of its 1.3243 mm with 0.205 mm of rim
+  air, evaluated at the shared 13.06 mm rim; it does not need the raised limit.
+
+### Traced f-number and limiter
+
+| Station | Stated | Before | After |
+|---|---|---|---|
+| 71.75 mm | f/4.12 | f/4.12, iris (−0.0 %) | f/4.12, iris (−0.0 %) |
+| 150 mm | f/4.83 | f/4.84, iris (+0.2 %) | f/4.84, iris (+0.2 %) |
+| 292 mm | f/5.85 | f/5.94, rim of surface 8 (+1.6 %) | f/5.87, iris (+0.4 %) |
+
+- The raise listing named surfaces 7 and 8 before the edit (12.24 → 12.43, 1.6 %) and names no surface
+  after it.
+- The +0.2 % and +0.4 % that remain are the fixed iris, 14.0201 mm, against the 14.0519 mm and
+  14.0729 mm the stated f-numbers need at 150 mm and 292 mm; no rim limits any station.
+
+### Render comparison
+
+- Rendered sections at 71.75 mm, the state Fig. 12 draws, and at 292 mm were compared with the figure.
+- Element order and grouping agree: 101; 102 + 103; 104; 105 + 106; 107; stop; 109; 110 + 111;
+  112 + 113; 114; 115 + 116; 117; 118.
+- L104, the L105 + L106 doublet, L107 and L109 each render with a straight rim parallel to the axis,
+  the doublet with one common rim over both elements, as the figure draws them. The slanted rims of
+  L104 and L105 noted in the preceding section are gone.
+- L104's rear corners close on the L105 front face just inside the L105 rim, and the L106 rear corners
+  on the L107 front face, as in the figure. The two elements do not overlap in the render.
+- At 292 mm the outermost drawn on-axis ray passes every rim of group II and reaches the stop.
+- The renderer trims no element at zoom fractions 0, 0.25, 0.5, 0.75 and 1 (largest trim 0.000000 mm).
+- Proportions that differ from the drawing:
+  - L107 (13.5) is 0.44 mm, 3.4 %, taller than the doublet (13.06). The figure draws the doublet 5 %
+    taller than L107 (389.5 against 369.5 px). At 2c813a34 L107 was 9.5 % taller (13.4 against 12.24).
+  - L104 is 2.8 % shorter than the doublet (12.7 against 13.06); the figure draws it 11 % shorter
+    (348 against 389.5 px). At 2c813a34 they were equal.
+  - L109 (14.6) is 0.1 mm taller than L110 + L111 (14.5); the figure draws it 4 % shorter (401 against
+    419 px).
+  - On the axial scale the figure draws every element of groups II and III 11–21 % larger than
+    modeled.
+
+### Confirmed unchanged
+
+- R, d, nd, glass labels, variable gaps, the STO row (13.920345702691526), `nominalFno`,
+  `zoomApertureModel`, and the semi-diameters of surfaces 1–6, 10, 12 and 14–30.
+- The file builds and validates: EFL 71.7499 / 150.0016 / 292.0140 mm, engine iris 14.0201 mm.
+- Field coverage is 100 % at all three stations (21.65 of 21.65 mm at 17.1°, 8.0° and 4.1°), and the
+  image-circle floor lists no undersized surface.
+- Smallest edge thickness 0.264587 mm at L115 and largest rim angle 38.2975° at surface 29, both as
+  before. Edge thickness at the squared rims: L104 3.030 mm, L105 4.581 mm, L106 1.705 mm, L107
+  2.544 mm. Rim angles there: 13.05° (surface 7), 13.70° (8), 15.80° (9), 15.87° (11).
+
+### Prose
+
+- The data-file header's STOP / F-NUMBER and SEMI-DIAMETERS blocks state the iris-limited trace, the
+  ray heights, the four square rims, the `gapSagFrac` pair with its share and rim air, and the two
+  proportions that differ from Fig. 12. The header box borders are aligned at 81 columns.
+- The note's verification paragraphs state the same figures: f/5.87 at 292 mm on the iris, one
+  semi-diameter per square-drawn element, and the 7→8 gap at 0.959985 with 0.122 mm of rim air under
+  `gapSagFrac` 0.96.
+
+### Left open
+
+- The 7→8 intrusion, 2.93477 mm (0.959985 of the gap), is 0.00005 mm inside the 0.96 limit. Any later
+  rise of surface 7 or a shorter gap needs 0.97.
+- L107 stays taller than the L105 + L106 doublet, and L109 0.1 mm taller than L110 + L111, opposite to
+  Fig. 12. Both follow from the ray heights; matching the drawing would mean raising the doublet or
+  L110 + L111 above what the stated ray needs, which the rule does not allow.
+- The fixed iris leaves the 150 mm and 292 mm stations 0.2 % and 0.4 % slower than stated. That is the
+  stop model, not a rim.

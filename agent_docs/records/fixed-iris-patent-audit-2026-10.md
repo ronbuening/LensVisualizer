@@ -124,14 +124,14 @@ prescription errors found on the way were corrected (82 files declare a fixed ir
 
 The queued rows were worked on the same day; what remains:
 
-- **Rims below the patent's stated axial beam.** The fourteen lenses were worked under the least-change rule
-  (2026-10-08). Cleared: Canon FD 150-600mm, Fujifilm GF 100-200mm, Nikon AI 80-200mm f/4, Nikon AI-S 100-300mm
-  f/5.6, Nikon AI ED 50-300mm f/4.5 and, earlier the same day, Pentax-A 35-70mm. Raised except where the validator's
-  cross-gap limit blocks a pair of facing surfaces: Nikon AF 80-200mm f/2.8 ED, Nikon AF-S 80-200mm f/2.8D, Tamron
-  A005. Blocked entirely by that limit: Minolta AF 80-200mm f/2.8, Nikon AF-S 70-200mm f/2.8G VR II, Tamron A009,
-  Tamron A03 (Section I). Not rim questions: the printed tables of the Canon EF 70-200mm f/4L and the Vivitar Series
-  1 70-210mm f/2.8-4 cannot pass their own tele f-number (Section G). The earlier reading of the Nikon AI 80-200mm
+- **Rims below the patent's stated axial beam.** Twelve of the fourteen lenses, and the Pentax-A 35-70mm, were
+  cleared under the least-change rule (2026-10-08): each clipping surface raised to the stated ray's height, square
+  rims kept square where the figure draws them so, and `gapSagFrac` set per lens on the seven where the cross-gap
+  limit refused the raise (0.91 to 1.00). Each now traces its stated f-number on the iris at every station. The
+  other two are not rim questions: the printed tables of the Canon EF 70-200mm f/4L and the Vivitar Series 1
+  70-210mm f/2.8-4 cannot pass their own tele f-number (Section G). The earlier reading of the Nikon AI 80-200mm
   f/4's FIG. 3 that put its second element at 18.5 mm could not be reproduced; the figure draws it at about 26 mm.
+  Square-drawn rims the rule did not reach are listed in Section I.
 - **Tables that contradict their own patent** (Section G, each an `unresolved` `sourceErrata` entry): Vivitar Series 1
   35-85mm, Konica UC 80-200mm and Schneider TV-Variogon focal lengths. Every row of each was re-read and matches the
   file. The Tamron A03 aspheres, which gave about +12 / +51 / +85 mm of spherical aberration as printed, were

@@ -258,13 +258,14 @@ Stations whose traced on-axis f-number is more than 3 % from the stated one; the
 npm run audit:aperture -- --markdown
 ```
 
-1,453 of 1,622 stations are within 3 %. Of the rest, a rim clips the beam at 159 stations on 120 lenses (`rim`);
+1,459 of 1,622 stations are within 3 %. Of the rest, a rim clips the beam at 153 stations on 116 lenses (`rim`);
 work the largest differences first. For each row, read whether the limiting semi-diameter is printed in the source or
 was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
 f-number may be defined on a vignetted beam, and the row is then recorded in [decisions.md](decisions.md). An inferred
-rim rises only to the height the stated on-axis ray needs, on the surfaces that clip (the procedure's "clipped
-stated beam" case; `npm run audit:aperture -- --raise` lists the values). The stated f-number must be the source's
+rim rises only to the height the stated on-axis ray needs, on the surfaces that clip, and an element the figure draws
+with a square rim keeps both faces at one height (the procedure's "clipped stated beam" case;
+`npm run audit:aperture -- --raise` lists both values). The stated f-number must be the source's
 design value first: rows that are also in Section H wait for that. Notes that state the axial beam clears every rim
 are corrected with the row.
 
@@ -277,21 +278,14 @@ The other diagnoses are not rim problems:
 - `iris`, two lenses: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8), and the Viltrox
   AF 27mm f/1.2, whose f/1.2 marginal ray cannot be traced to the stop, so its iris takes the paraxial radius.
 
-Seven lenses cannot take the raise the rule gives because two facing surfaces would come closer at the rim than the
-validator's cross-gap limit allows (`gapSagFrac`, 0.90 of the air gap by default), although the surfaces do not cross:
+Square rims the rule did not reach, found while working the first rows; each needs a figure read of its own, since
+squaring them means moving faces that do not clip:
 
-| Lens | Blocked pair | Share of the gap at the rule's value | State |
-|---|---|---|---|
-| Minolta AF 80-200mm f/2.8 APO | 9/10 and 12/13 | 96.8 % and 94.8 % | untouched; 195 mm traces f/3.20 against f/2.88 |
-| Nikon AF-S 70-200mm f/2.8G VR II | 12/13 | 95.4 % | untouched; 196 mm traces f/3.08 against f/2.89 |
-| Tamron SP 70-200mm f/2.8 (A009) | 15/16 | gap closes at 14.90 mm, ray needs 14.85 | untouched; f/3.07 against f/2.90 at every station |
-| Tamron 28-200mm (A03) | 21/22 | 90 % is reached at 8.7595 mm, ray needs 8.7546 | untouched; +1.2 % and +1.5 % at the two longer stations |
-| Nikon AF 80-200mm f/2.8 ED | 11/12 | 91.0 % | other 14 surfaces raised; 196 mm traces f/2.94 against f/2.88 |
-| Nikon AF-S 80-200mm f/2.8D | 7/8 and 14/15 | 97.2 % | other 9 surfaces raised; 194 mm traces f/2.98 against f/2.88 |
-| Tamron 70-300mm (A005) | 7/8 | 91.9 % | other 6 surfaces raised; 292 mm traces f/5.94 against f/5.85 |
-
-Their patent figures draw these elements at least as large as the ray needs. Whether to raise `gapSagFrac` per lens
-to admit the rule's value is undecided.
+- Minolta AF 80-200mm f/2.8 APO: the patent draws the second group as one square block, but squaring the facing
+  surfaces 9 and 10 would make them cross (103.6 % of the gap), so those two elements keep unequal faces.
+- Elements the patent draws square whose two faces already differed before any rim was raised: Nikon AF 80-200mm
+  f/2.8 ED (five elements), Fujifilm GF 100-200mm (L41), Nikon AI-S 100-300mm f/5.6 (the two G2 doublets and L43),
+  Tamron SP 70-200mm A009 (L15 and the L8+L9 doublet).
 
 Start with these zooms. Each has a station that a wide-end iris would limit, where the stated, wider beam is stopped
 first by a rim or, on the two Nikon AI zooms, by the stop-plane geometry above. The Sigma 10-18mm is rim-limited at

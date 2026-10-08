@@ -21,7 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-08",
     type: "fix",
-    summary: "Eight zooms had lens apertures too small for their patent f-number; the clipping surfaces are raised",
+    summary: "Thirteen zooms had lens apertures too small for their patent f-number; the clipping surfaces are raised",
   },
   {
     date: "2026-10-08",

@@ -38,26 +38,30 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - zoomApertureModel "fixed-iris": the engine opens the iris to the         ║
  * ║   wide-end real-ray radius, 14.0201mm, and holds it. The iris alone gives  ║
  * ║   f/4.122, f/4.838 and f/5.875.                                            ║
- * ║ - Traced on axis: f/4.12 at 71.75mm and f/4.84 at 150mm, both on the       ║
- * ║   iris; f/5.94 at 292mm on the rim of surface 8, 1.6% slower than the      ║
- * ║   stated f/5.85 (see SEMI-DIAMETERS).                                      ║
+ * ║ - Traced on axis: f/4.12 at 71.75mm, f/4.84 at 150mm and f/5.87 at 292mm,  ║
+ * ║   each limited by the iris (at the stated value, 0.2% slower and 0.4%      ║
+ * ║   slower). No rim sits below the stated on-axis ray (see SEMI-DIAMETERS).  ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS                                                             ║
  * ║ - The patent does not publish clear semi-diameters. Values below are a     ║
  * ║   constrained model inferred from paraxial marginal/chief-ray envelopes,   ║
  * ║   the Fig. 12 optical section, the production 62mm filter context, and the ║
  * ║   current edge-thickness/rim-slope/cross-gap rules.                        ║
- * ║ - Surfaces 6, 9, 10, 12, 14 and 15 sit at the height the stated on-axis    ║
- * ║   ray (f/5.8526 at 292mm) reaches there, rounded up at the file's          ║
- * ║   precision: 12.70, 12.90, 13.06, 13.5, 14.6 and 14.6mm for ray heights    ║
- * ║   of 12.695, 12.896, 13.055, 13.452, 14.554 and 14.581mm.                  ║
- * ║ - Surfaces 7 and 8 sit at 12.24mm, below the 12.424 / 12.427mm that ray    ║
- * ║   reaches there. The 7→8 air gap (3.0571mm) binds them: 12.24mm gives      ║
- * ║   sag intrusion ≈0.89085×gap, and the 12.43mm the ray needs gives          ║
- * ║   ≈0.91908×gap (0.247mm of rim air), over the default 0.90 limit.          ║
- * ║   These two rims are the tele limit.                                       ║
- * ║ - L104, L105, L106 and L107 each carry different front and rear            ║
- * ║   semi-diameters; group II spans 12.24mm to 13.5mm.                        ║
+ * ║ - Group II and L109 are sized by the stated on-axis ray (f/5.8526 at       ║
+ * ║   292mm). It reaches 12.695 / 12.424mm on surfaces 6 / 7, 12.427 / 12.896  ║
+ * ║   / 13.055mm on 8 / 9 / 10, 13.072 / 13.452mm on 11 / 12 and 14.554 /      ║
+ * ║   14.581mm on 14 / 15.                                                     ║
+ * ║ - Fig. 12 draws L104, the L105/L106 doublet, L107 and L109 with square-cut ║
+ * ║   rims, so each carries one value: the highest ray height on its faces,    ║
+ * ║   rounded up at the file's precision. L104 12.70mm, L105/L106 13.06mm,     ║
+ * ║   L107 13.5mm, L109 14.6mm.                                                ║
+ * ║ - gapSagFrac is 0.96 for the L104 rear / L105 front pair (surfaces 7→8,    ║
+ * ║   3.0571mm gap). At the 12.70mm L104 rim the combined sag is ≈0.95999×gap  ║
+ * ║   with 0.122mm of rim air, and Fig. 12 draws the L104 rear corners meeting ║
+ * ║   the L105 front face. The next-tightest gap is 10→11 at ≈0.84543×gap.     ║
+ * ║ - Fig. 12 draws the L105/L106 doublet about 5% taller than L107 and L109   ║
+ * ║   about 4% shorter than L110/L111. The model has L107 0.44mm taller than   ║
+ * ║   the doublet and L109 0.1mm taller than L110/L111, as the ray heights set.║
  * ║ - The L115/L116 VC doublet is limited to 11.80mm by L115 edge thickness;   ║
  * ║   the modeled L115 rim retains ≈0.265mm physical edge thickness.           ║
  * ║ - Default on/off-axis rendered ray fans are contained by every cemented    ║
@@ -307,11 +311,11 @@ const LENS_DATA = {
     { label: "4", R: 46.5711, d: 8.4101, nd: 1.43875, elemId: 3, sd: 24.8 },
     { label: "5", R: -648.0663, d: 3.5, nd: 1.0, elemId: 0, sd: 24.8 },
     { label: "6", R: -213.5045, d: 1.2, nd: 1.7725, elemId: 4, sd: 12.7 },
-    { label: "7", R: 56.253, d: 3.0571, nd: 1.0, elemId: 0, sd: 12.24 },
-    { label: "8", R: -55.1425, d: 1.2, nd: 1.7725, elemId: 5, sd: 12.24 },
-    { label: "9", R: 47.9635, d: 4.1563, nd: 1.84666, elemId: 6, sd: 12.9 },
+    { label: "7", R: 56.253, d: 3.0571, nd: 1.0, elemId: 0, sd: 12.7 },
+    { label: "8", R: -55.1425, d: 1.2, nd: 1.7725, elemId: 5, sd: 13.06 },
+    { label: "9", R: 47.9635, d: 4.1563, nd: 1.84666, elemId: 6, sd: 13.06 },
     { label: "10", R: -133.8489, d: 1.3243, nd: 1.0, elemId: 0, sd: 13.06 },
-    { label: "11", R: -49.3822, d: 1.2, nd: 1.618, elemId: 7, sd: 13.4 },
+    { label: "11", R: -49.3822, d: 1.2, nd: 1.618, elemId: 7, sd: 13.5 },
     { label: "12", R: -169.9332, d: 31.2341, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "STO", R: 1e15, d: 1.0, nd: 1.0, elemId: 0, sd: 13.920345702691526 },
     { label: "14", R: 79.138, d: 4.3069, nd: 1.883, elemId: 8, sd: 14.6 },
@@ -397,6 +401,7 @@ const LENS_DATA = {
   maxFstop: 45,
 
   yScFill: 0.36,
+  gapSagFrac: 0.96, // L104 rear (7) / L105 front (8): 0.122 mm of rim air at the 12.7 mm L104 rim (0.95999 of the gap)
 } satisfies LensDataInput;
 
 export default LENS_DATA;

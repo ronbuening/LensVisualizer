@@ -33,10 +33,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║  Semi-diameters are inferred from the f/4 on-axis beam, the patent         ║
  * ║  Fig. 3 section, and Nikon's 62 mm attachment / 73 mm barrel envelope.     ║
- * ║  Full-field mechanical vignetting is retained. G1 carries the heights      ║
- * ║  the f/4 on-axis ray reaches at 195.2 mm and infinity focus (24.400 /      ║
- * ║  24.021 / 23.826 / 23.491 / 23.145 mm on surfaces 1-5), rounded up to      ║
- * ║  0.1 mm: 24.5 / 24.1 / 23.9 mm on L11 and 23.5 / 23.2 mm on L12.           ║
+ * ║  Full-field mechanical vignetting is retained. In G1 the f/4 on-axis       ║
+ * ║  ray reaches 24.400 / 24.021 / 23.826 / 23.491 / 23.145 mm on surfaces     ║
+ * ║  1-5 at 195.2 mm and infinity focus. Surfaces 1, 3 and 4 carry that        ║
+ * ║  height rounded up to 0.1 mm: 24.5, 23.9 and 23.5 mm. FIG. 3 cuts the      ║
+ * ║  rims of L11a and L12 square, so surface 2 carries surface 1's 24.5 mm     ║
+ * ║  and surface 5 carries surface 4's 23.5 mm; L11b steps in to 23.9 mm       ║
+ * ║  at surface 3, as FIG. 3 steps L11 in at the cemented surface.             ║
  * ║  Wide open at infinity the 80 mm station traces f/4.00 on the iris and     ║
  * ║  the 195.2 mm station f/4.00 on the surface-4 rim. At 1.2 m and            ║
  * ║  195.2 mm that rim bounds the on-axis beam and the iris is filled to       ║
@@ -232,12 +235,13 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    // Surfaces 1-5: the f/4 on-axis ray height at 195.2 mm, infinity focus, rounded up to 0.1 mm.
+    // Surfaces 1, 3, 4: the f/4 on-axis ray height at 195.2 mm, infinity focus, rounded up to 0.1 mm.
+    // Surfaces 2 and 5 carry the front-face value of their element: FIG. 3 cuts L11a and L12 square.
     { label: "1", R: 109.097, d: 1.7, nd: 1.80518, elemId: 1, sd: 24.5 },
-    { label: "2", R: 62.65, d: 8.1, nd: 1.62041, elemId: 2, sd: 24.1 },
+    { label: "2", R: 62.65, d: 8.1, nd: 1.62041, elemId: 2, sd: 24.5 },
     { label: "3", R: -716, d: 0.1, nd: 1, elemId: 0, sd: 23.9 },
     { label: "4", R: 134.056, d: 4, nd: 1.5168, elemId: 3, sd: 23.5 },
-    { label: "5", R: 603.844, d: 3.034, nd: 1, elemId: 0, sd: 23.2 },
+    { label: "5", R: 603.844, d: 3.034, nd: 1, elemId: 0, sd: 23.5 },
     { label: "6", R: -300, d: 1, nd: 1.78797, elemId: 4, sd: 15.5 },
     { label: "7", R: 55, d: 6.1, nd: 1.7552, elemId: 5, sd: 15.2 },
     { label: "8", R: -40, d: 0.9, nd: 1.58144, elemId: 6, sd: 14.6 },

@@ -144,3 +144,86 @@ Left open:
 - The tele column traces f/2.98 (+3.4 %) against the printed 2.88, outside the rounding of both 2.88 and Table 1's 2.9. Surfaces 7 and 8 need 27.0 mm and surfaces 14 and 15 need 17.1 mm; the 90 % cross-gap rule stops them, not the figure. Whether this file may carry `gapSagFrac: 0.98` is a maintainer decision. With it the four values go in unchanged and all three stations trace on the iris.
 - Until then the raises of surfaces 9, 11, 12, 13 and 16 change no traced f-number, because surface 7 still limits the only station at which they clipped. They stand at the ray's height so that the four held values are the whole of what remains, and they are the source of the L22 junction peak and the L14 and L23 rim differences listed above.
 - 図1 draws L13 and L14 under one flat cap at the published 28.0 mm and gives each G2 element a flat cap. The file's L14 rims (26.1 / 26.5 mm) are 5–7 % under that cap. No rim rule reaches this, and it is not changed.
+
+The four held values, `gapSagFrac` and the rim differences listed above are taken up in the next section, "2026-10-08 — Square rims kept square and cross-gap limit raised".
+
+## 2026-10-08 — Square rims kept square and cross-gap limit raised
+
+Rule points applied (maintainer rulings of 2026-10-08; `agent_docs/patent-figure-sd-audit-procedure.md`, "A clipped stated beam"). Point 1: a clipping surface rises only to the height the stated on-axis ray reaches there at the station that needs most, rounded up to the file's 0.1 mm. Point 3: where the validator's cross-gap limit refuses such a value although the two surfaces do not cross and the figure draws the elements meeting at the rim, `gapSagFrac` is set for the lens to the smallest two-decimal value that admits it. Point 2 (an element whose two faces carried one value before any rim was raised, and which the figure draws with a square-cut rim, keeps one value) was checked for every element with a raised face and applies to none: no such element carried one value on both faces in the file as it stood before the first raise (commit `2c813a34`), and the proposal listing for that file prints "none" in its square-rim column.
+
+| Field | Before | After | Source |
+|---|---:|---:|---|
+| Surface 7 `sd` (L13 rear) | 26.1 mm | 27.0 mm | Stated ray reaches 26.910 mm at 194 mm (11.647 mm at 81.55 mm, 19.017 mm at 135 mm) |
+| Surface 8 `sd` (L14 front) | 26.1 mm | 27.0 mm | Stated ray reaches 26.904 mm at 194 mm (11.577 mm at 81.55 mm, 18.940 mm at 135 mm) |
+| Surface 14 `sd` (L22b rear) | 16.7 mm | 17.1 mm | Stated ray reaches 17.065 mm at 194 mm (11.207 mm at 81.55 mm, 14.007 mm at 135 mm) |
+| Surface 15 `sd` (L23 front) | 16.7 mm | 17.1 mm | Stated ray reaches 17.059 mm at 194 mm (11.268 mm at 81.55 mm, 14.015 mm at 135 mm) |
+| `gapSagFrac` | not set (default 0.90) | 0.98 | Smallest two-decimal value that admits surfaces 7 and 8 at 27.0 mm, which close 97.2 % of their air gap; 図1 draws both pairs meeting at the rim |
+
+The two raises are +3.4 % (surfaces 7 and 8) and +2.4 % (surfaces 14 and 15). The raised rims stand 0.090, 0.096, 0.035 and 0.041 mm outside the ray. With these four, all thirteen surfaces that stood below the stated ray at commit `2c813a34` are at their ray heights, and the proposal listing (`audit:aperture` with `--raise`) prints no surface for the file. The `STO` row and every other semi-diameter are unchanged, and no value was lowered.
+
+How 図1 draws each rim. The sheet (PDF p. 14) was read again on a 600 dpi render, three render pixels per scan pixel, with the axis at y = 1647 px of the full page; a half-height is the mean of the reading above and below the axis. L11's cap reads 407.5 / 412.5 px, 410 px for Φ1F/2 = 35.75 mm. Heights in millimetres use each group's published diameter (G1R 324 px for 28.0 mm, G2 205 px for 17.4 mm) and 11.6 px/mm for G3 and G4. One scan pixel is 0.26 mm.
+
+| Element (surfaces) | Front face ends at | Rear face ends at | Rim as drawn | File before any raise | File now |
+|---|---:|---:|---|---:|---:|
+| L13 (6 / 7) | 324 px, 28.0 mm (flat cap) | 312 px, 27.0 mm | Stepped: the cap runs flat from the front face and drops by a short vertical tick to the corner where surface 7 ends | 28.0 / 26.1 mm | 28.0 / 27.0 mm |
+| L14 (8 / 9) | 312 px, 27.0 mm | 312 px, 27.0 mm | One height: the front arc and the flat rear line meet in a single corner, with no edge drawn | 26.1 / 26.2 mm | 27.0 / 26.5 mm |
+| L21 (10 / 11) | 205 px, 17.4 mm (flat cap) | 185 px, 15.7 mm | Stepped: the rear arc stops where it meets surface 12, and a one-pixel vertical line (a flat land) joins that point to the cap | 17.4 / 16.1 mm | 17.4 / 16.2 mm |
+| L22a (12 / 13) | 185 px, 15.7 mm | 198 px, 16.8 mm | Stepped: the front arc stops at the same point as surface 11 and the land runs up to L22's cap; the junction runs to the cap | 16.1 / 16.6 mm | 16.2 / 17.1 mm |
+| L22b (13 / 14) | 198 px, 16.8 mm | 198 px, 16.8 mm | Square: junction and rear face both run to L22's flat cap | 16.6 / 16.7 mm | 17.1 / 17.1 mm |
+| L23 (15 / 16) | 198 px, 16.8 mm | 205 px, 17.4 mm | Stepped: the front arc joins surface 14's line and ends with it at L22's cap; a short vertical edge joins that cap to L23's own, which the flat rear line reaches | 16.7 / 17.2 mm | 17.1 / 17.6 mm |
+| L32b (20 / 21) | 218 px, 18.8 mm | 224 px, 19.3 mm | Stepped: the junction ends at L32a's cap, the rear arc at L32b's taller cap | 18.8 / 19.0 mm | 18.8 / 19.1 mm |
+| L41 (23 / 24) | 227 px, 19.5 mm | 227 px, 19.5 mm | One height: both arcs end in one small rounded tip | 19.2 / 19.0 mm | 19.4 / 19.2 mm |
+| L42a (25 / 26) | 218 px, 18.8 mm | 218 px, 18.8 mm | Square: a small box closes the rim, and the junction line runs to its cap | 19.0 / 18.1 mm | 19.0 / 18.2 mm |
+| L42b (26 / 27) | 212 px, 18.2 mm (flat cap) | 186 px, 16.0 mm | Stepped: the rear arc stops low and a vertical land joins it to the cap | 18.1 / 17.5 mm | 18.2 / 17.5 mm |
+
+The L22 doublet is drawn under one flat cap at 198 px from the land on surface 12 to L23's front edge. Every element the figure draws stepped is stepped the same way round in the file (L13, L21 and L42b taller at the front; L22a, L23 and L32b taller at the rear). L22b, which the figure draws square, is square in the file now that surface 14 stands at its ray height. No element is drawn more than 15 % smaller than its value: the largest shortfalls are surfaces 11 and 12 (15.7 mm drawn against 16.2 mm, 3 %) and L42b's rear face (16.0 mm against 17.5 mm, 9 %, unchanged in either pass).
+
+The two `gapSagFrac` pairs. Neither gap moves with zoom or focus, so the figures hold at every state.
+
+| Pair | Air gap | Rim | Sag closed | Share of gap | Rim clearance | Spheres touch at |
+|---|---:|---:|---:|---:|---:|---:|
+| Surfaces 7 and 8 (L13 rear, L14 front) | 1.810 mm | 27.0 mm | 1.759 mm | 97.2 % | 0.051 mm | 27.29 mm |
+| Surfaces 14 and 15 (L22b rear, L23 front) | 2.110 mm | 17.1 mm | 1.957 mm | 92.8 % | 0.153 mm | 17.74 mm |
+
+- The surfaces do not cross: each pair stands clear at its rim and would touch only 0.29 mm and 0.64 mm further out.
+- 図1 draws both pairs meeting. The arcs of surfaces 7 and 8 can be told apart up to about 255 px (22.0 mm), run on as one line and end in the one corner at 312 px. The lines of surfaces 14 and 15 merge at about 159 px (13.5 mm) and run as one line to L22's cap at 198 px.
+- Tried in memory before the edit, with the four values and each `gapSagFrac` from 0.90 to 1.00: 0.98 is the first that builds. At 0.97 the validator reports, for the base state and each of the three zoom positions: `Air gap "7"→"8": combined surface sag (1.76 mm) exceeds allowed gap intrusion (1.756 mm of 1.810 mm) at sd=27.0`. Surfaces 14 and 15 pass from 0.93 on.
+- `gapSagFrac` is one value for the lens. At 0.98 the validator allows 1.774 mm of the 1.810 mm gap and 2.068 mm of the 2.110 mm gap. The next tightest pair, surfaces 11 and 12, closes 6.752 mm of its 7.520 mm gap (89.8 %) as before.
+
+Traced at infinity focus, wide open:
+
+| Station | Stated → traced before | Limiter before | Stated → traced after | Limiter after |
+|---|---|---|---|---|
+| 81.55 mm | f/2.88 → f/2.88 (−0.0 %) | iris (`STO`) | f/2.88 → f/2.88 (−0.0 %) | iris (`STO`) |
+| 135 mm | f/2.88 → f/2.88 (+0.0 %) | iris (`STO`) | f/2.88 → f/2.88 (+0.0 %) | iris (`STO`) |
+| 194 mm | f/2.88 → f/2.98 (+3.4 %) | rim, surface 7 (L13 rear, sd 26.1 mm) | f/2.88 → f/2.88 (+0.1 %) | iris (`STO`) |
+
+To three decimals the traced values are f/2.880, f/2.881 and f/2.883. The +0.1 % at 194 mm is the fixed iris, solved at the wide station (19.2041 mm), not a rim; no rim limits any station.
+
+State of the edited file:
+
+- It builds and the validator reports nothing.
+- Edge thickness at the smaller rim of each touched element: L13 3.550 mm at 27.0 mm (3.434 mm at 26.1 mm before), L14 1.942 mm at 26.5 mm (2.169 mm at 26.1 mm), L22b 2.120 mm at 17.1 mm (2.305 mm at 16.7 mm), L23 4.283 mm at 17.1 mm (4.166 mm at 16.7 mm). The thinnest edge in the file is still L45 at 1.808 mm.
+- Rim slope: surface 7 is 37.4° (35.9° before) and remains the steepest in the file, surface 8 is 30.5° (29.4°), surface 14 is 3.4° (3.3°) and surface 15 is 16.4° (16.0°), against the 64.2° limit.
+- Traced field coverage is 100 % at 81.55 mm (15.4°), 135 mm (9.1°) and 194 mm (6.2°), with the corner chief ray clear at 21.65 mm. The image-circle floor lists no surface.
+- The renderer trims no element at 81.55, 135 or 194 mm, at infinity or at the 1.5 m close state.
+- Computed focal lengths (81.5499, 134.9998 and 196.0000 mm) and the traced wide-open iris (19.2041 mm) are as they were.
+
+Render comparison. The cross-section was rendered at 81.55 mm, infinity focus, the state 図1 draws, and at 194 mm, and read at 6.97 px/mm (three device pixels per CSS pixel).
+
+- Element order and grouping agree with the figure at 81.55 mm: the L11 doublet and L12, L13 and L14, L21, the L22 doublet and L23, the long air space, L31 and the L32 doublet, the stop, L41, the L42 doublet, L43, L44 and L45. At 194 mm G2 stands against G3 with 1.61 mm of air and nothing overlaps.
+- Proportions, as a share of L11's half-height, figure against file: L13 0.79 / 0.78, L14 0.76 / 0.76 (0.74 before this pass), L22 0.48 / 0.48, L23 0.50 / 0.49. The others are as the previous section lists them.
+- L13's rear and L14's front run together and meet at the rim, 0.051 mm apart (0.4 px), as the figure's single corner; L22b's rear and L23's front meet 0.153 mm apart (1.1 px), as the figure's merged line. No outline crosses a neighbour.
+- Square where the figure is square: L22b now has a flat rim at 17.1 mm, and the peak at L22's junction that the previous section lists is gone. L22a rises from 16.2 to 17.1 mm and L23 from 17.1 to 17.6 mm, the same way round as the figure's steps.
+- Stepped rims are drawn as slanted edges, because the renderer joins an element's front and rear rims with a straight line where the figure draws a flat cap and a land: L13 (28.0 / 27.0 mm), L21, L22a, L23, L32b and L42b.
+- Not as the figure draws them: L14's rim slants 0.5 mm over its 1.9 mm edge, front higher (the rear was 0.4 mm higher before this pass), where the figure ends both faces in one corner; L41's rim slants 0.2 mm and L42a tapers 0.8 mm where the figure ends both faces at one height. The last two are unchanged in this pass.
+- Against renders of the file as it stood, at the same states and size (1400 × 900), 92 pixels differ by more than 24 of 255 levels in a colour channel at each state, in two clusters: the L13 and L14 rims, and the L22b and L23 rims. Counting every pixel that differs by more than 2 levels gives 319 at 81.55 mm and 313 at 194 mm, all on the outlines of G1R and G2. Scale, positions, rays and every other outline are identical.
+
+Moved with the values: the data-file header blocks on the aperture and the semi-diameters, the comment on the new `gapSagFrac` line, the note's stop and semi-diameter paragraphs under Optical Architecture, and the stop paragraph under Verification Summary. They no longer say that the tele column traces f/2.98 or that surfaces 7, 8, 14 and 15 stay below the ray.
+
+Left open:
+
+- L14 is the one element whose rim this pass moved away from the figure's shape. The figure ends its two faces at one height; the file has 27.0 / 26.5 mm. Its faces were 26.1 / 26.2 mm before any raise, not one value, so the square-rim point does not reach it, and surface 9 was not raised above its ray height (26.472 mm). Squaring it would put surface 9 at 27.0 mm, +1.9 %. Checked in memory and not written: with surface 9 at 27.0 mm the file builds at `gapSagFrac` 0.98, needs no render trim, traces the same f-numbers, and L14's edge is 1.651 mm. Whether a figure-square element whose faces differed by 0.1 mm counts as square is a maintainer decision.
+- L41 (19.4 / 19.2 mm) and L42a (19.0 / 18.2 mm) are also drawn with both faces at one height. Neither carried one value before any raise (19.2 / 19.0 and 19.0 / 18.1 mm), and both differences predate the raises. L41's 0.2 mm is under one scan pixel of the figure.
+- `gapSagFrac: 0.98` applies to every air gap in the file. Only the two named pairs use more than 90 % of their gap.
+- 図1's flat cap over G1R is at the published 28.0 mm. The file's L14 rims (27.0 / 26.5 mm) are 4–5 % under it. No rim rule reaches this, and it is not changed.

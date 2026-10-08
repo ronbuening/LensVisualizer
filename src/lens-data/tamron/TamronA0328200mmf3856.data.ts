@@ -57,6 +57,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  relative element sizes, condition (9)'s compact-front constraint, and the           ║
  * ║  current edge/slope/conic/cross-gap geometry limits. The compact front group         ║
  * ║  intentionally permits field-dependent vignetting as described by the patent.        ║
+ * ║  Surfaces 22 and 23 (L10) carry 8.8 mm: the stated on-axis ray reaches 8.7546 and    ║
+ * ║  8.7385 mm there at 193 mm, the station that needs most, rounded up to one decimal.  ║
+ * ║  Fig. 1 draws L10 with a square-cut rim, and its two faces carry one value.          ║
+ * ║                                                                                      ║
+ * ║  gapSagFrac is 0.91 for the pair 21/22 (L9 rear, L10 front). At 8.8 mm the two       ║
+ * ║  sags fill 1.2718 mm of the fixed 1.400 mm air space (90.84 %) and leave 0.128 mm    ║
+ * ║  clear; the default 0.90 stops at 8.7595 mm. The faces meet at 9.228 mm, and Fig. 1  ║
+ * ║  draws L9 and L10 in contact outside the concave face of L10.                        ║
  * ║                                                                                      ║
  * ║  Spectral note: the patent publishes only d-line-like nd/νd coordinates and names    ║
  * ║  no glass supplier. Vendor-neutral six-digit classes are therefore used. nC, nF,     ║
@@ -397,8 +405,8 @@ const LENS_DATA = {
     { label: "19", R: -2289.84, d: 0.1, nd: 1, elemId: 0, sd: 9.6 },
     { label: "20", R: 26.02, d: 2.5, nd: 1.72, elemId: 11, sd: 9.8 },
     { label: "21", R: 157.33, d: 1.4, nd: 1, elemId: 0, sd: 9.8 },
-    { label: "22", R: -38.27, d: 0.8, nd: 1.84666, elemId: 12, sd: 8.6 },
-    { label: "23", R: 173.64, d: 5.785, nd: 1, elemId: 0, sd: 8.6 },
+    { label: "22", R: -38.27, d: 0.8, nd: 1.84666, elemId: 12, sd: 8.8 }, // stated on-axis ray: 8.7546 mm at 193 mm
+    { label: "23", R: 173.64, d: 5.785, nd: 1, elemId: 0, sd: 8.8 }, // stated on-axis ray: 8.7385 mm at 193 mm
     { label: "24", R: 23.69, d: 4.3, nd: 1.51633, elemId: 13, sd: 11.4 },
     { label: "25", R: -59.67, d: 0.2, nd: 1, elemId: 0, sd: 11.4 },
     { label: "26", R: 58.16, d: 0.8, nd: 1.8061, elemId: 14, sd: 12.4 },
@@ -504,6 +512,7 @@ const LENS_DATA = {
   maxFstop: 22,
 
   yScFill: 0.42,
+  gapSagFrac: 0.91, // pair 21/22 (L9 rear, L10 front): sags fill 90.84 % of the 1.400 mm gap at sd 8.8
 } satisfies LensDataInput;
 
 export default LENS_DATA;

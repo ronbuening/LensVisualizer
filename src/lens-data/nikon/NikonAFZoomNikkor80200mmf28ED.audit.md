@@ -162,3 +162,89 @@ Screenshots of `/lens/nikon-af-zoom-nikkor-80-200mm-f28-ed/?v=1&zoom=80` (the wi
 - Figure 1 is Example 1's section. No section of Example 3 exists in the patent, so the drawn heights are a check at the level of the shared configuration, not of this prescription's exact radii.
 - Figure differences on surfaces that do not clip, and so were not moved: G1 (38.0–35.0 mm against 33.5 and 32.3 mm drawn, with the stated ray needing 34.03 mm at surface 1), L44 (18.5 against about 14.7 mm drawn), L43 (14.8 against 13.8 mm) and D2's rear face (18.5 against 20.6 mm). L44's 25 % is the only one over the 15 % figure threshold.
 - The stop position and the authored `STO` semi-diameter remain as recorded in the 2026-10-07 entry.
+
+Surfaces 11 and 12, and the faces this section left unequal on L24, L31 and D4, are taken up in the next section, "Square rims kept square and cross-gap limit raised".
+
+## 2026-10-08 — Square rims kept square and cross-gap limit raised
+
+Rule points applied (maintainer, 2026-10-08): an element whose two faces carried one value before any rim was raised, and which the figure draws with a square-cut rim, keeps one value, the higher of what its faces need (point 2); and where the validator's cross-gap limit refuses a required value although the surfaces do not cross and the figure draws the elements meeting at the rim, `gapSagFrac` is set for the lens to the smallest two-decimal value that admits it (point 3). Every other surface keeps the value the section above gave it, and the `STO` row is untouched.
+
+| Field | Before | After | Source |
+|---|---:|---:|---|
+| Surface 11 `sd` (L24 rear) | 18.3 mm | 18.8 mm | Squared to the higher face, figure draws a square rim. L24's faces need 18.707 mm (surface 10) and 18.695 mm (surface 11) at 196 mm; the higher, rounded up, is 18.8 mm |
+| Surface 12 `sd` (L25 front) | 18.3 mm | 18.7 mm | Stated ray 18.698 mm at 196 mm (12.935 mm at 80 mm) |
+| Surface 14 `sd` (L31 front) | 19.5 mm | 19.7 mm | Squared to the higher face, figure draws a square rim. L31's faces need 19.417 mm (surface 14) and 19.614 mm (surface 15) at 196 mm |
+| Surface 17 `sd` (D4 junction, L32 / L33) | 19.9 mm | 20.0 mm | Squared to the higher face, figure draws a square rim, one across the doublet. D4's faces need 19.925 mm (16), 19.873 mm (17) and 19.962 mm (18) at 196 mm |
+| `gapSagFrac` | not set (default 0.90) | 0.92 | Smallest two-decimal value that admits surfaces 11 and 12 across the d11 air gap (0.9103 of the gap) |
+
+The stated ray is the f/2.88 on-axis marginal ray, entering at 13.889 mm at the 80 mm station and 34.028 mm at the 196 mm station, as in the section above. Surfaces 7, 9, 10, 13, 15, 16 and 18–23 keep the values that section gave them.
+
+### How Figure 1 draws each rim
+
+Figure 1 (PDF p. 10, Example 1's section at the wide end, the only section the patent prints for Examples 1–4; Figures 6, 8, 10 and 12 are the sections of Examples 5–8) was rendered again at 600 dpi and read at the scale of the section above, 11.92 px/mm. Half-heights are half the distance between the two rim strokes, stroke centre to stroke centre; the strokes are about 6 px (0.5 mm) wide, so each is good to about ±0.3 mm. The readings agree with the table above to within 1 px. The second column is the pair of values at commit 2c813a34, before any rim was raised.
+
+| Element (faces) | Before any raise | Figure draws | Drawn half-height, front / rear face | Treatment | Now |
+|---|---:|---|---:|---|---:|
+| L21 (6 / 7) | 20.0 / 19.5 mm | No rim of its own: the junction runs out to the D2 rim and meets the front face there, edge about 0.8 mm | 20.6 / 20.6 mm (246.0 px) | Faces differed; face by face | 20.0 / 19.7 mm |
+| L22 (7 / 8) | 19.5 / 18.5 mm | Stepped: the junction ends on the D2 rim, the rear face ends lower and a flat land runs from it out to the rim | 20.6 / 18.4 mm (246.0 / 219.5 px) | Stepped; face by face | 19.7 / 18.5 mm |
+| L23 (9 / 10) | 18.2 / 18.3 mm | Square: D3 has one flat rim and both faces end on it | 18.9 / 18.9 mm (225.0 px) | Faces differed; face by face | 18.3 / 18.8 mm |
+| L24 (10 / 11) | 18.3 / 18.3 mm | Square: the same D3 rim, edge about 1.3 mm | 18.9 / 18.9 mm (225.0 px) | One value, square: both faces at the higher | 18.8 / 18.8 mm |
+| L25 (12 / 13) | 18.3 / 18.6 mm | Square: one flat rim, edge about 4.6 mm | 19.1 / 19.1 mm (228.0 px) | Faces differed; face by face | 18.7 / 19.2 mm |
+| L31 (14 / 15) | 19.2 / 19.2 mm | Square: both faces end at one height on an edge about 1.2 mm long | 19.6 / 19.6 mm (233.8 px) | One value, square: both faces at the higher | 19.7 / 19.7 mm |
+| L32 (16 / 17) | 19.5 / 19.5 mm | Square: D4 has one flat rim across both elements | 19.9 / 19.9 mm (237.8 px) | One value, square, one rim across D4: all three faces at the highest | 20.0 / 20.0 mm |
+| L33 (17 / 18) | 19.5 / 19.5 mm | Square: the same D4 rim, edge about 5 mm | 19.9 / 19.9 mm (237.8 px) | As L32 | 20.0 / 20.0 mm |
+| L41 (19 / 20) | 19.5 / 19.2 mm | Square: both faces end at one height on an edge about 1 mm long | 19.9 / 19.9 mm (237.5 px) | Faces differed; face by face | 20.0 / 19.8 mm |
+| L42a (21 / 22) | 18.5 / 18.0 mm | Square: flat rim | 18.9 / 18.9 mm (225.5 px) | Faces differed; face by face | 18.9 / 18.3 mm |
+| L42b (22 / 23) | 18.0 / 17.5 mm | Square: flat rim, 0.4 mm below L42a's, so D5 steps at the junction | 18.5 / 18.5 mm (220.8 px) | Faces differed; face by face | 18.3 / 17.8 mm |
+
+No element in this table is drawn smaller than its value by more than 0.1 mm (0.5 %), inside the reading error: L31 at 19.6 against 19.7 mm, D4 and L41 at 19.9 against 20.0 mm, and L25 at 19.1 against 19.2 mm on its rear face. No element with a raised face has a figure conflict under point 4. The one element the figure draws more than 15 % below its value is L44 (about 14.7 mm drawn against 18.5 mm), which does not clip and which neither pass moved; the section above records it.
+
+### Cross-gap pair: surfaces 11 and 12
+
+Surfaces 11 (R 557.450, 18.8 mm) and 12 (R -90.100, 18.7 mm) face each other across the 2.500 mm d11 air gap between D3 and L25, a fixed gap, so the figures are the same at both stations. The validator compares them over the height they share, 18.7 mm: the sags are 0.314 mm and 1.962 mm, 2.276 mm together, 0.9103 of the gap. The rim clearance there is 0.224 mm, so the surfaces do not cross. Figure 1 draws D3's rear face and L25's front face running into one stroke at the rim, at 18.9 and 19.1 mm; a 0.224 mm clearance is 2.7 px at the figure's scale, under one stroke width.
+
+- `gapSagFrac: 0.92` allows 2.300 mm of the gap and the file builds.
+- At 0.91 the build stops, for the base prescription and both zoom stations: "Air gap "11"→"12": combined surface sag (2.28 mm) exceeds allowed gap intrusion (2.275 mm of 2.500 mm) at sd=18.7".
+- The next tightest gap is d8 between D2 and D3 at 0.8755 (0.884 mm clearance), unchanged; every other air gap is under 0.33.
+
+### Traced f-number and limiter
+
+| Station | Stated | Before any raise | Before this pass | After |
+|---|---:|---|---|---|
+| 80 mm | f/2.88 | f/2.95 (+2.3 %), rim of surface 20 | f/2.88 (0.0 %), iris | f/2.88 (0.0 %), iris |
+| 196 mm | f/2.88 | f/2.96 (+2.7 %), rim of surface 13 | f/2.94 (+2.1 %), rim of surface 12 | f/2.89 (+0.2 %), iris |
+
+No rim limits either station. The +0.2 % at 196 mm is the fixed iris: its radius is 15.6801 mm, set at the 80 mm station, where f/2.88 at 196 mm needs 15.7146 mm. `audit:aperture --raise` lists no surface. The tightest rim is surface 12, 0.002 mm above the stated ray.
+
+### Render comparison
+
+Screenshots of `/lens/nikon-af-zoom-nikkor-80-200mm-f28-ed/?v=1&zoom=80` (the wide end, the state Figure 1 draws) and `?v=1&zoom=196` were taken after the edit.
+
+- Element order and grouping match the figure at 80 mm: D1, L13 | D2, D3, L25 | L31, D4 | L41, D5, stop, L43, L44, with d13 and d18 open and d5 nearly closed. At 196 mm G2 and G3 sit against G4 with no element overlapping another.
+- Square where the figure is square: L24, L31 and D4 render with flat rims. D3 no longer peaks at its junction; L24 is flat at 18.8 mm.
+- D3's rear face and L25's front face render almost touching at the rim, with a sliver of air between them, as the figure draws them.
+- Rims the figure draws square that render sloped, because their faces differed before any rim was raised: L23 rises 0.5 mm from its front face to the D3 junction (18.3 to 18.8 mm) where the figure has one flat D3 rim; L25 rises 0.5 mm front to rear (18.7 to 19.2 mm); L41 falls 0.2 mm (20.0 to 19.8 mm); D5 tapers 18.9 / 18.3 / 17.8 mm where the figure draws two flat rims with one 0.4 mm step.
+- D2 renders as a straight taper, 20.0 / 19.7 / 18.5 mm, where the figure draws a flat rim at 20.6 mm with the rear face ending at 18.4 mm behind a land. The rear-face height agrees; the rim shape does not, and no surface of D2 moved in this pass.
+- Proportions are as the section above records them: every element with a raised face sits within 5 % of the drawing, G1 renders 8–13 % taller than drawn, L43 7 % and L44 25 %.
+
+### Prose brought into line
+
+- Data file header: the semi-diameter block names the surfaces at the stated-ray height, the three square rims and their values, the `gapSagFrac` pair with its share of the gap and clearance, and the iris as limiter at both stations. Comments mark rows 11, 14 and 17 and the `gapSagFrac` line.
+- Analysis note: the semi-diameter paragraph and the verification summary state the same values; the worst shared-gap sag intrusion reads 0.910266 at the d11 gap, with 0.875508 at the d8 gap second.
+
+### Confirmed unchanged
+
+- No `R`, `d`, `nd`, glass, variable gap, `nominalFno`, `zoomApertureModel` or stop position changed. The `STO` row keeps 14.759011 mm. No semi-diameter was lowered.
+- The file builds and validates. Computed focal lengths 79.9999 / 196.0021 mm and the iris radius 15.6801 mm are as before.
+- Field coverage is 100 % at both stations (21.65 of 21.65 mm, corner clear) and `audit:image-circle` reports no undersized surface.
+- The renderer trims no surface at any of 21 states checked (focus at infinity, mid-travel and close; zoom at both stations and five positions between them).
+- Minimum element edge thickness 0.261662 mm (L12) and maximum rim slope 30.914° (surface 25) are unchanged. On the elements touched, taken at the smaller of the two semi-diameters: L24 1.565 mm (1.736 mm before), L25 4.351 mm (4.234 mm), L31 1.347 mm (1.412 mm), L32 1.629 mm (1.689 mm).
+- The 60 %-field bundles at all four published states are bounded by the iris and by surface 5 (196 mm) or surface 15 (80 mm; surface 14 before this pass), never by a cemented interface.
+
+### Left open
+
+- Five elements the figure draws square keep unequal faces, because their faces already differed before any rim was raised and point 2 covers only elements that carried one value: L23 (18.3 / 18.8 mm; 18.2 / 18.3 mm before any raise, and part of D3's one drawn rim), L25 (18.7 / 19.2 mm; 18.3 / 18.6 mm), L41 (20.0 / 19.8 mm; 19.5 / 19.2 mm), L42a (18.9 / 18.3 mm; 18.5 / 18.0 mm) and L42b (18.3 / 17.8 mm; 18.0 / 17.5 mm). Squaring any of them puts a face above the height its ray needs, which the rule does not allow. Tried in memory, not in the repository: surface 9 at 18.8 mm, a fully square D3, builds at `gapSagFrac` 0.92 with the d8 gap at 0.8954; surface 12 at 19.2 mm, a square L25, needs `gapSagFrac` 0.93 (0.9201 of d11 over a shared 18.8 mm, 0.200 mm clearance).
+- The 196 mm station traces f/2.89 against the stated f/2.88, from the fixed iris alone.
+- Figure 1 is Example 1's section. No section of Example 3 exists in the patent, so rim shapes and drawn heights are read at the level of the shared configuration.
+- Figure differences on surfaces that do not clip remain as the section above lists them: G1, L44, L43 and the rim of D2.
+- The stop position and the authored `STO` semi-diameter remain as recorded in the 2026-10-07 entry.

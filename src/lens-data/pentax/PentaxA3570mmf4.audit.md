@@ -204,3 +204,75 @@ Left open:
 
 - L2 is drawn at about 18.6 mm against 17.6 mm in the file. No front-group rim clips the stated beam, so the rule does not reach it.
 - The rendered cross-section at 36 mm was compared by eye with Fig. 9 (figure-audit procedure, Step 8): the element order L4 > L5 > L6 > L7 and the rear group at about half the height of L1 agree with the drawing. The chamfer the figure draws on the rear of L6 is not modeled; surface 12 carries its inferred 9.4 mm.
+
+Superseded in part the same day: L4 and L5 carry one value on both faces again and L6 stays face by face, as the section that follows sets out.
+
+## 2026-10-08 — Square rims kept square
+
+Rule (maintainer, 2026-10-08, the square-rim point of "A clipped stated beam" in the figure-audit procedure): an element whose two faces carried one value before any rim was raised, and which the patent figure draws with a square-cut rim, keeps one value, both faces taking the higher of the two face-by-face values; an element the figure draws stepped or chamfered stays face by face. The face-by-face values are those of the section above and do not move. Both squared values pass the validator at the default `gapSagFrac` of 0.90, so the cross-gap point of the rule is not used and `gapSagFrac` is not set.
+
+Starting point. Before any rim was raised (commit d36f44b3) every rear element had one value on both faces: L4 9.5 mm, L5 9.8 mm, L6 9.4 mm, L7 7.2 mm. The proposal listing (`audit:aperture` with `--raise`) on that file gives 7: 9.5 → 10.8, 8: 9.5 → 10.7, 9: 9.8 → 10.3, 11: 9.4 → 9.7, 13: 7.2 → 7.8, 14: 7.2 → 7.8, and as the height a square rim would carry 7/8: 10.8, 9/10: 10.3, 11/12: 9.7. On the file as the section above left it the listing names no surface.
+
+| Field | Before | After | Source |
+|---|---:|---:|---|
+| Surface 7 `sd` (L4 front) | 10.8 mm | 10.8 mm | Unchanged: stated ray reaches 10.762 mm at 68.5 mm |
+| Surface 8 `sd` (L4 rear) | 10.7 mm | 10.8 mm | Squared to the higher face, figure draws a square rim; the higher face is surface 7 |
+| Surface 9 `sd` (L5 front) | 10.3 mm | 10.3 mm | Unchanged: stated ray reaches 10.201 mm at 68.5 mm |
+| Surface 10 `sd` (L5 rear) | 9.8 mm | 10.3 mm | Squared to the higher face, figure draws a square rim; the higher face is surface 9 |
+| Surface 11 `sd` (L6 front) | 9.7 mm | 9.7 mm | Unchanged: stated ray reaches 9.612 mm at 68.5 mm; figure draws L6 chamfered, so face by face |
+| Surface 12 `sd` (L6 rear) | 9.4 mm | 9.4 mm | Unchanged: stated ray reaches 7.731 mm at 68.5 mm and never clipped; figure draws L6 chamfered, so face by face |
+| Surface 13 `sd` (L7 front) | 7.8 mm | 7.8 mm | Unchanged: stated ray reaches 7.714 mm at 68.5 mm; already one value with surface 14 |
+| Surface 14 `sd` (L7 rear) | 7.8 mm | 7.8 mm | Unchanged: stated ray reaches 7.755 mm at 68.5 mm |
+
+Against the values from before 2026-10-08, surface 8 is now +13.7 % and surface 10 +5.1 %, both under the roughly 15 % above which the procedure asks for the figure to be read first. Neither squared value exceeds what Fig. 9 draws for its element (10.8 mm against 11.3 mm, 10.3 mm against 10.7 mm). At 68.5 mm surface 8 now stands 0.119 mm outside the stated ray and surface 10 0.602 mm outside it; the other six clearances are as the section above gives them.
+
+How Fig. 9 draws each rear rim (sheet 5, PDF p. 6; native 300 dpi one-bit scan, with 600 and 1200 dpi renders of the rear group for the corners). A half-height is half the distance between the centres of the upper and lower rim lines, given on the vertex scale (15.25 px/mm) and the curvature scale (15.17 px/mm):
+
+- L4 (surfaces 7, 8): square-cut. One straight rim line parallel to the axis joins the ends of the r7 and r8 arcs, above and below. Both faces end at 171.6 px, 11.25 and 11.31 mm.
+- L5 (surfaces 9, 10): square-cut, with a cut rear corner. A rim line parallel to the axis runs from the end of the r9 arc toward the r10 line, about 22 px long (1.44 mm); the prescription gives a 1.42 mm edge at that height. The rim line stands at 163.6 px, 10.73 and 10.78 mm. The r10 line, drawn in one stroke with the r11 line, runs straight as far as L6's rim height and from there slants to the end of L5's rim line, about 5 px toward the object over the 8 to 9 px (0.5 to 0.6 mm) between the two rim lines. The slant is drawn in both halves: in the upper half its outer edge steps from x = 1500 on row 746 to x = 1504 on row 750 and then runs into the two leader lines, in the lower half from x = 1498 on row 1068 to x = 1489 on row 1076. The cut is little more than the 5 px line width and leaves the rear face about 5 % under the front one. That is inside the roughly 15 % the procedure treats as drawing noise, and a third of the 27 px (1.8 mm, 18 %) chamfer on L6, so L5 is read as square-cut.
+- L6 (surfaces 11, 12): chamfered at the rear. The front face ends at the outer rim line, 154.6 px, 10.14 and 10.19 mm. From the rear end of that rim line a straight chamfer runs inward to the corner where the r12 arc ends, at about 127 px, 8.3 to 8.4 mm. The rear face ends about 1.8 mm lower than the front face.
+- L7 (surfaces 13, 14): square-cut. One rim line joins the r13 and r14 lines, above and below. Both faces end at 125.2 px, 8.21 and 8.25 mm.
+
+These readings repeat the ones in the sections above within 0.5 px. L4, L5 and L7 are square-cut and had one value before any rim was raised, so each carries one value: L4 10.8 mm, L5 10.3 mm, L7 7.8 mm as it already did. L6 is chamfered, so the listing's square-rim height of 9.7 mm for surfaces 11/12 is not applied; its front stays at 9.7 mm and its rear at 9.4 mm, the same sense as the drawing (front face ending higher than rear).
+
+Facing surfaces. The validator compares two facing surfaces over the band both reach, the smaller of the two semi-diameters, and that band is the same before and after for both gaps the squared faces border:
+
+- d8 (surfaces 8 and 9, 0.100 mm gap, band 10.3 mm): the surfaces curve apart; the rim clearance is 3.172 mm.
+- d10 (surfaces 10 and 11, 0.640 mm gap, band 9.7 mm): the two sags take 0.470860 mm, 73.6 % of the gap, against the 0.576 mm the default allows; the rim clearance is 0.169140 mm. Fig. 9 draws the r10 and r11 lines meeting at the rim.
+
+Traced at infinity focus, wide open:
+
+| Station | Stated → traced before | Limiter before | Stated → traced after | Limiter after |
+|---|---|---|---|---|
+| 36 mm | f/4.10 → f/4.10 (0.0 %) | iris (`STO`) | f/4.10 → f/4.10 (0.0 %) | iris (`STO`) |
+| 68.5 mm | f/4.10 → f/4.10 (0.0 %) | iris (`STO`) | f/4.10 → f/4.10 (0.0 %) | iris (`STO`) |
+
+Run on the file as it now stands, the proposal listing names no surface below the stated ray.
+
+Validation of the new values: the file builds and the validator reports nothing. Edge thickness is 1.557 mm (L4, at 10.8 mm; 1.594 mm at the former 10.7 mm), 1.644 mm (L5, at 10.3 mm; 1.887 mm at the former 9.8 mm), 9.178 mm (L6, at 9.4 mm) and 1.470 mm (L7). Rim slope is 4.7° at surface 8 and 3.1° at surface 10, against the 64.2° limit. The element outlines need no render trim at either endpoint or at three zoom positions between them.
+
+Render comparison (figure-audit procedure, Step 8). The lens page was captured at 36 mm, the state Fig. 9 draws, and at 68.5 mm:
+
+- Element order and layout agree with the figure: three front elements, the stop ahead of the rear group, biconvex L4, meniscus L5 close against the thick biconcave L6, and the thin L7 behind the long d12 gap.
+- Proportions at 36 mm, as rim height relative to L4: L5 0.95, L6 front 0.90 and L7 0.72 in the render, against 0.95, 0.90 and 0.73 in Fig. 9. L4 stands at 0.50 of L1 in the render and 0.53 in the figure (L1 read at 21.4 mm on 2026-10-07).
+- Rims: L4, L5 and L7 are drawn square-cut, as the figure draws them. L5's rim stands 0.6 mm above L6's, as in the figure (10.73 against 10.14 mm on the vertex scale). The cut the figure draws on L5's rear corner is not modeled.
+- L6 differs from the figure in its rear corner. The renderer joins the end of surface 11 (9.7 mm) to the end of surface 12 (9.4 mm) with one straight line, a rim that slopes 0.3 mm inward toward the rear. The figure draws a rim parallel to the axis and then a chamfer down to about 8.4 mm, so the rear face of L6 ends at 0.87 of L4's height in the render and at 0.74 in the figure.
+
+Moved with the values:
+
+- Rewritten to the traced state: the data-file header's stop-model sentences on the 68.5 mm ray and the rear-group part of its semi-diameter block, and in the note the surface 8 and surface 10 rows of the clearance table, the paragraph after it and the rear-group sentences under Verification Summary and Modeling Limits.
+
+Confirmed unchanged:
+
+- The `STO` row (sd 7.752338441 mm), the semi-diameters of surfaces 1-7, 9 and 11-14, every radius, thickness and index, the `var` gaps, `nominalFno` 4.1 and `fstopSeries`. No semi-diameter was lowered.
+- Wide-open iris radii 7.7842 mm at 36 mm and 10.3442 mm at 68.5 mm; computed focal lengths 35.9998 and 68.5002 mm.
+- Minimum element edge thickness 1.470464 mm (L7), maximum rim angle 48.515° at surface 2, and the smallest cross-gap clearance to the 0.90 limit, 0.064313 mm across d2; the d10 clearance to that limit stays 0.105140 mm.
+- Traced field coverage: 100 % at 36 mm (32.2°) and at 68.5 mm (17.4°), corner chief ray clear at 21.65 mm. Image-circle floor: no surface listed.
+- Chief-ray-limited half-field 34.228° at 36 mm and 25.192° at 68.5 mm, set by surface 14 at both stations, so the default 0.60-field fan still launches at 20.54° and 15.12°. It passes whole at 36 mm; at 68.5 mm its lowest ray (pupil fraction -0.75) is cut at surface 13 by 1.397 mm and the other four pass.
+
+Left open:
+
+- L5's square-cut reading is a judgement on a corner cut of 8 to 9 px. Read as a chamfer, L5 would be sized face by face and surface 10 would stay at 9.8 mm, 0.95 of surface 9, about the ratio at which the figure ends the rear face against the front one (154.6 against 163.6 px).
+- The chamfer Fig. 9 draws on the rear of L6 is not modeled. Surface 12 carries 9.4 mm where the figure ends the r12 arc at about 8.4 mm, 11 % lower. That is inside the roughly 15 % at which the rule records a conflict, and the rule never lowers a semi-diameter.
+- Every rear rim stands 4 to 5 % under the Fig. 9 reading for its element (10.8 against 11.3 mm, 10.3 against 10.7 mm, 9.7 against 10.2 mm, 7.8 against 8.2 mm). The figure is the check and not the source, so the values stay at the stated ray.
+- L2 is drawn at about 18.6 mm against 17.6 mm in the file. No front-group rim clips the stated beam, so the rule does not reach it.

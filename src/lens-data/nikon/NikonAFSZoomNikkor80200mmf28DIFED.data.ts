@@ -33,10 +33,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ all three stations, so nominalFno is 2.88. The patent prints no stop diameter.     ║
  * ║ The STO row holds 18.801412058 mm, the paraxial stop radius for f/2.88. The        ║
  * ║ engine solves the wide-open iris by real-ray trace at the wide station, 19.2041    ║
- * ║ mm, and zoomApertureModel "fixed-iris" holds it at every station; alone it gives   ║
- * ║ f/2.880 / 2.881 / 2.883. Traced wide open at infinity, 81.55 and 135 mm are        ║
- * ║ iris-limited at f/2.88. The tele column traces f/2.98: the surface 7 rim (L13      ║
- * ║ rear, 26.1 mm) stops the f/2.88 on-axis ray, which reaches 26.91 mm there.         ║
+ * ║ mm, and zoomApertureModel "fixed-iris" holds it at every station. Traced wide      ║
+ * ║ open at infinity, all three stations are iris-limited, at f/2.880, f/2.881 and     ║
+ * ║ f/2.883; no rim stops the f/2.88 on-axis ray.                                      ║
  * ║                                                                                    ║
  * ║ SEMI-DIAMETERS                                                                     ║
  * ║ Patent Table 1 publishes effective diameters at surfaces 1, 6, 10, and 17;         ║
@@ -44,14 +43,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ SDs are modeling values constrained by the Example 1 optical section, the          ║
  * ║ f/2.88 on-axis ray, edge thickness, actual spherical rim slope, shared-band        ║
  * ║ cross-gap intrusion, and off-axis containment. They are not patent source data.    ║
- * ║ Surfaces 9, 11, 12, 13, 16, 21, 23, 24 and 26 stand at the greatest height the     ║
- * ║ f/2.88 on-axis ray reaches on them at any station, rounded up to 0.1 mm: 26.5,     ║
- * ║ 16.2, 16.2, 17.1, 17.6, 19.1, 19.4, 19.2 and 18.2 mm.                              ║
- * ║ Surfaces 7-8 (26.1 mm) and 14-15 (16.7 mm) stay below that ray, which reaches      ║
- * ║ 26.91 and 17.06 mm at the tele column. They face each other across the 1.81 mm     ║
- * ║ L13-L14 and 2.11 mm L22-L23 air gaps, where the 90 % cross-gap rule admits no      ║
- * ║ more than 26.2 and 16.8 mm; at 27.0 and 17.1 mm the rims would stand 0.05 and      ║
- * ║ 0.15 mm apart.                                                                     ║
+ * ║ Surfaces 7, 8, 9, 11, 12, 13, 14, 15, 16, 21, 23, 24 and 26 stand at the           ║
+ * ║ greatest height the f/2.88 on-axis ray reaches on them at any station, rounded     ║
+ * ║ up to 0.1 mm: 27.0, 27.0, 26.5, 16.2, 16.2, 17.1, 17.1, 17.1, 17.6, 19.1, 19.4,    ║
+ * ║ 19.2 and 18.2 mm. Each face takes its own ray height; none is squared to the       ║
+ * ║ other face of its element.                                                         ║
+ * ║ gapSagFrac is 0.98 for two facing pairs that Figure 1 draws meeting at the rim.    ║
+ * ║ Surfaces 7-8 at 27.0 mm close 97.2 % of the 1.81 mm L13-L14 air gap and stand      ║
+ * ║ 0.05 mm apart; surfaces 14-15 at 17.1 mm close 92.8 % of the 2.11 mm L22-L23       ║
+ * ║ air gap and stand 0.15 mm apart. The spheres would touch at 27.29 and 17.74 mm.    ║
  * ║ The L43, L44 and L45 relay elements (surfaces 28-33) follow Figure 1, which is     ║
  * ║ drawn to scale: calibrated on the published diameters it gives about 16.6, 17.7    ║
  * ║ and 18.8 mm, clear of the corner chief ray (11.2-12.7 mm at surfaces 30-33).       ║
@@ -340,15 +340,15 @@ const LENS_DATA = {
     { label: "4", R: 157.7721, d: 5.3, nd: 1.49782, elemId: 3, sd: 33.5 },
     { label: "5", R: 894.9563, d: 17.08501, nd: 1, elemId: 0, sd: 33 },
     { label: "6", R: 50.7516, d: 2.2, nd: 1.84666, elemId: 4, sd: 28 },
-    { label: "7", R: 44.4939, d: 1.81, nd: 1, elemId: 0, sd: 26.1 },
-    { label: "8", R: 53.1452, d: 9, nd: 1.48749, elemId: 5, sd: 26.1 },
+    { label: "7", R: 44.4939, d: 1.81, nd: 1, elemId: 0, sd: 27 },
+    { label: "8", R: 53.1452, d: 9, nd: 1.48749, elemId: 5, sd: 27 },
     { label: "9", R: 17654.599, d: 1.99906, nd: 1, elemId: 0, sd: 26.5 },
     { label: "10", R: 365.8054, d: 1.5, nd: 1.796681, elemId: 6, sd: 17.4 },
     { label: "11", R: 33.8586, d: 7.52, nd: 1, elemId: 0, sd: 16.2 },
     { label: "12", R: -51.2952, d: 1.8, nd: 1.48749, elemId: 7, sd: 16.2 },
     { label: "13", R: 45.0578, d: 6, nd: 1.84666, elemId: 8, sd: 17.1 },
-    { label: "14", R: -287.2535, d: 2.11, nd: 1, elemId: 0, sd: 16.7 },
-    { label: "15", R: -60.5102, d: 1.8, nd: 1.796681, elemId: 9, sd: 16.7 },
+    { label: "14", R: -287.2535, d: 2.11, nd: 1, elemId: 0, sd: 17.1 },
+    { label: "15", R: -60.5102, d: 1.8, nd: 1.796681, elemId: 9, sd: 17.1 },
     { label: "16", R: 8969.214, d: 32.0553, nd: 1, elemId: 0, sd: 17.6 },
     { label: "17", R: 165.9894, d: 4.5, nd: 1.49782, elemId: 10, sd: 18.4 },
     { label: "18", R: -106.8038, d: 0.2, nd: 1, elemId: 0, sd: 18.6 },
@@ -430,6 +430,8 @@ const LENS_DATA = {
   apertureBlades: 9,
   maxFstop: 22,
 
+  // Surfaces 7-8 (L13-L14) close 97.2 % of their 1.81 mm air gap at 27.0 mm; 14-15 (L22-L23) close 92.8 % at 17.1 mm.
+  gapSagFrac: 0.98,
   yScFill: 0.5,
 } satisfies LensDataInput;
 

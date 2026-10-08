@@ -37,24 +37,32 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    at both ends. The authored STO sd, 7.752338441 mm, is the paraxial      ║
  * ║    f/4.1 radius at 36 mm.                                                  ║
  * ║    The iris limits the axial beam at both stations, and both trace f/4.10. ║
- * ║    At 68.5 mm the f/4.1 marginal ray reaches 10.762 mm at surface 7 (L4    ║
- * ║    front, sd 10.8 mm), 10.681 mm at surface 8 (sd 10.7 mm), 10.201 mm at   ║
- * ║    surface 9 (sd 10.3 mm), 9.612 mm at surface 11 (sd 9.7 mm), 7.714 mm at ║
- * ║    surface 13 and 7.755 mm at surface 14 (sd 7.8 mm each), so no           ║
- * ║    rear-group rim cuts it.                                                 ║
+ * ║    At 68.5 mm the f/4.1 marginal ray reaches 10.762 mm at surface 7 and    ║
+ * ║    10.681 mm at surface 8 (L4, sd 10.8 mm), 10.201 mm at surface 9 and     ║
+ * ║    9.698 mm at surface 10 (L5, sd 10.3 mm), 9.612 mm at surface 11 (L6     ║
+ * ║    front, sd 9.7 mm), 7.731 mm at surface 12 (L6 rear, sd 9.4 mm), and     ║
+ * ║    7.714 mm at surface 13 and 7.755 mm at surface 14 (L7, sd 7.8 mm), so   ║
+ * ║    no rear-group rim cuts it.                                              ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS (inferred, not patent-listed):                             ║
  * ║    Front group (surfaces 1-6): inferred from exact spherical meridional    ║
  * ║    ray bundles at the patent endpoint fields, then constrained by edge     ║
  * ║    thickness, actual rim slope, the Fig. 9 silhouette, and the default     ║
  * ║    0.90 shared-band cross-gap rule.                                        ║
- * ║    Rear group (surfaces 7-14): surfaces 7, 8, 9, 11, 13 and 14 are sized   ║
- * ║    to the stated beam. Each carries the height the f/4.1 on-axis ray       ║
- * ║    reaches there at 68.5 mm, rounded up to 0.1 mm: 10.8, 10.7, 10.3, 9.7,  ║
- * ║    7.8 and 7.8 mm for 10.762, 10.681, 10.201, 9.612, 7.714 and 7.755 mm.   ║
- * ║    At 0.1 mm precision each is the smallest rim that passes the printed    ║
- * ║    f/4.1. Surfaces 10 and 12 carry the values inferred the same way as the ║
- * ║    front group, 9.8 and 9.4 mm, which clear the ray's 9.698 and 7.731 mm.  ║
+ * ║    Rear group (surfaces 7-14): sized to the stated beam. At 68.5 mm the    ║
+ * ║    f/4.1 on-axis ray reaches 10.762, 10.681, 10.201, 9.698, 9.612, 7.731,  ║
+ * ║    7.714 and 7.755 mm at surfaces 7 to 14. Rounded up to 0.1 mm, a ray     ║
+ * ║    height is the smallest rim at that precision that passes the printed    ║
+ * ║    f/4.1.                                                                  ║
+ * ║    Square rims: Fig. 9 draws L4, L5 and L7 square-cut, one rim line        ║
+ * ║    parallel to the axis joining the front and rear faces (L5's rear corner ║
+ * ║    is cut by about 0.5 mm, little more than a drawn line width), so each   ║
+ * ║    carries one value on both faces, the higher of its two rounded ray      ║
+ * ║    heights: 10.8 mm (set by surface 7), 10.3 mm (set by surface 9) and     ║
+ * ║    7.8 mm (surfaces 13 and 14 alike).                                      ║
+ * ║    Fig. 9 draws L6 with a chamfer on its rear, so its two faces are sized  ║
+ * ║    separately: surface 11 carries its rounded ray height, 9.7 mm, and      ║
+ * ║    surface 12 carries 9.4 mm, inferred the same way as the front group.    ║
  * ║    Fig. 9 (sheet 5, the 36 mm section) is the check on those values, not   ║
  * ║    their source. Read as half the distance between the centres of each     ║
  * ║    element's upper and lower rim lines on the 300 dpi scan, at 15.25 px/mm ║
@@ -65,11 +73,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    9.4 mm, lies between that corner and L6's drawn outer rim. The patent   ║
  * ║    calls Fig. 9 a schematic view.                                          ║
  * ║    The rear rims pass the f/4.1 axial beam at both endpoints; at 68.5 mm   ║
- * ║    the six sized rims stand 0.02 to 0.10 mm outside its marginal ray. The  ║
- * ║    format-corner chief ray is clear at both endpoints (32.2° at 36 mm,     ║
- * ║    17.4° at 68.5 mm, 21.65 mm image height). The default 0.60-field fan    ║
- * ║    passes whole at 36 mm; at 68.5 mm its lowest ray is cut at L7           ║
- * ║    (surface 13).                                                           ║
+ * ║    they stand outside its marginal ray by 0.04 mm (surface 7) to 0.12 mm   ║
+ * ║    (surface 8) on L4, on the fronts of L5 and L6 and on L7, by 0.60 mm at  ║
+ * ║    surface 10 and by 1.67 mm at surface 12. The format-corner chief ray is ║
+ * ║    clear at both endpoints (32.2° at 36 mm, 17.4° at 68.5 mm, 21.65 mm     ║
+ * ║    image height). The default 0.60-field fan passes whole at 36 mm; at     ║
+ * ║    68.5 mm its lowest ray is cut at L7 (surface 13).                       ║
  * ║    The extreme wide-field outer-pupil ray is allowed to vignette at L2;    ║
  * ║    increasing L2 enough to pass that ray violates the d2 cross-gap rule.   ║
  * ║                                                                            ║
@@ -217,9 +226,9 @@ const LENS_DATA = {
     { label: "6", R: 89.072, d: 39.2005, nd: 1, elemId: 0, sd: 18 },
     { label: "STO", R: 1e15, d: 1.9105, nd: 1, elemId: 0, sd: 7.752338441 },
     { label: "7", R: 39.6, d: 3.5, nd: 1.744, elemId: 4, sd: 10.8 },
-    { label: "8", R: -132.321, d: 0.1, nd: 1, elemId: 0, sd: 10.7 },
+    { label: "8", R: -132.321, d: 0.1, nd: 1, elemId: 0, sd: 10.8 },
     { label: "9", R: 21.2, d: 4.04, nd: 1.65844, elemId: 5, sd: 10.3 },
-    { label: "10", R: 193.485, d: 0.64, nd: 1, elemId: 0, sd: 9.8 },
+    { label: "10", R: 193.485, d: 0.64, nd: 1, elemId: 0, sd: 10.3 },
     { label: "11", R: -206.849, d: 6.04, nd: 1.80518, elemId: 6, sd: 9.7 },
     { label: "12", R: 16.57, d: 6.7, nd: 1, elemId: 0, sd: 9.4 },
     { label: "13", R: -92.459, d: 2.23, nd: 1.58144, elemId: 7, sd: 7.8 },

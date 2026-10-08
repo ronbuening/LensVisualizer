@@ -20,15 +20,18 @@
  *
  * A rim-limited row is not automatically a data error. Check whether the semi-diameter is printed in the source or
  * was inferred, then follow agent_docs/patent-figure-sd-audit-procedure.md ("a clipped stated beam"): an inferred rim
- * rises only to the height the stated beam needs, on the surfaces that clip. `--raise` prints those heights. Open rows
- * live in agent_docs/sd-audit-queue.md, Section I.
+ * rises only to the height the stated beam needs, on the surfaces that clip, and an element the patent figure draws
+ * with a square rim keeps both faces at one height. `--raise` prints both values. Open rows live in
+ * agent_docs/sd-audit-queue.md, Section I.
  *
  * Folded paths are skipped: their aperture is annular. Read-only. Usage:
  *   node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-aperture.mjs [data.ts ...]
  *     --over=<fraction>    list stations whose traced f-number differs by more than this (default 0.03)
  *     --markdown           queue-table output
  *     --raise              instead of the census, list per lens the smallest semi-diameter raises that pass the
- *                          stated beam at every station (a proposal table; nothing is written)
+ *                          stated beam at every station, and for each element whose two faces share one value now
+ *                          and would then differ, the height a square-cut rim would carry (a proposal table; nothing
+ *                          is written)
  *     --json=<path>        write every station as JSON
  *     --all                include hidden lenses in the full census (a named file is always audited)
  */
@@ -212,8 +215,25 @@ for (const path of files) {
       data.sourceErrata?.some((entry) => entry.status === "unresolved") && "unresolved source contradiction",
       changes.some((change) => change.to / change.from - 1 > RAISE_REVIEW) && "raise over 15 %: read the figure",
     ].filter(Boolean);
+    /* Per element whose two faces share one value now and would end apart: the height a square-cut rim would carry. */
+    const after = new Map(data.surfaces.map((surface) => [surface.label, surface.sd]));
+    for (const change of changes) after.set(change.label, change.to);
+    const raised = new Set(changes.map((change) => change.label));
+    const squares = [];
+    for (let i = 0; i < data.surfaces.length - 1; i++) {
+      const front = data.surfaces[i];
+      const rear = data.surfaces[i + 1];
+      if (!(front.elemId > 0) || front.label === "STO" || rear.label === "STO") continue;
+      if (!raised.has(front.label) && !raised.has(rear.label)) continue;
+      if (front.sd !== rear.sd) continue;
+      const a = after.get(front.label);
+      const b = after.get(rear.label);
+      if (typeof a === "number" && typeof b === "number" && a !== b) {
+        squares.push({ front: front.label, rear: rear.label, value: Math.max(a, b) });
+      }
+    }
     if (changes.length > 0 || untraceable) {
-      raises.push({ key: data.key, name: data.name, file: relative(LENS_DIR, path), changes, flags });
+      raises.push({ key: data.key, name: data.name, file: relative(LENS_DIR, path), changes, squares, flags });
     }
   }
 }
@@ -225,12 +245,14 @@ if (RAISE) {
   raises.sort(
     (a, b) => Math.max(0, ...b.changes.map((c) => c.to / c.from)) - Math.max(0, ...a.changes.map((c) => c.to / c.from)),
   );
-  console.log("| Lens | File | Surfaces: semi-diameter now → needed | Largest raise | Flags |");
-  console.log("|---|---|---|---:|---|");
+  console.log(
+    "| Lens | File | Surfaces: semi-diameter now → needed | Square rim: faces → one height | Largest raise | Flags |",
+  );
+  console.log("|---|---|---|---|---:|---|");
   for (const entry of raises) {
     const largest = Math.max(0, ...entry.changes.map((change) => change.to / change.from - 1));
     console.log(
-      `| ${entry.name.replaceAll("|", "\\|")} | \`${entry.file}\` | ${entry.changes.map((change) => `${change.label}: ${change.from} → ${change.to}`).join(", ") || "none"} | ${(largest * 100).toFixed(1)} % | ${entry.flags.join("; ")} |`,
+      `| ${entry.name.replaceAll("|", "\\|")} | \`${entry.file}\` | ${entry.changes.map((change) => `${change.label}: ${change.from} → ${change.to}`).join(", ") || "none"} | ${entry.squares.map((square) => `${square.front}/${square.rear}: ${square.value}`).join(", ") || "none"} | ${(largest * 100).toFixed(1)} % | ${entry.flags.join("; ")} |`,
     );
   }
   const clean = raises.filter((entry) => entry.flags.length === 0);

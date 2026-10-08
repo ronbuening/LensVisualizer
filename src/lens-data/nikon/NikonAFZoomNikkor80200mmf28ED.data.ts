@@ -38,13 +38,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  rays over all four published zoom/focus states at y' = 21.6 mm, then        ║
  * ║  constrained by spherical edge thickness, actual rim slope, shared-gap       ║
  * ║  sag intrusion, and the production mechanical envelope. Surfaces 7, 9,       ║
- * ║  10 and 13-23 sit at the height the stated F/2.88 on-axis ray reaches at     ║
- * ║  the 196 mm station, rounded up to 0.1 mm. Surfaces 11 and 12 are            ║
- * ║  18.3 mm, under that ray (18.695 and 18.698 mm): across the 2.500 mm d11     ║
- * ║  gap their combined sag exceeds the 0.90 intrusion limit above 18.59 mm.     ║
- * ║  The on-axis beam traces f/2.88 at 80 mm, limited by the iris, and           ║
- * ║  f/2.94 at 196 mm, limited by the rim of surface 12. The 38.0 mm front       ║
- * ║  SD remains inside the 77 mm filter diameter published by Nikon for the      ║
+ * ║  10, 12, 13, 15, 16 and 18-23 sit at the height the stated F/2.88 on-axis    ║
+ * ║  ray reaches at the 196 mm station, rounded up to 0.1 mm. Figure 1 draws     ║
+ * ║  L24, L31 and D4 with square-cut rims, and each carries on every face the    ║
+ * ║  highest value any of its faces needs: 18.8 mm on surfaces 10-11, 19.7 mm    ║
+ * ║  on 14-15 and 20.0 mm on 16-18. gapSagFrac = 0.92 is required at the d11     ║
+ * ║  air gap between D3 and L25: at 18.7 mm surfaces 11 and 12 take 0.9103 of    ║
+ * ║  its 2.500 mm and stand 0.224 mm apart, where Figure 1 draws the two         ║
+ * ║  faces meeting at the rim. The iris limits the on-axis beam at both          ║
+ * ║  stations: f/2.88 at 80 mm and f/2.89 at 196 mm. The 38.0 mm front SD        ║
+ * ║  remains inside the 77 mm filter diameter published by Nikon for the         ║
  * ║  later optically continuous D version.                                       ║
  * ║                                                                              ║
  * ║  GLASS / SPECTRAL DATA                                                       ║
@@ -307,14 +310,16 @@ const LENS_DATA = {
     { label: "8", R: 48.003, d: 7.1, nd: 1, elemId: 0, sd: 18.5 },
     { label: "9", R: -65.921, d: 1.5, nd: 1.5168, elemId: 6, sd: 18.3 },
     { label: "10", R: 52.925, d: 4.7, nd: 1.80458, elemId: 7, sd: 18.8 },
-    // 11 and 12 sit under the stated F/2.88 ray (18.70 mm at 196 mm); the 2.5 mm gap between them caps both at 18.59 mm
-    { label: "11", R: 557.45, d: 2.5, nd: 1, elemId: 0, sd: 18.3 },
-    { label: "12", R: -90.1, d: 1.6, nd: 1.713, elemId: 8, sd: 18.3 },
+    // 11 shares L24's square rim with 10; 11 and 12 take 0.9103 of the 2.5 mm gap between them (gapSagFrac 0.92)
+    { label: "11", R: 557.45, d: 2.5, nd: 1, elemId: 0, sd: 18.8 },
+    { label: "12", R: -90.1, d: 1.6, nd: 1.713, elemId: 8, sd: 18.7 },
     { label: "13", R: 221.989, d: 26.536, nd: 1, elemId: 0, sd: 19.2 },
-    { label: "14", R: 861.84, d: 4.5, nd: 1.51835, elemId: 9, sd: 19.5 },
+    // L31 has a square rim: 14 carries the height 15 needs
+    { label: "14", R: 861.84, d: 4.5, nd: 1.51835, elemId: 9, sd: 19.7 },
     { label: "15", R: -67.73, d: 0.2, nd: 1, elemId: 0, sd: 19.7 },
     { label: "16", R: 104.039, d: 7.5, nd: 1.56384, elemId: 10, sd: 20 },
-    { label: "17", R: -52.847, d: 1.7, nd: 1.75692, elemId: 11, sd: 19.9 },
+    // D4 has one square rim: the junction carries the height 16 and 18 need
+    { label: "17", R: -52.847, d: 1.7, nd: 1.75692, elemId: 11, sd: 20 },
     { label: "18", R: -546.069, d: 18.005, nd: 1, elemId: 0, sd: 20 },
     { label: "19", R: 50.319, d: 5.8, nd: 1.49782, elemId: 12, sd: 20 },
     { label: "20", R: 885.62, d: 0.2, nd: 1, elemId: 0, sd: 19.8 },
@@ -382,6 +387,8 @@ const LENS_DATA = {
   maxFstop: 22,
 
   /* ── Layout ── */
+  // Surfaces 11 and 12 (D3 rear, L25 front) take 0.9103 of the 2.500 mm d11 air gap at 18.7 mm
+  gapSagFrac: 0.92,
   yScFill: 0.44,
 } satisfies LensDataInput;
 
