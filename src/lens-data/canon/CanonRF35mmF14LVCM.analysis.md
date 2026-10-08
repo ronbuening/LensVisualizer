@@ -7,7 +7,7 @@
 **Priority:** Japanese Patent Application 2023-035919, filed March 8, 2023\
 **Filed:** March 5, 2024\
 **Published:** September 12, 2024\
-**Inventor:** Takahiro Ode\
+**Inventors:** Takashi Ode, Takahiro Hatada\
 **Applicant:** Canon Kabushiki Kaisha\
 **Title:** *Optical System and Image Pickup Apparatus Having the Same*\
 **Embodiment analyzed:** Numerical Example 2
@@ -265,7 +265,7 @@ No uniform scale is applied: $s=1$. Consequently all radii, spacings, semi-diame
 3. Canon U.S.A., **Canon Announces First Lens in Series of Fixed Focal Length RF Hybrid Lenses — RF35mm F1.4 L VCM**, June 5, 2024. https://www.usa.canon.com/newsroom/2024/20240605-lens-flash
 4. OHARA, **Optical Glass — Detailed Data**, catalog PDF used for the coordinate-proxy and line-index checks. https://oharacorp.com/wp-content/uploads/2025/04/all-detailed-data-20250418.pdf
 5. HOYA Optical World, **Optical Glass Data**, catalog spreadsheet used for the coordinate-proxy and line-index checks. https://www.hoya-opticalworld.com/common/xls/HOYA20260601.xlsx
-6. Takahiro Ode, **Optical System and Image Pickup Apparatus Having the Same**, US 2024/0302626 A1, published September 12, 2024; Numerical Example 2, Fig. 4, Tables 3–4 and 9, ¶0031, ¶0038, ¶0047–¶0048, ¶0071, ¶0078–¶0081.
+6. Takashi Ode and Takahiro Hatada, **Optical System and Image Pickup Apparatus Having the Same**, US 2024/0302626 A1, published September 12, 2024; Numerical Example 2, Fig. 4, Tables 3–4 and 9, ¶0031, ¶0038, ¶0047–¶0048, ¶0071, ¶0078–¶0081.
 
 ## Image-plane source audit (2026-09-25)
 

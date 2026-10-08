@@ -4,7 +4,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — CANON RF 35mm f/1.4 L VCM                                   ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Patent: US 2024/0302626 A1, Numerical Example 2 (Takahiro Ode / Canon).  ║
+ * ║  Patent: US 2024/0302626 A1, Numerical Example 2                         ║
+ * ║  (Takashi Ode, Takahiro Hatada / Canon).                                 ║
  * ║  Production correlation: Canon RF35mm F1.4 L VCM.                        ║
  * ║  14 physical elements / 11 air-separated groups; 3 aspherical surfaces.  ║
  * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent states that B2 and  ║
@@ -85,7 +86,7 @@ const LENS_DATA = {
   lensMounts: ["canon-rf"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2024/0302626 A1",
-  patentAuthors: ["Takahiro Ode"],
+  patentAuthors: ["Takashi Ode", "Takahiro Hatada"],
   patentAssignees: ["Canon Inc."],
   patentYear: 2024,
   elementCount: 14,

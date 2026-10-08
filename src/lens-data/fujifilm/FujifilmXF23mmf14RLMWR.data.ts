@@ -150,7 +150,7 @@ const LENS_DATA = {
       vd: 68.62,
       fl: 25.84,
       glass: "FCD505 (HOYA) ED fluorophosphate crown",
-      apd: "patent",
+      apd: "inferred",
       dPgF: 0.015956,
       apdNote:
         "Catalog-derived (patent lists only nd and νd): the repo's HOYA FCD505 catalog curve gives PgF = 0.5443, runtime dPgF +0.01596; HOYA's catalog ΔPgF +0.0194 is on HOYA's own line.",
@@ -205,7 +205,7 @@ const LENS_DATA = {
       vd: 68.62,
       fl: 22.676,
       glass: "FCD505 (HOYA) ED fluorophosphate crown",
-      apd: "patent",
+      apd: "inferred",
       dPgF: 0.015956,
       apdNote:
         "Catalog-derived (patent lists only nd and νd): the repo's HOYA FCD505 catalog curve gives PgF = 0.5443, runtime dPgF +0.01596; HOYA's catalog ΔPgF +0.0194 is on HOYA's own line.",
@@ -232,7 +232,7 @@ const LENS_DATA = {
       vd: 68.62,
       fl: 56.305,
       glass: "FCD505 (HOYA) ED fluorophosphate crown",
-      apd: "patent",
+      apd: "inferred",
       dPgF: 0.015956,
       apdNote:
         "Catalog-derived (patent lists only nd and νd): the repo's HOYA FCD505 catalog curve gives PgF = 0.5443, runtime dPgF +0.01596; HOYA's catalog ΔPgF +0.0194 is on HOYA's own line.",

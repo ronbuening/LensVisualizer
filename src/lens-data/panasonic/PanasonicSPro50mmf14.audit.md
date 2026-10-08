@@ -132,3 +132,12 @@ the catalog-derived route: the patent prints no a and b for its line, so none we
 
 - L2, L3, L4, L7, L8, L9, L11 and L13 carry no `dPgF`. The patent prints none for them and none was added.
 - The `apd: "patent"` tags stay: the patent itself singles out these five elements by printing a dPgF for them.
+
+## 2026-10-08 - Analysis prose: L2 glass name
+
+- The "Chromatic correction strategy" paragraph of the analysis still called L2 "S-BSL7", a leftover from before the
+  2026-09-23 relabel. It now says "N-BK7 class", matching the data file's L2 label and the analysis's own L2 section
+  and glass table.
+- Checked against the local `patents/JPWO2020158622A1.pdf`, Numerical Example 3 (PDF page 21, text layer): surface 3
+  prints nd 1.51680, νd 64.2, the N-BK7 coordinate, not S-BSL7's 1.51633 / 64.14.
+- No data-file change.

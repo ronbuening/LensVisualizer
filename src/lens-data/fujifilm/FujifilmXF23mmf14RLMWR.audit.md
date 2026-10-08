@@ -69,3 +69,18 @@ Patent: US 2022/0276464 A1, Example 7
 - Left: no `dPgF` value. No `dPgF` was added to the twelve elements without one, and no element authors
   `nC`/`nF`/`ng`. No `nd`, `νd`, glass label, `apd` tag or surface changed. The `apd: "patent"` tag on L21, L25 and
   L31 was outside this pass and is kept, although the patent itself does not describe any glass as anomalous.
+
+## 2026-10-08 - `apd` on the three FCD505 elements changed from "patent" to "inferred"
+
+- Changed: L21, L25 and L31 carry `apd: "inferred"` instead of `apd: "patent"`.
+- Why: `LENS_DATA_SPEC.md` reserves `"patent"` for a source that identifies the material as anomalous, and US 2022/0276464 A1
+  does not. A text-layer search of all 51 pages of the local `patents/US20220276464A1.pdf` finds no "dispersion",
+  "anomalous" or "abnormal"; the one "partial" hit is "partially not repeated". On the rendered PDF page 32 (printed
+  page 4), ¶0069–¶0073 credit chromatic correction to positive/negative pairings and cemented lenses in the focus group,
+  G1 and G3, and name no material. Example 7 Table 25 (PDF page 42) prints Nd and νd only, as the entry above records.
+- What the tag does: it is a display label, not an engine input. Allowed values are `false`, `"patent"` and
+  `"inferred"`. The element inspector prints "APD (PATENT)" or "APD (INFERRED)", and the diagram uses a separate fill
+  and stroke for each. The three elements now read as inferred, like L13 and L17. The inference rests on the exact
+  FCD505 coordinate (nd 1.59282 / νd 68.62) and Fujifilm's published three-ED count.
+- Unchanged: `dPgF` (0.015956), every `apdNote`, glass label, `nd`, `νd`, surface and semi-diameter. The analysis does
+  not state the tag, so it is unchanged.

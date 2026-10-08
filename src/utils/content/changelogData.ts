@@ -21,6 +21,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-08",
     type: "fix",
+    summary:
+      "Canon RF 35mm f/1.4 L VCM credits both patent inventors; Fujifilm XF 23mm f/1.4 R LM WR ED glass is marked inferred, not patent-stated",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
     summary: "Partial-dispersion values on 27 lenses now use the same reference line as the chromatic trace",
   },
   {
