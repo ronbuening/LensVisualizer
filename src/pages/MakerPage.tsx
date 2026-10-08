@@ -24,7 +24,7 @@ import type { LensMountId, LensMountMetadata } from "../utils/catalog/lensTaxono
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
 import type { LensSummary } from "../utils/catalog/lensSummaries.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensSummary }[] {
   return SUMMARY_KEYS.filter(
@@ -83,13 +83,19 @@ export default function MakerPage() {
     >
       {({ theme: t }) => (
         <>
-          <h1 style={H1_STYLE}>{displayName} Lenses</h1>
+          <h1 style={H1_STYLE}>{textRun(displayName, " Lenses")}</h1>
 
           {details && (
             <div style={{ marginBottom: "1.5rem" }}>
               <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
-                {details.founded != null && <>Est. {details.founded} · </>}
-                {details.headquarters} · {lenses.length} {pluralize(lenses.length, "lens")}
+                {details.founded != null && (
+                  <>
+                    <span>{textRun("Est. ", details.founded, " · ")}</span>
+                  </>
+                )}
+                <span>
+                  {textRun(details.headquarters, " · ", lenses.length, " ", pluralize(lenses.length, "lens"))}
+                </span>
               </p>
               {details.history.split("\n\n").map((paragraph, i) => (
                 <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
@@ -98,7 +104,7 @@ export default function MakerPage() {
               ))}
               {details.notableDesigns && (
                 <p style={{ fontSize: "0.8rem", color: t.muted, fontStyle: "italic", marginBottom: "0.5rem" }}>
-                  Notable designs: {details.notableDesigns}
+                  {textRun("Notable designs: ", details.notableDesigns)}
                 </p>
               )}
             </div>
@@ -106,7 +112,7 @@ export default function MakerPage() {
 
           {!details && (
             <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
-              {lenses.length} interactive lens {pluralize(lenses.length, "diagram")}
+              {textRun(lenses.length, " interactive lens ", pluralize(lenses.length, "diagram"))}
             </p>
           )}
 
@@ -129,7 +135,7 @@ export default function MakerPage() {
                 ))
               ) : (
                 <p style={{ fontSize: "0.85rem", color: t.muted, margin: 0 }}>
-                  No source-derived lens diagrams have been published for {displayName} yet.
+                  {textRun("No source-derived lens diagrams have been published for ", displayName, " yet.")}
                 </p>
               )}
             </div>

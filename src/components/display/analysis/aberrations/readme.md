@@ -73,7 +73,7 @@ flowchart LR
 
 - Direct source files: 12
 - Direct subfolders: 0
-- Main outbound areas: src/components/display (26), src/types (11), src/optics/aberrationAnalysis.ts (10), src/optics/compat.ts (6), package:react (3), src/optics/types.ts (3), src/components/controls (2), src/optics/optics.ts (2), +2 more
+- Main outbound areas: src/components/display (26), src/types (11), src/optics/aberrationAnalysis.ts (10), src/optics/compat.ts (6), package:react (3), src/optics/types.ts (3), src/components/controls (2), src/optics/optics.ts (2), +3 more
 - External consumers: src/benchmarks, src/components/display
 
 ## Files
@@ -88,7 +88,7 @@ flowchart LR
 | `SADiagram.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, SADiagram |
 | `SagittalComaSection.tsx` | React component module | src/components/display (4), src/optics/aberrationAnalysis.ts, src/types | src/benchmarks, src/components/display | default, SagittalComaSection |
 | `SectionHeader.tsx` | React component module | src/components/controls (2), src/types | src/components/display (6) | default, SectionHeader |
-| `SphericalAberrationSection.tsx` | React component module | src/components/display (3), src/optics/aberrationAnalysis.ts, src/types, src/utils/featureFlags.ts | src/benchmarks, src/components/display | default, SphericalAberrationSection |
+| `SphericalAberrationSection.tsx` | React component module | src/components/display (3), src/optics/aberrationAnalysis.ts, src/types, src/utils/featureFlags.ts, src/utils/text.ts | src/benchmarks, src/components/display | default, SphericalAberrationSection |
 | `useComaData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/aberrationAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, +2 more | src/components/display | default, useComaData |
 | `useFieldCurvatureData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/aberrationAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, +1 more | src/components/display | default, useFieldCurvatureData |
 | `useSphericalAberrationData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/aberrationAnalysis.ts, src/optics/types.ts, src/types, +1 more | src/components/display | default, useSphericalAberrationData |

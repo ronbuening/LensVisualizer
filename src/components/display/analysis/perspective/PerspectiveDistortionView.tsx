@@ -161,7 +161,7 @@ function PerspectiveDistortionGrid({ analysis, context, t }: PerspectiveDistorti
               aria-hidden="true"
               style={{ width: 13, borderTop: `2px ${family.dash ? "dashed" : "solid"} ${family.color}` }}
             />
-            {family.label}
+            <span>{family.label}</span>
           </span>
         ))}
       </div>

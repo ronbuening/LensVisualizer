@@ -14,7 +14,7 @@ import { LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
 import { TELECONVERTER_SUMMARY_LIST } from "../utils/catalog/teleconverterSummaries.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 
 const SEO_DESCRIPTION =
   "Browse patent-derived rear teleconverters and mount each one on a compatible lens to trace the combined optical system.";
@@ -74,12 +74,16 @@ export default function TeleconvertersIndexPage() {
                   {teleconverter.name}
                 </Link>
                 <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                  ({hostCount} compatible {pluralize(hostCount, "lens")})
+                  {textRun("(", hostCount, " compatible ", pluralize(hostCount, "lens"), ")")}
                 </span>
                 <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
-                  {teleconverter.magnification}× ·{" "}
-                  {teleconverter.lensMounts.map((mountId) => LENS_MOUNT_BY_ID[mountId].label).join(", ")}
-                  {teleconverter.universal ? " · universal" : ""}
+                  {textRun(
+                    teleconverter.magnification,
+                    "× ·",
+                    " ",
+                    teleconverter.lensMounts.map((mountId) => LENS_MOUNT_BY_ID[mountId].label).join(", "),
+                    teleconverter.universal ? " · universal" : "",
+                  )}
                 </p>
               </div>
             );

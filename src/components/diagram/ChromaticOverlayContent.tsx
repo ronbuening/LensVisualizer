@@ -14,6 +14,7 @@ import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
 import { formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import ChromaticFanSpreadWidget from "./ChromaticFanSpreadWidget.js";
+import { textRun } from "../../utils/text.js";
 
 interface ChromaticOverlayContentProps {
   chromaticRayFanSpread: ChromaticRayFanSpread;
@@ -133,10 +134,17 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
           }}
         >
           {chromaticRayFanSpreads?.onAxis && (
-            <span>LoCA / AXIAL COLOR {formatSpreadUmFromMm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm)}</span>
+            <span>
+              {textRun(
+                "LoCA / AXIAL COLOR ",
+                formatSpreadUmFromMm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm),
+              )}
+            </span>
           )}
           {chromaticRayFanSpreads?.offAxis && (
-            <span>OFF-AXIS FAN {formatSpreadUmFromMm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)}</span>
+            <span>
+              {textRun("OFF-AXIS FAN ", formatSpreadUmFromMm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm))}
+            </span>
           )}
         </div>
       )}
@@ -149,14 +157,30 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
           fontFamily: "inherit",
         }}
       >
-        <strong>LoCA / axial color</strong> shows where the active on-axis marginal wavelengths focus along the optical
-        axis. <strong>Off-axis fan</strong> shows where the displayed off-axis marginal fan lands at the image plane.
-        Both charts use the same selected spectral channels: {CHROMATIC_CHANNEL_METADATA.R.description} (
-        {CHROMATIC_CHANNEL_METADATA.R.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.G.description} (
-        {CHROMATIC_CHANNEL_METADATA.G.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.B.description} (
-        {CHROMATIC_CHANNEL_METADATA.B.wavelengthLabel}), and, when enabled, {CHROMATIC_CHANNEL_METADATA.V.description} (
-        {CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}). These are geometric marginal-ray diagnostics for the displayed
-        fan traces; lateral color/TCA remains a separate chief-ray image-height metric in the chromatic analysis drawer.
+        <strong>LoCA / axial color</strong>
+        <span>{" shows where the active on-axis marginal wavelengths focus along the optical axis. "}</span>
+        <strong>Off-axis fan</strong>
+        <span>
+          {textRun(
+            " shows where the displayed off-axis marginal fan lands at the image plane. Both charts use the same selected spectral channels: ",
+            CHROMATIC_CHANNEL_METADATA.R.description,
+            " (",
+            CHROMATIC_CHANNEL_METADATA.R.wavelengthLabel,
+            "), ",
+            CHROMATIC_CHANNEL_METADATA.G.description,
+            " (",
+            CHROMATIC_CHANNEL_METADATA.G.wavelengthLabel,
+            "), ",
+            CHROMATIC_CHANNEL_METADATA.B.description,
+            " (",
+            CHROMATIC_CHANNEL_METADATA.B.wavelengthLabel,
+            "), and, when enabled, ",
+            CHROMATIC_CHANNEL_METADATA.V.description,
+            " (",
+            CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel,
+            "). These are geometric marginal-ray diagnostics for the displayed fan traces; lateral color/TCA remains a separate chief-ray image-height metric in the chromatic analysis drawer.",
+          )}
+        </span>
       </p>
     </div>
   );

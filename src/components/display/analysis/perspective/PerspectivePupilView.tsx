@@ -2,6 +2,7 @@ import type { PerspectivePupilAnalysis } from "../../../../optics/perspective/in
 import type { Theme } from "../../../../types/theme.js";
 import { AnalysisMetricRow } from "../analysisUi.js";
 import PerspectiveSignedChart from "./PerspectiveSignedChart.js";
+import { textRun } from "../../../../utils/text.js";
 
 interface PerspectivePupilViewProps {
   analysis: PerspectivePupilAnalysis;
@@ -70,9 +71,17 @@ export default function PerspectivePupilView({ analysis, t }: PerspectivePupilVi
       <div style={{ display: "grid", gap: 3, color: t.muted, fontSize: 8.5 }} aria-label="Pupil sample status">
         {analysis.samples.map((sample) => (
           <div key={`${sample.requestedSensorUv.u}:${sample.requestedSensorUv.v}`}>
-            {signedFieldLabel(sample.requestedSensorUv.v)}: {sample.status}; EP{" "}
-            {formatSignedMm(sample.entrance?.displacementFromPosedIntrinsic?.vMm)}; XP{" "}
-            {formatSignedMm(sample.exit?.displacementFromPosedIntrinsic?.vMm)}
+            {textRun(
+              signedFieldLabel(sample.requestedSensorUv.v),
+              ": ",
+              sample.status,
+              "; EP",
+              " ",
+              formatSignedMm(sample.entrance?.displacementFromPosedIntrinsic?.vMm),
+              "; XP",
+              " ",
+              formatSignedMm(sample.exit?.displacementFromPosedIntrinsic?.vMm),
+            )}
           </div>
         ))}
       </div>

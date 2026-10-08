@@ -101,10 +101,11 @@ function SampleStatusList({ analysis, t }: PerspectiveVignettingViewProps) {
     <div style={{ display: "grid", gap: 3, color: t.muted, fontSize: 8.5 }} aria-label="Vignetting sample status">
       {analysis.samples.map((sample) => (
         <div key={`${sample.requestedSensorUv.u}:${sample.requestedSensorUv.v}`}>
-          {signedFieldLabel(sample.requestedSensorUv.v)}: {sample.status}
-          {sample.throughput
-            ? `; geometric ${formatPercent(sample.throughput.absoluteGeometricTransmission)}, flux ${formatPercent(sample.throughput.absoluteTransmittedFlux)}`
-            : ""}
+          {`${signedFieldLabel(sample.requestedSensorUv.v)}: ${sample.status}${
+            sample.throughput
+              ? `; geometric ${formatPercent(sample.throughput.absoluteGeometricTransmission)}, flux ${formatPercent(sample.throughput.absoluteTransmittedFlux)}`
+              : ""
+          }`}
         </div>
       ))}
     </div>

@@ -27,6 +27,7 @@ import useInteractionSignal from "../hooks/useInteractionSignal.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { GroupMovementMode } from "../../types/groupMovement.js";
+import { textRun } from "../../utils/text.js";
 
 interface VarReadout {
   label: string;
@@ -333,7 +334,7 @@ export default function DiagramControls({
             }}
           >
             <span style={{ opacity: showEffectiveFocalLength ? 1 : 0.5 }}>
-              {showEffectiveFocalLength ? "\u2611" : "\u2610"} Show effective focal length
+              {textRun(showEffectiveFocalLength ? "\u2611" : "\u2610", " Show effective focal length")}
             </span>
           </button>
         </SliderControl>
@@ -400,9 +401,7 @@ export default function DiagramControls({
                 }}
               >
                 {varReadouts.map(({ label, val }) => (
-                  <span key={label}>
-                    {label} {val}
-                  </span>
+                  <span key={label}>{textRun(label, " ", val)}</span>
                 ))}
               </div>
               {eflChanged && (
@@ -415,7 +414,7 @@ export default function DiagramControls({
                     transition: "color 0.3s",
                   }}
                 >
-                  EFL {dynamicEFL.toFixed(2)} mm
+                  {textRun("EFL ", dynamicEFL.toFixed(2), " mm")}
                 </div>
               )}
             </>
@@ -470,9 +469,7 @@ export default function DiagramControls({
               }}
             >
               {aberrationReadouts.map(({ label, val }) => (
-                <span key={label}>
-                  {label} {val}
-                </span>
+                <span key={label}>{textRun(label, " ", val)}</span>
               ))}
             </div>
           )}
@@ -561,8 +558,20 @@ export default function DiagramControls({
                   transition: "color 0.3s",
                 }}
               >
-                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · Est. wide-open EP {"\u2300"}{" "}
-                {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
+                {textRun(
+                  apertureReferenceLabel,
+                  " ",
+                  apertureReferenceValue.toFixed(2),
+                  " mm · Est. wide-open EP ",
+                  "\u2300",
+                  " ",
+                  (baseEPSD * 2).toFixed(2),
+                  " mm · Stop ",
+                  "\u2300",
+                  " ",
+                  (currentPhysStopSD * 2).toFixed(2),
+                  " mm",
+                )}
               </div>
               {/* The shortcuts would leave the held wide-open aperture. */}
               {!patentPositions && (
@@ -597,7 +606,7 @@ export default function DiagramControls({
                         transition: "opacity 0.15s",
                       }}
                     >
-                      f/{formatFNumber(n)}
+                      {textRun("f/", formatFNumber(n))}
                     </button>
                   ))}
                 </div>
@@ -621,7 +630,7 @@ export default function DiagramControls({
                 }}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
-                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show effective aperture
+                  {textRun(showEffectiveAperture ? "\u2611" : "\u2610", " Show effective aperture")}
                 </span>
               </button>
             </>

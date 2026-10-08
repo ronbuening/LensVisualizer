@@ -4,6 +4,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import type { ComponentProps } from "react";
 import { MemoryRouter } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { replaceTextForTranslation } from "../../../translationTestUtils.js";
 import DiagramHeader from "../../../../src/components/controls/DiagramHeader.js";
 import { authorPathForName } from "../../../../src/utils/catalog/authorCatalog.js";
 import { espacenetPatentUrl } from "../../../../src/utils/catalog/patentCatalog.js";
@@ -64,14 +65,64 @@ function renderHeader(overrides: Partial<ComponentProps<typeof DiagramHeader>> =
     headerInfoExpanded: false,
     ...overrides,
   };
-  return render(
-    <MemoryRouter>
-      <DiagramHeader {...props} />
-    </MemoryRouter>,
-  );
+  return {
+    ...render(
+      <MemoryRouter>
+        <DiagramHeader {...props} />
+      </MemoryRouter>,
+    ),
+    props,
+  };
 }
 
 describe("DiagramHeader", () => {
+  it("switches translated subtitles, author lists and converter credits without detached-text errors", () => {
+    const { container, rerender, props, unmount } = renderHeader();
+    const base = props.L.data;
+    const states = [
+      { ...base, subtitle: "Legacy description" },
+      { ...base, patentNumber: "US 10,571,651 B2", patentAuthors: ["Hideki Sakai", "Aiko Example"] },
+      { ...base, patentNumber: "US 5,123,456 A", patentAuthors: [] },
+      {
+        ...base,
+        patentNumber: "US 10,571,651 B2",
+        patentAuthors: ["Hideki Sakai"],
+        attachedTeleconverter: {
+          key: "test-converter",
+          name: "Test converter",
+          hostName: base.name,
+          patentNumber: "US 5,123,456 A",
+          patentAuthors: ["Aiko Example"],
+        },
+      },
+      { ...base, subtitle: "Legacy description" },
+    ];
+    for (const data of states) {
+      expect(replaceTextForTranslation(container)).toBeGreaterThan(0);
+      rerender(
+        <MemoryRouter>
+          <DiagramHeader {...props} L={{ ...props.L, data } as RuntimeLens} />
+        </MemoryRouter>,
+      );
+      expect(container.textContent).toContain(data.patentNumber ?? data.subtitle);
+      expect(container.textContent?.includes(" · TC ")).toBe("attachedTeleconverter" in data);
+      expect(container.querySelectorAll("font")).not.toHaveLength(0);
+    }
+    replaceTextForTranslation(container);
+    unmount();
+  });
+
+  it("keeps compact aperture readouts current after translation", () => {
+    const { container, rerender, props } = renderHeader({ compact: true });
+    replaceTextForTranslation(container);
+    rerender(
+      <MemoryRouter>
+        <DiagramHeader {...props} fNumber={8} />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText("f/8.0")).toBeTruthy();
+    expect(container.textContent).not.toContain("f/2.0");
+  });
   it("preserves the same aperture precision as the sliders", () => {
     renderHeader({ compact: true, fNumber: 9.18 });
     expect(screen.getByText("f/9.18")).toBeTruthy();
@@ -109,7 +160,7 @@ describe("DiagramHeader", () => {
     expect(authorLink.getAttribute("href")).toBe(authorPathForName("Hideki Sakai"));
     expect(patentLink.getAttribute("href")).toBe(espacenetPatentUrl("US 10,571,651 B2"));
     expect(patentLink.getAttribute("target")).toBe("_blank");
-    expect(authorLink.parentElement?.parentElement?.textContent).toBe("US 10,571,651 B2↗ — Hideki Sakai, Aiko Example");
+    expect(patentLink.parentElement?.textContent).toBe("US 10,571,651 B2↗ — Hideki Sakai, Aiko Example");
     expect(screen.queryByRole("link", { name: "Aiko Example" })).toBeNull();
     expect(screen.queryByText("legacy subtitle")).toBeNull();
   });

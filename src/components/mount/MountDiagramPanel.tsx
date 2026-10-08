@@ -15,6 +15,7 @@ import { CATEGORY_LEGEND_ORDER } from "../../optics/mount/category.js";
 import type { MountFeatureCategory } from "../../optics/mount/category.js";
 import type { MountLegendEntry } from "../../optics/mount/svgDoc.js";
 import MountDiagram from "./MountDiagram.js";
+import { textRun } from "../../utils/text.js";
 
 interface MountDiagramPanelProps {
   spec: MountSpec;
@@ -81,12 +82,16 @@ export default function MountDiagramPanel({ spec, theme: t }: MountDiagramPanelP
         )}
       </div>
       <p style={{ fontSize: "0.78rem", color: t.muted, margin: "0 0 0.75rem" }}>
-        Flange focal distance{" "}
-        {typeof spec.coreDimensions.flangeFocalDistanceMm.value === "number"
-          ? `${spec.coreDimensions.flangeFocalDistanceMm.value} mm`
-          : "unknown"}
-        , {spec.mechanism} mount. 0° at 12 o'clock from the camera front; the lens-side view is the horizontal mirror.
-        Dotted strokes mark photo-scaled or schematic (not-to-scale) dimensions.
+        {textRun(
+          "Flange focal distance",
+          " ",
+          typeof spec.coreDimensions.flangeFocalDistanceMm.value === "number"
+            ? `${spec.coreDimensions.flangeFocalDistanceMm.value} mm`
+            : "unknown",
+          ", ",
+          spec.mechanism,
+          " mount. 0° at 12 o'clock from the camera front; the lens-side view is the horizontal mirror. Dotted strokes mark photo-scaled or schematic (not-to-scale) dimensions.",
+        )}
       </p>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.75rem" }}>
@@ -125,7 +130,7 @@ export default function MountDiagramPanel({ spec, theme: t }: MountDiagramPanelP
               <svg width="22" height="8" aria-hidden="true">
                 <line x1="1" y1="4" x2="21" y2="4" stroke={entry.color} strokeWidth="2.4" />
               </svg>
-              {entry.label}
+              <span>{entry.label}</span>
             </span>
           ))}
         </div>

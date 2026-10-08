@@ -30,7 +30,7 @@ import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js
 import { countSuffix, panelCard, toggleBtn, toggleGroup } from "../utils/style/styles.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
 import type { Theme } from "../types/theme.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 
 interface PatentCardProps {
   patent: AuthorPatent;
@@ -58,10 +58,10 @@ function AuthorBiographySection({ biography, theme: t }: AuthorBiographySectionP
       </h2>
       <p style={{ color: t.body, fontSize: "0.8rem", lineHeight: 1.7, margin: "0 0 0.65rem" }}>{biography.summary}</p>
       <p style={{ color: t.label, fontSize: "0.68rem", lineHeight: 1.6, margin: 0 }}>
-        Sources:{" "}
+        <span>{textRun("Sources:", " ")}</span>
         {biography.sources.map((source, index) => (
           <span key={source.url}>
-            {index > 0 && " · "}
+            <span>{index > 0 && " · "}</span>
             <a
               href={source.url}
               target="_blank"
@@ -96,7 +96,7 @@ function PatentCard({ patent, currentAuthor, theme: t }: PatentCardProps) {
       </h3>
       {patent.assignees.length > 0 && (
         <p style={{ color: t.muted, fontSize: "0.72rem", margin: "0.2rem 0" }}>
-          Assignee: {patent.assignees.join(", ")}
+          {textRun("Assignee: ", patent.assignees.join(", "))}
         </p>
       )}
       <p style={{ color: t.muted, fontSize: "0.72rem", margin: "0.2rem 0 0.55rem" }}>
@@ -182,8 +182,16 @@ export default function AuthorPage() {
         <>
           <h1 style={{ ...H1_STYLE, marginBottom: "0.35rem" }}>{author.name}</h1>
           <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "0.4rem" }}>
-            {patents.length} related {pluralize(patents.length, "patent")} across {author.lensKeys.length} interactive
-            lens {pluralize(author.lensKeys.length, "diagram")}.
+            {textRun(
+              patents.length,
+              " related ",
+              pluralize(patents.length, "patent"),
+              " across ",
+              author.lensKeys.length,
+              " interactive lens ",
+              pluralize(author.lensKeys.length, "diagram"),
+              ".",
+            )}
           </p>
           {biography && <AuthorBiographySection biography={biography} theme={t} />}
           <p style={{ marginBottom: "1rem" }}>
@@ -258,7 +266,9 @@ export default function AuthorPage() {
                     ) : (
                       group.label
                     )}
-                    <span style={countSuffix(t, { fontSize: "0.7rem" })}>({group.patents.length})</span>
+                    <span style={countSuffix(t, { fontSize: "0.7rem" })}>
+                      {textRun("(", group.patents.length, ")")}
+                    </span>
                   </h2>
                   {group.patents.map((patent) => (
                     <PatentCard

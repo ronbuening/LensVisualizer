@@ -18,7 +18,7 @@ import type {
   UniversalPatentNode,
 } from "../../utils/catalog/universalRelationshipGraph.js";
 import { panelCard } from "../../utils/style/styles.js";
-import { pluralize } from "../../utils/text.js";
+import { pluralize, textRun } from "../../utils/text.js";
 import { catalogCollator } from "../../utils/catalog/collation.js";
 
 interface UniversalEntityDetailCardProps {
@@ -139,8 +139,10 @@ export default function UniversalEntityDetailCard({
         {node.name}
       </h3>
       <p style={{ color: t.muted, fontSize: "0.7rem", margin: "0 0 0.6rem", textTransform: "uppercase" }}>
-        {nodeKindLabel(node)}
-        {patentEdges.length > 0 && ` · ${patentEdges.length} ${pluralize(patentEdges.length, "patent connection")}`}
+        {textRun(
+          nodeKindLabel(node),
+          patentEdges.length > 0 && ` · ${patentEdges.length} ${pluralize(patentEdges.length, "patent connection")}`,
+        )}
       </p>
 
       {(node.kind === "author" || node.kind === "assignee") && (
@@ -201,7 +203,7 @@ export default function UniversalEntityDetailCard({
                     color: t.body,
                   }}
                 >
-                  <span>{prefix}:</span>
+                  <span>{textRun(prefix, ":")}</span>
                   {other ? nodeButton(other) : <span>Unknown organization</span>}
                 </div>
                 {edge.note && (

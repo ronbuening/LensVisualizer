@@ -10,6 +10,7 @@ import {
   perspectiveStatusLabel,
   PerspectiveSection,
 } from "./perspectiveAnalysisUi.js";
+import { textRun } from "../../../../utils/text.js";
 
 interface PerspectiveChromaticAnalysisProps {
   result: PerspectiveChromaticResult;
@@ -25,13 +26,11 @@ export default function PerspectiveChromaticAnalysis({ result, t }: PerspectiveC
   return (
     <PerspectiveSection
       title="Fixed-Sensor Chromatic Focus, TCA & Ray Fans"
-      copy={
-        <>
-          The {result.referenceChannel} line first solves each requested stationary-sensor point. Every wavelength then
-          reuses that camera-space scene direction, so wavelength-dependent best-focus and physical sensor-hit
-          differences remain visible. This sensor-relative result is separate from the intrinsic lens-axis LoCA above.
-        </>
-      }
+      copy={textRun(
+        "The ",
+        result.referenceChannel,
+        " line first solves each requested stationary-sensor point. Every wavelength then reuses that camera-space scene direction, so wavelength-dependent best-focus and physical sensor-hit differences remain visible. This sensor-relative result is separate from the intrinsic lens-axis LoCA above.",
+      )}
       t={t}
     >
       <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
@@ -75,9 +74,20 @@ export default function PerspectiveChromaticAnalysis({ result, t }: PerspectiveC
                   data-perspective-status={sample.status}
                   style={{ color: sample.status === "usable" ? t.value : t.muted, fontSize: 8.3 }}
                 >
-                  {sample.channel}: focus {formatSignedUm(sample.focusRelativeToReferenceMm)}, TCA u/v{" "}
-                  {formatSignedUm(sample.transverseToReference?.uMm)} /{" "}
-                  {formatSignedUm(sample.transverseToReference?.vMm)} ({perspectiveStatusLabel(sample.status)})
+                  {textRun(
+                    sample.channel,
+                    ": focus ",
+                    formatSignedUm(sample.focusRelativeToReferenceMm),
+                    ", TCA u/v",
+                    " ",
+                    formatSignedUm(sample.transverseToReference?.uMm),
+                    " /",
+                    " ",
+                    formatSignedUm(sample.transverseToReference?.vMm),
+                    " (",
+                    perspectiveStatusLabel(sample.status),
+                    ")",
+                  )}
                 </span>
               ))}
             </div>

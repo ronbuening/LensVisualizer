@@ -16,6 +16,7 @@ import MeridionalComaSection from "./aberrations/MeridionalComaSection.js";
 import SagittalComaSection from "./aberrations/SagittalComaSection.js";
 import useComaData from "./aberrations/useComaData.js";
 import PerspectiveComaAnalysis from "./perspective/PerspectiveComaAnalysis.js";
+import { textRun } from "../../../utils/text.js";
 
 type ComaDetailFieldSelection = "default" | 0.25 | 0.5 | 0.75 | 1;
 
@@ -149,7 +150,7 @@ function CenteredComaTab({
             })}
           </div>
           <span style={{ color: t.muted, fontSize: 9, fontVariantNumeric: "tabular-nums" }}>
-            default {defaultFieldLabel}
+            {textRun("default ", defaultFieldLabel)}
           </span>
         </div>
 

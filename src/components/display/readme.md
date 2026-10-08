@@ -26,6 +26,7 @@ flowchart LR
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
   n_external_src_utils_style["src/utils/style"]
+  n_external_src_utils_text_ts["src/utils/text.ts"]
   n_src_components_display_src_components_display_DiagramLegend_tsx --> |3| n_external_src_types
   n_src_components_display_src_components_display_AbbeDiagram_tsx --> |2| n_external_src_types
   n_src_components_display_src_components_display_ElementInspector_tsx --> |2| n_external_src_types
@@ -44,6 +45,7 @@ flowchart LR
   n_src_components_display_src_components_display_AboutFooter_tsx --> n_external_src_utils_style
   n_src_components_display_src_components_display_DiagramLegend_tsx --> n_external_src_utils_style
   n_src_components_display_src_components_display_ElementInspector_tsx --> n_external_src_utils_style
+  n_src_components_display_src_components_display_ElementInspector_tsx --> n_external_src_utils_text_ts
   n_src_components_display_src_components_display_AboutFooter_tsx --> n_src_components_display_src_components_display_AboutButtonRow_tsx
   n_src_components_display_src_components_display_DiagramLegend_tsx --> n_src_components_display_src_components_display_analysis
   n_src_components_display_src_components_display_ElementInspector_tsx --> n_src_components_display_src_components_display_asphericElementUtils_ts
@@ -53,7 +55,7 @@ flowchart LR
 
 - Direct source files: 6
 - Direct subfolders: 2
-- Main outbound areas: src/types (10), src/utils/style (5), same folder (3), package:react (2), src/components/controls, src/optics/chromatic, src/optics/dispersion.ts, src/optics/optics.ts, +1 more
+- Main outbound areas: src/types (10), src/utils/style (5), same folder (3), package:react (2), src/components/controls, src/optics/chromatic, src/optics/dispersion.ts, src/optics/optics.ts, +2 more
 - External consumers: src/components/layout
 
 ## Subfolders
@@ -72,4 +74,4 @@ flowchart LR
 | `AboutFooter.tsx` | React component module | same folder, src/types, src/utils/style | src/components/layout | default, AboutFooter |
 | `asphericElementUtils.ts` | Aspheric Element Utils helper module | src/types | same folder, src/components/layout | ElementAsphereEntry, getAsphericEntriesForElement, elementHasAsphericSurface |
 | `DiagramLegend.tsx` | React component module | src/types (3), package:react, same folder, src/components/controls, src/optics/optics.ts, +2 more | src/components/layout | default, DiagramLegend |
-| `ElementInspector.tsx` | React component module | src/types (2), package:react, same folder, src/optics/chromatic, src/optics/dispersion.ts, +1 more | src/components/layout | default, ElementInspector |
+| `ElementInspector.tsx` | React component module | src/types (2), package:react, same folder, src/optics/chromatic, src/optics/dispersion.ts, +2 more | src/components/layout | default, ElementInspector |

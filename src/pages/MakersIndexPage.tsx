@@ -13,7 +13,7 @@ import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 
 interface MakerEntry {
   display: string;
@@ -87,8 +87,14 @@ export default function MakersIndexPage() {
                 {details ? (
                   <>
                     <div style={{ fontSize: "0.8rem", color: t.label, marginTop: "0.25rem" }}>
-                      {details.founded != null && <>Est. {details.founded} · </>}
-                      {details.headquarters} · {maker.count} {pluralize(maker.count, "lens")}
+                      {details.founded != null && (
+                        <>
+                          <span>{textRun("Est. ", details.founded, " · ")}</span>
+                        </>
+                      )}
+                      <span>
+                        {textRun(details.headquarters, " · ", maker.count, " ", pluralize(maker.count, "lens"))}
+                      </span>
                     </div>
                     <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
                       {details.summary}
@@ -96,7 +102,7 @@ export default function MakersIndexPage() {
                   </>
                 ) : (
                   <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                    ({maker.count} {pluralize(maker.count, "lens")})
+                    {textRun("(", maker.count, " ", pluralize(maker.count, "lens"), ")")}
                   </span>
                 )}
               </div>

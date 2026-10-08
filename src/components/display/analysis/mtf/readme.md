@@ -20,6 +20,7 @@ flowchart LR
   n_external_pkg_react["pkg:react"]
   n_external_src_utils_state["src/utils/state"]
   n_external_src_utils_style["src/utils/style"]
+  n_external_src_utils_text_ts["src/utils/text.ts"]
   n_external_src_utils_useMediaQuery_ts["src/utils/useMediaQuery.ts"]
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> |2| n_external_src_components_controls
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> |2| n_external_src_types
@@ -34,6 +35,8 @@ flowchart LR
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> n_external_src_utils_state
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfValueTable_tsx --> n_external_src_utils_state
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> n_external_src_utils_style
+  n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfDataWarning_tsx --> n_external_src_utils_text_ts
+  n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfValueTable_tsx --> n_external_src_utils_text_ts
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> n_external_src_utils_useMediaQuery_ts
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfCsv_ts
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfValueTable_tsx
@@ -43,7 +46,7 @@ flowchart LR
 
 - Direct source files: 5
 - Direct subfolders: 0
-- Main outbound areas: src/types (9), package:react (3), src/utils/state (3), src/components/controls (2), src/components/display (2), src/utils/style, src/utils/useMediaQuery.ts
+- Main outbound areas: src/types (9), package:react (3), src/utils/state (3), src/components/controls (2), src/components/display (2), src/utils/text.ts (2), src/utils/style, src/utils/useMediaQuery.ts
 - External consumers: src/components/display
 
 ## Files
@@ -52,6 +55,6 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `MtfControls.tsx` | React component module | src/components/controls (2), src/types (2), package:react, src/utils/state, src/utils/style, +1 more | src/components/display | default, MtfControls |
 | `mtfCsv.ts` | Mtf Csv helper module | src/types | src/components/display | mtfCsv |
-| `MtfDataWarning.tsx` | React component module | src/types (2), package:react | src/components/display | default, MtfDataWarning |
+| `MtfDataWarning.tsx` | React component module | src/types (2), package:react, src/utils/text.ts | src/components/display | default, MtfDataWarning |
 | `MtfFieldSummary.tsx` | React component module | src/components/display (2), src/types (2), package:react, src/utils/state | src/components/display | default, MtfFieldSummary |
-| `MtfValueTable.tsx` | React component module | src/types (2), src/utils/state | src/components/display | default, MtfValueTable |
+| `MtfValueTable.tsx` | React component module | src/types (2), src/utils/state, src/utils/text.ts | src/components/display | default, MtfValueTable |

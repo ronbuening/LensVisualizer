@@ -35,6 +35,7 @@ flowchart LR
   n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_projection_ts["src/optics/projection.ts"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
+  n_external_src_utils_text_ts["src/utils/text.ts"]
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> |10| n_external_src_components_display
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> |4| n_external_src_types
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> |3| n_external_src_components_diagram
@@ -68,9 +69,9 @@ flowchart LR
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_perspective
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_projection_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> n_external_src_optics_types_ts
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_external_src_utils_text_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDock_tsx
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx
-  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabs_ts
   n_src_components_layout_lensDiagram_truncated["additional relationships omitted"]
 ```
 
@@ -78,7 +79,7 @@ flowchart LR
 
 - Direct source files: 8
 - Direct subfolders: 0
-- Main outbound areas: src/components/display (14), src/types (14), src/components/layout (12), package:react (6), src/components/diagram (3), src/optics/compat.ts (3), src/optics/optics.ts (3), src/components/hooks (2), +9 more
+- Main outbound areas: src/components/display (14), src/types (14), src/components/layout (12), package:react (6), src/components/diagram (3), src/optics/compat.ts (3), src/optics/optics.ts (3), src/components/hooks (2), +10 more
 - External consumers: src/comparison, src/components/layout
 
 ## Files
@@ -89,7 +90,7 @@ flowchart LR
 | `AnalysisDrawerContent.tsx` | React component module | src/types (3), src/optics/compat.ts (2), src/optics/optics.ts (2), package:react, src/components/display, +4 more | src/components/layout | default, AnalysisDrawerContent |
 | `analysisTabRenderers.tsx` | React component module | src/components/display (10), src/types (3), package:react, src/optics/compat.ts, src/optics/optics.ts, +1 more | src/components/layout | AnalysisDrawerInputs, AnalysisTabRendererContext, ANALYSIS_TAB_RENDERERS |
 | `analysisTabs.ts` | Analysis Tabs helper module | src/components/layout | src/comparison, src/components/layout | ANALYSIS_TABS |
-| `DiagramViewport.tsx` | React component module | src/components/layout (5), src/components/diagram (3), package:react (2), src/types (2), src/components/display, +1 more | src/components/layout | default, DiagramViewport |
+| `DiagramViewport.tsx` | React component module | src/components/layout (5), src/components/diagram (3), package:react (2), src/types (2), src/components/display, +2 more | src/components/layout | default, DiagramViewport |
 | `LensDiagramErrorState.tsx` | React component module | src/components/errors | src/components/layout | default, LensDiagramErrorState |
 | `LensDiagramLoadedState.tsx` | React component module | src/components/layout (4), src/components/display (2) | src/components/layout | default, LensDiagramLoadedState |
 | `panelModel.ts` | Panel Model helper module | src/types (4), src/components/hooks (2), package:react, src/optics/cardinalElements.ts, src/optics/lensMovement.ts | src/components/layout (2) | AnalysisControlsMode, VarReadout, PanelComputedModel, PanelRayDataModel, PanelDisplayFlagsModel, PanelOverlaysModel, PanelAdaptersModel, PanelZoomHookModel, +2 more |
