@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **900** lenses scanned (**888** visible)
-- **9475 / 10186** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **9485 / 10186** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
+- **9517 / 10186** non-air surfaces use strict catalog Sellmeier data (93.4%)
+- **9527 / 10186** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.5%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **331** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **178** self-recording explicit dispositions, **0** dispositions missing any review record
+- **289** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **158** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **21** Tier A proprietary backfill rows in Sweep 3
 
@@ -32,6 +32,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | Lens | Patent | Local source | Trusted chromatic coverage | Strict Sellmeier coverage | Missing trusted surfaces | Missing surface details | Missing quality mix |
 |---|---|---|---:|---:|---:|---|---|
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | US 4,110,006 | [PDF](../../patents/US4110006.pdf) | 94.7% (18/19) | 94.7% (18/19) | 1 | 30 [glass] (Element 17: `Unmatched (534555 vintage crown; no first-party coefficient row found)`) | abbe: 1 |
+| [SONY FE 70-200mm f/4 Macro G OSS II](../../src/lens-data/sony/SonyFE70200mmF4MacroGOSSII.data.ts) | WO 2024/247472 A1 | [PDF](../../patents/WO_2024247472_A1.pdf) | 94.7% (18/19) | 94.7% (18/19) | 1 | 33A [glass] (Element L72: `Unmatched (printed coordinates; nearest e-line rows are HOYA MC-TAF101-100 at 1.77273 and M-TAF105 at 1.77622; no vendor row at either line)`) | abbe: 1 |
 | [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) | US 8,081,392 B2 | [PDF](../../patents/US8081392.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 35 [glass] (Element 18: `Unmatched proprietary short flint (635/232, condition-b APD glass)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | US 2016/0154221 A1 | [PDF](../../patents/US20160154221A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 13A [glass] (Element 8 (L31): `Unmatched (685309 dense flint; nearest public catalog row exceeds d-line tolerance)`) | abbe: 1 |
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | JP 2025-052870 A | [PDF](../../patents/JP2025052870A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 32A [glass] (Element 17: `Barium crown / LaK family (624584, no exact catalog match)`) | abbe: 1 |
@@ -160,6 +161,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor1735mmf28DIFED.data.ts) | JP 2001-083421 A | [PDF](../../patents/JP_2001083421_A.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 3A [resin] (Element 2 resin layer: `Unmatched (unnamed aspherical resin layer, nd=1.495210 νd=56.34)`) | abbe: 1 |
 | [CANON RF 15-30mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF1530mmf4563ISSTM.data.ts) |  | No patent number parsed from lens metadata | 92.3% (12/13) | 92.3% (12/13) | 1 | 22A [resin] (Element 12: `Unmatched (PMo optical-resin class; production-correlation inference)`) | abbe: 1 |
 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | WO 2019/220618 A1 | [PDF](../../patents/WO2019220618A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 6A [resin] (L14 aspherical layer: `Unmatched (patent thin-layer medium; polymer identity and supplier unspecified)`) | abbe: 1 |
+| [SONY VARIO-TESSAR T* FE 16-35mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE1635mmf4ZAOSS.data.ts) | JP 2015-166834 A | [PDF](../../patents/JP2015166834A.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 4 [resin] (L12 bonded aspheric resin: `Unmatched (aspheric resin; printed coordinates, no vendor row at either the d or the e line)`) | abbe: 1 |
 | [NIKON AF-S DX ZOOM-NIKKOR 12-24mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1224mmf4GIFED.data.ts) | US 6,940,655 B2 | [PDF](../../patents/US6940655.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 5 [resin] (Bonded Resin Layer: `Unmatched (hybrid aspherical optical resin; nd=1.553890, vd=38.09)`) | abbe: 1 |
 | [PENTAX HD DA 18-50mm f/4-5.6 DC WR RE](../../src/lens-data/pentax/HDPentaxDA1850mmF456DCWRRE.data.ts) | JP 2016-6455 A | [PDF](../../patents/JP2016006455A.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 4 [resin] (L12 Bonded Resin Layer: `Unmatched (synthetic resin layer; chemistry unpublished)`) | abbe: 1 |
 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | US 2025/0231383 A1 | Missing from untracked local patents/ references (US20250231383A1, US20250231383, 20250231383) | 90.9% (20/22) | 90.9% (20/22) | 2 | 6A [resin] (L4 hybrid resin asphere: `UV-curable hybrid aspherical resin (patent nd=1.517, νd=52.0)`)<br>40A [glass] (L21 final dual-aspherical meniscus: `K-SKLD200 / K-SKLD120(M) neighborhood, proprietary crown class`) | abbe: 2 |
