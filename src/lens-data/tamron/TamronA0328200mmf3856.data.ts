@@ -2,40 +2,67 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO          ║
+ * ║  LENS DATA — TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO             ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 6,437,923 B1, Example 1 / Table 1 (Yasuharu Yamada, Tamron).      ║
- * ║  Production correlation: Tamron Model A03. Manufacturer metadata is kept separate ║
- * ║  from the patent design values.                                                     ║
+ * ║  Data source: US 6,437,923 B1, Example 1 / Table 1 (Yasuharu Yamada, Tamron).        ║
+ * ║  Production correlation: Tamron Model A03. Manufacturer metadata is kept separate    ║
+ * ║  from the patent design values.                                                      ║
  * ║                                                                                      ║
- * ║  Physical prescription: 15 lens pieces / 14 air-separated groups.                   ║
- * ║  Modeling entries: 18, because each of the three composite aspherical lens pieces   ║
- * ║  is represented as a glass substrate plus its bonded 0.2 mm resin layer.            ║
- * ║  Four moving optical groups: G1 positive, G2 negative, G3 positive, G4 positive.    ║
+ * ║  Physical prescription: 15 lens pieces / 14 air-separated groups.                    ║
+ * ║  Modeling entries: 18, because each of the three composite aspherical lens pieces    ║
+ * ║  is represented as a glass substrate plus its bonded 0.2 mm resin layer.             ║
+ * ║  Four moving optical groups: G1 positive, G2 negative, G3 positive, G4 positive.     ║
  * ║                                                                                      ║
- * ║  Zoom variables: D6, D15, D23, and derived BF.                                      ║
- * ║  Focus variables: D6 and D15 only. The patent states G2-only inner focus but does   ║
+ * ║  Zoom variables: D6, D15, D23, and derived BF.                                       ║
+ * ║  Focus variables: D6 and D15 only. The patent states G2-only inner focus but does    ║
  * ║  not publish close-focus spacing rows. Close focus is therefore a                    ║
- * ║  CONSTRAINED_RECONSTRUCTION solved at Tamron's 0.49 m MFD with the image plane     ║
- * ║  fixed, G1/G3/G4 fixed, G2 translating only, and D6 + D15 conserved at each zoom   ║
- * ║  station. The 0.49 m object distance is normalized from object plane to the fixed   ║
+ * ║  CONSTRAINED_RECONSTRUCTION solved at Tamron's 0.49 m MFD with the image plane       ║
+ * ║  fixed, G1/G3/G4 fixed, G2 translating only, and D6 + D15 conserved at each zoom     ║
+ * ║  station. The 0.49 m object distance is normalized from object plane to the fixed    ║
  * ║  paraxial image/focal plane.                                                         ║
  * ║                                                                                      ║
- * ║  SOURCE CORRECTION: patent Table 1 visibly prints surface 31 n=1.53610, ν=48.9.    ║
- * ║  Independent three-state EFL fitting requires n=1.53172; this file uses 1.53172    ║
- * ║  and retains the raw printed value here for auditability.                           ║
+ * ║  SOURCE CORRECTION, SURFACE 31: patent Table 1 visibly prints surface 31             ║
+ * ║  n=1.53610, ν=48.9. Independent three-state EFL fitting requires n=1.53172; this     ║
+ * ║  file uses 1.53172 and retains the raw printed value here for auditability. The      ║
+ * ║  printed index gives f = 28.53 / 72.69 / 186.67 mm against the stated 29.07 /        ║
+ * ║  74.76 / 193.0 mm and a full-aperture marginal focus -0.50 / -0.71 / -0.89 mm        ║
+ * ║  from the paraxial one, where Figs. 2-4 plot about -0.24 / -0.13 / -0.06 mm.         ║
  * ║                                                                                      ║
- * ║  Semi-diameters are not published. Values below are modeled from the patent ray   ║
- * ║  envelopes, the fixed stop inferred from the three published f-numbers, Fig. 1   ║
- * ║  relative element sizes, condition (9)'s compact-front constraint, and the       ║
- * ║  current edge/slope/conic/cross-gap geometry limits. The compact front group     ║
- * ║  intentionally permits field-dependent vignetting as described by the patent.    ║
+ * ║  SOURCE CORRECTION, ASPHERE SIGNS: the patent's coefficient block prints five        ║
+ * ║  terms without a minus sign that this file carries negative:                         ║
+ * ║      r7   A6 = 8.27233e-09, A8 = 1.82191e-11                                         ║
+ * ║      r30  A6 = 1.08319e-07, A8 = 2.76656e-10, A10 = 1.51768e-11                      ║
+ * ║  As printed, the full-aperture marginal ray focuses +11.6 / +50.7 / +84.9 mm from    ║
+ * ║  the paraxial focus at the three zoom states, against the -0.24 / -0.13 / -0.06      ║
+ * ║  mm of Figs. 2-4; the chief rays at the printed half-angles 37.1 / 15.6 / 6.2 deg    ║
+ * ║  reach 22.53 / 21.78 / 21.60 mm, which no single image height satisfies within       ║
+ * ║  the rounding of the angles; and no single stop radius gives the printed F3.69 /     ║
+ * ║  F5.03 / F5.82. With the five minus signs the marginal ray focuses -0.23 / -0.12     ║
+ * ║  / -0.05 mm from the paraxial focus, the chief rays reach 21.60 / 21.71 / 21.59      ║
+ * ║  mm (one image height of 21.63-21.65 mm fits all three), and a stop radius of        ║
+ * ║  8.469-8.472 mm gives all three f-numbers. Of the 4096 sign combinations of the      ║
+ * ║  twelve polynomial terms this is the only one that follows the                       ║
+ * ║  spherical-aberration, astigmatism and distortion curves of Figs. 2-4. The           ║
+ * ║  printed f-numbers and half-angles fail with the printed r7 block, need the r7 A6    ║
+ * ║  sign, and hold with the corrected set; with r7 corrected the half-angles exclude    ║
+ * ║  the printed r30 block by a narrow margin (37.1 deg chief ray at 21.89 mm). The      ║
+ * ║  signs of r7 A8 and of the three r30 terms are fixed by the figures. See             ║
+ * ║  sourceErrata and the audit log.                                                     ║
  * ║                                                                                      ║
- * ║  Spectral note: the patent publishes only d-line-like nd/νd coordinates and names  ║
- * ║  no glass supplier. Vendor-neutral six-digit classes are therefore used. nC, nF,   ║
- * ║  ng, and dPgF are intentionally not invented from a particular supplier's catalog. ║
+ * ║  The r17 A10 line is garbled in print ("-1.73954x-10 12"). It is read as             ║
+ * ║  -1.73954e-12, the only reading of those characters that follows Figs. 2-4.          ║
  * ║                                                                                      ║
- * ║  No uniform prescription scaling is applied.                                        ║
+ * ║  Semi-diameters are not published. Values below are modeled from the patent ray      ║
+ * ║  envelopes, the fixed stop inferred from the three published f-numbers, Fig. 1       ║
+ * ║  relative element sizes, condition (9)'s compact-front constraint, and the           ║
+ * ║  current edge/slope/conic/cross-gap geometry limits. The compact front group         ║
+ * ║  intentionally permits field-dependent vignetting as described by the patent.        ║
+ * ║                                                                                      ║
+ * ║  Spectral note: the patent publishes only d-line-like nd/νd coordinates and names    ║
+ * ║  no glass supplier. Vendor-neutral six-digit classes are therefore used. nC, nF,     ║
+ * ║  ng, and dPgF are intentionally not invented from a particular supplier's catalog.   ║
+ * ║                                                                                      ║
+ * ║  No uniform prescription scaling is applied.                                         ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -44,7 +71,7 @@ const LENS_DATA = {
   key: "tamron-a03-28-200mm-f3p8-5p6",
   maker: "Tamron",
   name: "TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO",
-  subtitle: "US 6,437,923 B1 Example 1 — Model A03 correlation; documented surface-31 source correction",
+  subtitle: "US 6,437,923 B1 Example 1 — Model A03 correlation; documented surface-31 index and asphere-sign corrections",
   specs: [
     "28-200mm marketing / 29.07-193.0mm patent design",
     "15 PHYSICAL LENS PIECES / 14 GROUPS",
@@ -62,8 +89,58 @@ const LENS_DATA = {
   patentYear: 2002,
   sourceErrata: [
     {
-      status: "unresolved",
-      note: "The aspheres printed for surfaces 7 and 30 give marginal spherical aberration of about +12 / +51 / +85 mm at the three zoom states, where Figs. 2-4 plot it inside ±0.5 mm. One set of signs reproduces the plotted spherical aberration, astigmatism and distortion at all three states to about 0.03 mm: A6 and A8 of surface 7 and A6, A8 and A10 of surface 30 negative. The figures alone isolate four of those five signs, so the printed values are kept.",
+      status: "corrected",
+      surface: "7A",
+      field: "A6",
+      printed: 8.27233e-9,
+      applied: -8.27233e-9,
+      evidence: ["aberration-figure", "source-summary"],
+      note: "Printed without a minus sign. With the printed sign and the other corrections the tele marginal ray focuses −1.00 mm from the paraxial focus where Fig. 4 plots about −0.06 mm, the 37.1° chief ray reaches 22.02 mm against 21.59 mm at 6.2°, and no single stop radius gives F3.69, F5.03 and F5.82; the negative sign gives −0.05 mm, 21.60 mm and one radius of 8.469–8.472 mm.",
+    },
+    {
+      status: "corrected",
+      surface: "7A",
+      field: "A8",
+      printed: 1.82191e-11,
+      applied: -1.82191e-11,
+      evidence: ["aberration-figure", "source-summary"],
+      note: "Printed without a minus sign. With the printed sign and the other corrections the tele marginal ray focuses −0.20 mm from the paraxial focus where Fig. 4 plots about −0.06 mm, and distortion at 37.1° is −1.04 % where Fig. 2 plots about −1.75 %; the negative sign gives −0.05 mm and −1.75 %. The printed half-angles and f-numbers reject the printed r7 block and hold with the corrected one; they hold with either sign of this one term.",
+    },
+    {
+      status: "corrected",
+      surface: "30A",
+      field: "A6",
+      printed: 1.08319e-7,
+      applied: -1.08319e-7,
+      evidence: ["aberration-figure", "source-summary"],
+      note: "Printed without a minus sign. With the printed sign and the other corrections the marginal ray focuses +6.0 / +20.0 / +31.1 mm from the paraxial focus at the three zoom states where Figs. 2-4 plot about −0.24 / −0.13 / −0.06 mm; the negative sign gives −0.23 / −0.12 / −0.05 mm. With the three r30 terms as printed the 37.1° chief ray reaches 21.89 mm, 0.06 mm outside what the rounding of the angles allows beside the 21.76 and 21.60 mm of the 15.6° and 6.2° rays; with them negative the three reach 21.60 / 21.71 / 21.59 mm. The half-angles do not separate this term from the other two r30 terms.",
+    },
+    {
+      status: "corrected",
+      surface: "30A",
+      field: "A8",
+      printed: 2.76656e-10,
+      applied: -2.76656e-10,
+      evidence: ["aberration-figure", "source-summary"],
+      note: "Printed without a minus sign. With the printed sign and the other corrections the marginal ray focuses +0.73 / +3.04 / +4.69 mm from the paraxial focus at the three zoom states where Figs. 2-4 plot about −0.24 / −0.13 / −0.06 mm; the negative sign gives −0.23 / −0.12 / −0.05 mm. With the three r30 terms as printed the 37.1° chief ray reaches 21.89 mm, 0.06 mm outside what the rounding of the angles allows beside the 21.76 and 21.60 mm of the 15.6° and 6.2° rays; with them negative the three reach 21.60 / 21.71 / 21.59 mm. The half-angles do not separate this term from the other two r30 terms.",
+    },
+    {
+      status: "corrected",
+      surface: "30A",
+      field: "A10",
+      printed: 1.51768e-11,
+      applied: -1.51768e-11,
+      evidence: ["aberration-figure", "source-summary"],
+      note: "Printed without a minus sign. With the printed sign and the other corrections the marginal ray focuses +3.14 / +13.74 / +22.30 mm from the paraxial focus at the three zoom states where Figs. 2-4 plot about −0.24 / −0.13 / −0.06 mm; the negative sign gives −0.23 / −0.12 / −0.05 mm. With the three r30 terms as printed the 37.1° chief ray reaches 21.89 mm, 0.06 mm outside what the rounding of the angles allows beside the 21.76 and 21.60 mm of the 15.6° and 6.2° rays; with them negative the three reach 21.60 / 21.71 / 21.59 mm. The half-angles do not separate this term from the other two r30 terms.",
+    },
+    {
+      status: "corrected",
+      surface: "31",
+      field: "nd",
+      printed: 1.5361,
+      applied: 1.53172,
+      evidence: ["source-summary", "aberration-figure"],
+      note: "Table 1 prints 1.53610, the resin index of rows 7, 17 and 29, beside ν 48.9. It gives f = 28.53 / 72.69 / 186.67 mm against the stated 29.07 / 74.76 / 193.0 mm and a marginal focus −0.50 / −0.71 / −0.89 mm from the paraxial one where Figs. 2-4 plot about −0.24 / −0.13 / −0.06 mm; 1.53172 gives 29.07 / 74.76 / 192.99 mm and −0.23 / −0.12 / −0.05 mm.",
     },
   ],
   elementCount: 15,
@@ -334,12 +411,17 @@ const LENS_DATA = {
     { label: "33", R: 513.23, d: 41.12441709596909, nd: 1, elemId: 0, sd: 8.8 },
   ],
 
+  /* ── Aspheres ──
+   * Patent formula (10), with the division sign the print omits before the square bracket:
+   * X(H) = (H²/R)/[1 + {1 − (1 + ε)(H²/R²)}^(1/2)] + A4·H⁴ + A6·H⁶ + A8·H⁸ + A10·H¹⁰, so K = ε.
+   * Five polynomial terms carry a minus sign the patent's coefficient block does not print (see header, sourceErrata).
+   */
   asph: {
     "7A": {
       K: 1.8366,
       A4: 9.76517e-6,
-      A6: 8.27233e-9,
-      A8: 1.82191e-11,
+      A6: -8.27233e-9, // patent prints 8.27233×10-09 without the minus sign
+      A8: -1.82191e-11, // patent prints 1.82191×10-11 without the minus sign
       A10: 6.33815e-13,
       A12: 0,
       A14: 0,
@@ -349,16 +431,16 @@ const LENS_DATA = {
       A4: 3.72528e-6,
       A6: 3.39383e-8,
       A8: 1.6258e-11,
-      A10: -1.73954e-12,
+      A10: -1.73954e-12, // patent line is garbled ("−1.73954×−10 12"); read as ×10-12, see header
       A12: 0,
       A14: 0,
     },
     "30A": {
       K: 1.3716,
       A4: 6.11041e-7,
-      A6: 1.08319e-7,
-      A8: 2.76656e-10,
-      A10: 1.51768e-11,
+      A6: -1.08319e-7, // patent prints 1.08319×10-07 without the minus sign
+      A8: -2.76656e-10, // patent prints 2.76656×10-10 without the minus sign
+      A10: -1.51768e-11, // patent prints 1.51768×10-11 without the minus sign
       A12: 0,
       A14: 0,
     },

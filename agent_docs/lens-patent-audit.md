@@ -197,6 +197,11 @@ wrong and that the replacement is right:
 A manufacturer MTF chart, a measured lens and "the trace looks better" are never evidence. That only one
 single-value change repairs the prescription supports a correction; it does not count as a kind.
 
+A block misprinted in one way (minus signs dropped down a coefficient listing, for example) is corrected as one unit
+when one kind isolates the whole set, alone among every combination of the same slip, and a second kind rejects the
+printed block and accepts the corrected one. The second kind need not isolate each value; each entry's note says
+which kind isolates it. (Maintainer ruling, 2026-10-08, on the Tamron A03 aspheres.)
+
 Record a correction in four places: the value itself with an inline comment, a header note in the data file, a
 `corrected` entry in `sourceErrata` (`src/lens-data/LENS_DATA_SPEC.md`, which the validator checks against the file),
 and a dated audit-log entry with the before/after numbers. When the contradiction is real but its cause is not

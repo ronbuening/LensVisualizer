@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-08",
+    type: "fix",
+    summary: "Tamron 28-200mm (A03) asphere signs and Pentax-A 35-70mm rear apertures corrected from their patents",
+  },
+  {
     date: "2026-10-07",
     type: "improvement",
     summary: "Four zooms whose patent tables contradict the patent's own figures now say so beside the MTF chart",

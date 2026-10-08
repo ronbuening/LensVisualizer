@@ -89,3 +89,56 @@ Left open:
 - The 68.5 mm station stays rim-limited. The printed 1:4.1 needs 10.762 mm at surface 7, 10.201 at 9, 9.612 at 11 and 7.755 mm at 14; the file's 9.5, 9.8, 9.4 and 7.2 mm are below it on all four elements.
 - The Fig. 9 reading rounded to 0.1 mm is L4 11.3, L5 10.7, L6 10.2 (surface 11) and 8.4 (surface 12), L7 8.2 mm. It sits 5 to 6 % above the f/4.1 marginal ray on every element. Substituted without editing the file, these values pass the validator (edge thickness, rim slope, cross-gap) and the 68.5 mm station traces f/4.10 on the iris. Adopting them means accepting a figure difference below the procedure's threshold on the strength of the printed f-number; that decision was not taken in this pass.
 - L2 is drawn at about 18.6 mm against 17.6 mm in the file; the front group was outside this pass.
+
+## 2026-10-08 — Rear-group semi-diameters from Fig. 9
+
+Ruling (maintainer, 2026-10-08): where an inferred rim clips the on-axis beam of the f-number the source prints, and the patent figure measured on two independent scales that agree gives a wider rim, the figure's value is adopted even below the roughly 25 % bar, and the value is the figure's, never the one the beam needs.
+
+Fig. 9 (sheet 5, PDF p. 6) was measured again on the native 300 dpi one-bit scan and checked by eye on a 600 dpi render of the rear group. The scanned axis runs 0.51° off horizontal, which changes a height by less than 0.01 %. A height is half the distance between the centres of an element's upper and lower rim lines. Every reading repeats the 2026-10-07 one within 0.3 px (0.2 %), so the values adopted are the ones that section lists.
+
+- Vertex scale: the r7 and r14 vertices sit at x = 1376.0 and 1730.6 px, 354.6 px for the printed 23.250 mm, 15.25 px/mm. The other spans read 14.90 px/mm (r1 to r6), 15.08 px/mm (d6) and 15.09 px/mm (r1 to r14).
+- Curvature scale: circles fitted to the same eight drawn arcs give 15.07 (r2), 15.27 (r3), 14.87 (r4), 15.33 (r5), 12.50 (r7), 16.40 (r9), 14.85 (r12) and 15.27 px/mm (r14). The median is 15.17 px/mm, against 15.16 on 2026-10-07. The two scales agree to 0.5 %.
+
+| Field | Before | After | Source |
+|---|---:|---:|---|
+| Surface 7 `sd` (L4 front) | 9.5 mm | 11.3 mm | Fig. 9, L4 rim lines: half-height 171.75 px, 11.26 mm on the vertex scale and 11.32 mm on the curvature scale |
+| Surface 8 `sd` (L4 rear) | 9.5 mm | 11.3 mm | The same L4 reading; Fig. 9 draws both L4 surfaces out to one rim |
+| Surface 9 `sd` (L5 front) | 9.8 mm | 10.7 mm | Fig. 9, L5 rim lines: half-height 163.2 px, 10.70 mm on the vertex scale and 10.76 mm on the curvature scale |
+| Surface 10 `sd` (L5 rear) | 9.8 mm | 10.7 mm | The same L5 reading; Fig. 9 draws both L5 surfaces out to one rim |
+| Surface 11 `sd` (L6 front) | 9.4 mm | 10.2 mm | Fig. 9, L6 outer rim lines: half-height 154.6 px, 10.14 mm on the vertex scale and 10.19 mm on the curvature scale |
+| Surface 12 `sd` (L6 rear) | 9.4 mm | 8.4 mm | Fig. 9, the corners where the drawn chamfer meets the r12 arc: half-height 127.2 px (126.8 px from the crossing of the two fitted centrelines, 127.6 px read on the corner ink), 8.34 mm on the vertex scale and 8.38 mm on the curvature scale |
+| Surface 13 `sd` (L7 front) | 7.2 mm | 8.2 mm | Fig. 9, L7 rim lines: half-height 124.7 px, 8.18 mm on the vertex scale and 8.22 mm on the curvature scale |
+| Surface 14 `sd` (L7 rear) | 7.2 mm | 8.2 mm | The same L7 reading; Fig. 9 draws both L7 surfaces out to one rim |
+
+Each value is the mean of the two scales rounded to 0.1 mm: 11.29, 10.73, 10.16, 8.36 and 8.20 mm. The changes are +18.9 % (L4), +9.2 % (L5), +8.5 % (surface 11), -10.6 % (surface 12) and +13.9 % (L7), all under the roughly 25 % bar. At their former values surfaces 7, 8, 9, 11, 13 and 14 clipped the f/4.1 beam at 68.5 mm, one or more on every rear element, and Fig. 9 draws each of them wider, so those six are adopted under the ruling. Surfaces 10 and 12 did not clip (9.698 mm needed against 9.8 mm, 7.731 mm against 9.4 mm). Surface 10 takes the one rim Fig. 9 draws for L5. Surface 12 becomes narrower, which the ruling's wording (a wider rim) does not cover: it takes the figure's chamfer corner so that both L6 surfaces come from the same drawing. None was sized to the beam. The f/4.1 marginal ray at 68.5 mm needs 10.762, 10.681, 10.201, 9.698, 9.612, 7.731, 7.714 and 7.755 mm at surfaces 7 to 14, so the figure's rims stand 0.445 mm (surface 14) to 1.002 mm (surface 10) outside it. Surfaces 11 and 12 read within 0.02 mm of a rounding boundary; 10.1 and 8.3 mm would clear the beam as well, so the rounding does not decide the result.
+
+Traced at infinity focus, wide open:
+
+| Station | Stated → traced before | Limiter before | Stated → traced after | Limiter after |
+|---|---|---|---|---|
+| 36 mm | f/4.10 → f/4.10 | iris (`STO`) | f/4.10 → f/4.10 | iris (`STO`) |
+| 68.5 mm | f/4.10 → f/4.61 (+12.4 %) | rim, surface 7 (L4 front, sd 9.5 mm) | f/4.10 → f/4.10 | iris (`STO`) |
+
+Validation of the new values: the file builds and the validator reports nothing. Edge thickness is 1.370 mm (L4), 1.438 mm (L5), 8.498 mm (L6, at the 8.4 mm rear rim) and 1.388 mm (L7). Rim slope is 16.6° at surface 7, 30.3° at surface 9, 30.5° at surface 12 and 16.7° at surface 14, against the 64.2° limit. The cross-gap intrusion is negative across d8, 0.521 mm of the 0.576 mm allowed across d10, and 2.536 mm of 6.030 mm across d12. The element outlines need no render trim at either endpoint or at mid-zoom.
+
+Moved with the values:
+
+- Minimum element edge thickness: 1.585461 mm (L7) before, 1.370140 mm (L4) now. The note's former 0.735335 mm was L7's edge at the 10.8 mm value retired on 2026-08-14, not a property of the file as it stood, so the 2026-10-07 statement that the note's edge-thickness figure depended only on unchanged semi-diameters was wrong.
+- Smallest cross-gap clearance: 0.064313 mm across d2 before, 0.055314 mm across d10 (surfaces 10 and 11, 0.640 mm gap) now. The d2 figure itself is unchanged.
+- Chief-ray-limited half-field computed by the engine: 32.128° → 34.398° at 36 mm and 23.471° → 26.313° at 68.5 mm, so the diagram's default 0.60-field fan launches at 20.64° and 15.79° instead of 19.28° and 14.08°. Its lowest ray (pupil fraction -0.75) was cut at surface 14 by 0.137 mm at 36 mm and at surface 13 by 1.780 mm at 68.5 mm. It now passes at 36 mm and is cut at surface 13 by 1.137 mm at 68.5 mm.
+- Rewritten to the traced state: the data-file header blocks on the stop model and the semi-diameters, the comment above `nominalFno`, and the note's aperture table, its paragraph on limits and its semi-diameter paragraph under Verification Summary and Modeling Limits. Header lines outside those two blocks were re-padded so the box borders align; their text is unchanged.
+
+Confirmed unchanged:
+
+- The `STO` row (sd 7.752338441 mm), the semi-diameters of surfaces 1-6, every radius, thickness and index, the `var` gaps, `nominalFno` 4.1 and `fstopSeries`.
+- Wide-open iris radii 7.7842 mm at 36 mm and 10.3442 mm at 68.5 mm; computed focal lengths 35.9998 and 68.5002 mm.
+- The 36 mm station: f/4.10 → f/4.10 on the iris.
+- Traced field coverage: 100 % at 36 mm (32.2°) and at 68.5 mm (17.4°), corner chief ray clear at 21.65 mm. Image-circle floor: no surface listed.
+- Maximum rim angle 48.515° at surface 2, and the 0.586 mm clip at surface 3 of the 32.25° ray through the edge of the authored 7.752338441 mm stop radius at 36 mm.
+
+Closed by this pass: the 2026-10-07 "Left open" items on the rim-limited 68.5 mm station, on re-deriving L4-L7 from the figure, on the fan ray cut at L7, and on the note's edge-thickness, rim-angle and cross-gap figures, which are re-derived above.
+
+Left open:
+
+- L2 is drawn at about 18.6 mm against 17.6 mm in the file. No front-group rim clips the stated beam, so the ruling does not reach it.
+- The rendered cross-section has not been compared with Fig. 9 in the browser (figure-audit procedure, Step 8).

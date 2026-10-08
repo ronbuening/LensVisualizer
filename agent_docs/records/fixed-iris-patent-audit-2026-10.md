@@ -17,9 +17,9 @@ engine sizes the iris.
 
 | Verdict | Lenses |
 |---|---:|
-| Printed f-numbers fit one radius | 72 |
+| Printed f-numbers fit one radius | 73 |
 | Patent states a constant stop | 3 |
-| Printed f-numbers need different radii | 8 |
+| Printed f-numbers need different radii | 7 |
 | Patent describes a fixed and a zoom-coupled stop | 1 |
 | Patent prints no aperture data for the example | 1 |
 | No local patent | 3 |
@@ -95,7 +95,7 @@ prescription errors found on the way were corrected (82 files declare a fixed ir
 | `pentax/HDPentaxDA1850mmF456DCWRRE` | JP 2016-6455 A | f-numbers fit one radius | 0.08 % | kept; station f-numbers set to Table 6 |
 | `pentax/HDPentaxDFA150450mmF4556EDDCAW` | US 2016/0327774 A1 | f-numbers fit one radius | 0.44 % | kept |
 | `pentax/Pentax06TelephotoZoom1545mmF28` | US 9,784,950 B2 | f-numbers fit one radius | 0.38 % | kept |
-| `pentax/PentaxA3570mmf4` | US 4,812,022 | f-numbers need different radii | 28.24 % | fixed iris removed; f-number 4.1 at both stations (tele rim-limited, Section I) |
+| `pentax/PentaxA3570mmf4` | US 4,812,022 | f-numbers need different radii | 28.24 % | fixed iris removed; f-number 4.1 at both stations; rear-group rims set from Fig. 9 |
 | `pentax/PentaxDFA28105mmF3556EDDCWR` | US 2017/0068075 A1 | f-numbers fit one radius | 1.53 % | kept |
 | `pentax/PentaxDFA70200mmF28EDDCWR` | US 2016/0103303 A1 | f-numbers fit one radius | 0.05 % | kept |
 | `schneider-kreuznach/SchneiderTeleVariogon4080240` | US 3,336,094 | f-numbers fit one radius | 0.21 % | kept |
@@ -109,7 +109,7 @@ prescription errors found on the way were corrected (82 files declare a fixed ir
 | `tamron/TamronA00170200mmf28` | US 2008/0212200 A1 | f-numbers fit one radius | 0.06 % | kept |
 | `tamron/TamronA00570300mmf456VC` | US 8,228,605 B2 | f-numbers fit one radius | 0.38 % | kept |
 | `tamron/TamronA01028300mmf3563` | JP 2013-254160 A | f-numbers fit one radius | 42.82 % | kept; middle f-number set to what the iris gives (the figure label is a misprint) |
-| `tamron/TamronA0328200mmf3856` | US 6,437,923 B1 | f-numbers need different radii | 0.36 % | kept (0.1 % outside print rounding); asphere A8 sign corrected; the printed asphere contradicts the patent plots (Section G) |
+| `tamron/TamronA0328200mmf3856` | US 6,437,923 B1 | f-numbers fit one radius (once the aspheres are corrected) | 0.19 % | kept; five asphere signs corrected as one misprinted block |
 | `tamron/TamronA06128300mmf3563` | US 2003/0156333 A1 | f-numbers fit one radius | 0.12 % | kept; station f-numbers set to the patent |
 | `tamron/TamronA08200500mmf563` | JP 2003-344768 A | f-numbers fit one radius | 0.01 % | kept; station f-numbers set to Figs. 2-4 |
 | `tamron/TamronB02818400mmf3563` | JP 2017-116646 A | f-numbers fit one radius | 0.79 % | kept |
@@ -127,13 +127,14 @@ The queued rows were worked on the same day; what remains:
 - **Rims below the patent's stated axial beam** (inferred semi-diameters; `npm run audit:aperture` lists those more
   than 3 % off, Section I): Canon EF 70-200mm f/4L, Canon FD 150-600mm, Fujifilm GF 100-200mm, Minolta AF 80-200mm
   f/2.8, Nikon AF 80-200mm f/2.8 ED, Nikon AF-S 70-200mm f/2.8G VR II, Nikon AF-S 80-200mm f/2.8D, Nikon AI 80-200mm
-  f/4, Nikon AI-S 100-300mm f/5.6, Nikon AI ED 50-300mm f/4.5, Pentax-A 35-70mm f/4, Tamron A005, Tamron A009, Tamron
-  A03 and Vivitar Series 1 70-210mm f/2.8-4. The Nikon AI 80-200mm f/4 and AI-S 100-300mm f/5.6 rims were reduced
-  below the beam by the 2026-07 and 2026-09 semi-diameter audits. The Pentax-A rear group was measured on Fig. 9 and
-  left unchanged pending a ruling (Section I).
-- **Tables that contradict their own patent** (Section G, each an `unresolved` `sourceErrata` entry): Tamron A03
-  aspheres, Vivitar Series 1 35-85mm, Konica UC 80-200mm and Schneider TV-Variogon focal lengths. Every row of each
-  was re-read and matches the file.
+  f/4, Nikon AI-S 100-300mm f/5.6, Nikon AI ED 50-300mm f/4.5, Tamron A005, Tamron A009, Tamron A03 and Vivitar
+  Series 1 70-210mm f/2.8-4. The Nikon AI 80-200mm f/4 and AI-S 100-300mm f/5.6 rims were reduced below the beam by
+  the 2026-07 and 2026-09 semi-diameter audits. The Pentax-A 35-70mm rear group, measured on Fig. 9 at 8-19 % over
+  the file, took the figure's values on a maintainer ruling (2026-10-08) and traces the printed f/4.1 at tele.
+- **Tables that contradict their own patent** (Section G, each an `unresolved` `sourceErrata` entry): Vivitar Series 1
+  35-85mm, Konica UC 80-200mm and Schneider TV-Variogon focal lengths. Every row of each was re-read and matches the
+  file. The Tamron A03 aspheres, which gave about +12 / +51 / +85 mm of spherical aberration as printed, were
+  corrected as one misprinted block of five dropped minus signs on a maintainer ruling (2026-10-08).
 - **Stop positions with no source**: Nikon Zoom-Nikkor Auto 50-300mm and Olympus Zuiko 85-250mm keep modeled stop
   positions, described as such; their patents place no stop for the transcribed examples.
 - **Stale stored values with no effect on the trace**: Vivitar Series 1 70-210mm f/3.5 `STO` sd (14.457801, the

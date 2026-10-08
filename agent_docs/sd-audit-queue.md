@@ -190,7 +190,6 @@ standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 |---|---|---|
 | Nikon Fisheye-Nikkor 6mm f/2.8 | The file's surfaces trace to EFL 37.41 mm and a back focus of 273 mm; US 3,737,214 Example I states f = 6.3 and B.f. = 37.657. The table prints `R18 = −45.0`; `+45.0` gives EFL 6.300 and back focus 37.658. The file also places the stop ahead of the filter, while Fig. 1 draws it behind R17, and omits the listed filter plate R11/R12 (1.8 mm, n 1.51823). | Re-audit: correct R18 and the element types it changes, move the stop per Fig. 1, draw the filter plate, re-derive semi-diameters, and rewrite the analysis, which treats 37.4 mm as the Gaussian focal length. |
 | Nikkor Z 85mm f/1.8 S | The printed Example 3 table of JP 2020-173366 A traces to EFL 82.222 mm and a total length of 110.81 mm; the patent states 83.00 and 111.35, and its spherical-aberration plot does not show the −0.13 mm undercorrection the table produces. Recorded as an `unresolved` `sourceErrata` entry. Single changes near the second group (R8, R10, the L9 index) restore the focal length and axial correction, but none restores the off-axis correction as well. | Isolate the misprint against the patent text and its sibling examples, then correct it under the source-errata standard; leave it unresolved if no single cause meets that standard. |
-| Tamron AF 28-200mm Super XR (A03) | The aspheres US 6,437,923 B1 prints for surfaces 7 and 30 give marginal spherical aberration of about +12 / +51 / +85 mm at the three zoom states, against the ±0.5 mm scale of its Figs. 2-4. One set of signs (A6, A8 of surface 7 and A6, A8, A10 of surface 30 negative) reproduces the plotted spherical aberration, astigmatism and distortion at every state to about 0.03 mm, and is the only one of the 4,096 sign combinations that does. The printed f-numbers and half-angles reject the printed blocks and accept that set, but isolate only A6 of surface 7. Recorded as `unresolved`; the printed values are kept. Evidence table in the lens's audit log. | A ruling on whether a misprinted block may be corrected as one unit when the second kind of evidence does not isolate each value; or a second printing of the table. |
 | Vivitar Series 1 35-85mm f/2.8 | Every row of Table I of US 3,975,089 and its three claim copies matches the file, yet the table computes 38.46 / 89.08 mm and a back focus of 45.82 mm where the text states 36-83 mm and 40.06 mm, and Group IV computes a power of 0.0319 against Table III's .0333. No single Group IV value repairs all three, and the patent has no aberration plots. Recorded as `unresolved`. | A second printing of the prescription (a foreign counterpart of application 462,366). |
 | Konica UC Zoom-Hexanon AR 80-200mm f/4 | Every row of the table of JP S51-37247 A matches the file and the example is not normalized, yet it traces to 80.88 / 199.75 mm and a back focus of 49.50 mm where the patent prints f = 79.925~196.158 and fB = 48.523. The table's zoom ratio matches the focal lengths on the patent's own plots (80.0 / 197.5 mm), and no single misprint-style change among 7,444 tried reproduces focal lengths and back focus together. Recorded as `unresolved`. | A second printing of the table (a counterpart of application S49-110764). |
 | Schneider TV-Variogon 20-600mm | The file is Tables I and IB of US 3,912,373 times 20 at every value, yet the nine stations compute 19.83-613.64 mm against the stated 20-592 mm and the paraxial image drifts 12.8 mm over the range. Most of it is component 1, which computes 138.63 mm against Table IA's 138.02; eight single values in L6-L8 would each repair it and none can be singled out. Recorded as `unresolved`. The station f-numbers are those of the file's one iris; the patent's 1:6.3 at 592 mm is not what its own focal lengths give (4.29). | A second kind of source-internal evidence for one of the candidate values. |
@@ -257,12 +256,14 @@ Stations whose traced on-axis f-number is more than 3 % from the stated one; the
 npm run audit:aperture -- --markdown
 ```
 
-1,441 of 1,622 stations are within 3 %. Of the rest, a rim clips the beam at 171 stations on 127 lenses (`rim`);
+1,442 of 1,622 stations are within 3 %. Of the rest, a rim clips the beam at 170 stations on 126 lenses (`rim`);
 work the largest differences first. For each row, read whether the limiting semi-diameter is printed in the source or
 was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
 f-number may be defined on a vignetted beam, and the row is then recorded in [decisions.md](decisions.md). An inferred
-rim is re-derived from the figure. Notes that state the axial beam clears every rim are corrected with the row.
+rim takes the figure's value where the figure, on two scales that agree, shows a wider one (the procedure's
+"clipped stated beam" case); it is never sized to the beam. Notes that state the axial beam clears every rim are
+corrected with the row.
 
 The other diagnoses are not rim problems:
 
@@ -276,7 +277,7 @@ The other diagnoses are not rim problems:
 Start with these zooms. Each has a station that a wide-end iris would limit, where the stated, wider beam is stopped
 first by a rim or, on the two Nikon AI zooms, by the stop-plane geometry above. The Sigma 10-18mm is rim-limited at
 every station. The patent audit of the fixed-iris zooms confirmed the rim limit against the printed f-number on
-fifteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fixed-iris-patent-audit-2026-10.md)):
+fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fixed-iris-patent-audit-2026-10.md)):
 
 | Lens | File | Station: stated, traced, limiter | Status |
 |---|---|---|---|
@@ -294,7 +295,6 @@ fifteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fix
 | NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: f/4 traces f/4.91 (+22.8 %), trace failure at STO (noBracket) | todo |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | 34 mm: f/2.88 traces f/3.21 (+11.3 %), rim 10 | todo |
 | OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD | `olympus/OlympusMZuiko1435mmf2ED.data.ts` | 22.08 mm: f/2.04 traces f/2.16 (+5.9 %), rim 30; 34.28 mm: f/2.04 traces f/2.36 (+15.5 %), rim 30 | todo |
-| PENTAX SMC A ZOOM 35-70mm f/4 | `pentax/PentaxA3570mmf4.data.ts` | 68.5 mm: f/4.1 traces f/4.61 (+12.4 %), rim 7. Fig. 9 of US 4,812,022, on two scales agreeing to 0.6 %, reads the rear group at 11.3 / 10.7 / 10.2 / 8.2 mm against the file's 9.5 / 9.8 / 9.4 / 7.2: 8-19 % over, under the figure procedure's 25 % bar, so nothing was changed. Those values pass the validator and trace f/4.10 on the iris | needs a ruling: does a traced clip of the source's printed f-number justify a figure re-derivation below the bar? |
 | PENTAX HD DA* 11-18mm f/2.8 ED DC AW | `pentax/PentaxD1118mmF28EDDCWR.data.ts` | 17.7 mm: f/2.8 traces f/2.92 (+4.2 %), rim 17 | todo |
 | PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR | `pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts` | 30 mm: f/2.9 traces f/3.06 (+5.6 %), rim 16 | todo |
 | SIGMA 10-18mm f/2.8 DC DN \| Contemporary | `sigma/Sigma1018mmf28DCDN.data.ts` | 10.3 mm: f/2.92 traces f/3.09 (+5.9 %), rim 10; 13.5 mm: f/2.92 traces f/3.35 (+14.6 %), rim 10; 17.5 mm: f/2.92 traces f/3.70 (+26.7 %), rim 10 | todo |

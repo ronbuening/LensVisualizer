@@ -21,6 +21,10 @@ Change an `sd` only when you have one of these:
   a design whose printed image height reaches that corner (Step 1). Always fix these.
 - **Strong figure evidence** — the patent drawing disagrees by more than ~25%, both measurements agree, and you
   confirmed it on a zoomed render (Steps 3–4).
+- **A clipped stated beam** — an inferred rim clips the on-axis beam of the f-number the source prints
+  (`npm run audit:aperture`), and the figure, measured on two independent scales that agree, gives a wider rim. Use
+  the figure's value even when it is under ~25% from the file's; never the value the beam needs. If the figure does
+  not give a wider rim, leave the row in [sd-audit-queue.md](sd-audit-queue.md) Section I.
 
 Anything inside ~15% is noise. Leave it and say so in the log.
 
