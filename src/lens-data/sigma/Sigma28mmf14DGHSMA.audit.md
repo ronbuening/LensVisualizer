@@ -351,3 +351,16 @@ The variable-spacing table gives d14 = 6.9915 and d30 = 36.5288 at infinity and 
 The surface validator reports no errors, the image-circle check lists no undersized surface, field coverage is 100 % at 21.63 mm with the corner chief ray clear at 37.4°, the aperture audit is within 3 % of the stated f-number and no element is trimmed in the render. Engine values are identical before and after: focal length 28.7182 mm, f/1.46, stop radius 14.0416 mm, paraxial half-field estimate 34.124° (set by surface 2; the real corner chief ray passes at 37.375° against the patent's 37.37°). The axial stop-edge ray is at 15.33 mm on surface 10 at infinity and 15.16 mm at close focus, the corner chief ray at 13.16 and 12.79 mm. The transmitted tangential bundle at 0.3, 0.5, 0.7, 0.85 and 1.0 of the image height is 94.1, 83.6, 70.0, 55.5 and 38.1 % of the stop diameter at infinity (before: 94.1, 81.5, 66.6, 53.8, 38.1) and 94.5, 84.2, 71.1, 57.0 and 40.0 % at close focus (before: 94.5, 82.5, 67.7, 55.0, 40.0). The lower-side limits are now 13/14, 13/14, 10, 7 and 2. The smallest independent rim closure is still 0.312796 mm at E13 and the largest rim slope 63.600577° on surface 24. The shared clear-aperture script does not converge on a chief ray for this lens, so chief-ray and bundle heights come from the first pass's exact meridional tracer with the filter in place.
 
 Open limitations: the stored rims keep the uniform 1 to 4 % excess over Figure 21 read at its true height scale. Surfaces 2, 4A and 7 remain below the drawn rims until a per-lens shared-gap limit is set. Sigma's diagram differs from Example 5 in axial detail (its E5 is about 3.8 mm thick on axis against 6.32 mm, and its stop sits about 1.1 mm nearer the front), so it was used for relative heights and markings only.
+
+## 2026-10-08 — Front-group rims to the drawn contact with E3
+
+Applied at the owner's direction after the second review above, which measured both rims and left the policy field alone.
+
+| Surface | Before | After | Drawn |
+|---|---:|---:|---|
+| 4A (E2 rear) | 19.6 | 20.7 | Figure 21 runs the face to E3's front corner at 21.0 to 21.3 mm; Sigma ends it at 20.0 to 20.5 mm |
+| 7 (E4 front) | 19.2 | 20.2 | Figure 21 merges it with surface 6 from 19.9 to 20.1 mm; Sigma ends it at 20.0 to 20.3 mm |
+
+`gapSagFrac` 0.98 is the smallest two-decimal limit that admits both: 4A→5 closes 0.9693 of its 7.449 mm gap and 6→7 closes 0.9761 of its 3.805 mm gap (0.97 still refuses surface 7). The faces do not cross; 0.228 mm and 0.091 mm of air remain at the rims, where the prescription profiles would meet at 21.14 mm and 20.43 mm.
+
+The validator, image-circle, field-coverage and aperture audits report no error. Engine focal length, f-number, stop radius and half-field estimate are unchanged. Surface 4A stays monotonic to 20.7 mm (slope 29.8°, departure −3.4918 mm from the vertex sphere; the analysis row is restated). Surface 7 no longer limits the tangential bundle at 0.85 of the image height, where surface 10 now does: transmitted width 55.5% → 57.1% at infinity and 57.0% → 58.3% at the near state. The axis, 0.5, 0.7 and full-field bundles are unchanged.

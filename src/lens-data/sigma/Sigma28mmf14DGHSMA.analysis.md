@@ -339,7 +339,7 @@ inferred model semi-diameters, departures from the same-radius vertex sphere are
 | Surface | Modeled semi-diameter (mm) | Full sag departure from vertex sphere (mm) |
 |---|---:|---:|
 | 3A | 23.6 | -0.632776 |
-| 4A | 19.6 | -2.594722 |
+| 4A | 20.7 | -3.491762 |
 | 17A | 20.3 | -0.248161 |
 | 18A | 20.3 | +0.393687 |
 | 29A | 17.7 | -0.592981 |
@@ -422,8 +422,11 @@ and off-axis ray containment. Surfaces 11, 25 and 26 take the heights at which
 Figure 21 draws the flat tops of D2 and T1, and surface 21 ends where the
 figure ends the concave rear face of E12, inside its flat annulus. Surface 10
 ends at 19.3 mm, where Figure 21 and Sigma's construction diagram both end the
-concave front face of E6. Surfaces 2, 4A and 7 stop at the shared-gap limit,
-below the rims the figure draws. Figure 21 is drawn at 0.1923 mm/px along the
+concave front face of E6. Surfaces 4A and 7 end at 20.7 and 20.2 mm, where
+both drawings end the rear face of E2 and the front face of E4 against E3; the
+faces close 97% and 98% of their air gaps without touching, so this lens sets
+its shared-gap limit to 98% in place of the default 90%. Surface 2 stops at
+the shared-gap limit, below the rim the figure draws. Figure 21 is drawn at 0.1923 mm/px along the
 axis but 0.186 mm/px in height, as its drawn curvatures and its stop tick
 show; the stored rims were first read at the axial scale and stand about 3 %
 above the drawn heights, a uniform offset that is left in place.

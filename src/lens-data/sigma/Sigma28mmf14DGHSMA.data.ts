@@ -17,9 +17,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * axis (vertex crossings) but 0.186 mm/px in height (drawn curvatures and the
  * stop tick), so the stored rims, first read at the axial scale, stand about
  * 3 % above the drawn heights; that uniform offset is left in place. Surface
- * 10 ends where both drawings end the front face of E6, 19.3 mm. Surfaces 2,
- * 4A and 7 stop at the shared-gap limit, below the rims the figure draws; 21
- * ends at the drawn optical extent inside the flat rear annulus of E12.
+ * 10 ends where both drawings end the front face of E6, 19.3 mm. Surfaces 4A
+ * and 7 are 20.7 and 20.2 mm, where both drawings end the rear face of E2 and
+ * the front face of E4 against E3; gapSagFrac 0.98 is the smallest two-decimal
+ * shared-gap limit that admits them (the faces close 0.969 and 0.976 of their
+ * gaps and keep 0.23 and 0.09 mm of air at the rim). Surface 2 stops at the
+ * shared-gap limit, below the rim the figure draws; 21 ends at the drawn
+ * optical extent inside the flat rear annulus of E12.
  * They are not published dimensions; field vignetting remains an inference.
  * Elements are named E1–E17 because the patent reserves L1 and L2 for its two
  * lens groups and names no single element; its L2c is the triplet T1.
@@ -54,6 +58,7 @@ const LENS_DATA = {
   ],
   "imageFormat": "135-full-frame",
   "imageCircleMm": 43.26,
+  "gapSagFrac": 0.98,
   "patentNumber": "JP 2019-219472 A",
   "patentAuthors": [
     "Hokuto Usami",
@@ -324,7 +329,7 @@ const LENS_DATA = {
       "d": 7.4494,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 19.6
+      "sd": 20.7
     },
     {
       "label": "5",
@@ -348,7 +353,7 @@ const LENS_DATA = {
       "d": 1.7,
       "nd": 1.437,
       "elemId": 4,
-      "sd": 19.2
+      "sd": 20.2
     },
     {
       "label": "8",
