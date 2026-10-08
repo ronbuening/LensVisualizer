@@ -16,6 +16,22 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent-listed effective diameters (φi) divided by 2.            ║
  * ║    All sd = φi / 2 directly from [表1].                            ║
+ * ║                                                                    ║
+ * ║  NOTE ON THE INDEX COLUMN AND GLASS LABELS:                        ║
+ * ║    [表1] heads the index column "ndi" and ¶0059 defines it at the  ║
+ * ║    d line (587.6 nm), but the printed values are e-line indices    ║
+ * ║    paired with d-line Abbe numbers: 17 of the 20 equal a catalog   ║
+ * ║    ne to five decimals with that glass's vd, and none equals a     ║
+ * ║    catalog nd. The printed values are stored unchanged and all     ║
+ * ║    20 elements are e-referenced (indexReference "e"). 17 carry     ║
+ * ║    the catalog name and trace on its curve anchored to the         ║
+ * ║    printed index: 14 on HOYA rows, and the aspheres L31, L45 and   ║
+ * ║    L61 on HIKARI moulding glasses Q-LASFH58S and Q-PSKH4S. L21,    ║
+ * ║    L51 and L73 match no vendor row and stay Unmatched on the       ║
+ * ║    Abbe estimate. The vd slot                                      ║
+ * ║    keeps the printed d-line Abbe number (catalog ve is 0.1 to      ║
+ * ║    0.5 lower). The table lists no cover glass or filter, so        ║
+ * ║    there are no rearPlates.                                        ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -56,8 +72,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.95825,
       vd: 18.0,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -611.1,
-      glass: "Dense flint (≈S-NPH1W, OHARA; Δnd = +0.0008, probable proprietary melt)",
+      glass: "FDS18 (HOYA; catalog ne 1.95825 as printed, vd 17.98 for the printed 18.0; supplier unconfirmed)",
       apd: false,
       cemented: "D1",
       role: "Ultra-high-index dense flint; chromatic counterweight for L12 in front collector doublet",
@@ -69,8 +88,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59489,
       vd: 68.6,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: +242.8,
-      glass: "595686 — fluorophosphate crown (patent nd=1.59489, νd=68.6)",
+      glass: "FCD515 (HOYA; catalog ne 1.59489 as printed, vd 68.62 for the printed 68.6; supplier unconfirmed)",
       apd: false,
       cemented: "D1",
       role: "Fluorophosphate crown; low-dispersion partner in D1, probable ED element (νd = 68.6)",
@@ -82,10 +104,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59561,
       vd: 67.0,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: +136.6,
-      glass: "596670 - fluorophosphate crown (patent nd=1.59561, vd=67.0; no exact public catalog match)",
+      glass: "PCD51 (HOYA; catalog ne 1.59561 as printed, vd 67.00 for the printed 67.0; supplier unconfirmed)",
       apd: false,
-      role: "Fluorophosphate crown; bulk positive power of G1 front collector",
+      role: "Phosphate crown; bulk positive power of G1 front collector",
     },
     // ── G2 — Variator ──
     {
@@ -95,8 +120,11 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.77373,
       vd: 49.4,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -32.3,
-      glass: "774494 — lanthanum crown (patent nd=1.77373, νd=49.4)",
+      glass: "Unmatched (printed coordinates; no vendor row at either the d or the e line; nearest e-line rows are 0.0004 or more away)",
       apd: false,
       role: "Dual-aspherical variator front; controls SA and coma across zoom range. Probable XA element.",
     },
@@ -107,8 +135,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7766,
       vd: 29.7,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -23.3,
-      glass: "777297 — dense flint (patent nd=1.77660, νd=29.7)",
+      glass: "NBFD29 (HOYA; catalog ne 1.77660 as printed, vd 29.74 for the printed 29.7; supplier unconfirmed)",
       apd: false,
       cemented: "D2",
       role: "Dense flint; strong divergence in variator doublet D2",
@@ -120,8 +151,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.93024,
       vd: 24.0,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: +20.6,
-      glass: "930240 — ultra-high-index dense flint (patent nd=1.93024, νd=24.0)",
+      glass: "FDS24 (HOYA; catalog ne 1.93024 as printed, vd 23.96 for the printed 24.0; supplier unconfirmed)",
       apd: false,
       cemented: "D2",
       role: "Ultra-high-index dense flint; partial compensator in net-negative D2 doublet",
@@ -133,10 +167,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6998,
       vd: 55.5,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -63.0,
-      glass: "700555 — barium crown (patent nd=1.69980, νd=55.5)",
+      glass: "LAC14 (HOYA; catalog ne 1.69980 as printed, vd 55.46 for the printed 55.5; supplier unconfirmed)",
       apd: false,
-      role: "Barium crown field flattener at G2 rear; Petzval compensation",
+      role: "Lanthanum crown field flattener at G2 rear; Petzval compensation",
     },
     // ── G3 — Aperture Stop + Front Relay ──
     {
@@ -146,8 +183,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.85612,
       vd: 40.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: +39.7,
-      glass: "856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)",
+      glass: "Q-LASFH58S (HIKARI moulding glass; catalog ne 1.85612 as printed, vd 40.12 for the printed 40.1; supplier unconfirmed)",
       apd: false,
       role: "Dual-aspherical post-stop element; primary on-axis wavefront correction at F/2. Probable XA element.",
     },
@@ -158,12 +198,15 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.4381,
       vd: 95.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: +200.9,
-      glass: "S-FPL55 (OHARA)",
+      glass: "FCD100 (HOYA; catalog ne 1.43810 as printed, vd 95.10 for the printed 95.1; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "Super ED fluorophosphate; ΔPgF ≈ +0.035 (catalog value)",
+      apdNote: "Super ED fluorophosphate; FCD100 catalog PgF 0.5336, about +0.050 above the engine's normal line",
       cemented: "D3",
-      role: "First of three S-FPL55 Super ED elements; axial color correction in relay section",
+      role: "First of three Super ED elements; axial color correction in relay section",
     },
     {
       id: 10,
@@ -172,8 +215,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.57125,
       vd: 56.0,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -53.6,
-      glass: "571560 — barium crown (patent nd=1.57125, νd=56.0)",
+      glass: "BAC4 (HOYA; catalog ne 1.57125 as printed, vd 56.04 for the printed 56.0; supplier unconfirmed)",
       apd: false,
       cemented: "D3",
       role: "Barium crown; achromatizing partner for Super ED L32, secondary spectrum correction",
@@ -186,11 +232,14 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.00912,
       vd: 29.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -71.8,
-      glass: "Unmatched (patent nd=2.00912, νd=29.10; prior S-NPH85 annotation not coefficient-backed)",
+      glass: "TAFD55 (HOYA; catalog ne 2.00912 as printed, vd 29.13 for the printed 29.1; supplier unconfirmed)",
       apd: false,
       cemented: "D4",
-      role: "Highest-index glass in design (nd = 2.009); dispersive partner for Super ED L42",
+      role: "Highest-index glass in design (printed ne 2.009); dispersive partner for Super ED L42",
     },
     {
       id: 12,
@@ -199,12 +248,15 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.4381,
       vd: 95.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: +68.2,
-      glass: "S-FPL55 (OHARA)",
+      glass: "FCD100 (HOYA; catalog ne 1.43810 as printed, vd 95.10 for the printed 95.1; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "Super ED fluorophosphate; ΔPgF ≈ +0.035 (catalog value)",
+      apdNote: "Super ED fluorophosphate; FCD100 catalog PgF 0.5336, about +0.050 above the engine's normal line",
       cemented: "D4",
-      role: "Second S-FPL55 Super ED element; cemented to ultra-dense flint for efficient achromatization",
+      role: "Second Super ED element; cemented to ultra-dense flint for efficient achromatization",
     },
     {
       id: 13,
@@ -213,12 +265,15 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.4381,
       vd: 95.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: +50.7,
-      glass: "S-FPL55 (OHARA)",
+      glass: "FCD100 (HOYA; catalog ne 1.43810 as printed, vd 95.10 for the printed 95.1; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "Super ED fluorophosphate; ΔPgF ≈ +0.035 (catalog value)",
+      apdNote: "Super ED fluorophosphate; FCD100 catalog PgF 0.5336, about +0.050 above the engine's normal line",
       cemented: "D5",
-      role: "Third S-FPL55 Super ED element; second chromatic correction stage in G4",
+      role: "Third Super ED element; second chromatic correction stage in G4",
     },
     {
       id: 14,
@@ -227,8 +282,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.86252,
       vd: 25.2,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -35.4,
-      glass: "863252 — dense flint (patent nd=1.86252, νd=25.2)",
+      glass: "NBFD25 (HOYA; catalog ne 1.86252 as printed, vd 25.15 for the printed 25.2; supplier unconfirmed)",
       apd: false,
       cemented: "D5",
       role: "Dense flint; dispersive counterbalance for Super ED L43 (Δνd = 69.9)",
@@ -240,8 +298,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.85612,
       vd: 40.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: +23.4,
-      glass: "856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)",
+      glass: "Q-LASFH58S (HIKARI moulding glass; catalog ne 1.85612 as printed, vd 40.12 for the printed 40.1; supplier unconfirmed)",
       apd: false,
       role: "Strongest positive singlet in design; largest aspherical departure (A4 = −1.044e-5). Probable XA element.",
     },
@@ -253,8 +314,11 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.85659,
       vd: 40.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -41.9,
-      glass: "L-LAH85V (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "Unmatched (printed coordinates; no vendor row at either the d or the e line; nearest e-line row is HOYA M-TAFD305 at 1.85639, 0.00020 below)",
       apd: false,
       role: "Single-element focus group GMF1; translates toward image at close focus. Driven by dual XD linear motors.",
     },
@@ -266,8 +330,12 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.59456,
       vd: 66.9,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: +68.3,
-      glass: "J-PSKH4 (HIKARI catalog equivalent; production supplier unspecified)",
+      glass:
+        "Q-PSKH4S (HIKARI moulding glass; catalog ne 1.59456 as printed, vd 66.92 for the printed 66.9; supplier unconfirmed)",
       apd: false,
       role: "Single-element focus group GMF2; translates toward object at close focus. Floating partner to G5.",
     },
@@ -279,11 +347,14 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 2.00009,
       vd: 16.5,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: +39.8,
-      glass: "Unmatched ultra-high-index dense flint (patent nd=2.00009, νd=16.5; prior S-NPH7 attribution unsupported)",
+      glass: "FDS16-W (HOYA; catalog ne 2.00009 as printed, vd 16.48 for the printed 16.5; supplier unconfirmed)",
       apd: false,
       cemented: "D6",
-      role: "Second-highest index (nd = 2.000), lowest νd in design; lateral color correction at image periphery",
+      role: "Second-highest index (printed ne 2.000), lowest νd in design; lateral color correction at image periphery",
     },
     {
       id: 19,
@@ -292,8 +363,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.86252,
       vd: 25.2,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -43.2,
-      glass: "863252 — dense flint (patent nd=1.86252, νd=25.2)",
+      glass: "NBFD25 (HOYA; catalog ne 1.86252 as printed, vd 25.15 for the printed 25.2; supplier unconfirmed)",
       apd: false,
       cemented: "D6",
       role: "Dense flint; completes lateral chromatic corrector pair with L71",
@@ -305,8 +379,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.85659,
       vd: 40.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column ndi and states the d line, but 17 of its 20 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -71.9,
-      glass: "L-LAH85V (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "Unmatched (printed coordinates; no vendor row at either the d or the e line; nearest e-line row is HOYA M-TAFD305 at 1.85639, 0.00020 below)",
       apd: false,
       role: "Final element; field curvature correction, maintains short BFD",
     },
