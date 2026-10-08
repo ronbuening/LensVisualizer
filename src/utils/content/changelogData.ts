@@ -20,76 +20,18 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-08",
-    type: "fix",
-    summary: "Sony FE 12-24mm f/2.8 GM now traces at d-line indices; all 17 glasses use catalog dispersion curves",
-  },
-  {
-    date: "2026-10-08",
-    type: "fix",
-    summary:
-      "Sony FE 12-24mm f/2.8 GM rear ED element's partial dispersion now uses the chromatic trace's reference line",
-  },
-  {
-    date: "2026-10-08",
-    type: "fix",
-    summary:
-      "Canon RF 35mm f/1.4 L VCM credits both patent inventors; Fujifilm XF 23mm f/1.4 R LM WR ED glass is marked inferred, not patent-stated",
-  },
-  {
-    date: "2026-10-08",
-    type: "fix",
-    summary: "Partial-dispersion values on 27 lenses now use the same reference line as the chromatic trace",
-  },
-  {
-    date: "2026-10-08",
-    type: "fix",
-    summary: "Thirteen zooms had lens apertures too small for their patent f-number; the clipping surfaces are raised",
-  },
-  {
-    date: "2026-10-08",
-    type: "fix",
-    summary: "Tamron 28-200mm (A03) asphere signs and Pentax-A 35-70mm rear apertures corrected from their patents",
-  },
-  {
-    date: "2026-10-07",
     type: "improvement",
-    summary: "Four zooms whose patent tables contradict the patent's own figures now say so beside the MTF chart",
+    summary: "Improved MTF: diffraction from traced rays, clipped corners charted, traced f-number shown",
   },
   {
-    date: "2026-10-07",
+    date: "2026-10-08",
     type: "fix",
-    summary:
-      "19 zoom lenses corrected against their patents: station f-numbers, iris model and four prescription values",
+    summary: "Opened lenses to their patent design f-number; zooms now hold it at every focal length",
   },
   {
-    date: "2026-10-07",
+    date: "2026-10-08",
     type: "fix",
-    summary: "Zoom lenses now open their iris to the stated f-number at every focal length, not only the wide end",
-  },
-  {
-    date: "2026-10-07",
-    type: "fix",
-    summary: "156 lenses now open to their patent design f-number, with the marketed value shown beside it",
-  },
-  {
-    date: "2026-10-07",
-    type: "improvement",
-    summary: "Diffraction-corrected MTF now shears the traced pupil instead of scaling by a limit, removing a low bias",
-  },
-  {
-    date: "2026-10-07",
-    type: "fix",
-    summary: "MTF now charts format corners where the chief ray is clipped but part of the beam still passes",
-  },
-  {
-    date: "2026-10-07",
-    type: "fix",
-    summary: "Corrected two patent misprints that blurred Nikon Z MC 105mm and Zeiss Batis 18mm MTF",
-  },
-  {
-    date: "2026-10-07",
-    type: "improvement",
-    summary: "MTF header now shows the traced f-number when it differs from the label",
+    summary: "Corrected patent misprints, zoom f-numbers, clipped apertures and glass dispersion data",
   },
   {
     date: "2026-10-07",
