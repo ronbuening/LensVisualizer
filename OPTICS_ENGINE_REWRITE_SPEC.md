@@ -15,7 +15,7 @@ wherever one can be written, and by review otherwise.
 
 | # | Outcome | Checked by |
 | --- | --- | --- |
-| M1 | One authored lens-data format (V2), with one spec and one template. V1 files are still read, but only by converting them to the canonical form at ingest. | Corpus guard: every catalog file is V2; converter round-trip suite |
+| M1 | One authored lens-data format (V2), with one spec and one template. The app reads only V2. V1 files are read only by the permanent converter, which the organizer runs on any V1 file it finds and which also runs on demand. | Corpus guard: every catalog file is V2; converter and organizer suites; seam guard keeps the V1 mapping out of the app |
 | M2 | Lens data is ingested once into a canonical prescription, then compiled once into the engine's lens model. Materials are resolved once, and nothing in the engine clones lens data or points back to the UI view. | Structural counters (S1.P3.T1); architecture guards (S1.P4.T1) |
 | M3 | One surface-geometry module and one intersection/trace stack. `src/optics/internal/` and the legacy tracers in `rayTrace.ts` are deleted. | Architecture guards |
 | M4 | No runtime import cycles inside `src/optics/`. | Import-cycle guard (S1.P4.T1) |
@@ -29,7 +29,8 @@ Speed is a secondary goal. Its gates and targets are under [Efficiency](#efficie
 
 ## Evidence
 
-This plan is grounded in the engine and catalog as they stand at `main` 33ebdb3.
+This plan is grounded in the engine and catalog at `main` 33ebdb3, plus the fixes that merged with the plan: three
+duplicate-value corrections in lens data and the generated rear-plate rim fix.
 
 ### Engine
 
@@ -98,7 +99,7 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
 
 - **Per surface.**
   - Every surface repeats `nd` and `elemId`. The 8,719 air surfaces (46%) carry `elemId: 0, nd: 1`.
-  - Surface and element indices differ in exactly one lens (Fujifilm XF18mm f/2, 3 surfaces), and only by rounding.
+  - Surface and element indices agree in every lens, so one `medium` reference can carry the index.
   - `elemId` means three things: the drawn span, the dispersion medium and the absorbing medium. These diverge on the 14
     mirror and blocker surfaces.
   - Four surfaces in two lenses are non-air media with no element: water in front of the Nikon RUW 20-35, and three
@@ -106,8 +107,7 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
 - **Variable gaps.**
   - `var` is `[focusKeyframe]` on primes and `[zoomStation][focusKeyframe]` on zooms; the shape is decided by
     `zoomPositions`.
-  - Its first value duplicates `surface.d`. They are exactly equal in 2,193 of 2,195 gaps and differ by 3e-13 mm and
-    1.7e-7 mm in the other two.
+  - Its first value duplicates `surface.d`; the two are exactly equal in all 2,195 gaps.
 - **Per-station facts are spread across parallel structures.**
   - Six parallel per-station structures: `zoomPositions`, `nominalFno`, `zoomStopSemiDiameters`, `zoomCloseFocusM`, the
     `var` rows and the `publishedStations` indices.
@@ -131,12 +131,15 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
 
 ## Baseline and accuracy contract
 
-- **R0** is `main` at the program's first PR. **A0** is `main` after S1.P1.T1 lands the accuracy contract.
+- **#774 merges on its own, ahead of the program,** as soon as its CI is green on current `main`, so it does not go
+  stale against the daily lens PRs.
+- **R0** is the parent of #774's merge commit. **A0** is S1.P1.T1's merge commit, which contains #774.
 - Every differential comparison and speed measurement uses A0 or a later anchor (see
   [Anchors and comparison coverage](#anchors-and-comparison-coverage)). R0 is measured once, in S1.P1.T1, only to
   size the contract's own cost.
-- This section owns the contract until it is documented in `agent_docs/architecture/optics-engine.md` (Exact Surface
-  Trace). After that, it shrinks to a pointer.
+- #774 documents the contract in `agent_docs/architecture/optics-engine.md` (Exact Surface Trace) and
+  `agent_docs/decisions.md` (2026-10-08). Until it merges, this section owns the contract; S1.P1.T1 shrinks it to a
+  pointer.
 
 The intersection contract, from #774:
 
@@ -208,7 +211,7 @@ All work merges to `main` through ordinary squash-merged PRs. This is trunk-base
   - No empty commits and no custom gate runner: CI on the PR's head commit is the per-step gate.
 - **Docs move with the code.** Each step rewrites, in the same PR, the architecture text it makes stale, and
   supersedes any decision it overturns. For example, S4.P2.T4 rewrites the two-tracer description in "Exact Surface
-  Trace" in `agent_docs/architecture/optics-engine.md`. S8.P2.T2 is a final consistency pass, not the first update.
+  Trace" in `agent_docs/architecture/optics-engine.md`. S8.P2.T3 is a final consistency pass, not the first update.
 - **Tests move with the code they test.**
   - Behavioral assertions keep their expected values.
   - Before an internal is deleted, its tests are rewritten against the replacement at equal or greater strength.
@@ -243,7 +246,7 @@ it. Before S2.P1.T1, the fingerprint hashes the normalized authored data.
    - These block the PR: a new failed status, a non-finite value, or a lens that no longer builds.
    - Everything else in the impact report is reviewed rather than gated.
 4. **Exceptions.** Some prescriptions cannot be evaluated by the base engine, for example a V2 file before V2 ingest
-   (S2.P2.T2) exists in the base. The PR lists each such lens in an "engine-diff exceptions" section of its
+   (S2.P2.T1) exists in the base. The PR lists each such lens in an "engine-diff exceptions" section of its
    description. The run fails when the lenses it could not compare differ from that list in either direction.
 
 **Baselines and anchor moves.**
@@ -304,8 +307,8 @@ produces (reassociating one sum in sag evaluation). Loosening a budget later is 
 | Every PR | CI (`.github/workflows/quality.yml`) | lint, format, typecheck, `npm run test`, the tooling suite, build and `seo:audit` (all existing) |
 | Engine or lens-data PR: touches `src/optics/**`, `src/types/**`, `src/lens-data/**` or `src/utils/catalog/**` | CI job `engine-diff` (S1.P2.T2) | Tier P against the merge-base under the PR's change class, plus every changed or new lens through every Tier P request |
 | Phase end | The PR that ends the phase | Every test the phase's steps added, run together; the phase exit criteria |
-| Stage end | Maintainer, locally or by `workflow_dispatch`, sharded | Tier S against the current anchor; the full suites; build; the stage's efficiency report; then the tag |
-| Before S8.P2 deletes code | Maintainer, sharded | Tier F against the current anchor |
+| Stage end | GitHub Actions: `engine-diff-stage.yml` by `workflow_dispatch`, sharded as a matrix (S1.P2.T3). Timing runs on the maintainer's machine. | Tier S against the current anchor; the full suites; build; the stage's efficiency report; then the tag |
+| Before S8.P2 deletes code | `engine-diff-stage.yml`, sharded | Tier F against the current anchor |
 
 ### Differential harness
 
@@ -439,7 +442,8 @@ requirement that must block is written as a test in its step, or as one of the g
   quick rejection is never mistaken for a speedup.
 - These never count as speedups: reducing samples, lowering grid caps, returning unsupported results fast, or changing
   a physical model.
-- The browser harness (S1.P3.T3) reports drag and settle times. It is not a gate.
+- A browser interaction harness (drag and settle times) is deferred: it would only report, and the Node benchmarks and
+  counters cover every gate. Add it if interactive feel regresses.
 
 ## Target architecture
 
@@ -447,8 +451,9 @@ requirement that must block is written as a test in its step, or as one of the g
 
 ```mermaid
 flowchart LR
-  V2[V2 authored file] --> I[Ingest]
-  V1[V1 authored file] --> I
+  V1[V1 file: archived or external] --> CV[Converter, also run by the organizer]
+  CV --> V2[V2 authored file]
+  V2 --> I[Ingest]
   I --> C[CanonicalPrescription]
   C --> X[Compose: converter, rear plates]
   X --> K[CompiledLens]
@@ -478,12 +483,13 @@ flowchart LR
   subdirectories that outside code may not import.
 - **Final barrels.** They are settled in S8.P1.T1 and enforced by the seam guard. The proposal: `buildLens.ts`,
   `teleconverter.ts`, `optics.ts`, `fieldGeometry.ts`, `projection.ts`, `analysis.ts`, `mtf.ts`, `perspective.ts`,
-  `diagramGeometry.ts`, `chromatic.ts`, `glassCatalog.ts`, `publishedStations.ts`, `validation.ts`, `geometry.ts` and
-  `types.ts`.
+  `diagramGeometry.ts`, `chromatic.ts`, `glassCatalog.ts`, `publishedStations.ts`, `validation.ts`, `geometry.ts`,
+  `types.ts` and `lensDataConversion.ts`. The last exposes the V1 mapping and the canonical printers to the converter;
+  the seam guard admits only `scripts/lens-data-convert/`, the organizer and their tests as its importers.
 
 | Directory | Contents |
 | --- | --- |
-| `prescription/` | Canonical types; ingest of V1 and V2; schema defaults; object-level conversion; composition (rear plates, teleconverter); the compiler; `validate/` |
+| `prescription/` | Canonical types; V2 ingest; schema defaults; composition (rear plates, teleconverter); the compiler; `validate/`; `v1/`, the V1 mapping that only the converter imports |
 | `geometry/` | Surface profiles; fused sag and slope; bounds; the intersection kernel; tolerance envelopes; planes; vector math; diffractive phase |
 | `trace/` | Interactions; sequential and generalized traversal; path planning; apertures; capture; absorption; ray adapters |
 | `state/` | Control interpolation (focus, zoom, aberration); `PreparedGeometry` and its cache; stop and iris; layout; camera anchoring |
@@ -524,7 +530,8 @@ flowchart LR
 ### Principles
 
 1. **One fact, one place.** A value the engine reads is authored once. Where V1 holds two copies, the converter checks
-   that they agree exactly. If they don't, the file waits for a data decision (S2.P2.T1).
+   that they agree exactly. Every catalog file agrees today. A file that does not (a new, archived or external V1
+   file) is refused with the pair named, and waits for a C3 data correction under `agent_docs/lens-patent-audit.md`.
 2. **Records, not parallel arrays.** Every per-station fact lives on its station record.
 3. **Explicit over magic.** `R: "flat"` replaces `1e15`; `medium` replaces `elemId` + `nd`; the stop declares whether
    its radius is authored or derived.
@@ -537,7 +544,8 @@ flowchart LR
      side effect. Examples: design focal length versus station focal lengths, `specs`, element `fl`.
 6. **Defaults belong to the schema.** They are documented in the spec and applied by ingest with provenance, never by
    spreading an object of defaults.
-7. **Naming.**
+7. **Naming.** The names in this section are approved as written (2026-10-09). Renaming after S2.P5 would convert the
+   catalog a second time, so a later rename is a new format change, not an edit.
    - The prescription columns `R`, `d`, `sd` and `innerSd` keep optical notation, in mm.
    - Every other dimensional field carries a unit suffix.
    - f-numbers are spelled `fNumber`.
@@ -631,17 +639,17 @@ and position.
 | V1 | V2 | Rule |
 | --- | --- | --- |
 | *(none)* | `schema: 2` | Discriminator; ingest dispatches on it |
-| `key`, `maker`, `name`, `subtitle`, `visible`, `publishedAt` | unchanged, first in the file | Identity readers move from regex to the AST (S2.P2.T3) |
+| `key`, `maker`, `name`, `subtitle`, `visible`, `publishedAt` | unchanged, first in the file | Identity readers move from regex to the AST (S2.P2.T2) |
 | `lensMounts`, `imageFormat`, `imageCircleMm`, `specs`, `elementCount`, `groupCount`, `acceptsTeleconverters`, `opticalConfiguration` | `catalog.*` | Same names |
-| `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.{marketing, design}` | Value kept as authored, scalar or `[wide, tele]` |
+| `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.{marketing, design}` | Value kept as authored, scalar or `[wide, tele]`. The design value stays authored: it is the source's stated range, and it feeds the EFL sanity check and the MTF scale check. S2.P6.T3 adds its consistency check. |
 | `apertureMarketing`, `apertureDesign` | `catalog.fNumber.{marketing, design}` | Value kept |
 | `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata` | `source.{patentNumber, patentYear, authors, assignees, errata}` | `errata[].surface` keeps the surface label |
 | `surfaces[].nd`, `surfaces[].elemId` | `surfaces[].medium` | An element id, an id in `media`, or omitted for air. Indices come from the medium only. |
 | *(air surface with `nd ≠ 1`)* | `media: [{ id, name, nd, vd?, … }]` | Undrawn media; 4 surfaces today |
 | `elements[].fromSurface`/`toSurface` | `elements[].span: [from, to]` | Required where the drawn span is not the medium run. Today that means 21 explicit spans and the 14 mirror and blocker surfaces. |
-| `elements[].fl` | `elements[].focalLengthMm` | Display; still authored |
+| `elements[].fl` | `elements[].focalLengthMm` | Display; authored until S2.P6.T5 derives it |
 | `R: 1e15` | `R: "flat"` | Converted only when `R === 1e15` |
-| `asph[label]` | `surfaces[i].asphere` | Sparse. Zero terms are omitted, because V1 required K and A4–A14 on every entry; `K` is omitted when 0. Adding a zero term changes no sum, and schema order stays the accumulation order. |
+| `asph[label]` | `surfaces[i].asphere` | Sparse. Zero terms are omitted, because V1 required K and A4–A14 on every entry, so a printed zero cannot be told from padding; `K` is omitted when 0. Adding a zero term changes no sum, and schema order stays the accumulation order. A zero an audit relies on is restored by hand as an explicit `0`, which V2 allows (S2.P5). |
 | `asph: {}` | omitted | |
 | `var`, `varLabels` | `gaps[label] = { label?, values }` | `values` is always `[zoomStation][focusKeyframe]`; a prime has one row |
 | `surfaces[i].d` for a gap in `gaps` | omitted | `values[0][0]` supplies it. The converter requires `d === values[0][0]`. |
@@ -657,7 +665,7 @@ and position.
 | `svgW`, `svgH`, `scFill`, `yScFill`, `maxAspectRatio`, `lensShiftFrac` | `layout.*` | |
 | `rayFractions`, `rayLeadFrac`, `offAxisFieldFrac`, `offAxisFractions` | `rays.*` | These feed analyses as well as the diagram |
 | `gapSagFrac`, `maxRimAngleDeg` | `checks.*` | Validation relaxations |
-| explicit defaults (`apd: false` ×3,685, `indexReference: "d"` ×1,891, `zoomApertureModel: "from-nominal-fno"` ×49) | kept as authored | New files may omit them. They behave the same as an omission today (every `apd` reader tests truthiness), but an explicit `false` may record that an author checked; see open decision 2. |
+| explicit defaults (`apd: false` ×3,685, `indexReference: "d"` ×1,891, `zoomApertureModel: "from-nominal-fno"` ×49) | `apd: false` and `indexReference: "d"` kept as authored; the 49 aperture models dropped in S2.P6.T1 | Each behaves the same as an omission (every `apd` reader tests truthiness). `apd: false` and `indexReference: "d"` stay because they record that an author checked; the d/e mix-up is real, and #772 moved seven lenses to e-line data. New files may omit them. The no-op aperture model records nothing. |
 
 **Conventions that do not change:**
 
@@ -713,7 +721,8 @@ The stop radius has exactly one authority per lens:
 ### Ingest, conversion and comments
 
 - **Shared mapping.** `src/optics/prescription/` holds the object-level mapping (V1 → canonical, V2 → canonical,
-  canonical → V1 object, canonical → V2 object). The runtime and the converter use the same code.
+  canonical → V1 object, canonical → V2 object). The runtime and the converter use the same code until S8.P2.T2
+  retires V1 ingest from the app; the V1 half then lives in `prescription/v1/` behind `lensDataConversion.ts`.
 - **The converter.**
   - Lives in `scripts/lens-data-convert/`.
   - Reads source with the TypeScript compiler API (`typescript` is already a dev dependency) and never executes input.
@@ -728,23 +737,21 @@ The stop radius has exactly one authority per lens:
   - the authored radius and the derived radius;
   - every comment on that stop entry, with comments that discuss the radius (`sd`, iris, radius, calibration or an
     f-number) flagged for review.
+- **The converter is permanent.** Lens files waiting in an archive for a later release, and files on external
+  branches, may still be V1 long after migration. The converter, its V1 reader and its tests stay after the program,
+  and V1 files enter the catalog only through it:
+  - **On arrival.** The organizer (`scripts/organize-lens-data.mjs`, run by `npm run build`,
+    `npm run generate:metadata` and `npm run organize:lens-data`) detects any `*.data.ts` or `*.teleconverter.ts`
+    without `schema: 2` and converts it in place before filing it. A file the converter refuses stays unchanged, and
+    the organizer exits non-zero with the converter's diagnostics.
+  - **Elsewhere.** `scripts/generate-build-metadata.mjs` (run before `dev`, `test` and `typecheck`) writes no source
+    files. On a V1 file it stops and names the command that converts it.
+  - **On demand.** `npm run convert:lens-data -- --input <file|dir>` (dry run by default; `--write` to convert).
+  - **Edits.** An archived V1 file is converted before it is edited; V1 has no spec of its own after S2.P4.
 - **Sidecars stay as written.**
   - `*.audit.md` and `*.analysis.md` sidecars are historical records and are not rewritten.
   - `asph` appears in 345 audits, `rearPlates` in 205, `sd` in 203 and `var` in 99.
   - The V2 spec carries a "Reading V1 audits" vocabulary table instead.
-
-### Pre-migration data decisions
-
-V2 cannot represent these. Each needs a C3 data PR under `agent_docs/lens-patent-audit.md` before its file converts. The
-converter refuses the file until then.
-
-| Lens | Discrepancy | Decision needed |
-| --- | --- | --- |
-| Fujifilm XF18mm f/2 (`FujifilmXF18mmf2.data.ts`) | Surfaces `1`, `6` and `15` trace 1.517417, 1.647689 and 1.834807; elements 1, 3 and 8 carry 1.51742, 1.64769 and 1.83481 | Which value the source prints; set the element to it |
-| Minolta AF 35mm f/1.4 | STO gap: `d` 7.887366666666666, `var` 7.887366666667 | One value |
-| Nikon Ai Nikkor 35mm f/1.4 S | Gap `15`: `d` 37.254161, `var` 37.254160829 | One value |
-
-The converter dry run (S2.P3.T3) lists any further case of this kind.
 
 ## Stages
 
@@ -766,19 +773,21 @@ flowchart LR
 ```
 
 Stage 2 and Stages 3–4 touch disjoint modules and can run in parallel. Stage 5 needs both S2.P1 and S4; it does not
-need the S2.P5 catalog migration.
+need the S2.P5 catalog migration. Phase 2.6 needs S2.P5 and blocks nothing.
 
 ### Stage 1 — Contract, evidence and guards
 
 **Phase 1.1 — Contract and anchors**
 
-- **S1.P1.T1 Land the intersection contract.**
-  - **Change:** merge #774, or rebase it if `main` has moved. Its separately reviewed Vivitar stop correction rides with
-    it.
-  - **Files:** as in #774.
-  - **Tests:** #774's suites. `exactTraceGoldenValues.test.ts` is unchanged; the five Planar expectations that #774
-    updates come with its documented high-precision evidence.
-  - **Gate:** C3; this sets anchor A0. The PR records the R0 and A0 benchmark medians from one machine.
+- **S1.P1.T1 Record the baseline.**
+  - **Precondition:** #774 has merged on its own (see
+    [Baseline and accuracy contract](#baseline-and-accuracy-contract)), with its separately reviewed Vivitar stop
+    correction, its suites, and the five Planar expectations it updates with their high-precision evidence.
+    `exactTraceGoldenValues.test.ts` is otherwise unchanged.
+  - **Change:** shrink [Baseline and accuracy contract](#baseline-and-accuracy-contract) to a pointer at the documented
+    contract, keeping the #774 debt list and the Stage 3 requirement.
+  - **Records:** the R0 and A0 benchmark medians from one machine; the PC-Nikkor 19mm medians at both.
+  - **Gate:** C0, documentation only; its merge commit is anchor A0.
 
 **Phase 1.2 — Differential harness**
 
@@ -818,6 +827,8 @@ need the S2.P5 catalog migration.
     - Tier S and Tier F request lists, with `--shard`;
     - a `workflow_dispatch` workflow `.github/workflows/engine-diff-stage.yml` that runs the shards as a matrix.
   - **Tests:** shard partitions are disjoint and complete.
+  - **Where it runs:** GitHub Actions for every stage and pre-deletion comparison. Timing never runs there; it stays on
+    the maintainer's machine (see [Method](#method)).
   - **Gate:** C0. Run A0 against A0 to prove determinism, and record each tier's runtime in the PR.
 
 **Phase 1.3 — Measurement**
@@ -857,13 +868,6 @@ need the S2.P5 catalog migration.
     - `scripts/benchmark-mtf.mjs`
     - `agent_docs/benchmarks/README.md`
   - **Tests:** bootstrap with a fixed seed; unequal-work detection; schema of the run JSON.
-  - **Gate:** C0.
-- **S1.P3.T3 Browser interaction harness.**
-  - **Change:**
-    - add `scripts/benchmark-browser.mjs`, which drives the locally installed Chromium through Playwright (`playwright`
-      becomes a dev dependency);
-    - run it against `vite preview`, measuring slider-drag frame times and analysis settle times for three lenses.
-  - **Output:** reporting only; never in CI.
   - **Gate:** C0.
 
 **Phase 1.4 — Guards and references**
@@ -924,17 +928,15 @@ need the S2.P5 catalog migration.
 
 **Phase 2.2 — V2 schema**
 
-- **S2.P2.T1 Pre-migration data decisions.** The three PRs in the table above, one per lens.
-  - **Owner:** the maintainer, under `agent_docs/lens-patent-audit.md`.
-  - **Gate:** C3 data correction. The anchor does not move.
-- **S2.P2.T2 V2 types and ingest.**
+- **S2.P2.T1 V2 types and ingest.**
   - **Change:**
     - add `LensDataV2Input` and `TeleconverterDataV2Input`, and `ingestV2`, which dispatches on `schema`;
     - V2-specific validation reports authored paths: unknown `medium`, gap labels, station counts, spans, and
       stop-radius authority.
   - **Derived stops carry no `sd`:**
     - the existing validator accepts an absent `sd` on a derived stop;
-    - generated rear-plate rims take the largest authored `sd` among surfaces other than a derived stop. This is C0 on
+    - generated rear-plate rims take the largest authored `sd` among surfaces other than a derived stop. A generated
+      rim never clips (`clips: false`), so its size only extends launch and intersection envelopes. This is C0 on
       today's catalog, which has no lens whose stop is the largest authored `sd` alongside generated rims.
   - **Files:**
     - `src/types/lensDataV2.ts`
@@ -950,7 +952,7 @@ need the S2.P5 catalog migration.
       and requires every payload except the authored-data echo to be bit-identical.
     - The negative cases.
   - **Gate:** C0.
-- **S2.P2.T3 Tooling reads both versions.**
+- **S2.P2.T2 Tooling reads both versions.**
   - **Change:** identity extraction moves from regexes to a shared AST reader, and every lens-data reader accepts V2.
   - **Files:**
     - `scripts/lens-data-lib.mjs`
@@ -980,7 +982,7 @@ need the S2.P5 catalog migration.
     - media and spans.
   - **Gate:** C0.
 - **S2.P3.T2 CLI and safety.**
-  - **Change:** add `scripts/convert-lens-data.mjs`.
+  - **Change:** add `scripts/convert-lens-data.mjs` and its `npm run convert:lens-data` script.
   - **Flags:**
     - `--input <file|dir>`
     - `--to-version 1|2`
@@ -1001,7 +1003,8 @@ need the S2.P5 catalog migration.
     - converts it back to V1 and checks the semantic fingerprint again;
     - checks idempotence.
 
-    It is offender-collecting, and its offender list must be empty except for files awaiting S2.P2.T1.
+    It is offender-collecting, and its offender list must be empty. A new case is resolved by a C3 data correction
+    before the sweep lands.
   - **Gate:** C0.
 
 **Phase 2.4 — Authoring documents**
@@ -1059,10 +1062,82 @@ need the S2.P5 catalog migration.
       the prime rule in [Stop radius](#stop-radius).
   - **In-flight V1 PRs:** they keep working, because V1 is still ingested. Their authors run the converter before
     merge.
+  - **Zero asphere terms:** the conversion report lists the zero terms it dropped, by surface. The batch PR restores, as
+    an explicit `0`, any zero that the lens's audit log or analysis relies on.
   - **Rollback:** `--to-version 1` on the batch, or a revert.
-- **S2.P5.T9 Close the migration.**
-  - **Change:** add `__tests__/src/lens-data/schemaVersion.test.ts`, which requires every catalog file to be V2.
-  - **Policy:** V1 stays readable only through ingest and the converter.
+- **S2.P5.T9 Close the migration and convert on arrival.**
+  - **Change:**
+    - add `__tests__/src/lens-data/schemaVersion.test.ts`, which requires every catalog file to be V2;
+    - the organizer converts any V1 lens or converter file it finds, as described in
+      [Ingest, conversion and comments](#ingest-conversion-and-comments), and `generate-build-metadata.mjs` stops on
+      one with the command to run;
+    - `agent_docs/adding_a_lens.md` and `agent_docs/workflow.md` describe adding an archived V1 file: drop it into
+      `src/lens-data/`, run `npm run organize:lens-data`, review the conversion report, commit the V2 file.
+  - **Files:** `scripts/organize-lens-data.mjs`, `scripts/lens-data-lib.mjs`, `scripts/generate-build-metadata.mjs`,
+    the two docs.
+  - **Tests:** `__tests__/scripts/lensDataScripts.test.ts`:
+    - a V1 file at the `src/lens-data/` root is converted and filed under its maker;
+    - a V1 file the converter refuses is left byte-identical, and the organizer exits non-zero naming the refusal;
+    - a V2 catalog is left untouched;
+    - the metadata generator stops on a V1 file without writing it.
+  - **Policy:** V1 stays readable only through ingest and the converter, and enters the catalog only as converted V2.
+  - **Gate:** C0.
+
+**Phase 2.6 — Settled follow-ups**
+
+Each step is its own PR after S2.P5 and blocks nothing else.
+
+- **S2.P6.T1 Drop the no-op aperture models.**
+  - **Change:** remove the 49 `zoom.apertureModel: "from-nominal-fno"` entries, which state the default. `apd: false`
+    and `indexReference: "d"` stay (see [Field mapping](#field-mapping)).
+  - **Gate:** C0, format-only. Authored-versus-default is provenance, so fingerprints are unchanged and base and head
+    prescriptions must be bit-identical on the head engine.
+- **S2.P6.T2 Single-lens corpus rules into the validator.**
+  - **Promote now**, because every catalog lens passes: the per-lens parts of
+    `__tests__/src/lens-data/patentMetadata.test.ts`. These are patent number, authors and assignees all present on a
+    patent-backed lens; names trimmed, unique, explicit (no "et al."), romanized, NFKC-normalized, without honorifics
+    or parentheses, conventionally capitalized; canonical corporate suffixes; no inventor repeated as an assignee.
+  - **Promote once their exception lists are empty.** Each list is a ratchet that can only shrink, queued in
+    `agent_docs/sd-audit-queue.md`:
+    - nominal f-number no faster than the design f-number: 22 lenses, Section H;
+    - fixed-iris consistency: 3 lenses, Sections H and I. This rule needs traced stations, so it runs where station
+      constants are computed (`buildLens`; `first-order/lensConstants.ts` after S5.P1.T2) and fails like a validation
+      error.
+  - **Stay corpus tests:** rules that compare files or read paths. These are cross-lens author and assignee spelling and
+    name order, reference fixtures carrying no patent metadata, and configuration parity
+    (`opticalConfigurationParity.test.ts`).
+  - **Tests:** a negative fixture per promoted rule in `__tests__/src/optics/validateLensData.test.ts`. Each promoted
+    assertion leaves its corpus test, so every rule lives in one place.
+  - **Gate:** C0; no catalog verdict changes.
+- **S2.P6.T3 Design focal-length check.**
+  - **Change:** the validator requires `catalog.focalLengthMm.design` to match the first and last stations'
+    `focalLengthMm` within 1%, to catch transcription errors.
+  - **Today 10 zooms miss it at 15 endpoints**, by 1.03% to 7.35%. Some pair a traced design value with nominal station
+    labels; others may be slips:
+    - `canon-fd-150-600mm-f56-l`
+    - `konica-uc-zoom-hexanon-ar-80-200-f4`
+    - `nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed`
+    - `nikon-ai-zoom-nikkor-35-105mm-f3-5-4-5s`
+    - `nikon-ai-zoom-nikkor-35-200mm-f3-5-4-5s`
+    - `nikon-series-e-zoom-36-72mm-f35`
+    - `nikon-tv-nikkor-115-69-f12-s100`
+    - `schneider-tv-variogon-20-600-f21-66`
+    - `vivitar-s1-35-85-f28`
+    - `vivitar-series-1-70-210-f35`
+
+    Each is settled under `agent_docs/lens-patent-audit.md` before the check lands, which then lands with no exception
+    list.
+  - **Gate:** C0 for the check; the corrections before it are C3 data.
+- **S2.P6.T4 Element focal-length report.**
+  - **Change:** a generated report, `agent_docs/generated/element-focal-lengths.generated.md`, compares every authored
+    element focal length with the thick-lens value computed from the element's surfaces and medium in air at the
+    reference line, and lists the 83 elements that have none. No authored value has ever been checked.
+  - **Gate:** C0; report only.
+- **S2.P6.T5 Derived element focal lengths.**
+  - **Change:** after the maintainer reviews the S2.P6.T4 report, the inspector shows the computed focal length and
+    catalog files drop `focalLengthMm`. `specs`, element `type`, `cemented` tags and `subtitle` stay authored: they are
+    curated text, or serve a different purpose from what they resemble.
+  - **Gate:** C3 on what the UI shows, with the report as evidence and a changelog entry.
 
 ### Stage 3 — Geometry and intersection kernel
 
@@ -1174,7 +1249,7 @@ need the S2.P5 catalog migration.
   - **Change:** `prescription/compile.ts` builds `CompiledLens` from `CanonicalPrescription`.
     - Materials are resolved once.
     - Rear plates are expanded once, by `prescription/rearPlates.ts`, now operating on canonical data and keeping the
-      S2.P2.T2 rim rule.
+      S2.P2.T1 rim rule.
     - It replaces `internal/lensState.ts`, the `prescription/` compilers and `normalizeLensData.ts`.
     - `EngineLens` is renamed `CompiledLens`.
   - **Tests:**
@@ -1350,17 +1425,30 @@ gone.
     - every guard's legacy-exception list is empty;
     - the seam and cache registries are final;
     - Tier F against the anchor;
-    - the final benchmark, memory and browser reports.
+    - the final benchmark and memory reports.
   - **Change:** delete any module the fate table marks deleted that still exists.
-- **S8.P2.T2 Documentation and close.**
+- **S8.P2.T2 Retire V1 ingest from the app.**
+  - **Precondition:** S8.P2.T1's Tier F run has passed.
+  - **Change:**
+    - `ingest` accepts only `schema: 2`. A V1 file fails with its path and the `npm run convert:lens-data` command.
+    - The V1 mapping moves to `prescription/v1/`, reachable only through `lensDataConversion.ts`.
+    - Lens-data readers in `scripts/` and `reports/` drop V1, except the organizer's detection and the converter.
+  - **Kept permanently:** the converter, its V1 reader and printer, the organizer's conversion on arrival, and the V1/V2
+    fixture pairs from S2.P2.T1 as the converter's regression suite.
+  - **Tests:** the seam guard admits only the converter, the organizer and their tests as importers of
+    `lensDataConversion.ts`; a V1 file passed to `buildLens` fails with the convert command.
+  - **Gate:** C0; every catalog file is already V2.
+- **S8.P2.T3 Documentation and close.**
   - **Rewrite:**
     - `agent_docs/architecture/optics-engine.md` (structure and contracts)
     - `agent_docs/architecture/public-functions.md`
     - `agent_docs/architecture/testing.md`
     - `agent_docs/gotchas.md`
   - **Settle:** every row of [Decisions](#decisions-to-supersede-or-preserve).
-  - **Record in `agent_docs/decisions.md`:** the prime stop-radius rule from [Stop radius](#stop-radius), and that
-    dropped authored stop radii are not to return.
+  - **Record in `agent_docs/decisions.md`:**
+    - the prime stop-radius rule from [Stop radius](#stop-radius), and that dropped authored stop radii are not to
+      return;
+    - that the converter and the organizer's conversion on arrival are permanent, while the app reads only V2.
   - **Regenerate:** `src/**/readme.md`.
   - **Update:** `CLAUDE.md` and `AGENTS.md` where names changed.
   - **Delete:** this plan and its `agent_docs/README.md` entry, as the documentation policy requires.
@@ -1382,32 +1470,38 @@ gone.
 | 2026-10-07: retired diffraction estimators; field targets on the authored plane | Preserve | — |
 | 2026-10-05: `publishedStations` is the only station provenance; not normalized onto `RuntimeLens` | Preserve: the data moves onto V2 station records but is still read only by `publishedStations.ts` | S2, S8.P1.T2 |
 | 2026-10-04: build and analyses converter-unaware; compatibility predicate import-free | Preserve: composition stays canonical → canonical before compile | S5.P1.T4 |
-| 2026-09-23: one rear-plate expansion | Preserve: the expansion moves into compile | S5.P1.T1 |
+| 2026-09-23: one rear-plate expansion | Preserve: the expansion moves into compile, and generated rims keep `clips: false` | S5.P1.T1 |
 | 2026-05-20/21: fisheye-only safety factor; fisheye dispatch; z-projected `maxT`; rectilinear diagram unchanged | Preserve | — |
 | 2026-06-22: no post-miss ghost geometry | Preserve | — |
 | 2026-07-06: three ray hooks stay separate. 2026-05-20: no interactive sampling multiplier | Preserve | — |
 | 2026-08-04: aspheric coefficient set single-sourced; clamp kept separate from polynomial evaluation | Preserve | S3.P1.T1 |
 | 2026-09-24: no real chief ray in `computeFieldGeometryAtState2` | Preserve | S6.P1.T1 |
 
-## Open decisions for the maintainer
+## Settled decisions
 
-Decide the first before S2.P3, because it sets converter behavior. The rest are deliberately outside the converter;
-each one, if taken, is its own C3 PR after S2.P5.
+The maintainer settled these on 2026-10-09. Each is recorded where it applies; this index only points there.
 
-1. **Zero asphere terms.** V1 required K and A4–A14 on every entry, so a printed zero cannot be told apart from
-   padding, and the converter drops zeros. Confirm this, and restore by hand, as an explicit `0` (which V2 allows), any
-   zero an audit relies on.
-2. **Explicit defaults** (`apd: false`, `indexReference: "d"`, the no-op aperture model). These render the same as an
-   omission. Drop them from catalog files, or keep `apd: false` as a record that an author checked?
-3. **Derivable display duplicates.** `specs`, element `focalLengthMm`, "(2× Asph)" in `type`, `cemented` tags versus
-   `doublets`, and `subtitle` versus `patentNumber`. Derive them, or keep them authored?
-4. **Design focal length.** `catalog.focalLengthMm.design` versus the station focal lengths, which differ by rounding.
-5. **Corpus-test-only rules.** Promote them into the validator: patent-metadata policy, `nominalFno` versus
-   `apertureDesign`, fixed-iris consistency, and configuration parity.
-6. **V1 ingest.** Keep it after the program for external branches and rollback, or retire it on a date?
+| # | Decision | Where |
+| --- | --- | --- |
+| 1 | #774 merges on its own, ahead of the program | [Baseline and accuracy contract](#baseline-and-accuracy-contract); S1.P1.T1 |
+| 2 | Generated rear-plate rims never clip or limit the field (`clips: false`); fixed with this plan | `agent_docs/architecture/optics-engine.md` (Rear Plates); S2.P2.T1 |
+| 3 | The browser interaction harness is deferred | [Method](#method) |
+| 4 | Tier S and F run on GitHub Actions; timing stays on the maintainer's machine | [Gates by level](#gates-by-level); S1.P2.T3 |
+| 5 | The V2 names are approved as written | [Principles](#principles), item 7 |
+| 6 | Zero asphere terms are dropped; zeros an audit relies on are restored by hand | [Field mapping](#field-mapping); S2.P5 |
+| 7–9 | The XF18mm f/2 element indices, the Minolta AF 35mm f/1.4 stop gap and the Nikon Ai 35mm f/1.4 S back-focus gap take their surface or focus-row values; fixed with this plan | Each lens's `*.audit.md` |
+| 10 | `apd: false` and `indexReference: "d"` stay; the 49 no-op aperture models go | [Field mapping](#field-mapping); S2.P6.T1 |
+| 11 | Element focal lengths are derived after a comparison report; other display text stays authored | S2.P6.T4–T5 |
+| 12 | The design focal length stays authored, with a 1% station-endpoint check once 10 zooms that miss it are settled | [Field mapping](#field-mapping); S2.P6.T3 |
+| 13 | Single-lens corpus rules move into the validator, two of them once their exception lists are empty; rules that compare files stay tests | S2.P6.T2 |
+| 14 | The app reads only V2 after S8; the converter is permanent and runs on arrival and on demand | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P5.T9; S8.P2.T2 |
+
+Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
+(S5.P2.T2), the quantity budgets (S1.P2.T2) and Tier P's lens coverage (S1.P2.T3).
 
 ## Rollback
 
 - Every step reverts on its own, and anchors show which outputs a revert changes.
-- Catalog batches also revert with `convert-lens-data --to-version 1`.
+- Until S8.P2.T2, catalog batches also revert with `convert-lens-data --to-version 1`. After it, the app reads only
+  V2, and a revert of S8.P2.T2 restores V1 ingest.
 - There is no in-tree old engine to fall back to. A failing step is fixed or reverted, never routed around.
