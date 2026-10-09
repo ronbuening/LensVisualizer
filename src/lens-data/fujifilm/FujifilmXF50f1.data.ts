@@ -140,7 +140,7 @@ const LENS_DATA = {
       dPgF: 0.02521232,
       apdNote: "Patent Table 9 θgF=0.63073; ΔPgF converted to the runtime normal line.",
       fl: -40.9,
-      glass: "SF/NPH (nd=1.808, νd=22.8)",
+      glass: "S-NPH1 (catalog-compatible model; supplier unspecified)",
       role: "Last element of G1 before the stop. Strongest negative power in G1 — provides Petzval field flattening and shapes the pupil geometry entering the stop.",
     },
     {

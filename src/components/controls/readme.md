@@ -57,6 +57,7 @@ flowchart LR
   n_src_components_controls_src_components_controls_DiagramControls_tsx --> n_external_src_components_hooks
   n_src_components_controls_src_components_controls_LensSelector_tsx --> n_external_src_components_layout
   n_src_components_controls_src_components_controls_ChromaticControls_tsx --> n_external_src_optics_chromatic
+  n_src_components_controls_src_components_controls_DiagramHeader_tsx --> n_external_src_optics_chromatic
   n_src_components_controls_src_components_controls_DiagramControls_tsx --> n_external_src_optics_focusDistance_ts
   n_src_components_controls_src_components_controls_DiagramControls_tsx --> n_external_src_optics_groupMovement_ts
   n_src_components_controls_src_components_controls_DiagramControls_tsx --> n_external_src_optics_lensMovement_ts
@@ -73,7 +74,6 @@ flowchart LR
   n_src_components_controls_src_components_controls_LensSelector_tsx --> n_external_src_types
   n_src_components_controls_src_components_controls_patentStations_ts --> n_external_src_types
   n_src_components_controls_src_components_controls_PortalTooltip_tsx --> n_external_src_types
-  n_src_components_controls_src_components_controls_PositionModeToggle_tsx --> n_external_src_types
   n_src_components_controls_truncated["additional relationships omitted"]
 ```
 
@@ -81,7 +81,7 @@ flowchart LR
 
 - Direct source files: 15
 - Direct subfolders: 0
-- Main outbound areas: src/types (21), same folder (12), src/utils/style (11), package:react (10), src/optics/optics.ts (3), src/components/content (2), src/optics/projection.ts (2), src/optics/publishedStations.ts (2), +9 more
+- Main outbound areas: src/types (21), same folder (12), src/utils/style (11), package:react (10), src/optics/optics.ts (3), src/components/content (2), src/optics/chromatic (2), src/optics/projection.ts (2), +9 more
 - External consumers: src/comparison, src/components/display, src/components/layout, src/pages/AuthorsIndexPage.tsx
 
 ## Files
@@ -92,7 +92,7 @@ flowchart LR
 | `ChromaticControls.tsx` | React component module | src/types (2), src/optics/chromatic, src/utils/style | same folder | default, ChromaticControls |
 | `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2) | default, CollapseButton |
 | `DiagramControls.tsx` | React component module | same folder (4), src/types (3), package:react, src/components/hooks, src/optics/focusDistance.ts, +6 more | src/components/layout | default, DiagramControls |
-| `DiagramHeader.tsx` | React component module | same folder (4), src/types (3), src/components/content (2), package:react, src/optics/optics.ts, +4 more | src/components/layout | default |
+| `DiagramHeader.tsx` | React component module | same folder (4), src/types (3), src/components/content (2), package:react, src/optics/chromatic, +5 more | src/components/layout | default |
 | `HelpTooltipButton.tsx` | React component module | package:react, same folder, src/types | src/components/display (2) | default, HelpTooltipButton |
 | `LensSelector.tsx` | React component module | package:react, src/components/layout, src/types, src/utils/style | same folder, src/components/layout, src/pages/AuthorsIndexPage.tsx | default, LensSelector |
 | `patentStations.ts` | Patent Stations helper module | same folder, src/optics/optics.ts, src/optics/publishedStations.ts, src/types | same folder | zoomStationOptions, focusStationOptions, focusTAfterZoomStep, PatentStationNotes, patentStationNotes |

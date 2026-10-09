@@ -51,7 +51,7 @@ vi.mock("../../../../../src/components/diagram/PetzvalOverlayContent.js", () => 
 }));
 
 const baseProps = {
-  L: { N: 2 } as RuntimeLens,
+  L: { N: 2, elements: [] } as unknown as RuntimeLens,
   t: {
     toggleBg: "#000",
     toggleBorder: "#333",

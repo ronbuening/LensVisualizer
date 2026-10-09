@@ -89,7 +89,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.4,
       fl: +44.6,
-      glass: "806404 — lanthanum flint (catalog unresolved; nd 1.8061, νd 40.4)",
+      glass: "L-LAH81 (OHARA discontinued low-softening glass, 806404; coordinate equivalent, supplier unconfirmed)",
       apd: false,
       role: "First positive member of Group 1; its aspherical front surface is the front-group corrector.",
     },

@@ -76,7 +76,7 @@ G2 is the strongest negative group in the lens. It is also the internal-focusing
 
 #### L21 — Negative meniscus with object-side asphere
 
-nd = 1.76546, νd = 46.73. Glass: Unmatched; nearest found HIKARI public-catalog entry is J-LASFH2 at 1.76684 / 46.78. f = −25.0 mm.
+nd = 1.76546, νd = 46.73. Glass: Q-LASFPH2S (HIKARI moulding glass, catalog 1.76544 / 46.75; coordinate equivalent, supplier unconfirmed). f = −25.0 mm.
 
 L21 is the first and strongest negative element of G2. Surface 6 is aspherical and is the most object-side surface of G2. The patent states that an asphere in this position helps correct wide-angle field curvature and distortion. Because L21 receives the broadest off-axis bundles entering the variator, even a moderate departure has high leverage over distortion and sagittal/meridional field balance.
 
@@ -192,7 +192,7 @@ The glass palette is strongly Nikon / HIKARI-compatible. Several earlier third-p
 | L11, L53 | 1.90366 / 31.27 | J-LASFH13 (HIKARI) | Exact HIKARI match; dense lanthanum short flint |
 | L12, L32 | 1.49782 / 82.56 | J-FKH1 (HIKARI) | ED fluorophosphate; closer than generic S-FPL51 |
 | L13 | 1.60300 / 65.47 | J-PSK03 (HIKARI) | Phosphate crown |
-| L21 | 1.76546 / 46.73 | Unmatched; near J-LASFH2 | No exact public match found |
+| L21 | 1.76546 / 46.73 | Q-LASFPH2S (HIKARI) | Moulding glass for the aspherical element; catalog 1.76544 / 46.75, within 0.00002 and 0.02 of the patent pair |
 | L22, L24 | 1.80400 / 46.58 | J-LASF015 (HIKARI) / S-LAH65V class | Not S-LAH63; S-LAH63 has νd ≈ 39.6 |
 | L23, L33 | 1.84666 / 23.78 | J-SF03 (HIKARI) / S-TIH53 class | High-dispersion flint |
 | L31, L43g | 1.72916 / 54.66 | J-LAK18 (HIKARI) / S-LAL18 class | High-index lanthanum crown |

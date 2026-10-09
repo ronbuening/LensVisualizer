@@ -5,7 +5,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║           LENS DATA — SIGMA DP2X 24mm f/2.8                       ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP 2010-101979 A (特開2010-101979), Example 5       ║
- * ║  (Sigma Inc. / Noriyuki Ogasahara).                                ║
+ * ║  (Sigma Corporation / Noriyuki Ogasahara).                         ║
  * ║  Retrofocus imaging system for large digital sensors.              ║
  * ║  7 elements / 6 groups, 2 aspherical surfaces.                     ║
  * ║  Focus: Rear focus — G2 (L7) moves toward object for close focus. ║

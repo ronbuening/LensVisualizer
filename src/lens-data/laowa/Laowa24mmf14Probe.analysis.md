@@ -8,14 +8,14 @@
 
 **Patent:** CN 210573001 U
 **Inventor:** Li Dayong (李大勇)
-**Applicant:** Anhui ChangGeng Optical Technology Co., Ltd.
+**Applicant:** Anhui Changgeng Optics Technology Co., Ltd.
 **Filed:** August 29, 2019
 **Published:** May 19, 2020
 **Granted:** May 19, 2020
 **Title:** 一种细长微距镜头 / A Slender Macro Lens
 **Embodiment analyzed:** Example 1 (实施例1)
 
-Chinese Utility Model patent CN 210573001 U, titled "一种细长微距镜头" ("A Slender Macro Lens"), was filed on 2019-08-29 by 安徽长庚光学科技有限公司 (Anhui ChangGeng Optical Technology Co., Ltd. — the corporate entity behind the Laowa brand). The named inventor is 李大勇 (Li Dayong). The patent was granted and published on 2020-05-19. A companion invention patent application was filed on the same date.
+Chinese Utility Model patent CN 210573001 U, titled "一种细长微距镜头" ("A Slender Macro Lens"), was filed on 2019-08-29 by 安徽长庚光学科技有限公司 (Anhui Changgeng Optics Technology Co., Ltd. — the corporate entity behind the Laowa brand). The named inventor is 李大勇 (Li Dayong). The patent was granted and published on 2020-05-19. A companion invention patent application was filed on the same date.
 
 **Example 1** (实施例1, described beginning at ¶0043) represents the straight-through ("direct-view") optical configuration in which all prisms are unfolded and no mirrors are inserted. This is the configuration that corresponds to the production Laowa 24mm f/14 2× Macro Probe lens, based on the following convergent evidence:
 
@@ -318,7 +318,7 @@ The production lens has spawned two further generations — the Laowa 24mm T14 P
 
 ## Sources
 
-- CN 210573001 U, "一种细长微距镜头," 安徽长庚光学科技有限公司 (Anhui ChangGeng Optical Technology Co., Ltd.), published 2020-05-19. Inventor: 李大勇.
+- CN 210573001 U, "一种细长微距镜头," 安徽长庚光学科技有限公司 (Anhui Changgeng Optics Technology Co., Ltd.), published 2020-05-19. Inventor: 李大勇.
 - Laowa product page: Laowa 24mm f/14 2× Macro Probe. Specifications: 27 elements / 19 groups, 2 ED elements, 1 ERI element, f/14–f/40, 85° angle of view, 474 g.
 - Newsshooter review (2018-10-15): confirms three-section architecture (Objective + Relay + Macro) and 27 elements / 19 groups.
 - Nature TTL review (2018-09-05): confirms 27 elements / 19 groups, 2 ED + 1 ERI elements.

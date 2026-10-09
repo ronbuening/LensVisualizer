@@ -226,6 +226,16 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
   C′–F′), extending to g with the Schott P_g,F line plus `dPgF`. A midpoint split (P_d,C = 0.5) misstates focus
   against wavelength wherever estimated glasses sit beside real ones. Anomalous-dispersion glasses without `dPgF`
   remain uncertain at g.
+- Channel lines are set per element by `indexReference`, and every tier must return them. A d-line element traces
+  R/G/B/V at C/d/F/g. A native e-line element traces C′/e/F′/g with G equal to its authored `ne`: its Sellmeier tier
+  is the authored `ne` plus the catalog's index difference from the e line, and its Abbe tier reaches g from F′ with
+  `normalLinePgFPrime`, because P_g,F′ runs about 0.06 below P_g,F. Catalog matches are accepted within 0.003 of the
+  stored index, so catalog values at other lines beside Abbe-tier neighbors read that mismatch as color-focus error
+  (1.8 mm on a 100 mm lens). `CHROMATIC_CHANNEL_METADATA` stays the d-line set the tracer's channel
+  wavelengths are keyed to; the inspector, the channel tooltips, the chromatic overlay and the Chromatic tab print
+  C′/e/F′ through `lensChromaticReference` when every element of the lens is e-referenced. The d-line Sellmeier tier is not anchored: its G is the
+  catalog nd, which can differ from the authored nd by the match tolerance. An e-line element that authors `nC` /
+  `nF` / `ng` is read as written; none exists in the catalog.
 - Folded-path metadata: resolved `opticalPath`, explicit `imagePlane`, `isFoldedOptics`, and normalized surface/image-plane
   normals when mirror data opts into the generalized model.
 - Folded entrance/exit pupil geometry derived from generalized real-ray stop and full-system basis traces, with finite

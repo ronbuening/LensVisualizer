@@ -20,12 +20,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * Table 12's “in Air”=19.70032771 and OAL=46.500 contradict this path and
  * the computed image plane. See the companion audit; do not tune the gaps.
  *
- * ║ INDEX / GLASS NOTE: Table 10 labels its index column nd, but the seven stored index   ║
- * ║ values are e-line-like while the paired Abbe values are d-line νd-like. The raw      ║
- * ║ patent values are retained exactly because they reproduce the patent EFL.             ║
- * ║ indexReference is therefore NOT set to "e" (the source pair is mixed-coordinate).    ║
- * ║ Glass annotations use Unmatched class/code descriptions; no vendor identity or        ║
- * ║ Sellmeier resolution is asserted. The patent publishes no nC, nF, ng, or dPgF.       ║
+ * INDEX / GLASS NOTE: Table 10 labels its index column nd, but the seven printed values are
+ * e-line indices paired with d-line Abbe numbers: five equal a HOYA catalog ne to five decimals
+ * with that glass's exact vd (E-FD10 1.73432, E-F2 1.62408, E-FDS1 1.93323, TAFD5F 1.83945,
+ * E-FD2 1.65222). The printed values are stored unchanged and all seven elements are
+ * e-referenced (indexReference "e"). The five carry their catalog names and trace on catalog
+ * curves anchored to the printed index; the two moulded aspheres L2 and L7 sit 0.0002 and 0.0003
+ * off the nearest rows and stay Unmatched on the Abbe estimate. The vd slot keeps the printed
+ * d-line Abbe number (catalog ve is 0.1 to 0.3 lower). The filter row prints the d-line 1.51680
+ * and stays d-referenced. The patent publishes no nC, nF, ng, or dPgF.
  * ║                                                                                      ║
  * ║ ASPHERES: Equation 5 already uses the standard conic constant K. No K conversion     ║
  * ║ and no dimensional scaling are applied.                                              ║
@@ -90,8 +93,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.73432,
       vd: 28.32,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but five of its seven indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -40.10146,
-      glass: "Unmatched (728283-728285 class; mixed e-line-like n / d-line νd)",
+      glass: "E-FD10 (HOYA; catalog ne 1.73432, vd 28.32 as printed; supplier unconfirmed)",
       role: "Fixed G14 front negative meniscus.",
     },
     {
@@ -102,8 +108,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.77641,
       vd: 49.7,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but five of its seven indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 16.606041,
-      glass: "Unmatched (773496 class; mixed e-line-like n / d-line νd)",
+      glass: "Unmatched (printed coordinates; nearest e-line row is the 773496 class at 1.77621; no vendor row at either line)",
       role: "Fixed G14 positive element; object-side surface 3A is aspherical.",
     },
     {
@@ -114,8 +123,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62408,
       vd: 36.3,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but five of its seven indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -22.623692,
-      glass: "Unmatched (620363-620364 class; mixed e-line-like n / d-line νd)",
+      glass: "E-F2 (HOYA; catalog ne 1.62408, vd 36.30 as printed; supplier unconfirmed)",
       role: "First element of the translating two-element inner-focus group G24.",
     },
     {
@@ -126,8 +138,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.93323,
       vd: 20.88,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but five of its seven indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 71.203757,
-      glass: "Unmatched (923209 class; mixed e-line-like n / d-line νd)",
+      glass: "E-FDS1 (HOYA; catalog ne 1.93323, vd 20.88 as printed; supplier unconfirmed)",
       role: "Second element of the translating two-element inner-focus group G24.",
     },
     {
@@ -138,8 +153,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.83945,
       vd: 42.72,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but five of its seven indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 9.779848,
-      glass: "Unmatched (835427-835431 class; mixed e-line-like n / d-line νd)",
+      glass: "TAFD5F (HOYA; catalog ne 1.83945, vd 42.72 as printed; supplier unconfirmed)",
       role: "Positive component of the fixed G34 cemented doublet.",
       cemented: "J1",
     },
@@ -151,8 +169,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.65222,
       vd: 33.84,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but five of its seven indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -12.712037,
-      glass: "Unmatched (648337-648339 class; mixed e-line-like n / d-line νd)",
+      glass: "E-FD2 (HOYA; catalog ne 1.65222, vd 33.84 as printed; supplier unconfirmed)",
       role: "Negative component of the fixed G34 cemented doublet.",
       cemented: "J1",
     },
@@ -164,8 +185,11 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.69385,
       vd: 31.19,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but five of its seven indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -86.873115,
-      glass: "Unmatched (689311-689313 class; mixed e-line-like n / d-line νd)",
+      glass: "Unmatched (printed coordinates; nearest e-line row is the 689312 class at 1.69415; no vendor row at either line)",
       role: "Fixed rear negative meniscus / field-flattener element; both surfaces are aspherical.",
     },
   ],
@@ -187,7 +211,7 @@ const LENS_DATA = {
     { label: "14A", R: -10.5, d: 16.862, nd: 1.0, elemId: 0, sd: 8.4 },
   ],
 
-  rearPlates: [{ label: "Filter", thicknessMm: 2.5, nd: 1.5168, vd: 64.2, gapAfterMm: 0.5, source: "KR 10-2127451 B1 Example 4 Table 10 surfaces 15–16" }],
+  rearPlates: [{ label: "Filter", thicknessMm: 2.5, nd: 1.5168, vd: 64.2, glass: "BSC7 (HOYA coordinate equivalent; filter material unconfirmed)", gapAfterMm: 0.5, source: "KR 10-2127451 B1 Example 4 Table 10 surfaces 15–16" }],
 
   asph: {
     "3A": {

@@ -16,11 +16,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                                                      ║
  * ║ Source correction: JP ¶0033 prints a dimensionally invalid y²c² asphere numerator. Computation and  ║
  * ║ this file use the standard c·y² numerator; K is otherwise retained without conversion.             ║
- * ║ JP ¶0032 explicitly defines n/ν at the d line. Existing coefficient curves are used only where the   ║
- * ║ published d-line pair passes the catalog guard; six physical mineral elements gain qualified proxy   ║
- * ║ curves while the remaining six mineral rows and L12 resin stay unresolved. No production supplier   ║
- * ║ is inferred. nC/nF/ng/dPgF remain unauthored. A14=0 is a schema-required modeling zero; the patent    ║
- * ║ publishes coefficients through A12.                                                                    ║
+ * ║ JP ¶0032 defines n/ν at the d line (587.6 nm), but the printed indices are e-line values paired with ║
+ * ║ d-line Abbe numbers given to one decimal: 11 of the 13 rows equal a catalog glass at the e line and  ║
+ * ║ no row equals one at the d line. The printed values are stored unchanged and all 13 media are        ║
+ * ║ e-referenced (indexReference "e"). L11 M-TAF101, L12 TAFD5F, L13/L41 TAF3, L14 TAFD55, L21 BAC4, L22 ║
+ * ║ M-NBF1 and L42/L43 FCD1 (HOYA), L23 S-FPL51 (OHARA) and L31 J-FK5 (HIKARI) carry those names and     ║
+ * ║ trace on catalog curves anchored to the printed index. L44 is named HOYA M-TAF401 on its index alone ║
+ * ║ (ne equal to six decimals; vd 47.17 against the printed 47.1); the L12 resin stays Unmatched on the  ║
+ * ║ Abbe estimate. The vd slot keeps the printed d-line Abbe number (catalog ve is 0.2 to 0.4 lower). The║
+ * ║ names select dispersion curves; no production supplier is inferred. nC/nF/ng/dPgF remain unauthored. ║
+ * ║ A14=0 is a schema-required modeling zero; the patent publishes coefficients through A12.             ║
  * ║                                                                                                      ║
  * ║ Semi-diameters are modeled, not patent-published. They were derived from real sequential ray bundles ║
  * ║ at all three zoom states and both focus endpoints, including on-axis marginal rays and full-field    ║
@@ -70,8 +75,11 @@ const LENS_DATA = {
       type: "Negative Meniscus (2× Asph)",
       nd: 1.77173,
       vd: 49.2,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: -29.1827,
-      glass: "M-TAF1 (HOYA catalog-equivalent coefficient proxy; production supplier unspecified)",
+      glass: "M-TAF101 (HOYA; catalog ne 1.77173, vd 49.24, printed 49.2; supplier unconfirmed)",
       role: "Front negative meniscus of GR1.",
     },
     {
@@ -82,8 +90,11 @@ const LENS_DATA = {
       type: "Negative Meniscus Substrate",
       nd: 1.83945,
       vd: 42.7,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: -54.7245,
-      glass: "Unmatched (mixed-coordinate patent row; 835427 class)",
+      glass: "TAFD5F (HOYA; catalog ne 1.83945, vd 42.72, printed 42.7; supplier unconfirmed)",
       cemented: "H1",
       role: "Glass substrate of the L12 hybrid-composite negative lens.",
     },
@@ -95,8 +106,11 @@ const LENS_DATA = {
       type: "Bonded Aspheric Resin Layer",
       nd: 1.53699,
       vd: 41.7,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: 443.5929,
-      glass: "Unmatched (aspheric resin, patent-only optical constants)",
+      glass: "Unmatched (aspheric resin; printed coordinates, no vendor row at either the d or the e line)",
       cemented: "H1",
       role: "Thin bonded resin layer carrying the L12 rear asphere.",
     },
@@ -108,8 +122,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80831,
       vd: 46.5,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: -102.7999,
-      glass: "Unmatched (mixed-coordinate patent row; 804466 class)",
+      glass: "TAF3 (HOYA; catalog ne 1.80831, vd 46.50 as printed; supplier unconfirmed)",
       role: "Third negative component of GR1.",
     },
     {
@@ -120,8 +137,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.00912,
       vd: 29.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: 48.1494,
-      glass: "Unmatched (mixed-coordinate patent row; 001291 dense-flint class)",
+      glass: "TAFD55 (HOYA; catalog ne 2.00912, vd 29.13, printed 29.1; supplier unconfirmed)",
       role: "Positive rear component of GR1.",
     },
     {
@@ -132,8 +152,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.57124,
       vd: 56,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: 148.1107,
-      glass: "BAC4 (HOYA catalog-equivalent coefficient proxy; production supplier unspecified)",
+      glass: "BAC4 (HOYA; catalog ne 1.57125, vd 56.04, printed 1.57124 / 56.0; supplier unconfirmed)",
       role: "Front component of GR2; patent-designated lateral image-stabilization lens.",
     },
     {
@@ -144,8 +167,11 @@ const LENS_DATA = {
       type: "Negative Meniscus (1× Asph)",
       nd: 1.74688,
       vd: 49.3,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: -52.5347,
-      glass: "Unmatched (mixed-coordinate patent row; 74349x lanthanum class)",
+      glass: "M-NBF1 (HOYA; catalog ne 1.74689, vd 49.33, printed 1.74688 / 49.3; supplier unconfirmed)",
       cemented: "D1",
       role: "Negative member of the GR2 cemented doublet.",
     },
@@ -157,8 +183,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.49845,
       vd: 81.5,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: 30.827,
-      glass: "S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)",
+      glass: "S-FPL51 (OHARA; catalog ne 1.49845, vd 81.546, printed 81.5; supplier unconfirmed)",
       cemented: "D1",
       role: "Very-low-dispersion positive member of the GR2 cemented doublet.",
     },
@@ -170,8 +199,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.48914,
       vd: 70.3,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: 50.5398,
-      glass: "J-FK5 (HIKARI catalog-equivalent coefficient proxy; production supplier unspecified)",
+      glass: "J-FK5 (HIKARI; catalog ne 1.489145, vd 70.31, printed 1.48914 / 70.3; supplier unconfirmed)",
       role: "Single-element GR3 focusing group; translates axially for close focus.",
     },
     {
@@ -182,8 +214,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80831,
       vd: 46.5,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: -21.0194,
-      glass: "Unmatched (mixed-coordinate patent row; 804466 class)",
+      glass: "TAF3 (HOYA; catalog ne 1.80831, vd 46.50 as printed; supplier unconfirmed)",
       cemented: "D2",
       role: "Negative front member of the GR4 cemented doublet.",
     },
@@ -195,8 +230,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.49845,
       vd: 81.6,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: 52.6802,
-      glass: "S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)",
+      glass: "FCD1 (HOYA; catalog ne 1.49845, vd 81.61, printed 81.6; supplier unconfirmed)",
       cemented: "D2",
       role: "Very-low-dispersion positive rear member of the GR4 cemented doublet.",
     },
@@ -208,8 +246,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49845,
       vd: 81.6,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: 22.9585,
-      glass: "S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)",
+      glass: "FCD1 (HOYA; catalog ne 1.49845, vd 81.61, printed 81.6; supplier unconfirmed)",
       role: "Very-low-dispersion positive component in GR4.",
     },
     {
@@ -220,8 +261,11 @@ const LENS_DATA = {
       type: "Biconcave Negative (2× Asph)",
       nd: 1.77767,
       vd: 47.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent ¶0032 defines this column at the d line, but 11 of its 13 rows equal a catalog glass at the e line and none at the d line; traced at the e line with the printed d-line Abbe numbers.",
       fl: -32.1414,
-      glass: "Unmatched (mixed-coordinate patent row; 774472 lanthanum-flint class)",
+      glass: "M-TAF401 (HOYA; catalog ne 1.77767 as printed, vd 47.17 printed as 47.1; supplier unconfirmed)",
       role: "Rear negative element of GR4 with two aspherical surfaces.",
     },
   ],

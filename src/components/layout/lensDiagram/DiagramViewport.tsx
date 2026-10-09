@@ -8,6 +8,7 @@ import AnalysisDock from "./AnalysisDock.js";
 import PanelOverlay from "../PanelOverlay.js";
 import { ANALYSIS_TABS } from "./analysisTabs.js";
 import { summarizeDispersionQuality } from "../../../optics/dispersion.js";
+import { lensChromaticReference } from "../../../optics/chromatic/channels.js";
 import { elementHasAsphericSurface } from "../../display/asphericElementUtils.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 import type { ChromaticRayFanSpreadByAxis } from "../../../types/optics.js";
@@ -291,6 +292,7 @@ export default function DiagramViewport({
             IMG_MM={IMG_MM}
             t={t}
             dispersionQuality={dispersionQuality}
+            channelReference={lensChromaticReference(L.elements)}
           />
         </PanelOverlay>
       ) : null}

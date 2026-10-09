@@ -782,7 +782,8 @@ for ordinary d-line data. Use `"e"` only when the stored values preserve a sourc
 Native e-line elements can use catalog Sellmeier data only when an explicit glass name or alias reproduces their
 `ne` / `νe` pair at C′/e/F′. Six-digit catalog codes remain d-line-only because they encode `nd` / `νd`. Do not mark
 an element merely because the source also publishes an e-line anchor, or when the data file has already converted the
-source values to d-line coordinates.
+source values to d-line coordinates. E-line color channels are traced at C′/e/F′/g on every dispersion tier, so naming
+only some of a lens's e-line glasses is safe; do not add d-line `nC` / `nF` to an e-line element.
 
 **Common `type` values:**
 - `"Biconvex Positive"`, `"Biconcave Negative"`

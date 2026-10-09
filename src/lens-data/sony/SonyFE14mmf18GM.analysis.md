@@ -7,7 +7,7 @@
 **Priority:** JP 2020-065177, 31 March 2020  
 **Filed:** 5 March 2021  
 **Published:** 7 October 2021  
-**Inventors:** Takumu Yamada; Ora Matsuoka  
+**Inventors:** Takumu Yamada; Dai Matsuoka (松岡 大; the WO front page romanizes the given name "Ora")  
 **Applicant:** Sony Group Corporation  
 **Title:** Imaging Lens and Imaging Device  
 **Embodiment analyzed:** Numerical Example 1
@@ -32,34 +32,34 @@ The verified system effective focal length is 14.4219 mm. The back focal distanc
 
 ### L1 — Negative Meniscus, Aspherical on Both Surfaces
 
-nd = 1.58547, νd = 59.5. Glass: S-BAL42-class OHARA equivalent; the patent index aligns with catalog ne rather than strict nd. f = -50.31 mm.
+ne = 1.58547, νd = 59.5. Glass: M-BACD12 (HOYA) moulding dense barium crown, from the exact e-line match; supplier unconfirmed. f = -50.31 mm.
 
-L1 is the first negative field-expanding element and one of the two high-precision XA-positioned aspheres in the production design. Its high curvature is necessary for a 14 mm full-frame entrance field, but the glass choice is also weight-driven: the patent's condition (10) constrains the specific gravity of the first negative meniscus, and the Example 1 value SL1 = 3.01 satisfies that range.
+L1 is the first negative field-expanding element and one of the two high-precision XA-positioned aspheres in the production design. Its high curvature is necessary for a 14 mm full-frame entrance field, but the glass choice is also weight-driven: the patent's condition (10) constrains the specific gravity of the first negative meniscus, and the Example 1 value SL1 = 3.01 satisfies that range. HOYA lists the same specific gravity, 3.01, for M-BACD12.
 
 Surface 1 has a spherical-base conic with polynomial correction. Surface 2 uses K = -0.594, reducing the growth of peripheral sag relative to a spherical base. The paired aspheres distribute the front-element correction rather than forcing all higher-order correction onto the rear surface.
 
 ### L2 — Negative Meniscus
 
-ne = 1.73234, νe = 54.7. Glass: unmatched 732547 e-line crown; S-LAL18 is only a nearby d-line comparison. f = -49.22 mm.
+ne = 1.73234, νd = 54.7. Glass: TAC8 (HOYA) lanthanum crown, from the exact e-line match; supplier unconfirmed. f = -49.22 mm.
 
 L2 shares the negative front power with L1. The verified ratio f(L1)/f(L2) = 1.022 shows that the first two negative menisci carry nearly equal standalone paraxial power. The higher index of L2 allows the same approximate negative power with less severe curvature than would be required from a lower-index crown.
 
 ### L3 — Biconcave Negative ED Element
 
-nd = 1.59489, νd = 68.6. Glass: S-FPM2-class ED fluorophosphate, soft match. f = -34.07 mm.
+ne = 1.59489, νd = 68.6. Glass: FCD515 (HOYA) ED fluorophosphate crown, from the exact e-line match; supplier unconfirmed. f = -34.07 mm.
 
 L3 is the front-group ED negative element. At this location the chief-ray height is large, so low dispersion is useful for lateral chromatic correction. L3 is followed by L4 with a zero air gap; the pair is not cemented in the prescription, but it behaves optically as a tightly coupled negative-positive contact pair.
 
 ### L4 — Biconvex Positive Contact Partner
 
-nd = 1.69416, νd = 31.2. Glass: 694312 patent-code short flint; no exact public catalog match is confirmed. f = +29.10 mm.
+ne = 1.69416, νd = 31.2. Glass: E-FD8 (HOYA) dense flint, from the e-line match to 0.00001 (catalog ne 1.69415); supplier unconfirmed. f = +29.10 mm.
 
 L4 is the first strong positive element in the front group. Its high dispersion complements the low-dispersion L3, and its positive power begins the recovery from the strongly negative front converter section. The L3/L4 zero spacing explains the difference between the patent's element-by-element prescription and the production 11-group specification.
 
 ### L5-L6 — Cemented Negative-Positive Doublet LN
 
-L5: nd = 1.91048, νd = 31.3. Glass: 910313 patent-code dense lanthanum flint; no exact public catalog match is confirmed. f = -12.50 mm.
-L6: nd = 1.77660, νd = 29.7. Glass: unmatched 777/297 dense short flint. f = +22.14 mm.  
+L5: ne = 1.91048, νd = 31.3. Glass: TAFD25 (HOYA) dense lanthanum flint, from the exact e-line match; supplier unconfirmed. f = -12.50 mm.  
+L6: ne = 1.77660, νd = 29.7. Glass: NBFD29 (HOYA) niobium dense flint, from the exact e-line match; supplier unconfirmed. f = +22.14 mm.  
 Cemented unit LN: f = -31.20 mm.
 
 LN is a negative-positive cemented doublet close to the stop. It is not a classical crown/flint achromat; both elements are high-dispersion flints. Its role is to provide compact negative power and correction leverage immediately before L7 while using high index to moderate surface slopes.
@@ -68,72 +68,78 @@ The verified condition value f(LN)/f(LP) = -1.124 lies close to the lower bound 
 
 ### L7 — Biconvex Positive LP, Aspherical on Both Surfaces
 
-nd = 1.77173, νd = 49.2. Glass: S-LAH66-class dense lanthanum flint, soft match. f = +27.76 mm.
+ne = 1.77173, νd = 49.2. Glass: M-TAF101 (HOYA) moulding lanthanum flint, from the exact e-line match; supplier unconfirmed. f = +27.76 mm.
 
 L7 is the patent's LP element and the second high-precision aspherical element associated with the production XA count. It sits just before the aperture stop and therefore has strong leverage over both axial marginal rays and off-axis coma terms. Surface 12 has a negative A4 term; surface 13 has a positive A4 term. The opposed fourth-order signs are consistent with a paired correction rather than a single-surface de-powering profile.
 
-The element should be described as a dense lanthanum flint, not as a crown. Its νd = 49.2 lies on the flint side of the practical crown/flint boundary.
+The element should be described as a lanthanum flint, not as a crown. Its νd = 49.2 lies on the flint side of the practical crown/flint boundary.
 
 ### L8 — Biconvex Positive Super-ED Element
 
-nd = 1.43810, νd = 95.1. Glass: S-FPL53/S-FPL55-class super-ED fluorophosphate, soft match. f = +34.02 mm.
+ne = 1.43810, νd = 95.1. Glass: FCD100 (HOYA) super-ED fluorophosphate crown, from the exact e-line match; supplier unconfirmed. f = +34.02 mm.
 
 L8 opens the moving focus subgroup G2F and is the Super-ED element corresponding to Sony's production description. It is placed where the marginal ray height is still substantial after the stop, making it a primary axial color corrector for the rear imaging relay.
 
 ### L9-L10 — Cemented ED/Flint Doublet
 
-L9: nd = 1.49845, νd = 81.6. Glass: S-FPL51-class ED fluorophosphate; the patent index aligns with catalog ne. f = +31.19 mm.  
-L10: nd = 1.86252, νd = 25.2. Glass: 863252 patent-code dense flint; no exact public catalog match is confirmed. f = -15.55 mm.
+L9: ne = 1.49845, νd = 81.6. Glass: FCD1 (HOYA) ED fluorophosphate crown, from the exact e-line match; supplier unconfirmed. f = +31.19 mm.  
+L10: ne = 1.86252, νd = 25.2. Glass: NBFD25 (HOYA) niobium dense flint, from the exact e-line match; supplier unconfirmed. f = -15.55 mm.  
 Cemented unit: f = -32.55 mm.
 
 This doublet is the main conventional chromatic pairing in the rear group. L9 supplies positive ED-crown power, while L10 supplies high-index, high-dispersion negative power. The cemented pair is net negative, which also helps reduce the positive Petzval burden of the relay.
 
-### L11 — Biconvex Positive, Very-High-Index Short Flint
+### L11 — Biconvex Positive, Very-High-Index Dense Flint
 
-nd = 1.93323, νd = 20.9. Glass: unmatched 933/209 ultra-high-index short flint. f = +21.17 mm.
+ne = 1.93323, νd = 20.9. Glass: E-FDS1 (HOYA) very-high-index dense flint, from the exact e-line match; supplier unconfirmed. f = +21.17 mm.
 
 L11 is the strongest positive element in G2 after L8 when judged by standalone focal length. Its very high index allows strong positive power in a compact axial space. Because Petzval contribution is weighted by φ/(n·n′), high-index positive surfaces contribute less field curvature per unit power than equivalent lower-index positive surfaces.
 
 ### L12 — Biconcave Negative Element
 
-nd = 1.86252, νd = 25.2. Glass: 863252 patent-code dense flint; no exact public catalog match is confirmed. f = -36.19 mm.
+ne = 1.86252, νd = 25.2. Glass: NBFD25 (HOYA) niobium dense flint, from the exact e-line match; supplier unconfirmed. f = -36.19 mm.
 
 L12 is the negative element preceding the strongest negative air lens in G2. Its rear surface and L13's front surface form the air lens LA identified by the patent. L12 contributes directly to field flattening and to the control of higher-order residuals before the final aspherical correction stage.
 
 ### L13 — Biconcave Negative, Aspherical on Both Surfaces
 
-ne = 1.85639, νe = 40.1. Glass: unmatched 856401 e-line lanthanum flint; S-LAH89 is only a nearby d-line comparison. f = -218.18 mm.
+ne = 1.85639, νd = 40.1. Glass: M-TAFD305 (HOYA) moulding dense lanthanum flint, from the exact e-line match; supplier unconfirmed. f = -218.18 mm.
 
 L13 has weak base paraxial power but large aspherical coefficients. It is therefore better understood as a field-dependent correction element than as a strong thin-lens power element. Its location after the LA air lens gives it leverage over astigmatism, distortion, and residual field curvature.
 
 ### L14 — Rear Positive Meniscus
 
-ne = 1.62228, νe = 63.9. Glass: unmatched 622639 e-line crown; S-PHM52 is only a nearby d-line comparison. f = +166.85 mm.
+ne = 1.62228, νd = 63.9. Glass: PCD40 (HOYA) phosphate dense crown, from the exact e-line match; supplier unconfirmed. f = +166.85 mm.
 
-L14 is stationary during focusing and sits behind the moving G2F subgroup. Its weak positive power and rear placement are consistent with final field flattening and chief-ray-angle trimming at the sensor side. S-PHM52 is a useful family comparison, but the patent row is e-line-authored and does not establish a d-line catalog identity.
+L14 is stationary during focusing and sits behind the moving G2F subgroup. Its weak positive power and rear placement are consistent with final field flattening and chief-ray-angle trimming at the sensor side. OHARA S-PHM52, the earlier family comparison, is a different glass (ne 1.62033, νd 63.33).
 
 ## Glass Identification and Selection
 
-The patent's refractive-index column is labeled nd, but several entries align exactly or nearly with OHARA catalog ne values rather than catalog nd values. The ray trace uses the patent-published indices exactly. Catalog names below are therefore class/equivalent identifications, not substitutions for the prescription indices.
+Paragraph 0114 defines the `nd` column as the refractive index at the d line (λ = 587.6 nm) and `νd` as the d-line Abbe number, and Table 1 heads its columns accordingly. The printed indices are nevertheless e-line values (546.07 nm) paired with d-line Abbe numbers. Each of the fourteen rows matches a HOYA catalog glass at the e line, thirteen to all five printed decimals and L4 to 0.00001, and each with that glass's νd at the printed one decimal. No row matches a catalog glass at the d line. The model stores the printed values unchanged and treats the whole index column as e-line (`indexReference: "e"` on all fourteen elements).
 
-| Element | Patent index / νd | Corrected glass identification | Confidence | Role |
-|---|---:|---|---|---|
-| L1 | 1.58547 / 59.5 | S-BAL42-class OHARA equivalent, not S-BAL41 | High class match | Low-density front negative meniscus |
-| L2 | 1.73234 / 54.7 | Unmatched 732547 e-line crown; S-LAL18 comparison | E-line only | Second negative meniscus |
-| L3 | 1.59489 / 68.6 | S-FPM2-class ED fluorophosphate | Soft match | Front-group lateral-color correction |
-| L4 | 1.69416 / 31.2 | 694312 short flint | Patent-code fallback | Positive contact partner to L3 |
-| L5 | 1.91048 / 31.3 | 910313 dense lanthanum flint, not S-LAH79 | Patent-code fallback | Negative element of LN |
-| L6 | 1.77660 / 29.7 | Unmatched 777/297 dense short flint | Unmatched | Positive element of LN |
-| L7 | 1.77173 / 49.2 | S-LAH66-class dense lanthanum flint | Soft match | Positive LP asphere |
-| L8 | 1.43810 / 95.1 | S-FPL53/S-FPL55-class super-ED fluorophosphate | Soft match | Super-ED axial-color corrector |
-| L9 | 1.49845 / 81.6 | S-FPL51-class ED fluorophosphate | High class match | ED crown in rear doublet |
-| L10 | 1.86252 / 25.2 | 863252 dense flint | Patent-code fallback | Flint in rear doublet |
-| L11 | 1.93323 / 20.9 | Unmatched 933/209 ultra-high-index short flint | Unmatched | Strong high-index positive relay |
-| L12 | 1.86252 / 25.2 | 863252 dense flint | Patent-code fallback | Negative Petzval element |
-| L13 | 1.85639 / 40.1 | Unmatched 856401 e-line lanthanum flint | E-line only | Rear aspherical field corrector |
-| L14 | 1.62228 / 63.9 | Unmatched 622639 e-line crown | E-line only | Rear field/chief-ray correction |
+| Element | Printed n / νd | Catalog glass | Catalog ne / νd | Catalog nd | Role |
+|---|---:|---|---:|---:|---|
+| L1 | 1.58547 / 59.5 | HOYA M-BACD12 | 1.58547 / 59.46 | 1.58313 | Low-density front negative meniscus |
+| L2 | 1.73234 / 54.7 | HOYA TAC8 | 1.73234 / 54.67 | 1.72916 | Second negative meniscus |
+| L3 | 1.59489 / 68.6 | HOYA FCD515 | 1.59489 / 68.62 | 1.59282 | Front-group lateral-color correction |
+| L4 | 1.69416 / 31.2 | HOYA E-FD8 | 1.69415 / 31.16 | 1.68893 | Positive contact partner to L3 |
+| L5 | 1.91048 / 31.3 | HOYA TAFD25 | 1.91048 / 31.32 | 1.90366 | Negative element of LN |
+| L6 | 1.77660 / 29.7 | HOYA NBFD29 | 1.77660 / 29.74 | 1.77047 | Positive element of LN |
+| L7 | 1.77173 / 49.2 | HOYA M-TAF101 | 1.77173 / 49.24 | 1.76802 | Positive LP asphere |
+| L8 | 1.43810 / 95.1 | HOYA FCD100 | 1.43810 / 95.10 | 1.43700 | Super-ED axial-color corrector |
+| L9 | 1.49845 / 81.6 | HOYA FCD1 | 1.49845 / 81.61 | 1.49700 | ED crown in rear doublet |
+| L10 | 1.86252 / 25.2 | HOYA NBFD25 | 1.86252 / 25.15 | 1.85451 | Flint in rear doublet |
+| L11 | 1.93323 / 20.9 | HOYA E-FDS1 | 1.93323 / 20.88 | 1.92286 | Strong high-index positive relay |
+| L12 | 1.86252 / 25.2 | HOYA NBFD25 | 1.86252 / 25.15 | 1.85451 | Negative Petzval element |
+| L13 | 1.85639 / 40.1 | HOYA M-TAFD305 | 1.85639 / 40.10 | 1.85135 | Rear aspherical field corrector |
+| L14 | 1.62228 / 63.9 | HOYA PCD40 | 1.62228 / 63.88 | 1.61997 | Rear field/chief-ray correction |
 
-Several superficially plausible identifiers should be avoided: S-BAL41 does not match L1's index/dispersion pair, S-LAH79 is not the correct dense-lanthanum-flint neighbor for L5, and the S-TIM28 / S-LAH95 / S-NBH56 soft labels resolve to catalog d-line entries that do not round-trip these patent rows. The data file therefore keeps L4, L5, L10, and L12 as code-only patent glasses until a coefficient-backed exact match is available.
+HOYA, OHARA and SUMITA catalogs, including obsolete glasses, and the SCHOTT, HIKARI and CDGM rows of the site catalog were checked at both lines. At the d line no row pairs a printed index with its printed Abbe number: the nearest row carrying the right Abbe number is 0.0005 away for L1 and 0.001 to 0.010 away for the others. At the e line HOYA is the only vendor that covers every row, and nine elements (L1, L3, L6, L7, L8, L10, L12, L13 and L14) match HOYA rows alone. Other vendors match single rows: OHARA S-LAL18 and SUMITA K-LaK18 for L2, HIKARI J-SF8 for L4, OHARA S-LAH95 and SCHOTT N-LASF46B for L5, CDGM H-FK61 for L9, and SCHOTT N-SF66 for L11. OHARA L-BAL42 and S-FPL51 share the e-line index of L1 and L9 but list νd 59.39 and 81.55 against the printed 59.5 and 81.6. Where HOYA lists two grades with the same constants (FCD505 and FCD515, TAFD25 and TAFD25L, E-FDS1 and E-FDS1-W), one is named: FCD515, TAFD25 and E-FDS1.
+
+Two further observations agree with the HOYA reading. The three moulding glasses, M-BACD12, M-TAF101 and M-TAFD305, fall on exactly the three aspherical elements, L1, L7 and L13. And the patent's own specific-gravity row for the first lens (Table 51, SL1) equals HOYA's listed value: 3.01 for M-BACD12 in Example 1, and 4.56 for M-TAF101 in Example 2, whose L1 row prints 1.77173 / 49.2. OHARA L-BAL42 and S-BAL42 list 3.05 and 3.19.
+
+The earlier OHARA class labels were d-line comparisons against printed e-line values and are superseded. S-FPM2 (nd 1.59522, νd 67.74), S-LAH66 (1.77250, 49.60) and S-FPL53 (1.43875, 94.95) are different glasses from FCD515, M-TAF101 and FCD100, and S-TIM28 and S-NBH56 miss the printed Abbe numbers of L4 and of L10 and L12 by 0.1 and 0.4. The names select catalog coordinates and dispersion curves; they do not confirm Sony's supplier or melt.
+
+All fourteen elements trace on their catalog dispersion curves, anchored to the printed index, at C′, e, F′ and g. The Abbe slot keeps the printed d-line number; catalog νe is 0.2 to 0.4 lower, which matters only to the resolver's compatibility window because no element falls back to the Abbe estimate. The patent publishes no partial-dispersion data, so the `apd: "inferred"` flags on L3, L8 and L9 still rest on the ED and Super ED production counts.
 
 The chromatic strategy uses three low-dispersion stations: L3 in the front group for lateral color, L8 as the Super-ED rear-group opener for axial color, and L9 as the ED crown in the cemented rear doublet. High-index flints L4, L5, L6, L10, L11, L12, and L13 supply complementary dispersion and compact power.
 
@@ -192,7 +198,7 @@ The material patent-table anomaly is condition (6). Direct computation gives f(G
 
 ## Verification Summary
 
-All paraxial calculations were performed from the Table 1 prescription with the patent-published refractive indices and the Table 3 focus spacings. The matrix trace used the d-line prescription and the surface-by-surface refraction convention.
+All paraxial calculations were performed from the Table 1 prescription with the patent-published refractive indices and the Table 3 focus spacings. The matrix trace used the printed indices, which are e-line values under the patent's nd heading, and the surface-by-surface refraction convention.
 
 | Quantity | Verified value | Patent / source value | Result |
 |---|---:|---:|---|
@@ -214,5 +220,5 @@ The Petzval value above uses the surface-by-surface formula Σ φ/(n·n′), not
 - WO 2021/199923 A1, Sony Group Corporation, Numerical Example 1, Tables 1-5 and condition table.
 - Sony official product specifications for SEL14F18GM: 14 mm, f/1.8, full-frame E-mount, 14 elements in 11 groups, 114° angle of view, 0.25 m minimum focus distance, 9 aperture blades, 460 g mass.
 - Sony official product description for SEL14F18GM: two XA elements, one Super ED element, two ED elements, and XD Linear Motor focusing.
-- OHARA S-Glass catalog CSV, March 2025 release, used for independent nd/ne/νd glass-class checks.
+- HOYA (7 July 2026, including obsolete glasses), OHARA (1 July 2026) and SUMITA (7 November 2025) Zemax glass catalogs, used for the e-line and d-line coordinate checks.
 - Sony Alpha Universe launch article, 20 April 2021, used only for production-level element count, mass, special-glass/aspherical claims, and XD Linear Motor description.

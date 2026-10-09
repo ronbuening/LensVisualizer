@@ -121,7 +121,7 @@ const LENS_DATA = {
       nd: 1.76546,
       vd: 46.73,
       fl: -25.0,
-      glass: "Unmatched (near HIKARI J-LASFH2; patent nd=1.76546, νd=46.73)",
+      glass: "Q-LASFPH2S (HIKARI moulding glass, catalog 1.76544 / 46.75 against patent 1.76546 / 46.73; supplier unconfirmed)",
       role: "First negative variator element; object-side asphere corrects wide-angle field curvature and distortion.",
     },
     {

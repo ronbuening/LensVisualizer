@@ -247,7 +247,7 @@ describe("ElementInspector", () => {
     expect(screen.queryByText(/Sellmeier.*Flint/)).toBeNull();
   });
 
-  it("labels an e-line-compatible Sellmeier trace with physical C/d/F/g wavelengths", () => {
+  it("labels an e-line Sellmeier trace with the C′/e/F′ lines it is evaluated at", () => {
     const chromaticLens = {
       ...mockLens,
       S: [{ label: "1", R: 100, d: 5, nd: 1.51872, sd: 10, elemId: basicElement.id }],
@@ -256,7 +256,7 @@ describe("ElementInspector", () => {
         0: {
           quality: "sellmeier",
           glassEntry: { name: "N-BK7" },
-          fn: (channel: ChromaticChannel) => ({ R: 1.51432, G: 1.5168, B: 1.52238, V: 1.52668 })[channel],
+          fn: (channel: ChromaticChannel) => ({ R: 1.51472, G: 1.51872, B: 1.52283, V: 1.52668 })[channel],
         },
       },
     } as unknown as RuntimeLens;
@@ -270,9 +270,9 @@ describe("ElementInspector", () => {
       />,
     );
 
-    expect(screen.getByText("1.51432").getAttribute("title")).toBe("C-line 656.3 nm");
-    expect(screen.getByText("1.51680").getAttribute("title")).toBe("d-line 587.6 nm");
-    expect(screen.getByText("1.52238").getAttribute("title")).toBe("F-line 486.1 nm");
+    expect(screen.getByText("1.51472").getAttribute("title")).toBe("Cadmium C′-line 643.8 nm");
+    expect(screen.getByText("1.52283").getAttribute("title")).toBe("Cadmium F′-line 480.0 nm");
+    expect(screen.getByText("nF′−nC′ =")).toBeTruthy();
   });
 
   it("does not infer ED status from a high Abbe number alone", () => {

@@ -21,7 +21,7 @@ The correlation rests on several convergent points:
 5. Samyang's instruction manual explicitly describes the production lens as an **inner-focus** design. Example 4 focuses by translating the two-element G24 group while G14 and G34 remain fixed.
 6. Samyang announced the AF 35mm F2.8 FE on 2017-06-05 and stated global availability from July 2017. The patent application followed on 2018-06-05, so the filing chronology is compatible with a post-release patent filing for the same optical concept.
 
-Samyang also markets one HR element in the production lens. No HR designation is assigned to an individual element here because the patent's refractive-index coordinates are internally mixed and the final data file deliberately avoids an unsupported vendor/material identity.
+Samyang also markets one HR element in the production lens. No HR designation is assigned to an individual element here: the patent does not single one out, and three elements (L2, L4, L5) have a printed index above 1.77.
 
 The patent's rendered Example 4 optical section is Figure 7. Paragraph ¶0113 calls it Figure 9, but Figure 9 is the later camera-system schematic; that figure reference is treated as a source typo, not silently propagated.
 
@@ -57,7 +57,7 @@ The focal lengths below are **standalone element focal lengths in air**, recompu
 
 ### L1 — Negative Meniscus, Fixed Front Element
 
-**nd = 1.73432, νd = 28.32. Glass: Unmatched (728283-728285 class; mixed e-line-like n / d-line νd). f = −40.101460 mm.**
+**nd = 1.73432, νd = 28.32. Glass: E-FD10 (HOYA; catalog ne 1.73432, vd 28.32 as printed; supplier unconfirmed). f = −40.101460 mm.**
 
 L1 is the front member of fixed G14. Patent ¶0060 describes L14 as a negative meniscus convex toward the image side. Its standalone negative power establishes a divergent front contribution before the much stronger positive L2. The combined G14 matrix is nevertheless positive, so L1 should not be interpreted as defining the sign of the complete front functional group.
 
@@ -65,7 +65,7 @@ The patent's design rationale places a negative first element at the front of th
 
 ### L2 — Biconvex Positive with One Aspherical Surface
 
-**nd = 1.77641, νd = 49.70. Glass: Unmatched (773496 class; mixed e-line-like n / d-line νd). f = +16.606041 mm.**
+**nd = 1.77641, νd = 49.70. Glass: Unmatched (printed coordinates; nearest e-line row is the 773496 class at 1.77621; no vendor row at either line). f = +16.606041 mm.**
 
 L2 is the strong positive member of fixed G14. Its object-side surface, 3A, is aspherical; the rear surface is spherical. The strong standalone positive power of L2 outweighs L1 within G14, producing the computed positive G14 power of +0.038561460 mm⁻¹.
 
@@ -73,7 +73,7 @@ The patent states that an asphere near the aperture stop can be used to correct 
 
 ### L3 — Negative Meniscus, First Focus-Group Element
 
-**nd = 1.62408, νd = 36.30. Glass: Unmatched (620363-620364 class; mixed e-line-like n / d-line νd). f = −22.623692 mm.**
+**nd = 1.62408, νd = 36.30. Glass: E-F2 (HOYA; catalog ne 1.62408, vd 36.30 as printed; supplier unconfirmed). f = −22.623692 mm.**
 
 L3 is the first member of translating G24. Its standalone power is negative and substantially stronger in magnitude than the positive standalone power of L4. The pair therefore remains net negative in its in-air functional-group matrix.
 
@@ -81,7 +81,7 @@ The patent places the focusing group close to the stop to control its diameter a
 
 ### L4 — Positive Meniscus, Second Focus-Group Element
 
-**nd = 1.93323, νd = 20.88. Glass: Unmatched (923209 class; mixed e-line-like n / d-line νd). f = +71.203757 mm.**
+**nd = 1.93323, νd = 20.88. Glass: E-FDS1 (HOYA; catalog ne 1.93323, vd 20.88 as printed; supplier unconfirmed). f = +71.203757 mm.**
 
 L4 is the second element of G24. Its standalone positive power is comparatively weak, so the L3+L4 focus group remains net negative. The two lenses translate together; no independent L3/L4 spacing change is published or modeled.
 
@@ -89,7 +89,7 @@ Patent ¶0078 describes the two focus-group glasses as a dispersion pair intende
 
 ### L5 — Biconvex Positive, Front Member of Cemented Doublet J1
 
-**nd = 1.83945, νd = 42.72. Glass: Unmatched (835427-835431 class; mixed e-line-like n / d-line νd). f = +9.779848 mm.**
+**nd = 1.83945, νd = 42.72. Glass: TAFD5F (HOYA; catalog ne 1.83945, vd 42.72 as printed; supplier unconfirmed). f = +9.779848 mm.**
 
 L5 is the strong positive component of the cemented L5+L6 pair in fixed G34. Its standalone power is +0.102251075 mm⁻¹, the largest positive standalone element power in the modeled prescription.
 
@@ -97,7 +97,7 @@ At surface 11, L5 is cemented directly to L6. In the data model that cemented in
 
 ### L6 — Biconcave Negative, Rear Member of Cemented Doublet J1
 
-**nd = 1.65222, νd = 33.84. Glass: Unmatched (648337-648339 class; mixed e-line-like n / d-line νd). f = −12.712037 mm.**
+**nd = 1.65222, νd = 33.84. Glass: E-FD2 (HOYA; catalog ne 1.65222, vd 33.84 as printed; supplier unconfirmed). f = −12.712037 mm.**
 
 L6 is the negative partner of L5. The individual powers must not be confused with the power of the cemented pair: L5 alone is strongly positive, L6 alone is negative, while the **cemented L5+L6 combination is net positive**, with computed power +0.030816744 mm⁻¹ and standalone cemented-group EFL +32.449891 mm.
 
@@ -105,7 +105,7 @@ Patent ¶0054 explicitly assigns the cemented pair a chromatic-correction role. 
 
 ### L7 — Negative Meniscus with Two Aspherical Surfaces
 
-**nd = 1.69385, νd = 31.19. Glass: Unmatched (689311-689313 class; mixed e-line-like n / d-line νd). f = −86.873115 mm.**
+**nd = 1.69385, νd = 31.19. Glass: Unmatched (printed coordinates; nearest e-line row is the 689312 class at 1.69415; no vendor row at either line). f = −86.873115 mm.**
 
 L7 is the final physical element and is fixed during focusing. Patent ¶0060 describes it as a meniscus convex toward the image side. Its standalone negative power is weak relative to the preceding positive cemented doublet, so the complete G34 remains net positive.
 
@@ -113,19 +113,19 @@ The patent assigns L7 a field-flattening role (¶0054) and places the rear-most 
 
 ## Glass Identification and Selection
 
-The final data file deliberately does **not** assign vendor catalog glasses. Patent Table 10 labels its index column `nd`, yet the seven index values systematically resemble e-line indices while the accompanying Abbe values resemble d-line `νd`. Using `indexReference: "e"` would therefore be equally misleading because the source does not provide corresponding `νe` values. The raw source pairs are retained exactly for prescription fidelity and EFL reproduction, while the `glass` fields use explicit `Unmatched (...)` class annotations.
+Patent Table 10 labels its index column `nd`, yet the seven printed values are e-line indices paired with d-line Abbe numbers. Five of them equal a HOYA catalog glass at the e line to all five printed decimals, each with that glass's exact `νd`: E-FD10 (L1), E-F2 (L3), E-FDS1 (L4), TAFD5F (L5) and E-FD2 (L6). The printed pairs are stored unchanged and all seven elements are e-referenced (`indexReference: "e"`), with a note on each element that the Abbe slot holds the printed d-line value; catalog `νe` is 0.1 to 0.3 lower. The five named elements trace on their catalog curves anchored to the printed index. The two moulded aspheres, L2 and L7, sit 0.0002 and 0.0003 above the nearest rows and stay `Unmatched` on the Abbe estimate. The names select dispersion curves and do not identify Samyang's supplier.
 
-| Element | Stored `nd` slot | Stored νd | Data-file glass annotation |
+| Element | Printed n (e line) | Printed νd | Data-file glass annotation |
 |---|---:|---:|---|
-| L1 | 1.73432 | 28.32 | Unmatched (728283-728285 class; mixed e-line-like n / d-line νd) |
-| L2 | 1.77641 | 49.70 | Unmatched (773496 class; mixed e-line-like n / d-line νd) |
-| L3 | 1.62408 | 36.30 | Unmatched (620363-620364 class; mixed e-line-like n / d-line νd) |
-| L4 | 1.93323 | 20.88 | Unmatched (923209 class; mixed e-line-like n / d-line νd) |
-| L5 | 1.83945 | 42.72 | Unmatched (835427-835431 class; mixed e-line-like n / d-line νd) |
-| L6 | 1.65222 | 33.84 | Unmatched (648337-648339 class; mixed e-line-like n / d-line νd) |
-| L7 | 1.69385 | 31.19 | Unmatched (689311-689313 class; mixed e-line-like n / d-line νd) |
+| L1 | 1.73432 | 28.32 | E-FD10 (HOYA; catalog ne 1.73432, vd 28.32 as printed; supplier unconfirmed) |
+| L2 | 1.77641 | 49.70 | Unmatched (printed coordinates; nearest e-line row is the 773496 class at 1.77621; no vendor row at either line) |
+| L3 | 1.62408 | 36.30 | E-F2 (HOYA; catalog ne 1.62408, vd 36.30 as printed; supplier unconfirmed) |
+| L4 | 1.93323 | 20.88 | E-FDS1 (HOYA; catalog ne 1.93323, vd 20.88 as printed; supplier unconfirmed) |
+| L5 | 1.83945 | 42.72 | TAFD5F (HOYA; catalog ne 1.83945, vd 42.72 as printed; supplier unconfirmed) |
+| L6 | 1.65222 | 33.84 | E-FD2 (HOYA; catalog ne 1.65222, vd 33.84 as printed; supplier unconfirmed) |
+| L7 | 1.69385 | 31.19 | Unmatched (printed coordinates; nearest e-line row is the 689312 class at 1.69415; no vendor row at either line) |
 
-These six-digit-style class annotations are descriptive class ranges, not supplier identifications and not Sellmeier-resolved materials. An independent catalog-coordinate check supports the mixed-coordinate diagnosis rather than a vendor assignment. Representative class anchors include HOYA E-FD10L (728283), OHARA S-LAH66 (773496), HOYA E-F2 (620363), SCHOTT N-SF66 (923209), CDGM H-ZLaF55D (835427), CDGM H-ZF1 (648338), and HIKARI J-SF8 (689312). Across those seven anchors, the stored source index differs from catalog `ne` by no more than 0.000303, while its difference from catalog `nd` is 0.00391–0.01037; the stored Abbe value differs from catalog `νd` by no more than 0.10. The pattern is therefore much more consistent with e-line-like index values paired with d-line Abbe values than with a coherent d-line or e-line coordinate set.
+An independent catalog-coordinate check supports the mixed-coordinate reading across vendors as well. Representative class anchors include HOYA E-FD10L (728283), OHARA S-LAH66 (773496), HOYA E-F2 (620363), SCHOTT N-SF66 (923209), CDGM H-ZLaF55D (835427), CDGM H-ZF1 (648338), and HIKARI J-SF8 (689312). Across those seven anchors, the stored source index differs from catalog `ne` by no more than 0.000303, while its difference from catalog `nd` is 0.00391–0.01037; the stored Abbe value differs from catalog `νd` by no more than 0.10. The pattern is therefore much more consistent with e-line index values paired with d-line Abbe values than with a coherent d-line or e-line coordinate set. The source filter row is the exception: it prints the d-line 1.51680 / 64.20 and stays d-referenced.
 
 The patent does not publish element-level `nC`, `nF`, `ng`, `PgF`, or `dPgF`. Consequently, the data file contains none of those fields and this analysis makes no APO or anomalous-partial-dispersion claim. The production specification's “1 HR” marketing designation likewise cannot be assigned to a particular L1–L7 element from the final data without stepping beyond the verified source coordinates.
 

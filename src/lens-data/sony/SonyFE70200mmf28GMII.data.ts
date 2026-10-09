@@ -5,7 +5,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  LENS DATA — SONY FE 70-200mm F2.8 GM OSS II (SEL70200GM2)        ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP 2023-039817 A, Example 2 (実施例2).               ║
- * ║  Sony Group Corporation / Naoki Miyakawa, Shūgo Takahashi.        ║
+ * ║  Sony Group Corporation / Naoki Miyagawa, Shūgo Takahashi.        ║
  * ║  Positive-lead telephoto zoom, 8 mechanical groups (GR1–GR8).     ║
  * ║  17 elements / 14 groups, 5 aspherical surfaces on 3 elements.    ║
  * ║  Internal zoom (constant overall length 215.07 mm).               ║
@@ -23,6 +23,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Patent provides effective diameter (φi) for each surface.       ║
  * ║    SD = φi / 2, with S2/S3 trimmed slightly for render clearance   ║
  * ║    across the 0.29 mm front air gap.                               ║
+ * ║                                                                    ║
+ * ║  NOTE ON INDEX COLUMN AND GLASS:                                   ║
+ * ║    Table 6 heads its index column ndi and ¶0056 calls it the       ║
+ * ║    d-line index, but the printed values are e-line indices paired  ║
+ * ║    with d-line Abbe numbers. All 17 equal a HOYA or OHARA catalog  ║
+ * ║    ne (16 to five decimals, S-TIH11 to 0.00001) with that glass's  ║
+ * ║    νd at the printed one decimal; none equals a catalog nd.        ║
+ * ║    The printed values are stored unchanged. Every element is       ║
+ * ║    indexReference "e", carries its catalog name and traces on the  ║
+ * ║    catalog curve anchored to the printed index. The vd slot keeps  ║
+ * ║    the printed d-line Abbe number (catalog νe is 0.2–0.4 lower).   ║
+ * ║    Table 6 lists no cover glass or filter plate.                   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -63,8 +75,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7766,
       vd: 29.7,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -398.1,
-      glass: "Dense flint (777/297, uncertain)",
+      glass: "NBFD29 (HOYA; catalog ne 1.77660 as printed, vd 29.74 printed as 29.7; supplier unconfirmed)",
       apd: false,
       role: "Front negative meniscus — Petzval field-flattening contribution at largest beam diameter",
     },
@@ -75,10 +90,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.4381,
       vd: 95.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 197.2,
-      glass: "S-FPL55 class (OHARA) — Super ED fluorophosphate crown",
+      glass: "FCD100 (HOYA; catalog ne 1.43810 as printed, vd 95.10 printed as 95.1; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "Super ED fluorophosphate class; patent publishes nd/vd only.",
+      apdNote: "Super ED fluorophosphate class; the patent prints an e-line index and a d-line Abbe number only.",
       role: "First Super ED element — primary axial chromatic and positive power",
     },
     {
@@ -88,10 +106,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.4381,
       vd: 95.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 191.4,
-      glass: "S-FPL55 class (OHARA) — Super ED fluorophosphate crown",
+      glass: "FCD100 (HOYA; catalog ne 1.43810 as printed, vd 95.10 printed as 95.1; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "Super ED fluorophosphate class; patent publishes nd/vd only.",
+      apdNote: "Super ED fluorophosphate class; the patent prints an e-line index and a d-line Abbe number only.",
       role: "Second Super ED element — completes front collector positive power",
     },
     {
@@ -101,8 +122,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.77621,
       vd: 49.6,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -61.8,
-      glass: "Unmatched (776496 patent lanthanum-glass coordinate; vendor unresolved)",
+      glass: "S-LAH66 (OHARA; catalog ne 1.77621 as printed, vd 49.60 printed as 49.6; supplier unconfirmed)",
       apd: false,
       role: "First variator (GR2) — single-element negative zoom group, strongest |power| in variator",
     },
@@ -113,10 +137,13 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.49845,
       vd: 81.6,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -69.3,
-      glass: "S-FPL51 class (OHARA) — ED fluorophosphate crown",
+      glass: "FCD1 (HOYA; catalog ne 1.49845 as printed, vd 81.61 printed as 81.6; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class; patent publishes nd/vd only.",
+      apdNote: "ED fluorophosphate class; the patent prints an e-line index and a d-line Abbe number only.",
       cemented: "D1",
       role: "Second variator (GR3) negative element — ED achromatizer",
     },
@@ -127,8 +154,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.8629,
       vd: 24.8,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 100.9,
-      glass: "863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)",
+      glass: "S-NBH56 (OHARA; catalog ne 1.86290 as printed, vd 24.80 printed as 24.8; supplier unconfirmed)",
       apd: false,
       cemented: "D1",
       role: "Second variator (GR3) positive partner — achromatizes GR3 with ED L31",
@@ -140,8 +170,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.79191,
       vd: 25.7,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 192.5,
-      glass: "Unmatched 792257 dense flint (patent-listed; supplier unidentified)",
+      glass: "FD110 (HOYA; catalog ne 1.79191 as printed, vd 25.72 printed as 25.7; supplier unconfirmed)",
       apd: false,
       role: "Third variator (GR4) — converges beam entering GR5 relay",
     },
@@ -152,10 +185,13 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.49856,
       vd: 81.6,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 65.1,
-      glass: "S-FPL51 class (OHARA) — ED crown, precision glass-molded aspherical",
+      glass: "M-FCD1 (HOYA; catalog ne 1.49856 as printed, vd 81.56 printed as 81.6; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class; patent publishes nd/vd only.",
+      apdNote: "ED fluorophosphate class; the patent prints an e-line index and a d-line Abbe number only.",
       role: "ED aspherical element — primary GR5 positive power with SA correction",
     },
     {
@@ -165,8 +201,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8629,
       vd: 24.8,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -47.5,
-      glass: "863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)",
+      glass: "S-NBH56 (OHARA; catalog ne 1.86290 as printed, vd 24.80 printed as 24.8; supplier unconfirmed)",
       apd: false,
       role: "Post-stop negative — achromatizes GR5 against L51 ED",
     },
@@ -177,8 +216,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8629,
       vd: 24.8,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -145.7,
-      glass: "863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)",
+      glass: "S-NBH56 (OHARA; catalog ne 1.86290 as printed, vd 24.80 printed as 24.8; supplier unconfirmed)",
       apd: false,
       cemented: "D2",
       role: "OIS doublet negative element — stabilization group",
@@ -190,8 +232,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.58547,
       vd: 59.4,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 40.7,
-      glass: "L-BAL43 (Ohara catalog equivalent; patent code 585594, supplier unspecified)",
+      glass: "L-BAL42 (OHARA; catalog ne 1.58547 as printed, vd 59.39 printed as 59.4; supplier unconfirmed)",
       apd: false,
       cemented: "D2",
       role: "OIS doublet positive element — aspherical rear for decentered correction",
@@ -203,8 +248,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.58547,
       vd: 59.4,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 126.2,
-      glass: "L-BAL43 (Ohara catalog equivalent; patent code 585594, supplier unspecified), XA element",
+      glass: "L-BAL42 (OHARA; catalog ne 1.58547 as printed, vd 59.39 printed as 59.4; supplier unconfirmed)",
       apd: false,
       role: "XA element — field-dependent aberration and bokeh quality control",
     },
@@ -215,8 +263,11 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.93323,
       vd: 20.9,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 58.6,
-      glass: "933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)",
+      glass: "E-FDS1 (HOYA; catalog ne 1.93323 as printed, vd 20.88 printed as 20.9; supplier unconfirmed)",
       apd: false,
       cemented: "D3",
       role: "1st focus group (GR6) positive element",
@@ -228,8 +279,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.65803,
       vd: 39.7,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -29.7,
-      glass: "658397 — short flint (patent nd=1.65803, nu_d=39.7)",
+      glass: "S-NBH5 (OHARA; catalog ne 1.65803 as printed, vd 39.68 printed as 39.7; supplier unconfirmed)",
       apd: false,
       cemented: "D3",
       role: "1st focus group (GR6) negative element — net negative GR6 power",
@@ -241,8 +295,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.61669,
       vd: 44.3,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: 50.5,
-      glass: "617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)",
+      glass: "S-NBM51 (OHARA; catalog ne 1.61669 as printed, vd 44.27 printed as 44.3; supplier unconfirmed)",
       apd: false,
       role: "2nd focus group (GR7) — floating-focus counter-motion positive element",
     },
@@ -253,10 +310,13 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.49845,
       vd: 81.6,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -104.9,
-      glass: "S-FPL51 class (OHARA) — ED crown",
+      glass: "FCD1 (HOYA; catalog ne 1.49845 as printed, vd 81.61 printed as 81.6; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class; patent publishes nd/vd only.",
+      apdNote: "ED fluorophosphate class; the patent prints an e-line index and a d-line Abbe number only.",
       role: "GR8 rear negative — ED in negative role for lateral color balance and Petzval",
     },
     {
@@ -266,8 +326,11 @@ const LENS_DATA = {
       type: "Neg. Meniscus (convex to image)",
       nd: 2.00912,
       vd: 29.1,
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -84.5,
-      glass: "Unmatched (ultra-high-index lanthanum flint, 009/291; prior FD225 annotation rejected)",
+      glass: "TAFD55 (HOYA; catalog ne 2.00912 as printed, vd 29.13 printed as 29.1; supplier unconfirmed)",
       apd: false,
       role: "Rearmost element — telecentricity and Petzval field control",
     },

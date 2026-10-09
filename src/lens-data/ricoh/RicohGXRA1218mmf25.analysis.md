@@ -89,8 +89,8 @@ this example, but it is an ordinary lanthanum crown and not a low-dispersion gla
 
 ### L2 — Biconvex Positive, aspherical front surface
 
-nd = 1.8061, νd = 40.4. Glass: 806404 lanthanum flint (catalog unresolved; nearest catalog glasses are HOYA NBFD13
-1.80610/40.73 and OHARA S-LAH53 1.80610/40.93). f = +44.6 mm.
+nd = 1.8061, νd = 40.4. Glass: L-LAH81 (OHARA discontinued low-softening glass, 1.80610/40.40; coordinate
+equivalent, supplier unconfirmed). f = +44.6 mm.
 
 L2 (R +59.04 / −90.61) is the first positive member of the lens and carries one of its two aspherical surfaces. The
 air space between L1 and L2 is condition (1)'s d₁₁₋₂ (3.4 mm). The air space from L2 to L3 is d₁₂₋₃ (1.1 mm). Both
@@ -158,7 +158,7 @@ The full-field bundle reaches about 8.9 mm here, and the chief ray about 6.9 mm.
 | Glass (catalog equivalent) | nd | νd | Elements | Role |
 |---|---|---|---|---|
 | S-LAL7 (OHARA) | 1.6516 | 58.6 | L1 | front negative meniscus |
-| 806404 (unresolved) | 1.8061 | 40.4 | L2 | aspherical positive |
+| L-LAH81 (OHARA, discontinued) | 1.8061 | 40.4 | L2 | aspherical positive |
 | S-TIM3 (OHARA) | 1.6129 | 37.0 | L3 | flint in Group 1 doublet |
 | S-LAH55V (OHARA) | 1.8348 | 42.7 | L4, L5, L8 | positive power in all three doublets |
 | S-TIL27 (OHARA) | 1.5750 | 41.5 | L6 | low-index partner of L5 |
@@ -167,8 +167,8 @@ The full-field bundle reaches about 8.9 mm here, and the chief ray about 6.9 mm.
 
 The patent names no glasses and gives no partial-dispersion data. Every label above is a catalog equivalent chosen
 because its nd/νd matches the table row. The OHARA labels are coordinate matches, not evidence of the supplier.
-L2's 1.8061/40.4 pair has no exact catalog match and uses the six-digit code form, so its dispersion is modeled from the
-Abbe number. No element is anomalous-dispersion, so all `apd` flags are false. The positive power is carried mostly by
+L2's 1.8061/40.4 pair equals OHARA's discontinued low-softening-temperature L-LAH81, a moulding glass consistent with
+the aspherical element, and traces on that catalog curve. No element is anomalous-dispersion, so all `apd` flags are false. The positive power is carried mostly by
 one glass: S-LAH55V-type lanthanum crown in three of the nine elements. Color is corrected mainly by the high-dispersion
 flint L7 in the rear doublet.
 

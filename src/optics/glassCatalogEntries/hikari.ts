@@ -1930,4 +1930,25 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "Nikon/Hikari Optical Glass Data workbook 2025-06-01 (HIKARI_ALL_Catalog_Data.xlsx), J-LASF03 row; vendor nine-term power-series coefficients, partial dispersion, and d-line code.",
   },
+  {
+    name: "Q-PSKH4S",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.50116352, 0],
+      [-0.0100351892, 2],
+      [-0.000118900724, 4],
+      [0.0127884411, -2],
+      [0.000128777777, -4],
+      [0.00000372070629, -6],
+      [-0.0000000309763293, -8],
+      [0, -10],
+      [0, -12],
+    ],
+    nd: 1.59245,
+    vd: 66.92,
+    PgF: 0.5359,
+    code6: "592669",
+    source:
+      "Nikon/Hikari Optical Glass Data workbook 2025-06-01 (HIKARI_ALL_Catalog_Data.xlsx), Q-PSKH4S row; vendor nine-term power-series coefficients, partial dispersion, and d-line code.",
+  },
 ];

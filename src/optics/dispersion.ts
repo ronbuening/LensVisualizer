@@ -18,10 +18,11 @@
  * present and extrapolates from `dPgF` otherwise; the Abbe path places C and F
  * with the catalog-fitted P_d,C normal line and estimates `ng` from the Schott
  * P_g,F normal line plus `dPgF`.
- * Native e-line fallback elements retain their authored `ne` in the internal G
- * reference channel. When an explicit catalog name reproduces the authored
- * ne/ve coordinates at C′/e/F′, the Sellmeier path restores the physical
- * C/d/F/g channel wavelengths used across the full optical train.
+ * Native e-line elements (`indexReference: "e"`) carry R = C′ (643.8 nm),
+ * G = authored `ne` (546.1 nm), B = F′ (480.0 nm) and V = g on every tier, so
+ * a lens whose glasses are only partly catalog-resolved still traces each
+ * channel at one set of lines. Their Sellmeier tier is anchored: the authored
+ * `ne` plus the catalog's index difference from the e line.
  *
  * Resolution happens once per lens load (`buildLens`) and is cached as a
  * per-surface closure so the hot ray-trace loop pays no repeated overhead.
@@ -42,6 +43,17 @@ const CHANNEL_NM: Record<ChromaticChannel, number> = {
   R: LINE_NM.C,
   G: LINE_NM.d,
   B: LINE_NM.F,
+  V: LINE_NM.g,
+};
+
+/**
+ * Channel wavelengths (nm) of a native e-line element: the lines its `ne` / `νe` pair is defined on, plus g.
+ * The Abbe tier (`abbeLineIndices` with reference "e") returns indices at these same lines.
+ */
+const E_LINE_CHANNEL_NM: Record<ChromaticChannel, number> = {
+  R: LINE_NM.CPrime,
+  G: LINE_NM.e,
+  B: LINE_NM.FPrime,
   V: LINE_NM.g,
 };
 
@@ -86,11 +98,24 @@ export function normalLinePeC(ve: number): number {
 }
 
 /**
+ * e-line counterpart of `normalLinePgF`: P_g,F′ = (ng − nF′) / (nF′ − nC′) against νe.
+ *
+ * F′ lies 6 nm closer to g than F does, so P_g,F′ runs about 0.06 below P_g,F and the d-line formula cannot be reused
+ * on an F′−C′ span. The line is the image of the Schott normal line: fitted over the Sellmeier catalog after removing
+ * each glass's own ΔP_g,F, so a d-line `dPgF` still adds to it (median residual 0.0008 with the true ΔP_g,F, 0.004
+ * without).
+ */
+export function normalLinePgFPrime(ve: number, dPgF = 0): number {
+  return 0.5675 - 0.001438 * ve + dPgF;
+}
+
+/**
  * Estimate C, F and g line indices from (nd, vd) alone.
  *
  * The F−C span is exact by the definition of vd; normal-line partial dispersions place the d line within it and
  * extend it to g. Anomalous-dispersion glasses deviate from both normal lines; an authored `dPgF` corrects g only.
- * For native e-line elements the pair is (ne, νe) and the red and blue channels carry C′ and F′.
+ * For native e-line elements the pair is (ne, νe), the red and blue channels carry C′ and F′, and g is reached from
+ * F′ with `normalLinePgFPrime`.
  *
  * @param nd - reference-line refractive index (nd, or ne for e-referenced elements)
  * @param vd - Abbe number at the same reference line
@@ -105,7 +130,12 @@ export function abbeLineIndices(
   reference: RefractiveIndexReferenceLine = "d",
 ): { nC: number; nF: number; ng: number } {
   const span = (nd - 1) / vd;
-  const nC = nd - (reference === "e" ? normalLinePeC(vd) : normalLinePdC(vd)) * span;
+  if (reference === "e") {
+    const nC = nd - normalLinePeC(vd) * span;
+    const nF = nC + span;
+    return { nC, nF, ng: nF + normalLinePgFPrime(vd, dPgF) * span };
+  }
+  const nC = nd - normalLinePdC(vd) * span;
   const nF = nC + span;
   return { nC, nF, ng: nF + normalLinePgF(vd, dPgF) * span };
 }
@@ -179,6 +209,20 @@ export function makeSurfaceDispersion(
   //    "probable" tag is wrong and the authored (nd, vd) pair should win.
   if (element?.glass) {
     const entry = resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference);
+    if (entry && element.indexReference === "e") {
+      // Native e-line element: same lines as the Abbe tier, anchored to the
+      // authored ne. A catalog match is accepted within a few 1e-3 of the
+      // stored index, and evaluating it at C/d/F beside an Abbe-tier neighbor
+      // at C′/e/F′ reads that mismatch as color-focus error. The authored
+      // dPgF is a d-line quantity, so g keeps the catalog curve.
+      const ne = surface.nd;
+      const anchor = ne - evaluateSellmeier(entry, E_LINE_CHANNEL_NM.G);
+      const nR = evaluateSellmeier(entry, E_LINE_CHANNEL_NM.R) + anchor;
+      const nB = evaluateSellmeier(entry, E_LINE_CHANNEL_NM.B) + anchor;
+      const nV = evaluateSellmeier(entry, E_LINE_CHANNEL_NM.V) + anchor;
+      const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nR : ch === "B" ? nB : ch === "V" ? nV : ne);
+      return { fn, quality: "sellmeier", glassEntry: entry };
+    }
     if (entry) {
       // Evaluate all four channels once at build time (same lookup shape as
       // the lineIndices tier): re-running the Sellmeier series on every
@@ -191,10 +235,9 @@ export function makeSurfaceDispersion(
       // more directly than a catalog-equivalent curve. Preserve the catalog's
       // C/d/F shape, but reconstruct g from the authored dPgF whenever it is
       // available. This also prevents same-coordinate catalog ambiguities from
-      // silently changing the violet channel. Native e-line prescriptions do
-      // not share the d-line vd/dPgF convention, so retain their catalog g.
+      // silently changing the violet channel.
       const nV =
-        element.indexReference !== "e" && element.vd !== undefined && element.dPgF !== undefined
+        element.vd !== undefined && element.dPgF !== undefined
           ? nB + normalLinePgF(element.vd, element.dPgF) * (nB - nR)
           : evaluateSellmeier(entry, CHANNEL_NM.V);
       const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nR : ch === "B" ? nB : ch === "V" ? nV : nG);

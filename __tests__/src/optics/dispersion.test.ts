@@ -29,8 +29,11 @@ import {
   makeSurfaceDispersion,
   normalLinePdC,
   normalLinePeC,
+  normalLinePgFPrime,
   summarizeDispersionQuality,
 } from "../../../src/optics/dispersion.js";
+import { traceParaxialSurfaces2 } from "../../../src/optics/math/paraxial.js";
+import type { ChromaticChannel, ElementData, SurfaceData } from "../../../src/types/optics.js";
 import {
   buildChromaticPositiveElementLens,
   buildSimplePositiveElementLens,
@@ -724,25 +727,68 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.glassEntry).toBeUndefined();
   });
 
-  it("uses an explicit e-line-compatible catalog curve at physical C/d/F/g wavelengths", () => {
+  it("anchors an explicit e-line catalog curve to the authored ne at C′/e/F′/g", () => {
+    // Authored ne rounded to three decimals, as e-line patents often print it: 2.8e-4 above catalog N-BK7.
+    const ne = 1.519;
     const d = makeSurfaceDispersion(
-      { R: 0, d: 0, sd: 0, label: "", nd: 1.51872, elemId: 1 },
-      {
-        id: 1,
-        name: "L1",
-        label: "L1",
-        type: "Test",
-        nd: 1.51872,
-        vd: 63.96,
-        indexReference: "e",
-        glass: "N-BK7",
-      },
+      { R: 0, d: 0, sd: 0, label: "", nd: ne, elemId: 1 },
+      { id: 1, name: "L1", label: "L1", type: "Test", nd: ne, vd: 64, indexReference: "e", glass: "N-BK7" },
       undefined,
     );
+    const nbk7 = d.glassEntry!;
+    const fromE = (lineNm: number) => evaluateSellmeier(nbk7, lineNm) - evaluateSellmeier(nbk7, LINE_NM.e);
     expect(d.quality).toBe("sellmeier");
-    expect(d.glassEntry?.name).toBe("N-BK7");
-    expect(d.fn("G")).toBeCloseTo(1.5168, 5);
-    expect(d.fn("G")).not.toBeCloseTo(1.51872, 5);
+    expect(nbk7.name).toBe("N-BK7");
+    expect(d.fn("G")).toBe(ne);
+    expect(d.fn("R")).toBeCloseTo(ne + fromE(LINE_NM.CPrime), 12);
+    expect(d.fn("B")).toBeCloseTo(ne + fromE(LINE_NM.FPrime), 12);
+    expect(d.fn("V")).toBeCloseTo(ne + fromE(LINE_NM.g), 12);
+  });
+
+  it("traces a partly catalog-resolved e-line doublet at one set of lines", () => {
+    // Crown resolves to catalog N-BK7; the flint carries F2's ne/νe under a name the catalog cannot resolve.
+    const crown = { id: 1, name: "L1", label: "L1", type: "Test", nd: 1.519, vd: 64, glass: "N-BK7" };
+    const flint = { id: 2, name: "L2", label: "L2", type: "Test", nd: 1.62408, vd: 36.11, glass: "Unmatched flint" };
+    const elements: ElementData[] = [crown, flint].map((element) => ({ ...element, indexReference: "e" }));
+    const surfaces: SurfaceData[] = [
+      { label: "1", R: 60, d: 6, nd: crown.nd, sd: 12, elemId: 1 },
+      { label: "2", R: -45, d: 2.5, nd: flint.nd, sd: 12, elemId: 2 },
+      { label: "3", R: -130, d: 95, nd: 1.0, sd: 12, elemId: 2 },
+    ];
+    const dispersion = surfaces.map((surface) =>
+      makeSurfaceDispersion(
+        surface,
+        elements.find((element) => element.id === surface.elemId && surface.nd !== 1),
+        undefined,
+      ),
+    );
+    expect(dispersion.map(({ quality }) => quality)).toEqual(["sellmeier", "abbe", "air"]);
+
+    const backFocus = (indexAt: (surfaceIndex: number) => number) => {
+      const traced = surfaces.map((surface, index) => ({ ...surface, nd: indexAt(index) }));
+      const { y, u } = traceParaxialSurfaces2(traced, 1, 0, { skipLastTransfer: true });
+      return -y / u;
+    };
+    const channelFocus = (channel: ChromaticChannel) => backFocus((index) => dispersion[index].fn(channel));
+    const reference = backFocus((index) => surfaces[index].nd);
+    // G is the authored ne on both tiers. Catalog nd on the crown alone moved this focus by 0.68 mm.
+    expect(Math.abs(channelFocus("G") - reference)).toBeLessThan(0.003);
+
+    // The same doublet with the flint named resolves both glasses; estimating one must not move the color foci far.
+    const resolved = surfaces.map((surface) =>
+      makeSurfaceDispersion(
+        surface,
+        elements
+          .map((element) => (element.id === 2 ? { ...element, glass: "F2" } : element))
+          .find((element) => element.id === surface.elemId && surface.nd !== 1),
+        undefined,
+      ),
+    );
+    expect(resolved.map(({ quality }) => quality)).toEqual(["sellmeier", "sellmeier", "air"]);
+    for (const channel of ["R", "B", "V"] as const) {
+      const fullyResolved = backFocus((index) => resolved[index].fn(channel));
+      expect(Math.abs(channelFocus(channel) - fullyResolved)).toBeLessThan(0.03);
+    }
   });
 
   it("keeps authored ne in the fallback G channel when no e-line catalog name is trusted", () => {
@@ -822,6 +868,27 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(residuals.length).toBeGreaterThan(500);
     expect(residuals[Math.floor(residuals.length / 2)]).toBeLessThan(0.002);
     expect(residuals.at(-1)!).toBeLessThan(0.02);
+  });
+
+  it("reaches g from F′ on e-line spans like the catalog glasses", () => {
+    const residuals = allEntries()
+      .map((entry) => {
+        const [nC, nd, nF, ng, nRed, ne, nBlue] = [
+          LINE_NM.C,
+          LINE_NM.d,
+          LINE_NM.F,
+          LINE_NM.g,
+          LINE_NM.CPrime,
+          LINE_NM.e,
+          LINE_NM.FPrime,
+        ].map((line) => evaluateSellmeier(entry, line));
+        // The glass's own deviation from the d-line normal line, which the e-line counterpart must carry over.
+        const dPgF = (ng - nF) / (nF - nC) - (0.6438 - 0.001682 * ((nd - 1) / (nF - nC)));
+        return Math.abs((ng - nBlue) / (nBlue - nRed) - normalLinePgFPrime((ne - 1) / (nBlue - nRed), dPgF));
+      })
+      .sort((a, b) => a - b);
+    expect(residuals[Math.floor(residuals.length / 2)]).toBeLessThan(0.002);
+    expect(residuals.at(-1)!).toBeLessThan(0.01);
   });
 
   it("dPgF on the element shifts the V-channel index away from the normal-line baseline", () => {

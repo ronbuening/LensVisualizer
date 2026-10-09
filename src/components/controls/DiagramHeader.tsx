@@ -20,6 +20,7 @@ import CollapseButton from "./CollapseButton.js";
 import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
+import { lensChromaticReference } from "../../optics/chromatic/channels.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import { lensDisplaySubtitle, lensPatentAttribution } from "../../utils/catalog/lensPatentMetadata.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -415,6 +416,7 @@ const DiagramHeader = memo(
                   onChromGChange={onChromGChange}
                   onChromBChange={onChromBChange}
                   onChromVChange={onChromVChange}
+                  channelReference={lensChromaticReference(L.elements)}
                 />
               </div>
             </div>

@@ -5,7 +5,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║           LENS DATA — LAOWA 12mm f/2.8 ZERO-D                       ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: CN205720849U / WO2017177665A1 Example 2.              ║
- * ║  Applicant: Anhui Changgeng Optical Technology Co., Ltd.            ║
+ * ║  Applicant: Anhui Changgeng Optics Technology Co., Ltd.             ║
  * ║  Inventor: Zhang Xiaohua.                                           ║
  * ║                                                                    ║
  * ║  Patent scale: f = 12.5 mm, Fno = 2.87, half-field = 60.1 deg.      ║
@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "laowa-12mm-f28-zero-d",
   maker: "Laowa",
   name: "LAOWA 12mm f/2.8 Zero-D",
-  subtitle: "CN205720849U Example 2 — Anhui Changgeng Optical Technology / Zhang Xiaohua",
+  subtitle: "CN205720849U Example 2 — Anhui Changgeng Optics Technology / Zhang Xiaohua",
   specs: [
     "16 elements / 10 groups",
     "Design f = 12.4999 mm",

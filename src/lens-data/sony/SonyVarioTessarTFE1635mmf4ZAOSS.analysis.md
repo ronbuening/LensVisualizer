@@ -23,7 +23,7 @@ Several independent features converge on that identification:
 
 The prescription is retained at its native dimensions. No uniform scale factor is applied: the marketed 16-35 mm endpoints are not related to the patent's 16.48-33.95 mm endpoints by one common multiplier. Consequently, no radii, spacings, image-plane coordinates, or aspherical coefficients are rescaled, and no `A_p / s^(p-1)` coefficient transformation is performed.
 
-Two source issues require explicit separation from the authored model. First, JP ¶0033 prints an aspherical-sag numerator proportional to `y²c²`; that expression is dimensionally inconsistent. The computation and data use the standard `c·y²` numerator while retaining the patent's conic constant without conversion. Second, JP ¶0032 explicitly defines both refractive coordinates at the d line, even though several printed `n` values sit closer to modern catalog `n_e`. The patent's stated d-line convention controls: the raw pairs are preserved, no `indexReference: "e"` assignment is made, and a catalog curve is used only when its d-line pair passes the project's existing compatibility guard.
+Two source issues require explicit separation from the authored model. First, JP ¶0033 prints an aspherical-sag numerator proportional to `y²c²`; that expression is dimensionally inconsistent. The computation and data use the standard `c·y²` numerator while retaining the patent's conic constant without conversion. Second, JP ¶0032 defines both refractive coordinates at the d line, but the printed `n` column holds e-line indices paired with d-line Abbe numbers: eleven of the thirteen rows equal a catalog glass at the e line and no row equals one at the d line. The printed pairs are stored unchanged and every medium is e-referenced (`indexReference: "e"`); the Glass Identification section gives the row-by-row evidence.
 
 The selected Japanese publication controls the transcription. In particular, surface 3 has the 1.800 mm thickness visibly printed in JP Table 1; a discrepant family text transcription is not substituted. Table 2's numerical F-numbers control over slightly inconsistent figure annotations.
 
@@ -52,11 +52,11 @@ The physical lens count is 12. The `elements` array has 13 modeling entries beca
 
 ## Element-by-Element Analysis
 
-The first line of each subsection reproduces the authored `nd` and `νd` schema fields and the data file's glass annotation. Catalog names are qualified coefficient proxies, not claims about Sony's production supplier or melt. Focal lengths listed for individual entries are independently recomputed standalone powers in air. Cemented or composite net powers are stated separately where applicable.
+The first line of each subsection reproduces the printed index, which is an e-line value held in the `nd` schema field, the printed d-line Abbe number, and the data file's glass annotation. Catalog names come from exact e-line coordinate matches and select dispersion curves; they are not claims about Sony's production supplier or melt. Focal lengths listed for individual entries are independently recomputed standalone powers in air. Cemented or composite net powers are stated separately where applicable.
 
 ### L11 — Negative Meniscus with Two Aspheres
 
-**nd = 1.77173, νd = 49.2. Glass: `M-TAF1 (HOYA catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = -29.1827 mm.**
+**ne = 1.77173, νd = 49.2. Glass: `M-TAF101 (HOYA; catalog ne 1.77173, vd 49.24, printed 49.2; supplier unconfirmed)`. Standalone f = -29.1827 mm.**
 
 L11 is the first and strongest front negative component of GR1. The patent describes it as a negative meniscus convex toward the object, with both surfaces aspherical (JP ¶0036). Its paraxial power is therefore distinctly negative before the rest of GR1 is considered.
 
@@ -64,18 +64,18 @@ The paired 1A/2A aspheres sit where ray heights are largest in the prescription.
 
 ### L12 — Hybrid Negative Meniscus: Glass Substrate plus Bonded Aspheric Resin
 
-**L12 substrate: nd = 1.83945, νd = 42.7. Glass: `Unmatched (mixed-coordinate patent row; 835427 class)`. Standalone substrate f = -54.7245 mm.**\
-**L12 resin: nd = 1.53699, νd = 41.7. Glass: `Unmatched (aspheric resin, patent-only optical constants)`. Standalone resin-layer f = +443.5929 mm.**
+**L12 substrate: ne = 1.83945, νd = 42.7. Glass: `TAFD5F (HOYA; catalog ne 1.83945, vd 42.72, printed 42.7; supplier unconfirmed)`. Standalone substrate f = -54.7245 mm.**\
+**L12 resin: ne = 1.53699, νd = 41.7. Glass: `Unmatched (aspheric resin; printed coordinates, no vendor row at either the d or the e line)`. Standalone resin-layer f = +443.5929 mm.**
 
 The patent describes L12 as a negative meniscus whose spherical image-side surface carries an adhered aspherical resin layer (JP ¶0036). The data therefore represents L12 with two optical-material entries, `L12g` and `L12r`, joined as hybrid unit H1. This is a modeling decomposition of one physical lens.
 
 The glass substrate is substantially negative in isolation. The 0.150 mm resin layer is only weakly positive paraxially; its principal modeled significance is the non-spherical outer surface 5A rather than a large standalone power. When the glass and resin are evaluated together in their actual prescription media, the hybrid composite has a computed net focal length of **-62.1695 mm**.
 
-The patent does not identify a commercial resin formulation. Accordingly, the resin is intentionally left `Unmatched` and no inferred mineral-glass equivalent is used.
+The patent does not identify a commercial resin formulation. Accordingly, the resin is intentionally left `Unmatched` and no inferred mineral-glass equivalent is used. Its row sits in the same index column as the glasses, so it shares their e-line reference and traces on the Abbe estimate.
 
 ### L13 — Negative Meniscus
 
-**nd = 1.80831, νd = 46.5. Glass: `Unmatched (mixed-coordinate patent row; 804466 class)`. Standalone f = -102.7999 mm.**
+**ne = 1.80831, νd = 46.5. Glass: `TAF3 (HOYA; catalog ne 1.80831, vd 46.50 as printed; supplier unconfirmed)`. Standalone f = -102.7999 mm.**
 
 L13 is the third negative component of GR1. The patent describes it as a negative meniscus concave toward the object (JP ¶0036). Its standalone negative power is weaker than that of L11 or the L12 composite, so it acts as a distributed correction/power component within the front group rather than as the primary diverging lens.
 
@@ -83,7 +83,7 @@ No surface on L13 is aspherical. Its contribution must therefore be interpreted 
 
 ### L14 — Biconvex Positive
 
-**nd = 2.00912, νd = 29.1. Glass: `Unmatched (mixed-coordinate patent row; 001291 dense-flint class)`. Standalone f = +48.1494 mm.**
+**ne = 2.00912, νd = 29.1. Glass: `TAFD55 (HOYA; catalog ne 2.00912, vd 29.13, printed 29.1; supplier unconfirmed)`. Standalone f = +48.1494 mm.**
 
 L14 is the positive rear component of the otherwise negative GR1 (JP ¶0036). Its strong positive power partially offsets the three preceding negative lenses while leaving the complete group at approximately -30.83 mm.
 
@@ -91,7 +91,7 @@ The authored Abbe number is much lower than those of the very-low-dispersion pos
 
 ### L21 — Positive Meniscus / OSS Element
 
-**nd = 1.57124, νd = 56.0. Glass: `BAC4 (HOYA catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = +148.1107 mm.**
+**ne = 1.57124, νd = 56.0. Glass: `BAC4 (HOYA; catalog ne 1.57125, vd 56.04, printed 1.57124 / 56.0; supplier unconfirmed)`. Standalone f = +148.1107 mm.**
 
 L21 is the front lens of positive GR2. It is a relatively weak positive meniscus in standalone paraxial power. The aperture stop lies immediately behind it, before L22 (JP ¶0043).
 
@@ -99,18 +99,18 @@ Its most distinctive source-defined function is image stabilization. JP ¶0042 s
 
 ### L22 + L23 — Cemented GR2 Doublet D1
 
-**L22: nd = 1.74688, νd = 49.3. Glass: `Unmatched (mixed-coordinate patent row; 74349x lanthanum class)`. Standalone f = -52.5347 mm.**\
-**L23: nd = 1.49845, νd = 81.5. Glass: `S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = +30.8270 mm.**
+**L22: ne = 1.74688, νd = 49.3. Glass: `M-NBF1 (HOYA; catalog ne 1.74689, vd 49.33, printed 1.74688 / 49.3; supplier unconfirmed)`. Standalone f = -52.5347 mm.**\
+**L23: ne = 1.49845, νd = 81.5. Glass: `S-FPL51 (OHARA; catalog ne 1.49845, vd 81.546, printed 81.5; supplier unconfirmed)`. Standalone f = +30.8270 mm.**
 
 The patent describes L22 as a negative meniscus with an aspherical object-side surface and L23 as a positive meniscus, cemented together (JP ¶0037). The cemented interface is surface 14, which correctly carries the downstream L23 material in the data model.
 
 The two isolated powers should not be mistaken for the behavior of the cemented unit. In the actual prescription media, D1 has a computed net focal length of **+85.9450 mm**. The doublet therefore remains positive overall despite L22's negative standalone contribution.
 
-L23's very-high authored Abbe-number value is consistent with the production lens's use of ED material, but exact production-glass identity is not established. The compatible S-FPL51 curve supplies a qualified spectral proxy; it does not turn the production correlation into a melt identification or establish patent-authored partial dispersion.
+L23's very-high authored Abbe-number value is consistent with the production lens's use of ED material, but exact production-glass identity is not established. The patent prints 81.5 here and 81.6 for L42 and L43 at the same index, which separates OHARA S-FPL51 (νd 81.546) from HOYA FCD1 (νd 81.61). The S-FPL51 curve is used for chromatic tracing on that coordinate match; it does not turn the production correlation into a melt identification or establish patent-authored partial dispersion.
 
 ### L31 — Biconvex Positive Focus Lens with Two Aspheres
 
-**nd = 1.48914, νd = 70.3. Glass: `J-FK5 (HIKARI catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = +50.5398 mm.**
+**ne = 1.48914, νd = 70.3. Glass: `J-FK5 (HIKARI; catalog ne 1.489145, vd 70.31, printed 1.48914 / 70.3; supplier unconfirmed)`. Standalone f = +50.5398 mm.**
 
 L31 is the sole element of GR3 (JP ¶0038). Its standalone focal length is therefore also the focal length of the complete focusing group to the precision of the paraxial model.
 
@@ -120,8 +120,8 @@ The close-focus states in the data file move L31 toward the object relative to i
 
 ### L41 + L42 — Cemented GR4 Doublet D2
 
-**L41: nd = 1.80831, νd = 46.5. Glass: `Unmatched (mixed-coordinate patent row; 804466 class)`. Standalone f = -21.0194 mm.**\
-**L42: nd = 1.49845, νd = 81.6. Glass: `S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = +52.6802 mm.**
+**L41: ne = 1.80831, νd = 46.5. Glass: `TAF3 (HOYA; catalog ne 1.80831, vd 46.50 as printed; supplier unconfirmed)`. Standalone f = -21.0194 mm.**\
+**L42: ne = 1.49845, νd = 81.6. Glass: `FCD1 (HOYA; catalog ne 1.49845, vd 81.61, printed 81.6; supplier unconfirmed)`. Standalone f = +52.6802 mm.**
 
 L41 and L42 form the first cemented unit in GR4 (JP ¶0039). L41 is a strong negative meniscus and L42 is a positive meniscus. Their in-prescription cemented net focal length is **-32.6942 mm**, so D2 remains a strongly negative unit despite the positive L42 component.
 
@@ -129,7 +129,7 @@ The high authored Abbe-number value of L42 places a low-dispersion positive comp
 
 ### L43 — Biconvex Positive
 
-**nd = 1.49845, νd = 81.6. Glass: `S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = +22.9585 mm.**
+**ne = 1.49845, νd = 81.6. Glass: `FCD1 (HOYA; catalog ne 1.49845, vd 81.61, printed 81.6; supplier unconfirmed)`. Standalone f = +22.9585 mm.**
 
 L43 is the strongest positive element in GR4 by standalone focal length and is the most image-side positive lens of that group. The patent's condition (c) is defined specifically from this lens's two radii, `r1p = 20.480 mm` and `r2p = -23.194 mm` (JP ¶0024-¶0026).
 
@@ -139,7 +139,7 @@ Its authored `νd` slot is 81.6, again consistent with the production lens's thr
 
 ### L44 — Rear Biconcave Negative with Two Aspheres
 
-**nd = 1.77767, νd = 47.1. Glass: `Unmatched (mixed-coordinate patent row; 774472 lanthanum-flint class)`. Standalone f = -32.1414 mm.**
+**ne = 1.77767, νd = 47.1. Glass: `M-TAF401 (HOYA; catalog ne 1.77767 as printed, vd 47.17 printed as 47.1; supplier unconfirmed)`. Standalone f = -32.1414 mm.**
 
 L44 is the final optical element of GR4 and of the complete prescription. The patent describes it as a biconcave lens with both surfaces aspherical (JP ¶0039).
 
@@ -149,25 +149,29 @@ The paired rear aspheres, 23A and 24A, provide additional shape freedom in the s
 
 ## Glass Identification and Selection
 
-JP ¶0032 explicitly states that the refractive-index and Abbe-number columns are d-line coordinates at 587.6 nm. That source convention controls even though several printed indices happen to lie unusually close to modern e-line values. The prescription therefore preserves the patent numbers in the historical `nd`/`vd` schema slots and does not set `indexReference: "e"`.
+JP ¶0032 states that the refractive-index and Abbe-number columns are d-line coordinates at 587.6 nm. The printed indices are nevertheless e-line values paired with d-line Abbe numbers. The index of each of the twelve glass rows lies within 0.00001 of a catalog glass at the e line, and no row has a catalog glass within 0.00005 in index and 2 in Abbe number at the d line. The Abbe column reads `xx.x0` in all thirteen rows, so it carries one decimal; eleven of the twelve glass rows equal the catalog `νd` of their index match at that precision. The model stores the printed pairs unchanged and treats the whole column as e-line (`indexReference: "e"` on all thirteen media, the resin layer included).
 
-The catalog audit found qualified d-line coefficient proxies for six of the twelve mineral-glass media. Every selected curve remains inside the standard `Δn ≤ 0.003` and `Δν ≤ 2` compatibility guard. These are supplier-neutral optical equivalents for chromatic tracing: the vendor in the catalog name identifies the coefficient source, not Sony's production supplier. The other six mineral rows and the bonded resin remain explicitly unresolved.
+HOYA (current and obsolete types), OHARA, SUMITA, HIKARI, SCHOTT and CDGM catalog data were reviewed at both lines. Nine elements equal a HOYA glass, so the HOYA row is used wherever several vendors share a coordinate. L23 prints 81.5 where L42 and L43 print 81.6 at the same index, which separates OHARA S-FPL51 (νd 81.546) from HOYA FCD1 (νd 81.61). L31 prints 70.3, which excludes HOYA FC5 (70.44) and OHARA S-FSL5 (70.24) and leaves HIKARI J-FK5 (70.31). The two moulding glasses, M-TAF101 and M-NBF1, fall on aspherical elements. The eleven matched elements carry the catalog name and trace on that glass's dispersion curve, anchored to the printed index. The names identify catalog coordinates; they do not establish Sony's supplier or melt.
 
-| Element(s) | Authored nd | Authored νd | Data-file glass annotation | Interpretation limit |
+| Element(s) | Printed n (e line) | Printed νd | Material disposition | Catalog ne / νd / nd |
 |---|---:|---:|---|---|
-| L11 | 1.77173 | 49.2 | `M-TAF1 (...)` | Qualified d-line proxy; Δn = +0.00077, Δν = +0.26 |
-| L12 substrate | 1.83945 | 42.7 | `Unmatched (... 835427 class)` | Class-level only |
-| L12 resin | 1.53699 | 41.7 | `Unmatched (aspheric resin, patent-only optical constants)` | No mineral-glass match |
-| L13, L41 | 1.80831 | 46.5 | `Unmatched (... 804466 class)` | Class-level only |
-| L14 | 2.00912 | 29.1 | `Unmatched (... 001291 dense-flint class)` | Class-level only |
-| L21 | 1.57124 | 56.0 | `BAC4 (...)` | Qualified d-line proxy; Δn = -0.00241, Δν = +0.04 |
-| L22 | 1.74688 | 49.3 | `Unmatched (... 74349x lanthanum class)` | Class-level only |
-| L23 | 1.49845 | 81.5 | `S-FPL51 (...)` | Qualified d-line proxy; Δn = -0.00145, Δν = +0.05 |
-| L31 | 1.48914 | 70.3 | `J-FK5 (...)` | Qualified d-line proxy; Δn = -0.00165, Δν = +0.01 |
-| L42, L43 | 1.49845 | 81.6 | `S-FPL51 (...)` | Qualified d-line proxy; Δn = -0.00145, Δν = -0.05 |
-| L44 | 1.77767 | 47.1 | `Unmatched (... 774472 lanthanum-flint class)` | Class-level only |
+| L11 | 1.77173 | 49.2 | HOYA M-TAF101, exact at the e line | 1.77173 / 49.24 / 1.76802 |
+| L12 substrate | 1.83945 | 42.7 | HOYA TAFD5F, exact at the e line | 1.83945 / 42.72 / 1.83481 |
+| L12 resin | 1.53699 | 41.7 | Unmatched; aspheric resin, no vendor row at either line | none |
+| L13, L41 | 1.80831 | 46.5 | HOYA TAF3, exact at the e line | 1.80831 / 46.50 / 1.80420 |
+| L14 | 2.00912 | 29.1 | HOYA TAFD55, exact at the e line | 2.00912 / 29.13 / 2.00100 |
+| L21 | 1.57124 | 56.0 | HOYA BAC4, exact at the e line | 1.57125 / 56.04 / 1.56883 |
+| L22 | 1.74688 | 49.3 | HOYA M-NBF1, exact at the e line | 1.74689 / 49.33 / 1.74330 |
+| L23 | 1.49845 | 81.5 | OHARA S-FPL51, exact at the e line | 1.49845 / 81.546 / 1.49700 |
+| L31 | 1.48914 | 70.3 | HIKARI J-FK5, exact at the e line | 1.489145 / 70.31 / 1.48749 |
+| L42, L43 | 1.49845 | 81.6 | HOYA FCD1, exact at the e line | 1.49845 / 81.61 / 1.49700 |
+| L44 | 1.77767 | 47.1 | M-TAF401 (HOYA), named on its index; Abbe number 0.07 from the printed value | 1.77767 / 47.17 / 1.77377 |
 
-No element carries patent-authored `nC`, `nF`, `ng`, or `dPgF`. Six of thirteen modeled media now resolve to validated coefficient curves; the six unresolved mineral rows and L12 resin continue to use the Abbe fallback. The proxy curves improve catalog color completeness without supporting a claim of apochromatic correction or a specific production secondary spectrum.
+Rows of other vendors share several of these coordinates and were not chosen: OHARA S-LAH55, S-LAH55V and S-LAH55VS and HIKARI J-LASF05 for the L12 substrate; SCHOTT N-LASF44 for L13 and L41; OHARA S-LAH99 and HIKARI J-LASFH16 for L14; HIKARI J-BAK4 and SCHOTT N-BAK4 for L21; SUMITA K-PFK80 for L23; and CDGM H-FK61 for L42 and L43. Within HOYA, TAF3D, TAFD5G and TAFD55-W share the index and Abbe number of TAF3, TAFD5F and TAFD55; the base types are used.
+
+L44 is the one glass row named on its index alone. Its printed index equals the HOYA moulding glass M-TAF401 at the e line to five decimals, and L44 is a double-sided asphere, but M-TAF401 lists `νd` 47.17 against the printed 47.1. A column truncated to one decimal instead of rounded would print 47.1 for that glass and would still agree with the other eleven rows, and an earlier HOYA listing could also differ: Numerical Example 2 adds an element printed 1.43809 / 95.00, where HOYA FCD100 has `ne` 1.43810 and now lists `νd` 95.10. Neither reading can be confirmed from this table, but both point to the same glass: M-TAF401 is the only catalog row at this index, to six decimals, it is a moulding glass on the lens's one double-sided glass asphere, and its curve at an Abbe number 0.07 from the printed one is a closer description than a normal-line estimate. The element is therefore named M-TAF401 with that residual stated in its label.
+
+No element carries patent-authored `nC`, `nF`, `ng`, or `dPgF`. Twelve of thirteen modeled media resolve to catalog curves; the L12 resin uses the Abbe estimate. Every medium is traced at the same lines (C′, e, F′ and g), which requires all thirteen to share the e reference. The `vd` slot keeps the printed d-line Abbe number, 0.2 to 0.4 above the catalog `νe` of the matched glasses, so the estimated dispersion of the two Unmatched media is understated by under 1 %. The catalog curves improve color completeness without supporting a claim of apochromatic correction or a specific production secondary spectrum.
 
 Sony's production specification states that the SEL1635Z uses three ED elements. The patent/data correlation makes L23, L42, and L43 the natural counterparts because they are exactly the three physical lenses with authored Abbe-number values near 81.5-81.6. That mapping is a correlation inference, not an explicit patent labeling of those elements as Sony production ED glass.
 
@@ -222,7 +226,7 @@ Example 1 implements that concept literally as L41(-) + L42(+) + L43(+) + L44(-)
 
 The power pairing is also distributed rather than concentrated. In GR2, L22 is -52.5347 mm alone and L23 is +30.8270 mm alone, but their cemented net is +85.9450 mm. In GR4, L41 is -21.0194 mm alone and L42 is +52.6802 mm alone, while their cemented net is -32.6942 mm. These cemented net values describe the actual paired units more meaningfully than treating each standalone focal length as an independent lens in air.
 
-No stronger spectral conclusion is justified. The data file has no exact glass resolution, no line indices, and no `dPgF`. Accordingly, the lens is discussed as using a strong low-/high-dispersion power distribution and production-correlated ED positions, not as an APO design or as a quantified secondary-spectrum correction.
+No stronger spectral conclusion is justified. The data file names eleven catalog curves from coordinate matches, with no confirmed melt, no patent line indices, and no `dPgF`. Accordingly, the lens is discussed as using a strong low-/high-dispersion power distribution and production-correlated ED positions, not as an APO design or as a quantified secondary-spectrum correction.
 
 ## Aberration Correction Strategy and Design Philosophy
 
@@ -322,6 +326,6 @@ The focus reconstruction satisfies the 280 mm object-to-image imaging condition 
 6. **OHARA optical-glass catalog / pocket catalog**, OHARA: https://oharacorp.com/wp-content/uploads/2023/06/ohara-pocket-catalog-2023-05.pdf — independent nd/νd/ne coordinate checks for representative glass classes.
 7. **SCHOTT Optical Glass data downloads**, SCHOTT: https://www.schott.com/en-us/products/optical-glass-p1000267/downloads — independent catalog-coordinate checks for N-BAK4, N-LAF35, N-FK5, and N-PK52A-class materials.
 8. **HIKARI optical-glass catalog**, HIKARI: https://www.hikari-g.co.jp/optical_glass/catalog/ — independent coordinate check for the J-FK5 / 487703 class.
-9. **HOYA optical-glass data downloads**, HOYA Optics: https://www.hoya-opticalworld.com/english/datadownload/index.html — cross-reference and class-code checks.
+9. **HOYA optical-glass data downloads**, HOYA Optics: https://www.hoya-opticalworld.com/english/datadownload/index.html — e-line coordinate matches for M-TAF101, TAFD5F, TAF3, TAFD55, BAC4, M-NBF1, FCD1 and M-TAF401.
 10. **SUMITA optical-glass / precision-molding material data**, SUMITA Optical Glass: https://www.sumita-opt.co.jp/en/products/preform.html — low-dispersion class cross-check including K-PFK80.
 11. **CDGM optical-glass database**, Chengdu Guangming Optical & Electronic: https://www.cdgmgd.com/database/toWebDatabase.htm?typeId=18&url=database — cross-vendor class checks used only to test coordinate consistency; no CDGM melt is asserted as the production glass.

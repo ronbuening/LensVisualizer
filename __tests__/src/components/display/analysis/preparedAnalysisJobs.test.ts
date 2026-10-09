@@ -54,7 +54,7 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
 });
 
 const preparedState = mockPreparedState as PreparedOpticalState;
-const lens = { N: 2, EFL: 50, isZoom: false } as RuntimeLens;
+const lens = { N: 2, EFL: 50, isZoom: false, elements: [] } as unknown as RuntimeLens;
 const fieldGeometry = { halfFieldDeg: 12, yRatio: 1, b: 1, epRatio: 1 };
 
 const distortionSamples = [
