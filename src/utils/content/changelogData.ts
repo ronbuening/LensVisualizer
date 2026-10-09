@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-09",
+    type: "lens",
+    summary: "Added six Laowa, Sigma, Thypoch and Voigtländer lenses, including three macros",
+  },
+  {
     date: "2026-10-08",
     type: "lens",
     summary: "Added nine Zeiss, Laowa, Olympus, Sigma and Voigtländer lenses, from 8mm fisheye to 135mm f/1.4",
