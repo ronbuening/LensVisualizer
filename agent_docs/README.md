@@ -51,6 +51,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 
 ## Queues (open work only)
 
+- [queue] [`../OPTICS_ENGINE_REWRITE_SPEC.md`](../OPTICS_ENGINE_REWRITE_SPEC.md) — complete optics rewrite specification grounded in the intersection-tolerance branch; compatibility, conversion, and cumulative stage/phase/step test and commit gates
 - [queue] [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md) — planned features; owns the per-item template and the "already shipped" list
 - [queue] [`../EFFICIENCY_IMPROVEMENT_PLAN.md`](../EFFICIENCY_IMPROVEMENT_PLAN.md) — open cleanup and performance items with verification gates
 - [queue] [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) — trace-model status, deferred items, suggested next work
