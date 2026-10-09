@@ -382,14 +382,33 @@ Every solve outcome is counted through `recordChiefRayStatus2()` in `src/optics/
 
 Exact tracing is the only trace path. `traceRay()`, `traceRayChromatic()`, `traceSkewRay()`,
 `traceSkewRayChromatic()`, and the chief-relative skew wrappers take their full positional parameters and
-have no mode/options surface — every call resolves to the exact path. The legacy vertex-plane tracer has
+have no mode/options surface — every call resolves to an exact trace. The legacy vertex-plane tracer has
 been removed; do not reintroduce a `RayTraceOptions` parameter or a `traceMode` flag.
 
-The public RuntimeLens trace adapters route through the prepared-state sequential/generalized engine in
-`src/optics/trace/`. Surface-intersection misses are terminal in both paths, including ghost-mode diagram
-traces: the result preserves already solved hits for display and diagnostics, but does not fabricate fallback
-surface points after a miss. Aperture/semi-diameter clips remain distinct from misses; ghost mode can retain
-real clipped hit points, and the diagram display layer renders only the first clipped span so zoomed SVG
+Two exact tracers implement that path, sharing the refract-or-fail step in `trace/interactions.ts` (they stay separate;
+see `agent_docs/decisions.md`):
+
+- **Prepared-state engine** — the sequential/generalized tracer in `src/optics/trace/`. The `optics.ts` exports
+  `traceRay()`, `traceRayChromatic()`, `traceSkewRay()`, `traceSkewRayChromatic()`, and their `*Vector` forms are the
+  adapters in `src/optics/trace/rayAdapters.ts`, so diagram rays, the bounding-sphere vector-launch branches of the
+  off-axis and chromatic analyses, and everything else that calls those exports run here.
+- **RuntimeLens-shaped stack tracer** — `traceExactSurfaceStack()` / `traceExactSurfaceStackVector()` in
+  `internal/exactSurfaceTrace.ts`, intersecting through `internal/surfaceIntersection.ts`. Its callers are:
+  - `buildLens()` constants in `runtimeLens.ts`: the real-trace stop SD, the real EP/XP basis rays, the half-field
+    bisection, the same solves at each zoom station, and the folded branch's pupil basis rays.
+  - `rayTrace.ts`, whose tracers all run on this stack. The ones reached from production code are
+    `traceChiefRelativeSkewRay()` / `traceChiefRelativeSkewRayChromatic()`: the scalar-geometry branch of
+    `aberration/offAxis.ts` (`traceOffAxisChiefRay()`, `traceOffAxisBundleFromSamples()`), the parabasal rays in
+    `aberration/fieldCurvature.ts`, and the scalar branch of `analysis/chromatic.ts`. Coma, spherical, bokeh
+    footprints, and chromatic field analysis inherit it through those off-axis helpers.
+  - `traceStateSurfacesReal()` in `pupilAberration.ts`: state pupil baselines away from infinity focus or with
+    `aberrationT ≠ 0`.
+  - `validateFoldedImagePlaneReachability()` in `validateLensData.ts`.
+
+In the prepared-state engine, surface-intersection misses are terminal in both the sequential and generalized paths,
+including ghost-mode diagram traces: the result preserves already solved hits for display and diagnostics, but does not
+fabricate fallback surface points after a miss. Aperture/semi-diameter clips remain distinct from misses; ghost mode
+can retain real clipped hit points, and the diagram display layer renders only the first clipped span so zoomed SVG
 bounds stay finite. The sequential search for a ray's first-surface hit starts `|sag(sd)| + 1` mm ahead of the
 first vertex (`sequentialSurfaceMinT()`, the chief-ray solver's launch plane), not at a far-upstream origin such as
 the diagram lead: aspheric polynomials diverge outside their clear aperture, and a steep wide-field ray would
