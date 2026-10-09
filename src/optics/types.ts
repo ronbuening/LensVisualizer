@@ -94,6 +94,8 @@ export interface CompiledSurface {
   nd: number;
   sd: number;
   innerSd: number | null;
+  /** False when `sd` is a generated rear-plate rim: the surface never clips a ray or limits the field. */
+  clips: boolean;
   elemId: number;
   stopPlacement: "inside-element" | null;
   asphere: AsphericCoefficients | null;

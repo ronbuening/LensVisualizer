@@ -286,8 +286,11 @@ Because the expansion runs before `S`, `N`, `labelIdx` and every derived constan
 states, the exact tracer, chromatic dispersion and all analyses see the plate, with no per-analysis correction.
 `RuntimeLens.data` holds the expanded data, so normalization stays index-aligned.
 
-Generated plate rims are 1.5 × the larger of the largest authored `sd` and the image semi-diagonal, so a plate never
-clips or limits the field; a published plate `sd` overrides that.
+A plate without a published `sd` gets a generated rim marked `clips: false`. The aperture checks (`activeSemiDiameter`
+in `trace/aperture.ts` and its legacy twin in `internal/exactSurfaceTrace.ts`) and the paraxial half-field estimates
+(`buildLens`, `computeFieldGeometryAtState2`) skip it, so the plate never clips a ray or limits the field at any rim
+size. The rim, 1.5 × the larger of the largest authored `sd` and the image semi-diagonal, still extends the envelopes
+that ray launch and intersection bounds read from surface rims. A published plate `sd` is a real aperture.
 
 What is hidden, and where:
 

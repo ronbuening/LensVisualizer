@@ -38,6 +38,11 @@ export interface SurfaceData {
   diffractive?: DiffractivePhaseSurface;
   /** Set only by `expandRearPlates()`; authored data must not use it. Traced, never drawn. */
   synthetic?: SyntheticOpticsKind;
+  /**
+   * `false` only on a rear plate with a generated rim, set by `expandRearPlates()`; authored data must not use it.
+   * Such a surface never clips a ray or limits the field, and its `sd` serves only as an envelope extent.
+   */
+  clips?: false;
 }
 
 /** Marker for engine-generated optics that participate in tracing but are hidden from drawing and element UI. */

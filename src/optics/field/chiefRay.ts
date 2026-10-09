@@ -123,7 +123,7 @@ export function computeFieldGeometryAtState2(
   const r = Math.abs(hA[stopIndex]) > 1e-15 ? hB[stopIndex] / hA[stopIndex] : 0;
   let minU = Infinity;
   for (let i = 0; i < state.surfaces.length; i++) {
-    if (i === stopIndex) continue;
+    if (i === stopIndex || !state.surfaces[i].clips) continue;
     const coeff = Math.abs(hB[i] - r * hA[i]);
     if (coeff > 1e-8) {
       const uMax = state.surfaces[i].sd / coeff;

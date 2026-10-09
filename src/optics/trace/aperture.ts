@@ -73,7 +73,7 @@ function activeSemiDiameter(
   stopSemiDiameter: number | undefined,
 ): number | null {
   if (surface.physicalIndex === state.lens.stop.surfaceIndex && stopSemiDiameter !== undefined) return stopSemiDiameter;
-  if (typeof surface.sd !== "number") return null;
+  if (typeof surface.sd !== "number" || !surface.clips) return null;
   return surface.sd;
 }
 

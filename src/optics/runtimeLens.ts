@@ -717,8 +717,8 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
    *  Find the maximum chief-ray angle (field angle) before any surface
    *  clips the ray.  Uses two basis rays (marginal hA and chief hB) to
    *  build a linear model of ray height vs field angle at each surface.
-   *  The minimum sd/|coefficient| across all surfaces gives the
-   *  vignetting-limited half-field angle.
+   *  The minimum sd/|coefficient| across all clipping surfaces gives the
+   *  vignetting-limited half-field angle (generated rear-plate rims never clip).
    */
   const hA = paraxialTrace(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
   const hB = paraxialTrace(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
@@ -727,7 +727,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
   const r = hB[stopIdx] / hA[stopIdx];
   let minU = Infinity;
   for (let i = 0; i < N; i++) {
-    if (i === stopIdx) continue;
+    if (i === stopIdx || S[i].clips === false) continue;
     const c = Math.abs(hB[i] - r * hA[i]);
     if (c > 1e-8) {
       const uMax = S[i].sd / c;
@@ -964,7 +964,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
       const zr = Math.abs(zA[stopIdx]) > 1e-15 ? zB2[stopIdx] / zA[stopIdx] : r;
       let zMinU = Infinity;
       for (let j = 0; j < N; j++) {
-        if (j === stopIdx) continue;
+        if (j === stopIdx || tmpS[j].clips === false) continue;
         const coeff = Math.abs(zB2[j] - zr * zA[j]);
         if (coeff > 1e-8) {
           const uMax = tmpS[j].sd / coeff;

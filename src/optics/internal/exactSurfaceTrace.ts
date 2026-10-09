@@ -43,6 +43,8 @@ export interface ExactTraceSurface {
   d: number;
   sd?: number;
   innerSd?: number;
+  /** `false` when `sd` is a generated rear-plate rim that never clips. */
+  clips?: boolean;
   interaction?: SurfaceInteraction;
   diffractive?: DiffractivePhaseSurface;
 }
@@ -944,7 +946,7 @@ function apertureSemiDiameter(
   stopSemiDiameter: number | undefined,
 ): number | null {
   if (surfaceIdx === lens.stopIdx && stopSemiDiameter !== undefined) return stopSemiDiameter;
-  if (typeof surface.sd !== "number") return null;
+  if (typeof surface.sd !== "number" || surface.clips === false) return null;
   return surface.sd;
 }
 

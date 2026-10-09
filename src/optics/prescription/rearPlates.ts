@@ -19,9 +19,8 @@ const FLAT_R = 1e15;
 
 /**
  * Generated plate semi-diameter as a multiple of the larger of the largest authored semi-diameter and the image
- * semi-diagonal, so the plate never clips or limits the field. A plate sits just ahead of the image, where the
- * corner chief ray is already near full image height: compact designs whose rear element is much smaller than the
- * format need the image term, or the plate would set the half-field.
+ * semi-diagonal. A generated rim is marked `clips: false`, so it never clips a ray or limits the field at any size;
+ * the value only extends the envelopes that ray launch and intersection bounds read from surface rims.
  */
 const GENERATED_SD_FACTOR = 1.5;
 
@@ -89,7 +88,9 @@ export function expandRearPlates(data: LensData): LensData {
     const surfaces = plateIndex < platesAhead ? aheadSurfaces : trailingSurfaces;
     const elemId = nextElementId++;
     const [frontLabel, rearLabel] = rearPlateSurfaceLabels(plateIndex);
-    const sd = plate.sd ?? generatedSd;
+    /* A published rim is a real aperture; a generated one only stands in for an unknown plate size. */
+    const rim: Pick<SurfaceData, "sd" | "clips"> =
+      plate.sd === undefined ? { sd: generatedSd, clips: false } : { sd: plate.sd };
     const name = plate.label ?? `Rear plate ${plateIndex + 1}`;
     elements.push({
       id: elemId,
@@ -108,8 +109,8 @@ export function expandRearPlates(data: LensData): LensData {
       synthetic: "rearPlate",
     });
     surfaces.push(
-      { label: frontLabel, R: FLAT_R, d: plate.thicknessMm, nd: plate.nd, elemId, sd, synthetic: "rearPlate" },
-      { label: rearLabel, R: FLAT_R, d: plate.gapAfterMm, nd: 1, elemId: 0, sd, synthetic: "rearPlate" },
+      { label: frontLabel, R: FLAT_R, d: plate.thicknessMm, nd: plate.nd, elemId, ...rim, synthetic: "rearPlate" },
+      { label: rearLabel, R: FLAT_R, d: plate.gapAfterMm, nd: 1, elemId: 0, ...rim, synthetic: "rearPlate" },
     );
   });
 
