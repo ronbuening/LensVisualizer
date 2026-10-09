@@ -684,6 +684,32 @@ and position.
 **Validation diagnostics** name the authored path, for example `surfaces[5].medium: unknown element 13`, through the
 canonical provenance map.
 
+### Stop radius
+
+The stop radius has exactly one authority per lens:
+
+| Authority | When | V2 field |
+| --- | --- | --- |
+| Derived | Every lens not covered by the rows below. The radius is the height at the stop of a real marginal ray launched at the entrance-pupil radius the design f-number implies, traced per zoom station. | `aperture.nominalFNumber` or `zoom.stations[i].nominalFNumber` |
+| Published schedule | Zooms whose source prints the stop diameter per station (today the Sony FE 12-24 GM and Canon RF 15-35) | `zoom.stations[i].stopSemiDiameter` |
+| Authored | Folded systems and stops embedded inside an element (16 lenses) | `sd` on the `STO` surface |
+
+- **A prime's stop radius is always derived from its design f-number.**
+  - A published stop diameter that agrees with the f-number is recorded in a comment.
+  - One that disagrees beyond rounding is a source-consistency question under the source-errata standard
+    (`agent_docs/lens-patent-audit.md`). It is not settled by letting the diameter override the f-number.
+  - When a source prints both, they agree. The Sony schedule traces to f/2.909, 2.908 and 2.906 against a printed
+    f/2.91.
+  - An authoritative prime radius (`aperture.stopSemiDiameter`) is deferred until a source needs one. It would be a
+    new authority row in this table, not a format change.
+- **The 891 authored stop values the engine overwrites are dropped.** They were never used and never audited: the
+  semi-diameter audit procedure said not to touch `STO`. 61 are more than 20% from the derived radius.
+- **Comments on dropped values are reviewed once, during migration.**
+  - 121 single-line stop entries carry comments, and 20 more stop entries span several lines.
+  - Most comments justify the stop's position, which stays valid because `d` is unchanged.
+  - 26 discuss the radius: hand calibrations to an f-number, which the engine now performs, and a few figure readings.
+  - The conversion report flags them (S2.P3.T1), and each batch PR resolves them (S2.P5).
+
 ### Ingest, conversion and comments
 
 - **Shared mapping.** `src/optics/prescription/` holds the object-level mapping (V1 → canonical, V2 → canonical,
@@ -698,6 +724,10 @@ canonical provenance map.
 - **Comments.** Leading and trailing comments are attached to the authored path they annotate and re-emitted at the
   mapped V2 path. A comment whose node has no V2 counterpart is emitted at the nearest mapped ancestor, prefixed
   `// (moved from <V1 path>)`, and listed in the conversion report. Comments never become data fields.
+- **Dropped stop radii.** For every dropped stop radius, the conversion report lists:
+  - the authored radius and the derived radius;
+  - every comment on that stop entry, with comments that discuss the radius (`sd`, iris, radius, calibration or an
+    f-number) flagged for review.
 - **Sidecars stay as written.**
   - `*.audit.md` and `*.analysis.md` sidecars are historical records and are not rewritten.
   - `asph` appears in 345 audits, `rearPlates` in 205, `sd` in 203 and `var` in 99.
@@ -944,7 +974,7 @@ need the S2.P5 catalog migration.
     - numeric literal text preserved;
     - `R: 1e15` → `"flat"`;
     - zero-padding removal;
-    - stop-radius authority;
+    - stop-radius authority, and the report entry and comment flag for each dropped stop radius;
     - `var` shapes;
     - station records;
     - media and spans.
@@ -983,7 +1013,8 @@ need the S2.P5 catalog migration.
   4. source and errata;
   5. elements and media;
   6. surfaces (geometry, aspheres, diffractive, interactions and annuli);
-  7. stop and aperture;
+  7. stop and aperture, including the three stop-radius authorities and the prime rule from
+     [Stop radius](#stop-radius);
   8. states (zoom stations, focus keyframes, gaps, conjugates, published stations, aberration control);
   9. projection;
   10. folded paths;
@@ -1021,6 +1052,11 @@ need the S2.P5 catalog migration.
   - **Gate:** C0. Semantic fingerprints are unchanged, so the format-only comparison (base and head prescriptions on
     the head engine) must be bit-identical for every lens in the batch, and `npm run build` must produce byte-identical
     generated metadata.
+  - **Flagged stop comments:** each batch PR resolves the flagged stop comments for its lenses.
+    - A calibration note becomes "radius derived from the design f-number".
+    - A figure reading stays as text, for example "Fig. 2 draws ≈ 8.4 mm".
+    - An authored value found to come from a printed table becomes a station schedule on a zoom; on a prime it follows
+      the prime rule in [Stop radius](#stop-radius).
   - **In-flight V1 PRs:** they keep working, because V1 is still ingested. Their authors run the converter before
     merge.
   - **Rollback:** `--to-version 1` on the batch, or a revert.
@@ -1323,6 +1359,8 @@ gone.
     - `agent_docs/architecture/testing.md`
     - `agent_docs/gotchas.md`
   - **Settle:** every row of [Decisions](#decisions-to-supersede-or-preserve).
+  - **Record in `agent_docs/decisions.md`:** the prime stop-radius rule from [Stop radius](#stop-radius), and that
+    dropped authored stop radii are not to return.
   - **Regenerate:** `src/**/readme.md`.
   - **Update:** `CLAUDE.md` and `AGENTS.md` where names changed.
   - **Delete:** this plan and its `agent_docs/README.md` entry, as the documentation policy requires.
