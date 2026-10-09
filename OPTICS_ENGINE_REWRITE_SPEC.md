@@ -118,8 +118,11 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
   - All 1,288 flat surfaces are written `R: 1e15`.
   - The V1 schema requires K and A4–A14 on every asphere, so all 1,456 entries list them, zero when unused.
   - 499 files author an empty `asph`.
-  - The stop `sd` is required, but the engine overwrites it from `nominalFno` in 889 of 907 lenses. The spec says the
-    opposite.
+  - The stop `sd` is required, but the engine overwrites it in 891 of 907 lenses: from `nominalFno` in 889 and from a
+    published radius schedule in 2.
+    - Shrinking all 889 authored values to 10% changes no computed value.
+    - The only path that can read them is generated rear-plate rims, and no current lens triggers it.
+    - The spec says the authored value sets the entrance pupil.
 - **Fields in the wrong place, or unread.**
   - Display, ray-sampling and validation knobs sit beside optical fields.
   - Three authored fields have no reader: `zoomLabels`, `apertureBlades` and `apertureBladeRoundedness`.
@@ -129,8 +132,9 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
 ## Baseline and accuracy contract
 
 - **R0** is `main` at the program's first PR. **A0** is `main` after S1.P1.T1 lands the accuracy contract.
-- Every differential comparison and speed measurement uses A0 or a later anchor (see [Anchors](#anchors)). R0 is
-  measured once, in S1.P1.T1, only to size the contract's own cost.
+- Every differential comparison and speed measurement uses A0 or a later anchor (see
+  [Anchors and comparison coverage](#anchors-and-comparison-coverage)). R0 is measured once, in S1.P1.T1, only to
+  size the contract's own cost.
 - This section owns the contract until it is documented in `agent_docs/architecture/optics-engine.md` (Exact Surface
   Trace). After that, it shrinks to a pointer.
 
@@ -187,12 +191,15 @@ All work merges to `main` through ordinary squash-merged PRs. This is trunk-base
     [#518](https://github.com/ronbuening/LensVisualizer/pull/518), a 193-file PR.
   - It would need two engines in order to compare them. Trunk development compares every PR against its true
     merge-base instead.
-- **Other engine work during the program** lands in the one engine and passes the same gates. An intentional behavior
-  change becomes a new anchor.
+- **Other engine work during the program** lands in the one engine and passes the same gates. An intentional engine
+  behavior change moves the anchor only under the rule in
+  [Anchors and comparison coverage](#anchors-and-comparison-coverage).
 - **One step per PR.**
   - Title: `S<stage>.P<phase>.T<step> <behavior>`.
-  - The body states the change class (C0–C3), the gate tier and anchor used, payload and status counts, and every
-    declared expected difference.
+  - The body states the change class (C0–C3), the gate tier and anchor used, payload and status counts, every
+    declared expected difference, and any declared comparison exceptions.
+  - **No mixed PRs.** A PR changes engine code or prescription semantics, never both. Format-only data changes
+    (unchanged semantic fingerprint), such as the S2.P5 conversion batches, carry no engine code.
   - Steps within a phase merge in order. Phases run in parallel only where [Stage dependencies](#stage-dependencies)
     allow.
 - **Checkpoints.**
@@ -207,15 +214,49 @@ All work merges to `main` through ordinary squash-merged PRs. This is trunk-base
   - Before an internal is deleted, its tests are rewritten against the replacement at equal or greater strength.
   - Tests that `vi.mock` a module by path are updated in the step that moves that module.
 
-### Anchors
+### Anchors and comparison coverage
 
-An anchor is a `main` commit that differential gates compare against. Each lens's payloads are compared only when its
-input fingerprint is the same at both commits, so a corrected prescription is never mistaken for an engine change.
+An anchor is a `main` commit whose **engine** the stage gates compare against. Anchors track engine revisions only;
+lens data never moves one.
+
+**Semantic fingerprint.** Each prescription has a semantic fingerprint: a hash of every canonical value the engine or
+UI reads, taken after the engine's own authority rules.
+
+- Zero asphere terms count as absent.
+- `R` beyond `FLAT_R_THRESHOLD` counts as flat.
+- A stop radius the engine derives counts as derived, whatever number was authored.
+- Numbers compare bit for bit, with `-0` normalized to `0`.
+- Provenance is excluded: source paths, comments, formatting, authored-versus-default flags, and authored values the
+  engine ignores.
+
+A V1 file and its V2 conversion therefore share a fingerprint, while any change the engine or UI could observe changes
+it. Before S2.P1.T1, the fingerprint hashes the normalized authored data.
+
+**What a differential run compares.** Nothing is skipped silently.
+
+1. **Engine drift.** Every head prescription is evaluated by both the base engine and the head engine. Data changes
+   therefore cannot hide engine drift, and no lens is skipped because its data changed.
+2. **Format-only data changes.** For each lens whose authored file changed but whose semantic fingerprint did not, the
+   base and head prescriptions are evaluated on the head engine and must be bit-identical.
+3. **Semantic data changes.** For each lens whose fingerprint changed, and each new lens, the run reports the impact:
+   base data against head data, both on the head engine.
+   - These block the PR: a new failed status, a non-finite value, or a lens that no longer builds.
+   - Everything else in the impact report is reviewed rather than gated.
+4. **Exceptions.** Some prescriptions cannot be evaluated by the base engine, for example a V2 file before V2 ingest
+   (S2.P2.T2) exists in the base. The PR lists each such lens in an "engine-diff exceptions" section of its
+   description. The run fails when the lenses it could not compare differ from that list in either direction.
+
+**Baselines and anchor moves.**
 
 - Per-PR gates compare against the PR's merge-base.
-- Stage gates compare against the current anchor, which catches drift that accumulates across steps that each passed
-  alone.
-- A merged C3 change sets a new anchor, and its PR records why.
+- Stage gates compare against the current anchor, catching drift that accumulates across steps that each passed
+  alone. Each quantity uses the loosest budget among the change classes merged since the anchor.
+- A data correction (a C3 on lens data) never moves the anchor. Cross-evaluation keeps comparing its new prescription
+  on the anchor's engine.
+- An engine C3 moves the anchor only after a cumulative comparison against the previous anchor passes: Tier S, every
+  head prescription on both engines. That comparison may show nothing outside the cumulative budgets except the
+  differences declared and approved for that change. The PR records the declared differences and the result, and its
+  merge commit becomes the new anchor.
 
 ## Numerical contract
 
@@ -229,7 +270,7 @@ Every PR declares exactly one change class:
 | **C0** refactor | No numeric change intended | Every payload number is bit-identical to the merge-base (`Object.is`); discrete fields are equal |
 | **C1** equivalent numerics | Same mathematics evaluated differently: reassociation, fused evaluation, a closed-form root under the same residual rule | Quantity budgets below; discrete outcomes identical, or each boundary transition listed and explained |
 | **C2** algorithm replacement | A different solver or search with the same or a tighter convergence criterion | Every sample meets its criterion; differences within the C2 budgets; an independent reference shows the error is no worse; discrete transitions explained individually |
-| **C3** intentional behavior change | A bug fix, a data correction or a new capability | Maintainer approval; independent evidence (analytic case, comparator or source); a new anchor; a changelog entry if users can see it |
+| **C3** intentional behavior change | A bug fix, a data correction or a new capability | Maintainer approval; independent evidence (analytic case, comparator or source); for an engine change, the cumulative comparison before the anchor moves; a changelog entry if users can see it |
 
 - **Default class and labels.** The default class is C0. The CI job reads the class from a PR label, and only the
   maintainer applies a label above C0.
@@ -261,7 +302,7 @@ produces (reassociating one sum in sag evaluation). Loosening a budget later is 
 | Level | Where | Required |
 | --- | --- | --- |
 | Every PR | CI (`.github/workflows/quality.yml`) | lint, format, typecheck, `npm run test`, the tooling suite, build and `seo:audit` (all existing) |
-| Engine PR: touches `src/optics/**` or `src/types/**` | CI job `engine-diff` (S1.P2.T2) | Tier P against the merge-base, under the PR's change class |
+| Engine or lens-data PR: touches `src/optics/**`, `src/types/**`, `src/lens-data/**` or `src/utils/catalog/**` | CI job `engine-diff` (S1.P2.T2) | Tier P against the merge-base under the PR's change class, plus every changed or new lens through every Tier P request |
 | Phase end | The PR that ends the phase | Every test the phase's steps added, run together; the phase exit criteria |
 | Stage end | Maintainer, locally or by `workflow_dispatch`, sharded | Tier S against the current anchor; the full suites; build; the stage's efficiency report; then the tag |
 | Before S8.P2 deletes code | Maintainer, sharded | Tier F against the current anchor |
@@ -273,23 +314,24 @@ committed. Its own tests (fixtures, budget table and deliberate-drift detection)
 
 | File | Role |
 | --- | --- |
-| `captureEntry.ts` | Vite SSR entry, built like the rendering benchmark. It calls only the public seam. |
+| `captureEntry.ts` | Vite SSR entry, built like the rendering benchmark. It calls only the public seam, and evaluates prescriptions supplied as serialized input rather than reading its own catalog. |
 | `seamAdapter.ts` | Detects renamed exports so the same entry runs at both refs. A PR that changes the seam updates this adapter in the same PR. |
 | `requests.ts` | Defines the tiers as deterministic lens × state × request lists. |
-| `payload.ts` | Normalizes payloads: numbers unrounded, arrays in authored order, statuses, counts and labels as discrete fields. It also computes a per-lens input fingerprint: a hash of the normalized authored data until S2.P1.T1, and of the canonical prescription after it. |
+| `payload.ts` | Normalizes payloads: numbers unrounded, arrays in authored order, statuses, counts and labels as discrete fields. It also computes each prescription's semantic fingerprint. |
 | `budgets.ts` | Holds the quantity table above, keyed by payload path. |
 | `compare.ts` | Reports violations, discrete transitions and the largest difference per quantity. |
 
-`scripts/engine-diff.mjs --base <ref> --tier p|s|f --class c0|c1|c2|c3 [--shard i/n] [--lens <key>]` runs in five
-steps:
+`scripts/engine-diff.mjs --base <ref> --tier p|s|f --class c0|c1|c2|c3 [--shard i/n] [--lens <key>]
+[--exceptions <file>]` runs in six steps:
 
 1. Add a git worktree at the base ref, symlinking `node_modules` when `package-lock.json` is unchanged.
 2. Copy the head's `engineDiff/` into the worktree.
-3. Build both captures, run them, and compare.
-4. Write NDJSON payloads and a report to a temporary directory.
-5. Exit non-zero on any violation.
-
-Lenses whose fingerprints differ between the refs are listed and skipped.
+3. Serialize the head's prescriptions, plus the base's for every changed lens, and compute their semantic
+   fingerprints.
+4. Build both captures and run the comparisons in
+   [Anchors and comparison coverage](#anchors-and-comparison-coverage).
+5. Write NDJSON payloads, the data-impact report and the list of uncompared lenses to a temporary directory.
+6. Exit non-zero on any violation, or when the uncompared lenses differ from the declared exceptions.
 
 ### Corpus tiers
 
@@ -325,27 +367,39 @@ The old engine demonstrates compatibility, not physical correctness. These refer
   - From Stage 3, each stage PR reports the comparison.
   - Like MTF chart agreement, it is a report and never a test threshold.
 - **When a reference shows the old engine was wrong.** Either fix it in a separate C3 PR with an analytic test, which
-  sets a new anchor, or record an approved divergence with its evidence. Never reproduce a known bug for parity.
+  moves the anchor under the anchor rule, or record an approved divergence with its evidence. Never reproduce a known
+  bug for parity.
 
 ### Architecture guards
 
 `__tests__/src/optics/opticsArchitecture.test.ts` scans source the way `docDrift.test.ts` does. It holds three guards,
-and each guard's allowlist may only shrink.
+each with up to two lists:
+
+- **Legacy exceptions** are today's violations. This list is a one-way ratchet: an entry can only be removed, and the
+  test fails when a listed entry no longer violates, so the list cannot go stale. It is empty by S8.
+- **The approved registry** holds modules that meet the rule by design. A reviewed PR may add an entry only if it meets
+  that guard's admission rule. New barrels and relocated caches enter here, never through the legacy list.
+
+The guards:
 
 - **Import cycles.**
-  - Builds the runtime import graph of `src/optics/`, excluding `import type`, and computes strongly connected
-    components.
-  - Modules in cycles must appear in an allowlist that starts as today's 13 modules.
-  - The test fails when a listed module is no longer in a cycle, so the list can only shrink. It is empty by S8.
+  - The test builds the runtime import graph of `src/optics/`, excluding `import type`, and computes strongly
+    connected components.
+  - Legacy exceptions start as today's 13 cycle modules.
+  - There is no registry: no cycle is ever approved.
 - **Seam.**
-  - Imports into `src/optics/` from anywhere else must target an allowlisted module.
-  - The list starts as today's 49 modules and ends as the top-level barrels.
-  - One permanent exception: `prescription/teleconverterCompatibility.ts`, which plain-Node build metadata imports
-    directly.
+  - Imports into `src/optics/` from anywhere else must target a registered or legacy-listed module.
+  - Registry admission: a top-level `src/optics/*.ts` file reviewed as a barrel or thin facade. Alias barrels due for
+    deletion in S8 leave the registry when they are deleted.
+  - Legacy exceptions are today's outside-imported modules that fail admission: deep modules and top-level
+    implementation files.
+  - `prescription/teleconverterCompatibility.ts` is a permanent registry entry, because plain-Node build metadata
+    imports it directly.
 - **Caches.**
-  - Every module-level `Map`, `WeakMap` or `Set` in `src/optics/` appears in an allowlist that records its owner, key
-    and capacity.
-  - A cache may be unbounded only if it is a `WeakMap` keyed by its owner object.
+  - Every module-level `Map`, `WeakMap` or `Set` in `src/optics/` must be registered or legacy-listed.
+  - Legacy exceptions are today's unbounded caches.
+  - Registry admission: a record of owner, key and capacity, and either a bounded capacity or a `WeakMap` keyed by its
+    owner object.
 
 ## Efficiency (secondary)
 
@@ -362,12 +416,12 @@ These apply at every stage end, and failing one blocks the stage.
 
 ### Targets
 
-Targets are reported at stage ends. A miss does not block the program; it becomes an item in
-`EFFICIENCY_IMPROVEMENT_PLAN.md`.
+Targets are reported at stage ends and never block. A miss becomes an item in `EFFICIENCY_IMPROVEMENT_PLAN.md`. Any
+requirement that must block is written as a test in its step, or as one of the gates above.
 
 | Stage | Target | Basis |
 | --- | --- | --- |
-| 3 | At most 2 surface-profile evaluations per sphere or conic intersection, against 5.0–7.8 today | Sag and slope evaluation took 32–42% of self time |
+| 3 | Mean surface-profile evaluations per sphere or conic intersection, closed-form and fallback combined, close to 2 (5.0–7.8 today); the fallback rate is reported with its reasons | Sag and slope evaluation took 32–42% of self time. The per-success limit is a test in S3.P2.T1, not a target. |
 | 3 | Analysis category median ≥ 25% lower than A0 across the benchmark matrix | Same profiles |
 | 6 | Median stop traces per centered chief solve ≤ 8, against ~64 today | `computeChiefRaySolve2` scans up to 96 samples per expansion, then bisects to a 1e-7 mm stop residual, on a function that is nearly linear in launch height |
 | 6 | Median evaluations per `solveScalarRoot` call ≤ 12, against ~86 today | It scans from the low end of each interval, not outward from the seed, then bisects up to 30 times |
@@ -411,7 +465,7 @@ flowchart LR
 
 | Type | Owns | Lifetime |
 | --- | --- | --- |
-| `CanonicalPrescription` | The version-independent authored content, with schema defaults applied. Each field has authored-or-default provenance and its source path for diagnostics. | One per authored file; plain data that can be sent to a worker |
+| `CanonicalPrescription` | The version-independent semantic content, with schema defaults and the engine's authority rules applied. Beside it, kept apart, is provenance: source paths for diagnostics, authored-or-default flags, and authored values the engine ignores. The semantic fingerprint covers only the semantic content. | One per authored file; plain data that can be sent to a worker |
 | `CompiledLens` (replaces `EngineLens`) | Indexed surfaces with compiled geometry profiles, media and dispersion resolvers, the stop, path plan, station tables, aperture model, annotations and display constants. It has no reference to `RuntimeLens`. | One per canonical identity, immutable |
 | `RuntimeLens` (unchanged name) | The frozen read model the UI consumes, derived from `CompiledLens` plus the first-order constants. The engine never takes it as input. | One per compiled lens |
 | `PreparedGeometry` (replaces `PreparedOpticalState`) | Vertex positions, current thicknesses, the image plane and iris for one exact `(focusT, zoomT, aberrationT)`. It shares the immutable surface records. | Bounded LRU per compiled lens |
@@ -477,7 +531,8 @@ flowchart LR
 4. **Grouped by consumer.** Identity, catalog, source, prescription, states, aperture, annotations, layout, rays,
    checks.
 5. **Lossless, mechanical conversion.** The converter never changes a value the engine or UI reads.
-   - The canonical fingerprint of a converted file equals that of its V1 source.
+   - The semantic fingerprint of a converted file equals that of its V1 source. Provenance (source paths, comments,
+     ignored authored values) may differ.
    - Deriving information that can legitimately differ is a later, separately reviewed C3 data PR, never a converter
      side effect. Examples: design focal length versus station focal lengths, `specs`, element `fl`.
 6. **Defaults belong to the schema.** They are documented in the spec and applied by ingest with provenance, never by
@@ -597,7 +652,7 @@ and position.
 | `publishedStations.zoom` / `.focus` | `zoom.stations[i].published` and `.publishedFocus`; on a prime, `focus.published` | Presence still marks provenance. Focus lists hold keyframe indices ≥ 1, and infinity is implied. V1's "zoom omitted means every station" becomes an explicit flag on every station. |
 | `finiteConjugates[]` (`focusT`, `zoomT`) | `focus.conjugates[]` (`zoomStation`, `keyframe`) | Index-addressed. The converter maps each `focusT` to the keyframe it matches within the validator's 1e-8 and refuses otherwise. |
 | `fstopSeries`, `maxFstop`, `apertureStep`, `apertureBlades`, `apertureBladeRoundedness` | `aperture.{fStops, maxFNumber, step, blades, bladeRoundedness}` | |
-| STO `sd` | Omitted when derived; kept as `sd` when authoritative | Authoritative means folded, embedded (`stopPlacement`) or zoom stations with `stopSemiDiameter`. It is dropped in the 889 lenses where the engine overwrites it, and the conversion report lists each dropped value. |
+| STO `sd` | Kept as `sd` only where the engine uses it: folded and embedded stops, 16 lenses. Otherwise omitted, and the radius is derived. | The engine overwrites the authored value in two ways: with the radius traced from the nominal f-number (889 lenses), or with a published schedule (2 lenses), which V2 keeps as `zoom.stations[i].stopSemiDiameter`. The converter lists each dropped value in its conversion report, as provenance rather than semantics. |
 | `aberrationControl.var` / `.varLabels` | `aberrationControl.gaps` | Same tuple forms as V1 |
 | `svgW`, `svgH`, `scFill`, `yScFill`, `maxAspectRatio`, `lensShiftFrac` | `layout.*` | |
 | `rayFractions`, `rayLeadFrac`, `offAxisFieldFrac`, `offAxisFractions` | `rays.*` | These feed analyses as well as the diagram |
@@ -709,7 +764,8 @@ need the S2.P5 catalog migration.
   - **Files:** `src/benchmarks/engineDiff/{captureEntry, seamAdapter, requests, payload}.ts`.
   - **Tests:** `__tests__/src/benchmarks/engineDiff.test.ts` (tooling suite):
     - payload determinism across two runs;
-    - fingerprints change with any authored value and not with whitespace or comments.
+    - semantic fingerprints change with any value the engine or UI reads, and not with whitespace, comments or other
+      provenance.
   - **Gate:** C0, with no engine change.
 - **S1.P2.T2 Budgets, comparison, driver and CI job.**
   - **Change:**
@@ -721,7 +777,9 @@ need the S2.P5 catalog migration.
     - Each of these must fail detection: a status, an index, a unit, a sample order, a coordinate perturbed by 1 ulp
       under C0, and a coordinate perturbed by twice the budget under C1.
     - Identical refs must pass.
-    - A fingerprint mismatch must be listed and skipped.
+    - Cross-evaluation: a data-only change yields no engine difference and a data-impact report.
+    - A format-only change that alters a value fails.
+    - An undeclared uncompared lens fails, and so does a declared exception that turns out to be comparable.
     - The C1 noise floor is measured by reassociating one sum in sag evaluation, and the budget table is finalized from
       it.
   - **Gate:** C0.
@@ -782,8 +840,8 @@ need the S2.P5 catalog migration.
 
 - **S1.P4.T1 Architecture guards and dead code.**
   - **Change:**
-    - add `__tests__/src/optics/opticsArchitecture.test.ts` with the cycle, seam and cache guards and their initial
-      allowlists;
+    - add `__tests__/src/optics/opticsArchitecture.test.ts` with the cycle, seam and cache guards, their initial
+      legacy-exception lists and their registries (today's top-level barrels and bounded or owner-keyed caches);
     - delete the three unimported modules (`src/optics/index.ts`, the root `src/optics/analysisJobs.ts` and
       `src/optics/analysis/fieldCurvature.ts`).
   - **Gate:** C0.
@@ -817,7 +875,9 @@ need the S2.P5 catalog migration.
     - every catalog file round-trips V1 → canonical → V1 view, deep-equal to the current
       `{...LENS_DEFAULTS, ...data}`;
     - no input mutation;
-    - provenance flags are correct.
+    - provenance flags are correct;
+    - the semantic projection excludes provenance: an authored stop `sd` the engine overwrites appears only in
+      provenance, and the V1 view still reproduces it while the old engine consumes that view.
   - **Gate:** C0.
 - **S2.P1.T2 Route production through ingest.**
   - **Change:** the catalogs, `buildLens` and the scripts that spread defaults all ingest through canonical.
@@ -836,17 +896,28 @@ need the S2.P5 catalog migration.
 
 - **S2.P2.T1 Pre-migration data decisions.** The three PRs in the table above, one per lens.
   - **Owner:** the maintainer, under `agent_docs/lens-patent-audit.md`.
-  - **Gate:** C3, setting a new anchor.
+  - **Gate:** C3 data correction. The anchor does not move.
 - **S2.P2.T2 V2 types and ingest.**
-  - **Change:** add `LensDataV2Input` and `TeleconverterDataV2Input`, and `ingestV2`, which dispatches on `schema`.
-    V2-specific validation reports authored paths: unknown `medium`, gap labels, station counts, spans, and stop-radius
-    authority.
-  - **Files:** `src/types/lensDataV2.ts`, `src/optics/prescription/ingestV2.ts`.
+  - **Change:**
+    - add `LensDataV2Input` and `TeleconverterDataV2Input`, and `ingestV2`, which dispatches on `schema`;
+    - V2-specific validation reports authored paths: unknown `medium`, gap labels, station counts, spans, and
+      stop-radius authority.
+  - **Derived stops carry no `sd`:**
+    - the existing validator accepts an absent `sd` on a derived stop;
+    - generated rear-plate rims take the largest authored `sd` among surfaces other than a derived stop. This is C0 on
+      today's catalog, which has no lens whose stop is the largest authored `sd` alongside generated rims.
+  - **Files:**
+    - `src/types/lensDataV2.ts`
+    - `src/optics/prescription/ingestV2.ts`
+    - `src/optics/validateLensData.ts`
+    - `src/optics/prescription/rearPlates.ts`
   - **Tests:**
     - `__tests__/src/optics/prescription/ingestV2.test.ts`: one V1/V2 fixture pair per feature family, with equal
-      canonical fingerprints. The families: prime, zoom, focus keyframes, published stations, conjugates, aberration
-      control, folded (auto and explicit), mirrors with spans, diffractive, absorption, rear plates, media,
-      perspective control, projection and teleconverter.
+      semantic fingerprints. The families: prime, zoom, focus keyframes, published stations, conjugates, aberration
+      control, folded (auto and explicit), mirrors with spans, diffractive, absorption, rear plates, media, perspective
+      control, projection and teleconverter.
+    - An offender-collecting sweep that rebuilds every derived-stop catalog lens with its authored stop `sd` removed,
+      and requires every payload except the authored-data echo to be bit-identical.
     - The negative cases.
   - **Gate:** C0.
 - **S2.P2.T3 Tooling reads both versions.**
@@ -887,7 +958,7 @@ need the S2.P5 catalog migration.
     - `--check`
     - `--write`
     - `--output <dir>` (optional; default in place)
-  - **Writes:** go to a temp file and are renamed into place only after the output re-ingests to the same canonical
+  - **Writes:** go to a temp file and are renamed into place only after the output re-ingests to the same semantic
     fingerprint and type-checks.
   - **Behavior:** V2 input is idempotent, the tool refuses on collisions, and a failure leaves inputs unchanged.
   - **Tests:** the tooling suite covers each of those behaviors, plus an interrupted write and V2 → V1 → V2
@@ -896,8 +967,8 @@ need the S2.P5 catalog migration.
 - **S2.P3.T3 Corpus conversion sweep.**
   - **Change:** add `__tests__/scripts/convertLensDataCorpus.test.ts`. For every lens and converter it:
     - converts the file to a temp directory;
-    - re-ingests it and checks the canonical fingerprint;
-    - converts it back to V1 and checks the fingerprint again;
+    - re-ingests it and checks the semantic fingerprint;
+    - converts it back to V1 and checks the semantic fingerprint again;
     - checks idempotence.
 
     It is offender-collecting, and its offender list must be empty except for files awaiting S2.P2.T1.
@@ -947,8 +1018,9 @@ need the S2.P5 catalog migration.
 - **S2.P5.T1–T8 Convert by maker batches.**
   - **Batches:** eight PRs, one per alphabetical group of maker directories under `src/lens-data/`. Each runs
     `convert-lens-data --write` on its batch and attaches the batch's conversion report.
-  - **Gate:** C0. Canonical fingerprints are identical, so Tier P payloads are bit-identical, and `npm run build`
-    produces byte-identical generated metadata.
+  - **Gate:** C0. Semantic fingerprints are unchanged, so the format-only comparison (base and head prescriptions on
+    the head engine) must be bit-identical for every lens in the batch, and `npm run build` must produce byte-identical
+    generated metadata.
   - **In-flight V1 PRs:** they keep working, because V1 is still ingested. Their authors run the converter before
     merge.
   - **Rollback:** `--to-version 1` on the batch, or a revert.
@@ -987,7 +1059,9 @@ need the S2.P5 catalog migration.
     - the 50-digit fixtures;
     - tangent, grazing, steep-rim and backward rays;
     - cap and exterior roots;
-    - counters showing at most 2 profile evaluations.
+    - every closed-form success uses at most 2 profile evaluations;
+    - every fallback is counted under its own counter, with its reason (failed validation, near tangency or domain
+      edge), takes the unchanged iterative path with its normal budget, and meets the contract.
   - **Gate:** C1.
 - **S3.P2.T2 Conic-seeded asphere solve.**
   - **Change:** Newton starts from the base-conic root. The bracket scan runs only when the seed fails certification,
@@ -1004,7 +1078,7 @@ need the S2.P5 catalog migration.
 
 - the analytic suite;
 - Tier S, C1 against the anchor;
-- the counter target is met;
+- the Stage 3 targets are reported: mean evaluations per intersection and the fallback rate;
 - PC-Nikkor 19mm default analysis is at or below R0;
 - the comparator report.
 
@@ -1030,6 +1104,8 @@ need the S2.P5 catalog migration.
   - **Gate:** C1.
 - **S4.P2.T4 Delete the legacy stack.**
   - **Change:**
+    - repoint the remaining importers of `internal/traceSurfaces.ts` (`validateTeleconverterData.ts` and
+      `prescription/teleconverter.ts`) to `math/paraxial.ts`;
     - delete `internal/exactSurfaceTrace.ts`, `internal/surfaceIntersection.ts`, `internal/traceSurfaces.ts`, and the
       `rayTrace.ts` tracers and `traceToImage`;
     - move the pupil samplers to `analysis/sampling.ts`;
@@ -1048,14 +1124,21 @@ need the S2.P5 catalog migration.
     `trace/bulkAbsorption.ts` reads compiled media instead of `RuntimeLens`.
   - **Gate:** C0.
 
-**Stage 4 gate:** Tier S, C0/C1 against the anchor; `src/optics/internal/` is gone; the guards pass.
+**Stage 4 gate:**
+
+- Tier S, C0/C1 against the anchor.
+- The legacy tracer files are gone: `internal/exactSurfaceTrace.ts`, `internal/surfaceIntersection.ts`,
+  `internal/traceSurfaces.ts`, and the `rayTrace.ts` tracers.
+- `internal/lensState.ts` and `internal/apertureBands.ts` remain until Stage 5.
+- The guards pass.
 
 ### Stage 5 — Compiled lens and prepared geometry
 
 - **S5.P1.T1 One compiler from canonical.**
   - **Change:** `prescription/compile.ts` builds `CompiledLens` from `CanonicalPrescription`.
     - Materials are resolved once.
-    - Rear plates are expanded once, by `prescription/rearPlates.ts`, now operating on canonical data.
+    - Rear plates are expanded once, by `prescription/rearPlates.ts`, now operating on canonical data and keeping the
+      S2.P2.T2 rim rule.
     - It replaces `internal/lensState.ts`, the `prescription/` compilers and `normalizeLensData.ts`.
     - `EngineLens` is renamed `CompiledLens`.
   - **Tests:**
@@ -1114,8 +1197,9 @@ need the S2.P5 catalog migration.
     `src/types/`.
   - **Gate:** C0.
 
-**Stage 5 gate:** Tier S against the anchor; counters show one compile and one material resolution per identity; the
-cycle allowlist has shrunk.
+**Stage 5 gate:** Tier S against the anchor; counters show one compile and one material resolution per identity;
+`src/optics/internal/` is gone (its last files leave in S5.P1.T1 and S5.P1.T3); the cycle guard's legacy list has
+shrunk.
 
 ### Stage 6 — Fields, chief rays and solvers
 
@@ -1210,7 +1294,7 @@ gone.
     - delete `compat.ts` and the alias barrels;
     - update the 103 importing files, the 7 scripts that load by path, and the tests.
 
-    The seam guard's allowlist becomes the final list.
+    The seam guard's legacy list is now empty, and its registry holds exactly the final barrels.
   - **Gate:** C0.
 - **S8.P1.T2 Retire `RuntimeLens.data`.**
   - **Change:**
@@ -1227,8 +1311,8 @@ gone.
   - **Gate:** C0.
 - **S8.P2.T1 Final verification.**
   - **Checks:**
-    - the cycle allowlist is empty;
-    - the seam and cache guards are final;
+    - every guard's legacy-exception list is empty;
+    - the seam and cache registries are final;
     - Tier F against the anchor;
     - the final benchmark, memory and browser reports.
   - **Change:** delete any module the fate table marks deleted that still exists.
