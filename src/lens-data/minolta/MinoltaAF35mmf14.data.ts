@@ -215,7 +215,7 @@ const LENS_DATA = {
     { label: "10", R: -31.81885, d: 1.97225, nd: 1.72342, elemId: 6, sd: 16.9 },
     { label: "11", R: 29.3237, d: 3.943683333333333, nd: 1, elemId: 0, sd: 13.5 },
     // Stop position inferred from Fig. 5: approximately 1/3 of the original d11 gap from r11 toward r12.
-    { label: "STO", R: 1e15, d: 7.887366666666666, nd: 1, elemId: 0, sd: 12.684073075931 },
+    { label: "STO", R: 1e15, d: 7.887366666667, nd: 1, elemId: 0, sd: 12.684073075931 },
     { label: "12", R: -20.0179, d: 1.9719, nd: 1.7552, elemId: 7, sd: 13.5 },
     { label: "13", R: 83.45645, d: 6.4085, nd: 1.72, elemId: 8, sd: 15.2 },
     { label: "14", R: -34.06235, d: 0.19705, nd: 1, elemId: 0, sd: 15.2 },
