@@ -2,7 +2,9 @@
  * Exact surface stack tracer — RuntimeLens-shaped real-ray tracing for sequential and folded systems.
  *
  * Traces vector or slope launches through refractive, reflective, blocking, annular, and arbitrary
- * image-plane interactions; this is the only runtime real-ray path.
+ * image-plane interactions. Serves `buildLens()` constants, the `rayTrace.ts` facade, state pupil
+ * baselines, and folded image-plane validation; the public `optics.ts` trace exports run on the
+ * prepared-state engine in `trace/` instead, which shares `trace/interactions.ts` with this module.
  */
 
 import type {
@@ -41,6 +43,8 @@ export interface ExactTraceSurface {
   d: number;
   sd?: number;
   innerSd?: number;
+  /** `false` when `sd` is a generated rear-plate rim that never clips. */
+  clips?: boolean;
   interaction?: SurfaceInteraction;
   diffractive?: DiffractivePhaseSurface;
 }
@@ -942,7 +946,7 @@ function apertureSemiDiameter(
   stopSemiDiameter: number | undefined,
 ): number | null {
   if (surfaceIdx === lens.stopIdx && stopSemiDiameter !== undefined) return stopSemiDiameter;
-  if (typeof surface.sd !== "number") return null;
+  if (typeof surface.sd !== "number" || surface.clips === false) return null;
   return surface.sd;
 }
 

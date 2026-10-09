@@ -3,6 +3,7 @@ import buildLens, { paraxialTrace, realTraceToStop } from "../../../src/optics/b
 import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
 import { doLayout, traceRay } from "../../../src/optics/optics.js";
 import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
+import { computeFieldGeometryAtState } from "../../../src/optics/fieldGeometry.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import {
   REAR_PLATE_FIXTURE,
@@ -665,8 +666,7 @@ describe("buildLens — rear plates", () => {
     expect(L.S[L.lastLensSurfaceIdx].d).toBe(44);
   });
 
-  /* A plate sits just ahead of the image, where the corner chief ray is nearly at full image height. Sized from the
-   * lens alone, the plate of a compact prime whose rear element is small beside its format set the half-field. */
+  /* A generated rim never clips, so its size only extends the envelopes that ray launch and intersection bounds read. */
   it("sizes generated plate rims to cover the image format as well as the largest lens rim", () => {
     const plateSds = (L: ReturnType<typeof buildRearPlateLens>) =>
       L.S.filter((surface) => surface.synthetic === "rearPlate").map((surface) => surface.sd);
@@ -675,6 +675,21 @@ describe("buildLens — rear plates", () => {
     for (const sd of plateSds(buildRearPlateLens({ imageFormat: "135-full-frame" }))) {
       expect(sd).toBeCloseTo((1.5 * 43.3) / 2, 10);
     }
+  });
+
+  /* The fixture's generated 22.5 mm rim sits ~49 mm behind the lens, where the chief ray is near full image height;
+   * as an aperture it would cap the field far inside the lens's own coverage. A published rim is a real aperture. */
+  it("never lets a generated plate rim clip or limit the field, while a published rim still does", () => {
+    const plated = buildRearPlateLens();
+    const folded = buildRearPlateAirEquivalentLens();
+    const published = buildRearPlateLens({ plates: [{ ...REAR_PLATE_FIXTURE, sd: 10 }] });
+    const stateField = (L: typeof plated) => computeFieldGeometryAtState(0, 0, L).halfFieldDeg;
+
+    expect(plated.S.filter((surface) => surface.synthetic).map((surface) => surface.clips)).toEqual([false, false]);
+    expect(plated.halfField).toBeCloseTo(folded.halfField, 9);
+    expect(stateField(plated)).toBeCloseTo(stateField(folded), 9);
+    expect(published.halfField).toBeLessThan(folded.halfField - 1);
+    expect(stateField(published)).toBeLessThan(stateField(folded) - 1);
   });
 
   it("keeps synthetic plates out of drawn spans, element lists and diagram scale", () => {

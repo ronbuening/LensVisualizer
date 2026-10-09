@@ -17,3 +17,13 @@ Patent: US 3,576,360, Embodiment 1 / FIG. 1 / Claim 2
 - The official SCHOTT K10 datasheet supplies the matching coefficient curve (`1.50137 / 56.41`). The label now
   resolves through K10 while leaving the production supplier unspecified.
 - Strict and trusted catalog coverage are now complete at `9/9`; no geometry changed.
+
+## 2026-10-09 — Back-focus gap aligned with its focus row
+
+Surface 15 `d` (37.254161 mm) rounded the infinity value of its own `var` row (37.254160829 mm). The surface value now
+equals the row, so the authored image-plane distance and the infinity state agree; the image plane moves 1.7e-7 mm.
+The V2 lens-data format stores a variable gap once, and its converter requires the two to agree.
+
+| Surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| 15 | `d` | 37.254161 | 37.254160829 | `var["15"][0]`, the infinity back focus; the patent prints S' = 106.44 (37.254 mm at ×0.35) |

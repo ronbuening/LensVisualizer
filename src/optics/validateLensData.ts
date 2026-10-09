@@ -1077,6 +1077,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (s.synthetic !== undefined) {
       errors.push(`surfaces[${i}] ("${s.label}"): "synthetic" is engine-generated; declare plates in "rearPlates"`);
     }
+    if (s.clips !== undefined) {
+      errors.push(`surfaces[${i}] ("${s.label}"): "clips" is engine-generated for rear plates without a published sd`);
+    }
     if (data.attachedTeleconverter === undefined && s.label.startsWith(TELECONVERTER_LABEL_PREFIX)) {
       errors.push(
         `surfaces[${i}] ("${s.label}"): labels starting with "${TELECONVERTER_LABEL_PREFIX}" are reserved for attached teleconverter surfaces`,

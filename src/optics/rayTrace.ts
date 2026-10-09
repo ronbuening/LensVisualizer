@@ -1,8 +1,11 @@
 /**
  * Runtime ray-trace facade — legacy meridional, skew, vector, and chromatic trace helpers.
  *
- * Converts RuntimeLens calls into prepared engine traces while keeping the public trace API used
- * by diagram layers and analysis modules stable.
+ * Traces RuntimeLens calls through the RuntimeLens-shaped stack tracer in
+ * `internal/exactSurfaceTrace.ts`, not the prepared-state engine in `trace/`. The `optics.ts`
+ * `traceRay` / `traceSkewRay` families come from `trace/rayAdapters.ts`; this module supplies the
+ * chief-relative skew wrappers, pupil samplers, image-plane intercept, and paraxial `traceToImage`
+ * used by the aberration and chromatic analysis modules.
  */
 
 import type { ChromaticChannel, RayTraceResult, RuntimeLens } from "../types/optics.js";
