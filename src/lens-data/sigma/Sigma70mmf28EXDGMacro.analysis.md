@@ -32,8 +32,8 @@ for every mount. Source ¶0022–0023, PDF pages 7–8 / printed pages 6–7, go
 ## Optical Architecture
 
 This is an all-spherical, two-block floating macro design. Its positive first moving block
-contains a negative front subgroup G1 followed by positive G2; a net-negative second block
-follows the variable D16 gap. G2 combines the positive pre-stop subgroup L1, the net-negative
+(the patent's first group) contains a negative front lens group G1 followed by positive G2; a
+net-negative second block (the patent's second group) follows the variable D16 gap. G2 combines the positive pre-stop subgroup L1, the net-negative
 cemented L2 subgroup and the positive L3 pair. These names follow Fig.1 and ¶0005, rather than
 counting the two moving blocks as the nine air-separated components.
 
@@ -58,63 +58,64 @@ surface is omitted and no rear plate is invented or folded into an air-equivalen
 
 The following focal lengths are calculated for each glass element alone in air, including
 its center thickness. Cemented partners' isolated powers are not their powers in situ.
-Model labels L1–L10 follow physical element order; source subgroup names are distinguished below.
+The patent uses the letter L for sub-groups (L1, L2, L3) and names only four lenses (L2A, L2B, L3A, L3B),
+so model elements are labelled E1–E10 in physical order; the patent designation is given where one exists.
 
-### L1 — Negative Meniscus
+### E1 — Negative Meniscus
 
 nd = 1.54072, νd = 47.2. Glass: E-FEL2 (HOYA, coordinate equivalent). f = -71.590 mm.
 
 The front negative meniscus is the patent’s G1. Its stronger positive-radius rear face makes the isolated element negative. The first moving block nevertheless has positive net power after G2 is included. The broad front aperture follows the relative extent in Fig.1; it is inferred rather than a published dimension.
 
-### L2 — Biconvex Positive
+### E2 — Biconvex Positive
 
 nd = 1.77250, νd = 49.6. Glass: TAF1 (HOYA, coordinate equivalent). f = +45.215 mm.
 
 This biconvex element begins the source’s positive L1 subgroup, ahead of the stop. Its large positive isolated power is part of the positive G2 block. No individual spherical-aberration correction claim is inferred merely from that sign.
 
-### L3 — Positive Meniscus
+### E3 — Positive Meniscus
 
 nd = 1.69680, νd = 55.5. Glass: LAC14 (HOYA, coordinate equivalent). f = +80.720 mm.
 
 The positive meniscus is the middle member of the source L1 subgroup. Its two positive radii are distinct; the stronger front curvature makes it positive. The thin following air interval is retained exactly and does not create a cemented interface.
 
-### L4 — Negative Meniscus
+### E4 — Negative Meniscus
 
 nd = 1.60342, νd = 38.0. Glass: E-F5 (HOYA, coordinate equivalent). f = -38.577 mm.
 
 This negative meniscus is the final member of the pre-stop L1 subgroup. Its source front radius is finite, 1000.0000 mm, and its much stronger rear curvature faces the stop. The patent discusses the opposing concave meniscus regions around the stop in ¶0010.
 
-### L5 — Biconcave Negative
+### E5 (L2A) — Biconcave Negative
 
 nd = 1.58144, νd = 40.9. Glass: E-FL5 (HOYA, coordinate equivalent). f = -36.614 mm.
 
 This is source L2A, the negative partner in the single cemented pair. Its concave object-side face enters condition (2). Source ¶0008 discusses constraining this curvature for coma-flare control; that statement is a patent design rationale, not a simulated aberration result for this isolated element.
 
-### L6 — Biconvex Positive
+### E6 (L2B) — Biconvex Positive
 
 nd = 1.56045, νd = 71.6. Glass: Unmatched (anomalous-dispersion crown; catalog identity unresolved). f = +47.340 mm.
 
-This is source L2B, cemented to L5 at source S11. The interface carries this downstream element’s index and owner ID. Its higher Abbe number and source-identified anomalous partial dispersion are paired with L2A under conditions (3) and (4). The assembled pair remains negative despite this partner’s positive isolated power (¶0010–0014).
+This is source L2B, cemented to E5 (L2A) at source S11. The interface carries this downstream element’s index and owner ID. Its higher Abbe number and source-identified anomalous partial dispersion are paired with L2A under conditions (3) and (4). The assembled pair remains negative despite this partner’s positive isolated power (¶0010–0014).
 
-### L7 — Biconvex Positive
+### E7 (L3A) — Biconvex Positive
 
 nd = 1.56045, νd = 71.6. Glass: Unmatched (anomalous-dispersion crown; catalog identity unresolved). f = +90.223 mm.
 
 This is source L3A, the first of two positive lenses after the cemented pair. Its weak but finite object-side curvature is retained. Source ¶0015–0017 identifies anomalous partial dispersion in this region as part of the close-focus chromatic strategy. The named material cannot be recovered from the audited public catalog coordinates.
 
-### L8 — Biconvex Positive
+### E8 (L3B) — Biconvex Positive
 
 nd = 1.49700, νd = 81.6. Glass: FCD1 (HOYA, coordinate equivalent). f = +105.729 mm.
 
 This is source L3B, the higher-Abbe positive partner in L3. The source’s stronger anomalous-dispersion condition (6) is satisfied by this element, while condition (5) is satisfied by L3A. Paragraph ¶0020 describes the intended lateral-chromatic correction at infinity. That intention is not an independent APO-performance certification.
 
-### L9 — Plano-Concave
+### E9 — Plano-Concave
 
 nd = 1.64000, νd = 60.2. Glass: LACL60 (HOYA, coordinate equivalent). f = -82.531 mm.
 
 The true plano-concave element begins the second moving block. Source radius 0.0 at S17 is a plane entry into glass; the curved exit gives substantial negative power. Removing it as a supposed sensor plate would destroy the prescribed rear-block power.
 
-### L10 — Biconvex Positive
+### E10 — Biconvex Positive
 
 nd = 1.83481, νd = 42.7. Glass: TAFD5G (HOYA, coordinate equivalent). f = +121.405 mm.
 
@@ -124,21 +125,21 @@ The final positive biconvex element partly balances the preceding negative lens,
 
 The patent supplies d-line coordinates, not supplier names. Eight elements carry the
 coordinate-equal HOYA row listed below, so the model traces them on that catalog dispersion curve;
-L6 and L7 keep an explicit unmatched designation. The HOYA names are coordinate equivalents and are
+E6 and E7 (L2B, L3A) keep an explicit unmatched designation. The HOYA names are coordinate equivalents and are
 not asserted as the production glass. Additional alternatives and coefficient checks are retained
 in the supporting evidence. [6–11]
 
 | Model elements | Native nd / νd | Representative catalog alternative | Catalog-minus-source Δnd / Δνd |
 |---|---|---|---|
-| L1 | 1.54072 / 47.2 | E-FEL2, HOYA | 0 / 0.00 |
-| L2 | 1.77250 / 49.6 | TAF1, HOYA | 0 / +0.03 |
-| L3 | 1.69680 / 55.5 | LAC14, HOYA | 0 / −0.04 |
-| L4 | 1.60342 / 38.0 | E-F5, HOYA | 0 / +0.01 |
-| L5 | 1.58144 / 40.9 | E-FL5, HOYA | 0 / −0.01 |
-| L6, L7 | 1.56045 / 71.6 | Unmatched in the six reviewed catalogs | No identity assigned |
-| L8 | 1.49700 / 81.6 | FCD1, HOYA | 0 / +0.01 |
-| L9 | 1.64000 / 60.2 | LACL60, HOYA | 0 / 0.00 |
-| L10 | 1.83481 / 42.7 | TAFD5G, HOYA | 0 / +0.02 |
+| E1 | 1.54072 / 47.2 | E-FEL2, HOYA | 0 / 0.00 |
+| E2 | 1.77250 / 49.6 | TAF1, HOYA | 0 / +0.03 |
+| E3 | 1.69680 / 55.5 | LAC14, HOYA | 0 / −0.04 |
+| E4 | 1.60342 / 38.0 | E-F5, HOYA | 0 / +0.01 |
+| E5 | 1.58144 / 40.9 | E-FL5, HOYA | 0 / −0.01 |
+| E6, E7 | 1.56045 / 71.6 | Unmatched in the six reviewed catalogs | No identity assigned |
+| E8 | 1.49700 / 81.6 | FCD1, HOYA | 0 / +0.01 |
+| E9 | 1.64000 / 60.2 | LACL60, HOYA | 0 / 0.00 |
+| E10 | 1.83481 / 42.7 | TAFD5G, HOYA | 0 / +0.02 |
 
 Current and historical OHARA, HOYA, SCHOTT, SUMITA, HIKARI and CDGM catalogs were checked.
 Catalog prefixes matter: historical OHARA FPL51 and current S-FPL51 must not be equated simply
@@ -147,13 +148,13 @@ material never existed as a custom or discontinued grade.
 
 The patent defines θgF = (ng − nF)/(nF − nC) and uses its own normal line:
 δpatent = θgF + 0.002νd − 0.6575 (¶0011–0012; Fig.7).
-Its values 0.0285 for L6/L7 and 0.0443 for L8 therefore imply θgF = 0.5428 and 0.5386.
+Its values 0.0285 for E6/E7 (L2B, L3A) and 0.0443 for E8 (L3B) therefore imply θgF = 0.5428 and 0.5386.
 The current application's Schott normal-line convention is 0.6438 − 0.001682νd, so the
 authored dPgF values are respectively 0.0194312 and 0.0320512. [13] The original source deviations
 remain the quantities used to evaluate the patent's conditions.
 
 Catalog coordinates do not fully settle spectral behavior: none of the precision-compatible
-L8 candidates reproduces the native four-decimal partial-dispersion deviation. Source-derived
+E8 candidates reproduces the native four-decimal partial-dispersion deviation. Source-derived
 dPgF is retained directly on the elements. No candidate nC/nF/ng is passed off as measured
 production data. The patent's correction strategy is documented, but no independent APO,
 secondary-spectrum or chromatic-image-quality performance claim is made.
@@ -204,7 +205,8 @@ published 2.8823, 3.8824 and 5.0151. The discrepancy remains explicit and no foc
 iris schedule is invented to force agreement.
 
 All clear semi-diameters are estimated from the Fig.1 element outlines and floor-checked by
-real-ray tracing at the three published focus states. Exact spherical
+real-ray tracing at the three published focus states; the five elements behind the stop follow
+the drawn staircase of rim heights (13.4, 13.8, 14.1, 14.4 and 15.0 mm). Exact spherical
 ray sampling covers the three source stations and representative interpolated positions,
 including on-axis edge rays, off-axis skew bundles and chief rays at paraxial format-corner
 field targets. This supports

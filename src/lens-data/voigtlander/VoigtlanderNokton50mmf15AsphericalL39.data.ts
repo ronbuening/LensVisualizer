@@ -10,12 +10,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * Lens semi-diameters are estimated from patent FIG. 3 (the Example 2 section, 0.066 mm/px at
  * 400 dpi) and floor-checked by real-ray trace; none is a published aperture. Surfaces 4, 6 and 8
  * carry the optical extent the figure draws inside flat annuli. Surface 5 stops at 14.0 mm, the
- * largest value the 4→5 cross-gap check admits (the faces touch at 14.67 mm; the figure draws
- * them meeting). The rear group (9, 10, 11A, 12A) keeps its authored rims, 3-6 % above the
- * figure, so the default off-axis fan stays unclipped. Surface 12A turns over at 12.95 mm, below
- * the f/1.53 axial ray height of 12.97 mm there, so its rim lies past the turnover; FIG. 3 draws
- * that reversal.
- * Glass labels are coordinate classes, not supplier/melt identifications.
+ * largest value the 4→5 cross-gap check admits; FIG. 3 seats L3 against the flat rear land of L2,
+ * which its front curve reaches at about 14.1-14.3 mm, and draws a flat land above that to 15.3 mm
+ * that the renderer cannot show. FIG. 3 draws the cemented pair as one square-cut block 15.0 mm
+ * high, so surfaces 9 and 10 share one rim (15.5 mm, 3 % above the figure); L6 keeps 16 mm
+ * (figure 15.2 mm). Surface 12A turns over at 12.95 mm, below the f/1.53 axial ray height of
+ * 12.97 mm there, so its rim lies past the turnover; FIG. 3 draws that reversal.
+ * LABELS: the patent names five lens groups 21-25 (claim 1: positive, positive, negative, negative,
+ * positive) with stop 27 between the third and fourth; `groups` G1-G5 follow that order.
+ * `diagramLabel` carries the FIG. 3 numerals: 21, 22, 23 and 25 are single-lens groups, 24a/24b the
+ * components of cemented group 24 (D1). Numerals 25a/25b in FIG. 3 are the aspherical faces 11A/12A.
+ * Glass labels are coordinate-equal HOYA rows, not supplier/melt identifications.
  * No rear plate is listed in the source; none is introduced.
  */
 const LENS_DATA = {
@@ -52,70 +57,76 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "diagramLabel": "21",
       "label": "Element 1",
       "type": "Positive Meniscus",
       "nd": 1.8042,
       "vd": 46.5,
       "indexReference": "d",
       "fl": 76.364077404,
-      "glass": "804465 — coordinate class (supplier unconfirmed)"
+      "glass": "TAF3 (HOYA, coordinate equivalent; supplier unconfirmed)"
     },
     {
       "id": 2,
       "name": "L2",
+      "diagramLabel": "22",
       "label": "Element 2",
       "type": "Positive Meniscus",
       "nd": 1.8042,
       "vd": 46.5,
       "indexReference": "d",
       "fl": 100.434927322,
-      "glass": "804465 — coordinate class (supplier unconfirmed)"
+      "glass": "TAF3 (HOYA, coordinate equivalent; supplier unconfirmed)"
     },
     {
       "id": 3,
       "name": "L3",
+      "diagramLabel": "23",
       "label": "Element 3",
       "type": "Negative Meniscus",
       "nd": 1.72825,
       "vd": 28.3,
       "indexReference": "d",
       "fl": -39.184773051,
-      "glass": "728283 — coordinate class (supplier unconfirmed)"
+      "glass": "E-FD10 (HOYA, coordinate equivalent; supplier unconfirmed)"
     },
     {
       "id": 4,
       "name": "L4",
+      "diagramLabel": "24a",
       "label": "Element 4",
       "type": "Biconcave Negative",
       "nd": 1.62004,
       "vd": 36.3,
       "indexReference": "d",
       "fl": -16.068683687,
-      "glass": "620363 — coordinate class (supplier unconfirmed)",
+      "glass": "E-F2 (HOYA, coordinate equivalent; supplier unconfirmed)",
       "cemented": "D1"
     },
     {
       "id": 5,
       "name": "L5",
+      "diagramLabel": "24b",
       "label": "Element 5",
       "type": "Biconvex Positive",
       "nd": 1.8042,
       "vd": 46.5,
       "indexReference": "d",
       "fl": 19.310696802,
-      "glass": "804465 — coordinate class (supplier unconfirmed)",
+      "glass": "TAF3 (HOYA, coordinate equivalent; supplier unconfirmed)",
       "cemented": "D1"
     },
     {
       "id": 6,
       "name": "L6",
+      "diagramLabel": "25",
       "label": "Element 6",
       "type": "Biconvex Positive (2× Asph)",
       "nd": 1.6935,
       "vd": 53.3,
       "indexReference": "d",
       "fl": 41.258079567,
-      "glass": "694533 — coordinate class (supplier unconfirmed)"
+      "glass": "LAC13 (HOYA, coordinate equivalent; supplier unconfirmed)"
     }
   ],
   "surfaces": [
@@ -197,7 +208,7 @@ const LENS_DATA = {
       "d": 0.2,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 16
+      "sd": 15.5
     },
     {
       "label": "11A",
@@ -238,7 +249,33 @@ const LENS_DATA = {
   },
   "var": {},
   "varLabels": [],
-  "groups": [],
+  "groups": [
+    {
+      "text": "G1 +",
+      "fromSurface": "1",
+      "toSurface": "2"
+    },
+    {
+      "text": "G2 +",
+      "fromSurface": "3",
+      "toSurface": "4"
+    },
+    {
+      "text": "G3 −",
+      "fromSurface": "5",
+      "toSurface": "6"
+    },
+    {
+      "text": "G4 −",
+      "fromSurface": "8",
+      "toSurface": "10"
+    },
+    {
+      "text": "G5 +",
+      "fromSurface": "11A",
+      "toSurface": "12A"
+    }
+  ],
   "doublets": [
     {
       "text": "D1",
@@ -247,7 +284,7 @@ const LENS_DATA = {
     }
   ],
   "closeFocusM": 1000000000000000.0,
-  "focusDescription": "NO_INTERNAL_RECONSTRUCTION. Infinity-only published prescription; close focus is not modeled. Production manual rangefinder focus reaches 0.9 m, but no optical motion law is published.",
+  "focusDescription": "Infinity-only published prescription; close focus is not modeled. The production lens focuses manually with rangefinder coupling down to 0.9 m, but the patent publishes no focusing movement.",
   "apertureBlades": 10,
   "nominalFno": 1.53,
   "fstopSeries": [

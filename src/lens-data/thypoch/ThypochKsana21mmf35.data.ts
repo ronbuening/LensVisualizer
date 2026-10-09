@@ -140,7 +140,7 @@ const LENS_DATA = {
       id: 8,
       name: "L8",
       label: "Element 8",
-      type: "Positive Meniscus (Asph)",
+      type: "Positive Meniscus (2× Asph)",
       nd: 1.59,
       vd: 61.25,
       indexReference: "d",
@@ -349,7 +349,7 @@ const LENS_DATA = {
   nominalFno: 3.5,
   closeFocusM: 0.5538,
   focusDescription:
-    "PUBLISHED: unit focus of G1, G2 and STO, 0.96 mm objectward relative to fixed CG/image. Source D0=500 mm is object-to-first-vertex; with near physical track 53.80 mm, closeFocusM=0.5538 m is its object-to-image label. Manufacturer 0.5 m is sensor-plane and is distinct. finiteConjugates certifies only the exact source near station; source-rounded residual defocus remains. Intermediate D15 values are app interpolation, not a published cam law. No retuned glass or image plane.",
+    "PUBLISHED: unit focus. G1, the stop and G2 move together 0.96 mm toward the object (D15 16.71 to 17.67 mm); the cover glass and image plane stay fixed. The patent's near state is 500 mm from the object to the first lens vertex, which is 0.554 m from object to image with the 53.80 mm near track. The manufacturer's 0.5 m minimum is measured from the sensor plane and is a different reference. Positions between the two published states are interpolated by the app, not a published cam law. The two-decimal source indices leave a small residual defocus at both states.",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   apertureBlades: 9,

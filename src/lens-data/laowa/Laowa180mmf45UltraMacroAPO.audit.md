@@ -217,3 +217,61 @@ classification at cemented interfaces) were taken with the previous S6/S17/S18 v
 - Display name: "FF" dropped (LAOWA 180mm f/4.5 1.5× Ultra Macro APO), matching the 58mm, 65mm and 90mm Ultra Macro APO entries; Laowa's "FF … CA-Dreamer Macro 1.5X" page title stays in the analysis.
 - Glass: L1 (1.6180/68.00), L8 (1.8830/45.80) and L11 (1.7292/58.67) were re-read from the page image of paragraphs 0068-0069 and are transcribed as printed. No catalog glass lies near them (the nearest share the index at νd 63.4, 40.8 and 54.7), so they stay Unmatched and no source repair is made.
 - L2 and L3 (FCD1 coordinates) tagged `apd: "inferred"` at Laowa's ED positions. `specs` put in catalog form in both configuration files.
+
+## 2026-10-09 — Second review: diagram, labels and movement
+
+Compared: the local MF page and the AF configuration page (infinity, closest focus, focus-movement overlay) against
+CN 120276109 A Figure 1 (PDF page 14) and the Example 1 tables (PDF pages 8-9). Figure 1 was re-measured
+independently at 450 dpi: vertex crossings S1 to S22 span 1632 px for 111.128 mm (14.686 px/mm), S1 to the image
+line 2202 px for 150.07 mm; rim heights are line centres read above and below the axis. No maker diagram was used.
+
+| Surface | Before | Figure (this review) | After | Evidence |
+|---|---|---|---|---|
+| 8 (D1 cement) | 14.5 | 15.7 | 15.5 | the D1 block's top and bottom edges sit 230 px from the axis and run to the cement junction |
+| 9 (L5 rear) | 14.5 | 15.2-15.6 | 15.5 | L5 is drawn tapering to a near knife-edge at the block corner; at 15.5 mm its edge is 0.72 mm thick |
+
+Reason. Figure 1 draws the rear of G2a taller than G3b: D1 15.7 mm against L12 14.9 mm and L11 13.65 mm. With D1 at
+14.5 mm the page showed D1 below L12 (15.0 mm), reversing the drawn order. S7 stays at 14.1 mm because the S6 and S7
+surfaces meet at 14.684 mm, so L4's front and rear rims now differ by 1.4 mm and the doublet edge renders as a shallow
+taper where the figure shows a cylinder. Both configuration files carry the same two values; their surface tables
+remain identical.
+
+Other rims re-measured and retained: L1 20.3 (stored 20.5), L2 18.3 (18.5), L3 16.5 (16.5), D2 11.8 (12), L8 9.15
+(9.5), D3 8.9 (9.5), L11 13.65 (14), L12 14.9 (15), filter plate 15.5. G3b is within 1-3% of the drawing; its apparent
+excess over G2a came from D1, not from G3b.
+
+Clearance after the change, both files: the surface validator reports no errors with `gapSagFrac` 0.922 unchanged
+(trial values up to 15.9 mm at S8/S9 also pass); the exact trace at the five published states shows no clipped
+on-axis marginal ray and no blocked corner chief ray. S8 no longer trims the unvignetted corner bundle (needs 14.81 mm
+at infinity) but S7 still limits that bundle at 14.1 mm against 18.58 mm, so corner vignetting is in practice
+unchanged. Engine half-field 9.26°, stop radius 9.148 mm, f/4.6 and the field-limiting surfaces (22, 20, 19, 1, 21
+from 10.4°) are the same before and after. Image-circle and field-coverage checks pass.
+
+Movement, checked against the page images of the two focus tables:
+
+- MF: D(2) 31.8334 / 10.4054 / 0.7795, D(13) 1.0000 / 22.4280 / 32.0539, D(18) constant 26.4211. D(2) + D(13) is
+  32.8334 at all three stations, so G2 and the stop travel together 21.428 mm and then 31.0539 mm toward the object
+  while G1 and G3 stay fixed, as the MF arrow in Figure 1 and paragraphs 0022 and 0065 state. Index 0 is infinity and
+  the last entry is the −1.5× station. The page overlay shows G2a and G2b moving left by 31.05 mm and nothing else.
+- AF: D(2) 31.8334 / 31.8351 / 31.8352, D(13) 1.0000 / 1.5126 / 4.3912, D(18) 26.4211 / 25.9068 / 23.0282.
+  D(13) + D(18) is 27.4211 / 27.4194 / 27.4194 and all three sum to 59.2545 / 59.2545 / 59.2546, so G3a travels
+  0.51 mm and then 3.39 mm toward the image with the stop staying beside G2, as the AF arrow shows. The AF page
+  overlay shows only G3a moving right by 3.39 mm.
+
+Labels found correct: group brackets G1 (1-2), G2a (3-9), G2b (10-12), G3a (14-18), G3b (19-22) match Figure 1, with
+the stop drawn between G2b and G3a; the signs agree with the computed group powers (G3b −635.6 mm). The figure's
+enclosing G2 and G3 brackets are not drawn separately. Cemented brackets D1 (7-9), D2 (10-12), D3 (16-18) are right.
+The patent names no individual lenses, so L1 to L12 is sequential; every `type` string agrees with the signs of R.
+No aspheric surface is marked, matching the all-spherical table.
+
+Text changes: `focusDescription` in both files reworded in plain language with the same facts and the travel
+figures added; the L2/L3 `apdNote` now cites paragraph 0090, which calls the G2a material (Nd 1.49700, Vd 81.61)
+ultra-low-dispersion. The tag stays `inferred` because the patent does not call the glass anomalous.
+
+Open points. L4 cannot be squared to the drawn 15.7 mm at any gap allowance. Paragraph 0094 calls 1.6968/55.46 "ED
+glass"; that is an ordinary lanthanum crown and carries no tag. The three unmatched pairs each sit at the exact index
+of a HOYA glass with a higher Abbe number than any catalog lists: PCD4 1.61800/63.40, TAFD30 1.88300/40.80 and TAC8
+1.72916/54.67 against the printed 68.00, 45.80 and 58.67. Example 2 repeats the pattern (1.6180/68.39, 1.7292/58.00),
+so the offset looks systematic rather than a single misprint, and the printed values are kept.
+
+Coordinator follow-up, same day: L2 and L3 are tagged `apd: "patent"` in both configuration files, because ¶0060 and ¶0090 themselves call the 1.497/81.61 G2a glass ultra-low-dispersion; the same basis is used for the Thypoch Simera's L2. L10 is not tagged despite ¶0094's "ED" wording for 1.6968/55.46. The three Unmatched elements sit at exact HOYA indices with Abbe numbers 4 to 5 units above the catalog (PCD4 1.61800/63.40 against 68.00 printed, TAFD30 1.88300/40.80 against 45.80, TAC8 1.72916/54.67 against 58.67), and Example 2 repeats the pattern; the printed values are kept and no catalog curve is assigned, since the difference is outside the resolver's two-unit Abbe window and cannot be shown to be a misprint. L9 keeps the cited CDGM H-ZF13 label; HOYA FD110 is coordinate-equal.

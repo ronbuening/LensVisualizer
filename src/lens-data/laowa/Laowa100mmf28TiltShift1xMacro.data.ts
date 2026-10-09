@@ -7,9 +7,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * All native spacings retained; derived endpoint conjugate is separate from marketed MFD.
  * Physical rims and the f/2.87-calibrated stop radius are inferred, not source measurements.
  * Semi-diameters are estimated from Figure 1 (0.121 mm/px at 300 dpi) and floor-checked by real-ray trace at
- * all three keyframes. Surfaces 18 and 21 stop where the figure's flat mounting annulus begins (12.2 / 18.9 mm);
- * the rear faces of L10 and L12 carry the drawn outer height. Surfaces 2 and 3 stay at 30.197 mm although the
- * figure draws L1/L2 square-cut at about 35 mm: the two prescription faces meet at 32.2 mm.
+ * all three keyframes. Figure 1 draws L1 and L10 square-cut, so both faces of each carry the drawn outer
+ * height (35 / 16 mm); L10's flat mounting annulus begins at about 12.2 mm, so its modeled rim is thicker than
+ * drawn. L12's concave front stops at 18.9 mm, where the figure's flat annulus begins, which keeps its rim near the
+ * drawn thickness and renders the step as a chamfer. L13 is 24 mm (drawn about 1.2 mm taller than L12).
+ * Surface 3 stays at 30.197 mm although the figure draws L2 square-cut at about 34.5 mm: prescription faces 2 and 3
+ * meet at 32.2 mm and the default cross-gap policy admits 30.5 mm.
  * 67 mm is published coverage; exact edge transmission is not certified.
  * No aspheres or cover plate. The patent gives no noncoaxial prescription or hinge; perspectiveControl
  * uses Laowa's published shift/tilt ranges with a rear-vertex fallback pivot.
@@ -142,7 +145,7 @@ const LENS_DATA = {
       "vd": 20.88,
       "indexReference": "d",
       "fl": 24.547727131410593,
-      "glass": "923209 — coordinate class; supplier unconfirmed",
+      "glass": "E-FDS1 (HOYA, coordinate equivalent; supplier unconfirmed)",
       "cemented": "D1"
     },
     {
@@ -168,7 +171,7 @@ const LENS_DATA = {
       "vd": 81.61,
       "indexReference": "d",
       "fl": 45.818330889507834,
-      "glass": "497816 — coordinate class; supplier unconfirmed",
+      "glass": "FCD1 (HOYA, coordinate equivalent; supplier unconfirmed)",
       "cemented": "D2",
       "apd": "inferred",
       "apdNote": "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; Laowa markets two ED elements. The patent publishes no partial-dispersion data."
@@ -207,7 +210,7 @@ const LENS_DATA = {
       "vd": 31.16,
       "indexReference": "d",
       "fl": -36.148975419961516,
-      "glass": "689312 — coordinate class; supplier unconfirmed",
+      "glass": "E-FD8 (HOYA, coordinate equivalent; supplier unconfirmed)",
       "cemented": "D3"
     },
     {
@@ -233,7 +236,7 @@ const LENS_DATA = {
       "vd": 81.61,
       "indexReference": "d",
       "fl": -65.84889336016094,
-      "glass": "497816 — coordinate class; supplier unconfirmed",
+      "glass": "FCD1 (HOYA, coordinate equivalent; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; Laowa markets two ED elements. The patent publishes no partial-dispersion data."
     },
@@ -265,7 +268,7 @@ const LENS_DATA = {
       "d": 1.7626,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 30.197
+      "sd": 35
     },
     {
       "label": "3",
@@ -393,7 +396,7 @@ const LENS_DATA = {
       "d": 1.0,
       "nd": 1.68893,
       "elemId": 10,
-      "sd": 12.2
+      "sd": 16
     },
     {
       "label": "19",
@@ -433,7 +436,7 @@ const LENS_DATA = {
       "d": 5.9427,
       "nd": 1.87156,
       "elemId": 13,
-      "sd": 23
+      "sd": 24
     },
     {
       "label": "24",
@@ -441,7 +444,7 @@ const LENS_DATA = {
       "d": 40.3171,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 23
+      "sd": 24
     }
   ],
   "asph": {},

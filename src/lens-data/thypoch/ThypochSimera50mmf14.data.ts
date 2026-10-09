@@ -8,6 +8,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * Figure 1 (to scale, 0.108 mm/px at 150 dpi) and floor-checked by real-ray trace at f/1.45 in both focus
  * states. Surfaces 5 and 9 follow the drawn optical extent (flat annuli outside it); 8A stays at 10.95 mm,
  * the largest value the default cross-gap limit admits in the 1.79 mm gap 8A-9 (the figure draws 11.0).
+ * The L5/L6 doublet (surfaces 10, 11) shares 12.6 mm with L7 because the figure draws the two level.
  * Source summary residuals and rounded optics are preserved without optimization.
  * CN118244463A controls; B grant changes summaries but not surfaces. D0 is first-surface distance.
  */
@@ -51,7 +52,7 @@ const LENS_DATA = {
       1
     ]
   },
-  "focusDescription": "G1 first six powered elements and stop move objectward 9.32 mm relative to fixed rear G2 and image plane; first-vertex coordinate origin moves with G1. Only native gap states supplied; interpolation is not a measured cam law. D0=370mm is object-to-first-surface; closeFocusM adds the authored physical track. Native rounded residual defocus is retained.",
+  "focusDescription": "Floating focus: G1 (L1-L6 with the stop) moves 9.32 mm toward the object while G2 (L7, L8) stays fixed to the image plane, so D11 opens from 0.39 mm at infinity to 9.71 mm at the patent's near state (object 370 mm in front of the first surface, about 0.45 m from the image plane). Only these two states are published; intermediate positions are interpolated, not a measured cam law. The patent's rounded values leave a small residual defocus at the near state.",
   "specs": [
     "8 ELEMENTS / 6 GROUPS",
     "DESIGN f = 51.76 mm",
@@ -83,8 +84,8 @@ const LENS_DATA = {
       "fl": 47.32078246523686,
       "glass": "Unmatched (native nd=1.50000, vd=81.60; no tight six-vendor coordinate match)",
       "cemented": "D1",
-      "apd": "inferred",
-      "apdNote": "ED class inferred from the source-rounded nd=1.50 and νd=81.60; the patent names L2 as the high-Abbe element and Thypoch marks this position ED. No partial-dispersion data is published."
+      "apd": "patent",
+      "apdNote": "CN118244463A claim 9 and paragraphs 0068-0069 name L2 (νd = 81.6) the target lens and state that it is made of ultra-low-dispersion glass; Thypoch marks the same position ED. The patent prints nd to two decimals and no partial-dispersion data, so no catalog glass is assigned."
     },
     {
       "id": 3,
@@ -241,7 +242,7 @@ const LENS_DATA = {
       "d": 6.12,
       "nd": 1.88,
       "elemId": 6,
-      "sd": 12.8
+      "sd": 12.6
     },
     {
       "label": "11",
@@ -249,7 +250,7 @@ const LENS_DATA = {
       "d": 0.39,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 12.8
+      "sd": 12.6
     },
     {
       "label": "12",

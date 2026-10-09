@@ -12,6 +12,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * S7 SD14.1mm (the gap 6-7 shared radius) validates literal rows only, not unrounded manufacturing tolerances.
  * 2026-10-09 SD pass vs Figure1 (scale 0.0681 mm/px, 5-state real-ray floor): S6 14.2->16.5 (L3 drawn square-cut),
  * S17/S18 10->9.5 (D3 drawn as one square block); other rims within ~5% of the figure and retained.
+ * Second review: S8/S9 14.5->15.5 (Figure1 draws the D1 block at 15.7 mm, taller than L12; S7 stays pinned at 14.1).
  * PUBLISHED MF/AF states are separate complete configurations of the same lens.
  * Interpolated positions are app convenience, not a published cam or AF law.
  * No finiteConjugates certification: AF object labels lack a clear reference datum
@@ -67,8 +68,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 89.695704,
       glass: "FCD1 (HOYA, coordinate equivalent)",
-      apd: "inferred",
-      apdNote: "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; Laowa marks elements 2 and 3 as ED. The patent publishes no partial-dispersion data.",
+      apd: "patent",
+      apdNote: "Patent ¶0060 and ¶0090 describe this G2a glass (nd=1.49700, νd=81.61) as ultra-low-dispersion fluor-crown, and Laowa marks elements 2 and 3 as ED. The patent publishes no partial-dispersion data.",
       role: "Low-dispersion positive singlet in MF group G2a.",
     },
     {
@@ -81,8 +82,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 74.376594,
       glass: "FCD1 (HOYA, coordinate equivalent)",
-      apd: "inferred",
-      apdNote: "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; Laowa marks elements 2 and 3 as ED. The patent publishes no partial-dispersion data.",
+      apd: "patent",
+      apdNote: "Patent ¶0060 and ¶0090 describe this G2a glass (nd=1.49700, νd=81.61) as ultra-low-dispersion fluor-crown, and Laowa marks elements 2 and 3 as ED. The patent publishes no partial-dispersion data.",
       role: "Second low-dispersion positive singlet in G2a; no unsupported source asphere terms invented.",
     },
     {
@@ -263,7 +264,7 @@ const LENS_DATA = {
       d: 6.3085,
       nd: 1.9229,
       elemId: 5,
-      sd: 14.5,
+      sd: 15.5,
     },
     {
       label: "9",
@@ -271,7 +272,7 @@ const LENS_DATA = {
       d: 7.8658,
       nd: 1.0,
       elemId: 0,
-      sd: 14.5,
+      sd: 15.5,
     },
     {
       label: "10",
@@ -463,6 +464,6 @@ const LENS_DATA = {
     order: 0,
   },
   focusDescription:
-    "PUBLISHED MF: literal infinity and two source finite spacing states. G2 and stop move objectward; G1 and G3 remain fixed. Native signed magnifications are -1.0x and -1.5x. Calculated paraxial object-to-image stations are 355.098678 mm and 304.755369 mm. closeFocusM and focusPositions use these calculated distances, not the marketed 0.30 m MF or 1.5 m original AF limits. Interpolated inverse-distance UI labels can differ from the physical conjugates between source stations. Interpolation is not a published cam law. No finiteConjugates certification or firmware combined-mode model. Native public-ray launch and effective-f-number summaries are separate approximate quantities.",
+    "MF configuration, from the patent's MF table: infinity and two published close stations at -1.0x and -1.5x. G2 and the stop move together toward the object, 31.05 mm in total; G1 and G3 stay fixed. Calculated paraxial object-to-image distances at the two stations are 355.098678 mm and 304.755369 mm; the slider scale uses these calculated distances, not the marketed 0.30 m MF or 1.5 m original AF limits. Between the three published states the spacings are interpolated for display only: this is not a published cam law, and distance labels between stations can differ from the physical conjugates. The combined MF-plus-AF use of the production lens is not modeled, and the launch and effective-f-number readouts at close focus are approximate.",
 } satisfies LensDataInput;
 export default LENS_DATA;

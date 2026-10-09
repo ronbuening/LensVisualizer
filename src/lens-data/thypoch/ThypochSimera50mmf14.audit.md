@@ -220,3 +220,51 @@ than the f/1.45 axial beam of the tabulated prescription needs; the ray floor wa
 - Glass: all eight elements stay Unmatched for the reason recorded for the Ksana 21mm: two-decimal source indices, so a catalog curve would offset the colour channels from the reference trace. Abbe-number-exact candidates, for a later reader only: M-TAF101 class for the aspherical L4 (1.77/49.24), H-ZLaF68N (1.88/39.22), E-F5 class (1.60/38.01), NBFD25 (1.85/25.15), FCD1 / H-FK61 class (1.50/81.6).
 - L2 tagged `apd: "inferred"` (the patent's high-Abbe element and the maker's ED position).
 - Metadata: `specs` and subtitle put in catalog form.
+
+## 2026-10-09 — Second review: diagram, labels and movement
+
+Independent second look at the rendered section, its labels and the focus movement against CN118244463A Figure 1
+(PDF page 18, Example 1 at infinity), Tables 1a-1c (PDF pages 7-8), paragraphs 0054-0069 and claims 8-9. No maker
+construction diagram was supplied for this review.
+
+Figure re-measurement (lower half, axis at y = 498 px, 150 dpi native raster): surface 1 to IMAGE spans 637 px for
+68.79 mm, 0.1080 mm/px, and all fifteen vertex crossings fall within 1 px of the prescription. Rim heights read:
+L1 17.6-17.7 mm, L2/L3 14.8-15.0, L3 rear face ending at 11.0 where a flat annulus runs out to the block edge, L4
+10.9-11.0 (square), L5 front face ending at 10.5-10.9 with a flat step out to the block edge, L5/L6 11.9-12.0,
+L7 12.0-12.1, L8 13.0-13.1. These agree with the first pass; its values for surfaces 1-9 and 12-15 are kept.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `sd` of surfaces 10 and 11 (L5/L6 rear doublet) | 12.8 | 12.6 | The figure draws the L5/L6 block and L7 level (110-111 px against 111 px; L7 is the taller by at most 1 px). At 12.8 the doublet rendered 0.2 mm taller than L7 (12.6), reversing the drawn relation. 12.6 puts the two level and moves the doublet toward the drawn 12.0. The f/1.45 axial ray needs 11.37 and 11.41 there. |
+| `apd` on L2 | "inferred" | "patent" | Paragraphs 0068-0069 and claim 9 name L2 (Abbe number 81.6) the target lens and state that the target lens is made of ultra-low-dispersion glass. `apdNote` now cites this. |
+| `focusDescription` | Terse working notes | Plain description of which group moves, by how much and between which published states | Table 1b and paragraphs 0052, 0060-0062. No numeric value changed. |
+
+Results after the change: the surface validator reports no errors, the image-circle floor lists nothing, and traced
+coverage is 100 % (22.6° to 21.65 mm). The real-ray trace at f/1.45 shows no axial clip and no blocked chief ray at
+infinity (ω = 22.69°) or at the near state traced to the 21.6 mm image height. Engine half-field 26.61° and f/1.45 are
+the same before and after; the field is limited by surfaces 15, 1 and 3, not by the doublet. The full-field bundle is
+cut at surfaces 10 and 11 by 53 % of one side instead of 52 % and 51 %. The near-state on-axis limit is still 8A alone.
+
+Checked and found correct:
+
+- Group brackets G1 (surfaces 1-11, L1-L6 with the stop) and G2 (12-15, L7 and L8) match the figure and paragraph
+  0054. The patent's sub-groups G1A (L1-L3) and G1B (L4-L6) are not drawn on the site.
+- Cemented brackets D1 (surfaces 3-5, L2+L3) and D2 (9-11, L5+L6) match paragraph 0055.
+- Element designations L1-L8 are the patent's own. Each `type` agrees with the signs of the radii and with the power
+  signs of Table 1f. Aspheric markers are on 7A and 8A only (paragraph 0063, Table 1c).
+- The stop is drawn between L3 and L4, as in the figure.
+- Focus: `var` key "11" is [0.39, 9.71], infinity first, as in Table 1b. The movement overlay shows G1 travelling
+  9.32 mm away from the focus plane and G2 stationary. The slider runs from infinity to 45 cm (370 mm object distance
+  plus the 78.11 mm near-state track).
+
+Open limitations:
+
+- 8A stays at 10.95 mm. At 11.0 the validator refuses the 8A-9 gap (combined sag 1.62 mm against 1.611 mm allowed of
+  1.790 mm, fraction 0.906); the surfaces do not cross. A `gapSagFrac` of 0.91 would admit 11.0 and make L4 exactly
+  square; that field was not edited.
+- The flat annuli on the rear of L3 (surface 5, 11.3 mm) and the front of L5 (surface 9, 11.0 mm) still render as
+  straight tapers. Raising either face to the block height is not possible: surface 5 at 15.4 mm would sag 11.2 mm
+  into a 5.86 mm space ahead of the stop, and surface 9 above 11.0 runs into L4.
+- L1, L2/L3, L7 and L8 remain 2-4 % above the figure, the first two because of the f/1.45 axial ray floor.
+- The ray-sample counts in the analysis (71,720 launches and their outcomes) were computed with the package's original
+  rims and were not recomputed after either semi-diameter pass.

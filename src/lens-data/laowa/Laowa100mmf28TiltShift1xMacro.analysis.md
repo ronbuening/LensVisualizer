@@ -5,7 +5,7 @@
 **Filed:** 2024-06-12
 **Published:** 2024-09-03
 **Inventor:** Li Dayong
-**Applicant:** Anhui ChangGeng Optical Technology Co., Ltd.
+**Applicant:** Anhui Changgeng Optics Technology Co., Ltd.
 **Title:** 中长焦移轴微距镜头 (Medium-telephoto tilt-shift macro lens)
 **Embodiment analyzed:** Example 1
 
@@ -70,7 +70,7 @@ This biconcave negative member begins D1. Its rear face is cemented to L5. The t
 
 ### L5 — Biconvex Positive
 
-nd = 1.92286, νd = 20.88. Glass: 923209 — coordinate class; supplier unconfirmed. f = +24.547727 mm (isolated in air).
+nd = 1.92286, νd = 20.88. Glass: E-FDS1 (HOYA, coordinate equivalent; supplier unconfirmed). f = +24.547727 mm (isolated in air).
 
 This biconvex positive element completes D1. Its high-index, low-Abbe coordinate differs from that of its negative partner. The prescription establishes the coordinate contrast, but does not publish enough spectral data to isolate the pair’s secondary-spectrum correction.
 
@@ -82,7 +82,7 @@ This biconcave negative member begins D2. It is cemented to a lower-index positi
 
 ### L7 — Biconvex Positive
 
-nd = 1.49700, νd = 81.61. Glass: 497816 — coordinate class; supplier unconfirmed. f = +45.818331 mm (isolated in air).
+nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA, coordinate equivalent; supplier unconfirmed). f = +45.818331 mm (isolated in air).
 
 This biconvex positive member completes D2 and retains the 81.61 Abbe value. The manufacturer’s marketing of two ED elements is useful correlation evidence; it is not proof of the exact production assignment or supplier of this patent coordinate.
 
@@ -100,7 +100,7 @@ This negative meniscus begins the independent rear correction assembly G3. The s
 
 ### L10 — Biconcave Negative
 
-nd = 1.68893, νd = 31.16. Glass: 689312 — coordinate class; supplier unconfirmed. f = -36.148975 mm (isolated in air).
+nd = 1.68893, νd = 31.16. Glass: E-FD8 (HOYA, coordinate equivalent; supplier unconfirmed). f = -36.148975 mm (isolated in air).
 
 This biconcave negative member begins rear doublet D3. Its common interface with L11 uses the actual downstream index and element identifier. No intervening artificial cement surface or thickness is added.
 
@@ -112,7 +112,7 @@ This biconvex positive member completes D3. Its isolated positive power is disti
 
 ### L12 — Plano-Concave
 
-nd = 1.49700, νd = 81.61. Glass: 497816 — coordinate class; supplier unconfirmed. f = -65.848893 mm (isolated in air).
+nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA, coordinate equivalent; supplier unconfirmed). f = -65.848893 mm (isolated in air).
 
 This plano-concave negative singlet retains source R22 = 0.0000 in the evidence record. The implemented rear surface uses the explicitly justified plane convention. Figure 1 (PDF page 10) shows that face planar; Example 3 surface 15 STOP on PDF page 9 is also printed 0.0000, directly demonstrating the same publication’s zero-plane notation. Only that sibling notation is used, with no mixing of prescriptions. A physical zero-radius sphere is not used.
 
@@ -128,9 +128,9 @@ The native coordinates were screened without an assumed supplier against primary
 
 | Native nd / νd | Elements | Model disposition |
 |---|---|---|
-| 1.49700 / 81.61 | L7, L12 | 497816 — coordinate class; supplier unconfirmed |
+| 1.49700 / 81.61 | L7, L12 | FCD1 (HOYA, coordinate equivalent; supplier unconfirmed) |
 | 1.53031 / 67.42 | L1 | Unmatched (native nd=1.53031, vd=67.42; supplier unconfirmed) |
-| 1.68893 / 31.16 | L10 | 689312 — coordinate class; supplier unconfirmed |
+| 1.68893 / 31.16 | L10 | E-FD8 (HOYA, coordinate equivalent; supplier unconfirmed) |
 | 1.78737 / 23.92 | L4 | Unmatched (native nd=1.78737, vd=23.92; supplier unconfirmed) |
 | 1.87156 / 41.46 | L13 | Unmatched (native nd=1.87156, vd=41.46; supplier unconfirmed) |
 | 1.87510 / 45.25 | L2 | Unmatched (native nd=1.87510, vd=45.25; supplier unconfirmed) |
@@ -139,11 +139,11 @@ The native coordinates were screened without an assumed supplier against primary
 | 1.89141 / 33.77 | L3 | Unmatched (native nd=1.89141, vd=33.77; supplier unconfirmed) |
 | 1.90326 / 27.29 | L11 | Unmatched (native nd=1.90326, vd=27.29; supplier unconfirmed) |
 | 1.91392 / 23.35 | L6 | Unmatched (native nd=1.91392, vd=23.35; supplier unconfirmed) |
-| 1.92286 / 20.88 | L5 | 923209 — coordinate class; supplier unconfirmed |
+| 1.92286 / 20.88 | L5 | E-FDS1 (HOYA, coordinate equivalent; supplier unconfirmed) |
 
 The independent source-precision screen uses |Δnd|≤0.000005 and |Δνd|≤0.005, separately from the broader coordinate-class screen above. Three of the twelve distinct native pairs have at least one nominal catalog row in that tighter box. The L8 pair 1.88100/40.15 has only nearby rows, including HOYA TAFD33 with Δνd=−0.01 and CDGM H-ZLaF73 with Δνd=+0.01; the model labels it with the HOYA row as a coordinate-equivalent dispersion proxy, not a supplier identity. OHARA L-NBH54 remains an L-prefix candidate where discussed, never silently S-prefixed. These catalog results do not identify the actual production glass.
 
-A numerical class/code is a coordinate-compatible representation. Unmatched identifies an unresolved native coordinate under the stated evidence screen; it does not assert that no approximate commercial alternative exists. Where the runtime resolves a numerical code to a catalog curve, that spectrum is a proxy. No production supplier, melt, anomalous partial dispersion or complete secondary-spectrum correction is established by a two-coordinate match.
+A named HOYA row is a coordinate-equal representation used as a dispersion proxy. Unmatched identifies an unresolved native coordinate under the stated evidence screen; it does not assert that no approximate commercial alternative exists. The catalog spectrum traced for those elements is a proxy. No production supplier, melt, anomalous partial dispersion or complete secondary-spectrum correction is established by a two-coordinate match.
 
 The manufacturer markets two ED elements and one high-index element. In Laowa's construction diagram the high-index element sits at L5 and the first ED element at L7, as in Example 1, but the second ED element is drawn at about the L11 position, where Example 1 has 1.90326/27.29; the patent's second 1.497/81.61 glass is the negative L12. The diagram is small, so this reading is approximate. Those labels are production context and are not used to rewrite patent indices, Abbe numbers or per-element assignments. No nC, nF, ng, ΔPgF or APD flag is added because the selected source does not supply those quantities and no supplier identity is established. The resulting model does not certify apochromatic performance. [1,2]
 
@@ -186,7 +186,7 @@ Paragraph 0029 truncates the condition 6 denominator as SB_; the explicit defini
 
 ## Aperture and Field Limits
 
-No numerical clear apertures or iris diameter are published. Every stored semi-diameter is inferred. Initial Figure 1 silhouette estimates were constrained by positive element edge thickness, actual spherical rim slope and shared-band air-gap clearance, and checked at the authored and representative interpolated states. A later pass measured Figure 1 directly: eleven elements agree with the drawing within about 6%, and the concave front faces of L10 and L12 now end where the figure's flat mounting annulus begins (12.2 mm and 18.9 mm) instead of running to the element's outer height. Such inferred rims cannot establish the exact manufactured silhouette.
+No numerical clear apertures or iris diameter are published. Every stored semi-diameter is inferred. Initial Figure 1 silhouette estimates were constrained by positive element edge thickness, actual spherical rim slope and shared-band air-gap clearance, and checked at the authored and representative interpolated states. A later pass measured Figure 1 directly: the element heights agree with the drawing within about 3%. Figure 1 draws L1 and L10 as square-cut blocks, so both faces of each carry the drawn outer height (35 and 16 mm); L10's concave front therefore runs past the point where the figure's flat mounting annulus begins (about 12.2 mm), and its modeled rim is thicker than drawn. L12's concave front stops at 18.9 mm, where its drawn annulus begins, so its rim keeps close to the drawn thickness. L13 is 24 mm, one millimetre taller than L12 as drawn. The front face of L2 stays at 30.197 mm because the facing surfaces of L1 and L2 meet at 32.2 mm. Such inferred rims cannot establish the exact manufactured silhouette.
 
 The physical stop radius is 12.468768132 mm, obtained by exact axial tracing of an entrance ray at EFL/(2×2.87). This reproduces the current application’s nominal-aperture calibration. The corresponding Gaussian EFL/paraxial-pupil-diameter ratio is 2.802261; the difference is retained rather than calling both definitions f/2.87. Matching the target after calibration is not independent evidence for a source-published diaphragm dimension.
 

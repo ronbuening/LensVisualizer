@@ -255,3 +255,42 @@ Open limitations: the scratch trace does not resolve the lower full-field ray th
 - Glass: all eight elements stay Unmatched. Table 1a prints nd to two decimals, and a named catalog curve would trace the colour channels at the catalog index (for example 1.883 against the printed 1.88) while the reference trace keeps the printed value, separating green from the reference focus. Abbe-number-exact candidates, recorded for a later reader only: H-ZLaF90 (2.00/25.43), FF8 (1.75/25.05), H-ZLaF68N (1.88/39.22), S-LAL18 class (1.73/54.68), E-FD15 class (1.70/30.05), BACD5 class (1.59/61.25), FCD1 / H-FK61 class (1.50/81.6).
 - L1 tagged `apd: "inferred"` (ED class from 1.50/81.60 and the maker's ED marking). The maker's second ED marking at L6 is not tagged: the patent glass there is 1.73/54.68.
 - Metadata: `specs` put in catalog form.
+
+## 2026-10-09 — Second review: diagram, labels and movement
+
+Compared: the local lens page (infinity, near station, focus-movement overlay, element inspectors for L1 and L8) against Figure 1 on PDF page 17, Tables 1a–1d on PDF pages 8–9 and paragraphs 0079–0094. The figure was re-profiled independently at 300 dpi on both sides of the axis. Vertex crossings from S1 to S15 span 759 px for 34.78 mm (0.0458 mm/px); S1 to S7 gives 0.0459 mm/px.
+
+Semi-diameters: no value changed. Second-pass readings against the stored values:
+
+| Element | Figure (px → mm) | Stored | Finding |
+|---|---|---|---|
+| L1 front | 254 → 11.65 | 11.6 | agrees; L1 is drawn 1.45 times the height of L2, and the page shows 1.43, so the large front element is as drawn |
+| L1 rear (surface 2) | rear flat at 6.04 mm behind the front vertex, where R = 10.57 reaches 8.8 mm | 9.5 | 8 % over; kept, see below |
+| L2 | 175–176 → 8.05, square | 8.1 / 8.1 | agrees |
+| L3 block | 161 → 7.4 | 7.2 front | agrees within 3 % |
+| L3/L4 junction and L4 | 117–118 → 5.4; L3's rear flat sits where the R = 12.22 junction reaches 5.44 mm | 5.5 / 5.5 | agrees |
+| L5 | 110 → 5.05, square | 5.2 / 5.2 | agrees within 3 % |
+| L6 | 133 → 6.1, square; junction ends at 6.1 | 6.2 front, 6.5 junction | junction 6.5 % over; kept, see below |
+| L7 block | 145 → 6.65 | 6.5 | agrees within 3 % |
+| L8 | 168 → 7.7, square | 7.7 / 7.7 | agrees; drawn 16 % taller than L7, page shows 18 % |
+
+Visible differences that remain, all from the renderer joining an element's front and rear rim points with one straight edge:
+
+- L3/L4. The figure draws L3 as a rectangular 7.4 mm block with a flat rear land and L4 (5.4 mm) set into it. The page shows L3 tapering from 7.2 to 5.5 mm and L4 square. The alternative, the junction back at 7.2 mm, makes L3 square but turns L4 into a wedge as tall as L3 and removes the step between them, which contradicts the figure in two places instead of one. An intermediate junction height bevels both. The first-pass choice is the closest admissible picture.
+- L1. The figure gives L1 a cylindrical rim and a flat rear land that stops 0.4 mm short of L2's front vertex. On the page the edge is a bevel from 11.6 to 9.5 mm and the cusp reaches 1.3 mm further back, level with L2's rim. Lowering surface 2 to the drawn 8.8 mm passes the validator and leaves the 7.68 mm full-field chief ray clear, but surface 2 is the rim that limits the engine half-field (40.2°, already below the patent's 45.31°), so it stays at 9.5 mm.
+- L6/L7. The figure draws L6 square at 6.1 mm with L7 standing 0.55 mm proud. The page shows L6 widening from 6.2 to 6.5 mm into a square L7. A 6.2 mm junction would square L6 and passes the validator, but it moves the bevel onto L7 and raises the one-sided trimming of the full-field bundle at surface 12 from 14 % to 24 %, so the stored value, inside measurement noise, is kept.
+
+Changes:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| L8 `type` (and the analysis heading) | Positive Meniscus (Asph) | Positive Meniscus (2× Asph) | Paragraph 0094 and Table 1a: surfaces 14 and 15 are both aspherical; catalog form for a two-asphere element |
+| `focusDescription` | field names and shorthand in the slider text | plain wording with the same facts and the D15 values | Table 1b; paragraphs 0080–0086 |
+
+Found correct: group brackets G1 (surfaces 1–7, L1–L4) and G2 (surfaces 9–15A, L5–L8) per paragraphs 0083–0085, both positive (Table 1d: 199.88 and 29.46 mm; model +209.3 and +29.5 mm); doublet brackets over L3+L4 (5–7) and L6+L7 (11–13); element names L1–L8 as in the figure; every element type agrees with the signs of R in Table 1a; aspheric markers on 14A and 15A only; stop between L4 and L5; `apd: "inferred"` on L1 only, shown in the inspector with its note.
+
+Movement: Table 1b gives D15 = 16.71 mm at infinity and 17.67 mm at 0.5 m, and paragraphs 0081 and 0086 link G1, G2 and the stop. The `var` pair is in that order; the overlay shows both groups moving 0.96 mm toward the object with the image plane fixed, and the page at the near station shows the whole lens displaced objectward with D15 reading 17.67. The slider's far end reads 55 cm, the object-to-image distance for the patent's 500 mm object-to-first-vertex state.
+
+Engine half-field 40.23° and f/3.50 are as before; the validator reports no errors and the trace shows no axial or chief-ray clip at infinity or the near station.
+
+Open limitations: the three bevels listed above; a flat-land rim in the renderer would remove all of them without changing any semi-diameter.

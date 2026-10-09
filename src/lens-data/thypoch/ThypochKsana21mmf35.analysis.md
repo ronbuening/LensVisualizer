@@ -105,7 +105,7 @@ nd = 1.70, νd = 30.05. Glass: Unmatched (dense flint) (class only). f = -11.250
 
 L7 is the negative rear member of D2. The positive/negative pair is net negative in isolation. Its lower Abbe number relative to L6 is consistent with a chromatically balancing pairing, but the available source numbers do not establish partial dispersion or an APO result. (Table 1a, PDF p8; group membership ¶0084–0085.)
 
-### L8 — Positive Meniscus (Asph)
+### L8 — Positive Meniscus (2× Asph)
 
 nd = 1.59, νd = 61.25. Glass: Unmatched (crown) (class only). f = +179.280914 mm.
 

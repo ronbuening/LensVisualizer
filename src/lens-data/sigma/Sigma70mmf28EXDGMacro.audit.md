@@ -169,3 +169,44 @@ Limitations. Fig. 1 is a schematic patent drawing, not a dimensioned one; values
 - Glass: eight elements relabelled from class descriptions to the coordinate-equal HOYA rows already listed in the analysis (E-FEL2, TAF1, LAC14, E-F5, E-FL5, FCD1, LACL60, TAFD5G; catalog-minus-source Δnd 0, |Δνd| ≤ 0.04), so they trace on catalog dispersion curves instead of the Abbe fallback. TAF1 resolves through the shared 773/496 class to the S-LAH66 curve. The names are coordinate equivalents, not supplier identifications.
 - L6 and L7 (1.56045/71.6) stay Unmatched: no row within source precision in the local HOYA, OHARA, Sumita or Hikari catalog files or the application catalog. Their violet channel keeps the patent-derived dPgF.
 - Metadata: patent number written with the six-digit serial (JP 2008-020656 A); `specs` and subtitle put in catalog form. Display name unchanged (Sigma's "MACRO 70mm F2.8 EX DG").
+
+## 2026-10-09 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity, at the 0.5× station and at life size (plus the focus movement overlay and the element inspector for E6 and E7) against `patents/JP2008020656A.pdf` Fig. 1 (PDF page 10, panels A and B), the Example 1 table and focus table (¶0022–0023, PDF page 7), Table 1 (PDF page 9) and the claims/¶0005–0020. No maker construction diagram was supplied. Element labels in the sections above (L1–L10) are the former model names; they correspond one-to-one to E1–E10 below.
+
+Silhouette. Fig. 1 was re-measured independently on the embedded 1-bit raster (1200 × 800 px, axis rows 240 and 640). Vertex crossings in panel B give 360 px for S1→S16 (61.54 mm, 5.850 px/mm), confirming the first-pass scale. Panel B has no labels, and its upper and lower outlines agree to 1 px; half-heights are the outline run plus 0.5 px.
+
+| Surface | Before | Figure (px → mm) | After | Evidence |
+|---|---:|---:|---:|---|
+| 13, 14 (E7 / L3A) | 14.5 | 80.5 → 13.76 | 13.8 | flat rim x 445–453, both sides |
+| 15, 16 (E8 / L3B) | 14.5 | 82.5 → 14.10 | 14.1 | flat rim x 468–475, both sides |
+| 17, 18 (E9) | 15 | 84.5 → 14.44 | 14.4 | flat rim x 663–677; the small rear chamfer (to 81.5 px) is not modeled |
+
+The figure draws the five elements behind the stop as an even staircase, 13.25 / 13.76 / 14.10 / 14.44 / 14.96 mm. The site drew three levels (13.4, 14.5 ×2, 15 ×2): E7 stood 1.1 mm above the cemented pair where 0.5 mm is drawn, E7 and E8 were level, and E9 and E10 were level. Each stored value was within 5 % of the drawing, but the order and size of the steps between neighbours was not; the rims now read 13.4 / 13.8 / 14.1 / 14.4 / 15.0. All three elements are drawn square-cut and keep both faces at one height.
+
+Retained after re-measurement: S1 20 (115.5 px, 19.74 mm); S3/S4 18 (105.5 px, 18.03); S5/S6 15.6 (91.5 px, 15.64); S7 13.1 and S8 12.1 (76.5 and 70.5 px); S10 11.7 (68.5 px); S11/S12 13.4 (77.5 px, 13.25); S19/S20 15 (87.5 px, 14.96). S2 stays at 20: the figure draws E1 as a squared block with a 4.6 mm flat land and only a small rear-corner chamfer (to 107.5 px, 18.4 mm). A trial at 18.4 turned the whole edge into a slant and lowered the engine half-field estimate from 27.57° to 26.39°, so the equal-face block is both the closer picture and the larger field.
+
+Ray floors for the new rims. Infinity axial marginal heights at F/2.8823 are 11.29–11.31 mm on S13/S14, 10.92–11.11 on S15/S16 and 10.16–10.45 on S17/S18. An independent finite-conjugate trace through the fixed 10.4968 mm iris gives larger heights in the L3 pair, up to 12.04 mm at 0.5× and 12.50 mm at life size (S14), still 1.3 mm inside the new 13.8 mm rim; S17/S18 fall to 8.9 and 8.2 mm. Corner chief-ray heights on the changed surfaces are at most 7.44 mm. No surface clips the axial ray or blocks the corner chief ray in any published state. The surface validator reports no errors, the image-circle check 0 undersized, and traced corner coverage is 100 % (17.3°, 21.65 mm). Engine half-field 27.57° and stop radius 10.4968 mm (F/2.8823) are identical before and after.
+
+Vignetting. At infinity the one-sided cut of the unvignetted corner bundle on the rear elements rises from 2–10 % to 9–14 % (largest at S16); at 0.5× it is 0–2 % and at life size zero. This follows the drawn rims and is left as real off-axis vignetting.
+
+Labels. The patent's hierarchy is: first group = lens group G1 (the front negative meniscus) + lens group G2; G2 = sub-group L1 (three lenses), stop, cemented sub-group L2 (L2A + L2B), sub-group L3 (L3A + L3B); second group = the last two lenses. The former element names L1–L10 clashed with this (the model's "L2" was a member of the patent's L1, while the cemented bracket was correctly labelled L2).
+
+| Field | Before | After |
+|---|---|---|
+| element `name` | L1 … L10 | E1 … E10 |
+| `diagramLabel` on elements 5–8 | none (numbers shown) | L2A, L2B, L3A, L3B, as lettered in Fig. 1 |
+| `cemented` on elements 5, 6 | D1 | L2, matching the bracket |
+| `groups` text | FIRST (+) / SECOND (-) | 1ST GROUP (+): G1, G2 / 2ND GROUP (-) |
+| `role` text | mixed block/subgroup wording | patent group, sub-group and lens designation stated per element |
+| `focusDescription` | "all optical blocks extend objectward" | names the two groups, their travel and the D16 change |
+
+The two group brackets keep their surface ranges (S1–S16, S17–S20), which are the two mechanical units that the movement overlay plots; G1 and G2 are not separate brackets because they move together. The single cemented bracket spans S10–S12. Checked and found correct: element types against the signs of R for all ten elements (S7 and S13 are weak finite curves, S17 a true plane), no aspheric markers, and the stop drawn at S9 between E4 and L2A where Fig. 1 places its arrows.
+
+Tags. The `apd: "patent"` tags on L2B, L3A and L3B agree with the patent: claim 2 calls L2B an anomalous-partial-dispersion glass, ¶0015 and ¶0018 call L3A and L3B anomalous-dispersion lenses, and Table 1 lists ΔPg,F 0.0285, 0.0285 and 0.0443. Converting from the patent's line 0.6575 − 0.002νd to the application's 0.6438 − 0.001682νd gives 0.01943 and 0.03205, as stored. These are the three elements Sigma marks SLD.
+
+Movement. `var` index 0 is infinity and the last index is life size; D16 = 1.5 / 16.8 / 31.0 and BF = 55.8157 / 65.7028 / 77.5409 match ¶0023. The first group moves 25.19 mm then 51.23 mm toward the object and the second group 9.89 mm then 21.73 mm, with no reversal; the overlay shows both tracks running objectward with a maximum travel of 51.23 mm, and the life-size render reproduces panel B (the D16 gap measures 181 px, 30.9 mm, in the figure). The slider's near end reads 26 cm (object-to-image 255.08 mm).
+
+Glass. 1.56045/71.6 (L2B, L3A) was searched again in the application catalog and the local HOYA, OHARA and Sumita files; the nearest rows are FCD500 (1.55397/71.76) and K-GFK70 (1.56907/71.3), neither within source precision. It stays Unmatched.
+
+Open limitations. Chamfers remain face steps or are omitted (E1 rear corner, E9 rear corner). `clearap` traces infinity-conjugate rays in the extended states; the finite-conjugate figures above come from a separate spherical trace of the same prescription.

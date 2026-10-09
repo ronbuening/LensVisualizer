@@ -165,3 +165,46 @@ Open limitations:
 
 - Glass: the six code labels already resolve to catalog curves at the printed coordinates (804465, 728283, 620363, 694533); no change.
 - Metadata: `specs` and subtitle put in the form used by the Ultron 35mm f/1.7 L39 sibling; `apertureBlades: 10` added from the Cosina specification cited above. Display name unchanged.
+
+## 2026-10-09 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity (default view, element inspector for L6, focus-movement overlay) against patent Figure 3 (PDF page 8, the Example 2 section) and the Example 2 text. Figure 3 was re-measured independently at 400 dpi, axis at row 2569, 0.066 mm/px (surface 1 vertex at column 822.5, image plane at 2029.5: 1207 px for 79.6572 mm). No maker construction diagram was supplied.
+
+Correction to the first pass's vertex list: with that scale the tabulated vertices fall at columns 978 (surface 4), 997 (surface 5), 1045 (surface 6), 1221 (surface 8), 1244 (surface 9), 1392 (surface 10) and 1477 (12A). The first pass called the crossings at 995.5 and 1046 surfaces 4 and 5; they are surfaces 5 and 6. Its scale and rim readings are unaffected, and its sag-derived values were re-derived here from the corrected vertices.
+
+Figure readings (lower half, clear of the group leaders; upper half agrees within 1 px):
+
+| Element | Drawn outer rim | Drawn optical extent of faces | Stored before | Stored after |
+|---|---:|---|---|---|
+| L1 (21) | 22.5 mm | both faces to the rim | 23 / 23 | unchanged |
+| L2 (22) | 17.2 mm, 1.9 mm cylinder | rear face ends at a flat land in the plane of column 1032: 14.3 mm | 18 / 14.3 | unchanged |
+| L3 (23) | 15.3 mm, block from column 1033 to 1118 | front curve reaches the L2 land plane at 14.1–14.3 mm; rear curve ends at its flat land (column 1118) at 11.8 mm | 14 / 12 | unchanged |
+| L4 (24a) | 15.0 mm | front curve ends at the flat land (columns 1165–1167) at 11.7 mm | 11.8 / 15.5 | unchanged |
+| L5 (24b) | 15.0 mm, 1.1 mm cylinder | both faces to the rim | 15.5 / 16 | 15.5 / 15.5 |
+| L6 (25) | 15.2 mm, 2.2 mm cylinder | both faces to the rim | 16 / 16 | unchanged |
+
+| Change | Before | After | Evidence |
+|---|---|---|---|
+| Surface 10 `sd` | 16 | 15.5 | Figure 3 draws the cemented pair as one square-cut block (rim 226–227 px on both faces of L5). With 15.5 / 16 the renderer joined the two rims with a rearward-leaning spike; the edge thickness at 16 mm would be −0.66 mm. One rim moved, by 0.5 mm. |
+| `groups` | empty | G1 + (1–2), G2 + (3–4), G3 − (5–6), G4 − (8–10), G5 + (11A–12A) | The patent names five lens groups 21–25, positive, positive, negative, negative, positive (claim 1, ¶0010–0013), with stop 27 between the third and fourth. Computed group focal lengths +76.4, +100.4, −39.2, −239.7, +41.3 mm carry those signs. Same form as the Ultron 35mm f/1.7 L39 sibling. |
+| `diagramLabel` | none (numeric ids shown) | 21, 22, 23, 24a, 24b, 25 | Figure 3 numerals; 24a/24b are the concave and convex members of cemented group 24. Numerals 25a/25b are the aspherical faces of lens 25, not lenses. `name` stays L1–L6. |
+| `focusDescription` | began with the token "NO_INTERNAL_RECONSTRUCTION." | plain sentence, same wording as the Ultron sibling | Readability; content unchanged. |
+| Analysis text | "and the manufacturer section" among the semi-diameter sources; surface 10 quoted at 16 mm; no mention of the 12A reversal | manufacturer-section phrase removed; 9 and 10 quoted at 15.5 mm; 12A reversal described | No maker section was available to either figure pass; the reversal is a property of the tabulated coefficients (below). |
+
+Clearance with surface 10 at 15.5 mm: the surface validator reports no errors; the image-circle check lists no undersized surface; traced corner coverage is 100 % (23.2° to 21.65 mm); the chief ray to 22.10 mm (23.64°) passes every surface; axial marginal heights at f/1.53 are 13.52 mm at surface 9 and 13.72 mm at surface 10. Engine half-field 30.259° and f/1.53 are the same before and after, and the stop radius is unchanged. The five-sample fan still passes 5 of 5 at the default 18.155° field and 3 of 5 at 23.19° and 23.64°, with the same first-failure surfaces (4 and 9). Meridional transmission is 87.7 % → 87.6 % at 18.155° and 88.4 % → 88.4 % at 23.19°. Minimum shared-band edge thickness (0.1406 mm, L5 at 15.5 mm) and maximum rim angle (51.57°, surface 9) are unchanged.
+
+Checked and left alone:
+
+- Surface 5 (14.0 mm). Figure 3 seats L3 against the flat rear land of L2: the land plane lies 3.56 mm behind vertex 4, which the front curve of L3 reaches at 14.1 mm (14.3 mm one pixel later). The drawn 15.3 mm is the top of L3's flat land, not the extent of the curve, so the stored value is within 2 % of the drawn optical extent and the picture does not need a larger gap fraction. For the record, a gap fraction of 0.95 admits 14.3 mm (combined sag 1.170 of 1.2378 mm, ratio 0.945) and validates cleanly with the engine half-field at 30.259°; the limit is set by surface 4's 14.3 mm rim, since the check uses the shared band.
+- L5 at the drawn 15.0 mm. Surfaces 9 and 10 at 15.0 validate cleanly, leave the engine half-field at 30.259° and give the drawn-looking 0.88 mm edge, but the +0.75 sample of the default 18.155° fan then stops at surface 9 wide open and meridional transmission there falls to 86.4 %. Because that changes a clearance result and 15.5 mm is within 4 % of the figure, 15.5 / 15.5 was taken. The engine half-field loss the first pass reported for its rear-group trial comes from L6 alone (11A / 12A at 15.2 mm gives 29.678°), not from surfaces 9 and 10.
+- L4 front bevel. Surface 8 cannot be carried to the block height: at 15 mm its sag is 6.46 mm, past the stop 5.34 mm ahead. The 11.8 mm curve end matches the figure's land; the straight connector from 11.8 mm to the 15.5 mm rim of surface 9 stands in for the drawn land and cylinder. The same applies to the rear shoulder of L2 and both shoulders of L3.
+- L6 and the 12A reversal. The slope of 12A changes sign at 12.949 mm, where the sag is −1.323 mm; the sag is −0.881 mm at 15.2 mm and −0.366 mm at 16 mm. Figure 3 draws the rear face furthest forward (20 px, 1.32 mm) between 12.1 and 13.7 mm of height and returning by 2–4 px (0.13–0.26 mm) at the 15.2 mm rim. The f/1.53 axial marginal ray meets 12A at 12.97 mm, so no rim inside the turnover passes the stated beam and the figure confirms the designer used the surface beyond it. The figure-supported rim is 15.2 mm; the stored 16 mm shows about twice the drawn return. It was left because lowering L6 to 15.2 mm reduces the engine half-field from 30.259° to 29.678° (default off-axis field 18.155° → 17.807°) and would change the rim departures and ray counts quoted in the analysis; at 15.2 mm the departures are 1.092 mm (11A) and 2.026 mm (12A).
+- L1, L2 front: 2 % and 4.5 % above the figure; retained.
+- Element types against the radii and ¶0013/¶0021: two positive menisci convex to the object, negative meniscus convex to the object, biconcave plus biconvex cemented, biconvex with two aspherical faces. Aspheric markers on 11A and 12A only. Stop at surface 7 between L3 and L4. The cemented bracket D1 spans 8–10. No `apd` tags; the patent text names no special-dispersion glass.
+- Inspector for L6 shows Biconvex Positive (2× Asph), nd 1.6935, vd 53.3, FL +41.26 mm, both coefficient sets.
+- Movement: the prescription is infinity-only (`var` empty, no zoom). The focus slider is disabled and reads "Not modeled"; nothing moves in the focus overlay. No order or direction to check.
+- Glass coordinates against the catalog: HOYA TAF3 (1.80420 / 46.5), E-FD10 (1.72825 / 28.32), E-F2 (1.62004 / 36.3) and LAC13 (1.69350 / 53.34) are all present and equal the printed values at the printed precision; M-LAC130 has vd 53.2 and does not. Labels were not changed.
+
+Open limitations: L6 stands 5 % taller than the figure and overdraws the 12A return; L3 renders 1.3 mm shorter than its drawn block and so below the doublet, which the figure draws 0.3 mm lower than L3; flat lands are rendered as chamfers; L5 has a 0.14 mm edge where the figure draws 1.1 mm.
+
+Coordinator follow-up, same day: the four six-digit glass codes are replaced by their coordinate-equal HOYA rows (TAF3 1.80420/46.50, E-FD10 1.72825/28.32, E-F2 1.62004/36.30, LAC13 1.69350/53.34). The codes had resolved to curves from three different vendors; one vendor's set is the more coherent proxy for a 1999 Cosina design, and no supplier is asserted. M-LAC130 (53.2) does not match the printed 53.3 for the aspheric element. The 12A rim stays at 16 mm although FIG. 3 supports about 15.2 mm: lowering 11A/12A reduces the engine half-field from 30.26° to 29.68°.

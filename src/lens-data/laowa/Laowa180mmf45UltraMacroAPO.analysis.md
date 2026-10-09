@@ -336,7 +336,9 @@ report zero hidden trimming, and the format and actual UI chief-ray checks pass 
 
 The cemented D3 block carries one 9.5 mm semi-diameter at S16, S17 and S18, as Figure 1 draws it; the unvignetted
 full-frame bundle needs at most 9.00 mm there at the five published states. The earlier sampled-ray statistics were
-taken with S6 at 14.2 mm and S17/S18 at 10.0 mm and were not repeated. These checks concern the chosen physical apertures and
+taken with S6 at 14.2 mm and S17/S18 at 10.0 mm and were not repeated. The D1 cement and rear surfaces, S8 and S9,
+carry 15.5 mm, close to the 15.7 mm block Figure 1 draws and above the 15.0 mm of L12, while L4's front face stays at
+the 14.1 mm shared radius; the doublet's edge therefore renders with a slight taper that the figure does not show. These checks concern the chosen physical apertures and
 sampled rays, not a guarantee of uniform illumination over every field, pupil coordinate, or intermediate focus.
 The source 7.02° half-field applies at infinity; using that angle as a finite-conjugate stress test does not assert
 that the patent publishes the same angular field at macro distances.
