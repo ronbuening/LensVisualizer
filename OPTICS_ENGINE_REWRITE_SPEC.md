@@ -1,653 +1,1291 @@
 # Optics Engine Rewrite Specification
 
-Replace the lens optics engine with a compiled, exact-trace pipeline that performs less preparation, allocation, and
-adapter work per request. Preserve the existing lens-data features, numerical accuracy, UI data contracts, supported
-analyses, and explicit unsupported states. This is an implementation specification; the stages below are future work.
+Restructure the lens optics engine and the authored lens-data format so the engine is easier to understand, change and
+verify. Adopt the tighter intersection-accuracy contract from
+[PR #774](https://github.com/ronbuening/LensVisualizer/pull/774) everywhere, and take the speed gains the restructure
+makes available. This is a plan for future work; nothing below has shipped.
 
-The implementation must proceed in order: **stage → phase → step**. Every step delivers a complete behavior with code
-and tests. Every step, phase, and stage ends with its own passing verification gate and commit. No production caller
-switches to an incomplete engine.
+Priorities, in order: **maintainability**, then **accuracy** (the contract below), then **speed**. When they conflict,
+the higher priority wins and the PR description records the trade-off.
 
-## Baseline and scope
+## Outcomes
 
-The correctness baseline is `fix/771-intersection-tolerance` at
-`4ad7fe8cbe87e37285b11c8396d627123f04ab4f`, including its latest Vivitar stop-clearance correction. The checkout used
-for this specification is `33ebdb30b619a02edcf03f6d930bc1ef5e4e6905`, which includes newer catalog additions. Start
-implementation from current main and integrate the tolerance branch without removing newer lenses. Pin the resulting
-baseline SHA and corpus fingerprint before comparing engines. Refresh these pins deliberately if main advances;
-different prescriptions must never be mistaken for an engine regression or improvement.
+The program is complete when every outcome below holds on `main`. Each outcome is checked by a guard test or script
+wherever one can be written, and by review otherwise.
 
-The tolerance branch contributes more than a constant change:
-
-- Shared `INTERSECTION_TOLERANCE = 1e-12` mm and `INTERSECTION_MAX_ITERATIONS = 48`.
-- Strict residual acceptance, safeguarded Newton/bisection stagnation detection, operand-based roundoff envelopes,
-  returned `effectiveTolerance`, validated analytic plane hits, and stable normal-distance tilted-plane residuals.
-- Shared analytic regressions across production and legacy intersection paths, including exhausted budgets,
-  cancellation, steep aspheres, authored cap boundaries, and vertical mirrors.
-- Raw MTF timing samples and retained before/after optics benchmark records.
-- The inferred Vivitar stop plane moved behind the preceding clear cap while preserving the published vertex gap.
-  This is part of the prescription baseline; routing changes must not compensate for invalid geometry.
-
-The rewrite covers prescription ingestion and validation, runtime construction, state preparation, geometry math,
-sequential and generalized tracing, fields and chief rays, dispersion, aperture and pupil calculations, diagram
-geometry, all existing analyses, worker integration, and public compatibility facades. `src/optics/mount/` is a
-separate mount-diagram renderer and stays outside this lens-engine rewrite.
-
-The validated MTF formulas and glass catalog remain authoritative. Port their implementation and dependencies into
-the new routing without changing their physical models. A faster organization does not justify a new MTF estimator,
-new dispersion assumptions, empirical optical corrections, or new support for currently guarded paths. Preserve
-source-prescription limitations and warnings. Any later feature expansion needs a separate specification.
-
-Repository references:
-
-- [Engine architecture](agent_docs/architecture/optics-engine.md) and
-  [public import contracts](agent_docs/architecture/public-functions.md).
-- [Lens data contract](src/lens-data/LENS_DATA_SPEC.md),
-  [teleconverter contract](src/lens-data/TELECONVERTER_DATA_SPEC.md), and
-  [asphere schema](src/types/asphericSchema.ts).
-- [Testing architecture](agent_docs/architecture/testing.md), [workflow](agent_docs/workflow.md),
-  [standing decisions](agent_docs/decisions.md), and [benchmark protocol](agent_docs/benchmarks/README.md).
-
-This plan owns the rewrite backlog. Existing efficiency and trace plans continue to own unrelated work. When the
-rewrite closes, replace stale architecture and authoring guidance, preserve applicable decisions, and remove this
-plan and its index entry according to the documentation policy.
-
-## Required compatibility
-
-| Boundary | Required behavior |
-| --- | --- |
-| Authored inputs | Accept every current `LensDataInput` and `TeleconverterDataInput`. Existing `.data.ts` and `.teleconverter.ts` modules continue to work unchanged. |
-| Public functions | Keep import paths, exported names, signatures, defaults, error behavior, and result shapes used by UI, tests, scripts, reports, and SSR. Add ordinary internal names; retain historical `*2` exports as thin aliases where callers still need them. |
-| Runtime lens | Preserve all `RuntimeLens` fields, `data`, resolved maps, frozen-object behavior, surface indices, label identity, synthetic markers, and null versus absent fields. The compatibility object is derived from the compiled model. |
-| Rays | Preserve meridional, skew, vector, and chromatic outputs; vertex-plane versus exact-hit coordinates; point order; clipping, ghost, failure, diagnostic, and image-plane termination semantics. |
-| Controls and layout | Preserve focus, zoom, centered/two-position aberration controls, stop-down, physical stop rules, published-station snapping, converter composition, camera anchoring, shift, tilt, and fixed-sensor conventions. |
-| Analysis | Preserve sample positions/order, chart units and axes, quality policy, statuses/reasons, availability guards, partial results, warnings, CSV data, and finite-conjugate eligibility. |
-| Display | Preserve SVG shapes, trim diagnostics, mirrors/coatings, annular holes, labels, groups/doublets, inspector glass/element data, synthetic-plate hiding, and readouts. Keep React and display scaling outside the pure engine. |
-| Catalog and tooling | Preserve keys, canonical mount/format IDs, visibility, metadata, relationships, source errata, publication freshness, analysis/audit sidecars, autodiscovery, generated summaries, build output semantics, and report behavior. |
-
-Do not discard metadata because tracing does not consume it. Preserve explicit omissions, zeros, `false`, `null`,
-source reference lines, estimates, and overrides where those distinctions affect validation or presentation.
-
-### Numerical contract
-
-1. Use JavaScript Float64 arithmetic throughout optical calculations. Units are mm, nm for wavelengths, degrees at
-   existing field APIs, and lp/mm for MTF. Engine coordinates remain X sagittal, Y meridional, Z axial.
-2. Keep the branch's default raw intersection residual target at `1e-12` mm and its default 48-iteration cap. Explicit
-   caller budgets and tolerance overrides retain their meanings. A bounded solve can fail; iteration exhaustion
-   must not silently allow `10 × tolerance`.
-3. Sag residual is `z_ray - (vertexZ + sag)`. A tilted plane uses signed distance against its normalized normal;
-   never divide by `normal.z`. Validate analytic results after any bound clamping.
-4. Curved intersections attempt the raw target first. Only an unrepresentable Newton correction or a safeguarded
-   bracket that cannot advance permits a finite, conservative operand-based roundoff envelope. Include cancelling
-   `origin` and `direction * t` operands, vertex/sag magnitudes, transverse uncertainty, and the absolute-term asphere
-   slope bound. A missing/nonfinite bound cannot authorize success. Every successful intersection reports its actual
-   accepted bound through `effectiveTolerance`; floor-assisted success is not raw `1e-12` accuracy. Port the pinned
-   branch's `sagResidualRoundoff` and `planeResidualRoundoff` formulas, including their 16-epsilon operand allowance.
-5. Keep physical cap selection, conic-domain checks, requested parametric bounds, and ordered first-hit behavior.
-   Aperture clipping independently retains `max(1e-9, abs(sd) * 1e-12)` mm semantic tolerance. Proof margins are not
-   residual acceptance limits. Legacy exterior clipped diagnostics must not become physical in-cap intersections.
-   Asphere uniqueness certificates must bound coordinate error by the requested tolerance; a certificate cannot
-   widen the forward search.
-6. Preserve coefficient accumulation order, sign conventions, medium transitions, wavelength-dependent diffraction,
-   flux weighting, and optical-path accounting. Algebraic reordering requires the same analytic and differential
-   gates as a numerical change; it is not assumed equivalent in floating point.
-7. Existing golden and analytic test tolerances are ceilings, not quantities to relax during the rewrite. Stage 1
-   defines explicit per-result absolute/relative/ULP budgets for additional differential checks. No single global
-   epsilon covers millimeter positions, unit directions, flux, percentages, and MTF. Discrete results are exact.
-
-### Feature acceptance matrix
-
-Each row requires baseline/new-engine differential checks and an independent analytic or existing regression anchor.
-The stage named is the first complete implementation; every later stage reruns the applicable checks.
-
-| Feature family | Coverage required | Implementation stage |
+| # | Outcome | Checked by |
 | --- | --- | --- |
-| Prescriptions | Prime/zoom, defaults, labels and physical spans, groups/doublets, hidden fixtures, configurations, source metadata and errors | 2 |
-| Geometry | Flat, spherical, conic; even A4–A20 and odd A3–A19 radial terms; finite domains, multiple roots, trim/gap limits, large translations | 3 |
-| Sequential optics | Meridional/skew/vector, TIR, embedded stops and same-index surfaces, clips/ghosts, partial traces, heights, terminal projection, OPL | 4 |
-| Generalized optics | Explicit repeated surface orders and auto nearest-hit paths, first/second-surface mirrors, incident-side rules, block/ignore, annular holes, loop limits, arbitrary image planes | 4 |
-| Auxiliary optics | Rear plates expanded once and hidden; drawn drop-in filters; detachable converters with host stop and source geometry; radial diffractive phase; Beer–Lambert/APD flux | 2, 4 |
-| State and first order | All authored stations plus interpolation, finite conjugates, fixed/variable/published irises, EFL, pupil geometry, cardinal points, Petzval, breathing and group readouts | 5 |
-| Projection and movement | Rectilinear, equidistant/equisolid fisheye, extreme/grazing/backward launches, solved chiefs, declared versus traced versus analysis field, shifted/tilted fixed-sensor results | 5 |
-| Dispersion | Authored d/e references, reference uncertainty, line indices, catalog Sellmeier/proxies, Abbe estimates, dPgF, anchoring and spectral-quality gates | 2, 6 |
-| Analyses | Summary, SA/profile/blur, field curvature/astigmatism, coma, distortion/grid, vignetting, entrance/exit pupils, bokeh, chromatic focus/lateral color/fans and aspheric comparison | 6 |
-| MTF | Geometric and diffraction-corrected methods, spectra, aperture tracing, footprint scans, best/design/auto focus, grid convergence, finite sources, unresolved flux, limitations and unsupported paths | 6 |
-| Consumers | Diagram hooks, all analysis tabs, comparison slots, worker progress/cancellation/cache, URL/history/stations, SSR/catalog/report consumers | 7 |
+| M1 | One authored lens-data format (V2), with one spec and one template. V1 files are still read, but only by converting them to the canonical form at ingest. | Corpus guard: every catalog file is V2; converter round-trip suite |
+| M2 | Lens data is ingested once into a canonical prescription, then compiled once into the engine's lens model. Materials are resolved once, and nothing in the engine clones lens data or points back to the UI view. | Structural counters (S1.P3.T1); architecture guards (S1.P4.T1) |
+| M3 | One surface-geometry module and one intersection/trace stack. `src/optics/internal/` and the legacy tracers in `rayTrace.ts` are deleted. | Architecture guards |
+| M4 | No runtime import cycles inside `src/optics/`. | Import-cycle guard (S1.P4.T1) |
+| M5 | One owner for prepared geometry, with one bounded cache. Every other cache has a named owner, key and capacity. | Cache guard (S1.P4.T1) |
+| M6 | Analyses take one explicit request object. There are no `(L, zPos, focusT, zoomT, aberrationT, geometry?)` parameter lists and no `*ForState2` adapters. | Seam guard; review |
+| M7 | No `*2` names and no `compat.ts`. Code outside `src/optics/` imports only the public seam (top-level `src/optics/*.ts`). | Seam guard (S1.P4.T1) |
+| M8 | The accuracy contract holds on every intersection path. | Analytic suite; differential gates |
+| M9 | The architecture docs, `public-functions.md`, lens-data spec and recipes describe the new structure, and this plan is deleted. | `docDrift.test.ts`; review |
+
+Speed is a secondary goal. Its gates and targets are under [Efficiency](#efficiency-secondary).
+
+## Evidence
+
+This plan is grounded in the engine and catalog as they stand at `main` 33ebdb3.
+
+### Engine
+
+Scope: 161 files and 36,774 lines in `src/optics/`, excluding `mount/` and the glass catalog data.
+
+- **Two exact tracers.**
+  - The prepared-state tracer lives in `trace/` and `math/intersection.ts`.
+  - The legacy tracer is `internal/exactSurfaceTrace.ts` plus `internal/surfaceIntersection.ts`; with `rayTrace.ts` and
+    `internal/traceSurfaces.ts`, the legacy layer is 2,652 lines.
+  - The legacy tracer still runs in production: in `buildLens` constants (`runtimeLens.ts`), in the chief-relative skew
+    rays used by off-axis bundles, coma, spherical aberration, bokeh, field curvature and scalar chromatic fans, in
+    off-infinity pupil baselines, and in folded validation.
+- **The engine lens is built from the UI view.**
+  - `normalizeLensData.ts` builds the engine lens from a finished `RuntimeLens` and keeps a `runtime` back-pointer.
+  - `prepareState.ts` reads that back-pointer.
+  - Twenty-two prepared-state modules read `state.lens.runtime`.
+  - Materials are resolved twice, and lens data is `structuredClone`d twice.
+- **One 13-module runtime import cycle**, around `compat.ts`: `optics.ts`, `projection.ts`, `distortionAnalysis.ts`,
+  `vignetteAnalysis.ts`, `pupilAberration.ts`, `groupMovement.ts` and six `analysis/` modules.
+- **Duplicated concepts.** About twenty concepts are implemented twice or more:
+  - layout and thickness;
+  - zoom-table interpolation (five copies);
+  - focus breathing, with two different infinity thresholds (0.003 and 0.0001);
+  - lens compilation;
+  - dispersion tables;
+  - channel wavelengths;
+  - aspheric comparison;
+  - chromatic bar scaling;
+  - display sag;
+  - paraxial tracing;
+  - pupil geometry;
+  - prepared-state caching (an LRU of 96, an unbounded store, and eight uncached call sites in `field/chiefRay.ts`);
+  - z-position overrides;
+  - field barrels.
+- **Adapters and names.**
+  - Analyses that take a prepared state unwrap it back into `(L, zPos, focusT, zoomT, aberrationT)` and call the
+    `RuntimeLens` implementation.
+  - There are 176 `*2` exports, and only two of them are imported outside `src/optics/`.
+- **The de-facto public surface.**
+  - Outside code imports 49 `src/optics/` modules: 32 in the app and 17 in tooling.
+  - The official barrel `index.ts` has no importers.
+  - `RuntimeLens` is used by 52 non-optics source files.
+  - 57 test files import engine internals or `*2` names, and six test files mock seven engine modules by path.
+
+### Cost
+
+Measured with CPU profiles and evaluation counters on the slowest benchmark lens, PC-Nikkor 19mm. Wall time goes to
+the number of kernel evaluations, not to preparation or adapters:
+
+| Measurement | Default analysis | Stopped-close (shift + tilt) |
+| --- | --- | --- |
+| Sag + slope self time | 42% | 32% |
+| Bracket scan (inclusive) | 23% | 26% |
+| Garbage collection | 4% | 15% |
+| `prepareState` and every adapter function | ≤ 0.6% | ≤ 0.6% |
+| Surface-profile evaluations per intersection | 5.8 | 7.8 |
+| Dominant nested solve | Distortion's image-height inversion, 58%: bisection over chief solves of ~64 stop traces each | Sensor-locked field sampling, 78%: `solveScalarRoot`, ~86 evaluations per solve |
+
+Spheres and conics have no closed-form path. Every curved surface is bracketed (an endpoint test, then up to 24 samples)
+and solved by safeguarded Newton, and each evaluation computes both sag and slope. The Sony FE 24-70mm GM II and Canon
+Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern is general.
+
+### Lens data
+
+907 files: 18,991 surfaces and 10,265 elements.
+
+- **Per surface.**
+  - Every surface repeats `nd` and `elemId`. The 8,719 air surfaces (46%) carry `elemId: 0, nd: 1`.
+  - Surface and element indices differ in exactly one lens (Fujifilm XF18mm f/2, 3 surfaces), and only by rounding.
+  - `elemId` means three things: the drawn span, the dispersion medium and the absorbing medium. These diverge on the 14
+    mirror and blocker surfaces.
+  - Four surfaces in two lenses are non-air media with no element: water in front of the Nikon RUW 20-35, and three
+    cement layers in the Hasselblad XCD 90 that are traced but not drawn as elements.
+- **Variable gaps.**
+  - `var` is `[focusKeyframe]` on primes and `[zoomStation][focusKeyframe]` on zooms; the shape is decided by
+    `zoomPositions`.
+  - Its first value duplicates `surface.d`. They are exactly equal in 2,193 of 2,195 gaps and differ by 3e-13 mm and
+    1.7e-7 mm in the other two.
+- **Per-station facts are spread across parallel structures.**
+  - Six parallel per-station structures: `zoomPositions`, `nominalFno`, `zoomStopSemiDiameters`, `zoomCloseFocusM`, the
+    `var` rows and the `publishedStations` indices.
+  - `finiteConjugates` uses a second addressing scheme, normalized `focusT`/`zoomT`.
+  - On zooms, `focalLengthDesign` and `zoomLabels` are `[wide, tele]` endpoints in 270 and 243 files, and per-station in
+    27 and 48, with no marker saying which form a file uses.
+- **Magic values and padding.**
+  - All 1,288 flat surfaces are written `R: 1e15`.
+  - The V1 schema requires K and A4–A14 on every asphere, so all 1,456 entries list them, zero when unused.
+  - 499 files author an empty `asph`.
+  - The stop `sd` is required, but the engine overwrites it from `nominalFno` in 889 of 907 lenses. The spec says the
+    opposite.
+- **Fields in the wrong place, or unread.**
+  - Display, ray-sampling and validation knobs sit beside optical fields.
+  - Three authored fields have no reader: `zoomLabels`, `apertureBlades` and `apertureBladeRoundedness`.
+  - Defaults are merged invisibly in several places, and `src/lens-data/defaults.ts` imports an engine internal.
+- **The spec contradicts the code in nine places.**
+
+## Baseline and accuracy contract
+
+- **R0** is `main` at the program's first PR. **A0** is `main` after S1.P1.T1 lands the accuracy contract.
+- Every differential comparison and speed measurement uses A0 or a later anchor (see [Anchors](#anchors)). R0 is
+  measured once, in S1.P1.T1, only to size the contract's own cost.
+- This section owns the contract until it is documented in `agent_docs/architecture/optics-engine.md` (Exact Surface
+  Trace). After that, it shrinks to a pointer.
+
+The intersection contract, from #774:
+
+1. **Residual target and iteration cap.** Every curved solve targets a raw residual of
+   `INTERSECTION_TOLERANCE = 1e-12` mm within `INTERSECTION_MAX_ITERATIONS = 48`.
+   - An explicit caller tolerance or iteration budget keeps its meaning.
+   - Running out of iterations is a failure. The old tenfold acceptance fallback does not return.
+2. **Residual definitions.**
+   - Sag profiles: `z_ray − (vertexZ + sag(r))`.
+   - Planes, including tilted ones: the signed normal distance `n · (p − p0)`, never divided by `n_z`.
+   - Analytic hits validate their residual after any bound clamping. This covers planes today, and the spheres and
+     conics added in Stage 3.
+3. **Raw target first.** The operand-based roundoff envelope (`sagResidualRoundoff`, `planeResidualRoundoff`:
+   `16·ε·max(1, Σ|operands|)`) may relax acceptance in only two cases:
+   - a Newton correction cannot change the floating-point ray parameter;
+   - a safeguarded bracket midpoint rounds onto an endpoint.
+
+   For aspheres, the envelope uses the absolute-term slope bound. A missing or non-finite bound never authorizes
+   success. Every success reports the bound it met in `effectiveTolerance`.
+4. **Cap selection.**
+   - The first root inside `r ≤ sd`, in ray order, wins over an exterior continuation root.
+   - A ray with no cap root keeps its exterior hit, so clipping still reports the first clip.
+   - The search keeps the conic-domain checks, stays forward-only, and respects the requested parametric bounds.
+   - Clear-aperture clipping keeps its own semantic tolerance, `max(1e-9, |sd|·1e-12)` mm.
+   - Slope-certificate margins are proofs, not acceptance limits, and never widen the search.
+5. **Closed form gets no exemption.** A closed-form root is accepted under the same residual definition and rule as an
+   iterative one.
+
+#774 reported these costs, which this program carries as known debt:
+
+- PC-Nikkor 19mm default analysis +91.88%, cause unresolved;
+- the analysis category +8.31%;
+- +0.291 Newton steps per curved hit;
+- eight accepted Mirotar success→clipped transitions.
+
+Stage 3 must bring PC-Nikkor 19mm default analysis back to at or below its R0 median.
+
+## Integration model
+
+All work merges to `main` through ordinary squash-merged PRs. This is trunk-based development with
+[branch by abstraction](https://martinfowler.com/bliki/BranchByAbstraction.html): there is one engine at every commit.
+
+- **Replacing something too large for one step.** Put the new implementation behind the existing function, move the
+  callers over in later steps, then delete the old implementation in the phase's last step.
+  - There is no parallel candidate package, no engine selector and no `traceMode`.
+  - A step leaves `main` releasable. Production uses the restructured code as soon as the step merges, and each step
+    can be reverted on its own.
+- **Why not a long-lived branch.**
+  - `main` takes lens and audit PRs almost daily, and engine features every few days.
+  - An alternative-main branch would need continuous merges into a moving `src/optics/`.
+  - It would defer review to one promotion PR. The optics-2 migration ended as
+    [#518](https://github.com/ronbuening/LensVisualizer/pull/518), a 193-file PR.
+  - It would need two engines in order to compare them. Trunk development compares every PR against its true
+    merge-base instead.
+- **Other engine work during the program** lands in the one engine and passes the same gates. An intentional behavior
+  change becomes a new anchor.
+- **One step per PR.**
+  - Title: `S<stage>.P<phase>.T<step> <behavior>`.
+  - The body states the change class (C0–C3), the gate tier and anchor used, payload and status counts, and every
+    declared expected difference.
+  - Steps within a phase merge in order. Phases run in parallel only where [Stage dependencies](#stage-dependencies)
+    allow.
+- **Checkpoints.**
+  - The PR that ends a phase or stage carries that gate's results in its description.
+  - When a stage gate passes, the stage's last merge commit is tagged `optics-rewrite/s<N>`.
+  - No empty commits and no custom gate runner: CI on the PR's head commit is the per-step gate.
+- **Docs move with the code.** Each step rewrites, in the same PR, the architecture text it makes stale, and
+  supersedes any decision it overturns. For example, S4.P2.T4 rewrites the two-tracer description in "Exact Surface
+  Trace" in `agent_docs/architecture/optics-engine.md`. S8.P2.T2 is a final consistency pass, not the first update.
+- **Tests move with the code they test.**
+  - Behavioral assertions keep their expected values.
+  - Before an internal is deleted, its tests are rewritten against the replacement at equal or greater strength.
+  - Tests that `vi.mock` a module by path are updated in the step that moves that module.
+
+### Anchors
+
+An anchor is a `main` commit that differential gates compare against. Each lens's payloads are compared only when its
+input fingerprint is the same at both commits, so a corrected prescription is never mistaken for an engine change.
+
+- Per-PR gates compare against the PR's merge-base.
+- Stage gates compare against the current anchor, which catches drift that accumulates across steps that each passed
+  alone.
+- A merged C3 change sets a new anchor, and its PR records why.
+
+## Numerical contract
+
+Arithmetic is Float64 throughout. Units are mm, nm for wavelengths, degrees at field APIs and lp/mm for MTF.
+Coordinates are X sagittal, Y meridional and Z axial.
+
+Every PR declares exactly one change class:
+
+| Class | Meaning | Gate |
+| --- | --- | --- |
+| **C0** refactor | No numeric change intended | Every payload number is bit-identical to the merge-base (`Object.is`); discrete fields are equal |
+| **C1** equivalent numerics | Same mathematics evaluated differently: reassociation, fused evaluation, a closed-form root under the same residual rule | Quantity budgets below; discrete outcomes identical, or each boundary transition listed and explained |
+| **C2** algorithm replacement | A different solver or search with the same or a tighter convergence criterion | Every sample meets its criterion; differences within the C2 budgets; an independent reference shows the error is no worse; discrete transitions explained individually |
+| **C3** intentional behavior change | A bug fix, a data correction or a new capability | Maintainer approval; independent evidence (analytic case, comparator or source); a new anchor; a changelog entry if users can see it |
+
+- **Default class and labels.** The default class is C0. The CI job reads the class from a PR label, and only the
+  maintainer applies a label above C0.
+- **Golden values.** Golden and analytic test tolerances are ceilings. Only a C3 PR may change a golden value or loosen
+  a tolerance, and it must say why.
+
+### Quantity budgets
+
+These values are proposed. S1.P2.T2 confirms them against the payload differences that a known C1 perturbation
+produces (reassociating one sum in sag evaluation). Loosening a budget later is itself a C3 change.
+
+| Quantity | C1 budget | C2 budget |
+| --- | --- | --- |
+| Unclipped surface hit, image-plane landing | 1e-9 mm | — (traces are not C2) |
+| Clipped, exterior or diagnostic hit | 1e-7 mm | — |
+| Direction cosines | 1e-10 | — |
+| First-order scalars (EFL, BFD, pupil positions and sizes, stop SD) | 1e-12 relative | — |
+| Chief-ray launch height | 1e-9 mm | Twice the solver's stop-residual tolerance (1e-7 mm today), mapped through ∂y_stop/∂y_launch |
+| Field angle from image height | 1e-10° | Both solutions' image heights within twice the inversion tolerance (1e-4 mm today) |
+| Analysis lengths (focus shifts, blur, field curves, pupil shifts) | 1e-8 mm | The governing solver criterion, propagated by a finite-difference derivative the harness computes |
+| Percentages (distortion, illumination) | 1e-8 points | As above |
+| MTF modulation | 1e-7 | As above, and never looser than 1e-4 |
+| Statuses, counts, sample positions and order, labels, warnings | exact | exact unless listed one by one |
+
+## Verification
+
+### Gates by level
+
+| Level | Where | Required |
+| --- | --- | --- |
+| Every PR | CI (`.github/workflows/quality.yml`) | lint, format, typecheck, `npm run test`, the tooling suite, build and `seo:audit` (all existing) |
+| Engine PR: touches `src/optics/**` or `src/types/**` | CI job `engine-diff` (S1.P2.T2) | Tier P against the merge-base, under the PR's change class |
+| Phase end | The PR that ends the phase | Every test the phase's steps added, run together; the phase exit criteria |
+| Stage end | Maintainer, locally or by `workflow_dispatch`, sharded | Tier S against the current anchor; the full suites; build; the stage's efficiency report; then the tag |
+| Before S8.P2 deletes code | Maintainer, sharded | Tier F against the current anchor |
+
+### Differential harness
+
+The harness lives in `src/benchmarks/engineDiff/` and is driven by `scripts/engine-diff.mjs`. Nothing it produces is
+committed. Its own tests (fixtures, budget table and deliberate-drift detection) run in the tooling suite.
+
+| File | Role |
+| --- | --- |
+| `captureEntry.ts` | Vite SSR entry, built like the rendering benchmark. It calls only the public seam. |
+| `seamAdapter.ts` | Detects renamed exports so the same entry runs at both refs. A PR that changes the seam updates this adapter in the same PR. |
+| `requests.ts` | Defines the tiers as deterministic lens × state × request lists. |
+| `payload.ts` | Normalizes payloads: numbers unrounded, arrays in authored order, statuses, counts and labels as discrete fields. It also computes a per-lens input fingerprint: a hash of the normalized authored data until S2.P1.T1, and of the canonical prescription after it. |
+| `budgets.ts` | Holds the quantity table above, keyed by payload path. |
+| `compare.ts` | Reports violations, discrete transitions and the largest difference per quantity. |
+
+`scripts/engine-diff.mjs --base <ref> --tier p|s|f --class c0|c1|c2|c3 [--shard i/n] [--lens <key>]` runs in five
+steps:
+
+1. Add a git worktree at the base ref, symlinking `node_modules` when `package-lock.json` is unchanged.
+2. Copy the head's `engineDiff/` into the worktree.
+3. Build both captures, run them, and compare.
+4. Write NDJSON payloads and a report to a temporary directory.
+5. Exit non-zero on any violation.
+
+Lenses whose fingerprints differ between the refs are listed and skipped.
+
+### Corpus tiers
+
+Today's sweep, `exactTraceCatalog.test.ts`, traces one on-axis meridional ray and one skew ray per lens at zoom 0 and 1,
+focused at infinity. The tiers below are the program's evidence; they do not replace that sweep.
+
+S1.P2.T3 measures each tier's runtime and records it in that PR. If Tier P exceeds 15 minutes in CI, its lens subset
+shrinks by documented stratification; its assertions never do.
+
+| Tier | Lenses | States | Requests |
+| --- | --- | --- | --- |
+| **P** | All 907, visible and hidden | First and last zoom station, infinity focus, wide open | Build constants; layout; meridional fans on- and off-axis, a skew fan and a chromatic fan, each with terminal points and full hits; field geometry; chief solves at fields 0, 0.5 and 1 |
+| | The 15 benchmark lenses plus 10 feature representatives: fisheye; folded auto and explicit-order paths; diffractive; bulk absorption; rear plates; a converter pair; PC shift + tilt; finite conjugate; fixed-iris zoom; aberration control | Their reference state | Every analysis job, perspective jobs included; geometric MTF at a 32-cell grid |
+| **S** | All | Every authored zoom × focus station (about 3,400 states) × {wide open, one stop-down ratio}; aberration endpoints and center for every `aberrationControl` lens; every permitted converter pair at every host station | Everything in Tier P's first row |
+| | A stratified set of about 60 lenses: every projection kind, every folded fixture, every PC lens, every diffractive and absorbing lens, every rear-plate maker, every converter pair, the 10 heaviest benchmark lenses and 10 drawn by a fixed seed | Their authored stations | Every analysis job; MTF at both methods and three spectra on the MTF benchmark cases |
+| **F** | All | Every authored station × {wide open, stopped down} | Every analysis job |
+
+### Independent references
+
+The old engine demonstrates compatibility, not physical correctness. These references stand outside it.
+
+- **Analytic suite.** Keep every existing analytic and golden test, and add:
+  - closed-form sphere and conic intersections, checked against roots computed offline to at least 50 significant
+    digits;
+  - asphere roots, checked against the same kind of reference;
+  - root-solver convergence on functions whose roots are known.
+
+  Each fixture is committed beside the script that generated it.
+- **Comparator report.**
+  - `scripts/export-comparator-cases.mjs` exports a fixed lens set (canonical prescriptions, launch rays and per-surface
+    hits) in the format LensVisualizerRayTraceComparator defines
+    ([issue #771](https://github.com/ronbuening/LensVisualizer/issues/771)).
+  - From Stage 3, each stage PR reports the comparison.
+  - Like MTF chart agreement, it is a report and never a test threshold.
+- **When a reference shows the old engine was wrong.** Either fix it in a separate C3 PR with an analytic test, which
+  sets a new anchor, or record an approved divergence with its evidence. Never reproduce a known bug for parity.
+
+### Architecture guards
+
+`__tests__/src/optics/opticsArchitecture.test.ts` scans source the way `docDrift.test.ts` does. It holds three guards,
+and each guard's allowlist may only shrink.
+
+- **Import cycles.**
+  - Builds the runtime import graph of `src/optics/`, excluding `import type`, and computes strongly connected
+    components.
+  - Modules in cycles must appear in an allowlist that starts as today's 13 modules.
+  - The test fails when a listed module is no longer in a cycle, so the list can only shrink. It is empty by S8.
+- **Seam.**
+  - Imports into `src/optics/` from anywhere else must target an allowlisted module.
+  - The list starts as today's 49 modules and ends as the top-level barrels.
+  - One permanent exception: `prescription/teleconverterCompatibility.ts`, which plain-Node build metadata imports
+    directly.
+- **Caches.**
+  - Every module-level `Map`, `WeakMap` or `Set` in `src/optics/` appears in an allowlist that records its owner, key
+    and capacity.
+  - A cache may be unbounded only if it is a `WeakMap` keyed by its owner object.
+
+## Efficiency (secondary)
+
+### Gates
+
+These apply at every stage end, and failing one blocks the stage.
+
+1. **No case regresses.** A benchmark case regresses when, against the anchor, both of these hold:
+   - the lower bound of the 95% bootstrap confidence interval of its paired median ratio exceeds 1.05;
+   - its median grows by more than 1 ms.
+2. **Counters never rise.** Structural counters (S1.P3.T1) never increase for an identical request.
+3. **Memory.** Retained heap after the scripted session (Node, `--expose-gc`; S1.P3.T2) stays within 5% of the anchor.
+4. **#774 debt.** From Stage 3 on, PC-Nikkor 19mm default analysis is at or below its R0 median.
+
+### Targets
+
+Targets are reported at stage ends. A miss does not block the program; it becomes an item in
+`EFFICIENCY_IMPROVEMENT_PLAN.md`.
+
+| Stage | Target | Basis |
+| --- | --- | --- |
+| 3 | At most 2 surface-profile evaluations per sphere or conic intersection, against 5.0–7.8 today | Sag and slope evaluation took 32–42% of self time |
+| 3 | Analysis category median ≥ 25% lower than A0 across the benchmark matrix | Same profiles |
+| 6 | Median stop traces per centered chief solve ≤ 8, against ~64 today | `computeChiefRaySolve2` scans up to 96 samples per expansion, then bisects to a 1e-7 mm stop residual, on a function that is nearly linear in launch height |
+| 6 | Median evaluations per `solveScalarRoot` call ≤ 12, against ~86 today | It scans from the low end of each interval, not outward from the seed, then bisects up to 30 times |
+| 6 | Image-height inversion uses ≤ 6 chief solves per target, against up to 40 bisection steps today | `solveFieldAngleForImageHeightLookup2` bisects a smooth monotone function it has already tabulated |
+| 6 | Each unique sensor point is solved at most once per perspective context | Five perspective analyses solve the same sensor points independently, and vignetting does so twice |
+| 8 | PC-Nikkor 19mm stopped-close analysis ≥ 2× faster than A0 | Sensor-locked sampling was 78% of that profile |
+
+### Method
+
+- Same machine and Node version on both sides, alternating AB/BA order.
+- At least 2 warmups and 9 measured samples per case, or 15 samples for cases above 100 ms.
+- Raw samples are kept in the run JSON. Bootstrap uses 10,000 resamples with a fixed seed.
+- Timing gates run on the maintainer's machine. CI checks counters only.
+- Results report completed work (successful, clipped and failed counts; field statuses; grid sizes; convergence), so a
+  quick rejection is never mistaken for a speedup.
+- These never count as speedups: reducing samples, lowering grid caps, returning unsupported results fast, or changing
+  a physical model.
+- The browser harness (S1.P3.T3) reports drag and settle times. It is not a gate.
 
 ## Target architecture
 
-Compile source semantics once, prepare only state-dependent values, and let each request choose its traversal and
-capture requirements once. The public facades convert at the edge; engine-native work never reconstructs a
-`RuntimeLens` or re-enters an old analysis adapter to calculate a result.
+### Model
 
 ```mermaid
-flowchart TD
-  A[Legacy or version 2 authored data] --> B[Validate and normalize]
-  B --> C[Compose host and teleconverter]
-  C --> D[Expand rear plates once]
-  D --> E[Compile prescription and provenance]
-  E --> F[RuntimeLens compatibility view]
-  E --> G[Prepare geometry for controls]
-  G --> H[Request context with aperture spectrum and pose]
-  H --> I[Sequential traversal]
-  H --> J[Explicit or automatic generalized traversal]
-  I --> K[Shared intersection interaction and aperture kernels]
-  J --> K
-  K --> L[Terminal hit stream or diagnostic capture]
-  L --> M[Field and analysis jobs]
-  G --> N[Diagram geometry]
-  M --> O[Existing result adapters and UI]
-  N --> O
+flowchart LR
+  V2[V2 authored file] --> I[Ingest]
+  V1[V1 authored file] --> I
+  I --> C[CanonicalPrescription]
+  C --> X[Compose: converter, rear plates]
+  X --> K[CompiledLens]
+  K --> R[RuntimeLens view for UI]
+  K --> G[PreparedGeometry per controls]
+  G --> T[Trace stack]
+  G --> F[Field and chief solves]
+  T --> F
+  G --> Q[AnalysisRequest]
+  F --> Q
+  Q --> A[Analyses and MTF]
+  G --> D[Diagram geometry]
 ```
 
-The boxes describe ownership, not mandatory new abstractions or one universal sampling grid. Reuse the existing
-`prescription/`, `state/`, `math/`, `trace/`, `field/`, `perspective/`, `diagram/`, and `analysis/` boundaries. A temporary
-isolated candidate package under `src/optics/rewrite/` may be used until promotion; public production imports keep
-selecting the baseline until Stage 8. Test/benchmark dependency injection selects candidate implementations. Do not
-add a per-lens `traceMode` or a user-visible engine selector.
-
-During Stages 3–4, an isolated test adapter may supply baseline-prepared geometry to exercise the candidate kernels
-and traversals at every control state. This bridge supplies inputs only; candidate trajectories must use the new
-kernels. Stage 5 removes the bridge and proves independent runtime construction and state preparation.
-
-### Ownership and efficient execution
-
-- A `CompiledPrescription` owns immutable source semantics, indexed surfaces/materials, labels/spans, sparse
-  polynomial terms and conservative bounds, path metadata, dispersion descriptors, and display/provenance data.
-  It has no dependency on `RuntimeLens`. Runtime construction and validation bootstrap from compiled data and the
-  new kernels, removing the current runtime-builder/normalizer dependency cycle.
-- A `PreparedGeometry` owns current thicknesses, vertices, iris geometry, image plane, and derived path bounds for
-  focus/zoom/aberration state. Share immutable surface records instead of spreading every surface per state.
-- A request context binds geometry, actual physical aperture, wavelength/index table, finite source, pose, field
-  inputs, sampling policy, and explicit capture needs. Keep analysis-specific grids and launch policies; share the
-  projection/chief/stop primitives and reusable results only when their inputs are identical.
-- Dispatch once to sequential, explicit-order generalized, or automatic generalized traversal. All use the same
-  exact kernels. Preserve separate fast sequential and generalized loops where their semantics differ. Optional
-  conservative broad-phase rejection must prove it cannot remove a valid nearest hit; otherwise use full search.
-- Internal trace capture is explicit: terminal-only, full hit stream, or diagnostics, with optional OPL/flux/height
-  outputs. Terminal-only traces retain enough failure information for physical versus numerical classification.
-  Public trace APIs still produce their complete old result shapes. Capture choices cannot alter the trajectory.
-- Prefer indexed Float64 storage and reusable request-local scratch space where measurements support it. Encapsulate
-  typed arrays so consumers cannot mutate compiled state; `Object.freeze` alone does not protect their contents.
-  Returned arrays/results cannot alias scratch buffers reused by another request or comparison slot.
-- Consolidate equivalent preparation caches instead of adding another layer. Use prescription identity/revision and
-  complete optical inputs, with bounded caller/session lifetime. Hash a prescription once at ingestion if needed;
-  never hash/serialize it per ray. Preserve exact control identity without rounding distinct slider states together.
-  Aperture, wavelength, pose, converter, image plane, source, quality, capture and request options belong in the
-  appropriate result keys. Cancellation and incomplete results must not poison completed-result caches.
-
-### Optional streamlined authoring format
-
-Introduce an explicitly versioned `LensDataV2Input` only with a working converter. Keep `.data.ts` autodiscovery and
-top-level catalog identity fields (`key`, `name`, `maker`, `visible`, publication metadata) stable. The proposed format
-uses a material table, labeled surfaces referencing the medium after each surface, and surface-local profile data.
-Controls may be grouped into named station tables instead of parallel label maps. Display and source metadata stay
-available without becoming part of the trace hot path.
-
-The schema must represent every old field. Derive duplicated material values only when they agree. Preserve a
-surface-specific authored refractive-index override when `SurfaceData.nd` differs from its element material value;
-never choose one silently. Preserve asphere terms, variable-gap values, annotations, reference-line meaning, plate
-gaps, optical orders, and source uncertainty exactly. The optical canonical form is version-independent.
-
-The proposed tool is `scripts/convert-lens-data.mjs`, with tested importable conversion helpers. Its CLI must support:
-
-```text
---input <file-or-directory> --output <directory> --to-version 2 --dry-run
---input <file-or-directory> --output <directory> --to-version 2 --check
---input <file-or-directory> --output <directory> --to-version 2 --write
---input <file-or-directory> --output <directory> --to-version 1 --write
-```
-
-Default behavior is read-only. `--check` fails for unsupported syntax, schema errors, missing fields, or semantic
-differences. Writes require explicit `--write`, deterministic formatting, collision checks, and atomic replacement
-only after that file validates. Use the TypeScript AST and resolved supported literal/constants forms; do not parse
-prescriptions with regex or execute arbitrary input code. Unsupported expressions produce filename/line diagnostics
-and leave inputs unchanged. Add parser support for any forms used by the full current corpus before migration.
-
-Preserve comments, citations, numeric literals where possible, sidecar paths, and publication freshness. If a
-transformation cannot keep a source comment next to its value, retain it in a named source-note field and identify the
-mapping in the conversion report. Numeric values must be round-trip exact in Float64; no rounding or inferred data
-correction. V1 → V2 → V1 must preserve canonical semantics and normalized presentation metadata. Already-converted
-inputs are idempotent. Runtime-generated synthetic surfaces and `attachedTeleconverter` are never authored back.
-Support converter prescriptions as a distinct entity type without giving them lens-only controls or stops.
-
-Legacy ingestion remains supported after catalog conversion. Format compaction is optional; compiler and routing
-efficiency are mandatory. Do not migrate a file when the converter cannot demonstrate equivalence.
-
-## Verification and commit protocol
-
-The normal repository gate is required before **every** commit:
-
-```bash
-npm run typecheck
-npm run format:check
-npm run lint
-npm run test
-```
-
-Run `npm run test:tooling` when a step changes manual tooling, audits, converters, or benchmark code. Run
-`npm run build` when ingestion, metadata, worker packaging, public exports, SSR, or catalog conversion changes.
-Regenerate source readmes when module changes require them; never hand-edit generated files. Numerical changes also
-require unchanged golden tests, generated glass/mirror report comparison under identical input inventories, and
-before/after benchmarks, following the existing decisions. A report that requires unavailable patent PDFs is an
-explicit outstanding check, not a passing result.
-
-| Commit boundary | Required evidence | Commit |
+| Type | Owns | Lifetime |
 | --- | --- | --- |
-| Step | Complete code and behavior tests named by the step, dependent regressions, normal repository gate, and applicable tooling/build/numerical checks all pass on the exact content to commit. | `feat(optics): S<N>.P<N>.T<N> <complete behavior>` or an appropriate `test`/`refactor`/`perf` prefix. |
-| Phase | After the last step commit, run every test assigned to the phase together, its integration scenario, the normal gate, and applicable extra checks. No unimplemented phase acceptance item remains. | Separate `chore(optics): verify S<N>.P<N> <phase>` checkpoint commit. |
-| Stage | After all phase commits, run every test from all phases of this stage and every prior completed stage against the current tree, the full product/tooling suites, typecheck/format/lint, and the production build. Include cumulative parity and the stage's performance/consumer gates. | Separate `chore(optics): verify S<N> <stage>` checkpoint commit. |
-
-Phase and stage commits may use `git commit --allow-empty` when only verification changed. Do not invent code changes
-or duplicate reports to manufacture a checkpoint. The last step, phase, and stage commits remain distinct even when
-their final gates use the same suites. Record revision, commands, result, corpus/schema/option fingerprints, and
-artifact references in commit bodies or CI/PR artifacts; do not add per-branch verification transcripts to the docs.
-
-Implement a gate runner in Stage 1 that resolves stage/phase/step suite membership and refuses a checkpoint if a
-required check failed, was skipped, or ran on different content. It should not auto-stage unrelated files, change
-lens data, or commit on failure. A gate receipt may identify a content-tree fingerprint because the checkpoint SHA
-does not exist yet. Any subsequent edit invalidates the receipt and requires rerunning affected checks plus the
-normal gate before committing. Pin suite definitions; changing them to omit a failing test is not completion.
-
-No failing or unexplained baseline discrepancy is waived by re-pinning a golden, weakening a tolerance, reducing
-samples, dropping failed points, loosening a support gate, or silently falling back to the old engine. Fix the step
-before its commit. Earlier independently passing steps can remain committed; do not mark their phase/stage complete.
-
-### Test layers and comparison rules
-
-- **Analytic kernels:** sag/slope/normal, planes/spheres, physical first roots, Snell/reflection, diffraction, aperture,
-  flux, paraxial matrices, dispersion anchors, and the branch's strict/roundoff intersection cases.
-- **Differential contracts:** baseline versus candidate on identical canonical inputs; compare runtime fields,
-  state, hits/termination, analysis arrays, status/reasons, and serialized worker/UI payloads. Keep legacy exterior
-  diagnostics separate from production physics where the baseline intentionally differs.
-- **Corpus sweeps:** every visible and hidden lens, every authored zoom/focus station, representative interpolation,
-  aberration endpoints/center, wide-open and stopped-down apertures, and all permitted converter/host pairs.
-  Expensive matrix expansion may run as a named cumulative suite, but it is mandatory at stage boundaries.
-- **Integration:** UI hooks and tabs, comparison isolation, rapid lens/control changes, SSR, metadata, CLI conversion,
-  progress/cancellation, and worker/main-thread numerical equivalence.
-- **Properties:** symmetry and reversibility where valid, vector normalization, stable label/medium identity,
-  capture/cache equivalence, no mutation, finite bounded failure, and deterministic fixed-input results.
-
-Use shared synthetic fixtures and existing catalog-wide suites. Keep new tests about shared engine/data/UI behavior;
-do not create permanent per-lens transcription or batch test files. The old engine is an oracle for compatibility,
-not proof of physical correctness; independent analytic tests remain required after it is removed.
-
-### Efficiency acceptance
-
-Freeze benchmark inputs and budgets in Stage 1. Use the rendering benchmark's representative lens/scenario matrix
-plus sequential/skew/chromatic bundles, generalized paths, all major analyses, converter/plate systems, and MTF
-geometric/diffraction, reference/C-d-F/photopic, finite/infinite, and open/stopped-down cases. Measure completed work,
-including successful/clipped/failed counts, field statuses, actual samples, grid caps, and convergence.
-
-Run baseline and candidate on the same machine, Node/browser version, corpus, quality, and options, alternating run
-order with at least two warmups and seven measured samples for release comparisons. Retain raw timings, median and
-p95, build/preparation/trace/analysis/serialization/render categories, retained memory, and worker startup/cancel
-latency. Existing historical branch timings provide context, not a cross-machine release threshold.
-
-The proposed release budgets are:
-
-- At least 20% lower geometric-mean warm optical computation time across the frozen completed-work matrix. Report
-  MTF separately; both MTF methods must preserve results and show no material regression.
-- No individual case regression exceeding both 5% and 1 ms in median time; p95 must meet the same bound. Repeat a
-  noisy case with more samples before concluding. Cold end-to-end median must meet this no-regression bound too.
-- Retained memory after a fixed long control-drag/lens-switch sequence must not exceed baseline by more than 5%.
-  Keep prepared-state cache capacity at or below the existing 96 entries per runtime/session and completed MTF
-  client results at or below the existing 64 MiB budget; evictions cannot change results.
-- No duplicate normalization/material resolution for the same immutable prescription, no state preparation inside
-  a per-ray loop, and no hit-array/diagnostic allocation in terminal-only traces. Test counters and allocation profiles
-  must demonstrate these structural improvements.
-- Browser drag/tab-switch responsiveness and worker progress/cancellation must meet the baseline p95 bound at the
-  same interactive/settled quality. Faster Node traces alone do not satisfy this gate.
-
-These are rewrite acceptance targets, not measurements already achieved. Failure to meet them leaves Stage 8 open.
-Sampling reductions, fast unsupported results, lower grid caps, or changed physical models cannot count as speedups.
-
-## Stage 1 Establish the baseline and executable gates
-
-### Phase 1.1 Support a reproducible correctness oracle
-
-**S1.P1.T1 — Integrate the requested fixes and pin the implementation base.** Code: integrate the complete tolerance
-branch into the selected main base, preserving newer catalog work and the corrected Vivitar prescription; add a
-baseline manifest containing SHA, schema/catalog/glass fingerprints, and normalized request cases. Tests: run both
-branch intersection paths, tilted mirrors, the corpus validation/trace suites, and golden values; assert the manifest
-cannot compare mismatched prescriptions. Commit after the step gate.
-
-**S1.P1.T2 — Add contract inventory and a dual-engine harness.** Code: enumerate public functions, `RuntimeLens`
-fields, UI/analysis result schemas, units, optional-value semantics, and support gates; implement dependency-injected
-baseline/candidate entry points and result comparators with explicit quantity budgets. Tests: exercise every inventoried
-boundary on shared fixtures; deliberately alter a status, index, unit, coordinate, metadata field, and result order
-and verify comparison fails. Wire the existing goldens and independent analytic anchors into the harness. Commit.
-
-**Phase gate:** the baseline alone passes every contract case; the harness detects both discrete and numeric drift,
-and distinguishes legacy clipped diagnostic behavior from physical production hits. Run the phase gate and commit.
-
-### Phase 1.2 Support measurable efficiency and hierarchical verification
-
-**S1.P2.T1 — Extend benchmark measurements.** Code: add baseline/candidate execution, raw samples, percentile summaries,
-work/status counts, memory probes, and compilation/preparation/capture counters to the existing harnesses; include the
-branch's raw MTF samples. Tests: benchmark schema/dry-run/report tooling, percentile calculations, and detection of
-unequal work or quick rejection being compared with a completed calculation. Capture the pinned baseline. Commit.
-
-**S1.P2.T2 — Implement step, phase, and cumulative stage gates.** Code: add a suite manifest and gate runner with the
-commit protocol above, normal checks, conditional tooling/build checks, content fingerprints and artifact receipts.
-Tests: failed/skipped/stale checks prevent a checkpoint; phase membership includes all steps; stage membership includes
-all prior stages; unrelated dirty files are not staged. Tests use injected command/git adapters. Commit.
-
-**Phase gate:** run an end-to-end sample gate with a deliberate failing check, then with passing checks; only the
-passing content can receive a checkpoint. Commit the phase checkpoint.
-
-**Stage gate:** all Stage 1 phases, full repository/tooling/build checks, pinned oracle and benchmark matrix pass.
-Commit the Stage 1 checkpoint. Later stages depend on this harness.
-
-## Stage 2 Compile prescriptions and support automatic data conversion
-
-### Phase 2.1 Support complete legacy ingestion and one compiled source of truth
-
-**S2.P1.T1 — Normalize and validate into a canonical prescription.** Code: implement legacy ingestion and a
-version-independent canonical schema with defaults, stable label/index maps, materials, element spans, annotations,
-profiles, controls, provenance and display metadata. Move validation onto this representation while adapting existing
-validation errors. Tests: all corpus inputs, malformed labels/spans/coefficients/controls, explicit null/zero/false,
-hidden models, conflicting material/surface indices, and no source mutation. Commit.
-
-**S2.P1.T2 — Compose auxiliary optics and compile dispersion once.** Code: port teleconverter composition, rear-plate
-expansion, embedded-stop spans, diffractive terms, absorption and all material tiers into the canonical pipeline;
-preserve composition provenance and host stop identity. Tests: `prescription/teleconverter`, converter compatibility
-sweep, build/rear-plate and bulk-absorption suites, glass-resolution parity, d/e/line/dPgF anchors; compiling or crossing
-a worker boundary cannot duplicate plates. Commit.
-
-**S2.P1.T3 — Produce a compatible runtime view without cyclic construction.** Code: derive the unchanged `RuntimeLens`
-and engine lookup views from the compiled prescription. Until the new tracing builder is ready, use an explicit
-baseline bootstrap dependency in candidate construction; remove it in Stage 5. Tests: field-by-field runtime parity,
-frozen ownership, same-key/different-prescription isolation, one normalization/material compilation per identity,
-synthetic hiding, and existing catalog-summary invariants. Commit.
-
-**Phase gate:** every existing lens/converter compiles without unsupported features or changed runtime semantics;
-the canonical model never depends on its compatibility view. Run and commit the phase checkpoint.
-
-### Phase 2.2 Support an optional compact format and reversible conversion
-
-**S2.P2.T1 — Define and ingest the version 2 schema.** Code: add `LensDataV2Input` and converter entity schema,
-material references with per-surface overrides, local profile descriptors, and station/control mapping; accept both
-versions through one canonical ingress. Update types, validation, specifications and templates together. Tests:
-legacy/V2 canonical equality for each acceptance-matrix feature, material exceptions, station mapping and invalid
-version/reference diagnostics. Exercise metadata identity readers before allowing catalog use. Commit.
-
-**S2.P2.T2 — Build the automatic conversion CLI.** Code: implement the AST-based reader/writer and the dry-run,
-check, explicit write, reverse conversion, diagnostics and collision behavior specified above. Tests: every AST form
-present in the catalog, forward/back round trips, idempotence, comments/citations, numeric precision, unknown fields,
-malformed files, output collisions, write interruption and unchanged inputs on failure. Commit.
-
-**S2.P2.T3 — Validate conversion across the entire corpus without switching it.** Code: integrate both versions with
-catalog/build-metadata readers, summary generation and report/audit input helpers; add an offender-collecting conversion
-sweep that stages outputs in a temporary directory. Tests: every lens and converter round-trips; keys/metadata and
-publication freshness agree; normalized legacy presentation data and canonical optical fingerprints match. Run build,
-metadata, tooling and relevant report comparisons. Keep authored catalog files on their original format. Commit.
-
-**Phase gate:** full-corpus conversion and reverse conversion pass automatically; the tool leaves a reviewable diff
-and diagnostic report without a handwritten migration. Run and commit the phase checkpoint.
-
-**Stage gate:** cumulative Stages 1–2, corpus contracts, composition/material parity, converter CLI/tooling, reports
-and build pass. Commit the Stage 2 checkpoint.
-
-## Stage 3 Implement shared exact numerical kernels
-
-### Phase 3.1 Support complete surface geometry and strict intersections
-
-**S3.P1.T1 — Compile geometry evaluators and conservative bounds.** Code: implement flat/spherical/conic/aspheric
-sag, slope and normals from canonical records; precompute immutable sparse terms and absolute-term slope bounds while
-preserving evaluation order and domain behavior. Tests: existing aspheric-schema/math/profile suites, isolated odd
-and even terms, derivatives/normals, finite-radius domains, mutability boundaries and cancellation cases. Commit.
-
-**S3.P1.T2 — Implement the branch's exact intersection contract.** Code: share one physical intersection kernel across
-traversals, with analytic planes, ordered cap selection, safeguarded Newton/bisection, raw-target acceptance, stalled
-roundoff handling, explicit effective tolerance and bounded failure. Tests: port every branch analytic case unchanged,
-including the 43-iteration exterior diagnostic, zero/exhausted budgets, huge axial/transverse cancellation, steep
-quartics, multiple roots, tighter plane bounds, near-vertical/vertical mirrors and nonfinite bounds. Compare physical
-hits to analytic geometry, rather than only to the old engine. Commit.
-
-**Phase gate:** all physical geometry and intersection anchors pass at their existing tolerances; any compatibility
-support for exterior ghost diagnostics remains explicitly separate from physical cap acceptance. Commit checkpoint.
-
-### Phase 3.2 Support interactions, apertures and transported quantities
-
-**S3.P2.T1 — Implement medium and phase interactions.** Code: vector Snell/reflection, incident-side selection,
-second-surface mirror medium bookkeeping, blocking/ignore, same-index pass-through, radial phase-gradient diffraction
-and non-propagating-order statuses. Tests: analytic refract/reflect/TIR cases, wavelength-dependent diffractive anchors,
-both incident directions, embedded stops and folded diffractive fixtures. Commit.
-
-**S3.P2.T2 — Implement aperture, intensity and optical path primitives.** Code: outer/inner aperture and physical
-stop tests with independent semantic tolerance, per-medium OPL, Beer–Lambert absorption and obstruction-aware flux
-hooks. Tests: exact rim/inner-hole cases on either side of tolerance, segment-length/OPL analytic anchors, absorption
-versus length, same-index internal stops, and zero-loss equivalence. Preserve existing generalized OPL support limits.
-Commit.
-
-**Phase gate:** interaction/aperture/flux invariants and differential kernel results pass; no wavelength or medium
-information is lost. Run and commit the phase checkpoint.
-
-**Stage gate:** cumulative Stages 1–3, all branch regressions, independent math anchors, normal/tooling/build checks
-and required numerical report/benchmark comparisons pass. Commit the Stage 3 checkpoint.
-
-## Stage 4 Route all exact traces efficiently
-
-### Phase 4.1 Support sequential tracing and allocation choices
-
-**S4.P1.T1 — Implement the sequential traversal.** Code: operate on indexed compiled geometry with precomputed path
-bounds, explicit physical stop/wavelength, first-surface bounds, terminal/image-plane handling, partial tracing,
-ghost and failure semantics. Tests: sequential/exact/vector/skew/golden suites, clips, TIR, misses that retain prior
-hits without fabrication, partial traces, same-index/embedded stops, OPL and rear-plate/converter systems. Commit.
-
-**S4.P1.T2 — Add terminal and full capture with scalar/batch equivalence.** Code: select capture policy before the
-loop; add request-local scratch and batch execution with the same scalar kernels. Materialize hits/diagnostics only
-when requested, retaining numerical-failure classification in terminal output. Tests: identical trajectories,
-failure/clipping/flux/OPL across capture modes and scalar/batch, no scratch aliasing, no input mutation, allocation
-counters and cancellation between batch chunks. Commit.
-
-**Phase gate:** complete sequential behavior passes the corpus sweep and oracle; terminal-only measurement shows
-eliminated hit-array allocation without reduced accuracy or changed sample outcomes. Commit checkpoint.
-
-### Phase 4.2 Support complete generalized and folded paths
-
-**S4.P2.T1 — Implement explicit generalized traversal.** Code: repeated authored surface order, incident/rear-medium
-rules, annular clipping, generalized stop-hit lookup, arbitrary image-plane termination, loop/max-interaction guards
-and full diagnostics. Tests: mirror and folded diffractive fixtures, first/second-surface mirrors, repeated stop
-encounters, side/front/back planes, reverse directions, chief stop targeting and symmetry. Commit.
-
-**S4.P2.T2 — Implement automatic nearest-hit traversal and public ray adapters.** Code: automatic candidate selection
-and skip reasons, exact nearest valid hit and self-hit rules; convert new traces into every old ray result shape.
-Only add broad-phase bounds if conservative rejection is independently verified. Tests: Newtonian auto path, competing
-nearby candidates, grazing rays, equal-distance ordering, skip/loop diagnostics, explicit/auto equivalent paths,
-ray adapter signatures and non-folded golden parity. If bounds are used, compare bounded/unbounded searches. Commit.
-
-**Phase gate:** generalized and sequential routes both pass; automatic optimization never changes ordered hits,
-termination, physical blockers, or diagnostics. Run and commit the phase checkpoint.
-
-**Stage gate:** cumulative Stages 1–4, complete all-catalog trace/state matrix and converter pairs, full tests/build,
-and trace-count/accuracy/performance comparisons pass. Commit the Stage 4 checkpoint.
-
-## Stage 5 Prepare state and solve fields without adapter round trips
-
-### Phase 5.1 Support all controls, first-order values and bounded state reuse
-
-**S5.P1.T1 — Prepare geometry and consolidate caches.** Code: preserve variable-gap interpolation, authored focus/zoom
-stations, centered aberration offsets, negative folded deltas, fixed/variable/published zoom irises and image-plane
-placement using shared surface records. Replace duplicate state caches with one bounded owner-scoped cache. Tests:
-model-state/layout/group/zoom/aperture suites, authored keyframe reproduction, off-station interpolation, distinct
-nearby controls, same-key revisions, converter isolation, eviction and exact cached/uncached equality. Commit.
-
-**S5.P1.T2 — Build runtime constants from new trace and paraxial primitives.** Code: EFL/BFL, pupils, Petzval/cardinal
-data, zoom arrays, physical stop sizing and display constants; remove the Stage 2 baseline bootstrap. Keep dynamic
-analysis outside construction. Tests: analytic first-order anchors, runtime/golden/corpus parity, focus/zoom breathing,
-converter stop preservation, plate physical gaps and folded geometric fallbacks. Commit.
-
-**Phase gate:** candidate compilation/runtime construction/state preparation are independent of the baseline
-implementation and have no runtime↔compiled-model cycle. Run and commit the phase checkpoint.
-
-### Phase 5.2 Support projection, chief solving and fixed-sensor movement
-
-**S5.P2.T1 — Implement shared launch, chief and field primitives.** Code: projection forward/inverse laws, existing
-rectilinear slope routing below its cap, always-vector fisheye launch, bounding-sphere finite bounds, generalized stop
-aiming, and separate declared/diagram/analysis/MTF field meanings. Tests: projection/chief/bounding-sphere suites,
-near/above 90° and backward rays, format-corner inversion, fallback statuses and positive/negative fields. Preserve
-raw diagram fan behavior and the fisheye-only safety factor. Commit.
-
-**S5.P2.T2 — Prepare movement contexts and adapters.** Code: lens pose/pivot, camera anchoring, fixed sensor basis,
-perspective chief/bundle/field sampling and viewport adapters; key results by complete pose and geometry. Tests:
-perspective acceptance matrix, zero-movement equivalence, shifts/tilts/pivots, sensor landings, retained failed samples,
-camera versus lens frames, and current intrinsic/perspective/unavailable section guards. Commit.
-
-**Phase gate:** every launch and moved-state request reaches the intended frame/stop/sensor or retains its explicit
-failure; no active movement silently receives centered results. Run and commit phase checkpoint.
-
-**Stage gate:** cumulative Stages 1–5, runtime and every authored/interpolated state contract, projection/movement
-acceptance matrix, full tests/tooling/build and updated timing/memory comparisons pass. Commit Stage 5 checkpoint.
-
-## Stage 6 Port every analysis onto shared request contexts
-
-### Phase 6.1 Support complete centered, spectral and moved analyses
-
-**S6.P1.T1 — Port summary, aberration and bokeh jobs.** Code: summary/cardinal/breathing/group readouts, SA/profile/blur,
-best focus, field curvature/astigmatism, coma, bokeh and aspheric comparison consume native prepared geometry and
-terminal/batch traces. Preserve actual sampling/quality policies and analysis result shapes. Tests: existing analysis,
-aberration/bokeh/aspheric/quality suites plus differential arrays, labels, units, unavailable cases and capture parity.
-Commit.
-
-**S6.P1.T2 — Port field, pupil and chromatic jobs.** Code: distortion/grid, vignetting and illumination, entrance/exit
-pupils, chromatic focus/lateral color/fans and ray-fan scaling; reuse identical chief/field/material requests. Retain
-distinct channel and arbitrary-spectrum index policies, including the current d/e anchoring differences. Tests:
-distortion/vignette/pupil/chromatic/dispersion suites, projection-relative distortion, spectral flux, obstruction/APD,
-missing spectral data, mixed references and source-line uncertainty. Commit.
-
-**S6.P1.T3 — Port perspective analysis and centralized availability.** Code: native moved focus/image-space, field
-aberrations, coma, bokeh, distortion, vignetting, pupils and chromatic jobs; intrinsic sections stay intrinsic and
-unsupported folded/moved sections stay unavailable. Tests: all `perspective/analysis` suites, explicit per-section
-guard matrix, zero-pose parity, sparse/status-preserving field output and comparison context isolation. Commit.
-
-**Phase gate:** every existing analysis section is covered by a native candidate job or its unchanged documented
-availability guard; no analysis delegates back through old math adapters. Commit phase checkpoint.
-
-### Phase 6.2 Support the complete validated MTF workflow
-
-**S6.P2.T1 — Port MTF tracing, field, aperture and focus orchestration.** Code: native field inversion, expanded
-full-beam footprint/guard band, symmetry, equal-flux or finite solid-angle lattice, stop tracing, best/design/auto
-focus, terminal reprojection, miss proof/classification and unresolved-flux bounds. Preserve finite-source eligibility,
-sample refinement, focus limits and unsupported optical paths. Tests: `mtf`, `mtfConjugates`, footprint/focus/aperture
-cases, field statuses, narrow vignetted beams, physical versus unresolved misses, flux accounting and data limitations.
-Commit.
-
-**S6.P2.T2 — Integrate the verified OTF kernels and spectral policies.** Code: reuse behavior-preserving geometric,
-sheared diffraction and optical-path reference kernels with candidate traces; complex spectral sum precedes magnitude,
-and retain spectral gates, index anchoring, diffraction limits, grid ladder and convergence reporting. Tests: unchanged
-`mtfDiffraction`, `mtfSpectral`, `mtfWavefront` analytic anchors plus all reference/C-d-F/photopic and finite/infinite
-oracle cases at multiple grids. Manufacturer chart comparisons remain reports, not acceptance thresholds. Commit.
-
-**S6.P2.T3 — Reuse completed MTF fields and focus searches safely.** Code: preserve per-request-minus-field-list
-cache reuse, completed-result byte accounting and staged computation interfaces with native contexts. Tests: cached
-versus uncached results, coarser/finer field requests, canceled and partially failed runs, changed aperture/spectrum/
-focus/pose/converter/source, memory eviction and stale request isolation. Commit.
-
-**Phase gate:** MTF numerical/availability/warning results and analytic accuracy match, and equal-work timing
-comparisons contain every completed/status outcome. Run and commit phase checkpoint.
-
-**Stage gate:** cumulative Stages 1–6, every analysis acceptance case, complete MTF matrices, analytic references,
-normal/tooling/build checks and required reports/benchmarks pass. Commit Stage 6 checkpoint.
-
-## Stage 7 Connect consumers and validate catalog migration
-
-### Phase 7.1 Support identical UI payloads and worker lifecycle
-
-**S7.P1.T1 — Connect public facades and diagram computation.** Code: behind the test-injected candidate boundary,
-connect stable barrels, diagram geometry, camera layouts, on/off-axis/chromatic hooks and analysis contexts to native
-candidate outputs. Preserve current consumer parameter/result contracts, source-station resolution in the same render,
-and frozen/deferred settled snapshots. Tests: layout/diagram/trim diagnostics, computation/ray hooks, SVG/inspector,
-analysis drawer and comparison suites; changed lens plus old sliders cannot render a mismatched frame. Commit.
-
-**S7.P1.T2 — Connect MTF workers and analysis consumers.** Code: retain serializable authored init data, rebuild
-plates once, typed init/compute/cancel → progress/result/error protocol, request IDs, roughly 30 ms cooperative slices,
-at-most-100 ms partial publication cadence, and existing charts/tables/CSV/warnings. Tests: worker/client/tab suites,
-candidate worker/main-thread equality, rapid cancellation/restart, stale replies, cross-lens initialization, malformed
-messages, plate duplication and retained-cache lifetimes. Other jobs move to workers only if profiling requires it
-and their synchronous public APIs stay available. Commit.
-
-**Phase gate:** all UI consumers receive the same shapes and support states; browser drag, comparison, lens/configuration/
-converter switch, URL history and worker lifecycle acceptance scenarios pass. Commit phase checkpoint.
-
-### Phase 7.2 Support automated catalog migration and external engine consumers
-
-**S7.P2.T1 — Enable converter-driven catalog migration.** Code: run the verified tool on the complete corpus if V2
-reduces maintenance/duplication meaningfully; retain legacy loader support. Commit migration separately from physics
-changes. Tests: full round-trip/canonical/runtime/result parity and catalog/data/metadata/sidecar freshness sweeps,
-permitted converter pairs, build, prerender and SEO audit. If compact authoring is not adopted, ship the tool and dual
-ingress with the same coverage; the step is complete only when both versions work through production consumers.
-Commit.
-
-**S7.P2.T2 — Connect scripts, reports, metadata and SSR.** Code: replace remaining deep implementation imports with
-the stable public facade or canonical compiler as appropriate; update metadata readers, audits, generated summaries
-and report helpers for both input versions. Tests: scripts and report-helper suites, tooling checks, deterministic
-glass/mirror report comparisons, summary parity, all existing prerender routes and no full-prescription leakage into
-summary-only pages. Regenerate source documentation. Commit.
-
-**Phase gate:** no caller depends on an old private schema or silently loses a new feature; both formats produce
-equivalent catalog, viewer, comparison, SSR and audit/report behavior. Commit phase checkpoint.
-
-**Stage gate:** cumulative Stages 1–7, full UI/worker/data/script suites, build/prerender/SEO, corpus/report equality
-and browser performance checks pass. Commit Stage 7 checkpoint. Production still uses the baseline entry point.
-
-## Stage 8 Meet efficiency budgets and replace the production engine
-
-### Phase 8.1 Support measured optimization without behavior drift
-
-**S8.P1.T1 — Remove measured hot-path overhead.** Code: profile the equal-work matrix, then remove remaining redundant
-clones/preparations/index callbacks, conversion loops and capture allocations; precompute proved bounds and index
-tables once. Reuse request-local work only where all physical inputs match. Tests: structural counters, cache/capture/
-batch equality, every affected numerical and analysis suite, long-session memory and before/after timing records.
-Split each independently shippable optimization into its own additional numbered code-and-tests step/commit rather
-than one unreviewable performance patch. Commit.
-
-**S8.P1.T2 — Enforce release performance budgets.** Code: add the frozen budget comparison to the controlled release
-gate and lifecycle/allocation checks to stable automated suites. Tests: synthetic pass/fail benchmark comparisons,
-unequal-work rejection, p95/median/retained-memory failures and actual baseline/candidate release runs. Timing gates
-run on a controlled host, not noisy arbitrary CI workers. Commit only after the candidate meets every budget above.
-
-**Phase gate:** the candidate meets accuracy, status/work equality, runtime independence and all efficiency budgets
-on the frozen matrix. Run and commit phase checkpoint.
-
-### Phase 8.2 Support production promotion and permanent regression coverage
-
-**S8.P2.T1 — Promote the complete candidate through the existing public facade.** Code: atomically point stable
-production entry points and worker builds at the new implementation, preserving all public contracts. Retain an
-immutable baseline in test/tooling-only form for the bounded verification window; production never retries it on a
-failed candidate trace. Tests: full cumulative/corpus/UI/worker/SSR/tooling/report suites and production-preview
-interaction matrix; prove bundles contain only one production engine and results still meet the release budgets.
-Commit.
-
-**S8.P2.T2 — Remove obsolete production code and finalize documentation.** Code: after one complete production-build
-verification cycle, remove old production implementations and temporary candidate wiring. Keep the pinned oracle
-strictly in test/tooling dependencies, or replace its execution with immutable baseline payloads captured before
-removal and guarded by input fingerprints. Preserve every prior step's test case; do not regenerate expected outputs
-from the candidate. Keep independent analytic, golden, data-contract, cache/capture/lifecycle and budget tests.
-Update architecture, public-functions, schema/templates and authoring recipes; retain needed `*2` names as aliases,
-not duplicate production engines. Tests: production imports resolve without old code, every previously completed
-suite still runs without removed/skipped cases, conversion round-trips pass, production bundles/build/SSR work and
-final performance/memory checks meet budgets. Commit.
-
-**Phase gate:** no production math or analysis adapter routes through the retired engine; no production import or
-temporary selector reaches it. The converter, legacy data loader and cumulative test oracle still work. Run and
-commit phase checkpoint.
-
-**Stage gate:** rerun all phases in Stage 8 and all prior-stage acceptance coverage using the final implementation;
-full tests/tooling, typecheck/format/lint, build/prerender/SEO, corpus and report checks, browser lifecycle, and controlled
-performance/memory budgets pass. Commit the final Stage 8 checkpoint before declaring the rewrite complete.
-
-## Rollback and completion
-
-Every step must leave the baseline production path usable until promotion. Revert a failing candidate step without
-discarding earlier passing steps. After promotion, rollback selects the pinned baseline source through a commit
-revert/rebuild, with the V2-to-V1 tool available if authored inputs were migrated. Keep the conversion command and
-baseline revision in the release PR so rollback does not require reconstructing source tables by hand. Do not
-rewrite published history or silently run both engines in production.
-
-The rewrite is complete only when every feature-matrix row and public contract has permanent tests, both input
-versions remain supported, conversion is automatic and verified, all numeric guarantees of the tolerance branch
-remain intact, the new engine independently owns all production computation, and the Stage 8 cumulative accuracy,
-integration, efficiency and commit gates pass. Completed work is recorded in commits and the release PR; remove this
-open-work plan once its lasting rules have moved to the appropriate repository documents.
+| `CanonicalPrescription` | The version-independent authored content, with schema defaults applied. Each field has authored-or-default provenance and its source path for diagnostics. | One per authored file; plain data that can be sent to a worker |
+| `CompiledLens` (replaces `EngineLens`) | Indexed surfaces with compiled geometry profiles, media and dispersion resolvers, the stop, path plan, station tables, aperture model, annotations and display constants. It has no reference to `RuntimeLens`. | One per canonical identity, immutable |
+| `RuntimeLens` (unchanged name) | The frozen read model the UI consumes, derived from `CompiledLens` plus the first-order constants. The engine never takes it as input. | One per compiled lens |
+| `PreparedGeometry` (replaces `PreparedOpticalState`) | Vertex positions, current thicknesses, the image plane and iris for one exact `(focusT, zoomT, aberrationT)`. It shares the immutable surface records. | Bounded LRU per compiled lens |
+| `TraceGeometry` | The minimal indexed input the tracer needs: surfaces, vertex z, media, stop index, image plane and path plan. | A view of `PreparedGeometry`, or one built during lens construction |
+| `AnalysisRequest` | Prepared geometry, physical aperture, spectrum, field geometry, optional pose, sampling and capture choice. | One per analysis context |
+
+### Directory layout
+
+- **Top-level files** in `src/optics/` are the public seam: barrels and thin facades only. Everything else lives in
+  subdirectories that outside code may not import.
+- **Final barrels.** They are settled in S8.P1.T1 and enforced by the seam guard. The proposal: `buildLens.ts`,
+  `teleconverter.ts`, `optics.ts`, `fieldGeometry.ts`, `projection.ts`, `analysis.ts`, `mtf.ts`, `perspective.ts`,
+  `diagramGeometry.ts`, `chromatic.ts`, `glassCatalog.ts`, `publishedStations.ts`, `validation.ts`, `geometry.ts` and
+  `types.ts`.
+
+| Directory | Contents |
+| --- | --- |
+| `prescription/` | Canonical types; ingest of V1 and V2; schema defaults; object-level conversion; composition (rear plates, teleconverter); the compiler; `validate/` |
+| `geometry/` | Surface profiles; fused sag and slope; bounds; the intersection kernel; tolerance envelopes; planes; vector math; diffractive phase |
+| `trace/` | Interactions; sequential and generalized traversal; path planning; apertures; capture; absorption; ray adapters |
+| `state/` | Control interpolation (focus, zoom, aberration); `PreparedGeometry` and its cache; stop and iris; layout; camera anchoring |
+| `first-order/` | Paraxial tracing; lens constants (EFL, BFD, pupils, half-field); cardinals; breathing; f-numbers |
+| `field/` | Projection; launch; chief-ray solve; field geometry; image-height inversion |
+| `math/` | Numerics and root solving |
+| `chromatic/` | Channels; index resolution; dispersion tables and quality; the glass catalog and its entries |
+| `perspective/` | Pose; frames; sensor targeting; trace context; field sampling; diagram fans; `analysis/` |
+| `analysis/` | Request and context; jobs; sampling policy; `aberration/`; distortion; vignetting; pupils; bokeh; chromatic; aspheric comparison; group movement; summary; `mtf/` |
+| `diagram/` | Coordinate transforms; element shapes; outlines; render diagnostics; folded-path labels |
+| `diagnostics/` | Work counters; chief-ray status counts |
+| `mount/` | Unchanged; outside this program |
+
+### Module fates
+
+| Today | Fate | Step |
+| --- | --- | --- |
+| `index.ts`, root `analysisJobs.ts`, `analysis/fieldCurvature.ts` (no importers) | Deleted | S1.P4.T1 |
+| `internal/surfaceMath.ts`, `math/surfaceProfile.ts`, `layout.ts` `renderSag`/`sagSlope`, `diagram/surfaceOutline.ts` `surfaceSag2` | `geometry/surfaceProfile.ts`, one implementation | S3.P1.T1 |
+| `math/intersection.ts`, `math/intersectionTolerance.ts`, `math/plane.ts` | `geometry/intersect*.ts` | S3.P2 |
+| `internal/surfaceIntersection.ts` | Delegates to the kernel in S3.P2.T3, then deleted | S4.P2.T4 |
+| `internal/exactSurfaceTrace.ts`; `rayTrace.ts` tracers and `traceToImage`; `internal/traceSurfaces.ts` | Deleted. The pupil samplers from `rayTrace.ts` move to `analysis/sampling.ts`. | S4.P2.T4 |
+| `internal/lensState.ts`; `prescription/{labels, aspheres, variables, groups, dispersion}.ts`; `prescription/normalizeLensData.ts` | One compiler, `prescription/compile*.ts` | S5.P1.T1 |
+| `runtimeLens.ts` (1,111 lines) | `first-order/lensConstants.ts` plus `prescription/runtimeView.ts` | S5.P1.T2 |
+| `validateLensData.ts` (1,838 lines), `validateTeleconverterData.ts`, `internal/apertureBands.ts` | `prescription/validate/`, split by concern | S5.P1.T3 |
+| `compat.ts` LRU; `trace/rayAdapters.ts` state store; uncached `prepareState` calls; `stateWithRuntimeZ` and `stateWithDiagramZ2` | `state/preparedGeometry.ts`: one owner, one cache, one z-override | S5.P2.T1 |
+| `layout.ts` `thick`/`doLayout`/`*AtZoom`/`eflAtFocus`/`effectiveFNumber`; compat `doLayout2`/`thick2`/`*AtZoom2`; `first-order/{focusBreathing, fNumber}.ts`; `apertureStop.ts`; `focusDistance.ts` | `state/layout.ts`, `state/stationTables.ts` and `first-order/`, one of each | S5.P2.T2 |
+| `dispersion.ts`; `chromatic/{dispersionAdapter, dispersionQuality, indexResolver}.ts`; `prescription/dispersion.ts`; channel wavelengths in `constants.ts` | `chromatic/`: one table builder, one quality summary, one channel table | S5.P2.T3 |
+| `field/chiefRay.ts` (1,384 lines); `field/chiefRayCache.ts` | `field/{fieldGeometry, chiefRaySolve, imageHeight}.ts`; per-geometry cache; `diagnostics/` | S6.P1.T1 |
+| `perspective/analysis/shared.ts` sensor helpers duplicating `perspective/fieldGeometry.ts` | One implementation | S6.P3.T3 |
+| `analysis/{aberrations, bokeh, distortion, vignetting, pupilAberration, groupMovement, chromatic}.ts` adapters; `analysis/preparedStateAdapters.ts` | Deleted as each family takes `AnalysisRequest` | S7.P2 |
+| `aberration/*`, `distortionAnalysis.ts`, `vignetteAnalysis.ts`, `pupilAberration.ts`, `groupMovement.ts`, `chromatic/analysis.ts`, `asphericComparison.ts` (two copies), `chromaticRayFanScaling.ts` (two copies) | `analysis/<family>/`, one copy each | S7.P2 |
+| `analysis/mtf*.ts` | `analysis/mtf/`. Inputs change; kernels and orchestration do not. | S7.P4 |
+| `compat.ts`; alias barrels (`cardinalElements.ts`, `chiefRayDiagnostics.ts`, `aberrationAnalysis.ts`, `field/fieldGeometry.ts`, the field aliases in `optics.ts`); the 176 `*2` names | Deleted or folded into the final barrels | S8.P1.T1 |
+
+## Lens data V2
+
+### Principles
+
+1. **One fact, one place.** A value the engine reads is authored once. Where V1 holds two copies, the converter checks
+   that they agree exactly. If they don't, the file waits for a data decision (S2.P2.T1).
+2. **Records, not parallel arrays.** Every per-station fact lives on its station record.
+3. **Explicit over magic.** `R: "flat"` replaces `1e15`; `medium` replaces `elemId` + `nd`; the stop declares whether
+   its radius is authored or derived.
+4. **Grouped by consumer.** Identity, catalog, source, prescription, states, aperture, annotations, layout, rays,
+   checks.
+5. **Lossless, mechanical conversion.** The converter never changes a value the engine or UI reads.
+   - The canonical fingerprint of a converted file equals that of its V1 source.
+   - Deriving information that can legitimately differ is a later, separately reviewed C3 data PR, never a converter
+     side effect. Examples: design focal length versus station focal lengths, `specs`, element `fl`.
+6. **Defaults belong to the schema.** They are documented in the spec and applied by ingest with provenance, never by
+   spreading an object of defaults.
+7. **Naming.**
+   - The prescription columns `R`, `d`, `sd` and `innerSd` keep optical notation, in mm.
+   - Every other dimensional field carries a unit suffix.
+   - f-numbers are spelled `fNumber`.
+   - Field names that are already clear are kept, so the folded-path, projection and plate vocabulary in `CLAUDE.md`
+     and the audits stays valid: `opticalPath`, `interaction`, `innerSd`, `projection`, `perspectiveControl`,
+     `rearPlates`, `aberrationControl`, `diffractive`, `stopPlacement`, `groups`, `doublets`.
+
+### Shape
+
+Excerpt of `NikonNikkorZ2450mmf463.data.ts` after conversion; the header comment block is unchanged:
+
+```ts
+const LENS_DATA = {
+  schema: 2,
+  key: "nikkor-z-24-50-f4-63",
+  maker: "Nikon",
+  name: "NIKON NIKKOR Z 24-50mm f/4-6.3",
+  subtitle: "JP 2021-189377 A EXAMPLE 1 — KONICA MINOLTA / NIKON",
+
+  catalog: {
+    lensMounts: ["nikon-z"],
+    imageFormat: "135-full-frame",
+    specs: ["11 ELEMENTS / 10 GROUPS", "f = 24.7–48.5 mm", "F/4.08–6.34", "2ω = 82.5°–48.2°", "6 ASPHERICAL SURFACES"],
+    elementCount: 11,
+    groupCount: 10,
+    focalLengthMm: { marketing: [24, 50], design: [24.73, 48.5] },
+    fNumber: { marketing: 4, design: 4.08 },
+  },
+
+  source: {
+    patentNumber: "JP 2021-189377 A",
+    patentYear: 2021,
+    authors: ["Takakazu Hirose", "Keiko Yamada", "Yasushi Yamamoto", "Hiroshi Yamamoto"],
+    assignees: ["Konica Minolta, Inc.", "Nikon Corporation"],
+  },
+
+  elements: [
+    { id: 1, name: "L1a", label: "Element 1", type: "Negative Meniscus", nd: 1.6968, vd: 55.46,
+      focalLengthMm: -28.2, glass: "LAC14 (HOYA)", apd: false, role: "Primary G1 diverging element; convex toward object" },
+    // …
+  ],
+
+  surfaces: [
+    // ── G1: Negative front group (f₁ = −32.86 mm) ──
+    { label: "1", R: 71.885, d: 1.2, sd: 15.5, medium: 1 }, // L1a front
+    { label: "2", R: 15.312, d: 7.8, sd: 13.5 }, // L1a rear → air
+    { label: "3A", R: -298.152, d: 1.57, sd: 12.7, medium: 2,
+      asphere: { A4: 1.99678e-5, A6: -8.24417e-8, A8: -2.122e-11 } }, // L1b front (asph)
+    // …
+    { label: "6", R: 37.81, sd: 12.0 }, // L1c rear → air [VARIABLE: zoom only]; d comes from gaps
+    // …
+    { label: "STO", R: "flat", d: 3.41 }, // radius derived from the nominal f-number
+    // …
+  ],
+
+  zoom: {
+    stations: [
+      { focalLengthMm: 24.726, nominalFNumber: 4.08, label: "Wide" },
+      { focalLengthMm: 34.711, nominalFNumber: 5.115 },
+      { focalLengthMm: 48.503, nominalFNumber: 6.337, label: "Tele" },
+    ],
+    apertureModel: "from-nominal-fno",
+    step: 0.004,
+  },
+
+  focus: {
+    closeFocusM: 0.35,
+    description: "Internal focus via G3 (2 elements, stepping motor). …",
+  },
+
+  gaps: {
+    // d6: G1–G2 gap (zoom only — identical inf/close at each position)
+    "6": { label: "D6", values: [[19.973, 19.973], [10.326, 10.326], [3.17, 3.17]] },
+    // …
+  },
+
+  aperture: { blades: 7, bladeRoundedness: 0.7, fStops: [4.08, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 36], maxFNumber: 36 },
+  groups: [/* unchanged */],
+  doublets: [/* unchanged */],
+  layout: { scFill: 0.48, yScFill: 0.38 },
+} satisfies LensDataV2Input;
+```
+
+The canonical field order is the order shown. The converter prints it, so diffs between files stay comparable.
+
+### Field mapping
+
+Every V1 field maps to one V2 location, or is dropped by a rule stated in this table. Fields not listed keep their name
+and position.
+
+| V1 | V2 | Rule |
+| --- | --- | --- |
+| *(none)* | `schema: 2` | Discriminator; ingest dispatches on it |
+| `key`, `maker`, `name`, `subtitle`, `visible`, `publishedAt` | unchanged, first in the file | Identity readers move from regex to the AST (S2.P2.T3) |
+| `lensMounts`, `imageFormat`, `imageCircleMm`, `specs`, `elementCount`, `groupCount`, `acceptsTeleconverters`, `opticalConfiguration` | `catalog.*` | Same names |
+| `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.{marketing, design}` | Value kept as authored, scalar or `[wide, tele]` |
+| `apertureMarketing`, `apertureDesign` | `catalog.fNumber.{marketing, design}` | Value kept |
+| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata` | `source.{patentNumber, patentYear, authors, assignees, errata}` | `errata[].surface` keeps the surface label |
+| `surfaces[].nd`, `surfaces[].elemId` | `surfaces[].medium` | An element id, an id in `media`, or omitted for air. Indices come from the medium only. |
+| *(air surface with `nd ≠ 1`)* | `media: [{ id, name, nd, vd?, … }]` | Undrawn media; 4 surfaces today |
+| `elements[].fromSurface`/`toSurface` | `elements[].span: [from, to]` | Required where the drawn span is not the medium run. Today that means 21 explicit spans and the 14 mirror and blocker surfaces. |
+| `elements[].fl` | `elements[].focalLengthMm` | Display; still authored |
+| `R: 1e15` | `R: "flat"` | Converted only when `R === 1e15` |
+| `asph[label]` | `surfaces[i].asphere` | Sparse. Zero terms are omitted, because V1 required K and A4–A14 on every entry; `K` is omitted when 0. Adding a zero term changes no sum, and schema order stays the accumulation order. |
+| `asph: {}` | omitted | |
+| `var`, `varLabels` | `gaps[label] = { label?, values }` | `values` is always `[zoomStation][focusKeyframe]`; a prime has one row |
+| `surfaces[i].d` for a gap in `gaps` | omitted | `values[0][0]` supplies it. The converter requires `d === values[0][0]`. |
+| `zoomPositions`, `nominalFno[]`, `zoomStopSemiDiameters`, `zoomCloseFocusM`, `zoomLabels` | `zoom.stations[i].{focalLengthMm, nominalFNumber, stopSemiDiameter, closeFocusM, label}` | `[wide, tele]` labels go to the first and last stations |
+| `zoomApertureModel`, `zoomStep` | `zoom.apertureModel`, `zoom.step` | |
+| `nominalFno` (scalar) | `aperture.nominalFNumber` | Primes and constant-aperture zooms. Scalar versus per-station stays distinct, because the UI treats an array differently (`marketedApertureNote`). |
+| `closeFocusM`, `focusPositions`, `focusStep`, `focusDescription` | `focus.{closeFocusM, keyframes, step, description}` | `keyframes` defaults to `[0, 1]`; a station `closeFocusM` overrides the lens value |
+| `publishedStations.zoom` / `.focus` | `zoom.stations[i].published` and `.publishedFocus`; on a prime, `focus.published` | Presence still marks provenance. Focus lists hold keyframe indices ≥ 1, and infinity is implied. V1's "zoom omitted means every station" becomes an explicit flag on every station. |
+| `finiteConjugates[]` (`focusT`, `zoomT`) | `focus.conjugates[]` (`zoomStation`, `keyframe`) | Index-addressed. The converter maps each `focusT` to the keyframe it matches within the validator's 1e-8 and refuses otherwise. |
+| `fstopSeries`, `maxFstop`, `apertureStep`, `apertureBlades`, `apertureBladeRoundedness` | `aperture.{fStops, maxFNumber, step, blades, bladeRoundedness}` | |
+| STO `sd` | Omitted when derived; kept as `sd` when authoritative | Authoritative means folded, embedded (`stopPlacement`) or zoom stations with `stopSemiDiameter`. It is dropped in the 889 lenses where the engine overwrites it, and the conversion report lists each dropped value. |
+| `aberrationControl.var` / `.varLabels` | `aberrationControl.gaps` | Same tuple forms as V1 |
+| `svgW`, `svgH`, `scFill`, `yScFill`, `maxAspectRatio`, `lensShiftFrac` | `layout.*` | |
+| `rayFractions`, `rayLeadFrac`, `offAxisFieldFrac`, `offAxisFractions` | `rays.*` | These feed analyses as well as the diagram |
+| `gapSagFrac`, `maxRimAngleDeg` | `checks.*` | Validation relaxations |
+| explicit defaults (`apd: false` ×3,685, `indexReference: "d"` ×1,891, `zoomApertureModel: "from-nominal-fno"` ×49) | kept as authored | New files may omit them. They behave the same as an omission today (every `apd` reader tests truthiness), but an explicit `false` may record that an author checked; see open decision 2. |
+
+**Conventions that do not change:**
+
+- R sign;
+- `d` as the axial step to the next listed surface, including negative and zero values in folded paths;
+- `sd` as a hard clip;
+- `[innerSd, sd]` annuli;
+- the asphere formula, including the K convention and odd terms in |h|;
+- the diffractive phase convention;
+- interaction defaults;
+- d/e index-reference semantics;
+- metre units for close focus;
+- reserved labels (`STO`, `RP<n>a`/`RP<n>b`, the `TC` prefix, the `${label}B` backing pair, `IMG`);
+- station indexing (zoom station i of n at `zoomT = i/(n−1)`; focus keyframes at their authored coordinates).
+
+**Teleconverter V2** (`schema: 2` in a `*.teleconverter.ts` file):
+
+- Uses the same `elements`, `media`, `surfaces`, `medium`, `asphere`, `catalog` and `source` model.
+- Keeps `magnification`, `masterImageDistanceMm`, `minHostFNumber` (renamed from `minHostFno`), `incompatibleLensKeys`
+  and `rearPlates` (air-equivalent, as today).
+- Has no stations, aperture, layout, rays or checks.
+- Its `groups` stay optional and are kept by the converter, even though composition currently ignores them.
+
+**Validation diagnostics** name the authored path, for example `surfaces[5].medium: unknown element 13`, through the
+canonical provenance map.
+
+### Ingest, conversion and comments
+
+- **Shared mapping.** `src/optics/prescription/` holds the object-level mapping (V1 → canonical, V2 → canonical,
+  canonical → V1 object, canonical → V2 object). The runtime and the converter use the same code.
+- **The converter.**
+  - Lives in `scripts/lens-data-convert/`.
+  - Reads source with the TypeScript compiler API (`typescript` is already a dev dependency) and never executes input.
+  - Evaluates the literal forms the corpus uses: object and array literals, numbers, strings, booleans, `null`,
+    `satisfies`, `as const`, and top-level `const` bindings within the same file.
+  - Prints V2 or V1 deterministically, then formats with Prettier.
+  - Keeps the source text of numeric literals, so `1.05587e-7` is not reprinted as `1.05587E-7`.
+- **Comments.** Leading and trailing comments are attached to the authored path they annotate and re-emitted at the
+  mapped V2 path. A comment whose node has no V2 counterpart is emitted at the nearest mapped ancestor, prefixed
+  `// (moved from <V1 path>)`, and listed in the conversion report. Comments never become data fields.
+- **Sidecars stay as written.**
+  - `*.audit.md` and `*.analysis.md` sidecars are historical records and are not rewritten.
+  - `asph` appears in 345 audits, `rearPlates` in 205, `sd` in 203 and `var` in 99.
+  - The V2 spec carries a "Reading V1 audits" vocabulary table instead.
+
+### Pre-migration data decisions
+
+V2 cannot represent these. Each needs a C3 data PR under `agent_docs/lens-patent-audit.md` before its file converts. The
+converter refuses the file until then.
+
+| Lens | Discrepancy | Decision needed |
+| --- | --- | --- |
+| Fujifilm XF18mm f/2 (`FujifilmXF18mmf2.data.ts`) | Surfaces `1`, `6` and `15` trace 1.517417, 1.647689 and 1.834807; elements 1, 3 and 8 carry 1.51742, 1.64769 and 1.83481 | Which value the source prints; set the element to it |
+| Minolta AF 35mm f/1.4 | STO gap: `d` 7.887366666666666, `var` 7.887366666667 | One value |
+| Nikon Ai Nikkor 35mm f/1.4 S | Gap `15`: `d` 37.254161, `var` 37.254160829 | One value |
+
+The converter dry run (S2.P3.T3) lists any further case of this kind.
+
+## Stages
+
+Each step names its change, files, tests and gate class. Rollback is reverting the step's PR, unless the step says
+otherwise.
+
+### Stage dependencies
+
+```mermaid
+flowchart LR
+  S1[S1 contract, harness, guards] --> S2[S2 canonical + V2 data]
+  S1 --> S3[S3 geometry + kernel]
+  S3 --> S4[S4 one trace stack]
+  S2 --> S5[S5 compiled lens + prepared geometry]
+  S4 --> S5
+  S5 --> S6[S6 fields + solvers]
+  S6 --> S7[S7 analyses on requests]
+  S7 --> S8[S8 seam, consumers, close]
+```
+
+Stage 2 and Stages 3–4 touch disjoint modules and can run in parallel. Stage 5 needs both S2.P1 and S4; it does not
+need the S2.P5 catalog migration.
+
+### Stage 1 — Contract, evidence and guards
+
+**Phase 1.1 — Contract and anchors**
+
+- **S1.P1.T1 Land the intersection contract.**
+  - **Change:** merge #774, or rebase it if `main` has moved. Its separately reviewed Vivitar stop correction rides with
+    it.
+  - **Files:** as in #774.
+  - **Tests:** #774's suites. `exactTraceGoldenValues.test.ts` is unchanged; the five Planar expectations that #774
+    updates come with its documented high-precision evidence.
+  - **Gate:** C3; this sets anchor A0. The PR records the R0 and A0 benchmark medians from one machine.
+
+**Phase 1.2 — Differential harness**
+
+- **S1.P2.T1 Capture and payloads.**
+  - **Change:** the capture entry, seam adapter, requests and payload normalizer described above.
+  - **Payloads cover:**
+    - build constants (every numeric `RuntimeLens` field);
+    - layout;
+    - traces: hits, terminal point and direction, status, clip reason, `effectiveTolerance`;
+    - field geometry and chief solves;
+    - every analysis job;
+    - geometric MTF at a small grid.
+  - **Files:** `src/benchmarks/engineDiff/{captureEntry, seamAdapter, requests, payload}.ts`.
+  - **Tests:** `__tests__/src/benchmarks/engineDiff.test.ts` (tooling suite):
+    - payload determinism across two runs;
+    - fingerprints change with any authored value and not with whitespace or comments.
+  - **Gate:** C0, with no engine change.
+- **S1.P2.T2 Budgets, comparison, driver and CI job.**
+  - **Change:**
+    - add the budget table and comparator;
+    - add `scripts/engine-diff.mjs`;
+    - add an `engine-diff` job to `.github/workflows/quality.yml`. It first checks the changed paths, then runs Tier P
+      against `origin/main`'s merge-base, with the class taken from the PR label.
+  - **Tests:**
+    - Each of these must fail detection: a status, an index, a unit, a sample order, a coordinate perturbed by 1 ulp
+      under C0, and a coordinate perturbed by twice the budget under C1.
+    - Identical refs must pass.
+    - A fingerprint mismatch must be listed and skipped.
+    - The C1 noise floor is measured by reassociating one sum in sag evaluation, and the budget table is finalized from
+      it.
+  - **Gate:** C0.
+- **S1.P2.T3 Stage and full tiers.**
+  - **Change:**
+    - Tier S and Tier F request lists, with `--shard`;
+    - a `workflow_dispatch` workflow `.github/workflows/engine-diff-stage.yml` that runs the shards as a matrix.
+  - **Tests:** shard partitions are disjoint and complete.
+  - **Gate:** C0. Run A0 against A0 to prove determinism, and record each tier's runtime in the PR.
+
+**Phase 1.3 — Measurement**
+
+- **S1.P3.T1 Structural counters.**
+  - **Change:** add `src/optics/diagnostics/workCounters.ts`, behind a compile-time `__OPTICS_COUNTERS__` define:
+    `false` in the app build, and `true` in the benchmark, `engineDiff` and Vitest builds.
+  - **What it counts:**
+    - surface-profile evaluations;
+    - intersections by kind;
+    - traces by capture;
+    - chief solves and their stop traces;
+    - root-solve evaluations;
+    - prepared-geometry constructions;
+    - lens compilations;
+    - material resolutions;
+    - sensor-locked solves.
+  - **Files:** the counters module; `vite.config.js` (`define`); call sites in `math/intersection.ts`,
+    `internal/surfaceIntersection.ts`, `field/chiefRay.ts`, `math/rootSolve.ts`, `state/prepareState.ts`,
+    `prescription/normalizeLensData.ts` and `perspective/sensorTarget.ts`.
+  - **Tests:**
+    - Counters read zero with the define off.
+    - Counts are deterministic for a fixed request.
+  - **Verification:** the PR confirms that the production bundle contains no counter code.
+  - **Gate:** C0.
+- **S1.P3.T2 Paired benchmarks and memory.**
+  - **Change:**
+    - `--base <ref>` paired mode, using a worktree as `engine-diff.mjs` does;
+    - AB/BA alternation;
+    - raw samples, bootstrap confidence intervals and counters in the run JSON;
+    - the heavy-scenario set;
+    - a `--memory` scripted session (lens switches and control sweeps) that reports retained heap.
+  - **Files:**
+    - `scripts/benchmark-optics-rendering.mjs`
+    - `src/benchmarks/opticsRenderingBenchmark.tsx`
+    - `src/benchmarks/benchmarkReport.ts`
+    - `scripts/benchmark-mtf.mjs`
+    - `agent_docs/benchmarks/README.md`
+  - **Tests:** bootstrap with a fixed seed; unequal-work detection; schema of the run JSON.
+  - **Gate:** C0.
+- **S1.P3.T3 Browser interaction harness.**
+  - **Change:**
+    - add `scripts/benchmark-browser.mjs`, which drives the locally installed Chromium through Playwright (`playwright`
+      becomes a dev dependency);
+    - run it against `vite preview`, measuring slider-drag frame times and analysis settle times for three lenses.
+  - **Output:** reporting only; never in CI.
+  - **Gate:** C0.
+
+**Phase 1.4 — Guards and references**
+
+- **S1.P4.T1 Architecture guards and dead code.**
+  - **Change:**
+    - add `__tests__/src/optics/opticsArchitecture.test.ts` with the cycle, seam and cache guards and their initial
+      allowlists;
+    - delete the three unimported modules (`src/optics/index.ts`, the root `src/optics/analysisJobs.ts` and
+      `src/optics/analysis/fieldCurvature.ts`).
+  - **Gate:** C0.
+- **S1.P4.T2 High-precision fixtures and comparator export.**
+  - **Change:**
+    - add fixtures of sphere, conic and asphere roots at 50 or more digits, with their generator script, under
+      `__tests__/src/optics/fixtures/`;
+    - add `scripts/export-comparator-cases.mjs`.
+  - **Tests:** today's kernel meets the contract on every fixture. Any failure is filed as a C3 finding, not hidden.
+  - **Gate:** C0.
+
+**Stage 1 gate:** Tier S, A0 against A0, is identical; the benchmark baseline is recorded; the guards pass. Tag
+`optics-rewrite/s1`.
+
+### Stage 2 — Canonical prescription and lens data V2
+
+**Phase 2.1 — Canonical prescription**
+
+- **S2.P1.T1 Canonical types, V1 ingest and V1 view.**
+  - **Change:** add:
+    - the `CanonicalPrescription` types;
+    - `ingestV1`;
+    - schema defaults with provenance, which replace the spread of `src/lens-data/defaults.ts` and stop it importing
+      an engine internal;
+    - the canonical → V1 `LensData` view the current engine consumes.
+
+    No caller changes yet.
+  - **Files:** `src/optics/prescription/{canonical, ingestV1, defaults, toLensData}.ts`. `src/lens-data/defaults.ts` is
+    deleted in S2.P1.T2, once its readers ingest through canonical.
+  - **Tests:** `__tests__/src/optics/prescription/canonical.test.ts`:
+    - every catalog file round-trips V1 → canonical → V1 view, deep-equal to the current
+      `{...LENS_DEFAULTS, ...data}`;
+    - no input mutation;
+    - provenance flags are correct.
+  - **Gate:** C0.
+- **S2.P1.T2 Route production through ingest.**
+  - **Change:** the catalogs, `buildLens` and the scripts that spread defaults all ingest through canonical.
+  - **Files:**
+    - `src/utils/catalog/{lensCatalog, teleconverterCatalog}.ts`
+    - `src/optics/buildLens.ts`
+    - `src/optics/prescription/normalizeLensData.ts` (`withLensDefaults`)
+    - `src/optics/validateTeleconverterData.ts`
+    - `reports/glassScanLib.ts`
+    - `scripts/audit-surface-probe.mjs`
+    - `scripts/audit-field-coverage.mjs`
+  - **Tests:** the existing suites.
+  - **Gate:** C0, with Tier P bit-identical.
+
+**Phase 2.2 — V2 schema**
+
+- **S2.P2.T1 Pre-migration data decisions.** The three PRs in the table above, one per lens.
+  - **Owner:** the maintainer, under `agent_docs/lens-patent-audit.md`.
+  - **Gate:** C3, setting a new anchor.
+- **S2.P2.T2 V2 types and ingest.**
+  - **Change:** add `LensDataV2Input` and `TeleconverterDataV2Input`, and `ingestV2`, which dispatches on `schema`.
+    V2-specific validation reports authored paths: unknown `medium`, gap labels, station counts, spans, and stop-radius
+    authority.
+  - **Files:** `src/types/lensDataV2.ts`, `src/optics/prescription/ingestV2.ts`.
+  - **Tests:**
+    - `__tests__/src/optics/prescription/ingestV2.test.ts`: one V1/V2 fixture pair per feature family, with equal
+      canonical fingerprints. The families: prime, zoom, focus keyframes, published stations, conjugates, aberration
+      control, folded (auto and explicit), mirrors with spans, diffractive, absorption, rear plates, media,
+      perspective control, projection and teleconverter.
+    - The negative cases.
+  - **Gate:** C0.
+- **S2.P2.T3 Tooling reads both versions.**
+  - **Change:** identity extraction moves from regexes to a shared AST reader, and every lens-data reader accepts V2.
+  - **Files:**
+    - `scripts/lens-data-lib.mjs`
+    - `scripts/generate-build-metadata.mjs`
+    - `scripts/organize-lens-data.mjs`
+    - `scripts/audit-dpgf.mjs`
+    - `scripts/extract-dpgf.mjs`
+    - `scripts/audit-mtf-dispersion.mjs`
+    - `reports/glassScanLib.ts`
+  - **Tests:** `__tests__/scripts/`. A V2 fixture and its V1 twin produce byte-identical generated metadata and
+    summaries.
+  - **Gate:** C0.
+
+**Phase 2.3 — Converter**
+
+- **S2.P3.T1 AST reader, printer and comment mapping.**
+  - **Files:** `scripts/lens-data-convert/{read, print, comments}.mjs`, which use the object-level mapping in
+    `src/optics/prescription/`.
+  - **Tests:** a fixture for every AST form in the corpus:
+    - comment placement, including the moved-comment fallback;
+    - numeric literal text preserved;
+    - `R: 1e15` → `"flat"`;
+    - zero-padding removal;
+    - stop-radius authority;
+    - `var` shapes;
+    - station records;
+    - media and spans.
+  - **Gate:** C0.
+- **S2.P3.T2 CLI and safety.**
+  - **Change:** add `scripts/convert-lens-data.mjs`.
+  - **Flags:**
+    - `--input <file|dir>`
+    - `--to-version 1|2`
+    - `--dry-run` (the default)
+    - `--check`
+    - `--write`
+    - `--output <dir>` (optional; default in place)
+  - **Writes:** go to a temp file and are renamed into place only after the output re-ingests to the same canonical
+    fingerprint and type-checks.
+  - **Behavior:** V2 input is idempotent, the tool refuses on collisions, and a failure leaves inputs unchanged.
+  - **Tests:** the tooling suite covers each of those behaviors, plus an interrupted write and V2 → V1 → V2
+    identity.
+  - **Gate:** C0.
+- **S2.P3.T3 Corpus conversion sweep.**
+  - **Change:** add `__tests__/scripts/convertLensDataCorpus.test.ts`. For every lens and converter it:
+    - converts the file to a temp directory;
+    - re-ingests it and checks the canonical fingerprint;
+    - converts it back to V1 and checks the fingerprint again;
+    - checks idempotence.
+
+    It is offender-collecting, and its offender list must be empty except for files awaiting S2.P2.T1.
+  - **Gate:** C0.
+
+**Phase 2.4 — Authoring documents**
+
+- **S2.P4.T1 V2 lens-data spec and templates.** Rewrite `src/lens-data/LENS_DATA_SPEC.md` in authoring order:
+  1. quick start;
+  2. file shape;
+  3. identity and catalog;
+  4. source and errata;
+  5. elements and media;
+  6. surfaces (geometry, aspheres, diffractive, interactions and annuli);
+  7. stop and aperture;
+  8. states (zoom stations, focus keyframes, gaps, conjugates, published stations, aberration control);
+  9. projection;
+  10. folded paths;
+  11. perspective control;
+  12. rear plates;
+  13. annotations;
+  14. layout, rays and checks;
+  15. validation rules, each with its code pointer;
+  16. glass identification;
+  17. data-sourcing checklist;
+  18. examples (prime, zoom, folded);
+  19. "Reading V1 audits".
+
+  Fix the nine spec–code contradictions while rewriting. They include the stop `sd`, `zoomCloseFocusM` listed as
+  required, the `lensShiftFrac` default, the `zoomStep` default, stale `var` pair wording, and "groups are purely
+  visual".
+  - **Also update:**
+    - `src/lens-data/TEMPLATE.data.ts.template`
+    - `src/lens-data/TEMPLATE.teleconverter.ts.template`
+    - `src/lens-data/TELECONVERTER_DATA_SPEC.md`
+    - `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md`
+- **S2.P4.T2 Recipes and procedures.** Update these to V2 vocabulary:
+  - `agent_docs/adding_a_lens.md`
+  - `agent_docs/adding_a_teleconverter.md`
+  - `agent_docs/lens-patent-audit.md`
+  - `agent_docs/patent-figure-sd-audit-procedure.md` (also correct its stale stop-`sd` claim)
+  - `agent_docs/lens-data-integration-handoff.md`
+  - the `LensData` field names in `CLAUDE.md` and `AGENTS.md` (byte copies)
+
+**Phase 2.5 — Catalog migration**
+
+- **S2.P5.T1–T8 Convert by maker batches.**
+  - **Batches:** eight PRs, one per alphabetical group of maker directories under `src/lens-data/`. Each runs
+    `convert-lens-data --write` on its batch and attaches the batch's conversion report.
+  - **Gate:** C0. Canonical fingerprints are identical, so Tier P payloads are bit-identical, and `npm run build`
+    produces byte-identical generated metadata.
+  - **In-flight V1 PRs:** they keep working, because V1 is still ingested. Their authors run the converter before
+    merge.
+  - **Rollback:** `--to-version 1` on the batch, or a revert.
+- **S2.P5.T9 Close the migration.**
+  - **Change:** add `__tests__/src/lens-data/schemaVersion.test.ts`, which requires every catalog file to be V2.
+  - **Policy:** V1 stays readable only through ingest and the converter.
+
+### Stage 3 — Geometry and intersection kernel
+
+- **S3.P1.T1 One surface-geometry module.**
+  - **Change:** merge `internal/surfaceMath.ts`, `math/surfaceProfile.ts`, the display sag in `layout.ts` and
+    `diagram/surfaceOutline.ts` into `geometry/surfaceProfile.ts`. Profiles are flat, sphere, conic, asphere and
+    tilted plane.
+  - **The new module provides:**
+    - sparse precomputed terms;
+    - a fused `evaluate(r) → { sag, slope }` in Horner form, keeping the schema accumulation order within each parity;
+    - the absolute-term slope bound;
+    - the finite-domain radius.
+  - **Callers:** the trace stack, validation, diagram, `AsphericComparisonOverlay.tsx` and the audit scripts, through
+    the new `geometry.ts` barrel.
+  - **Also change:** `scripts/generate-src-readmes.mjs`, which hard-codes the optics folder list. Every step that adds
+    or removes an `src/optics/` directory updates it.
+  - **Tests:** `__tests__/src/optics/geometry/surfaceProfile.test.ts`:
+    - analytic sag and slope for each kind;
+    - each odd and even term in isolation;
+    - finite differences checked away from the conic-domain clamp (decision 2026-08-04).
+  - **Gate:** C1.
+- **S3.P2.T1 Closed-form plane, sphere and conic roots.**
+  - **Change:** `geometry/intersect.ts` gains closed-form roots under the contract:
+    - a numerically stable quadratic, in Spencer & Murty's general ray-tracing form (*J. Opt. Soc. Am.* 52(6), 672,
+      1962, [doi:10.1364/JOSA.52.000672](https://doi.org/10.1364/JOSA.52.000672));
+    - cap selection and domain checks;
+    - the residual is validated after clamping;
+    - the iterative path is the fallback when validation fails, for example near tangency.
+  - **Tests:**
+    - the 50-digit fixtures;
+    - tangent, grazing, steep-rim and backward rays;
+    - cap and exterior roots;
+    - counters showing at most 2 profile evaluations.
+  - **Gate:** C1.
+- **S3.P2.T2 Conic-seeded asphere solve.**
+  - **Change:** Newton starts from the base-conic root. The bracket scan runs only when the seed fails certification,
+    and the stall and roundoff rules are unchanged.
+  - **Tests:** asphere fixtures; #774's 43-iteration exterior case; zero and exhausted budgets; steep quartics.
+  - **Gate:** C1.
+- **S3.P2.T3 Legacy intersection delegates.**
+  - **Change:** `internal/surfaceIntersection.ts` calls the kernel, and its duplicate Newton, bracket and constants are
+    deleted.
+  - **Tests:** `__tests__/src/optics/internal/surfaceIntersection.test.ts` passes unchanged.
+  - **Gate:** C1.
+
+**Stage 3 gate:**
+
+- the analytic suite;
+- Tier S, C1 against the anchor;
+- the counter target is met;
+- PC-Nikkor 19mm default analysis is at or below R0;
+- the comparator report.
+
+### Stage 4 — One trace stack
+
+- **S4.P1.T1 Traversal over `TraceGeometry`.**
+  - **Change:** `trace/sequentialTrace.ts`, `trace/generalizedTrace.ts` and `trace/pathPlanner.ts` take `TraceGeometry`.
+    `PreparedOpticalState` provides one. The sequential/generalized dispatch is decided once per geometry, not per ray.
+  - **Gate:** C0.
+- **S4.P2.T1 Chief-relative skew rays on the production stack.**
+  - **Change:** `traceChiefRelativeSkewRay` and its chromatic variant move to `trace/`. That moves their callers onto
+    the production stack: `aberration/offAxis.ts` (scalar path), `aberration/fieldCurvature.ts` (parabasal rays),
+    `analysis/chromatic.ts` (scalar branch), and through them coma, spherical aberration, bokeh and chromatic field
+    analysis.
+  - **Gate:** C1. The legacy path recomputed z per ray and differs in its lead distance; list any discrete transition.
+- **S4.P2.T2 Build-time traces on the production stack.**
+  - **Change:** these traces in `runtimeLens.ts` run on a `TraceGeometry` built from the authored surfaces: stop SD,
+    EP/XP basis rays, the half-field bisection, zoom stations, and the folded branch.
+  - **Gate:** C1.
+- **S4.P2.T3 Pupil baselines and folded validation probe.**
+  - **Change:** the remaining legacy callers move to the production stack: `pupilAberration.ts` `traceStateSurfacesReal`
+    and `validateLensData.ts` `validateFoldedImagePlaneReachability`.
+  - **Gate:** C1.
+- **S4.P2.T4 Delete the legacy stack.**
+  - **Change:**
+    - delete `internal/exactSurfaceTrace.ts`, `internal/surfaceIntersection.ts`, `internal/traceSurfaces.ts`, and the
+      `rayTrace.ts` tracers and `traceToImage`;
+    - move the pupil samplers to `analysis/sampling.ts`;
+    - port `__tests__/src/optics/internal/*`, `mirrorOptics.test.ts` and `exactSurfaceTraceVector.test.ts` to the
+      production stack;
+    - supersede decision 2026-08-04 (the two tracer stacks) in `agent_docs/decisions.md`, and rewrite "Exact Surface
+      Trace" in `agent_docs/architecture/optics-engine.md` to describe the one remaining tracer.
+  - **Gate:** C0.
+- **S4.P3.T1 Capture policy.**
+  - **Change:** `trace/capture.ts` chooses terminal-only, hits, or diagnostics before the loop. A terminal-only trace
+    allocates no hit array and no diagnostics, but keeps enough to classify a failure as physical or numerical.
+  - **Tests:** identical trajectories and statuses across capture modes; allocation counters.
+  - **Gate:** C0.
+- **S4.P3.T2 Per-ray adapter overhead.**
+  - **Change:** `trace/rayAdapters.ts` stops resolving state per call and stops spreading options per ray.
+    `trace/bulkAbsorption.ts` reads compiled media instead of `RuntimeLens`.
+  - **Gate:** C0.
+
+**Stage 4 gate:** Tier S, C0/C1 against the anchor; `src/optics/internal/` is gone; the guards pass.
+
+### Stage 5 — Compiled lens and prepared geometry
+
+- **S5.P1.T1 One compiler from canonical.**
+  - **Change:** `prescription/compile.ts` builds `CompiledLens` from `CanonicalPrescription`.
+    - Materials are resolved once.
+    - Rear plates are expanded once, by `prescription/rearPlates.ts`, now operating on canonical data.
+    - It replaces `internal/lensState.ts`, the `prescription/` compilers and `normalizeLensData.ts`.
+    - `EngineLens` is renamed `CompiledLens`.
+  - **Tests:**
+    - Counters show one compilation and one material resolution per identity.
+    - The `vi.mock` of `internal/lensState.js` in `__tests__/src/optics/validateLensData.test.ts` moves to the
+      compiler.
+  - **Gate:** C0.
+- **S5.P1.T2 Lens constants and the `RuntimeLens` view.**
+  - **Change:** `first-order/lensConstants.ts` computes the constants from `CompiledLens`, using the trace stack and
+    paraxial primitives:
+    - EFL is traced paraxially for refractive lenses and is the reference focal length for folded ones;
+    - pupils;
+    - stop sizing, with the derived/authored authority from V2;
+    - the half-field bisection;
+    - per-station arrays.
+
+    `prescription/runtimeView.ts` assembles the frozen `RuntimeLens`. The `runtime` back-pointer and the
+    `prepareState.ts` reads of `lens.runtime` are deleted.
+  - **Tests:** analytic first-order anchors; `exactTraceGoldenValues.test.ts` unchanged.
+  - **Gate:** C0.
+- **S5.P1.T3 Validation on canonical and compiled data.**
+  - **Change:** `prescription/validate/{schema, references, geometry, aperture, folded, diffractive, controls}.ts`
+    replace `validateLensData.ts`, `validateTeleconverterData.ts` and `internal/apertureBands.ts`. Messages keep their
+    authored paths.
+  - **Tests:** the same verdict on every catalog file and every negative fixture in
+    `__tests__/src/optics/validateLensData.test.ts`.
+  - **Gate:** C0.
+- **S5.P1.T4 Composition on canonical data, and MTF worker init.**
+  - **Change:**
+    - `attachTeleconverter` composes canonical prescriptions, and the compatibility predicate stays import-free;
+    - the MTF worker receives the canonical prescription and compiles it once, which deletes the strip-and-rebuild of
+      synthetic plates in `src/components/hooks/mtf.worker.ts`.
+  - **Tests:** the teleconverter suites and the converter-pair sweep; worker/main-thread equality.
+  - **Gate:** C0.
+- **S5.P2.T1 One owner for prepared geometry.**
+  - **Change:** `state/preparedGeometry.ts` replaces every other prepared-state path with one bounded LRU (96 per
+    compiled lens).
+    - **Replaces:** the `compat.ts` LRU; the `trace/rayAdapters.ts` store; the uncached calls in `field/chiefRay.ts`,
+      `first-order/{cardinals, focusBreathing}.ts` and `diagram/runtimeDiagramAdapter.ts`; and
+      `scripts/audit-field-coverage.mjs`'s direct call.
+    - **Key:** compiled identity plus the control numbers, after today's clamping and with `-0` normalized to `0`,
+      compared exactly. No string formatting.
+    - **One z-override helper** replaces `stateWithRuntimeZ` and `stateWithDiagramZ2`.
+  - **Tests:** cached results equal uncached; eviction; distinct nearby controls stay distinct.
+  - **Gate:** C0. Supersede decision 2026-07-06 (the `prepareState` cache).
+- **S5.P2.T2 One layout and one interpolation.**
+  - **Change:** `state/layout.ts` and `state/stationTables.ts` replace the duplicate thickness, layout and zoom-table
+    implementations listed in [Module fates](#module-fates).
+  - **The two focus-infinity thresholds** (0.003 in `focusDistance.ts`, 0.0001 in `field/chiefRay.ts`):
+    - if they serve one purpose, unify them as a C3;
+    - otherwise, give each a name that says why.
+  - **Gate:** C0.
+- **S5.P2.T3 One chromatic table.**
+  - **Change:** one dispersion table builder, one quality summary and one channel table in `chromatic/`.
+    `src/types/optics.ts` stops importing a type from `src/optics/dispersion.ts`; the shared type moves into
+    `src/types/`.
+  - **Gate:** C0.
+
+**Stage 5 gate:** Tier S against the anchor; counters show one compile and one material resolution per identity; the
+cycle allowlist has shrunk.
+
+### Stage 6 — Fields, chief rays and solvers
+
+- **S6.P1.T1 Field module on prepared geometry.**
+  - **Change:** `field/` functions take `PreparedGeometry` plus request options.
+    - `field/chiefRay.ts` is split into `field/{fieldGeometry, chiefRaySolve, imageHeight}.ts`.
+    - The chief cache is bounded per prepared geometry and keyed by field angle, launch surface and channel.
+    - Status diagnostics move to `diagnostics/`, keyed by compiled identity rather than `L.data.key`.
+  - **Gate:** C0. Supersede the caching half of decision 2026-05-20; its memoization rationale stands.
+- **S6.P2.T1 `solveScalarRoot`.**
+  - **Change:** scan outward from the seed, and once bracketed use Brent's method (Brent, *Algorithms for Minimization
+    without Derivatives*, 1973, ch. 4). Residual and interval criteria and null-domain splitting are unchanged.
+  - **Affected callers:** perspective chief solves, sensor targeting and MTF field solves. This is a solver change, not
+    an MTF model change.
+  - **Tests:** known-root fixtures; discontinuous domains.
+  - **Gate:** C2, including MTF in Tier S at both methods.
+- **S6.P2.T2 Object-plane and bounding-sphere chief solves.**
+  - **Change:** a safeguarded secant from the paraxial seed. The scan runs only on failure, and the 1e-7 mm stop
+    residual is unchanged.
+  - **Gate:** C2.
+- **S6.P2.T3 Image-height inversion.**
+  - **Change:** seed by inverse interpolation on the table the solver already builds, then a bracketed secant with the
+    1e-4 mm criterion unchanged.
+  - **Gate:** C2.
+- **S6.P3.T1 Shared sensor-locked solves.**
+  - **Change:** the perspective context memoizes sensor-locked solves by sensor point, chief options and channel. Focus,
+    vignetting (active and zero pose), field aberrations, chromatic, pupils and distortion all share them.
+  - **Gate:** C0.
+- **S6.P3.T2 Warm-started sensor solves.**
+  - **Change:** the two-coordinate solve seeds from the neighboring converged sample.
+  - **Gate:** C2.
+- **S6.P3.T3 One set of sensor helpers.**
+  - **Change:** merge `perspective/analysis/shared.ts` `sensorUvInsideFormat` and `sensorPointForUv` into
+    `perspective/fieldGeometry.ts`.
+  - **Gate:** C0.
+
+**Stage 6 gate:** Tier S against the anchor under each step's class; the counter targets are reported.
+
+### Stage 7 — Analyses on request objects
+
+- **S7.P1.T1 `AnalysisRequest`.**
+  - **Change:** `analysis/request.ts` builds the request. `analysis/analysisContext.ts` memoizes by object identity
+    instead of a `JSON.stringify` key.
+  - **Gate:** C0.
+- **S7.P2.T1–T10 Centered families, one per step.** In order:
+  1. summary, cardinals, breathing and group movement;
+  2. spherical aberration, SA profile, blur character and best focus;
+  3. field curvature and astigmatism, including chromatic field curvature;
+  4. coma (meridional, sagittal, previews);
+  5. distortion curve and grid;
+  6. vignetting;
+  7. pupil aberration;
+  8. bokeh;
+  9. chromatic (LoCA, lateral color, fans);
+  10. aspheric comparison.
+
+  Each step:
+  - moves the module to `analysis/<family>/`, taking `AnalysisRequest`;
+  - deletes its `*ForState2` adapter and its `RuntimeLens`-signature entry;
+  - collapses the tab hook's three-way fallback (`analysisContext ?? analysisJobsForState2 ?? legacy`) into the request
+    path;
+  - ports that family's tests.
+
+  **Gate:** C0.
+- **S7.P3.T1–T3 Perspective families.**
+  1. focus and field aberrations;
+  2. chromatic and distortion;
+  3. vignetting and pupils.
+
+  **Gate:** C0.
+- **S7.P4.T1 MTF on the request.**
+  - **Change:** `analysis/mtf/` consumes `AnalysisRequest` and `PreparedGeometry` and no longer reads
+    `state.lens.runtime`. Orchestration, OTF kernels, spectra, focus and field logic are unchanged, as decision
+    2026-10-07 requires.
+  - **Tests:** `mtf`, `mtfConjugates`, `mtfDiffraction`, `mtfSpectral` and `mtfWavefront` unchanged.
+  - **Gate:** C0.
+- **S7.P5.T1 One sampling policy where samplers are identical.**
+  - **Change:** identical pupil and field samplers merge into `analysis/sampling.ts`. Samplers that differ on purpose
+    stay separate, with a comment saying why. The MTF lattice is untouched.
+  - **Gate:** C0.
+
+**Stage 7 gate:** Tier S against the anchor; `analysis/preparedStateAdapters.ts` and every `*ForState2` adapter are
+gone.
+
+### Stage 8 — Public seam, consumers and close
+
+- **S8.P1.T1 Final barrels.**
+  - **Change:**
+    - settle the top-level barrel list;
+    - move the remaining implementations out of the top level;
+    - codemod away the `*2` names;
+    - delete `compat.ts` and the alias barrels;
+    - update the 103 importing files, the 7 scripts that load by path, and the tests.
+
+    The seam guard's allowlist becomes the final list.
+  - **Gate:** C0.
+- **S8.P1.T2 Retire `RuntimeLens.data`.**
+  - **Change:**
+    - the nine non-optics files that read `L.data` use explicit view fields or `L.source` (the canonical
+      prescription);
+    - `LENS_CATALOG` exposes canonical prescriptions to its eight non-test readers;
+    - the V1 view survives only for the converter and its tests.
+  - **Gate:** C0.
+- **S8.P1.T3 Scripts and reports through the seam.**
+  - **Change:**
+    - the audits, benchmarks and reports import only barrels;
+    - `__tests__/scripts/scriptImports.test.ts` resolves every `load()`/`pathToFileURL` module path in `scripts/`,
+      so a moved module fails CI instead of failing the next manual run.
+  - **Gate:** C0.
+- **S8.P2.T1 Final verification.**
+  - **Checks:**
+    - the cycle allowlist is empty;
+    - the seam and cache guards are final;
+    - Tier F against the anchor;
+    - the final benchmark, memory and browser reports.
+  - **Change:** delete any module the fate table marks deleted that still exists.
+- **S8.P2.T2 Documentation and close.**
+  - **Rewrite:**
+    - `agent_docs/architecture/optics-engine.md` (structure and contracts)
+    - `agent_docs/architecture/public-functions.md`
+    - `agent_docs/architecture/testing.md`
+    - `agent_docs/gotchas.md`
+  - **Settle:** every row of [Decisions](#decisions-to-supersede-or-preserve).
+  - **Regenerate:** `src/**/readme.md`.
+  - **Update:** `CLAUDE.md` and `AGENTS.md` where names changed.
+  - **Delete:** this plan and its `agent_docs/README.md` entry, as the documentation policy requires.
+
+**Stage 8 gate:** every outcome M1–M9 holds. Tag `optics-rewrite/s8`.
+
+## Decisions to supersede or preserve
+
+| Decision (`agent_docs/decisions.md`) | Action | Where |
+| --- | --- | --- |
+| 2026-08-04: unifying the two tracer stacks is out of scope | Supersede | S4.P2.T4 |
+| 2026-05-20: do not consolidate chief-ray solvers; per-`RuntimeLens` cache; no structural tracer rewrite | Supersede the cache and structure parts; keep the memoization rationale | S6.P1.T1 |
+| 2026-07-06: `prepareState` cache adequate; no further layer | Supersede: one owner replaces three paths | S5.P2.T1 |
+| 2026-08-04: single homes (`normalizeRuntimeLens` cache; `traceSurfaces` wraps `math/paraxial`) | Update the homes; keep `interactRefractiveSurface`, `normalLinePgF`, `abbeLineIndices`, `decodeCode6` | S5.P1.T1 |
+| 2026-08-04: validation centralized in `validateLensData.ts` | Update to `prescription/validate/` | S5.P1.T3 |
+| 2026-08-05: on folded systems `RuntimeLens.EFL` comes from metadata, not tracing | Preserve: `first-order/lensConstants.ts` keeps both branches | S5.P1.T2 |
+| 2026-08-04: behavior-preserving refactor gate | Extend with the differential harness; golden, full-test and report byte-diff checks remain | S1.P2 |
+| 2026-10-07: MTF core verified; do not rebuild | Preserve: only its inputs change | S7.P4.T1 |
+| 2026-10-07: retired diffraction estimators; field targets on the authored plane | Preserve | — |
+| 2026-10-05: `publishedStations` is the only station provenance; not normalized onto `RuntimeLens` | Preserve: the data moves onto V2 station records but is still read only by `publishedStations.ts` | S2, S8.P1.T2 |
+| 2026-10-04: build and analyses converter-unaware; compatibility predicate import-free | Preserve: composition stays canonical → canonical before compile | S5.P1.T4 |
+| 2026-09-23: one rear-plate expansion | Preserve: the expansion moves into compile | S5.P1.T1 |
+| 2026-05-20/21: fisheye-only safety factor; fisheye dispatch; z-projected `maxT`; rectilinear diagram unchanged | Preserve | — |
+| 2026-06-22: no post-miss ghost geometry | Preserve | — |
+| 2026-07-06: three ray hooks stay separate. 2026-05-20: no interactive sampling multiplier | Preserve | — |
+| 2026-08-04: aspheric coefficient set single-sourced; clamp kept separate from polynomial evaluation | Preserve | S3.P1.T1 |
+| 2026-09-24: no real chief ray in `computeFieldGeometryAtState2` | Preserve | S6.P1.T1 |
+
+## Open decisions for the maintainer
+
+Decide the first before S2.P3, because it sets converter behavior. The rest are deliberately outside the converter;
+each one, if taken, is its own C3 PR after S2.P5.
+
+1. **Zero asphere terms.** V1 required K and A4–A14 on every entry, so a printed zero cannot be told apart from
+   padding, and the converter drops zeros. Confirm this, and restore by hand, as an explicit `0` (which V2 allows), any
+   zero an audit relies on.
+2. **Explicit defaults** (`apd: false`, `indexReference: "d"`, the no-op aperture model). These render the same as an
+   omission. Drop them from catalog files, or keep `apd: false` as a record that an author checked?
+3. **Derivable display duplicates.** `specs`, element `focalLengthMm`, "(2× Asph)" in `type`, `cemented` tags versus
+   `doublets`, and `subtitle` versus `patentNumber`. Derive them, or keep them authored?
+4. **Design focal length.** `catalog.focalLengthMm.design` versus the station focal lengths, which differ by rounding.
+5. **Corpus-test-only rules.** Promote them into the validator: patent-metadata policy, `nominalFno` versus
+   `apertureDesign`, fixed-iris consistency, and configuration parity.
+6. **V1 ingest.** Keep it after the program for external branches and rollback, or retire it on a date?
+
+## Rollback
+
+- Every step reverts on its own, and anchors show which outputs a revert changes.
+- Catalog batches also revert with `convert-lens-data --to-version 1`.
+- There is no in-tree old engine to fall back to. A failing step is fixed or reverted, never routed around.
