@@ -114,7 +114,6 @@ there; check them against the patent figure.
 
 | Lens | File | Finding | Status |
 |---|---|---|---|
-| VIVITAR SERIES 1 70-210mm f/3.5 | `vivitar/VivitarSeries170210mmf35.data.ts` | On axis only the beam around the chief ray transmits and 30 lp/mm reads 0.00; in photopic mode the chief-ray solve fails beyond 2 % of the field. Surface 21 sits at zero gap before the stop, so rays meet the stop plane behind themselves | todo |
 | SONY FE 12-24mm f/2.8 GM | `sony/SonyFE1224mmf28GM.data.ts` | Clear apertures likely wider than production: the 10.8 mm field traces 7,288 pupil rays against 4,060 on axis, and tangential 30 lp/mm falls to 0.03 there | todo |
 | CANON RF 24-105mm f/2.8 L IS USM Z | `canon/CanonRF24105mmf28Z.data.ts` | Chief ray reaches the 21.6 mm corner, but the cat's-eye closes to a hairline around it (no sample of a 300 × 300 lattice over 1.5 entrance-pupil radii transmits); 20.6 mm still transmits 814 rays | todo |
 | MEYER OPTIK GÖRLITZ DOUBLE-PLASMAT 135mm f/4.5 (patent model) | `meyer-optik-goerlitz/MeyerOptikGorlitz135mmf45DoublePlasmat.data.ts` | Chief ray reaches the 158.6 mm corner, but the cat's-eye closes to a hairline around it | todo |
@@ -274,7 +273,6 @@ The other diagnoses are not rim problems:
 - `trace`, six lenses: no rim clips, but the next ray cannot be continued. Five are `STO (noBracket)`: beyond that
   height the ray leaves the preceding surface past the stop plane, which sits inside that surface's sag. The Fujinon
   XF 23mm f/1.4 R is totally reflected at surface 14A, inside its rim (a prescription suspect).
-- `failed`, the Vivitar Series 1 70-210mm f/3.5 of Section D: the same stop-plane geometry at every height.
 - `iris`, two lenses: an embedded glass stop keeping its authored radius (Zeiss Hologon 15mm f/8), and the Viltrox
   AF 27mm f/1.2, whose f/1.2 marginal ray cannot be traced to the stop, so its iris takes the paraxial radius.
 

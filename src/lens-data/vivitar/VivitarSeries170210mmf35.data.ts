@@ -309,8 +309,11 @@ const LENS_DATA = {
     { label: "18", R: 284.27, d: 0.3, nd: 1, elemId: 0, sd: 17.0 },
     { label: "19", R: 38.35, d: 6, nd: 1.48749, elemId: 12, sd: 17.0 },
     { label: "20", R: -104.13, d: 1.023, nd: 1.64328, elemId: 13, sd: 17.0 },
-    { label: "21", R: 94.78, d: 0, nd: 1, elemId: 0, sd: 15 },
-    { label: "STO", R: 1e15, d: 49.846, nd: 1, elemId: 0, sd: 14.457801 },
+    // The source places the stop directly behind r21 but gives no distance. Model its aperture plane at 1.2 mm,
+    // rounding the 1.194486 mm clear-cap sag upward to 0.1 mm for forward clearance. This is not an iris measurement.
+    // Preserve the published 49.846 mm r21–r22 vertex gap; sd records the inferred real-ray f/3.65 wide-end iris.
+    { label: "21", R: 94.78, d: 1.2, nd: 1, elemId: 0, sd: 15 },
+    { label: "STO", R: 1e15, d: 48.646, nd: 1, elemId: 0, sd: 14.777836 },
     { label: "22", R: -20.19, d: 1.48, nd: 1.697, elemId: 14, sd: 16.0 },
     { label: "23", R: -53.33, d: 0.267, nd: 1, elemId: 0, sd: 16.0 },
     { label: "24", R: 135.84, d: 4, nd: 1.58921, elemId: 15, sd: 16.0 },
