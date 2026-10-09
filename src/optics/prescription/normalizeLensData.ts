@@ -130,6 +130,7 @@ function compileSurfaces(
         nd: surface.nd,
         sd: surface.sd,
         innerSd: surface.innerSd ?? null,
+        clips: surface.clips !== false,
         elemId: surface.elemId,
         stopPlacement: surface.stopPlacement ?? null,
         asphere,

@@ -219,12 +219,17 @@ describe("validateLensData", () => {
     const surfaces = valid.surfaces as Record<string, unknown>[];
     const errors = validateLensData({
       ...valid,
-      surfaces: [{ ...surfaces[0], label: "RP1a" }, surfaces[1], { ...surfaces[2], synthetic: "rearPlate" }],
+      surfaces: [
+        { ...surfaces[0], label: "RP1a" },
+        { ...surfaces[1], clips: false },
+        { ...surfaces[2], synthetic: "rearPlate" },
+      ],
       elements: [{ ...(valid.elements as Record<string, unknown>[])[0], synthetic: "rearPlate" }],
     });
 
     expect(errors.some((error) => error.includes("reserved for generated rear plates"))).toBe(true);
     expect(errors.filter((error) => error.includes('"synthetic" is engine-generated'))).toHaveLength(2);
+    expect(errors.some((error) => error.includes('"clips" is engine-generated'))).toBe(true);
   });
 
   it("reserves the teleconverter label prefix for composed systems and checks their descriptor", () => {
