@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-10",
+    type: "fix",
+    summary: "Fixed the Vivitar Series 1 70-210mm f/3.5 passing light only near its aperture center",
+  },
+  {
     date: "2026-10-09",
     type: "fix",
     summary: "Fixed sensor cover glass narrowing the off-axis ray fan of the Nikon AF-S 18-35mm at 35mm",
