@@ -15,8 +15,11 @@ export { DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN };
 export const VECTOR_EPSILON = 1e-12;
 /** Intersection root tolerance in millimeters along the surface equation. */
 export const INTERSECTION_TOLERANCE = 1e-12;
-/** Cap includes margin for bisection-dominated solves to attain the tightened residual target. */
-export const INTERSECTION_MAX_ITERATIONS = 48;
+/**
+ * Cap for one solve. A roundoff-limited root can force the bracket to collapse by bisection, which takes about
+ * log2(width / ulp) steps: 53 for a double, plus the Newton steps before it. The worst measured solve needs 63.
+ */
+export const INTERSECTION_MAX_ITERATIONS = 72;
 /** Number of coarse samples used to bracket a surface intersection. */
 export const INTERSECTION_BRACKET_SAMPLES = 24;
 

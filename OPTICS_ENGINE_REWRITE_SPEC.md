@@ -144,7 +144,7 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
 The intersection contract, from #774:
 
 1. **Residual target and iteration cap.** Every curved solve targets a raw residual of
-   `INTERSECTION_TOLERANCE = 1e-12` mm within `INTERSECTION_MAX_ITERATIONS = 48`.
+   `INTERSECTION_TOLERANCE = 1e-12` mm within `INTERSECTION_MAX_ITERATIONS = 72`.
    - An explicit caller tolerance or iteration budget keeps its meaning.
    - Running out of iterations is a failure. The old tenfold acceptance fallback does not return.
 2. **Residual definitions.**
