@@ -2920,7 +2920,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 5 | Element 3 | abbe | `Unmatched (flint; source nd 1.69449, vd 29.84)` | Explicit unmatched/proprietary annotation |
 | 9 | Element 5 | abbe | `Unmatched (crown; source nd 1.55102, vd 66.41)` | Explicit unmatched/proprietary annotation |
-| 15 | Element 8 | abbe | `Unmatched (neutral-gray apodization glass; source nd 1.50400, vd 63.00)` | Explicit unmatched/proprietary annotation |
+| 15 | Element 8 (A) | abbe | `Unmatched (neutral-gray apodization glass; source nd 1.50400, vd 63.00)` | Explicit unmatched/proprietary annotation |
 | 16 | Element 9 | abbe | `Unmatched (crown; source nd 1.67128, vd 56.37)` | Explicit unmatched/proprietary annotation |
 | 21 | Element 11 | abbe | `Unmatched (high-index glass; source nd 1.81538, vd 36.87)` | Explicit unmatched/proprietary annotation |
 

@@ -15,9 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * Prescription and aspheric coefficients are on PDF pages 4-5 of the publication. Indices are d-line
  * (paragraph 0016). The stop radius follows from the patent's F/1.86.
  * NOTE ON SEMI-DIAMETERS: the patent prints none. Values are estimated from the Fig. 1 outline (PDF page 7) and
- * floor-checked by real-ray trace at F/1.86 and at the 21.63 mm image corner. Where Fig. 1 draws a flat land
- * outside a concave face, the value is the height at which the curve ends: surface 4 is 17.8 mm (Fig. 1 about
- * 18.2 mm; 17.8 mm is the rim-slope limit) and surface 7 is 15.4 mm. Surface 18 is held at 11.17 mm, just above
+ * floor-checked by real-ray trace at F/1.86 and at the 21.63 mm image corner. Fig. 1 draws a flat land
+ * outside the concave rear faces of L2, L3 and L8. Surface 4 is 17.8 mm, the rim-slope limit (Fig. 1 ends the
+ * curve at about 18.2 mm). Surface 7 is 17 mm, equal to L3's front, so L3 keeps the flat top Fig. 1 draws; the
+ * drawn curve ends at about 15.4 mm. Surface 18 is held at 11.17 mm, just above
  * the F/1.86 axial ray (11.13 mm), because surfaces 18 and 19 would meet at 11.77 mm; surface 19 follows L9's
  * square rim as drawn.
  * Glass names are catalog glasses that match the printed nd / vd; their line indices are stand-ins, not
@@ -298,7 +299,7 @@ const LENS_DATA = {
       d: 12.66,
       nd: 1,
       elemId: 0,
-      sd: 15.4,
+      sd: 17,
     },
     {
       label: "8",

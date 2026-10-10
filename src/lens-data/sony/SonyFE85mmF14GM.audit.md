@@ -864,3 +864,33 @@ Open:
 - **Surfaces 18 and 19.** Their 15.9 mm rims are the upper-ray limit of G3 from about 12° of field. At 16.8 mm, just under the drawn contact height, the corner bundle would pass 49.3% of the stop diameter instead of 42.4%.
 - **Rear faces of L1–L4.** The model does not reproduce the flat annuli the figure draws behind surfaces 2, 4, 6 and 8; its rear arcs run 5–9% further out than drawn.
 - **Scope of the trace.** Meridional rays only.
+
+## 2026-10-10 — Second review: diagram, labels and movement
+
+An independent look at the lens as the local site draws it, against Fig. 3 (PDF p. 58, native 300 dpi and a 500 dpi crop at the site's scale) and Table 4 (PDF p. 23). No field of the data file or the analysis was changed in this pass. The review was cut short by a deadline; what was not re-measured is listed under "Open".
+
+**Silhouette, site against Fig. 3.**
+
+- **Focus group and L9.** G2a, G2b and the L9 block draw square-cut, G2b a little lower than G2a and both well below the stop edge, as in the figure. A coarse independent read of the 500 dpi crop gives 18.0 mm (G2a), 17.3 mm (G2b) and 19.7 mm (stop opening), against the stored 17.9 / 17.3 / 19.77 mm. Nothing to change.
+- **L10 / L11 (surfaces 18 and 19) — the one clear mismatch.** The site shows a V-shaped notch between the two: L10 tapers from 17.3 to 15.9 mm and L11 rises from 15.9 to 17.5 mm. The figure draws two squared blocks touching. In the 300 dpi raster the 3 px outlines of surfaces 18 and 19 merge 87–88 px from the axis (15.5 mm, where the prescription leaves 0.6 mm of air) and run on as one stroke to the top edge of the G3a block at 99 px; L11's top edge is at 102 px and its front corner sits on the rim of surface 18. By the prescription the faces touch at 16.87 mm, so the drawing supports rims at the contact height and no lower. The highest value at which the faces do not cross is 16.8 mm (air left 0.032 mm; combined sag 3.968 mm, 0.9920 of the 4.0 mm gap). The surface validator refuses 16.5, 16.7 and 16.8 mm at the default limit of 0.9 (combined sag 3.82 / 3.92 / 3.97 mm against 3.600 mm allowed); they need `gapSagFrac` 0.96 / 0.98 / 1.00 (ratios 0.9561 / 0.9799 / 0.9920). Recommended to the coordinator: surfaces 18 and 19 at 16.8 mm with `gapSagFrac` 1.00, or 16.7 mm with 0.98 (air left 0.080 mm) as the cautious alternative. With 16.8 mm the F/1.45 axial ray (8.09 / 6.60 mm) and the corner chief ray (15.18 / 15.30 mm) are unaffected. Side effects to weigh: the rim-limited field angle of surface 19 rises from 14.0° to about 14.8°, so the engine half-field would rise from 14.05° towards that (patent ω 13.99°), and the corner bundle passes more of the stop (49.3% against 42.4%, from the section above). Not applied here because `gapSagFrac` is outside this pass's edit list.
+- **Front group.** L1–L3 read as near knife-edged menisci with the same height order as the figure (32.3 / 30.1 / 27.3 mm drawn; 31.6 / 29.2 / 27.3 mm stored). L4 is drawn as a flanged block (outer cylinder with a flat rear annulus); the site shows a bevel from 24.7 to 22.0 mm. Squaring it would need surface 8 at 24.7 mm, where its sag (12.66 mm) passes the stop plane (10.9 mm behind the vertex), so the bevel stays. The rear-face differences of 5–9% are inside the noise and at the F/1.45 axial ray; no change.
+- **Mid-field fan.** The ray through +0.75 of the stop radius at 0.6 of the field being stopped in the focus group at infinity is consistent with the drawn heights (G2b visibly below G2a and the stop). Recorded behaviour, not a defect.
+
+**Labels and tags checked and found correct.**
+
+- Table 4 assigns surfaces 1–8 to G1, 9 to the stop, 10–15 to G2 and 16–20 to G3; the `groups` ranges match. Fig. 3 brackets G2a, G2b, G3a and G3b; the three cemented brackets carry those names over the right ranges (10–12, 13A–15, 16–18). G3b is the single element L11 and has no cemented bracket.
+- Element `type` strings agree with the signs of R for all eleven elements. Table 4 marks only surface 13 aspheric; `13A` is the only `A` label and the only `asph` entry. The stop is drawn between surfaces 8 and 10.
+- Table 4 has columns Ndi and νdi only and names no glass, so the `apd: "inferred"` tags on L2, L3 and L8 rest on the maker's ED positions recorded above, not on the patent. `varLabels` D9 and D15 are the patent's names.
+
+**Focus travel.** Table 6 as stored: D9 17.857 → 5.761 mm and D15 3.000 → 15.097 mm, index 0 at infinity. The site shows D9 17.86 / D15 3.00 at the left end of the slider (∞) and D9 5.76 / D15 15.10 at the right end, labelled 85 cm. The movement overlay shows G2 moving 12.10 mm away from the focus plane (toward the object) with G1 and G3 fixed, which is the direction of the arrow F in Fig. 3.
+
+**Engine values.** Unchanged: EFL 86.8477 mm, F/1.45, half-field 14.046°, stop radius 19.766 mm. The surface validator reports no errors, the image-circle check reports nothing and corner coverage is 100%.
+
+**Maker diagram.** Not viewed. The earlier record stands: 11 elements in 8 groups, XA on element 7, ED on elements 2, 3 and 8.
+
+Open:
+
+- Surfaces 18 and 19 as recommended above, pending `gapSagFrac`.
+- Not re-measured at pixel level in this pass: the rims of surfaces 1–8, 16, 17 and 20, and the element inspector text. The patent's element designations in ¶0084–¶0090 and the wavelength statement in ¶0065 were not re-read; the sequential L1–L11 names were left as they are.
+
+Coordinator follow-up to the second review. Surfaces 18 and 19 were raised from 15.9 to 16.7 mm and `gapSagFrac: 0.98` was added. Fig. 3 draws L10 and L11 as squared blocks touching at the rim (the outlines merge about 15.5 mm from the axis and run as one stroke to the top edge); the site drew a V-notch between them. By prescription the two faces meet at 16.87 mm, so they do not cross at 16.7 mm: combined sag is 97.99% of the 4.000 mm gap, leaving 0.080 mm of air. The default 0.90 allowance refused anything above 16.0 mm. 16.8 mm would need an allowance of 1.00 and leave 0.032 mm, so the smaller step was taken; a small notch remains. After the edit the surface validator reports no errors, EFL (86.848 mm), F/1.45 and the stop radius (19.766 mm) are unchanged, the F/1.45 axial ray and the corner chief ray (ω 13.87°, Y 21.63 mm) clear every surface at infinity, the image-circle check reports 0 undersized and corner coverage stays 100%. The engine's rim-limited half-field estimate rises from 14.05° to 14.72° because surface 19 no longer limits it; the patent's ω is 13.99°. The header's semi-diameter note was updated.

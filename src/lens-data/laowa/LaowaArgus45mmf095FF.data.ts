@@ -11,8 +11,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * 21 and 22A) the value is the annulus's inner edge; surface 14 follows L8's rim, drawn above the L9/L10 block.
  * Surfaces 6 and 7 would meet at a height of about 23.8 mm across their 0.990 mm gap, just outside the f/0.98
  * axial beam (23.16 mm at surface 7), so surface 7 is held to 23.2 mm and gapSagFrac is 0.96.
- * Surfaces 19 and 20 would likewise meet at about 17.5 mm across their 0.904 mm gap, so surface 20 stays at
- * 16.5 mm. Figure 3 draws both pairs touching at the rim, with L4 out to about 24.9 mm and L12 to about 17.9 mm.
+ * Surfaces 19 and 20 would likewise meet at about 17.5 mm across their 0.904 mm gap, so surface 20 is held to
+ * 17.1 mm, the largest value the same 0.96 allowance admits (combined sag 0.86 mm of the 0.868 mm allowed).
+ * Figure 3 draws both pairs touching at the rim, with L4 out to about 24.9 mm and L12 to about 17.9 mm.
  * Focus: the patent tabulates infinity and a 2500 mm object distance only. It does not state the reference
  * point; the model's paraxial conjugate lies 2497 mm in front of surface 1, so the distance is read as measured
  * from the first surface. closeFocusM is that state's object-to-image distance, not the marketed 0.5 m minimum
@@ -396,7 +397,7 @@ const LENS_DATA = {
       "d": 1.0,
       "nd": 1.64079,
       "elemId": 12,
-      "sd": 16.5
+      "sd": 17.1
     },
     {
       "label": "21",

@@ -237,10 +237,10 @@ axial marginal ray height there (13.38 mm).
 
 The patent publishes no iris diameter or clear radii. The semi-diameters are estimated from the outline of Fig. 1,
 limited by ray clearance, rim slope, edge thickness and the clearance between neighbouring surfaces.
-Fig. 1 draws a flat land outside the concave rear faces of L2, L3 and L8, so these elements have unequal front and
-rear semi-diameters. On L2 and L3 the rear semi-diameter is the height at which the drawn curve ends: the rear of
-L2 (s4) is 17.8 mm, the largest value the rim-slope limit admits, against about 18.2 mm in the drawing, and the
-rear of L3 (s7) is 15.4 mm. L8 is described below.
+Fig. 1 draws a flat land outside the concave rear faces of L2, L3 and L8. L2 and L8 have unequal front and rear
+semi-diameters: the rear of L2 (s4) is 17.8 mm, the largest value the rim-slope limit admits, against about
+18.2 mm in the drawing, and L8 is described below. The rear of L3 (s7) is 17 mm, equal to its front, so L3 keeps
+the flat top of the drawing; the drawn curve ends lower, at about 15.4 mm.
 All of these are inferred clear apertures, not production dimensions.
 
 At the patent's F/1.86 the entrance-pupil radius is 7.286643928 mm, and a real axial ray at that height reaches the

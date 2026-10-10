@@ -16,18 +16,21 @@ import type { LensDataInput } from "../../types/optics.js";
  * That finite-conjugate distance is not the near configuration's infinity-conjugate BFD (40.667238 mm).
  * Positions between the two printed states are linear interpolation.
  *
+ * Elements are named E1-E11 because the patent uses L1 and L2 (with L2a / L2b) for its lens groups; Figure 21
+ * labels only the four rear elements, G2b1-G2b4 (E8-E11 here).
+ *
  * Semi-diameters and the stop radius are inferred, not factory dimensions. The stop radius is the height
  * of the real marginal ray for F/1.46 at infinity; the same iris gives a working F-number of 1.704 at
  * 0.85 m against the F1.71 printed in Figure 23 (compared, not fitted).
  *
  * The front-group rims (surfaces 1-6) are measured on Figure 21 (0.182 mm/px; 19 vertices and the image
- * plane fit): L1 35.7 mm, L2 31.0 mm, L3 front 26.4 mm, and surface 6 at 22.5 mm, where the figure ends the
+ * plane fit): E1 35.7 mm, E2 31.0 mm, E3 front 26.4 mm, and surface 6 at 22.5 mm, where the figure ends the
  * concave curve at a flat annulus. The rims from surface 7 rearward are estimates that agree with the
- * figure within 2 %. Figure 21 also draws L6 and L7 with flat rim annuli (the curves of S11, S12 and S13
+ * figure within 2 %. Figure 21 also draws E6 and E7 with flat rim annuli (the curves of S11, S12 and S13
  * end at 16.4, 16.4 and 15.8 mm); the model takes S11 / S12 at the curve ends, where the two elements
  * meet, and S13 at the outer rim. All rims are floor-checked by real-ray trace: the axial marginal ray
  * and the corner chief ray (Y = 21.63 mm) clear every rim at infinity and at 0.85 m, and at 0.85 m the
- * moving doublet sits behind the rear cup of L3 with at least 4.10 mm between S6 and S7.
+ * moving doublet sits behind the rear cup of E3 with at least 4.10 mm between S6 and S7.
  *
  * gapSagFrac 0.96: the S11/S12 rims (16.2 / 16.1 mm) clear the full-aperture axial marginal ray
  * (16.133 / 16.078 mm) by only 0.07 / 0.02 mm, and at the shared 16.1 mm radius the two faces take up
@@ -37,7 +40,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * fills 56 % of the meridional stop diameter at infinity and 79 % at 0.85 m, limited by S5 and S20.
  *
  * Dispersion: nC / nF / ng on ten elements are computed from HOYA catalog data for the glass whose nd/vd
- * matches the patent; L6 (1.58763 / 61.08) has no catalog match and its spectrum is unverified.
+ * matches the patent; E6 (1.58763 / 61.08) has no catalog match and its spectrum is unverified.
  */
 const LENS_DATA = {
   key: "sigma-85mm-f14-ex-dg-hsm",
@@ -60,7 +63,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "E1",
       diagramLabel: "1",
       label: "Element 1",
       type: "Positive Meniscus",
@@ -72,7 +75,7 @@ const LENS_DATA = {
       glass: "FCD1 (HOYA, coordinate equivalent)",
       apd: "inferred",
       apdNote:
-        "Sigma's construction diagram marks the first element as SLD glass; the patent gives only nd/vd (1.49700 / 81.61), consistent with an FCD1-class fluor crown.",
+        "Sigma's construction diagram marks the first element as SLD glass. The patent gives nd/vd (1.49700 / 81.61), consistent with an FCD1-class fluor crown, and names it only as the low-dispersion medium GL of condition (7) (vd above 70; 81.61 here); paragraph 0069 calls an anomalous-dispersion medium preferable without saying this example uses one.",
       nC: 1.4951374776446764,
       nF: 1.5012275045747954,
       ng: 1.504509126705896,
@@ -80,7 +83,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "E2",
       diagramLabel: "2",
       label: "Element 2",
       type: "Positive Meniscus",
@@ -97,7 +100,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "E3",
       diagramLabel: "3",
       label: "Element 3",
       type: "Negative Meniscus",
@@ -114,7 +117,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "E4",
       diagramLabel: "4",
       label: "Element 4",
       type: "Negative Meniscus",
@@ -132,7 +135,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "E5",
       diagramLabel: "5",
       label: "Element 5",
       type: "Positive Meniscus",
@@ -150,7 +153,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "E6",
       diagramLabel: "6",
       label: "Element 6",
       type: "Negative Meniscus (Aspheric)",
@@ -163,7 +166,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "E7",
       diagramLabel: "7",
       label: "Element 7",
       type: "Biconcave Negative",
@@ -180,7 +183,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "E8",
       diagramLabel: "8",
       label: "Element 8",
       type: "Negative Meniscus",
@@ -198,7 +201,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "E9",
       diagramLabel: "9",
       label: "Element 9",
       type: "Biconvex Positive",
@@ -216,7 +219,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "E10",
       diagramLabel: "10",
       label: "Element 10",
       type: "Biconvex Positive",
@@ -234,7 +237,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "E11",
       diagramLabel: "11",
       label: "Element 11",
       type: "Negative Meniscus",

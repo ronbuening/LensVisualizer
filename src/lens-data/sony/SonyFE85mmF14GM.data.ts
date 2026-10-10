@@ -33,14 +33,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    18–20: real-ray envelope of the f/1.45 axial bundle, the 0.6-field║
  * ║    ±0.75-stop fan and the full-field chief ray at five focus states, ║
  * ║    plus ≈8% clearance; reduced to ≈5% at L1 and ≈3% at L2 (edge      ║
- * ║    thickness), the L4 front (6→7 gap) and surfaces 18–19 (18→19 gap  ║
- * ║    intrusion). Fig. 3 draws these rims within about 6% of the model; ║
+ * ║    thickness) and the L4 front (6→7 gap intrusion). Fig. 3 draws     ║
+ * ║    these rims within about 6% of the model;                          ║
  * ║    it ends the concave rear faces of L1–L4 on flat annuli 5–9% lower,║
  * ║    at or under the f/1.45 axial ray on L1–L3, so none was lowered.   ║
  * ║    Surfaces 10–17: estimated from Fig. 3, which draws the focus      ║
  * ║    doublets and G3a square-cut and smaller than the stop opening     ║
  * ║    (19.6 mm): 17.9 mm for L5–L6, 17.3 mm for L7–L8 and 17.3 mm for L9║
- * ║    (the rear of L10 stays at the 18→19 gap limit). The focus-group   ║
+ * ║    (surfaces 16–17). Surfaces 18–19 are 16.7 mm: Fig. 3 draws L10    ║
+ * ║    and L11 touching at the rim (the faces meet at 16.87 mm);         ║
+ * ║    gapSagFrac 0.98 admits it, 0.08 mm of air left. The focus-group   ║
  * ║    rims are floor-checked against the f/1.45 axial ray at infinity   ║
  * ║    (16.49 mm at surface 10). At the 0.85 m state they, not the stop, ║
  * ║    limit the axial beam: the model's working F-number there is 1.64, ║
@@ -266,8 +268,8 @@ const LENS_DATA = {
     { label: "15", R: -50.259, d: 3.0, nd: 1.0, elemId: 0, sd: 17.3 }, // D15 variable
     { label: "16", R: 216.748, d: 15.0, nd: 2.001, elemId: 9, sd: 17.3 },
     { label: "17", R: -50.452, d: 2.566, nd: 1.7552, elemId: 10, sd: 17.3 }, // L9→L10 cemented junction
-    { label: "18", R: 122.664, d: 4.0, nd: 1.0, elemId: 0, sd: 15.9 },
-    { label: "19", R: -51.592, d: 1.6, nd: 1.56883, elemId: 11, sd: 15.9 },
+    { label: "18", R: 122.664, d: 4.0, nd: 1.0, elemId: 0, sd: 16.7 },
+    { label: "19", R: -51.592, d: 1.6, nd: 1.56883, elemId: 11, sd: 16.7 },
     { label: "20", R: -270.536, d: 16.861, nd: 1.0, elemId: 0, sd: 17.5 }, // computed paraxial BFD (not published)
   ],
 
@@ -317,6 +319,7 @@ const LENS_DATA = {
   nominalFno: 1.45,
   fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 11,
+  gapSagFrac: 0.98,
 
   /* ── Layout tuning ── */
   scFill: 0.55,

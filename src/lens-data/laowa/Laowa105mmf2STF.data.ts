@@ -151,7 +151,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
-      label: "Element 8",
+      label: "Element 8 (A)",
       type: "Plano-Concave",
       nd: 1.504,
       vd: 63.0,

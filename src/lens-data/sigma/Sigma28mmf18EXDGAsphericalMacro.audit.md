@@ -107,3 +107,29 @@ Maker diagram. No maker image was viewed in this pass. The deployment validation
 Open: Fig. 1 draws surface 4 to about 18.2 mm; the model stops at 17.8 mm because of the rim-slope limit.
 
 Open: Fig. 1 draws r18 with a shorter radius than the table (about 29–36 mm from sag readings at heights of 7–10 mm, against the printed 42.9200 on PDF page 4) and ends it inside the F/1.86 beam. The printed table is kept.
+
+## 2026-10-10 — Second review: diagram, labels and movement
+
+Compared. The local page at infinity (the only modeled state) and the inspector of the front resin layer, against Fig. 1 on PDF page 7 re-measured independently at 400 dpi, and the variable-gap table on PDF page 5. One semi-diameter changed (surface 7); no label, bracket, tag or movement field changed.
+
+Scale and rims, re-measured. Axis row 1412.5 px; surface 1 at 512.5 px and surface 22 at 2428.5 px give 22.33 px/mm (44.79 µm/px); the stop line sits at 1689.5 px against 1689.9 px predicted. Outer rims as the mean of both sides: L2 22.8 mm (stored 23), L3 front 17.5 mm (stored 17, 3 %), L4 and L5 14.9 mm (15), L6 14.6 mm (15), L7/L8 13.4 mm (14), L9 13.7 mm (14), L10 14.8 mm (15). Curve ends on the lower side: r4 meets L2's rear edge at 18.1–18.3 mm (stored 17.8, the rim-slope limit) and r7 meets L3's rear edge at 15.3–15.4 mm (15.4 after the first pass). L8's rear land runs square to the full 13.5 mm height directly ahead of L9. The first pass's readings are confirmed within measurement noise.
+
+Squared blocks, element by element. L2: Fig. 1 draws a flat top 8.5 mm long and a 4.6 mm step down to the end of r4; the rear face cannot reach the front height (R = 19.8 mm against 23 mm), so the slanted edge on the site stays. L8: the rear face cannot reach 14 mm because surfaces 18 and 19 meet at 11.77 mm, so its slanted edge stays. L3: Fig. 1 draws a flat top about 4.7 mm long and a 2.15 mm step down to the end of r7; with surface 7 at 15.4 mm the site drew a slanted top instead. Surface 7 was set to 17 mm, equal to surfaces 5A and 6, which gives a flat top about 5.9 mm long with the rear tip 5.5 mm short of L4.
+
+| Surface | Before | Fig. 1 | After | Evidence |
+|---|---:|---:|---:|---|
+| 7 | 15.4 | outer rim 17.5, curve end 15.3–15.4 | 17 | L3 is drawn as a square-topped block. The trial value passed the validator with no errors. The F/1.86 axial height (7.93 mm) and the corner chief-ray height (10.29 mm) at surface 7 are unchanged. A meridional fan at 0, 35, 50, 70, 85 and 100 % field gives identical beam limits at the stop before and after (pass fractions 97.5, 90.8, 86.3, 74.9, 66.5 and 54.1 %; limiting surfaces 18, 10, 9 and 5A, never 7). |
+
+Labels and brackets, found correct. G1 spans surfaces 1–11 and G2 spans 13–22, as the patent's first and second groups. H1 brackets the resin layer and L3 (5A–7), H2 brackets L6 and its resin layer (13–15A), D1 brackets the cemented L7 + L8 (16–18). Ten glass elements L1–L10 plus the resin layers R1 and R2 make nine air-separated components, matching the patent's count. Every element type agrees with the signs of its radii. The `A` markers sit on surface 5A (front of the layer on L3) and surface 15A (rear of the layer on L6), the two surfaces whose coefficients the patent lists on PDF page 5, and no other surface has coefficients. The stop is drawn between L5 and L6, as in Fig. 1. The inspector shows R1 as "Element 3 resin layer", hybrid resin negative meniscus, 1.5184 / 52.1, f = −415.12 mm, with the H1 and aspheric badges. No `apd` tags are set, and the patent tables give none.
+
+Movement. The model has no focus states. The `focusDescription` text agrees with PDF page 5: d11 is 6.81 mm at infinity and 3.08 mm at OBJ = 55, and d12 is a fixed row, so the stop travels with the rear group. Both groups advancing is the patent's description of the floating focus.
+
+Glass. The prescription table has only r, d, n and ν columns (PDF pages 4–5). It names no glass and gives no further line indices or partial dispersion, so L9 and L10 (1.60625 / 63.1) and the resin layers (1.51840 / 52.1) stay unmatched.
+
+Engine values, the same before and after: focal length 27.106 mm, F/1.86, stop radius 13.508 mm, paraxial half-field estimate 40.4° limited by surface 4, traced corner coverage 100 % (21.65 mm), no undersized surface in the image-circle check, validator clean.
+
+Live render after the change. The local page at infinity shows L3 with a flat top and a pointed rear corner, its front corner just inside the mouth of L2; every other element is as the first pass left it. The focus overlay and the closest-focus view were not inspected, because the model has no focus states.
+
+Open: the site still draws slanted edges where Fig. 1 draws the rear lands of L2 and L8; semi-diameters cannot remove them.
+
+Open: Fig. 1 brackets the sub-groups 1a (r1–r2), 1b (r3–r7), 1c (r8–r11), 2a (r13–r15), 2b (r16–r18) and 2c (r19–r22). The site brackets only G1 and G2; the sub-groups are named in the element roles.
