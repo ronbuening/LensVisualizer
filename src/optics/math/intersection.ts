@@ -50,7 +50,7 @@ export interface SurfaceIntersectionSuccess {
   normal: Vec3;
   residual: number;
   /** Accepted residual bound in mm; larger than requested only for coordinate roundoff. */
-  effectiveTolerance?: number;
+  effectiveTolerance: number;
   iterations: number;
   segmentLength: number;
   opticalPathLength: number | null;

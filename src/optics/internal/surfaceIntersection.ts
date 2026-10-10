@@ -6,7 +6,7 @@
  */
 
 import { selectAsphericCapHit } from "../math/intersection.js";
-import { INTERSECTION_MAX_ITERATIONS, INTERSECTION_TOLERANCE } from "../constants.js";
+import { INTERSECTION_BRACKET_SAMPLES, INTERSECTION_MAX_ITERATIONS, INTERSECTION_TOLERANCE } from "../constants.js";
 import { planeResidualRoundoff, sagResidualRoundoff } from "../math/intersectionTolerance.js";
 import { createAsphericProfile } from "../math/surfaceProfile.js";
 import type { AsphericCoefficients } from "../../types/optics.js";
@@ -54,7 +54,7 @@ export interface SurfaceIntersectionSuccess {
   normal: Vector3;
   residual: number;
   /** Accepted residual bound in mm; larger than requested only for coordinate roundoff. */
-  effectiveTolerance?: number;
+  effectiveTolerance: number;
   iterations: number;
   segmentLength: number;
   opticalPathLength: number | null;
@@ -72,7 +72,6 @@ export interface SurfaceIntersectionFailure {
 /** Union result for RuntimeLens sag-surface intersection. */
 export type SurfaceIntersectionResult = SurfaceIntersectionSuccess | SurfaceIntersectionFailure;
 
-const DEFAULT_BRACKET_SAMPLES = 24;
 const MIN_DZ = 1e-12;
 
 interface SurfaceEvaluation {
@@ -183,7 +182,7 @@ function intersectUnboundedSagSurface(
     maxT = Infinity,
     tolerance = INTERSECTION_TOLERANCE,
     maxIterations = INTERSECTION_MAX_ITERATIONS,
-    bracketSamples = DEFAULT_BRACKET_SAMPLES,
+    bracketSamples = INTERSECTION_BRACKET_SAMPLES,
     refractiveIndex,
   }: SurfaceIntersectionOptions = {},
 ): SurfaceIntersectionResult {
