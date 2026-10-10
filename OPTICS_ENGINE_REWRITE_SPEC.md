@@ -170,12 +170,29 @@ The intersection contract, from #774:
 
 #774 reported these costs, which this program carries as known debt:
 
-- PC-Nikkor 19mm default analysis +91.88%, cause unresolved;
+- PC-Nikkor 19mm default analysis +91.88%, cause unresolved. This was measured on linux/x64, and its follow-up pairs
+  disagreed (−5.60% isolated, +10.19% replayed); S1.P1.T1 restates it from the maintainer's machine;
 - the analysis category +8.31%;
 - +0.291 Newton steps per curved hit;
 - eight accepted Mirotar success→clipped transitions.
 
 Stage 3 must bring PC-Nikkor 19mm default analysis back to at or below its R0 median.
+
+A review of #774 before it merged found these, which Stage 3 closes:
+
+- **Stall rule.** A roundoff-limited root leaves Newton taking steps of a few ulps, never exactly zero, so neither
+  stall test fires until bisection has collapsed the bracket. That takes up to 63 iterations, and about one rim or
+  exterior ray in a million failed at the original cap of 48. #774 raises the cap to 72 and leaves the rule as it is
+  (S3.P2.T4).
+- **The cap search depends on the unbounded solve.** `intersectSurfaceProfile` returns before the cap search when the
+  unbounded solve fails, so a numerical failure outside the cap can hide a root inside it (S3.P2.T1).
+- **Certificate gate.** The asphere uniqueness certificate is refused when coordinate roundoff exceeds the residual
+  tolerance. At 1e-12 mm that is an operand sum of 281 mm (281 m at 1e-9), and beyond it each in-cap hit pays the
+  ordered 24-sample scan: 6 → 25 profile evaluations on one measured ray. Catalog incidence is unmeasured; S1.P3.T1
+  counts it and S3.P2.T2 fixes it.
+- **Legacy hits beyond |R|** are floor-assisted without being roundoff-limited, up to about 1e-8 mm. They are
+  exterior and always clipped, and they go when the legacy solver delegates (S3.P2.T3).
+- **`intersectRayPlane`,** which lands rays on the image and sensor planes, does not validate its residual (S3.P2.T1).
 
 ## Integration model
 
@@ -787,6 +804,9 @@ need the S2.P5 catalog migration. Phase 2.6 needs S2.P5 and blocks nothing.
   - **Change:** shrink [Baseline and accuracy contract](#baseline-and-accuracy-contract) to a pointer at the documented
     contract, keeping the #774 debt list and the Stage 3 requirement.
   - **Records:** the R0 and A0 benchmark medians from one machine; the PC-Nikkor 19mm medians at both.
+    - Paired mode arrives in S1.P3.T2, so this step alternates the two commits by hand (AB/BA) with
+      `--iterations=15 --warmups=2`, the sample counts under [Method](#method).
+    - The PC-Nikkor entry in the #774 debt list is restated from these medians.
   - **Gate:** C0, documentation only; its merge commit is anchor A0.
 
 **Phase 1.2 — Differential harness**
@@ -796,7 +816,8 @@ need the S2.P5 catalog migration. Phase 2.6 needs S2.P5 and blocks nothing.
   - **Payloads cover:**
     - build constants (every numeric `RuntimeLens` field);
     - layout;
-    - traces: hits, terminal point and direction, status, clip reason, `effectiveTolerance`;
+    - traces: hits with each hit's `residual` and `effectiveTolerance` (on the hit record since #774), terminal
+      point and direction, status, clip reason;
     - field geometry and chief solves;
     - every analysis job;
     - geometric MTF at a small grid.
@@ -839,6 +860,7 @@ need the S2.P5 catalog migration. Phase 2.6 needs S2.P5 and blocks nothing.
   - **What it counts:**
     - surface-profile evaluations;
     - intersections by kind;
+    - floor-assisted acceptances, exhaustion failures and cap-certificate refusals;
     - traces by capture;
     - chief solves and their stop traces;
     - root-solve evaluations;
@@ -883,6 +905,8 @@ need the S2.P5 catalog migration. Phase 2.6 needs S2.P5 and blocks nothing.
   - **Change:**
     - add fixtures of sphere, conic and asphere roots at 50 or more digits, with their generator script, under
       `__tests__/src/optics/fixtures/`;
+    - commit the 50/80-digit generator behind the five Planar pupil expectations #774 updated in
+      `mirrorOptics.test.ts`, whose evidence is outside the repository today;
     - add `scripts/export-comparator-cases.mjs`.
   - **Tests:** today's kernel meets the contract on every fixture. Any failure is filed as a C3 finding, not hidden.
   - **Gate:** C0.
@@ -1163,12 +1187,14 @@ Each step is its own PR after S2.P5 and blocks nothing else.
   - **Change:** `geometry/intersect.ts` gains closed-form roots under the contract:
     - a numerically stable quadratic, in Spencer & Murty's general ray-tracing form (*J. Opt. Soc. Am.* 52(6), 672,
       1962, [doi:10.1364/JOSA.52.000672](https://doi.org/10.1364/JOSA.52.000672));
-    - cap selection and domain checks;
-    - the residual is validated after clamping;
+    - cap selection and domain checks, with the cap search run even when the unbounded solve fails numerically;
+    - the residual is validated after clamping, and `intersectRayPlane` (image and sensor planes) validates its
+      residual under the same rule;
     - the iterative path is the fallback when validation fails, for example near tangency.
   - **Tests:**
     - the 50-digit fixtures;
     - tangent, grazing, steep-rim and backward rays;
+    - a plane at zero gap behind a curved surface, reached by an oblique ray;
     - cap and exterior roots;
     - every closed-form success uses at most 2 profile evaluations;
     - every fallback is counted under its own counter, with its reason (failed validation, near tangency or domain
@@ -1176,19 +1202,31 @@ Each step is its own PR after S2.P5 and blocks nothing else.
   - **Gate:** C1.
 - **S3.P2.T2 Conic-seeded asphere solve.**
   - **Change:** Newton starts from the base-conic root. The bracket scan runs only when the seed fails certification,
-    and the stall and roundoff rules are unchanged.
-  - **Tests:** asphere fixtures; #774's 43-iteration exterior case; zero and exhausted budgets; steep quartics.
+    and the stall and roundoff rules are unchanged. The certificate's coordinate-roundoff gate gets its own bound
+    instead of the residual tolerance.
+  - **Tests:** asphere fixtures; #774's 43-iteration exterior case; zero and exhausted budgets; steep quartics; an
+    in-cap hit whose operand sum exceeds 281 mm keeps its certificate.
   - **Gate:** C1.
 - **S3.P2.T3 Legacy intersection delegates.**
   - **Change:** `internal/surfaceIntersection.ts` calls the kernel, and its duplicate Newton, bracket and constants are
     deleted.
-  - **Tests:** `__tests__/src/optics/internal/surfaceIntersection.test.ts` passes unchanged.
-  - **Gate:** C1.
+  - **Tests:** both arms of `__tests__/src/optics/intersectionContract.test.ts` pass unchanged, and so does
+    `__tests__/src/optics/internal/surfaceIntersection.test.ts` except its captured exterior-clip case. That case
+    asserts a legacy hit on the clamped continuation beyond the conic domain, which the kernel rejects.
+  - **Gate:** C1. The legacy hits beyond |R| that become domain rejections are listed as declared transitions.
+- **S3.P2.T4 Roundoff-limited roots without bracket collapse.**
+  - **Change:** with one kernel left, a Newton correction of a few ulps whose residual is inside the envelope counts
+    as a stall, and a fixed point the envelope rejects fails at once. `INTERSECTION_MAX_ITERATIONS` then drops to the
+    smallest value the fixtures need. The acceptance bound does not change: the raw target first, then
+    `max(tolerance, envelope)` only at a stall. Contract item 3 gains the third stall case in the same PR.
+  - **Tests:** the rim root in `intersectionContract.test.ts` converges without bisecting to adjacent floats; an
+    unusable slope bound fails on the iteration it stalls.
+  - **Gate:** C2.
 
 **Stage 3 gate:**
 
 - the analytic suite;
-- Tier S, C1 against the anchor;
+- Tier S, C1/C2 against the anchor;
 - the Stage 3 targets are reported: mean evaluations per intersection and the fallback rate;
 - PC-Nikkor 19mm default analysis is at or below R0;
 - the comparator report.
@@ -1221,7 +1259,7 @@ Each step is its own PR after S2.P5 and blocks nothing else.
       `rayTrace.ts` tracers and `traceToImage`;
     - move the pupil samplers to `analysis/sampling.ts`;
     - port `__tests__/src/optics/internal/*`, `mirrorOptics.test.ts` and `exactSurfaceTraceVector.test.ts` to the
-      production stack;
+      production stack, and drop the legacy arm of `intersectionContract.test.ts`;
     - supersede decision 2026-08-04 (the two tracer stacks) in `agent_docs/decisions.md`, and rewrite "Exact Surface
       Trace" in `agent_docs/architecture/optics-engine.md` to describe the one remaining tracer.
   - **Gate:** C0.
