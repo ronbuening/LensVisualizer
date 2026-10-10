@@ -42,6 +42,7 @@ for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
       result = computeMtf(state, options);
       times.push(performance.now() - start);
     }
+    const samplesMs = [...times];
     times.sort((a, b) => a - b);
     rows.push({
       key: data.key,
@@ -49,7 +50,7 @@ for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
       support: result.support.reason ?? "candidate",
       ...(result.support.conjugate ? { conjugate: result.support.conjugate } : {}),
       medianMs: +times[1].toFixed(2),
-      samplesMs: times,
+      samplesMs,
       geometry: result.geometry,
       fields: result.fields.map(({ fieldFraction, imageHeightMm, status, reason, gridSize, maxDelta }) => ({
         fieldFraction,
