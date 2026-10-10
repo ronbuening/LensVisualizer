@@ -1857,4 +1857,15 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published FD110 formula-1 row; product code 785-257 omitted so bare-code annotations keep their existing row.",
   },
+  {
+    name: "M-FDS910",
+    vendor: "Hoya",
+    polynomial: [3.165987, -0.01349196, 0.04649918, 0.002471413, -0.00008659596, 0.00002725927],
+    nd: 1.82115,
+    vd: 24.06,
+    PgF: 0.6237,
+    code6: "821241",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published M-FDS910 formula-1 row (glass for molded optics).",
+  },
 ];

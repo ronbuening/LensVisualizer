@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **900** lenses scanned (**888** visible)
-- **9517 / 10186** non-air surfaces use strict catalog Sellmeier data (93.4%)
-- **9527 / 10186** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.5%)
+- **913** lenses scanned (**900** visible)
+- **9608 / 10324** non-air surfaces use strict catalog Sellmeier data (93.1%)
+- **9618 / 10324** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **289** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **158** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -73,6 +73,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | US 2007/0058265 A1 | [PDF](../../patents/US20070058265A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 18 [glass] (Element 10: `Unmatched (583/302 flint; obsolete HOYA E-F3-class candidate)`) | abbe: 1 |
 | [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | US 4,210,388 | [PDF](../../patents/US4210388.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 12 [glass] (Element 6: `593348 — LF7-class light flint (no exact public catalog match)`) | abbe: 1 |
 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | JP 2022-117775 A | [PDF](../../patents/JP2022117775A.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 3A [glass] (Element 2: `Unmatched (BAL/SK moldable crown; nearest S-BAL42/M-BACD12-type catalog glasses are about 1.583/59.4)`) | abbe: 1 |
+| [SIGMA 85mm f/1.4 EX DG HSM](../../src/lens-data/sigma/Sigma85mmf14EXDGHSM.data.ts) | JP 2011-170128 A | [PDF](../../patents/JP2011170128A.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 10A [glass] (Element 6: `Unmatched (molded-asphere glass; nd 1.58763 / vd 61.08)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | JP 2018-017857 A | [PDF](../../patents/JP2018017857A.pdf) | 90.5% (19/21) | 90.5% (19/21) | 2 | 7 [glass] (PF bonded material A: `Unmatched (bonded PF material A; patent nd=1.52780, vd=33.41)`)<br>8 [glass] (PF bonded material B: `Unmatched (bonded PF material B; patent nd=1.55710, vd=49.74)`) | abbe: 2 |
 | [TAMRON 70-180mm f/2.8 Di III VXD](../../src/lens-data/tamron/TamronA05670180mmf28.data.ts) | JP 2021-43375 A | [PDF](../../patents/JP2021043375A.pdf) | 90.5% (19/21) | 90.5% (19/21) | 2 | 13A [glass] (Element 8 bonded aspheric layer: `Unmatched (bonded aspheric optical layer; physical material not identified by patent)`)<br>30A [glass] (Element 17 bonded aspheric layer: `Unmatched (bonded aspheric optical layer; physical material not identified by patent)`) | abbe: 2 |
 | [FUJIFILM FUJINON XC 15-45mm f/3.5-5.6 OIS PZ](../../src/lens-data/fujifilm/FujifilmFujinonXC1545mmf3556OISPZ.data.ts) | JP 2021-15312 A | [PDF](../../patents/JP2021015312A.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 3A [glass] (Element L1b: `Unmatched (nd=1.53409, vd=55.89; 534559 coordinate class)`) | abbe: 1 |
@@ -122,6 +123,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [CANON EF-M 15-45mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM1545mmf3563ISSTM.data.ts) | JP 2016-118658 A | [PDF](../../patents/JP2016118658A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 3A [glass] (Element 2: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`)<br>17A [glass] (Element 9: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`) | abbe: 2 |
 | [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) | GB 978,797 | [PDF](../../patents/GB_978797_A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 10 [glass] (Element 6: `Unmatched (728380; nearest current dense-barium-flint family outside Δn=0.003)`)<br>13 [glass] (Element 8: `Unmatched (678322; nearest SF5/ZF2 coordinate family outside Δn=0.003)`) | abbe: 2 |
 | [NIKON AI MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | US 4,392,724 | [PDF](../../patents/US4392724.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 12 [glass] (L31 G3 positive meniscus: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`)<br>16 [glass] (L33 G3 positive reconverger: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`) | abbe: 2 |
+| [SIGMA MACRO 70mm f/2.8 EX DG](../../src/lens-data/sigma/Sigma70mmf28EXDGMacro.data.ts) | JP 2008-020656 A | [PDF](../../patents/JP2008020656A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 11 [glass] (Element 6: `Unmatched (anomalous-dispersion crown; catalog identity unresolved)`)<br>13 [glass] (Element 7: `Unmatched (anomalous-dispersion crown; catalog identity unresolved)`) | abbe: 2 |
 
 ## Near-Complete Visible Lenses - Non-Glass or Mixed-Material Gaps
 
