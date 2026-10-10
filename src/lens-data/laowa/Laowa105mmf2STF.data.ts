@@ -14,7 +14,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * alpha = ln(2)/2 per mm. Rays are attenuated over their actual path length in L8; the
  * patent's Figure 3 tabulates the same law against axial thickness. The coefficient is
  * applied at all wavelengths: no spectral absorption curve, coating loss, pupil-integrated
- * T-stop or production material is claimed.
+ * T-stop or production material is claimed. L8 carries the patent's own designation "A"
+ * (Figure 1, ¶0034) in its inspector label only; the diagram keeps the numeral 8, because
+ * "A" is the site's aspheric-surface marker and this lens has no aspheres.
  *
  * The patent has two stop planes. S12 (ST1) is its light-blocking stop, modeled as a fixed
  * clipping plane. S18 (patent ST2) is its aperture stop and is the model's STO: the only
@@ -24,10 +26,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * the patent's F/2.05, the others are estimated from Figure 1 (0.0846 mm/px over the
  * 85.47 mm vertex span) and floor-checked by exact ray trace under the default geometry
  * rules. S6 and S11 end where Figure 1 ends the concave rear faces of L3 and L6 at a flat
- * annulus (20.7 and 15.6 mm); the renderer joins those unequal rims with a straight edge
- * where the figure draws a square block. The narrow S6/S7 air gap limits the S7
- * semi-diameter; no gap-margin override is used. Figure 1 draws the ST1 opening near
- * 13.2 mm, below the 14.15 mm the F/2.05 axial ray needs there, so ST1 stays at 14.5 mm.
+ * annulus (20.5 mm, inside the 19.7–20.7 mm the figure reads, and 15.6 mm); the renderer
+ * joins those unequal rims with a straight edge where the figure draws a square block.
+ * L4 is square-cut at 21.5 mm on both faces, as drawn. The narrow S6/S7 air gap admits
+ * that only with S6 at 20.5 mm or less under the default gap rule; no gap-margin override
+ * is used. Figure 1 draws the ST1 opening near 13.2 mm, below the 14.15 mm the F/2.05
+ * axial ray needs there, so ST1 stays at 14.5 mm.
  *
  * Focus PUBLISHED: D11 and D22 at infinity and at 0.15x are the patent's rows. The 0.855 m
  * object-to-image distance of the 0.15x state is calculated, and is not the marketed 0.9 m
@@ -244,7 +248,7 @@ const LENS_DATA = {
       d: 2.0812,
       nd: 1.0,
       elemId: 0,
-      sd: 20.7,
+      sd: 20.5,
     },
     {
       label: "7",
@@ -252,7 +256,7 @@ const LENS_DATA = {
       d: 4.2823,
       nd: 1.8042,
       elemId: 4,
-      sd: 20.5,
+      sd: 21.5,
     },
     {
       label: "8",

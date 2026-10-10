@@ -163,7 +163,7 @@ The data file's A14 entry is zero because the patent supplies no A14 term. At th
 
 ## Patent Conditions
 
-All eight conditions reproduce the printed values within their displayed precision. Calculated values below use the unscaled infinity prescription. Conditions 2 and 3 use standalone element powers in air for E8–E11, as defined in paragraph 0047.
+All eight conditions reproduce the printed values within their displayed precision. Calculated values below use the unscaled infinity prescription. Conditions 2 and 3 use standalone element powers in air for E8–E11 (G2b1–G2b4 in the patent's Figure 21), as defined in paragraph 0047.
 
 | Condition | Calculated | Printed |
 |---|---:|---:|
@@ -180,7 +180,7 @@ Condition 1 is R10/f; conditions 2–3 are the sums f/(fi ni) and f/(fi νi) ove
 
 ## Model Scope and Limitations
 
-No physical clear radii are printed. The model's semi-diameters are inferred from the optical section, axial ray envelope and geometry constraints. The front-group rims are measured on Figure 21, which is drawn to scale at infinity focus: 35.7 mm for E1, 31.0 mm for E2, 26.4 mm for the front of E3 and 22.5 mm for its concave rear face, where the figure ends the curve at a flat annulus. The rims from the cemented doublet D1 rearward are estimates that agree with the figure within 2%. The figure gives E3, E6 and E7 flat rim annuli, which the model draws as slanted rims. Source radii, glass thicknesses, indices, asphere coefficients and published d6 spacings remain unchanged.
+No physical clear radii are printed. The model's semi-diameters are inferred from the optical section, axial ray envelope and geometry constraints. The front-group rims are measured on Figure 21, which is drawn to scale at infinity focus: 35.7 mm for E1, 31.0 mm for E2, 26.4 mm for the front of E3 and 22.5 mm for its concave rear face, where the figure ends the curve at a flat annulus. The rims from the cemented doublet D1 rearward are estimates that agree with the figure within 3% (D1 is drawn 21.6 mm high against 21 mm in the model). The figure gives E3, E6 and E7 flat rim annuli, which the model draws as slanted rims, and it cuts the thin front shell of D1 back above 19.4 mm, which the model does not show. Source radii, glass thicknesses, indices, asphere coefficients and published d6 spacings remain unchanged.
 
 The curved air interval between S11 and S12 is the tightest part of the model. The full-aperture axial ray reaches radii 16.133131 and 16.078499 mm on those faces, and the modeled rims are 16.2 and 16.1 mm. At their shared radial band the minimum axial gap is 0.227899 mm, a sag intrusion of 95.913659% of the 5.5771 mm vertex spacing. The data file therefore raises the shared-gap allowance from the default 90% to 96%. Reducing a rim enough for the default allowance would clip the F/1.46 axial bundle, and the source spacing is not altered.
 

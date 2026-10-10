@@ -98,8 +98,9 @@ source boundary is retained literally.
 nd = 1.80420, νd = 46.50. Glass: TAF3 (HOYA; coordinate equivalent). f = +129.511160 mm.
 
 The separated positive meniscus lies between the two front doublets. Both radii are
-positive, with the stronger curvature on the object side. Its inferred front clear radius
-is constrained by the narrow preceding air gap; the physical prescription itself is
+positive, with the stronger curvature on the object side. Figure 1 draws its rim square-cut,
+standing just behind the rear rim of L3, and both faces use 21.5 mm; the narrow preceding
+air gap limits the rear clear radius of L3 instead. The physical prescription itself is
 unchanged. No individual spherical-aberration correction is assigned from power sign alone.
 
 ### L5 — Biconvex Positive
@@ -134,10 +135,12 @@ that two manufactured parts share a melt.
 nd = 1.50400, νd = 63.00. Glass: Unmatched (neutral-gray apodization glass; source nd 1.50400, vd 63.00). f = -59.523810 mm.
 
 The APD element has a plane object-side face S15 and a concave image-side boundary S16.
-Its center thickness is 1.0000 mm and its rear radius is 30.0000 mm. Its thickness increases
-radially, so the source attenuation is stronger toward the rim. Its negative power is
-retained; it is not replaced with a powerless neutral-density plate. The published bulk
-transmission information is separate from dispersion and does not identify a vendor glass.
+The patent designates it A, the only element it names (Figure 1, ¶0034), and the diagram
+labels it A. Its center thickness is 1.0000 mm and its rear radius is 30.0000 mm. Its
+thickness increases radially, so the source attenuation is stronger toward the rim. Its
+negative power is retained; it is not replaced with a powerless neutral-density plate. The
+published bulk transmission information is separate from dispersion and does not identify a
+vendor glass.
 
 ### L9 — Plano-Convex
 
@@ -298,13 +301,15 @@ and no value is adjusted to remove it.
 The patent publishes no clear apertures, so every semi-diameter is inferred. The values
 follow the element heights drawn in Figure 1, scaled from its 85.47 mm vertex span, and each
 is at least the height the F/2.05 axial ray reaches on that surface. The concave rear faces
-of L3 and L6 stop at 20.7 mm and 15.6 mm, where Figure 1 ends the curves at a flat annulus;
+of L3 and L6 stop at 20.5 mm and 15.6 mm, where Figure 1 ends the curves at a flat annulus;
 the viewer joins the unequal rims of those two elements with a straight edge where the
-figure draws a square block.
+figure draws a square block. L4 is square-cut at 21.5 mm on both faces, as drawn.
 
-S7 is tightly bounded: the axial marginal ray reaches 20.38 mm there, while the default rule
-that surface sag may take up at most 90 % of an air gap caps it at 20.53 mm in the 2.08 mm
-S6/S7 space. The model uses 20.5 mm. This is a modeling choice, not a recovered mechanical
+The S6/S7 air space is tightly bounded: the axial marginal ray reaches 20.39 mm on S6 and
+20.38 mm on S7, while the default rule that surface sag may take up at most 90 % of an air
+gap caps the smaller of the two facing semi-diameters at 20.53 mm in the 2.08 mm space. The
+model ends S6 at 20.5 mm, within the 19.7–20.7 mm Figure 1 reads for that curve end, and
+carries S7 on to L4's drawn rim. This is a modeling choice, not a recovered mechanical
 dimension.
 
 The patent's 11.92° half-field corresponds to the corner of the 135-format frame. The

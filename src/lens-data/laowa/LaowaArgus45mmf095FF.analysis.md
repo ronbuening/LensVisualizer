@@ -31,13 +31,13 @@ The design has a fixed negative front group and two positive focusing groups, wi
 | G2 | 3–9 | +181.242991 mm | Auxiliary positive focusing |
 | G3 | 11–23 | +35.402606 mm | Main positive focusing |
 
-The 13 elements form two cemented doublets, one cemented triplet and six singlets. D3 denotes the triplet L8/L9/L10. The aperture stop lies between G2 and G3 and keeps a fixed axial separation from the front of G3. No cover plate is specified or added. Row 24 of the patent table is the image plane, not a refracting surface.
+The 13 elements form two cemented doublets, one cemented triplet and six singlets. The cemented components are labelled C1 to C3 from the front; C3 is the triplet L8/L9/L10. The aperture stop lies between G2 and G3 and keeps a fixed axial separation from the front of G3. No cover plate is specified or added. Row 24 of the patent table is the image plane, not a refracting surface.
 
 | Cemented group | Patent surfaces | Calculated focal length |
 |---|---|---:|
-| D1 | 7–9 | -38.773946 mm |
-| D2 | 11–13 | +345.934182 mm |
-| D3 | 14–17 | +54.262702 mm |
+| C1 | 7–9 | -38.773946 mm |
+| C2 | 11–13 | +345.934182 mm |
+| C3 | 14–17 | +54.262702 mm |
 
 These focal lengths include the cemented interfaces. The single-element focal lengths below are evaluated in air and cannot simply be added across a cemented group.
 
@@ -61,49 +61,49 @@ L2 is a positive meniscus at the front of auxiliary G2. Its high index and relat
 
 nd = 1.883, νd = 40.80. Glass: TAFD30 (HOYA) coordinate equivalent; supplier unconfirmed. f = +54.74 mm.
 
-L3 supplies positive power before D1. Its rear surface 6 and the front of L4 converge across the 0.990 mm air gap and would meet at a height of about 23.8 mm, just outside the f/0.98 axial beam; the model limits surface 7 to a 23.2 mm semi-diameter there (see Edge Clearance Between L3 and L4). Only inferred rims are affected, not the printed curvature, glass or spacing.
+L3 supplies positive power before C1. Its rear surface 6 and the front of L4 converge across the 0.990 mm air gap and would meet at a height of about 23.8 mm, just outside the f/0.98 axial beam; the model limits surface 6 to a 23.2 mm semi-diameter there (see Edge Clearance Between L3 and L4). Only inferred rims are affected, not the printed curvature, glass or spacing.
 
 ### L4 — Positive Meniscus
 
 nd = 1.92286, νd = 20.88. Glass: E-FDS1 (HOYA) coordinate equivalent; supplier unconfirmed. f = +195.14 mm.
 
-L4 is the positive, strongly dispersive first member of D1. Its very weak concave front curvature is retained as printed; its rear curvature supplies most of its standalone power. It is cemented to negative L5 at surface 8.
+L4 is the positive, strongly dispersive first member of C1. Its very weak concave front curvature is retained as printed; its rear curvature supplies most of its standalone power. It is cemented to negative L5 at surface 8.
 
 ### L5 — Biconcave Negative
 
 nd = 1.6966, νd = 28.87. Glass: Unmatched (no close catalog nd/νd match). f = -31.94 mm.
 
-L5 supplies strong negative power and makes D1 net negative. It is the final member of G2, with the variable gap D(9) behind it. Its relatively modest Abbe contrast with L4 should not be described as proof of a conventional achromat.
+L5 supplies strong negative power and makes C1 net negative. It is the final member of G2, with the variable gap D(9) behind it. Its relatively modest Abbe contrast with L4 should not be described as proof of a conventional achromat.
 
 ### L6 — Biconcave Negative
 
 nd = 1.64465, νd = 33.02. Glass: Unmatched (no close catalog nd/νd match). f = -34.87 mm.
 
-L6 begins rear G3 after the stop as the negative front member of D2. The lower-dispersion positive L7 compensates much of its power. Their near cancellation leaves a weakly positive complete pair.
+L6 begins rear G3 after the stop as the negative front member of C2. The lower-dispersion positive L7 compensates much of its power. Their near cancellation leaves a weakly positive complete pair.
 
 ### L7 — Biconvex Positive
 
 nd = 1.83098, νd = 46.00. Glass: Unmatched (no close catalog nd/νd match). f = +35.32 mm.
 
-L7 is the biconvex positive member of D2. Its high index and larger Abbe number than L6 support first-order chromatic balancing. Its nd/νd pair does not correspond to a catalog glass.
+L7 is the biconvex positive member of C2. Its high index and larger Abbe number than L6 support first-order chromatic balancing. Its nd/νd pair does not correspond to a catalog glass.
 
 ### L8 — Biconvex Positive
 
 nd = 1.497, νd = 81.61. Glass: H-FK61 (CDGM) coordinate equivalent, supplier unconfirmed — ED class (inferred). f = +46.59 mm.
 
-L8 is the positive, high-Abbe front member of the cemented triplet D3. The manufacturer's diagram marks this element as the lens's single ED element, and its nd/νd pair matches an ED fluorophosphate crown; the data file tags it as inferred special-dispersion glass on that basis. L1 has the same nd/νd pair but is not marked by the manufacturer. The patent publishes no partial-dispersion data.
+L8 is the positive, high-Abbe front member of the cemented triplet C3. The manufacturer's diagram marks this element as the lens's single ED element, and its nd/νd pair matches an ED fluorophosphate crown; the data file tags it as inferred special-dispersion glass on that basis. L1 has the same nd/νd pair but is not marked by the manufacturer. The patent publishes no partial-dispersion data.
 
 ### L9 — Biconcave Negative
 
 nd = 1.62004, νd = 36.30. Glass: E-F2 (HOYA) coordinate equivalent; supplier unconfirmed. f = -54.07 mm.
 
-L9 is the negative middle element of D3. It is cemented to L8 and L10, with no inserted air or stop. Its higher dispersion than L8 provides a first-order balancing variable within the triplet.
+L9 is the negative middle element of C3. It is cemented to L8 and L10, with no inserted air or stop. Its higher dispersion than L8 provides a first-order balancing variable within the triplet.
 
 ### L10 — Positive Meniscus
 
 nd = 1.883, νd = 40.80. Glass: TAFD30 (HOYA) coordinate equivalent; supplier unconfirmed. f = +67.78 mm.
 
-L10 is the positive meniscus at the rear of D3 and shares the 1.883/40.80 pair with L3, L11 and L13. The complete triplet is positive; assigning exact coma or spherical-aberration contributions would require a separate perturbation analysis.
+L10 is the positive meniscus at the rear of C3 and shares the 1.883/40.80 pair with L3, L11 and L13. The complete triplet is positive; assigning exact coma or spherical-aberration contributions would require a separate perturbation analysis.
 
 ### L11 — Biconvex Positive
 
@@ -147,11 +147,11 @@ The eight named elements trace on the dispersion curves of those catalog glasses
 
 Focusing is internal with two floating groups. G1 remains fixed. From infinity to the 2500 mm state, G2 moves 2.2512 mm toward the object and G3, with the stop, moves 0.9109 mm toward the object. These travels follow directly from the printed gap changes.
 
-| Gap after surface | Infinity | 2500 mm state |
+| Gap (patent symbol) | Infinity | 2500 mm state |
 |---|---:|---:|
-| 2 | 11.6660 mm | 9.4148 mm |
-| 9 | 8.9660 mm | 10.3063 mm |
-| 23 | 12.8692 mm | 13.7801 mm |
+| D(2), after surface 2 | 11.6660 mm | 9.4148 mm |
+| D(9), after surface 9 | 8.9660 mm | 10.3063 mm |
+| D(23), after surface 23 (BF) | 12.8692 mm | 13.7801 mm |
 
 The distance from the first vertex to the image plane is 122.4362 mm in both states. Only these two gap sets are published; intermediate positions are linear interpolations, not a published cam law. The computed EFL changes from 44.890439 mm to 45.307214 mm.
 
@@ -187,7 +187,7 @@ The departure includes the conic contribution and all polynomial terms; positive
 
 ## Conditional Expressions
 
-D1 and D2 in expression (1) are the full separations between the groups at infinity: D1 is the gap after surface 2, and D2 is the gap after surface 9 plus the fixed stop-to-G3 spacing (8.966 mm + 9.285 mm).
+D1 and D2 in expression (1) are the patent's symbols for the full separations between the groups at infinity, the two dimensions marked in Figure 3: D1 is the gap after surface 2, which the patent table calls D(2), and D2 is the gap after surface 9, D(9), plus the fixed stop-to-G3 spacing (8.966 mm + 9.285 mm). They are not the cemented components, which are labelled C1 to C3 here.
 
 | Expression | Calculated | Patent value |
 |---|---:|---:|
@@ -200,11 +200,11 @@ Every condition is satisfied, and each calculated value rounds to the figure the
 
 ## Edge Clearance Between L3 and L4
 
-Surfaces 6 and 7 converge across their 0.990 mm axial gap and would touch at a height of about 23.8 mm. The f/0.98 axial beam reaches 23.16 mm at surface 7, so the model sets that surface's inferred semi-diameter to 23.2 mm. This leaves about 0.040 mm of radial margin over the marginal ray and 0.047 mm of axial air between the two surfaces at the rim.
+Surfaces 6 and 7 converge across their 0.990 mm axial gap and would touch at a height of about 23.8 mm; Figure 3 draws the two elements meeting at the rim, L3 as a knife edge at about 25.4 mm and the cemented L4/L5 block square-cut at about 24.9 mm. Only one of the two faces can be carried past the contact height. The f/0.98 axial beam reaches 23.19 mm at surface 6 and 23.16 mm at surface 7. The model holds L3's rear face, surface 6, to an inferred semi-diameter of 23.2 mm and carries L4's front face, surface 7, out to the block's 25.1 mm rim, so both elements keep the outlines the figure draws. This leaves about 0.014 mm of radial margin over the marginal ray at surface 6 and 0.047 mm of axial air between the two surfaces at that height. Above about 24.2 mm the drawn front face of L4 lies up to 0.05 mm inside the straight edge that closes L3's rim, which is less than a pixel on the diagram and is where the figure itself merges the two outlines.
 
-To admit this rim, the data file lets the two surfaces' sags take up to 96% of the air gap instead of the usual 90%. The f/0.98 beam alone needs about 94.9%, and no other air gap in the model exceeds 90%.
+To admit this rim, the data file lets the two surfaces' sags take up to 96% of the air gap instead of the usual 90%. The f/0.98 beam alone needs about 95.2%. The same allowance is used between L11 and L12, whose facing surfaces 19 and 20 would touch at about 17.5 mm: surface 20 is held to 17.1 mm, 94.9% of that 0.904 mm gap, where Figure 3 draws L12 out to about 18.0 mm. No other air gap in the model exceeds 90%.
 
-These clearances are axial separations at equal height between centered nominal surfaces, not minimum three-dimensional distances. The margin lies next to illuminated heights, so a bevel there cannot be assumed harmless. The patent figures give no edge coordinates, seats, spacers or tolerances. The positive nominal clearance shows only that the modeled surfaces do not overlap; it does not show that the stack can be built as drawn. The printed values are kept unchanged rather than adjusted to widen the margin.
+These clearances are axial separations at equal height between centered nominal surfaces, not minimum three-dimensional distances. The margin lies next to illuminated heights, so a bevel there cannot be assumed harmless. The patent figures give no edge coordinates, seats, spacers or tolerances. The positive nominal clearance shows only that the modeled surfaces do not overlap inside the 23.2 mm rim; it does not show that the stack can be built as drawn. The printed values are kept unchanged rather than adjusted to widen the margin.
 
 ## Model Scope and Limitations
 

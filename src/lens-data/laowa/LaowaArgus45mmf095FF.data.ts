@@ -7,13 +7,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * printed for surfaces 22 and 23. No cover plate is prescribed.
  * The stop radius is derived: the real axial ray entering at EFL/(2 x 0.98) is traced to the stop (surface 10).
  * Semi-diameters are estimated from Figure 3 and floor-checked by real-ray trace at both focus states; the
- * patent prints no clear apertures. Where the figure ends a curved face at a flat annulus (surfaces 4, 9, 11,
- * 21 and 22A) the value is the annulus's inner edge; surface 14 follows L8's rim, drawn above the L9/L10 block.
+ * patent prints no clear apertures. Where the figure ends a curved face at a flat annulus (surfaces 4, 9, 11
+ * and 22A) the value is the annulus's inner edge; surface 14 follows L8's rim, drawn above the L9/L10 block.
  * Surfaces 6 and 7 would meet at a height of about 23.8 mm across their 0.990 mm gap, just outside the f/0.98
- * axial beam (23.16 mm at surface 7), so surface 7 is held to 23.2 mm and gapSagFrac is 0.96.
+ * axial beam (23.19 mm at surface 6, 23.16 mm at surface 7); Figure 3 draws them touching at the rim, with
+ * L3 a knife edge at about 25.4 mm and the L4/L5 block square-cut at about 24.9 mm. L3's rear face (surface
+ * 6) is held to 23.2 mm and gapSagFrac is 0.96; L4's front face (surface 7) follows the block at 25.1 mm,
+ * level with its cemented face. L3's straight edge still ends at the 25.4 mm tip of its front face.
  * Surfaces 19 and 20 would likewise meet at about 17.5 mm across their 0.904 mm gap, so surface 20 is held to
  * 17.1 mm, the largest value the same 0.96 allowance admits (combined sag 0.86 mm of the 0.868 mm allowed).
- * Figure 3 draws both pairs touching at the rim, with L4 out to about 24.9 mm and L12 to about 17.9 mm.
+ * Figure 3 draws L12 as a square block out to about 18.0 mm, touching L11 at the rim, so surface 21 carries
+ * the same 17.1 mm; its curve ends at a flat annulus near 15.8 mm in the figure.
+ * Cemented components are labelled C1-C3 and the variable gaps D(2) and D(9) as in the patent table; the
+ * patent's D1 and D2 are the group separations of its conditional expression (1).
  * Focus: the patent tabulates infinity and a 2500 mm object distance only. It does not state the reference
  * point; the model's paraxial conjugate lies 2497 mm in front of surface 1, so the distance is read as measured
  * from the first surface. closeFocusM is that state's object-to-image distance, not the marketed 0.5 m minimum
@@ -119,7 +125,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 195.13855448831984,
       "glass": "E-FDS1 (HOYA, coordinate equivalent; supplier unconfirmed)",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 5,
@@ -132,7 +138,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -31.940642968254895,
       "glass": "Unmatched (nd 1.69660, vd 28.87; no close catalog match)",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 6,
@@ -145,7 +151,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -34.86547198966114,
       "glass": "Unmatched (nd 1.64465, vd 33.02; no close catalog match)",
-      "cemented": "D2"
+      "cemented": "C2"
     },
     {
       "id": 7,
@@ -158,7 +164,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 35.32416094434064,
       "glass": "Unmatched (nd 1.83098, vd 46.00; no close catalog match)",
-      "cemented": "D2"
+      "cemented": "C2"
     },
     {
       "id": 8,
@@ -171,7 +177,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 46.58640311708475,
       "glass": "H-FK61 (CDGM, coordinate equivalent; supplier unconfirmed)",
-      "cemented": "D3",
+      "cemented": "C3",
       "apd": "inferred",
       "apdNote": "ED fluorophosphate class inferred from nd = 1.497 and νd = 81.61; Venus Optics' construction diagram marks this element as the lens's single ED element, while L1 has the same nd/νd but is not marked and is left untagged. The patent publishes no partial-dispersion data."
     },
@@ -186,7 +192,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -54.0675792165704,
       "glass": "E-F2 (HOYA, coordinate equivalent; supplier unconfirmed)",
-      "cemented": "D3"
+      "cemented": "C3"
     },
     {
       "id": 10,
@@ -199,7 +205,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 67.78227591700897,
       "glass": "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)",
-      "cemented": "D3"
+      "cemented": "C3"
     },
     {
       "id": 11,
@@ -285,7 +291,7 @@ const LENS_DATA = {
       "d": 0.99,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 25.4
+      "sd": 23.2
     },
     {
       "label": "7",
@@ -293,7 +299,7 @@ const LENS_DATA = {
       "d": 5.0,
       "nd": 1.92286,
       "elemId": 4,
-      "sd": 23.2
+      "sd": 25.1
     },
     {
       "label": "8",
@@ -405,7 +411,7 @@ const LENS_DATA = {
       "d": 6.176,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 16.0
+      "sd": 17.1
     },
     {
       "label": "22A",
@@ -461,11 +467,11 @@ const LENS_DATA = {
   "varLabels": [
     [
       "2",
-      "D2"
+      "D(2)"
     ],
     [
       "9",
-      "D9"
+      "D(9)"
     ],
     [
       "23A",
@@ -474,34 +480,34 @@ const LENS_DATA = {
   ],
   "groups": [
     {
-      "text": "G1",
+      "text": "G1 (FIXED)",
       "fromSurface": "1",
       "toSurface": "2"
     },
     {
-      "text": "G2",
+      "text": "G2 (AUX FOCUS)",
       "fromSurface": "3",
       "toSurface": "9"
     },
     {
-      "text": "G3",
+      "text": "G3 (MAIN FOCUS)",
       "fromSurface": "11",
       "toSurface": "23A"
     }
   ],
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "7",
       "toSurface": "9"
     },
     {
-      "text": "D2",
+      "text": "C2",
       "fromSurface": "11",
       "toSurface": "13"
     },
     {
-      "text": "D3",
+      "text": "C3",
       "fromSurface": "14",
       "toSurface": "17"
     }

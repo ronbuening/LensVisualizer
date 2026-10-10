@@ -26,9 +26,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * The front-group rims (surfaces 1-6) are measured on Figure 21 (0.182 mm/px; 19 vertices and the image
  * plane fit): E1 35.7 mm, E2 31.0 mm, E3 front 26.4 mm, and surface 6 at 22.5 mm, where the figure ends the
  * concave curve at a flat annulus. The rims from surface 7 rearward are estimates that agree with the
- * figure within 2 %. Figure 21 also draws E6 and E7 with flat rim annuli (the curves of S11, S12 and S13
- * end at 16.4, 16.4 and 15.8 mm); the model takes S11 / S12 at the curve ends, where the two elements
- * meet, and S13 at the outer rim. All rims are floor-checked by real-ray trace: the axial marginal ray
+ * figure within 3 % (doublet D1 is drawn 21.6 mm high against 21 mm here). Figure 21 also draws E6 and E7
+ * with flat rim annuli (the curves of S11, S12 and S13 end at 16.4, 16.4 and 15.8 mm); the model takes
+ * S11 / S12 at the curve ends, where the two elements meet, and S13 at the outer rim. In D1 the figure
+ * cuts the thin E4 shell back above 19.4 mm, leaving a small notch ahead of E5; the model keeps S7-S9 at
+ * one height. All rims are floor-checked by real-ray trace: the axial marginal ray
  * and the corner chief ray (Y = 21.63 mm) clear every rim at infinity and at 0.85 m, and at 0.85 m the
  * moving doublet sits behind the rear cup of E3 with at least 4.10 mm between S6 and S7.
  *
@@ -75,7 +77,7 @@ const LENS_DATA = {
       glass: "FCD1 (HOYA, coordinate equivalent)",
       apd: "inferred",
       apdNote:
-        "Sigma's construction diagram marks the first element as SLD glass. The patent gives nd/vd (1.49700 / 81.61), consistent with an FCD1-class fluor crown, and names it only as the low-dispersion medium GL of condition (7) (vd above 70; 81.61 here); paragraph 0069 calls an anomalous-dispersion medium preferable without saying this example uses one.",
+        "Sigma's construction diagram marks the first element as SLD glass. The patent gives nd/vd 1.49700 / 81.61 (an FCD1-class fluor crown) and calls it only the low-dispersion medium GL of condition (7); paragraph 0069 prefers an anomalous-dispersion medium without saying this example uses one.",
       nC: 1.4951374776446764,
       nF: 1.5012275045747954,
       ng: 1.504509126705896,
@@ -185,7 +187,7 @@ const LENS_DATA = {
       id: 8,
       name: "E8",
       diagramLabel: "8",
-      label: "Element 8",
+      label: "Element 8 (G2b1)",
       type: "Negative Meniscus",
       nd: 1.72825,
       vd: 28.32,
@@ -203,7 +205,7 @@ const LENS_DATA = {
       id: 9,
       name: "E9",
       diagramLabel: "9",
-      label: "Element 9",
+      label: "Element 9 (G2b2)",
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.81,
@@ -221,7 +223,7 @@ const LENS_DATA = {
       id: 10,
       name: "E10",
       diagramLabel: "10",
-      label: "Element 10",
+      label: "Element 10 (G2b3)",
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.81,
@@ -239,7 +241,7 @@ const LENS_DATA = {
       id: 11,
       name: "E11",
       diagramLabel: "11",
-      label: "Element 11",
+      label: "Element 11 (G2b4)",
       type: "Negative Meniscus",
       nd: 1.6398,
       vd: 34.57,

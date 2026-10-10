@@ -29,14 +29,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    it). This is an F-number calibration, not an independent          ║
  * ║    diaphragm measurement. The real image-space marginal ray gives    ║
  * ║    1/(2 sin U′) = 1.449.                                             ║
- * ║  NOTE ON SEMI-DIAMETERS: modeled, not published. Surfaces 1–8 and    ║
- * ║    18–20: real-ray envelope of the f/1.45 axial bundle, the 0.6-field║
+ * ║  NOTE ON SEMI-DIAMETERS: modeled, not published. Surfaces 1–5, 7 and ║
+ * ║    20: real-ray envelope of the f/1.45 axial bundle, the 0.6-field   ║
  * ║    ±0.75-stop fan and the full-field chief ray at five focus states, ║
  * ║    plus ≈8% clearance; reduced to ≈5% at L1 and ≈3% at L2 (edge      ║
- * ║    thickness) and the L4 front (6→7 gap intrusion). Fig. 3 draws     ║
- * ║    these rims within about 6% of the model;                          ║
- * ║    it ends the concave rear faces of L1–L4 on flat annuli 5–9% lower,║
- * ║    at or under the f/1.45 axial ray on L1–L3, so none was lowered.   ║
+ * ║    thickness) and the L4 front (6→7 gap). Fig. 3 draws these rims    ║
+ * ║    within about 4% of the model. It ends the concave rear faces of   ║
+ * ║    L1–L4 on flat annuli. Surfaces 6 and 8 follow them: 24.7 mm (drawn║
+ * ║    23.9 mm; the lowest rim that stops no ray passed before) and      ║
+ * ║    20.9 mm (as drawn; the f/1.45 axial ray needs 20.41 mm). Surfaces ║
+ * ║    2 and 4 stay higher: their drawn arc ends (29.2 and 26.5 mm) lie  ║
+ * ║    under the f/1.45 axial ray (29.62 and 28.06 mm).                  ║
  * ║    Surfaces 10–17: estimated from Fig. 3, which draws the focus      ║
  * ║    doublets and G3a square-cut and smaller than the stop opening     ║
  * ║    (19.6 mm): 17.9 mm for L5–L6, 17.3 mm for L7–L8 and 17.3 mm for L9║
@@ -160,7 +163,7 @@ const LENS_DATA = {
       glass: "E-F2 (HOYA) / F2-type flint class (cf. S-TIM2)",
       apd: false,
       role: "Biconcave front of cemented G2a; its object-side concave surface is r_2a of condition (8).",
-      cemented: "D1",
+      cemented: "G2a",
     },
     {
       id: 6,
@@ -174,7 +177,7 @@ const LENS_DATA = {
       glass: "TAFD55 (HOYA) / nd 2.00 lanthanum dense flint class (cf. J-LASFH16, S-LAH99; Δνd −0.007, +0.009)",
       apd: false,
       role: "High-index positive of G2a; nearly cancels L5, leaving G2a weakly negative.",
-      cemented: "D1",
+      cemented: "G2a",
     },
     {
       id: 7,
@@ -188,7 +191,7 @@ const LENS_DATA = {
       glass: "M-FDS910 (HOYA, precision-moulding dense flint; inferred)",
       apd: false,
       role: "Negative meniscus at the front of cemented G2b; carries the only asphere (13A).",
-      cemented: "D2",
+      cemented: "G2b",
     },
     {
       id: 8,
@@ -204,7 +207,7 @@ const LENS_DATA = {
       apdNote: "dPgF ≈ +0.0157 from the HOYA FCD515 catalog formula; the patent publishes no partial dispersion",
       dPgF: 0.0157,
       role: "Thick low-dispersion biconvex positive; principal positive power of the focus group.",
-      cemented: "D2",
+      cemented: "G2b",
     },
     {
       id: 9,
@@ -218,7 +221,7 @@ const LENS_DATA = {
       glass: "TAFD55 (HOYA) / nd 2.00 lanthanum dense flint class (cf. J-LASFH16, S-LAH99; Δνd −0.007, +0.009)",
       apd: false,
       role: "Thick high-index biconvex positive at the front of cemented G3a.",
-      cemented: "D3",
+      cemented: "G3a",
     },
     {
       id: 10,
@@ -232,7 +235,7 @@ const LENS_DATA = {
       glass: "E-FD4 (HOYA) / dense flint class (H-ZF6 coordinates; cf. S-TIH4)",
       apd: false,
       role: "Biconcave dense flint completing the positive cemented G3a.",
-      cemented: "D3",
+      cemented: "G3a",
     },
     {
       id: 11,
@@ -256,9 +259,9 @@ const LENS_DATA = {
     { label: "3", R: 55.873, d: 6.013, nd: 1.497, elemId: 2, sd: 29.2 },
     { label: "4", R: 155.451, d: 0.3, nd: 1.0, elemId: 0, sd: 29.0 },
     { label: "5", R: 43.037, d: 5.272, nd: 1.59282, elemId: 3, sd: 27.3 },
-    { label: "6", R: 61.127, d: 3.026, nd: 1.0, elemId: 0, sd: 26.1 },
+    { label: "6", R: 61.127, d: 3.026, nd: 1.0, elemId: 0, sd: 24.7 },
     { label: "7", R: 121.72, d: 2.4, nd: 1.62004, elemId: 4, sd: 24.7 },
-    { label: "8", R: 30.425, d: 10.9, nd: 1.0, elemId: 0, sd: 22.0 },
+    { label: "8", R: 30.425, d: 10.9, nd: 1.0, elemId: 0, sd: 20.9 },
     { label: "STO", R: 1e15, d: 17.857, nd: 1.0, elemId: 0, sd: 19.77 }, // patent surface 9; D9 variable
     { label: "10", R: -57.485, d: 1.5, nd: 1.62004, elemId: 5, sd: 17.9 },
     { label: "11", R: 29.166, d: 9.168, nd: 2.001, elemId: 6, sd: 17.9 }, // L5→L6 cemented junction
