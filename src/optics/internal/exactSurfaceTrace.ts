@@ -115,6 +115,10 @@ export interface ExactSurfaceTraceHit {
   incidentDirection?: Vector3;
   outgoingDirection?: Vector3;
   radius: number;
+  /** Signed residual of the accepted intersection, in mm; null on a fallback point. */
+  residual: number | null;
+  /** Residual bound that intersection met, in mm; null on a fallback point. */
+  effectiveTolerance: number | null;
   clipped: boolean;
   fallback: boolean;
   failureReason: SurfaceIntersectionFailureReason | "totalInternalReflection" | "nonPropagatingDiffractionOrder" | null;
@@ -388,6 +392,8 @@ export function traceExactSurfaceStackVector(
       normal,
       incidentDirection,
       radius,
+      residual: hit.ok ? hit.residual : null,
+      effectiveTolerance: hit.ok ? hit.effectiveTolerance : null,
       clipped: hitClipped,
       fallback,
       failureReason: hitFailure,
@@ -610,7 +616,14 @@ function recordClippedHit(
   clipEvents: FoldedPathClipEvent[],
   lens: ExactTraceLens,
   surfaceIdx: number,
-  geometry: { point: Vector3; normal: Vector3; incidentDirection: Vector3; radius: number },
+  geometry: {
+    point: Vector3;
+    normal: Vector3;
+    incidentDirection: Vector3;
+    radius: number;
+    residual: number;
+    effectiveTolerance: number;
+  },
   clipReason: "inactive-side-block" | "block-surface" | "semi-diameter",
 ): void {
   pushClipEvent(clipEvents, lens, surfaceIdx, clipReason);
@@ -620,6 +633,8 @@ function recordClippedHit(
     normal: geometry.normal,
     incidentDirection: geometry.incidentDirection,
     radius: geometry.radius,
+    residual: geometry.residual,
+    effectiveTolerance: geometry.effectiveTolerance,
     clipped: true,
     fallback: false,
     failureReason: null,
@@ -747,6 +762,8 @@ function traceGeneralizedSurfaceStackVector(
         normal: fallbackPoint.normal,
         incidentDirection: [direction[0], direction[1], direction[2]],
         radius,
+        residual: null,
+        effectiveTolerance: null,
         clipped: true,
         fallback: true,
         failureReason: nextSurfaceHit.failureReason,
@@ -762,6 +779,7 @@ function traceGeneralizedSurfaceStackVector(
     const point = nextSurfaceHit.point;
     const normal = nextSurfaceHit.normal;
     const radius = nextSurfaceHit.radius;
+    const { residual, effectiveTolerance } = nextSurfaceHit;
     const incidentDirection: Vector3 = [direction[0], direction[1], direction[2]];
     terminalPoint = point;
     terminalSurfaceIdx = nextSurfaceIdx;
@@ -794,7 +812,7 @@ function traceGeneralizedSurfaceStackVector(
           clipEvents,
           lens,
           nextSurfaceIdx,
-          { point, normal, incidentDirection, radius },
+          { point, normal, incidentDirection, radius, residual, effectiveTolerance },
           clipReason,
         );
         terminationReason = "clipped";
@@ -810,6 +828,8 @@ function traceGeneralizedSurfaceStackVector(
       normal,
       incidentDirection,
       radius,
+      residual,
+      effectiveTolerance,
       clipped,
       fallback: false,
       failureReason: null,

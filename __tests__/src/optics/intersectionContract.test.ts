@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { traceExactSurfaceStackVector } from "../../../src/optics/internal/exactSurfaceTrace.js";
 import {
   intersectSagSurface,
@@ -9,7 +10,10 @@ import { sag } from "../../../src/optics/internal/surfaceMath.js";
 import { intersectSurfaceProfile } from "../../../src/optics/math/intersection.js";
 import { planeResidualRoundoff, sagResidualRoundoff } from "../../../src/optics/math/intersectionTolerance.js";
 import { createSurfaceProfile, createTiltedPlaneProfile } from "../../../src/optics/math/surfaceProfile.js";
+import { doLayout } from "../../../src/optics/optics.js";
+import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import type { AsphericCoefficients } from "../../../src/types/optics.js";
+import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
 
 /**
  * Intersection accuracy contract (architecture/optics-engine.md, Exact Surface Trace), pinned for every solver that
@@ -260,5 +264,21 @@ describe("intersection roundoff envelopes", () => {
   it("bounds a vertical plane without dividing by normal.z", () => {
     expect(planeResidualRoundoff([0, 300, 7], [0, -1, 0], 299, [0, 1, 7], [0, 1, 0])).toBe(UNIT * 600);
     expect(planeResidualRoundoff([0, Infinity, 7], [0, -1, 0], 299, [0, 1, 7], [0, 1, 0])).toBeNaN();
+  });
+});
+
+describe("trace hit records", () => {
+  it("carry the residual and the bound each accepted intersection met", () => {
+    const L = buildSimplePositiveElementLens();
+    const zPos = doLayout(0, 0, L).z;
+    const ray: SurfaceIntersectionRay = { origin: [0, 1, zPos[0] - 5], direction: [0, 0, 1] };
+    const engine = traceEngineRay2(prepareRuntimeState(L, 0, 0), ray, { checkSemiDiameter: true });
+    const legacy = traceExactSurfaceStackVector(L, ray, { zPos, checkSemiDiameter: true });
+    expect(engine.hits.length).toBeGreaterThan(1);
+    expect(legacy.hits).toHaveLength(engine.hits.length);
+    for (const hit of [...engine.hits, ...legacy.hits]) {
+      expect(hit.effectiveTolerance).toBeGreaterThanOrEqual(1e-12);
+      expect(Math.abs(hit.residual!)).toBeLessThanOrEqual(hit.effectiveTolerance!);
+    }
   });
 });

@@ -484,6 +484,9 @@ describe("mirror optics support", () => {
       const expected = plainTraces[tracer];
       expect(actual.diagnostics.hitSurfaceLabels, tracer).toEqual(["STO", "MG1", "MG2", "MG1"]);
       expect(actual.diagnostics.finalMedium, tracer).toBe(1);
+      for (const hit of actual.hits) {
+        expect(Math.abs(hit.residual!), tracer).toBeLessThanOrEqual(hit.effectiveTolerance!);
+      }
       for (let axis = 0; axis < 3; axis++) {
         expect(actual.terminalDirection[axis], tracer).toBeCloseTo(expected.terminalDirection[axis], 12);
       }

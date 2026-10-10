@@ -117,6 +117,8 @@ export function traceSequential(
       normal,
       incidentDirection,
       radius,
+      residual: hit.residual,
+      effectiveTolerance: hit.effectiveTolerance,
       clipped: hitClipped,
       fallback: false,
       failureReason: null,
