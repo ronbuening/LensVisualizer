@@ -6,6 +6,8 @@
  */
 
 import { selectAsphericCapHit } from "../math/intersection.js";
+import { INTERSECTION_BRACKET_SAMPLES, INTERSECTION_MAX_ITERATIONS, INTERSECTION_TOLERANCE } from "../constants.js";
+import { planeResidualRoundoff, sagResidualRoundoff } from "../math/intersectionTolerance.js";
 import { createAsphericProfile } from "../math/surfaceProfile.js";
 import type { AsphericCoefficients } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD, conicPolySag, sagSlopeRaw } from "./surfaceMath.js";
@@ -51,6 +53,8 @@ export interface SurfaceIntersectionSuccess {
   radius: number;
   normal: Vector3;
   residual: number;
+  /** Accepted residual bound in mm; larger than requested only for coordinate roundoff. */
+  effectiveTolerance: number;
   iterations: number;
   segmentLength: number;
   opticalPathLength: number | null;
@@ -68,9 +72,6 @@ export interface SurfaceIntersectionFailure {
 /** Union result for RuntimeLens sag-surface intersection. */
 export type SurfaceIntersectionResult = SurfaceIntersectionSuccess | SurfaceIntersectionFailure;
 
-const DEFAULT_TOLERANCE = 1e-9;
-const DEFAULT_MAX_ITERATIONS = 32;
-const DEFAULT_BRACKET_SAMPLES = 24;
 const MIN_DZ = 1e-12;
 
 interface SurfaceEvaluation {
@@ -166,8 +167,8 @@ export function intersectSagSurface(
       physical.iterations,
     );
   }
-  if (physical.radius > surface.sd + DEFAULT_TOLERANCE || Math.abs(physical.t - hit.t) <= DEFAULT_TOLERANCE * 10)
-    return hit;
+  // The shared selector already retains an exterior hit when the authored cap is missed.
+  if (physical === hit) return hit;
   return { ...physical, surfaceIdx, point: [...physical.point], normal: [...physical.normal] };
 }
 
@@ -179,9 +180,9 @@ function intersectUnboundedSagSurface(
   {
     minT = 0,
     maxT = Infinity,
-    tolerance = DEFAULT_TOLERANCE,
-    maxIterations = DEFAULT_MAX_ITERATIONS,
-    bracketSamples = DEFAULT_BRACKET_SAMPLES,
+    tolerance = INTERSECTION_TOLERANCE,
+    maxIterations = INTERSECTION_MAX_ITERATIONS,
+    bracketSamples = INTERSECTION_BRACKET_SAMPLES,
     refractiveIndex,
   }: SurfaceIntersectionOptions = {},
 ): SurfaceIntersectionResult {
@@ -223,6 +224,13 @@ function intersectUnboundedSagSurface(
    * well-conditioned rim root elsewhere in it. */
   let stepBeforeLast = hi - lo;
   let lastStep = stepBeforeLast;
+  const roundoffTolerance = (value: SurfaceEvaluation): number => {
+    const slopeMagnitude = asph ? createAsphericProfile(R, asph).maxAbsSlope!(value.radius) : Math.abs(value.slope);
+    return Math.max(
+      tolerance,
+      sagResidualRoundoff(ray.origin, direction, value.t, vertexZ, value.radius, value.sag, slopeMagnitude),
+    );
+  };
 
   for (let iterations = 1; iterations <= maxIterations; iterations++) {
     const current = evalAt(t);
@@ -239,16 +247,39 @@ function intersectUnboundedSagSurface(
     }
 
     const newtonT = isFiniteEvaluation(current) ? t - current.value / current.derivative : NaN;
+    // Preserve the requested target until the Newton correction cannot change t.
+    if (newtonT === t) {
+      const effectiveTolerance = roundoffTolerance(current);
+      if (Math.abs(current.value) <= effectiveTolerance) {
+        return makeSuccess(current, surfaceIdx, L, effectiveTolerance, refractiveIndex, iterations);
+      }
+    }
     const acceptNewton =
       isFinite(newtonT) && newtonT > lo && newtonT < hi && Math.abs(newtonT - t) <= Math.abs(stepBeforeLast) / 2;
+    const nextT = acceptNewton ? newtonT : lo + (hi - lo) / 2;
+    // The safeguarded midpoint can round to this endpoint even when the raw
+    // Newton correction differs: an adjacent-float bracket cannot shrink further.
+    if (nextT === t) {
+      const effectiveTolerance = roundoffTolerance(current);
+      if (Math.abs(current.value) <= effectiveTolerance) {
+        return makeSuccess(current, surfaceIdx, L, effectiveTolerance, refractiveIndex, iterations);
+      }
+    }
     stepBeforeLast = lastStep;
     lastStep = acceptNewton ? newtonT - t : (hi - lo) / 2;
-    t = acceptNewton ? newtonT : lo + lastStep;
+    t = nextT;
   }
 
-  const finalEval = evalAt((lo + hi) / 2);
-  if (isFiniteEvaluation(finalEval) && Math.abs(finalEval.value) <= tolerance * 10) {
+  // Evaluate the pending step; discarding it can lose the last Newton improvement.
+  const finalEval = evalAt(t);
+  if (isFiniteValueEvaluation(finalEval) && Math.abs(finalEval.value) <= tolerance) {
     return makeSuccess(finalEval, surfaceIdx, L, tolerance, refractiveIndex, maxIterations);
+  }
+  if (isFiniteEvaluation(finalEval) && t - finalEval.value / finalEval.derivative === t) {
+    const effectiveTolerance = roundoffTolerance(finalEval);
+    if (Math.abs(finalEval.value) <= effectiveTolerance) {
+      return makeSuccess(finalEval, surfaceIdx, L, effectiveTolerance, refractiveIndex, maxIterations);
+    }
   }
 
   return failure(
@@ -280,6 +311,14 @@ function intersectFlatSurface(
     origin[1] + direction[1] * clampedT,
     origin[2] + direction[2] * clampedT,
   ];
+  const residual = point[2] - vertexZ;
+  const effectiveTolerance =
+    Math.abs(residual) <= tolerance
+      ? tolerance
+      : Math.max(tolerance, planeResidualRoundoff(origin, direction, clampedT, [0, 0, vertexZ], [0, 0, 1]));
+  if (!Number.isFinite(residual) || !(Math.abs(residual) <= effectiveTolerance)) {
+    return failure(surfaceIdx, "noConvergedIntersection", residual, 0);
+  }
 
   return {
     ok: true,
@@ -288,7 +327,8 @@ function intersectFlatSurface(
     point,
     radius: Math.hypot(point[0], point[1]),
     normal: [0, 0, 1],
-    residual: point[2] - vertexZ,
+    residual,
+    effectiveTolerance,
     iterations: 0,
     segmentLength: clampedT,
     opticalPathLength: refractiveIndex === undefined ? null : refractiveIndex * clampedT,
@@ -367,11 +407,11 @@ function makeSuccess(
   evaluation: SurfaceEvaluation,
   surfaceIdx: number,
   L: SurfaceIntersectionLens,
-  tolerance: number,
+  effectiveTolerance: number,
   refractiveIndex: number | undefined,
   iterations: number,
 ): SurfaceIntersectionSuccess {
-  const t = Math.abs(evaluation.value) <= tolerance ? evaluation.t : evaluation.t;
+  const t = evaluation.t;
   return {
     ok: true,
     surfaceIdx,
@@ -380,6 +420,7 @@ function makeSuccess(
     radius: evaluation.radius,
     normal: surfaceNormalAtHit(evaluation.x, evaluation.y, surfaceIdx, L),
     residual: evaluation.value,
+    effectiveTolerance,
     iterations,
     segmentLength: t,
     opticalPathLength: refractiveIndex === undefined ? null : refractiveIndex * t,

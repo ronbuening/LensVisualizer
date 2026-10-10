@@ -484,6 +484,9 @@ describe("mirror optics support", () => {
       const expected = plainTraces[tracer];
       expect(actual.diagnostics.hitSurfaceLabels, tracer).toEqual(["STO", "MG1", "MG2", "MG1"]);
       expect(actual.diagnostics.finalMedium, tracer).toBe(1);
+      for (const hit of actual.hits) {
+        expect(Math.abs(hit.residual!), tracer).toBeLessThanOrEqual(hit.effectiveTolerance!);
+      }
       for (let axis = 0; axis < 3; axis++) {
         expect(actual.terminalDirection[axis], tracer).toBeCloseTo(expected.terminalDirection[axis], 12);
       }
@@ -895,11 +898,13 @@ describe("mirror optics support", () => {
     expect(L.EP.epSD).toBeCloseTo(17.856823466425105, 12);
     expect(L.EP.yRatio).toBeCloseTo(0.6960409629659625, 12);
     expect(L.B).toBeCloseTo(16.79046967193117, 12);
-    expect(L.halfField).toBeCloseTo(25.81431950150305, 12);
-    expect(L.tracingHalfField).toBeCloseTo(25.81431950150305, 12);
-    expect(L.epZRelStop).toBeCloseTo(4.204818318081482, 12);
-    expect(L.xpZRelLastSurf).toBeCloseTo(-29.615117987357305, 12);
-    expect(L.xpSD).toBeCloseTo(23.254328038906696, 12);
+    // Independently checked with 50/80-digit analytic sphere intersections and Snell refraction.
+    // The field value is the conservative endpoint of the existing clipping bisection.
+    expect(L.halfField).toBeCloseTo(25.814319501447216, 12);
+    expect(L.tracingHalfField).toBeCloseTo(25.814319501447216, 12);
+    expect(L.epZRelStop).toBeCloseTo(4.204818317951311, 12);
+    expect(L.xpZRelLastSurf).toBeCloseTo(-29.615117987345197, 12);
+    expect(L.xpSD).toBeCloseTo(23.254328038955432, 12);
   });
 
   it("computes mirror-safe on-axis spherical aberration against the explicit image plane", () => {

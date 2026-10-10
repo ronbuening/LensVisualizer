@@ -2,6 +2,24 @@
 
 Patent: JP S51-63635 A (特開昭51-63635), Table 1 (sole numerical example)
 
+## 2026-10-08 — Inferred stop plane behind the preceding clear cap
+
+Source scope: the 2026-10-07 audit records the Japanese Table 1 note placing the stop directly behind r21, without a distance. The English counterpart [US 3,817,600](https://patents.google.com/patent/US3817600A/en), description of aperture adjustment 50, likewise places it behind L13 without specifying the iris location. The Japanese original was not recovered for this follow-up; filename-only report fixtures are not patent originals. No numerical iris dimension is claimed from either source.
+
+| Field | Before | After | Basis |
+|---|---:|---:|---|
+| Surface 21 `d` | 0 mm | 1.2 mm | Inferred aperture plane, not a source dimension |
+| `STO` `d` | 49.846 mm | 48.646 mm | Preserve the published r21–r22 vertex gap |
+| `STO` stored `sd` | 14.457801 mm | 14.777836 mm | Real marginal-ray wide-station f/3.65 iris at the inferred plane, rounded to six decimals |
+
+For R = +94.78 mm and the retained 15 mm clear radius, the spherical sag is 1.194486163722967 mm. A 1.2 mm plane rounds that value upward to the next 0.1 mm and leaves about 0.005514 mm axial clearance beyond the clear cap. Sag is monotone over that cap, so the clearance holds independently of the sampled rays. Group IV is fixed internally throughout the authored zoom and focus travel. This is sufficient forward clearance for a sequential aperture-plane model; it is neither a measured blade position nor a universal mechanical lower bound. Other aperture abstractions could represent an iris nearer the vertex. The zero-gap model instead demands backward travel from nonaxial r21 hits to the stop.
+
+The runtime rederives a 14.7778364712 mm iris at wide and needs 14.7614258163 mm for f/3.65 at tele, a 0.111% difference. With one fixed iris and the retained clear apertures, the actual infinity axial beams are f/3.6500 and f/3.6463, both iris-limited. Independent 50- and 80-digit analytic sphere/Snell calculations agree with the rederived radii within 2e-13 mm. Paraxial station radii are 14.1069545339 and 14.1107876871 mm. No glass radius, clear semi-diameter, image-plane gap, or focus/zoom spacing is changed.
+
+Sensitivity: 1.5 and 3.0 mm offsets produce wide iris radii 14.7212557553 and 14.4383521759 mm and tele axial f-numbers 3.6462671 and 3.6460533. The raw wide half-field estimates become 18.5108° and 18.2746°, versus 18.5576° at 1.2 mm; the format-limited field still reaches the full-frame corner. This dependence is real model uncertainty. The chosen offset follows the near-cap construction above rather than an optimization over ray success. Splitting a neutral air transfer preserves first-order power and conjugates; changes at floating-point rounding scale are not a revised prescription.
+
+The correction resolves the stop-plane failure in the endpoint aperture and infinity MTF availability checks. The bounded MTF check does not establish converged MTF values. The existing finite-focus MTF support guard remains unavailable. Expanded-field traces also expose existing first-surface misses and a maximum-macro crossing between Groups III and IV, which the stop placement does not address. The authored intermediate focus motion remains the approximation documented in the data header.
+
 ## 2026-10-07 — Zoom iris and station f-numbers against the patent
 
 Local source: `patents/JPA 1976063635-000000.pdf` (5 pages; gazette pp. 263–267). Table 1 runs from PDF p. 3 (rows r1–r17) to the rotated continuation on PDF p. 4 (rows r18–r25), read from 300–600 dpi renders.

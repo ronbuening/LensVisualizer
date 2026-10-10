@@ -453,6 +453,40 @@ the legacy `internal/surfaceIntersection.ts`, share the same safeguarded Newton 
 only inside the sign-changing bracket and when it moves at most half the step before last; otherwise the solver
 bisects, so grazing and steep-rim roots cannot stall. A zero or non-finite derivative bisects instead of failing.
 
+Both paths share a 72-iteration cap (`INTERSECTION_MAX_ITERATIONS`). A root whose residual cannot reach `1e-12` mm
+leaves Newton taking steps of a few ulps, never exactly zero, so it is recognized only once bisection has collapsed
+the bracket to adjacent floats. That takes about log2(width / ulp) steps: 53 for a double, plus the Newton steps
+before it. The worst measured production solve, an exterior hit at a hemisphere's rim, needs 63; a captured legacy
+exterior aperture-clip diagnostic needs 43, and its old 32-step result used the tenfold fallback. Explicit caller
+budgets remain supported. The cap is a measured margin, not a convergence guarantee for arbitrary profiles or bounds.
+
+The shipped residual target is `INTERSECTION_TOLERANCE = 1e-12` mm for both solvers and the legacy generalized
+tilted-plane path. Sag profiles measure axial `z_ray - (vertexZ + sag)`; tilted planes measure signed normal distance
+`n · (point - planePoint)`. Dividing the latter by `n.z` gives the axial residual only for a nonvertical plane;
+normal distance remains the stable convention near vertical. Analytic hits on surface planes (flat and tilted) validate
+their returned residual, including after bound clamping. `math/plane.ts` `intersectRayPlane`, which lands rays on the
+image and sensor planes, is not validated yet; it joins this contract with the Stage 3 kernel
+(`OPTICS_ENGINE_REWRITE_SPEC.md`, S3.P2.T1). Parametric plane-bound slack and cap-root equivalence track the requested tolerance;
+neither widens the forward search. The asphere uniqueness certificate also requires coordinate error below the
+requested tolerance. Its separate conservative slope/radius safety margins remain proof guards, not acceptance limits.
+
+Curved solves attempt the raw target at every bracket sample and Newton evaluation. Only when a Newton correction cannot
+change the floating-point ray parameter, or the safeguarded midpoint cannot advance within its floating-point bracket,
+may the residual use the
+operand-based roundoff envelope in `math/intersectionTolerance.ts`. It includes absolute `origin` and `direction*t`
+terms (even when their sum cancels), vertex position, sag operand magnitudes, and transverse error multiplied by a
+conservative slope bound. For aspheres, the absolute-term slope bound also bounds cancelling polynomial terms.
+Analytic planes use the analogous normal-weighted operand bound. Unavailable/nonfinite bounds do not authorize
+acceptance. Successful intersections expose `effectiveTolerance` so diagnostics can distinguish the requested target
+from floor-assisted results; a floor-assisted hit is not a claim of raw `1e-12` mm accuracy. One floor-assisted case is
+not roundoff-limited: beyond `|R|` the legacy solver follows a clamped sag whose clamped slope is not its derivative,
+so Newton stalls away from the root and the slope-scaled envelope accepts residuals up to about `1e-8` mm. Those hits
+are exterior, always clipped, and reported with their `effectiveTolerance`; the production solver rejects that region
+as outside the surface's domain. The former unconditional
+tenfold residual allowance after iteration exhaustion is removed; the pending final step is evaluated under the same
+raw-target and stagnation rules. Clear-aperture clipping retains its independent
+`max(1e-9, abs(sd)*1e-12)` mm semantic tolerance.
+
 ### Bulk Absorption And Apodization
 
 `ElementData.absorptionCoefficientPerMm` opts a sequential element into broadband Beer–Lambert intensity loss.

@@ -35,7 +35,7 @@ The lens is a mechanically compensated four-principal-group zoom with positive�
 - **Group III, surfaces 11–13:** negative compensator; one cemented doublet.
 - **Group IV, surfaces 14–25:** positive fixed master group; seven elements in five air-separated groups.
 
-The stop is immediately after surface $r_{21}$. The note beside the continuation of Table 1 on patent page 4 states this directly. The data file therefore assigns zero distance after surface 21 and inserts a separate `STO` plane carrying the published 49.846 mm spacing to surface 22.
+The stop is immediately after surface $r_{21}$ according to the note beside the continuation of Table 1 on patent page 4, but no distance is printed. The model places an aperture plane 1.2 mm behind the vertex and assigns the remaining 48.646 mm to `STO`, preserving the published 49.846 mm gap to surface 22. This inferred plane rounds the 1.194486 mm sag at surface 21’s 15 mm clear radius upward to 0.1 mm so that every hit within that cap lies before the stop. It is an aperture-plane abstraction, not a measured iris position or a mechanical lower bound. A zero vertex gap puts the plane behind nonaxial hits on the preceding positive-sag surface.
 
 The zoom-variable air gaps are $d_5$, $d_{10}$, and $d_{13}$. Their endpoint sums are 55.054 and 55.055 mm; the 0.001 mm difference is table rounding. The first-to-last glass-surface track is correspondingly 160.000 and 160.001 mm, agreeing with the US counterpart’s stated 160.000 mm overall glass track.
 
@@ -231,8 +231,8 @@ All paraxial results were recomputed from a literal transcription of Table 1 usi
 | Wide EFL / BFL | nominal 70 mm / not stated | 71.9792 / 39.9912 mm |
 | Tele EFL / BFL | nominal 205 mm / not stated | 203.0138 / 40.0151 mm |
 | Fixed data-file BFD | not stated | 40.003152 mm |
-| Paraxial stop radius for 1:3.65, wide / tele | not stated | 14.3152 / 14.3190 mm |
-| Wide-open iris radius, real marginal ray at 1:3.65 | not stated | 15.0042 mm |
+| Paraxial stop radius for 1:3.65, wide / tele | not stated | 14.1070 / 14.1108 mm |
+| Wide-open iris radius, real marginal ray at 1:3.65 | not stated | 14.7778 mm |
 | Endpoint f-numbers from that iris alone | 3.65 | 3.650 / 3.646 |
 | First-to-last glass track | 160.000 mm | 160.000 / 160.001 mm |
 | Petzval sum, $\sum \phi/(nn')$ | not stated | +0.000385045 mm$^{-1}$ |
@@ -242,7 +242,9 @@ All paraxial results were recomputed from a literal transcription of Table 1 usi
 
 The table gives 71.9792 mm at the wide station and 203.0138 mm at the tele station, 2.83% above and 0.97% below the patent’s nominal 70 and 205 mm. Both differences follow directly from the printed prescription: the endpoint gap sums agree to 0.001 mm and the two back focal lengths agree to 0.024 mm, which leaves no room for a misread zoom spacing at either station. The 70–205 mm figures are treated as nominal and are not corrected by uniform scaling.
 
-The wide-open iris is one radius at both stations, 15.0042 mm, traced with a real marginal ray from the 1:3.65 design aperture at the wide station. The tele station needs 14.9882 mm for 1:3.65, a 0.11% spread, which is consistent with a stop that sits in fixed Group IV behind both moving groups.
+With the inferred 1.2 mm stop offset, the wide-open iris is one radius at both stations, 14.7778 mm, traced with a real marginal ray from the 1:3.65 design aperture at the wide station. The tele station needs 14.7614 mm for 1:3.65, a 0.11% spread. Including the authored clear apertures, the endpoint axial beams are f/3.6500 and f/3.6463 and are limited by the iris. The stored `STO` semi-diameter is the wide-station result rounded to six decimals; the runtime still derives its radius from the design aperture.
+
+Stop placement remains an inference. Moving the plane to 1.5 or 3.0 mm instead changes the derived iris radius to 14.7213 or 14.4384 mm and the tele axial f-number to 3.6463 or 3.6461. The paraxial focal lengths and conjugates are unchanged because the total air gap is preserved, but pupil positions, field limits, and vignetting depend on the placement. The 1.2 mm choice keeps the plane close behind the authored clear cap without fitting it to a sampled ray grid.
 
 The full-frame diagonal fields computed from the paraxial EFLs are 33.46° at wide and 12.17° at tele. These are approximate Gaussian fields and do not include distortion.
 
