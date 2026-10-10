@@ -718,4 +718,16 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "618498",
     source: "SCHOTT Zemax catalog 2017-01-20b via refractiveindex.info, N-SSK8 Sellmeier constants (0.35–2.5 µm).",
   },
+  {
+    name: "N-LAF35",
+    vendor: "Schott",
+    B: [1.51697436, 0.455875464, 1.07469242],
+    C: [0.00750943203, 0.0260046715, 80.5945159],
+    nd: 1.7433,
+    vd: 49.4,
+    PgF: 0.5523,
+    code6: "743494",
+    source:
+      "SCHOTT Zemax catalog 2017-01-20b, N-LAF35; https://refractiveindex.info/database/data/specs/schott/optical/N-LAF35.yml (accessed 2026-10-10).",
+  },
 ];

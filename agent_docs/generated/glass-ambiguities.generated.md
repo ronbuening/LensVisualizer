@@ -12,18 +12,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **900** lenses scanned
-- **10181** glass elements examined
-- **3161** elements have multiple coordinate-compatible candidates
-- **569** lens files are affected
-- **309** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **913** lenses scanned
+- **10319** glass elements examined
+- **3172** elements have multiple coordinate-compatible candidates
+- **570** lens files are affected
+- **310** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **205** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1824 |
-| Evidence-source priority | 1014 |
-| Vendor context | 309 |
+| Evidence-source priority | 1017 |
+| Vendor context | 317 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -788,6 +788,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `E-FD15 catalog-equivalent coefficient proxy (patent 699301; production supplier unspecified)` | 1.69895 / 30.10 (d) | E-FD15 — direct name evidence outranks six-digit code evidence. | S-TIM35 (Ohara, code, preferred code row) | 1 | [KONICA UC ZOOM HEXANON AR 45-100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) L9 |
 | `K-BK7 catalog-equivalent coefficient proxy (patent 516641; production supplier unspecified)` | 1.51633 / 64.10 (d) | K-BK7 — direct name evidence outranks six-digit code evidence. | S-BSL7 (Ohara, code, preferred code row)<br>L-BSL7 (Ohara, code, alternate code row) | 1 | [KONICA UC ZOOM HEXANON AR 45-100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) L10 |
 | `E-FD4 catalog-equivalent coefficient proxy (patent 755275; production supplier unspecified)` | 1.75520 / 27.50 (d) | E-FD4 — direct name evidence outranks six-digit code evidence. | H-ZF6 (CDGM, code, alternate code row) | 2 | [KONICA UC ZOOM HEXANON AR 80-200mm f/4](../../src/lens-data/konica/KonicaUCZoomHexanonAR80200mmf4.data.ts) L7b +1 files |
+| `S-LAM60 catalog-equivalent coefficient proxy (patent 743494; production supplier unspecified)` | 1.74320 / 49.40 (d) | S-LAM60 — direct name evidence outranks six-digit code evidence. | N-LAF35 (Schott, code, preferred code row) | 1 | [KONICA UC ZOOM HEXANON AR 80-200mm f/4](../../src/lens-data/konica/KonicaUCZoomHexanonAR80200mmf4.data.ts) L9 |
 | `805255 — dense flint class (supplier unproven)` | 1.80518 / 25.50 (d) | J-SF6 — smallest d-line \|Δn\| (3.3e-8 vs 4.4e-8) | H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 4 | [KONICA VARIFOCAL HEXANON AR 35-100mm f/2.8](../../src/lens-data/konica/KonicaVarifocalHexanonAR35100mmf28.data.ts) L1 |
 | `640602 — crown class (supplier unproven)` | 1.64000 / 60.20 (d) | J-LAK01 — smallest d-line \|Δn\| (1.3e-8 vs 2.0e-7) | LACL60 (Hoya, code, preferred code row) | 2 | [KONICA VARIFOCAL HEXANON AR 35-100mm f/2.8](../../src/lens-data/konica/KonicaVarifocalHexanonAR35100mmf28.data.ts) L2 |
 | `620603 — crown class (supplier unproven)` | 1.62041 / 60.30 (d) | J-SK16 — smallest d-line \|Δn\| (1.0e-8 vs 3.5e-8) | N-SK16 (Schott, code, preferred code row)<br>S-BSM16 (Ohara, code, alternate code row) | 3 | [KONICA VARIFOCAL HEXANON AR 35-100mm f/2.8](../../src/lens-data/konica/KonicaVarifocalHexanonAR35100mmf28.data.ts) L3 |
@@ -1266,6 +1267,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `FK3 catalog-equivalent coefficient proxy (patent 465658; production supplier unspecified)` | 1.46450 / 65.80 (d) | FK3 — direct name evidence outranks six-digit code evidence. | FC3 (Hoya, code, preferred code row) | 4 | [NIKON AI NIKKOR 200mm f/2 S IF-ED](../../src/lens-data/nikon/NikonAiNikkor200mmf2IFED.data.ts) L21b +1 files |
 | `N-SSK5 (SCHOTT; S-BSM25/BACED5 class)` | 1.65844 / 50.80 (d) | N-SSK5 — Annotation vendor context matches Schott. | S-BSM25 (Ohara, name, vendor ✗)<br>BACED5 (Hoya, name, vendor ✗) | 2 | [NIKON AI NIKKOR 24mm f/2](../../src/lens-data/nikon/NikonAINikkor24mmf2.data.ts) L1 |
 | `750350 lanthanum flint class (S-LAM7 close, OHARA)` | 1.74950 / 35.00 (d) | S-LAM7 — direct name evidence outranks six-digit code evidence. | H-LaF4 (CDGM, code, vendor ✗, preferred code row)<br>E-LAF7 (Hoya, code, vendor ✗, alternate code row)<br>LAFN7 (Schott, code, vendor ✗, alternate code row) | 1 | [NIKON AI NIKKOR 24mm f/2](../../src/lens-data/nikon/NikonAINikkor24mmf2.data.ts) L6 |
+| `743494 lanthanum flint class (S-LAM60 close, OHARA)` | 1.74443 / 49.40 (d) | S-LAM60 — direct name evidence outranks six-digit code evidence. | N-LAF35 (Schott, code, vendor ✗, preferred code row) | 2 | [NIKON AI NIKKOR 24mm f/2](../../src/lens-data/nikon/NikonAINikkor24mmf2.data.ts) L8a |
 | `S-TIH6 (OHARA; SF6 class)` | 1.80518 / 25.50 (d) | S-TIH6 — Annotation vendor context matches Ohara. | SF6 (Schott, name, vendor ✗) | 1 | [NIKON AI NIKKOR 24mm f/2](../../src/lens-data/nikon/NikonAINikkor24mmf2.data.ts) L8b |
 | `N-BAF10 (SCHOTT; J-BAF10 class)` | 1.67003 / 47.07 (d) | N-BAF10 — Annotation vendor context matches Schott. | J-BAF10 (Hikari, name, vendor ✗) | 1 | [NIKON AI NIKKOR 28mm f/2.8 S](../../src/lens-data/nikon/NikonAINikkor28mmf28S.data.ts) L1 |
 | `N-BK7 (SCHOTT; J-BK7A class)` | 1.51680 / 64.10 (d) | N-BK7 — Annotation vendor context matches Schott. | J-BK7A (Hikari, name, vendor ✗) | 2 | [NIKON AI NIKKOR 28mm f/2.8 S](../../src/lens-data/nikon/NikonAINikkor28mmf28S.data.ts) L2 |
@@ -2092,6 +2094,12 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-PHM52 / PCD4 / N-PSK53A class (618634)` | 1.61800 / 63.40 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 1.0e-7) | N-PSK53A (Schott, name)<br>PCD4 (Hoya, name)<br>K-PSKn2 (Sumita, code, alternate code row) | 1 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) L433 |
 | `S-TIH11 / FD110 / N-SF11 class (785257)` | 1.78472 / 25.70 (d) | FD110 — smallest d-line \|Δn\| (9.0e-7 vs 2.7e-6) | S-TIH11 (Ohara, name)<br>H-ZF13 (CDGM, code, alternate code row) | 1 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) L434 |
 | `S-LAH58 / N-LASF31A / TAFD30 class (883408)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, name) | 1 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) L435 |
+| `PCD4 (HOYA) / dense phosphate crown class (cf. H-ZPK1A, K-PSKn2, N-PSK53A; Δνd −0.008 to −0.011)` | 1.61800 / 63.40 (d) | PCD4 — Annotation vendor context matches Hoya. | N-PSK53A (Schott, name, vendor ✗)<br>K-PSKn2 (Sumita, name, vendor ✗) | 1 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) L1 |
+| `FCD1 (HOYA) / fluorophosphate ED class (N-PK52A, H-FK61 coordinates; cf. S-FPL51)` | 1.49700 / 81.61 (d) | FCD1 — Annotation vendor context matches Hoya. | H-FK61 (CDGM, name, vendor ✗)<br>S-FPL51 (Ohara, name, vendor ✗) | 1 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) L2 |
+| `E-F2 (HOYA) / F2-type flint class (cf. S-TIM2)` | 1.62004 / 36.30 (d) | E-F2 — Annotation vendor context matches Hoya. | F2 (Schott, name, vendor ✗)<br>S-TIM2 (Ohara, name, vendor ✗) | 2 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) L4 |
+| `TAFD55 (HOYA) / nd 2.00 lanthanum dense flint class (cf. J-LASFH16, S-LAH99; Δνd −0.007, +0.009)` | 2.00100 / 29.13 (d) | TAFD55 — Annotation vendor context matches Hoya. | S-LAH99 (Ohara, name, vendor ✗)<br>J-LASFH16 (Hikari, name, vendor ✗) | 2 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) L6 |
+| `E-FD4 (HOYA) / dense flint class (H-ZF6 coordinates; cf. S-TIH4)` | 1.75520 / 27.53 (d) | E-FD4 — Annotation vendor context matches Hoya. | H-ZF6 (CDGM, name, vendor ✗)<br>S-TIH4 (Ohara, name, vendor ✗) | 1 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) L10 |
+| `BAC4 (HOYA) / barium crown class (H-BaK7 coordinates; cf. N-BAK4)` | 1.56883 / 56.04 (d) | BAC4 — Annotation vendor context matches Hoya. | N-BAK4 (Schott, name, vendor ✗) | 1 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) L11 |
 | `PBH21 (OHARA; historical 923209)` | 1.92290 / 20.88 (d) | PBH21 — direct name evidence outranks six-digit code evidence. | N-SF66 (Schott, code, vendor ✗, preferred code row)<br>E-FDS1 (Hoya, code, vendor ✗, alternate code row) | 1 | [SONY FE 90mm f/2.8 Macro G OSS](../../src/lens-data/sony/SonyFE90mmf28.data.ts) G7 |
 | `High-index Nb dense flint (806333)` | 1.80610 / 33.27 (d) | J-LASFH6 — smallest d-line \|Δn\| (2.6e-8 vs 6.1e-7) | NBFD15 (Hoya, code, preferred code row) | 1 | [SONY FE 90mm f/2.8 Macro G OSS](../../src/lens-data/sony/SonyFE90mmf28.data.ts) G8 |
 | `583595 class (vendor unresolved)` | 1.58313 / 59.50 (d) | M-BACD12 — smallest d-line \|Δn\| (1.6e-8 vs 2.7e-4) | Q-SK52S (Hikari, code, preferred code row) | 2 | [SONY FE PZ 16-35mm f/4 G](../../src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts) L12 |
