@@ -207,3 +207,11 @@ The final Stage 4 gate is conferred only by the matching final manifest after po
 - Open: entrance pupil. The model puts it 29.46 mm behind surface 1, which is 51.5 mm ahead of the L-Mount flange (101.0 mm track, 20.0 mm flange distance). Leica's data sheet gives 53.0 mm ahead of the bayonet; that figure was read from a search excerpt of the German sheet, because the PDF returned HTTP 502. The 1.5 mm difference is unexplained.
 - Open: the adhesive entry keeps `diagramLabel` "C" and its `Unmatched (…)` glass string, which this pass was not scoped to change.
 - Open: the fourth `sourceErrata` note (1.000 mm image gap against the paraxial focus, and the 0.0001 mm total-length rounding) records printed-precision effects more than a contradiction and could be dropped.
+
+## 2026-10-11 — Glass coverage check
+
+Two of the nine glass elements resolve to catalog glass (L2 FCD1, L5 FCD515). The other seven were compared again with the local HOYA, OHARA and Sumita catalog files and with every vendor in the repo catalog: no row lies within 1.5e-5 in nd and 0.03 in νd of any of them.
+
+The patent's five numerical examples (Tables 1A–5A) separate the seven into two kinds. 1.51570 / 55.8 is printed 11 times and 1.51607 / 56.3 four times across the examples, so both are materials the designers reused; the patent names no supplier and gives no dispersion data for them, and the nearest catalog rows are HOYA C2 and OHARA S-NSL2 at 1.51602 / 56.8. The other four pairs (1.85996 / 30.5, 1.65794 / 31.1, 1.59269 / 65.3, 1.54157 / 51.7) each occur once in the whole patent, and Example 2 prints different one-off values in the same positions (1.59788 / 64.7 where Example 1 has L5 and 1.85057 / 20.8 where it has L9), the pattern of indices left free during optimization rather than of catalog glasses.
+
+All seven stay `Unmatched` and trace on the Abbe approximation from the printed nd and νd. The 1.56732 / 42.8 cement coordinate is also used for the cement layers of the Panasonic 14mm f/2.5 II and Leica Elmarit-TL 18mm files, which also follow Panasonic filings.

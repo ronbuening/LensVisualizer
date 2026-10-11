@@ -12,16 +12,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **913** lenses scanned
-- **10319** glass elements examined
-- **3172** elements have multiple coordinate-compatible candidates
-- **570** lens files are affected
+- **919** lenses scanned
+- **10401** glass elements examined
+- **3173** elements have multiple coordinate-compatible candidates
+- **571** lens files are affected
 - **310** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **205** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1824 |
+| Smallest reference-index residual | 1825 |
 | Evidence-source priority | 1017 |
 | Vendor context | 317 |
 | Stable canonical-name order | 12 |
@@ -848,6 +848,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `K-LaFK50-class (Sumita) / S-LAH66-class (OHARA)` | 1.77200 / 50.00 (d) | K-LaFK50 — smallest d-line \|Δn\| (3.6e-6 vs 5.0e-4) | S-LAH66 (Ohara, name, vendor ✓) | 1 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) L7 |
 | `BACD16 / S-BSM16 class (e-line catalog match; patent vendor not named)` | 1.62287 / 60.10 (e) | S-BSM16 — smallest e-line \|Δn\| (5.3e-6 vs 8.0e-6) | BACD16 (Hoya, name) | 1 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) L5 |
 | `E-F1 (Hoya; F1-class flint, exact e-line coordinates ne 1.63003 / νe 35.48; supplier unconfirmed)` | 1.63003 / 35.45 (e) | E-F1 — Annotation vendor context matches Hoya. | F1 (Sumita, name, vendor ✗) | 1 | [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) L4 |
+| `FCD515 / FCD505 class (coordinate candidate; supplier unconfirmed)` | 1.59282 / 68.60 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name) | 1 | [LEICA SUMMICRON-SL 50mm f/2 ASPH.](../../src/lens-data/leica/LeicaSummicronSl50mmF2Asph.data.ts) L5 |
 | `H-ZF39 / S-TIM39 class (supplier unconfirmed)` | 1.67158 / 32.90 (e) | H-ZF39 — smallest e-line \|Δn\| (1.1e-5 vs 1.2e-5) | S-TIM39 (Ohara, name) | 1 | [LEICA SUMMILUX-M 50mm f/1.4 I](../../src/lens-data/leica/LeicaSummiluxM50mmf14I.data.ts) L4 |
 | `LAF2 / S-LAM2 class (supplier unconfirmed)` | 1.74793 / 44.70 (e) | S-LAM2 — direct name evidence outranks alias evidence. | J-LAF2 (Hikari, alias) | 1 | [LEICA SUMMILUX-M 50mm f/1.4 I](../../src/lens-data/leica/LeicaSummiluxM50mmf14I.data.ts) L5 |
 | `Equivalent high-index lanthanum-flint class (S-LAH64 / N-LAF21 / J-LASF014; supplier/melt unproven)` | 1.79190 / 47.20 (e) | N-LAF21 — smallest e-line \|Δn\| (4.9e-5 vs 6.0e-5) | S-LAH64 (Ohara, name)<br>J-LASF014 (Hikari, name) | 3 | [LEICA SUMMILUX-M 50mm f/1.4 II](../../src/lens-data/leica/LeicaSummiluxM50mmf14II.data.ts) L1 |

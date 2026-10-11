@@ -26,7 +26,7 @@ factory prescription.
    The patent describes two-group floating focus and a near state at about 1:2.6.
    These similarities support the correlation; they do not prove an identical mechanism or formula.
 4. The 2001 publication precedes the 2004 catalogue, which lists Sigma SA, Canon EF, Nikon F, Pentax K and
-   Minolta A (Sony A) versions.
+   Minolta A (Sony A) versions. Sigma announced a Four Thirds version on 2006-09-26.
 
 Only the infinity configuration is modeled. The patent prints no back focus or total length, so the 38.58 mm
 image distance behind the last surface is the paraxial back focus of the printed table. The patent's single
@@ -93,7 +93,7 @@ R1 is the 0.20 mm resin layer between s5A and s6, bonded to the front of L3. Its
 
 ### L3 — Negative Meniscus
 
-nd = 1.78590, νd = 44.1. Glass: NBFD11 (HOYA coordinate-equivalent class; supplier unconfirmed). f = -49.352254 mm.
+nd = 1.78590, νd = 44.1. Glass: S-LAH51 (OHARA coordinate-equivalent class; supplier unconfirmed). f = -49.352254 mm.
 
 This negative meniscus is the glass body of the hybrid R1+L3. Its entrance medium in the assembled lens is the resin, not air. L2 and this hybrid together form the strongly negative G1b subgroup.
 
@@ -162,13 +162,13 @@ The chosen names are catalogue glasses with matching coordinates; no supplier or
 | L6, L9  | 1.71300 / 54.1 | LAC8 (HOYA)                    | 1.713 / 53.94                    |
 | L1      | 1.72342 / 38.0 | BAFD8 (HOYA) / S-BAH28 (OHARA) | 1.72342 / 37.99; 1.72342 / 37.96 |
 | L8      | 1.75520 / 27.5 | S-TIH4 (OHARA)                 | 1.755199 / 27.512089             |
-| L3      | 1.78590 / 44.1 | NBFD11 (HOYA)                  | 1.7859 / 43.94                   |
+| L3      | 1.78590 / 44.1 | S-LAH51 (OHARA)                | 1.785896 / 44.202637             |
 | L4      | 1.80518 / 25.4 | S-TIH6 (OHARA)                 | 1.805181 / 25.425363             |
 | L2, L5  | 1.83400 / 37.3 | NBFD10 (HOYA)                  | 1.834 / 37.34                    |
 
 Nine glass elements carry catalogue-derived C, F and g indices and ΔPgF in the data file. The patent nd/νd are unchanged;
-the catalogue dispersion curves are approximations, not exact matches, and the catalogue νd of NBFD11 and LAC8 differ
-from the printed values by about 0.16. OHARA S-prefix names are kept as such. L1's stored line indices are those of
+the catalogue dispersion curves are approximations, not exact matches, and the catalogue νd of S-LAH51 and LAC8 differ
+from the printed values by 0.10 and 0.16. OHARA S-prefix names are kept as such. L1's stored line indices are those of
 HOYA BAFD8; OHARA S-BAH28 has the same nd and a νd of 37.96.
 
 Both resin layers are traced from the patent nd and νd alone; a resin cannot be identified with a catalogue glass
@@ -243,7 +243,9 @@ outline of Fig. 2, scaled by the printed vertex spacing, and floor-checked by ex
 21.63 mm image corner; the figure is a drawing, not a dimensioned source. Fig. 2 draws flat lands outside the concave
 rear faces of L2, L3 and L8 and draws L9 square to its rim. Surface 4 is 17.5 mm, the rim-slope limit, where Fig. 2 ends
 the curve near 17.7 mm. L3 and its resin layer are 16.9 mm against a drawn 16.85 mm, and the front corner of L3 sits just
-inside the rear of L2 as drawn, with 0.598 mm of air between surfaces 4 and 5A at that height.
+inside the rear of L2 as drawn, with 0.598 mm of air between surfaces 4 and 5A at that height. L1 is square at 26.65 mm,
+the front of L2 is 21.9 mm, L4 is 14.0 mm and L5 is 14.5 mm, each as Fig. 2 draws them; the F/1.85 axial ray needs
+12.88 mm at L4 and 13.46 mm at L5.
 
 At the patent's F/1.85 the entrance-pupil radius is 6.672946628 mm, and a real axial ray at that height reaches the
 stop at 13.512993540 mm; this is the stop radius the model uses. The paraxial estimate is 12.378810993 mm.
@@ -280,6 +282,8 @@ focus model limit how far the model can be read as the production lens.
    84.1° field, 9 blades, 0.18 m and 1:2.7 specifications.
 3. [Sigma, 24mm F1.8 EX DG ASPHERICAL MACRO product page](https://www.sigma-global.com/en/lenses/24_18/).
    Specifications; the lens construction image shown there is the 20mm F1.8 drawing.
+   The Four Thirds version is from Sigma's press release of 2006-09-26, as reproduced by
+   [Photography Blog](https://www.photographyblog.com/news/sigma_announces_4_new_four_thirds_lenses).
 4. [HOYA catalogue](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf),
    [OHARA catalogue](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip),
    and the Schott, HIKARI, Sumita and CDGM glass catalogues.

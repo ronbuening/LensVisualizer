@@ -18,7 +18,7 @@ The patent's only numerical example is associated with the manual-focus Samyang 
 3. The computed EFL is 98.043026 mm, consistent with the printed 98.04 and close to the marketed 100 mm. The printed f/2.9 and marketed f/2.8 remain distinct. The patent's aberration figures are labelled "EFL=100 MACRO 1:1".
 4. The patent and Samyang's section agree on the rear sequence, including the final two image-convex negative menisci. Claim 1's contrary wording for the shape of L14 is noted as a discrepancy.
 
-The lens was announced on 2015-04-02, before the 2015-12-21 filing; that order is noted and is not itself evidence for the identification. The optical formula is represented for the documented Canon EF, Nikon F, Pentax K, Sony A, Canon EF-M, Fujifilm X, Samsung NX, Sony E and Micro Four Thirds variants. Full-frame is the design's image-format classification; the smaller-format mounts use a crop.
+The lens was announced on 2015-04-02, before the 2015-12-21 filing; that order is noted and is not itself evidence for the identification. The optical formula is represented for the documented Canon EF, Nikon F, Pentax K, Sony A, Canon EF-M, Fujifilm X, Samsung NX, Sony E, Four Thirds and Micro Four Thirds variants; Four Thirds is in the 2015 launch list of ten mounts and absent from the current product page. Full-frame is the design's image-format classification; the smaller-format mounts use a crop.
 
 The model covers the infinity state at the d line only. The stop position, the in-air image plane and the six clear apertures that differ from the printed C column are modelling choices, explained below; none is presented as a proven correction of the patent.
 

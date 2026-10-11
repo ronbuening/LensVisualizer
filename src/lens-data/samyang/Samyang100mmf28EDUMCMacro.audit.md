@@ -227,3 +227,7 @@ Open: surface 26 at the printed 13.23 mm would need `gapSagFrac` 0.98 (97.6% of 
 Open: Figure 1 draws a filter plate ahead of the image plane that Table 1 does not list; the model is in air and 0.734 mm shorter than the printed Bf.
 
 Open: the source has no near-focus state, so the focus control does not move the model.
+
+## 2026-10-11 — Four Thirds mount
+
+Samyang's launch release of 2015-04-02 lists ten mounts: Canon EOS, Nikon AE, Pentax K, Sony A, Canon M, Fujifilm X, Samsung NX, Sony E, Four Thirds and Micro Four Thirds (reproduced at https://www.photographyblog.com/news/samyang_100mm_f2.8_ed_umc_macro and https://photorumors.com/2015/04/02/samyangrokinon-100mm-f2-8-and-100mm-t3-1-vdslr-ed-umc-macro-lenses-officially-announced/). The current product page lists nine, without Four Thirds, and the file carried those nine. `lensMounts` now includes `four-thirds`. No optical value changed.

@@ -36,15 +36,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * estimated from Figure 7 and floor-checked by exact real-ray trace. The sheet is
  * drawn about 5% tighter across the axis than along it, so rim heights are read
  * against the published S7 height. Every inferred rim agrees with the drawing
- * within 5% except the L5-L6 doublet, drawn at 13.0 mm: S9 11.8 is the most the
- * default 0.90 cross-gap rule admits against S8, and S10/S11 stay 12.2 with it.
+ * within 5%. The L5-L6 doublet is square at 13.0 mm as drawn (S9, S10, S11).
+ * gapSagFrac 0.96: at the published 12.31 mm height of S8 the sags of S8 and S9
+ * take 8.17 mm of the 8.555 mm gap (95.5%), past the default 0.90, which would
+ * cap S9 at 11.8 mm; 0.96 is the smallest two-decimal value that admits the
+ * drawn rim, and 0.381 mm of air remains there.
  * No absent aperture is called measured.
  *
  * GLASS: catalog-equivalent labels do not identify a supplier or melt. The L4 (S7)
  * and L13 (S22) glasses stay Unmatched at the printed precision and use the nd/Vd
  * approximation. nC/nF/ng for the other elements are evaluated from HOYA catalog
  * dispersion formulas; they are catalog values, not patent-published or measured
- * spectra. They also supply FD110, which the app's glass catalog does not contain.
+ * spectra.
  */
 const LENS_DATA = {
   key: "samyang-af-14mm-f28-ef",
@@ -384,7 +387,7 @@ const LENS_DATA = {
       d: 0.9,
       nd: 1.92286,
       elemId: 5,
-      sd: 11.8,
+      sd: 13,
     },
     {
       label: "10",
@@ -392,7 +395,7 @@ const LENS_DATA = {
       d: 10.0,
       nd: 1.74077,
       elemId: 6,
-      sd: 12.2,
+      sd: 13,
     },
     {
       label: "11",
@@ -400,7 +403,7 @@ const LENS_DATA = {
       d: 11.263,
       nd: 1,
       elemId: 0,
-      sd: 12.2,
+      sd: 13,
     },
     {
       label: "12",
@@ -655,5 +658,6 @@ const LENS_DATA = {
   },
   yScFill: 0.72,
   scFill: 0.66,
+  gapSagFrac: 0.96,
 } satisfies LensDataInput;
 export default LENS_DATA;

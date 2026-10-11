@@ -231,7 +231,7 @@ These inconsistencies are left unresolved. The Table 7 apertures are not substit
 
 ## Model Scope and Limitations
 
-The S7/S8 apertures are the published values. All other semi-diameters are estimated from Figure 7 and checked by real-ray trace, with different front and rear values on the front menisci where rim slope and clearance require them. The tightest S6–S7 band uses 89.5143% of its vertex gap and retains 0.454869 mm clearance. The maximum rim angle is 62.9964°, and the minimum glass thickness within a shared aperture is 0.700000 mm. The cemented L5–L6 pair is drawn about 13.0 mm high in Figure 7 against the modelled 11.8/12.2/12.2 mm, the most the default clearance rule admits behind S8.
+The S7/S8 apertures are the published values. All other semi-diameters are estimated from Figure 7 and checked by real-ray trace, with different front and rear values on the front menisci where rim slope and clearance require them. The S6–S7 band uses 89.5143% of its vertex gap and retains 0.454869 mm clearance. The maximum rim angle is 62.9964°, and the minimum glass thickness within a shared aperture is 0.700000 mm. The cemented L5–L6 pair is square at 13.0 mm, as Figure 7 draws it. That makes S8–S9 the tightest gap: at the published 12.31 mm height of S8 the two faces take 8.174 mm of the 8.555 mm gap (95.55%) and leave 0.381 mm of air, so the data file raises the gap allowance for this lens from 90% to 96%.
 
 The full-field chief ray clears every rim at all three states, with a smallest margin of 0.47 mm at S6 at infinity. Off axis the bundle that fills the iris is progressively cut by the inferred rims, so corner illumination follows estimated apertures and is not a measured value.
 

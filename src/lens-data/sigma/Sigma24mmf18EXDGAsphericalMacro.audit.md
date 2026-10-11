@@ -127,7 +127,7 @@ Maker diagram. No maker image was viewed in this pass. Sigma's own web page for 
 
 Open: Fig. 2 draws surface 4 to about 17.7 mm; the model stops at 17.5 mm because of the rim-slope limit (17.7 mm has a rim angle of 65.2° against the 64.2° limit).
 
-Open: Fig. 2 draws L1 square at 26.65 mm, the front of L2 at 21.84 mm and L4 at 13.96 mm. The stored 27 / 26, 23 and 15 mm are 1–7 % from those and were left alone as inside the measurement-noise band of this pass.
+Closed 2026-10-11: Fig. 2 draws L1 square at 26.65 mm, the front of L2 at 21.84 mm and L4 at 13.96 mm. The then-stored 27 / 26, 23 and 15 mm were 1–7 % from those; the rim section below sets them to the drawn values.
 
 Open: the gap from surface 4 to surface 5A now relies on the 0.9266 allowance that was set for surfaces 18 and 19. Holding L3 at 16.7 mm would pass at the default allowance, 0.15 mm below the drawn rim.
 
@@ -149,12 +149,29 @@ Glass label. The coordinator changed L1's label to `BAFD8 (HOYA) / S-BAH28 (OHAR
 
 Changed in this pass, with no optical value changed: header comment (all but the semi-diameter note), `subtitle`, `specs`, element `label` and `role` strings, `doublets` text (H1, H2), `focusDescription`, and `sourceErrata` (one entry removed, one reworded). The analysis was reworded in plain technical language. Its maker comparison now states the product-page figures and the wrong construction image, the resin-layer headings and descriptions follow the 28 mm sibling, the glass table lost its qualification column, the focus section gives the near-state reading, condition (5) is related to ray heights, and the last section, renamed "Aperture, Semi-Diameters and Model Limits", is reduced to properties of the model. The statement that beams of half and quarter pupil radius pass at every field was removed: a meridional trace at half the stop radius shows the corner beam clipped on one side at surface 18 (12.02 mm needed, 11.35 mm available). Engine values are identical before and after this pass: focal length 24.689902524838644 mm, F/1.85, stop radius 13.51299353984896 mm, half-field 42.24751553162327°, paraxial back focus 38.5792 mm, no focus travel.
 
-Open: L3's 1.7859 / 44.1 is labelled NBFD11 (HOYA, νd 43.93) here and S-LAH51 (OHARA, νd 44.20) in the 28 mm sibling, for the same printed pair.
+Closed 2026-10-11: L3's 1.7859 / 44.1 was labelled NBFD11 (HOYA, νd 43.93) here and S-LAH51 (OHARA, νd 44.20) in the 28 mm sibling, for the same printed pair; both files now use S-LAH51.
 
-Open: `lensMounts` lists the five SLR mounts of Sigma's product page; the 2006 Four Thirds version is not listed.
+Closed 2026-10-11: `lensMounts` listed the five SLR mounts of Sigma's product page without the 2006 Four Thirds version; `four-thirds` is now included.
 
 Open: the third-party 24 / 28 drawing named in the analysis has no entry in its Sources list; no link was supplied to this pass.
 
 Open: the September 2004 catalogue statements in the analysis (PDF pages 5 and 12) were kept from the earlier text and were not re-read in this pass.
 
 Open: the patent's near state is derivable as above (d11 2.30 mm, back focus 48.13 mm, object-to-image 180.3 mm, travel ratio 0.617 against 0.62) and could become a close-focus keyframe if the infinity-only scope is revisited.
+
+## 2026-10-11 — Front-group rims, Four Thirds mount and glass check
+
+Rims. Four elements now take the heights the semi-diameter pass above read from Fig. 2 (PDF page 7) and left as open items. A second reading of the sheet at 200 dpi, 11.18 px/mm from the 85.83 mm between the first and last vertices, agrees with them within 0.2 mm.
+
+| Element | Surfaces | Was (mm) | Now (mm) | Fig. 2 (mm) | F/1.85 axial ray (mm) |
+|---|---|---:|---:|---:|---:|
+| L1 | 1, 2 | 27 / 26 | 26.65 / 26.65 | 26.65, square | 6.67 / 6.50 |
+| L2 front | 3 | 23 | 21.9 | 21.84–22.01 | 6.49 |
+| L4 | 8, 9 | 15 / 15 | 14.0 / 14.0 | 13.96–14.10 | 11.38 / 12.88 |
+| L5 | 10, 11 | 15 / 15 | 14.5 / 14.5 | 14.51 | 13.46 / 13.33 |
+
+L5 moves with L4 so that the 0.5 mm step the figure draws between them is kept. L6 and L10 (15 mm against 14.5–14.7 mm drawn), L7–L8 (14 mm against 13.4–13.7 mm) and L9 (14 mm against 13.8 mm) are within 3% and stay. The surface validator reports no errors, no surface clips the axial beam or blocks the corner chief ray, the image-circle check reports nothing undersized and the field-coverage trace is unchanged at 100%. The wide-open vignetting curve at infinity is identical before and after at all 15 field samples (geometric transmission 88.5% at 41.8°), so the new rims stay outside the beam the rear group passes. Engine values are unchanged: EFL 24.689903 mm, F/1.85, stop radius 13.512994 mm. The live page shows L1 square-rimmed and L4 a step below L5, as in Fig. 2.
+
+Mount. Sigma's press release of 2006-09-26 announced this lens for Four Thirds together with three others (reproduced at https://www.photographyblog.com/news/sigma_announces_4_new_four_thirds_lenses); `lensMounts` now ends with `four-thirds`. `imageFormat` stays `135-full-frame`, the format the design covers.
+
+Glass. L3 (1.7859 / 44.1) is relabelled from NBFD11 (HOYA, νd 43.93) to S-LAH51 (OHARA, νd 44.20), the nearer of the two to the printed 44.1 and the label the 28 mm sibling uses for the same printed pair; its stored C, F and g indices and ΔPgF are the S-LAH51 values of that file. L10 (1.60625 / 63.1) stays `Unmatched`: the patent prints 63.1 for this index in Example 2 (PDF page 5) and in Example 1, which the 28 mm sibling file follows, so it is not a misprint of HOYA LBC3N's 63.72, the only catalog row at that index. The two 1.51840 / 52.1 entries are the hybrid resin layers. The local HOYA, OHARA and Sumita catalog files have no row within 1.5e-5 and 0.03 of any of the three.

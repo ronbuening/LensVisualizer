@@ -88,6 +88,7 @@ const LENS_DATA = {
     "fujifilm-x",
     "samsung-nx",
     "sony-fe",
+    "four-thirds",
     "micro-four-thirds",
   ],
   imageFormat: "135-full-frame",

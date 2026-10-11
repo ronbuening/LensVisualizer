@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **913** lenses scanned (**900** visible)
-- **9608 / 10324** non-air surfaces use strict catalog Sellmeier data (93.1%)
-- **9618 / 10324** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
+- **919** lenses scanned (**906** visible)
+- **9677 / 10406** non-air surfaces use strict catalog Sellmeier data (93.0%)
+- **9687 / 10406** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **289** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **158** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -97,6 +97,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | JP 1999-231209 A | [PDF](../../patents/JPA 1999231209-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | US 4,773,745 | [PDF](../../patents/US4773745.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 8: `Unmatched (479/587 low-index crown; vendor unspecified)`) | abbe: 1 |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | US 8,169,718 B2 | [PDF](../../patents/US8169718.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 4 [glass] (Gr1B thin composite layer: `Unmatched (thin composite-asphere layer coordinate 536412; no public catalog identity established)`)<br>24A [glass] (Rear thin composite layer: `Unmatched (thin composite-asphere layer coordinate 515500; no public catalog identity established)`) | abbe: 2 |
+| [SAMYANG AF 14mm f/2.8 EF](../../src/lens-data/samyang/SamyangAF14mmf28EF.data.ts) |  | No patent number parsed from lens metadata | 86.7% (13/15) | 86.7% (13/15) | 2 | 7A [glass] (Element 4: `Unmatched (lanthanum crown class; source 1.77271 / 49.70)`)<br>22A [glass] (Element 13: `Unmatched (low-dispersion crown class; source 1.55352 / 71.5)`) | abbe: 2 |
 | [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) | US 2,397,565 | [PDF](../../patents/US2397565.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 3 [glass] (Element II: `Unmatched (vintage barium-flint class, N_D=1.617, V=38.5)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) | JP 1987-244010 A | [PDF](../../patents/JPA 1987244010-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 8 [glass] (Element 5: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) | US 4,621,909 | [PDF](../../patents/US4621909.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 1 [glass] (Element 1: `Unmatched Nikon/Hikari lanthanum glass (797/455; J-LASF017 / TAF2 class)`) | abbe: 1 |

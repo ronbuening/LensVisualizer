@@ -164,4 +164,18 @@ Repo checks: the surface validator reports no errors, the image-circle check rep
 
 Changed in this pass, text and tags only. Data file: header comment (asphere convention, image plane, focus, source inconsistencies and glass notes reworded; the semi-diameter note kept, with "Table 7" and "Figure 7" spaced); `sourceErrata` reduced from three notes to two (the D4/D5 note removed as a modelling choice, now stated in the header and `focusDescription`; the other two shortened and corrected for Examples 1 and 2); `subtitle`; `specs`; `focusDescription`; every element `role`; `apd: "inferred"` with an `apdNote` on L15 (FCD1; the stored catalog lines give P_g,F 0.5389, 0.032 above the normal line). Analysis: metadata block (patent number, romanized inventors), identification list with the maker comparison, the group-power, L3, L12 and L15 paragraphs, the glass, focus, iris and asphere wording, the conditions section, "Verification and Model Limits" replaced by "Model Scope and Limitations", and two source captions. This log: the request identifiers and quoted reply replaced by a statement of the modelling decision, and stale pending lines closed in place. The package hashes in the sections above describe the files as delivered on 2026-10-08. Engine values are identical before and after: EFL 14.190782147 mm, f/2.851, half-field 57.871°, stop radius 7.188929864 mm, paraxial back focus 38.3290 mm and focus keyframes 0, 0.37346 and 1.
 
-Open: the cemented L5–L6 pair is drawn square at about 13.0 mm in 도면7 against the stored 11.8/12.2/12.2 mm; raising it would need `gapSagFrac` 0.96, which is not applied.
+Closed 2026-10-11: the cemented L5–L6 pair is drawn square at about 13.0 mm in 도면7 against the then-stored 11.8/12.2/12.2 mm; the section below applies it with `gapSagFrac` 0.96.
+
+## 2026-10-11 — L5–L6 rim and gap allowance
+
+The cemented L5–L6 pair (surfaces 9, 10 and 11) is 13.0 mm on all three faces, the height read for it in 도면7 in the semi-diameter pass above (151 px at 11.62 px/mm), where the drawing shows the pair square-cut with its front corner against the rear rim of L4. It was 11.8 / 12.2 / 12.2 mm.
+
+`gapSagFrac` is 0.96 for this lens. The cross-gap rule tests surfaces 8A and 9 at the smaller of their two heights, the published 12.31 mm of S8: the aspheric sag of S8 there is 7.180 mm and S9 (R = −76.693 mm) reaches 0.994 mm toward it, 8.174 mm of the 8.555 mm vertex gap, or 95.55%. The default 0.90 refused any S9 height above 11.8 mm; 0.95 still refuses 13.0 mm and 0.96 admits it. The faces do not cross: 0.381 mm of air remains at 12.31 mm. No other gap in the lens exceeds 90% (S6–S7 is 89.5%).
+
+Edge thickness of L6 at 13.0 mm is 1.785 mm (10.000 − 6.081 − 2.134 mm); L5 is biconcave and thickens toward the rim. The surface validator reports no errors, the image-circle check reports nothing undersized and the field-coverage trace is unchanged at 100%. Engine values are unchanged: EFL 14.190782 mm, f/2.851, stop radius 7.188930 mm, declared half-field 57.871°. The axial marginal ray needs 4.45, 4.67 and 6.28 mm at surfaces 9, 10 and 11, so the raise does not affect the on-axis beam. The wide-open vignetting curve at infinity changes only at its last field sample: geometric transmission at 57.8° is 92.7% against 90.6% with the 11.8 / 12.2 mm rims, and 100% at every sample out to 54.9° in both cases.
+
+The live page at infinity shows the L5–L6 block level with the rear rim of L4, as in 도면7.
+
+The data-file header no longer says that the app's glass catalog lacks FD110; the catalog has the HOYA row and L12 resolves to it.
+
+Glass. L4 (1.77271 / 49.70) and L13 (1.55352 / 71.50) stay `Unmatched`. The local HOYA, OHARA and Sumita catalog files have no row within 1.5e-5 and 0.03 of either pair. For L13, MP-FCD500-20 and MC-FCD500-20 match nd exactly and differ by +0.22 in νd, outside the 0.15 catalog tolerance; for L4 the nearest rows are TAF1 and M-TAF105 at 1.77250.

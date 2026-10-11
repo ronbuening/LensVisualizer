@@ -31,7 +31,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * 15.0 mm. Surfaces 4 and 5A nearly meet at the rim as drawn: 0.60 mm of air at 16.9 mm (92.1 % of the gap
  * taken by sag), inside the 0.9266 allowance above; the default 0.90 would cap L3 at 16.7 mm. Surface 18 is
  * held at 11.35 mm, just above the F/1.85 axial ray (11.343 mm), because surfaces 18 and 19 would meet at
- * 11.78 mm; surface 19 is 14 mm, equal to surface 20, following L9's square rim as drawn.
+ * 11.78 mm; surface 19 is 14 mm, equal to surface 20, following L9's square rim as drawn. L1 is square at
+ * 26.65 mm, the front of L2 is 21.9 mm, L4 is 14.0 mm and L5 is 14.5 mm, each as Fig. 2 draws them; the F/1.85
+ * axial ray needs 12.88 mm at L4 and 13.46 mm at L5.
  */
 const LENS_DATA = {
   key: "sigma-24mm-f18-ex-dg-aspherical-macro",
@@ -49,7 +51,7 @@ const LENS_DATA = {
   focalLengthDesign: 24.689902524838644,
   apertureMarketing: 1.8,
   apertureDesign: 1.85,
-  lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],
+  lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a", "four-thirds"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2001-330771 A",
   patentAuthors: ["Shizuka Takemoto", "Norikazu Yokoi"],
@@ -116,12 +118,12 @@ const LENS_DATA = {
       vd: 44.1,
       indexReference: "d",
       fl: -49.35225425709552,
-      glass: "NBFD11 (HOYA coordinate-equivalent class; supplier unconfirmed)",
+      glass: "S-LAH51 (OHARA coordinate-equivalent class; supplier unconfirmed)",
       role: "Negative meniscus glass body of the front hybrid asphere; completes G1b.",
-      nC: 1.7805325504487635,
-      nF: 1.7984205190567872,
-      ng: 1.8084583793352933,
-      dPgF: -0.008472307705704063,
+      nC: 1.7805841191292673,
+      nF: 1.798363507160605,
+      ng: 1.8083759133984296,
+      dPgF: -0.006476957140342243,
       cemented: "H1",
     },
     {
@@ -264,7 +266,7 @@ const LENS_DATA = {
       d: 4.33,
       nd: 1.72342,
       elemId: 1,
-      sd: 27,
+      sd: 26.65,
     },
     {
       label: "2",
@@ -272,7 +274,7 @@ const LENS_DATA = {
       d: 0.15,
       nd: 1,
       elemId: 0,
-      sd: 26,
+      sd: 26.65,
     },
     {
       label: "3",
@@ -280,7 +282,7 @@ const LENS_DATA = {
       d: 1.5,
       nd: 1.834,
       elemId: 2,
-      sd: 23,
+      sd: 21.9,
     },
     {
       label: "4",
@@ -320,7 +322,7 @@ const LENS_DATA = {
       d: 10.08,
       nd: 1.80518,
       elemId: 5,
-      sd: 15,
+      sd: 14,
     },
     {
       label: "9",
@@ -328,7 +330,7 @@ const LENS_DATA = {
       d: 0.3,
       nd: 1,
       elemId: 0,
-      sd: 15,
+      sd: 14,
     },
     {
       label: "10",
@@ -336,7 +338,7 @@ const LENS_DATA = {
       d: 7.86,
       nd: 1.834,
       elemId: 6,
-      sd: 15,
+      sd: 14.5,
     },
     {
       label: "11",
@@ -344,7 +346,7 @@ const LENS_DATA = {
       d: 5.96,
       nd: 1,
       elemId: 0,
-      sd: 15,
+      sd: 14.5,
     },
     {
       label: "STO",
