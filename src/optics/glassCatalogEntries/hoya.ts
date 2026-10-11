@@ -1063,6 +1063,26 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-FD4 page (formula 3 polynomial).",
   },
   {
+    name: "E-FD4L",
+    vendor: "Hoya",
+    polynomial: [2.9677007, -0.014006378, 0.033049583, 0.0032455044, -0.0003015648, 0.000031689142],
+    nd: 1.7552,
+    vd: 27.53,
+    PgF: 0.6098,
+    source:
+      "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for E-FD4L. No code6: 755275 stays with E-FD4 and H-ZF6 so bare-code labels keep their rows.",
+  },
+  {
+    name: "BAFD8",
+    vendor: "Hoya",
+    polynomial: [2.8863236, -0.009802724, 0.027654256, 0.00089006367, -0.000036309109, 0.0000076181062],
+    nd: 1.72342,
+    vd: 37.99,
+    PgF: 0.582,
+    source:
+      "HOYA Zemax catalog 2026-07-07 (obsolete glasses included); vendor formula-3 polynomial for BAFD8. No code6: 723380 stays with S-BAH28 so bare-code labels keep that row.",
+  },
+  {
     name: "E-FD5",
     vendor: "Hoya",
     polynomial: [2.7135839, -0.011419719, 0.026133708, 0.0017576479, -0.00013307737, 0.000015203351],

@@ -126,6 +126,18 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     kind: "catalog-variant",
     note: "Hoya molded-preform row publishing the same dispersion coefficients as M-NBFD130.",
   },
+  {
+    alias: "MC-NBFD130",
+    target: "M-NBFD130",
+    kind: "catalog-variant",
+    note: "Hoya precision-molding row publishing the same dispersion coefficients as M-NBFD130.",
+  },
+  {
+    alias: "MC-TAF401",
+    target: "M-TAF401",
+    kind: "catalog-variant",
+    note: "Hoya precision-molding row publishing the same dispersion coefficients as M-TAF401.",
+  },
 ];
 
 /** Aliases that route to a canonical entry. Common informal names. */
