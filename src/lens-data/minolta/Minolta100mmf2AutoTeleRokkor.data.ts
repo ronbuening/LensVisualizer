@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — MINOLTA AUTO TELE ROKKOR 100mm f/2                          ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP1963-011590, Example 2 (Minolta Camera Co., Ltd.).        ║
+ * ║  Data source: JP 1963-011590 B, Example 2 (Minolta Camera Co., Ltd.).     ║
  * ║  Six elements / five air-separated groups; all spherical.                 ║
  * ║  Production correlation is convergent, not manufacturer-confirmed patent  ║
  * ║  attribution. The manufacturer brochure matches 100mm f/2, 6/5, and 24°. ║
@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "minolta-auto-tele-rokkor-100f2",
   maker: "Minolta",
   name: "MINOLTA AUTO TELE ROKKOR-PF 100mm f/2",
-  subtitle: "JP1963-011590 Example 2 — production correlation inferred",
+  subtitle: "JP 1963-011590 B, Example 2 — production correlation inferred",
   specs: ["6 ELEMENTS / 5 GROUPS", "f = 100 mm", "f/2", "2ω = 24°", "ALL-SPHERICAL"],
 
   focalLengthMarketing: 100,
@@ -44,7 +44,7 @@ const LENS_DATA = {
   apertureDesign: 2,
   lensMounts: ["minolta-sr"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1963-011590",
+  patentNumber: "JP 1963-011590 B",
   patentAuthors: ["Tadayoshi Nito"],
   patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1963,
