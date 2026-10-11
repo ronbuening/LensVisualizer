@@ -25,3 +25,19 @@ Validation: `audit:surface` and `audit:image-circle` pass. The project's SVG sha
 - Paraxial check against the previous data: EFL identical and defocus unchanged at every focus keyframe (worst
   difference 3e-15 mm), because the legacy 24.808206751 mm was the exact fold 22.66 + 2.500/1.51680 + 0.500. Physical
   track grows by 2.500 × (1 − 1/1.51680) = 0.852 mm, to 105.364 mm.
+
+## 2026-10-11 — Element names follow the patent's reference signs
+
+Each element's `name` is now the patent's reference sign, the same string as its `diagramLabel`. Before this, the diagram labelled the first element "L11" while the inspector, the Abbe diagram and the element table gave "L11" to the eleventh element. The EF sibling and the Samyang 100mm Macro file were changed the same way on this date.
+
+| Element | Old name | Name now | | Element | Old name | Name now |
+|---:|---|---|---|---:|---|---|
+| 1 | L1 | L11 | | 8 | L8 | L81 |
+| 2 | L2 | L21 | | 9 | L9 | L91 |
+| 3 | L3 | L31 | | 10 | L10 | L101 |
+| 4 | L4 | L41 | | 11 | L11 | L111 |
+| 5 | L5 | L51 | | 12 | L12 | L121 |
+| 6 | L6 | L61 | | 13 | L13 | L131 |
+| 7 | L7 | L71 | | 14 | L14 | L141 |
+
+The analysis was remapped by element (84 references and the section headings, which now also give the ordinal) and states the convention once. The sections of this log above this one keep the sequential L1–L14. No optical value, glass label, bracket or diagram label changed; the engine reports the same focal length before and after.

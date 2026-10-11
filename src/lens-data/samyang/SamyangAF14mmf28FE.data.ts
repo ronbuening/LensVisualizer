@@ -30,7 +30,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╚════════════════════════════════════════════════════════════════════════════════════╝
  */
 
-// The 2026-09-09 Figure 1 optical-rim audit reduced L12 and the final doublet; see the companion audit.
+// Element names are the patent's reference signs L11 to L141, the same strings as the diagram labels: the tens
+// digits count elements front to rear and the trailing 1 marks Example 1.
+// The 2026-09-09 Figure 1 optical-rim audit reduced L121 and the final doublet; see the companion audit.
 const LENS_DATA = {
   key: "samyang-af-14mm-f2p8-fe",
   maker: "Samyang",
@@ -67,7 +69,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       diagramLabel: "L11",
       label: "Element 1",
       type: "Positive Meniscus",
@@ -79,7 +81,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L21",
       diagramLabel: "L21",
       label: "Element 2",
       type: "Negative Meniscus",
@@ -91,7 +93,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L31",
       diagramLabel: "L31",
       label: "Element 3",
       type: "Negative Meniscus (2x Asph)",
@@ -103,7 +105,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L41",
       diagramLabel: "L41",
       label: "Element 4",
       type: "Negative Meniscus",
@@ -117,7 +119,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L51",
       diagramLabel: "L51",
       label: "Element 5",
       type: "Biconvex Positive",
@@ -130,7 +132,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L61",
       diagramLabel: "L61",
       label: "Element 6",
       type: "Biconcave Negative",
@@ -143,7 +145,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L71",
       diagramLabel: "L71",
       label: "Element 7",
       type: "Negative Meniscus (2x Asph)",
@@ -155,7 +157,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L81",
       diagramLabel: "L81",
       label: "Element 8",
       type: "Negative Meniscus",
@@ -168,7 +170,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L91",
       diagramLabel: "L91",
       label: "Element 9",
       type: "Biconvex Positive",
@@ -181,7 +183,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "L101",
       diagramLabel: "L101",
       label: "Element 10",
       type: "Negative Meniscus",
@@ -194,7 +196,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "L111",
       diagramLabel: "L111",
       label: "Element 11",
       type: "Biconcave Negative",
@@ -206,7 +208,7 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L12",
+      name: "L121",
       diagramLabel: "L121",
       label: "Element 12",
       type: "Biconvex Positive (2x Asph)",
@@ -218,7 +220,7 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L13",
+      name: "L131",
       diagramLabel: "L131",
       label: "Element 13",
       type: "Biconcave Negative",
@@ -231,7 +233,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L141",
       diagramLabel: "L141",
       label: "Element 14",
       type: "Biconvex Positive",
