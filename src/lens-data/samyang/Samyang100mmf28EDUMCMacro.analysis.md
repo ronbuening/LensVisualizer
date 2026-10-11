@@ -1,26 +1,26 @@
-# Samyang 100mm F2.8 ED UMC Macro: approved infinity model
+# Samyang 100mm F2.8 ED UMC Macro — Optical Analysis
 
 ## Patent Reference and Design Identification
 
-**Patent:** KR 20170073883 A  
+**Patent:** KR 10-2017-0073883 A  
 **Application Number:** 10-2015-0182611  
 **Filed:** 2015-12-21  
 **Published:** 2017-06-29  
-**Inventors:** 박종영, 이정두  
+**Inventors:** Jong Young Park (박종영), Jung Du Lee (이정두)  
 **Applicant:** Samyang Optics Co., Ltd.  
 **Title:** 렌즈계 및 이를 포함하는 광학 기기 / Lens system and optical device comprising the same  
 **Embodiment analyzed:** Example 1, Table 1, Figure 1
 
-The sole numerical example is associated with the manual-focus Samyang 100mm F2.8 ED UMC Macro through its detailed optical structure. This is a research correlation, not manufacturer confirmation of production-exact radii, dimensions, supplier glasses or coatings.
+The patent's only numerical example is associated with the manual-focus Samyang 100mm F2.8 ED UMC Macro through its optical construction. Samyang has not confirmed that the example gives the production radii, dimensions, glasses or coatings.
 
-1. Fifteen spherical elements form twelve components. Two separated object-convex front menisci precede a long gap; three central cemented pairs are followed by five rear singlets.
-2. The official optical section places the HR highlight at E3 and ED highlight at E4, matching the source's EFDS1_HOYA and FCD1_HOYA positions.
-3. The computed native EFL is 98.043026 mm, consistent with printed 98.04 and close to marketed 100 mm. The printed f/2.9 and marketed f/2.8 remain distinct.
-4. The source and production section agree on the rear sequence, including the final two image-convex negative menisci. Claim 1's contrary E14 shape wording is retained as a discrepancy.
+1. Fifteen spherical elements form twelve groups. Two separated object-convex front menisci precede a long gap; three central cemented pairs are followed by five rear singlets.
+2. Samyang's published optical section shows 15 elements in 12 groups with the HR mark on element 3 and the ED mark on element 4, agreeing with Figure 1 and with the EFDS1_HOYA and FCD1_HOYA glasses the patent names at those positions.
+3. The computed EFL is 98.043026 mm, consistent with the printed 98.04 and close to the marketed 100 mm. The printed f/2.9 and marketed f/2.8 remain distinct. The patent's aberration figures are labelled "EFL=100 MACRO 1:1".
+4. The patent and Samyang's section agree on the rear sequence, including the final two image-convex negative menisci. Claim 1's contrary wording for the shape of L14 is noted as a discrepancy.
 
-The official launch on 2015-04-02 predates the filing. That chronology is a limitation, not affirmative identification proof or a patent-validity conclusion. The optical formula is represented for the documented Canon EF, Nikon F, Pentax K, Sony A, Canon EF-M, Fujifilm X, Samsung NX, Sony E and Micro Four Thirds variants. Full-frame is the design's image-format classification; the smaller-format mounts use a crop.
+The lens was announced on 2015-04-02, before the 2015-12-21 filing; that order is noted and is not itself evidence for the identification. The optical formula is represented for the documented Canon EF, Nikon F, Pentax K, Sony A, Canon EF-M, Fujifilm X, Samsung NX, Sony E and Micro Four Thirds variants. Full-frame is the design's image-format classification; the smaller-format mounts use a crop.
 
-This file is an explicitly approved limited model. The stop interpretation, derived all-air image plane and three smaller clear apertures are disclosed below. They are not presented as proved corrections to the patent. Only infinity/d-line geometry is certified by this per-lens work.
+The model covers the infinity state at the d line only. The stop position, the in-air image plane and the six clear apertures that differ from the printed C column are modelling choices, explained below; none is presented as a proven correction of the patent.
 
 ## Optical Architecture
 
@@ -58,31 +58,31 @@ L2 is an object-convex positive meniscus. Together with L1 and their separation,
 
 nd = 1.922860, νd = 20.88. Glass: E-FDS1 (Hoya; source-named catalog equivalent). f = +54.006025 mm.
 
-L3 is front-convex and plane-backed. Its high index matches the HR position in the official section. It begins the source G2, behind the 41.915080 mm separation after S4.
+L3 is front-convex and plane-backed. Its high index matches the HR mark on the third element of Samyang's section. It begins the source G2, behind the 41.915080 mm separation after S4.
 
 ### L4 / L21 — Biconvex Positive
 
 nd = 1.496997, νd = 81.61. Glass: FCD1 (Hoya; source-named catalog equivalent). f = +59.333674 mm.
 
-L4 is the low-dispersion positive member of the first cemented doublet. Its source FCD1 coordinate corresponds to the official ED position. The modeled S7 clear radius is 15.555 mm rather than the source C value 15.570 mm under the explicit aperture exception.
+L4 is the low-dispersion positive member of the first cemented doublet. FCD1 is an extra-low-dispersion crown (ΔPgF ≈ +0.032 from its catalog lines), and the element sits where Samyang's section marks ED; the data file tags it as inferred anomalous-dispersion glass on that basis, since the patent itself makes no such statement. The modeled S7 clear radius is the source C value, 15.57 mm.
 
 ### L5 / L22 — Biconcave Negative
 
 nd = 1.846663, νd = 23.78. Glass: FDS90 (Hoya; source-named catalog equivalent). f = -28.444777 mm.
 
-L5 is the high-dispersion negative partner of L4. Their shared boundary is S8, carrying L5 as the downstream material. The complete L4/L5 pair is net negative, as ¶0058 states.
+L5 is the high-dispersion negative partner of L4. Their shared boundary is S8, carrying L5 as the downstream material. The complete L4/L5 pair is net negative, as ¶0058 states. S8 and S9 are modeled at 14.58 and 13.06 mm, 0.01 and 0.02 mm above the printed C, which is where the traced f/2.904 axial ray meets them.
 
 ### L6 / L23 — Biconvex Positive
 
 nd = 1.487489, νd = 70.44. Glass: FC5 (Hoya; source-named catalog equivalent). f = +39.664113 mm.
 
-L6 is the positive crown member of the second doublet. Its front clear radius at S10 is reduced from 13.030 to 12.950 mm under the bounded exception. This exterior face limits the modeled axial admitted pupil.
+L6 is the positive crown member of the second doublet. Its front face S10 is modeled at 13.05 mm, 0.02 mm above the printed C, where the traced f/2.904 axial ray meets it; at that height the L5 rear and L6 front faces use 91.4% of their 1.676 mm air gap.
 
 ### L7 / L24 — Negative Meniscus
 
 nd = 1.846663, νd = 23.78. Glass: FDS90 (Hoya; source-named catalog equivalent). f = -43.479933 mm.
 
-L7 is the image-convex negative flint member of the second doublet, joined to L6 at S11. The whole pair remains weakly positive despite L7’s negative standalone power.
+L7 is the image-convex negative flint member of the second doublet, joined to L6 at S11. The whole pair remains weakly positive despite L7’s negative standalone power. S11 is modeled at 12.66 mm, 0.02 mm above the printed C, for the same axial ray.
 
 ### L8 / L25 — Biconcave Negative
 
@@ -106,7 +106,7 @@ L10 is a separated biconvex singlet with equal-magnitude radii. It completes G2 
 
 nd = 1.701543, νd = 41.15. Glass: BAFD7 (Hoya; source-named catalog equivalent). f = -56.397481 mm.
 
-L11 is an object-convex negative meniscus beginning G3. Its powered front face S19 is where Table 1 prints STO; that source marking is preserved in the discrepancy record, while the approved model uses plane S18.
+L11 is an object-convex negative meniscus beginning G3. Its powered front face S19 is where Table 1 prints STO; the model places the stop on plane S18 instead, for the reasons given below. With the iris on S18 the traced axial ray meets S19 at 10.7007 mm, so S19 is modeled at 10.71 mm against the printed 10.7.
 
 ### L12 / L31 — Biconcave Negative
 
@@ -124,19 +124,19 @@ L13 is the strong positive singlet between the rear negative elements. Its catal
 
 nd = 1.516798, νd = 64.20. Glass: BSC7 (Hoya; source-named catalog equivalent). f = -109.114112 mm.
 
-L14 is an image-convex negative meniscus according to its two negative radii, the abstract, ¶0059 and Figure 1. Claim 1 calls it object-convex. Only the approved modeled S26 clear radius changes, from 13.230 to 12.720 mm; neither curvature changes.
+L14 is an image-convex negative meniscus according to its two negative radii, the abstract, ¶0059 and Figure 1. Claim 1 calls it object-convex. The modeled S26 clear radius is 12.72 mm against the printed 13.23 mm, because at the printed value the L14 rear and L15 front faces would fill 97.6% of their 2.514 mm air gap; neither curvature changes.
 
 ### L15 / L34 — Negative Meniscus
 
 nd = 1.728250, νd = 28.32. Glass: E-FD10 (Hoya; source-named catalog equivalent). f = -93.311527 mm.
 
-L15 is the final image-convex negative meniscus. It ends the fifteen-element lens prescription. The optional filter shown farther behind it has no numerical prescription and is not invented in this model.
+L15 is the final image-convex negative meniscus. It ends the fifteen-element lens prescription. The optional filter that Figure 1 draws farther behind it has no numerical prescription and is not modeled.
 
 ## Glass Identification and Spectral Scope
 
-The source explicitly names HOYA materials. Native nd/νd values are retained. Searches also covered authoritative OHARA, Schott, Hikari, Sumita and CDGM catalogs; a different brand's nearby coordinate is not substituted for a named source family.
+The source explicitly names HOYA materials. The printed nd/νd values are retained. Nearby glasses in the OHARA, Schott, Hikari, Sumita and CDGM catalogs are not substituted for a glass the source names.
 
-| Elements | Patent material name | Model catalog family | Native nd / νd |
+| Elements | Patent material name | Model catalog family | Printed nd / νd |
 |---|---|---|---|
 | L1 | BACED5_HOYA | BACED5 (HOYA) | 1.658436 / 50.85 |
 | L2 | NBFD11_HOYA | NBFD11 (HOYA) | 1.785897 / 43.93 |
@@ -152,35 +152,38 @@ The source explicitly names HOYA materials. Native nd/νd values are retained. S
 | L14 | BSC7_HOYA | BSC7 (HOYA) | 1.516798 / 64.20 |
 | L15 | EFD10_HOYA | E-FD10 (HOYA) | 1.728250 / 28.32 |
 
-The modern catalog coordinates differ by at most 4×10⁻⁶ in nd and 0.01 in νd from the printed source coordinates. All fifteen model elements carry explicit nC, nF and ng evaluated from the selected primary HOYA AGF formulas at 656.2725, 486.1327 and 435.8343 nm. These are catalog-derived approximations, not patent-published or measured production spectra. The green reference remains the source's native d-line index. No e-line conversion is performed.
+The modern catalog coordinates differ by at most 4×10⁻⁶ in nd and 0.01 in νd from the printed source coordinates. All fifteen model elements carry explicit nC, nF and ng evaluated from the HOYA catalog dispersion formulas at 656.2725, 486.1327 and 435.8343 nm. These are catalog-derived values, not patent-published or measured production spectra; for FCD1 (L4) they give P_g,F = 0.5389. The reference index remains the source's d-line value, and no e-line conversion is performed.
 
-The low-dispersion crown/high-dispersion flint combinations are consistent with a primary chromatic-balancing strategy. That interpretation does not certify apochromatic correction, secondary spectrum or measured performance. The computed d-line Petzval sum is +0.001053505836275079 mm⁻¹; it is not itself a measurement of image-surface curvature or a chromatic-performance result.
+The low-dispersion crown/high-dispersion flint combinations are consistent with a primary chromatic-balancing strategy. That interpretation does not establish apochromatic correction, secondary spectrum or measured performance. The computed d-line Petzval sum is +0.001053505836275079 mm⁻¹; it is not itself a measurement of image-surface curvature or a chromatic-performance result.
 
 ## Focus Mechanism and Conjugate Scope
 
-Focus status is NO_INTERNAL_RECONSTRUCTION. Paragraph 0051 describes fixed G1 and rear focusing by G2/G3; ¶0065 says E3 through E15 move objectward at closer focus. No numerical travel, relative group motion, near-state gap table or continuous motion law is published.
+The patent tabulates only the infinity state. Paragraph 0051 describes a fixed G1 and rear focusing by G2 and G3; ¶0065 says L3 through L15 move toward the object at closer focus. No numerical travel, relative group motion, near-state gap table or continuous motion law is published.
 
-The model therefore has no variable gaps and no certified finite conjugates. The source infinity geometry remains fixed for every focus-slider value. It does not implement a 1:1 macro configuration or the product's close-focus performance.
+The model therefore has no variable gaps and no finite conjugates. The source infinity geometry remains fixed for every focus-slider value. It does not implement a 1:1 macro configuration or the product's close-focus performance.
 
-The official product page's technical table rounds minimum focus to 0.30 m, while its prose states 0.307 m. The file's closeFocusM=0.30 is manufacturer metadata only. The production 1:1 magnification and minimum distance do not supply an unprinted optical state. The lens is manually focused; no drive-system motion is inferred from generic optional shift-lens wording.
+Samyang's product page states a minimum focus distance of 0.307 m in its text and 0.30 m in its specification table, with 1:1 maximum magnification. The data file records 0.307 m as product metadata only; the production figures do not supply an unprinted optical state. The lens is manually focused, and no drive-system motion is inferred from the patent's optional shift-lens wording.
 
-## Stop, Image Reference and Approved Apertures
+## Stop, Image Plane and Clear Apertures
 
-Table 1 marks row 19(STO), whose radius is 80.36 mm and whose medium is glass. Plane row 18 lies 3 mm before that vertex. Figure 1 and ¶0064 place a separate stop adjacent to L10 between G2 and G3, but that structural evidence does not fulfill the project's two-kind source-correction requirement. The owner explicitly approved row 18 as a limited-model interpretation; the source conflict remains unresolved.
+Table 1 marks row 19(STO), whose radius is 80.36 mm and whose medium is glass. Plane row 18 lies 3 mm before that vertex. Figure 1 and ¶0064 place a separate stop adjacent to L10 between G2 and G3, and row 18 carries the table's only unrounded aperture value. The model therefore places the stop on row 18. The table's label is kept on record as an unresolved source inconsistency rather than a proven misprint.
 
-C is called diameter size in the prose. Treating its values as semi-diameters is supported by two internal observations: exact aperture near f/2.9, and claim 1's diameter-based ratio, which, using printed F=98.04, is 0.770094 when physical diameters are 2C rather than 0.385047 for literal C. This does not prove the stop relocation or authorize arbitrary rim changes.
+C is called diameter size in the prose. Treating its values as semi-diameters is supported by two internal observations: exact aperture near f/2.9, and claim 1's diameter-based ratio, which, using printed F=98.04, is 0.770094 when physical diameters are 2C rather than 0.385047 for literal C. Neither observation bears on the stop position.
 
-At row 18, the unchanged C=11.92834 mm radius corresponds to paraxial f/2.802622 but exact iris-derived f/2.904148. The latter agrees with printed f/2.9. The full source-C system already slightly vignettes that iris bundle, giving an admitted axial aperture near f/2.907412. After the approved rim reductions, the admitted axial value is f/2.925326, limited at S10. The geometric admitted axial pupil area is reduced by 1.221005% relative to the raw-rim model. This area ratio is not a general off-axis transmission estimate.
+At row 18, the unchanged C=11.92834 mm radius corresponds to paraxial f/2.802622 but exact iris-derived f/2.904148. The latter agrees with printed f/2.9; a stop on S19 at its printed C would give f/2.904327, so the F-number does not decide between the two rows. The full source-C system already slightly vignettes that iris bundle, giving an admitted axial aperture near f/2.907412: in the printed, rounded prescription the iris-filling axial ray stands 0.008, 0.014, 0.012, 0.015 and 0.0007 mm above C at S8, S9, S10, S11 and S19. The model raises those five surfaces to that ray, so the axial beam is limited by the iris at f/2.9041.
 
-| Modeled boundary | Original C (mm) | Approved sd (mm) |
-|---|---:|---:|
-| S7 | 15.570 | 15.555 |
-| S10 | 13.030 | 12.950 |
-| S26 | 13.230 | 12.720 |
+| Modeled boundary | Original C (mm) | Modeled sd (mm) | Reason |
+|---|---:|---:|---|
+| S8 | 14.57 | 14.58 | traced f/2.904 axial ray at 14.578 mm |
+| S9 | 13.04 | 13.06 | traced f/2.904 axial ray at 13.054 mm |
+| S10 | 13.03 | 13.05 | traced f/2.904 axial ray at 13.042 mm |
+| S11 | 12.64 | 12.66 | traced f/2.904 axial ray at 12.655 mm |
+| S19 | 10.7 | 10.71 | traced f/2.904 axial ray at 10.7007 mm |
+| S26 | 13.23 | 12.72 | kept clear of S27; 97.6% of the air gap would be filled at the printed value |
 
-Every other C and the physical iris radius remain unchanged. The default 90% gap-sag allowance is retained. The smaller exterior rims satisfy the geometry margin and sampled cemented-group containment policy, at the cost of the disclosed axial annulus and additional off-axis clipping. They are model clear apertures, not asserted corrections to source C values.
+Every other C, S7 at 15.57 mm included, and the iris radius are as printed. With S10 at 13.05 mm the L5 rear and L6 front faces use 91.4% of their 1.676098 mm gap and keep 0.144 mm of rim air; the faces do not cross, and Figure 1 draws them meeting at the rim. This is the tightest pair in the model, and the data file sets its cross-gap allowance to 0.92 to admit it. S26 is the one surface held below the printed column: at 13.23 mm the L14 rear and L15 front faces would use 97.6% of their 2.514227 mm gap and keep 0.061 mm, while at 12.72 mm they use 89.9%. The smaller S26 rim costs nothing on axis and adds some clipping of the corner bundle. These are model clear apertures, not corrections to the source C values.
 
-The table terminates with D28=1.002 and no image row. Its separate Bf=41.375 uses contradictory E12/E15 definitions. The approved last gap is the derived all-air Gaussian BFD, 40.641334957 mm, not a recovered source image distance. Both printed numbers remain in sourceErrata and the audit. An optional unprescribed filter might change physical back focus, but no material, thickness or location is inferred or added.
+The table terminates with D28=1.002 and no image row. Its separate Bf=41.375 is defined from L12 in ¶0120 and from L15 in the conditions. The model's last gap is the in-air paraxial back focus of rows 1–28, 40.641335 mm, not a printed image distance. The 0.734 mm difference from Bf corresponds to a plate about 2.2 mm thick at an index near 1.5, such as the filter Figure 1 draws ahead of the image plane; the table gives that plate no row, so none is modeled.
 
 ## Source Conditions and Unresolved Statements
 
@@ -193,37 +196,33 @@ The following table preserves all eight numbered conditions. Here C1 and C15 are
 | 3 | 5 < (Nd2+Vd2)/f2 < 10 | Underdetermined: aggregation of material nd/νd over a compound group is not defined. |
 | 4 | −0.3 < (Nd1+Vd1)/f1 < 0 | Underdetermined for the same group-coordinate reason. |
 | 5 | −3 < (Nd3+Vd3)/f3 < −2 | Underdetermined for the same group-coordinate reason. |
-| 6 | 0 < (Bf+T1)/F < 1.5 | 1.346376 using printed Bf=41.375 and adopted stop z=90.623672 mm; 1.338892 with the approved derived air BFD. Both pass. |
+| 6 | 0 < (Bf+T1)/F < 1.5 | 1.346376 using printed Bf=41.375 and the stop at z=90.623672 mm; 1.338892 with the in-air back focus. Both pass. |
 | 7 | 0 < (G4/5R1+G4/5R2)/(F+F2) < 1.0 | 0.454329 using outer doublet radii 37.81 and 30.00 mm and computed G2 EFL=51.213202 mm; passes on this expressly calculated interpretation. |
 | 8 | 2.0 < T1/T2 < 3.0 | Literal source definition gives 0.362756543 and fails; its reciprocal is only a diagnostic. |
 
-Equation 6 appears in claim 2 with lower bound 0 and again in ¶0098; ¶0032 instead prints a lower bound of 1. The formal version does not uniquely establish the derived terminal image plane. Equation 7's calculated passing value likewise does not repair the printed f2 summary. These bounded comparisons do not provide the missing two-kind proof of the approved stop or image-reference choices.
+Equation 6 appears in claim 2 with lower bound 0 and again in ¶0098; ¶0032 instead prints a lower bound of 1. Neither version fixes the position of the image plane. Equation 7's calculated passing value likewise does not repair the printed f2 summary. These comparisons do not settle the stop position or the image plane.
 
 The computed difference between the L6/L7 and L8/L9 net focal lengths is 178.002682 mm. It meets the formal 170–220 range, but not the preferred 188–205 interval.
 
-Equation 8 (claim 3) defines T1 as stop-to-last and T2 as first-to-stop; its literal ratio at adopted row 18 is 0.362756543, outside 2–3. The reciprocal is 2.756669779, but the definition is not silently reversed. The printed T2=91.07 also differs from the table's first-to-row18 distance, 90.623672 mm.
+Equation 8 (claim 3) defines T1 as stop-to-last and T2 as first-to-stop; its literal ratio with the stop on row 18 is 0.362756543, outside 2–3. The reciprocal is 2.756669779, but the definition is not silently reversed. The printed T2=91.07 also differs from the table's first-to-row18 distance, 90.623672 mm.
 
-The computed G1/G2/G3 values remain separate from the mismatching printed f1/f2 summaries. Group-level Nd/Vd in conditions 3–5 lack an explicit aggregation definition. A sum-over-members interpretation can be explored diagnostically, but it is not represented as an established source convention. Wavelength prose prints “mm” beside visible-spectrum numbers and differs between ¶0129 and ¶0134; figures use NM. The raw record preserves these inconsistencies.
+The computed G1/G2/G3 values remain separate from the mismatching printed f1/f2 summaries. Group-level Nd/Vd in conditions 3–5 lack an explicit aggregation definition. A sum-over-members interpretation is possible, but it is not an established source convention. Wavelength prose prints “mm” beside visible-spectrum numbers and differs between ¶0129 and ¶0134; figures use NM. These inconsistencies are left as printed.
 
-All sourceErrata entries are unresolved disclosures. Owner permission authorizes the bounded limited model; it does not supply missing internal source evidence or establish corrected patent values.
+The data file lists the source inconsistencies as unresolved. None is treated as a corrected patent value.
 
-## Verification and Limits
+## Model Scope and Limitations
 
-The actual final TypeScript values are parsed and compared against every source row and the approved transformation list. Separate scalar, ABCD and exact Snell computations reproduce the first-order result. The portable verifier rejects malformed syntax, duplicate keys, a wrong radius sign and a collapsed air gap.
+The model reproduces the printed focal length (98.043 mm against 98.04) and, through the stop radius, the printed F-number (f/2.904 against 2.9). It represents the infinity state at the d line only. No near-focus state, 1:1 configuration or filter plate is modeled, and the C, F and g indices are catalog-derived rather than published.
 
-For this all-spherical model, shared-band separation extrema occur at the axis or outer shared radius. The maximum rim angle is 37.442197°, minimum glass thickness is 2.000000 mm, maximum air-gap intrusion is 89.907260%, and minimum air clearance is 0.100000 mm. Actual production-path render diagnostics show zero hidden trim. The rendered section was visually compared with the distinctive patent and manufacturer topology; no browser UI test is claimed.
+For this all-spherical model the maximum rim angle is 37.4° (S3), the minimum glass thickness is 2.0 mm, the largest cross-gap fill is 91.4% (L5/L6) and the smallest air space is 0.1 mm, on axis between L9 and L10. On axis the beam is limited by the iris. Off axis the element rims vignette the bundle progressively; at the 21.63 mm corner the chief ray clears every surface and the full-aperture bundle is cut on one side by 11% at S19, rising to 42% at S26.
 
-The independent fixed-aperture diagnostic sampled 1,679,697 rays at infinity/d line. No sampled ray first clips at an internal cemented interface. The default 0.6 field loses no formerly admitted sample; the full diagonal loses 153 of 5,304 formerly admitted samples. Additional clipping occurs in small nonzero fields and near the format edge. These are nonuniform ray counts, not flux percentages, and finite sampling cannot prove absence of every possible clipping case.
-
-A separate actual-data portable and project-engine check covers 49,200 rays across twelve fields and four aperture scales. The engine's 1,042 raw noBracket terminations occur before the first surface for rays outside its clear spherical cap. Its separate analytic cap-miss classifier proves them blocked; no unproven intersection failure remains. These raw statuses are retained in the audit record.
-
-The construction baseline is main b7deb22166991aacdbdcae249f67f4932cb28b6b. A separate compatibility run on main 14da71d94ed3ab6ccf7aef70066f1e49670440ed, after PR 772's e-line changes, reproduces identical d-line optics, glass resolution, spectral anchors, geometry and sampled ray outcomes. Focused real LensDataInput compilation, formatting, validation, rendering and tracing were executed. Full-corpus tests, metadata generation, full build/prerender and deployment remain NOT_RUN; integration is pending.
+The rendered section follows the element sequence and proportions of Figure 1 and of Samyang's published section. It differs where Figure 1 draws square mechanical blocks: each rendered element tapers between its two clear apertures, and a small notch shows between L14 and L15 because S26 is held at 12.72 mm.
 
 ## Sources
 
 1. [KR20170073883A original PDF](https://patentimages.storage.googleapis.com/d6/af/98/ce9418d1b606a4/KR20170073883A.pdf): p. 1 identity; pp. 3–4 claims; pp. 7–10 mechanism, definitions and conditions; pp. 10–11 Table 1; p. 12 Figure 1; pp. 13–16 diagnostic figures.
 2. [Samyang official product page](https://www.lksamyang.com/en/product/product-view.php?seq=331): full-frame MF 100mm F2.8, construction, aperture range, MFD, filter and mount specifications; distinguishes 0.30 m technical-table rounding from 0.307 m prose.
-3. [Samyang official optical section](https://www.lksamyang.com/upload/editor/1567748217): HR E3 and ED E4, fifteen-element topology.
+3. [Samyang official optical section](https://www.lksamyang.com/upload/editor/1567748217): fifteen elements in twelve groups, HR on element 3 and ED on element 4.
 4. [Samyang 2022 catalogue](https://www.lksamyang.com/upload/file/2022_SAMYANG_OPTICS_Catalogue_EN.pdf), p. 36: product-family specifications and optical section.
 5. [Samyang launch notice](https://www.lksamyang.com/en/about/notice-view.php?seq=324), 2015-04-02: manual-focus photo and cine macro launch, preceding the patent filing.
-6. [HOYA authoritative AGF catalog, including obsolete glasses](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), 2026-07-07 edition: named family coordinates and dispersion coefficients. Relevant original rows and coefficients are preserved in the audit evidence for offline replay.
+6. [HOYA AGF glass catalog, including obsolete glasses](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), 2026-07-07 edition: nd, νd and dispersion coefficients of the named glasses.

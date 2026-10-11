@@ -7,22 +7,36 @@ import type { LensDataInput } from "../../types/optics.js";
  * Source row 9 is the actual iris; source r = 0.0 maps to a flat STO.
  * Source terminal d16 = 0.0 is a placeholder; separate infinity fb = 40.08 mm
  * supplies the fixed image gap. G4 is fixed relative to image. No rear plate.
- * Both printed focus states remain unchanged. Macro object distance is 403.0 mm
- * from S1. Its paraxial image lies 0.288342 mm behind the retained fixed plane.
- * This accepted defocus is disclosed, not corrected or attributed to rounding.
+ * Both printed focus states are kept as printed. The 0.5x object distance is
+ * 403.0 mm from S1. Its paraxial image lies 0.288342 mm behind the fixed image
+ * plane. That offset is the design's spherical aberration at 1:2, not a focus
+ * error and not rounding: real rays in the 0.65-0.93 aperture zones cross the
+ * axis 40.07-40.11 mm behind S16 (the full-aperture marginal ray at 40.16 mm),
+ * and the on-axis RMS spot radius is 3.2 um at the 40.08 mm plane against
+ * 14.9 um at the paraxial plane. Patent Figure 6 plots the same bow of about
+ * -0.3 mm at 0.5x.
  * closeFocusM = (403.0 + 103.29 + 40.08)/1000; marketed MFD is 0.55 m.
- * Intermediate linear gap interpolation is not source-certified focus travel.
+ * Gaps between the two printed states are linearly interpolated; the patent
+ * tabulates no intermediate focus position.
  * NOTE ON SEMI-DIAMETERS: inferred from Figure 5 optical rims (PDF p6),
  * refined/checked against exact rays; no source clear radii are published.
- * Native approximate figure radii: 19.8,17.9,13.8,11.1,13.8,15.8 mm by component.
- * Conservative rounded model radii: 20,18,14,11.31,14,16 mm respectively.
+ * Figure 5 is the infinity section, hand-drawn (about +/-8 %); on the native
+ * 352 dpi scan S1-S16 = 103.29 mm spans 969.5 px, i.e. 0.1065 mm/px.
+ * Figure radii by component: 19.8, 17.9, 13.6-13.9, 11.2, 14.0, 15.8 mm.
+ * Conservative rounded model radii: 20,18,14,11.31,14,16 mm respectively;
+ * each is within 3 % of the figure. The front-corner bevels Figure 5 draws
+ * on L5 and L8 are not modeled. Real-ray floor check from infinity to 0.5x
+ * (finite object, fixed iris): no on-axis or corner chief-ray clip.
  * The 11.31 mm G3 rims also contain the directly published 7-degree
  * infinity-field beam at its cemented interface; edge-exit vignetting remains.
- * The STO radius 9.1943879049 mm uses the current runtime exact on-axis
- * entrance beam EFL/(2*5.71), not the 9.048929 mm paraxial-only estimate.
+ * The STO radius 9.1943879049 mm is set by an exact on-axis ray entering at
+ * height EFL/(2*5.71); the paraxial-only estimate would be 9.048929 mm.
  * This is F-number calibration, not independent evidence of diaphragm size.
- * The inferred iris is fixed with focus. Its macro working F-number differs
- * from printed 5.98; no invented iris schedule is used to force agreement.
+ * The inferred iris is fixed with focus. At 0.5x it works at about F/6.17
+ * where the patent prints an effective F/5.98; no focus-dependent iris is
+ * added to force agreement.
+ * Printed inconsistency in the source: the condition summary gives
+ * beta2 = 4.8 and beta4 = 1.5, the prescription gives 4.876 and 1.567.
  * Glass names and C/F/g/dPgF fields are catalog-equivalent spectral proxies
  * from HOYA formula-1 coefficients, not historical supplier/melt identification.
  * No apochromatic performance claim follows from the commercial APO name.
@@ -37,15 +51,20 @@ const LENS_DATA = {
   "sourceErrata": [
     {
       "status": "unresolved",
-      "note": "Example 3 printed macro gaps and object distance 403.0 mm give paraxial image gap 40.368342 mm, 0.288342 mm behind the retained 40.080 mm plane inferred from the fixed rear-group/image mechanism. The cause remains unresolved; retained defocus is accepted. No prescription value is corrected. The modeled fixed infinity-calibrated iris also does not reproduce printed macro effective F/5.98; no physical iris law is published."
+      "note": "The patent's condition summary for Example 3 prints β2 = 4.8 and β4 = 1.5, while the printed prescription gives 4.876 and 1.567. All six conditions still hold, and no prescription value is changed."
+    },
+    {
+      "status": "unresolved",
+      "note": "With the iris sized for the printed F/5.71 at infinity and held fixed, the 0.5× state works at about F/6.17, where the patent prints an effective F/5.98. The patent gives no iris diameter, so the difference is left as it is."
     }
   ],
-  "subtitle": "JPH04110811A Example 3; production correlation, not manufacturer-confirmed attribution",
+  "subtitle": "JP H04-110811 A, Example 3 — construction-based production correlation",
   "specs": [
     "9 ELEMENTS / 6 GROUPS",
-    "Design f = 174.86 mm; marketed 180 mm",
-    "Design F/5.71; marketed f/5.6",
-    "Published 0.5x state; retained macro defocus"
+    "DESIGN f = 174.86 mm",
+    "DESIGN F/5.71",
+    "ALL SPHERICAL",
+    "PUBLISHED 0.5× CLOSE-FOCUS STATE"
   ],
   "focalLengthMarketing": 180,
   "focalLengthDesign": 174.86,
@@ -84,8 +103,8 @@ const LENS_DATA = {
       "nF": 1.5012275046,
       "ng": 1.5045091267,
       "dPgF": 0.03230303,
-      "apdNote": "Catalog-equivalent spectral proxy; historical supplier and melt unconfirmed.",
-      "role": "Fixed front positive collector; high-Abbe catalog-equivalent material.",
+      "apdNote": "The patent's 1.49700 / 81.6 coordinates correspond to an FCD1-class extra-low-dispersion glass, and Sigma markets the lens as APO with SLD glass; the patent does not designate the element.",
+      "role": "Positive front singlet of the fixed first group G1.",
       "apd": "inferred"
     },
     {
@@ -102,8 +121,8 @@ const LENS_DATA = {
       "nF": 1.5012275046,
       "ng": 1.5045091267,
       "dPgF": 0.03230303,
-      "apdNote": "Catalog-equivalent spectral proxy; historical supplier and melt unconfirmed.",
-      "role": "Positive component of fixed front cemented pair D1.",
+      "apdNote": "The patent's 1.49700 / 81.6 coordinates correspond to an FCD1-class extra-low-dispersion glass, and Sigma markets the lens as APO with SLD glass; the patent does not designate the element.",
+      "role": "Positive front element of the cemented doublet in the fixed first group G1.",
       "apd": "inferred",
       "cemented": "D1"
     },
@@ -121,8 +140,7 @@ const LENS_DATA = {
       "nF": 1.8497525931,
       "ng": 1.8626842428,
       "dPgF": -0.00200524,
-      "apdNote": "Catalog-equivalent spectral proxy; historical supplier and melt unconfirmed.",
-      "role": "Negative component of fixed front cemented pair D1.",
+      "role": "Negative rear element of the cemented doublet in the fixed first group G1.",
       "cemented": "D1"
     },
     {
@@ -139,8 +157,7 @@ const LENS_DATA = {
       "nF": 1.8720887041,
       "ng": 1.8941303413,
       "dPgF": 0.01543452,
-      "apdNote": "Catalog-equivalent spectral proxy; historical supplier and melt unconfirmed.",
-      "role": "Positive standalone component of moving net-negative focus group D2.",
+      "role": "Positive front element of the cemented negative focusing group G2, which moves toward the image for close focus.",
       "cemented": "D2"
     },
     {
@@ -157,8 +174,7 @@ const LENS_DATA = {
       "nF": 1.7984205191,
       "ng": 1.8084583793,
       "dPgF": -0.00880871,
-      "apdNote": "Catalog-equivalent spectral proxy; historical supplier and melt unconfirmed.",
-      "role": "Negative component of moving net-negative focus group D2.",
+      "role": "Negative rear element of the cemented focusing group G2, which moves toward the image for close focus.",
       "cemented": "D2"
     },
     {
@@ -170,13 +186,12 @@ const LENS_DATA = {
       "vd": 27.5,
       "indexReference": "d",
       "fl": -114.01841,
-      "glass": "E-FD4L equivalent (HOYA)",
+      "glass": "E-FD4 / E-FD4L equivalent (HOYA)",
       "nC": 1.7472969243,
       "nF": 1.7747285905,
       "ng": 1.7914574687,
       "dPgF": 0.01229321,
-      "apdNote": "Catalog-equivalent spectral proxy; historical supplier and melt unconfirmed.",
-      "role": "Negative component of moving net-positive focus group D3.",
+      "role": "Negative front element of the cemented positive focusing group G3, which moves toward the object for close focus.",
       "cemented": "D3"
     },
     {
@@ -193,8 +208,7 @@ const LENS_DATA = {
       "nF": 1.4922705241,
       "ng": 1.4959425074,
       "dPgF": 0.00520634,
-      "apdNote": "Catalog-equivalent spectral proxy; historical supplier and melt unconfirmed.",
-      "role": "Positive component of moving net-positive focus group D3.",
+      "role": "Positive rear element of the cemented focusing group G3, which moves toward the object for close focus.",
       "cemented": "D3"
     },
     {
@@ -211,8 +225,7 @@ const LENS_DATA = {
       "nF": 1.7221971878,
       "ng": 1.7293910485,
       "dPgF": -0.00892045,
-      "apdNote": "Catalog-equivalent spectral proxy; historical supplier and melt unconfirmed.",
-      "role": "Negative element in the fixed rear group."
+      "role": "Negative front element of the fixed rear group G4."
     },
     {
       "id": 9,
@@ -228,8 +241,7 @@ const LENS_DATA = {
       "nF": 1.8720887041,
       "ng": 1.8941303413,
       "dPgF": 0.01543452,
-      "apdNote": "Catalog-equivalent spectral proxy; historical supplier and melt unconfirmed.",
-      "role": "Positive meniscus in the fixed rear group."
+      "role": "Positive rear meniscus of the fixed rear group G4."
     }
   ],
   "surfaces": [
@@ -392,7 +404,7 @@ const LENS_DATA = {
       "zoomT": 0,
       "objectDistanceMm": 403.0,
       "distanceReference": "first-surface",
-      "source": "JPH04110811A, Example 3, PDF p4 macro gap row; object reference defined p3. Printed state retained at fixed image plane with approximately +0.288 mm paraxial defocus; no automatic refocus."
+      "source": "JP H04-110811 A, Example 3, 0.5× gap row (p. 4); object distance measured from the first surface (p. 3). The printed state is in best focus on the fixed image plane; the paraxial image lies about 0.288 mm behind it because of spherical aberration at 1:2."
     }
   ],
   "varLabels": [
@@ -463,6 +475,6 @@ const LENS_DATA = {
   ],
   "maxFstop": 22,
   "yScFill": 0.32,
-  "focusDescription": "Published endpoints: G1/G4 and the image reference remain fixed; G2 moves imageward 11.18 mm and G3 objectward 8.25 mm. Both printed gap states are unchanged. Intermediate gaps are linear interpolation, not published or solved focus travel. At object 403.0 mm, the fixed plane retains +0.288 mm paraxial defocus. Iris radius is inferred by exact infinity F/5.71 calibration and held fixed; printed macro F/5.98 is not reproduced."
+  "focusDescription": "PUBLISHED floating inner focus: G1 and G4 are fixed, and from infinity to 0.5× G2 moves 11.18 mm toward the image while G3 moves 8.25 mm toward the object; the stop between them does not move. Both end states are the patent's printed gaps, and positions in between are linearly interpolated. The 0.5× state puts the object 403.0 mm in front of the first surface, about 0.546 m from object to image against the marketed 0.55 m minimum focus. Real rays focus that state on the fixed image plane to within about 0.04 mm; the paraxial image lies 0.288 mm behind it because of the design's spherical aberration at 1:2."
 } satisfies LensDataInput;
 export default LENS_DATA;

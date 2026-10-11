@@ -1,42 +1,53 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * LEICA SUMMICRON SL 50mm f/2 ASPH. — JP2022182997A Numerical Example 1.
- * Selected research correlation; manufacturer confirmation of prescription is absent.
- * Native millimetres and d-line indices; no marketed rescaling or source repairs.
- * Nine glass lenses/eight assemblies; ten model entries include published 0.01 mm adhesive.
- * Six aspheres on L6–L8. Source K is the standard 1+K conic convention.
- * PUBLISHED focus: G2/L7 moves imageward; literal d13/d15 endpoints retained.
- * The physical 2.1 mm cover plate is in rearPlates; last d=12.9 mm is the pre-plate gap.
- * Table 6 (6)/(11) and (12) header contradict their definitions; see sourceErrata.
- * Image gap 1.000 mm is preserved despite small paraxial defocus; no best-focus refit.
- * Stop SD is exact-ray calibrated to patent infinity F/1.86017; all other SDs are modeled estimates
- * informed by ray envelopes and source silhouettes, not published manufacturing apertures.
+ * LEICA SUMMICRON-SL 50mm f/2 ASPH. — JP 2022-182997 A, Numerical Example 1.
+ * The applicant is Panasonic IP Management Co., Ltd. The link to the Leica lens rests on matching construction
+ * (9 elements / 8 groups, six aspherical surfaces on three elements, 0.45 m near state); no manufacturer
+ * statement confirms it, and the same construction is published for the Panasonic Lumix S 50mm F1.8.
+ * Patent millimetres and d-line indices, unscaled; no printed value is altered.
+ * Nine lens elements in eight groups. The patent prints the 0.01 mm adhesive layer between L3 and L4
+ * (nd 1.56732, νd 42.8) and it is modeled as printed, which gives ten element entries.
+ * Six aspherical surfaces on L6–L8. The patent's κ is the standard conic constant K of the (1 + K) form.
+ * PUBLISHED focus: G2 (L7) moves toward the image; the printed d13/d15 values are used at both ends.
+ * The 2.1 mm cover plate is in rearPlates; the last d = 12.9 mm is the air gap ahead of it.
+ * Table 6 conditions (6) and (11) and the heading of (12) disagree with their definitions; see sourceErrata.
+ * The printed 1.000 mm image gap is kept although the paraxial focus lies 0.008 mm behind it; no refocus.
+ * The stop semi-diameter is set by a real axial ray for the patent's infinity F/1.86017. All other
+ * semi-diameters are estimates from ray envelopes and the patent figure, not published clear apertures.
+ * SEMI-DIAMETERS: checked against the patent's Fig. 1(a) section, which is drawn to scale (0.0882 mm/px at
+ * 600 dpi; its stop opening reads 14.7 mm). L3+L4 (5: 12.9, 6/7: 14.4, 8: 14.8) and L9 (18: 15.0, 19: 16.7)
+ * are estimated from that figure, where the concave front faces of L3 and L9 end at flat mounting annuli,
+ * and floor-checked by exact real-ray trace at infinity and 0.45 m. The other rims are the ray-envelope
+ * estimates, 0–7 % above the drawing, and are retained.
  * The modeled iris is 14.525024382 mm, traced from EFL/(2 Fno), not a paraxial stop radius.
- * Glass coordinate classes are candidates; unnamed materials remain Unmatched.
+ * Glass names are nd/νd catalog-class candidates; materials with no close catalog match are labelled Unmatched.
  */
 
 const LENS_DATA = {
   "key": "leica-summicron-sl-50mm-f2-asph",
   "maker": "Leica",
-  "name": "LEICA SUMMICRON SL 50mm f/2 ASPH.",
+  "name": "LEICA SUMMICRON-SL 50mm f/2 ASPH.",
   "sourceErrata": [
     {
       "status": "unresolved",
-      "note": "Table 6 condition (6) prints 10.42 versus defined glass-thickness ratio 5.2215; (11) prints 2.92 versus 1.0981304. Condition (12) table header is inverse to prose/value. Prescription preserved."
+      "note": "Table 6 of the patent lists 10.42 for condition (6), TG3P/TG3M, but the printed lens thicknesses give 6.2658/1.2 = 5.22; 10.42 repeats the value of condition (3). The prescription is used as printed."
     },
     {
       "status": "unresolved",
-      "note": "Published 1.000 mm image gap after cover plate retained; source paraxial image is 1.008296 mm at infinity and 1.042092 mm near. Literal near track is 100.9999 mm versus 101.0000 summary."
+      "note": "Table 6 of the patent lists 2.92 for condition (11), TSTO_L3E/FL, but the printed spacings give 52.9889/48.2535 = 1.10. The prescription is used as printed."
+    },
+    {
+      "status": "unresolved",
+      "note": "Table 6 of the patent heads condition (12) FL_G1/FL_G1B, while the patent text defines FL_G1B/FL_G1; the listed 0.77 matches the text's ratio. The prescription is used as printed."
     }
   ],
-  "subtitle": "JP2022182997A NUMERICAL EXAMPLE 1 — SELECTED PRODUCTION CORRELATION",
+  "subtitle": "JP 2022-182997 A, Example 1 — construction-based production correlation",
   "specs": [
-    "9 GLASS LENSES / 8 GROUPS",
-    "1 EXPLICIT ADHESIVE INTERVAL",
-    "f ≈ 48.254 mm",
-    "F/1.86017",
-    "6 ASPHERICAL SURFACES"
+    "9 ELEMENTS / 8 GROUPS",
+    "DESIGN f = 48.25 mm",
+    "DESIGN F/1.86",
+    "6 ASPHERICAL SURFACES / 3 ELEMENTS"
   ],
   "focalLengthMarketing": 50,
   "focalLengthDesign": 48.2535,
@@ -72,7 +83,7 @@ const LENS_DATA = {
   ],
   "maxFstop": 22,
   "yScFill": 0.55,
-  "focusDescription": "PUBLISHED: G2 is negative L7, translating imageward by 4.8163 mm between infinity and the d0=349 mm source state (about 0.450 m object to image). G1, STO and G3 remain fixed apart from the 0.0001 mm printed gap-sum rounding. Linear intermediate gaps are modeled interpolation, not published focus law.",
+  "focusDescription": "PUBLISHED: L7, the single negative element of G2, alone moves 4.8163 mm toward the image between infinity and the patent's near state (object 349 mm ahead of the first surface, about 0.45 m object to image, magnification −0.131). G1, the stop and G3 stay fixed. Intermediate positions are linearly interpolated between the two printed states.",
   "elements": [
     {
       "id": 1,
@@ -85,7 +96,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 72.171779,
       "glass": "Unmatched (patent nd=1.85996, νd=30.5; supplier unconfirmed)",
-      "role": "Published fixed element; power quoted standalone in air"
+      "role": "High-index positive front meniscus of G1A, the negative sub-group ahead of the stop"
     },
     {
       "id": 2,
@@ -98,7 +109,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -64.363612,
       "glass": "FCD1 / N-PK52A class (coordinate candidate; supplier unconfirmed)",
-      "role": "Published fixed element; power quoted standalone in air"
+      "role": "Low-dispersion negative meniscus of G1A, ahead of the stop"
     },
     {
       "id": 3,
@@ -111,22 +122,22 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -19.938207,
       "glass": "Unmatched (patent nd=1.65794, νd=31.1; supplier unconfirmed)",
-      "role": "Published fixed element; power quoted standalone in air",
+      "role": "Biconcave negative front member of the cemented doublet in G1A, ahead of the stop",
       "cemented": "D1"
     },
     {
       "id": 10,
-      "name": "Adhesive",
-      "diagramLabel": "C",
-      "label": "L3–L4 adhesive",
-      "type": "Thin Adhesive Bond",
+      "name": "C1",
+      "diagramLabel": "C1",
+      "label": "L3–L4 cement layer",
+      "type": "Optical Cement Layer",
       "nd": 1.56732,
       "vd": 42.8,
       "indexReference": "d",
       "fl": 359130.48989,
-      "glass": "Unmatched (published adhesive interval; resin chemistry and supplier unconfirmed)",
+      "glass": "Optical cement (patent nd=1.56732, vd=42.8)",
       "cemented": "D1",
-      "role": "Published 0.01 mm bond; explicit modeling interval, excluded from nine-glass physical count"
+      "role": "Explicit 0.01 mm adhesive layer between L3 and L4 from the patent prescription; not counted as a lens element"
     },
     {
       "id": 4,
@@ -139,7 +150,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 32.037905,
       "glass": "Unmatched (patent nd=1.59269, νd=65.3; supplier unconfirmed)",
-      "role": "Published fixed element; power quoted standalone in air",
+      "role": "Biconvex positive rear member of the cemented doublet in G1A, immediately ahead of the stop",
       "cemented": "D1"
     },
     {
@@ -153,7 +164,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 41.473622,
       "glass": "FCD515 / FCD505 class (coordinate candidate; supplier unconfirmed)",
-      "role": "Published fixed element; power quoted standalone in air"
+      "role": "Biconvex positive element of G1B, immediately behind the stop"
     },
     {
       "id": 6,
@@ -166,7 +177,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 68.13275,
       "glass": "Unmatched (patent nd=1.51570, νd=55.8; supplier unconfirmed)",
-      "role": "Published fixed element; power quoted standalone in air"
+      "role": "Positive double-sided asphere closing G1B and the fixed first group"
     },
     {
       "id": 7,
@@ -179,7 +190,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -67.785796,
       "glass": "Unmatched (patent nd=1.51607, νd=56.3; supplier unconfirmed)",
-      "role": "Published moving negative focus element; power quoted standalone in air"
+      "role": "G2: the single negative focusing element, a double-sided asphere that moves toward the image for near focus"
     },
     {
       "id": 8,
@@ -192,7 +203,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 60.621063,
       "glass": "Unmatched (patent nd=1.51570, νd=55.8; supplier unconfirmed)",
-      "role": "Published fixed element; power quoted standalone in air"
+      "role": "Positive double-sided asphere of G3, the fixed rear group"
     },
     {
       "id": 9,
@@ -205,7 +216,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -59.424811,
       "glass": "Unmatched (patent nd=1.54157, νd=51.7; supplier unconfirmed)",
-      "role": "Published fixed element; power quoted standalone in air"
+      "role": "Negative rear meniscus of G3, the fixed rear group, concave toward the object"
     }
   ],
   "surfaces": [
@@ -247,7 +258,7 @@ const LENS_DATA = {
       "d": 1.2,
       "nd": 1.65794,
       "elemId": 3,
-      "sd": 15.5
+      "sd": 12.9
     },
     {
       "label": "6",
@@ -255,7 +266,7 @@ const LENS_DATA = {
       "d": 0.01,
       "nd": 1.56732,
       "elemId": 10,
-      "sd": 15.5
+      "sd": 14.4
     },
     {
       "label": "7",
@@ -263,7 +274,7 @@ const LENS_DATA = {
       "d": 7.53,
       "nd": 1.59269,
       "elemId": 4,
-      "sd": 15.5
+      "sd": 14.4
     },
     {
       "label": "8",
@@ -271,7 +282,7 @@ const LENS_DATA = {
       "d": 0.738,
       "nd": 1,
       "elemId": 0,
-      "sd": 15.5
+      "sd": 14.8
     },
     {
       "label": "STO",
@@ -351,7 +362,7 @@ const LENS_DATA = {
       "d": 1.2,
       "nd": 1.54157,
       "elemId": 9,
-      "sd": 17.5
+      "sd": 15
     },
     {
       "label": "19",
@@ -359,7 +370,7 @@ const LENS_DATA = {
       "d": 12.9,
       "nd": 1,
       "elemId": 0,
-      "sd": 17.5
+      "sd": 16.7
     }
   ],
   "rearPlates": [
@@ -461,7 +472,7 @@ const LENS_DATA = {
       "zoomT": 0,
       "objectDistanceMm": 349,
       "distanceReference": "first-surface",
-      "source": "JP2022182997A Numerical Example 1, Table 1C d0/d13/d15; printed image gap retained with residual paraxial defocus"
+      "source": "JP 2022-182997 A, Example 1, Table 1C (d0, d13, d15). The printed image gap is kept, which leaves the paraxial focus about 0.04 mm behind the image plane."
     }
   ],
   "groups": [

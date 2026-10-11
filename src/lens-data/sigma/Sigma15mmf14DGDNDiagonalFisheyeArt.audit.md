@@ -2,7 +2,7 @@
 
 ## Final disposition
 
-Independent Stage 4 source-first review and justified aperture corrections are complete at released main 709dda72. Final readiness is limited to the demonstrated source/native-chief and default construction sampling listed below. No full-field/full-pupil/continuous-ray guarantee is made; unsolved physical-stop branches, later exterior misses and nondefault stress failures remain explicit. The final exact bytes and clean replay are bound by the manifest. INTEGRATION_PENDING.
+Independent Stage 4 source-first review and justified aperture corrections are complete at the then-current released main. Final readiness is limited to the demonstrated source/native-chief and default construction sampling listed below. No full-field/full-pupil/continuous-ray guarantee is made; unsolved physical-stop branches, later exterior misses and nondefault stress failures remain explicit. The final exact bytes and clean replay are bound by the manifest. Integration: closed 2026-10-11 — the three files are in `src/lens-data/sigma/`; see the deployment validation section at the end of this log.
 
 ## Historical Stages 1–3 record
 
@@ -10,7 +10,7 @@ The following earlier gate statements and candidate hashes are preserved as hist
 
 ## Job and reference versions
 
-Original card: JP2025099854A, Numerical Example 3, exact output stem Sigma15mmf14DGDNDiagonalFisheyeArt. Complete original PDF and card are preserved. Current main resolved directly as 709dda72a0ddead8ee77b8306347429031f8b379. The new specific plate rules govern the older generic stage wording. No repository mutation or integration occurred.
+Original card: JP2025099854A, Numerical Example 3, exact output stem Sigma15mmf14DGDNDiagonalFisheyeArt. Complete original PDF and card are preserved. The then-current main was the reference. The new specific plate rules govern the older generic stage wording. No repository mutation or integration occurred.
 
 ## Extraction and conventions
 
@@ -46,17 +46,17 @@ Not performed. This is author extraction and construction evidence, not Stage 4.
 
 ## Gate disposition
 
-READY_FOR_DATA. Stage 1 mandatory checks passed with complete original-source extraction, first-order reproduction and a defined, source-supported transformation plan. The eight source-dependent exact-ray conditions and aperture/geometry checks remain explicit Stage 2 tasks.
+Stage 1 mandatory checks passed with complete original-source extraction, first-order reproduction and a defined, source-supported transformation plan. The eight source-dependent exact-ray conditions and aperture/geometry checks remain explicit Stage 2 tasks.
 
 ## Pending integration
 
-INTEGRATION_PENDING. Full TypeScript, Prettier, lint, shared corpus tests, build and live viewer checks were not run. A pinned-source targeted runtime execution in Stage 2, if performed, will be separately described and will not imply full application integration.
+Closed 2026-10-11: the files are integrated in `src/lens-data/sigma/` (see the last section). At this stage full TypeScript, Prettier, lint, shared corpus tests, build and live viewer checks were not run. A pinned-source targeted runtime execution in Stage 2, if performed, will be separately described and will not imply full application integration.
 
 ## Stage 2 construction and actual targeted runtime execution
 
 The actual candidate is literal-only TypeScript with one type import and no executable payload. Every radius, physical spacing, medium and A4–A16 coefficient is compared with the raw Japanese source by the portable verifier. The strict JSON-subset loader rejects duplicate keys, NaN/Infinity, arithmetic, spreads, functions and leftover tokens; an intentional S34 sign mutation is detected. The source plane mapping keeps all optical media: 37 authored surfaces plus two runtime camera-side plate surfaces. No geometry or layout-policy overrides are authored.
 
-Current 709dda72 `validateLensData`, `buildLens`, exact sequential/vector tracing, current-state entrance pupils, conjugate/focus selection, native off-axis geometry and production element-render diagnostics were executed through Node 24.19.0 type stripping. This is actual source execution, not a TypeScript compile or a React/browser test. The runtime artifact includes SHA-256 for all 138 imported source modules and binds the final data and driver hashes. No build or catalog-generation hook ran. The reusable driver accepts an explicit read-only source root and external output path.
+The then-current `validateLensData`, `buildLens`, exact sequential/vector tracing, current-state entrance pupils, conjugate/focus selection, native off-axis geometry and production element-render diagnostics were executed through Node 24.19.0 type stripping. This is actual source execution, not a TypeScript compile or a React/browser test. The runtime artifact includes SHA-256 for all 138 imported source modules and binds the final data and driver hashes. No build or catalog-generation hook ran. The reusable driver accepts an explicit read-only source root and external output path.
 
 ### Aperture and clear-aperture treatment
 
@@ -84,13 +84,13 @@ Each element retains source nd/νd, the converted source dPgF, and explicit cata
 
 ### Stage 2 disposition
 
-READY_FOR_ANALYSIS binds to the finalized data/evidence/verifier/results and separately executed runtime records in the Stage 2 checkpoint. The original Stage 1 seven-file archive is preserved. Source uncertainty, partial off-axis transmission, physical-versus-UI pupil distinctions and unperformed integration checks remain explicit limitations. Independent Stage 4 has not begun.
+The Stage 2 result binds to the finalized data/evidence/verifier/results and separately executed runtime records in the Stage 2 checkpoint. The original Stage 1 seven-file archive is preserved. Source uncertainty, partial off-axis transmission, physical-versus-UI pupil distinctions and unperformed integration checks remain explicit limitations. Independent Stage 4 has not begun.
 
 Before final Stage 2 freeze, record-only corrections fixed an accidental local variable shadow that replaced results.sourceModel with one spectral row, corrected the exact off-axis transmission count to 13/25, and used the actual runtime quality enum `lineIndices`. No data or optical results changed. The first packaged record was retained as a superseded archive; this replacement checkpoint replays the corrected full source/implemented branches.
 
 ## Stage 3 analysis binding and quantitative-claim map
 
-The complete Stage 2 checkpoint was frozen before analysis authoring. Stage 3 leaves the data, evidence, verifier, runtime driver and runtime report byte-identical to that checkpoint. Only the analysis, consolidated audit, results and manifest are added/refreshed. The reference pin remains 709dda72a0ddead8ee77b8306347429031f8b379. The unchanged governing data SHA-256 is `6e88e5cbce23d2047ae586b4725817bf18f21a8d0066ffc106d0798ce6caa89a`.
+The complete Stage 2 checkpoint was frozen before analysis authoring. Stage 3 leaves the data, evidence, verifier, runtime driver and runtime report byte-identical to that checkpoint. Only the analysis, consolidated audit, results and manifest are added/refreshed. The reference pin and the governing data file are unchanged.
 
 | Analysis section / claim | Governing fact or result | Source / data binding |
 |---|---|---|
@@ -109,24 +109,24 @@ The complete Stage 2 checkpoint was frozen before analysis authoring. Stage 3 le
 | Source aperture uncertainty interval | facts.runtime.sourceApertureInterval; runtime sourceApertureIntervals | Five independent rounded AXh intervals intersect source f/Fno bounds; no changed data |
 | Physical and UI pupil distinctions | runtime.runtime and runtime.ui / physicalSource | Distinct calibrated, differential UI and first-vertex finite source constructions |
 | 30 on-axis, 13/25 off-axis samples; native chief image height; zero hidden trim | runtime.ui, nativeChief, render, actual runtime checks | Final data, five focus samples, no ghosts counted |
-| MTF unsupported and certified near selector only | runtime.finiteConjugateSelectors | Actual 709dda72 mtfFiniteConjugate / assessMtfSupport results |
+| MTF unsupported and certified near selector only | runtime.finiteConjugateSelectors | Actual mtfFiniteConjugate / assessMtfSupport results |
 
 Stage 3 manual claim/citation review: PASS. Source paragraph locators, signed radii, all 21 element headings and coordinate/power lines, complete coefficient columns, section order, native/marketed distinctions, catalog versus melt provenance, standalone versus compound power, and stop/SD inference were reviewed. Conditions 3–15 and 17–20 were additionally evaluated against their explicit source bounds using the frozen computed values; all 18 inequalities pass. Conditions 1–2 are identified as source field/calibration statements, and condition 16 retains its separate rounding-resolution qualification. The explanatory text does not claim isolated aberration assignments, measured production performance, a unique interpolated focus law, whole-field pupil certification or supported fisheye MTF.
 
 The standalone source-image plate classification is a representation inference from its location (one millimetre ahead of the image) and Fig. 11's separation from the 21 lens elements; the Japanese source itself calls it F, a filter. It is fully retained optically and is not treated as optional or omitted. If a later primary source establishes a mandatory lens-holder role, its representation must be reopened under the new specific filter rule, retaining its physical prescription.
 
-READY_FOR_AUDIT. This record and pair have not received an independent Stage 4 audit. Integration remains pending. Final portable Python and exact pinned-runtime clean-extraction reproductions must be completed on the final archive; their external paths and archive hash are reported outside this manifest to avoid self-reference.
+At the end of Stage 3 this record and pair had not received an independent Stage 4 audit and integration was pending; both are closed (Stage 4 below; integration 2026-10-11). Final portable Python and exact pinned-runtime clean-extraction reproductions must be completed on the final archive; their external paths and archive hash are reported outside this manifest to avoid self-reference.
 
 
 ## Stage 4 Pass A independence and frozen baseline
 
-The reviewer first worked only from the original four-field card, complete unchanged Japanese publication, primary manufacturer/catalog sources and current contracts. Candidate/prior per-lens material was withheld until freeze. All 39 surface rows, four full aspheres, source states, field/projection, conditions and spectral conventions were freshly re-entered from rendered original pages. Adjoining raw-example material on source pages 27/52 was incidentally visible and was not used as numerical input; this exposure is disclosed. The exact pre-candidate seven-file fingerprint is a201472d13ddfc864d91c6a56cb9111105c03c3fc6c47786388e7e3e8a72201b; its manifest hash is bb2e1b2d9e8bc91d3e284f85855572956d6a89d983c960f41957d7477400e041. Full member hashes and original source inputs/results are retained under evidence.independentPass and results.independentBaseline.
+The reviewer first worked only from the original four-field card, complete unchanged Japanese publication, primary manufacturer/catalog sources and current contracts. Candidate/prior per-lens material was withheld until freeze. All 39 surface rows, four full aspheres, source states, field/projection, conditions and spectral conventions were freshly re-entered from rendered original pages. Adjoining raw-example material on source pages 27/52 was incidentally visible and was not used as numerical input; this exposure is disclosed. The pre-candidate seven-file fingerprint, its manifest hash, the member hashes and the original source inputs/results are retained under evidence.independentPass and results.independentBaseline.
 
-The full newly written calculation path is retained in the consolidated verifier under ib_ function names. Names and I/O are adapted only for consolidation. It independently repeats sequential reduced-angle recursion, separately multiplied ABCD matrices, vector Snell and asphere intersection calculations, native 90°/92.865° chief solves, exact versus paraxial aperture definitions, source-rounding sensitivity, all 21 standalone and six cemented net powers, per-surface Petzval and glass-coordinate checks. Its stable numerical fingerprint still equals the frozen pre-candidate fingerprint09d6634bc56df5167d05fa84efb267ba1fcf493a548b6150c49394f590cf6806. This preserved result is a source/method-independence record, not a claim that a hash proves independence.
+The full newly written calculation path is retained in the consolidated verifier under ib_ function names. Names and I/O are adapted only for consolidation. It independently repeats sequential reduced-angle recursion, separately multiplied ABCD matrices, vector Snell and asphere intersection calculations, native 90°/92.865° chief solves, exact versus paraxial aperture definitions, source-rounding sensitivity, all 21 standalone and six cemented net powers, per-surface Petzval and glass-coordinate checks. Its stable numerical fingerprint still equals the frozen pre-candidate fingerprint. This preserved result is a source/method-independence record, not a claim that a hash proves independence.
 
 ## Stage 4 exact candidate reconciliation
 
-Incoming Stage 3 archive SHA256 df99e6e898175a444f11288b25c20a96dca13365a35de4cad92b31c36bfef800 was independently checked, including all 12 members. Incoming data SHA256 6e88e5cbce23d2047ae586b4725817bf18f21a8d0066ffc106d0798ce6caa89a and analysis SHA256 fce0019168f1240a4505f2e1569d2fdabb0ba89083b69e6f9237649411abb8fe were the reviewed starting pair. Fresh portable replay was exactly equal to the incoming stored JSON. The actual 138-module runtime dependency graph matched the released 709dda72 reference manifest, and fresh actual execution exactly reproduced the incoming runtime report. No unmerged engine branch was used.
+The incoming Stage 3 archive checksum was independently checked, including all 12 members. The incoming data and analysis files were the reviewed starting pair. Fresh portable replay was exactly equal to the incoming stored JSON. The actual 138-module runtime dependency graph matched the released reference manifest, and fresh actual execution exactly reproduced the incoming runtime report. No unmerged engine branch was used.
 
 The actual final TypeScript plus rearPlates is independently expanded and compared at both published focus states against the frozen 39-row source. Every R/d/nd and every asphere coefficient agrees. Standalone powers, groups, cemented net powers, Petzval, cardinals and finite conjugates agree with the independent source computations. Native Japanese S34 remains−62.0139mm. NominalFno 1.46, native 185.73° equisolid field, physical plate, source focus endpoints and all spectral values remain unchanged.
 
@@ -168,4 +168,97 @@ The earlier map is updated by the final parsed-model results and final hashes in
 
 Stage 4 manual claim/citation review: PASS. No APO, measured MTF, factory-melt identity, exact production prescription, full-pupil transmission, continuum guarantee, React/browser or integration acceptance is asserted. Current fisheye MTF remains unsupported; only the authored near-state finite selector is certified.
 
-READY_FOR_BATCH is earned for this exact final pair and documented CHAT_PREFLIGHT/targeted current-project scope after clean extraction and replay. It does not approve unresolved nondefault stress branches or certify integration. The final twelve-file archive includes unchanged original source/card, actual data/analysis, consolidated evidence/verifier/results/audit/manifest, and essential runtime driver/report/native geometry. Python3.12.14, NumPy2.3.5 and SciPy1.17.0 are required for portable full verification; Node24.19.0 plus the identified read-only 709dda72 source snapshot reproduce actual runtime execution. Outputs are written outside the package; stored results are never overwritten during replay. Repository compiler, Prettier, lint, corpus, build and live viewer remain NOT_RUN, requiredAt integration. INTEGRATION_PENDING.
+Batch readiness is earned for this exact final pair and the documented targeted current-project scope after clean extraction and replay. It does not approve unresolved nondefault stress branches or certify integration. The final twelve-file archive includes unchanged original source/card, actual data/analysis, consolidated evidence/verifier/results/audit/manifest, and essential runtime driver/report/native geometry. Python3.12.14, NumPy2.3.5 and SciPy1.17.0 are required for portable full verification; Node24.19.0 plus the identified read-only source snapshot reproduce actual runtime execution. Outputs are written outside the package; stored results are never overwritten during replay. Repository compiler, Prettier, lint, corpus, build and live viewer were not run at this stage and are required at integration. Integration: closed 2026-10-11 — the files are in `src/lens-data/sigma/` and load in the repository engine and surface validator (last section); repository-wide checks run with the batch.
+
+## 2026-10-11 — Semi-diameter pass against the patent figure
+
+Scope: `sd` values and the semi-diameter notes only. Radii, spacings, indices, aspheric coefficients, focus data, the rear plate and the calibrated stop (16.2165 mm) are untouched.
+
+### Source and scale
+
+- Source: `patents/JP2025099854A.pdf`, PDF page 64 (printed p. 63), 図11, the infinity cross-section of Numerical Example 3 (tables on PDF pp. 28–29). The sheet is a 2600 × 1572 px bitmap at 413 ppi; it was measured at that native resolution on the lower half of the section, which carries no leader lines.
+- Axis: the dash-dot line is rows 1316–1318 (centre 1317). Vertex crossings: surface 1 at x = 713, surface 37A at x = 2589, image plane at x = 2817.5.
+- Scale: 150.1865 mm over 1876 px gives 80.06 µm/px; 168.5001 mm over 2104.5 px gives 80.07 µm/px. The vertices of surfaces 5, 15A, 21 and 33 land within 1 px of the positions that scale predicts.
+- Transverse check: drawn curves compared with the prescription spheres at fixed sag read 0.985–0.99 of the axial scale in the front group (surfaces 1–4), 0.98 at surfaces 7 and 8, and 0.99–1.00 in the rear group (surfaces 29, 31, 35). The drawing is equal-scale to about 1.5 %, which is the reading uncertainty of every figure value below.
+- The repository's automatic figure screen on the same sheet returns a median figure/data ratio of 1.000 and 110.19 µm/px at 300 dpi, the same scale.
+- Stop: the drawn aperture ticks begin 198 px (15.85 mm) from the axis against the calibrated 16.2165 mm, a ratio of 0.98.
+
+### Figure readings and decisions
+
+Figure values are the optical extent, where the curved surface ends; flat mounting annuli and flange blocks are excluded.
+
+| Surface | Before (mm) | Figure (mm) | Figure / before | After (mm) | Evidence |
+|---|---:|---:|---:|---:|---|
+| 1 | 44.5 | 44.3 | 0.99 | 44.5 | Front curve runs into the flange top at 553 px. Kept. |
+| 2 | 34.5 | 33.9–34.0 | 0.98 | 34.5 | Curve ends at the flange step, 423–425 px. Kept. |
+| 3 | 33.5 | 33.3 | 0.99 | 33.5 | Curve meets the L2 block edge at 416 px. Kept. |
+| 4 | 23.0 | 23.0 | 1.00 | 23.0 | Curve ends at the flange step, 287 px. Kept. |
+| 5, 6 | 23.0, 23.3 | 23.0 | 1.00, 0.99 | 23.0, 23.3 | Both reach the D1 outer edge at 287.5 px. Kept. |
+| 7 | 23.0 | 19.0–19.2 | 0.83 | 19.5 | The concave curve ends at 236–240 px and a flat annulus runs on to the 23.0 mm outer edge. The old value was the outer edge. Changed. |
+| 8 | 19.8 | 18.9–19.1 | 0.96 | 19.8 | Curve ends at 236–239 px, flat annulus to 20.5 mm. Inside reading noise. Kept. |
+| 9 | 22.0 | 20.5 | 0.93 | 22.0 | Junction reaches the D2 outer edge at 256 px. Kept, see limitations. |
+| 10 | 20.5 | 20.5 | 1.00 | 20.5 | Kept. |
+| 11, 12 | 20.2 | 20.25 | 1.00 | 20.2 | 253 px. Kept. |
+| 13, 14 | 19.5 | 19.45 | 1.00 | 19.5 | 243 px. Kept. |
+| 15A, 16A | 18.5 | 18.3 | 0.99 | 18.5 | 229 px. Kept. |
+| 17, 18, 19 | 17.6, 18.0, 17.6 | 17.45 | 0.99, 0.97, 0.99 | unchanged | 218 px. Kept. |
+| 21, 22 | 17.6 | 17.45 | 0.99 | 17.6 | 218 px. Kept. |
+| 23, 24, 25 | 17.6, 18.0, 17.6 | 17.4 | 0.99, 0.97, 0.99 | unchanged | 217 px. Kept. |
+| 26, 27 | 17.5 | 17.5 | 1.00 | 17.5 | 219 px. Kept. |
+| 28, 29, 30 | 17.0 | 16.8 | 0.99 | 17.0 | 209.5 px. Kept. |
+| 31, 32 | 16.8 | 16.6 | 0.99 | 16.8 | 207 px. Kept. |
+| 33, 34 | 16.2 | 16.0 | 0.99 | 16.2 | 200 px. Kept. |
+| 35 | 16.2 | 13.8–13.9 | 0.85 | 13.9 | The concave curve ends at 172–174 px and a flat annulus runs on to the 16.0 mm outer edge. The old value was the outer edge. Changed. |
+| 36A | 14.2 | 15.7 | 1.11 | 15.7 | Square-cut rim, both faces reach the edge at 196 px. Changed. |
+| 37A | 14.6 | 15.7 | 1.08 | 15.7 | Same square rim; one height for both faces. Changed. |
+
+Four surfaces changed. Surface 7 takes 19.5 mm, between the direct reading (19.0–19.2 mm) and the height the prescription sphere has at the drawn annulus plane (19.7 mm), so it sits just under its facing partner, surface 8, as drawn. Surfaces 35, 36A and 37A are a linked set: the packaged model had carried the L20 rear face to the outer edge, which pushed its rim about 1.2 mm further back than the drawn annulus plane and forced L21 down to 14.2 mm to clear it. With surface 35 left at 16.2 mm the validator refuses the drawn L21 rim (combined sag 3.71 mm against 3.054 mm allowed of the 3.393 mm gap at 15.7 mm); with surface 35 at its drawn 13.9 mm the same rim passes with no override. Neither asphere turns over: slopes run monotonically to 16.5 mm (0.081 on 36A, −0.108 on 37A).
+
+Asphere departures recomputed at the new rims and written into the analysis table: 36A −155.763 µm at 15.7 mm (was −103.111 µm at 14.2 mm) and 37A −32.068 µm at 15.7 mm (was −14.285 µm at 14.6 mm). The same routine reproduces the four previously published departures to the last digit.
+
+### Clearance results
+
+The field-coverage audit skips this lens because of its fisheye projection, and the scratch clear-aperture probe launches with tan(field) and stops at about 74.5°, so the edge of the field was traced separately: a meridional exact trace launched on the first surface with collimated bundles, the rear plate included. It reproduces the published image height, −22.3946 mm at 92.865°.
+
+- Repository validator: no errors. Image-circle floor: 0 undersized. Hidden render trim: 0 mm at focusT 0, 0.25, 0.5, 0.75 and 1.
+- Engine summary unchanged: half-field 92.865°, F/1.46, EFL 15.4978 mm, stop 16.2165 mm.
+- Axial marginal ray at F/1.46: no clip at either focus state. Tightest margin 0.92 mm at surface 26 (16.58 of 17.5 mm). At the changed surfaces it reads 9.81 of 19.5, 7.73 of 13.9, 7.00 of 15.7 and 6.38 of 15.7 mm.
+- Chief ray at 92.865°: not blocked. Tightest margins 12.78 of 13.9 mm at surface 35, 21.64 of 23.0 at surface 4, 14.24 of 15.7 at surface 37A and 33.04 of 34.5 at surface 2; 16.29 of 19.5 at surface 7. With the near-focus spacings the same chief ray reads 12.76 mm at surface 35.
+- Meridional share of the stop diameter that passes every rim, before to after: unchanged through 55.7° (76.2 %); 65° 69.3 to 68.2 %; 75° 57.4 to 56.3 %; 80° 51.3 to 48.9 %; 85° 44.4 to 42.3 %; 88.4°, the 21.6 mm frame corner, 33.9 to 36.3 %; 90° 28.9 to 31.6 %; 92.865° 20.9 to 23.9 %. The corner bundle is now limited by surfaces 2 and 35 instead of 2 and 37A. The corner vignetting is kept, not widened away.
+- Engine geometric transmission, before to after: unchanged to 60°; 0.479 to 0.469 at 65.9°; 0.313 to 0.302 at 77.9°; 0.229 unchanged at 83.9°; 0.125 to 0.135 at 89.8°; 0.083 to 0.104 at 92.8°.
+- Dense meridional scan, 75 field angles to 92.865° by 1,781 first-surface heights: 12,496 of 15,888 traced rays transmit after the pass against 12,509 before at infinity, and 12,543 against 12,562 of 15,980 with the near-focus spacings. First clips that land on a cemented interface fall from 16 to 4 at infinity and from 10 to 1 at near focus; all are on surface 9 between 42.7° and 51.5°.
+
+### Live comparison
+
+The local page was captured at infinity and at closest focus after the edit and compared with 図11. L21 now stands almost as tall as the D6 doublet, as drawn, and no longer sits inside the L20 rim. No elements overlap at either focus state and the on-axis fan is unclipped.
+
+Manufacturer section (coordinator-viewed; no image was supplied to or downloaded for this pass): 21 elements in 15 groups, matching 図11 element for element; aspherical elements L9 and L21; FLD at L4, L17, L18 and L19; SLD at L5, L12 and L13. The patent figure of the modeled example governs the proportions.
+
+### Open limitations
+
+- The renderer joins unequal front and rear rims with a straight bevel. L1, L2, L5 and now L4 and L20 therefore show a bevel where the figure draws a square block with a flat mounting annulus.
+- Surface 9 stays at 22.0 mm, 1.5 mm above the drawn D2 rim (figure/data 0.93, under the threshold for a change). It was raised in the packaged model so that a sampled off-axis ray reaching 20.82 mm does not first clip at the cemented interface. Lowering it to the drawn 20.5 mm would square the D2 rim and passes the validator, at the cost of putting that sample on the junction. The dense scan above shows a few meridional rays still first clip on surface 9 at 22.0 mm.
+- Surface 29 has one value for two drawn extents: the figure cuts the L16 rim with a flat annulus at about 14.5 mm while the L17 front continues on the same curve to 16.8 mm. The shared 17.0 mm is kept, so L16 renders about 1.4 mm thicker at the rim than drawn.
+- Near-focus rim checks used collimated bundles through the near-focus spacings. That screens the geometry; it is not a trace from the finite planar object, which has no meridional object point near 90°.
+- The sample counts in the analysis section on model apertures were taken on the packaged apertures and were not re-run. Only exterior rims moved, so none of those first clips can have moved onto a cemented interface. Closed 2026-10-11: those sample counts were removed from the analysis in the wording pass below.
+
+## 2026-10-11 — Deployment validation and wording pass
+
+Source re-read: `patents/JP2025099854A.pdf`, whose text layer is born-digital and was checked against page renders of PDF pp. 28–29 (Numerical Example 3), p. 22 (aspheric equation), p. 52 (Table 1) and p. 64 (図11). All 39 source rows (37 surfaces plus the filter plate and BF row carried in `rearPlates`), 21 nd/νd/glass rows, 32 aspheric terms (K and A4–A16 on four surfaces; the patent's equation uses 1 + K, as the engine does) and the two variable gaps at both tabulated states were compared with the data file. Mismatches: none. All 22 stored `dPgF` values equal the printed ΔPgF moved to the engine's normal line.
+
+Patent against model, first order: f 15.50 / 15.4978 mm; F-number 1.46 / 1.4598 from the real marginal ray through the calibrated stop; total length 168.50 / 168.5001 mm; paraxial focus 0.0003 mm from the image plane; G1 −111.4197 / −111.4223 mm; G2 41.1473 / 41.1471 mm. The 92.865° chief ray lands at 22.395 mm against the printed Y = 22.39 mm. The 90° chief heights at surfaces 26, 29, 31, 33 and 36 reproduce the condition-16 table to 0.01 mm, and conditions 3, 5, 14, 15, 19 and 20 reproduce the printed EX3 column. Near state: d12 5.9915 and d14 6.6748 mm as printed; the model focuses on an object 435.25 mm ahead of surface 1 at magnification −0.033. The ideal equisolid image height for f = 15.50 mm at 92.865° is 22.46 mm (model −0.30 %); the 21.63 mm frame corner corresponds to a half-field of 88.3°.
+
+Maker comparison: Sigma lists 21 elements in 15 groups with 4 FLD, 3 SLD and 2 aspherical elements, a 180° diagonal angle of view, 11 blades, minimum focus 38.5 cm, L-Mount and Sony E-mount, announced 2024-02-21. Sigma's published section matches 図11 element for element: aspherical elements 9 and 21, FLD at 4, 17, 18 and 19, SLD at 5, 12 and 13. Example 3 is the only full-frame 21-element / 15-group example of the patent's fourteen (Example 4 is 21 / 15 at f = 8.15 mm). At the seven marked positions the example lists FCD100 at L4, L17 and L18, FCD1 at L19 (marked FLD), FC5 at L5, FCD515 at L12 and FCD915 at L13.
+
+Fields changed in this pass. No optical value changed: EFL 15.4978 mm, F/1.46, half-field 92.865°, stop radius 16.2165 mm and both focus keyframes are identical before and after, and the repository surface validator reports no errors.
+
+- Data file: `subtitle`, `specs`, `focusDescription`, the 21 element `role` strings and the wording of the header comment. `apd: "inferred"` with an `apdNote` on L4, L17, L18 and L19 (Sigma's FLD positions) and on L12 and L13 (two of Sigma's SLD positions).
+- L5, Sigma's third SLD position, stays `apd: false`. The example's FC5 (1.48749 / 70.44) has `dPgF` +0.0052, no larger than the +0.0046 of the TAFD55-W elements in the same lens, so the glass does not support a special-dispersion tag.
+- Analysis: the FLD/SLD mapping is corrected (L13 is an SLD position, L19 an FLD position), the maker comparison is stated, the display name and the L9/L21 glass labels are mirrored, the aperture section is renamed "Model Scope and Limitations", and the sample counts that described how the file was checked are removed.
+- This log: hash values and status tokens removed; pending-integration lines closed in place.
+
+Open:
+
+- Surface 9 is stored at 22.0 mm against a drawn 20.5 mm (see the semi-diameter section above).
+- `closeFocusM` is the patent's 0.604 m state rather than the marketed 0.385 m.
+- L15 (LP1, FDS16-W) is the element the patent itself describes as a positive-anomalous-dispersion glass (¶0061–0062, conditions 11–13); it carries `apd: false`.

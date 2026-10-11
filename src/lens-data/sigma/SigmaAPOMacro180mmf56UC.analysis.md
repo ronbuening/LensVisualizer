@@ -12,24 +12,29 @@
 
 The prescription is Example 3 of JPH04110811A, transcribed from the original six-page Japanese publication.
 The numerical table and the two focus states are on PDF p4 (printed p88); Figure 5 is the corresponding section
-on PDF p6 (printed p90). The model is unscaled and retains the native design rather than rescaling it to the
-commercial focal-length designation. [1]
+on PDF p6 (printed p90). The patent works in millimetres, and the model keeps the prescription unscaled rather
+than rescaling it to the commercial focal-length designation. Of the patent's three examples only Example 3 has
+nine elements in six groups; Examples 1 and 2 have eleven in eight and ten in seven. [1]
 
 The correlation to the Sigma APO MACRO 180mm F5.6 UC is strong but not manufacturer-confirmed:
 
 1. Both the numerical example and Sigma's catalogue have nine elements in six air-separated groups.
-2. The two front positive elements have the source's high-Abbe coordinates; Sigma identifies two front SLD elements.
+2. The two front positive elements have nd 1.49700 / νd 81.6, an extra-low-dispersion coordinate; the catalogue
+   description names two SLD elements at the front.
 3. The source design focal length is 174.86 mm and infinity F-number is 5.71, close to the marketed 180 mm f/5.6.
 4. Both have floating internal focusing and a published maximum reproduction ratio of 1:2.
-5. The source distance arithmetic gives 0.54637 m from object to the retained image plane, close to the catalogue's
-   rounded 0.55 m minimum focusing distance. This arithmetic is not proof that the macro state is exactly focused.
+5. The printed 0.5× state puts the object 0.54637 m from the image plane (403.0 mm object distance, 103.29 mm
+   vertex track and 40.08 mm back focus), close to the catalogue's rounded 0.55 m minimum focusing distance.
 
-The manufacturer identifies Sigma, Minolta AF, Nikon and Canon AF versions. The corresponding model taxonomy is
-Sigma SA, Minolta/Sony A, Nikon F and Canon EF, for 35 mm full-frame use. The source aberration plots identify
-image semi-height 21.6 mm; the model records a 43.2 mm image-circle diameter. The catalogue's structural sketch
-contains a thin leading component absent from the patent prescription. Its unknown thickness and material are
-not invented in the model. The archived filename contains “1995”; that filename alone does not establish the
-catalogue's imprint date or the lens's release year. [1,2]
+The catalogue lists Sigma, Minolta AF, Nikon AF and Canon AF versions, recorded here as the Sigma SA,
+Sony/Minolta A, Nikon F and Canon EF mounts for 35 mm full-frame use. The source aberration plots identify
+image semi-height 21.6 mm; the model records a 43.2 mm image-circle diameter. [1,2]
+
+The catalogue's cross-section (p13 of source 2) is cited from the original transcription notes, which record a
+thin leading component that the patent prescription does not contain; nothing is modelled for it. The archived
+file could not be reopened for an independent comparison of that drawing, and no other published section of the
+lens was found. The published specifications (nine elements in six groups, 1:2 at 0.55 m, internal focusing
+with two moving groups, introduction in 1990) agree with the patent's Figure 5 (第5図). [2,9]
 
 ## Optical Architecture
 
@@ -46,19 +51,20 @@ contains two air-separated singlets. The three cemented assemblies are D1 (L2–
 
 The calculated infinity EFL is 174.864 mm. Back focal distance is 40.0805 mm from the last
 glass vertex in air, agreeing with printed 40.08 mm at source precision. First-to-last vertex track is
-103.29 mm; first vertex to the retained image plane is 143.37 mm. Their latter-length/EFL
-ratio is 0.8199, establishing the telephoto description at infinity rather than relying on the
+103.29 mm; first vertex to the image plane is 143.37 mm. The ratio of that length to the EFL
+is 0.8199, establishing the telephoto description at infinity rather than relying on the
 commercial name. Source radius signs use imageward-positive centers of curvature. [1]
 
 The stop is explicitly source row 9 between the counter-moving groups. Its location is published, while its
-clear diameter is inferred. The source's zero-radius notation denotes this plane; the application represents
-it with the flat-surface convention. There is no published asphere or camera-side rear plate.
+clear diameter is inferred. The source's zero-radius notation denotes this plane; the model represents
+it as a flat surface. There is no published asphere or camera-side rear plate.
 
 ## Element-by-Element Analysis
 
 Individual focal lengths below are calculated for each thick element standing alone in air. They must not be
-read as the element's in-situ contribution or the power of a cemented pair. Glass names denote coordinate-compatible
-equivalents, and the file's explicit line indices are catalog-equivalent spectral proxies, not identified production melts.
+read as the element's in-situ contribution or the power of a cemented pair. Glass names are catalogue equivalents
+chosen by nd/νd; the C-, F- and g-line indices stored with each element come from those catalogue glasses, not from
+identified production melts.
 
 ### L1 — Biconvex Positive
 
@@ -105,7 +111,7 @@ and magnification conditions. Its glass coordinate has a higher Abbe number than
 
 ### L6 — Negative Meniscus
 
-nd = 1.75520, νd = 27.5. Glass: E-FD4L equivalent (HOYA). f = -114.0 mm.
+nd = 1.75520, νd = 27.5. Glass: E-FD4 / E-FD4L equivalent (HOYA). f = -114.0 mm.
 
 L6 is the negative meniscus at the entrance to D3, behind the iris. The rear cemented interface admits
 light into L7. Its standalone negative power is outweighed within the positive D3 assembly; the group therefore
@@ -126,78 +132,78 @@ nd = 1.71300, νd = 53.9. Glass: LAC8 equivalent (HOYA). f = -43.0 mm.
 
 L8 is the negative singlet in fixed G4, preceding a short air space and L9. Its standalone power is
 stronger in magnitude than the positive contribution of L9, while the separated pair's net power also depends
-on that intervening space. The fixed rear assembly is central to the retained image-reference interpretation. [1]
+on that intervening space. Because G4 is fixed relative to the image plane, the back focus is the same at both
+focus states. [1]
 
 ### L9 — Positive Meniscus
 
 nd = 1.84666, νd = 23.8. Glass: FDS90-SG equivalent (HOYA). f = +97.7 mm.
 
 L9 is a positive rear meniscus, with a much weaker rear curvature. It completes the net-negative G4
-assembly and is followed by the fixed terminal air gap. The prescription uses the same native nd/νd coordinate
+assembly and is followed by the fixed terminal air gap. The prescription uses the same patent nd/νd coordinate
 as L4, but equality of these two coordinates does not prove identical historical melts or coatings. [1]
 
 ## Glass Identification and Selection
 
 The seven distinct source coordinates were compared with authoritative OHARA, HOYA, HIKARI, SCHOTT, CDGM
 and SUMITA catalogues. Close matches occur across suppliers; the selected HOYA equivalents provide one
-consistent, explicitly approximate spectral set rather than proof of manufacturing provenance. Native d-line
+consistent, explicitly approximate spectral set rather than proof of manufacturing provenance. The patent's d-line
 indices and Abbe numbers are unchanged. The nominal catalog coordinates are: [3–8]
 
-| Elements | HOYA equivalent | Native nd / νd | Catalog nd / νd |
+| Elements | HOYA equivalent | Patent nd / νd | Catalog nd / νd |
 |---|---|---|---|
 | L1, L2 | FCD1 | 1.49700 / 81.6 | 1.49700 / 81.61 |
 | L3 | NBFD10 | 1.83400 / 37.3 | 1.83400 / 37.34 |
 | L4, L9 | FDS90-SG | 1.84666 / 23.8 | 1.84666 / 23.78 |
 | L5 | NBFD11 | 1.78590 / 43.9 | 1.78590 / 43.94 |
-| L6 | E-FD4L | 1.75520 / 27.5 | 1.75520 / 27.53 |
+| L6 | E-FD4 / E-FD4L | 1.75520 / 27.5 | 1.75520 / 27.53 |
 | L7 | FC5 | 1.48749 / 70.4 | 1.48749 / 70.44 |
 | L8 | LAC8 | 1.71300 / 53.9 | 1.71300 / 53.94 |
 
 The explicit nC, nF and ng values are evaluated from the official HOYA formula-1 coefficients at
 656.2725, 486.1327 and 435.8343 nm. The d-line reference is 587.5618 nm. The catalog ratio PgF is converted to
-dPgF against the model engine's normal line, 0.6438 − 0.001682×νd, using the retained native νd.
+dPgF against the model's normal line, 0.6438 − 0.001682×νd, using the patent's νd.
 These derived properties are stored directly on the elements. They allow a spectral proxy model, but no
 apochromatic performance is established for the manufactured lens. “APO” remains part of the product identity,
 not a measured conclusion of this analysis. In particular, modern equivalents cannot settle melt variation,
 coatings or the actual historical dispersion curve. [3]
 
-OHARA S- and L-prefixed families remain distinct in the coordinate audit. Similar codes are not silently
-interchanged. The same caution applies to HOYA moulding variants and historical/current entries; a good
-nd/νd match is a necessary coordinate check, not unique material identification.
+The L1/L2 coordinate is an FCD1-class extra-low-dispersion glass (catalogue dPgF about +0.032), the type Sigma
+calls SLD; the patent itself does not designate it. OHARA S- and L-prefixed families are kept distinct, and the
+same caution applies to HOYA moulding variants and historical/current entries: a good nd/νd match is a
+necessary check, not unique material identification.
 
 ## Focus Mechanism
 
 The patent fixes G1 and G4 relative to the image plane. Toward the published macro state, G2 moves imageward
 11.18 mm and G3 moves objectward 8.25 mm. The printed gaps also leave the iris at a constant axial position.
-The motions are obtained directly from the two source rows, with no reconstructed group trajectory. [1]
+The motions follow directly from the two printed gap sets. [1]
 
-| Gap after source row | Infinity | Published macro |
+| Gap after source row | Infinity | Published 0.5× |
 |---|---:|---:|
 | 5 | 12.48 mm | 23.66 mm |
 | 8 | 14.50 mm | 3.32 mm |
 | 9, STO | 11.63 mm | 3.38 mm |
 | 12 | 33.45 mm | 41.70 mm |
 
-The macro object distance is 403.0 mm from the first surface. The model retains the fixed 40.080 mm
-last-vertex image gap. This value is printed as the infinity back focus; the source does not repeat it in a
-separate macro BF cell. Its use at macro follows the explicitly fixed rear-group/image-plane mechanism.
+The 0.5× object distance is 403.0 mm from the first surface. The model keeps the 40.080 mm last-vertex image
+gap at both states. That value is printed as the infinity back focus; the source does not repeat it for the
+0.5× state, and its use there follows from G4 being fixed relative to the image plane.
 
-At the printed near state, paraxial calculation places the Gaussian image 40.368342 mm behind the last
-vertex: a retained defocus of +0.288342 mm relative to the authored plane. The transverse magnification at
-that Gaussian focus is -0.499275, close to the source's nominal 0.5× magnitude. The model does not move its
-image plane there. The cause of the discrepancy remains unresolved; retained defocus is accepted as a declared
-model limitation, with the printed radii, indices, gaps and object distance intact.
+At the printed 0.5× state the paraxial (Gaussian) image lies 40.368342 mm behind the last vertex, 0.288342 mm
+behind the fixed image plane, with transverse magnification -0.499275. That offset is the design's spherical
+aberration at 1:2, not a focus error. Real rays in the 0.65–0.93 aperture zones cross the axis 40.07–40.11 mm
+behind the last vertex (the full-aperture marginal ray at 40.16 mm), and the on-axis RMS spot radius is 3.2 µm
+at the 40.08 mm plane against 14.9 µm at the paraxial plane. The 0.5× spherical-aberration curve in the
+patent's Figure 6 shows the same bow of about -0.3 mm, and Example 1, printed to four decimals, has the same
+pattern. The printed state is therefore in best focus on the fixed image plane. Rounding cannot account for
+the offset: last-digit rounding of every printed value keeps the Gaussian image between 40.139293 and
+40.598453 mm.
 
-Ordinary round-to-nearest intervals based on the printed digits do not explain the plane discrepancy under
-this reference interpretation. An outward-rounded interval trace encloses the Gaussian image gap between
-40.139293 and 40.598453 mm, excluding the printed-plane interval 40.075–40.085 mm. This diagnostic does not
-prove a particular misprint, establish a truncation convention, or justify changing the prescription.
-
-The finite-state metadata preserves the original first-surface distance. The display endpoint 0.54637 m
-uses object-to-image distance; it is separate from Sigma's marketed 0.55 m. Only the endpoints are published.
-Intermediate gap values are linear interpolation for the display and numerical sampling, not a documented
-cam law or a solved set of focused conjugates. The near configuration's collimated Gaussian EFL is
-93.490 mm; that configuration quantity is not a replacement for the finite-object conjugate calculation.
+The 0.5× state corresponds to 0.54637 m from object to image, against Sigma's marketed 0.55 m minimum focus.
+Only the two end states are published; gap values in between are linearly interpolated, not a documented
+cam law. With the 0.5× gaps the system's focal length for collimated light is 93.490 mm, a property of that
+configuration rather than of the finite-object conjugate.
 
 ## Conditional Expressions
 
@@ -214,10 +220,10 @@ mapping, not the product's overall reproduction ratio. [1, PDF pp1–4]
 | 0.15 < abs(f4/f) < 0.64 | 0.451912 | 0.45 |
 | 1.2 < beta4 < 3.9 | 1.567227 | 1.5 |
 
-All six inequalities hold. Two coarse summary comparisons remain discrepant under ordinary nearest rounding:
-β2,∞ is 4.875859 against printed 4.8, and β4 is 1.567227 against printed 1.5. They are retained as failed raw
-comparisons, rather than being relabeled exact reproductions or used to alter the source. Their broad
-inequality margins do not depend on making those summary numbers agree.
+All six inequalities hold. Two printed summary values do not follow from the prescription by ordinary rounding:
+β2,∞ is 4.875859 against printed 4.8, and β4 is 1.567227 against printed 1.5. Example 1's summary values round
+normally, so these two look truncated or misprinted; the prescription is not altered to match them, and the
+inequalities hold with wide margins either way.
 
 The surface-by-surface Petzval sum is +0.00057159 mm⁻¹ using Σφ/(n n′), with each refracting
 interface counted and the stop contributing zero. This scalar alone does not demonstrate a flat best-focus
@@ -226,37 +232,27 @@ surface or determine tangential/sagittal field curvature.
 ## Aperture, Geometry and Model Limits
 
 The stop's axial location is published, but its physical radius is not. The modeled radius
-9.194388 mm is calibrated by exactly tracing an on-axis entrance ray at EFL/(2×5.71), matching the
-current runtime convention. It is not a published physical diameter, and agreement with the calibrated
-infinity F-number is not independent aperture evidence. Paraxial-only calibration would instead give
-9.048929 mm and is not the radius used for final geometry or containment tests.
+9.194388 mm is set by tracing an exact on-axis ray entering at height EFL/(2×5.71). It is not a
+published physical diameter, and agreement with the infinity F-number is not independent aperture
+evidence. A paraxial-only calibration would give 9.048929 mm.
 
-The model holds the exact-calibrated iris fixed while focusing. At macro its exact sine-NA working F-number
+The model holds that iris fixed while focusing. At 0.5× its exact sine-NA working F-number
 is 6.1666, versus the source's effective 5.98. The corresponding tangent-cone value is
 6.1463; the paraxial working value using that same physical iris is
-6.0558. These conventions do not restore the printed value. Because the source gives no physical
-iris law, this is an explicitly conditional aperture model, not evidence of a repaired source F-number.
-There is no focus-dependent iris adjustment to force agreement.
+6.0558. None of these conventions restores the printed value. Because the source gives no iris
+diameter or iris movement, the printed 5.98 is left unreproduced rather than matched with a
+focus-dependent iris.
 
-Clear radii are inferred from the optical rims of Figure 5, checked against exact beams and a native-scale
-section. They are not measured production apertures. All published states and representative interpolations
-retain positive glass thickness, admissible actual rim slopes and separated shared radial material bands.
-The default 90% gap-intrusion policy suffices without an override. The minimum checked edge thickness is
-0.597492 mm and maximum rim angle is 22.905553°.
+Clear radii are inferred from the element rims drawn in Figure 5 and checked against traced beams. They are
+not measured production apertures. At both published states and in between, every element keeps positive
+edge thickness and neighbouring elements stay separated; the minimum edge thickness is 0.597492 mm and the
+steepest rim slope is 22.905553°.
 
-A finite d-line sample of 38,800 exact three-dimensional rays covers both endpoints, seven intermediate
-states, four aperture settings, eleven image-field fractions, and meridional plus skew pupil samples.
-The separately tested, directly published 7° infinity half-field is included as well as the field aimed to
-21.6 mm image height. Every sampled on-axis beam and edge chief ray clears. Edge vignetting is retained:
-38,256 samples transmit, and the first clips occur at component boundaries or exits, never initially
-inside a cemented assembly. G3 uses equal inferred 11.31 mm clear radii on its three surfaces, sufficient
-for the published-angle marginal ray to traverse the cemented interface. That sampling is not a continuum
-guarantee, measured illumination curve, production-render test or manufactured-lens MTF.
-
-A separate 0–7° angular sweep across all nine focus states tested 38,412 rays; 37,743 transmitted.
-No sampled ray first clipped inside cemented glass. At finite distance, the angle refers to object height
-divided by first-surface distance. Samples beyond the 43.2 mm image circle are diagnostic only, because
-the patent publishes its 14° field at infinity. These counts are separate from the image-height grid.
+On-axis beams and corner chief rays clear every surface at both published states and in between, for the
+21.6 mm image height and for the 7° infinity half-field the patent publishes. Corner bundles are vignetted
+at element rims, mainly in the fixed front group. G3 uses equal inferred 11.31 mm clear radii on its three
+surfaces, sufficient for the 7° marginal ray to traverse the cemented interface. These are properties of the
+inferred rims, not a measured illumination curve or manufactured-lens MTF.
 
 ## Sources
 
@@ -265,6 +261,7 @@ the patent publishes its 14° field at infinity. These counts are separate from 
    [Bibliographic record](https://patents.google.com/patent/JPH04110811A/en).
 2. Sigma, manufacturer catalogue preserved as LensCatalogue1995.pdf, PDF p13 (product description and section),
    PDF p16 (specifications). [Archived manufacturer original](https://web.archive.org/web/20121030010747id_/http://www.sigmauser.co.uk/images/stories/museum/LensCatalogue1995.pdf).
+   The filename alone does not establish the catalogue's imprint date.
 3. HOYA, [full AGF catalogue including obsolete entries, 2026-07-07](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf),
    named NM/CD records; formula-1 coefficient evaluation supplies only the stated equivalent-glass proxy.
 4. OHARA, [Pocket Catalogue, May 2023](https://oharacorp.com/wp-content/uploads/2023/06/ohara-pocket-catalog-2023-05.pdf), coordinate and family comparison.
@@ -272,3 +269,5 @@ the patent publishes its 14° field at infinity. These counts are separate from 
 6. SCHOTT, [Optical Glass Collection datasheets, May 2019](https://www.schott.com/en-gb/products/optical-glass/-/media/Project/OnEx/Products/O/optical-glass/Downloads/schott-optical-glass-collection-datasheets-english-may2019.pdf?rev=5358bb64e13a44f2b37f5065490509af), coordinate comparison.
 7. CDGM, [Optical Glass catalogue](https://www.cdgmgd.com/accessory/2022-06-28/client/www.cdgmgd.com/9b32dd2c-55f4-4d4c-b2d2-48f52c9d5f07.pdf), coordinate comparison.
 8. SUMITA, Glass Data Book version 14.02.00, obtained through the [official download page](https://www.sumita-opt.co.jp/en/download/), coordinate comparison.
+9. Phillip Reeve, [Review: Sigma 180mm 5.6 Apo Macro (MF)](https://phillipreeve.net/blog/review-sigma-180mm-5-6-apo-macro-mf/):
+   published specifications, internal focusing with two moving groups, 1990 introduction.

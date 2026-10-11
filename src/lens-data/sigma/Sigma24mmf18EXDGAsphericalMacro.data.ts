@@ -1,30 +1,49 @@
 import type { LensDataInput } from "../../types/optics.js";
 /**
- * JP2001330771A Numerical Example2; original Sigma24mm F1.8 EX DG ASPHERICAL MACRO.
- * Architectural production correlation only. No DG DN or Art substitution.
- * Authorized INFINITY ONLY. Approved DERIVED last-surface image gap38.58mm.
- * Source near d11=2.30 at OBJ50 retained only in evidence; no active close reconstruction.
- * NO_INTERNAL_RECONSTRUCTION. Manufacturer0.18m MOD metadata does not certify travel.
- * 10 glass bodies +2 separate0.2000mm resin films =12 material entries /9 air components.
- * s5A fronts first resin; s15A exits second resin. Native A=1 maps K=0; no scaling.
- * Original PDF5 directly includes values and coefficients; prior missing-pages note corrected.
- * d-line explicit paragraph0016. SDs inferred; physical iris calibrated from native F1.85.
- * Catalog spectra are coordinate-equivalent proxies, not identified production melts.
- * Minimal gapSagFrac0.9266 is required for the native-F1.85 axial marginal ray.
- * Default0.90 caps shared s18/19 radius below that ray; 0.9265 fails,0.9266 passes.
- * Positive gap clearance0.133719mm; rim/edge/render checks retained.
- * Full-pupil off-axis vignetting remains; all sampled half/quarter pupils pass.
+ * JP 2001-330771 A, Numerical Example 2, correlated with the original Sigma 24mm F1.8 EX DG ASPHERICAL MACRO
+ * (not the later DG DN or Art lenses). The correlation rests on construction; Sigma has not confirmed it.
+ * Infinity focus only. The patent prints no back focus or total length, so the 38.58 mm image distance after
+ * surface 22 is the paraxial back focus of the printed table (38.579 mm).
+ * The printed table traces to f = 24.690 mm, the stated 24.69 mm; no scaling or correction is applied.
+ * The patent tabulates one near state: d11 = 2.30 mm at OBJ = 50, read as an object 50 mm in front of surface 1
+ * (about 1:2.6), with both groups advancing and the stop moving with G2. It is not modeled because the patent
+ * prints no image distance for it. Sigma's 0.18 m minimum focus distance is product data, not modeled focus travel.
+ * 10 glass elements + 2 resin layers (0.20 mm each) entered as separate elements = 12 element entries
+ * in 9 air-separated groups.
+ * Surface 5A is the air-side front of the resin layer on L3; surface 15A is the air-side rear of the resin layer
+ * on L6. The patent's conic A = 1 corresponds to K = 0.
+ * Prescription and aspheric coefficients are on PDF page 5 of the publication. Indices are d-line
+ * (paragraph 0016). The stop radius follows from the patent's F/1.85.
+ * The patent prints 0.72 for condition (3), D1c / f, where its own table gives 0.727; the table is kept as
+ * printed (see sourceErrata).
+ * gapSagFrac 0.9266: the F/1.85 axial marginal ray needs 11.343 mm at surface 18, and the default 0.90 would cap
+ * the height shared by surfaces 18 and 19 at 11.19 mm. 0.9266 is the smallest four-decimal value that admits
+ * 11.35 mm (0.9265 does not); 0.134 mm of air remains there.
+ * The full axial beam passes every surface. Full-aperture off-axis beams are clipped at the inferred rims,
+ * first at surface 18.
+ * Glass names are catalog glasses that match the printed nd / vd; their line indices are stand-ins, not
+ * identified production melts.
+ * NOTE ON SEMI-DIAMETERS: the patent prints none. Values are estimated from the Fig. 2 outline (PDF page 7) and
+ * floor-checked by real-ray trace at F/1.85 and at the 21.63 mm image corner. Fig. 2 draws a flat land outside
+ * the concave rear faces of L2, L3 and L8, and draws L9 square to its rim. Surface 4 is 17.5 mm, the rim-slope
+ * limit (Fig. 2 ends the curve at about 17.7 mm). L3 and its resin layer (surfaces 5A, 6 and 7) are 16.9 mm,
+ * one height so L3 keeps the flat top Fig. 2 draws at 16.85 mm; the drawn curve of surface 7 ends at about
+ * 15.0 mm. Surfaces 4 and 5A nearly meet at the rim as drawn: 0.60 mm of air at 16.9 mm (92.1 % of the gap
+ * taken by sag), inside the 0.9266 allowance above; the default 0.90 would cap L3 at 16.7 mm. Surface 18 is
+ * held at 11.35 mm, just above the F/1.85 axial ray (11.343 mm), because surfaces 18 and 19 would meet at
+ * 11.78 mm; surface 19 is 14 mm, equal to surface 20, following L9's square rim as drawn.
  */
 const LENS_DATA = {
   key: "sigma-24mm-f18-ex-dg-aspherical-macro",
   maker: "Sigma",
   name: "SIGMA 24mm f/1.8 EX DG ASPHERICAL MACRO",
-  subtitle: "JP2001330771A Example 2; architectural correlation; authorized infinity-only model",
+  subtitle: "JP 2001-330771 A, Example 2 — construction-based production correlation",
   specs: [
-    "10 GLASS BODIES / 9 GROUPS",
-    "2 EXPLICIT HYBRID RESIN FILMS",
-    "NATIVE 24.69mm / f/1.85",
-    "INFINITY ONLY; DERIVED IMAGE PLANE",
+    "10 ELEMENTS / 9 GROUPS",
+    "DESIGN f = 24.69 mm",
+    "DESIGN F/1.85",
+    "2 HYBRID ASPHERICAL SURFACES / 2 ELEMENTS",
+    "INFINITY FOCUS ONLY",
   ],
   focalLengthMarketing: 24,
   focalLengthDesign: 24.689902524838644,
@@ -42,15 +61,15 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Glass body 1",
+      label: "Element 1",
       diagramLabel: "L1",
       type: "Positive Meniscus",
       nd: 1.72342,
       vd: 38,
       indexReference: "d",
       fl: 197.73493660261215,
-      glass: "BAFD8 (HOYA coordinate-equivalent class; supplier unconfirmed)",
-      role: "Source material in G1. Standalone in-air power is not an isolated aberration contribution.",
+      glass: "BAFD8 (HOYA) / S-BAH28 (OHARA) coordinate-equivalent class; supplier unconfirmed",
+      role: "Weak positive front meniscus; forms sub-group G1a of the first group.",
       nC: 1.7178112443785216,
       nF: 1.7368514829632171,
       ng: 1.7479328966874885,
@@ -59,7 +78,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
-      label: "Glass body 2",
+      label: "Element 2",
       diagramLabel: "L2",
       type: "Negative Meniscus",
       nd: 1.834,
@@ -67,7 +86,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -41.97559503120446,
       glass: "NBFD10 (HOYA coordinate-equivalent class; supplier unconfirmed)",
-      role: "Source material in G1. Standalone in-air power is not an isolated aberration contribution.",
+      role: "Negative meniscus; first element of the diverging sub-group G1b.",
       nC: 1.8274203039181818,
       nF: 1.8497525931192302,
       ng: 1.862684242793315,
@@ -76,7 +95,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "R1",
-      label: "Hybrid resin film1",
+      label: "Element 3 resin layer",
       diagramLabel: "R1",
       type: "Hybrid resin negative meniscus",
       nd: 1.5184,
@@ -84,13 +103,13 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -630.2442841994746,
       glass: "Unmatched (hybrid optical resin; spectrum unpublished)",
-      role: "Separate source0.2000mm resin film; material identity and spectrum unpublished.",
+      role: "Thin resin layer bonded to the front of L3; its air-side surface 5A is aspherical.",
       cemented: "H1",
     },
     {
       id: 4,
       name: "L3",
-      label: "Glass body 3",
+      label: "Element 3",
       diagramLabel: "L3",
       type: "Negative Meniscus",
       nd: 1.7859,
@@ -98,7 +117,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -49.35225425709552,
       glass: "NBFD11 (HOYA coordinate-equivalent class; supplier unconfirmed)",
-      role: "Source material in G1. Standalone in-air power is not an isolated aberration contribution.",
+      role: "Negative meniscus glass body of the front hybrid asphere; completes G1b.",
       nC: 1.7805325504487635,
       nF: 1.7984205190567872,
       ng: 1.8084583793352933,
@@ -108,7 +127,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L4",
-      label: "Glass body 4",
+      label: "Element 4",
       diagramLabel: "L4",
       type: "Biconvex Positive",
       nd: 1.80518,
@@ -116,7 +135,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 100.77265148560294,
       glass: "S-TIH6 (OHARA coordinate-equivalent class; supplier unconfirmed)",
-      role: "Source material in G1. Standalone in-air power is not an isolated aberration contribution.",
+      role: "Thick biconvex element with a weak front curve; first element of the converging sub-group G1c.",
       nC: 1.7961055627673077,
       nF: 1.827773968781163,
       ng: 1.8472858512675383,
@@ -125,7 +144,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L5",
-      label: "Glass body 5",
+      label: "Element 5",
       diagramLabel: "L5",
       type: "Positive Meniscus",
       nd: 1.834,
@@ -133,7 +152,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 86.49002561496106,
       glass: "NBFD10 (HOYA coordinate-equivalent class; supplier unconfirmed)",
-      role: "Source material in G1. Standalone in-air power is not an isolated aberration contribution.",
+      role: "Positive meniscus; completes G1c ahead of the variable gap d11 and the stop.",
       nC: 1.8274203039181818,
       nF: 1.8497525931192302,
       ng: 1.862684242793315,
@@ -142,7 +161,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L6",
-      label: "Glass body 6",
+      label: "Element 6",
       diagramLabel: "L6",
       type: "Biconvex Positive",
       nd: 1.713,
@@ -150,7 +169,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 37.89560188294225,
       glass: "LAC8 (HOYA coordinate-equivalent class; supplier unconfirmed)",
-      role: "Source material in G2. Standalone in-air power is not an isolated aberration contribution.",
+      role: "Biconvex positive element behind the stop; glass body of the rear hybrid asphere, sub-group G2a.",
       nC: 1.7089785191080578,
       nF: 1.7221971878455318,
       ng: 1.7293910484619255,
@@ -160,7 +179,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "R2",
-      label: "Hybrid resin film2",
+      label: "Element 6 resin layer",
       diagramLabel: "R2",
       type: "Hybrid resin positive meniscus",
       nd: 1.5184,
@@ -168,13 +187,13 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 437.5724701736867,
       glass: "Unmatched (hybrid optical resin; spectrum unpublished)",
-      role: "Separate source0.2000mm resin film; material identity and spectrum unpublished.",
+      role: "Thin resin layer bonded to the rear of L6; its air-side surface 15A is aspherical.",
       cemented: "H2",
     },
     {
       id: 9,
       name: "L7",
-      label: "Glass body 7",
+      label: "Element 7",
       diagramLabel: "L7",
       type: "Positive Meniscus",
       nd: 1.6968,
@@ -182,7 +201,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 62.57288122811317,
       glass: "K-LaK14 (SUMITA coordinate-equivalent class; supplier unconfirmed)",
-      role: "Source material in G2. Standalone in-air power is not an isolated aberration contribution.",
+      role: "Positive meniscus crown; front element of the cemented negative doublet G2b.",
       nC: 1.6929936080006105,
       nF: 1.705513134157419,
       ng: 1.7123214628278374,
@@ -192,7 +211,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L8",
-      label: "Glass body 8",
+      label: "Element 8",
       diagramLabel: "L8",
       type: "Biconcave Negative",
       nd: 1.7552,
@@ -200,7 +219,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -20.205856875556325,
       glass: "S-TIH4 (OHARA coordinate-equivalent class; supplier unconfirmed)",
-      role: "Source material in G2. Standalone in-air power is not an isolated aberration contribution.",
+      role: "Biconcave flint; rear element of the cemented negative doublet G2b.",
       nC: 1.7472950054501213,
       nF: 1.774744711742615,
       ng: 1.791497422871583,
@@ -210,7 +229,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L9",
-      label: "Glass body 9",
+      label: "Element 9",
       diagramLabel: "L9",
       type: "Positive Meniscus",
       nd: 1.713,
@@ -218,7 +237,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 89.21859233277661,
       glass: "LAC8 (HOYA coordinate-equivalent class; supplier unconfirmed)",
-      role: "Source material in G2. Standalone in-air power is not an isolated aberration contribution.",
+      role: "Positive meniscus; first element of the converging rear sub-group G2c.",
       nC: 1.7089785191080578,
       nF: 1.7221971878455318,
       ng: 1.7293910484619255,
@@ -227,7 +246,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L10",
-      label: "Glass body 10",
+      label: "Element 10",
       diagramLabel: "L10",
       type: "Biconvex Positive",
       nd: 1.60625,
@@ -235,7 +254,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 56.54377716515711,
       glass: "Unmatched (native 1.60625/63.1; no compatible catalog coordinate)",
-      role: "Source material in G2. Standalone in-air power is not an isolated aberration contribution.",
+      role: "Biconvex positive rear element; completes G2c.",
     },
   ],
   surfaces: [
@@ -269,7 +288,7 @@ const LENS_DATA = {
       d: 7.56,
       nd: 1,
       elemId: 0,
-      sd: 16.5,
+      sd: 17.5,
     },
     {
       label: "5A",
@@ -277,7 +296,7 @@ const LENS_DATA = {
       d: 0.2,
       nd: 1.5184,
       elemId: 3,
-      sd: 17,
+      sd: 16.9,
     },
     {
       label: "6",
@@ -285,7 +304,7 @@ const LENS_DATA = {
       d: 1.5,
       nd: 1.7859,
       elemId: 4,
-      sd: 17,
+      sd: 16.9,
     },
     {
       label: "7",
@@ -293,7 +312,7 @@ const LENS_DATA = {
       d: 12.9,
       nd: 1,
       elemId: 0,
-      sd: 17,
+      sd: 16.9,
     },
     {
       label: "8",
@@ -389,7 +408,7 @@ const LENS_DATA = {
       d: 3.75,
       nd: 1.713,
       elemId: 11,
-      sd: 11.36,
+      sd: 14,
     },
     {
       label: "20",
@@ -443,7 +462,7 @@ const LENS_DATA = {
   maxFstop: 22,
   apertureBlades: 9,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: authorized infinity-only state with DERIVED BF38.58mm. Published near d11=2.30mm at OBJ50 is retained in evidence, not active: object reference and derived close image were not approved. No finiteConjugates certification. Manufacturer0.18m MOD is identity metadata, not modeled travel. Native d11=5.96; both0.2mm resin films retained; K=A-1=0. Iris F1.85-calibrated and SDs inferred. Catalog-equivalent spectra approximate; resin and final glass unmatched. Exact factory formula unconfirmed. Minimal local gap allowance92.66% preserves native-F1.85 axial beam with positive clearance; default90% cannot. Full-pupil off-axis geometric vignetting remains; sampled half/quarter pupils pass.",
+    "Infinity focus only; every air gap stays fixed. The patent describes floating focus in which both groups advance and the gap d11 ahead of the stop closes, and it tabulates one near state: d11 = 2.30 mm (5.96 mm at infinity) at an object distance of 50 mm, about 1:2.6, with the stop moving with the rear group. That state is not modeled because the patent prints no image distance for it. The 38.58 mm image distance at infinity is the paraxial back focus of the printed table; the patent prints no back focus. The production lens focuses to 0.18 m (1:2.7); that is product data, not modeled focus travel.",
   groups: [
     {
       text: "G1",
@@ -458,12 +477,12 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "Hybrid1",
+      text: "H1",
       fromSurface: "5A",
       toSurface: "7",
     },
     {
-      text: "Hybrid2",
+      text: "H2",
       fromSurface: "13",
       toSurface: "15A",
     },
@@ -477,11 +496,7 @@ const LENS_DATA = {
   sourceErrata: [
     {
       status: "unresolved",
-      note: "Last-surface image distance absent; scoped approved DERIVED infinity BF38.58mm adopted. Near image reference remains unapproved.",
-    },
-    {
-      status: "unresolved",
-      note: "Printed condition3=0.72 vs native infinity0.726612832; retain source and actual inequality without repair.",
+      note: "The patent prints 0.72 for condition (3), D1c / f, where its own table gives 0.727 (17.94 mm / 24.69 mm); the table is kept as printed.",
     },
   ],
   gapSagFrac: 0.9266,

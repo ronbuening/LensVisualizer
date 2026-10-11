@@ -1,59 +1,72 @@
 import type { LensDataInput } from "../../types/optics.js";
 /**
- * Samyang AF14mmF2.8EF, KR101918210B1 Example3 Tables7-9/Figure7.
- * Fixed-source correlation, not manufacturer-confirmed production-exact optics.
- * 15 lenses/10 components plus source OD3 camera-side 2.5 mm plate via rearPlates.
- * No scaling. Native lens R/d/nd and all four asphere columns are retained;
- * the terminal D4/D5 representation is the explicit exception below.
- * Controlling Equation6 is blank in A/B. The explicitly approved interpretation
- * uses sibling KR101933088B1 Eq5: standard conic K + A..F = Y4..Y14.
- * This convention is borrowed with approval, not a recovered controlling equation.
+ * Samyang AF 14mm F2.8 EF; KR 10-1918210 B1, Example 3 (Tables 7-9, Figure 7).
+ * The link to the production lens rests on its construction; Samyang has not confirmed
+ * that these are the production radii, spacings or glasses.
+ * 15 elements in 10 groups, plus the patent's 2.5 mm camera-side plate OD3, traced
+ * through rearPlates. No scaling. Radii, thicknesses, air gaps, nd/Vd and all four
+ * asphere columns are as printed (d line).
  *
- * Explicit lens-specific owner exception, 2026-10-08: the image plane is the
- * fixed arithmetic D4+D5 = 0.500000 mm reference after OD3. Printed D4 is
- * 0.495503/0.514995/0.572628 and signed D5 is +0.004497/-0.014995/-0.072628.
- * No negative physical air gap or plate motion is modeled. Residual defocus at
- * the fixed plane is -0.019253/+0.003864/+0.075973 mm. Approval is not patent
- * correction evidence. Source G1 sign/Table10 powers/Eq5 discrepancies remain.
+ * ASPHERE CONVENTION: paragraph 0096 defines K as the conic constant, c = 1/R and
+ * A-F as aspheric coefficients, but the Equation 6 area is blank in both the A and B
+ * publications. The model assumes the standard conic form with A..F multiplying
+ * Y^4..Y^14, which the same-day sibling KR 10-1933088 B1 prints as its Equation 5
+ * under identical wording. Ray tracing confirms it: the on-axis RMS spot is 10.5 um
+ * at f/2.851 and the 57.871 deg chief ray lands at 21.700 mm (Table 10 y = 21.7);
+ * reading the printed K as 1+K instead gives 213 um and 32.2 mm.
  *
- * PUBLISHED focus: all three Table9 states retained. Only G2 moves. Interpolated
- * gaps are illustrative and are not certified intermediate finite conjugates.
- * The physical iris is inferred/calibrated from infinity f/2.851, not published.
- * Printed finite-state Fno 2.853/2.938 are preserved in the analysis; their
- * convention is not independently established or reproduced by this fixed iris.
- * No varying diaphragm schedule or measured performance is implied.
- * S7/S8 semi-diameters 15.06/12.31 are published; other SDs are inferred from
- * exact ray clearance and Figure7 proportions. No absent aperture is called measured.
- * Catalog-equivalent labels do not identify a supplier/melt. S7/S22 glasses
- * remain Unmatched at source precision and use native nd/Vd approximation.
- * Direct nC/nF/ng anchors for the other elements are evaluated from selected
- * HOYA catalog-equivalent coefficients, not patent-published or measured spectra.
- * This also supplies FD110, absent from the frozen runtime catalog.
+ * IMAGE PLANE: placed 0.5 mm behind the plate, the sum of the printed D4 and D5 at
+ * every focus state (D4 0.495503/0.514995/0.572628, D5 +0.004497/-0.014995/-0.072628),
+ * as in the sibling FE file. The plate does not move and no negative air gap is
+ * modelled. The paraxial focus lies -0.019253/+0.003864/+0.075973 mm from that plane
+ * at the three states.
+ *
+ * FOCUS: PUBLISHED. All three Table 9 states are retained and only G2 moves. Gaps
+ * between the tabulated states are linear interpolation, not published values.
+ * The iris radius is set from the infinity f/2.851; the patent publishes none. The
+ * printed finite-state Fno 2.853/2.938 are quoted in the analysis and are not
+ * reproduced by this fixed iris. No changing diaphragm is modelled.
+ *
+ * SOURCE INCONSISTENCIES (kept as printed; see sourceErrata): G1 (S1-13) computes
+ * to +25.11 mm although the text calls it negative; Table 10's f1st, fAF and fG3
+ * differ from the Table 7 values by 0.7-2.7%; Table 10's D/y = 0.557 lies outside
+ * Equation 5's 0.65-0.75.
+ *
+ * S7/S8 semi-diameters 15.06/12.31 are published (Table 7 H-Ape). Other SDs are
+ * estimated from Figure 7 and floor-checked by exact real-ray trace. The sheet is
+ * drawn about 5% tighter across the axis than along it, so rim heights are read
+ * against the published S7 height. Every inferred rim agrees with the drawing
+ * within 5% except the L5-L6 doublet, drawn at 13.0 mm: S9 11.8 is the most the
+ * default 0.90 cross-gap rule admits against S8, and S10/S11 stay 12.2 with it.
+ * No absent aperture is called measured.
+ *
+ * GLASS: catalog-equivalent labels do not identify a supplier or melt. The L4 (S7)
+ * and L13 (S22) glasses stay Unmatched at the printed precision and use the nd/Vd
+ * approximation. nC/nF/ng for the other elements are evaluated from HOYA catalog
+ * dispersion formulas; they are catalog values, not patent-published or measured
+ * spectra. They also supply FD110, which the app's glass catalog does not contain.
  */
 const LENS_DATA = {
   key: "samyang-af-14mm-f28-ef",
-  name: "SAMYANG AF EF 14mm f/2.8",
+  name: "SAMYANG AF 14mm f/2.8 EF",
   maker: "Samyang",
   sourceErrata: [
     {
       status: "unresolved",
-      note: "Table 7/9 D4 after the rear plate varies 0.495503/0.514995/0.572628 mm; signed D5 after IMG is +0.004497/-0.014995/-0.072628 mm. Under the explicit 2026-10-08 owner exception this model uses the fixed 0.500000 mm arithmetic reference D4+D5, not a corrected patent IMG. Source and modeled defocus are disclosed; all native lens radii, thicknesses, indices and focus-group spacings are retained.",
+      note: "The patent text calls the first group (surfaces 1–13) negative, but the Table 7 values give it a positive focal length of +25.1 mm; Example 2's first group computes positive as well. Table 10's focal lengths for the first element and for groups 2 and 3 (345.936, 99.513 and 118.196 mm) differ from the Table 7 values (348.46, 98.64 and 115.05 mm) by 0.7–2.7 %, as they do in all three examples; the printed prescription is used unchanged.",
     },
     {
       status: "unresolved",
-      note: "The numerical G1 group S1-13 has positive standalone EFL +25.111991 mm although source prose/claims call it negative. Table 10 f1st 345.936, fAF 99.513 and fG3 118.196 mm compute 348.460392, 98.643520 and 115.047351 mm. Numerical Table 7 values and source group boundaries are unchanged.",
-    },
-    {
-      status: "unresolved",
-      note: "Table 10 D/y = 12.08/21.7 = 0.556682 fails Equation 5 range 0.65-0.75. Its D differs from Table 7 H-Ape 15.06/12.31 mm. No aperture value is substituted to make the condition pass.",
+      note: "Table 10 lists D/y = 12.08/21.7 = 0.557 for this example, outside Equation 5's range of 0.65–0.75, and its D matches neither aperture printed in Table 7 (15.06 and 12.31 mm). The Table 7 apertures are used.",
     },
   ],
-  subtitle: "KR 101918210 B1 — Example 3; inferred EF association, approved fixed-reference image plane",
+  subtitle: "KR 10-1918210 B1, Example 3 — construction-based production correlation",
   specs: [
     "15 ELEMENTS / 10 GROUPS",
-    "MARKETED 14mm f/2.8; DESIGN f/2.851",
-    "4 ASPHERICAL SURFACES",
-    "THREE PUBLISHED FOCUS STATES; DERIVED IMAGE REFERENCE",
+    "DESIGN f = 14.19 mm",
+    "DESIGN F/2.85",
+    "4 ASPHERICAL SURFACES / 2 ELEMENTS",
+    "THREE PUBLISHED FOCUS STATES",
   ],
   focalLengthMarketing: 14,
   focalLengthDesign: 14.190782147128807,
@@ -61,7 +74,7 @@ const LENS_DATA = {
   apertureDesign: 2.851,
   lensMounts: ["canon-ef"],
   imageFormat: "135-full-frame",
-  patentNumber: "KR 101918210 B1",
+  patentNumber: "KR 10-1918210 B1",
   patentAuthors: ["Jae Myung Yu", "Hae Jin Lee", "Jung Du Lee"],
   patentAssignees: ["Samyang Optics Co., Ltd."],
   patentYear: 2018,
@@ -78,7 +91,7 @@ const LENS_DATA = {
       vd: 33.27,
       fl: 348.460392178,
       glass: "NBFD15 (Hoya equivalent)",
-      role: "Front positive meniscus; source L13.",
+      role: "Weak positive front meniscus of the fixed first group.",
       nC: 1.79901539217,
       nF: 1.82324484337,
       ng: 1.83750210174,
@@ -93,7 +106,7 @@ const LENS_DATA = {
       vd: 54.67,
       fl: -80.538759667,
       glass: "TAC8 (Hoya equivalent)",
-      role: "Front negative meniscus; source L23.",
+      role: "First of the three negative menisci (L2–L4) behind the front element.",
       nC: 1.7251025131,
       nF: 1.73843913675,
       ng: 1.74571184197,
@@ -108,7 +121,7 @@ const LENS_DATA = {
       vd: 46.5,
       fl: -50.569262404,
       glass: "TAF3 (Hoya equivalent)",
-      role: "Front negative meniscus; source L33.",
+      role: "Second negative meniscus of the front group, ahead of the aspherical L4.",
       nC: 1.79900281344,
       nF: 1.81629648474,
       ng: 1.8259456919,
@@ -123,7 +136,7 @@ const LENS_DATA = {
       vd: 49.7,
       fl: -24.654384957,
       glass: "Unmatched (lanthanum crown class; source 1.77271 / 49.70)",
-      role: "Double-sided negative asphere; source L43, with published face radii.",
+      role: "Double-sided aspherical negative meniscus; its two apertures are the only ones the patent prints.",
     },
     {
       id: 5,
@@ -135,7 +148,7 @@ const LENS_DATA = {
       vd: 20.88,
       fl: -14.963818312,
       glass: "E-FDS1 (Hoya equivalent)",
-      role: "Negative member of the L5-L6 cemented doublet.",
+      role: "High-index negative front member of the cemented L5–L6 pair.",
       cemented: "D1",
       nC: 1.91037567834,
       nF: 1.95457312693,
@@ -151,7 +164,7 @@ const LENS_DATA = {
       vd: 27.76,
       fl: 17.428485284,
       glass: "E-FD13 (Hoya equivalent)",
-      role: "Positive member of the L5-L6 cemented doublet.",
+      role: "Positive rear member of the cemented L5–L6 pair.",
       cemented: "D1",
       nC: 1.73307111041,
       nF: 1.75975543915,
@@ -167,7 +180,7 @@ const LENS_DATA = {
       vd: 23.78,
       fl: 30.162235334,
       glass: "FDS90 (Hoya equivalent)",
-      role: "Separated positive element completing the fixed front group.",
+      role: "Separated positive singlet that closes the fixed first group.",
       nC: 1.83649191249,
       nF: 1.87208870412,
       ng: 1.89413034128,
@@ -182,7 +195,7 @@ const LENS_DATA = {
       vd: 55.46,
       fl: -32.332801491,
       glass: "LAC14 (Hoya equivalent)",
-      role: "Leading negative member of the moving cemented triplet.",
+      role: "Negative front member of the cemented focusing triplet L8–L10.",
       cemented: "T1",
       nC: 1.69296898855,
       nF: 1.70553311024,
@@ -198,7 +211,7 @@ const LENS_DATA = {
       vd: 58.96,
       fl: 18.100766451,
       glass: "E-C3 (Hoya equivalent)",
-      role: "Positive central member of the moving cemented triplet.",
+      role: "Positive central member of the cemented focusing triplet.",
       cemented: "T1",
       nC: 1.51555996027,
       nF: 1.52434934583,
@@ -214,7 +227,7 @@ const LENS_DATA = {
       vd: 20.88,
       fl: -58.155896338,
       glass: "E-FDS1 (Hoya equivalent)",
-      role: "Rear negative member of the moving cemented triplet.",
+      role: "High-index negative rear member of the cemented focusing triplet.",
       cemented: "T1",
       nC: 1.91037567834,
       nF: 1.95457312693,
@@ -230,7 +243,7 @@ const LENS_DATA = {
       vd: 32.32,
       fl: -8.449203165,
       glass: "TAFD45 (Hoya equivalent)",
-      role: "Negative member of the first rear cemented doublet.",
+      role: "High-index negative front member of the cemented pair behind the stop.",
       cemented: "D2",
       nC: 1.94513502106,
       nF: 1.97464566421,
@@ -246,7 +259,7 @@ const LENS_DATA = {
       vd: 25.72,
       fl: 13.962670232,
       glass: "FD110 (Hoya equivalent)",
-      role: "Positive member of the first rear cemented doublet.",
+      role: "Positive rear member of the cemented pair behind the stop.",
       cemented: "D2",
       nC: 1.77597256577,
       nF: 1.80648168613,
@@ -262,7 +275,7 @@ const LENS_DATA = {
       vd: 71.5,
       fl: 26.204915752,
       glass: "Unmatched (low-dispersion crown class; source 1.55352 / 71.5)",
-      role: "Separated double-sided positive asphere.",
+      role: "Separated double-sided aspherical biconvex element of the rear group.",
     },
     {
       id: 14,
@@ -274,7 +287,7 @@ const LENS_DATA = {
       vd: 32.32,
       fl: -19.797828826,
       glass: "TAFD45 (Hoya equivalent)",
-      role: "Negative member of the final cemented doublet.",
+      role: "High-index negative front member of the final cemented pair.",
       cemented: "D3",
       nC: 1.94513502106,
       nF: 1.97464566421,
@@ -290,7 +303,10 @@ const LENS_DATA = {
       vd: 81.61,
       fl: 19.443294063,
       glass: "FCD1 (Hoya equivalent)",
-      role: "Low-dispersion positive member of the final doublet; manufacturer ED position.",
+      apd: "inferred",
+      apdNote:
+        "Samyang marks this position ED; FCD1 (νd 81.61) is an extra-low-dispersion crown whose catalog lines give ΔPgF ≈ +0.032, and the tag is inferred from the patent/product correlation, not stated in the patent.",
+      role: "Low-dispersion positive rear member of the final cemented pair; the position Samyang marks ED.",
       cemented: "D3",
       nC: 1.49513747764,
       nF: 1.50122750457,
@@ -516,7 +532,7 @@ const LENS_DATA = {
       glass: "BSC7 (Hoya equivalent)",
       gapAfterMm: 0.5,
       source:
-        "KR101918210B1 Example3 Table7 S27-28; fixed 0.5 mm reference D4+D5 is an explicitly owner-approved modeling exception, not literal varying IMG.",
+        "KR 10-1918210 B1, Example 3, Table 7, surfaces 27–28. The 0.5 mm gap to the image is the sum of the patent's printed D4 and D5, which is the same at every focus state.",
     },
   ],
   asph: {
@@ -576,14 +592,15 @@ const LENS_DATA = {
       objectDistanceMm: 405.430516,
       distanceReference: "first-surface",
       source:
-        "KR101918210B1 Example3 Table9 middle D0 with D1/D2; raw IMG D4 retained in audit. Modeled plane is owner-approved fixed D4+D5 reference.",
+        "KR 10-1918210 B1, Example 3, Table 9, middle state (D0 with D1 and D2). The image plane stays at the fixed D4 + D5 position.",
     },
     {
       focusT: 1,
       zoomT: 0,
       objectDistanceMm: 69.90294,
       distanceReference: "first-surface",
-      source: "KR101918210B1 Example3 Table9 TL0.2m D0 with D1/D2; fixed-reference exception retains residual defocus.",
+      source:
+        "KR 10-1918210 B1, Example 3, Table 9, 0.2 m state (D0 with D1 and D2). The image plane stays at the fixed D4 + D5 position, leaving a small focus residual.",
     },
   ],
   nominalFno: 2.851,
@@ -592,7 +609,7 @@ const LENS_DATA = {
   maxFstop: 22,
   apertureBlades: 7,
   focusDescription:
-    "PUBLISHED: only G2 cemented triplet L8-L10 moves, 3.226261 mm objectward to the TL0.2m state. Middle state D0=405.430516 mm, near D0=69.902940 mm from S1. Intermediate spacing is illustrative piecewise-linear interpolation, not a published cam law. Fixed plate and owner-approved reference 0.500000 mm after it retain modeled paraxial defocus -0.019253/+0.003864/+0.075973 mm. Raw D4/D5 preserved in audit.",
+    "PUBLISHED: the cemented triplet L8–L10 (G2) moves 3.23 mm toward the object between the patent's three tabulated states — infinity, magnification 0.033, and magnification 0.157 at 0.20 m object-to-image, which is also Samyang's stated minimum focus distance. The D1/D2 gaps at those states are the printed values; gaps between them are interpolated. G1 and G3 stay fixed. The image plane is placed 0.5 mm behind the cover plate, the sum of the patent's printed D4 and D5 at each focus state. The iris is held at its infinity setting, so the model does not reproduce the patent's near-state F-number of 2.938.",
   groups: [
     {
       text: "FIXED G1",

@@ -3,28 +3,37 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * JP2025099854A Numerical Example 3, PDF pp. 28–29; Fig. 11 on p. 64.
  * Exact production prescription unconfirmed. No scaling or source repairs.
- * Native equisolid projection (paragraph 0107), 185.73° field, f=15.50 mm.
- * Japanese surface 34 radius is −62.0139 mm; do not import the US positive sign.
- * Image-adjacent F (38–39) is retained physically in rearPlates; camera-side role
- * is inferred from Fig.11/location, not explicitly named by the source. It is
- * not described as optional, and is not omitted or air-equivalent-folded.
- * Source ΔPgF = PgF − 0.64833 + 0.00180 νd; engine deviation converted explicitly.
- * Focus PUBLISHED: L8 moves 2.0415 mm imageward, 435.2537 mm object-first-surface.
- * Physical stop diameter is unpublished; calibrated from source F/1.46.
- * Semi-diameters are inferred from Fig. 11 optical extents plus exact tracing,
- * then constrained by current rim/domain/edge/shared-band gap rules.
+ * The patent's own equisolid projection (paragraph 0107), 185.73° field, f = 15.50 mm.
+ * The Japanese publication prints the surface 34 radius as −62.0139 mm and that
+ * value is used; the US counterpart prints it with a positive sign.
+ * The image-side plate F (surfaces 38–39) is kept at its printed thickness and gaps
+ * in rearPlates; its camera-side role is inferred from Fig. 11 and its position, not
+ * named by the source. The source does not call it optional, and it is neither
+ * omitted nor folded into an air-equivalent gap.
+ * Source ΔPgF = PgF − 0.64833 + 0.00180 νd; dPgF is converted to the engine's normal line.
+ * Focus is published: L8 moves 2.0415 mm toward the image for an object 435.2537 mm
+ * ahead of the first surface.
+ * The stop diameter is not published; it is calibrated from the source F/1.46.
+ * Semi-diameters are estimated from Fig. 11 optical extents (native 413 dpi raster,
+ * 80.06 µm/px from the vertex spacing), floor-checked by exact real-ray tracing
+ * and constrained by current rim/domain/edge/shared-band gap rules. Concave faces
+ * 7 and 35 stop where the drawing starts their flat mounting annuli (19.5 and
+ * 13.9 mm); L21 (36A/37A) carries the drawn square 15.7 mm rim. Junctions 6, 9,
+ * 18 and 24 sit 0.3–1.5 mm above the drawing so the sampled off-axis rays do not
+ * first clip at a cemented interface.
  */
 
 const LENS_DATA = {
   "key": "sigma-15mm-f14-dg-dn-diagonal-fisheye-art",
   "maker": "Sigma",
-  "name": "SIGMA 15mm f/1.4 DG DN DIAGONAL FISHEYE Art",
-  "subtitle": "JP 2025-099854 A, Numerical Example 3; construction correlation, production prescription unconfirmed",
+  "name": "SIGMA 15mm f/1.4 DG DN DIAGONAL FISHEYE | Art",
+  "subtitle": "JP 2025-099854 A, Example 3 — construction-based production correlation",
   "specs": [
     "21 ELEMENTS / 15 GROUPS",
-    "Native equisolid f = 15.50 mm, F/1.46",
-    "Native 2ω = 185.73°",
-    "4 ASPHERICAL SURFACES"
+    "DESIGN f = 15.50 mm",
+    "DESIGN F/1.46",
+    "4 ASPHERICAL SURFACES / 2 ELEMENTS",
+    "EQUISOLID FISHEYE, 2ω = 185.73°"
   ],
   "focalLengthMarketing": 15,
   "focalLengthDesign": 15.5,
@@ -66,7 +75,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": -0.0096844,
       "apd": false,
-      "role": "Source-listed negative meniscus; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "N1: front negative meniscus of G1, convex to the object",
       "nC": 1.8765692413387016,
       "nF": 1.8982085278230374,
       "ng": 1.9104465184739963
@@ -83,7 +92,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": 0.00459266,
       "apd": false,
-      "role": "Source-listed negative meniscus; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "N2: second negative meniscus of G1, convex to the object",
       "nC": 1.9910461402030342,
       "nF": 2.025403881691904,
       "ng": 2.0460011117376657
@@ -100,7 +109,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": -0.0096844,
       "apd": false,
-      "role": "Source-listed positive meniscus; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G1 positive meniscus, cemented to L4 (D1)",
       "cemented": "D1",
       "nC": 1.8765692413387016,
       "nF": 1.8982085278230374,
@@ -117,8 +126,9 @@ const LENS_DATA = {
       "glass": "FCD100 (HOYA; source-listed example)",
       "indexReference": "d",
       "dPgF": 0.0497082,
-      "apd": false,
-      "role": "Source-listed biconcave negative; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "apd": "inferred",
+      "apdNote": "FCD100-class fluorite-like coordinate (1.43700 / 95.10) with patent ΔPgF +0.0564 (+0.0497 from the engine's normal line), at one of the four positions Sigma's construction diagram marks as FLD glass; inferred, not a patent designation.",
+      "role": "G1 biconcave element, cemented to L3 (D1)",
       "cemented": "D1",
       "nC": 1.4355899618746153,
       "nF": 1.4401851120638876,
@@ -136,7 +146,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": 0.00521808,
       "apd": false,
-      "role": "Source-listed biconcave negative; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G1 biconcave element, cemented to L6 (D2)",
       "cemented": "D2",
       "nC": 1.4853500040225573,
       "nF": 1.492270524090005,
@@ -154,7 +164,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": 0.00459266,
       "apd": false,
-      "role": "Source-listed biconvex positive; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G1 biconvex element, cemented to L5 (D2)",
       "cemented": "D2",
       "nC": 1.9910461402030342,
       "nF": 2.025403881691904,
@@ -172,7 +182,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": -0.00042552,
       "apd": false,
-      "role": "Source-listed biconcave negative; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G1 fixed biconcave singlet ahead of the focusing element",
       "nC": 1.60008,
       "nF": 1.61002,
       "ng": 1.61541
@@ -189,7 +199,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": 0.00876374,
       "apd": false,
-      "role": "Source-listed positive meniscus; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "Focusing element of G1: the only lens that moves, toward the image for near focus",
       "nC": 1.6825,
       "nF": 1.70467,
       "ng": 1.71797
@@ -202,11 +212,11 @@ const LENS_DATA = {
       "nd": 1.77377,
       "vd": 47.17,
       "fl": 61.8,
-      "glass": "MC-TAF401 (HOYA; source-listed example)",
+      "glass": "MC-TAF401 (HOYA; source-listed example; M-TAF401 dispersion data)",
       "indexReference": "d",
       "dPgF": -0.00883606,
       "apd": false,
-      "role": "Source-listed biconvex positive (2× asph); isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G1 positive element with both surfaces aspherical",
       "nC": 1.7688378665827869,
       "nF": 1.7852426855508647,
       "ng": 1.7943591863994737
@@ -223,7 +233,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": 0.03316764,
       "apd": false,
-      "role": "Source-listed negative meniscus; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G1 negative meniscus ahead of the stop, cemented to L11 (D3)",
       "cemented": "D3",
       "nC": 1.8574175400676973,
       "nF": 1.9008589637011706,
@@ -241,7 +251,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": 0.00459266,
       "apd": false,
-      "role": "Source-listed positive meniscus; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G1 positive meniscus ahead of the stop, cemented to L10 (D3)",
       "cemented": "D3",
       "nC": 1.9910461402030342,
       "nF": 2.025403881691904,
@@ -258,8 +268,9 @@ const LENS_DATA = {
       "glass": "FCD515 (HOYA; source-listed example)",
       "indexReference": "d",
       "dPgF": 0.01563284,
-      "apd": false,
-      "role": "Source-listed biconvex positive; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "apd": "inferred",
+      "apdNote": "FCD515-class low-dispersion coordinate (1.59282 / 68.62) with patent ΔPgF +0.0192 (+0.0156 from the engine's normal line), at one of the three positions Sigma's construction diagram marks as SLD glass; inferred, not a patent designation.",
+      "role": "G2 first positive element behind the stop",
       "nC": 1.590206058843811,
       "nF": 1.598844742390663,
       "ng": 1.6035451826469111
@@ -275,8 +286,9 @@ const LENS_DATA = {
       "glass": "FCD915 (HOYA; source-listed example)",
       "indexReference": "d",
       "dPgF": 0.03576578,
-      "apd": false,
-      "role": "Source-listed biconvex positive; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "apd": "inferred",
+      "apdNote": "FCD915-class low-dispersion coordinate (1.48071 / 85.29) with patent ΔPgF +0.0413 (+0.0358 from the engine's normal line), at one of the three positions Sigma's construction diagram marks as SLD glass; inferred, not a patent designation.",
+      "role": "G2 positive element, cemented to L14 (D4)",
       "cemented": "D4",
       "nC": 1.478983857758937,
       "nF": 1.4846196250178265,
@@ -294,7 +306,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": 0.0086623,
       "apd": false,
-      "role": "Source-listed negative meniscus; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G2 negative meniscus, cemented to L13 (D4)",
       "cemented": "D4",
       "nC": 1.844729374424391,
       "nF": 1.8786993714718667,
@@ -311,8 +323,9 @@ const LENS_DATA = {
       "glass": "FDS16-W (HOYA; source-listed example)",
       "indexReference": "d",
       "dPgF": 0.04938536,
-      "apd": false,
-      "role": "Source-listed biconvex positive; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "apd": "patent",
+      "apdNote": "Patent condition (13) requires this positive element (LP1) to have anomalous partial dispersion ΔPgF above 0.018; the example's FDS16-W is listed at +0.0468.",
+      "role": "LP1: high-index, high-dispersion positive element of G2 (patent conditions 11–13)",
       "nC": 1.9694882959023088,
       "nF": 2.02931181281951,
       "ng": 2.0691272128163374
@@ -329,7 +342,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": -0.00439676,
       "apd": false,
-      "role": "Source-listed negative meniscus; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G2 negative meniscus, cemented to L17 (D5)",
       "cemented": "D5",
       "nC": 1.76004,
       "nF": 1.78143,
@@ -346,8 +359,9 @@ const LENS_DATA = {
       "glass": "FCD100 (HOYA; source-listed example)",
       "indexReference": "d",
       "dPgF": 0.0497082,
-      "apd": false,
-      "role": "Source-listed biconvex positive; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "apd": "inferred",
+      "apdNote": "FCD100-class fluorite-like coordinate (1.43700 / 95.10) with patent ΔPgF +0.0564 (+0.0497 from the engine's normal line), at one of the four positions Sigma's construction diagram marks as FLD glass; inferred, not a patent designation.",
+      "role": "G2 positive element, cemented to L16 (D5)",
       "cemented": "D5",
       "nC": 1.4355899618746153,
       "nF": 1.4401851120638876,
@@ -364,8 +378,9 @@ const LENS_DATA = {
       "glass": "FCD100 (HOYA; source-listed example)",
       "indexReference": "d",
       "dPgF": 0.0497082,
-      "apd": false,
-      "role": "Source-listed biconvex positive; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "apd": "inferred",
+      "apdNote": "FCD100-class fluorite-like coordinate (1.43700 / 95.10) with patent ΔPgF +0.0564 (+0.0497 from the engine's normal line), at one of the four positions Sigma's construction diagram marks as FLD glass; inferred, not a patent designation.",
+      "role": "G2 positive singlet",
       "nC": 1.4355899618746153,
       "nF": 1.4401851120638876,
       "ng": 1.442637171773263
@@ -381,8 +396,9 @@ const LENS_DATA = {
       "glass": "FCD1 (HOYA; source-listed example)",
       "indexReference": "d",
       "dPgF": 0.03220002,
-      "apd": false,
-      "role": "Source-listed biconvex positive; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "apd": "inferred",
+      "apdNote": "FCD1-class low-dispersion coordinate (1.49700 / 81.61) with patent ΔPgF +0.0373 (+0.0322 from the engine's normal line); the patent example lists this FCD1-class glass at the position Sigma's construction diagram marks as its fourth FLD element, so the tag follows the position and is inferred, not a patent designation.",
+      "role": "G2 positive element, cemented to L20 (D6)",
       "cemented": "D6",
       "nC": 1.4951374776446764,
       "nF": 1.5012275045747954,
@@ -400,7 +416,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "dPgF": -0.0024295,
       "apd": false,
-      "role": "Source-listed biconcave negative; isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G2 biconcave element, cemented to L19 (D6)",
       "cemented": "D6",
       "nC": 1.903234376216336,
       "nF": 1.929073304252883,
@@ -414,11 +430,11 @@ const LENS_DATA = {
       "nd": 1.8061,
       "vd": 40.73,
       "fl": 99.8,
-      "glass": "MC-NBFD130 (HOYA; source-listed example)",
+      "glass": "MC-NBFD130 (HOYA; source-listed example; M-NBFD130 dispersion data)",
       "indexReference": "d",
       "dPgF": -0.00607614,
       "apd": false,
-      "role": "Source-listed biconvex positive (2× asph); isolated in-air focal length, not an attribution of in-situ aberration contribution.",
+      "role": "G2 rear positive element with both surfaces aspherical",
       "nC": 1.8002242035144689,
       "nF": 1.8200151953321588,
       "ng": 1.8312837112942038
@@ -479,7 +495,7 @@ const LENS_DATA = {
       "d": 9.8914,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 23.0
+      "sd": 19.5
     },
     {
       "label": "8",
@@ -703,7 +719,7 @@ const LENS_DATA = {
       "d": 3.3928,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 16.2
+      "sd": 13.9
     },
     {
       "label": "36A",
@@ -711,7 +727,7 @@ const LENS_DATA = {
       "d": 3.7491,
       "nd": 1.8061,
       "elemId": 21,
-      "sd": 14.2
+      "sd": 15.7
     },
     {
       "label": "37A",
@@ -719,7 +735,7 @@ const LENS_DATA = {
       "d": 14.8136,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 14.6
+      "sd": 15.7
     }
   ],
   "rearPlates": [
@@ -731,7 +747,7 @@ const LENS_DATA = {
       "glass": "BSC7 (HOYA; source-listed example)",
       "dPgF": -0.0016456,
       "gapAfterMm": 1.0,
-      "source": "JP2025099854A Example 3, PDF 29, surfaces 38–39; Fig.11 image-adjacent F; camera-side representation inferred, ownership not expressly stated"
+      "source": "JP 2025-099854 A, Example 3, surfaces 38–39 (filter F in Fig. 11, next to the image plane); treated as camera-side cover glass."
     }
   ],
   "asph": {
@@ -851,10 +867,10 @@ const LENS_DATA = {
       "zoomT": 0,
       "objectDistanceMm": 435.2537,
       "distanceReference": "first-surface",
-      "source": "JP2025099854A Example 3, paragraph 0140 PDF 29 variable spacings; first-surface reference paragraph 0109."
+      "source": "JP 2025-099854 A, Example 3, variable spacings in paragraph 0140; object distance measured from the first surface (paragraph 0109)."
     }
   ],
-  "focusDescription": "PUBLISHED inner focus: L8 (surfaces 13–14) moves 2.0415 mm imageward. Source near object distance 435.2537 mm from first surface, 603.7538 mm from image; this is not the marketed 0.385 m MFD. Intermediate states are linear interpolation of spacings.",
+  "focusDescription": "PUBLISHED inner focus: L8 alone (surfaces 13–14) moves 2.0415 mm toward the image between infinity and the patent's near state, where the object is 435.25 mm ahead of the first surface (about 0.604 m from the image plane, magnification −0.033). The marketed minimum focus distance is 0.385 m, beyond the patent's tabulated range. Intermediate positions are linearly interpolated.",
   "nominalFno": 1.46,
   "fstopSeries": [
     1.46,

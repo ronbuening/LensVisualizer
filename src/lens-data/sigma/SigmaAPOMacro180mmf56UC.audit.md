@@ -70,7 +70,7 @@ No SDs are published. They were a future task at the original diagnostic stage; 
 
 ## Correction and discrepancy register
 
-### ISSUE-MACRO-CONJUGATE: unresolved, construction blocker
+### ISSUE-MACRO-CONJUGATE: unresolved, construction blocker (closed 2026-10-11: spherical aberration at 1:2, see the deployment validation section)
 
 At the printed 403.0 mm object-to-first-surface distance and unchanged macro gaps, the Gaussian image distance is 40.3683418043 mm behind the last glass vertex. Retaining the source infinity image gap gives a +0.2883418043 mm residual. The magnification at Gaussian focus is −0.499274705, close to the printed magnitude 0.5. The diagnostic object distance giving focus at exactly 40.08 mm would be 404.1639105 mm. That solved distance is **not** substituted for the source's 403.0 mm.
 
@@ -107,7 +107,7 @@ Manual source/citation review completed for this diagnostic record. At the origi
 
 ## Independent review
 
-Not performed. This author has seen the historical correlation review after freezing a fresh extraction. That review is not a fresh independent optical audit of this diagnostic. Any later independent reviewer must freeze its own source extraction and code baseline before opening the author's numerical conclusions.
+Not performed at this stage (closed: superseded by the Stage 4 review below and by the 2026-10-11 deployment validation). This author has seen the historical correlation review after freezing a fresh extraction. That review is not a fresh independent optical audit of this diagnostic. Any later independent reviewer must freeze its own source extraction and code baseline before opening the author's numerical conclusions.
 
 ## Revised gate disposition (2026-10-10)
 
@@ -117,9 +117,9 @@ This is an accepted modeling deviation, not a corrected patent or reproduced mac
 
 The revised Stage 1 earned READY_FOR_DATA after replay. Its construction tasks are completed below; every geometry, aperture, containment, structure and numerical requirement retains its own executed check. The exact ray-derived runtime iris is the modeled aperture; its infinity F-number is calibration, not independent physical-diameter evidence. The conditional macro f-number comparison remains failed and is not covered by the defocus approval; no source physical iris law exists to reproduce. The data discloses that unavailable aperture behavior rather than assert 5.98 agreement or vary the iris.
 
-## Pending integration
+## Pending integration (closed 2026-10-11)
 
-INTEGRATION_PENDING. Real LensVisualizer TypeScript, buildLens/validateLensData, production render/trim and exact project ray checks, runtime glass resolution, formatter/lint, corpus tests and build are NOT_RUN. These are distinct from the executed chat numerical diagnostic. No deployment or publication occurred.
+Integration was pending when this was written (closed 2026-10-11: the files are in the repository; see the deployment validation section). At that time real LensVisualizer TypeScript, buildLens/validateLensData, production render/trim and exact project ray checks, runtime glass resolution, formatter/lint, corpus tests and build had not been run. These are distinct from the executed chat numerical diagnostic. No deployment or publication occurred.
 
 ## Primary references
 
@@ -136,7 +136,7 @@ The source's native 403.0 mm object-to-first-surface reference becomes a finiteC
 
 Physical stop radius is inferred at 9.1943879049 mm, obtained by exact tracing of EFL/(2×5.71) to the source row9 stop, matching current runtimeLens convention. Paraxial calibration alone would give 9.048929 mm and is not the geometry aperture. The current runtime keeps the inferred iris with focus. At macro the exact sine-NA working F-number remains about 6.1666 versus printed5.98. This is a disclosed conditional fixed-iris approximation because the patent publishes no physical iris diameter/law. It is not a new corrected source value, and near-iris adjustment is prohibited.
 
-Figure5's optical rims were measured on the original 300dpi source crop: first-to-last vertex span approximately826px represents103.29mm; component half-heights approximately158/143/110/89/110/126px. Estimated clear radii were conservatively rounded to20/18/14/11.3/14/16mm. Three cemented pairs share a common radius. Native-scale plotted shapes and positions were visually compared against Figure5 and the Sigma catalogue; proportional agreement is good within drawing-estimate precision. Small mechanical bevels are not modeled. A thin leading catalogue-drawing component lacks patent dimensions/material and is not invented.
+Figure5's optical rims were measured on the original 300dpi source crop: first-to-last vertex span approximately826px represents103.29mm; component half-heights approximately158/143/110/89/110/126px. Estimated clear radii were conservatively rounded to20/18/14/11.3/14/16mm (11.3 superseded: surfaces 10–12 are 11.31 mm). Three cemented pairs share a common radius. Native-scale plotted shapes and positions were visually compared against Figure5 and the Sigma catalogue; proportional agreement is good within drawing-estimate precision. Small mechanical bevels are not modeled. A thin leading catalogue-drawing component lacks patent dimensions/material and is not invented.
 
 The default gapSagFrac0.90 passes; no override was used. Twenty-one focus samples establish positive edge thickness, actual spherical rim slopes and mathematical domains, with257 radial samples on every shared band. Sphere-sag differences are monotone here, so radial endpoint checks also locate extrema. The minimum element thickness is0.597492mm and maximum rim slope22.905553°. Both source endpoints and intermediate gaps remain physically separated; maximum checked gap intrusion fraction is0.291902.
 
@@ -146,7 +146,7 @@ On every element the source nd/vd remain native. Named HOYA equivalents carry ex
 
 Negative controls reject duplicate/expression/nonfinite/trailing literal syntax, a changed macro gap, an altered first radius and a deliberately undersized on-axis first rim. Source and implemented ABCD/sequential branches agree. The 2D and3D exact stop computations agree, and an oblique parallel slab preserves direction analytically.
 
-Mandatory chat checks pass after manual source/figure review and clean replay. READY_FOR_ANALYSIS binds to the hashes in the Stage 2 checkpoint; real TypeScript, Prettier, LensVisualizer buildLens/validator, production render/trim, runtime glass resolution and batch-wide checks remain NOT_RUN at integration scope. No application or repository integration is claimed.
+Mandatory chat checks pass after manual source/figure review and clean replay. READY_FOR_ANALYSIS binds to the hashes in the Stage 2 checkpoint; real TypeScript, Prettier, LensVisualizer buildLens/validator, production render/trim, runtime glass resolution and batch-wide checks remain NOT_RUN at integration scope (closed 2026-10-11). No application or repository integration is claimed.
 
 ### Verification refinement before analysis acceptance
 
@@ -180,7 +180,7 @@ The actual Stage 2 package inventory and checkpoint hashes were checked before a
 
 Manual interpretive and citation review: completed. The prose distinguishes patent fact, selected production correlation, catalog-equivalent proxy and modeled inference. It does not attribute a particular aberration correction to glass or power sign alone, does not claim production APO performance, and does not claim source agreement for the retained failed macro comparisons. Element shapes were checked against the signed radii. All group and standalone powers are distinguished. The source's full-angle convention and first-surface object-distance definition remain explicit. All citations are conventional primary URLs and PDF/figure locators, not conversation-only tokens.
 
-No data change was made during Stage 3. Evidence/verifier coverage refinements reopened and reran Stage 2 as documented above. All mandatory analysis structure, metadata, numeric/rounding, label, disclosure and citation checks must pass before the final READY_FOR_AUDIT handoff. Independent source-first Stage 4 has not been performed. Integration remains pending, with actual application typechecking/formatting/validation/render/runtime checks clearly NOT_RUN.
+No data change was made during Stage 3. Evidence/verifier coverage refinements reopened and reran Stage 2 as documented above. All mandatory analysis structure, metadata, numeric/rounding, label, disclosure and citation checks must pass before the final READY_FOR_AUDIT handoff. Independent source-first Stage 4 has not been performed. Integration remains pending, with actual application typechecking/formatting/validation/render/runtime checks clearly NOT_RUN. (Both closed: Stage 4 follows below; integration closed 2026-10-11.)
 
 # Stage 4: source-first independent audit and correction
 
@@ -200,7 +200,7 @@ Native d-line radii, thicknesses, spacings, indices and Abbe values remain unsca
 
 Independent infinity EFL 174.864062303 mm and BFD 40.080505026 mm agree with printed 174.86/40.08. The physical vertex track is 103.29 mm; first vertex to implemented image is 143.370 mm. H1 is -151.253596499 mm from the first vertex and H2 -134.783557278 mm from the last. Functional-group focal lengths are +68.024184347, -54.364980123, +91.634494869 and -79.023237461 mm. All nine standalone thick-lens powers are recomputed separately from cemented/in-situ powers. The per-interface Petzval sum is +0.000571594738 mm^-1. Infinity telephoto ratio is approximately 0.819894 and BFD/EFL 0.229210; neither result implies a retrofocus construction. The macro configuration's collimated EFL 93.490135097 mm and BFD -6.308917818 mm are not its finite-object image distance.
 
-At printed 403.0 mm, the source calculation gives image 40.368341804 mm and magnification -0.499274705. The +0.288341804 mm mismatch at the fixed printed 40.080 mm reference remains a raw FAIL. The user expressly accepted retaining that state, identified by message Sentinel_c73ae37ac50481918baf3ea938a44805; this supports a source-preserving limited model, not a numerical match or a waiver of geometry. The current finiteConjugates and unresolved sourceErrata representation allows the state to remain at its authored plane without refocus. The author interval calculation was inspected and re-executed: outward-rounded 60-digit arithmetic over 512 boxes gives 40.139293…40.598453 mm, excluding 40.075…40.085 mm. The cause is unresolved; no source number is repaired.
+At printed 403.0 mm, the source calculation gives image 40.368341804 mm and magnification -0.499274705. The +0.288341804 mm mismatch at the fixed printed 40.080 mm reference remains a raw FAIL. The user expressly accepted retaining that state; this supports a source-preserving limited model, not a numerical match or a waiver of geometry. The current finiteConjugates and unresolved sourceErrata representation allows the state to remain at its authored plane without refocus. The author interval calculation was inspected and re-executed: outward-rounded 60-digit arithmetic over 512 boxes gives 40.139293…40.598453 mm, excluding 40.075…40.085 mm. The cause is unresolved; no source number is repaired. (Closed 2026-10-11: the offset is the design's spherical aberration at 1:2; see the deployment validation section.)
 
 The frozen baseline deliberately used the *computed* infinity image 40.080505026 mm to solve a finite conjugate object 404.161859304 mm. Its condition beta3 ratio 1.365436794 and conditional aperture values belong to that solved conjugate. The actual fixed printed 40.080 model solves 404.163911 mm; the implemented published state remains 403.0 mm and gives beta3 ratio 1.372544991. These are different reference problems. All six inequalities pass at the published state; the coarse beta2 = 4.8 and beta4 = 1.5 comparisons still fail normal printed-digit rounding. The baseline is not overwritten to match author answers.
 
@@ -252,4 +252,89 @@ Manual interpretive and citation review: completed again in Stage4. The final pr
 
 The final gate is earned only after the complete consolidated verifier runs against these actual files and a clean extracted replay matches the stored results. Raw failed source comparisons remain visible even when their supported discrepancy treatment passes. The canonical dossier contains nine files; frozen independent text and its code are embedded in evidence rather than supplied as an alternative editable model. Full original/review/author evidence is separately archived. Package hashes, exact gate, replay outcome and preservation receipts bind this audit to delivered bytes.
 
-Real TypeScript, Prettier, buildLens, validateLensData, production render diagnostics, runtime glass resolution, lint, corpus tests and production build remain NOT_RUN at integration scope. The portable parser/style/geometry/ray checks are not substitutes. No repository integration, Git operation, application build, publication or merge was performed. Integration status is INTEGRATION_PENDING.
+Real TypeScript, Prettier, buildLens, validateLensData, production render diagnostics, runtime glass resolution, lint, corpus tests and production build remain NOT_RUN at integration scope. The portable parser/style/geometry/ray checks are not substitutes. No repository integration, Git operation, application build, publication or merge was performed. Integration status was pending at that time (closed 2026-10-11; see the deployment validation section).
+
+## 2026-10-11 — Semi-diameter pass against the patent figure
+
+Scope: `sd` values only, following `agent_docs/patent-figure-sd-audit-procedure.md`. No `sd` value changed: every stored rim is within 3 % of the drawing, inside the ±8 % reading noise of a hand-drawn figure. No `R`, `d`, `nd`, glass, focus gap or `STO` value was touched. The only edit is the wording of the data-file header note on semi-diameters.
+
+### Which values are current
+
+The data file carries 20 / 20 mm (L1, surfaces 1–2), 18 / 18 / 18 mm (L2+L3, surfaces 3–5), 14 / 14 / 14 mm (L4+L5, surfaces 6–8), 11.31 / 11.31 / 11.31 mm (L6+L7, surfaces 10–12), 14 / 14 mm (L8, surfaces 13–14) and 16 / 16 mm (L9, surfaces 15–16), with the iris at 9.1943879049 mm from F/5.71. The "11.3 mm" G3 rims in the Stage 2 record above, and the "11.30 mm" candidate that the Stage 4 section describes, are the package's pre-correction values and are superseded: Stage 4 correction S4-D01 raised surfaces 10–12 to 11.31 mm, and this pass keeps 11.31 mm.
+
+### Source and scale
+
+- Figure: `patents/JPH04110811A.pdf`, a six-page image-only scan (each page a 1-bit 2912 × 3958 px raster at 352 × 353 ppi). The drawing caption on PDF page 5 (printed 89) assigns 第1図, 第3図 and 第5図 to the lens sections of Examples 1, 2 and 3, and 第2図, 第4図 and 第6図 to their aberration plots at infinity and 0.5×. Only 第5図 on PDF page 6 (printed 90) was measured, at the native 352 dpi. The optical axis is horizontal on the page.
+- Vertex crossings, read in a band 9–27 px below the axis: S1 1697, S2/S3 1755 (merged), S4 1827.5, S5 1844.5, S6 1964, S7 1990.5, S8 2005.5, iris 2145, S10 2250.5, S11 2269, S12 2302, S13 2617, S14 2631.5, S15 2645 and S16 2666.5 px.
+- Scale: S1→S16 is 969.5 px for the tabulated 103.29 mm, 0.10654 mm/px. Two-span check: S1→S12 gives 0.10651 mm/px (605 px for 64.44 mm) and S12→S16 gives 0.10658 mm/px (364.5 px for 38.85 mm).
+- Drawn state: the four variable gaps measure 12.7 / 14.9 / 11.2 / 33.6 mm against the infinity values 12.48 / 14.50 / 11.63 / 33.45 mm (0.5× would be 23.66 / 3.32 / 3.38 / 41.7 mm), so the figure is the infinity section. Every vertex lies within 5 px (0.5 mm) of the place the prescription predicts at this scale.
+- The axis row drifts from 1214.5 px at the front to 1210.5 px at the rear (about 0.26°), so each rim below is the mean of the upper and lower silhouette. The outline is about 3 px (0.3 mm) wide.
+- The arrowheads marking the iris end 88.5 px above and 90.5 px below the axis, 9.4 and 9.6 mm, against the 9.194 mm iris derived from F/5.71. They are schematic marks and were not used.
+
+### What the figure shows
+
+| Element | Surfaces | Stored (mm) | Figure upper / lower (px) | Figure (mm) | Figure / stored | Decision |
+|---|---|---:|---:|---:|---:|---|
+| L1 | 1, 2 | 20 | 185 / 187 | 19.82 | 0.99 | retained |
+| L2+L3 | 3, 4, 5 | 18 | 168 / 168.5 | 17.93 | 1.00 | retained |
+| L4 | 6, 7 | 14 | 128 / 127.5 | 13.61 | 0.97 | retained |
+| L5 | 8 | 14 | 129.5 / 131.7 | 13.91 | 0.99 | retained |
+| L6+L7 | 10, 11, 12 | 11.31 | 106 / 104.5 | 11.21 | 0.99 | retained |
+| L8 | 13, 14 | 14 | 132 / 131 | 14.01 | 1.00 | retained |
+| L9 | 15, 16 | 16 | 152 / 144.7 | 15.80 | 0.99 | retained |
+
+The repository's automatic figure screen on the same panel agrees: all nine elements are bracketed consistently by its envelope and edge readings, figure / stored runs from 0.955 to 1.012 with a median of 0.984, and the per-element shape mismatch is 0.97–1.03.
+
+Drawn edge thicknesses also match the prescription at the stored rims: L1 about 1.9 mm drawn against 1.92 mm, L9 about 1.3 mm against 1.14 mm, and L4 runs out to a near knife edge at 13.6 mm where the model leaves 0.597 mm at 14 mm.
+
+### Values retained and why
+
+- **L4+L5 (surfaces 6–8), 14 mm.** The drawn 13.6–13.9 mm is 1–3 % smaller. The outer ray of the corner bundle at infinity reaches 13.97 mm on surface 6, so 14 mm passes the whole corner bundle through G2 and the figure cannot separate the two values.
+- **L6+L7 (surfaces 10–12), 11.31 mm.** The drawn rim is 11.21 mm with a square cut and a small notch at the junction. 11.31 mm is the Stage 4 value that contains the 7° marginal ray at the cemented interface (11.30 mm); the difference from the drawing is 0.1 mm, one third of a line width.
+- **Bevels on L5 and L8.** The figure chamfers the front corner of L5 from about 12.1 mm up to its flat rim, and the front corner of L8 from about 12.3 mm (114.6 px above, 115.4 px below the local axis) up to its 14.0 mm flat rim. Both elements stay square at the drawn outer rim. For L8 the outer rim, where the rear face ends, reads 14.01 mm; the renderer joins unequal face rims with one straight line, so 12.3 / 14.0 mm would slant the whole edge where the figure keeps about 2.8 mm of its 4.6 mm edge flat; the outer ray of the corner bundle at infinity reaches 12.61 mm on surface 13, so 12.3 mm would add a clip that the drawn outer rim does not show; and the bevel start is one hand-drawn corner, 12 % inside the rim. L5's front face is the cemented junction, on which L4 continues to its 13.6 mm tip.
+
+### Clearance and model consequences
+
+- Validator: no errors with the stored set at the default 0.90 gap fraction. Image-circle floor: 0 undersized. Traced field coverage: the corner chief ray reaches 21.60 mm of 21.60 mm at 7.0°, clear. The stated-beam check is within 3 % of F/5.71. Engine values are unchanged because no rim moved: EFL 174.864 mm, F/5.71, iris radius 9.194388 mm, half-field estimate 9.906°.
+- Infinity, exact meridional trace at F/5.71 and Y = 21.6 mm (ω = 6.99°; the patent prints a 14.0° full field). On-axis marginal heights 15.31 / 15.08 (L1), 14.49 / 13.67 / 13.14 (L2+L3), 10.41 / 10.23 / 9.74 (L4+L5), 8.71 / 8.64 / 8.59 (L6+L7), 3.79 / 3.73 (L8) and 3.67 / 3.53 mm (L9). The chief ray is highest at surface 16, 10.45 mm. The unvignetted corner bundle would need 24.77 / 24.85, 21.32 / 21.64 / 19.93, 13.97 / 13.81 / 12.29, 11.13 / 11.30 / 11.46, 12.61 / 13.34 and 14.16 / 14.28 mm, so L1 cuts 32 % and 31 % of one side of the corner bundle, L2+L3 cut 27 / 26 / 15 %, surface 12 cuts 2 %, and G2 and G4 cut nothing.
+- 0.5× (printed gaps, object 403.0 mm from S1, object height 43.03 mm reaching Y = 21.6 mm, iris fixed at 9.194 mm), exact finite-object meridional trace. On-axis marginal heights 16.35 / 16.22, 15.66 / 15.01 / 14.48, 9.83 / 9.65 / 9.25, 9.10 / 9.04 / 9.02, 3.51 / 3.45 and 3.39 / 3.27 mm. The chief ray is highest at surface 16, 10.28 mm. The corner bundle would need 23.85 / 23.83, 21.27 / 21.51 / 20.10, 10.83 / 10.51 / 9.65, 9.78 / 9.94 / 10.16, 12.22 / 12.93 and 13.74 / 13.87 mm: L1 cuts 25 / 24 %, L2+L3 cut 24 / 23 / 15 %, and nothing else clips.
+- Eleven focus states from infinity to 0.5× (linear gap interpolation, object at the paraxial conjugate of the fixed image plane, 403.0 mm at the printed end): no on-axis clip and no chief-ray block at any state. Smallest on-axis margins are 3.65 mm on surface 1 and 2.34 mm on surface 3 (both at 0.5×), 3.59 mm on surface 6 (infinity) and 2.21 mm on surface 10 (0.5×). Corner vignetting stays in the fixed front group (L1 24–32 %, L2+L3 15–27 % of one side) plus at most 2 % at surface 12 near infinity.
+- The collimated clearance probe is not the 0.5× state, and at infinity its first root for the lower rim ray is a spurious far-off-axis ray (42.5 mm on surface 1). The figures above use the nearest-root variant, which the finite-object trace reproduces to 0.01 mm at infinity.
+
+### Neighbouring elements at both focus states
+
+- The renderer applies no hidden trim at focus fractions 0, 0.25, 0.5, 0.75 and 1.
+- At 0.5× the focusing groups close on the iris from both sides (d8 = 3.32 mm, d9 = 3.38 mm). The rear rim of L5 at 14 mm has a sag of 2.281 mm and stops 1.04 mm short of the iris plane; it would reach that plane only at 16.8 mm. The front rim of L6 lies 3.63 mm behind the iris plane. The air between surfaces 8 and 10 is 6.70 mm on the axis and 5.47 mm at 11.31 mm.
+- The other gaps open outward: 5.29 mm between surfaces 2 and 3 at 18 mm against 0.26 mm on the axis, and 2.19 mm between surfaces 14 and 15 at 14 mm against 1.19 mm.
+- The local page was compared with 第5図 at infinity and at closest focus. At infinity the proportions follow the drawing: L1 tallest, the cemented front pair one step lower, L4 ending in a near point against L5, the square G3 pair the smallest component, and L9 standing above L8. At closest focus G2 and G3 sit on either side of the iris without touching it or each other.
+
+### Maker diagram
+
+No maker image was supplied or viewed in this pass. The manufacturer correlation recorded above is the package author's reading of the Sigma catalogue: 9 elements in 6 groups, two front SLD elements, floating internal focus and infinity to 1:2. 第5図 agrees in count and grouping (L1; L2+L3; L4+L5; iris; L6+L7; L8; L9, with G2 and G3 as the two moving groups), and the two SLD positions correspond to L1 and L2, the two nd 1.497 / νd 81.6 elements. The patent has no aspherical surface. The thin leading component that record notes in the catalogue section has no patent counterpart and stays unmodeled. The patent figure of Example 3 governs the rims.
+
+### Limits
+
+- The figure is hand-drawn and gives one infinity state. Rims are good to about ±8 %; the 0.5× statements above come from the prescription and the traced rays, not from a drawing.
+- The L5 and L8 bevels are not modeled, and the 1.04 mm between L5's rear rim and the iris plane at 0.5× follows from the printed d8 and the drawn rim height; it says nothing about the real barrel.
+- No clear diameter, filter-thread or barrel dimension entered any value.
+
+## 2026-10-11 — Deployment validation and wording pass
+
+**Source re-read.** `patents/JPH04110811A.pdf` is an image-only scan, so PDF page 4 (printed 88) was rendered at 300 and 600 dpi and Example 3 was read from the images: 16 radii, 16 spacings, 9 nd, 9 νd, the stop row (row 9, r = 0.0, 絞り) and the four variable gaps at both states (infinity d5 / d8 / d9 / d12 = 12.48 / 14.50 / 11.63 / 33.45 mm; 0.5× = 23.66 / 3.32 / 3.38 / 41.7 mm; both sets sum to 72.06 mm). Mismatches against the data file: none. The patent has three examples: Example 1 (f 174.16, F5.68, 11 elements / 8 groups), Example 2 (f 174.54, F5.74, 10 / 7) and Example 3 (f 174.86, F5.71, 9 / 6). Example 3 is the only 9 / 6 design and no Example 1 or 2 value appears in the file. The patent works in millimetres and the file is unscaled. Front page: 特開平4-110811, filed 31 August 1990, published 13 April 1992, inventor 小山武久, applicant 株式会社シグマ; the file's patent fields match.
+
+**First-order values, patent against model.** f 174.86 against 174.864 mm; F-number 5.71 against 5.71 (the iris is calibrated to it; the same iris gives 5.62 paraxially); back focus 40.08 against 40.0805 mm; full field 14.0° (the patent defines ω as the full angle) against a chief ray that reaches 21.6 mm at 6.99°; total length 143.37 mm, which the patent does not print. f1/f, |f2/f|, |f4/f| and β3∞/β3MOD compute to 0.389, 0.311, 0.452 and 1.3725 against the printed 0.39, 0.31, 0.45 and 1.37. β2 and β4 compute to 4.876 and 1.567 against the printed 4.8 and 1.5; Example 1's summary values round normally (0.426, 2.553, 0.445, 0.218, 1.764 and 2.69 against printed 0.43, 2.6, 0.45, 0.22, 1.76 and 2.7), so the two Example 3 values look truncated or misprinted. They stay recorded in `sourceErrata`.
+
+**The 0.5× state.** With the printed gaps and the object 403.0 mm from surface 1, the paraxial image is 40.368 mm behind surface 16, 0.288 mm behind the fixed 40.08 mm plane, at magnification −0.4993; a paraxial focus on the plane would need 404.16 mm. This is not a transcription error, not rounding and not a source erratum. First-order last-digit rounding of every printed value moves the paraxial image by at most ±0.17 mm, and Example 1, printed to four decimals, shows the same offset (+0.18 mm at its printed 369.6 mm). Exact rays from the axial object point cross the axis at 40.29 mm (0.3 zone), 40.19 (0.5), 40.11 (0.65), 40.07 (0.8), 40.09 (0.9) and 40.16 mm (full aperture, iris 9.194 mm). The on-axis RMS spot radius is 3.2 µm at the 40.08 mm plane and 14.9 µm at the paraxial plane; it is smallest, 2.6 µm, 0.034 mm behind the 40.08 mm plane. 第6図 plots the same undercorrected spherical aberration of about −0.3 mm at 0.5×, and a small positive bulge at infinity, where the trace gives +0.13 mm. The printed state is therefore in real best focus on the fixed image plane; ISSUE-MACRO-CONJUGATE is closed, and the earlier "unresolved" and "retained defocus" wording was wrong. With the iris fixed at 9.194 mm the 0.5× effective F-number is 6.17 against the printed 5.98 (the computed ratio between the two states is 1.08, the printed ratio 1.047); that difference remains as a `sourceErrata` note.
+
+**Checks on the file.** The repo surface validator reports no errors; the image-circle check finds nothing undersized; traced field coverage is 100 % (21.60 mm at 7.0°); the real-ray clearance probe shows no on-axis clip and no chief-ray block at either state; a 7° meridional fan at infinity passes 85 % of the on-axis width. Eight of the nine glass labels resolved in the repo catalogue; L6's "E-FD4L" did not, and was changed to "E-FD4 / E-FD4L equivalent (HOYA)" before this pass.
+
+**Maker diagram.** No maker cross-section was viewed. The archived Sigma catalogue this record cites (section on p13, specifications on p16) could not be opened in this pass, and no other published section of the lens was found, so the two-SLD reading and the thin leading component in the sketch remain the package author's readings. Published specifications from two other pages (a phillipreeve.net review of the manual-focus Contax/Yashica version and a camerareviews.com listing) give 9 elements / 6 groups, 0.55 m minimum focus at 1:2, a 52 mm filter, f/22 minimum aperture, a 1990 introduction, internal focusing with two moving groups, and Nikon F, Sony A, Canon EF and Sigma SA versions. All agree with 第5図 (L1; L2+L3; L4+L5; iris; L6+L7; L8; L9) and with the file. The patent's stated application is an AF telephoto macro lens focusing from infinity to 0.5× at about F5.6 and a 14° field, with back focus kept for an SLR mirror; 40.08 mm is consistent with that.
+
+**Fields changed in this pass.** Data file: `subtitle`; `specs`; `sourceErrata` (the macro-defocus entry is replaced by two notes, one on the printed β2 / β4 summary values and one on the 0.5× effective F-number); `focusDescription`; the header comment (0.5× focus statement, iris wording, the β2 / β4 note); the `role` of all nine elements; `apdNote` reworded on L1 and L2 and removed from L3–L9, with `apd: "inferred"` on L1 and L2 only. Analysis: the catalogue-section paragraph, the 0.5× focus paragraphs, the note on the printed β2 / β4 values, the aperture and geometry section (ray-count text removed), the L6 glass label and one added source. This log: stale pending lines closed in place and one message token deleted. No `R`, `d`, `nd`, `vd`, `sd`, `var` value, glass string, spectral index, mount, format, f-number field or `closeFocusM` changed. Engine values are identical before and after: EFL 174.864062 mm, F/5.71, iris radius 9.194388 mm, half-field estimate 9.9055°, back focus 40.0805 mm, and the same 0.5× keyframe.
+
+Open:
+
+- `finiteConjugates[0].source` still reads "approximately +0.288 mm paraxial defocus; no automatic refocus". It is true as a paraxial statement and is shown on the MTF tab; it was outside the fields this pass could edit.
+- The Sigma catalogue section has not been compared independently with 第5図.
+- Manual-focus mount versions are not listed in `lensMounts`.
+- Type check, formatting, lint and the corpus tests were not run in this pass.

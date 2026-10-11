@@ -9,13 +9,13 @@
 **Title:** Large-aperture ultra wide-angle lens  
 **Embodiment analyzed:** Numerical Example 3
 
-The prescription is the unscaled Japanese Numerical Example 3, paragraph 0140, with the optical section in Fig. 11. PDF pages 28–29 contain the numerical example; the complete original includes a front PAJ abstract, so the printed page number is one less than the PDF page number. The construction correlation with the Sigma 15mm f/1.4 DG DN Diagonal Fisheye Art is strong, but an exact manufactured prescription is not confirmed. [1]
+The prescription is the unscaled Japanese Numerical Example 3, paragraph 0140, with the optical section in Fig. 11. The construction correlation with the SIGMA 15mm f/1.4 DG DN DIAGONAL FISHEYE | Art is strong, but an exact manufactured prescription is not confirmed. [1]
 
 The principal convergent evidence is:
 
-1. Both the selected source and the manufacturer describe 21 elements in 15 groups. The patent shows two double-sided aspheric elements; the manufacturer separately lists two aspheric elements. Six cemented pairs account for the difference between the element and group counts.
-2. Four very-high-Abbe positions and three further low-dispersion positions agree with the manufacturer's four FLD and three SLD construction markers. Patent glass names are examples of compatible coordinates, rather than identified factory suppliers. [1, ¶0108; 2]
-3. The patent's native 15.50 mm and F/1.46 lie close to the marketed 15 mm and F1.4. The source is expressly an equisolid fisheye, not a rectilinear design. [1, ¶0107; 2]
+1. Sigma lists 21 elements in 15 groups with 4 FLD, 3 SLD and 2 aspherical elements, a 180° diagonal angle of view and a 38.5 cm minimum focus distance. Example 3 has 21 elements in 15 groups, with six cemented pairs and two double-sided aspherical elements, and is the only full-frame 21-element / 15-group example among the patent's fourteen. [1; 2]
+2. Sigma's published construction section matches Fig. 11 element for element. It marks FLD glass at elements 4, 17, 18 and 19, SLD glass at elements 5, 12 and 13, and aspherical lenses at elements 9 and 21. Example 3 places low-dispersion glasses at the same seven positions: FCD100 (νd 95.10) at L4, L17 and L18, FCD1 (νd 81.61) at L19, FC5 (νd 70.44) at L5, FCD515 (νd 68.62) at L12 and FCD915 (νd 85.29) at L13; its aspherical elements are L9 and L21. The one class difference is L19, where the example lists an FCD1-class glass at a position Sigma marks FLD. Patent glass names are examples of compatible coordinates, rather than identified factory suppliers. [1, ¶0108; 2]
+3. The patent's design values of 15.50 mm and F/1.46 lie close to the marketed 15 mm and F1.4. The source is expressly an equisolid fisheye, not a rectilinear design. [1, ¶0107; 2]
 4. Sigma announced the lens on 2024-02-21, with launch on 2024-03-14, after the 2023 filing. The production variants are full-frame L-Mount and Sony E-mount. [3]
 
 The source field is 185.73°, with image height 22.39 mm. These quantities are retained instead of being reduced to the advertised 180°. The published finite state is also distinct from the marketed minimum focusing distance of 0.385 m. No uniform scaling, radius-sign repair or marketing normalization is applied.
@@ -67,13 +67,13 @@ L3 is a positive meniscus convex toward the image and is cemented to L4 at sourc
 
 nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA; source-listed example). f = -68.3 mm.
 
-L4 is the biconcave, high-Abbe member of D1. Its FCD100 coordinate is a source-listed glass example, not proof of a manufactured FLD blank from a particular supplier. The shared interface remains one optical surface with the following medium assigned to L4. [1, ¶¶0108, 0136]
+L4 is the biconcave, high-Abbe member of D1, at one of the four positions Sigma's construction section marks as FLD glass. Its FCD100 coordinate is a source-listed glass example, not proof of a manufactured FLD blank from a particular supplier. The shared interface remains one optical surface with the following medium assigned to L4. [1, ¶¶0108, 0136; 2]
 
 ### L5 — Biconcave Negative
 
 nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA; source-listed example). f = -51.0 mm.
 
-L5 is the biconcave member of D2, cemented to L6 at surface 9. Its isolated negative power is combined with a much higher-index positive member. The inferred junction aperture is larger than the front optical aperture so that the tested off-axis ray is not clipped within the cemented interface. That inferred rim profile is a model decision, not a patent dimension. [1, ¶0136]
+L5 is the biconcave member of D2, cemented to L6 at surface 9. Its isolated negative power is combined with a much higher-index positive member. Sigma's construction section marks this position as SLD glass; the example's FC5 is a fluor crown close to the normal line (source ΔPgF +0.0090), so the data file carries no special-dispersion tag for it. The modeled junction aperture is larger than the front optical aperture so that off-axis rays are not clipped within the cemented interface; that rim profile is a model decision, not a patent dimension. [1, ¶0136; 2]
 
 ### L6 — Biconvex Positive
 
@@ -95,7 +95,7 @@ L8 is the sole translated lens in the published example. It is an object-convex 
 
 ### L9 — Biconvex Positive (2× Asph)
 
-nd = 1.77377, νd = 47.17. Glass: MC-TAF401 (HOYA; source-listed example). f = +61.8 mm.
+nd = 1.77377, νd = 47.17. Glass: MC-TAF401 (HOYA; source-listed example; M-TAF401 dispersion data). f = +61.8 mm.
 
 L9 is a positive biconvex element with both faces aspheric, source surfaces 15 and 16. The patent supplies even-order coefficients through A16. Its MC-TAF401 designation is listed as a compatible glass example. The aspheric departures are evaluated over modeled clear apertures only. [1, ¶¶0108, 0111, 0136, 0140]
 
@@ -115,13 +115,13 @@ L11 is an object-convex positive meniscus cemented to L10 at surface 18. Its pos
 
 nd = 1.59282, νd = 68.62. Glass: FCD515 (HOYA; source-listed example). f = +122.2 mm.
 
-L12 is the first element of positive system group G2. This separately mounted biconvex element has the source FCD515 coordinate. It is followed by a finite air gap before D4; no additional focusing motion is inferred. [1, ¶0137]
+L12 is the first element of positive system group G2. This separately mounted biconvex element has the source FCD515 coordinate, a low-dispersion glass with anomalous partial dispersion (source ΔPgF +0.0192), at one of the three positions Sigma's construction section marks as SLD glass. It is followed by a finite air gap before D4; no additional focusing motion is inferred. [1, ¶0137; 2]
 
 ### L13 — Biconvex Positive
 
 nd = 1.48071, νd = 85.29. Glass: FCD915 (HOYA; source-listed example). f = +58.3 mm.
 
-L13 is a biconvex high-Abbe member, cemented to L14. The FCD915 coordinate is one of the four very-high-Abbe glass positions that support the construction correlation with the production lens. The isolated compound D4 power is negative despite the positive power of L13. [1, ¶0137]
+L13 is a biconvex high-Abbe member, cemented to L14. Sigma's construction section marks this position as SLD glass, not FLD; the FCD915 coordinate, a low-dispersion glass with anomalous partial dispersion (source ΔPgF +0.0413), is consistent with that marking. The isolated compound D4 power is negative despite the positive power of L13. [1, ¶0137; 2]
 
 ### L14 — Negative Meniscus
 
@@ -145,19 +145,19 @@ L16 is an object-convex negative meniscus cemented to L17 at surface 29. Its S-N
 
 nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA; source-listed example). f = +58.5 mm.
 
-L17 is the biconvex high-Abbe member of D5. In the source ray-condition table the entry interface at surface 29 is one of the five positions selected by condition 16. The shared interface therefore has both a geometrical and a specifically tabulated ray-height role. [1, ¶¶0115, 0137, 0140]
+L17 is the biconvex high-Abbe member of D5, at one of Sigma's four marked FLD positions. In the source ray-condition table the entry interface at surface 29 is one of the five positions selected by condition 16. The shared interface therefore has both a geometrical and a specifically tabulated ray-height role. [1, ¶¶0115, 0137, 0140; 2]
 
 ### L18 — Biconvex Positive
 
 nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA; source-listed example). f = +53.8 mm.
 
-L18 is a separate biconvex high-Abbe element. Its source FCD100 coordinate repeats the material class used by L4 and L17, but its in-situ role depends on its rear-group location. It is also included in the condition-16 ray-height table. [1, ¶¶0137, 0140]
+L18 is a separate biconvex high-Abbe element. Its source FCD100 coordinate repeats the material class used by L4 and L17 and, like them, it sits at a position Sigma's construction section marks as FLD glass. It is also included in the condition-16 ray-height table. [1, ¶¶0137, 0140; 2]
 
 ### L19 — Biconvex Positive
 
 nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA; source-listed example). f = +52.5 mm.
 
-L19 is the positive biconvex member of D6. The Japanese source gives its shared rear radius as −62.0139 mm. Preserving this sign is necessary to reproduce the printed source first-order values; the opposite sign in the known US counterpart is not a substitute for the selected publication. [1, ¶0140, PDF p. 29]
+L19 is the positive biconvex member of D6. Sigma's construction section marks this position as its fourth FLD element, whereas the example lists an FCD1-class glass (source ΔPgF +0.0373) here; it is the one position where the example's glass class differs from the production marking. The Japanese source gives its shared rear radius as −62.0139 mm. Preserving this sign is necessary to reproduce the printed source first-order values; the opposite sign in the known US counterpart is not a substitute for the selected publication. [1, ¶0140, PDF p. 29; 2]
 
 ### L20 — Biconcave Negative
 
@@ -167,7 +167,7 @@ L20 is a biconcave negative element cemented to L19. It makes D6 negative as an 
 
 ### L21 — Biconvex Positive (2× Asph)
 
-nd = 1.80610, νd = 40.73. Glass: MC-NBFD130 (HOYA; source-listed example). f = +99.8 mm.
+nd = 1.80610, νd = 40.73. Glass: MC-NBFD130 (HOYA; source-listed example; M-NBFD130 dispersion data). f = +99.8 mm.
 
 L21 is the final biconvex aspheric element, with source surfaces 36 and 37. Its MC-NBFD130 coordinate is a source-listed compatible example. The source image-adjacent filter F follows this element and is traced separately; it is not counted as a twenty-second lens element. [1, ¶¶0093, 0119, 0137, 0140]
 
@@ -196,24 +196,26 @@ The patent defines its indices at the d-line, 587.56 nm. It explicitly identifie
 
 HOYA's primary catalog agrees closely with the printed coordinates. Two small differences remain explicit: its current TAFD30 νd is 40.81 rather than the patent's 40.80, and its FDS16-W nd is 1.98612 rather than 1.98613. The data retains the patent values. OHARA's S-BSM14, S-TIM28 and S-NBH59 coordinates match their source rows; S- and L-family prefixes are not interchangeable. [4, 5]
 
-The source defines ΔPgF = PgF − 0.64833 + 0.00180 νd. The application normal line is PgF,normal = 0.6438 − 0.001682 νd. Thus the implemented deviation is source ΔPgF + 0.00453 − 0.000118 νd. The source deviations in the table remain the appropriate values for evaluating the patent conditions.
+The source defines ΔPgF = PgF − 0.64833 + 0.00180 νd. The data file's dPgF uses the normal line PgF,normal = 0.6438 − 0.001682 νd, so each stored deviation is the source ΔPgF + 0.00453 − 0.000118 νd. The source deviations in the table remain the appropriate values for evaluating the patent conditions.
 
-Explicit nC, nF and ng are stored directly on each element. The HOYA values are calculated from the manufacturer's catalog polynomial coefficients; OHARA values are direct catalog-table anchors. They are catalog-example line indices, not measured source-melt values. Together with the converted source dPgF, they retain considerably more spectral information than nd/νd alone. This evidence does not establish production APO performance or a measured MTF result.
+Explicit nC, nF and ng are stored directly on each element. The HOYA values are calculated from the manufacturer's catalog polynomial coefficients; OHARA values are direct catalog-table anchors. They are catalog-example line indices, not measured source-melt values. Together with the converted source dPgF, they retain considerably more spectral information than nd/νd alone. The MC-TAF401 and MC-NBFD130 labels resolve to HOYA's M-TAF401 and M-NBFD130 catalog entries. This evidence does not establish production APO performance or a measured MTF result.
+
+Six elements carry an inferred special-dispersion tag in the data file: L4, L17, L18 and L19 at Sigma's four FLD positions, and L12 and L13 at two of its three SLD positions; L5 is left untagged.
 
 ## Focus Mechanism
 
-The focus configuration is PUBLISHED. Paragraph 0138 identifies L8 as the translated element. From infinity to the finite source state, it moves 2.0415 mm toward the image. The two changing gaps are:
+The patent tabulates both focus states. Paragraph 0138 identifies L8 as the translated element. From infinity to the finite source state, it moves 2.0415 mm toward the image. The two changing gaps are:
 
 | Air gap | Infinity (mm) | Published finite state (mm) |
 |---|---:|---:|
 | d12, before L8 | 3.9500 | 5.9915 |
 | d14, after L8 | 8.7163 | 6.6748 |
 
-All other prescribed spacings and the image plane remain fixed. The gaps conserve their total length. The source object distance is 435.2537 mm from the first surface, or 603.7538 mm from the image plane after including the full physical track. The data's closeFocusM therefore refers to this published sample, not the production MFD. The finite EFL is 15.323628841 mm and the paraxial transverse magnification at the authored image plane is −0.033352358. The rounded prescription leaves a calculated axial best-plane correction of −0.000293789 mm; the authored image plane has not been moved to remove it.
+All other prescribed spacings and the image plane remain fixed. The gaps conserve their total length. The source object distance is 435.2537 mm from the first surface, or 603.7538 mm from the image plane after including the full physical track. The data file's close-focus limit is therefore this patent state, about 0.604 m from the image plane; the marketed minimum focus distance of 0.385 m lies beyond the patent's tabulated range. At that state the EFL is 15.3236 mm and the paraxial magnification is −0.033. The rounded prescription leaves a paraxial focus residual of −0.0003 mm, which is not removed.
 
-Intermediate slider positions linearly interpolate the two source spacings. They are neither published mechanical keyframes nor certified finite-conjugate configurations. The finite-conjugate selector recognizes only the authored near state. The marketed lens uses an HLA linear autofocus actuator, but the cited sources do not prove that its production internal travel exactly follows this patent example. [2]
+Intermediate focus positions linearly interpolate the two source spacings; they are not published states. The marketed lens uses an HLA linear autofocus actuator, but the cited sources do not prove that its production internal travel exactly follows this patent example. [2]
 
-The source image-adjacent F plate is represented as camera-side based on its one-millimetre image adjacency and separation from the 21 counted lens elements. This ownership is a modeling inference: the patent calls it a filter without explicitly stating camera-side ownership or optionality. It is retained with its physical 2.5 mm thickness,14.8136 mm preceding gap and 1.0000 mm trailing gap. It is not omitted or manually replaced by an air-equivalent final spacing.
+The source image-adjacent F plate is represented as camera-side based on its one-millimetre image adjacency and separation from the 21 counted lens elements. This ownership is a modeling inference: the patent calls it a filter without explicitly stating camera-side ownership or optionality. It is retained with its physical 2.5 mm thickness, 14.8136 mm preceding gap and 1.0000 mm trailing gap. It is not omitted or manually replaced by an air-equivalent final spacing.
 
 ## Aspherical Surfaces
 
@@ -221,7 +223,7 @@ L9 carries surfaces 15A and 16A; L21 carries 36A and 37A. The source defines the
 
 z(y) = (y²/r) / [1 + √(1 − (1 + K)(y/r)²)] + A4 y⁴ + A6 y⁶ + A8 y⁸ + A10 y¹⁰ + A12 y¹² + A14 y¹⁴ + A16 y¹⁶.
 
-The rendered equation has no clearly printed plus sign between the A12 and A14 terms; the prose defines them as separate orders and the table lists separate coefficients. This typographical ambiguity is retained without changing any coefficient. Every selected K is zero, so the source and application conic coefficients are identical. Coefficient Aₚ has units mm^(1−p). The selected example publishes no odd-order terms. No asphere refit or omitted higher-order repair is used. [1, ¶0111]
+The rendered equation has no clearly printed plus sign between the A12 and A14 terms; the prose defines them as separate orders and the table lists separate coefficients. This typographical ambiguity is retained without changing any coefficient. Every selected K is zero, so the source and data-file conic coefficients are identical. Coefficient Aₚ has units mm^(1−p). The selected example publishes no odd-order terms. No asphere refit or omitted higher-order repair is used. [1, ¶0111]
 
 | Coefficient | 15A | 16A | 36A | 37A |
 |---|---:|---:|---:|---:|
@@ -240,8 +242,8 @@ At the data-file clear apertures, the full polynomial departure from the corresp
 |---|---:|---:|
 | 15A | 18.5 | -326.894 |
 | 16A | 18.5 | -49.959 |
-| 36A | 14.2 | -103.111 |
-| 37A | 14.6 | -14.285 |
+| 36A | 15.7 | -155.763 |
+| 37A | 15.7 | -32.068 |
 
 These heights are inferred model apertures, not patent-published SDs. All four total departures are negative at the selected rims; the sign of A4 alone would not establish that result, particularly at 16A and 37A. Higher orders materially shape the peripheral sag. The patent identifies geometric aspheres; the compatible MC glass names do not by themselves establish a particular production fabrication process.
 
@@ -273,26 +275,24 @@ The source conditions use native equisolid ray heights and its own partial-dispe
 
 The computed values satisfy the listed source bounds. In this table x denotes the ratio or coordinate named in the final column.
 
-Condition 16 selects the five source entry positions 26, 29, 31, 33 and 36. The executed axial/chief height ratios are 2.36494, 1.76577, 1.22557, 0.83801 and 0.52552, each inside 0.3–2.7 and consistent with the source's one-decimal ratios. The printed off-axis heights reproduce within 0.005 mm.
+Condition 16 selects the five source entry positions 26, 29, 31, 33 and 36. The computed axial/chief height ratios are 2.36494, 1.76577, 1.22557, 0.83801 and 0.52552, each inside 0.3–2.7 and consistent with the source's one-decimal ratios. The printed off-axis heights reproduce within 0.005 mm.
 
 The five printed axial heights are not reproduced to 0.005 mm when the rounded source F/1.46 is treated as an exact aperture. Their center-value residuals range from approximately −0.0163 to −0.0097 mm. This discrepancy is retained. Independently bounded f/Fno rounding and all five height-rounding intervals admit one common entrance radius, 5.3114741–5.3132517 mm. Consequently the source observations are compatible with one slightly different unprinted exact iris. The implemented nominal aperture remains the printed 1.46; no source or coefficient is altered to force exact center-value agreement.
 
-## Model Apertures and Tracing Limits
+## Model Scope and Limitations
 
-The diaphragm diameter and clear SDs are not tabulated. The stop is calibrated from the source f-number and the clear apertures are inferred from the optical extents in Fig. 11 plus exact rays and current geometric limits. Mechanical flange outlines are not treated as transparent aperture. All sampled rim-slope, conic-domain, edge-thickness and shared-band air-gap checks pass without policy overrides. Independent denser ray checks required small increases of three inferred cemented-junction radii: S6 from 23.0 to 23.3 mm, S18 from 17.6 to 18.0 mm and S24 from 17.6 to 18.0 mm. Published radii, spacings, indices and aspheres are unchanged. These changes clear newly observed first interior clips; they do not assert source-published apertures. The production element-render diagnostic reports zero hidden trim at the two authored states and three intermediate samples.
+The diaphragm diameter and clear SDs are not tabulated. The stop is calibrated from the source f-number and the clear apertures are estimated from the optical extents in Fig. 11, floor-checked by exact rays and held inside current geometric limits. Mechanical flange outlines are not treated as transparent aperture. Four cemented-junction radii sit 0.3–1.5 mm above the drawing (S6 at 23.3 mm, S9 at 22.0 mm, S18 at 18.0 mm and S24 at 18.0 mm) so that off-axis rays do not first clip at a cemented interface. The exterior rims follow the drawn optical extents of Fig. 11, scaled from its vertex spacing. The concave faces S7 (19.5 mm) and S35 (13.9 mm) stop where the drawing begins their flat mounting annuli, and L21 carries the square rim the figure draws (15.7 mm on S36A and S37A). None of these values is a source-published aperture. A first-surface-launch meridional trace passes the native 92.865° chief ray with its tightest margins at S35 (12.78 of 13.9 mm) and S37A (14.24 of 15.7 mm), and passes about 36 % of the stop diameter at the 21.6 mm frame corner; that corner bundle is limited by S2 and S35.
 
-The physical iris radius is 16.2165087455 mm. The F-number calibration entrance radius is 5.3082191781 mm. The application's current-state differential pupil selector instead gives 5.5410260695 mm at infinity and 5.5245039790 mm at the near state. These quantities answer different questions and should not be treated as interchangeable independent pupil measurements.
+The modeled iris radius is 16.2165 mm, set so that a real axial ray entering at 5.3082 mm, which is 15.50 mm / (2 × 1.46), just passes it. The paraxial entrance-pupil radius of the same iris is 5.5410 mm at infinity and 5.5245 mm at the near state. These are real-ray and paraxial descriptions of one iris and are not interchangeable.
 
-All 30 default on-axis UI samples transmit across the five sampled focus states. Of the 25 default off-axis samples, 13 transmit; the remaining samples are stopped at an external optical boundary or diaphragm, or miss a later entry surface. After the junction-aperture corrections, all 505 default off-axis samples on a 101-point focus grid avoid first cemented-interface clipping; this remains finite sampling. In particular, two positive outer focus-tracking samples at intermediate focus miss surface 8 after surface 7. Neither ghost continuations nor those missing entry intersections are counted as transmitted. This is a finite sampling statement, not full-pupil or continuous-field certification. A separate 361-case infinity physical-stop-targeting sweep used 19 native angles through 92.865° and 19 physical-iris fractions. It retained 176 completed paths, 159 first exterior/stop clips, 25 unsolved stop targets and one later exterior-entry miss at S36. No solved, tested first clipping event occurs at a cemented interface after correction. Unsolved branches are unresolved, not evidence that a physical path is impossible. All 336 solved physical launches were also propagated through the current project’s bounding-sphere route, with matching classifications. A separate 1716-case, nondefault differential-UI-pupil stress grid retains 49 interior or unresolved interface events and 362 failed paths overall. Those offsets are not physical-stop-targeted samples and are outside the demonstrated default-field construction coverage; they are not counted as transmitted or certified full-field pupil performance.
+The chief ray at the full 92.865° half-field reaches an image height of 22.395 mm, agreeing with the source's 22.39 mm at its rounding precision; an ideal equisolid mapping with f = 15.50 mm would give 22.46 mm, a departure of about −0.3 % at the edge. The 90° chief ray lands at 21.92 mm, so the 21.63 mm corner of a 36 × 24 mm frame corresponds to a half-field of about 88.3°, a diagonal of roughly 176.6° against the marketed 180°. Near-focus behavior at the extreme field is not a source-defined case, because a planar object 435 mm ahead of the lens has no object point near 90°.
 
-The native infinity edge chief at 92.865° reaches an image height of −22.3945738476 mm, agreeing with the source's 22.39 mm magnitude at its rounding precision. The negative sign reflects the chosen field orientation. Extreme-field finite-state chief sweeps only check model geometry; they do not certify the source's planar finite object field. Physical finite axial traces use the actual 435.2537 mm first-surface object distance and a separately solved physical pupil.
-
-Current project MTF explicitly reports fisheye paths as unsupported. No measured production MTF, full-field pupil transmission or chromatic-performance certification is implied by the available ray and spectral checks.
+The viewer does not compute MTF for fisheye projections. No measured production MTF, full-field pupil transmission or chromatic performance is implied.
 
 ## Sources
 
 1. Japan Patent Office, JP 2025-099854 A, published 2025-07-03, Numerical Example 3, ¶0140, printed pp. 27–28 / original PDF pp. 28–29; conventions ¶¶0107–0119; Fig. 11 on printed p. 63 / PDF p. 64; EX3 condition column in Table 1, printed p. 51 / PDF p. 52. [Complete original publication via DPMA](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=JP2025099854A).
 2. Sigma Corporation, [15mm F1.4 DG DN DIAGONAL FISHEYE product specifications and construction](https://www.sigma-global.com/en/lenses/a024_15_14/), accessed 2026-10-04.
 3. Sigma Corporation, [Launch schedule of Sigma 15mm F1.4 DG DN DIAGONAL FISHEYE Art](https://www.sigma-global.com/en/news/2024/02/21/010252/), 2024-02-21.
-4. HOYA, [Optical Glass Catalog 20260707 including obsolete materials](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), primary manufacturer AGF records; relevant coefficients and coordinate rows checked from the preserved original catalog.
+4. HOYA, [Optical Glass Catalog 20260707 including obsolete materials](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), primary manufacturer AGF records for the coefficients and coordinate rows of the listed glasses.
 5. OHARA Inc., [Optical glass product table](https://www.ohara-inc.co.jp/product/01000/), S-BSM14, S-TIM28 and S-NBH59 rows, accessed 2026-10-04.
