@@ -24,7 +24,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     summary: "Added six Leica, Samyang and Sigma lenses, including a 15mm f/1.4 fisheye and two macros",
   },
   {
-    date: "2026-10-11",
+    date: "2026-10-10",
     type: "lens",
     summary: "Added six Laowa, Sigma and Sony lenses, including the Argus 45mm f/0.95 and 105mm f/2 STF",
   },
