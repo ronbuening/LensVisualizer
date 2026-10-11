@@ -31,9 +31,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * 15.0 mm. Surfaces 4 and 5A nearly meet at the rim as drawn: 0.60 mm of air at 16.9 mm (92.1 % of the gap
  * taken by sag), inside the 0.9266 allowance above; the default 0.90 would cap L3 at 16.7 mm. Surface 18 is
  * held at 11.35 mm, just above the F/1.85 axial ray (11.343 mm), because surfaces 18 and 19 would meet at
- * 11.78 mm; surface 19 is 14 mm, equal to surface 20, following L9's square rim as drawn. L1 is square at
+ * 11.78 mm; L9 is 13.6 mm on both faces, following its square rim as drawn. L1 is square at
  * 26.65 mm, the front of L2 is 21.9 mm, L4 is 14.0 mm and L5 is 14.5 mm, each as Fig. 2 draws them; the F/1.85
- * axial ray needs 12.88 mm at L4 and 13.46 mm at L5.
+ * axial ray needs 12.88 mm at L4 and 13.46 mm at L5. Behind the stop the rims are also the drawn heights: L6
+ * and its resin layer 14.5 mm, the cemented pair L7–L8 13.4 mm at surfaces 16 and 17, L9 13.6 mm and L10
+ * 14.7 mm, against F/1.85 axial ray heights of 13.70, 12.33, 11.51 and 11.44 mm. The renderer joins unequal
+ * front and rear rims with a straight edge, so the lands of L2 and L8 appear as bevels: surface 4 cannot reach
+ * the 21.9 mm rim of L2 (R = 19.5 mm) and the gap to surface 19 caps surface 18 at 11.35 mm.
+ * DIAGRAM LABELS: the group labels are the six sub-groups of Fig. 2. G1 is G1a–G1c ahead of the stop and G2 is
+ * G2a–G2c behind it; in the patent's focusing each of the two moves as one unit.
  */
 const LENS_DATA = {
   key: "sigma-24mm-f18-ex-dg-aspherical-macro",
@@ -99,7 +105,7 @@ const LENS_DATA = {
       name: "R1",
       label: "Element 3 resin layer",
       diagramLabel: "R1",
-      type: "Hybrid resin negative meniscus",
+      type: "Hybrid Resin Negative Meniscus (1× Asph)",
       nd: 1.5184,
       vd: 52.1,
       indexReference: "d",
@@ -183,7 +189,7 @@ const LENS_DATA = {
       name: "R2",
       label: "Element 6 resin layer",
       diagramLabel: "R2",
-      type: "Hybrid resin positive meniscus",
+      type: "Hybrid Resin Positive Meniscus (1× Asph)",
       nd: 1.5184,
       vd: 52.1,
       indexReference: "d",
@@ -362,7 +368,7 @@ const LENS_DATA = {
       d: 6.62,
       nd: 1.713,
       elemId: 7,
-      sd: 15,
+      sd: 14.5,
     },
     {
       label: "14",
@@ -370,7 +376,7 @@ const LENS_DATA = {
       d: 0.2,
       nd: 1.5184,
       elemId: 8,
-      sd: 15,
+      sd: 14.5,
     },
     {
       label: "15A",
@@ -378,7 +384,7 @@ const LENS_DATA = {
       d: 2.19,
       nd: 1,
       elemId: 0,
-      sd: 15,
+      sd: 14.5,
     },
     {
       label: "16",
@@ -386,7 +392,7 @@ const LENS_DATA = {
       d: 6.08,
       nd: 1.6968,
       elemId: 9,
-      sd: 14,
+      sd: 13.4,
     },
     {
       label: "17",
@@ -394,7 +400,7 @@ const LENS_DATA = {
       d: 3.24,
       nd: 1.7552,
       elemId: 10,
-      sd: 14,
+      sd: 13.4,
     },
     {
       label: "18",
@@ -410,7 +416,7 @@ const LENS_DATA = {
       d: 3.75,
       nd: 1.713,
       elemId: 11,
-      sd: 14,
+      sd: 13.6,
     },
     {
       label: "20",
@@ -418,7 +424,7 @@ const LENS_DATA = {
       d: 0.15,
       nd: 1,
       elemId: 0,
-      sd: 14,
+      sd: 13.6,
     },
     {
       label: "21",
@@ -426,7 +432,7 @@ const LENS_DATA = {
       d: 4.75,
       nd: 1.60625,
       elemId: 12,
-      sd: 15,
+      sd: 14.7,
     },
     {
       label: "22",
@@ -434,7 +440,7 @@ const LENS_DATA = {
       d: 38.58,
       nd: 1,
       elemId: 0,
-      sd: 15,
+      sd: 14.7,
     },
   ],
   asph: {
@@ -464,16 +470,36 @@ const LENS_DATA = {
   maxFstop: 22,
   apertureBlades: 9,
   focusDescription:
-    "Infinity focus only; every air gap stays fixed. The patent describes floating focus in which both groups advance and the gap d11 ahead of the stop closes, and it tabulates one near state: d11 = 2.30 mm (5.96 mm at infinity) at an object distance of 50 mm, about 1:2.6, with the stop moving with the rear group. That state is not modeled because the patent prints no image distance for it. The 38.58 mm image distance at infinity is the paraxial back focus of the printed table; the patent prints no back focus. The production lens focuses to 0.18 m (1:2.7); that is product data, not modeled focus travel.",
+    "Infinity focus only; every air gap stays fixed. The patent describes floating focus: G1 (G1a–G1c) and G2 (G2a–G2c, with the stop) both move toward the object, G1 by 0.62 times the travel of G2, so the gap d11 ahead of the stop narrows. It tabulates one near state: d11 = 2.30 mm (5.96 mm at infinity) at OBJ = 50, read as an object 50 mm ahead of the first surface, about 1:2.6. That state is not modeled because the patent prints no image distance for it. The 38.58 mm image distance at infinity is the paraxial back focus of the printed table; the patent prints no back focus. The production lens focuses to 0.18 m (1:2.7); that is product data, not modeled focus travel.",
   groups: [
     {
-      text: "G1",
+      text: "G1a",
       fromSurface: "1",
+      toSurface: "2",
+    },
+    {
+      text: "G1b",
+      fromSurface: "3",
+      toSurface: "7",
+    },
+    {
+      text: "G1c",
+      fromSurface: "8",
       toSurface: "11",
     },
     {
-      text: "G2",
+      text: "G2a",
       fromSurface: "13",
+      toSurface: "15A",
+    },
+    {
+      text: "G2b",
+      fromSurface: "16",
+      toSurface: "18",
+    },
+    {
+      text: "G2c",
+      fromSurface: "19",
       toSurface: "22",
     },
   ],

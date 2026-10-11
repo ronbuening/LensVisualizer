@@ -222,7 +222,7 @@ Maker comparison. Samyang's product page (lksamyang.com, product 331) lists 15 e
 
 Changed in this pass, text and tags only. Data file: header comment, the four `sourceErrata` notes, `subtitle`, `specs`, `focusDescription`, every element `role`, `apd: "inferred"` with an `apdNote` on L4 (FCD1; the stored catalog lines give P_g,F 0.5389, 0.032 above the normal line), and the inline comments on the surface 26 `sd` and the surface 28 `d`. Analysis: title, metadata block (patent number, romanized inventors), identification list, the L3, L4, L6, L11, L14 and L15 paragraphs, the glass and focus sections, the stop, image-plane and aperture section (renamed and brought to the applied rims), the wording of the conditions section, and "Verification and Limits" replaced by "Model Scope and Limitations". This log: package hashes and status tokens removed and stale pending lines closed in place. Engine values are identical before and after: EFL 98.0430 mm, f/2.9041, stop radius 11.92834 mm, half-field estimate 14.16°, back focus 40.6413 mm, and the validator reports no error.
 
-Open: surface 26 at the printed 13.23 mm would need `gapSagFrac` 0.98 (97.6% of the gap, 0.061 mm of rim air); it stays at 12.72 mm, where the full-aperture corner bundle is cut on one side by 42%.
+Closed 2026-10-11: surface 26 at the printed 13.23 mm with surface 27 also at 13.23 mm would need `gapSagFrac` 0.98 (97.6% of the gap, 0.061 mm of rim air). The last section below puts surface 26 at the printed value and holds surface 27 at 12.72 mm instead, at the unchanged 0.92.
 
 Open: Figure 1 draws a filter plate ahead of the image plane that Table 1 does not list; the model is in air and 0.734 mm shorter than the printed Bf.
 
@@ -231,3 +231,77 @@ Open: the source has no near-focus state, so the focus control does not move the
 ## 2026-10-11 — Four Thirds mount
 
 Samyang's launch release of 2015-04-02 lists ten mounts: Canon EOS, Nikon AE, Pentax K, Sony A, Canon M, Fujifilm X, Samsung NX, Sony E, Four Thirds and Micro Four Thirds (reproduced at https://www.photographyblog.com/news/samyang_100mm_f2.8_ed_umc_macro and https://photorumors.com/2015/04/02/samyangrokinon-100mm-f2-8-and-100mm-t3-1-vdslr-ed-umc-macro-lenses-officially-announced/). The current product page lists nine, without Four Thirds, and the file carried those nine. `lensMounts` now includes `four-thirds`. No optical value changed.
+
+## 2026-10-11 — Second review: diagram, labels and movement
+
+Compared: the local page (infinity, the close end of the focus control, the group-movement overlay, and the inspector for elements 1, 2, 3, 4, 5, 10, 11, 14 and 15) against Figure 1 (도면1, PDF page 12), the reference-sign list of paragraph 0142, paragraphs 0051–0065, the claims and Table 1 of `patents/KR20170073883A.pdf`. Table 1 was read again from the page images: R, D1–D27, Nd, Vd and the glass names match the file on all 28 rows, and `sd` differs from C only on the six surfaces already recorded. No semi-diameter, radius, gap or index changed in this review; the changes are names, bracket text and prose.
+
+Names. Sections above this one use L1–L15 for the first to fifteenth lens. From here on, and in the data file and analysis, elements carry the patent's reference signs.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| element `name`, 15 entries | L1 … L15, with the patent signs only in `diagramLabel` | L10, L11, L20–L27, L30–L34, equal to `diagramLabel`; `label` stays "Element 1" … "Element 15" | Paragraphs 0055–0059 and 0142 and Figure 1 name the lenses L10, L11, L20–L27 and L30–L34. On the page the section labelled the first two elements L10 and L11 while the inspector, the Abbe diagram and the element table gave "L10" and "L11" to the tenth and eleventh elements (drawn as L27 and L30). After the change the inspector reads "Element 10 L27", "Element 1 L10", "Element 4 L21". |
+| `groups` text | FIXED G1 / G2 / G3 | G1 (−) FIXED / G2 (+) / G3 (−) | Claim 1 and paragraph 0054: negative first group, positive second group, stop, negative third group; computed −752.4, +51.2 and −88.3 mm. Paragraph 0051: first group fixed. Surface ranges unchanged. |
+| `focusDescription` | "a fixed first group with elements 3–15 moving toward the object" | "rear focusing with the first group fixed and the second and third groups (L20–L34, elements 3–15) moving toward the object" | Paragraph 0051 (rear focus, group 1 fixed, focusing by groups 2 and 3) and paragraph 0065 (third to fifteenth lens move from the image side toward the object). |
+| data-file header | — | a note on element and group names, and a note that the corner vignetting belongs to the printed column | this section |
+| analysis | L1–L15 in headings and prose; corner bundle described as cut on one side only | patent signs throughout, headings as "L21 (element 4)"; corner vignetting described from both ends with the numbers below | this section |
+
+Figure re-measured independently, on the embedded raster itself (1340 × 583 px, extracted unscaled) instead of a page rendering. Axis on rows 258–259. Vertex crossings at columns 79.5 (surface 1), 100, 110, 146.5, 464.5 (surface 5), 503.5 (6 and 7), 557, 571, 585, 641.5, 655.5, 669.5, 683.5, 728 (15 and 16), 762.5 (17), 786.5 (19), 802.5, 863, 879, 915.5, 960.5 (24 and 25), 977.5, 996 and 1012 (surface 28). Surface 1 to 28 is 932.5 px for 123.498 mm, 0.13244 mm/px; surface 5 to 28 gives 0.13275 and surface 1 to 17 gives 0.13239. The raster has square pixels: through the sag, the surface 2 arc end gives 0.1325 mm/px across the axis, the cemented surface 11 at its block edge 0.1322, surface 20 at its arc end 0.1327 and surface 1 at its block edge 0.1315. The first pass's 0.1183 mm/px across the axis belongs to the 300 dpi page, which stretches the raster 1.117 times in that direction, and is the same scale. Used 0.1324 mm/px both ways. Heights in mm, read on the lower half, line centres:
+
+| Element | Surfaces | C, Table 1 | Block edge, this review | Block edge, first pass | Arc end of the concave face, this review | First pass |
+|---|---|---:|---:|---:|---:|---:|
+| L10 | 1 / 2 | 23.9 / 22.3 | 24.7 | 24.8 | surface 2: 21.9–22.0 | 22.0 |
+| L11 | 3 / 4 | 22.3 / 21.5 | 23.7–24.0 | 23.8 | surface 4: 21.4–21.5 | 21.5 |
+| L20 | 5 / 6 | 17.1 / 16.75 | 18.3 | 18.4 | — | — |
+| L21 | 7 | 15.57 | 16.7 | 16.8 | — | — |
+| L22 | 8 / 9 | 14.57 / 13.04 | 15.7 | 15.7 | surface 9: 12.8–13.6 | 13.0–13.4 |
+| L23 / L24 | 10 / 11 / 12 | 13.03 / 12.64 / 12.78 | 13.8 | 13.8–14.1 | — | — |
+| L25 | 13 | 12.78 | 14.6 | 14.7 | surface 13: 12.1–12.4 | 12.1 |
+| L26 | 14 / 15 | 13.53 / 13.95 | 15.2 | 15.2 | — | — |
+| L27 | 16 / 17 | 13.74 / 13.5 | 14.9 | 15.0 | — | — |
+| Stop | 18 | 11.92834 | ticks from 12.1 to 14.0, 90.7 mm behind surface 1 | ticks from 12.1 | — | — |
+| L30 | 19 / 20 | 10.7 / 9.91 | 11.6 | 11.8 | surface 20: 9.7 | 9.9 |
+| L31 | 21 / 22 | 9.7 / 10.4 | 11.45 | 11.5 | not separable | not separable |
+| L32 | 23 / 24 | 13 / 13.23 | 14.4 | 14.4 | — | — |
+| L33 | 25 / 26 | 13.13 / 13.23 | 14.4 | 14.4 | surface 25: 13.0–13.5 | 12.9 |
+| L34 | 27 / 28 | 13.23 / 13.85 | 15.2 | 15.2 | surface 27: 12.5–12.9 | 13.0 |
+
+The two readings agree within 0.2 mm on every block and within 0.5 mm on every arc end. Blocks stand 0.8–1.5 mm (mean 1.1 mm) outside the larger C of each element, and the concave arcs end at 0.95–1.00 of C. The first pass's conclusion holds: the drawing confirms column C as the optical extents and gives no reason to move a rim, so no `sd` changed. The stop ticks sit 90.7 mm behind surface 1, on plane 18 (90.62 mm) and not on surface 19 (93.62 mm).
+
+Where the rendered section differs from Figure 1, all following from the printed column and left as they are: every element is a square block with flat lands in the drawing and a taper between two clear apertures on the page (most visibly L22, 14.58 to 13.06 mm; L10; L30; L31; L34); the L23/L24 pair shows a 0.4 mm waist at its cemented surface (13.05 / 12.66 / 12.78) where the drawing has one rectangle; the L33 rear face stops at 12.72 mm below the L34 front face at 13.23; and the filter plate of the drawing is absent. The order of heights between neighbours is the drawing's throughout: L10 over L11, L20 over L21 over L22, L23/L24 the smallest of the second group, L25 below L26, L27 just under L26, L30 and L31 the smallest elements, L34 the tallest of the last three.
+
+Corner vignetting belongs to column C. An independent exact meridional trace of the unaltered printed column at 12.38° (chief ray at 21.64 mm) finds one bounding ray at 23.882, 22.253, 22.247 and 21.499 mm on surfaces 1–4 against C of 23.9, 22.3, 22.3 and 21.5, and the other at 10.399, 12.986, 13.213, 13.121, 13.226, 13.228 and 13.845 mm on surfaces 22–28 against 10.4, 13, 13.23, 13.13, 13.23, 13.23 and 13.85. Those eleven printed values are therefore the heights of the two rays that bound the designer's corner bundle, 43.9% of the iris diameter in the meridional section; this also supports reading C as a semi-diameter. In the model as filed the passing rays cross the iris from −3.149 to +6.507 mm of ±11.928 (40.5%), limited by surface 4 on one side and surface 26 on the other. The meridional fractions at 2°, 5°, 7.43° and 10° are 94.7%, 85.0%, 75.6% and 59.7% (limits: surfaces 5 and 20, 5 and 21, 5 and 21, 4 and 21). The engine's wide-open geometric transmission at infinity is 100.0, 94.8, 88.5, 81.3, 72.4, 59.4 and 42.2% at 0, 2.1, 4.1, 6.2, 8.3, 10.3 and 12.4°, the same before and after this review. With surface 26 at the printed 13.23 mm (which needs `gapSagFrac` 0.98) only the last figure changes, to 45.8%.
+
+Two statements of the first pass are corrected by this. Its shares of iris-filling rays at 10° and 12.38° (72.13% and 70.89%) are not reproduced; the engine and the meridional trace give about 59% and 41%. And the corner bundle is not cut on one side only: the clearance tool reports "LOWER no-ray-found" because the lower rim ray misses the front spheres, so it shows the rear cut (11% at surface 19 rising to 42% at surface 26) and not the larger front cut at surfaces 1–4.
+
+Surfaces 10 and 26, measured and not changed (owner's decision). Surface 10: the drawing runs the surface 10 arc into the corner where the surface 9 arc meets the L22 edge at 12.8–13.2 mm, as recorded. Surface 26: the drawing shows the reverse of the model. The L33 rear face runs straight to its block edge at 14.4 mm, and it is the concave surface 27 arc that stops, at 12.5–12.9 mm, where it meets a flat land lying on the surface 26 line. A copy in memory with surface 26 at the printed 13.23 mm and surface 27 at 12.72 mm passes the validator at the present `gapSagFrac` 0.92 (the pair is evaluated at the smaller of the two heights, 89.9% of the gap either way), clips neither the axial nor the chief ray, and gives the identical transmission curve (42.2% at 12.4°). It would render L33 as the square block the drawing shows (13.13 / 13.23) and put the short face on L34. Left for the owner.
+
+Checked and found correct.
+
+- Group brackets: the drawing's 제1렌즈군, 제2렌즈군 and 제3렌즈군 brackets span L10–L11, L20–L27 and L30–L34, with the stop between the second and third; `groups` brackets surfaces 1–4, 5–17 and 19–28.
+- Cemented brackets: D1 on surfaces 7–9 (L21/L22), D2 on 10–12 (L23/L24), D3 on 13–15 (L25/L26), matching paragraph 0057 and the `cemented` fields.
+- Element types against the signs of R and paragraphs 0055–0059: L10 negative meniscus convex to the object (65.34 / 36.74), L11 positive meniscus convex to the object (36.68 / 49.84), L20 plano-convex (49.84 / plane), L21 biconvex, L22 biconcave (−125.84 / 30.00), L23 biconvex, L24 negative meniscus convex to the image (−27.51 / −112.49), L25 biconcave (−37.42 / 556.29), L26 biconvex, L27 biconvex (±138.12), L30 negative meniscus convex to the object (80.36 / 26.24), L31 biconcave (∓76.9), L32 biconvex, L33 and L34 negative menisci convex to the image. All fifteen `type` strings and `role` texts agree.
+- No aspheric surface: the patent has no aspheric data, `asph` is empty and no label carries an aspheric mark.
+- Tags: the patent text names no low-dispersion, anomalous-dispersion or high-index glass, so `apd: "inferred"` on L21 (FCD1, νd 81.61, ΔPgF +0.032 from the stored catalog lines) is the right tag and "patent" would be wrong. L20 (E-FDS1, the position Samyang marks HR) carries no dispersion tag and is drawn as high-index glass only.
+- Glass: all fifteen labels are the HOYA names printed in Table 1 and all resolve in the catalog within 3×10⁻⁶ in nd and 0.02 in νd; none is unmatched.
+- Focus: `var` is empty. The focus control shows "Not modeled", the section is pixel-identical at both ends of it, and the group-movement overlay reports no modeled movement. The patent gives the moving lenses and the direction (paragraphs 0051 and 0065, claim 4) and no amount, so nothing can be ordered or signed beyond what `focusDescription` says.
+- Engine values, unchanged: EFL 98.0430 mm, f/2.9041 on the iris, stop radius 11.92834 mm, half-field estimate 14.16° (set by surfaces 2 and 3), 100% corner coverage (21.65 of 21.65 mm at 12.4°), no validator error, no surface clipping the axial or the chief ray.
+
+Filter plate. Figure 1 draws plate 20 with its front face 38.4 mm behind surface 28, 2.6–2.7 mm thick and 34.6 mm tall, its rear face about 0.3 mm ahead of the image plane, and the image plane 41.3 mm behind surface 28 with a half-length of 21.65 mm (the printed Bf is 41.375 and the image height of Figure 3 is 21.63). Table 1 gives the plate no row and paragraph 0061 calls the filters optional, so there is no source thickness, index or gap to enter, and none is modeled.
+
+Maker diagram. No maker image was viewed in this review. The record above stands: Samyang's section shows 15 elements in 12 groups, two separated front menisci, a long air space, the HR mark on the third element and the ED mark on the fourth, three cemented pairs and five rear singlets, with no aspherical element marked.
+
+Open limitations. The page cannot draw the square blocks, flat lands and plate of Figure 1. Surface 26 stays 0.51 mm inside the printed column. No near-focus state exists in the source. Figure 3 carries two aberration panels that are both labelled "EFL=100 MACRO 1:1, POSITION 1" and show different curves; the text describes one set, and the second panel is not identified.
+
+## 2026-10-11 — Surfaces 26 and 27 exchanged
+
+The second review above found that Figure 1 draws the 26→27 pair the other way round from the model: the rear face of L33 (surface 26, R = −619.72 mm) runs to the edge of its block, and the concave front face of L34 (surface 27, R = −35.03 mm) stops at 12.5–12.9 mm on a flat land. The model held surface 26 at 12.72 mm and left surface 27 at the printed 13.23 mm.
+
+| Surface | Printed C (mm) | Was (mm) | Now (mm) | Figure 1 |
+|---|---:|---:|---:|---|
+| 26 | 13.23 | 12.72 | 13.23 | face drawn to the block edge |
+| 27 | 13.23 | 13.23 | 12.72 | arc ends at 12.5–12.9 mm |
+
+The cross-gap rule tests the pair at the smaller of the two heights, so the fill is 89.9% of the 2.514227 mm gap either way and `gapSagFrac` stays 0.92. The surface validator reports no errors; neither the f/2.904 axial ray nor the corner chief ray is clipped. The wide-open vignetting curve at infinity is the same at every field sample before and after: 100, 94.8, 88.5, 81.3, 72.4, 59.4 and 42.2% at 0, 2.1, 4.1, 6.2, 8.3, 10.3 and 12.4°. L33 now has the printed aperture on both faces (13.13 / 13.23 mm) and renders as the block the drawing shows.
+
+This replaces a rim value the owner approved on 2026-10-08 (surface 26 at 12.72 mm) with the printed one and moves the same 0.51 mm reduction to the neighbouring face. The number of surfaces below the printed column is still one.

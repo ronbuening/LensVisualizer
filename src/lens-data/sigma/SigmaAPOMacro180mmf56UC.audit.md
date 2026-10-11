@@ -334,7 +334,88 @@ No maker image was supplied or viewed in this pass. The manufacturer correlation
 
 Open:
 
-- `finiteConjugates[0].source` still reads "approximately +0.288 mm paraxial defocus; no automatic refocus". It is true as a paraxial statement and is shown on the MTF tab; it was outside the fields this pass could edit.
+- `finiteConjugates[0].source` still reads "approximately +0.288 mm paraxial defocus; no automatic refocus". It is true as a paraxial statement and is shown on the MTF tab; it was outside the fields this pass could edit. (Closed: the field now says the printed state is in best focus on the fixed image plane with the paraxial image about 0.288 mm behind it; see the second review below.)
 - The Sigma catalogue section has not been compared independently with 第5図.
 - Manual-focus mount versions are not listed in `lensMounts`.
 - Type check, formatting, lint and the corpus tests were not run in this pass.
+
+## 2026-10-11 — Second review: diagram, labels and movement
+
+Independent second look at the lens as the local page draws it. Element names in this section are the current E1–E9; the sections above use the earlier L1–L9, and element Ln there is En now.
+
+### What was compared
+
+- The local page at infinity and at 0.5×, the focus-movement overlay at both ends of the slider, the two-station patent-positions view and the inspectors of all nine elements.
+- `patents/JPH04110811A.pdf`: 第5図 on PDF page 6 (printed 90), the Example 3 table and its 0.5× gap rows on PDF page 4 (printed 88), the claims on PDF page 1 (printed 85), the summary and the discussion of the conditions on PDF pages 2–3 (printed 86–87) and the drawing description on PDF page 5 (printed 89). The scan has no text layer; all six pages were read from 160–220 dpi renders, with native 352 dpi crops of claim 1, the Example 3 table and 第5図.
+- No maker image was supplied or viewed. The manufacturer record above (Sigma catalogue, read by the package author) gives 9 elements in 6 groups, two front SLD elements, floating internal focus and infinity to 1:2; nothing in this review contradicts it.
+
+### Silhouette against 第5図
+
+第5図 was measured again from the native raster without the first pass's readings. Vertex crossings on the page (px): surface 1 at 1695, 2/3 merged at 1753, 4 at 1826.5, 5 at 1842, 6 at 1964, 7 at 1990, 8 at 2004.5, iris 2145, 10 at 2250.5, 11 at 2268.5, 12 at 2302.5, 13 at 2617, 14 at 2631.5, 15 at 2644, 16 at 2666. Surface 1 to surface 16 is 971 px for 103.29 mm, 0.10637 mm/px; surface 1 to 12 gives 0.10607 and surface 12 to 16 gives 0.10688. Every vertex lies within 5 px (0.5 mm) of its tabulated place. The four variable gaps measure 13.0 / 14.9 / 11.2 / 33.5 mm, so the drawing is the infinity state (12.48 / 14.50 / 11.63 / 33.45 mm; 0.5× would be 23.66 / 3.32 / 3.38 / 41.7 mm). The axis row falls from 1214.4 px at the front group to 1210.3 px at the rear group, and each height below is the mean of the upper and lower rim, read at the centre of the 3–4 px outline and at its outer edge.
+
+| Element | Surfaces | Stored (mm) | Upper / lower (px, stroke centre) | Figure, stroke centre – outer edge (mm) | Figure / stored | Decision |
+|---|---|---:|---:|---:|---:|---|
+| E1 | 1, 2 | 20 | 184.9 / 184.1 | 19.63 – 19.84 | 0.98 – 0.99 | kept |
+| E2 + E3 | 3, 4, 5 | 18 | 167.7 / 166.1 | 17.75 – 17.92 | 0.99 – 1.00 | kept |
+| E4 (tip) | 6, 7 | 14 | 127.0 / 126.0 | 13.46 – 13.56 | 0.96 – 0.97 | kept |
+| E5 (flat rim) | 8 | 14 | 128.5 / 130.0 | 13.75 – 13.93 | 0.98 – 1.00 | kept |
+| E6 | 10, 11 | 11.31 | 103.0 / 106.0 | 11.12 – 11.28 | 0.98 – 1.00 | kept |
+| E7 | 12 | 11.31 | 103.2 / 104.0 | 11.02 – 11.17 | 0.97 – 0.99 | kept |
+| E8 (flat rim) | 13, 14 | 14 | 127.8 / 131.7 | 13.80 – 13.99 | 0.99 – 1.00 | kept |
+| E9 | 15, 16 | 16 | 147.3 / 145.7 | 15.58 – 15.80 | 0.97 – 0.99 | kept |
+
+No semi-diameter was changed. The outer-edge readings agree with the first pass to 0.05 mm, every stored rim is within 4 % of the drawing, and the drawn order of heights (E1, then E2 + E3, E9, E8 level with E5, E4, and the E6 + E7 pair smallest) is the order on the page. The iris arrowheads end 88.5 px above and 90.5 px below the axis (9.4 and 9.6 mm) against the 9.194 mm iris; they are schematic and the iris was not touched.
+
+Places where the page and the drawing visibly differ, each checked:
+
+- **Front corners of E5 and E8.** The figure chamfers both. On E5 the chamfer leaves the cemented curve 110.5 px above and 112.5 px below the axis (11.8 and 12.0 mm) and meets the flat rim about 2 mm further back, leaving a V-shaped notch between it and the tip of E4, which runs on to 13.5 mm. On E8 it leaves surface 13 at 116.3 and 115.7 px (12.4 and 12.3 mm) and meets the flat rim 1.7 mm further back, with 2.7 mm of flat rim behind it. The page draws both elements square at the outer rim. The renderer joins the two rim points of an element with one straight line, so the only way to show a chamfer is to lower one face, and both trials were run. Surface 13 at 12.3 mm passes the validator but slants the whole 4.8 mm edge of E8 where the drawing keeps most of it flat, cuts 8 % of one side of the corner bundle at a surface that now cuts nothing, and lowers the 7° transmission from 83.9 % to 81.3 %. Surface 7 at 11.9 mm passes the validator but removes the drawn tip of E4 above 11.9 mm, turns the top of E5 into a 6 mm slope and cuts 18 % of one side of the corner bundle at surface 7. Neither was applied; square at the drawn outer rim is the closer picture, as the first pass concluded.
+- **Small step at the E6 / E7 junction.** The top line dips 4 px (0.4 mm) where the cemented curve arrives; the bottom rims of E6 and E7 differ by 2 px. Both faces stay at 11.31 mm.
+- **Drawn edge thicknesses.** E1 1.6–1.8 mm against 1.92 mm in the model, E9 1.2 against 1.14 mm, E3 5.1 against 4.76 mm, E8 4.4 against 4.80 mm and E7 1.7 against 1.37 mm are within 0.4 mm (4 px) of the model. E2 is drawn 1.1 mm thick at the rim against 1.70 mm, and E6 1.6 mm against 2.25 mm because the drawing puts surface 11 about 0.5 mm further back and draws it flatter than its 64.43 mm radius. These are freehand curvature differences that no rim value changes.
+
+At 0.5× the page shows E4 + E5 and E6 + E7 on either side of the iris without touching it or each other, as the first pass recorded.
+
+### Labels: what changed
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Element `name`, all nine | L1 … L9 | E1 … E9 | Claims 1–4 (PDF page 1) and the summary (PDF page 2) write the four lens groups as L1 to L4: 第1レンズ群 L1, 第2レンズ群 L2, 第3レンズ群 L3, 第4レンズ群 L4. The model's L2 was an element of the patent's L1 and its L4 an element of the patent's L2. The patent gives no designation to any single element in the text or in 第5図, so the neutral sequential E-names are used. |
+| Data-file header | no note on designations; "bevels … on L5 and L8" | designation note added; "on E5 and E8" | as above |
+| Analysis | L1 … L9 in the architecture table, the nine element headings and paragraphs and the glass table | E1 … E9 throughout; one paragraph in Optical Architecture stating the patent's L1–L4 and 第1群–第4群 group notation and that E1–E9 are model names; one sentence in Focus Mechanism citing claim 1 and 第5図 for the directions | as above |
+
+Kept as they were: `label` "Element 1" to "Element 9", and no `diagramLabel`, so the diagram prints the element numbers 1–9. Printing L1…L9 under the elements was considered and rejected, because L1–L4 are the patent's groups and the figure numbers no elements. The inspector heads now read "Element 1 E1" to "Element 9 E9".
+
+### Labels and tags found correct
+
+- **Group brackets.** G1 covers surfaces 1–5 (E1, E2 + E3), G2 6–8 (E4 + E5), G3 10–12 (E6 + E7) and G4 13–16 (E8, E9). These are the extents 第5図 brackets as 第1群, 第2群, 第3群 and 第4群, and the iris stands alone between G2 and G3. The bracket text stays G1–G4, the figure's ordinal group labels; the claims' own symbols for the same groups are L1–L4.
+- **Cemented brackets.** D1 (surfaces 3–5), D2 (6–8) and D3 (10–12) are the three places where the table lists two consecutive glasses, and each is drawn as one cemented pair in 第5図.
+- **Stop.** Row 9 of the table is the iris (r = 0.0, 絞り), 14.50 mm behind surface 8 and 11.63 mm ahead of surface 10 at infinity; the figure labels it 開口絞り between the second and third groups, and the page draws it there.
+- **Element types against the signs of R.** E1 (+81.37 / −114.7), E2 (+46.72 / −87.92) and E7 (+64.43 / −40.2) are biconvex; E3 (−87.92 / +270.4), E5 (−39.26 / +44.1) and E8 (−35.97 / +210.03) are biconcave; E4 (−411.0 / −39.26) is a positive meniscus concave to the object; E6 (+258.5 / +64.43) is a negative meniscus convex to the object; E9 (+67.68 / +366.0) is a positive meniscus convex to the object. All nine `type` strings and focal-length signs agree, and every `role` states the right group and motion.
+- **Aspheres.** The patent has none and the file marks none.
+- **Special-glass tags.** The patent text names no glass and no anomalous or low-dispersion class anywhere; it gives only nd and νd. `apd: "inferred"` on E1 and E2 (1.49700 / 81.6) therefore stays inferred, resting on the glass coordinates and on the two front SLD elements of the manufacturer record. No other element has an extra-low-dispersion coordinate; E7 (1.48749 / 70.4) is an ordinary fluor crown and is correctly untagged.
+- **Inspectors.** All nine were opened on the page; type, nd, νd, focal length, glass, cemented badge (D1 on E2 and E3, D2 on E4 and E5, D3 on E6 and E7), the "APD (INFERRED)" badge on E1 and E2 only, and the role text match the file.
+- **Variable-gap labels.** D5, D8, D9 and D12 are the patent's d5, d8, d9 and d12, and the page lists 12.48 / 14.50 / 11.63 / 33.45 at infinity and 23.66 / 3.32 / 3.38 / 41.70 at 0.5×.
+- **Prescription.** All 16 radii, 15 thicknesses and spacings, nine nd and νd pairs and the four 0.5× gaps were read again from the native render of PDF page 4 and match the file.
+
+### Focus movement
+
+| Gap | Infinity | 0.5× | Change | Meaning |
+|---|---:|---:|---:|---|
+| d5 (G1 to G2) | 12.48 | 23.66 | +11.18 | G2 moves 11.18 mm toward the image |
+| d8 (G2 to iris) | 14.50 | 3.32 | −11.18 | the iris does not move |
+| d9 (iris to G3) | 11.63 | 3.38 | −8.25 | G3 moves 8.25 mm toward the object |
+| d12 (G3 to G4) | 33.45 | 41.7 | +8.25 | G4 does not move |
+
+Both columns sum to 72.06 mm. Claim 1 states the same thing in words: the first and fourth groups are fixed relative to the image plane, the second moves toward the image and the third toward the object when focusing from infinity to a near object. 第5図 puts a bracket and an arrow under the second and third groups only, the two arrows leaning toward each other. In the file each of the four `var` entries lists infinity first and 0.5× second, in surface order 5, 8, STO, 12. The overlay shows G1 and G4 as single dots, G2 running from −112.8 to −101.6 mm from the image plane and G3 from −81.7 to −89.9 mm, with a maximum travel of 11.18 mm; the hollow start marker is at the infinity end in both rows. The slider reads ∞ at one end and 55 cm at the other (0.54637 m, object to image), 1.09 m at mid-travel, and the patent-positions view offers exactly the two printed states. Direction, amounts and order are all correct; nothing was reordered.
+
+The numbers in `focusDescription` were recomputed with a separate spherical ray trace written for this review: focal length 174.864 mm and back focus 40.0805 mm at infinity; at the printed 0.5× state the paraxial image is 40.368 mm behind surface 16 at magnification −0.4993; rays through the 0.3, 0.5, 0.65, 0.8, 0.9 and 1.0 zones of the 9.194 mm iris cross the axis at 40.29, 40.19, 40.11, 40.07, 40.09 and 40.16 mm; the effective F-number there is 6.17.
+
+### Model values before and after
+
+No optical value changed. Before and after: focal length 174.864 mm, F/5.71, iris radius 9.194388 mm, engine half-field 9.9055°. The surface validator reports no errors, the image-circle check finds nothing undersized, the corner chief ray reaches 21.60 mm of 21.60 mm at 7.0°, and the real-ray clearance probe shows no on-axis clip and no chief-ray block. Wide-open geometric transmission at infinity is 100 / 99.5 / 99.5 / 99.5 / 94.8 / 89.6 / 83.9 % at 0 / 1.2 / 2.3 / 3.5 / 4.7 / 5.8 / 7.0°, the same before and after. The page was shot again after the edits at infinity, at 0.5×, with the overlay at both ends and with every inspector open; the four diagram and overlay images are identical byte for byte to those taken before, and the inspectors differ only in the element name.
+
+### Limits
+
+- The bracket text follows the figure (第1群–第4群 as G1–G4). Other files in the catalogue carry L-numbered brackets where L1, L2 … are the patent's group symbols; here the figure prints only the ordinal labels and the claims and summary alone use L1–L4, which the data-file header and the analysis record.
+- The chamfers on E5 and E8 and the notch between E4 and E5 cannot be drawn by a single straight rim line and remain unmodeled.
+- The analysis text is not displayed on the local page in its current configuration, so the reworded prose was checked in the file only.
+- The manufacturer's section has still not been compared independently with 第5図, and manual-focus mount versions are still not in `lensMounts`; both were outside this review's fields.

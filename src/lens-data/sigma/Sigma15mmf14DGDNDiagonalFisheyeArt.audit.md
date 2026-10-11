@@ -2,7 +2,7 @@
 
 ## Final disposition
 
-Independent Stage 4 source-first review and justified aperture corrections are complete at the then-current released main. Final readiness is limited to the demonstrated source/native-chief and default construction sampling listed below. No full-field/full-pupil/continuous-ray guarantee is made; unsolved physical-stop branches, later exterior misses and nondefault stress failures remain explicit. The final exact bytes and clean replay are bound by the manifest. Integration: closed 2026-10-11 — the three files are in `src/lens-data/sigma/`; see the deployment validation section at the end of this log.
+Independent Stage 4 source-first review and justified aperture corrections are complete at the then-current released main. Final readiness is limited to the demonstrated source/native-chief and default construction sampling listed below. No full-field/full-pupil/continuous-ray guarantee is made; unsolved physical-stop branches, later exterior misses and nondefault stress failures remain explicit. The final exact bytes and clean replay are bound by the manifest. Integration: closed 2026-10-11 — the three files are in `src/lens-data/sigma/`; see the deployment validation section near the end of this log.
 
 ## Historical Stages 1–3 record
 
@@ -50,7 +50,7 @@ Stage 1 mandatory checks passed with complete original-source extraction, first-
 
 ## Pending integration
 
-Closed 2026-10-11: the files are integrated in `src/lens-data/sigma/` (see the last section). At this stage full TypeScript, Prettier, lint, shared corpus tests, build and live viewer checks were not run. A pinned-source targeted runtime execution in Stage 2, if performed, will be separately described and will not imply full application integration.
+Closed 2026-10-11: the files are integrated in `src/lens-data/sigma/` (see the deployment validation section). At this stage full TypeScript, Prettier, lint, shared corpus tests, build and live viewer checks were not run. A pinned-source targeted runtime execution in Stage 2, if performed, will be separately described and will not imply full application integration.
 
 ## Stage 2 construction and actual targeted runtime execution
 
@@ -168,7 +168,7 @@ The earlier map is updated by the final parsed-model results and final hashes in
 
 Stage 4 manual claim/citation review: PASS. No APO, measured MTF, factory-melt identity, exact production prescription, full-pupil transmission, continuum guarantee, React/browser or integration acceptance is asserted. Current fisheye MTF remains unsupported; only the authored near-state finite selector is certified.
 
-Batch readiness is earned for this exact final pair and the documented targeted current-project scope after clean extraction and replay. It does not approve unresolved nondefault stress branches or certify integration. The final twelve-file archive includes unchanged original source/card, actual data/analysis, consolidated evidence/verifier/results/audit/manifest, and essential runtime driver/report/native geometry. Python3.12.14, NumPy2.3.5 and SciPy1.17.0 are required for portable full verification; Node24.19.0 plus the identified read-only source snapshot reproduce actual runtime execution. Outputs are written outside the package; stored results are never overwritten during replay. Repository compiler, Prettier, lint, corpus, build and live viewer were not run at this stage and are required at integration. Integration: closed 2026-10-11 — the files are in `src/lens-data/sigma/` and load in the repository engine and surface validator (last section); repository-wide checks run with the batch.
+Batch readiness is earned for this exact final pair and the documented targeted current-project scope after clean extraction and replay. It does not approve unresolved nondefault stress branches or certify integration. The final twelve-file archive includes unchanged original source/card, actual data/analysis, consolidated evidence/verifier/results/audit/manifest, and essential runtime driver/report/native geometry. Python3.12.14, NumPy2.3.5 and SciPy1.17.0 are required for portable full verification; Node24.19.0 plus the identified read-only source snapshot reproduce actual runtime execution. Outputs are written outside the package; stored results are never overwritten during replay. Repository compiler, Prettier, lint, corpus, build and live viewer were not run at this stage and are required at integration. Integration: closed 2026-10-11 — the files are in `src/lens-data/sigma/` and load in the repository engine and surface validator (deployment validation section); repository-wide checks run with the batch.
 
 ## 2026-10-11 — Semi-diameter pass against the patent figure
 
@@ -237,7 +237,7 @@ Manufacturer section (coordinator-viewed; no image was supplied to or downloaded
 ### Open limitations
 
 - The renderer joins unequal front and rear rims with a straight bevel. L1, L2, L5 and now L4 and L20 therefore show a bevel where the figure draws a square block with a flat mounting annulus.
-- Surface 9 stays at 22.0 mm, 1.5 mm above the drawn D2 rim (figure/data 0.93, under the threshold for a change). It was raised in the packaged model so that a sampled off-axis ray reaching 20.82 mm does not first clip at the cemented interface. Lowering it to the drawn 20.5 mm would square the D2 rim and passes the validator, at the cost of putting that sample on the junction. The dense scan above shows a few meridional rays still first clip on surface 9 at 22.0 mm.
+- Surface 9 stays at 22.0 mm, 1.5 mm above the drawn D2 rim (figure/data 0.93, under the threshold for a change). It was raised in the packaged model so that a sampled off-axis ray reaching 20.82 mm does not first clip at the cemented interface. Lowering it to the drawn 20.5 mm would square the D2 rim and passes the validator, at the cost of putting that sample on the junction. The dense scan above shows a few meridional rays still first clip on surface 9 at 22.0 mm. Closed 2026-10-11: lowered to 20.5 mm in the second review below, with no change in transmitted rays.
 - Surface 29 has one value for two drawn extents: the figure cuts the L16 rim with a flat annulus at about 14.5 mm while the L17 front continues on the same curve to 16.8 mm. The shared 17.0 mm is kept, so L16 renders about 1.4 mm thicker at the rim than drawn.
 - Near-focus rim checks used collimated bundles through the near-focus spacings. That screens the geometry; it is not a trace from the finite planar object, which has no meridional object point near 90°.
 - The sample counts in the analysis section on model apertures were taken on the packaged apertures and were not re-run. Only exterior rims moved, so none of those first clips can have moved onto a cemented interface. Closed 2026-10-11: those sample counts were removed from the analysis in the wording pass below.
@@ -259,6 +259,103 @@ Fields changed in this pass. No optical value changed: EFL 15.4978 mm, F/1.46, h
 
 Open:
 
-- Surface 9 is stored at 22.0 mm against a drawn 20.5 mm (see the semi-diameter section above).
+- Surface 9 is stored at 22.0 mm against a drawn 20.5 mm (see the semi-diameter section above). Closed 2026-10-11: set to 20.5 mm in the second review below.
 - `closeFocusM` is the patent's 0.604 m state rather than the marketed 0.385 m.
-- L15 (LP1, FDS16-W) is the element the patent itself describes as a positive-anomalous-dispersion glass (¶0061–0062, conditions 11–13); it carries `apd: false`.
+- L15 (LP1, FDS16-W) is the element the patent itself describes as a positive-anomalous-dispersion glass (¶0061–0062, conditions 11–13); it carries `apd: false`. Closed 2026-10-11: the data file carries `apd: "patent"` on L15; checked in the second review below.
+
+## 2026-10-11 — Second review: diagram, labels and movement
+
+An independent second look at the lens as the local site draws it, against 図11 (PDF p. 64) and the Example 3 text and tables (PDF pp. 27–29, reference signs in ¶0222). The page was captured at infinity, at closest focus, with the focus-movement panel open at both ends of the range and with the off-axis display on; the inspector was read for elements 1, 2, 4, 5, 8, 9, 12, 13, 15, 17, 18, 19 and 21.
+
+### Figure re-measured
+
+The sheet was profiled again from scratch at its native 413 ppi. Axis row 1317. Thirty-four vertex crossings were located and fitted to the prescription: 150.1865 mm over 1876 px gives 0.08006 mm/px, and every vertex lands within 1.3 px of its predicted position. The plate F (2774 and 2805 px) and the image plane (2817.5 px) agree with the 14.8136 / 2.5 / 1.0 mm rear spacings. The drawn state is infinity: surface 12 to 13 is 50 px (4.00 mm against D12 = 3.95; the near state would be 75 px). Stop ticks sit at x = 1843 px (predicted 1843.4), between L11 and L12, with inner ends 198 px (15.85 mm) from the axis.
+
+Rim readings (line centres, lower half, which carries no leaders):
+
+| Surfaces | Stored before this review (mm) | Figure, this review (mm) | Note |
+|---|---:|---:|---|
+| 1 | 44.5 | 44.3 | front arc meets the flat rim at 553 px |
+| 2 | 34.5 | 33.9 | arc ends where the flat land begins, 423 px |
+| 3 | 33.5 | 33.3 | 416 px |
+| 4 | 23.0 | 22.9 | land begins at 286 px |
+| 5, 6 | 23.0, 23.3 | 23.1 | L3–L4 block rim, 288 px |
+| 7 | 19.5 | 18.8–19.3 | land begins at 235–241 px |
+| 8 | 19.8 | 18.8–19.1 | land begins at 235–238 px |
+| 9, 10 | 22.0, 20.5 | 20.5 | L5–L6 block rim, 256 px on both sides of the axis |
+| 11, 12 | 20.2 | 20.25 | 253 px |
+| 13, 14 | 19.5 | 19.5 | 243.5 px |
+| 15A, 16A | 18.5 | 18.3 | 229 px |
+| 17–19 | 17.6, 18.0, 17.6 | 17.45 | 218 px |
+| 21, 22 | 17.6 | 17.45 | 218 px |
+| 23–25 | 17.6, 18.0, 17.6 | 17.4 | 217 px |
+| 26, 27 | 17.5 | 17.5 | 219 px |
+| 28, 29, 30 | 17.0 | 16.8 | 210 px; the L16 rear land begins at 180 px (14.4 mm) |
+| 31, 32 | 16.8 | 16.5 | 206.5 px |
+| 33, 34 | 16.2 | 16.0 | 200 px |
+| 35 | 13.9 | 13.6–13.85 | land begins at 170–173 px |
+| 36A, 37A | 15.7 | 15.7 | square rim, 196 px |
+
+These agree with the first pass to within one or two pixels on every surface. The one stored value that departed visibly from the drawing was the L5–L6 junction.
+
+### Changes
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Surface 9 `sd` | 22.0 mm | 20.5 mm | 図11 draws L5–L6 as a square-cut block with a flat rim at 256 px (20.50 mm) above and below the axis, level with L7 (20.25 mm) and well under the L3–L4 block (23.1 mm). At 22.0 mm the page drew a pointed roof over the junction, 1.5 mm above both neighbours. |
+| Element `diagramLabel` | none (the page showed 1–21) | `L1` … `L21` | 図11 and ¶0136–0137 designate the elements L1–L21, in the same order as the data file. |
+| `groups` | G1 (negative) 1–19, G2 (positive) 21–37A | the same two, plus N1 (1–2), N2 (3–4), L8 (focus lens) (13–14) and LP1 (26–27) | 図11 brackets N1 under L1 and N2 under L2, draws the focusing bracket and arrow under L8, and leads LP1 to L15 (the leader starts inside L15 at x = 2116 px, between vertices 26 and 27). ¶0136 defines N1 = L1 and N2 = L2; ¶0061 defines LP1. |
+| Header comment | junctions 6, 9, 18 and 24 above the drawing | junction 9 at the drawn rim; note on slanted edges and on the label sources | follows the two changes above |
+| Analysis | L5 paragraph and the model-scope paragraph described the 22.0 mm junction; the tag sentence omitted L15 | junction text now gives 20.5 mm and its source; one sentence added on the L15 tag | consistency with the data file |
+
+The focus-movement panel is the reason the L8 entry matters. The panel takes its rows from `groups` and measures each row by the midpoint of its end surfaces. With only G1 and G2 authored, both rows are fixed (surfaces 1, 19, 21 and 37A do not move) and the panel reported a maximum travel of 0.00 mm for a lens whose focusing element moves 2.04 mm. With the L8 row it reports 2.04 mm toward the focus plane. The label is long enough to stay on the second label row at every focus position; a shorter text jumped rows part-way through the travel and touched the G1 label.
+
+### Clearance with surface 9 at 20.5 mm
+
+The scratch clear-aperture probe launches with the tangent of the field angle and does not solve the chief ray past about 74.5°, and the field-coverage audit skips fisheye projections, so the field edge was traced with a separate meridional exact trace launched on the first surface, rear plate included. It reproduces the first pass: the 92.865° chief ray lands at 22.3946 mm with margins 12.78 of 13.9 mm at surface 35, 21.64 of 23.0 at surface 4, 14.24 of 15.7 at 37A and 33.04 of 34.5 at surface 2.
+
+- Ray floors at surface 9: axial marginal ray at F/1.46 12.39 mm in both focus states; 92.865° chief ray 13.24 mm at infinity and 13.13 mm with the near spacings.
+- Repository surface validator: no errors before and after. Image-circle floor: 0 undersized. Hidden render trim: 0 mm at focus positions 0, 0.25, 0.5, 0.75 and 1.
+- Engine summary identical before and after: EFL 15.4978 mm, F/1.46, half-field 92.865°, paraxial tracing half-field 44.42°, stop radius 16.2165 mm.
+- Engine wide-open geometric transmission, 32 field angles from 0° to 92.8°: identical at every angle (for example 0.552 at 59.9°, 0.469 at 65.9°, 0.302 at 77.9°, 0.135 at 89.8°, 0.104 at 92.8°).
+- Meridional share of the stop diameter passing every rim, identical before and after: 92.6 % at 30°, 76.2 % at 55.7°, 68.2 % at 65°, 56.2 % at 75°, 49.0 % at 80°, 42.3 % at 85°, 36.1 % at 88.4°, 31.6 % at 90°, 24.0 % at 92.865°.
+- Dense meridional scan, 75 field angles by 1,781 first-surface heights: 12,496 rays transmit at infinity and 12,543 with the near spacings, the same counts before and after. Of the rays aimed inside the stop, 15 (infinity) and 12 (near) now meet their first rim at surface 9 instead of at a later one (surface 10, 6 mm further on, in the 65° fan examined ray by ray). No transmitted ray is lost.
+- The page's default off-axis display (55.7°) has one sample that reaches surface 8 at 19.16 mm and surface 9 at 20.82 mm. At 22.0 mm it passed the junction and stopped at surface 10 (20.87 against 20.5 mm); it now stops at the junction. It never reached the image: it also exceeds surfaces 11 to 17 and the stop (16.84 against 16.22 mm).
+
+### Square-block tests, not applied
+
+図11 draws L1, L2, L4, L5 and L20 with a flat mounting land and a cylindrical edge; the page joins the two rim points with a straight edge. Equal front and rear heights were tried for each.
+
+- L1, surface 2 at 44.5 mm: the validator accepts it, but the rear bowl would then end 24.69 mm behind the front vertex against a drawn land plane at 14.97 mm, wrapping L2, and the engine transmission rises at the field edge (0.135 to 0.146 at 89.8°, 0.104 to 0.115 at 92.8°). Rejected.
+- L2, surface 4 at 33.5 mm: not possible; the radius is 25.85 mm and the rim-slope limit caps the surface at 23.27 mm.
+- L4, surface 7 at 23.3 mm: the validator accepts it, but the rim would end at 41.88 mm, on the plane of the L5 front land (41.87 mm in the drawing), and the transmission rises between 78° and 84° (0.302 to 0.313, 0.260 to 0.271, 0.229 to 0.240). Rejected; the drawn curve end governs.
+- L20, surface 35 at 16.2 mm: the validator refuses it (combined sag 3.71 mm against 3.054 mm allowed before L21).
+- L5, surface 8 at 20.5 mm: accepted by the validator and no change in transmission, but the drawn curve ends at 18.8–19.1 mm and the stored 19.8 mm is already above it; a further rise would halve the drawn air space between the L4 and L5 rims (0.66 mm against 1.28 mm drawn). Left at 19.8 mm; with the junction at 20.5 mm the L5 edge now slopes by 0.7 mm over its 9.8 mm length.
+- Junctions 6, 18 and 24 at their block heights (23.0, 17.6, 17.6 mm): accepted by the validator, same transmitted-ray counts and the same transmission curve; 108 rays aimed inside the stop would then meet their first rim at junction 24. These three stand 0.3–0.6 mm above the drawing, under one and a half pixels on the page, and were left as the earlier corrections set them.
+
+### Checked and found correct
+
+- Cemented brackets: D1 5–7 (L3 + L4), D2 8–10 (L5 + L6), D3 17–19 (L10 + L11), D4 23–25 (L13 + L14), D5 28–30 (L16 + L17), D6 33–35 (L19 + L20). These are the six cemented pairs of ¶0136–0137 and of 図11; each member carries the matching `cemented` value. 21 elements in 15 air-separated groups.
+- Group brackets: G1 over surfaces 1–19 (L1–L11) and G2 over 21–37A (L12–L21), as the patent's group table gives them (G1 from surface 1, G2 from surface 21) with the stated powers (−111.42 and +41.15 mm).
+- Element types against the signs of R and ¶0136–0137, all 21: L1, L2, L10, L16 negative menisci convex to the object; L14 negative meniscus convex to the image; L3 positive meniscus convex to the image; L8, L11 positive menisci convex to the object; L4, L5, L7, L20 biconcave; L6, L12, L13, L15, L17, L18, L19 biconvex; L9 and L21 biconvex with two aspherical faces. Role strings and stored focal lengths agree with the paraxial values.
+- Aspherical markers: 15A, 16A, 36A and 37A, the four surfaces the table stars, and no others; the page draws two markers over L9 and two over L21.
+- Stop: surface 20, drawn between L11 and L12.
+- Tags: L15 carries the patent tag. ¶0061–0062 and condition (13) define LP1 as a positive G2 element of a glass with positive anomalous partial dispersion, 図11 leads LP1 to L15, and the example lists FDS16-W at ΔPgF +0.0468. This supersedes the open line in the previous section, written while the element still carried `false`. The inferred tags on L4, L17, L18, L19 (maker FLD positions) and L12, L13 (maker SLD positions) follow the maker record quoted in the previous section; the patent text speaks of special low-dispersion glass behind the stop only in general terms (¶0062) and designates none of these elements, so they stay inferred. L5 (FC5, +0.0090) and L10 (FDS20-W, +0.0310, a negative element the patent does not single out) stay untagged.
+- Glass: all 21 labels and the plate are the names printed in the patent's glass column and all resolve in the catalogue.
+- Focus: `var` index 0 is the infinity column and index 1 the near column of the patent table (D12 3.9500 to 5.9915, D14 8.7163 to 6.6748). In the engine, surface 13 moves from 60.0862 to 62.1277 mm, 2.0415 mm toward the image, while surfaces 12 and 15A and the image plane stay put. ¶0138 and the arrow under L8 in 図11 give the same direction. The slider's far end reads 60 cm, the patent's 435.25 mm object distance plus the 168.50 mm track.
+- Rear plate F: traced from `rearPlates` and not drawn; 図11 draws it 1 mm ahead of the image plane.
+
+### Live page after the edits
+
+At infinity and at closest focus the L5–L6 pair is a flat-topped block level with L7, the elements are labelled L1–L21, and the lower rows read N1, N2, G1 (negative), LP1 and L8 (focus lens), G2 (positive), each under the right elements. L8 sits visibly closer to L9 at closest focus. The movement panel lists six rows, five fixed and L8 moving 2.04 mm toward the image. No elements overlap in either state.
+
+### Open limitations
+
+- L1, L2, L4 and L20 still show a slanted edge where the figure draws a square corner with a flat land. No pair of semi-diameters reproduces a land; it needs a drawing feature.
+- Surface 29 remains one value for two drawn extents (L16 land from 14.4 mm, L17 front to 16.8 mm).
+- The G1 and G2 labels sit on different label rows because LP1 lies under the G2 label's position and is packed first.
+- Maker section: not viewed in this review; the element and special-glass positions are quoted from the previous section.
+
+## 2026-10-11 — Moulded-glass labels
+
+The labels of L9 and L21 are now the names the patent lists, `MC-TAF401 (HOYA; source-listed example)` and `MC-NBFD130 (HOYA; source-listed example)`, without the "M-TAF401 / M-NBFD130 dispersion data" suffix that was there only so the label would resolve. The glass catalog now carries MC-TAF401 and MC-NBFD130 as aliases of M-TAF401 and M-NBFD130: HOYA's 2026-07-07 catalog file gives each pair the same nd, νd and dispersion coefficients. Both elements resolve to the same catalog rows as before, and their stored C, F and g indices are unchanged.

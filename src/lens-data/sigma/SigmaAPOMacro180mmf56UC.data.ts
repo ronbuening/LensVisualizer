@@ -3,6 +3,12 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * SIGMA APO MACRO 180mm f/5.6 UC: JPH04110811A, Example 3.
  * Nine elements, six air-separated groups, four functional groups; all spherical.
+ * NOTE ON DESIGNATIONS: the patent writes its four lens groups as L1-L4
+ * (claims 1-4, PDF p1; summary, PDF p2) and Figure 5 brackets them as the
+ * first to fourth groups; the group brackets here are G1-G4. The patent
+ * numbers no single element, so elements are named E1-E9 (sequential, not
+ * patent designations) to keep "L" for the patent's groups; the diagram
+ * shows the element numbers 1-9. D1-D3 are model labels for the cemented pairs.
  * Native prescription retained at f = 174.86 mm; no scaling to marketed 180 mm.
  * Source row 9 is the actual iris; source r = 0.0 maps to a flat STO.
  * Source terminal d16 = 0.0 is a placeholder; separate infinity fb = 40.08 mm
@@ -25,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * Figure radii by component: 19.8, 17.9, 13.6-13.9, 11.2, 14.0, 15.8 mm.
  * Conservative rounded model radii: 20,18,14,11.31,14,16 mm respectively;
  * each is within 3 % of the figure. The front-corner bevels Figure 5 draws
- * on L5 and L8 are not modeled. Real-ray floor check from infinity to 0.5x
+ * on E5 and E8 are not modeled. Real-ray floor check from infinity to 0.5x
  * (finite object, fixed iris): no on-axis or corner chief-ray clip.
  * The 11.31 mm G3 rims also contain the directly published 7-degree
  * infinity-field beam at its cemented interface; edge-exit vignetting remains.
@@ -91,7 +97,7 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "E1",
       "label": "Element 1",
       "type": "Biconvex Positive",
       "nd": 1.497,
@@ -109,7 +115,7 @@ const LENS_DATA = {
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "E2",
       "label": "Element 2",
       "type": "Biconvex Positive",
       "nd": 1.497,
@@ -128,7 +134,7 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "E3",
       "label": "Element 3",
       "type": "Biconcave Negative",
       "nd": 1.834,
@@ -145,7 +151,7 @@ const LENS_DATA = {
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "E4",
       "label": "Element 4",
       "type": "Positive Meniscus",
       "nd": 1.84666,
@@ -162,7 +168,7 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "E5",
       "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.7859,
@@ -179,7 +185,7 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "E6",
       "label": "Element 6",
       "type": "Negative Meniscus",
       "nd": 1.7552,
@@ -196,7 +202,7 @@ const LENS_DATA = {
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "E7",
       "label": "Element 7",
       "type": "Biconvex Positive",
       "nd": 1.48749,
@@ -213,7 +219,7 @@ const LENS_DATA = {
     },
     {
       "id": 8,
-      "name": "L8",
+      "name": "E8",
       "label": "Element 8",
       "type": "Biconcave Negative",
       "nd": 1.713,
@@ -229,7 +235,7 @@ const LENS_DATA = {
     },
     {
       "id": 9,
-      "name": "L9",
+      "name": "E9",
       "label": "Element 9",
       "type": "Positive Meniscus",
       "nd": 1.84666,

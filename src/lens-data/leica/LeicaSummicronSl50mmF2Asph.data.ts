@@ -2,12 +2,14 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * LEICA SUMMICRON-SL 50mm f/2 ASPH. — JP 2022-182997 A, Numerical Example 1.
- * The applicant is Panasonic IP Management Co., Ltd. The link to the Leica lens rests on matching construction
- * (9 elements / 8 groups, six aspherical surfaces on three elements, 0.45 m near state); no manufacturer
- * statement confirms it, and the same construction is published for the Panasonic Lumix S 50mm F1.8.
+ * The applicant is Panasonic Intellectual Property Management Co., Ltd. The link to the Leica lens rests on
+ * matching construction (9 elements / 8 groups, six aspherical surfaces on three elements, 0.45 m near state);
+ * no manufacturer statement confirms it, and the same construction is published for the Panasonic Lumix S
+ * 50mm F1.8.
  * Patent millimetres and d-line indices, unscaled; no printed value is altered.
  * Nine lens elements in eight groups. The patent prints the 0.01 mm adhesive layer between L3 and L4
  * (nd 1.56732, νd 42.8) and it is modeled as printed, which gives ten element entries.
+ * The layer entry C1 carries no `cemented` tag, so the inspector counts D1 as the two-element doublet L3 + L4.
  * Six aspherical surfaces on L6–L8. The patent's κ is the standard conic constant K of the (1 + K) form.
  * PUBLISHED focus: G2 (L7) moves toward the image; the printed d13/d15 values are used at both ends.
  * The 2.1 mm cover plate is in rearPlates; the last d = 12.9 mm is the air gap ahead of it.
@@ -134,10 +136,8 @@ const LENS_DATA = {
       "nd": 1.56732,
       "vd": 42.8,
       "indexReference": "d",
-      "fl": 359130.48989,
       "glass": "Optical cement (patent nd=1.56732, vd=42.8)",
-      "cemented": "D1",
-      "role": "Explicit 0.01 mm adhesive layer between L3 and L4 from the patent prescription; not counted as a lens element"
+      "role": "Cement layer of the L3–L4 doublet D1: the 0.01 mm adhesive layer printed in the patent prescription; not counted as a lens element"
     },
     {
       "id": 4,
@@ -494,7 +494,7 @@ const LENS_DATA = {
   ],
   "doublets": [
     {
-      "text": "D1: L3 + L4 + adhesive",
+      "text": "D1: L3 + L4",
       "fromSurface": "5",
       "toSurface": "8"
     }

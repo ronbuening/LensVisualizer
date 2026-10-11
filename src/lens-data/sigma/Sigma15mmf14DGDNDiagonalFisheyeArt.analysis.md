@@ -73,7 +73,7 @@ L4 is the biconcave, high-Abbe member of D1, at one of the four positions Sigma'
 
 nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA; source-listed example). f = -51.0 mm.
 
-L5 is the biconcave member of D2, cemented to L6 at surface 9. Its isolated negative power is combined with a much higher-index positive member. Sigma's construction section marks this position as SLD glass; the example's FC5 is a fluor crown close to the normal line (source ΔPgF +0.0090), so the data file carries no special-dispersion tag for it. The modeled junction aperture is larger than the front optical aperture so that off-axis rays are not clipped within the cemented interface; that rim profile is a model decision, not a patent dimension. [1, ¶0136; 2]
+L5 is the biconcave member of D2, cemented to L6 at surface 9. Its isolated negative power is combined with a much higher-index positive member. Sigma's construction section marks this position as SLD glass; the example's FC5 is a fluor crown close to the normal line (source ΔPgF +0.0090), so the data file carries no special-dispersion tag for it. Fig. 11 draws the L5–L6 pair as a square-cut block; the modeled junction and the rear face of L6 both carry that block's rim (20.5 mm), while the concave front face of L5 stops slightly lower (19.8 mm), near where the drawing begins its flat mounting land. These are figure-estimated model apertures, not patent dimensions. [1, ¶0136, Fig. 11; 2]
 
 ### L6 — Biconvex Positive
 
@@ -95,7 +95,7 @@ L8 is the sole translated lens in the published example. It is an object-convex 
 
 ### L9 — Biconvex Positive (2× Asph)
 
-nd = 1.77377, νd = 47.17. Glass: MC-TAF401 (HOYA; source-listed example; M-TAF401 dispersion data). f = +61.8 mm.
+nd = 1.77377, νd = 47.17. Glass: MC-TAF401 (HOYA; source-listed example). f = +61.8 mm.
 
 L9 is a positive biconvex element with both faces aspheric, source surfaces 15 and 16. The patent supplies even-order coefficients through A16. Its MC-TAF401 designation is listed as a compatible glass example. The aspheric departures are evaluated over modeled clear apertures only. [1, ¶¶0108, 0111, 0136, 0140]
 
@@ -167,7 +167,7 @@ L20 is a biconcave negative element cemented to L19. It makes D6 negative as an 
 
 ### L21 — Biconvex Positive (2× Asph)
 
-nd = 1.80610, νd = 40.73. Glass: MC-NBFD130 (HOYA; source-listed example; M-NBFD130 dispersion data). f = +99.8 mm.
+nd = 1.80610, νd = 40.73. Glass: MC-NBFD130 (HOYA; source-listed example). f = +99.8 mm.
 
 L21 is the final biconvex aspheric element, with source surfaces 36 and 37. Its MC-NBFD130 coordinate is a source-listed compatible example. The source image-adjacent filter F follows this element and is traced separately; it is not counted as a twenty-second lens element. [1, ¶¶0093, 0119, 0137, 0140]
 
@@ -200,7 +200,7 @@ The source defines ΔPgF = PgF − 0.64833 + 0.00180 νd. The data file's dPgF u
 
 Explicit nC, nF and ng are stored directly on each element. The HOYA values are calculated from the manufacturer's catalog polynomial coefficients; OHARA values are direct catalog-table anchors. They are catalog-example line indices, not measured source-melt values. Together with the converted source dPgF, they retain considerably more spectral information than nd/νd alone. The MC-TAF401 and MC-NBFD130 labels resolve to HOYA's M-TAF401 and M-NBFD130 catalog entries. This evidence does not establish production APO performance or a measured MTF result.
 
-Six elements carry an inferred special-dispersion tag in the data file: L4, L17, L18 and L19 at Sigma's four FLD positions, and L12 and L13 at two of its three SLD positions; L5 is left untagged.
+Six elements carry an inferred special-dispersion tag in the data file: L4, L17, L18 and L19 at Sigma's four FLD positions, and L12 and L13 at two of its three SLD positions; L5 is left untagged. L15, the patent's LP1, carries the patent-designated tag instead: paragraphs 0061–0062 and condition 13 describe LP1 as a positive element of a glass with positive anomalous partial dispersion.
 
 ## Focus Mechanism
 
@@ -281,7 +281,7 @@ The five printed axial heights are not reproduced to 0.005 mm when the rounded s
 
 ## Model Scope and Limitations
 
-The diaphragm diameter and clear SDs are not tabulated. The stop is calibrated from the source f-number and the clear apertures are estimated from the optical extents in Fig. 11, floor-checked by exact rays and held inside current geometric limits. Mechanical flange outlines are not treated as transparent aperture. Four cemented-junction radii sit 0.3–1.5 mm above the drawing (S6 at 23.3 mm, S9 at 22.0 mm, S18 at 18.0 mm and S24 at 18.0 mm) so that off-axis rays do not first clip at a cemented interface. The exterior rims follow the drawn optical extents of Fig. 11, scaled from its vertex spacing. The concave faces S7 (19.5 mm) and S35 (13.9 mm) stop where the drawing begins their flat mounting annuli, and L21 carries the square rim the figure draws (15.7 mm on S36A and S37A). None of these values is a source-published aperture. A first-surface-launch meridional trace passes the native 92.865° chief ray with its tightest margins at S35 (12.78 of 13.9 mm) and S37A (14.24 of 15.7 mm), and passes about 36 % of the stop diameter at the 21.6 mm frame corner; that corner bundle is limited by S2 and S35.
+The diaphragm diameter and clear SDs are not tabulated. The stop is calibrated from the source f-number and the clear apertures are estimated from the optical extents in Fig. 11, floor-checked by exact rays and held inside current geometric limits. Mechanical flange outlines are not treated as transparent aperture. Three cemented-junction radii sit 0.3–0.6 mm above the drawing (S6 at 23.3 mm, S18 at 18.0 mm and S24 at 18.0 mm) so that off-axis rays do not first clip at a cemented interface; the fourth, S9, carries the drawn 20.5 mm rim of the square-cut L5–L6 block. The exterior rims follow the drawn optical extents of Fig. 11, scaled from its vertex spacing. The concave faces S7 (19.5 mm) and S35 (13.9 mm) stop where the drawing begins their flat mounting annuli, and L21 carries the square rim the figure draws (15.7 mm on S36A and S37A). None of these values is a source-published aperture. A first-surface-launch meridional trace passes the native 92.865° chief ray with its tightest margins at S35 (12.78 of 13.9 mm) and S37A (14.24 of 15.7 mm), and passes about 36 % of the stop diameter at the 21.6 mm frame corner; that corner bundle is limited by S2 and S35.
 
 The modeled iris radius is 16.2165 mm, set so that a real axial ray entering at 5.3082 mm, which is 15.50 mm / (2 × 1.46), just passes it. The paraxial entrance-pupil radius of the same iris is 5.5410 mm at infinity and 5.5245 mm at the near state. These are real-ray and paraxial descriptions of one iris and are not interchangeable.
 

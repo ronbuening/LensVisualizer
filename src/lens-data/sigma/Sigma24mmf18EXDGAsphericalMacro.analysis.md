@@ -44,7 +44,8 @@ aperture stop. The patent lists each resin layer with its own thickness and inde
 element entries against the manufacturer's ten-element count; the nine air-separated groups are unchanged.
 
 The patent divides the assembly into G1 before the diaphragm and G2 after it. G1 contains positive G1a,
-negative G1b and positive G1c; G2 contains positive G2a, negative G2b and positive G2c (Fig. 2).
+negative G1b and positive G1c; G2 contains positive G2a, negative G2b and positive G2c (Fig. 2). The diagram
+labels these six sub-groups.
 The following focal lengths are standalone group calculations in air from the printed d-line prescription,
 not isolated aberration contributions in situ.
 
@@ -214,8 +215,8 @@ reassignment is applied. The polynomial contains only even radial powers.
 | A8          |     −0.99037E−11 |     +0.26087E−11 |
 | A10         |     +0.50550E−13 |     +0.39670E−14 |
 
-At the modeled semi-diameters 16.9 mm and 15 mm, the axial departures from the respective spherical bases are
-+0.590253155 mm and +0.663296321 mm. Those are calculated model departures, not manufacturer clear-aperture measurements.
+At the modeled semi-diameters 16.9 mm and 14.5 mm, the axial departures from the respective spherical bases are
++0.590253155 mm and +0.580476005 mm. Those are calculated model departures, not manufacturer clear-aperture measurements.
 The different signs of the base curvatures mean that a positive polynomial departure does not have the same geometric
 interpretation on the two surfaces. The patent discusses the aspheric shape in relation to spherical aberration and
 astigmatism (¶0013); no single coefficient is assigned an independently measured aberration contribution.
@@ -245,7 +246,10 @@ rear faces of L2, L3 and L8 and draws L9 square to its rim. Surface 4 is 17.5 mm
 the curve near 17.7 mm. L3 and its resin layer are 16.9 mm against a drawn 16.85 mm, and the front corner of L3 sits just
 inside the rear of L2 as drawn, with 0.598 mm of air between surfaces 4 and 5A at that height. L1 is square at 26.65 mm,
 the front of L2 is 21.9 mm, L4 is 14.0 mm and L5 is 14.5 mm, each as Fig. 2 draws them; the F/1.85 axial ray needs
-12.88 mm at L4 and 13.46 mm at L5.
+12.88 mm at L4 and 13.46 mm at L5. Behind the stop the rims are also the drawn heights: L6 with its resin layer
+14.5 mm, the cemented pair L7–L8 13.4 mm at its front and cemented surfaces, L9 13.6 mm and L10 14.7 mm, where the
+F/1.85 axial ray needs 13.70, 12.33, 11.51 and 11.44 mm. The diagram joins unequal front and rear rims with a straight
+edge, so the flat lands Fig. 2 draws on L2 and L8 appear as bevels.
 
 At the patent's F/1.85 the entrance-pupil radius is 6.672946628 mm, and a real axial ray at that height reaches the
 stop at 13.512993540 mm; this is the stop radius the model uses. The paraxial estimate is 12.378810993 mm.
@@ -256,7 +260,7 @@ s19 are 11.343020980 and 11.354183435 mm. The default clearance rule, which lets
 would cap the height shared by the two faces at 11.188980100 mm and clip the axial beam.
 
 Surface 18 is therefore 11.35 mm, the axial ray height rounded upward at 0.01 mm precision; Fig. 2 ends the drawn curve
-of that face lower, near 9.3 mm, and continues it as a flat land. Surface 19 is 14 mm, equal to surface 20, because
+of that face lower, near 9 mm, and continues it as a flat land. Surface 19 is 13.6 mm, equal to surface 20, because
 Fig. 2 draws L9 square to its rim; the two faces would meet at 11.78 mm, so only the rear of L8 stops short. At
 11.35 mm the two faces take 92.652788567% of the axial gap, so the data file raises the allowance for this lens from
 90% to 92.66%; 0.133719248 mm of air remains there. The gap between surfaces 4 and 5A uses the same

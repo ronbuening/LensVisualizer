@@ -40,14 +40,19 @@ with two moving groups, introduction in 1990) agree with the patent's Figure 5 (
 
 This is an all-spherical, four-functional-group telephoto macro design. Functional groups are distinct from the
 six air-separated components: G1 contains a singlet and a cemented pair, G2 and G3 are cemented pairs, and G4
-contains two air-separated singlets. The three cemented assemblies are D1 (L2–L3), D2 (L4–L5) and D3 (L6–L7).
+contains two air-separated singlets. The three cemented assemblies are D1 (E2–E3), D2 (E4–E5) and D3 (E6–E7).
+
+The patent's claims and summary write the four lens groups as L1 to L4 (第1レンズ群 L1 … 第4レンズ群 L4), and
+Figure 5 brackets them as 第1群 to 第4群; they are G1 to G4 here. The patent numbers no individual element, so
+E1 to E9 are this model's sequential element names, not patent designations, and the letter L is left to the
+patent's groups. D1 to D3 are likewise model labels for the cemented pairs. [1, PDF pp1–2, p6]
 
 | Functional group | Elements | Isolated group focal length | Motion toward macro |
 |---|---|---:|---|
-| G1 | L1–L3 | +68.024 mm | Fixed |
-| G2 | L4–L5 | -54.365 mm | Imageward |
-| G3 | L6–L7 | +91.634 mm | Objectward |
-| G4 | L8–L9 | -79.023 mm | Fixed |
+| G1 | E1–E3 | +68.024 mm | Fixed |
+| G2 | E4–E5 | -54.365 mm | Imageward |
+| G3 | E6–E7 | +91.634 mm | Objectward |
+| G4 | E8–E9 | -79.023 mm | Fixed |
 
 The calculated infinity EFL is 174.864 mm. Back focal distance is 40.0805 mm from the last
 glass vertex in air, agreeing with printed 40.08 mm at source precision. First-to-last vertex track is
@@ -66,82 +71,82 @@ read as the element's in-situ contribution or the power of a cemented pair. Glas
 chosen by nd/νd; the C-, F- and g-line indices stored with each element come from those catalogue glasses, not from
 identified production melts.
 
-### L1 — Biconvex Positive
+### E1 — Biconvex Positive
 
 nd = 1.49700, νd = 81.6. Glass: FCD1 equivalent (HOYA). f = +96.8 mm.
 
-L1 is the front singlet in fixed G1. Its two convex surfaces and high Abbe number distinguish it from the adjacent
-negative component of D1. The manufacturer's identification of a front SLD pair is compatible with L1 and L2,
+E1 is the front singlet in fixed G1. Its two convex surfaces and high Abbe number distinguish it from the adjacent
+negative component of D1. The manufacturer's identification of a front SLD pair is compatible with E1 and E2,
 but does not identify a supplier or melt. Its function as the first positive collector follows from its position
 and calculated power; a separate aberration allocation is not established by those facts alone. [1,2]
 
-### L2 — Biconvex Positive
+### E2 — Biconvex Positive
 
 nd = 1.49700, νd = 81.6. Glass: FCD1 equivalent (HOYA). f = +62.5 mm.
 
-L2 is the positive member of D1 and the second high-Abbe front element. Its rear surface is the cemented
-interface to L3; the source assigns the downstream glass there. Together they are a weak net-positive pair,
+E2 is the positive member of D1 and the second high-Abbe front element. Its rear surface is the cemented
+interface to E3; the source assigns the downstream glass there. Together they are a weak net-positive pair,
 with calculated isolated focal length +243.902 mm. That pair power differs substantially from either component's
 standalone power, illustrating why the shared interface must not be replaced by two air boundaries. [1]
 
-### L3 — Biconcave Negative
+### E3 — Biconcave Negative
 
 nd = 1.83400, νd = 37.3. Glass: NBFD10 equivalent (HOYA). f = -79.3 mm.
 
-L3 is the high-index negative component of D1. The low-Abbe partner relative to L2 supplies a contrasting
+E3 is the high-index negative component of D1. The low-Abbe partner relative to E2 supplies a contrasting
 first-order dispersion coordinate. The combination is consistent with chromatic balancing in the fixed front
-group, but the sign or magnitude of a particular aberration cannot be assigned to L3 from glass class alone.
+group, but the sign or magnitude of a particular aberration cannot be assigned to E3 from glass class alone.
 The numerical table, rather than a generic dense-flint label, governs its geometry. [1]
 
-### L4 — Positive Meniscus
+### E4 — Positive Meniscus
 
 nd = 1.84666, νd = 23.8. Glass: FDS90-SG equivalent (HOYA). f = +51.1 mm.
 
-L4 is a positive meniscus whose more strongly curved surface is the cemented boundary with L5.
+E4 is a positive meniscus whose more strongly curved surface is the cemented boundary with E5.
 Its individual positive power does not make the moving assembly positive: D2 is net negative. Both components
 move together as G2, and the cemented interface remains fixed within that assembly. [1]
 
-### L5 — Biconcave Negative
+### E5 — Biconcave Negative
 
 nd = 1.78590, νd = 43.9. Glass: NBFD11 equivalent (HOYA). f = -26.2 mm.
 
-L5 completes net-negative D2. The two faces form a biconcave element when considered alone in air.
+E5 completes net-negative D2. The two faces form a biconcave element when considered alone in air.
 The pair, rather than either standalone component, is the relevant powered unit for the patent's G2 motion
-and magnification conditions. Its glass coordinate has a higher Abbe number than that of L4. [1]
+and magnification conditions. Its glass coordinate has a higher Abbe number than that of E4. [1]
 
-### L6 — Negative Meniscus
+### E6 — Negative Meniscus
 
 nd = 1.75520, νd = 27.5. Glass: E-FD4 / E-FD4L equivalent (HOYA). f = -114.0 mm.
 
-L6 is the negative meniscus at the entrance to D3, behind the iris. The rear cemented interface admits
-light into L7. Its standalone negative power is outweighed within the positive D3 assembly; the group therefore
+E6 is the negative meniscus at the entrance to D3, behind the iris. The rear cemented interface admits
+light into E7. Its standalone negative power is outweighed within the positive D3 assembly; the group therefore
 has the opposite sign from G2 while moving in the opposite axial direction. [1]
 
-### L7 — Biconvex Positive
+### E7 — Biconvex Positive
 
 nd = 1.48749, νd = 70.4. Glass: FC5 equivalent (HOYA). f = +51.4 mm.
 
-L7 is the positive, low-index and relatively high-Abbe component of D3. The complete cemented pair
+E7 is the positive, low-index and relatively high-Abbe component of D3. The complete cemented pair
 has calculated focal length +91.634 mm. The position behind the stop and the group's changing conjugates are
 necessary context; neither its positive power nor its crown-like coordinate alone establishes a specific
 coma, spherical-aberration or field-curvature contribution. [1]
 
-### L8 — Biconcave Negative
+### E8 — Biconcave Negative
 
 nd = 1.71300, νd = 53.9. Glass: LAC8 equivalent (HOYA). f = -43.0 mm.
 
-L8 is the negative singlet in fixed G4, preceding a short air space and L9. Its standalone power is
-stronger in magnitude than the positive contribution of L9, while the separated pair's net power also depends
+E8 is the negative singlet in fixed G4, preceding a short air space and E9. Its standalone power is
+stronger in magnitude than the positive contribution of E9, while the separated pair's net power also depends
 on that intervening space. Because G4 is fixed relative to the image plane, the back focus is the same at both
 focus states. [1]
 
-### L9 — Positive Meniscus
+### E9 — Positive Meniscus
 
 nd = 1.84666, νd = 23.8. Glass: FDS90-SG equivalent (HOYA). f = +97.7 mm.
 
-L9 is a positive rear meniscus, with a much weaker rear curvature. It completes the net-negative G4
+E9 is a positive rear meniscus, with a much weaker rear curvature. It completes the net-negative G4
 assembly and is followed by the fixed terminal air gap. The prescription uses the same patent nd/νd coordinate
-as L4, but equality of these two coordinates does not prove identical historical melts or coatings. [1]
+as E4, but equality of these two coordinates does not prove identical historical melts or coatings. [1]
 
 ## Glass Identification and Selection
 
@@ -152,13 +157,13 @@ indices and Abbe numbers are unchanged. The nominal catalog coordinates are: [3�
 
 | Elements | HOYA equivalent | Patent nd / νd | Catalog nd / νd |
 |---|---|---|---|
-| L1, L2 | FCD1 | 1.49700 / 81.6 | 1.49700 / 81.61 |
-| L3 | NBFD10 | 1.83400 / 37.3 | 1.83400 / 37.34 |
-| L4, L9 | FDS90-SG | 1.84666 / 23.8 | 1.84666 / 23.78 |
-| L5 | NBFD11 | 1.78590 / 43.9 | 1.78590 / 43.94 |
-| L6 | E-FD4 / E-FD4L | 1.75520 / 27.5 | 1.75520 / 27.53 |
-| L7 | FC5 | 1.48749 / 70.4 | 1.48749 / 70.44 |
-| L8 | LAC8 | 1.71300 / 53.9 | 1.71300 / 53.94 |
+| E1, E2 | FCD1 | 1.49700 / 81.6 | 1.49700 / 81.61 |
+| E3 | NBFD10 | 1.83400 / 37.3 | 1.83400 / 37.34 |
+| E4, E9 | FDS90-SG | 1.84666 / 23.8 | 1.84666 / 23.78 |
+| E5 | NBFD11 | 1.78590 / 43.9 | 1.78590 / 43.94 |
+| E6 | E-FD4 / E-FD4L | 1.75520 / 27.5 | 1.75520 / 27.53 |
+| E7 | FC5 | 1.48749 / 70.4 | 1.48749 / 70.44 |
+| E8 | LAC8 | 1.71300 / 53.9 | 1.71300 / 53.94 |
 
 The explicit nC, nF and ng values are evaluated from the official HOYA formula-1 coefficients at
 656.2725, 486.1327 and 435.8343 nm. The d-line reference is 587.5618 nm. The catalog ratio PgF is converted to
@@ -168,7 +173,7 @@ apochromatic performance is established for the manufactured lens. “APO” rem
 not a measured conclusion of this analysis. In particular, modern equivalents cannot settle melt variation,
 coatings or the actual historical dispersion curve. [3]
 
-The L1/L2 coordinate is an FCD1-class extra-low-dispersion glass (catalogue dPgF about +0.032), the type Sigma
+The E1/E2 coordinate is an FCD1-class extra-low-dispersion glass (catalogue dPgF about +0.032), the type Sigma
 calls SLD; the patent itself does not designate it. OHARA S- and L-prefixed families are kept distinct, and the
 same caution applies to HOYA moulding variants and historical/current entries: a good nd/νd match is a
 necessary check, not unique material identification.
@@ -177,7 +182,8 @@ necessary check, not unique material identification.
 
 The patent fixes G1 and G4 relative to the image plane. Toward the published macro state, G2 moves imageward
 11.18 mm and G3 moves objectward 8.25 mm. The printed gaps also leave the iris at a constant axial position.
-The motions follow directly from the two printed gap sets. [1]
+The motions follow directly from the two printed gap sets. Claim 1 states the same directions, the second group
+toward the image and the third toward the object, and Figure 5 marks those two groups as the focusing groups. [1]
 
 | Gap after source row | Infinity | Published 0.5× |
 |---|---:|---:|

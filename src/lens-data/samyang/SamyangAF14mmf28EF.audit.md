@@ -179,3 +179,99 @@ The live page at infinity shows the L5–L6 block level with the rear rim of L4,
 The data-file header no longer says that the app's glass catalog lacks FD110; the catalog has the HOYA row and L12 resolves to it.
 
 Glass. L4 (1.77271 / 49.70) and L13 (1.55352 / 71.50) stay `Unmatched`. The local HOYA, OHARA and Sumita catalog files have no row within 1.5e-5 and 0.03 of either pair. For L13, MP-FCD500-20 and MC-FCD500-20 match nd exactly and differ by +0.22 in νd, outside the 0.15 catalog tolerance; for L4 the nearest rows are TAF1 and M-TAF105 at 1.77250.
+
+## 2026-10-11 — Second review: diagram, labels and movement
+
+Independent second look at the lens as the local site draws it. Compared: the live page at infinity, at the middle published state and at closest focus, the focus-movement overlay, the patent-positions mode and the inspectors of elements 1, 4, 6, 8, 9, 13 and 15, against 도면7 of `patents/KR101918210B1.pdf` (PDF page 24, upper panel infinity, lower panel 지근거리), Tables 7–9 (PDF pages 16–17) and ¶0068–0070 and ¶0100 of the description. The figure outline was also laid over the render at a common scale. No semi-diameter changed; three bracket texts, four cemented-group labels, the focus description and three sentences of the analysis changed.
+
+### Silhouette
+
+Scale, measured again from the 366 dpi raster. The axes are rows 1204 and 2358. Twenty-three vertex crossings were read beside the upper axis: S1 at x = 506.5 px and S26 at 1617.75 px give 12.225 px/mm, and every crossing lies within 5.2 px (0.42 mm) of the prescription. The transverse scale was fitted from the drawn profiles of the surfaces with the deepest sag, the axial scale held fixed: S1 11.43, S3 11.59, S4 11.62, S5 11.46, S6 11.75, S7 11.35, S8 11.77 and S10 11.80 px/mm (S2, a shallower arc, 12.07), sag-weighted mean 11.64 px/mm. The published S7 height, 15.06 mm, is drawn at 175.5 px on both sides of the axis, 11.65 px/mm. The sheet is therefore 4.7 % tighter across the axis than along it, as the first pass found, and heights are read at 11.65 px/mm.
+
+Rim heights, taken to the centre of the outline stroke on both sides of the upper panel:
+
+| Element | Surfaces | Figure (px, above / below) | Figure (mm) | Stored (mm) | Stored / figure |
+|---|---|---:|---:|---:|---:|
+| L1 | 1, 2 | 443.5 / 443.5 | 38.07 | 39 | 1.02 |
+| L2 front | 3 | 282.5 / 283.5 | 24.29 | 24.5 | 1.01 |
+| L2 rear, end of the curve | 4 | located by sag | 19.11 | 19.9 | 1.04 |
+| L3 front | 5 | 219.5 / 220.0 | 18.86 | 18.8 | 1.00 |
+| L3 rear, end of the curve | 6 | located by sag | 15.34 | 15.03 | 0.98 |
+| L4 | 7A | 175.5 / 175.5 | 15.06 | 15.06 | published |
+| L5–L6 | 9, 10, 11 | 151.5 / 151.5 | 13.00 | 13 | 1.00 |
+| L7 | 12, 13 | 114.5 / 115.5 | 9.87 | 10.2 | 1.03 |
+| L8–L10 | 14–17 | 104.5 / 104.5 | 8.97 | 9 | 1.00 |
+| L11–L12 | 19–21 | 93.5 / 94.5 | 8.07 | 7.8 | 0.97 |
+| L13 | 22A, 23A | 89.5 / 90.5 | 7.73 | 7.8 | 1.01 |
+| L14 | 24, 25 | 97.5 / 97.0 | 8.35 | 8.5 | 1.02 |
+| L15 rear | 26 | 110.5 / 111.5 | 9.53 | 9.2 | 0.97 |
+
+Every stored value is within 4.2 % of the sheet, inside the measurement noise, and the drawn order of heights between neighbours is kept. The iris ticks open to 80.7 px (6.93 mm) at x = 1359 px, 69.7 mm from S1 against 69.575 mm in the table; the stop was not touched.
+
+L5–L6 pair. The top and bottom edges of the pair are at 151.5 px, 0.863 of the L4 height, which is 13.00 mm. Located by sag alone, S10 reaches that edge at 12.8 mm and S11 at 13.1 mm. The pair is drawn square, so 13.0 mm on surfaces 9, 10 and 11 is right. Against L4: the sheet carries the rear face of L4 through the front corner of L5 and on to the full L4 height. The model ends S8 at its published 12.31 mm, where 0.381 mm of air remains, and the front corner of L5 (13.0 mm) sits 0.27 mm behind and 0.69 mm above the rear rim of L4; carried past its published aperture S8 would meet S9 at 12.65 mm. On the page the L5 corner meets the rear rim tip of L4 without overlap, which is the drawn relationship. 0.96 is confirmed as the smallest two-decimal `gapSagFrac` that admits it (the two sags take 95.55 % of the gap at 12.31 mm).
+
+Where the two silhouettes still differ, none of it a semi-diameter error:
+
+- L2, L3 and L4 have square shoulders on the sheet (a cylindrical edge, then a flat annulus down to the end of the rear curve). The site joins the front and rear rim points with a straight edge. The rear faces cannot take the front heights: the radii of S4 and S6 (22.335 and 18.6 mm) are smaller than 24.5 and 18.8 mm, and S8 has a published aperture.
+- The rear tip of L2 at 19.9 mm lies 1.1 mm behind the front corner of L3; the sheet ends that curve at 19.1 mm, 0.3 mm in front of it. The difference is 4 %, and S4 sets the 46.48° tracing half-field, so it was left.
+- L15: the sheet carries the cemented face S25 up to the L15 height and draws a flat top; S25 has one height for both elements (8.5 mm, the square L14 block), so L15 shows a slanted top from 8.5 to 9.2 mm.
+- The sheet draws small flat lands on the rear rim of L5 (S10 ends at about 11.9 mm on the L5 side), of L8 and of L11, and on the front of L11. One height per cemented surface cannot show them.
+
+Clearance, from an independent exact meridional trace with the rear plate. The chief ray reaching 21.7 mm leaves at 57.870°, 57.490° and 55.950° (Table 9: 57.871, 57.495, 55.966) and clears every rim; the smallest margin is at S6, 0.47, 0.56 and 0.89 mm, and at infinity it needs 36.71, 23.41, 18.64, 17.91, 14.56, 13.97, 11.36 and 10.89 mm on surfaces 1, 3, 4, 5, 6, 7, 8 and 9. The axial ray through the edge of the fixed iris needs at most 9.04 and 9.07 mm on L7 and 8.71 mm on S14 (closest focus) and 7.43 and 7.52 mm on S22 and S23; the smallest margin is 0.28 mm at S23. Engine values before and after this review are identical: EFL 14.190782 mm, f/2.851, declared half-field 57.871°, tracing half-field 46.48°, stop radius 7.188930 mm, traced field coverage 100 % (57.8°, 21.65 of 21.65 mm), no surface under the image-circle floor, no surface-validator error, and wide-open geometric transmission 100 % to 54.9° and 92.7 % at 57.8°. Substituting the old 11.8 / 12.2 / 12.2 mm pair with 0.90 gives 90.6 % at 57.8°, as recorded above.
+
+### Labels, brackets and tags
+
+Changed, with the reason:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `groups` text | FIXED G1, FOCUS G2, FIXED G3 | G13 (FIXED), G23 (FOCUS), G33 (FIXED) | 도면7 and ¶0068 name the groups G13, G23 and G33; the Note column of Table 7 marks them fixed, focusing and fixed. The element labels already carry the same embodiment suffix. No power sign is given because G13 computes positive against the patent's wording. |
+| `doublets` text and `cemented` | D1, T1, D2, D3 | C1, C2, C3, C4 | Table 9 uses D0–D5 for air distances, and `varLabels` shows D1 and D2 beside the focus slider; the same strings marked two cemented pairs. The surface ranges were already right. |
+| `focusDescription` | "L8–L10 (G2)"; "G1 and G3 stay fixed" | "L8–L10 (group G23; L83–L103 in the patent figure)"; "G13 and G33 stay fixed" | follows the bracket texts |
+| Data-file header | "only G2 moves"; "G1 (S1-13)" | "only G23 moves"; "G13 (S1-13)"; a LABELS note added | follows the bracket texts |
+
+Checked and found correct:
+
+- Bracket ranges. G13 is surfaces 1–13, G23 14–17 and G33 19–26, with the stop row in the fixed third group as Table 7 notes it. The four cemented components are surfaces 9–11 (L5+L6), 14–17 (L8+L9+L10), 19–21 (L11+L12) and 24–26 (L14+L15), as ¶0068–0070 state; with the five singlets that is 10 groups.
+- Element labels. `diagramLabel` runs L13, L23, … L153 on elements 1–15 in order, the reference signs of 도면7. At this point `name` was still the sequential L1–L15, so the inspector showed "L13" for the thirteenth element while the diagram label L13 is the first; the element-names paragraph at the end of this section removes that clash.
+- Element types against the signs of R and ¶0068–0070: L1–L4 menisci convex to the object (L1 positive), L5 biconcave, L6 and L7 biconvex, L8 negative with a convex object-side face, L9 biconvex, L10 a meniscus concave to the object, L11 biconcave, L12 and L13 positive, L14 a meniscus, L15 biconvex. Every `role` sentence is true.
+- Aspheric markers. Table 7 stars surfaces 7, 8, 22 and 23 and Table 8 lists the same four; the file marks 7A, 8A, 22A and 23A and no others, and the page shows four A marks.
+- Stop: surface row ST between 17 and 19, drawn between L103 and L113.
+- Tags. The description names no anomalous-dispersion, low-dispersion or special glass anywhere, so no element carries the patent tag. L15 keeps the inferred tag for the maker's ED position (1.49700 / 81.61).
+- `varLabels` D1 and D2 are the patent's symbols for the two variable gaps.
+
+Maker diagram. No maker image was opened in this review. The record above stands: Samyang's section, viewed by the coordinator, shows 15 elements in 10 groups with an aspherical 4th element, an aspherical biconvex 13th and an ED rear element in the final cemented pair, and the product page lists 2 aspherical, 4 HR and 1 ED element.
+
+### Focus movement
+
+Table 9 against the file: D1 5.334159 / 4.640341 / 2.107898 mm and D2 2.254901 / 2.948719 / 5.481162 mm, infinity first and the 0.2 m state last in both `var` arrays, with `focusPositions` 0, 0.37346 and 1. D1 falls and D2 rises by the same 3.226261 mm, so G23 moves toward the object and G13 and G33 stay fixed. Its front vertex sits 59.880, 59.186 and 56.654 mm from S1. A paraxial trace through the rear plate puts the image 0.019 mm in front of, and 0.004 and 0.076 mm behind, the model plane for object distances of infinity, 405.430516 and 69.90294 mm, with magnifications −0.033324 and −0.157330 (printed 0.033333 and 0.157378) and object-to-image distances of 535.53 and 200.000 mm. The lower panel of 도면7 shows G23 displaced 41–42 px toward the object, 3.4 mm at the axial scale. On the page the slider reads ∞, 54 cm and 20 cm at the three states, the gap readout shows D1 5.33 / 4.64 / 2.11 and D2 2.25 / 2.95 / 5.48, the movement overlay shows G23 travelling 3.23 mm toward the object with the other two groups still, and at closest focus the rendered G23 falls on the lower-panel outline.
+
+### Analysis
+
+Three sentences changed: the group paragraph now gives the patent's G13, G23 and G33 before the short forms, the element section opens by relating the sequential names to the diagram labels, and the L12 paragraph no longer says that the app's glass catalog lacks FD110.
+
+### Open limitations
+
+- The scratch clearance probe stops at 48.3° on this lens and returns no chief ray for the 21.7 mm image height; the corner was checked with the marching trace above and the engine's field-coverage trace.
+- At closest focus the outermost drawn on-axis ray ends on the L7 rim. A ray aimed 2.19 mm high at the S1 vertex plane reaches 10.57 mm at S12 and 8.27 mm at the stop plane, outside the 7.19 mm iris; the ray through the iris edge enters at 1.92 mm and needs 9.03 mm on L7. L7 is already 3 % above its drawn height.
+- The automatic figure screen is unusable on this sheet: leader lines cross the rear groups, and it applies the axial scale to heights.
+- Table 7 gives nd and νd only. The patent has no glass name, no further line index and no partial dispersion for L4 or L13; the νd of L13 is printed to one decimal, 71.5.
+- The diagram labels L13 and L23 sit 3 px apart at the default size.
+
+### Element names
+
+Follow-up decision of the same day: each element's `name` is now its patent reference sign, the same string as its `diagramLabel`, so the diagram, the inspector, the Abbe diagram and the element table name an element the same way, as in the Samyang 100mm Macro file of this batch. The tens digits count the elements front to rear and the trailing 3 marks Example 3. Ids, `label` (Element 1 to Element 15) and every optical value are unchanged.
+
+| Element | Before | After | Element | Before | After | Element | Before | After |
+|---:|---|---|---:|---|---|---:|---|---|
+| 1 | L1 | L13 | 6 | L6 | L63 | 11 | L11 | L113 |
+| 2 | L2 | L23 | 7 | L7 | L73 | 12 | L12 | L123 |
+| 3 | L3 | L33 | 8 | L8 | L83 | 13 | L13 | L133 |
+| 4 | L4 | L43 | 9 | L9 | L93 | 14 | L14 | L143 |
+| 5 | L5 | L53 | 10 | L10 | L103 | 15 | L15 | L153 |
+
+The strings that named elements by the old form were remapped by element id: five `role` texts, `focusDescription` (now "the cemented triplet L83–L103 (group G23)"), three passages of the data-file header (the names note, the L53–L63 rim line and the L43 / L133 glass line), and in the analysis the fifteen element headings (now "L13 (element 1)" to "L153 (element 15)"), the group and glass tables and sixteen passages of prose. The analysis states the convention once, in its first section. `sourceErrata`, `apdNote`, the `finiteConjugates` and `rearPlates` sources and the bracket texts held no element name. After the change the only strings matching a sequential name in either file are L13 where the first element is meant.
+
+From this point the log names elements by the patent's signs. Everything above this paragraph, including the earlier parts of this section and all earlier sections, uses the sequential L1–L15: "L13" there is the thirteenth element (the aspherical biconvex singlet, now L133), and "L5–L6", "L7" and "L8–L10" there are now L53–L63, L73 and L83–L103.
+
+On the page after the change: the first element is labelled L13 on the diagram and its inspector reads "Element 1 L13", Positive Meniscus, NBFD15, "Weak positive front meniscus of the fixed first group"; the thirteenth is labelled L133 and its inspector reads "Element 13 L133", Biconvex Positive (2× Asph), "Separated double-sided aspherical biconvex element of the rear group"; element 8 reads "L83, TRIPLET C2 … cemented focusing triplet L83–L103", and the Abbe diagram markers carry the same signs. The engine builds the lens without error, the surface validator reports none and the engine values are unchanged (EFL 14.190782 mm, f/2.851, half-field 57.871°).

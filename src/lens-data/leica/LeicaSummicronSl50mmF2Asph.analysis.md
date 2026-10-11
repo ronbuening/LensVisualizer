@@ -10,7 +10,7 @@
 **Title:** Image capturing optical system, image capturing device, and camera system  
 **Embodiment analyzed:** Numerical Example 1, Tables 1A–1G and Figure 1.
 
-The applicant is Panasonic IP Management Co., Ltd., and no manufacturer statement links the patent to a product. Numerical Example 1 is a design of nine elements in eight groups with six aspherical surfaces on three elements (L6, L7 and L8), a design aperture of F/1.86 and a near state at about 0.45 m. The prescription is used at the patent’s own dimensions and d-line indices. Its attribution to the Leica Summicron-SL 50 f/2 ASPH. rests on matching construction:
+The applicant is Panasonic Intellectual Property Management Co., Ltd., and no manufacturer statement links the patent to a product. Numerical Example 1 is a design of nine elements in eight groups with six aspherical surfaces on three elements (L6, L7 and L8), a design aperture of F/1.86 and a near state at about 0.45 m. The prescription is used at the patent’s own dimensions and d-line indices. Its attribution to the Leica Summicron-SL 50 f/2 ASPH. rests on matching construction:
 
 1. Leica’s February 2023 technical data for the L-Mount, full-frame lens list 9 lenses in 8 assemblies, 6 aspherical surfaces, a 0.45 m minimum focus distance and a largest reproduction ratio of 1:7.4. Example 1 has the same counts, with one cemented pair (L3–L4) and both faces of L6, L7 and L8 aspherical.
 2. Leica’s published lens section shows a positive meniscus L1, a negative meniscus L2, a cemented L3+L4 pair, a biconvex L5, aspherical L6, L7 and L8, and a negative L9, the sequence of Figure 1. The section is a product illustration, not a dimensioned drawing.

@@ -18,9 +18,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * 80.06 µm/px from the vertex spacing), floor-checked by exact real-ray tracing
  * and constrained by current rim/domain/edge/shared-band gap rules. Concave faces
  * 7 and 35 stop where the drawing starts their flat mounting annuli (19.5 and
- * 13.9 mm); L21 (36A/37A) carries the drawn square 15.7 mm rim. Junctions 6, 9,
- * 18 and 24 sit 0.3–1.5 mm above the drawing so the sampled off-axis rays do not
- * first clip at a cemented interface.
+ * 13.9 mm); L21 (36A/37A) carries the drawn square 15.7 mm rim. Junction 9
+ * carries the drawn 20.5 mm rim of the square-cut L5–L6 block, the same height
+ * as its rear face. Junctions 6, 18 and 24 sit 0.3–0.6 mm above the drawing so
+ * the sampled off-axis rays do not first clip at a cemented interface.
+ * The renderer joins unequal front and rear rims with a straight edge, so L1,
+ * L2, L4 and L20, drawn in Fig. 11 as square blocks with flat mounting lands,
+ * show a slanted edge; their rear faces keep the drawn curve-end heights.
+ * Diagram labels follow Fig. 11: elements L1–L21, groups G1 and G2, meniscus
+ * components N1 (L1) and N2 (L2), LP1 (L15) and the focusing bracket under L8.
  */
 
 const LENS_DATA = {
@@ -66,6 +72,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "diagramLabel": "L1",
       "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.883,
@@ -83,6 +90,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L2",
+      "diagramLabel": "L2",
       "label": "Element 2",
       "type": "Negative Meniscus",
       "nd": 2.001,
@@ -100,6 +108,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L3",
+      "diagramLabel": "L3",
       "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.883,
@@ -118,6 +127,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
+      "diagramLabel": "L4",
       "label": "Element 4",
       "type": "Biconcave Negative",
       "nd": 1.437,
@@ -137,6 +147,7 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "L5",
+      "diagramLabel": "L5",
       "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.48749,
@@ -155,6 +166,7 @@ const LENS_DATA = {
     {
       "id": 6,
       "name": "L6",
+      "diagramLabel": "L6",
       "label": "Element 6",
       "type": "Biconvex Positive",
       "nd": 2.001,
@@ -173,6 +185,7 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "L7",
+      "diagramLabel": "L7",
       "label": "Element 7",
       "type": "Biconcave Negative",
       "nd": 1.60311,
@@ -190,6 +203,7 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "L8",
+      "diagramLabel": "L8",
       "label": "Element 8",
       "type": "Positive Meniscus",
       "nd": 1.68893,
@@ -207,12 +221,13 @@ const LENS_DATA = {
     {
       "id": 9,
       "name": "L9",
+      "diagramLabel": "L9",
       "label": "Element 9",
       "type": "Biconvex Positive (2× Asph)",
       "nd": 1.77377,
       "vd": 47.17,
       "fl": 61.8,
-      "glass": "MC-TAF401 (HOYA; source-listed example; M-TAF401 dispersion data)",
+      "glass": "MC-TAF401 (HOYA; source-listed example)",
       "indexReference": "d",
       "dPgF": -0.00883606,
       "apd": false,
@@ -224,6 +239,7 @@ const LENS_DATA = {
     {
       "id": 10,
       "name": "L10",
+      "diagramLabel": "L10",
       "label": "Element 10",
       "type": "Negative Meniscus",
       "nd": 1.86966,
@@ -242,6 +258,7 @@ const LENS_DATA = {
     {
       "id": 11,
       "name": "L11",
+      "diagramLabel": "L11",
       "label": "Element 11",
       "type": "Positive Meniscus",
       "nd": 2.001,
@@ -260,6 +277,7 @@ const LENS_DATA = {
     {
       "id": 12,
       "name": "L12",
+      "diagramLabel": "L12",
       "label": "Element 12",
       "type": "Biconvex Positive",
       "nd": 1.59282,
@@ -278,6 +296,7 @@ const LENS_DATA = {
     {
       "id": 13,
       "name": "L13",
+      "diagramLabel": "L13",
       "label": "Element 13",
       "type": "Biconvex Positive",
       "nd": 1.48071,
@@ -297,6 +316,7 @@ const LENS_DATA = {
     {
       "id": 14,
       "name": "L14",
+      "diagramLabel": "L14",
       "label": "Element 14",
       "type": "Negative Meniscus",
       "nd": 1.85451,
@@ -315,6 +335,7 @@ const LENS_DATA = {
     {
       "id": 15,
       "name": "L15",
+      "diagramLabel": "L15",
       "label": "Element 15",
       "type": "Biconvex Positive",
       "nd": 1.98613,
@@ -333,6 +354,7 @@ const LENS_DATA = {
     {
       "id": 16,
       "name": "L16",
+      "diagramLabel": "L16",
       "label": "Element 16",
       "type": "Negative Meniscus",
       "nd": 1.76634,
@@ -351,6 +373,7 @@ const LENS_DATA = {
     {
       "id": 17,
       "name": "L17",
+      "diagramLabel": "L17",
       "label": "Element 17",
       "type": "Biconvex Positive",
       "nd": 1.437,
@@ -370,6 +393,7 @@ const LENS_DATA = {
     {
       "id": 18,
       "name": "L18",
+      "diagramLabel": "L18",
       "label": "Element 18",
       "type": "Biconvex Positive",
       "nd": 1.437,
@@ -388,6 +412,7 @@ const LENS_DATA = {
     {
       "id": 19,
       "name": "L19",
+      "diagramLabel": "L19",
       "label": "Element 19",
       "type": "Biconvex Positive",
       "nd": 1.497,
@@ -407,6 +432,7 @@ const LENS_DATA = {
     {
       "id": 20,
       "name": "L20",
+      "diagramLabel": "L20",
       "label": "Element 20",
       "type": "Biconcave Negative",
       "nd": 1.91082,
@@ -425,12 +451,13 @@ const LENS_DATA = {
     {
       "id": 21,
       "name": "L21",
+      "diagramLabel": "L21",
       "label": "Element 21",
       "type": "Biconvex Positive (2× Asph)",
       "nd": 1.8061,
       "vd": 40.73,
       "fl": 99.8,
-      "glass": "MC-NBFD130 (HOYA; source-listed example; M-NBFD130 dispersion data)",
+      "glass": "MC-NBFD130 (HOYA; source-listed example)",
       "indexReference": "d",
       "dPgF": -0.00607614,
       "apd": false,
@@ -511,7 +538,7 @@ const LENS_DATA = {
       "d": 6.0467,
       "nd": 2.001,
       "elemId": 6,
-      "sd": 22
+      "sd": 20.5
     },
     {
       "label": "10",
@@ -823,9 +850,29 @@ const LENS_DATA = {
       "toSurface": "19"
     },
     {
+      "text": "N1",
+      "fromSurface": "1",
+      "toSurface": "2"
+    },
+    {
+      "text": "N2",
+      "fromSurface": "3",
+      "toSurface": "4"
+    },
+    {
+      "text": "L8 (focus lens)",
+      "fromSurface": "13",
+      "toSurface": "14"
+    },
+    {
       "text": "G2 (positive)",
       "fromSurface": "21",
       "toSurface": "37A"
+    },
+    {
+      "text": "LP1",
+      "fromSurface": "26",
+      "toSurface": "27"
     }
   ],
   "doublets": [

@@ -14,9 +14,11 @@
 
 This model transcribes Numerical Example 3 without scaling. Its link to the Canon EF version of the Samyang AF 14mm F2.8 rests on the optical construction; Samyang has not confirmed that the example is the production prescription.
 
+Elements carry the patent's reference signs, which are also the labels on the diagram: L13 to L153. The tens digits count the elements front to rear and the trailing 3 marks Example 3, so L13 is the first element and L133 the thirteenth.
+
 1. Samyang lists 15 elements in 10 groups with 2 aspherical, 4 HR and 1 ED element, a 0.20 m minimum focus distance, 0.15× maximum magnification and a 116.6° angle of view. Example 3 is the patent's only 15-element / 10-group example; Example 1 has 13 elements in 10 groups and Example 2 has 14 in 10.
-2. Samyang's published section shows three front menisci, an aspherical fourth element, a cemented pair led by an HR element, a separated positive singlet, a cemented triplet, a cemented pair containing an HR element, an aspherical biconvex singlet, and a final cemented pair whose rear element is ED. Figure 7 (도면7) shows the same sequence: L1–L3, the double-sided aspherical L4, cemented L5+L6, L7, the cemented focusing triplet L8–L10, cemented L11+L12, the double-sided aspherical L13 and cemented L14+L15.
-3. L15 (nd 1.49700, νd 81.61) is the example's lowest-dispersion glass and sits at the position Samyang marks ED. Four elements (L5, L10, L11, L14) have nd above 1.9, the same number as Samyang's HR elements.
+2. Samyang's published section shows three front menisci, an aspherical fourth element, a cemented pair led by an HR element, a separated positive singlet, a cemented triplet, a cemented pair containing an HR element, an aspherical biconvex singlet, and a final cemented pair whose rear element is ED. Figure 7 (도면7) shows the same sequence: L13–L33, the double-sided aspherical L43, cemented L53+L63, L73, the cemented focusing triplet L83–L103, cemented L113+L123, the double-sided aspherical L133 and cemented L143+L153.
+3. L153 (nd 1.49700, νd 81.61) is the example's lowest-dispersion glass and sits at the position Samyang marks ED. Four elements (L53, L103, L113, L143) have nd above 1.9, the same number as Samyang's HR elements.
 4. The patent's infinity f = 14.194604 mm, Fno = 2.851 and full field 115.742° are close to, but distinct from, the marketed 14 mm, f/2.8 and 116.6°. Its closest tabulated state is 0.2 m object-to-image at magnification 0.157.
 
 The Nikon F version is not modelled separately, and the Sony FE version, a separate file, follows a different patent (KR 10-1933088 B1). The correlation does not establish production radii, coatings, glass suppliers or melts.
@@ -27,141 +29,143 @@ Two modelling choices apply throughout. The patent's asphere equation is blank, 
 
 The prescription has the computed distance relationship of a retrofocus lens: its bare-lens back focal distance is 38.328954 mm from S26, well above the computed EFL of 14.190782 mm. Including the source rear plate, the infinity Gaussian image lies 39.180747 mm behind S26. The physical S1–S26 lens track is 90.897060 mm.
 
-The source identifies fixed G1, moving G2 and fixed G3. Their independently computed standalone d-line focal lengths are:
+The source identifies a fixed first group, a moving second group and a fixed third group. Figure 7 labels them G13, G23 and G33 with the same trailing 3, and the diagram brackets use those signs; they are written G1, G2 and G3 below. Their independently computed standalone d-line focal lengths are:
 
-| Source group | Surfaces      | Elements | Computed EFL (mm) |
-| ------------ | ------------- | -------- | ----------------: |
-| G1 / G13     | 1–13          | L1–L7    |        +25.111991 |
-| G2 / G23     | 14–17         | L8–L10   |        +98.643520 |
-| G3 / G33     | stop18, 19–26 | L11–L15  |       +115.047351 |
+| Source group | Surfaces      | Elements  | Computed EFL (mm) |
+| ------------ | ------------- | --------- | ----------------: |
+| G1 / G13     | 1–13          | L13–L73   |        +25.111991 |
+| G2 / G23     | 14–17         | L83–L103  |        +98.643520 |
+| G3 / G33     | stop18, 19–26 | L113–L153 |       +115.047351 |
 
-The positive computed G1 is an unresolved contradiction with the patent's negative-group wording; Example 2's first group computes positive as well. The group boundary and radii are kept as printed. The large negative front menisci, positive L7 and separated groups must be considered as a compound system; summing thin-lens powers would not reproduce these thick-group values.
+The positive computed G1 is an unresolved contradiction with the patent's negative-group wording; Example 2's first group computes positive as well. The group boundary and radii are kept as printed. The large negative front menisci, positive L73 and separated groups must be considered as a compound system; summing thin-lens powers would not reproduce these thick-group values.
 
 The rear optical device OD3 is a 2.500 mm plane-parallel plate, nd = 1.51680 and νd = 64.20, located 36.200000 mm after S26. Paragraph 0099 identifies possible low-pass, IR-cut or cover glass, without establishing a drop-in holder. The model traces this plate but does not draw it or count it among the 15 elements. Its position and thickness stay fixed.
 
 ## Element-by-Element Analysis
 
+The number in each heading is the element's ordinal, front to rear, which is the count Samyang's section uses.
+
 All focal lengths below are computed for an individual element surrounded by air. They are not the in-situ interface powers inside cemented components. Catalog equivalents supply a declared dispersion approximation; they do not identify the production supplier.
 
-### L1 / L13 — Positive Meniscus
+### L13 (element 1) — Positive Meniscus
 
 nd = 1.80610, νd = 33.27. Glass: NBFD15 (Hoya equivalent). f = +348.460392 mm.
 
 The first element is a weak positive meniscus, as both its standalone calculation and the example description establish. Its large inferred aperture accepts the wide incident field.
 
-### L2 / L23 — Negative Meniscus
+### L23 (element 2) — Negative Meniscus
 
 nd = 1.72916, νd = 54.67. Glass: TAC8 (Hoya equivalent). f = -80.538760 mm.
 
 This negative meniscus follows the front collector. Its front and rear inferred clear semi-diameters differ because the rear spherical surface imposes a steeper-rim limit; those modeled edge dimensions are not source-measured bevel geometry.
 
-### L3 / L33 — Negative Meniscus
+### L33 (element 3) — Negative Meniscus
 
 nd = 1.80420, νd = 46.50. Glass: TAF3 (Hoya equivalent). f = -50.569262 mm.
 
 The third element adds negative power ahead of the first asphere. Its rear clearance toward S7 is the tightest modeled air band, so the inferred rear semi-diameter is held at 15.03 mm.
 
-### L4 / L43 — Neg. Meniscus (2× Asph)
+### L43 (element 4) — Neg. Meniscus (2× Asph)
 
 nd = 1.77271, νd = 49.70. Glass: Unmatched (lanthanum crown class; source 1.77271 / 49.70). f = -24.654385 mm.
 
 The two source aspheres are S7/S8. Their published H-Ape values, 15.06 and 12.31 mm, are preserved individually. The aspheric shape remains valid where a same-radius sphere would not, so a spherical sd/R shortcut would be inappropriate.
 
-### L5 / L53 — Biconcave Negative
+### L53 (element 5) — Biconcave Negative
 
 nd = 1.92286, νd = 20.88. Glass: E-FDS1 (Hoya equivalent). f = -14.963818 mm.
 
-This biconcave element is cemented to L6 at S10. It supplies strong negative standalone power and a high-index, high-dispersion partner, but its isolated power should not be assigned to the shared interface.
+This biconcave element is cemented to L63 at S10. It supplies strong negative standalone power and a high-index, high-dispersion partner, but its isolated power should not be assigned to the shared interface.
 
-### L6 / L63 — Biconvex Positive
+### L63 (element 6) — Biconvex Positive
 
 nd = 1.74077, νd = 27.76. Glass: E-FD13 (Hoya equivalent). f = +17.428485 mm.
 
-L6 completes the front cemented doublet. The complete L5–L6 component has weak net negative power, f = −468.689165 mm, because the shared interface and thick-element separation matter.
+L63 completes the front cemented doublet. The complete L53–L63 component has weak net negative power, f = −468.689165 mm, because the shared interface and thick-element separation matter.
 
-### L7 / L73 — Biconvex Positive
+### L73 (element 7) — Biconvex Positive
 
 nd = 1.84666, νd = 23.78. Glass: FDS90 (Hoya equivalent). f = +30.162235 mm.
 
 This air-separated positive singlet is present in Example 3 and helps distinguish its architecture from the alternatives. It completes G1 and changes the net power of that source-defined group to positive.
 
-### L8 / L83 — Negative Meniscus
+### L83 (element 8) — Negative Meniscus
 
 nd = 1.69680, νd = 55.46. Glass: LAC14 (Hoya equivalent). f = -32.332801 mm.
 
-L8 begins the inner-focus triplet. It is a negative meniscus with a convex object-side face. The triplet remains cemented while its two surrounding air gaps change.
+L83 begins the inner-focus triplet. It is a negative meniscus with a convex object-side face. The triplet remains cemented while its two surrounding air gaps change.
 
-### L9 / L93 — Biconvex Positive
+### L93 (element 9) — Biconvex Positive
 
 nd = 1.51823, νd = 58.96. Glass: E-C3 (Hoya equivalent). f = +18.100766 mm.
 
-The central biconvex member provides the positive contribution of the moving group. Its standalone value is not the group focal length; the complete L8–L10 triplet computes +98.643520 mm.
+The central biconvex member provides the positive contribution of the moving group. Its standalone value is not the group focal length; the complete L83–L103 triplet computes +98.643520 mm.
 
-### L10 / L103 — Negative Meniscus
+### L103 (element 10) — Negative Meniscus
 
 nd = 1.92286, νd = 20.88. Glass: E-FDS1 (Hoya equivalent). f = -58.155896 mm.
 
 This negative meniscus completes the moving triplet at S17. Its source thickness remains 0.700 mm. No relative motion inside the cemented triplet is modeled.
 
-### L11 / L113 — Biconcave Negative
+### L113 (element 11) — Biconcave Negative
 
 nd = 1.95375, νd = 32.32. Glass: TAFD45 (Hoya equivalent). f = -8.449203 mm.
 
-The first post-stop element is biconcave and cemented to L12. This rear pair is net negative, f = −21.935462 mm, even though the full G3 assembly is net positive.
+The first post-stop element is biconcave and cemented to L123. This rear pair is net negative, f = −21.935462 mm, even though the full G3 assembly is net positive.
 
-### L12 / L123 — Biconvex Positive
+### L123 (element 12) — Biconvex Positive
 
 nd = 1.78472, νd = 25.72. Glass: FD110 (Hoya equivalent). f = +13.962670 mm.
 
-L12 is the positive partner of the first rear doublet. The selected FD110 catalog-equivalent spectrum is supplied as explicit line-index anchors because the app's glass catalog does not contain FD110.
+L123 is the positive partner of the first rear doublet. Its FD110 catalog-equivalent spectrum is supplied as explicit line-index anchors, as for the other matched elements.
 
-### L13 / L133 — Biconvex Positive (2× Asph)
+### L133 (element 13) — Biconvex Positive (2× Asph)
 
 nd = 1.55352, νd = 71.50. Glass: Unmatched (low-dispersion crown class; source 1.55352 / 71.5). f = +26.204916 mm.
 
 This positive biconvex element has aspheres on both S22 and S23. Its source dispersion coordinate is not replaced with MP-FCD500-20: that catalog glass has νd = 71.72, whereas the patent prints 71.5.
 
-### L14 / L143 — Negative Meniscus
+### L143 (element 14) — Negative Meniscus
 
 nd = 1.95375, νd = 32.32. Glass: TAFD45 (Hoya equivalent). f = -19.797829 mm.
 
-This negative meniscus begins the final cemented doublet. The same source coordinate appears in L11, but the different curvatures and thickness give it a different standalone power.
+This negative meniscus begins the final cemented doublet. The same source coordinate appears in L113, but the different curvatures and thickness give it a different standalone power.
 
-### L15 / L153 — Biconvex Positive
+### L153 (element 15) — Biconvex Positive
 
 nd = 1.49700, νd = 81.61. Glass: FCD1 (Hoya equivalent). f = +19.443294 mm.
 
-The final positive element has the lowest dispersion of the fifteen elements and sits at the position Samyang marks ED. The complete L14–L15 doublet computes +138.787851 mm. That pairing alone does not establish apochromatic performance.
+The final positive element has the lowest dispersion of the fifteen elements and sits at the position Samyang marks ED. The complete L143–L153 doublet computes +138.787851 mm. That pairing alone does not establish apochromatic performance.
 
 ## Glass Identification and Spectral Scope
 
 The patent supplies nd/νd rather than manufacturer glass names. The printed pairs were compared with the HOYA, OHARA, SCHOTT, HIKARI, SUMITA and CDGM catalogs. Several pairs have more than one compatible candidate. A consistent HOYA-equivalent set is used where a match exists, without asserting that Samyang bought those glasses.
 
-| Elements | Native nd / νd  | Model interpretation                                          |
-| -------- | --------------- | ------------------------------------------------------------- |
-| L1       | 1.80610 / 33.27 | NBFD15 (Hoya equivalent)                                      |
-| L2       | 1.72916 / 54.67 | TAC8 (Hoya equivalent)                                        |
-| L3       | 1.80420 / 46.50 | TAF3 (Hoya equivalent)                                        |
-| L4       | 1.77271 / 49.70 | Unmatched (lanthanum crown class; source 1.77271 / 49.70)     |
-| L5, L10  | 1.92286 / 20.88 | E-FDS1 (Hoya equivalent)                                      |
-| L6       | 1.74077 / 27.76 | E-FD13 (Hoya equivalent)                                      |
-| L7       | 1.84666 / 23.78 | FDS90 (Hoya equivalent)                                       |
-| L8       | 1.69680 / 55.46 | LAC14 (Hoya equivalent)                                       |
-| L9       | 1.51823 / 58.96 | E-C3 (Hoya equivalent)                                        |
-| L11, L14 | 1.95375 / 32.32 | TAFD45 (Hoya equivalent)                                      |
-| L12      | 1.78472 / 25.72 | FD110 (Hoya equivalent)                                       |
-| L13      | 1.55352 / 71.50 | Unmatched (low-dispersion crown class; source 1.55352 / 71.5) |
-| L15      | 1.49700 / 81.61 | FCD1 (Hoya equivalent)                                        |
+| Elements   | Native nd / νd  | Model interpretation                                          |
+| ---------- | --------------- | ------------------------------------------------------------- |
+| L13        | 1.80610 / 33.27 | NBFD15 (Hoya equivalent)                                      |
+| L23        | 1.72916 / 54.67 | TAC8 (Hoya equivalent)                                        |
+| L33        | 1.80420 / 46.50 | TAF3 (Hoya equivalent)                                        |
+| L43        | 1.77271 / 49.70 | Unmatched (lanthanum crown class; source 1.77271 / 49.70)     |
+| L53, L103  | 1.92286 / 20.88 | E-FDS1 (Hoya equivalent)                                      |
+| L63        | 1.74077 / 27.76 | E-FD13 (Hoya equivalent)                                      |
+| L73        | 1.84666 / 23.78 | FDS90 (Hoya equivalent)                                       |
+| L83        | 1.69680 / 55.46 | LAC14 (Hoya equivalent)                                       |
+| L93        | 1.51823 / 58.96 | E-C3 (Hoya equivalent)                                        |
+| L113, L143 | 1.95375 / 32.32 | TAFD45 (Hoya equivalent)                                      |
+| L123       | 1.78472 / 25.72 | FD110 (Hoya equivalent)                                       |
+| L133       | 1.55352 / 71.50 | Unmatched (low-dispersion crown class; source 1.55352 / 71.5) |
+| L153       | 1.49700 / 81.61 | FCD1 (Hoya equivalent)                                        |
 
 Thirteen elements carry nC/nF/ng evaluated from the HOYA catalog dispersion formulas at 656.2725, 486.1327 and 435.8343 nm. These catalog-derived values are not patent-published measurements or production-melt spectra. They take precedence over the app's catalog lookup; the printed nd/νd are unchanged.
 
-L4 and L13 remain explicitly Unmatched. For L4, TAF1 differs by Δnd = −0.00021 and Δνd = −0.07. For L13, MP/MC-FCD500-20 matches nd but differs by Δνd = +0.22. Their modelled dispersion therefore uses the Abbe approximation from the printed nd/νd. The source ray-fan text identifies 656.2700, 587.5600 and 479.9100 nm; the last wavelength is not silently treated as the standard F line.
+L43 and L133 remain explicitly Unmatched. For L43, TAF1 differs by Δnd = −0.00021 and Δνd = −0.07. For L133, MP/MC-FCD500-20 matches nd but differs by Δνd = +0.22. Their modelled dispersion therefore uses the Abbe approximation from the printed nd/νd. The source ray-fan text identifies 656.2700, 587.5600 and 479.9100 nm; the last wavelength is not silently treated as the standard F line.
 
 The ED/flint pairings suggest a chromatic balancing strategy, but the mixed spectral evidence does not support an APO, secondary-spectrum, measured MTF or production-performance claim. The interface-by-interface d-line Petzval sum is +0.00518138510909 mm⁻¹; it is not a direct measurement of image-surface curvature or chromatic correction.
 
 ## Focus Mechanism and Image-Plane Interpretation
 
-The source provides three discrete configurations. Only G2, the cemented L8–L10 triplet, moves; G1 and G3 stay fixed. D1 decreases by 3.226261 mm while D2 increases by the same amount at the near state. Their sum remains 7.589060 mm.
+The source provides three discrete configurations. Only G2, the cemented L83–L103 triplet, moves; G1 and G3 stay fixed. D1 decreases by 3.226261 mm while D2 increases by the same amount at the near state. Their sum remains 7.589060 mm.
 
 | Quantity                   |  Infinity | MGA = −1/30 heading | TL = 0.2 m |
 | -------------------------- | --------: | ------------------: | ---------: |
@@ -211,9 +215,9 @@ That sibling has the same applicant and filing date but is a separate applicatio
 | E           |  1.016927E-14 | -2.113286E-13 |  4.105461E-12 |  9.294879E-12 |
 | F           | -4.412777E-18 |  3.515643E-16 | -4.297231E-14 | -6.527433E-14 |
 
-L4's two aspheres combine a negative meniscus with a large departure from a simple spherical form. At the published S7 semi-diameter of 15.06 mm, sag is 3.768721 mm and the rim angle is 16.681254°; the departure from a sphere of the same vertex radius is −1.449772 mm. At the published S8 semi-diameter of 12.31 mm, sag is 7.179803 mm and the rim angle is 43.410119°. A sphere of the same vertex radius does not reach that height, because 12.31 mm exceeds |R| = 10.342 mm; the aspheric surface remains valid there.
+L43's two aspheres combine a negative meniscus with a large departure from a simple spherical form. At the published S7 semi-diameter of 15.06 mm, sag is 3.768721 mm and the rim angle is 16.681254°; the departure from a sphere of the same vertex radius is −1.449772 mm. At the published S8 semi-diameter of 12.31 mm, sag is 7.179803 mm and the rim angle is 43.410119°. A sphere of the same vertex radius does not reach that height, because 12.31 mm exceeds |R| = 10.342 mm; the aspheric surface remains valid there.
 
-L13 provides a second pair of aspheric degrees of freedom behind the stop. The positive fourth-order terms do not by themselves determine the net rim departure because the higher orders and conic terms also contribute. Manufacturing process and exact production correction contributions are not inferred from coefficient signs alone. S22/S23 clear radii are modeled, not published.
+L133 provides a second pair of aspheric degrees of freedom behind the stop. The positive fourth-order terms do not by themselves determine the net rim departure because the higher orders and conic terms also contribute. Manufacturing process and exact production correction contributions are not inferred from coefficient signs alone. S22/S23 clear radii are modeled, not published.
 
 ## Source Conditions and Unresolved Statements
 
@@ -231,7 +235,7 @@ These inconsistencies are left unresolved. The Table 7 apertures are not substit
 
 ## Model Scope and Limitations
 
-The S7/S8 apertures are the published values. All other semi-diameters are estimated from Figure 7 and checked by real-ray trace, with different front and rear values on the front menisci where rim slope and clearance require them. The S6–S7 band uses 89.5143% of its vertex gap and retains 0.454869 mm clearance. The maximum rim angle is 62.9964°, and the minimum glass thickness within a shared aperture is 0.700000 mm. The cemented L5–L6 pair is square at 13.0 mm, as Figure 7 draws it. That makes S8–S9 the tightest gap: at the published 12.31 mm height of S8 the two faces take 8.174 mm of the 8.555 mm gap (95.55%) and leave 0.381 mm of air, so the data file raises the gap allowance for this lens from 90% to 96%.
+The S7/S8 apertures are the published values. All other semi-diameters are estimated from Figure 7 and checked by real-ray trace, with different front and rear values on the front menisci where rim slope and clearance require them. The S6–S7 band uses 89.5143% of its vertex gap and retains 0.454869 mm clearance. The maximum rim angle is 62.9964°, and the minimum glass thickness within a shared aperture is 0.700000 mm. The cemented L53–L63 pair is square at 13.0 mm, as Figure 7 draws it. That makes S8–S9 the tightest gap: at the published 12.31 mm height of S8 the two faces take 8.174 mm of the 8.555 mm gap (95.55%) and leave 0.381 mm of air, so the data file raises the gap allowance for this lens from 90% to 96%.
 
 The full-field chief ray clears every rim at all three states, with a smallest margin of 0.47 mm at S6 at infinity. Off axis the bundle that fills the iris is progressively cut by the inferred rims, so corner illumination follows estimated apertures and is not a measured value.
 

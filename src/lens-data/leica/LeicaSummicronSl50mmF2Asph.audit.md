@@ -205,7 +205,7 @@ The final Stage 4 gate is conferred only by the matching final manifest after po
 
 - Open: the design fits the Panasonic Lumix S 50mm F1.8 directly (applicant, priority date, F-number). The link to the Leica lens rests on matching construction and on unconfirmed reports that the two lenses share optics, and the model opens to F/1.86 where the Leica is marketed at f/2.
 - Open: entrance pupil. The model puts it 29.46 mm behind surface 1, which is 51.5 mm ahead of the L-Mount flange (101.0 mm track, 20.0 mm flange distance). Leica's data sheet gives 53.0 mm ahead of the bayonet; that figure was read from a search excerpt of the German sheet, because the PDF returned HTTP 502. The 1.5 mm difference is unexplained.
-- Open: the adhesive entry keeps `diagramLabel` "C" and its `Unmatched (…)` glass string, which this pass was not scoped to change.
+- Open: the adhesive entry keeps `diagramLabel` "C" and its `Unmatched (…)` glass string, which this pass was not scoped to change. (Closed 2026-10-11: the entry carries `diagramLabel` "C1" and the glass string `Optical cement (patent nd=1.56732, vd=42.8)`; see the second review below.)
 - Open: the fourth `sourceErrata` note (1.000 mm image gap against the paraxial focus, and the 0.0001 mm total-length rounding) records printed-precision effects more than a contradiction and could be dropped.
 
 ## 2026-10-11 — Glass coverage check
@@ -215,3 +215,74 @@ Two of the nine glass elements resolve to catalog glass (L2 FCD1, L5 FCD515). Th
 The patent's five numerical examples (Tables 1A–5A) separate the seven into two kinds. 1.51570 / 55.8 is printed 11 times and 1.51607 / 56.3 four times across the examples, so both are materials the designers reused; the patent names no supplier and gives no dispersion data for them, and the nearest catalog rows are HOYA C2 and OHARA S-NSL2 at 1.51602 / 56.8. The other four pairs (1.85996 / 30.5, 1.65794 / 31.1, 1.59269 / 65.3, 1.54157 / 51.7) each occur once in the whole patent, and Example 2 prints different one-off values in the same positions (1.59788 / 64.7 where Example 1 has L5 and 1.85057 / 20.8 where it has L9), the pattern of indices left free during optimization rather than of catalog glasses.
 
 All seven stay `Unmatched` and trace on the Abbe approximation from the printed nd and νd. The 1.56732 / 42.8 cement coordinate is also used for the cement layers of the Panasonic 14mm f/2.5 II and Leica Elmarit-TL 18mm files, which also follow Panasonic filings.
+
+## 2026-10-11 — Second review: diagram, labels and movement
+
+**Compared.** The local page (infinity, closest focus, the focus-movement overlay at both ends, patent-positions mode, and the inspector of all ten element entries) against `patents/JP2022182997A.pdf`: 図1(a) and (b) on PDF page 39, ¶0018–0044 on pages 7–8 and Tables 1A–1G on pages 27–29. 図1(a) was measured again from scratch at 600 dpi, and the model outline was drawn over the figure at the figure's own scale. No maker image was viewed in this review; the manufacturer-section record in the semi-diameter pass above (9 elements in 8 groups, L3+L4 cemented, aspherical L6–L8, negative L9) is the comparison on file.
+
+**Scale, derived again.** Vertex crossings put surface 1 at x = 988, surface 19 at x = 1952 (964 px for 85.0000 mm, 11.341 px/mm) and the image line at x = 2134 (1146 px for 101.0 mm, 11.347 px/mm): 0.0882 mm/px, as the first pass found. Interior vertices land within 2 px of prediction (surface 5 at 1242.5, 8 at 1341.5, 10 at 1384.5, 13 at 1536.5, 16 at 1725.5, 17 at 1796.5, 18 at 1937.5). The inner ends of the two stop marks lie 166 and 165 px from the axis, 14.6 mm against the 14.525 mm iris, so heights share the axial scale. ¶0018 also states that panel (a) is drawn with equal horizontal and vertical scale.
+
+**Rims, measured again.** Line centres, mean of the two sides of the axis.
+
+| Surface | Stored | This review (mm) | First pass (mm) | Stored ÷ figure |
+|---|---:|---:|---:|---:|
+| 1, 2 (L1) | 21 | 19.6 | 19.66 | 1.07 |
+| 3 (L2 front, flat top) | 18 | 17.2 | 17.28 | 1.05 |
+| 4 (L2 rear, curve end) | 15.5 | 14.6 | 14.64 | 1.06 |
+| 5 (L3 front, curve end) | 12.9 | 12.9 | 12.85 | 1.00 |
+| 6, 7 (junction, flat top of L3) | 14.4 | 14.3 | 14.37 | 1.00 |
+| 8 (L4 rear) | 14.8 | 14.8 | 14.77 | 1.00 |
+| 10, 11 (L5) | 17.5 | 16.9 | 16.93 | 1.04 |
+| 12A, 13A (L6) | 16.5 | 16.4 | 16.44 | 1.01 |
+| 14A, 15A (L7) | 15 | 14.1 | 14.11 | 1.06 |
+| 16A, 17A (L8) | 16 | 15.4 | 15.47 | 1.04 |
+| 18 (L9 front, curve end) | 15.0 | 14.95 | 14.95 | 1.00 |
+| 19 (L9 rear, flat top) | 16.7 | 16.5 | 16.67 | 1.01 |
+
+The two sets of readings agree within 0.15 mm on every surface. Drawn over the figure, the model outline lies on the drawn outline for L4, L5, L6 and L8. The visible differences are: L1 and L7 stand about 1.4 mm and 0.9 mm taller than drawn; the rear tip of L2 reaches 1.3 mm behind its drawn annulus; and L2, L3 and L9, which the figure draws as blocks (curve, flat annulus, flat top), show a slanted top on the page because the renderer joins two unequal rims with a straight edge. No element overlaps or wraps a neighbour at either focus end, and the drawn order of heights between neighbours is kept.
+
+**Semi-diameters: no change.** The first pass has the rims right. Three alternatives were tried on trial values without editing the file and rejected.
+
+- Squaring L3 (surface 5 from 12.9 to 14.4, the height of its flat top). The surface validator accepts it, the half-field estimate and f-number do not move, and the outline then follows the drawn block to within 1 mm. Wide-open transmission at infinity rises from 98.4 to 99.0% at 10.9°, 95.3 to 96.9% at 13.6°, 91.7 to 94.8% at 16.3° and 85.4 to 87.0% at 19.0°. The annulus drawn on this face is what trims those bundles, so widening the face removes vignetting the figure supports.
+- Squaring L9 (surface 18 from 15.0 to 16.7). The validator accepts it, but the front tip then reaches 2.2 mm ahead of the drawn annulus, the half-field estimate moves from 24.94° to 26.65° (default off-axis field 14.96° to 15.99°) and transmission at 24.5° rises from 61.5 to 62.0%.
+- Squaring L2 (surface 4 to 17.2). The validator rejects it: rim slope 70.8° against the 64.2° limit.
+
+L1 (7% above the drawing) and L7 (6%) stay inside the band this procedure leaves alone, as do L2, L5 and L8 (4–6%). For the record, the drawn heights would lower transmission to 82.8, 70.8 and 55.7% at 19.0°, 21.7° and 24.5° for L1 (from 85.4, 75.5 and 61.5%) and to 97.9, 95.3, 91.7 and 88.5% at 8.2°, 10.9°, 13.6° and 16.3° for L7 (from 100, 98.4, 95.3 and 91.7%).
+
+**Changed.** Labels only.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `doublets` text | `D1: L3 + L4 + adhesive` | `D1: L3 + L4` | ¶0029: the cemented lens consists of L3 and L4. The layer has its own `C1` label on the diagram, so the bracket no longer names it a second way. |
+| `cemented` on C1 | `D1` | removed | The inspector counts the entries that share a tag, and three entries made it print "TRIPLET D1" on L3, C1 and L4. ¶0029 and Table 1A describe a two-element cemented lens. L3 and L4 now read "DOUBLET D1". |
+| `role` of C1 | Explicit 0.01 mm adhesive layer between L3 and L4 from the patent prescription; not counted as a lens element | Cement layer of the L3–L4 doublet D1: the 0.01 mm adhesive layer printed in the patent prescription; not counted as a lens element | Keeps the link to D1 in words now that the tag is gone. |
+
+No `sd`, `R`, `d`, index, asphere coefficient, `var` value, `glass` string or group entry changed. The analysis file quotes none of the three changed strings and was not edited.
+
+**Checked and found correct.**
+
+- Element designations L1–L9 follow 図1(a) and ¶0027–0031. Element types agree with the signs of R in Table 1A and with ¶0034–0040: L1 and L2 menisci convex to the object, L3 biconcave, L4, L5, L6 and L8 biconvex, L7 a negative meniscus convex to the object, L9 a negative meniscus convex to the image.
+- Aspheric surfaces: 12–17 carry the asterisk in Table 1A and in the figure (both faces of L6, L7 and L8). The file has the `A` suffix and coefficients on those six and on no other surface.
+- Roles: G1A (L1–L4) is negative and G1B (L5–L6) positive, −67.647 and 26.928 mm in Table 1G; G2 is L7; G3 is L8 and L9 (¶0026–0031).
+- Stop: surface 9, between L4 and L5, as drawn.
+- Group labels `G1 (+)` (1–13A), `G2 (−), FOCUS` (14A–15A) and `G3 (+)` (16A–19) are the lower row of 図1(b) and bracket the right elements; Table 1E gives 34.755, −67.786 and 318.806 mm. The doublet range 5–8 is right.
+- Tags: the file carries no `apd` tag, and the patent designates no anomalous-dispersion or named glass.
+- `varLabels` d13 and d15 are the figure's own gap names. `focusDescription` agrees with ¶0041 and Table 1C.
+- Inspector: index, Abbe number, focal length, type and role shown for each of the nine lenses agree with Tables 1A and 1D (focal lengths within 0.0005 mm).
+
+**Movement.** Table 1C, infinity to the near state (d0 = 349 mm): d13 1.8000 to 6.6163 mm (+4.8163) and d15 12.8959 to 8.0795 mm (−4.8164). Index 0 of both `var` pairs is the infinity state and index 1 the near state, so the order is right. ¶0041 says G1 and the stop do not move, G2 moves toward the image and G3 does not move, and the arrow under G2 in 図1(b) points to the image side. On the page the movement overlay shows `G2 (−), FOCUS` going from 49.9 mm to 45.0 mm ahead of the focus plane, a travel of 4.82 mm toward the image, with G1 and G3 as single points. The far end of the focus slider reads 45 cm (349 + 101 = 450 mm object to image), and patent-positions mode lists ∞ and 45 cm in that order. Engine focal lengths at the two ends are 48.2537 and 43.6132 mm against the printed 48.2535 and 43.6130 mm.
+
+**Engine values, before → after.** Unchanged: EFL 48.2537 mm, wide-open f-number 1.86017, half-field estimate 24.94°, stop radius 14.525 mm, traced corner coverage 100% (24.5° reaching 21.65 mm), and wide-open transmission at infinity of 100, 98.4, 95.3, 91.7, 85.4, 75.5 and 61.5% at 8.2°, 10.9°, 13.6°, 16.3°, 19.0°, 21.7° and 24.5°. The surface validator reports no errors and the image-circle check nothing undersized. An exact meridional trace at the patent half-field of 24.1432° shows no on-axis clip and no blocked chief ray with the infinity spacings or with the near-state spacings.
+
+**Live page after the edits.** The bracket above the doublet reads `D1: L3 + L4`; the labels `L3`, `C1` and `L4` sit under the doublet with `C1` on a second row at the junction; the six `A` markers stand over both faces of L6, L7 and L8; `STO` is between L4 and L5. Opening L3 or L4 shows "DOUBLET D1"; opening C1 shows "L3–L4 cement layer", "Optical Cement Layer" and the new role. The silhouette is as before at infinity and at closest focus, where L7 sits 4.8 mm nearer L8 and clears it.
+
+**Open limitations.**
+
+- Open: the slanted tops of L2, L3 and L9 remain. They can be squared only by widening a face past the annulus the figure draws (L3, L9) or past the validator's rim-slope limit (L2).
+- Open: the sub-groups G1A(−) and G1B(+) in the upper row of 図1(b) are named in the element roles but not labelled on the diagram. Group labels are drawn as one row of text without bracket lines, so `G1A`, `G1` and `G1B` would read as three successive groups, and each entry would add a row to the movement overlay.
+- Open: C1 carries `fl` 359130.49 mm, which the inspector prints as "FL = +359130.49 mm". The cement-layer entries of the Nikon AF-S 18–35mm and Panasonic 14mm f/2.5 II files omit `fl`. The field was outside this review's edit list.
+- Open: the two `A` markers of L8 touch ("AA") because its edge is 0.9 mm thick at the stored 16 mm rim.
+
+## 2026-10-11 — Cement-layer focal length and applicant name
+
+The cement-layer entry C1 no longer carries `fl`: the inspector printed "FL = +359130.49 mm" for a 0.01 mm layer between equal radii, and the cement-layer entries of the other files have no focal length. The header comment and the analysis now give the applicant's full name, Panasonic Intellectual Property Management Co., Ltd., as `patentAssignees` does, in place of the shortened "Panasonic IP Management Co., Ltd.". No optical value changed; EFL is 48.25374 mm before and after.

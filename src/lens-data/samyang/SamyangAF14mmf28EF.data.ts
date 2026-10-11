@@ -21,13 +21,20 @@ import type { LensDataInput } from "../../types/optics.js";
  * modelled. The paraxial focus lies -0.019253/+0.003864/+0.075973 mm from that plane
  * at the three states.
  *
- * FOCUS: PUBLISHED. All three Table 9 states are retained and only G2 moves. Gaps
+ * ELEMENT AND GROUP NAMES: name and diagramLabel carry the patent's reference signs
+ * L13-L153 (the tens digits count elements front to rear and the trailing 3 marks
+ * Example 3: L13 is the first element, L133 the thirteenth), and label carries the
+ * ordinal. The brackets G13/G23/G33 are the group signs of Figure 7. The four
+ * cemented components are bracketed C1-C4 because the patent uses D0-D5 for its
+ * air distances and D1/D2 are the variable-gap labels.
+ *
+ * FOCUS: PUBLISHED. All three Table 9 states are retained and only G23 moves. Gaps
  * between the tabulated states are linear interpolation, not published values.
  * The iris radius is set from the infinity f/2.851; the patent publishes none. The
  * printed finite-state Fno 2.853/2.938 are quoted in the analysis and are not
  * reproduced by this fixed iris. No changing diaphragm is modelled.
  *
- * SOURCE INCONSISTENCIES (kept as printed; see sourceErrata): G1 (S1-13) computes
+ * SOURCE INCONSISTENCIES (kept as printed; see sourceErrata): G13 (S1-13) computes
  * to +25.11 mm although the text calls it negative; Table 10's f1st, fAF and fG3
  * differ from the Table 7 values by 0.7-2.7%; Table 10's D/y = 0.557 lies outside
  * Equation 5's 0.65-0.75.
@@ -36,15 +43,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * estimated from Figure 7 and floor-checked by exact real-ray trace. The sheet is
  * drawn about 5% tighter across the axis than along it, so rim heights are read
  * against the published S7 height. Every inferred rim agrees with the drawing
- * within 5%. The L5-L6 doublet is square at 13.0 mm as drawn (S9, S10, S11).
+ * within 5%. The L53-L63 doublet is square at 13.0 mm as drawn (S9, S10, S11).
  * gapSagFrac 0.96: at the published 12.31 mm height of S8 the sags of S8 and S9
  * take 8.17 mm of the 8.555 mm gap (95.5%), past the default 0.90, which would
  * cap S9 at 11.8 mm; 0.96 is the smallest two-decimal value that admits the
  * drawn rim, and 0.381 mm of air remains there.
  * No absent aperture is called measured.
  *
- * GLASS: catalog-equivalent labels do not identify a supplier or melt. The L4 (S7)
- * and L13 (S22) glasses stay Unmatched at the printed precision and use the nd/Vd
+ * GLASS: catalog-equivalent labels do not identify a supplier or melt. The L43 (S7)
+ * and L133 (S22) glasses stay Unmatched at the printed precision and use the nd/Vd
  * approximation. nC/nF/ng for the other elements are evaluated from HOYA catalog
  * dispersion formulas; they are catalog values, not patent-published or measured
  * spectra.
@@ -86,7 +93,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L13",
       diagramLabel: "L13",
       label: "Element 1",
       type: "Positive Meniscus",
@@ -101,7 +108,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L23",
       diagramLabel: "L23",
       label: "Element 2",
       type: "Negative Meniscus",
@@ -109,14 +116,14 @@ const LENS_DATA = {
       vd: 54.67,
       fl: -80.538759667,
       glass: "TAC8 (Hoya equivalent)",
-      role: "First of the three negative menisci (L2–L4) behind the front element.",
+      role: "First of the three negative menisci (L23–L43) behind the front element.",
       nC: 1.7251025131,
       nF: 1.73843913675,
       ng: 1.74571184197,
     },
     {
       id: 3,
-      name: "L3",
+      name: "L33",
       diagramLabel: "L33",
       label: "Element 3",
       type: "Negative Meniscus",
@@ -124,14 +131,14 @@ const LENS_DATA = {
       vd: 46.5,
       fl: -50.569262404,
       glass: "TAF3 (Hoya equivalent)",
-      role: "Second negative meniscus of the front group, ahead of the aspherical L4.",
+      role: "Second negative meniscus of the front group, ahead of the aspherical L43.",
       nC: 1.79900281344,
       nF: 1.81629648474,
       ng: 1.8259456919,
     },
     {
       id: 4,
-      name: "L4",
+      name: "L43",
       diagramLabel: "L43",
       label: "Element 4",
       type: "Neg. Meniscus (2× Asph)",
@@ -143,7 +150,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L53",
       diagramLabel: "L53",
       label: "Element 5",
       type: "Biconcave Negative",
@@ -151,15 +158,15 @@ const LENS_DATA = {
       vd: 20.88,
       fl: -14.963818312,
       glass: "E-FDS1 (Hoya equivalent)",
-      role: "High-index negative front member of the cemented L5–L6 pair.",
-      cemented: "D1",
+      role: "High-index negative front member of the cemented L53–L63 pair.",
+      cemented: "C1",
       nC: 1.91037567834,
       nF: 1.95457312693,
       ng: 1.9828139743,
     },
     {
       id: 6,
-      name: "L6",
+      name: "L63",
       diagramLabel: "L63",
       label: "Element 6",
       type: "Biconvex Positive",
@@ -167,15 +174,15 @@ const LENS_DATA = {
       vd: 27.76,
       fl: 17.428485284,
       glass: "E-FD13 (Hoya equivalent)",
-      role: "Positive rear member of the cemented L5–L6 pair.",
-      cemented: "D1",
+      role: "Positive rear member of the cemented L53–L63 pair.",
+      cemented: "C1",
       nC: 1.73307111041,
       nF: 1.75975543915,
       ng: 1.77597267238,
     },
     {
       id: 7,
-      name: "L7",
+      name: "L73",
       diagramLabel: "L73",
       label: "Element 7",
       type: "Biconvex Positive",
@@ -190,7 +197,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L83",
       diagramLabel: "L83",
       label: "Element 8",
       type: "Negative Meniscus",
@@ -198,15 +205,15 @@ const LENS_DATA = {
       vd: 55.46,
       fl: -32.332801491,
       glass: "LAC14 (Hoya equivalent)",
-      role: "Negative front member of the cemented focusing triplet L8–L10.",
-      cemented: "T1",
+      role: "Negative front member of the cemented focusing triplet L83–L103.",
+      cemented: "C2",
       nC: 1.69296898855,
       nF: 1.70553311024,
       ng: 1.71235007782,
     },
     {
       id: 9,
-      name: "L9",
+      name: "L93",
       diagramLabel: "L93",
       label: "Element 9",
       type: "Biconvex Positive",
@@ -215,14 +222,14 @@ const LENS_DATA = {
       fl: 18.100766451,
       glass: "E-C3 (Hoya equivalent)",
       role: "Positive central member of the cemented focusing triplet.",
-      cemented: "T1",
+      cemented: "C2",
       nC: 1.51555996027,
       nF: 1.52434934583,
       ng: 1.52913232824,
     },
     {
       id: 10,
-      name: "L10",
+      name: "L103",
       diagramLabel: "L103",
       label: "Element 10",
       type: "Negative Meniscus",
@@ -231,14 +238,14 @@ const LENS_DATA = {
       fl: -58.155896338,
       glass: "E-FDS1 (Hoya equivalent)",
       role: "High-index negative rear member of the cemented focusing triplet.",
-      cemented: "T1",
+      cemented: "C2",
       nC: 1.91037567834,
       nF: 1.95457312693,
       ng: 1.9828139743,
     },
     {
       id: 11,
-      name: "L11",
+      name: "L113",
       diagramLabel: "L113",
       label: "Element 11",
       type: "Biconcave Negative",
@@ -247,14 +254,14 @@ const LENS_DATA = {
       fl: -8.449203165,
       glass: "TAFD45 (Hoya equivalent)",
       role: "High-index negative front member of the cemented pair behind the stop.",
-      cemented: "D2",
+      cemented: "C3",
       nC: 1.94513502106,
       nF: 1.97464566421,
       ng: 1.99206047425,
     },
     {
       id: 12,
-      name: "L12",
+      name: "L123",
       diagramLabel: "L123",
       label: "Element 12",
       type: "Biconvex Positive",
@@ -263,14 +270,14 @@ const LENS_DATA = {
       fl: 13.962670232,
       glass: "FD110 (Hoya equivalent)",
       role: "Positive rear member of the cemented pair behind the stop.",
-      cemented: "D2",
+      cemented: "C3",
       nC: 1.77597256577,
       nF: 1.80648168613,
       ng: 1.82526973243,
     },
     {
       id: 13,
-      name: "L13",
+      name: "L133",
       diagramLabel: "L133",
       label: "Element 13",
       type: "Biconvex Positive (2× Asph)",
@@ -282,7 +289,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L143",
       diagramLabel: "L143",
       label: "Element 14",
       type: "Negative Meniscus",
@@ -291,14 +298,14 @@ const LENS_DATA = {
       fl: -19.797828826,
       glass: "TAFD45 (Hoya equivalent)",
       role: "High-index negative front member of the final cemented pair.",
-      cemented: "D3",
+      cemented: "C4",
       nC: 1.94513502106,
       nF: 1.97464566421,
       ng: 1.99206047425,
     },
     {
       id: 15,
-      name: "L15",
+      name: "L153",
       diagramLabel: "L153",
       label: "Element 15",
       type: "Biconvex Positive",
@@ -310,7 +317,7 @@ const LENS_DATA = {
       apdNote:
         "Samyang marks this position ED; FCD1 (νd 81.61) is an extra-low-dispersion crown whose catalog lines give ΔPgF ≈ +0.032, and the tag is inferred from the patent/product correlation, not stated in the patent.",
       role: "Low-dispersion positive rear member of the final cemented pair; the position Samyang marks ED.",
-      cemented: "D3",
+      cemented: "C4",
       nC: 1.49513747764,
       nF: 1.50122750457,
       ng: 1.50450912671,
@@ -612,42 +619,42 @@ const LENS_DATA = {
   maxFstop: 22,
   apertureBlades: 7,
   focusDescription:
-    "PUBLISHED: the cemented triplet L8–L10 (G2) moves 3.23 mm toward the object between the patent's three tabulated states — infinity, magnification 0.033, and magnification 0.157 at 0.20 m object-to-image, which is also Samyang's stated minimum focus distance. The D1/D2 gaps at those states are the printed values; gaps between them are interpolated. G1 and G3 stay fixed. The image plane is placed 0.5 mm behind the cover plate, the sum of the patent's printed D4 and D5 at each focus state. The iris is held at its infinity setting, so the model does not reproduce the patent's near-state F-number of 2.938.",
+    "PUBLISHED: the cemented triplet L83–L103 (group G23) moves 3.23 mm toward the object between the patent's three tabulated states — infinity, magnification 0.033, and magnification 0.157 at 0.20 m object-to-image, which is also Samyang's stated minimum focus distance. The D1/D2 gaps at those states are the printed values; gaps between them are interpolated. G13 and G33 stay fixed. The image plane is placed 0.5 mm behind the cover plate, the sum of the patent's printed D4 and D5 at each focus state. The iris is held at its infinity setting, so the model does not reproduce the patent's near-state F-number of 2.938.",
   groups: [
     {
-      text: "FIXED G1",
+      text: "G13 (FIXED)",
       fromSurface: "1",
       toSurface: "13",
     },
     {
-      text: "FOCUS G2",
+      text: "G23 (FOCUS)",
       fromSurface: "14",
       toSurface: "17",
     },
     {
-      text: "FIXED G3",
+      text: "G33 (FIXED)",
       fromSurface: "19",
       toSurface: "26",
     },
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "9",
       toSurface: "11",
     },
     {
-      text: "T1",
+      text: "C2",
       fromSurface: "14",
       toSurface: "17",
     },
     {
-      text: "D2",
+      text: "C3",
       fromSurface: "19",
       toSurface: "21",
     },
     {
-      text: "D3",
+      text: "C4",
       fromSurface: "24",
       toSurface: "26",
     },

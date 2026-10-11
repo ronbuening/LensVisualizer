@@ -8,6 +8,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * Radii, glass thicknesses, air gaps through surface 27, nd and Vd are as printed
  * (d line, paragraph 0120).
  *
+ * ELEMENT AND GROUP NAMES: name and diagramLabel carry the patent's reference signs
+ * (L10, L11 in the first group; L20-L27 in the second; L30-L34 in the third), and label
+ * carries the patent's ordinal (first lens ... fifteenth lens), which is also Samyang's
+ * element count. The patent names the groups only as first, second and third lens
+ * group; G1-G3 with the claimed power signs stand for them.
+ *
  * MODELLING CHOICES where Table 1 is incomplete or disagrees with the rest of the patent:
  * - Stop: on plane row 18. Table 1 prints "19(STO)" on the powered front face of
  *   element 11, but Figure 1 draws a separate diaphragm between elements 10 and 11,
@@ -30,15 +36,22 @@ import type { LensDataInput } from "../../types/optics.js";
  * (C 13.03), S11 12.66 (C 12.64) and S19 10.71 (C 10.7). gapSagFrac 0.92 is the
  * smallest two-decimal allowance that admits the 9->10 pair at S10 13.05 (91.4% of its
  * 1.676 mm gap, 0.14 mm of rim air); the faces do not cross and Figure 1 draws them
- * meeting at the rim. S26 is held at 12.72 (C 13.23) because at the printed value the
- * 26->27 pair would fill 97.6% of its 2.514 mm gap. S7 carries the printed 15.57.
+ * meeting at the rim. S27 is held at 12.72 (C 13.23) because with both faces at the
+ * printed value the 26->27 pair would fill 97.6% of its 2.514 mm gap; Figure 1 ends the
+ * concave S27 arc at 12.5-12.9 mm on a flat land and runs the S26 face to the block
+ * edge, so S26 carries the printed 13.23. S7 carries the printed 15.57.
  * Figure 1 draws every element as a square block about 1.2 mm outside its C and ends
  * the concave faces near C, so it confirms the column and sets no value.
+ * The corner vignetting is the column's own: at 12.38 deg (21.63 mm image height) one
+ * traced ray passes S1-S4 within 0.06 mm of their printed C and another passes S22-S28
+ * within 0.02 mm of theirs, so those eleven values are the two rays that bound the
+ * designer's corner bundle. Geometric transmission at 12.4 deg is 42.2% (45.8% with S27
+ * at the printed 13.23). Do not widen the front or rear rims to reduce it.
  *
  * APERTURE: the patent states Fno 2.9; the lens is marketed as f/2.8. The 11.92834 mm
  * stop radius gives f/2.904147833 by exact ray trace (paraxial f/2.802621859). The
  * unaltered C column would admit f/2.907412160, limited at S9; with the five raised
- * rims the axial beam is limited by the iris at f/2.9041. The S26 rim adds some corner
+ * rims the axial beam is limited by the iris at f/2.9041. The S27 rim adds some corner
  * clipping. Only the infinity, d-line geometry has been checked.
  *
  * FOCUS: the patent tabulates only the infinity state. Paragraphs 0051 and 0065
@@ -101,7 +114,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L10",
       diagramLabel: "L10",
       label: "Element 1",
       type: "Negative Meniscus",
@@ -116,7 +129,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L11",
       diagramLabel: "L11",
       label: "Element 2",
       type: "Positive Meniscus",
@@ -131,7 +144,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L20",
       diagramLabel: "L20",
       label: "Element 3",
       type: "Plano-Convex",
@@ -146,7 +159,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L21",
       diagramLabel: "L21",
       label: "Element 4",
       type: "Biconvex Positive",
@@ -165,7 +178,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L22",
       diagramLabel: "L22",
       label: "Element 5",
       type: "Biconcave Negative",
@@ -181,7 +194,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L23",
       diagramLabel: "L23",
       label: "Element 6",
       type: "Biconvex Positive",
@@ -197,7 +210,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L24",
       diagramLabel: "L24",
       label: "Element 7",
       type: "Negative Meniscus",
@@ -213,7 +226,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L25",
       diagramLabel: "L25",
       label: "Element 8",
       type: "Biconcave Negative",
@@ -229,7 +242,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L26",
       diagramLabel: "L26",
       label: "Element 9",
       type: "Biconvex Positive",
@@ -245,7 +258,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "L27",
       diagramLabel: "L27",
       label: "Element 10",
       type: "Biconvex Positive",
@@ -260,7 +273,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "L30",
       diagramLabel: "L30",
       label: "Element 11",
       type: "Negative Meniscus",
@@ -275,7 +288,7 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L12",
+      name: "L31",
       diagramLabel: "L31",
       label: "Element 12",
       type: "Biconcave Negative",
@@ -290,7 +303,7 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L13",
+      name: "L32",
       diagramLabel: "L32",
       label: "Element 13",
       type: "Biconvex Positive",
@@ -305,7 +318,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L33",
       diagramLabel: "L33",
       label: "Element 14",
       type: "Negative Meniscus",
@@ -320,7 +333,7 @@ const LENS_DATA = {
     },
     {
       id: 15,
-      name: "L15",
+      name: "L34",
       diagramLabel: "L34",
       label: "Element 15",
       type: "Negative Meniscus",
@@ -541,7 +554,7 @@ const LENS_DATA = {
       d: 2.514227,
       nd: 1,
       elemId: 0,
-      sd: 12.72, // Source C=13.23; held here so the 26->27 pair fills 89.9% of its gap, not 97.6%.
+      sd: 13.23,
     },
     {
       label: "27",
@@ -549,7 +562,7 @@ const LENS_DATA = {
       d: 2.0,
       nd: 1.72825,
       elemId: 15,
-      sd: 13.23,
+      sd: 12.72, // Source C=13.23; held here so the 26->27 pair fills 89.9% of its gap, not 97.6%.
     },
     {
       label: "28",
@@ -569,20 +582,20 @@ const LENS_DATA = {
   maxFstop: 32,
   apertureBlades: 9,
   focusDescription:
-    "The patent tabulates only the infinity state. It describes a fixed first group with elements 3–15 moving toward the object for close focus (paragraphs 0051 and 0065) but gives no travel or near-focus gaps, so no focusing is modelled and the lens stays at infinity for every focus setting. The production lens focuses to 0.307 m at 1:1.",
+    "The patent tabulates only the infinity state. It describes rear focusing with the first group fixed and the second and third groups (L20–L34, elements 3–15) moving toward the object for close focus (paragraphs 0051 and 0065), but gives no travel or near-focus gaps, so no focusing is modelled and the lens stays at infinity for every focus setting. The production lens focuses to 0.307 m at 1:1.",
   groups: [
     {
-      text: "FIXED G1",
+      text: "G1 (−) FIXED",
       fromSurface: "1",
       toSurface: "4",
     },
     {
-      text: "G2",
+      text: "G2 (+)",
       fromSurface: "5",
       toSurface: "17",
     },
     {
-      text: "G3",
+      text: "G3 (−)",
       fromSurface: "19",
       toSurface: "28",
     },
