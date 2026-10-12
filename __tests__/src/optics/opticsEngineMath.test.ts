@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { conicPolySag, sag, sagSlopeRaw } from "../../../src/optics/optics.js";
 import type { AsphericCoefficients } from "../../../src/types/optics.js";
-import type { Vec3 } from "../../../src/optics/types.js";
+import type { SagSlope, Vec3 } from "../../../src/optics/types.js";
 import { createSurfaceProfile, createTiltedPlaneProfile } from "../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSagSurface } from "../../../src/optics/internal/surfaceIntersection.js";
 import { intersectSurfaceProfile } from "../../../src/optics/math/intersection.js";
@@ -319,6 +319,55 @@ describe("Optics engine surface intersections", () => {
     expect(tiltedHit.ok).toBe(true);
   });
 
+  it("solves from one fused evaluation exactly as from separate sag and slope calls", () => {
+    const sphere = createSurfaceProfile({ R: 50 }, undefined);
+    const rim = createSurfaceProfile({ R: -17.388 }, undefined);
+    const asphere = createSurfaceProfile({ R: 40 }, { K: -0.5, A4: 1e-5, A6: -2e-7, A8: 0, A10: 0, A12: 0, A14: 0 });
+    const far = { origin: [3, 4, -1e9] as Vec3, direction: [0, 0, 1] as Vec3 };
+    const cases = [
+      { profile: sphere, vertexZ: 0, ray: { origin: [3, 4, -10] as Vec3, direction: [0, 0, 1] as Vec3 }, maxT: 20 },
+      {
+        profile: sphere,
+        vertexZ: 0,
+        ray: { origin: [0, 0, -10] as Vec3, direction: normalize([0.1, 0.05, 1])! },
+        maxT: 25,
+      },
+      {
+        profile: rim,
+        vertexZ: 67.46,
+        ray: { origin: [-2.2042, -14.9501, 57.7633] as Vec3, direction: normalize([-0.01696, -0.44528, 0.89523])! },
+        maxT: 22.6,
+      },
+      {
+        profile: asphere,
+        vertexZ: 5,
+        ray: { origin: [2, -6, -8] as Vec3, direction: normalize([0.05, 0.1, 1])! },
+        maxT: 30,
+      },
+      // Launched from 1e9 mm the residual cannot reach the raw target: these hits rest on the roundoff envelope.
+      { profile: sphere, vertexZ: 0, ray: far, maxT: 1e9 + 20, floorAssisted: true },
+      { profile: asphere, vertexZ: 0, ray: far, maxT: 1e9 + 20, floorAssisted: true },
+    ];
+    for (const { profile, vertexZ, ray, maxT, floorAssisted } of cases) {
+      const options = { maxT, directionNormalized: true };
+      const hit = intersectSurfaceProfile(ray, profile, vertexZ, options);
+      expect(hit.ok).toBe(true);
+      if (!hit.ok) continue;
+      expect(hit.effectiveTolerance > 1e-12).toBe(floorAssisted ?? false);
+
+      // The residual is z - (vertexZ + sag) at the hit's own radius, and the normal is the profile's.
+      expect(hit.residual).toBe(hit.point[2] - profile.pointAt(vertexZ, hit.point[0], hit.point[1])[2]);
+      expect(hit.normal).toEqual(profile.normalAt(hit.point, vertexZ));
+
+      // A profile that answers `evaluate` from its separate methods, in a fresh object each time, changes nothing.
+      const unfused = {
+        ...profile,
+        evaluate: (radius: number): SagSlope => ({ sag: profile.sag(radius), slope: profile.slope(radius) }),
+      };
+      expect(intersectSurfaceProfile(ray, unfused, vertexZ, options)).toEqual(hit);
+    }
+  });
+
   it("recovers steep-rim sphere hits when the vertex-plane seed lands on the sag continuation", () => {
     // A rim ray of a strong concave surface (sd/|R| ≈ 0.89): the z-projected Newton seed lies beyond |R|,
     // where the continued sag has slope ~1e6, while the real hit near r = 15.35 mm is well conditioned.
@@ -512,9 +561,13 @@ describe("asphere cap uniqueness certificate", () => {
   });
 
   // Counts surface evaluations so a certified hit is shown to skip the redundant cap search, not just to agree with it.
+  // The solver reads sag and slope through `evaluate`, once per point it evaluates, so that is the call to count.
   const countingProfile = (p: ReturnType<typeof createSurfaceProfile>) => {
     const counter = { evaluations: 0 };
-    const profile = { ...p, slope: (radius: number) => (counter.evaluations++, p.slope(radius)) };
+    const profile = {
+      ...p,
+      evaluate: (radius: number, out?: SagSlope) => (counter.evaluations++, p.evaluate(radius, out)),
+    };
     return { profile, counter };
   };
 
@@ -526,6 +579,7 @@ describe("asphere cap uniqueness certificate", () => {
     const ray = { origin: [0, -100, -100] as Vec3, direction: normalize([0, 1, 1])! };
     const unbounded = intersectSurfaceProfile(ray, profile, 0, { maxT: 150 });
     const established = counter.evaluations;
+    expect(established).toBeGreaterThan(0);
     const hit = intersectSurfaceProfile(ray, profile, 0, { maxT: 150, clearRadius: 5 });
     expect(hit).toEqual(unbounded);
     expect(hit.ok && hit.radius).toBeLessThan(1e-6);
@@ -539,6 +593,7 @@ describe("asphere cap uniqueness certificate", () => {
     const ray = { origin: [0, -1, -5] as Vec3, direction: normalize([0, 1, 1])! };
     const exterior = intersectSurfaceProfile(ray, profile, 0, { maxT: 15 });
     const established = counter.evaluations;
+    expect(established).toBeGreaterThan(0);
     expect(exterior.ok && exterior.radius).toBeGreaterThan(2);
     // The ray leaves the authored cap before reaching the surface: keep the exterior hit for first-clip diagnostics.
     expect(intersectSurfaceProfile(ray, profile, 0, { maxT: 15, clearRadius: 2 })).toEqual(exterior);

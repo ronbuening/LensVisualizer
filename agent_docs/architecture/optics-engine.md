@@ -481,6 +481,8 @@ Both intersection solvers, `math/intersection.ts` (used by the prepared-state en
 the legacy `internal/surfaceIntersection.ts`, share the same safeguarded Newton step (rtsafe). A step is accepted
 only inside the sign-changing bracket and when it moves at most half the step before last; otherwise the solver
 bisects, so grazing and steep-rim roots cannot stall. A zero or non-finite derivative bisects instead of failing.
+`math/intersection.ts` takes the sag and slope of each point it evaluates from one `SurfaceProfile.evaluate()` call and
+reuses that pair for the roundoff envelope; the legacy solver calls the positional functions.
 
 Both paths share a 72-iteration cap (`INTERSECTION_MAX_ITERATIONS`). A root whose residual cannot reach `1e-12` mm
 leaves Newton taking steps of a few ulps, never exactly zero, so it is recognized only once bisection has collapsed
