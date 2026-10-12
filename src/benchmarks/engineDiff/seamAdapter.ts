@@ -66,7 +66,7 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
  * Full hits exist only behind `compat.ts` today, and the perspective trace context only behind the deep
  * `perspective/index.ts`; no top-level barrel exports either yet. The `legacy*` entries reach the second
  * implementations that still sit beside the prepared-state engine (the RuntimeLens stack tracer and layout, the
- * overlay's sag math and the LoCA inset's bar scaling), so a payload notices when either copy drifts.
+ * overlay's departure and best-fit helpers and the LoCA inset's bar scaling), so a payload notices when either copy drifts.
  */
 const SEAM_CANDIDATES = {
   lensDefaults: [["lensDefaults", "default"]],

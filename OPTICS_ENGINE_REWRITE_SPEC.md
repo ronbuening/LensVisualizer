@@ -729,7 +729,8 @@ flowchart LR
 | Today | Fate | Step |
 | --- | --- | --- |
 | `index.ts`, root `analysisJobs.ts`, `analysis/fieldCurvature.ts` (no importers) | Deleted | S1.P4.T1 |
-| `internal/surfaceMath.ts`, `math/surfaceProfile.ts`, `layout.ts` `renderSag`/`sagSlope`, `diagram/surfaceOutline.ts` `surfaceSag2` | `geometry/surfaceProfile.ts`, one implementation | S3.P1.T1 |
+| `internal/surfaceMath.ts`, `math/surfaceProfile.ts` | `geometry/surfaceProfile.ts`, one implementation of sag, slope and profiles. `layout.ts` `renderSag`/`sagSlope` and `diagram/surfaceOutline.ts` `surfaceSag2` stay as wrappers that call it. | S3.P1.T1 |
+| `constants.ts` flat-radius and rim-slope constants | `geometry/surfaceProfile.ts` | S3.P1.T1 |
 | `math/intersection.ts`, `math/intersectionTolerance.ts`, `math/plane.ts` | `geometry/intersect*.ts` | S3.P2 |
 | `internal/surfaceIntersection.ts` | Delegates to the kernel in S3.P2.T3, then deleted | S4.P2.T4 |
 | `internal/exactSurfaceTrace.ts`; `rayTrace.ts` tracers and `traceToImage`; `internal/traceSurfaces.ts` | Deleted. The pupil samplers from `rayTrace.ts` move to `analysis/sampling.ts`. | S4.P2.T4 |
@@ -1485,26 +1486,57 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
 ### Stage 3 — Geometry and intersection kernel
 
 - **S3.P1.T1 One surface-geometry module.**
-  - **Change:** merge `internal/surfaceMath.ts`, `math/surfaceProfile.ts`, the display sag in `layout.ts` and
-    `diagram/surfaceOutline.ts` into `geometry/surfaceProfile.ts`. Profiles are flat, sphere, conic, asphere and
-    tilted plane.
+  - **Scope: move and fuse only.** The step makes one module and one fused evaluation. Flat, spherical and
+    tilted-plane results stay bit-identical, and aspheric sag and slope move by rounding. Two things the plan first
+    put here cannot be done inside C1 and are left to the steps that own them:
+    - **No "conic" kind.** Profiles keep the four kinds `flat`, `spherical`, `aspheric` and `tilted-plane`, and no
+      surface is reclassified: a kind decides cap selection, the slope bound and the MTF miss proofs. The base conic
+      is exposed as data (`curvature`, `conic`, `hasPolynomial`, `planeNormal`) for S3.P2.T1.
+    - **Both sphere clamps stay.** `sag(h, R)` clamps the root argument to 0 and the conic path to 1e-12. They
+      differ at |R| and beyond it, where the legacy tracer's exterior hits are, until S3.P2.T3.
+  - **Change:** merge `internal/surfaceMath.ts` and `math/surfaceProfile.ts` into `geometry/surfaceProfile.ts`, the one
+    implementation of surface sag, slope and profiles.
   - **The new module provides:**
-    - sparse precomputed terms;
-    - a fused `evaluate(r) → { sag, slope }` in Horner form, keeping the schema accumulation order within each parity;
-    - the absolute-term slope bound;
-    - the finite-domain radius.
-  - **Callers:** the trace stack, validation, diagram, `AsphericComparisonOverlay.tsx` and the audit scripts, through
-    the new `geometry.ts` barrel.
+    - dense Horner vectors per parity, indexed by power, compiled once per frozen coefficient object and re-read
+      for a mutable one;
+    - a fused `evaluate(r, out?) → { sag, slope }`, bit-identical to `sag(r)` and `slope(r)`;
+    - the addition order conic + even + odd. Within a parity the chain runs by power from the highest nonzero term,
+      so the order of the schema list no longer affects a result;
+    - the positional `sag`, `conicPolySag` and `sagSlopeRaw`, which the legacy stack, validation and the audit
+      scripts call;
+    - the absolute-term slope bound and the finite-domain radius, moved unchanged.
+  - **Kernel:** `math/intersection.ts` reads sag and slope from one `evaluate` call per point, which alone is
+    bit-neutral.
+  - **Callers:** engine modules import `geometry/surfaceProfile.ts`. Code outside `src/optics/` imports the new
+    `geometry.ts` barrel, the only outside door: `optics.ts` drops its four re-exports.
   - **Also change:** `scripts/generate-src-readmes.mjs`, which hard-codes the optics folder list. Every step that adds
     or removes an `src/optics/` directory updates it.
   - **Tests:** `__tests__/src/optics/geometry/surfaceProfile.test.ts`:
     - analytic sag and slope for each kind;
     - each odd and even term in isolation;
-    - finite differences checked away from the conic-domain clamp (decision 2026-08-04).
+    - finite differences checked away from the conic-domain clamp (decision 2026-08-04);
+    - the sag, slope and profile tests that were under `internal/` and in `opticsEngineMath.test.ts` and
+      `optics.test.ts`, moved beside the module.
+  - **Not in this step.** These copies of derived surface geometry stay where they are, and
+    `agent_docs/architecture/optics-engine.md` lists them:
+    - the legacy `surfaceNormalAtHit`, until the legacy solver delegates (S3.P2.T3) or goes (S4.P2.T4);
+    - the conic-limit formulas in validation and in the render diagnostics;
+    - the sphere-extent tests in both tracers;
+    - the MTF module's closed-form sphere roots and sampled slope bound;
+    - the wrappers `renderSag`, `sagSlope`, `gapTrimHeight` and `slopeTrimHeight` in `layout.ts`, and the path
+      builders in `diagram/surfaceOutline.ts`, which call the module.
   - **Harness, in its own C0 PR ahead of the engine change:** the rules S1.P2.T2 left open for this step, in
     `budgets.ts`, `payload.ts`, `captureEntry.ts`, `compare.ts`, the driver and the stage workflow's `transitions`
     input, with their tests. The prepared-tracer probe copies the engine's own launch, so a step that changes that
     launch changes the copy with it.
+  - **Known outside what the tiers sample.** A review found three properties of the Horner form that neither Tier P
+    nor Tier S on the lenses named shows. The Stage 3 gate is where another lens could:
+    - a ray grazing the rim of an ill-conditioned asphere can carry a 1e-12 mm hit move past 1e-9 mm downstream
+      (Fujifilm XF 27mm, surface 8A);
+    - an aspheric hit can switch between converging at the raw target and stalling at the roundoff envelope, in
+      either direction (Fujifilm GF 23mm, surface 18A), which is a discrete transition;
+    - sag and slope are finite where a zero coefficient once met an overflowed power, beyond about 2.5e15 mm, which
+      only a legacy ghost path that has already left the lens reaches.
   - **Gate:** C1.
 - **S3.P2.T1 Closed-form plane, sphere and conic roots.**
   - **Change:** `geometry/intersect.ts` gains closed-form roots under the contract:
@@ -1906,6 +1938,7 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 29 | A hit's `effectiveTolerance` is held to 1e-12 relative above C0 | [Quantity budgets](#quantity-budgets) |
 | 30 | The pupil constants keep the first-order budget, and two near-axis rays are probed on each tracer | [Quantity budgets](#quantity-budgets) |
 | 31 | A C1 step may update a test that pins rounding-level bits, listing each pin | [Numerical contract](#numerical-contract) |
+| 32 | S3.P1.T1 moves and fuses only: four profile kinds, both sphere clamps, and only aspheric numbers move | S3.P1.T1 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
