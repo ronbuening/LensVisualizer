@@ -14,6 +14,10 @@
  * - a lens the base engine cannot build is uncompared, and the uncompared lenses must be exactly the exceptions
  *   declared in the file given as `--exceptions`.
  *
+ * That file is a pull request description, or text in its form. Above C0 it also declares the discrete transitions
+ * the change expects, under its own heading: a unit of the engine comparison that holds one and that no line there
+ * declares fails the run, and so does a line that is not what the run found.
+ *
  * Converter pairs are requested for every pair either engine's fit predicate permits for the head's prescriptions,
  * and the two engines must permit the same ones. A pair the base engine cannot compose and build, while the head
  * engine can, is uncompared instead, and one that only the head's prescriptions permit is compared as a new lens.
@@ -24,7 +28,8 @@
  * the same base, tier and class are one comparison of the tier.
  *
  * It writes gzip NDJSON payloads under `<out>/payloads/` and the small files under `<out>/reports/`: summary.json,
- * summary.md, data-impact.md, uncompared.json and failing-records.ndjson.gz. Nothing it writes belongs in the
+ * summary.md, data-impact.md, uncompared.json and failing-records.ndjson.gz, and above C0 transitions.md, which holds
+ * a line to paste for every unit with a transition that nothing declares. Nothing it writes belongs in the
  * repository. The exit code is 0 when the run passes and 1 when it fails or cannot run. Told to stop by SIGINT or
  * SIGTERM, it removes its base worktree and its temporary directories first.
  *
@@ -74,6 +79,9 @@ const TIERS = ["p", "s", "f"];
 const CHANGE_CLASSES = ["c0", "c1", "c2", "c3"];
 /* Failing record pairs go to reports/, which CI uploads; past this much text the rest are counted, not written. */
 const MAX_FAILING_RECORD_BYTES = 32 * 1024 * 1024;
+/* Lines for undeclared transitions go to reports/ as well. Past this much text the rest are counted, not written:
+ * the run has counted every one of their units by then, and fails on each whether its line is written or not. */
+const MAX_TRANSITION_LINE_BYTES = 4 * 1024 * 1024;
 const PROGRESS_EVERY_LENSES = 100;
 /* A lens is captured, compared and written this many requests at a time. One zoom has 130 authored stations, and
  * its Tier F records are over a gigabyte of text per side: held whole, on both sides, they do not fit the heap.
@@ -197,6 +205,36 @@ function openGzipLines(path) {
       await written;
     },
   };
+}
+
+/**
+ * Write the report an author pastes undeclared transitions from.
+ *
+ * @param {readonly string[]} lines - one line per unit that nothing declares, each without its reason
+ * @param {number} omitted - lines past the size cap, which are counted and not written
+ * @returns {string} Markdown text
+ */
+function renderTransitionLines(lines, omitted) {
+  if (lines.length + omitted === 0) {
+    return "# Undeclared transitions\n\nNo unit of the engine comparison holds a transition that nothing declares.\n";
+  }
+  const units = lines.length + omitted;
+  return [
+    "# Undeclared transitions",
+    "",
+    `${units} ${units === 1 ? "unit of the engine comparison holds" : "units of the engine comparison hold"} a ` +
+      "discrete or shape difference that no line of the description declares. Each is a line below. To declare " +
+      "them, paste the section into the pull request description and write after each full stop why that " +
+      "transition is expected. A line with no reason stops the run.",
+    "",
+    ...(omitted > 0
+      ? [`${omitted} of them are past the size cap of this file and are not written. The run counted every one.`, ""]
+      : []),
+    "## Engine-diff transitions",
+    "",
+    ...lines,
+    "",
+  ].join("\n");
 }
 
 /* Wall time is reported per phase in this order. The captures, the comparison and the writing alternate lens by
@@ -370,6 +408,13 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
       /* A shard, like a single lens, is part of a tier: a declared exception may be in another part. */
       restricted: options.lens !== null || options.shard !== null,
       pairs: pairs.differences,
+      /* The same text declares the transitions, under a heading of their own. A line may name a record of another
+       * part of the tier, so it is held to the whole catalog's ids and not to the lenses this run meets. */
+      declaredTransitions: declaredText,
+      catalogLenses: [
+        ...headCatalog.lenses.map(({ key }) => key),
+        ...pairs.requested.map(({ host, teleconverter }) => headCapture.lensId({ key: host, teleconverter })),
+      ],
     });
     const payloads = {
       baseEngine: openGzipLines(join(payloadsDir, "base-engine.ndjson.gz")),
@@ -378,6 +423,8 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
     };
     const failingRecords = openGzipLines(join(reportsDir, "failing-records.ndjson.gz"));
     const failingRecordCounts = { written: 0, bytes: 0, omitted: 0 };
+    const transitionLines = [];
+    const transitionLineCounts = { written: 0, bytes: 0, omitted: 0 };
 
     /* One lens at a time, in the order of the list, and each part of it written out before the next is captured:
      * a tier is gigabytes per side. */
@@ -402,6 +449,15 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
         const output = clock.time("Comparison", () =>
           run.addLens({ lens, dataChange, baseEngine, headEngine, baseData }),
         );
+        for (const line of output.transitionLines) {
+          if (transitionLineCounts.bytes + line.length > MAX_TRANSITION_LINE_BYTES) {
+            transitionLineCounts.omitted++;
+            continue;
+          }
+          transitionLineCounts.written++;
+          transitionLineCounts.bytes += line.length;
+          transitionLines.push(line);
+        }
         await clock.timeAsync("Writing payloads", async () => {
           await payloads.baseEngine.write(output.lines.baseEngine);
           await payloads.headEngine.write(output.lines.headEngine);
@@ -439,6 +495,7 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
       ...context,
       changes,
       failingRecords: failingRecordCounts,
+      transitionLines: transitionLineCounts,
       /* Which export each engine capability resolved to, per side: a renamed seam shows here. */
       seam: { base: baseCapture.describeSeam(), head: headCapture.describeSeam() },
       ...summary,
@@ -447,6 +504,11 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
     writeFileSync(join(reportsDir, "summary.md"), markdown, "utf8");
     writeFileSync(join(reportsDir, "data-impact.md"), headCapture.renderDataImpactMarkdown(summary, context), "utf8");
     writeFileSync(join(reportsDir, "uncompared.json"), `${JSON.stringify(summary.uncompared, null, 2)}\n`, "utf8");
+    /* Under C0 no transition is matched, so there is no line to write, and a report left by an earlier run into the
+     * same directory would be read as this run's. */
+    const transitionsPath = join(reportsDir, "transitions.md");
+    if (options.changeClass === "c0") rmSync(transitionsPath, { force: true });
+    else writeFileSync(transitionsPath, renderTransitionLines(transitionLines, transitionLineCounts.omitted), "utf8");
     if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${markdown}\n`, "utf8");
 
     const { engine, counts } = summary;
@@ -463,6 +525,12 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
       warn(
         `engine-diff: warning: ${digests} changed trace digests in ${engine.digests.lenses.length} lenses were not ` +
           `budgeted under ${options.changeClass}; see "Not budgeted" in summary.md.`,
+      );
+    }
+    if (summary.transitions.undeclared > 0) {
+      log(
+        `engine-diff: units with a transition that nothing declares: ${summary.transitions.undeclared}; a line to ` +
+          `paste for each is in ${transitionsPath}`,
       );
     }
     if (failingRecordCounts.omitted > 0) {
