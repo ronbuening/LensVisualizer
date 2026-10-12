@@ -92,8 +92,12 @@ const folderRoleOverrides = new Map([
     "src/optics/first-order",
     "first-order optical calculations for cardinals, pupils, f-number, focus breathing, and system matrices",
   ],
+  [
+    "src/optics/geometry",
+    "the single implementation of surface sag, slope, and profiles, with the profile normal, conic domain, and slope bound",
+  ],
   ["src/optics/internal", "private exact surface-tracing implementation details for the optics engine"],
-  ["src/optics/math", "low-level vector, numerical, paraxial, surface profile, and intersection math"],
+  ["src/optics/math", "low-level vector, numerical, paraxial, and intersection math"],
   ["src/optics/mount", "pure mount-diagram geometry, SVG document emission, validation, styling, and JSON helpers"],
   [
     "src/optics/prescription",

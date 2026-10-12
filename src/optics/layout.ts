@@ -8,7 +8,7 @@
 import { closeFocusAtZoom, FOCUS_INFINITY_THRESHOLD } from "./focusDistance.js";
 import type { LayoutResult, RuntimeLens } from "../types/optics.js";
 import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
-import { conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
+import { conicPolySag, sag, sagSlopeRaw } from "./geometry/surfaceProfile.js";
 import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
 
 /** Number of straight SVG segments used when rendering one surface profile. */

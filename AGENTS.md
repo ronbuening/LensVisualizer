@@ -27,7 +27,7 @@ src/generated/        - Build-generated metadata and maker-prefix JSON (gitignor
 src/pages/            - Route-level page components (lensIndex/ holds the lens library module)
 src/components/       - React UI: controls, diagram layers, display/analysis, layout, hooks, markdown, mount, search
 src/comparison/       - Comparison mode feature module
-src/optics/           - Pure optical engine and analysis helpers (math, trace, field, prescription, state, analysis, mount)
+src/optics/           - Pure optical engine and analysis helpers (geometry, math, trace, field, prescription, state, analysis, mount)
 src/types/            - Shared TypeScript types
 src/utils/            - State, URL sync, themes, catalog, SEO, metadata utilities
 src/lens-data/        - Auto-registered *.data.ts prescriptions, *.teleconverter.ts converters, *.analysis.md notes,

@@ -152,6 +152,16 @@ export const SKEW_PUPIL_FRACTIONS = [0.3, 0.6, 0.9, -0.75] as const;
 export const CHROMATIC_PUPIL_FRACTIONS = [0.5, 0.85] as const;
 
 /*
+ * The height in mm, and the slope, of the two near-axis rays the engine builds its pupil constants from: a marginal
+ * ray at this height along the axis, and a chief ray through the first vertex at this slope. The engine divides what
+ * each returns by the same number, and takes another value, with no flag anywhere, when one of them fails. It is
+ * copied from the four places the engine writes it, which export no constant: `realEpDelta` in both branches of
+ * `buildLens` (`src/optics/runtimeLens.ts`), and `delta` in `computeFieldGeometryAtState2`
+ * (`src/optics/field/chiefRay.ts`) and in `computeStatePupilBaselines` (`src/optics/pupilAberration.ts`).
+ */
+export const NEAR_AXIS_PROBE_DELTA = 1e-4;
+
+/*
  * Readouts the viewer computes beside the analysis context, asked the way its components ask. The numbers below are
  * the components' own, copied because a capture bundle holds no component.
  */

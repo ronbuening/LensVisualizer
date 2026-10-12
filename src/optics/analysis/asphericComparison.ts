@@ -5,8 +5,7 @@
  */
 
 import type { AsphericCoefficients } from "../../types/optics.js";
-import { FLAT_R_THRESHOLD } from "../constants.js";
-import { createAsphericProfile, createSphericalProfile } from "../math/surfaceProfile.js";
+import { FLAT_R_THRESHOLD, createAsphericProfile, createSphericalProfile } from "../geometry/surfaceProfile.js";
 
 /** One sampled asphere-vs-sphere sag difference at radial height `h` in mm. */
 export interface DepartureSample2 {

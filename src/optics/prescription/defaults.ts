@@ -16,7 +16,7 @@
  * Neither fallback is reached on catalog data, which always carries the merged value.
  */
 
-import { DEFAULT_MAX_RIM_ANGLE_DEG } from "../constants.js";
+import { DEFAULT_MAX_RIM_ANGLE_DEG } from "../geometry/surfaceProfile.js";
 import type { LensData } from "../../types/optics.js";
 
 /** One default of the schema. */

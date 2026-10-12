@@ -8,9 +8,8 @@
 import { selectAsphericCapHit } from "../math/intersection.js";
 import { INTERSECTION_BRACKET_SAMPLES, INTERSECTION_MAX_ITERATIONS, INTERSECTION_TOLERANCE } from "../constants.js";
 import { planeResidualRoundoff, sagResidualRoundoff } from "../math/intersectionTolerance.js";
-import { createAsphericProfile } from "../math/surfaceProfile.js";
+import { FLAT_R_THRESHOLD, conicPolySag, createAsphericProfile, sagSlopeRaw } from "../geometry/surfaceProfile.js";
 import type { AsphericCoefficients } from "../../types/optics.js";
-import { FLAT_R_THRESHOLD, conicPolySag, sagSlopeRaw } from "./surfaceMath.js";
 
 /** Typed failure reason from the RuntimeLens-shaped sag-surface intersection solver. */
 export type SurfaceIntersectionFailureReason =

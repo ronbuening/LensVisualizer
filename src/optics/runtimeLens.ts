@@ -19,7 +19,7 @@ import {
   zoomIndexToT,
 } from "./internal/lensState.js";
 import { buildSurfaceDispersionIndex } from "./dispersion.js";
-import { FLAT_R_THRESHOLD } from "./internal/surfaceMath.js";
+import { FLAT_R_THRESHOLD } from "./geometry/surfaceProfile.js";
 import {
   traceSurfacesParaxial,
   type ParaxialSurfaceTraceOptions,

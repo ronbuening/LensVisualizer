@@ -65,6 +65,7 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
   { module: "src/optics/chiefRayDiagnostics.ts" },
   { module: "src/optics/diagramGeometry.ts" },
   { module: "src/optics/fieldGeometry.ts" },
+  { module: "src/optics/geometry.ts" },
   { module: "src/optics/mtf.ts" },
   { module: "src/optics/optics.ts" },
   {
@@ -111,7 +112,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/glassCatalog.ts",
   "src/optics/groupMovement.ts",
   "src/optics/internal/lensState.ts",
-  "src/optics/internal/surfaceMath.ts",
   "src/optics/layout.ts",
   "src/optics/lensMovement.ts",
   "src/optics/math/vector.ts",
@@ -181,6 +181,18 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     capacity: 96,
     limit: "PREPARED_STATE_CACHE_LIMIT",
   },
+  "src/optics/geometry/surfaceProfile.ts#COMPILED_ASPHERES": {
+    kind: "weak-owner",
+    owner: "frozen AsphericCoefficients",
+    key: "owner identity",
+    perOwner: "one record of compiled Horner coefficient vectors",
+  },
+  "src/optics/geometry/surfaceProfile.ts#IMMUTABLE_ASPHERIC_PROFILES": {
+    kind: "weak-owner",
+    owner: "frozen AsphericCoefficients",
+    key: "owner identity",
+    perOwner: "one profile, for the base radius it was last built with",
+  },
   "src/optics/glassCatalog.ts#ALIAS_PATTERNS": { kind: "constant" },
   "src/optics/glassCatalog.ts#CATALOG": { kind: "constant" },
   "src/optics/glassCatalog.ts#CODE6_CANDIDATES": { kind: "constant" },
@@ -188,12 +200,6 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   "src/optics/glassCatalogAliases.ts#ALIASES": { kind: "constant" },
   "src/optics/glassCatalogData.ts#DUPLICATE_CODE6_PRECEDENCE": { kind: "constant" },
   "src/optics/glassCatalogData.ts#GLASS_CATALOG_ENTRIES_BY_NAME": { kind: "constant" },
-  "src/optics/internal/surfaceMath.ts#COMPILED_ASPHERES": {
-    kind: "weak-owner",
-    owner: "frozen AsphericCoefficients",
-    key: "owner identity",
-    perOwner: "one compiled coefficient record",
-  },
   "src/optics/mount/layers.ts#CAMERA_CLEAR_TYPES": { kind: "constant" },
   "src/optics/mount/layers.ts#CAMERA_METAL_TYPES": { kind: "constant" },
   "src/optics/mount/layers.ts#LENS_METAL_TYPES": { kind: "constant" },
@@ -266,10 +272,6 @@ const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {
   "src/optics/field/chiefRayCache.ts#DIAGNOSTICS": {
     grows: "a strong Map with one counter record per lens key, cleared only by resetChiefRayDiagnostics2()",
     retire: "key the counters by lens object in a WeakMap, or cap the map",
-  },
-  "src/optics/math/surfaceProfile.ts#IMMUTABLE_ASPHERIC_PROFILES": {
-    grows: "per frozen coefficient object, one profile per distinct base radius",
-    retire: "cache one profile per coefficient object and radius pair, or cap the per-object map",
   },
   "src/optics/perspective/analysis/vignetting.ts#ZERO_CENTER_REFERENCE_BY_STATE": {
     grows: "per prepared state, one center reference per distinct sampling, pupil and channel key",

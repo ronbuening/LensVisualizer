@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import {
-  sag,
   sagSlope,
   thick,
   doLayout,
@@ -15,6 +14,7 @@ import {
   eflAtFocus,
   effectiveFNumber,
 } from "../../../src/optics/optics.js";
+import { sag } from "../../../src/optics/geometry/surfaceProfile.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
 import {
@@ -26,38 +26,6 @@ import {
   buildTirLens,
   buildVariableStopGapLens,
 } from "./testLensFixtures.js";
-
-describe("sag", () => {
-  it("returns 0 for h = 0", () => {
-    expect(sag(0, 50)).toBe(0);
-    expect(sag(0, -100)).toBeCloseTo(0, 10);
-  });
-
-  it("returns 0 for flat surface (R > threshold)", () => {
-    expect(sag(10, 1e15)).toBe(0);
-    expect(sag(10, -1e15)).toBe(0);
-    expect(sag(10, Infinity)).toBe(0);
-  });
-
-  it("computes correct sag for positive R", () => {
-    const result = sag(10, 50);
-    // sag = (c·h²) / (1 + √(1 - c²·h²)), c = 1/50
-    expect(result).toBeCloseTo(1.0102, 3);
-  });
-
-  it("computes correct sag for negative R", () => {
-    const result = sag(10, -50);
-    expect(result).toBeCloseTo(-1.0102, 3);
-  });
-
-  it("handles h near R (large angle)", () => {
-    // h = R * sin(45°) ≈ 35.36 for R=50
-    const h = 50 * Math.sin(Math.PI / 4);
-    const result = sag(h, 50);
-    expect(result).toBeGreaterThan(0);
-    expect(isFinite(result)).toBe(true);
-  });
-});
 
 describe("formatDist", () => {
   const mockL = { closeFocusM: 0.4 } as unknown as RuntimeLens;
@@ -176,9 +144,9 @@ describe("sagSlope", () => {
   });
 
   /* Finite-difference correctness of the sag/slope pair is anchored in
-     internal/asphericSchemaMath.test.ts and opticsEngineMath.test.ts; the
-     facade delegates directly to those primitives (layout.ts), and the
-     facade-vs-engine equivalence is proven in opticsEngineMath.test.ts. */
+     geometry/surfaceProfile.test.ts; the facade delegates directly to those
+     primitives (layout.ts), and that file also proves the profile methods
+     equal the positional functions the facade calls. */
 });
 
 describe("traceRay — exact Snell", () => {

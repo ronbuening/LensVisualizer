@@ -28,9 +28,7 @@ import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
-const { conicPolySag, sag, sagSlopeRaw } = await import(
-  pathToFileURL(join(ROOT, "src/optics/internal/surfaceMath.ts")).href
-);
+const { conicPolySag, sag, sagSlopeRaw } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
 const validateLensData = (await import(pathToFileURL(join(ROOT, "src/optics/validateLensData.ts")).href)).default;
 const LENS_DEFAULTS = (await import(pathToFileURL(join(ROOT, "src/lens-data/defaults.ts")).href)).default;
 

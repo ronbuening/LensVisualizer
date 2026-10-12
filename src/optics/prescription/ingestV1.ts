@@ -30,7 +30,7 @@ import type {
   SurfaceData,
 } from "../../types/optics.js";
 import type { TeleconverterData } from "../../types/teleconverter.js";
-import { FLAT_R_THRESHOLD } from "../constants.js";
+import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import {
   FLAT_RADIUS,
   PrescriptionIngestError,

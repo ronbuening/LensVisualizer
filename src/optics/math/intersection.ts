@@ -11,7 +11,7 @@ import {
   INTERSECTION_TOLERANCE,
   VECTOR_EPSILON,
 } from "../constants.js";
-import type { Ray3, SurfaceProfile, Vec3 } from "../types.js";
+import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../types.js";
 import { clamp } from "./numerics.js";
 import { dot, normalize, subtract } from "./vector.js";
 import { planeResidualRoundoff, sagResidualRoundoff } from "./intersectionTolerance.js";
@@ -74,6 +74,9 @@ interface SurfaceEvaluation {
   t: number;
   point: Vec3;
   radius: number;
+  /** Profile sag and slope at `radius`; NaN outside the surface's domain, where the profile is not evaluated. */
+  sag: number;
+  slope: number;
   value: number;
   derivative: number;
 }
@@ -215,8 +218,10 @@ function intersectProfile(
    * no glass occupies. Points out there evaluate as no surface, so a ray passing outside the domain finds the real
    * surface instead of a root on the extension. Along a straight ray the in-domain span is one interval. */
   const domainRadius = profile.finiteRadiusLimit();
+  // One scratch pair per solve: each evaluation copies its sag and slope out before the next overwrites them.
+  const sagSlope: SagSlope = { sag: 0, slope: 0 };
   const evalAt = (t: number): SurfaceEvaluation =>
-    evaluateProfile(ray.origin, direction, profile, vertexZ, t, domainRadius);
+    evaluateProfile(ray.origin, direction, profile, vertexZ, t, domainRadius, sagSlope);
   const bracket = findBracket(evalAt, minT, maxT, tolerance, bracketSamples, scan);
   if (bracket.kind === "success")
     return makeSuccess(bracket.value, profile, vertexZ, tolerance, refractiveIndex, bracket.iterations);
@@ -236,22 +241,13 @@ function intersectProfile(
    * well-conditioned rim root elsewhere in it. */
   let stepBeforeLast = hi - lo;
   let lastStep = stepBeforeLast;
+  // The envelope reads the sag and slope the stalled evaluation already holds: same radius, same bits.
   const roundoffTolerance = (value: SurfaceEvaluation): number => {
     const slopeMagnitude =
-      profile.kind === "aspheric"
-        ? (profile.maxAbsSlope?.(value.radius) ?? NaN)
-        : Math.abs(profile.slope(value.radius));
+      profile.kind === "aspheric" ? (profile.maxAbsSlope?.(value.radius) ?? NaN) : Math.abs(value.slope);
     return Math.max(
       tolerance,
-      sagResidualRoundoff(
-        ray.origin,
-        direction,
-        value.t,
-        vertexZ,
-        value.radius,
-        profile.sag(value.radius),
-        slopeMagnitude,
-      ),
+      sagResidualRoundoff(ray.origin, direction, value.t, vertexZ, value.radius, value.sag, slopeMagnitude),
     );
   };
 
@@ -353,6 +349,15 @@ function intersectProfilePlane(
   };
 }
 
+/**
+ * Evaluate f(t) = z_ray(t) - z_surface(r(t)) and df/dt at one ray parameter.
+ *
+ * One `profile.evaluate` call supplies the sag and the slope, bit for bit what `profile.sag` and `profile.slope`
+ * return, and the evaluation keeps both for the roundoff envelope. Beyond `domainRadius` the profile is not called.
+ *
+ * @param scratch - pair the profile may fill instead of allocating, reused across the evaluations of one solve
+ * @returns the evaluation, with NaN sag, slope, value and derivative beyond the domain radius
+ */
 function evaluateProfile(
   origin: Vec3,
   direction: Vec3,
@@ -360,17 +365,21 @@ function evaluateProfile(
   vertexZ: number,
   t: number,
   domainRadius: number | null,
+  scratch: SagSlope,
 ): SurfaceEvaluation {
   const point = addRay(origin, direction, t);
   const radius = Math.hypot(point[0], point[1]);
-  if (domainRadius !== null && radius > domainRadius) return { t, point, radius, value: NaN, derivative: NaN };
-  const slope = profile.slope(radius);
+  if (domainRadius !== null && radius > domainRadius) {
+    return { t, point, radius, sag: NaN, slope: NaN, value: NaN, derivative: NaN };
+  }
+  // Read the returned pair, not the scratch: a wrapped profile may answer with an object of its own.
+  const { sag, slope } = profile.evaluate(radius, scratch);
   /* Chain rule for f(t) = z_ray(t) - z_surface(r(t)):
    * df/dt = dz/dt - (dz/dr) * dr/dt. */
   const drdt = radius > VECTOR_EPSILON ? (point[0] * direction[0] + point[1] * direction[1]) / radius : 0;
-  const value = point[2] - profile.pointAt(vertexZ, point[0], point[1])[2];
+  const value = point[2] - (vertexZ + sag);
   const derivative = direction[2] - slope * drdt;
-  return { t, point, radius, value, derivative };
+  return { t, point, radius, sag, slope, value, derivative };
 }
 
 /**

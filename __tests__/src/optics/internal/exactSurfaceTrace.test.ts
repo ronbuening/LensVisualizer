@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { traceExactSurfaceStack, type ExactTraceLens } from "../../../../src/optics/internal/exactSurfaceTrace.js";
-import { sag } from "../../../../src/optics/internal/surfaceMath.js";
+import { sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import type { SurfaceData } from "../../../../src/types/optics.js";
 
 const flatSurfaces = [

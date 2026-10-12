@@ -5,8 +5,8 @@
  * hands the records to a run made here one lens at a time. The run pairs the records, finds what differs, judges
  * each difference by the declared change class and the budget table in `budgets.ts`, and keeps only totals, the
  * largest difference per quantity and a bounded sample of findings, so a whole tier never sits in memory. This
- * module also reads a pull request's declared exceptions, sorts a catalog's changes into format-only and semantic,
- * and writes the reports. It calls no engine and reads no file.
+ * module also reads a pull request's declared exceptions and declared transitions, sorts a catalog's changes into
+ * format-only and semantic, and writes the reports. It calls no engine and reads no file.
  */
 
 import {
@@ -22,7 +22,7 @@ import {
   type Quantity,
   type QuantityId,
 } from "./budgets.js";
-import { decodeValue, type EncodedValue, type Outcome } from "./payload.js";
+import { decodeValue, sha256Hex, type EncodedValue, type Outcome } from "./payload.js";
 import { lensId, stateId, type CaptureState, type LensRef, type RequestFamily } from "./requests.js";
 
 /* ── Records and differences ── */
@@ -50,8 +50,10 @@ export interface ComparableRecord {
  * - `discrete`: a status, count, label, sample position or other exact field changed, or a value changed type.
  * - `shape`: a member is missing on one side, or an array changed length.
  * - `digest`: the hash that stands in for a trace nested in an analysis result changed, so something inside that
- *   trace moved. A hash cannot say how far. Under C0 that is a failure like any other; above C0 it is counted, and
- *   only the status and hit count written beside the hash are compared.
+ *   trace moved. A hash cannot say how far. Under C0 that is a failure like any other; above C0 it is counted and
+ *   does not fail. What is written beside the hash is compared as any field is: the status, the hit count, the
+ *   `outcome` hash, which is a discrete field that changes with anything discrete inside the trace, the largest
+ *   residual share, which is a contract check, and the largest effective tolerance, which that share is a share of.
  */
 export type DifferenceKind =
   | "number"
@@ -271,6 +273,9 @@ function diffRecords(
         }
         return report(worst > budget || unaccepted ? "contract" : "number", pattern, a, b, quantity, worst, budget);
       }
+      case "share":
+        /* Already a share of its tolerance, and only the head's is judged: the engine a change proposes. */
+        return report(Math.abs(y) > budget ? "contract" : "number", pattern, a, b, quantity, Math.abs(y), budget);
     }
   };
 
@@ -322,7 +327,7 @@ function diffRecords(
     if (a === undefined || b === undefined || isContainer(a) || isContainer(b)) return report("shape", pattern, a, b);
     const [x, y] = [numberOf(a), numberOf(b)];
     if (x === undefined || y === undefined) {
-      /* The result encoder writes a nested trace as `{ status, hitCount, hash }`. */
+      /* The result encoder writes a nested trace as a digest: a `hash` beside a `hitCount` and what else it kept. */
       const owner = baseStack[baseStack.length - 1] as { hitCount?: unknown } | undefined;
       const isDigest = keys[keys.length - 1] === "hash" && typeof owner?.hitCount === "number";
       return report(isDigest ? "digest" : "discrete", pattern, a, b);
@@ -567,6 +572,16 @@ export interface RunOptions {
   restricted: boolean;
   /** Where the engines, or the two sets of prescriptions, disagree on the permitted pairs; none when left out. */
   pairs?: PairDifferences;
+  /**
+   * The text that declares the change's transitions: a pull request description, or any text in that form, which
+   * `parseDeclaredTransitions` reads. Nothing is declared when left out.
+   */
+  declaredTransitions?: string;
+  /**
+   * Every lens id of the head catalog and of the converter pairs requested from it, in a narrowed run as in a whole
+   * one. A declared transition must name one of them. When left out, it must name a lens the run met.
+   */
+  catalogLenses?: readonly string[];
 }
 
 /**
@@ -591,6 +606,11 @@ export interface LensOutput {
   lines: { baseEngine: string[]; headEngine: string[]; baseData: string[] };
   /** One line per pair of records that failed a comparison, both sides in it. */
   failingRecords: string[];
+  /**
+   * One line per unit of these records that holds a discrete or shape difference no declared transition matches,
+   * written as a description declares it, with the reason left out. None under C0, which matches no line.
+   */
+  transitionLines: string[];
 }
 
 export interface RunSummary {
@@ -625,6 +645,28 @@ export interface RunSummary {
     comparable: string[];
     /** Declared and not in the run. */
     unknown: string[];
+  };
+  transitions: {
+    /** Each declared transition, in the order written, with what the run found for it. */
+    declared: TransitionResult[];
+    /**
+     * Units with a discrete or shape difference that a line could declare and no declared transition matches. A run
+     * counts every one.
+     */
+    undeclared: number;
+    /** The first of them, each as the line that would declare it, with the reason left out. */
+    undeclaredLines: string[];
+    /**
+     * Units with a discrete or shape difference that also hold what no line excuses (`TransitionOutcome`,
+     * `contract`). A run writes no line for one, and its differences fail declared or not. The samples are the
+     * first of them, each as its record, its unit and the first thing found.
+     */
+    breached: { units: number; samples: string[] };
+    /**
+     * Records with more discrete and shape differences than a run holds to sort into units. Nothing of such a record
+     * is matched against a declared transition, so every one of those differences fails as undeclared.
+     */
+    overflow: { records: number; samples: string[] };
   };
 }
 
@@ -748,8 +790,8 @@ function baseCannotEvaluate(
  * The run makes three comparisons, each with its own rule for what fails:
  * - engine drift, one prescription on two engines, under the declared class. C0: any difference. C1 and C2: a
  *   number beyond its budget, a non-finite mismatch, a residual outside its tolerance, an unclassified number
- *   that moved, and every discrete or shape transition. A changed iteration count or trace digest is counted and
- *   does not fail by itself. C3: nothing; the differences are reported.
+ *   that moved, and every discrete or shape transition the change does not declare. A changed iteration count or
+ *   trace digest is counted and does not fail by itself. C3: nothing; the differences are reported.
  * - a format-only data change, two prescriptions on the head engine: any difference, in every class.
  * - a semantic data change or a new lens: a new failed status, a newly non-finite value, or a lens that no longer
  *   builds. Everything else is reported for review. A new lens has no base data, and neither has a converter pair
@@ -760,11 +802,14 @@ function baseCannotEvaluate(
  * otherwise pass as a comparison. And the engines must permit the same converter pairs for the same prescriptions,
  * under every class but C3.
  *
- * Above C0 a transition has no way yet to be declared as expected, so each one fails the run. How a pull request
- * lists approved transitions is left to the first step that needs it.
+ * Above C0 a discrete or shape transition fails the run unless the change declares its unit, and a declared
+ * transition that is not what the run found fails it too (see "Declared transitions" below). That holds for engine
+ * drift alone: a declared transition excuses nothing in the other comparisons. Under C0 a change that declares any
+ * fails, and under C3 the declared ones are matched and reported.
  *
- * @param options - the declared class and exceptions
+ * @param options - the declared class, exceptions and transitions
  * @returns the run
+ * @throws when a declared transition cannot be read
  */
 export function createDifferentialRun(options: RunOptions): DifferentialRun {
   const { changeClass } = options;
@@ -886,6 +931,7 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
     if (difference.kind !== "number") return true;
     return difference.measure !== null && difference.budget !== null && difference.measure > difference.budget;
   };
+  const ledger = createTransitionLedger(options, rules, failsEngine);
 
   /** The data-impact entry of a lens and the tally behind it, opened by the first part of the lens that needs one. */
   const impactOf = (lens: string, change: DataImpact["change"]) => {
@@ -932,6 +978,7 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
       baseData: needsBaseData && baseData ? baseData.map((record) => JSON.stringify(record)) : [],
     };
     const failingRecords: string[] = [];
+    const transitionLines: string[] = [];
     const keepPair = (comparison: ComparisonName, index: number, baseLine: string) =>
       failingRecords.push(`{"comparison":"${comparison}","base":${baseLine},"head":${lines.headEngine[index]}}`);
 
@@ -961,12 +1008,16 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
           thrown.records++;
           if (thrown.samples.length < MAX_SAMPLES) thrown.samples.push(thrownFinding(base, head));
         }
-        const failing =
-          lines.baseEngine[index] === lines.headEngine[index]
-            ? 0
-            : tallyDifferences("engine", base, head, engine, failsEngine);
+        /* A declared transition is held to the pair whether it differs or not: one that names an unchanged record
+         * declares what did not happen. */
+        const differs = lines.baseEngine[index] !== lines.headEngine[index];
+        const judged = ledger.judge(base, head, differs);
+        transitionLines.push(...judged.lines);
+        const failing = differs ? tallyDifferences("engine", base, head, engine, judged.fails) : 0;
         if (failing > 0 || threwOnBoth) keepPair("engine", index, lines.baseEngine[index]);
       });
+    } else {
+      for (const head of headEngine) ledger.uncompared(head);
     }
 
     if (dataChange === "format" && baseData) {
@@ -1075,7 +1126,7 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
       );
     }
 
-    return { lines, failingRecords };
+    return { lines, failingRecords, transitionLines };
   };
 
   const finish = (): RunSummary => {
@@ -1100,6 +1151,7 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
       comparable: declared.filter((lens) => compared.has(lens)),
       unknown: declared.filter((lens) => !compared.has(lens) && !uncomparedIds.has(lens)),
     };
+    const transitions = ledger.finish(met);
     const blocking = dataImpact.reduce((total, impact) => total + impact.blocking, 0);
     const several = (count: number, noun: string) => `${count} ${noun}${count === 1 ? "" : "s"}`;
     /* The fit predicate is engine code, so two answers for one set of prescriptions are engine drift, and a
@@ -1115,6 +1167,7 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
       ...(engine.failing > 0
         ? [`Engine drift: ${several(engine.failing, "difference")} not allowed under ${changeClass.toUpperCase()}.`]
         : []),
+      ...transitionFailures(transitions, changeClass),
       ...(thrown.records > 0
         ? [
             `Threw on both engines, which compares nothing: ${several(thrown.records, "record")} ` +
@@ -1161,6 +1214,7 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
       pairs,
       uncompared,
       exceptions,
+      transitions,
     };
   };
 
@@ -1372,6 +1426,891 @@ export function parseDeclaredExceptions(description: string): string[] {
   return declared;
 }
 
+/* ── Declared transitions ── */
+
+/*
+ * Above C0 a discrete or shape difference fails the engine comparison unless the change declares it, one line per
+ * unit of one record, under a heading "Engine-diff transitions" of the pull request description:
+ *
+ *   - `<lens id>` `<state id>` `<request>` `<path>`: `<base>` -> `<head>`; digest `<digest>`[, numbers]. <reason>
+ *
+ * A unit is what a difference's path names through its first array index, with any index directly behind it: one ray
+ * of a fan, one solve, one field sample. A path with no index is its own unit. The line names one discrete or shape
+ * difference of the unit, which the harness chooses, and carries a digest of all of them, so nothing discrete
+ * changes in a declared unit without the line changing. A run writes the line of every unit that no line matches,
+ * unless the unit also holds what no line excuses: then it writes that in the line's place.
+ */
+
+/** One declared transition: a bullet under "Engine-diff transitions", read. */
+export interface DeclaredTransition {
+  /** `lensId` of the record's lens. */
+  lens: string;
+  /** `stateId` of the record's state. */
+  state: string;
+  /** The record's request as a report names it: the family, and the variant where the request named one. */
+  request: string;
+  /** Path of the one difference the line names. The unit that path is in is the unit declared. */
+  path: string;
+  /** The named difference's two values, as `transitionText` writes them. */
+  base: string;
+  head: string;
+  /** `unitDigest` of every discrete and shape difference of the unit. */
+  digest: string;
+  /**
+   * The line also permits numbers beyond budget in the unit's fields that have no counterpart, where the unit's
+   * differences show that its ray ended elsewhere (`ENDED_ELSEWHERE`).
+   */
+  numbers: boolean;
+  reason: string;
+}
+
+/**
+ * What a run found for a declared transition. Only `matched` excuses anything, and above C0 only `matched` and
+ * `notJudged` let the run pass.
+ *
+ * - `matched`: the unit's discrete and shape differences are the declared ones.
+ * - `mismatch`: the unit holds discrete or shape differences, and not the named one or not under that digest.
+ * - `contract`: the unit holds a discrete or shape difference, and with it what no line excuses: on its head side a
+ *   hit or a converged solve whose residual is outside its tolerance, or a non-finite number the base side does not
+ *   repeat; or a hit both sides have that differs beyond its budget.
+ * - `refused`: the unit holds what cannot be declared: a record or an analysis job that starts or stops throwing,
+ *   or a discrete or shape difference in a build, composition or layout record.
+ * - `unchanged`: the run compared the record and found no discrete or shape difference in the unit.
+ * - `uncompared`: the record is of a lens the base engine cannot evaluate.
+ * - `overflow`: the record holds more discrete and shape differences than a run sorts into units.
+ * - `unknownLens`: no lens of the catalog and no requested pair has that id.
+ * - `notJudged`: the run did not ask for the record, which is outside its tier, its shard or its one lens. Under C0
+ *   no line is judged.
+ */
+export type TransitionOutcome =
+  | "matched"
+  | "mismatch"
+  | "contract"
+  | "refused"
+  | "unchanged"
+  | "uncompared"
+  | "overflow"
+  | "unknownLens"
+  | "notJudged";
+
+/** One discrete or shape difference of a unit, as a line and a digest hold it. */
+export interface UnitDifference {
+  path: string;
+  kind: "discrete" | "shape";
+  /** The two values, as `transitionText` writes them. */
+  base: string;
+  head: string;
+}
+
+/** A declared transition and what the run found for it. */
+export interface TransitionResult {
+  /** The declaration as the harness writes such a line, reason included. */
+  line: string;
+  declared: DeclaredTransition;
+  outcome: TransitionOutcome;
+  /** What the run found in place of the declaration, or what kept the line from excusing its unit. */
+  detail?: string;
+  /** The unit's discrete and shape differences, on a line that matched. */
+  differences: number;
+  /** How many of those are shapes: a changed array length or a member one side lacks, which the walk does not enter. */
+  shapes: number;
+  /** Numbers beyond budget that the line excused under `numbers`. */
+  excusedNumbers: number;
+  /**
+   * On a line that matched: the differences its digest covers, in the order the digest takes them. A reader of the
+   * one difference a line names sees here what else it vouches for. The first of them; `differences` counts all.
+   */
+  covered?: UnitDifference[];
+}
+
+const TRANSITIONS_HEADING = /^#{1,6}\s+engine-diff transitions\s*$/i;
+const BULLET = /^[-*+]\s+(.*)$/;
+/* Every field is in backticks: a state id has spaces in it, and a value is any text. */
+const FIELD = "`([^`]+)`";
+const VALUE = "`([^`]*)`";
+const TRANSITION_FIELDS = new RegExp(
+  `^${[FIELD, FIELD, FIELD, FIELD].join("\\s+")}:\\s*${VALUE}\\s*->\\s*${VALUE};` +
+    `\\s*digest\\s+${FIELD}(,\\s*numbers)?\\.(.*)$`,
+);
+const TRANSITION_FORM =
+  "- `<lens id>` `<state id>` `<request>` `<path>`: `<base>` -> `<head>`; digest `<digest>`[, numbers]. <reason>";
+/* What a line writes for the path of a difference at the root of a record's value, which has none. */
+const RECORD_PATH = "(the record)";
+/* Hex digits of a unit's digest: 48 bits, which tells any two sets of differences a reviewer could meet apart. */
+const DIGEST_LENGTH = 12;
+
+/**
+ * Discrete and shape differences of one record held at once, to sort them into units. A unit's digest needs every
+ * one of its differences, so a record with more is matched against no declared transition, and all of them fail.
+ */
+const MAX_RECORD_TRANSITIONS = 20_000;
+
+/* A build, a composition and a layout trace no ray. What is exact in them is prescription data and what the engine
+ * counts and labels from it, so no difference there is a boundary a ray crossed, and none can be declared. */
+const UNDECLARABLE_FAMILIES: ReadonlySet<RequestFamily> = new Set(["build", "composition", "layout"]);
+/* The members of an outcome, of a record or of an analysis job. One that starts or stops throwing changes all
+ * three: `ok`, and the two that are there on one side only. */
+const OUTCOME_MEMBERS = ["ok", "value", "error"] as const;
+
+/*
+ * What `numbers` permits beyond budget in a declared unit: the fields of a traced ray that have no counterpart once
+ * the ray ends on another surface or stops. They are the fields of the budget table's trace rows for the terminal
+ * point and direction, the image-plane landing and the slopes, and for the stack tracer's drawn points, height and
+ * slope, each named as that table names it under its ray. The medium a ray ended in, on the ray and in its
+ * diagnostics, and the stack tracer's transmission are among them: both follow from where the ray ended, so a ray
+ * that newly stops or completes inside glass has no counterpart for them either. A hit's coordinates are not among
+ * them: a hit that both sides have is the same hit.
+ */
+const NO_COUNTERPART_FAMILY: RequestFamily = "traces";
+const NO_COUNTERPART_FIELDS: ReadonlySet<string> = new Set([
+  "terminalPoint[]",
+  "terminalDirection[]",
+  "imagePoint[]",
+  "x",
+  "y",
+  "ux",
+  "uy",
+  "pts[][]",
+  "ghostPts[][]",
+  "u",
+  "finalMedium",
+  "diagnostics.finalMedium",
+  "transmission",
+]);
+
+/**
+ * The unit a difference belongs to.
+ *
+ * @param path - a difference's path under its record's value, with array indices
+ * @returns the path through its first array index and any index directly behind it, or all of a path with none
+ */
+export function transitionUnit(path: string): string {
+  const indexes = /\[\d+\](?:\[\d+\])*/.exec(path);
+  return indexes ? path.slice(0, indexes.index + indexes[0].length) : path;
+}
+
+/** A path with every array index dropped: how the budget table and `RawDifference.pattern` spell it. */
+function patternOf(path: string): string {
+  return path.replace(/\[\d+\]/g, "[]");
+}
+
+function hasNoCounterpart(family: RequestFamily, pattern: string, unit: string): boolean {
+  if (family !== NO_COUNTERPART_FAMILY) return false;
+  const ray = patternOf(unit);
+  return pattern.startsWith(`${ray}.`) && NO_COUNTERPART_FIELDS.has(pattern.slice(ray.length + 1));
+}
+
+/*
+ * Those fields have no counterpart only once the ray ended on another surface or stopped, so `numbers` is honoured
+ * only in a unit whose own discrete and shape differences show that: the ray's outcome, where it ended, how many
+ * hits it has and on which surfaces, a clip, fallback or failure flag of a hit, or a clip event. Each is named as it
+ * sits under its ray, for the surface tracer and for the stack tracer, which has no hit records and shows the same
+ * by its drawn points and its diagnostics. A label, a tolerance or an input that differs shows no such thing, and
+ * neither does a hit column that one side lacks: a column that changed length changed the hit count with it.
+ */
+const ENDED_ELSEWHERE: ReadonlySet<string> = new Set([
+  "status",
+  "clipped",
+  "failureReason",
+  "reachedImagePlane",
+  "terminalSurfaceIndex",
+  "returnVertexIndex",
+  "hits.count",
+  "hits.columns.surfaceIndex[]",
+  "hits.columns.clipped[]",
+  "hits.columns.fallback[]",
+  "hits.columns.failureReason[]",
+  "hits.columns.clipReason[]",
+  "pts",
+  "ghostPts",
+  "diagnostics.clipped",
+  "diagnostics.failureReason",
+  "diagnostics.terminationReason",
+  "diagnostics.terminalSurfaceIndex",
+  "diagnostics.reachedImagePlane",
+  "diagnostics.hitSurfaceIndexes",
+  "diagnostics.hitSurfaceIndexes[]",
+]);
+/* The clip events of a ray, or any member of one. */
+const CLIP_EVENT = /^diagnostics\.clipEvents(?:$|[.[])/;
+
+function showsAnotherEnd(family: RequestFamily, unit: string, { path }: UnitDifference): boolean {
+  if (family !== NO_COUNTERPART_FAMILY) return false;
+  const member = patternOf(path).slice(patternOf(unit).length + 1);
+  return ENDED_ELSEWHERE.has(member) || CLIP_EVENT.test(member);
+}
+
+/**
+ * One side of a difference as a declared transition writes it.
+ *
+ * A number set against a value of another type is written as the word `number`. Its digits are no part of what
+ * changed, and they would give two runs with different bases different digests for one transition. A backtick is
+ * written as its JSON escape, so no field of a line holds one.
+ *
+ * @param value - the side to write
+ * @param other - the other side of the same difference
+ * @returns JSON text, or a word for a missing member, a container or such a number
+ */
+function transitionText(value: unknown, other: unknown): string {
+  if (numberOf(value) !== undefined && numberOf(other) === undefined) return "number";
+  return describe(value).replace(/`/g, "\\u0060");
+}
+
+/** Digest of a unit: its discrete and shape differences in code-unit order of their paths, none left out. */
+function unitDigest(differences: readonly UnitDifference[]): string {
+  const rows = differences.map(({ path, kind, base, head }) => [path, kind, base, head]);
+  return sha256Hex(JSON.stringify(rows)).slice(0, DIGEST_LENGTH);
+}
+
+/**
+ * Write a declared transition as its line.
+ *
+ * @param transition - what the line declares
+ * @param reason - the reason to end the line with; left out, the line is one to paste and finish
+ * @returns the bullet, which `parseDeclaredTransitions` reads back once it has a reason
+ */
+function transitionLine(transition: Omit<DeclaredTransition, "reason">, reason = ""): string {
+  const { lens, state, request, path, base, head, digest, numbers } = transition;
+  const fields = [lens, state, request, path === "" ? RECORD_PATH : path].map((field) => `\`${field}\``).join(" ");
+  return (
+    `- ${fields}: \`${base}\` -> \`${head}\`; digest \`${digest}\`${numbers ? ", numbers" : ""}.` +
+    `${reason === "" ? "" : ` ${reason}`}`
+  );
+}
+
+/**
+ * Read the transitions a pull request declares.
+ *
+ * The description carries them under a heading "Engine-diff transitions", one bullet per unit, up to the next
+ * heading; a description may have the heading more than once. Every bullet there is a declaration, so one that does
+ * not read as a line, or that gives no reason, is an error and not a line to pass over: the run it was written for
+ * would otherwise fail on the transition it meant to declare. Without the heading nothing is declared.
+ *
+ * @param description - the pull request description, or any text in that form
+ * @returns the declared transitions, in the order written
+ * @throws on a bullet under the heading that is not a declared transition, or that has no reason
+ */
+export function parseDeclaredTransitions(description: string): DeclaredTransition[] {
+  const declared: DeclaredTransition[] = [];
+  let underHeading = false;
+  for (const raw of description.split(/\r?\n/)) {
+    const line = raw.trim();
+    if (ANY_HEADING.test(line)) {
+      underHeading = TRANSITIONS_HEADING.test(line);
+      continue;
+    }
+    const bullet = underHeading ? BULLET.exec(line)?.[1] : undefined;
+    if (bullet === undefined) continue;
+    const fields = TRANSITION_FIELDS.exec(bullet);
+    if (!fields) {
+      throw new Error(
+        `engineDiff: a bullet under "Engine-diff transitions" is not a declared transition:\n  ${line}\n` +
+          `A declared transition reads:\n  ${TRANSITION_FORM}`,
+      );
+    }
+    const [, lens, state, request, path, base, head, digest, numbers, reason] = fields;
+    if (reason.trim() === "") {
+      throw new Error(`engineDiff: a declared transition gives no reason after its full stop:\n  ${line}`);
+    }
+    declared.push({
+      lens,
+      state,
+      request,
+      path: path === RECORD_PATH ? "" : path,
+      base,
+      head,
+      digest,
+      numbers: numbers !== undefined,
+      reason: reason.trim(),
+    });
+  }
+  return declared;
+}
+
+/** A value found under a record's value, and the way down to it. */
+interface Located {
+  value: unknown;
+  /** The members and array levels passed, as the budget table spells a path. */
+  segments: string[];
+  /** The containers passed, from the root down, and the member or index taken in each (`LeafContext`). */
+  containers: unknown[];
+  keys: (string | number)[];
+}
+
+/**
+ * The value at a path under a record's value, with the path as the budget table spells it.
+ *
+ * A member name may hold a dot, as an analysis job's does, so a path is not split: each step sets the container's
+ * own members against what is left of it.
+ *
+ * @param root - the value the path starts under
+ * @param path - a path with array indices, as a difference carries it
+ * @param passed - the way down to `root`, for a root that is itself under a record's value
+ * @returns the value and the way down to it, or null when the path names nothing there
+ */
+function valueAt(
+  root: unknown,
+  path: string,
+  passed: Omit<Located, "value"> = { segments: [], containers: [], keys: [] },
+): Located | null {
+  if (path === "") return { value: root, ...passed };
+  const step = (key: string | number, segment: string, rest: string) =>
+    valueAt((root as Record<string | number, unknown>)[key], rest, {
+      segments: [...passed.segments, segment],
+      containers: [...passed.containers, root],
+      keys: [...passed.keys, key],
+    });
+  if (Array.isArray(root)) {
+    const index = /^\[(\d+)\]\.?/.exec(path);
+    return index ? step(Number(index[1]), "[]", path.slice(index[0].length)) : null;
+  }
+  if (!isContainer(root)) return null;
+  for (const key of Object.keys(root)) {
+    const next = path[key.length];
+    if (!path.startsWith(key) || (next !== undefined && next !== "." && next !== "[")) continue;
+    const found = step(key, key, path.slice(key.length + (next === "." ? 1 : 0)));
+    if (found) return found;
+  }
+  return null;
+}
+
+/** The roots the paired walk starts two records from: their values, or their outcomes unless both returned one. */
+function rootsOf(base: ComparableRecord, head: ComparableRecord): [base: unknown, head: unknown] {
+  return base.payload.ok && head.payload.ok ? [base.payload.value, head.payload.value] : [base.payload, head.payload];
+}
+
+/**
+ * What the head side of a unit holds that no declaration excuses, or null.
+ *
+ * The paired walk reports a changed array length or a member one side lacks once and does not enter it, so a hit
+ * the head engine gained is compared with nothing, and a solve that now converges sets its residual against the
+ * null of one that did not. Here the head side answers alone. Each residual must lie within the tolerance it was
+ * accepted under: a hit's within the effective tolerance recorded beside it, and a solve's within the tolerance of
+ * its class where the head's solve says it converged. Every other number must be finite unless the base side holds
+ * the same non-finite value at the same place.
+ *
+ * @param base - the record of the base side
+ * @param head - the record of the head side
+ * @param unit - the unit's path
+ * @param changeClass - the class whose residual budget applies
+ * @param rules - resolved budget rules by request family and path pattern, shared with the paired walk
+ * @returns one sentence naming the first breach, or null when there is none
+ */
+function headSideBreach(
+  base: ComparableRecord,
+  head: ComparableRecord,
+  unit: string,
+  changeClass: ChangeClass,
+  rules: Map<string, Map<string, BudgetRule | null>>,
+): string | null {
+  const [baseRoot, headRoot] = rootsOf(base, head);
+  const at = valueAt(headRoot, unit);
+  if (!at) return null;
+  const family = head.request;
+  let familyRules = rules.get(family);
+  if (!familyRules) rules.set(family, (familyRules = new Map()));
+  /* Containers and keys from the record's value down, as the paired walk holds them, so a rule that reads the flags
+   * beside a leaf finds them here as it does there. Both sides of the context are the head's. */
+  const { segments, containers: stack, keys } = at;
+  const leaf: LeafContext = { base: stack, head: stack, keys };
+  const pathOf = () =>
+    keys.reduce<string>(
+      (path, key) => (typeof key === "number" ? `${path}[${key}]` : path ? `${path}.${key}` : key),
+      "",
+    );
+
+  const visit = (before: unknown, value: unknown, pattern: string): string | null => {
+    if (isContainer(value)) {
+      const isArray = Array.isArray(value);
+      const paired = isContainer(before) && Array.isArray(before) === isArray ? before : undefined;
+      let breach: string | null = null;
+      stack.push(value);
+      for (const [name, member] of Object.entries(value)) {
+        const key = isArray ? Number(name) : name;
+        keys.push(key);
+        segments.push(isArray ? "[]" : name);
+        breach = visit(
+          (paired as Record<string, unknown> | undefined)?.[name],
+          member,
+          isArray ? `${pattern}[]` : pattern ? `${pattern}.${name}` : name,
+        );
+        segments.pop();
+        keys.pop();
+        if (breach !== null) break;
+      }
+      stack.pop();
+      return breach;
+    }
+    const number = numberOf(value);
+    if (number === undefined) return null;
+    let rule = familyRules.get(pattern);
+    if (rule === undefined) familyRules.set(pattern, (rule = resolveBudgetRule(family, segments)));
+    const quantity = rule ? quantityAt(rule, leaf) : null;
+    const { kind, tolerance, title }: Partial<Quantity> = quantity === null ? {} : QUANTITIES[quantity];
+    if (rule && quantity !== null && kind === "residual") {
+      /* The class's own tolerance, or else the one recorded beside the hit, as the paired walk reads them. */
+      const recorded = rule.tolerance === undefined ? undefined : hitColumnEntries(leaf, rule.tolerance)[1];
+      const held = tolerance ?? numberOf(recorded);
+      /* Infinity where there is no finite residual or no positive tolerance: it has no contract to meet. */
+      const share =
+        Number.isFinite(number) && held !== undefined && held > 0 ? Math.abs(number) / held : Number.POSITIVE_INFINITY;
+      return share > budgetOf(quantity, changeClass)
+        ? `On the head side \`${pathOf()}\` is ${describe(value)}, ${formatMeasure(share)} times the ` +
+            `${tolerance === undefined ? "effective tolerance recorded beside it" : `tolerance of its class (${title})`}.`
+        : null;
+    }
+    return Number.isFinite(number) || Object.is(numberOf(before), number)
+      ? null
+      : `On the head side \`${pathOf()}\` is ${number}, which the base side does not repeat.`;
+  };
+  return visit(valueAt(baseRoot, unit)?.value, at.value, patternOf(unit));
+}
+
+/*
+ * A table of hits, column-wise, is the member `columns` of a ray's `hits` (`hitColumnEntries` finds it the same
+ * way). `surfaceIndex` is the column that says which surface each hit is on.
+ */
+const HIT_COLUMNS = "columns";
+const HIT_SURFACE_COLUMN = "surfaceIndex";
+
+/**
+ * The hits both sides of a unit have, where its hit columns changed length.
+ *
+ * The paired walk reports a column of another length once and does not enter it, so a hit ahead of the place where
+ * the two paths part would be compared with nothing. The two sides have the same hit for as long as their
+ * `surfaceIndex` columns agree from the start. Past the first row where they differ, a row pairs two hits on
+ * different surfaces, and comparing those would say nothing.
+ *
+ * @param base - the record of the base side
+ * @param head - the record of the head side
+ * @param unit - the unit's path
+ * @returns a pair of records that hold those rows of the columns and nothing else, each column at the path it has
+ *   in the records, for the paired walk to compare; or null when the unit has no such column
+ */
+function commonHits(
+  base: ComparableRecord,
+  head: ComparableRecord,
+  unit: string,
+): [base: ComparableRecord, head: ComparableRecord] | null {
+  if (!base.payload.ok || !head.payload.ok) return null;
+  const [before, after] = [valueAt(base.payload.value, unit), valueAt(head.payload.value, unit)];
+  if (!before || !after) return null;
+
+  /* The same members of two values, cut down to the common rows of every hit table under them. */
+  const cut = (a: unknown, b: unknown, key: string | number | undefined): [unknown, unknown] | null => {
+    if (!isContainer(a) || !isContainer(b) || Array.isArray(a) !== Array.isArray(b)) return null;
+    const [members, others] = [a as Record<string, unknown>, b as Record<string, unknown>];
+    if (key === HIT_COLUMNS && !Array.isArray(a)) {
+      const [surfaces, otherSurfaces] = [members[HIT_SURFACE_COLUMN], others[HIT_SURFACE_COLUMN]];
+      if (!Array.isArray(surfaces) || !Array.isArray(otherSurfaces)) return null;
+      let rows = 0;
+      while (
+        rows < Math.min(surfaces.length, otherSurfaces.length) &&
+        numberOf(surfaces[rows]) !== undefined &&
+        Object.is(numberOf(surfaces[rows]), numberOf(otherSurfaces[rows]))
+      ) {
+        rows++;
+      }
+      /* A column of the same length on both sides is one the paired walk entered. */
+      const names = Object.keys(members).filter((name) => {
+        const [column, other] = [members[name], others[name]];
+        return Array.isArray(column) && Array.isArray(other) && column.length !== other.length;
+      });
+      if (rows === 0 || names.length === 0) return null;
+      const rowsOf = (side: Record<string, unknown>) =>
+        Object.fromEntries(names.map((name) => [name, (side[name] as unknown[]).slice(0, rows)]));
+      return [rowsOf(members), rowsOf(others)];
+    }
+    if (Array.isArray(a) && a.length !== (b as unknown[]).length) return null;
+    /* Two containers of one shape, each holding only the members that lead to a hit table. A place left empty in
+     * an array is empty on both sides, and the paired walk passes over it. */
+    const [kept, otherKept] = (Array.isArray(a) ? [new Array(a.length), new Array(a.length)] : [{}, {}]) as [
+      Record<string, unknown>,
+      Record<string, unknown>,
+    ];
+    let found = false;
+    for (const name of Object.keys(members)) {
+      if (!Object.hasOwn(others, name)) continue;
+      const pair = cut(members[name], others[name], Array.isArray(a) ? Number(name) : name);
+      if (!pair) continue;
+      [kept[name], otherKept[name]] = pair;
+      found = true;
+    }
+    return found ? [kept, otherKept] : null;
+  };
+
+  const common = cut(before.value, after.value, before.keys[before.keys.length - 1]);
+  if (!common) return null;
+  /* The way down from the record's value to the unit, around those rows. */
+  const under = (value: unknown): EncodedValue =>
+    before.keys.reduceRight<unknown>((inner, key) => {
+      if (typeof key === "string") return { [key]: inner };
+      const outer = new Array<unknown>(key + 1);
+      outer[key] = inner;
+      return outer;
+    }, value) as EncodedValue;
+  return [
+    { ...base, payload: { ok: true, value: under(common[0]) } },
+    { ...head, payload: { ok: true, value: under(common[1]) } },
+  ];
+}
+
+/** The discrete and shape differences of one pair of records, sorted into units as the walk reports them. */
+interface RecordUnits {
+  units: Map<string, UnitDifference[]>;
+  /** Units with a number beyond budget in a field that has no counterpart. */
+  numbers: Set<string>;
+  /** Units in which a hit both sides have differs by more than its class allows, each with the first such hit. */
+  breaches: Map<string, string>;
+  held: number;
+  overflowed: boolean;
+}
+
+/** A matched line of a unit, and whether it excuses the unit's numbers that have no counterpart. */
+interface Excuse {
+  result: TransitionResult;
+  numbers: boolean;
+}
+
+/** A hit column, whole: the path of the one shape difference the paired walk reports for a column it did not enter. */
+const HIT_COLUMN_PATH = new RegExp(`(?:^|\\.)${HIT_COLUMNS}\\.[^.[]+$`);
+
+/** Whether a difference is outside what its class allows above C0, under whichever class the run is judged. */
+function outsideItsClass({ kind, measure, budget }: RawDifference): boolean {
+  if (kind === "nonFinite" || kind === "contract" || kind === "unclassified") return true;
+  return kind === "number" && measure !== null && budget !== null && measure > budget;
+}
+
+/** One sentence for a hit both sides have that differs by more than its class allows. */
+function commonHitBreach({ kind, path, quantity, base, head, measure, budget }: RawDifference): string {
+  const where = `In a hit both sides have, \`${path}\``;
+  if (kind === "number" && quantity !== null) {
+    const { title, unit } = QUANTITIES[quantity];
+    const inUnit = unit === "" ? "" : ` ${unit}`;
+    return (
+      `${where} differs by ${formatMeasure(measure)}${inUnit}, beyond its budget of ${formatMeasure(budget)}${inUnit} ` +
+      `(${title}).`
+    );
+  }
+  if (kind === "contract") {
+    return `${where} is outside the tolerance recorded beside it: ${describe(base)} against ${describe(head)}.`;
+  }
+  if (kind === "nonFinite") return `${where} is ${describe(base)} on the base side and ${describe(head)} on the head.`;
+  return `${where} differs and has no quantity class.`;
+}
+
+/** Holds a run's declared transitions to what its engine comparison finds, record by record. */
+interface TransitionLedger {
+  /**
+   * Take one pair of records of a compared lens.
+   *
+   * @param base - the record of the base engine
+   * @param head - the record of the head engine
+   * @param differs - whether the two differ at all
+   * @returns `fails`, which judges a difference of the pair as the engine comparison does with the declared
+   *   transitions applied, and `lines`, one for each unit of the pair that a line could declare and none matches
+   */
+  judge(
+    base: ComparableRecord,
+    head: ComparableRecord,
+    differs: boolean,
+  ): { fails: (difference: RawDifference) => boolean; lines: string[] };
+  /** Take a record of a lens the base engine cannot evaluate: nothing declared for it can be held to anything. */
+  uncompared(record: ComparableRecord): void;
+  /**
+   * Close the ledger.
+   *
+   * @param met - the lenses the run met
+   * @returns every declared transition with its outcome, and what the run found undeclared
+   */
+  finish(met: ReadonlySet<string>): RunSummary["transitions"];
+}
+
+/**
+ * Start the ledger of a run's declared transitions.
+ *
+ * Under C0 nothing is matched, and every difference fails as it would with nothing declared. Above it a declared
+ * line excuses the discrete and shape differences of its unit when it names the difference the harness would name
+ * and carries the digest of all of them, and the unit holds nothing that no line excuses (`TransitionOutcome`,
+ * `contract`). With `numbers` it also excuses, in that unit alone, a number beyond budget in a field that has no
+ * counterpart, where the unit's differences show that the ray ended elsewhere. It never excuses a non-finite
+ * mismatch, a residual outside its tolerance, a number with no class, or a number in any other field.
+ *
+ * @param options - the run's options, for the class, the declared transitions and the catalog's lens ids
+ * @param rules - resolved budget rules, shared with the paired walk
+ * @param failsEngine - the engine comparison's rule with nothing declared
+ * @returns the ledger
+ * @throws when a declared transition cannot be read
+ */
+function createTransitionLedger(
+  options: RunOptions,
+  rules: Map<string, Map<string, BudgetRule | null>>,
+  failsEngine: (difference: RawDifference) => boolean,
+): TransitionLedger {
+  const { changeClass } = options;
+  const results = parseDeclaredTransitions(options.declaredTransitions ?? "").map(
+    (declared): TransitionResult => ({
+      line: transitionLine(declared, declared.reason),
+      declared,
+      outcome: "notJudged",
+      differences: 0,
+      shapes: 0,
+      excusedNumbers: 0,
+    }),
+  );
+  const recordKey = (lens: string, state: string, request: string) => JSON.stringify([lens, state, request]);
+  const keyOf = (record: ComparableRecord) => recordKey(record.lens, stateId(record.state), requestLabel(record));
+  const byRecord = new Map<string, TransitionResult[]>();
+  for (const result of results) {
+    const { lens, state, request } = result.declared;
+    const key = recordKey(lens, state, request);
+    byRecord.set(key, [...(byRecord.get(key) ?? []), result]);
+  }
+  const summary: RunSummary["transitions"] = {
+    declared: results,
+    undeclared: 0,
+    undeclaredLines: [],
+    breached: { units: 0, samples: [] },
+    overflow: { records: 0, samples: [] },
+  };
+
+  /** Sort what the walk found into units, hold each declared line of the record to its unit, and excuse. */
+  const settle = (
+    base: ComparableRecord,
+    head: ComparableRecord,
+    found: RecordUnits,
+    declaredHere: readonly TransitionResult[],
+  ): { lines: string[]; excused: Map<string, Excuse> } => {
+    const lines: string[] = [];
+    const excused = new Map<string, Excuse>();
+    const [state, request] = [stateId(head.state), requestLabel(head)];
+    if (found.overflowed) {
+      summary.overflow.records++;
+      if (summary.overflow.samples.length < MAX_SAMPLES) {
+        summary.overflow.samples.push(`${head.lens} ${request} at ${state}`);
+      }
+      for (const result of declaredHere) result.outcome = "overflow";
+      return { lines, excused };
+    }
+    /* An outcome that flipped takes the two members that came and went with it. */
+    const flipped = new Set<string>();
+    for (const differences of found.units.values()) {
+      for (const { path, kind, base: before, head: after } of differences) {
+        const isOutcome = kind === "discrete" && (path === "ok" || path.endsWith(".ok"));
+        if (!isOutcome || !["true", "false"].includes(before) || !["true", "false"].includes(after)) continue;
+        for (const member of OUTCOME_MEMBERS) flipped.add(`${path.slice(0, -"ok".length)}${member}`);
+      }
+    }
+    /* Units in code-unit order of their paths, and so are the differences of each: no order of the walk is in a
+     * line or a digest. */
+    for (const [unit, differences] of [...found.units].sort(([a], [b]) => (a < b ? -1 : 1))) {
+      const declaredForUnit = declaredHere.filter((result) => transitionUnit(result.declared.path) === unit);
+      if (UNDECLARABLE_FAMILIES.has(head.request) || differences.some(({ path }) => flipped.has(path))) {
+        for (const result of declaredForUnit) result.outcome = "refused";
+        continue;
+      }
+      /* What no line excuses is looked for before any line is written or matched. A unit that holds it gets the
+       * breach in place of a line to paste, which the next run could only refuse. */
+      const breach = found.breaches.get(unit) ?? headSideBreach(base, head, unit, changeClass, rules);
+      if (breach !== null) {
+        for (const result of declaredForUnit) {
+          result.outcome = "contract";
+          result.detail = breach;
+        }
+        summary.breached.units++;
+        if (summary.breached.samples.length < MAX_SAMPLES) {
+          const where = [head.lens, state, request, unit === "" ? RECORD_PATH : unit].map((field) => `\`${field}\``);
+          summary.breached.samples.push(`${where.join(" ")}: ${breach}`);
+        }
+        continue;
+      }
+      differences.sort((a, b) => (a.path < b.path ? -1 : 1));
+      /* The difference a line names is the harness's choice, so two runs name the same one: the unit's status
+       * where it has one, and otherwise the first in path order. */
+      const named = differences.find(({ path }) => path === `${unit}.status`) ?? differences[0];
+      const digest = unitDigest(differences);
+      /* `numbers` excuses anything only where the unit itself shows that its ray ended elsewhere, and the line the
+       * run writes says `numbers` only where that would excuse something. */
+      const endedElsewhere = differences.some((difference) => showsAnotherEnd(head.request, unit, difference));
+      const needsNumbers = found.numbers.has(unit);
+      const line = transitionLine({
+        lens: head.lens,
+        state,
+        request,
+        path: named.path,
+        base: named.base,
+        head: named.head,
+        digest,
+        numbers: needsNumbers && endedElsewhere,
+      });
+      for (const result of declaredForUnit) {
+        const { declared } = result;
+        if (
+          declared.path !== named.path ||
+          declared.base !== named.base ||
+          declared.head !== named.head ||
+          declared.digest !== digest
+        ) {
+          result.outcome = "mismatch";
+          result.detail = `The run found: ${line}`;
+          continue;
+        }
+        result.outcome = "matched";
+        result.differences = differences.length;
+        result.shapes = differences.filter(({ kind }) => kind === "shape").length;
+        result.covered = differences.slice(0, MAX_SAMPLES);
+        const permits = declared.numbers && endedElsewhere;
+        if (needsNumbers && !permits) {
+          result.detail =
+            "The unit holds numbers beyond budget in fields that have no counterpart once a ray ends elsewhere, " +
+            (endedElsewhere
+              ? "and the line does not say `numbers`, so each of them fails."
+              : "and nothing in the unit shows that the ray ended elsewhere, so `numbers` excuses none of them.");
+        }
+        /* Of two lines that match one unit, the one that permits numbers decides. */
+        if (!excused.get(unit)?.numbers) excused.set(unit, { result, numbers: permits });
+      }
+      if (excused.has(unit)) continue;
+      summary.undeclared++;
+      lines.push(line);
+      if (summary.undeclaredLines.length < MAX_SAMPLES) summary.undeclaredLines.push(line);
+    }
+    for (const result of declaredHere) if (result.outcome === "notJudged") result.outcome = "unchanged";
+    return { lines, excused };
+  };
+
+  const judge: TransitionLedger["judge"] = (base, head, differs) => {
+    if (changeClass === "c0") return { fails: failsEngine, lines: [] };
+    const declaredHere = byRecord.get(keyOf(head)) ?? [];
+    const found: RecordUnits = {
+      units: new Map(),
+      numbers: new Set(),
+      breaches: new Map(),
+      held: 0,
+      overflowed: false,
+    };
+    const hold = ({ kind, path, base: before, head: after }: RawDifference): void => {
+      if ((kind !== "discrete" && kind !== "shape") || found.overflowed) return;
+      if (++found.held > MAX_RECORD_TRANSITIONS) {
+        found.overflowed = true;
+        found.units.clear();
+        return;
+      }
+      const unit = transitionUnit(path);
+      let differences = found.units.get(unit);
+      if (!differences) found.units.set(unit, (differences = []));
+      differences.push({ path, kind, base: transitionText(before, after), head: transitionText(after, before) });
+    };
+    const gather = (difference: RawDifference): void => {
+      const { kind, path, pattern, measure, budget } = difference;
+      if (kind !== "number") return hold(difference);
+      /* A unit with such a number needs `numbers` on its line. */
+      if (measure === null || budget === null || measure <= budget) return;
+      if (hasNoCounterpart(head.request, pattern, transitionUnit(path))) found.numbers.add(transitionUnit(path));
+    };
+    /* A unit's verdict needs every one of its differences, so the pair is walked for them before it is judged. */
+    if (differs) diffRecords(base, head, changeClass, rules, gather);
+    /* That walk entered no hit column that changed length. The hits both sides still have are walked here, as a
+     * pair of records that hold nothing else. A discrete difference of one is the unit's like any other, and so is
+     * in its digest; anything else of one that its class does not allow is what no line excuses. */
+    for (const [unit, differences] of found.units) {
+      if (found.overflowed) break;
+      if (!differences.some(({ kind, path }) => kind === "shape" && HIT_COLUMN_PATH.test(path))) continue;
+      const hits = commonHits(base, head, unit);
+      if (!hits) continue;
+      diffRecords(hits[0], hits[1], changeClass, rules, (difference) => {
+        if (difference.kind === "discrete" || difference.kind === "shape") return hold(difference);
+        if (outsideItsClass(difference) && !found.breaches.has(unit)) {
+          found.breaches.set(unit, commonHitBreach(difference));
+        }
+      });
+    }
+    const { lines, excused } = settle(base, head, found, declaredHere);
+    return {
+      lines,
+      fails: (difference) => {
+        if (!failsEngine(difference)) return false;
+        const { kind } = difference;
+        if (kind !== "discrete" && kind !== "shape" && kind !== "number") return true;
+        const unit = transitionUnit(difference.path);
+        const excuse = excused.get(unit);
+        if (!excuse) return true;
+        if (kind !== "number") return false;
+        if (!excuse.numbers || !hasNoCounterpart(head.request, difference.pattern, unit)) return true;
+        excuse.result.excusedNumbers++;
+        return false;
+      },
+    };
+  };
+
+  return {
+    judge,
+    uncompared(record) {
+      if (changeClass === "c0") return;
+      for (const result of byRecord.get(keyOf(record)) ?? []) result.outcome = "uncompared";
+    },
+    finish(met) {
+      const known = new Set(options.catalogLenses ?? met);
+      for (const result of results) {
+        const unknown = changeClass !== "c0" && result.outcome === "notJudged" && !known.has(result.declared.lens);
+        if (unknown) result.outcome = "unknownLens";
+      }
+      return summary;
+    },
+  };
+}
+
+/* How a run words what it found for a declared transition, in the order to say it. */
+const OUTCOME_TITLES: Record<TransitionOutcome, string> = {
+  matched: "matched",
+  mismatch: "not what the run found",
+  contract: "refused, the unit holds what no line excuses",
+  refused: "refused, this cannot be declared",
+  unchanged: "nothing discrete changed in the unit",
+  uncompared: "the lens was not compared",
+  overflow: "the record was matched against no line",
+  unknownLens: "no such lens",
+  notJudged: "not judged, the run did not ask for the record",
+};
+
+/**
+ * The reasons the declared transitions fail a run.
+ *
+ * An undeclared unit has no line here, nor has one that no line can declare: the differences of both are engine
+ * drift, and fail as that.
+ *
+ * @param transitions - what a run found for its declared transitions
+ * @param changeClass - the class of the run
+ * @returns the failure lines; none under C3, which gates nothing of the engine comparison
+ */
+function transitionFailures({ declared, overflow }: RunSummary["transitions"], changeClass: ChangeClass): string[] {
+  if (changeClass === "c3") return [];
+  if (changeClass === "c0") {
+    return declared.length > 0
+      ? [`Declared transitions: a C0 change declares none, and the description declares ${declared.length}.`]
+      : [];
+  }
+  const failing = (Object.keys(OUTCOME_TITLES) as TransitionOutcome[]).flatMap((outcome) => {
+    const count = declared.filter((result) => result.outcome === outcome).length;
+    return outcome === "matched" || outcome === "notJudged" || count === 0
+      ? []
+      : [`${count} ${OUTCOME_TITLES[outcome]}`];
+  });
+  return [
+    ...(failing.length > 0
+      ? [`Declared transitions: of ${declared.length} declared, ${failing.join("; ")}. summary.md has each line.`]
+      : []),
+    ...(overflow.records > 0
+      ? [
+          `Declared transitions: no line was matched in ${overflow.records} ` +
+            `record${overflow.records === 1 ? "" : "s"} with more than ${MAX_RECORD_TRANSITIONS} discrete and shape ` +
+            `differences (${overflow.samples.slice(0, MAX_NAMED_IN_FAILURE).join("; ")}` +
+            `${overflow.records > MAX_NAMED_IN_FAILURE ? "; and more" : ""}).`,
+        ]
+      : []),
+  ];
+}
+
 /* ── Reports ── */
 
 /** What a driver knows about a run and the comparison does not. */
@@ -1489,8 +2428,9 @@ function tallySection(title: string, tally: ComparisonTally, changeClass: Change
     "",
     ...(tally.differences.digest > 0
       ? [
-          `${tally.differences.digest} digests of traces nested in analysis results differ. Above C0 only the status ` +
-            "and hit count beside a digest are compared; the numbers inside it are not budgeted.",
+          `${tally.differences.digest} digests of traces nested in analysis results differ. Above C0 the status, hit ` +
+            "count, outcome hash, largest residual share and largest effective tolerance beside a digest are " +
+            "compared; how far the other numbers inside it moved is not budgeted.",
           "",
         ]
       : []),
@@ -1551,6 +2491,87 @@ function tallySection(title: string, tally: ComparisonTally, changeClass: Change
 }
 
 /**
+ * The declared transitions of a run, the units it found that no line declares, and the units that no line can. The
+ * section leads the report, as the digests do: a passing run excused differences on the strength of these lines.
+ */
+function transitionSection({ changeClass, transitions }: RunSummary): string[] {
+  const { declared, undeclared, undeclaredLines, breached, overflow } = transitions;
+  if (declared.length === 0 && undeclared === 0 && breached.units === 0 && overflow.records === 0) return [];
+  const gated = changeClass === "c1" || changeClass === "c2";
+  const several = (count: number, noun: string) => `${count} ${noun}${count === 1 ? "" : "s"}`;
+  const shown = undeclaredLines.slice(0, MARKDOWN_SAMPLES);
+  const shownBreaches = breached.samples.slice(0, MARKDOWN_SAMPLES);
+  /* A shape is said apart: the line vouches for what is behind it, of which only the common hits were compared. */
+  const excusedBy = ({ outcome, differences, shapes, excusedNumbers }: TransitionResult) =>
+    outcome === "matched"
+      ? `, ${several(differences, "discrete or shape difference")}` +
+        `${shapes > 0 ? ` (${shapes} of them a shape, behind which only the hits both sides have are compared)` : ""}` +
+        `${excusedNumbers > 0 ? ` and ${several(excusedNumbers, "number")} beyond budget` : ""}`
+      : "";
+  return [
+    "## Declared transitions",
+    "",
+    ...(changeClass === "c0"
+      ? [`A C0 change declares no transition, and the description declares ${declared.length}. No line was matched.`]
+      : [
+          gated
+            ? "A matched line excuses the discrete and shape differences of its unit. With `numbers` it also " +
+              "excuses the numbers beyond budget in the fields of a traced ray that have no counterpart once the " +
+              "ray ends elsewhere, where the unit's differences show that it did. Behind a hit column that changed " +
+              "length, the hits both sides have are compared as in any ray. Whatever else lies behind a changed " +
+              "array length, or in a member one side lacks, is compared with nothing: there the head side is held " +
+              "to the tolerance of each hit and of each converged solve and to finite numbers, and to no budget. " +
+              "transitions.md lists every difference each matched line covers."
+            : "Under C3 the lines are matched and reported, and gate nothing. transitions.md lists every " +
+              "difference each matched line covers.",
+          "",
+          ...declared.map(
+            (result) =>
+              `- ${OUTCOME_TITLES[result.outcome].replace(/^./, (first) => first.toUpperCase())}` +
+              `${excusedBy(result)}: ${result.line.slice(2)}` +
+              `${result.detail === undefined ? "" : ` ${result.detail}`}`,
+          ),
+          ...(declared.length === 0 ? ["No line is declared."] : []),
+        ]),
+    "",
+    ...(undeclared > 0
+      ? [
+          `${several(undeclared, "unit")} of the engine comparison ${undeclared === 1 ? "holds" : "hold"} a ` +
+            `discrete or shape difference that no line declares${gated ? ", and each such difference fails" : ""}. ` +
+            "transitions.md has a line " +
+            'for each, to paste under a heading "Engine-diff transitions" of the pull request description with a ' +
+            `reason after its full stop (${shownOf(shown.length, undeclared)}):`,
+          "",
+          "```text",
+          ...shown,
+          "```",
+          "",
+        ]
+      : []),
+    ...(breached.units > 0
+      ? [
+          `${several(breached.units, "unit")} ${breached.units === 1 ? "holds" : "hold"} a discrete or shape ` +
+            "difference that no line can declare, because the unit also holds what no line excuses" +
+            `${gated ? ", and each such difference fails" : ""}. No line is written for one ` +
+            `(${shownOf(shownBreaches.length, breached.units)}):`,
+          "",
+          ...shownBreaches.map((sample) => `- ${sample}`),
+          "",
+        ]
+      : []),
+    ...(overflow.records > 0
+      ? [
+          `${several(overflow.records, "record")} ${overflow.records === 1 ? "holds" : "hold"} more than ` +
+            `${MAX_RECORD_TRANSITIONS} discrete and shape differences, which is more than a run sorts into units. ` +
+            "Nothing there was matched against a line: " +
+            `${overflow.samples.slice(0, MARKDOWN_SAMPLES).join("; ")}.`,
+          "",
+        ]
+      : []),
+  ];
+}
+
+/**
  * Write the summary of a run as Markdown: the verdict, the counts a pull request states, each comparison, the
  * uncompared lenses against the declared exceptions, and wall time per phase.
  *
@@ -1567,8 +2588,8 @@ export function renderSummaryMarkdown(summary: RunSummary, context: RunContext):
     read(counts.baseEngine),
     read(counts.headEngine),
   ];
-  /* Above C0 a changed digest does not fail and the trace behind it is held to no budget. It leads the report, so
-   * a passing run cannot be read as having budgeted those traces. */
+  /* Above C0 a changed digest does not fail and the numbers of the trace behind it are held to no budget. It leads
+   * the report, so a passing run cannot be read as having budgeted those traces. */
   const digests = engine.differences.digest;
   const notBudgeted =
     digests > 0 && (summary.changeClass === "c1" || summary.changeClass === "c2")
@@ -1576,10 +2597,17 @@ export function renderSummaryMarkdown(summary: RunSummary, context: RunContext):
           "## Not budgeted: digested traces",
           "",
           `**${digests} trace digests changed, in ${engine.digests.lenses.length} lenses, and none of them was ` +
-            `budgeted.** A trace nested in an analysis result is in the record as its status, hit count and a ` +
-            `hash. Under ${summary.changeClass.toUpperCase()} only the status and the hit count were compared: ` +
-            "the coordinates, directions and residuals inside these traces were held to no budget, and the run " +
-            "did not fail on them.",
+            `budgeted.** A trace nested in an analysis result is in the record as its status, its hit count, two ` +
+            "hashes, its largest residual share and its largest effective tolerance. Under " +
+            `${summary.changeClass.toUpperCase()} five of those were judged, and one that failed is among the ` +
+            "failing differences below: the status and the hit count, which must be equal; the outcome hash, " +
+            "which must be equal, and which changes with any flag, status, reason, label, count, index, sample " +
+            "position or non-finite value inside the trace and with the shape of what it holds; the largest " +
+            "residual inside it as a share of its hit's effective tolerance, which the head must keep at or under " +
+            "1 wherever the two sides differ; and the largest effective tolerance inside it, held as the tolerance " +
+            "of a hit the comparison can read is. Not judged: how far the coordinates, directions and other " +
+            "numbers inside these traces moved, an effective tolerance below the largest of its trace among them. " +
+            "They were held to no budget, and the run did not fail on them.",
           "",
           ...table(
             ["Record family", "Changed digests"],
@@ -1625,6 +2653,7 @@ export function renderSummaryMarkdown(summary: RunSummary, context: RunContext):
         ]
       : []),
     ...notBudgeted,
+    ...transitionSection(summary),
     "## Counts",
     "",
     `${summary.lenses} lenses, ${summary.uncompared.length - unasked} of them not compared.` +

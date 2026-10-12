@@ -40,8 +40,8 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 - `src/components/errors/` owns page/panel error boundaries and shared error displays.
 - `src/components/hooks/` owns viewer computation hooks and interaction-state helpers.
 - `src/optics/` owns all optical calculations and has no React dependencies. See
-  [`architecture/optics-engine.md`](architecture/optics-engine.md) for the `math/`, `trace/`, `field/`, `state/`,
-  `prescription/`, `analysis/`, and diagram-geometry submodule boundaries.
+  [`architecture/optics-engine.md`](architecture/optics-engine.md) for the `geometry/`, `math/`, `trace/`, `field/`,
+  `state/`, `prescription/`, `analysis/`, and diagram-geometry submodule boundaries.
 - `src/utils/` owns shared helpers, partitioned by domain: `catalog/`, `content/`, `seo/`, `state/`, `style/`, and
   `theme/`, plus root-level general utilities.
 - `src/comparison/` owns comparison-mode state, layout, sliders, and URL synchronization.
@@ -82,6 +82,7 @@ src/components/           - React UI components and hooks
   search/                 - Catalog search box and results list
 src/comparison/           - Comparison mode feature module
 src/optics/               - Pure optical engine and analysis helpers
+  geometry/               - Surface sag, slope, normals, and profiles (one implementation)
   math/ trace/ field/     - Vector math, exact tracing, projection-aware field launch
   prescription/ state/    - Lens normalization and prepared optical state
   analysis/ aberration/   - State-aware analysis adapters and aberration helpers

@@ -11,7 +11,7 @@ import type {
   ElementSpan,
   SurfaceRenderDiagnostics,
 } from "../../types/optics.js";
-import { FLAT_R_THRESHOLD } from "../constants.js";
+import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import { sharedMaterialBand } from "../internal/apertureBands.js";
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
 import { surfaceSag2 } from "./surfaceOutline.js";

@@ -20,13 +20,13 @@ flowchart LR
   n_external_src_optics_field["src/optics/field"]
   n_external_src_optics_layout_ts["src/optics/layout.ts"]
   n_external_src_optics_aberration["src/optics/aberration"]
-  n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_first_order["src/optics/first-order"]
+  n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_spectralLines_ts["src/optics/spectralLines.ts"]
   n_external_src_optics_aberrationAnalysis_ts["src/optics/aberrationAnalysis.ts"]
-  n_external_src_optics_constants_ts["src/optics/constants.ts"]
   n_external_src_optics_distortionAnalysis_ts["src/optics/distortionAnalysis.ts"]
   n_external_src_optics_focusDistance_ts["src/optics/focusDistance.ts"]
+  n_external_src_optics_geometry["src/optics/geometry"]
   n_external_src_optics_groupMovement_ts["src/optics/groupMovement.ts"]
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
   n_external_src_optics_rayTrace_ts["src/optics/rayTrace.ts"]
@@ -41,13 +41,13 @@ flowchart LR
   n_src_optics_analysis_TypeScript_modules --> |5| n_external_src_optics_field
   n_src_optics_analysis_TypeScript_modules --> |4| n_external_src_optics_layout_ts
   n_src_optics_analysis_TypeScript_modules --> |3| n_external_src_optics_aberration
-  n_src_optics_analysis_TypeScript_modules --> |3| n_external_src_optics_math
   n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_first_order
+  n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_math
   n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_spectralLines_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_aberrationAnalysis_ts
-  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_constants_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_distortionAnalysis_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_focusDistance_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_geometry
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_groupMovement_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_pupilAberration_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_rayTrace_ts
@@ -71,7 +71,7 @@ flowchart LR
 | `analysisJobs.ts` | Analysis Jobs helper module | same folder (8), src/optics/chromatic, src/optics/optics.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | analysisJobs2, analysisJobsForState2 |
 | `analysisMovementSupport.ts` | Analysis Movement Support helper module | src/optics/perspective | same folder, src/optics/compat.ts | AnalysisSectionId, AnalysisSectionMode, AnalysisSectionAvailability, AnalysisSectionUnavailableError, analysisSectionAvailability, assertAnalysisSectionAvailable, assertCenteredAnalysisSectionAvailable |
 | `analysisQuality.ts` | Analysis Quality helper module | none | same folder (7), src/optics/aberration (4), src/benchmarks, src/components/layout, src/optics/distortionAnalysis.ts, +1 more | AnalysisQuality, AnalysisSamplingOptions, INTERACTIVE_ANALYSIS_SAMPLING, analysisSamplingForQuality |
-| `asphericComparison.ts` | Aspheric Comparison helper module | src/optics/constants.ts, src/optics/math, src/types | src/optics/compat.ts | DepartureSample2, computeAsphericDeparture2, computeDepartureProfile2, computeBestFitSphereR2, peakAbsDeparture2, rmsDeparture2, nearestSurfaceForClick2 |
+| `asphericComparison.ts` | Aspheric Comparison helper module | src/optics/geometry, src/types | src/optics/compat.ts | DepartureSample2, computeAsphericDeparture2, computeDepartureProfile2, computeBestFitSphereR2, peakAbsDeparture2, rmsDeparture2, nearestSurfaceForClick2 |
 | `bokeh.ts` | Bokeh helper module | same folder, src/optics/aberration, src/optics/types.ts | same folder, src/optics/compat.ts | computeBestFocusZForState2, computeBokehPreviewPairForState2, computeBestFocusZ2, computeBokehPreview2, computeBokehPreviewPair2, buildBokehDensityGrid2, buildBokehRadialProfile2, classifyBokehBrightnessCharacter2, +1 more |
 | `chromatic.ts` | Chromatic helper module | src/optics/chromatic (4), src/optics/aberration (2), same folder, src/optics/field, src/optics/layout.ts, +5 more | same folder, src/optics/compat.ts | ChromaticAnalysisOptions, ChromaticAnalysisResult, LateralColorChannelSample, LateralColorCurveResult, LateralColorFieldSample, LongitudinalChromaticFocusResult, LongitudinalChromaticFocusSample, ChromaticRayFanAnalysisOptions2, +11 more |
 | `chromaticRayFanScaling.ts` | Chromatic Ray Fan Scaling helper module | src/types | src/optics/compat.ts | REFERENCE_LOCA_MM_2, ChromaticBarResult2, computeLocaBarOffsets2 |

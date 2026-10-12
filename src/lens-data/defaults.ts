@@ -7,7 +7,7 @@
  */
 
 import type { LensData } from "../types/optics.js";
-import { DEFAULT_MAX_RIM_ANGLE_DEG } from "../optics/internal/surfaceMath.js";
+import { DEFAULT_MAX_RIM_ANGLE_DEG } from "../optics/geometry.js";
 
 const LENS_DEFAULTS: Partial<LensData> = {
   /* ── Catalog visibility ── */
