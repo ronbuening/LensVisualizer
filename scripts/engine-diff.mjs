@@ -29,9 +29,11 @@
  *
  * It writes gzip NDJSON payloads under `<out>/payloads/` and the small files under `<out>/reports/`: summary.json,
  * summary.md, data-impact.md, uncompared.json and failing-records.ndjson.gz, and above C0 transitions.md, which holds
- * a line to paste for every unit with a transition that nothing declares. Nothing it writes belongs in the
- * repository. The exit code is 0 when the run passes and 1 when it fails or cannot run. Told to stop by SIGINT or
- * SIGTERM, it removes its base worktree and its temporary directories first.
+ * a line to paste for every unit with a transition that nothing declares, the units that no line can declare, and
+ * every difference each matched line covers. Nothing it writes belongs in the repository. The exit code is 0 when
+ * the run passes and 1 when it fails or cannot run. A declared transition that cannot be read stops the run before
+ * it adds its base worktree. Told to stop by SIGINT or SIGTERM, it removes its base worktree and its temporary
+ * directories first.
  *
  * Usage:
  *   node scripts/engine-diff.mjs --base <ref> [--tier p|s|f] [--class c0|c1|c2|c3] [--shard i/n] [--lens <id>]
@@ -82,6 +84,9 @@ const MAX_FAILING_RECORD_BYTES = 32 * 1024 * 1024;
 /* Lines for undeclared transitions go to reports/ as well. Past this much text the rest are counted, not written:
  * the run has counted every one of their units by then, and fails on each whether its line is written or not. */
 const MAX_TRANSITION_LINE_BYTES = 4 * 1024 * 1024;
+/* What GitHub holds of a pull request description, in characters. The inputs of one workflow dispatch, which is
+ * how a stage run takes its lines, are held to one character less together. */
+const DESCRIPTION_CAPACITY = 65_536;
 const PROGRESS_EVERY_LENSES = 100;
 /* A lens is captured, compared and written this many requests at a time. One zoom has 130 authored stations, and
  * its Tier F records are over a gigabyte of text per side: held whole, on both sides, they do not fit the heap.
@@ -208,32 +213,85 @@ function openGzipLines(path) {
 }
 
 /**
- * Write the report an author pastes undeclared transitions from.
+ * Write the report of a run's transitions: the lines an author pastes for the units that nothing declares, the
+ * units that no line can declare, and every difference each matched line covers.
  *
+ * The lines stand alone under the heading a description declares them under, so that section can be pasted whole.
+ * Every later section has a heading of its own, which ends the declarations for the reader of a description.
+ *
+ * @param {{ breached: { units: number, samples: readonly string[] }, declared: readonly { line: string,
+ *   outcome: string, differences: number, covered?: readonly { path: string, kind: string, base: string,
+ *   head: string }[] }[] }} transitions - what the run found, as its summary holds it
  * @param {readonly string[]} lines - one line per unit that nothing declares, each without its reason
  * @param {number} omitted - lines past the size cap, which are counted and not written
  * @returns {string} Markdown text
  */
-function renderTransitionLines(lines, omitted) {
-  if (lines.length + omitted === 0) {
-    return "# Undeclared transitions\n\nNo unit of the engine comparison holds a transition that nothing declares.\n";
-  }
+export function renderTransitionsReport(transitions, lines, omitted) {
   const units = lines.length + omitted;
+  const characters = lines.reduce((total, line) => total + line.length + 1, 0);
+  const { breached } = transitions;
+  const matched = transitions.declared.filter(({ outcome }) => outcome === "matched");
+  const code = (text) => `\`${text.replace(/\|/g, "\\|")}\``;
   return [
-    "# Undeclared transitions",
+    "# Transitions",
     "",
-    `${units} ${units === 1 ? "unit of the engine comparison holds" : "units of the engine comparison hold"} a ` +
-      "discrete or shape difference that no line of the description declares. Each is a line below. To declare " +
-      "them, paste the section into the pull request description and write after each full stop why that " +
-      "transition is expected. A line with no reason stops the run.",
-    "",
-    ...(omitted > 0
-      ? [`${omitted} of them are past the size cap of this file and are not written. The run counted every one.`, ""]
+    ...(units === 0
+      ? ["No unit of the engine comparison holds a transition that nothing declares.", ""]
+      : [
+          `${units} ${units === 1 ? "unit of the engine comparison holds" : "units of the engine comparison hold"} a ` +
+            "discrete or shape difference that no line of the description declares. Each is a line below. To declare " +
+            "them, paste the section into the pull request description and write after each full stop why that " +
+            "transition is expected. A line with no reason stops the run.",
+          "",
+          `The lines are ${characters} characters before their reasons. A pull request description holds ` +
+            `${DESCRIPTION_CAPACITY} characters, and the inputs of one stage dispatch one fewer.` +
+            `${omitted > 0 || characters > DESCRIPTION_CAPACITY ? " These lines do not fit either." : ""}`,
+          "",
+          ...(omitted > 0
+            ? [
+                `${omitted} of them are past the size cap of this file and are not written. The run counted every one.`,
+                "",
+              ]
+            : []),
+          "## Engine-diff transitions",
+          "",
+          ...lines,
+          "",
+        ]),
+    ...(breached.units > 0
+      ? [
+          "## Units that no line can declare",
+          "",
+          `${breached.units} ${breached.units === 1 ? "unit holds" : "units hold"} a discrete or shape difference, ` +
+            "and with it what no line excuses: a residual outside its tolerance or a new non-finite number on the " +
+            "head side, or a hit both sides have that differs beyond its budget. The run writes no line for one" +
+            `${breached.units > breached.samples.length ? `; the first ${breached.samples.length} are listed` : ""}.`,
+          "",
+          ...breached.samples.map((sample) => `- ${sample}`),
+          "",
+        ]
       : []),
-    "## Engine-diff transitions",
-    "",
-    ...lines,
-    "",
+    ...(matched.length > 0
+      ? [
+          "## What each matched line covers",
+          "",
+          "A line names one difference of its unit and carries the digest of all of them. These are the differences " +
+            "each matched line's digest covers, in the order the digest takes them. A shape is a changed array " +
+            "length or a member one side lacks.",
+          "",
+          ...matched.flatMap(({ line, differences, covered = [] }) => [
+            line.replace(/^- /, ""),
+            "",
+            "| Path | Kind | Base | Head |",
+            "| --- | --- | --- | --- |",
+            ...covered.map(
+              ({ path, kind, base, head }) => `| ${code(path)} | ${kind} | ${code(base)} | ${code(head)} |`,
+            ),
+            ...(differences > covered.length ? ["", `The first ${covered.length} of ${differences}.`] : []),
+            "",
+          ]),
+        ]
+      : []),
   ].join("\n");
 }
 
@@ -328,6 +386,24 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
     if (!options.out) rmSync(outDir, { recursive: true, force: true });
   });
   try {
+    /* The head's capture is bundled first, because the reader of the declared transitions is in it. A run reads
+     * them when it is made, so one is made here for that alone: a bullet that cannot be read then stops the run
+     * before a base worktree is added and anything is captured, and the job summary says which bullet. */
+    const headCapture = await clock.timeAsync("Capture bundles", () => loadCapture(ROOT, join(bundlesDir, "head")));
+    try {
+      headCapture.createDifferentialRun({
+        changeClass: options.changeClass,
+        declaredExceptions: [],
+        restricted: true,
+        declaredTransitions: declaredText,
+      });
+    } catch (error) {
+      if (process.env.GITHUB_STEP_SUMMARY && error instanceof Error) {
+        const said = `# Engine diff: could not run\n\n\`\`\`text\n${error.message}\n\`\`\`\n`;
+        appendFileSync(process.env.GITHUB_STEP_SUMMARY, said, "utf8");
+      }
+      throw error;
+    }
     base = clock.time("Base worktree", () =>
       addBaseWorktree({
         root: ROOT,
@@ -338,10 +414,9 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
       }),
     );
     log(`engine-diff: base worktree ${base.worktree}`);
-    const [headCapture, baseCapture] = await clock.timeAsync("Capture bundles", async () => [
-      await loadCapture(ROOT, join(bundlesDir, "head")),
-      await loadCapture(base.worktree, join(bundlesDir, "base")),
-    ]);
+    const baseCapture = await clock.timeAsync("Capture bundles", () =>
+      loadCapture(base.worktree, join(bundlesDir, "base")),
+    );
 
     /* Both catalogs are fingerprinted by the head's rules: under two sets of rules equal data could look changed. */
     const { headCatalog, baseCatalog, changes, pairs } = clock.time("Catalogs and fingerprints", () => {
@@ -508,7 +583,10 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
      * same directory would be read as this run's. */
     const transitionsPath = join(reportsDir, "transitions.md");
     if (options.changeClass === "c0") rmSync(transitionsPath, { force: true });
-    else writeFileSync(transitionsPath, renderTransitionLines(transitionLines, transitionLineCounts.omitted), "utf8");
+    else {
+      const text = renderTransitionsReport(summary.transitions, transitionLines, transitionLineCounts.omitted);
+      writeFileSync(transitionsPath, text, "utf8");
+    }
     if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${markdown}\n`, "utf8");
 
     const { engine, counts } = summary;
@@ -531,6 +609,18 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
       log(
         `engine-diff: units with a transition that nothing declares: ${summary.transitions.undeclared}; a line to ` +
           `paste for each is in ${transitionsPath}`,
+      );
+    }
+    if (transitionLineCounts.omitted > 0 || transitionLineCounts.bytes > DESCRIPTION_CAPACITY) {
+      warn(
+        `engine-diff: warning: the lines to paste are more than the ${DESCRIPTION_CAPACITY} characters a pull ` +
+          "request description holds, so one description cannot declare them all.",
+      );
+    }
+    if (summary.transitions.breached.units > 0) {
+      log(
+        `engine-diff: units with a transition that no line can declare: ${summary.transitions.breached.units}; ` +
+          `${transitionsPath} says what each holds`,
       );
     }
     if (failingRecordCounts.omitted > 0) {

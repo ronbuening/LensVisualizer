@@ -7,11 +7,11 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { USAGE, parseArgs } from "../../scripts/engine-diff.mjs";
+import { USAGE, parseArgs, renderTransitionsReport } from "../../scripts/engine-diff.mjs";
 import { exportCatalog, requestCatalog } from "../../src/benchmarks/engineDiff/captureEntry.js";
 import { parseDeclaredExceptions, parseDeclaredTransitions } from "../../src/benchmarks/engineDiff/compare.js";
 import { lensId, shardRequests, tierRequests } from "../../src/benchmarks/engineDiff/requests.js";
@@ -361,4 +361,241 @@ describe("engine-diff declared transitions", () => {
       }
     },
   );
+
+  /** The script of the `run` block of the stage workflow that holds a line, as the runner's shell gets it. */
+  const runBlock = (holding: string): string => {
+    const lines = readFileSync(".github/workflows/engine-diff-stage.yml", "utf8").split("\n");
+    let start = lines.findIndex((line) => line.includes(holding));
+    if (start < 0) throw new Error(`the stage workflow no longer holds: ${holding}`);
+    while (!/^ *(?:- )?run: \|$/.test(lines[start])) start--;
+    const indent = /^ */.exec(lines[start + 1])![0];
+    let end = start + 1;
+    while (end < lines.length && (lines[end].startsWith(indent) || lines[end].trim() === "")) end++;
+    const script = lines
+      .slice(start + 1, end)
+      .map((line) => line.slice(indent.length))
+      .join("\n");
+    expect(script).not.toContain("${{");
+    return script;
+  };
+  /** Run a step's script as the runner does, under `bash -e`, with what the workflow puts in its environment. */
+  const runStep = (script: string, env: Record<string, string>, cwd: string) => {
+    const assignments = Object.entries(env).map(([name, value]) => `${name}=${value}`);
+    try {
+      const stdout = execFileSync("env", [...assignments, "bash", "-e", "-c", script], {
+        cwd,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      });
+      return { status: 0, stdout };
+    } catch (error) {
+      const { code, status, stdout } = error as { code?: string; status?: number; stdout?: string };
+      if (code === "ENOENT") return null;
+      return { status: status ?? 1, stdout: String(stdout) };
+    }
+  };
+
+  it("refuses a transitions input that holds anything but bullets, before any shard starts", (context) => {
+    const script = runBlock('stray="$(');
+    const dir = mkdtempSync(join(tmpdir(), "engine-diff-test-"));
+    try {
+      const marker = join(dir, "expanded");
+      const bullets = [lineFor("canon-serenar-50f18", "The rim clips it."), lineFor("some-lens", "So does this.")];
+      const plan = (transitions: string) =>
+        runStep(script, { TIER: "s", SHARDS: "", TRANSITIONS: transitions, GITHUB_OUTPUT: join(dir, "output") }, dir);
+      const planned = plan(["", bullets[0], "", `  * ${bullets[1].slice(2)}`, ""].join("\n"));
+      if (!planned) return context.skip("there is no bash here to run the step");
+      expect(planned.status).toBe(0);
+      expect(readFileSync(join(dir, "output"), "utf8")).toContain("count=8\n");
+      /* No input at all, as on a push, is no stray line. */
+      expect(plan("")).toMatchObject({ status: 0 });
+
+      /* A heading among the bullets would end the section each shard writes them under: the bullet behind it would
+       * be read by no shard, and its unit would fail every one of them as undeclared. */
+      const grouped = [bullets[0], `### From another pull request $(touch ${marker})`, bullets[1]].join("\n");
+      expect(parseDeclaredTransitions(`${HEADING}\n${grouped}`)).toHaveLength(1);
+      const refused = plan(grouped);
+      expect(refused?.status).not.toBe(0);
+      expect(refused?.stdout).toContain("::error::the transitions input takes bullets alone");
+      expect(refused?.stdout).toContain("\nNot a bullet: ### From another pull request $(touch ");
+      expect(existsSync(marker)).toBe(false);
+      /* So is prose: what the input holds is what the result job counts. */
+      expect(plan(`${bullets[0]}\nThe second ray clips too.`)?.status).not.toBe(0);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("lists in the stage result the lines no shard judged, and under C0 says that none is", (context) => {
+    const script = runBlock('summaries="$(find shards');
+    try {
+      execFileSync("jq", ["--version"], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    } catch {
+      return context.skip("there is no jq here to run the step");
+    }
+    const dir = mkdtempSync(join(tmpdir(), "engine-diff-test-"));
+    try {
+      const [first, second] = [lineFor("canon-serenar-50f18", "The rim clips it."), lineFor("some-lens", "Why.")];
+      /** Two shards' summaries, each with what it found for the two declared lines. */
+      const shards = (outcomes: [string, string][]) =>
+        outcomes.forEach(([one, other], shard) => {
+          const folder = join(dir, "shards", `engine-diff-tier-s-shard-${shard + 1}-of-2`);
+          mkdirSync(folder, { recursive: true });
+          const summary = {
+            exceptions: { unknown: [] },
+            transitions: {
+              declared: [
+                { line: first, outcome: one },
+                { line: second, outcome: other },
+              ],
+            },
+          };
+          writeFileSync(join(folder, "summary.json"), JSON.stringify(summary), "utf8");
+        });
+      const result = (changeClass: string, outcome: string) => {
+        const summary = join(dir, `summary-${changeClass}.md`);
+        const run = runStep(
+          script,
+          {
+            RESULT: outcome,
+            COUNT: "2",
+            TIER: "s",
+            BASE: "optics-rewrite/s1",
+            CHANGE_CLASS: changeClass,
+            EXCEPTIONS: "",
+            TRANSITIONS: `${first}\n${second}`,
+            GITHUB_SHA: "0123456789abcdef",
+            GITHUB_STEP_SUMMARY: summary,
+          },
+          dir,
+        );
+        return run && { status: run.status, summary: readFileSync(summary, "utf8") };
+      };
+
+      /* The first line was matched by the shard that holds its lens. The second names a record no shard asked for. */
+      shards([
+        ["matched", "notJudged"],
+        ["notJudged", "notJudged"],
+      ]);
+      const gated = result("c1", "success");
+      if (!gated) return context.skip("there is no bash here to run the step");
+      expect(gated.status).toBe(0);
+      expect(gated.summary).toContain("Declared transitions: 2.");
+      expect(gated.summary).toContain("Declared and judged by no shard, since the tier asks for no such record:");
+      expect(gated.summary).toContain(second);
+      expect(gated.summary).not.toContain(first);
+
+      /* Under C0 no shard judges any line, and each fails on a description that declares one: that is not a tier
+       * that asks for no such record. */
+      shards([
+        ["notJudged", "notJudged"],
+        ["notJudged", "notJudged"],
+      ]);
+      const strict = result("c0", "failure");
+      expect(strict?.status).not.toBe(0);
+      expect(strict?.summary).toContain("Declared transitions: 2.");
+      expect(strict?.summary).toContain("A C0 run declares none: every shard fails on them, and none is judged.");
+      expect(strict?.summary).not.toContain("the tier asks for no such record");
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("writes the lines to paste, the units no line can declare and what each matched line covers", () => {
+    const [undeclared, matched] = [lineFor("some-lens", "").trimEnd(), lineFor("canon-serenar-50f18", "Why.")];
+    const none = { breached: { units: 0, samples: [] }, declared: [] };
+    expect(renderTransitionsReport(none, [], 0)).toBe(
+      "# Transitions\n\nNo unit of the engine comparison holds a transition that nothing declares.\n",
+    );
+
+    const breach = "`some-lens` `lens` `traces` `onAxis.rays[2]`: On the head side `onAxis.rays[2].ux` is NaN.";
+    const report = renderTransitionsReport(
+      {
+        breached: { units: 3, samples: [breach] },
+        declared: [
+          {
+            line: matched,
+            outcome: "matched",
+            differences: 3,
+            covered: [
+              { path: "onAxis.rays[1].diagnostics", kind: "shape", base: "object", head: "absent" },
+              { path: "onAxis.rays[1].status", kind: "discrete", base: '"ok"', head: '"a|b"' },
+            ],
+          },
+          { line: lineFor("another-lens", "Why."), outcome: "unchanged", differences: 0 },
+        ],
+      },
+      [undeclared],
+      0,
+    );
+    /* The section to paste is the lines alone under the heading a description declares them under, and what
+     * follows it is under headings of its own, so a description that takes the whole file declares the same. */
+    expect(parseDeclaredTransitions(report.replace(undeclared, `${undeclared} Why.`))).toMatchObject([
+      { lens: "some-lens", reason: "Why." },
+    ]);
+    expect(report).toContain(`## Engine-diff transitions\n\n${undeclared}\n\n## Units that no line can declare\n`);
+    expect(report).toContain(`The lines are ${undeclared.length + 1} characters before their reasons.`);
+    expect(report).toContain("3 units hold a discrete or shape difference");
+    expect(report).toContain(`the first 1 are listed.\n\n- ${breach}\n`);
+    /* A reviewer of a matched line reads here what its one named difference stands for. */
+    expect(report).toContain("\n## What each matched line covers\n\nA line names one difference of its unit");
+    expect(report).toContain(
+      [
+        matched.slice(2),
+        "",
+        "| Path | Kind | Base | Head |",
+        "| --- | --- | --- | --- |",
+        "| `onAxis.rays[1].diagnostics` | shape | `object` | `absent` |",
+        '| `onAxis.rays[1].status` | discrete | `"ok"` | `"a\\|b"` |',
+        "",
+        "The first 2 of 3.",
+        "",
+      ].join("\n"),
+    );
+    expect(report).not.toContain("another-lens");
+
+    /* Lines that one description cannot hold are said to be so, as are lines past the cap of the file. */
+    const many = Array.from({ length: 500 }, () => undeclared);
+    expect(renderTransitionsReport(none, many, 0)).toContain("These lines do not fit either.");
+    expect(renderTransitionsReport(none, [undeclared], 0)).not.toContain("do not fit");
+    const capped = renderTransitionsReport(none, [undeclared], 5);
+    expect(capped).toContain("6 units of the engine comparison hold");
+    expect(capped).toContain("5 of them are past the size cap of this file and are not written.");
+    expect(capped).toContain("These lines do not fit either.");
+  });
+
+  it("stops on a bullet it cannot read before it adds a base worktree", { timeout: 180_000 }, () => {
+    const outDir = mkdtempSync(join(tmpdir(), "engine-diff-test-"));
+    try {
+      const description = join(outDir, "description.md");
+      writeFileSync(description, `${HEADING}\n\n${lineFor("canon-serenar-50f18", "").trimEnd()}\n`, "utf8");
+      const stepSummary = join(outDir, "step-summary.md");
+      let run: { stdout: string; stderr: string } | null = null;
+      try {
+        execFileSync(
+          "env",
+          [
+            `GITHUB_STEP_SUMMARY=${stepSummary}`,
+            "node",
+            "scripts/engine-diff.mjs",
+            ...["--base", "HEAD", "--tier", "p", "--class", "c1", "--lens", "canon-serenar-50f18"],
+            ...["--exceptions", description, "--out", outDir],
+          ],
+          { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+        );
+      } catch (error) {
+        const { stdout, stderr } = error as { stdout?: string; stderr?: string };
+        run = { stdout: String(stdout), stderr: String(stderr) };
+      }
+      /* The line a run prints has no reason: pasted as it is, it stops the next run, which says so and why. */
+      expect(run?.stderr).toContain("a declared transition gives no reason after its full stop:");
+      expect(run?.stdout).not.toContain("engine-diff: base worktree");
+      expect(readdirSync(join(outDir, "reports"))).toEqual([]);
+      expect(readFileSync(stepSummary, "utf8")).toMatch(
+        /^# Engine diff: could not run\n\n```text\nengineDiff: a declared transition gives no reason/,
+      );
+    } finally {
+      rmSync(outDir, { recursive: true, force: true });
+    }
+  });
 });
