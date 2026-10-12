@@ -1,10 +1,12 @@
 /**
- * Surface geometry — the one implementation of sag, slope, normals and profile geometry.
+ * Surface geometry — the one implementation of surface sag, slope and profiles.
  *
- * Both trace stacks, validation, layout, the diagram and the audit scripts read a surface's shape from this module.
- * The positional functions (`sag`, `conicPolySag`, `sagSlopeRaw`) serve callers that hold a radius and coefficients;
- * profile objects serve callers that hold a prepared surface, and add the normal, the domain radius and the slope
- * bound.
+ * Both trace stacks, validation, layout, the diagram and the audit scripts read a surface's sag and slope from this
+ * module. The positional functions (`sag`, `conicPolySag`, `sagSlopeRaw`) serve callers that hold a radius and
+ * coefficients; profile objects serve callers that hold a prepared surface, and add the normal, the domain radius and
+ * the slope bound. For those three the module is not the only home: the RuntimeLens stack tracer builds its own hit
+ * normal (`internal/surfaceIntersection.ts`), validation and the render diagnostics each compute a conic limit, and
+ * the MTF ray classifier samples a slope bound.
  *
  * One arithmetic is used throughout, so `evaluate(r)` equals `sag(r)` and `slope(r)` bit for bit, and a positional
  * function equals the profile method of the same surface:
@@ -20,7 +22,7 @@
  * touches only the square-root argument and stays apart from the polynomial (agent_docs/decisions.md, 2026-08-04),
  * so beyond the conic domain the result is a finite continuation, never NaN. Rejecting that region is the
  * intersection kernel's job. A plain sphere through `sag(h, R)` clamps the argument to 0 instead of 1e-12; the two
- * clamps differ only beyond |R|.
+ * clamps differ wherever the argument is not positive, which is at |R| and beyond it.
  *
  * Each polynomial sum is one Horner chain in h2 over a dense vector `a` indexed by the power of h2:
  *
@@ -202,8 +204,9 @@ function conicPolyEvaluateAt(h: number, c: number, K: number, terms: HornerTerms
 }
 
 /**
- * Sphere sag and slope from one pass. Inside |R| the two sphere clamps agree and one root serves both; beyond it
- * `sag` floors the root argument at 0 and `sagSlopeRaw` at 1e-12, and each field keeps its own.
+ * Sphere sag and slope from one pass. Where the root argument is positive, inside |R|, the two sphere clamps agree
+ * and one root serves both. At |R| and beyond it `sag` floors the argument at 0 and `sagSlopeRaw` at 1e-12, and each
+ * field keeps its own.
  */
 function sphereEvaluateAt(h: number, R: number, out: SagSlope): SagSlope {
   if (Math.abs(R) > FLAT_R_THRESHOLD) {
@@ -458,7 +461,7 @@ export function createAsphericProfile(R: number, asphere: AsphericCoefficients):
     finiteRadiusLimit: () => conicFiniteRadiusLimit(R, asphere.K),
     maxAbsSlope: slopeBound,
     curvature,
-    // Read through, like the evaluators, so a mutable coefficient object is never snapshotted.
+    // Read through, like the evaluators, so this profile never holds stale data. A spread copy can (SurfaceProfile).
     get conic() {
       return asphere.K;
     },

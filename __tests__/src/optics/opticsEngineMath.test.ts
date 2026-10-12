@@ -1,8 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { sag } from "../../../src/optics/optics.js";
 import type { AsphericCoefficients } from "../../../src/types/optics.js";
 import type { SagSlope, Vec3 } from "../../../src/optics/types.js";
-import { createSurfaceProfile, createTiltedPlaneProfile } from "../../../src/optics/geometry/surfaceProfile.js";
+import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSagSurface } from "../../../src/optics/internal/surfaceIntersection.js";
 import { intersectSurfaceProfile } from "../../../src/optics/math/intersection.js";
 import {

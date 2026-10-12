@@ -54,6 +54,12 @@ export interface SagSlope {
  * a vertex z plus x/y aperture coordinates into the actual 3D surface point.
  * A tilted plane is the exception: its `sag` and `evaluate` read the argument
  * as the signed meridional coordinate y.
+ *
+ * The four readonly fields give the base conic as data. An aspheric profile
+ * from its factory reads `conic` and `hasPolynomial` from the coefficient object
+ * on every access. A spread copy holds the values read when it was copied, while
+ * its copied evaluators go on reading the object, so over mutable coefficients
+ * a copy's data can disagree with its evaluators.
  */
 export interface SurfaceProfile {
   kind: "flat" | "spherical" | "aspheric" | "tilted-plane";

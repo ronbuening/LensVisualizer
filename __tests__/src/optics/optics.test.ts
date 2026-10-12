@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import {
-  sag,
   sagSlope,
   thick,
   doLayout,
@@ -15,6 +14,7 @@ import {
   eflAtFocus,
   effectiveFNumber,
 } from "../../../src/optics/optics.js";
+import { sag } from "../../../src/optics/geometry/surfaceProfile.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
 import {

@@ -358,12 +358,13 @@ the whole prescription while a converter is camera-fixed).
 stable path in app code unless working inside the engine itself. Import from deeper `src/optics/**` engine modules only
 for engine-native work or focused tests that need prepared-state APIs.
 
-It groups sag/layout helpers (`sag()`, `renderSag()`, `sagSlope()`, `doLayout()`, `gapTrimHeight()`, `thick()`), the
+It groups display-sag and layout helpers (`renderSag()`, `sagSlope()`, `doLayout()`, `gapTrimHeight()`, `thick()`), the
 exact trace adapters (`traceRay()`, `traceSkewRay()`, `traceToImage()`, `traceRayChromatic()`, `traceParaxialRay()`),
 zoom interpolation (`eflAtZoom()`, `epAtZoom()`, `halfFieldAtZoom()`, `tracingHalfFieldAtZoom()`, `bAtZoom()`, and the
 other `*AtZoom()` interpolators), and current-state pupil/field geometry (`entrancePupilAtState()`,
-`computeFieldGeometryAtState()`). All trace/layout functions accept `zoomT`; prime lenses ignore it. Its `sag()`,
-`conicPolySag()`, and `sagSlopeRaw()` are re-exports of the surface-geometry module ([Surface Geometry](#surface-geometry)).
+`computeFieldGeometryAtState()`). All trace/layout functions accept `zoomT`; prime lenses ignore it. It does not export
+`sag()`, `conicPolySag()`, `sagSlopeRaw()`, or `FLAT_R_THRESHOLD`: outside code takes those from `src/optics/geometry.ts`
+([Surface Geometry](#surface-geometry)).
 
 ### Chief-Ray Solving
 
@@ -384,11 +385,12 @@ Every solve outcome is counted through `recordChiefRayStatus2()` in `src/optics/
 
 ## Surface Geometry
 
-`src/optics/geometry/surfaceProfile.ts` is the one implementation of surface sag, slope, normals, and profile geometry.
-Both exact tracers, validation, the `layout.ts` display helpers (`renderSag()`, `sagSlope()`), the diagram outlines,
-the aspheric-comparison helpers, and the audit scripts read a surface's shape from it, so a drawn surface is the traced
-surface. Engine modules import that file directly; code outside `src/optics/` imports the `src/optics/geometry.ts`
-barrel, which re-exports the positional functions and the flat-radius and rim-slope constants.
+`src/optics/geometry/surfaceProfile.ts` is the one implementation of surface sag, slope, and profiles. Both exact
+tracers, validation, the `layout.ts` display helpers (`renderSag()`, `sagSlope()`), the diagram outlines, the
+aspheric-comparison helpers, and the audit scripts read a surface's sag and slope from it, so a drawn surface is the
+traced surface. Engine modules import that file directly; code outside `src/optics/` imports the
+`src/optics/geometry.ts` barrel, which re-exports the positional functions and the flat-radius and rim-slope constants
+and is their only outside door.
 
 - **Profiles.** `createSurfaceProfile()` gives each prepared surface a `SurfaceProfile` of kind `flat`, `spherical`,
   `aspheric`, or `tilted-plane`. A tilted interaction normal wins over the radius, and any surface with coefficients
@@ -406,9 +408,19 @@ barrel, which re-exports the positional functions and the flat-radius and rim-sl
   function equals the profile method of the same surface.
 - **Clamp.** Only the conic square-root argument is clamped, so sag and slope stay finite beyond the conic domain;
   rejecting that region is the intersection kernel's job ([Exact Surface Trace](#exact-surface-trace)). `sag(h, R)`
-  clamps the argument to 0 and the conic path clamps it to `1e-12`, which differ only beyond `|R|`.
-- **Coefficients.** A frozen coefficient object is compiled once and its aspheric profile is cached; a mutable one is
-  re-read on every call.
+  clamps the argument to 0 and the conic path clamps it to `1e-12`. The two differ wherever the argument is not
+  positive: at `|R|` and beyond it.
+- **Coefficients.** A frozen coefficient object is compiled once, and one aspheric profile is cached for it: that of
+  the base radius it was last built with. A mutable one is re-read on every call. A spread copy of a profile keeps the
+  data fields it was copied with, so over mutable coefficients they can disagree with its evaluators.
+- **Not in the module yet.** Sag and slope have no other implementation, but four derived formulas do:
+  - the hit normal of the RuntimeLens stack tracer (`surfaceNormalAtHit()` in `internal/surfaceIntersection.ts`),
+    which differs from `normalFromSlope()` in the last bits and is deleted with that tracer
+    (`OPTICS_ENGINE_REWRITE_SPEC.md`, S4.P2.T4);
+  - the conic limit `|R| / sqrt(1 + K)` in `validateLensData.ts` and `diagram/renderDiagnostics.ts`, beside
+    `finiteRadiusLimit()`;
+  - the "beyond the sphere extent" test `r² > R²` in `trace/sequentialTrace.ts` and `internal/exactSurfaceTrace.ts`;
+  - the closed-form sphere roots and the sampled slope bound in `analysis/mtfRayClassification.ts`.
 
 ## Exact Surface Trace
 

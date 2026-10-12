@@ -341,11 +341,10 @@ describe("surface geometry constants", () => {
     });
   });
 
-  it("re-exports the positional functions and the threshold from the optics barrel", () => {
-    expect(opticsBarrel.FLAT_R_THRESHOLD).toBe(FLAT_R_THRESHOLD);
-    expect(opticsBarrel.sag).toBe(sag);
-    expect(opticsBarrel.conicPolySag).toBe(conicPolySag);
-    expect(opticsBarrel.sagSlopeRaw).toBe(sagSlopeRaw);
+  it("is the only outside door: the optics barrel exports none of them", () => {
+    for (const name of Object.keys(geometryBarrel)) {
+      expect(name in opticsBarrel, name).toBe(false);
+    }
   });
 });
 
@@ -709,12 +708,28 @@ describe("Horner form against an independent power sum", () => {
    * exact sum, relative to the sum of absolute terms and not to a result that cancellation can make small. */
   const RELATIVE_BOUND = 64 * EPS;
 
+  /** Even terms only, through A16: the odd sums and the top two even slots stay empty. */
+  const EVEN_ONLY = {
+    K: -0.7,
+    A4: 1e-6,
+    A6: -2e-9,
+    A8: 3e-12,
+    A10: -4e-15,
+    A12: 5e-18,
+    A14: -6e-21,
+    A16: 7e-24,
+  } satisfies AsphericCoefficients;
+  const EVERY_HUNDREDTH = Array.from({ length: 2001 }, (_, step) => step / 100);
+
   it.each([
     // A flat base leaves the polynomial alone.
     { name: "combined coefficients", R: FLAT_R, asphere: combinedCoefficients(0), heights: [0.4, 2.5, 7, 11.5] },
     { name: "patent coefficients", R: FLAT_R, asphere: PATENT_ASPHERE, heights: [2, 6.5, 12.9] },
     // On a curved base the conic term joins the reference as an addend of its own.
     { name: "mixed orders on a curved base", R: 40, asphere: MIXED_ORDERS, heights: [0.5, 4, 9.5] },
+    /* The power sum was the evaluation before Horner. The two forms round differently, so on this surface they part
+     * in the last bit at about one height in a hundred: every height is held to the bound, none to equal bits. */
+    { name: "an even-only surface, every 0.01 mm to 20 mm", R: 42.5, asphere: EVEN_ONLY, heights: EVERY_HUNDREDTH },
   ])("matches on $name within 64 EPS of the summed term magnitudes", ({ R, asphere, heights }) => {
     for (const h of heights) {
       const reference = powerSum(h, asphere);
@@ -733,7 +748,7 @@ describe("Horner form against an independent power sum", () => {
   });
 
   it("leaves an even-only surface untouched by the odd sums", () => {
-    const even = { K: -0.7, A4: 1e-6, A6: -2e-9, A8: 3e-12, A10: -4e-15, A12: 5e-18, A14: -6e-21, A16: 7e-24 };
+    const even = EVEN_ONLY;
     const R = 42.5;
     for (const h of [0, 3.7, 11.9, 20.1]) {
       const h2 = h * h;
@@ -752,55 +767,6 @@ describe("Horner form against an independent power sum", () => {
         h2;
       expect(conicPolySag(h, R, even)).toBe((c * h2) / (1 + root) + sagChain);
       expect(sagSlopeRaw(h, R, even)).toBe((c * h) / root + h * slopeChain);
-    }
-  });
-
-  /* The same surface against the ascending power sum that was the evaluation before Horner. The two forms round
-   * differently, so they are not equal at every height: on this surface they part in the last bit at about one
-   * height in a hundred. At these three they agree, and the pin shows a later change of arithmetic at once. */
-  it("agrees bit for bit with the ascending power sum at three pinned heights of an even-only surface", () => {
-    const R = 42.5;
-    const asph: AsphericCoefficients = {
-      K: -0.7,
-      A4: 1e-6,
-      A6: -2e-9,
-      A8: 3e-12,
-      A10: -4e-15,
-      A12: 5e-18,
-      A14: -6e-21,
-      A16: 7e-24,
-    };
-    for (const h of [0, 3.7, 11.9]) {
-      const c = 1 / R;
-      const h2 = h * h;
-      const d = 1 - (1 + asph.K) * c * c * h2;
-      const conic = (c * h2) / (1 + Math.sqrt(d > 0 ? d : 1e-12));
-      const poly =
-        asph.A4 * h2 * h2 +
-        asph.A6 * h2 ** 3 +
-        asph.A8 * h2 ** 4 +
-        asph.A10 * h2 ** 5 +
-        asph.A12 * h2 ** 6 +
-        asph.A14 * h2 ** 7 +
-        (asph.A16 ?? 0) * h2 ** 8 +
-        (asph.A18 ?? 0) * h2 ** 9 +
-        (asph.A20 ?? 0) * h2 ** 10;
-      expect(conicPolySag(h, R, asph)).toBe(conic + poly);
-
-      const denom2 = 1 - (1 + asph.K) * c * c * h2;
-      const conicSlope = (c * h) / Math.sqrt(denom2 > 0 ? denom2 : 1e-12);
-      const polySlope =
-        h *
-        (4 * asph.A4 * h2 +
-          6 * asph.A6 * h2 * h2 +
-          8 * asph.A8 * h2 ** 3 +
-          10 * asph.A10 * h2 ** 4 +
-          12 * asph.A12 * h2 ** 5 +
-          14 * asph.A14 * h2 ** 6 +
-          16 * (asph.A16 ?? 0) * h2 ** 7 +
-          18 * (asph.A18 ?? 0) * h2 ** 8 +
-          20 * (asph.A20 ?? 0) * h2 ** 9);
-      expect(sagSlopeRaw(h, R, asph)).toBe(conicSlope + polySlope);
     }
   });
 });
@@ -861,13 +827,23 @@ describe("spheres and planes keep their expressions", () => {
     }
   });
 
-  it("keeps the two sphere clamps apart beyond |R| and equal inside it", () => {
+  it("keeps the two sphere clamps apart at |R| and beyond it, and equal inside it", () => {
     const R = 10;
     expect(sag(9.99, R)).toBe(conicPolySag(9.99, R, undefined));
     // Beyond |R|: sag() gives c·h², the conic path c·h²/(1 + 1e-6).
     expect(sag(12, R)).toBe((1 / R) * 144);
     expect(conicPolySag(12, R, undefined)).toBe(((1 / R) * 144) / (1 + Math.sqrt(1e-12)));
     expect(sag(12, R)).not.toBe(conicPolySag(12, R, undefined));
+
+    // At |R| the root argument is exactly 0, which neither clamp counts as positive: the hemisphere's sag is |R|
+    // through sag(), the conic path floors the root at 1e-6, and the slope is the floored c·h·1e6 on both paths.
+    for (const edge of [8, -8]) {
+      const sign = Math.sign(edge);
+      expect(sag(8, edge)).toBe(edge);
+      expect(conicPolySag(8, edge, undefined)).toBe(sign * 7.9999920000080005);
+      expect(sagSlopeRaw(8, edge, undefined)).toBe(sign * 1e6);
+      expectSameBits(createSphericalProfile(edge).evaluate(8), { sag: edge, slope: sign * 1e6 }, `R=${edge} at |R|`);
+    }
   });
 
   it("returns zero for a flat radius on every positional path", () => {
@@ -1035,6 +1011,23 @@ describe("profile data for closed-form solves", () => {
     expect(copy.hasPolynomial).toBe(true);
     expectSameBits(copy.evaluate(6), profile.evaluate(6), "copy");
   });
+
+  it("holds the copied data on a spread copy while its evaluators follow a mutable object", () => {
+    const mutable = { ...zeroCoefficients(), K: -0.5 };
+    const live = createAsphericProfile(40, mutable);
+    const copy = { ...live };
+    mutable.A4 = 1e-3;
+    mutable.K = 2;
+    // The factory's profile reads through.
+    expect(live.conic).toBe(2);
+    expect(live.hasPolynomial).toBe(true);
+    // The copy keeps the data it was made with, and evaluates the edited surface like the original.
+    expect(copy.conic).toBe(-0.5);
+    expect(copy.hasPolynomial).toBe(false);
+    expect(copy.curvature).toBe(1 / 40);
+    expectSameBits(copy.evaluate(5), live.evaluate(5), "copy after the edit");
+    expectSameBits(copy.evaluate(5), documentedSagSlope(5, 40, mutable), "edited surface");
+  });
 });
 
 describe("coefficient objects", () => {
@@ -1106,7 +1099,7 @@ describe("coefficient objects", () => {
     expect(curvedProfile.maxAbsSlope!(5)).toBeGreaterThan(before);
   });
 
-  it("returns one profile per frozen object and radius, and a fresh one for a mutable object", () => {
+  it("keeps one profile per frozen object, that of the last radius, and builds a fresh one for a mutable object", () => {
     const mutable = combinedCoefficients(-0.6);
     expect(createAsphericProfile(30, mutable)).not.toBe(createAsphericProfile(30, mutable));
 
@@ -1115,12 +1108,19 @@ describe("coefficient objects", () => {
     expect(createAsphericProfile(30, frozen)).toBe(profile);
     expect(createSurfaceProfile({ R: 30 }, frozen)).toBe(profile);
 
-    // Another base radius is another surface: its own profile, and the first one's values come back unchanged.
+    // Another base radius is another surface: its own profile, which takes the object's one cache entry.
     const other = createAsphericProfile(-30, frozen);
     expect(other).not.toBe(profile);
-    expect(createSurfaceProfile({ R: -30 }, frozen)).not.toBe(createSurfaceProfile({ R: 30 }, frozen));
+    expect(createAsphericProfile(-30, frozen)).toBe(other);
     expect(other.curvature).toBe(1 / -30);
     expectSameBits(other.evaluate(7), documentedSagSlope(7, -30, frozen), "other radius");
-    expectSameBits(createAsphericProfile(30, frozen).evaluate(7), profile.evaluate(7), "first radius again");
+
+    // The first radius is rebuilt, not found: a new object with the same values, and the old one still works.
+    const rebuilt = createAsphericProfile(30, frozen);
+    expect(rebuilt).not.toBe(profile);
+    expect(createSurfaceProfile({ R: 30 }, frozen)).toBe(rebuilt);
+    expectSameBits(rebuilt.evaluate(7), profile.evaluate(7), "first radius again");
+    expectSameBits(profile.evaluate(7), documentedSagSlope(7, 30, frozen), "replaced profile");
+    expect(createSurfaceProfile({ R: -30 }, frozen)).not.toBe(createSurfaceProfile({ R: 30 }, frozen));
   });
 });
