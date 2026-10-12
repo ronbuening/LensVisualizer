@@ -362,7 +362,8 @@ It groups sag/layout helpers (`sag()`, `renderSag()`, `sagSlope()`, `doLayout()`
 exact trace adapters (`traceRay()`, `traceSkewRay()`, `traceToImage()`, `traceRayChromatic()`, `traceParaxialRay()`),
 zoom interpolation (`eflAtZoom()`, `epAtZoom()`, `halfFieldAtZoom()`, `tracingHalfFieldAtZoom()`, `bAtZoom()`, and the
 other `*AtZoom()` interpolators), and current-state pupil/field geometry (`entrancePupilAtState()`,
-`computeFieldGeometryAtState()`). All trace/layout functions accept `zoomT`; prime lenses ignore it.
+`computeFieldGeometryAtState()`). All trace/layout functions accept `zoomT`; prime lenses ignore it. Its `sag()`,
+`conicPolySag()`, and `sagSlopeRaw()` are re-exports of the surface-geometry module ([Surface Geometry](#surface-geometry)).
 
 ### Chief-Ray Solving
 
@@ -380,6 +381,34 @@ need a scalar launch height should read `solve.yLaunch`; new analysis code shoul
 Every solve outcome is counted through `recordChiefRayStatus2()` in `src/optics/field/chiefRayCache.ts`;
 `src/optics/chiefRayDiagnostics.ts` is a re-export barrel that exposes the per-lens status-count snapshot as
 `getChiefRayDiagnostics()` / `resetChiefRayDiagnostics()` for audit scripts and tests.
+
+## Surface Geometry
+
+`src/optics/geometry/surfaceProfile.ts` is the one implementation of surface sag, slope, normals, and profile geometry.
+Both exact tracers, validation, the `layout.ts` display helpers (`renderSag()`, `sagSlope()`), the diagram outlines,
+the aspheric-comparison helpers, and the audit scripts read a surface's shape from it, so a drawn surface is the traced
+surface. Engine modules import that file directly; code outside `src/optics/` imports the `src/optics/geometry.ts`
+barrel, which re-exports the positional functions and the flat-radius and rim-slope constants.
+
+- **Profiles.** `createSurfaceProfile()` gives each prepared surface a `SurfaceProfile` of kind `flat`, `spherical`,
+  `aspheric`, or `tilted-plane`. A tilted interaction normal wins over the radius, and any surface with coefficients
+  is `aspheric`, including one with a flat base or all-zero terms. A profile carries `sag`, `slope`, a fused
+  `evaluate(radius)` that returns both, `normalAt`, `pointAt`, `finiteRadiusLimit()` (the conic domain radius), and,
+  on aspheres only, `maxAbsSlope` (the absolute-term slope bound). It also exposes its base conic as data
+  (`curvature`, `conic`, `hasPolynomial`, `planeNormal`). A tilted plane's `sag` and `evaluate` read their argument as
+  signed y, not as a radius.
+- **Positional functions.** `sag(h, R)`, `conicPolySag(h, R, asph)`, and `sagSlopeRaw(h, R, asph)` serve callers that
+  hold a radius and coefficients instead of a prepared surface: the RuntimeLens stack tracer, validation, layout, the
+  aspheric-comparison helpers, and scripts.
+- **One arithmetic.** The module header fixes the association. The conic term and the even and odd polynomial sums are
+  separate addends, and each sum is one Horner chain in h² from the highest nonzero coefficient, with slots taken from
+  `ASPHERIC_POLYNOMIAL_TERMS` by power. `evaluate(r)` equals `sag(r)` and `slope(r)` bit for bit, and a positional
+  function equals the profile method of the same surface.
+- **Clamp.** Only the conic square-root argument is clamped, so sag and slope stay finite beyond the conic domain;
+  rejecting that region is the intersection kernel's job ([Exact Surface Trace](#exact-surface-trace)). `sag(h, R)`
+  clamps the argument to 0 and the conic path clamps it to `1e-12`, which differ only beyond `|R|`.
+- **Coefficients.** A frozen coefficient object is compiled once and its aspheric profile is cached; a mutable one is
+  re-read on every call.
 
 ## Exact Surface Trace
 

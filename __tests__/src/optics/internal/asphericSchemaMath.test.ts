@@ -9,7 +9,7 @@
  * (never by differencing across the clamp boundary).
  */
 import { describe, expect, it } from "vitest";
-import { conicPolySag, sagSlopeRaw } from "../../../../src/optics/internal/surfaceMath.js";
+import { conicPolySag, sagSlopeRaw } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA, ASPHERIC_POLYNOMIAL_TERMS } from "../../../../src/types/asphericSchema.js";
 import type { AsphericCoefficients } from "../../../../src/types/optics.js";
 

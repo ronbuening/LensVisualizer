@@ -20,7 +20,7 @@ import type {
   StopSpec,
   VariableSpec,
 } from "../types.js";
-import { createSurfaceProfile } from "../math/surfaceProfile.js";
+import { createSurfaceProfile } from "../geometry/surfaceProfile.js";
 import { compileDiffractivePhase } from "../math/diffractivePhase.js";
 import { compileAspheres } from "./aspheres.js";
 import { compileSurfaceDispersions } from "./dispersion.js";

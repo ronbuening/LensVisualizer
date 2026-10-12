@@ -1,6 +1,6 @@
 # src/optics/math
 
-This folder low-level vector, numerical, paraxial, surface profile, and intersection math.
+This folder low-level vector, numerical, paraxial, and intersection math.
 
 Generated `readme.md` and `improvementsuggestions.md` files are intentionally omitted from the per-file inventory so this document stays focused on source relationships.
 
@@ -16,7 +16,6 @@ flowchart LR
     n_src_optics_math_src_optics_math_paraxial_ts["paraxial.ts"]
     n_src_optics_math_src_optics_math_plane_ts["plane.ts"]
     n_src_optics_math_src_optics_math_rootSolve_ts["rootSolve.ts"]
-    n_src_optics_math_src_optics_math_surfaceProfile_ts["surfaceProfile.ts"]
     n_src_optics_math_src_optics_math_vector_ts["vector.ts"]
   end
   n_external_src_optics_constants_ts["src/optics/constants.ts"]
@@ -27,7 +26,6 @@ flowchart LR
   n_src_optics_math_src_optics_math_intersection_ts --> n_external_src_optics_constants_ts
   n_src_optics_math_src_optics_math_vector_ts --> n_external_src_optics_constants_ts
   n_src_optics_math_src_optics_math_paraxial_ts --> n_external_src_optics_geometry
-  n_src_optics_math_src_optics_math_surfaceProfile_ts --> n_external_src_optics_geometry
   n_src_optics_math_src_optics_math_diffractivePhase_ts --> n_external_src_optics_spectralLines_ts
   n_src_optics_math_src_optics_math_diffractivePhase_ts --> n_external_src_optics_types_ts
   n_src_optics_math_src_optics_math_intersection_ts --> n_external_src_optics_types_ts
@@ -47,9 +45,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 9
+- Direct source files: 8
 - Direct subfolders: 0
-- Main outbound areas: same folder (6), src/optics/types.ts (6), src/optics/constants.ts (2), src/optics/geometry (2), src/types (2), src/optics/spectralLines.ts
+- Main outbound areas: same folder (6), src/optics/types.ts (6), src/optics/constants.ts (2), src/types (2), src/optics/geometry, src/optics/spectralLines.ts
 - External consumers: src/components/display, src/optics/analysis, src/optics/field, src/optics/first-order, src/optics/geometry, src/optics/internal, src/optics/perspective, src/optics/prescription, +3 more
 
 ## Files
@@ -63,5 +61,4 @@ flowchart LR
 | `paraxial.ts` | Paraxial helper module | same folder, src/optics/geometry, src/optics/types.ts, src/types | src/optics/first-order (4), src/optics/field, src/optics/internal, src/optics/perspective | ParaxialSurface, ParaxialState, ParaxialTraceOptions, ParaxialTraceResult, transferParaxialRay2, interactParaxialSurface2, traceParaxialSurfaces2 |
 | `plane.ts` | Plane helper module | same folder, src/optics/types.ts | src/optics/perspective (3), src/optics/trace | RayPlaneIntersection, RayPlaneIntersectionOptions, intersectRayPlane |
 | `rootSolve.ts` | Root Solve helper module | none | src/optics/analysis (2), src/optics/perspective (2) | ScalarRootEvaluation, ScalarRootSolveStatus, ScalarRootSolveOptions, ScalarRootSolveResult, solveScalarRoot |
-| `surfaceProfile.ts` | Surface Profile helper module | src/optics/geometry | src/optics/analysis, src/optics/internal, src/optics/prescription | createAsphericProfile, createFlatProfile, createSphericalProfile, createSurfaceProfile, createTiltedPlaneProfile |
 | `vector.ts` | Vector helper module | src/optics/constants.ts, src/optics/types.ts | src/optics/perspective (11), same folder (3), src/optics/trace (3), src/components/display, src/optics/geometry, +1 more | vec3, add, subtract, scale, dot, cross, length, normalize, +5 more |

@@ -6,7 +6,7 @@ import {
   firstInfinityThickness,
   resolveVariableThickness,
 } from "../../../../src/optics/internal/lensState.js";
-import { conicPolySag, sagSlopeRaw } from "../../../../src/optics/internal/surfaceMath.js";
+import { conicPolySag, sagSlopeRaw } from "../../../../src/optics/geometry/surfaceProfile.js";
 import type { AsphericCoefficients, SurfaceData } from "../../../../src/types/optics.js";
 
 describe("lensState helpers", () => {

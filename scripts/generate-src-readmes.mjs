@@ -97,7 +97,7 @@ const folderRoleOverrides = new Map([
     "the single surface-geometry implementation: sag, slope, normals, profile factories, conic domain, and slope bounds",
   ],
   ["src/optics/internal", "private exact surface-tracing implementation details for the optics engine"],
-  ["src/optics/math", "low-level vector, numerical, paraxial, surface profile, and intersection math"],
+  ["src/optics/math", "low-level vector, numerical, paraxial, and intersection math"],
   ["src/optics/mount", "pure mount-diagram geometry, SVG document emission, validation, styling, and JSON helpers"],
   [
     "src/optics/prescription",

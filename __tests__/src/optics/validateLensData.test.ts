@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/internal/surfaceMath.js";
+import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/geometry/surfaceProfile.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../src/types/asphericSchema.js";
 import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
 import { teleconverterFixture, teleconverterHostData } from "./testLensFixtures.js";

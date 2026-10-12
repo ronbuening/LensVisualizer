@@ -17,7 +17,7 @@ import {
   peakAbsDeparture,
   rmsDeparture,
 } from "../../../optics/asphericComparison.js";
-import { sag, conicPolySag } from "../../../optics/internal/surfaceMath.js";
+import { sag, conicPolySag } from "../../../optics/geometry.js";
 import type { AsphericCoefficients, ElementData, RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 

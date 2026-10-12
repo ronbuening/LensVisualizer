@@ -50,7 +50,7 @@ import { basename, dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
-const { conicPolySag } = await import(pathToFileURL(join(ROOT, "src/optics/internal/surfaceMath.ts")).href);
+const { conicPolySag } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
 
 const [dataFile, pdf, pageArg, cropArg, ...flags] = process.argv.slice(2);
 if (!dataFile || !pdf || !pageArg || !cropArg) {

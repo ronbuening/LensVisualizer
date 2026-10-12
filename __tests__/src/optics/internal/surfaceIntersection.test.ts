@@ -5,9 +5,8 @@ import {
   surfaceNormalAtHit,
   type SurfaceIntersectionRay,
 } from "../../../../src/optics/internal/surfaceIntersection.js";
-import { conicPolySag, sag } from "../../../../src/optics/internal/surfaceMath.js";
+import { conicPolySag, createSurfaceProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSurfaceProfile } from "../../../../src/optics/math/intersection.js";
-import { createSurfaceProfile } from "../../../../src/optics/math/surfaceProfile.js";
 import { traceExactSurfaceStackVector } from "../../../../src/optics/internal/exactSurfaceTrace.js";
 import type { AsphericCoefficients, RuntimeLens } from "../../../../src/types/optics.js";
 

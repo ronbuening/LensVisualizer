@@ -112,7 +112,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/glassCatalog.ts",
   "src/optics/groupMovement.ts",
   "src/optics/internal/lensState.ts",
-  "src/optics/internal/surfaceMath.ts",
   "src/optics/layout.ts",
   "src/optics/lensMovement.ts",
   "src/optics/math/vector.ts",

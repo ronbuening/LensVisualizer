@@ -26,10 +26,10 @@ flowchart LR
 - Direct source files: 1
 - Direct subfolders: 0
 - Main outbound areas: src/types (3), src/optics/constants.ts, src/optics/math, src/optics/types.ts
-- External consumers: src/optics/analysis, src/optics/diagram, src/optics/geometry.ts, src/optics/internal, src/optics/math, src/optics/trace
+- External consumers: src/optics/analysis, src/optics/asphericComparison.ts, src/optics/diagram, src/optics/geometry.ts, src/optics/internal, src/optics/layout.ts, src/optics/math, src/optics/optics.ts, +4 more
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `surfaceProfile.ts` | Surface Profile helper module | src/types (3), src/optics/constants.ts, src/optics/math, src/optics/types.ts | src/optics/math (2), src/optics/analysis, src/optics/diagram, src/optics/geometry.ts, src/optics/internal, +1 more | FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, DEFAULT_MAX_RIM_ANGLE_DEG, sag, conicPolySag, sagSlopeRaw, normalFromSlope, conicFiniteRadiusLimit, +5 more |
+| `surfaceProfile.ts` | Surface Profile helper module | src/types (3), src/optics/constants.ts, src/optics/math, src/optics/types.ts | src/optics/internal (2), src/optics/analysis, src/optics/asphericComparison.ts, src/optics/diagram, src/optics/geometry.ts, +7 more | FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, DEFAULT_MAX_RIM_ANGLE_DEG, sag, conicPolySag, sagSlopeRaw, normalFromSlope, conicFiniteRadiusLimit, +5 more |

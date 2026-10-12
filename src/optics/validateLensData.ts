@@ -18,7 +18,7 @@ import {
   surfaceFitsInsideCentralOpening,
 } from "./internal/apertureBands.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
-import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
+import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./geometry/surfaceProfile.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
 import type { ExactTraceLens } from "./internal/exactSurfaceTrace.js";
 import { REAR_PLATE_LABEL_PATTERN } from "./prescription/rearPlates.js";
