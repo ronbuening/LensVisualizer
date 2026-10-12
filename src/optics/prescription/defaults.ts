@@ -8,7 +8,7 @@
  *
  * V1 applies defaults two ways, and the V1 view (`toLensData.ts`) reproduces both:
  * - `catalog`: the catalog merges them under every lens file (`{ ...LENS_DEFAULTS, ...data }`), so the engine always
- *   sees a value. These are the rows of `src/lens-data/defaults.ts`, which `V1_CATALOG_DEFAULTS` restates.
+ *   sees a value. These are the rows of `src/lens-data/defaults.ts`, which `v1CatalogDefaults()` restates.
  * - `engine`: the engine falls back to them where the field is absent, so the merged data keeps the omission.
  *
  * Known reader disagreements, left as they are (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P4.T1 spec–code contradictions):
