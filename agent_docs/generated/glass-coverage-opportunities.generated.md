@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **919** lenses scanned (**906** visible)
-- **9677 / 10406** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **9687 / 10406** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
+- **922** lenses scanned (**909** visible)
+- **9704 / 10436** non-air surfaces use strict catalog Sellmeier data (93.0%)
+- **9713 / 10436** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **289** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **158** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -116,10 +116,11 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | US 2014/0133036 A1 | Missing from untracked local patents/ references (US20140133036A1, US20140133036, 20140133036) | 81.8% (9/11) | 81.8% (9/11) | 2 | 11A [glass] (G3 front asphere: `Unmatched (nd=1.803603, νd=40.28)`)<br>16A [glass] (G3 negative asphere: `Unmatched (nd=1.803603, νd=40.28)`) | abbe: 2 |
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (catalog unresolved; patent nd=1.87722, νd=37.0)`)<br>20A [glass] (Element 11: `683330 — dense flint (catalog unresolved; patent nd=1.68250, νd=33.0; prior H-ZF52A label rejected)`) | abbe: 2 |
 | [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | US 2015/0124127 A1 | [PDF](../../patents/US20150124127A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 20A [glass] (Element 10: `684313 — Unmatched exact public catalog identity`)<br>22A [glass] (Element 11: `636239 — Unmatched exact public catalog identity`) | abbe: 2 |
-| [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 60.0% (3/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
+| [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) | US 2,819,651 | [PDF](../../patents/US2819651.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 4 [glass] (Lens III: `KzF4 class (Schott-Jena legacy short flint, 570/481)`) | abbe: 1 |
 | [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown; vendor unresolved)`) | abbe: 1 |
 | [NIKON NIKKOR 800mm f/8 ED](../../src/lens-data/nikon/NikonNikkor800mmf8ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown / ED-class; vendor unresolved)`) | abbe: 1 |
+| [PANASONIC LUMIX S 26mm f/8](../../src/lens-data/panasonic/PanasonicLumixS26mmF8.data.ts) | US 2025/0334777 A1 | [PDF](../../patents/US20250334777A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 8 [glass] (Element 4: `Unmatched (patent nd=1.69513, vd=24.0; no match in six supplier catalogs)`) | abbe: 1 |
 | [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
 | [CANON EF-M 15-45mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM1545mmf3563ISSTM.data.ts) | JP 2016-118658 A | [PDF](../../patents/JP2016118658A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 3A [glass] (Element 2: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`)<br>17A [glass] (Element 9: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`) | abbe: 2 |
 | [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) | GB 978,797 | [PDF](../../patents/GB_978797_A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 10 [glass] (Element 6: `Unmatched (728380; nearest current dense-barium-flint family outside Δn=0.003)`)<br>13 [glass] (Element 8: `Unmatched (678322; nearest SF5/ZF2 coordinate family outside Δn=0.003)`) | abbe: 2 |

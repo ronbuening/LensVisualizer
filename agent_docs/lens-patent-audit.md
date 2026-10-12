@@ -185,14 +185,19 @@ A source can contradict itself: a printed coefficient whose sign disagrees with 
 aberration plots, or a table that does not reproduce its stated focal length. A faithful transcription of such a
 value is still wrong, and no analysis can recover it. This section owns the standard; other docs point here.
 
-Correct a printed value only when **at least two independent kinds of source-internal evidence** agree that it is
-wrong and that the replacement is right:
+Correct a printed value only when **at least two independent kinds of evidence from the source itself** agree that it
+is wrong and that the replacement is right:
 
 - `source-summary` — the source's stated focal length, F-number, field angle or image height, back focus or total
   length, traced for both the printed and the corrected value.
 - `sibling-example` — another example of the same source that reprints the surface, or carries the consistent form.
 - `aberration-figure` — the source's own spherical-aberration, astigmatism, distortion or lateral-aberration plots.
 - `claims` — a claimed condition the printed value violates.
+- `family-publication` — another publication of the same application (its PCT publication, priority document or a
+  national-phase print) prints the replacement value in the same cell. Name the publication and table in the note,
+  and compare the rest of that table: the prints must otherwise agree. A different patent on a similar design is not
+  a family publication. (Maintainer ruling, 2026-10-12, on the Sony FE 70-200mm f/2.8 GM OSS, whose US print drops a
+  minus sign that WO 2017/134929 A1 carries.)
 
 A manufacturer MTF chart, a measured lens and "the trace looks better" are never evidence. That only one
 single-value change repairs the prescription supports a correction; it does not count as a kind.

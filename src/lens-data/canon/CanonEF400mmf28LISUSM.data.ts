@@ -34,10 +34,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ sufficient to identify the unique fluorite-coordinate element as synthetic CaF₂.                            ║
  * ║                                                                                                              ║
  * ║ Semi-diameters are inferred, not patent-tabulated. They are constrained jointly by the Fig. 88 optical       ║
- * ║ section, the 163 mm production barrel diameter, the F/2.9-implied stop/pupil geometry, on-axis and configured ║
- * ║ off-axis ray fans at infinity and 3.0 m, and the current edge-thickness/rim-slope/shared-gap geometry rules. ║
- * ║ R7 is limited by the 2.68 mm D6 shared-gap clearance; R23/R24 are reduced at the intended L3b air-lens gap.  ║
- * ║ No layout control is used to hide an invalid surface.                                                        ║
+ * ║ section, the 163 mm production barrel diameter, the F/2.9-implied stop/pupil geometry, on-axis and           ║
+ * ║ configured off-axis ray fans at infinity and 3.0 m, and the current edge-thickness/rim-slope/shared-gap      ║
+ * ║ geometry rules. R23/R24 are reduced at the intended L3b air-lens gap. No layout control is used to hide an   ║
+ * ║ invalid surface.                                                                                             ║
+ * ║                                                                                                              ║
+ * ║ Stated axial beam (2026-10-12): the F/2.9 on-axis ray reaches 55.490 mm on R7, which stood at 53.3 mm and    ║
+ * ║ limited the traced aperture to f/3.01. Fig. 88 draws L1b-N (R7/R8) with a square-cut rim, so both faces are  ║
+ * ║ now 55.5 mm and the traced aperture is f/2.90, set by the iris. Fig. 88 also draws R6 and R7 meeting at that ║
+ * ║ rim: at 55.5 mm R7's sag takes 2.582 mm of the 2.68 mm D6 gap (96.4 %) and 0.098 mm of air remains; the two  ║
+ * ║ faces would meet at 56.54 mm. gapSagFrac 0.97 is the smallest two-decimal limit that admits the pair (the    ║
+ * ║ default 0.90 held R7 to 53.6 mm). No other rim was below the stated ray and none was changed.                ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -60,6 +67,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.9,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "US 6,115,188 A",
   patentAuthors: ["Akihiro Nishio", "Hideki Ogawa", "Makoto Misaka"],
@@ -273,8 +281,8 @@ const LENS_DATA = {
     { label: "4", R: -419.344, d: 22.34, nd: 1.0, elemId: 0, sd: 72.0 },
     { label: "5", R: 113.114, d: 19.2, nd: 1.496999, elemId: 3, sd: 61.8 },
     { label: "6", R: 1e15, d: 2.68, nd: 1.0, elemId: 0, sd: 61.8 },
-    { label: "7", R: -597.7, d: 6.25, nd: 1.834807, elemId: 4, sd: 53.3 },
-    { label: "8", R: 180.537, d: 10.24, nd: 1.0, elemId: 0, sd: 53.3 },
+    { label: "7", R: -597.7, d: 6.25, nd: 1.834807, elemId: 4, sd: 55.5 },
+    { label: "8", R: 180.537, d: 10.24, nd: 1.0, elemId: 0, sd: 55.5 },
     { label: "9", R: 94.288, d: 17.8, nd: 1.43387, elemId: 5, sd: 52.5 },
     { label: "10", R: -3674.804, d: 1.4, nd: 1.0, elemId: 0, sd: 52.5 },
     { label: "11", R: 64.7, d: 7.3, nd: 1.51633, elemId: 6, sd: 45.0 },
@@ -333,7 +341,7 @@ const LENS_DATA = {
 
   closeFocusM: 3.0,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: patent-defined cemented L2 translates imageward. Canon's 3.0 m focal-plane MFD solves D12 = 24.36 + δ and D15 = 98.83 − δ with δ = 18.794827332 mm; D12 + D15 stays 123.19 mm. Rear filter FL is traced via rearPlates (FC omitted); R29→FL is 15.016884094 mm at infinity (printed 15.00 plus the +0.016884094 mm paraxial-focus normalization).",
+    "CONSTRAINED_RECONSTRUCTION: patent-defined cemented L2 translates imageward. Canon's 3.0 m focal-plane MFD solves D12 = 24.36 + δ and D15 = 98.83 − δ with δ = 18.794827332 mm; D12 + D15 stays 123.19 mm. Rear drop-in filter FL is a drawn plane-parallel element (FC omitted); R29→FL is 15.016884094 mm at infinity (printed 15.00 plus the +0.016884094 mm paraxial-focus normalization).",
 
   nominalFno: 2.9,
   fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
@@ -341,6 +349,7 @@ const LENS_DATA = {
   apertureBlades: 8,
 
   yScFill: 0.42,
+  gapSagFrac: 0.97, // R6 / R7 (L1b-P rear, L1b-N front) nearly meet at the 55.5 mm rim: 0.098 mm of air remains
 } satisfies LensDataInput;
 
 export default LENS_DATA;

@@ -9,7 +9,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **919** lenses scanned
+- **922** lenses scanned
 - **1887** total code-only elements found
 - **289** elements in this report
 - **124** distinct lens files affected
@@ -618,7 +618,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L5 (Component II-3) | 9 | `750251 - dense/fluor flint (catalog unresolved)` | 1.75000 / 25.14 | No catalog entry | abbe | Missing from untracked local patents/ references (US4560253, 4560253) | Audit-log hit |
 
-### [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) - JP1963-011590
+### [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) - JP 1963-011590 B
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|

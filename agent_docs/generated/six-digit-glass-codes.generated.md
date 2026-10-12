@@ -9,7 +9,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **919** lenses scanned
+- **922** lenses scanned
 - **1887** total code-only elements found
 - **1887** elements in this report
 - **307** distinct lens files affected
@@ -1881,7 +1881,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L5 (Component II-3) | 9 | `750251 - dense/fluor flint (catalog unresolved)` | 1.75000 / 25.14 | No catalog entry | abbe | Missing from untracked local patents/ references (US4560253, 4560253) | Audit-log hit |
 
-### [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) - JP1963-011590
+### [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) - JP 1963-011590 B
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -3114,11 +3114,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 7 | `497816 - low-dispersion ED crown class` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
-| L5 (Element 5) | 9 | `847238 - dense flint class` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
-| L6 (Element 6) | 10 | `923209 - very-high-index dense flint class` | 1.92286 / 20.88 | N-SF66 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
-| L10 (Element 10) | 16 | `847238 - dense flint class` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
-| L14 (Element 14) | 24 | `497816 - low-dispersion ED crown class` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+| L41 (Element 4) | 7 | `497816 - low-dispersion ED crown class` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+| L51 (Element 5) | 9 | `847238 - dense flint class` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+| L61 (Element 6) | 10 | `923209 - very-high-index dense flint class` | 1.92286 / 20.88 | N-SF66 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+| L101 (Element 10) | 16 | `847238 - dense flint class` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+| L141 (Element 14) | 24 | `497816 - low-dispersion ED crown class` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
 
 ### [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) - WO 2021/246545 A1
 

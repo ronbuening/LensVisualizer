@@ -59,12 +59,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
   },
   { alias: "SK16", target: "N-SK16", kind: "legacy-name", note: "Legacy Schott name superseded by N-SK16." },
   {
-    alias: "L-TIM28",
-    target: "S-TIM28",
-    kind: "catalog-variant",
-    note: "Ohara large-format designation with the same published optical constants as S-TIM28.",
-  },
-  {
     alias: "L-BAL35",
     target: "S-BAL35",
     kind: "catalog-variant",

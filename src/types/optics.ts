@@ -361,8 +361,16 @@ export interface PublishedStations {
   focus?: number[] | number[][];
 }
 
-/** Evidence a source erratum may cite. Every kind is internal to the source document; an MTF chart is never one. */
-export type SourceErratumEvidence = "source-summary" | "sibling-example" | "aberration-figure" | "claims";
+/**
+ * Evidence a source erratum may cite. Four kinds are internal to the cited document; `family-publication` is another
+ * publication of the same application that prints the corrected value. An MTF chart is never one.
+ */
+export type SourceErratumEvidence =
+  | "source-summary"
+  | "sibling-example"
+  | "aberration-figure"
+  | "claims"
+  | "family-publication";
 
 /** A value the source prints that contradicts the source's own data and is corrected in this file. */
 export interface CorrectedSourceErratum {

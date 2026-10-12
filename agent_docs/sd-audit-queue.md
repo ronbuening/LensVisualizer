@@ -257,7 +257,7 @@ Stations whose traced on-axis f-number is more than 3 % from the stated one; the
 npm run audit:aperture -- --markdown
 ```
 
-1,459 of 1,622 stations are within 3 %. Of the rest, a rim clips the beam at 153 stations on 116 lenses (`rim`);
+1,500 of 1,652 stations are within 3 %. Of the rest, a rim clips the beam at 144 stations on 111 lenses (`rim`);
 work the largest differences first. For each row, read whether the limiting semi-diameter is printed in the source or
 was inferred from a drawing, then follow
 [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's

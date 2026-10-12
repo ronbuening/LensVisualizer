@@ -614,4 +614,26 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor K-PG395(M) formula-1 polynomial and molding-state optical coordinate. The catalog reuses base-glass product code 658369, so code6 is omitted because that code does not encode the molding-state nd/vd pair.",
   },
+  {
+    name: "K-VC181",
+    vendor: "Sumita",
+    polynomial: [3.1886895, -0.013820455, 0.029631617, 0.0010659501, -0.000037795055, 0.0000043966629],
+    nd: 1.81055,
+    vd: 41.1,
+    PgF: 0.5689,
+    code6: "811411",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor K-VC181 formula-1 polynomial. The molding-state K-VC181(M) row (nd 1.80614) is not included.",
+  },
+  {
+    name: "KF5",
+    vendor: "Sumita",
+    polynomial: [2.280554, -0.008202632, 0.01380944, 0.0002399509, 0.000002033821, 0.0000007990625],
+    nd: 1.5231,
+    vd: 50.9,
+    PgF: 0.5557,
+    code6: "523509",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for discontinued KF5.",
+  },
 ];
