@@ -41,7 +41,13 @@ import {
   type RunContext,
   type RunSummary,
 } from "../../../src/benchmarks/engineDiff/compare.js";
-import { decodeValue, encodeValue } from "../../../src/benchmarks/engineDiff/payload.js";
+import {
+  createResultEncoder,
+  decodeValue,
+  encodeValue,
+  maskBudgetedNumbers,
+  type EncodedValue,
+} from "../../../src/benchmarks/engineDiff/payload.js";
 import {
   ANALYSIS_CONTEXT_JOBS,
   DEFAULT_STATE,
@@ -227,6 +233,12 @@ describe("engineDiff budget table", () => {
       ["sensorLockResidual", 1, 1e-5],
       ["chiefStopPlaneResidual", 1, 1e-6],
     ]);
+    /* What a digest keeps of the residuals behind it is a share already, held to 1 like the residual of a hit. */
+    const { kind, c1 }: Quantity = QUANTITIES.nestedResidualShare;
+    expect([kind, c1]).toEqual(["share", 1]);
+    expect(resolveBudgetRule("analysis", ["jobs", "x", "value", "trace", "residualShare"])?.quantity).toBe(
+      "nestedResidualShare",
+    );
     /* No class is looser than the plan's loosest row in its unit. */
     const loosest: Record<string, number> = { mm: 1e-7, deg: 1e-10, relative: 1e-10, points: 1e-8, "": 1e-7 };
     const looser = (Object.keys(QUANTITIES) as QuantityId[]).filter((id) => {
@@ -801,6 +813,8 @@ describe("engineDiff drift detection", () => {
       status: "ok",
       hitCount: expect.any(Number),
       hash: expect.stringMatching(/^[0-9a-f]{64}$/),
+      outcome: expect.stringMatching(/^[0-9a-f]{64}$/),
+      residualShare: expect.any(Number),
     });
 
     const rehashed = withChange("analysis", [...digest, "hash"], () => "0".repeat(64));
@@ -818,6 +832,10 @@ describe("engineDiff drift detection", () => {
       expect(markdown.indexOf("## Not budgeted: digested traces")).toBeGreaterThan(0);
       expect(markdown.indexOf("## Not budgeted: digested traces")).toBeLessThan(markdown.indexOf("## Counts"));
       expect(markdown).toContain("**1 trace digests changed, in 1 lenses, and none of them was budgeted.**");
+      /* It says what was held to something beside each hash, and what was not. */
+      expect(markdown).toContain(`Under ${changeClass.toUpperCase()} four of those were judged`);
+      expect(markdown).toContain("the outcome hash, which must be equal, and which changes with any flag, status,");
+      expect(markdown).toContain("which the head must keep at or under 1. Not judged: how far the coordinates");
       expect(markdown).toContain("| analysis | 1 |");
       expect(markdown).toContain(`Lenses: ${SERENAR}.`);
     }
@@ -848,6 +866,298 @@ describe("engineDiff drift detection", () => {
     expect(failuresOf(compare("c1", labelled("b"), labelled("a")))).toEqual([
       { request: "layout", path: "hash", kind: "discrete", quantity: null },
     ]);
+    /* The outcome beside the hash is such a label: it is equal on the two sides or the run fails, below C3. */
+    const otherOutcome = withChange("analysis", [...digest, "outcome"], () => "0".repeat(64), rehashed);
+    for (const changeClass of ["c1", "c2"] as const) {
+      expect(failuresOf(compare(changeClass, otherOutcome)), changeClass).toEqual([
+        { request: "analysis", path: `${path}.outcome`, kind: "discrete", quantity: null },
+      ]);
+    }
+    expect(compare("c3", otherOutcome)).toMatchObject({ passed: true, engine: { transitions: 1 } });
+  });
+
+  describe("judges what a digest keeps of a nested trace above C0", () => {
+    /* A perspective result in small: one posed ray, and a field sample whose pupil bundle holds two more. It goes
+     * through the result encoder, as a capture's does, so each test changes one thing inside a trace and compares
+     * the digests that come out. */
+    const hitOf = (z: number, extra: object = {}) => ({
+      surfaceIndex: 0,
+      surfaceLabel: "1",
+      point: [0, 1, z],
+      residual: 0,
+      effectiveTolerance: 1e-12,
+      clipped: false,
+      fallback: false,
+      failureReason: null,
+      ...extra,
+    });
+    const posedOf = (hits: object[]) => {
+      const ray = {
+        status: "ok",
+        failureReason: null,
+        hits,
+        terminalPoint: [0, 1, 6],
+        diagnostics: { clipped: false, clipEvents: [], loopDetected: false },
+      };
+      return { localTrace: ray, cameraTrace: ray, reachedSensor: true };
+    };
+    /* The second hit of every ray sits at a quarter of its tolerance, so the largest share is 0.25 unless a test
+     * moves it. */
+    const quarter = { residual: 0.25e-12 };
+    interface Change {
+      /* Members of the first hit of the ray outside the bundle. */
+      hit?: object;
+      /* Members of the first hit of the first ray inside the bundle, and that ray's status in the bundle. */
+      bundleHit?: object;
+      bundleStatus?: string;
+    }
+    const nested = ({ hit = {}, bundleHit = {}, bundleStatus = "usable" }: Change = {}): PayloadRecord[] => {
+      const sample = {
+        rays: [{ sensorPoint: [0, 1, 2], trace: posedOf([hitOf(5, hit), hitOf(6, quarter)]) }],
+        fieldSample: {
+          status: "usable",
+          pupilBundle: {
+            kind: "circular",
+            samples: [
+              { status: bundleStatus, weight: 0.5, trace: posedOf([hitOf(5, bundleHit), hitOf(6, quarter)]) },
+              { status: "missed-sensor", weight: 0.5, trace: posedOf([hitOf(5), hitOf(6, quarter)]) },
+            ],
+          },
+        },
+      };
+      const value = { jobs: { computePerspectiveFocusAnalysis: { ok: true, value: { samples: [sample] } } } };
+      return [
+        {
+          lens: "synthetic",
+          state: DEFAULT_STATE,
+          request: "analysis",
+          payload: { ok: true, value: createResultEncoder()(value) },
+        },
+      ];
+    };
+    const BASE = nested();
+    const sampleAt = "jobs.computePerspectiveFocusAnalysis.value.samples[0]";
+    const rayAt = `${sampleAt}.rays[0].trace`;
+    const bundleAt = `${sampleAt}.fieldSample.pupilBundle`;
+    const digestAt = (records: readonly PayloadRecord[], member: "rays" | "fieldSample") => {
+      const [sample] = at(records, "analysis", ["jobs", "computePerspectiveFocusAnalysis", "value", "samples"]) as {
+        rays: { trace: Record<string, unknown> }[];
+        fieldSample: { pupilBundle: Record<string, unknown> };
+      }[];
+      return member === "rays" ? sample.rays[0].trace : sample.fieldSample.pupilBundle;
+    };
+    const kindsAt = (summary: RunSummary) => summary.engine.failures.map(({ path, kind }) => [path, kind]);
+
+    it("has the digests its perturbations assume", () => {
+      expect(digestAt(BASE, "rays")).toMatchObject({ status: "ok", hitCount: 4, residualShare: 0.25 });
+      expect(digestAt(BASE, "fieldSample")).toMatchObject({ status: null, hitCount: 8, residualShare: 0.25 });
+      expect(compare("c0", nested(), BASE).passed).toBe(true);
+    });
+
+    it.each<[string, Change, string]>([
+      ["a flag flipped", { hit: { clipped: true } }, rayAt],
+      ["a clip reason set", { hit: { clipReason: "semi-diameter" } }, rayAt],
+      ["a coordinate made NaN", { hit: { point: [0, Number.NaN, 5] } }, rayAt],
+      ["a residual made infinite", { hit: { residual: Number.POSITIVE_INFINITY } }, rayAt],
+      ["a surface index changed", { hit: { surfaceIndex: 1 } }, rayAt],
+      ["a flag flipped inside a pupil bundle", { bundleHit: { clipped: true } }, bundleAt],
+      ["the status of one ray of a pupil bundle changed", { bundleStatus: "missed-sensor" }, bundleAt],
+    ])("fails %s inside a trace whose status and hit count stand", (_name, change, where) => {
+      const head = nested(change);
+      for (const member of ["rays", "fieldSample"] as const) {
+        const [base, moved] = [digestAt(BASE, member), digestAt(head, member)];
+        expect([moved.status, moved.hitCount]).toEqual([base.status, base.hitCount]);
+      }
+      for (const changeClass of ["c1", "c2"] as const) {
+        const summary = compare(changeClass, head, BASE);
+        expect(summary.passed, changeClass).toBe(false);
+        expect(kindsAt(summary), changeClass).toContainEqual([`${where}.outcome`, "discrete"]);
+        /* The finding is a transition like any other discrete one, and the hash beside it is still only counted. */
+        expect(summary.engine.transitions, changeClass).toBeGreaterThan(0);
+        expect(summary.engine.differences.digest, changeClass).toBe(1);
+        expect(kindsAt(summary).filter(([, kind]) => kind === "digest")).toEqual([]);
+      }
+      expect(kindsAt(compare("c0", head, BASE))).toContainEqual([`${where}.hash`, "digest"]);
+      expect(compare("c3", head, BASE).passed).toBe(true);
+    });
+
+    it("holds the largest residual inside a trace to its effective tolerance, on the head", () => {
+      const twice = nested({ hit: { residual: 2e-12 } });
+      for (const changeClass of ["c1", "c2"] as const) {
+        const summary = compare(changeClass, twice, BASE);
+        expect(summary.passed, changeClass).toBe(false);
+        expect(summary.engine.failures, changeClass).toEqual([
+          expect.objectContaining({
+            path: `${rayAt}.residualShare`,
+            kind: "contract",
+            quantity: "nestedResidualShare",
+            measure: 2,
+            budget: 1,
+          }),
+        ]);
+        /* Inside a pupil bundle too, where no status of the bundle's own could show it. */
+        expect(kindsAt(compare(changeClass, nested({ bundleHit: { residual: -2e-12 } }), BASE)), changeClass).toEqual([
+          [`${bundleAt}.residualShare`, "contract"],
+        ]);
+        /* A residual that moves inside its tolerance is no breach: the two sides are not differenced. */
+        const within = compare(changeClass, nested({ hit: { residual: -0.5e-12 } }), BASE);
+        expect(within.passed, changeClass).toBe(true);
+        expect(within.engine.quantities.nestedResidualShare, changeClass).toMatchObject({
+          differing: 1,
+          beyondBudget: 0,
+          largest: { measure: 0.5, budget: 1 },
+        });
+        /* The share is of the hit's own tolerance: twice the target under a tolerance four times it is inside. */
+        const relaxed = nested({ hit: { residual: 2e-12, effectiveTolerance: 4e-12 } });
+        expect(compare(changeClass, relaxed, BASE).passed, changeClass).toBe(true);
+        /* Only the head's share is judged. A breach the base alone carries is not one the change made. */
+        expect(compare(changeClass, BASE, twice).passed, changeClass).toBe(true);
+        /* And only where the two sides differ, as for every field: the same breach on both is not walked. */
+        expect(compare(changeClass, nested({ hit: { residual: 2e-12 } }), twice).passed, changeClass).toBe(true);
+        expect(compare(changeClass, nested({ hit: { residual: 3e-12 } }), twice).passed, changeClass).toBe(false);
+      }
+      /* Under C0 it is a number like any other, and under C3 nothing fails. */
+      expect(kindsAt(compare("c0", nested({ hit: { residual: -0.5e-12 } }), BASE))).toEqual([
+        [`${rayAt}.hash`, "digest"],
+        [`${rayAt}.residualShare`, "number"],
+      ]);
+      expect(compare("c3", twice, BASE).passed).toBe(true);
+    });
+
+    it("reports a coordinate that moved inside a trace and does not judge how far: the accepted limit of the rule", () => {
+      /* A micrometre is a thousand times the budget of an unclipped hit the comparison can read. Inside a digest
+       * the move changes the hash and nothing else, so it is counted, named at the top of the report, and passes. */
+      for (const distance of [1e-12, 1e-6, 1]) {
+        const head = nested({ hit: { point: [0, 1 + distance, 5] }, bundleHit: { point: [0, 1, 5 + distance] } });
+        for (const member of ["rays", "fieldSample"] as const) {
+          const [base, moved] = [digestAt(BASE, member), digestAt(head, member)];
+          expect(moved.hash).not.toBe(base.hash);
+          expect({ ...moved, hash: base.hash }).toEqual(base);
+        }
+        for (const changeClass of ["c1", "c2"] as const) {
+          const summary = compare(changeClass, head, BASE);
+          expect(summary.passed, `${changeClass} ${distance}`).toBe(true);
+          expect(summary.engine).toMatchObject({ numbersDiffering: 0, transitions: 0, failing: 0 });
+          expect(summary.engine.differences.digest).toBe(2);
+          expect(renderSummaryMarkdown(summary, REPORT_CONTEXT)).toContain("## Not budgeted: digested traces");
+        }
+        expect(compare("c0", head, BASE).passed).toBe(false);
+      }
+    });
+
+    it("lets an effective tolerance inside a trace move in its last bits", () => {
+      /* On a hit that does not carry the largest share, the hash is all that changes. */
+      const lastBits = 1e-12 * (1 + 4 * Number.EPSILON);
+      const head = nested({ hit: { effectiveTolerance: lastBits } });
+      expect({ ...digestAt(head, "rays"), hash: "" }).toEqual({ ...digestAt(BASE, "rays"), hash: "" });
+      expect(digestAt(head, "rays").hash).not.toBe(digestAt(BASE, "rays").hash);
+      for (const changeClass of ["c1", "c2"] as const) {
+        expect(compare(changeClass, head, BASE)).toMatchObject({ passed: true, engine: { numbersDiffering: 0 } });
+      }
+      expect(kindsAt(compare("c0", head, BASE))).toEqual([[`${rayAt}.hash`, "digest"]]);
+
+      /* On the hit that does, the share moves in its last bits with it, inside its contract. */
+      const base = nested({ hit: { residual: 0.5e-12 } });
+      const worst = nested({ hit: { residual: 0.5e-12, effectiveTolerance: lastBits } });
+      expect(digestAt(worst, "rays").outcome).toBe(digestAt(base, "rays").outcome);
+      expect(digestAt(worst, "rays").residualShare).not.toBe(0.5);
+      expect(digestAt(worst, "rays").residualShare).toBeCloseTo(0.5, 12);
+      for (const changeClass of ["c1", "c2"] as const) {
+        expect(compare(changeClass, worst, base)).toMatchObject({ passed: true, engine: { numbersDiffering: 1 } });
+      }
+    });
+  });
+
+  it("masks in a digest's outcome exactly the numbers the table budgets", () => {
+    /* The outcome keeps a number where it is exact by nature and masks it where it has a budget. `payload.ts` goes
+     * by member name, because a carrier's content has no record path to ask the table with. This holds the names
+     * to the table in both directions, on what a carrier really holds: a ray of the `traces` record is an engine
+     * trace as a digest's content has it. */
+    const finite = (leaf: unknown) => typeof leaf === "number" || leaf === "$-0";
+    const disagreements = (family: RequestFamily, prefix: readonly string[], content: unknown) => {
+      const found = new Map<string, { kept: boolean; exact: boolean }>();
+      const visit = (value: unknown, masked: unknown, segments: readonly string[]): void => {
+        if (Array.isArray(value)) {
+          value.forEach((item, index) => visit(item, (masked as unknown[])[index], [...segments, "[]"]));
+        } else if (value !== null && typeof value === "object") {
+          for (const [key, member] of Object.entries(value)) {
+            visit(member, (masked as Record<string, unknown>)[key], [...segments, key]);
+          }
+        } else if (finite(value)) {
+          const rule = resolveBudgetRule(family, [...prefix, ...segments]);
+          const exact = typeof rule?.quantity === "string" && (QUANTITIES[rule.quantity] as Quantity).kind === "exact";
+          found.set(segments.join("."), { kept: Object.is(masked, value), exact });
+        }
+      };
+      visit(content, maskBudgetedNumbers(content as EncodedValue), []);
+      return {
+        kept: [...found].filter(([, { kept }]) => kept).map(([path]) => path),
+        wrong: [...found].filter(([, { kept, exact }]) => kept !== exact).map(([path]) => path),
+      };
+    };
+
+    /* A prime's fans, clipped rays among them, and an auto-path folded lens for the path planner's diagnostics. */
+    const mirotar = captureRecords(
+      CATALOG,
+      TIER_P.filter(({ lens, family }) => lensId(lens) === "carl-zeiss-mirotar-500f45" && family === "traces"),
+    );
+    const kept = new Set<string>();
+    for (const records of [SERENAR_RECORDS, mirotar]) {
+      const fans = at(records, "traces", []) as Record<string, { rays: unknown[] }>;
+      const rays = [...fans.onAxis.rays, ...fans.offAxis.rays, ...fans.skew.rays];
+      expect(rays.length).toBe(14);
+      for (const ray of rays) {
+        const result = disagreements("traces", ["onAxis", "rays", "[]"], ray);
+        expect(result.wrong).toEqual([]);
+        for (const path of result.kept) kept.add(path);
+      }
+    }
+    expect([...kept].sort()).toEqual([
+      "diagnostics.autoSteps.[].skippedCandidates.[].surfaceIdx",
+      "diagnostics.autoSteps.[].step",
+      "diagnostics.clipEvents.[].surfaceIdx",
+      "diagnostics.hitSurfaceIndexes.[]",
+      "diagnostics.maxInteractions",
+      "diagnostics.terminalSurfaceIndex",
+      "hits.columns.surfaceIndex.[]",
+      "hits.count",
+      "returnVertexIndex",
+      "terminalSurfaceIndex",
+    ]);
+
+    /* What a posed pair and a pupil bundle add around the traces they hold, as the engine's types name it. */
+    const inner = { status: "ok", hitCount: 11, hash: "a".repeat(64), outcome: "b".repeat(64), residualShare: 0.5 };
+    const around = disagreements("analysis", ["jobs", "x", "value", "samples", "[]", "fieldSample"], {
+      chiefTrace: {
+        localTrace: inner,
+        cameraTrace: inner,
+        localReturnPoint: [0, 1, 2],
+        cameraReturnPoint: [0, 1, 2],
+        sensorIntersection: { point: [0, 1, 2], t: 26.5 },
+        reachedSensor: true,
+        transmission: 1,
+      },
+      pupilBundle: {
+        kind: "circular",
+        samples: [
+          { pupilUv: { u: 0.5, v: -0 }, weight: 0.25, status: "usable", sensorIntercept: [0, 1, 2], transmission: 1 },
+        ],
+      },
+    });
+    expect(around.wrong).toEqual([]);
+    expect(around.kept).toEqual([
+      "chiefTrace.localTrace.hitCount",
+      "chiefTrace.cameraTrace.hitCount",
+      "pupilBundle.samples.[].pupilUv.u",
+      "pupilBundle.samples.[].pupilUv.v",
+    ]);
+    /* A hash inside the content is left out of it: it follows the masked numbers, and the outcome beside it stays. */
+    expect(maskBudgetedNumbers(inner)).toEqual({
+      status: "ok",
+      hitCount: 11,
+      outcome: inner.outcome,
+      residualShare: "$number",
+    });
   });
 
   it("reports a changed shape once, without entering it", () => {

@@ -321,7 +321,9 @@ describe("engineDiff result encoder", () => {
       ],
     }) as { samples: Record<string, unknown>[] };
 
-    const digest = (hitCount: number) => ({ status: "ok", hitCount, hash: expect.stringMatching(/^[0-9a-f]{64}$/) });
+    /* Every residual of the fixture is zero, so the largest share of a tolerance is too. */
+    const hex = expect.stringMatching(/^[0-9a-f]{64}$/);
+    const digest = (hitCount: number) => ({ status: "ok", hitCount, hash: hex, outcome: hex, residualShare: 0 });
     expect(encoded.samples[0]).toEqual({
       status: "usable",
       sensorPoint: [0, 1, 2],
@@ -359,6 +361,115 @@ describe("engineDiff result encoder", () => {
     /* The sequential tracer writes `clipReason: undefined` on every hit; the generalized tracer omits the key. */
     expect(hashOf(trace(5, {}, { clipReason: undefined }))).toBe(base);
     expect(hashOf(trace(5, {}, { clipReason: "semi-diameter" }))).not.toBe(base);
+  });
+
+  it("writes an outcome beside the hash that follows the discrete members alone", () => {
+    type Digest = { hash: string; outcome: string; hitCount: number };
+    const digestOf = (value: object) => createResultEncoder()(value) as unknown as Digest;
+    const base = digestOf(trace(5));
+    expect(base.outcome).toMatch(/^[0-9a-f]{64}$/);
+    expect(base.outcome).not.toBe(base.hash);
+
+    /* Numbers a budget would be set on: a coordinate by one ulp or by a millimetre, an effective tolerance in its
+     * last bits, and the sign of a zero. Each changes the hash and leaves the outcome. */
+    const budgeted = [
+      trace(5 * (1 + Number.EPSILON)),
+      trace(6),
+      trace(5, {}, { effectiveTolerance: 1e-12 * (1 + 2 * Number.EPSILON) }),
+      trace(5, {}, { residual: 0 }),
+    ];
+    for (const moved of budgeted) {
+      expect(digestOf(moved).hash).not.toBe(base.hash);
+      expect(digestOf(moved).outcome).toBe(base.outcome);
+    }
+
+    /* Everything else: a flag, a status, a reason, a label, a number that is no longer finite or no longer there,
+     * a surface index, a member that came or went, and one hit fewer. Each changes the outcome. */
+    const discrete: Record<string, object> = {
+      flag: trace(5, {}, { clipped: true }),
+      status: { ...trace(5), status: "clipped" },
+      reason: trace(5, { terminationReason: "clipped" }),
+      label: trace(5, {}, { clipReason: "semi-diameter" }),
+      nonFinite: trace(5, {}, { residual: Number.NaN }),
+      infinite: trace(5, {}, { point: [0, Number.POSITIVE_INFINITY, 5] }),
+      nulled: trace(5, {}, { residual: null, effectiveTolerance: null }),
+      index: trace(5, {}, { surfaceIndex: 1 }),
+      member: { ...trace(5), reachedImagePlane: false },
+      shorter: { ...trace(5), hits: [hit(5)] },
+    };
+    const unmoved = Object.keys(discrete).filter((change) => digestOf(discrete[change]).outcome === base.outcome);
+    expect(unmoved).toEqual([]);
+    expect(new Set(Object.values(discrete).map((value) => digestOf(value).outcome)).size).toBe(10);
+
+    /* The outcome of a carrier follows the outcomes of the carriers inside it, never their hashes: a posed pair
+     * and a pupil bundle keep theirs when a coordinate moves, and lose it to a flag, or to the status of one ray
+     * of the bundle while every hit count stands. */
+    const posed = (ray: object) => ({ localTrace: ray, cameraTrace: ray, reachedSensor: true });
+    const bundle = (ray: object, status = "usable") => ({
+      pupilBundle: {
+        kind: "circular",
+        samples: [{ status, pupilUv: { u: 0.5, v: 0 }, weight: 0.5, trace: posed(ray) }],
+      },
+    });
+    const bundleOf = (value: object) =>
+      (createResultEncoder()(value) as unknown as { pupilBundle: Digest }).pupilBundle;
+    for (const [carrier, digest] of [
+      [posed, digestOf],
+      [bundle, bundleOf],
+    ] as [(ray: object) => object, (value: object) => Digest][]) {
+      const whole = digest(carrier(trace(5)));
+      expect(digest(carrier(trace(6))).hash).not.toBe(whole.hash);
+      expect(digest(carrier(trace(6))).outcome).toBe(whole.outcome);
+      expect(digest(carrier(trace(5, {}, { clipped: true }))).outcome).not.toBe(whole.outcome);
+    }
+    const missed = bundleOf(bundle(trace(5), "missed-sensor"));
+    expect(missed.hitCount).toBe(bundleOf(bundle(trace(5))).hitCount);
+    expect(missed.outcome).not.toBe(bundleOf(bundle(trace(5))).outcome);
+    /* A sample's pupil position is where the ray was asked, and is kept; its weight is a ratio, and is masked. */
+    const sampled = (sample: object) =>
+      bundleOf({ pupilBundle: { kind: "circular", samples: [{ pupilUv: { u: 0.5, v: 0 }, weight: 0.5, ...sample }] } });
+    expect(sampled({ pupilUv: { u: 0.5 * (1 + Number.EPSILON), v: 0 } }).outcome).not.toBe(sampled({}).outcome);
+    expect(sampled({ weight: 0.25 }).outcome).toBe(sampled({}).outcome);
+  });
+
+  it("writes the largest residual share of a tolerance that any hit inside a carrier takes", () => {
+    /* Shares that are powers of two, so each quotient is exact. */
+    const tolerance = 1e-12;
+    const ray = (z: number, share: number | null, heldTo: number | null = tolerance) =>
+      trace(z, {}, { residual: share === null ? null : share * tolerance, effectiveTolerance: heldTo });
+    const shareOf = (value: object) => (createResultEncoder()(value) as { residualShare: unknown }).residualShare;
+    expect(shareOf(ray(5, 0.5))).toBe(0.5);
+    expect(shareOf(ray(5, -0.25))).toBe(0.25);
+    expect(shareOf(ray(5, 2))).toBe(2);
+    /* The share is of the hit's own tolerance, which a stalled root relaxes. */
+    expect(shareOf(ray(5, 2, 4 * tolerance))).toBe(0.5);
+    expect(shareOf({ ...ray(5, 0.5), hits: [hit(5, { residual: tolerance }), hit(6, { residual: -0 })] })).toBe(1);
+    /* A fallback point carries neither member; a trace of such points alone has no share to give. */
+    expect(shareOf(ray(5, null, null))).toBeNull();
+    expect(shareOf({ ...ray(5, 0.5), hits: [] })).toBeNull();
+    /* A residual with no contract to meet has broken it, as the comparison reads a hit it can see. */
+    expect(shareOf(ray(5, Number.NaN))).toBe("$+Inf");
+    expect(shareOf(ray(5, 0.5, 0))).toBe("$+Inf");
+
+    /* A carrier takes the largest of the carriers inside it, whether it digested them itself or found them
+     * digested already: here the bundle comes first, and the posed pair after it shares its quiet trace. */
+    const [quiet, loud] = [ray(5, 0.125), ray(7, -0.5)];
+    const encoded = createResultEncoder()({
+      fieldSample: {
+        pupilBundle: {
+          kind: "circular",
+          samples: [
+            { trace: { localTrace: quiet, cameraTrace: quiet } },
+            { trace: { localTrace: quiet, cameraTrace: loud } },
+          ],
+        },
+      },
+      chiefTrace: { localTrace: quiet, cameraTrace: quiet },
+      later: { localTrace: loud, cameraTrace: ray(9, null, null) },
+    }) as unknown as Record<string, { residualShare: unknown; pupilBundle: { residualShare: unknown } }>;
+    expect(encoded.fieldSample.pupilBundle.residualShare).toBe(0.5);
+    expect(encoded.chiefTrace.residualShare).toBe(0.125);
+    expect(encoded.later.residualShare).toBe(0.5);
   });
 
   it("records a throw as an outcome with the error's discriminating member", () => {
@@ -1532,6 +1643,8 @@ describe("engineDiff capture", () => {
       status,
       hitCount: expect.any(Number),
       hash: expect.stringMatching(/^[0-9a-f]{64}$/),
+      outcome: expect.stringMatching(/^[0-9a-f]{64}$/),
+      residualShare: expect.any(Number),
     });
     expect(focus.samples[0].sensorPoint).toHaveLength(3);
     /* The sample's own numbers and both solves are values a budget can be set on; only the rays are digests. */
@@ -1550,6 +1663,27 @@ describe("engineDiff capture", () => {
       sensorSolve: { status: "converged", iterations: expect.any(Number), evaluations: expect.any(Number) },
       pupilBundle: digest(null),
     });
+
+    /* Every digest of the record, wherever it sits, carries all five members: its outcome, and the largest residual
+     * behind it as a share of its tolerance, which the engine's own contract keeps at or under 1. */
+    const digests: Record<string, unknown>[] = [];
+    const collect = (value: unknown): void => {
+      if (value === null || typeof value !== "object") return;
+      const members = value as Record<string, unknown>;
+      if (typeof members.hash === "string" && typeof members.hitCount === "number") digests.push(members);
+      for (const member of Object.values(members)) collect(member);
+    };
+    collect(valueOf(record));
+    expect(digests.length).toBeGreaterThan(1000);
+    expect(
+      digests.filter((entry) => Object.keys(entry).sort().join() !== "hash,hitCount,outcome,residualShare,status"),
+    ).toEqual([]);
+    expect(
+      digests.filter((entry) => !/^[0-9a-f]{64}$/.test(String(entry.outcome)) || entry.outcome === entry.hash),
+    ).toEqual([]);
+    const shares = digests.map((entry) => entry.residualShare as number);
+    expect(shares.filter((share) => !(share >= 0 && share <= 1))).toEqual([]);
+    expect(Math.max(...shares)).toBeGreaterThan(0);
   });
 
   it("skips no back-pointer in the analysis and MTF records it captured", () => {

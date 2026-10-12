@@ -349,12 +349,96 @@ function isPupilBundle(value: object, key: string | null): boolean {
 
 /**
  * What stands in for a trace carrier: its status (null for a pupil bundle, which has none of its own), the hits in
- * the traces it holds, and a digest of all of it.
+ * the traces it holds, and three reductions of all of it.
+ *
+ * - `hash` covers the whole normalized content, so it changes with one bit of one number.
+ * - `outcome` covers the same content with every budgeted number masked (`maskBudgetedNumbers`), so it changes
+ *   exactly when something discrete does. A comparison above C0 holds it equal.
+ * - `residualShare` is the largest |residual| / effectiveTolerance of any hit inside, or null when no hit carries
+ *   both. A comparison above C0 holds it to 1, as it holds the residual of a hit it can read.
+ *
+ * What is left to `hash` alone is how far the budgeted numbers moved: coordinates, directions, tolerances.
  */
 interface TraceCarrierDigest {
   status: string | null;
   hitCount: number;
   hash: string;
+  outcome: string;
+  residualShare: number | null;
+}
+
+/**
+ * The largest share of its own effective tolerance that any hit's residual takes.
+ *
+ * A hit is read as the comparison reads one in a full trace: a residual that is not finite, or that has no positive
+ * tolerance to meet, has broken its contract and counts as infinite. A fallback point has neither member and is
+ * passed over.
+ *
+ * @param hits - the hit records of one engine trace
+ * @returns the largest |residual| / effectiveTolerance, or null when no hit carries both
+ */
+function largestResidualShare(hits: readonly object[]): number | null {
+  let largest: number | null = null;
+  for (const hit of hits) {
+    const { residual, effectiveTolerance } = hit as { residual?: unknown; effectiveTolerance?: unknown };
+    if (typeof residual !== "number" || typeof effectiveTolerance !== "number") continue;
+    const share =
+      Number.isFinite(residual) && effectiveTolerance > 0
+        ? Math.abs(residual) / effectiveTolerance
+        : Number.POSITIVE_INFINITY;
+    if (largest === null || share > largest) largest = share;
+  }
+  return largest;
+}
+
+/* Members of a trace carrier whose numbers are exact by nature: hit and step counts, surface indices, and the
+ * pupil position a bundle sample was asked at. Everything under such a member stays in the masked content. The
+ * budget table classes each of them `count` or `requested` where a record holds it readably (the `traces` rows for
+ * a trace's own members, `analysis:**.hitCount` and `analysis:**.pupilUv.*`); the harness tests hold this list to
+ * those rows in both directions, on captured traces. The names are listed, and the table is not asked, because the
+ * table is keyed by a record's path and a carrier's content has none. */
+const EXACT_NUMBER_KEYS: ReadonlySet<string> = new Set([
+  "count",
+  "hitCount",
+  "surfaceIndex",
+  "surfaceIdx",
+  "hitSurfaceIndexes",
+  "terminalSurfaceIndex",
+  "returnVertexIndex",
+  "maxInteractions",
+  "step",
+  "pupilUv",
+]);
+
+/** Stands for a masked number. No encoder writes it, so it cannot be taken for a value that was kept. */
+const MASKED_NUMBER_TAG = "$number";
+
+/**
+ * Mask the budgeted numbers of a carrier's encoded content: what is left is what must not change above C0.
+ *
+ * Kept: which members are present and how long each array is; every string, boolean and null; the tags of NaN and
+ * the infinities; and the numbers under `EXACT_NUMBER_KEYS`. Every other finite number becomes one marker, -0
+ * included, which is a number however it is tagged. A carrier inside the content is there as its digest already,
+ * and its `hash` is left out: it follows the numbers masked here, and its `outcome` beside it carries the rest.
+ *
+ * @param content - the encoded content of a trace carrier
+ * @returns the content with every budgeted number replaced by one marker
+ */
+export function maskBudgetedNumbers(content: EncodedValue): EncodedValue {
+  const mask = (value: EncodedValue, exact: boolean): EncodedValue => {
+    if (value === null || typeof value === "boolean") return value;
+    if (typeof value === "number") return exact ? value : MASKED_NUMBER_TAG;
+    if (typeof value === "string") return value === NEGATIVE_ZERO_TAG && !exact ? MASKED_NUMBER_TAG : value;
+    if (Array.isArray(value)) return value.map((item) => mask(item, exact));
+    const isDigest = typeof value.hash === "string" && typeof value.outcome === "string";
+    const out: { [key: string]: EncodedValue } = {};
+    for (const key of Object.keys(value)) {
+      if (isDigest && key === "hash") continue;
+      setOwn(out, key, mask(value[key], exact || EXACT_NUMBER_KEYS.has(key)));
+    }
+    return out;
+  };
+  return mask(content, false);
 }
 
 /**
@@ -395,12 +479,14 @@ export function projectTrace(trace: object): Record<string, unknown> {
  * Build an encoder for engine results.
  *
  * On top of the lossless encoding it marks engine back-pointers as skipped, leaves out computed identity strings, and
- * replaces each nested trace carrier with `{ status, hitCount, hash }`. A carrier is an engine trace, a posed pair of
- * them, or the pupil bundle of a perspective field sample; `hash` is the SHA-256 of the carrier's normalized content,
- * with the carriers inside it already digested. Perspective results keep a complete trace per ray, 56 to 490 MB of
- * text per lens state. Digested, they stay comparable bit for bit at a few megabytes, and every number outside a
- * trace or a pupil bundle stays readable beside the digests: a job's statuses, sensor points and summary numbers, and
- * a field sample's own values with its chief-ray and sensor solves.
+ * replaces each nested trace carrier with `{ status, hitCount, hash, outcome, residualShare }`. A carrier is an
+ * engine trace, a posed pair of them, or the pupil bundle of a perspective field sample. `hash` is the SHA-256 of the
+ * carrier's normalized content, with the carriers inside it already digested; `outcome` is the SHA-256 of that
+ * content with its budgeted numbers masked; `residualShare` is the largest residual inside as a share of its hit's
+ * effective tolerance. Perspective results keep a complete trace per ray, 56 to 490 MB of text per lens state.
+ * Digested, they stay comparable bit for bit at a few megabytes, and every number outside a trace or a pupil bundle
+ * stays readable beside the digests: a job's statuses, sensor points and summary numbers, and a field sample's own
+ * values with its chief-ray and sensor solves.
  *
  * Digests are remembered per carrier object for the life of the returned encoder, because one trace is usually
  * reachable from several places in a result.
@@ -411,20 +497,34 @@ export function createResultEncoder(): (value: unknown) => EncodedValue {
   const digests = new WeakMap<object, TraceCarrierDigest>();
   /* Hits behind every digest handed out so far. What a carrier's content adds to it is that carrier's count. */
   let hitsWritten = 0;
-  const digestOf = (carrier: object, status: unknown, ownHits: number, content: () => EncodedValue): object => {
+  /* The largest residual share behind the digests handed out inside the content being walked. */
+  let shareWithin: number | null = null;
+  const largerShare = (a: number | null, b: number | null) => (a === null || (b !== null && b > a) ? b : a);
+  const digestOf = (
+    carrier: object,
+    status: unknown,
+    ownHits: readonly object[],
+    content: () => EncodedValue,
+  ): object => {
     let digest = digests.get(carrier);
     if (!digest) {
       const hitsBefore = hitsWritten;
-      const hash = sha256Hex(JSON.stringify(content()));
+      const shareAround = shareWithin;
+      shareWithin = largestResidualShare(ownHits);
+      const encoded = content();
       digest = {
         status: typeof status === "string" ? status : null,
-        hitCount: ownHits + hitsWritten - hitsBefore,
-        hash,
+        hitCount: ownHits.length + hitsWritten - hitsBefore,
+        hash: sha256Hex(JSON.stringify(encoded)),
+        outcome: sha256Hex(JSON.stringify(maskBudgetedNumbers(encoded))),
+        residualShare: shareWithin,
       };
       digests.set(carrier, digest);
       hitsWritten = hitsBefore;
+      shareWithin = shareAround;
     }
     hitsWritten += digest.hitCount;
+    shareWithin = largerShare(shareWithin, digest.residualShare);
     return digest;
   };
   const policy: WalkPolicy = {
@@ -432,13 +532,13 @@ export function createResultEncoder(): (value: unknown) => EncodedValue {
     backPointerKeys: BACK_POINTER_KEYS,
     replace(value, key) {
       if (isEngineTrace(value)) {
-        return digestOf(value, value.status, value.hits.length, () => walkContents(projectTrace(value), policy, []));
+        return digestOf(value, value.status, value.hits, () => walkContents(projectTrace(value), policy, []));
       }
       if (isPosedTrace(value)) {
-        return digestOf(value, value.cameraTrace.status, 0, () => walkContents(value, policy, []));
+        return digestOf(value, value.cameraTrace.status, [], () => walkContents(value, policy, []));
       }
       if (isPupilBundle(value, key)) {
-        return digestOf(value, null, 0, () => walkContents(value, policy, []));
+        return digestOf(value, null, [], () => walkContents(value, policy, []));
       }
       return undefined;
     },

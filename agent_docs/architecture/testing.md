@@ -221,7 +221,8 @@ and bundled there.
 - `requests.ts` defines a tier as a deterministic list of lens × state × request family, and cuts a list into
   shards. The three tiers are described under "Tiers" below.
 - `payload.ts` holds the encoding (JSON that round-trips under `Object.is`, with tags for -0, NaN, and the
-  infinities), the digests that stand in for the per-ray traces and pupil bundles nested in perspective results, and
+  infinities), the digests that stand in for the per-ray traces and pupil bundles nested in perspective results
+  (two hashes and the largest residual share, described under "Change Classes and Budgets"), and
   the semantic fingerprint: a hash of a prescription after lens defaults and the engine's authority rules (a flat
   radius at any magnitude, a zero asphere term, a derived stop radius, the sign of zero). A payload that hands
   authored data back, such as the composed prescription of a pair or the `data` of a built lens, is written through
@@ -288,7 +289,9 @@ a lens's records never straddle two shards, the shards share no lens, and togeth
 A run takes a base ref and the working tree, which is the head. Nothing is skipped silently.
 
 1. **Engine drift.** Every head prescription is evaluated on the base engine and on the head engine, and the two
-   sets of records are compared under the change class.
+   sets of records are compared under the change class. What happened inside each trace nested in an analysis
+   result, which no number of a record would show, is in it as a discrete field: the outcome hash of the trace's
+   digest.
 2. **Format-only data change.** A lens whose serialized prescription differs from the base's while its semantic
    fingerprint does not: the base and head prescriptions are evaluated on the head engine and must be bit-identical
    in every class. Prescriptions are compared as evaluated data, so an edit to comments or layout is no change.
@@ -393,11 +396,28 @@ The classes in `budgets.ts`:
   report alone: when such a field fails, `summary.md` names the solver and its quantum and gives the difference in
   quanta, so a boundary transition (about a whole quantum) can be told from drift (a small part of one).
 - Solver iteration and evaluation counts are exact under C0. Above it a change is reported as a histogram.
-- A trace nested in an analysis result is in the record as its status, hit count and a hash. Under C0 a changed hash
-  fails. Above C0 it is counted, the status and hit count are still compared, and the numbers inside the trace are
-  not budgeted. A C1 or C2 run in which a digest changed says so where it cannot be missed: `summary.md` opens with
-  a "Not budgeted" section that counts the changed digests per record family and names the lenses, and the driver
-  prints a warning to stderr. The run does not fail on it.
+- A trace nested in an analysis result is in the record as a digest of five members: its status, its hit count, a
+  hash, an outcome hash and its largest residual share. So are a posed pair of traces and a pupil bundle, which has
+  no status of its own. Under C0 each member is compared like any field, so a changed hash fails. Above C0 the rule
+  is "contract and flags only":
+  - The status and the hit count are exact.
+  - The outcome hash is exact, below C3. It is a hash of the same content with every budgeted number masked, so it
+    changes exactly when something discrete does: a flag, a status, a reason or a label; a count, a surface index or
+    the pupil position of a bundle's sample; a value that became or stopped being NaN, infinite or null; a member
+    that came or went; an array that changed length. A difference is a discrete transition at the digest's
+    `outcome`. It says that something discrete changed inside the trace and not what, since no record holds the
+    content.
+  - The largest residual share is a contract check: the largest |residual| / effective tolerance of any hit inside,
+    each hit against its own tolerance, and null when no hit carries both. Where the two sides differ, the head's
+    value must be at most 1. A breach the base alone carries is not one the change made, and does not fail.
+  - A hash that changed while those hold is counted and does not fail. How far the coordinates, directions,
+    effective tolerances and other numbers inside the trace moved is held to no budget: that is the accepted limit
+    of the rule. A C1 or C2 run in which a digest changed says so where it cannot be missed. `summary.md` opens
+    with a "Not budgeted" section that says what was judged and what was not, counts the changed digests per record
+    family and names the lenses, and the driver prints a warning to stderr.
+  - The numbers the outcome keeps are listed in `payload.ts` by member name, because the budget table is keyed by a
+    record's path and a digest's content has none. The tests hold that list to the table's exact rows in both
+    directions.
 
 A class is required of a number only above C0, and only where it differs. Under C1 or C2 a number that moves and has
 no class fails the run, and `summary.md` lists its path under "Numbers with no quantity class". Under C0 no budget is
@@ -486,12 +506,13 @@ exception was met by some shard.
 
 Three files in the tooling suite hold the harness to its contract.
 
-- `__tests__/src/benchmarks/engineDiff.test.ts`: a capture repeats byte for byte, the encoding loses nothing, the
-  fingerprint's restated stop-radius rule agrees with `buildLens` on every catalog lens, a fingerprint-equal
-  respelling leaves every Tier P record of a lens unchanged, a member of a built surface that the engine alone
-  changed gives another build record, and no analysis or MTF record carries a skip marker. Asking an engine which
-  pairs it permits does not throw on a prescription it cannot read, and it names the pairs it cannot build, each by
-  the pair's own build record.
+- `__tests__/src/benchmarks/engineDiff.test.ts`: a capture repeats byte for byte, the encoding loses nothing, a
+  digest's outcome follows the discrete members of a trace alone and its residual share is the largest inside it,
+  every digest of a captured record carries both, the fingerprint's restated stop-radius rule agrees with `buildLens`
+  on every catalog lens, a fingerprint-equal respelling leaves every Tier P record of a lens unchanged, a member of a
+  built surface that the engine alone changed gives another build record, and no analysis or MTF record carries a
+  skip marker. Asking an engine which pairs it permits does not throw on a prescription it cannot read, and it names
+  the pairs it cannot build, each by the pair's own build record.
   Each tier's list is the same on every build and for any order of the catalog, Tier S holds every request of Tier
   P and Tier F every request of Tier S, a pair that one engine alone permits is still asked, and the shards of every
   tier are disjoint and complete at several shard counts. It also compares what `requests.ts` has to copy with its
@@ -504,7 +525,11 @@ Three files in the tooling suite hold the harness to its contract.
   relative, a solve's residual is held to its solve's tolerance and not differenced, a stop residual 1000 times larger
   on one side of a converged solve fails, a record that throws alike on both engines fails in every class, and a failing
   solver output is reported in quanta. An effective tolerance passes a last-bits change above C0 and fails at 1e-10
-  relative and when doubled. It also covers cross-evaluation: a data-only change shows no engine difference
+  relative and when doubled. Inside a nested trace whose status and hit count stand, a flipped flag, a NaN, a changed
+  surface index and the changed status of one ray of a pupil bundle each fail under C1 and C2, a residual at twice its
+  effective tolerance fails as a contract breach on the head, and a coordinate that moved by any distance is reported
+  and passes, which is the accepted limit of the rule. The outcome masks exactly the numbers the table budgets, on
+  captured traces. It also covers cross-evaluation: a data-only change shows no engine difference
   and an impact report, a format-only change that alters a value fails, a failed status or a non-finite number behind a
   change of shape blocks, a changed converter is compared through its pairs, and a pair the engines disagree about fails
   while one the data lost is listed. A pair the data gained passes with failed rays in its records and fails when it

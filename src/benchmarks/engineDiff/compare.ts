@@ -50,8 +50,10 @@ export interface ComparableRecord {
  * - `discrete`: a status, count, label, sample position or other exact field changed, or a value changed type.
  * - `shape`: a member is missing on one side, or an array changed length.
  * - `digest`: the hash that stands in for a trace nested in an analysis result changed, so something inside that
- *   trace moved. A hash cannot say how far. Under C0 that is a failure like any other; above C0 it is counted, and
- *   only the status and hit count written beside the hash are compared.
+ *   trace moved. A hash cannot say how far. Under C0 that is a failure like any other; above C0 it is counted and
+ *   does not fail. What is written beside the hash is compared as any field is: the status, the hit count, the
+ *   `outcome` hash, which is a discrete field that changes with anything discrete inside the trace, and the largest
+ *   residual share, which is a contract check.
  */
 export type DifferenceKind =
   | "number"
@@ -271,6 +273,9 @@ function diffRecords(
         }
         return report(worst > budget || unaccepted ? "contract" : "number", pattern, a, b, quantity, worst, budget);
       }
+      case "share":
+        /* Already a share of its tolerance, and only the head's is judged: the engine a change proposes. */
+        return report(Math.abs(y) > budget ? "contract" : "number", pattern, a, b, quantity, Math.abs(y), budget);
     }
   };
 
@@ -1489,8 +1494,9 @@ function tallySection(title: string, tally: ComparisonTally, changeClass: Change
     "",
     ...(tally.differences.digest > 0
       ? [
-          `${tally.differences.digest} digests of traces nested in analysis results differ. Above C0 only the status ` +
-            "and hit count beside a digest are compared; the numbers inside it are not budgeted.",
+          `${tally.differences.digest} digests of traces nested in analysis results differ. Above C0 the status, hit ` +
+            "count, outcome hash and largest residual share beside a digest are compared; how far the numbers " +
+            "inside it moved is not budgeted.",
           "",
         ]
       : []),
@@ -1567,8 +1573,8 @@ export function renderSummaryMarkdown(summary: RunSummary, context: RunContext):
     read(counts.baseEngine),
     read(counts.headEngine),
   ];
-  /* Above C0 a changed digest does not fail and the trace behind it is held to no budget. It leads the report, so
-   * a passing run cannot be read as having budgeted those traces. */
+  /* Above C0 a changed digest does not fail and the numbers of the trace behind it are held to no budget. It leads
+   * the report, so a passing run cannot be read as having budgeted those traces. */
   const digests = engine.differences.digest;
   const notBudgeted =
     digests > 0 && (summary.changeClass === "c1" || summary.changeClass === "c2")
@@ -1576,9 +1582,14 @@ export function renderSummaryMarkdown(summary: RunSummary, context: RunContext):
           "## Not budgeted: digested traces",
           "",
           `**${digests} trace digests changed, in ${engine.digests.lenses.length} lenses, and none of them was ` +
-            `budgeted.** A trace nested in an analysis result is in the record as its status, hit count and a ` +
-            `hash. Under ${summary.changeClass.toUpperCase()} only the status and the hit count were compared: ` +
-            "the coordinates, directions and residuals inside these traces were held to no budget, and the run " +
+            `budgeted.** A trace nested in an analysis result is in the record as its status, its hit count, two ` +
+            `hashes and its largest residual share. Under ${summary.changeClass.toUpperCase()} four of those were ` +
+            "judged, and one that failed is among the failing differences below: the status and the hit count, " +
+            "which must be equal; the outcome hash, which must be equal, and which changes with any flag, status, " +
+            "reason, label, count, index, sample position or non-finite value inside the trace and with the shape " +
+            "of what it holds; and the largest residual inside it as a share of its hit's effective tolerance, " +
+            "which the head must keep at or under 1. Not judged: how far the coordinates, directions, effective " +
+            "tolerances and other numbers inside these traces moved. They were held to no budget, and the run " +
             "did not fail on them.",
           "",
           ...table(

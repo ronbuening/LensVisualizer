@@ -34,11 +34,15 @@ export type ChangeClass = "c0" | "c1" | "c2" | "c3";
  *   the two values are not differenced. Each must lie within the tolerance its solver accepted it under: the
  *   effective tolerance recorded beside a hit, or the one tolerance of a solve. A field that restates a solve's
  *   residual in another frame is held to a bound of its own.
+ * - `share`: the field is already a residual as a share of the tolerance it was accepted under: the largest inside a
+ *   digested trace. Like a residual it is not differenced. Where the two sides differ, the head's own value must be
+ *   at most the budget, 1: the head is the engine a change proposes, and a breach the base alone carries is not one
+ *   the change made.
  * - `exact`: `Object.is`. A difference is a discrete transition, listed in the report.
  * - `iterations`: a solver's step or evaluation count. Above C0 a change is tallied as a histogram and does not
  *   fail by itself; what it did to the solver's output shows in that output's own class.
  */
-export type ComparisonKind = "absolute" | "relative" | "slope" | "residual" | "exact" | "iterations";
+export type ComparisonKind = "absolute" | "relative" | "slope" | "residual" | "share" | "exact" | "iterations";
 
 /** Where a class and its budget come from. */
 export type QuantityOrigin =
@@ -153,6 +157,16 @@ export const QUANTITIES = {
     title: "Intersection residual",
     unit: "of its effective tolerance",
     kind: "residual",
+    c1: 1,
+    c2: null,
+    origin: "addition",
+  },
+  /* What a digest keeps of the residuals behind it: the largest, as a share of the effective tolerance of its own
+   * hit. `payload.ts` computes it, hit by hit, as the comparison reads a residual in a full trace. */
+  nestedResidualShare: {
+    title: "Largest residual in a digested trace",
+    unit: "of its effective tolerance",
+    kind: "share",
     c1: 1,
     c2: null,
     origin: "addition",
@@ -581,8 +595,10 @@ const TABLE: readonly TableRow[] = [
       "analysis:jobs.cardinalElements.value.distances.*.*",
     ],
   ],
-  /* The digest that stands in for a nested trace keeps its hit count readable. */
+  /* The digest that stands in for a nested trace keeps its hit count readable, and the largest residual behind it
+   * as a share of that hit's effective tolerance. */
   ["count", ["analysis:**.hitCount"]],
+  ["nestedResidualShare", ["analysis:**.residualShare"]],
   /* Group movement is layout arithmetic on a sample grid; nothing in it is traced. The job names are single
    * members that contain a dot ("groupMovement.focus"). */
   [
