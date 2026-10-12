@@ -173,6 +173,8 @@ describe("engineDiff budget table", () => {
     const lengthFloor = { bound: 1e-12, unit: "mm" };
     expect(floors).toEqual([
       ["firstOrder", 1e-12, lengthFloor],
+      /* A hit's effective tolerance is a length that is never below the engine's 1e-12 mm target. */
+      ["effectiveTolerance", 1e-12, null],
       ["layoutLength", 1e-12, lengthFloor],
       ["bestFitRadius", 1e-12, lengthFloor],
       ["refractiveIndex", 1e-12, null],
@@ -394,6 +396,7 @@ describe("engineDiff drift detection", () => {
   it.each<[RequestFamily, Path, QuantityId, number]>([
     ["traces", HIT_POINT_Y, "landing", 1],
     ["traces", [...RAY, "hits", "columns", "normal", HIT, 1], "directionCosine", 1],
+    ["traces", [...RAY, "hits", "columns", "effectiveTolerance", HIT], "effectiveTolerance", 1],
     ["traces", [...RAY, "input", "origin", 1], "chiefLaunch", 1],
     ["traces", [...RAY, "imagePoint", 1], "landing", 1],
     ["build", ["EFL"], "firstOrder", 1],
@@ -518,11 +521,47 @@ describe("engineDiff drift detection", () => {
     expect(failuresOf(compare("c1", outside, base))).toEqual([
       expect.objectContaining({ kind: "contract", quantity: "intersectionResidual" }),
     ]);
-    /* A relaxed tolerance is the contract of the hit that carries it. Relaxing it is a transition of its own. */
+    /* A relaxed tolerance is the contract of the hit that carries it: the residual is inside it, and the tolerance
+     * itself is what fails, far outside its own budget. */
     const relaxed = withChange("traces", tolerance, () => 4e-12, outside);
     expect(failuresOf(compare("c1", relaxed, base))).toEqual([
-      expect.objectContaining({ kind: "discrete", quantity: "effectiveTolerance" }),
+      expect.objectContaining({ kind: "number", quantity: "effectiveTolerance" }),
     ]);
+  });
+
+  it("holds an effective tolerance to 1e-12 relative above C0, and bit for bit under it", () => {
+    /* At a stalled root the tolerance is a computed float, a roundoff envelope over the ray's operands, and
+     * reordered arithmetic moves its last bits. */
+    const tolerance: Path = [...RAY, "hits", "columns", "effectiveTolerance", HIT];
+    const at2 = { request: "traces", path: "onAxis.rays[1].hits.columns.effectiveTolerance[2]" };
+    const envelope = 3.7e-12;
+    const held = (value: number) => withChange("traces", tolerance, () => value);
+
+    const lastBits = held(envelope * (1 + 4 * Number.EPSILON));
+    expect(failuresOf(compare("c0", lastBits, held(envelope)))).toEqual([
+      { ...at2, kind: "number", quantity: "effectiveTolerance" },
+    ]);
+    for (const changeClass of ["c1", "c2"] as const) {
+      const summary = compare(changeClass, lastBits, held(envelope));
+      expect(summary.passed, changeClass).toBe(true);
+      expect(summary.engine.quantities.effectiveTolerance, changeClass).toMatchObject({
+        differing: 1,
+        beyondBudget: 0,
+      });
+      expect(summary.engine.transitions, changeClass).toBe(0);
+
+      /* 1e-10 relative is a hundred times the budget, and there is no absolute floor to hide it under. */
+      const drifted = compare(changeClass, held(envelope * (1 + 1e-10)), held(envelope));
+      expect(failuresOf(drifted), changeClass).toEqual([{ ...at2, kind: "number", quantity: "effectiveTolerance" }]);
+      expect(drifted.engine.failures[0].measure! / drifted.engine.failures[0].budget!).toBeCloseTo(100, 0);
+
+      /* A doubled tolerance fails, from the engine's raw target as from an envelope. */
+      expect(compare(changeClass, held(2 * envelope), held(envelope)).passed, changeClass).toBe(false);
+      expect(failuresOf(compare(changeClass, held(2e-12))), changeClass).toEqual([
+        { ...at2, kind: "number", quantity: "effectiveTolerance" },
+      ]);
+    }
+    expect(compare("c3", held(2 * envelope), held(envelope)).passed).toBe(true);
   });
 
   it("checks a solve's residual against the solve's own tolerance instead of differencing it", () => {

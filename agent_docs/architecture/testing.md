@@ -364,8 +364,11 @@ The classes in `budgets.ts`:
   prescription the engine hands back is plainly relative too: its values have no one unit, and an asphere
   coefficient is far smaller than any floor of a length.
 - NaN and the infinities are compared with `Object.is` in every class.
-- An intersection residual is not differenced. Each side must lie within the effective tolerance recorded with it,
-  and the effective tolerance itself is exact.
+- An intersection residual is not differenced. Each side must lie within the effective tolerance recorded with it.
+- The effective tolerance itself is held to 1e-12 relative, with no floor. It is the engine's 1e-12 mm target
+  except at a stalled root, where it is a computed float: the larger of that target and a roundoff envelope over
+  the ray's operands, whose last bits move when arithmetic is reordered. Under C0 it is bit-exact, as every number
+  is. A relaxed tolerance, twice the target or more, is far outside the budget and fails.
 - What a solve reports of its own convergence is the same kind of contract check: each side must lie within the
   tolerance the solve accepts a residual under, and the two sides are not differenced.
   - The posed chief-ray solve's residual is held to 1e-7 mm: `DEFAULT_RESIDUAL_TOLERANCE_MM` in
@@ -500,7 +503,8 @@ Three files in the tooling suite hold the harness to its contract.
   order, one ulp under C0, twice a budget under C1 where half passes). A scalar below 1 that is no length fails at 1e-10
   relative, a solve's residual is held to its solve's tolerance and not differenced, a stop residual 1000 times larger
   on one side of a converged solve fails, a record that throws alike on both engines fails in every class, and a failing
-  solver output is reported in quanta. It also covers cross-evaluation: a data-only change shows no engine difference
+  solver output is reported in quanta. An effective tolerance passes a last-bits change above C0 and fails at 1e-10
+  relative and when doubled. It also covers cross-evaluation: a data-only change shows no engine difference
   and an impact report, a format-only change that alters a value fails, a failed status or a non-finite number behind a
   change of shape blocks, a changed converter is compared through its pairs, and a pair the engines disagree about fails
   while one the data lost is listed. A pair the data gained passes with failed rays in its records and fails when it

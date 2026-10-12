@@ -143,7 +143,12 @@ export const QUANTITIES = {
 
   countRatio: exact("Count ratio", "addition"),
   binnedStatistic: exact("Binned statistic", "addition"),
-  effectiveTolerance: exact("Effective intersection tolerance", "addition"),
+  /* The tolerance a hit was accepted under is the engine's raw target, 1e-12 mm, except at a stalled root. There it
+   * is a computed float, the larger of that target and a roundoff envelope: 16·ε times the sum of the ray's
+   * absolute operands. Reordered arithmetic moves the last bits of that sum, so above C0 the field takes the plan's
+   * one relative budget. It is never below 1e-12 mm, so it needs no floor, and a relaxed tolerance, twice the
+   * target or more, is far outside the budget. */
+  effectiveTolerance: relative("Effective intersection tolerance", 1e-12, "derived"),
   intersectionResidual: {
     title: "Intersection residual",
     unit: "of its effective tolerance",
