@@ -11,9 +11,6 @@ import { TELECONVERTER_CATALOG } from "../../../src/utils/catalog/teleconverterC
  * sweep holds every catalog prescription to exact agreement.
  */
 
-/** The validator's own allowance for both pairs (`validateLensData.ts`). */
-const VALIDATOR_TOLERANCE = 1e-6;
-
 describe("values a prescription holds twice", () => {
   it("gives every surface the exact index of the element it opens", () => {
     const prescriptions = [...Object.values(LENS_CATALOG), ...Object.values(TELECONVERTER_CATALOG)];
@@ -26,9 +23,9 @@ describe("values a prescription holds twice", () => {
         if (!surface.elemId) continue;
         const nd = elementNd.get(surface.elemId);
         if (typeof nd !== "number" || typeof surface.nd !== "number") continue;
-        /* A surface that names its element and opens another medium, such as the last face of a folded block, is
-         * no copy of the element's index. Only a value the validator takes for the same index has to be it. */
-        if (surface.nd !== nd && Math.abs(surface.nd - nd) <= VALIDATOR_TOLERANCE) {
+        /* A surface names the element whose glass follows it, and 0 where air does: the last face of an element
+         * opens air and names no element. */
+        if (surface.nd !== nd) {
           mismatches.push(
             `${data.key}: surface ${surface.label} nd ${surface.nd} != element ${surface.elemId} nd ${nd}`,
           );
