@@ -428,28 +428,51 @@ from the one file it is given as `--exceptions`.
     type is written `number`, so its digits are no part of the line, and a backtick is written `\u0060`.
   - The digest is the first 12 hex digits of the SHA-256 of every discrete and shape difference of the unit, each as
     its path, kind and two values, in path order and with none left out. One more flag flipped in the ray gives
-    another digest.
+    another digest. The differences of the hits both sides have behind a hit column that changed length are among
+    them (see "Common hits").
   - `numbers` is optional and is described below.
   - The reason is the rest of the line: why this transition is expected.
 
   Every bullet under the heading is a declaration. One that does not read as such a line, or that has no reason,
   stops the run with a message that quotes it.
-- **Where the lines come from.** A run above C0 writes `transitions.md` in its `reports` folder: the line of every
-  unit that no declared line matches, without a reason, under the heading. `summary.md` shows the first 40. The
-  author pastes them into the description, writes a reason after each full stop, and runs the job again.
+- **Where the lines come from.** A run above C0 writes `transitions.md` in its `reports` folder. Its first section
+  is the line of every unit that a line could declare and none matches, without a reason, under the heading.
+  `summary.md` shows the first 40. The author pastes them into the description, writes a reason after each full
+  stop, and runs the job again. The file says how many characters the lines take: a pull request description holds
+  65,536, and the driver warns when the lines alone are more.
 - **What a line excuses.** The discrete and shape differences of its unit, when the line names the difference the
-  harness names and carries the digest the run computes. With `numbers` it also excuses, in that unit alone, a
-  number beyond budget in a field of a traced ray that has no counterpart once the ray ends on another surface or
-  stops: `terminalPoint`, `terminalDirection`, `imagePoint`, `x`, `y`, `ux` and `uy`, and the stack tracer's `pts`,
-  `ghostPts`, `y` and `u`. `numbers` permits and does not assert: a line that says it is as good where no number is
-  beyond budget, so one line holds for a pull-request run and for a stage run with another base. A line never
-  excuses a number in any other field, an aggregate the transition moved, a non-finite mismatch, a number with no
-  class, or a residual outside its tolerance.
-- **The head side of a declared unit.** The paired walk reports a changed array length, or a member one side lacks,
-  once and does not enter it, so a hit the head engine gained is compared with nothing. In a unit whose line
-  matched, the head side therefore answers alone: each hit must lie within the effective tolerance recorded beside
-  it, and every other number must be finite unless the base side holds the same non-finite value at the same place.
-  A breach refuses the line, and the unit's differences fail.
+  harness names and carries the digest the run computes.
+  - With `numbers` it also excuses, in that unit alone, a number beyond budget in a field of a traced ray that has
+    no counterpart once the ray ends on another surface or stops: `terminalPoint`, `terminalDirection`,
+    `imagePoint`, `x`, `y`, `ux` and `uy`, and the stack tracer's `pts`, `ghostPts`, `y` and `u`.
+  - `numbers` is honoured only where the unit's own discrete and shape differences show that the ray did end
+    elsewhere (`ENDED_ELSEWHERE` in `compare.ts`): its `status`, `clipped`, `failureReason`, `reachedImagePlane`,
+    `terminalSurfaceIndex` or `returnVertexIndex`; its hit count, or a hit's surface index or clip, fallback or
+    failure flag; the stack tracer's `pts` or `ghostPts` changing length; the same members of its `diagnostics`,
+    its `hitSurfaceIndexes` and anything of its `clipEvents`. A unit in which only a label, a tolerance, an input
+    or the presence of a hit column differs keeps every number on its budget, with `numbers` or without, and the
+    line a run writes for it does not say `numbers`.
+  - `numbers` permits and does not assert: a line that says it is as good where no number is beyond budget, so one
+    line holds for a pull-request run and for a stage run with another base.
+  - A line never excuses a number in any other field, an aggregate the transition moved, a non-finite mismatch, a
+    number with no class, or a residual outside its tolerance.
+- **Common hits.** The paired walk reports a hit column that changed length once and does not enter it. In every
+  unit with such a column, the hits both sides still have are compared as in a ray that kept its length: the rows
+  from the first, for as long as both sides' `surfaceIndex` columns name the same surface. A discrete difference of
+  one, a clip flag for instance, is a difference of the unit and is in its digest. A coordinate, radius or direction
+  cosine beyond its budget, a residual outside its tolerance on either side, a non-finite mismatch or a number with
+  no class is what no line excuses. Past the first row where the two sides name different surfaces nothing is
+  paired, because a row there holds two different hits.
+- **The head side of a unit.** A hit the head engine gained is paired with nothing, and a solve that now converges
+  sets its residual against the null of one that did not. So the head side of every unit that holds a discrete or
+  shape difference answers alone. Each hit's residual must lie within the effective tolerance recorded beside it.
+  Each residual of a solve whose head status is `converged` must lie within its class's tolerance: the posed
+  chief-ray solve's, the stop residual beside it, and the sensor lock's scalar root and both components of its miss.
+  Every other number must be finite unless the base side holds the same non-finite value at the same place.
+- **What no line excuses.** A unit that fails the common-hits or the head-side check cannot be declared. The run
+  writes no line for it, since the next run could only refuse that line. It lists the unit with the first thing it
+  found, in `summary.md` and in `transitions.md` under "Units that no line can declare", and a line declared for
+  such a unit is refused with the same sentence. The unit's differences fail.
 - **What cannot be declared.** A record or an analysis job that starts or stops throwing, which is its `ok` and the
   `value` and `error` that come and go with it; and any discrete or shape difference in a build, composition or
   layout record. These fail under C1 and C2 whatever is declared, and a run writes no line for them.
@@ -457,8 +480,8 @@ from the one file it is given as `--exceptions`.
   - a discrete or shape difference in a unit that no line declares;
   - a line whose named difference or digest is not what the run found in its unit;
   - a line for a unit in which the run found no discrete or shape difference, in a record it compared;
-  - a line the head side refused, a line for what cannot be declared, and a line for a lens the base engine could
-    not evaluate;
+  - a line for a unit that holds what no line excuses, a line for what cannot be declared, and a line for a lens
+    the base engine could not evaluate;
   - a line whose lens id is neither in the head catalog nor a requested converter pair.
 
   A line for a record the run did not ask for is listed as not judged and fails nothing: a lens of another shard,
@@ -467,14 +490,30 @@ from the one file it is given as `--exceptions`.
   and reported and gate nothing, like the rest of the engine comparison.
 - **The engine comparison only.** A line excuses nothing in the format-only comparison, in the data-impact report,
   for a record that throws on both engines, or in the pair lists.
+- **What a matched line covers.** `transitions.md` lists, for each matched line, every difference its digest
+  covers, as path, kind and the two values, so a reviewer of the one difference a line names can read what else it
+  vouches for. A run keeps the first 200 of a line's differences and says how many there are. `summary.md` gives
+  the counts and points there.
 - **Bounded memory.** A run holds the discrete and shape differences of one record at a time, at most 20,000 of
   them. A record with more is matched against no line: every one of those differences fails, and the run names the
   record. The driver writes at most 4 MiB of lines to `transitions.md` and counts the rest. The run has counted
-  their units by then, and fails on each whether its line is written or not.
+  their units by then, and fails on each whether its line is written or not. The units that no line can declare are
+  counted, and the first 200 are kept.
+- **Capacity.** A pull request description holds 65,536 characters, and the inputs of one stage dispatch 65,535
+  together. A line is 160 to 190 characters before its reason, so one description declares about 250 units. One
+  event is often several units: an on-axis ray is traced by the surface tracer and again by the stack tracer
+  (`onAxis` and `legacy`), and a chromatic ray once for each of four channels. The harness has no other place to
+  declare from: a step with more undeclared units than one description holds cannot pass C1 or C2 as one pull
+  request.
 - **Not covered.**
   - What lies behind a changed array length, or in a member one side lacks, is compared with nothing beyond the
-    head-side check, and is in the digest only as its type and length. `summary.md` says of each matched line how
-    many of its differences are such shapes.
+    common hits and the head-side check, and is in the digest only as its type and length. That holds for the stack
+    tracer's `pts` and `ghostPts`, which have no surface index to pair by, and for a ray whose hit table is under no
+    array index. `summary.md` says of each matched line how many of its differences are such shapes.
+  - A ray that newly stops, or newly completes, inside glass cannot be declared. `finalMedium`, on the ray and in
+    its `diagnostics`, is the index of the medium the ray ended in and is held to 1e-12 relative, and it is not
+    among the fields `numbers` permits. The same holds for the stack tracer's `transmission` in a lens with
+    authored absorption.
   - A trace nested in an analysis result shows only what its digest keeps readable.
   - What a transition does to a number computed from many rays (a relative illumination, an RMS, a best focus) is
     outside every line, and fails on its own budget.
@@ -514,7 +553,9 @@ Its output goes under `--out`, or under a new directory in the system temp direc
 gzip NDJSON payloads in a `payloads` folder, and the small files in a `reports` folder beside it (`summary.json`,
 `summary.md`, `data-impact.md`, `uncompared.json`, the failing record pairs and, above C0, `transitions.md`). Nothing
 it writes is committed. It exits non-zero when a comparison fails, when the uncompared lenses differ from the
-declared exceptions in either direction, or when the transitions it found differ from the declared ones.
+declared exceptions in either direction, or when the transitions it found differ from the declared ones. It reads
+the declared transitions before it adds its base worktree, so a bullet it cannot read stops it at once, with the
+bullet on stderr and in the job summary.
 
 ### CI
 
@@ -537,8 +578,9 @@ head is the ref the run is started on.
 
 A shard is part of a tier, so it lets a declared exception that it never met pass and lists it in its `summary.json`.
 The `result` job downloads the shards' reports and is green only when every shard passed and every declared
-exception was met by some shard. It also lists each declared transition that no shard judged, which names a record
-the tier does not ask for, and does not fail on it.
+exception was met by some shard. Above C0 it also lists each declared transition that no shard judged, which names a
+record the tier does not ask for, and does not fail on it. Under C0 no shard judges any line and each fails on a
+description that declares one, and the job says that instead.
 
 - **A stage run** is dispatched by hand, from the Actions tab or with `gh`. Its inputs are the base ref (the current
   anchor tag or a commit), the tier, the change class, the number of shards, which is 8 for Tier S and 32 for Tier F
@@ -552,9 +594,18 @@ the tier does not ask for, and does not fail on it.
 
   A stage run above C0 takes its declared transitions through the `transitions` input: the bullets alone, one per
   line, each with its reason. The maintainer assembles them by hand from the descriptions of the pull requests merged
-  since the base, and each shard writes them under the heading in the same file. A stage run meets states no
-  pull-request run asked, and a unit that two steps changed in turn has another digest than either step declared, so
-  a first run usually ends with lines of its own in each shard's `transitions.md` to add or to put in their place.
+  since the base, and each shard writes them under the heading in the same file. The `plan` job refuses an input
+  that holds any line but a bullet, before a shard starts: a heading among the bullets would end the section the
+  driver reads, and the bullets behind it would declare nothing.
+
+  A line that passed its pull request does not always pass a stage run, which has another base:
+  - A stage run meets states no pull-request run asked, and a unit that two steps changed in turn has another digest
+    than either step declared. A first run therefore usually ends with lines of its own in each shard's
+    `transitions.md`, to add or to put in place of the ones it found mismatched.
+  - A line for a lens the stage's base cannot build, which is one of the run's declared exceptions, fails as "the
+    lens was not compared". Leave it out.
+  - A line for a converter pair that the head's prescriptions no longer permit fails as "no such lens". Leave it out.
+
   The text reaches a shell only as an environment variable. The dispatch form's field takes one line, so more than
   one bullet is sent from a file. GitHub holds all the inputs of one dispatch to 65,535 characters, which is about
   250 such lines:
@@ -608,16 +659,22 @@ Three files in the tooling suite hold the harness to its contract.
   For declared transitions: the line a failing run prints, pasted back with a reason, passes that run under C1 and
   C2, fails it under C0 and is reported under C3. A missing line, a line with nothing behind it, a wrong value, a
   wrong digest, a second ray beside the declared one, a number beyond budget without `numbers` or outside the fields
-  `numbers` permits, a residual or a non-finite number on the head side of a declared unit (in a hit column that
-  grew as well), a number with no class, the same unit under another state, request or lens, a job or record that
-  starts throwing, a build or layout difference, a lens id the catalog does not hold, and a record past the cap each
-  fail. A line for a record the run did not ask for is listed, a format-only change is excused by no line, and a
-  lens handed over in parts gets the verdict of the lens whole.
+  `numbers` permits, `numbers` on a unit that does not show its ray ended elsewhere, a residual or a non-finite
+  number on the head side of a declared unit (in a hit column that grew as well), a converged solve's residual
+  outside its tolerance where the base holds null, a hit both sides have that moved beyond its budget behind a
+  column that changed length, a number with no class, the same unit under another state, request or lens, a job or
+  record that starts throwing, a build or layout difference, a lens id the catalog does not hold, and a record past
+  the cap each fail. A unit that no line can declare gets no line and is listed with what it holds. A matched line
+  carries the differences its digest covers. A line for a record the run did not ask for is listed, a format-only
+  change is excused by no line, and a lens handed over in parts gets the verdict of the lens whole.
 - `__tests__/scripts/engineDiffScript.test.ts`: the command line, and runs of the real driver against `HEAD`, on one
   lens of Tier P and on one lens of one shard of Tier S, which are skipped where git cannot add a worktree. A third
   run hands the driver a description with both headings and checks that its declared transitions are held to the
-  run. The step of the stage workflow that writes that file is run as a shell script, with the `transitions` input
-  in its environment, and what it writes is read back by the parser. No test evaluates the workflow's own
+  run, and a fourth that a bullet with no reason stops the driver before it adds a base worktree. Three steps of
+  the stage workflow are run as shell scripts with the workflow's variables in their environment: the step that
+  writes that file, whose output is read back by the parser; the `plan` step, which must refuse a heading among the
+  bullets; and the `result` step, on fabricated shard summaries, under C1 and under C0 (skipped where there is no
+  `jq`). The report of `transitions.md` is rendered from a fabricated summary. No test evaluates the workflow's own
   expressions or dispatches it.
 
 ## Refactor Test Expectations
