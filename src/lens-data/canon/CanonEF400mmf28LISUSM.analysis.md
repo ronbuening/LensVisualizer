@@ -355,7 +355,7 @@ curvature value.
 
 The inferred semi-diameter model also passes the independent spherical geometry preflight at both defined focus states:
 minimum modeled element edge thickness is 0.773590768 mm, the largest actual rim-slope angle is 63.488585°, and the
-smallest remaining clearance to the configured shared-gap intrusion limit is 0.030738156 mm. These values validate the
+smallest remaining clearance to the configured shared-gap intrusion limit is 0.017269037 mm. These values validate the
 internal geometry of the authored clear apertures but do not convert the inferred semi-diameters into source facts.
 
 ## Sources and References
