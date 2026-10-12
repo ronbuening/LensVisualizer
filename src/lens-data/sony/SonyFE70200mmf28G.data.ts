@@ -42,6 +42,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.8823,
   lensMounts: ["sony-fe"],
+  acceptsTeleconverters: true, // Sony lists SEL14TC / SEL20TC teleconverter compatibility
   imageFormat: "135-full-frame",
   patentNumber: "US 2019/0018229 A1",
   patentAuthors: ["Naoki Miyagawa", "Yonghua Chen"],
