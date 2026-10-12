@@ -1630,9 +1630,47 @@ describe("engineDiff cross-evaluation", () => {
     changeClass: ChangeClass = "c0",
   ): RunSummary {
     const run = createDifferentialRun({ changeClass, declaredExceptions: [], restricted: true });
-    run.addLens({ lens: key, dataChange, baseEngine: structuredClone(head), headEngine: head, baseData });
+    run.addLens({ lens: head[0].lens, dataChange, baseEngine: structuredClone(head), headEngine: head, baseData });
     return run.finish();
   }
+
+  /* A semantic data change is judged path by path. The tests below set a status, a number or an outcome on each
+   * side of one. */
+  const NO_PATHS = {
+    statuses: { toFailure: 0, fromFailure: 0 },
+    numbers: { toNonFinite: 0, fromNonFinite: 0 },
+    outcomes: { toThrown: 0, fromThrown: 0 },
+    baseOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
+    headOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
+    statusChanges: {},
+    statusChangesUnlisted: 0,
+  };
+  /** The digest that stands in for a trace nested in an analysis result. */
+  const digestOf = (status: string) => ({
+    status,
+    hitCount: 4,
+    hash: status,
+    outcome: status,
+    residualShare: 0.5,
+    largestTolerance: RAW_INTERSECTION_TOLERANCE_MM,
+  });
+  /**
+   * A perspective sample as an analysis result holds one: its status, and what the engine goes on to compute only
+   * for a sample that reached the sensor, which is a sensor solve and a ray fan with a digest per traced ray.
+   */
+  const sampleOf = (status: string, fan: readonly ("ok" | "clipped" | "failed")[] | null) => ({
+    status,
+    sensorSolve: fan && { status: "converged", scalarRoot: { status: "converged" } },
+    rayFan: fan && {
+      samples: fan.map((trace) => ({
+        status: trace === "ok" ? "usable" : trace === "clipped" ? "clipped" : "missed-sensor",
+        trace: digestOf(trace),
+      })),
+    },
+  });
+  /** The plain twin's records with such samples in one of them. */
+  const withSamples = (samples: readonly object[]) => withChange("traces", ["samples"], () => samples, plainRecords);
+  const pathsOf = (summary: RunSummary) => summary.dataImpact[0].paths!;
 
   it("sorts catalog changes into format-only, semantic, new and removed", () => {
     const base = catalogOf(plainTwin, { ...plainTwin, key: "engine-diff-leaving" });
@@ -1722,98 +1760,437 @@ describe("engineDiff cross-evaluation", () => {
     expect(evaluate("semantic", plainRecords, nan).passed).toBe(true);
   });
 
-  it("blocks a failed status or a non-finite number that a change of shape hides from the paired walk", () => {
-    /* The walk reports a longer array, a new member or a value of another type once, and does not enter it. What
-     * such a change brought with it shows in the record's own totals. */
+  it("passes a change whose new failures are all at paths the base data lacks, and counts them", () => {
+    /* The case that a count of failed statuses blocked: samples that missed the sensor become usable, and the fans
+     * traced for them for the first time hold rays that fail. The record holds one failed status on the base data
+     * and two on the head data, and nothing that was good became bad. */
+    const base = withSamples([
+      sampleOf("missed-sensor", null),
+      sampleOf("missed-sensor", null),
+      sampleOf("usable", ["ok", "failed", "ok"]),
+    ]);
+    const head = withSamples([
+      sampleOf("usable", ["ok", "failed", "clipped"]),
+      sampleOf("usable", ["failed", "ok", "ok"]),
+      sampleOf("usable", ["ok", "ok", "ok"]),
+    ]);
+    const summary = evaluate("semantic", head, base);
+    expect(summary).toMatchObject({ passed: true, failures: [], dataImpact: [{ blocking: 0, blockers: [] }] });
+    expect(pathsOf(summary)).toEqual({
+      ...NO_PATHS,
+      /* The ray of the third sample that failed on the base data and is traced through on the head data. */
+      statuses: { toFailure: 0, fromFailure: 1 },
+      /* Two samples gained a solve of two statuses and a fan of three rays, each a status and a digest. */
+      headOnly: { statuses: 16, failedStatuses: 2, nonFinite: 0 },
+      statusChanges: {
+        "missed-sensor -> usable": 3,
+        "absent -> converged": 4,
+        "absent -> usable": 3,
+        "absent -> ok": 3,
+        "absent -> missed-sensor": 2,
+        "absent -> failed": 2,
+        "absent -> clipped": 2,
+        "failed -> ok": 1,
+      },
+    });
+
+    const report = renderDataImpactMarkdown(summary, REPORT_CONTEXT);
+    expect(report).not.toContain("### Blocking");
+    expect(report).toContain("| Statuses turned from good to a failure | 0 | blocks |");
+    expect(report).toContain("| Statuses turned from a failure to good | 1 |  |");
+    expect(report).toContain("| The head data: work the base data never did | 16 | 2 | 0 |");
+    expect(report).toContain("| The base data: work no longer done | 0 | 0 | 0 |");
+    expect(report).toContain("| absent -> failed | 2 |");
+    expect(report).toContain("| failed -> ok | 1 |");
+    /* The most frequent change leads the list. */
+    expect(report.indexOf("| absent -> converged | 4 |")).toBeLessThan(report.indexOf("| absent -> failed | 2 |"));
+    const summaryReport = renderSummaryMarkdown(summary, REPORT_CONTEXT);
+    expect(summaryReport).toContain(`| ${key} | 0 | 0 | 1 | 0 | 0 | 16 / 2 / 0 | 0 / 0 / 0 |`);
+    expect(summaryReport).not.toContain("### Blocking data changes");
+
+    /* Work the head data no longer does is counted the same way, the failure in it too, and blocks nothing: the
+     * sample misses the sensor now, which is no failure, and its solve and its fan are gone. */
+    const lost = evaluate(
+      "semantic",
+      withSamples([sampleOf("missed-sensor", null)]),
+      withSamples([sampleOf("usable", ["ok", "failed", "ok"])]),
+    );
+    expect(lost).toMatchObject({ passed: true, dataImpact: [{ blocking: 0 }] });
+    expect(pathsOf(lost)).toEqual({
+      ...NO_PATHS,
+      baseOnly: { statuses: 8, failedStatuses: 1, nonFinite: 0 },
+      statusChanges: {
+        "usable -> missed-sensor": 1,
+        "converged -> absent": 2,
+        "usable -> absent": 2,
+        "ok -> absent": 2,
+        "missed-sensor -> absent": 1,
+        "failed -> absent": 1,
+      },
+    });
+    expect(renderDataImpactMarkdown(lost, REPORT_CONTEXT)).toContain(
+      "| The base data: work no longer done | 8 | 1 | 0 |",
+    );
+  });
+
+  it("blocks a status that turned to a failure at a path both sides have, whatever the record's count of them", () => {
+    const fan: Path = ["onAxis", "rays"];
+    const failedAt = (ray: number, source: readonly PayloadRecord[] = plainRecords) =>
+      withChange("traces", [...fan, ray, "status"], () => "failed", source);
+    expect([1, 2].map((ray) => at(plainRecords, "traces", [...fan, ray, "status"]))).toEqual(["ok", "ok"]);
+
+    /* One ray fails on the base data and another on the head data: the record holds one failed status either way. */
+    const moved = evaluate("semantic", failedAt(1), failedAt(2));
+    expect(moved.passed).toBe(false);
+    expect(moved.dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [
+        { request: "traces", path: "onAxis.rays[1].status", kind: "discrete", base: '"ok"', head: '"failed"' },
+      ],
+    });
+    expect(pathsOf(moved)).toEqual({
+      ...NO_PATHS,
+      statuses: { toFailure: 1, fromFailure: 1 },
+      statusChanges: { "ok -> failed": 1, "failed -> ok": 1 },
+    });
+
+    /* The same behind a change of shape: the fan also grew by a ray. The paired walk of the engine comparison
+     * reports such a fan once and does not enter it, and the count of failed statuses is one on either side, so a
+     * rule that counted them passed this change. */
+    const grown = withChange("traces", fan, (rays) => [...(rays as object[]), (rays as object[])[2]], failedAt(1));
+    const hidden = evaluate("semantic", grown, failedAt(2));
+    expect(hidden.passed).toBe(false);
+    expect(hidden.failures).toEqual(["Data impact: 1 blocking difference."]);
+    expect(hidden.dataImpact[0]).toMatchObject({ blocking: 1, blockers: [{ path: "onAxis.rays[1].status" }] });
+    expect(pathsOf(hidden)).toEqual({
+      ...NO_PATHS,
+      statuses: { toFailure: 1, fromFailure: 1 },
+      headOnly: { statuses: 1, failedStatuses: 0, nonFinite: 0 },
+      statusChanges: { "ok -> failed": 1, "failed -> ok": 1, "absent -> ok": 1 },
+    });
+
+    /* Both reports name the path. */
+    const report = renderDataImpactMarkdown(hidden, REPORT_CONTEXT);
+    expect(report).toContain("### Blocking (1)");
+    expect(report).toContain('`onAxis.rays[1].status` is "ok" on the base data and "failed" on the head data.');
+    expect(report).toContain("| Statuses turned from good to a failure | 1 | blocks |");
+    const summaryReport = renderSummaryMarkdown(hidden, REPORT_CONTEXT);
+    expect(summaryReport).toContain("- Data impact: 1 blocking difference.");
+    expect(summaryReport).toContain(`| ${key} | 1 | 1 | 1 | 0 | 0 | 1 / 0 / 0 | 0 / 0 / 0 |`);
+    expect(summaryReport).toContain("### Blocking data changes (1)");
+    expect(summaryReport).toContain(
+      `- ${key}, \`traces\`, ${stateId(DEFAULT_STATE)}: \`onAxis.rays[1].status\` is "ok" on the base data and ` +
+        '"failed" on the head data.',
+    );
+  });
+
+  it("reads a failure as a status that says failed, and blocks a parent that turned to one with its children gone", () => {
+    const became = (status: string) =>
+      evaluate(
+        "semantic",
+        withSamples([sampleOf(status, null)]),
+        withSamples([sampleOf("usable", ["ok", "failed", "ok"])]),
+      );
+    /* What the sample went on to compute is at paths only the base data has now, which is counted and no gate. The
+     * gate is the sample's own status, at a path both sides have. */
+    const gone = { statuses: 8, failedStatuses: 1, nonFinite: 0 };
+    for (const status of ["failed", "bracket-failed", "evaluation-failed"]) {
+      const summary = became(status);
+      expect(summary.passed, status).toBe(false);
+      expect(summary.dataImpact[0], status).toMatchObject({
+        blocking: 1,
+        blockers: [{ request: "traces", path: "samples[0].status", base: '"usable"', head: JSON.stringify(status) }],
+      });
+      expect(pathsOf(summary), status).toMatchObject({ statuses: { toFailure: 1, fromFailure: 0 }, baseOnly: gone });
+    }
+    /* Every other status is an outcome a prescription can move between. Such a change is listed and does not
+     * block, whatever went with it. */
+    for (const status of [
+      "missed-sensor",
+      "clipped",
+      "chief-unreachable",
+      "outside-projection-domain",
+      "out-of-domain",
+      "unbracketed",
+      "iteration-limit",
+      "invalid-input",
+      "paraxial-fallback",
+      "unavailable",
+    ]) {
+      const summary = became(status);
+      expect(summary.passed, status).toBe(true);
+      expect(pathsOf(summary), status).toMatchObject({
+        statuses: { toFailure: 0, fromFailure: 0 },
+        baseOnly: gone,
+        statusChanges: { [`usable -> ${status}`]: 1 },
+      });
+    }
+
+    /* One failure for another is no new failure, and neither is a failure the base data had. */
+    const only = (status: unknown) => withSamples([{ status }]);
+    expect(evaluate("semantic", only("bracket-failed"), only("failed"))).toMatchObject({
+      passed: true,
+      dataImpact: [{ paths: { ...NO_PATHS, statusChanges: { "failed -> bracket-failed": 1 } } }],
+    });
+    /* A side has a status where it holds a string. Against a member that holds none, or no member at all, a
+     * failure is the head data's alone: counted, and no gate. */
+    for (const base of [only(null), withSamples([{}])]) {
+      const summary = evaluate("semantic", only("failed"), base);
+      expect(summary.passed).toBe(true);
+      expect(pathsOf(summary)).toEqual({
+        ...NO_PATHS,
+        headOnly: { statuses: 1, failedStatuses: 1, nonFinite: 0 },
+        statusChanges: { "absent -> failed": 1 },
+      });
+    }
+  });
+
+  it("blocks a number that turned non-finite at a path both sides have, and counts one that one side has alone", () => {
     const nan = encodeValue(Number.NaN);
     const residuals: Path = [...RAY, "hits", "columns", "residual"];
-    const shapes: Record<string, [head: PayloadRecord[], base: PayloadRecord[], noun: string]> = {
+    const lone = { statuses: 0, failedStatuses: 0, nonFinite: 1 };
+
+    const inPlace = withChange("traces", [...RAY, "y"], () => nan, plainRecords);
+    const lost = evaluate("semantic", inPlace, plainRecords);
+    expect(lost.passed).toBe(false);
+    expect(lost.dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ request: "traces", path: "onAxis.rays[1].y", kind: "nonFinite", head: JSON.stringify(nan) }],
+    });
+    expect(pathsOf(lost)).toEqual({ ...NO_PATHS, numbers: { toNonFinite: 1, fromNonFinite: 0 } });
+    /* The other way round the number became finite, which is counted and blocks nothing. */
+    const found = evaluate("semantic", plainRecords, inPlace);
+    expect(found.passed).toBe(true);
+    expect(pathsOf(found)).toEqual({ ...NO_PATHS, numbers: { toNonFinite: 0, fromNonFinite: 1 } });
+
+    /* Behind a change of shape too: the first residual of a column that also grew by a hit. */
+    const grown = withChange(
+      "traces",
+      residuals,
+      (column) => [nan, ...(column as unknown[]).slice(1), 0],
+      plainRecords,
+    );
+    expect(evaluate("semantic", grown, plainRecords).dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ kind: "nonFinite", path: "onAxis.rays[1].hits.columns.residual[0]" }],
+    });
+
+    /* A non-finite number at a path only the head data has is work the base data never did. Each of these three
+     * changes one record's count of them from none to one. */
+    const oneSided: Record<string, [head: PayloadRecord[], base: PayloadRecord[]]> = {
       "NaN appended to a longer array": [
         withChange("traces", residuals, (column) => [...(column as unknown[]), nan], plainRecords),
         plainRecords,
-        "non-finite numbers",
       ],
-      "a failed ray added to a longer fan": [
-        withChange(
-          "traces",
-          ["onAxis", "rays"],
-          (rays) => [...(rays as object[]), { ...(rays as object[])[1], status: "failed" }],
-          plainRecords,
-        ),
-        plainRecords,
-        "failed statuses",
-      ],
-      "NaN where the base had null": [
+      "NaN where the base data holds no number": [
         withChange("traces", [...RAY, "imagePoint"], () => nan, plainRecords),
         withChange("traces", [...RAY, "imagePoint"], () => null, plainRecords),
-        "non-finite numbers",
       ],
-      "NaN in a member the base did not have": [
+      "NaN in a member the base data lacks": [
         withChange("traces", RAY, (ray) => ({ ...(ray as object), added: nan }), plainRecords),
         plainRecords,
-        "non-finite numbers",
       ],
     };
-    for (const [shape, [head, base, noun]] of Object.entries(shapes)) {
-      const [impact] = evaluate("semantic", head, base).dataImpact;
-      expect(impact.blocking, shape).toBe(1);
-      expect(impact.blockers, shape).toEqual([
-        expect.objectContaining({
-          request: "traces",
-          path: "",
-          kind: noun === "failed statuses" ? "discrete" : "nonFinite",
-          base: expect.stringMatching(new RegExp(`^\\d+ ${noun} in the record$`)),
-          head: expect.stringMatching(new RegExp(`^\\d+ ${noun} in the record$`)),
-          measure: 1,
-        }),
-      ]);
-      /* The other way round the record lost one, and nothing blocks. */
-      expect(evaluate("semantic", base, head).passed, shape).toBe(true);
+    for (const [shape, [head, base]] of Object.entries(oneSided)) {
+      const gained = evaluate("semantic", head, base);
+      expect(gained.passed, shape).toBe(true);
+      expect(pathsOf(gained), shape).toEqual({ ...NO_PATHS, headOnly: lone });
+      const dropped = evaluate("semantic", base, head);
+      expect(dropped.passed, shape).toBe(true);
+      expect(pathsOf(dropped), shape).toEqual({ ...NO_PATHS, baseOnly: lone });
     }
-    const report = renderDataImpactMarkdown(
-      evaluate("semantic", shapes["a failed ray added to a longer fan"][0], plainRecords),
-      REPORT_CONTEXT,
-    );
-    expect(report).toContain("| traces | (the record) | discrete |");
+    expect(
+      renderDataImpactMarkdown(evaluate("semantic", ...oneSided["NaN appended to a longer array"]), REPORT_CONTEXT),
+    ).toContain("| The head data: work the base data never did | 0 | 0 | 1 |");
 
-    /* One the walk located is counted once, with its path. */
-    const inPlace = withChange("traces", [...RAY, "y"], () => nan, plainRecords);
-    expect(evaluate("semantic", inPlace, plainRecords).dataImpact[0]).toMatchObject({
-      blocking: 1,
-      blockers: [{ path: "onAxis.rays[1].y" }],
-    });
-
-    /* A non-finite number that hands the prescription back was authored: a plane element's focal length. */
+    /* A non-finite number that hands the prescription back was authored: a plane element's focal length. It is
+     * no blocker where both sides have it, and is not counted where one has. */
     const infinite = encodeValue(Number.POSITIVE_INFINITY);
     const planeElement = withChange("build", ["elements", 0, "fl"], () => infinite, plainRecords);
     expect(evaluate("semantic", planeElement, plainRecords)).toMatchObject({
       passed: true,
-      dataImpact: [{ blocking: 0 }],
+      dataImpact: [{ blocking: 0, paths: NO_PATHS }],
     });
-    const appended = withChange(
+    const anotherElement = withChange(
       "build",
       ["elements"],
       (elements) => [...(elements as object[]), { ...(elements as object[])[0], fl: infinite }],
       plainRecords,
     );
-    expect(evaluate("semantic", appended, plainRecords).passed).toBe(true);
-    /* One the engine computed is not. */
-    const computed = withChange(
-      "build",
-      ["rayHeights"],
-      (heights) => [...(heights as number[]), infinite],
+    expect(evaluate("semantic", anotherElement, plainRecords)).toMatchObject({
+      passed: true,
+      dataImpact: [{ paths: { headOnly: { nonFinite: 0 } } }],
+    });
+    /* One the engine computed is neither. */
+    const heights = (change: (heights: unknown[]) => unknown[]) =>
+      withChange("build", ["rayHeights"], (held) => change(held as unknown[]), plainRecords);
+    expect(
+      evaluate(
+        "semantic",
+        heights(([, ...rest]) => [infinite, ...rest]),
+        plainRecords,
+      ).dataImpact[0],
+    ).toMatchObject({
+      blocking: 1,
+      blockers: [{ request: "build", kind: "nonFinite", path: "rayHeights[0]" }],
+    });
+    const longer = evaluate(
+      "semantic",
+      heights((held) => [...held, infinite]),
       plainRecords,
     );
-    expect(evaluate("semantic", computed, plainRecords).dataImpact[0].blocking).toBe(1);
+    expect(longer).toMatchObject({ passed: true, dataImpact: [{ paths: { headOnly: lone } }] });
+  });
+
+  it("blocks a record or a job that returned and now throws, and counts what one that now returns holds", () => {
+    const job = "computePerspectiveFocusAnalysis";
+    const threw = withChange("analysis", ["jobs", job], () => ({
+      ok: false,
+      error: { name: "Error", message: "no focus" },
+    }));
+    const stopped = evaluate("semantic", threw, SERENAR_RECORDS);
+    expect(stopped.passed).toBe(false);
+    expect(stopped.dataImpact[0]).toMatchObject({
+      lens: SERENAR,
+      blocking: 1,
+      blockers: [{ request: "analysis", path: `jobs.${job}.ok`, kind: "discrete", base: "true", head: "false" }],
+    });
+    /* What the job returned on the base data is work no longer done. */
+    const held = pathsOf(stopped).baseOnly;
+    expect(held.statuses).toBeGreaterThan(0);
+    expect(pathsOf(stopped)).toEqual({
+      ...NO_PATHS,
+      outcomes: { toThrown: 1, fromThrown: 0 },
+      baseOnly: held,
+      statusChanges: expect.any(Object),
+    });
+
+    /* The other way round the job's result is work the base data never did. Its statuses are counted, a failed
+     * one among them too, and none of them blocks. */
+    const failedInside = withChange(
+      "analysis",
+      ["jobs", job, "value", "samples", 0, "fieldSample", "chiefTrace", "status"],
+      () => "failed",
+    );
+    const started = evaluate("semantic", failedInside, threw);
+    expect(started).toMatchObject({ passed: true, dataImpact: [{ blocking: 0, blockers: [] }] });
+    expect(pathsOf(started)).toEqual({
+      ...NO_PATHS,
+      outcomes: { toThrown: 0, fromThrown: 1 },
+      headOnly: { ...held, failedStatuses: held.failedStatuses + 1 },
+      statusChanges: expect.any(Object),
+    });
+
+    /* A lens that no longer builds is every one of its records throwing where it returned. */
+    const broken = captureRecords(catalogOf(unbuildable), requests);
+    const unbuilt = evaluate("semantic", broken, plainRecords);
+    expect(unbuilt.dataImpact[0].blocking).toBe(requests.length);
+    expect(pathsOf(unbuilt).outcomes).toEqual({ toThrown: requests.length, fromThrown: 0 });
+    /* And one that builds again blocks nothing. */
+    const rebuilt = evaluate("semantic", plainRecords, broken);
+    expect(rebuilt.passed).toBe(true);
+    expect(pathsOf(rebuilt).outcomes).toEqual({ toThrown: 0, fromThrown: requests.length });
+  });
+
+  it("reads the digest of a nested trace as it reads any object at a path both sides have", () => {
+    const digest: Path = [
+      "jobs",
+      "computePerspectiveFocusAnalysis",
+      "value",
+      "samples",
+      0,
+      "fieldSample",
+      "chiefTrace",
+    ];
+    const path = "jobs.computePerspectiveFocusAnalysis.value.samples[0].fieldSample.chiefTrace";
+    const withDigest = (member: string, value: unknown, source: readonly PayloadRecord[] = SERENAR_RECORDS) =>
+      withChange("analysis", [...digest, member], () => value, source);
+    expect(at(SERENAR_RECORDS, "analysis", [...digest, "status"])).toBe("ok");
+
+    /* Its status is a status. */
+    const failed = evaluate("semantic", withDigest("status", "failed"), SERENAR_RECORDS);
+    expect(failed.dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ request: "analysis", path: `${path}.status`, base: '"ok"', head: '"failed"' }],
+    });
+    /* The reports give such a path whole, which a table cell would cut. */
+    const named = `\`${path}.status\` is "ok" on the base data and "failed" on the head data.`;
+    expect(renderDataImpactMarkdown(failed, REPORT_CONTEXT)).toContain(named);
+    expect(renderSummaryMarkdown(failed, REPORT_CONTEXT)).toContain(named);
+    expect(evaluate("semantic", withDigest("status", "clipped"), SERENAR_RECORDS).passed).toBe(true);
+    /* Its two hashes are neither a status nor a number. What changed inside the trace is a difference to review,
+     * and blocks only through the members beside the hashes. */
+    const rehashed = withDigest("outcome", "0".repeat(64), withDigest("hash", "0".repeat(64)));
+    expect(evaluate("semantic", rehashed, SERENAR_RECORDS)).toMatchObject({
+      passed: true,
+      dataImpact: [{ blocking: 0, recordsDiffering: 1, transitions: 1, paths: NO_PATHS }],
+    });
+    /* Its largest residual share is a number: one that turned infinite blocks, and one where the base data has
+     * none is the head data's alone. */
+    const infinite = encodeValue(Number.POSITIVE_INFINITY);
+    expect(evaluate("semantic", withDigest("residualShare", infinite), SERENAR_RECORDS).dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ kind: "nonFinite", path: `${path}.residualShare` }],
+    });
+    const unshared = evaluate("semantic", withDigest("residualShare", infinite), withDigest("residualShare", null));
+    expect(unshared.passed).toBe(true);
+    expect(pathsOf(unshared)).toEqual({ ...NO_PATHS, headOnly: { statuses: 0, failedStatuses: 0, nonFinite: 1 } });
+  });
+
+  it("counts every blocker past those it lists, so no cap can pass a blocked change", () => {
+    const fan = (trace: "ok" | "failed", rays: number) =>
+      withSamples([sampleOf("usable", new Array<"ok" | "failed">(rays).fill(trace))]);
+    const many = evaluate("semantic", fan("failed", 25), fan("ok", 25));
+    expect(many.passed).toBe(false);
+    expect(many.failures).toEqual(["Data impact: 25 blocking differences."]);
+    expect(many.dataImpact[0].blocking).toBe(25);
+    expect(many.dataImpact[0].blockers).toHaveLength(10);
+    expect(many.dataImpact[0].blockers[9]).toMatchObject({ path: "samples[0].rayFan.samples[9].trace.status" });
+    expect(pathsOf(many).statuses).toEqual({ toFailure: 25, fromFailure: 0 });
+    expect(renderDataImpactMarkdown(many, REPORT_CONTEXT)).toContain("### Blocking (first 10 of 25)");
+    expect(renderSummaryMarkdown(many, REPORT_CONTEXT)).toContain("### Blocking data changes (first 10 of 25)");
+
+    /* The list is capped for each kind of blocker apart: a number that turned non-finite in a later record is
+     * still named. */
+    const nan = encodeValue(Number.NaN);
+    const withNumber = withChange("chiefSolves", ["halfFieldDeg"], () => nan, fan("failed", 25));
+    const both = evaluate("semantic", withNumber, fan("ok", 25));
+    expect(both.failures).toEqual(["Data impact: 26 blocking differences."]);
+    expect(both.dataImpact[0].blockers).toHaveLength(11);
+    expect(both.dataImpact[0].blockers[10]).toMatchObject({
+      request: "chiefSolves",
+      kind: "nonFinite",
+      path: "halfFieldDeg",
+    });
+
+    /* The list of status changes is capped as well, and counts what it leaves out. A status that turned to a
+     * failure past that cap blocks like any other, and is named. */
+    const distinct = (prefix: string, last: string) =>
+      withSamples([...Array.from({ length: 70 }, (_, index) => ({ status: `${prefix}${index}` })), { status: last }]);
+    const crowded = evaluate("semantic", distinct("after", "failed"), distinct("before", "ok"));
+    expect(crowded.passed).toBe(false);
+    expect(crowded.dataImpact[0]).toMatchObject({ blocking: 1, blockers: [{ path: "samples[70].status" }] });
+    expect(Object.keys(pathsOf(crowded).statusChanges)).toHaveLength(64);
+    expect(pathsOf(crowded).statusChangesUnlisted).toBe(7);
+    expect(renderDataImpactMarkdown(crowded, REPORT_CONTEXT)).toContain("| any other change | 7 |");
   });
 
   it("reports a new lens, and blocks it only when it does not build", () => {
     const added = evaluate("new", plainRecords, null);
     expect(added.passed).toBe(true);
     expect(added.dataImpact).toEqual([expect.objectContaining({ lens: key, change: "new", blocking: 0 })]);
+    /* It has no base data to pair a path with, so nothing of it is judged path by path. */
+    expect(added.dataImpact[0].paths).toBeUndefined();
     const broken = evaluate("new", captureRecords(catalogOf(unbuildable), requests), null);
     expect(broken.passed).toBe(false);
     expect(broken.dataImpact[0].blockers).toEqual([expect.objectContaining({ request: "build", path: "ok" })]);
+    /* Both reports name the record, and the summary has no row of path counts for a lens with no base data. */
+    const named = "`build`, lens: `ok` is absent on the base data and false (";
+    expect(renderDataImpactMarkdown(broken, REPORT_CONTEXT)).toContain(`- ${named}`);
+    const summaryReport = renderSummaryMarkdown(broken, REPORT_CONTEXT);
+    expect(summaryReport).toContain("### Blocking data changes (1)");
+    expect(summaryReport).toContain(`- ${key}, ${named}`);
+    expect(summaryReport).not.toContain("Changed lenses (");
   });
 
   it("counts what the records of a new lens hold, record by record, and blocks on none of it", () => {
@@ -1881,7 +2258,9 @@ describe("engineDiff cross-evaluation", () => {
       threw: true,
     });
     expect(renderDataImpactMarkdown(thrown, REPORT_CONTEXT)).toContain(`| ${state} | chiefSolves | threw | threw |`);
-    /* A changed lens is counted against its base data and blocked by the rule, so it carries no such list. */
+    /* A changed lens is judged path by path against its base data, so it carries no such list. The same records
+     * block there: the ray and the two numbers were good on the base data. */
+    expect(evaluate("semantic", holding, plainRecords).dataImpact[0]).toMatchObject({ blocking: 3 });
     expect(evaluate("semantic", holding, plainRecords).dataImpact[0].recordCounts).toBeUndefined();
   });
 
@@ -2022,13 +2401,20 @@ describe("engineDiff cross-evaluation", () => {
     const failedRay = withChange("traces", [...RAY, "status"], () => "failed", plainRecords);
     const thickerRecords = captureRecords(catalogOf(thicker), requests);
     const unbuilt = captureRecords(catalogOf(unbuildable), requests);
-    /* A failed ray that came with a longer fan: the paired walk does not enter the fan, the record's totals show it. */
+    /* A failed ray that came with a longer fan: it is at a path only the head data has. */
+    const fan: Path = ["onAxis", "rays"];
     const longerFan = withChange(
       "traces",
-      ["onAxis", "rays"],
+      fan,
       (rays) => [...(rays as object[]), { ...(rays as object[])[1], status: "failed" }],
       plainRecords,
     );
+    /* A ray that fails on the head data alone, in a fan that also grew, while another fails on the base data
+     * alone: the paired walk does not enter the fan, and the record holds one failed status on either side. */
+    const failedThird = withChange("traces", [...fan, 2, "status"], () => "failed", plainRecords);
+    const grownFan = withChange("traces", fan, (rays) => [...(rays as object[]), (rays as object[])[2]], failedRay);
+    /* Blockers of two kinds in two records, which a cut puts in two parts. */
+    const failedRayAndNumber = withChange("chiefSolves", ["halfFieldDeg"], () => encodeValue(Number.NaN), failedRay);
     const cases: Record<string, Captures> = {
       identical: { dataChange: "unchanged", baseEngine: plainRecords, headEngine: structuredClone(plainRecords) },
       drift: { dataChange: "unchanged", baseEngine: plainRecords, headEngine: drifted },
@@ -2041,7 +2427,14 @@ describe("engineDiff cross-evaluation", () => {
         baseData: plainRecords,
       },
       blocked: { dataChange: "semantic", baseEngine: failedRay, headEngine: failedRay, baseData: plainRecords },
-      blockedByCount: { dataChange: "semantic", baseEngine: longerFan, headEngine: longerFan, baseData: plainRecords },
+      blockedBehindShape: { dataChange: "semantic", baseEngine: grownFan, headEngine: grownFan, baseData: failedThird },
+      blockedTwice: {
+        dataChange: "semantic",
+        baseEngine: failedRayAndNumber,
+        headEngine: failedRayAndNumber,
+        baseData: plainRecords,
+      },
+      headOnlyFailure: { dataChange: "semantic", baseEngine: longerFan, headEngine: longerFan, baseData: plainRecords },
       added: { dataChange: "new", baseEngine: plainRecords, headEngine: plainRecords },
       addedUnbuilt: { dataChange: "new", baseEngine: unbuilt, headEngine: unbuilt },
       /* Whether a lens that builds nowhere is the data rules' to judge is settled by the part with its build record. */
@@ -2063,9 +2456,25 @@ describe("engineDiff cross-evaluation", () => {
     expect(whole.semantic.summary.dataImpact).toMatchObject([{ lens: key, change: "semantic", blocking: 0 }]);
     expect(whole.semantic.summary.dataImpact[0].recordsDiffering).toBeGreaterThan(1);
     expect(whole.blocked.summary.dataImpact).toMatchObject([{ blocking: 1, blockers: [{ request: "traces" }] }]);
-    expect(whole.blockedByCount.summary.dataImpact).toMatchObject([
-      { blocking: 1, blockers: [{ request: "traces", path: "" }] },
+    expect(whole.blocked.failingRecords).toEqual([expect.stringContaining('{"comparison":"impact","base":')]);
+    expect(whole.blockedBehindShape.summary).toMatchObject({
+      passed: false,
+      dataImpact: [{ blocking: 1, blockers: [{ request: "traces", path: "onAxis.rays[1].status" }] }],
+    });
+    expect(whole.blockedBehindShape.failingRecords).toHaveLength(1);
+    expect(whole.blockedTwice.summary.dataImpact).toMatchObject([
+      {
+        blocking: 2,
+        blockers: [{ request: "traces" }, { request: "chiefSolves", kind: "nonFinite" }],
+        paths: { statuses: { toFailure: 1 }, numbers: { toNonFinite: 1 } },
+      },
     ]);
+    expect(whole.blockedTwice.failingRecords).toHaveLength(2);
+    expect(whole.headOnlyFailure.summary).toMatchObject({
+      passed: true,
+      dataImpact: [{ blocking: 0, paths: { headOnly: { statuses: 1, failedStatuses: 1 } } }],
+    });
+    expect(whole.headOnlyFailure.failingRecords).toEqual([]);
     expect(whole.unbuiltUnchanged.summary.thrownOnBothEngines.records).toBe(requests.length);
     expect(whole.unbuiltChanged.summary).toMatchObject({
       thrownOnBothEngines: { records: 0 },

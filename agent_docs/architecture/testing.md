@@ -235,8 +235,8 @@ and bundled there.
 - `compare.ts` pairs the records of two captures one lens at a time, judges each difference under the declared change
   class, and keeps totals, the largest difference per quantity and a bounded sample of findings. A lens with many
   records may be handed over in consecutive parts and is reported as one lens. It also sorts a catalog's changes into
-  format-only and semantic, sets the two engines' permitted pairs side by side, reads the declared exceptions and the
-  declared transitions, and writes the reports.
+  format-only and semantic, judges a semantic one path by path, sets the two engines' permitted pairs side by side,
+  reads the declared exceptions and the declared transitions, and writes the reports.
 
 The build record holds every field of the built lens. Each surface of `S` keeps every member the engine holds for it,
 its inner radius, stop placement, interaction and diffractive phase among them, with a flat radius written as the
@@ -335,17 +335,55 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
 2. **Format-only data change.** A lens whose serialized prescription differs from the base's while its semantic
    fingerprint does not: the base and head prescriptions are evaluated on the head engine and must be bit-identical
    in every class. Prescriptions are compared as evaluated data, so an edit to comments or layout is no change.
-3. **Semantic data change or new lens.** The same pair becomes an impact report, written to `data-impact.md`. It
-   blocks only on a new failed status, a newly non-finite value, or a lens that no longer builds. Failed statuses
-   and non-finite numbers are also counted per record on both sides, and an increase blocks, so one that came in
-   with a longer array or a new member is not missed. The count is per record and net: a failure that appears
-   behind a change of shape while another disappears from the same record leaves the count equal, is not blocked by
-   it, and is left to the reviewed impact report. A record that threw on the base data has nothing to count
-   against, so the count is not applied to it. A non-finite number that hands the prescription back, such as the
-   focal length of a plane element, was authored and is not counted. A new lens has no base data and blocks only by
-   not building. With nothing to count against, the failed statuses and computed non-finite numbers in its records
-   gate nothing: the report gives both counts for each of its records, for review. A teleconverter is no lens of a
-   run: a changed or new one is compared through the pairs it forms, and the report lists it with them.
+3. **Semantic data change or new lens.** The same pair becomes an impact report, written to `data-impact.md`. A
+   changed lens is judged path by path (`judgeDataChange` in `compare.ts`). It blocks only where something that was
+   good on the base data is bad on the head data, at a path both sides have:
+   - A status that is no failure on the base data and a failure on the head data. A status is a string in a member
+     named `status`, and a failure is a status that says `failed`. The engine writes three: `failed` for a traced
+     ray, `bracket-failed` for a chief-ray solve, and `evaluation-failed` for a root solve or a sensor lock. Every
+     other status is an outcome a prescription can move between, and a change to one is listed and does not block:
+     `clipped`, `missed-sensor`, `chief-unreachable`, `unbracketed`, `iteration-limit`, `paraxial-fallback`,
+     `unavailable` and the out-of-domain statuses.
+   - A number the engine computed that is finite on the base data and not on the head data. A non-finite number
+     that hands the prescription back, such as the focal length of a plane element, was authored and is no part of
+     the rule.
+   - A record, an analysis job or a near-axis probe that returned on the base data and throws on the head data. A
+     lens that no longer builds shows as every one of its records doing so.
+
+   What only one side has at a path is counted and blocks nothing, the failures in it too. On the head side it is
+   work the base data never did: a sample that missed the sensor and is usable now has a ray fan traced for it for
+   the first time, and a ray that fails in that fan is no regression. On the base side it is work no longer done.
+   Where that work stopped because the sample or the solve above it failed, the status above it is at a path both
+   sides have and blocks by the first rule. Where the status above it turned to one that is no failure, such as
+   `missed-sensor`, nothing blocks, and the report lists the change.
+   - **Paths.** An array that changed length is paired by index: its first elements are at paths both sides have,
+     and the rest are the longer side's alone. So a status that turned to a failure in a fan that also grew blocks,
+     whatever happened to the record's count of failed statuses. A member one side lacks, a value that is a
+     container on one side only, and a status or a number set against a value of another type, `null` among them,
+     are one side's alone.
+   - **Digests.** The digest of a nested trace is an object at a path both sides have, and its members are read
+     like any others. Its `status` is a status. Its hit count, largest residual share and largest effective
+     tolerance are numbers, so a share that turned infinite blocks. Its `hash` and `outcome` are neither: a change
+     inside the trace that the other members do not show is a difference to review. A ray that fails inside a pupil
+     bundle, whose digest has no status, is therefore outside the rule.
+   - **Report.** `data-impact.md` gives for each changed lens:
+     - every blocker with its whole path and its two values, the first ten of each of the three kinds, under the
+       count of all of them;
+     - how many statuses turned to a failure and from one, how many numbers turned non-finite and finite, and how
+       many outcomes turned to a throw and from one;
+     - the statuses, the failures among them and the computed non-finite numbers at paths only the head data has,
+       and the same at paths only the base data has;
+     - every status change as `base -> head` with the number of paths that show it, `absent` standing for a side
+       with no status there. A run keeps the first 64 distinct changes of a lens and counts the rest together.
+
+     `summary.md` has one row of those counts per changed lens, the blocked lenses first, and the first 40 blockers
+     of the run with their paths. The verdict reads the counts, and no list: a list that is cut never passes a
+     change.
+   - **New lenses.** A new lens has no base data and blocks only by not building. With no path to pair, the failed
+     statuses and computed non-finite numbers in its records gate nothing: the report gives both counts for each of
+     its records, for review.
+   - **Teleconverters.** A teleconverter is no lens of a run: a changed or new one is compared through the pairs it
+     forms, and the report lists it with them.
 4. **Uncompared lenses.** A lens the base engine cannot build is not compared. The uncompared lenses must be exactly
    the declared exceptions: one bullet per lens, its id in backticks, under a heading `## Engine-diff exceptions` in
    the pull request description. A converter pair is named `host+converter`.
@@ -375,11 +413,12 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
      in `data-impact.md`. A pair that only the head's prescriptions permit is compared as a new lens: it has
      nothing to compare against on the base data, so it blocks only by not building, and the report counts what
      its records hold as it does for a new lens.
-   - A pair the head's prescriptions no longer permit is not requested and does not block. The plan gates a data
-     change only on a new failed status, a non-finite value or a lens that no longer builds, and a converter that
-     fits nothing is none of these. A changed host or converter that lost every pair it had with the base data is
-     therefore named in a warning, with the pairs it lost: among the failure lines at the top of `summary.md`, and
-     on stderr. Nothing in the run evaluated such a converter, and the run does not fail on it.
+   - A pair the head's prescriptions no longer permit is not requested and does not block. Rule 3 gates a data
+     change only on a status that turned to a failure, a number that turned non-finite or a lens that no longer
+     builds, and a converter that fits nothing is none of these. A changed host or converter that lost every pair
+     it had with the base data is therefore named in a warning, with the pairs it lost: among the failure lines at
+     the top of `summary.md`, and on stderr. Nothing in the run evaluated such a converter, and the run does not
+     fail on it.
 
 ### Change Classes and Budgets
 

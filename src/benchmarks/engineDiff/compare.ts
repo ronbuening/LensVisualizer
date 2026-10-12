@@ -101,15 +101,11 @@ interface RawDifference {
   path: string;
   /** The path with every array index dropped: what the budget table is keyed by. */
   pattern: string;
-  /** The member name or array index the value sits under. */
-  leafKey: string | number | undefined;
   quantity: QuantityId | null;
   base: unknown;
   head: unknown;
   measure: number | null;
   budget: number | null;
-  /** The field hands prescription data back (`BudgetRule.authored`). */
-  authored: boolean;
 }
 
 /* The first character of every tag the encoding writes for a number JSON cannot carry. */
@@ -181,20 +177,7 @@ function diffRecords(
     quantity: QuantityId | null = null,
     measure: number | null = null,
     budget: number | null = null,
-    authored = false,
-  ) =>
-    emit({
-      kind,
-      path: pathOf(),
-      pattern,
-      leafKey: keys[keys.length - 1],
-      quantity,
-      base: a,
-      head: b,
-      measure,
-      budget,
-      authored,
-    });
+  ) => emit({ kind, path: pathOf(), pattern, quantity, base: a, head: b, measure, budget });
 
   const ruleFor = (pattern: string): BudgetRule | null => {
     let rule = familyRules.get(pattern);
@@ -211,7 +194,7 @@ function diffRecords(
     const quantity = quantityAt(rule, leaf);
     /* No budget is defined across NaN or an infinity: the two sides agree exactly or they do not. */
     if (!Number.isFinite(x) || !Number.isFinite(y)) {
-      return report("nonFinite", pattern, a, b, quantity, null, null, rule.authored === true);
+      return report("nonFinite", pattern, a, b, quantity);
     }
 
     const { kind, floor, tolerance }: Quantity = QUANTITIES[quantity];
@@ -441,8 +424,10 @@ export type DataChange =
 const MAX_SAMPLES = 200;
 /** Distinct unclassified paths kept. */
 const MAX_UNCLASSIFIED_PATHS = 100;
-/** Blocking findings kept per lens in the data-impact report. */
+/** Blocking findings kept per lens in the data-impact report, of each kind of blocker. */
 const MAX_IMPACT_BLOCKERS = 10;
+/** Distinct status changes kept per lens in the data-impact report; changes of any other kind are counted together. */
+const MAX_STATUS_CHANGES = 64;
 /** Records named in the one-line reason a run failed; the report lists the rest. */
 const MAX_NAMED_IN_FAILURE = 3;
 
@@ -518,6 +503,56 @@ export interface RecordCounts {
   threw?: true;
 }
 
+/** Statuses and computed non-finite numbers at paths that one side of a data change has and the other has not. */
+export interface OneSidedCounts {
+  statuses: number;
+  /** Of those statuses, the failures. */
+  failedStatuses: number;
+  /** Non-finite numbers the engine computed; one that hands an authored value back is not counted. */
+  nonFinite: number;
+}
+
+/**
+ * What a semantic data change did to the statuses, the computed numbers and the outcomes of a lens's records, path
+ * by path. A side has a status at a path where it holds a string in a member named `status`, a number where it holds
+ * a number, and an outcome where it holds a boolean in a member named `ok`. An array that changed length is paired
+ * by index, so its first elements are at paths both sides have.
+ */
+export interface ImpactPaths {
+  /** Statuses at a path where both sides have one. */
+  statuses: {
+    /** No failure on the base data and a failure on the head data. Each one blocks. */
+    toFailure: number;
+    /** A failure on the base data and none on the head data. */
+    fromFailure: number;
+  };
+  /** Numbers the engine computed, at a path where both sides have one. */
+  numbers: {
+    /** Finite on the base data and not on the head data. Each one blocks. */
+    toNonFinite: number;
+    /** Not finite on the base data and finite on the head data. */
+    fromNonFinite: number;
+  };
+  /** Outcomes of a record, an analysis job or a probe, where both sides have one. */
+  outcomes: {
+    /** Returned on the base data and throws on the head data. Each one blocks. */
+    toThrown: number;
+    /** Threw on the base data and returns on the head data. */
+    fromThrown: number;
+  };
+  /** At paths only the base data has: work the head data no longer does. Counted, and no gate. */
+  baseOnly: OneSidedCounts;
+  /** At paths only the head data has: work the base data never did. Counted, failures included, and no gate. */
+  headOnly: OneSidedCounts;
+  /**
+   * Every status that differs, as `base -> head` with `absent` for a side that has none at the path, against how
+   * many paths show it. A run keeps the first `MAX_STATUS_CHANGES` distinct changes of a lens.
+   */
+  statusChanges: Record<string, number>;
+  /** Status differences of any change past those. */
+  statusChangesUnlisted: number;
+}
+
 /** What a semantic data change, or a new lens, did to one lens's records on the head engine. */
 export interface DataImpact {
   lens: string;
@@ -529,13 +564,19 @@ export interface DataImpact {
   transitions: number;
   /** The largest difference of each quantity that moved: budgeted numbers first, the furthest past its budget leading. */
   largest: Finding[];
-  /** What blocks the change: a new failed status, a newly non-finite value, a lens that no longer builds. */
-  blocking: number;
-  blockers: Finding[];
   /**
-   * A new lens, or a pair that only the head data permits: what each of its records holds, in request order. A
-   * semantic change is blocked by an increase in these counts. Here there is no base data to count against, so
-   * they block nothing and are for the reader of the impact report.
+   * What blocks the change. A semantic change: every status that turned to a failure, number that turned
+   * non-finite and outcome that turned to a throw, each at a path both sides have (`paths`). A new lens: its build
+   * record, when it threw.
+   */
+  blocking: number;
+  /** The first of them, up to `MAX_IMPACT_BLOCKERS` of each kind. The verdict reads `blocking`, never this list. */
+  blockers: Finding[];
+  /** A semantic change: its records path by path. A new lens has no base data to pair a path with. */
+  paths?: ImpactPaths;
+  /**
+   * A new lens, or a pair that only the head data permits: what each of its records holds, in request order. There
+   * is no base data to set these beside, so they block nothing and are for the reader of the impact report.
    */
   recordCounts?: RecordCounts[];
 }
@@ -690,11 +731,198 @@ export interface DifferentialRun {
   finish(): RunSummary;
 }
 
-/* A status that a semantic data change may not introduce: a failed trace, a solve that failed to bracket or to
- * evaluate. Clipped, unconverged and unavailable are outcomes a prescription can legitimately move between. */
+/* A status that is a failure: one that says `failed`. The engine writes three: `failed` for a traced ray, in a full
+ * trace or in the digest of a nested one, `bracket-failed` for a chief-ray solve and `evaluation-failed` for a root
+ * solve or a sensor lock. A semantic data change may not turn a status that is none of them into one of them. Every
+ * other status is an outcome a prescription can legitimately move between: clipped, missed-sensor, chief-unreachable,
+ * outside the projection domain, unbracketed, an iteration limit, a paraxial fallback, unavailable. */
 const FAILED_STATUS = /failed/;
 
-/** What a semantic data change may not add to a record. */
+/** What a data change may turn from good to bad at a path both sides have, as the members of `ImpactPaths`. */
+type ImpactBlocker = "statuses" | "numbers" | "outcomes";
+
+function emptyImpactPaths(): ImpactPaths {
+  return {
+    statuses: { toFailure: 0, fromFailure: 0 },
+    numbers: { toNonFinite: 0, fromNonFinite: 0 },
+    outcomes: { toThrown: 0, fromThrown: 0 },
+    baseOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
+    headOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
+    statusChanges: {},
+    statusChangesUnlisted: 0,
+  };
+}
+
+/** How many blockers of one kind a lens's records have shown so far. */
+function blockersOf(paths: ImpactPaths, blocker: ImpactBlocker): number {
+  if (blocker === "statuses") return paths.statuses.toFailure;
+  return blocker === "numbers" ? paths.numbers.toNonFinite : paths.outcomes.toThrown;
+}
+
+/**
+ * Judge one pair of records of a semantic data change, path by path, and fold what it finds into the lens's counts.
+ *
+ * What blocks is at a path both sides have, and turned from good to bad there:
+ * - a status that is no failure on the base data and a failure on the head data;
+ * - a number the engine computed that is finite on the base data and not on the head data;
+ * - an outcome, of the record itself or of a job or a probe inside it, that returned on the base data and throws on
+ *   the head data.
+ *
+ * What only one side has is counted and blocks nothing, failures included: the head data's is work the base data
+ * never did, and the base data's is work no longer done. Where that work stopped because something above it failed,
+ * the status above it is at a path both sides have, and blocks by the first rule.
+ *
+ * This walk is the rule's own. The paired walk of the engine comparison reports an array of another length once and
+ * does not enter it, which hid a status that turned to a failure there. This one pairs such an array by index: its
+ * first elements are at paths both sides have, and the rest belong to the longer side alone. A value that is a
+ * container on one side and something else on the other, or a number against anything that is none, is each side's
+ * alone.
+ *
+ * The digest of a nested trace is an object at a path both sides have, and its members are read like any others:
+ * its `status` is a status, and its hit count, largest residual share and largest effective tolerance are numbers.
+ * Its `hash` and `outcome` are neither, so what changed inside the trace blocks only through those members. A ray
+ * that fails inside a pupil bundle, whose digest has no status, is outside the rule.
+ *
+ * @param base - a record of the base data on the head engine
+ * @param head - the record of the head data for the same request
+ * @param paths - the lens's counts, which this adds to
+ * @param block - called for each blocker with its kind, its path and the two values
+ */
+function judgeDataChange(
+  base: ComparableRecord,
+  head: ComparableRecord,
+  paths: ImpactPaths,
+  block: (blocker: ImpactBlocker, path: string, base: unknown, head: unknown) => void,
+): void {
+  const keys: (string | number)[] = [];
+  /* The path as the budget table reads it, with "[]" for an array level. */
+  const segments: string[] = [];
+  const pathOf = () =>
+    keys.reduce<string>(
+      (path, key) => (typeof key === "number" ? `${path}[${key}]` : path ? `${path}.${key}` : key),
+      "",
+    );
+  /* A non-finite number that hands the prescription back was authored: the focal length of a plane element. */
+  const authored = () => resolveBudgetRule(head.request, segments)?.authored === true;
+  const noteStatus = (was: string | null, is: string | null) => {
+    const change = `${was ?? "absent"} -> ${is ?? "absent"}`;
+    if (Object.hasOwn(paths.statusChanges, change)) paths.statusChanges[change]++;
+    else if (Object.keys(paths.statusChanges).length < MAX_STATUS_CHANGES) paths.statusChanges[change] = 1;
+    else paths.statusChangesUnlisted++;
+  };
+
+  /** Count what one side alone holds at the current path and under it. */
+  const alone = (value: unknown, which: "baseOnly" | "headOnly"): void => {
+    const side = paths[which];
+    if (!isContainer(value)) {
+      if (typeof value === "string" && segments[segments.length - 1] === "status") {
+        side.statuses++;
+        if (FAILED_STATUS.test(value)) side.failedStatuses++;
+        noteStatus(which === "baseOnly" ? value : null, which === "headOnly" ? value : null);
+        return;
+      }
+      const number = numberOf(value);
+      if (number !== undefined && !Number.isFinite(number) && !authored()) side.nonFinite++;
+      return;
+    }
+    if (Array.isArray(value)) {
+      segments.push("[]");
+      for (const item of value) alone(item, which);
+      segments.pop();
+      return;
+    }
+    for (const [key, member] of Object.entries(value)) {
+      segments.push(key);
+      alone(member, which);
+      segments.pop();
+    }
+  };
+
+  /** Compare what both sides hold at the current path. */
+  const both = (a: unknown, b: unknown): void => {
+    if (a === b) return;
+    const [aIsArray, bIsArray] = [Array.isArray(a), Array.isArray(b)];
+    if (isContainer(a) && isContainer(b) && aIsArray === bIsArray) {
+      if (aIsArray) {
+        const [items, others] = [a as unknown[], b as unknown[]];
+        const common = Math.min(items.length, others.length);
+        segments.push("[]");
+        for (let index = 0; index < common; index++) {
+          keys.push(index);
+          both(items[index], others[index]);
+          keys.pop();
+        }
+        for (let index = common; index < items.length; index++) alone(items[index], "baseOnly");
+        for (let index = common; index < others.length; index++) alone(others[index], "headOnly");
+        segments.pop();
+        return;
+      }
+      const [members, others] = [a as Record<string, unknown>, b as Record<string, unknown>];
+      for (const key of Object.keys(members)) {
+        keys.push(key);
+        segments.push(key);
+        if (Object.hasOwn(others, key)) both(members[key], others[key]);
+        else alone(members[key], "baseOnly");
+        segments.pop();
+        keys.pop();
+      }
+      for (const key of Object.keys(others)) {
+        if (Object.hasOwn(members, key)) continue;
+        segments.push(key);
+        alone(others[key], "headOnly");
+        segments.pop();
+      }
+      return;
+    }
+    const key = keys[keys.length - 1];
+    if (key === "status" && typeof a === "string" && typeof b === "string") {
+      const [was, is] = [FAILED_STATUS.test(a), FAILED_STATUS.test(b)];
+      noteStatus(a, b);
+      if (was && !is) paths.statuses.fromFailure++;
+      if (!was && is) {
+        paths.statuses.toFailure++;
+        block("statuses", pathOf(), a, b);
+      }
+      return;
+    }
+    if (key === "ok" && typeof a === "boolean" && typeof b === "boolean") {
+      if (b) paths.outcomes.fromThrown++;
+      else {
+        paths.outcomes.toThrown++;
+        block("outcomes", pathOf(), a, b);
+      }
+      return;
+    }
+    const [x, y] = [numberOf(a), numberOf(b)];
+    if (x !== undefined && y !== undefined) {
+      if (Number.isFinite(x) === Number.isFinite(y) || authored()) return;
+      if (Number.isFinite(y)) paths.numbers.fromNonFinite++;
+      else {
+        paths.numbers.toNonFinite++;
+        block("numbers", pathOf(), a, b);
+      }
+      return;
+    }
+    /* Two values of different kinds, or a status or a number against something that is none: each side holds alone
+     * what it has here. */
+    alone(a, "baseOnly");
+    alone(b, "headOnly");
+  };
+
+  /* Budget paths start under a record's value, so the outcome of the record itself is read here. */
+  const [was, is] = [base.payload, head.payload];
+  if (was.ok && is.ok) both(was.value, is.value);
+  else if (was.ok) {
+    paths.outcomes.toThrown++;
+    block("outcomes", "ok", true, false);
+    alone(was.value, "baseOnly");
+  } else if (is.ok) {
+    paths.outcomes.fromThrown++;
+    alone(is.value, "headOnly");
+  }
+}
+
+/** The failed statuses and computed non-finite numbers of a record with no base data to set it beside. */
 interface BlockerCounts {
   failedStatuses: number;
   /** Non-finite numbers the engine computed; one that hands an authored value back is not counted. */
@@ -702,32 +930,7 @@ interface BlockerCounts {
 }
 
 /**
- * Whether a located difference blocks a data change, and as what.
- *
- * @param difference - a difference between a record of the base data and of the head data
- * @returns the kind of blocker, or null for a difference that is only reported
- */
-function dataChangeBlocker(difference: RawDifference): keyof BlockerCounts | "outcome" | null {
-  if (difference.kind === "nonFinite") {
-    return !difference.authored && Number.isFinite(numberOf(difference.base)) ? "nonFinite" : null;
-  }
-  if (difference.kind !== "discrete") return null;
-  /* The outcome of a record or of an analysis job: it returned on the base data and throws on the head's. */
-  if (difference.leafKey === "ok") return difference.base === true && difference.head === false ? "outcome" : null;
-  const failedNow =
-    difference.leafKey === "status" &&
-    typeof difference.head === "string" &&
-    FAILED_STATUS.test(difference.head) &&
-    !(typeof difference.base === "string" && FAILED_STATUS.test(difference.base));
-  return failedNow ? "failedStatuses" : null;
-}
-
-/**
- * Count the failed statuses and the computed non-finite numbers of one record.
- *
- * The paired walk reports a longer array or a new member once and does not enter it, so a failure behind such a
- * change shows only in these totals. The totals are per record and net: a failure that came in behind a change of
- * shape while another left the same record leaves them equal, and is for the reader of the impact report to find.
+ * Count the failed statuses and the computed non-finite numbers of one record of a new lens.
  *
  * @param record - a payload record
  * @returns the counts; zero for a record that threw, which has nothing to count
@@ -793,9 +996,12 @@ function baseCannotEvaluate(
  *   that moved, and every discrete or shape transition the change does not declare. A changed iteration count or
  *   trace digest is counted and does not fail by itself. C3: nothing; the differences are reported.
  * - a format-only data change, two prescriptions on the head engine: any difference, in every class.
- * - a semantic data change or a new lens: a new failed status, a newly non-finite value, or a lens that no longer
- *   builds. Everything else is reported for review. A new lens has no base data, and neither has a converter pair
- *   that only the head prescriptions permit: each blocks only by not building.
+ * - a semantic data change, two prescriptions on the head engine, path by path (`judgeDataChange`): a status that
+ *   turned to a failure, a computed number that turned non-finite, or a record or job that returned and now throws,
+ *   which is how a lens that no longer builds shows. Each is at a path both sides have. What only one side has is
+ *   counted, and everything else is reported for review.
+ * - a new lens has no base data, and neither has a converter pair that only the head prescriptions permit: each
+ *   blocks only by not building.
  *
  * Two findings fail a run apart from those comparisons. A record that throws on both engines fails it in every
  * class: the harness runs on both sides, so a defect in a capture throws alike on both, and two equal failures would
@@ -872,7 +1078,6 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
     head: ComparableRecord,
     tally: ComparisonTally,
     fails: (difference: RawDifference) => boolean,
-    onFailure?: (finding: Finding) => void,
   ): number => {
     let failing = 0;
     tally.recordsDiffering++;
@@ -918,7 +1123,6 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
         failing++;
         tally.failing++;
         if (tally.failures.length < MAX_SAMPLES) tally.failures.push(located());
-        onFailure?.(located());
       }
     });
     return failing;
@@ -1033,48 +1237,36 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
 
     if (dataChange === "semantic" && baseData) {
       const { entry, tally } = impactOf(lens, "semantic");
-      const block = (finding: Finding) => {
-        if (entry.blockers.length < MAX_IMPACT_BLOCKERS) entry.blockers.push(finding);
-      };
+      const paths = (entry.paths ??= emptyImpactPaths());
       headEngine.forEach((head, index) => {
         tally.records++;
         if (lines.baseData[index] === lines.headEngine[index]) return;
         const base = baseData[index];
-        const located: BlockerCounts = { failedStatuses: 0, nonFinite: 0 };
-        const blocks = (difference: RawDifference) => {
-          const blocker = dataChangeBlocker(difference);
-          if (blocker !== null && blocker !== "outcome") located[blocker]++;
-          return blocker !== null;
-        };
-        let failing = tallyDifferences("impact", base, head, tally, blocks, block);
-        /* The record's own totals, for what the walk could not locate: an increase beyond what it did locate is a
-         * blocker with no path. A record that threw on the base data has no totals to set the head's beside: every
-         * failed ray of the head's would count as new. */
-        const [before, after] = [countBlockers(base), countBlockers(head)];
-        for (const [count, noun] of [
-          ["failedStatuses", "failed statuses"],
-          ["nonFinite", "non-finite numbers"],
-        ] as const) {
-          const unlocated = base.payload.ok ? after[count] - before[count] - located[count] : 0;
-          if (unlocated <= 0) continue;
-          failing++;
-          tally.failing++;
-          block({
+        /* The paired walk gives the report its totals and its largest differences. What blocks is judged apart,
+         * path by path, by a walk that enters what the paired one does not. */
+        tallyDifferences("impact", base, head, tally, () => false);
+        const blockingBefore = entry.blocking;
+        judgeDataChange(base, head, paths, (blocker, path, was, is) => {
+          /* Every blocker is counted, and the verdict reads the count. The list keeps the first of each kind, so
+           * one kind cannot crowd the paths of another out of the report. */
+          entry.blocking++;
+          if (blockersOf(paths, blocker) > MAX_IMPACT_BLOCKERS) return;
+          entry.blockers.push({
             comparison: "impact",
             lens,
             state: stateId(head.state),
             request: head.request,
             ...(head.variant === undefined ? {} : { variant: head.variant }),
-            path: "",
-            kind: count === "nonFinite" ? "nonFinite" : "discrete",
+            path,
+            kind: blocker === "numbers" ? "nonFinite" : "discrete",
             quantity: null,
-            base: `${before[count]} ${noun} in the record`,
-            head: `${after[count]} ${noun} in the record`,
-            measure: unlocated,
+            base: describe(was),
+            head: describe(is),
+            measure: null,
             budget: null,
           });
-        }
-        if (failing > 0) keepPair("impact", index, lines.baseData[index]);
+        });
+        if (entry.blocking > blockingBefore) keepPair("impact", index, lines.baseData[index]);
       });
       /* A count or another exact field has no budget to be ranked by, and follows the numbers that do. */
       const pastBudget = (finding: Finding) => (finding.budget ? Math.abs(finding.measure ?? 0) / finding.budget : 0);
@@ -1085,7 +1277,6 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
       entry.largest = Object.values(tally.quantities)
         .flatMap((quantity) => (quantity.largest ? [quantity.largest] : []))
         .sort((a, b) => pastBudget(b) - pastBudget(a));
-      entry.blocking = tally.failing;
     }
 
     if (dataChange === "new") {
@@ -1111,8 +1302,8 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
       entry.records += headEngine.length;
       entry.blocking += blockers.length;
       entry.blockers.push(...blockers);
-      /* What the count rule would set beside the base data's totals. With none to set them beside they are
-       * reported, record by record, and gate nothing. */
+      /* There is no base data to pair a path of these records with, so what they hold is counted record by record
+       * and gates nothing. */
       (entry.recordCounts ??= []).push(
         ...headEngine.map(
           (record): RecordCounts => ({
@@ -2714,6 +2905,7 @@ export function renderSummaryMarkdown(summary: RunSummary, context: RunContext):
         `${summary.dataImpact.reduce((total, impact) => total + impact.blocking, 0)} blocking differences. ` +
         "See data-impact.md.",
     "",
+    ...dataImpactTables(summary.dataImpact),
     "## Uncompared lenses",
     "",
     ...(summary.uncompared.length > 0
@@ -2735,6 +2927,143 @@ export function renderSummaryMarkdown(summary: RunSummary, context: RunContext):
     ),
     "",
   ].join("\n");
+}
+
+/** The data-impact rule in the words both reports open with. */
+const IMPACT_RULE =
+  "A changed lens is judged path by path. It blocks where both sides have a status at one path and the head " +
+  "data's alone is a failure (a status that says `failed`), where both have a computed number there and the head " +
+  "data's alone is not finite, and where a record, an analysis job or a near-axis probe returned on the base data " +
+  "and throws on the head data, which is how a lens that no longer builds shows. A status or a number at a path " +
+  "only one side has is counted, failures among them, and blocks nothing: it is work the base data never did, or " +
+  "work the head data no longer does.";
+
+/**
+ * Blockers of a data change as a list: a table cell is cut at 80 characters, and a blocker is its path.
+ *
+ * @param blockers - the findings to list; the first `MARKDOWN_SAMPLES` are written
+ * @param named - whether each line names its lens, where the list holds several
+ * @returns one line per blocker, with its record, its whole path and the two values
+ */
+function blockerLines(blockers: readonly Finding[], named: boolean): string[] {
+  return blockers
+    .slice(0, MARKDOWN_SAMPLES)
+    .map(
+      (blocker) =>
+        `- ${named ? `${blocker.lens}, ` : ""}\`${requestLabel(blocker)}\`, ${blocker.state}: ` +
+        `\`${blocker.path}\` is ${blocker.base} on the base data and ${blocker.head} on the head data.`,
+    );
+}
+
+/** A side's one-sided counts as one cell: statuses, the failures among them, computed non-finite numbers. */
+function oneSidedCell({ statuses, failedStatuses, nonFinite }: OneSidedCounts): string {
+  return `${statuses} / ${failedStatuses} / ${nonFinite}`;
+}
+
+/**
+ * The data-impact rule in `summary.md`: one row of counts per changed lens, the blocked ones first, and the first
+ * blockers of the run with their paths, those of a new lens that does not build among them.
+ */
+function dataImpactTables(dataImpact: readonly DataImpact[]): string[] {
+  const changed = dataImpact
+    .filter((impact) => impact.paths)
+    .sort((a, b) => Math.sign(b.blocking) - Math.sign(a.blocking));
+  const blockers = dataImpact.flatMap((impact) => impact.blockers);
+  const blocking = dataImpact.reduce((total, impact) => total + impact.blocking, 0);
+  return [
+    ...(changed.length > 0 ? changedLensTable(changed) : []),
+    ...(blockers.length > 0
+      ? [
+          `### Blocking data changes (${shownOf(Math.min(blockers.length, MARKDOWN_SAMPLES), blocking)})`,
+          "",
+          ...blockerLines(blockers, true),
+          "",
+        ]
+      : []),
+  ];
+}
+
+/** The rule and one row of its counts per lens whose data changed its fingerprint. */
+function changedLensTable(changed: readonly DataImpact[]): string[] {
+  return [
+    `${IMPACT_RULE} Changed lenses (${shownOf(Math.min(changed.length, MARKDOWN_SAMPLES), changed.length)}):`,
+    "",
+    ...table(
+      [
+        "Lens",
+        "Blocking",
+        "Statuses to a failure",
+        "Statuses from a failure",
+        "Numbers to non-finite",
+        "Returned, now throws",
+        "Head data only: statuses / failures / non-finite",
+        "Base data only: statuses / failures / non-finite",
+      ],
+      changed.slice(0, MARKDOWN_SAMPLES).map(({ lens, blocking: blocked, paths }) => {
+        const { statuses, numbers, outcomes, headOnly, baseOnly } = paths as ImpactPaths;
+        return [
+          lens,
+          String(blocked),
+          String(statuses.toFailure),
+          String(statuses.fromFailure),
+          String(numbers.toNonFinite),
+          String(outcomes.toThrown),
+          oneSidedCell(headOnly),
+          oneSidedCell(baseOnly),
+        ];
+      }),
+    ),
+    "",
+  ];
+}
+
+/** One changed lens in `data-impact.md`: what its records hold path by path, and every status change. */
+function impactPathSection(paths: ImpactPaths): string[] {
+  const { statuses, numbers, outcomes, headOnly, baseOnly, statusChanges, statusChangesUnlisted } = paths;
+  /* The most frequent first, and code-unit order between equals, so two runs list them alike. */
+  const changes = Object.entries(statusChanges).sort(([a, x], [b, y]) => y - x || (a < b ? -1 : 1));
+  const oneSidedRow = (side: string, { statuses: held, failedStatuses, nonFinite }: OneSidedCounts) => [
+    side,
+    String(held),
+    String(failedStatuses),
+    String(nonFinite),
+  ];
+  return [
+    "### Path by path",
+    "",
+    ...table(
+      ["At a path both sides have", "Count", "Gate"],
+      [
+        ["Statuses turned from good to a failure", String(statuses.toFailure), "blocks"],
+        ["Statuses turned from a failure to good", String(statuses.fromFailure), ""],
+        ["Computed numbers turned from finite to non-finite", String(numbers.toNonFinite), "blocks"],
+        ["Computed numbers turned from non-finite to finite", String(numbers.fromNonFinite), ""],
+        ["Records, jobs and probes that returned and now throw", String(outcomes.toThrown), "blocks"],
+        ["Records, jobs and probes that threw and now return", String(outcomes.fromThrown), ""],
+      ],
+    ),
+    "",
+    ...table(
+      ["At a path only one side has", "Statuses", "Failures among them", "Computed non-finite numbers"],
+      [
+        oneSidedRow("The head data: work the base data never did", headOnly),
+        oneSidedRow("The base data: work no longer done", baseOnly),
+      ],
+    ),
+    "",
+    ...(changes.length > 0
+      ? [
+          ...table(
+            ["Status on the base data -> on the head data", "Paths"],
+            [
+              ...changes.map(([change, count]) => [change, String(count)]),
+              ...(statusChangesUnlisted > 0 ? [["any other change", String(statusChangesUnlisted)]] : []),
+            ],
+          ),
+          "",
+        ]
+      : []),
+  ];
 }
 
 /**
@@ -2782,12 +3111,13 @@ export function renderDataImpactMarkdown(summary: RunSummary, context: RunContex
     "",
     ...(impact.blockers.length > 0
       ? [
-          `### Blocking (${shownOf(impact.blockers.length, impact.blocking)})`,
+          `### Blocking (${shownOf(Math.min(impact.blockers.length, MARKDOWN_SAMPLES), impact.blocking)})`,
           "",
-          ...table(FINDING_HEADER, findingRows(impact.blockers)),
+          ...blockerLines(impact.blockers, false),
           "",
         ]
       : []),
+    ...(impact.paths ? impactPathSection(impact.paths) : []),
     ...(impact.largest.length > 0
       ? ["### Largest differences", "", ...table(FINDING_HEADER, findingRows(impact.largest)), ""]
       : []),
@@ -2803,8 +3133,8 @@ export function renderDataImpactMarkdown(summary: RunSummary, context: RunContex
   return [
     "# Data impact",
     "",
-    `Base data \`${context.base.commit.slice(0, 9)}\` against head data, both on the head engine. A change blocks ` +
-      "by a new failed status, a newly non-finite value, or a lens that no longer builds; the rest is for review.",
+    `Base data \`${context.base.commit.slice(0, 9)}\` against head data, both on the head engine. ${IMPACT_RULE} ` +
+      "The rest is for review.",
     "",
     ...(sections.length > 0 ? sections : ["No lens changed its semantic fingerprint, and none is new.", ""]),
     ...(converters.length > 0
