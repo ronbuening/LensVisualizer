@@ -779,8 +779,11 @@ Three files in the tooling suite hold the harness to its contract.
   the accepted limit of the rule. The outcome masks exactly the numbers the table budgets, on captured traces, a
   near-axis probe that stops returning fails on either tracer, and a probe launch that threw on one engine fails as
   that outcome alone. It also covers cross-evaluation: a data-only change shows no engine difference
-  and an impact report, a format-only change that alters a value fails, a failed status or a non-finite number behind a
-  change of shape blocks, a changed converter is compared through its pairs, and a pair the engines disagree about fails
+  and an impact report, and a format-only change that alters a value fails. A semantic change is judged path by path:
+  a status that turned to a failure, a number that turned non-finite and a job that now throws each block at a path
+  both sides have, behind a change of shape and beside an improvement as well; failures at paths only the head data
+  has pass and are counted, as is what only the base data has; a digest is read like any object; and a list that is
+  cut passes nothing. A changed converter is compared through its pairs, and a pair the engines disagree about fails
   while one the data lost is listed. A pair the data gained passes with failed rays in its records and fails when it
   does not build, the impact report counts what the records of a new lens or a gained pair hold, and a changed converter
   that lost every pair is warned of. A pair the base engine cannot compose and build is uncompared in a run that meets
