@@ -222,12 +222,17 @@ into `main` once, after the Stage 5 gate, and Stages 6 to 8 then merge to `main`
   [#518](https://github.com/ronbuening/LensVisualizer/pull/518), a 193-file PR.
   - Steps stay one PR each, into `engine-next`, under the same gates.
   - `main` is merged into `engine-next` weekly, as a merge commit, through a PR whose own `engine-diff` job checks
-    the merge. Tier P of `engine-next` against `main` is then run, and its result recorded in that PR.
+    the merge. Tier P of `engine-next` against `main` is then run, and its result recorded in that PR. A merge that
+    brings engine-file changes from `main` moves the anchor
+    (see [Anchors and comparison coverage](#anchors-and-comparison-coverage)).
   - The catalog stays V1 on both branches until promotion: Phases 2.5 and 2.6 run on `main` afterwards. A lens
     audit on `main` therefore never conflicts with a converted file.
 - **Every engine change goes to `engine-next`** while the branch lives, whether or not it is a step of this plan, and
   passes the same gates as a step. `main` takes lens data, content and UI. An intentional engine behavior change moves
   the anchor only under the rule in [Anchors and comparison coverage](#anchors-and-comparison-coverage).
+  - **What a lens batch on `main` still changes in engine files.** The glass catalog rows it needs, and now and then
+    a validator allowance or a converter rule. Lens work cannot wait for `engine-next`, so these land on `main`,
+    reach `engine-next` in the weekly merge, and move the anchor there.
 - **Promotion.** After the Stage 5 gate, `engine-next` merges into `main` as a merge commit, never a squash, so the
   anchor tags stay reachable from `main`. The promotion PR carries:
   - Tier F of `engine-next` against `main`, under the loosest change class merged. It runs on the head that is
@@ -269,8 +274,9 @@ into `main` once, after the Stage 5 gate, and Stages 6 to 8 then merge to `main`
 ### Anchors and comparison coverage
 
 An anchor is a commit of the branch the program merges to, `engine-next` until promotion and `main` after it, whose
-**engine** the stage gates compare against. Anchors track engine revisions only. Lens data never moves one, except
-that the catalog conversion moves it once (see "Baselines and anchor moves" below).
+**engine** the stage gates compare against. Anchors track engine revisions only, and lens data never moves one.
+Besides an engine C3, two things do: a merge of `main` that changes engine files, and the catalog conversion, once
+(see "Baselines and anchor moves" below).
 
 **Semantic fingerprint.** Each prescription has a semantic fingerprint: a hash of every canonical value the engine or
 UI reads, taken after the engine's own authority rules.
@@ -366,6 +372,25 @@ readings are fixed until the canonical prescription replaces it:
   head prescription on both engines. That comparison may show nothing outside the cumulative budgets except the
   differences declared and approved for that change. The PR records the declared differences and the result, and its
   merge commit becomes the new anchor.
+- **A merge of `main` that changes what the engine computes moves the anchor.** The glass catalog is engine source,
+  and each engine is built with its own copy. A lens batch on `main` that adds a glass row and relabels a glass to
+  it leaves `engine-next`'s engine different from the anchor's: the anchor's engine cannot resolve the new glass, so
+  the two disagree on that lens's chromatic indices by far more than any budget. A validator or converter rule
+  changed on `main` does the same. A changed lens file does not, because both engines are handed the same file.
+  - **Which merges.** One whose own `engine-diff` run shows engine drift, or a lens the engine before the merge
+    cannot build. A merge that brings only lens data, content and UI leaves the anchor where it is.
+  - **Before the anchor moves:** Tier S of the head of `engine-next` before the merge against the current anchor,
+    under the loosest class merged since it, with the transitions those PRs declared. It checks everything since
+    the old anchor, so no drift is lost. It may run after the merge has landed, since both commits exist; the anchor
+    moves when it passes.
+  - **Then** the merge commit is the anchor, tagged `optics-rewrite/a<n>` in order. `optics-rewrite/a1` is the first;
+    A0 is `optics-rewrite/s1`. Budgets accumulate from the new anchor.
+  - **The merge PR** carries `engine-diff:c3`, because `main`'s reviewed changes arrive in it and are reported, not
+    gated. It declares as exceptions the lenses the engine before the merge cannot build, and it records both
+    results: the Tier S above and Tier P against `main`.
+  - **The efficiency gates keep their base.** A glass row or a validator rule changes no timing worth gating, so an
+    anchor moved this way is not a timing base.
+  - **What still spans the whole program** is the promotion's Tier F against `main`, which depends on no anchor.
 - **The catalog conversion moves the anchor once.** A base has to build the head's catalog, and no commit older than
   V2 ingest (S2.P2.T1) reads a V2 file. Against an older anchor, every converted lens would be a declared exception
   and a stage gate would compare no engine output.
@@ -482,7 +507,7 @@ How `budgets.ts` applies the table:
 | Every PR | CI (`.github/workflows/quality.yml`) | lint, format, typecheck, `npm run test`, the tooling suite, build and `seo:audit` (all existing) |
 | Engine or lens-data PR: touches `src/optics/**`, `src/types/**`, `src/lens-data/**` other than `*.md`, `src/utils/catalog/**`, `src/utils/featureFlags.ts`, or the harness itself | CI job `engine-diff` (S1.P2.T2) | Tier P against the merge-base under the PR's change class, plus every changed or new lens through every Tier P request |
 | Phase end | The PR that ends the phase | Every test the phase's steps added, run together; the phase exit criteria |
-| Weekly merge of `main` into `engine-next` | The merge PR's CI, then a run of the driver | The merge PR's own `engine-diff` job under its declared class; then Tier P of `engine-next` against `main`, recorded in that PR |
+| Weekly merge of `main` into `engine-next` | The merge PR's CI, then a run of the driver; a stage run when the anchor moves | The merge PR's own `engine-diff` job under its declared class; then Tier P of `engine-next` against `main`, recorded in that PR. When the merge changes what the engine computes: Tier S of the head before the merge against the anchor, after which the merge commit is the anchor |
 | Stage end | GitHub Actions: `engine-diff-stage.yml` by `workflow_dispatch`, sharded as a matrix (S1.P2.T3). Dispatch needs the workflow file on `main`, so a stub of it lands there before the first stage gate after Stage 1; a run on `engine-next` then uses that branch's version. A push to `engine-diff-stage/<name>` runs Tier S of the pushed commit against itself, which is what the Stage 1 gate and a PR that changes the workflow need. Timing runs on the maintainer's machine. | Tier S against the current anchor (the Stage 2 gate: against the promotion merge commit); the full suites; build; the stage's efficiency report; then the tag |
 | Promotion, after the Stage 5 gate | `engine-diff-stage.yml`, sharded; timing on the maintainer's machine | Tier F of `engine-next` against `main`; the benchmark and memory comparison; the preview deployment; then the merge commit |
 | Before S8.P2 deletes code | `engine-diff-stage.yml`, sharded | Tier F against the current anchor |
@@ -615,8 +640,9 @@ The guards:
 
 ### Gates
 
-These apply at every stage end, and failing one blocks the stage. The Stage 2 gate reads them against the promotion
-merge commit, not the anchor.
+These apply at every stage end, and failing one blocks the stage. Their base is A0 until the catalog conversion: an
+anchor moved by a merge of `main` is not a timing base. The Stage 2 gate reads them against the promotion merge
+commit.
 
 1. **No case regresses.** A benchmark case regresses when, against the anchor, both of these hold:
    - the lower bound of the 95% bootstrap confidence interval of its paired median ratio exceeds 1.05;
@@ -1939,6 +1965,7 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 30 | The pupil constants keep the first-order budget, and two near-axis rays are probed on each tracer | [Quantity budgets](#quantity-budgets) |
 | 31 | A C1 step may update a test that pins rounding-level bits, listing each pin | [Numerical contract](#numerical-contract) |
 | 32 | S3.P1.T1 moves and fuses only: four profile kinds, both sphere clamps, and only aspheric numbers move | S3.P1.T1 |
+| 33 | A merge of `main` that changes what the engine computes moves the anchor, after a Tier S check of everything since the old one | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
