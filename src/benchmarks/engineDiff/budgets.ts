@@ -36,8 +36,9 @@ export type ChangeClass = "c0" | "c1" | "c2" | "c3";
  *   residual in another frame is held to a bound of its own.
  * - `share`: the field is already a residual as a share of the tolerance it was accepted under: the largest inside a
  *   digested trace. Like a residual it is not differenced. Where the two sides differ, the head's own value must be
- *   at most the budget, 1: the head is the engine a change proposes, and a breach the base alone carries is not one
- *   the change made.
+ *   at most the budget, 1: the head is the engine a change proposes, and a finite breach the base alone carries is
+ *   not one the change made. An infinite share on either side is compared exactly, as every non-finite value is,
+ *   and a share on one side against none on the other is a discrete difference.
  * - `exact`: `Object.is`. A difference is a discrete transition, listed in the report.
  * - `iterations`: a solver's step or evaluation count. Above C0 a change is tallied as a histogram and does not
  *   fail by itself; what it did to the solver's output shows in that output's own class.
@@ -153,6 +154,10 @@ export const QUANTITIES = {
    * one relative budget. It is never below 1e-12 mm, so it needs no floor, and a relaxed tolerance, twice the
    * target or more, is far outside the budget. */
   effectiveTolerance: relative("Effective intersection tolerance", 1e-12, "derived"),
+  /* Which of those two a hit was accepted under is a branch of the root finder, not a number that drifts: the
+   * target where the residual met it, the envelope where the iteration could go no further first. A tolerance that
+   * is the raw target on one side only is therefore a discrete transition, listed as one (`toleranceByBranch`). */
+  toleranceBranch: exact("Intersection tolerance, raw target against another", "addition"),
   intersectionResidual: {
     title: "Intersection residual",
     unit: "of its effective tolerance",
@@ -323,6 +328,25 @@ export function hitColumnEntries(leaf: LeafContext, column: string): [base: unkn
 const hitByClipFlag: QuantitySelector = (leaf) => {
   const [base, head] = hitColumnEntries(leaf, "clipped");
   return base === false && head === false ? "landing" : "clippedHit";
+};
+
+/*
+ * The tolerance the engine's root finder asks of every intersection, in mm: `INTERSECTION_TOLERANCE` in
+ * `src/optics/constants.ts`, copied because this module imports nothing. A hit records exactly this number as its
+ * effective tolerance unless its root stalled. The harness tests hold the copy to the engine's constant.
+ */
+export const RAW_INTERSECTION_TOLERANCE_MM = 1e-12;
+
+/* An effective tolerance is the raw target or a stall envelope above it. Between two envelopes it is a number at
+ * the class's relative budget. The raw target on one side alone is a hit that stalled on one engine and converged
+ * on the other, each residual still held to its own tolerance: a boundary transition, which belongs among the
+ * discrete ones and not among the numbers beyond budget. A tolerance relaxed from the target is the same finding.
+ * The largest tolerance a digest keeps of the hits behind it is read the same way. */
+const toleranceByBranch: QuantitySelector = (leaf) => {
+  const depth = leaf.keys.length - 1;
+  const atTarget = (side: readonly unknown[]) =>
+    memberOf(side[depth], leaf.keys[depth]) === RAW_INTERSECTION_TOLERANCE_MM;
+  return atTarget(leaf.base) === atTarget(leaf.head) ? "effectiveTolerance" : "toleranceBranch";
 };
 
 /** The object a ray-level leaf belongs to: its parent, or its grandparent for a component of a point. */
@@ -513,7 +537,7 @@ const TABLE: readonly TableRow[] = [
   [hitByClipFlag, ["traces:**.hits.columns.point[][]", "traces:**.hits.columns.radius[]"]],
   ["directionCosine", ["traces:**.hits.columns.{normal,incidentDirection,outgoingDirection}[][]"]],
   ["intersectionResidual", ["traces:**.hits.columns.residual[]"], { tolerance: "effectiveTolerance" }],
-  ["effectiveTolerance", ["traces:**.hits.columns.effectiveTolerance[]"]],
+  [toleranceByBranch, ["traces:**.hits.columns.effectiveTolerance[]"]],
   ["count", ["traces:**.hits.count", "traces:**.hits.columns.surfaceIndex[]"]],
   /* The RuntimeLens stack tracer, before the rows that go by member name. Its drawn points are the hits. */
   ["landing", ["traces:legacy.rays[].pts[][]", "traces:legacy.rays[].paraxialImageHeight"]],
@@ -595,10 +619,12 @@ const TABLE: readonly TableRow[] = [
       "analysis:jobs.cardinalElements.value.distances.*.*",
     ],
   ],
-  /* The digest that stands in for a nested trace keeps its hit count readable, and the largest residual behind it
-   * as a share of that hit's effective tolerance. */
+  /* The digest that stands in for a nested trace keeps its hit count readable, the largest residual behind it as a
+   * share of that hit's effective tolerance, and the largest of those tolerances. A share says nothing unless the
+   * tolerance it is a share of is held too, and that one is held as the tolerance of a hit in a full trace is. */
   ["count", ["analysis:**.hitCount"]],
   ["nestedResidualShare", ["analysis:**.residualShare"]],
+  [toleranceByBranch, ["analysis:**.largestTolerance"]],
   /* Group movement is layout arithmetic on a sample grid; nothing in it is traced. The job names are single
    * members that contain a dot ("groupMovement.focus"). */
   [

@@ -10,6 +10,7 @@ import { describe, expect, it } from "vitest";
 import {
   C2_CRITERIA,
   QUANTITIES,
+  RAW_INTERSECTION_TOLERANCE_MM,
   budgetOf,
   resolveBudgetRule,
   type ChangeClass,
@@ -58,6 +59,7 @@ import {
   type CaptureRequest,
   type RequestFamily,
 } from "../../../src/benchmarks/engineDiff/requests.js";
+import { INTERSECTION_TOLERANCE } from "../../../src/optics/constants.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 import plainTwin from "./engineDiffFixtures/fingerprintTwinPlain.js";
 import restyledTwin from "./engineDiffFixtures/fingerprintTwinRestyled.js";
@@ -408,7 +410,6 @@ describe("engineDiff drift detection", () => {
   it.each<[RequestFamily, Path, QuantityId, number]>([
     ["traces", HIT_POINT_Y, "landing", 1],
     ["traces", [...RAY, "hits", "columns", "normal", HIT, 1], "directionCosine", 1],
-    ["traces", [...RAY, "hits", "columns", "effectiveTolerance", HIT], "effectiveTolerance", 1],
     ["traces", [...RAY, "input", "origin", 1], "chiefLaunch", 1],
     ["traces", [...RAY, "imagePoint", 1], "landing", 1],
     ["build", ["EFL"], "firstOrder", 1],
@@ -534,10 +535,10 @@ describe("engineDiff drift detection", () => {
       expect.objectContaining({ kind: "contract", quantity: "intersectionResidual" }),
     ]);
     /* A relaxed tolerance is the contract of the hit that carries it: the residual is inside it, and the tolerance
-     * itself is what fails, far outside its own budget. */
+     * itself is what fails. The base's is the raw target, so the hit left it for another tolerance. */
     const relaxed = withChange("traces", tolerance, () => 4e-12, outside);
     expect(failuresOf(compare("c1", relaxed, base))).toEqual([
-      expect.objectContaining({ kind: "number", quantity: "effectiveTolerance" }),
+      expect.objectContaining({ kind: "discrete", quantity: "toleranceBranch" }),
     ]);
   });
 
@@ -562,18 +563,73 @@ describe("engineDiff drift detection", () => {
       });
       expect(summary.engine.transitions, changeClass).toBe(0);
 
+      /* Twice the budget fails and half of it passes, as for every budgeted class. */
+      const twice = compare(changeClass, held(envelope * (1 + 2e-12)), held(envelope));
+      expect(failuresOf(twice), changeClass).toEqual([{ ...at2, kind: "number", quantity: "effectiveTolerance" }]);
+      expect(twice.engine.failures[0].measure! / twice.engine.failures[0].budget!).toBeCloseTo(2, 1);
+      expect(compare(changeClass, held(envelope * (1 + 0.5e-12)), held(envelope)).passed, changeClass).toBe(true);
+
       /* 1e-10 relative is a hundred times the budget, and there is no absolute floor to hide it under. */
       const drifted = compare(changeClass, held(envelope * (1 + 1e-10)), held(envelope));
       expect(failuresOf(drifted), changeClass).toEqual([{ ...at2, kind: "number", quantity: "effectiveTolerance" }]);
       expect(drifted.engine.failures[0].measure! / drifted.engine.failures[0].budget!).toBeCloseTo(100, 0);
 
-      /* A doubled tolerance fails, from the engine's raw target as from an envelope. */
-      expect(compare(changeClass, held(2 * envelope), held(envelope)).passed, changeClass).toBe(false);
-      expect(failuresOf(compare(changeClass, held(2e-12))), changeClass).toEqual([
+      /* A doubled tolerance fails: as a number far over its budget from an envelope, and from the engine's raw
+       * target as a hit that left it. */
+      expect(failuresOf(compare(changeClass, held(2 * envelope), held(envelope))), changeClass).toEqual([
         { ...at2, kind: "number", quantity: "effectiveTolerance" },
+      ]);
+      expect(failuresOf(compare(changeClass, held(2e-12))), changeClass).toEqual([
+        { ...at2, kind: "discrete", quantity: "toleranceBranch" },
       ]);
     }
     expect(compare("c3", held(2 * envelope), held(envelope)).passed).toBe(true);
+  });
+
+  it("lists a hit that left the raw target for a stall envelope as a transition, not as a number over budget", () => {
+    /* The field is two-valued by branch of the root finder: exactly the raw target where the residual met it, and
+     * a computed envelope above it where the iteration stalled first. A reordered solve can stall where the base
+     * converged, with both residuals inside their own tolerance. That is a boundary transition, which a C1 change
+     * may list, so it must be among the discrete transitions and not a number 0.44 relative from its budget. */
+    expect(RAW_INTERSECTION_TOLERANCE_MM).toBe(INTERSECTION_TOLERANCE);
+    const residual: Path = [...RAY, "hits", "columns", "residual", HIT];
+    const tolerance: Path = [...RAY, "hits", "columns", "effectiveTolerance", HIT];
+    const at2 = { request: "traces", path: "onAxis.rays[1].hits.columns.effectiveTolerance[2]" };
+    expect(numberAt("traces", tolerance)).toBe(RAW_INTERSECTION_TOLERANCE_MM);
+    /* The envelope of a hit whose operands sum to 500 mm: 16 ε times that. */
+    const envelope = 16 * Number.EPSILON * 500;
+    const converged = withChange("traces", residual, () => 0.9e-12);
+    const stalled = withChange(
+      "traces",
+      tolerance,
+      () => envelope,
+      withChange("traces", residual, () => 1.1e-12),
+    );
+    for (const changeClass of ["c1", "c2"] as const) {
+      for (const [head, base] of [
+        [stalled, converged],
+        [converged, stalled],
+      ]) {
+        const summary = compare(changeClass, head, base);
+        expect(failuresOf(summary), changeClass).toEqual([{ ...at2, kind: "discrete", quantity: "toleranceBranch" }]);
+        expect(summary.engine.transitions, changeClass).toBe(1);
+        expect(summary.engine.transitionSamples.map(({ path }) => path)).toEqual([at2.path]);
+        /* The residual beside it moved from one contract to the other and is inside each. */
+        expect(summary.engine.quantities.intersectionResidual).toMatchObject({ differing: 1, beyondBudget: 0 });
+        expect(summary.engine.quantities.effectiveTolerance).toBeUndefined();
+      }
+    }
+    expect(compare("c3", stalled, converged)).toMatchObject({ passed: true, engine: { transitions: 1 } });
+    expect(failuresOf(compare("c0", stalled, converged))).toContainEqual({
+      ...at2,
+      kind: "discrete",
+      quantity: "toleranceBranch",
+    });
+    /* Between two envelopes there is no branch to switch, and the field is a number with a budget. */
+    const grown = withChange("traces", tolerance, () => 2 * envelope, stalled);
+    expect(failuresOf(compare("c1", grown, stalled))).toEqual([
+      { ...at2, kind: "number", quantity: "effectiveTolerance" },
+    ]);
   });
 
   it("checks a solve's residual against the solve's own tolerance instead of differencing it", () => {
@@ -798,7 +854,8 @@ describe("engineDiff drift detection", () => {
   });
 
   it("fails a changed trace digest under C0, and above it counts the digest and compares what stands beside it", () => {
-    /* A trace nested in an analysis result is in the record as its status, hit count and a hash of the rest. */
+    /* A trace nested in an analysis result is in the record as its status, its hit count, a hash of the rest, and
+     * three reductions of what the hash hides: the outcome, the largest residual share and the largest tolerance. */
     const digest: Path = [
       "jobs",
       "computePerspectiveFocusAnalysis",
@@ -815,6 +872,7 @@ describe("engineDiff drift detection", () => {
       hash: expect.stringMatching(/^[0-9a-f]{64}$/),
       outcome: expect.stringMatching(/^[0-9a-f]{64}$/),
       residualShare: expect.any(Number),
+      largestTolerance: RAW_INTERSECTION_TOLERANCE_MM,
     });
 
     const rehashed = withChange("analysis", [...digest, "hash"], () => "0".repeat(64));
@@ -833,9 +891,11 @@ describe("engineDiff drift detection", () => {
       expect(markdown.indexOf("## Not budgeted: digested traces")).toBeLessThan(markdown.indexOf("## Counts"));
       expect(markdown).toContain("**1 trace digests changed, in 1 lenses, and none of them was budgeted.**");
       /* It says what was held to something beside each hash, and what was not. */
-      expect(markdown).toContain(`Under ${changeClass.toUpperCase()} four of those were judged`);
+      expect(markdown).toContain(`Under ${changeClass.toUpperCase()} five of those were judged`);
       expect(markdown).toContain("the outcome hash, which must be equal, and which changes with any flag, status,");
-      expect(markdown).toContain("which the head must keep at or under 1. Not judged: how far the coordinates");
+      expect(markdown).toContain("which the head must keep at or under 1 wherever the two sides differ;");
+      expect(markdown).toContain("held as the tolerance of a hit the comparison can read is. Not judged: how far the");
+      expect(markdown).toContain("an effective tolerance below the largest of its trace among them");
       expect(markdown).toContain("| analysis | 1 |");
       expect(markdown).toContain(`Lenses: ${SERENAR}.`);
     }
@@ -905,15 +965,21 @@ describe("engineDiff drift detection", () => {
      * moves it. */
     const quarter = { residual: 0.25e-12 };
     interface Change {
-      /* Members of the first hit of the ray outside the bundle. */
+      /* Members of the first hit of the ray outside the bundle, and of its second. */
       hit?: object;
+      lastHit?: object;
       /* Members of the first hit of the first ray inside the bundle, and that ray's status in the bundle. */
       bundleHit?: object;
       bundleStatus?: string;
     }
-    const nested = ({ hit = {}, bundleHit = {}, bundleStatus = "usable" }: Change = {}): PayloadRecord[] => {
+    const nested = ({
+      hit = {},
+      lastHit = {},
+      bundleHit = {},
+      bundleStatus = "usable",
+    }: Change = {}): PayloadRecord[] => {
       const sample = {
-        rays: [{ sensorPoint: [0, 1, 2], trace: posedOf([hitOf(5, hit), hitOf(6, quarter)]) }],
+        rays: [{ sensorPoint: [0, 1, 2], trace: posedOf([hitOf(5, hit), hitOf(6, { ...quarter, ...lastHit })]) }],
         fieldSample: {
           status: "usable",
           pupilBundle: {
@@ -949,8 +1015,9 @@ describe("engineDiff drift detection", () => {
     const kindsAt = (summary: RunSummary) => summary.engine.failures.map(({ path, kind }) => [path, kind]);
 
     it("has the digests its perturbations assume", () => {
-      expect(digestAt(BASE, "rays")).toMatchObject({ status: "ok", hitCount: 4, residualShare: 0.25 });
-      expect(digestAt(BASE, "fieldSample")).toMatchObject({ status: null, hitCount: 8, residualShare: 0.25 });
+      const held = { residualShare: 0.25, largestTolerance: RAW_INTERSECTION_TOLERANCE_MM };
+      expect(digestAt(BASE, "rays")).toMatchObject({ status: "ok", hitCount: 4, ...held });
+      expect(digestAt(BASE, "fieldSample")).toMatchObject({ status: null, hitCount: 8, ...held });
       expect(compare("c0", nested(), BASE).passed).toBe(true);
     });
 
@@ -1007,10 +1074,7 @@ describe("engineDiff drift detection", () => {
           beyondBudget: 0,
           largest: { measure: 0.5, budget: 1 },
         });
-        /* The share is of the hit's own tolerance: twice the target under a tolerance four times it is inside. */
-        const relaxed = nested({ hit: { residual: 2e-12, effectiveTolerance: 4e-12 } });
-        expect(compare(changeClass, relaxed, BASE).passed, changeClass).toBe(true);
-        /* Only the head's share is judged. A breach the base alone carries is not one the change made. */
+        /* Only the head's share is judged. A finite breach the base alone carries is not one the change made. */
         expect(compare(changeClass, BASE, twice).passed, changeClass).toBe(true);
         /* And only where the two sides differ, as for every field: the same breach on both is not walked. */
         expect(compare(changeClass, nested({ hit: { residual: 2e-12 } }), twice).passed, changeClass).toBe(true);
@@ -1022,6 +1086,92 @@ describe("engineDiff drift detection", () => {
         [`${rayAt}.residualShare`, "number"],
       ]);
       expect(compare("c3", twice, BASE).passed).toBe(true);
+    });
+
+    it("compares a share that is infinite or absent on one side exactly, whichever side it is", () => {
+      /* A residual that is not finite, or that has no positive tolerance to meet, gives an infinite share, and no
+       * budget is defined across an infinity: it fails from the base as from the head. So does a share on one side
+       * against none on the other. Each of these changes the outcome as well. */
+      const broken = nested({ hit: { residual: Number.NaN } });
+      const untraced = nested({
+        hit: { residual: null, effectiveTolerance: null },
+        lastHit: { residual: null, effectiveTolerance: null },
+      });
+      expect(digestAt(broken, "rays").residualShare).toBe("$+Inf");
+      expect(digestAt(untraced, "rays")).toMatchObject({ residualShare: null, largestTolerance: null });
+      for (const changeClass of ["c1", "c2"] as const) {
+        for (const [head, base] of [
+          [broken, BASE],
+          [BASE, broken],
+        ]) {
+          expect(kindsAt(compare(changeClass, head, base)), changeClass).toEqual([
+            [`${rayAt}.outcome`, "discrete"],
+            [`${rayAt}.residualShare`, "nonFinite"],
+          ]);
+        }
+        for (const [head, base] of [
+          [untraced, BASE],
+          [BASE, untraced],
+        ]) {
+          expect(kindsAt(compare(changeClass, head, base)), changeClass).toEqual([
+            [`${rayAt}.largestTolerance`, "discrete"],
+            [`${rayAt}.outcome`, "discrete"],
+            [`${rayAt}.residualShare`, "discrete"],
+          ]);
+        }
+      }
+    });
+
+    it("holds the largest effective tolerance inside a trace, so a head cannot relax its way into contract", () => {
+      /* A share is of the tolerance its own hit recorded, and the outcome masks that tolerance as the budgeted
+       * number it is. The largest tolerance beside them is what holds it: without it a residual at twice the raw
+       * target under a tolerance relaxed to four times it would move the hash alone. */
+      const tolerance = { request: "analysis", path: `${rayAt}.largestTolerance` };
+      const envelope = 3.7e-12;
+      const stalled = (factor = 1, extra: Change = {}) =>
+        nested({ ...extra, hit: { effectiveTolerance: envelope * factor } });
+      expect(digestAt(stalled(), "rays").largestTolerance).toBe(envelope);
+      expect(digestAt(stalled(), "fieldSample").largestTolerance).toBe(RAW_INTERSECTION_TOLERANCE_MM);
+      for (const changeClass of ["c1", "c2"] as const) {
+        /* From the raw target the hit left it for another tolerance, which is a discrete transition, as for a hit
+         * the comparison can read. The share beside it is inside its contract. */
+        const relaxed = compare(changeClass, nested({ hit: { residual: 2e-12, effectiveTolerance: 4e-12 } }), BASE);
+        expect(failuresOf(relaxed), changeClass).toEqual([
+          { ...tolerance, kind: "discrete", quantity: "toleranceBranch" },
+        ]);
+        expect(relaxed.engine.quantities.nestedResidualShare, changeClass).toMatchObject({
+          beyondBudget: 0,
+          largest: { measure: 0.5 },
+        });
+        /* Between two envelopes it is a number at 1e-12 relative: doubled fails, 1e-10 relative fails, the last
+         * bits pass. */
+        for (const factor of [2, 1 + 1e-10]) {
+          expect(failuresOf(compare(changeClass, stalled(factor), stalled())), `${changeClass} ${factor}`).toEqual([
+            { ...tolerance, kind: "number", quantity: "effectiveTolerance" },
+          ]);
+        }
+        const lastBits = compare(changeClass, stalled(1 + 4 * Number.EPSILON), stalled());
+        expect(lastBits, changeClass).toMatchObject({ passed: true, engine: { numbersDiffering: 1, transitions: 0 } });
+        expect(lastBits.engine.quantities.effectiveTolerance).toMatchObject({ differing: 1, beyondBudget: 0 });
+        /* Inside a pupil bundle too. */
+        expect(kindsAt(compare(changeClass, nested({ bundleHit: { effectiveTolerance: 4e-12 } }), BASE))).toEqual([
+          [`${bundleAt}.largestTolerance`, "discrete"],
+        ]);
+      }
+      expect(compare("c3", nested({ hit: { effectiveTolerance: 4e-12 } }), BASE).passed).toBe(true);
+      expect(kindsAt(compare("c0", stalled(1 + 4 * Number.EPSILON), stalled()))).toEqual([
+        [`${rayAt}.hash`, "digest"],
+        [`${rayAt}.largestTolerance`, "number"],
+      ]);
+
+      /* The accepted limit of one number per carrier: a tolerance relaxed under a larger one beside it, in the same
+       * trace, moves the hash alone. The base has to hold a stalled hit there already. */
+      const under = (factor: number) => stalled(factor, { lastHit: { effectiveTolerance: 4 * envelope } });
+      for (const changeClass of ["c1", "c2"] as const) {
+        const summary = compare(changeClass, under(2), under(1));
+        expect(summary, changeClass).toMatchObject({ passed: true, engine: { numbersDiffering: 0, transitions: 0 } });
+        expect(summary.engine.differences.digest, changeClass).toBe(1);
+      }
     });
 
     it("reports a coordinate that moved inside a trace and does not judge how far: the accepted limit of the rule", () => {
@@ -1046,24 +1196,32 @@ describe("engineDiff drift detection", () => {
     });
 
     it("lets an effective tolerance inside a trace move in its last bits", () => {
-      /* On a hit that does not carry the largest share, the hash is all that changes. */
-      const lastBits = 1e-12 * (1 + 4 * Number.EPSILON);
-      const head = nested({ hit: { effectiveTolerance: lastBits } });
-      expect({ ...digestAt(head, "rays"), hash: "" }).toEqual({ ...digestAt(BASE, "rays"), hash: "" });
-      expect(digestAt(head, "rays").hash).not.toBe(digestAt(BASE, "rays").hash);
+      /* Only a stall envelope is a computed float; the raw target is a constant and has no last bits to move. Under
+       * a larger tolerance in the same trace, the hash is all that changes. */
+      const envelope = 3.7e-12;
+      const lastBits = envelope * (1 + 4 * Number.EPSILON);
+      const larger = { lastHit: { effectiveTolerance: 2 * envelope } };
+      const base = nested({ ...larger, hit: { effectiveTolerance: envelope } });
+      const head = nested({ ...larger, hit: { effectiveTolerance: lastBits } });
+      expect({ ...digestAt(head, "rays"), hash: "" }).toEqual({ ...digestAt(base, "rays"), hash: "" });
+      expect(digestAt(head, "rays").hash).not.toBe(digestAt(base, "rays").hash);
       for (const changeClass of ["c1", "c2"] as const) {
-        expect(compare(changeClass, head, BASE)).toMatchObject({ passed: true, engine: { numbersDiffering: 0 } });
+        expect(compare(changeClass, head, base)).toMatchObject({ passed: true, engine: { numbersDiffering: 0 } });
       }
-      expect(kindsAt(compare("c0", head, BASE))).toEqual([[`${rayAt}.hash`, "digest"]]);
+      expect(kindsAt(compare("c0", head, base))).toEqual([[`${rayAt}.hash`, "digest"]]);
 
-      /* On the hit that does, the share moves in its last bits with it, inside its contract. */
-      const base = nested({ hit: { residual: 0.5e-12 } });
-      const worst = nested({ hit: { residual: 0.5e-12, effectiveTolerance: lastBits } });
-      expect(digestAt(worst, "rays").outcome).toBe(digestAt(base, "rays").outcome);
+      /* On the hit that carries the largest tolerance and the largest share, both move in their last bits with it,
+       * each inside what it is held to, and the outcome stands. */
+      const worstBase = nested({ hit: { residual: 0.5 * envelope, effectiveTolerance: envelope } });
+      const worst = nested({ hit: { residual: 0.5 * envelope, effectiveTolerance: lastBits } });
+      expect(digestAt(worstBase, "rays")).toMatchObject({ residualShare: 0.5, largestTolerance: envelope });
+      expect(digestAt(worst, "rays").outcome).toBe(digestAt(worstBase, "rays").outcome);
+      expect(digestAt(worst, "rays").largestTolerance).toBe(lastBits);
       expect(digestAt(worst, "rays").residualShare).not.toBe(0.5);
       expect(digestAt(worst, "rays").residualShare).toBeCloseTo(0.5, 12);
       for (const changeClass of ["c1", "c2"] as const) {
-        expect(compare(changeClass, worst, base)).toMatchObject({ passed: true, engine: { numbersDiffering: 1 } });
+        const summary = compare(changeClass, worst, worstBase);
+        expect(summary, changeClass).toMatchObject({ passed: true, engine: { numbersDiffering: 2, transitions: 0 } });
       }
     });
   });
@@ -1126,7 +1284,14 @@ describe("engineDiff drift detection", () => {
     ]);
 
     /* What a posed pair and a pupil bundle add around the traces they hold, as the engine's types name it. */
-    const inner = { status: "ok", hitCount: 11, hash: "a".repeat(64), outcome: "b".repeat(64), residualShare: 0.5 };
+    const inner = {
+      status: "ok",
+      hitCount: 11,
+      hash: "a".repeat(64),
+      outcome: "b".repeat(64),
+      residualShare: 0.5,
+      largestTolerance: 1e-12,
+    };
     const around = disagreements("analysis", ["jobs", "x", "value", "samples", "[]", "fieldSample"], {
       chiefTrace: {
         localTrace: inner,
@@ -1157,65 +1322,84 @@ describe("engineDiff drift detection", () => {
       hitCount: 11,
       outcome: inner.outcome,
       residualShare: "$number",
+      largestTolerance: "$number",
     });
   });
 
   it("fails a near-axis probe that stops returning, on either tracer", () => {
     /* The engine builds its pupil constants from two near-axis rays and takes another value, unflagged, when one
-     * fails. The `traces` record traces both again, so the switch is a status and not a number to budget. */
+     * fails. The `traces` record traces two such rays on each tracer, so a ray that stops returning is a status and
+     * not a number to budget. */
     const probes: Path = ["nearAxisProbes"];
     expect(at(SERENAR_RECORDS, "traces", probes)).toEqual({
       applicable: true,
       prepared: {
-        marginal: { status: "ok", failureReason: null, y: expect.any(Number) },
-        chief: { status: "ok", failureReason: null, y: expect.any(Number) },
+        ok: true,
+        value: {
+          marginal: { status: "ok", failureReason: null, y: expect.any(Number) },
+          chief: { status: "ok", failureReason: null, y: expect.any(Number) },
+        },
       },
       legacy: {
-        marginal: { clipped: false, failureReason: null, returned: true },
-        chief: { clipped: false, failureReason: null, returned: true },
+        ok: true,
+        value: {
+          marginal: { clipped: false, failureReason: null, returned: true },
+          chief: { clipped: false, failureReason: null, returned: true },
+        },
       },
     });
-    const prepared = withChange("traces", [...probes, "prepared", "chief"], () => ({
+    const prepared = withChange("traces", [...probes, "prepared", "value", "chief"], () => ({
       status: "failed",
       failureReason: "noConvergedIntersection",
       y: encodeValue(Number.NaN),
     }));
-    const legacy = withChange("traces", [...probes, "legacy", "marginal"], () => ({
+    const legacy = withChange("traces", [...probes, "legacy", "value", "marginal"], () => ({
       clipped: true,
       failureReason: "noConvergedIntersection",
       returned: false,
     }));
+    /* A launch that threw: the copy of the engine's launch met a prepared state it cannot read. */
+    const threw = withChange("traces", [...probes, "prepared"], () => ({
+      ok: false,
+      error: { name: "TypeError", message: "first.profile.sag is not a function" },
+    }));
+    const pathsAndKinds = (summary: RunSummary) => summary.engine.failures.map(({ path, kind }) => [path, kind]);
     for (const changeClass of ["c0", "c1", "c2"] as const) {
+      const at0 = "nearAxisProbes.prepared.value.chief";
       expect(failuresOf(compare(changeClass, prepared)), changeClass).toEqual([
-        { request: "traces", path: "nearAxisProbes.prepared.chief.failureReason", kind: "discrete", quantity: null },
-        { request: "traces", path: "nearAxisProbes.prepared.chief.status", kind: "discrete", quantity: null },
-        { request: "traces", path: "nearAxisProbes.prepared.chief.y", kind: "nonFinite", quantity: "clippedHit" },
+        { request: "traces", path: `${at0}.failureReason`, kind: "discrete", quantity: null },
+        { request: "traces", path: `${at0}.status`, kind: "discrete", quantity: null },
+        { request: "traces", path: `${at0}.y`, kind: "nonFinite", quantity: "clippedHit" },
       ]);
-      expect(
-        failuresOf(compare(changeClass, legacy)).map(({ path, kind }) => [path, kind]),
-        changeClass,
-      ).toEqual([
-        ["nearAxisProbes.legacy.marginal.clipped", "discrete"],
-        ["nearAxisProbes.legacy.marginal.failureReason", "discrete"],
-        ["nearAxisProbes.legacy.marginal.returned", "discrete"],
+      expect(pathsAndKinds(compare(changeClass, legacy)), changeClass).toEqual([
+        ["nearAxisProbes.legacy.value.marginal.clipped", "discrete"],
+        ["nearAxisProbes.legacy.value.marginal.failureReason", "discrete"],
+        ["nearAxisProbes.legacy.value.marginal.returned", "discrete"],
       ]);
       /* The status alone, with nothing else to show for it. */
       for (const [tracer, member, value] of [
         ["prepared", "status", "failed"],
         ["legacy", "returned", false],
       ] as const) {
-        const alone = withChange("traces", [...probes, tracer, "marginal", member], () => value);
-        expect(failuresOf(compare(changeClass, alone)), changeClass).toEqual([
-          { request: "traces", path: `nearAxisProbes.${tracer}.marginal.${member}`, kind: "discrete", quantity: null },
+        const alone = withChange("traces", [...probes, tracer, "value", "marginal", member], () => value);
+        expect(pathsAndKinds(compare(changeClass, alone)), changeClass).toEqual([
+          [`nearAxisProbes.${tracer}.value.marginal.${member}`, "discrete"],
         ]);
       }
+      /* A launch that threw on one engine fails as the outcome of that tracer's probes, and of nothing else: the
+       * other tracer's probes and every ray of the record are still compared. */
+      expect(pathsAndKinds(compare(changeClass, threw)), changeClass).toEqual([
+        ["nearAxisProbes.prepared.ok", "discrete"],
+        ["nearAxisProbes.prepared.value", "shape"],
+        ["nearAxisProbes.prepared.error", "shape"],
+      ]);
       /* A lens that gains or loses its probes, as one that turns folded would, changes the record's shape. */
       const none = withChange("traces", probes, () => ({ applicable: false }));
       expect(compare(changeClass, none).passed, changeClass).toBe(false);
     }
     expect(compare("c3", prepared)).toMatchObject({ passed: true, engine: { transitions: 2 } });
     /* A probe's height at the stop is a ray's height like any other, with that row's budget. */
-    const height: Path = [...probes, "prepared", "marginal", "y"];
+    const height: Path = [...probes, "prepared", "value", "marginal", "y"];
     const nudged = withChange("traces", height, (y) => Number(y) * (1 + Number.EPSILON));
     expect(compare("c0", nudged).passed).toBe(false);
     expect(compare("c1", nudged).engine.quantities.landing).toMatchObject({ differing: 1, beyondBudget: 0 });

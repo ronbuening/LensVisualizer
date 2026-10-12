@@ -347,48 +347,67 @@ function isPupilBundle(value: object, key: string | null): boolean {
   return key === "pupilBundle" && Array.isArray((value as { samples?: unknown }).samples);
 }
 
+/** What a digest keeps of the intersection contract of the hits behind it. */
+interface HitContract {
+  /** The largest |residual| / effectiveTolerance of any hit, each against its own tolerance. */
+  residualShare: number | null;
+  /** The largest effectiveTolerance of any hit: what the shares are shares of. */
+  largestTolerance: number | null;
+}
+
 /**
  * What stands in for a trace carrier: its status (null for a pupil bundle, which has none of its own), the hits in
- * the traces it holds, and three reductions of all of it.
+ * the traces it holds, and four reductions of all of it.
  *
  * - `hash` covers the whole normalized content, so it changes with one bit of one number.
  * - `outcome` covers the same content with every budgeted number masked (`maskBudgetedNumbers`), so it changes
  *   exactly when something discrete does. A comparison above C0 holds it equal.
- * - `residualShare` is the largest |residual| / effectiveTolerance of any hit inside, or null when no hit carries
- *   both. A comparison above C0 holds it to 1, as it holds the residual of a hit it can read.
+ * - `residualShare` is null when no hit inside carries both a residual and a tolerance. A comparison above C0 holds
+ *   the head's to 1 wherever the two sides differ. That is less than it asks of a hit it can read, whose residual
+ *   is held on both sides.
+ * - `largestTolerance` is null when no hit inside carries a tolerance. A share is of the tolerance its own hit
+ *   recorded, and the outcome masks that tolerance, so without this member a head could meet its contract by
+ *   relaxing it. A comparison holds it as it holds the tolerance of a hit it can read.
  *
- * What is left to `hash` alone is how far the budgeted numbers moved: coordinates, directions, tolerances.
+ * What is left to `hash` alone is how far the other budgeted numbers moved: coordinates, directions, and a tolerance
+ * below the largest of its carrier.
  */
-interface TraceCarrierDigest {
+interface TraceCarrierDigest extends HitContract {
   status: string | null;
   hitCount: number;
   hash: string;
   outcome: string;
-  residualShare: number | null;
+}
+
+function larger(a: number | null, b: number | null): number | null {
+  /* `Math.max` keeps a NaN, which is no bound and which no larger number may stand in for. */
+  return a === null ? b : b === null ? a : Math.max(a, b);
 }
 
 /**
- * The largest share of its own effective tolerance that any hit's residual takes.
+ * Reduce the hits of one engine trace to what a digest keeps of their contract.
  *
- * A hit is read as the comparison reads one in a full trace: a residual that is not finite, or that has no positive
- * tolerance to meet, has broken its contract and counts as infinite. A fallback point has neither member and is
- * passed over.
+ * A residual that is not finite, or whose tolerance is not a positive number, has broken its contract and counts as
+ * an infinite share, as the comparison reads such a hit in a full trace. A hit that lacks either member gives no
+ * share: a fallback point has neither, and a member that came or went changes the outcome.
  *
  * @param hits - the hit records of one engine trace
- * @returns the largest |residual| / effectiveTolerance, or null when no hit carries both
+ * @returns the largest share and the largest tolerance, each null when no hit has one to give
  */
-function largestResidualShare(hits: readonly object[]): number | null {
-  let largest: number | null = null;
+function contractOfHits(hits: readonly object[]): HitContract {
+  const contract: HitContract = { residualShare: null, largestTolerance: null };
   for (const hit of hits) {
     const { residual, effectiveTolerance } = hit as { residual?: unknown; effectiveTolerance?: unknown };
-    if (typeof residual !== "number" || typeof effectiveTolerance !== "number") continue;
+    if (typeof effectiveTolerance !== "number") continue;
+    contract.largestTolerance = larger(contract.largestTolerance, effectiveTolerance);
+    if (typeof residual !== "number") continue;
     const share =
       Number.isFinite(residual) && effectiveTolerance > 0
         ? Math.abs(residual) / effectiveTolerance
         : Number.POSITIVE_INFINITY;
-    if (largest === null || share > largest) largest = share;
+    contract.residualShare = larger(contract.residualShare, share);
   }
-  return largest;
+  return contract;
 }
 
 /* Members of a trace carrier whose numbers are exact by nature: hit and step counts, surface indices, and the
@@ -419,7 +438,8 @@ const MASKED_NUMBER_TAG = "$number";
  * Kept: which members are present and how long each array is; every string, boolean and null; the tags of NaN and
  * the infinities; and the numbers under `EXACT_NUMBER_KEYS`. Every other finite number becomes one marker, -0
  * included, which is a number however it is tagged. A carrier inside the content is there as its digest already,
- * and its `hash` is left out: it follows the numbers masked here, and its `outcome` beside it carries the rest.
+ * and its `hash` is left out: it follows the numbers masked here, and its `outcome` beside it carries the rest. Its
+ * largest share and largest tolerance are budgeted numbers and are masked; the carrier around it takes them up.
  *
  * @param content - the encoded content of a trace carrier
  * @returns the content with every budgeted number replaced by one marker
@@ -479,11 +499,12 @@ export function projectTrace(trace: object): Record<string, unknown> {
  * Build an encoder for engine results.
  *
  * On top of the lossless encoding it marks engine back-pointers as skipped, leaves out computed identity strings, and
- * replaces each nested trace carrier with `{ status, hitCount, hash, outcome, residualShare }`. A carrier is an
- * engine trace, a posed pair of them, or the pupil bundle of a perspective field sample. `hash` is the SHA-256 of the
- * carrier's normalized content, with the carriers inside it already digested; `outcome` is the SHA-256 of that
- * content with its budgeted numbers masked; `residualShare` is the largest residual inside as a share of its hit's
- * effective tolerance. Perspective results keep a complete trace per ray, 56 to 490 MB of text per lens state.
+ * replaces each nested trace carrier with `{ status, hitCount, hash, outcome, residualShare, largestTolerance }`. A
+ * carrier is an engine trace, a posed pair of them, or the pupil bundle of a perspective field sample. `hash` is the
+ * SHA-256 of the carrier's normalized content, with the carriers inside it already digested; `outcome` is the
+ * SHA-256 of that content with its budgeted numbers masked; `residualShare` is the largest residual inside as a
+ * share of its hit's effective tolerance, and `largestTolerance` the largest of those tolerances. Perspective results
+ * keep a complete trace per ray, 56 to 490 MB of text per lens state.
  * Digested, they stay comparable bit for bit at a few megabytes, and every number outside a trace or a pupil bundle
  * stays readable beside the digests: a job's statuses, sensor points and summary numbers, and a field sample's own
  * values with its chief-ray and sensor solves.
@@ -497,9 +518,9 @@ export function createResultEncoder(): (value: unknown) => EncodedValue {
   const digests = new WeakMap<object, TraceCarrierDigest>();
   /* Hits behind every digest handed out so far. What a carrier's content adds to it is that carrier's count. */
   let hitsWritten = 0;
-  /* The largest residual share behind the digests handed out inside the content being walked. */
-  let shareWithin: number | null = null;
-  const largerShare = (a: number | null, b: number | null) => (a === null || (b !== null && b > a) ? b : a);
+  /* The largest residual share and the largest tolerance behind the digests handed out inside the content being
+   * walked. */
+  let within: HitContract = { residualShare: null, largestTolerance: null };
   const digestOf = (
     carrier: object,
     status: unknown,
@@ -509,22 +530,25 @@ export function createResultEncoder(): (value: unknown) => EncodedValue {
     let digest = digests.get(carrier);
     if (!digest) {
       const hitsBefore = hitsWritten;
-      const shareAround = shareWithin;
-      shareWithin = largestResidualShare(ownHits);
+      const around = within;
+      within = contractOfHits(ownHits);
       const encoded = content();
       digest = {
         status: typeof status === "string" ? status : null,
         hitCount: ownHits.length + hitsWritten - hitsBefore,
         hash: sha256Hex(JSON.stringify(encoded)),
         outcome: sha256Hex(JSON.stringify(maskBudgetedNumbers(encoded))),
-        residualShare: shareWithin,
+        ...within,
       };
       digests.set(carrier, digest);
       hitsWritten = hitsBefore;
-      shareWithin = shareAround;
+      within = around;
     }
     hitsWritten += digest.hitCount;
-    shareWithin = largerShare(shareWithin, digest.residualShare);
+    within = {
+      residualShare: larger(within.residualShare, digest.residualShare),
+      largestTolerance: larger(within.largestTolerance, digest.largestTolerance),
+    };
     return digest;
   };
   const policy: WalkPolicy = {

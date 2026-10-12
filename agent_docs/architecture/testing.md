@@ -222,7 +222,8 @@ and bundled there.
   shards. The three tiers are described under "Tiers" below.
 - `payload.ts` holds the encoding (JSON that round-trips under `Object.is`, with tags for -0, NaN, and the
   infinities), the digests that stand in for the per-ray traces and pupil bundles nested in perspective results
-  (two hashes and the largest residual share, described under "Change Classes and Budgets"), and
+  (two hashes, the largest residual share and the largest effective tolerance, described under "Change Classes and
+  Budgets"), and
   the semantic fingerprint: a hash of a prescription after lens defaults and the engine's authority rules (a flat
   radius at any magnitude, a zero asphere term, a derived stop radius, the sign of zero). A payload that hands
   authored data back, such as the composed prescription of a pair or the `data` of a built lens, is written through
@@ -243,28 +244,41 @@ fingerprint's marker. The analysis record holds every job of the analysis contex
 viewer computes outside it, each asked as its component asks: the working f-number, the chromatic tab's field-focus
 summary, the diagram's LoCA readout with the bars of its inset, and the aspheric overlay's departure at a click.
 
-The traces record holds, beside its fans, two probe rays on each tracer: the near-axis rays the engine builds its
-pupil constants from, a marginal ray 1e-4 mm off the axis and a chief ray through the first vertex at a slope of 1e-4.
-When one of them fails, the engine takes another value and no payload says so: the paraxial ratio, the other
-tracer's quotient or the constant of the infinity-focus build, and some of those are within rounding of the real
-one, where no budget shows the switch. A probe that stops returning is a status instead.
+The traces record holds, beside its fans, two near-axis probe rays on each tracer: a marginal ray 1e-4 mm off the
+axis and a chief ray through the first vertex at a slope of 1e-4. The engine builds its pupil constants from two such
+rays. When one of them fails, it takes another value and no payload says so: the paraxial ratio, the other tracer's
+quotient or the constant of the infinity-focus build, and some of those are within rounding of the real one, where no
+budget shows the switch. A probe that stops returning is a status instead.
 
-- On the prepared tracer the launch is copied from `computeFieldGeometryAtState2` (`src/optics/field/chiefRay.ts`):
-  the same origin, direction and `stopAt`. Each probe records its status, its failure reason and its height at the
-  stop as the engine reads it, which is not a number once the trace has failed. That height over 1e-4 is the state
-  geometry's `yRatio` or `b` bit for bit.
-- On the RuntimeLens stack tracer the engine's own launches are internal (`traceExactSurfaceStack` with `stopAt` or
-  `skipLastTransfer`, in `src/optics/runtimeLens.ts` and `src/optics/pupilAberration.ts`), and the seam reaches that
-  tracer through `rayTrace.traceRay` alone. The probes there are the same two lines, started one ray lead ahead of
-  the first vertex and run through every surface with the rim checks on, so one trace covers the surfaces the
-  entrance-pupil rays cross and those the exit-pupil rays add. Each records its clip flag, its failure reason and
-  whether it returned by the engine's own test: no failure and a finite height.
+- On the prepared tracer the probes are the engine's own rays. The launch is copied from
+  `computeFieldGeometryAtState2` (`src/optics/field/chiefRay.ts`): the same origin, direction and `stopAt`. Each
+  probe records its status, its failure reason and its height at the stop as the engine reads it, which is not a
+  number once the trace has failed. That height over 1e-4 is the state geometry's `yRatio` or `b` bit for bit.
+- On the RuntimeLens stack tracer the probes are not the engine's launches. Those are internal:
+  `traceExactSurfaceStack` with `stopAt` or `skipLastTransfer`, in `src/optics/runtimeLens.ts` and
+  `src/optics/pupilAberration.ts`, started at that tracer's inferred lead with the rim checks off. The seam reaches
+  that tracer through `rayTrace.traceRay` alone, which fixes where a ray starts and which options it takes, and the
+  architecture guard's seam lists take no new implementation module of the engine (`opticsArchitecture.test.ts`).
+  - The probes there are the same two lines, started one ray lead ahead of the first vertex and run through every
+    surface with the rim checks on. One trace crosses the surfaces the entrance-pupil rays cross and those the
+    exit-pupil rays add.
+  - Each records its clip flag, its failure reason and whether it returned: no failure, and a finite height and
+    slope.
+  - They show the stack tracer failing a near-axis ray. They do not show a basis ray that fails only from the
+    engine's own start point, or only with the rim checks off. Off infinity focus the engine then takes the prepared
+    tracer's quotients, which are within rounding of its own, and a run does not see the switch.
+- Each tracer's two probes are an outcome of their own, `{ ok, value }` or `{ ok, error }`. The prepared launch reads
+  a prepared state's members directly, so an engine change can make it throw on one engine. That fails as the
+  outcome of those probes, and the record's rays and the other tracer's probes are still compared. A launch that
+  throws alike on both engines compares equal, as a job that throws on both does: the tests hold the fixture lenses'
+  probes to `ok`.
 - A folded lens has no probe, and its record says `applicable: false`. The engine finds a folded lens's stop by
-  scanning a generalized trace for a hit on it, with the rim checks off, and the seam has that search on neither
+  scanning a generalized trace for a hit on it, with the rim checks off, and the seam lists that search for neither
   tracer.
 - The probes are traced at the record's state. The build traces its own basis rays at the authored spacings and, for
   a zoom, at each station focused at infinity. Those stations are states of the first row of every tier: the first
-  and last in Tier P, every one in Tiers S and F.
+  and last in Tier P, every one in Tiers S and F. A basis ray that fails at a middle station alone therefore first
+  shows at a stage gate.
 
 Three parts of `src/optics/` are outside the harness, and their unit suites cover them: diagram geometry in
 `src/optics/diagram/` (`diagramGeometry.test.ts`, `elementRenderDiagnostics.test.ts`), the lens-movement transform
@@ -315,7 +329,9 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
 1. **Engine drift.** Every head prescription is evaluated on the base engine and on the head engine, and the two
    sets of records are compared under the change class. Two outcomes that no number of a record would show are in
    it as discrete fields: what happened inside each trace nested in an analysis result, as the outcome hash of its
-   digest, and whether the engine's two near-axis basis rays returned, as the probes of the traces record.
+   digest, and whether two near-axis rays returned on each tracer, as the probes of the traces record. On the
+   prepared tracer those are the engine's own basis rays; on the stack tracer they are the same two lines launched
+   as that tracer's public entry launches a ray.
 2. **Format-only data change.** A lens whose serialized prescription differs from the base's while its semantic
    fingerprint does not: the base and head prescriptions are evaluated on the head engine and must be bit-identical
    in every class. Prescriptions are compared as evaluated data, so an edit to comments or layout is no change.
@@ -396,6 +412,11 @@ The classes in `budgets.ts`:
   except at a stalled root, where it is a computed float: the larger of that target and a roundoff envelope over
   the ray's operands, whose last bits move when arithmetic is reordered. Under C0 it is bit-exact, as every number
   is. A relaxed tolerance, twice the target or more, is far outside the budget and fails.
+  - Which of the two a hit was accepted under is a branch of the root finder. A tolerance that is the raw target on
+    one side and anything else on the other is therefore a discrete transition and not a number beyond budget: the
+    hit stalled on one engine and converged on the other, each residual still held to its own tolerance, or the
+    tolerance was relaxed from the target. `budgets.ts` keeps a copy of the engine's `INTERSECTION_TOLERANCE` for
+    this, and the tests hold the copy to the constant.
 - What a solve reports of its own convergence is the same kind of contract check: each side must lie within the
   tolerance the solve accepts a residual under, and the two sides are not differenced.
   - The posed chief-ray solve's residual is held to 1e-7 mm: `DEFAULT_RESIDUAL_TOLERANCE_MM` in
@@ -423,10 +444,10 @@ The classes in `budgets.ts`:
   report alone: when such a field fails, `summary.md` names the solver and its quantum and gives the difference in
   quanta, so a boundary transition (about a whole quantum) can be told from drift (a small part of one).
 - Solver iteration and evaluation counts are exact under C0. Above it a change is reported as a histogram.
-- A trace nested in an analysis result is in the record as a digest of five members: its status, its hit count, a
-  hash, an outcome hash and its largest residual share. So are a posed pair of traces and a pupil bundle, which has
-  no status of its own. Under C0 each member is compared like any field, so a changed hash fails. Above C0 the rule
-  is "contract and flags only":
+- A trace nested in an analysis result is in the record as a digest of six members: its status, its hit count, a
+  hash, an outcome hash, its largest residual share and its largest effective tolerance. So are a posed pair of
+  traces and a pupil bundle, which has no status of its own. Under C0 each member is compared like any field, so a
+  changed hash fails. Above C0 the rule is "contract and flags only":
   - The status and the hit count are exact.
   - The outcome hash is exact, below C3. It is a hash of the same content with every budgeted number masked, so it
     changes exactly when something discrete does: a flag, a status, a reason or a label; a count, a surface index or
@@ -436,12 +457,23 @@ The classes in `budgets.ts`:
     content.
   - The largest residual share is a contract check: the largest |residual| / effective tolerance of any hit inside,
     each hit against its own tolerance, and null when no hit carries both. Where the two sides differ, the head's
-    value must be at most 1. A breach the base alone carries is not one the change made, and does not fail.
-  - A hash that changed while those hold is counted and does not fail. How far the coordinates, directions,
-    effective tolerances and other numbers inside the trace moved is held to no budget: that is the accepted limit
-    of the rule. A C1 or C2 run in which a digest changed says so where it cannot be missed. `summary.md` opens
-    with a "Not budgeted" section that says what was judged and what was not, counts the changed digests per record
-    family and names the lenses, and the driver prints a warning to stderr.
+    value must be at most 1.
+    - A finite breach the base alone carries is not one the change made, and does not fail. That is less than is
+      asked of a hit the comparison can read, whose residual is held on both sides.
+    - An infinite share, from a residual that is not finite or has no positive tolerance to meet, is compared
+      exactly on either side, as every non-finite value is. A share on one side against none on the other is a
+      discrete difference. Each of those changes the outcome as well.
+  - The largest effective tolerance of any hit inside is held as the tolerance of a hit in a full trace is: 1e-12
+    relative, and a discrete transition where one side is the raw target and the other is not. It is null when no
+    hit carries a tolerance. A share is of the tolerance its own hit recorded, and the outcome masks that tolerance
+    as a budgeted number, so without this member a head could meet its contract by relaxing it.
+  - A hash that changed while those hold is counted and does not fail. How far the coordinates, directions and
+    other numbers inside the trace moved is held to no budget: that is the accepted limit of the rule. One number
+    stands for every hit of a carrier, so the limit takes in an effective tolerance that moved, or was relaxed,
+    below the largest in its trace or bundle; the base has to hold a stalled hit there already. A C1 or C2 run in
+    which a digest changed says so where it cannot be missed. `summary.md` opens with a "Not budgeted" section that
+    says what was judged and what was not, counts the changed digests per record family and names the lenses, and
+    the driver prints a warning to stderr.
   - The numbers the outcome keeps are listed in `payload.ts` by member name, because the budget table is keyed by a
     record's path and a digest's content has none. The tests hold that list to the table's exact rows in both
     directions.
@@ -534,9 +566,11 @@ exception was met by some shard.
 Three files in the tooling suite hold the harness to its contract.
 
 - `__tests__/src/benchmarks/engineDiff.test.ts`: a capture repeats byte for byte, the encoding loses nothing, a
-  digest's outcome follows the discrete members of a trace alone and its residual share is the largest inside it,
-  every digest of a captured record carries both, every near-axis probe of the fixture lenses returns and the
-  prepared ones give the state geometry's ratios bit for bit, the fingerprint's restated stop-radius rule agrees with
+  digest's outcome follows the discrete members of a trace alone and its residual share and its tolerance are the
+  largest inside it, every digest of a captured record carries all three, every near-axis probe of the fixture
+  lenses returns and the prepared ones give the state geometry's ratios bit for bit, a probe launch that throws is
+  recorded as the outcome of that tracer's probes and leaves the record's rays, a stack-tracer probe with no finite
+  slope has not returned, the fingerprint's restated stop-radius rule agrees with
   `buildLens` on every catalog lens, a fingerprint-equal respelling leaves every Tier P record of a lens unchanged, a
   member of a built surface that the engine alone changed gives another build record, and no analysis or MTF record
   carries a skip marker. Asking an engine which pairs it permits does not throw on a prescription it cannot read, and
@@ -553,12 +587,15 @@ Three files in the tooling suite hold the harness to its contract.
   relative, a solve's residual is held to its solve's tolerance and not differenced, a stop residual 1000 times larger
   on one side of a converged solve fails, a record that throws alike on both engines fails in every class, and a failing
   solver output is reported in quanta. An effective tolerance passes a last-bits change above C0 and fails at 1e-10
-  relative and when doubled. Inside a nested trace whose status and hit count stand, a flipped flag, a NaN, a changed
-  surface index and the changed status of one ray of a pupil bundle each fail under C1 and C2, a residual at twice its
-  effective tolerance fails as a contract breach on the head, and a coordinate that moved by any distance is reported
-  and passes, which is the accepted limit of the rule. The outcome masks exactly the numbers the table budgets, on
-  captured traces, and a near-axis probe that stops returning fails on either tracer. It also covers
-  cross-evaluation: a data-only change shows no engine difference
+  relative and when doubled, and a hit that left the raw target for a stall envelope, or came back, is a discrete
+  transition with both residuals in contract. Inside a nested trace whose status and hit count stand, a flipped flag,
+  a NaN, a changed surface index and the changed status of one ray of a pupil bundle each fail under C1 and C2, a
+  residual at twice its effective tolerance fails as a contract breach on the head, an infinite or absent share fails
+  from either side, a tolerance relaxed to four times the target fails with the residual inside it, and a coordinate
+  that moved by any distance is reported and passes, as does a tolerance relaxed under a larger one in the same trace:
+  the accepted limit of the rule. The outcome masks exactly the numbers the table budgets, on captured traces, a
+  near-axis probe that stops returning fails on either tracer, and a probe launch that threw on one engine fails as
+  that outcome alone. It also covers cross-evaluation: a data-only change shows no engine difference
   and an impact report, a format-only change that alters a value fails, a failed status or a non-finite number behind a
   change of shape blocks, a changed converter is compared through its pairs, and a pair the engines disagree about fails
   while one the data lost is listed. A pair the data gained passes with failed rays in its records and fails when it
