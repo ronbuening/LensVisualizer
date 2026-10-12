@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import * as geometryBarrel from "../../../../src/optics/geometry.js";
+import * as opticsBarrel from "../../../../src/optics/optics.js";
 import {
   DEFAULT_MAX_RIM_ANGLE_DEG,
   FLAT_R_THRESHOLD,
@@ -22,6 +23,7 @@ import type { AsphericCoefficients } from "../../../../src/types/optics.js";
 /**
  * Surface geometry module: sag, slope, normals and profiles of every kind.
  *
+ * - Schema: the coefficient list the term slots are derived from.
  * - Analytic: each profile kind, and each schema term alone, against its closed form.
  * - Arithmetic: `evaluate`, `sag`/`slope` and the positional functions agree bit for bit; the association the module
  *   header documents is the one evaluated; spheres, planes, normals, the slope bound and the domain radius keep the
@@ -72,6 +74,46 @@ const PATENT_ASPHERE: AsphericCoefficients = {
   A15: -3.1574129484e-14,
   A17: 1.0713713899e-16,
   A19: -1.4581851029e-19,
+};
+
+/** Every order A3–A20 with alternating signs, in an object that carries no zero. */
+const MIXED_ORDERS: AsphericCoefficients = {
+  K: -0.5,
+  A4: 1e-5,
+  A6: -2e-7,
+  A8: 3e-9,
+  A10: -4e-11,
+  A12: 5e-13,
+  A14: -6e-15,
+  A16: 7e-17,
+  A18: -8e-19,
+  A20: 9e-21,
+  A3: 2e-4,
+  A5: -3e-6,
+  A7: 4e-8,
+  A9: -5e-10,
+  A11: 6e-12,
+  A13: -7e-14,
+  A15: 8e-16,
+  A17: -9e-18,
+  A19: 1e-19,
+};
+
+/** Only the keys the schema requires: every optional one is absent, not zero. */
+const REQUIRED_KEYS_ASPHERE: AsphericCoefficients = { K: -0.7, A4: 1e-6, A6: -2e-9, A8: 3e-12, A10: 0, A12: 0, A14: 0 };
+
+/** The required keys plus three of the optional odd ones. */
+const ODD_BEARING_ASPHERE: AsphericCoefficients = {
+  K: 0.4,
+  A4: -2e-5,
+  A6: 3e-8,
+  A8: 0,
+  A10: 0,
+  A12: 0,
+  A14: 0,
+  A3: -4e-5,
+  A5: 6e-7,
+  A9: -2e-11,
 };
 
 function coefficient(asph: AsphericCoefficients, key: string): number {
@@ -256,6 +298,24 @@ function radiiAround(scale: number): number[] {
   ];
 }
 
+describe("aspheric schema shape", () => {
+  it("covers K and the full A3–A20 range exactly once each", () => {
+    const keys = ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key);
+    expect(new Set(keys).size).toBe(keys.length);
+    expect(keys).toContain("K");
+    for (let power = 3; power <= 20; power++) {
+      expect(keys).toContain(`A${power}`);
+    }
+    expect(keys.length).toBe(1 + 18);
+  });
+
+  it("marks parity consistently with each term's power", () => {
+    for (const term of ASPHERIC_POLYNOMIAL_TERMS) {
+      expect(term.parity, term.key).toBe(term.power % 2 === 0 ? "even" : "odd");
+    }
+  });
+});
+
 describe("surface geometry constants", () => {
   it("keeps the flat threshold and the rim-slope defaults", () => {
     expect(FLAT_R_THRESHOLD).toBe(1e10);
@@ -279,6 +339,13 @@ describe("surface geometry constants", () => {
       sag,
       sagSlopeRaw,
     });
+  });
+
+  it("re-exports the positional functions and the threshold from the optics barrel", () => {
+    expect(opticsBarrel.FLAT_R_THRESHOLD).toBe(FLAT_R_THRESHOLD);
+    expect(opticsBarrel.sag).toBe(sag);
+    expect(opticsBarrel.conicPolySag).toBe(conicPolySag);
+    expect(opticsBarrel.sagSlopeRaw).toBe(sagSlopeRaw);
   });
 });
 
@@ -312,6 +379,9 @@ describe("profile kinds against closed forms", () => {
       const sphere = createSphericalProfile(R);
       expectWithin(sphere.sag(30), Math.sign(R) * 10, 8 * EPS * 10, `R=${R} sag`);
       expectWithin(sphere.slope(30), Math.sign(R) * 0.75, 8 * EPS, `R=${R} slope`);
+      // The positional functions are the same sphere.
+      expect(sag(30, R)).toBe(sphere.sag(30));
+      expect(sagSlopeRaw(30, R, undefined)).toBe(sphere.slope(30));
       const point = sphere.pointAt(100, 18, 24);
       expect(point[0]).toBe(18);
       expect(point[1]).toBe(24);
@@ -322,7 +392,16 @@ describe("profile kinds against closed forms", () => {
       toCenter.forEach((component, axis) => expectWithin(normal[axis], component, 8 * EPS, `R=${R} normal ${axis}`));
       expect(sphere.finiteRadiusLimit()).toBe(50);
       expect(sphere.maxAbsSlope).toBeUndefined();
+
+      // Away from the triangle: r = 10, and r at 45° of the sphere, where the sag is |R|·(1 - cos 45°).
+      expectWithin(sag(10, R), Math.sign(R) * (50 - Math.sqrt(2400)), 8 * EPS * 50, `R=${R} sag(10)`);
+      const atHalfRightAngle = 50 * Math.sin(Math.PI / 4);
+      const sagAtHalfRightAngle = Math.sign(R) * (50 - 50 * Math.cos(Math.PI / 4));
+      expectWithin(sag(atHalfRightAngle, R), sagAtHalfRightAngle, 8 * EPS * 50, `R=${R} sag at 45°`);
     }
+    // On the axis the sag is a zero that carries the sign of R.
+    expect(sag(0, 50)).toBe(0);
+    expect(sag(0, -100)).toBe(-0);
   });
 
   it("evaluates a conic against its closed form inside the domain", () => {
@@ -334,11 +413,14 @@ describe("profile kinds against closed forms", () => {
     expectWithin(parabola.slope(h), h / R, 4 * EPS, "parabola slope");
     // Any other K: z = (R / (1 + K))·(1 - sqrt(1 - (1 + K)·r²/R²)), dz/dr = (r/R) / sqrt(1 - (1 + K)·r²/R²).
     for (const K of [-2.5, -0.85, 0, 0.5]) {
-      const conic = createAsphericProfile(R, { ...zeroCoefficients(), K });
+      const coefficients = { ...zeroCoefficients(), K };
+      const conic = createAsphericProfile(R, coefficients);
       const root = Math.sqrt(1 - ((1 + K) * h * h) / (R * R));
       // The closed form subtracts two nearly equal numbers, so it carries the looser bound of the two.
       expectWithin(conic.sag(h), (R / (1 + K)) * (1 - root), 64 * EPS, `K=${K} sag`);
       expectWithin(conic.slope(h), h / R / root, 8 * EPS, `K=${K} slope`);
+      expect(conicPolySag(h, R, coefficients)).toBe(conic.sag(h));
+      expect(sagSlopeRaw(h, R, coefficients)).toBe(conic.slope(h));
     }
   });
 
@@ -358,6 +440,18 @@ describe("profile kinds against closed forms", () => {
       const point = plane.pointAt(5, 3, y);
       expectWithin(point[2], 5 - y, 4 * EPS * (5 + Math.abs(y)), `point(${y})`);
     }
+    // Every point of the profile satisfies n·(p - vertex) = 0, with a unit normal.
+    for (const [vertexZ, x, y] of [
+      [7, 0, 3],
+      [5, 3, -7.5],
+      [5, 3, 11],
+    ]) {
+      const point = plane.pointAt(vertexZ, x, y);
+      const normal = plane.normalAt(point, vertexZ);
+      const residual = normal[0] * point[0] + normal[1] * point[1] + normal[2] * (point[2] - vertexZ);
+      expectWithin(residual, 0, 1e-12, `plane equation at y=${y}`);
+      expectWithin(Math.hypot(normal[0], normal[1], normal[2]), 1, 1e-12, "unit normal");
+    }
     expect(plane.finiteRadiusLimit()).toBeNull();
     expect(plane.maxAbsSlope).toBeUndefined();
   });
@@ -367,31 +461,70 @@ describe("each schema term in isolation", () => {
   /* A term's Horner chain is the coefficient times h² up to ten times, each product rounded once, on an h² that is
    * itself rounded: at most 10 EPS relative. The closed form's `**` and one product add about 2 EPS. */
   const TERM_BOUND = 32 * EPS;
-  const h = 1.7;
-  const value = 1.25e-4;
 
   for (const term of ASPHERIC_POLYNOMIAL_TERMS) {
     it(`evaluates ${term.key} as ${term.key}·h^${term.power} with slope ${term.power}·${term.key}·h^${term.power - 1}`, () => {
-      const asph = { ...zeroCoefficients(), [term.key]: value } as AsphericCoefficients;
-      const expectedSag = value * h ** term.power;
-      const expectedSlope = term.power * value * h ** (term.power - 1);
-      expect(expectedSag).not.toBe(0);
+      for (const value of [1.25e-4, 2e-3]) {
+        const asph = { ...zeroCoefficients(), [term.key]: value } as AsphericCoefficients;
+        // A flat base has no conic term, which leaves the monomial alone.
+        const profile = createAsphericProfile(FLAT_R, asph);
+        expect(profile.hasPolynomial).toBe(true);
 
-      // A flat base has no conic term, which leaves the monomial alone.
-      const profile = createAsphericProfile(FLAT_R, asph);
-      expectWithin(profile.sag(h), expectedSag, TERM_BOUND * expectedSag, "sag");
-      expectWithin(profile.slope(h), expectedSlope, TERM_BOUND * expectedSlope, "slope");
-      expect(profile.hasPolynomial).toBe(true);
+        for (const h of [1.5, 1.7, 10]) {
+          const expectedSag = value * h ** term.power;
+          const expectedSlope = term.power * value * h ** (term.power - 1);
+          expect(expectedSag).not.toBe(0);
+          expectWithin(profile.sag(h), expectedSag, TERM_BOUND * expectedSag, `sag h=${h}`);
+          expectWithin(profile.slope(h), expectedSlope, TERM_BOUND * expectedSlope, `slope h=${h}`);
 
-      // An odd term is odd in h and an even term is even: the caller passes a radius, never a signed height.
-      const mirror = term.parity === "even" ? 1 : -1;
-      expect(conicPolySag(-h, FLAT_R, asph)).toBe(mirror * conicPolySag(h, FLAT_R, asph));
+          // The positional functions read the same term, so a coefficient dropped from either path fails its own case.
+          expect(conicPolySag(h, FLAT_R, asph)).toBe(profile.sag(h));
+          expect(sagSlopeRaw(h, FLAT_R, asph)).toBe(profile.slope(h));
+
+          // An odd term is odd in h and an even term is even: the caller passes a radius, never a signed height.
+          const mirror = term.parity === "even" ? 1 : -1;
+          expect(conicPolySag(-h, FLAT_R, asph)).toBe(mirror * conicPolySag(h, FLAT_R, asph));
+        }
+
+        // On the axis the term and its slope vanish exactly.
+        expectSameBits(profile.evaluate(0), { sag: 0, slope: 0 }, "axis");
+        const positional = { sag: conicPolySag(0, FLAT_R, asph), slope: sagSlopeRaw(0, FLAT_R, asph) };
+        expectSameBits(positional, { sag: 0, slope: 0 }, "axis, positional");
+      }
     });
   }
+
+  it("includes optional higher-order asphere terms in sag and slope calculations", () => {
+    const asphere: AsphericCoefficients = {
+      K: -0.5,
+      A4: 1e-5,
+      A6: -2e-7,
+      A8: 3e-9,
+      A10: -4e-11,
+      A12: 5e-13,
+      A14: -6e-15,
+      A16: 7e-17,
+      A18: -8e-19,
+      A20: 9e-21,
+    };
+
+    const withoutHighOrder: AsphericCoefficients = {
+      ...asphere,
+      A16: 0,
+      A18: 0,
+      A20: 0,
+    };
+
+    const h = 4;
+    const R = 32;
+
+    expect(conicPolySag(h, R, asphere)).not.toBeCloseTo(conicPolySag(h, R, withoutHighOrder), 12);
+    expect(sagSlopeRaw(h, R, asphere)).not.toBeCloseTo(sagSlopeRaw(h, R, withoutHighOrder), 12);
+  });
 });
 
 describe("one arithmetic", () => {
-  const ASPHERES: readonly { name: string; R: number; asphere: AsphericCoefficients }[] = [
+  const ASPHERES: readonly { name: string; R: number; asphere: AsphericCoefficients; heights?: readonly number[] }[] = [
     { name: "combined, convex", R: 30, asphere: combinedCoefficients(-0.6) },
     { name: "combined, concave, K > 0", R: -30, asphere: combinedCoefficients(0.5) },
     { name: "patent coefficients", R: PATENT_R, asphere: PATENT_ASPHERE },
@@ -399,14 +532,23 @@ describe("one arithmetic", () => {
     { name: "conic only", R: 25, asphere: { ...zeroCoefficients(), K: 0.3 } },
     { name: "all zero", R: -25, asphere: zeroCoefficients() },
     { name: "gap between terms", R: 60, asphere: { ...zeroCoefficients(), K: -1, A4: 2e-5, A10: -3e-13, A7: 4e-9 } },
+    // Objects that leave optional keys out, each with a mid-aperture height of its own.
+    { name: "required keys only", R: 42.5, asphere: REQUIRED_KEYS_ASPHERE, heights: [12.3] },
+    { name: "some odd keys", R: -60, asphere: ODD_BEARING_ASPHERE, heights: [9.25] },
   ];
 
   /** The radius the conic term stops being real at, or a rim-sized scale where it never does. */
   const scaleOf = (R: number, K: number): number => conicFiniteRadiusLimit(R, K) ?? 12;
+  /** Inside the domain, at its edge and beyond it, plus the entry's own heights. */
+  const heightsOf = (entry: (typeof ASPHERES)[number]): number[] => [
+    ...radiiAround(scaleOf(entry.R, entry.asphere.K)),
+    ...(entry.heights ?? []),
+  ];
 
-  it.each(ASPHERES)("evaluates the documented association: $name", ({ R, asphere }) => {
-    // Inside the domain, at its edge and beyond it, where only the conic root argument is clamped.
-    for (const h of radiiAround(scaleOf(R, asphere.K))) {
+  it.each(ASPHERES)("evaluates the documented association: $name", (entry) => {
+    const { R, asphere } = entry;
+    // Beyond the domain only the conic root argument is clamped.
+    for (const h of heightsOf(entry)) {
       const expected = documentedSagSlope(h, R, asphere);
       expectSameBits({ sag: conicPolySag(h, R, asphere), slope: sagSlopeRaw(h, R, asphere) }, expected, `h=${h}`);
     }
@@ -415,7 +557,7 @@ describe("one arithmetic", () => {
   it.each(ASPHERES)("agrees bit for bit across evaluate, sag/slope and the positional functions: $name", (entry) => {
     for (const asphere of [entry.asphere, Object.freeze({ ...entry.asphere })]) {
       const profile = createAsphericProfile(entry.R, asphere);
-      for (const h of radiiAround(scaleOf(entry.R, asphere.K))) {
+      for (const h of heightsOf(entry)) {
         const separate = { sag: profile.sag(h), slope: profile.slope(h) };
         expectSameBits(profile.evaluate(h), separate, `evaluate h=${h}`);
         const positional = { sag: conicPolySag(h, entry.R, asphere), slope: sagSlopeRaw(h, entry.R, asphere) };
@@ -425,9 +567,9 @@ describe("one arithmetic", () => {
   });
 
   it("agrees bit for bit on spheres, flats and tilted planes, with the signed zero at a concave vertex", () => {
-    for (const R of [50, -50, -17.388, 0.5, FLAT_R_THRESHOLD, FLAT_R]) {
+    for (const R of [50, -50, 42.5, -17.388, 0.5, FLAT_R_THRESHOLD, FLAT_R]) {
       const profile = createSphericalProfile(R);
-      for (const h of radiiAround(Math.min(Math.abs(R), 1e6))) {
+      for (const h of [...radiiAround(Math.min(Math.abs(R), 1e6)), 12.3]) {
         const separate = { sag: profile.sag(h), slope: profile.slope(h) };
         expectSameBits(profile.evaluate(h), separate, `sphere R=${R} h=${h}`);
         expectSameBits({ sag: sag(h, R), slope: sagSlopeRaw(h, R, undefined) }, separate, `positional R=${R} h=${h}`);
@@ -474,6 +616,8 @@ describe("one arithmetic", () => {
       createSphericalProfile(-42.5),
       createAsphericProfile(PATENT_R, PATENT_ASPHERE),
       createAsphericProfile(30, Object.freeze(combinedCoefficients(-0.6))),
+      createSurfaceProfile({ R: 42.5 }, REQUIRED_KEYS_ASPHERE),
+      createSurfaceProfile({ R: -60 }, ODD_BEARING_ASPHERE),
     ];
     for (const profile of profiles) {
       for (const [x, y] of [
@@ -485,7 +629,9 @@ describe("one arithmetic", () => {
         const radius = Math.hypot(x, y);
         const point = profile.pointAt(12.5, x, y);
         expect(point).toEqual([x, y, 12.5 + profile.sag(radius)]);
-        expect(profile.normalAt(point, 12.5)).toEqual(normalFromSlope(x, y, radius, profile.slope(radius)));
+        const normal = profile.normalAt(point, 12.5);
+        expect(normal).toEqual(normalFromSlope(x, y, radius, profile.slope(radius)));
+        expectWithin(Math.hypot(normal[0], normal[1], normal[2]), 1, 8 * EPS, "unit normal");
       }
     }
   });
@@ -502,6 +648,8 @@ describe("one arithmetic", () => {
       expect(Number.isFinite(full.slope)).toBe(true);
       // The clamped conic term is the whole difference between the surface and its polynomial alone.
       const clamped = createAsphericProfile(R, conicOnly).evaluate(h);
+      expect(conicPolySag(h, R, conicOnly)).toBe(clamped.sag);
+      expect(sagSlopeRaw(h, R, conicOnly)).toBe(clamped.slope);
       const polynomial = createAsphericProfile(FLAT_R, asphere).evaluate(h);
       expectWithin(full.sag, clamped.sag + polynomial.sag, 4 * EPS * Math.abs(full.sag), `sag h=${h}`);
       expectWithin(full.slope, clamped.slope + polynomial.slope, 4 * EPS * Math.abs(full.slope), `slope h=${h}`);
@@ -509,6 +657,14 @@ describe("one arithmetic", () => {
       expectWithin(clamped.sag, (h * h) / R / (1 + 1e-6), 4 * EPS * clamped.sag, `clamped sag h=${h}`);
       expectWithin(clamped.slope, (h / R) * 1e6, 4 * EPS * clamped.slope, `clamped slope h=${h}`);
     }
+
+    // A sphere written as an all-zero asphere takes the conic path: beyond |R| it keeps the 1e-12 clamp.
+    const sphereCoefficients = { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+    const sphereAsAsphere = createSurfaceProfile({ R: 10 }, sphereCoefficients);
+    expect(sphereAsAsphere.sag(12)).toBe(conicPolySag(12, 10, sphereCoefficients));
+    expect(sphereAsAsphere.sag(12)).toBe(conicSagBefore(12, 10));
+    expect(sphereAsAsphere.slope(12)).toBe(sphereSlopeBefore(12, 10));
+    expect(Number.isFinite(sphereAsAsphere.slope(12))).toBe(true);
   });
 
   it("starts each chain at the highest nonzero term, so a zero coefficient never meets an overflowed power", () => {
@@ -554,15 +710,25 @@ describe("Horner form against an independent power sum", () => {
   const RELATIVE_BOUND = 64 * EPS;
 
   it.each([
-    { name: "combined coefficients", asphere: combinedCoefficients(0), heights: [0.4, 2.5, 7, 11.5] },
-    { name: "patent coefficients", asphere: PATENT_ASPHERE, heights: [2, 6.5, 12.9] },
-  ])("matches on $name within 64 EPS of the summed term magnitudes", ({ asphere, heights }) => {
+    // A flat base leaves the polynomial alone.
+    { name: "combined coefficients", R: FLAT_R, asphere: combinedCoefficients(0), heights: [0.4, 2.5, 7, 11.5] },
+    { name: "patent coefficients", R: FLAT_R, asphere: PATENT_ASPHERE, heights: [2, 6.5, 12.9] },
+    // On a curved base the conic term joins the reference as an addend of its own.
+    { name: "mixed orders on a curved base", R: 40, asphere: MIXED_ORDERS, heights: [0.5, 4, 9.5] },
+  ])("matches on $name within 64 EPS of the summed term magnitudes", ({ R, asphere, heights }) => {
     for (const h of heights) {
       const reference = powerSum(h, asphere);
-      // A flat base leaves the polynomial alone.
-      const horner = createAsphericProfile(FLAT_R, asphere).evaluate(h);
-      expectWithin(horner.sag, reference.sag, RELATIVE_BOUND * reference.sagMagnitude, `sag h=${h}`);
-      expectWithin(horner.slope, reference.slope, RELATIVE_BOUND * reference.slopeMagnitude, `slope h=${h}`);
+      const c = Math.abs(R) > FLAT_R_THRESHOLD ? 0 : 1 / R;
+      const root = Math.sqrt(1 - (1 + asphere.K) * c * c * h * h);
+      const conicSag = (c * h * h) / (1 + root);
+      const conicSlope = (c * h) / root;
+      const horner = createAsphericProfile(R, asphere).evaluate(h);
+      const sagBound = RELATIVE_BOUND * (Math.abs(conicSag) + reference.sagMagnitude);
+      const slopeBound = RELATIVE_BOUND * (Math.abs(conicSlope) + reference.slopeMagnitude);
+      expectWithin(horner.sag, conicSag + reference.sag, sagBound, `sag h=${h}`);
+      expectWithin(horner.slope, conicSlope + reference.slope, slopeBound, `slope h=${h}`);
+      expect(conicPolySag(h, R, asphere)).toBe(horner.sag);
+      expect(sagSlopeRaw(h, R, asphere)).toBe(horner.slope);
     }
   });
 
@@ -588,30 +754,88 @@ describe("Horner form against an independent power sum", () => {
       expect(sagSlopeRaw(h, R, even)).toBe((c * h) / root + h * slopeChain);
     }
   });
+
+  /* The same surface against the ascending power sum that was the evaluation before Horner. The two forms round
+   * differently, so they are not equal at every height: on this surface they part in the last bit at about one
+   * height in a hundred. At these three they agree, and the pin shows a later change of arithmetic at once. */
+  it("agrees bit for bit with the ascending power sum at three pinned heights of an even-only surface", () => {
+    const R = 42.5;
+    const asph: AsphericCoefficients = {
+      K: -0.7,
+      A4: 1e-6,
+      A6: -2e-9,
+      A8: 3e-12,
+      A10: -4e-15,
+      A12: 5e-18,
+      A14: -6e-21,
+      A16: 7e-24,
+    };
+    for (const h of [0, 3.7, 11.9]) {
+      const c = 1 / R;
+      const h2 = h * h;
+      const d = 1 - (1 + asph.K) * c * c * h2;
+      const conic = (c * h2) / (1 + Math.sqrt(d > 0 ? d : 1e-12));
+      const poly =
+        asph.A4 * h2 * h2 +
+        asph.A6 * h2 ** 3 +
+        asph.A8 * h2 ** 4 +
+        asph.A10 * h2 ** 5 +
+        asph.A12 * h2 ** 6 +
+        asph.A14 * h2 ** 7 +
+        (asph.A16 ?? 0) * h2 ** 8 +
+        (asph.A18 ?? 0) * h2 ** 9 +
+        (asph.A20 ?? 0) * h2 ** 10;
+      expect(conicPolySag(h, R, asph)).toBe(conic + poly);
+
+      const denom2 = 1 - (1 + asph.K) * c * c * h2;
+      const conicSlope = (c * h) / Math.sqrt(denom2 > 0 ? denom2 : 1e-12);
+      const polySlope =
+        h *
+        (4 * asph.A4 * h2 +
+          6 * asph.A6 * h2 * h2 +
+          8 * asph.A8 * h2 ** 3 +
+          10 * asph.A10 * h2 ** 4 +
+          12 * asph.A12 * h2 ** 5 +
+          14 * asph.A14 * h2 ** 6 +
+          16 * (asph.A16 ?? 0) * h2 ** 7 +
+          18 * (asph.A18 ?? 0) * h2 ** 8 +
+          20 * (asph.A20 ?? 0) * h2 ** 9);
+      expect(sagSlopeRaw(h, R, asph)).toBe(conicSlope + polySlope);
+    }
+  });
 });
 
 describe("slope against finite differences inside the conic domain", () => {
-  /** Central difference of the profile's sag, with a step scaled to the radius. */
-  function centralDifference(profile: SurfaceProfile, radius: number): number {
-    const step = 1e-6 * Math.max(1, radius);
-    return (profile.sag(radius + step) - profile.sag(radius - step)) / (2 * step);
-  }
-
   it.each([
-    { name: "sphere", profile: createSphericalProfile(-30), domain: 30 },
-    {
-      name: "conic",
-      profile: createAsphericProfile(30, { ...zeroCoefficients(), K: 0.5 }),
-      domain: 30 / Math.sqrt(1.5),
-    },
-    { name: "every term", profile: createAsphericProfile(30, combinedCoefficients(-0.6)), domain: 30 / Math.sqrt(0.4) },
-    { name: "patent", profile: createAsphericProfile(PATENT_R, PATENT_ASPHERE), domain: 12.9 / 0.85 },
-  ])("matches the central difference of sag to 85% of the domain: $name", ({ profile, domain }) => {
+    { name: "sphere", R: -30, asphere: undefined, domain: 30 },
+    { name: "conic", R: 30, asphere: { ...zeroCoefficients(), K: 0.5 }, domain: 30 / Math.sqrt(1.5) },
+    { name: "every term", R: 30, asphere: combinedCoefficients(-0.6), domain: 30 / Math.sqrt(0.4) },
+    { name: "patent", R: PATENT_R, asphere: PATENT_ASPHERE, domain: 12.9 / 0.85 },
+  ])("matches the central difference of sag to 85% of the domain: $name", ({ R, asphere, domain }) => {
+    const profile = createSurfaceProfile({ R }, asphere);
     for (const fraction of [0.1, 0.25, 0.4, 0.55, 0.7, 0.85]) {
       // The largest sample and its step stay inside the domain: no difference is taken across the clamp.
       const radius = fraction * domain;
+      // Scaled to the radius, so truncation and roundoff stay balanced across the sweep.
+      const step = 1e-6 * Math.max(1, radius);
       const { slope } = profile.evaluate(radius);
-      expectWithin(centralDifference(profile, radius), slope, 1e-8 + 1e-6 * Math.abs(slope), `r=${radius}`);
+      const centralDifference = (profile.sag(radius + step) - profile.sag(radius - step)) / (2 * step);
+      expect(Math.abs(centralDifference - slope), `r=${radius}`).toBeLessThan(1e-8 + 1e-6 * Math.abs(slope));
+
+      // The positional functions give the same three numbers, so the same difference holds through them.
+      expect(conicPolySag(radius + step, R, asphere)).toBe(profile.sag(radius + step));
+      expect(conicPolySag(radius - step, R, asphere)).toBe(profile.sag(radius - step));
+      expect(sagSlopeRaw(radius, R, asphere)).toBe(slope);
+    }
+  });
+
+  it("agrees with a central finite difference at real patent coefficient magnitudes", () => {
+    const eps = 1e-5;
+    for (const h of [2, 6.5, 12.9]) {
+      const numeric =
+        (conicPolySag(h + eps, PATENT_R, PATENT_ASPHERE) - conicPolySag(h - eps, PATENT_R, PATENT_ASPHERE)) / (2 * eps);
+      const analytic = sagSlopeRaw(h, PATENT_R, PATENT_ASPHERE);
+      expect(Math.abs(numeric - analytic) / Math.max(Math.abs(analytic), 1e-12)).toBeLessThan(1e-6);
     }
   });
 
@@ -648,7 +872,7 @@ describe("spheres and planes keep their expressions", () => {
 
   it("returns zero for a flat radius on every positional path", () => {
     for (const h of radiiAround(10)) {
-      expect(sag(h, FLAT_R)).toBe(0);
+      for (const R of [FLAT_R, -FLAT_R, Infinity]) expect(sag(h, R), `sag(${h}, ${R})`).toBe(0);
       expect(conicPolySag(h, -FLAT_R, undefined)).toBe(0);
       expect(sagSlopeRaw(h, FLAT_R, undefined)).toBe(0);
       expectSameBits(createSphericalProfile(FLAT_R).evaluate(h), { sag: 0, slope: 0 }, `flat sphere h=${h}`);
@@ -735,12 +959,31 @@ describe("domain radius and slope bound keep their expressions", () => {
     }
   });
 
-  it("bounds the slope it is the bound of", () => {
-    const profile = createAsphericProfile(PATENT_R, PATENT_ASPHERE);
-    const bound = profile.maxAbsSlope!(12.9);
-    for (let step = 0; step <= 1290; step++) {
+  it.each([
+    { name: "patent", R: PATENT_R, asphere: PATENT_ASPHERE, steps: 1290, beyondDomain: 60 },
+    {
+      name: "convex conic, even and odd",
+      R: 20,
+      asphere: { K: -0.5, A3: 0.0002, A4: -0.00001, A6: 1e-8, A8: 0, A10: 0, A12: 0, A14: 0 },
+      steps: 1000,
+      beyondDomain: 30,
+    },
+    {
+      name: "concave conic, even and odd",
+      R: -20,
+      asphere: { K: -0.5, A3: -0.0002, A4: -0.00001, A6: 1e-8, A8: 0, A10: 0, A12: 0, A14: 0 },
+      steps: 1000,
+      beyondDomain: 30,
+    },
+  ])("bounds the slope throughout a real radial interval: $name", ({ R, asphere, steps, beyondDomain }) => {
+    const profile = createSurfaceProfile({ R }, asphere);
+    // The bound at the interval's outer radius holds at every radius inside it, 0.01 mm apart.
+    const bound = profile.maxAbsSlope!(steps / 100);
+    for (let step = 0; step <= steps; step++) {
       expect(Math.abs(profile.slope(step / 100))).toBeLessThanOrEqual(bound);
     }
+    // Past the conic domain there is no bound to give.
+    expect(profile.maxAbsSlope!(beyondDomain)).toBe(Infinity);
   });
 });
 
@@ -841,6 +1084,8 @@ describe("coefficient objects", () => {
     const mutable = { ...zeroCoefficients() };
     const profile = createAsphericProfile(FLAT_R, mutable);
     expectSameBits(profile.evaluate(2), { sag: 0, slope: 0 }, "before");
+    expect(conicPolySag(2, FLAT_R, mutable)).toBe(0);
+    expect(sagSlopeRaw(2, FLAT_R, mutable)).toBe(0);
     expect(profile.hasPolynomial).toBe(false);
     expect(profile.maxAbsSlope!(2)).toBe(1e-12);
 
@@ -852,6 +1097,13 @@ describe("coefficient objects", () => {
     expect(profile.hasPolynomial).toBe(true);
     expect(profile.conic).toBe(-3);
     expect(profile.maxAbsSlope!(2)).toBe(slopeBoundBefore(FLAT_R, mutable, 2));
+
+    // On a curved base through the dispatching factory, the slope bound follows an edit as well.
+    const curved = { K: 0, A4: 0.00001, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+    const curvedProfile = createSurfaceProfile({ R: 50 }, curved);
+    const before = curvedProfile.maxAbsSlope!(5);
+    curved.A4 = 0.01;
+    expect(curvedProfile.maxAbsSlope!(5)).toBeGreaterThan(before);
   });
 
   it("returns one profile per frozen object and radius, and a fresh one for a mutable object", () => {
@@ -866,6 +1118,7 @@ describe("coefficient objects", () => {
     // Another base radius is another surface: its own profile, and the first one's values come back unchanged.
     const other = createAsphericProfile(-30, frozen);
     expect(other).not.toBe(profile);
+    expect(createSurfaceProfile({ R: -30 }, frozen)).not.toBe(createSurfaceProfile({ R: 30 }, frozen));
     expect(other.curvature).toBe(1 / -30);
     expectSameBits(other.evaluate(7), documentedSagSlope(7, -30, frozen), "other radius");
     expectSameBits(createAsphericProfile(30, frozen).evaluate(7), profile.evaluate(7), "first radius again");
