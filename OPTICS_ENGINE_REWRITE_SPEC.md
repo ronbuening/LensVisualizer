@@ -127,7 +127,7 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
   - Display, ray-sampling and validation knobs sit beside optical fields.
   - Three authored fields have no reader: `zoomLabels`, `apertureBlades` and `apertureBladeRoundedness`.
   - Defaults are merged invisibly in several places, and `src/lens-data/defaults.ts` imports an engine internal.
-- **The spec contradicts the code in nine places.**
+- **The spec contradicts the code in ten places.**
 
 ## Baseline and accuracy contract
 
@@ -304,6 +304,9 @@ writes every record that echoes authored data through the same equivalences (`no
   defaults (`visible`, `focusStep`, `apertureStep`, `maxFstop`, the layout, ray and check fields) and the ones the engine
   applies inline:
   - `focusPositions: [0, 1]` (12 files);
+  - `publishedStations` left out (604 files: 225 zooms and 379 primes), and a declaration of every zoom station at
+    infinity alone, which `publishedStationGrid` reads it as. Provenance marks the omission as defaulted. This
+    corrects the first reading of this list, that an absent object declares nothing;
   - `zoomStep: 0.004` (158 files), or any falsy step, as `buildLens` reads `zoomStep || 0.004`;
   - `zoomApertureModel: "from-nominal-fno"` (49);
   - an element's `apd: false` (3,714) and `indexReference: "d"` (2,012);
@@ -313,9 +316,13 @@ writes every record that echoes authored data through the same equivalences (`no
 - The authored `sd` of a stop whose radius the engine derives or takes from a schedule.
 - An empty `asph` (506 files), `var` (136), `varLabels` (136) or ring `varLabels`, and no such field.
 - The order of the `varLabels` pairs and of the ring's: canonical holds gaps in surface order.
-- A `publishedStations.zoom` that names every station (8 files), and one left out, while the object is present. An
-  absent object declares nothing.
-- One `publishedStations.focus` list, and the same list written once per zoom station.
+- A `publishedStations.zoom` left out, written empty, or naming every station (8 files, 5 of them with no focus row and
+  so the default declaration).
+- One `publishedStations.focus` list, and the same list written once per zoom station; no focus row, and focus lists
+  that are all empty.
+
+  `validateLensData` refuses an empty `zoom` or `focus` list and focus lists that are all empty, so `buildLens` builds
+  only the other spellings. Ingest and the fingerprint still hold the refused ones as one with their valid twin.
 - A finite conjugate's `focusT` and `zoomT` within the validator's 1e-8 of the station they name, and the station's own
   coordinates.
 
@@ -904,7 +911,7 @@ and position.
 | `zoomApertureModel`, `zoomStep` | `zoom.apertureModel`, `zoom.step` | |
 | `nominalFno` (scalar) | `aperture.nominalFNumber` | Primes and constant-aperture zooms. Scalar versus per-station stays distinct, because the UI treats an array differently (`marketedApertureNote`). |
 | `closeFocusM`, `focusPositions`, `focusStep`, `focusDescription` | `focus.{closeFocusM, keyframes, step, description}` | `keyframes` defaults to `[0, 1]`; a station `closeFocusM` overrides the lens value |
-| `publishedStations.zoom` / `.focus` | `zoom.stations[i].published` and `.publishedFocus`; on a prime, `focus.published` | Presence still marks provenance. Focus lists hold keyframe indices ≥ 1, and infinity is implied. V1's "zoom omitted means every station" becomes an explicit flag on every station. |
+| `publishedStations.zoom` / `.focus` | `zoom.stations[i].published` and `.publishedFocus`; on a prime, `focus.published` | A missing object is the schema default, every zoom station published at infinity alone, and provenance marks it as defaulted. Focus lists hold keyframe indices ≥ 1, and infinity is implied. V1's "zoom omitted or empty means every station" becomes an explicit flag on every station. |
 | `finiteConjugates[]` (`focusT`, `zoomT`) | `focus.conjugates[]` (`zoomStation`, `keyframe`) | Index-addressed. The converter maps each `focusT` to the keyframe it matches within the validator's 1e-8 and refuses otherwise. |
 | `fstopSeries`, `maxFstop`, `apertureStep`, `apertureBlades`, `apertureBladeRoundedness` | `aperture.{fStops, maxFNumber, step, blades, bladeRoundedness}` | |
 | STO `sd` | Kept as `sd` only where the engine uses it: folded and embedded stops, 16 lenses. Otherwise omitted, and the radius is derived. | The engine overwrites the authored value in two ways: with the radius traced from the nominal f-number (889 lenses), or with a published schedule (2 lenses), which V2 keeps as `zoom.stations[i].stopSemiDiameter`. The converter lists each dropped value in its conversion report, as provenance rather than semantics. |
@@ -1190,7 +1197,10 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
         1e-8;
       - a zoom field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, or `varLabels` that
         name no gap;
-      - a field V1 does not define, or one only the engine writes;
+      - a field V1 does not define, or one only the engine writes.
+
+      Each reason names the field and its authored path. These refusals are stricter than `validateLensData`, so a
+      lens that trips one first fails at a merge of `main` into `engine-next`. No catalog file ever has;
     - schema defaults with provenance, which replace the spread of `src/lens-data/defaults.ts`. Each default names the
       code that reads it. That file keeps its engine-internal import until S2.P1.T2 deletes it, and a test holds the
       two tables equal until then;
@@ -1219,10 +1229,17 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - the stop-radius authority ingest assigns equals what `buildLens` does, on every catalog lens.
 
     In the tooling suite, every equivalence has a respelling case that leaves every Tier P record of a catalog lens
-    unchanged.
+    unchanged. A spelling `validateLensData` refuses gives no record to capture, so its case checks that it shares the
+    fingerprint and echo of its valid twin.
   - **Gate:** C0.
 - **S2.P1.T2 Route production through ingest.**
   - **Change:** the catalogs, `buildLens` and the scripts that spread defaults all ingest through canonical.
+    - Ingest reads authored files only. `attachTeleconverter()` composes a converter pair and `expandRearPlates()`
+      expands plates after it, so `attachedTeleconverter`, `synthetic` and `clips` never pass through it, and Tier P's
+      converter pair and rear-plate lenses stay bit-identical.
+    - Once `buildLens` ingests, unmerged data takes the table's `lensShiftFrac` and `offAxisFieldFrac` in place of
+      the inline `|| 0` and `?? 0.7`. Before changing a test whose expectation moves, list each one with its old and
+      new values. If one is a physical expectation rather than a fixture's layout offset, stop and ask the maintainer.
   - **Files:**
     - `src/utils/catalog/{lensCatalog, teleconverterCatalog}.ts`
     - `src/optics/buildLens.ts`
@@ -1372,9 +1389,17 @@ spec–code contradictions below, may go to `main` at any time as ordinary docum
   18. examples (prime, zoom, folded);
   19. "Reading V1 audits".
 
-  Fix the nine spec–code contradictions while rewriting. They include the stop `sd`, `zoomCloseFocusM` listed as
-  required, the `lensShiftFrac` default, the `zoomStep` default, stale `var` pair wording, and "groups are purely
-  visual".
+  Fix the ten spec–code contradictions while rewriting. They include:
+  - the stop `sd`;
+  - `zoomCloseFocusM` listed as required;
+  - the `lensShiftFrac` default: 0.08 in the defaults table, `lensShiftFrac || 0` in `buildLens`;
+  - the `offAxisFieldFrac` default, found in S2.P1.T1: 0.6 in the table, `L.offAxisFieldFrac ?? 0.7` in the
+    chromatic ray-fan summary;
+  - the `zoomStep` default;
+  - stale `var` pair wording;
+  - "groups are purely visual".
+
+  The canonical defaults table carries the catalog's values, 0.08 and 0.6, which every catalog lens gets today.
   - **Also update:**
     - `src/lens-data/TEMPLATE.data.ts.template`
     - `src/lens-data/TEMPLATE.teleconverter.ts.template`

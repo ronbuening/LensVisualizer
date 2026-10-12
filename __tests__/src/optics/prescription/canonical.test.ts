@@ -151,6 +151,8 @@ function ingested(data: LensDataInput): IngestedPrescription<CanonicalLens> {
 /** A value of the same kind as `value` that differs from it. */
 function otherThan(value: unknown): unknown {
   if (Array.isArray(value)) return [0, 0.5, 1];
+  /* The one declaration row, `publishedStations`: a focus row beyond infinity. */
+  if (value !== null && typeof value === "object") return { focus: [1] };
   if (typeof value === "boolean") return !value;
   if (typeof value === "string") return value === "from-nominal-fno" ? "fixed-iris" : `${value}~`;
   return (value as number) * 1.5;
@@ -255,6 +257,14 @@ describe("canonical prescription: schema defaults", () => {
         const path = base ? `${base}.${row.path}` : row.path;
         const expected = takesDefault(row, record[row.v1Field]);
         if (result.provenance.defaulted.includes(path) !== expected) offenders.push(`${file}: ${path} defaulted`);
+        if (row.spread) {
+          /* A declaration left out reads as the row's value written out. */
+          const written = { ...record, [row.v1Field]: structuredClone(row.value) } as unknown as LensDataInput;
+          if (expected && JSON.stringify(ingested(written).prescription) !== JSON.stringify(result.prescription)) {
+            offenders.push(`${file}: ${path} is not its declaration written out`);
+          }
+          continue;
+        }
         const value = valueAt(result.prescription, path);
         const expectedValue = expected ? row.value : record[row.v1Field];
         if (JSON.stringify(value) !== JSON.stringify(expectedValue))
@@ -458,34 +468,79 @@ describe("canonical prescription: spellings held as one", () => {
     expect(first.provenance.v1.varLabelsOrder).toBeUndefined();
   });
 
-  it("holds a published zoom list that names every station as one left out, and one focus list as a list per station", () => {
-    const declared = (publishedStations: LensDataInput["publishedStations"]): LensDataInput => ({
-      ...zoom(),
-      focusPositions: [0, 0.5, 1],
-      var: {
-        "2": [
-          [80, 82, 84],
-          [81, 83, 85],
-          [82, 84, 86],
-        ],
-      },
-      publishedStations,
+  /** Ingest every spelling, require one prescription, and require each to come back as written. */
+  const oneMeaning = (spellings: readonly LensDataInput[]) => {
+    const results = spellings.map(ingested);
+    results.forEach((result, at) => {
+      expect(result.prescription, `spelling ${at}`).toEqual(results[0].prescription);
+      expect(toLensDataInput(result), `spelling ${at}`).toEqual(spellings[at]);
     });
-    const [omitted] = sameMeaning(declared({ focus: [2] }), declared({ zoom: [0, 1, 2], focus: [2] }));
-    sameMeaning(declared({ focus: [2] }), declared({ focus: [[2], [2], [2]] }));
-    expect(omitted.prescription.zoom!.stations.map((station) => [station.published, station.publishedFocus])).toEqual([
+    return results;
+  };
+
+  it("holds every spelling of a published zoom list and of one focus list as one", () => {
+    const declared = (publishedStations?: LensDataInput["publishedStations"]): LensDataInput => {
+      const data: LensDataInput = {
+        ...zoom(),
+        focusPositions: [0, 0.5, 1],
+        var: {
+          "2": [
+            [80, 82, 84],
+            [81, 83, 85],
+            [82, 84, 86],
+          ],
+        },
+      };
+      if (publishedStations !== undefined) data.publishedStations = publishedStations;
+      return data;
+    };
+    /* A zoom list left out, written empty or naming every station; one focus list, or the same list per station. */
+    const [rows] = oneMeaning([
+      declared({ focus: [2] }),
+      declared({ zoom: [0, 1, 2], focus: [2] }),
+      declared({ zoom: [], focus: [2] }),
+      declared({ focus: [[2], [2], [2]] }),
+      declared({ zoom: [], focus: [[2], [2], [2]] }),
+    ]);
+    expect(rows.prescription.zoom!.stations.map((station) => [station.published, station.publishedFocus])).toEqual([
       [true, [2]],
       [true, [2]],
       [true, [2]],
     ]);
-    /* A narrowed list is a different statement, and an absent declaration is not a declaration of every station. */
-    expect(ingested(declared({ zoom: [0, 2], focus: [2] })).prescription).not.toEqual(omitted.prescription);
-    const undeclared = ingested(declared(undefined));
-    expect(undeclared.prescription).not.toEqual(omitted.prescription);
-    expect(undeclared.prescription.zoom!.stations.every((station) => station.published === undefined)).toBe(true);
-    /* A declaration of every station with no focus rows still names them: an empty object is no declaration. */
-    const stationsOnly = declared({ zoom: [0, 1, 2] });
-    expect(toLensDataInput(ingested(stationsOnly))).toEqual(stationsOnly);
+
+    /* No declaration is the schema default, every station at infinity alone, and so is any spelling of it. */
+    const [absent, ...spelled] = oneMeaning([
+      declared(),
+      declared({ zoom: [0, 1, 2] }),
+      declared({ zoom: [] }),
+      declared({ focus: [] }),
+      declared({ zoom: [0, 1, 2], focus: [] }),
+      declared({ focus: [[], [], []] }),
+    ]);
+    expect(absent.prescription.zoom!.stations.map((station) => [station.published, station.publishedFocus])).toEqual([
+      [true, []],
+      [true, []],
+      [true, []],
+    ]);
+    expect(absent.provenance.defaulted).toContain("publishedStations");
+    expect(absent.provenance.v1.publishedStations).toBeUndefined();
+    for (const result of spelled) expect(result.provenance.defaulted).not.toContain("publishedStations");
+
+    /* A narrowed zoom list says something else, with focus rows or without. */
+    expect(ingested(declared({ zoom: [0, 2], focus: [2] })).prescription).not.toEqual(rows.prescription);
+    expect(ingested(declared({ zoom: [0, 2] })).prescription).not.toEqual(absent.prescription);
+    expect(rows.prescription).not.toEqual(absent.prescription);
+  });
+
+  it("holds a prime's missing publishedStations as its one station at infinity alone", () => {
+    const declared = (publishedStations?: LensDataInput["publishedStations"]): LensDataInput => {
+      const data = prime();
+      if (publishedStations !== undefined) data.publishedStations = publishedStations;
+      return data;
+    };
+    const [absent] = oneMeaning([declared(), declared({ focus: [] })]);
+    expect(absent.prescription.focus.published).toEqual([]);
+    expect(ingested(declared({ focus: [1] })).prescription).not.toEqual(absent.prescription);
   });
 
   it("addresses a finite conjugate by station, within the validator's tolerance, and keeps the authored coordinate", () => {
@@ -612,7 +667,7 @@ describe("canonical prescription: refusals", () => {
     [
       "a surface nd that differs from its element's",
       () => edit(prime, (data) => (data.surfaces[1].nd = 1.5169)),
-      /surfaces\[1\]\.nd 1\.5169 differs from the nd 1\.5168 of element 1/,
+      /surfaces\[1\]\.nd 1\.5169 differs from elements\[0\]\.nd 1\.5168, the element surfaces\[1\]\.elemId names/,
     ],
     [
       "a gap's first value that differs from its surface's d",
@@ -637,7 +692,7 @@ describe("canonical prescription: refusals", () => {
     [
       "varLabels naming a gap that does not exist",
       () => edit(prime, (data) => data.varLabels!.push(["1A", "D1"])),
-      /varLabels labels "1A", which has no var entry/,
+      /varLabels\[1\] labels "1A", which has no var entry/,
     ],
     [
       "a field V1 does not define",
@@ -652,7 +707,17 @@ describe("canonical prescription: refusals", () => {
     [
       "half an element span",
       () => edit(prime, (data) => (data.elements[0].fromSurface = "1A")),
-      /elements\[0\]: fromSurface and toSurface are a pair/,
+      /elements\[0\]\.fromSurface is set without elements\[0\]\.toSurface/,
+    ],
+    [
+      "a surface label used twice",
+      () => edit(prime, (data) => (data.surfaces[0].label = "1A")),
+      /surfaces\[1\]\.label "1A" repeats surfaces\[0\]\.label/,
+    ],
+    [
+      "a published zoom station that does not exist",
+      () => edit(zoom, (data) => (data.publishedStations = { zoom: [0, 3] })),
+      /publishedStations\.zoom\[1\] 3 names no zoom station \(0\.\.2\)/,
     ],
   ])("refuses %s, naming it", (_name, make, message) => {
     const issues = refusal(make());

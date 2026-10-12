@@ -51,6 +51,7 @@ import {
   type CanonicalZoomStation,
   type IngestedPrescription,
   type StopRadiusAuthority,
+  type V1PublishedStationsSpelling,
   type V1Spelling,
 } from "./canonical.js";
 import {
@@ -339,7 +340,10 @@ function ingestElement(element: Untyped, index: number, context: IngestContext):
   const from = has(element, "fromSurface");
   const to = has(element, "toSurface");
   if (from && to) out.span = [element.fromSurface, element.toSurface];
-  else if (from || to) context.issues.push(`${at}: fromSurface and toSurface are a pair; one alone has no span`);
+  else if (from || to) {
+    const [set, missing] = from ? ["fromSurface", "toSurface"] : ["toSurface", "fromSurface"];
+    context.issues.push(`${at}.${set} is set without ${at}.${missing}, and one alone has no span`);
+  }
   return out as unknown as CanonicalElement;
 }
 
@@ -420,14 +424,16 @@ function ingestSurfaces(
   context: IngestContext,
 ): IngestedSurfaces {
   const authoredSurfaces = data.surfaces as Untyped[];
-  const elementNd = new Map(elements.map((element) => [element.id, element.nd]));
+  const elementIndex = new Map(elements.map((element, index) => [element.id, index]));
   const media: CanonicalMedium[] = [];
   const labelIndex = new Map<string, number>();
 
   authoredSurfaces.forEach((surface, index) => {
     const label = surface.label as string;
-    if (labelIndex.has(label)) context.issues.push(`surfaces[${index}]: label "${label}" is used twice`);
-    else labelIndex.set(label, index);
+    const first = labelIndex.get(label);
+    if (first !== undefined) {
+      context.issues.push(`surfaces[${index}].label "${label}" repeats surfaces[${first}].label`);
+    } else labelIndex.set(label, index);
   });
 
   const surfaces = authoredSurfaces.map((surface, index): CanonicalSurface => {
@@ -466,12 +472,13 @@ function ingestSurfaces(
         }
         out.medium = medium.id;
       }
-    } else if (elementNd.has(elemId)) {
+    } else if (elementIndex.has(elemId)) {
       out.medium = elemId;
-      if (elementNd.get(elemId) !== nd) {
+      const element = elementIndex.get(elemId)!;
+      if (elements[element].nd !== nd) {
         context.issues.push(
-          `${at}.nd ${String(nd)} differs from the nd ${String(elementNd.get(elemId))} of element ${String(elemId)}, ` +
-            `its elemId: V2 takes a surface's index from its medium alone`,
+          `${at}.nd ${String(nd)} differs from elements[${element}].nd ${String(elements[element].nd)}, the element ` +
+            `${at}.elemId names: V2 takes a surface's index from its medium alone`,
         );
       }
     } else {
@@ -534,9 +541,9 @@ function pairGaps<Values>(
     if (typeof label !== "string" || typeof value !== "string") {
       context.issues.push(`${where.labels}[${at}] must be a [label, text] pair`);
     } else if (text.has(label)) {
-      context.issues.push(`${where.labels} labels "${label}" twice`);
+      context.issues.push(`${where.labels}[${at}] labels "${label}" a second time`);
     } else if (ranges[label] === undefined) {
-      context.issues.push(`${where.labels} labels "${label}", which has no ${where.ranges} entry`);
+      context.issues.push(`${where.labels}[${at}] labels "${label}", which has no ${where.ranges} entry`);
     } else {
       text.set(label, value);
       labelOrder.push(label);
@@ -651,7 +658,8 @@ function ingestZoom(data: Untyped, context: IngestContext): CanonicalZoom | unde
     return undefined;
   }
   const count = positions.length;
-  const stations: CanonicalZoomStation[] = positions.map((focalLengthMm) => ({ focalLengthMm }));
+  /* `ingestPublishedStations` gives every station its published flags. */
+  const stations = positions.map((focalLengthMm) => ({ focalLengthMm }) as CanonicalZoomStation);
   const perStation = (field: string, member: keyof CanonicalZoomStation) => {
     const values = data[field];
     if (values === undefined) return;
@@ -718,15 +726,24 @@ function ingestConjugates(
   });
 }
 
-function sameList(a: readonly unknown[], b: readonly unknown[]): boolean {
-  return a.length === b.length && a.every((value, index) => Object.is(value, b[index]));
+/** How a file wrote `publishedStations.zoom`: left out, written empty, or as a list of stations. */
+function zoomListSpelling(list: unknown): V1PublishedStationsSpelling["zoom"] {
+  if (list === undefined) return "omitted";
+  return Array.isArray(list) && list.length === 0 ? "empty" : "listed";
+}
+
+/** How a file wrote `publishedStations.focus`: left out, as one list, or as one list per zoom station. */
+function focusListSpelling(list: unknown): V1PublishedStationsSpelling["focus"] {
+  if (list === undefined) return "omitted";
+  return isNumberList(list) ? "one" : "perStation";
 }
 
 /**
  * Spread `publishedStations` over the zoom stations, or onto `focus.published` on a prime.
  *
- * Presence is provenance of its own: an absent object declares nothing, and the engine then publishes every station
- * at infinity. A present `zoom` list that names every station says what an omitted one says.
+ * A file that leaves the object out takes the schema default, which ingest reads as the V1 declaration it stands for
+ * (every zoom station at infinity focus alone) and records as defaulted. A `zoom` list left out, written empty, or
+ * naming every station says the same: every station. The spelling the file used is kept for the V1 view.
  */
 function ingestPublishedStations(
   data: Untyped,
@@ -734,8 +751,14 @@ function ingestPublishedStations(
   focus: CanonicalFocus,
   context: IngestContext,
 ): void {
-  if (!has(data, "publishedStations")) return;
-  const declared = data.publishedStations as PublishedStations & Untyped;
+  const row = lensDefault("publishedStations");
+  const authored = has(data, "publishedStations");
+  if (!authored) context.defaulted.push(row.path);
+  const declared = (authored ? data.publishedStations : defaultValue(row)) as PublishedStations & Untyped;
+  if (declared === null || typeof declared !== "object" || Array.isArray(declared)) {
+    context.issues.push(`publishedStations must be an object of zoom and focus station indices`);
+    return;
+  }
   for (const field of Object.keys(declared)) {
     if (declared[field] !== undefined && field !== "zoom" && field !== "focus") {
       context.issues.push(`publishedStations.${field} is not a V1 field`);
@@ -746,13 +769,16 @@ function ingestPublishedStations(
     context.issues.push(`publishedStations declares neither zoom nor focus stations`);
     return;
   }
+  if (authored) {
+    context.v1.publishedStations = { zoom: zoomListSpelling(zoomList), focus: focusListSpelling(focusList) };
+  }
 
   if (!zoom) {
     if (zoomList !== undefined) context.issues.push(`publishedStations.zoom is a zoom field on a prime`);
-    if (focusList !== undefined) {
-      if (!isNumberList(focusList)) context.issues.push(`publishedStations.focus on a prime must be one index list`);
-      else focus.published = [...focusList];
+    if (focusList !== undefined && !isNumberList(focusList)) {
+      context.issues.push(`publishedStations.focus on a prime must be one index list`);
     }
+    focus.published = isNumberList(focusList) ? [...focusList] : [];
     return;
   }
 
@@ -762,11 +788,13 @@ function ingestPublishedStations(
     context.issues.push(`publishedStations.zoom must be a list of station indices`);
     return;
   }
-  if (zoomList?.some((station) => !every.includes(station))) {
-    context.issues.push(`publishedStations.zoom names a station outside 0..${count - 1}`);
-  }
-  const published = new Set(zoomList ?? every);
-  if (zoomList !== undefined && sameList(zoomList, every)) context.v1.publishedZoomListed = true;
+  zoomList?.forEach((station, at) => {
+    if (!every.includes(station)) {
+      context.issues.push(`publishedStations.zoom[${at}] ${String(station)} names no zoom station (0..${count - 1})`);
+    }
+  });
+  /* `publishedStationGrid` reads a zoom list left out or written empty as every station. */
+  const published = new Set(zoomList !== undefined && zoomList.length > 0 ? zoomList : every);
 
   let perStation: number[][];
   if (focusList === undefined) {
@@ -775,15 +803,6 @@ function ingestPublishedStations(
     perStation = every.map((station) => (published.has(station) ? [...focusList] : []));
   } else if (Array.isArray(focusList) && focusList.length === count && focusList.every(isNumberList)) {
     perStation = focusList.map((list) => [...list]);
-    /* Per-station lists that one list would also say. */
-    const first = every.find((station) => published.has(station));
-    const shared = first === undefined ? [] : perStation[first];
-    if (
-      shared.length > 0 &&
-      every.every((station) => sameList(perStation[station], published.has(station) ? shared : []))
-    ) {
-      context.v1.publishedFocusPerZoom = true;
-    }
   } else {
     context.issues.push(`publishedStations.focus must be one index list or one list per zoom station (${count})`);
     return;

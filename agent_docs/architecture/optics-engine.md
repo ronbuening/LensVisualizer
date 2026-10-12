@@ -287,10 +287,13 @@ authority (`authored`, `schedule` or `derived`, by the rule `buildLens` applies)
 defaulted paths, the authored values the engine ignores, and the V1 spellings it holds once.
 
 - `ingestLensV1` and `ingestTeleconverterV1` (`ingestV1.ts`) map a V1 file onto it, applying the schema defaults of
-  `defaults.ts`. Each default row names its reader. A default written out and one left out ingest alike. Ingest does
-  not validate; it refuses only what the canonical form cannot hold: two V1 copies that disagree (a surface `nd` and
+  `defaults.ts`. Each default row names its reader. A default written out and one left out ingest alike. A missing
+  `publishedStations` is one: every zoom station published at infinity alone, as `publishedStationGrid` reads it, and
+  ingest spreads it over the stations as it spreads a declaration. Ingest does not validate; it refuses only what the
+  canonical form cannot hold, naming the field and its authored path: two V1 copies that disagree (a surface `nd` and
   its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within 1e-8), a zoom
-  field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, and fields V1 does not define.
+  field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, `varLabels` that name no gap,
+  and fields V1 does not define or only the engine writes.
 - `toLensData` (`toLensData.ts`) is the V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
   and `toLensDataInput` gives it back as authored.
 - Nothing in production ingests yet: the catalogs and `buildLens` still spread `src/lens-data/defaults.ts`, whose

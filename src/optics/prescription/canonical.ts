@@ -131,12 +131,12 @@ export interface CanonicalZoomStation {
   closeFocusM?: number;
   label?: string;
   /**
-   * Whether the source tabulates this station's infinity row. Present on every station or on none: absent means
-   * the file declares no published stations, and the engine then publishes every station at infinity.
+   * Whether the source tabulates this station's infinity row. A file that declares no published stations takes the
+   * schema default, every station published at infinity, and provenance records it as defaulted.
    */
-  published?: boolean;
-  /** Focus keyframe indices (>= 1) the source tabulates at this station; present exactly when `published` is. */
-  publishedFocus?: number[];
+  published: boolean;
+  /** Focus keyframe indices (>= 1) the source tabulates at this station; empty when only infinity is. */
+  publishedFocus: number[];
 }
 
 export interface CanonicalZoom {
@@ -165,7 +165,10 @@ export interface CanonicalFocus {
   step: number;
   description?: string;
   conjugates?: CanonicalConjugate[];
-  /** On a prime: focus keyframe indices (>= 1) the source tabulates. Absent when the file declares none. */
+  /**
+   * On a prime: focus keyframe indices (>= 1) the source tabulates; empty when only infinity is, the schema default.
+   * Absent on a zoom, whose stations carry their own.
+   */
   published?: number[];
 }
 
@@ -346,7 +349,7 @@ export type CanonicalPrescription = CanonicalLens | CanonicalTeleconverter;
 
 /* ── Provenance ── */
 
-/** How a V1 file spelled what the prescription holds once. Only spellings the V1 view could not otherwise know. */
+/** How a V1 file spelled what the prescription holds once, so the V1 view can give the file back. */
 export interface V1Spelling {
   /** Containers written out empty: `asph: {}`, `var: {}`, `varLabels: []`, `aberrationControl.varLabels: []`. */
   emptyContainers: ("asph" | "var" | "varLabels" | "aberrationControl.varLabels")[];
@@ -354,16 +357,29 @@ export interface V1Spelling {
   varLabelsOrder?: string[];
   /** Authored order of `aberrationControl.varLabels`, where it is not surface order. */
   aberrationVarLabelsOrder?: string[];
-  /** `publishedStations.zoom` listed every station although it could have been left out. */
-  publishedZoomListed?: true;
-  /** `publishedStations.focus` was written per zoom station although one list says the same. */
-  publishedFocusPerZoom?: true;
+  /** How the file wrote `publishedStations`; absent when it left the object out and took the default. */
+  publishedStations?: V1PublishedStationsSpelling;
+}
+
+/**
+ * How a V1 file wrote `publishedStations`. The engine reads a `zoom` list left out, written empty or naming every
+ * station as every station, and one `focus` list as that list at every published station, so each declaration has
+ * several spellings and the view needs the one the file used.
+ */
+export interface V1PublishedStationsSpelling {
+  /** `zoom` left out, written empty, or written as a list of station indices. */
+  zoom: "omitted" | "empty" | "listed";
+  /** `focus` left out, written as one list of keyframe indices, or as one such list per zoom station. */
+  focus: "omitted" | "one" | "perStation";
 }
 
 export interface CanonicalProvenance {
   /** Authored format the prescription was ingested from. */
   format: 1;
-  /** Canonical paths whose value the schema supplied because the file did not, e.g. `elements[2].apd`. */
+  /**
+   * Canonical paths whose value the schema supplied because the file did not, e.g. `elements[2].apd`. One entry names
+   * a declaration rather than a member: `publishedStations`, the published flags of every station.
+   */
   defaulted: string[];
   /**
    * Authored values the engine does not read, by the canonical path where the value would sit: a derived stop's

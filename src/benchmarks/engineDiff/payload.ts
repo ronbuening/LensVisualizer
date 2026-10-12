@@ -756,6 +756,7 @@ export const ECHO_DEFAULTS: Readonly<Record<"lens" | "element" | "rearPlate", re
     { v1Field: "zoomApertureModel", value: "from-nominal-fno" },
     { v1Field: "zoomStep", value: 0.004, falsyIsDefault: true },
     { v1Field: "focusPositions", value: [0, 1] },
+    { v1Field: "publishedStations", value: { focus: [] } },
   ],
   element: [
     { v1Field: "indexReference", value: "d" },
@@ -814,17 +815,34 @@ export function snapConjugate(conjugate: unknown, keyframes: readonly number[], 
   };
 }
 
-/** `publishedStations` with an every-station zoom list left out and one focus list spread per zoom station. */
-function normalizePublishedStations(declared: Record<string, unknown>, stationCount: number): Record<string, unknown> {
+/**
+ * `publishedStations` in one spelling of what the engine reads: a zoom list only where it leaves a station out, in
+ * index order; focus rows as one list per zoom station, and none where no station has a row beyond infinity. A
+ * declaration of every station at infinity alone is the schema default, so it comes back `undefined`, as if absent.
+ */
+function normalizePublishedStations(
+  declared: Record<string, unknown>,
+  stationCount: number,
+): Record<string, unknown> | undefined {
   const out = { ...declared };
   const every = Array.from({ length: stationCount }, (_, station) => station);
-  const zoom = Array.isArray(out.zoom) ? (out.zoom as unknown[]) : every;
+  /* `publishedStationGrid` reads a zoom list left out or written empty as every station. */
+  const zoom =
+    Array.isArray(out.zoom) && out.zoom.length > 0 ? [...new Set(out.zoom as number[])].sort((a, b) => a - b) : every;
+  if (JSON.stringify(zoom) === JSON.stringify(every)) delete out.zoom;
+  else out.zoom = zoom;
+
   const focus = out.focus;
-  if (stationCount >= 2 && Array.isArray(focus) && focus.every((entry) => typeof entry === "number")) {
-    out.focus = every.map((station) => (zoom.includes(station) ? [...focus] : []));
+  if (Array.isArray(focus)) {
+    const rows =
+      stationCount >= 2 && focus.every((entry) => typeof entry === "number")
+        ? every.map((station) => (zoom.includes(station) ? [...focus] : []))
+        : focus;
+    const noRows = stationCount >= 2 ? rows.every((row) => Array.isArray(row) && row.length === 0) : rows.length === 0;
+    if (noRows) delete out.focus;
+    else out.focus = rows;
   }
-  if (Array.isArray(out.zoom) && JSON.stringify(out.zoom) === JSON.stringify(every)) delete out.zoom;
-  return out;
+  return Object.keys(out).length === 0 ? undefined : out;
 }
 
 /** `[label, text]` pairs ordered by the surface each label names. */
@@ -846,7 +864,9 @@ function bySurface(pairs: unknown, surfaceLabels: readonly unknown[]): unknown {
  * - the `STO` semi-diameter is dropped where the engine derives or schedules the stop radius;
  * - a default the engine applies inline (`ECHO_DEFAULTS`) is dropped, on the lens, its elements and its plates;
  * - an empty `var`, `varLabels` or ring `varLabels` is dropped, and label pairs are put in surface order;
- * - a `publishedStations.zoom` naming every station is dropped, and one focus list is spread over the zoom stations;
+ * - `publishedStations` takes one spelling: a zoom list left out, written empty or naming every station is dropped,
+ *   one focus list is spread over the zoom stations, and a declaration of every station at infinity alone, the
+ *   schema default, is dropped whole;
  * - a finite conjugate's coordinates are snapped to the station they name within the validator's tolerance;
  * - -0 becomes 0.
  *
@@ -901,7 +921,9 @@ export function normalizeAuthoredData(prescription: object, flatRadiusThreshold:
 
   const stationCount = Array.isArray(data.zoomPositions) ? data.zoomPositions.length : 1;
   if (isRecord(data.publishedStations)) {
-    data.publishedStations = normalizePublishedStations(data.publishedStations, stationCount);
+    const declared = normalizePublishedStations(data.publishedStations, stationCount);
+    if (declared === undefined) delete data.publishedStations;
+    else data.publishedStations = declared;
   }
   if (Array.isArray(data.finiteConjugates)) {
     const keyframes = Array.isArray(data.focusPositions) ? (data.focusPositions as number[]) : [0, 1];

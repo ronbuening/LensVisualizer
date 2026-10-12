@@ -2137,6 +2137,21 @@ describe("engineDiff semantic fingerprint", () => {
       }),
       (lens) => delete lens.publishedStations!.zoom,
     ],
+    /* The schema default, every zoom station at infinity alone, in both spellings V1 validation accepts. */
+    [
+      "a declaration of every zoom station at infinity alone left out",
+      firstLens((lens) => {
+        const { zoom, focus } = lens.publishedStations ?? {};
+        const every = lens.zoomPositions?.map((_, station) => station);
+        return focus === undefined && every !== undefined && JSON.stringify(zoom) === JSON.stringify(every);
+      }),
+      (lens) => delete lens.publishedStations,
+    ],
+    [
+      "a missing publishedStations written as every zoom station",
+      firstLens((lens) => (lens.zoomPositions?.length ?? 0) >= 2 && lens.publishedStations === undefined),
+      (lens) => (lens.publishedStations = { zoom: lens.zoomPositions!.map((_, station) => station) }),
+    ],
     [
       "one publishedStations.focus list written per zoom station",
       firstLens((lens) => {
@@ -2168,6 +2183,33 @@ describe("engineDiff semantic fingerprint", () => {
   it.each(respellings)("keeps every Tier P record of a lens with %s", (_name, key, respell) => {
     const { before, after } = captureRespelled(key, [key], respell);
     expect(recordDigests(after)).toEqual(recordDigests(before));
+  });
+
+  it("gives the published-station spellings V1 validation refuses the fingerprint and echo of their valid twin", () => {
+    /* An empty zoom or focus list fails `validateLensData`, so `buildLens` gives no record to capture for one. The
+     * engine's `publishedStationGrid` still reads each as its valid twin, and so do the fingerprint and the echo. */
+    const respelled = (key: string, declare: (lens: LensData) => LensData["publishedStations"]) => {
+      const authored = decodeValue(CATALOG.lenses.find((entry) => entry.key === key)!.prescription) as LensData;
+      const lens = structuredClone(authored);
+      lens.publishedStations = declare(lens);
+      expect(fingerprint(lens), `${key}: ${JSON.stringify(lens.publishedStations)}`).toBe(fingerprint(authored));
+      expect(normalizeAuthoredData(lens, seam.flatRadiusThreshold)).toEqual(
+        normalizeAuthoredData(authored, seam.flatRadiusThreshold),
+      );
+    };
+    const undeclaredZoom = firstLens((lens) => (lens.zoomPositions?.length ?? 0) >= 2 && !lens.publishedStations);
+    respelled(undeclaredZoom, () => ({ zoom: [] }));
+    respelled(undeclaredZoom, () => ({ focus: [] }));
+    respelled(undeclaredZoom, (lens) => ({ focus: lens.zoomPositions!.map(() => []) }));
+    respelled(
+      firstLens((lens) => lens.zoomPositions === undefined && !lens.publishedStations),
+      () => ({ focus: [] }),
+    );
+    const everyWithRows = firstLens((lens) => {
+      const { zoom, focus } = lens.publishedStations ?? {};
+      return zoom !== undefined && focus !== undefined && zoom.length === lens.zoomPositions?.length;
+    });
+    respelled(everyWithRows, (lens) => ({ ...lens.publishedStations, zoom: [] }));
   });
 
   it("keeps the composition record of a pair whose host leaves its element defaults out", () => {

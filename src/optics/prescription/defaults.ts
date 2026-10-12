@@ -35,6 +35,11 @@ export interface SchemaDefault {
    * `data.zoomStep || 0.004`, so any falsy authored step is the default too.
    */
   readonly authoredIsDefault?: (authored: unknown) => boolean;
+  /**
+   * Set on a default that fills several canonical members: `value` is then the V1 declaration the default stands
+   * for, which ingest reads as it reads an authored one, and `path` names that declaration in provenance.
+   */
+  readonly spread?: true;
 }
 
 const BUILD_LENS = "src/optics/runtimeLens.ts buildLens";
@@ -77,6 +82,17 @@ export const LENS_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     value: 0.004,
     v1Applied: "catalog",
     reader: `${BUILD_LENS}: data.focusStep`,
+  },
+  {
+    /* Spread over `zoom.stations[i].published` and `.publishedFocus`, or `focus.published` on a prime. */
+    path: "publishedStations",
+    v1Field: "publishedStations",
+    value: { focus: [] },
+    v1Applied: "engine",
+    reader:
+      "src/optics/publishedStations.ts publishedStationGrid: every zoom station where publishedStations or its zoom " +
+      "list is absent or empty, at infinity focus alone where it declares no focus keyframe",
+    spread: true,
   },
   {
     path: "aperture.maxFNumber",
@@ -199,13 +215,13 @@ export function takesDefault(row: SchemaDefault, authored: unknown): boolean {
 }
 
 /**
- * A fresh copy of a row's value, so no prescription shares an array with the table or with another prescription.
+ * A fresh copy of a row's value, so no prescription shares an object with the table or with another prescription.
  *
  * @param row - the schema default
- * @returns the value, with arrays copied
+ * @returns the value, with an array or object copied
  */
 export function defaultValue(row: SchemaDefault): unknown {
-  return Array.isArray(row.value) ? [...row.value] : row.value;
+  return row.value !== null && typeof row.value === "object" ? structuredClone(row.value) : row.value;
 }
 
 /**

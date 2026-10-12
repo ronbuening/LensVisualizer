@@ -34,6 +34,7 @@ import {
   type CanonicalSurface,
   type CanonicalTeleconverter,
   type IngestedPrescription,
+  type V1PublishedStationsSpelling,
 } from "./canonical.js";
 import {
   ELEMENT_SCHEMA_DEFAULTS,
@@ -209,28 +210,41 @@ function stationsList<Value>(values: readonly (Value | undefined)[]): Value[] | 
   return values.every((value) => value !== undefined) ? (values as Value[]) : undefined;
 }
 
+function sameIndices(a: readonly number[], b: readonly number[]): boolean {
+  return a.length === b.length && a.every((value, at) => value === b[at]);
+}
+
+/**
+ * The one V1 spelling of published stations given no provenance: no object where they hold the default, a `zoom` list
+ * only where it leaves a station out, and one `focus` list where every published station shares it.
+ */
+function plainPublishedSpelling(
+  published: readonly boolean[],
+  lists: readonly number[][],
+): V1PublishedStationsSpelling | undefined {
+  const every = published.every(Boolean);
+  if (every && lists.every((list) => list.length === 0)) return undefined;
+  const shared = lists[published.indexOf(true)] ?? [];
+  const one = lists.every((list, station) => sameIndices(list, published[station] ? shared : []));
+  return {
+    zoom: every ? "omitted" : "listed",
+    focus: lists.every((list) => list.length === 0) ? "omitted" : one ? "one" : "perStation",
+  };
+}
+
 function publishedStationsView(lens: CanonicalLens, view: ViewContext): PublishedStations | undefined {
-  if (!lens.zoom) return lens.focus.published ? { focus: [...lens.focus.published] } : undefined;
-  const { stations } = lens.zoom;
-  if (stations[0].published === undefined) return undefined;
-  const published = stations.flatMap((station, index) => (station.published ? [index] : []));
-  const lists = stations.map((station) => station.publishedFocus ?? []);
-  const hasFocus = lists.some((list) => list.length > 0);
-  const shared = published.length > 0 ? lists[published[0]] : [];
-  const flat =
-    shared.length > 0 &&
-    stations.every((station, index) => {
-      const expected = station.published ? shared : [];
-      return lists[index].length === expected.length && lists[index].every((value, at) => value === expected[at]);
-    });
+  if (view.provenance.defaulted.includes(lensRow("publishedStations").path)) return undefined;
+  const stations = lens.zoom?.stations;
+  const published = stations ? stations.map((station) => station.published) : [true];
+  const lists = stations ? stations.map((station) => station.publishedFocus) : [lens.focus.published ?? []];
+  const spelling = view.provenance.v1.publishedStations ?? plainPublishedSpelling(published, lists);
+  if (!spelling) return undefined;
+
   const out: PublishedStations = {};
-  /* An object must say something, so a declaration of every station with no focus rows lists the stations. */
-  if (published.length < stations.length || view.provenance.v1.publishedZoomListed || !hasFocus) {
-    out.zoom = published;
-  }
-  if (hasFocus) {
-    out.focus = flat && !view.provenance.v1.publishedFocusPerZoom ? [...shared] : lists.map((list) => [...list]);
-  }
+  if (spelling.zoom === "empty") out.zoom = [];
+  else if (spelling.zoom === "listed") out.zoom = published.flatMap((flag, station) => (flag ? [station] : []));
+  if (spelling.focus === "one") out.focus = [...(lists[published.indexOf(true)] ?? [])];
+  else if (spelling.focus === "perStation") out.focus = lists.map((list) => [...list]);
   return out;
 }
 
