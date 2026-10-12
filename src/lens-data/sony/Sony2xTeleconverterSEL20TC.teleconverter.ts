@@ -9,8 +9,9 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  * Geometry: the patent's master lens (Table 1, with the Table 2 wide and tele infinity
  * states) has a back focus in air of 24.9600 + 2.5/1.5168 + 1.0 = 27.6082 mm. Subtracting
  * the printed master-to-converter gap of 1.6082 mm gives masterImageDistanceMm = 26.0000 mm.
- * The last d is the patent's air-equivalent back focus, 12.9482 mm. No rear plate is listed
- * here: the composer keeps the host's camera plate once.
+ * The last d is the D that Table 7 prints for surface 55, 12.9482 mm, the back focus in air
+ * (Table 8: 12.95). Table 7 has no plate rows, so no rear plate is listed here; the composer
+ * keeps the host's camera plate once.
  *
  * R, d, nd, vd, K and A4-A8 are the patent's values, unscaled. Paragraph [0090] prints
  * c²·y² in the sag numerator; it is read as c·y², the standard form with c = 1/R. Read
@@ -21,12 +22,18 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  * Two printed summary values are not reproduced: the total length 242.97 mm (the tables sum
  * to 242.9845 mm) and the rows headed 2ω, which hold half angles. Nothing was fitted to them.
  *
- * Semi-diameters are inferred from Figure 4; the patent publishes no clear apertures. The
- * figure scales to about 8.7 / 10 / 12 / 16 / 18.5 mm for the five groups; the triplet and
- * doublet were reduced to 9.4 and 11.2 mm to keep the edges of L3 and L5 positive. On the
+ * Semi-diameters are inferred from Figure 4; the patent publishes no clear apertures. Read at
+ * 0.107 mm per pixel (the 13 vertices match Table 7 to about 0.2 mm), the figure draws L1 at
+ * 8.7 mm, L2 at 9.4, L3 at 9.3, L4 at 10.1, L5 to a knife edge at 11.2, L6 at 11.9, L7 at
+ * 15.8 and L8 at 18.4; the values follow it. L4 and L6 stand 0.7 mm proud of their cemented
+ * partners, and L3 and L5 close up at 9.8 and 11.4 mm, so the junctions stay at 9.4 and
+ * 11.2 mm and only the rear faces of L4 and L6 carry the drawn 10.1 and 11.9 mm; the renderer
+ * joins the two heights with a straight rim. L7 is drawn curved to about 14 mm in front with
+ * a flat land beyond; it keeps 16 mm on both faces, square-cut as drawn. On the
  * patent's F2.88 master the axial beam and the chief ray to the 21.63 mm image height clear
- * every rim at both zoom ends. At the image corner the converter rims pass about 70 % of the
- * pupil's meridional width; that vignetting is kept rather than removed by enlarging the rims.
+ * every rim at both zoom ends. At the image corner the converter rims pass 64 to 76 % of the
+ * pupil's meridional width on the declared F2.8 hosts, L1 being the limiting rim; that
+ * vignetting is kept rather than removed by enlarging the rims.
  * minHostFno is the F2.8 class of the patent's master; faster hosts are not covered, and a
  * host must declare acceptsTeleconverters (the converter is not universal).
  * Glass labels name coordinate-compatible catalog glasses, which supply the
@@ -209,7 +216,7 @@ const TELECONVERTER_DATA = {
       "d": 0.44,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 9.4
+      "sd": 10.1
     },
     {
       "label": "7",
@@ -233,7 +240,7 @@ const TELECONVERTER_DATA = {
       "d": 6.3136,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 11.2
+      "sd": 11.9
     },
     {
       "label": "10",

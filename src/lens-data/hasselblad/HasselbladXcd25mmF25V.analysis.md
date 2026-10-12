@@ -54,79 +54,79 @@ The focal lengths below are standalone, thick-element values in air, recomputed 
 
 ### L1 — Negative Meniscus
 
-nd = 1.72916, νd = 54.7. Glass: TAC8 / S-LAL18 / K-LaK18 coordinate class. f = -43.418 mm.
+nd = 1.72916, νd = 54.7. Glass: TAC8 (HOYA; coordinate equivalent; supplier unconfirmed). f = -43.418 mm.
 
 The front surface is convex toward the object, but the stronger image-side curvature makes the isolated lens negative. It starts the negative G1a subgroup. The patent's front-group rationale concerns the ray-height and incidence burden on this first lens; the sign alone does not quantify its distortion or chromatic contribution. [P, Fig. 2A; ¶¶0199–0200]
 
 ### L2 — Negative Meniscus (2× Asph)
 
-nd = 1.51633, νd = 64.1. Glass: S-BSL7 / L-BSL7 / K-BK7 coordinate class. f = -116.878 mm.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA; coordinate equivalent; supplier unconfirmed). f = -116.878 mm.
 
 Both boundaries, 3A and 4A, are aspheric. The element remains negative in the vertex-based first-order calculation. Its full profiles therefore provide degrees of freedom beyond the negative paraxial contribution; the high-order terms must be evaluated together rather than assigning a correction from A4 alone. [P, Table 2B]
 
 ### L3 — Biconcave Negative
 
-nd = 1.49700, νd = 81.6. Glass: FCD1 / N-PK52A / H-FK61 coordinate class. f = -65.174 mm.
+nd = 1.49700, νd = 81.6. Glass: FCD1 (HOYA; coordinate equivalent; supplier unconfirmed). f = -65.174 mm.
 
 This high-Abbe negative lens begins bonded group D1. Its νd satisfies the patent's G1a negative-lens dispersion condition, including the stricter preferred lower limits. The patent associates that condition with chromatic aberration of magnification; that motivation is not a proof of the realized residual. [P, ¶¶0226–0230]
 
 ### L4 — Positive Meniscus
 
-nd = 1.80518, νd = 25.5. Glass: FD60 / SF6 coordinate class. f = +63.789 mm.
+nd = 1.80518, νd = 25.5. Glass: FD60 (HOYA; coordinate equivalent; supplier unconfirmed). f = +63.789 mm.
 
 The much more dispersive positive meniscus completes D1 through the explicitly retained bonding medium. Although L3 and L4 have substantial isolated powers of opposite sign, the assembled D1 focal length is +3000.977319 mm. This nearly cancelling net power is obtained by tracing all four boundaries and the finite bond, not by adding the isolated focal lengths. D1 remains part of a negative G1a. [P, Tables 2A and 2D]
 
 ### L5 — Negative Meniscus
 
-nd = 1.92286, νd = 20.9. Glass: E-FDS1 / N-SF66 / H-ZF62 coordinate class. f = -49.258 mm.
+nd = 1.92286, νd = 20.9. Glass: E-FDS1 (HOYA; coordinate equivalent; supplier unconfirmed). f = -49.258 mm.
 
 This negative meniscus begins the positive G1b subgroup. Its high index and low Abbe number contrast with the subsequent positive components. Such a contrast supplies a chromatic balancing opportunity, but no individual chromatic or Seidel coefficient is inferred from that contrast alone. [P, Tables 2A and 2D]
 
 ### L6 — Biconvex Positive (2× Asph)
 
-nd = 1.81055, νd = 41.1. Glass: K-VC181 coordinate class. f = +38.380 mm.
+nd = 1.81055, νd = 41.1. Glass: K-VC181 (SUMITA; coordinate equivalent; supplier unconfirmed). f = +38.380 mm.
 
 Both surfaces, 11A and 12A, are aspheric. The element is positive and lies between the negative L5 and negative L7. The modeled clear aperture is limited before the rear asphere's slope reversal; this is an aperture-domain choice, not an alteration of its native polynomial. [P, Table 2B; modeled aperture evaluation]
 
 ### L7 — Negative Meniscus
 
-nd = 1.80610, νd = 33.3. Glass: NBFD15 / H-ZLAF56B / J-LASFH6 coordinate class. f = -53.413 mm.
+nd = 1.80610, νd = 33.3. Glass: NBFD15 (HOYA; coordinate equivalent; supplier unconfirmed). f = -53.413 mm.
 
 L7 is the negative, relatively dispersive member of D2. Its rear boundary is followed by the explicit bond and then L8, so its quoted isolated-in-air power should not be substituted for its actual interface powers in D2. [P, Table 2A]
 
 ### L8 — Biconvex Positive
 
-nd = 1.55032, νd = 75.5. Glass: FCD705 coordinate class. f = +22.853 mm.
+nd = 1.55032, νd = 75.5. Glass: FCD705 (HOYA; coordinate equivalent; supplier unconfirmed). f = +22.853 mm.
 
 This high-Abbe positive lens completes D2 and ends G1b immediately before the stop. The assembled D2 focal length is +37.791563 mm. Its dispersion satisfies the patent's G1b positive-lens condition, which the patent connects with axial chromatic correction. [P, ¶¶0231–0235]
 
 ### L9 — Biconvex Positive
 
-nd = 1.98612, νd = 16.5. Glass: FDS16-W coordinate class. f = +52.488 mm.
+nd = 1.98612, νd = 16.5. Glass: FDS16-W (HOYA; coordinate equivalent; supplier unconfirmed). f = +52.488 mm.
 
 L9 is the positive component of the moving G2 pair. Its unusually high native index satisfies the condition nLp > 1.8, as well as the more restrictive preferred bounds. The patent's stated reason for this index condition is to avoid requiring excessive curvature and size in the positive focusing lens. [P, ¶¶0207–0211]
 
 ### L10 — Biconcave Negative (2× Asph)
 
-nd = 1.68948, νd = 31.0. Glass: L-TIM28 coordinate class. f = -30.696 mm.
+nd = 1.68948, νd = 31.0. Glass: L-TIM28 (OHARA; coordinate equivalent; supplier unconfirmed). f = -30.696 mm.
 
 Both boundaries, 20A and 21A, are aspheric. L10 is negative in isolation and makes the two-lens focus group negative overall. L9 and L10 move together with their internal air separation fixed. The native L-TIM28 coordinate must not be silently replaced by the distinct S-TIM28 coordinate. [P, Fig. 2A, Tables 2A–2C; C1]
 
 ### L11 — Biconvex Positive
 
-nd = 1.59410, νd = 60.5. Glass: FCD600 coordinate class. f = +37.965 mm.
+nd = 1.59410, νd = 60.5. Glass: FCD600 (HOYA; coordinate equivalent; supplier unconfirmed). f = +37.965 mm.
 
 The positive biconvex lens starts fixed G3. It is marked ED in the manufacturer's optical schematic, but the corresponding patent Abbe number is below those of L3 and L8. The marking is retained as a product correlation observation, not a claim that a single Abbe cutoff defines all ED glass. [P, Table 2A; M1]
 
 ### L12 — Biconcave Negative
 
-nd = 1.85451, νd = 25.2. Glass: NBFD25 coordinate class. f = -24.174 mm.
+nd = 1.85451, νd = 25.2. Glass: NBFD25 (HOYA; coordinate equivalent; supplier unconfirmed). f = -24.174 mm.
 
 L12 is the last negative lens and the negative member of D3. Together with L13, its standalone focal-length ratio is the quantity used by patent condition (3). The patent discusses this ratio in relation to chromatic aberration of magnification, coma and sagittal coma flare; those are system-level design motivations. [P, ¶¶0212–0217]
 
 ### L13 — Biconvex Positive (1× Asph)
 
-nd = 1.51633, νd = 64.1. Glass: S-BSL7 / L-BSL7 / K-BK7 coordinate class. f = +44.514 mm.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA; coordinate equivalent; supplier unconfirmed). f = +44.514 mm.
 
 The final positive lens has an aspheric image-side surface, 27A. D3, including its finite bonding layer, is negative overall with focal length -60.805309 mm, whereas the complete G3 including L11 is positive. The distinction shows why the last doublet, the individual lenses and the full rear group must not be assigned the same power description. [P, Tables 2A–2D]
 
@@ -136,7 +136,7 @@ The three bonding media each retain nd = 1.56732 and νd = 42.8 over 0.01000 mm 
 
 The patent publishes d-line index and Abbe coordinates, not supplier or melt names. Official OHARA, HOYA, SCHOTT, HIKARI, CDGM and SUMITA catalogs were compared at the printed precision. Several suppliers share coordinates, and a rounded match does not determine an original manufacturer. [C1–C6]
 
-The explicit nC, nF and ng values in the data are calculated from the following coordinate-compatible catalog reference models. Native nd and νd remain unchanged. These reference spectra make the chromatic model reproducible, but they are not measurements of the patent glasses.
+Each lens is labelled with one coordinate-compatible catalog glass, the reference in the last column below, and the model takes that glass's catalog dispersion curve. Native nd and νd remain unchanged. These reference curves make the chromatic model reproducible, but they are not measurements of the patent glasses.
 
 | Location | Native nd | Native νd | Coordinate class / disposition | Selected reference spectrum |
 |---|---:|---:|---|---|
@@ -155,11 +155,11 @@ The explicit nC, nF and ng values in the data are calculated from the following 
 | L12 | 1.85451 | 25.2 | NBFD25 coordinate class | HOYA:NBFD25 |
 | rear cover plate | 1.51680 | 64.2 | BSC7 / H-K9L / N-BK7 coordinate class | HOYA:BSC7 |
 
-The cover plate's class remains separate from the similar L2/L13 crown coordinate. The plate uses its source nd and νd and a compatible runtime catalog class; the 13 lenses use explicit line-index proxies. The bonds use the lower-information Abbe approximation.
+The cover plate's class remains separate from the similar L2/L13 crown coordinate. The plate uses its source nd and νd and a compatible runtime catalog class; the 13 lenses use the catalog dispersion curves of their reference glasses. The bonds use the lower-information Abbe approximation.
 
 OHARA S- and L-prefix products are not interchangeable. In particular, the source's L-TIM28-like coordinate is materially different from S-TIM28. For L3, HOYA FCD1 is a selected reference; the current precise S-FPL51 Abbe value falls outside the source's rounded νd = 81.6 cell and is not silently substituted. For L12, the NBFD25 reference is checked through its coefficient-derived dispersion rather than relying only on an ambiguous rounded catalog boundary.
 
-No apochromatic-performance claim is made. Coordinate matching and reference line indices do not establish the source's true secondary spectrum, melt variation or production performance. The refractive-index and dispersion contrasts are consistent with the patent's stated chromatic design conditions, but the realized correction requires a validated spectral ray calculation with appropriate source data.
+No apochromatic-performance claim is made. Coordinate matching and catalog reference curves do not establish the source's true secondary spectrum, melt variation or production performance. The refractive-index and dispersion contrasts are consistent with the patent's stated chromatic design conditions, but the realized correction requires a validated spectral ray calculation with appropriate source data.
 
 ## Focus Mechanism
 

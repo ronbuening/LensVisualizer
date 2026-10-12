@@ -394,8 +394,11 @@ would introduce a different, unphysical reference-plane error.
 
 All converter clear radii are inferred semi-diameters. In front-to-rear surface order they are 13.6, 13.6, 14.2,
 14.2, 14.4, 14.4, 16.0, 17.8, 17.8, 19.0, 19.0 mm. They follow the source schematic subject to exact ray and
-solid-geometry checks, rather than being dimensions measured from the drawing. Source-master clear radii are
-also inferred; its field vignetting is part of the reference model.
+solid-geometry checks. Measured on Figure 7 at 0.0970 mm per pixel, the drawn rims of L1 to L6 stand at 13.0,
+13.9, 14.6, 16.1, 17.9 and 19.4 mm, so every stored radius lies within 5% of the drawing; the figure is a
+schematic section and prints no clear aperture. It draws L2 and L5 with square-cut rims and ends their concave
+front surfaces at flat annuli, near 12.4 and 15.0 mm; the modeled outlines carry those two curves to the rim
+instead. Source-master clear radii are also inferred; its field vignetting is part of the reference model.
 
 At these rims, the minimum sampled element thickness is 0.534886 mm, the maximum actual surface slope is
 50.727076°, and the maximum shared-band gap-sag intrusion fraction is 0.262378. Conic domains remain real and no
@@ -416,10 +419,13 @@ rays additionally pass 315,270 sampled in-glass segment tests. These tests addre
 solid containment, not toleranced mechanical compatibility with an arbitrary production lens.
 
 The f/2.8 lower host-f-number bound is supported within the disclosed source-reference scope. It is not a
-production-host benchmark, and it does not authorize universal attachment or create a catalog-host compatibility
-flag. Only the explicitly paired source fixtures were composed. An actual production host still requires its own
-compatible geometry and supported declaration. The converter’s lack of an internal stop makes that distinction
-particularly important.
+production-host benchmark, and it does not authorize universal attachment. Beyond the source fixtures, four
+catalog hosts on Sony’s accessory compatibility list declare this converter: FE 70-200mm F2.8 GM OSS, FE 70-200mm
+F2.8 GM OSS II, FE 400mm F2.8 GM OSS and FE 400-800mm F6.3-8 G OSS. Composed with their catalog prescriptions they
+give 101.0 / 165.1 / 271.5 mm at f/4.03, 100.8 / 169.0 / 271.3 mm at f/4.03, 543.7 mm at f/4.08 and 559.3 / 776.3 /
+1081.0 mm at f/8.95 / 10.23 / 11.48; on each the stop radius is unchanged and the axial beam and the corner chief
+ray clear at every zoom station. Any other production host still requires its own compatible geometry and
+supported declaration. The converter’s lack of an internal stop makes that distinction particularly important.
 
 Finally, aperture admission is not image-quality validation. The native monochromatic calculations retain
 longitudinal and first-order residuals at the prescribed plane, while the uncertain spectral surrogates prevent

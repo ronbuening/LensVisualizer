@@ -485,3 +485,49 @@ Closed the same day: L6 is labelled S-BSL7 (1.51633 / 64.14). Its νd is 0.06 be
 Open: the L8 label is the smallest-residual coordinate equivalent; HIKARI J-LASF03 (νd 40.97) also fits and OHARA S-LAH53 (40.93) does not.
 
 Open: whether the production lens moves its stop with the focus group is not established; the model follows the patent table's fixed stop.
+
+## 2026-10-12 — Semi-diameter pass against the patent figure
+
+Source and figure. `patents/JPH05157964A.pdf`, page 5, Fig. 1 (the lens section of Numerical Example 1, the example this file models), with the front-page copy of the same drawing on page 1 as a second, independently scanned reading. Both are 200 ppi bilevel rasters and were measured on 400 dpi renders. The drawing shows the infinity state only. Its axis runs horizontally and is tilted about 0.5° on both scans, so every height below is half the distance between an element's upper and lower rim lines, taken at the line centres.
+
+Scale. Vertex crossings were read in a strip 20–40 px off the axis. On page 5, R1 sits at x = 476.5 px and R17 at 1371.5 px: 895 px for the 73.52 mm vertex track, 12.17 px/mm. The spans R1–R8, R8–R13 and R13–R17 give 12.25, 12.26 and 11.95 px/mm, and 12.2 px/mm (0.082 mm/px) was used. On page 1, R1 sits at 1865.5 px and R17 at 2784.5 px: 919 px, 12.50 px/mm, with the same three spans at 12.59, 12.57 and 12.30; 12.5 px/mm (0.080 mm/px) was used. Every drawn vertex lies within about 3 px of the prescription. The vertical scale was checked on two arcs: 57 px behind its vertex the R8 arc has a half-chord of 183.5 px against 183.4 px for R = 26.41 mm, and 28.5 px behind its vertex the R14 arc reads 168.2 px against 168.2 px for R = 41.85 mm. The stop ticks end 14.8 and 14.9 mm from the axis, against the model's 14.995 mm. Fig. 1 is therefore a scaled drawing, not a schematic; its line weight is 5–6 px (about 0.45 mm), and the two scans agree to 0.13 mm or better on every element, so a reading is good to about ±0.2 mm. This supersedes the earlier statements in this log that the figure is qualitative and gives no dimensions.
+
+Before and after. Heights in mm; "figure" is page 5 / page 1.
+
+| Surfaces | Before | Figure | Figure ÷ before | After | Evidence |
+|---|---:|---:|---:|---:|---|
+| R1, R2 (L1) | 25.5 | 26.84 / 26.86 | 1.053 | 26.9 | Figure height; restores the drawn step above L2 |
+| R3, R4 (L2) | 24.8 | 24.02 / 24.12 | 0.971 | 24.1 | Figure height |
+| R5, R6 (L3) | 22.4 | 21.25 / 21.20 | 0.948 | 21.2 | Figure height, supported by the drawn edge thickness; axial-ray floor 20.728 |
+| R7 (L4 front) | 20.4 | 20.27 / 20.28 | 0.994 | 20.4 | Retained; this is the height of the drawn L4 cylinder |
+| R8 (L4 rear) | 19.6 | 16.11 / 15.98 | 0.819 | 16.1 | Figure: the concave arc ends here and a flat annulus continues to the cylinder; axial-ray floor 16.002 |
+| R10 (L5 front) | 15.0 | 14.65 / 14.64 | 0.977 | 15.0 | Retained |
+| R11, R12 (L5–L6 junction, L6 rear) | 15.5 | 14.65 / 14.64 | 0.945 | 15.0 | Figure draws the doublet square-cut; brought to R10's height |
+| R13 (L7 front) | 15.0 | 15.04 / 14.98 | 1.001 | 15.0 | Retained |
+| R14, R15 (L7–L8 junction, L8 rear) | 17 | 17.62 / 17.62 | 1.036 | 17 | Retained |
+| R16, R17 (L9) | 17.5 | 19.02 / 19.04 | 1.087 | 19.0 | Figure height, supported by the drawn edge thickness |
+
+Reasons for the changes.
+
+- L1, L2 and L3. Each stored height was within 6 % of the figure, but the errors ran in opposite directions and flattened the drawn profile: the figure steps down 2.8 mm from L1 to L2, 2.85 mm from L2 to L3 and 0.9 mm from L3 to the L4 cylinder, where the stored values gave 0.7, 2.4 and 2.0 mm. Because the two scans agree to 0.13 mm, those differences are real, and the three elements take the figure's heights; the steps are now 2.8, 2.9 and 0.8 mm. All three stay square-cut. Edge thickness goes from 1.88 to 1.59 mm on L1, 1.54 to 1.72 mm on L2 and 0.81 to 1.71 mm on L3, whose drawn edge is about 1.5 mm. No value had to be moved off the figure reading: the surface audit accepts the set with the default gap limit, and the tightest ray margin is L3's 0.47 mm over the axial ray on R5.
+- R8. The figure ends L4's concave face 16.0–16.1 mm from the axis, which is the height the f/1.8 marginal ray reaches there (16.002 mm), and continues the element as a flat annulus out to the 20.3 mm cylinder. The stored 19.6 mm carried the curve 3.5 mm higher and brought the rim to 0.11 mm from the stop plane; the figure leaves about 3.0 mm between the L4 rim and the stop, and the model now leaves 3.35 mm. R7 keeps 20.4 mm because the figure draws the front face to the full cylinder height. The model cannot draw the annulus: it joins the R7 rim (20.4 mm, 18.46 mm behind R1) to the R8 rim (16.1 mm, 26.38 mm behind R1) with a straight edge.
+- R11 and R12. The figure draws the moving doublet with one rim height on all three surfaces. The stored values stepped L5 from 15.0 to 15.5 mm so that no ray first met a rim at the cemented interface; that step is not in the drawing. Both surfaces drop 0.5 mm to R10's value, which is also nearer the figure's 14.65 mm. This supersedes the earlier sections that describe the 15.0 / 15.5 mm step.
+- R16 and R17. L9 is drawn 19.0 mm high on both scans, 1.4 mm above L8, with a flat edge about 12 px (1.0 mm) wide. At 17.5 mm the model's edge was 2.01 mm thick and L9 stood 0.5 mm above L8; at 19.0 mm the edge is 1.40 mm. The departure (8.7 %) is the smallest that was acted on, and the edge thickness is what decided it.
+
+Values retained. R7, R10, R13 and L8 are within 4 % of the figure and were left alone. The R13/R14 step (15.0 / 17) stays: the figure draws L7 square-cut at 15.0 mm with L8 stepping out to 17.6 mm at the junction, the shared surface can carry only one height, and giving it L8's keeps the larger element square.
+
+Clearance, as traced on the edited file. At infinity the f/1.8 axial marginal ray (entrance-pupil radius 23.610 mm, stop height 14.995 mm) reaches 23.611, 23.497, 22.882, 22.426, 20.728, 19.786, 19.739 and 16.002 mm on R1–R8 and 14.233, 14.097, 13.128, 12.372, 12.258, 11.948, 11.845 and 11.395 mm on R10–R17; every rim is above it, the tightest being R8 with 0.098 mm, and the front group clears it by 3.29 mm on R1, 1.22 mm on R3 and 0.47 mm on R5. At 0.85 m (object 737.57 mm ahead of R1, ray through the stop edge) the axial heights are lower on every surface: 15.856 mm on R8 and 11.552 mm on R10. The chief ray to a 21.6 mm image height is at 14.45° at infinity (the patent's 14.3° lands at 21.38 mm) and comes from a 166.3 mm object height at 0.85 m; its largest heights are 16.04 mm on R17, 14.66 mm on R15 and 10.96 mm on R13 at infinity and 13.90, 12.58 and 8.81 mm at 0.85 m, so no rim blocks it. The repo's surface audit reports no errors with the default gap limit, the image-circle audit reports none undersized, field coverage is 100 % (14.5° reaches 21.65 mm), and the aperture census finds no rim below the stated on-axis ray.
+
+Vignetting and field. The share of the stop diameter that the meridional fan fills at 21.6 mm image height goes from 37.6 % to 44.6 % at infinity and from 57.8 % to 65.3 % at 0.85 m. L9 accounts for the rise to 41.8 % and 63.3 %, moving the upper edge from R17 to R15; the front group accounts for the rest, the taller L1 passing more of the lower fan until the smaller L2 (R3) stops it where R1 did before. At 18 mm the share goes from 56.6 % to 61.2 % at infinity and from 75.2 % to 79.6 % at 0.85 m, and at 12 mm from 82.4 % to 83.4 % and from 97.0 % to 97.3 %. The smaller L3 costs 0.3 % at 6 mm at infinity (98.8 % to 98.5 %, R5 the lower limit). The R11/R12 and R8 edits change the fan by 0.3 % or less at every image height tried (3 to 21.6 mm, both focus states). The engine's half-field estimate rises from 15.18° to 15.92°, with R15 now the first limit at 18.0° where R17 was at 17.4°. Focal length (84.9977 mm), the stop radius (14.995052 mm) and the f/1.8 opening are unchanged. The L4 rim now stands 3.35 mm ahead of the stop (0.11 mm before), and at 0.85 m the R12 rim is 1.86 mm ahead of R13 (1.63 mm before).
+
+Render check. The local page was captured at infinity and 0.85 m before the edit and at infinity, mid travel and 0.85 m after it, and compared with Fig. 1. The front group now steps down from L1 through L2 to L3 as drawn, with L3 showing a flat edge just above the L4 cylinder; the L4 horns that reached the stop are gone, G2 is a square-cut doublet, and L9 stands above L8 as drawn. All three on-axis rays per side still pass at both ends of the focus travel.
+
+Maker diagram. No manufacturer image was viewed in this pass. The deployment section above records that Canon's construction diagram shows four singlets, the stop, a cemented doublet, a thick cemented doublet and a biconvex rear element, with 9 elements in 7 groups, which is the count and grouping of Fig. 1; it records no aspherical or special-glass element.
+
+Analysis. The semi-diameter paragraph in the limitations section was rewritten to describe the figure-based values. No aspherical surface exists, so no departure figures were affected.
+
+Open limitations.
+
+- L4 is drawn with a straight bevel between unequal rims where the figure has a cylinder and a flat annulus.
+- L7 is drawn tapering up to L8's height where the figure has a square plate and a step.
+- The patent has no close-focus panel, so the 0.85 m state was checked for clearance only.

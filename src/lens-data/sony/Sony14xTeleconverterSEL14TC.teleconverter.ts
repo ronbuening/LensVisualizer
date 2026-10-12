@@ -24,9 +24,15 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  * the air-equivalent total is 232.3765 mm), and its row labelled 2ω holds half angles. No value in this
  * file is adjusted to match either.
  *
- * SEMI-DIAMETERS: the patent publishes no clear apertures. The rims are inferred from Figure 7 and were
- * checked by ray tracing and edge geometry on the patent's own master lens, not on a catalog host.
- * No gap-sag or rim-slope override is used.
+ * SEMI-DIAMETERS: the patent publishes no clear apertures. The rims are estimated from Figure 7, which
+ * measures 0.0970 mm per pixel at 300 dpi and draws L1 to L6 at 13.0, 13.9, 14.6, 16.1, 17.9 and 19.4 mm;
+ * every stored rim is within 5% of its drawn height. L3 stops at 14.4 mm, short of its 14.75 mm knife edge,
+ * and L4's rear face runs on to 16 mm. Figure 7 draws L2 and L5 square-cut and ends their concave fronts at
+ * flat annuli (curves end near 12.4 and 15.0 mm). The renderer has no flat annulus, so both faces of each
+ * keep the drawn rim height and their front edges stand 0.8 and 1.4 mm ahead of the drawn annulus planes.
+ * The rims were checked by ray tracing and edge geometry on the patent's own master lens and on the four
+ * declared catalog hosts: an f/2.8 axial cone needs at most 4.7 mm (surface 1) and the corner chief ray
+ * reaches at most 17.4 mm at surface 11. No gap-sag or rim-slope override is used.
  *
  * GLASS: nd/vd are patent values. Labels name coordinate-equal catalog glasses, which supply the
  * dispersion curve; they are not identified production melts. L1 and L3 have spectrally different alternatives.

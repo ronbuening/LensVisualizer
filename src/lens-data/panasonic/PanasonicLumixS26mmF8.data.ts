@@ -13,6 +13,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * Table 4A's "effective diameter" is a radial ray height (paragraph 0170), so its values are
  * used as sd without halving. They are the patent's ray envelopes, not measured mechanical
  * apertures. P has no printed rim and none is given here.
+ * NOTE ON SEMI-DIAMETERS: the stop and seven faces (surfaces 3, 4, 5, 7, 8, 9 and 11) carry
+ * the printed Table 4A radii. Surfaces 2, 6 and 10 (printed 2.001, 5.250 and 10.031) are
+ * raised to the printed radius of their partner face (2.595, 5.813 and 10.798) because
+ * Fig. 4A draws L1, L3 and L5 as square-cut blocks. The printed values are ray heights, so
+ * the raise changes no traced ray at either focus state. Fig. 4A (infinity panel, 26.52 px/mm)
+ * draws each element's edge 0.3-0.5 mm outside its larger printed radius and the stepped L2
+ * and L4 front curve ends 0.4 mm outside theirs; that uniform mechanical margin is not added.
+ * L2 and L4 keep two radii, so the model draws a taper where the figure draws a flat step.
  * The printed stop radius is 1.552 mm. nominalFno is the computed EFL / (2 * 1.552) so the
  * f-number-derived iris reproduces that radius. The near-state F-number 9.00883 is the working
  * value at the close conjugate, not a change of iris. The single fstopSeries value and maxFstop
@@ -149,7 +157,7 @@ const LENS_DATA = {
       "d": 1.4881,
       "nd": 1.437,
       "elemId": 1,
-      "sd": 2.001
+      "sd": 2.595
     },
     {
       "label": "3",
@@ -181,7 +189,7 @@ const LENS_DATA = {
       "d": 3.13,
       "nd": 1.816,
       "elemId": 3,
-      "sd": 5.25
+      "sd": 5.813
     },
     {
       "label": "7",
@@ -213,7 +221,7 @@ const LENS_DATA = {
       "d": 3.4358,
       "nd": 2.001,
       "elemId": 5,
-      "sd": 10.031
+      "sd": 10.798
     },
     {
       "label": "11",

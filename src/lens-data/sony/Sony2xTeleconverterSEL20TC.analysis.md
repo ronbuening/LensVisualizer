@@ -74,7 +74,7 @@ L2 is the negative entrance member of the cemented triplet, bounded by native su
 
 nd = 1.59270, νd = 35.45. Glass: FF5 class (HOYA catalog; production supplier unconfirmed). f = +15.01 mm.
 
-L3 is the positive middle element of the triplet, between the two negative members. Both curved interfaces are cemented. It has the lowest d-line index within that triplet and stronger dispersion than L2 or L4 according to the tabulated Abbe numbers. Its strongly curved boundaries make its peripheral thickness an important aperture constraint; the inferred common triplet radius is geometry-limited rather than enlarged to erase peripheral vignetting. [1, ¶0139; Table 7]
+L3 is the positive middle element of the triplet, between the two negative members. Both curved interfaces are cemented. It has the lowest d-line index within that triplet and stronger dispersion than L2 or L4 according to the tabulated Abbe numbers. Its strongly curved boundaries make its peripheral thickness an important aperture constraint; the inferred triplet junction radius is geometry-limited rather than enlarged to erase peripheral vignetting. [1, ¶0139; Table 7]
 
 ### L4 — Biconcave
 
@@ -229,13 +229,15 @@ All four chief-ray aims converge and all four traces reach the image plane. Inve
 
 ### Inferred apertures, material geometry and rendering
 
-The source contains no clear semi-diameter table. Figure 4 supports only approximate relative rims. Coarse inferred component radii 8.7/10/12/16/18.5 mm initially produced negative peripheral thickness in L3 and L5. Reducing the common triplet and doublet bands to 9.4 and 11.2 mm was the source-preserving remedy; no optical prescription parameter was altered. The final surface semi-diameters are [8.7, 8.7, 9.4, 9.4, 9.4, 9.4, 11.2, 11.2, 11.2, 16, 16, 18.5, 18.5] mm.
+The source contains no clear semi-diameter table. Figure 4 supports only approximate relative rims. Coarse inferred component radii 8.7/10/12/16/18.5 mm initially produced negative peripheral thickness in L3 and L5. Reducing the common triplet and doublet bands to 9.4 and 11.2 mm was the source-preserving remedy; no optical prescription parameter was altered. A later reading of the figure raised the rear faces of L4 and L6 to the drawn height, and the final surface semi-diameters are [8.7, 8.7, 9.4, 9.4, 9.4, 10.1, 11.2, 11.2, 11.9, 16, 16, 18.5, 18.5] mm.
+
+Read at 0.107 mm per pixel, with the thirteen vertices matching Table 7 to about 0.2 mm, Figure 4 draws L1 at 8.7 mm, L2 at 9.4, L3 at 9.3, L4 at 10.1, L5 to a knife edge at 11.2, L6 at 11.9, L7 at 15.8 and L8 at 18.4; the modeled rims follow those readings to within about 1.5%. L4 and L6 stand about 0.7 mm proud of their cemented partners. L3 and L5 close up at 9.8 and 11.4 mm, so the cemented junctions stay at 9.4 and 11.2 mm and only the rear faces of L4 and L6 carry 10.1 and 11.9 mm; the rendered rim of each is the straight line between its two face heights, where the figure draws a flat land outside the junction and a square top. L7's front face is drawn curved to about 14 mm with a flat land beyond; the model keeps 16 mm on both faces of the square-cut element. [1, Figure 4; Table 7]
 
 An exploratory enlargement intended to transmit the entire peripheral pupil was rejected. It would erase ordinary vignetting without source support and also admitted trajectories with no forward intersection through the thin positive L3 edge. Those failed trials remain evidence; they are not the final model. The final choice retains the figure-based rims and modeled peripheral vignetting.
 
-The minimum positive glass thickness over the full component bands is 0.297962582797 mm. The largest actual rim angle is 53.547318226°, below the current default 64.158067237°. Mathematical domains, the applicable positive-K 98% domain policy, common cemented support and shared-band air-gap checks pass. The largest positive gap-intrusion fraction is 0.179399787561, below 0.9; no gap-sag or rim override is used. The gap checks search the complete common radial band, not only its endpoint.
+The minimum positive glass thickness over the full component bands is 0.297962582797 mm. The largest actual rim angle is 53.547318226°, below the current default 64.158067237°. Mathematical domains, the applicable positive-K 98% domain policy, common cemented support and shared-band air-gap checks pass. The largest positive gap-intrusion fraction is 0.203286327135, in the air space behind L6 at its 11.9 mm rear rim, below 0.9; no gap-sag or rim override is used. The gap checks search the complete common radial band, not only its endpoint.
 
-Actual production render diagnostics report zero trimming. Independent tests of the actual 96-subdivision outlines find no self-crossing, interelement crossing or forbidden strict containment for the eight converter elements and adjacent last-master/cover geometry. Their diagram was visually compared with Figure 4. This finite rendering and numerical geometry evidence is not manufacturing-tolerance or browser-viewer certification.
+Actual production render diagnostics report zero trimming. Independent tests of the actual 96-subdivision outlines find no self-crossing, interelement crossing or forbidden strict containment for the eight converter elements and adjacent last-master/cover geometry. Their diagram was visually compared with Figure 4. Those outline tests used the earlier 9.4 and 11.2 mm rear faces of L4 and L6; with 10.1 and 11.9 mm the render diagnostics still report zero trimming on the four declared hosts, and the rear rims of L4 and L6 stand 1.19 and 5.03 mm clear of the next element. This finite rendering and numerical geometry evidence is not manufacturing-tolerance or browser-viewer certification.
 
 ### Physical iris and sampled-ray coverage
 
@@ -278,6 +280,8 @@ The 432 unresolved pupil-target solves are neither physical aperture clipping no
 | 2.8 | 1 | 68 | 9, 10, 11, 12 |
 
 The full ray records retain exact azimuths, ring coordinates, solver reasons and continuation attempts. The 635 added converter clips are separately traced physical rim encounters among 19,944 bare-host-admitted rays. They are modeled peripheral vignetting, not unresolved launches. Neither category counts as transmission; the raw counts are not area-weighted throughput estimates.
+
+These counts were sampled with the rear faces of L4 and L6 at 9.4 and 11.2 mm. The model now carries 10.1 and 11.9 mm there, which can only lower the 635 added converter clips and raise the 19,309 admitted rays; the fixtures were not resampled, and the containment counts below cover the earlier admitted set.
 
 All 2,308 on-axis samples and all 36 field-chief checks have valid admitted traces. Containment is asserted only for the 19,309 actually admitted combined rays: 154,472 glass segments, 9,731,736 curved-material interior samples and 2,317,080 actual-polygon interior samples, with zero escapes. No required axial, chief, valid-geometry, zero-trim or admitted-ray containment conclusion depends on an excluded target solve.
 

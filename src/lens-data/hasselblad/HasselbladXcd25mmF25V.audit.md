@@ -542,9 +542,109 @@ Fields changed in this pass. Data file: `projection` added (rectilinear, `fullFi
 
 Closed the same day (see the cement-layers note below): each 0.01 mm cement-layer entry carried the same `cemented` tag as its two neighbours, so the element inspector labels B1, B2 and B3 "TRIPLET", and the layer's `diagramLabel` prints a second B1/B2/B3 under the diagram.
 
-Open: glass label "K-VC181" (L6) has no catalog match and "L-TIM28" (L10) resolves to S-TIM28, whose nd is lower by 5.5e-4; both elements carry explicit C/F/g indices.
+Closed the same day (see "Glass labels and dispersion source" below): K-VC181 and L-TIM28 are now catalog rows and both elements resolve to them.
 
 Cement layers, same day: the three 0.01 mm layers follow the catalog's existing form (Leica Summicron-SL 50): named C1-C3,
 type "Optical Cement Layer", glass "Optical cement (patent nd=1.56732, vd=42.8)", no `cemented` tag, so the inspector
 reads each pair as a doublet. The cemented pairs are labelled D1-D3 in place of B1-B3. Surfaces, indices and gaps are
 unchanged; engine values are identical before and after.
+
+## 2026-10-12 — Semi-diameter pass against the patent figure
+
+Scope: `sd` values only, following `agent_docs/patent-figure-sd-audit-procedure.md`. Six `sd` values on L5 and the D2 doublet changed, to restore the drawn step order beside L6; the other 21 stored values are retained, and the three cement layers keep one value on both faces. No `R`, `d`, `nd`, glass, asphere coefficient, focus gap or `STO` value was touched. The data-file header's semi-diameter note was reworded to match.
+
+### Source and scale
+
+- Figure: `patents/US20240329362A1.pdf`, PDF page 4 (Sheet 3 of 16), FIG. 2A, the second embodiment in the infinity state (surfaces 21A and 22 are drawn 139 px apart, 10.8 mm, the infinity value of d21). The page is a 1-bit 2560 × 3300 px scan at 300 dpi with no text layer and the optical axis horizontal. It was measured at native resolution.
+- Axis at y = 1738 px. First vertex at x = 510.5 px and image plane at x = 1986.5 px: 1476 px for the tabulated 114.9999 mm, so 12.835 px/mm (0.0779 mm/px).
+- Span checks: surfaces 1→27 give 12.838 px/mm (1232.5 px for 96.004 mm) and surfaces 5→22 give 12.841 px/mm (701 px for 54.589 mm). Every surface vertex of Example 2 and both faces of the cover glass land within 2 px of a drawn crossing (10/11A and 19/20A each merge into one band).
+- The height scale equals the axial scale. Surface 1 meets the drawn rim 77.5 px behind its vertex (6.04 mm; the sag at 21.8 mm is 6.02 mm), surface 3A 87.5 px behind its vertex (6.81 mm against 6.79 mm at 15.9 mm), and the front of L12 follows the R = −38.43 mm circle within 1.5 px at seven heights from 8.1 to 15.3 mm. The drawing is a scaled plot of this prescription, not a schematic.
+- Rims were read as the centre of the dotted edge line above and below the axis. The two sides agree within 1.5 px (0.12 mm) on every element. Label leaders cross the upper half and asphere markers the lower half, so each rim was read where it is clean.
+- The automatic figure screen over the glass (crop 0.196, 0.440, 0.688, 0.613) gives a median figure/data ratio of 1.002 and 0.95–1.05 on every row except L2 and L9, where L1's rim and the asphere markers contaminate the reading.
+
+### What the figure shows
+
+| Element | Surfaces | Drawn rim, upper / lower (px) | Drawn (mm) | Stored before (mm) | Before − drawn |
+|---|---|---:|---:|---:|---:|
+| L1 | 1 | 280.5 / 279.5 | 21.81 | 22.0 | +0.19 |
+| L1 rear, curve end | 2 | 211 / 210 | 16.39 | 16.0 | −0.39 |
+| L2 | 3A, 4A | 204.5 / 204 | 15.91 | 16.2 / 16.2 | +0.29 |
+| L3 | 5, 6 | 174.5 / 173 | 13.53 | 13.5 / 13.5 | −0.03 |
+| L4 | 7, 8 | 165.5 / 164.5 | 12.85 | 13.5 / 13.0 | +0.65 / +0.15 |
+| L5 | 9, 10 | 155 / 153.5 | 12.01 | 12.3 / 12.3 | +0.29 |
+| L6 | 11A, 12A | 157 / 155.5 | 12.17 | 11.7 / 11.7 | −0.47 |
+| L7 | 13, 14 | 152 / 149.5 | 11.74 | 12.2 / 12.2 | +0.46 |
+| L8 | 15, 16 | 147 / 145.5 | 11.39 | 12.2 / 12.2 | +0.81 |
+| L9 | 18, 19 | 124.5 / 123.5 | 9.66 | 10.0 / 10.0 | +0.34 |
+| L10 | 20A, 21A | 129.5 / 128.5 | 10.05 | 10.0 / 10.0 | −0.05 |
+| L11 | 22, 23 | 199 / 197.5 | 15.44 | 15.6 / 15.6 | +0.16 |
+| L12 | 24, 25 | 214 / 212.5 | 16.61 | 17.0 / 17.0 | +0.39 |
+| L13 | 26, 27A | 222.5 / 222 | 17.31 | 17.0 / 17.4 | −0.31 / +0.09 |
+
+Before the pass the largest departure was 0.81 mm (7 %) on L8 and the mean stored/drawn ratio was 1.02. After it the largest is 0.65 mm (5 %) on the front of L4.
+
+Three faces are drawn with a flat land outside the curve:
+
+| Surface | Drawn land | Curve end (mm) | Stored (mm) | Traced reference (mm) |
+|---|---|---:|---:|---|
+| 2 (L1 rear) | vertical edge from 210.5 px to the 280 px rim | 16.4 | 16.0 | chief 14.71 |
+| 4A (L2 rear) | vertical edge 17–18 px long, 101.5 px behind the vertex (sag 7.9 mm) | 14.6–14.95 | 16.2 | chief 12.39, largest passing ray 14.24 |
+| 24 (L12 front) | vertical edge 17 px long, 40.5 px in front of the vertex (sag 3.16 mm) | 15.3 | 17.0 | chief 12.00, largest passing ray 15.11 |
+
+On 4A and 24 the drawn curve ends lie 0.2–0.7 mm outside the largest meridional ray that passes every stored rim, so the drawing appears to carry the design's clear apertures.
+
+### Changes
+
+| Surface | Element | Before | Figure | After | Evidence and reason |
+|---|---|---:|---:|---:|---|
+| 9, 10 | L5 | 12.3 | 12.01 | 12.0 | Drawn 0.15 mm below L6; it stood 0.6 mm above it. |
+| 13 | L7 front | 12.2 | 11.74 | 11.7 | Drawn 0.4 mm below L6; it stood 0.5 mm above it. |
+| 14, 15 | cement layer C2 (L7 rear, L8 front) | 12.2 | 11.74 / 11.39 | 11.7 | One value on both faces of the layer, taken from L7. |
+| 16 | L8 rear | 12.2 | 11.39 | 11.4 | Drawn 0.8 mm below L6; it stood 0.5 mm above it. |
+
+L6 cannot rise to its drawn 12.2 mm (see below), so with the earlier values it rendered as a notch between L5 and D2 where the figure draws it as the tallest element of G1b. Each of the six values was within 7 % of the drawing, but the readings are good to 0.12 mm and the inverted order was a real mismatch in comparative size. With the new values L6 sits 0.3 mm below L5, level with L7 and 0.3 mm above the rear of L8. L8 is drawn square-cut at 11.4 mm; its front face is the cement-layer face and stays at L7's 11.7 mm, so its rim tapers by 0.3 mm in place of the drawn 0.35 mm step.
+
+### Values retained
+
+- **Every other element height.** All are within 0.7 mm of the drawing and below the 10 % threshold for a change on a lens still being authored.
+- **Surface 4A, 16.2 mm, and surface 24, 17.0 mm.** Run to the rim, the curves are 0.9 mm and 0.8 mm deeper than drawn. The renderer joins unequal rims with a straight edge, so cutting either face to its curve end turns a rim the figure draws square-cut into a chamfer: about 1.0 mm² against 0.3 mm² of silhouette error on L2 and 3.8 mm² against 0.4 mm² on L12. Both elements keep one height on both faces. A trial with 4A at 14.8 mm and 24 at 15.3 mm passes the validator and leaves every traced bundle below unchanged, so this is a drawing choice, not a clearance choice.
+- **Surface 2, 16.0 mm.** The curve is drawn to 16.4 mm, but 16.1 mm already fails the rim-slope limit (64.8° against 64.2°). L1 therefore renders with a straight edge from 22.0 mm to 16.0 mm where the figure draws a flat top and a vertical land.
+- **L6, 11.7 mm.** Drawn 12.2 mm. Surface 12A reverses slope at 11.80 mm, so 11.7 mm is the highest tenth short of the turnover. Surface 27A reverses at 17.50 mm (stored 17.4, drawn 17.3).
+- **Cemented joints.** The figure draws steps of 0.7 mm at L3/L4, 0.35 mm at L7/L8 and 0.7 mm at L12/L13, and of 0.4 mm between L9 and L10. Each cement layer keeps one semi-diameter on both faces, so the tapers on L4 (13.5 → 13.0), L8 (11.7 → 11.4) and L13 (17.0 → 17.4) stand in for the three joint steps; L9 and L10 stay level at 10.0 mm.
+
+### Clearance and model consequences
+
+- Validator: no errors. Image-circle floor: 0 undersized. Traced field coverage: the corner chief ray reaches 100 % of the format corner (48.4°, 27.39 mm), clear.
+- Exact meridional trace at F2.57524 through the cover glass. Infinity: Y = 27.5 mm at ω = 48.551° (the printed 48.5653° lands at 27.514 mm). Near state: object point 160.9 mm off axis, 135 mm in front of the first vertex, 45.8° seen from the entrance pupil against the printed 45.7863°. No axial-marginal or chief-ray clipping at either state.
+- Smallest axial margins at infinity, before → after: surface 16 1.26 → 0.46 mm, surface 13 1.15 → 0.65 mm, surfaces 14–15 1.33 → 0.83 mm; 12A (1.02 mm) and 18 (1.08 mm) are unchanged. At the near state: 0.56 mm at 16, 0.80 mm at 13, 0.95 mm at 14–15, 1.19 mm at 12A. Smallest chief margin, unchanged: 1.29 mm at surface 2 at infinity (chief 14.71 mm) and 1.87 mm at the near state.
+- Share of the stop diameter filled by the meridional bundle that passes every rim, at 1.0 / 0.85 / 0.7 / 0.5 of the image height: 68.3 / 79.4 / 86.9 / 92.8 % at infinity and 65.8 / 73.2 / 81.0 / 91.8 % at the near state, the same before and after. The limiting rims are surfaces 1 and 2 against 18, 19 and 21A at full field, and 10 and 11A at mid field. Near the axis the L7 front rim (surface 13) now limits: at 0.25 of the image height the share falls from 99.0 to 98.3 % at infinity and from 98.5 to 97.9 % at the near state, and at 0.35 from 96.6 to 96.5 % at infinity (96.0 % at the near state, unchanged). This vignetting follows rims the figure draws and stays.
+- Engine values, identical before and after: EFL 25.0285 mm, F2.57524, stop radius 9.6912 mm, half-field 48.5653° from the declared projection (paraxial estimate 38.89°, limited by surface 2). Geometric transmission is 96.9 % at 28.5°, 93.8 % at 45.6° and 89.6 % at 48.4° before and after; the 14.2° sample moves from 100.0 to 99.0 % and no other sample changes.
+- Live page at infinity and at focus = 1, re-shot after the edit and compared with FIG. 2A: L5 stands just above L6, L7 is level with L6 and L8 tapers below it, as the figure steps down through G1b; the on-axis marginal rays clear the rear rim of L8. G2 moves 4.97 mm toward the image with no rim contact; L10 to L11 keeps 4.8 mm at the rim in the near state.
+- The aspheric table in the analysis file is unchanged because no aspheric semi-diameter moved.
+- The shared clear-aperture probe could not be used past 43°: its Newton intersection does not converge on surface 2 for the 48.6° chief ray, and it places the image 2.8 mm short because it omits the rear plate. The trace above used a marching intersection with the cover glass included; it reproduces the 27.514 mm image height and the 1.29 mm chief margin recorded in the earlier sections.
+
+### Maker diagram
+
+No maker image was viewed in this pass. The deployment-validation section above records: "Hasselblad's XCD 2,5/25V datasheet gives 13 elements in 10 groups, 4 aspherical and 3 ED elements" and "Example 2 has aspherics on L2, L6, L10 and L13 and low-dispersion glass at L3, L8 and L11, the positions the datasheet diagram marks, with the stop between L8 and L9". FIG. 2A shows the same 13 elements in 10 groups with the stop between L8 and L9.
+
+### Open limitations
+
+- The renderer cannot draw a flat land or a step at a cemented joint, so L1's rear corner, the rear corner of L2, the front corner of L12 and the three joint steps differ from the figure as described above.
+- L6 stays 0.5 mm below the drawn rim because of the 12A turnover, and so 0.3 mm below L5 where the figure draws it 0.15 mm above.
+- Readings are good to about ±0.15 mm; the lines are dotted and 3–5 px wide.
+
+## 2026-10-12 — Glass labels and dispersion source
+
+- Catalog: SUMITA K-VC181 (nd 1.81055, νd 41.1; formula-1 polynomial) and OHARA L-TIM28 (nd 1.689479, νd 31.02;
+  Sellmeier) were added from the vendors' Zemax catalog files. The alias that sent the name L-TIM28 to S-TIM28
+  (nd 1.688931) is removed. L6 and L10 now resolve to their own rows; both rows reproduce the C/F/g values this file
+  carried to 1e-9.
+- Labels: each lens names the one catalog glass whose curve the package used, in the form
+  "TAC8 (HOYA; coordinate equivalent; supplier unconfirmed)". The multi-name labels resolved L3, L5 and L7 to H-FK61,
+  N-SF66 and J-LASFH6 by index residual; they now resolve to FCD1, E-FDS1 and NBFD15. The alternates stay in the
+  analysis table.
+- Line indices: the stored nC / nF / ng values were copies of those catalog curves (equal to 4e-13 for eleven lenses
+  and to 4e-6 for L3, where the catalog's FCD1 row differs slightly from the one the package read), not patent data.
+  They are removed from all 13 lenses together with the notes that described them, so every lens traces on its
+  catalog Sellmeier curve instead of the line-index tier. Printed nd and νd are unchanged.
+- The three cement layers keep the Abbe approximation; no catalog curve is assigned to a bonding medium.

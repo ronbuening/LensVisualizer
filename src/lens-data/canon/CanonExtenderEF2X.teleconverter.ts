@@ -31,7 +31,14 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  *
  * SEMI-DIAMETERS: the patent lists no clear apertures. The rims are measured
  * from patent Figure 3 (page 6 of the scan), scaled to all twelve vertex
- * positions of the prescription and rounded up to 0.1 mm. They keep the
+ * positions of the prescription and rounded up to 0.1 mm. Figure 3 draws
+ * all five units square-cut, so the two faces of each singlet and the four
+ * faces of the cemented triplet share one height. The stored values agree
+ * to about 0.1 mm with the centre of the drawn outline (13.31, 12.27, 10.29,
+ * 13.14 and 13.06 mm) and none exceeds its outer edge, 0.14–0.18 mm further
+ * out. The rear pair's 13.2 and 13.1 mm are also a ray floor: on the
+ * declared hosts the chief ray to the 21.63 mm format corner reaches
+ * 13.17 mm on surface 10 and 13.06 mm on surface 12. The rims keep the
  * off-axis clipping the drawing implies; they are not published production
  * apertures and do not guarantee clearance on every host. minHostFno = 2:
  * exact marginal rays of f/2.0–2.06 beams clear every rim, while an f/1.86

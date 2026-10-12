@@ -100,7 +100,8 @@ Evidence.openIssues preserves the original Pass A issue wording, including its p
   79.30 / 188.02 mm; the standard form gives 72.081 / 194.076 mm (printed 72.08 / 194.05) and the combined system
   100.891 / 271.743 mm (printed 100.88 / 271.64) at f/4.045 / 4.033 (printed 4.04 / 4.03). The standard form stands.
 - Geometry: 27.6082 mm master back focus in air less the printed 1.6082 mm gap gives `masterImageDistanceMm` 26.0000;
-  the last gap 12.9982 mm is the printed 10.35 mm plus the plate and its gap in air. The paraxial image falls 12.93 mm
+  the last gap 12.9982 mm is printed as surface 53's distance (Table 13; BF in air 13.00) and already stands for the
+  master's 2.5 mm plate and 1 mm gap in air, so no plate is listed (a physical gap of 10.35 mm would be derived, not printed). The paraxial image falls 12.93 mm
   behind the last vertex because the patent's own master is 0.001 / 0.030 mm off its tabulated plane (wide / tele).
 - Open: Example 6 as printed lands the corner chief ray at 21.34 mm against the stated 21.63 mm (-1.35%), where
   Example 7 under the same convention lands on 21.64 / 21.62 mm. K = -1.15 or A4 = -2.06e-6 would close it; the
@@ -129,3 +130,158 @@ Evidence.openIssues preserves the original Pass A issue wording, including its p
   the converter probe on FE 70-200mm F2.8 GM OSS II prints the same output before and after.
 - The cemented pair's `cemented` tag and `doublets` text changed from L3-L4 to D1, the form the Fujifilm converter
   files use beside the composed T1-T6 element labels.
+
+## 2026-10-12 — Semi-diameter pass against the patent figure
+
+Scope: `sd` values only, following `agent_docs/patent-figure-sd-audit-procedure.md` as adapted for converter files.
+No `sd` value changed: every stored rim is within 5 % of the drawing, inside the reading noise of a schematic
+figure. No `R`, `d`, `nd`, glass, asphere coefficient, `minHostFno` or `masterImageDistanceMm` was touched. The edits
+are the wording of the semi-diameter note in the converter file's header and one paragraph of the analysis
+(Reference-Host Verification and Limitations), which now states the measured figure heights.
+
+### Source and scale
+
+- Figure: `patents/WO2017134928A1.pdf`, PDF page 75 (drawing sheet 4/16), 図7 "実施例 6", the lower of the two
+  sections on the sheet (図6, Example 5, is above it). The page is a 1-bit 2478 × 3507 px raster at 300 ppi and was
+  measured at that resolution. The optical axis is horizontal, on row 2279.5.
+- 図7 draws the converter alone (TCL, G1 to G3, L1 to L6). The master lens appears only in 図1, so the panel offers
+  no master elements to compare proportions against.
+- Vertex crossings, read in bands 3 to 20 px above and below the axis: surface 1 at column 679.5, 2 at 709.75, 3A at
+  756, 4 and 5 merged at 772–777, 6 at 868.5, 7 and 8 merged at 883–888, 9 and 10 merged at 901–906, 11 at 991.
+- Scale: surface 1 to surface 11 is 311.5 px for the tabulated 30.23 mm, 0.09705 mm/px. Checks on two other spans:
+  3A to 6 gives 0.09689 mm/px (112.5 px for 10.90 mm) and 6 to 11 gives 0.09714 mm/px (122.5 px for 11.90 mm).
+  Every vertex lies within 2 px (0.2 mm) of the column the prescription predicts.
+- The outline is about 3 px (0.3 mm) wide. Heights are line-centre readings and each rim is the mean of the upper
+  and lower silhouette. The figure is isotropic to this precision: a 13.0 mm rim on L1 puts its front and rear rim
+  corners at columns 675.3 and 689.3 by the sags of the prescription, and they are drawn at 676 and 689.
+
+### What the figure shows
+
+| Element | Surfaces | Stored (mm) | Figure upper / lower (px) | Figure (mm) | Figure / stored | Decision |
+|---|---|---:|---:|---:|---:|---|
+| L1 | 1, 2 | 13.6 | 133.5 / 134.5 | 13.00 | 0.96 | retained |
+| L2 | 3A, 4 | 14.2 | 143.5 / 143.5 | 13.93 | 0.98 | retained |
+| L3 | 5, 6 | 14.4 | 149.5 / 150.5 (tip) | 14.56 | 1.01 | retained |
+| L4 | 7 | 16 | 165.5 / 166.5 | 16.11 | 1.01 | retained |
+| L5 | 8, 9 | 17.8 | 183.5 / 184.5 | 17.86 | 1.00 | retained |
+| L6 | 10, 11 | 19 | 200.5 / 199.5 | 19.41 | 1.02 | retained |
+
+The median of figure / stored is 1.005 and the drawn order of heights (L1 < L2 < L3 < L4 < L5 < L6) is the stored
+order.
+
+Flat annuli and rim shapes in 図7:
+
+- Surface 3A (front of L2). The curve leaves a vertical annulus line at columns 724–727 between 123.5 px (upper
+  side) and 130 px (lower side) from the axis, 12.0 to 12.6 mm. The annulus plane at column 725.5 lies 2.97 mm ahead
+  of the vertex, a sag the asphere reaches at 12.4 mm. The annulus continues to the 13.93 mm rim, which is a
+  square-cut cylinder 5.5 mm long.
+- Surface 8 (front of L5). Surfaces 7 and 8 are drawn as one thick line; the 0.5 mm gap is not resolved. A vertical
+  annulus line at columns 850–852 runs from the 17.86 mm rim down to 151–154 px, 14.7 to 14.9 mm. Its plane at column
+  851 lies 3.59 mm ahead of the vertex, a sag the R = −34.0899 mm sphere reaches at 15.2 mm. The rim is a square-cut
+  cylinder 5.1 mm long.
+- L3 and L4. Surfaces 5 and 6 meet in a point at 14.56 mm. L4's front edge rises vertically from that point (column
+  794) to a flat top at 16.11 mm that runs 5.1 mm back to the rear face.
+- L1 is drawn square-cut with an edge about 1.3 mm long; L6 ends in a cap about 0.7 mm long.
+
+### Values retained and why
+
+- **L1 (surfaces 1, 2), 13.6 mm.** The largest departure: the stored rim is 4.4 % above the drawn 13.0 mm, inside
+  the noise band, and the step up to L2 keeps its direction (0.6 mm stored, 0.9 mm drawn). The edge is 1.185 mm long
+  at 13.6 mm against about 1.3 mm drawn. Lowering the rim to 13.0 mm would raise the cut at surfaces 1 and 2 from
+  32–41 % to 45–54 % of one side of the corner bundle on the two f/2.8 hosts measured below.
+- **L2 (surfaces 3A, 4), 14.2 mm, and L5 (surfaces 8, 9), 17.8 mm.** Both are drawn square-cut with a flat annulus
+  on the concave front. The renderer joins unequal face rims with one straight edge and has no flat annulus, so two
+  outlines were laid over 図7 at the measured scale. With the fronts cut to the drawn curve ends (12.6 mm on 3A,
+  15.2 mm on 8, rear faces unchanged) the converter validates and every host result below is unchanged, but L2 and
+  L5 become wedge-topped trapezoids and lose the square corners the figure draws. With both faces at the drawn rim
+  the boxes are kept. The cost is that the two front edges stand 0.81 mm (L2) and 1.43 mm (L5) ahead of the drawn
+  annulus planes, so the rims are 6.51 and 6.58 mm long against 5.5 and 5.1 mm drawn. L5's front edge passes
+  0.55 mm ahead of L4's rear corner, 1.8 mm outside it; the outlines do not overlap, and the air between surfaces 7
+  and 8 is 0.483 mm at 16 mm against 0.5 mm on the axis.
+- **Surface 3A is aspheric.** Its slope and its curvature each keep one sign from the axis to 20 mm, so there is no
+  turnover or inflection near the rim. At 14.2 mm the sag is −3.777133 mm, the polynomial part +0.125800 mm, the
+  departure from the vertex sphere +0.743297 mm and the rim slope 25.55°. The values quoted in the analysis stand.
+- **L3 and L4 (surfaces 5, 6, 7), 14.4 / 14.4 / 16 mm.** The faces of L3 cross at 14.75 mm, so the junction cannot
+  reach L4's 16 mm rim; 14.4 mm leaves a 0.535 mm edge, 1 % under the drawn point. L4 therefore renders with a
+  sloped front edge from the junction rim (11.50 mm behind vertex 1, height 14.4 mm) to its rear corner (15.76 mm,
+  height 16 mm) where the figure draws a vertical step and a flat top.
+- **L6 (surfaces 10, 11), 19 mm.** 2 % under the drawn 19.41 mm. The edge is 0.606 mm at 19 mm and would be 0.25 mm
+  at 19.4 mm.
+
+### Clearance on the declared hosts
+
+No rim moved, so the values before and after this pass are the same; the converter probe prints identical output
+on the edited file. The converter validates with no error (focal length −111.3659 mm, paraxial image 12.9293 mm
+behind the last vertex against the authored 12.9982 mm, magnification 1.39967).
+
+| Host | Composed focal length (mm) | Composed f-number | Stop radius (mm) | Junction gap (mm) | Axial beam | Corner coverage, bare / mounted |
+|---|---|---|---:|---:|---|---|
+| FE 70-200mm F2.8 GM OSS II | 100.811 / 169.007 / 271.310 | 4.028 / 4.029 / 4.029 | 17.0621 | 2.790 | clear at all three stations | 100.0 % / 100.0 % at each |
+| FE 70-200mm F2.8 GM OSS | 100.958 / 165.081 / 271.516 | 4.035 / 4.032 / 4.033 | 18.0772 | 4.608 | clear at all three stations | 100.0 % / 100.0 % at each |
+| FE 400mm F2.8 GM OSS | 543.652 | 4.076 | 17.2762 | 2.230 | clear | 100.0 % / 100.0 % |
+| FE 400-800mm F6.3-8 G OSS | 559.275 / 776.299 / 1080.988 | 8.949 / 10.225 / 11.479 | 9.985 | 24.790 | clear at all three stations | 100.0 % / 100.0 % at each |
+
+Ray heights on converter surfaces 1 to 11, from an exact meridional trace of each composed prescription to the
+21.63 mm corner, largest value over the four hosts and their zoom stations:
+
+- Axial marginal ray at the composed f-number: 4.59, 4.34, 3.23, 3.11, 3.08, 2.36, 2.28, 2.20, 2.14, 2.11 and
+  1.62 mm (FE 70-200mm F2.8 GM OSS II).
+- An f/2.8 cone converging on the virtual object 26.0 mm behind vertex 1, traced through the converter alone:
+  4.65, 4.40, 3.28, 3.15, 3.12, 2.39, 2.32, 2.24, 2.17, 2.14 and 1.64 mm. The `minHostFno` of 2.8 has at least
+  8.9 mm of rim to spare on every surface.
+- Corner chief ray: 10.72, 10.98, 11.05, 11.98, 12.38, 12.95, 14.10, 14.19, 15.71, 16.63 and 17.40 mm (FE 400mm
+  F2.8 GM OSS). The smallest margin under a rim is 1.45 mm, at surface 6.
+- Corner bundle. If the FE 400mm F2.8 GM OSS passed its full stop to the corner, the bundle would need 15.37,
+  15.40, 14.48, 15.09, 15.42, 15.32, 16.68, 16.70, 18.39, 19.34 and 19.41 mm, so the converter rims cut 38, 41, 8,
+  29, 33, 39, 26, 0, 22, 13 and 21 % of one side of it. On the FE 70-200mm F2.8 GM OSS II the same figures are 32,
+  34, 1, 22, 27, 32, 19, 0, 14, 4 and 12 %. This off-axis vignetting is kept.
+
+### Page compared with the figure
+
+- The converter mounts on the local page only with the versioned query, `?v=1&tc=sony-14x-teleconverter-sel14tc`;
+  without `v=1` the page shows the bare host.
+- Viewed: FE 70-200mm F2.8 GM OSS at 100.94 mm and at 271.45 mm, FE 400mm F2.8 GM OSS at infinity and at closest
+  focus, each with an enlarged crop of the converter, and the `/teleconverters/sony-14x-teleconverter-sel14tc` page,
+  which lists the four hosts and has no section drawing.
+- The page follows 図7 in the order and steps of the element heights, the thin front meniscus, the near-pointed L3
+  with L4 standing above it, L5 above L4, and the tall rear biconvex with a thin edge. The converter's front element
+  sits 4.61 mm behind the 70-200's last surface (rim 13.5 mm against L1's 13.6 mm) and 2.23 mm behind the 400's
+  (rim 18.6 mm), without touching, and does not move with zoom or focus.
+- It differs where the renderer cannot follow the drawing: L4's sloped front edge, and the front edges of L2 and L5
+  that run past the drawn annulus planes, L5's past L4's rear corner.
+
+### Maker diagram and front page
+
+No maker image was supplied or viewed in this pass. The Deployment validation section above records that "Sony's
+construction drawing shows the same 6 elements in 5 groups with the aspherical second element". 図7 agrees in count
+and grouping: L1, L2, the cemented L3 and L4, L5 and L6, with the one aspherical surface on the object side of L2.
+That section records no special-glass marking. The patent figure of Example 6 governs the rims.
+
+Front page as read from PDF page 1: WO 2017/134928 A1, published 10 August 2017, PCT/JP2016/086673 filed
+9 December 2016, priority JP 2016-016981 of 1 February 2016, applicant Sony Corporation, inventors Chen Yonghua and
+Miyagawa Naoki. The file's patent fields match.
+
+### Limits
+
+- 図7 is a schematic section of one state and prints no effective diameter. Rims are good to about ±5 %.
+- Flat annuli and L4's stepped front cannot be drawn, so L2 and L5 show longer rims than the figure and L4 a sloped
+  edge.
+- On the FE 70-200mm F2.8 GM OSS the repository's stated-beam check finds the host's own rims limiting its f/2.88
+  beam (to f/3.54 at 193.99 mm at surface 7, f/3.06 at 72.1 mm and f/2.98 at 117.99 mm at surface 22). The converter
+  adds no clip on that host, but its composed f/4.03 there inherits the host's limit. The host file was not changed.
+
+### Last gap and the cover plate (2026-10-12, later the same day)
+
+Table 13 (PDF page 42) ends at surface 53, R = −31.2399, D = 12.9982, and lists no plate; Table 14 prints BF (in
+air) 13.00. The cover plate appears only in the master's Table 1 (PDF page 28): after surface 42 (D = 24.9600) come
+surface 43, R = ∞, D = 2.5, Nd 1.5168, νd 64.20, and a row labelled IMG with D = 1. The file's last `d` of 12.9982 mm
+is therefore the printed value, not a hand fold, and no `rearPlates` entry was added: the source lists no plate
+behind the converter and prints no physical gap to one. The "printed 10.35 mm" in the Deployment validation section
+above is a derived figure (12.9982 − 2.5 / 1.5168 − 1.0 = 10.34999 mm), not a printed one.
+
+Tried on a scratch copy only: listing the master's plate with a last gap of 10.349993248945 mm leaves the converter
+probe's output identical on the bare file and on all four declared hosts; with 10.35 mm the final gap becomes
+12.998207 mm (6.75e-6 mm longer) and the image-plane extension 17.228200 mm on every host, with every focal length,
+f-number, junction gap, axial result and corner coverage unchanged. The converter file's data is unchanged and the
+probe prints the same output as before. The analysis paragraph on the f/2.8 host bound now names the four declared
+catalog hosts.

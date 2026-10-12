@@ -135,7 +135,7 @@ Conditions (1), (2) and (6) constrain total length and rear space; (3) and (4) c
 
 The patent values are used without focal-length scaling, glass substitution or a reconstructed focus state. The calculated EFL of 24.716441 mm differs from the printed 24.7165 mm by about −0.000059 mm, within the rounding of the printed radii and gaps.
 
-The computed surface-by-surface Petzval sum is +0.005684871 mm⁻¹. This is a paraxial curvature diagnostic, not a complete prediction of best-focus field shape. With the printed ray-height radii as rims, every element has positive edge thickness.
+The computed surface-by-surface Petzval sum is +0.005684871 mm⁻¹. This is a paraxial curvature diagnostic, not a complete prediction of best-focus field shape. The rims are the printed ray-height radii, except that the front faces of L1, L3 and L5 are raised to their rear faces' radii because Fig. 4A draws those elements square-cut; every element has positive edge thickness.
 
 The modeled image circle is 39.52 mm, twice the printed infinity image height. Real chief rays at the printed half-fields of 41.196° and 37.7225° reach image heights of 19.759735 mm at infinity and 19.919898 mm in the near state. At infinity f·tan ω is 21.63 mm, the full-frame corner, so the real image height is about 8.7% smaller. Those values are not evidence for unvignetted full-frame-corner coverage.
 

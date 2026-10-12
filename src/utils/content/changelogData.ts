@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-12",
+    type: "lens",
+    summary: "Added three Canon, Hasselblad and Panasonic lenses plus Canon and Sony teleconverters",
+  },
+  {
     date: "2026-10-11",
     type: "lens",
     summary: "Added six Leica, Samyang and Sigma lenses, including a 15mm f/1.4 fisheye and two macros",

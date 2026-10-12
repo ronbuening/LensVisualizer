@@ -668,8 +668,10 @@ performed. Optical work stops at the verified final handoff.
   (Table 17: -1.11); +450 would give 42.61 mm and -0.90. The "biconvex" in the prose is the patent's slip.
 - Geometry and first order on the patent's own master: 144.169 / 388.512 mm (printed 144.23 / 388.50) at f/5.78 /
   5.765 (printed 5.77 / 5.76). `masterImageDistanceMm` 26.0000 is 27.6082 - 1.6082; the last gap 12.9482 mm is the
-  printed 10.30 mm plus the plate and its gap in air. The paraxial image at 12.87 mm is the master's 0.001 / 0.030 mm
-  focus offset multiplied by four.
+  D that Table 7 prints for surface 55 (Table 8: BF in air 12.95), and Table 7 prints no plate rows. 10.30 mm is not
+  printed: it is the physical gap that results if the master's 2.5 mm plate and 1 mm gap (Table 1, surface 43 and
+  IMG) are restored behind the converter, 10.3000 + 2.5 / 1.5168 + 1 = 12.9482. The paraxial image at 12.87 mm is
+  the master's 0.001 / 0.030 mm focus offset multiplied by four.
 - Glass: the copied nC / nF / ng / dPgF values were removed; they match the named catalog glasses to 1e-5, and as
   authored line indices they made a system with an e-line host report mixed references. L4 is labelled TAFD5G
   (1.83481 / 42.72 against the printed 42.71) ahead of the package's H-ZLaF55C, which is not in the catalog.
@@ -693,3 +695,120 @@ performed. Optical work stops at the verified final handoff.
   geometry value changed; the tcprobe output on the FE 70-200mm F2.8 GM OSS II is identical before and after.
 - Analysis text aligned with the data: model name, L4 glass label, the removed line indices and the four declared
   hosts.
+
+## 2026-10-12 — Semi-diameter pass against the patent figure
+
+Outcome: two of thirteen semi-diameters changed. The rear faces of L4 and L6 (surfaces 6 and 9) rise from 9.4 and
+11.2 mm to the drawn 10.1 and 11.9 mm; the other eleven values already follow Figure 4 and stand. The header note
+and the analysis state the measured figure heights.
+
+- Source: `patents/WO2017134928A1.pdf`, PDF page 74 (sheet 3/16), Figure 4, headed Example 3. It draws the converter
+  alone, without rays; the master lens is drawn separately in Figure 1. The page is a 300 dpi one-bit raster and was
+  measured at that resolution.
+- Scale: the axis is pixel row 1101. First to last vertex is 382 px for 40.888 mm, 0.10704 mm per pixel. Two shorter
+  spans agree: surfaces 1 to 8, 20.6383 mm over 193 px (0.10694), and surfaces 5 to 13, 27.9137 mm over 261 px
+  (0.10695). All thirteen vertex crossings fall within 1.9 px (0.21 mm) of the Table 7 positions. The drawing is
+  isotropic to about 2 px: at heights of 100, 130, 150 and 160 px the rear of L8 is drawn 24, 42, 60 and 69.5 px
+  ahead of its vertex, and the R = -23 sphere at this scale gives 24.7, 43.8, 61.0 and 71.4 px.
+- Rim heights are the centres of the flat rim lines, read on both sides of the axis. One pixel is 0.11 mm.
+
+| Surface | Face | sd before (mm) | Figure, upper / lower (px) | Figure (mm) | Figure / before | sd after (mm) |
+|---|---|---:|---:|---:|---:|---:|
+| 1 | L1 front | 8.7 | 81 / 81 | 8.67 | 1.00 | 8.7 |
+| 2A | L1 rear, asphere | 8.7 | 81 / 81 | 8.67 | 1.00 | 8.7 |
+| 3 | L2 front | 9.4 | 87 / 88 | 9.37 | 1.00 | 9.4 |
+| 4 | L2–L3 junction | 9.4 | 87 / 87 (tip of L3) | 9.31 | 0.99 | 9.4 |
+| 5 | L3–L4 junction | 9.4 | 87 / 87 (tip of L3) | 9.31 | 0.99 | 9.4 |
+| 6 | L4 rear | 9.4 | 93 / 95 | 10.06 | 1.07 | **10.1** |
+| 7 | L5 front | 11.2 | 104.5 / 105 (knife edge) | 11.21 | 1.00 | 11.2 |
+| 8 | L5–L6 junction | 11.2 | 104.5 / 105 | 11.21 | 1.00 | 11.2 |
+| 9 | L6 rear | 11.2 | 111 / 112 | 11.93 | 1.07 | **11.9** |
+| 10 | L7 front | 16 | 147 / 148 (rim) | 15.79 | 0.99 | 16 |
+| 11 | L7 rear | 16 | 147 / 148 | 15.79 | 0.99 | 16 |
+| 12 | L8 front | 18.5 | 172 / 172 | 18.41 | 1.00 | 18.5 |
+| 13 | L8 rear | 18.5 | 172 / 172 | 18.41 | 1.00 | 18.5 |
+
+- L4 and L6 (surfaces 6 and 9): the figure draws both blocks 0.7 mm taller than their cemented partners, with a flat
+  land outside the junction. L3 closes to zero edge thickness at 9.77 mm and L5 at 11.44 mm, so the junctions cannot
+  carry 10.06 and 11.93 mm and stay at 9.4 and 11.2 mm. The rear faces take the figure reading rounded to 0.1 mm.
+  The renderer joins the two face heights of an element with a straight rim, so L4 and L6 now ramp from the junction
+  up to the drawn rear corner; the flat top across the triplet and doublet had lost the step altogether. This was
+  first left alone as a 7.0% and 6.5% difference on two square-cut blocks and applied on the coordinator's decision
+  after the two overlays were compared. A first trial at 10.0 and 11.9 mm gave the same clearance numbers as the
+  applied 10.1 and 11.9 mm.
+- L7 (surface 10): the front face is drawn curved to between 13.4 and 14.4 mm with a flat land out to the 15.79 mm
+  rim. The element is square-cut, so both faces keep one height; a front value near 14 mm would draw a chamfered
+  corner the figure does not have. With 16 mm the modeled front corner stands about 0.7 mm forward of the drawn one.
+- Overlay check: the model outline, built by the renderer's rule, was drawn over the figure at the measured scale
+  before and after the edit. L1, L2, L3, L5 and L8 coincide with the ink. Before, a 0.7 mm strip was missing above
+  and below L4 and L6; after, their rear corners sit on the drawn corners and the remaining gap is the thin wedge
+  between the ramp and the drawn square top. The L7 front corners are unchanged.
+- Asphere 2A: the rim is unchanged at 8.7 mm. Sag there is -0.654237 mm, departure from the vertex sphere
+  -0.045017 mm, slope -0.161; the slope does not change sign below 25.8 mm, so the rim is far inside the turnover.
+- Edge thickness over each element's common band is unchanged: L1 1.144, L2 4.977, L3 0.533, L4 4.135, L5 0.298,
+  L6 5.383, L7 3.794 and L8 1.486 mm. Air gaps at the rims: 3.357, 1.188 (was 1.087 at 9.4 mm), 5.030 (was 5.181 at
+  11.2 mm) and 1.568 mm. The largest gap-intrusion fraction moves from 0.179399787561 to 0.203286327135, behind L6;
+  the smallest glass thickness 0.297962582797 mm and the largest rim angle 53.547318226° do not move. The analysis
+  quotes the new fraction.
+
+Clearance on the four declared hosts, before → after the two rims rose:
+
+| Host | Stop radius, bare = mounted (mm) | Axial beam | Corner chief coverage, mounted | Mounted corner pupil pass per station, before → after |
+|---|---:|---|---|---|
+| FE 70-200mm F2.8 GM OSS II | 17.0621 | no clip → no clip | 100.0% → 100.0% | 56.3 → 64.6, 54.2 → 63.5, 38.0 → 47.8% |
+| FE 70-200mm F2.8 GM OSS | 18.0772 | no clip → no clip | 100.0% → 100.0% | 62.2 → 72.2, 53.3 → 63.0, 48.7 → 59.0% |
+| FE 400mm F2.8 GM OSS | 17.2762 | no clip → no clip | 100.0% → 100.0% | 40.6 → 50.0% |
+| FE 400-800mm F6.3-8 G OSS | 9.9850 | no clip → no clip | 100.0% → 100.0% | 56.3 → 76.0, 57.3 → 80.2, 52.1 → 77.7% |
+
+- The composition probe's output is identical before and after on all four hosts: converter validation ok, the same
+  composed focal lengths and f-numbers, no axial clip and 100.0% corner chief coverage at every station. The axial
+  and chief columns are that probe's result. The pupil column is the engine's vignetting curve at the last field
+  sample, the share of a meridional pupil fan that reaches the image through host and converter together. The bare
+  hosts pass 40.6 / 42.7 / 37.0%, 50.0 / 29.3 / 41.0%, 50.0% and 65.6 / 68.8 / 60.6% at their own, twice larger,
+  field angles.
+- Converter rims alone, share of the stop-filling meridional pupil at the 21.63 mm corner, before → after: GM OSS II
+  61.2 → 69.8, 60.9 → 69.5 and 58.1 → 66.7%; GM OSS 67.0 → 75.9, 66.7 → 75.6 and 66.8 → 75.7%; 400mm 55.7 → 64.3%;
+  400-800mm 67.2 → 86.4, 69.7 → 91.5 and 72.7 → 97.2%. Before, surfaces 1, 6 and 9 each stopped part of the upper
+  bundle; after, only L1 (surfaces 1 and 2A) does, at the height the figure draws it. The 67% on the GM OSS before
+  the edit agrees with the "about 70%" recorded above for the patent's own master. That master is not a catalog
+  host, so its figure with the new rims was not re-derived; by the catalog hosts it is about nine points higher.
+- Not resampled: the analysis counts of 635 added converter clips and 19,309 admitted rays, and its containment
+  counts, come from the patent-master fixtures with the earlier rear faces. Wider rims can only lower the first and
+  raise the second; the analysis now says so.
+- Full-pupil marginal ray inside the converter, largest over hosts and stations: 4.57 mm at surface 1 (rim 8.7),
+  3.49 at surface 3 (9.4), 2.70 at surface 7 (11.2), 1.64 at surface 10 (16) and 1.55 mm at surface 12 (18.5). The
+  axial beam of an F2.88 host uses at most 53% of any converter rim.
+- Largest axial pupil fraction that reaches the image, in steps of 0.0025, is the same bare and mounted at every
+  station: GM OSS II 1.000, 1.000 and 0.970; GM OSS 0.9425, 0.965 and 0.8125; 400mm 1.000; 400-800mm 1.000, 1.000
+  and 0.9975. Where it is below one the host's own rims stop the ray; the converter adds no axial clip. The
+  composition probe's axial column tests the 0.8 zone.
+- Corner chief ray to 21.63 mm, largest over hosts: 7.27, 7.37, 7.45, 7.73, 8.13, 8.86, 9.39, 9.74, 10.84, 13.02,
+  14.19, 15.33 and 16.90 mm at surfaces 1 to 13. It clears every rim before and after; the smallest margins were
+  0.36 mm at surface 9 and 0.54 mm at surface 6 and are now 1.06 and 1.24 mm there.
+- Live view, local viewer (the converter mounts only from a `v=1` query): before the edit the converter was shot on
+  the FE 70-200mm F2.8 GM OSS at 144 and 388 mm, on the FE 400mm F2.8 GM OSS and on the FE 70-200mm F2.8 GM OSS II,
+  and its own converter page was opened. After the edit the GM OSS mount was shot again and set beside Figure 4: L4
+  and L6 ramp up to rear corners at 10.1 and 11.9 mm as the figure's blocks do, L7 is square at 16 mm, and the other
+  elements are unchanged. Render diagnostics report no trimming on any of the four hosts at any station (front /
+  rear 8.7 / 8.7, 9.4 / 9.4, 9.4 / 9.4, 9.4 / 10.1, 11.2 / 11.2, 11.2 / 11.9, 16 / 16, 18.5 / 18.5). L1 sits 4.61,
+  2.23 and 2.79 mm behind the three hosts' last surfaces, well inside their rear rims.
+- Last gap and cover plate, read from page renders: Table 7 (PDF page 36, printed page 34) ends at surface 55 with
+  R = -23.0000 and D = 12.9482 and blank index columns; no plate rows follow, and Table 8 gives BF (in air) 12.95.
+  The plate is printed only for the master in Table 1 (PDF page 28): surface 42 D = 24.9600, surface 43 flat with
+  D = 2.5, Nd 1.5168, νd 64.20, then IMG with D = 1. The file's last `d` is therefore the patent's printed value,
+  nothing was folded by hand, and no `rearPlates` entry was added. The sentence in the section above that called
+  10.30 mm printed has been corrected, and the header now names surface 55 as the source of the last gap.
+- Maker diagram: none was supplied or viewed in this pass. The section above records that "Sony's construction
+  drawing shows the same 8 elements in 5 groups: aspherical first element, cemented triplet, cemented doublet,
+  negative meniscus, rear positive", which is the layout Figure 4 draws.
+- Front page as read: WO 2017/134928 A1, published 10 August 2017; PCT/JP2016/086673 filed 9 December 2016,
+  priority 1 February 2016; applicant Sony Corporation; inventors Chen Yonghua and Miyagawa Naoki. It agrees with
+  the file.
+- Open limitations: the figure is schematic and prints no dimensions, so every value remains an estimate with about
+  0.2 mm of reading error; the flat land outside the L4 and L6 junctions is drawn as a ramp and the L7 front land
+  is not drawn; production clear apertures are unknown.
+- Host observation, outside this file: the bare FE 70-200mm F2.8 GM OSS model shows longitudinal spherical aberration
+  of -6.69, -2.38, -0.66 and -0.07 mm at 1.0, 0.85, 0.7 and 0.5 of the pupil at its short end and nearly the same at
+  the other stations, against under 0.05 mm on the GM OSS II and the 400mm. Its own rims pass only 0.94, 0.97 and
+  0.81 of the axial pupil at the three stations, with or without the converter. It is reported for a separate check
+  of that host and does not come from the converter.

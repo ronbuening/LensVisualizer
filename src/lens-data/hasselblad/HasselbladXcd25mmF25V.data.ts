@@ -19,13 +19,22 @@ import type { LensDataInput } from "../../types/optics.js";
  * PROJECTION: declares the patent's 2ω = 97.1306° (half-field 48.5653°); the
  * paraxial chief-ray estimate alone stops at 38.9° (surface 2).
  * SEMI-DIAMETERS: estimated from Fig. 2A proportions and real-ray clearance,
- * not published dimensions. The rims of s2 (16.0 mm), s11A/s12A (11.7 mm) and
- * s27A (17.4 mm) are limited by surface slope or slope reversal; the default
- * gap-sag allowance is used.
+ * not published dimensions. Measured on Fig. 2A at 300 dpi (12.84 px/mm),
+ * every element rim is within 0.7 mm (5 %) of the drawn height. L5 (12.0 mm)
+ * and D2 (11.7 mm, 11.4 mm at the rear of L8) follow the drawn heights, so
+ * the group steps down beside L6 as drawn. The rims of s2 (16.0 mm),
+ * s11A/s12A (11.7 mm) and s27A (17.4 mm) are limited by surface slope or
+ * slope reversal; the default gap-sag allowance is used. Fig. 2A draws flat
+ * lands outside the curves of s2, s4A and s24 (the curves end near 16.4, 14.8
+ * and 15.3 mm); L2 and L12 keep one semi-diameter on both faces, as their
+ * rims are drawn square-cut. Each cement layer keeps one semi-diameter, so
+ * the steps drawn at the three cemented joints appear as tapers on L4, L8
+ * and L13.
  * The stop radius is derived from the design f/2.57524; the patent does not
  * publish a diaphragm diameter.
- * Glass labels name catalog glasses with matching nd/νd. The C/F/g indices
- * are catalog reference values for those glasses, not patent melt data.
+ * Glass labels name catalog glasses with matching nd/νd, which supply the
+ * dispersion curves; they are not identified production melts. The patent
+ * prints no C/F/g indices and none are stored.
  */
 
 const LENS_DATA = {
@@ -73,12 +82,8 @@ const LENS_DATA = {
       "vd": 54.7,
       "indexReference": "d",
       "fl": -43.418301,
-      "glass": "TAC8 / S-LAL18 / K-LaK18 coordinate class",
-      "role": "Front negative meniscus of G1a.",
-      "nC": 1.7251025131,
-      "nF": 1.738439136747,
-      "ng": 1.745711841974,
-      "apdNote": "C/F/g indices are HOYA:TAC8 catalog-reference values, not a measured patent melt; native nd/vd retained."
+      "glass": "TAC8 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Front negative meniscus of G1a."
     },
     {
       "id": 2,
@@ -90,12 +95,8 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "d",
       "fl": -116.877527,
-      "glass": "S-BSL7 / L-BSL7 / K-BK7 coordinate class",
-      "role": "Aspheric negative meniscus of G1a.",
-      "nC": 1.513855148203,
-      "nF": 1.521904940038,
-      "ng": 1.526213870703,
-      "apdNote": "C/F/g indices are OHARA:S-BSL7 catalog-reference values, not a measured patent melt; native nd/vd retained."
+      "glass": "S-BSL7 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Aspheric negative meniscus of G1a."
     },
     {
       "id": 3,
@@ -107,14 +108,11 @@ const LENS_DATA = {
       "vd": 81.6,
       "indexReference": "d",
       "fl": -65.173569,
-      "glass": "FCD1 / N-PK52A / H-FK61 coordinate class",
+      "glass": "FCD1 (HOYA; coordinate equivalent; supplier unconfirmed)",
       "role": "Negative component of bonded D1.",
       "cemented": "D1",
-      "nC": 1.495137477645,
-      "nF": 1.501227504575,
-      "ng": 1.504509126706,
       "apd": "inferred",
-      "apdNote": "ED position in Hasselblad's datasheet diagram; nd/νd match FCD1-class extra-low-dispersion crown, whose catalog C/F/g indices (reference values, not a patent melt) give ΔPgF ≈ +0.032."
+      "apdNote": "ED position in Hasselblad's datasheet diagram; nd/νd match FCD1-class extra-low-dispersion crown (catalog ΔPgF ≈ +0.032)."
     },
     {
       "id": 4,
@@ -138,13 +136,9 @@ const LENS_DATA = {
       "vd": 25.5,
       "indexReference": "d",
       "fl": 63.788746,
-      "glass": "FD60 / SF6 coordinate class",
+      "glass": "FD60 (HOYA; coordinate equivalent; supplier unconfirmed)",
       "role": "Positive component of bonded D1.",
-      "cemented": "D1",
-      "nC": 1.796109094576,
-      "nF": 1.827738855793,
-      "ng": 1.847213112896,
-      "apdNote": "C/F/g indices are HOYA:FD60 catalog-reference values, not a measured patent melt; native nd/vd retained."
+      "cemented": "D1"
     },
     {
       "id": 6,
@@ -156,12 +150,8 @@ const LENS_DATA = {
       "vd": 20.9,
       "indexReference": "d",
       "fl": -49.257708,
-      "glass": "E-FDS1 / N-SF66 / H-ZF62 coordinate class",
-      "role": "Negative meniscus at entrance of G1b.",
-      "nC": 1.910375678339,
-      "nF": 1.954573126934,
-      "ng": 1.982813974298,
-      "apdNote": "C/F/g indices are HOYA:E-FDS1 catalog-reference values, not a measured patent melt; native nd/vd retained."
+      "glass": "E-FDS1 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Negative meniscus at entrance of G1b."
     },
     {
       "id": 7,
@@ -173,12 +163,8 @@ const LENS_DATA = {
       "vd": 41.1,
       "indexReference": "d",
       "fl": 38.379929,
-      "glass": "K-VC181 coordinate class",
-      "role": "Aspheric positive element in G1b.",
-      "nC": 1.804698877359,
-      "nF": 1.824401416616,
-      "ng": 1.835610356636,
-      "apdNote": "C/F/g indices are SUMITA:K-VC181 catalog-reference values, not a measured patent melt; native nd/vd retained."
+      "glass": "K-VC181 (SUMITA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Aspheric positive element in G1b."
     },
     {
       "id": 8,
@@ -190,13 +176,9 @@ const LENS_DATA = {
       "vd": 33.3,
       "indexReference": "d",
       "fl": -53.41309,
-      "glass": "NBFD15 / H-ZLAF56B / J-LASFH6 coordinate class",
+      "glass": "NBFD15 (HOYA; coordinate equivalent; supplier unconfirmed)",
       "role": "Negative component of bonded D2.",
-      "cemented": "D2",
-      "nC": 1.799015392165,
-      "nF": 1.823244843369,
-      "ng": 1.837502101737,
-      "apdNote": "C/F/g indices are HOYA:NBFD15 catalog-reference values, not a measured patent melt; native nd/vd retained."
+      "cemented": "D2"
     },
     {
       "id": 9,
@@ -220,14 +202,11 @@ const LENS_DATA = {
       "vd": 75.5,
       "indexReference": "d",
       "fl": 22.853095,
-      "glass": "FCD705 coordinate class",
+      "glass": "FCD705 (HOYA; coordinate equivalent; supplier unconfirmed)",
       "role": "Positive component of bonded D2 before the stop.",
       "cemented": "D2",
-      "nC": 1.548101081571,
-      "nF": 1.555390482453,
-      "ng": 1.559326656733,
       "apd": "inferred",
-      "apdNote": "ED position in Hasselblad's datasheet diagram; nd/νd match FCD705-class extra-low-dispersion crown, whose catalog C/F/g indices (reference values, not a patent melt) give ΔPgF ≈ +0.023."
+      "apdNote": "ED position in Hasselblad's datasheet diagram; nd/νd match FCD705-class extra-low-dispersion crown (catalog ΔPgF ≈ +0.023)."
     },
     {
       "id": 11,
@@ -239,12 +218,8 @@ const LENS_DATA = {
       "vd": 16.5,
       "indexReference": "d",
       "fl": 52.487758,
-      "glass": "FDS16-W coordinate class",
-      "role": "Positive component of moving G2.",
-      "nC": 1.969488295902,
-      "nF": 2.02931181282,
-      "ng": 2.069127212816,
-      "apdNote": "C/F/g indices are HOYA:FDS16-W catalog-reference values, not a measured patent melt; native nd/vd retained."
+      "glass": "FDS16-W (HOYA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Positive component of moving G2."
     },
     {
       "id": 12,
@@ -256,12 +231,8 @@ const LENS_DATA = {
       "vd": 31.0,
       "indexReference": "d",
       "fl": -30.695964,
-      "glass": "L-TIM28 coordinate class",
-      "role": "Aspheric negative component of moving G2.",
-      "nC": 1.683026051412,
-      "nF": 1.705250550173,
-      "ng": 1.718556655914,
-      "apdNote": "C/F/g indices are OHARA:L-TIM28 catalog-reference values, not a measured patent melt; native nd/vd retained."
+      "glass": "L-TIM28 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Aspheric negative component of moving G2."
     },
     {
       "id": 13,
@@ -273,13 +244,10 @@ const LENS_DATA = {
       "vd": 60.5,
       "indexReference": "d",
       "fl": 37.965236,
-      "glass": "FCD600 coordinate class",
+      "glass": "FCD600 (HOYA; coordinate equivalent; supplier unconfirmed)",
       "role": "Positive element in fixed G3.",
-      "nC": 1.591145853005,
-      "nF": 1.600969821583,
-      "ng": 1.606423497335,
       "apd": "inferred",
-      "apdNote": "ED position in Hasselblad's datasheet diagram; nd/νd match FCD600-class glass, whose catalog C/F/g indices (reference values, not a patent melt) give ΔPgF ≈ +0.013, a weaker anomaly than L3 and L8 at νd = 60.5."
+      "apdNote": "ED position in Hasselblad's datasheet diagram; nd/νd match FCD600-class glass (catalog ΔPgF ≈ +0.013, a weaker anomaly than L3 and L8 at νd = 60.5)."
     },
     {
       "id": 14,
@@ -291,13 +259,9 @@ const LENS_DATA = {
       "vd": 25.2,
       "indexReference": "d",
       "fl": -24.173834,
-      "glass": "NBFD25 coordinate class",
+      "glass": "NBFD25 (HOYA; coordinate equivalent; supplier unconfirmed)",
       "role": "Negative component of bonded D3.",
-      "cemented": "D3",
-      "nC": 1.844729374424,
-      "nF": 1.878699371472,
-      "ng": 1.899430665287,
-      "apdNote": "C/F/g indices are HOYA:NBFD25 catalog-reference values, not a measured patent melt; native nd/vd retained."
+      "cemented": "D3"
     },
     {
       "id": 15,
@@ -321,13 +285,9 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "d",
       "fl": 44.513643,
-      "glass": "S-BSL7 / L-BSL7 / K-BK7 coordinate class",
+      "glass": "S-BSL7 (OHARA; coordinate equivalent; supplier unconfirmed)",
       "role": "Aspheric positive component of bonded D3.",
-      "cemented": "D3",
-      "nC": 1.513855148203,
-      "nF": 1.521904940038,
-      "ng": 1.526213870703,
-      "apdNote": "C/F/g indices are OHARA:S-BSL7 catalog-reference values, not a measured patent melt; native nd/vd retained."
+      "cemented": "D3"
     }
   ],
   "surfaces": [
@@ -401,7 +361,7 @@ const LENS_DATA = {
       "d": 1.1,
       "nd": 1.92286,
       "elemId": 6,
-      "sd": 12.3
+      "sd": 12.0
     },
     {
       "label": "10",
@@ -409,7 +369,7 @@ const LENS_DATA = {
       "d": 0.35,
       "nd": 1,
       "elemId": 0,
-      "sd": 12.3
+      "sd": 12.0
     },
     {
       "label": "11A",
@@ -433,7 +393,7 @@ const LENS_DATA = {
       "d": 1.1,
       "nd": 1.8061,
       "elemId": 8,
-      "sd": 12.2
+      "sd": 11.7
     },
     {
       "label": "14",
@@ -441,7 +401,7 @@ const LENS_DATA = {
       "d": 0.01,
       "nd": 1.56732,
       "elemId": 9,
-      "sd": 12.2
+      "sd": 11.7
     },
     {
       "label": "15",
@@ -449,7 +409,7 @@ const LENS_DATA = {
       "d": 8.1458,
       "nd": 1.55032,
       "elemId": 10,
-      "sd": 12.2
+      "sd": 11.7
     },
     {
       "label": "16",
@@ -457,7 +417,7 @@ const LENS_DATA = {
       "d": 3.6304,
       "nd": 1,
       "elemId": 0,
-      "sd": 12.2
+      "sd": 11.4
     },
     {
       "label": "STO",
@@ -555,7 +515,7 @@ const LENS_DATA = {
       "nd": 1.5168,
       "vd": 64.2,
       "indexReference": "d",
-      "glass": "BSC7 / H-K9L / N-BK7 coordinate class",
+      "glass": "BSC7 (HOYA; coordinate equivalent; supplier unconfirmed)",
       "gapAfterMm": 1,
       "source": "US 2024/0329362 A1 Example 2 Table 2A, surfaces 28–29; physical cover glass."
     }

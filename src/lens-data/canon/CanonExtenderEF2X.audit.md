@@ -253,3 +253,142 @@ The final freeze receipt records the actual fully materialized offline replay, f
 - `diagramLabel` removed from the seven elements and the triplet's `cemented` tag and `doublets` text changed from
   L21–L23 to T1: the composed diagram now numbers the converter T1-T7 as it does for the Fujifilm converters, and
   the patent's L31 / L32 no longer sit beside a host's own L31 / L32 group labels. `name` keeps the patent's L11-L32.
+
+## 2026-10-12 — Semi-diameter pass against the patent figure
+
+Scope: `sd` values only, following `agent_docs/patent-figure-sd-audit-procedure.md` and the semi-diameter rules of
+`src/lens-data/TELECONVERTER_DATA_SPEC.md`. No `sd` value changed: all five units read within 1 % of the drawing. No
+`R`, `d`, `nd`, glass, `minHostFno`, `masterImageDistanceMm` or host file was touched. The only edit is three sentences
+added to the data-file header note on semi-diameters (square-cut units, the figure readings, the rear-pair ray floor).
+
+### Source and scale
+
+- Figure: `patents/JPS63106715A.pdf`, a seven-page image-only scan (each page a 1-bit 2866 × 3895 px raster at
+  347 ppi). 第3図 on PDF page 6 (printed 92) is the section of Example 2. It draws the converter alone with the axis
+  horizontal; the master lens is 第1図 on the same page. Measured on a 347 dpi page render (2868 × 4058 px).
+- Axis: the dash-dot line drifts from row 2550.5 at the front to 2547.7 at the rear (about 0.22°), so each rim is the
+  mean of the upper and lower silhouette. The outline is 4–5 px (about 0.3 mm) wide.
+- Vertex crossings, read in bands 9–22 px above and 6–16 px below the axis: r11 526.5, r12 560.5, r13 592.6,
+  r14 706.6, r21 741.8, r22 807.9, r23 831.2, r24 924.7, r31 1102.8, r32/r33 1189.2 (one line; the two vertices are
+  0.15 mm apart) and r34 1213.3 px.
+- Scale: a least-squares line through the eleven crossings gives 14.607 px/mm (0.06846 mm/px) with 0.86 px rms and a
+  largest residual of 1.5 px (0.10 mm). r11→r34 is 686.8 px for the tabulated 47.02 mm, 14.607 px/mm. Two-span check:
+  r21→r31 gives 14.639 px/mm (361.0 px for 24.66 mm) and r14→r34 gives 14.649 px/mm (506.7 px for 34.59 mm).
+- Outline overlay: the outline computed from the prescription at the stored rims, placed with that scale, was compared
+  with the ink at 96 points (four heights on each of the twelve surfaces, both sides of the axis). Mean offset 0.7 px,
+  rms 2.3 px (0.16 mm). The largest offsets are on the upper halves of r12, r13 and r23, drawn 4–10 px toward the
+  image; the lower halves of the same surfaces are within 5 px.
+
+### What the figure shows
+
+| Unit | Surfaces | Stored (mm) | Rim line rows, top / bottom (px) | Half-height (px) | Figure, outline centre (mm) | Figure, outer ink (mm) | Figure / stored | Decision |
+|---|---|---:|---:|---:|---:|---:|---:|---|
+| L11 | 1, 2 | 13.3 | 2357.0 / 2745.8 | 194.4 | 13.31 | 13.49 | 1.00 | retained |
+| L12 | 3, 4 | 12.3 | 2372.5 / 2731.0 | 179.3 | 12.27 | 12.43 | 1.00 | retained |
+| L21–L23 | 5, 6, 7, 8 | 10.4 | 2399.5 / 2700.2 | 150.3 | 10.29 | 10.47 | 0.99 | retained |
+| L31 | 9, 10 | 13.2 | 2356.5 / 2740.5 | 192.0 | 13.14 | 13.28 | 1.00 | retained |
+| L32 | 11, 12 | 13.1 | 2358.0 / 2739.5 | 190.8 | 13.06 | 13.21 | 1.00 | retained |
+
+- Square cut. Each unit ends at top and bottom in one straight line parallel to the axis, running from the edge of its
+  front face to the edge of its rear face (L11 x 538–609, L12 626–681, triplet 726–923, L31 1107–1138, L32 1177–1230
+  px). Both faces of every singlet therefore carry one height, as stored.
+- Cemented junctions. The two cemented surfaces run out to the triplet's rim lines and meet them at x ≈ 766 and 881 px
+  (top) and 768 and 877 px (bottom), against 765 and 875 px computed for 10.4 mm. There is no step inside the triplet,
+  and surfaces 5–8 share one value.
+- Drawn edge thickness between line centres, against the prescription at the stored rim: L11 about 4.6 mm against
+  4.76 mm, L12 3.6 against 3.97 mm, triplet 13.3 against 13.37 mm, L31 1.9 against 2.01 mm, L32 3.35 against 3.42 mm.
+- Relative heights, the quantity the rendered section shows most plainly: against L11 the figure gives 0.922 (L12),
+  0.773 (triplet), 0.988 (L31) and 0.981 (L32); the stored set gives 0.925, 0.782, 0.992 and 0.985.
+
+### Values retained and why
+
+- **All twelve surfaces.** Figure / stored is 0.99–1.00 for every unit, far inside the reading noise of a 0.3 mm
+  outline. The stored values agree with the centre of the outline to about 0.1 mm and none exceeds its outer edge.
+- **L31 and L32 (surfaces 9–12), 13.2 and 13.1 mm.** These are a ray floor as well as a figure reading. On the declared
+  hosts the chief ray to the 21.63 mm format corner reaches 12.86 / 13.17 mm on surfaces 9 / 10 and 12.98 / 13.06 mm
+  on surfaces 11 / 12, on the EF 600mm f/4L IS II in each case. The outline-centre readings rounded down (13.1 and
+  13.0 mm) would block that ray; the stored round-up passes it by 0.03 and 0.04 mm.
+- **L11 and L12 (surfaces 1–4), 13.3 and 12.3 mm.** The f/1.86 beam of the EF 200mm f/1.8L, which `minHostFno` 2
+  excludes, reaches 13.46 mm on surface 1 and 12.46 mm on surface 3 (0.16 mm over each) and clears surface 5 by
+  0.03 mm, as the `minHostFno` comment says. Admitting it would need 13.5 and 12.5 mm, and 12.5 mm is beyond even the
+  outer ink of the drawn L12 (12.43 mm), so the rims stay at the figure values.
+
+### Clearance on the declared hosts
+
+No rim moved, so every number here is the same before and after the pass. The probes were run before it and again
+after the header edit, with identical output.
+
+- Converter alone: the data validator reports no errors (edge thickness, rim slope and gap intrusion at the default
+  limits). Focal length −84.8127 mm; the virtual object 49.1290 mm behind vertex 1 images 54.2502 mm behind the last
+  vertex at 2.00238×.
+- All fourteen declared hosts compose with the host's stop radius unchanged and no on-axis clip at any zoom station.
+  Corner coverage is the engine's modeled edge height over the format corner; margins are from exact rays through the
+  composed system at infinity focus, the on-axis one for the widest ray the host itself passes. The corner fan is the
+  share of the meridional iris diameter that reaches the 21.63 mm corner.
+
+| Host | f-number, bare → mounted | Junction gap (mm) | On-axis clip | Corner coverage, bare → mounted | Least on-axis margin (mm) | Least corner chief-ray margin (mm) | Corner fan, host → host + converter |
+|---|---|---:|---|---|---:|---:|---|
+| EF 135mm f/2L USM | 2.06 → 4.12 | 4.99 | none | 100 % → 100 % | 1.00 | 0.27 | 78 % → 45 % |
+| EF 200mm f/2L IS USM | 2.05 → 4.11 | 11.23 | none | 100 % → 100 % | 1.70 | 0.92 | 73 % → 39 % |
+| EF 300mm f/2.8L IS USM | 2.90 → 5.81 | 10.19 | none | 100 % → 100 % | 3.70 | 0.74 | 70 % → 35 % |
+| EF 400mm f/2.8L IS USM | 2.90 → 5.81 | 5.10 | none | 100 % → 100 % | 3.94 | 0.96 | 76 % → 37 % |
+| EF 400mm f/2.8L IS II USM | 2.90 → 5.81 | 5.14 | none | 100 % → 100 % | 3.69 | 0.89 | 77 % → 43 % |
+| EF 400mm f/4 DO IS USM | 4.12 → 8.25 | 14.21 | none | not available (see Limits) | 5.78 | 0.44 | 93 % → 46 % |
+| EF 600mm f/4L IS II USM | 4.12 → 8.24 | 58.68 | none | 100 % → 100 % | 5.69 | 0.03 | 61 % → 29 % |
+| EF 180mm f/3.5L Macro USM | 3.60 → 7.21 | 18.41 | none | 100 % → 100 % | 5.12 | 0.26 | 73 % → 37 % |
+| EF 70-200mm f/2.8L IS USM | 2.90 → 5.81 | 11.39 | none, 3 stations | 100 % → 100 % | 3.69 | 0.56 | 90 → 52, 92 → 53, 75 → 37 % |
+| EF 70-200mm f/2.8L IS II USM | 2.90 → 5.80 | 4.97 | none, 3 stations | 100 % → 100 % | 3.89 | 0.94 | 65 → 43, 70 → 45, 52 → 31 % |
+| EF 70-200mm f/4L USM | 4.10 → 8.21 | 4.00 | none, 3 stations | 100 % → 100 % | 5.65 | 1.20 | 98 → 66, 95 → 63, 69 → 41 % |
+| EF 70-200mm f/4L IS USM | 4.10 → 8.21 | 5.37 | none, 3 stations | 100 % → 100 % | 5.65 | 0.88 | 96 → 60, 94 → 58, 70 → 39 % |
+| EF 100-400mm f/4.5-5.6L IS USM | 4.6–5.8 → 9.21–11.61 | 23.16 | none, 3 stations | 100 % → 100 % | 6.18 | 0.14 | 90 → 60, 93 → 58, 88 → 41 % |
+| EF 100-400mm f/4.5-5.6L IS II USM | 4.63–5.85 → 9.26–11.70 | 18.13 | none, 3 stations | 100 % → 100 % | 6.21 | 0.44 | 89 → 62, 90 → 58, 80 → 41 % |
+
+- The least on-axis margin is on surface 5 for every host; the least corner chief-ray margin is on surface 12, except
+  surface 10 on the EF 600mm f/4L IS II.
+- Fastest hosts on axis. EF 135mm f/2L (f/2.06): the marginal ray reaches 12.11 / 11.28 / 9.40 mm on surfaces
+  1 / 3 / 5, margins 1.19 / 1.02 / 1.00 mm. EF 200mm f/2L IS: the nominal f/2.05 ray reaches 12.17 / 11.33 / 9.44 mm,
+  margins 1.13 / 0.97 / 0.96 mm; the host's own surface 9 holds its beam to about f/2.23, for which the least margin is
+  the 1.70 mm in the table. A beam opened to f/2.0 through the 135 mm host reaches 12.48 / 11.60 / 9.67 mm, margins
+  0.82 / 0.70 / 0.73 mm.
+- Closest focus, traced from the finite axial object point on the nine hosts whose files model focus motion: the least
+  on-axis margin is 2.30 mm (EF 135mm f/2L, surface 5), then 2.44 mm (EF 200mm f/2L IS) and 4.0 mm or more elsewhere.
+  The EF 70-200mm f/2.8L IS and IS II, EF 70-200mm f/4L IS, EF 100-400mm IS II and EF 400mm f/4 DO files keep the
+  infinity spacings at closest focus.
+- Off-axis clipping is kept. At the format corner the converter's own rims stop a further 21–48 points of the
+  meridional fan on top of what each host stops, first on surfaces 1, 3 and 5 for the wide beams and on surfaces 7–10
+  for the oblique ones. That is the clipping the drawn rims imply, and no rim was widened to reduce it.
+
+### Live check
+
+- The local pages for the EF 300mm f/2.8L IS USM (the declared host nearest the patent's 293 mm f/2.8 master) and the
+  EF 135mm f/2L USM (fastest declared host) were viewed with the converter mounted, at infinity and at closest focus,
+  together with the converter's own page. The `tc` query mounts the converter only with `v=1` in the same query.
+- The rendered converter follows 第3図: L11 and the rear pair stand at nearly one height, L12 one step lower with its front
+  corner tucked into L11's concave rear face, the cemented triplet the smallest unit and a plain rectangle with both
+  junctions running to its rim, a long air space behind it, and L31 all but touching L32 at the axis with the gap
+  opening to the rim. Every unit is square-cut as drawn.
+- The junction is clear on both hosts: 10.19 mm behind the 300 mm lens's drop-in filter and 4.99 mm behind the rear
+  element of the 135 mm lens, whose 18.0 mm rim stands above L11's 13.3 mm. On-axis rays pass inside every converter
+  rim at both focus states.
+
+### Maker diagram
+
+No maker image was supplied or viewed in this pass. The "Deployment validation and catalog hosts" section above
+records that "Figure 3 and Canon's Camera Museum construction drawing both show 7 elements in 5 groups with the
+cemented triplet second", and the manufacturer-correlation section that the construction image "shows two front
+singlets, a central triplet and two rear singlets". 第3図 agrees in count and grouping: L11, L12, cemented L21–L23,
+L31, L32. Neither record names a special-glass or aspherical element, and Example 2 is all spherical. The patent
+figure governs the rims.
+
+### Limits
+
+- 第3図 is a hand-drawn schematic with a 0.3 mm outline; the rims are figure estimates, not production clear apertures.
+- The probe's corner-coverage figure is not available on the EF 400mm f/4 DO IS USM (it prints 0 % bare and mounted);
+  the exact chief ray to the corner clears every converter rim there by 0.44 mm or more.
+- Four declared hosts stop their own stated beam on one of their own rims before it reaches the converter (stated-beam
+  audit: EF 200mm f/2L IS f/2.05 → f/2.23 at surface 9; EF 400mm f/2.8L IS f/2.90 → f/3.01 at surface 7; EF 70-200mm
+  f/4L f/4.10 → f/4.36 at 194.57 mm, surface 5; EF 70-200mm f/2.8L IS II f/2.90 → f/2.99–3.01, surfaces 28 and 16).
+  Those are host-file rows; the converter clears the nominal beams as well.
+- Closest-focus corner rays were not traced. On axis the closest-focus margin is larger than at infinity on every host
+  that models focus motion except the EF 100-400mm f/4.5-5.6L IS, where it is 0.09–0.16 mm smaller at each zoom
+  station (least 6.07 mm).

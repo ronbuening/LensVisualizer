@@ -9,8 +9,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * R, d, N and nu are as printed; the image plane is the same in both focus states.
  * D17 is the calculated Gaussian back focal distance (the patent prints none); it is not
  * adjusted, and the close-focus state is not fitted to Canon's 0.13x magnification.
- * All semi-diameters and the f/1.8 stop radius (set by the real marginal ray) are inferred,
- * not source dimensions. Rims are unequal across R7/R8, R10/R11 and R13/R14 (see the audit log).
+ * The patent prints no semi-diameters. They are estimated from Fig. 1, which is drawn to scale,
+ * and floor-checked by real-ray trace; the f/1.8 stop radius is set by the real marginal ray.
+ * None is a source dimension. Rims are unequal across R7/R8 (20.4/16.1: the figure ends the
+ * concave face at the marginal ray and continues L4 as a flat annulus) and R13/R14 (15.0/17:
+ * the drawn L7/L8 step). The G2 doublet is square-cut at 15.0, as drawn (see the audit log).
  * The table does not name a spectral line for N/nu; Fig. 4 plots the d and g lines, so the
  * values are read as nd/vd. All nine elements carry coordinate-equivalent catalog glass names;
  * L6 (1.51633/64.2) uses S-BSL7 (1.51633/64.14), 0.06 below the one-decimal printed Abbe number
@@ -148,7 +151,7 @@ const LENS_DATA = {
       "d": 4.4,
       "nd": 1.6516,
       "elemId": 1,
-      "sd": 25.5
+      "sd": 26.9
     },
     {
       "label": "2",
@@ -156,7 +159,7 @@ const LENS_DATA = {
       "d": 0.2,
       "nd": 1,
       "elemId": 0,
-      "sd": 25.5
+      "sd": 26.9
     },
     {
       "label": "3",
@@ -164,7 +167,7 @@ const LENS_DATA = {
       "d": 4.6,
       "nd": 1.7725,
       "elemId": 2,
-      "sd": 24.8
+      "sd": 24.1
     },
     {
       "label": "4",
@@ -172,7 +175,7 @@ const LENS_DATA = {
       "d": 0.15,
       "nd": 1,
       "elemId": 0,
-      "sd": 24.8
+      "sd": 24.1
     },
     {
       "label": "5",
@@ -180,7 +183,7 @@ const LENS_DATA = {
       "d": 8.2,
       "nd": 1.713,
       "elemId": 3,
-      "sd": 22.4
+      "sd": 21.2
     },
     {
       "label": "6",
@@ -188,7 +191,7 @@ const LENS_DATA = {
       "d": 0.16,
       "nd": 1,
       "elemId": 0,
-      "sd": 22.4
+      "sd": 21.2
     },
     {
       "label": "7",
@@ -204,7 +207,7 @@ const LENS_DATA = {
       "d": 8.82,
       "nd": 1,
       "elemId": 0,
-      "sd": 19.6
+      "sd": 16.1
     },
     {
       "label": "STO",
@@ -228,7 +231,7 @@ const LENS_DATA = {
       "d": 1.5,
       "nd": 1.51633,
       "elemId": 6,
-      "sd": 15.5
+      "sd": 15.0
     },
     {
       "label": "12",
@@ -236,7 +239,7 @@ const LENS_DATA = {
       "d": 16.3,
       "nd": 1,
       "elemId": 0,
-      "sd": 15.5
+      "sd": 15.0
     },
     {
       "label": "13",
@@ -268,7 +271,7 @@ const LENS_DATA = {
       "d": 5.4,
       "nd": 1.7725,
       "elemId": 9,
-      "sd": 17.5
+      "sd": 19.0
     },
     {
       "label": "17",
@@ -276,7 +279,7 @@ const LENS_DATA = {
       "d": 38.9050921339573,
       "nd": 1,
       "elemId": 0,
-      "sd": 17.5
+      "sd": 19.0
     }
   ],
   "asph": {},

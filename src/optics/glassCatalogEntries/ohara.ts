@@ -2168,4 +2168,15 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued low-softening-temperature L-LAH81 Sellmeier row.",
   },
+  {
+    name: "L-TIM28",
+    vendor: "Ohara",
+    B: [1.52780829, 0.232776367, 1.71638781],
+    C: [0.0114135883, 0.0559068566, 171.5118],
+    nd: 1.689479,
+    vd: 31.023399,
+    PgF: 0.598713,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for low-softening-temperature L-TIM28. The catalog gives it code 689311, the same as S-TIM28 (nd 1.68893), so code6 is omitted.",
+  },
 ];
