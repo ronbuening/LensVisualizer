@@ -1,0 +1,49 @@
+name: Engine Diff Stage
+
+# A stub. The workflow itself lives on the engine-next branch (OPTICS_ENGINE_REWRITE_SPEC.md, Gates by level), and
+# GitHub dispatches a workflow only once a file of its name is on the default branch. This file is that file: it
+# lets a run be started with `gh workflow run engine-diff-stage.yml --ref engine-next ...`, which then uses the
+# workflow as engine-next has it. Its inputs repeat that workflow's, so the "Run workflow" form shows them. Started
+# on this branch it only says where to start it. Promotion replaces it with the real workflow.
+on:
+  workflow_dispatch:
+    inputs:
+      base:
+        description: "Base ref: the current anchor tag or a commit, for example optics-rewrite/s1"
+        required: true
+        type: string
+      tier:
+        description: "Corpus tier"
+        required: true
+        type: choice
+        options: [s, f]
+        default: s
+      class:
+        description: "Loosest change class merged since the base"
+        required: true
+        type: choice
+        options: [c0, c1, c2, c3]
+        default: c0
+      shards:
+        description: "Number of shards, 1 to 64. Empty: 8 for tier s, 32 for tier f"
+        required: false
+        type: string
+      exceptions:
+        description: "Lens ids the base engine cannot build, separated by spaces. A pair is host+converter"
+        required: false
+        type: string
+      transitions:
+        description: "Declared transitions, one bullet per line, each with its reason. Sent from a file with gh"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  stub:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::error::This branch holds only a stub of the workflow. Start it on engine-next, or on a branch cut from it: gh workflow run engine-diff-stage.yml --ref engine-next -f base=<anchor> -f tier=s -f class=<class>"
+          exit 1
