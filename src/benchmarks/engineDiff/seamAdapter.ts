@@ -21,6 +21,7 @@ const ENGINE_MODULES = {
   chromaticRayFanScaling: import.meta.glob<EngineModule>("../../optics/chromaticRayFanScaling.ts", { eager: true }),
   compat: import.meta.glob<EngineModule>("../../optics/compat.ts", { eager: true }),
   constants: import.meta.glob<EngineModule>("../../optics/constants.ts", { eager: true }),
+  geometry: import.meta.glob<EngineModule>("../../optics/geometry.ts", { eager: true }),
   layout: import.meta.glob<EngineModule>("../../optics/layout.ts", { eager: true }),
   lensDefaults: import.meta.glob<EngineModule>("../../lens-data/defaults.ts", { eager: true }),
   lensMovement: import.meta.glob<EngineModule>("../../optics/lensMovement.ts", { eager: true }),
@@ -43,6 +44,7 @@ interface EngineModuleTypes {
   chromaticRayFanScaling: typeof import("../../optics/chromaticRayFanScaling.js");
   compat: typeof import("../../optics/compat.js");
   constants: typeof import("../../optics/constants.js");
+  geometry: typeof import("../../optics/geometry.js");
   layout: typeof import("../../optics/layout.js");
   lensDefaults: typeof import("../../lens-data/defaults.js");
   lensMovement: typeof import("../../optics/lensMovement.js");
@@ -68,7 +70,10 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
  */
 const SEAM_CANDIDATES = {
   lensDefaults: [["lensDefaults", "default"]],
-  flatRadiusThreshold: [["constants", "FLAT_R_THRESHOLD"]],
+  flatRadiusThreshold: [
+    ["geometry", "FLAT_R_THRESHOLD"],
+    ["constants", "FLAT_R_THRESHOLD"],
+  ],
   channelWavelengthNm: [["constants", "CHROMATIC_CHANNEL_WAVELENGTH_NM"]],
   buildLens: [["buildLens", "default"]],
   attachTeleconverter: [["teleconverter", "attachTeleconverter"]],

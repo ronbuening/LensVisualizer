@@ -5,7 +5,7 @@
  * calculations alongside the exact real-ray tracer.
  */
 
-import { FLAT_R_THRESHOLD } from "../constants.js";
+import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import type { CompiledDiffractivePhase } from "../types.js";
 import type { DiffractivePhaseSurface } from "../../types/optics.js";
 import { diffractiveParaxialPower } from "./diffractivePhase.js";

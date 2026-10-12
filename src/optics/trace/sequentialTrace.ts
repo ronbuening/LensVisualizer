@@ -6,7 +6,7 @@
  */
 
 import type { FoldedPathClipEvent } from "../../types/optics.js";
-import { FLAT_R_THRESHOLD } from "../constants.js";
+import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { pushClipEvent } from "./foldedDiagnostics.js";

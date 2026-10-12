@@ -41,21 +41,42 @@ export interface Plane3 {
   label: string;
 }
 
+/** Sag in mm and radial slope dz/dr of a surface profile at one radius. */
+export interface SagSlope {
+  sag: number;
+  slope: number;
+}
+
 /**
  * Surface geometry abstraction used by exact intersection and diagram rendering.
  *
  * Sag and slope are functions of radial aperture height in mm. `pointAt` converts
  * a vertex z plus x/y aperture coordinates into the actual 3D surface point.
+ * A tilted plane is the exception: its `sag` and `evaluate` read the argument
+ * as the signed meridional coordinate y.
  */
 export interface SurfaceProfile {
   kind: "flat" | "spherical" | "aspheric" | "tilted-plane";
   sag(radius: number): number;
   slope(radius: number): number;
+  /**
+   * Sag and slope at one radius from one pass. Each field is bit-identical to
+   * `sag(radius)` and `slope(radius)`. Fills and returns `out` when given.
+   */
+  evaluate(radius: number, out?: SagSlope): SagSlope;
   normalAt(point: Vec3, vertexZ: number): Vec3;
   pointAt(vertexZ: number, x: number, y: number): Vec3;
   finiteRadiusLimit(): number | null;
   /** Conservative absolute radial slope bound; absent for unproved/custom geometry. */
   maxAbsSlope?(radius: number): number;
+  /** Vertex curvature 1/R in 1/mm; 0 for a flat base or a plane. */
+  readonly curvature: number;
+  /** Conic constant K; 0 for a sphere or a plane. */
+  readonly conic: number;
+  /** True when a polynomial coefficient is nonzero, so the surface is more than its base conic. */
+  readonly hasPolynomial: boolean;
+  /** Unit normal of a tilted plane; null for every other kind. */
+  readonly planeNormal: Vec3 | null;
 }
 
 /** Compiled refract/reflect/block behavior for one physical surface. */

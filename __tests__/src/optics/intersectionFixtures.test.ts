@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { FLAT_R_THRESHOLD } from "../../../src/optics/constants.js";
+import { FLAT_R_THRESHOLD } from "../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSagSurface } from "../../../src/optics/internal/surfaceIntersection.js";
 import { intersectSurfaceProfile, type SurfaceIntersectionSuccess } from "../../../src/optics/math/intersection.js";
 import { sagResidualRoundoff } from "../../../src/optics/math/intersectionTolerance.js";

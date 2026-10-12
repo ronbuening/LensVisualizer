@@ -5,11 +5,8 @@
  * one set of physical and numerical thresholds.
  */
 
-import { DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN } from "./internal/surfaceMath.js";
 import { LINE_NM } from "./spectralLines.js";
 import type { ChromaticChannel } from "../types/optics.js";
-
-export { DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN };
 
 /** Minimum useful vector magnitude before normalization is treated as degenerate. */
 export const VECTOR_EPSILON = 1e-12;

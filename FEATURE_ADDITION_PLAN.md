@@ -235,7 +235,7 @@ Steps:
      pick one, document in the helper header, use consistently.
    - Petzval contribution per surface: `(n2 − n1) / (R · n1 · n2)`.
    - Flat surfaces: power 0. The engine's flat-radius convention is
-     `Math.abs(R) > FLAT_R_THRESHOLD` (re-exported from `src/optics/constants.ts`) — reuse that
+     `Math.abs(R) > FLAT_R_THRESHOLD` (exported from the `src/optics/geometry.ts` barrel) — reuse that
      constant rather than testing a magic number.
    - Current thicknesses/indices come from the prepared state (zoom/focus dependent).
 2. New tab (`agent_docs/adding_an_analysis_tab.md` — all four registration points), id

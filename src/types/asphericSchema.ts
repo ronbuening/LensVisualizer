@@ -4,7 +4,7 @@
  * data must author them.
  *
  * The `AsphericCoefficients` type, `validateLensData`'s required/optional/
- * known-key checks, the sag/slope evaluation in `internal/surfaceMath.ts`,
+ * known-key checks, the sag/slope evaluation in `geometry/surfaceProfile.ts`,
  * and the descriptor-driven term-isolation tests all derive from this list.
  * Adding a coefficient here is the only step needed to extend the schema
  * everywhere at once.
@@ -29,10 +29,10 @@ export interface AsphericCoefficientDescriptor {
 }
 
 /**
- * Ordered coefficient descriptors. Within each parity, list order IS the
- * accumulation order used by `conicPolySag` / `sagSlopeRaw` — do not reorder
- * without re-verifying the golden trace suite, because float addition is not
- * associative.
+ * Coefficient descriptors: K, then each parity in ascending power. The
+ * evaluator places every term in its parity's Horner chain by `power`, so
+ * list order does not change a sag or slope; it is the order of the key
+ * lists derived from this schema.
  */
 export const ASPHERIC_COEFFICIENT_SCHEMA = [
   { key: "K", kind: "conic", power: 0, parity: "even", required: true },
@@ -58,10 +58,10 @@ export const ASPHERIC_COEFFICIENT_SCHEMA = [
 
 type SchemaEntry = (typeof ASPHERIC_COEFFICIENT_SCHEMA)[number];
 
-/** Polynomial-only descriptors in accumulation order (excludes the conic K). */
+/** One polynomial descriptor (excludes the conic K). */
 export type AsphericPolynomialDescriptor = Extract<SchemaEntry, { kind: "polynomial" }>;
 
-/** Polynomial descriptors in accumulation order (excludes the conic K). */
+/** Polynomial descriptors in schema order (excludes the conic K). */
 export const ASPHERIC_POLYNOMIAL_TERMS: readonly AsphericPolynomialDescriptor[] = ASPHERIC_COEFFICIENT_SCHEMA.filter(
   (descriptor): descriptor is AsphericPolynomialDescriptor => descriptor.kind === "polynomial",
 );
