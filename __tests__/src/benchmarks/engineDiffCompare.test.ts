@@ -2444,6 +2444,7 @@ describe("engineDiff declared transitions", () => {
       declared: [],
       undeclared: 1,
       undeclaredLines: undeclared.lines,
+      breached: { units: 0, samples: [] },
       overflow: { records: 0, samples: [] },
     });
 
@@ -2464,10 +2465,12 @@ describe("engineDiff declared transitions", () => {
             differences: CLIP_DIFFERENCES,
             shapes: 1,
             excusedNumbers: 0,
+            covered: expect.any(Array),
           },
         ],
         undeclared: 0,
         undeclaredLines: [],
+        breached: { units: 0, samples: [] },
         overflow: { records: 0, samples: [] },
       });
       /* The run passed on the strength of the line, so the report leads with it. */
@@ -2476,8 +2479,8 @@ describe("engineDiff declared transitions", () => {
       expect(markdown.indexOf("## Declared transitions")).toBeGreaterThan(0);
       expect(markdown.indexOf("## Declared transitions")).toBeLessThan(markdown.indexOf("## Counts"));
       expect(markdown).toContain(
-        `- Matched, ${CLIP_DIFFERENCES} discrete or shape differences (1 of them a shape, behind which nothing is ` +
-          `compared): \`${SERENAR}\` \`${STATE}\` \`traces\` `,
+        `- Matched, ${CLIP_DIFFERENCES} discrete or shape differences (1 of them a shape, behind which only the ` +
+          `hits both sides have are compared): \`${SERENAR}\` \`${STATE}\` \`traces\` `,
       );
       expect(JSON.parse(JSON.stringify(summary))).toEqual(summary);
     }
@@ -2628,8 +2631,8 @@ describe("engineDiff declared transitions", () => {
     expect(permitted.summary.transitions.declared).toMatchObject([{ outcome: "matched", excusedNumbers: 1 }]);
     expect(permitted.summary.engine.quantities.clippedHit).toMatchObject({ beyondBudget: 1 });
     expect(renderSummaryMarkdown(permitted.summary, REPORT_CONTEXT)).toContain(
-      `- Matched, ${CLIP_DIFFERENCES} discrete or shape differences (1 of them a shape, behind which nothing is ` +
-        "compared) and 1 number beyond budget: ",
+      `- Matched, ${CLIP_DIFFERENCES} discrete or shape differences (1 of them a shape, behind which only the ` +
+        "hits both sides have are compared) and 1 number beyond budget: ",
     );
 
     /* `numbers` permits and does not assert: with nothing beyond budget the line is as good. */
@@ -2676,14 +2679,17 @@ describe("engineDiff declared transitions", () => {
       [true, [...legacy, "ghostPts", 0, 1], 5e-7, true],
       [true, [...legacy, "y"], 5e-7, true],
       [true, [...legacy, "u"], 1e-6, true],
-      /* What the ray was launched with, what it met on the way, and what no hit of it decides. */
+      /* What the ray was launched with, what it met on the way, and a height no surface of it decides. */
       [false, [...RAY, "input", "origin", 1], 5e-7],
       [false, [...RAY, "input", "direction", 1], 1e-6],
       [false, [...RAY, "hits", "columns", "point", HIT, 1], 5e-7],
       [false, [...RAY, "hits", "columns", "normal", HIT, 1], 1e-6],
       [false, [...RAY, "hits", "columns", "radius", HIT], 5e-7],
-      [false, [...RAY, "finalMedium"], 1e-6],
       [false, [...legacy, "paraxialImageHeight"], 1e-6, true],
+      /* The medium a ray ended in and the stack tracer's transmission do follow from where the ray ended. They are
+       * outside the list the rule was settled with, so a ray that newly ends inside glass cannot be declared. */
+      [false, [...RAY, "finalMedium"], 1e-6],
+      [false, [...RAY, "diagnostics", "finalMedium"], 1e-6],
       [false, [...legacy, "transmission"], 1e-6, true],
     ];
     for (const [permitted, path, by, legacyRay] of cases) {
@@ -2750,7 +2756,18 @@ describe("engineDiff declared transitions", () => {
       ],
     ];
     for (const [name, change, said] of breaches) {
-      expect(lineOf(grown(change)), name).toBe(line);
+      /* With nothing declared the run writes what it found in place of a line, which a next run would only refuse. */
+      const undeclared = judge("c1", grown(change));
+      expect(undeclared.lines, name).toEqual([]);
+      expect(undeclared.summary.transitions, name).toMatchObject({
+        undeclared: 0,
+        breached: {
+          units: 1,
+          samples: [expect.stringContaining(`\`${SERENAR}\` \`${STATE}\` \`traces\` \`onAxis.rays[1]\`: On the head `)],
+        },
+      });
+      expect(undeclared.summary.transitions.breached.samples[0], name).toContain(said);
+      expect(undeclared.summary.engine.failing, name).toBe(13);
       const { summary, lines } = judge("c1", grown(change), describing([line]));
       expect(summary.passed, name).toBe(false);
       expect(summary.engine.failing, name).toBe(13);
@@ -2758,10 +2775,10 @@ describe("engineDiff declared transitions", () => {
         { outcome: "contract", differences: 0, detail: expect.stringContaining(said) },
       ]);
       expect(summary.failures[1], name).toBe(
-        "Declared transitions: of 1 declared, 1 refused, the head side of the unit breaks its contract. " +
+        "Declared transitions: of 1 declared, 1 refused, the unit holds what no line excuses. " +
           "summary.md has each line.",
       );
-      /* The line is right and is refused: there is no other line to paste. */
+      /* The line names what the run found and is refused: there is no other line to paste. */
       expect(lines, name).toEqual([]);
       expect(judge("c3", grown(change), describing([line])).summary.passed, name).toBe(true);
     }
@@ -3159,5 +3176,425 @@ describe("engineDiff declared transitions", () => {
     expect(uncompared.failures).toEqual([
       "Declared transitions: of 1 declared, 1 the lens was not compared. summary.md has each line.",
     ]);
+  });
+
+  /** The ray ending early on the head side: every hit column cut to its first hits, and the status of a miss. */
+  const cut = (
+    to: number,
+    change: (columns: Record<string, unknown[]>) => void = () => {},
+    source: readonly PayloadRecord[] = LIGHT,
+  ): PayloadRecord[] => {
+    const shorter = withChange(
+      "traces",
+      [...RAY, "hits"],
+      (hits) => {
+        const columns = Object.fromEntries(
+          Object.entries((hits as { columns: Record<string, unknown[]> }).columns).map(([name, column]) => [
+            name,
+            structuredClone(column.slice(0, to)),
+          ]),
+        );
+        change(columns);
+        return { count: to, columns };
+      },
+      source,
+    );
+    return withChange("traces", [...RAY, "status"], () => "failed", shorter);
+  };
+  const breachedOf = ({ transitions }: RunSummary) => transitions.breached;
+
+  it("compares the hits both sides have where the hit columns changed length", () => {
+    /* The ray misses the tenth surface: nine hits where there were eleven. The paired walk reports each column once,
+     * as a shape, and enters none of them. */
+    const line = lineOf(cut(9));
+    expect(line).toContain('`onAxis.rays[1].status`: `"ok"` -> `"failed"`; digest ');
+    const declared = judge("c1", cut(9), describing([line]));
+    expect(declared.summary.passed).toBe(true);
+    /* The status, the hit count and the twelve columns. */
+    expect(declared.summary.transitions.declared).toMatchObject([{ outcome: "matched", differences: 14, shapes: 12 }]);
+
+    /* A hit that both sides have is the same hit, and is held to the budget it has in a ray that kept its length. */
+    const movedHit = (by: number) => cut(9, (columns) => ((columns.point[3] as number[])[1] += by));
+    const far = judge("c1", movedHit(1e-4), describing([line]));
+    expect(far.summary.passed).toBe(false);
+    expect(far.summary.engine.failing).toBe(14);
+    expect(far.summary.transitions.declared).toMatchObject([
+      {
+        outcome: "contract",
+        differences: 0,
+        detail: expect.stringMatching(
+          /^In a hit both sides have, `onAxis\.rays\[1\]\.hits\.columns\.point\[3\]\[1\]` differs by 0\.0001 mm/,
+        ),
+      },
+    ]);
+    /* Nothing declares such a unit, so the run prints the breach and no line to paste. */
+    const undeclared = judge("c1", movedHit(1e-4));
+    expect(undeclared.lines).toEqual([]);
+    expect(undeclared.summary.transitions).toMatchObject({ undeclared: 0, undeclaredLines: [] });
+    expect(breachedOf(undeclared.summary)).toEqual({
+      units: 1,
+      samples: [
+        expect.stringMatching(
+          new RegExp(
+            `^\`${SERENAR}\` \`${STATE}\` \`traces\` \`onAxis\\.rays\\[1\\]\`: In a hit both sides have, ` +
+              "`onAxis\\.rays\\[1\\]\\.hits\\.columns\\.point\\[3\\]\\[1\\]` differs by 0\\.0001 mm",
+          ),
+        ),
+      ],
+    });
+    expect(renderSummaryMarkdown(undeclared.summary, REPORT_CONTEXT)).toContain(
+      "1 unit holds a discrete or shape difference that no line can declare",
+    );
+    /* Within its budget the same hit passes, and beyond the budget of an unclipped hit it does not. */
+    expect(judge("c1", movedHit(5e-10), describing([line])).summary.passed).toBe(true);
+    expect(outcomesOf(judge("c1", movedHit(5e-9), describing([line])).summary)).toEqual(["contract"]);
+    /* So do its direction cosines, and its residual against the tolerance recorded beside it on either side. */
+    const turned = cut(9, (columns) => ((columns.normal[3] as number[])[1] += 1e-6));
+    expect(outcomesOf(judge("c1", turned, describing([line])).summary)).toEqual(["contract"]);
+    const residualOf = (side: readonly PayloadRecord[]) =>
+      withChange("traces", [...RAY, "hits", "columns", "residual", 3], () => 5e-12, side);
+    const baseOutside = judge("c1", cut(9), describing([line]), residualOf(LIGHT));
+    expect(baseOutside.summary.transitions.declared).toMatchObject([
+      { outcome: "contract", detail: expect.stringContaining("outside the tolerance recorded beside it") },
+    ]);
+
+    /* A number that is not finite on the base side alone is a mismatch the head side cannot show. */
+    const baseNaN = withChange(
+      "traces",
+      [...RAY, "hits", "columns", "point", 3, 1],
+      () => encodeValue(Number.NaN),
+      LIGHT,
+    );
+    expect(judge("c1", cut(9), describing([line]), baseNaN).summary.transitions.declared).toMatchObject([
+      { outcome: "contract", detail: expect.stringContaining('point[3][1]` is "$NaN" on the base side and ') },
+    ]);
+
+    /* A flag of such a hit is a discrete difference of the unit like any other: it is in the digest. */
+    const flagged = cut(9, (columns) => (columns.clipped[5] = true));
+    const flaggedLine = lineOf(flagged);
+    expect(flaggedLine).not.toBe(line);
+    expect(outcomesOf(judge("c1", flagged, describing([line])).summary)).toEqual(["mismatch"]);
+    expect(judge("c1", flagged, describing([flaggedLine])).summary.transitions.declared).toMatchObject([
+      { outcome: "matched", differences: 15, shapes: 12 },
+    ]);
+
+    /* Hits are paired while both sides name the same surface. Where the head side gained a hit ahead of the fourth,
+     * the three before it are the same hits, and what follows is another path that only its own side answers for. */
+    const inserted = (change: (columns: Record<string, unknown[]>) => void = () => {}) =>
+      withChange(
+        "traces",
+        [...RAY, "hits"],
+        (hits) => {
+          const { count, columns } = hits as { count: number; columns: Record<string, unknown[]> };
+          const longer = Object.fromEntries(
+            Object.entries(columns).map(([name, column]) => [
+              name,
+              [...column.slice(0, 3), structuredClone(column[3]), ...column.slice(3)],
+            ]),
+          );
+          longer.surfaceIndex[3] = 99;
+          change(longer);
+          return { count: count + 1, columns: longer };
+        },
+        LIGHT,
+      );
+    const insertedLine = lineOf(inserted());
+    expect(judge("c1", inserted(), describing([insertedLine])).summary.passed).toBe(true);
+    const before = inserted((columns) => ((columns.point[2] as number[])[1] += 1e-4));
+    expect(outcomesOf(judge("c1", before, describing([insertedLine])).summary)).toEqual(["contract"]);
+    const after = inserted((columns) => ((columns.point[6] as number[])[1] += 1e-4));
+    expect(judge("c1", after, describing([insertedLine])).summary.passed).toBe(true);
+
+    /* Under C3 the line is reported with what refused it, and nothing gates. */
+    const reported = judge("c3", movedHit(1e-4), describing([line]));
+    expect(reported.summary.passed).toBe(true);
+    expect(outcomesOf(reported.summary)).toEqual(["contract"]);
+
+    /* A column that one side lacks is no column that changed length: the paired walk entered every other column of
+     * that ray, and what it found there is counted once and judged as in any ray. */
+    const older = withChange(
+      "traces",
+      [...RAY, "hits", "columns"],
+      (columns) => Object.fromEntries(Object.entries(columns as object).filter(([name]) => name !== "fallback")),
+      LIGHT,
+    );
+    const flaggedBeside = withChange("traces", [...RAY, "hits", "columns", "clipped", 5], () => true, LIGHT);
+    const besideLine = lineOf(flaggedBeside, older);
+    const beside = judge("c1", moved(HIT_POINT_Y, 5e-7, flaggedBeside), describing([besideLine]), older);
+    expect(beside.summary.transitions.declared).toMatchObject([{ outcome: "matched", differences: 2, shapes: 1 }]);
+    expect(beside.summary.transitions.declared[0].covered?.map(({ path }) => path)).toEqual([
+      "onAxis.rays[1].hits.columns.clipped[5]",
+      "onAxis.rays[1].hits.columns.fallback",
+    ]);
+    expect(failuresOf(beside.summary)).toEqual([
+      { request: "traces", path: "onAxis.rays[1].hits.columns.point[2][1]", kind: "number", quantity: "landing" },
+    ]);
+  });
+
+  it("holds a solve's residual on the head side of a declared unit to the tolerance of its solve", () => {
+    /** One perspective field sample: its chief-ray solve, the stop residual beside it, and its sensor lock. */
+    const sample = (
+      chief: { status: string; residual: number | null; stopResidualMm: number | null },
+      lock: { status: string; residual: number | null; u: number | null } = { status: "converged", residual: 0, u: 0 },
+    ) => ({
+      fieldSample: {
+        chiefSolve: {
+          status: chief.status,
+          rootSolve: { status: chief.status, residual: chief.residual },
+          stopResidualMm: chief.stopResidualMm,
+        },
+        sensorLock: {
+          status: lock.status,
+          scalarRoot: { status: lock.status, residual: lock.residual },
+          residualMm: lock.u === null ? null : { u: lock.u, v: 0 },
+        },
+      },
+    });
+    const analysis = (value: unknown): ComparableRecord => ({
+      lens: SERENAR,
+      state: DEFAULT_STATE,
+      request: "analysis",
+      payload: { ok: true, value: { jobs: { computePerspectiveFocusAnalysis: { ok: true, value } } } as never },
+    });
+    const through = (base: unknown, head: unknown, description = "") => {
+      const run = createDifferentialRun({
+        changeClass: "c1",
+        declaredExceptions: [],
+        restricted: false,
+        declaredTransitions: description,
+        catalogLenses: LENS_IDS,
+      });
+      const output = run.addLens({
+        lens: SERENAR,
+        dataChange: "unchanged",
+        baseEngine: [analysis(base)],
+        headEngine: [analysis(head)],
+      });
+      return { summary: run.finish(), lines: output.transitionLines };
+    };
+    /* A solve that failed holds null where a converged one holds its residuals. */
+    const failed = { samples: [sample({ status: "bracket-failed", residual: null, stopResidualMm: null })] };
+    const solved = (residual: number, stopResidualMm = 0) => ({
+      samples: [sample({ status: "converged", residual, stopResidualMm })],
+    });
+
+    /* A solve that failed to bracket has no residual, so one that now converges sets a number against null: a
+     * discrete difference, which a line excuses. The residual it converged with is the head side's to answer for. */
+    const { lines } = through(failed, solved(9e-8));
+    expect(lines).toHaveLength(1);
+    const unit = "jobs.computePerspectiveFocusAnalysis.value.samples[0]";
+    expect(lines[0]).toContain(
+      `\`${unit}.fieldSample.chiefSolve.rootSolve.residual\`: \`null\` -> \`number\`; digest `,
+    );
+    expect(through(failed, solved(9e-8), describing(lines)).summary.passed).toBe(true);
+    const outside = through(failed, solved(3e-5), describing(lines));
+    expect(outside.summary.passed).toBe(false);
+    expect(outside.summary.transitions.declared).toMatchObject([
+      {
+        outcome: "contract",
+        detail:
+          `On the head side \`${unit}.fieldSample.chiefSolve.rootSolve.residual\` is 0.00003, 300 times the ` +
+          "tolerance of its class (Posed chief-ray stop residual).",
+      },
+    ]);
+    /* The stop residual beside the solve is held to its own bound, 1e-6 mm. */
+    expect(through(failed, solved(9e-8, 9e-7), describing(lines)).summary.passed).toBe(true);
+    expect(outcomesOf(through(failed, solved(9e-8, 2e-6), describing(lines)).summary)).toEqual(["contract"]);
+    /* Nothing declares a unit whose head side is outside its tolerance, so no line is printed for it. */
+    const undeclared = through(failed, solved(3e-5));
+    expect(undeclared.lines).toEqual([]);
+    expect(breachedOf(undeclared.summary)).toMatchObject({ units: 1 });
+
+    /* A solve that did not converge returned the miss of its nearest sample, which no tolerance bounds. */
+    const gaveUp = { samples: [sample({ status: "max-iterations", residual: 3e-5, stopResidualMm: 3e-5 })] };
+    const gaveUpLines = through(failed, gaveUp).lines;
+    expect(through(failed, gaveUp, describing(gaveUpLines)).summary.passed).toBe(true);
+
+    /* The sensor lock answers for its scalar root and for both components of its miss, one level up. */
+    const chief = { status: "converged", residual: 0, stopResidualMm: 0 };
+    const locked = (residual: number, u: number) => ({
+      samples: [sample(chief, { status: "converged", residual, u })],
+    });
+    const unlocked = { samples: [sample(chief, { status: "bracket-failed", residual: null, u: null })] };
+    const lockLines = through(unlocked, locked(9e-6, 9e-6)).lines;
+    expect(through(unlocked, locked(9e-6, 9e-6), describing(lockLines)).summary.passed).toBe(true);
+    expect(outcomesOf(through(unlocked, locked(2e-5, 0), describing(lockLines)).summary)).toEqual(["contract"]);
+    /* The miss is a member the base side lacks, which the paired walk reports once and does not enter. */
+    expect(through(unlocked, locked(0, 2e-5), describing(lockLines)).summary.transitions.declared).toMatchObject([
+      { outcome: "contract", detail: expect.stringContaining(".fieldSample.sensorLock.residualMm.u` is 0.00002, 2 ") },
+    ]);
+
+    /* A solve that sits under no array index is a unit of its own, and is held as one inside a sample is. */
+    const alone = (status: string, residual: number | null) => ({ chiefSolve: { rootSolve: { status, residual } } });
+    const aloneLines = through(alone("bracket-failed", null), alone("converged", 9e-8)).lines;
+    expect(aloneLines).toHaveLength(2);
+    const aloneDescription = describing(aloneLines);
+    expect(through(alone("bracket-failed", null), alone("converged", 9e-8), aloneDescription).summary.passed).toBe(
+      true,
+    );
+    expect(
+      outcomesOf(through(alone("bracket-failed", null), alone("converged", 3e-5), aloneDescription).summary).sort(),
+    ).toEqual(["contract", "matched"]);
+  });
+
+  it("honours `numbers` only where the unit's differences show that the ray ended elsewhere", () => {
+    /* Both sides complete the ray through the same hits. A label differs, and the landing moved past its budget. */
+    const relabelled = withChange("traces", [...RAY, "diagnostics", "terminalSurfaceLabel"], () => "ten", LIGHT);
+    const drifted = moved([...RAY, "y"], 1e-6, relabelled);
+    /* The line the run prints for the unit does not say `numbers`: nothing here is a ray that ended elsewhere. */
+    const line = lineOf(drifted);
+    expect(line).toBe(lineOf(relabelled));
+    expect(line).not.toContain("numbers");
+    for (const declared of [line, line.replace(/\.$/, ", numbers.")]) {
+      const { summary } = judge("c1", drifted, describing([declared]));
+      expect(summary.passed).toBe(false);
+      expect(failuresOf(summary)).toEqual([
+        { request: "traces", path: "onAxis.rays[1].y", kind: "number", quantity: "landing" },
+      ]);
+      expect(summary.transitions.declared).toMatchObject([
+        {
+          outcome: "matched",
+          excusedNumbers: 0,
+          detail: expect.stringContaining("nothing in the unit shows that the ray ended elsewhere"),
+        },
+      ]);
+    }
+    /* The label alone is declared as before, with `numbers` or without. */
+    expect(judge("c1", relabelled, describing([line.replace(/\.$/, ", numbers.")])).summary.passed).toBe(true);
+
+    /* Each of these differences is such a sign, in a ray of the surface tracer or of the stack tracer. */
+    const legacy: Path = ["legacy", "rays", 1];
+    const signs: [Path, (value: unknown) => unknown, number: Path][] = [
+      [[...RAY, "status"], () => "clipped", [...RAY, "y"]],
+      [[...RAY, "failureReason"], () => "noBracket", [...RAY, "y"]],
+      [[...RAY, "terminalSurfaceIndex"], (index) => Number(index) - 1, [...RAY, "y"]],
+      [[...RAY, "returnVertexIndex"], (index) => Number(index) - 1, [...RAY, "y"]],
+      [[...RAY, "reachedImagePlane"], () => true, [...RAY, "y"]],
+      [[...RAY, "hits", "count"], (count) => Number(count) - 1, [...RAY, "y"]],
+      [[...RAY, "hits", "columns", "surfaceIndex", HIT], () => 99, [...RAY, "y"]],
+      [[...RAY, "hits", "columns", "clipped", HIT], () => true, [...RAY, "y"]],
+      [[...RAY, "hits", "columns", "fallback", HIT], () => true, [...RAY, "y"]],
+      [[...RAY, "hits", "columns", "failureReason", HIT], () => "noBracket", [...RAY, "y"]],
+      [[...RAY, "diagnostics", "clipped"], () => true, [...RAY, "y"]],
+      [[...RAY, "diagnostics", "terminationReason"], () => "image-plane", [...RAY, "y"]],
+      [[...RAY, "diagnostics", "terminalSurfaceIndex"], (index) => Number(index) - 1, [...RAY, "y"]],
+      [[...RAY, "diagnostics", "reachedImagePlane"], () => true, [...RAY, "y"]],
+      [[...RAY, "diagnostics", "hitSurfaceIndexes", HIT], () => 99, [...RAY, "y"]],
+      [[...RAY, "diagnostics", "clipEvents"], () => [{ surfaceIdx: 2, reason: "semi-diameter" }], [...RAY, "y"]],
+      [[...legacy, "clipped"], () => true, [...legacy, "y"]],
+      [[...legacy, "pts"], (points) => (points as unknown[]).slice(0, -1), [...legacy, "y"]],
+      [[...legacy, "ghostPts"], () => [[1, 2]], [...legacy, "y"]],
+      [[...legacy, "diagnostics", "failureReason"], () => "noBracket", [...legacy, "y"]],
+      [[...legacy, "diagnostics", "hitSurfaceIndexes"], (hits) => (hits as unknown[]).slice(0, -1), [...legacy, "y"]],
+    ];
+    for (const [path, change, number] of signs) {
+      const name = path.join(".");
+      const transition = withChange("traces", path, change, LIGHT);
+      const head = moved(number, 1e-6, transition);
+      const printed = lineOf(head);
+      expect(printed, name).toBe(lineOf(transition).replace(/\.$/, ", numbers."));
+      const { summary } = judge("c1", head, describing([printed]));
+      expect(summary.passed, name).toBe(true);
+      expect(summary.transitions.declared, name).toMatchObject([{ outcome: "matched", excusedNumbers: 1 }]);
+    }
+    /* A hit's clip reason is one too, where both sides have the column and one hit of it differs. */
+    const reasons = (reason: string | null, source: readonly PayloadRecord[]) =>
+      withChange(
+        "traces",
+        [...RAY, "hits", "columns"],
+        (columns) => ({ ...(columns as object), clipReason: [reason, ...new Array<null>(10).fill(null)] }),
+        source,
+      );
+    const [reasonedBase, reasoned] = [
+      reasons(null, LIGHT),
+      moved([...RAY, "y"], 1e-6, reasons("semi-diameter", LIGHT)),
+    ];
+    const reasonedLine = lineOf(reasoned, reasonedBase);
+    expect(reasonedLine).toContain('`onAxis.rays[1].hits.columns.clipReason[0]`: `null` -> `"semi-diameter"`; digest ');
+    expect(reasonedLine).toMatch(/, numbers\.$/);
+    expect(judge("c1", reasoned, describing([reasonedLine]), reasonedBase).summary.passed).toBe(true);
+    /* And none of these is: a label, or what the ray was traced with. */
+    const others: [Path, (value: unknown) => unknown][] = [
+      [[...RAY, "hits", "columns", "surfaceLabel", HIT], () => "three"],
+      [[...RAY, "diagnostics", "hitSurfaceLabels", HIT], () => "three"],
+      [[...RAY, "diagnostics", "maxInteractions"], (count) => Number(count) + 1],
+      [[...RAY, "diagnostics", "expectedPathMode"], () => "explicit"],
+    ];
+    for (const [path, change] of others) {
+      const name = path.join(".");
+      const transition = withChange("traces", path, change, LIGHT);
+      const head = moved([...RAY, "y"], 1e-6, transition);
+      expect(lineOf(head), name).toBe(lineOf(transition));
+      const { summary } = judge("c1", head, describing([lineOf(transition).replace(/\.$/, ", numbers.")]));
+      expect(summary.passed, name).toBe(false);
+      expect(summary.transitions.declared, name).toMatchObject([{ outcome: "matched", excusedNumbers: 0 }]);
+    }
+    /* Nor is a hit column that one side lacks, as when the base engine predates the member: the hits are the same. */
+    const older = withChange(
+      "traces",
+      [...RAY, "hits", "columns"],
+      (columns) => Object.fromEntries(Object.entries(columns as object).filter(([name]) => name !== "fallback")),
+      LIGHT,
+    );
+    const gained = lineOf(moved([...RAY, "y"], 1e-6, LIGHT), older);
+    expect(gained).toContain("`onAxis.rays[1].hits.columns.fallback`: `absent` -> `array of 11`; digest ");
+    expect(gained).not.toContain("numbers");
+  });
+
+  it("lists what the digest of a matched line covers", () => {
+    const { summary } = judge("c1", CLIPPED, describing([CLIP_LINE]));
+    const [matched] = summary.transitions.declared;
+    expect(matched.covered).toHaveLength(CLIP_DIFFERENCES);
+    /* In path order, as the digest takes them: a reviewer reads here what one named difference stands for. */
+    expect(matched.covered?.map(({ path }) => path)).toEqual([
+      ...Array.from({ length: 9 }, (_, flag) => `onAxis.rays[1].hits.columns.clipped[${flag + HIT}]`).sort(),
+      "onAxis.rays[1].imagePoint",
+      "onAxis.rays[1].status",
+    ]);
+    expect(matched.covered).toContainEqual({
+      path: "onAxis.rays[1].imagePoint",
+      kind: "shape",
+      base: "array of 2",
+      head: "null",
+    });
+    expect(matched.covered).toContainEqual({
+      path: "onAxis.rays[1].status",
+      kind: "discrete",
+      base: '"ok"',
+      head: '"clipped"',
+    });
+    expect(renderSummaryMarkdown(summary, REPORT_CONTEXT)).toContain(
+      "transitions.md lists every difference each matched line covers",
+    );
+    /* A line that matched nothing covers nothing. */
+    const stale = judge("c1", structuredClone(LIGHT), describing([CLIP_LINE]));
+    expect(stale.summary.transitions.declared[0].covered).toBeUndefined();
+
+    /* The list is a sample past 200 differences, and the count beside it is of all of them. */
+    const flags = (set: number): ComparableRecord => ({
+      lens: SERENAR,
+      state: DEFAULT_STATE,
+      request: "traces",
+      payload: { ok: true, value: { rays: [{ flags: Array.from({ length: 300 }, (_, flag) => flag < set) }] } },
+    });
+    const through = (description: string) => {
+      const run = createDifferentialRun({
+        changeClass: "c1",
+        declaredExceptions: [],
+        restricted: false,
+        declaredTransitions: description,
+        catalogLenses: LENS_IDS,
+      });
+      const output = run.addLens({
+        lens: SERENAR,
+        dataChange: "unchanged",
+        baseEngine: [flags(0)],
+        headEngine: [flags(300)],
+      });
+      return { summary: run.finish(), lines: output.transitionLines };
+    };
+    const many = through(describing(through("").lines)).summary.transitions.declared[0];
+    expect(many).toMatchObject({ outcome: "matched", differences: 300 });
+    expect(many.covered).toHaveLength(200);
   });
 });
