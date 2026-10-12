@@ -71,13 +71,13 @@ const TELECONVERTER_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Biconvex Positive (Asph)",
+      "type": "Biconvex Positive (1× Asph)",
       "nd": 1.68893,
       "vd": 31.16,
       "indexReference": "d",
       "fl": 68.21545061863286,
       "glass": "E-FD8 class (supplier unconfirmed)",
-      "role": "Positive front element, G1 on its own; its image-side surface is the converter's one asphere."
+      "role": "Positive front element, the first converter group G1 on its own; its image-side surface is the converter's one asphere."
     },
     {
       "id": 2,
@@ -89,7 +89,7 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": -15.165531076359029,
       "glass": "TAF3D class (supplier unconfirmed)",
-      "role": "Negative front element of the cemented L2–L4 triplet that opens G2.",
+      "role": "Negative front element of the cemented L2–L4 triplet that opens converter group G2.",
       "cemented": "T1"
     },
     {
@@ -102,7 +102,7 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": 15.010270704635321,
       "glass": "FF5 class (supplier unconfirmed)",
-      "role": "Positive middle element of the cemented L2–L4 triplet in G2.",
+      "role": "Positive middle element of the cemented L2–L4 triplet in converter group G2.",
       "cemented": "T1"
     },
     {
@@ -114,8 +114,8 @@ const TELECONVERTER_DATA = {
       "vd": 42.71,
       "indexReference": "d",
       "fl": -18.30089850410351,
-      "glass": "TAFD5G / H-ZLaF55C class (supplier unconfirmed)",
-      "role": "Negative rear element of the cemented L2–L4 triplet in G2.",
+      "glass": "S-LAH55 / H-ZLaF55C class (supplier unconfirmed)",
+      "role": "Negative rear element of the cemented L2–L4 triplet in converter group G2.",
       "cemented": "T1"
     },
     {
@@ -128,7 +128,7 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": 18.553378966129717,
       "glass": "E-FD5 class (supplier unconfirmed)",
-      "role": "Positive front element of the cemented L5–L6 doublet in G2.",
+      "role": "Positive front element of the cemented L5–L6 doublet in converter group G2.",
       "cemented": "D1"
     },
     {
@@ -141,7 +141,7 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": -18.005092819657214,
       "glass": "TAFD55-W class (supplier unconfirmed)",
-      "role": "Negative rear element of the cemented L5–L6 doublet in G2; the highest index in the converter.",
+      "role": "Negative rear element of the cemented L5–L6 doublet in converter group G2; the highest index in the converter.",
       "cemented": "D1"
     },
     {
@@ -154,7 +154,7 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": -59.89877403376006,
       "glass": "S-LAH98 class (supplier unconfirmed)",
-      "role": "Air-spaced negative meniscus closing G2, convex toward the image."
+      "role": "Air-spaced negative meniscus closing converter group G2, convex toward the image."
     },
     {
       "id": 8,
@@ -166,7 +166,7 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": 46.45832606423273,
       "glass": "E-CF6 class (supplier unconfirmed)",
-      "role": "Positive rear element, G3 on its own; nearly flat front and strongly convex rear."
+      "role": "Positive rear element, the third converter group G3 on its own; nearly flat front and strongly convex rear."
     }
   ],
   "surfaces": [

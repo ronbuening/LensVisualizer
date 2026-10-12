@@ -25,7 +25,7 @@ No primary manufacturer statement located in the cited sources identifies this p
 
 ## Optical Architecture
 
-The design is an all-spherical, positive–negative–positive rear-focus prime. Its nine elements form seven air-separated assemblies: four singlets in G1, the L5–L6 cemented doublet in G2, and the L7–L8 cemented doublet followed by L9 in G3. The stop is the ninth tabulated plane, between G1 and G2. There are sixteen refracting interfaces and no modeled rear filter or sensor-cover plate. [1, ¶0007, ¶0010, ¶0013, ¶0024]
+The design is an all-spherical, positive–negative–positive rear-focus prime. Its nine elements form seven air-separated assemblies: four singlets in G1, the L5–L6 cemented doublet in G2, and the L7–L8 cemented doublet followed by L9 in G3. The stop is the ninth tabulated plane, between G1 and G2. G1, G2 and G3 are the groups that Fig. 1 numbers 1, 2 and 3, and its SP is the stop; the patent gives the elements no reference signs, so L1–L9 simply count them from the front. There are sixteen refracting interfaces and no modeled rear filter or sensor-cover plate. [1, ¶0007–0008, ¶0010, ¶0013, ¶0024, Fig. 1]
 
 Calculated isolated functional-group focal lengths at the native spacing are +82.211212 mm for G1, -59.521301 mm for G2 and +53.873495 mm for G3. These are complete-group focal lengths in air; they are neither additive element powers nor a decomposition of aberration contributions. The combined G1–G2 focal length is +354.119303 mm. The rear group restores the system’s convergence after the movable negative doublet.
 
@@ -39,77 +39,77 @@ The patent table gives N and ν without naming a spectral line. Its Fig. 4 aberr
 
 ### L1 — Biconvex Positive
 
-nd = 1.65160, νd = 58.5. Glass: N-LAK7 (SCHOTT; coordinate equivalent, supplier unconfirmed). f = +199.017 mm.
+nd = 1.65160, νd = 58.5. Glass: LAL7 (OHARA; coordinate equivalent, supplier unconfirmed). f = +199.017 mm.
 
 L1 is the first of the three positive singlets in G1. Its relatively weak standalone power begins the progressive convergence described in ¶0011, before the more strongly powered following menisci. The index–Abbe pair is consistent with a lanthanum-crown class; it does not identify a supplier or demonstrate a special partial-dispersion property. The patent assigns the gradual convergence to the three-element combination rather than publishing an individual aberration budget. [1, ¶0010–0011]
 
 ### L2 — Positive Meniscus, convex to object
 
-nd = 1.77250, νd = 49.6. Glass: S-LAH66 (OHARA; coordinate equivalent, supplier unconfirmed). f = +135.794 mm.
+nd = 1.77250, νd = 49.6. Glass: LAH66 (OHARA; coordinate equivalent, supplier unconfirmed). f = +135.794 mm.
 
 L2 continues the front positive sequence. Its meniscus orientation agrees with ¶0010, and it shares its recorded glass coordinates with L9 despite a different shape and position. The higher index and moderate Abbe number distinguish it from L1, but their use is not evidence that the two elements make separable, uniquely assigned chromatic contributions. Its quoted focal length is for L2 alone in air. [1, ¶0010, ¶0024]
 
 ### L3 — Positive Meniscus, convex to object
 
-nd = 1.71300, νd = 53.8. Glass: N-LAK8 (SCHOTT; coordinate equivalent, supplier unconfirmed). f = +54.567 mm.
+nd = 1.71300, νd = 53.8. Glass: LAL8 (OHARA; coordinate equivalent, supplier unconfirmed). f = +54.567 mm.
 
 L3 is the strongest isolated positive singlet in G1. Its rear face and the front face of L4 bound the narrow air space explicitly discussed by the patent as a negative air lens. That surface pair, rather than L3 in isolation, is credited with a higher-order spherical-aberration and sagittal-flare correction function. The glass class remains an inference from coordinates, not a recovered melt specification. [1, ¶0012, ¶0024]
 
 ### L4 — Negative Meniscus, concave to image
 
-nd = 1.71736, νd = 29.5. Glass: SF1 (SCHOTT; coordinate equivalent, supplier unconfirmed). f = -40.896 mm.
+nd = 1.71736, νd = 29.5. Glass: PBH1 (OHARA; coordinate equivalent, supplier unconfirmed). f = -40.896 mm.
 
 L4 terminates G1 with negative standalone power and a strongly concave image-facing surface. It precedes the stop and counteracts the power of the first three positive elements within the complete positive group. Paragraph 0011 contains a sign inconsistency: it describes positive spherical aberration being balanced by positive spherical aberration. That wording is retained as an unresolved textual inconsistency; it is not silently changed or used to assign a measured aberration sign to L4. [1, ¶0010–0012]
 
 ### L5 — Positive Meniscus, cemented to L6
 
-nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA; coordinate equivalent, supplier unconfirmed). f = +134.283 mm.
+nd = 1.80518, νd = 25.4. Glass: PBH6 (OHARA; coordinate equivalent, supplier unconfirmed). f = +134.283 mm.
 
 L5 is the positive, more dispersive member of the moving G2 doublet. Its rear surface, R11, is a glass-to-glass transition into L6, not an air surface or a layer of generic cement. The positive focal length above describes an isolated L5 in air; it is therefore not the focal power of the actual cemented interface. L5 and L6 move rigidly together in the reconstruction. [1, Fig. 1, ¶0024]
 
 ### L6 — Biconcave Negative, cemented to L5
 
-nd = 1.51633, νd = 64.2. Glass: S-BSL7 (coordinate equivalent; supplier unconfirmed). f = -41.497 mm.
+nd = 1.51633, νd = 64.2. Glass: BSL7 (OHARA; coordinate equivalent, supplier unconfirmed). f = -41.497 mm.
 
 L6 supplies the stronger opposing standalone power within G2. The complete L5–L6 assembly has a calculated focal length of -59.521301 mm and is the negative focusing group identified by the patent. The low-dispersion crown/high-dispersion positive pairing provides a degree of freedom for chromatic balancing, but no individual chromatic correction amount follows from the two Abbe numbers alone. Its index of 1.51633 is distinct from the 1.51680 of N-BK7. [1, ¶0009, ¶0020, ¶0024]
 
 ### L7 — Biconcave Negative, cemented to L8
 
-nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA; coordinate equivalent, supplier unconfirmed). f = -51.732 mm.
+nd = 1.80518, νd = 25.4. Glass: PBH6 (OHARA; coordinate equivalent, supplier unconfirmed). f = -51.732 mm.
 
 L7 opens G3 with a very weakly curved front face and a stronger curved cemented rear interface. It uses the same recorded high-dispersion coordinates as L5, but its isolated power is negative. The patent explicitly assigns chromatic balancing within G3 to this negative, more dispersive component and the following positive, less dispersive one. That is a source-stated group strategy, not a calculated apochromatic classification. [1, ¶0013, ¶0024]
 
 ### L8 — Biconvex Positive, cemented to L7
 
-nd = 1.80610, νd = 41.0. Glass: H-ZLaF52A (CDGM; coordinate equivalent, supplier unconfirmed). f = +47.700 mm.
+nd = 1.80610, νd = 41.0. Glass: LAH53 (OHARA; coordinate equivalent, supplier unconfirmed). f = +47.700 mm.
 
 L8 opposes L7 within the fixed rear doublet. Together L7–L8 have a calculated positive focal length of +527.257551 mm, confirming the weak net positive power described in ¶0013 despite the larger opposed standalone powers. The difference between the two Abbe numbers supports the source description of a chromatic balancing pair; it does not establish a supplier, anomalous dispersion, or the residual secondary spectrum. [1, ¶0013]
 
 ### L9 — Biconvex Positive
 
-nd = 1.77250, νd = 49.6. Glass: S-LAH66 (OHARA; coordinate equivalent, supplier unconfirmed). f = +59.884 mm.
+nd = 1.77250, νd = 49.6. Glass: LAH66 (OHARA; coordinate equivalent, supplier unconfirmed). f = +59.884 mm.
 
 L9 is the final positive singlet. Paragraph 0013 states that this element bears most of G3’s positive power and acts in the negative direction against positive distortion generated upstream. The calculated standalone and assembly powers are consistent with that description: its standalone power is much stronger than that of the preceding weak-positive doublet. The distortion statement remains the patent’s explanation; no isolated-element distortion contribution is inferred merely from the lens shape. [1, ¶0013, ¶0024]
 
 ## Glass Identification and Selection
 
-A six-supplier comparison covered OHARA, HOYA, SCHOTT, HIKARI, CDGM and SUMITA catalogs. It supports class-level descriptions and coordinate equivalents, not the identity of Canon’s original suppliers or melts. For each element the model names the catalog glass whose d-line coordinates lie closest to the printed pair and uses that glass’s dispersion formula; the printed N and ν are preserved. The class names are descriptive labels, not chemical analyses. [7–12]
+A six-supplier comparison covered OHARA, HOYA, SCHOTT, HIKARI, CDGM and SUMITA catalogs. It supports class-level descriptions and coordinate equivalents, not the identity of Canon’s original suppliers or melts. One supplier’s catalog of the period accounts for all seven printed pairs: each equals a since-discontinued OHARA glass, including the 1.51633 crown index that SCHOTT, HOYA and CDGM do not list. The model therefore names those seven OHARA glasses and uses their dispersion formulas; the printed N and ν are preserved. The class names are descriptive labels, not chemical analyses. [7–12]
 
 | Elements | N | ν | Class | Glass named in the model (catalog νd) | Other catalog analogs |
 |---|---:|---:|---|---|---|
-| L1 | 1.65160 | 58.5 | Lanthanum crown | SCHOTT N-LAK7 (58.52) | OHARA LAL7 |
-| L2, L9 | 1.77250 | 49.6 | Dense lanthanum crown | OHARA S-LAH66 (49.60) | HOYA TAF1; SCHOTT N-LAF34 |
-| L3 | 1.71300 | 53.8 | Lanthanum crown | SCHOTT N-LAK8 (53.83) | CDGM H-LaK7A |
-| L4 | 1.71736 | 29.5 | Dense flint | SCHOTT SF1 (29.51) | HOYA E-FD1; SUMITA K-SFLD1 |
-| L5, L7 | 1.80518 | 25.4 | Dense flint | OHARA S-TIH6 (25.43) | SCHOTT SFL6; SUMITA K-SFLD6 |
-| L6 | 1.51633 | 64.2 | Borosilicate crown | OHARA S-BSL7 (64.14) | OHARA S-BSL7 (64.14); historical OHARA BSL7 and BSL7Y |
-| L8 | 1.80610 | 41.0 | Lanthanum flint | CDGM H-ZLaF52A (41.02) | HIKARI J-LASF03 |
+| L1 | 1.65160 | 58.5 | Lanthanum crown | OHARA LAL7 (58.52) | SCHOTT N-LAK7; OHARA S-LAL7 |
+| L2, L9 | 1.77250 | 49.6 | Dense lanthanum crown | OHARA LAH66 (49.60) | OHARA S-LAH66; HOYA TAF1; SCHOTT N-LAF34 |
+| L3 | 1.71300 | 53.8 | Lanthanum crown | OHARA LAL8 (53.85) | SCHOTT N-LAK8; CDGM H-LaK7A |
+| L4 | 1.71736 | 29.5 | Dense flint | OHARA PBH1 (29.51) | SCHOTT SF1; HOYA E-FD1; SUMITA K-SFLD1 |
+| L5, L7 | 1.80518 | 25.4 | Dense flint | OHARA PBH6 (25.44) | OHARA S-TIH6; SCHOTT SFL6; SUMITA K-SFLD6 |
+| L6 | 1.51633 | 64.2 | Borosilicate crown | OHARA BSL7 (64.15), traced on the S-BSL7 formula (64.14) | OHARA BSL7Y |
+| L8 | 1.80610 | 41.0 | Lanthanum flint | OHARA LAH53 (40.95; catalog code 806410) | CDGM H-ZLaF52A; HIKARI J-LASF03 |
 
 The patent’s Abbe numbers have only one decimal place, so several catalog glasses fit each pair and none is identified as the original material. The catalog records also distinguish current, historical and special-order types. Prefixes such as OHARA S- and L- are not interchangeable, and an unprefixed historical type is not the same record as a current ecological or molding variant.
 
-L6 shows the limit of name matching: its index is 1.51633, whereas catalog N-BK7, BSC7 and H-K9L have 1.51680. The difference is 0.00047 and is not erased by calling all of them “BK7.” OHARA S-BSL7 has the printed index and νd 64.14 against the patent’s one-decimal 64.2, so L6 is traced on the S-BSL7 dispersion formula; OHARA’s historical BSL7/BSL7Y records are analogs that do not prove the original glass identity. For L8, HIKARI J-LASF03 and CDGM H-ZLaF52A round to the printed 41.0, whereas historical OHARA LAH53 lies just outside that rounding interval. [7–11]
+L6 shows the limit of name matching: its index is 1.51633, whereas catalog N-BK7, BSC7 and H-K9L have 1.51680. The difference is 0.00047 and is not erased by calling all of them “BK7.” OHARA’s historical BSL7 has the printed index and νd 64.15, which rounds to the patent’s 64.2; the model traces L6 on the formula of its successor S-BSL7 (νd 64.14), the record the catalog holds for that name. For L8, OHARA lists the historical LAH53 under code 806410, that is νd 41.0 as printed, and its dispersion formula gives 40.95; HIKARI J-LASF03 and CDGM H-ZLaF52A also round to 41.0. A match to one supplier’s period catalog makes that supplier the simplest reading; it does not prove the original glass identity. [7–11]
 
-The patent explicitly describes the more dispersive negative L7 and less dispersive positive L8 as a chromatic balancing pair intended to reduce focus-dependent chromatic change. Its use of comparatively lower dispersion for L8 is relative to its partner, not an ED designation. The patent publishes no nC, nF, ng or ΔPgF values. Away from the d line the model therefore follows the dispersion formulas of the named catalog equivalents (an Abbe-number estimate for L6); it does not establish anomalous partial dispersion or apochromatic performance. [1, ¶0013]
+The patent explicitly describes the more dispersive negative L7 and less dispersive positive L8 as a chromatic balancing pair intended to reduce focus-dependent chromatic change. Its use of comparatively lower dispersion for L8 is relative to its partner, not an ED designation. The patent publishes no nC, nF, ng or ΔPgF values. Away from the d line the model therefore follows the dispersion formulas of the named catalog equivalents; it does not establish anomalous partial dispersion or apochromatic performance. [1, ¶0013]
 
 ## Focus Mechanism
 

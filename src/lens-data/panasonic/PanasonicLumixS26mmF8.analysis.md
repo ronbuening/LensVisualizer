@@ -64,7 +64,7 @@ nd = 1.69513, νd = 24.0. Glass: Unmatched (no match in six supplier catalogs). 
 
 L4 is LR2, the negative member between rear positive lenses L3 and L5. Its stronger negative standalone power distinguishes it from the weaker negative L2. The source expressly connects the shape factor between L3 and L4 to spherical-aberration balance, but does not provide an element-resolved aberration budget. [1, ¶0073, ¶¶0115–0120]
 
-No material matching at the patent's rounding was found in the OHARA, HOYA, Schott, HIKARI, CDGM and Sumita catalogs. The model keeps the patent's index and Abbe number and labels the glass Unmatched. Its dispersion is therefore an Abbe-number estimate rather than a catalog spectrum. [5–10]
+No material matching at the patent's rounding was found in the OHARA, HOYA, Schott, HIKARI, CDGM and Sumita catalogs. The pair is printed only in Example 4: lens LR2 carries a different index pair in each of the four examples (1.65731 / 21.2, 1.60817 / 29.3 and 1.65388 / 26.1 in Examples 1–3), whereas the pairs of L1, L3 and L5 recur in Example 2 or 3. The patent names no glass and prints no further indices or partial dispersion. The model keeps the patent's index and Abbe number and labels the glass Unmatched. Its dispersion is therefore an Abbe-number estimate rather than a catalog spectrum. [1, Tables 1A–4A; 5–10]
 
 ### L5 — Positive Meniscus, Convex to Image
 
@@ -91,7 +91,7 @@ The model traces the named catalog entries on their catalog dispersion curves an
 
 ## Focus Mechanism
 
-The patent uses unit focusing: L1–L5 move together toward the object while their internal spacings remain constant. The stop-to-L1 gap is also fixed in the numerical prescription, so the stop moves with the lenses. P and S remain camera-side. [1, ¶0075; Fig. 4A; Table 4C]
+The patent uses unit focusing: L1–L5 move together toward the object while their internal spacings remain constant. The stop-to-L1 gap is also fixed in the numerical prescription, so the stop moves with the lenses, an option the patent states in ¶0114 and draws in panel (b) of Fig. 4A. P and S remain camera-side. [1, ¶0075, ¶0114; Fig. 4A; Table 4C]
 
 | Quantity | Infinity | Published near endpoint |
 |---|---:|---:|
@@ -145,7 +145,7 @@ Ray results refer to the patent's image plane behind plate P. P has no printed r
 
 ## Sources
 
-1. [US 2025/0334777 A1, *Imaging Optical System, Image Capture Device, and Camera System*](https://patents.google.com/patent/US20250334777A1/en). Original publication front page; Fig. 4A, PDF page 8 / sheet 7; fourth embodiment, ¶¶0064–0075, PDF page 14 / printed page 3; conditions, ¶¶0080–0143, PDF pages 15–18 / printed pages 4–7; definitions, ¶0170, PDF page 20 / printed page 9; Tables 4A–4D and the fourth-example conditions, PDF page 23 / printed page 12.
+1. [US 2025/0334777 A1, *Imaging Optical System, Image Capture Device, and Camera System*](https://patents.google.com/patent/US20250334777A1/en). Original publication front page; Fig. 4A, PDF page 8 / sheet 7; fourth embodiment, ¶¶0064–0075, PDF page 14 / printed page 3; conditions, ¶¶0080–0143, PDF pages 15–18 / printed pages 4–7; definitions, ¶0170, PDF page 20 / printed page 9; Tables 1A–3A of the other examples, PDF pages 21–22 / printed pages 10–11; Tables 4A–4D and the fourth-example conditions, PDF page 23 / printed page 12.
 2. [Panasonic Japan, S-R26 specifications](https://panasonic.jp/dc/products/S-R26/spec.html) and [product overview](https://panasonic.jp/dc/products/S-R26.html). Five-element/five-group count excluding front protective glass, UED count, marketed focal length/aperture, format, minimum focus and maximum magnification.
 3. [Panasonic, S-R26 owner's manual, DVQX2511ZA](https://help.na.panasonic.com/wp-content/uploads/2024/06/SR26_DVQX2511ZA_ENG_FRE_ESP.pdf). Manual-focus and fixed-aperture operation.
 4. [Panasonic Japan, S-R26 announcement, May 23, 2024](https://news.panasonic.com/jp/press/jn240523-2).

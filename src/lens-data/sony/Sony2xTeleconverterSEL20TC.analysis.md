@@ -78,9 +78,9 @@ L3 is the positive middle element of the triplet, between the two negative membe
 
 ### L4 — Biconcave
 
-nd = 1.83481, νd = 42.71. Glass: TAFD5G / H-ZLaF55C class (HOYA and CDGM catalogs; production supplier unconfirmed). f = -18.30 mm.
+nd = 1.83481, νd = 42.71. Glass: S-LAH55 / H-ZLaF55C class (OHARA and CDGM catalogs; production supplier unconfirmed). f = -18.30 mm.
 
-L4 closes the negative–positive–negative triplet at native surface 48. The source value νd = 42.71 is retained exactly in the data; the dispersion curve is that of HOYA TAFD5G (νd = 42.72) at the same nd. Its high-index negative contribution belongs to G2, but L6, not L4, supplies the maximum negative-element index used in condition (10). No individual off-axis aberration contribution is inferred solely from its sign or catalog class. [1, ¶0139; Tables 7, 17]
+L4 closes the negative–positive–negative triplet at native surface 48. The source value νd = 42.71 is retained exactly in the data; the dispersion curve is that of OHARA S-LAH55 (νd = 42.71) at the same nd; HOYA TAFD5G is 42.72. Its high-index negative contribution belongs to G2, but L6, not L4, supplies the maximum negative-element index used in condition (10). No individual off-axis aberration contribution is inferred solely from its sign or catalog class. [1, ¶0139; Tables 7, 17]
 
 ### L5 — Biconvex
 
@@ -129,7 +129,7 @@ Here $P_{gF}=(n_g-n_F)/(n_F-n_C)$ and $\Delta P_{gF}=P_{gF}-(0.6438-0.001682\nu_
 
 The model preserves the patent's nd and νd and stores no nC, nF or ng: each glass label resolves to catalog dispersion data, anchored to the authored index. Finite catalog rounding means recomputing νd from the rounded line indices need not return precisely the nominal source νd. This is most visible for TAF3D, TAFD55-W and E-CF6; the nominal values are not refitted. Raw-workbook cell values and coefficient-based checks are retained separately.
 
-All eight modeled elements resolve to catalog dispersion data through their glass labels. CDGM H-ZLaF55C has no entry in the runtime resolver, so L4 is labeled TAFD5G / H-ZLaF55C class and takes the HOYA TAFD5G curve; the L4 row above lists the CDGM values. That resolver limitation is not a license to replace its source coordinate or invent a catalog record.
+All eight modeled elements resolve to catalog dispersion data through their glass labels. CDGM H-ZLaF55C has no entry in the runtime resolver, so L4 is labeled S-LAH55 / H-ZLaF55C class and takes the OHARA S-LAH55 curve; the L4 row above lists the CDGM values. That resolver limitation is not a license to replace its source coordinate or invent a catalog record.
 
 Conditions (10)–(12) govern the maximum negative-element index in G2, the lower-index positive G3 and G1's Abbe range. The opposed powers and material contrasts provide a plausible design freedom for chromatic balance, but the present d-line geometry and representative spectra do not establish APO performance, production chromatic correction or a specific element-by-element aberration allocation.
 
@@ -259,8 +259,6 @@ Each configuration samples nine source-image-height fractions [0, 0.125, 0.25, 0
 | Converged target solves | 20,340 | Of 20,772 attempted |
 | Traced bare-host clips | 396 | Of 20,340 converged |
 | Bare-host admitted | 19,944 | Of 20,340 converged |
-| Added physical converter clips | 635 | Of 19,944 bare-admitted |
-| Combined admitted | 19,309 | Of 19,944 bare-admitted |
 
 The 432 unresolved pupil-target solves are neither physical aperture clipping nor successful transmission. They consist of 371 line-search failures and 61 Jacobian misses, all at Tele fields 0.375–1. The last valid iterate reaches the stop but misses the requested pupil coordinate; it is not substituted as a valid target ray. Rejected derivative/search traces report `noBracket` at pre-stop master surfaces 1, 2, 4, 5, 6 or 7. An intersection-failure diagnostic's internal clipped flag does not establish a physical aperture encounter.
 
@@ -279,11 +277,11 @@ The 432 unresolved pupil-target solves are neither physical aperture clipping no
 | 2.8 | 0.875 | 56 | 9, 10, 11, 12 |
 | 2.8 | 1 | 68 | 9, 10, 11, 12 |
 
-The full ray records retain exact azimuths, ring coordinates, solver reasons and continuation attempts. The 635 added converter clips are separately traced physical rim encounters among 19,944 bare-host-admitted rays. They are modeled peripheral vignetting, not unresolved launches. Neither category counts as transmission; the raw counts are not area-weighted throughput estimates.
+The full ray records retain exact azimuths, ring coordinates, solver reasons and continuation attempts. Each bare-host-admitted ray was traced on through the converter and either admitted or stopped at a converter rim. A converter clip is a separately traced physical rim encounter: modeled peripheral vignetting, not an unresolved launch. Neither category counts as transmission; the raw counts are not area-weighted throughput estimates.
 
-These counts were sampled with the rear faces of L4 and L6 at 9.4 and 11.2 mm. The model now carries 10.1 and 11.9 mm there, which can only lower the 635 added converter clips and raise the 19,309 admitted rays; the fixtures were not resampled, and the containment counts below cover the earlier admitted set.
+The split of the 19,944 bare-admitted rays between converter clips and admitted rays is not quoted here. It was sampled with the rear faces of L4 and L6 at 9.4 and 11.2 mm, and the fixtures have not been resampled since those faces were raised to the drawn 10.1 and 11.9 mm. In that sample every converter clip fell on a face of L1 or on one of those two rear faces, most of them on L1. L1 is unchanged, so its clips stand; a ray that was stopped at the rear of L4 or L6 is now either admitted or still stopped, there or at a later rim, and no ray admitted before is lost. On the four declared catalog hosts, with the current rims, a meridional fan to the 21.63 mm image corner is stopped inside the converter only by L1.
 
-All 2,308 on-axis samples and all 36 field-chief checks have valid admitted traces. Containment is asserted only for the 19,309 actually admitted combined rays: 154,472 glass segments, 9,731,736 curved-material interior samples and 2,317,080 actual-polygon interior samples, with zero escapes. No required axial, chief, valid-geometry, zero-trim or admitted-ray containment conclusion depends on an excluded target solve.
+All 2,308 on-axis samples and all 36 field-chief checks have valid admitted traces, which wider rear faces cannot change. Containment was tested only on the rays admitted through the composed fixtures in that earlier sample: every glass segment of those rays, at sampled points inside the curved material and inside the rendered polygons, stayed in glass, with zero escapes. Those rays remain admitted, the material they crossed is unchanged and the rendered outlines of L4 and L6 have only grown, so the result still holds for them; rays that only the raised rear faces admit have not been tested for containment. No required axial, chief, valid-geometry, zero-trim or admitted-ray containment conclusion depends on an excluded target solve.
 
 The unresolved samples do limit any claim of complete off-axis pupil throughput. Neither full pupil transmission, continuous field/pupil clearance, all zoom/focus states nor production performance is established. The finite valid coverage is sufficient for the stated axial/chief and admitted-ray acceptance basis without treating an untraced ray as clear.
 

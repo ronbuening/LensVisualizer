@@ -42,8 +42,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * Catalog glass names match the printed nd/vd; the actual supplier and melt are unknown.
  * HOYA's AGF file lists FDS18 at nd 1.94595 and its Excel catalog at 1.94594; the patent's
  * nd is kept. L4 (1.69513 / 24.0) has no match in the OHARA, HOYA, Schott, HIKARI, CDGM or
- * Sumita catalogs. The patent prints no nC, nF, ng or dPgF values and none are added.
+ * Sumita catalogs. The pair is printed once in the patent (Table 4A, surface 8): its lens LR2
+ * carries a different pair in each example (1.65731 / 21.2, 1.60817 / 29.3 and 1.65388 / 26.1
+ * in Examples 1-3), while the pairs of L1, L3 and L5 recur in Example 2 or 3. The patent names
+ * no glass and prints no nC, nF, ng or dPgF values, and none are added.
  * L1 is tagged apd "inferred" from Panasonic's UED marking of the front element.
+ *
+ * NOTE ON LABELS: L1-L5, the stop A, plate P and the gap d11 are the signs of Fig. 4A, and
+ * paragraphs 0070-0074 call L1, L3, L4 and L5 the lenses LF1, LR3, LR2 and LR1. The patent
+ * names no lens groups for this embodiment (G1-G4 in paragraphs 0147 and 0157 describe the
+ * first embodiment in Figs. 5 and 6), so the one bracket is the focus unit, A with L1-L5.
  */
 
 const LENS_DATA = {
@@ -87,6 +95,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "diagramLabel": "L1",
       "label": "Element 1",
       "type": "Positive Meniscus",
       "nd": 1.437,
@@ -95,51 +104,55 @@ const LENS_DATA = {
       "glass": "FCD100 (HOYA; coordinate equivalent; supplier unconfirmed)",
       "apd": "inferred",
       "apdNote": "Panasonic's construction diagram marks the front element as the lens's one UED element, and the patent's nd 1.437 / νd 95.1 fits an FCD100-class glass (catalog ΔPgF ≈ +0.050); anomalous partial dispersion is inferred from that, not stated by the patent.",
-      "role": "Front positive meniscus directly behind the stop, convex to the object; the UED element."
+      "role": "Front positive meniscus directly behind the stop, convex to the object; the patent's lens LF1 and the element Panasonic marks as UED."
     },
     {
       "id": 2,
       "name": "L2",
+      "diagramLabel": "L2",
       "label": "Element 2",
       "type": "Negative Meniscus",
       "nd": 1.94595,
       "vd": 18.0,
       "fl": -55.08860301703425,
       "glass": "FDS18 (HOYA; coordinate equivalent; supplier unconfirmed)",
-      "role": "Negative meniscus, concave to the object, closely following L1."
+      "role": "Negative meniscus, concave to the object, 2.44 mm behind L1 and 0.30 mm ahead of L3; the most dispersive glass of the five."
     },
     {
       "id": 3,
       "name": "L3",
+      "diagramLabel": "L3",
       "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.816,
       "vd": 46.6,
       "fl": 13.726015727472195,
       "glass": "TAF5 (HOYA; coordinate equivalent; supplier unconfirmed)",
-      "role": "Positive meniscus, convex to the image."
+      "role": "Positive meniscus, convex to the image; the patent's lens LR3 and the strongest positive element."
     },
     {
       "id": 4,
       "name": "L4",
+      "diagramLabel": "L4",
       "label": "Element 4",
       "type": "Negative Meniscus",
       "nd": 1.69513,
       "vd": 24.0,
       "fl": -12.11949164706167,
       "glass": "Unmatched (patent nd=1.69513, vd=24.0; no match in six supplier catalogs)",
-      "role": "Negative meniscus, concave to the object."
+      "role": "Negative meniscus, concave to the object; the patent's lens LR2 and the stronger of the two negative elements."
     },
     {
       "id": 5,
       "name": "L5",
+      "diagramLabel": "L5",
       "label": "Element 5",
       "type": "Positive Meniscus",
       "nd": 2.001,
       "vd": 29.1,
       "fl": 32.16533008332188,
       "glass": "TAFD55 (HOYA; coordinate equivalent; supplier unconfirmed)",
-      "role": "Rear positive meniscus, convex to the image; the largest element."
+      "role": "Rear positive meniscus, convex to the image; the patent's lens LR1 and the largest element."
     }
   ],
   "surfaces": [
@@ -272,14 +285,14 @@ const LENS_DATA = {
   ],
   "groups": [
     {
-      "text": "UNIT FOCUS → OBJ",
+      "text": "A + L1–L5 · UNIT FOCUS → OBJ",
       "fromSurface": "STO",
       "toSurface": "11"
     }
   ],
   "doublets": [],
   "closeFocusM": 0.2,
-  "focusDescription": "PUBLISHED: the aperture stop and all five elements move together 4.2736 mm toward the object between infinity and the near state, while the cover glass and image plane stay fixed. The patent prints both states (near object 161.726 mm in front of the stop); positions and distance labels between them are interpolated. The patent's near state is 0.20 m from object to image and its focal length is 24.72 mm, against the marketed 0.25 m minimum focus and 26 mm.",
+  "focusDescription": "PUBLISHED: the aperture stop A and lenses L1–L5 move together 4.2736 mm toward the object between infinity and the near state, while the parallel plate P and the image plane stay fixed; the gap from L5 to P (the patent's d11) grows from 12.5000 to 16.7736 mm. The patent prints both states (near object 161.726 mm in front of the stop); positions and distance labels between them are interpolated. The patent's near state is 0.20 m from object to image and its focal length is 24.72 mm, against the marketed 0.25 m minimum focus and 26 mm.",
   "nominalFno": 7.962770929000252,
   "maxFstop": 7.962770929000252,
   "fstopSeries": [

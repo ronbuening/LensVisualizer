@@ -117,3 +117,91 @@ Patent: US 2019/0018229 A1, Numerical Example 1
   11 % below; FIG. 1 draws L1F1 square-cut to 37.8 mm on both faces where the file steps from 38.0 to 33.6 mm.
   Close-focus rims are unchecked because the patent tabulates no close-focus spacings.
 
+## 2026-10-12 - Second review: diagram, labels and movement
+
+- Compared. The local page at 72.1, 118 and 194 mm beside the three panels of FIG. 1 (US 2019/0018229 A1, PDF page 2,
+  300 dpi one-bit scan), the element and group text against paragraphs 0102 to 0118 (PDF page 14) and the zoom
+  spacings against Table 3 (PDF page 15). Figure scale re-derived from vertex crossings, surface 1 to surface 42
+  (184.540 mm): 878.0 / 880.5 / 879.5 px, 4.76 px/mm. No semi-diameter, asphere, erratum or `gapSagFrac` value was
+  changed in this pass.
+- Changes, labels only.
+
+  | Field | Before | After | Evidence |
+  |---|---|---|---|
+  | `diagramLabel`, all 23 elements | absent, so the diagram printed the ids 1 to 23 | L1F1, L1F2, L1F3, L1R1, L1R2, L21 to L24, L31 to L33, L41 to L44, L51, L61 to L66 | FIG. 1 and paragraphs 0110 to 0117 name the elements this way; the inspector already showed these names, the diagram did not |
+  | L22 `type` | Negative Meniscus | Biconcave Negative | r13 = -101.2705, r14 = +39.7503; the patent says "negative lens L22" |
+  | L23 `type` | Positive Meniscus | Biconvex Positive | r14 = +39.7503, r15 = -2054.9944; "positive lens L23" |
+  | L44 `type` | Positive Meniscus | Biconvex Positive | r29 = +24.1826, r30 = -112.0366; "positive lens L44" |
+  | L61 `type` | Positive Meniscus (1× Asph) | Biconvex Positive (1× Asph) | r33 = +38.0555, r34 = -67.3230; "positive lens L61" |
+
+- Silhouette, read again from the intermediate panel (half the top-to-bottom extent, mm): L1F1 37.7, L1F3 35.9, L1R1
+  32.2, L1R2 31.2, L21 18.0, L22 and L23 18.1, L24 18.6, L31 19.9, L32 and L33 20.3, L41 19.8, L42 19.1, L43 and L44
+  18.1, L51 14.3, L61 and L62 15.5 to 16.2, L63 to L66 15.5. These agree with the first pass to 0.2 mm. Every stored
+  rim is within 15 % of its drawn height; the widest gap is the rear of L66, 13.5 against 15.5 mm. Where the page
+  still differs from the drawing: L1F1 is drawn square-cut and
+  renders stepped, 38.0 to 33.6 mm; L1F2 and L1F3 are drawn running to points at 37.5 and 35.9 mm and render with
+  rims at 33.5 to 33.7 mm; L1R1 is drawn with a square rim at 32.2 mm and renders bevelled, 29.9 to 28.3 mm; L21 is
+  drawn level with the L22 and L23 block and below L24, and renders as a wedge, 18.5 to 16.2 mm, whose front rim
+  stands 1.6 mm above L24; L63 to L66 are drawn at one height and render tapering from 15.3 to 13.5 mm. None of these
+  is an overlap, an inverted order between facing neighbours, a face below the stated ray or a square rim split
+  today. L1F1 and L21 were already stepped before today (38.0 / 33.5 and 18.5 / 16.2 mm), so the square-rim rule does
+  not reach them, and nothing was moved.
+- Rims checked. The on-axis ray at the stated f/2.8823 pupil passes every surface at the three positions; the closest
+  are surfaces 20 and 24A, each 0.006 mm inside its rim at 72.10 mm. Across 101 steps of the zoom slider the ray
+  through the edge of the iris clears every rim, so the iris stays the limiter between the published positions. The
+  two faces of L23 (16.4 mm) and of L24 (16.9 mm) still carry one value. At 28.3 mm, 0.0297 mm of the 0.75 mm gap
+  between surfaces 8 and 9 remains, 96.04 % used, so 0.97 is the smallest two-decimal `gapSagFrac`. No element is
+  trimmed for display at any position.
+- Asphere sign. With the filed A8 on surface 31A the on-axis trace gives -0.086 / -0.008 / -0.013 mm at the full
+  pupil, inside the roughly 0.1 mm that FIG. 4 plots (PDF page 5). The PCT print was not re-read in this pass.
+- Labels found correct. Group brackets G1F (surfaces 1 to 6), G1R (7 to 10), G2 (11 to 17), G3 (18 to 22), G4 (24 to
+  30), G5 (31 and 32) and G6 (33 to 42) match the Lens Group column of Table 1 and the G1F / G1R split of FIG. 1.
+  Five cemented brackets, 13 to 15, 20 to 22, 28 to 30, 33 to 35 and 36 to 38, match the five cemented lenses of
+  paragraphs 0112 to 0117; 23 elements less five junctions is 18 groups. The stop is surface 23, between G3 and G4
+  (paragraph 0106). The four aspheric markers sit on 24, 31, 32 and 33, as Tables 1 and 2 mark them, and nowhere
+  else. Stored focal lengths match the paraxial values to the printed digit. Every `role` sentence agrees with the
+  patent text.
+- Tags. Paragraph 0110 says L1F2 and L1F3 "each include a material with an Abbe number of 95.1" and paragraph 0068
+  calls it a material of low dispersion; neither names a glass or calls it anomalous, so `apd: "inferred"` is the
+  right tag for both. The six inferred tags (L1F2, L1F3; L1R2, L22; L32, L42) equal Sony's published two Super ED and
+  four ED elements as cited in the analysis. This log holds no record of a comparison with Sony's construction
+  diagram, so element positions of the ED glasses and of the XA element are not confirmed against it.
+- Zoom order and direction. `zoomPositions` ascend 72.1013 / 117.9861 / 193.9863 and each of d10, d17, d22, d30 and
+  d32 lists its three values in that order, equal to Table 3 cell for cell. First-surface positions from the image
+  plane (mm, positive toward the image): G2 moves +20.355 then +10.539 (30.895 in all, one direction); G3 moves
+  +12.377 then -5.849 (net +6.528), so d22 closes from 15.2719 to 2.8950 and reopens to 8.7441; G5 moves -0.996 then
+  +0.074 (net -0.922, toward the object); G1F, G1R, the stop, G4 and G6 stay within 0.0002 mm. The total length is
+  215.1482 / 215.1483 / 215.1481 mm, so the image plane is fixed. FIG. 1 draws straight arrows for G1F, G1R, G4 and
+  G6, a straight slanted arrow toward the image for G2, an arrow for G3 that bows toward the image and comes part of
+  the way back, and an arrow for G5 that bows toward the object and returns. Measured in the panels, G2's first
+  surface sits
+  46.1 / 67.0 / 77.6 mm behind surface 1 (table 46.30 / 66.65 / 77.19) and G3's 90.7 / 104.2 / 97.9 mm (table 91.04 /
+  103.42 / 97.57).
+- Figure against table, G5. The telephoto panel draws G5 back at its wide position (L51 front 144.3 / 144.0 / 144.5
+  mm behind surface 1), where Table 3 keeps it 0.92 mm forward (144.59 / 143.59 / 143.67 mm). The table governs and
+  the file follows it.
+- Focus. The patent tabulates no close-focus spacings, so focus is not modeled: the page shows the focus slider
+  disabled with "Not modeled", the description states the patent's directions (G1R toward the object, G5 toward the
+  image, paragraph 0109), the movement overlay offers zoom only, and the layout is identical at both ends of the
+  slider.
+- Open, outside this pass. Table 1 gives L62 an Abbe number of 33.3450 against 33.2694 for L33; the file labels both
+  NBFD15 (33.27), and Hikari J-LASFH6 (1.80610, 33.34) fits L62. L61 (1.5163, 64.0651) fits OHARA L-BSL7 (64.07), and
+  L41 and L51 (1.5831, 59.4609) fit HOYA M-BACD12 (59.46), the moulding glasses, where the labels resolve to S-BSL7
+  (64.14) and S-BAL42 (59.37). Table 3 prints F-number 2.8804 at the intermediate position; the file uses 2.8823 at
+  all three. The `specs` lines are in sentence case where newer files use capitals.
+
+## 2026-10-12 - Glass labels from the four-decimal Abbe numbers
+
+- Table 1 prints νd to four decimals. Evaluating every catalog glass at the printed nd shows which row each value
+  belongs to. Exact to four decimals: HOYA FCD100 (95.1004), FCD515 (68.6244), FD225 (22.7643), NBF1 (49.2216),
+  NBFD15 (33.2694, L33), M-BACD12 (59.4609), E-FD5 (32.1705), E-FL6 (42.8418) and TAC8 (54.6735); OHARA L-BSL7
+  (64.0651); HIKARI J-LASFH6 (33.3450, L62). Close: HOYA E-FD1L (29.5008 against 29.5005), TAF3D (46.5027 against
+  46.5025), TAFD5G (42.7215 against 42.7218), TAFD30 (40.8180 against 40.8054).
+- Nine labels named two or three suppliers and resolved by index residual to a row whose Abbe number is further off.
+  Before -> after: L1R1 S-TIH1 -> E-FD1L; L23 S-NPH1 -> FD225; L41 and L51 S-BAL42 (59.37) -> M-BACD12; L44 S-TIL26
+  -> E-FL6; L61 S-BSL7 (64.14) -> L-BSL7; L62 NBFD15 -> J-LASFH6; L63 S-TIM25 (32.10) -> E-FD5; L66 S-LAH58 (40.77)
+  -> TAFD30. The three aspherical elements (L41, L51, L61) come out as glasses made for molding.
+- Catalog: HOYA E-FD1L and E-FL6 were added from HOYA's 2026-07-07 catalog file, without six-digit codes.
+- Printed nd and νd are unchanged; all 23 elements resolve. L32 and L42 (81.6084) stay on FCD1, whose catalog row
+  gives 81.5861; L43 (printed 29.1000) stays on TAFD55.
+

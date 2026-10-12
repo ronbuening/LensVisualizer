@@ -278,28 +278,42 @@ z(y)=\frac{c y^2}{1+\sqrt{1-(1+K)c^2y^2}}+A_4y^4+A_6y^6+A_8y^8+A_{10}y^{10}.
 $$
 
 This is a minimal convention correction, not an official erratum. K retains the source’s 1+K denominator
-convention. No uniform scaling was applied; radii, thicknesses and the stated aspheric coefficients remain
-native. The same common-equation interpretation is used at the source master’s starred surfaces when the
-reference assembly is traced. [Patent, PDF pp. 23–24, ¶0090–0091][P]
+convention. No uniform scaling was applied; radii, thicknesses and the aspheric coefficients remain native,
+except the sign of A4, which is corrected as described below. The same common-equation interpretation is used at
+the source master’s starred surfaces when the reference assembly is traced. [Patent, PDF pp. 23–24, ¶0090–0091][P]
 
-| Surface 3A / source 45 parameter | Source and implemented value | Units |
-|---|---:|---|
-| R | -24.5634 | mm |
-| K | -1.65 | dimensionless |
-| A4 | 2.0600e-06 | mm⁻³ |
-| A6 | -2.0120e-09 | mm⁻⁵ |
-| A8 | 5.1320e-11 | mm⁻⁷ |
-| A10 | -7.8900e-14 | mm⁻⁹ |
+| Surface 3A / source 45 parameter | Source value | Implemented value | Units |
+|---|---:|---:|---|
+| R | -24.5634 | -24.5634 | mm |
+| K | -1.65 | -1.65 | dimensionless |
+| A4 | 2.0600e-06 | -2.0600e-06 | mm⁻³ |
+| A6 | -2.0120e-09 | -2.0120e-09 | mm⁻⁵ |
+| A8 | 5.1320e-11 | 5.1320e-11 | mm⁻⁷ |
+| A10 | -7.8900e-14 | -7.8900e-14 | mm⁻⁹ |
 
 All listed polynomial terms are even powers of radial height. The A12 and A14 entries are explicit zeros in the
 model. No thin resin shell, extra interface or manufacturing method is inferred from the coefficient list. The
 source gives a geometric asphere and the catalog offers a spectral equivalent; neither proves how the production
-surface was manufactured. [Patent, ¶0166][P]
+surface was manufactured. [Patent, ¶0165, PDF p. 41][P]
 
-At the inferred surface radius y = 14.2 mm, the sag is -3.777133 mm. The polynomial adds +0.125800 mm to the
-specified conic base, and the full surface is displaced by +0.743297 mm relative to the sphere with the same
-signed vertex radius. The outer surface is therefore less negative in sag than that reference sphere at this
-radius. This is a shape comparison at a modeled aperture, not a measured correction of a particular aberration.
+The sign of A4 is a source erratum, corrected in the model. Paragraph ¶0165 prints A4 = 2.0600E−06; the model
+uses −2.0600e−06 and keeps every other printed value. Two kinds of evidence from the patent itself reject the
+printed sign and accept the reversed one, both traced through the source master and its 2.5 mm plate. First,
+Table 14 states an image height of 21.63 mm at half angles of 12.34° and 4.58°: the chief ray lands at 21.326 mm
+and 21.332 mm with the printed sign and at 21.631 mm and 21.649 mm with the corrected one. Second, Figure 15 plots
+this example’s sagittal and meridional field curves within 0.11 mm of the paraxial plane and about −2.1% and
+−0.5% distortion: the printed sign puts the meridional focus 2.2 mm from that plane at the corner with −3.38% and
+−2.01% distortion, while the corrected sign follows all 29 readings of the four curves within 0.014 mm with
+−2.00% and −0.55% distortion. A change of K to −1.15 would also restore the image height, but it leaves the
+meridional focus 0.24 mm to 0.28 mm from the plotted curve and is rejected. The master alone and Example 7
+reproduce their own plots under the same trace. The patent has no published correction, and the reading rests on
+this publication alone. [Patent, Table 14, PDF p. 42; Figures 9, 15 and 16, PDF pp. 77, 83–84][P]
+
+At the inferred surface radius y = 14.2 mm, the sag is -3.944647 mm. The polynomial contributes -0.041714 mm to
+the specified conic base, and the full surface is displaced by +0.575784 mm relative to the sphere with the same
+signed vertex radius; the surface slope there is 27.71°. The outer surface is therefore less negative in sag
+than that reference sphere at this radius. This is a shape comparison at a modeled aperture, not a measured
+correction of a particular aberration.
 
 Keeping the printed c² numerator as a literal numerical millimetre branch instead produces converter EFL
 +52.085968 mm and relay magnification 0.787634. Its virtual-object image lies -0.598519 mm relative to the last
@@ -379,13 +393,14 @@ fixed plane, rather than resolved by silently renaming the source row.
 
 | Combined state | Literal interpretation: half the printed 2ω / computed image height | Printed value used as half angle / computed image height |
 |---|---:|---:|
-| Wide | 6.170° / 10.827610 mm | 12.340° / 21.326115 mm |
-| Tele | 2.290° / 10.819922 mm | 4.580° / 21.331659 mm |
+| Wide | 6.170° / 10.866872 mm | 12.340° / 21.630664 mm |
+| Tele | 2.290° / 10.860461 mm | 4.580° / 21.649438 mm |
 
-An independent target-height solve for |y| = 21.63 mm gives reference-host half angles 12.525115° and 4.647345°.
-Those solved angles are computational test inputs, not replacement patent values or a production angle-of-view
-measurement. The heading ambiguity limits field-plot attribution; it does not leave the converter’s virtual
-object or terminal plane undefined.
+An independent target-height solve for |y| = 21.63 mm gives reference-host half angles 12.339613° and 4.575810°,
+which round to the printed 12.34° and 4.58°; the printed values therefore act as half angles. Those solved angles
+are computational test inputs, not replacement patent values or a production angle-of-view measurement. Figure 15
+marks image heights of 21.64 mm and 21.62 mm on its Wide and Tele plots; the Tele result of 21.649 mm lies at the
+edge of what an angle printed to two decimals allows.
 
 The engine’s terminal point is the final plate surface, and reachedImagePlane remains false in the raw trace
 result. Image coordinates used here are obtained by propagating that terminal vector through the remaining final
@@ -401,9 +416,15 @@ front surfaces at flat annuli, near 12.4 and 15.0 mm; the modeled outlines carry
 instead. Source-master clear radii are also inferred; its field vignetting is part of the reference model.
 
 At these rims, the minimum sampled element thickness is 0.534886 mm, the maximum actual surface slope is
-50.727076°, and the maximum shared-band gap-sag intrusion fraction is 0.262378. Conic domains remain real and no
-rim-slope, gap-sag or render-layout relaxation is applied. The cemented pair’s wider rear contour passes
-material containment rather than being hidden by drawing trim.
+50.727076°, and the maximum shared-band gap-sag intrusion fraction is 0.294929, between L1 and the aspheric
+front of L2. Conic domains remain real and no rim-slope, gap-sag or render-layout relaxation is applied. The
+cemented pair’s wider rear contour passes material containment rather than being hidden by drawing trim.
+
+The sampled ray and solid tests in the next two paragraphs were run with the printed sign of A4 and have not been
+repeated with the corrected surface, which lies 0.17 mm further forward at its 14.2 mm rim and 0.03 mm at the
+9.5 mm height of the corner chief ray. With the corrected surface the converter passes the data validation, and
+on the four declared catalog hosts an exact meridional trace finds the axial beam and the corner chief ray clear
+of every converter rim at every zoom station.
 
 The bounded exact-ray tests compare bare and attached source hosts at identical incident coordinates. Both
 native apertures and a separate f/2.8 reference setting were evaluated. The coarse grid contains 3,860 paired
@@ -436,7 +457,7 @@ bounded, executable reference-host geometry assessment.
 
 ## Sources and References
 
-- [P] Chen, Yonghua; Miyagawa, Naoki. *Teleconverter lens and optical apparatus*. Sony Corporation. WO 2017/134928 A1, published 10 August 2017. Original supplied 99-page publication. Principal locators: front page; ¶0033–0068 (PDF pp. 11–19); ¶0088–0091 (PDF pp. 23–24); Tables 1–2 (PDF pp. 26–29); Example 6, ¶0165–0169 and Tables 13–14 (PDF pp. 41–42); Table 17 (PDF p. 45); Figures 1 and 7. The original page images govern readings over OCR or translation. [Publication][P]
+- [P] Chen, Yonghua; Miyagawa, Naoki. *Teleconverter lens and optical apparatus*. Sony Corporation. WO 2017/134928 A1, published 10 August 2017. Original supplied 99-page publication. Principal locators: front page; ¶0033–0068 (PDF pp. 11–19); ¶0088–0091 (PDF pp. 23–24); Tables 1–2 (PDF pp. 26–29); Example 6, ¶0165–0169 and Tables 13–14 (PDF pp. 41–42); Table 17 (PDF p. 45); Figures 1 and 7; aberration Figures 9, 15 and 16 (PDF pp. 77, 83–84). The original page images govern readings over OCR or translation. [Publication][P]
 - Sony Japan. *SEL14TC specifications* and *Features / lens construction*. Manufacturer counts, mount, dimensions and schematic topology. [Specifications][SONY-SPEC]; [Construction][SONY-FIG]
 - Sony Canada. *Sony Launches New G Master Brand of Interchangeable Lenses*, 3 February 2016. Manufacturer announcement distributed by Cision. [Announcement][SONY-ANN]
 - Sony Japan. Release-date notice, 26 September 2016, specifying 28 October 2016 availability. [Notice][SONY-RELEASE]

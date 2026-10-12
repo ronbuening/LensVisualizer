@@ -13,6 +13,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * PUBLISHED focus: only G2 moves; both printed gap pairs (infinity and near)
  * are used as printed. Positions between them are linear interpolation, so
  * intermediate distance readings are estimates.
+ * GROUP LABELS follow Fig. 2A: G1a (L1–L4) and G1b (L5–L8) are the two
+ * sub-groups of the patent's G1; the stop lies between G1b and G2.
  * Published near conjugate: 135 mm to first vertex, 250 mm to the image.
  * The image plane is not refocused and no focus cam is reconstructed; the
  * 0.0001 mm rounding difference between the two gap pairs is kept.
@@ -20,16 +22,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * paraxial chief-ray estimate alone stops at 38.9° (surface 2).
  * SEMI-DIAMETERS: estimated from Fig. 2A proportions and real-ray clearance,
  * not published dimensions. Measured on Fig. 2A at 300 dpi (12.84 px/mm),
- * every element rim is within 0.7 mm (5 %) of the drawn height. L5 (12.0 mm)
- * and D2 (11.7 mm, 11.4 mm at the rear of L8) follow the drawn heights, so
- * the group steps down beside L6 as drawn. The rims of s2 (16.0 mm),
- * s11A/s12A (11.7 mm) and s27A (17.4 mm) are limited by surface slope or
- * slope reversal; the default gap-sag allowance is used. Fig. 2A draws flat
- * lands outside the curves of s2, s4A and s24 (the curves end near 16.4, 14.8
- * and 15.3 mm); L2 and L12 keep one semi-diameter on both faces, as their
- * rims are drawn square-cut. Each cement layer keeps one semi-diameter, so
- * the steps drawn at the three cemented joints appear as tapers on L4, L8
- * and L13.
+ * every element rim is within 0.5 mm (4 %) of the drawn height. L5 (12.0 mm),
+ * L7 (11.7 mm) and L8 (11.4 mm) follow the drawn heights, so the group steps
+ * down beside L6 as drawn. The rims of s2 (16.0 mm) and s11A/s12A (11.7 mm)
+ * are limited by surface slope or slope reversal (s12A reverses at 11.8 mm;
+ * s27A, at its drawn 17.3 mm, reverses at 17.5 mm); the default gap-sag
+ * allowance is used. Fig. 2A draws flat lands outside the curves of s2, s4A
+ * and s24 (the curves end near 16.4, 14.8 and 15.3 mm); L2 and L12 keep one
+ * semi-diameter on both faces, as their rims are drawn square-cut.
+ * CEMENTED JOINTS: each face of a 0.01 mm cement layer takes the height of
+ * the lens it joins (L3 13.5 / L4 12.9, L7 11.7 / L8 11.4, L12 16.6 / L13
+ * 17.3 mm), so the three joints render with the steps Fig. 2A draws and all
+ * six lenses keep one height on both faces.
  * The stop radius is derived from the design f/2.57524; the patent does not
  * publish a diaphragm diameter.
  * Glass labels name catalog glasses with matching nd/νd, which supply the
@@ -345,7 +349,7 @@ const LENS_DATA = {
       "d": 4.786,
       "nd": 1.80518,
       "elemId": 5,
-      "sd": 13.5
+      "sd": 12.9
     },
     {
       "label": "8",
@@ -353,7 +357,7 @@ const LENS_DATA = {
       "d": 6.3193,
       "nd": 1,
       "elemId": 0,
-      "sd": 13.0
+      "sd": 12.9
     },
     {
       "label": "9",
@@ -409,7 +413,7 @@ const LENS_DATA = {
       "d": 8.1458,
       "nd": 1.55032,
       "elemId": 10,
-      "sd": 11.7
+      "sd": 11.4
     },
     {
       "label": "16",
@@ -481,7 +485,7 @@ const LENS_DATA = {
       "d": 1.1,
       "nd": 1.85451,
       "elemId": 14,
-      "sd": 17
+      "sd": 16.6
     },
     {
       "label": "25",
@@ -489,7 +493,7 @@ const LENS_DATA = {
       "d": 0.01,
       "nd": 1.56732,
       "elemId": 15,
-      "sd": 17
+      "sd": 16.6
     },
     {
       "label": "26",
@@ -497,7 +501,7 @@ const LENS_DATA = {
       "d": 6.7895,
       "nd": 1.51633,
       "elemId": 16,
-      "sd": 17
+      "sd": 17.3
     },
     {
       "label": "27A",
@@ -505,7 +509,7 @@ const LENS_DATA = {
       "d": 16.1959,
       "nd": 1,
       "elemId": 0,
-      "sd": 17.4
+      "sd": 17.3
     }
   ],
   "rearPlates": [
@@ -621,8 +625,13 @@ const LENS_DATA = {
   ],
   "groups": [
     {
-      "text": "G1 (+)",
+      "text": "G1a (−)",
       "fromSurface": "1",
+      "toSurface": "8"
+    },
+    {
+      "text": "G1b (+)",
+      "fromSurface": "9",
       "toSurface": "16"
     },
     {
@@ -654,7 +663,7 @@ const LENS_DATA = {
     }
   ],
   "closeFocusM": 0.25,
-  "focusDescription": "PUBLISHED infinity and close-focus states (patent Table 2C). Inner focus: only the negative group G2 (L9–L10) moves, 4.97 mm toward the image; G1, the stop and G3 stay fixed. The close state places the object 135 mm in front of the first surface, 250 mm from the image plane, matching the marketed 0.25 m minimum focus distance. Positions between the two printed states are linear interpolation of the gaps, so intermediate distance readings are approximate.",
+  "focusDescription": "PUBLISHED infinity and close-focus states (patent Table 2C). Inner focus: only the negative group G2 (L9–L10) moves, 4.97 mm toward the image; G1 (sub-groups G1a and G1b), the stop and G3 stay fixed. The close state places the object 135 mm in front of the first surface, 250 mm from the image plane, matching the marketed 0.25 m minimum focus distance. Positions between the two printed states are linear interpolation of the gaps, so intermediate distance readings are approximate.",
   "nominalFno": 2.57524,
   "fstopSeries": [
     2.57524,

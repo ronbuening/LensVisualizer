@@ -103,9 +103,10 @@ Evidence.openIssues preserves the original Pass A issue wording, including its p
   the last gap 12.9982 mm is printed as surface 53's distance (Table 13; BF in air 13.00) and already stands for the
   master's 2.5 mm plate and 1 mm gap in air, so no plate is listed (a physical gap of 10.35 mm would be derived, not printed). The paraxial image falls 12.93 mm
   behind the last vertex because the patent's own master is 0.001 / 0.030 mm off its tabulated plane (wide / tele).
-- Open: Example 6 as printed lands the corner chief ray at 21.34 mm against the stated 21.63 mm (-1.35%), where
-  Example 7 under the same convention lands on 21.64 / 21.62 mm. K = -1.15 or A4 = -2.06e-6 would close it; the
-  printed K = -1.65 and A4 = 2.06e-6 are kept. A family member (JP or CN text) could settle it.
+- Closed the same day by the A4 sign correction recorded under "Second review" below: Example 6 as printed lands
+  the corner chief ray at 21.34 mm against the stated 21.63 mm (-1.35%), where Example 7 under the same convention
+  lands on 21.64 / 21.62 mm. K = -1.15 or A4 = -2.06e-6 would each restore the height; the patent's Figure 15
+  rejects the printed sign and K = -1.15, and A4 is now stored as -2.06e-6 with K = -1.65 as printed.
 - Glass: the copied nC / nF / ng / dPgF values were removed. They equal the named catalog glasses' own curves to
   4e-7, and as authored line indices they made a system with an e-line host report mixed references. Each element now
   resolves to its catalog glass (FD225, M-TAFD305, E-F5, TAFD33, TAFD55, S-BAL3).
@@ -285,3 +286,292 @@ probe's output identical on the bare file and on all four declared hosts; with 1
 f-number, junction gap, axial result and corner coverage unchanged. The converter file's data is unchanged and the
 probe prints the same output as before. The analysis paragraph on the f/2.8 host bound now names the four declared
 catalog hosts.
+
+## 2026-10-12 — Second review: diagram, labels and movement
+
+An independent second look at the converter as the local page draws it, mounted on each declared host. No `sd`, `R`,
+`d`, index or glass string changed. One asphere coefficient changed: the sign of A4 on surface 3A, a source erratum
+corrected on the coordinator's decision and recorded in the last sub-sections below. The other edits are six `role`
+strings, the aspherical element's `type`, the header comment and the analysis text that follows from the correction.
+The converter probe prints the same output before and after on all four hosts.
+
+### What was compared
+
+- 図7 (PDF page 75) was measured again from the native 300 ppi raster, without reusing the first pass's readings.
+- Page renders with `?v=1&tc=sony-14x-teleconverter-sel14tc`: FE 70-200mm F2.8 GM OSS at 100.94 and 271.45 mm; FE
+  70-200mm F2.8 GM OSS II at 100.9, 169.02 and 271.33 mm and at closest focus; FE 400mm F2.8 GM OSS at infinity and
+  at 2.72 m; FE 400-800mm F6.3-8 G OSS at 559.75 and 1082.74 mm; the zoom and focus movement overlays with and
+  without the converter; the inspector for each of the six converter elements; `/teleconverters/sony-14x-teleconverter-sel14tc`.
+- The stored outline and a curve-end trial were laid over a 600 dpi crop of 図7 at the scale measured here.
+
+### Silhouette, measured again
+
+Scale: vertex 1 on column 679 and vertex 11 on column 991, 312 px for 30.23 mm, 0.09689 mm/px (first pass 0.09705).
+Vertex 6 falls on column 869 against 868.2 predicted. The axis line runs from row 2280.5 at vertex 1 to row 2279 at
+vertex 11 (the sheet is skewed about 0.3°), so each rim is half the distance between the upper and lower line centres.
+
+| Element | Line-centre rows, upper / lower | Half height (px) | This review (mm) | First pass (mm) | Stored (mm) | Figure / stored |
+|---|---:|---:|---:|---:|---:|---:|
+| L1 | 2145.5 / 2414 | 134.25 | 13.01 | 13.00 | 13.6 | 0.96 |
+| L2 | 2136 / 2423 | 143.5 | 13.90 | 13.93 | 14.2 | 0.98 |
+| L3 (tip) | 2130 / 2432.7 | 151.3 | 14.66 | 14.56 | 14.4 | 1.02 |
+| L4 | 2114 / 2445 | 165.5 | 16.04 | 16.11 | 16 | 1.00 |
+| L5 | 2096 / 2464 | 184 | 17.83 | 17.86 | 17.8 | 1.00 |
+| L6 | 2079 / 2479 | 200 | 19.38 | 19.41 | 19 | 1.02 |
+
+The two passes agree within 0.1 mm on every element. The L3 tip is read here where the two line centres cross
+(the prescription's faces cross at 14.75 mm); the first pass read where the white gap closes.
+
+Other readings: L2's front curve ends 125 px above and 129 px below the axis (12.1 and 12.5 mm) at an annulus plane on
+columns 725 to 727, and its rim is 57.5 px (5.57 mm) long. L5's annulus plane is on columns 850 to 851, 3.54 mm ahead
+of vertex 8, a sag the sphere reaches at 15.1 mm; the drawn curve meets it 153 px (14.8 mm) from the axis on both
+sides and the rim is 53 px (5.14 mm) long. L4's flat top runs 52 px (5.04 mm) from a vertical front edge on column 794
+to its rear corner on column 846, which stands 4 px (0.39 mm) ahead of L5's annulus plane.
+
+Where the page and 図7 visibly differ, and why each stays:
+
+- **L1** renders 0.6 mm taller than drawn (13.6 against 13.0 mm) with a 1.19 mm edge against 1.36 mm drawn. The
+  difference is 4.5 %, inside the band left alone, and L1 stays shorter than L2 as drawn.
+- **L2** and **L5** are drawn square-cut. With both faces at the drawn rim height their front corners stand 0.8 mm
+  (1.0 mm after the A4 correction below) and 1.4 mm ahead of the drawn annulus planes, so L5's corner passes 0.55 mm
+  ahead of L4's rear corner where the figure draws it 0.39 mm behind. An overlay with the fronts cut at the drawn curve ends (12.4 mm on 3A, 15.1 mm on 8)
+  turned both tops into wedges sloping about 18° (L2) and 28° (L5); the square corners are the clearer likeness, and
+  the rule that a square-cut element keeps both faces at one height decides it. The outlines do not overlap.
+- **L4** renders with a front edge sloping from 14.4 mm at the cemented face to 16 mm at the rear; the figure draws a
+  vertical step and a flat top. The cemented face cannot reach 16 mm because L3's faces cross at 14.75 mm.
+- **L6** renders 0.4 mm shorter than drawn (2 %), with a 0.61 mm edge against a drawn cap of about 0.9 mm; at the
+  drawn 19.4 mm the prescription leaves a 0.25 mm edge.
+
+The first pass has the rims right and none was changed.
+
+### Clearance on the hosts as they now stand
+
+The FE 70-200mm F2.8 GM OSS host file was corrected after the first pass (rims and one asphere sign), so the exact
+meridional trace to the 21.63 mm corner was repeated on all four composed prescriptions. Focal lengths, f-numbers,
+stop radii and junction gaps are those of the first-pass table. The table holds the values with the printed sign of
+A4; the values after the correction are in the erratum sub-section below.
+
+| Host | Axial marginal ray, surfaces 1 / 3A / 11 (mm) | Corner chief ray, surfaces 1 / 6 / 11 (mm) | Converter rims' cut of one side of the corner bundle |
+|---|---|---|---|
+| FE 70-200mm F2.8 GM OSS II | 4.59 / 3.23 / 1.62 | 10.56 / 12.86 / 17.32 | 32, 34, 1, 22, 27, 32, 19, 0, 14, 4, 12 % |
+| FE 70-200mm F2.8 GM OSS | 4.58 / 3.23 / 1.62 | 9.21 / 12.12 / 16.68 | 2, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0 % |
+| FE 400mm F2.8 GM OSS | 4.55 / 3.21 / 1.62 | 10.72 / 12.95 / 17.40 | 38, 41, 8, 29, 33, 39, 26, 0, 22, 13, 21 % |
+| FE 400-800mm F6.3-8 G OSS | 2.03 / 1.44 / 0.72 | 10.55 / 12.86 / 17.32 | none |
+
+No converter surface clips an axial ray or blocks a corner chief ray on any host; the smallest chief-ray margin is
+1.45 mm at surface 6 on the 400 mm. The probe reports no axial clip at any station and 100.0 % corner coverage bare
+and mounted on every host. The first pass's limit about the FE 70-200mm F2.8 GM OSS host's own rims no longer holds:
+the repository's stated-beam check now passes that host at all three stations.
+
+### Labels and tags
+
+| Item | Patent (PDF page) | File | Verdict |
+|---|---|---|---|
+| Groups | 図7 brackets G1 over L1, G2 over L2 to L5, G3 over L6 (75); positive, negative, positive (29, 41–42) | G1 1–2, G2 3A–9, G3 10–11 | correct |
+| Cemented pair | L3 biconvex and L4 negative meniscus cemented (42) | D1 5–7; `cemented` D1 on L3 and L4 | correct |
+| Element names | L1 to L6 in 図7 and paragraphs 0167–0169 | L1 to L6; `label` Element 1 to 6; no `diagramLabel` | correct |
+| L1 | positive meniscus, convex to the image (41) | Positive Meniscus; R −209.37 / −40.41 | correct |
+| L2 | biconcave negative, aspherical object side (42) | Biconcave Negative (1× Asph); R −24.56 / +82.70 | correct |
+| L3 | biconvex positive (42) | Biconvex Positive; R +60.50 / −18.60 | correct |
+| L4 | negative meniscus, convex to the image (42) | Negative Meniscus; R −18.60 / −34.22 | correct |
+| L5 | biconcave negative (42) | Biconcave Negative; R −34.09 / +2331 | correct |
+| L6 | biconvex (42) | Biconvex Positive; R +157.32 / −31.24 | correct |
+| Aspheric surface | surface 45 starred in Table 13 (42); coefficients in paragraph 0165 (41) | label 3A, one `asph` entry, no other | correct |
+| Special-dispersion tags | none named in the text; conditions (10) to (12) set index and Abbe number only | no `apd` on any element | correct |
+
+On the mounted page the composer does not draw the converter's own G1, G2 and G3. It draws one bracket, "TC 1.4×",
+under the six elements, labels them T1 to T6 and labels the pair "TC D1". The group row therefore reads GR1 (FIXED) …
+GR8 (FIXED), TC 1.4× on the GM II; G1F … G6 / OSS + Relay, TC 1.4× on the GM; GR1 … GR3c, TC 1.4× on the 400 mm; and
+G1 … G7, TC 1.4× on the 400-800 mm, whose own groups are named G1 to G7. No text is repeated and none overlaps. The
+aspherical marker "A" stands over T2's front face on every host (the only "A" on the 400 mm and 400-800 mm pages).
+The header reads, for example, "SONY FE 70-200mm f/2.8 GM OSS + SONY 1.4x TELECONVERTER SEL14TC", "23 + 6 elements
+(lens + 1.4× converter)", "f = 100.96–271.52 mm", "f/4.03".
+
+The inspector shows, for T1 to T6: Element 1, L1, Positive Meniscus, nd 1.80809, νd 22.76, FL +61.47 mm, FD225;
+Element 2, L2, an ASPH badge, Biconcave Negative (1× Asph), 1.85135, 40.1, −22.1 mm, M-TAFD305, "Asph (front):
+K=−1.65e+0 A4=−2.06e−6 A6=−2.01e−9" (after the correction; +2.06e−6 before); Element 3, L3, DOUBLET TC D1, Biconvex
+Positive, 1.60342, 38.01, +24.64 mm, E-F5; Element 4,
+L4, DOUBLET TC D1, Negative Meniscus, 1.881, 40.14, −48.28 mm, TAFD33; Element 5, L5, Biconcave Negative, 2.001,
+29.13, −33.55 mm, TAFD55; Element 6, L6, Biconvex Positive, 1.57135, 52.95, +46.35 mm, S-BAL3. Each glass string
+resolves to its catalog glass. Table 17 (PDF page 45) prints the rear positive index as 1.571351, the Ohara catalog
+value for S-BAL3 to six decimals, which supports that label.
+
+Two wording changes. L2's `type` changed from "Biconcave Negative (Asph)" to "Biconcave Negative (1× Asph)", the form
+the sibling converter and the lens files use. The inspector's role text named "the first group G1" beside a diagram
+whose G1 is the host's (on the 400-800 mm page), so each role now says the group is the converter's:
+
+| Element | Before | After |
+|---|---|---|
+| L1 | …forms the positive first group G1 on its own | …forms the converter's positive first group G1 on its own |
+| L2 | …of the negative second group G2;… | …of the converter's negative second group G2;… |
+| L3 | …cemented doublet in G2, cemented to L4 | …cemented doublet in the converter's G2, cemented to L4 |
+| L4 | …cemented doublet in G2, convex to the image… | …cemented doublet in the converter's G2, convex to the image… |
+| L5 | …at the rear of G2; the converter's highest-index glass | …at the rear of the converter's G2; its highest-index glass |
+| L6 | …forming the third group G3 on its own;… | …forming the converter's positive third group G3 on its own;… |
+
+### Movement with the converter mounted
+
+The converter has no moving group. On every host, in every zoom station and at infinity, mid and closest focus:
+
+- each host vertex keeps its position relative to the host's first vertex to 0.0 mm, so every host group travels in
+  the same direction and by the same amount as on the bare lens (the overlays show the same rows shifted 17.23 mm);
+- the converter's first vertex stays 43.2282 mm ahead of the image plane and the image plane stays 17.2282 mm
+  further behind the host's last vertex than on the bare lens;
+- the junction gap stays at 2.79 mm (GM II), 4.61 mm (GM), 2.23 mm (400 mm) and 24.79 mm (400-800 mm).
+
+Focal length scales by 1.3986 / 1.3989 / 1.3990 on the GM II, 1.4000 / 1.3990 / 1.3993 on the GM, 1.4006 on the
+400 mm and 1.3994 / 1.3991 / 1.3954 on the 400-800 mm, and the f-number by the same ratios with the stop radius
+unchanged. The 400 mm's focus group still moves 19.70 mm toward the object; its focus slider ends at 2.72 m.
+
+### Example 6 and the patent's own aberration plots
+
+The open item above (the corner chief ray lands at 21.34 mm against 21.63 mm) was taken to the patent's 図15 (PDF
+page 83), which plots spherical aberration, astigmatism and distortion for Example 6 on the master lens at both zoom
+ends. The master (Table 1, PDF page 28; Table 2, page 29; aspheres, pages 24–25) and Example 7 (Table 15, page 44;
+asphere, page 43) were transcribed for this, and each system was traced with an exact meridional chief ray through
+the stop centre and Coddington sagittal and meridional foci measured from the paraxial focus.
+
+Controls, to show the method reads the plots correctly:
+
+- Master alone, back focus in air, at Table 2's 16.63° / 6.16°: image height 21.629 / 21.626 mm (図9 prints 21.64 /
+  21.63), distortion +0.46 / +3.24 % (plotted +0.44 / +3.13), sagittal focus at the corner −0.063 / −0.099 mm
+  (plotted −0.070 / −0.107), meridional −0.171 / −0.239 mm (plotted −0.178 / −0.25).
+- Example 7 as printed, at Table 16's 12.20° / 4.52°, with the master's 2.5 mm plate traced as a plate: 21.626 /
+  21.606 mm (図16 prints 21.63 / 21.61), distortion −1.06 / +0.37 % (plotted −1.10 / +0.40), sagittal −0.108 /
+  −0.096 mm (plotted −0.110 / −0.104), meridional −0.051 / +0.028 mm (plotted −0.060 / +0.018). With the plate folded
+  into air the meridional value is −0.186 mm at the wide end, so the converter plots include the plate.
+
+Example 6, traced the same way with the plate, against 43 readings of 図15 (two image heights, 12 distortion points,
+29 points on the four field curves):
+
+| Surface 45 coefficients | Image height at 12.34° / 4.58° (mm) | Distortion at the corner (%) | Sagittal focus at the corner (mm) | Meridional focus at the corner (mm) | Misfit (χ²) |
+|---|---|---|---|---|---:|
+| 図15 as plotted | 21.64 / 21.62 | −2.09 / −0.54 | −0.03 / −0.01 | −0.10 / −0.01 | — |
+| As printed (K −1.65, A4 +2.06e−6) | 21.326 / 21.332 | −3.38 / −2.01 | −0.83 / −0.85 | −2.23 / −2.24 | 221,468 |
+| K = −1.15 | 21.613 / 21.630 | −2.08 / −0.64 | −0.08 / −0.07 | −0.34 / −0.29 | 1,860 |
+| A4 = −2.06e−6, all else as printed | 21.631 / 21.649 | −2.00 / −0.55 | −0.03 / −0.02 | −0.09 / −0.03 | 42 |
+
+χ² uses 0.05 % for distortion, 0.012 mm for the field curves and 0.012 / 0.025 mm for the two image heights.
+
+- As printed, the surface cannot have produced 図15: the meridional focus lies 2.2 mm from the paraxial plane at the
+  corner on a plot whose axis ends at ±0.5 mm and whose curves stay within 0.11 mm.
+- With the sign of A4 reversed and nothing else touched, all 29 field-curve readings are met within 0.014 mm and the
+  tele distortion curve within 0.05 %. A one-parameter fit of A4 (K, A6, A8, A10 as printed) settles at −2.060e−6,
+  give or take 0.01e−6: the printed magnitude with the opposite sign.
+- Of 8,659 simple variants tried (sign and power-of-ten changes of each coefficient, 36 other values of K, alone and
+  in pairs and triples), the reversed A4 alone fits best; the next is at χ² 116. K = −1.15 leaves the meridional
+  focus 0.24 mm (wide) and 0.28 mm (tele) from the plotted curve at the corner and is ruled out.
+- What the reversed sign does not explain: the wide-end distortion curve is plotted 0.09 to 0.14 % more negative
+  than the trace at every field from 0.24 upward, and the tele image height comes to 21.649 mm against 21.62 mm, the
+  limit of what a field angle printed to two decimals allows (±0.024 mm). No change of the surface 45 coefficients
+  removes either; freeing all five leaves χ² at 41.
+
+Conclusion: 図15 is evidence, inside the publication, that paragraph 0165 misprints the sign of A4 and that the
+intended value is −2.0600E−06, with K = −1.65 as printed. With the printed sign the converter adds, on the patent's
+master, about 2.1 mm of meridional and 0.8 mm of sagittal field curvature and 1.4 points of barrel distortion at the
+21.6 mm corner that the patent's design does not have.
+
+### Source erratum corrected: A4 of surface 3A
+
+Decision (coordinator, 2026-10-12): correct the value under the source-errata standard of
+`agent_docs/lens-patent-audit.md`. `asph["3A"].A4` changed from 2.06e-06, as paragraph 0165 (PDF page 41) prints it,
+to -2.06e-06. No other coefficient changed. Two independent kinds of evidence from the source reject the printed
+value and accept the replacement:
+
+- `source-summary`: Table 14 states an image height of 21.63 mm at 12.34° / 4.58°. On the patent's master with its
+  plate the chief ray lands at 21.326 / 21.332 mm as printed and at 21.631 / 21.649 mm corrected. The angles that
+  reach 21.63 mm are 12.525° / 4.647° as printed and 12.340° / 4.576° corrected.
+- `aberration-figure`: 図15, as tabulated above. Meridional focus at the corner −2.23 / −2.24 mm as printed and
+  −0.09 / −0.03 mm corrected, against −0.10 / −0.01 mm plotted; all 29 field-curve readings within 0.014 mm
+  corrected; a free fit of A4 returns −2.060e−6.
+
+That only this one-value change repairs the prescription among the 8,659 variants tried supports the correction and
+is not counted as a kind. A converter file has no `sourceErrata` field, so the correction is recorded in the inline
+comment on the value, the header's SOURCE ERRATUM note, the analysis (Aspherical Surface) and this entry.
+
+Converter geometry, before → after:
+
+| Quantity | Printed sign | Corrected |
+|---|---:|---:|
+| Sag of 3A at the 14.2 mm rim (mm) | −3.777133 | −3.944647 |
+| Polynomial part at 14.2 mm (mm) | +0.125800 | −0.041714 |
+| Departure from the vertex sphere at 14.2 mm (mm) | +0.743297 | +0.575784 |
+| Surface slope at 14.2 mm | 25.55° | 27.71° |
+| L2 edge thickness at 14.2 mm (mm) | 6.505 | 6.673 |
+| Air between surface 2 and 3A at 13.6 mm (mm) | 3.194 | 3.053 |
+| Largest gap-sag intrusion fraction (surface 2 to 3A) | 0.262378 | 0.294929 |
+| Front corner of L2 ahead of the drawn annulus plane (mm) | 0.8 | 1.0 |
+
+Slope and curvature of the corrected surface each keep one sign from the axis to 20 mm, so there is no turnover or
+inflection inside the stored 14.2 mm. The converter validation reports no error. No `sd` changed.
+
+Probe on the declared hosts, before → after: every line is identical. Converter focal length −111.3659 mm, paraxial
+image 12.9293 mm behind the last vertex, magnification 1.39967; focal lengths 100.811 / 169.007 / 271.310 mm at
+f/4.028 / 4.029 / 4.029 (GM II), 100.958 / 165.081 / 271.516 mm at f/4.035 / 4.032 / 4.033 (GM), 543.652 mm at
+f/4.076 (400 mm), 559.275 / 776.299 / 1080.988 mm at f/8.949 / 10.225 / 11.479 (400-800 mm); junction gaps 2.790,
+4.608, 2.230 and 24.790 mm; no axial clip at any station; corner coverage 100.0 % bare and mounted. The engine's
+half-field is unchanged (12.888°, 13.109°, 2.411° and 2.342°), as are the movement results above.
+
+Exact meridional trace to the 21.63 mm corner, before → after:
+
+| Host | Field angle reaching 21.63 mm | Corner chief ray, surfaces 1 / 6 / 11 (mm) | Converter rims' cut of one side of the corner bundle, after |
+|---|---|---|---|
+| FE 70-200mm F2.8 GM OSS II | 12.61 / 7.51 / 4.69° → 12.36 / 7.36 / 4.58° | 10.56 / 12.86 / 17.32 → 10.32 / 12.69 / 17.17 | 26, 29, 0, 19, 25, 29, 19, 0, 17, 11, 19 % |
+| FE 70-200mm F2.8 GM OSS | 12.76 / 7.72 / 4.65° → 12.54 / 7.59 / 4.57° | 9.21 / 12.12 / 16.68 → 9.05 / 12.01 / 16.58 | 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 % |
+| FE 400mm F2.8 GM OSS | 2.37° → 2.31° | 10.72 / 12.95 / 17.40 → 10.47 / 12.77 / 17.24 | 32, 35, 2, 25, 31, 35, 26, 0, 25, 19, 26 % |
+| FE 400-800mm F6.3-8 G OSS | 2.26 / 1.62 / 1.16° → 2.21 / 1.59 / 1.13° | 10.55 / 12.86 / 17.32 → 10.31 / 12.69 / 17.17 | none |
+
+Axial marginal heights are unchanged to 0.01 mm. No converter surface clips an axial ray or blocks a corner chief ray;
+the smallest chief-ray margin is now 1.63 mm at surface 6 on the 400 mm.
+
+The site's own field-curvature analysis at the 21.65 mm corner, wide open at infinity (tangential / sagittal focus
+shift from the image plane, mm), before → after:
+
+| Host | Station | Printed sign | Corrected | On the axis (either sign) |
+|---|---|---|---|---:|
+| FE 400mm F2.8 GM OSS | 543.65 mm | −3.152 / −1.185 | −0.037 / −0.008 | +0.039 |
+| FE 70-200mm F2.8 GM OSS | 100.94 mm | −2.616 / −1.039 | −0.235 / −0.144 | −0.030 |
+| | 165.06 mm | −2.566 / −1.077 | −0.159 / −0.179 | −0.148 |
+| | 271.45 mm | −2.606 / −1.113 | −0.197 / −0.210 | −0.106 |
+| FE 70-200mm F2.8 GM OSS II | 100.9 mm | −2.924 / −1.188 | −0.134 / −0.142 | −0.187 |
+| | 169.02 mm | −2.850 / −1.136 | −0.027 / −0.080 | −0.153 |
+| | 271.33 mm | −3.254 / −1.322 | −0.251 / −0.189 | −0.148 |
+| FE 400-800mm F6.3-8 G OSS | 559.75 mm | −3.212 / −1.235 | −0.210 / −0.101 | −0.097 |
+| | 776.47 mm | −3.216 / −1.262 | −0.217 / −0.130 | −0.133 |
+| | 1082.74 mm | −3.695 / −1.723 | −0.774 / −0.619 | −0.549 |
+
+The bare 400 mm reads +0.021 / +0.035 mm at the same corner, and the 2× converter from the same patent (Example 3,
+whose printed data land on the stated image height) reads +0.13 / +0.13 mm on it.
+
+Page after the correction, on the 400 mm, the GM and the GM II: the same 81, 86 and 86 drawing primitives as before.
+Eight differ on each page: the outline of T2 and the aspherical-face highlight on its front, by at most 0.25 to
+0.43 screen pixels (0.17 mm at the rim), and the six axial rays by at most 0.02 pixels. Every label, the header line
+and the element counts are identical. The inspector for T2 now shows A4=−2.06e−6.
+
+Not repeated: the package review's sampled ray-admission and in-glass containment counts (56,908 paired samples,
+315,270 segment samples) were run with the printed sign. The analysis says so.
+
+### Maker diagram
+
+No maker image was supplied or viewed. The Deployment validation section above records: "Sony's construction drawing
+shows the same 6 elements in 5 groups with the aspherical second element; Example 6 is the patent's only 6-element,
+5-group 1.4x example." 図7 and the file agree with that count, grouping and aspherical element, and the record names
+no special-glass element.
+
+### Outside this file
+
+- FE 70-200mm F2.8 GM OSS II: the stated-beam check gives f/2.88 → f/2.97 at 193.95 mm. Surfaces 2 and 3 store
+  32.09 mm against a 33.06 mm axial marginal ray, bare and with the converter mounted.
+- FE 70-200mm F2.8 GM OSS II: `varLabels` calls the gap after surface 28 "BF". That gap is the variable space ahead
+  of the fixed last group (7.95 mm wide, 3.70 mm tele); the back focus is the fixed 28.79 mm after surface 32. The
+  readout shows it on the bare and the mounted page.
+- FE 400-800mm F6.3-8 G OSS: surface 11 stores 20.95 mm against an axial marginal ray that reaches 20.98 mm at one
+  zoom station, inside the stated-beam check's allowance.
+- Composed pages print two focal ranges: the header gives the traced 100.96–271.52 mm and the zoom slider the host's
+  marked stations times the traced ratio, 100.94–271.45 mm (FE 70-200mm F2.8 GM OSS).
+
+### Limits
+
+- Plot readings are good to about two pixels at 300 ppi: 0.05 % in distortion and 0.005 mm on the field curves.
+- The comparison with 図15 uses the patent's own master lens and the d line only.
+- The sign of A4 rests on this publication's plots; a family member's text was not available to confirm it.

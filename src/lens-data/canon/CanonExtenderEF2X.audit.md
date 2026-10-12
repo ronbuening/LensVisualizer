@@ -392,3 +392,166 @@ figure governs the rims.
 - Closest-focus corner rays were not traced. On axis the closest-focus margin is larger than at infinity on every host
   that models focus motion except the EF 100-400mm f/4.5-5.6L IS, where it is 0.09–0.16 mm smaller at each zoom
   station (least 6.07 mm).
+
+## 2026-10-12 — Second review: diagram, labels and movement
+
+Scope: an independent second look at the converter as the local site draws it, mounted, against 第3図 and the
+Example 2 text. Nothing in the data file changed: every rim, label, tag and note was re-derived and found correct.
+The analysis file is unchanged. This section is the only edit.
+
+### What was compared
+
+- Patent: `patents/JPS63106715A.pdf`. 第3図 on PDF page 6 (printed 92); the Example 2 table on PDF page 5, left
+  column, with r33 / r34 at the top of the right column; claims 1 and 3 on PDF pages 1–2; the symbol definitions on
+  PDF page 4. The figure was measured this time on the scan's own 1-bit raster of page 6 (2866 × 3895 px, 347 ppi,
+  extracted without resampling), not on a page render, with separately written measuring code; its rows sit about
+  82 px above the first pass's page-render rows.
+- Site: the composed pages on the EF 300mm f/2.8L IS USM (nearest the patent's 293 mm f/2.8 master), the EF 135mm
+  f/2L USM and EF 200mm f/2L IS USM (fastest declared hosts) and the EF 70-200mm f/2.8L IS II USM at 72, 135 and
+  194 mm, at infinity and closest focus, with the element inspector opened on all seven converter elements and both
+  movement overlays; the converter's own page; and the label text of the composed diagram on all fourteen declared
+  hosts (zooms at both ends).
+
+### Silhouette, re-measured
+
+- Scale: eleven vertex crossings read in bands 6–28 px above and below the axis and corrected for sag give
+  14.585 px/mm (0.06856 mm/px) by least squares, 0.77 px rms, largest residual 1.43 px (r22). Spans: r11→r34
+  14.582, r14→r34 14.608, r13→r24 14.608, r21→r31 14.636 px/mm. The dash-dot axis fits a line tilted 0.19°. The first
+  pass's 14.607 px/mm on a 2868 px render is 14.597 px/mm on this raster; the two scales differ by 0.08 %.
+
+| Unit | Surfaces | Stored (mm) | Rim-line centres, top / bottom (px) | Half-height (px) | Figure, outline centre (mm) | Figure, outer ink (mm) | First pass (mm) | Figure / stored |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| L11 | 1, 2 | 13.3 | 2275.44 / 2664.20 | 194.38 | 13.33 | 13.50 | 13.31 | 1.002 |
+| L12 | 3, 4 | 12.3 | 2291.07 / 2649.42 | 179.17 | 12.29 | 12.44 | 12.27 | 0.999 |
+| L21–L23 | 5, 6, 7, 8 | 10.4 | 2318.05 / 2618.80 | 150.38 | 10.31 | 10.46 | 10.29 | 0.991 |
+| L31 | 9, 10 | 13.2 | 2274.94 / 2658.94 | 192.00 | 13.16 | 13.32 | 13.14 | 0.997 |
+| L32 | 11, 12 | 13.1 | 2276.59 / 2657.95 | 190.68 | 13.07 | 13.23 | 13.06 | 0.998 |
+
+- The two readings agree to 0.02 mm on every unit. Heights relative to L11: figure 0.922, 0.774, 0.988, 0.981; stored
+  0.925, 0.782, 0.992, 0.985. The drawn order L11 > L31 > L32 > L12 > triplet is the stored order.
+- Outline check: the prescription outline at the stored rims, placed with this scale and axis, lies a mean 0.70 px
+  and 2.23 px rms (0.15 mm) from the ink at 96 points; the largest offsets are again on the upper halves of r12, r13
+  (up to 6 px toward the image) and r23 (up to 9 px), with the lower halves within 4.3 px.
+- Site against figure, looked at on 5× and 6× crops of the composed diagram: each unit is square-cut in both; L12
+  stands one step below L11 with its front corner inside L11's rear hollow (rim offset 1.0 mm rendered, 1.2 mm
+  drawn); the triplet is a plain rectangle, the smallest unit, with both cemented faces running to the rim; L31 and
+  L32 all but touch on the axis and open to the rim. No bevel, wrap or overlap appears on the site that the figure
+  does not draw, and the renderer trims none of the twelve rims on any of the fourteen hosts.
+- Decision: no rim changed. Every unit is within 1 % of the drawing, far inside the reading noise of a 0.3 mm
+  outline, and none exceeds its outer ink edge. The triplet's 10.4 mm is 0.09 mm above the outline centre and
+  0.06 mm inside the outer edge; lowering it to 10.3 mm would be repainting inside the noise.
+
+### Clearance, traced again independently
+
+A separate meridional tracer was written for this review (spherical surfaces, vector refraction, and the radial
+phase term for the diffractive host); the engine supplied only the composed spacings, the stop index and the iris
+radius. Margins are stored rim minus ray height, at infinity, for the iris-edge axial ray and for the chief ray
+landing 21.633 mm off axis.
+
+| Host | Least axial margin (mm), surface | Least corner chief-ray margin (mm), surface |
+|---|---|---|
+| EF 135mm f/2L USM | 0.996, surface 5 | 0.271, surface 12 |
+| EF 200mm f/2L IS USM | 1.154, surface 5 | 0.921, surface 12 |
+| EF 300mm f/2.8L IS USM | 3.698, surface 5 | 0.737, surface 12 |
+| EF 70-200mm f/2.8L IS II USM, three stations | 3.714 / 3.688 / 3.704, surface 5 | 0.939, surface 12 |
+| EF 600mm f/4L IS II USM | 5.690, surface 5 | 0.027, surface 10 |
+| EF 400mm f/4 DO IS USM | 5.684, surface 5 | 0.434, surface 12 |
+| The other eight declared hosts | 3.686 to 7.080, surface 5 | 0.135 (EF 100-400mm IS at 389 mm) to 1.195, surface 12 |
+
+- These reproduce the first pass's figures to 0.002 mm. On the EF 600mm f/4L IS II the corner chief ray reaches
+  12.86 / 13.17 / 12.98 / 13.06 mm on surfaces 9–12, so the rear pair's 13.2 and 13.1 mm are a ray floor as the
+  header says.
+- A bare-host f/2.0 beam reaches 12.48 / 11.60 / 9.67 mm on surfaces 1 / 3 / 5 on both f/2 hosts, margins 0.82 /
+  0.70 / 0.73 mm. The f/1.86 beam of the EF 200mm f/1.8L, traced on a scratch copy that admits it, reaches 13.46 and
+  12.46 mm on surfaces 1 and 3, 0.16 mm over each, and clears surface 5 by 0.03 mm. `minHostFno` 2 is consistent
+  with both.
+- Closest focus, from the finite axial object point on the hosts whose files move a focus group: the iris-edge ray's
+  least margin is 2.30 mm on the EF 135mm f/2L, 1.11 mm on the EF 200mm f/2L IS (0.05 mm less than its infinity
+  value; that host's own front rims hold the real beam narrower) and 3.7 mm or more elsewhere, always on surface 5.
+- The engine probe agrees: the converter validates with no errors, and all fourteen declared hosts compose with the
+  stop radius unchanged and no on-axis clip at any zoom station; corner coverage is 100 % bare and mounted on the
+  thirteen refractive hosts.
+- Junction: the least axial clearance between a host's last surface and surface 1, taken out to the shared rim, is
+  4.00 mm (EF 70-200mm f/4L USM), then 4.97 mm (EF 70-200mm f/2.8L IS II) and 4.99 mm (EF 135mm f/2L).
+
+### The 0 % corner figure on the EF 400mm f/4 DO IS USM
+
+It is a limit of the probe, set off by the host's diffractive surface, and not a traced result. The probe takes its
+corner number from the MTF field-geometry helper and prints 0 whenever that analysis is unavailable, and the MTF
+support check rejects any prescription holding a diffractive surface ("unsupported-path"), bare and mounted alike.
+The independent trace with the diffractive term gives the corner chief ray 12.35 / 12.71 / 12.56 / 12.67 mm on
+surfaces 9–12, clear of every converter rim by 0.43 mm or more.
+
+### Labels and tags, checked and found correct
+
+- Element names. Claim 1 names the lenses 第11レンズ, 第12レンズ, 第21レンズ, 第22レンズ, 第23レンズ, 第31レンズ and
+  第32レンズ; the figure labels only surfaces (r11–r34) and spacings. `name` L11–L32 is that notation.
+- Shapes. Claim 1 and the signs of R agree with every `type`: L11 negative, convex to the object (101.227 / 28.186);
+  L12 biconvex (36.841 / −41.841); L21 a positive meniscus convex to the image (−52.458 / −19.373); L22 biconcave
+  (−19.373 / 19.506); L23 biconvex (19.506 / −385.882); L31 positive with its strong convex face to the image
+  (246.435 / −25.785); L32 biconcave (−88.802 / 91.126). The figure draws r31 convex to the object, as the positive
+  sign requires.
+- Focal lengths recomputed from the table agree with every `fl` to six decimals; the groups come to +72.80, −30.64
+  and +206.25 mm and the converter to −84.8127 mm (printed −84.813), which is what the `role` texts state.
+- Groups. The text calls them the first, second and third lens groups, positive, negative, positive; 第2図, 第4図
+  and 第5図 print I, II, III above the three brackets. 第3図 draws the same three brackets (x 474–684, 710–934 and
+  1035–1275 px) without the numerals. `groups` I (+) 1–4, II (−) 5–8, III (+) 9–12 follows that.
+- Cemented group. Claim 3 cements the 21st, 22nd and 23rd lenses, and Example 2 lists no air space inside group II.
+  `doublets` T1 over surfaces 5–8 and the three `cemented` tags are right.
+- Nothing else is marked: Example 2 prints no aspheric coefficients and the converter has no stop. No element carries
+  an `apd` tag, correctly. The patent gives only N and ν for each lens ("the refractive index and Abbe number of the
+  material of the i-th lens", PDF page 4); it names no glass, no further line index and no partial dispersion.
+- Inspector. On the composed EF 300mm page (element ids 17–23) each converter element shows its `label` and `name`
+  ("Element 1 L11" to "Element 7 L32"), type, nd, νd, focal length, the glass string as stored (for example
+  "691548 - lanthanum crown (coordinate equivalent; supplier unconfirmed)") and its role; L21–L23 add the badge
+  "TRIPLET TC T1". The seven glass strings resolve to K-LaK9, S-FTM16, J-F5, P-LASF47, S-TIL25, NSL7 and J-LASF016,
+  each within 0.05 of the printed Abbe number.
+- Composed header. "CANON EF 300mm f/2.8 L IS USM + CANON EXTENDER EF2X", "15 + 7 elements (lens + 2× converter)",
+  f = 587.90 mm, f/5.81; on the 135 mm "10 + 7", 267.28 mm, f/4.12; on the 200 mm "17 + 7", 390.61 mm, f/4.11; on
+  the 70-200 mm "23 + 7", 144.28–388.04 mm, f/5.80. The patent line adds "TC JP S63-106715 A — Hideki Ogawa". The
+  converter page lists "7 ELEMENTS / 5 GROUPS", "2× REAR CONVERTER", "ALL SPHERICAL" and the fourteen hosts.
+- Group texts on a mounted diagram. The composed diagram draws one bracket for the whole converter, "TC 2×", and
+  does not draw the converter's own `groups`, so I (+), II (−) and III (+) cannot meet a host's group labels. On all
+  fourteen declared hosts, zooms at both ends, no converter label (T1–T7, the "T1" triplet bracket, "TC 2×") touches
+  a host label.
+
+### Movement
+
+- The converter has no moving surface. On every declared host its twelve surfaces stay fixed against the image plane
+  through zoom and focus (largest shift 1e-13 mm), and the image plane sits 52.141 mm further from the host than
+  without it at every station.
+- Host travel is unchanged by mounting (largest difference 1e-13 mm). EF 70-200mm f/2.8L IS II, wide to tele: L1F and
+  L4 fixed, L1R, L2 and L3 toward the image by 22.70, 38.46 and 10.73 mm; the overlay shows the same three arrows and
+  the same 38.46 mm maximum bare and mounted, with "TC 2×" added as a fixed dot. EF 300mm f/2.8L IS: L2 moves
+  14.74 mm toward the image for close focus, bare and mounted; EF 135mm f/2L: G2 by 15.53 mm. The far end of the
+  focus slider reads 2.55 m and 95 cm mounted, the hosts' 2.5 m and 0.9 m plus the extension.
+- Focal length scales by 2.0000 / 2.0005 / 2.0005 at the three stations of the 70-200 mm (72.14 → 144.28, 134.98 →
+  270.03, 193.97 → 388.04 mm), by 2.0022 on the 135 mm, 2.0032 on the 200 mm and 2.0024 on the 300 mm; over all
+  fourteen hosts the range is 2.0000–2.0051.
+
+### Maker diagram
+
+None was supplied or viewed. The "Deployment validation and catalog hosts" section records that "Figure 3 and Canon's
+Camera Museum construction drawing both show 7 elements in 5 groups with the cemented triplet second", and the
+manufacturer-correlation section that the construction image "shows two front singlets, a central triplet and two
+rear singlets". Neither names a special-glass or aspherical element. 第3図 governs the rims.
+
+### Seen but outside this file's edit list
+
+- "T1" appears twice on every composed diagram: above the cemented triplet (the `doublets` text) and under the first
+  converter element (the viewer's own T1–T7 numbering). The text is kept in the form the other converter files use.
+- The inspector heading of a converter element reads "Element 1 L11", the same form as a host element, and does not
+  show the diagram's T number. Several declared hosts use L11, L12, L21–L23 or L31 for their own elements or
+  cemented groups.
+- The composed header gives element counts only; the group counts appear on the converter page.
+- Master index N4 (PDF page 4), left open above: on the scan's own raster the disputed digit has a left stroke on 13
+  consecutive rows of its 27, like the two 9s nearby (16 and 17 rows) and unlike the final 3 of the same number
+  (8 rows, then an open left side). This read is 1.58913, the reading of the "Deployment validation" section. The
+  converter values that depend on it move by 0.0003 mm and 0.0012 mm and were not touched.
+- On the EF 135mm host at closest focus the host's own "G2 (−) FOCUS" and "G3 (+)" labels come within about 6 px of
+  each other when the converter is mounted (the diagram is drawn smaller); no converter label is involved.
+
+### Limits
+
+- 第3図 is a hand-drawn schematic with a 0.3 mm outline; the rims remain figure estimates, not production apertures.
+- Closest-focus corner rays were not traced in this review either.

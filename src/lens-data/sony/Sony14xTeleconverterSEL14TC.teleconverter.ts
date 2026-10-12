@@ -11,9 +11,19 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  * the paraxial curvature 1/R. The surface is traced with the standard c*y^2 numerator, which keeps the
  * tabulated signed vertex radius. Read literally, the equation gives the patent's master lens focal lengths
  * of 79.30 / 188.02 mm against the stated 72.08 / 194.05 mm; the standard form gives 72.08 / 194.08 mm.
- * All radii, distances, nd/vd, K and A coefficients are as printed. The patent has no published correction.
- * At the Table 14 field angles, Example 6 as printed lands the corner chief ray at 21.34 mm against the
- * stated image height of 21.63 mm; K and A4 are kept as printed.
+ * All radii, distances, nd/vd, K and A6 to A10 are as printed.
+ *
+ * SOURCE ERRATUM: A4 of surface 3A (patent surface 45) is stored as -2.06e-6; paragraph 0165 prints
+ * +2.0600E-06. Two kinds of evidence from the patent itself reject the printed sign and accept the reversed
+ * one, both traced through the patent's master lens with its 2.5 mm cover plate.
+ * Stated image height (Table 14: 21.63 mm at half angles of 12.34 and 4.58 degrees): the chief ray lands at
+ * 21.326 / 21.332 mm as printed and at 21.631 / 21.649 mm corrected; the angles that reach 21.63 mm are
+ * 12.53 / 4.65 degrees as printed and 12.34 / 4.58 degrees corrected.
+ * Aberration plots (Figure 15): as printed the meridional focus lies 2.2 mm from the paraxial plane at the
+ * corner, where the plotted curves stay within 0.11 mm; corrected, all 29 field-curve readings agree within
+ * 0.014 mm. K = -1.15, which also restores the image height, leaves 0.24 to 0.28 mm and is ruled out. The
+ * master lens and Example 7 reproduce their own plots (Figures 9 and 16) by the same trace.
+ * The patent has no published correction. The audit log has the readings and the variants tried.
  *
  * GEOMETRY: master back focus in air = 24.9600 + 2.5/1.5168 + 1.0 = 27.6082067511 mm.
  * Less the printed master-to-converter gap of 1.6082 mm, the virtual object lies 26.0000067511 mm behind
@@ -29,14 +39,15 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  * every stored rim is within 5% of its drawn height. L3 stops at 14.4 mm, short of its 14.75 mm knife edge,
  * and L4's rear face runs on to 16 mm. Figure 7 draws L2 and L5 square-cut and ends their concave fronts at
  * flat annuli (curves end near 12.4 and 15.0 mm). The renderer has no flat annulus, so both faces of each
- * keep the drawn rim height and their front edges stand 0.8 and 1.4 mm ahead of the drawn annulus planes.
+ * keep the drawn rim height and their front edges stand 1.0 and 1.4 mm ahead of the drawn annulus planes.
  * The rims were checked by ray tracing and edge geometry on the patent's own master lens and on the four
  * declared catalog hosts: an f/2.8 axial cone needs at most 4.7 mm (surface 1) and the corner chief ray
- * reaches at most 17.4 mm at surface 11. No gap-sag or rim-slope override is used.
+ * reaches at most 17.2 mm at surface 11. No gap-sag or rim-slope override is used.
  *
  * GLASS: nd/vd are patent values. Labels name coordinate-equal catalog glasses, which supply the
  * dispersion curve; they are not identified production melts. L1 and L3 have spectrally different alternatives.
- * Source spectral/aberration-plot reproduction is not established. Fixed source planes are retained.
+ * The patent's C- and g-line curves have not been reproduced with these glasses; the d-line field curves
+ * of Figure 15 are, within 0.014 mm. Fixed source planes are retained.
  */
 
 const TELECONVERTER_DATA = {
@@ -76,19 +87,19 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": 61.465137272,
       "glass": "FD225 (catalog-equivalent; actual supplier unconfirmed)",
-      "role": "Front positive meniscus, convex to the image; forms the positive first group G1 on its own"
+      "role": "Front positive meniscus, convex to the image; forms the converter's positive first group G1 on its own"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Biconcave Negative (Asph)",
+      "type": "Biconcave Negative (1× Asph)",
       "nd": 1.85135,
       "vd": 40.1,
       "indexReference": "d",
       "fl": -22.102970991,
       "glass": "M-TAFD305 (catalog-equivalent; actual supplier unconfirmed)",
-      "role": "Biconcave front element of the negative second group G2; aspherical on its object side"
+      "role": "Biconcave front element of the converter's negative second group G2; aspherical on its object side"
     },
     {
       "id": 3,
@@ -100,7 +111,7 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": 24.644286226,
       "glass": "E-F5 (catalog-equivalent; actual supplier unconfirmed)",
-      "role": "Biconvex positive of the cemented doublet in G2, cemented to L4",
+      "role": "Biconvex positive of the cemented doublet in the converter's G2, cemented to L4",
       "cemented": "D1"
     },
     {
@@ -113,7 +124,7 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": -48.28488361,
       "glass": "TAFD33 (catalog-equivalent; actual supplier unconfirmed)",
-      "role": "Negative meniscus of the cemented doublet in G2, convex to the image and cemented to L3",
+      "role": "Negative meniscus of the cemented doublet in the converter's G2, convex to the image and cemented to L3",
       "cemented": "D1"
     },
     {
@@ -126,7 +137,7 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": -33.554324682,
       "glass": "TAFD55 (catalog-equivalent; actual supplier unconfirmed)",
-      "role": "Air-spaced biconcave negative at the rear of G2; the converter's highest-index glass"
+      "role": "Air-spaced biconcave negative at the rear of the converter's G2; its highest-index glass"
     },
     {
       "id": 6,
@@ -138,7 +149,7 @@ const TELECONVERTER_DATA = {
       "indexReference": "d",
       "fl": 46.35163947,
       "glass": "S-BAL3 (catalog-equivalent; actual supplier unconfirmed)",
-      "role": "Biconvex positive forming the third group G3 on its own; more strongly curved toward the image"
+      "role": "Biconvex positive forming the converter's positive third group G3 on its own; more strongly curved toward the image"
     }
   ],
   "surfaces": [
@@ -234,7 +245,7 @@ const TELECONVERTER_DATA = {
   "asph": {
     "3A": {
       "K": -1.65,
-      "A4": 2.06e-06,
+      "A4": -2.06e-06, // patent prints +2.0600E-06; sign corrected from the stated image height and Figure 15 (header)
       "A6": -2.012e-09,
       "A8": 5.132e-11,
       "A10": -7.89e-14,

@@ -812,3 +812,140 @@ Clearance on the four declared hosts, before → after the two rims rose:
   the other stations, against under 0.05 mm on the GM OSS II and the 400mm. Its own rims pass only 0.94, 0.97 and
   0.81 of the axial pupil at the three stations, with or without the converter. It is reported for a separate check
   of that host and does not come from the converter.
+
+## 2026-10-12 — Second review: diagram, labels and movement
+
+Outcome: no semi-diameter changed. The eight `role` strings now say "converter group" where they name G1, G2 or G3,
+the `type` of L1 states its one aspherical surface in the catalog's usual form, and the analysis no longer quotes the
+sampled counts that predate the L4 / L6 rim change. Figure 4 was measured again from the raster, independently of
+the pass above, and the local viewer was shot with the converter on each of the four declared hosts.
+
+- Sources: `patents/WO2017134928A1.pdf`, read from page renders because the file has no text layer: PDF page 74,
+  Figure 4 (300 dpi one-bit raster); page 35, paragraphs [0138] to [0140]; page 36, Tables 7 and 8.
+- Scale, second reading: the axis is drawn on pixel rows 1100 to 1102. Vertex crossings are at columns 642, 661,
+  696, 705, 763, 775 (surfaces 6 and 7 share one 5 px stroke), 835, 847, 906, 919, 925 and 1024.5. First to last
+  vertex is 382.5 px for 40.888 mm, 0.1069 mm per pixel; surfaces 1 to 8 and 8 to 13 give the same figure. With the
+  first vertex as origin every crossing is within 1.8 px of Table 7 except surface 3, drawn 2.9 px (0.31 mm) late.
+- Rim heights are half the distance between the upper and lower rim lines, so the axis row does not enter.
+
+| Element | sd, front / rear (mm) | Figure (px) | Figure (mm) | Figure / sd |
+|---|---:|---:|---:|---:|
+| L1 | 8.7 / 8.7 | 81.0 | 8.66 | 0.995 |
+| L2 | 9.4 / 9.4 | 87.5 | 9.35 | 0.995 |
+| L3, tip | 9.4 / 9.4 | 87 | 9.30 | 0.989 |
+| L4 | 9.4 / 10.1 | 94.0 | 10.05 | 0.995 (rear) |
+| L5, knife edge | 11.2 / 11.2 | 104.75 | 11.20 | 1.000 |
+| L6 | 11.2 / 11.9 | 111.5 | 11.92 | 1.002 (rear) |
+| L7 | 16 / 16 | 147.5 | 15.77 | 0.985 |
+| L8 | 18.5 / 18.5 | 172.0 | 18.39 | 0.994 |
+
+- Every stored value is within 1.5% of the second reading, so none is repainted. The two steps are confirmed: L4
+  stands 6.5 px (0.69 mm) above the top of L2 and 7 px above the L3 tip, and L6 stands 6.75 px (0.72 mm) above the
+  L5 knife edge, each behind a short vertical land drawn at the junction.
+- Where the live render and the figure differ. The tops of L4 and L6 are ramps on the site, rising 0.7 mm over 4.17
+  and 5.32 mm (9.5° and 7.5°), where the figure draws the land and a flat top. The front corner of L7 stands 0.75 mm
+  ahead of the drawn one: the model carries the R = -39.8752 curve to the rim, and the figure ends it at a land
+  2.60 mm ahead of the vertex, which that sphere reaches at 14.2 mm. L3 has a 0.53 mm edge where the figure draws a
+  knife edge, the figure rounds the corners of L1, and it gives L8 a 2.2 mm top land against 1.49 mm. The last three
+  follow from the prescription's own radii at the drawn heights and are left.
+- L4 and L6, judged again: kept at 9.4 / 10.1 and 11.2 / 11.9. Two alternatives were built on scratch copies; both
+  pass converter validation and render without trimming.
+  - Flat at the junction heights (surfaces 6 and 9 back to 9.4 and 11.2 mm). It squares both blocks but draws them
+    0.65 and 0.72 mm short, and those two faces then stop part of the corner bundle on every host. Mounted corner
+    pupil pass, current → flat: GM OSS II 64.6 / 63.5 / 47.8 → 56.3 / 54.2 / 38.0%; GM OSS 68.8 / 67.7 / 55.2 →
+    59.4 / 59.4 / 45.8%; 400mm 50.0 → 40.6%; 400-800mm 76.0 / 80.2 / 77.7 → 56.3 / 57.3 / 52.1%.
+  - Junction raised with the rear face (surfaces 5 and 8 to 10.1 and 11.9 mm). It squares both blocks at the drawn
+    height and changes no clearance number on any host. It also declares the cemented faces 0.33 and 0.46 mm beyond
+    the radii where L3 and L5 close (9.77 and 11.44 mm), gives L3 and L5 a 0.7 mm spike, puts the front corner of
+    L4 0.03 mm behind and 0.7 mm above the rear corner of L2, and carries the front corner of L6 0.45 mm ahead of
+    the front rim of L5. The figure ends both junctions at the tips of L3 and L5, 9.30 and 11.20 mm.
+  - The current set is the only one in which every surface carries the height the figure gives that surface. What
+    remains is the renderer's straight rim, which cannot draw a land; no `sd` value removes it.
+- L7, judged again: kept square at 16 / 16. A front value of 14.2 mm would follow the end of the drawn curve, but the
+  straight rim would then cut a 30° chamfer (1.8 mm over 3.06 mm) across a corner the figure draws square, and on no
+  host does it change a clearance number. The rim is 1.5% above the drawn 15.77 mm, inside the reading error.
+- Clearance with the converter as it stands. No rim moved, so these figures are both before and after.
+
+| Host | Stop radius, bare = mounted (mm) | Axial beam; largest clear pupil fraction, bare = mounted | Corner chief coverage, mounted | Mounted corner pupil pass | Converter rims alone |
+|---|---:|---|---|---|---|
+| FE 70-200mm F2.8 GM OSS II | 17.0621 | no clip; 1.000 / 1.000 / 0.970 | 100.0% | 64.6 / 63.5 / 47.8% | 69.8 / 69.5 / 66.7% |
+| FE 70-200mm F2.8 GM OSS | 18.0772 | no clip; 1.000 / 1.000 / 1.000 | 100.0% | 68.8 / 67.7 / 55.2% | 75.5 / 75.2 / 75.3% |
+| FE 400mm F2.8 GM OSS | 17.2762 | no clip; 1.000 | 100.0% | 50.0% | 64.3% |
+| FE 400-800mm F6.3-8 G OSS | 9.9850 | no clip; 1.000 / 1.000 / 0.9975 | 100.0% | 76.0 / 80.2 / 77.7% | 86.4 / 91.5 / 97.2% |
+
+- The pupil columns are computed as in the section above: the engine's vignetting curve at the last field sample,
+  and for the converter rims alone a stop-filling meridional fan to the 21.63 mm corner. The GM OSS row differs from
+  that section because the host's own rims and one asphere sign were corrected after the first pass: its axial
+  pupil fraction was 0.9425 / 0.965 / 0.8125, its mounted corner pass 72.2 / 63.0 / 59.0% and the converter rims
+  alone 75.9 / 75.6 / 75.7%. The other three rows repeat that section. Composed focal lengths and f-numbers are
+  143.89 / 241.31 / 387.40 mm at f/5.75, 144.31 / 235.71 / 387.84 mm at f/5.77 / 5.76 / 5.76, 777.62 mm at f/5.83
+  and 798.95 / 1108.62 / 1537.77 mm at f/12.78 / 14.60 / 16.33. On every host L1 is the only converter rim that
+  stops any part of a meridional corner fan. The full-pupil marginal ray reaches at most 4.57 mm at surface 1;
+  scaled to an F2.8 host that is 4.70 mm, 54% of the 8.7 mm rim.
+- Groups: Figure 4 brackets G1 over L1, G2 over L2 to L7 and G3 over L8 under "TCL", and [0138] to [0140] say the
+  same; the file's `groups` (1 to 2A, 3 to 11, 12 to 13) match. On a composed page these texts are not drawn: the
+  viewer shows one "TC 2×" bracket after the host's own groups, so nothing collides with G1F, G1R, G2 to G6 on the
+  GM OSS or with G1 to G7 on the 400-800mm. The texts are left as the patent's G1, G2 and G3.
+- Cemented brackets: T1 over surfaces 3 to 6 and D1 over 7 to 9 are the triplet and doublet of [0139]. The viewer
+  draws them as "TC T1" and "TC D1", and the inspector badges read "TRIPLET TC T1" and "DOUBLET TC D1". When this
+  review began the triplet bracket read plain "T1", the label the viewer also gives the first converter element;
+  the composer was changed during the review to prefix it, and the file's own texts stay T1 and D1.
+- Elements: names L1 to L8 are the patent's, no `diagramLabel` is set, and the composed labels are T1 to T8. Each
+  `type` agrees with the signs of R in Table 7 and with [0138] and [0139]; L8 is a positive meniscus on the printed
+  R = -450 / -23 against the "biconvex" of [0140], as the header explains.
+- Asphere: Table 7 stars surface 44 only, and the file has `2A` with one `asph` entry. The viewer draws the `A`
+  marker on the rear face of the first converter element; the inspector shows the ASPH badge, the element type, the
+  compare-to-sphere link and "Asph (rear): K=1.30e-1 A4=-7.91e-6 A6=3.14e-10". The `type` of L1 changed from
+  "Biconvex Positive (Asph)" to "Biconvex Positive (1× Asph)": the catalog writes the surface count in that suffix
+  (97 biconvex-positive entries against this one), and the host elements on the same page already do.
+- Tags: no `apd` tag is set. Paragraphs [0138] to [0140] and Table 7 name no anomalous-dispersion or special glass,
+  and the maker record quoted below marks only the aspherical first element.
+- Glass as the inspector shows it, L1 to L8: E-FD8 class, TAF3D class, FF5 class, TAFD5G / H-ZLaF55C class, E-FD5
+  class, TAFD55-W class, S-LAH98 class and E-CF6 class, each followed by "(supplier unconfirmed)". Every label
+  resolves to a catalog glass at the printed nd and νd; TAFD5G is 42.72 against the printed 42.71. No label changed.
+- Header of the composed page: "SONY FE 70-200mm f/2.8 GM OSS + SONY 2x TELECONVERTER SEL20TC", "23 + 8 elements
+  (lens + 2× converter)", f = 144.31–387.84 mm, f/5.76; the other hosts read 17 + 8, 22 + 8 and 27 + 8 elements.
+  The converter's own page shows the name, the three `specs` lines and the four hosts.
+
+| Element | `role` before | `role` after |
+|---|---|---|
+| L1 | Positive front element, G1 on its own; … | Positive front element, the first converter group G1 on its own; … |
+| L2 | … triplet that opens G2. | … triplet that opens converter group G2. |
+| L3, L4 | … triplet in G2. | … triplet in converter group G2. |
+| L5, L6 | … doublet in G2 … | … doublet in converter group G2 … |
+| L7 | Air-spaced negative meniscus closing G2, … | Air-spaced negative meniscus closing converter group G2, … |
+| L8 | Positive rear element, G3 on its own; … | Positive rear element, the third converter group G3 on its own; … |
+
+- Why: the inspector is the one place where the converter's group names reach the screen, and there "G1 on its own"
+  stood beside the 400-800mm's own G1 bracket and "in G2" beside the GM OSS's "G2 / Variator". The rest of each
+  string is unchanged, and the new text was read back in the inspector on the 400-800mm for all eight elements.
+- Analysis, sampled counts. The fixtures of the sampled-ray study are the patent's master at its two zoom ends with
+  that study's own master rims; they are not in the repository, so the counts could not be taken again on the
+  current rims. The analysis therefore no longer states the two counts that depend on the rear faces of L4 and L6
+  (635 added converter clips and 19,309 admitted rays) or the three containment sample sizes tied to that admitted
+  set (154,472, 9,731,736 and 2,317,080); its table keeps the five master-side counts, which no converter rim
+  affects. Those figures stay in the sections above, which describe the 9.4 and 11.2 mm rear faces. By the split
+  recorded there (TC1 490, TC2A 5, TC6 78, TC9 62), the current rims leave between 495 and 635 added clips and
+  between 19,309 and 19,449 admitted rays.
+- Movement. The converter has no moving group. On all four hosts every host surface has the same axial position
+  bare and mounted at each zoom station and at focus 0, 0.5 and 1 (largest difference 0 mm), so the directions and
+  amounts of zoom and focus travel are the host's own; the travel panel shows the same bars on the GM OSS II (zoom)
+  and the 400mm (focus, 19.70 mm) with one fixed "TC 2×" row added. The junction gap (2.79, 4.6083, 2.23 and
+  24.79 mm) and the 27.8362 mm extension of the image plane are the same in every state, and the converter vertices
+  keep their distance from the image plane. The composed focal length is 1.9963 / 1.9974 / 1.9975 times the host's
+  on the GM OSS II, 2.0012 / 1.9975 / 1.9989 on the GM OSS, 2.0034 on the 400mm and 1.9991 / 1.9980 / 1.9850 on the
+  400-800mm. The low last figure belongs to that host: its paraxial image lies 0.246 mm short of its image plane at
+  the long end, against 0.015 and 0.033 mm at the other two stations.
+- Maker diagram: none was supplied or viewed. The deployment record above reads "Sony's construction drawing shows
+  the same 8 elements in 5 groups: aspherical first element, cemented triplet, cemented doublet, negative meniscus,
+  rear positive", which is the layout of Figure 4.
+- Outside this file's edit list. The inspector's asphere line prints K, A4 and A6 only, so A8 = 1.60328e-11 is not
+  shown. For L4 the catalog also holds OHARA S-LAH55 at 1.834807 / 42.7137, which reproduces the printed νd, and
+  for L7 HOYA TAFD45 has the same 1.95375 / 32.32 as S-LAH98.
+- Open limitations: as in the section above. The land in front of L4, L6 and L7 cannot be drawn with a straight rim.
+
+- Glass, after the second review (coordinator): L4's label is now "S-LAH55 / H-ZLaF55C class". OHARA S-LAH55 has νd
+  42.7137, which rounds to the printed 42.71; HOYA TAFD5G (42.7215) and TAFD5F (42.7218) round to 42.72. The same
+  designers' zoom patent US 2019/0018229 A1 prints 42.7218 where it uses the HOYA glass, so the converter's 42.71 is
+  a different row. The other seven labels are unchanged; all eight resolve.
+

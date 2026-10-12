@@ -208,7 +208,7 @@ The following evaluations use the modeled clear radii, not published aperture di
 | 12A | 11.7 mm | +652.343774 µm | 0.307039° |
 | 20A | 10.0 mm | +45.435900 µm | 10.026976° |
 | 21A | 10.0 mm | +105.981700 µm | 18.376144° |
-| 27A | 17.4 mm | +1766.921386 µm | 0.258889° |
+| 27A | 17.3 mm | +1725.073096 µm | 0.535714° |
 
 - 3A: the combined higher-order polynomial produces a negative peripheral departure despite the positive A4 term; the entire polynomial determines its rim shape.
 - 4A: the K = −1.10056 base conic supplies much of the shape change. At the modeled radius, comparison with the same-radius sphere is outside that sphere's real aperture domain, so no spherical-departure value is asserted there.
@@ -257,7 +257,7 @@ The infinity entrance pupil is 93.661742 mm in front of the image plane, consist
 
 The inferred exact physical iris radius is 9.6912241752 mm. It is calibrated from nominal f/2.57524 and the computed EFL, not a recovered diaphragm measurement. The patent supplies no clear semi-diameter table. The modeled apertures are therefore constrained estimates informed by Fig. 2A, full on-axis iris rays, field coverage and geometry. Inferred apertures affect modeled vignetting and should not be mistaken for a measured production pupil.
 
-The full-aperture on-axis bundle and the chief rays to the 27.5 mm image height and to the 43.8 × 32.9 mm format corner clear the modeled apertures at both published focus states. In the traced field bundles, off-axis marginal rays are vignetted at outer lens rims, not at the cemented interfaces of D1, D2 or D3.
+The full-aperture on-axis bundle and the chief rays to the 27.5 mm image height and to the 43.8 × 32.9 mm format corner clear the modeled apertures at both published focus states. In the traced field bundles, off-axis marginal rays are vignetted at lens rims. These include the front rims of L4 and L8, which Fig. 2A draws smaller than the lenses they are cemented to; no traced ray is stopped at the joint of D3.
 
 Interpreting the printed semi-fields as incoming chief-ray directions gives image heights 27.514281 mm and 27.435667 mm at the two source configurations, rather than exactly 27.500000 mm. The source glossary does not explicitly define the finite angular reference, so object-point angles referenced to the first vertex are separately distinguished. The prescription and image plane are left as printed; these angular and height residuals are not adjusted away.
 

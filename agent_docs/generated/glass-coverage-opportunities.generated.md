@@ -10,7 +10,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **922** lenses scanned (**909** visible)
-- **9703 / 10436** non-air surfaces use strict catalog Sellmeier data (93.0%)
+- **9704 / 10436** non-air surfaces use strict catalog Sellmeier data (93.0%)
 - **9713 / 10436** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
@@ -116,7 +116,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | US 2014/0133036 A1 | Missing from untracked local patents/ references (US20140133036A1, US20140133036, 20140133036) | 81.8% (9/11) | 81.8% (9/11) | 2 | 11A [glass] (G3 front asphere: `Unmatched (nd=1.803603, νd=40.28)`)<br>16A [glass] (G3 negative asphere: `Unmatched (nd=1.803603, νd=40.28)`) | abbe: 2 |
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (catalog unresolved; patent nd=1.87722, νd=37.0)`)<br>20A [glass] (Element 11: `683330 — dense flint (catalog unresolved; patent nd=1.68250, νd=33.0; prior H-ZF52A label rejected)`) | abbe: 2 |
 | [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | US 2015/0124127 A1 | [PDF](../../patents/US20150124127A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 20A [glass] (Element 10: `684313 — Unmatched exact public catalog identity`)<br>22A [glass] (Element 11: `636239 — Unmatched exact public catalog identity`) | abbe: 2 |
-| [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 60.0% (3/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
+| [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) | US 2,819,651 | [PDF](../../patents/US2819651.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 4 [glass] (Lens III: `KzF4 class (Schott-Jena legacy short flint, 570/481)`) | abbe: 1 |
 | [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown; vendor unresolved)`) | abbe: 1 |
 | [NIKON NIKKOR 800mm f/8 ED](../../src/lens-data/nikon/NikonNikkor800mmf8ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown / ED-class; vendor unresolved)`) | abbe: 1 |

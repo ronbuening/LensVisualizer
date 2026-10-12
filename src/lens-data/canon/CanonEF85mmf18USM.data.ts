@@ -15,9 +15,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * concave face at the marginal ray and continues L4 as a flat annulus) and R13/R14 (15.0/17:
  * the drawn L7/L8 step). The G2 doublet is square-cut at 15.0, as drawn (see the audit log).
  * The table does not name a spectral line for N/nu; Fig. 4 plots the d and g lines, so the
- * values are read as nd/vd. All nine elements carry coordinate-equivalent catalog glass names;
- * L6 (1.51633/64.2) uses S-BSL7 (1.51633/64.14), 0.06 below the one-decimal printed Abbe number
- * and inside the catalog tolerance of 0.15.
+ * values are read as nd/vd. All seven printed pairs equal discontinued OHARA glasses (LAL7, LAH66,
+ * LAL8, PBH1, PBH6, BSL7, LAH53), so the nine elements carry those names as coordinate equivalents.
+ * BSL7 (1.51633/64.15) is traced on the formula of its successor S-BSL7 (64.14), 0.06 below the
+ * one-decimal printed Abbe number and inside the catalog tolerance of 0.15.
+ * Fig. 1 numbers the groups 1, 2, 3 (G1-G3 here) and marks the stop SP (STO here). It gives the elements
+ * no reference signs, so they are L1-L9 front to rear, on the diagram as in the inspector, to keep
+ * element numbers apart from the patent's group numbers.
  * The derived gaps are not listed as published finite conjugates.
  * The correlation with the Canon production lens is not manufacturer-confirmed.
  */
@@ -52,96 +56,114 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "diagramLabel": "L1",
       "label": "Element 1",
       "type": "Biconvex Positive",
       "nd": 1.6516,
       "vd": 58.5,
       "fl": 199.017143745,
-      "glass": "N-LAK7 (coordinate equivalent; supplier unconfirmed)"
+      "glass": "LAL7 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Biconvex front element of the fixed positive G1; first of the three positive lenses that converge the axial beam in stages."
     },
     {
       "id": 2,
       "name": "L2",
+      "diagramLabel": "L2",
       "label": "Element 2",
       "type": "Positive Meniscus",
       "nd": 1.7725,
       "vd": 49.6,
       "fl": 135.794199469,
-      "glass": "S-LAH66 (coordinate equivalent; supplier unconfirmed)"
+      "glass": "LAH66 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Positive meniscus, convex to the object; second converging element of the fixed G1."
     },
     {
       "id": 3,
       "name": "L3",
+      "diagramLabel": "L3",
       "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.713,
       "vd": 53.8,
       "fl": 54.566965611,
-      "glass": "N-LAK8 (coordinate equivalent; supplier unconfirmed)"
+      "glass": "LAL8 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Positive meniscus, convex to the object, and the strongest positive element of G1; its rear face and the front face of L4 enclose the air space the patent treats as a negative air lens."
     },
     {
       "id": 4,
       "name": "L4",
+      "diagramLabel": "L4",
       "label": "Element 4",
       "type": "Negative Meniscus",
       "nd": 1.71736,
       "vd": 29.5,
       "fl": -40.895978163,
-      "glass": "SF1 (coordinate equivalent; supplier unconfirmed)"
+      "glass": "PBH1 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Negative meniscus, concave to the image; last element of the fixed G1, directly ahead of the stop. The patent balances the spherical aberration of L1-L3 at its concave rear face."
     },
     {
       "id": 5,
       "name": "L5",
+      "diagramLabel": "L5",
       "label": "Element 5",
       "type": "Positive Meniscus",
       "nd": 1.80518,
       "vd": 25.4,
       "fl": 134.282552927,
-      "glass": "S-TIH6 (coordinate equivalent; supplier unconfirmed)",
+      "glass": "PBH6 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Positive meniscus, concave to the object; high-dispersion front member of the cemented focusing doublet G2.",
       "cemented": "L5-L6"
     },
     {
       "id": 6,
       "name": "L6",
+      "diagramLabel": "L6",
       "label": "Element 6",
       "type": "Biconcave Negative",
       "nd": 1.51633,
       "vd": 64.2,
       "fl": -41.497051496,
-      "glass": "S-BSL7 (coordinate equivalent; supplier unconfirmed)",
+      "glass": "BSL7 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Biconcave crown that gives the cemented doublet G2 its negative power; G2 moves toward the image to focus closer.",
       "cemented": "L5-L6"
     },
     {
       "id": 7,
       "name": "L7",
+      "diagramLabel": "L7",
       "label": "Element 7",
       "type": "Biconcave Negative",
       "nd": 1.80518,
       "vd": 25.4,
       "fl": -51.731863911,
-      "glass": "S-TIH6 (coordinate equivalent; supplier unconfirmed)",
+      "glass": "PBH6 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Negative, high-dispersion front member of the cemented doublet that opens the fixed G3; its front face is nearly flat.",
       "cemented": "L7-L8"
     },
     {
       "id": 8,
       "name": "L8",
+      "diagramLabel": "L8",
       "label": "Element 8",
       "type": "Biconvex Positive",
       "nd": 1.8061,
       "vd": 41.0,
       "fl": 47.699580069,
-      "glass": "H-ZLaF52A (coordinate equivalent; supplier unconfirmed)",
+      "glass": "LAH53 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Biconvex positive member of the G3 cemented doublet, of lower dispersion than L7; the pair is weakly positive and corrects chromatic aberration within G3.",
       "cemented": "L7-L8"
     },
     {
       "id": 9,
       "name": "L9",
+      "diagramLabel": "L9",
       "label": "Element 9",
       "type": "Biconvex Positive",
       "nd": 1.7725,
       "vd": 49.6,
       "fl": 59.883866221,
-      "glass": "S-LAH66 (coordinate equivalent; supplier unconfirmed)"
+      "glass": "LAH66 (OHARA; coordinate equivalent; supplier unconfirmed)",
+      "role": "Biconvex rear element; carries most of the positive power of G3 and, in the patent's account, offsets the positive distortion of G1 and G2."
     }
   ],
   "surfaces": [
@@ -296,11 +318,11 @@ const LENS_DATA = {
   "varLabels": [
     [
       "STO",
-      "D9 (derived G2)"
+      "D9 (STO–G2)"
     ],
     [
       "12",
-      "D12 (derived G2)"
+      "D12 (G2–G3)"
     ]
   ],
   "groups": [

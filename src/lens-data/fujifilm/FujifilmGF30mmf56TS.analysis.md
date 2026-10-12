@@ -132,7 +132,7 @@ Its negative A4 terms distinguish it from the two earlier aspherical elements. T
 ### L32 + L33 — Rear Cemented Doublet
 
 L32: nd = 1.80420, νd = 46.50, θgF = 0.55727. Glass: Schott N-LASF44. Individual f = −30.81 mm.  
-L33: nd = 1.56732, νd = 42.81, θgF = 0.57567. Glass: S-TIL26 / E-FL6 / H-QF56 class. Individual f = +32.99 mm.  
+L33: nd = 1.56732, νd = 42.81, θgF = 0.57567. Glass: S-TIL26 / H-QF56 class. Individual f = +32.99 mm.  
 Doublet f = +593.10 mm.
 
 The final cemented doublet has almost no net positive power, but its internal element powers are strong. This makes it a rear correction doublet rather than a primary image-forming group. Its main tasks are field flattening, astigmatism balancing, and exit-pupil/telecentricity conditioning before the long back focus.
@@ -158,7 +158,7 @@ L32 is a dense lanthanum flint by Abbe-number behavior, not a crown. The value �
 | L26 | 1.49700 | 81.61 | 0.53804 | +0.03151 | FCD1 / M-FCD1 (HOYA) | ED |
 | L31 | 1.58480 | 58.71 | 0.54116 | −0.00387 | K-CSK120-M equivalent; patent code 585587 | Aspherical substrate |
 | L32 | 1.80420 | 46.50 | 0.55727 | −0.00831 | N-LASF44 (Schott) | Dense lanthanum flint |
-| L33 | 1.56732 | 42.81 | 0.57567 | +0.00389 | S-TIL26 / E-FL6 / H-QF56 class | Flint rear doublet member |
+| L33 | 1.56732 | 42.81 | 0.57567 | +0.00389 | S-TIL26 / H-QF56 class | Flint rear doublet member |
 
 The chromatic correction strategy is distributed rather than confined to a single group. L13 corrects lateral color early in the fixed front group. L24 provides the principal Super ED correction inside the moving focusing group. L26 adds a second ED contribution at the rear of G2. L15 is not an ED element, but its patent-listed positive ΔPgF makes it a meaningful high-θgF dense-flint partner in the first front doublet. The remaining θgF rows sit close enough to the normal line that they are treated as ordinary catalog or code-labeled glasses rather than APD display-badge elements. The dense-flint partners L17, L23, L32, and L33 are still not incidental: their high refractive indices and high dispersion let the design use strong internal chromatic balancing without allowing net group powers to become excessive.
 

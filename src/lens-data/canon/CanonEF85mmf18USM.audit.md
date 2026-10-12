@@ -482,7 +482,7 @@ Fields changed in this pass. No R, d, nd, νd, semi-diameter or variable-gap val
 
 Closed the same day: L6 is labelled S-BSL7 (1.51633 / 64.14). Its νd is 0.06 below the one-decimal printed 64.2, inside the catalog's 0.15 compatibility tolerance; 0.06 was the residual check's flag level, not a catalog rule. All nine elements now trace on catalog dispersion formulas.
 
-Open: the L8 label is the smallest-residual coordinate equivalent; HIKARI J-LASF03 (νd 40.97) also fits and OHARA S-LAH53 (40.93) does not.
+Closed 2026-10-12 (see "Glass labels: OHARA period set" below): L8 is labelled LAH53, the historical OHARA glass OHARA lists under code 806410.
 
 Open: whether the production lens moves its stop with the focus group is not established; the model follows the patent table's fixed stop.
 
@@ -531,3 +531,81 @@ Open limitations.
 - L4 is drawn with a straight bevel between unequal rims where the figure has a cylinder and a flat annulus.
 - L7 is drawn tapering up to L8's height where the figure has a square plate and a step.
 - The patent has no close-focus panel, so the 0.85 m state was checked for clearance only.
+
+## 2026-10-12 — Second review: diagram, labels and movement
+
+What was compared. The local lens page (infinity, mid travel and 0.85 m, the focus-movement overlay at both ends, and the inspector of all nine elements) against `patents/JPH05157964A.pdf`: Fig. 1 on page 5 and its second scan on page 1, the text of ¶0008–0014 and ¶0022, the Example 1 table on pages 3–4 and Fig. 4 on page 7. The figure was measured again from scratch with a separate pixel-run script on 400 dpi renders of both scans, and the outlines the page draws were laid over the page-5 figure at a common scale (first vertex and axis aligned, the scan's 0.53° tilt removed).
+
+Scale, measured independently. Page 5: R1 to R17 is 896 px for 73.52 mm, 12.19 px/mm (spans R1–R8, R8–R13 and R13–R17: 12.29, 12.24 and 12.00). Page 1: 919.5 px, 12.51 px/mm. Heights use the same scale: the R8 arc has a half-chord of 150.3 px where R = 26.41 mm predicts 150.0 px, and 183.5 px where it predicts 183.1 px. The first pass's scale and its statement that Fig. 1 is drawn to scale are confirmed.
+
+Semi-diameters: no value changed. Heights in mm, page 5 / page 1.
+
+| Surfaces | Stored | This review | First pass | Stored ÷ figure |
+|---|---:|---:|---:|---:|
+| R1, R2 (L1) | 26.9 | 26.84 / 26.87 | 26.84 / 26.86 | 1.002 |
+| R3, R4 (L2) | 24.1 | 24.02 / 24.12 | 24.02 / 24.12 | 1.001 |
+| R5, R6 (L3) | 21.2 | 21.23 / 21.20 | 21.25 / 21.20 | 0.999 |
+| R7 (L4 cylinder) | 20.4 | 20.29 / 20.28 | 20.27 / 20.28 | 1.006 |
+| R8 (end of the concave arc) | 16.1 | 16.35 / 16.30 | 16.11 / 15.98 | 0.986 |
+| R10–R12 (G2 doublet) | 15.0 | 14.72 / 14.63 | 14.65 / 14.64 | 1.022 |
+| R13 (L7) | 15.0 | 15.06 / 14.96 | 15.04 / 14.98 | 0.999 |
+| R14, R15 (L8) | 17 | 17.62 / 17.60 | 17.62 / 17.62 | 0.965 |
+| R16, R17 (L9) | 19.0 | 19.02 / 19.04 | 19.02 / 19.04 | 0.998 |
+
+The two readings of R8 differ by 0.3 mm because the arc runs into the 0.45 mm wide annulus line; this review took the crossing of the two line centres. Either reading is within 0.3 mm of the stored 16.1 mm, which stays 0.098 mm above the f/1.8 axial ray. On the overlay L1, L2, L3, the L4 front face, L9 and the ends of every arc lie on the drawn lines. Three places still differ to the eye, and each was tried before being left:
+
+- L4 has a sloping top where the figure has a square block with a step. Carrying R8 to the block height of 20.4 mm gives the concave face a sag of 9.64 mm, more than the 8.82 mm to the stop plane, so the glass would pass through the diaphragm although the surface audit accepts the value; the figure ends the arc at 16.1–16.4 mm and leaves about 3 mm before the stop. The curve-end value stays.
+- L7 tapers from 15.0 mm up to L8's 17 mm where the figure has a square plate and a step. Squaring L7 at 17 mm passes the surface audit but removes the drawn step and raises the engine's meridional wide-open transmission at 4.8° and 7.2° from 96.9 % and 88.5 % to 97.9 % and 91.1 %, so R13 is a real vignetting rim at the drawn height and stays. Lowering the cemented surface to 15.0 mm instead would slope the whole 12 mm of L8.
+- L8 is 0.6 mm (3.5 %) lower than drawn on both scans, so L9 stands 2.0 mm above it where the figure has 1.4 mm. The drawn order L7 < L8 < L9 is kept and the difference is inside the tolerance used for this batch; 17.6 mm would raise the same transmission curve at 12.1° and 14.5° from 64.6 % and 47.9 % to 67.7 % and 50.5 %, and a rim is not widened on that evidence.
+
+With no rim changed, the engine values are the same before and after: focal length 84.9977 mm, stop radius 14.995052 mm, f/1.8, half-field estimate 15.92° (R15 the first limit at 18.0°), and the meridional transmission curve 100.0, 99.5, 96.9, 88.5, 78.6, 64.6 and 47.9 % at 0, 2.4, 4.8, 7.2, 9.7, 12.1 and 14.5°. The surface audit reports no errors, the image-circle audit none undersized, field coverage is 100 % (14.5° reaches 21.65 mm), and the clearance trace shows no clipped axial beam and no blocked chief ray at infinity or at 0.85 m. The patent's 14.3° chief ray lands at 21.377 mm.
+
+Changes to labels and text.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `diagramLabel`, elements 1–9 | absent; the diagram printed 1 … 9 | L1 … L9, the same strings as `name` | Fig. 1 and ¶0008 use the bare numerals 1, 2 and 3 for the three groups and give the elements no reference signs (¶0010 only counts the first to fourth lens of group 1). The diagram's bare 1, 2, 3 under the first three elements read as the patent's group numbers, while the cemented brackets above them, the focus text beside them and the inspector already said L5–L6 and L7–L8. The row now reads L1 L2 L3 L4, L5 L6, L7 L8 L9 with no collision. |
+| `role`, elements 1–9 | absent; the inspector showed type, glass and focal length only | one sentence each | ¶0010–0013: three positive lenses converging the axial beam in stages, L2 and L3 convex to the object, the negative air lens between L3 and L4, the concave rear face of L4 as the spherical-aberration balance, the high-dispersion negative and lower-dispersion positive members of the weakly positive G3 doublet (calculated +527.26 mm), and the rear biconvex lens carrying most of G3's power and offsetting positive distortion. Shapes are stated from the signs of R. |
+| `varLabels` | D9 (derived G2), D12 (derived G2) | D9 (STO–G2), D12 (G2–G3) | D9 and D12 are the patent's own names for the two variable gaps (page 3–4 table). Both labels carried the same bracket, which did not say which gap was which, and at infinity it stood beside 3.59 and 16.30, the two values the patent does print. That the 0.85 m values are derived stays in the focus text directly above them. |
+| Header comment | — | note on group numerals, SP and the L1–L9 choice | as above |
+
+Checked and found correct.
+
+- Group brackets. G1 (+) covers surfaces 1–8, G2 (-) 10–12 and G3 (+) 13–17: the extents Fig. 1 brackets as 1, 2 and 3, which ¶0008 defines as the positive first, negative second and positive third groups. The figure's upper bracket 2 begins 0.6 mm behind the stop tick, so the stop belongs to no group, as on the page. The page's STO is the patent's SP, drawn between L4 and L5 at table surface 9.
+- Cemented brackets. L5-L6 on surfaces 10–12 and L7-L8 on 13–15, one per cemented component, equal to the `cemented` tags and the inspector badges. Neither text can be mistaken for the gap labels D9 and D12.
+- Types against the signs of R. L1 +185.36 / −427.66 biconvex; L2 +63.58 / +156.32 and L3 +33.99 / +241.98 positive menisci convex to the object; L4 +278.09 / +26.41 negative meniscus concave to the image; L5 −101.48 / −52.90 positive meniscus concave to the object; L6 −52.90 / +36.36 biconcave; L7 −9058.59 / +41.85 biconcave, nearly plano-concave; L8 +41.85 / −410.77 and L9 +73.06 / −122.05 biconvex. All nine `type` strings and the nine focal lengths (recomputed independently) agree.
+- No aspherical surface and no `apd` tag. ¶0013 calls the G3 doublet's glasses high-dispersion and low-dispersion relative to each other (νd 25.4 and 41.0); nothing in the text designates anomalous or extra-low dispersion.
+- Front page: 特開平5-157964, published 25 June 1993, applicant Canon Inc., inventor Hiroshi Endo. The data file's patent fields agree.
+
+Movement. ¶0009 moves the second group toward the image from infinity to close focus, and the arrow under Fig. 1 points to the image. In the file both `var` pairs list infinity first: D9 3.59 → 14.7806 and D12 16.3 → 5.1094, sum 19.89 mm in both states, so G2 moves 11.19 mm toward the image and G1, the stop, G3 and the image plane do not move. An independent paraxial solve for 850 mm from object to image gives the same 11.190563 mm and magnification −0.12701. The overlay shows G1 and G3 as single dots at −102.0 and −48.9 mm from the image plane and G2 running from −77.2 mm (open start marker, infinity) to −66.0 mm, maximum travel 11.19 mm; the slider runs from ∞ to 85 cm and reads 1.70 m at mid travel with D9 9.19 and D12 10.70.
+
+The stop. The lower bracket that carries the focus arrow in Fig. 1 starts about 1 mm ahead of the stop tick (0.98 mm on page 5, 1.2 mm on page 1) and so embraces SP together with group 2, and ¶0022 says the stop may be fixed between groups 1 and 2 but is better moved with group 2. The Example 1 table nevertheless holds D8 at 8.82 and makes D9 variable, which is a fixed stop. Recomputed here with an independent exact trace for 0.8 m: with the stop fixed the d-line spherical aberration is −0.19 to −0.24 mm at full aperture and about the same at the 0.85 zone, and distortion is +1.9 to +2.7 % (the ranges cover measuring 0.8 m from the first vertex or from the image plane); with the stop riding on G2 the full-aperture value falls to −0.05 mm while the 0.7 zone stays near −0.2 mm. Fig. 4(B), read on a 300 dpi render, shows the d line at about −0.21 mm at full aperture with no return toward zero, and distortion of about +2.2 %, so the fixed-stop reading of the table is the one the patent's own plot supports. At infinity the same trace gives −0.035 mm at the margin and −0.056 mm at the 0.85 zone.
+
+Analysis. One sentence was added to the architecture paragraph saying which patent numerals G1–G3 and SP stand for and that L1–L9 are sequential. Three statements left over from before L6 was given a catalog name were corrected: the L6 glass line now names OHARA like the other eight, the L6 row of the glass table no longer lists S-BSL7 as its own analog, and the remark that L6 is traced on an Abbe-number estimate was removed (all nine labels resolve to catalog formulas).
+
+Maker diagram. No manufacturer image was viewed. The deployment section above records that Canon's construction diagram shows four singlets, the stop, a cemented doublet, a thick cemented doublet and a biconvex rear element, 9 elements in 7 groups, which is the layout of Fig. 1 and of the page; it records no aspherical or special-glass marking.
+
+Open.
+
+- Glass labels were not touched. The patent gives no glass names, no further line indices and no partial dispersion. All seven printed pairs equal the six-digit codes of OHARA's discontinued pre-"S-" types in the local OHARA catalog file: LAL7 652585, LAH66 773496, LAL8 713538, PBH1 717295, PBH6 805254, BSL7 516642 and LAH53 806410. For L8 this bears on the open label: LAH53's formula νd is 40.9485, a hair under the rounding boundary, but OHARA's own code rounds it to 41.0, the printed value, so the analysis sentence that puts historical LAH53 "just outside" the rounding interval is narrower than the catalog's own rounding, and a single-vendor reading of the whole table would name L8 by LAH53 / S-LAH53 rather than a CDGM glass. The same reading would name L1, L3 and L4 by LAL7, LAL8 and PBH1 where the file has SCHOTT equivalents.
+- L4's bevel, L7's taper and L8's 0.6 mm shortfall, as listed above.
+- Whether the production lens moves its stop with the focus group is still not established.
+
+## 2026-10-12 — Glass labels: OHARA period set
+
+- Finding (second review). All seven printed N / ν pairs equal glasses OHARA has since discontinued, as listed in
+  OHARA's all-products catalog file of 2026-07-01: LAL7 (1.651597 / 58.52), LAH66 (1.772499 / 49.60), LAL8
+  (1.712995 / 53.85), PBH1 (1.717362 / 29.51), PBH6 (1.805177 / 25.44), BSL7 (1.516330 / 64.15) and LAH53
+  (1.806098 / 40.95, catalog code 806410). The 1.51633 crown index is not in the SCHOTT, HOYA or CDGM lists. One
+  supplier's period catalog explains every pair; the earlier labels mixed SCHOTT, OHARA and CDGM rows chosen by
+  index residual, including a CDGM glass for a 1991 design.
+- Catalog. LAL7, LAL8, PBH1, PBH6, LAH66 and LAH53 were added from that file without six-digit codes, so
+  code-only labels elsewhere keep their rows. BSL7 remains an alias of S-BSL7.
+- Labels before → after: L1 N-LAK7 → LAL7; L2, L9 S-LAH66 → LAH66; L3 N-LAK8 → LAL8; L4 SF1 → PBH1; L5, L7 S-TIH6 →
+  PBH6; L6 S-BSL7 → BSL7 (still traced on S-BSL7); L8 H-ZLaF52A → LAH53. Printed N and ν are unchanged; every label
+  resolves, with index residuals of 3e-6 or less and Abbe residuals of 0.05 or less.
+- Effect. L5 and L7 now follow the lead-flint PBH6 curve (θgF 0.610) in place of the titanium-flint S-TIH6 curve
+  (0.616): ng is lower by 2.3e-4, the largest change. L8 moves by up to 4.7e-5 at g; the other elements move by
+  about 1e-5 or less at C, F and g.
+- Supplier and melt remain unconfirmed; the labels say so.
+
