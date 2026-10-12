@@ -32,13 +32,16 @@ import {
   createDifferentialRun,
   dataChangeOf,
   parseDeclaredExceptions,
+  parseDeclaredTransitions,
   renderDataImpactMarkdown,
   renderSummaryMarkdown,
+  transitionUnit,
   type ComparableRecord,
   type DataChange,
   type Finding,
   type LensCaptures,
   type RunContext,
+  type RunOptions,
   type RunSummary,
 } from "../../../src/benchmarks/engineDiff/compare.js";
 import { decodeValue, encodeValue } from "../../../src/benchmarks/engineDiff/payload.js";
@@ -2235,5 +2238,926 @@ describe("engineDiff reports", () => {
     expect(renderSummaryMarkdown(compare("c1", structuredClone(SERENAR_RECORDS)), REPORT_CONTEXT)).not.toContain(
       "C2 criterion",
     );
+  });
+});
+
+/* ── compare.ts: declared transitions ── */
+
+describe("engineDiff declared transitions", () => {
+  /* Everything of the prime but its analysis record, which is megabytes to copy for each perturbation. */
+  const LIGHT = SERENAR_RECORDS.filter(({ request }) => request !== "analysis");
+  const STATE = stateId(DEFAULT_STATE);
+  const OTHER_LENS = CATALOG.lenses.find(({ key }) => key !== SERENAR)!.key;
+  const LENS_IDS = [...CATALOG.lenses.map(({ key }) => key), PAIR_ID];
+  const REASON = "The rim of the third surface now clips this ray.";
+  const HEADING = "## Engine-diff transitions";
+
+  /** A description that declares the lines a run printed, each with a reason. */
+  const describing = (lines: readonly string[], reason = REASON): string =>
+    ["S3.P2.T3 Legacy intersection delegates", "", HEADING, "", ...lines.map((line) => `${line} ${reason}`)].join("\n");
+
+  /** One lens through a run that reads a description, with the lines the run prints for its undeclared units. */
+  const judge = (
+    changeClass: ChangeClass,
+    head: readonly PayloadRecord[],
+    description = "",
+    base: readonly PayloadRecord[] = LIGHT,
+    options: Partial<RunOptions> = {},
+  ) => {
+    const run = createDifferentialRun({
+      changeClass,
+      declaredExceptions: [],
+      restricted: false,
+      declaredTransitions: description,
+      catalogLenses: LENS_IDS,
+      ...options,
+    });
+    const output = run.addLens({ lens: base[0].lens, dataChange: "unchanged", baseEngine: base, headEngine: head });
+    return { summary: run.finish(), lines: output.transitionLines };
+  };
+  /** The line a run prints for the one undeclared unit of a comparison. */
+  const lineOf = (head: readonly PayloadRecord[], base: readonly PayloadRecord[] = LIGHT): string => {
+    const { lines } = judge("c1", head, "", base);
+    expect(lines).toHaveLength(1);
+    return lines[0];
+  };
+  const outcomesOf = ({ transitions }: RunSummary) => transitions.declared.map(({ outcome }) => outcome);
+
+  /** A rim clip: the ray's status, the flag of every hit from the clip on, and the landing it no longer has. */
+  const clip = (ray: Path = RAY, source: readonly PayloadRecord[] = LIGHT, from = HIT): PayloadRecord[] => {
+    const status = withChange("traces", [...ray, "status"], () => "clipped", source);
+    const flags = withChange(
+      "traces",
+      [...ray, "hits", "columns", "clipped"],
+      (column) => (column as boolean[]).map((flag, hit) => flag || hit >= from),
+      status,
+    );
+    return withChange("traces", [...ray, "imagePoint"], () => null, flags);
+  };
+  /* Nine flags, the status and the landing. */
+  const CLIP_DIFFERENCES = 11;
+  const CLIPPED = clip();
+  const CLIP_LINE = lineOf(CLIPPED);
+  /** The least transition a unit can hold: the status alone, which leaves every number of the ray paired. */
+  const statusOnly = (source: readonly PayloadRecord[] = LIGHT) =>
+    withChange("traces", [...RAY, "status"], () => "clipped", source);
+  const moved = (path: Path, by: number, source: readonly PayloadRecord[]) =>
+    withChange("traces", path, (value) => Number(value) + by, source);
+
+  it("has the records its perturbations assume", () => {
+    expect(at(LIGHT, "traces", [...RAY, "hits", "count"])).toBe(11);
+    expect(at(LIGHT, "traces", [...RAY, "hits", "columns", "clipped"])).toEqual(new Array(11).fill(false));
+    expect(at(LIGHT, "traces", [...RAY, "imagePoint"])).toHaveLength(2);
+    expect(at(LIGHT, "traces", ["legacy", "rays", 1, "clipped"])).toBe(false);
+    expect(OTHER_LENS).not.toBe(SERENAR);
+  });
+
+  it("puts a difference in the unit its path names through its first array index", () => {
+    expect(
+      [
+        "offAxis.rays[4].hits.columns.clipped[7]",
+        "offAxis.rays[4].status",
+        "offAxis.rays[4]",
+        "chromatic.rays.R[0].status",
+        "jobs.computePerspectiveDistortionAnalysis.value.grid.rows[2][5].fieldSample.status",
+        "jobs.groupMovement.focus.value.groups[0].label",
+        "solves[1].vectorLaunch.origin[2]",
+        "halfFieldDeg",
+        "jobs.computeBestFocusZ.ok",
+        "onAxis.rays",
+        "",
+      ].map(transitionUnit),
+    ).toEqual([
+      "offAxis.rays[4]",
+      "offAxis.rays[4]",
+      "offAxis.rays[4]",
+      "chromatic.rays.R[0]",
+      "jobs.computePerspectiveDistortionAnalysis.value.grid.rows[2][5]",
+      "jobs.groupMovement.focus.value.groups[0]",
+      "solves[1]",
+      "halfFieldDeg",
+      "jobs.computeBestFocusZ.ok",
+      "onAxis.rays",
+      "",
+    ]);
+  });
+
+  it("reads one transition per bullet under each such heading, with every field in backticks", () => {
+    const declared = {
+      lens: "host-lens+some-converter",
+      state: "zoom=0.5 focus=1 aberration=0 stopdown=0 shift=0 tilt=0",
+      path: "offAxis.rays[4].status",
+      base: '"ok"',
+      head: '"clipped"',
+      digest: "0123456789ab",
+    };
+    const description = [
+      "## Engine-diff exceptions",
+      "- `some-lens` is written in V2",
+      "",
+      "### engine-diff transitions",
+      "",
+      "Two rays of the off-axis fan, and prose that is no bullet is passed over.",
+      "- `host-lens+some-converter` `zoom=0.5 focus=1 aberration=0 stopdown=0 shift=0 tilt=0` `traces` " +
+        '`offAxis.rays[4].status`: `"ok"` -> `"clipped"`; digest `0123456789ab`. The rim clips it.',
+      "  * `host-lens+some-converter` `zoom=0.5 focus=1 aberration=0 stopdown=0 shift=0 tilt=0` `mtf geometric/cdf` " +
+        "`(the record)`: `number` -> `null`; digest `ba9876543210`, numbers.   It ends on another surface. Twice.  ",
+      "",
+      "## Testing",
+      "- `not` `a` `declared` `transition`",
+      "",
+      HEADING,
+      '- `some-lens` `lens` `traces` `legacy.rays[2].clipped`: `false` -> `true`; digest `000000000000`. A "reason".',
+    ].join("\r\n");
+    expect(parseDeclaredTransitions(description)).toEqual([
+      { ...declared, request: "traces", numbers: false, reason: "The rim clips it." },
+      {
+        ...declared,
+        request: "mtf geometric/cdf",
+        path: "",
+        base: "number",
+        head: "null",
+        digest: "ba9876543210",
+        numbers: true,
+        reason: "It ends on another surface. Twice.",
+      },
+      {
+        lens: "some-lens",
+        state: "lens",
+        request: "traces",
+        path: "legacy.rays[2].clipped",
+        base: "false",
+        head: "true",
+        digest: "000000000000",
+        numbers: false,
+        reason: 'A "reason".',
+      },
+    ]);
+    expect(parseDeclaredTransitions("")).toEqual([]);
+    expect(parseDeclaredTransitions(`${CLIP_LINE} ${REASON}`)).toEqual([]);
+    expect(parseDeclaredTransitions(`${HEADING}\n\nNone.\n`)).toEqual([]);
+  });
+
+  it("stops on a bullet it cannot read, and on one with no reason, and names the bullet", () => {
+    const unread = ["- `canon-serenar-50f18` status ok -> clipped", "- none", "- `a` `b` `c` `d`: `1` -> `2`. Why."];
+    for (const bullet of unread) {
+      expect(() => parseDeclaredTransitions(`${HEADING}\n${bullet}\n`)).toThrow(
+        `a bullet under "Engine-diff transitions" is not a declared transition:\n  ${bullet}`,
+      );
+    }
+    /* The line a run prints has no reason yet: pasted as it is, it stops the next run. */
+    for (const bare of [CLIP_LINE, `${CLIP_LINE}   `]) {
+      expect(() => parseDeclaredTransitions(`${HEADING}\n${bare}\n`)).toThrow(
+        `a declared transition gives no reason after its full stop:\n  ${CLIP_LINE}`,
+      );
+    }
+    /* A run reads its description before it compares anything. */
+    expect(() =>
+      createDifferentialRun({
+        changeClass: "c1",
+        declaredExceptions: [],
+        restricted: true,
+        declaredTransitions: `${HEADING}\n${CLIP_LINE}\n`,
+      }),
+    ).toThrow("gives no reason");
+    expect(() =>
+      createDifferentialRun({
+        changeClass: "c0",
+        declaredExceptions: [],
+        restricted: true,
+        declaredTransitions: `${HEADING}\n- none\n`,
+      }),
+    ).toThrow("is not a declared transition");
+  });
+
+  it("prints the line of an undeclared unit, and passes under C1 and C2 once it is pasted back with a reason", () => {
+    const undeclared = judge("c1", CLIPPED);
+    expect(undeclared.summary.passed).toBe(false);
+    expect(undeclared.summary.failures).toEqual([
+      `Engine drift: ${CLIP_DIFFERENCES} differences not allowed under C1.`,
+    ]);
+    expect(undeclared.lines).toEqual([
+      `- \`${SERENAR}\` \`${STATE}\` \`traces\` \`onAxis.rays[1].status\`: \`"ok"\` -> \`"clipped"\`; ` +
+        `digest \`${/digest `([0-9a-f]{12})`/.exec(CLIP_LINE)?.[1]}\`.`,
+    ]);
+    expect(undeclared.summary.transitions).toEqual({
+      declared: [],
+      undeclared: 1,
+      undeclaredLines: undeclared.lines,
+      overflow: { records: 0, samples: [] },
+    });
+
+    const description = describing(undeclared.lines);
+    for (const changeClass of ["c1", "c2"] as const) {
+      const { summary, lines } = judge(changeClass, CLIPPED, description);
+      expect(summary.passed, changeClass).toBe(true);
+      expect(summary.failures).toEqual([]);
+      expect(lines).toEqual([]);
+      /* The differences are still counted and listed. What the line changes is that they do not fail. */
+      expect(summary.engine).toMatchObject({ recordsDiffering: 1, failing: 0, transitions: CLIP_DIFFERENCES });
+      expect(summary.transitions).toEqual({
+        declared: [
+          {
+            line: `${CLIP_LINE} ${REASON}`,
+            declared: parseDeclaredTransitions(description)[0],
+            outcome: "matched",
+            differences: CLIP_DIFFERENCES,
+            shapes: 1,
+            excusedNumbers: 0,
+          },
+        ],
+        undeclared: 0,
+        undeclaredLines: [],
+        overflow: { records: 0, samples: [] },
+      });
+      /* The run passed on the strength of the line, so the report leads with it. */
+      const markdown = renderSummaryMarkdown(summary, REPORT_CONTEXT);
+      expect(markdown).toContain("# Engine diff: passed");
+      expect(markdown.indexOf("## Declared transitions")).toBeGreaterThan(0);
+      expect(markdown.indexOf("## Declared transitions")).toBeLessThan(markdown.indexOf("## Counts"));
+      expect(markdown).toContain(
+        `- Matched, ${CLIP_DIFFERENCES} discrete or shape differences (1 of them a shape, behind which nothing is ` +
+          `compared): \`${SERENAR}\` \`${STATE}\` \`traces\` `,
+      );
+      expect(JSON.parse(JSON.stringify(summary))).toEqual(summary);
+    }
+    /* The failing run's report holds the line to paste. */
+    const failing = renderSummaryMarkdown(undeclared.summary, REPORT_CONTEXT);
+    expect(failing).toContain("1 unit of the engine comparison holds a discrete or shape difference that no line");
+    expect(failing).toContain(`\`\`\`text\n${CLIP_LINE}\n\`\`\``);
+    /* A run with nothing declared and nothing discrete to declare says nothing of transitions. */
+    expect(renderSummaryMarkdown(judge("c1", structuredClone(LIGHT)).summary, REPORT_CONTEXT)).not.toContain(
+      "## Declared transitions",
+    );
+  });
+
+  it("fails a C0 run whose description declares a transition, and reports under C3 without gating", () => {
+    const description = describing([CLIP_LINE]);
+    /* A C0 change declares none: the line excuses nothing, and is itself a failure with nothing changed. */
+    const strict = judge("c0", CLIPPED, description);
+    expect(strict.summary.failures).toEqual([
+      `Engine drift: ${CLIP_DIFFERENCES} differences not allowed under C0.`,
+      "Declared transitions: a C0 change declares none, and the description declares 1.",
+    ]);
+    expect(strict.lines).toEqual([]);
+    expect(outcomesOf(strict.summary)).toEqual(["notJudged"]);
+    const unchanged = judge("c0", structuredClone(LIGHT), description);
+    expect(unchanged.summary.failures).toEqual([
+      "Declared transitions: a C0 change declares none, and the description declares 1.",
+    ]);
+    expect(renderSummaryMarkdown(unchanged.summary, REPORT_CONTEXT)).toContain(
+      "A C0 change declares no transition, and the description declares 1. No line was matched.",
+    );
+
+    const reported = judge("c3", CLIPPED, description);
+    expect(reported.summary.passed).toBe(true);
+    expect(reported.summary.transitions).toMatchObject({
+      declared: [{ outcome: "matched", differences: CLIP_DIFFERENCES }],
+      undeclared: 0,
+    });
+    expect(renderSummaryMarkdown(reported.summary, REPORT_CONTEXT)).toContain(
+      "Under C3 the lines are matched and reported, and gate nothing.",
+    );
+    /* Nothing of the engine comparison gates under C3: neither the unit no line declares, nor the line with
+     * nothing behind it, nor the one for a lens there is not. */
+    const undeclared = judge("c3", CLIPPED);
+    expect(undeclared.summary).toMatchObject({ passed: true, transitions: { undeclared: 1 } });
+    expect(undeclared.lines).toEqual([CLIP_LINE]);
+    const stale = judge("c3", structuredClone(LIGHT), description);
+    expect(stale.summary.passed).toBe(true);
+    expect(outcomesOf(stale.summary)).toEqual(["unchanged"]);
+    const nowhere = judge("c3", CLIPPED, describing([CLIP_LINE.replace(SERENAR, "no-such-lens")]));
+    expect(nowhere.summary.passed).toBe(true);
+    expect(outcomesOf(nowhere.summary)).toEqual(["unknownLens"]);
+  });
+
+  it("fails on a line with nothing changed behind it", () => {
+    for (const changeClass of ["c1", "c2"] as const) {
+      const { summary, lines } = judge(changeClass, structuredClone(LIGHT), describing([CLIP_LINE]));
+      expect(summary.passed).toBe(false);
+      expect(summary.engine.failing).toBe(0);
+      expect(outcomesOf(summary)).toEqual(["unchanged"]);
+      expect(summary.failures).toEqual([
+        "Declared transitions: of 1 declared, 1 nothing discrete changed in the unit. summary.md has each line.",
+      ]);
+      expect(lines).toEqual([]);
+    }
+    /* A record that differs in numbers alone has no transition either. */
+    const drifted = moved(HIT_POINT_Y, 1e-12, LIGHT);
+    expect(outcomesOf(judge("c1", drifted, describing([CLIP_LINE])).summary)).toEqual(["unchanged"]);
+  });
+
+  it("fails on a line that names another value, or carries the digest of other differences", () => {
+    const wrongValue = judge("c1", CLIPPED, describing([CLIP_LINE.replace('"clipped"', '"failed"')]));
+    expect(wrongValue.summary.passed).toBe(false);
+    expect(wrongValue.summary.engine.failing).toBe(CLIP_DIFFERENCES);
+    expect(wrongValue.summary.transitions.declared).toMatchObject([
+      { outcome: "mismatch", differences: 0, detail: `The run found: ${CLIP_LINE}` },
+    ]);
+    expect(wrongValue.summary.failures).toEqual([
+      `Engine drift: ${CLIP_DIFFERENCES} differences not allowed under C1.`,
+      "Declared transitions: of 1 declared, 1 not what the run found. summary.md has each line.",
+    ]);
+    /* The unit is undeclared still, so the run prints the line that would declare it. */
+    expect(wrongValue.lines).toEqual([CLIP_LINE]);
+
+    /* One more flag flipped in the declared ray: the named difference is the same, and the digest is not. */
+    const oneMore = clip(RAY, LIGHT, HIT - 1);
+    const wrongDigest = judge("c1", oneMore, describing([CLIP_LINE]));
+    expect(wrongDigest.summary.passed).toBe(false);
+    expect(wrongDigest.summary.engine.failing).toBe(CLIP_DIFFERENCES + 1);
+    expect(outcomesOf(wrongDigest.summary)).toEqual(["mismatch"]);
+    expect(wrongDigest.lines).toHaveLength(1);
+    expect(wrongDigest.lines[0]).not.toBe(CLIP_LINE);
+    expect(wrongDigest.lines[0].replace(/digest `[0-9a-f]+`/, "")).toBe(CLIP_LINE.replace(/digest `[0-9a-f]+`/, ""));
+    expect(judge("c1", oneMore, describing(wrongDigest.lines)).summary.passed).toBe(true);
+    /* One flag fewer is another digest too, as is the same set of differences with another value in one. */
+    expect(outcomesOf(judge("c1", clip(RAY, LIGHT, HIT + 1), describing([CLIP_LINE])).summary)).toEqual(["mismatch"]);
+    const relabelled = withChange("traces", [...RAY, "imagePoint"], () => "none", CLIPPED);
+    expect(outcomesOf(judge("c1", relabelled, describing([CLIP_LINE])).summary)).toEqual(["mismatch"]);
+    /* A line that names another difference of the unit than the harness does is not the line. */
+    const flag = "onAxis.rays[1].hits.columns.clipped[2]";
+    const renamed = CLIP_LINE.replace("onAxis.rays[1].status", flag).replace(
+      '`"ok"` -> `"clipped"`',
+      "`false` -> `true`",
+    );
+    expect(parseDeclaredTransitions(describing([renamed]))).toMatchObject([
+      { path: flag, base: "false", head: "true" },
+    ]);
+    expect(outcomesOf(judge("c1", CLIPPED, describing([renamed])).summary)).toEqual(["mismatch"]);
+    /* Nor is one that names another difference with the same two values under the right digest. */
+    const labelled = (label: string, source: readonly PayloadRecord[]) =>
+      withChange("traces", RAY, (ray) => ({ ...(ray as object), label }), source);
+    const [labelledBase, labelledHead] = [labelled("ok", LIGHT), labelled("clipped", CLIPPED)];
+    const labelledLine = lineOf(labelledHead, labelledBase);
+    const misnamed = labelledLine.replace("onAxis.rays[1].status", "onAxis.rays[1].label");
+    expect(misnamed).not.toBe(labelledLine);
+    expect(judge("c1", labelledHead, describing([labelledLine]), labelledBase).summary.passed).toBe(true);
+    expect(outcomesOf(judge("c1", labelledHead, describing([misnamed]), labelledBase).summary)).toEqual(["mismatch"]);
+  });
+
+  it("fails on a second ray that changed beside the declared one, and names that ray alone", () => {
+    const second: Path = ["onAxis", "rays", 2];
+    const both = clip(second, CLIPPED);
+    const { summary, lines } = judge("c1", both, describing([CLIP_LINE]));
+    expect(summary.passed).toBe(false);
+    expect(outcomesOf(summary)).toEqual(["matched"]);
+    expect(summary.engine.failing).toBe(CLIP_DIFFERENCES);
+    expect(summary.engine.failures.every(({ path }) => path.startsWith("onAxis.rays[2]"))).toBe(true);
+    expect(summary.transitions.undeclared).toBe(1);
+    expect(lines).toEqual([lineOf(clip(second))]);
+    expect(judge("c1", both, describing([CLIP_LINE, ...lines])).summary.passed).toBe(true);
+  });
+
+  it("holds the numbers of a declared ray to their budgets, and with `numbers` lets its terminal values go", () => {
+    /* The ray ends elsewhere, so its terminal point is held to the looser budget, and is past that too. */
+    const terminal = moved([...RAY, "terminalPoint", 1], 5e-7, CLIPPED);
+    const without = judge("c1", terminal, describing([CLIP_LINE]));
+    expect(without.summary.passed).toBe(false);
+    expect(failuresOf(without.summary)).toEqual([
+      { request: "traces", path: "onAxis.rays[1].terminalPoint[1]", kind: "number", quantity: "clippedHit" },
+    ]);
+    expect(without.summary.transitions.declared).toMatchObject([
+      { outcome: "matched", excusedNumbers: 0, detail: expect.stringContaining("does not say `numbers`") },
+    ]);
+    /* The line the run prints for such a unit says `numbers`, and passes when pasted back. */
+    const line = lineOf(terminal);
+    expect(line).toBe(`${CLIP_LINE.slice(0, -1)}, numbers.`);
+    const permitted = judge("c1", terminal, describing([line]));
+    expect(permitted.summary.passed).toBe(true);
+    expect(permitted.summary.transitions.declared).toMatchObject([{ outcome: "matched", excusedNumbers: 1 }]);
+    expect(permitted.summary.engine.quantities.clippedHit).toMatchObject({ beyondBudget: 1 });
+    expect(renderSummaryMarkdown(permitted.summary, REPORT_CONTEXT)).toContain(
+      `- Matched, ${CLIP_DIFFERENCES} discrete or shape differences (1 of them a shape, behind which nothing is ` +
+        "compared) and 1 number beyond budget: ",
+    );
+
+    /* `numbers` permits and does not assert: with nothing beyond budget the line is as good. */
+    expect(judge("c1", CLIPPED, describing([line])).summary.passed).toBe(true);
+    expect(judge("c1", moved([...RAY, "terminalPoint", 1], 5e-8, CLIPPED), describing([line])).summary.passed).toBe(
+      true,
+    );
+
+    /* A hit both sides have is the same hit: its coordinates are not among the fields `numbers` permits. */
+    const hit = judge("c1", moved(HIT_POINT_Y, 5e-7, terminal), describing([line]));
+    expect(hit.summary.passed).toBe(false);
+    expect(failuresOf(hit.summary)).toEqual([
+      { request: "traces", path: "onAxis.rays[1].hits.columns.point[2][1]", kind: "number", quantity: "clippedHit" },
+    ]);
+    expect(hit.summary.transitions.declared).toMatchObject([{ outcome: "matched", excusedNumbers: 1 }]);
+    /* Nor is anything outside the declared unit: the same terminal value of the ray beside it. */
+    const beside = judge("c1", moved(["onAxis", "rays", 2, "terminalPoint", 1], 5e-7, terminal), describing([line]));
+    expect(failuresOf(beside.summary)).toEqual([
+      { request: "traces", path: "onAxis.rays[2].terminalPoint[1]", kind: "number", quantity: "landing" },
+    ]);
+    /* Nor an aggregate that the ray's change moved, which is in no ray's unit. */
+    const aggregate = judge("c1", moved(["pupilSemiDiameterMm"], 1e-6, terminal), describing([line]));
+    expect(failuresOf(aggregate.summary)).toEqual([
+      { request: "traces", path: "pupilSemiDiameterMm", kind: "number", quantity: "firstOrder" },
+    ]);
+  });
+
+  it("takes the fields `numbers` permits from the budget table's rows for a ray's terminal values", () => {
+    const legacy: Path = ["legacy", "rays", 1];
+    /* The stack tracer has no status: its ray clips by a flag, and draws the rest of its path as ghost points. */
+    const ghosted = (source: readonly PayloadRecord[]) =>
+      withChange("traces", [...legacy, "ghostPts"], () => [[1, 2]], source);
+    const legacyBase = ghosted(LIGHT);
+    const legacyClipped = withChange("traces", [...legacy, "clipped"], () => true, legacyBase);
+    const cases: [permitted: boolean, path: Path, by: number, legacyRay?: true][] = [
+      [true, [...RAY, "terminalPoint", 1], 5e-7],
+      [true, [...RAY, "terminalDirection", 1], 1e-6],
+      [true, [...RAY, "imagePoint", 1], 5e-7],
+      [true, [...RAY, "x"], 5e-7],
+      [true, [...RAY, "y"], 5e-7],
+      [true, [...RAY, "ux"], 1e-6],
+      [true, [...RAY, "uy"], 1e-6],
+      [true, [...legacy, "pts", 3, 1], 1e-6, true],
+      [true, [...legacy, "ghostPts", 0, 1], 5e-7, true],
+      [true, [...legacy, "y"], 5e-7, true],
+      [true, [...legacy, "u"], 1e-6, true],
+      /* What the ray was launched with, what it met on the way, and what no hit of it decides. */
+      [false, [...RAY, "input", "origin", 1], 5e-7],
+      [false, [...RAY, "input", "direction", 1], 1e-6],
+      [false, [...RAY, "hits", "columns", "point", HIT, 1], 5e-7],
+      [false, [...RAY, "hits", "columns", "normal", HIT, 1], 1e-6],
+      [false, [...RAY, "hits", "columns", "radius", HIT], 5e-7],
+      [false, [...RAY, "finalMedium"], 1e-6],
+      [false, [...legacy, "paraxialImageHeight"], 1e-6, true],
+      [false, [...legacy, "transmission"], 1e-6, true],
+    ];
+    for (const [permitted, path, by, legacyRay] of cases) {
+      const [base, transition] = legacyRay ? [legacyBase, legacyClipped] : [LIGHT, statusOnly()];
+      const name = path.join(".");
+      /* Every one of these fields has a row of the budget table: the list names rows, and adds no class. */
+      expect(
+        resolveBudgetRule(
+          "traces",
+          path.map((step) => (typeof step === "number" ? "[]" : step)),
+        ),
+        name,
+      ).not.toBeNull();
+      const head = moved(path, by, transition);
+      const declared = `${lineOf(transition, base)}`.replace(/\.$/, ", numbers.");
+      const { summary } = judge("c1", head, describing([declared]), base);
+      expect(failuresOf(judge("c1", head, describing([lineOf(transition, base)]), base).summary), name).toEqual([
+        expect.objectContaining({ kind: "number" }),
+      ]);
+      expect(summary.passed, name).toBe(permitted);
+      expect(summary.transitions.declared[0].excusedNumbers, name).toBe(permitted ? 1 : 0);
+    }
+    /* The harness names the status of a unit that has one, and otherwise its first difference in path order. */
+    expect(lineOf(legacyClipped, legacyBase)).toContain("`legacy.rays[1].clipped`: `false` -> `true`; digest ");
+    const reasoned = withChange("traces", [...RAY, "failureReason"], () => "noBracket", statusOnly());
+    expect(lineOf(reasoned)).toContain('`onAxis.rays[1].status`: `"ok"` -> `"clipped"`; digest ');
+  });
+
+  it("holds the head side of a declared unit to the intersection contract, in a hit column that grew as well", () => {
+    /** The ray with one hit more on the head side: every hit column a row longer, which no paired walk enters. */
+    const grown = (change: (columns: Record<string, unknown[]>) => void = () => {}, source = LIGHT) =>
+      withChange(
+        "traces",
+        [...RAY, "hits"],
+        (hits) => {
+          const { count, columns } = hits as { count: number; columns: Record<string, unknown[]> };
+          const longer = Object.fromEntries(
+            Object.entries(columns).map(([name, column]) => [name, [...column, structuredClone(column[count - 1])]]),
+          );
+          change(longer);
+          return { count: count + 1, columns: longer };
+        },
+        source,
+      );
+    const line = lineOf(grown());
+    expect(line).toContain("`onAxis.rays[1].hits.columns.clipped`: `array of 11` -> `array of 12`; digest ");
+    expect(judge("c1", grown(), describing([line])).summary).toMatchObject({
+      passed: true,
+      transitions: { declared: [{ outcome: "matched", differences: 13, shapes: 12 }] },
+    });
+
+    /* The digest holds the shape of the column and not what is in it, so the line still names what the run found.
+     * What the new hit carries is for the head side to answer alone. */
+    const breaches: [string, (columns: Record<string, unknown[]>) => void, string][] = [
+      ["a residual", (columns) => (columns.residual[11] = 1e-6), "1000000 times the effective tolerance"],
+      ["a residual at the edge", (columns) => (columns.residual[11] = -1.5e-12), "1.5 times the effective tolerance"],
+      ["no tolerance", (columns) => (columns.effectiveTolerance[11] = 0), "Infinity times the effective tolerance"],
+      ["a residual that is no number", (columns) => (columns.residual[11] = encodeValue(Number.NaN)), "Infinity times"],
+      ["a point that is no number", (columns) => (columns.point[11] = [0, encodeValue(Number.NaN), 1]), "is NaN"],
+      [
+        "a radius that is infinite",
+        (columns) => (columns.radius[11] = encodeValue(Number.POSITIVE_INFINITY)),
+        "is Infinity",
+      ],
+    ];
+    for (const [name, change, said] of breaches) {
+      expect(lineOf(grown(change)), name).toBe(line);
+      const { summary, lines } = judge("c1", grown(change), describing([line]));
+      expect(summary.passed, name).toBe(false);
+      expect(summary.engine.failing, name).toBe(13);
+      expect(summary.transitions.declared, name).toMatchObject([
+        { outcome: "contract", differences: 0, detail: expect.stringContaining(said) },
+      ]);
+      expect(summary.failures[1], name).toBe(
+        "Declared transitions: of 1 declared, 1 refused, the head side of the unit breaks its contract. " +
+          "summary.md has each line.",
+      );
+      /* The line is right and is refused: there is no other line to paste. */
+      expect(lines, name).toEqual([]);
+      expect(judge("c3", grown(change), describing([line])).summary.passed, name).toBe(true);
+    }
+    /* Within its tolerance the new hit passes, at either sign. */
+    expect(
+      judge(
+        "c1",
+        grown((columns) => (columns.residual[11] = -9e-13)),
+        describing([line]),
+      ).summary.passed,
+    ).toBe(true);
+
+    /* A hit both sides have answers on the head side as well, whatever the paired walk made of it. */
+    const residual: Path = [...RAY, "hits", "columns", "residual", HIT];
+    const outside = withChange("traces", residual, () => 5e-12, CLIPPED);
+    const paired = judge("c1", outside, describing([CLIP_LINE]));
+    expect(outcomesOf(paired.summary)).toEqual(["contract"]);
+    expect(failuresOf(paired.summary)).toContainEqual(
+      expect.objectContaining({ path: "onAxis.rays[1].hits.columns.residual[2]", kind: "contract" }),
+    );
+    /* Outside its tolerance alike on both sides, the walk sees no difference, and the head side still answers. */
+    const alike = judge(
+      "c1",
+      outside,
+      describing([CLIP_LINE]),
+      withChange("traces", residual, () => 5e-12, LIGHT),
+    );
+    expect(outcomesOf(alike.summary)).toEqual(["contract"]);
+    expect(alike.summary.engine.failing).toBe(CLIP_DIFFERENCES);
+
+    /* A non-finite number of the declared ray fails with `numbers` as without: no line excuses a mismatch. */
+    const nan = withChange("traces", [...RAY, "terminalPoint", 1], () => encodeValue(Number.NaN), CLIPPED);
+    const numbers = `${CLIP_LINE.slice(0, -1)}, numbers.`;
+    const mismatched = judge("c1", nan, describing([numbers]));
+    expect(outcomesOf(mismatched.summary)).toEqual(["contract"]);
+    expect(failuresOf(mismatched.summary)).toContainEqual(
+      expect.objectContaining({ path: "onAxis.rays[1].terminalPoint[1]", kind: "nonFinite" }),
+    );
+    /* One the base side repeats at the same place is no news of the head's: a ray may carry a slope it never had. */
+    const slope: Path = [...RAY, "ux"];
+    const undefinedSlope = (source: readonly PayloadRecord[]) =>
+      withChange("traces", slope, () => encodeValue(Number.NaN), source);
+    expect(judge("c1", undefinedSlope(CLIPPED), describing([CLIP_LINE]), undefinedSlope(LIGHT)).summary.passed).toBe(
+      true,
+    );
+  });
+
+  it("fails a number with no class inside a declared unit, with `numbers` as without", () => {
+    const withMember = (value: number, source: readonly PayloadRecord[]) =>
+      withChange("traces", RAY, (ray) => ({ ...(ray as object), unbudgeted: value }), source);
+    const base = withMember(1, LIGHT);
+    const head = withMember(1 + Number.EPSILON, CLIPPED);
+    for (const line of [CLIP_LINE, `${CLIP_LINE.slice(0, -1)}, numbers.`]) {
+      const { summary } = judge("c1", head, describing([line]), base);
+      expect(outcomesOf(summary)).toEqual(["matched"]);
+      expect(failuresOf(summary)).toEqual([
+        { request: "traces", path: "onAxis.rays[1].unbudgeted", kind: "unclassified", quantity: null },
+      ]);
+    }
+  });
+
+  it("holds a line to its own record: the same unit under another state, request or lens declares nothing", () => {
+    const elsewhere: [string, string, string][] = [
+      [STATE, stateId({ ...DEFAULT_STATE, zoomT: 1 }), "notJudged"],
+      ["`traces`", "`mtf`", "unchanged"],
+      [`\`${SERENAR}\``, `\`${OTHER_LENS}\``, "notJudged"],
+    ];
+    for (const [written, instead, outcome] of elsewhere) {
+      const line = CLIP_LINE.replace(written, instead);
+      expect(line).not.toBe(CLIP_LINE);
+      const { summary, lines } = judge("c1", CLIPPED, describing([line]));
+      expect(summary.passed, instead).toBe(false);
+      expect(summary.engine.failing, instead).toBe(CLIP_DIFFERENCES);
+      expect(outcomesOf(summary), instead).toEqual([outcome]);
+      expect(lines, instead).toEqual([CLIP_LINE]);
+    }
+    /* A variant is part of a record's request, and of the line for it. */
+    const named = (records: readonly PayloadRecord[]) =>
+      records.map((record) => (record.request === "traces" ? { ...record, variant: "ghost" } : record));
+    const variantLine = lineOf(named(CLIPPED), named(LIGHT));
+    expect(variantLine).toBe(CLIP_LINE.replace("`traces`", "`traces ghost`"));
+    expect(judge("c1", named(CLIPPED), describing([variantLine]), named(LIGHT)).summary.passed).toBe(true);
+    expect(judge("c1", named(CLIPPED), describing([CLIP_LINE]), named(LIGHT)).summary.passed).toBe(false);
+  });
+
+  it("fails on a lens id the catalog does not hold, and lists a line for a record the run did not ask for", () => {
+    /* A line names a lens of the catalog or one of its pairs, whichever part of a tier the run covers. */
+    for (const restricted of [false, true]) {
+      const { summary } = judge(
+        "c1",
+        CLIPPED,
+        describing([CLIP_LINE, CLIP_LINE.replace(SERENAR, "no-such-lens")]),
+        LIGHT,
+        {
+          restricted,
+        },
+      );
+      expect(outcomesOf(summary)).toEqual(["matched", "unknownLens"]);
+      expect(summary.failures).toEqual([
+        "Declared transitions: of 2 declared, 1 no such lens. summary.md has each line.",
+      ]);
+    }
+    /* A lens of another shard, or one a narrowed run left out: its line is listed, and judged by the run that
+     * meets it. So is a line for a state or a request this tier does not ask of the lens. */
+    const other = [
+      CLIP_LINE.replace(SERENAR, OTHER_LENS),
+      CLIP_LINE.replace(SERENAR, PAIR_ID),
+      CLIP_LINE.replace(STATE, stateId({ ...DEFAULT_STATE, focusT: 1 })),
+      CLIP_LINE.replace("`traces`", "`analysis`"),
+    ];
+    for (const restricted of [true, false]) {
+      const narrowed = judge("c1", CLIPPED, describing([CLIP_LINE, ...other]), LIGHT, { restricted });
+      expect(narrowed.summary.passed).toBe(true);
+      expect(outcomesOf(narrowed.summary)).toEqual(["matched", "notJudged", "notJudged", "notJudged", "notJudged"]);
+    }
+    const { summary } = judge("c1", CLIPPED, describing([CLIP_LINE, ...other]));
+    expect(renderSummaryMarkdown(summary, REPORT_CONTEXT)).toContain(
+      `- Not judged, the run did not ask for the record: \`${OTHER_LENS}\` \`${STATE}\` \`traces\` `,
+    );
+    /* Without the catalog's ids a run can vouch only for the lenses it met. */
+    const unlisted = judge("c1", CLIPPED, describing([CLIP_LINE, other[0]]), LIGHT, { catalogLenses: undefined });
+    expect(outcomesOf(unlisted.summary)).toEqual(["matched", "unknownLens"]);
+    expect(unlisted.summary.passed).toBe(false);
+  });
+
+  it("refuses a declaration of a record or a job that starts or stops throwing", () => {
+    const thrown = { ok: false as const, error: { name: "Error", message: "boom" } };
+    const handwritten = (request: string, path: string, base: string, head: string) =>
+      `- \`${SERENAR}\` \`${STATE}\` \`${request}\` \`${path}\`: \`${base}\` -> \`${head}\`; digest \`000000000000\`.`;
+
+    /* A record: the walk starts at the outcome, where `ok` flips and one of `value` and `error` comes and goes. */
+    const recordThrows = LIGHT.map((record) => (record.request === "mtf" ? { ...record, payload: thrown } : record));
+    const outcome = [
+      handwritten("mtf", "ok", "true", "false"),
+      handwritten("mtf", "value", "object", "absent"),
+      handwritten("mtf", "error", "absent", "object"),
+    ];
+    for (const [base, head] of [
+      [LIGHT, recordThrows],
+      [recordThrows, LIGHT],
+    ]) {
+      const undeclared = judge("c1", head, "", base);
+      expect(undeclared.summary.engine.failing).toBe(3);
+      /* Nothing here can be declared, so the run prints no line for it. */
+      expect(undeclared.lines).toEqual([]);
+      expect(undeclared.summary.transitions.undeclared).toBe(0);
+      const declared = judge("c1", head, describing(outcome), base);
+      expect(declared.summary.engine.failing).toBe(3);
+      expect(outcomesOf(declared.summary)).toEqual(["refused", "refused", "refused"]);
+      expect(declared.summary.failures[1]).toBe(
+        "Declared transitions: of 3 declared, 3 refused, this cannot be declared. summary.md has each line.",
+      );
+    }
+
+    /* A job of an analysis record: the same three members, under the job. */
+    const job = "jobs.computeBestFocusZ";
+    const jobThrows = withChange("analysis", ["jobs", "computeBestFocusZ"], () => thrown);
+    const jobLines = [
+      handwritten("analysis", `${job}.ok`, "true", "false"),
+      handwritten("analysis", `${job}.value`, "number", "absent"),
+      handwritten("analysis", `${job}.error`, "absent", "object"),
+    ];
+    for (const changeClass of ["c1", "c2"] as const) {
+      const undeclared = judge(changeClass, jobThrows, "", SERENAR_RECORDS);
+      expect(failuresOf(undeclared.summary).map(({ path }) => path)).toEqual([
+        `${job}.ok`,
+        `${job}.value`,
+        `${job}.error`,
+      ]);
+      expect(undeclared.lines).toEqual([]);
+      const declared = judge(changeClass, jobThrows, describing(jobLines), SERENAR_RECORDS);
+      expect(declared.summary.passed).toBe(false);
+      expect(declared.summary.engine.failing).toBe(3);
+      expect(outcomesOf(declared.summary)).toEqual(["refused", "refused", "refused"]);
+    }
+    /* A job that throws on both engines with other words is an outcome that stayed one: that can be declared. */
+    const reworded = withChange("analysis", ["jobs", "computeBestFocusZ"], () => ({
+      ok: false,
+      error: { name: "Error", message: "bang, at `z`" },
+    }));
+    const line = lineOf(reworded, jobThrows);
+    /* A backtick in a value is written as its JSON escape, so the fields of a line stay apart. */
+    expect(line).toContain(`\`${job}.error.message\`: \`"boom"\` -> \`"bang, at \\u0060z\\u0060"\`; digest `);
+    expect(judge("c1", reworded, describing([line]), jobThrows).summary.passed).toBe(true);
+  });
+
+  it("refuses a declaration in a build, a composition or a layout record", () => {
+    const pair = recordsOf(PAIR_ID);
+    const cases: [RequestFamily, Path, (value: unknown) => unknown, readonly PayloadRecord[]][] = [
+      ["build", ["N"], (count) => Number(count) + 1, LIGHT],
+      ["build", ["S", 2, "elemId"], (id) => Number(id) + 1, LIGHT],
+      ["build", ["data", "surfaces"], (surfaces) => (surfaces as unknown[]).slice(1), LIGHT],
+      ["layout", ["z"], (z) => [...(z as number[]), 0], LIGHT],
+      ["composition", ["compatibility", "geometry", "platesAhead"], (count) => Number(count) + 1, pair],
+    ];
+    for (const [request, path, change, source] of cases) {
+      const head = withChange(request, path, change, source);
+      const where = path.reduce<string>(
+        (text, step) => (typeof step === "number" ? `${text}[${step}]` : `${text}.${step}`),
+        "",
+      );
+      const undeclared = judge("c1", head, "", source);
+      expect(undeclared.summary.passed, where).toBe(false);
+      expect(undeclared.lines, where).toEqual([]);
+      const state = stateId(source.find((record) => record.request === request)!.state);
+      const line =
+        `- \`${source[0].lens}\` \`${state}\` \`${request}\` \`${where.slice(1)}\`: \`1\` -> \`2\`; ` +
+        "digest `000000000000`. A reason.";
+      const declared = judge("c1", head, `${HEADING}\n${line}`, source);
+      expect(declared.summary.passed, where).toBe(false);
+      expect(outcomesOf(declared.summary), where).toEqual(["refused"]);
+      expect(declared.summary.engine.failing, where).toBe(undeclared.summary.engine.failing);
+    }
+  });
+
+  it("writes a number set against another type as a word, so its digits are no part of the line", () => {
+    const height: Path = ["legacy", "rays", 1, "paraxialImageHeight"];
+    const gone = withChange("traces", height, () => null);
+    const line = lineOf(gone, SERENAR_RECORDS);
+    expect(line).toContain("`legacy.rays[1].paraxialImageHeight`: `number` -> `null`; digest ");
+    /* Another base, one ulp away, finds the same transition and the same line. */
+    const nudged = withChange("traces", height, (value) => Number(value) * (1 + Number.EPSILON));
+    expect(lineOf(gone, nudged)).toBe(line);
+    expect(judge("c1", gone, describing([line]), nudged).summary.passed).toBe(true);
+    /* A count is exact, and its two values are the transition. */
+    const counted = withChange("traces", [...RAY, "terminalSurfaceIndex"], (index) => Number(index) - 1, LIGHT);
+    expect(lineOf(counted)).toContain("`onAxis.rays[1].terminalSurfaceIndex`: `10` -> `9`; digest ");
+  });
+
+  it("fails a record with more transitions than it sorts into units, and matches no line in it", () => {
+    /* One more than the 20000 discrete and shape differences a run holds for one record. */
+    const flags = (set: number): ComparableRecord => ({
+      lens: SERENAR,
+      state: DEFAULT_STATE,
+      request: "traces",
+      payload: { ok: true, value: { flags: Array.from({ length: 20_001 }, (_, flag) => flag < set), status: "ok" } },
+    });
+    const run = (changeClass: ChangeClass, description: string, count = 20_001) => {
+      const comparison = createDifferentialRun({
+        changeClass,
+        declaredExceptions: [],
+        restricted: false,
+        declaredTransitions: description,
+        catalogLenses: LENS_IDS,
+      });
+      const output = comparison.addLens({
+        lens: SERENAR,
+        dataChange: "unchanged",
+        baseEngine: [flags(0)],
+        headEngine: [flags(count)],
+      });
+      return { summary: comparison.finish(), lines: output.transitionLines };
+    };
+    const line =
+      `- \`${SERENAR}\` \`${STATE}\` \`traces\` \`flags[0]\`: \`false\` -> \`true\`; ` + "digest `000000000000`. Why.";
+    for (const description of ["", `${HEADING}\n${line}`]) {
+      const { summary, lines } = run("c1", description);
+      expect(summary.passed).toBe(false);
+      expect(summary.engine.failing).toBe(20_001);
+      expect(lines).toEqual([]);
+      expect(summary.transitions.overflow).toEqual({ records: 1, samples: [`${SERENAR} traces at ${STATE}`] });
+      expect(summary.failures).toContainEqual(
+        "Declared transitions: no line was matched in 1 record with more than 20000 discrete and shape " +
+          `differences (${SERENAR} traces at ${STATE}).`,
+      );
+      expect(renderSummaryMarkdown(summary, REPORT_CONTEXT)).toContain(
+        "1 record holds more than 20000 discrete and shape",
+      );
+    }
+    expect(outcomesOf(run("c1", `${HEADING}\n${line}`).summary)).toEqual(["overflow"]);
+    /* At the cap every unit is still sorted and printed, and a line is held to its unit as in any record. */
+    const full = run("c1", "", 20_000);
+    expect(full.summary.transitions).toMatchObject({ undeclared: 20_000, overflow: { records: 0 } });
+    expect(full.lines).toHaveLength(20_000);
+    expect(full.summary.transitions.undeclaredLines).toHaveLength(200);
+    const declared = run("c1", `${HEADING}\n${full.lines[0]} Why.`, 20_000);
+    expect(outcomesOf(declared.summary)).toEqual(["matched"]);
+    expect(declared.summary.engine.failing).toBe(19_999);
+  });
+
+  it("gives a lens handed over in parts the verdict of the lens whole", () => {
+    /** One lens through a run, whole or cut after its build constants and again inside its state. */
+    const through = (head: readonly PayloadRecord[], description: string, cuts: readonly number[]) => {
+      const run = createDifferentialRun({
+        changeClass: "c1",
+        declaredExceptions: [],
+        restricted: false,
+        declaredTransitions: description,
+        catalogLenses: LENS_IDS,
+      });
+      const bounds = [0, ...cuts, LIGHT.length];
+      const outputs = bounds.slice(1).map((to, part) =>
+        run.addLens({
+          lens: SERENAR,
+          dataChange: "unchanged",
+          baseEngine: LIGHT.slice(bounds[part], to),
+          headEngine: head.slice(bounds[part], to),
+        }),
+      );
+      return {
+        summary: run.finish(),
+        lines: outputs.flatMap((output) => output.transitionLines),
+        failingRecords: outputs.flatMap((output) => output.failingRecords),
+      };
+    };
+    const second = clip(["offAxis", "rays", 2], CLIPPED);
+    const terminal = moved([...RAY, "terminalPoint", 1], 5e-7, second);
+    const cases: Record<string, [head: readonly PayloadRecord[], description: string, passes: boolean]> = {
+      declared: [second, describing([CLIP_LINE, lineOf(clip(["offAxis", "rays", 2]))]), true],
+      undeclared: [second, "", false],
+      oneOfTwo: [second, describing([CLIP_LINE]), false],
+      mismatched: [second, describing([CLIP_LINE.replace('"clipped"', '"failed"')]), false],
+      unchanged: [structuredClone(LIGHT), describing([CLIP_LINE]), false],
+      withoutNumbers: [terminal, describing([CLIP_LINE, lineOf(clip(["offAxis", "rays", 2]))]), false],
+      elsewhere: [CLIPPED, describing([CLIP_LINE, CLIP_LINE.replace("`traces`", "`layout`")]), false],
+    };
+    for (const [name, [head, description, passes]] of Object.entries(cases)) {
+      const whole = through(head, description, []);
+      expect(whole.summary.passed, name).toBe(passes);
+      /* The traces record is the third of the six: alone in its part, first in it, and last in it. */
+      for (const cuts of [[1, 3], [2, 3], [1, 2, 3, 4, 5], [2], [3]]) {
+        expect(through(head, description, cuts), `${name} cut at ${cuts.join(", ")}`).toEqual(whole);
+      }
+    }
+  });
+
+  it("excuses nothing outside the engine comparison", () => {
+    const description = describing([CLIP_LINE]);
+    const run = (dataChange: DataChange, baseData: readonly PayloadRecord[] | null) => {
+      const comparison = createDifferentialRun({
+        changeClass: "c1",
+        declaredExceptions: [],
+        restricted: false,
+        declaredTransitions: description,
+        catalogLenses: LENS_IDS,
+      });
+      comparison.addLens({ lens: SERENAR, dataChange, baseEngine: LIGHT, headEngine: CLIPPED, baseData });
+      return comparison.finish();
+    };
+    /* The engines differ by the declared clip, and so do the base and head prescriptions on the head engine. A
+     * format-only change must leave every record bit-identical, whatever is declared of the engines. */
+    const format = run("format", LIGHT);
+    expect(outcomesOf(format)).toEqual(["matched"]);
+    expect(format.engine.failing).toBe(0);
+    expect(format.formatOnly.failing).toBe(CLIP_DIFFERENCES);
+    expect(format.failures).toEqual([
+      `Format-only data change: ${CLIP_DIFFERENCES} differences; the records must be bit-identical.`,
+    ]);
+    /* A semantic change that fails a ray blocks, declared or not. */
+    const failed = withChange("traces", [...RAY, "status"], () => "failed", LIGHT);
+    const comparison = createDifferentialRun({
+      changeClass: "c1",
+      declaredExceptions: [],
+      restricted: false,
+      declaredTransitions: describing([lineOf(failed)]),
+      catalogLenses: LENS_IDS,
+    });
+    comparison.addLens({
+      lens: SERENAR,
+      dataChange: "semantic",
+      baseEngine: LIGHT,
+      headEngine: failed,
+      baseData: LIGHT,
+    });
+    const semantic = comparison.finish();
+    expect(outcomesOf(semantic)).toEqual(["matched"]);
+    expect(semantic.failures).toEqual(["Data impact: 1 blocking difference."]);
+
+    /* A record that throws alike on both engines compares nothing, and no line stands in for it. */
+    const thrown = { ok: false as const, error: { name: "TypeError", message: "capture defect" } };
+    const both = (message: string) =>
+      LIGHT.map((record) =>
+        record.request === "traces"
+          ? { ...record, payload: { ...thrown, error: { ...thrown.error, message } } }
+          : record,
+      );
+    const line = lineOf(both("another defect"), both("capture defect"));
+    expect(line).toContain('`error.message`: `"capture defect"` -> `"another defect"`; digest ');
+    const declared = judge("c1", both("another defect"), describing([line]), both("capture defect"));
+    expect(outcomesOf(declared.summary)).toEqual(["matched"]);
+    expect(declared.summary.failures).toEqual([expect.stringContaining("Threw on both engines")]);
+
+    /* A lens the base engine cannot evaluate is compared with nothing, so a line for it declares nothing. */
+    const unevaluated = LIGHT.map((record) => ({ ...record, payload: thrown }));
+    const exception = createDifferentialRun({
+      changeClass: "c1",
+      declaredExceptions: [SERENAR],
+      restricted: false,
+      declaredTransitions: description,
+      catalogLenses: LENS_IDS,
+    });
+    exception.addLens({ lens: SERENAR, dataChange: "unchanged", baseEngine: unevaluated, headEngine: CLIPPED });
+    const uncompared = exception.finish();
+    expect(outcomesOf(uncompared)).toEqual(["uncompared"]);
+    expect(uncompared.failures).toEqual([
+      "Declared transitions: of 1 declared, 1 the lens was not compared. summary.md has each line.",
+    ]);
   });
 });
