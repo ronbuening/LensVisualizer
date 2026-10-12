@@ -6,7 +6,7 @@ import type { ChromaticChannel, TiltPivot } from "../../types/optics.js";
 import { CHANNEL_WAVELENGTH_NM_2, channelIndexResolverForState2 } from "../chromatic/indexResolver.js";
 import type { LensMovementState } from "../lensMovement.js";
 import { formatCacheNumber } from "../math/numerics.js";
-import { intersectRayPlane, type RayPlaneIntersection } from "../math/plane.js";
+import { intersectRayPlane, type RayPlaneIntersection } from "../geometry/intersectPlane.js";
 import { directionFromMeridionalSlope, directionFromSkewSlope, dot, subtract } from "../math/vector.js";
 import type { Plane3, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";

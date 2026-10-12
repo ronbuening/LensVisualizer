@@ -2,7 +2,7 @@
  * Plane geometry helpers shared by exact tracing and perspective-control adapters.
  */
 
-import { dot, subtract } from "./vector.js";
+import { dot, subtract } from "../math/vector.js";
 import type { Plane3, Ray3, Vec3 } from "../types.js";
 
 /** Intersection of a forward ray with a plane. */

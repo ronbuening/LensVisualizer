@@ -456,11 +456,11 @@ can retain real clipped hit points, and the diagram display layer renders only t
 bounds stay finite. The sequential search for a ray's first-surface hit starts `|sag(sd)| + 1` mm ahead of the
 first vertex (`sequentialSurfaceMinT()`, the chief-ray solver's launch plane), not at a far-upstream origin such as
 the diagram lead: aspheric polynomials diverge outside their clear aperture, and a steep wide-field ray would
-otherwise land on that extension. For the same reason `math/intersection.ts` evaluates a conic only inside its domain
+otherwise land on that extension. For the same reason `geometry/intersect.ts` evaluates a conic only inside its domain
 radius (`finiteRadiusLimit()`): samples past it count as no surface rather than as the clamped sag, and when a scan
 step crosses the domain edge the edge is bisected and sampled, so a root just inside it still brackets.
 
-Aspheric hits are then restricted to the authored cap (`selectAsphericCapHit` in `math/intersection.ts`, reached from
+Aspheric hits are then restricted to the authored cap (`selectAsphericCapHit` in `geometry/intersect.ts`, reached from
 both solvers with the surface's `sd`): the first root inside the radial cylinder `r <= sd`, in ray order, wins over
 any polynomial-continuation root outside it, while a ray with no cap root keeps its exterior hit so aperture clipping
 still reports the first clip. The cap is the authored `sd`, independent of the iris and inner holes, and a
@@ -489,11 +489,11 @@ and `isFiniteEvaluation` (additionally requires non-zero derivative, used inside
 grazing meridional ray whose derivative collapses to zero at the optical axis can still anchor a bracket.
 The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite.
 
-Both intersection solvers, `math/intersection.ts` (used by the prepared-state engine in `src/optics/trace/`) and
+Both intersection solvers, `geometry/intersect.ts` (used by the prepared-state engine in `src/optics/trace/`) and
 the legacy `internal/surfaceIntersection.ts`, share the same safeguarded Newton step (rtsafe). A step is accepted
 only inside the sign-changing bracket and when it moves at most half the step before last; otherwise the solver
 bisects, so grazing and steep-rim roots cannot stall. A zero or non-finite derivative bisects instead of failing.
-`math/intersection.ts` takes the sag and slope of each point it evaluates from one `SurfaceProfile.evaluate()` call and
+`geometry/intersect.ts` takes the sag and slope of each point it evaluates from one `SurfaceProfile.evaluate()` call and
 reuses that pair for the roundoff envelope; the legacy solver calls the positional functions.
 
 Both paths share a 72-iteration cap (`INTERSECTION_MAX_ITERATIONS`). A root whose residual cannot reach `1e-12` mm
@@ -507,7 +507,7 @@ The shipped residual target is `INTERSECTION_TOLERANCE = 1e-12` mm for both solv
 tilted-plane path. Sag profiles measure axial `z_ray - (vertexZ + sag)`; tilted planes measure signed normal distance
 `n · (point - planePoint)`. Dividing the latter by `n.z` gives the axial residual only for a nonvertical plane;
 normal distance remains the stable convention near vertical. Analytic hits on surface planes (flat and tilted) validate
-their returned residual, including after bound clamping. `math/plane.ts` `intersectRayPlane`, which lands rays on the
+their returned residual, including after bound clamping. `geometry/intersectPlane.ts` `intersectRayPlane`, which lands rays on the
 image and sensor planes, is not validated yet; it joins this contract with the Stage 3 kernel
 (`OPTICS_ENGINE_REWRITE_SPEC.md`, S3.P2.T1). Parametric plane-bound slack and cap-root equivalence track the requested tolerance;
 neither widens the forward search. The asphere uniqueness certificate also requires coordinate error below the
@@ -516,7 +516,7 @@ requested tolerance. Its separate conservative slope/radius safety margins remai
 Curved solves attempt the raw target at every bracket sample and Newton evaluation. Only when a Newton correction cannot
 change the floating-point ray parameter, or the safeguarded midpoint cannot advance within its floating-point bracket,
 may the residual use the
-operand-based roundoff envelope in `math/intersectionTolerance.ts`. It includes absolute `origin` and `direction*t`
+operand-based roundoff envelope in `geometry/intersectTolerance.ts`. It includes absolute `origin` and `direction*t`
 terms (even when their sum cancels), vertex position, sag operand magnitudes, and transverse error multiplied by a
 conservative slope bound. For aspheres, the absolute-term slope bound also bounds cancelling polynomial terms.
 Analytic planes use the analogous normal-weighted operand bound. Unavailable/nonfinite bounds do not authorize

@@ -12,9 +12,9 @@ import {
   VECTOR_EPSILON,
 } from "../constants.js";
 import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../types.js";
-import { clamp } from "./numerics.js";
-import { dot, normalize, subtract } from "./vector.js";
-import { planeResidualRoundoff, sagResidualRoundoff } from "./intersectionTolerance.js";
+import { clamp } from "../math/numerics.js";
+import { dot, normalize, subtract } from "../math/vector.js";
+import { planeResidualRoundoff, sagResidualRoundoff } from "./intersectTolerance.js";
 
 /** Typed reason for an exact surface-intersection failure. */
 export type SurfaceIntersectionFailureReason =
