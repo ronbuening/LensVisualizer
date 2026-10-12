@@ -590,7 +590,8 @@ describe("engineDiff drift detection", () => {
     /* The field is two-valued by branch of the root finder: exactly the raw target where the residual met it, and
      * a computed envelope above it where the iteration stalled first. A reordered solve can stall where the base
      * converged, with both residuals inside their own tolerance. That is a boundary transition, which a C1 change
-     * may list, so it must be among the discrete transitions and not a number 0.44 relative from its budget. */
+     * may list, so it must be among the discrete transitions. As a number it would stand 0.44 relative against a
+     * budget of 1e-12, with nowhere to be listed. */
     expect(RAW_INTERSECTION_TOLERANCE_MM).toBe(INTERSECTION_TOLERANCE);
     const residual: Path = [...RAY, "hits", "columns", "residual", HIT];
     const tolerance: Path = [...RAY, "hits", "columns", "effectiveTolerance", HIT];

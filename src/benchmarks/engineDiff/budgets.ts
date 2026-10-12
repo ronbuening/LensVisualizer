@@ -155,8 +155,8 @@ export const QUANTITIES = {
    * target or more, is far outside the budget. */
   effectiveTolerance: relative("Effective intersection tolerance", 1e-12, "derived"),
   /* Which of those two a hit was accepted under is a branch of the root finder, not a number that drifts: the
-   * target where the residual met it, the envelope where the iteration could go no further first. A tolerance that
-   * is the raw target on one side only is therefore a discrete transition, listed as one (`toleranceByBranch`). */
+   * target where the residual met it, the envelope where the iteration stalled first. A tolerance that is the raw
+   * target on one side only is therefore a discrete transition, listed as one (`toleranceByBranch`). */
   toleranceBranch: exact("Intersection tolerance, raw target against another", "addition"),
   intersectionResidual: {
     title: "Intersection residual",
