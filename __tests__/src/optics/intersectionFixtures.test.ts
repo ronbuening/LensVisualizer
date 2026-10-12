@@ -49,15 +49,10 @@ interface ExpectedFinding {
  * loosen the fixture.
  */
 const EXPECTED_FINDINGS: readonly ExpectedFinding[] = [
-  // Both roots of the 0.58 mm chord fall between two samples of the 24-sample bracket scan (0.83 mm apart on these
-  // bounds), and the bounds' endpoints share a sign, so neither solver sees a sign change.
-  // Tracked as https://github.com/ronbuening/LensVisualizer/issues/779.
-  {
-    fixture: "sphere-grazing-chord",
-    solver: "production",
-    violations: ["no hit: noBracket"],
-    measured: { ok: false, failureReason: "noBracket", residual: -0.00038026840608391954, iterations: 24 },
-  },
+  // Both roots of the 0.58 mm chord fall between two samples of the legacy solver's 24-sample bracket scan (0.83 mm
+  // apart on these bounds), and the bounds' endpoints share a sign, so it sees no sign change. The production solver
+  // takes the roots from the sphere's quadratic and meets the contract here; the legacy one follows when it
+  // delegates. Tracked as https://github.com/ronbuening/LensVisualizer/issues/779.
   {
     fixture: "sphere-grazing-chord",
     solver: "legacy",
