@@ -630,10 +630,17 @@ describe("canonical prescription: stop radius", () => {
       const built = buildLens(merged).stopPhysSD;
       let engine: keyof typeof counts = schedule !== undefined && built === schedule ? "schedule" : "derived";
       if (built === stop.sd) {
-        /* The radius the lens kept is the authored one, or happens to equal it: shrinking the authored one tells. */
+        /* The radius the lens kept is the authored one, or happens to equal it: shrinking the authored one tells. A
+         * shrunk stop the validator refuses, such as a folded path that no longer reaches its image, is read too. */
         const shrunk = structuredClone(merged);
         shrunk.surfaces.find((surface) => surface.label === "STO")!.sd *= 0.9;
-        if (buildLens(shrunk).stopPhysSD !== built) engine = "authored";
+        let shrunkRadius: number | "refused";
+        try {
+          shrunkRadius = buildLens(shrunk).stopPhysSD;
+        } catch {
+          shrunkRadius = "refused";
+        }
+        if (shrunkRadius !== built) engine = "authored";
       }
       counts[engine]++;
       if (result.prescription.aperture.stopRadius !== engine) {
