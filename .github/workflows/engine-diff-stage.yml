@@ -31,6 +31,13 @@ on:
         description: "Lens ids the base engine cannot build, separated by spaces. A pair is host+converter"
         required: false
         type: string
+      # One declared transition per line, as reports/transitions.md prints it, each with its reason, and nothing
+      # else: a heading among them would end the section the driver reads them from. The form's field takes one
+      # line, so more than one is sent from a file: gh workflow run ... -F transitions=@lines.md
+      transitions:
+        description: "Declared transitions, one bullet per line, each with its reason. Sent from a file with gh"
+        required: false
+        type: string
   push:
     branches: ["engine-diff-stage/**"]
 
@@ -42,8 +49,9 @@ env:
   BASE: ${{ inputs.base || github.sha }}
   TIER: ${{ inputs.tier || 's' }}
   CHANGE_CLASS: ${{ inputs.class || 'c0' }}
-  # Empty on a push: a commit compared with itself has no lens that its base cannot build.
+  # Empty on a push: a commit compared with itself has no lens that its base cannot build, and no transition.
   EXCEPTIONS: ${{ inputs.exceptions }}
+  TRANSITIONS: ${{ inputs.transitions }}
 
 jobs:
   plan:
@@ -65,6 +73,16 @@ jobs:
           case "$count" in *[!0-9]*|???*) echo "::error::shards must be a whole number from 1 to 64"; exit 1 ;; esac
           count="$((10#$count))"
           if [ "$count" -lt 1 ] || [ "$count" -gt 64 ]; then echo "::error::shards must be 1 to 64"; exit 1; fi
+          # The transitions input takes bullets alone. Each shard writes it under one heading, and a heading inside
+          # it would end that section: the bullets behind it would declare nothing, in every shard. It is refused
+          # here, before any shard starts. The line is printed behind a label, so that what was typed never starts
+          # a line of the log, where the runner reads commands.
+          stray="$(printf '%s\n' "$TRANSITIONS" | grep -vE '^[[:space:]]*([-*+][[:space:]].*)?$' | head -n 1 || true)"
+          if [ -n "$stray" ]; then
+            echo "::error::the transitions input takes bullets alone, one to a line; the log has the first line that is not one"
+            printf 'Not a bullet: %s\n' "$stray"
+            exit 1
+          fi
           echo "count=$count" >> "$GITHUB_OUTPUT"
           echo "shards=[$(seq 1 "$count" | paste -sd, -)]" >> "$GITHUB_OUTPUT"
 
@@ -85,8 +103,9 @@ jobs:
           node-version: "24.15.0"
           cache: npm
       - run: npm ci
-      # The driver reads declared exceptions in the form of a pull request description: one bullet per lens id
-      # under the heading. Globbing is off, so an id is only ever a word of the input.
+      # The driver reads what a change declares in the form of a pull request description: under one heading a
+      # bullet per lens id the base engine cannot build, and under another the declared transitions, which are
+      # written as they were typed. Globbing is off, so an id is only ever a word of the input.
       - env:
           SHARD: ${{ matrix.shard }}/${{ needs.plan.outputs.count }}
         run: |
@@ -94,6 +113,9 @@ jobs:
           {
             echo "## Engine-diff exceptions"
             for id in $EXCEPTIONS; do printf -- '- `%s`\n' "$id"; done
+            echo
+            echo "## Engine-diff transitions"
+            printf '%s\n' "$TRANSITIONS"
           } > "$RUNNER_TEMP/engine-diff-exceptions.md"
           node scripts/engine-diff.mjs --base "$BASE" --tier "$TIER" --class "$CHANGE_CLASS" --shard "$SHARD" \
             --exceptions "$RUNNER_TEMP/engine-diff-exceptions.md" --out "$RUNNER_TEMP/engine-diff"
@@ -119,7 +141,10 @@ jobs:
           pattern: engine-diff-tier-*-shard-*
           path: shards
       # A shard is part of a tier, so it passes a declared exception that it never met, and lists it in its summary
-      # as unknown. One that every shard lists was met by none: it names no lens of the tier.
+      # as unknown. One that every shard lists was met by none: it names no lens of the tier. A declared transition
+      # whose record a shard did not ask for is listed there as not judged. One that no shard judged names a record
+      # the tier does not ask for: it is listed here and fails nothing, as in a run of the whole tier. Under C0 no
+      # line is judged by any shard, and each shard has failed on a description that declares one.
       - env:
           RESULT: ${{ needs.shard.result }}
           COUNT: ${{ needs.plan.outputs.count }}
@@ -127,10 +152,17 @@ jobs:
           mkdir -p shards
           summaries="$(find shards -name summary.json | wc -l | tr -d ' ')"
           unmet=""
+          unjudged=""
           if [ "$summaries" = "$COUNT" ]; then
             unmet="$(find shards -name summary.json -exec cat {} + | jq -rs --argjson count "$COUNT" \
               '[.[].exceptions.unknown[]] | group_by(.) | map(select(length == $count) | .[0]) | join(" ")')"
+            if [ "$CHANGE_CLASS" != "c0" ]; then
+              unjudged="$(find shards -name summary.json -exec cat {} + | jq -rs --argjson count "$COUNT" \
+                '[.[] | [.transitions.declared[]? | select(.outcome == "notJudged") | .line] | unique | .[]]
+                  | group_by(.) | map(select(length == $count) | .[0]) | .[]')"
+            fi
           fi
+          declared="$(printf '%s\n' "$TRANSITIONS" | grep -cE '^[[:space:]]*[-*+][[:space:]]' || true)"
           {
             echo "## Engine diff stage: $RESULT"
             echo
@@ -138,6 +170,18 @@ jobs:
             echo
             echo "Declared exceptions: ${EXCEPTIONS:-none}."
             if [ -n "$unmet" ]; then echo; echo "Declared and met by no shard: $unmet."; fi
+            echo
+            echo "Declared transitions: $declared."
+            if [ "$CHANGE_CLASS" = "c0" ] && [ "$declared" != "0" ]; then
+              echo
+              echo "A C0 run declares none: every shard fails on them, and none is judged."
+            fi
+            if [ -n "$unjudged" ]; then
+              echo
+              echo "Declared and judged by no shard, since the tier asks for no such record:"
+              echo
+              printf '%s\n' "$unjudged"
+            fi
             if [ "$summaries" != "$COUNT" ]; then echo; echo "Summaries of $summaries of ${COUNT:-no} shards."; fi
           } >> "$GITHUB_STEP_SUMMARY"
           [ "$RESULT" = "success" ] || exit 1

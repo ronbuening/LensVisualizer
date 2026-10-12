@@ -34,11 +34,16 @@ export type ChangeClass = "c0" | "c1" | "c2" | "c3";
  *   the two values are not differenced. Each must lie within the tolerance its solver accepted it under: the
  *   effective tolerance recorded beside a hit, or the one tolerance of a solve. A field that restates a solve's
  *   residual in another frame is held to a bound of its own.
+ * - `share`: the field is already a residual as a share of the tolerance it was accepted under: the largest inside a
+ *   digested trace. Like a residual it is not differenced. Where the two sides differ, the head's own value must be
+ *   at most the budget, 1: the head is the engine a change proposes, and a finite breach the base alone carries is
+ *   not one the change made. An infinite share on either side is compared exactly, as every non-finite value is,
+ *   and a share on one side against none on the other is a discrete difference.
  * - `exact`: `Object.is`. A difference is a discrete transition, listed in the report.
  * - `iterations`: a solver's step or evaluation count. Above C0 a change is tallied as a histogram and does not
  *   fail by itself; what it did to the solver's output shows in that output's own class.
  */
-export type ComparisonKind = "absolute" | "relative" | "slope" | "residual" | "exact" | "iterations";
+export type ComparisonKind = "absolute" | "relative" | "slope" | "residual" | "share" | "exact" | "iterations";
 
 /** Where a class and its budget come from. */
 export type QuantityOrigin =
@@ -143,11 +148,30 @@ export const QUANTITIES = {
 
   countRatio: exact("Count ratio", "addition"),
   binnedStatistic: exact("Binned statistic", "addition"),
-  effectiveTolerance: exact("Effective intersection tolerance", "addition"),
+  /* The tolerance a hit was accepted under is the engine's raw target, 1e-12 mm, except at a stalled root. There it
+   * is a computed float, the larger of that target and a roundoff envelope: 16·ε times the sum of the ray's
+   * absolute operands. Reordered arithmetic moves the last bits of that sum, so above C0 the field takes the plan's
+   * one relative budget. It is never below 1e-12 mm, so it needs no floor, and a relaxed tolerance, twice the
+   * target or more, is far outside the budget. */
+  effectiveTolerance: relative("Effective intersection tolerance", 1e-12, "derived"),
+  /* Which of those two a hit was accepted under is a branch of the root finder, not a number that drifts: the
+   * target where the residual met it, the envelope where the iteration stalled first. A tolerance that is the raw
+   * target on one side only is therefore a discrete transition, listed as one (`toleranceByBranch`). */
+  toleranceBranch: exact("Intersection tolerance, raw target against another", "addition"),
   intersectionResidual: {
     title: "Intersection residual",
     unit: "of its effective tolerance",
     kind: "residual",
+    c1: 1,
+    c2: null,
+    origin: "addition",
+  },
+  /* What a digest keeps of the residuals behind it: the largest, as a share of the effective tolerance of its own
+   * hit. `payload.ts` computes it, hit by hit, as the comparison reads a residual in a full trace. */
+  nestedResidualShare: {
+    title: "Largest residual in a digested trace",
+    unit: "of its effective tolerance",
+    kind: "share",
     c1: 1,
     c2: null,
     origin: "addition",
@@ -304,6 +328,25 @@ export function hitColumnEntries(leaf: LeafContext, column: string): [base: unkn
 const hitByClipFlag: QuantitySelector = (leaf) => {
   const [base, head] = hitColumnEntries(leaf, "clipped");
   return base === false && head === false ? "landing" : "clippedHit";
+};
+
+/*
+ * The tolerance the engine's root finder asks of every intersection, in mm: `INTERSECTION_TOLERANCE` in
+ * `src/optics/constants.ts`, copied because this module imports nothing. A hit records exactly this number as its
+ * effective tolerance unless its root stalled. The harness tests hold the copy to the engine's constant.
+ */
+export const RAW_INTERSECTION_TOLERANCE_MM = 1e-12;
+
+/* An effective tolerance is the raw target or a stall envelope above it. Between two envelopes it is a number at
+ * the class's relative budget. The raw target on one side alone is a hit that stalled on one engine and converged
+ * on the other, each residual still held to its own tolerance: a boundary transition, which belongs among the
+ * discrete ones and not among the numbers beyond budget. A tolerance relaxed from the target is the same finding.
+ * The largest tolerance a digest keeps of the hits behind it is read the same way. */
+const toleranceByBranch: QuantitySelector = (leaf) => {
+  const depth = leaf.keys.length - 1;
+  const atTarget = (side: readonly unknown[]) =>
+    memberOf(side[depth], leaf.keys[depth]) === RAW_INTERSECTION_TOLERANCE_MM;
+  return atTarget(leaf.base) === atTarget(leaf.head) ? "effectiveTolerance" : "toleranceBranch";
 };
 
 /** The object a ray-level leaf belongs to: its parent, or its grandparent for a component of a point. */
@@ -494,7 +537,7 @@ const TABLE: readonly TableRow[] = [
   [hitByClipFlag, ["traces:**.hits.columns.point[][]", "traces:**.hits.columns.radius[]"]],
   ["directionCosine", ["traces:**.hits.columns.{normal,incidentDirection,outgoingDirection}[][]"]],
   ["intersectionResidual", ["traces:**.hits.columns.residual[]"], { tolerance: "effectiveTolerance" }],
-  ["effectiveTolerance", ["traces:**.hits.columns.effectiveTolerance[]"]],
+  [toleranceByBranch, ["traces:**.hits.columns.effectiveTolerance[]"]],
   ["count", ["traces:**.hits.count", "traces:**.hits.columns.surfaceIndex[]"]],
   /* The RuntimeLens stack tracer, before the rows that go by member name. Its drawn points are the hits. */
   ["landing", ["traces:legacy.rays[].pts[][]", "traces:legacy.rays[].paraxialImageHeight"]],
@@ -576,8 +619,12 @@ const TABLE: readonly TableRow[] = [
       "analysis:jobs.cardinalElements.value.distances.*.*",
     ],
   ],
-  /* The digest that stands in for a nested trace keeps its hit count readable. */
+  /* The digest that stands in for a nested trace keeps its hit count readable, the largest residual behind it as a
+   * share of that hit's effective tolerance, and the largest of those tolerances. A share says nothing unless the
+   * tolerance it is a share of is held too, and that one is held as the tolerance of a hit in a full trace is. */
   ["count", ["analysis:**.hitCount"]],
+  ["nestedResidualShare", ["analysis:**.residualShare"]],
+  [toleranceByBranch, ["analysis:**.largestTolerance"]],
   /* Group movement is layout arithmetic on a sample grid; nothing in it is traced. The job names are single
    * members that contain a dot ("groupMovement.focus"). */
   [

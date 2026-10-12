@@ -311,7 +311,41 @@ readings are fixed until the canonical prescription replaces it:
    description, one backticked lens id per bullet, and the CI job passes the description to `--exceptions`. A stage
    run takes the same ids through the workflow's `exceptions` input. The run fails when the lenses it could not
    compare differ from that list in either direction.
-5. **No silent pass.**
+5. **Declared transitions.** Above C0, a status, count, label or shape that differs between the two engines fails the
+   run unless the PR declares it, and a declaration the run does not find fails it too.
+   - **Where.** Under a `## Engine-diff transitions` heading in the PR description, one bullet per unit. The CI job
+     passes the description to `--exceptions`, and the driver reads both headings from it. A stage run takes the
+     same bullets through the workflow's `transitions` input, which the maintainer assembles by hand from the PRs
+     merged since its base.
+   - **Unit.** A difference belongs to the unit its payload path names through its first array index, with any
+     index directly behind it: one ray of a fan, one solve, one field sample. A path with no index is its own unit.
+   - **Line.** One bullet declares one unit of one record: the lens id, the state id, the request, the path and the
+     base and head values of one discrete or shape difference of the unit, a digest of all of them, optionally the
+     word `numbers`, and a reason. The harness chooses the named difference and writes the line of every undeclared
+     unit to `reports/transitions.md` with the reason left out. A bullet that cannot be read, or has no reason,
+     stops the run before it captures anything.
+   - **What a line excuses.** The discrete and shape differences of its unit, when the named difference and the
+     digest are what the run found. With `numbers` it also excuses, in that unit only, numbers beyond budget in the
+     fields that have no counterpart once a ray ends on another surface or stops: the terminal point and direction,
+     the image-plane landing and slopes, the medium the ray ended in, and the legacy tracer's `pts`, `ghostPts`,
+     `y`, `u` and transmission. `numbers` counts only where the unit's own differences show that the ray ended
+     elsewhere, and it permits without asserting. A line never excuses an aggregate, a number in any other field, a
+     non-finite mismatch, a number with no class or a residual outside its tolerance.
+   - **Common hits and the head side.** Where a ray's hit columns changed length, the hits both sides still have
+     are compared under their usual budgets. In every unit with a discrete or shape difference the head side is also
+     checked alone: every hit's residual within its `effectiveTolerance`, every converged solve's residual within
+     its solver's tolerance, and no new non-finite number. A unit that fails either check cannot be declared.
+   - **Not declarable.** A record or an analysis job that starts or stops throwing, and any discrete or shape
+     difference in a build, composition or layout record.
+   - **Both directions.** The run fails on a difference in a unit no line declares; on a line whose named difference
+     or digest is not what the run found; on a line for a compared record in which that unit did not change; and on
+     a line whose lens the catalog does not have or the base cannot build. A line for a record outside the run's
+     tier, shard or lens is listed and not judged.
+   - **Classes.** A C0 PR declares none, and any line fails a C0 run. Under C3 the lines are matched and reported,
+     and gate nothing.
+   - **Limits.** A PR description holds about 250 lines. What a transition does to a number computed from many rays
+     is never excused, and whether such a number may be declared is left open (see S1.P2.T2).
+6. **No silent pass.**
    - A record that fails to capture on both engines fails the run. A job that throws inside an analysis record is a
      discrete outcome, compared like any other.
    - The permitted converter pairs are computed on both engines from the head prescriptions, and a difference fails
@@ -323,6 +357,9 @@ readings are fixed until the canonical prescription replaces it:
 - Stage gates compare against the current anchor, catching drift that accumulates across steps that each passed
   alone. Each quantity uses the loosest budget among the change classes merged since the anchor. The Stage 2 gate is
   the one exception: its base is the promotion merge commit (below).
+- Declared transitions do not accumulate by themselves. A stage run is given the lines of the PRs merged since its
+  base. Where it meets a state no PR run asked, or a unit two steps changed in turn, it prints the line itself, and
+  the gate record says which step each such line belongs to.
 - A data correction (a C3 on lens data) never moves the anchor. Cross-evaluation keeps comparing its new prescription
   on the anchor's engine.
 - An engine C3 moves the anchor only after a cumulative comparison against the previous anchor passes: Tier S, every
@@ -363,6 +400,9 @@ Every PR declares exactly one change class:
   picks up a changed label. Only the maintainer applies a label above C0.
 - **Golden values.** Golden and analytic test tolerances are ceilings. Only a C3 PR may change a golden value or loosen
   a tolerance, and it must say why.
+  - **A pin on rounding-level bits is not a golden value.** A test that holds a rounding-dependent value bit for bit
+    may be updated by a C1 step when the new value is within the quantity budget of the old one. The PR lists each
+    pin with its file, its old value and its new one.
 
 ### Quantity budgets
 
@@ -382,7 +422,7 @@ are unmeasured. Loosening a budget later is itself a C3 change.
 | Analysis lengths (focus shifts, blur, field curves, pupil shifts) | 1e-8 mm | The governing solver criterion, propagated by a finite-difference derivative the harness computes |
 | Percentages (distortion, illumination) | 1e-8 points | As above |
 | MTF modulation | 1e-7 | As above, and never looser than 1e-4 |
-| Statuses, counts, sample positions and order, labels, warnings | exact | exact unless listed one by one |
+| Statuses, counts, sample positions and order, labels, warnings | exact unless declared | exact unless declared |
 
 How `budgets.ts` applies the table:
 
@@ -391,13 +431,43 @@ How `budgets.ts` applies the table:
 - **Relative budgets** bound `|a − b|` by the budget times the larger magnitude. Lengths also have an absolute floor of
   1e-12 mm, so a length at zero has a bound. Ratios such as f-numbers and the Petzval sum have no floor.
 - **Fields the table does not name.** Layout lengths, refractive indices and prescription values the engine hands back
-  take the first-order budget. Slopes are compared as direction cosines. `effectiveTolerance`, count ratios and binned
-  statistics are exact.
+  take the first-order budget. Slopes are compared as direction cosines. Count ratios and binned statistics are exact.
+- **A hit's `effectiveTolerance`** is bit-exact under C0, as every number is, and held to 1e-12 relative under C1 and
+  C2, with no absolute floor.
+  - It is the 1e-12 mm target except at a stalled root, where it is a computed float, max(1e-12, 16·ε·scale) over the
+    ray's operands, whose last bits move when arithmetic is reordered. A relaxed tolerance is far outside that budget.
+  - Which of the two a hit was accepted under is a branch of the root finder. A tolerance that is exactly the target
+    on one side and not on the other is a discrete transition, declared with the others, and not a number beyond
+    budget.
 - **Residuals are contract checks,** not differences. A hit's residual is held to the `effectiveTolerance` beside it,
   and a solver's residual to that solver's own tolerance where the solve converged on both sides.
 - **Step-function outputs.** The result of a bisection or an optimizer takes the same budget as any other field of its
   kind. When it fails, the report names the solver and gives the difference in solver quanta, so a boundary transition
   can be told from drift.
+- **Nested traces: contract and flags only.** A trace, a posed pair of traces or a pupil bundle nested in an analysis
+  result is written as a digest, `{ status, hitCount, hash, outcome, residualShare, largestTolerance }`.
+  - `hash` covers the whole normalized content. `outcome` is a second hash of the same content with every budgeted
+    number masked, so it changes exactly when something discrete does: a member present or absent, an array length,
+    a string, a boolean, a null, a NaN or infinity, a count, a surface index.
+  - `residualShare` is the largest |residual| / `effectiveTolerance` of any hit inside, and `largestTolerance` the
+    largest `effectiveTolerance` inside. Each is null when no hit carries it.
+  - Under C1 and C2, `status`, `hitCount` and `outcome` are exact, and a difference in `outcome` is a discrete
+    transition at the digest's path. `residualShare` is a contract check: where it differs between the two sides,
+    the head's value must be at most 1. `largestTolerance` is held as a hit's `effectiveTolerance` is, so the head
+    cannot meet that contract by relaxing the tolerance.
+  - A `hash` that changed while those hold is reported and not budgeted. How far the coordinates and directions
+    inside a nested trace moved is not judged, nor is an effective tolerance below the largest of its trace: that
+    is the accepted limit of this rule.
+- **Pupil constants.** The pupil positions and sizes built from the engine's two near-axis rays, one at a height of
+  1e-4 mm and one through the first vertex at a slope of 1e-4, keep the first-order budget.
+  - The budget is not divided by 1e-4. A hit that moves along its ray inside the 1e-12 mm contract moves a stop
+    height by that distance times a slope, and both rays' slopes scale with 1e-4, which the quotient removes.
+  - When one of those rays fails, the engine takes another value with no flag in any payload. The `traces` record
+    therefore traces two such rays as probes on each tracer, and a probe that stops returning is an exact status
+    difference.
+  - On the prepared tracer the probes are the engine's own launches. On the stack tracer they are the same two ray
+    lines through that tracer's public entry, so a basis ray that fails only from the engine's own start point is
+    not shown. A folded lens has no probe.
 - **Iteration and evaluation counts** are exact under C0, and above it are reported as a histogram of changes.
 - **Non-finite values** compare exactly in every class.
 - **A class is required only above C0.** Under C0 every number is compared bit for bit, classed or not. Under C1 or
@@ -430,9 +500,9 @@ has passed: after the program, engine changes are not compared between two commi
 | `captureEntry.ts` | Vite SSR entry, built like the rendering benchmark. It reaches the engine only through `seamAdapter.ts`, and evaluates prescriptions supplied as serialized input rather than reading its own catalog. It also exports its own catalog as serialized prescriptions, for the driver. |
 | `seamAdapter.ts` | Resolves each engine capability from a list of candidate modules and exports, so the same entry runs at both refs when an export is renamed or a module is missing. Today full hit records come only through `compat.ts`, and perspective jobs through `perspective/index.ts`; both are seam-guard legacy entries. A PR that changes the seam updates this adapter in the same PR. |
 | `requests.ts` | Defines the tiers as deterministic lens × state × request lists. |
-| `payload.ts` | Normalizes payloads: numbers unrounded, in a tagged encoding that keeps `-0`, `NaN` and the infinities; an `undefined` member treated as absent; arrays in authored order; statuses, counts and labels as discrete fields. A per-ray trace nested inside an analysis result is reduced to its status, hit count and a digest: exact under C0, reported but not budgeted above it. It also computes each prescription's semantic fingerprint. |
+| `payload.ts` | Normalizes payloads: numbers unrounded, in a tagged encoding that keeps `-0`, `NaN` and the infinities; an `undefined` member treated as absent; arrays in authored order; statuses, counts and labels as discrete fields. A per-ray trace nested inside an analysis result is reduced to its status, its hit count, a digest, an outcome digest of its discrete members, its largest residual share and its largest effective tolerance. It also computes each prescription's semantic fingerprint. |
 | `budgets.ts` | Holds the quantity table above, keyed by payload path. |
-| `compare.ts` | Reports violations, discrete transitions and the largest difference per quantity. |
+| `compare.ts` | Reports violations, discrete transitions and the largest difference per quantity, and holds the declared transitions to what a run finds. |
 
 `scripts/engine-diff.mjs --base <ref> [--tier p|s|f] [--class c0|c1|c2|c3] [--shard i/n] [--lens <id>]
 [--exceptions <file>] [--out <dir>]` runs in six steps, by default Tier P under C0:
@@ -444,8 +514,11 @@ has passed: after the program, engine changes are not compared between two commi
 4. Build both captures and run the comparisons in
    [Anchors and comparison coverage](#anchors-and-comparison-coverage).
 5. Write NDJSON payloads, the data-impact report and the list of uncompared lenses to `--out`, or to a temporary
-   directory. The small reports sit in a `reports/` folder of their own, which CI uploads.
-6. Exit non-zero on any violation, or when the uncompared lenses differ from the declared exceptions.
+   directory. The small reports sit in a `reports/` folder of their own, which CI uploads. Above C0 they include
+   `transitions.md`: a line to paste for every undeclared unit, the units no line can declare, and what each matched
+   line covers.
+6. Exit non-zero on any violation, when the uncompared lenses differ from the declared exceptions, or when the
+   transitions found differ from the declared ones.
 
 Both captures are built with the head's Vite and no config file, and the capture bundle imports no package, so the
 base worktree needs nothing installed.
@@ -984,13 +1057,20 @@ promotion, so the V2 authoring documents must not reach it earlier.
     - The C1 noise floor was measured once, by reordering the even asphere terms in sag evaluation, and the budget
       table finalized from it. The perturbation is not committed.
   - **Left open.** Each item is settled in the step named, the first that needs it:
-    - **S3.P1.T1, the first C1 step.**
-      - How a nested per-ray trace is judged above C0. Stored as a digest, it is reported and not budgeted, so a
-        change confined to those traces passes a C1 run.
-      - How a PR declares an approved discrete transition. Until then any transition fails a C1 or C2 run.
-      - The pupil constants. They come from real rays launched 1e-4 mm off axis, so a contract-legal 1e-12 mm hit
-        difference moves them by about 1e-8 relative, beyond the first-order budget. The sag perturbation did not
-        show this; closed-form roots may.
+    - **S3.P1.T1, the first C1 step,** settled these on 2026-10-12, in the harness PR that precedes its engine change.
+      Each rule is stated where it applies: nested traces, `effectiveTolerance` and the pupil constants under
+      [Quantity budgets](#quantity-budgets), and declared transitions as rule 5 of "What a differential run
+      compares".
+      - **`effectiveTolerance` went from exact to 1e-12 relative above C0.** That is this settlement and not a later
+        loosening: the PR changes no engine and moves no anchor, and it does not count towards the class of a stage
+        or promotion run.
+      - **The pupil constants' premise did not hold.** The plan expected a 1e-12 mm hit difference to move them by
+        about 1e-8 relative. Both basis rays scale with 1e-4 and the quotient removes it, so the budget stays. This
+        rests on a derivation and on S3.P1.T1's own run, which moves aspheric hits only. S3.P2.T1's run, the first
+        to move every curved hit, records their largest difference, and the rule is revisited there if it fails.
+      - **Still open: a number with no discrete evidence.** An aggregate that moves because one boundary sample did,
+        or a bisected output that moves by one quantum, has no transition to declare. It is settled when a run
+        first shows one.
     - **S3.P2.T4, the first C2 step.** The C2 budgets. `--class c2` applies the C1 table until this step adds the
       propagated criteria.
     - **The first engine C3.** The cumulative comparison of the anchor rule. `--class c3` reports engine differences
@@ -1421,6 +1501,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     - analytic sag and slope for each kind;
     - each odd and even term in isolation;
     - finite differences checked away from the conic-domain clamp (decision 2026-08-04).
+  - **Harness, in its own C0 PR ahead of the engine change:** the rules S1.P2.T2 left open for this step, in
+    `budgets.ts`, `payload.ts`, `captureEntry.ts`, `compare.ts`, the driver and the stage workflow's `transitions`
+    input, with their tests. The prepared-tracer probe copies the engine's own launch, so a step that changes that
+    launch changes the copy with it.
   - **Gate:** C1.
 - **S3.P2.T1 Closed-form plane, sphere and conic roots.**
   - **Change:** `geometry/intersect.ts` gains closed-form roots under the contract:
@@ -1817,6 +1901,11 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 20 | The Planar generator is a re-derivation, and the comparator export waits for Stage 3 | S1.P4.T2; [Independent references](#independent-references) |
 | 25 | The commit that closes the catalog migration becomes the anchor for Stages 6 to 8, tagged `optics-rewrite/s2` | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
 | 26 | The conversion does not move a lens page's modified date | S2.P2.T2 |
+| 27 | Above C0 a nested trace is judged by its contract and its flags; how far its coordinates moved is reported and not budgeted | [Quantity budgets](#quantity-budgets) |
+| 28 | A PR declares its discrete transitions in its description, and a stage run takes them as an input assembled by hand | [Anchors and comparison coverage](#anchors-and-comparison-coverage), rule 5 |
+| 29 | A hit's `effectiveTolerance` is held to 1e-12 relative above C0 | [Quantity budgets](#quantity-budgets) |
+| 30 | The pupil constants keep the first-order budget, and two near-axis rays are probed on each tracer | [Quantity budgets](#quantity-budgets) |
+| 31 | A C1 step may update a test that pins rounding-level bits, listing each pin | [Numerical contract](#numerical-contract) |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

@@ -6,7 +6,7 @@
  * reproducible, failures are recorded, fingerprints follow the engine's authority rules), never about a lens.
  */
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   captureRecords,
   exportCatalog,
@@ -47,6 +47,7 @@ import {
   MTF_SPECTRA,
   MTF_VARIANTS,
   MTF_VARIANT_GRID,
+  NEAR_AXIS_PROBE_DELTA,
   ON_AXIS_PUPIL_FRACTIONS,
   SEEDED_DRAW_COUNT,
   STOPPED_DOWN_T,
@@ -321,7 +322,17 @@ describe("engineDiff result encoder", () => {
       ],
     }) as { samples: Record<string, unknown>[] };
 
-    const digest = (hitCount: number) => ({ status: "ok", hitCount, hash: expect.stringMatching(/^[0-9a-f]{64}$/) });
+    /* Every residual of the fixture is zero, so the largest share of a tolerance is too, and every hit was
+     * accepted at 1e-12 mm. */
+    const hex = expect.stringMatching(/^[0-9a-f]{64}$/);
+    const digest = (hitCount: number) => ({
+      status: "ok",
+      hitCount,
+      hash: hex,
+      outcome: hex,
+      residualShare: 0,
+      largestTolerance: 1e-12,
+    });
     expect(encoded.samples[0]).toEqual({
       status: "usable",
       sensorPoint: [0, 1, 2],
@@ -359,6 +370,153 @@ describe("engineDiff result encoder", () => {
     /* The sequential tracer writes `clipReason: undefined` on every hit; the generalized tracer omits the key. */
     expect(hashOf(trace(5, {}, { clipReason: undefined }))).toBe(base);
     expect(hashOf(trace(5, {}, { clipReason: "semi-diameter" }))).not.toBe(base);
+  });
+
+  it("writes an outcome beside the hash that follows the discrete members alone", () => {
+    type Digest = { hash: string; outcome: string; hitCount: number };
+    const digestOf = (value: object) => createResultEncoder()(value) as unknown as Digest;
+    const base = digestOf(trace(5));
+    expect(base.outcome).toMatch(/^[0-9a-f]{64}$/);
+    expect(base.outcome).not.toBe(base.hash);
+
+    /* Numbers a budget would be set on: a coordinate by one ulp or by a millimetre, an effective tolerance in its
+     * last bits, and the sign of a zero. Each changes the hash and leaves the outcome. */
+    const budgeted = [
+      trace(5 * (1 + Number.EPSILON)),
+      trace(6),
+      trace(5, {}, { effectiveTolerance: 1e-12 * (1 + 2 * Number.EPSILON) }),
+      trace(5, {}, { residual: 0 }),
+    ];
+    for (const moved of budgeted) {
+      expect(digestOf(moved).hash).not.toBe(base.hash);
+      expect(digestOf(moved).outcome).toBe(base.outcome);
+    }
+
+    /* Everything else: a flag, a status, a reason, a label, a number that is no longer finite or no longer there,
+     * a surface index, a member that came or went, and one hit fewer. Each changes the outcome. */
+    const discrete: Record<string, object> = {
+      flag: trace(5, {}, { clipped: true }),
+      status: { ...trace(5), status: "clipped" },
+      reason: trace(5, { terminationReason: "clipped" }),
+      label: trace(5, {}, { clipReason: "semi-diameter" }),
+      nonFinite: trace(5, {}, { residual: Number.NaN }),
+      infinite: trace(5, {}, { point: [0, Number.POSITIVE_INFINITY, 5] }),
+      nulled: trace(5, {}, { residual: null, effectiveTolerance: null }),
+      index: trace(5, {}, { surfaceIndex: 1 }),
+      member: { ...trace(5), reachedImagePlane: false },
+      shorter: { ...trace(5), hits: [hit(5)] },
+    };
+    const unmoved = Object.keys(discrete).filter((change) => digestOf(discrete[change]).outcome === base.outcome);
+    expect(unmoved).toEqual([]);
+    expect(new Set(Object.values(discrete).map((value) => digestOf(value).outcome)).size).toBe(10);
+
+    /* The outcome of a carrier follows the outcomes of the carriers inside it, never their hashes: a posed pair
+     * and a pupil bundle keep theirs when a coordinate moves, and lose it to a flag, or to the status of one ray
+     * of the bundle while every hit count stands. */
+    const posed = (ray: object) => ({ localTrace: ray, cameraTrace: ray, reachedSensor: true });
+    const bundle = (ray: object, status = "usable") => ({
+      pupilBundle: {
+        kind: "circular",
+        samples: [{ status, pupilUv: { u: 0.5, v: 0 }, weight: 0.5, trace: posed(ray) }],
+      },
+    });
+    const bundleOf = (value: object) =>
+      (createResultEncoder()(value) as unknown as { pupilBundle: Digest }).pupilBundle;
+    for (const [carrier, digest] of [
+      [posed, digestOf],
+      [bundle, bundleOf],
+    ] as [(ray: object) => object, (value: object) => Digest][]) {
+      const whole = digest(carrier(trace(5)));
+      expect(digest(carrier(trace(6))).hash).not.toBe(whole.hash);
+      expect(digest(carrier(trace(6))).outcome).toBe(whole.outcome);
+      expect(digest(carrier(trace(5, {}, { clipped: true }))).outcome).not.toBe(whole.outcome);
+    }
+    const missed = bundleOf(bundle(trace(5), "missed-sensor"));
+    expect(missed.hitCount).toBe(bundleOf(bundle(trace(5))).hitCount);
+    expect(missed.outcome).not.toBe(bundleOf(bundle(trace(5))).outcome);
+    /* A sample's pupil position is where the ray was asked, and is kept; its weight is a ratio, and is masked. */
+    const sampled = (sample: object) =>
+      bundleOf({ pupilBundle: { kind: "circular", samples: [{ pupilUv: { u: 0.5, v: 0 }, weight: 0.5, ...sample }] } });
+    expect(sampled({ pupilUv: { u: 0.5 * (1 + Number.EPSILON), v: 0 } }).outcome).not.toBe(sampled({}).outcome);
+    expect(sampled({ weight: 0.25 }).outcome).toBe(sampled({}).outcome);
+  });
+
+  it("writes the largest residual share of a tolerance that any hit inside a carrier takes", () => {
+    /* Shares that are powers of two, so each quotient is exact. */
+    const tolerance = 1e-12;
+    const ray = (z: number, share: number | null, heldTo: number | null = tolerance) =>
+      trace(z, {}, { residual: share === null ? null : share * tolerance, effectiveTolerance: heldTo });
+    const shareOf = (value: object) => (createResultEncoder()(value) as { residualShare: unknown }).residualShare;
+    expect(shareOf(ray(5, 0.5))).toBe(0.5);
+    expect(shareOf(ray(5, -0.25))).toBe(0.25);
+    expect(shareOf(ray(5, 2))).toBe(2);
+    /* The share is of the hit's own tolerance, which a stalled root relaxes. */
+    expect(shareOf(ray(5, 2, 4 * tolerance))).toBe(0.5);
+    expect(shareOf({ ...ray(5, 0.5), hits: [hit(5, { residual: tolerance }), hit(6, { residual: -0 })] })).toBe(1);
+    /* A fallback point carries neither member; a trace of such points alone has no share to give. */
+    expect(shareOf(ray(5, null, null))).toBeNull();
+    expect(shareOf({ ...ray(5, 0.5), hits: [] })).toBeNull();
+    /* A residual with no contract to meet has broken it, as the comparison reads a hit it can see. */
+    expect(shareOf(ray(5, Number.NaN))).toBe("$+Inf");
+    expect(shareOf(ray(5, 0.5, 0))).toBe("$+Inf");
+
+    /* A carrier takes the largest of the carriers inside it, whether it digested them itself or found them
+     * digested already: here the bundle comes first, and the posed pair after it shares its quiet trace. */
+    const [quiet, loud] = [ray(5, 0.125), ray(7, -0.5)];
+    const encoded = createResultEncoder()({
+      fieldSample: {
+        pupilBundle: {
+          kind: "circular",
+          samples: [
+            { trace: { localTrace: quiet, cameraTrace: quiet } },
+            { trace: { localTrace: quiet, cameraTrace: loud } },
+          ],
+        },
+      },
+      chiefTrace: { localTrace: quiet, cameraTrace: quiet },
+      later: { localTrace: loud, cameraTrace: ray(9, null, null) },
+    }) as unknown as Record<string, { residualShare: unknown; pupilBundle: { residualShare: unknown } }>;
+    expect(encoded.fieldSample.pupilBundle.residualShare).toBe(0.5);
+    expect(encoded.chiefTrace.residualShare).toBe(0.125);
+    expect(encoded.later.residualShare).toBe(0.5);
+  });
+
+  it("writes the largest effective tolerance of any hit inside a carrier", () => {
+    /* A residual share is of the tolerance its own hit recorded, so the tolerance has to be held as well. */
+    const ray = (z: number, ...tolerances: (number | null)[]) => ({
+      ...trace(z),
+      hits: tolerances.map((effectiveTolerance, index) => hit(z + index, { effectiveTolerance })),
+    });
+    const toleranceOf = (value: object) =>
+      (createResultEncoder()(value) as { largestTolerance: unknown }).largestTolerance;
+    expect(toleranceOf(ray(5, 1e-12, 1e-12))).toBe(1e-12);
+    expect(toleranceOf(ray(5, 1e-12, 3.7e-12, 2e-12))).toBe(3.7e-12);
+    /* A fallback point has no tolerance; a trace of such points alone, or of no hits, has none to give. */
+    expect(toleranceOf(ray(5, null, 2e-12))).toBe(2e-12);
+    expect(toleranceOf(ray(5, null, null))).toBeNull();
+    expect(toleranceOf(ray(5))).toBeNull();
+    /* A tolerance that is not a number at all stays one: it is no bound, and no larger one may stand in for it. */
+    expect(toleranceOf(ray(5, 1e-12, Number.NaN, 2e-12))).toBe("$NaN");
+
+    /* A carrier takes the largest of the carriers inside it, digested there or found digested already, as it
+     * takes their largest share. */
+    const [quiet, stalled] = [ray(5, 1e-12), ray(7, 1e-12, 5e-12)];
+    const encoded = createResultEncoder()({
+      fieldSample: {
+        pupilBundle: {
+          kind: "circular",
+          samples: [
+            { trace: { localTrace: quiet, cameraTrace: quiet } },
+            { trace: { localTrace: quiet, cameraTrace: stalled } },
+          ],
+        },
+      },
+      chiefTrace: { localTrace: quiet, cameraTrace: quiet },
+      later: { localTrace: stalled, cameraTrace: ray(9, null) },
+    }) as unknown as Record<string, { largestTolerance: unknown; pupilBundle: { largestTolerance: unknown } }>;
+    expect(encoded.fieldSample.pupilBundle.largestTolerance).toBe(5e-12);
+    expect(encoded.chiefTrace.largestTolerance).toBe(1e-12);
+    expect(encoded.later.largestTolerance).toBe(5e-12);
   });
 
   it("records a throw as an outcome with the error's discriminating member", () => {
@@ -1297,6 +1455,101 @@ describe("engineDiff capture", () => {
     expect(mismatches).toEqual([]);
   });
 
+  it("probes two near-axis rays on each tracer, the engine's own on the prepared one, and finds each returned", () => {
+    interface Probes {
+      applicable: boolean;
+      prepared?: { ok: boolean; value: Record<"marginal" | "chief", { y: number }> };
+    }
+    const folded = "carl-zeiss-mirotar-500f45";
+    const probed = records.filter((record) => record.request === "traces");
+    expect([...new Set(probed.map((record) => record.lens))].sort()).toEqual([...stateRowLenses].sort());
+    for (const record of probed) {
+      const where = `${record.lens} at ${stateId(record.state)}`;
+      const { nearAxisProbes } = valueOf(record) as { nearAxisProbes: Probes };
+      if (!nearAxisProbes.applicable) {
+        /* The engine finds a folded lens's stop by a search the seam does not have, so the record says so. */
+        expect(record.lens, where).toBe(folded);
+        expect(nearAxisProbes, where).toEqual({ applicable: false });
+        continue;
+      }
+      expect(record.lens, where).not.toBe(folded);
+      const returnedPrepared = { status: "ok", failureReason: null, y: expect.any(Number) };
+      const returnedLegacy = { clipped: false, failureReason: null, returned: true };
+      expect(nearAxisProbes, where).toEqual({
+        applicable: true,
+        prepared: { ok: true, value: { marginal: returnedPrepared, chief: returnedPrepared } },
+        legacy: { ok: true, value: { marginal: returnedLegacy, chief: returnedLegacy } },
+      });
+      /* On the prepared tracer the probes are the very rays the state's field geometry divides: each height at the
+       * stop, over the probe height, is that geometry's ratio bit for bit. */
+      const geometry = records.find(
+        (entry) =>
+          entry.lens === record.lens &&
+          entry.request === "fieldGeometry" &&
+          stateId(entry.state) === stateId(record.state),
+      )!;
+      const { raw } = valueOf(geometry) as { raw: { yRatio: number; b: number } };
+      const { marginal, chief } = nearAxisProbes.prepared!.value;
+      expect(Object.is(marginal.y / NEAR_AXIS_PROBE_DELTA, raw.yRatio), where).toBe(true);
+      expect(Object.is(chief.y / NEAR_AXIS_PROBE_DELTA, raw.b), where).toBe(true);
+    }
+  });
+
+  it("records a probe launch that throws as an outcome of that tracer's probes, and keeps the record", () => {
+    /* The prepared launch is copied from the engine and reads a prepared state's own members, so an engine change
+     * can make it throw on one side of a run. That costs the comparison those two probes and nothing else. */
+    const request = requests.find(({ lens, family }) => lensId(lens) === SERENAR && family === "traces")!;
+    const whole = valueOf(records.find((record) => record.lens === SERENAR && record.request === "traces")!) as {
+      nearAxisProbes: Record<string, unknown>;
+    };
+    const seam = resolveSeam();
+    const traceRay = seam.traceRay;
+    /* Only the prepared probes ask that tracer to stop at the stop. */
+    const spy = vi.spyOn(seam, "traceRay").mockImplementation((state, ray, options) => {
+      if (options?.stopAt !== undefined) throw new TypeError("first.profile.sag is not a function");
+      return traceRay(state, ray, options);
+    });
+    let record: PayloadRecord;
+    try {
+      [record] = captureRecords(CATALOG, [request]);
+    } finally {
+      spy.mockRestore();
+    }
+    expect(record.payload.ok).toBe(true);
+    const value = valueOf(record) as typeof whole;
+    expect(value.nearAxisProbes).toEqual({
+      ...whole.nearAxisProbes,
+      prepared: { ok: false, error: { name: "TypeError", message: "first.profile.sag is not a function" } },
+    });
+    expect({ ...value, nearAxisProbes: null }).toEqual({ ...whole, nearAxisProbes: null });
+  });
+
+  it("counts a stack-tracer probe as returned by its height and its slope, as the engine tests a basis ray", () => {
+    /* The build's exit-pupil rays must come back with a finite slope as well as a finite height. */
+    const request = requests.find(({ lens, family }) => lensId(lens) === SERENAR && family === "traces")!;
+    const seam = resolveSeam();
+    const legacyTraceRay = seam.legacyTraceRay;
+    const spy = vi.spyOn(seam, "legacyTraceRay").mockImplementation((y0, u0, ...rest) => {
+      const result = legacyTraceRay(y0, u0, ...rest);
+      /* The marginal probe alone: the fans are launched at pupil heights, the chief probe at a slope. */
+      return y0 === NEAR_AXIS_PROBE_DELTA && u0 === 0 ? { ...result, u: Number.NaN } : result;
+    });
+    let record: PayloadRecord;
+    try {
+      [record] = captureRecords(CATALOG, [request]);
+    } finally {
+      spy.mockRestore();
+    }
+    const { legacy } = (valueOf(record) as { nearAxisProbes: { legacy: unknown } }).nearAxisProbes;
+    expect(legacy).toEqual({
+      ok: true,
+      value: {
+        marginal: { clipped: false, failureReason: null, returned: false },
+        chief: { clipped: false, failureReason: null, returned: true },
+      },
+    });
+  });
+
   it("composes a pair itself and records the composed prescription by the fingerprint's authority rules", () => {
     const composition = valueOf(
       records.find((record) => record.lens === PAIR_ID && record.request === "composition")!,
@@ -1532,6 +1785,9 @@ describe("engineDiff capture", () => {
       status,
       hitCount: expect.any(Number),
       hash: expect.stringMatching(/^[0-9a-f]{64}$/),
+      outcome: expect.stringMatching(/^[0-9a-f]{64}$/),
+      residualShare: expect.any(Number),
+      largestTolerance: expect.any(Number),
     });
     expect(focus.samples[0].sensorPoint).toHaveLength(3);
     /* The sample's own numbers and both solves are values a budget can be set on; only the rays are digests. */
@@ -1550,6 +1806,38 @@ describe("engineDiff capture", () => {
       sensorSolve: { status: "converged", iterations: expect.any(Number), evaluations: expect.any(Number) },
       pupilBundle: digest(null),
     });
+
+    /* Every digest of the record, wherever it sits, carries all six members. */
+    const digests: Record<string, unknown>[] = [];
+    const collect = (value: unknown): void => {
+      if (value === null || typeof value !== "object") return;
+      const members = value as Record<string, unknown>;
+      if (typeof members.hash === "string" && typeof members.hitCount === "number") digests.push(members);
+      for (const member of Object.values(members)) collect(member);
+    };
+    collect(valueOf(record));
+    expect(digests.length).toBeGreaterThan(1000);
+    expect(
+      digests.filter(
+        (entry) => Object.keys(entry).sort().join() !== "hash,hitCount,largestTolerance,outcome,residualShare,status",
+      ),
+    ).toEqual([]);
+    expect(
+      digests.filter((entry) => !/^[0-9a-f]{64}$/.test(String(entry.outcome)) || entry.outcome === entry.hash),
+    ).toEqual([]);
+    /* A trace that failed before its first hit has no hit to speak for it, and gives neither number. Every other
+     * digest gives both: the largest residual behind it as a share of its tolerance, which the engine's own
+     * contract keeps at or under 1, and the largest of those tolerances, which is never below the 1e-12 mm target. */
+    const hitless = digests.filter((entry) => entry.hitCount === 0);
+    expect(hitless.length).toBeGreaterThan(0);
+    expect(hitless.filter((entry) => entry.residualShare !== null || entry.largestTolerance !== null)).toEqual([]);
+    const held = digests.filter((entry) => entry.hitCount !== 0);
+    const isNumber = (value: unknown): value is number => typeof value === "number";
+    expect(held.filter((entry) => !isNumber(entry.residualShare) || !isNumber(entry.largestTolerance))).toEqual([]);
+    const shares = held.map((entry) => entry.residualShare as number);
+    expect(shares.filter((share) => !(share >= 0 && share <= 1))).toEqual([]);
+    expect(Math.max(...shares)).toBeGreaterThan(0);
+    expect(held.filter((entry) => !((entry.largestTolerance as number) >= 1e-12))).toEqual([]);
   });
 
   it("skips no back-pointer in the analysis and MTF records it captured", () => {
