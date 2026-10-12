@@ -18,9 +18,23 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  The var entries therefore model infinity-focus zoom positions only ║
  * ║  by repeating [infinity, close] pairs at each zoom point.            ║
  * ║                                                                    ║
+ * ║  Table 2, surface 31, A8: the US publication prints                  ║
+ * ║  +2.76793E-11. The same application's PCT publication,               ║
+ * ║  WO 2017/134929 A1, prints -2.76793E-11, which this file uses.       ║
+ * ║  The US value gives -6.7 mm of spherical aberration at f/2.88        ║
+ * ║  at every zoom position; FIG. 4 plots it within about 0.1 mm,        ║
+ * ║  and the PCT value traces to -0.09 mm or less.                       ║
+ * ║                                                                      ║
  * ║  Semi-diameters are inferred for LensVisualizer rendering from       ║
  * ║  paraxial stop geometry, the 77 mm filter constraint, element-rim    ║
- * ║  thickness checks, and cross-gap sag clearance checks.               ║
+ * ║  thickness checks, and cross-gap sag clearance checks. Surfaces      ║
+ * ║  2-5, 7-10, 14-17 and 20-22 are set to the height of the f/2.88      ║
+ * ║  axial marginal ray at its worst zoom position, rounded up to        ║
+ * ║  0.1 mm; FIG. 1 draws each of those elements taller. L23 and L24     ║
+ * ║  are drawn square-cut, so both faces carry the higher of their two   ║
+ * ║  heights. L1R1 and L1R2 meet at the rim in FIG. 1: at 28.3 mm,       ║
+ * ║  0.03 mm is left of the 0.75 mm air gap between surfaces 8 and 9,    ║
+ * ║  so gapSagFrac is 0.97.                                              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -28,6 +42,17 @@ const LENS_DATA = {
   key: "sony-fe-70-200-f28-gm-oss",
   maker: "Sony",
   name: "SONY FE 70-200mm f/2.8 GM OSS",
+  sourceErrata: [
+    {
+      status: "corrected",
+      surface: "31A",
+      field: "A8",
+      printed: 2.76793e-11,
+      applied: -2.76793e-11,
+      evidence: ["aberration-figure", "family-publication"],
+      note: "The US print gives -6.7 mm of spherical aberration at f/2.88 where FIG. 4 plots about 0.1 mm; WO 2017/134929 A1, the same application's PCT publication, prints the negative sign in Table 2.",
+    },
+  ],
   subtitle: "US 2019/0018229 A1 — Numerical Example 1",
   specs: [
     "23 elements / 18 groups",
@@ -332,27 +357,27 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 580.0, d: 2.8, nd: 1.8042, elemId: 1, sd: 38.0 },
-    { label: "2", R: 168.1056, d: 1.2356, nd: 1.0, elemId: 0, sd: 33.5 },
-    { label: "3", R: 247.2306, d: 7.0, nd: 1.437, elemId: 2, sd: 33.5 },
-    { label: "4", R: -199.8985, d: 0.4, nd: 1.0, elemId: 0, sd: 32.5 },
-    { label: "5", R: 63.2082, d: 8.3, nd: 1.437, elemId: 3, sd: 33.0 },
+    { label: "2", R: 168.1056, d: 1.2356, nd: 1.0, elemId: 0, sd: 33.6 },
+    { label: "3", R: 247.2306, d: 7.0, nd: 1.437, elemId: 2, sd: 33.6 },
+    { label: "4", R: -199.8985, d: 0.4, nd: 1.0, elemId: 0, sd: 33.7 },
+    { label: "5", R: 63.2082, d: 8.3, nd: 1.437, elemId: 3, sd: 33.5 },
     { label: "6", R: 185.5895, d: 11.6178, nd: 1.0, elemId: 0, sd: 33.5 },
-    { label: "7", R: 63.8991, d: 2.5, nd: 1.7174, elemId: 4, sd: 24.5 },
-    { label: "8", R: 45.8463, d: 0.75, nd: 1.0, elemId: 0, sd: 23.5 },
-    { label: "9", R: 48.7435, d: 9.0, nd: 1.5928, elemId: 5, sd: 23.5 },
-    { label: "10", R: 205.2494, d: 2.6917, nd: 1.0, elemId: 0, sd: 22.5 },
+    { label: "7", R: 63.8991, d: 2.5, nd: 1.7174, elemId: 4, sd: 29.9 },
+    { label: "8", R: 45.8463, d: 0.75, nd: 1.0, elemId: 0, sd: 28.3 },
+    { label: "9", R: 48.7435, d: 9.0, nd: 1.5928, elemId: 5, sd: 28.3 },
+    { label: "10", R: 205.2494, d: 2.6917, nd: 1.0, elemId: 0, sd: 27.8 },
     { label: "11", R: -216.2455, d: 1.5, nd: 1.8042, elemId: 6, sd: 18.5 },
     { label: "12", R: 38.0084, d: 5.7979, nd: 1.0, elemId: 0, sd: 16.2 },
     { label: "13", R: -101.2705, d: 1.5, nd: 1.5928, elemId: 7, sd: 16.2 },
-    { label: "14", R: 39.7503, d: 5.35, nd: 1.8081, elemId: 8, sd: 16.0 },
-    { label: "15", R: -2054.9944, d: 2.7303, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "16", R: -56.913, d: 1.5, nd: 1.8042, elemId: 9, sd: 16.0 },
-    { label: "17", R: -183.2298, d: 26.367, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "14", R: 39.7503, d: 5.35, nd: 1.8081, elemId: 8, sd: 16.4 },
+    { label: "15", R: -2054.9944, d: 2.7303, nd: 1.0, elemId: 0, sd: 16.4 },
+    { label: "16", R: -56.913, d: 1.5, nd: 1.8042, elemId: 9, sd: 16.9 },
+    { label: "17", R: -183.2298, d: 26.367, nd: 1.0, elemId: 0, sd: 16.9 },
     { label: "18", R: 848.5024, d: 2.8, nd: 1.7433, elemId: 10, sd: 18.5 },
     { label: "19", R: -109.3368, d: 0.2, nd: 1.0, elemId: 0, sd: 18.0 },
-    { label: "20", R: 89.2729, d: 7.1912, nd: 1.497, elemId: 11, sd: 18.0 },
-    { label: "21", R: -47.2999, d: 1.8, nd: 1.8061, elemId: 12, sd: 17.6 },
-    { label: "22", R: -113.0282, d: 15.2719, nd: 1.0, elemId: 0, sd: 17.3 },
+    { label: "20", R: 89.2729, d: 7.1912, nd: 1.497, elemId: 11, sd: 18.2 },
+    { label: "21", R: -47.2999, d: 1.8, nd: 1.8061, elemId: 12, sd: 18.2 },
+    { label: "22", R: -113.0282, d: 15.2719, nd: 1.0, elemId: 0, sd: 18.5 },
     { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 17.5 },
     { label: "24A", R: 72.5977, d: 4.7, nd: 1.5831, elemId: 13, sd: 18.0 },
     { label: "25", R: 166.4337, d: 0.4, nd: 1.0, elemId: 0, sd: 18.0 },
@@ -377,7 +402,8 @@ const LENS_DATA = {
 
   asph: {
     "24A": { K: 0, A4: -2.1175e-6, A6: -2.28633e-10, A8: 1.66377e-12, A10: -1.62257e-15, A12: 0, A14: 0 },
-    "31A": { K: 0, A4: 1.06533e-6, A6: -4.12307e-9, A8: 2.76793e-11, A10: 7.79734e-14, A12: 0, A14: 0 },
+    // A8 is negative in the application's PCT publication (WO 2017/134929 A1, Table 2); the US print drops the sign (see sourceErrata).
+    "31A": { K: 0, A4: 1.06533e-6, A6: -4.12307e-9, A8: -2.76793e-11, A10: 7.79734e-14, A12: 0, A14: 0 },
     "32A": { K: 0, A4: -6.11153e-6, A6: -7.64389e-9, A8: -6.19757e-11, A10: 9.35929e-14, A12: 0, A14: 0 },
     "33A": { K: 0, A4: -6.31905e-7, A6: 2.79472e-9, A8: -6.29142e-12, A10: 0, A12: 0, A14: 0 },
   },
@@ -448,6 +474,8 @@ const LENS_DATA = {
   maxFstop: 22,
   fstopSeries: [2.8823, 4, 5.6, 8, 11, 16, 22],
 
+  // L1R1 and L1R2 meet at the rim in FIG. 1: 0.03 mm of the 0.75 mm gap between surfaces 8 and 9 is left at 28.3 mm.
+  gapSagFrac: 0.97,
   scFill: 0.55,
   yScFill: 0.82,
 } satisfies LensDataInput;

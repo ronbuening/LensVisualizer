@@ -234,9 +234,11 @@ The patent's aspherical equation uses the standard conic-base form with K as the
 | Surface | Element | A4 | A6 | A8 | A10 | Polynomial departure at data-file SD |
 |---|---|---:|---:|---:|---:|---:|
 | 24A | L41 front | -2.11750E-06 | -2.28633E-10 | +1.66377E-12 | -1.62257E-15 | -217.5 µm at h = 18.0 mm |
-| 31A | L51 front | +1.06533E-06 | -4.12307E-09 | +2.76793E-11 | +7.79734E-14 | +81.3 µm at h = 14.2 mm |
+| 31A | L51 front | +1.06533E-06 | -4.12307E-09 | -2.76793E-11 | +7.79734E-14 | -10.3 µm at h = 14.2 mm |
 | 32A | L51 rear | -6.11153E-06 | -7.64389E-09 | -6.19757E-11 | +9.35929E-14 | -356.7 µm at h = 14.0 mm |
 | 33A | L61 front | -6.31905E-07 | +2.79472E-09 | -6.29142E-12 | 0 | -21.5 µm at h = 16.0 mm |
+
+The A8 coefficient of surface 31A is taken from the application's PCT publication, WO 2017/134929 A1, which prints -2.76793E-11. The US publication prints the same digits without the minus sign; with that value the design would show about -6.7 mm of longitudinal spherical aberration at f/2.88 at every zoom position, where the patent's FIG. 4 plots it within about 0.1 mm. With the PCT value the model traces to -0.09 mm or less.
 
 Surface 24A is the first post-stop refracting surface and primarily addresses full-aperture spherical aberration. Surfaces 31A and 32A are on the single-element rear focus group, giving G5 correction leverage as it moves during focusing and zooming. Surface 33A is on the L61-L62 OIS component; its relatively modest departure is consistent with a decentering stabilization group where strong figure can increase decenter sensitivity.
 
@@ -273,11 +275,11 @@ The prescription was re-entered from the patent tables and independently checked
 
 The residual differences are within the precision expected from the rounded patent table. The computed back focal distances are 30.6282 mm, 30.5677 mm, and 30.5896 mm at the three positions, consistent with the fixed 30.6083 mm distance recovered from the constant total track.
 
-The aperture stop semi-diameter required to reproduce the patent F-number is approximately 17.3-17.5 mm across the three zoom positions. The data file uses 17.5 mm for the stop semi-diameter.
+The aperture stop semi-diameter that passes the patent F-number by real-ray trace is 18.08, 17.84 and 17.87 mm at the wide, intermediate and telephoto positions (the paraxial estimate is 17.3-17.5 mm). The data file stores 17.5 mm and the model sets the iris at each position from the F-number.
 
 The Petzval sum was recomputed surface by surface using Σ φ/(n·n′), not by thin-element approximations. The resulting value is +0.0008187 mm⁻¹, corresponding to a Petzval radius of approximately 1221 mm. This small positive value is consistent with a flattened telephoto-range zoom, but it should not be over-interpreted as a direct prediction of real astigmatic field curvature.
 
-Semi-diameters are not patent-published values. The data file values are rendering estimates constrained by the 77 mm production filter thread, paraxial stop geometry, element edge-thickness checks, front/rear element SD ratio checks, and cross-gap sag clearance checks at all three zoom positions.
+Semi-diameters are not patent-published values. The data file values are rendering estimates constrained by the 77 mm production filter thread, paraxial stop geometry, element edge-thickness checks, front/rear element SD ratio checks, and cross-gap sag clearance checks at all three zoom positions. Fifteen surfaces (2-5, 7-10, 14-17 and 20-22) are set to the height the f/2.88 axial marginal ray reaches at its worst zoom position; FIG. 1 draws each of those elements taller still. L1R1 and L1R2 nearly touch at the rim, as FIG. 1 draws them: 0.03 mm of their 0.75 mm air gap remains at 28.3 mm.
 
 ## Sources
 

@@ -288,7 +288,13 @@ function validateImagePlane(value: unknown, errors: string[]): void {
   validateYzNormal(imagePlane.normal, `"opticalPath.imagePlane.normal"`, errors);
 }
 
-const SOURCE_ERRATUM_EVIDENCE = new Set(["source-summary", "sibling-example", "aberration-figure", "claims"]);
+const SOURCE_ERRATUM_EVIDENCE = new Set([
+  "source-summary",
+  "sibling-example",
+  "aberration-figure",
+  "claims",
+  "family-publication",
+]);
 const SOURCE_ERRATUM_SURFACE_FIELDS = new Set(["R", "d", "nd"]);
 /** A correction needs this many independent kinds of source-internal evidence. */
 const SOURCE_ERRATUM_MIN_EVIDENCE = 2;
