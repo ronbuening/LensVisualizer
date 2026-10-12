@@ -3281,12 +3281,14 @@ describe("engineDiff declared transitions", () => {
       [false, [...RAY, "hits", "columns", "normal", HIT, 1], 1e-6],
       [false, [...RAY, "hits", "columns", "radius", HIT], 5e-7],
       [false, [...legacy, "paraxialImageHeight"], 1e-6, true],
-      /* The medium a ray ended in and the stack tracer's transmission do follow from where the ray ended. They are
-       * outside the list the rule was settled with, so a ray that newly ends inside glass cannot be declared. */
-      [false, [...RAY, "finalMedium"], 1e-6],
-      [false, [...RAY, "diagnostics", "finalMedium"], 1e-6],
-      [false, [...legacy, "transmission"], 1e-6, true],
     ];
+    /* The medium a ray ended in and the stack tracer's transmission follow from where the ray ended too, so a ray
+     * that newly stops or completes inside glass can be declared. */
+    cases.push(
+      [true, [...RAY, "finalMedium"], 1e-6],
+      [true, [...RAY, "diagnostics", "finalMedium"], 1e-6],
+      [true, [...legacy, "transmission"], 1e-6, true],
+    );
     for (const [permitted, path, by, legacyRay] of cases) {
       const [base, transition] = legacyRay ? [legacyBase, legacyClipped] : [LIGHT, statusOnly()];
       const name = path.join(".");

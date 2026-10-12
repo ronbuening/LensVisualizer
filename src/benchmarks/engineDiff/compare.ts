@@ -1556,10 +1556,10 @@ const OUTCOME_MEMBERS = ["ok", "value", "error"] as const;
  * What `numbers` permits beyond budget in a declared unit: the fields of a traced ray that have no counterpart once
  * the ray ends on another surface or stops. They are the fields of the budget table's trace rows for the terminal
  * point and direction, the image-plane landing and the slopes, and for the stack tracer's drawn points, height and
- * slope, each named as that table names it under its ray. A hit's coordinates are not among them: a hit that both
- * sides have is the same hit. Nor is the medium a ray ended in, or the stack tracer's transmission: both follow from
- * where the ray ended, and neither is in the list the rule was settled with, so a ray that newly ends inside glass
- * fails on them whatever is declared.
+ * slope, each named as that table names it under its ray. The medium a ray ended in, on the ray and in its
+ * diagnostics, and the stack tracer's transmission are among them: both follow from where the ray ended, so a ray
+ * that newly stops or completes inside glass has no counterpart for them either. A hit's coordinates are not among
+ * them: a hit that both sides have is the same hit.
  */
 const NO_COUNTERPART_FAMILY: RequestFamily = "traces";
 const NO_COUNTERPART_FIELDS: ReadonlySet<string> = new Set([
@@ -1573,6 +1573,9 @@ const NO_COUNTERPART_FIELDS: ReadonlySet<string> = new Set([
   "pts[][]",
   "ghostPts[][]",
   "u",
+  "finalMedium",
+  "diagnostics.finalMedium",
+  "transmission",
 ]);
 
 /**

@@ -526,7 +526,8 @@ from the one file it is given as `--exceptions`.
   harness names and carries the digest the run computes.
   - With `numbers` it also excuses, in that unit alone, a number beyond budget in a field of a traced ray that has
     no counterpart once the ray ends on another surface or stops: `terminalPoint`, `terminalDirection`,
-    `imagePoint`, `x`, `y`, `ux` and `uy`, and the stack tracer's `pts`, `ghostPts`, `y` and `u`.
+    `imagePoint`, `x`, `y`, `ux` and `uy`; the medium the ray ended in (`finalMedium`, on the ray and in its
+    `diagnostics`); and the stack tracer's `pts`, `ghostPts`, `y`, `u` and `transmission`.
   - `numbers` is honoured only where the unit's own discrete and shape differences show that the ray did end
     elsewhere (`ENDED_ELSEWHERE` in `compare.ts`): its `status`, `clipped`, `failureReason`, `reachedImagePlane`,
     `terminalSurfaceIndex` or `returnVertexIndex`; its hit count, or a hit's surface index or clip, fallback or
@@ -592,10 +593,6 @@ from the one file it is given as `--exceptions`.
     common hits and the head-side check, and is in the digest only as its type and length. That holds for the stack
     tracer's `pts` and `ghostPts`, which have no surface index to pair by, and for a ray whose hit table is under no
     array index. `summary.md` says of each matched line how many of its differences are such shapes.
-  - A ray that newly stops, or newly completes, inside glass cannot be declared. `finalMedium`, on the ray and in
-    its `diagnostics`, is the index of the medium the ray ended in and is held to 1e-12 relative, and it is not
-    among the fields `numbers` permits. The same holds for the stack tracer's `transmission` in a lens with
-    authored absorption.
   - A trace nested in an analysis result shows only what its digest keeps readable.
   - What a transition does to a number computed from many rays (a relative illumination, an RMS, a best focus) is
     outside every line, and fails on its own budget.
