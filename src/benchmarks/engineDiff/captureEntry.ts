@@ -31,6 +31,7 @@ import {
   GROUP_MOVEMENT_MODES,
   LOCA_INSET_BAR_WIDTH_PX,
   LOCA_READOUT_FRACTIONS,
+  NEAR_AXIS_PROBE_DELTA,
   OFF_AXIS_FIELD_FRACTION,
   OFF_AXIS_PUPIL_FRACTIONS,
   ON_AXIS_PUPIL_FRACTIONS,
@@ -426,6 +427,83 @@ function imagePoint(seam: EngineSeam, prepared: PreparedState, trace: EngineTrac
   return landing ? [landing.x, landing.y] : null;
 }
 
+/**
+ * The engine's two near-axis basis rays, traced again as probes, so that one of them failing is a status in a record.
+ *
+ * The engine builds its pupil constants from these rays and takes another value when one fails: the paraxial ratio,
+ * the other tracer's quotient, or the constant of the infinity-focus build. No payload says which it took, and some
+ * of those values are within rounding of the real one.
+ *
+ * On the prepared tracer the launch is copied from `computeFieldGeometryAtState2` in
+ * `src/optics/field/chiefRay.ts` (its `slopeRayForState` and `inferLeadDistance2`): the same origin, direction and
+ * `stopAt`, so the heights recorded here over the probe height are that function's `yRatio` and `b`.
+ *
+ * On the stack tracer the engine's own launches are internal: `traceExactSurfaceStack` with `stopAt` for the stop
+ * heights and `skipLastTransfer` for the exit pupil, in `buildLens` (`src/optics/runtimeLens.ts`) and
+ * `computeStatePupilBaselines` (`src/optics/pupilAberration.ts`). The seam reaches that tracer through
+ * `rayTrace.traceRay` alone, which fixes where a ray starts and which options it takes. The probes there are the
+ * same two lines, a height and a slope about the first vertex, started one ray lead ahead instead of the tracer's
+ * inferred lead and run through every surface with the rim checks on. So one trace covers the surfaces ahead of the
+ * stop, which the entrance-pupil rays cross, and those behind it, which the exit-pupil rays add. A probe that a rim
+ * stopped says so in `clipped`.
+ *
+ * A folded lens has no probe. There the engine finds the stop by scanning a generalized trace for a hit on it
+ * (`traceToStopViaGeneralized`), with the rim checks off. The seam has that search on neither tracer, and its
+ * stack-tracer entry cannot turn the rim checks off.
+ *
+ * @param seam - the engine seam
+ * @param lens - the built lens
+ * @param prepared - the prepared state the record is captured at
+ * @param lensFrameZ - the state's vertex positions as the stack tracer takes them
+ * @param state - the lens state
+ * @returns per tracer, the marginal and the chief probe, or `{ applicable: false }` for a folded lens
+ */
+function nearAxisProbes(
+  seam: EngineSeam,
+  lens: RuntimeLens,
+  prepared: PreparedState,
+  lensFrameZ: number[],
+  { focusT, zoomT, aberrationT }: CaptureState,
+) {
+  if (lens.isFoldedOptics) return { applicable: false };
+  const delta = NEAR_AXIS_PROBE_DELTA;
+
+  /* `inferLeadDistance2`: clear of the rim of a tilted first plane, or of the first surface's sag at its rim, and
+   * never less than 1 mm. */
+  const first = prepared.surfaces[0];
+  const tilt = first.interaction.normal;
+  const lead = tilt
+    ? Math.abs(tilt[2]) > 1e-12
+      ? Math.max(1, Math.abs((first.sd * tilt[1]) / tilt[2]) + 1)
+      : Math.max(1, 2 * first.sd + 1)
+    : Math.max(1, Math.abs(first.profile.sag(first.sd)) + 1);
+  const stopAt = prepared.lens.stop.surfaceIndex;
+  const preparedProbe = (y0: number, u0: number) => {
+    const scale = 1 / Math.hypot(0, u0, 1);
+    const trace = seam.traceRay(
+      prepared,
+      { origin: [0, y0 - u0 * lead, prepared.z[0] - lead], direction: [0, u0 * scale, scale] },
+      { stopAt },
+    );
+    /* The height at the stop as the engine reads it: not a number once the trace has failed. */
+    const y = trace.failureReason === null ? trace.y : Number.NaN;
+    return { status: trace.status, failureReason: trace.failureReason, y };
+  };
+
+  const legacyProbe = (y0: number, u0: number) => {
+    /* No stop radius and no ghost points: the engine's basis rays are given neither. */
+    const trace = seam.legacyTraceRay(y0, u0, lensFrameZ, focusT, zoomT, undefined, false, lens, aberrationT);
+    const failureReason = trace.diagnostics?.failureReason ?? null;
+    return { clipped: trace.clipped, failureReason, returned: failureReason === null && Number.isFinite(trace.y) };
+  };
+
+  return {
+    applicable: true,
+    prepared: { marginal: preparedProbe(delta, 0), chief: preparedProbe(0, delta) },
+    legacy: { marginal: legacyProbe(delta, 0), chief: legacyProbe(0, delta) },
+  };
+}
+
 const captureTraces: StateCapture = (seam, lens, state) => {
   const { focusT, zoomT, aberrationT } = state;
   const prepared = seam.prepareState(lens, focusT, zoomT, aberrationT);
@@ -521,6 +599,7 @@ const captureTraces: StateCapture = (seam, lens, state) => {
         };
       }),
     },
+    nearAxisProbes: nearAxisProbes(seam, lens, prepared, lensFrameZ, state),
   };
 };
 

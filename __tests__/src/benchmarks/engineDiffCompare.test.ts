@@ -1160,6 +1160,67 @@ describe("engineDiff drift detection", () => {
     });
   });
 
+  it("fails a near-axis probe that stops returning, on either tracer", () => {
+    /* The engine builds its pupil constants from two near-axis rays and takes another value, unflagged, when one
+     * fails. The `traces` record traces both again, so the switch is a status and not a number to budget. */
+    const probes: Path = ["nearAxisProbes"];
+    expect(at(SERENAR_RECORDS, "traces", probes)).toEqual({
+      applicable: true,
+      prepared: {
+        marginal: { status: "ok", failureReason: null, y: expect.any(Number) },
+        chief: { status: "ok", failureReason: null, y: expect.any(Number) },
+      },
+      legacy: {
+        marginal: { clipped: false, failureReason: null, returned: true },
+        chief: { clipped: false, failureReason: null, returned: true },
+      },
+    });
+    const prepared = withChange("traces", [...probes, "prepared", "chief"], () => ({
+      status: "failed",
+      failureReason: "noConvergedIntersection",
+      y: encodeValue(Number.NaN),
+    }));
+    const legacy = withChange("traces", [...probes, "legacy", "marginal"], () => ({
+      clipped: true,
+      failureReason: "noConvergedIntersection",
+      returned: false,
+    }));
+    for (const changeClass of ["c0", "c1", "c2"] as const) {
+      expect(failuresOf(compare(changeClass, prepared)), changeClass).toEqual([
+        { request: "traces", path: "nearAxisProbes.prepared.chief.failureReason", kind: "discrete", quantity: null },
+        { request: "traces", path: "nearAxisProbes.prepared.chief.status", kind: "discrete", quantity: null },
+        { request: "traces", path: "nearAxisProbes.prepared.chief.y", kind: "nonFinite", quantity: "clippedHit" },
+      ]);
+      expect(
+        failuresOf(compare(changeClass, legacy)).map(({ path, kind }) => [path, kind]),
+        changeClass,
+      ).toEqual([
+        ["nearAxisProbes.legacy.marginal.clipped", "discrete"],
+        ["nearAxisProbes.legacy.marginal.failureReason", "discrete"],
+        ["nearAxisProbes.legacy.marginal.returned", "discrete"],
+      ]);
+      /* The status alone, with nothing else to show for it. */
+      for (const [tracer, member, value] of [
+        ["prepared", "status", "failed"],
+        ["legacy", "returned", false],
+      ] as const) {
+        const alone = withChange("traces", [...probes, tracer, "marginal", member], () => value);
+        expect(failuresOf(compare(changeClass, alone)), changeClass).toEqual([
+          { request: "traces", path: `nearAxisProbes.${tracer}.marginal.${member}`, kind: "discrete", quantity: null },
+        ]);
+      }
+      /* A lens that gains or loses its probes, as one that turns folded would, changes the record's shape. */
+      const none = withChange("traces", probes, () => ({ applicable: false }));
+      expect(compare(changeClass, none).passed, changeClass).toBe(false);
+    }
+    expect(compare("c3", prepared)).toMatchObject({ passed: true, engine: { transitions: 2 } });
+    /* A probe's height at the stop is a ray's height like any other, with that row's budget. */
+    const height: Path = [...probes, "prepared", "marginal", "y"];
+    const nudged = withChange("traces", height, (y) => Number(y) * (1 + Number.EPSILON));
+    expect(compare("c0", nudged).passed).toBe(false);
+    expect(compare("c1", nudged).engine.quantities.landing).toMatchObject({ differing: 1, beyondBudget: 0 });
+  });
+
   it("reports a changed shape once, without entering it", () => {
     const shorter = withChange("traces", ["onAxis", "rays"], (rays) => (rays as unknown[]).slice(0, -1));
     expect(failuresOf(compare("c1", shorter))).toEqual([

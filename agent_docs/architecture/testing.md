@@ -242,6 +242,30 @@ its inner radius, stop placement, interaction and diffractive phase among them, 
 fingerprint's marker. The analysis record holds every job of the analysis context and, beside them, the readouts the
 viewer computes outside it, each asked as its component asks: the working f-number, the chromatic tab's field-focus
 summary, the diagram's LoCA readout with the bars of its inset, and the aspheric overlay's departure at a click.
+
+The traces record holds, beside its fans, two probe rays on each tracer: the near-axis rays the engine builds its
+pupil constants from, a marginal ray 1e-4 mm off the axis and a chief ray through the first vertex at a slope of 1e-4.
+When one of them fails, the engine takes another value and no payload says so: the paraxial ratio, the other
+tracer's quotient or the constant of the infinity-focus build, and some of those are within rounding of the real
+one, where no budget shows the switch. A probe that stops returning is a status instead.
+
+- On the prepared tracer the launch is copied from `computeFieldGeometryAtState2` (`src/optics/field/chiefRay.ts`):
+  the same origin, direction and `stopAt`. Each probe records its status, its failure reason and its height at the
+  stop as the engine reads it, which is not a number once the trace has failed. That height over 1e-4 is the state
+  geometry's `yRatio` or `b` bit for bit.
+- On the RuntimeLens stack tracer the engine's own launches are internal (`traceExactSurfaceStack` with `stopAt` or
+  `skipLastTransfer`, in `src/optics/runtimeLens.ts` and `src/optics/pupilAberration.ts`), and the seam reaches that
+  tracer through `rayTrace.traceRay` alone. The probes there are the same two lines, started one ray lead ahead of
+  the first vertex and run through every surface with the rim checks on, so one trace covers the surfaces the
+  entrance-pupil rays cross and those the exit-pupil rays add. Each records its clip flag, its failure reason and
+  whether it returned by the engine's own test: no failure and a finite height.
+- A folded lens has no probe, and its record says `applicable: false`. The engine finds a folded lens's stop by
+  scanning a generalized trace for a hit on it, with the rim checks off, and the seam has that search on neither
+  tracer.
+- The probes are traced at the record's state. The build traces its own basis rays at the authored spacings and, for
+  a zoom, at each station focused at infinity. Those stations are states of the first row of every tier: the first
+  and last in Tier P, every one in Tiers S and F.
+
 Three parts of `src/optics/` are outside the harness, and their unit suites cover them: diagram geometry in
 `src/optics/diagram/` (`diagramGeometry.test.ts`, `elementRenderDiagnostics.test.ts`), the lens-movement transform
 (`lensMovement.test.ts`) and the perspective diagram fan (`perspective/diagramFan.test.ts`).
@@ -289,9 +313,9 @@ a lens's records never straddle two shards, the shards share no lens, and togeth
 A run takes a base ref and the working tree, which is the head. Nothing is skipped silently.
 
 1. **Engine drift.** Every head prescription is evaluated on the base engine and on the head engine, and the two
-   sets of records are compared under the change class. What happened inside each trace nested in an analysis
-   result, which no number of a record would show, is in it as a discrete field: the outcome hash of the trace's
-   digest.
+   sets of records are compared under the change class. Two outcomes that no number of a record would show are in
+   it as discrete fields: what happened inside each trace nested in an analysis result, as the outcome hash of its
+   digest, and whether the engine's two near-axis basis rays returned, as the probes of the traces record.
 2. **Format-only data change.** A lens whose serialized prescription differs from the base's while its semantic
    fingerprint does not: the base and head prescriptions are evaluated on the head engine and must be bit-identical
    in every class. Prescriptions are compared as evaluated data, so an edit to comments or layout is no change.
@@ -389,6 +413,9 @@ The classes in `budgets.ts`:
 - Counts, indices, sample positions, request echoes, count ratios and binned statistics are exact.
 - Layout lengths, refractive indices, the scalars that are no lengths and a prescription handed back take the
   first-order relative budget. Smooth ratios take 1e-10.
+- The pupil positions and sizes the engine builds from its two near-axis rays keep the first-order budget. It is
+  not divided by the 1e-4 of those rays: both rays' slopes scale with it, and the quotient removes it. What no
+  budget shows is a basis ray that failed, and the probes of the traces record show that.
 - The output of a fixed-step bisection or a bracketed search is held to the quantity table's row for its kind: a
   half-field is a field angle (1e-10°), the MTF best-focus shift an analysis length (1e-8 mm), and the best-fit
   sphere radius takes the first-order relative budget. Such an output moves by a whole step of its solver when one
@@ -508,11 +535,12 @@ Three files in the tooling suite hold the harness to its contract.
 
 - `__tests__/src/benchmarks/engineDiff.test.ts`: a capture repeats byte for byte, the encoding loses nothing, a
   digest's outcome follows the discrete members of a trace alone and its residual share is the largest inside it,
-  every digest of a captured record carries both, the fingerprint's restated stop-radius rule agrees with `buildLens`
-  on every catalog lens, a fingerprint-equal respelling leaves every Tier P record of a lens unchanged, a member of a
-  built surface that the engine alone changed gives another build record, and no analysis or MTF record carries a
-  skip marker. Asking an engine which pairs it permits does not throw on a prescription it cannot read, and it names
-  the pairs it cannot build, each by the pair's own build record.
+  every digest of a captured record carries both, every near-axis probe of the fixture lenses returns and the
+  prepared ones give the state geometry's ratios bit for bit, the fingerprint's restated stop-radius rule agrees with
+  `buildLens` on every catalog lens, a fingerprint-equal respelling leaves every Tier P record of a lens unchanged, a
+  member of a built surface that the engine alone changed gives another build record, and no analysis or MTF record
+  carries a skip marker. Asking an engine which pairs it permits does not throw on a prescription it cannot read, and
+  it names the pairs it cannot build, each by the pair's own build record.
   Each tier's list is the same on every build and for any order of the catalog, Tier S holds every request of Tier
   P and Tier F every request of Tier S, a pair that one engine alone permits is still asked, and the shards of every
   tier are disjoint and complete at several shard counts. It also compares what `requests.ts` has to copy with its
@@ -529,7 +557,8 @@ Three files in the tooling suite hold the harness to its contract.
   surface index and the changed status of one ray of a pupil bundle each fail under C1 and C2, a residual at twice its
   effective tolerance fails as a contract breach on the head, and a coordinate that moved by any distance is reported
   and passes, which is the accepted limit of the rule. The outcome masks exactly the numbers the table budgets, on
-  captured traces. It also covers cross-evaluation: a data-only change shows no engine difference
+  captured traces, and a near-axis probe that stops returning fails on either tracer. It also covers
+  cross-evaluation: a data-only change shows no engine difference
   and an impact report, a format-only change that alters a value fails, a failed status or a non-finite number behind a
   change of shape blocks, a changed converter is compared through its pairs, and a pair the engines disagree about fails
   while one the data lost is listed. A pair the data gained passes with failed rays in its records and fails when it

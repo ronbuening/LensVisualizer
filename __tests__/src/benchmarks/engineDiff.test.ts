@@ -47,6 +47,7 @@ import {
   MTF_SPECTRA,
   MTF_VARIANTS,
   MTF_VARIANT_GRID,
+  NEAR_AXIS_PROBE_DELTA,
   ON_AXIS_PUPIL_FRACTIONS,
   SEEDED_DRAW_COUNT,
   STOPPED_DOWN_T,
@@ -1406,6 +1407,49 @@ describe("engineDiff capture", () => {
       return !Object.is(captured.y, expected.y) || !Object.is(captured.uy, expected.u);
     });
     expect(mismatches).toEqual([]);
+  });
+
+  it("probes the engine's two near-axis basis rays on both tracers, and finds each returned", () => {
+    type Probes =
+      | { applicable: false }
+      | {
+          applicable: true;
+          prepared: Record<"marginal" | "chief", { status: string; failureReason: string | null; y: number }>;
+          legacy: Record<"marginal" | "chief", { clipped: boolean; failureReason: string | null; returned: boolean }>;
+        };
+    const folded = "carl-zeiss-mirotar-500f45";
+    const probed = records.filter((record) => record.request === "traces");
+    expect([...new Set(probed.map((record) => record.lens))].sort()).toEqual([...stateRowLenses].sort());
+    for (const record of probed) {
+      const where = `${record.lens} at ${stateId(record.state)}`;
+      const { nearAxisProbes } = valueOf(record) as { nearAxisProbes: Probes };
+      if (!nearAxisProbes.applicable) {
+        /* The engine finds a folded lens's stop by a search the seam does not have, so the record says so. */
+        expect(record.lens, where).toBe(folded);
+        expect(nearAxisProbes, where).toEqual({ applicable: false });
+        continue;
+      }
+      expect(record.lens, where).not.toBe(folded);
+      const returnedPrepared = { status: "ok", failureReason: null, y: expect.any(Number) };
+      const returnedLegacy = { clipped: false, failureReason: null, returned: true };
+      expect(nearAxisProbes, where).toEqual({
+        applicable: true,
+        prepared: { marginal: returnedPrepared, chief: returnedPrepared },
+        legacy: { marginal: returnedLegacy, chief: returnedLegacy },
+      });
+      /* On the prepared tracer the probes are the very rays the state's field geometry divides: each height at the
+       * stop, over the probe height, is that geometry's ratio bit for bit. */
+      const geometry = records.find(
+        (entry) =>
+          entry.lens === record.lens &&
+          entry.request === "fieldGeometry" &&
+          stateId(entry.state) === stateId(record.state),
+      )!;
+      const { raw } = valueOf(geometry) as { raw: { yRatio: number; b: number } };
+      const { marginal, chief } = nearAxisProbes.prepared;
+      expect(Object.is(marginal.y / NEAR_AXIS_PROBE_DELTA, raw.yRatio), where).toBe(true);
+      expect(Object.is(chief.y / NEAR_AXIS_PROBE_DELTA, raw.b), where).toBe(true);
+    }
   });
 
   it("composes a pair itself and records the composed prescription by the fingerprint's authority rules", () => {
