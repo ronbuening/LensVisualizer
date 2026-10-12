@@ -277,6 +277,26 @@ hard clip with no margin, so a rim smaller than the stated beam makes the lens t
 
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 
+### Canonical Prescription
+
+`src/optics/prescription/canonical.ts` defines the version-independent prescription the rewrite builds on
+(`OPTICS_ENGINE_REWRITE_SPEC.md`, Lens data V2). Its shape is the V2 model: records by consumer, a surface's index
+from its `medium` (an element, an undrawn medium in `media`, or air), sparse `asphere` terms, `R: "flat"`, zoom station
+records, focus keyframes, conjugates by station index, gaps by label as `[zoom][focus]`, and the stop's radius
+authority (`authored`, `schedule` or `derived`, by the rule `buildLens` applies). Provenance sits beside it: the
+defaulted paths, the authored values the engine ignores, and the V1 spellings it holds once.
+
+- `ingestLensV1` and `ingestTeleconverterV1` (`ingestV1.ts`) map a V1 file onto it, applying the schema defaults of
+  `defaults.ts`. Each default row names its reader. A default written out and one left out ingest alike. Ingest does
+  not validate; it refuses only what the canonical form cannot hold: two V1 copies that disagree (a surface `nd` and
+  its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within 1e-8), a zoom
+  field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, and fields V1 does not define.
+- `toLensData` (`toLensData.ts`) is the V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
+  and `toLensDataInput` gives it back as authored.
+- Nothing in production ingests yet: the catalogs and `buildLens` still spread `src/lens-data/defaults.ts`, whose
+  values `defaults.ts` restates under a test, until S2.P1.T2 routes them through ingest. `buildLens.ts` re-exports
+  the two ingest functions, which the differential harness reads for the semantic fingerprint.
+
 ### Rear Plates
 
 Source-listed cover glass and filter plates (`LensData.rearPlates`) are expanded once, in `buildLens` right after

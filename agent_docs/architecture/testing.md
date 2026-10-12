@@ -95,6 +95,11 @@ Existing tests cover:
   (`zoomApertureModel.test.ts`), `dPgF` stored against the engine's normal line
   (`partialDispersionLine.test.ts`), and shared-prescription parity across switchable configuration groups
   (`opticalConfigurationParity.test.ts`, which requires a contract entry for every `opticalConfiguration` group).
+- The canonical prescription (`__tests__/src/optics/prescription/canonical.test.ts`): every catalog lens and
+  teleconverter round-trips V1 → canonical → V1 view exactly, ingest neither writes to nor shares objects with its
+  input, every schema default applies exactly where a file leaves the field out, the stop-radius authority matches
+  what `buildLens` does on every catalog lens, and each spelling the canonical form holds as one and each refusal
+  has a synthetic case.
 - Teleconverters, which never enter `LENS_CATALOG` (`teleconverterCompatibility.test.ts`): every converter validates;
   every converter–host pair the fit predicate allows composes, builds, passes the axial beam, keeps the host's stop
   and, at every zoom station, reaches as much of the format corner as the bare lens; and a synthetic universal
@@ -217,16 +222,21 @@ and bundled there.
   re-exports the comparison, which the driver calls from the built bundle.
 - `seamAdapter.ts` is the only file that names engine modules. It reaches each through an eager `import.meta.glob`,
   which yields nothing for a file a revision lacks, and resolves every capability from an ordered list of candidate
-  exports. A change that renames or moves a seam export adds the new name to that list in the same change.
+  exports. A change that renames or moves a seam export adds the new name to that list in the same change. A few
+  capabilities are optional: only the head's bundle is asked for them, so a revision that lacks one still resolves
+  its seam and reports the capability as `absent`. Canonical ingest, which the fingerprint needs, is one of them.
 - `requests.ts` defines a tier as a deterministic list of lens × state × request family, and cuts a list into
   shards. The three tiers are described under "Tiers" below.
 - `payload.ts` holds the encoding (JSON that round-trips under `Object.is`, with tags for -0, NaN, and the
   infinities), the digests that stand in for the per-ray traces and pupil bundles nested in perspective results, and
-  the semantic fingerprint: a hash of a prescription after lens defaults and the engine's authority rules (a flat
-  radius at any magnitude, a zero asphere term, a derived stop radius, the sign of zero). A payload that hands
-  authored data back, such as the composed prescription of a pair or the `data` of a built lens, is written through
-  the same rules, so a respelling the fingerprint ignores does not change a record. An engine back-pointer is skipped
-  by member name and leaves a marker in the payload.
+  the semantic fingerprint: a hash of the canonical prescription the head's engine ingests a file to
+  (`src/optics/prescription/`), with -0 as 0. A file the engine refuses gets a fingerprint of its refusal and data,
+  so it reads as a semantic change. A payload that hands authored data back (the `data` and `elements` of a built
+  lens, the composed prescription of a pair, the conjugate an MTF result reports) is written through
+  `normalizeAuthoredData`, which applies the spellings the canonical prescription holds as one, so a respelling the
+  fingerprint ignores does not change a record. It runs on both engines, so it restates the inline schema defaults
+  in `ECHO_DEFAULTS`, which a test holds equal to `src/optics/prescription/defaults.ts`. An engine back-pointer is
+  skipped by member name and leaves a marker in the payload.
 - `budgets.ts` holds the quantity classes and the table that gives a numeric payload path one of them. A class says
   how two values are compared and how far they may differ under C1. The table's rows are path patterns, and the
   first row that matches decides.
@@ -484,8 +494,9 @@ exception was met by some shard.
 Three files in the tooling suite hold the harness to its contract.
 
 - `__tests__/src/benchmarks/engineDiff.test.ts`: a capture repeats byte for byte, the encoding loses nothing, the
-  fingerprint's restated stop-radius rule agrees with `buildLens` on every catalog lens, a fingerprint-equal
-  respelling leaves every Tier P record of a lens unchanged, a member of a built surface that the engine alone
+  fingerprint's stop-radius rule agrees with `buildLens` on every catalog lens, a fingerprint-equal respelling leaves
+  every Tier P record of a lens unchanged (one case per spelling the canonical prescription holds as one), the
+  harness's copy of the inline defaults equals the engine's, a member of a built surface that the engine alone
   changed gives another build record, and no analysis or MTF record carries a skip marker. Asking an engine which
   pairs it permits does not throw on a prescription it cannot read, and it names the pairs it cannot build, each by
   the pair's own build record.

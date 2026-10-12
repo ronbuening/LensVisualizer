@@ -19,20 +19,21 @@ import {
 } from "../../../src/benchmarks/engineDiff/captureEntry.js";
 import { comparePermittedPairs } from "../../../src/benchmarks/engineDiff/compare.js";
 import {
+  ECHO_DEFAULTS,
   FLAT_RADIUS_MARKER,
   SKIPPED_BACK_POINTER_TAG,
-  applyAuthorityRules,
   columnize,
   createResultEncoder,
   decodeValue,
   encodeValue,
+  normalizeAuthoredData,
   outcomeOf,
   projectBuildConstants,
   semanticFingerprint,
   sha256Hex,
   stopRadiusAuthority,
   type EncodedValue,
-  type FingerprintRules,
+  type SemanticProjection,
 } from "../../../src/benchmarks/engineDiff/payload.js";
 import {
   ANALYSIS_CONTEXT_JOBS,
@@ -67,11 +68,19 @@ import {
   describeSeam,
   ownCatalogFiles,
   resolveCapabilities,
+  resolveOptionalCapabilities,
+  resolveOptionalSeam,
   resolveSeam,
 } from "../../../src/benchmarks/engineDiff/seamAdapter.js";
 import { MTF_BENCHMARK_CASES, MTF_FINITE_BENCHMARK_CASE } from "../../../src/benchmarks/mtfCases.js";
 import { BENCHMARK_SCENARIOS, DEFAULT_BENCHMARK_LENS_KEYS } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
-import buildLens from "../../../src/optics/buildLens.js";
+import buildLens, { ingestLensV1, ingestTeleconverterV1 } from "../../../src/optics/buildLens.js";
+import {
+  ELEMENT_SCHEMA_DEFAULTS,
+  LENS_SCHEMA_DEFAULTS,
+  REAR_PLATE_SCHEMA_DEFAULTS,
+  type SchemaDefault,
+} from "../../../src/optics/prescription/defaults.js";
 import { doLayout, traceRay } from "../../../src/optics/optics.js";
 import type { MtfMethod, MtfSpectrum } from "../../../src/types/mtf.js";
 import type { LensData, LensDataInput } from "../../../src/types/optics.js";
@@ -421,10 +430,21 @@ describe("engineDiff seam adapter", () => {
 
   it("resolves every capability against this checkout", () => {
     const seam = resolveSeam();
+    const optional = resolveOptionalSeam();
     const sources = describeSeam();
-    expect(Object.keys(sources).sort()).toEqual(Object.keys(seam).sort());
+    expect(Object.keys(sources).sort()).toEqual([...Object.keys(seam), ...Object.keys(optional)].sort());
     expect(sources.traceRay).toBe("compat.traceEngineRay2");
     expect(seam.buildLens).toBe(buildLens);
+    expect(optional).toEqual({ ingestLens: ingestLensV1, ingestTeleconverter: ingestTeleconverterV1 });
+    expect(sources.ingestLens).toBe("buildLens.ingestLensV1");
+  });
+
+  it("leaves out an optional capability a ref lacks, without failing the rest", () => {
+    const optionalCandidates = { ingest: [["buildLens", "ingestLensV1"]], ...candidates } as const;
+    const { exports, sources } = resolveOptionalCapabilities(older, optionalCandidates);
+    expect(exports).toEqual({ traceRay: "old trace", buildLens: "build" });
+    expect(sources).toEqual({ ingest: "absent", traceRay: "compat.traceEngineRay2", buildLens: "buildLens.default" });
+    expect(Object.hasOwn(exports, "ingest")).toBe(false);
   });
 });
 
@@ -1297,7 +1317,7 @@ describe("engineDiff capture", () => {
     expect(mismatches).toEqual([]);
   });
 
-  it("composes a pair itself and records the composed prescription by the fingerprint's authority rules", () => {
+  it("composes a pair itself and records the composed prescription as the fingerprint reads a file", () => {
     const composition = valueOf(
       records.find((record) => record.lens === PAIR_ID && record.request === "composition")!,
     ) as {
@@ -1311,7 +1331,7 @@ describe("engineDiff capture", () => {
     ) as Parameters<typeof seam.attachTeleconverter>[1];
     const composed = seam.attachTeleconverter({ ...seam.lensDefaults, ...host }, converter);
     expect(composition.compatibility.ok).toBe(true);
-    expect(composition.prescription).toEqual(throughJson(applyAuthorityRules(composed, seam.flatRadiusThreshold)));
+    expect(composition.prescription).toEqual(throughJson(normalizeAuthoredData(composed, seam.flatRadiusThreshold)));
     expect(composition.prescription.surfaces.length).toBeGreaterThan(host.surfaces.length);
     /* The host's flat surfaces and its derived stop radius are in the composed prescription, in normalized form. */
     const { surfaces } = composition.prescription;
@@ -1364,7 +1384,7 @@ describe("engineDiff capture", () => {
       .map(([field]) => (field === "asphByIdx" ? "asphericSurfaceIndexes" : field));
     expect(written).toEqual(expected.sort());
 
-    /* `data` is written by the fingerprint's rules: a flat radius as its marker, a derived stop radius left out. */
+    /* `data` is written as the fingerprint reads a file: a flat radius as its marker, a derived stop radius left out. */
     const { surfaces } = (JSON.parse(record) as { data: { surfaces: { label: string; R: unknown; sd?: number }[] } })
       .data;
     expect(surfaces).toHaveLength(lens.S.length);
@@ -1641,8 +1661,10 @@ describe("engineDiff capture", () => {
 
 describe("engineDiff semantic fingerprint", () => {
   const seam = resolveSeam();
-  const rules: FingerprintRules = { lensDefaults: seam.lensDefaults, flatRadiusThreshold: seam.flatRadiusThreshold };
-  const fingerprint = (lens: object) => semanticFingerprint(lens, rules);
+  const projectLens: SemanticProjection = (lens) => ingestLensV1(lens as LensDataInput).prescription;
+  const projectConverter: SemanticProjection = (converter) =>
+    ingestTeleconverterV1(converter as Parameters<typeof ingestTeleconverterV1>[0]).prescription;
+  const fingerprint = (lens: object) => semanticFingerprint(lens, projectLens);
   /** The plain twin with one edit applied to a private copy. */
   const edited = (edit: (lens: LensDataInput) => void): LensDataInput => {
     const copy: LensDataInput = structuredClone(plainTwin);
@@ -1650,6 +1672,8 @@ describe("engineDiff semantic fingerprint", () => {
     return copy;
   };
   const base = fingerprint(plainTwin);
+  const authoredOf = (key: string) =>
+    decodeValue(CATALOG.lenses.find((lens) => lens.key === key)!.prescription) as LensData;
 
   it("is shared by two files that differ only in comments, layout, key order and written-out defaults", () => {
     /* The twins really are different objects: other key order, explicit defaults, an `undefined` member. */
@@ -1673,26 +1697,21 @@ describe("engineDiff semantic fingerprint", () => {
   });
 
   /**
-   * Capture Tier P records as authored, and again with one lens respelled inside the fingerprint's rules: every flat
-   * radius written -2e15 instead of 1e15, and the authored STO semi-diameter changed on a lens with a derived stop.
+   * Capture the Tier P records of the given lens ids as authored, and again with lens `key` respelled.
    *
-   * The rules that let two spellings share a fingerprint must hold in the payloads too, or a format-only change fails
-   * on a record that only hands authored data back. The engine does that with a flat radius in two places: the
-   * best-fit radius of a flat-base asphere, and the prescription it composes for a converter pair.
+   * The respelling must be a real edit that the fingerprint does not see. The rules that let two spellings share a
+   * fingerprint must then hold in the payloads too, or a format-only change fails on a record that only hands
+   * authored data back.
    */
-  const captureRespelled = (key: string, ids: readonly string[]) => {
+  const captureRespelled = (key: string, ids: readonly string[], respell: (lens: LensData) => void) => {
     const entry = CATALOG.lenses.find((lens) => lens.key === key)!;
     const authored = decodeValue(entry.prescription) as LensData;
     const respelled = structuredClone(authored);
-    const flat = respelled.surfaces.filter((surface) => Math.abs(surface.R) > seam.flatRadiusThreshold);
-    for (const surface of flat) surface.R = -2e15;
-    respelled.surfaces.find((surface) => surface.label === "STO")!.sd *= 0.97;
-
-    /* The edit is a real one, it reaches flat surfaces other than the stop, and the fingerprint does not see it. */
-    expect(flat.length).toBeGreaterThan(1);
-    expect(authored.surfaces.filter((surface) => surface.R === 1e15)).toHaveLength(flat.length);
-    expect(stopRadiusAuthority({ ...seam.lensDefaults, ...authored })).toBe("derived");
-    expect(fingerprint(respelled)).toBe(fingerprint(authored));
+    respell(respelled);
+    expect(JSON.stringify(encodeValue(respelled)), `${key}: the respelling edits the file`).not.toBe(
+      JSON.stringify(entry.prescription),
+    );
+    expect(fingerprint(respelled), `${key}: the respelling keeps the fingerprint`).toBe(fingerprint(authored));
 
     const respelledCatalog: SerializedCatalog = {
       ...CATALOG,
@@ -1706,10 +1725,19 @@ describe("engineDiff semantic fingerprint", () => {
     return { before, after: captureRecords(respelledCatalog, requests) };
   };
 
+  /** Every flat radius written -2e15 instead of 1e15, and the authored stop radius of a derived stop changed. */
+  const respellFlatAndStop = (lens: LensData) => {
+    const flat = lens.surfaces.filter((surface) => Math.abs(surface.R) > seam.flatRadiusThreshold);
+    expect(flat.length).toBeGreaterThan(1);
+    for (const surface of flat) surface.R = -2e15;
+    expect(stopRadiusAuthority({ ...seam.lensDefaults, ...lens })).toBe("derived");
+    lens.surfaces.find((surface) => surface.label === "STO")!.sd *= 0.97;
+  };
+
   it("keeps every Tier P record of a lens with flat-base aspheres when flat radii and the stop radius are respelled", () => {
     /* The rear-plates representative, so its Tier P records include the analysis jobs and MTF. */
     const key = "zeiss-zx1-distagon-35mm-f2";
-    const { before, after } = captureRespelled(key, [key]);
+    const { before, after } = captureRespelled(key, [key], respellFlatAndStop);
     expect(before.map((record) => record.request)).toEqual([
       "build",
       "layout",
@@ -1732,7 +1760,7 @@ describe("engineDiff semantic fingerprint", () => {
   });
 
   it("keeps every Tier P record of a converter host and of its pair under the same respelling", () => {
-    const { before, after } = captureRespelled(PAIR.key, [PAIR.key, PAIR_ID]);
+    const { before, after } = captureRespelled(PAIR.key, [PAIR.key, PAIR_ID], respellFlatAndStop);
     const requestsOf = (id: string) => before.filter((record) => record.lens === id).map((record) => record.request);
     expect(requestsOf(PAIR.key)).toContain("traces");
     expect(requestsOf(PAIR_ID)).toEqual([
@@ -1746,6 +1774,139 @@ describe("engineDiff semantic fingerprint", () => {
       "mtf",
     ]);
     expect(recordDigests(after)).toEqual(recordDigests(before));
+  });
+
+  /** The first catalog lens, in key order, whose authored data passes `test`. */
+  const firstLens = (test: (lens: LensData) => boolean): string => {
+    const found = CATALOG.lenses.find((entry) => test(decodeValue(entry.prescription) as LensData));
+    expect(found, "the catalog has a lens to respell").toBeDefined();
+    return found!.key;
+  };
+  type Respelling = [name: string, key: string, respell: (lens: LensData) => void];
+  const elementsWith = (field: "apd" | "indexReference", value: unknown) => (lens: LensData) =>
+    lens.elements.some((element) => element[field] === value);
+  const withoutOnElements = (field: "apd" | "indexReference") => (lens: LensData) => {
+    for (const element of lens.elements) if (element[field] === (field === "apd" ? false : "d")) delete element[field];
+  };
+  const aspheric = (lens: LensData) => Object.keys(lens.asph ?? {}).length > 0;
+  /* One case per spelling pair the canonical prescription holds as one, beyond the flat radius and stop above. */
+  const respellings: Respelling[] = [
+    [
+      "an optional zero aspheric term written out",
+      firstLens(aspheric),
+      (lens) => {
+        const [label] = Object.keys(lens.asph!);
+        lens.asph![label] = { ...lens.asph![label], A16: 0 };
+      },
+    ],
+    [
+      "an empty asph left out",
+      firstLens((lens) => lens.asph !== undefined && Object.keys(lens.asph).length === 0),
+      (lens) => delete lens.asph,
+    ],
+    [
+      "an empty var and varLabels left out",
+      firstLens((lens) => lens.var !== undefined && Object.keys(lens.var).length === 0 && lens.varLabels?.length === 0),
+      (lens) => {
+        delete lens.var;
+        delete lens.varLabels;
+      },
+    ],
+    [
+      "varLabels in another order",
+      firstLens((lens) => (lens.varLabels?.length ?? 0) >= 2),
+      (lens) => lens.varLabels!.reverse(),
+    ],
+    ["apd: false left out", firstLens(elementsWith("apd", false)), withoutOnElements("apd")],
+    [
+      'indexReference: "d" left out',
+      firstLens(elementsWith("indexReference", "d")),
+      withoutOnElements("indexReference"),
+    ],
+    [
+      'a rear plate\'s indexReference: "d" left out',
+      firstLens((lens) => (lens.rearPlates ?? []).some((plate) => plate.indexReference === "d")),
+      (lens) => {
+        for (const plate of lens.rearPlates!) if (plate.indexReference === "d") delete plate.indexReference;
+      },
+    ],
+    ["zoomStep: 0.004 left out", firstLens((lens) => lens.zoomStep === 0.004), (lens) => delete lens.zoomStep],
+    [
+      'zoomApertureModel: "from-nominal-fno" left out',
+      firstLens((lens) => lens.zoomApertureModel === "from-nominal-fno"),
+      (lens) => delete lens.zoomApertureModel,
+    ],
+    [
+      "focusPositions: [0, 1] left out",
+      firstLens((lens) => JSON.stringify(lens.focusPositions) === "[0,1]"),
+      (lens) => delete lens.focusPositions,
+    ],
+    [
+      "a publishedStations.zoom that names every station left out",
+      firstLens((lens) => {
+        const { zoom, focus } = lens.publishedStations ?? {};
+        return zoom !== undefined && focus !== undefined && zoom.length === lens.zoomPositions?.length;
+      }),
+      (lens) => delete lens.publishedStations!.zoom,
+    ],
+    [
+      "one publishedStations.focus list written per zoom station",
+      firstLens((lens) => {
+        const focus = lens.publishedStations?.focus;
+        return (lens.zoomPositions?.length ?? 0) >= 2 && focus !== undefined && !Array.isArray(focus[0]);
+      }),
+      (lens) => {
+        const { zoom, focus } = lens.publishedStations!;
+        lens.publishedStations!.focus = lens.zoomPositions!.map((_, station) =>
+          zoom === undefined || zoom.includes(station) ? [...(focus as number[])] : [],
+        );
+      },
+    ],
+    [
+      "a finite conjugate's focusT within the station tolerance",
+      firstLens((lens) => (lens.finiteConjugates?.length ?? 0) > 0),
+      (lens) => {
+        const [conjugate] = lens.finiteConjugates!;
+        conjugate.focusT -= 1e-12;
+      },
+    ],
+    [
+      "the aberration ring's varLabels in another order",
+      firstLens((lens) => (lens.aberrationControl?.varLabels?.length ?? 0) >= 2),
+      (lens) => lens.aberrationControl!.varLabels!.reverse(),
+    ],
+  ];
+
+  it.each(respellings)("keeps every Tier P record of a lens with %s", (_name, key, respell) => {
+    const { before, after } = captureRespelled(key, [key], respell);
+    expect(recordDigests(after)).toEqual(recordDigests(before));
+  });
+
+  it("keeps the composition record of a pair whose host leaves its element defaults out", () => {
+    const { before, after } = captureRespelled(PAIR.key, [PAIR.key, PAIR_ID], (lens) => {
+      withoutOnElements("apd")(lens);
+      withoutOnElements("indexReference")(lens);
+    });
+    expect(recordDigests(after)).toEqual(recordDigests(before));
+  });
+
+  it("copies the inline schema defaults exactly, so its echo rules follow the canonical prescription's", () => {
+    /* The harness runs against engines that predate `prescription/defaults.ts`, so it keeps its own copy. */
+    const copyOf = (rows: readonly SchemaDefault[]) =>
+      rows
+        .filter((row) => row.v1Applied === "engine")
+        .map((row) => ({
+          v1Field: row.v1Field,
+          value: row.value,
+          ...(row.authoredIsDefault?.(0) ? { falsyIsDefault: true } : {}),
+        }));
+    expect(ECHO_DEFAULTS).toEqual({
+      lens: copyOf(LENS_SCHEMA_DEFAULTS),
+      element: copyOf(ELEMENT_SCHEMA_DEFAULTS),
+      rearPlate: copyOf(REAR_PLATE_SCHEMA_DEFAULTS),
+    });
+    /* A catalog row needs no copy: the engine merges it before any record hands data back. */
+    expect(LENS_SCHEMA_DEFAULTS.filter((row) => row.v1Applied === "catalog").length).toBeGreaterThan(0);
   });
 
   it("changes with every value in the file, except the two the engine does not read", () => {
@@ -1796,16 +1957,31 @@ describe("engineDiff semantic fingerprint", () => {
   it("keeps a written-out default equal to an omitted one, and tells a changed default apart", () => {
     expect(fingerprint(edited((lens) => (lens.svgW = 1080)))).toBe(base);
     expect(fingerprint(edited((lens) => (lens.svgW = 1081)))).not.toBe(base);
+    /* Defaults the engine applies inline count as their omission too. */
+    expect(fingerprint(edited((lens) => (lens.elements[0].apd = false)))).toBe(base);
+    expect(fingerprint(edited((lens) => (lens.elements[0].apd = "inferred")))).not.toBe(base);
+    expect(fingerprint(edited((lens) => (lens.elements[0].indexReference = "d")))).toBe(base);
+    expect(fingerprint(edited((lens) => (lens.elements[0].indexReference = "e")))).not.toBe(base);
+    expect(fingerprint(edited((lens) => (lens.focusPositions = [0, 1])))).toBe(base);
     /* Fields nothing reads yet are still hashed: a converted file must carry them. */
     expect(fingerprint(edited((lens) => (lens.apertureBlades = 9)))).not.toBe(base);
     expect(fingerprint(edited((lens) => (lens.apertureBladeRoundedness = 0.5)))).not.toBe(base);
-    expect(fingerprint(edited((lens) => (lens.zoomLabels = ["wide"])))).not.toBe(base);
     /* `maker: null` records an unconfirmed maker; omission keeps name inference. */
     expect(fingerprint(edited((lens) => delete lens.maker))).not.toBe(base);
     /* An infinite focal length is not a missing one; plain JSON would write both as null. */
     expect(fingerprint(edited((lens) => (lens.elements[0].fl = Number.POSITIVE_INFINITY)))).not.toBe(
       fingerprint(edited((lens) => (lens.elements[0].fl = null as never))),
     );
+  });
+
+  it("gives a file the engine cannot ingest a fingerprint of its own instead of stopping", () => {
+    /* Zoom labels on a prime have no station to live on, so canonical ingest refuses them. */
+    const refused = edited((lens) => (lens.zoomLabels = ["wide"]));
+    expect(() => ingestLensV1(refused)).toThrow(/zoomLabels/);
+    expect(fingerprint(refused)).toMatch(/^[0-9a-f]{64}$/);
+    expect(fingerprint(refused)).not.toBe(base);
+    expect(fingerprint(structuredClone(refused))).toBe(fingerprint(refused));
+    expect(fingerprint(edited((lens) => (lens.zoomLabels = ["tele"])))).not.toBe(fingerprint(refused));
   });
 
   it("hashes the STO semi-diameter only where the restated rule says the engine reads it", () => {
@@ -1818,8 +1994,19 @@ describe("engineDiff semantic fingerprint", () => {
       });
       return [stopRadiusAuthority(lens), fingerprint(lens) !== fingerprint(shrunk)];
     };
+    /* A schedule needs zoom stations to live on. */
+    const asZoomWithSchedule = (lens: LensDataInput) => {
+      lens.zoomPositions = [50, 60];
+      lens.var = {
+        "2": [
+          [80, 84],
+          [80, 84],
+        ],
+      };
+      lens.zoomStopSemiDiameters = [8, 9];
+    };
     expect(readsStopRadius(() => {})).toEqual(["derived", false]);
-    expect(readsStopRadius((lens) => (lens.zoomStopSemiDiameters = [8, 9]))).toEqual(["schedule", false]);
+    expect(readsStopRadius(asZoomWithSchedule)).toEqual(["schedule", false]);
     expect(readsStopRadius((lens) => (lens.surfaces[1].interaction = { type: "refract" }))).toEqual(["derived", false]);
     expect(readsStopRadius((lens) => (lens.surfaces[0].stopPlacement = "inside-element"))).toEqual(["authored", true]);
     expect(readsStopRadius((lens) => (lens.opticalPath = { mode: "auto" }))).toEqual(["authored", true]);
@@ -1828,7 +2015,7 @@ describe("engineDiff semantic fingerprint", () => {
     expect(
       readsStopRadius((lens) => {
         lens.opticalPath = { mode: "auto" };
-        lens.zoomStopSemiDiameters = [8, 9];
+        asZoomWithSchedule(lens);
       }),
     ).toEqual(["authored", true]);
   });
@@ -1868,5 +2055,12 @@ describe("engineDiff semantic fingerprint", () => {
     const { lenses, teleconverters } = fingerprintCatalog(CATALOG);
     expect(new Set(Object.values(lenses)).size).toBe(CATALOG.lenses.length);
     expect(new Set(Object.values(teleconverters)).size).toBe(CATALOG.teleconverters.length);
+    expect(teleconverters[PAIR.teleconverter!]).toBe(
+      semanticFingerprint(
+        decodeValue(CATALOG.teleconverters.find((entry) => entry.key === PAIR.teleconverter)!.prescription) as object,
+        projectConverter,
+      ),
+    );
+    expect(lenses[PAIR.key]).toBe(fingerprint(authoredOf(PAIR.key)));
   });
 });

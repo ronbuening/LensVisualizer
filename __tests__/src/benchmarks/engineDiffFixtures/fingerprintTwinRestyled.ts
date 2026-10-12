@@ -39,7 +39,7 @@ const LENS = {
   surfaces: [
     { sd: 8,  elemId: 0, nd: 1.0,    d: 1.0,  R: 1000000000000000, label: "STO" }, // aperture stop
     { sd: 15, elemId: 1, nd: 1.5168, d: 5.0,  R: 50.0,             label: "1A" },
-    { sd: 15, elemId: 1, nd: 1.0,    d: 80.0, R: -50.0,            label: "2" },
+    { sd: 15, elemId: 0, nd: 1.0,    d: 80.0, R: -50.0,            label: "2" },
   ],
 } satisfies LensDataInput;
 

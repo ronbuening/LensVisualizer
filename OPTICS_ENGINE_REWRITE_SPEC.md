@@ -285,14 +285,39 @@ UI reads, taken after the engine's own authority rules.
 A V1 file and its V2 conversion therefore share a fingerprint, while any change the engine or UI could observe changes
 it.
 
-Before S2.P1.T1, the fingerprint hashes the evaluated prescription after the lens defaults, under the rules above. Three
-readings are fixed until the canonical prescription replaces it:
+From S2.P1.T1 the fingerprint hashes the canonical prescription (`src/optics/prescription/`), and three readings are
+settled (2026-10-12):
 
-- An asphere entry whose terms are all zero still counts as present, because the engine builds an aspheric profile for
-  it.
-- `zoomLabels`, `apertureBlades` and `apertureBladeRoundedness` are hashed: conversion preserves them.
-- A default the engine applies inline (`apd: false`, `indexReference: "d"`, an empty `asph`) is not yet equated with
-  its omission, so writing one out counts as a semantic change.
+- An asphere entry whose terms are all zero counts as present. The engine builds an aspheric profile and takes the
+  asphere solver path for it, and Stage 3 keeps the four profile kinds. "Zero asphere terms count as absent" applies to
+  terms, never to the entry, so an entry with K = −1 and all-zero terms keeps K. Two catalog surfaces carry such an
+  entry: `12A` of `ricoh-gr3x-26f28` and `9A` of `schneider-super-symmar-xl-110-f56`.
+- `zoomLabels`, `apertureBlades` and `apertureBladeRoundedness` are semantic and hashed, although nothing reads them
+  yet, so a conversion that drops one fails the format-only gate.
+- A default the engine applies inline equals its omission: authored-or-default is provenance.
+
+The spellings the canonical prescription holds as one, in V1 terms. Each pair shares a fingerprint, and the harness
+writes every record that echoes authored data through the same equivalences (`normalizeAuthoredData` in
+`src/benchmarks/engineDiff/payload.ts`). Catalog counts are of 2026-10-12.
+
+- A schema default written out or left out (`src/optics/prescription/defaults.ts`). These are the catalog's merged
+  defaults (`visible`, `focusStep`, `apertureStep`, `maxFstop`, the layout, ray and check fields) and the ones the engine
+  applies inline:
+  - `focusPositions: [0, 1]` (12 files);
+  - `zoomStep: 0.004` (158 files), or any falsy step, as `buildLens` reads `zoomStep || 0.004`;
+  - `zoomApertureModel: "from-nominal-fno"` (49);
+  - an element's `apd: false` (3,714) and `indexReference: "d"` (2,012);
+  - a rear plate's `indexReference: "d"` (8).
+- A flat radius at any magnitude beyond `FLAT_R_THRESHOLD`.
+- A zero asphere term, written or left out.
+- The authored `sd` of a stop whose radius the engine derives or takes from a schedule.
+- An empty `asph` (506 files), `var` (136), `varLabels` (136) or ring `varLabels`, and no such field.
+- The order of the `varLabels` pairs and of the ring's: canonical holds gaps in surface order.
+- A `publishedStations.zoom` that names every station (8 files), and one left out, while the object is present. An
+  absent object declares nothing.
+- One `publishedStations.focus` list, and the same list written once per zoom station.
+- A finite conjugate's `focusT` and `zoomT` within the validator's 1e-8 of the station they name, and the station's own
+  coordinates.
 
 **What a differential run compares.** Nothing is skipped silently.
 
@@ -1077,16 +1102,31 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
 
 - **S2.P1.T1 Canonical types, V1 ingest and V1 view.**
   - **Change:** add:
-    - the `CanonicalPrescription` types;
-    - `ingestV1`;
-    - schema defaults with provenance, which replace the spread of `src/lens-data/defaults.ts` and stop it importing
-      an engine internal;
+    - the `CanonicalPrescription` types, in the V2 semantic model of [Lens data V2](#lens-data-v2);
+    - `ingestV1`. It does not validate, and refuses only what the canonical form cannot hold, naming each reason:
+      - two V1 copies of one value that disagree: a surface `nd` and its medium's, or a surface `d` and its gap's first
+        value, exactly (principle 1); a finite conjugate and the keyframe and station it names, beyond the validator's
+        1e-8;
+      - a zoom field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, or `varLabels` that
+        name no gap;
+      - a field V1 does not define, or one only the engine writes;
+    - schema defaults with provenance, which replace the spread of `src/lens-data/defaults.ts`. Each default names the
+      code that reads it. That file keeps its engine-internal import until S2.P1.T2 deletes it, and a test holds the
+      two tables equal until then;
     - the canonical → V1 `LensData` view the current engine consumes;
     - the harness's semantic fingerprint (`src/benchmarks/engineDiff/payload.ts`), moved onto the canonical semantic
       projection, so that a V1 file and its V2 conversion share one. The S2.P5 format-only gate depends on it.
+      - Only the head's bundle is asked for fingerprints. Canonical ingest reaches the harness through
+        `src/optics/buildLens.ts`, as a seam capability that an older base may lack.
+      - The records that echo authored data run on both engines, A0 included, so they cannot use canonical code. They
+        are the `data` and `elements` of a build record, the composed prescription, and the conjugate an MTF result
+        reports. They go through `normalizeAuthoredData`, which applies every equivalence listed under
+        [Anchors and comparison coverage](#anchors-and-comparison-coverage). It keeps its own copy of the inline
+        defaults, and a tooling test holds that copy equal to the engine's.
 
     No caller changes yet.
-  - **Files:** `src/optics/prescription/{canonical, ingestV1, defaults, toLensData}.ts`. `src/lens-data/defaults.ts` is
+  - **Files:** `src/optics/prescription/{canonical, ingestV1, defaults, toLensData}.ts`; `src/optics/buildLens.ts`
+    (re-export); `src/benchmarks/engineDiff/{payload, seamAdapter, captureEntry}.ts`. `src/lens-data/defaults.ts` is
     deleted in S2.P1.T2, once its readers ingest through canonical.
   - **Tests:** `__tests__/src/optics/prescription/canonical.test.ts`:
     - every catalog file round-trips V1 → canonical → V1 view, deep-equal to the current
@@ -1094,7 +1134,11 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - no input mutation;
     - provenance flags are correct;
     - the semantic projection excludes provenance: an authored stop `sd` the engine overwrites appears only in
-      provenance, and the V1 view still reproduces it while the old engine consumes that view.
+      provenance, and the V1 view still reproduces it while the old engine consumes that view;
+    - the stop-radius authority ingest assigns equals what `buildLens` does, on every catalog lens.
+
+    In the tooling suite, every equivalence has a respelling case that leaves every Tier P record of a catalog lens
+    unchanged.
   - **Gate:** C0.
 - **S2.P1.T2 Route production through ingest.**
   - **Change:** the catalogs, `buildLens` and the scripts that spread defaults all ingest through canonical.
