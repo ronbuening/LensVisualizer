@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-13",
     type: "fix",
+    summary: "Fixed the Distortion tab naming barrel distortion as pincushion and pincushion as barrel",
+  },
+  {
+    date: "2026-10-13",
+    type: "fix",
     summary: "Corrected HOYA FCD1 glass dispersion, slightly shifting violet focus in the lenses that use it",
   },
   {
