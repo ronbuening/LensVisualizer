@@ -8,7 +8,7 @@ import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../..
 import { intersectSagSurface } from "../../../../src/optics/internal/surfaceIntersection.js";
 import { dot, normalize } from "../../../../src/optics/math/vector.js";
 import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
-import { build } from "../testLensFixtures.js";
+import { build, buildFoldedTirLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
 function expectClose(actual: number, expected: number, tolerance: number): void {
   expect(Math.abs(actual - expected)).toBeLessThanOrEqual(tolerance);
@@ -100,9 +100,11 @@ describe("Optics engine surface intersections", () => {
     const R = -17.388;
     const vertexZ = 67.46;
     const ray = { origin: [-2.2042, -14.9501, 57.7633] as Vec3, direction: normalize([-0.01696, -0.44528, 0.89523])! };
+    // The seed and the halving rule belong to the iterative path, which an explicit budget asks for.
     const hit = intersectSurfaceProfile(ray, createSurfaceProfile({ R }, undefined), vertexZ, {
       maxT: 22.6,
       directionNormalized: true,
+      maxIterations: INTERSECTION_MAX_ITERATIONS,
     });
     const center: Vec3 = [0, 0, vertexZ + R];
     const offset: Vec3 = [ray.origin[0] - center[0], ray.origin[1] - center[1], ray.origin[2] - center[2]];
@@ -111,8 +113,10 @@ describe("Optics engine surface intersections", () => {
     const analyticT = [-b - Math.sqrt(b * b - c), -b + Math.sqrt(b * b - c)].find(
       (t) => ray.origin[2] + t * ray.direction[2] > center[2],
     )!;
+    expect(hit).not.toHaveProperty("closedFormFallback");
     expect(hit.ok).toBe(true);
     if (hit.ok) {
+      expect(hit.iterations).toBeGreaterThan(0);
       expectClose(hit.t, analyticT, 1e-8);
       expect(hit.radius).toBeLessThan(15.5);
     }
@@ -156,7 +160,8 @@ describe("Optics engine surface intersections", () => {
   });
 
   /* A ray entering the domain from outside can cross the surface between the domain edge and the first scan sample
-   * inside it; that root has no sign change between valid samples, so the search must bracket the edge itself. */
+   * inside it; that root has no sign change between valid samples, so the search must bracket the edge itself.
+   * The explicit budget keeps the solve on the iterative path, whose scan this is. */
   it("finds a root just inside a conic's domain edge", () => {
     const profile = createSurfaceProfile({ R: 4 }, undefined);
     const angle = (21 * Math.PI) / 180;
@@ -164,11 +169,13 @@ describe("Optics engine surface intersections", () => {
       { origin: [0, 6, -2], direction: [0, -Math.sin(angle), Math.cos(angle)] },
       profile,
       0,
-      { maxT: 24, directionNormalized: true },
+      { maxT: 24, directionNormalized: true, maxIterations: INTERSECTION_MAX_ITERATIONS },
     );
 
+    expect(hit).not.toHaveProperty("closedFormFallback");
     expect(hit.ok).toBe(true);
     if (!hit.ok) return;
+    expect(hit.iterations).toBeGreaterThan(0);
     expect(hit.radius).toBeGreaterThan(3.9);
     expect(hit.radius).toBeLessThan(4);
     expectClose(hit.point[2], profile.sag(hit.radius), 1e-9);
@@ -365,13 +372,14 @@ describe("cap search after a failed unbounded solve", () => {
    * no iteration can bring the exterior root within the residual target. */
   const clean = createSurfaceProfile({ R: 30 }, { K: 0, A4: 0, A6: 0, A8: 0, A10: -1e-10, A12: 0, A14: 0 });
   const sd = 10;
-  const noisy = (): SurfaceProfile => {
+  /** The clean profile with the noise beyond `quietRadius`. */
+  const noisy = (quietRadius = sd): SurfaceProfile => {
     let flip = false;
     return {
       ...clean,
       evaluate: (radius: number, out?: SagSlope) => {
         const { sag: cleanSag, slope } = clean.evaluate(radius, out);
-        if (radius <= sd) return { sag: cleanSag, slope };
+        if (radius <= quietRadius) return { sag: cleanSag, slope };
         flip = !flip;
         return { sag: cleanSag + (flip ? 1e-9 : -1e-9), slope };
       },
@@ -394,12 +402,52 @@ describe("cap search after a failed unbounded solve", () => {
   });
 
   it("keeps the failure when the cap holds no root", () => {
-    // The bounds end before the ray reaches the cap root.
-    expect(intersectSurfaceProfile(ray, noisy(), 0, { maxT: 9, clearRadius: sd })).toMatchObject({
+    /* The ray enters the cap at t = 10 and meets its root there at t = 15.9, so these bounds leave the cap search
+     * two millimetres of cap with no root in them. Its own result, a scan that found no bracket, is not the
+     * answer: the failure of the unbounded solve is. */
+    expect(intersectSurfaceProfile(ray, noisy(), 0, { maxT: 12, clearRadius: sd })).toMatchObject({
+      ok: false,
+      failureReason: "noConvergedIntersection",
+      iterations: INTERSECTION_MAX_ITERATIONS,
+    });
+    expect(intersectSurfaceProfile(ray, clean, 0, { maxT: 12, clearRadius: sd })).toMatchObject({ ok: true });
+  });
+
+  it("searches the cap in ray order, although its far end is a root too", () => {
+    /* A shallow ray that chords the bowl: it meets the continuation at r = 10.2, the cap at r = 6.0, and the cap
+     * again at r = 6.63 on its way out. The clear radius is that last radius, so the cap interval ends on a root.
+     * A search that tested its far end first would return it. */
+    const chord = { origin: [0, 16, 0.5] as Vec3, direction: normalize([0, -1, 0.01])! };
+    const roots = [9, 22].map((minT) => intersectSurfaceProfile(chord, clean, 0, { minT, maxT: minT + 2 }));
+    const [inner, outer] = roots.map((root) => (root.ok ? root : null));
+    expect(inner?.radius).toBeCloseTo(5.99962523, 8);
+    expect(outer?.radius).toBeCloseTo(6.63482258, 8);
+
+    // Quiet a micrometre past the clear radius, so the rim root itself evaluates cleanly.
+    const clearRadius = outer!.radius;
+    const profile = noisy(clearRadius + 1e-6);
+    expect(intersectSurfaceProfile(chord, profile, 0, { maxT: 32 })).toMatchObject({
       ok: false,
       failureReason: "noConvergedIntersection",
     });
-    expect(intersectSurfaceProfile(ray, clean, 0, { maxT: 9, clearRadius: sd })).toMatchObject({ ok: true });
+    const hit = intersectSurfaceProfile(chord, profile, 0, { maxT: 32, clearRadius });
+    expect(hit.ok && Math.abs(hit.t - inner!.t)).toBeLessThanOrEqual(1e-9);
+    expect(hit.ok && Math.abs(hit.residual)).toBeLessThanOrEqual(1e-12);
+  });
+
+  it("does not search the cap after a scan that found no bracket", () => {
+    /* A sphere of R = 50 with a small quartic term, grazed by a ray that clips a 0.58 mm chord at r = 0.29,
+     * inside the cap. Both roots fall between two samples of the scan, which reports no bracket, and that stands:
+     * only a solve that failed to converge is followed by the cap search. A scan of the 10 mm the ray spends
+     * inside the cap would resolve the chord, and so does the same solve with samples that separate the roots. */
+    const asphere = createSurfaceProfile({ R: 50 }, { K: 0, A4: 1e-9, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 });
+    const grazing = { origin: [-0.6, 12, 0.0006] as Vec3, direction: normalize([0.05, -1, 0.00002])! };
+    const unresolved = intersectSurfaceProfile(grazing, asphere, 0, { maxT: 20, clearRadius: 5 });
+    expect(unresolved).toMatchObject({ ok: false, failureReason: "noBracket", iterations: 24 });
+    expect(unresolved).toEqual(intersectSurfaceProfile(grazing, asphere, 0, { maxT: 20 }));
+    expect(unresolved).not.toHaveProperty("closedFormFallback");
+    const resolved = intersectSurfaceProfile(grazing, asphere, 0, { maxT: 20, clearRadius: 5, bracketSamples: 96 });
+    expect(resolved.ok && resolved.radius).toBeCloseTo(0.28883, 4);
   });
 });
 
@@ -476,15 +524,17 @@ describe("a plane at zero gap behind a curved surface", () => {
     expect(plane.point).toEqual(curved.point);
     expect(plane.residual).toBe(overshoot);
     expect(plane.effectiveTolerance).toBe(1e-12);
-    // The kernel's fallback diagnostic stays on its own result: no hit record carries it.
-    for (const hit of past.trace.hits) expect(hit).not.toHaveProperty("closedFormFallback");
   });
 
-  it("misses the plane once the overshoot along the ray is outside the parametric slack", () => {
+  /* A boundary transition from the iterative path, declared in the step's pull request. It is held here so that a
+   * change to it is seen, not as a rule to keep. It needs a plane at zero gap behind a surface that is convex
+   * toward the ray, which overlaps it everywhere off the axis, and an oblique ray that meets them within 1e-4 mm
+   * of the axis; the differential tiers show no lens with it. */
+  it("boundary transition: loses the plane where the iterative path had stopped on the vertex plane", () => {
     /* At this height the sag is 8.1e-13 mm, within the residual target but 1.01e-12 mm back along the ray. The
-     * closed-form hit is on the surface, so the plane is behind it by more than the slack and the trace ends
-     * there. The iterative path accepted its vertex-plane seed for this ray, a point on the plane itself, which
-     * is why it went on: the plane's slack is parametric, and the prescription overlaps here off the axis. */
+     * closed-form hit is on the surface, so the plane is behind it by more than its parametric slack and the
+     * trace ends there. The iterative path accepted its vertex-plane seed for this ray, a point on the plane
+     * itself with the sag as its residual, and went on to all four surfaces. */
     const { z, profile, ray, trace } = traceThrough(zeroGapState(5000), 9e-5);
     expect(trace.hits).toHaveLength(1);
     expect(trace.failureReason).toBe("noBracket");
@@ -498,5 +548,87 @@ describe("a plane at zero gap behind a curved surface", () => {
     });
     expect(seeded.ok && seeded.point[2]).toBe(z);
     expect(seeded.ok && Math.abs(seeded.residual)).toBeGreaterThan(8e-13);
+  });
+});
+
+describe("the closed-form diagnostic stays on the kernel's result", () => {
+  /** Every key named `closedFormFallback` anywhere inside a trace result. */
+  const diagnosticPaths = (value: unknown, path = "trace"): string[] => {
+    if (value === null || typeof value !== "object") return [];
+    return Object.entries(value).flatMap(([key, member]) =>
+      key === "closedFormFallback" ? [`${path}.${key}`] : diagnosticPaths(member, `${path}.${key}`),
+    );
+  };
+  const sphere = createSurfaceProfile({ R: -40 });
+  const mirrorRay = { origin: [0, 5, 0] as Vec3, direction: [0, 0, 1] as Vec3 };
+
+  it("is set by the kernel on the solves these traces make", () => {
+    expect(intersectSurfaceProfile(mirrorRay, sphere, 110, { maxT: 200 })).toHaveProperty("closedFormFallback", null);
+  });
+
+  it("is in no record of a sequential trace", () => {
+    const trace = traceEngineRay2(prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0), mirrorRay, {
+      checkSemiDiameter: true,
+    });
+    expect(trace.hits.length).toBeGreaterThan(1);
+    expect(diagnosticPaths(trace)).toEqual([]);
+  });
+
+  it("is in no record of a folded trace, on a listed path or a searched one", () => {
+    // The listed path meets the spherical mirror MG2 through the generalized tracer.
+    const listed = traceEngineRay2(prepareRuntimeState(buildFoldedTirLens(), 0, 0), mirrorRay, {
+      checkSemiDiameter: true,
+    });
+    expect(listed.hits.map((hit) => hit.surfaceLabel)).toEqual(["STO", "MG1", "MG2", "MG1"]);
+    expect(diagnosticPaths(listed)).toEqual([]);
+
+    /* The searched path asks every surface for a candidate hit and records the ones it skips: a flat mirror
+     * facing a spherical one, with the ray started between them. */
+    const cavity = build({
+      key: "test-curved-mirror-cavity",
+      name: "Curved mirror cavity fixture",
+      closeFocusM: 0.5,
+      yScFill: 0.55,
+      nominalFno: 4,
+      focalLengthDesign: 100,
+      fstopSeries: [4, 5.6, 8],
+      elements: [
+        { id: 1, name: "MA", label: "Mirror A", type: "Flat First-Surface Mirror", nd: 1.0, vd: 0 },
+        { id: 2, name: "MB", label: "Mirror B", type: "First-Surface Mirror", nd: 1.0, vd: 0 },
+      ],
+      surfaces: [
+        { label: "STO", R: 1e15, nd: 1.0, sd: 20, d: 5, elemId: 0 },
+        {
+          label: "MA",
+          R: 1e15,
+          nd: 1.0,
+          sd: 20,
+          d: 10,
+          elemId: 1,
+          interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface" },
+        },
+        {
+          label: "MB",
+          R: -200,
+          nd: 1.0,
+          sd: 20,
+          d: 0,
+          elemId: 2,
+          interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
+        },
+      ],
+      groups: [
+        { text: "MA", fromSurface: "MA", toSurface: "MA" },
+        { text: "MB", fromSurface: "MB", toSurface: "MB" },
+      ],
+      opticalPath: { mode: "auto", imagePlane: { z: 50, label: "IMG" }, maxInteractions: 8 },
+    });
+    const searched = traceEngineRay2(
+      prepareRuntimeState(cavity, 0, 0),
+      { origin: [0, 3, 10], direction: [0, 0, 1] },
+      { checkSemiDiameter: true, launchBoundT: 25 },
+    );
+    expect(searched.hits.some((hit) => hit.surfaceLabel === "MB")).toBe(true);
+    expect(diagnosticPaths(searched)).toEqual([]);
   });
 });

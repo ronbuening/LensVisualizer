@@ -303,6 +303,17 @@ const CASES: readonly FixtureCase[] = [
     rootCount: 1,
   },
   {
+    id: "sphere-nearly-flat-backward",
+    kind: "sphere",
+    covers:
+      "backward ray on a radius of 1e6 mm: the quadratic's linear coefficient is positive, and a root formed by subtraction there loses the residual target",
+    R: 1e6,
+    origin: [3, -4, 7],
+    direction: [0.2, 0.1, -1],
+    maxT: 20,
+    rootCount: 1,
+  },
+  {
     id: "sphere-short-domain-window",
     kind: "sphere",
     covers: "bounds that start and end outside the domain, with the ray inside it for 2 mm: less than one scan step",
@@ -575,6 +586,19 @@ const CASES: readonly FixtureCase[] = [
     origin: [0.3, 2.5, 0.5],
     direction: [-0.1, -1, 0.05],
     maxT: 5,
+    rootCount: 2,
+  },
+  {
+    id: "asphere-grazing-chord",
+    kind: "asphere",
+    covers:
+      "the ray of conic-grazing-chord on the same conic with a small quartic term: a 0.58 mm chord that only the bracket scan can find, between two of its 24 samples",
+    R: 40,
+    asphere: { K: -0.5, ...NO_POLYNOMIAL, A4: 1e-9 },
+    sd: 15,
+    origin: [0.4, 11, 0.0008],
+    direction: [-0.03, -1, 0.00003],
+    maxT: 18,
     rootCount: 2,
   },
   {
