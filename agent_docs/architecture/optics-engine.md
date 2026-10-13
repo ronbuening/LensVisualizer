@@ -414,14 +414,18 @@ and is their only outside door.
 - **Coefficients.** A frozen coefficient object is compiled once, and one aspheric profile is cached for it: that of
   the base radius it was last built with. A mutable one is re-read on every call. A spread copy of a profile keeps the
   data fields it was copied with, so over mutable coefficients they can disagree with its evaluators.
-- **Not in the module yet.** Sag and slope have no other implementation, but four derived formulas do:
+- **Not in the module yet.** Sag and slope have no other implementation, but five derived formulas do:
   - the hit normal of the RuntimeLens stack tracer (`surfaceNormalAtHit()` in `internal/surfaceIntersection.ts`),
     which differs from `normalFromSlope()` in the last bits and is deleted with that tracer
     (`OPTICS_ENGINE_REWRITE_SPEC.md`, S4.P2.T4);
   - the conic limit `|R| / sqrt(1 + K)` in `validateLensData.ts` and `diagram/renderDiagnostics.ts`, beside
     `finiteRadiusLimit()`;
   - the "beyond the sphere extent" test `r² > R²` in `trace/sequentialTrace.ts` and `internal/exactSurfaceTrace.ts`;
-  - the closed-form sphere roots and the sampled slope bound in `analysis/mtfRayClassification.ts`.
+  - the base conic as a quadric, with its conic root `w = 1 − κcz`, its domain radius and the turning rate of its
+    normal, in `geometry/intersectConic.ts`. The kernel's closed-form roots are built on the profile's `curvature`
+    and `conic` and checked against `evaluate` ([Exact Surface Trace](#exact-surface-trace));
+  - a second set of closed-form sphere roots, and the sampled slope bound, in `analysis/mtfRayClassification.ts`,
+    which proves misses for the MTF sampler and does not call the kernel's.
 
 ## Exact Surface Trace
 
@@ -522,38 +526,68 @@ The closed form does not change the contract. It proposes a root, and the root i
 - **Bounds.** The iterative path tests the residual at each bound before it looks between them and returns the bound
   when that passes. A root within rounding of a bound is therefore proposed at the bound, the lower one first, and
   validated there, so the residual reported is that of the point returned.
-- **Fallback.** Wherever the answer rests on rounding, or on one of the iterative path's edge rules, the closed form
-  decides nothing and the iterative path runs with the caller's inputs and its full budget, taking no seed or
-  bracket from the closed form. The result is then exactly that path's. The reasons are:
-  - `nearTangency`: the sign of the discriminant is inside its rounding; or the line misses the quadric by less
-    than the scan could accept as a touch (within twice the tolerance); or the root's residual slope `|f'|` is under
-    `4e-3` per mm, where two points that both meet the target can lie further apart than half the 1e-9 mm budget of
-    a hit.
-  - `domainEdge`: a root lies within 0.05% of the conic's domain radius (`|w| <= 3e-2`), where one evaluation
-    cannot tell a root that reaches the target from one that only stalls inside the envelope; or a root lies
-    within rounding of the cap's rim; or the later of two roots lies at the upper bound, which the iterative
-    path's endpoint test returns ahead of the earlier one.
-  - `failedValidation`: the evaluated residual is above the raw target, or the coefficients are not finite. A ray
-    launched from far away usually ends here, and the iterative path then reports the envelope it stalls at.
+- **Fallback.** Wherever the answer rests on rounding, or on one of the iterative path's own rules for the points it
+  tests, the closed form decides nothing and the iterative path runs with the caller's inputs and its full budget,
+  taking no seed or bracket from the closed form. The result is then exactly that path's. The reasons are:
+  - `nearTangency`, where the ray grazes the surface:
+    - the sign of the discriminant is inside its rounding;
+    - the line misses the quadric by less than the scan could accept as a touch. That is twice the tolerance plus
+      the rounding of the residual a sample evaluates, which far from the origin of coordinates is the larger part;
+    - the root validates, but the point the iterative path would stop on can lie more than `5e-10` mm from it, half
+      the budget of an unclipped hit, or have a normal more than `5e-11` from its normal, half the budget of a
+      direction cosine. Two points that both meet the target lie up to twice the target plus the rounding of an
+      evaluation, over `|f'|`, apart. At the coordinates of a lens that makes the first limit a floor of `4e-3` per
+      mm on the residual slope `|f'|`. The second is a floor of `4e-2` mm times the rate at which the normal turns
+      along the ray; it is the higher one where the surface is strongly curved, on a sphere once `|R|` is under
+      10 mm.
+  - `domainEdge`, where a root lies on a point the iterative path has a rule of its own for:
+    - a root with `|w| <= 3e-2`, within 0.05% of the conic's domain radius, when any of the ray from that root out
+      to the domain radius is inside the bounds. One evaluation cannot tell a root that reaches the target there
+      from one that only stalls inside the envelope. An aspheric profile also floors its conic root at the domain
+      radius, so the sag it evaluates there is off the quadric and the iterative path can accept, or bracket on, a
+      point that is no root of the quadratic. For the same reason a line that misses the quadric, but passes that
+      close to the edge of the domain, is not called a miss;
+    - a root within rounding of the cap's rim;
+    - the later of two roots, at the upper bound or on a sample of the scan, of the bounds or of the cap interval.
+      The iterative path tests those points before it looks for a sign change, and returns such a root ahead of
+      the earlier one: at the bound always, and on a sample when no sample separates the two;
+    - a root moved onto a bound that lies outside the domain, which takes a slack as wide as the rim and so a ray
+      launched from very far away.
+  - `failedValidation`: the evaluated residual is above the raw target, or the coefficients or a conic root are not
+    finite. A ray launched from far away usually ends here, and the iterative path then reports the envelope it
+    stalls at.
 - **The reason is on the kernel's result only.** `intersectSurfaceProfile` returns `closedFormFallback`: null when the
   closed form gave the hit or the miss, the reason after a fallback, and absent when the closed form was not tried.
   The tracers copy named members of a hit into their records and do not copy this one.
 - **A miss rests on the profile's data.** A hit is accepted on the profile's own `evaluate`, so wrong data cannot
   produce one. A miss is decided from `curvature` and `conic` alone, so those have to describe the evaluators, as
   they do on a factory profile (see [Surface Geometry](#surface-geometry) for spread copies over mutable
-  coefficients).
+  coefficients) everywhere but at the edge of the domain, where nothing is decided.
 
-The closed form finds roots the 24-sample scan does not resolve: a chord, or a short span inside the conic's domain,
-that falls between two samples whose residuals share a sign
-([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). It does so only above the `4e-3` slope floor. A
-shallower chord, and any such root on a polynomial asphere, still depends on the scan, and so does every solve of the
-legacy solver until it delegates (`OPTICS_ENGINE_REWRITE_SPEC.md`, S3.P2.T2 and S3.P2.T3).
+Three outcomes differ from the iterative path's, and the differential harness reads each as a discrete transition:
 
-A closed-form hit lies on the surface, where an iterative solve may stop anywhere inside the target, including on the
-vertex plane when its seed there already meets it. That matters for a plane at zero gap behind a surface whose sag is
-positive at the hit, a prescription that overlaps off the axis: the plane is behind a closed-form hit by the sag
-along the ray. Up to `dz` times the tolerance of sag, the parametric plane slack moves the hit onto the plane at
-`t = 0`; beyond that the plane is missed.
+- **Roots the scan does not resolve.** The closed form finds a chord, or a short span inside the conic's domain,
+  that falls between two samples whose residuals share a sign
+  ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). It does so only above the slope floors. A
+  shallower chord, and any such root on a polynomial asphere, still depends on the scan, and so does every solve of
+  the legacy solver until it delegates (`OPTICS_ENGINE_REWRITE_SPEC.md`, S3.P2.T2 and S3.P2.T3).
+- **The raw target where the iterative path stalls.** Where the rounding of the residual is close to the target,
+  from an operand sum of a few hundred mm, the iterative path can stop on a float that evaluates just above the
+  target and report the envelope, while the closed-form root evaluates inside the target and is accepted there. The
+  contract's raw-target-first rule decides it; the hit moves by rounding and its `effectiveTolerance` changes from
+  the envelope to the target. No closed-form hit goes the other way.
+- **A plane at zero gap.** A closed-form hit lies on the surface, where an iterative solve may stop anywhere inside
+  the target, including on the vertex plane when its seed there already meets it. That matters for a plane at zero
+  gap behind a surface whose sag is positive at the hit, a prescription that overlaps off the axis: the plane is
+  behind a closed-form hit by the sag along the ray. Up to `dz` times the tolerance of sag, the parametric plane
+  slack moves the hit onto the plane at `t = 0`; beyond that the plane is missed, where the iterative path, having
+  stopped on the vertex plane, went on.
+
+A fourth comes from a hit that moves by an ulp or two. Two surfaces that share a vertex can return the same float for
+a ray near the axis on the iterative path, whose evaluated residual is quantized more coarsely than the surfaces are
+apart there, and floats an ulp or two apart in closed form. The candidate search of the generalized tracer takes the
+nearest hit and keeps the lower surface index on a tie (`findNearestGeneralizedSurfaceHit()` in
+`trace/pathPlanner.ts`), so which of two such surfaces a ray meets can change.
 
 On the iterative path both solvers, `geometry/intersect.ts` and the legacy `internal/surfaceIntersection.ts`, share
 the same safeguarded Newton step (rtsafe). A step is accepted only inside the sign-changing bracket and when it moves
@@ -576,9 +610,11 @@ normal distance remains the stable convention near vertical. Analytic hits on su
 their returned residual, including after bound clamping. `intersectRayPlane` in `geometry/intersectPlane.ts`, which
 lands rays on the image and sensor planes, validates the point it returns under the same rule: the raw target first,
 then the plane's operand envelope. A landing that meets neither is no intersection and returns null, which takes a
-coordinate that is not finite: for finite input the envelope covers the residual's own rounding. Its result keeps the
-two members `t` and `point`. One landing does not pass through it: `projectTraceToSensor()` returns a camera trace's
-terminal point as it stands when that point is already within `1e-9` mm of the sensor plane. Parametric plane-bound
+coordinate that is not finite: for finite input the envelope covers the residual's own rounding, so the check
+rejects nothing a finite ray produces. Its result keeps the two members `t` and `point`. Two landings do not pass
+through it. A sequential trace's returned `x` and `y` are projected to the return plane along the terminal direction
+(`projectCoordinateToZ()` in `trace/utils.ts`), and `projectTraceToSensor()` returns a camera trace's terminal point
+as it stands when that point is already within `1e-9` mm of the sensor plane. Parametric plane-bound
 slack and cap-root equivalence track the requested tolerance;
 neither widens the forward search. The asphere uniqueness certificate also requires coordinate error below the
 requested tolerance. Its separate conservative slope/radius safety margins remain proof guards, not acceptance limits.
