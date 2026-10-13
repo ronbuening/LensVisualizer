@@ -1345,14 +1345,22 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       new values and stop for the maintainer.
     - `buildLens` knows a composed pair only by the `attachedTeleconverter` marker `attachTeleconverter()` writes,
       never by a flag a caller passes, and builds it without ingest: its host and converter each came through ingest
-      in their catalogs. This is a temporary seam; S5.P1.T1 moves composition onto the canonical form.
-    - The validator speaks first, as before: a file it rejects throws its messages, and a file it accepts that ingest
-      refuses throws the refusal, naming the field and its authored path.
-    - Nothing outside tests spreads the defaults table. Lens data gets its defaults through ingest and the V1 view,
-      which `buildLens.ts` re-exports for code outside the engine, as the seam guard requires. Test helpers take
-      merged data the same way; a test that needs the raw table imports `src/optics/prescription/defaults.ts`. The one
-      exception is `buildLens` on a file ingest refuses: the validator needs merged data and a refused file has no
-      view, so it spreads the table to ask the validator whether its messages come first, and builds nothing from it.
+      in their catalogs. This is a temporary seam; S5.P1.T4 moves composition onto the canonical form.
+    - Nothing outside tests spreads the defaults table. Lens data gets its defaults through ingest and the V1 view.
+      `buildLens.ts` re-exports `toLensData` and `toTeleconverterData` for code outside the engine, as the seam guard
+      requires; the re-export is temporary and leaves with the V1 view at S8.P1.T2. Test helpers take merged data the
+      same way; a test that needs the raw table imports `src/optics/prescription/defaults.ts`.
+    - **The validator speaks first** when `buildLens` is handed a V1 file, and this is the one spread of the table
+      outside tests:
+      - a file the validator rejects throws its messages, whatever ingest or the view threw on it, a `TypeError` on
+        wrong-typed data included, so the message is the one `engine-next` gave;
+      - a file it accepts throws what ingest threw, a refusal naming each field and its authored path;
+      - the validator needs merged data and a refused file has no view, so `withLensDefaults` spreads the table under
+        the file to ask it, and builds nothing from the spread;
+      - a catalog entry is ingested by its getter before `buildLens` sees it, so a catalog file both reject reports
+        ingest's refusal. That order is accepted for catalog entries;
+      - the exception ends no later than S5.P1.T3, which moves validation onto canonical data. S5.P1.T1 replaces
+        `normalizeLensData.ts`, and carries it or ends it.
     - The catalogs ingest lazily, memoized per entry: every read of a key returns the same object, because caches key
       on it.
     - `src/lens-data/defaults.ts` is deleted.

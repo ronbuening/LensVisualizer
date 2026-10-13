@@ -359,6 +359,15 @@ describe("buildLens — error handling", () => {
     expect(() => ingestLensV1(data as unknown as LensDataInput)).toThrow(PrescriptionIngestError);
   });
 
+  it("throws the validator's messages where ingest or the view fails on wrong-typed data", () => {
+    /* Ingest does not check types, so the view throws a bare TypeError on a number where a list belongs. */
+    const data = makeMinimalData({ fstopSeries: 2 });
+    expect(() => toLensData(ingestLensV1(data as unknown as LensDataInput))).toThrow(TypeError);
+    expect(() => buildLens(data as unknown as LensData)).toThrow(
+      /Missing or empty required array field: "fstopSeries"/,
+    );
+  });
+
   it("throws ingest's refusal, naming the field and its path, for a file the validator accepts", () => {
     const data = makeMinimalData({ zoomLabels: ["Wide", "Tele"] });
     expect(validateLensData({ ...v1CatalogDefaults(), ...data })).toEqual([]);

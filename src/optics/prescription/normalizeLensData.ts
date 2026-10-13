@@ -27,7 +27,6 @@ import { compileAnnotations, compileElements } from "./groups.js";
 import { compileSurfaceInteraction, resolvedImagePlaneToPlane3 } from "./interactions.js";
 import { buildSurfaceLabelMap } from "./labels.js";
 import { compileVariableGaps, compileVariableLabels } from "./variables.js";
-import { PrescriptionIngestError } from "./canonical.js";
 import { v1CatalogDefaults } from "./defaults.js";
 import { ingestLensV1 } from "./ingestV1.js";
 import { toLensData } from "./toLensData.js";
@@ -38,23 +37,27 @@ import { toLensData } from "./toLensData.js";
  * An authored file goes through canonical ingest and comes back as its V1 view, which applies the schema defaults:
  * the one place the engine applies them. A pair `attachTeleconverter()` composed is known only by the marker that
  * function writes, `attachedTeleconverter`, and is built as it is, because its host and converter each came through
- * ingest in their catalogs. That is a temporary seam until S5.P1.T1 composes on the canonical form. Rear plates
+ * ingest in their catalogs. That is a temporary seam until S5.P1.T4 composes on the canonical form. Rear plates
  * expand after this, in `buildLens()`.
- *
- * The validator speaks first, as it did when this spread the catalog defaults: a file it rejects throws its messages,
- * and a file it accepts that ingest refuses throws the refusal, which names each field and its authored path. Only a
- * refused file is spread over the catalog defaults, to ask the validator; nothing is built from that spread.
  *
  * @param data - an authored lens file, with or without the catalog defaults, or a composed pair
  * @returns a fresh copy for the engine to hold
- * @throws Error with the validator's messages, or PrescriptionIngestError
+ * @throws Error with the validator's messages, or what ingest or the view threw
  */
 export function withLensDefaults(data: LensData): LensData {
   if (data.attachedTeleconverter !== undefined) return structuredClone(data);
   try {
     return toLensData(ingestLensV1(data as unknown as LensDataInput));
   } catch (error) {
-    if (error instanceof PrescriptionIngestError) assertValidLensData({ ...v1CatalogDefaults(), ...data } as LensData);
+    /* The validator speaks first when buildLens is handed a V1 file (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P1.T2): a file
+     * it rejects throws its messages, as before ingest, whatever ingest or the view threw on it, a `TypeError` on
+     * wrong-typed data included. A file it accepts throws what ingest threw, a refusal naming each field and its
+     * authored path. The validator needs merged data and a refused file has no view, so the file is spread over the
+     * defaults table to ask it, and nothing is built from the spread: the one spread of the table outside tests. A
+     * catalog entry was ingested by its getter before it got here, so a catalog file both refuse reports ingest's
+     * refusal. This ends no later than S5.P1.T3, which validates canonical data; S5.P1.T1, which replaces this
+     * module, carries it or ends it. */
+    assertValidLensData({ ...v1CatalogDefaults(), ...data } as LensData);
     throw error;
   }
 }
