@@ -5,8 +5,9 @@ import {
   surfaceNormalAtHit,
   type SurfaceIntersectionRay,
 } from "../../../../src/optics/internal/surfaceIntersection.js";
+import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/constants.js";
 import { conicPolySag, createSurfaceProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
-import { intersectSurfaceProfile } from "../../../../src/optics/geometry/intersect.js";
+import { intersectSurfaceProfile, seedAsphereSolve } from "../../../../src/optics/geometry/intersect.js";
 import { traceExactSurfaceStackVector } from "../../../../src/optics/internal/exactSurfaceTrace.js";
 import type { AsphericCoefficients, RuntimeLens } from "../../../../src/types/optics.js";
 
@@ -54,10 +55,14 @@ describe("legacy clipped diagnostics at tightened accuracy", () => {
     expect(hit.radius).toBeGreaterThan(surface.sd);
     const profile = createSurfaceProfile(surface, asphere);
     expect(hit.radius).toBeGreaterThan(profile.finiteRadiusLimit()!);
-    expect(intersectSurfaceProfile(ray, profile, 0, { ...options, clearRadius: surface.sd })).toMatchObject({
-      ok: false,
-      failureReason: "noBracket",
-    });
+    const capped = { ...options, clearRadius: surface.sd };
+    const production = intersectSurfaceProfile(ray, profile, 0, capped);
+    expect(production).toMatchObject({ ok: false, failureReason: "noBracket", iterations: 24 });
+    // That is the iterative path's own answer: the ray has no span inside the cap, so the seeded route is not tried.
+    expect(seedAsphereSolve(ray, profile, 0, capped)).toBeNull();
+    expect(production).toEqual(
+      intersectSurfaceProfile(ray, profile, 0, { ...capped, maxIterations: INTERSECTION_MAX_ITERATIONS }),
+    );
     const trace = traceExactSurfaceStackVector(lens, ray, { zPos: [0], checkSemiDiameter: true, stopOnClip: true });
     expect(trace.failureReason).toBeNull();
     expect(trace.clipped).toBe(true);

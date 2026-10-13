@@ -1,18 +1,36 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import type { AsphericCoefficients } from "../../../../src/types/optics.js";
-import type { SagSlope, SurfaceProfile, Vec3 } from "../../../../src/optics/types.js";
+import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../../../../src/optics/types.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
 import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/constants.js";
-import { intersectSurfaceProfile } from "../../../../src/optics/geometry/intersect.js";
+import {
+  intersectSurfaceProfile,
+  seedAsphereSolve,
+  type SeedRefusal,
+  type SurfaceIntersectionOptions,
+} from "../../../../src/optics/geometry/intersect.js";
 import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSagSurface } from "../../../../src/optics/internal/surfaceIntersection.js";
 import { dot, normalize } from "../../../../src/optics/math/vector.js";
 import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { INTERSECTION_FIXTURE_PATH, type IntersectionFixtureFile } from "../fixtures/generateIntersectionFixtures.js";
 import { build, buildFoldedTirLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
 function expectClose(actual: number, expected: number, tolerance: number): void {
   expect(Math.abs(actual - expected)).toBeLessThanOrEqual(tolerance);
 }
+
+// Counts surface evaluations, so that which path answered a solve is read off its cost and not only off its result.
+// The solver reads sag and slope through `evaluate`, once per point it evaluates, so that is the call to count.
+const countingProfile = (p: SurfaceProfile) => {
+  const counter = { evaluations: 0 };
+  const profile = {
+    ...p,
+    evaluate: (radius: number, out?: SagSlope) => (counter.evaluations++, p.evaluate(radius, out)),
+  };
+  return { profile, counter };
+};
 
 describe("Optics engine surface intersections", () => {
   it("intersects flat, spherical, marginal, skew, and tilted-plane surfaces", () => {
@@ -272,17 +290,7 @@ describe("asphere cap uniqueness certificate", () => {
     expect(hit.ok && hit.radius).toBeCloseTo(3, 8);
   });
 
-  // Counts surface evaluations so a certified hit is shown to skip the redundant cap search, not just to agree with it.
-  // The solver reads sag and slope through `evaluate`, once per point it evaluates, so that is the call to count.
-  const countingProfile = (p: ReturnType<typeof createSurfaceProfile>) => {
-    const counter = { evaluations: 0 };
-    const profile = {
-      ...p,
-      evaluate: (radius: number, out?: SagSlope) => (counter.evaluations++, p.evaluate(radius, out)),
-    };
-    return { profile, counter };
-  };
-
+  // The counting profile shows a certified hit to skip the redundant cap search, not just to agree with it.
   it("certifies an inside-cap hit from an origin far outside the cap without a second solve", () => {
     // Over the whole ray prefix the r^4 extension is far too steep to certify; capped at the authored radius it is not.
     const { profile, counter } = countingProfile(
@@ -292,10 +300,20 @@ describe("asphere cap uniqueness certificate", () => {
     const unbounded = intersectSurfaceProfile(ray, profile, 0, { maxT: 150 });
     const established = counter.evaluations;
     expect(established).toBeGreaterThan(0);
+    // Cap selection belongs to the iterative path, which an explicit budget asks for: it keeps the established hit.
+    const selected = intersectSurfaceProfile(ray, profile, 0, {
+      maxT: 150,
+      clearRadius: 5,
+      maxIterations: INTERSECTION_MAX_ITERATIONS,
+    });
+    expect(selected).toEqual(unbounded);
+    expect(counter.evaluations - established).toBe(established);
+    // By default the seeded route answers the capped solve, from the vertex-plane crossing alone.
+    const beforeSeeded = counter.evaluations;
     const hit = intersectSurfaceProfile(ray, profile, 0, { maxT: 150, clearRadius: 5 });
     expect(hit).toEqual(unbounded);
     expect(hit.ok && hit.radius).toBeLessThan(1e-6);
-    expect(counter.evaluations - established).toBe(established);
+    expect(counter.evaluations - beforeSeeded).toBe(1);
   });
 
   it("proves a monotone cap miss from its two endpoints instead of scanning", () => {
@@ -448,6 +466,415 @@ describe("cap search after a failed unbounded solve", () => {
     expect(unresolved).not.toHaveProperty("closedFormFallback");
     const resolved = intersectSurfaceProfile(grazing, asphere, 0, { maxT: 20, clearRadius: 5, bracketSamples: 96 });
     expect(resolved.ok && resolved.radius).toBeCloseTo(0.28883, 4);
+  });
+});
+
+/* A polynomial asphere with an authored cap first tries a Newton iteration from the root of its base conic
+ * (`seedAsphereSolve`), and returns that point only under a certificate that the iterative path returns the same
+ * root. Three things are read off every case, so that none passes without the route having decided as named: what
+ * the route itself returns, the number of profile evaluations a counting copy of the profile sees, and the same
+ * solve on the iterative path alone, which an explicit budget asks for. */
+describe("conic-seeded asphere solve", () => {
+  interface Solve {
+    ray: Ray3;
+    profile: SurfaceProfile;
+    vertexZ: number;
+    options: SurfaceIntersectionOptions;
+  }
+  const NO_TERMS: AsphericCoefficients = { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+  const asphereOn = (R: number, terms: Partial<AsphericCoefficients>) =>
+    createSurfaceProfile({ R }, { ...NO_TERMS, ...terms });
+  const at = (origin: Vec3, t: number, direction: Vec3): Vec3 => [
+    origin[0] + direction[0] * t,
+    origin[1] + direction[1] * t,
+    origin[2] + direction[2] * t,
+  ];
+
+  /** One solve by default and on the iterative path alone, each against a counting copy of the profile. */
+  const solveBothWays = ({ ray, profile, vertexZ, options }: Solve) => {
+    const byDefault = countingProfile(profile);
+    const iteratively = countingProfile(profile);
+    return {
+      route: seedAsphereSolve(ray, profile, vertexZ, options),
+      result: intersectSurfaceProfile(ray, byDefault.profile, vertexZ, options),
+      evaluations: byDefault.counter.evaluations,
+      iterative: intersectSurfaceProfile(ray, iteratively.profile, vertexZ, {
+        ...options,
+        maxIterations: INTERSECTION_MAX_ITERATIONS,
+      }),
+      iterativeEvaluations: iteratively.counter.evaluations,
+    };
+  };
+
+  /**
+   * A seeded hit: the route's own point, at the raw target, within half a hit's budget and half a direction
+   * cosine's of the iterative path's point, for the evaluations given.
+   */
+  const expectSeeded = (input: Solve, cost: { seeded: number; iterative: number }) => {
+    const { route, result, evaluations, iterative, iterativeEvaluations } = solveBothWays(input);
+    expect(route).toMatchObject({ ok: true });
+    expect(result).toEqual(route);
+    expect(result).not.toHaveProperty("closedFormFallback");
+    expect({ seeded: evaluations, iterative: iterativeEvaluations }).toEqual(cost);
+    if (!(result.ok && iterative.ok)) throw new Error("a seeded solve hits on both paths");
+    expect(result.iterations).toBe(cost.seeded);
+    expect(result.effectiveTolerance).toBe(input.options.tolerance ?? 1e-12);
+    expect(iterative.effectiveTolerance).toBe(result.effectiveTolerance);
+    expect(Math.abs(result.t - iterative.t)).toBeLessThanOrEqual(5e-10);
+    for (const axis of [0, 1, 2]) {
+      expect(Math.abs(result.normal[axis] - iterative.normal[axis])).toBeLessThanOrEqual(5e-11);
+    }
+    return { result, iterative };
+  };
+
+  /**
+   * A solve the route leaves alone: the result is the iterative path's, member for member, and costs that path's
+   * evaluations plus the ones the route spent before it refused.
+   *
+   * @param reason - what the route returns: its reason, or null where it is not tried
+   * @param cost - evaluations of the iterative path, and of the route before it refused
+   */
+  const expectIterative = (input: Solve, reason: SeedRefusal | null, cost: { iterative?: number; spent: number }) => {
+    const { route, result, evaluations, iterative, iterativeEvaluations } = solveBothWays(input);
+    expect(route).toBe(reason);
+    expect(result).toEqual(iterative);
+    if (cost.iterative !== undefined) expect(iterativeEvaluations).toBe(cost.iterative);
+    expect(evaluations - iterativeEvaluations).toBe(cost.spent);
+    return result;
+  };
+
+  // Surface P: a mild conic with two polynomial terms, met well inside its cap by an oblique ray.
+  const surfaceP = asphereOn(40, { K: -0.5, A4: 1e-5, A6: -2e-7 });
+  const obliqueP: Ray3 = { origin: [0, -6, -10], direction: normalize([0, 0.36, 1])! };
+  const onP: Solve = { ray: obliqueP, profile: surfaceP, vertexZ: 0, options: { maxT: 20, clearRadius: 15 } };
+  // Surface Q: strong enough that Newton from the base sphere's root needs more than the route's six evaluations.
+  const onQ: Solve = {
+    ray: { origin: [0, 2, -2.3], direction: normalize([0, 0.34, 1])! },
+    profile: asphereOn(-14.5, { A4: 0.0067, A6: 0.00085 }),
+    vertexZ: 0,
+    options: { maxT: 11, clearRadius: 8.9 },
+  };
+  /* Surface P's conic with a quartic term too small to move the root: the conic's root already meets the target,
+   * so the cases below can put a bound, or the rim, 1e-12 mm from the point the route finds. */
+  const thin = asphereOn(40, { K: -0.5, A4: 1e-14 });
+  const onThin: Solve = { ...onP, profile: thin };
+  const thinHit = intersectSurfaceProfile(obliqueP, thin, 0, onThin.options);
+  if (!thinHit.ok) throw new Error("the thin asphere is hit by the oblique ray");
+  const farOblique = asphereOn(300, { A4: 1e-7 });
+
+  describe("which path answers each asphere fixture", () => {
+    const { fixtures } = JSON.parse(readFileSync(INTERSECTION_FIXTURE_PATH, "utf-8")) as IntersectionFixtureFile;
+    /* Profile evaluations of each fixture's solve, with its sd as the clear radius. A seeded fixture lists the
+     * route's and the iterative path's; the others list what the route returns in place of a hit, and that path's
+     * evaluations, which are then the solve's own. intersectionFixtures.test.ts holds the same solves to the
+     * 60-decimal roots. */
+    const PATHS: Record<
+      string,
+      { seeded: number; iterative: number } | { route: SeedRefusal | null; iterative: number }
+    > = {
+      "asphere-even": { seeded: 3, iterative: 6 },
+      "asphere-odd": { seeded: 3, iterative: 5 },
+      "asphere-odd-axial": { seeded: 1, iterative: 3 },
+      "asphere-steep-high-order": { seeded: 4, iterative: 6 },
+      "asphere-far-oblique-in-cap": { seeded: 3, iterative: 25 },
+      "asphere-flat-quartic-cap-edge": { route: "noSeed", iterative: 33 },
+      "asphere-flat-far-vertex": { route: null, iterative: 4 },
+      "asphere-flat-steep-stall": { route: null, iterative: 5 },
+      "asphere-flat-transverse-cancellation": { route: null, iterative: 5 },
+      "asphere-two-roots-in-cap": { route: "noSeed", iterative: 24 },
+      "asphere-grazing-chord": { route: "slopeBound", iterative: 46 },
+      "asphere-exterior-then-cap": { route: "slopeBound", iterative: 35 },
+      "asphere-exterior-only": { route: null, iterative: 8 },
+      "asphere-no-root": { route: null, iterative: 41 },
+    };
+    const aspheres = fixtures.filter((fixture) => fixture.kind === "asphere");
+
+    it("lists every asphere fixture", () => {
+      expect(Object.keys(PATHS).sort()).toEqual(aspheres.map((fixture) => fixture.id).sort());
+    });
+
+    it.each(aspheres.map((fixture) => [fixture.id, fixture] as const))("%s", (id, { surface, ray, bounds }) => {
+      const input: Solve = {
+        ray,
+        profile: createSurfaceProfile({ R: surface.R }, surface.asphere ?? undefined),
+        vertexZ: surface.vertexZ,
+        options: { ...bounds, directionNormalized: true, clearRadius: surface.sd ?? undefined },
+      };
+      const path = PATHS[id];
+      if ("seeded" in path) expectSeeded(input, path);
+      else expectIterative(input, path.route, { iterative: path.iterative, spent: 0 });
+    });
+  });
+
+  it("takes the route on an ordinary hit, with the profile's own normal", () => {
+    const { result } = expectSeeded(onP, { seeded: 3, iterative: 5 });
+    expect(result.normal).toEqual(surfaceP.normalAt(result.point, 0));
+  });
+
+  it("returns the vertex-plane point of an axial ray, the iterative path's own", () => {
+    const axial: Solve = { ...onP, ray: { origin: [0, 0, -10], direction: [0, 0, 1] } };
+    const { route, result, evaluations, iterative } = solveBothWays(axial);
+    expect(route).toMatchObject({ ok: true, t: 10, iterations: 1 });
+    expect(result).toEqual(iterative);
+    expect(evaluations).toBe(1);
+  });
+
+  it("follows the caller's tolerance in every gate", () => {
+    // At 1e-9 mm two points that both meet the target can lie further apart than a hit may move.
+    const loose = expectIterative({ ...onP, options: { ...onP.options, tolerance: 1e-9 } }, "nearTangency", {
+      spent: 0,
+    });
+    expect(loose).toMatchObject({ ok: true, effectiveTolerance: 1e-9 });
+    const { result } = expectSeeded(
+      { ...onP, options: { ...onP.options, tolerance: 1e-13 } },
+      { seeded: 3, iterative: 6 },
+    );
+    expect(Math.abs(result.residual)).toBeLessThanOrEqual(1e-13);
+  });
+
+  describe("refusals return the iterative path's result", () => {
+    const shallow = normalize([0, 1, 0.004])!;
+    const nearlyAxial: Ray3 = { origin: [3, 4, -10], direction: normalize([1e-6, 0, 1])! };
+    const nearlyAxialHit = intersectSurfaceProfile(nearlyAxial, thin, 0, onThin.options);
+    if (!nearlyAxialHit.ok) throw new Error("the thin asphere is hit by the nearly axial ray");
+    /* A launch 250 mm off the axis toward a small cap. The ends of the cap interval are solved from the origin and
+     * lose digits as (250 / sd)^2: 1.1e-9 mm of rounding at a cap of 0.2 mm, over the clip tolerance, and 0.9e-9
+     * at 0.25. The coordinate sum itself is the same 1.8e-12 mm for both. */
+    const toSmallCap = (clearRadius: number): Solve => ({
+      ray: { origin: [0, -250, -100], direction: normalize([0, 1, 0.4])! },
+      profile: asphereOn(1e15, { A4: 1e-9 }),
+      vertexZ: 0,
+      options: { maxT: 300, clearRadius },
+    });
+    /* One case per reason, with the evaluations the route spends before it refuses: none where the refusal follows
+     * from the ray and the slope bound alone. */
+    const CASES: [SeedRefusal, string, number, Solve][] = [
+      ["noSeed", "the base conic is met outside the cap", 0, { ...onP, options: { maxT: 20, clearRadius: 2 } }],
+      [
+        "coordinateRoundoff",
+        "a launch 400 m off the axis",
+        0,
+        {
+          ray: { origin: [0, -4e5, -4e5], direction: normalize([0, 1, 1])! },
+          profile: farOblique,
+          vertexZ: 0,
+          options: { minT: 565680, maxT: 565700, clearRadius: 20 },
+        },
+      ],
+      ["coordinateRoundoff", "the ends of a cap interval solved from 250 mm off the axis", 0, toSmallCap(0.2)],
+      [
+        "slopeBound",
+        "a ray too oblique for the slope bound over its stretch",
+        0,
+        { ...onP, ray: { origin: [0, -8, -1], direction: normalize([0, 1, 0.2])! } },
+      ],
+      [
+        "roundoff",
+        "a vertex 300 mm from the origin of coordinates",
+        0,
+        { ...onP, ray: { origin: [0, -6, 290], direction: obliqueP.direction }, vertexZ: 300 },
+      ],
+      [
+        "nearTangency",
+        "a ray 0.23 degrees from the surface",
+        0,
+        {
+          ray: { origin: [0, -0.5, -0.002], direction: shallow },
+          profile: asphereOn(1e15, { A4: 1e-9 }),
+          vertexZ: 0,
+          options: { maxT: 1.2, clearRadius: 1 },
+        },
+      ],
+      ["notConverged", "six evaluations that do not reach the target", 6, onQ],
+      [
+        "vertexPlane",
+        "a hit within twice the target of the vertex plane, off the point the iterative path stops on",
+        2,
+        {
+          ray: { origin: [0, 1.5, -4.7], direction: normalize([0, -0.32, 1])! },
+          profile: asphereOn(1e15, { A4: -0.0076, A6: -0.00073 }),
+          vertexZ: 0,
+          options: { maxT: 15, clearRadius: 6.1 },
+        },
+      ],
+      [
+        "atBound",
+        "a ray started 1e-12 mm before its hit",
+        1,
+        {
+          ...onThin,
+          ray: { origin: at(obliqueP.origin, thinHit.t - 1e-12, obliqueP.direction), direction: obliqueP.direction },
+          options: { maxT: 5, clearRadius: 15 },
+        },
+      ],
+      [
+        "atBound",
+        "an upper bound 1e-12 mm past the hit",
+        1,
+        { ...onThin, options: { maxT: thinHit.t + 1e-12, clearRadius: 15 } },
+      ],
+      [
+        "atRim",
+        "a cap that ends 1e-13 mm outside the hit",
+        1,
+        { ...onThin, options: { maxT: 20, clearRadius: thinHit.radius + 1e-13 } },
+      ],
+      [
+        "farEnvelope",
+        "bounds a nanometre to each side of the hit",
+        0,
+        {
+          ...onThin,
+          ray: nearlyAxial,
+          options: { minT: nearlyAxialHit.t - 1e-6, maxT: nearlyAxialHit.t + 1e-6, clearRadius: 15 },
+        },
+      ],
+    ];
+
+    it.each(CASES)("%s: %s", (reason, _what, spent, input) => {
+      const result = expectIterative(input, reason, { spent });
+      expect(result.ok).toBe(true);
+    });
+
+    it("names every reason", () => {
+      const reasons: Record<SeedRefusal, true> = {
+        noSeed: true,
+        coordinateRoundoff: true,
+        slopeBound: true,
+        farEnvelope: true,
+        roundoff: true,
+        nearTangency: true,
+        notConverged: true,
+        vertexPlane: true,
+        atBound: true,
+        atRim: true,
+      };
+      expect([...new Set(CASES.map(([reason]) => reason))].sort()).toEqual(Object.keys(reasons).sort());
+    });
+
+    it("takes the same surfaces and rays where no gate refuses", () => {
+      // The thin asphere's oblique ray and its nearly axial one, with ordinary bounds and cap.
+      expectSeeded(onThin, { seeded: 1, iterative: 5 });
+      expectSeeded({ ...onThin, ray: nearlyAxial }, { seeded: 2, iterative: 4 });
+      // The same launch toward a cap a quarter wider, where the rounding of its ends is inside the clip tolerance.
+      expectSeeded(toSmallCap(0.25), { seeded: 1, iterative: 17 });
+    });
+  });
+
+  it("leaves zero and exhausted budgets to the iterative path, which reports them as before", () => {
+    expectSeeded(onP, { seeded: 3, iterative: 5 });
+    const budgeted = (option: SurfaceIntersectionOptions) => {
+      const options = { ...onP.options, ...option };
+      expect(seedAsphereSolve(obliqueP, surfaceP, 0, options)).toBeNull();
+      const { profile, counter } = countingProfile(surfaceP);
+      return { result: intersectSurfaceProfile(obliqueP, profile, 0, options), evaluations: counter.evaluations };
+    };
+    const whole = budgeted({ maxIterations: INTERSECTION_MAX_ITERATIONS });
+    expect(whole).toMatchObject({ result: { ok: true, iterations: 3 }, evaluations: 5 });
+    // A budget of exactly the iterations the hit takes, and a scan density, select the same path and the same hit.
+    expect(budgeted({ maxIterations: 3 })).toEqual(whole);
+    expect(budgeted({ bracketSamples: 24 })).toEqual(whole);
+    // One short: the pending step is evaluated, and it is the hit.
+    expect(budgeted({ maxIterations: 2 }).result).toEqual({ ...whole.result, iterations: 2 });
+    expect(budgeted({ maxIterations: 1 }).result).toMatchObject({
+      ok: false,
+      failureReason: "noConvergedIntersection",
+      iterations: 1,
+    });
+    expect(budgeted({ maxIterations: 0 }).result).toMatchObject({
+      ok: false,
+      failureReason: "noConvergedIntersection",
+      iterations: 0,
+    });
+  });
+
+  it("spends at most six evaluations of its own, then falls back to the whole iterative budget", () => {
+    // The six are not charged to that path: it runs its own 30 evaluations and returns its own iteration count.
+    const result = expectIterative(onQ, "notConverged", { iterative: 30, spent: 6 });
+    expect(result).toMatchObject({ ok: true, iterations: 4, effectiveTolerance: 1e-12 });
+  });
+
+  it("takes a steep quartic where its slope is certified, and refuses before evaluating where it is not", () => {
+    // z = r^4 / 8 with a cap of 2: the sag slope reaches 4 at the rim.
+    const quartic = asphereOn(1e15, { A4: 0.125 });
+    const options = { maxT: 4, clearRadius: 2 };
+    const inner: Solve = {
+      ray: { origin: [0, 0.4, -2], direction: normalize([0, 0.28, 1])! },
+      profile: quartic,
+      vertexZ: 0,
+      options,
+    };
+    expectSeeded(inner, { seeded: 4, iterative: 6 });
+    /* This ray crosses the cap from r = 1.5, where the slope bound is 1.69 against the 1.05 its direction
+     * tolerates, to a hit at r = 0.4. The refusal costs no evaluation. */
+    const across: Solve = { ...inner, ray: { origin: [0, -1.5, -2], direction: normalize([0, 0.95, 1])! } };
+    const result = expectIterative(across, "slopeBound", { iterative: 27, spent: 0 });
+    expect(result.ok && result.radius).toBeCloseTo(0.403136, 6);
+  });
+
+  describe("an in-cap hit whose operand sum exceeds 281 mm", () => {
+    /** The transverse operand sum the cap-selection certificate holds to the residual tolerance: 281 mm at 1e-12. */
+    const operandSum = ({ ray, options }: Solve) =>
+      Math.abs(ray.origin[0]) +
+      Math.abs(ray.origin[1]) +
+      Math.hypot(ray.direction[0], ray.direction[1]) * options.maxT!;
+
+    it("keeps its certificate where its residual rounding is within 31/32 of the target", () => {
+      // The ray of the fixture "asphere-far-oblique-in-cap": launched 200 mm off the axis, hit at r = 4.1.
+      const input: Solve = {
+        ray: { origin: [0, -200, -60], direction: normalize([0, 3.4, 1])! },
+        profile: farOblique,
+        vertexZ: 0,
+        options: { minT: 200.641, maxT: 224.641, clearRadius: 20 },
+      };
+      expect(operandSum(input)).toBeGreaterThan(415);
+      // The iterative path's own certificate is refused at that sum, and it scans the cap: 25 evaluations.
+      const { result, iterative } = expectSeeded(input, { seeded: 3, iterative: 25 });
+      expect(result.t).toBe(iterative.t);
+      expect(result.radius).toBeCloseTo(4.09513, 5);
+    });
+
+    it("pays the scan as before where it is not", () => {
+      /* The flat quartic of the certificate test above, launched 150 mm off the axis and 150 mm before the
+       * vertex: 305 mm of transverse operands and 300 mm of axial ones, whose rounding alone is 1.07e-12 mm. */
+      const input: Solve = {
+        ray: { origin: [0, -150, -150], direction: normalize([0, 1, 1])! },
+        profile: asphereOn(1e15, { A4: 1e-4 }),
+        vertexZ: 0,
+        options: { maxT: 225, clearRadius: 5 },
+      };
+      expect(operandSum(input)).toBeGreaterThan(300);
+      const result = expectIterative(input, "roundoff", { iterative: 17, spent: 0 });
+      expect(result).toMatchObject({ ok: true, effectiveTolerance: 1e-12 });
+    });
+  });
+
+  it("leaves a root the scan does not resolve to the scan (#779)", () => {
+    /* A fuzzed ray that meets the cap's surface 0.0096 mm from its origin and crosses the polynomial continuation
+     * again 2.26 mm on, outside the cap. Both roots are inside the first 2.54 mm step of the scan of these bounds,
+     * whose samples share a sign. The first root is the cap's first, and a certificate that reached only as far
+     * as it would return it. The route's reaches one scan step past the root, where the slope bound certifies
+     * nothing, so the solve stays the iterative path's miss. */
+    const input: Solve = {
+      ray: {
+        origin: [0.01932244702926018, 0.4967530110802363, 9.5574007596014],
+        direction: [-0.3132659831941196, 0.4208002893931687, 0.8513468976980224],
+      },
+      profile: asphereOn(-3.225266933870704, { K: 0.8924472795333713, A14: 0.0031486773123754327 }),
+      vertexZ: 9.604946756735444,
+      options: { maxT: 61.000913940452605, clearRadius: 1.022244990318606, directionNormalized: true },
+    };
+    const { route, result, iterative } = solveBothWays(input);
+    expect(route).toBe("slopeBound");
+    expect(result).toEqual(iterative);
+    expect(result).toMatchObject({ ok: false, failureReason: "noBracket", iterations: 24 });
+    // In bounds whose scan resolves that root, the route returns it.
+    const { result: resolved } = expectSeeded(
+      { ...input, options: { ...input.options, maxT: 1 } },
+      { seeded: 2, iterative: 6 },
+    );
+    expect(resolved.t).toBeCloseTo(0.0095975, 7);
+    expect(resolved.radius).toBeLessThan(input.options.clearRadius!);
   });
 });
 
