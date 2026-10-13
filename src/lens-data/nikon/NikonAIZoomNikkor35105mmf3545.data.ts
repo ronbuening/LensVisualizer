@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S     ║
+ * ║           LENS DATA — NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S     ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Source: US 4,699,475, Seventh Embodiment / Table 7.               ║
  * ║  Source-supported match for the 35–105mm production zoom.          ║
@@ -14,12 +14,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  SDs: estimated from paraxial stop-edge rays and constrained by     ║
  * ║  edge thickness, element SD ratio <=1.25, and cross-gap clearance.  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Source image-plane contradiction: Table 7 at wide infinity gives
+ * EFL 37.391953 / BFL 53.302330 mm, not stated F 36.2 / Bf 52.36 mm.
+ * Every R/d/nd/vd entry matches, including the 0.8 mm stop split.
+ * No plates or aspheres are listed. Preserve the published Bf and
+ * +0.942330 mm residual; do not tune the table to focus (see audit).
  */
 
 const LENS_DATA = {
   key: "nikon-ai-zoom-nikkor-35-105mm-f3-5-4-5s",
   maker: "Nikon",
-  name: "Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S",
+  name: "NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S",
   subtitle: "US 4,699,475 — Seventh Embodiment / Table 7",
   specs: ["16 elements / 12 groups", "35–105 mm", "f/3.5–4.5", "52 mm filter", "all spherical"],
   focalLengthMarketing: [35, 105],

@@ -5,6 +5,8 @@
  * validating state-dependent thicknesses before tracing.
  */
 
+import { wideOpenStopAtZoom } from "../apertureStop.js";
+
 import type { AberrationVarRange, VarRange } from "../../types/optics.js";
 import { clamp, formatCacheNumber, normalizeControlT } from "../math/numerics.js";
 import type { PreparedStateCache } from "./cache.js";
@@ -68,6 +70,7 @@ export function prepareState(
       focusT,
       zoomT,
       aberrationT,
+      lens.variables.focusPositions,
       surface.physicalIndex,
       lens.flags.isFoldedOptics,
     ),
@@ -80,6 +83,10 @@ export function prepareState(
       Object.freeze({
         ...surface,
         base: surface,
+        sd:
+          index === lens.stop.surfaceIndex && lens.runtime.zoomStopSDs
+            ? wideOpenStopAtZoom(zoomT, lens.runtime)
+            : surface.sd,
         d: thicknesses[index],
         z: z[index],
       }),
@@ -125,6 +132,7 @@ function resolvePreparedThickness(
   focusT: number,
   zoomT: number,
   aberrationT: number,
+  focusPositions: readonly number[],
   surfaceIndex: number,
   allowNegativeThickness: boolean,
 ): number {
@@ -136,6 +144,7 @@ function resolvePreparedThickness(
     focusT,
     zoomT,
     aberrationT,
+    focusPositions,
   );
   if (!Number.isFinite(thickness) || (!allowNegativeThickness && thickness < 0)) {
     throw new Optics2PreparationError(

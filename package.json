@@ -18,12 +18,19 @@
     "test": "vitest run",
     "pretest:coverage": "node scripts/generate-build-metadata.mjs",
     "test:coverage": "vitest run --coverage",
-    "generate:glass-reports": "vitest run unresolvedGlassScan catalogMismatchScan glassRelabelCandidatesScan glassRelabelByLensScan glassAmbiguityScan sixDigitGlassCodeScan sellmeierCoverageScan glassCoverageOpportunitiesScan",
-    "generate:mirror-reports": "vitest run mirrorFixtureAuthoringReport",
-    "generate:mount-svgs": "vitest run mountSvgSpecificationsReport",
+    "pretest:tooling": "node scripts/generate-build-metadata.mjs",
+    "test:tooling": "vitest run --config vitest.tooling.config.js",
+    "generate:reports": "vitest run --config vitest.reports.config.js",
+    "generate:glass-reports": "vitest run --config vitest.reports.config.js unresolvedGlassScan catalogMismatchScan glassRelabelCandidatesScan glassRelabelByLensScan glassAmbiguityScan sixDigitGlassCodeScan sellmeierCoverageScan glassCoverageOpportunitiesScan",
+    "generate:mirror-reports": "vitest run --config vitest.reports.config.js mirrorFixtureAuthoringReport",
+    "generate:mount-svgs": "vitest run --config vitest.reports.config.js mountSvgSpecificationsReport",
     "generate:sa-figure-svgs": "SA_FIGURE_SVGS_WRITE=1 vitest run sphericalAberrationStaticSvgs",
     "generate:holiday-branding": "node scripts/generate-holiday-branding.mjs",
+    "audit:aperture": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-aperture.mjs",
+    "audit:catalog-pgf": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-catalog-pgf.mjs",
     "audit:dependencies": "node scripts/audit-dependencies.mjs",
+    "audit:dpgf": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-dpgf.mjs",
+    "audit:field-coverage": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-field-coverage.mjs",
     "audit:image-circle": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-image-circle.mjs",
     "audit:patent-figure": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-patent-figure.mjs",
     "audit:surface": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-surface-probe.mjs",
@@ -32,13 +39,13 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"scripts/**/*.mjs\" \"*.config.js\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"scripts/**/*.mjs\" \"*.config.js\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"reports/**/*.ts\" \"scripts/**/*.mjs\" \"*.config.js\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"reports/**/*.ts\" \"scripts/**/*.mjs\" \"*.config.js\"",
     "seo:audit": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "github-slugger": "^2.0.0",
-    "katex": "^0.16.45",
+    "katex": "^0.18.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-helmet-async": "^3.0.0",
@@ -66,6 +73,6 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.2",
     "vite": "^8.0.16",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.11"
   }
 }

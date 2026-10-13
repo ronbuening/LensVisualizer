@@ -27,7 +27,6 @@ function minimalCardinalLens(surfaces: SurfaceData[]): RuntimeLens {
       svgH: 400,
       scFill: 0.55,
       yScFill: 0.55,
-      clipMargin: 1,
       maxRimAngleDeg: 64,
       gapSagFrac: 0.9,
       maxAspectRatio: 1.6,
@@ -126,6 +125,73 @@ describe("computeCardinalElementsAtState", () => {
     expect(result!.points.rearFocal.z).toBeCloseTo(L.imagePlane.z, 8);
     expect(Math.abs(result!.distances.efl.valueMm)).toBeCloseTo(L.EFL, 8);
     expect(result!.distances.efl.valueMm).toBeLessThan(0);
+  });
+
+  it("infers the auto folded Cassegrain order and matches its closed-form focal geometry", () => {
+    /* With no surfaceOrder, cardinals must discover the reflective hit order by real-ray sampling; central samples
+     * are blocked by the secondary, so the search has to walk out to the annular pupil. A flat secondary leaves the
+     * primary's f = |R|/2 (the authored L.EFL) unchanged, the second reflection restores a positive EFL, and F' folds
+     * to 2·z_SEC − z_F1. Flat + spherical paraxial power is exact, so only float rounding is tolerated. */
+    const L = buildLens(LENS_CATALOG["reference-cassegrain-back-focus"]);
+    const layout = doLayout(0, 0, L);
+    const primaryFocusZ = layout.z[L.labelIdx.M1] + L.S[L.labelIdx.M1].R / 2;
+    const result = cardinalsFor(L);
+
+    expect(L.opticalPath.mode).toBe("auto");
+    expect(L.opticalPath.surfaceOrder).toBeNull();
+    expect(result).not.toBeNull();
+    expect(result!.distances.efl.valueMm).toBeCloseTo(L.EFL, 8);
+    expect(result!.points.rearFocal.z).toBeCloseTo(2 * layout.z[L.labelIdx.SEC] - primaryFocusZ, 8);
+  });
+
+  it("reports the closed-form Gregorian first order through an explicit folded surface order", () => {
+    /* The concave secondary sits s beyond the primary focus and relays it to s' = 1 / (1/f2 - 1/s); the intermediate
+     * real image makes the system EFL -f1·s'/s (an erect final image). Paraxial power is exact for spherical mirrors. */
+    const L = buildLens(LENS_CATALOG["reference-gregorian-secondary"]);
+    const layout = doLayout(0, 0, L);
+    const f1 = Math.abs(L.S[L.labelIdx.M1].R) / 2;
+    const f2 = Math.abs(L.S[L.labelIdx.SEC].R) / 2;
+    const secondaryZ = layout.z[L.labelIdx.SEC];
+    const s = layout.z[L.labelIdx.M1] - f1 - secondaryZ;
+    const sPrime = 1 / (1 / f2 - 1 / s);
+    const result = cardinalsFor(L);
+
+    expect(L.opticalPath.surfaceOrder).toEqual([L.labelIdx.M1, L.labelIdx.SEC]);
+    expect(result).not.toBeNull();
+    expect(result!.distances.efl.valueMm).toBeCloseTo((-f1 * sPrime) / s, 8);
+    expect(result!.points.rearFocal.z).toBeCloseTo(secondaryZ + sPrime, 8);
+    // The fixture is authored so that relay lands on its image plane with |EFL| equal to the design focal length.
+    expect(result!.points.rearFocal.z).toBeCloseTo(L.imagePlane.z, 8);
+    expect(Math.abs(result!.distances.efl.valueMm)).toBeCloseTo(L.EFL, 8);
+  });
+
+  it("keeps auto-ordered folded cardinals consistent with the lens EFL across the catalog", () => {
+    /* Auto-mode lenses without a surfaceOrder (production catadioptrics included) all run the sampled hit-order
+     * inference. It must never throw, and any EFL it yields must match L.EFL — for folded lenses the authored
+     * focalLengthDesign that sizes the nominal pupil — within 1%: looser than patent focal-length rounding, far
+     * tighter than a dropped curved reflection or a wrong hit order. */
+    const swept: string[] = [];
+    const offenders: string[] = [];
+    let compared = 0;
+    for (const [key, data] of Object.entries(LENS_CATALOG)) {
+      if (data.opticalPath?.mode !== "auto" || data.opticalPath.surfaceOrder?.length) continue;
+      swept.push(key);
+      try {
+        const L = buildLens(data);
+        const efl = cardinalsFor(L)?.distances.efl.valueMm;
+        if (efl === undefined) continue;
+        compared++;
+        if (!Number.isFinite(efl) || Math.abs(Math.abs(efl) / L.EFL - 1) > 0.01) {
+          offenders.push(`${key}: cardinal EFL ${efl} vs L.EFL ${L.EFL}`);
+        }
+      } catch (error) {
+        offenders.push(`${key}: threw ${error instanceof Error ? error.message : String(error)}`);
+      }
+    }
+
+    expect(swept.length).toBeGreaterThan(0);
+    expect(compared).toBeGreaterThan(0);
+    expect(offenders).toEqual([]);
   });
 
   it("keeps tilted image-plane folded systems out of first-order cardinal reporting", () => {

@@ -102,7 +102,8 @@ The first group in the patent is expressly arranged around a negative element fo
 The patent associates that choice with control of residual spherical aberration over the zoom range.[1] Example 1
 implements that pattern with L1 negative and L2, L3, and L4 positive.
 
-L2's FCD100-equivalent annotation has $\nu_d=95.10$ and catalog $dP_{gF}=+0.0564$. Tamron marks one XLD element in
+L2's FCD100-equivalent annotation has $\nu_d=95.10$ and a HOYA catalog deviation $\Delta P_{gF}=+0.0564$ on HOYA's
+own normal line; the data file stores $dP_{gF}=+0.048767$ against the engine's line. Tamron marks one XLD element in
 the production construction drawing; under the selected correlation, L2 is the position and coordinate pair that
 correspond to that count. This is correlation evidence rather than an assertion that the production element is HOYA
 FCD100.
@@ -294,36 +295,41 @@ that at least one positive 5C element have $\nu_d\le 30$.[1]
 
 The patent links that low-Abbe positive member to correction of chromatic aberration of magnification and off-axis coma
 across the zoom range.[1] In the data model L23 is annotated as FDS90 (HOYA equivalent), with explicit catalog line
-indices and $dP_{gF}=+0.0137$; the production melt remains unidentified.
+indices and a stored $dP_{gF}=+0.015299$ against the engine's normal line (HOYA catalog $\Delta P_{gF}=+0.0137$ on
+HOYA's own line); the production melt remains unidentified.
 
 ## Glass Identification and Selection
 
 The patent gives only d-line refractive index and Abbe number. The final data file therefore treats every trade name as a
 **catalog-coordinate equivalent**, not as a source-published melt. A six-vendor Stage-1 comparison found that all 14
 distinct patent coordinate pairs coincide especially closely with the HOYA catalog family. Stage 2 consequently chose
-HOYA labels consistently and then transcribed `nC`, `nF`, `ng`, and `dPgF` from HOYA's official 2026-06-01 optical-glass
-workbook.[5]
+HOYA labels consistently and then transcribed `nC`, `nF`, and `ng` from HOYA's official 2026-06-01 optical-glass
+workbook.[5] The stored `dPgF` is not the workbook's deviation, which HOYA takes against its own normal line (the
+workbook figures fit $0.64833 - 0.00180\,\nu_d$): it is $P_{gF} = (n_g - n_F)/(n_F - n_C)$ of the transcribed line
+indices minus the engine's normal line $0.6438 - 0.001682\,\nu_d$. TAFD5G and E-F5 keep their four-decimal workbook
+figures, which already lie within 0.0003 of that value. The patent itself prints no partial dispersion and defines no
+deviation.
 
 The stored patent $n_d/\nu_d$ values and the selected HOYA rows agree with maximum $|\Delta n_d|=0.00000$ and maximum
 $|\Delta\nu_d|=0.01$. That coordinate agreement is strong evidence for a compatible glass family, but it does not
 establish that Tamron purchased the named HOYA melts for production.
 
-| HOYA-equivalent annotation | $n_d$ | $\nu_d$ | $dP_{gF}$ | Elements |
-|---|---:|---:|---:|---|
-| NBFD15-W | 1.80610 | 33.27 | +0.0000 | L1, L16 |
-| FCD100 | 1.43700 | 95.10 | +0.0564 | L2 |
-| FCD1 | 1.49700 | 81.61 | +0.0374 | L3, L4, L15, L17 |
-| TAFD25 | 1.90366 | 31.31 | +0.0028 | L5, L22 |
-| LAC14 | 1.69680 | 55.46 | -0.0060 | L6, L21 |
-| PCD4 | 1.61800 | 63.39 | +0.0059 | L7 |
-| FC5 | 1.48749 | 70.44 | +0.0090 | L8, L12 |
-| FD60 | 1.80518 | 25.46 | +0.0132 | L9, L18 |
-| TAFD5G | 1.83481 | 42.72 | -0.0067 | L10, L13 |
-| TAF1 | 1.77250 | 49.62 | -0.0086 | L11 |
-| TAC8 | 1.72916 | 54.67 | -0.0046 | L14 |
-| BAC4 | 1.56883 | 56.04 | +0.0010 | L19 |
-| E-F5 | 1.60342 | 38.01 | +0.0029 | L20 |
-| FDS90 | 1.84666 | 23.78 | +0.0137 | L23 |
+| HOYA-equivalent annotation | $n_d$ | $\nu_d$ | HOYA catalog $\Delta P_{gF}$ (HOYA's line) | Stored `dPgF` (engine's line) | Elements |
+|---|---:|---:|---:|---:|---|
+| NBFD15-W | 1.80610 | 33.27 | +0.0000 | +0.000930 | L1, L16 |
+| FCD100 | 1.43700 | 95.10 | +0.0564 | +0.048767 | L2 |
+| FCD1 | 1.49700 | 81.61 | +0.0374 | +0.032056 | L3, L4, L15, L17 |
+| TAFD25 | 1.90366 | 31.31 | +0.0028 | +0.003458 | L5, L22 |
+| LAC14 | 1.69680 | 55.46 | -0.0060 | -0.007523 | L6, L21 |
+| PCD4 | 1.61800 | 63.39 | +0.0059 | +0.002309 | L7 |
+| FC5 | 1.48749 | 70.44 | +0.0090 | +0.005027 | L8, L12 |
+| FD60 | 1.80518 | 25.46 | +0.0132 | +0.014579 | L9, L18 |
+| TAFD5G | 1.83481 | 42.72 | -0.0067 | -0.0067 | L10, L13 |
+| TAF1 | 1.77250 | 49.62 | -0.0086 | -0.009568 | L11 |
+| TAC8 | 1.72916 | 54.67 | -0.0046 | -0.006868 | L14 |
+| BAC4 | 1.56883 | 56.04 | +0.0010 | -0.000772 | L19 |
+| E-F5 | 1.60342 | 38.01 | +0.0029 | +0.0029 | L20 |
+| FDS90 | 1.84666 | 23.78 | +0.0137 | +0.015299 | L23 |
 
 Two numerical clusters are especially important to the production correlation. L2's very high-Abbe coordinate pair is
 the sole $1.43700/95.10$ element, while L3, L4, L15, and L17 form a four-element $1.49700/81.61$ cluster. Tamron's
@@ -385,9 +391,9 @@ Third, the rear master group uses the remaining FCD1-equivalent elements in 5A a
 low-Abbe positive L23 required by patent condition (4). The patent specifically ties that positive 5C low-Abbe member to
 chromatic aberration of magnification and coma control.[1]
 
-Because the data file carries catalog $n_C$, $n_F$, $n_g$, and $dP_{gF}$ values, LensVisualizer can evaluate the
-selected equivalent-glass model beyond a simple $n_d/\nu_d$ approximation. No claim is made that these line indices
-were measured from the A009 production lens, and no APO designation is inferred.
+Because the data file carries catalog $n_C$, $n_F$, and $n_g$ values and the $dP_{gF}$ they imply, LensVisualizer can
+evaluate the selected equivalent-glass model beyond a simple $n_d/\nu_d$ approximation. No claim is made that these line
+indices were measured from the A009 production lens, and no APO designation is inferred.
 
 ## Image Stabilization
 
@@ -445,20 +451,28 @@ The inferred fixed stop radius gives entrance-pupil radii of approximately 12.37
 to telephoto and reproduces the patent's FNo. 2.90 within about five thousandths at all three states. These pupil and
 stop dimensions are computed model quantities, not published mechanical dimensions.
 
-The modeled semi-diameters also remain author inferences. Under the current geometry policy, the smallest element edge
-thickness is 0.423867 mm, the largest actual spherical rim angle is 37.430°, and the maximum shared-band cross-gap
-intrusion ratio is 0.882172 against the 0.90 limit. No conic check applies because the design is all-spherical. The
-modeled geometry requires no hidden trimming. One outer configured off-axis ray at telephoto/infinity first clips at
-the front surface; that is retained as modeled front-element vignetting rather than concealed by enlarging the inferred
-clear aperture.
+The modeled semi-diameters also remain author inferences. Every rim clears the on-axis f/2.90 ray at all three zoom
+positions, so the iris is the limiting aperture on axis and the traced wide-open f-number is 2.90, 2.89, and 2.90 from
+wide to telephoto. The rear faces of L9 (surface 15, 17.1 mm) and L15 (surface 27, 14.9 mm) sit at the heights that ray
+reaches at 194.5 mm, 17.02 mm and 14.85 mm, rounded up to 0.1 mm; both elements have stepped rims, with front faces at
+20.0 mm and 18.6 mm, where Figure 1 draws square-cut ones.
+
+Under the current geometry policy, the smallest element edge thickness is 0.423867 mm and the largest actual spherical
+rim angle is 37.430°. The maximum shared-band cross-gap intrusion ratio is 0.999752 at the L15–L16 air gap, where the
+two rims are 0.0004 mm apart at the 14.9 mm semi-diameter and the surfaces themselves meet at 14.902 mm; the L9–L10 gap
+follows at 0.932749 with 0.213 mm of air at 17.1 mm. Figure 1 draws both pairs meeting at the rim, and the data file
+sets `gapSagFrac` to 1.00 in place of the 0.90 default to admit them. No conic check applies because the design is
+all-spherical. The modeled geometry requires no hidden trimming. One outer configured off-axis ray at
+telephoto/infinity first clips at the front surface; that is retained as modeled front-element vignetting rather than
+concealed by enlarging the inferred clear aperture.
 
 ## Sources and References
 
-1. **US 8,867,144 B2**, Hisayuki Yamanaka, *Inner Focusing Telephotographing Zoom Lens*, Tamron Co., Ltd., granted October 21, 2014. Example 1 numerical prescription and spacing tables are on patent pp. 10–11; architecture and conditional-expression discussion are on pp. 3–8.
+1. **US 8,867,144 B2**, Hisayuki Yamanaka, *Inner Focusing Telephotographing Zoom Lens*, Tamron Co., Ltd., granted October 21, 2014. Example 1 numerical prescription and spacing tables are in patent columns 10–11; architecture and conditional-expression discussion are in columns 3–8.
 2. **Tamron, A009 specifications**, *SP 70-200mm F/2.8 Di VC USD (Model A009)* — production construction count, 1.3 m MOD, 1:8 maximum magnification, nine rounded blades, mount variants, and release dates. [Tamron specification page][tamron-spec]
 3. **Tamron, A009 product overview**, *SP 70-200mm F/2.8 Di VC USD (Model A009)* — VC/USD description and one-XLD/four-LD statement. [Tamron product page][tamron-product]
 4. **Tamron, A009 optical-construction drawing** — relative element layout and XLD/LD markings. [Manufacturer SVG][tamron-construction]
-5. **HOYA GROUP Optics Division, Optical Glass Data Download** — `HOYA20260601.xlsx`, updated June 1, 2026, used for the catalog-equivalent `nC`, `nF`, `ng`, and `dPgF` fields. [HOYA data-download page][hoya-data]
+5. **HOYA GROUP Optics Division, Optical Glass Data Download** — `HOYA20260601.xlsx`, updated June 1, 2026, used for the catalog-equivalent `nC`, `nF`, and `ng` fields, from which `dPgF` is computed (TAFD5G and E-F5 keep the workbook's four-decimal deviation). [HOYA data-download page][hoya-data]
 
 [tamron-spec]: https://www.tamron.com/global/consumer/lenses/a009/spec.html
 [tamron-product]: https://www.tamron.com/global/consumer/lenses/a009/

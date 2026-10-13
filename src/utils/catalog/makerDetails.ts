@@ -37,7 +37,8 @@
  */
 
 export interface MakerDetails {
-  founded: number;
+  /** Omitted for design families without a documented corporate founding. */
+  founded?: number;
   headquarters: string;
   summary: string;
   history: string;
@@ -45,6 +46,64 @@ export interface MakerDetails {
 }
 
 export const MAKER_DETAILS: Record<string, MakerDetails> = {
+  // Corporate and camera history: company announcements, archived specifications and museum records.
+  // https://www.apple.com/sg/newsroom/2026/03/apple-to-celebrate-50-years-of-thinking-different/
+  // https://computerhistory.org/apple-timeline/
+  // https://www.apple.com/newsroom/2001/10/23Apple-Presents-iPod/
+  // https://www.apple.com/newsroom/2010/01/27Apple-Launches-iPad/
+  // https://www.apple.com/newsroom/2020/06/apple-announces-mac-transition-to-apple-silicon/
+  // https://collection.sciencemuseumgroup.org.uk/objects/co8094250/apple-mac-quick-take-100-digital-camera
+  // https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/
+  // https://www.apple.com/eg/iphone-4s/specs/
+  // https://www.apple.com/newsroom/2016/09/apple-introduces-iphone-7-iphone-7-plus/
+  // https://www.apple.com/newsroom/2019/09/iphone-11-pro-and-iphone-11-pro-max-the-most-powerful-and-advanced-smartphones/
+  // https://support.apple.com/en-us/111876 and https://support.apple.com/en-asia/111874
+  // https://www.apple.com/newsroom/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/
+  apple: {
+    founded: 1976,
+    headquarters: "Cupertino, California, United States",
+    summary:
+      "American technology company known for Macintosh computers, iPhone and iPad, with a photographic history spanning QuickTake digital cameras and integrated iPhone camera systems.",
+    history:
+      "Apple was founded in California on April 1, 1976, by Steve Jobs, Steve Wozniak and Ronald Wayne. Wozniak's Apple I provided the starting point for the business, while the Apple II, introduced in 1977, established its position in personal computing. The Macintosh followed in 1984 with a graphical interface and mouse. Based in Cupertino, Apple grew around the design of complete computing products, combining hardware, operating systems and application software.\n\nThe iPod in 2001 extended that approach to portable music, followed by the iPhone in 2007 and iPad in 2010. Apple subsequently developed its own processors for mobile devices and announced the Mac's transition to Apple silicon in 2020. Its product range expanded to watches, audio devices and digital services alongside computers and mobile devices.\n\nApple's photographic history began before the iPhone, with the QuickTake 100 digital camera in 1994. The original iPhone included a two-megapixel camera, placing photography alongside communication, music and web browsing in a single device. Successive generations developed the camera as a coordinated system of compact optics, sensors and image processing. The iPhone 4S in 2011 combined an eight-megapixel sensor with a five-element lens, autofocus and a hybrid infrared filter.\n\nLater iPhones expanded both the optical hardware and computational photography. The iPhone 7 in 2016 brought a six-element lens and optical stabilization to its Wide camera, while the 7 Plus paired Wide and Telephoto cameras for different fields of view and depth effects. The iPhone 11 Pro in 2019 added a three-camera system and Night mode. In 2020, the iPhone 12 adopted a seven-element Main-camera lens, and the 12 Pro Max introduced sensor-shift stabilization. The iPhone 15 Pro Max in 2023 extended the Telephoto camera to a 5× view with a folded tetraprism path and a combined autofocus and sensor-shift stabilization module.",
+    notableDesigns:
+      "QuickTake 100; iPhone 4S five-element camera; iPhone 7 Wide and 7 Plus dual-camera system; iPhone 11 Pro triple-camera system; iPhone 12 seven-element Main camera; iPhone 15 Pro Max tetraprism Telephoto",
+  },
+  // https://www.zenitcamera.com/archive/history/marks.html
+  // https://www.zenitcamera.com/archive/history/production-reliability-longevity.html
+  // https://www.zenitcamera.com/archive/history/feday-about-lenses.html
+  // https://www.zenitcamera.com/archive/lenses/industar-50.html
+  // https://www.zenitcamera.com/archive/lenses/helios-44.html
+  // https://www.zenitcamera.com/archive/lenses/zenitar-2-8-16.html
+  // https://www.rostec.ru/media/news/fototekhnika-iz-krasnogorska-ot-gorizonta-do-zenita/
+  // https://www.rostec.ru/media/news/v-obektive-zemlya-o-kosmicheskoy-fototekhnike-kmz/
+  kmz: {
+    founded: 1942,
+    headquarters: "Krasnogorsk, Moscow Oblast, Russia",
+    summary:
+      "Russian optical manufacturer known for Zorki and Zenit cameras, Industar and Helios lenses, and cine, panoramic and aerospace imaging systems.",
+    history:
+      "The Krasnogorsk Mechanical Plant (KMZ) was established in 1942 in Krasnogorsk, near Moscow, for wartime optical production. After the war it became a major Soviet camera and lens manufacturer. Zorki 35 mm rangefinder production began in 1948, followed by the first Zenit SLRs in 1952. Its camera range also included the Moskva folding cameras, Krasnogorsk cine cameras and Horizon panoramic cameras.\n\nKMZ developed and manufactured interchangeable lenses alongside its cameras. The four-element Tessar-type Industar-50, calculated by M. D. Maltsev at KMZ and completed in 1953, succeeded the Industar-22. The six-element Helios-44 58mm f/2 was derived from the Carl Zeiss Jena Biotar and became a standard lens for Zenit SLRs, evolving through changes to mounts, diaphragms and coatings. The plant's lens range also included the Helios-40 85mm f/1.5 portrait lens and the Zenitar 16mm f/2.8 fisheye.\n\nSpecialized camera systems were another substantial part of KMZ's work. The Horizon panoramic camera entered production in 1967, while the Krasnogorsk cine family served motion-picture photography. Beyond consumer cameras, the plant developed photographic equipment for the Zenit reconnaissance-satellite programs and later Earth-observation systems, including hyperspectral imaging equipment. This work joined lens design with precision mechanisms and complete optical instruments.",
+    notableDesigns:
+      "Industar-22; Industar-50 and Industar-50-2; Helios-44 58mm f/2; Helios-40 85mm f/1.5; Zenitar 16mm f/2.8 fisheye; Zorki, Zenit, Krasnogorsk and Horizon cameras",
+  },
+  // French Ministry of Culture inventory: https://pop.culture.gouv.fr/notice/palissy/IM25001882
+  // Tegea designs: US 3,037,426 and Kinoptik product literature cited in the lens analyses.
+  kinoptik: {
+    founded: 1932,
+    headquarters: "Paris, France (historical optical works)",
+    summary:
+      "French optical manufacturer known for cinema lenses, including the Tegea wide-angle and Super-Tegea fisheye families.",
+    history:
+      "Georges Grosset and Georges Perthuis founded Kinoptik in Paris in 1932. The company developed optics for cinema and specialized imaging, including an aerial-photography objective in 1939. Edgard Hugues's large-angular-field patent, assigned to Les Appareils de Precision Kinoptik, describes the three-system designs represented by the Tegea and Super-Tegea models in this catalog. Their production associations remain qualified in the individual lens analyses.",
+    notableDesigns: "Tegea 5.7mm f/1.8, Tegea 9.8mm f/1.8, Super-Tegea 1.9mm f/1.9",
+  },
+  unattributed: {
+    headquarters: "Not established",
+    summary: "Lens prescriptions whose manufacturer has not been established from the available sources.",
+    history:
+      "Unattributed is a catalog category, not a manufacturing company. An inventor, design-family name or patent owner does not by itself identify the factory that produced a lens. These models retain their source-backed names and inventor attribution while their manufacturer remains unconfirmed. The individual lens notes explain the evidence and any product correlation.",
+  },
   agfa: {
     founded: 1867,
     headquarters: "Mortsel, Belgium; historical camera works in Munich, Germany",
@@ -95,6 +154,15 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "14mm f/2.8 ED AS IF UMC, 85mm f/1.4, 135mm f/2 ED UMC, 24mm f/3.5 Tilt-Shift, XP 14mm f/2.4, AF 35mm f/2.8 FE, AF 35-150mm f/2-2.8, XEEN cinema primes",
   },
+  // Company chronology: https://japb.net/business/company-profiles/schacht/
+  schacht: {
+    founded: 1948,
+    headquarters: "Ulm, Germany; originally Munich",
+    summary: "German maker of interchangeable photographic lenses, including the Travenar and S-Travenar families.",
+    history:
+      "Albert Schacht founded the company in Munich in 1948, after a career at Zeiss, ICA, Zeiss Ikon, and Steinheil. The company relocated to Ulm in 1954 and supplied interchangeable lenses for camera systems including Exakta, Leica thread mount, M42, and Praktina. Its lenses carry both Munich and Ulm branding, reflecting the two locations.",
+    notableDesigns: "Travenar 90mm f/2.8, S-Travenar 135mm f/2.8, Travelon, Travegon",
+  },
   samsung: {
     founded: 1938,
     headquarters: "Suwon and Seoul, South Korea",
@@ -114,6 +182,19 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Tamron began in November 1950 in Urawa, now part of Saitama City, as Taisei Optical Equipment Manufacturing, founded by Fujio Watanabe and Takeyuki Arai to make camera and binocular lenses. The business was incorporated in 1952, when optical designer Uhyoue Tamura joined and helped establish its design department. His surname inspired the Tamron trademark registered in 1958; Taisei Optical adopted Tamron Co., Ltd. as its corporate name in 1970.\n\nThe company built its early interchangeable-lens identity around mount flexibility and practical zoom design. It developed the T-mount system in 1957, began mass-producing its affordable 95-205 mm f/6.3 telephoto zoom in 1959, introduced Adapt-A-Matic in the 1960s, and followed with Adaptall in 1976. The SP, or Super Performance, series arrived in 1979, the same era that produced the first SP 90 mm f/2.5 macro. That 90 mm line became a Tamron signature, evolving through autofocus, 1:1 reproduction, internal focusing, VC stabilization, and mirrorless versions.\n\nTamron expanded beyond interchangeable still-camera lenses into broadcast, surveillance, automotive, medical, and industrial optics. It acquired Bronica in 1995 and merged that medium-format camera company into Tamron in 1998. In photography, the company helped popularize compact all-in-one zooms, then broadened its premium SP primes and zooms and built extensive native mirrorless ranges. Modern lenses such as the 28-75 mm f/2.8, 35-150 mm f/2-2.8, and 150-600 mm continue its role as a major independent alternative to camera-system manufacturers.",
     notableDesigns:
       "T-mount, Adapt-A-Matic, Adaptall and Adaptall-2, SP 90mm Macro series, SP AF 60mm f/2 Di II Macro, SP AF 180mm f/3.5 Di Macro, 28-200mm all-in-one zoom, 28-75mm f/2.8, 35-150mm f/2-2.8, SP 150-600mm",
+  },
+  /* Thypoch product pages; patent applicant per CN 118244463 A and CN 118534627 A.
+   * https://thypoch.com/en/simera/50mm
+   * https://thypoch.com/en/ksana/21mm
+   */
+  thypoch: {
+    headquarters: "Shenzhen, China",
+    summary:
+      "Chinese maker of compact manual-focus rangefinder-style primes, chiefly for Leica M mount, sold in the Simera, Eureka, and Ksana lines.",
+    history:
+      "Thypoch is a photographic lens brand whose optical patents are filed by Shenzhen Dongzheng Optical Technology Co., Ltd. Its lenses are manual-focus full-frame primes built around the Leica M mount, with some models also offered in mirrorless mounts. The Simera line covers fast f/1.4 primes with floating focus, and the Ksana 21mm f/3.5 is a compact wide-angle.",
+    notableDesigns:
+      "Simera 28mm f/1.4, Simera 35mm f/1.4, Simera 50mm f/1.4, Simera 75mm f/1.4, Eureka 50mm f/2, Ksana 21mm f/3.5",
   },
   tokina: {
     founded: 1950,
@@ -254,6 +335,29 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "Tiefenbildner-Imagon, Heligon, Ysarex, Grandagon-N, Apo-Grandagon, Sironar-N, Apo-Sironar-S, Apo-Ronar, Rodagon, HR Digaron-W, HR Digaron-S",
   },
+  /* Viltrox company profile and manufacturer press release, accessed 2026-09-10:
+   * https://viltrox.com/pages/about-us
+   * https://prtimes.jp/main/html/rd/p/000000001.000157861.html
+   */
+  /* Representative designs: fast APS-C ultra-wide, full-frame ultra-wide with LCD,
+   * autofocus pancake, fast LAB wide-angle, first PRO prime, and HyperVCM LAB telephoto.
+   * https://viltrox.com/products/13mm-f14-af-lens-for-fujifilm-x-mount-camera-models
+   * https://viltrox.com/blogs/lens-insights/what-makes-the-viltrox-af-16mm-f1-8-fe-z-stand-out
+   * https://viltrox.com/blogs/new-in/chip-series-new-release-28mm-f4-5-xf-mount-for-fujifilm
+   * https://viltrox.com/products/af-35mm-f1-2-fe
+   * https://viltrox.com/products/75mm-f12-xf-lens
+   * https://viltrox.com/products/af-135mm-f1-8-lab-fe
+   */
+  viltrox: {
+    founded: 2009,
+    headquarters: "Shenzhen, China",
+    summary:
+      "Chinese maker of photographic and cinema lenses, lens adapters, monitors, and lighting equipment, with autofocus primes for APS-C and full-frame mirrorless cameras.",
+    history:
+      "Viltrox is the imaging-equipment brand of Shenzhen Jueying Technology Co., Ltd., founded in 2009 in Shenzhen. Its range includes photographic accessories and interchangeable lenses for mirrorless camera systems. The AF prime-lens lineup spans compact everyday lenses and large-aperture designs, including the APS-C 27mm f/1.2 and 75mm f/1.2 PRO lenses.",
+    notableDesigns:
+      "AF 13mm f/1.4, AF 16mm f/1.8, AF 28mm f/4.5 Chip, AF 35mm f/1.2 LAB, AF 75mm f/1.2 PRO, AF 135mm f/1.8 LAB",
+  },
   vivitar: {
     founded: 1938,
     headquarters: "Santa Monica, California, USA (marketing brand; lenses manufactured in Japan)",
@@ -291,6 +395,25 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Anhui Changgeng Optics Technology Co., Ltd., internationally branded as Venus Optics, was founded in Hefei on July 29, 2013 by a team of optical designers and photographers. Its consumer-facing lens brand is Laowa, a name derived from founder Li Dayong's online nickname; the company positions the line around distinctive, practical, and affordable optics rather than direct copies of first-party camera-system lenses. Headquarters and manufacturing are in Hefei, with sales and marketing presence in Hong Kong and distribution abroad.\n\nEarly Laowa releases set the tone: the 60mm f/2.8 2X Ultra-Macro (2014) gave 2:1 magnification while still focusing to infinity, followed by the 15mm f/4 Wide Angle Macro, the 105mm f/2 STF Bokeh Dreamer, and the 12mm f/2.8 Zero-D. The 12mm Zero-D Kickstarter in 2016 brought wider international attention to the brand and cemented the Zero-D label for ultra-wide designs that aim to keep rectilinear distortion low.\n\nFrom 2017 onward Laowa expanded across mirrorless mounts and specialty categories: compact Micro Four Thirds and APS-C ultra-wides, full-frame 15mm f/2 and 9mm f/5.6 lenses, 2X APO macros, tilt-shift and shift lenses, and the 24mm f/14 2X Macro Probe / PeriProbe family. The company's cine division followed with the 12mm T2.9 Zero-D Cine, OOOM 25-100mm T2.9, Nanomorph anamorphic lenses, Proteus 2X anamorphics, Ranger compact zooms, and other video-oriented versions of its stills designs. By the mid-2020s Laowa had also begun adding autofocus lenses while keeping its core identity in unusual manual-focus optical tools.",
     notableDesigns:
       "60mm f/2.8 2X Ultra-Macro, 15mm f/4 Wide Angle Macro, 12mm f/2.8 Zero-D, 24mm f/14 2X Macro Probe, 9mm f/5.6 FF RL, 100mm f/2.8 2X Ultra Macro APO, 10mm f/2.8 Zero-D AF, Nanomorph anamorphic cine lenses",
+  },
+  // Sources: manufacturer's Sensorex manual, pp. 4 and 44–46 (early lens designs),
+  // Auto Sensorex EE manual (E lenses / exposure), and dx-3 manual (origins / EC series).
+  // https://www.pacificrimcamera.com/rl/02328/02328.pdf
+  // https://butkus.org/chinon/miranda/miranda_ee/miranda_auto_sensorex_ee.pdf
+  // https://www.cameramanuals.org/miranda_pdf/miranda_dx-3.pdf
+  // Company chronology and later branding; founding dates differ (1946 in Miranda's
+  // own account, 1947 in later histories), so the text identifies the source of 1946.
+  // https://mirandageek.eu/about-miranda
+  // https://japb.net/business/company-profiles/miranda/
+  miranda: {
+    founded: 1946,
+    headquarters: "Tokyo, Japan",
+    summary:
+      "Japanese camera company known for its adaptable 35 mm SLR systems, interchangeable viewfinders, and Auto Miranda and Auto EC lens ranges.",
+    history:
+      "Miranda grew out of Orion Seiki, a postwar Tokyo camera workshop founded by Akira Ogihara and Shintarō Ōtsuka, both trained in aeronautical engineering. Miranda's own company history dates its beginnings to 1946. Repairs, lens adapters, the Mirax reflex housing, and Focabell bellows preceded the company's move into complete cameras. The Miranda T, introduced in 1955, was among the earliest Japanese 35 mm SLRs with an eye-level pentaprism; its removable finder established a defining feature of the system. Orion adopted the Miranda company name in the 1950s.\n\nMiranda built its reputation around adaptable SLRs: interchangeable finders, a lens mount combining an external bayonet with an internal 44 mm screw thread, and accessories for close-up and scientific photography. The Sensorex brought through-the-lens metering into this modular system, while the Auto Sensorex EE added shutter-priority automatic exposure with Auto Miranda E lenses. Allied Impex, the American distributor behind the Soligor brand, became Miranda's owner during the 1960s. Soligor-branded lenses formed part of the early system alongside the later Auto Miranda ranges.\n\nThe lenses deserve attention in their own right. The early Auto Miranda 50mm f/1.4 supplied for the Sensorex used an eight-element, six-group Gauss-type design, distinct from later lenses carrying the same focal length and aperture. The Auto Miranda 25mm f/2.8 covered an 82° angle of view with eight elements in seven groups and focused down to 0.25 m; the 105mm f/2.8 provided a compact portrait option. In the 1970s, the Auto EC series emphasized smaller, lighter lenses for bodies such as the dx-3, spanning fast 50mm standards, wide-angles, and telephotos including the 35mm f/2.8, 135mm f/2.8, and 200mm f/3.5.\n\nThe compact dx-3 exchanged the traditional removable finder for a fixed prism and an electronically controlled shutter. It could not reverse the company's decline: Miranda entered bankruptcy and ended camera production in 1976. Dixons later revived the name on cameras, lenses, and accessories sourced from other manufacturers. Those later Miranda-branded products belong to a separate chapter from the original Japanese SLR system.",
+    notableDesigns:
+      "Auto Miranda 50mm f/1.4 (eight-element), Auto Miranda 25mm f/2.8, Auto Miranda 105mm f/2.8, Auto EC 35mm f/2.8, Auto EC 135mm f/2.8, Auto EC 200mm f/3.5",
   },
   minolta: {
     founded: 1928,

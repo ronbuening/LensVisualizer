@@ -25,7 +25,7 @@ No dimensional scaling is applied. The patent prescription already lies at the p
 
 ## Optical Architecture
 
-The lens is an 8-element, 6-group, retrofocus-type wide-angle prime. The patent itself describes the architecture as similar to a retrofocus arrangement (¶0027), and the final prescription satisfies the project's quantitative definition because the computed back focal distance, 8.684199 mm from the final active lens surface, exceeds the 6.002506 mm effective focal length.
+The lens is an 8-element, 6-group, retrofocus-type wide-angle prime. The patent itself describes the architecture as similar to a retrofocus arrangement (¶0027), and the final prescription satisfies the project's quantitative definition because the computed air-equivalent back focal distance, 8.684199 mm from the final active lens surface, exceeds the 6.002506 mm effective focal length.
 
 The patent divides the system about the aperture stop into first and second lens groups. The object-side first group contains a negative `1F` subgroup followed, across the largest air interval within that group, by a positive `1R` singlet (¶0062–¶0064). In the final data these are L1–L2 and L3 respectively. The `1F` subgroup has an isolated focal length of -8.188268 mm; L3, which is also the complete `1R` subgroup, has an isolated focal length of +16.828456 mm. These isolated values describe the subassemblies in air and should not be treated as additive in-situ contributions.
 
@@ -33,7 +33,7 @@ The stop lies between L3 and the rear imaging section. The image-side second gro
 
 This partition is more informative than a simple front-negative/rear-positive label. The front two negative menisci establish the wide-angle ray geometry, while the positive pre-stop singlet and the compound positive rear system provide the principal imaging power. The unusually long 9.57 mm gap between L2 and L3 is also part of the patent's ghost-control strategy: the patent uses this spacing to help prevent reflections generated in the front negative pair from propagating through the later imaging groups (¶0039–¶0043).
 
-The patent includes a plane-parallel plate `F` behind the lens as a representative low-pass filter, infrared-cut filter, and/or sensor cover glass (¶0067). That plate is not an active lens element in the LensVisualizer model and is omitted. Its first-order propagation effect is absorbed into the normalized rear air spacing described in the verification section below.
+The patent includes a plane-parallel plate `F` behind the lens as a representative low-pass filter, infrared-cut filter, and/or sensor cover glass (¶0067). That plate is not a lens element: it is modeled in `rearPlates`, traced by every analysis but not drawn in the section. Its placement and the derived gap to the image are described in the verification section below.
 
 ## Element-by-Element Analysis
 
@@ -208,11 +208,11 @@ The final data file separates marketed values from exact modeled values. The pro
 
 The patent's `H` column is treated as maximum ray-height evidence rather than as a list of mechanical clear apertures. The authored surface semi-diameters are therefore modeling inferences based on the published `H` values, the Example 4 optical section, the F/1.99 pupil solution, and ray / geometry containment checks. They are not represented as patent-published lens diameters.
 
-The plane-parallel filter / cover plate `F` at patent surfaces 16–17 is omitted from the active LensVisualizer prescription. A first-order check retaining the patent's 1.50 mm, `n = 1.50000` plate places the paraxial image `0.604199 mm` behind its rear face. Removing the plate therefore gives an air-equivalent surface-15 rear spacing of `7.08 + 1.50/1.50000 + 0.604199 = 8.684199 mm`. This gives a normalized first-surface-to-image track of `45.944199 mm`. The front principal plane lies `13.878076 mm` imageward of surface 1, and the rear principal plane lies `2.681693 mm` imageward of surface 15; the latter plus the `6.002506 mm` EFL reproduces the normalized BFD.
+The plane-parallel filter / cover plate `F` at patent surfaces 16–17 (1.50 mm, `N = 1.50000`, `ν = 64.00`) is modeled in `rearPlates`: surface 15 keeps the printed 7.08 mm gap to the plate, and the plate is traced but not drawn. Table 7 prints no spacing after surface 17; a first-order check places the paraxial image `0.604199 mm` behind the plate's rear face, and that derived (not printed) value is stored as the plate's gap to the image. The paraxial equivalent is an air-equivalent surface-15 rear spacing of `7.08 + 1.50/1.50000 + 0.604199 = 8.684199 mm` and an air-equivalent first-surface-to-image track of `45.944199 mm`; the physical track including the plate is `46.444199 mm`. The front principal plane lies `13.878076 mm` imageward of surface 1, and the rear principal plane lies `2.681693 mm` imageward of surface 15; the latter plus the `6.002506 mm` EFL reproduces the air-equivalent BFD.
 
 Sequential height/reduced-angle tracing and an independent ABCD matrix product agree to machine precision for the final arrays (`max |Δ| = 0`). The same data produce a Petzval sum of `+0.0159871 mm^-1`. These are computed model results, not values printed by the patent.
 
-No scaling, close-focus reconstruction, optical stabilization group, dummy surface, filter element, or synthetic cement layer is introduced. The only source omission resolved by inference is the missing `K` for surface 14A; it is carried as `K = 0` and disclosed above.
+No scaling, close-focus reconstruction, optical stabilization group, dummy surface, filter lens element, or synthetic cement layer is introduced; the plate `F` lives only in `rearPlates`. The only source omission resolved by inference is the missing `K` for surface 14A; it is carried as `K = 0` and disclosed above.
 
 ## Sources and References
 

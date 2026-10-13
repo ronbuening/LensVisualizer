@@ -6,7 +6,17 @@ import prettierConfig from "eslint-config-prettier";
 import tseslint from "typescript-eslint";
 
 export default [
-  { ignores: [".claude/worktrees/**", "dist/", "dist-server/", "node_modules/", "src/lens-data/*.data.js"] },
+  {
+    ignores: [
+      ".claude/worktrees/**",
+      ".lens-work/**",
+      "in_progress/**",
+      "dist/",
+      "dist-server/",
+      "node_modules/",
+      "src/lens-data/*.data.js",
+    ],
+  },
 
   js.configs.recommended,
 
@@ -133,9 +143,9 @@ export default [
     },
   },
 
-  // TypeScript test files
+  // TypeScript test files and report generators
   {
-    files: ["__tests__/**/*.ts"],
+    files: ["__tests__/**/*.ts", "reports/**/*.ts"],
     plugins: {
       "@typescript-eslint": tseslint.plugin,
     },

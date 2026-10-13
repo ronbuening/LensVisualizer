@@ -89,7 +89,8 @@ export default function MakersIndexPage() {
                 {details ? (
                   <>
                     <div style={{ fontSize: "0.8rem", color: t.label, marginTop: "0.25rem" }}>
-                      Est. {details.founded} · {details.headquarters} · {maker.count} {pluralize(maker.count, "lens")}
+                      {details.founded != null && <>Est. {details.founded} · </>}
+                      {details.headquarters} · {maker.count} {pluralize(maker.count, "lens")}
                     </div>
                     <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
                       {details.summary}

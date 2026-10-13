@@ -42,7 +42,7 @@ The principal architectural feature is the strong rear correction concentrated i
 
 **nd = 1.91082, νd = 35.25. Glass: TAFD35 catalog equivalent. Standalone f = +13.799161 mm.**
 
-L9f supplies the dominant positive power at the front of the system. HOYA TAFD35 matches the patent's nd and νd exactly, and its catalog ΔPgF differs from the patent's rounded value by 0.0003. The model therefore uses the catalog's complete coefficient-backed curve while retaining the patent's nd, νd, and dPgF metadata. This is a catalog-equivalent optical match, not a claim about the production supplier.
+L9f supplies the dominant positive power at the front of the system. HOYA TAFD35 matches the patent's nd and νd exactly, and its catalog ΔPgF differs from the patent's rounded value by 0.0003. The model therefore uses the catalog's complete coefficient-backed curve while retaining the patent's nd and νd; the stored `dPgF = −0.002630` is the patent's ΔPgF = −0.003 re-expressed on the engine's normal line. This is a catalog-equivalent optical match, not a claim about the production supplier.
 
 The element is not a +13.8 mm lens in system use. Its strong standalone positive power is moderated by the cemented negative L9r, producing the much weaker +42.12674 mm equivalent focal length of the complete L9 doublet. This distinction is important because the doublet, rather than either element in isolation, constitutes G1.
 
@@ -60,9 +60,9 @@ The negative member reduces the net power of the front pair and supplies an oppo
 
 **nd = 1.61340, νd = 44.27. Glass: OHARA S-NBM51 catalog equivalent for patent 613443; production supplier unspecified. Standalone f = −17.457979 mm.**
 
-L10f begins the negative G2a sub-group immediately behind the stop. The patent specifically constrains this member to nd < 1.62 and ΔPgF ≤ −0.005 (claim 5; ¶0086). The stored values, 1.61340 and −0.005, meet those limits at the patent's stated precision.
+L10f begins the negative G2a sub-group immediately behind the stop. The patent specifically constrains this member to nd < 1.62 and ΔPgF ≤ −0.005 (claim 5; ¶0086). The patent's values, nd = 1.61340 and ΔPgF = −0.005, meet those limits at the patent's stated precision.
 
-OHARA S-NBM51 reproduces the patent nd/νd coordinate essentially exactly and its catalog partial dispersion is close to the patent's rounded ΔPgF. The data file therefore uses its complete curve as an optical equivalent while retaining the patent-authored `dPgF = −0.005`; this does not identify the production supplier.
+OHARA S-NBM51 reproduces the patent nd/νd coordinate essentially exactly and its catalog partial dispersion is close to the patent's rounded ΔPgF. The data file therefore uses its complete curve as an optical equivalent while storing `dPgF = −0.005694`, the patent's ΔPgF = −0.005 re-expressed on the engine's normal line; this does not identify the production supplier.
 
 #### L10r — Biconvex Positive
 
@@ -80,7 +80,7 @@ Although L10r is positive by itself, the complete cemented L10 subgroup is negat
 
 L11 is the strongest positive element in G2b and directly reproduces the patent's f2bp = 31.91 mm. Its very high Abbe number and positive ΔPgF are central to the prescription's dispersion strategy. HOYA FCD1 matches nd and νd exactly and matches the rounded patent ΔPgF within 0.0004, so the model uses its complete catalog curve as an optical equivalent while leaving the production supplier unspecified.
 
-The patent requires the positive G2b glass to have ΔPgF > +0.015 (claim 6). L11's value is +0.037. This provides a partial-dispersion behavior opposite in sign to the negative L10f member and supports secondary-spectrum control without justifying an apochromatic classification.
+The patent requires the positive G2b glass to have ΔPgF > +0.015 (claim 6). L11's value on the patent's line is +0.037. This provides a partial-dispersion behavior opposite in sign to the negative L10f member and supports secondary-spectrum control without justifying an apochromatic classification.
 
 #### L12 — Negative Meniscus, Double-Sided Aspherical
 
@@ -94,16 +94,16 @@ The nd and six-digit 516641 position correspond to a BK7-family borosilicate cro
 
 ## Glass Identification and Selection
 
-The final data file preserves the patent's nd, νd, and rounded ΔPgF values on all six elements. It does not duplicate catalog-derived C-, F-, and g-line indices: compatible labels resolve to complete catalog curves, while the authored `dPgF` values remain authoritative. Every named match is an optical equivalent rather than a production-supplier claim.
+The final data file preserves the patent's nd and νd on all six elements. The patent prints no absolute PgF, only its own deviation ΔPgF = PgF − 0.64833 + 0.00180·νd (¶0085), rounded to three decimals. The stored `dPgF` is measured from the engine's normal line, 0.6438 − 0.001682·νd, so each stored value is the PgF recovered from the patent's ΔPgF minus that line; L10r keeps the printed −0.009 because the two lines differ by less than 0.0003 at νd = 40.81. ΔPgF in this analysis always denotes the patent's deviation. The data file does not duplicate catalog-derived C-, F-, and g-line indices: compatible labels resolve to complete catalog curves, while the authored `dPgF` values remain authoritative. Every named match is an optical equivalent rather than a production-supplier claim.
 
-| Element | Stored glass label | nd | νd | ΔPgF | Identification status |
-|---|---|---:|---:|---:|---|
-| L9f | TAFD35 catalog equivalent | 1.91082 | 35.25 | −0.003 | Complete HOYA catalog curve; supplier unspecified |
-| L9r | FD225 catalog equivalent | 1.80809 | 22.76 | +0.021 | Complete HOYA catalog curve; supplier unspecified |
-| L10f | S-NBM51 catalog equivalent; patent 613443 | 1.61340 | 44.27 | −0.005 | Complete OHARA curve; supplier unspecified; patent dPgF retained |
-| L10r | TAFD30 catalog equivalent | 1.88300 | 40.81 | −0.009 | Complete HOYA catalog curve; supplier unspecified |
-| L11 | FCD1 catalog equivalent | 1.49700 | 81.61 | +0.037 | Complete HOYA catalog curve; supplier unspecified |
-| L12 | S-BSL7 / K-BK7 catalog-equivalent class | 1.51633 | 64.06 | 0.000 | Complete catalog curve; vendor not uniquely identified |
+| Element | Stored glass label | nd | νd | Patent ΔPgF | Stored `dPgF` | Identification status |
+|---|---|---:|---:|---:|---:|---|
+| L9f | TAFD35 catalog equivalent | 1.91082 | 35.25 | −0.003 | −0.002630 | Complete HOYA catalog curve; supplier unspecified |
+| L9r | FD225 catalog equivalent | 1.80809 | 22.76 | +0.021 | +0.022844 | Complete HOYA catalog curve; supplier unspecified |
+| L10f | S-NBM51 catalog equivalent; patent 613443 | 1.61340 | 44.27 | −0.005 | −0.005694 | Complete OHARA curve; supplier unspecified; patent-derived dPgF retained |
+| L10r | TAFD30 catalog equivalent | 1.88300 | 40.81 | −0.009 | −0.009 | Complete HOYA catalog curve; supplier unspecified |
+| L11 | FCD1 catalog equivalent | 1.49700 | 81.61 | +0.037 | +0.031900 | Complete HOYA catalog curve; supplier unspecified |
+| L12 | S-BSL7 / K-BK7 catalog-equivalent class | 1.51633 | 64.06 | 0.000 | −0.003029 | Complete catalog curve; vendor not uniquely identified |
 
 The palette combines dense positive glasses, high-index flints, a negative anomalous-partial-dispersion class, and a high-Abbe positive crown glass. The strongest verified chromatic pairing is between L10f at ΔPgF = −0.005 and L11 at ΔPgF = +0.037. The patent singles out those two signs in its conditions, while the front cemented pair provides additional dispersion balancing. These data support discussion of anomalous partial dispersion, but not an APO designation.
 

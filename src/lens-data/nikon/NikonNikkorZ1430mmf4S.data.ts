@@ -2,40 +2,52 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON NIKKOR Z 14-30mm f/4 S                         ║
+ * ║  LENS DATA — NIKON NIKKOR Z 14-30mm f/4 S                            ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2019-008031 A, Example 1 (Nikon / Uehara Ken).   ║
- * ║  Negative-lead (retrofocus) zoom: G1(−) G2(+) G3(+) G4(−) G5(−). ║
- * ║  14 elements / 12 groups, 4 aspherical surfaces on 4 elements.    ║
- * ║  Focus: Internal focus via G4 (single element L41) toward image.  ║
- * ║                                                                    ║
- * ║  Zoom variable gaps (zoom only): D1 (S8), D2 (STO).              ║
- * ║  Focus variable gaps (zoom + focus): D3 (S21), D4 (S23).         ║
- * ║  Back focal distance: Bf (S27), zoom only.                       ║
- * ║  Reversing groups: D3 is non-monotonic (1.579→2.261→2.007).      ║
- * ║  G2 and G5 share identical zoom trajectories (patent ¶93).       ║
- * ║                                                                    ║
- * ║  NOTE ON CLOSE-FOCUS:                                              ║
- * ║    Patent provides only infinity-focus spacings at 3 zoom          ║
- * ║    positions. Close-focus D3/D4 values are therefore inferred      ║
- * ║    from a real-ray focus-curvature calibration to the production   ║
- * ║    0.28 m MFD, yielding approximately 0.52 mm (W), 0.75 mm (M),   ║
- * ║    and 1.07 mm (T) of L41 travel toward the image.                 ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Not listed in patent.  Estimated via combined marginal +        ║
- * ║    chief ray trace at f/4 and full field, constrained by edge      ║
- * ║    thickness ≥ 0.5 mm, cross-gap sag overlap ≤ gap × 1.1, and    ║
- * ║    aspherical slope < 64.2°.  Front group SDs are significantly   ║
- * ║    below paraxial beam estimates due to (a) heavy barrel           ║
- * ║    distortion at 14 mm reducing real chief-ray heights and         ║
- * ║    (b) the extreme aspherical departure on S4A limiting the        ║
- * ║    usable clear aperture to ~15 mm.                                ║
- * ║                                                                    ║
- * ║  NOTE ON CONIC CONVENTION:                                         ║
- * ║    Patent formula uses κ.  Physical reasonableness testing         ║
- * ║    confirms κ = K (standard conic constant) for this patent:       ║
- * ║    κ = −1 → paraboloid, κ = 0 → sphere.                           ║
+ * ║  Data source: JP 2019-008031 A, Example 1, Table 1 (Nikon;           ║
+ * ║  inventor 上原 健, Takeru Uehara). Native patent scale.               ║
+ * ║  Negative-lead zoom: G1(−) G2(+) G3(+) G4(−) G5(−).                  ║
+ * ║  14 elements / 12 groups, 4 aspherical surfaces on 4 elements.       ║
+ * ║  Focus: G4 (single element L41) moves toward the image (¶0092).      ║
+ * ║                                                                      ║
+ * ║  Zoom variable gaps: D1 (S8), D2 (STO), D3 (S21), D4 (S23), Bf.      ║
+ * ║  Focus changes only D3/D4 (D3 + D4 constant per station).            ║
+ * ║  Zoom W→T (¶0093, Fig. 1 arrows): G1 moves toward the image          ║
+ * ║  (−11.47 mm); G2–G5 move toward the object (G2, G5 +14.94 mm;        ║
+ * ║  G3 +18.90; G4 +18.47, image-plane reference). All group motions     ║
+ * ║  are monotonic; the D3 gap alone reverses (1.579→2.261→2.007).       ║
+ * ║  G2 and G5 share one zoom trajectory (¶0093). The stop moves with    ║
+ * ║  G2. No cover glass or filter is listed; Bf is air to image.         ║
+ * ║                                                                      ║
+ * ║  NOTE ON CLOSE-FOCUS:                                                ║
+ * ║    The patent tabulates infinity focus only. The close D3/D4 pairs   ║
+ * ║    are calculated: L41 translated rigidly until the paraxial         ║
+ * ║    conjugate sits at the production 0.28 m MFD (object-to-image      ║
+ * ║    278.3 / 278.9 / 279.2 mm at W / M / T). Travel 0.517 / 0.752 /    ║
+ * ║    1.069 mm toward the image. Not patent data.                       ║
+ * ║                                                                      ║
+ * ║  NOTE ON APERTURE:                                                   ║
+ * ║    FNO 4.00 at all three stations. The iris schedule is inferred     ║
+ * ║    (zoomApertureModel "from-nominal-fno": 5.64 / 6.44 / 8.08 mm);    ║
+ * ║    the authored STO sd records the largest (tele) radius.            ║
+ * ║                                                                      ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                             ║
+ * ║    Not listed in the patent. Measured from Fig. 1 (p. 29, 300 dpi    ║
+ * ║    native raster, 0.1004 mm/px from the 105.104 mm S1–S27 vertex     ║
+ * ║    span): L11 29.2 (S2A optical extent 22.4 where the flange         ║
+ * ║    begins), L12 19.3 (S4A 15.1), L13/L14 ≈14.5, G2 8.3–8.9,          ║
+ * ║    G3 8.2–8.7, L41 8.8, L51 10.8, L52 11.6 mm. Values ≥15 % off      ║
+ * ║    were moved to the figure (exact trace: the old front rims         ║
+ * ║    blocked the corner chief ray); 4A–8 are within 15 % and kept.     ║
+ * ║    Every rim clears the f/4 axial beam at all stations.              ║
+ * ║                                                                      ║
+ * ║  NOTE ON CONIC CONVENTION:                                           ║
+ * ║    Formula (a) (¶0078) prints √(1 − κ·y²/R²), which would make       ║
+ * ║    K = κ − 1. The table values do not follow it: with K = κ an       ║
+ * ║    exact trace lands the chief ray at the published Y = 21.70 mm     ║
+ * ║    for ω = 46.85° and 35.27° exactly and leaves f/4 spherical        ║
+ * ║    aberration under 0.07 mm; with K = κ − 1 the middle station       ║
+ * ║    reaches only 39.9° and tele SA grows to 0.28 mm. Stored K = κ.    ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -79,7 +91,7 @@ const LENS_DATA = {
       fl: -30.3,
       glass: "694533 — high-index crown (patent nd=1.69370, νd=53.32)",
       apd: false,
-      role: "Front element; nearly flat front enables 82 mm filter thread. Rear asph S2A carries ~−4.5 mm departure (paraboloid base).",
+      role: "Large front meniscus with a nearly flat front face; deep paraboloid-base rear asphere S2A (9.3 mm sag at its 22.4 mm rim).",
     },
     {
       id: 2,
@@ -91,7 +103,7 @@ const LENS_DATA = {
       fl: -61.0,
       glass: "694533 — high-index crown (patent nd=1.69370, νd=53.32)",
       apd: false,
-      role: "Paired with L11 asphere; S4A has +2.5 mm positive departure that partially restores wavefront after S2A.",
+      role: "Second G1 meniscus; paraboloid-base rear asphere S4A departs about +2.1 mm from its vertex sphere at the 14.5 mm rim.",
     },
     {
       id: 3,
@@ -101,9 +113,9 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.57,
       fl: -54.7,
-      glass: "S-FPL51 family (OHARA)",
+      glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
-      dPgF: 0.035, apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
+      dPgF: 0.035, apdNote: "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
       role: "ED element in G1 for lateral chromatic aberration correction at wide angles.",
     },
     {
@@ -114,9 +126,9 @@ const LENS_DATA = {
       nd: 1.90265,
       vd: 35.73,
       fl: 40.3,
-      glass: "903357 — dense flint (patent nd=1.90265, νd=35.73)",
+      glass: "J-LASFH9 (HIKARI catalog equivalent; patent nd=1.90265, νd=35.73)",
       apd: false,
-      role: "Dense flint; Petzval correction and air-spaced chromatic doublet with L13.",
+      role: "High-index lanthanum dense flint; sole positive element of G1, air-spaced behind L13.",
     },
     {
       id: 5,
@@ -126,7 +138,7 @@ const LENS_DATA = {
       nd: 1.59349,
       vd: 67.0,
       fl: 121.4,
-      glass: "S-FPM2 class (OHARA; patent nd=1.59349, νd=67.00)",
+      glass: "J-PSKH4 (HIKARI catalog equivalent; patent nd=1.59349, νd=67.00)",
       apd: false,
       role: "Weak positive field lens at G2 entrance.",
     },
@@ -137,8 +149,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.883,
       vd: 40.66,
-      fl: 27.2,
-      glass: "S-LAH58 (OHARA)",
+      fl: -35.9,
+      glass: "J-LASF08A (HIKARI catalog equivalent; patent nd=1.88300, νd=40.66)",
       apd: false,
       role: "Cemented flint in G2 doublet.",
       cemented: "D1",
@@ -151,7 +163,7 @@ const LENS_DATA = {
       nd: 1.56883,
       vd: 56.0,
       fl: 24.3,
-      glass: "S-BAL14 (OHARA)",
+      glass: "N-BAK4 (SCHOTT catalog equivalent; patent nd=1.56883, νd=56.00)",
       apd: false,
       role: "Cemented crown in G2 doublet; achromatic variator pair with L22.",
       cemented: "D1",
@@ -163,10 +175,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.816,
       vd: 46.59,
-      fl: 44.6,
-      glass: "S-LAH59 (OHARA)",
+      fl: -28.6,
+      glass: "J-LASF09A (HIKARI catalog equivalent; patent nd=1.81600, νd=46.59)",
       apd: false,
-      role: "Cemented flint in G3 doublet; aberration correction near stop.",
+      role: "Negative lanthanum-flint half of the G3 doublet just behind the stop.",
       cemented: "D2",
     },
     {
@@ -177,7 +189,7 @@ const LENS_DATA = {
       nd: 1.51612,
       vd: 64.08,
       fl: 34.1,
-      glass: "S-BSL7 (OHARA)",
+      glass: "S-BSL7 class (OHARA; patent nd=1.51612, νd=64.08)",
       apd: false,
       role: "Cemented crown; rear aspherical S17A fine-tunes spherical aberration.",
       cemented: "D2",
@@ -190,9 +202,9 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.57,
       fl: 41.4,
-      glass: "S-FPL51 family (OHARA)",
+      glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
-      dPgF: 0.035, apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
+      dPgF: 0.035, apdNote: "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
       role: "Primary positive power in G3; ED element for axial chromatic correction.",
     },
     {
@@ -203,9 +215,9 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.57,
       fl: 45.1,
-      glass: "S-FPL51 family (OHARA)",
+      glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
-      dPgF: 0.035, apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
+      dPgF: 0.035, apdNote: "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
       role: "Second positive ED element in G3; distributes convergent power with L33.",
     },
     {
@@ -216,7 +228,7 @@ const LENS_DATA = {
       nd: 1.795,
       vd: 45.31,
       fl: -37.6,
-      glass: "J-LASF017 (Hikari) — high-index lanthanum (795453)",
+      glass: "J-LASF017 (HIKARI catalog equivalent; patent nd=1.79500, νd=45.31)",
       apd: false,
       role: "Single-element focusing group (G4/GF). Lightweight for fast STM AF.",
     },
@@ -228,10 +240,10 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.57,
       fl: 41.9,
-      glass: "S-FPL51 family (OHARA)",
+      glass: "J-FKH1 (HIKARI catalog equivalent; patent nd=1.49782, νd=82.57)",
       apd: "inferred",
-      dPgF: 0.035, apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
-      role: "Fourth ED element; field flattener near image plane. G5 net power ≈ 0.",
+      dPgF: 0.035, apdNote: "FK-type fluorophosphate ED glass (inferred from nd/νd); ΔPgF ≈ +0.035 is a family estimate, not patent data",
+      role: "Positive ED-class meniscus of G5; nearly cancels L52 so G5 is almost afocal (f5 = −1392.9 mm).",
     },
     {
       id: 14,
@@ -241,7 +253,7 @@ const LENS_DATA = {
       nd: 1.76546,
       vd: 46.75,
       fl: -40.5,
-      glass: "Q-LASFPH2S (Hikari) — moldable lanthanum flint (765468)",
+      glass: "Q-LASFPH2S (HIKARI catalog equivalent; patent nd=1.76546, νd=46.75)",
       apd: false,
       role: "Rear element; aspherical S26A corrects astigmatism and field curvature at corners. Paired with L51 for field correction.",
     },
@@ -250,9 +262,9 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     /* ── G1: Front negative group (L11–L14) ── */
-    { label: "1", R: 190.7535, d: 3.0, nd: 1.6937, elemId: 1, sd: 22.4 },
-    { label: "2A", R: 18.8098, d: 9.5, nd: 1.0, elemId: 0, sd: 18.3 },
-    { label: "3", R: 51.563, d: 2.9, nd: 1.6937, elemId: 2, sd: 16.1 },
+    { label: "1", R: 190.7535, d: 3.0, nd: 1.6937, elemId: 1, sd: 29.2 },
+    { label: "2A", R: 18.8098, d: 9.5, nd: 1.0, elemId: 0, sd: 22.4 },
+    { label: "3", R: 51.563, d: 2.9, nd: 1.6937, elemId: 2, sd: 19.3 },
     { label: "4A", R: 22.702, d: 9.7, nd: 1.0, elemId: 0, sd: 14.5 },
     { label: "5", R: -71.0651, d: 1.9, nd: 1.49782, elemId: 3, sd: 14.4 },
     { label: "6", R: 44.4835, d: 0.1, nd: 1.0, elemId: 0, sd: 15.0 },
@@ -260,33 +272,33 @@ const LENS_DATA = {
     { label: "8", R: 296.5863, d: 28.616, nd: 1.0, elemId: 0, sd: 16.0 },
 
     /* ── G2: Positive variator (L21–L23) ── */
-    { label: "9", R: 63.0604, d: 2.0, nd: 1.59349, elemId: 5, sd: 11.6 },
-    { label: "10", R: 499.8755, d: 0.1, nd: 1.0, elemId: 0, sd: 11.0 },
-    { label: "11", R: 24.0057, d: 1.2, nd: 1.883, elemId: 6, sd: 10.0 },
-    { label: "12", R: 13.347, d: 4.5, nd: 1.56883, elemId: 7, sd: 10.0 },
-    { label: "13", R: 333.9818, d: 2.5, nd: 1.0, elemId: 0, sd: 10.0 },
+    { label: "9", R: 63.0604, d: 2.0, nd: 1.59349, elemId: 5, sd: 9.0 },
+    { label: "10", R: 499.8755, d: 0.1, nd: 1.0, elemId: 0, sd: 9.0 },
+    { label: "11", R: 24.0057, d: 1.2, nd: 1.883, elemId: 6, sd: 8.8 },
+    { label: "12", R: 13.347, d: 4.5, nd: 1.56883, elemId: 7, sd: 8.8 },
+    { label: "13", R: 333.9818, d: 2.5, nd: 1.0, elemId: 0, sd: 8.8 },
 
     /* ── Aperture stop (travels with G2) ── */
-    { label: "STO", R: 1e15, d: 7.483, nd: 1.0, elemId: 0, sd: 5.6 },
+    { label: "STO", R: 1e15, d: 7.483, nd: 1.0, elemId: 0, sd: 8.1 },
 
     /* ── G3: Positive relay (L31–L34) ── */
-    { label: "15", R: 36.3784, d: 1.1, nd: 1.816, elemId: 8, sd: 10.8 },
-    { label: "16", R: 14.0097, d: 4.71, nd: 1.51612, elemId: 9, sd: 10.8 },
-    { label: "17A", R: 61.0448, d: 0.2, nd: 1.0, elemId: 0, sd: 10.8 },
-    { label: "18", R: 27.9719, d: 3.15, nd: 1.49782, elemId: 10, sd: 10.0 },
-    { label: "19", R: -75.3921, d: 0.25, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "20", R: 91.9654, d: 3.05, nd: 1.49782, elemId: 11, sd: 10.2 },
-    { label: "21", R: -29.3923, d: 1.579, nd: 1.0, elemId: 0, sd: 10.2 },
+    { label: "15", R: 36.3784, d: 1.1, nd: 1.816, elemId: 8, sd: 8.6 },
+    { label: "16", R: 14.0097, d: 4.71, nd: 1.51612, elemId: 9, sd: 8.6 },
+    { label: "17A", R: 61.0448, d: 0.2, nd: 1.0, elemId: 0, sd: 8.6 },
+    { label: "18", R: 27.9719, d: 3.15, nd: 1.49782, elemId: 10, sd: 8.5 },
+    { label: "19", R: -75.3921, d: 0.25, nd: 1.0, elemId: 0, sd: 8.5 },
+    { label: "20", R: 91.9654, d: 3.05, nd: 1.49782, elemId: 11, sd: 8.7 },
+    { label: "21", R: -29.3923, d: 1.579, nd: 1.0, elemId: 0, sd: 8.7 },
 
     /* ── G4: Focusing group (L41) ── */
-    { label: "22", R: 72.093, d: 1.0, nd: 1.795, elemId: 12, sd: 12.4 },
-    { label: "23", R: 20.9929, d: 5.766, nd: 1.0, elemId: 0, sd: 12.4 },
+    { label: "22", R: 72.093, d: 1.0, nd: 1.795, elemId: 12, sd: 8.9 },
+    { label: "23", R: 20.9929, d: 5.766, nd: 1.0, elemId: 0, sd: 8.9 },
 
     /* ── G5: Field corrector / final group (L51–L52) ── */
-    { label: "24", R: -538.2301, d: 4.8, nd: 1.49782, elemId: 13, sd: 12.4 },
-    { label: "25", R: -20.1257, d: 0.1, nd: 1.0, elemId: 0, sd: 12.4 },
-    { label: "26A", R: -38.9341, d: 1.4, nd: 1.76546, elemId: 14, sd: 16.0 },
-    { label: "27", R: 154.832, d: 21.36, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "24", R: -538.2301, d: 4.8, nd: 1.49782, elemId: 13, sd: 11.0 },
+    { label: "25", R: -20.1257, d: 0.1, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "26A", R: -38.9341, d: 1.4, nd: 1.76546, elemId: 14, sd: 11.7 },
+    { label: "27", R: 154.832, d: 21.36, nd: 1.0, elemId: 0, sd: 11.7 },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -337,9 +349,8 @@ const LENS_DATA = {
   /* ── Variable air spacings ──
    *  Zoom-only gaps: D1 (S8), D2 (STO), Bf (S27).
    *  Zoom+focus gaps: D3 (S21), D4 (S23).
-   *  Patent gives only infinity values; close-focus pairs below are inferred
-   *  by solving for a plausible 0.28 m focused-state conjugate while keeping
-   *  D3 + D4 constant at each zoom position (single-element G4 translation).
+   *  Infinity values are Table 1. Close-focus pairs are calculated for a 0.28 m
+   *  paraxial conjugate with D3 + D4 held constant (rigid L41 translation).
    *  D3 is non-monotonic: 1.579 → 2.261 → 2.007 (increases then decreases).
    */
   var: {
@@ -393,17 +404,18 @@ const LENS_DATA = {
   /* ── Focus ── */
   closeFocusM: 0.28,
   focusDescription:
-    "Internal focus: G4 (single element L41) translates toward image. Close-focus D3/D4 values are inferred from real-ray calibration to the 0.28 m production MFD; estimated L41 travel is 0.52 mm (W), 0.75 mm (M), 1.07 mm (T).",
+    "Internal focus: G4 (single element L41) moves toward the image (patent ¶0092). The patent tabulates infinity only; close-focus D3/D4 are calculated so the paraxial conjugate sits at the 0.28 m production MFD, giving L41 travel of 0.52 mm (W), 0.75 mm (M) and 1.07 mm (T).",
 
   /* ── Aperture ── */
   nominalFno: 4.0,
+  zoomApertureModel: "from-nominal-fno",
   apertureBlades: 7,
   fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  maxFstop: 22,
 
   /* ── Layout tuning ──
-   * Patent Fig. 1 shows the 14 mm state with a taller, more nested silhouette
-   * than the raw axial table suggests, so bias the diagram away from horizontal
-   * stretch and give the enlarged G1/G2 SD estimates room to read clearly.
+   * Patent Fig. 1 shows the 14 mm state with a tall front group (L11 29.2 mm)
+   * and a slim relay, so bias the diagram away from horizontal stretch.
    */
   scFill: 0.46,
   yScFill: 0.42,

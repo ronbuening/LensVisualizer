@@ -130,6 +130,7 @@ function compileSurfaces(
         nd: surface.nd,
         sd: surface.sd,
         innerSd: surface.innerSd ?? null,
+        clips: surface.clips !== false,
         elemId: surface.elemId,
         stopPlacement: surface.stopPlacement ?? null,
         asphere,
@@ -171,6 +172,7 @@ function compileOpticalPath(runtime: RuntimeLens): PathSpec {
 function compileVariables(runtime: RuntimeLens, labelToSurfaceIndex: Readonly<Record<string, number>>): VariableSpec {
   return Object.freeze({
     isZoom: runtime.isZoom,
+    focusPositions: runtime.focusPositions,
     zoomPositions: runtime.zoomPositions ? Object.freeze([...runtime.zoomPositions]) : null,
     zoomLabels: runtime.zoomLabels ? Object.freeze([...runtime.zoomLabels]) : null,
     zoomStep: runtime.zoomStep,
@@ -203,7 +205,6 @@ function compileDisplay(runtime: RuntimeLens): DisplaySpec {
     svgH: runtime.svgH,
     scFill: runtime.data.scFill,
     yScFill: runtime.data.yScFill,
-    clipMargin: runtime.clipMargin,
     maxRimAngleDeg: runtime.data.maxRimAngleDeg,
     maxRimTan: runtime.maxRimTan,
     gapSagFrac: runtime.gapSagFrac,

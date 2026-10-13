@@ -1,63 +1,61 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
+import { anchorLayoutToCamera } from "../../../src/optics/cameraLayout.js";
+import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
+import { doLayout } from "../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
-const ENABLED_PC_KEYS = [
-  "canon-tse-50f28l-macro",
-  "canon-tse-90mm-f28l-macro",
-  "canon-tse-135mm-f4l",
-  "fujifilm-gf-30mm-f56-ts",
-  "nikon-pc-nikkor-19mm-f4e-ed",
-  "nikon-pc-e-nikkor-24-f35d-ed",
-  "nikon-pce-micro-nikkor-45f28d",
-] as const;
+const PC_LENSES = Object.values(LENS_CATALOG).filter((data) => data.perspectiveControl != null);
 
 describe("perspectiveControl lens data", () => {
-  it("defaults to disabled for every non-PC lens", () => {
-    const enabled = Object.entries(LENS_CATALOG)
-      .filter(([, data]) => data.perspectiveControl != null)
-      .map(([key]) => key)
-      .sort();
-
-    expect(enabled).toEqual([...ENABLED_PC_KEYS].sort());
-  });
-
-  it("declares official shift and tilt limits for the enabled PC lenses", () => {
-    expect(LENS_CATALOG["canon-tse-50f28l-macro"].perspectiveControl).toMatchObject({
-      shiftRangeMm: [-12, 12],
-      tiltRangeDeg: [-8.5, 8.5],
-    });
-    expect(LENS_CATALOG["canon-tse-90mm-f28l-macro"].perspectiveControl).toMatchObject({
-      shiftRangeMm: [-12, 12],
-      tiltRangeDeg: [-10, 10],
-    });
-    expect(LENS_CATALOG["canon-tse-135mm-f4l"].perspectiveControl).toMatchObject({
-      shiftRangeMm: [-12, 12],
-      tiltRangeDeg: [-10, 10],
-    });
-    expect(LENS_CATALOG["fujifilm-gf-30mm-f56-ts"].perspectiveControl).toMatchObject({
-      shiftRangeMm: [-15, 15],
-      tiltRangeDeg: [-8.5, 8.5],
-    });
-    expect(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"].perspectiveControl).toMatchObject({
-      shiftRangeMm: [-12, 12],
-      tiltRangeDeg: [-7.5, 7.5],
-    });
-    expect(LENS_CATALOG["nikon-pc-e-nikkor-24-f35d-ed"].perspectiveControl).toMatchObject({
-      shiftRangeMm: [-11.5, 11.5],
-      tiltRangeDeg: [-8.5, 8.5],
-    });
-    expect(LENS_CATALOG["nikon-pce-micro-nikkor-45f28d"].perspectiveControl).toMatchObject({
-      shiftRangeMm: [-11.5, 11.5],
-      tiltRangeDeg: [-8.5, 8.5],
-    });
-  });
-
   it("carries perspective-control config onto the built runtime lens", () => {
     const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
     const ordinary = buildLens(LENS_CATALOG["nikkor-z-50f18s"]);
 
-    expect(L.perspectiveControl?.shiftRangeMm).toEqual([-12, 12]);
+    expect(L.perspectiveControl?.shiftRangeMm).toEqual(
+      LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"].perspectiveControl?.shiftRangeMm,
+    );
     expect(ordinary.perspectiveControl).toBeNull();
+  });
+
+  it("declares camera-fixed tilt pivots, with rear-vertex fallbacks at the reference rear vertex", () => {
+    const tilting = PC_LENSES.filter((data) => data.perspectiveControl?.tiltPivot);
+    expect(tilting.length).toBeGreaterThan(0);
+    for (const data of tilting) {
+      const L = buildLens(data);
+      const pivot = L.perspectiveControl!.tiltPivot!;
+      expect(pivot.frame, data.key).toBe("camera");
+      if (pivot.basis === "rear-vertex-fallback") {
+        const reference = doLayout(0, 0, L);
+        expect(pivot.zOffsetFromImagePlaneMm, data.key).toBeCloseTo(reference.z.at(-1)! - reference.imgZ, 9);
+      }
+    }
+
+    // Shift-only designs omit the pivot rather than inventing one.
+    expect(LENS_CATALOG["nikon-pc-nikkor-35mm-f28"].perspectiveControl?.tiltPivot).toBeUndefined();
+  });
+
+  it("places the Fujifilm patent-guided tilt center at the reference image-side principal point", () => {
+    const L = buildLens(LENS_CATALOG["fujifilm-gf-30mm-f56-ts"]);
+    const reference = doLayout(0, 0, L);
+    const cardinals = computeCardinalElementsAtState(L, 0, 0, reference.z, reference.imgZ, 0);
+    const pivot = L.perspectiveControl!.tiltPivot!;
+
+    expect(pivot.basis).toBe("patent-principal-point-guidance");
+    expect(pivot.zOffsetFromImagePlaneMm).toBe(-LENS_CATALOG["fujifilm-gf-30mm-f56-ts"].focalLengthDesign!);
+    expect(pivot.zOffsetFromImagePlaneMm).toBeCloseTo(cardinals!.points.rearPrincipal.z - reference.imgZ, 3);
+    expect(pivot.zOffsetFromImagePlaneMm).not.toBeCloseTo(reference.z.at(-1)! - reference.imgZ, 3);
+  });
+
+  it("keeps tilt pivots fixed in the camera frame across the focus range", () => {
+    for (const data of PC_LENSES.filter((entry) => entry.perspectiveControl?.tiltPivot)) {
+      const L = buildLens(data);
+      const reference = doLayout(0, 0, L);
+      const close = anchorLayoutToCamera(reference, doLayout(1, 0, L));
+      const pivotOffset = L.perspectiveControl!.tiltPivot!.zOffsetFromImagePlaneMm;
+
+      expect(close.imgZ + pivotOffset, data.key).toBe(reference.imgZ + pivotOffset);
+      expect(Number.isFinite(close.z.at(-1)!), data.key).toBe(true);
+    }
   });
 });

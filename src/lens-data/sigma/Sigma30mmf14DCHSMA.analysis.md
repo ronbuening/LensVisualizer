@@ -128,7 +128,7 @@ The patent's published finite-conjugate check is at a 600 mm shooting distance:
 
 The equal-and-opposite change confirms a single rigid rear-group translation. Paraxial conjugate verification also shows that this patent state focuses at approximately 600.04 mm measured from the image plane, which is the usual photographic distance convention.
 
-For the accompanying data file, the focus slider is extended to Sigma's production minimum focusing distance of 0.30 m rather than stopped at the patent's 600 mm evaluation state. Solving the same rigid-G2 paraxial focus equation at a 300 mm image-plane-to-object distance gives a G2 travel of 4.5287 mm, d6 = 0.9203 mm, and BF = 42.9277 mm. The same calculation gives |β| = 0.1468, which agrees with Sigma's published 1:6.8 maximum magnification. These 0.30 m values are therefore a verified derived production-close model, not a patent-published spacing table.
+The patent's 600 mm row is stored as an exact keyframe. The focus slider then extends to Sigma's production minimum focusing distance of 0.30 m. Solving the same rigid-G2 paraxial focus equation at a 300 mm image-plane-to-object distance gives a G2 travel of 4.5287 mm, d6 = 0.9203 mm, and BF = 42.9277 mm. The same calculation gives |β| = 0.1468, which agrees with Sigma's published 1:6.8 maximum magnification. These 0.30 m values are therefore a verified derived production-close model, not a patent-published spacing table; interpolation between keyframes is approximate.
 
 ## Aspherical Surfaces
 
@@ -179,7 +179,7 @@ The prescription was transcribed from the patent's Numerical Example 1 and reche
 
 Standalone element focal lengths are: L1 -67.6 mm, L2 -74.2 mm, L3 +39.8 mm, L4 +52.5 mm, L5 -43.7 mm, L6 -18.7 mm, L7 +31.4 mm, L8 +74.5 mm, and L9 +43.0 mm. The cemented L6+L7 pair is net negative at -60.2 mm. The surface-by-surface Petzval sum, computed as Σφ/(n·n′), is +4.153 × 10^-3 mm^-1, giving a Petzval radius of approximately -241 mm and P·f ≈ 0.128.
 
-The data file uses inferred semi-diameters because the patent does not publish clear apertures. They were set from paraxial on-axis marginal rays plus full-field chief rays, then checked for element edge thickness, front/rear semi-diameter ratio, spherical/aspherical rim behavior, and signed cross-gap sag clearance. The stop semi-diameter is 11.4429 mm, derived from the patent Fno = 1.46 design aperture; the catalog-facing `nominalFno` remains the manufacturer-marketed F1.4.
+The data file uses inferred semi-diameters because the patent does not publish clear apertures. They were set from paraxial on-axis marginal rays plus full-field chief rays, then checked for element edge thickness, front/rear semi-diameter ratio, spherical/aspherical rim behavior, and signed cross-gap sag clearance. The stop semi-diameter is 11.4429 mm, derived from the patent Fno = 1.46 design aperture; `nominalFno` (the f-number the stop opens to) is that same patent design value, 1.46, and `apertureMarketing` records the marketed F1.4.
 
 ## Design Heritage and Context
 

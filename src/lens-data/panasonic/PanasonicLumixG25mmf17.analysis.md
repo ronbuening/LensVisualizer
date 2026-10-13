@@ -35,7 +35,7 @@ The units at infinity are:
 | G2 | L6 only | Negative | −45.555 mm | Lightweight moving focus group |
 | G3 | L7–L8 plus cover plate M in the patent | Positive | +31.319 mm | Rear relay and field flattening |
 
-G1 contains a high-index positive meniscus front element, a negative meniscus diverger, a cemented negative/positive chromatic corrector, the aperture diaphragm, and a post-stop positive element. G2 is a single aspherical negative meniscus. G3 uses a strong aspherical biconvex positive element followed by a weak negative meniscus. In the patent table, G3 also includes the plane-parallel plate M, but the data file omits M and folds its paraxial optical thickness into the final air-equivalent back focus.
+G1 contains a high-index positive meniscus front element, a negative meniscus diverger, a cemented negative/positive chromatic corrector, the aperture diaphragm, and a post-stop positive element. G2 is a single aspherical negative meniscus. G3 uses a strong aspherical biconvex positive element followed by a weak negative meniscus. In the patent table, G3 also includes the plane-parallel plate M; the data file models M in `rearPlates`, so every analysis traces it, but it is not drawn in the lens section.
 
 The L3–L4 cemented doublet is nearly afocal as a pair: its computed in-situ thick-lens net focal length is approximately −191.5 mm. Its value is not that it drives the system power, but that it supplies strong chromatic correction while leaving the beam convergence entering the stop section relatively unchanged.
 
@@ -98,15 +98,15 @@ nd = 1.58144, νd = 40.9. Glass: E-FL5 (Hoya) / S-TIL25 class. f = −84.462 mm.
 
 L8 is a weak rear negative meniscus. Both radii are negative, so the element is concave to the object and convex to the image. Patent ¶0062 describes the eighth element as having a convex object-side surface, but the radius signs and FIG. 7 show the opposite orientation. As with L6, the numerical prescription is controlling.
 
-L8’s role is primarily field correction. Its weak negative power reduces Petzval curvature and helps shape the exit-side beam before the cover-glass proxy.
+L8’s role is primarily field correction. Its weak negative power reduces Petzval curvature and helps shape the exit-side beam before the plate M.
 
-### M — Plane-Parallel Plate in the Patent, omitted from the data file
+### M — Plane-Parallel Plate (traced, not drawn)
 
-nd = 1.51680, νd = 64.2. Glass class: BSC7 / N-BK7 equivalent. Optical power: none.
+nd = 1.51680, νd = 64.2. Glass class: BSC7 (Hoya) / N-BK7 equivalent. Optical power: none.
 
-The patent includes a 4.2 mm plane-parallel plate M after L8, followed by a 1.0 mm air gap and a dummy BF plane. This plate represents the sensor-cover / filter stack rather than a lens element in the interchangeable lens. The data file therefore excludes M from the rendered surfaces and folds the plate into the final air-equivalent back focus: 10.8 + 4.2/1.51680 + 1.0 + BF.
+The patent includes a 4.2 mm plane-parallel plate M after L8, followed by a 1.0 mm air gap and a dummy BF plane. This plate represents the sensor-cover / filter stack rather than a lens element in the interchangeable lens. The data file models M in `rearPlates` with the patent thickness, nd, νd, and Table 23 line indices: every analysis traces it, but it is not drawn in the lens section. Surface 16 keeps the patent 10.8 mm gap to M, and the plate is followed by 1.00461 mm to the image (the 1.0 mm air space plus the infinity BF). The small BF growth at closer focus (+0.00027 mm and +0.00133 mm) is carried in the gap before M (10.80027 and 10.80133 mm), so the lens-to-image path is exactly as printed.
 
-At infinity, this gives an air-equivalent final spacing of 14.5736 mm after L8. At the closest patent focus state, it becomes 14.5749 mm.
+The paraxial air-equivalent of the rear stack, 10.8 + 4.2/1.51680 + 1.0 + BF, is 14.5736 mm after L8 at infinity and 14.5749 mm at the closest patent focus state.
 
 ## Glass Identification and Selection
 
@@ -122,7 +122,7 @@ The patent publishes nd, νd, nC, nF, ng, and PgF values but not catalog names. 
 | L6 | 1.53380 | 55.6 | 0.56232 | +0.0120 | Unmatched 53380/55.6 anomalous PGM crown | no public catalog match found |
 | L7 | 1.53380 | 55.6 | 0.56232 | +0.0120 | Unmatched 53380/55.6 anomalous PGM crown | no public catalog match found |
 | L8 | 1.58144 | 40.9 | 0.57667 | +0.0017 | E-FL5 (Hoya) / S-TIL25 class | matched by code 581/409 |
-| M | 1.51680 | 64.2 | 0.53418 | −0.0016 | BSC7 / N-BK7 class | cover plate; omitted from data file |
+| M | 1.51680 | 64.2 | 0.53418 | −0.0016 | BSC7 (Hoya) / N-BK7 class | cover plate; `rearPlates`, traced, not drawn |
 
 The prior glass palette should not be treated as a set of exact vendor claims unless the nd/νd pair is actually present in the relevant catalog. L6 and L7 are the important exception: the patent’s line-index data are real, but the catalog name is not recoverable from public manufacturer catalogs. The data file therefore preserves their measured line indices and marks the glass string as unmatched.
 
@@ -136,7 +136,8 @@ Focusing is by movement of G2 only. G1 and G3 remain fixed relative to the image
 | d10, G1–G2 spacing | 2.3500 mm | 3.4869 mm | 8.6131 mm |
 | d12, G2–G3 spacing | 9.5295 mm | 8.3965 mm | 3.2651 mm |
 | Patent BF after dummy plane | 0.00461 mm | 0.00488 mm | 0.00594 mm |
-| Air-equivalent data-file BF after L8 | 14.5736 mm | 14.5739 mm | 14.5749 mm |
+| Data-file gap from L8 to plate M | 10.8000 mm | 10.8003 mm | 10.8013 mm |
+| Air-equivalent rear stack after L8 | 14.5736 mm | 14.5739 mm | 14.5749 mm |
 | System focal length | 25.8784 mm | 26.0073 mm | 26.0867 mm |
 | F-number | 1.7601 | 1.7904 | 1.9146 |
 | Viewing half-angle | 23.6324° | 23.1232° | 21.1160° |
@@ -202,7 +203,8 @@ Independent paraxial y–ν ray tracing reproduces the patent’s load-bearing v
 |---|---:|---:|
 | System EFL at infinity | 25.8784 mm | 25.8784 mm |
 | Full physical patent track | 71.0046 mm | 71.0046 mm |
-| Data-file track with cover folded out | 69.5736 mm | derived |
+| Data-file physical track, plate M included | 71.0046 mm | 71.0046 mm |
+| Air-equivalent track with M folded | 69.5736 mm | derived |
 | G1 focal length | +30.5110 mm | +30.51097 mm |
 | G2 focal length | −45.5554 mm | −45.55524 mm |
 | G3 focal length | +31.3196 mm | +31.31949 mm |

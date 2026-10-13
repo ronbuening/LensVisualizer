@@ -22,14 +22,24 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    while preserving the characteristic pinched second-element      ║
  * ║    rear aperture seen in the production diagram.                  ║
  * ║                                                                    ║
- * ║  Cover glass (CG, surfaces 26–27: 2.10 mm flat, nd=1.51680)      ║
- * ║  excluded; physical BFD folded into air-equivalent on surface 25A ║
- * ║  (13.42 + 2.10/1.5168 + 1.004 = 15.809 mm).                     ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                       ║
+ * ║    Table 3A prints a dPgF deviation for L1, L5, L6, L10 and L12,   ║
+ * ║    but the patent states no normal-line formula. The figures equal ║
+ * ║    HOYA's catalog ΔPgF for the four glasses, measured from a line  ║
+ * ║    near 0.64833 − 0.00180·νd, not the engine's. `dPgF` here is PgF ║
+ * ║    minus the engine's normal line (0.6438 − 0.001682·νd), with PgF ║
+ * ║    taken from the HOYA catalog curve of each glass. The patent's   ║
+ * ║    own figures stay in each apdNote and in the analysis.           ║
+ * ║                                                                    ║
+ * ║  Cover glass (Table 3A surfaces 26–27: 2.10 mm flat, nd 1.51680,  ║
+ * ║  νd 64.2) and the BF 1.00419 mm air gap to the image are modeled  ║
+ * ║  in `rearPlates` (traced, not drawn). Surface 25A keeps the       ║
+ * ║  patent's 13.42 mm gap to the cover glass.                        ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -73,8 +83,9 @@ const LENS_DATA = {
       fl: 82.0,
       glass: "E-FDS1 (HOYA catalog-equivalent; 923209, production supplier unspecified)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.0282 (patent-listed)",
-      dPgF: 0.0282,
+      apdNote:
+        "Patent dPgF = +0.0282 (Table 3A; normal line not stated, equals HOYA's catalog ΔPgF for E-FDS1). Runtime dPgF +0.030324 is catalog-derived: HOYA E-FDS1 PgF 0.6390 minus the engine's line.",
+      dPgF: 0.030324,
       role: "Front positive collector; ultra-high-index short flint provides curvature reduction at f/1.4 entrance beam.",
     },
     {
@@ -85,7 +96,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       fl: -47.1,
-      glass: "S-BSL7 (OHARA)",
+      glass: "N-BK7 (SCHOTT catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Diverging element; forms air-spaced pair with L1 for deliberate chromatic under-correction.",
     },
@@ -123,8 +134,9 @@ const LENS_DATA = {
       fl: 56.2,
       glass: "FCD515 (Hoya)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.0194 (patent-listed); ED fluorophosphate crown",
-      dPgF: 0.0194,
+      apdNote:
+        "Patent dPgF = +0.0194 (Table 3A; normal line not stated, equals HOYA's catalog ΔPgF for FCD515). Runtime dPgF +0.015701 is catalog-derived: HOYA FCD515 PgF 0.5441 minus the engine's line. ED fluorophosphate crown.",
+      dPgF: 0.015701,
       role: "First ED element; anomalous dispersion for secondary-spectrum correction, major positive power contributor.",
     },
     {
@@ -137,8 +149,9 @@ const LENS_DATA = {
       fl: 61.4,
       glass: "FCD515 (Hoya)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.0194 (patent-listed); ED fluorophosphate crown",
-      dPgF: 0.0194,
+      apdNote:
+        "Patent dPgF = +0.0194 (Table 3A; normal line not stated, equals HOYA's catalog ΔPgF for FCD515). Runtime dPgF +0.015701 is catalog-derived: HOYA FCD515 PgF 0.5441 minus the engine's line. ED fluorophosphate crown.",
+      dPgF: 0.015701,
       cemented: "D1",
       role: "Second ED element; positive component of L6+L7 chromatic-engine cemented doublet.",
     },
@@ -189,8 +202,9 @@ const LENS_DATA = {
       fl: 52.0,
       glass: "FDS18 (HOYA)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.0386 (patent-listed); highest-index glass in system",
-      dPgF: 0.0386,
+      apdNote:
+        "Patent dPgF = +0.0386 (Table 3A; normal line not stated, equals HOYA's catalog ΔPgF for FDS18). Runtime dPgF +0.041043 is catalog-derived: HOYA FDS18 PgF 0.6546 minus the engine's line. Highest-index glass in system.",
+      dPgF: 0.041043,
       role: "Focus element Fp (G3); counter-moves toward object to compensate field curvature from L9 motion.",
     },
     {
@@ -216,8 +230,9 @@ const LENS_DATA = {
       fl: 47.0,
       glass: "FCD705 (HOYA)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.0277 (patent-listed); ED fluorophosphate crown, lowest-dispersion glass in system",
-      dPgF: 0.0277,
+      apdNote:
+        "Patent dPgF = +0.0277 (Table 3A; normal line not stated, equals HOYA's catalog ΔPgF for FCD705). Runtime dPgF +0.023177 is catalog-derived: HOYA FCD705 PgF 0.5400 minus the engine's line. ED fluorophosphate crown, lowest-dispersion glass in system.",
+      dPgF: 0.023177,
       cemented: "D2",
       role: "Third ED element; highest Abbe number in system, lateral chromatic correction in rear group.",
     },
@@ -229,7 +244,7 @@ const LENS_DATA = {
       nd: 1.68822,
       vd: 31.1,
       fl: -52.3,
-      glass: "L-TIM28(P) class (OHARA, PGM)",
+      glass: "L-TIM28 class, moulded (OHARA, PGM); S-TIM28 is the nearest catalog curve",
       apd: false,
       role: "LGnR — rearmost element; aspherical field corrector for astigmatism, field curvature, distortion.",
     },
@@ -270,7 +285,20 @@ const LENS_DATA = {
     { label: "22", R: 45.8027, d: 9.0554, nd: 1.55032, elemId: 12, sd: 19.5 },
     { label: "23", R: -55.2867, d: 6.539, nd: 1.0, elemId: 0, sd: 19.0 },
     { label: "24A", R: -30.7259, d: 2.0, nd: 1.68822, elemId: 13, sd: 18.0 },
-    { label: "25A", R: -215.5886, d: 15.8087, nd: 1.0, elemId: 0, sd: 16.0 },
+    // Last surface: patent gap to the cover glass
+    { label: "25A", R: -215.5886, d: 13.42, nd: 1.0, elemId: 0, sd: 16.0 },
+  ],
+
+  /* ── Cover glass (patent Table 3A surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.1,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.00419,
+      source: "WO 2020/158622 A1, Numerical Example 3 Table 3A surfaces 26–27, Table 3C BF (infinity)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -343,12 +371,15 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.44,
+  // Patent read 2026-10-06: Close-focus gaps are the patent's Table 3C close-object column for Example 3 (-0.15x, d0
+  // = 291.4803 mm): d16 7.5963, d18 12.3145, d20 3.2779.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual inner focus: L9 (Fn, linear motor) translates toward image, L10 (Fp, stepping motor) counter-translates toward object. G1 and G4 fixed.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.47,
+  fstopSeries: [1.47, 1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

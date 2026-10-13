@@ -32,7 +32,7 @@ The independently recomputed Gaussian focal lengths from the final arrays are **
 
 The architecture is not labeled “telephoto” or “retrofocus” under the project definitions. At each published state the total optical track divided by EFL remains at least one, and the back focal distance remains shorter than the EFL.
 
-The patent's rear `GB` block is not treated as a photographic lens element. Paragraph ¶0026 identifies `GB` as an optical block corresponding to a filter, face plate, low-pass filter, infrared-cutting filter, or similar plate. The data model therefore omits patent surfaces 26–27 and replaces the final air spacing with the plate-normalized air-equivalent distance. The authored surface-25-to-image distances are **13.229231 mm**, **36.759231 mm**, and **37.669231 mm** at wide, middle, and telephoto.
+The patent's rear `GB` block is not treated as a photographic lens element. Paragraph ¶0026 identifies `GB` as an optical block corresponding to a filter, face plate, low-pass filter, infrared-cutting filter, or similar plate. The data model therefore keeps patent surfaces 26–27 out of the drawn lens and models them in `rearPlates`: the 1.50 mm GB block (nd 1.51633, νd 64.1, S-BSL7 class) followed by the 1.12 mm d27 gap to the image. It is traced by every analysis but not drawn. Surface 25 stores the patent d25 gap to GB, **11.12 mm**, **34.65 mm**, and **35.56 mm** at wide, middle, and telephoto. Paraxially this equals the air-equivalent surface-25-to-image distances d25 + 1.50/1.51633 + 1.12 = **13.229231 mm**, **36.759231 mm**, and **37.669231 mm**; the physical track includes the block and is 1.50 × (1 − 1/1.51633) = 0.511 mm longer than that air-equivalent sum.
 
 Example 1 does not publish clear apertures. The surface semi-diameters in the data file are therefore modeling inferences, constrained by exact meridional on-axis and off-axis rays, positive edge thickness, actual rim slope, shared-gap clearance, the patent Figure 1 silhouette, and Canon's 67 mm production filter diameter. They should not be read as patent-listed mechanical dimensions.
 
@@ -134,7 +134,7 @@ No public catalog glass was adopted for the 1.53110/55.9 coordinate. Consequentl
 
 L13 is the single positive rear unit B6. The patent discusses a positive lens unit nearest the image as a means of making off-axis light incident on an electronic image sensor closer to normal incidence (¶0049–¶0051). Example 1 follows that arrangement.
 
-B6 precedes the rear image-space interval that has been normalized for removal of the patent's `GB` plate. The positive rear unit's standalone focal length is distinct from the final image-space back focus of the complete zoom.
+B6 precedes the rear image-space interval that holds the patent's `GB` plate, modeled in `rearPlates`. The positive rear unit's standalone focal length is distinct from the final image-space back focus of the complete zoom.
 
 ## Glass Identification and Selection
 
@@ -189,7 +189,7 @@ The data file also carries `A14 = 0` on both surfaces because the current LensVi
 
 Because no scaling is applied, these coefficients remain at their native patent scale. No coefficient transformation is required.
 
-The patent does not publish the clear aperture of the aspherical element. The asphere departures are therefore evaluated only at the verified authored semi-diameters. At **h = 7.7 mm** on `22A`, the modeled sag is **−0.377177 mm** more negative than the spherical base. At **h = 8.3 mm** on `23A`, the departure is **−0.440645 mm**. These are model departures at inferred, geometry-validated semi-diameters, not patent-listed edge departures.
+The patent does not publish the clear aperture of the aspherical element. The asphere departures are therefore evaluated only at the verified authored semi-diameters. At **h = 11.9 mm** on `22A`, the modeled sag is **−1.773518 mm** more negative than the spherical base. At **h = 12.8 mm** on `23A`, the departure is **−1.962182 mm**. These are model departures at inferred, geometry-validated semi-diameters, not patent-listed edge departures.
 
 The patent states that an aspherical second lens from the image side is effective for field-curvature correction (¶0054). It does not establish whether the production asphere is molded glass, polished glass, resin-composite, or another manufacturing form, so no manufacturing method is assigned here.
 
@@ -227,7 +227,7 @@ A smaller prose error occurs around condition (4): ¶0039 repeats `f3C` when des
 
 The final data arrays were independently checked with sequential height/reduced-angle tracing and an ABCD matrix calculation. The two paraxial methods agree to numerical roundoff at all three published zoom states.
 
-| State | EFL from final arrays (mm) | Patent focal length (mm) | Paraxial BFD (mm) | Patent BF (mm) |
+| State | EFL from final arrays (mm) | Patent focal length (mm) | Paraxial BFD, air-equivalent (mm) | Patent BF (mm) |
 |---|---:|---:|---:|---:|
 | Wide | 24.721164 | 24.72 | 13.231203 | 13.24 |
 | Middle | 66.700334 | 66.67 | 36.805019 | 36.77 |
@@ -237,7 +237,7 @@ The small residuals are consistent with the patent's rounded radii, spacings, an
 
 Surface-by-surface Petzval summation using $\phi/(n n')$ gives **0.000945859774 mm⁻¹** for the active prescription. The value is invariant with zoom because the refracting surfaces and glass indices do not change; only the inter-unit spacings change.
 
-The geometry checks use the current semi-diameter policy rather than the obsolete universal radius-ratio rule. Across the three authored zoom states the minimum element thickness remains positive, the maximum actual modeled rim angle is **43.452889°**, all conic domains are valid, shared-gap surfaces retain positive clearance, and the representative on-axis/off-axis ray sets remain within the non-stop surface apertures. These results validate the authored visualization geometry but do not convert the inferred semi-diameters into patent facts.
+The geometry checks use the current semi-diameter policy rather than the obsolete universal radius-ratio rule. Across the three authored zoom states the minimum element thickness remains positive, the maximum actual modeled rim angle is **51.979965°** (surface 4), all conic domains are valid, shared-gap surfaces retain positive clearance, and the representative on-axis/off-axis ray sets remain within the non-stop surface apertures. These results validate the authored visualization geometry but do not convert the inferred semi-diameters into patent facts.
 
 ## Sources
 

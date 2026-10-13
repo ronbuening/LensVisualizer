@@ -15,11 +15,21 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    marginal + chief ray trace (60 % chief-ray fraction at full    ║
  * ║    field) with ~8 % mechanical clearance.  Validated for edge     ║
  * ║    thickness ≥ 0.3 mm and cross-gap sag intrusion ≤ 90 %.        ║
+ * ║    Surfaces 16-19 (L33, L34) were later raised to pass the         ║
+ * ║    traced chief ray to the APS-C corner (14.18 mm at 13.2°;        ║
+ * ║    patent y'max = 14.200 mm, ω = 13.319°); the old rims clipped    ║
+ * ║    it from 9.6° (2026-09-24 field-coverage audit).                 ║
+ * ║                                                                    ║
+ * ║  NOTE ON COVER GLASS:                                              ║
+ * ║    Patent surfaces 21–22 (1.500 mm plate, nd 1.52249, νd 59.48)   ║
+ * ║    and the 0.800 mm air gap to the image are modeled in           ║
+ * ║    `rearPlates` (traced, not drawn). Data surface 19 (patent 20)  ║
+ * ║    keeps the patent's 13.369 mm gap to the plate.                 ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -178,8 +188,7 @@ const LENS_DATA = {
    *    7(stop)→"STO", 8→"7", 9→"8", 10→"9", 11→"10",
    *    12*→"11A", 13*→"12A", 14→"13", 15→"14", 16→"15",
    *    17→"16", 18→"17", 19→"18", 20→"19".
-   *  Cover glass (patent surfaces 21–22) excluded;
-   *  optical path folded into air-equivalent BFD.
+   *  Cover glass (patent surfaces 21–22) → `rearPlates` below.
    */
   surfaces: [
     // ── Gr1 (fixed, weakly positive — f₁ ≈ 1365 mm) ──
@@ -205,10 +214,22 @@ const LENS_DATA = {
     { label: "13", R: -814.44, d: 3.066, nd: 1.91082, elemId: 7, sd: 9.5 }, // L31 front
     { label: "14", R: -31.27, d: 1.01, nd: 1.51742, elemId: 8, sd: 9.5 }, // L31–L32 junction
     { label: "15", R: 19.473, d: 12.475, nd: 1.0, elemId: 0, sd: 9.5 }, // L32 rear → air
-    { label: "16", R: -15.039, d: 0.9, nd: 1.56883, elemId: 9, sd: 8.5 }, // L33 front
-    { label: "17", R: -95.771, d: 0.3, nd: 1.0, elemId: 0, sd: 8.5 }, // L33 rear → air
-    { label: "18", R: 38.336, d: 4.047, nd: 1.72916, elemId: 10, sd: 8.5 }, // L34 front
-    { label: "19", R: -721.431, d: 15.154, nd: 1.0, elemId: 0, sd: 8.0 }, // L34 rear → BFD (air-equiv)
+    { label: "16", R: -15.039, d: 0.9, nd: 1.56883, elemId: 9, sd: 9.6 }, // L33 front
+    { label: "17", R: -95.771, d: 0.3, nd: 1.0, elemId: 0, sd: 10.7 }, // L33 rear → air
+    { label: "18", R: 38.336, d: 4.047, nd: 1.72916, elemId: 10, sd: 13.0 }, // L34 front
+    { label: "19", R: -721.431, d: 13.369, nd: 1.0, elemId: 0, sd: 12.2 }, // L34 rear → cover glass
+  ],
+
+  /* ── Cover glass (patent surfaces 21–22): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.5,
+      nd: 1.52249,
+      vd: 59.48,
+      glass: "S-NSL5",
+      gapAfterMm: 0.8,
+      source: "JP 2016-090725 A, Example 9 surfaces 21–22 (¶0110)",
+    },
   ],
 
   /* ── Aspherical coefficients ──
@@ -282,11 +303,14 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.16,
+  // Patent read 2026-10-06: Close-focus endpoint is the patent's tabulated POS2 row for Example 9 (β = -1.0, object
+  // 67.497 mm): d7 = 3.050, d13 = 22.608 (¶0115).
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus: Gr2 (L21–L23) moves toward object; Gr1, stop, and Gr3 fixed. β = −1.0 (1:1) at MFD.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

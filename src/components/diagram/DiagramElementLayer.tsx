@@ -7,12 +7,13 @@
 
 import { memo, useMemo } from "react";
 import { ENABLE_ASPH_DIAMOND_FILL } from "../../utils/featureFlags.js";
-import type { RuntimeLens, ElementShape } from "../../types/optics.js";
+import type { RuntimeLens, ElementShape, SurfaceAccentPathData } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
 interface DiagramElementLayerProps {
   lens: RuntimeLens;
   shapes: ElementShape[];
+  standaloneMirrors?: SurfaceAccentPathData[];
   theme: Theme;
   filterId: string;
   act: number | null;
@@ -25,6 +26,7 @@ interface DiagramElementLayerProps {
 const DiagramElementLayer = memo(function DiagramElementLayer({
   lens: L,
   shapes,
+  standaloneMirrors = [],
   theme: t,
   filterId,
   act,
@@ -34,6 +36,8 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
   onSelect,
 }: DiagramElementLayerProps) {
   const elementById = useMemo(() => new Map(L.elements.map((element) => [element.id, element])), [L.elements]);
+
+  const accents = [...shapes.flatMap(({ surfaceAccentPaths }) => surfaceAccentPaths || []), ...standaloneMirrors];
 
   return (
     <>
@@ -106,35 +110,33 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
         )),
       )}
 
-      {shapes.flatMap(({ surfaceAccentPaths }) =>
-        (surfaceAccentPaths || []).flatMap(({ surfIdx, pathD, kind }) => [
-          <path
-            key={`surface-accent-halo-${kind}-${surfIdx}`}
-            data-testid={`surface-accent-halo-${kind}-${surfIdx}`}
-            d={pathD}
-            fill="none"
-            stroke={t.silveredSurfaceHalo}
-            strokeWidth={kind === "diffractive-phase" ? t.asphStrokeWidth + 2 : t.silveredSurfaceHaloWidth}
-            strokeDasharray={kind === "diffractive-phase" ? "1,3" : "3,2"}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            opacity={0.95}
-            style={{ pointerEvents: "none" }}
-          />,
-          <path
-            key={`surface-accent-${kind}-${surfIdx}`}
-            data-testid={`surface-accent-${kind}-${surfIdx}`}
-            d={pathD}
-            fill="none"
-            stroke={kind === "diffractive-phase" ? t.asphStroke : t.silveredSurfaceStroke}
-            strokeWidth={kind === "diffractive-phase" ? t.asphStrokeWidth : t.silveredSurfaceStrokeWidth}
-            strokeDasharray={kind === "diffractive-phase" ? "1,3" : "3,2"}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ pointerEvents: "none" }}
-          />,
-        ]),
-      )}
+      {accents.flatMap(({ surfIdx, pathD, kind }) => [
+        <path
+          key={`surface-accent-halo-${kind}-${surfIdx}`}
+          data-testid={`surface-accent-halo-${kind}-${surfIdx}`}
+          d={pathD}
+          fill="none"
+          stroke={t.silveredSurfaceHalo}
+          strokeWidth={kind === "diffractive-phase" ? t.asphStrokeWidth + 2 : t.silveredSurfaceHaloWidth}
+          strokeDasharray={kind === "diffractive-phase" ? "1,3" : kind === "second-surface-coating" ? "3,2" : undefined}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity={0.95}
+          style={{ pointerEvents: "none" }}
+        />,
+        <path
+          key={`surface-accent-${kind}-${surfIdx}`}
+          data-testid={`surface-accent-${kind}-${surfIdx}`}
+          d={pathD}
+          fill="none"
+          stroke={kind === "diffractive-phase" ? t.asphStroke : t.silveredSurfaceStroke}
+          strokeWidth={kind === "diffractive-phase" ? t.asphStrokeWidth : t.silveredSurfaceStrokeWidth}
+          strokeDasharray={kind === "diffractive-phase" ? "1,3" : kind === "second-surface-coating" ? "3,2" : undefined}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ pointerEvents: "none" }}
+        />,
+      ])}
 
       {shapes.flatMap(({ asphPaths }) =>
         (asphPaths || []).map(({ surfIdx, labelX, labelY }) => (
@@ -154,27 +156,25 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
         )),
       )}
 
-      {shapes.flatMap(({ surfaceAccentPaths }) =>
-        (surfaceAccentPaths || []).map(({ surfIdx, kind, labelX, labelY }) => (
-          <text
-            key={`surface-accent-lbl-${kind}-${surfIdx}`}
-            data-testid={`surface-accent-label-${kind}-${surfIdx}`}
-            x={labelX}
-            y={labelY}
-            textAnchor="middle"
-            fill={kind === "diffractive-phase" ? t.asphLabel : t.silveredSurfaceLabel}
-            stroke={t.silveredSurfaceHalo}
-            strokeWidth={3}
-            paintOrder="stroke fill"
-            fontSize={9}
-            fontFamily="inherit"
-            fontWeight={700}
-            style={{ pointerEvents: "none", letterSpacing: 0 }}
-          >
-            {kind === "diffractive-phase" ? "P" : "S"}
-          </text>
-        )),
-      )}
+      {accents.map(({ surfIdx, kind, labelX, labelY }) => (
+        <text
+          key={`surface-accent-lbl-${kind}-${surfIdx}`}
+          data-testid={`surface-accent-label-${kind}-${surfIdx}`}
+          x={labelX}
+          y={labelY}
+          textAnchor="middle"
+          fill={kind === "diffractive-phase" ? t.asphLabel : t.silveredSurfaceLabel}
+          stroke={t.silveredSurfaceHalo}
+          strokeWidth={3}
+          paintOrder="stroke fill"
+          fontSize={9}
+          fontFamily="inherit"
+          fontWeight={700}
+          style={{ pointerEvents: "none", letterSpacing: 0 }}
+        >
+          {kind === "diffractive-phase" ? "P" : kind === "first-surface-mirror" ? "M" : "S"}
+        </text>
+      ))}
     </>
   );
 });

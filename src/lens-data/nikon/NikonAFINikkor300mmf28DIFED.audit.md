@@ -1,6 +1,6 @@
 # Nikon AF-I NIKKOR 300mm f/2.8D IF-ED Patent Audit
 
-Patent: JPH04294310A, Example 1
+Patent: JP H04-294310 A, Example 1
 
 ## 2026-08-18 — Initial integration audit
 
@@ -10,11 +10,6 @@ Patent: JPH04294310A, Example 1
 - Relabeled L13 to Hikari `J-LAF7` and L21a to Hikari `E-LAFH2`; both reproduce the patent coordinates within the catalog compatibility criteria and provide verified dispersion curves without asserting historical vendor identity.
 - Completed physical-glass coverage with checked equivalents, including OHARA `S-LAL52` for L22.
 - Normalized the display name to `NIKON AF-I NIKKOR 300mm f/2.8D IF-ED`.
-
-### Verification
-
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAFINikkor300mmf28DIFED.data.ts`
-- Full repository checks are recorded in the integrating commit.
 
 ## 2026-08-18 — Screenshot follow-up
 
@@ -27,3 +22,11 @@ Patent: JPH04294310A, Example 1
 - Re-inspected Figure 1 at 600dpi after the site rendering exposed an oversized L14a shell. The front surface, cemented interface, and rear surface of L14 terminate at essentially one rim height in the drawing.
 - Normalized surfaces 7/8/9 from `35.0 / 33.4 / 29.5mm` to `29.5 / 29.5 / 29.5mm`. This removes the unsupported L14a overhang while preserving the patent prescription and the existing L14b aperture.
 - The trial geometry passed the real surface validator before the edit; final image-circle, surface, type, format, lint, and test checks are recorded in the correcting commit.
+
+## 2026-09-24 — Filter check
+
+- Re-read every page of JP H04-294310 A: no example table has a filter or plate row, the prose never mentions a filter or
+  plane-parallel plate, and Figs. 1, 4 and 7 draw nothing between L33 and the image plane.
+- Nikon's AF-I 300mm f/2.8D manual says always to use a filter (39 mm slip-in holder, L37C supplied). A 2 mm crown plate
+  would account for about 0.68 mm of the unexplained 0.685 mm Bf offset, but with no source-listed plate nothing is
+  modeled. Header and analysis now record the manual requirement; no data values changed.

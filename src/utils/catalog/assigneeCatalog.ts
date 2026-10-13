@@ -2,13 +2,13 @@
  * Assignee catalog — runtime index for the patent relationship map.
  *
  * Mirrors the index portion of authorCatalog.ts, but for the assignee names
- * (`patentAssignees`) emitted in build-metadata.json. It also exposes curated,
+ * (`patentAssignees`) emitted in client-metadata.json. It also exposes curated,
  * dated corporate history for future whole-catalog analysis. Assignees have no
  * dedicated pages, and the existing focus relationship map intentionally reads
  * only their stable names/slugs and patent attributions.
  */
 
-import buildMeta from "../../generated/build-metadata.json";
+import buildMeta from "../../generated/client-metadata.json";
 import type { AssigneeMetadata } from "../../types/catalog.js";
 
 export type { AssigneeMetadata } from "../../types/catalog.js";

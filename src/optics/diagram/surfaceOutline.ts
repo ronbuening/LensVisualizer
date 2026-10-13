@@ -81,3 +81,31 @@ export function surfacePathD2(
   }
   return path;
 }
+
+/** Sample only the material bands of a surface, leaving an annular opening clear. */
+export function surfaceMaterialPathD2(
+  state: PreparedOpticalState,
+  surfaceIndex: number,
+  outerTrim: number,
+  innerTrim: number,
+  sx: (z: number) => number,
+  sy: (y: number) => number,
+  pointTransform?: DiagramPointTransform2,
+): string {
+  const surface = state.surfaces[surfaceIndex];
+  if (!surface) return "";
+  const inner = Number.isFinite(innerTrim) ? Math.max(0, Math.min(innerTrim, outerTrim)) : 0;
+  if (inner <= 0) return surfacePathD2(state, surfaceIndex, outerTrim, sx, sy, pointTransform);
+  const count = Math.max(8, Math.round((SVG_PATH_SUBDIVISIONS_2 * (outerTrim - inner)) / outerTrim));
+  const segment = (from: number, to: number): string => {
+    let path = "";
+    for (let i = 0; i <= count; i++) {
+      const y = from + ((to - from) * i) / count;
+      const z = renderedSurfaceZ2(surface, y);
+      const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
+      path += `${i ? "L" : "M"}${sx(zz)},${sy(yy)} `;
+    }
+    return path;
+  };
+  return `${segment(-outerTrim, -inner)}${segment(inner, outerTrim)}`;
+}

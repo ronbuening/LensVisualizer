@@ -57,13 +57,41 @@ Catalog version: ab3a508
 - Removed the unsupported TAFD45 attribution for L12 and described it as an unmatched 946180 dense flint.
 - Updated the source list to reflect the OHARA/HOYA catalog labels now used by the data file.
 
-### Verification
+## 2026-09-23 — Rear plate modeled as `rearPlates`
 
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` before edits — passed; this lens appeared in both generated reports.
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` after edits — passed; generated scan output removed this lens from the mismatch/candidate reports. Generated report files were restored afterward to keep the working tree scoped to this lens only.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed (120 files, 1566 tests).
-- `npm test -- validateLensData elementRenderDiagnostics buildLens` after FIG. 5B SD follow-up — passed.
-- `npm run typecheck && npm run format:check && npm run lint && npm run test` after FIG. 5B SD follow-up — passed.
+- Read Example 5 (¶0259) on PDF page 39 (printed page 13) at 160 dpi: surface 24 d = 12.5585; surfaces 25–26 are the
+  cover glass C (¶0199, PDF page 33), 4.000 mm, nd 1.51633, νd 64.14; 26 → image is 0.800 mm. FB (in air) prints
+  15.996 / 15.997 / 15.997, so the gaps are zoom-fixed. Surface 24 now stores 12.5585 mm with `rearPlates` C
+  (S-BSL7, exact 1.51633 / 64.14 OHARA match) and gapAfter 0.800 mm.
+- Paraxial check against the previous data: EFL identical at all three zoom stations; defocus changes by 0.00055 mm at
+  every station and focus keyframe (the old 15.997 rounded up the exact 15.99645 fold). Physical track grows by
+  1.3615 mm; `closeFocusM` 0.2 is the manufacturer MFD and is unchanged.
+
+## 2026-09-23 — Variable-gap label corrected
+
+- `varLabels` named the G4–G5 gap (surface 21, d21) "BF". That gap is the focus-compensating space between G4 and the
+  stationary G5, not the back focus, so the slider readout is now labelled "D21", matching the patent and the analysis
+  focus table. The back focus (d24 to cover glass C, then 0.8 mm) is fixed and has no slider.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Example 5 (¶0259, printed p. 13 = PDF p. 39) prints IH = 10.820 mm at all three zoom positions and 2ω = 88.92° at
+the wide end (¶0251 defines IH as the image height and ω as the half angle of view), so the design covers the Four
+Thirds corner (10.82 mm). The L3 rims — 4A at 11.0 mm (the 2026-05-11 pass set 18.5 mm; a later unlogged SD tweak cut
+it to 11.0) and 5A at 9.6 mm — clipped the real chief ray (solved through the stop centre) at wide from 38.4°, leaving
+the analysis field at 82% of the corner (8.86 mm). The traced wide corner chief ray (44.46°, the patent ω) needs
+4A ≥ 13.66 mm and 5A ≥ 9.61 mm; the standard and tele stations already reached the corner. 4A takes floor + ~0.5 mm.
+5A is capped at 9.65 mm: 9.67 mm fails the 5A→6 cross-gap sag check (6.61 mm against 6.599 mm allowed, at every zoom
+position), the same air-gap limit the header already names as binding. L3 is a strong negative meniscus
+(R 159.57 / 12.84), so 5A was not scaled with 4A. No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 4A | 11.0 | 14.2 | wide corner chief ray 13.66 mm + clearance |
+| 5A | 9.6 | 9.65 | wide corner chief ray 9.61 mm; capped by the 5A→6 cross-gap check (9.66 mm is the last accepted value) |
+
+The validator accepts the new values, and the surface probe finds no turnover on 4A out to 17.0 mm or on 5A out to
+11.6 mm. The traced field at wide now reaches 44.46° and 10.82 mm, 100% of the corner (it was 38.4° / 8.86 mm, 82%),
+with every rim clear (5A by 0.035 mm); the standard and tele stations stay at 100%. The image-circle floor still
+reports nothing undersized. The new rim departures (4A 0.908 mm at 14.2 mm, 5A −8.2 µm at 9.65 mm) are not quoted in
+the analysis, which is unchanged.

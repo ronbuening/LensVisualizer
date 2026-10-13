@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — Canon FD 28mm f/2.8 S.C.                    ║
+ * ║           LENS DATA — CANON FD 28mm f/2.8 S.C.                    ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 4,046,459, Example 2 / Fig. 5 / Table 3.          ║
  * ║  Canon/Kawamura compact retrofocus wide-angle objective.           ║
@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-fd-28mm-f28",
   maker: "Canon",
-  name: "Canon FD 28mm f/2.8 S.C.",
+  name: "CANON FD 28mm f/2.8 S.C.",
   subtitle: "US 4,046,459 Example 2 — Canon / Kawamura",
   specs: ["7 elements / 7 groups", "28 mm", "F/2.8", "75° diagonal AoV", "All-spherical retrofocus"],
 

@@ -10,20 +10,30 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: Unit focusing (entire lens moves).                        ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
- * ║    Patent at f = 1.00 (normalized). Paraxial ray trace gives      ║
- * ║    EFL = 1.0047. Scale factor ×27.8688 applied to all R, d, and   ║
- * ║    sd values to reach f ≈ 28 mm production focal length.          ║
+ * ║    Patent at f = 1.00 (normalized). Paraxial ray trace of the     ║
+ * ║    table gives EFL = 1.0046. Scale factor ×27.8688 applied to all ║
+ * ║    R and d values so the traced EFL is 28.0 mm (production f).    ║
  * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                          ║
- * ║    Not listed in patent. Estimated from combined marginal ray     ║
- * ║    (f/3.5) and chief ray (70% field) heights with ~8% mechanical  ║
- * ║    clearance, constrained by cross-gap sag overlap (particularly  ║
- * ║    the narrow 0.139 mm air gap d₂ between L1 and L2).            ║
+ * ║  NOTE ON SEMI-DIAMETERS (2026-09-21 audit):                        ║
+ * ║    Not listed in patent. Set from an exact meridional trace:      ║
+ * ║    every surface passes the f/3.5 axial marginal ray and the      ║
+ * ║    full-field chief ray to Y = 21.6 mm (ω = 38°, patent 2ω = 75°) ║
+ * ║    with margin, and the element proportions follow Fig. 1        ║
+ * ║    (L1 : L2–L3 : L4–L5 : L6 rim heights ≈ 1.21 : 1.00 : 1.08 :    ║
+ * ║    1.64). Fig. 1 is schematic (thin gaps exaggerated), so its     ║
+ * ║    absolute scale was not used. Off-axis bundles vignette at the  ║
+ * ║    outer elements as expected for this design; the d₂ and d₈     ║
+ * ║    air gaps open outward and do not constrain the rims.           ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                           ║
- * ║    Patent does not specify stop as a separate surface. Placed at  ║
- * ║    center of air gap d₅ (between Groups II and III), consistent   ║
- * ║    with the canonical double-Gauss stop location and Fig. 1.      ║
+ * ║    The stop is neither tabulated nor drawn in Fig. 1. Placed at   ║
+ * ║    the center of air gap d₅ (between Groups II and III), the      ║
+ * ║    canonical double-Gauss stop location.                          ║
+ * ║                                                                    ║
+ * ║  NOTE ON CLOSE FOCUS:                                             ║
+ * ║    Patent publishes no close-focus state. The 1 m keyframe is a   ║
+ * ║    derived unit-focus extension (+0.83 mm) that places the        ║
+ * ║    object 1.0 m from the image plane (rangefinder convention).    ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -32,7 +42,7 @@ const LENS_DATA = {
   key: "canon-serenar-28f35",
   maker: "Canon",
   name: "CANON SERENAR 28mm f/3.5",
-  subtitle: "US 2,645,974 — HIROSHI ITO / CANON",
+  subtitle: "US 2,645,974 sole example (Fig. 1) — HIROSHI ITO / CANON",
   specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 28.0 mm", "F/3.5", "2ω = 75°", "ALL SPHERICAL"],
 
   /* ── Metadata ── */
@@ -130,30 +140,33 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  Patent US 2,645,974, sole example. All radii, thicknesses scaled ×27.8688
-   *  from the normalized (f = 1.00) prescription.
-   *  Stop placed at center of patent gap d₅, inferred from Fig. 1.
+   *  Patent US 2,645,974, sole example (table on the specification page, repeated in
+   *  claim 5). All radii and thicknesses scaled ×27.8688 from the normalized (f = 1.00)
+   *  prescription. Stop placed at center of patent gap d₅ (not tabulated, not drawn).
    */
   surfaces: [
-    { label: "1", R: 16.805, d: 1.895, nd: 1.5638, elemId: 1, sd: 5.3 }, // L1 front
-    { label: "2", R: 72.32, d: 0.139, nd: 1.0, elemId: 0, sd: 4.3 }, // L1 rear → air
-    { label: "3", R: 13.154, d: 2.731, nd: 1.6237, elemId: 2, sd: 4.3 }, // L2 front (D1)
-    { label: "4", R: -83.606, d: 0.669, nd: 1.5955, elemId: 3, sd: 3.8 }, // L2→L3 junction (D1)
-    { label: "5", R: 9.002, d: 1.394, nd: 1.0, elemId: 0, sd: 3.5 }, // L3 rear → air
+    { label: "1", R: 16.805, d: 1.895, nd: 1.5638, elemId: 1, sd: 5.7 }, // L1 front
+    { label: "2", R: 72.32, d: 0.139, nd: 1.0, elemId: 0, sd: 5.4 }, // L1 rear → air
+    { label: "3", R: 13.154, d: 2.731, nd: 1.6237, elemId: 2, sd: 4.6 }, // L2 front (D1)
+    { label: "4", R: -83.606, d: 0.669, nd: 1.5955, elemId: 3, sd: 4.0 }, // L2→L3 junction (D1)
+    { label: "5", R: 9.002, d: 1.394, nd: 1.0, elemId: 0, sd: 3.6 }, // L3 rear → air
     { label: "STO", R: 1e15, d: 1.394, nd: 1.0, elemId: 0, sd: 3.15 }, // Aperture stop (center of d₅)
-    { label: "6", R: -9.225, d: 0.474, nd: 1.5785, elemId: 4, sd: 3.5 }, // L4 front (D2)
-    { label: "7", R: 22.239, d: 3.456, nd: 1.6204, elemId: 5, sd: 3.8 }, // L4→L5 junction (D2)
-    { label: "8", R: -11.928, d: 0.111, nd: 1.0, elemId: 0, sd: 4.3 }, // L5 rear → air
-    { label: "9", R: 1e15, d: 2.508, nd: 1.6204, elemId: 6, sd: 4.5 }, // L6 front (flat)
-    { label: "10", R: -24.134, d: 22.3, nd: 1.0, elemId: 0, sd: 5.3 }, // L6 rear → BFD
+    { label: "6", R: -9.225, d: 0.474, nd: 1.5785, elemId: 4, sd: 3.7 }, // L4 front (D2)
+    { label: "7", R: 22.239, d: 3.456, nd: 1.6204, elemId: 5, sd: 4.2 }, // L4→L5 junction (D2)
+    { label: "8", R: -11.928, d: 0.111, nd: 1.0, elemId: 0, sd: 4.9 }, // L5 rear → air
+    { label: "9", R: 1e15, d: 2.508, nd: 1.6204, elemId: 6, sd: 7.5 }, // L6 front (flat)
+    { label: "10", R: -24.134, d: 22.3, nd: 1.0, elemId: 0, sd: 7.5 }, // L6 rear → BFD
   ],
 
   /* ── Aspherical coefficients ── */
   asph: {},
 
-  /* ── Variable air spacings (unit focus — only BFD changes) ── */
+  /* ── Variable air spacings (unit focus — only BFD changes) ──
+   *  Close keyframe is derived (no patent close state): +0.83 mm extension puts the
+   *  object 1.0 m from the image plane.
+   */
   var: {
-    "10": [22.3, 23.11],
+    "10": [22.3, 23.13],
   },
   varLabels: [["10", "BF"]],
 
@@ -171,11 +184,13 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
-  focusDescription: "Unit focusing — entire lens moves as rigid unit.",
+  focusDescription:
+    "Unit focusing — entire lens moves as a rigid unit; the 1 m keyframe is a derived extension (patent publishes no close state).",
 
   /* ── Aperture configuration ── */
   nominalFno: 3.5,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
+  maxFstop: 22,
 
   /* ── Layout tuning ── */
   scFill: 0.5,

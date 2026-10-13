@@ -3,7 +3,7 @@
 **Patent:** JP 2017-068114 A
 **Filed:** 2015-09-30
 **Published:** 2017-04-06
-**Inventors:** Tetsushi Miwa; Hiroshi Yamamoto; Haruo Sato
+**Inventors:** Satoshi Miwa; Hiroshi Yamamoto; Haruo Sato
 **Applicant:** Nikon Corporation
 **Title:** Fisheye Zoom Lens, Optical Apparatus, and Method for Manufacturing Fisheye Zoom Lens
 **Embodiment analyzed:** Example 1 (第1実施例; Tables 1–4; Figures 1–3)

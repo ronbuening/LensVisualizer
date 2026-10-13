@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP1996-327896 A (特開平8-327896 A)
+**Patent:** JP 1996-327896 A (特開平8-327896 A)
 **Filed:** May 26, 1995
 **Published:** December 13, 1996
 **Inventor:** Yoshinobu Asakura
@@ -146,7 +146,7 @@ The system is entirely spherical, so there are no aspheric coefficients, conic c
 
 ## Sources
 
-1. Minolta Co., Ltd., JP1996-327896 A (特開平8-327896 A), “Lens system” (レンズ系), Example 1; especially Table 1, Table 4, and ¶0017–0021, ¶0029–0038.
+1. Minolta Co., Ltd., JP 1996-327896 A (特開平8-327896 A), “Lens system” (レンズ系), Example 1; especially Table 1, Table 4, and ¶0017–0021, ¶0029–0038.
 2. Minolta Co., Ltd., owner’s manual for AF APO Telephoto 300mm F4 APO G / AF 400mm F4.5 APO G, document 9222-2640-14 (P9611-B509), manufacturer-authored archival scan.
 3. HOYA E-F2/FDS90, OHARA S-FSL5, Hikari J-SF03, and CDGM H-ZF52 optical-glass catalog data; used only for compatible dispersion curves and coordinate-class comparison.
 4. SCHOTT Advanced Optics N-SSK5 catalog data; used only for a compatible dispersion curve and cross-vendor coordinate comparison.

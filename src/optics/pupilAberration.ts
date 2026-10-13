@@ -149,12 +149,11 @@ function exactTraceLensForState(S: ReturnType<typeof stateSurfaces>, L: RuntimeL
         S,
         asphByIdx: L.asphByIdx,
         stopIdx: L.stopIdx,
-        clipMargin: L.clipMargin,
         opticalPath: L.opticalPath,
         imagePlane: L.imagePlane,
         isFoldedOptics: true,
       }
-    : { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx, clipMargin: L.clipMargin };
+    : { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx };
 }
 
 function computeStatePupilBaselines(

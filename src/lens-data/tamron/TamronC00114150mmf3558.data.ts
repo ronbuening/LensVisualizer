@@ -17,8 +17,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - The optically active s7 hybrid-asphere resin layer is retained as a separate      ║
  * ║   modeling material entry (L4r). elementCount remains the 17 physical lenses;       ║
  * ║   elements[] therefore contains 18 material entries including L4r.                  ║
- * ║ - Rear plane-parallel plate s37-s38 is omitted. Surface 36 uses the documented      ║
- * ║   air-equivalent rear spacing 11 + 4.2/1.5168 + 1 = 14.768987341772153 mm.         ║
+ * ║ - Rear plane-parallel plate s37-s38 (4.2000 mm, nd 1.51680, vd 64.20) and the      ║
+ * ║   1.0000 mm air gap to the image are modeled in `rearPlates` (traced, not drawn).   ║
+ * ║   Surface 36 keeps the patent's 11.0000 mm gap to the plate.                        ║
  * ║                                                                                      ║
  * ║ ZOOM / FOCUS                                                                          ║
  * ║ - zoomPositions are the patent Table 11 values 14.43 / 57.85 / 145.40 mm.          ║
@@ -27,16 +28,24 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - Focus status: CONSTRAINED_RECONSTRUCTION. Patent Table 12 is an approximately     ║
  * ║   1.0 m subject-to-image state, not the production 0.5 m MOD. The close pairs here  ║
  * ║   are code-solved for 0.5 m subject-to-image distance with G4 as the only focus     ║
- * ║   group, preserving the published mechanism constraint.                              ║
+ * ║   group, preserving the published mechanism constraint. Re-solved 2026-09-23 with   ║
+ * ║   the rear plate traced physically, so 0.5 m is measured to the stored image plane. ║
  * ║ - G3 and G5 share one zoom track. G4 reverses relative motion with respect to G3.   ║
  * ║ - Source discrepancy retained in audit: paragraph 0096 says G2 moves imageward      ║
  * ║   W->T, while Table 11 sensor-fixed geometry requires 3.7597 mm objectward motion.   ║
  * ║                                                                                      ║
- * ║ STOP / F-NUMBER                                                                       ║
- * ║ - The patent publishes F-number but no stop diameter. STO sd = 5.5092719271 mm is   ║
- * ║   an inferred single fixed-stop fit to the three published F-numbers after project  ║
- * ║   normalization; it is not a patent-listed aperture. nominalFno stores the exact    ║
- * ║   modeled values from this final prescription and fixed stop.                        ║
+ * ║ STOP / F-NUMBER                                                                      ║
+ * ║ - The patent publishes F-number but no stop diameter. nominalFno stores the Table 11 ║
+ * ║   F-No. row, 3.6708 / 5.4085 / 5.9148, and apertureDesign its wide-end value.        ║
+ * ║ - zoomApertureModel "fixed-iris" holds one wide-open iris at every station. It is    ║
+ * ║   5.5773 mm, the semi-diameter whose real marginal ray gives f/3.6708 at 14.43 mm,   ║
+ * ║   and it traces f/5.406 at 57.85 mm and f/5.908 at 145.40 mm, 0.05 % and 0.11 %      ║
+ * ║   below the patent values. The iris is the limiting aperture at all three stations.  ║
+ * ║ - Taken one station at a time, the three F-numbers need 5.5773 / 5.5744 / 5.5708 mm  ║
+ * ║   by real marginal ray, a 0.12 % spread, so one stop fits Table 11 to about 0.1 %.   ║
+ * ║ - The authored STO sd = 5.5092719271 mm is the mean of the paraxial radii the three  ║
+ * ║   F-numbers imply (5.53950 / 5.48791 / 5.50041 mm). It is not a patent-listed        ║
+ * ║   aperture, and the wide-open iris is sized from nominalFno rather than from it.     ║
  * ║                                                                                      ║
  * ║ SEMI-DIAMETERS                                                                         ║
  * ║ - Example 3 publishes no clear-aperture table. SDs are modeling inferences from      ║
@@ -45,6 +54,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   geometry. They were checked for edge thickness, actual rim slope, conic limits,   ║
  * ║   shared-band cross-gap intrusion, and paraxial vignetting-limited off-axis rays.   ║
  * ║   They are not represented as patent-published clear apertures.                      ║
+ * ║ - Surfaces 7A and 8 were raised to pass the traced wide-end chief ray to the Four    ║
+ * ║   Thirds corner (10.82 mm at 39.56°; Table 11's ω = 37.102° reaches 9.89 mm), which  ║
+ * ║   Fig. 9's L4 front face supports (2026-09-24 field-coverage audit).                 ║
  * ║                                                                                      ║
  * ║ ASPHERES / SPECTRAL DATA                                                              ║
  * ║ - Patent epsilon convention converts as K = epsilon - 1; all Example 3 epsilon=1,   ║
@@ -62,7 +74,7 @@ const LENS_DATA = {
   specs: [
     "17 ELEMENTS / 13 GROUPS",
     "PATENT 14.43-145.40 mm",
-    "MODELED f/3.6909-5.9053",
+    "PATENT f/3.6708-5.9148",
     "4 ASPHERICAL SURFACES",
     "0.5 m MOD (CONSTRAINED RECONSTRUCTION)",
   ],
@@ -70,7 +82,7 @@ const LENS_DATA = {
   focalLengthMarketing: [14, 150],
   focalLengthDesign: [14.432369813903854, 145.38500443927072],
   apertureMarketing: 3.5,
-  apertureDesign: 3.6909409460450076,
+  apertureDesign: 3.6708,
   lensMounts: ["micro-four-thirds"],
   imageFormat: "four-thirds",
   patentNumber: "US 2014/0347522 A1",
@@ -313,8 +325,8 @@ const LENS_DATA = {
     { label: "4", R: -146.2327, d: 0.2, nd: 1.0, elemId: 0, sd: 20.0 },
     { label: "5", R: 39.5728, d: 3.97, nd: 1.618, elemId: 3, sd: 17.5 },
     { label: "6", R: 112.3407, d: 1.133, nd: 1.0, elemId: 0, sd: 17.5 },
-    { label: "7A", R: 79.0234, d: 0.2, nd: 1.5146, elemId: 4, sd: 7.5 },
-    { label: "8", R: 65.0676, d: 0.9, nd: 1.91082, elemId: 5, sd: 7.5 },
+    { label: "7A", R: 79.0234, d: 0.2, nd: 1.5146, elemId: 4, sd: 9.9 },
+    { label: "8", R: 65.0676, d: 0.9, nd: 1.91082, elemId: 5, sd: 9.7 },
     { label: "9", R: 12.3717, d: 4.1854, nd: 1.0, elemId: 0, sd: 7.5 },
     { label: "10", R: -23.873, d: 0.75, nd: 1.91082, elemId: 6, sd: 7.2 },
     { label: "11", R: 42.3962, d: 0.493, nd: 1.0, elemId: 0, sd: 7.2 },
@@ -342,8 +354,20 @@ const LENS_DATA = {
     { label: "33", R: -18.5559, d: 0.9, nd: 1.80518, elemId: 17, sd: 9.0 },
     { label: "34", R: -28.5021, d: 1.03, nd: 1.0, elemId: 0, sd: 9.0 },
     { label: "35", R: -152.2485, d: 2.3543, nd: 1.72916, elemId: 18, sd: 11.2 },
-    // Rear s37-s38 plate omitted; d is air-equivalent distance from source s36 to the image plane.
-    { label: "36", R: -38.5471, d: 14.768987341772153, nd: 1.0, elemId: 0, sd: 11.2 },
+    // Last surface: patent gap from s36 to the rear plate (s37-s38 in rearPlates).
+    { label: "36", R: -38.5471, d: 11.0, nd: 1.0, elemId: 0, sd: 11.2 },
+  ],
+
+  /* ── Rear plane-parallel plate (patent Table 9 surfaces 37–38): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2014/0347522 A1, Example 3 Table 9 surfaces 37–38",
+    },
   ],
 
   asph: {
@@ -400,14 +424,14 @@ const LENS_DATA = {
       [1.7, 1.7],
     ],
     "28": [
-      [1.4374, 1.610542183445229],
-      [6.0872, 7.5038201232408905],
-      [3.6419, 9.49816160712323],
+      [1.4374, 1.6110744051830532],
+      [6.0872, 7.508402913928238],
+      [3.6419, 9.514974971429059],
     ],
     "32": [
-      [12.1029, 11.92975781655477],
-      [7.4531, 6.03647987675911],
-      [9.8984, 4.042138392876771],
+      [12.1029, 11.929225594816947],
+      [7.4531, 6.031897086071762],
+      [9.8984, 4.025325028570942],
     ],
     "34": [
       [1.03, 1.03],
@@ -443,9 +467,10 @@ const LENS_DATA = {
 
   closeFocusM: 0.5,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: production 0.5 m subject-to-image-plane MOD solved by translating G4 only; D28 + D32 is conserved at each zoom position. Patent Table 12 itself represents an approximately 1.0 m subject-to-image state.",
+    "CONSTRAINED_RECONSTRUCTION: production 0.5 m subject-to-image-plane MOD solved by translating G4 only, with the rear plate traced physically; D28 + D32 is conserved at each zoom position. Patent Table 12 itself represents an approximately 1.0 m subject-to-image state.",
 
-  nominalFno: [3.6909409460450076, 5.387525251923575, 5.9052849086316925],
+  nominalFno: [3.6708, 5.4085, 5.9148],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 7,
   maxFstop: 22,

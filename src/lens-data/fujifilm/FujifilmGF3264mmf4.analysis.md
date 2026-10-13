@@ -16,7 +16,7 @@ Example 1 is the closest disclosed prescription for the production FUJINON GF32-
 
 The patent design calculates to f = 32.936 mm, 45.281 mm, and 62.230 mm at the wide, middle, and telephoto tabulated positions. Those values reproduce Table 2 of the patent to rounding precision. The patent F-number is FNo. = 4.12 at all three positions, which explains the slight offset from the marketed F4 value.
 
-The data file omits the patent's plane-parallel sensor cover plate from the surface list, following the project convention. The cover plate is instead folded into the final air-equivalent back focal distance: 25.8035 mm + 3.2500 mm / 1.51680 = 27.9462 mm. This preserves the paraxial image position while keeping the prescription limited to lens surfaces.
+The patent's plane-parallel sensor cover plate PP (surfaces 28–29: 3.2500 mm, nd = 1.51680, νd = 64.20) is modeled physically through `rearPlates`. Every analysis traces the plate, but it is not drawn. The last lens surface keeps the printed 25.8035 mm gap to PP, and Table 1 prints 0.0000 mm from PP to the image plane. The paraxial equivalent is the air-equivalent back focal distance 25.8035 mm + 3.2500 mm / 1.51680 = 27.9462 mm, so the image position is unchanged; the physical track includes the plate and is 1.107 mm longer than that air-equivalent track.
 
 ## Optical Architecture
 
@@ -112,7 +112,7 @@ The prior analysis overstated the glass-identification certainty and assigned se
 | L41 | 1.58313 | 59.38 | S-BAL42 (OHARA) | Same glass as L32 |
 | L42 | 1.85026 | 32.27 | S-LAH71 (OHARA) | Exact match to six-decimal catalog value |
 | L51 | 1.91082 | 35.25 | TAFD35L / TAFD35 (HOYA) | Exact match |
-| PP | 1.51680 | 64.20 | generic cover plate; near BK7 class | Excluded from data surfaces |
+| PP | 1.51680 | 64.20 | generic cover plate; N-BK7 class | Modeled in `rearPlates` (traced, not drawn) |
 
 The chromatic strategy is concentrated in G3. L31 is S-FPL55, with OHARA catalog anomalous partial-dispersion data of θg,F = 0.5340 and Δθg,F = +0.0457. L35 is S-FPL51, with θg,F = 0.5375 and Δθg,F = +0.0280. These two low-dispersion positive elements provide strong positive power with restrained secondary spectrum. The surrounding higher-dispersion negative elements, especially L33 and the negative side of the L34-L35 cemented doublet, provide the necessary balancing dispersion.
 

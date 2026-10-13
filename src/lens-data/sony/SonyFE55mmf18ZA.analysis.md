@@ -19,7 +19,7 @@ The identification of Example 1 as the production Sony Sonnar T* FE 55mm F1.8 ZA
 6. **Half angle of view.** The patent states ω = 22.15°, giving 2ω = 44.3°. Sony publishes 43°; the slight difference reflects vignetting-limited vs. paraxial-traced field.
 7. **Inner focus mechanism.** The second lens group (G2) travels along the axis during focusing, consistent with Sony's specification of a linear-motor inner-focus system.
 8. **Filing chronology.** The Japanese priority date of September 27, 2013 precedes the lens's announcement by fewer than three weeks (the α7 system and SEL55F18Z were announced on October 16, 2013), consistent with a design patent filed at or near the end of the product development cycle.
-9. **Mount compatibility.** The patent describes the design as suitable for mirrorless cameras with short flange distances; the E-mount flange distance of 18 mm is compatible with the back focal distance of approximately 14.8 mm (from the last lens surface to the image plane, including the cover glass thickness).
+9. **Mount compatibility.** The patent describes the design as suitable for mirrorless cameras with short flange distances; the E-mount flange distance of 18 mm is compatible with the back focal distance of approximately 14.8 mm (from the last lens surface to the image plane: 11.78 mm air, the 2.00 mm optical member SG, and 1.00 mm air; about 14.10 mm air-equivalent). The SG plate (nd 1.516798, νd 64.2) is modeled in `rearPlates`, so every analysis traces through it, but it is not drawn in the cross-section.
 
 ## Optical Architecture
 
@@ -119,9 +119,9 @@ The lens employs an inner-focus system in which only G2 (the single element L21)
 
 The gap sum is exactly conserved, confirming that L21 translates rigidly without any accompanying compensator motion. This single-element focus group is the lightest possible configuration for an inner-focus system: L21's fluorocrown glass (S-FSL5, density ≈ 2.46 g/cm³ — considerably lighter than the lanthanum and dense flint glasses used in G1 and G3) and thin center thickness (1.00 mm) minimize the mass that the linear autofocus motor must accelerate, directly enabling the fast, silent AF performance that Sony specifies for video-capable E-mount bodies.
 
-The short-distance focus state at β = −0.033 corresponds to an object distance of approximately 1.7 m from the sensor plane — well beyond the marketed MFD of 0.5 m. The patent tabulates only this representative near-focus state; the full close-focus position (MFD = 0.5 m, yielding approximately 0.14× magnification per Sony's specification) would require further travel of L21 beyond the 1.26 mm tabulated for β = −0.033.
+The short-distance focus state at β = −0.033 corresponds to an object distance of approximately 1.7 m from the sensor plane — well beyond the marketed MFD of 0.5 m. The patent tabulates this representative near-focus state, which is stored as an exact keyframe; the full close-focus position (MFD = 0.5 m, yielding approximately 0.14× magnification per Sony's specification) requires further travel of L21 beyond the 1.26 mm tabulated for β = −0.033.
 
-The close-focus gaps at MFD = 0.5 m (object distance ≈ 421 mm from the front surface) have been extrapolated via paraxial inner-focus solve, enforcing the 16.48 mm gap sum conservation constraint. The computed values are D7 ≈ 8.08 mm, D9 ≈ 8.40 mm, corresponding to a total focus stroke of approximately 5.27 mm. These extrapolated values are used in the companion data file's variable-gap array.
+The close-focus gaps at MFD = 0.5 m (object distance ≈ 421 mm from the front surface) have been extrapolated via paraxial inner-focus solve, enforcing the 16.48 mm gap sum conservation constraint. The computed values are D7 ≈ 8.08 mm, D9 ≈ 8.40 mm, corresponding to a total focus stroke of approximately 5.27 mm. These extrapolated values are used for the final keyframe; interpolation between exact states is a visualization approximation.
 
 The patent (¶0061) notes that a smaller focus travel is desirable to reduce total length, and that the refractive power of G2 should be appropriately set to suppress aberration variation. Conditional expression (3), which constrains |f2/f| to the range 0.60–5.00, governs this trade-off: a shorter focal length for G2 (stronger power) reduces the required travel but increases eccentric sensitivity and aberration variation, while a longer focal length requires more travel but produces gentler aberration changes. Example 1's value of |f2/f| = 0.92 sits near the lower end of this range, indicating a relatively strong focus group — consistent with the design goal of a compact total track (TL/f = 1.48).
 
@@ -214,3 +214,13 @@ Close-focus variable gaps at MFD = 0.5 m (not published in the patent) were comp
 - HOYA Optical Glass catalog and cross-reference index; M-TAF101 data sheet (glass code 768/492).
 - Schott Optical Glass Data Sheets (N-FK5).
 - refractiveindex.info database for cross-vendor glass verification.
+
+## Image-plane source audit (2026-09-25)
+
+MTF image-plane audit (2026-09-25): US20150092100A1 Example 1, Tables 1–3
+(PDF p. 26) matches every radius, spacing, nd/vd and aspheric coefficient.
+The physical SG stack is already complete: 11.78 mm air + 2 mm glass
+(n=1.516798) + 1 mm air. The printed infinity state gives EFL 53.612458 mm
+(53.61 printed), but paraxial focus is 0.039278 mm behind the authored plane.
+No single transcription error was found. Retain the published plane; a
+finite-aperture best-focus interpretation is possible, not established.

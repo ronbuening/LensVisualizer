@@ -91,7 +91,7 @@ export default function MakerPage() {
     entry.associations.some((association) => association.role === "manufacturer"),
   );
 
-  const lensCountText = `Explore ${lenses.length} patent-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`;
+  const lensCountText = `Explore ${lenses.length} source-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`;
   const seoDescription = details ? `${details.summary} ${lensCountText}` : lensCountText;
 
   return (
@@ -125,7 +125,8 @@ export default function MakerPage() {
           {details && (
             <div style={{ marginBottom: "1.5rem" }}>
               <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
-                Est. {details.founded} · {details.headquarters} · {lenses.length} {pluralize(lenses.length, "lens")}
+                {details.founded != null && <>Est. {details.founded} · </>}
+                {details.headquarters} · {lenses.length} {pluralize(lenses.length, "lens")}
               </p>
               {details.history.split("\n\n").map((paragraph, i) => (
                 <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>

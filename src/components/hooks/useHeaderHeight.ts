@@ -13,6 +13,7 @@ interface UseHeaderHeightParams {
   panelId: string;
   lensKey: string;
   onHeaderHeight?: (panelId: string, height: number) => void;
+  enabled?: boolean;
 }
 
 interface UseHeaderHeightResult {
@@ -24,15 +25,17 @@ export default function useHeaderHeight({
   panelId,
   lensKey,
   onHeaderHeight,
+  enabled = true,
 }: UseHeaderHeightParams): UseHeaderHeightResult {
   const headerRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
   const [headerHeight, setHeaderHeight] = useState(80);
 
   useLayoutEffect(() => {
-    if (!headerRef.current) return;
+    if (!enabled || !headerRef.current) return;
     const el = headerRef.current;
     const report = () => {
-      const h = el.scrollHeight;
+      // Measure the natural inner header, not the comparison alignment spacer.
+      const h = Math.ceil(el.getBoundingClientRect().height);
       setHeaderHeight(h);
       onHeaderHeight?.(panelId, h);
     };
@@ -41,7 +44,7 @@ export default function useHeaderHeight({
     const ro = new ResizeObserver(report);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [onHeaderHeight, panelId, lensKey]);
+  }, [onHeaderHeight, panelId, lensKey, enabled]);
 
   return { headerRef, headerHeight };
 }

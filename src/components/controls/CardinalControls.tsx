@@ -24,6 +24,8 @@ interface CardinalControlsProps {
   showCardinalTotalTrack?: boolean;
   onShowCardinalTotalTrackChange?: (value: boolean) => void;
   compact?: boolean;
+  /** Desktop comparison toolbar: size groups to their labels and place them alongside each other. */
+  inline?: boolean;
 }
 
 export default function CardinalControls({
@@ -49,6 +51,7 @@ export default function CardinalControls({
   showCardinalTotalTrack = true,
   onShowCardinalTotalTrackChange,
   compact = false,
+  inline = false,
 }: CardinalControlsProps) {
   const cardinalLayers = [
     { label: "F", active: showCardinalFocal, onClick: () => onShowCardinalFocalChange?.(!showCardinalFocal) },
@@ -74,12 +77,12 @@ export default function CardinalControls({
       onClick: () => onShowCardinalTotalTrackChange?.(!showCardinalTotalTrack),
     },
   ];
-  const rowWidth = compact ? 160 : 190;
+  const rowWidth = inline ? undefined : compact ? 160 : 190;
   const masterPadding = compact ? "5px 7px" : "5px 8px";
   const subPadding = compact ? "5px 4px" : "5px 5px";
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: compact ? 6 : 8 }}>
+    <div style={{ display: "flex", flexDirection: inline ? "row" : "column", gap: compact || inline ? 6 : 8 }}>
       <div style={toggleGroup(t, { width: rowWidth })}>
         <button
           onClick={() => onShowCardinalsChange?.(!showCardinals)}

@@ -28,10 +28,6 @@ Patent: US 3,507,558, single numerical example.
 
 - Current analysis sidecar already matches this audit: it identifies the scaled prescription, explains the front-diameter note, treats L4/L6/L7 as unresolved legacy code-family glasses, and avoids APO/APD claims.
 
-### Verification
-
-- Pending batch verification after the Nikon audit pass.
-
 ## 2026-07-30 SUMITA KF3 coefficient recovery
 
 - Added SUMITA's discontinued-inclusive KF3 vendor polynomial at catalog code `515546`.

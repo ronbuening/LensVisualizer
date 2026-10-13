@@ -6,8 +6,10 @@
 import type { Theme } from "../../types/theme.js";
 import { headerStrip, labelStyle as makeLabelStyle, toggleBtn, toggleGroup } from "../../utils/style/styles.js";
 import type { OpticalConfigurationOption } from "../../utils/catalog/lensCatalog.js";
+import type { TeleconverterOption } from "../../utils/catalog/teleconverterCatalog.js";
 import AboutButtonRow from "../display/AboutButtonRow.js";
 import LensSelector from "../controls/LensSelector.js";
+import TeleconverterControl from "../controls/TeleconverterControl.js";
 
 interface TopBarProps {
   theme: Theme;
@@ -29,6 +31,13 @@ interface TopBarProps {
   configurationOptions: ReadonlyArray<OpticalConfigurationOption>;
   activeConfigurationKey: string;
   onConfigurationChange: (key: string) => void;
+  /** Converters that fit the single-lens prescription or comparison pane A; empty hides the control. */
+  teleconverterOptions: ReadonlyArray<TeleconverterOption>;
+  activeTeleconverterKey: string | null;
+  /** Converters that fit comparison pane B; only read while comparing. */
+  teleconverterOptionsB: ReadonlyArray<TeleconverterOption>;
+  activeTeleconverterKeyB: string | null;
+  onTeleconverterChange: (panel: "a" | "b", key: string | null) => void;
 }
 
 export default function TopBar({
@@ -51,6 +60,11 @@ export default function TopBar({
   configurationOptions,
   activeConfigurationKey,
   onConfigurationChange,
+  teleconverterOptions,
+  activeTeleconverterKey,
+  teleconverterOptionsB,
+  activeTeleconverterKeyB,
+  onTeleconverterChange,
 }: TopBarProps) {
   const lStyle = makeLabelStyle(t);
 
@@ -98,6 +112,16 @@ export default function TopBar({
         </>
       )}
 
+      <TeleconverterControl
+        theme={t}
+        isWide={isWide}
+        options={teleconverterOptions}
+        activeKey={activeTeleconverterKey}
+        onChange={(key) => onTeleconverterChange("a", key)}
+        ariaLabel={comparing ? "Teleconverter for lens A" : "Teleconverter"}
+        selectorStyle={selectorStyle}
+      />
+
       {comparing && (
         <button
           onClick={onSwapLenses}
@@ -130,6 +154,15 @@ export default function TopBar({
             options={catalogKeys.map((k) => ({ key: k, label: catalogNames[k] }))}
             onChange={onSwitchLensB}
             style={selectorStyle}
+          />
+          <TeleconverterControl
+            theme={t}
+            isWide={isWide}
+            options={teleconverterOptionsB}
+            activeKey={activeTeleconverterKeyB}
+            onChange={(key) => onTeleconverterChange("b", key)}
+            ariaLabel="Teleconverter for lens B"
+            selectorStyle={selectorStyle}
           />
         </>
       )}

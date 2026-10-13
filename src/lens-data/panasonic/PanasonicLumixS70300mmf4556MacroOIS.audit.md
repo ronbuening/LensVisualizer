@@ -9,8 +9,6 @@
 - Compared the wide-state section with Figure 1 at 600 dpi and checked the full-frame image-circle floor.
 - Retained the submitted SDs. The clean figure/data ratios cluster around unity, and no reliable rim differs by more
   than the patent-figure audit threshold.
-- `npm run audit:image-circle -- src/lens-data/panasonic/PanasonicLumixS70300mmf4556MacroOIS.data.ts` passed with no
-  undersized surfaces.
 
 ### Glass
 

@@ -402,9 +402,9 @@ const LENS_DATA = {
   focusDescription:
     "Inner focusing by moving the complete second lens unit. Close-focus spacings are paraxially inferred from Canon's 0.38 m MFD; the patent itself publishes infinity-focus zoom spacings only.",
   closeFocusM: 0.38,
-  nominalFno: 2.8,
+  nominalFno: 2.91,
   maxFstop: 22,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22],
 
   scFill: 0.68,
   yScFill: 0.82,

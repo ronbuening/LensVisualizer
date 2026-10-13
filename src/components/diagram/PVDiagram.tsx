@@ -116,7 +116,6 @@ const PVDiagram = memo(function PVDiagram({ isDark }: { isDark: boolean }) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 640 322"
       width="100%"
-      height="auto"
       role="img"
       aria-label="Illustrative P–V glass map showing partial dispersion vs Abbe number"
     >

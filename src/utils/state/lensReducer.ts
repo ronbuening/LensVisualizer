@@ -8,7 +8,7 @@
  */
 
 import { ENABLE_EDGE_PROJECTION } from "../featureFlags.js";
-import { DEFAULT_COLOR_TRACING } from "../appConfig.js";
+import { DEFAULT_COLOR_TRACING, DEFAULT_RAY_TRACKS_FOCUS } from "../appConfig.js";
 import { readSystemThemePreferences } from "../theme/themePreferences.js";
 import {
   isAnalysisTabId,
@@ -29,6 +29,7 @@ import { VIEW_STATE_FIELDS } from "./lensViewUrlState.js";
 export const SET_LENS_A = "SET_LENS_A";
 export const SET_LENS_B = "SET_LENS_B";
 export const SET_OPTICAL_CONFIGURATION = "SET_OPTICAL_CONFIGURATION";
+export const SET_TELECONVERTER = "SET_TELECONVERTER";
 export const SWAP_LENSES = "SWAP_LENSES";
 export const SET_DARK = "SET_DARK";
 export const SET_HIGH_CONTRAST = "SET_HIGH_CONTRAST";
@@ -42,6 +43,8 @@ export const SET_STOPDOWN_T = "SET_STOPDOWN_T";
 export const SET_SHIFT_MM = "SET_SHIFT_MM";
 export const SET_TILT_DEG = "SET_TILT_DEG";
 export const RESET_SLIDERS = "RESET_SLIDERS";
+export const SET_PATENT_POSITIONS = "SET_PATENT_POSITIONS";
+export const SET_PATENT_STATION = "SET_PATENT_STATION";
 export const SET_PANEL_EXPANDED = "SET_PANEL_EXPANDED";
 export const SET_ANALYSIS_TAB = "SET_ANALYSIS_TAB";
 export const SET_GROUP_MOVEMENT = "SET_GROUP_MOVEMENT";
@@ -124,6 +127,8 @@ export function createInitialState(
       lensKeyA,
       lensKeyB: urlState.lensKeyB || catalogKeys[Math.min(1, catalogKeys.length - 1)],
       selectedConfigurationKey: urlState.configurationKey ?? lensKeyA,
+      teleconverterKeyA: (urlState.comparing ? urlState.teleconverterKeyA : urlState.teleconverterKey) ?? null,
+      teleconverterKeyB: (urlState.comparing ? urlState.teleconverterKeyB : null) ?? null,
       comparing: urlState.comparing || false,
       scaleMode: prefs.scaleMode || "independent",
     },
@@ -138,7 +143,7 @@ export function createInitialState(
       showOnAxis: prefs.showOnAxis ?? true,
       showOffAxis,
       rayDensity,
-      rayTracksF: prefs.rayTracksF ?? false,
+      rayTracksF: prefs.rayTracksF ?? DEFAULT_RAY_TRACKS_FOCUS,
       showChromatic: prefs.showChromatic ?? DEFAULT_COLOR_TRACING,
       chromR: prefs.chromR ?? true,
       chromG: prefs.chromG ?? true,
@@ -191,6 +196,7 @@ export function createInitialState(
       zoomPanActive: false,
       groupMovementOpen: urlState.groupMovementOpen ?? false,
       groupMovementMode: urlState.groupMovementMode ?? "focus",
+      patentPositions: urlState.patentPositions ?? prefs.patentPositions ?? false,
       selectedElementId: urlState.selectedElementId ?? null,
       selectedElementIdA: urlState.selectedElementIdA ?? null,
       selectedElementIdB: urlState.selectedElementIdB ?? null,
@@ -219,7 +225,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case SET_LENS_A: {
       const next = {
         ...state,
-        lens: { ...state.lens, lensKeyA: action.key, selectedConfigurationKey: action.key },
+        lens: { ...state.lens, lensKeyA: action.key, selectedConfigurationKey: action.key, teleconverterKeyA: null },
       };
       /* In single mode, reset sliders and close analysis drawer when switching lenses */
       if (!state.lens.comparing) {
@@ -242,15 +248,33 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case SET_LENS_B:
       return {
         ...state,
-        lens: { ...state.lens, lensKeyB: action.key },
+        lens: { ...state.lens, lensKeyB: action.key, teleconverterKeyB: null },
         panels: { ...state.panels, selectedElementIdB: null },
       };
     case SET_OPTICAL_CONFIGURATION:
       return {
         ...state,
-        lens: { ...state.lens, selectedConfigurationKey: action.key },
+        lens: {
+          ...state.lens,
+          selectedConfigurationKey: action.key,
+          teleconverterKeyA: action.teleconverterKey ?? null,
+        },
         panels: { ...state.panels, selectedElementId: null },
       };
+    /* Like a configuration switch, mounting a converter changes the optics but not the user's slider intent:
+       sliders are kept, and only the element selection (whose ids may no longer exist) is cleared. */
+    case SET_TELECONVERTER:
+      return action.panel === "b"
+        ? {
+            ...state,
+            lens: { ...state.lens, teleconverterKeyB: action.key },
+            panels: { ...state.panels, selectedElementIdB: null },
+          }
+        : {
+            ...state,
+            lens: { ...state.lens, teleconverterKeyA: action.key },
+            panels: { ...state.panels, selectedElementId: null, selectedElementIdA: null },
+          };
     case SWAP_LENSES:
       return {
         ...state,
@@ -259,6 +283,8 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
           lensKeyA: state.lens.lensKeyB,
           lensKeyB: state.lens.lensKeyA,
           selectedConfigurationKey: state.lens.lensKeyB,
+          teleconverterKeyA: state.lens.teleconverterKeyB,
+          teleconverterKeyB: state.lens.teleconverterKeyA,
         },
       };
 
@@ -283,7 +309,10 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case SET_FOCUS_T:
       return { ...state, sliders: { ...state.sliders, focusT: action.value } };
     case SET_ZOOM_T:
-      return { ...state, sliders: { ...state.sliders, zoomT: action.value } };
+      return {
+        ...state,
+        sliders: { ...state.sliders, zoomT: action.value, focusT: action.focusT ?? state.sliders.focusT },
+      };
     case SET_ABERRATION_T:
       return { ...state, sliders: { ...state.sliders, aberrationT: action.value } };
     case SET_STOPDOWN_T:
@@ -294,6 +323,18 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       return { ...state, sliders: { ...state.sliders, tiltDeg: action.value } };
     case RESET_SLIDERS:
       return { ...state, sliders: { focusT: 0, zoomT: 0, aberrationT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 } };
+
+    /* ── Patent-positions mode ──
+     * The flag alone never moves the sliders: the viewer resolves them to the nearest published station at render
+     * time. A station step writes only `sliders`, so the `panels` reference panel consumers depend on stays stable. */
+    case SET_PATENT_POSITIONS:
+      if (state.panels.patentPositions === action.enabled) return state;
+      return { ...state, panels: { ...state.panels, patentPositions: action.enabled } };
+    case SET_PATENT_STATION:
+      return {
+        ...state,
+        sliders: { ...state.sliders, zoomT: action.zoomT, focusT: action.focusT, aberrationT: 0, stopdownT: 0 },
+      };
 
     /* ── Panel expand/collapse (generic) ── */
     case SET_PANEL_EXPANDED:
@@ -323,10 +364,16 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
 
     case APPLY_URL_VIEW_STATE: {
       const urlState = action.state;
-      const lens =
+      let lens =
         urlState.configurationKey !== undefined
           ? { ...state.lens, selectedConfigurationKey: urlState.configurationKey }
           : state.lens;
+      /* `in`, not `!== undefined`: a URL without `tc` hydrates null and must unmount the converter. The
+         single-lens key and the per-pane comparison keys never arrive together (the URL boundary strips
+         whichever does not apply to the current mode). */
+      if ("teleconverterKey" in urlState) lens = { ...lens, teleconverterKeyA: urlState.teleconverterKey ?? null };
+      if ("teleconverterKeyA" in urlState) lens = { ...lens, teleconverterKeyA: urlState.teleconverterKeyA ?? null };
+      if ("teleconverterKeyB" in urlState) lens = { ...lens, teleconverterKeyB: urlState.teleconverterKeyB ?? null };
       const panels = { ...state.panels };
       for (const { key, default: fallback } of VIEW_STATE_FIELDS) {
         if (key in urlState) {
@@ -336,6 +383,10 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       if (urlState.analysisDrawerTab) panels.analysisDrawerTab = urlState.analysisDrawerTab;
       if (urlState.groupMovementMode && isGroupMovementMode(urlState.groupMovementMode)) {
         panels.groupMovementMode = urlState.groupMovementMode;
+      }
+      /* Preference-backed: only an explicit `pp` value changes it, so history entries without one leave it alone. */
+      if (!state.lens.comparing && typeof urlState.patentPositions === "boolean") {
+        panels.patentPositions = urlState.patentPositions;
       }
 
       const sliders = { ...state.sliders };

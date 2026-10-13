@@ -25,6 +25,24 @@ import {
 } from "../../../src/optics/optics.js";
 import { sharedNikkorZ70200 } from "./testLensFixtures.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
+import { fNumberAtStopdown } from "../../../src/optics/aperture.js";
+
+describe("aperture requests across zoom", () => {
+  // Shared regression: controls must preserve the requested setting while enforcing zoom limits.
+  const lens = { isZoom: true, FOPEN: 2, maxFstop: 16, zoomFOPENs: [2, 4, 8] } as RuntimeLens;
+
+  it.each([
+    [0, 2, 2],
+    [0.5, 2, 4],
+    [1, 2, 8],
+    [0, 11, 11],
+    [1, 11, 11],
+    [1, 16, 16],
+  ])("at zoom %s, request f/%s gives f/%s", (zoom, requested, expected) => {
+    const stopdown = Math.log(requested / 2) / Math.log(16 / 2);
+    expect(fNumberAtStopdown(stopdown, zoom, lens)).toBeCloseTo(expected, 10);
+  });
+});
 
 /* Hand-mocked RuntimeLens partials are acceptable here because the accessors
  * are pure scalar/array reads with no cached prepared state; do not copy this

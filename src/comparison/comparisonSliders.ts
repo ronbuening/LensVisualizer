@@ -6,8 +6,11 @@
  * different maximum apertures) with clamping past common points.
  */
 
+import { closeFocusAtZoom, remapFocusDistance } from "../optics/focusDistance.js";
+import { getGroupMovementAvailability } from "../optics/groupMovement.js";
 import type { RuntimeLens } from "../types/optics.js";
-import { FOCUS_INFINITY_THRESHOLD } from "../optics/optics.js";
+import { FOCUS_INFINITY_THRESHOLD, fopenAtZoom } from "../optics/optics.js";
+import { fNumberAtStopdown } from "../optics/aperture.js";
 import { clampLensMovement, perspectiveControlSteps } from "../optics/lensMovement.js";
 import { snapToStop } from "../utils/style/sliderStops.js";
 
@@ -22,8 +25,13 @@ export interface FocusPairResult {
 export interface AperturePairResult {
   stopdownA: number;
   stopdownB: number;
+  fNumberA: number;
+  fNumberB: number;
+  limitingPanel: "a" | "b" | null;
   commonPoint: number;
+  /** Fixed request-scale origin, independent of the current zoom positions. */
   widerFOPEN: number;
+  /** Slower of the two current-zoom wide-open apertures. */
   narrowerFOPEN: number;
   sharedMaxFstop: number;
 }
@@ -57,18 +65,28 @@ export interface MovementPairResult {
  * sharedT: 0 = infinity, 1 = closest-focusing lens's min distance
  * The "common point" is where the less-capable lens hits its close-focus limit.
  */
-export function computeFocusPair(sharedT: number, LA: RuntimeLens, LB: RuntimeLens): FocusPairResult {
-  const closA: number = LA.closeFocusM;
-  const closB: number = LB.closeFocusM;
-  const minClose: number = Math.min(closA, closB);
-  const maxClose: number = Math.max(closA, closB);
+export function computeFocusPair(
+  sharedT: number,
+  LA: RuntimeLens,
+  LB: RuntimeLens,
+  zoomA = 0,
+  zoomB = 0,
+): FocusPairResult {
+  const closA: number = closeFocusAtZoom(zoomA, LA);
+  const closB: number = closeFocusAtZoom(zoomB, LB);
+  const modeledA = getGroupMovementAvailability(LA).focus;
+  const modeledB = getGroupMovementAvailability(LB).focus;
+  // Product minimum-focus metadata alone does not establish modeled focus travel.
+  const endpoints = [...(modeledA ? [closA] : []), ...(modeledB ? [closB] : [])];
+  const minClose = endpoints.length ? Math.min(...endpoints) : 0;
+  const maxClose = endpoints.length ? Math.max(...endpoints) : 0;
 
   /* Common point: where the lens with larger closeFocusM (less capable) hits t=1 */
-  const commonPoint: number = minClose / maxClose;
+  const commonPoint: number = maxClose > 0 ? minClose / maxClose : 0;
 
   /* Per-lens focusT: physical dist = minClose / sharedT, so t_X = X.close * sharedT / minClose */
-  const focusA: number = Math.min((sharedT * closA) / minClose, 1.0);
-  const focusB: number = Math.min((sharedT * closB) / minClose, 1.0);
+  const focusA: number = modeledA ? Math.min((sharedT * closA) / minClose, 1.0) : 0;
+  const focusB: number = modeledB ? Math.min((sharedT * closB) / minClose, 1.0) : 0;
 
   return { focusA, focusB, commonPoint, minCloseFocus: minClose, maxCloseFocus: maxClose };
 }
@@ -79,9 +97,17 @@ export function computeFocusPair(sharedT: number, LA: RuntimeLens, LB: RuntimeLe
  * sharedT: 0 = fastest lens wide open, 1 = max stopped down
  * The "common point" is where the slower lens reaches its wide-open aperture.
  */
-export function computeAperturePair(sharedT: number, LA: RuntimeLens, LB: RuntimeLens): AperturePairResult {
+export function computeAperturePair(
+  sharedT: number,
+  LA: RuntimeLens,
+  LB: RuntimeLens,
+  zoomA = 0,
+  zoomB = 0,
+): AperturePairResult {
   const widerFOPEN: number = Math.min(LA.FOPEN, LB.FOPEN);
-  const narrowerFOPEN: number = Math.max(LA.FOPEN, LB.FOPEN);
+  const fopenA = fopenAtZoom(zoomA, LA);
+  const fopenB = fopenAtZoom(zoomB, LB);
+  const narrowerFOPEN = Math.max(fopenA, fopenB);
   const sharedMaxFstop: number = Math.max(LA.maxFstop, LB.maxFstop);
 
   /* Shared f-number at this slider position (logarithmic interpolation) */
@@ -91,13 +117,24 @@ export function computeAperturePair(sharedT: number, LA: RuntimeLens, LB: Runtim
   const stopdownA: number = fToStopdownT(fShared, LA.FOPEN, LA.maxFstop);
   const stopdownB: number = fToStopdownT(fShared, LB.FOPEN, LB.maxFstop);
 
-  /* Common point: where the slower lens just reaches its wide-open aperture (stopdownT = 0) */
+  /* Keep the request scale stable while moving the marker to the current zoom limit.
+   * No marker is meaningful when the lenses have no overlapping aperture range. */
   const commonPoint: number =
-    Math.abs(widerFOPEN - narrowerFOPEN) < 0.01
+    sharedMaxFstop <= widerFOPEN || narrowerFOPEN > Math.min(LA.maxFstop, LB.maxFstop)
       ? 0
       : Math.log(narrowerFOPEN / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
 
-  return { stopdownA, stopdownB, commonPoint, widerFOPEN, narrowerFOPEN, sharedMaxFstop };
+  return {
+    stopdownA,
+    stopdownB,
+    fNumberA: fNumberAtStopdown(stopdownA, zoomA, LA),
+    fNumberB: fNumberAtStopdown(stopdownB, zoomB, LB),
+    limitingPanel: Math.abs(fopenA - fopenB) < 0.01 ? null : fopenA > fopenB ? "a" : "b",
+    commonPoint,
+    widerFOPEN,
+    narrowerFOPEN,
+    sharedMaxFstop,
+  };
 }
 
 /**
@@ -178,6 +215,21 @@ export function computeZoomPair(sharedZoomT: number, LA: RuntimeLens, LB: Runtim
   );
 
   return { zoomA, zoomB, showZoom: true, sharedFL, minFL, maxFL, commonPointLow, commonPointHigh };
+}
+
+/** Preserve the requested object distance when the shared zoom control changes. */
+export function comparisonFocusAfterZoom(
+  sharedFocusT: number,
+  previousZoomT: number,
+  nextZoomT: number,
+  LA: RuntimeLens,
+  LB: RuntimeLens,
+): number {
+  const previousZoom = computeZoomPair(previousZoomT, LA, LB);
+  const nextZoom = computeZoomPair(nextZoomT, LA, LB);
+  const previous = computeFocusPair(sharedFocusT, LA, LB, previousZoom.zoomA, previousZoom.zoomB);
+  const next = computeFocusPair(0, LA, LB, nextZoom.zoomA, nextZoom.zoomB);
+  return remapFocusDistance(sharedFocusT, previous.minCloseFocus, next.minCloseFocus);
 }
 
 export function computeMovementPair(

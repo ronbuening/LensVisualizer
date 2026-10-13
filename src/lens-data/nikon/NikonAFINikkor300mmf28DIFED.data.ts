@@ -2,9 +2,9 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-I NIKKOR 300mm f/2.8D IF-ED                        ║
+ * ║  LENS DATA — NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED                        ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JPH04294310A, Example 1 (Nikon / Susumu Sato).              ║
+ * ║  Data source: JP H04-294310 A, Example 1 (Nikon / Susumu Sato).              ║
  * ║  Production correlation is strong but inferential; the patent does not     ║
  * ║  name the commercial lens.                                                  ║
  * ║  11 elements / 9 air-spaced clusters / 3 patent functional groups.         ║
@@ -20,6 +20,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  No unprescribed plate is modeled. The authored rear plane is fixed at the  ║
  * ║  infinity bare-air conjugate; the close-state residual is only 0.0003217 mm.║
  * ║  The approximately 0.685 mm patent-Bf offset remains source-unresolved.      ║
+ * ║  Nikon's manual requires a 39 mm filter in the rear slip-in holder, and a   ║
+ * ║  2 mm crown plate would supply about 0.68 mm, but no example table, prose   ║
+ * ║  passage, or figure lists a plate, so none is modeled (source-listed only). ║
  * ║                                                                              ║
  * ║  STOP MODEL: Example 1 gives only a schematic stop S after G3. A 14.0 mm    ║
  * ║  surface-20→STO split is inferred from Fig. 1. The STO semi-diameter is      ║
@@ -41,8 +44,8 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-i-nikkor-300mm-f2-8d-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-I NIKKOR 300mm f/2.8D IF-ED",
-  subtitle: "JPH04294310A Example 1 — production correlation inferred from timing and architecture",
+  name: "NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED",
+  subtitle: "JP H04-294310 A Example 1 — production correlation inferred from timing and architecture",
   specs: [
     "300mm f/2.8",
     "PATENT F=293.9647mm / FN=2.9",
@@ -56,7 +59,7 @@ const LENS_DATA = {
   apertureDesign: 2.9,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JPH04294310A",
+  patentNumber: "JP H04-294310 A",
   patentAuthors: ["Susumu Sato"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1992,
@@ -245,6 +248,8 @@ const LENS_DATA = {
 
   // Patent R=2500 mm is measured object-plane to the source-defined image/reference plane.
   closeFocusM: 2.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: negative G2 (surfaces 10-14) translates 10.8889 mm imageward; D9 increases and D14 decreases by the same amount. The authored image plane is fixed at the rounded prescription's infinity bare-air conjugate; the patent's approximately 0.685 mm Bf offset is unresolved and no unprescribed plate is modeled.",
 

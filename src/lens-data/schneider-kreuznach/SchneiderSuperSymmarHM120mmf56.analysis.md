@@ -216,3 +216,10 @@ Schneider's technical data sheet lists the 120 mm lens with an effective focal l
 - SCHOTT, _Optical Glass Datasheets_: N-LAK33B, N-LAF34, and N-SK16 optical data.
 - CDGM, _Colourless Optical Glass Catalog_, 2026 edition: H-F6 and H-ZF39 comparison data.
 - HIKARI, _Optical Glass Catalog_, 2023 edition, and OHARA, _Special Order Glass Types_, March 12, 2025: independent checks of unresolved optical positions.
+
+
+## Production mount assignment
+
+Schneider’s Super-Symmar HM data sheet specifies the shutter-mounted 120mm lens for bellows/view-camera use. [Manufacturer source](https://www.hyam.net/blog/wp-content/uploads/2019/08/super_symmar_hm.pdf).
+
+`lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.

@@ -48,15 +48,15 @@ The three published infinity states are retained because two group trajectories 
 
 The stop remains 0.85 mm ahead of surface 11A at all three states. This fixed stop-to-G3 spacing implements the patent’s statement that the stop moves integrally with G3.
 
-Under the project’s strict terminology, the design is neither telephoto nor retrofocus at any defined state. The air-equivalent total-track-to-EFL ratios are 8.800, 4.674, and 2.686, all greater than unity, while the rear-air-space-to-EFL ratios are 0.834, 0.531, and 0.242, all less than unity.
+Under the project’s strict terminology, the design is neither telephoto nor retrofocus at any defined state. The air-equivalent total-track-to-EFL ratios are 8.800, 4.674, and 2.686, all greater than unity, while the air-equivalent rear-space-to-EFL ratios are 0.834, 0.531, and 0.242, all less than unity.
 
-The patent includes a plane-parallel optical member PP after G4 (¶0057 and Table 1). The data model omits this cover/filter surrogate and preserves its paraxial effect by replacing the rear region with the air-equivalent spacing
+The patent includes a plane-parallel optical member PP after G4 (¶0057 and Table 1): surfaces 22–23, 2.14 mm thick, nd = 1.516798, νd = 64.20. The data model carries it in `rearPlates` (N-BK7 catalog equivalent), so every analysis traces it, but it is not drawn in the section. The last stored gap is DD21, the physical air from surface 21 to PP, followed by the plate and DD23 = 0.61 mm to the image. Table 3 prints DD23 as 0.61 / 0.61 / 0.63 mm; the model keeps a single 0.61 mm trailing gap and adds the extra 0.02 mm at tele to DD21, so the stored DD21 values are 4.10, 5.55, and 4.67 mm and the physical surface-21-to-image distance is exactly as printed at every state. The paraxial equivalent of the rear region is unchanged:
 
 $$
-D_{21,\mathrm{model}} = DD21 + \frac{2.14}{1.516798} + DD23.
+Bf = DD21 + \frac{2.14}{1.516798} + DD23 = 6.12087,\ 7.57087,\ 6.69087\ \mathrm{mm}.
 $$
 
-The resulting authored rear spaces are 6.12087, 7.57087, and 6.69087 mm. No sensor cover, filter, dummy surface, or mechanical component remains in the ordinary sequential model.
+The physical track is 0.729 mm longer than this air-equivalent track, the plate's $t(1 - 1/n)$. No sensor cover, dummy surface, or mechanical component beyond PP is modeled.
 
 ## Element-by-Element Analysis
 
@@ -320,3 +320,9 @@ The source correction with numerical significance is the middle focal length in 
 2. Fujifilm, *X10* product catalogue, official lens specifications and descriptions of the 11-element/9-group lens, three aspherical elements, two ED elements, five-element-group OIS, marketed focal length and aperture, and focus ranges: <https://www.fujifilm.com.hk/products/digital_cameras/x/fujifilm_x10/pdf/index/x10_catalogue_01.pdf>.
 3. Fujifilm, *X10 Owner’s Manual*, normal, macro, and Super Macro focus ranges: <https://dl.fujifilm-x.com/support/manual/x/fujifilm_x10_manual_en.pdf>.
 4. Current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA optical-glass catalog data used for the nd/νd audit and the L32/L35 spectral annotations.
+
+## Image-format reference
+
+`imageFormat: "2-3-inch-type"` records the production X10’s 2/3-inch sensor class from [FUJIFILM’s launch specifications](https://www.fujifilm.co.jp/corporate/news/articleffnr_0559.html), with nominal 8.8 × 6.6 mm format dimensions. The five/six-aspheric-surface discrepancy and patent/product correlation caveat remain.
+
+With the nominal 2/3-inch frame reference, the current aperture-contained chief-ray edge reaches about 4.23 mm at wide infinity and 4.18 mm at the middle station, approximately 77% and 76% of the 5.50 mm corner. The front rim limits these fields. Production format metadata does not remove this modeled clipping or establish production vignetting; the source-correlated SDs remain qualified.

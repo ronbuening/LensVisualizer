@@ -16,6 +16,7 @@ import nikonPf500Data from "../../../../src/lens-data/nikon/NikonAFSNikkor500mmf
 import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import { computeElementShapes } from "../../../../src/optics/diagramGeometry.js";
+import { createLensMovementTransform } from "../../../../src/optics/lensMovement.js";
 import { doLayout } from "../../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
@@ -77,6 +78,28 @@ function pointsString(points: number[][]): string {
 
 function segment(sp: number[][], gp: number[][] = []): RaySegment {
   return { sp, gp, spPoints: pointsString(sp), gpPoints: pointsString(gp) };
+}
+
+function imagePlaneCoordinates(container: HTMLElement, labelText = "IMG") {
+  const line = Array.from(container.querySelectorAll('line[stroke-dasharray="4,3"]')).find(
+    (candidate) => candidate.getAttribute("stroke") === themes.dark.imgLine,
+  );
+  const label = Array.from(container.querySelectorAll("text")).find((candidate) => candidate.textContent === labelText);
+
+  expect(line).toBeDefined();
+  expect(label).toBeDefined();
+  return {
+    line: {
+      x1: Number(line!.getAttribute("x1")),
+      y1: Number(line!.getAttribute("y1")),
+      x2: Number(line!.getAttribute("x2")),
+      y2: Number(line!.getAttribute("y2")),
+    },
+    label: {
+      x: Number(label!.getAttribute("x")),
+      y: Number(label!.getAttribute("y")),
+    },
+  };
 }
 
 const baseLens = {
@@ -193,14 +216,14 @@ describe("DiagramSVG", () => {
   it("does not repeat the maker when the display name already begins with it", () => {
     const namedLens = {
       ...baseLens,
-      data: { ...baseLens.data, maker: "Nikon", name: "NIKON AF DC-NIKKOR 135mm f/2D" },
+      data: { ...baseLens.data, maker: "Nikon", name: "NIKON AF DC-NIKKOR 135mm f/2 D" },
     } as RuntimeLens;
     const { container } = render(
       <DiagramSVG {...baseDiagramSvgProps({ L: namedLens, shapes: [baseShape], onHover, onSelect })} />,
     );
 
     expect(container.querySelector("svg")?.getAttribute("aria-label")).toBe(
-      "Lens cross-section diagram of NIKON AF DC-NIKKOR 135mm f/2D",
+      "Lens cross-section diagram of NIKON AF DC-NIKKOR 135mm f/2 D",
     );
   });
 
@@ -219,6 +242,30 @@ describe("DiagramSVG", () => {
   it("describes hidden ray layers when no overlays are shown", () => {
     const { container } = render(<DiagramSVG {...baseDiagramSvgProps({ onHover, onSelect })} />);
     expect(container.querySelector("desc")?.textContent).toContain("all ray layers hidden");
+  });
+
+  it("distinguishes the fixed camera axis from the moved lens optical axis", () => {
+    const movementTransform = createLensMovementTransform(43, {
+      shiftMm: 8,
+      tiltDeg: 0,
+      active: true,
+      config: null,
+    });
+    const { container } = render(
+      <DiagramSVG
+        {...baseDiagramSvgProps({
+          movementTransform,
+          lensAxis: movementTransform.axis(0, 100),
+          onHover,
+          onSelect,
+        })}
+      />,
+    );
+
+    const description = container.querySelector("desc")?.textContent ?? "";
+    expect(description).toContain("fixed camera axis");
+    expect(description).toContain("moved lens optical axis");
+    expect(container.querySelector('[aria-label="Moved lens optical axis"]')).toBeTruthy();
   });
 
   it("selects and toggles a lens element from the keyboard", () => {
@@ -464,6 +511,49 @@ describe("DiagramSVG", () => {
     expect(Number(label!.getAttribute("x"))).toBeCloseTo(143, 10);
   });
 
+  it.each([
+    { movement: "zero", shiftMm: 0, tiltDeg: 0 },
+    { movement: "shift", shiftMm: 8, tiltDeg: 0 },
+    { movement: "tilt", shiftMm: 0, tiltDeg: 5 },
+    { movement: "combined shift and tilt", shiftMm: 8, tiltDeg: 5 },
+  ])("keeps the image plane, label, and camera axis fixed during $movement movement", ({ shiftMm, tiltDeg }) => {
+    const movementTransform = createLensMovementTransform(43, {
+      shiftMm,
+      tiltDeg,
+      active: shiftMm !== 0 || tiltDeg !== 0,
+      config: null,
+    });
+    const { container } = render(
+      <DiagramSVG
+        {...baseDiagramSvgProps({
+          movementTransform,
+          showPupils: true,
+        })}
+      />,
+    );
+
+    expect(imagePlaneCoordinates(container)).toEqual({
+      line: { x1: 143, y1: 340, x2: 143, y2: 260 },
+      label: { x: 143, y: 245 },
+    });
+
+    const cameraAxis = container.querySelector('line[stroke-dasharray="6,4"]');
+    expect(cameraAxis).toBeTruthy();
+    expect({
+      x1: Number(cameraAxis!.getAttribute("x1")),
+      y1: Number(cameraAxis!.getAttribute("y1")),
+      x2: Number(cameraAxis!.getAttribute("x2")),
+      y2: Number(cameraAxis!.getAttribute("y2")),
+    }).toEqual({ x1: 8, y1: 300, x2: 1192, y2: 300 });
+
+    expect(mockApertureStop).toHaveBeenCalledWith(expect.objectContaining({ pointTransform: movementTransform.point }));
+    const epLabel = Array.from(container.querySelectorAll("text")).find((candidate) => candidate.textContent === "EP");
+    const [epCenterZ] = movementTransform.point(120, 0);
+    const [, epTopY] = movementTransform.point(120, -5);
+    expect(Number(epLabel?.getAttribute("x"))).toBeCloseTo(epCenterZ + 100, 10);
+    expect(Number(epLabel?.getAttribute("y"))).toBeCloseTo(300 + epTopY - baseLens.lyStoPad, 10);
+  });
+
   it("renders the hidden Newtonian fixture image plane from its side-focus metadata", () => {
     const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
     const layout = doLayout(0, 0, L);
@@ -521,11 +611,11 @@ describe("DiagramSVG", () => {
     expect(Number(label!.getAttribute("y"))).toBeCloseTo(325, 10);
   });
 
-  it("renders folded hit-order labels for debug fixtures", () => {
-    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+  it("renders standalone mirrors and packs repeated folded hit-order labels", () => {
+    const L = { ...buildLens(LENS_CATALOG["reference-newtonian-side-focus"]), ES: [] };
     const layout = doLayout(0, 0, L);
 
-    render(
+    const { container } = render(
       <DiagramSVG
         L={L}
         t={themes.dark}
@@ -549,7 +639,7 @@ describe("DiagramSVG", () => {
         showOffAxis="off"
         showChromatic={false}
         showPupils={false}
-        foldedHitOrderLabels={["M1", "SEC"]}
+        foldedHitOrderLabels={["M1", "SEC", "M1"]}
         zoomT={0}
         act={null}
         onHover={onHover}
@@ -567,6 +657,13 @@ describe("DiagramSVG", () => {
 
     expect(screen.getByText("1 M1")).toBeTruthy();
     expect(screen.getByText("2 SEC")).toBeTruthy();
+    expect(screen.getByText("3 M1")).toBeTruthy();
+    expect(
+      Math.abs(Number(screen.getByText("1 M1").getAttribute("y")) - Number(screen.getByText("3 M1").getAttribute("y"))),
+    ).toBeGreaterThanOrEqual(12);
+    const mirrors = container.querySelectorAll('[data-testid^="surface-accent-first-surface-mirror-"]');
+    expect(mirrors).toHaveLength(2);
+    expect(mirrors[0].getAttribute("d")).toContain("M");
   });
 
   it("renders second-surface mirror coating accents from element shapes", () => {
@@ -808,6 +905,7 @@ describe("DiagramSVG", () => {
     const cardinalElements: CardinalElements = {
       frontVertexZ: 0,
       rearVertexZ: 20,
+      rearLensVertexZ: 20,
       imagePlaneZ: 43,
       objectIndex: 1,
       imageIndex: 1,

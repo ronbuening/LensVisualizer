@@ -34,6 +34,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    sd/|R| < 0.90, element SD ratio ≤ 1.25, and signed cross-gap sag.    ║
  * ║    They are not patent or measured production dimensions. Default      ║
  * ║    oblique ray samples remain within the selected apertures.            ║
+ * ║    Surface 3 was raised to pass the traced chief ray to the full-frame  ║
+ * ║    corner (the patent plots ω = 42°); L2's SD ratio is now 1.41, as     ║
+ * ║    surface 4 sits at its 4→5 cross-gap limit (2026-09-24                ║
+ * ║    field-coverage audit).                                               ║
  * ║                                                                          ║
  * ║  NOTE ON CLOSE FOCUS:                                                   ║
  * ║    The patent supplies only infinity data. Solving the 0.25 m unit-focus║
@@ -169,7 +173,7 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 23.8296, d: 4.8768, nd: 1.7234, elemId: 1, sd: 15.8 },
     { label: "2", R: 70.716, d: 0.0984, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "3", R: 41.0016, d: 1.464, nd: 1.6228, elemId: 2, sd: 10.0 },
+    { label: "3", R: 41.0016, d: 1.464, nd: 1.6228, elemId: 2, sd: 11.7 },
     { label: "4", R: 9.9768, d: 3.7368, nd: 1.0, elemId: 0, sd: 8.29 },
     { label: "5", R: 32.2488, d: 1.464, nd: 1.713, elemId: 3, sd: 9.0 },
     { label: "6", R: 11.0736, d: 3.9408, nd: 1.0, elemId: 0, sd: 9.2 },

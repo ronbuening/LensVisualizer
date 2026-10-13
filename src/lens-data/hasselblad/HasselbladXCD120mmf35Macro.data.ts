@@ -16,14 +16,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Patent-listed H*2 (effective diameter) values halved.           ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent surfaces 19–21 (Flat/1.51633/Flat cover glass) excluded. ║
- * ║    Air-equivalent BFD folded onto surface 18:                      ║
- * ║    31.25575 + 1.80/1.51633 + 0.10 = 32.543 mm.                   ║
+ * ║    Patent Fig. 6 surfaces 19–20 (COVER, 1.80 mm, nd 1.51633,       ║
+ * ║    νd 64.14) and the 0.10 mm air gap to surface 21 (image) are     ║
+ * ║    modeled in `rearPlates` (traced, not drawn). Surface 18 keeps   ║
+ * ║    the patent's 31.25575 mm gap to the cover glass.                ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -211,7 +212,20 @@ const LENS_DATA = {
 
     // G6 — L61 (fixed, field flattener)
     { label: "17", R: -61.952, d: 2.0, nd: 1.69895, elemId: 10, sd: 19.35 }, // L61 front
-    { label: "18", R: 401.068, d: 32.54309, nd: 1.0, elemId: 0, sd: 20.0 }, // BFD (air-equiv, cover glass folded)
+    { label: "18", R: 401.068, d: 31.25575, nd: 1.0, elemId: 0, sd: 20.0 }, // patent gap to the cover glass
+  ],
+
+  /* ── Cover glass COVER (patent Fig. 6 surfaces 19–20): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "COVER",
+      thicknessMm: 1.8,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 0.1,
+      source: "US 2020/0192060 A1, Example 2 Fig. 6 surfaces 19–20",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -224,12 +238,13 @@ const LENS_DATA = {
    *  G5 moves −1.01 mm net (reversal: first toward image, then toward object).
    *  Total optical length (surface 1 → cover glass) is constant at 152.12 mm.
    */
+  focusPositions: [0, 0.21386551368720905, 1],
   var: {
-    "2": [9.65052, 1.41023], // G1↔G2  (G2 approach toward object shrinks this gap)
-    "7": [5.15475, 13.39504], // G2↔G3  (expands as G2 moves forward)
-    STO: [45.0101, 4.62225], // STO↔G4 (compresses as G4 moves forward)
-    "13": [0.8, 42.1999], // G4↔G5  (expands as G4 moves forward)
-    "16": [11.23909, 10.22703], // G5↔G6  (slight change, G5 reversal)
+    "2": [9.65052, 8.84413, 1.41023], // G1↔G2
+    "7": [5.15475, 5.96115, 13.39504], // G2↔G3
+    STO: [45.0101, 37.35039, 4.62225], // STO↔G4
+    "13": [0.8, 10.09897, 42.1999], // G4↔G5
+    "16": [11.23909, 9.59983, 10.22703], // G5↔G6 reversal
   },
 
   varLabels: [
@@ -258,6 +273,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.43,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Triple-group inner focus (G2 + G4 + G5 move toward object); constant overall length. G4 is primary focus element (40 mm travel). G5 reversal motion fine-tunes aberrations at macro magnifications.",
 

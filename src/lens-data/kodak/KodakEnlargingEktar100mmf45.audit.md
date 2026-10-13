@@ -21,10 +21,6 @@ Patent: US 2,279,384, Example 6
 - Stored SDs preserve that family silhouette: the front doublet is 11.4-14.0 mm, the inferred stop is 9.357 mm, the middle negative remains 11.4-12.0 mm, and the rear doublet expands to 15.4-15.8 mm.
 - No SD values changed. Current values remain inferred from the patent family figure, the Example 6 prescription, f/4.5 stop geometry, edge thickness, and cross-gap sag checks.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-30 - SUMITA BAK1 coefficient recovery
 
 - US 2,279,384 Example 6 gives L2 at nd = 1.573, νd = 57.5.

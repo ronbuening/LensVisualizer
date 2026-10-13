@@ -307,6 +307,8 @@ const LENS_DATA = {
 
   nominalFno: [3.5, 4.5],
   closeFocusM: 0.25,
+  // Source-tabulated focus rows differ by zoom station.
+  publishedStations: { focus: [[1], []] },
   fstopSeries: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   scFill: 0.84,

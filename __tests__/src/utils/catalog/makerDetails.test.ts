@@ -9,10 +9,15 @@ describeDetailRegistry({
   ids: allMakerSlugs(),
   idNoun: "known maker slug",
   nonEmptyStringFields: ["headquarters", "summary", "history"],
-  positiveNumberFields: ["founded"],
 });
 
 describe("getMakerDetails", () => {
+  it("validates founding years when a profile documents one", () => {
+    for (const details of Object.values(MAKER_DETAILS)) {
+      if (details.founded != null) expect(details.founded).toBeGreaterThan(0);
+    }
+  });
+
   it("returns details for a known slug", () => {
     const details = getMakerDetails("nikon");
     expect(details).not.toBeNull();

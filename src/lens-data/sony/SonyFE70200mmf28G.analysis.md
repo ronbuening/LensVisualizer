@@ -87,7 +87,7 @@ L1F3 carries somewhat stronger positive power than L1F2. Because G1F is fixed du
 
 #### L1R1: Negative meniscus, convex toward object
 
-nd = 1.71740, νd = 29.5. Glass: 717/295 dense flint class, catalog-matched as HOYA E-FD1L / OHARA S-TIH1 class. f = -240.1 mm.
+nd = 1.71740, νd = 29.5. Glass: 717/295 dense flint class, catalog-matched as HOYA E-FD1L. f = -240.1 mm.
 
 L1R1 is the negative member of the front focusing subgroup. Its low Abbe number makes it the chromatic counterweight to the positive low-dispersion elements around it. The moving group is not simply a positive focusing singlet; it is a corrected two-element subgroup.
 
@@ -108,7 +108,7 @@ L21 is the principal negative element at the entrance of the variator group. It 
 #### L22-L23: Cemented variator corrector
 
 L22: nd = 1.59280, νd = 68.6. Glass: HOYA FCD515-class ED fluorocrown. f = -48.0 mm.  
-L23: nd = 1.80810, νd = 22.8. Glass: 808/228 dense flint class, catalog-matched as HOYA FD225 / OHARA S-NPH1-class. f = +48.3 mm.
+L23: nd = 1.80810, νd = 22.8. Glass: 808/228 dense flint class, catalog-matched as HOYA FD225. f = +48.3 mm.
 
 The two standalone focal lengths are nearly equal and opposite, but the cemented pair is not optically irrelevant. It supplies chromatic correction inside the moving variator, so the aberration change introduced by G2 travel is not left to the fixed rear relay alone. The patent identifies the L22-L23 cemented lens as part of the G2 configuration used to suppress aberration variation during zooming (¶0112).
 
@@ -137,7 +137,7 @@ This cemented doublet places ED correction in the moving compensator. That is st
 
 #### L41: Positive meniscus with one aspherical surface
 
-nd = 1.58310, νd = 59.5. Glass: 583/594 barium crown class, catalog-matched as OHARA S-BAL42 / HOYA M-BACD12 class. f = +216.8 mm.
+nd = 1.58310, νd = 59.5. Glass: 583/594 barium crown class, catalog-matched as HOYA M-BACD12, a glass for molding. f = +216.8 mm.
 
 L41 is immediately behind the stop and carries aspherical surface s24 on its object-side face. Because this surface is close to the aperture stop, it has strong leverage over full-aperture spherical aberration while having more limited influence on lateral field distortion.
 
@@ -150,7 +150,7 @@ L42 is the second FCD1/S-FPL51-class ED element in the design. Together with L32
 #### L43-L44: Cemented field-correction doublet
 
 L43: nd = 2.00100, νd = 29.1. Glass: HOYA TAFD55 / TAFD55-W class. f = -47.5 mm.  
-L44: nd = 1.56730, νd = 42.8. Glass: 567/428 flint class, catalog-matched as HOYA E-FL6 / OHARA S-TIL26 class. f = +35.9 mm.
+L44: nd = 1.56730, νd = 42.8. Glass: 567/428 flint class, catalog-matched as HOYA E-FL6. f = +35.9 mm.
 
 This doublet is unusual because both glasses lie on the flint side of the crown/flint boundary. Its purpose is not a simple crown/flint achromat. The high index of L43 permits a strongly powered cemented interface, while the positive L44 produces the net positive action needed by G4. The patent describes G4 as two positive lenses followed by a negative-positive cemented lens for correction of spherical aberration, coma, and field curvature in the image-forming section (¶0115).
 
@@ -158,7 +158,7 @@ This doublet is unusual because both glasses lie on the flint side of the crown/
 
 #### L51: Biconcave negative, double-sided aspherical
 
-nd = 1.58310, νd = 59.5. Glass: 583/594 barium crown class, catalog-matched as OHARA S-BAL42 / HOYA M-BACD12 class. f = -41.9 mm.
+nd = 1.58310, νd = 59.5. Glass: 583/594 barium crown class, catalog-matched as HOYA M-BACD12, a glass for molding. f = -41.9 mm.
 
 G5 consists of a single negative element with both surfaces aspherical. The patent identifies this as a reduced-weight focusing group (¶0116). It also moves during zoom, so the element has two duties: rear focusing and focal-length coordination in the principal image-forming system.
 
@@ -168,8 +168,8 @@ A moderate-index barium crown is appropriate here because it avoids the mass pen
 
 #### L61-L62: Cemented OSS component; L61 is the XA/aspherical member
 
-L61: nd = 1.51630, νd = 64.1. Glass: BK7-class borosilicate crown, catalog-matched as OHARA S-BSL7 / HOYA BSC7 / Schott N-BK7 class. f = +48.1 mm.  
-L62: nd = 1.80610, νd = 33.3. Glass: HOYA NBFD15-class dense flint. f = -108.3 mm.
+L61: nd = 1.51630, νd = 64.1. Glass: borosilicate crown, catalog-matched as OHARA L-BSL7, a low-softening-temperature glass for molding. f = +48.1 mm.  
+L62: nd = 1.80610, νd = 33.3. Glass: dense flint, catalog-matched as HIKARI J-LASFH6 (printed νd 33.3450; L33's 33.2694 is HOYA NBFD15). f = -108.3 mm.
 
 The patent states that the cemented component containing L61 and L62 can shift perpendicular to the optical axis as the vibration-proof lens group (¶0118). L61 carries aspherical surface s33. Its comparatively small aspherical departure is consistent with a stabilization component: a strongly figured surface would be more sensitive to decentration during OIS movement.
 
@@ -177,7 +177,7 @@ Sony identifies one XA element in the production lens. The patent does not use S
 
 #### L63-L64: Cemented rear relay doublet
 
-L63: nd = 1.67270, νd = 32.2. Glass: 673/322 dense flint class, catalog-matched as HOYA E-FD5 / OHARA S-TIM25 class. f = +35.2 mm.  
+L63: nd = 1.67270, νd = 32.2. Glass: 673/322 dense flint class, catalog-matched as HOYA E-FD5. f = +35.2 mm.  
 L64: nd = 1.83480, νd = 42.7. Glass: 835/427 high-index lanthanum-flint class, catalog-matched as HOYA TAFD5G / OHARA S-LAH55VS class. f = -100.8 mm.
 
 This doublet supplies positive relay power with controlled field contribution. As with the G4 doublet, the glass pairing is not a conventional low-index crown plus high-index flint pair; both glasses lie in flint or dense-flint territory by Abbe number.
@@ -190,32 +190,32 @@ L65 is a rear negative field-shaping element. Its position gives it useful lever
 
 #### L66: Negative meniscus, concave toward object
 
-nd = 1.88300, νd = 40.8. Glass: 883/408 high-index lanthanum-flint class, catalog-matched as HOYA TAFD30 / OHARA S-LAH58 class. f = -54.8 mm.
+nd = 1.88300, νd = 40.8. Glass: 883/408 high-index lanthanum-flint class, catalog-matched as HOYA TAFD30. f = -54.8 mm.
 
 The final element is a strong high-index negative meniscus. It helps set the rear conjugate and exit-pupil position. The patent describes G6 as producing an advantageous exit-pupil position for an interchangeable-lens camera by avoiding interference between the mount diameter and rays (¶0117).
 
 ## Glass Identification and Selection
 
-The patent gives nd and νd values, not named glass makes. Glass names in the data file should therefore be read as catalog-class matches to the six-digit code `round(1000·nd) / round(10·νd)`, not as a claim that the patent explicitly named a vendor. This distinction is essential for Example 1 because an OHARA-only assignment produces multiple false matches.
+The patent gives nd and νd values, not named glass makes. Glass names in the data file should therefore be read as catalog-class matches to the six-digit code `round(1000·nd) / round(10·νd)`, not as a claim that the patent explicitly named a vendor. This distinction is essential for Example 1 because an OHARA-only assignment produces multiple false matches. Table 1 prints νd to four decimals, and for most elements one catalog glass reproduces all four: HOYA FCD100, FCD515, FD225, NBF1, NBFD15, M-BACD12, E-FD5, E-FL6 and TAC8, OHARA L-BSL7 and HIKARI J-LASFH6 match exactly, and HOYA E-FD1L, TAF3D, TAFD5G and TAFD30 to within 0.013. The table names those glasses where the match is that close.
 
 | Patent nd / νd | Six-digit code | Corrected catalog-class match | Elements | Role |
 |---:|---:|---|---|---|
 | 1.4370 / 95.1 | 437/951 | HOYA FCD100 class | L1F2, L1F3 | Super ED front-group correction |
 | 1.4970 / 81.6 | 497/816 | HOYA FCD1 / OHARA S-FPL51 class | L32, L42 | ED correction in G3 and G4 |
 | 1.5928 / 68.6 | 593/686 | HOYA FCD515 class | L1R2, L22 | ED correction in focus/variator groups |
-| 1.5163 / 64.1 | 516-517/641-642 | S-BSL7 / BSC7 / N-BK7 class | L61 | OIS/XA substrate |
-| 1.5831 / 59.5 | 583/594 | OHARA S-BAL42 / HOYA M-BACD12 class | L41, L51 | Aspherical barium-crown elements |
+| 1.5163 / 64.1 | 516/641 | OHARA L-BSL7 | L61 | OIS/XA substrate |
+| 1.5831 / 59.5 | 583/595 | HOYA M-BACD12 | L41, L51 | Aspherical barium-crown elements |
 | 1.7292 / 54.7 | 729/547 | HOYA TAC8 / OHARA S-LAL18 class | L65 | Rear negative field element |
 | 1.7433 / 49.2 | 743/492 | HOYA NBF1 / OHARA S-LAM60 class | L31 | Compensator positive element |
 | 1.8042 / 46.5 | 804/465 | HOYA TAF3D / OHARA S-LAH65VS class | L1F1, L21, L24 | High-index negative elements |
-| 1.5673 / 42.8 | 567/428 | HOYA E-FL6 / OHARA S-TIL26 class | L44 | G4 cemented positive partner |
+| 1.5673 / 42.8 | 567/428 | HOYA E-FL6 | L44 | G4 cemented positive partner |
 | 1.8348 / 42.7 | 835/427 | HOYA TAFD5G / OHARA S-LAH55VS class | L64 | G6 cemented negative partner |
-| 1.8830 / 40.8 | 883/408 | HOYA TAFD30 / OHARA S-LAH58 class | L66 | Final high-index negative meniscus |
-| 1.8061 / 33.3 | 806/333 | HOYA NBFD15 class | L33, L62 | ED-achromat and OIS cemented partners |
-| 1.6727 / 32.2 | 673/322 | HOYA E-FD5 / OHARA S-TIM25 class | L63 | Strong rear-relay positive element |
-| 1.7174 / 29.5 | 717/295 | HOYA E-FD1L / OHARA S-TIH1 class | L1R1 | Negative front focusing element |
+| 1.8830 / 40.8 | 883/408 | HOYA TAFD30 | L66 | Final high-index negative meniscus |
+| 1.8061 / 33.3 | 806/333 | HOYA NBFD15 (L33, νd 33.2694); HIKARI J-LASFH6 (L62, νd 33.3450) | L33, L62 | ED-achromat and OIS cemented partners |
+| 1.6727 / 32.2 | 673/322 | HOYA E-FD5 | L63 | Strong rear-relay positive element |
+| 1.7174 / 29.5 | 717/295 | HOYA E-FD1L | L1R1 | Negative front focusing element |
 | 2.0010 / 29.1 | 001/291 | HOYA TAFD55 / TAFD55-W class | L43 | Very high-index G4 corrector |
-| 1.8081 / 22.8 | 808/228 | HOYA FD225 / OHARA S-NPH1 class | L23 | High-dispersion variator doublet partner |
+| 1.8081 / 22.8 | 808/228 | HOYA FD225 | L23 | High-dispersion variator doublet partner |
 
 The glass map accounts for Sony's published ED-element count. The two 437/951 elements are Super ED-class. The four ED-class elements are L1R2 and L22 in 593/686 FCD515-class glass plus L32 and L42 in 497/816 FCD1/S-FPL51-class glass.
 
@@ -234,9 +234,11 @@ The patent's aspherical equation uses the standard conic-base form with K as the
 | Surface | Element | A4 | A6 | A8 | A10 | Polynomial departure at data-file SD |
 |---|---|---:|---:|---:|---:|---:|
 | 24A | L41 front | -2.11750E-06 | -2.28633E-10 | +1.66377E-12 | -1.62257E-15 | -217.5 µm at h = 18.0 mm |
-| 31A | L51 front | +1.06533E-06 | -4.12307E-09 | +2.76793E-11 | +7.79734E-14 | +81.3 µm at h = 14.2 mm |
+| 31A | L51 front | +1.06533E-06 | -4.12307E-09 | -2.76793E-11 | +7.79734E-14 | -10.3 µm at h = 14.2 mm |
 | 32A | L51 rear | -6.11153E-06 | -7.64389E-09 | -6.19757E-11 | +9.35929E-14 | -356.7 µm at h = 14.0 mm |
 | 33A | L61 front | -6.31905E-07 | +2.79472E-09 | -6.29142E-12 | 0 | -21.5 µm at h = 16.0 mm |
+
+The A8 coefficient of surface 31A is taken from the application's PCT publication, WO 2017/134929 A1, which prints -2.76793E-11. The US publication prints the same digits without the minus sign; with that value the design would show about -6.7 mm of longitudinal spherical aberration at f/2.88 at every zoom position, where the patent's FIG. 4 plots it within about 0.1 mm. With the PCT value the model traces to -0.09 mm or less.
 
 Surface 24A is the first post-stop refracting surface and primarily addresses full-aperture spherical aberration. Surfaces 31A and 32A are on the single-element rear focus group, giving G5 correction leverage as it moves during focusing and zooming. Surface 33A is on the L61-L62 OIS component; its relatively modest departure is consistent with a decentering stabilization group where strong figure can increase decenter sensitivity.
 
@@ -273,11 +275,11 @@ The prescription was re-entered from the patent tables and independently checked
 
 The residual differences are within the precision expected from the rounded patent table. The computed back focal distances are 30.6282 mm, 30.5677 mm, and 30.5896 mm at the three positions, consistent with the fixed 30.6083 mm distance recovered from the constant total track.
 
-The aperture stop semi-diameter required to reproduce the patent F-number is approximately 17.3-17.5 mm across the three zoom positions. The data file uses 17.5 mm for the stop semi-diameter.
+The aperture stop semi-diameter that passes the patent F-number by real-ray trace is 18.08, 17.84 and 17.87 mm at the wide, intermediate and telephoto positions (the paraxial estimate is 17.3-17.5 mm). The data file stores 17.5 mm and the model sets the iris at each position from the F-number.
 
 The Petzval sum was recomputed surface by surface using Σ φ/(n·n′), not by thin-element approximations. The resulting value is +0.0008187 mm⁻¹, corresponding to a Petzval radius of approximately 1221 mm. This small positive value is consistent with a flattened telephoto-range zoom, but it should not be over-interpreted as a direct prediction of real astigmatic field curvature.
 
-Semi-diameters are not patent-published values. The data file values are rendering estimates constrained by the 77 mm production filter thread, paraxial stop geometry, element edge-thickness checks, front/rear element SD ratio checks, and cross-gap sag clearance checks at all three zoom positions.
+Semi-diameters are not patent-published values. The data file values are rendering estimates constrained by the 77 mm production filter thread, paraxial stop geometry, element edge-thickness checks, front/rear element SD ratio checks, and cross-gap sag clearance checks at all three zoom positions. Fifteen surfaces (2-5, 7-10, 14-17 and 20-22) are set to the height the f/2.88 axial marginal ray reaches at its worst zoom position; FIG. 1 draws each of those elements taller still. L1R1 and L1R2 nearly touch at the rim, as FIG. 1 draws them: 0.03 mm of their 0.75 mm air gap remains at 28.3 mm.
 
 ## Sources
 

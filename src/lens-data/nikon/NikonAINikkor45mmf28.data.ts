@@ -153,10 +153,10 @@ const LENS_DATA = {
   focusDescription:
     "Unit focusing: the whole optical cell extends about 5.73 mm from infinity to Nikon's 0.45 m minimum focus distance.",
 
-  nominalFno: 2.8,
+  nominalFno: 2.88,
   apertureBlades: 7,
   apertureBladeRoundedness: 1,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.42,

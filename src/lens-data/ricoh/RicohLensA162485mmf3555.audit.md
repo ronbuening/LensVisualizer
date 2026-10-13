@@ -2,6 +2,12 @@
 
 Patent: US 2012/0307375 A1, Embodiment 3 / Figure 9.
 
+## 2026-09-30 — Assignee attribution review
+
+- Rendered and visually inspected page 1 of the exact local `patents/US20120307375A1.pdf`. It names Yohei Takano and Hiromichi Atsuumi under (76) Inventors and prints no organizational assignee/applicant block.
+- The [Google Patents record for US 8,705,180 B2](https://patents.google.com/patent/US8705180B2/en) covers the same application 13/482,401 and lists Ricoh Company, Ltd. as original assignee. Its legal-events table reports an assignment effective May 22, 2012 and recorded May 29, 2012, from Takano and Atsuumi, at reel/frame 028282/0090. The underlying USPTO assignment instrument was not independently inspected; the selected A1's online page was unavailable during this review.
+- Updated `patentAssignees` to `["Ricoh Co., Ltd."]` at the user's request, using the documented same-application assignment recorded before publication. Retained the selected A1 source identifier, publication year, and inventor order. Clarified in the analysis and data comment that this attribution comes from assignment history rather than the printed front page; the relationship graph now includes the assignment edge to the existing canonical assignee node.
+
 ## 2026-08-08 — Patent-figure SD, diagram-label, name, and glass audit
 
 - Compared all three zoom-state sections with Figure 9 on patent page 8. The original rear Group IV/V envelopes were
@@ -14,3 +20,15 @@ Patent: US 2012/0307375 A1, Embodiment 3 / Figure 9.
 - Rechecked all six asphere markers, all rounded `νd` badges, and every glass assignment. All eleven elements use
   coefficient-backed catalog curves. Coordinate-class labels remain intentionally vendor-neutral where the patent does
   not name a supplier.
+
+## 2026-09-23 — Rear plates modeled as `rearPlates`
+
+- Replaced the air-equivalent surface-21 spacing with the physical stack from the Embodiment 3 table and Table 3 (PDF
+  p. 38): E = 27.38221 / 39.66109 / 51.81615 mm, then plate F 0.70 mm nd 1.53770 νd 66.60, 1.50 mm air, and plate F
+  0.70 mm nd 1.50000 νd 64.00. No catalog glass matches either plate (nearest S-FPM3 at νd 74.70 and BK4 at nd
+  1.50048), so `glass` is omitted and both use the Abbe estimate.
+- The patent prints no surface-25 distance to FP. The 0.500027 mm trailing gap is derived, not printed: it is the old
+  wide-end value minus E minus Σt/n. The old per-station derived gaps were 0.500027 / 0.500056 / 0.500106 mm, so mid
+  and tele E are stored as 39.661119 / 51.816229 (+0.00003 / +0.00008 mm) to keep the previous Gaussian image plane.
+- Paraxial check against the previous data: EFL identical, and defocus unchanged within 5e-7 mm at every zoom and focus
+  state. Physical track grows by 0.478 mm, Σt(1 − 1/n) for the two plates.

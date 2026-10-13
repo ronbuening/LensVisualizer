@@ -339,8 +339,10 @@ const LENS_DATA = {
   focusDescription:
     "Floating inner focus: L2 moves objectward by 2.30 mm and L4/Lr1 by 4.40 mm from infinity to 0.40 m.",
   closeFocusM: 0.4,
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
   scFill: 0.54,
   yScFill: 0.62,

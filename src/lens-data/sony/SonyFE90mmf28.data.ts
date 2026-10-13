@@ -17,11 +17,28 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    for rear elements), with 8–10% mechanical clearance.           ║
  * ║    Validated against edge-thickness (≥ 0.5 mm), sd/|R| (< 0.90), ║
  * ║    and cross-gap sag intrusion (< 90% of gap) constraints.       ║
+ * ║    Surfaces 1-5, 26 and 27 were raised to pass the traced chief   ║
+ * ║    ray to the full-frame corner (13.27°; the patent prints        ║
+ * ║    ω = 13.15° and Fig. 6 Y = 21.63 mm); S5 is scaled with S4      ║
+ * ║    (2026-09-24 field-coverage audit).                             ║
+ * ║                                                                    ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                       ║
+ * ║    The patent prints no partial dispersion and defines no normal   ║
+ * ║    line. `dPgF` on G2 and G11 is catalog-derived: the catalog      ║
+ * ║    glass PgF minus the engine line (0.6438 − 0.001682·νd), not a   ║
+ * ║    vendor ΔPg,F (HOYA: against 0.64833 − 0.00180·νd; OHARA: its    ║
+ * ║    own line), which the analysis quotes.                           ║
+ * ║                                                                    ║
+ * ║  NOTE ON OPTICAL FILTER:                                           ║
+ * ║    Patent Table 5 surfaces 28–29 (optical filter FL [0094],       ║
+ * ║    2.500 mm, nd 1.5168, νd 64.1983) and the 1.000 mm air gap to   ║
+ * ║    IMG are modeled in `rearPlates` (traced, not drawn). Surface   ║
+ * ║    27 keeps the patent's 22.747 mm gap to the filter.             ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -71,7 +88,9 @@ const LENS_DATA = {
       fl: 134.1,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
-      dPgF: 0.038, apdNote: "ED glass; ΔPg,F ≈ +0.038 above normal line per S-FPL51 datasheet",
+      dPgF: 0.030928,
+      apdNote:
+        "ED glass. Patent prints no partial dispersion; catalog-derived: S-FPL51 catalog PgF = 0.5375 (OHARA's ΔPg,F = +0.0280 is against OHARA's own line), runtime dPgF +0.03093.",
       role: "ED anomalous-low-dispersion crown; cemented to G3 for secondary-spectrum correction in GR1",
       cemented: "Da",
     },
@@ -186,7 +205,9 @@ const LENS_DATA = {
       fl: 63.47,
       glass: "FCD100 (HOYA)",
       apd: "inferred",
-      dPgF: 0.056, apdNote: "Super ED glass; ΔPg,F ≈ +0.056 above normal line per HOYA FCD100 datasheet",
+      dPgF: 0.049777,
+      apdNote:
+        "Super ED glass. Patent prints no partial dispersion; catalog-derived: FCD100 catalog PgF = 0.5336; ΔPg,F = +0.0564 by HOYA's line (PgF − 0.64833 + 0.00180·νd), runtime dPgF +0.04978.",
       role: "Super ED fluorophosphate in GR4; cemented to G12 for apochromatic correction in the 2nd focus group",
       cemented: "Dd",
     },
@@ -244,11 +265,11 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ──── GR1: Object-side group (4 elements, fixed) ────
-    { label: "1", R: 60.7452, d: 6.483, nd: 1.7292, elemId: 1, sd: 17.7 }, // G1 front
-    { label: "2", R: -742.4113, d: 0.5, nd: 1.0, elemId: 0, sd: 16.9 }, // G1 rear → air
-    { label: "3", R: 85.188, d: 4.575, nd: 1.497, elemId: 2, sd: 16.8 }, // G2 front (cemented Da)
-    { label: "4", R: -300.7794, d: 1.8, nd: 1.8467, elemId: 3, sd: 15.8 }, // G2/G3 junction → G3
-    { label: "5", R: 62.5282, d: 0.5, nd: 1.0, elemId: 0, sd: 15.5 }, // G3 rear → air
+    { label: "1", R: 60.7452, d: 6.483, nd: 1.7292, elemId: 1, sd: 19.6 }, // G1 front
+    { label: "2", R: -742.4113, d: 0.5, nd: 1.0, elemId: 0, sd: 18.7 }, // G1 rear → air
+    { label: "3", R: 85.188, d: 4.575, nd: 1.497, elemId: 2, sd: 17.4 }, // G2 front (cemented Da)
+    { label: "4", R: -300.7794, d: 1.8, nd: 1.8467, elemId: 3, sd: 16.4 }, // G2/G3 junction → G3
+    { label: "5", R: 62.5282, d: 0.5, nd: 1.0, elemId: 0, sd: 16.1 }, // G3 rear → air
     { label: "6", R: 46.3651, d: 4.722, nd: 1.768, elemId: 4, sd: 15.4 }, // G4 front
     { label: "7A", R: 478.0475, d: 2.8, nd: 1.0, elemId: 0, sd: 14.5 }, // G4 rear (asph) → air [d7 variable]
 
@@ -279,8 +300,21 @@ const LENS_DATA = {
     { label: "23", R: -43.4556, d: 1.5, nd: 1.0, elemId: 0, sd: 10.8 }, // G13 rear → air
     { label: "24", R: -88.4506, d: 1.3, nd: 1.6584, elemId: 14, sd: 10.3 }, // G14 front
     { label: "25", R: 88.4506, d: 6.245, nd: 1.0, elemId: 0, sd: 10.1 }, // G14 rear → air
-    { label: "26", R: -27.8033, d: 1.3, nd: 1.6968, elemId: 15, sd: 8.9 }, // G15 front
-    { label: "27", R: -75.2165, d: 25.4, nd: 1.0, elemId: 0, sd: 8.9 }, // G15 rear → image (air-equiv BFD; cover glass path folded in)
+    { label: "26", R: -27.8033, d: 1.3, nd: 1.6968, elemId: 15, sd: 11.2 }, // G15 front
+    { label: "27", R: -75.2165, d: 22.747, nd: 1.0, elemId: 0, sd: 12.0 }, // G15 rear → patent gap to filter FL
+  ],
+
+  /* ── Optical filter FL (patent Table 5 surfaces 28–29): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.1983,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "WO 2016/136352 A1, Example 2 Table 5 surfaces 28–29",
+    },
   ],
 
   /* ── Aspherical coefficients ──
@@ -307,11 +341,12 @@ const LENS_DATA = {
    *  Patent Table 8: magnification 0.0 (infinity), −0.5×, −1.0× (1:1).
    *  Close focus distance: d_close column uses the −1.0× (1:1) values.
    */
+  focusPositions: [0, 0.8075766830717322, 1],
   var: {
-    "7A": [2.8, 22.17], // GR1 ↔ GR2 gap (d7)
-    "12": [22.92, 3.54], // GR2 ↔ GR3 gap (d12)
-    STO: [23.22, 5.0], // STO ↔ GR4 gap (d16)
-    "21": [7.49, 25.71], // GR4 ↔ GR5 gap (d21)
+    "7A": [2.8, 11.89, 22.17], // GR1 ↔ GR2 gap (d7)
+    "12": [22.92, 13.83, 3.54], // GR2 ↔ GR3 gap (d12)
+    STO: [23.22, 13.23, 5.0], // STO ↔ GR4 gap (d16)
+    "21": [7.49, 17.48, 25.71], // GR4 ↔ GR5 gap (d21)
   },
 
   varLabels: [
@@ -339,12 +374,14 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.28,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Floating dual-group inner focus (Dual DDSSM). GR2 retreats toward image; GR4 advances toward object. 1:1 macro capable.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22],
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

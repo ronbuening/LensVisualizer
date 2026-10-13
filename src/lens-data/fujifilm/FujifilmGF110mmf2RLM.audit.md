@@ -35,15 +35,6 @@ Patent: US 2018/0100988 A1, Example 1 (Tables 1-3)
 - Removed the unsupported claim that L14 matched HOYA TAFD25 exactly.
 - Reframed vendor attribution: the patent provides nd/vd, not glass names; L13 and L14 remain code-only pending a catalog source.
 
-### Verification
-
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed, 129 test files / 1664 tests.
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan` — passed. Regenerated output removed this lens from `catalog-mismatches.generated.md` and `glass-relabel-candidates.generated.md`; only the two deliberate unresolved code annotations remain in `unresolved-glass.generated.md`. Generated report files were restored afterward to preserve unrelated pre-existing edits.
-- After the files were overwritten by an external save, the same scoped audit edits were reapplied and `npm run typecheck` was rerun successfully.
-
 ## 2026-05-19 — Six-digit Sellmeier source recheck
 
 | Element / surface | Field | Before | After | Justification |
@@ -64,3 +55,20 @@ Patent: US 2018/0100988 A1, Example 1 (Tables 1-3)
 
 - No surface, spacing, APD, or semi-diameter edits were made. The patent does not publish clear apertures for Example 1.
 - Updated [FujifilmGF110mmf2RLM.analysis.md](FujifilmGF110mmf2RLM.analysis.md) to remove the stale unresolved status for L13.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1 on PDF page 25 (printed page 7) at 160 dpi: surface 24 d = 23.8566; surfaces 25–26 are the
+  plane-parallel optical member PP, 3.2000 mm, nd 1.51680, νd 64.20; 26 → IMG is 1.0003 mm. These reproduce Table 2
+  BF 26.97 (26.9666 exactly), the rounded value the file previously folded onto surface 24.
+- Surface 24 now stores the patent's 23.8566 mm, with `rearPlates` PP (N-BK7; 1.51680 / 64.20 is the N-BK7 class) and
+  gapAfter 1.0003 mm. Paraxial check against the previous data: EFL identical; defocus changes by 0.0034 mm at both
+  focus keyframes (the old 26.97 was Table 2's two-decimal rounding of 26.9666).
+- Physical track grows by 1.087 mm (Σ t(1 − 1/n) = 1.090 less the 0.0034 mm rounding); the analysis track figure
+  now reads about 147.4 mm physical (146.3 mm air-equivalent) instead of the earlier unsupported 143 mm.
+
+## 2026-09-23 — Glass relabel for the 1.51680 / 64.2 crown
+
+- The element with patent nd 1.51680 / νd 64.2 was labelled S-BSL7 (OHARA), which is the 1.51633 / 64.14 glass and
+  only matched within tolerance. It is now labelled as the N-BK7 (SCHOTT) class, an exact coordinate match, the same
+  class the rear plate uses. The production supplier remains unspecified; the analysis glass table and sources follow.

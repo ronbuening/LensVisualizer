@@ -26,15 +26,3 @@ Patent: US 2014/0211029 A1, Numerical Embodiment 3
 | L32 | `apd` / `apdNote` | omitted | `inferred` | S-FPL51 UD fluorophosphate element matching Canon's one-UD production count. |
 
 - Retained L22 `apd: "patent"` and `dPgF: 0.025` from the patent theta_gF condition.
-
-### Phase 4 - Analysis sync
-
-- No prose change needed; the analysis already identifies L32 as the UD fluorophosphate element and L22 as the patent APD element.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests).
-- `npm run typecheck` - passed before and after metadata regeneration.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).

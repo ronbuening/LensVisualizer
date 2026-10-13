@@ -166,7 +166,7 @@ The lens uses **front-group unit focusing**: the entire G1 assembly (L1–L5 plu
 
 The focus travel from infinity to 1000 mm is $0.56$ mm. The EFL shortens slightly at closer focus ($29.60 \rightarrow 29.26$ mm) due to the change in conjugate — a normal thick-lens effect in unit-focus systems.
 
-The production lens focuses to 280 mm (0.28 m). The patent publishes only the infinity and 1000 mm positions, so the full focus travel to MFD is not directly available from the prescription. The close-focus gap $d_9$ at MFD was solved via paraxial finite-conjugate trace, yielding $d_9 \approx 4.65$ mm — a total focus travel of $2.33$ mm from the infinity position. Since G2 remains fixed in configuration, the image-side exit angles remain approximately stable across the focus range — an important property for the Foveon X3 sensor, whose layered structure is sensitive to steep incidence angles at the periphery.
+The production lens focuses to 280 mm (0.28 m). The patent's 1000 mm position is stored as an exact focus keyframe, but the full focus travel to MFD is not directly available from the prescription. The close-focus gap $d_9$ at MFD was solved via paraxial finite-conjugate trace, yielding $d_9 \approx 4.65$ mm — a total focus travel of $2.33$ mm from the infinity position. Since G2 remains fixed in configuration, the image-side exit angles remain approximately stable across the focus range — an important property for the Foveon X3 sensor, whose layered structure is sensitive to steep incidence angles at the periphery. Interpolation between keyframes is approximate visualization.
 
 The patent describes this focus mechanism in ¶0019 (general description) and ¶0065 (Example 4): "前記第１レンズ群Ｇ１は、無限遠から近距離へのフォーカシングに際して光軸に沿って物体側に移動する" — G1 moves toward the object side along the optical axis when focusing from infinity to close range.
 
@@ -234,7 +234,7 @@ All four values fall within both the broad and tightened ranges specified in the
 
 **Expression (1)** governs the balance between compactness and exit-angle control. At $f_1/f = 0.775$, G1 carries enough power to keep the total length short without creating excessively steep exit angles that would reduce sensor sensitivity at the corners.
 
-**Expression (2)** controls the ratio of back focal distance to G2's axial thickness. At $0.562$, there is adequate space behind G2 for the IR-cut filter and cover glass ($BF_{\text{air-equiv}} \approx 6.7$ mm) without making G2 so thick that it adds unnecessary length.
+**Expression (2)** controls the ratio of back focal distance to G2's axial thickness. At $0.562$, there is adequate space behind G2 for the IR-cut filter and cover glass ($BF_{\text{air-equiv}} \approx 6.7$ mm) without making G2 so thick that it adds unnecessary length. Physically that back focus is the patent's $1.00$ mm gap, the $1.20$ mm filter F ($n_d = 1.52301$, $\nu_d = 58.59$), and $4.93$ mm to the image; the data file models filter F through `rearPlates`, so every analysis traces it, but it is not drawn.
 
 **Expression (3)** balances the power split within G1 between the sub-groups flanking the stop. At $f_{1A}/f_{1B} = 1.306$, G1A is weaker than G1B, which biases the system toward better image-side telecentricity (since G1B, being closer to G2, has more influence on the exit ray geometry).
 

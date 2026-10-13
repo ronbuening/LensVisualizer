@@ -23,7 +23,6 @@ Patent: US 4,770,511, Example 2 / Table 2
 - Stored `nd`/`vd` values match Table 2.
 - Catalog-class labels were retained only where the match is exact or close enough to describe as a class.
 - L12 (`796/410`) and L14a (`518/603`) remain unmatched; J-LASFH9A/J-LAK8/J-SFH2/PKH1-class labels remain class-level identifications rather than coefficient-backed exact assignments.
-- `npm run generate:glass-reports` passed with the unresolved glasses tracked in coverage reports.
 
 ## 2026-07-30 SUMITA BALK3 coefficient recovery
 

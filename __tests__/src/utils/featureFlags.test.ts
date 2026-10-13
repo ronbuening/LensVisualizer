@@ -9,17 +9,6 @@ describe("featureFlags", () => {
     }
   });
 
-  it("exports exactly the expected experiment flags", () => {
-    const keys = Object.keys(flags);
-    expect(keys).toContain("ENABLE_UNIFORM_SCALING");
-    expect(keys).toContain("ENABLE_ASPH_DIAMOND_FILL");
-    expect(keys).toContain("ENABLE_EDGE_PROJECTION");
-    expect(keys).toContain("ENABLE_REAL_RAY_LSA_DIAGNOSTIC");
-    expect(keys).toContain("ENABLE_ANALYSIS_VIEW");
-    expect(keys).toContain("ENABLE_CARDINAL_ELEMENTS");
-    expect(keys).toHaveLength(6);
-  });
-
   it("all keys follow ENABLE_ naming convention", () => {
     for (const key of Object.keys(flags)) {
       expect(key).toMatch(/^ENABLE_/);
@@ -28,8 +17,8 @@ describe("featureFlags", () => {
 });
 
 describe("appConfig", () => {
-  it("DEFAULT_COLOR_TRACING is boolean", () => {
-    expect(typeof appConfig.DEFAULT_COLOR_TRACING).toBe("boolean");
+  it("defaults ray tracing to TRACKS FOCUS", () => {
+    expect(appConfig.DEFAULT_RAY_TRACKS_FOCUS).toBe(true);
   });
 
   it("exports only the expected configuration values", () => {

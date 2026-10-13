@@ -29,13 +29,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    surfaces have KA = 1.0, giving K = 0.                          ║
  * ║                                                                    ║
  * ║  COVER GLASS:                                                      ║
- * ║    Patent lists PP (nd = 1.51680, d = 3.20 mm) plus 1.05 mm air.  ║
- * ║    Excluded; air-equivalent OPL folded into BFD on last surface.   ║
+ * ║    Patent Table 1 surfaces 23–24 (optical member PP, 3.20 mm,    ║
+ * ║    nd 1.51680, νd 64.20) and the 1.05 mm air gap to Sim are       ║
+ * ║    modeled in `rearPlates` (traced, not drawn). Surface 22 keeps   ║
+ * ║    the patent's 20.1247 mm gap to PP.                              ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -253,7 +255,20 @@ const LENS_DATA = {
     { label: "19", R: -105.4941, d: 1.3, nd: 1.5168, elemId: 11, sd: 18.5 }, // L33 front
     { label: "20", R: 1e15, d: 2.89, nd: 1.0, elemId: 0, sd: 18.5 }, // L33 rear → air
     { label: "21", R: -86.5553, d: 1.3, nd: 1.64769, elemId: 12, sd: 18.0 }, // L34 front
-    { label: "22", R: 1e15, d: 23.2843, nd: 1.0, elemId: 0, sd: 18.0 }, // L34 rear → image (air-equiv BFD)
+    { label: "22", R: 1e15, d: 20.1247, nd: 1.0, elemId: 0, sd: 18.0 }, // L34 rear → PP (patent gap)
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 23–24): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.05,
+      source: "US 2021/0294073 A1, Example 1 Table 1 surfaces 23–24",
+    },
   ],
 
   /* ── Aspherical coefficients ──
@@ -319,6 +334,13 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.7,
+  finiteConjugates: [{
+    focusT: 1,
+    zoomT: 0,
+    objectDistanceMm: 576.6736,
+    distanceReference: "first-surface",
+    source: "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus.",
+  }],
   focusDescription: "Inner focus: G2 (L21–L26 + stop) moves toward object. G1 and G3 fixed. DC motor with GMR sensor.",
 
   /* ── Aperture configuration ── */

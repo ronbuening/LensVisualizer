@@ -27,15 +27,6 @@ Patent: US 2018/0059384 A1, Example 1
 
 - Updated the element prose and glass selection summary for L13, L22, L32, and L43.
 
-### Verification
-
-- `npm test -- dispersion` — passed.
-- `npm run typecheck` — passed.
-- `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
-- `npm run lint` — passed.
-- `npm run format:check` — passed.
-- `git diff --check` — passed.
-
 ## 2026-07-29 — Dispersion-coordinate follow-up
 
 - Corrected L23 from `S-LAH52Q (OHARA)` to `S-NBH55 (OHARA)`. S-NBH55 exactly matches 1.80000 / 29.84; S-LAH52Q is the distinct 1.79952 / 42.24 glass.
@@ -48,3 +39,13 @@ Patent: US 2018/0059384 A1, Example 1
 - The patent retains 1.85150 / 40.78. Current OHARA L-LAH85V publishes 1.85400 / 40.38, which is inside the
   resolver's compatibility window but is not claimed as the production glass.
 - Synchronized the element narrative and corrected the prior claim that all 14 rows were exact OHARA matches.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent surface-24 gap (39.878 mm) with Table 1-continued's physical rear stack (PDF p. 21, sheet
+  8): surface 24 d = 36.746 mm, then `rearPlates` PP 3.200 mm, nd 1.51680, νd 64.20, θgF 0.53430 (dPgF −0.00152),
+  and 1.022 mm to the image plane. Glass label N-BK7 (resolver-compatible, as on the other GF files).
+- Paraxial check against the previous data: EFL identical; defocus changes by 0.0003 mm at infinity and MOD, the
+  rounding in the old fold (36.746 + 3.200/1.5168 + 1.022 = 39.8777 stored as 39.878). Physical track grows by
+  1.090 mm to 172.98 mm, matching the analysis's 173.0 mm total length; `closeFocusM` (0.45 m manufacturer MFD) is
+  unchanged.

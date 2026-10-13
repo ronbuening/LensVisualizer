@@ -25,6 +25,7 @@ function baseProps() {
     lensKeyA: "lens-a",
     lensKeyB: "lens-b",
     diagramLensKey: "lens-a-configured",
+    teleconverterKey: null,
     comparisonLenses: null,
     focusPair: null,
     aperturePair: null,

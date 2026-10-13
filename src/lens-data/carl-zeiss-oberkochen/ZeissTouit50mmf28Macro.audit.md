@@ -22,14 +22,12 @@ Catalog version: local working tree, 2026-06-25
 - Existing inferred APD metadata on S-FPM2 L12/L42 and S-PHM52 L43 was retained. The patent itself gives no `dPgF` or line-index columns; these APD flags are catalog-inferred.
 - High-index status for the S-TIH53, E-FDS1/MP-FDS1, and related dense-flint elements is already represented in labels and role prose.
 
-### Phase 4 - Analysis sync
+## 2026-09-23 — Rear plate modeled as `rearPlates`
 
-- No analysis prose change was required. The analysis already explains the APD entries as catalog-inferred and documents the absence of patent clear apertures.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests); generated report state retained.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
-- `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
+- Replaced the air-equivalent fold (stored d26 = 24.6143248945 mm) with the patent's physical rear stack from Example 1
+  Table 1 (PDF p. 15): d26 = 1.00 mm, then `rearPlates` PP 1.22 mm, nd 1.51680, νd 64.20 (N-BK7), and 22.81 mm to the
+  image plane. The plate is traced by every analysis and hidden from the diagram and element lists. `closeFocusM` 0.15 m
+  is the published specification and was left unchanged.
+- Paraxial check against the previous data: EFL and defocus identical at all three focus keyframes (the old fold was
+  stored unrounded). Physical track grows by 1.22 × (1 − 1/1.51680) = 0.416 mm, to the 95.37 mm first-surface-to-image
+  length the analysis already quotes.

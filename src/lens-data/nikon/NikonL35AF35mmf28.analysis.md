@@ -43,13 +43,15 @@ The optical structure, from object to image, is:
 
 Sato confirms Wakamiya chose the Sonnar type for two reasons: it yields a more compact optical system, and it provides superior correction of spherical aberration and coma. The trade-offs are the Sonnar's inherent tendency toward field curvature and its susceptibility to close-range aberration fluctuation — both of which Sato praises Wakamiya for managing with unusual skill.
 
-In the production L35AF, the behind-diaphragm configuration has a practical consequence: the leaf shutter mechanism, positioned immediately behind the last element, likely doubles as the iris diaphragm. Several accounts of disassembled L35AF cameras note that no separate aperture exists — the shutter blades close to smaller openings at slower speeds, producing a diamond-shaped aperture at small stops. This is a common arrangement in leaf-shutter compact cameras and is fully consistent with the patent's "diaphragm most adjacent to the image side" placement.
+In the production L35AF, the behind-diaphragm configuration has a practical consequence: the leaf shutter mechanism, positioned immediately behind the last element, likely doubles as the iris diaphragm. Several accounts of disassembled L35AF cameras note that no separate aperture exists — the shutter blades close to smaller openings at slower speeds, producing a diamond-shaped aperture at small stops. This is a common arrangement in leaf-shutter compact cameras and is fully consistent with the patent's "diaphragm most adjacent to the image side" placement. The camera's programmed exposure runs from f/2.8 to f/17, which the viewer uses as its aperture range.
 
 ---
 
 ## 3. Patent Prescription — Embodiment 1
 
-The patent provides four numerical embodiments, all at a normalized focal length of f = 100 mm. Embodiment 1 corresponds to the design implemented in the production L35AF camera. The production lens operates at f ≈ 35 mm, requiring a uniform scale factor of ×0.35 applied to all linear dimensions (R, d, and sd).
+The patent provides four numerical embodiments, all at a normalized focal length of f = 100 mm. Embodiment 1 corresponds to the design implemented in the production L35AF camera. The production lens operates at f ≈ 35 mm, requiring a uniform scale factor of ×0.350007 (35.0 / the computed 99.998) applied to all linear dimensions (R, d, and sd).
+
+The table does not give a diaphragm spacing. The patent only says the diaphragm sits "most adjacent to the image side." The model places the stop 0.9 mm behind r₉ at production scale (about 2.6 at f = 100). That distance is measured from the diaphragm mark in Fig. 1, which is drawn to the scale of this embodiment: its vertex spacings agree with the table to about 0.1 mm. The stop position is therefore a figure measurement, not a patent value.
 
 ### 3.1 Surface Data (f = 100)
 
@@ -65,7 +67,7 @@ The patent provides four numerical embodiments, all at a normalized focal length
 | r₈ | −31.587 | 2.2900 | 1.62041 | L5 glass |
 | r₉ | −192.429 | — | 1.0 | Air (to image) |
 
-Sign convention: R > 0 means center of curvature is to the right (toward image). R < 0 means center of curvature is to the left (toward object). Note that the patent's OCR renderings contain sign ambiguities on several surfaces (particularly r₂ and r₆); the values above are confirmed correct by cross-referencing the physical element descriptions ("positive meniscus" requires same-sign radii; "biconcave" requires r₅ < 0, r₆ > 0) and verifying the resulting focal lengths against the patent's stated values.
+Sign convention: R > 0 means center of curvature is to the right (toward image). R < 0 means center of curvature is to the left (toward object). The printed table gives an explicit sign for every radius. Those signs agree with the element descriptions ("positive meniscus" requires same-sign radii; "biconcave" requires r₅ < 0, r₆ > 0) and reproduce the patent's stated focal lengths. Only the machine OCR text layer of the scan garbles some of them.
 
 ### 3.2 Verification Summary
 
@@ -104,26 +106,27 @@ The patent specifies five glass elements by their refractive index (nd at 587.6 
 
 **L1 — nd = 1.71300, νd = 54.0 (six-digit code: 1713/540)**
 
-The nd value of 1.71300 is an exact match to a well-known lanthanum crown family. The patent's νd = 54.0 is slightly rounded from the catalog value of ~53.8–53.9.
+The nd value of 1.71300 is an exact match to a well-known lanthanum crown family. The patent's νd = 54.0 is a rounded value; catalog rows of this type range from 53.83 to 53.96.
 
 | Candidate | nd | νd | Δnd | Δνd | Confidence |
 |-----------|-----|-----|------|------|------------|
-| OHARA S-LAL8 | 1.71300 | 53.83 | 0 | 0.17 | High — exact nd |
-| HOYA LAC8 | 1.71300 | 53.80 | 0 | 0.20 | High — exact nd |
-| SCHOTT LaK 8 | 1.71300 | 53.94 | 0 | 0.06 | High — exact nd |
+| HIKARI J-LAK8 | 1.71300 | 53.96 | 0 | 0.04 | High — exact nd |
+| HOYA LAC8 | 1.71300 | 53.94 | 0 | 0.06 | High — exact nd |
+| OHARA S-LAL8 | 1.71299 | 53.87 | 0.00001 | 0.13 | High |
+| SCHOTT N-LAK8 | 1.71300 | 53.83 | 0 | 0.17 | High — exact nd |
 
-**Identification: Schott N-LAK8 catalog equivalent to the patent's LaK 8 coordinate (production melt unspecified).** The coefficient-backed modern row is $n_d=1.71300$, $\nu_d=53.83$, consistent with the patent's rounded $\nu_d=54.0$. This is a moderate-index, low-dispersion crown glass, well suited for the front positive meniscus element where it contributes converging power with minimal chromatic contribution.
+**Identification: 713/540 lanthanum crown, modelled with the HIKARI J-LAK8 catalog equivalent (production supplier unspecified).** The patent gives only $n_d$ and $\nu_d$. J-LAK8 ($n_d=1.71300$, $\nu_d=53.96$) is the closest catalog row to the patent's rounded $\nu_d=54.0$. This is a moderate-index, low-dispersion crown glass, well suited for the front positive meniscus element where it contributes converging power with minimal chromatic contribution.
 
 **L2 and L4 — nd = 1.77279, νd = 49.4 (six-digit code: 1773/494)**
 
-These two elements share identical glass. The nd/νd pair is a close coefficient-backed match to OHARA S-LAH66, a lanthanum crown glass.
+These two elements share identical glass. No catalog row reproduces $n_d=1.77279$ exactly. The nearest are the 773/496 lanthanum flints, all at $n_d=1.77250$.
 
 | Candidate | nd | νd | Δnd | Δνd | Confidence |
 |-----------|-----|-----|------|------|------------|
 | OHARA S-LAH66 | 1.77250 | 49.60 | 0.00029 | 0.20 | Close catalog match |
 | HOYA NBFD3 / TAF1 | 1.77250 | 49.62 | 0.00029 | 0.22 | Close |
 
-**Identification: OHARA S-LAH66 (lanthanum crown)**. This high-index, moderate-dispersion glass provides strong refracting power while maintaining reasonable chromatic behavior. Using the same glass for L2 and L4 simplifies procurement and quality control in production, and is a characteristic Sonnar-design technique (the converging elements share the same glass type while the diverging element uses a high-dispersion partner).
+**Identification: 773/494 lanthanum flint, modelled with the OHARA S-LAH66 catalog equivalent (Δnd = 2.9 × 10⁻⁴; production supplier unspecified).** This high-index, moderate-dispersion glass provides strong refracting power while maintaining reasonable chromatic behavior. Using the same glass for L2 and L4 simplifies procurement and quality control in production, and is a characteristic Sonnar-design technique (the converging elements share the same glass type while the diverging element uses a high-dispersion partner).
 
 **L3 — nd = 1.68893, νd = 31.1 (six-digit code: 689311)**
 
@@ -131,23 +134,23 @@ These two elements share identical glass. The nd/νd pair is a close coefficient
 |-----------|-----|-----|------|------|------------|
 | OHARA S-TIM28 | 1.68893 | 31.08 | 0 | −0.02 | Exact coordinate match |
 
-**Identification: OHARA S-TIM28 (dense flint, code 689311).** This is a high-dispersion flint glass, serving as the sole negative element in the front group. Its high dispersion (low Abbe number) is critical for chromatic correction — the patent's condition (2) explicitly constrains νd of L3 to the range 26.0–36.0, balancing on-axis chromatic aberration against chromatic coma.
+**Identification: 689/311 dense flint, modelled with the OHARA S-TIM28 catalog equivalent (exact code 689311; HIKARI J-SF8 and HOYA E-FD8 share the index at νd 31.16; production supplier unspecified).** This is a high-dispersion flint glass, serving as the sole negative element in the front group. Its high dispersion (low Abbe number) is critical for chromatic correction — the patent's condition (2) explicitly constrains νd of L3 to the range 26.0–36.0, balancing on-axis chromatic aberration against chromatic coma.
 
 **L5 — nd = 1.62041, νd = 60.4 (six-digit code: 1620/604)**
 
 | Candidate | nd | νd | Δnd | Δνd | Confidence |
 |-----------|-----|-----|------|------|------------|
-| SCHOTT SK 16 | 1.62041 | 60.32 | 0 | 0.08 | Exact match |
-| OHARA S-BSM16 | 1.62041 | 60.29 | 0 | 0.11 | Exact match |
-| HOYA BSC7 | 1.62041 | 60.10 | 0 | 0.30 | Good match |
+| SCHOTT N-SK16 | 1.62041 | 60.32 | 0 | 0.08 | Exact nd |
+| OHARA S-BSM16 | 1.62041 | 60.29 | 0 | 0.11 | Exact nd |
+| HIKARI J-SK16 | 1.62041 | 60.25 | 0 | 0.15 | Exact nd |
 
-**Identification: SK 16 / S-BSM16 / BSC7 family (dense barium crown)**. A moderate-index, low-dispersion crown glass cemented to L4 as the negative meniscus element of the rear doublet. Its lower refractive index relative to L4 (n₅ < n₄) is required by condition (9) — the index ratio n₄/n₅ = 1.094 falls within the prescribed range of 1.04–1.12, which controls the Petzval sum contribution of the cemented doublet. Its higher Abbe number relative to L4 (ν₅ = 60.4 > ν₄ = 49.4) satisfies condition (4), which is essential for correcting chromatic coma in the off-axis ray bundle passing through the rear group.
+**Identification: 620/604 dense barium crown (SK16 family), modelled with the Schott N-SK16 catalog equivalent (production supplier unspecified)**. A moderate-index, low-dispersion crown glass cemented to L4 as the negative meniscus element of the rear doublet. Its lower refractive index relative to L4 (n₅ < n₄) is required by condition (9) — the index ratio n₄/n₅ = 1.094 falls within the prescribed range of 1.04–1.12, which controls the Petzval sum contribution of the cemented doublet. Its higher Abbe number relative to L4 (ν₅ = 60.4 > ν₄ = 49.4) satisfies condition (4), which is essential for correcting chromatic coma in the off-axis ray bundle passing through the rear group.
 
 ### 5.2 Glass Map Summary
 
 The glass selection follows a clear aberration-correction strategy:
 
-- **Positive elements (L1, L2, L4):** High-index, moderate-to-low dispersion lanthanum-containing glasses (LaK/LAL family and TAF family). These provide strong refracting power with manageable chromatic contributions.
+- **Positive elements (L1, L2, L4):** High-index, moderate-to-low dispersion lanthanum-containing glasses (a LaK-type crown and a LaF/TAF-type flint). These provide strong refracting power with manageable chromatic contributions.
 - **Negative element (L3):** High-dispersion flint glass. The patent text explicitly explains that making L3 highly dispersive corrects on-axis chromatic aberration, but going *too* far increases chromatic coma — hence the carefully bounded range for ν₃.
 - **Cemented negative partner (L5):** Low-dispersion crown glass with lower refractive index than its cemented partner L4. This combination gives the cemented doublet a small negative Petzval contribution (helping flatten the field) while allowing differential chromatic correction of the lower oblique ray bundle.
 
@@ -165,7 +168,7 @@ In a traditional Sonnar, L1 and L2 would be a single thick element or a cemented
 
 ### L2 — Second Positive Meniscus (f₂ = 100.6 mm)
 
-L2 (r₃ = +38.655, r₄ = +72.381) continues the converging action begun by L1, sharing the same glass type as L4 (OHARA S-LAH66). Together, L1 and L2 form a positive front group with composite focal length f₁,₂ = 56.9 mm. The patent's condition (6) constrains L2's bending via r₃/f₂, governing the image-side surface's converging action on oblique rays and thereby controlling the meridional field curvature.
+L2 (r₃ = +38.655, r₄ = +72.381) continues the converging action begun by L1, sharing the same glass as L4 (773/494, modelled with the OHARA S-LAH66 catalog equivalent). Together, L1 and L2 form a positive front group with composite focal length f₁,₂ = 56.9 mm. The patent's condition (6) constrains L2's bending via r₃/f₂, governing the image-side surface's converging action on oblique rays and thereby controlling the meridional field curvature.
 
 L2's rear surface (r₄ = +72.381) is notably weaker than its front surface. This asymmetry controls the convergence angle of the marginal ray bundle as it enters L3, managing the balance between coma and spherical aberration.
 
@@ -197,13 +200,13 @@ The cemented doublet L4+L5 acts as the rear positive group in the Sonnar configu
 
 ## 7. Focus Mechanism
 
-The patent does not specify variable air spacings or internal focusing groups. The production L35AF camera focuses by **unit extension** — the entire lens assembly moves forward along the optical axis to focus on closer objects, with only the back focal distance changing.
+The patent publishes infinity data only. It gives no variable air spacings, internal focusing groups or close-focus state. The model treats the production L35AF as focusing by **unit extension**: the entire lens assembly moves forward along the optical axis, and only the back focal distance changes.
 
-At the production focal length of 35 mm, the focus extension required to reach the 0.8 m close focus distance is approximately:
+The close-focus extension is calculated, not published. At the production focal length of 35 mm, Newton's relation $x \cdot x' = f^2$ gives the extension that puts a 0.8 m object-to-image distance in focus:
 
-$$\Delta = \frac{f^2}{d_{obj} - f} = \frac{35^2}{800 - 35} \approx 1.60 \text{ mm}$$
+$$\Delta = x' \approx 1.69 \text{ mm}$$
 
-In the model, that means the back focal distance increases from 26.007 mm at infinity to 27.608 mm at the 0.8 m close-focus position. This small displacement is well suited to the simple mechanical autofocus mechanism of the L35AF, which uses a motor-driven helicoid to translate the lens barrel.
+In the model, the stop-to-image gap grows from 25.807 mm at infinity to 27.495 mm at 0.8 m. The last-surface back focus grows from 26.707 mm to 28.395 mm. The magnification there is about −0.048×. This small displacement is well suited to the simple mechanical autofocus mechanism of the L35AF, which uses a motor-driven helicoid to translate the lens barrel.
 
 Unit focusing has the advantage of mechanical simplicity and reliability, but it means that all aberrations shift as the lens moves — and this is where the Sonnar type's principal weakness emerges. In a Sonnar, the rear positive group carries a large share of the total converging power, and the strongly negative L3 immediately preceding it creates a diverging bundle that is sensitive to conjugate changes. When the entire lens translates forward for close focus, the marginal ray geometry through L3 and the rear doublet shifts, altering the balance of spherical aberration, coma, and field curvature. This "close-range aberration fluctuation" is a well-known Sonnar limitation.
 
@@ -213,7 +216,7 @@ Nikon's *Thousand and One Nights* article specifically singles out Wakamiya's ha
 
 ## 8. Production Scaling and Specifications
 
-The patent prescription is normalized to f = 100 mm. The production lens operates at f = 35 mm, giving a scale factor of ×0.35. All linear dimensions (radii, thicknesses, spacings, semi-diameters) are multiplied by this factor.
+The patent prescription is normalized to f = 100 mm. The production lens operates at f = 35 mm, giving a scale factor of ×0.350007 (≈ 0.35). All linear dimensions (radii, thicknesses, spacings, semi-diameters) are multiplied by this factor.
 
 | Parameter | Patent (f = 100) | Production (f ≈ 35) |
 |-----------|-----------------|---------------------|
@@ -222,11 +225,14 @@ The patent prescription is normalized to f = 100 mm. The production lens operate
 | Total length | 107.9 mm | 37.8 mm |
 | Total glass track | 31.6 mm | 11.1 mm |
 | Close focus | — | 0.8 m |
-| Maximum aperture | f/2.8 | f/2.8 |
+| Maximum aperture | f/2.8 | f/2.8 (programmed to f/17) |
 | Half-field angle | 31.15° | 31.15° |
-| Image circle (half-diagonal) | 60.4 mm | 21.2 mm |
+| Paraxial image height, f·tan ω | 60.4 mm | 21.2 mm |
+| Real chief-ray image height at 31.15° | — | 21.6 mm |
 
-The production image half-diagonal of 21.2 mm covers 35mm film's half-diagonal (21.63 mm) with minor vignetting at the extreme corners — consistent with the *Thousand and One Nights* observation that "light intensity at periphery was slightly low."
+The paraxial image height at the design field is 21.2 mm, but the design has about +2% pincushion distortion (Fig. 2). An exact trace of the 31.15° chief ray therefore lands at 21.60 mm, which is the full 135-format half-diagonal (21.63 mm). The design field covers the frame corner. Illumination at the corner is still reduced: the front element's rim clips part of the full-field bundle. That is consistent with the *Thousand and One Nights* observation that "light intensity at periphery was slightly low."
+
+The patent lists no clear apertures. The diagram's rims come from the element edges in Fig. 1, which is drawn to the scale of this embodiment. At production scale they read about 7.3 mm for L1, 6.25 mm for L2, 5.9 mm for L3 and 5.4 mm for the cemented doublet. L3's front rim is held at 5.49 mm. At that height the f/2.8 axial beam just passes and the 0.85 mm air gap to L2 closes, so L2 and L3 meet at their edges, as the figure also shows.
 
 ---
 
@@ -260,7 +266,7 @@ The patent's aberration plots (FIG. 2) for Embodiment 1 reveal the following per
 
 **Lateral chromatic aberration:** The g-line lateral color at the full half-field is well controlled, contained within approximately ±0.1 mm. This is a direct result of the glass selection (conditions 2–4) and the power distribution between the front and rear groups.
 
-**Distortion:** Positive (pincushion) at the field edge, reaching approximately 2–3% at the maximum half-field. The *Thousand and One Nights* article confirms "positive distortion (pincushion) is suppressed to a relatively reasonable degree of approx. 2%." This is typical for a behind-diaphragm configuration, where the stop is displaced far to the image side.
+**Distortion:** Positive (pincushion) at the field edge, reaching about +2% at the maximum half-field on the ±4% plot scale. The *Thousand and One Nights* article confirms "positive distortion (pincushion) is suppressed to a relatively reasonable degree of approx. 2%." This is typical for a behind-diaphragm configuration, where the stop is displaced far to the image side.
 
 **Lateral aberration (coma):** The lateral aberration curves at α = 0°, 17°, and 31.15° show good symmetry between d-line and g-line traces, confirming the patent's central claim of well-corrected coma and chromatic coma. The lower ray of the oblique bundle — which the patent identifies as the most problematic ray for chromatic coma in this design type — shows minimal d/g-line splitting.
 
@@ -270,7 +276,7 @@ The patent's aberration plots (FIG. 2) for Embodiment 1 reveal the following per
 
 The Nikon L35AF lens was designed in a competitive landscape dominated by Tessar-type compact camera lenses (typically 4 elements in 3 groups, f = 38 mm, f/2.8–3.5). Wakamiya's choice of a modified Sonnar configuration was distinctive for several reasons:
 
-**Shorter focal length:** Most contemporary compact cameras used 38mm lenses, giving a half-field angle of roughly 29.6° (2ω ≈ 59.3°). The L35AF's 35mm focal length extends the patent's design field to 31.15° (2ω = 62.3°) — an additional 1.5° of half-field over a 38mm competitor. Full-diagonal coverage of 35mm film would require 31.7° (2ω ≈ 63.4°), but the patent's slightly smaller design field leaves the outermost corners marginally vignetted (~98% coverage), consistent with the noted peripheral light fall-off. Even at 62.3°, this field represents a significant design challenge: the *Thousand and One Nights* article describes the Sonnar type as "unfit for wide angle lenses by nature," because its rear-heavy power distribution and behind-diaphragm stop placement amplify off-axis aberrations (particularly coma and pincushion distortion) as the field angle grows. Achieving 35mm required Wakamiya to push the front-group divergence harder against the rear-group convergence, a balancing act governed by conditions (5)–(8).
+**Shorter focal length:** Most contemporary compact cameras used 38mm lenses, giving a half-field angle of roughly 29.6° (2ω ≈ 59.3°). The L35AF's 35mm focal length extends the patent's design field to 31.15° (2ω = 62.3°) — an additional 1.5° of half-field over a 38mm competitor. A distortion-free 35 mm lens would need 31.7° (2ω ≈ 63.4°) to reach the 135 frame corner. This design's ~2% pincushion carries the 31.15° chief ray to the full 21.6 mm half-diagonal instead (§8). Even at 62.3°, this field represents a significant design challenge: the *Thousand and One Nights* article describes the Sonnar type as "unfit for wide angle lenses by nature," because its rear-heavy power distribution and behind-diaphragm stop placement amplify off-axis aberrations (particularly coma and pincushion distortion) as the field angle grows. Achieving 35mm required Wakamiya to push the front-group divergence harder against the rear-group convergence, a balancing act governed by conditions (5)–(8).
 
 **More compact total length:** At 1.08f (≈ 37.8 mm total length for f = 35 mm), the L35AF lens was shorter than a Tessar at 1.15f (which would be ~40.3 mm). This mattered greatly in a compact camera body.
 
@@ -284,8 +290,8 @@ The Nikon L35AF lens was designed in a competitive landscape dominated by Tessar
 
 - **Design type:** Sonnar-type / behind-diaphragm (derived from modified Tessar lineage per patent), 5 elements in 4 groups
 - **Aspherical surfaces:** None — the design is entirely spherical
-- **Glasses used:** Four distinct catalog families (N-LAK8-equivalent LaK 8, S-LAH66, S-TIM28, SK 16)
-- **Focus method:** Unit focus (entire lens translates forward), ~1.6 mm extension at 0.8 m; BFD increases from 26.007 mm to 27.608 mm
+- **Glasses used:** Four distinct glass types given as nd/νd only (713/540, 773/494, 689/311, 620/604), modelled with the J-LAK8, S-LAH66, S-TIM28 and N-SK16 catalog equivalents
+- **Focus method:** Unit focus (entire lens translates forward), calculated 1.69 mm extension at 0.8 m; the patent gives infinity data only
 - **Key innovation:** Careful chromatic coma correction through nine bounded parametric conditions governing glass dispersion, element bending, and power distribution
 - **Patent–production relationship:** f = 100 prescription scaled ×0.35 to production f = 35 mm
 - **Image quality hallmarks:** High contrast, well-corrected coma and lateral color, moderate pincushion distortion (~2%), slight field curvature — the classic Sonnar fingerprint refined for compact camera use

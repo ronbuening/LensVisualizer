@@ -10,6 +10,8 @@ import type { ComparisonLensesResult } from "../../../src/comparison/useComparis
 import { computeFocusPair, computeAperturePair, computeZoomPair } from "../../../src/comparison/comparisonSliders.js";
 import SonnarRaw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
+import { build, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
+import useLensComputation from "../../../src/components/hooks/useLensComputation.js";
 
 const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
 const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
@@ -24,6 +26,48 @@ function buildFixture() {
 }
 
 describe("useComparisonDisplayValues", () => {
+  it("matches both panels through zoom, stop-down, and close-focus changes", () => {
+    // Synthetic zooms guard the shared control/panel contract without freezing patent data.
+    const base = buildVariableStopGapLens([
+      [1, 1.1],
+      [1.2, 1.3],
+      [1.4, 1.5],
+    ]);
+    const LA = build({ ...base.data, nominalFno: [2, 4, 8], maxFstop: 16 });
+    const LB = build({ ...base.data, nominalFno: [4, 7, 10], maxFstop: 16 });
+    const { result, rerender } = renderHook(
+      ({ zoom, request, focus }) => {
+        const sharedStopdownT = Math.log(request / 2) / Math.log(16 / 2);
+        const aperturePair = computeAperturePair(sharedStopdownT, LA, LB, zoom, zoom);
+        const display = useComparisonDisplayValues({
+          comparisonLenses: { LA, LB },
+          aperturePair,
+          focusPair: computeFocusPair(focus, LA, LB, zoom, zoom),
+          zoomPair: { zoomA: zoom, zoomB: zoom, showZoom: true },
+          sharedStopdownT,
+        });
+        const params = { lensKey: "synthetic", focusT: focus, zoomT: zoom, scaleRatio: null, panelId: "test" };
+        const a = useLensComputation({ ...params, runtimeLens: LA, stopdownT: aperturePair.stopdownA });
+        const b = useLensComputation({ ...params, runtimeLens: LB, stopdownT: aperturePair.stopdownB });
+        return { display, a, b };
+      },
+      { initialProps: { zoom: 0, request: 2, focus: 0 } },
+    );
+
+    for (const zoom of [0, 0.5, 1]) {
+      for (const request of [2, 8, 11]) {
+        for (const focus of [0, 0.5]) {
+          rerender({ zoom, request, focus });
+          expect(result.current.display.effectiveFNumA).toBeCloseTo(result.current.a.effectiveFNum, 10);
+          expect(result.current.display.effectiveFNumB).toBeCloseTo(result.current.b.effectiveFNum, 10);
+        }
+      }
+    }
+    rerender({ zoom: 1, request: 8, focus: 0 });
+    expect(result.current.display.effectiveFNumA).toBeCloseTo(8, 10);
+    expect(result.current.display.effectiveFNumB).toBeCloseTo(10, 10);
+  });
+
   it("returns computed values for valid comparison lenses", () => {
     const { LA, LB, focusPair, aperturePair, zoomPair } = buildFixture();
     const lensResult: ComparisonLensesResult = { LA, LB };

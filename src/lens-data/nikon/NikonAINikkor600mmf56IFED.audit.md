@@ -1,6 +1,6 @@
 # Audit Log — NIKON AI NIKKOR 600mm f/5.6 IF-ED
 
-Patent: JP1981-035116, Example 1 / Figure 1
+Patent: JP 1981-035116 A, Example 1 / Figure 1
 
 ## 2026-08-21 — Screenshot, patent-figure, diagram-metadata, and glass audit
 
@@ -30,10 +30,3 @@ Patent: JP1981-035116, Example 1 / Figure 1
 ### Phase 4 — Analysis sync
 
 - Synchronized the explicit qualified glass labels, ED-position caveat, and unambiguous imageward/rearward focus wording in the companion analysis.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/nikon/NikonAINikkor600mmf56IFED.data.ts` — passed.
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAINikkor600mmf56IFED.data.ts` — 0 undersized.
-- `npm run generate:glass-reports` — passed; Sellmeier coverage remains 7/7.
-- Full repository checks are recorded in the integrating commit.

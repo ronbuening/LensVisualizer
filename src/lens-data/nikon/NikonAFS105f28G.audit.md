@@ -39,3 +39,9 @@ Patent: US 7,218,457 B2, Example 3 / Table 3
   `-0.029` in Abbe number.
 - Relabeled L6 as an S-TIL6 catalog equivalent while leaving Nikon's production supplier unspecified. No prescription
   geometry, focusing data, or aperture data changed.
+
+## 2026-09-09 — First-added diagram audit, lens 37
+
+Original Table 3 (PDF page 24) and Figures 9A–9C (page 10, 600 dpi) supersede the May entry's erroneous Example 4/Table 4 attribution. All source radii, thicknesses, indices and Abbe numbers are retained. Restored the middle focus station, source-distance slider mapping and f/2.88 first aperture setting. Corrected the eleven-component count and calculated isolated element focal lengths; qualified catalog names and removed unsupported L8 partial dispersion/APD. No cover glass or filter is present. Existing SDs pass figure review, surface/image-circle checks and four-state render diagnostics.
+
+Follow-up: source BF drift contradicts its fixed-group narrative; rounded source conjugates differ from exact matrix solutions. Focus-dependent iris diameter and lateral VR are not modeled. These limitations and the production-association distinction are surfaced in the data/analysis.

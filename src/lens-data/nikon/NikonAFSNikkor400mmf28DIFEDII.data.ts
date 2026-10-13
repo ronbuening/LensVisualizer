@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S NIKKOR ED 400mm f/2.8D II IF                    ║
+ * ║ LENS DATA — NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II                    ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 6,239,919 B1, Example 4 / Embodiment 4 (Susumu Sato,       ║
  * ║ Nikon Corporation). The active prescription is kept at the patent scale.   ║
@@ -17,19 +17,25 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ following focus table mislabels the same rows d13 and d18. The modeled      ║
  * ║ variables are therefore d11 and d16; their sum remains constant.            ║
  * ║                                                                            ║
- * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The source train publishes a      ║
- * ║ 3.8 m checkpoint with 10.85845 mm G2 imageward travel. The production       ║
- * ║ endpoint is 3.4 m MF. Because the ordinary LensVisualizer model excludes    ║
- * ║ the source front/rear plates and field stop, the active normalized model    ║
- * ║ is re-solved after plate omission: G2 travel = 12.3331402826 mm, with       ║
- * ║ d11 = 36.9284702826 mm and d16 = 15.1103997174 mm at 3.4 m. This is         ║
- * ║ 0.0100719967 mm less than the full-source-train 3.4 m reconstruction.       ║
+ * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The source train publishes a     ║
+ * ║ 3.8 m checkpoint with 10.85845 mm G2 imageward travel. The production      ║
+ * ║ endpoint is 3.4 m MF. Because the active model omits the source front      ║
+ * ║ plate and field stop and normalizes the rear reference plane, the 3.4 m    ║
+ * ║ state is re-solved in the active model: G2 travel = 12.3331402826 mm,      ║
+ * ║ with d11 = 36.9284702826 mm and d16 = 15.1103997174 mm at 3.4 m. This is   ║
+ * ║ 0.0100719967 mm less than the full-source-train 3.4 m reconstruction.      ║
+ * ║ The drawn rear filter plate is paraxially identical to the former          ║
+ * ║ air-equivalent fold, so this solve is unchanged.                           ║
  * ║                                                                            ║
- * ║ Rear reference-plane normalization: the source field stop and rear          ║
- * ║ 2.0 mm nd=1.5168 filter are omitted. Direct air-equivalent normalization    ║
- * ║ gives 114.0571854008 mm from source surface 23 to image; the stored final   ║
- * ║ gap is the independently solved 114.0572584255 mm that closes the rounded   ║
- * ║ printed prescription paraxially (73.0 nm difference).                      ║
+ * ║ Rear filter: patent surfaces 25-26 (2.0 mm, nd=1.516800, νd=64.10,         ║
+ * ║ J-BK7A) are drawn as a plane-parallel plate element and traced by every    ║
+ * ║ analysis, with the printed Bf = 83.53862 mm to the image; its              ║
+ * ║ semi-diameter is a ray-trace estimate (the source lists none) and it is    ║
+ * ║ not counted in `elementCount`. The field stop (surface 24) is omitted, so  ║
+ * ║ the stored d23 spans patent d23 + d24 = 22.0 + 7.2 mm; it is kept at       ║
+ * ║ 29.2000730246 mm (73.0 nm longer) to preserve the independently solved     ║
+ * ║ image plane that closes the rounded printed prescription paraxially        ║
+ * ║ (air-equivalent 114.0572584255 mm vs 114.0571854008 mm direct).            ║
  * ║                                                                            ║
  * ║ Stop: the patent does not publish the physical S1 diameter. STO sd is       ║
  * ║ inferred from the published FNO=2.88 and the verified entrance-pupil        ║
@@ -54,7 +60,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-s-nikkor-400mm-f28d-if-ed-ii",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR ED 400mm f/2.8D II IF",
+  name: "NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II",
   subtitle: "US 6,239,919 B1 — Example 4; constrained active-model close-focus reconstruction",
   specs: [
     "11 ELEMENTS / 9 GROUPS",
@@ -222,11 +228,23 @@ const LENS_DATA = {
       glass: "S-BSM81 catalog equivalent (patent 640600; production supplier unspecified)",
       role: "Rear positive element of stationary G3; source surface 22 has finite R=+46,400 mm.",
     },
+    {
+      id: 12,
+      name: "F",
+      label: "Slip-in filter F",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      role: "Plane-parallel filter plate of the patent prescription (US 6,239,919 B1, Example 4 Table 4 surfaces 25–26), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
   /* ── Active surface prescription ──
-   * Patent surfaces 1-2 (front plate), 24 (field stop), and 25-26 (rear plate)
-   * are omitted. Source surface 17 is retained as STO.
+   * Patent surfaces 1-2 (front plate) and 24 (field stop) are omitted; d23
+   * spans patent d23 + d24 to the rear filter (surfaces 25-26, drawn as a
+   * plane-parallel plate element).
+   * Source surface 17 is retained as STO.
    */
   surfaces: [
     { label: "3", R: 187.1041, d: 20.1, nd: 1.49782, elemId: 1, sd: 68.1 },
@@ -249,7 +267,12 @@ const LENS_DATA = {
     { label: "20", R: -58.397, d: 2.9, nd: 1.80384, elemId: 10, sd: 20.5 },
     { label: "21", R: -172.863, d: 0.6, nd: 1.0, elemId: 0, sd: 20.5 },
     { label: "22", R: 46400.0, d: 5.5, nd: 1.64, elemId: 11, sd: 15.5 },
-    { label: "23", R: -66.68, d: 114.05725842548244, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "23", R: -66.68, d: 29.20007302463857, nd: 1.0, elemId: 0, sd: 16.0 }, // patent d23 + d24 → filter
+    // Slip-in filter F (US 6,239,919 B1, Example 4 Table 4 surfaces 25–26), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    // Gap to the image: Bf 83.53862
+    { label: "25", R: 1e15, d: 2.0, nd: 1.5168, elemId: 12, sd: 19 },
+    { label: "26", R: 1e15, d: 83.53862, nd: 1.0, elemId: 0, sd: 19 }, // slip-in filter → image plane
   ],
 
   asph: {},
@@ -277,7 +300,7 @@ const LENS_DATA = {
 
   closeFocusM: 3.4,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: G2 alone translates imageward with D11 + D16 conserved. The patent publishes a 3.8 m checkpoint; the active no-filter model is code-solved to Nikon's 3.4 m MF limit after reference-plane normalization.",
+    "CONSTRAINED_RECONSTRUCTION: G2 alone translates imageward with D11 + D16 conserved. The patent publishes a 3.8 m checkpoint; the active model (front plate and field stop omitted) is code-solved to Nikon's 3.4 m MF limit after reference-plane normalization.",
 
   nominalFno: 2.88,
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],

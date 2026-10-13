@@ -61,6 +61,15 @@ const LENS_DATA = {
     tiltRangeDeg: [-8.5, 8.5],
     shiftStepMm: 0.1,
     tiltStepDeg: 0.1,
+    // WO 2024/195273 A1 [0270], Fig. 42 places Tc at or near the optical system's
+    // image-side principal point. Example 4's infinity EFL locates that reference
+    // 30.9009 mm objectward of the image plane. This is patent design guidance,
+    // not a measured production hinge position.
+    tiltPivot: {
+      frame: "camera",
+      basis: "patent-principal-point-guidance",
+      zOffsetFromImagePlaneMm: -30.9009,
+    },
   },
 
   elements: [
@@ -280,7 +289,7 @@ const LENS_DATA = {
       nd: 1.56732,
       vd: 42.81,
       fl: 32.988,
-      glass: "S-TIL26 / E-FL6 / H-QF56 class (567/428)",
+      glass: "S-TIL26 / H-QF56 class (567/428)",
       apd: false,
       dPgF: 0.00389,
       role: "Thick positive rear doublet member; closes the optical train before the long back focus.",
@@ -417,9 +426,11 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.3,
-  nominalFno: 5.6,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
+  nominalFno: 5.76,
   maxFstop: 32,
-  fstopSeries: [5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [5.76, 8, 11, 16, 22, 32],
   focusDescription:
     "Inner focus: Group 2, including the aperture stop, translates objectward from infinity to 0.3 m; Groups 1 and 3 remain stationary and the DD[12]+DD[23] sum is conserved.",
   scFill: 0.58,

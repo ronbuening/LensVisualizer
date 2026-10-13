@@ -20,6 +20,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Values below are conservative rendering apertures estimated from   ║
  * ║  paraxial marginal/chief-ray envelopes, then tightened to satisfy   ║
  * ║  edge-thickness, sd/|R|, element-ratio, and signed cross-gap checks.║
+ * ║  Surface 3 was raised to pass the traced chief ray to the patent's  ║
+ * ║  Y = 14.25 mm APS-C corner at wide, and L41 (surfaces 23-24) so it  ║
+ * ║  also clears the tele corner (2026-09-24 field-coverage audit).     ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERIC CONIC:                                           ║
  * ║  The patent uses κ in sqrt(1 - κ y²/R²). LensVisualizer stores the  ║
@@ -195,7 +198,7 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 66.4503, d: 4.05, nd: 1.5168, elemId: 1, sd: 24.0 },
     { label: "2", R: 238.302, d: 0.1, nd: 1.0, elemId: 0, sd: 19.2 },
-    { label: "3", R: 46.616, d: 1.7, nd: 1.804, elemId: 2, sd: 12.0 },
+    { label: "3", R: 46.616, d: 1.7, nd: 1.804, elemId: 2, sd: 15.2 },
     { label: "4", R: 13.299, d: 7.2, nd: 1.0, elemId: 0, sd: 11.5 },
     { label: "5", R: -466.4671, d: 1.4, nd: 1.804, elemId: 3, sd: 10.2 },
     { label: "6", R: 13.2979, d: 3.0, nd: 1.0, elemId: 0, sd: 9.5 },
@@ -218,8 +221,8 @@ const LENS_DATA = {
     { label: "21", R: -32.0982, d: 1.0, nd: 1.8061, elemId: 11, sd: 8.2 },
     { label: "22", R: 32.0982, d: 3.35, nd: 1.0, elemId: 0, sd: 8.4 },
 
-    { label: "23", R: -163.0228, d: 3.8, nd: 1.85026, elemId: 12, sd: 11.0 },
-    { label: "24", R: -30.7917, d: 9.815, nd: 1.0, elemId: 0, sd: 11.8 },
+    { label: "23", R: -163.0228, d: 3.8, nd: 1.85026, elemId: 12, sd: 11.6 },
+    { label: "24", R: -30.7917, d: 9.815, nd: 1.0, elemId: 0, sd: 12.4 },
   ],
 
   asph: {

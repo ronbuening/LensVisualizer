@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { assertPatentAssigneeValidity } from "../../scripts/patent-assignee-validity.mjs";
+import {
+  ASSIGNEE_START_YEARS,
+  assertPatentAssigneeValidity,
+  deriveAssigneeStartYears,
+} from "../../scripts/patent-assignee-validity.mjs";
 
 describe("patent assignee validity", () => {
   it("accepts canonical historical and modern Zeiss entities", () => {
@@ -34,6 +38,47 @@ describe("patent assignee validity", () => {
     ).toThrow(/use VEB Carl Zeiss Jena instead of VEB Optik Carl Zeiss Jena/);
   });
 
+  it.each([
+    ["Jos. Schneider & Co.", "Jos. Schneider & Co., Optische Werke"],
+    ["Jos. Schneider & Co. Optische Werke", "Jos. Schneider & Co., Optische Werke"],
+    ["Jenoptik Jena G.m.b.H.", "Jenoptik Jena GmbH"],
+    ["Nippon Kogaku Kogyo K.K.", "Nippon Kogaku K.K."],
+    ["Voigtländer & Sohn Aktiengesellschaft", "Voigtländer & Sohn AG"],
+    ["Voigtländer A.G.", "Voigtländer AG"],
+    ["Firma Ernst Leitz GmbH", "Ernst Leitz GmbH"],
+    ["FUJIFILM Corporation", "Fujifilm Corporation"],
+    ["Minolta Camera Kabushiki Kaisha", "Minolta Camera Co., Ltd."],
+  ])("rejects the spelling-only duplicate %s", (alias, canonical) => {
+    expect(() => assertPatentAssigneeValidity([{ key: "alias", patentYear: 1953, patentAssignees: [alias] }])).toThrow(
+      `use ${canonical} instead of ${alias}`,
+    );
+  });
+
+  it("consolidates the modern Canon translation without rewriting earlier entities", () => {
+    expect(() =>
+      assertPatentAssigneeValidity([{ key: "modern", patentYear: 2024, patentAssignees: ["Canon Kabushiki Kaisha"] }]),
+    ).toThrow("use Canon Inc. instead of Canon Kabushiki Kaisha");
+    expect(() =>
+      assertPatentAssigneeValidity([
+        { key: "historical", patentYear: 1960, patentAssignees: ["Canon Camera Co., Inc."] },
+        { key: "sony", patentYear: 2018, patentAssignees: ["Sony Corporation"] },
+        { key: "sony-group", patentYear: 2024, patentAssignees: ["Sony Group Corporation"] },
+      ]),
+    ).not.toThrow();
+  });
+
+  it("preserves a legal rename boundary without rejecting delayed publications", () => {
+    expect(() =>
+      assertPatentAssigneeValidity([{ key: "early", patentYear: 1989, patentAssignees: ["Minolta Co., Ltd."] }]),
+    ).toThrow("Minolta Co., Ltd. did not exist until 1994");
+    expect(() =>
+      assertPatentAssigneeValidity([
+        { key: "renamed", patentYear: 1994, patentAssignees: ["Minolta Co., Ltd."] },
+        { key: "delayed", patentYear: 1995, patentAssignees: ["Minolta Camera Co., Ltd."] },
+      ]),
+    ).not.toThrow();
+  });
+
   it("rejects entity names that postdate the source publication", () => {
     expect(() =>
       assertPatentAssigneeValidity([
@@ -45,5 +90,31 @@ describe("patent assignee validity", () => {
         },
       ]),
     ).toThrow(/Carl Zeiss AG did not exist until 2004/);
+  });
+});
+
+describe("derived assignee start years", () => {
+  it("takes the earliest successorOf date and lets overrides win", () => {
+    const derived = deriveAssigneeStartYears(
+      {
+        "Late Name Co.": {
+          successorOf: [{ effectiveDate: "2013-04-01" }, { effectiveDate: "2003-08-05" }],
+        },
+        "No Successor Co.": {},
+        "Override Co.": { successorOf: [{ effectiveDate: "2010-04-01" }] },
+      },
+      new Map([["Override Co.", 1969]]),
+    );
+    expect(derived.get("Late Name Co.")).toBe(2003);
+    expect(derived.has("No Successor Co.")).toBe(false);
+    expect(derived.get("Override Co.")).toBe(1969);
+  });
+
+  it("bounds registry successor names by their succession date", () => {
+    expect(ASSIGNEE_START_YEARS.get("Nikon Corporation")).toBe(1988);
+    expect(ASSIGNEE_START_YEARS.get("Konica Minolta, Inc.")).toBe(2013);
+    expect(() =>
+      assertPatentAssigneeValidity([{ key: "early", patentYear: 1987, patentAssignees: ["Nikon Corporation"] }]),
+    ).toThrow("Nikon Corporation did not exist until 1988");
   });
 });

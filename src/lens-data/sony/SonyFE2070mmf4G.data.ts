@@ -480,12 +480,14 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus via G5 (L51+L52); translates image-ward for close focus. Two XD linear motors.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4,
+  nominalFno: 4.12,
   apertureBlades: 9,
-  fstopSeries: [4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
+  fstopSeries: [4.12, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

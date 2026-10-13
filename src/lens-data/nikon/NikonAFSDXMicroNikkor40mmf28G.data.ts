@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G                       ║
+ * ║ LENS DATA — NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 2011/0170195 A1, Example 1 (Muratani / Tanaka / Nikon).    ║
  * ║ Patent model: 9 refractive elements / 8 air-separated glass assemblies,    ║
@@ -20,12 +20,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   The patent CLD object-to-physical-focal-plane distance is 0.15264661 m;  ║
  * ║   closeFocusM retains Nikon's 0.163 m marketed MFD as product metadata.    ║
  * ║                                                                            ║
- * ║ REAR NORMALIZATION                                                         ║
- * ║   Patent surfaces 19–20 are a 2.000 mm, nd=1.51680 low-pass plate plus   ║
- * ║   the final Bf interval. The plate is excluded. The final active S18→IMG   ║
- * ║   air spacing is 39.07132 mm, derived from the published INF ACTL.         ║
- * ║   This is +0.000699 mm from the independently computed S18 BFL. The raw    ║
- * ║   source Bf/ACBf reference-plane inconsistency is preserved in the audit.  ║
+ * ║ REAR PLATE                                                                 ║
+ * ║   Patent surfaces 19–20 are a 2.000 mm low-pass filter P1 (nd=1.51680,     ║
+ * ║   νd=64.12), modeled in `rearPlates` (traced, not drawn) as J-BK7A.        ║
+ * ║   S18→P1 = 0.100 mm (patent d18). Trailing Bf = 37.65276 mm is derived     ║
+ * ║   from the printed INF TL (86.85516) and ACTL (86.17372); Table 1 prints   ║
+ * ║   Bf = 37.65 (constant). The air-equivalent S18→IMG is 39.07132 mm,        ║
+ * ║   +0.000699 mm from the independently computed S18 BFL. The raw source     ║
+ * ║   Bf/ACBf reference-plane inconsistency is preserved in the audit.         ║
  * ║                                                                            ║
  * ║ STOP MODEL                                                                 ║
  * ║   The stop axial station is patent-published; its diameter is not. STO.sd  ║
@@ -57,7 +59,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-dx-micro-nikkor-40mm-f28g",
   maker: "Nikon",
-  name: "NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G",
+  name: "NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G",
   subtitle: "US 2011/0170195 A1 — Example 1; strong production correlate with documented group-count mismatch",
   specs: [
     "PATENT: 9 ELEMENTS / 8 GROUPS",
@@ -203,7 +205,21 @@ const LENS_DATA = {
     { label: "15", R: -311.9251, d: 1.2, nd: 1.48749, elemId: 8, sd: 8.2 },
     { label: "16", R: 31.2577, d: 1.55, nd: 1, elemId: 0, sd: 8.0 },
     { label: "17", R: -1620.783, d: 2.55, nd: 1.744, elemId: 9, sd: 8.0 },
-    { label: "18", R: -66.5158, d: 39.07132, nd: 1, elemId: 0, sd: 8.0 },
+    { label: "18", R: -66.5158, d: 0.1, nd: 1, elemId: 0, sd: 8.0 },
+  ],
+
+  /* ── Low-pass filter P1 (patent surfaces 19–20): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "P1",
+      thicknessMm: 2,
+      nd: 1.5168,
+      vd: 64.12,
+      glass: "J-BK7A",
+      gapAfterMm: 37.65276,
+      source:
+        "US 2011/0170195 A1, Example 1 Table 1 surfaces 19–20; Bf 37.65276 derived from printed INF TL/ACTL (printed Bf = 37.65)",
+    },
   ],
 
   asph: {
@@ -218,9 +234,10 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.9106579317813288, 1],
   var: {
-    "8": [2.9684, 5.3323],
-    "14A": [1.21, 25.7088],
+    "8": [2.9684, 3.2165, 5.3323],
+    "14A": [1.21, 13.371, 25.7088],
   },
   varLabels: [
     ["8", "d1a (G1→STO)"],
@@ -235,8 +252,10 @@ const LENS_DATA = {
   doublets: [{ text: "L21–L22", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 0.163,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
-    "PUBLISHED: Example 1 supplies INF, β=-0.5 MID, and β=-1.0 CLD states. G1 and G2 move objectward while d1a changes; the stop co-moves with G2, d1b stays 4.00000 mm, and G3 remains fixed to the physical image plane. Runtime focus uses one linear parameter between the published INF/CLD endpoints, so the published MID d1a/d2 pair is verified separately and is not represented exactly by the runtime interpolation. The modeled CLD conjugate is 0.15264661 m object-to-physical-focal-plane, while closeFocusM retains Nikon's separate 0.163 m marketed minimum-focus specification.",
+    "PUBLISHED: Example 1 supplies exact INF, β=-0.5 MID, and β=-1.0 CLD focus keyframes. G1 and G2 move objectward while d1a changes; the stop co-moves with G2, d1b stays 4.00000 mm, and G3 remains fixed to the physical image plane. The modeled CLD conjugate is 0.15264661 m object-to-physical-focal-plane, while closeFocusM retains Nikon's separate 0.163 m marketed minimum-focus specification.",
 
   nominalFno: 2.68,
   fstopSeries: [2.68, 4, 5.6, 8, 11, 16, 22],

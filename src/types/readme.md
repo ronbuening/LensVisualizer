@@ -15,8 +15,10 @@ flowchart LR
     n_src_types_src_types_groupMovement_ts["groupMovement.ts"]
     n_src_types_src_types_index_ts["index.ts"]
     n_src_types_src_types_mount_ts["mount.ts"]
+    n_src_types_src_types_mtf_ts["mtf.ts"]
     n_src_types_src_types_optics_ts["optics.ts"]
     n_src_types_src_types_state_ts["state.ts"]
+    n_src_types_src_types_teleconverter_ts["teleconverter.ts"]
     n_src_types_src_types_theme_ts["theme.ts"]
   end
   n_external_src_comparison["src/comparison"]
@@ -27,31 +29,38 @@ flowchart LR
   n_src_types_src_types_index_ts --> n_external_src_utils_catalog
   n_src_types_src_types_mount_ts --> n_external_src_utils_catalog
   n_src_types_src_types_optics_ts --> n_external_src_utils_catalog
+  n_src_types_src_types_teleconverter_ts --> n_external_src_utils_catalog
+  n_src_types_src_types_teleconverter_ts --> n_src_types_src_types_asphericSchema_ts
   n_src_types_src_types_index_ts --> n_src_types_src_types_catalog_ts
   n_src_types_src_types_state_ts --> n_src_types_src_types_groupMovement_ts
   n_src_types_src_types_index_ts --> n_src_types_src_types_optics_ts
+  n_src_types_src_types_mtf_ts --> n_src_types_src_types_optics_ts
+  n_src_types_src_types_teleconverter_ts --> n_src_types_src_types_optics_ts
   n_src_types_src_types_theme_ts --> n_src_types_src_types_optics_ts
   n_src_types_src_types_index_ts --> n_src_types_src_types_state_ts
+  n_src_types_src_types_optics_ts --> n_src_types_src_types_teleconverter_ts
   n_src_types_src_types_index_ts --> n_src_types_src_types_theme_ts
 ```
 
 ## Directory Overview
 
-- Direct source files: 9
+- Direct source files: 11
 - Direct subfolders: 0
-- Main outbound areas: same folder (10), src/utils/catalog (3), src/comparison (2)
-- External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/homepage, src/components/hooks, +44 more
+- Main outbound areas: same folder (14), src/utils/catalog (4), src/comparison (2)
+- External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/homepage, src/components/hooks, +51 more
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `asphericSchema.ts` | Shared TypeScript types | none | same folder, src/optics/internal, src/optics/validateLensData.ts | AsphericCoefficientDescriptor, ASPHERIC_COEFFICIENT_SCHEMA, AsphericPolynomialDescriptor, ASPHERIC_POLYNOMIAL_TERMS, AsphericCoefficients |
-| `catalog.ts` | Shared TypeScript types | none | src/utils/catalog (6), src/pages/lensIndex (3), src/components/relationshipMap (2), same folder | PatentPartyMetadata, CorporateRelationshipEvent, CorporateRelationshipPeriod, CorporateFamilyPeriod, AssigneeCorporateRelationships, AssigneeMetadata, PatentLensRef, PatentPartyRole |
+| `asphericSchema.ts` | Shared TypeScript types | none | same folder (2), src/optics/internal, src/optics/math, src/optics/validateLensData.ts | AsphericCoefficientDescriptor, ASPHERIC_COEFFICIENT_SCHEMA, AsphericPolynomialDescriptor, ASPHERIC_POLYNOMIAL_TERMS, AsphericCoefficients |
+| `catalog.ts` | Shared TypeScript types | none | src/utils/catalog (7), src/pages/lensIndex (3), src/components/relationshipMap (2), same folder | PatentPartyMetadata, CorporateRelationshipEvent, CorporateRelationshipPeriod, CorporateFamilyPeriod, AssigneeCorporateRelationships, AssigneeMetadata, PatentLensRef, PatentPartyRole |
 | `goatcounter.d.ts` | Ambient/type declaration surface | none | none | none |
 | `groupMovement.ts` | Shared TypeScript types | none | src/components/layout (2), src/utils/state (2), same folder, src/comparison, src/components/controls, +4 more | GROUP_MOVEMENT_MODES, GroupMovementMode, isGroupMovementMode |
 | `index.ts` | Shared TypeScript types | same folder (6), src/utils/catalog | none | ImageFormatId, ImageFormatMetadata, LensMountId, LensMountMetadata, SurfaceData, AsphericCoefficients, ElementData, AnnotationData, +93 more |
 | `mount.ts` | Shared TypeScript types | src/utils/catalog | src/optics/mount (9), same folder, src/components/mount | MOUNT_SCHEMA_VERSION, MountSchemaVersion, MountProfileId, ResearchStatus, MvpStatus, DiagramStatus, MountMechanism, MountLockType, +40 more |
-| `optics.ts` | Shared TypeScript types | same folder (2), src/utils/catalog | src/components/display (22), src/components/diagram (13), src/optics/trace (10), src/components/layout (9), src/optics/analysis (9), +37 more | RadialPhaseTerm, DiffractivePhaseSurface, SurfaceData, SurfaceIncidentSide, SurfaceInactiveSideBehavior, SurfaceInteractionType, MirrorKind, SurfaceInteraction, +53 more |
-| `state.ts` | Shared TypeScript types | src/comparison (2), same folder | src/components/layout (11), src/utils/state (8), src/components/hooks (7), src/comparison (4), src/components/controls (2), +6 more | SharedSlidersSlice, ComparisonAction, OFF_AXIS_MODES, RAY_DENSITIES, MOBILE_VIEWS, DESKTOP_VIEWS, ANALYSIS_TAB_IDS, OffAxisMode, +27 more |
-| `theme.ts` | Shared TypeScript types | same folder | src/components/display (43), src/components/layout (20), src/components/diagram (15), src/components/content (9), src/components/controls (9), +13 more | ThemeInternalTokens, ThemeColorTokens, Theme, ThemeVariant |
+| `mtf.ts` | Shared TypeScript types | same folder | src/optics/analysis (8), src/components/display (7), src/components/hooks (4), src/utils/state (2) | MtfMethod, MtfSpectrum, MtfFocusMode, MtfGridCap, MtfUnavailableReason, MtfOptions, MtfSpectralLine, MtfSupport, +8 more |
+| `optics.ts` | Shared TypeScript types | same folder (3), src/utils/catalog | src/components/display (26), src/components/diagram (14), src/components/hooks (10), src/optics/analysis (10), src/optics/perspective (10), +44 more | RadialPhaseTerm, DiffractivePhaseSurface, SurfaceData, SyntheticOpticsKind, RearPlateData, SurfaceIncidentSide, SurfaceInactiveSideBehavior, SurfaceInteractionType, +62 more |
+| `state.ts` | Shared TypeScript types | src/comparison (2), same folder | src/components/layout (12), src/utils/state (8), src/components/hooks (7), src/comparison (4), src/components/controls (2), +6 more | SharedSlidersSlice, ComparisonAction, OFF_AXIS_MODES, RAY_DENSITIES, MOBILE_VIEWS, DESKTOP_VIEWS, ANALYSIS_TAB_IDS, OffAxisMode, +27 more |
+| `teleconverter.ts` | Shared TypeScript types | same folder (2), src/utils/catalog | src/optics/prescription (2), same folder, src/optics/validateTeleconverterData.ts, src/utils/catalog | TeleconverterData, TeleconverterDataInput, AttachedTeleconverterInfo, TeleconverterIncompatibility, TeleconverterGeometry, TeleconverterCompatibility |
+| `theme.ts` | Shared TypeScript types | same folder | src/components/display (60), src/components/layout (22), src/components/diagram (16), src/components/controls (14), src/components/content (9), +13 more | ThemeInternalTokens, ThemeColorTokens, Theme, ThemeVariant |

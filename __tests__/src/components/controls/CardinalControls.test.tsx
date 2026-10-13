@@ -56,6 +56,28 @@ describe("CardinalControls", () => {
     expect(onShowCardinalEflChange).toHaveBeenCalledWith(false);
   });
 
+  it("keeps active cardinal and dimension sub-controls usable in the inline toolbar", () => {
+    const onShowCardinalFocalChange = vi.fn();
+    const onShowCardinalEflChange = vi.fn();
+    render(
+      <CardinalControls
+        t={themes.dark}
+        inline
+        showCardinals
+        showCardinalDimensions
+        onShowCardinalFocalChange={onShowCardinalFocalChange}
+        onShowCardinalEflChange={onShowCardinalEflChange}
+      />,
+    );
+    const cardinals = screen.getByRole("button", { name: "CARDINALS" });
+    expect(cardinals.parentElement?.style.width).toBe("");
+    expect(cardinals.parentElement?.parentElement?.style.flexDirection).toBe("row");
+    fireEvent.click(screen.getByRole("button", { name: "F" }));
+    fireEvent.click(screen.getByRole("button", { name: "EFL" }));
+    expect(onShowCardinalFocalChange).toHaveBeenCalledWith(false);
+    expect(onShowCardinalEflChange).toHaveBeenCalledWith(false);
+  });
+
   it("routes H and N sub-layer buttons to their independent callbacks", () => {
     const onShowCardinalPrincipalChange = vi.fn();
     const onShowCardinalNodalChange = vi.fn();

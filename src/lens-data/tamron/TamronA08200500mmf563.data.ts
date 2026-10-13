@@ -18,9 +18,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * - Focus status: CONSTRAINED_RECONSTRUCTION. The patent states that L6 focuses but does not publish
  *   close-focus spacings. L6 alone is translated imageward to the production 2.5 m MOD while the fixed
  *   normalized image plane is preserved. The adjacent D20 + BF sum is conserved at each zoom station.
- * - The common physical stop radius 12.168448200532495 mm is the arithmetic mean of the three radii
- *   independently inverse-derived from the published patent FNO states. nominalFno therefore stores the
- *   modeled values produced by this common stop rather than the rounded source labels 5.160 / 5.722 / 6.250.
+ * - Stop model: one iris radius for the whole zoom range (zoomApertureModel "fixed-iris"). nominalFno stores the
+ *   patent FNO values 5.160 / 5.722 / 6.250 (Figs. 2-4; ¶0011 prints 5.16 / 5.72 / 6.25). The patent prints no
+ *   stop diameter. The wide-open iris is the 12.3248 mm radius a real marginal ray at f/5.160 reaches at the
+ *   stop at the 200 mm station; held at every station it traces f/5.160 / 5.722 / 6.250. Sized separately by
+ *   real ray, the three printed values need 12.3248 / 12.3244 / 12.3251 mm (spread 0.01 %), so one radius fits
+ *   all three within print rounding. The STO row's authored sd, 12.168448200532495 mm, is the arithmetic mean
+ *   of the three paraxially inverse-derived radii (12.1814 / 12.1788 / 12.1451 mm); it is not the radius the
+ *   wide-open trace uses.
  * - Glass vendor identity is underdetermined from patent nd/vd coordinates. The `glass` fields retain
  *   derived six-digit classes only. The source publishes no per-element nC, nF, ng, or dPgF values, so
  *   those fields are intentionally not invented.
@@ -320,7 +325,9 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: patent-specified rear group L6 translates imageward; close pairs are " +
     "code-solved at the production 2.5 m MOD with the normalized image plane fixed and D20 + BF conserved.",
 
-  nominalFno: [5.165510882857218, 5.726845528563873, 6.2380323447524],
+  apertureDesign: 5.16,
+  nominalFno: [5.16, 5.722, 6.25],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [5.6, 6.3, 8, 11, 16, 22, 32],
   apertureBlades: 9,
   maxFstop: 32,

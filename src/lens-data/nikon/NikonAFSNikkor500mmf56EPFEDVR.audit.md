@@ -44,17 +44,12 @@ The previous draft set `apd: "patent"` on all 21 modeled media merely because θ
 classification applies the APD badge only to the anomalous PF material GDa and the three production-correlated ED
 elements L34, L35, and L37. The remaining 17 entries retain their ΔPgF values for tracing and set `apd: false`.
 
-## Verification
-
-- Stored lens validation reports no surface-geometry errors.
-- The image-circle audit reports zero semi-diameter floor failures.
-- Maximum spherical rim slope is 36.439° at surface 33.
-- Minimum computed edge thickness is 0.0618 mm at L39.
-- The tightest positive cross-gap intrusion is 1.86622 / 3.0 mm (62.207%) from surface 23 to 24.
-- Catalog dispersion tests pass with duplicate six-digit-code precedence preserved.
-
 ## Retained sources
 
 - JP 2018-017857 A, Example 2, Tables 5–8, Figures 3–4.
 - Nikon Imaging, official AF-S NIKKOR 500mm f/5.6E PF ED VR specifications.
 - Hikari Glass Co., Ltd., *Optical Glass Catalog*, June 2025.
+
+## 2026-09-23 — Inventor romanization
+
+- The JP 2018-017857 A front page names 三輪 哲史 at Nikon, the same Nikon inventor as the US front pages of US 2010/0220400 A1, US 2018/0031811 A1, and US 2021/0026133 A1, which all publish `Satoshi Miwa`. Normalized the inventor from Tetsushi Miwa to the corpus-canonical Satoshi Miwa in lens metadata and analysis prose.

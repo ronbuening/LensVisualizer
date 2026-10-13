@@ -75,10 +75,11 @@ describe("ChromaticControls", () => {
     render(
       <ChromaticControls t={mockTheme} showChromatic={true} chromR={true} chromG={true} chromB={true} chromV={false} />,
     );
-    // Should not throw
-    fireEvent.click(screen.getByText("COLOR"));
-    fireEvent.click(screen.getByText("R"));
-    fireEvent.click(screen.getByText("G"));
-    fireEvent.click(screen.getByText("B"));
+    expect(() => {
+      fireEvent.click(screen.getByText("COLOR"));
+      fireEvent.click(screen.getByText("R"));
+      fireEvent.click(screen.getByText("G"));
+      fireEvent.click(screen.getByText("B"));
+    }).not.toThrow();
   });
 });

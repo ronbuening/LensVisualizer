@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP S56-140311 (A)
+**Patent:** JP S56-140311 A
 **Application Number:** Shō 55-43373
 **Filed:** April 2, 1980
 **Published:** November 2, 1981
@@ -156,7 +156,7 @@ The design is therefore best understood as a production-oriented compact symmetr
 
 ## Sources
 
-- JP S56-140311 (A), 「広角レンズ」, Fuji Photo Optical Co., Ltd., published November 2, 1981. Primary source for the prescription, conditional expressions, worked examples, field angle, and patent design rationale.
+- JP S56-140311 A, 「広角レンズ」, Fuji Photo Optical Co., Ltd., published November 2, 1981. Primary source for the prescription, conditional expressions, worked examples, field angle, and patent design rationale.
 - Fuji GW690III / GSW690III / GW670III Professional Owner's Manual. Manufacturer source for production lens specifications, actual picture size, nearest focusing distance, filter thread, and covering power.
 - OHARA INC., Glass Type product table, for S-NSL3, S-TIL26, and S-TIM5 catalog values and line-index data.
 - OHARA GmbH, S-LAL13 product datasheet, December 2019, for the S-LAL13 class match and line-index data.

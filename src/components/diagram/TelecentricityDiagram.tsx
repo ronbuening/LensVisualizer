@@ -93,7 +93,6 @@ const TelecentricityDiagram = memo(function TelecentricityDiagram({ isDark }: { 
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 640 230"
       width="100%"
-      height="auto"
       role="img"
       aria-label="Three forms of telecentricity diagram"
     >

@@ -14,9 +14,9 @@ The Leica Elmarit 90mm f/2.8 was introduced in 1959 for both the Leica screw mou
 
 The Elmarit 90mm f/2.8 remained in production until approximately 1974 and was succeeded by the Tele-Elmarit 90mm f/2.8, a shorter, more telephoto-ratio design with 5 elements in 4 groups, introduced in 1964. A further "Thin" Tele-Elmarit-M followed in 1974 with a reduced 4-element, 4-group formula. The modern Elmarit-M 90mm f/2.8 (1990–2008) represented a completely different design.
 
-The patent is assigned to Ernst Leitz G.m.b.H. in Wetzlar, and the inventors — Zimmermann and Knetsch — were Wetzlar-based optical designers. Although some secondary sources have attributed the Elmarit 90mm to Walter Mandler (who led Leitz Canada's optical design), the patent record does not support this for the first version.
+The patent itself never names a product; its attribution to the Elmarit 90mm f/2.8 rests on the match of assignee, timing (German priority December 1956, three years before the lens appeared), the f/2.8 aperture and the 5-element, 3-group layout with cemented middle and rear components. The patent is assigned to Ernst Leitz G.m.b.H. in Wetzlar, and the inventors — Zimmermann and Knetsch — were Wetzlar-based optical designers. Although some secondary sources have attributed the Elmarit 90mm to Walter Mandler (who led Leitz Canada's optical design), the patent record does not support this for the first version.
 
-The lens uses 12 aperture blades, has a minimum focusing distance of 1 metre, measures approximately 52 mm in diameter by 94 mm in length, and weighs approximately 330 g. The optical head detaches from the focusing helicoid, allowing it to be used on the Visoflex reflex housing for close-up work.
+The lens uses 12 aperture blades, stops down to f/22, has a minimum focusing distance of 1 metre, measures approximately 52 mm in diameter by 94 mm in length, and weighs approximately 330 g. The optical head detaches from the focusing helicoid, allowing it to be used on the Visoflex reflex housing for close-up work.
 
 ---
 
@@ -99,8 +99,8 @@ The patent provides nd and νd values for each element but does not name supplie
 
 ### L1 — nd = 1.69100, νd = 54.8
 
-**Coefficient-backed equivalent: K-LaK9** (lanthanum crown)
-**Confidence: High optical-equivalent confidence.** Its catalog coordinate matches the patent within printed precision. The patent does not identify the production supplier. Six-digit glass code: 691548.
+**Coefficient-backed equivalent: N-LAK9** (Schott lanthanum crown)
+**Confidence: High optical-equivalent confidence.** Its catalog coordinate (1.69100 / 54.71) matches the patent within printed precision; Ohara S-LAL9 and Sumita K-LaK9 sit on the same coordinate. The patent does not identify the production supplier. Six-digit glass code: 691548.
 
 LaK9 is a lanthanum crown (LaK) glass with moderately high refractive index and relatively low dispersion. In the 1950s, lanthanum-containing glasses were among the newer "highly refracting, weak dispersing" glasses that the patent specifically credits with enabling the f/2.8 aperture — an advance over the prior f/6.3 triplet designs. Its high nd allows strong positive power with moderate surface curvatures, reducing spherical aberration contributions.
 
@@ -130,14 +130,14 @@ L4's F1-equivalent coordinate has moderate refractive index and dispersion. With
 **Coefficient-backed equivalent: N-LAF2** (lanthanum flint)
 **Confidence: High family-level optical-equivalent confidence.** The curve retains historical LaF2-family continuity and matches the patent coordinate closely. The patent does not identify the production supplier. Six-digit glass code: 744449.
 
-LaF2 is a lanthanum flint glass — high refractive index with moderate dispersion. This is another of the "new" glass types referenced in the patent. Lanthanum flint occupies a region of the Abbe diagram that was not accessible with classical crown/flint glass combinations, enabling the rear doublet to achieve strong positive power with improved chromatic performance. L5 is by far the thickest element in the system (d₅ = 9.27 mm at f = 100 scale) and carries the strongest individual positive power (EFL = +26.1 mm).
+LaF2 is a lanthanum flint glass — high refractive index with moderate dispersion. This is another of the "new" glass types referenced in the patent. Lanthanum flint occupies a region of the Abbe diagram that was not accessible with classical crown/flint glass combinations, enabling the rear doublet to achieve strong positive power with improved chromatic performance. L5 is by far the thickest element in the system (d₅ = 9.27 mm at f = 100 scale) and carries the strongest individual positive power (EFL = +26.0 mm).
 
 ### Glass Summary
 
 | Element | nd | νd | Glass | Family | Confidence |
 |:--------|------:|-----:|:------|:-------|:-----------|
-| L1 | 1.69100 | 54.8 | K-LaK9 equivalent | Lanthanum crown | Coefficient-backed |
-| L2 | 1.75520 | 27.5 | SF4 | Dense flint | Confirmed |
+| L1 | 1.69100 | 54.8 | N-LAK9 equivalent | Lanthanum crown | Coefficient-backed |
+| L2 | 1.75520 | 27.5 | SF4 equivalent | Dense flint | Coefficient-backed |
 | L3 | 1.63980 | 34.6 | E-FD7 equivalent | Flint | Exact six-digit code |
 | L4 | 1.62588 | 35.6 | F1 equivalent | Flint | Exact patent coordinate |
 | L5 | 1.74400 | 44.9 | N-LAF2 equivalent | Lanthanum flint | Coefficient-backed |
@@ -155,7 +155,7 @@ All five elements now have coefficient-backed optical equivalents. These labels 
 | Surfaces | r₁ = +44.05, r₂ = −267.94 |
 | Thickness | 6.70 mm |
 | Shape | Biconvex (strongly convex front, nearly flat rear) |
-| Glass | K-LaK9 catalog equivalent (nd = 1.691, νd = 54.8) |
+| Glass | N-LAK9 catalog equivalent (nd = 1.691, νd = 54.8) |
 | Element EFL | +55.2 mm |
 
 L1 is the front positive collector of the triplet. Its strongly convex front surface (r₁ = +44.05) provides the majority of the element's optical power, while the rear surface (r₂ = −267.94) is nearly flat — the radius of curvature is 6× the EFL, so this surface contributes only weak positive power. The element is effectively a plano-convex lens oriented convex-toward-object.
@@ -171,7 +171,7 @@ The large air gap a₁ = 7.00 mm after L1 allows the ray bundle to spread spatia
 | Surfaces | r₃ = −49.04 (front), r₄ = −26.71 (cemented rear) |
 | Thickness | 5.40 mm |
 | Shape | Positive meniscus (concave toward object) |
-| Glass | SF4 (nd = 1.755, νd = 27.5) |
+| Glass | SF4 catalog equivalent (nd = 1.755, νd = 27.5) |
 | Element EFL | +70.3 mm |
 | Cemented to | L3 |
 
@@ -219,10 +219,10 @@ Within the rear doublet, L4 serves the traditional role of the flint (negative, 
 | Thickness | 9.27 mm |
 | Shape | Biconvex |
 | Glass | N-LAF2 catalog equivalent (nd = 1.744, νd = 44.9) |
-| Element EFL | +26.1 mm |
+| Element EFL | +26.0 mm |
 | Cemented to | L4 |
 
-L5 is the optically strongest positive element in the entire system (EFL = +26.1 mm) and is by far the thickest element (d₅ = 9.27 mm, 38% more than the next thickest element L1). Its biconvex shape with the steeper surface toward the front (r₇ = +29.16 vs. |r₈| = 49.93) concentrates power on the cemented interface where the refractive index transition is most favourable.
+L5 is the optically strongest positive element in the entire system (EFL = +26.0 mm) and is by far the thickest element (d₅ = 9.27 mm, 38% more than the next thickest element L1). Its biconvex shape with the steeper surface toward the front (r₇ = +29.16 vs. |r₈| = 49.93) concentrates power on the cemented interface where the refractive index transition is most favourable.
 
 The L5 lanthanum-flint coordinate is critical. With nd = 1.744 and νd = 44.9, it provides high refractive power per unit curvature while maintaining moderate dispersion. The combination of L4's F1-equivalent coordinate (νd = 35.6) and L5 (νd = 44.9) has a Δνd of 9.3, which is modest for an achromatic doublet, but the high-index glass allows the pair to function as both an image-forming group and a chromatic corrector.
 
@@ -294,13 +294,9 @@ The Petzval radius (1/ΣPetzval) is 494.5 mm, and the Petzval sum normalised by 
 
 The patent provides a single set of air spacings with no variable-gap table. This indicates **unit focusing**: the entire optical assembly translates forward along the optical axis to focus on closer objects. The camera body's flange-to-film register distance (27.80 mm for Leica M mount) is fixed; the helicoid extends the lens forward, increasing the distance from the rear element to the film plane.
 
-For the production lens at f = 90 mm, the helicoid extension required to focus at the minimum distance of 1 metre is approximately:
+The patent publishes no close-focus state, so the close-focus spacing in the data file is **calculated**, not a patent value. Holding the image plane fixed and solving the scaled prescription paraxially for the production minimum distance of 1 m (measured object-to-film, the usual convention for marked focusing distances), the whole optical unit must move forward by about **10.1 mm**: the rear air space grows from 74.33 mm to 84.40 mm, the object sits about 880 mm in front of the first vertex, and the magnification is about 1:9 (0.112×). The simple thin-lens estimate Δ = f²/(s − f) with s = 1 m gives a smaller 8.9 mm because it measures the 1 m from the lens's front principal plane rather than from the film, ignoring the lens's own length and back focus.
 
-$$
-\Delta = \frac{f^2}{s - f} = \frac{90^2}{1000 - 90} \approx 8.9\;\text{mm}
-$$
-
-This is a modest extension, consistent with the compact helicoid design of the Elmarit 90mm f/2.8. The lens barrel incorporates a helicoid focusing ring that rotates to translate the optical head axially, a design that also permits the head to be unscrewed entirely for use on the Visoflex bellows adapter.
+The lens barrel incorporates a helicoid focusing ring that rotates to translate the optical head axially, a design that also permits the head to be unscrewed entirely for use on the Visoflex bellows adapter.
 
 Unit focusing is optically simple — all aberration balances remain exactly as designed, since the element separations do not change. The only optical consequence is a slight change in magnification (and hence effective focal length) at close focus, which is negligible at the 1 m minimum distance.
 
@@ -308,9 +304,11 @@ Unit focusing is optically simple — all aberration balances remain exactly as 
 
 ## 11. Aperture Stop Position
 
-The patent does not explicitly specify the aperture stop position in the prescription table. From the patent's Figure 1, the iris diaphragm is located in the second air gap (a₂ = 4.80 mm), between Groups II and III. This is the standard position for a Cooke Triplet design — the stop sits at or near the negative group, which is the natural location for minimising the asymmetric off-axis aberrations (coma, lateral colour) by exploiting the quasi-symmetry of the positive groups flanking the stop.
+The patent does not specify the aperture stop position, and Figure 1 draws no diaphragm at all — it shows only the five hatched elements with their radius, thickness and air-space labels. The iris is therefore placed by **model choice** in the second air space (a₂ = 4.80 mm), between Groups II and III, which is the natural location for this layout and the standard position for a Cooke-type triplet: the stop sits just behind the negative group, where the quasi-symmetry of the flanking positive groups helps control coma, distortion and lateral colour.
 
-For the data file, the stop is placed at the centre of the a₂ air gap, splitting it into two equal intervals of 2.40 mm (scaled to 2.16 mm at production). This is an estimate based on Figure 1; the precise stop position within the gap does not significantly affect the paraxial system parameters (EFL, BFD, Petzval sum) but does influence the entrance pupil position and off-axis ray tracing.
+For the data file, the stop is placed at the centre of the a₂ air gap, splitting it into two equal intervals of 2.40 mm (2.16 mm at production scale). Its exact axial position within the gap does not change the paraxial system parameters (EFL, BFD, Petzval sum) but does influence the entrance-pupil position and off-axis ray paths. At f/2.8 the real marginal ray passes the stop plane at about 12.9 mm, which is the recorded iris radius.
+
+Figure 1 is drawn to scale (its vertex spacings agree with the table to within about half a unit), so it guides the drawn element diameters: the front singlet reaches about 16.9 mm semi-diameter at production scale and both cemented doublets share a flat rim of about 15 mm, with a small bevel where the rear concave face of the middle doublet ends near 12.8 mm. The middle doublet's front and cemented faces use the figure's 15 mm; the other rims are earlier ray-trace estimates that sit within about 7 % of the figure. The patent lists no clear apertures, so none of these are published values.
 
 The 12-blade iris diaphragm produces a nearly circular aperture across all f-stops, which contributes to the smooth bokeh character noted by users of this lens.
 
@@ -336,4 +334,4 @@ The 1 m minimum focusing distance, while standard for the era, limits the lens's
 
 The Leica Elmarit 90mm f/2.8 (US 2,995,980) is a modified Cooke Triplet with 5 elements in 3 groups, achieving f/2.8 at a 90 mm focal length through the use of lanthanum glasses and an innovative reversed-dispersion cemented doublet in the middle group. The design is entirely spherical, with no aspherical surfaces. It is not a telephoto — the total track exceeds the focal length by 22% (telephoto ratio 1.22). Focusing is by unit extension of the entire optical assembly. The optical prescription is well-balanced, with near-symmetric positive groups flanking a powerful negative middle group, yielding a Petzval sum normalised to EFL of 0.202 and sphero-chromatic correction within 0.25% of the focal length at full aperture.
 
-Five glass coordinates are used, all with coefficient-backed optical equivalents: K-LaK9, SF4, E-FD7, F1, and N-LAF2. These names support dispersion tracing and do not establish Leitz's production suppliers. The two lanthanum-family coordinates (L1 and L5) are enabling materials for the design's performance.
+Five glass coordinates are used, all with coefficient-backed optical equivalents: N-LAK9, SF4, E-FD7, F1, and N-LAF2. These names support dispersion tracing and do not establish Leitz's production suppliers. The two lanthanum-family coordinates (L1 and L5) are enabling materials for the design's performance.

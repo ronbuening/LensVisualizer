@@ -9,7 +9,7 @@
  * rather than throwing on the first problem.
  */
 
-import type { AsphericCoefficients, ImagePlaneData, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
+import type { AsphericCoefficients, ImagePlaneData, SurfaceData } from "../types/optics.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../types/asphericSchema.js";
 import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import {
@@ -21,6 +21,8 @@ import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./in
 import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
 import type { ExactTraceLens } from "./internal/exactSurfaceTrace.js";
+import { REAR_PLATE_LABEL_PATTERN } from "./prescription/rearPlates.js";
+import { TELECONVERTER_LABEL_PREFIX } from "./prescription/teleconverterCompatibility.js";
 
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
@@ -44,7 +46,7 @@ const OPTIONAL_ASPHERIC_COEFFICIENTS = ASPHERIC_COEFFICIENT_SCHEMA.filter((descr
 const KNOWN_ASPHERIC_COEFFICIENTS = new Set<string>(ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key));
 
 function validateNumberRange(
-  config: PerspectiveControlConfig,
+  config: Record<string, unknown>,
   field: "shiftRangeMm" | "tiltRangeDeg",
   errors: string[],
 ): void {
@@ -58,8 +60,46 @@ function validateNumberRange(
     errors.push(`"perspectiveControl.${field}" must contain finite numbers`);
     return;
   }
-  if (min > 0 || max < 0 || min >= max) {
-    errors.push(`"perspectiveControl.${field}" must be an ascending range that includes 0`);
+  if (min > 0 || max < 0 || min > max) {
+    errors.push(`"perspectiveControl.${field}" must be an ordered range that includes 0`);
+  }
+}
+
+function isEnabledMovementRange(value: unknown): boolean {
+  return (
+    Array.isArray(value) &&
+    value.length === 2 &&
+    value.every((entry) => typeof entry === "number" && isFinite(entry)) &&
+    value[1] > value[0]
+  );
+}
+
+function validatePerspectiveControlTiltPivot(value: unknown, errors: string[]): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    errors.push(`"perspectiveControl.tiltPivot" must be an object when tilt is enabled`);
+    return;
+  }
+
+  const pivot = value as Record<string, unknown>;
+  if (pivot.frame !== "camera") {
+    errors.push(`"perspectiveControl.tiltPivot.frame" must be "camera"`);
+  }
+  if (
+    pivot.basis !== "mechanical-axis" &&
+    pivot.basis !== "patent-principal-point-guidance" &&
+    pivot.basis !== "rear-vertex-fallback"
+  ) {
+    errors.push(
+      `"perspectiveControl.tiltPivot.basis" must be "mechanical-axis", ` +
+        `"patent-principal-point-guidance", or "rear-vertex-fallback"`,
+    );
+  }
+  if (
+    typeof pivot.zOffsetFromImagePlaneMm !== "number" ||
+    !isFinite(pivot.zOffsetFromImagePlaneMm) ||
+    pivot.zOffsetFromImagePlaneMm >= 0
+  ) {
+    errors.push(`"perspectiveControl.tiltPivot.zOffsetFromImagePlaneMm" must be a finite negative number`);
   }
 }
 
@@ -68,9 +108,32 @@ function validatePerspectiveControl(value: unknown, errors: string[]): void {
     errors.push(`"perspectiveControl" must be an object when provided`);
     return;
   }
-  const config = value as PerspectiveControlConfig;
+  const config = value as Record<string, unknown>;
   validateNumberRange(config, "shiftRangeMm", errors);
   validateNumberRange(config, "tiltRangeDeg", errors);
+  if (isEnabledMovementRange(config.tiltRangeDeg)) {
+    validatePerspectiveControlTiltPivot(config.tiltPivot, errors);
+  } else if (config.tiltPivot !== undefined) {
+    validatePerspectiveControlTiltPivot(config.tiltPivot, errors);
+    if (
+      Array.isArray(config.tiltRangeDeg) &&
+      config.tiltRangeDeg.length === 2 &&
+      config.tiltRangeDeg[0] === 0 &&
+      config.tiltRangeDeg[1] === 0
+    ) {
+      errors.push(`"perspectiveControl.tiltPivot" must be omitted when tilt is disabled`);
+    }
+  }
+  if (
+    Array.isArray(config.shiftRangeMm) &&
+    config.shiftRangeMm.length === 2 &&
+    Array.isArray(config.tiltRangeDeg) &&
+    config.tiltRangeDeg.length === 2 &&
+    config.shiftRangeMm[0] === config.shiftRangeMm[1] &&
+    config.tiltRangeDeg[0] === config.tiltRangeDeg[1]
+  ) {
+    errors.push(`"perspectiveControl" must enable shift, tilt, or both`);
+  }
   if (
     config.shiftStepMm !== undefined &&
     (typeof config.shiftStepMm !== "number" || !isFinite(config.shiftStepMm) || config.shiftStepMm <= 0)
@@ -225,6 +288,78 @@ function validateImagePlane(value: unknown, errors: string[]): void {
   validateYzNormal(imagePlane.normal, `"opticalPath.imagePlane.normal"`, errors);
 }
 
+const SOURCE_ERRATUM_EVIDENCE = new Set([
+  "source-summary",
+  "sibling-example",
+  "aberration-figure",
+  "claims",
+  "family-publication",
+]);
+const SOURCE_ERRATUM_SURFACE_FIELDS = new Set(["R", "d", "nd"]);
+/** A correction needs this many independent kinds of source-internal evidence. */
+const SOURCE_ERRATUM_MIN_EVIDENCE = 2;
+
+/**
+ * Check `sourceErrata`: a corrected entry must name a real value, carry the applied value in this file, and cite
+ * enough source-internal evidence; an unresolved entry only needs its note.
+ *
+ * @param value - authored `sourceErrata`
+ * @param data - lens data the entries refer to
+ * @param surfaceLabels - labels of the authored surfaces
+ * @param errors - collected validation messages
+ */
+function validateSourceErrata(
+  value: unknown,
+  data: UntrustedLensData,
+  surfaceLabels: Set<string>,
+  errors: string[],
+): void {
+  if (!Array.isArray(value)) {
+    errors.push(`"sourceErrata" must be an array when provided`);
+    return;
+  }
+  value.forEach((entry: UntrustedLensData, index: number) => {
+    const at = `"sourceErrata[${index}]"`;
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      errors.push(`${at} must be an object`);
+      return;
+    }
+    if (typeof entry.note !== "string" || !entry.note.trim()) errors.push(`${at} needs a non-empty note`);
+    if (entry.status === "unresolved") return;
+    if (entry.status !== "corrected") {
+      errors.push(`${at}.status must be "corrected" or "unresolved"`);
+      return;
+    }
+    const isCoefficient = KNOWN_ASPHERIC_COEFFICIENTS.has(entry.field);
+    if (!isCoefficient && !SOURCE_ERRATUM_SURFACE_FIELDS.has(entry.field))
+      errors.push(`${at}.field must be an asph coefficient key or one of R, d, nd`);
+    for (const key of ["printed", "applied"])
+      if (typeof entry[key] !== "number" || !isFinite(entry[key])) errors.push(`${at}.${key} must be a finite number`);
+    if (entry.printed === entry.applied) errors.push(`${at} must apply a value that differs from the printed one`);
+    const kinds = new Set(Array.isArray(entry.evidence) ? entry.evidence : []);
+    if ([...kinds].some((kind) => !SOURCE_ERRATUM_EVIDENCE.has(kind as string)))
+      errors.push(`${at}.evidence may only cite source-internal kinds`);
+    if (kinds.size < SOURCE_ERRATUM_MIN_EVIDENCE)
+      errors.push(`${at} needs at least ${SOURCE_ERRATUM_MIN_EVIDENCE} kinds of source-internal evidence`);
+    if (typeof entry.surface !== "string" || !surfaceLabels.has(entry.surface)) {
+      errors.push(`${at}.surface must match a surface label`);
+      return;
+    }
+    const carried = isCoefficient
+      ? data.asph?.[entry.surface]?.[entry.field]
+      : data.surfaces.find((surface: UntrustedLensData) => surface?.label === entry.surface)?.[entry.field];
+    // A mounted converter replaces the host's last gap with the junction gap; the bare host still checks that value.
+    const converterFirst = data.attachedTeleconverter?.firstSurfaceLabel;
+    const junction =
+      converterFirst === undefined
+        ? undefined
+        : data.surfaces[data.surfaces.findIndex((surface: UntrustedLensData) => surface?.label === converterFirst) - 1];
+    if (entry.field === "d" && junction?.label === entry.surface) return;
+    if (carried !== entry.applied)
+      errors.push(`${at}: surface "${entry.surface}" ${entry.field} must carry the applied value ${entry.applied}`);
+  });
+}
+
 function validateOpticalPath(value: unknown, surfaceLabels: Set<string>, errors: string[]): void {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     errors.push(`"opticalPath" must be an object when provided`);
@@ -275,7 +410,49 @@ function validateOpticalPath(value: unknown, surfaceLabels: Set<string>, errors:
   }
 }
 
-function validateLensMounts(value: unknown, errors: string[]): void {
+export function validateRearPlates(data: UntrustedLensData, errors: string[]): void {
+  const plates = data.rearPlates;
+  if (!Array.isArray(plates) || plates.length === 0) {
+    errors.push(`"rearPlates" must be a non-empty array when provided`);
+    return;
+  }
+  const finite = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value);
+  plates.forEach((plate: UntrustedLensData, i: number) => {
+    const at = `rearPlates[${i}]`;
+    if (!plate || typeof plate !== "object") {
+      errors.push(`${at}: must be an object`);
+      return;
+    }
+    if (!finite(plate.thicknessMm) || plate.thicknessMm <= 0) errors.push(`${at}: thicknessMm must be > 0`);
+    if (!finite(plate.nd) || plate.nd <= 1) errors.push(`${at}: nd must be a finite index > 1`);
+    if (!finite(plate.vd) || plate.vd <= 0) errors.push(`${at}: vd must be a finite Abbe number > 0`);
+    if (!finite(plate.gapAfterMm) || plate.gapAfterMm < 0) errors.push(`${at}: gapAfterMm must be >= 0`);
+    if (plate.sd !== undefined && (!finite(plate.sd) || plate.sd <= 0)) errors.push(`${at}: sd must be > 0`);
+    if (plate.indexReference !== undefined && plate.indexReference !== "d" && plate.indexReference !== "e") {
+      errors.push(`${at}: indexReference must be "d" or "e" when provided`);
+    }
+    for (const field of ["nC", "nF", "ng", "dPgF"]) {
+      if (plate[field] !== undefined && !finite(plate[field])) errors.push(`${at}: ${field} must be finite`);
+    }
+    for (const field of ["label", "glass", "source"]) {
+      if (plate[field] !== undefined && (typeof plate[field] !== "string" || !plate[field])) {
+        errors.push(`${at}: ${field} must be a non-empty string when provided`);
+      }
+    }
+  });
+  const folded =
+    data.opticalPath !== undefined ||
+    (Array.isArray(data.surfaces) &&
+      data.surfaces.some(
+        (surface: UntrustedLensData) => surface?.interaction && surface.interaction.type !== "refract",
+      ));
+  if (folded) errors.push(`"rearPlates" is not supported for folded or generalized optical paths`);
+  if (data.perspectiveControl !== undefined) {
+    errors.push(`"rearPlates" cannot be combined with "perspectiveControl" (plates would move with the lens)`);
+  }
+}
+
+export function validateLensMounts(value: unknown, errors: string[]): void {
   if (!Array.isArray(value)) {
     errors.push(`"lensMounts" must be a non-empty array of canonical mount ids when provided`);
     return;
@@ -379,6 +556,174 @@ function validateLensRelationships(data: UntrustedLensData, errors: string[]): v
 
   validateList("aliases");
   validateList("manufacturedBy");
+}
+
+/**
+ * Check the composer-written teleconverter descriptor against the surface list.
+ *
+ * The descriptor is what distinguishes a composed host + converter system from authored data: only with it present
+ * may surfaces carry the reserved converter label prefix, and those surfaces must be exactly the trailing block.
+ */
+function validateAttachedTeleconverter(data: UntrustedLensData, errors: string[]): void {
+  const info = data.attachedTeleconverter;
+  if (!info || typeof info !== "object" || Array.isArray(info)) {
+    errors.push(`"attachedTeleconverter" must be an object when provided`);
+    return;
+  }
+  for (const field of ["key", "name", "hostKey", "hostName", "firstSurfaceLabel", "lastSurfaceLabel"]) {
+    if (typeof info[field] !== "string" || !info[field]) {
+      errors.push(`"attachedTeleconverter.${field}" must be a non-empty string`);
+    }
+  }
+  if (typeof info.magnification !== "number" || !Number.isFinite(info.magnification) || info.magnification <= 1) {
+    errors.push(`"attachedTeleconverter.magnification" must be a finite number > 1`);
+  }
+  if (!Number.isInteger(info.firstElementId) || info.firstElementId <= 0) {
+    errors.push(`"attachedTeleconverter.firstElementId" must be a positive integer`);
+  }
+  if (info.platesAhead !== undefined) {
+    const plateCount = Array.isArray(data.rearPlates) ? data.rearPlates.length : 0;
+    if (!Number.isInteger(info.platesAhead) || info.platesAhead < 1 || info.platesAhead > plateCount) {
+      errors.push(`"attachedTeleconverter.platesAhead" must count leading "rearPlates" (1..${plateCount})`);
+    }
+  }
+  if (data.acceptsTeleconverters !== undefined) {
+    errors.push(`A composed teleconverter system cannot declare "acceptsTeleconverters" (converters do not stack)`);
+  }
+  if (!Array.isArray(data.surfaces)) return;
+
+  const labels: unknown[] = data.surfaces.map((surface: UntrustedLensData) => surface?.label);
+  const first = labels.indexOf(info.firstSurfaceLabel);
+  const last = labels.indexOf(info.lastSurfaceLabel);
+  if (first < 1 || last !== labels.length - 1) {
+    errors.push(`"attachedTeleconverter" must name the trailing block of surfaces, behind at least one host surface`);
+    return;
+  }
+  const misplaced = labels.findIndex(
+    (label, i) => (typeof label === "string" && label.startsWith(TELECONVERTER_LABEL_PREFIX)) !== i >= first,
+  );
+  if (misplaced >= 0) {
+    errors.push(
+      `surfaces[${misplaced}] ("${String(labels[misplaced])}"): the "${TELECONVERTER_LABEL_PREFIX}" label prefix must mark exactly the attached teleconverter's surfaces`,
+    );
+  }
+}
+
+/** True for a strictly increasing list of integers within `[min, max]`; an empty list passes. */
+function isStationIndexList(value: unknown, min: number, max: number): value is number[] {
+  return (
+    Array.isArray(value) &&
+    value.every(
+      (entry, i) => Number.isInteger(entry) && entry >= min && entry <= max && (i === 0 || entry > value[i - 1]),
+    )
+  );
+}
+
+/**
+ * Check the source-provenance station list against the authored zoom and focus stations.
+ *
+ * Infinity focus is implied at every published zoom station, so focus lists start at keyframe 1. A listed focus
+ * keyframe must move at least one variable gap: that is what separates a tabulated finite state from an infinity row
+ * copied into the close-focus slot.
+ *
+ * @param data - untrusted lens data whose `publishedStations` is defined
+ * @param focusPositionCount - authored focus keyframes per variable gap (2 without `focusPositions`)
+ * @param errors - collector for validation messages
+ */
+function validatePublishedStations(data: UntrustedLensData, focusPositionCount: number, errors: string[]): void {
+  const stations = data.publishedStations;
+  if (!stations || typeof stations !== "object" || Array.isArray(stations)) {
+    errors.push(`"publishedStations" must be an object when provided`);
+    return;
+  }
+  const unknownFields = Object.keys(stations).filter((field) => field !== "zoom" && field !== "focus");
+  if (unknownFields.length > 0) errors.push(`"publishedStations" has unknown field(s): ${unknownFields.join(", ")}`);
+  if (stations.zoom === undefined && stations.focus === undefined) {
+    errors.push(`"publishedStations" must declare "zoom" and/or "focus"`);
+    return;
+  }
+
+  const zoomCount = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2 ? data.zoomPositions.length : 0;
+  const isZoom = zoomCount > 0;
+
+  /* ── Zoom stations ── */
+  let publishedZoom: number[] = isZoom ? Array.from({ length: zoomCount }, (_, i) => i) : [0];
+  if (stations.zoom !== undefined) {
+    if (!isZoom) {
+      errors.push(`"publishedStations.zoom" is only valid on a zoom lens`);
+    } else if (!isStationIndexList(stations.zoom, 0, zoomCount - 1) || stations.zoom.length === 0) {
+      errors.push(
+        `"publishedStations.zoom" must be a non-empty, strictly increasing list of zoomPositions indices (0..${zoomCount - 1})`,
+      );
+    } else {
+      publishedZoom = stations.zoom;
+    }
+  }
+
+  /* ── Focus keyframes, resolved per published zoom station ── */
+  const focusByZoom = new Map<number, number[]>();
+  if (stations.focus !== undefined) {
+    const focus = stations.focus;
+    const maxFocus = focusPositionCount - 1;
+    const indexRule = `strictly increasing focusPositions indices (1..${maxFocus})`;
+    if (!Array.isArray(focus) || focus.length === 0) {
+      errors.push(`"publishedStations.focus" must be a non-empty list of ${indexRule}, or one list per zoom position`);
+    } else if (focus.every((entry: unknown) => Array.isArray(entry))) {
+      if (!isZoom) {
+        errors.push(`"publishedStations.focus" may hold per-zoom lists only on a zoom lens`);
+      } else if (focus.length !== zoomCount) {
+        errors.push(`"publishedStations.focus" must hold one list per zoom position (${zoomCount})`);
+      } else if (!focus.every((entry: unknown) => isStationIndexList(entry, 1, maxFocus))) {
+        errors.push(`"publishedStations.focus" per-zoom lists must each be empty or ${indexRule}`);
+      } else if (focus.every((entry: number[]) => entry.length === 0)) {
+        errors.push(`"publishedStations.focus" must publish at least one focus keyframe`);
+      } else {
+        focus.forEach((entry: number[], zoomIndex: number) => {
+          if (entry.length === 0) return;
+          if (publishedZoom.includes(zoomIndex)) focusByZoom.set(zoomIndex, entry);
+          else
+            errors.push(
+              `"publishedStations.focus"[${zoomIndex}] must be empty: "publishedStations.zoom" omits that zoom station`,
+            );
+        });
+      }
+    } else if (focus.some((entry: unknown) => Array.isArray(entry))) {
+      errors.push(`"publishedStations.focus" must not mix flat indices with per-zoom lists`);
+    } else if (!isStationIndexList(focus, 1, maxFocus)) {
+      errors.push(`"publishedStations.focus" must be a non-empty list of ${indexRule}, or one list per zoom position`);
+    } else {
+      for (const zoomIndex of publishedZoom) focusByZoom.set(zoomIndex, focus);
+    }
+  }
+
+  /* ── Every listed focus keyframe must carry real focus travel ── */
+  const ranges: unknown[] = data.var && typeof data.var === "object" ? Object.values(data.var) : [];
+  for (const [zoomIndex, focusIndices] of focusByZoom) {
+    for (const focusIndex of focusIndices) {
+      const moves = ranges.some((range) => {
+        const keyframes: unknown = isZoom ? (Array.isArray(range) ? range[zoomIndex] : undefined) : range;
+        if (!Array.isArray(keyframes)) return false;
+        const infinity: unknown = keyframes[0];
+        const focused: unknown = keyframes[focusIndex];
+        return typeof infinity === "number" && typeof focused === "number" && Math.abs(focused - infinity) > 1e-9;
+      });
+      if (!moves) {
+        const where = isZoom ? ` at zoom station ${zoomIndex}` : "";
+        errors.push(`"publishedStations.focus": focus keyframe ${focusIndex}${where} has no focus travel in "var"`);
+      }
+    }
+  }
+
+  /* ── A certified finite conjugate cannot sit on a zoom station the list excludes ── */
+  if (isZoom && Array.isArray(data.finiteConjugates)) {
+    for (const conjugate of data.finiteConjugates) {
+      if (!conjugate || typeof conjugate !== "object" || !Number.isFinite(conjugate.zoomT)) continue;
+      const zoomIndex = Math.round(conjugate.zoomT * (zoomCount - 1));
+      if (!publishedZoom.includes(zoomIndex)) {
+        errors.push(`"finiteConjugates" names zoom station ${zoomIndex}, which "publishedStations.zoom" omits`);
+      }
+    }
+  }
 }
 
 function validateYzNormal(value: unknown, label: string, errors: string[]): void {
@@ -688,7 +1033,6 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     "svgH",
     "scFill",
     "yScFill",
-    "clipMargin",
     "maxRimAngleDeg",
     "gapSagFrac",
     "rayLeadFrac",
@@ -718,6 +1062,41 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (!Array.isArray(data[f]) || data[f].length === 0) errors.push(`Missing or empty required array field: "${f}"`);
   }
 
+  if (
+    data.zoomApertureModel !== undefined &&
+    ((data.zoomApertureModel !== "from-nominal-fno" && data.zoomApertureModel !== "fixed-iris") ||
+      !Array.isArray(data.zoomPositions) ||
+      data.zoomPositions.length < 2)
+  ) {
+    errors.push('"zoomApertureModel" must be "from-nominal-fno" or "fixed-iris" on a zoom lens');
+  }
+  if (data.zoomStopSemiDiameters !== undefined) {
+    if (
+      !Array.isArray(data.zoomStopSemiDiameters) ||
+      !Array.isArray(data.zoomPositions) ||
+      data.zoomPositions.length < 2 ||
+      data.zoomStopSemiDiameters.length !== data.zoomPositions.length ||
+      data.zoomStopSemiDiameters.some((radius) => !Number.isFinite(radius) || radius <= 0) ||
+      data.zoomApertureModel !== undefined
+    ) {
+      errors.push(
+        "zoomStopSemiDiameters requires one positive finite radius per zoom station and no inferred aperture model",
+      );
+    }
+  }
+  if (data.zoomCloseFocusM !== undefined) {
+    if (
+      !Array.isArray(data.zoomCloseFocusM) ||
+      !Array.isArray(data.zoomPositions) ||
+      data.zoomPositions.length < 2 ||
+      data.zoomCloseFocusM.length !== data.zoomPositions.length
+    ) {
+      errors.push('"zoomCloseFocusM" must match the authored zoom stations');
+    } else if (data.zoomCloseFocusM.some((value: number) => !Number.isFinite(value) || value <= 0)) {
+      errors.push('"zoomCloseFocusM" values must be positive finite distances');
+    }
+  }
+
   /* ── nominalFno: required, number or number[] (for variable-aperture zooms) ── */
   if (typeof data.nominalFno === "number") {
     if (!isFinite(data.nominalFno)) errors.push(`"nominalFno" must be a finite number`);
@@ -743,11 +1122,30 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   if (data.visible !== undefined && typeof data.visible !== "boolean")
     errors.push(`"visible" must be a boolean (got ${typeof data.visible})`);
   if (data.opticalConfiguration !== undefined) validateOpticalConfiguration(data.opticalConfiguration, errors);
-  if (data.perspectiveControl !== undefined) validatePerspectiveControl(data.perspectiveControl, errors);
+  if (data.acceptsTeleconverters !== undefined && typeof data.acceptsTeleconverters !== "boolean")
+    errors.push(`"acceptsTeleconverters" must be a boolean (got ${typeof data.acceptsTeleconverters})`);
+  if (data.attachedTeleconverter !== undefined) validateAttachedTeleconverter(data, errors);
+  if (data.perspectiveControl !== undefined) {
+    validatePerspectiveControl(data.perspectiveControl, errors);
+    if (data.imageFormat === undefined) {
+      errors.push(`"imageFormat" is required when "perspectiveControl" is provided`);
+    }
+    if (data.opticalPath !== undefined) {
+      errors.push(`"perspectiveControl" cannot be combined with generalized "opticalPath" metadata`);
+    }
+  }
+  if (data.rearPlates !== undefined) validateRearPlates(data, errors);
   if (data.projection !== undefined) validateProjection(data.projection, errors);
   if (data.lensMounts !== undefined) validateLensMounts(data.lensMounts, errors);
   if (data.imageFormat !== undefined) validateImageFormat(data.imageFormat, errors);
   validateLensRelationships(data, errors);
+
+  if (
+    data.imageCircleMm !== undefined &&
+    (typeof data.imageCircleMm !== "number" || !Number.isFinite(data.imageCircleMm) || data.imageCircleMm <= 0)
+  ) {
+    errors.push('"imageCircleMm" must be a finite positive diameter in millimetres');
+  }
 
   /* ── Early exit if surfaces/elements are missing — rest of checks depend on them ── */
   if (!Array.isArray(data.surfaces) || !Array.isArray(data.elements)) return errors;
@@ -762,6 +1160,20 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       continue;
     }
     if (surfaceLabels.has(s.label)) errors.push(`Duplicate surface label: "${s.label}"`);
+    if (REAR_PLATE_LABEL_PATTERN.test(s.label)) {
+      errors.push(`surfaces[${i}] ("${s.label}"): labels RP<n>a/RP<n>b are reserved for generated rear plates`);
+    }
+    if (s.synthetic !== undefined) {
+      errors.push(`surfaces[${i}] ("${s.label}"): "synthetic" is engine-generated; declare plates in "rearPlates"`);
+    }
+    if (s.clips !== undefined) {
+      errors.push(`surfaces[${i}] ("${s.label}"): "clips" is engine-generated for rear plates without a published sd`);
+    }
+    if (data.attachedTeleconverter === undefined && s.label.startsWith(TELECONVERTER_LABEL_PREFIX)) {
+      errors.push(
+        `surfaces[${i}] ("${s.label}"): labels starting with "${TELECONVERTER_LABEL_PREFIX}" are reserved for attached teleconverter surfaces`,
+      );
+    }
     surfaceLabels.add(s.label);
     if (s.label === "STO") stoCount++;
 
@@ -845,7 +1257,16 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       continue;
     }
     if (elemIds.has(e.id)) errors.push(`Duplicate element id: ${e.id}`);
+    if (e.synthetic !== undefined) {
+      errors.push(`elements[${i}]: "synthetic" is engine-generated; declare plates in "rearPlates"`);
+    }
     elemIds.add(e.id);
+    if (
+      e.maxSdRatio !== undefined &&
+      (typeof e.maxSdRatio !== "number" || !isFinite(e.maxSdRatio) || e.maxSdRatio < 1)
+    ) {
+      errors.push(`elements[${i}]: maxSdRatio must be a finite number >= 1 when provided`);
+    }
     if (e.indexReference !== undefined && e.indexReference !== "d" && e.indexReference !== "e") {
       errors.push(`elements[${i}]: indexReference must be "d" or "e" when provided`);
     }
@@ -909,6 +1330,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     }
   }
 
+  /* ── Source errata name real values and carry the corrected ones ── */
+  if (data.sourceErrata !== undefined) validateSourceErrata(data.sourceErrata, data, surfaceLabels, errors);
+
   /* ── Zoom lens fields ── */
   const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
   if (data.zoomPositions !== undefined) {
@@ -922,6 +1346,73 @@ export default function validateLensData(data: UntrustedLensData): string[] {
           errors.push(`"zoomPositions" must be monotonically increasing`);
           break;
         }
+      }
+    }
+  }
+
+  /* ── Focus interpolation positions ── */
+  const focusPositionCount =
+    Array.isArray(data.focusPositions) && data.focusPositions.length >= 2 ? data.focusPositions.length : 2;
+  if (data.focusPositions !== undefined) {
+    if (!Array.isArray(data.focusPositions) || data.focusPositions.length < 2) {
+      errors.push(`"focusPositions" must be an array of at least 2 normalized focus coordinates`);
+    } else {
+      if (!data.focusPositions.every((n: unknown) => typeof n === "number" && isFinite(n))) {
+        errors.push(`"focusPositions" must contain only finite numbers`);
+      } else {
+        if (data.focusPositions[0] !== 0 || data.focusPositions[data.focusPositions.length - 1] !== 1) {
+          errors.push(`"focusPositions" must begin at 0 (infinity) and end at 1 (close focus)`);
+        }
+        for (let i = 1; i < data.focusPositions.length; i++) {
+          if (data.focusPositions[i] <= data.focusPositions[i - 1]) {
+            errors.push(`"focusPositions" must be strictly increasing`);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  /* ── Explicit finite conjugates ── */
+  if (data.finiteConjugates !== undefined) {
+    if (!Array.isArray(data.finiteConjugates) || data.finiteConjugates.length === 0) {
+      errors.push('"finiteConjugates" must be a non-empty array of source-backed stations');
+    } else {
+      const seen = new Set<string>();
+      const focusStations = data.focusPositions ?? [0, 1];
+      const zoomCount = Array.isArray(data.zoomPositions) ? data.zoomPositions.length : 1;
+      for (const c of data.finiteConjugates) {
+        if (
+          !c ||
+          typeof c !== "object" ||
+          !Number.isFinite(c.focusT) ||
+          c.focusT <= 0 ||
+          c.focusT > 1 ||
+          !Number.isFinite(c.zoomT) ||
+          c.zoomT < 0 ||
+          c.zoomT > 1 ||
+          !Number.isFinite(c.objectDistanceMm) ||
+          c.objectDistanceMm <= 0 ||
+          !["first-surface", "image-plane"].includes(c.distanceReference) ||
+          typeof c.source !== "string" ||
+          !c.source.trim()
+        ) {
+          errors.push(
+            '"finiteConjugates" requires finite coordinates, positive distance, an explicit reference and source',
+          );
+          continue;
+        }
+        if (
+          !Array.isArray(focusStations) ||
+          !focusStations.some((f: number) => Math.abs(f - c.focusT) < 1e-8) ||
+          (zoomCount <= 1
+            ? c.zoomT !== 0
+            : Math.abs(c.zoomT * (zoomCount - 1) - Math.round(c.zoomT * (zoomCount - 1))) > 1e-8)
+        )
+          errors.push('"finiteConjugates" must identify authored focus and zoom stations, not interpolated positions');
+        const key = `${c.focusT}:${c.zoomT}`;
+        if (seen.has(key)) errors.push('"finiteConjugates" contains a duplicate focus/zoom station');
+        seen.add(key);
       }
     }
   }
@@ -1066,24 +1557,36 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       if (!surfaceLabels.has(label)) errors.push(`var key "${label}" does not match any surface label`);
       if (isZoom) {
         if (!Array.isArray(range) || range.length !== nz)
-          errors.push(`var["${label}"]: expected array of ${nz} [d_inf, d_close] pairs (one per zoom position)`);
+          errors.push(`var["${label}"]: expected ${nz} focus-thickness vectors (one per zoom position)`);
         else {
           for (let zi = 0; zi < nz; zi++) {
-            if (!Array.isArray(range[zi]) || range[zi].length !== 2)
-              errors.push(`var["${label}"][${zi}]: expected [d_infinity, d_close] array of length 2`);
-            else {
-              /* Non-negative thickness — negative gaps are physically impossible */
-              if (range[zi][0] < 0) errors.push(`var["${label}"][${zi}]: d_infinity=${range[zi][0]} is negative`);
-              if (range[zi][1] < 0) errors.push(`var["${label}"][${zi}]: d_close=${range[zi][1]} is negative`);
+            const focusThicknesses = range[zi];
+            if (!Array.isArray(focusThicknesses) || focusThicknesses.length !== focusPositionCount) {
+              errors.push(`var["${label}"][${zi}]: expected focus-thickness array of length ${focusPositionCount}`);
+            } else {
+              for (let fi = 0; fi < focusThicknesses.length; fi++) {
+                const thickness = focusThicknesses[fi];
+                if (typeof thickness !== "number" || !isFinite(thickness)) {
+                  errors.push(`var["${label}"][${zi}][${fi}]: thickness must be a finite number`);
+                } else if (thickness < 0) {
+                  errors.push(`var["${label}"][${zi}][${fi}]: thickness=${thickness} is negative`);
+                }
+              }
             }
           }
         }
       } else {
-        if (!Array.isArray(range) || range.length !== 2)
-          errors.push(`var["${label}"]: expected [d_infinity, d_close] array of length 2`);
-        else {
-          if (range[0] < 0) errors.push(`var["${label}"]: d_infinity=${range[0]} is negative`);
-          if (range[1] < 0) errors.push(`var["${label}"]: d_close=${range[1]} is negative`);
+        if (!Array.isArray(range) || range.length !== focusPositionCount) {
+          errors.push(`var["${label}"]: expected focus-thickness array of length ${focusPositionCount}`);
+        } else {
+          for (let fi = 0; fi < range.length; fi++) {
+            const thickness = range[fi];
+            if (typeof thickness !== "number" || !isFinite(thickness)) {
+              errors.push(`var["${label}"][${fi}]: thickness must be a finite number`);
+            } else if (thickness < 0) {
+              errors.push(`var["${label}"][${fi}]: thickness=${thickness} is negative`);
+            }
+          }
         }
       }
       /* Surface d should match the var infinity value at the first zoom position */
@@ -1095,6 +1598,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       }
     }
   }
+
+  /* ── Source provenance of the authored stations ── */
+  if (data.publishedStations !== undefined) validatePublishedStations(data, focusPositionCount, errors);
 
   /* ── varLabels reference real surface labels ── */
   if (Array.isArray(data.varLabels)) {
@@ -1260,9 +1766,11 @@ export default function validateLensData(data: UntrustedLensData): string[] {
      * can use patent-accurate SDs. */
     const sdMax = Math.max(front.sd, rear.sd);
     const sdMin = Math.min(front.sd, rear.sd);
-    if (sdMin > 0 && sdMax / sdMin > 3.0)
+    const maxSdRatio =
+      typeof elem.maxSdRatio === "number" && isFinite(elem.maxSdRatio) && elem.maxSdRatio >= 1 ? elem.maxSdRatio : 3;
+    if (sdMin > 0 && sdMax / sdMin > maxSdRatio)
       errors.push(
-        `Element ${elem.id} ("${elem.name}"): front/rear SD ratio ${(sdMax / sdMin).toFixed(2)} exceeds 3.0 — surfaces "${front.label}" (sd=${front.sd}) / "${rear.label}" (sd=${rear.sd}) may indicate a data entry error`,
+        `Element ${elem.id} ("${elem.name}"): front/rear SD ratio ${(sdMax / sdMin).toFixed(2)} exceeds ${maxSdRatio.toFixed(1)} — surfaces "${front.label}" (sd=${front.sd}) / "${rear.label}" (sd=${rear.sd}) may indicate a data entry error`,
       );
   }
 
@@ -1319,7 +1827,30 @@ export default function validateLensData(data: UntrustedLensData): string[] {
    *  from the two boundary surfaces that face each other does not exceed the
    *  configured fraction of the gap thickness.
    */
-  _checkCrossGapOverlap(S, asphByIdx, null, errors, "", data.gapSagFrac);
+  /* A lens-side plate ahead of an attached teleconverter is expanded between the host's last surface and the
+   * converter, so the authored gap there ends at the plate. The junction is checked against the full vertex
+   * separation instead: authored gap + the plates ahead and their trailing gaps. */
+  const platesAhead = Number.isInteger(data.attachedTeleconverter?.platesAhead)
+    ? (data.attachedTeleconverter.platesAhead as number)
+    : 0;
+  const junctionIdx = platesAhead > 0 ? labelToIdx[data.attachedTeleconverter.firstSurfaceLabel] - 1 : -1;
+  const junctionPlateSpanMm =
+    junctionIdx >= 0 && Array.isArray(data.rearPlates)
+      ? data.rearPlates
+          .slice(0, platesAhead)
+          .reduce(
+            (sum: number, plate: UntrustedLensData) => sum + (plate?.thicknessMm ?? 0) + (plate?.gapAfterMm ?? 0),
+            0,
+          )
+      : 0;
+  const withJunctionSpan = (gapOverrides: Record<number, number>): Record<number, number> => {
+    if (junctionIdx >= 0 && typeof S[junctionIdx]?.d === "number") {
+      gapOverrides[junctionIdx] = (gapOverrides[junctionIdx] ?? S[junctionIdx].d) + junctionPlateSpanMm;
+    }
+    return gapOverrides;
+  };
+
+  _checkCrossGapOverlap(S, asphByIdx, junctionIdx >= 0 ? withJunctionSpan({}) : null, errors, "", data.gapSagFrac);
 
   /* For zoom lenses, also check at each zoom position's variable thickness.
    * Air gaps can change dramatically across zoom positions. */
@@ -1339,7 +1870,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       _checkCrossGapOverlap(
         S,
         asphByIdx,
-        gapOverrides,
+        withJunctionSpan(gapOverrides),
         errors,
         ` at zoom position ${zi} (${data.zoomPositions[zi]} mm)`,
         data.gapSagFrac,

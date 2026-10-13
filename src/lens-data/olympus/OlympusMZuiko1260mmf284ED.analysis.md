@@ -33,7 +33,7 @@ On zooming from wide to telephoto, the G1–G2 spacing increases, G2–G3 decrea
 
 ## Element-by-Element Analysis
 
-Element focal lengths below are standalone thick-lens-in-air values. Surface numbering follows the patent prescription, with the sensor cover glass excluded and folded into the air-equivalent back focal distance.
+Element focal lengths below are standalone thick-lens-in-air values. Surface numbering follows the patent prescription. The patent's 4.6000 mm cover plate (surfaces 27–28, nd = 1.51633, νd = 64.14) is modeled in the data file's `rearPlates`: it is traced by every analysis but not drawn, and d26 stores the patent's physical gap to the plate, followed by the plate and d28 = 1.0586 mm to the image plane.
 
 ### G1 — Front Collector
 
@@ -148,7 +148,10 @@ The patent publishes infinity and OD = 250 mm spacings. OD is measured from the 
 | d11, G2 internal | 3.188 | 0.777 | 3.188 | 0.777 | 3.188 | 0.777 |
 | d13, G2–stop | 24.085 | 26.745 | 9.772 | 13.254 | 2.152 | 7.430 |
 | d19, G3–G4 | 8.096 | 8.096 | 3.067 | 3.067 | 0.800 | 0.800 |
-| BF, air-equivalent | 33.673 | 33.673 | 47.829 | 47.829 | 64.893 | 64.893 |
+| d26, G4–cover plate | 29.581 | 29.581 | 43.737 | 43.737 | 60.800 | 60.800 |
+| BF, air-equivalent* | 33.673 | 33.673 | 47.829 | 47.829 | 64.893 | 64.893 |
+
+*Air-equivalent BF = d26 + 4.6000 / 1.51633 + 1.0586 mm; the plate itself is modeled physically.
 
 Corrected paraxial close-focus magnification at OD = 250 mm is −0.088 / −0.161 / −0.267 at wide, mid, and telephoto. The telephoto value agrees with the manufacturer's maximum reproduction ratio of 0.28× within expected first-order rounding.
 
@@ -201,7 +204,7 @@ All numerical checks below were re-derived by a Python paraxial ray trace from t
 
 - **System EFL:** the trace gives $f = 12.326 / 26.621 / 58.807$ mm at the wide, intermediate, and telephoto positions, matching the patent's $12.33 / 26.62 / 58.81$ mm table to rounding.
 - **Group focal lengths:** $f_1 = +112.78$ mm, $f_2 = -13.39$ mm, $f_3 = +104.34$ mm, and $f_4 = +31.38$ mm; these reproduce the patent's Ex. 4 condition table.
-- **Back focus:** after folding the patent cover glass into air, BF is 33.673 / 47.829 / 64.893 mm, within a few micrometers of the paraxial image distances from surface 26.
+- **Back focus:** with the patent cover plate converted to its air equivalent (d26 + 4.6000 / 1.51633 + 1.0586), BF is 33.673 / 47.829 / 64.893 mm, within a few micrometers of the paraxial image distances from surface 26. The stored prescription traces the plate physically; it adds no power, so EFL and paraxial focus are unchanged, and the physical track is 4.6000 × (1 − 1/1.51633) = 1.566 mm longer than the air-equivalent track.
 - **Petzval sum:** surface-by-surface $\sum (n'-n)/(R n n') = +2.758 \times 10^{-3}$ mm$^{-1}$, giving a Petzval radius of approximately −362.6 mm and $P f_\text{wide} = 0.034$.
 - **Field and zoom ratio:** to FIY = 11.15 mm, the paraxial diagonal field is 84.2° / 45.5° / 21.5° and the zoom ratio is 4.77×.
 - **Close focus:** OD = 250 mm gives paraxial magnification −0.088 / −0.161 / −0.267 across the three zoom states.

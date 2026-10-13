@@ -260,3 +260,10 @@ The remaining differences are smaller than the precision with which the patent a
 4. Hikari Glass / Nikon, _BAF Optical Glass Catalog_ (J-BAF3 and J-BAF4 constants): <https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/baf.html>.
 5. SCHOTT, _Optical Glass Datasheet Collection of Inquiry Glasses_ (N-BAF3): <https://media.schott.com/api/public/content/1d833344084d4c21852de588600f6bb1>.
 6. Hans Bach and Norbert Neuroth, eds., _The Properties of Optical Glass_, Schott Series on Glass and Glass Ceramics, Springer, DOI 10.1007/978-3-642-57769-7, used for historical glass-code cross-references.
+
+
+## Production mount assignment
+
+Schneider’s technical tables identify shutter-mounted Super-Angulon cells for view cameras. The catalog records the lens-board installation, not the shutter-cell thread as an interchangeable camera bayonet. [Manufacturer source](https://www.pacificrimcamera.com/rl/02156/02156.pdf).
+
+`lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.

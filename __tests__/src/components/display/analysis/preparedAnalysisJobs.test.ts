@@ -54,7 +54,7 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
 });
 
 const preparedState = mockPreparedState as PreparedOpticalState;
-const lens = { N: 2, EFL: 50, isZoom: false } as RuntimeLens;
+const lens = { N: 2, EFL: 50, isZoom: false, elements: [] } as unknown as RuntimeLens;
 const fieldGeometry = { halfFieldDeg: 12, yRatio: 1, b: 1, epRatio: 1 };
 
 const distortionSamples = [
@@ -343,39 +343,49 @@ describe("prepared-state analysis tabs", () => {
     expect(mockComputeDistortionFieldGrid).toHaveBeenCalledWith(preparedState, 5, fieldGeometry);
   });
 
-  it("switches to projection-residual copy when the distortion reference is a fisheye projection", () => {
-    mockComputeDistortionCurve.mockReturnValue(
-      distortionSamples.map((sample) => ({
-        ...sample,
-        referenceKind: "fisheye-equidistant",
-        referenceLabel: "Equidistant",
-      })),
-    );
-    mockComputeDistortionFieldGrid.mockReturnValue({
-      ...distortionFieldGrid,
-      referenceKind: "fisheye-equidistant",
-      referenceLabel: "Equidistant",
-    });
+  it("names the distortion sign: negative is barrel, positive is pincushion", () => {
+    /* distortionPercent = 100 × (real − ideal) / ideal, so the sign fixes the direction. */
+    const renderEdge = (edgePercent: number, referenceKind = "rectilinear") => {
+      mockComputeDistortionCurve.mockReturnValue(
+        distortionSamples.map((sample, index) => ({
+          ...sample,
+          referenceKind,
+          distortionPercent: index === 0 ? 0 : edgePercent,
+        })),
+      );
+      return renderToStaticMarkup(
+        React.createElement(DistortionTab, {
+          L: lens,
+          t: themes.dark,
+          focusT: 0,
+          zoomT: 0,
+          dynamicEFL: 50,
+          currentPhysStopSD: 5,
+          fieldGeometry,
+          preparedState,
+        }),
+      );
+    };
 
-    const html = renderToStaticMarkup(
-      React.createElement(DistortionTab, {
-        L: lens,
-        t: themes.dark,
-        focusT: 0.2,
-        zoomT: 0.3,
-        aberrationT: 0.4,
-        dynamicEFL: 51,
-        currentPhysStopSD: 5,
-        fieldGeometry,
-        preparedState,
-      }),
-    );
+    /* The chart label is the SVG text node; the summary note is the parenthesised one. */
+    const barrel = renderEdge(-1.2);
+    expect(barrel).toContain(">barrel</text>");
+    expect(barrel).toContain("(barrel)");
+    expect(barrel).not.toContain("pincushion");
 
-    expect(html).toContain("Equidistant projection residual");
-    expect(html).toContain("declared equidistant fisheye projection");
-    expect(html).toContain("No residual");
-    expect(html).toContain("Dashed = ideal equidistant grid");
-    expect(html).not.toContain("Rectilinear distortion (F-Tan(theta))");
+    const pincushion = renderEdge(1.2);
+    expect(pincushion).toContain(">pincushion</text>");
+    expect(pincushion).toContain("(pincushion)");
+    expect(pincushion).not.toContain(">barrel</text>");
+    expect(pincushion).not.toContain("(barrel)");
+
+    const outward = renderEdge(1.2, "fisheye-equidistant");
+    expect(outward).toContain(">outward residual</text>");
+    expect(outward).toContain("(outward residual)");
+
+    const inward = renderEdge(-1.2, "fisheye-equidistant");
+    expect(inward).toContain(">inward residual</text>");
+    expect(inward).toContain("(inward residual)");
   });
 
   it("routes optical summary work through the prepared-state job facade", () => {

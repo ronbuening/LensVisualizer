@@ -34,15 +34,6 @@ Patent: JP 2019-144477 A, Numerical Example 1
 - Added a note that the analysis uses the patent's anomalous-dispersion convention, while data-file `dPgF` uses the project normal-line convention consumed by the engine.
 - Updated the L17 uncertainty note to reflect that `M-TAFD305` is now present in the project catalog but remains a soft match.
 
-### Verification
-
-- `npm test -- dispersion.test.ts` - passed.
-- `npm run generate:glass-reports` - passed; this lens is now 17/17 Sellmeier-covered.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed.
-
 ## 2026-05-31 - APD display-key correction
 
 ### Patent evidence
@@ -61,17 +52,17 @@ Patent: JP 2019-144477 A, Numerical Example 1
 
 - Added a display-key note distinguishing retained patent partial-dispersion data from the narrower visual APD key.
 
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed.
-
 ## 2026-07-29 - E-ADF10 catalog coverage
 
 - Added discontinued HOYA E-ADF10 from the manufacturer's 2026-07-07 Zemax catalog, including its published
   formula-3 polynomial.
 - L4's exact `nd=1.61310`, `vd=44.36`, code `613444` coordinate now resolves to catalog dispersion.
 - No lens-data or prescription values changed.
+
+## 2026-09-23 — Cover plate modeled as `rearPlates`
+
+- Replaced the air-equivalent 30A gap with the patent's physical rear stack (Numerical Example 1 text layer):
+  d30 = 37.5626 / 50.4932 mm (infinity / close), then `rearPlates` 1.4500 mm, nd 1.52301, νd 58.59, θgF 0.5449
+  (dPgF −0.00035 against the project normal line; C12 (HOYA) coordinate-compatible spectral proxy), and BF 1.0000 mm.
+- Paraxial check against the previous data: EFL identical; defocus changes by 0.00004 mm at both focus keyframes
+  (rounding in the old 39.5147 / 52.4453). Physical track grows by 0.498 mm and matches the patent's 171.92 mm.

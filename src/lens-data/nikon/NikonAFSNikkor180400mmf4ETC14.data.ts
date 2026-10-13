@@ -1,16 +1,30 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC OUT
+ * NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC OUT
  *
  * Source: WO 2019/131993 A1, second embodiment, Example 1, Figures 7-8 and Tables 8-9.
  * This is the patent's published converter-out prescription. The primary and TC-in
  * supplemental file form the explicit before/after pair published for Example 1.
- * Active model: 27 powered elements / 19 air-separated groups, 47 surfaces.
+ * Active model: 27 powered elements / 19 air-separated groups, 49 authored surfaces.
  *
- * Active normalization removes same-index dummy planes and the FL1/FL2 plane plates.
- * The omitted plates are retained as d-line air-equivalent propagation. No uniform
- * scaling is applied. The source uses d-line nd and vd and is all-spherical.
+ * Active normalization folds out the same-index dummy planes. The patent's optical
+ * filters (¶0254; 1.51680 / 63.88) keep their printed physical gaps: FL1 (Table 8 surfaces
+ * 50-51, 1.5 mm) sits in G4D between L49+L410 and L411 with 6.5 mm of air each side,
+ * the slip-in filter position. Nikon's user's manual says a filter must be inserted in
+ * the slip-in holder (40.5 mm NC filter supplied), so FL1 is drawn as a plane-parallel
+ * plate and is not counted in elementCount. FL2 (Table 8 surfaces 57-58, 2.0 mm) lies behind
+ * the last lens and is modeled in `rearPlates` (traced, not drawn): the last surface
+ * stores 10.827 + 40.582 = 51.409 mm to FL2, then 0.114 mm to the image. EFL and paraxial
+ * defocus equal the former air-equivalent fold; the physical track is 1.192511 mm longer
+ * and equals the sum of the printed spacings. The 2.0 m close-focus solve was made on
+ * the air-equivalent track, so the physical object-to-image distance is 2.001193 m.
+ * No uniform scaling is applied. The source uses d-line nd and vd and is all-spherical.
+ *
+ * Partial dispersion: the patent prints no θgF column. Table 11 gives only its own
+ * deviation for L11 and L12, ΔθgF = θgF − (0.648327 − 0.0018024·νd) (¶0155-0158).
+ * `dPgF` is the recovered θgF minus the engine's normal line (0.6438 − 0.001682·νd),
+ * not the patent's ΔθgF, which the analysis quotes for conditions (2-11) and (2-12).
  *
  * Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes axial movement of
  * cemented G1B (L16+L17) but no finite-focus spacing table. The close-focus rows are
@@ -34,7 +48,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR",
+  name: "NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR",
   subtitle: "WO 2019/131993 A1 second embodiment Example 1 — TC out; constrained 2.0 m focus reconstruction",
   specs: [
     "TC OUT — EXAMPLE 1",
@@ -72,8 +86,9 @@ const LENS_DATA = {
       fl: 402.95402032801616,
       glass: "Fluorite (CaF2; production-correlation supported)",
       apd: "patent",
-      apdNote: "dPgF = +0.0649 (WO 2019/131993 A1, Table 11)",
-      dPgF: 0.0649,
+      apdNote:
+        "Patent Table 11 ΔθgF = +0.0649 by the patent's line (θgF − 0.648327 + 0.0018024·νd), so θgF = 0.5416; runtime dPgF +0.05796.",
+      dPgF: 0.057961,
       role: "Positive front collector in G1A.",
     },
     {
@@ -86,8 +101,9 @@ const LENS_DATA = {
       fl: 218.16887759143026,
       glass: "J-FKH1 class (HIKARI exact nd/νd pair)",
       apd: "patent",
-      apdNote: "dPgF = +0.0391 (WO 2019/131993 A1, Table 11)",
-      dPgF: 0.0391,
+      apdNote:
+        "Patent Table 11 ΔθgF = +0.0391 by the patent's line (θgF − 0.648327 + 0.0018024·νd), so θgF = 0.5386; runtime dPgF +0.03369.",
+      dPgF: 0.033686,
       role: "Second low-dispersion positive collector in G1A.",
     },
     {
@@ -361,6 +377,16 @@ const LENS_DATA = {
     },
     {
       id: 26,
+      name: "FL1",
+      label: "Slip-in filter FL1",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      role: "Patent optical filter FL1 (Table 8 surfaces 50–51) in the slip-in filter position; Nikon requires a filter in the holder, so it is part of the working prescription. Not counted in elementCount.",
+    },
+    {
+      id: 27,
       name: "L411",
       label: "Element L411",
       type: "Biconvex Positive",
@@ -371,7 +397,7 @@ const LENS_DATA = {
       role: "Positive rear relay element.",
     },
     {
-      id: 27,
+      id: 28,
       name: "L412",
       label: "Element L412",
       type: "Biconcave Negative",
@@ -426,17 +452,34 @@ const LENS_DATA = {
     { label: "45", R: 137.3015, d: 41.203, nd: 1.0, elemId: 0, sd: 16.5 },
     { label: "47", R: 183.2421, d: 2.0, nd: 1.80592, elemId: 24, sd: 13.0 },
     { label: "48", R: 94.4094, d: 4.599, nd: 1.6273, elemId: 25, sd: 13.0 },
-    { label: "49", R: -220.1376, d: 13.98892405063291, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "52", R: 138.3104, d: 6.081, nd: 1.49782, elemId: 26, sd: 15.5 },
+    { label: "49", R: -220.1376, d: 6.5, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "50", R: 1e15, d: 1.5, nd: 1.5168, elemId: 26, sd: 15.5 },
+    { label: "51", R: 1e15, d: 6.5, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "52", R: 138.3104, d: 6.081, nd: 1.49782, elemId: 27, sd: 15.5 },
     { label: "53", R: -85.2412, d: 11.802, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "54", R: -56.5492, d: 2.0, nd: 2.001, elemId: 27, sd: 13.0 },
-    { label: "55", R: 4513.6484, d: 52.84156540084388, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "54", R: -56.5492, d: 2.0, nd: 2.001, elemId: 28, sd: 13.0 },
+    // Printed d55 10.827 + dummy-plane gap 40.582 to FL2 (same-index dummy plane folded out)
+    { label: "55", R: 4513.6484, d: 51.409, nd: 1.0, elemId: 0, sd: 13.0 },
+  ],
+
+  /* ── Optical filter FL2 (Table 8 surfaces 57–58): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL2",
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      gapAfterMm: 0.114,
+      source: "WO 2019/131993 A1, second embodiment Example 1, Table 8 surfaces 57–58",
+    },
   ],
 
   asph: {},
   zoomPositions: [183.6, 300, 392],
   zoomLabels: ["Wide", "Tele"],
   nominalFno: [4.080000000000006, 4.081544793063073, 4.083208878350958],
+  zoomApertureModel: "fixed-iris",
   var: {
     "9": [[6.984, 26.882423397487095], [6.984, 26.890745187758498], [6.984, 26.893432193826733]],
     "13": [[27.415, 7.516576602512906], [27.415, 7.5082548122415], [27.415, 7.505567806173268]],

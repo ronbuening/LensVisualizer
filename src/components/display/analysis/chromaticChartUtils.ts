@@ -1,5 +1,5 @@
 import { chromaticChannelIndexLabel } from "../../../optics/chromatic/channels.js";
-import type { ChromaticChannel } from "../../../types/optics.js";
+import type { ChromaticChannel, RefractiveIndexReferenceLine } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 
 export function chromaticChannelColor(t: Theme, channel: ChromaticChannel): string {
@@ -9,8 +9,11 @@ export function chromaticChannelColor(t: Theme, channel: ChromaticChannel): stri
   return t.rayChromV;
 }
 
-export function chromaticChannelLegendLabel(channel: ChromaticChannel): string {
-  return `${channel} ${chromaticChannelIndexLabel(channel)}`;
+export function chromaticChannelLegendLabel(
+  channel: ChromaticChannel,
+  reference: RefractiveIndexReferenceLine = "d",
+): string {
+  return `${channel} ${chromaticChannelIndexLabel(channel, reference)}`;
 }
 
 export function formatSignedUm(value: number): string {

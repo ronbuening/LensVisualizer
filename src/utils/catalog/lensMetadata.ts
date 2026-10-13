@@ -6,7 +6,7 @@
  */
 
 import type { LensData } from "../../types/optics.js";
-import buildMeta from "../../generated/build-metadata.json";
+import buildMeta from "../../generated/client-metadata.json";
 import makerPrefixes from "../../generated/maker-prefixes.json";
 import { canonicalPageUrl, SITE_URL } from "../seo/siteUrls.js";
 import { lensPatentReference } from "./lensPatentMetadata.js";
@@ -32,7 +32,8 @@ function uniqueMakerSlugs(): string[] {
 }
 
 /** Derive maker info from a lens's maker field or name. */
-export function deriveMaker(nameOrMaker: string, makerField?: string): MakerInfo {
+export function deriveMaker(nameOrMaker: string, makerField?: string | null): MakerInfo {
+  if (makerField === null) return { display: "Unattributed", slug: "unattributed" };
   /* Use explicit maker field if provided */
   if (makerField) {
     const upperMaker = makerField.toUpperCase();
@@ -126,7 +127,9 @@ export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unkn
       ? documentedManufacturers.length === 1
         ? documentedManufacturers[0]
         : documentedManufacturers
-      : { "@type": "Organization", name: canonicalMaker };
+      : lens.maker === null
+        ? null
+        : { "@type": "Organization", name: canonicalMaker };
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -155,8 +158,8 @@ export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unkn
       name: lens.name,
       ...(lens.aliases?.length ? { alternateName: lens.aliases.map((alias) => alias.name) } : {}),
       category: "Camera Lens",
-      brand: { "@type": "Brand", name: canonicalMaker },
-      manufacturer,
+      ...(lens.maker === null ? {} : { brand: { "@type": "Brand", name: canonicalMaker } }),
+      ...(manufacturer ? { manufacturer } : {}),
     },
   };
 }

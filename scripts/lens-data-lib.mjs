@@ -10,7 +10,9 @@ import {
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 
 /** Derive a URL-safe maker slug from a maker field or lens display name. */
-function deriveMakerSlug(nameOrMaker) {
+function deriveMakerSlug(nameOrMaker, makerField) {
+  if (makerField === null) return "unattributed";
+  nameOrMaker = makerField || nameOrMaker;
   const upper = nameOrMaker.toUpperCase();
   for (const { prefix, slug } of MAKER_PREFIXES) {
     if (upper.startsWith(prefix)) return slug;
@@ -20,22 +22,46 @@ function deriveMakerSlug(nameOrMaker) {
 
 /** Extract the `key`/`name`/`maker` tuple from a lens data file using regexes. */
 function extractLensIdentityContent(content) {
-  const keyMatch = content.match(/key:\s*"([^"]+)"/);
-  const nameMatch = content.match(/name:\s*"([^"]+)"/);
-  const makerMatch = content.match(/maker:\s*"([^"]+)"/);
-  const visibleFalseMatch = content.match(/visible:\s*false\b/);
-  const lensMountsMatch = content.match(/lensMounts:\s*\[([^\]]*)\]/m);
-  const imageFormatMatch = content.match(/imageFormat:\s*"([^"]+)"/);
+  const keyMatch = content.match(/(?:\bkey|"key"|'key')\s*:\s*"([^"]+)"/);
+  const publishedAtMatch = content.match(/(?:\bpublishedAt|"publishedAt"|'publishedAt')\s*:\s*"([^"]+)"/);
+  const nameMatch = content.match(/(?:\bname|"name"|'name')\s*:\s*"([^"]+)"/);
+  const makerMatch = content.match(/(?:\bmaker|"maker"|'maker')\s*:\s*"([^"]+)"/);
+  const visibleFalseMatch = content.match(/(?:\bvisible|"visible"|'visible')\s*:\s*false\b/);
+  const lensMountsMatch = content.match(/(?:\blensMounts|"lensMounts"|'lensMounts')\s*:\s*\[([^\]]*)\]/m);
+  const imageFormatMatch = content.match(/(?:\bimageFormat|"imageFormat"|'imageFormat')\s*:\s*"([^"]+)"/);
   const lensMountIds = lensMountsMatch ? [...lensMountsMatch[1].matchAll(/"([^"]+)"/g)].map((match) => match[1]) : [];
 
   return {
     key: keyMatch ? keyMatch[1] : null,
+    publishedAt: publishedAtMatch ? publishedAtMatch[1] : null,
     name: nameMatch ? nameMatch[1] : null,
-    maker: makerMatch ? makerMatch[1] : null,
+    maker: makerMatch ? makerMatch[1] : /(?:\bmaker|"maker"|'maker')\s*:\s*null\b/.test(content) ? null : undefined,
     lensMountIds,
     imageFormatId: imageFormatMatch ? imageFormatMatch[1] : null,
     visible: visibleFalseMatch ? false : true,
   };
+}
+
+/** Explicit publication timestamps distinguish replacement models from inherited file history. */
+function applyPublicationDate(freshness, publishedAt) {
+  if (!publishedAt) return freshness;
+  const date = new Date(publishedAt);
+  if (
+    !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(publishedAt) ||
+    Number.isNaN(date.valueOf()) ||
+    date.toISOString().replace(".000Z", "Z") !== publishedAt.replace(".000Z", "Z")
+  ) {
+    throw new Error(`Invalid lens publishedAt: ${publishedAt}; expected a UTC ISO timestamp`);
+  }
+  const result = { ...freshness, publishedOn: date.toISOString().slice(0, 10), publishedAt: date.toISOString() };
+  // The original addition commit no longer describes this publication event.
+  delete result.publishedCommit;
+  if ((result.lastModifiedAt ?? `${result.lastModified}T00:00:00.000Z`) < result.publishedAt) {
+    result.lastModified = result.publishedOn;
+    result.lastModifiedAt = result.publishedAt;
+    delete result.lastModifiedCommit;
+  }
+  return result;
 }
 
 /** Extract the key/name/maker tuple from a lens data file on disk. */
@@ -125,7 +151,7 @@ function collectLensData({
 
   for (const relativeDataPath of dataFiles) {
     const dataPath = join(lensDataDir, relativeDataPath);
-    const { key, name, maker, lensMountIds, imageFormatId, visible } = extractLensIdentity(dataPath);
+    const { key, name, maker, lensMountIds, imageFormatId, visible, publishedAt } = extractLensIdentity(dataPath);
     if (!key) continue;
 
     const analysisPath = join(lensDataDir, analysisRelativePathForDataPath(relativeDataPath));
@@ -147,10 +173,10 @@ function collectLensData({
       key,
       name,
       visible,
-      makerSlug: deriveMakerSlug(maker || name || key),
+      makerSlug: deriveMakerSlug(name || key, maker),
       lensMountIds,
       imageFormatId,
-      freshness: combineFreshness([dataFreshness, analysisFreshness], fallbackDate),
+      freshness: applyPublicationDate(combineFreshness([dataFreshness, analysisFreshness], fallbackDate), publishedAt),
     });
   }
 
@@ -175,7 +201,7 @@ async function collectLensDataAsync({
 
   const lenses = await mapLimit(dataFiles, concurrency, async (relativeDataPath) => {
     const dataPath = join(lensDataDir, relativeDataPath);
-    const { key, name, maker, lensMountIds, imageFormatId, visible } = extractLensIdentity(dataPath);
+    const { key, name, maker, lensMountIds, imageFormatId, visible, publishedAt } = extractLensIdentity(dataPath);
     if (!key) return null;
 
     const analysisPath = join(lensDataDir, analysisRelativePathForDataPath(relativeDataPath));
@@ -197,10 +223,10 @@ async function collectLensDataAsync({
       key,
       name,
       visible,
-      makerSlug: deriveMakerSlug(maker || name || key),
+      makerSlug: deriveMakerSlug(name || key, maker),
       lensMountIds,
       imageFormatId,
-      freshness: combineFreshness([dataFreshness, analysisFreshness], fallbackDate),
+      freshness: applyPublicationDate(combineFreshness([dataFreshness, analysisFreshness], fallbackDate), publishedAt),
     };
   });
 
@@ -216,7 +242,7 @@ function collectRootLensMovePlan(lensDataDir, { exists = existsSync, readdir = r
   return rootFiles.map((dataFile) => {
     const fromDataPath = join(lensDataDir, dataFile);
     const { key, name, maker } = extractLensIdentity(fromDataPath);
-    const makerSlug = deriveMakerSlug(maker || name || key || dataFile);
+    const makerSlug = deriveMakerSlug(name || key || dataFile, maker);
     const targetDir = join(lensDataDir, makerSlug);
     const analysisFile = analysisRelativePathForDataPath(dataFile);
     const fromAnalysisPath = join(lensDataDir, analysisFile);

@@ -18,6 +18,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  (S1, S11, S25). Remaining values were estimated by marginal/chief ║
  * ║  ray heights and constrained by edge thickness, slope, and cross-  ║
  * ║  gap sag intrusion checks.                                         ║
+ * ║  Surface 6A was raised to pass the traced chief ray to the APS-C   ║
+ * ║  corner at the wide end (2026-09-24 field-coverage audit); the     ║
+ * ║  patent's 2ω = 88.6° design circle is slightly larger.             ║
  * ║                                                                    ║
  * ║  Aspheres: exact Example 1 Table 3 odd/even A3-A10 coefficients   ║
  * ║  are stored on all eight aspheric surfaces. KA = 1 converts to    ║
@@ -53,8 +56,8 @@ const LENS_DATA = {
   elementCount: 16,
   groupCount: 11,
   closeFocusM: 0.3,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   zoomPositions: [16.4968, 33.9886, 53.4075],
   zoomLabels: ["Wide", "Middle", "Tele"],
   zoomStep: 0.004,
@@ -275,7 +278,7 @@ const LENS_DATA = {
       nd: 1.51625,
       vd: 64.05,
       fl: 98.324,
-      glass: "BSC7 / BK7-class moldable crown (517/642 family)",
+      glass: "L-BSL7 (OHARA) class moldable crown (516/641 family; BSC7 / BK7 type)",
       dPgF: 9.2e-5,
       role: "Fixed rear aspheric field-trimming group.",
     },
@@ -328,7 +331,7 @@ const LENS_DATA = {
       d: 2.07,
       nd: 1.8078,
       elemId: 4,
-      sd: 12.5,
+      sd: 14.5,
     },
     {
       label: "7A",

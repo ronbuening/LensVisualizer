@@ -2,43 +2,61 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKON NIKKOR Z 24-50mm f/4-6.3                       ║
+ * ║           LENS DATA — NIKON NIKKOR Z 24-50mm f/4-6.3                         ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2021-189377 A, Example 1 (Konica Minolta / Nikon).        ║
- * ║  Negative-positive-negative-positive 4-group zoom (−+−+ power).            ║
- * ║  11 elements / 10 groups, 6 aspherical surfaces (3 asph elements).         ║
- * ║  Focus: Internal focus via G3 translation toward image.                    ║
- * ║                                                                            ║
- * ║  Zoom mechanism:                                                           ║
- * ║    G1 (negative front): U-turn trajectory (non-monotonic).                 ║
- * ║    G2 (positive variator): monotonic toward object, stop moves with G2.    ║
- * ║    G3 (negative focus): monotonic toward object during zoom.               ║
- * ║    G4 (positive rear): stationary.                                         ║
- * ║    Zoom variable gaps: D6 (zoom only).                                     ║
- * ║    Focus variable gaps: D17, D21A (zoom + focus).                          ║
- * ║    BF: D23 varies with zoom (image position shifts).                       ║
- * ║                                                                            ║
- * ║  NOTE ON PATENT ERRATA (Example 1):                                        ║
- * ║    1. S14 A6 printed as 1.05587E-01; correct: 1.05587E-07                 ║
- * ║    2. S20 A8 printed as 1.13683E-01; correct: 1.13683E-07                 ║
- * ║    3. S20/S21 aspherical blocks mislabeled as S21/S22 in patent text;     ║
- * ║       corrected to match * markers and Example 2.                          ║
- * ║                                                                            ║
- * ║  NOTE ON d23 / BF:                                                         ║
- * ║    The prescription table lists d23=9.90 but the paraxial BFL matches      ║
- * ║    the patent's BF column (11.438/11.381/11.301). The BF values are        ║
- * ║    used as d23 here; d23=9.90 likely includes an unspecified cover glass.  ║
- * ║                                                                            ║
- * ║  NOTE ON SEMI-DIAMETERS:                                                   ║
- * ║    Not listed in patent. Estimated via marginal+chief ray trace across     ║
- * ║    all zoom positions, constrained by: 52 mm filter thread, sd/|R|<0.90,  ║
- * ║    edge thickness ≥ 0.5 mm, and SD ratio ≤ 3.0. G1 SDs limited by        ║
- * ║    S2's steep curvature (R=15.3 mm).                                      ║
- * ║                                                                            ║
- * ║  NOTE ON CEMENT LAYER:                                                     ║
- * ║    The cemented doublet L2b+L2c has an explicit cement layer               ║
- * ║    (nd=1.51400, d=0.01 mm) modeled as element id:6. Manufacturer          ║
- * ║    counts 11 elements excluding this layer.                                ║
+ * ║  Data source: JP 2021-189377 A, Numerical Example 1 (Konica Minolta /        ║
+ * ║  Nikon joint application). Stored at native patent scale.                    ║
+ * ║  Negative-positive-negative-positive 4-group zoom (−+−+ power).              ║
+ * ║  11 elements / 10 groups, 6 aspherical surfaces (3 asph elements), 2 ED.     ║
+ * ║  Example 1 matches the production counts (Nikon: 11/10, 2 ED, 3 asph);       ║
+ * ║  Example 2 has the same construction, so the choice is an inference.         ║
+ * ║                                                                              ║
+ * ║  Zoom mechanism (patent ¶0045, relative to the fixed G4 / image):            ║
+ * ║    G1 (negative front): moves toward the image, then U-turns toward the      ║
+ * ║      object (S1 → S23 track 75.80 / 73.41 / 75.43 mm).                       ║
+ * ║    G2 (positive, stop moves with it): monotonic toward object, ≈16.4 mm.     ║
+ * ║    G3 (negative focus group): monotonic toward object, ≈13.2 mm.             ║
+ * ║    G4 (positive rear): fixed.                                                ║
+ * ║    Three patent-tabulated zoom stations only (f = 24.726 / 34.711 /          ║
+ * ║    48.503 mm); no intermediate stations are interpolated into the data.      ║
+ * ║                                                                              ║
+ * ║  Focus: G3 moves toward the image (patent ¶0046). The patent tabulates       ║
+ * ║    infinity gaps only; the close-focus D17/D21 values are CALCULATED to      ║
+ * ║    focus 0.35 m object-to-image (production MFD at every zoom position),     ║
+ * ║    giving β ≈ −0.089 / −0.125 / −0.179 (Nikon: 0.17× max at 50 mm).          ║
+ * ║                                                                              ║
+ * ║  NOTE ON PATENT ERRATA (Example 1):                                          ║
+ * ║    1. S14 A6 printed as 1.05587E-01; correct: 1.05587E-07                    ║
+ * ║    2. S20 A8 printed as 1.13683E-01; correct: 1.13683E-07                    ║
+ * ║    3. S20/S21 aspherical blocks printed as S21/S22 in the patent;            ║
+ * ║       corrected to match the * markers and Example 2.                        ║
+ * ║    Conic form is z = ch²/[1+√(1−(1+K)c²h²)] + ΣAj·hʲ; all K = 0.             ║
+ * ║                                                                              ║
+ * ║  NOTE ON d23 / BF:                                                           ║
+ * ║    The table prints d23 = 9.90 (constant) and the printed TL uses it         ║
+ * ║    (TL = S1→S23 + 9.90 at every station). The paraxial back focus of the     ║
+ * ║    tabulated surfaces is 11.438 / 11.381 / 11.301 mm, exactly the BF         ║
+ * ║    column (defined as air-converted last-surface-to-paraxial-image). No      ║
+ * ║    plate is tabulated, and a plate would make the physical distance LONGER   ║
+ * ║    than its air equivalent, so the 1.54 mm offset is unresolved. The BF      ║
+ * ║    column is stored as d23 so every station sits at paraxial focus.          ║
+ * ║                                                                              ║
+ * ║  NOTE ON APERTURE:                                                           ║
+ * ║    Patent FNO 4.080 / 5.115 / 6.337; no iris diameters are published.        ║
+ * ║    zoomApertureModel "from-nominal-fno" infers the iris per station.         ║
+ * ║                                                                              ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                                     ║
+ * ║    Not listed in the patent. G1/G2 are ray-envelope estimates (52 mm         ║
+ * ║    filter); the patent Fig. 1 draws G2 slightly smaller (≈6–7 mm) than the   ║
+ * ║    full-field bundle, so G2 is left between the two. G3 and G4 were raised   ║
+ * ║    in the 2026-09-23 audit to the Fig. 1 wide-panel rims (L3a ≈9.1–9.2,      ║
+ * ║    L3b ≈10.6, L4a ≈18.6 mm at 0.1417 mm/px), which also match the traced     ║
+ * ║    full-field bundle; L3b is held at 10.4 mm, inside S20's turnover.         ║
+ * ║                                                                              ║
+ * ║  NOTE ON CEMENT LAYER:                                                       ║
+ * ║    The cemented doublet L2b+L2c has an explicit cement layer                 ║
+ * ║    (nd=1.51400, d=0.01 mm) modeled as element id:6. Manufacturer             ║
+ * ║    counts 11 elements excluding this layer.                                  ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -74,7 +92,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.46,
       fl: -28.2,
-      glass: "Unmatched barium crown (patent nd=1.69680, νd=55.46; prior S-BSM10 label incompatible)",
+      glass: "LAC14 (HOYA)",
       apd: false,
       role: "Primary G1 diverging element; convex toward object",
     },
@@ -149,9 +167,9 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.24,
       fl: -24.2,
-      glass: "BAFD7 (HOYA) / S-BAH27 / NBFD12 class",
+      glass: "S-BAH27 (OHARA)",
       apd: false,
-      role: "Lanthanum flint element of cemented doublet; chromatic correction",
+      role: "Dense barium flint element of cemented doublet; chromatic correction",
       cemented: "D1",
     },
     {
@@ -174,7 +192,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.84,
       fl: -45.0,
-      glass: "S-TIM22 (OHARA)",
+      glass: "E-FD2 (HOYA)",
       apd: false,
       role: "Field flattener and coma corrector in G2r; convex toward object",
     },
@@ -186,7 +204,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.72,
       fl: -35.8,
-      glass: "S-LAH55V (OHARA)",
+      glass: "TAFD5G (HOYA)",
       apd: false,
       role: "Primary G3 diverging element; convex toward image",
     },
@@ -210,7 +228,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.84,
       fl: 79.1,
-      glass: "S-TIM22 (OHARA)",
+      glass: "E-FD2 (HOYA)",
       apd: false,
       role: "Rear field lens (G4, fixed); bends chief ray for telecentricity, convex toward image",
     },
@@ -244,14 +262,14 @@ const LENS_DATA = {
     { label: "17", R: 11.988, d: 8.661, nd: 1.0, elemId: 0, sd: 6.5 }, // L2e rear → air [VARIABLE: zoom+focus]
 
     // ── G3: Negative focus group (f₃ = −34.44 mm) ──
-    { label: "18", R: -27.734, d: 0.9, nd: 1.83481, elemId: 10, sd: 6.0 }, // L3a front
-    { label: "19", R: -393.55, d: 1.85, nd: 1.0, elemId: 0, sd: 6.0 }, // L3a rear → air
-    { label: "20A", R: -135.797, d: 1.5, nd: 1.53048, elemId: 11, sd: 5.5 }, // L3b front (asph)
-    { label: "21A", R: -189.242, d: 4.448, nd: 1.0, elemId: 0, sd: 5.5 }, // L3b rear (asph) → air [VARIABLE: zoom+focus]
+    { label: "18", R: -27.734, d: 0.9, nd: 1.83481, elemId: 10, sd: 9.2 }, // L3a front
+    { label: "19", R: -393.55, d: 1.85, nd: 1.0, elemId: 0, sd: 9.2 }, // L3a rear → air
+    { label: "20A", R: -135.797, d: 1.5, nd: 1.53048, elemId: 11, sd: 10.4 }, // L3b front (asph)
+    { label: "21A", R: -189.242, d: 4.448, nd: 1.0, elemId: 0, sd: 10.4 }, // L3b rear (asph) → air [VARIABLE: zoom+focus]
 
     // ── G4: Positive rear group (f₄ = +79.05 mm, fixed) ──
-    { label: "22", R: -99.603, d: 4.89, nd: 1.64769, elemId: 12, sd: 17.0 }, // L4a front
-    { label: "23", R: -34.47, d: 11.438, nd: 1.0, elemId: 0, sd: 18.5 }, // L4a rear → image [VARIABLE: zoom only, BFD]
+    { label: "22", R: -99.603, d: 4.89, nd: 1.64769, elemId: 12, sd: 18.6 }, // L4a front
+    { label: "23", R: -34.47, d: 11.438, nd: 1.0, elemId: 0, sd: 18.6 }, // L4a rear → image [VARIABLE: zoom only, BFD]
   ],
 
   /* ── Aspherical coefficients (with patent errata corrected) ── */
@@ -327,19 +345,19 @@ const LENS_DATA = {
       [10.326, 10.326],
       [3.17, 3.17],
     ],
-    // d17: G2r–G3 gap (zoom + focus — G3 shifts toward image for close focus)
+    // d17: G2r–G3 gap (patent infinity value; close value CALCULATED for 0.35 m — G3 moves toward image)
     "17": [
       [8.661, 10.29],
       [9.998, 12.452],
       [11.938, 15.665],
     ],
-    // d21: G3–G4 gap (zoom + focus — complement of d17 shift)
+    // d21: G3–G4 gap (patent infinity value; close value CALCULATED — complement of d17 shift)
     "21A": [
       [4.448, 2.819],
       [10.367, 7.913],
       [17.606, 13.879],
     ],
-    // d23: BFD to image (zoom only — paraxial image position shifts with zoom)
+    // d23: patent BF column (air-converted paraxial back focus); printed d23 = 9.90 is not used
     "23": [
       [11.438, 11.438],
       [11.381, 11.381],
@@ -367,13 +385,16 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.35,
-  focusDescription: "Internal focus via G3 (2 elements, stepping motor). G3 translates toward image for close focus.",
+  focusDescription:
+    "Internal focus via G3 (2 elements, stepping motor). G3 translates toward image for close focus; close-focus gaps are calculated (patent gives infinity gaps only).",
 
   /* ── Aperture configuration ── */
   nominalFno: [4.08, 5.115, 6.337],
+  zoomApertureModel: "from-nominal-fno",
   apertureBlades: 7,
   apertureBladeRoundedness: 0.7,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [4.08, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 36],
+  maxFstop: 36,
 
   /* ── Layout tuning ── */
   scFill: 0.48,

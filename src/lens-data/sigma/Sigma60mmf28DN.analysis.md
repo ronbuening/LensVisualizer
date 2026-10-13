@@ -45,9 +45,9 @@ G1 provides the main front collection and carries the front cemented chromatic-c
 
 The architecture is not a telephoto lens in the strict TL/EFL sense. Its physical patent track from surface 1 to image, including the camera-side filter plate, is 74.02 mm against f = 60.00 mm, so TL/EFL ≈ 1.23. It is better described as a compact short telephoto or double-Gauss-derived medium-telephoto design, not as a true telephoto formula.
 
-The patent includes a rear plane-parallel filter F at surfaces 16–17 and states that this plate is not part of G3; it is an IR-cut, low-pass, or similar camera-side filter selected according to the imaging device (¶0051). The data file therefore excludes that filter and folds its optical path into the last air-equivalent back distance:
+The patent includes a rear plane-parallel filter F at surfaces 16–17 and states that this plate is not part of G3; it is an IR-cut, low-pass, or similar camera-side filter selected according to the imaging device (¶0051). The data file models that filter through `rearPlates` (2.2000 mm, nd 1.51680, νd 64.20, then BF 1.0000 mm): every analysis traces it, but it is not drawn, and surface 15 keeps the patent's 23.0700 mm gap to the filter. Its paraxial air-equivalent back distance is
 
-$$d_{15,data}=23.0700+\frac{2.2000}{1.51680}+1.0000=25.5204\,\text{mm}.$$
+$$d_{15,\text{air-eq}}=23.0700+\frac{2.2000}{1.51680}+1.0000=25.5204\,\text{mm}.$$
 
 ## Element-by-Element Analysis
 
@@ -138,14 +138,14 @@ The patent directly tabulates an infinity state and an 800 mm shooting-distance 
 
 The conservation of d6 + d10 confirms that G2 is the only moving optical group in the patent model. At the 800 mm state, the computed paraxial magnification is β ≈ −0.0816, or roughly 1:12.3. The effective focal length falls from 60.00 mm to 55.86 mm, matching the patent's tabulated close-state value and showing moderate focus breathing.
 
-Sigma's production specification gives a closer 0.50 m minimum focusing distance and 1:7.2 maximum magnification. The data file therefore does not use the patent's 800 mm state as the endpoint of the UI focus slider. Instead, it preserves the patent's one-degree internal focus model and solves the finite-conjugate condition at 0.50 m object-to-image distance. That gives:
+Sigma's production specification gives a closer 0.50 m minimum focusing distance and 1:7.2 maximum magnification. The data file stores the patent's 800 mm state as an exact keyframe, then preserves the patent's one-degree internal focus model and solves the finite-conjugate condition at 0.50 m object-to-image distance. That gives:
 
 | Spacing | Infinity | 0.50 m production endpoint solve | Change |
 |---|---:|---:|---:|
 | d6, stop → G2 | 10.1300 mm | 4.4302 mm | −5.6998 mm |
 | d10, G2 → G3 | 1.9400 mm | 7.6398 mm | +5.6998 mm |
 
-The same solve gives β ≈ −0.1390, agreeing with the published 1:7.2 magnification. This close-focus endpoint is a computed extension from the patent model constrained by Sigma's official MFD and magnification, not a directly printed patent table value.
+The same solve gives β ≈ −0.1390, agreeing with the published 1:7.2 magnification. This close-focus endpoint is a computed extension from the patent model constrained by Sigma's official MFD and magnification, not a directly printed patent table value. Motion between keyframes is piecewise-linear visualization.
 
 ## Aspherical Surfaces
 

@@ -21,11 +21,3 @@ Patent: US 5,796,530, Example Embodiment 2, second soft-focus configuration
 
 - The patent gives only `nd` and `vd`. No ED/APD claim, aspherical data, line-index table, or partial-dispersion table was found.
 - No APD flags were added.
-
-### Phase 4 - Analysis sync
-
-- No analysis file changes were needed.
-
-### Verification
-
-- Pending full Nikon batch verification.

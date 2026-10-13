@@ -1,4 +1,4 @@
-# Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S
+# NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S
 
 ## Patent Reference and Design Identification
 
@@ -13,7 +13,7 @@
 
 US 4,699,475 describes a compact normal zoom for the 35mm still-camera format. Its basic form is a positive first group, negative second group, and positive third group. In the fourth through seventh embodiments, the rear positive group is divided into independently moving G31 and G32 units, so the practical construction is a four-moving-unit positive-negative-positive-positive zoom.
 
-The prescription represented here is the Table 7 35–105mm f/3.5–4.5 design, which is the source-supported match for the Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S.
+The prescription represented here is the Table 7 35–105mm f/3.5–4.5 design, which is the source-supported match for the NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S.
 
 The identification rests on the following convergent evidence.
 
@@ -181,7 +181,7 @@ The G32 radius-ratio conditions are satisfied when f32 = +73.16mm:
 
 ## Verification Summary
 
-An independent paraxial y-u ray trace was run from the transcribed Table 7 prescription, preserving d14 as the total r14-to-r15 spacing and splitting it only to insert the stop 0.8mm ahead of L9. The computed effective focal lengths are somewhat longer than the patent's rounded nominal focal-length labels, but the table spacings and radii are retained exactly.
+An independent paraxial y-u ray trace was run from the transcribed Table 7 prescription, preserving d14 as the total r14-to-r15 spacing and splitting it only to insert the stop 0.8mm ahead of L9. The computed effective focal lengths are somewhat longer than the patent's rounded nominal focal-length labels, but the table spacings and radii are retained exactly. The wide-end paraxial image-plane offset is +0.942330 mm: Table 7's 52.36 mm Bf does not reproduce its own prescription's 53.302330 mm paraxial focus. All R/d/nd/vd entries and zoom columns match, with no rear plate or asphere omitted. No single source-supported misprint explains the mismatch, and the unpublished unrounded prescription is unavailable. This is a disclosed source contradiction, not a reason to shift the authored plane.
 
 | Position | Computed EFL | Patent nominal F | Difference | Computed paraxial BFL | Patent Bf |
 |---|---:|---:|---:|---:|---:|

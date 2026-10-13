@@ -17,6 +17,7 @@ import type { Dispatch } from "react";
 interface ControlsBarProps {
   theme: Theme;
   compact: boolean;
+  inlineGroups?: boolean;
   showScaleMode: boolean;
   showOnAxis: boolean;
   showOffAxis: OffAxisMode;
@@ -45,6 +46,7 @@ interface ControlsBarProps {
 export default function ControlsBar({
   theme: t,
   compact,
+  inlineGroups = false,
   showScaleMode,
   showOnAxis,
   showOffAxis,
@@ -69,10 +71,10 @@ export default function ControlsBar({
   scaleMode,
   dispatch,
 }: ControlsBarProps) {
-  const padding = compact ? "6px 12px" : "8px 16px";
-  const gap = compact ? 6 : 8;
+  const padding = compact || inlineGroups ? "6px 12px" : "8px 16px";
+  const gap = compact || inlineGroups ? 6 : 8;
   const svgW = compact ? 12 : 14;
-  const rayToggleWidth = compact ? undefined : 228;
+  const rayToggleWidth = compact || inlineGroups ? undefined : 228;
   const rayToggleButtonStyle = (active: boolean, hasRightBorder: boolean) =>
     toggleBtn(t, active, compact ? { hasRightBorder } : { hasRightBorder, padding: "5px 6px", gap: 4 });
 
@@ -172,6 +174,7 @@ export default function ControlsBar({
       {ENABLE_CARDINAL_ELEMENTS && !compact ? (
         <CardinalControls
           t={t}
+          inline={inlineGroups}
           showCardinals={showCardinals}
           onShowCardinalsChange={(value) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinals", value })}
           showCardinalFocal={showCardinalFocal}
@@ -215,7 +218,7 @@ export default function ControlsBar({
       </div>
 
       {/* Ray mode */}
-      <div style={toggleGroup(t, compact ? undefined : { width: 180 })}>
+      <div style={toggleGroup(t, compact || inlineGroups ? undefined : { width: 180 })}>
         {rayModes.map(({ label, val, icon }: { label: string; val: boolean; icon?: string }) => (
           <button
             key={label}
@@ -233,7 +236,7 @@ export default function ControlsBar({
       </div>
 
       {/* Ray density */}
-      <div style={toggleGroup(t, compact ? undefined : { width: 228 })}>
+      <div style={toggleGroup(t, compact || inlineGroups ? undefined : { width: 228 })}>
         {rayDensities.map(({ label, val }, idx) => (
           <button
             key={val}
@@ -248,7 +251,7 @@ export default function ControlsBar({
       {/* Chromatic */}
       <div
         style={
-          compact
+          compact || inlineGroups
             ? toggleGroup(t)
             : {
                 ...toggleGroup(t, { width: showChromatic ? 220 : 90 }),
@@ -311,7 +314,7 @@ export default function ControlsBar({
 
       {/* Scale mode toggle */}
       {showScaleMode && (
-        <div style={toggleGroup(t, { width: 190 })}>
+        <div style={toggleGroup(t, inlineGroups ? undefined : { width: 190 })}>
           {(
             [
               { label: "INDEPENDENT", val: "independent" as const },

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║      LENS DATA — Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S          ║
+ * ║      LENS DATA — NIKON AI ZOOM-NIKKOR 35-200mm f/3.5-4.5 S          ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 4,770,511, Example 2 / Table 2 (Nippon Kogaku).   ║
  * ║  Positive-lead four-group zoom: G1(+), G2(-), G3(+), G4(+).        ║
@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-zoom-nikkor-35-200mm-f3-5-4-5s",
   maker: "Nikon",
-  name: "Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S",
+  name: "NIKON AI ZOOM-NIKKOR 35-200mm f/3.5-4.5 S",
   subtitle: "US 4,770,511 Example 2 — Nippon Kogaku / Yonezawa, Aono & Takahashi",
   specs: [
     "17 elements / 13 groups",
@@ -334,6 +334,8 @@ const LENS_DATA = {
 
   nominalFno: [3.5, 4.5],
   closeFocusM: 0.245,
+  // Source-tabulated focus rows differ by zoom station.
+  publishedStations: { focus: [[], [1]] },
   focusDescription:
     "Normal focusing is by the first lens group. The close-focus endpoint modeled here is the patent telephoto-end macro state at β = -0.25.",
   fstopSeries: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22, 32],

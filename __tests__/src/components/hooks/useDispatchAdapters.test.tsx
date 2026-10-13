@@ -8,6 +8,8 @@ import {
   SET_STOPDOWN_T,
   SET_SHIFT_MM,
   SET_TILT_DEG,
+  SET_PATENT_POSITIONS,
+  SET_PATENT_STATION,
   SET_RAY_TOGGLE,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
@@ -42,6 +44,7 @@ const DISPATCH_CASES: Array<{ adapter: AdapterName; args: unknown[]; expected: R
   /* ── Sliders ── */
   { adapter: "onFocusChange", args: [0.5], expected: { type: SET_FOCUS_T, value: 0.5 } },
   { adapter: "onZoomChange", args: [0.75], expected: { type: SET_ZOOM_T, value: 0.75 } },
+  { adapter: "onZoomChange", args: [0.75, 0.4], expected: { type: SET_ZOOM_T, value: 0.75, focusT: 0.4 } },
   { adapter: "onStopdownChange", args: [1.0], expected: { type: SET_STOPDOWN_T, value: 1.0 } },
   { adapter: "onShiftChange", args: [-5.5], expected: { type: SET_SHIFT_MM, value: -5.5 } },
   { adapter: "onTiltChange", args: [3.5], expected: { type: SET_TILT_DEG, value: 3.5 } },
@@ -144,6 +147,13 @@ const DISPATCH_CASES: Array<{ adapter: AdapterName; args: unknown[]; expected: R
   },
   /* ── Analysis tab ── */
   { adapter: "onAnalysisTabChange", args: ["distortion"], expected: { type: SET_ANALYSIS_TAB, tab: "distortion" } },
+  /* ── Patent-positions mode ── */
+  { adapter: "onPatentPositionsChange", args: [true], expected: { type: SET_PATENT_POSITIONS, enabled: true } },
+  {
+    adapter: "onPatentStationChange",
+    args: [0.5, 1],
+    expected: { type: SET_PATENT_STATION, zoomT: 0.5, focusT: 1 },
+  },
 ];
 
 describe("useDispatchAdapters", () => {
@@ -156,6 +166,8 @@ describe("useDispatchAdapters", () => {
       "onShiftChange",
       "onTiltChange",
       "onSliderPointerUp",
+      "onPatentPositionsChange",
+      "onPatentStationChange",
       "onShowOnAxisChange",
       "onShowOffAxisChange",
       "onRayTracksFChange",

@@ -2,17 +2,14 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED                                                        ║
+ * ║ LENS DATA — NIKON AF MICRO-NIKKOR 200mm f/4 D IF-ED                                                        ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 5,402,268, Example 1 (Wataru Tatsuno / Nikon Corporation).                                ║
  * ║ Prescription: 13 elements / 8 air-separated physical groups; 4 functional focus groups (+ / + / - / +).   ║
  * ║ All 21 patent refracting surfaces are spherical. No scaling is applied.                                    ║
  * ║                                                                                                              ║
- * ║ Focus status: PUBLISHED. The data model stores the published infinity and beta=-1.0000 endpoint spacings.   ║
- * ║ The patent also publishes beta=-0.5000. G3 motion is compatible with the endpoint interpolation when that   ║
- * ║ source state is evaluated at its mechanical travel fraction, but G1 is not: d5 is 6.6432 mm at both         ║
- * ║ endpoints and 14.2044 mm at beta=-0.5000. The current prime var schema cannot encode that mid-focus         ║
- * ║ excursion/reversal, so d5 is retained as an endpoint-equal var and the limitation is disclosed here.        ║
+ * ║ Focus status: PUBLISHED. All three source rows are exact focus keyframes. G1's d5 spacing follows the       ║
+ * ║ published 6.6432 → 14.2044 → 6.6432 mm excursion, preserving its mid-focus reversal.                        ║
  * ║                                                                                                              ║
  * ║ STO MODELING INFERENCE: the patent publishes no aperture-stop plane or stop diameter. STO is placed at the  ║
  * ║ midpoint of the infinity d8 air gap, 2.57025 mm after S8, and is held fixed relative to fixed group G2.     ║
@@ -40,7 +37,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-micro-nikkor-200mm-f4d",
   maker: "Nikon",
-  name: "NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED",
+  name: "NIKON AF MICRO-NIKKOR 200mm f/4 D IF-ED",
   subtitle: "US 5,402,268 Example 1 — Wataru Tatsuno / Nikon Corporation",
   specs: ["13 ELEMENTS / 8 GROUPS", "f = 200.1457 mm", "F/4.0", "2ω = 12.33°", "ALL SPHERICAL"],
 
@@ -270,14 +267,15 @@ const LENS_DATA = {
 
   asph: {},
 
-  /* ── Published focus endpoints ──
+  /* ── Published focus keyframes ──
    * Source d8 = S8.d + STO.d, so total d8 is 5.1405 mm at infinity and 37.1142 mm at 1:1.
    * The published beta=-0.5000 state is retained in the audit: d5=14.2044, d8=17.7426, d14=32.5222 mm.
    */
+  focusPositions: [0, 0.7028911318620283, 1],
   var: {
-    "5": [6.6432, 6.6432],
-    STO: [2.57025, 34.54395],
-    "14": [45.1242, 13.1506],
+    "5": [6.6432, 14.2044, 6.6432],
+    STO: [2.57025, 15.17235, 34.54395],
+    "14": [45.1242, 32.5222, 13.1506],
   },
   varLabels: [
     ["5", "D5"],
@@ -300,8 +298,10 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.5,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
-    "PUBLISHED focus endpoints from US 5,402,268 Example 1. G3 moves imageward while G2/G4 remain fixed; source d8 is represented as fixed S8.d plus variable STO.d. G1 is nonlinear: d5 is 6.6432 mm at infinity and 1:1 but 14.2044 mm at beta=-0.5, so the current endpoint-only prime schema cannot display its published mid-focus reversal. STO placement is inferred, not patent-published.",
+    "PUBLISHED focus keyframes from US 5,402,268 Example 1. G3 moves imageward while G2/G4 remain fixed; source d8 is represented as fixed S8.d plus variable STO.d. G1 reverses at beta=-0.5, where d5 reaches 14.2044 mm before returning to 6.6432 mm at 1:1. STO placement is inferred, not patent-published.",
 
   nominalFno: 4.0,
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],

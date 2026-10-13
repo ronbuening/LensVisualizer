@@ -42,7 +42,7 @@ function buildBreathingSamples(L: RuntimeLens, zoomT: number, currentFocusT: num
         focusT,
         efl,
         breathingPercent,
-        distanceLabel: formatDist(focusT, L),
+        distanceLabel: formatDist(focusT, L, zoomT),
       };
     });
 }
@@ -249,9 +249,12 @@ export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: F
   return (
     <div>
       <div style={{ marginBottom: 8, display: "grid", gap: 4 }}>
-        <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>Focus breathing</span>
+        <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>
+          Focus breathing — intrinsic / lens-local
+        </span>
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-          Effective focal length shift across the focus range at the current zoom position.
+          Effective focal length shift across the focus range at the current zoom position. Rigid lens tilt and shift do
+          not change this intrinsic curve.
         </span>
       </div>
       <FocusBreathingChart samples={samples} currentFocusT={focusT} t={t} />
@@ -307,7 +310,7 @@ export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: F
               transition: "color 0.3s",
             }}
           >
-            {formatDist(focusT, L)}
+            {formatDist(focusT, L, zoomT)}
           </span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

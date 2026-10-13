@@ -15,6 +15,7 @@ interface CoordTransformParams {
   imgMM: number;
   scaleRatio: number | null;
   zExtent?: { min: number; max: number } | null;
+  yExtent?: { min: number; max: number } | null;
 }
 
 /**
@@ -36,6 +37,7 @@ export function createCoordinateTransforms2({
   imgMM,
   scaleRatio,
   zExtent,
+  yExtent,
 }: CoordTransformParams): CoordinateTransforms {
   const rawSC = scaleRatio != null ? SC * scaleRatio : SC;
   const rawYSC = scaleRatio != null ? YSC * scaleRatio : YSC;
@@ -48,10 +50,17 @@ export function createCoordinateTransforms2({
     zMin < MID && CX > horizontalMargin ? (CX - horizontalMargin) / Math.max(MID - zMin, 1e-9) : Infinity;
   const rightLimit =
     zMax > MID && svgW - horizontalMargin > CX ? (svgW - horizontalMargin - CX) / Math.max(zMax - MID, 1e-9) : Infinity;
-  const effectiveSC = Math.min(rawSC, leftLimit, rightLimit);
+  const verticalMargin = 20;
+  const CY = svgH / 2;
+  const yMin = yExtent && isFinite(yExtent.min) ? yExtent.min : 0;
+  const yMax = yExtent && isFinite(yExtent.max) ? yExtent.max : 0;
+  const topScaleFactor = yMin < 0 && rawYSC > 0 ? (CY - verticalMargin) / Math.max(-yMin * rawYSC, 1e-9) : Infinity;
+  const bottomScaleFactor =
+    yMax > 0 && rawYSC > 0 ? (svgH - verticalMargin - CY) / Math.max(yMax * rawYSC, 1e-9) : Infinity;
+  const verticalScaleFactor = Math.min(1, topScaleFactor, bottomScaleFactor);
+  const effectiveSC = Math.min(rawSC, leftLimit, rightLimit, rawSC * verticalScaleFactor);
   const scaleFactor = rawSC > 0 ? effectiveSC / rawSC : 1;
   const effectiveYSC = rawYSC * scaleFactor;
-  const CY = svgH / 2;
   const IX = CX + MID * effectiveSC;
 
   const sx = (z: number): number => IX - (imgMM - z) * effectiveSC;

@@ -44,6 +44,30 @@ describe("lens relationship metadata", () => {
     ).toThrow(/collides with first[\s\S]*kind is not supported[\s\S]*label must be[\s\S]*HTTP\(S\)/);
   });
 
+  it.each([[], null, {}, "invalid"])("rejects malformed relationship lists (%j)", (value) => {
+    for (const field of ["aliases", "manufacturedBy"]) {
+      expect(() =>
+        assertLensRelationshipValidity([{ key: "primary", name: "PRIMARY 50mm f/2", [field]: value }]),
+      ).toThrow(`primary.${field} must be a non-empty array when provided`);
+    }
+  });
+
+  it.each(["PRIMARY 50 mm f1.80", "Primary 50mm f/1.8"])(
+    "rejects alias collisions using search's optical notation (%s)",
+    (aliasName) => {
+      expect(() =>
+        assertLensRelationshipValidity([
+          { key: "first", name: "PRIMARY 50mm f/1.8" },
+          {
+            key: "second",
+            name: "SECOND 50mm f/1.8",
+            aliases: [{ maker: "Primary", name: aliasName, kind: "rebrand", sources: [source] }],
+          },
+        ]),
+      ).toThrow(/aliases\[0\].name collides with first/);
+    },
+  );
+
   it("merges relationship makers and mount overrides without changing the canonical identity", () => {
     const metadata = relationshipRouteMetadata(
       {

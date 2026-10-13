@@ -12,11 +12,12 @@ the derived maker folder and rewrites the `LensDataInput` import. If working dir
 `../../types/optics.js`. Audit logs are not moved automatically.
 
 Transcribe one identified patent embodiment, preserve its signs and precision, and record every deviation from it.
-Exclude sensor cover glass, filters, inactive dummy/flare-cutter planes, and mechanical parts; when an omitted plate
-affects source back focus, document the air-equivalent rear spacing. Keep only active mirror/blocking surfaces that the
+Model source-listed rear cover/filter plates with `rearPlates` (physical gaps as printed, never a hand-folded t/n).
+Exclude front filters, inactive dummy/flare-cutter planes, and mechanical parts. Keep only active mirror/blocking surfaces that the
 modeled path can hit. Use exactly one `STO`; keep cemented-interface `elemId` assignments, variable-gap base values, and
 zoom-position counts consistent. Never invent missing close-focus spacings: either keep the published state or label a
-constrained reconstruction in the header, `focusDescription`, and analysis. If scaling by `s`, scale every length
+constrained reconstruction in the header, `focusDescription`, and analysis. Flag the rows the source tabulates in
+`publishedStations`. If scaling by `s`, scale every length
 (`R`, `d`, `sd`, image-plane coordinates) and transform `A_p` to `A_p / s^(p-1)` while leaving `K` unchanged.
 
 Add complete structured patent attribution (`patentNumber`, all `patentAuthors`, all `patentAssignees`, and
@@ -49,6 +50,8 @@ Run `npm run build` when catalog/route/SEO metadata is affected, and `npm run ge
 changes. Do not hand-edit generated reports. A lens is integrated only when the corpus tests pass and the rendered
 silhouette, stop/pupil behavior, representative rays, focus/zoom endpoints, and analysis prose all agree with the
 documented model.
+
+Do not add per-lens or per-batch tests; see "Per-Lens And Audit Test Retention" in `agent_docs/architecture/testing.md`.
 
 ## Sources of Truth
 

@@ -105,7 +105,7 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       fl: -258.7,
-      glass: "BSC7 (HOYA)",
+      glass: "S-BSL7 (OHARA) / BSC7 (HOYA) class",
       apd: false,
       role: "Fixed rear group; weak negative field flattener extending BFD for K-mount mirror clearance. Low-dispersion glass minimizes chromatic tracking error during focusing.",
     },

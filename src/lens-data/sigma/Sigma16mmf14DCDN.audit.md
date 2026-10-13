@@ -23,10 +23,6 @@ Patent: JP 2018-205527 A, Numerical Example 1
 - No patent line-index or partial-dispersion data was available beyond nd/vd.
 - Existing top-level metadata, mount metadata, image format, element/group counts, and focus description were retained.
 
-### Phase 4 - Analysis sync
-
-- No analysis text changes were required during this audit.
-
 ## 2026-06-23 - Sigma-folder patent glass sweep
 
 ### Phase 1 - Glass corrections
@@ -54,6 +50,24 @@ Patent: JP 2018-205527 A, Numerical Example 1
 
 - Updated the companion analysis prose and glass summary table for L18, L19, L21/L31, L22, and L43.
 
-### Verification
+## 2026-09-23 — Rear plate modeled as `rearPlates`
 
-- `npm run generate:glass-reports`
+- Replaced the air-equivalent surface-30 gap (17.8527 mm) with the patent's physical rear stack from Numerical Example 1 (p. 18 surface table, p. 19 variable-gap table): d30 = 15.5341 mm, then a 2.0000 mm plate with nd 1.51680 / νd 64.20 and BF = 1.0000 mm at both the infinity and 1:40 states. Glass label N-BK7 (exact 517/642 catalog match; no θgF printed).
+- Paraxial check against the previous data: EFL identical and defocus unchanged at all three focus keyframes (the old fold was stored unrounded). Physical track grows by 0.681 mm to 109.00 mm, matching the patent's printed total length; `closeFocusM` stays at Sigma's published 0.25 m.
+
+## 2026-09-24 — Semi-diameters raised to the traced APS-C corner
+
+Patent Example 1 prints 2ω = 84.21° at Y = 14.20 mm (p. 18), so the design covers the APS-C corner (14.175 mm). The
+estimated front rims were sized for 0.35-field off-axis rays and clipped the real chief ray (solved through the stop
+centre) from 37.4°, leaving the analysis field at 85% of the corner. The traced corner chief ray (42.05°, the patent ω)
+needs surface 1 ≥ 20.53, surface 2 ≥ 19.51 and surface 3 ≥ 15.49 mm; values are floor + ~0.5 mm with L1 scaled as one
+element. No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 1 | 17.0 | 21.0 | corner chief ray 20.53 mm + clearance |
+| 2 | 16.6 | 20.5 | L1 scaled with surface 1 (corner chief ray 19.51 mm) |
+| 3 | 14.6 | 16.0 | corner chief ray 15.49 mm + clearance; surface 4 (R 16.40) does not clip and is unchanged |
+
+The validator accepts the new values, the traced edge now reaches 14.17 mm at 42.1° with every rim clear, and the
+image-circle floor still reports nothing undersized. No aspheric surface changed.

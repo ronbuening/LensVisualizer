@@ -130,7 +130,7 @@ Vivitar’s owner’s manual prints the minimum distance as “3 ft. (.9m),” t
 
 Ponder & Best’s September 1974 sheet specifies 1:4.5 maximum magnification. That is about 5.14% greater than the 0.900 m paraxial magnification derived from the rounded patent table. The manufacturer value is retained as the production specification, but it is not used to rescale or alter Table II. The difference can arise from rounded product distances, production prescription or melt adjustments, and the distinction between paraxial and published reproduction-ratio conventions.
 
-The patent-range travel is 9.53 mm, or 7.05% of the infinity EFL. The extrapolated 0.900 m endpoint uses 20.2111 mm of objective travel. The latter is explicitly a production-distance model beyond the patent’s worked 10.40 mm gap endpoint.
+The patent-range travel is 9.53 mm, or 7.05% of the infinity EFL. Its 10.40 mm gap is stored as an exact focus keyframe. The extrapolated 0.900 m endpoint uses 20.2111 mm of objective travel and is explicitly a production-distance model beyond that published row. Interpolation between keyframes is approximate visualization.
 
 ## Chromatic Correction Strategy
 
@@ -212,3 +212,10 @@ Subcontractor, serial-number, and unsupported production-construction claims are
 4. Ponder & Best, Inc., *Vivitar Series 1 135mm f2.3 Automatic Telephoto Lens*, September 1974, Section 3, Series 1, p. 6.
 5. OHARA, S-BSM10 optical-glass datasheet.
 6. SCHOTT, N-BK7, SF6/N-SF6, N-SF2, N-SSK2, and LLF1 optical-glass catalog data.
+
+
+## Production mount assignment
+
+The period Sears 1977–78 catalog, page 17, lists separate ordering codes for the Vivitar Series 1 135mm f/2.3 in Canon, Nikon, Minolta and Olympus mounts. These period systems map to FD, F, SR and OM. Its additional undifferentiated “Pentax Mount” line is left unassigned until the exact screw/bayonet variant is established; the array is a documented subset, not an exhaustive production list. [Source](https://www.cameramanuals.org/booklets/sears_1977-78_catalog.pdf).
+
+The assignment records the correlated production installation, not manufacturer confirmation of an exact patent-to-factory prescription.

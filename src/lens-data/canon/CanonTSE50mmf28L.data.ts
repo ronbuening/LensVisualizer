@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║       LENS DATA — CANON TS-E 50mm f/2.8L MACRO                     ║
+ * ║       LENS DATA — CANON TS-E 50mm f/2.8 L MACRO                     ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 10,571,651 B2, Numerical Data 1 (Hideki Sakai,    ║
  * ║  Canon Kabushiki Kaisha).                                          ║
@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-tse-50f28l-macro",
   maker: "Canon",
-  name: "CANON TS-E 50mm f/2.8L MACRO",
+  name: "CANON TS-E 50mm f/2.8 L MACRO",
   subtitle: "US 10,571,651 B2 Numerical Data 1 — Canon / Hideki Sakai",
   specs: [
     "12 elements / 9 groups",
@@ -61,6 +61,12 @@ const LENS_DATA = {
     tiltRangeDeg: [-8.5, 8.5],
     shiftStepMm: 0.1,
     tiltStepDeg: 0.1,
+    // Reference-state rear vertex fallback; not a measured mechanical tilt hinge.
+    tiltPivot: {
+      frame: "camera",
+      basis: "rear-vertex-fallback",
+      zOffsetFromImagePlaneMm: -55.96,
+    },
   },
 
   projection: {
@@ -262,6 +268,8 @@ const LENS_DATA = {
 
   apertureBlades: 9,
   closeFocusM: 0.273,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,

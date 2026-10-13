@@ -17,7 +17,7 @@ The identification of Example 3 as the production Hasselblad HC 4/210 rests on t
 3. **Half-field angle.** The patent gives $\omega = 9.5°$ ($2\omega = 19.0°$). The production lens has a 19° angle of view. For 645 format ($56 \times 41.5$ mm, diagonal 69.7 mm), $\omega = \arctan(34.85/210) = 9.4°$ — consistent within rounding.
 4. **Image circle.** The computed image circle from the patent is $2 f \tan\omega \approx 70.3$ mm, well-matched to the 645 format diagonal of 69.7 mm.
 5. **Focus mechanism.** The patent describes inner focus by axial movement of the second lens group (G2), with first and third groups fixed. The production HC 4/210 is marketed as an internal-focusing design.
-6. **Minimum focus distance.** The patent tabulates close-focus spacings at an object distance of 8.5 normalized units. Scaled: $8.5 \times 210.07 = 1786$ mm $\approx 1.8$ m, matching the production MFD of 1.8 m (5.91 ft).
+6. **Minimum focus distance.** The production MFD is 1.8 m. The patent labels its second focus station “8.5 m” despite normalizing the prescription to f=1; interpreting 8.5 as a dimensionless object distance is not established by the source, so this is not independent evidence of the production correlation.
 7. **Assignee.** Fuji Photo Optical Co., Ltd. manufactured all Hasselblad H-system lenses, marketed under both the Hasselblad and Super EBC Fujinon brands.
 8. **Timing.** The priority date (March 2001) precedes the HC lens system launch (2002–2003).
 
@@ -120,13 +120,13 @@ The S-FPL51 identification for L2 is strongly supported: the OHARA catalog lists
 
 The HC 4/210 uses a two-gap inner-focus system. The second lens group (G2, the cemented doublet L5+L6) translates axially between the fixed first group (G1) and fixed third group (G3). At infinity focus, G2 sits closer to G1; as the lens focuses to closer distances, G2 moves toward the image, increasing the G1–G2 gap (D7) while decreasing the G2–G3 gap (D10) by the same amount.
 
-| Gap | Surface | Infinity | Close Focus (1.8 m) | Change |
+| Gap | Surface | Infinity | Published second station | Change |
 |-----|---------|----------|---------------------|--------|
-| G1–G2 | D7 | 10.95 mm | 24.53 mm | +13.59 mm |
-| G2–G3 | D10 | 22.89 mm | 9.30 mm | −13.59 mm |
+| G1–G2 | D7 | 10.9488 mm | 24.5331 mm | +13.5842 mm |
+| G2–G3 | D10 | 22.8892 mm | 9.3050 mm | −13.5842 mm |
 | **Sum** | | **33.84 mm** | **33.84 mm** | **0.00 mm** |
 
-The gap-sum conservation ($D7 + D10 = 33.84$ mm at all focus positions) confirms pure inner focus with no overall length change. The total G2 travel of 13.59 mm covers the full infinity-to-1.8 m range — a modest stroke that enables rapid autofocus response. The patent emphasizes this compact travel as a primary design goal, particularly for medium-format cameras where larger optics traditionally require longer focus throws.
+The gap-sum conservation ($D7 + D10 = 33.84$ mm at all focus positions) confirms pure inner focus with no overall length change. The total published G2 travel is 13.5842 mm. The connection between the source second station and the marketed 1.8 m minimum remains unverified; the slider retains the source gaps without retuning them. The patent emphasizes this compact travel as a primary design goal, particularly for medium-format cameras where larger optics traditionally require longer focus throws.
 
 The focus group's negative power ($f_2 = -108.2$ mm) means that as G2 moves rearward (toward the image), the system's effective focal length shortens slightly and the back focus adjusts to maintain sharp focus on closer objects. Because G2 is a cemented doublet rather than a singlet, chromatic focus shift is suppressed during focus travel — the patent explicitly cites this as the motivation for the cemented construction (col. 3, lines 25–30).
 
@@ -210,3 +210,12 @@ The patent explicitly notes that the design is "primarily used as a lens for a s
 - Shige's Hobby, measured focal length 211.1 mm: https://shige-art.net/en/hasselblad-hc210/.
 - OHARA optical glass catalog (pocket edition, May 2023).
 - HOYA optical glass catalog cross-reference index.
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Table 3 dimensions were rounded prematurely to 0.01 mm
+after scaling ×210.07 (D4 and D13 also rounded upward incorrectly).
+Restore full scaled printed precision. Offset improves −0.204236 to
+−0.082281 mm, below the 0.188020 mm census limit. Native source
+EFL 0.999672803 and BFL 0.459008318 retain small differences from
+f=1 and D17=0.45940; keep those published values, without focus tuning.

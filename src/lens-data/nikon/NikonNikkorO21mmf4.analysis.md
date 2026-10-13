@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP 1968-030782
+**Patent:** JP 1968-030782 Y1
 **Application number:** Utility-model application Sho 42-100066
 **Published:** December 14, 1968
 **Inventor:** Zenji Wakimoto
@@ -149,6 +149,6 @@ The 46° nonparaxial chief ray reaches 21.566243 mm at the solved paraxial image
 
 ## Sources
 
-- Japanese utility-model application publication **JP 1968-030782**, *Super-wide-angle lens composed of four groups*, Example 2 and Figures 2–3, published December 14, 1968.
+- Japanese utility-model application publication **JP 1968-030782 Y1**, *Super-wide-angle lens composed of four groups*, Example 2 and Figures 2–3, published December 14, 1968.
 - Nikon Corporation, **“NIKKOR — The Thousand and One Nights No. 1: NIKKOR-O 2.1cm F4.”** Official historical article: https://imaging.nikon.com/imaging/information/story/0001/
 - Stage 1 and Stage 2 calculation and glass-audit artifacts accompanying `NikonNikkorO21mmf4.data.ts`.

@@ -11,10 +11,6 @@ Patent: US 6,320,698 B1, Example 3 / Table 3
 - FIG. 7 shows a large G1, a substantial G2, a smaller stop-adjacent G3/VR group, and a larger rear G4. Stored SDs follow that figure: roughly 30.0-21.5 mm in G1, 17.2-20.8 mm in G2, 12.3-12.8 mm around G3, and 15.5-18.4 mm through G4.
 - No SD values changed. Current values remain inferred from FIG. 7, the split stop/flare-stop rendering model, and ray-clearance constraints.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-30 SUMITA BALK3 coefficient recovery
 
 - SUMITA's discontinued-inclusive BALK3 polynomial shares L9's exact `nd = 1.51835` and reproduces its independent

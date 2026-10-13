@@ -21,6 +21,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    edge thickness, element SD ratio, the tight S20-S21 air gap,     ║
  * ║    and the project sd/|R| < 0.90 spherical rim convention. The       ║
  * ║    second surface of L11 is the binding front-group constraint.      ║
+ * ║    Surfaces 23-24 (L31) were raised to pass the traced chief ray to  ║
+ * ║    the full-frame corner at the patent's ω = 42.36° (Fig. 2 Y =      ║
+ * ║    21.63 mm; 2026-09-24 field-coverage audit).                       ║
  * ║                                                                    ║
  * ║  NOTE ON GLASS IDENTIFICATION:                                      ║
  * ║    Catalog names are nd/νd matches where public catalogs support    ║
@@ -238,8 +241,8 @@ const LENS_DATA = {
     { label: "20", R: 28.26, d: 4.86, nd: 1.0, elemId: 0, sd: 12.8 },
     { label: "21A", R: -300.0, d: 1.4, nd: 1.85235, elemId: 12, sd: 12.8 },
     { label: "22A", R: 169.545, d: 2.91, nd: 1.0, elemId: 0, sd: 12.8 },
-    { label: "23", R: 113.29, d: 2.5, nd: 1.61997, elemId: 13, sd: 12.4 },
-    { label: "24", R: -1085.07, d: 15.51, nd: 1.0, elemId: 0, sd: 12.2 },
+    { label: "23", R: 113.29, d: 2.5, nd: 1.61997, elemId: 13, sd: 14.2 },
+    { label: "24", R: -1085.07, d: 15.51, nd: 1.0, elemId: 0, sd: 14.0 },
   ],
 
   asph: {
@@ -304,8 +307,11 @@ const LENS_DATA = {
   focusDescription:
     "Internal focus by unit translation of GR2: d10 closes from 7.87 mm to 2.84 mm while d22 opens from 2.91 mm to 7.94 mm, moving GR2 5.03 mm toward the object at close focus.",
   closeFocusM: 0.24,
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  // Patent read 2026-10-06: Close-focus gaps d10 = 2.84 and d22 = 7.94 are the patent's Table 3 near-focus row for
+  // Numerical Example 1 (beta = -0.172), used unscaled.
+  publishedStations: { focus: [1] },
+  nominalFno: 1.44,
+  fstopSeries: [1.44, 2, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 11,
 
   offAxisFieldFrac: 0.4,

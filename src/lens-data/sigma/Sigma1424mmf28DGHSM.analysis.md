@@ -233,7 +233,7 @@ The companion data file transcribes Numerical Example 1's odd/even values direct
 | A15 | 2.26985E-19 | -2.71372E-19 |
 | A16 | -5.26081E-21 | 1.09024E-20 |
 
-At the 17.5 mm semi-diameters used by the data file, the exact profiles depart from their spherical bases by +571.910 µm (S5A) and +881.809 µm (S6A).
+At the data-file semi-diameters (21.0 mm on S5A, 18.7 mm on S6A), the exact profiles depart from their spherical bases by +969.216 µm (S5A) and +987.466 µm (S6A).
 
 ## Conditional Expressions
 
@@ -269,7 +269,7 @@ The prescription was rechecked with an independent paraxial y-ν ray trace. The 
 
 The Petzval value is a surface-by-surface sum, Σφ/(n n′), not an element-level thin-lens approximation. The positive sum corresponds to a Petzval radius of about 218 mm in magnitude.
 
-Semi-diameters were also checked for element edge thickness, front/rear SD ratios, rim slope, and cross-gap sag intrusion. The tightest retained margins are L8 edge thickness at about 0.53 mm and the surface 27-28A air gap intrusion at about 2.65 mm against a 2.71 mm 90%-gap limit. No cemented group clips the representative paraxial ray envelopes used for the renderer aperture.
+Semi-diameters were also checked for element edge thickness, front/rear SD ratios, rim slope, and cross-gap sag intrusion. The tightest retained margins are L8 edge thickness at about 0.53 mm and the surface 27-28A air gap intrusion at about 2.65 mm against a 2.71 mm 90%-gap limit; surfaces 2 and 4 sit just under the 64.2° rim-slope limit (64.07° and 63.89°). No cemented group clips the representative paraxial ray envelopes used for the renderer aperture.
 
 ## Sources and References
 

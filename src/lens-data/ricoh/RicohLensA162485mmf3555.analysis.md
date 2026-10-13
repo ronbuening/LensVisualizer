@@ -1,4 +1,4 @@
-# RICOH LENS A16 24-85mm F3.5-5.5
+# RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)
 
 ## Patent Reference and Design Identification
 
@@ -12,12 +12,14 @@
 
 **Inventors:** Yohei Takano; Hiromichi Atsuumi
 
-**Assignee:** Not named in the supplied US publication
+**Assignee:** Ricoh Co., Ltd. (same-application assignment record; omitted from the A1 front page)
 
 **Title:** Zoom Lens, Imaging Device and Information Device
 **Embodiment analyzed:** Embodiment 3 / FIG. 9 / Table 3
 
-The prescription modeled here is Embodiment 3 of US 2012/0307375 A1. The patent identifies FIG. 9 as the optical layout for Embodiment 3, FIGS. 10–12 as its wide, intermediate, and telephoto aberration plots, and Table 3 as its variable-spacing table (¶¶0302–0346). The selected production correlation is the **RICOH LENS A16 24-85mm F3.5-5.5** GXR camera unit. This correlation is a source-based identification rather than a manufacturer statement that the patent example is the production prescription.
+The prescription modeled here is Embodiment 3 of US 2012/0307375 A1. The patent identifies FIG. 9 as the optical layout for Embodiment 3, FIGS. 10–12 as its wide, intermediate, and telephoto aberration plots, and Table 3 as its variable-spacing table (¶¶0302–0346). The selected production correlation is the **RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)** GXR camera unit. This correlation is a source-based identification rather than a manufacturer statement that the patent example is the production prescription.
+
+The A1 front page names Takano and Atsuumi under **(76) Inventors**, but identifies no organizational assignee or applicant. Separately, [Google Patents' record for the later grant US 8,705,180 B2](https://patents.google.com/patent/US8705180B2/en), covering the same application **13/482,401**, lists **Ricoh Company, Ltd.** as original assignee. Its legal-events table reports an assignment from Takano and Atsuumi effective **May 22, 2012**, with a recorded event date of **May 29, 2012**, at reel/frame **028282/0090**. Both dates precede the A1 publication on December 6, 2012. The catalog records the assignee using the canonical name **Ricoh Co., Ltd.**, based on this same-application assignment history that predates the selected publication; this attribution is not printed on the A1 front page. The underlying assignment instrument was not independently inspected.
 
 Several independent characteristics converge on that identification. Ricoh published the A16 as an APS-C camera unit with an actual focal-length range of 15.7–55.5 mm, a 24–85 mm 35 mm-equivalent field of view, maximum aperture f/3.5–5.5, 11 elements in 9 groups, and three double-sided aspherical elements. The patent example has 11 elements in 9 air-separated component groups, six aspherical surfaces on three double-sided aspherical elements, a 14.3 mm maximum image height, and a computed design focal range of 16.146288–53.849931 mm. Its published design aperture is f/3.62 at wide, f/4.65 at the intermediate state, and f/5.67 at telephoto. Ricoh announced the production unit on February 2, 2012, after the patent family's first 2011 priority date and before the US publication date.
 
@@ -37,7 +39,7 @@ The aperture stop moves with Group IV during zooming, as the patent states in ¶
 
 Power accounting must distinguish individual element power from cemented or assembled-group power. L1 is a standalone negative element with an air-space focal length of −115.441681 mm, while L2 is +48.032244 mm; together their cemented net is **+85.205890 mm**, which is also the net power of Group I. L8 is +22.707504 mm and L9 is −11.521427 mm as standalone elements, yet the cemented L8–L9 pair is **−27.321910 mm**. Adding L7 ahead of that negative cemented pair produces a complete Group IV focal length of **+38.989953 mm**. Group V provides another example: L10 is +18.878824 mm and L11 is −32.079411 mm individually, while their separated two-element group is positive at **+38.286361 mm**. These numbers describe different optical constructs and are not interchangeable measures of the same power.
 
-The patent also places two virtual parallel plates, F, between L11 and the image plane FP (¶¶0102–0104, ¶0190). They stand in for low-pass, infrared-cut, and cover-glass effects rather than lens elements. The modeled prescription therefore omits patent surfaces 22–25. Their reduced optical thickness and the recovered approximately 0.500063 mm plate-to-FP air gap are folded into the final air-equivalent spacing after surface 21. This keeps the active lens prescription at surfaces 1–21 while preserving the paraxial image-plane location.
+The patent also places two virtual parallel plates, F, between L11 and the image plane FP (¶¶0102–0104, ¶0190). They stand in for low-pass, infrared-cut, and cover-glass effects rather than lens elements. The model carries patent surfaces 22–25 in `rearPlates` rather than as lens elements: a 0.70 mm plate (nd 1.53770, νd 66.60), 1.50 mm of air, and a 0.70 mm plate (nd 1.50000, νd 64.00). Every analysis traces them, but the diagram does not draw them. Surface 21 stores the physical Table 3 gap E (27.38221 / 39.66109 / 51.81615 mm) to the first plate. The patent prints no surface-25 distance to FP, so the approximately 0.500027 mm plate-to-FP gap is derived from the paraxial image plane of the earlier air-equivalent model, not printed. Mid and tele E carry +0.00003 and +0.00008 mm so that image plane is unchanged. The active lens prescription stays at surfaces 1–21, and the physical track is 0.478 mm longer than the earlier air-equivalent track.
 
 ## Element-by-Element Analysis
 
@@ -119,7 +121,7 @@ The relatively high Abbe number of L10 contrasts with the high-index, lower-Abbe
 
 L11 is the final active lens element. It is individually negative, yet the separated L10–L11 assembly is a positive Group V with a computed focal length of **+38.286361 mm**. Its strong refractive index and relatively low Abbe number provide a substantially different dispersion and bending regime from L10 immediately ahead of it.
 
-The patent's virtual filter/cover plates follow L11, but they are not treated as lens elements in the model. Surface 21 therefore exits L11 into air and carries the normalized air-equivalent distance to the image plane.
+The patent's virtual filter/cover plates follow L11. The model carries them in `rearPlates` rather than as lens elements, so surface 21 exits L11 into air and stores the physical gap E to the first plate.
 
 ## Glass Identification and Selection
 
@@ -207,7 +209,7 @@ Condition (12) requires a source qualification. The US text prints a **positive*
 
 ## Verification Summary
 
-Independent sequential reduced-angle tracing and an ABCD matrix calculation reproduce the first-order properties of the final authored arrays. At the three infinity zoom states, the effective focal lengths are **16.146288, 29.486937, and 53.849931 mm**. The corresponding air-equivalent back focal distances from surface 21 are **30.304129, 42.583038, and 54.738148 mm**. The exact traced full-field chief-ray angles are **42.7711°, 25.5533°, and 14.4578°**, consistent with the patent's 42.8° wide and 14.46° telephoto values.
+Independent sequential reduced-angle tracing and an ABCD matrix calculation reproduce the first-order properties of the final authored arrays. At the three infinity zoom states, the effective focal lengths are **16.146288, 29.486937, and 53.849931 mm**. The corresponding air-equivalent back focal distances from surface 21, including the plate stack's reduced thickness, are **30.304129, 42.583038, and 54.738148 mm**. The exact traced full-field chief-ray angles are **42.7711°, 25.5533°, and 14.4578°**, consistent with the patent's 42.8° wide and 14.46° telephoto values.
 
 Surface-by-surface Petzval summation using `φ/(n·n′)` gives **+0.001806767942 mm⁻¹**, a signed inverse of approximately **+553.475 mm**. The small net value is the residual of substantially larger positive and negative surface contributions; it should not be interpreted as a group-power approximation.
 
@@ -215,13 +217,13 @@ The aperture stop's modeled semi-diameter is **5.994031 mm**, derived from the w
 
 The patent likewise publishes no lens-surface semi-diameters. The modeled clear apertures were derived from exact on-axis and off-axis ray envelopes through all three zoom states at infinity and reconstructed close focus, then checked against the relative element heights in FIG. 9 and the physical geometry validator. That comparison sets the larger rear edge of L9 and the Group V rims; it also leaves the strongly biconvex L10 with **0.375116 mm** of modeled edge thickness. The maximum actual rim-slope angle remains **56.514°**, and the largest shared-gap sag-intrusion fraction remains **0.89484** against the model's 0.90 limit. Exact ray containment through 0.75 of the patent's 14.3 mm image height passes in every defined infinity and close-focus state. These semi-diameters are modeling inferences and should not be read as Ricoh mechanical drawings.
 
-The two source corrections remain explicit: surface 6 uses `nd = 1.77030` rather than the apparent patent transposition `1.77703`, and condition (12) is interpreted with the negative slope required by FIG. 35. The rear virtual plates are omitted and normalized into the air-equivalent rear spacing. No uniform scale is applied. The finite-focus state remains a constrained reconstruction rather than a published example.
+The two source corrections remain explicit: surface 6 uses `nd = 1.77030` rather than the apparent patent transposition `1.77703`, and condition (12) is interpreted with the negative slope required by FIG. 35. The rear virtual plates are modeled in `rearPlates` with a derived, not printed, 0.500027 mm gap to FP. No uniform scale is applied. The finite-focus state remains a constrained reconstruction rather than a published example.
 
 ## Sources / References
 
 - **US 2012/0307375 A1**, Yohei Takano and Hiromichi Atsuumi, *Zoom Lens, Imaging Device and Information Device*, published December 6, 2012. Embodiment 3: FIG. 9, FIGS. 10–12, Table 3, ¶¶0302–0346; architecture and focus: ¶¶0097–0104, ¶¶0117–0122, ¶¶0162–0188; asphere convention: ¶¶0202–0210.
 - **JP 2012-247715 A (JP2012247715A)**, corresponding priority-family publication from JP 2011-121122. Claim 5 prints `θg,F < −1.2×10⁻3νd3 + 0.62`, resolving the missing minus sign in the supplied US publication: https://patents.google.com/patent/JP2012247715A/ja
-- Ricoh, **RICOH LENS A16 24-85mm F3.5-5.5** announcement, February 2, 2012: https://www.ricoh-imaging.co.jp/english/r_dc/press/release/nr_gxr_unit7.html
+- Ricoh, **RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)** announcement, February 2, 2012: https://www.ricoh-imaging.co.jp/english/r_dc/press/release/nr_gxr_unit7.html
 - Ricoh, **GXR Major Specifications**: https://www.ricoh-imaging.co.jp/english/products/gxr/specs.html
 - OHARA, **Material Property Catalog** including obsolete L-LAH87 and S-BSM71 data: https://www.ohara-inc.co.jp/wp-content/uploads/2019/12/OHARA_MaterialPropertyCatalog_202207.txt
 - SCHOTT, **TIE-29: Refractive Index and Dispersion** normal-line convention used for `dPgF`: https://media.schott.com/api/public/content/aaa572afd854434fb7b3faa4bc46103f?v=c0f4fa52

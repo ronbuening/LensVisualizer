@@ -23,10 +23,6 @@ Reviewed local untracked patent file `patents/US5557473.pdf`, Third Embodiment /
 - US 5,557,473 does not publish per-surface clear apertures or effective diameters for Table 5.
 - Current SDs remain derived visualization estimates. They are consistent with the patent layout: the front biconvex element carries the widest field bundles, the aperture region narrows around `STO`, and the rear positive elements re-open without exceeding the tight L4/L5 air-lens sag clearance noted in the data header.
 
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.
-
 ## 2026-07-30 - `797454` catalog-equivalent review
 
 - Rendered and visually rechecked Third Embodiment / Table 5. L3 remains `nd = 1.79668`, `vd = 45.4`.

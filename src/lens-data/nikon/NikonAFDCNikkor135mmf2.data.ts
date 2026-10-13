@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF DC-NIKKOR 135mm f/2D                               ║
+ * ║ LENS DATA — NIKON AF DC-NIKKOR 135mm f/2 D                               ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 4,908,639 A, Example 2 (Masaaki Yanagisawa / Nikon).     ║
  * ║ Patent prescription: 7 elements / 6 groups, all spherical.               ║
@@ -47,7 +47,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-dc-nikkor-135mm-f2",
   maker: "Nikon",
-  name: "NIKON AF DC-NIKKOR 135mm f/2D",
+  name: "NIKON AF DC-NIKKOR 135mm f/2 D",
   subtitle: "US 4,908,639 A — Example 2; high-confidence production correlation",
   specs: [
     "7 ELEMENTS / 6 GROUPS",
@@ -241,6 +241,8 @@ const LENS_DATA = {
   doublets: [],
 
   closeFocusM: 4.0967736,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Published rear-focus anchors: corrected infinity to β = -0.0333 at 4.0967736 m object-to-image-plane. GR moves 6.8090 mm objectward while G1 and G2 remain fixed. The production 1.1 m minimum-focus endpoint is not reconstructed. DC motion changes D3 and compensates with GR motion while the inferred stop station remains fixed; the three close DC positions are patent-published.",
 

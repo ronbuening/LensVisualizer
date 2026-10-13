@@ -1,6 +1,9 @@
 /**
  * SliderControl — Reusable slider with label, value display, range input,
  * endpoint labels, and optional collapsible description section.
+ *
+ * `track` swaps the range input and its endpoint labels for another control (the station buttons of
+ * patent-positions mode) while the label, readout, action slot, and collapsible section stay in place.
  */
 import type { ReactNode } from "react";
 import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../../utils/style/styles.js";
@@ -15,6 +18,8 @@ interface SliderControlProps {
   labelMinWidth: number;
   displayValue: string;
   displayValueStyle?: React.CSSProperties;
+  /** Secondary reading shown small beside the value, e.g. a marketed figure. */
+  displayNote?: string;
   value: number;
   step: number;
   min?: number;
@@ -34,6 +39,8 @@ interface SliderControlProps {
   expanded?: boolean;
   onExpandedChange?: (value: boolean) => void;
   action?: ReactNode;
+  /** Replaces the range input and endpoint labels; `value`, `step`, and the endpoint labels are then unused. */
+  track?: ReactNode;
   /** Content shown when expanded (or always if not collapsible) */
   children?: ReactNode;
 }
@@ -46,6 +53,7 @@ export default function SliderControl({
   labelMinWidth,
   displayValue,
   displayValueStyle,
+  displayNote,
   value,
   step,
   min = 0,
@@ -63,6 +71,7 @@ export default function SliderControl({
   expanded,
   onExpandedChange,
   action,
+  track,
   children,
 }: SliderControlProps) {
   const sliderRowStyle: React.CSSProperties = {
@@ -111,6 +120,7 @@ export default function SliderControl({
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
         <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: labelMinWidth }}>{label}</span>
         <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist, ...displayValueStyle }}>{displayValue}</span>
+        {displayNote && <span style={{ fontSize: 9.5, color: t.desc, whiteSpace: "nowrap" }}>{displayNote}</span>}
         {action && <span style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>{action}</span>}
         {collapsible && (
           <CollapseButton
@@ -122,16 +132,24 @@ export default function SliderControl({
         )}
       </div>
       <div style={sliderRowStyle} title={disabled ? disabledReason : undefined}>
-        <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minLabel}</span>
-        {centerLabel ? (
-          <div style={{ flex: 1, minWidth: 0 }}>
-            {rangeInput}
-            <div style={{ marginTop: 5, textAlign: "center", fontSize: 9, color: t.focusEndpoint }}>{centerLabel}</div>
-          </div>
+        {track ? (
+          <div style={{ flex: 1, minWidth: 0 }}>{track}</div>
         ) : (
-          rangeInput
+          <>
+            <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minLabel}</span>
+            {centerLabel ? (
+              <div style={{ flex: 1, minWidth: 0 }}>
+                {rangeInput}
+                <div style={{ marginTop: 5, textAlign: "center", fontSize: 9, color: t.focusEndpoint }}>
+                  {centerLabel}
+                </div>
+              </div>
+            ) : (
+              rangeInput
+            )}
+            <span style={{ fontSize: 9, color: t.focusEndpoint }}>{maxLabel}</span>
+          </>
         )}
-        <span style={{ fontSize: 9, color: t.focusEndpoint }}>{maxLabel}</span>
       </div>
       {children}
     </div>

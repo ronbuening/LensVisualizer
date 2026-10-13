@@ -12,10 +12,12 @@ import { ASSIGNEES, getAssigneeByName } from "./assigneeCatalog.js";
 import { AUTHORS, getAuthorByName } from "./authorCatalog.js";
 import { catalogCollator } from "./collation.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
+import { deriveMaker } from "./lensMetadata.js";
+import type { PatentLensRef } from "../../types/catalog.js";
 import { aggregatePatentRecords } from "./patentRecords.js";
 import type { GraphPatentNode, PartyRef } from "./relationshipGraph.js";
 
-export type UniversalNodeKind = "author" | "assignee" | "patent" | "organization" | "family";
+export type UniversalNodeKind = "author" | "assignee" | "patent" | "organization" | "family" | "maker" | "lens";
 
 export interface UniversalPartyNode {
   id: string;
@@ -38,9 +40,35 @@ export interface UniversalCorporateNode {
   name: string;
 }
 
-export type UniversalRelationshipNode = UniversalPartyNode | UniversalPatentNode | UniversalCorporateNode;
+export interface UniversalMakerNode {
+  id: string;
+  kind: "maker";
+  name: string;
+  slug: string;
+}
 
-export type UniversalEdgeKind = "authorship" | "assignment" | "successor" | "acquisition" | "subsidiary" | "family";
+export interface UniversalLensNode {
+  id: string;
+  kind: "lens";
+  name: string;
+  lens: PatentLensRef;
+}
+
+export type UniversalRelationshipNode =
+  | UniversalPartyNode
+  | UniversalPatentNode
+  | UniversalCorporateNode
+  | UniversalMakerNode
+  | UniversalLensNode;
+
+export type UniversalEdgeKind =
+  | "authorship"
+  | "assignment"
+  | "successor"
+  | "acquisition"
+  | "subsidiary"
+  | "family"
+  | "catalog-maker";
 
 export interface UniversalRelationshipEdge {
   id: string;
@@ -62,6 +90,9 @@ export interface UniversalRelationshipStats {
   families: number;
   patentRelationships: number;
   corporateRelationships: number;
+  makers: number;
+  lenses: number;
+  catalogRelationships: number;
   components: number;
 }
 
@@ -84,7 +115,14 @@ const NODE_KIND_ORDER: Record<UniversalNodeKind, number> = {
   organization: 2,
   author: 3,
   patent: 4,
+  maker: 2,
+  lens: 5,
 };
+
+/** Catalog grouping is distinct from both patent attribution and sourced corporate history. */
+export function isUniversalCorporateEdge(kind: UniversalEdgeKind): boolean {
+  return kind === "successor" || kind === "acquisition" || kind === "subsidiary" || kind === "family";
+}
 
 /** Unique, reversible id for a corporate node whose name has no catalog slug. */
 function namedCorporateId(kind: "organization" | "family", name: string): string {
@@ -174,17 +212,16 @@ export function buildUniversalRelationshipGraph(
     nodesById.set(id, { id, kind: "assignee", name: assignee.name, ref, patentCount: assignee.patentCount });
   }
 
-  const patents: GraphPatentNode[] = aggregatePatentRecords(
-    SUMMARY_KEYS.map((key) => LENS_SUMMARIES[key]),
-    { includeFallbackRecords: true },
-  ).map((record) => ({
-    id: patentId(record.patentNumber),
-    patentNumber: record.patentNumber,
-    patentYear: record.patentYear,
-    authors: record.authors,
-    assignees: record.assignees,
-    lenses: record.lenses,
-  }));
+  const patents: GraphPatentNode[] = aggregatePatentRecords(SUMMARY_KEYS.map((key) => LENS_SUMMARIES[key])).map(
+    (record) => ({
+      id: patentId(record.patentNumber),
+      patentNumber: record.patentNumber,
+      patentYear: record.patentYear,
+      authors: record.authors,
+      assignees: record.assignees,
+      lenses: record.lenses,
+    }),
+  );
 
   for (const patent of patents) {
     nodesById.set(patent.id, { id: patent.id, kind: "patent", name: patent.patentNumber, patent });
@@ -199,6 +236,25 @@ export function buildUniversalRelationshipGraph(
       if (!assignee) continue;
       addEdge({ from: patent.id, to: `assignee:${assignee.slug}`, kind: "assignment" });
     }
+  }
+
+  // Book-derived models have lens identity and catalog maker grouping, not
+  // fabricated patent publications or patent-party attribution.
+  for (const key of SUMMARY_KEYS) {
+    const summary = LENS_SUMMARIES[key];
+    if (summary.patentNumber?.trim()) continue;
+    const id = `lens:${key}`;
+    nodesById.set(id, {
+      id,
+      kind: "lens",
+      name: summary.name,
+      lens: { key, name: summary.name, specs: summary.specs },
+    });
+    if (!summary.maker) continue;
+    const maker = deriveMaker(summary.name, summary.maker);
+    const makerId = `maker:${maker.slug}`;
+    nodesById.set(makerId, { id: makerId, kind: "maker", name: maker.display, slug: maker.slug });
+    addEdge({ from: id, to: makerId, kind: "catalog-maker" });
   }
 
   const organizationNodeId = (name: string): string => {
@@ -268,7 +324,7 @@ export function buildUniversalRelationshipGraph(
   const nodes = [...nodesById.values()].sort(compareNodes);
   const components = universalConnectedComponents(nodes, edges);
   const patentRelationships = edges.filter((edge) => edge.kind === "authorship" || edge.kind === "assignment").length;
-  const corporateRelationships = edges.length - patentRelationships;
+  const corporateRelationships = edges.filter((edge) => isUniversalCorporateEdge(edge.kind)).length;
 
   return {
     nodes,
@@ -283,6 +339,9 @@ export function buildUniversalRelationshipGraph(
       families: nodes.filter((node) => node.kind === "family").length,
       patentRelationships,
       corporateRelationships,
+      makers: nodes.filter((node) => node.kind === "maker").length,
+      lenses: nodes.filter((node) => node.kind === "lens").length,
+      catalogRelationships: edges.filter((edge) => edge.kind === "catalog-maker").length,
       components: components.length,
     },
   };

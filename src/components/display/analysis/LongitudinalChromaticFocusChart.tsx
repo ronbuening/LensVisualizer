@@ -1,4 +1,5 @@
 import type { LongitudinalChromaticFocusResult } from "../../../optics/compat.js";
+import type { RefractiveIndexReferenceLine } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import { AnalysisEmptyState } from "./analysisUi.js";
 import { SvgChartFrame } from "./charts/SvgChartFrame.js";
@@ -16,6 +17,8 @@ interface LongitudinalChromaticFocusChartProps {
   t: Theme;
   width?: number;
   height?: number;
+  /** Lines the lens's channels are traced at; "e" labels the indices nC′ / ne / nF′. */
+  channelReference?: RefractiveIndexReferenceLine;
 }
 
 export default function LongitudinalChromaticFocusChart({
@@ -23,6 +26,7 @@ export default function LongitudinalChromaticFocusChart({
   t,
   width = 320,
   height = 220,
+  channelReference = "d",
 }: LongitudinalChromaticFocusChartProps) {
   const samples = result?.samples.filter((sample) => sample.usable && sample.relativeFocusShiftMm !== null) ?? [];
 
@@ -44,7 +48,7 @@ export default function LongitudinalChromaticFocusChart({
       return `${command}${xScale(index).toFixed(1)},${yScale((sample.relativeFocusShiftMm ?? 0) * 1000).toFixed(1)}`;
     })
     .join(" ");
-  const referenceLabel = chromaticChannelLegendLabel(result.referenceChannel);
+  const referenceLabel = chromaticChannelLegendLabel(result.referenceChannel, channelReference);
 
   return (
     <SvgChartFrame
@@ -83,7 +87,7 @@ export default function LongitudinalChromaticFocusChart({
               fontWeight={600}
               fontFamily="inherit"
             >
-              {chromaticChannelLegendLabel(sample.channel)}
+              {chromaticChannelLegendLabel(sample.channel, channelReference)}
             </text>
           </g>
         );

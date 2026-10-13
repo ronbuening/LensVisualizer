@@ -13,14 +13,15 @@
  */
 
 import summariesJson from "../../generated/lens-summaries.json";
-import buildMeta from "../../generated/build-metadata.json";
+import buildMeta from "../../generated/client-metadata.json";
 import type { LensAliasData, LensManufacturerData, OpticalConfigurationData } from "../../types/optics.js";
 import type { LensMountId, ImageFormatId } from "./lensTaxonomy.js";
 
 export interface LensSummary {
   key: string;
   name: string;
-  maker?: string;
+  /** null explicitly records an unconfirmed manufacturer; omission retains name inference. */
+  maker?: string | null;
   aliases?: readonly LensAliasData[];
   manufacturedBy?: readonly LensManufacturerData[];
   specs?: string[];

@@ -131,16 +131,16 @@ The design spans high- and low-Abbe glasses across both positive and negative el
 
 The patent explicitly describes rear-group focusing: `Gf` is fixed and the complete `Gr` group moves toward the object for close focusing. This makes the internal movement kinematically constrained. The source publishes one finite-conjugate check at β = 1/10, but it does not publish a 0.25 m production endpoint.
 
-The final data therefore uses a **CONSTRAINED_RECONSTRUCTION** for minimum focus. The manufacturer's rounded 0.25 m minimum-focus distance supplies the single scalar endpoint constraint, while the patent supplies the single mechanical degree of freedom. The image plane remains fixed, and the two variable air gaps change by equal and opposite amounts:
+The final data stores the patent's β = 0.1 row as an exact keyframe and uses a **CONSTRAINED_RECONSTRUCTION** for minimum focus. The manufacturer's rounded 0.25 m minimum-focus distance supplies the single scalar endpoint constraint, while the patent supplies the single mechanical degree of freedom. The image plane remains fixed, and the two variable air gaps change by equal and opposite amounts:
 
-| Variable gap | Infinity | 0.25 m reconstructed endpoint | Change |
+| Variable gap | Infinity | Patent β = 0.1 | 0.25 m reconstructed endpoint |
 |---|---:|---:|---:|
-| `D4` after surface 4 | 9.349000000 mm | 6.411157394 mm | −2.937842606 mm |
-| `BF` after surface 19 | 35.829815933 mm | 38.767658539 mm | +2.937842606 mm |
+| `D4` after surface 4 | 9.349000000 mm | 7.009400000 mm | 6.411157394 mm |
+| `BF` after surface 19 | 35.829815933 mm | 38.169415933 mm | 38.767658539 mm |
 
 The rigid rear group therefore moves 2.937842606 mm toward the object. The front-vertex-to-image station remains 93.261215933 mm at both endpoints. Independent tracing of the reconstructed close state gives a 250.000000010 mm object-to-image distance and a magnification magnitude of 0.124254284. The latter is consistent with Sony's rounded 0.13× production specification but was not used as a second fitting constraint.
 
-The patent's own β = 0.1 state remains a separate validation point. Scaling the published `d4 = 35.047` by 0.2 gives `D4 = 7.0094 mm`; imposing the corresponding rigid-group shift reproduces a magnification magnitude of 0.099997764. This supports the movement model without turning the published β state into the production minimum-focus endpoint.
+At the patent keyframe, scaling the published `d4 = 35.047` by 0.2 gives `D4 = 7.0094 mm`; the corresponding rigid-group shift reproduces a magnification magnitude of 0.099997764. This supports the movement model without treating the published β state as the production minimum-focus endpoint. Interpolation between keyframes is a visualization approximation.
 
 ## Conditional Expressions
 

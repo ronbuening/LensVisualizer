@@ -64,6 +64,12 @@ const LENS_DATA = {
     tiltRangeDeg: [-8.5, 8.5],
     shiftStepMm: 0.1,
     tiltStepDeg: 0.1,
+    // Reference-state rear vertex fallback; not a measured mechanical tilt hinge.
+    tiltPivot: {
+      frame: "camera",
+      basis: "rear-vertex-fallback",
+      zOffsetFromImagePlaneMm: -56.5,
+    },
   },
 
   /* ── Elements ── */
@@ -250,12 +256,15 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.253, // Nikon spec: 0.83 ft ≈ 0.253 m (MFD from focal plane)
+  // Patent read 2026-10-06: Close-focus d4 = 5.28 and d9 = 2.21 are US 7,656,591 Table 1's minimum-imaging-distance
+  // row (beta = -0.50, d0 = 72.3 mm); close BF 78.14 is computed, not printed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CRC floating focus: G1+G3 move as a linked unit; G2 moves at a different rate. ΔD1 = −ΔD2 ≈ 4.28 mm. Maximum reproduction ratio 1:2 (β = −0.50).",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8, // Nikon marketed f/2.8 (patent design FNO = 2.89)
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 2.89, // patent design FNO; Nikon markets f/2.8
+  fstopSeries: [2.89, 4, 5.6, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

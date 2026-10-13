@@ -35,7 +35,7 @@ The design consists of 10 elements organized in three macro-groups:
 
 The combined focal length of G1 + G2 is f₁₂ ≈ 69.1 mm, which provides nearly all of the system's refractive power. G3 functions as an aberration-correcting relay with near-zero net power: its cemented doublet B31 (f ≈ +79.5 mm) and trailing negative singlet L33 (f ≈ −75.5 mm) nearly cancel, yielding a combined group focal length exceeding 11 meters. The ratio f₃/f₁₂ ≈ 161 satisfies the patent's Condition (1): 2 ≤ f₃/f₁₂ ≤ 200.
 
-This architecture gives the lens mild telephoto character. The axial distance from the first optical surface S1 to the last optical surface S17 is 69.2 mm (WL in the patent's notation, defined in ¶0069 as the total length of the lens system). The back focal distance from S17 to the sensor cover glass is an additional 20.73 mm, giving a total optical path of approximately 91.7 mm from S1 to the image plane.
+This architecture gives the lens mild telephoto character. The axial distance from the first optical surface S1 to the last optical surface S17 is 69.2 mm (WL in the patent's notation, defined in ¶0069 as the total length of the lens system). The air gap from S17 to the sensor cover glass is an additional 20.73 mm, and the patent's two cemented cover plates (0.80 + 1.00 mm, S18–S20) sit directly on the image plane, giving a total physical path of approximately 91.7 mm from S1 to the image plane (about 91.1 mm air-equivalent).
 
 The power hierarchy is f₂ < f₁ < f₃ (Condition 13), meaning G2 carries the strongest positive power. This is intentional: by suppressing the power of G1 (which handles the largest beam diameters and steepest ray angles), aberration generation in the front group is kept manageable. The strongest power is placed in G2, where the beam diameter is smaller and where anomalous-dispersion glasses can be most effective for chromatic correction.
 
@@ -138,6 +138,8 @@ The design uses an all-OHARA glass palette with 10 distinct glass types — ever
 | L32 | S-TIM35 (OHARA) | 1.69895 | 30.13 | Titanium flint (high disp.) | Chromatic partner in B31 |
 | L33 | S-FSL5 (OHARA) | 1.48749 | 70.24 | Fluorosilicate crown | Negative field flattener / image expander |
 
+**Cover glass (S18–S20):** two cemented plates, 0.80 mm nd = 1.53741 / νd = 61.81 and 1.00 mm nd = 1.52312 / νd = 54.36, with the image plane on the rear face (the patent prints no distance after S20). Neither matches a catalog glass, so they use Abbe-number dispersion estimates. The data file models both plates in `rearPlates`: every analysis traces them, but they are not drawn.
+
 The chromatic strategy employs three mechanisms operating at different positions in the system:
 
 **Cemented-doublet achromatism** at B11, B12, B21, and B31: in each doublet, the positive element has lower dispersion (higher νd) than the negative element, providing the differential dispersion needed for longitudinal chromatic correction. The Abbe differentials at the four cemented interfaces vary substantially: B21 has the largest spread (Δνd = 42.3, S-TIM8 vs S-FPL51), followed by B12 (Δνd = 23.1, S-BAL35 vs S-TIM5), B11 (Δνd = 8.3, S-TIM27 vs S-LAH55V), and B31 with the smallest (Δνd = 7.0, S-LAH92 vs S-TIM35). Only B12 and B21 are classical crown–flint pairs; B11 and B31 pair two glasses that are both flints by the traditional νd < 50 classification, achieving achromatism through the modest dispersion contrast between them and, more importantly, through their large refractive index steps (Δnd ≈ 0.195 and 0.193 respectively).
@@ -153,7 +155,7 @@ Only two elements use high-index glass (nd ≥ 1.8): L12 and L31. The patent exp
 
 The XCD 2,8/65 uses a **front-group focusing** mechanism. Groups G1 and G2, together with the aperture stop, move as a rigid unit toward the object during focusing from infinity to close focus. Group G3 remains stationary relative to the image plane.
 
-This is a unit-focus arrangement with a single variable air gap:
+This is a unit-focus arrangement with a single variable air gap. All three patent rows are stored as exact focus keyframes:
 
 | Parameter | Infinity | 2400 mm | 400 mm (MFD) |
 |-----------|----------|---------|--------------|
@@ -166,7 +168,7 @@ The total focus travel from infinity to the closest object distance (400 mm from
 
 The focal length remains remarkably stable across the focus range (65.02 → 65.09 mm), varying by less than 0.1%. This stability is a consequence of G3's extremely weak net power: since G3 contributes negligibly to the system focal length, moving the high-power groups G1+G2 changes focus conjugation without materially altering the focal length.
 
-The patent describes this focusing arrangement as "integral" motion of G1, Stop, and G2 (¶0090). This is mechanically simpler than floating-element or multi-group focusing systems, and the single moving assembly makes it well-suited to the leaf-shutter integration required by Hasselblad's XCD lens architecture — the shutter mechanism, located near the aperture stop, moves with the focusing group rather than needing independent actuation.
+The patent describes this focusing arrangement as "integral" motion of G1, Stop, and G2 (¶0090). This is mechanically simpler than floating-element or multi-group focusing systems, and the single moving assembly makes it well-suited to the leaf-shutter integration required by Hasselblad's XCD lens architecture — the shutter mechanism, located near the aperture stop, moves with the focusing group rather than needing independent actuation. Piecewise-linear motion between the published states is a visualization approximation, not a claimed cam law.
 
 
 ## Aspherical Surfaces
@@ -232,3 +234,11 @@ Glass identification yielded exact OHARA catalog matches (Δnd = 0.00000) for al
 - US 2020/0319427 A1, "Lens System and Image Pickup Apparatus," Nittoh Inc. / Takuya Yazaki. Published October 8, 2020.
 - Hasselblad XCD 2,8/65mm Datasheet (Dec 2018, v2). Available at hasselblad.com.
 - OHARA Optical Glass Catalog, May 2023 edition (glass nd/νd verification).
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: US20200319427A1 Fig. 2–3 values match at infinity.
+The printed cover stack ends at S20 (image plane in Fig. 1); paraxial
+focus falls 0.232471 mm beyond it. EFL 65.015872 agrees with 65.02,
+but the air-equivalent rear path 21.906903 does not equal BFL 22.139374.
+Retain the source rearPlates and physical image plane; no focus tuning.

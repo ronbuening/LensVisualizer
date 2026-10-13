@@ -7,10 +7,21 @@
  */
 
 import { analysisJobsForState2 } from "./analysisJobs.js";
+import { computeLongitudinalChromaticFocus } from "../chromatic/analysis.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import type { FieldGeometryState } from "../optics.js";
 import type { PreparedOpticalState } from "../types.js";
-import type { AnalysisSamplingOptions } from "./analysisQuality.js";
+import type { AnalysisQuality, AnalysisSamplingOptions } from "./analysisQuality.js";
+import type { PerspectiveTraceContext } from "../perspective/trace.js";
+import {
+  analysisSectionAvailability,
+  assertAnalysisSectionAvailable,
+  assertCenteredAnalysisSectionAvailable,
+  type AnalysisSectionAvailability,
+  type AnalysisSectionId,
+} from "./analysisMovementSupport.js";
+import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
+import { createPerspectiveAnalysisJobs, type PerspectiveAnalysisJobs } from "./perspectiveAnalysisJobs.js";
 
 /**
  * Shared inputs for a set of analysis computations at one focus/zoom/aperture state.
@@ -27,7 +38,10 @@ export interface AnalysisComputationContextParams {
   currentEPSD: number;
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
+  /** Whether this context should use drag-time or settled perspective sampling. */
+  analysisQuality?: AnalysisQuality;
   sampling?: AnalysisSamplingOptions;
+  perspectiveTraceContext?: PerspectiveTraceContext | null;
 }
 
 /**
@@ -36,7 +50,13 @@ export interface AnalysisComputationContextParams {
  * Accessors return cached results after their first call. They have no side effects outside
  * the closure, but the retained results intentionally share the exact same optical inputs.
  */
-export interface AnalysisComputationContext extends AnalysisComputationContextParams {
+export interface AnalysisComputationContext extends AnalysisComputationContextParams, PerspectiveAnalysisJobs {
+  /** Complete identity for all scalar inputs plus fixed-camera lens pose. */
+  cacheKey: string;
+  /** Perspective-only identity, or `centered` when no trace context was supplied. */
+  perspectiveCacheKey: string;
+  movementActive: boolean;
+  sectionAvailability: (section: AnalysisSectionId) => AnalysisSectionAvailability;
   computeOpticalSummary: () => ReturnType<typeof analysisJobsForState2.computeOpticalSummary>;
   computeDistortionCurve: () => ReturnType<typeof analysisJobsForState2.computeDistortionCurve>;
   computeDistortionFieldGrid: () => ReturnType<typeof analysisJobsForState2.computeDistortionFieldGrid>;
@@ -52,6 +72,8 @@ export interface AnalysisComputationContext extends AnalysisComputationContextPa
   computeFieldCurvatureBundle: () => ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle>;
   computeChromaticAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis>;
   computeChromaticRayFanAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticRayFanAnalysis>;
+  /** Classical on-axis LoCA in the intrinsic lens frame, independent of rigid camera pose. */
+  computeIntrinsicLongitudinalChromaticFocus: () => ReturnType<typeof computeLongitudinalChromaticFocus>;
   computeComaAnalysis: () => ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
 }
 
@@ -71,9 +93,40 @@ export function createAnalysisComputationContext({
   currentEPSD,
   currentPhysStopSD,
   fieldGeometry = null,
-  sampling = {},
+  analysisQuality = "settled",
+  sampling: requestedSampling,
+  perspectiveTraceContext = null,
 }: AnalysisComputationContextParams): AnalysisComputationContext {
+  const sampling = snapshotAnalysisSamplingOptions(requestedSampling);
+  assertPerspectiveContextMatchesPreparedState(preparedState, perspectiveTraceContext);
   const resolvedFieldGeometry = fieldGeometry ?? undefined;
+  const perspectiveCacheKey = perspectiveTraceContext?.cacheKey ?? "centered";
+  const cacheKey = analysisComputationCacheKey({
+    preparedState,
+    dynamicEFL,
+    currentEPSD,
+    currentPhysStopSD,
+    fieldGeometry,
+    analysisQuality,
+    sampling,
+    perspectiveTraceContext,
+  });
+  const computeSection = <Result>(section: AnalysisSectionId, compute: () => Result): Result => {
+    assertAnalysisSectionAvailable(section, perspectiveTraceContext);
+    return compute();
+  };
+  const computeCenteredSection = <Result>(section: AnalysisSectionId, compute: () => Result): Result => {
+    assertCenteredAnalysisSectionAvailable(section, perspectiveTraceContext);
+    return compute();
+  };
+  const perspectiveJobs = createPerspectiveAnalysisJobs({
+    perspectiveTraceContext,
+    dynamicEFL,
+    currentEPSD,
+    currentPhysStopSD,
+    analysisQuality,
+    sampling: requestedSampling === undefined ? undefined : sampling,
+  });
   let opticalSummary: ReturnType<typeof analysisJobsForState2.computeOpticalSummary> | undefined;
   let distortionCurve: ReturnType<typeof analysisJobsForState2.computeDistortionCurve> | undefined;
   let distortionFieldGrid: ReturnType<typeof analysisJobsForState2.computeDistortionFieldGrid> | undefined;
@@ -89,6 +142,7 @@ export function createAnalysisComputationContext({
   let fieldCurvatureBundle: ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle> | undefined;
   let chromaticAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis> | undefined;
   let chromaticRayFanAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticRayFanAnalysis> | undefined;
+  let intrinsicLongitudinalChromaticFocus: { value: ReturnType<typeof computeLongitudinalChromaticFocus> } | undefined;
   let comaAnalysis: ReturnType<typeof analysisJobsForState2.computeComaAnalysis> | undefined;
 
   return {
@@ -97,60 +151,74 @@ export function createAnalysisComputationContext({
     currentEPSD,
     currentPhysStopSD,
     fieldGeometry,
+    analysisQuality,
+    sampling,
+    perspectiveTraceContext,
+    cacheKey,
+    perspectiveCacheKey,
+    movementActive: perspectiveTraceContext?.pose.active ?? false,
+    sectionAvailability: (section) => analysisSectionAvailability(section, perspectiveTraceContext),
+    ...perspectiveJobs,
     computeOpticalSummary: () =>
-      (opticalSummary ??= analysisJobsForState2.computeOpticalSummary(
-        preparedState,
-        dynamicEFL,
-        currentEPSD,
-        currentPhysStopSD,
-        resolvedFieldGeometry,
+      (opticalSummary ??= computeSection("summary", () =>
+        analysisJobsForState2.computeOpticalSummary(
+          preparedState,
+          dynamicEFL,
+          currentEPSD,
+          currentPhysStopSD,
+          resolvedFieldGeometry,
+        ),
       )),
     computeDistortionCurve: () =>
-      (distortionCurve ??= analysisJobsForState2.computeDistortionCurve(
-        preparedState,
-        dynamicEFL,
-        currentPhysStopSD,
-        resolvedFieldGeometry,
-        sampling,
+      (distortionCurve ??= computeCenteredSection("distortion", () =>
+        analysisJobsForState2.computeDistortionCurve(
+          preparedState,
+          dynamicEFL,
+          currentPhysStopSD,
+          resolvedFieldGeometry,
+          sampling,
+        ),
       )),
     computeDistortionFieldGrid: () =>
-      (distortionFieldGrid ??= analysisJobsForState2.computeDistortionFieldGrid(
-        preparedState,
-        currentPhysStopSD,
-        resolvedFieldGeometry,
+      (distortionFieldGrid ??= computeCenteredSection("distortion", () =>
+        analysisJobsForState2.computeDistortionFieldGrid(preparedState, currentPhysStopSD, resolvedFieldGeometry),
       )),
     computeVignettingCurve: () =>
-      (vignettingCurve ??= analysisJobsForState2.computeVignettingCurve(
-        preparedState,
-        currentEPSD,
-        currentPhysStopSD,
-        resolvedFieldGeometry,
-        sampling,
+      (vignettingCurve ??= computeCenteredSection("vignetting", () =>
+        analysisJobsForState2.computeVignettingCurve(
+          preparedState,
+          currentEPSD,
+          currentPhysStopSD,
+          resolvedFieldGeometry,
+          sampling,
+        ),
       )),
     computeBothPupilAberrationProfiles: () =>
-      (pupilProfiles ??= analysisJobsForState2.computeBothPupilAberrationProfiles(
-        preparedState,
-        sampling.pupilAberrationSampleCount ?? undefined,
-        resolvedFieldGeometry,
+      (pupilProfiles ??= computeCenteredSection("pupils", () =>
+        analysisJobsForState2.computeBothPupilAberrationProfiles(
+          preparedState,
+          sampling.pupilAberrationSampleCount ?? undefined,
+          resolvedFieldGeometry,
+        ),
       )),
     computeBokehPreviewPair: () =>
-      (bokehPreviewPair ??= analysisJobsForState2.computeBokehPreviewPair(
-        preparedState,
-        currentEPSD,
-        currentPhysStopSD,
-        sampling,
+      (bokehPreviewPair ??= computeCenteredSection("bokeh", () =>
+        analysisJobsForState2.computeBokehPreviewPair(preparedState, currentEPSD, currentPhysStopSD, sampling),
       )),
     computeBestFocusZ: () =>
-      (bestFocusZ ??= analysisJobsForState2.computeBestFocusZ(preparedState, currentEPSD, currentPhysStopSD)),
+      (bestFocusZ ??= computeSection("spherical-aberration", () =>
+        analysisJobsForState2.computeBestFocusZ(preparedState, currentEPSD, currentPhysStopSD),
+      )),
     computeSphericalAberration: () =>
-      (sphericalAberration ??= analysisJobsForState2.computeSphericalAberration(
-        preparedState,
-        currentEPSD,
-        currentPhysStopSD,
+      (sphericalAberration ??= computeSection("spherical-aberration", () =>
+        analysisJobsForState2.computeSphericalAberration(preparedState, currentEPSD, currentPhysStopSD),
       )),
     computeSAProfile: () =>
-      (saProfile ??= analysisJobsForState2.computeSAProfile(preparedState, currentEPSD, currentPhysStopSD)),
+      (saProfile ??= computeSection("spherical-aberration", () =>
+        analysisJobsForState2.computeSAProfile(preparedState, currentEPSD, currentPhysStopSD),
+      )),
     computeSphericalAberrationBlurCharacter: () => {
+      assertAnalysisSectionAvailable("spherical-aberration", perspectiveTraceContext);
       if (sphericalAberrationBlurCharacter === undefined) {
         sphericalAberration ??= analysisJobsForState2.computeSphericalAberration(
           preparedState,
@@ -168,40 +236,105 @@ export function createAnalysisComputationContext({
       return sphericalAberrationBlurCharacter;
     },
     computeFieldCurvatureBundle: () =>
-      (fieldCurvatureBundle ??= analysisJobsForState2.computeFieldCurvatureBundle(
-        preparedState,
-        currentEPSD,
-        currentPhysStopSD,
-        resolvedFieldGeometry,
-        sampling,
+      (fieldCurvatureBundle ??= computeCenteredSection("field-curvature", () =>
+        analysisJobsForState2.computeFieldCurvatureBundle(
+          preparedState,
+          currentEPSD,
+          currentPhysStopSD,
+          resolvedFieldGeometry,
+          sampling,
+        ),
       )),
     computeChromaticAnalysis: () =>
-      (chromaticAnalysis ??= analysisJobsForState2.computeChromaticAnalysis(
-        preparedState,
-        currentEPSD,
-        currentPhysStopSD,
-        resolvedFieldGeometry,
-        sampling,
+      (chromaticAnalysis ??= computeCenteredSection("chromatic", () =>
+        analysisJobsForState2.computeChromaticAnalysis(
+          preparedState,
+          currentEPSD,
+          currentPhysStopSD,
+          resolvedFieldGeometry,
+          sampling,
+        ),
       )),
     computeChromaticRayFanAnalysis: () =>
-      (chromaticRayFanAnalysis ??= analysisJobsForState2.computeChromaticRayFanAnalysis(
-        preparedState,
-        currentEPSD,
-        currentPhysStopSD,
-        resolvedFieldGeometry,
-        {
-          channels: CHROMATIC_CHANNEL_ORDER,
-          onAxisFractions: sampling.chromaticRayTraceOnAxisFractions,
-          offAxisFractions: sampling.chromaticRayTraceOffAxisFractions,
-        },
+      (chromaticRayFanAnalysis ??= computeCenteredSection("chromatic", () =>
+        analysisJobsForState2.computeChromaticRayFanAnalysis(
+          preparedState,
+          currentEPSD,
+          currentPhysStopSD,
+          resolvedFieldGeometry,
+          {
+            channels: CHROMATIC_CHANNEL_ORDER,
+            onAxisFractions: sampling.chromaticRayTraceOnAxisFractions,
+            offAxisFractions: sampling.chromaticRayTraceOffAxisFractions,
+          },
+        ),
       )),
+    computeIntrinsicLongitudinalChromaticFocus: () => {
+      intrinsicLongitudinalChromaticFocus ??= {
+        value: computeLongitudinalChromaticFocus(
+          preparedState.lens.runtime,
+          zPosForPreparedAnalysis2(preparedState),
+          preparedState.focusT,
+          preparedState.zoomT,
+          currentEPSD,
+          currentPhysStopSD,
+          preparedState.aberrationT,
+          {
+            channels: CHROMATIC_CHANNEL_ORDER,
+            longitudinalFractions: sampling.chromaticLongitudinalFractions,
+          },
+        ),
+      };
+      return intrinsicLongitudinalChromaticFocus.value;
+    },
     computeComaAnalysis: () =>
-      (comaAnalysis ??= analysisJobsForState2.computeComaAnalysis(
-        preparedState,
-        currentEPSD,
-        currentPhysStopSD,
-        resolvedFieldGeometry,
-        sampling,
+      (comaAnalysis ??= computeCenteredSection("coma", () =>
+        analysisJobsForState2.computeComaAnalysis(
+          preparedState,
+          currentEPSD,
+          currentPhysStopSD,
+          resolvedFieldGeometry,
+          sampling,
+        ),
       )),
   };
+}
+
+function assertPerspectiveContextMatchesPreparedState(
+  preparedState: PreparedOpticalState,
+  perspectiveTraceContext: PerspectiveTraceContext | null,
+): void {
+  if (!perspectiveTraceContext) return;
+  const perspectiveState = perspectiveTraceContext.state;
+  if (
+    perspectiveState.cacheKey !== preparedState.cacheKey ||
+    perspectiveState.lens.key !== preparedState.lens.key ||
+    perspectiveState.focusT !== preparedState.focusT ||
+    perspectiveState.zoomT !== preparedState.zoomT ||
+    perspectiveState.aberrationT !== preparedState.aberrationT
+  ) {
+    throw new Error(
+      "PerspectiveTraceContext must describe the same prepared lens and slider state as the analysis context",
+    );
+  }
+}
+
+function snapshotAnalysisSamplingOptions(sampling: AnalysisSamplingOptions | undefined): AnalysisSamplingOptions {
+  if (!sampling) return {};
+  return Object.fromEntries(
+    Object.entries(sampling).map(([key, value]) => [key, Array.isArray(value) ? [...value] : value]),
+  ) as AnalysisSamplingOptions;
+}
+
+function analysisComputationCacheKey(params: AnalysisComputationContextParams): string {
+  return JSON.stringify({
+    state: params.preparedState.cacheKey,
+    perspective: params.perspectiveTraceContext?.cacheKey ?? "centered",
+    dynamicEFL: params.dynamicEFL,
+    currentEPSD: params.currentEPSD,
+    currentPhysStopSD: params.currentPhysStopSD,
+    fieldGeometry: params.fieldGeometry ?? null,
+    analysisQuality: params.analysisQuality ?? "settled",
+    sampling: params.sampling ?? {},
+  });
 }

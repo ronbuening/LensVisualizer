@@ -27,15 +27,6 @@ Patent: JP 2016-090725 A, Example 9
 
 - Updated Example-selection prose, L12/L22/L23/L31 element notes, glass summary, asphere-substrate text, and source list.
 
-### Verification
-
-- `npm test -- dispersion` — passed.
-- `npm run typecheck` — passed.
-- `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
-- `npm run lint` — passed.
-- `npm run format:check` — passed.
-- `git diff --check` — passed.
-
 ## 2026-06-24 — Folder audit recheck
 
 - Rechecked local `patents/JP2016090725A.pdf` OCR for Example 9 against the current data file, including the surface table, asphere-bearing rows, and cover-glass exclusion already documented in the analysis.
@@ -48,3 +39,35 @@ Patent: JP 2016-090725 A, Example 9
 - Surface 14: replaced incorrect `S-NSL3` with code-first `517522` crown wording.
 - Surface 16: replaced incorrect `S-BAL2` with code-first `569560` barium-crown wording.
 - The patent does not identify either supplier, so the analysis now preserves coordinates without vendor claims. No geometry changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 9 (¶0110) on PDF page 25 (printed page 25) at 160 dpi: surface 20 d = 13.369; surfaces 21–22 are one
+  unlabeled plate, 1.500 mm, nd 1.52249, νd 59.48; 22 → image is 0.800 mm. 13.369 + 1.500/1.52249 + 0.800 = 15.154,
+  matching the legacy folded gap and the printed BF (¶0115).
+- Data surface 19 (patent 20) now stores 13.369 mm, with `rearPlates` S-NSL5 (OHARA, exact nd; νd 59.84 is
+  compatible, and OHARA is the lens's majority vendor) and gapAfter 0.800 mm. Paraxial check against the previous data:
+  EFL identical at infinity and 1:1; defocus changes by 0.0002 mm (rounding in the old 15.154). Physical track grows by
+  0.515 mm. `closeFocusM` 0.16 is Leica's quoted MFD and was left unchanged.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Patent Example 9 prints Fl = 59.979, Fno = 2.900, ω = 13.319° and y'max = 14.200 mm at infinity (¶0115 各種データ,
+PDF p. 26), 100.2% of the APS-C corner (14.175 mm), so the design covers the format. The Gr3 rims of L33 and L34
+(surfaces 16–19), estimated with a 60% chief-ray fraction, clipped the real chief ray (solved through the stop centre)
+from 9.6°, leaving the analysis field at 72% of the corner. The traced corner chief ray (13.21°) needs surface
+16 ≥ 9.03, 17 ≥ 10.15, 18 ≥ 11.38 and 19 ≥ 11.61 mm. L33 is the strong negative meniscus the analysis describes
+(R −15.04 / −95.77), so surfaces 16 and 17 each take their own floor + ~0.5 mm. L34 is biconvex, so it was scaled as one
+element by surface 19's factor (8.0 → 12.2 mm, ×1.525), which puts surface 18 at 13.0 mm, above its own floor plus
+clearance. No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 16 | 8.5 | 9.6 | corner chief ray 9.03 mm + clearance; strong-meniscus front, own floor |
+| 17 | 8.5 | 10.7 | corner chief ray 10.15 mm + clearance; strong-meniscus rear, own floor |
+| 18 | 8.5 | 13.0 | corner chief ray 11.38 mm; L34 scaled with surface 19 |
+| 19 | 8.0 | 12.2 | corner chief ray 11.61 mm + clearance |
+
+The validator accepts the new values, the traced edge now reaches 14.18 mm at 13.2° with every rim clear (100%), and the
+image-circle floor still reports nothing undersized. No aspheric surface changed, and the analysis quotes none of the
+changed semi-diameters (its aspheric departures are given at a fixed h = 10 mm).

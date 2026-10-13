@@ -112,7 +112,7 @@ describe("buildComparisonURL", () => {
 
   it("appends slider params when provided", () => {
     const url = buildComparisonURL(false, "Sonnar50f15", "", { zoom: 50, focus: 0.3, aperture: 0.5 });
-    expect(url).toBe("?lens=Sonnar50f15&zoom=50&focus=0.300&aperture=0.500");
+    expect(url).toBe("?lens=Sonnar50f15&zoom=50&focus=0.3&aperture=0.5");
   });
 
   it("omits zero/null slider params", () => {
@@ -122,6 +122,6 @@ describe("buildComparisonURL", () => {
 
   it("appends slider params in comparison mode", () => {
     const url = buildComparisonURL(true, "NikkorZ50f12", "Nokton50f1", { focus: 0.6 });
-    expect(url).toBe("?a=NikkorZ50f12&b=Nokton50f1&focus=0.600");
+    expect(url).toBe("?a=NikkorZ50f12&b=Nokton50f1&focus=0.6");
   });
 });

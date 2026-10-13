@@ -7,7 +7,6 @@ Patent: WO 2023/181666 A1, Example 4
 - Resolver support for slash-form codes lets the existing HOYA NBFD15 catalog entry resolve the L44 / `806/333` row.
 - Relabeled L44 to `NBFD15 (HOYA, 806333)`.
 - Relabeled L72 / `911/352` to existing coefficient-backed `TAFD35 (HOYA, 911353; patent rounds vd to 35.2)`, whose d-line index matches the stored nd=1.91082.
-- `npm test -- dispersion` and `npm run generate:glass-reports` passed.
 
 ## 2026-05-20 — Glass relabel audit
 
@@ -27,18 +26,9 @@ Patent: WO 2023/181666 A1, Example 4
 - Confirmed flagged rows against local `patents/WO2023181666A1.pdf`, Table 16. Stored nd/vd values matched the patent.
 - Non-flagged prescription fields were not fully rekeyed in this queue pass.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No new catalog entries needed; selected matches already resolve through the project catalog.
-
 ### Phase 4 — Analysis sync
 
 - Updated element narratives and glass identification table for L22, L32, L33, L41, L43, and L71.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
 
 ## 2026-06-23 - Sony folder patent audit / APD + SD review
 

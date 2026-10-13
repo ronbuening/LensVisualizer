@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║              LENS DATA — MINOLTA AF 35mm f/2                             ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Source: JP1988-201614 A, Example 4 (Minolta Camera Co., Ltd.).           ║
+ * ║  Source: JP 1988-201614 A, Example 4 (Minolta Camera Co., Ltd.).           ║
  * ║  Production correlation: Minolta AF 35mm f/2, service code 2597-100.      ║
  * ║  7 elements / 6 air-separated groups; all spherical.                     ║
  * ║                                                                            ║
@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "minolta-af-35mm-f2",
   maker: "Minolta",
   name: "MINOLTA AF 35mm f/2",
-  subtitle: "JP1988-201614 A Example 4 — scaled ×0.35; production correlation to Minolta AF 35mm f/2",
+  subtitle: "JP 1988-201614 A Example 4 — scaled ×0.35; production correlation to Minolta AF 35mm f/2",
   specs: [
     "7 ELEMENTS / 6 GROUPS",
     "35mm MARKETING / 35.0002mm MODELED",
@@ -59,7 +59,7 @@ const LENS_DATA = {
   apertureDesign: 2,
   lensMounts: ["sony-a"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1988-201614 A",
+  patentNumber: "JP 1988-201614 A",
   patentAuthors: ["Hisashi Tokumaru"],
   patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1988,

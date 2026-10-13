@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5E ED              ║
+ * ║  LENS DATA — NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5 E ED              ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Source: JP 2017-068114 A, Example 1 (Nikon Corporation).                 ║
  * ║  Exact 1:1 transcription of the patent embodiment: 18 elements in         ║
@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-fisheye-nikkor-8-15mm-f35-45e-ed",
   maker: "Nikon",
-  name: "NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5E ED",
+  name: "NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5 E ED",
   subtitle: "JP 2017-068114 A Example 1 — approximate product correlation; not the production prescription",
   specs: [
     "18 ELEMENTS / 13 GROUPS — PATENT EXAMPLE",
@@ -60,7 +60,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2017-068114 A",
-  patentAuthors: ["Tetsushi Miwa", "Hiroshi Yamamoto", "Haruo Sato"],
+  patentAuthors: ["Satoshi Miwa", "Hiroshi Yamamoto", "Haruo Sato"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 2017,
   elementCount: 18,
@@ -405,6 +405,8 @@ const LENS_DATA = {
   doublets: [],
 
   closeFocusM: 0.3524603,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED: G2A (L21–L24) translates imageward. The patent close rows use β = −0.03333 and " +
     "object distances from the focal plane of 0.352460, 0.461387, and 0.573028 m at W/M/T; they do not " +

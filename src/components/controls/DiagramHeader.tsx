@@ -13,13 +13,14 @@
 import { forwardRef, memo } from "react";
 import InventorLinks from "../content/InventorLinks.js";
 import PatentNumberLink from "../content/PatentNumberLink.js";
-import { eflAtZoom, formatDist } from "../../optics/optics.js";
+import { eflAtZoom, formatDist, formatFNumber } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
 import CollapseButton from "./CollapseButton.js";
 import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
+import { lensChromaticReference } from "../../optics/chromatic/channels.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import { lensDisplaySubtitle, lensPatentAttribution } from "../../utils/catalog/lensPatentMetadata.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -78,6 +79,8 @@ interface DiagramHeaderProps {
   headerInfoExpanded: boolean;
   onHeaderInfoExpandedChange?: (value: boolean) => void;
   minHeaderHeight?: number;
+  /** Independent desktop comparison disclosure; mobile keeps its existing preference. */
+  comparisonDetails?: { expanded: boolean; onChange: (expanded: boolean) => void };
 }
 
 const DiagramHeader = memo(
@@ -133,106 +136,144 @@ const DiagramHeader = memo(
       headerInfoExpanded,
       onHeaderInfoExpandedChange,
       minHeaderHeight,
+      comparisonDetails,
     },
     ref,
   ) {
     const projection = L.projection ?? { kind: "rectilinear" };
     const displaySubtitle = lensDisplaySubtitle(L.data);
     const patentAttribution = lensPatentAttribution(L.data);
+    /* With a converter attached the title names the whole system; photo searches and the second patent line
+       still need the two parts separately. A converter covered by the lens's own patent is not repeated. */
+    const teleconverter = L.data.attachedTeleconverter;
+    const photoSearchName = teleconverter?.hostName ?? L.data.name;
+    const teleconverterPatent =
+      teleconverter?.patentNumber && teleconverter.patentNumber !== L.data.patentNumber
+        ? lensPatentAttribution({
+            patentNumber: teleconverter.patentNumber,
+            patentAuthors: teleconverter.patentAuthors ?? [],
+          })
+        : null;
     const compactFocalReadout = isFisheyeProjection(projection)
       ? `Proj f ${(fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? L.apertureReferenceFocalLength).toFixed(1)}`
       : `EFL ${L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(1)}`;
 
+    const detailsExpanded = comparisonDetails?.expanded ?? (isWide || headerInfoExpanded);
+
     return (
-      <div
-        ref={ref}
-        style={{
-          ...headerStrip(t, { padding: compact ? "12px 16px 8px" : "18px 24px 10px" }),
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          ...(minHeaderHeight ? { minHeight: minHeaderHeight } : {}),
-        }}
-      >
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: compact ? 8 : 10, flexWrap: "wrap" }}>
-            <h1
-              style={{
-                fontSize: compact ? 14 : 17,
-                fontWeight: 700,
-                letterSpacing: "0.04em",
-                margin: 0,
-                color: t.title,
-                fontFamily: "'DM Sans','Helvetica Neue',sans-serif",
-                transition: "color 0.3s",
-              }}
-            >
-              {L.data.name}
-            </h1>
-            {!compact && (
-              <a
-                href={`https://www.flickr.com/search/?text=${encodeURIComponent(L.data.name)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={`Search Flickr for "${L.data.name}"`}
+      <div style={{ ...headerStrip(t), minHeight: minHeaderHeight ? minHeaderHeight + 1 : undefined, flexShrink: 0 }}>
+        <div
+          ref={ref}
+          style={{
+            padding: compact ? "12px 16px 8px" : "18px 24px 10px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+          }}
+        >
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: compact ? 8 : 10, flexWrap: "wrap" }}>
+              <h1
                 style={{
-                  fontSize: 11,
-                  color: t.descLinkColor,
-                  letterSpacing: "0.06em",
-                  textDecoration: "none",
-                  borderBottom: `1px solid ${t.descLinkColor}40`,
-                  whiteSpace: "nowrap",
-                  transition: "color 0.3s, border-color 0.3s",
-                }}
-              >
-                flickr ↗
-              </a>
-            )}
-          </div>
-          {!compact && <LensIdentityRelations lens={L.data} theme={t} compact />}
-          <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: compact ? 2 : 3 }}>
-            {displaySubtitle && (
-              <span
-                style={{
-                  fontSize: compact ? 9 : 10.5,
-                  color: t.subtitle,
-                  letterSpacing: "0.08em",
+                  fontSize: compact ? 14 : 17,
+                  fontWeight: 700,
+                  letterSpacing: "0.04em",
+                  margin: 0,
+                  color: t.title,
+                  fontFamily: "'DM Sans','Helvetica Neue',sans-serif",
                   transition: "color 0.3s",
                 }}
               >
-                {patentAttribution ? (
-                  <>
-                    <PatentNumberLink patentNumber={patentAttribution.patentNumber} color={t.descLinkColor} />
-                    {patentAttribution.authors.length > 0 && (
-                      <>
-                        {" — "}
-                        <InventorLinks
-                          names={patentAttribution.authors}
-                          theme={t}
-                          titleForName={(author) => `View patents by ${author}`}
-                          linkStyle={{
-                            borderBottom: `1px solid ${t.descLinkColor}60`,
-                            transition: "color 0.3s, border-color 0.3s",
-                          }}
-                        />
-                      </>
-                    )}
-                  </>
-                ) : (
-                  displaySubtitle
-                )}
-              </span>
-            )}
-            {!isWide && (
-              <CollapseButton
-                expanded={headerInfoExpanded}
-                onToggle={() => onHeaderInfoExpandedChange?.(!headerInfoExpanded)}
-                theme={t}
-              />
-            )}
-          </div>
-          {(isWide || headerInfoExpanded) && (
-            <>
+                {L.data.name}
+              </h1>
+              {!compact && (
+                <a
+                  href={`https://www.flickr.com/search/?text=${encodeURIComponent(photoSearchName)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`Search Flickr for "${photoSearchName}"`}
+                  style={{
+                    fontSize: 11,
+                    color: t.descLinkColor,
+                    letterSpacing: "0.06em",
+                    textDecoration: "none",
+                    borderBottom: `1px solid ${t.descLinkColor}40`,
+                    whiteSpace: "nowrap",
+                    transition: "color 0.3s, border-color 0.3s",
+                  }}
+                >
+                  flickr ↗
+                </a>
+              )}
+            </div>
+            {!compact && <LensIdentityRelations lens={L.data} theme={t} compact />}
+            <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: compact ? 2 : 3 }}>
+              {displaySubtitle && (
+                <span
+                  style={{
+                    fontSize: compact ? 9 : 10.5,
+                    color: t.subtitle,
+                    letterSpacing: "0.08em",
+                    transition: "color 0.3s",
+                  }}
+                >
+                  {patentAttribution ? (
+                    <>
+                      <PatentNumberLink patentNumber={patentAttribution.patentNumber} color={t.descLinkColor} />
+                      {patentAttribution.authors.length > 0 && (
+                        <>
+                          {" — "}
+                          <InventorLinks
+                            names={patentAttribution.authors}
+                            theme={t}
+                            titleForName={(author) => `View patents by ${author}`}
+                            linkStyle={{
+                              borderBottom: `1px solid ${t.descLinkColor}60`,
+                              transition: "color 0.3s, border-color 0.3s",
+                            }}
+                          />
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    displaySubtitle
+                  )}
+                  {teleconverterPatent && (
+                    <>
+                      {" · TC "}
+                      <PatentNumberLink patentNumber={teleconverterPatent.patentNumber} color={t.descLinkColor} />
+                      {teleconverterPatent.authors.length > 0 && (
+                        <>
+                          {" — "}
+                          <InventorLinks
+                            names={teleconverterPatent.authors}
+                            theme={t}
+                            titleForName={(author) => `View patents by ${author}`}
+                            linkStyle={{
+                              borderBottom: `1px solid ${t.descLinkColor}60`,
+                              transition: "color 0.3s, border-color 0.3s",
+                            }}
+                          />
+                        </>
+                      )}
+                    </>
+                  )}
+                </span>
+              )}
+              {(comparisonDetails || !isWide) && (
+                <CollapseButton
+                  expanded={detailsExpanded}
+                  label={comparisonDetails ? "DETAILS" : undefined}
+                  onToggle={() =>
+                    comparisonDetails
+                      ? comparisonDetails.onChange(!detailsExpanded)
+                      : onHeaderInfoExpandedChange?.(!headerInfoExpanded)
+                  }
+                  theme={t}
+                />
+              )}
+            </div>
+            {detailsExpanded && (
               <div
                 style={{
                   display: "flex",
@@ -249,138 +290,140 @@ const DiagramHeader = memo(
                   <span key={i}>{s}</span>
                 ))}
               </div>
-              {/* Per-panel readouts in compact mode */}
-              {compact && (
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 16,
-                    marginTop: 6,
-                    fontSize: 10,
-                    color: t.value,
-                    letterSpacing: "0.04em",
-                    fontVariantNumeric: "tabular-nums",
-                  }}
-                >
-                  {L.isZoom && <span>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>}
-                  <span>{formatDist(focusT, L)}</span>
-                  <span>f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}</span>
-                  <span>{compactFocalReadout}</span>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-        {/* Theme + ray controls in non-compact (single-lens) mode.
+            )}
+            {/* Comparison details include specifications and current optical readouts. */}
+            {compact && detailsExpanded && (
+              <div
+                style={{
+                  display: "flex",
+                  gap: 16,
+                  flexWrap: "wrap",
+                  marginTop: 6,
+                  fontSize: 10,
+                  color: t.value,
+                  letterSpacing: "0.04em",
+                  fontVariantNumeric: "tabular-nums",
+                }}
+              >
+                {L.isZoom && <span>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>}
+                <span>{formatDist(focusT, L, zoomT)}</span>
+                <span>f/{formatFNumber(fNumber)}</span>
+                <span>{compactFocalReadout}</span>
+              </div>
+            )}
+          </div>
+          {/* Theme + ray controls in non-compact (single-lens) mode.
            Hidden on mobile (controls live in the always-visible strip instead). */}
-        {isWide && !compact && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "flex-end",
-              gap: 8,
-              flexShrink: 0,
-            }}
-          >
-            {ENABLE_CARDINAL_ELEMENTS ? (
-              <div style={{ paddingTop: 0 }}>
-                <CardinalControls
+          {isWide && !compact && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "flex-end",
+                gap: 8,
+                flexShrink: 0,
+              }}
+            >
+              {ENABLE_CARDINAL_ELEMENTS ? (
+                <div style={{ paddingTop: 0 }}>
+                  <CardinalControls
+                    t={t}
+                    showCardinals={showCardinals}
+                    onShowCardinalsChange={onShowCardinalsChange}
+                    showCardinalFocal={showCardinalFocal}
+                    onShowCardinalFocalChange={onShowCardinalFocalChange}
+                    showCardinalPrincipal={showCardinalPrincipal}
+                    onShowCardinalPrincipalChange={onShowCardinalPrincipalChange}
+                    showCardinalNodal={showCardinalNodal}
+                    onShowCardinalNodalChange={onShowCardinalNodalChange}
+                    showCardinalDimensions={showCardinalDimensions}
+                    onShowCardinalDimensionsChange={onShowCardinalDimensionsChange}
+                    showCardinalEfl={showCardinalEfl}
+                    onShowCardinalEflChange={onShowCardinalEflChange}
+                    showCardinalBfd={showCardinalBfd}
+                    onShowCardinalBfdChange={onShowCardinalBfdChange}
+                    showCardinalFfd={showCardinalFfd}
+                    onShowCardinalFfdChange={onShowCardinalFfdChange}
+                    showCardinalHiatus={showCardinalHiatus}
+                    onShowCardinalHiatusChange={onShowCardinalHiatusChange}
+                    showCardinalTotalTrack={showCardinalTotalTrack}
+                    onShowCardinalTotalTrackChange={onShowCardinalTotalTrackChange}
+                  />
+                </div>
+              ) : null}
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, width: 236 }}>
+                {/* Ray toggles */}
+                <RayToggles
                   t={t}
-                  showCardinals={showCardinals}
-                  onShowCardinalsChange={onShowCardinalsChange}
-                  showCardinalFocal={showCardinalFocal}
-                  onShowCardinalFocalChange={onShowCardinalFocalChange}
-                  showCardinalPrincipal={showCardinalPrincipal}
-                  onShowCardinalPrincipalChange={onShowCardinalPrincipalChange}
-                  showCardinalNodal={showCardinalNodal}
-                  onShowCardinalNodalChange={onShowCardinalNodalChange}
-                  showCardinalDimensions={showCardinalDimensions}
-                  onShowCardinalDimensionsChange={onShowCardinalDimensionsChange}
-                  showCardinalEfl={showCardinalEfl}
-                  onShowCardinalEflChange={onShowCardinalEflChange}
-                  showCardinalBfd={showCardinalBfd}
-                  onShowCardinalBfdChange={onShowCardinalBfdChange}
-                  showCardinalFfd={showCardinalFfd}
-                  onShowCardinalFfdChange={onShowCardinalFfdChange}
-                  showCardinalHiatus={showCardinalHiatus}
-                  onShowCardinalHiatusChange={onShowCardinalHiatusChange}
-                  showCardinalTotalTrack={showCardinalTotalTrack}
-                  onShowCardinalTotalTrackChange={onShowCardinalTotalTrackChange}
+                  showOnAxis={showOnAxis}
+                  onShowOnAxisChange={onShowOnAxisChange}
+                  showOffAxis={showOffAxis}
+                  onShowOffAxisChange={onShowOffAxisChange}
+                  showPupils={showPupils}
+                  onShowPupilsChange={onShowPupilsChange}
+                />
+                {/* Ray mode */}
+                <div style={toggleGroup(t, { width: "100%" })}>
+                  {[
+                    { label: "FROM \u221e", val: false, icon: "\u2225" },
+                    { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
+                  ].map(({ label, val, icon }) => (
+                    <button
+                      key={label}
+                      onClick={() => onRayTracksFChange?.(val)}
+                      style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val, gap: 4 })}
+                    >
+                      <span
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 700,
+                          lineHeight: 1,
+                          opacity: rayTracksF === val ? 1 : 0.4,
+                        }}
+                      >
+                        {icon}
+                      </span>
+                      <span>{label}</span>
+                    </button>
+                  ))}
+                </div>
+                {/* Ray density */}
+                <div style={toggleGroup(t, { width: "100%" })}>
+                  {(
+                    [
+                      { label: "NORMAL", val: "normal" },
+                      { label: "DENSE", val: "dense" },
+                      { label: "DIAGNOSTIC", val: "diagnostic" },
+                    ] as const
+                  ).map(({ label, val }, idx) => (
+                    <button
+                      key={val}
+                      onClick={() => onRayDensityChange?.(val)}
+                      style={toggleBtn(t, rayDensity === val, { hasRightBorder: idx < 2, gap: 4 })}
+                    >
+                      <span>{label}</span>
+                    </button>
+                  ))}
+                </div>
+                {/* Chromatic */}
+                <ChromaticControls
+                  t={t}
+                  showChromatic={showChromatic}
+                  onShowChromaticChange={onShowChromaticChange}
+                  chromR={chromR}
+                  chromG={chromG}
+                  chromB={chromB}
+                  chromV={chromV}
+                  onChromRChange={onChromRChange}
+                  onChromGChange={onChromGChange}
+                  onChromBChange={onChromBChange}
+                  onChromVChange={onChromVChange}
+                  channelReference={lensChromaticReference(L.elements)}
                 />
               </div>
-            ) : null}
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, width: 236 }}>
-              {/* Ray toggles */}
-              <RayToggles
-                t={t}
-                showOnAxis={showOnAxis}
-                onShowOnAxisChange={onShowOnAxisChange}
-                showOffAxis={showOffAxis}
-                onShowOffAxisChange={onShowOffAxisChange}
-                showPupils={showPupils}
-                onShowPupilsChange={onShowPupilsChange}
-              />
-              {/* Ray mode */}
-              <div style={toggleGroup(t, { width: "100%" })}>
-                {[
-                  { label: "FROM \u221e", val: false, icon: "\u2225" },
-                  { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
-                ].map(({ label, val, icon }) => (
-                  <button
-                    key={label}
-                    onClick={() => onRayTracksFChange?.(val)}
-                    style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val, gap: 4 })}
-                  >
-                    <span
-                      style={{
-                        fontSize: 11,
-                        fontWeight: 700,
-                        lineHeight: 1,
-                        opacity: rayTracksF === val ? 1 : 0.4,
-                      }}
-                    >
-                      {icon}
-                    </span>
-                    <span>{label}</span>
-                  </button>
-                ))}
-              </div>
-              {/* Ray density */}
-              <div style={toggleGroup(t, { width: "100%" })}>
-                {(
-                  [
-                    { label: "NORMAL", val: "normal" },
-                    { label: "DENSE", val: "dense" },
-                    { label: "DIAGNOSTIC", val: "diagnostic" },
-                  ] as const
-                ).map(({ label, val }, idx) => (
-                  <button
-                    key={val}
-                    onClick={() => onRayDensityChange?.(val)}
-                    style={toggleBtn(t, rayDensity === val, { hasRightBorder: idx < 2, gap: 4 })}
-                  >
-                    <span>{label}</span>
-                  </button>
-                ))}
-              </div>
-              {/* Chromatic */}
-              <ChromaticControls
-                t={t}
-                showChromatic={showChromatic}
-                onShowChromaticChange={onShowChromaticChange}
-                chromR={chromR}
-                chromG={chromG}
-                chromB={chromB}
-                chromV={chromV}
-                onChromRChange={onChromRChange}
-                onChromGChange={onChromGChange}
-                onChromBChange={onChromBChange}
-                onChromVChange={onChromVChange}
-              />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }),

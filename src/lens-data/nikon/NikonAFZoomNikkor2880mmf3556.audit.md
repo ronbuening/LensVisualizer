@@ -11,10 +11,6 @@ Patent: JP H11-030748 A, Example 1
 - FIG. 1 shows the front group as the largest section, with a compact G2 and rear G3/G4 region. Stored SDs follow that silhouette: 28.5-14.6 mm through G1, about 7.0-10.8 mm around the stop and middle group, and 8.6-10.5 mm at the final group.
 - No SD values changed. Current values remain inferred from the patent drawing and ray-clearance constraints.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-29 - Glass coverage follow-up
 
 - Relabeled L4 from a code-only `861230` dense-flint description to coefficient-backed Hikari J-SFH2.

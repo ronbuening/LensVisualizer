@@ -10,8 +10,6 @@
   image-circle floor.
 - Retained the submitted SDs. The trustworthy measurements do not show a greater-than-25% mismatch; several apparent
   outliers are neighboring rims or leader-line intersections rather than independent lens edges.
-- `npm run audit:image-circle -- src/lens-data/panasonic/PanasonicLumixS24105mmf4MacroOIS.data.ts` passed with no
-  undersized surfaces.
 
 ### Glass
 
@@ -25,3 +23,47 @@
   `PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S.` is correct and was retained.
 - Romanized the inventor names and normalized the assignee to the existing
   `Panasonic Intellectual Property Management Co., Ltd.` catalog identity.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent d33 (25.113494 / 44.081494 / 49.713494 mm) with Numerical Example 1's physical rear stack
+  (Table 1 surfaces 34–35 on PDF p. 20, Table 3A variable gaps on p. 21, confirmed on the rendered pages): d33 =
+  21.029 / 39.997 / 45.629 mm, then `rearPlates` P 2.1 mm, nd 1.51680, νd 64.2 (N-BK7), and 2.7 mm to the image plane.
+  The var label now reads D33.
+- Paraxial check against the previous data: EFL identical and defocus unchanged (worst difference 1e-10 mm) at every
+  zoom station and focus keyframe, because the legacy fold used the exact 2.1 / 1.5168 + 2.7 mm. Physical track grows
+  by 0.715506 mm and now equals the patent's printed total lengths of 136.501 / 148.530 / 180.790 mm; conditions (1)
+  and (2) re-evaluate to 0.182034 and 0.142087 (patent 0.182 / 0.142).
+- `closeFocusM` stays at the source-quoted 0.300 m. The reconstructed close-focus G4 gaps were solved on the earlier
+  air-equivalent track and were not re-solved, so the 300 mm object now sits 0.715506 mm closer to the front vertex.
+
+## 2026-09-23 — Close-focus gaps re-solved on the physical track
+
+- Re-solved the reconstructed G4 close-focus gaps so the 300 mm object is measured from the stored image plane on the
+  physical track through plate P. D27 close 3.394493514 / 7.221740926 / 15.469690819 → 3.400517907 / 7.239460293 /
+  15.52269395 mm; D29 close 14.530506486 / 9.953259074 / 15.970309181 → 14.524482093 / 9.935539707 / 15.91730605 mm.
+  G4 travel is now 1.600518 / 4.619460 / 13.722694 mm. These remain reconstructions, not patent values.
+- Method: paraxial y–u trace of the `expandRearPlates` surfaces from an axial object 300 mm before the image plane,
+  bisecting G4 travel with d27 + d29 conserved and the infinity gaps untouched. The old gaps left that object's paraxial
+  image 0.012 / 0.048 / 0.174 mm off the image plane (wide / middle / tele).
+- Close-focus defocus is now at most 4.4e-10 mm; infinity EFL (25.002987 / 50.142962 / 100.568809 mm) and the infinity
+  state are unchanged. Tele magnification is 0.494313× (was 0.492597×) and condition (5) 0.136451. Surface and
+  image-circle audits pass.
+
+## 2026-09-24 — Surface 7 raised to pass the patent's wide field
+
+Numerical Example 1's Table 3A (JP 2020-118738 A, PDF p. 21) prints the wide state at f 25.0078 mm, ω 40.9808° and
+image height 19.6000 mm, 90.5% of the full-frame corner; middle and tele print 21.6330 mm. So the wide end is a design
+image circle. The real chief ray (solved through the stop centre) at the printed ω lands at 19.60 mm and crosses surface
+7 at 16.37 mm, above its 16.0 mm rim, so the wide analysis field ended at 88.6% of the corner (19.18 mm). Surface 7
+takes its floor + ~0.5 mm; its partner, surface 8 (R 16.21, the concave rear of the L4 meniscus), carries 12.28 mm of
+that chief ray against its 13.1 mm rim and is unchanged.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 7 | 16.0 | 16.9 | wide chief ray at the printed ω crosses it at 16.37 mm + clearance |
+
+The validator accepts the new value and the image-circle floor still reports nothing undersized. The wide analysis field
+now runs to 41.9° (20.17 mm, 93% of the corner), just past the design height, where surface 7 clips again; the corner
+itself (43.8°) would also need a larger surface 1. Middle and tele still reach 100%. The analysis quotes no surface-7
+value.

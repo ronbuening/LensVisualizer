@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH (H-X015) ║
+ * ║  LENS DATA — PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH. (H-X015) ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2015/0268449 A1, Numerical Example 2              ║
  * ║  (Kurioka, Nishioka; Panasonic IP Management).                     ║
@@ -27,7 +27,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "panasonic-leica-dg-15f17",
   maker: "Panasonic",
-  name: "PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH",
+  name: "PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.",
   subtitle: "US 2015/0268449 A1 Example 2 — Panasonic / Kurioka, Nishioka",
   specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 15.5 mm", "F/1.77", "2ω ≈ 70.5°", "5 ASPHERICAL SURFACES"],
 
@@ -271,8 +271,8 @@ const LENS_DATA = {
   focusDescription: "Inner focus — G2 (L6–L8) translates toward object. Stepping motor drive.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.7,
-  fstopSeries: [1.7, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.77,
+  fstopSeries: [1.77, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

@@ -107,7 +107,7 @@ const LENS_DATA = {
       nd: 1.60729,
       vd: 49.2,
       fl: 24.268,
-      glass: "BAM5 class (barium middle glass, 607/492)",
+      glass: "BAF5 (HOYA) class (607493 barium flint, BAM5 type; nd-exact, Δνd +0.14; equivalent)",
       role: "Positive partner in the net-negative rear doublet.",
       cemented: "D2",
     },

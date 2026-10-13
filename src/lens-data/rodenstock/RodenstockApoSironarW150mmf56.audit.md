@@ -11,10 +11,6 @@ Patent: DE 3907928 A1, Table 5
 - FIG. 1 shows a broad front half, stop close to the first rear surface, and a broad rear half of comparable scale. Stored SDs follow that drawing: about 15.0-12.0 mm before the stop, a 10.992 mm stop, and about 12.0-14.0 mm through the rear reconstruction.
 - No SD values changed. Current values remain inferred from the patent figure, the reconstructed Table 5 model, and renderer sag/edge constraints.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-29 - Patent-rounded glass disposition
 
 - Rechecked local `patents/DE_3907928_A1.pdf`, Table 5. The reconstruction's R, d, nd, and νd values remain

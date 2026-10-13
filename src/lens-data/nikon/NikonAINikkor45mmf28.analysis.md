@@ -140,7 +140,7 @@ $$
 
 For Example 6 it is $+1.91030\times10^{-3}$ in the $f=100$ normalization, corresponding to a Petzval radius of $523.48$ normalized units, or about $5.235f$. This supports the classification as a well-flattened Tessar rather than a flat-field double-Gauss substitute.
 
-The accompanying data file uses the patent's optical prescription scaled to 45 mm, Nikon's marketed f/2.8 as `nominalFno`, and the patent's $F_{NO}=2.88$ as `apertureDesign`. The stop semi-diameter in the data file, 6.7564 mm at production scale, is the paraxial physical stop radius that reproduces the patent's $F_{NO}=2.88$ through the front element. Semi-diameters are not patent-published; they were estimated from ray envelopes and constrained so the rear doublet retains at least about 0.5 mm of edge thickness.
+The accompanying data file uses the patent's optical prescription scaled to 45 mm, the patent's $F_{NO}=2.88$ as both `nominalFno` and `apertureDesign`, and Nikon's marketed f/2.8 as `apertureMarketing`. The stop semi-diameter in the data file, 6.7564 mm at production scale, is the paraxial physical stop radius that reproduces the patent's $F_{NO}=2.88$ through the front element. Semi-diameters are not patent-published; they were estimated from ray envelopes and constrained so the rear doublet retains at least about 0.5 mm of edge thickness.
 
 ## Sources and References
 

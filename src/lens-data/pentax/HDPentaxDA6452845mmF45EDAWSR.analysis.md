@@ -11,7 +11,7 @@
 
 The prescription corresponds to Numerical Example 1 of JP 2015-87681 A. The patent describes a four-group negative-positive-negative-positive wide-angle zoom for single-lens-reflex cameras, with the aperture stop between the second and third functional groups and with the second group divided into a moving focus subgroup G2a and a fixed-within-G2 subgroup G2b (¶¶0021, 0049–0055). The LensVisualizer data file preserves the patent's native d-line prescription and uses the patent's three infinity-focus zoom states at 28.70, 35.00, and 43.87 mm.
 
-The LensVisualizer record uses the manufacturer product styling **HD PENTAX-DA645 28-45mm f/4.5 ED AW SR**. This is the production correlation selected for this project, not a manufacturer statement that the production lens was built directly from Example 1. Several independent features converge:
+The LensVisualizer record uses the manufacturer product styling **PENTAX HD DA645 28-45mm f/4.5 ED AW SR**. This is the production correlation selected for this project, not a manufacturer statement that the production lens was built directly from Example 1. Several independent features converge:
 
 1. Ricoh Imaging specifies the production lens as 17 elements in 12 groups. Example 1 has 17 physical lenses in 12 air-separated groups when the two thin hybrid-resin layers are treated as bonded layers on physical lenses rather than as additional marketed lenses. The sequential data model therefore contains 19 material entries while retaining `elementCount: 17`.
 2. Ricoh identifies two hybrid aspherical elements at physical positions L1 rear and L16 front. Example 1 places a synthetic-resin hybrid asphere on the image-side face of patent lens 11 and another on the object-side face of patent lens 44. In physical front-to-rear counting these are the first and sixteenth lenses, respectively (¶¶0024, 0029, 0051, 0054).
@@ -113,7 +113,7 @@ The patent does not name a glass supplier, so S-FPL51 is used only as the coordi
 
 **L31:** `nd = 1.83481`, `νd = 42.7`. Glass: S-LAH55VS (OHARA catalog model; supplier not established). `f = -27.118 mm`.
 
-**L32:** `nd = 1.72047`, `νd = 34.7`. Glass: S-NBH 8 (OHARA catalog model; supplier not established). `f = +31.963 mm`.
+**L32:** `nd = 1.72047`, `νd = 34.7`. Glass: S-NBH8 (OHARA catalog model; supplier not established). `f = +31.963 mm`.
 
 The L31-L32 pair begins the negative third group. Its isolated cemented focal length is `-212.064062 mm`, again much weaker than either isolated member because the cemented interface strongly redistributes the net power.
 
@@ -129,7 +129,7 @@ Because G3 is stationary in the selected example, L33 participates in aberration
 
 ### L34 — Positive meniscus completing G3
 
-`nd = 1.80518`, `νd = 25.4`. Glass: S-TIH 6 (OHARA catalog model; supplier not established). `f = +123.467 mm`.
+`nd = 1.80518`, `νd = 25.4`. Glass: S-TIH6 (OHARA catalog model; supplier not established). `f = +123.467 mm`.
 
 L34 is a positive meniscus convex toward the object and closes the negative G3 group. Its relatively high index and low Abbe number make it a strongly dispersive positive component compared with L33, so the local chromatic balance of G3 cannot be inferred from power signs alone.
 
@@ -161,7 +161,7 @@ The resin layer's nearly zero standalone paraxial power does not mean it is opti
 
 ### L45 — Biconvex positive rear element
 
-`nd = 1.48749`, `νd = 70.2`. Glass: S-FSL 5 (OHARA catalog model; supplier not established). `f = +52.810 mm`.
+`nd = 1.48749`, `νd = 70.2`. Glass: S-FSL5 (OHARA catalog model; supplier not established). `f = +52.810 mm`.
 
 L45 is the final physical lens and is cemented to the rear of L44. Its positive power partially offsets the negative L44 substrate, leaving G4b weakly negative as a cemented assembly. The relatively high Abbe number of the catalog model supplies a lower-dispersion positive partner to the higher-index, lower-Abbe L44 glass.
 
@@ -181,11 +181,11 @@ The patent provides d-line `nd` and `νd` values but does not identify glass man
 | S-TIL25 | 1.58144 / 40.7 | +0.0019 | L23 | Positive partner in the L22-L23 focus doublet |
 | S-FPL51 | 1.49700 / 81.6 | +0.0280 | L24, L43 | Very-low-dispersion positions corresponding to maker-identified ED lenses 8 and 15 |
 | S-LAH55VS | 1.83481 / 42.7 | -0.0075 | L31 | High-index negative member of G3 cemented pair |
-| S-NBH 8 | 1.72047 / 34.7 | -0.0019 | L32 | Positive partner in G3 front cemented pair |
+| S-NBH8 | 1.72047 / 34.7 | -0.0019 | L32 | Positive partner in G3 front cemented pair |
 | S-LAH60 | 1.83400 / 37.2 | -0.0037 | L33, L41, L44g | Repeated high-index material in G3 and G4 |
-| S-TIH 6 | 1.80518 / 25.4 | +0.0158 | L34 | High-index, high-dispersion positive G3 rear meniscus |
+| S-TIH6 | 1.80518 / 25.4 | +0.0158 | L34 | High-index, high-dispersion positive G3 rear meniscus |
 | S-LAH63Q | 1.80440 / 39.6 | -0.0012 | L42 | Negative middle member of G4a triplet |
-| S-FSL 5 | 1.48749 / 70.2 | +0.0022 | L45 | Lower-dispersion positive rear element |
+| S-FSL5 | 1.48749 / 70.2 | +0.0022 | L45 | Lower-dispersion positive rear element |
 | Unmatched synthetic resin | 1.52972 / 42.7 | — | L11r, L44r | Patent-identified bonded hybrid-asphere material; no catalog identity asserted |
 
 The two S-FPL51-coordinate positions are the clearest chromatic anchors because Ricoh independently describes the corresponding physical lenses as ED. The data's catalog-model spectral fields support wavelength-dependent modeling of those entries, but they do not prove that S-FPL51 was the production material. The same supplier caution applies to all other named glasses. Fresh current-catalog matching also shows that the patent-precision coordinate `1.83481 / 42.7` admits both S-LAH55V and S-LAH55VS, while `1.83400 / 37.2` admits S-LAH60, S-LAH60MQ, and S-LAH60V. The data retain S-LAH55VS and the unsuffixed S-LAH60 as explicit modeling proxies; their stored line indices and `dPgF` values apply to those selected catalog models only.
@@ -277,7 +277,7 @@ Condition (7) formalizes the dispersion split inside G4a, while conditions (8) a
 
 ## Image Stabilization
 
-The production HD PENTAX-DA645 28-45mm f/4.5 ED AW SR includes an in-lens Shake Reduction mechanism according to Ricoh Imaging. The selected patent, however, describes only centered axial zoom and focus behavior and gives no stabilization-group decenter prescription, no lateral travel, and no tilted or shifted optical states.
+The production PENTAX HD DA645 28-45mm f/4.5 ED AW SR includes an in-lens Shake Reduction mechanism according to Ricoh Imaging. The selected patent, however, describes only centered axial zoom and focus behavior and gives no stabilization-group decenter prescription, no lateral travel, and no tilted or shifted optical states.
 
 The LensVisualizer prescription therefore does not invent an SR motion. All surfaces remain centered, and the data file contains no stabilization decenter model. The presence of SR is a production identity and mechanical-feature fact, not a numerical property of the selected Example-1 sequential prescription.
 

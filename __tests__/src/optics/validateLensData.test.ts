@@ -3,6 +3,8 @@ import validateLensData from "../../../src/optics/validateLensData.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/internal/surfaceMath.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../src/types/asphericSchema.js";
+import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
+import { teleconverterFixture, teleconverterHostData } from "./testLensFixtures.js";
 
 /* Passthrough mock so a single test can make buildAsphereIndex throw once.
  * buildAsphereIndex cannot be made to throw from plain lens data, so the
@@ -62,6 +64,94 @@ function makeValid(overrides: Record<string, unknown> = {}): Record<string, unkn
 }
 
 describe("validateLensData", () => {
+  it("requires finite-conjugate source evidence, distance conventions and authored stations", () => {
+    const station = {
+      focusT: 1,
+      zoomT: 0,
+      objectDistanceMm: 700,
+      distanceReference: "image-plane",
+      source: "Synthetic source table",
+    };
+    expect(validateLensData(makeValid({ finiteConjugates: [station] }))).toEqual([]);
+    for (const finiteConjugates of [
+      [],
+      [null],
+      [station, station],
+      [{ ...station, source: "" }],
+      [{ ...station, focusT: 0.5 }],
+      [{ ...station, zoomT: 0.5 }],
+      [{ ...station, objectDistanceMm: -1 }],
+      [{ ...station, distanceReference: "unknown" }],
+    ]) {
+      expect(validateLensData(makeValid({ finiteConjugates })).join(" ")).toContain("finiteConjugates");
+    }
+  });
+  it("checks publishedStations against the authored zoom and focus stations", () => {
+    const station = { focusT: 1, objectDistanceMm: 700, distanceReference: "image-plane", source: "Synthetic table" };
+    const prime = (publishedStations: unknown) =>
+      validateLensData(makeValid({ var: { "2": [50, 52, 55] }, focusPositions: [0, 0.4, 1], publishedStations }));
+    /* The tele station repeats its infinity gap, so a focus keyframe listed there has no travel. */
+    const zoom = (publishedStations: unknown, extra: Record<string, unknown> = {}) =>
+      validateLensData(
+        makeValid({
+          zoomPositions: [24, 50, 100],
+          var: {
+            "2": [
+              [50, 55],
+              [50, 56],
+              [50, 50],
+            ],
+          },
+          publishedStations,
+          ...extra,
+        }),
+      );
+
+    for (const valid of [{ focus: [1] }, { focus: [1, 2] }]) expect(prime(valid)).toEqual([]);
+    for (const valid of [
+      { zoom: [0, 2] },
+      { zoom: [0, 1, 2] },
+      { focus: [[1], [1], []] },
+      { zoom: [0, 1], focus: [1] },
+    ]) {
+      expect(zoom(valid)).toEqual([]);
+    }
+    expect(zoom({ zoom: [0, 1] }, { finiteConjugates: [{ ...station, zoomT: 0.5 }] })).toEqual([]);
+
+    for (const invalid of [
+      {},
+      [],
+      null,
+      { focus: [1], pages: [3] },
+      { zoom: [0] },
+      { focus: [] },
+      { focus: [0] },
+      { focus: [3] },
+      { focus: [2, 1] },
+      { focus: [[1]] },
+    ]) {
+      expect(prime(invalid).join(" ")).toContain("publishedStations");
+    }
+    for (const invalid of [
+      { zoom: [] },
+      { zoom: [0, 0] },
+      { zoom: [2, 0] },
+      { zoom: [0, 9] },
+      { zoom: [0.5] },
+      { focus: [[1], [1]] },
+      { focus: [[], [], []] },
+      { focus: [1, [1], []] },
+      { zoom: [1, 2], focus: [[1], [1], []] },
+      { focus: [1] },
+    ]) {
+      expect(zoom(invalid).join(" ")).toContain("publishedStations");
+    }
+    expect(zoom({ focus: [1] }).join(" ")).toContain("no focus travel");
+    expect(zoom({ zoom: [0, 2] }, { finiteConjugates: [{ ...station, zoomT: 0.5 }] }).join(" ")).toContain(
+      '"publishedStations.zoom" omits',
+    );
+  });
+
   it("returns empty array for valid data", () => {
     expect(validateLensData(makeValid())).toEqual([]);
   });
@@ -97,6 +187,92 @@ describe("validateLensData", () => {
         ),
       ).toBe(true);
     }
+  });
+
+  it("accepts source-documented rear plates and rejects malformed or unsupported ones", () => {
+    const plate = { label: "CG", thicknessMm: 2, nd: 1.5168, vd: 64.17, glass: "N-BK7", gapAfterMm: 1 };
+    const errorsFor = (overrides: Record<string, unknown>) => validateLensData(makeValid(overrides));
+    const has = (errors: string[], text: string) => errors.some((error) => error.includes(text));
+
+    expect(errorsFor({ rearPlates: [plate] })).toEqual([]);
+    expect(has(errorsFor({ rearPlates: [] }), '"rearPlates" must be a non-empty array')).toBe(true);
+    const malformed = errorsFor({ rearPlates: [{ ...plate, thicknessMm: 0, nd: 1, vd: undefined, gapAfterMm: -1 }] });
+    for (const text of [
+      "thicknessMm must be > 0",
+      "nd must be a finite index > 1",
+      "vd must be",
+      "gapAfterMm must be",
+    ]) {
+      expect(has(malformed, text)).toBe(true);
+    }
+    expect(has(errorsFor({ rearPlates: [plate], opticalPath: { mode: "auto" } }), "folded or generalized")).toBe(true);
+    expect(
+      has(
+        errorsFor({ rearPlates: [plate], perspectiveControl: { shift: { enabled: false } } }),
+        'cannot be combined with "perspectiveControl"',
+      ),
+    ).toBe(true);
+  });
+
+  it("reserves synthetic markers and rear-plate labels for the engine", () => {
+    const valid = makeValid();
+    const surfaces = valid.surfaces as Record<string, unknown>[];
+    const errors = validateLensData({
+      ...valid,
+      surfaces: [
+        { ...surfaces[0], label: "RP1a" },
+        { ...surfaces[1], clips: false },
+        { ...surfaces[2], synthetic: "rearPlate" },
+      ],
+      elements: [{ ...(valid.elements as Record<string, unknown>[])[0], synthetic: "rearPlate" }],
+    });
+
+    expect(errors.some((error) => error.includes("reserved for generated rear plates"))).toBe(true);
+    expect(errors.filter((error) => error.includes('"synthetic" is engine-generated'))).toHaveLength(2);
+    expect(errors.some((error) => error.includes('"clips" is engine-generated'))).toBe(true);
+  });
+
+  it("reserves the teleconverter label prefix for composed systems and checks their descriptor", () => {
+    const valid = makeValid();
+    const surfaces = valid.surfaces as Record<string, unknown>[];
+    const has = (errors: string[], text: string) => errors.some((error) => error.includes(text));
+
+    expect(
+      has(
+        validateLensData({ ...valid, surfaces: [surfaces[0], surfaces[1], { ...surfaces[2], label: "TC2" }] }),
+        "reserved for attached teleconverter surfaces",
+      ),
+    ).toBe(true);
+    expect(
+      has(validateLensData(makeValid({ acceptsTeleconverters: "yes" })), '"acceptsTeleconverters" must be a boolean'),
+    ).toBe(true);
+
+    const composed = attachTeleconverter(teleconverterHostData(), teleconverterFixture());
+    const descriptor = composed.attachedTeleconverter!;
+    expect(validateLensData(composed)).toEqual([]);
+    expect(
+      has(
+        validateLensData({ ...composed, attachedTeleconverter: { ...descriptor, lastSurfaceLabel: "TC1" } }),
+        "must name the trailing block of surfaces",
+      ),
+    ).toBe(true);
+    /* The descriptor claims the block starts one surface later than the prefixed labels do. */
+    expect(
+      has(
+        validateLensData({ ...composed, attachedTeleconverter: { ...descriptor, firstSurfaceLabel: "TC2" } }),
+        "label prefix must mark exactly",
+      ),
+    ).toBe(true);
+    expect(has(validateLensData({ ...composed, acceptsTeleconverters: true }), "converters do not stack")).toBe(true);
+    expect(
+      has(
+        validateLensData({
+          ...composed,
+          attachedTeleconverter: { ...descriptor, magnification: 1, firstElementId: 0 },
+        }),
+        '"attachedTeleconverter.magnification"',
+      ),
+    ).toBe(true);
   });
 
   it("rejects keys that are not URL- and cfg-safe", () => {
@@ -347,15 +523,131 @@ describe("validateLensData", () => {
     expect(
       validateLensData(
         makeValid({
+          imageFormat: "135-full-frame",
           perspectiveControl: {
             shiftRangeMm: [-11.5, 11.5],
             tiltRangeDeg: [-8.5, 8.5],
             shiftStepMm: 0.1,
             tiltStepDeg: 0.1,
+            tiltPivot: {
+              frame: "camera",
+              basis: "rear-vertex-fallback",
+              zOffsetFromImagePlaneMm: -56.5,
+            },
           },
         }),
       ),
     ).toEqual([]);
+
+    expect(
+      validateLensData(
+        makeValid({
+          imageFormat: "44x33",
+          perspectiveControl: {
+            shiftRangeMm: [-15, 15],
+            tiltRangeDeg: [-8.5, 8.5],
+            tiltPivot: {
+              frame: "camera",
+              basis: "patent-principal-point-guidance",
+              zOffsetFromImagePlaneMm: -30.9009,
+            },
+          },
+        }),
+      ),
+    ).toEqual([]);
+
+    expect(
+      validateLensData(
+        makeValid({
+          imageFormat: "135-full-frame",
+          perspectiveControl: {
+            shiftRangeMm: [-11, 11],
+            tiltRangeDeg: [0, 0],
+          },
+        }),
+      ),
+    ).toEqual([]);
+  });
+
+  it("requires a valid camera-frame pivot whenever tilt is enabled", () => {
+    const missing = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: { shiftRangeMm: [-11, 11], tiltRangeDeg: [-8.5, 8.5] },
+      }),
+    );
+    expect(missing.some((error) => error.includes('"perspectiveControl.tiltPivot"'))).toBe(true);
+
+    const malformed = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: {
+          shiftRangeMm: [-11, 11],
+          tiltRangeDeg: [-8.5, 8.5],
+          tiltPivot: {
+            frame: "lens",
+            basis: "current-stop",
+            zOffsetFromImagePlaneMm: Number.NaN,
+          },
+        },
+      }),
+    );
+    expect(malformed.some((error) => error.includes("tiltPivot.frame"))).toBe(true);
+    expect(malformed.some((error) => error.includes("tiltPivot.basis"))).toBe(true);
+    expect(malformed.some((error) => error.includes("tiltPivot.zOffsetFromImagePlaneMm"))).toBe(true);
+
+    for (const invalidOffset of [0, 1]) {
+      const nonObjectward = validateLensData(
+        makeValid({
+          imageFormat: "135-full-frame",
+          perspectiveControl: {
+            shiftRangeMm: [-11, 11],
+            tiltRangeDeg: [-8.5, 8.5],
+            tiltPivot: {
+              frame: "camera",
+              basis: "rear-vertex-fallback",
+              zOffsetFromImagePlaneMm: invalidOffset,
+            },
+          },
+        }),
+      );
+      expect(nonObjectward.some((error) => error.includes("must be a finite negative number"))).toBe(true);
+    }
+  });
+
+  it("requires image format, omits tilt pivots for shift-only lenses, and excludes generalized paths", () => {
+    const shiftOnly = {
+      shiftRangeMm: [-11, 11],
+      tiltRangeDeg: [0, 0],
+    };
+    const missingFormat = validateLensData(makeValid({ perspectiveControl: shiftOnly }));
+    expect(missingFormat.some((error) => error.includes('"imageFormat" is required'))).toBe(true);
+
+    const disabledTiltPivot = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: {
+          ...shiftOnly,
+          tiltPivot: {
+            frame: "camera",
+            basis: "rear-vertex-fallback",
+            zOffsetFromImagePlaneMm: -45,
+          },
+        },
+      }),
+    );
+    expect(disabledTiltPivot.some((error) => error.includes("must be omitted when tilt is disabled"))).toBe(true);
+
+    const generalizedPath = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: shiftOnly,
+        opticalPath: {},
+      }),
+    );
+    expect(generalizedPath.some((error) => error.includes('cannot be combined with generalized "opticalPath"'))).toBe(
+      true,
+    );
   });
 
   it("catches invalid perspectiveControl movement ranges", () => {
@@ -374,6 +666,11 @@ describe("validateLensData", () => {
     expect(errors.some((error) => error.includes("perspectiveControl.tiltRangeDeg"))).toBe(true);
     expect(errors.some((error) => error.includes("perspectiveControl.shiftStepMm"))).toBe(true);
     expect(errors.some((error) => error.includes("perspectiveControl.tiltStepDeg"))).toBe(true);
+
+    const noMovementErrors = validateLensData(
+      makeValid({ perspectiveControl: { shiftRangeMm: [0, 0], tiltRangeDeg: [0, 0] } }),
+    );
+    expect(noMovementErrors.some((error) => error.includes("must enable shift, tilt, or both"))).toBe(true);
   });
 
   it("accepts valid fisheye projection metadata", () => {
@@ -583,6 +880,39 @@ describe("validateLensData", () => {
     });
     const errors = validateLensData(data);
     expect(errors.some((e) => e.includes("length 2"))).toBe(true);
+  });
+
+  it("accepts aligned multi-keyframe focus positions and prime spacings", () => {
+    const data = makeValid({
+      focusPositions: [0, 0.4, 1],
+      var: { STO: [2, 3, 4] },
+    });
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("catches invalid focus position coordinates", () => {
+    const invalidCases = [
+      [0.1, 0.5, 1],
+      [0, 0.5, 0.5, 1],
+      [0, Number.NaN, 1],
+      [0, 0.5, 0.9],
+    ];
+    for (const focusPositions of invalidCases) {
+      const errors = validateLensData(makeValid({ focusPositions, var: { STO: focusPositions.map(() => 2) } }));
+      expect(
+        errors.some((error) => error.includes("focusPositions")),
+        focusPositions.join(","),
+      ).toBe(true);
+    }
+  });
+
+  it("requires every prime focus range to align with focusPositions", () => {
+    const data = makeValid({
+      focusPositions: [0, 0.4, 1],
+      var: { STO: [2, 4] },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((error) => error.includes('var["STO"]') && error.includes("length 3"))).toBe(true);
   });
 
   it("catches invalid varLabels reference", () => {
@@ -840,6 +1170,157 @@ describe("validateLensData", () => {
     ).toBe(true);
   });
 
+  /* Proves malformed folded-path data is rejected: one row per validator branch, each mutating the hidden
+   * Newtonian reference (auto mode, so no probe trace runs). Branches already exercised by
+   * mirrorOptics.test.ts (unknown surfaceOrder label, innerSd >= sd, backing normals, maxInteractions floor,
+   * paired innerSd, unreachable image plane) are not repeated. */
+  const foldedBase = (): Record<string, any> => structuredClone(LENS_CATALOG["reference-newtonian-side-focus"]);
+  const surf = (d: Record<string, any>, label: string) => d.surfaces.find((s: { label: string }) => s.label === label);
+  const zoomControl = (range: unknown) => (d: Record<string, any>) =>
+    Object.assign(d, { zoomPositions: [100, 200], aberrationControl: { label: "SA", var: { STO: range } } });
+
+  it("accepts the unmodified folded reference base", () => {
+    expect(validateLensData(foldedBase())).toEqual([]);
+  });
+
+  it.each<{ name: string; mutate: (d: Record<string, any>) => unknown; expected: string }>([
+    {
+      name: "non-object opticalPath",
+      mutate: (d) => Object.assign(d, { opticalPath: "auto" }),
+      expected: '"opticalPath" must be an object',
+    },
+    {
+      name: "unknown opticalPath.mode",
+      mutate: (d) => Object.assign(d.opticalPath, { mode: "folded" }),
+      expected: '"opticalPath.mode" must be "sequential" or "auto"',
+    },
+    {
+      name: "empty surfaceOrder",
+      mutate: (d) => Object.assign(d.opticalPath, { surfaceOrder: [] }),
+      expected: '"opticalPath.surfaceOrder" must be a non-empty array',
+    },
+    {
+      name: "non-object imagePlane",
+      mutate: (d) => Object.assign(d.opticalPath, { imagePlane: 35 }),
+      expected: '"opticalPath.imagePlane" must be an object',
+    },
+    {
+      name: "non-finite imagePlane.z",
+      mutate: (d) => Object.assign(d.opticalPath.imagePlane, { z: Number.NaN }),
+      expected: '"opticalPath.imagePlane.z" must be a finite number',
+    },
+    {
+      name: "non-numeric imagePlane.y",
+      mutate: (d) => Object.assign(d.opticalPath.imagePlane, { y: "25" }),
+      expected: '"opticalPath.imagePlane.y" must be a finite number',
+    },
+    {
+      name: "non-string imagePlane.label",
+      mutate: (d) => Object.assign(d.opticalPath.imagePlane, { label: 7 }),
+      expected: '"opticalPath.imagePlane.label" must be a string',
+    },
+    {
+      name: "imagePlane.normal missing y",
+      mutate: (d) => Object.assign(d.opticalPath.imagePlane, { normal: { z: 0 } }),
+      expected: '"opticalPath.imagePlane.normal" must contain finite z and y numbers',
+    },
+    {
+      name: "fractional maxInteractions",
+      mutate: (d) => Object.assign(d.opticalPath, { maxInteractions: 2.5 }),
+      expected: '"opticalPath.maxInteractions" must be a positive integer',
+    },
+    {
+      name: "negative innerSd",
+      mutate: (d) => Object.assign(surf(d, "M1"), { innerSd: -1 }),
+      expected: "innerSd must be a finite non-negative number",
+    },
+    {
+      name: "non-object interaction",
+      mutate: (d) => Object.assign(surf(d, "SEC"), { interaction: "reflect" }),
+      expected: "interaction must be an object when provided",
+    },
+    {
+      name: "unknown interaction.type",
+      mutate: (d) => Object.assign(surf(d, "SEC").interaction, { type: "scatter" }),
+      expected: 'interaction.type must be "refract", "reflect", or "block"',
+    },
+    {
+      name: "unknown incidentSide",
+      mutate: (d) => Object.assign(surf(d, "SEC").interaction, { incidentSide: "side" }),
+      expected: 'interaction.incidentSide must be "front", "rear", or "both"',
+    },
+    {
+      name: "unknown inactiveSide",
+      mutate: (d) => Object.assign(surf(d, "SEC").interaction, { inactiveSide: "pass" }),
+      expected: 'interaction.inactiveSide must be "ignore" or "block"',
+    },
+    {
+      name: "unknown mirrorKind",
+      mutate: (d) => Object.assign(surf(d, "SEC").interaction, { mirrorKind: "third-surface" }),
+      expected: 'interaction.mirrorKind must be "first-surface" or "second-surface"',
+    },
+    {
+      name: "zero-vector interaction.normal",
+      mutate: (d) => Object.assign(surf(d, "SEC").interaction, { normal: { z: 0, y: 0 } }),
+      expected: "interaction.normal must not be the zero vector",
+    },
+    {
+      name: "unknown stopPlacement value",
+      mutate: (d) => Object.assign(surf(d, "STO"), { stopPlacement: "behind" }),
+      expected: 'stopPlacement must be "inside-element"',
+    },
+    {
+      name: "stopPlacement off the STO surface",
+      mutate: (d) => Object.assign(surf(d, "SEC"), { stopPlacement: "inside-element" }),
+      expected: 'stopPlacement is only valid on the "STO" surface',
+    },
+    {
+      name: "internal stop without a containing span",
+      mutate: (d) => Object.assign(surf(d, "STO"), { stopPlacement: "inside-element" }),
+      expected: "requires exactly one explicit containing element span",
+    },
+    {
+      name: "zoom aberrationControl.var without one entry per station",
+      mutate: zoomControl([[35, 40]]),
+      expected: 'aberrationControl.var["STO"]: expected array of 2 [normal, maximum] arrays',
+    },
+    {
+      name: "zoom aberrationControl.var station of wrong length",
+      mutate: zoomControl([[35, 40], [35]]),
+      expected: 'aberrationControl.var["STO"][1]: expected [normal, maximum] array of length 2',
+    },
+    {
+      name: "non-finite zoom aberrationControl.var position",
+      mutate: zoomControl([
+        [35, 40],
+        [Number.NaN, 40],
+      ]),
+      expected: 'aberrationControl.var["STO"][1]: normal must be a finite number',
+    },
+    {
+      name: "negative zoom aberrationControl.var position",
+      mutate: zoomControl([
+        [35, 40],
+        [35, -1],
+      ]),
+      expected: 'aberrationControl.var["STO"][1]: maximum=-1 is negative',
+    },
+    {
+      name: "empty lensMounts",
+      mutate: (d) => Object.assign(d, { lensMounts: [] }),
+      expected: '"lensMounts" must not be empty when provided',
+    },
+    {
+      name: "non-object projection",
+      mutate: (d) => Object.assign(d, { projection: "fisheye" }),
+      expected: '"projection" must be an object when provided',
+    },
+  ])("rejects $name", ({ mutate, expected }) => {
+    const data = foldedBase();
+    mutate(data);
+    expect(validateLensData(data)).toContainEqual(expect.stringContaining(expected));
+  });
+
   it("rejects malformed explicit element spans", () => {
     const missing = validateLensData(
       makeValid({
@@ -971,6 +1452,25 @@ describe("validateLensData", () => {
     expect(errors.some((e) => e.includes("SD ratio"))).toBe(true);
   });
 
+  it("supports a source-backed per-element aperture ratio without relaxing physical checks", () => {
+    const data = makeValid();
+    const elements = data.elements as Record<string, unknown>[];
+    const surfaces = data.surfaces as Record<string, unknown>[];
+    surfaces[0].sd = 2;
+    expect(validateLensData(data).some((e) => e.includes("SD ratio"))).toBe(true);
+    elements[0].maxSdRatio = 4;
+    expect(validateLensData(data)).toEqual([]);
+    surfaces[0].R = 1;
+    expect(validateLensData(data).length).toBeGreaterThan(0);
+    surfaces[0].R = 100;
+    surfaces[0].d = 0.001;
+    expect(validateLensData(data).some((e) => e.includes("negative edge thickness"))).toBe(true);
+    for (const value of [NaN, Infinity, 0, "4"]) {
+      elements[0].maxSdRatio = value;
+      expect(validateLensData(data).some((e) => e.includes("maxSdRatio must"))).toBe(true);
+    }
+  });
+
   it("allows SD ratio up to 3.0 for deep meniscus elements", () => {
     const data = makeValid({
       elements: [
@@ -1076,6 +1576,37 @@ describe("validateLensData — production lenses", () => {
  * ═══════════════════════════════════════════════════════════════════ */
 
 describe("validateLensData — zoom lens paths", () => {
+  it("accepts aligned focus keyframes at every zoom position", () => {
+    const data = makeValid({
+      nominalFno: [2, 2],
+      zoomPositions: [24, 70],
+      focusPositions: [0, 0.5, 1],
+      var: {
+        STO: [
+          [2, 3, 2],
+          [4, 6, 5],
+        ],
+      },
+    });
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("requires every zoom focus vector to align with focusPositions", () => {
+    const data = makeValid({
+      nominalFno: [2, 2],
+      zoomPositions: [24, 70],
+      focusPositions: [0, 0.5, 1],
+      var: {
+        STO: [
+          [2, 3, 2],
+          [4, 5],
+        ],
+      },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((error) => error.includes('var["STO"][1]') && error.includes("length 3"))).toBe(true);
+  });
+
   it("catches negative var thickness in zoom format", () => {
     const data = makeValid({
       zoomPositions: [24, 70],
@@ -1202,10 +1733,10 @@ describe("validateLensData — zoom lens paths", () => {
           [2, 3],
           [4, 5],
         ],
-      }, // only 2 pairs, needs 3
+      }, // only 2 focus vectors, needs 3
     });
     const errors = validateLensData(data);
-    expect(errors.some((e) => e.includes("3 [d_inf, d_close] pairs"))).toBe(true);
+    expect(errors.some((e) => e.includes("3 focus-thickness vectors"))).toBe(true);
   });
 
   it("catches zoomPositions with fewer than 2 entries", () => {
@@ -1226,18 +1757,18 @@ describe("validateLensData — zoom lens paths", () => {
     expect(errors.some((e) => e.includes("finite numbers"))).toBe(true);
   });
 
-  it("catches zoom var entry that is not a [d_inf, d_close] pair", () => {
+  it("catches zoom var entry that is not a focus-thickness vector", () => {
     const data = makeValid({
       zoomPositions: [24, 70],
       var: {
         STO: [
           [2, 3],
-          5, // not a pair
+          5, // not a focus vector
         ],
       },
     });
     const errors = validateLensData(data);
-    expect(errors.some((e) => e.includes("[d_infinity, d_close]"))).toBe(true);
+    expect(errors.some((e) => e.includes("focus-thickness array of length 2"))).toBe(true);
   });
 
   it("catches zoom var entry with wrong-length inner array", () => {
@@ -1251,7 +1782,7 @@ describe("validateLensData — zoom lens paths", () => {
       },
     });
     const errors = validateLensData(data);
-    expect(errors.some((e) => e.includes("[d_infinity, d_close]"))).toBe(true);
+    expect(errors.some((e) => e.includes("focus-thickness array of length 2"))).toBe(true);
   });
 });
 
@@ -1394,5 +1925,118 @@ describe("validateLensData — rim slope check", () => {
     });
     const errors = validateLensData(data);
     expect(errors.some((e) => e.includes("rim slope"))).toBe(true);
+  });
+});
+
+// These guards cover new shared data contracts, not per-lens prescription snapshots.
+describe("zoom source schedules", () => {
+  it("rejects malformed physical iris schedules and conflicting inferred schedules", () => {
+    for (const zoomStopSemiDiameters of [[8], [8, 0, 12], [8, NaN, 12]]) {
+      expect(
+        validateLensData(makeValid({ zoomPositions: [20, 35, 50], zoomStopSemiDiameters })).some((e) =>
+          e.includes("zoomStopSemiDiameters"),
+        ),
+      ).toBe(true);
+    }
+    expect(
+      validateLensData(
+        makeValid({
+          zoomPositions: [20, 35, 50],
+          zoomStopSemiDiameters: [8, 10, 12],
+          zoomApertureModel: "from-nominal-fno",
+        }),
+      ).some((e) => e.includes("zoomStopSemiDiameters")),
+    ).toBe(true);
+  });
+  it("rejects malformed zoom focus endpoints and unknown aperture models", () => {
+    for (const zoomCloseFocusM of [[1], [1, -1, 2], [1, Infinity, 2]]) {
+      expect(
+        validateLensData(makeValid({ zoomPositions: [20, 35, 50], zoomCloseFocusM })).some((e) =>
+          e.includes("zoomCloseFocusM"),
+        ),
+      ).toBe(true);
+    }
+    const modelErrors = (overrides: Record<string, unknown>) =>
+      validateLensData(makeValid(overrides)).filter((e) => e.includes("zoomApertureModel"));
+    expect(modelErrors({ zoomPositions: [20, 35, 50], zoomApertureModel: "unknown" })).toHaveLength(1);
+    expect(modelErrors({ zoomApertureModel: "fixed-iris" })).toHaveLength(1);
+    for (const zoomApertureModel of ["from-nominal-fno", "fixed-iris"]) {
+      expect(modelErrors({ zoomPositions: [20, 35, 50], zoomApertureModel })).toHaveLength(0);
+    }
+  });
+});
+
+describe("published image-circle diameter", () => {
+  it("accepts a circle without inventing a format or projection law", () => {
+    expect(validateLensData(makeValid({ imageCircleMm: 8.7 }))).toEqual([]);
+  });
+  it.each([0, -1, NaN, Infinity, "8.7"])("rejects invalid diameter %s", (imageCircleMm) => {
+    expect(validateLensData(makeValid({ imageCircleMm })).some((error) => error.includes("imageCircleMm"))).toBe(true);
+  });
+});
+
+describe("source errata", () => {
+  const corrected = {
+    status: "corrected",
+    surface: "1",
+    field: "R",
+    printed: -100,
+    applied: 100,
+    evidence: ["source-summary", "sibling-example"],
+    note: "Printed sign contradicts the stated focal length.",
+  };
+  const errataErrors = (sourceErrata: unknown) =>
+    validateLensData(makeValid({ sourceErrata })).filter((error) => error.includes("sourceErrata"));
+  it("accepts a correction the file carries and an unresolved contradiction", () => {
+    expect(
+      errataErrors([corrected, { status: "unresolved", note: "Table and summary focal lengths differ." }]),
+    ).toEqual([]);
+    expect(errataErrors([{ ...corrected, evidence: ["aberration-figure", "family-publication"] }])).toEqual([]);
+    const coefficient = { ...corrected, field: "A4", printed: 1e-6, applied: -1e-6 };
+    const asph = { "1": { K: 0, A4: -1e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } };
+    expect(
+      validateLensData(makeValid({ asph, sourceErrata: [coefficient] })).filter((e) => e.includes("sourceErrata")),
+    ).toEqual([]);
+  });
+  it("requires the applied value to be the one in the file", () => {
+    expect(errataErrors([{ ...corrected, applied: 90 }]).join(" ")).toContain("must carry the applied value 90");
+    expect(errataErrors([{ ...corrected, field: "A4" }]).join(" ")).toContain("must carry the applied value");
+  });
+  it("checks the host's last gap on the bare host only, since a converter replaces it", () => {
+    const host = teleconverterHostData();
+    const last = host.surfaces.at(-1)!;
+    const sourceErrata = [{ ...corrected, surface: last.label, field: "d", printed: last.d + 1, applied: last.d }];
+    expect(validateLensData({ ...host, sourceErrata }).filter((e) => e.includes("sourceErrata"))).toEqual([]);
+    const composed = attachTeleconverter({ ...host, sourceErrata } as typeof host, teleconverterFixture());
+    expect(composed.surfaces.find((surface) => surface.label === last.label)!.d).not.toBe(last.d);
+    expect(validateLensData(composed).filter((e) => e.includes("sourceErrata"))).toEqual([]);
+    // Any other value of the host must still match on the composed system.
+    const first = host.surfaces[0];
+    const wrong = [{ ...corrected, surface: first.label, field: "R", printed: first.R + 1, applied: first.R + 2 }];
+    expect(
+      validateLensData(attachTeleconverter({ ...host, sourceErrata: wrong } as typeof host, teleconverterFixture()))
+        .filter((e) => e.includes("sourceErrata"))
+        .join(" "),
+    ).toContain("must carry the applied value");
+  });
+  it("rejects thin, external or malformed evidence", () => {
+    expect(errataErrors([{ ...corrected, evidence: ["sibling-example"] }]).join(" ")).toContain("at least 2 kinds");
+    expect(errataErrors([{ ...corrected, evidence: ["sibling-example", "sibling-example"] }]).join(" ")).toContain(
+      "at least 2 kinds",
+    );
+    expect(errataErrors([{ ...corrected, evidence: ["source-summary", "manufacturer-chart"] }]).join(" ")).toContain(
+      "source-internal kinds",
+    );
+  });
+  it.each([
+    ["a non-array", { status: "unresolved", note: "x" }, "must be an array"],
+    ["a missing note", [{ status: "unresolved" }], "non-empty note"],
+    ["an unknown status", [{ status: "fixed", note: "x" }], "status must be"],
+    ["an unknown surface", [{ ...corrected, surface: "99" }], "must match a surface label"],
+    ["an unknown field", [{ ...corrected, field: "sd" }], "asph coefficient key"],
+    ["an unchanged value", [{ ...corrected, printed: 100 }], "differs from the printed one"],
+    ["a non-finite value", [{ ...corrected, printed: NaN }], "printed must be a finite number"],
+  ])("rejects %s", (_label, sourceErrata, message) => {
+    expect(errataErrors(sourceErrata).join(" ")).toContain(message);
   });
 });

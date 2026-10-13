@@ -10,7 +10,7 @@
 
 import { useCallback, useEffect, useRef, type Dispatch } from "react";
 import type { NavigateFunction } from "react-router";
-import useComparisonMode, { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
+import useComparisonMode, { type ComparisonLensesResult } from "./useComparisonMode.js";
 import useStickySliders from "./useStickySliders.js";
 import {
   SET_SHARED_STOPDOWN_T,
@@ -22,6 +22,7 @@ import {
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { LensState, LensAction } from "../types/state.js";
 import { canonicalPagePath } from "../utils/seo/siteUrls.js";
+import { buildLensViewQuery } from "../utils/state/lensViewUrlState.js";
 
 export { isComparisonOk } from "./useComparisonMode.js";
 export type { ComparisonLensesResult } from "./useComparisonMode.js";
@@ -43,12 +44,12 @@ export interface ComparisonOrchestration {
   maxHeaderHeight: number;
   handleHeaderHeight: (panelId: string, height: number) => void;
   flashPanel: string | null;
-  handleSharedFocusChange: (value: number) => void;
-  handleSharedStopdownChange: (value: number) => void;
+  handleSharedFocusChange: (value: number, direct?: boolean) => void;
+  handleSharedStopdownChange: (value: number, direct?: boolean) => void;
   handleSharedShiftChange: (value: number) => void;
   handleSharedTiltChange: (value: number) => void;
-  handleFocusPointerDown: () => void;
-  handleAperturePointerDown: () => void;
+  handleFocusPointerDown: (value?: number) => void;
+  handleAperturePointerDown: (value?: number) => void;
   toggleCompare: () => void;
 }
 
@@ -59,7 +60,7 @@ export default function useComparisonOrchestration({
   catalogKeys,
 }: UseComparisonOrchestrationParams): ComparisonOrchestration {
   const { lens, sharedSliders } = state;
-  const { lensKeyA, lensKeyB, comparing, scaleMode } = lens;
+  const { lensKeyA, lensKeyB, teleconverterKeyA, teleconverterKeyB, comparing, scaleMode } = lens;
   const { sharedFocusT, sharedStopdownT, sharedZoomT, sharedShiftMm, sharedTiltDeg } = sharedSliders;
 
   /* ── Comparison mode: lens building, slider pairs, scale ratios, header alignment ── */
@@ -76,6 +77,8 @@ export default function useComparisonOrchestration({
     comparing,
     lensKeyA,
     lensKeyB,
+    teleconverterKeyA,
+    teleconverterKeyB,
     scaleMode,
     sharedFocusT,
     sharedStopdownT,
@@ -94,7 +97,7 @@ export default function useComparisonOrchestration({
     flashPanel,
     resetSticky,
     prevStopdownT,
-  } = useStickySliders(dispatch, focusPair, aperturePair, comparisonLenses as Parameters<typeof useStickySliders>[3]);
+  } = useStickySliders(dispatch, focusPair, aperturePair);
 
   const handleSharedShiftChange = useCallback(
     (value: number) => dispatch({ type: SET_SHARED_SHIFT_MM, value }),
@@ -107,19 +110,12 @@ export default function useComparisonOrchestration({
 
   /* ── Set default aperture to slowest lens wide-open when entering comparison ── */
   useEffect(() => {
-    if (!justEnteredCompare.current || !isComparisonOk(comparisonLenses)) return;
+    if (!justEnteredCompare.current || !aperturePair) return;
     justEnteredCompare.current = false;
-    const { LA, LB } = comparisonLenses;
-    const widerFOPEN = Math.min(LA.FOPEN, LB.FOPEN);
-    const narrowerFOPEN = Math.max(LA.FOPEN, LB.FOPEN);
-    const sharedMaxFstop = Math.max(LA.maxFstop, LB.maxFstop);
-    const cp =
-      Math.abs(widerFOPEN - narrowerFOPEN) < 0.01
-        ? 0
-        : Math.log(narrowerFOPEN / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
+    const cp = aperturePair.commonPoint;
     prevStopdownT.current = cp;
     dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
-  }, [comparisonLenses, dispatch, prevStopdownT]);
+  }, [aperturePair, dispatch, prevStopdownT]);
 
   /* ── Enter/exit comparison mode ── */
   const toggleCompare = useCallback(() => {
@@ -128,11 +124,19 @@ export default function useComparisonOrchestration({
       resetSticky();
       justEnteredCompare.current = true;
       const comparisonKeyA = lens.selectedConfigurationKey;
+      /* Mirrors ENTER_COMPARE: a mounted converter is compared against its own bare host. */
       const autoB =
-        comparisonKeyA === lensKeyB && catalogKeys.length > 1
-          ? catalogKeys[(catalogKeys.indexOf(comparisonKeyA) + 1) % catalogKeys.length]
-          : lensKeyB;
-      void navigate(canonicalPagePath(`/compare/${comparisonKeyA}/${autoB}`), { replace: false });
+        teleconverterKeyA !== null
+          ? comparisonKeyA
+          : comparisonKeyA === lensKeyB && catalogKeys.length > 1
+            ? catalogKeys[(catalogKeys.indexOf(comparisonKeyA) + 1) % catalogKeys.length]
+            : lensKeyB;
+      /* The compare route mounts a fresh viewer that initializes from the URL, so a mounted converter has to
+         travel in the navigation itself; the debounced URL writer would run too late to carry it across. */
+      const search = buildLensViewQuery({ comparing: true, teleconverterKeyA }).toString();
+      void navigate(canonicalPagePath(`/compare/${comparisonKeyA}/${autoB}${search ? `?${search}` : ""}`), {
+        replace: false,
+      });
     } else {
       dispatch({
         type: EXIT_COMPARE,
@@ -140,12 +144,15 @@ export default function useComparisonOrchestration({
         stopdownA: aperturePair?.stopdownA,
         ...(movementPair ? { shiftA: movementPair.shiftA, tiltA: movementPair.tiltA } : {}),
       });
-      void navigate(canonicalPagePath(`/lens/${lensKeyA}`), { replace: false });
+      /* Same remount on the way out: pane A's converter follows its lens back to the single-lens route. */
+      const search = buildLensViewQuery({ teleconverterKey: teleconverterKeyA }).toString();
+      void navigate(canonicalPagePath(`/lens/${lensKeyA}${search ? `?${search}` : ""}`), { replace: false });
     }
   }, [
     comparing,
     lensKeyA,
     lensKeyB,
+    teleconverterKeyA,
     lens.selectedConfigurationKey,
     focusPair,
     aperturePair,

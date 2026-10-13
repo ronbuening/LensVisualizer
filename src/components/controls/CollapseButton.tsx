@@ -18,7 +18,7 @@ interface CollapseButtonProps {
 
 export default function CollapseButton({ expanded, onToggle, theme: t, label, style }: CollapseButtonProps) {
   return (
-    <button onClick={onToggle} style={{ ...collapseBtn(t), ...style }}>
+    <button type="button" aria-expanded={expanded} onClick={onToggle} style={{ ...collapseBtn(t), ...style }}>
       <span>{label ?? (expanded ? "LESS" : "MORE")}</span>
       <span style={{ fontSize: 11, lineHeight: 1 }}>{expanded ? "\u25B4" : "\u25BE"}</span>
     </button>

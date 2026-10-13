@@ -48,8 +48,8 @@ export default function useComparisonDisplayValues({
   const sharedDisplayFNumber = aperturePair
     ? sharedFNumber(sharedStopdownT, aperturePair.widerFOPEN, aperturePair.sharedMaxFstop)
     : 1;
-  const fNumA = LA ? LA.FOPEN * Math.pow(LA.maxFstop / LA.FOPEN, aperturePair?.stopdownA ?? 0) : sharedDisplayFNumber;
-  const fNumB = LB ? LB.FOPEN * Math.pow(LB.maxFstop / LB.FOPEN, aperturePair?.stopdownB ?? 0) : sharedDisplayFNumber;
+  const fNumA = aperturePair?.fNumberA ?? sharedDisplayFNumber;
+  const fNumB = aperturePair?.fNumberB ?? sharedDisplayFNumber;
 
   const effectiveFNumA = useMemo(
     () => (LA ? effectiveFNumber(fNumA, focusA, zoomA, LA) : fNumA),

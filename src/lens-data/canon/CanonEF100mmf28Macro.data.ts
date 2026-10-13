@@ -12,8 +12,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 48.74 mm at infinity / 0.5× / 1.0×. Groups I + II and the diaphragm       ║
  * ║ translate integrally toward the object while Group III and the image plane ║
  * ║ remain fixed. With R1 normalized as the axial origin, this is represented  ║
- * ║ by the single variable gap D14. The published 0.5× value is exactly the    ║
- * ║ midpoint of the authored infinity/1× endpoints.                            ║
+ * ║ by the single variable gap D14. All three rows are exact focus keyframes. ║
  * ║                                                                            ║
  * ║ Patent R9 is printed only as the diaphragm; data R = 1e15 is the schema's ║
  * ║ zero-power STO representation, not a patent-tabulated curvature.              ║
@@ -55,7 +54,7 @@ const LENS_DATA = {
   apertureDesign: 2.89,
   lensMounts: ["canon-ef"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP 1991-141313",
+  patentNumber: "JP 1991-141313 A",
   patentAuthors: ["Hideki Ogawa"],
   patentAssignees: ["Canon Inc."],
   patentYear: 1991,
@@ -204,9 +203,10 @@ const LENS_DATA = {
 
   asph: {},
 
+  focusPositions: [0, 0.7995997649601272, 1],
   /* Published D14 states: 2.50 mm (∞), 25.62 mm (0.5×), 48.74 mm (1.0×). */
   var: {
-    "14": [2.5, 48.74],
+    "14": [2.5, 25.62, 48.74],
   },
   varLabels: [["14", "D14"]],
 
@@ -219,6 +219,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 0.306871129985,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED — Groups I + II and the diaphragm translate toward the object while Group III and the image plane remain fixed. In R1-normalized coordinates only D14 changes: 2.50 mm at infinity, 25.62 mm at 0.5×, and 48.74 mm at 1.0×. The modeled 1× subject-to-image distance is 0.30687 m; Canon markets 0.31 m.",
 

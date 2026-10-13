@@ -6,9 +6,12 @@
 **Priority:** JP 2000-070781 (2000-03-14); JP 2001-055060 (2001-02-28)
 **Published:** 2001-10-18
 **Inventor:** Akiko Furuta
-**Applicant/Assignee:** Not stated on the cited US publication
+**Applicant/Assignee on the A1 front page:** Not stated
+**Assignee (assignment record):** Nikon Corporation
 **Title:** *ZOOM LENS SYSTEM*
 **Embodiment analyzed:** Example 2
+
+The local A1 front page does not print an organizational assignee. The [same-application assignment history](https://patents.google.com/patent/US6441967B2/en) for US 09/800,525 reports assignment to **Nikon Corporation**, recorded **2001-03-08**, effective 2001-03-01, reel/frame **011589/0217**. This record predates the A1 publication and supports the structured `patentAssignees` attribution. The printed applicant/inventor remains distinct from this assignment evidence; the underlying assignment instrument has not been independently inspected. Patent attribution does not establish the exact production prescription or manufacturing identity.
 
 The prescription represented here is Example 2 of US 2001/0030812 A1, correlated to the production
 Nikon AI AF Zoom-Nikkor 18-35mm f/3.5-4.5D IF-ED. The patent and production lens are treated as a
@@ -326,9 +329,9 @@ transform:
 The patent also prints \(C_2=0\); there is therefore no authored quadratic polynomial term beyond
 the conic base.
 
-At the verified modeled semi-diameter of 15.0 mm, the polynomial contribution relative to the conic
-base is 0.526812 mm. The total aspheric sag is 3.677719 mm, which is a 1.058830 mm departure from
-the same-radius spherical sag. The actual aspherical rim slope is approximately 36.26°, and the authored
+At the verified modeled semi-diameter of 16.3 mm, the polynomial contribution relative to the conic
+base is 0.818578 mm. The total aspheric sag is 4.785795 mm, which is a 1.675506 mm departure from
+the same-radius spherical sag. The actual aspherical rim slope is approximately 44.77°, and the authored
 semi-diameter remains below the current 98%-of-conic-domain validation limit of 18.608119 mm.
 These quantities are modeling results at the validated rim, not patent-published clear-aperture
 dimensions.
@@ -419,7 +422,7 @@ and basis-ray reconstruction agree to machine precision. The Petzval sum is
 precision at all three zoom positions.
 
 The inferred geometry also satisfies the current optical and geometry checks. The minimum modeled
-element edge thickness is 0.634966 mm. The limiting air gap is the 0.7 mm gap from surface 16 to 17;
+element edge thickness is 0.425851 mm (the compound-asphere layer at 16.1 mm). The limiting air gap is the 0.7 mm gap from surface 16 to 17;
 at the shared 7.4 mm semi-diameter the remaining physical axial clearance is 0.088728 mm. Default
 modeled on-axis and 0.60-field off-axis ray samples remain inside the authored apertures at all six
 wide/intermediate/telephoto × infinity/near states.

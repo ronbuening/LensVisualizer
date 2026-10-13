@@ -2,14 +2,14 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S NIKKOR 500mm f/4E FL ED VR                      ║
+ * ║  LENS DATA — NIKON AF-S NIKKOR 500mm f/4 E FL ED VR                      ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Source: JP 2015-215560 A, Example 1 (Nikon Corporation).                 ║
  * ║  Native patent scale; no uniform scaling is applied.                       ║
  * ║  16 active elements / 12 air-separated groups; all surfaces spherical.     ║
  * ║                                                                            ║
  * ║  Focus status: PUBLISHED. G2 translates imageward while d11 + d16 remains  ║
- * ║  50.610 mm. The data endpoints are the patent infinity and near rows.      ║
+ * ║  50.610 mm. Infinity, intermediate, and near are exact focus keyframes.    ║
  * ║  The published intermediate row is reproduced by linear interpolation at   ║
  * ║  focus t = 0.2102460786 (d11 = 17.427, d16 = 33.183 mm).                  ║
  * ║                                                                            ║
@@ -58,7 +58,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-nikkor-500mm-f4e-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 500mm f/4E FL ED VR",
+  name: "NIKON AF-S NIKKOR 500mm f/4 E FL ED VR",
   subtitle: "JP 2015-215560 A Example 1 — FLG omitted; active rear focus normalized",
   specs: [
     "16 ELEMENTS / 12 GROUPS",
@@ -75,7 +75,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2015-215560 A",
-  patentAuthors: ["Masafumi Yamashita", "Tetsushi Miwa"],
+  patentAuthors: ["Masashi Yamashita", "Satoshi Miwa"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 2015,
   elementCount: 16,
@@ -382,10 +382,11 @@ const LENS_DATA = {
 
   asph: {},
 
-  /* ── Published internal-focus movement ── */
+  /* ── Published internal-focus keyframes ── */
+  focusPositions: [0, 0.23802029005870562, 1],
   var: {
-    "11": [14.505, 28.403],
-    "16": [36.105, 22.207],
+    "11": [14.505, 17.427, 28.403],
+    "16": [36.105, 33.183, 22.207],
   },
   varLabels: [
     ["11", "D11 (G1→G2)"],
@@ -410,6 +411,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 3.588203,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED internal focus: G2 (surfaces 12–16) translates imageward with d11 14.505→28.403 mm and d16 36.105→22.207 mm; d11+d16 remains 50.610 mm and the stop is fixed. The patent intermediate row (17.427/33.183 mm) lies exactly at t=0.210246 of this motion. FLG is omitted and the rear air is normalized to 87.868557 mm; the resulting modeled near focal-plane distance is 3.588203 m versus Nikon's rounded 3.6 m specification.",
 

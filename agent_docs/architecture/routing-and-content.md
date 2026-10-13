@@ -26,12 +26,14 @@ build metadata.
 | `MountsIndexPage.tsx` | `src/pages/` | Mount index at `/mounts`, lists represented mounts with counts. |
 | `FormatPage.tsx` | `src/pages/` | Image-format page at `/formats/:formatId`, lists lenses for one format. |
 | `FormatsIndexPage.tsx` | `src/pages/` | Image-format index at `/formats`, lists represented formats with counts. |
+| `TeleconverterPage.tsx` | `src/pages/` | Teleconverter page at `/teleconverters/:teleconverterKey`: specs, patent, and the lenses it can mount on. No diagram; each lens link opens the viewer with `?v=1&tc=<key>`. |
+| `TeleconvertersIndexPage.tsx` | `src/pages/` | Teleconverter index at `/teleconverters`. |
 | `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO fallback content plus client-only `LensViewer`. |
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
 | `UpdatesPage.tsx` | `src/pages/` | Recently added lens/update page. |
 | `RelationshipMapPage.tsx` | `src/pages/` | Patent relationship map at `/relationships`; the focus inventor/assignee lives in a `#focus=<role>:<slug>` fragment (see below). |
-| `UniversalRelationshipMapPage.tsx` | `src/pages/` | Catalog-wide patent and corporate-lineage network at `/relationships/universal`, linked only from the relationship-map index. |
+| `UniversalRelationshipMapPage.tsx` | `src/pages/` | Catalog-wide patent and corporate-lineage network at `/relationships/universal`, with shareable `#node=…` selection; linked from the relationship-map index. |
 | `NotFoundPage.tsx` | `src/pages/` | Catch-all 404. |
 
 `RelationshipMapPage` is one static route whose content is driven by a fragment rather than a path param: with no
@@ -41,7 +43,7 @@ no-focus HTML, so all fragment-dependent content is gated behind a `mounted` fla
 to keep the server render and first client render identical; the real focus appears one paint after hydration.
 Recentering pushes a new fragment, so browser Back retraces the exploration path without exposing separate query URLs to
 crawlers. Legacy `?focus=` links are read and replaced with the fragment form after hydration. The canonical URL is
-always `/relationships/`. Assignee slugs come from the build-generated `assignees` array in `build-metadata.json`
+always `/relationships/`. Assignee slugs come from the build-generated `assignees` array in `client-metadata.json`
 (alongside `authors`); assignees have no dedicated pages. Assignee records also carry sourced, dated `successorOf`,
 `acquiredBy`, `subsidiaryOf`, and `corporateFamily` arrays curated in
 `src/utils/catalog/assigneeCorporateHistory.ts`. Those fields are deliberately not consumed by the selected-party ego
@@ -52,11 +54,24 @@ with those corporate-history records. Shared corporate families become hub nodes
 become external-organization nodes, and disconnected components are packed into separate outlined networks. Selecting
 a patent opens the shared patent detail card; selecting any other entity exposes its dated corporate records and links
 catalog parties back to the ordinary focused map. No homepage or global navigation link points directly to this route;
-the prominent entry point lives in the no-focus `/relationships` index state.
+the prominent entry point lives in the no-focus `/relationships` index state. Each focused inventor or assignee map
+also links to its center node on the universal map using `universalMapHash`, restoring selection, details, and framing.
+
+`src/utils/state/universalMapUrl.ts` serializes the complete graph ID with `URLSearchParams` and validates restored
+IDs against the graph. IDs containing already-encoded corporate names must round-trip without an extra manual decode.
+The selected node is read from the committed router location after hydration; keeping a separate mirrored selection
+can become stale when Back interrupts a concurrent navigation. Changed selections and explicit deselection push history;
+reselecting the same node can recenter without another history entry. Search and detail navigation carry pending camera
+intent, consumed only when the corresponding URL commits. Direct SVG selection and closing details preserve the camera.
+Reload and Back/Forward restore selection, details, and readable framing; absent, malformed, or unknown targets restore
+the overview. Query text, pan/zoom, emphasis, and overview visibility remain local. Unrelated URL parameters are preserved,
+and the canonical URL remains `/relationships/universal/`. Component interactions are documented in
+[UI components](ui-components.md#relationship-map-components).
 
 ## Static Page Shells
 
-- `PageNavBar.tsx` provides themed static-page navigation with theme and high-contrast toggles.
+- `PageNavBar.tsx` provides themed static-page navigation; it and the LensViewer `BreadcrumbBar.tsx` render the same
+  inline `ThemeToggleGroup.tsx` theme and high-contrast toggles.
 - `StaticPageShell.tsx` wraps static pages that need shared breadcrumbs, page theme state, and `PAGE_BASE_STYLE`.
 - `src/utils/style/pageStyles.ts` exports shared static page base styles and fallback link styles.
 - Lens index-specific filter/results styles live under `src/pages/lensIndex/`, but reuse shared base styles where possible.
@@ -71,9 +86,17 @@ The app uses React Router 8 with client-side routing plus static prerendering fo
 - `entry-server.tsx` exports `render(url): { html, helmet }` using `StaticRouter`. With React 19,
   `react-helmet-async` emits native metadata elements; the server entry separates React's hoisted title/meta/link tags
   and JSON-LD scripts from the body while preserving the existing structured prerender contract.
+- Every head tag the server entry emits is stamped with `data-prerender-head` (`src/utils/seo/prerenderedHead.ts`).
+  `main.tsx` mounts with `createRoot`, not hydration, so React 19 hoists a fresh title/meta/canonical set into
+  `<head>`; `PrerenderedHeadCleanup` removes the stamped static copies in a layout effect after the first commit, so
+  the post-boot document has exactly one of each while non-JS clients still get the full prerendered head.
 - `scripts/generate-build-metadata.mjs` expands the concrete prerender route list into
   `src/generated/build-metadata.json`, including homepage, search, lens, patent, author, maker, mount, format, article,
   and update routes.
+- The same generator emits `src/generated/client-metadata.json` for runtime imports: lens and route public dates,
+  lens publication ordering, article display fields, maker slugs, authors, and assignees. Its projection preserves
+  collection order and excludes Git hashes, precise timestamps, and build-only route inventories. Build tooling keeps
+  using the full metadata artifact; browser modules must import the client projection.
 - `scripts/prerender.mjs` reads that concrete route list, builds the SSR entry, validates it against
   `manifestPaths` exported from `entry-server.tsx`, and writes each route plus `404.html` into `dist/`.
 - `/compare/:slugA/:slugB` is routeable and SSR-capable, but it is intentionally excluded from the generated concrete
@@ -118,7 +141,8 @@ The shared renderer preserves:
 
 Article markdown files live in `src/content/**/*.md`. Their frontmatter flows through
 `scripts/generate-build-metadata.mjs`; raw markdown is loaded by `import.meta.glob` in
-`src/utils/content/homepageContent.ts` and joined to the generated metadata there.
+`src/utils/content/homepageContent.ts` and joined to the generated client metadata there. The viewer imports
+`stripFrontmatter` from its standalone utility so its help dialogs do not pull in the complete article registry.
 
 Lens description markdown files live beside lens data files as `*.analysis.md` and render in `DescriptionPanel.tsx`.
 
@@ -131,7 +155,9 @@ as `publishedOn`, while `publishedAt` and `publishedCommit` preserve the exact f
 commits sort first, including multiple commits from one day; lenses or articles introduced by the same commit sort
 alphabetically by display name/title. Before new content is committed, its date-only Git fallback sorts ahead of
 committed content from that same date so local Recently Added lists reflect the active addition; its exact commit
-timestamp takes over after commit. RSS `pubDate` uses the exact timestamp.
+timestamp takes over after commit. RSS `pubDate` uses the exact timestamp. Replacement lens models may explicitly set
+`publishedAt` as described in `src/lens-data/LENS_DATA_SPEC.md`; that timestamp replaces inherited publication history
+consistently across cards, feeds, and SEO.
 
 Changelog items come from `src/utils/content/changelogData.ts` in its curated newest-first order. Their permanent GUIDs
 and links use deterministic fragment IDs shared with `ChangelogList`, so each item opens the matching entry on
@@ -157,7 +183,12 @@ Metadata generation is split across:
 - `scripts/lens-data-lib.mjs` - lens data scanning, root-file organization helpers, maker slug derivation.
 - `scripts/build-metadata-lib.mjs` - git freshness helpers, bounded concurrency, route freshness aggregation.
 - `scripts/generate-build-metadata.mjs` - top-level metadata orchestration, concrete route enumeration, generated route
-  freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh.
+  freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh. It also writes
+  `src/generated/teleconverter-summaries.json`: each `*.teleconverter.ts` summary plus `compatibleLensKeys`, resolved
+  by importing the import-free fit predicate (`src/optics/prescription/teleconverterCompatibility.ts`) under plain Node
+  so the page lists and the viewer cannot disagree. Hidden converters (`visible: false`) keep a summary but get no
+  route, and `/teleconverters` itself is emitted only when a published converter exists; `scripts/prerender.mjs`
+  lists the section in `OPTIONAL_SECTIONS` so its manifest patterns may go uncovered in that case.
 - `scripts/maker-prefixes.mjs` - single source of truth for maker prefixes, emitted to
   `src/generated/maker-prefixes.json`.
 

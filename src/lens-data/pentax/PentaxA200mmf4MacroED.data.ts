@@ -29,7 +29,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-a-200mm-f4-macro-ed",
   maker: "Pentax",
-  name: "PENTAX SMC PENTAX-A★ 200mm f/4 MACRO ED",
+  name: "PENTAX SMC A* 200mm f/4 MACRO ED",
   subtitle: "US 4,666,260 Example 1 — Asahi Kogaku / Takayuki Itoh",
   specs: [
     "10 elements / 9 groups",
@@ -196,8 +196,9 @@ const LENS_DATA = {
   ],
 
   asph: {},
+  focusPositions: [0, 0.765303983447137, 1],
   var: {
-    "13": [6.53, 61.58],
+    "13": [6.53, 34.05, 61.58],
   },
   varLabels: [["13", "D13"]],
   groups: [
@@ -209,6 +210,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "9", toSurface: "11" }],
 
   closeFocusM: 0.55,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   nominalFno: 4,
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,

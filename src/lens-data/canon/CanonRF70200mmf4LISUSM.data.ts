@@ -21,10 +21,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ patent d5, so authored gap 5 is 2.59 / 40.93 / 58.21 mm.                 ║
  * ║ Patent surface 12 is the sole aperture stop and is labeled STO.           ║
  * ║                                                                            ║
- * ║ The patent gives no stop diameter. STO.sd = 12.70 mm is the maximum      ║
- * ║ physical clear radius required by the three modeled wide-open states;     ║
- * ║ per-state active iris radii inferred from the paraxial entrance pupil are ║
- * ║ 9.2435 / 11.3557 / 12.6903 mm. nominalFno carries the published design   ║
+ * ║ The patent gives no stop diameter. STO.sd = 12.70 mm covers the per-state  ║
+ * ║ iris radii inferred from the paraxial entrance pupil, 9.2435 / 11.3557 /   ║
+ * ║ 12.6903 mm; the wide-open iris radii traced from nominalFno are 9.252 /    ║
+ * ║ 11.394 / 12.788 mm. nominalFno carries the published design                ║
  * ║ values 4.08 / 4.08 / 4.12; marketed aperture remains f/4.                ║
  * ║                                                                            ║
  * ║ Semi-diameters are modeled inferences because Example 1 publishes none.   ║

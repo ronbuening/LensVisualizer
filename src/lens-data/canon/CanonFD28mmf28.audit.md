@@ -15,23 +15,6 @@ Patent: US 4,046,459, Example 2 / Fig. 5 / Table 3
 - The patent does not tabulate clear apertures or a separate aperture-stop surface. Existing SDs and the stop split in the L4-L5 air gap remain inferred renderer-safe values.
 - Retained the normalized f=1 to 28 mm scale factor and unit-focus final BF model.
 
-### Phase 3 - Spectral / metadata enrichment
-
-- No fluorite, ED/UD, APD, theta_gF, dPgF, or line-index table was found.
-- No APD metadata was added.
-
-### Phase 4 - Analysis sync
-
-- No analysis changes needed.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests).
-- `npm run typecheck` - passed before and after metadata regeneration.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).
-
 ## 2026-08-07 - Legacy BAF5 catalog recovery
 
 - Visually rechecked US 4,046,459 Example 2: L2 remains `nd=1.60729`, `νd=49.3`, code 607493.

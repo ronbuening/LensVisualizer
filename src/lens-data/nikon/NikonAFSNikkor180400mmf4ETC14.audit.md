@@ -52,14 +52,6 @@ The new J-LASFH24 row also resolves the previously reviewed `902253` element in 
 that lens from 15/16 to 16/16 strict and trusted coverage. Regenerated global coverage is 4993/5672 strict and
 5004/5672 trusted, with zero catalog-coordinate mismatches.
 
-## Verification
-
-- Both stored prescriptions pass the full surface validator.
-- Both image-circle audits report zero undersized surfaces.
-- Catalog dispersion tests pass for all 462 entries.
-- Duplicate six-digit-code precedence remains stable for J-SK12, J-LAK14, and J-LASF016 coordinate families.
-- The full generated glass-report suite reports zero catalog mismatches.
-
 ## Retained sources
 
 - WO 2019/131993 A1, Example 1, Tables 8–11, Figures 7–10.
@@ -83,3 +75,50 @@ Visually rechecked Example 1, Tables 8 and 10 in local `patents/WO2019131993A1.p
 | 786406 | 1.78605 / 40.63 | No tolerance-safe official catalog row; TC-engaged variant only |
 
 The visible and TC-engaged prescriptions retain their authored labels and patent coordinates. No geometry or optical constants changed.
+
+## 2026-09-24 — Optical filters FL1 and FL2 at their printed positions
+
+- ¶0254 (PDF p. 57) places optical filter FL1 inside G4D between the L49+L410 pair and L411, and FL2 between G4 and the
+  image plane. Table 8 (PDF pp. 59–62) prints FL1 at surfaces 50–51 (1.500 mm, 1.51680 / 63.88) with 6.500 mm of air
+  either side, and FL2 at surfaces 57–58 (2.000 mm, same glass) after 10.827 mm + a same-index dummy plane + 40.582 mm,
+  followed by 0.114 mm to the image.
+- Nikon's user's manual says a filter must be inserted in the slip-in holder (40.5 mm NC filter supplied). FL1 is the
+  slip-in position ahead of the last lens elements, so it is now two flat surfaces plus a drawn `Plane-Parallel Plate`
+  (sd 15.5 mm, never tighter than its neighbours L410 13.0 / L411 15.5), not counted in elementCount; L411/L412 ids move
+  to 27/28. FL2 is `rearPlates` (J-BK7 catalog equivalent) with surface 55 storing 51.409 mm to it.
+- EFL and paraxial defocus are identical at every zoom station and focus keyframe. Physical track grows by 1.192511 mm to
+  392.285 / 392.285 / 392.284 mm, the sums of the printed spacings. Recomputed Dc/Σ4 = 41.203 / 117.219 = 0.351505
+  (patent 0.352; the old folded value was 0.353044). The 2.0 m close solve now images at 2.001193 m physical, with
+  unchanged magnifications.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+- Read local `patents/WO2019131993A1.pdf` (image-only scan, 96 pages; printed page = PDF page − 2). ¶0155–0158
+  (PDF p. 32) define θgF ≡ (ng − nF)/(nF − nC) and the patent's deviation from its own normal line,
+  ΔθgF = θgF − (0.648327 − 0.0018024·νd), for condition (2-11); ¶0162 (PDF p. 33) repeats the same formula for
+  condition (2-12).
+- Table 8 (PDF pp. 59–62) has columns m, r, d, nd, νd only; the patent prints no θgF column. The only
+  partial-dispersion figures for Example 1 are the Table 11 deviations (PDF pp. 65–66, values on p. 66):
+  ΔθgF1 = 0.0649, 0.0391 (the two G1A positives listed from the object side per ¶0268, so L11 and L12) and
+  ΔθgF2 = 0.0649 (L11).
+- The file had copied those two deviations straight into `dPgF`. The engine rebuilds ng from `dPgF` against
+  0.6438 − 0.001682·νd, so each value is now the θgF recovered from the patent's deviation
+  (θgF = ΔθgF + 0.648327 − 0.0018024·νd) minus the engine's line at the element's stored νd. The two lines differ by
+  0.004527 − 0.0001204·νd.
+
+| Element | νd | Patent ΔθgF (Table 11) | Recovered θgF | Stored before | Stored after |
+|---|---:|---:|---:|---:|---:|
+| L11 | 95.23 | +0.0649 | 0.541584 | +0.0649 | +0.057961 |
+| L12 | 82.57 | +0.0391 | 0.538603 | +0.0391 | +0.033686 |
+
+- Converting the stored values back to the patent's line returns 0.0649 and 0.0391, so the condition (2-11) and (2-12)
+  rows in the analysis are unchanged and stay labelled as the patent's ΔθgF.
+- L12's recovered θgF (0.5386) matches the Hikari J-FKH1 catalog figure (0.5386, engine-line +0.033679). L11's
+  recovered θgF (0.5416) sits 0.0029 above the repository's CaF2 curve (0.5387); the patent's printed deviation decides
+  and nothing was fitted to the catalog.
+- Left: nothing in this file. No other element carries `dPgF` and none was added; no element is e-line referenced and
+  none authors nC/nF/ng. The TC-engaged file is a separate data file with its own audit log and was not edited in this
+  pass.
+- nd, νd, glass labels, `apd` tags and surfaces are untouched. The two `apdNote` strings now quote the patent's
+  deviation on the patent's line, the recovered θgF and the runtime value; a header note in the data file names both
+  lines; the analysis now labels 0.0649 and 0.0391 as the patent's ΔθgF and states what the file stores.

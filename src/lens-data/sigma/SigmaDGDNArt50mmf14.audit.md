@@ -28,11 +28,6 @@ Patent: JP 2023-183894 A, Example 1
 
 - Updated the companion analysis glass names and reference list for L1, L2, L5, L6, L11, and L13.
 
-### Verification
-
-- `npm test -- dispersion`
-- `npm test -- glassRelabelByLensScan`
-
 ## 2026-06-23 - Sigma-folder patent glass sweep
 
 ### Phase 1 - Glass corrections
@@ -56,10 +51,6 @@ Patent: JP 2023-183894 A, Example 1
 ### Phase 4 - Analysis sync
 
 - Updated the companion analysis prose and glass table for L4, L9, and L12.
-
-### Verification
-
-- `npm run generate:glass-reports`
 
 ## 2026-06-23 - Semi-diameter raw-geometry audit
 

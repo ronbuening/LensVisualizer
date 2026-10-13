@@ -43,6 +43,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  No sensor cover, filter, inactive dummy plane, flare cutter, or mechanical  ║
  * ║  part is included.                                                           ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: Example 1 (PDF p. 7, column 3) matches every stored
+ * radius/gap/index at scale ×1.8, with the documented V1=61.2 emendation.
+ * Native EFL 99.959464 and BFL 44.708683 differ from F=100 and BF=44.79.
+ * Scaled offset −0.146370 mm is retained as source inconsistency; no plate
+ * or additional focus adjustment is supported by the published prescription.
  */
 
 const LENS_DATA = {
@@ -64,6 +70,7 @@ const LENS_DATA = {
   focalLengthDesign: 179.9270350897788,
   apertureMarketing: 2.3,
   apertureDesign: 2.3,
+  lensMounts: ["canon-fd", "contax-yashica", "leica-r", "nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "US 4,726,669",
   patentAuthors: ["Pierre Angénieux"],
@@ -237,6 +244,8 @@ const LENS_DATA = {
   doublets: [],
 
   closeFocusM: 1.7886507000747824,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED compound internal focus using the patent's D2, D6, and D11 endpoints at infinity and β = −0.12. D2 contracts by 2.574 mm and D11 by 17.406 mm; the rounded D2+D6 totals leave a 0.018 mm coordinate residual, so Component IV shifts 17.424 mm relative to R1. The authored BF endpoint is the fixed-image-plane completion; the corresponding model object-to-image distance is 1.78865 m and the traced magnification is −0.120513.",
 

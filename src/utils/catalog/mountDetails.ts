@@ -23,6 +23,90 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     description:
       "Agfa Ambi Silette was the interchangeable-lens branch of the Silette rangefinder family. The camera kept a central shutter in the body and used dedicated Agfa lenses rather than adopting one of the broader German leaf-shutter bayonet standards.\n\nThe system was small: a 35 mm Color-Ambion, 50 mm Color-Solinar, 90 mm Color-Telinear, and later a 130 mm Color-Telinear. The finder supported switchable frame lines for the main focal lengths, and the camera remained closer in spirit to a premium compact rangefinder than to an open-system SLR.\n\nIn this catalog, the Ambi Silette mount keeps Agfa's interchangeable rangefinder lenses separate from fixed-lens Silette cameras and from Agfa Ambiflex SLR lenses, whose mechanical interface and lens set are different.",
   },
+  alpa: {
+    era: "Historical Pignons ALPA 35 mm reflex system",
+    formatNotes: "35 mm film",
+    summary: "The proprietary bayonet of the Swiss ALPA 35 mm SLR system.",
+    description:
+      "Pignons’ ALPA reflex cameras used a dedicated bayonet and lenses supplied by specialist optical makers, including Kern, Angénieux and Kinoptik. This historical film-camera interface is distinct from the later ALPA medium-format technical-camera system.",
+  },
+  "arri-pl": {
+    era: "Professional cinema mount",
+    formatNotes: "Cinema film and digital; lens coverage varies",
+    summary: "The Positive Lock cinema mount used by ARRI and many other camera makers.",
+    description:
+      "PL uses a locking collar to secure the lens flange, supporting substantial cine lenses and repeatable mechanical seating. Ultra Prime and SUMMILUX-C families use this interface. PL describes mechanical attachment; it does not prescribe a single image circle or recording format.",
+  },
+  "arri-standard": {
+    era: "Historical ARRIFLEX cinema system",
+    formatNotes: "16 mm and 35 mm cinema",
+    summary: "The original cylindrical ARRIFLEX lens mount used before ARRI Bayonet and PL.",
+    description:
+      "ARRI Standard locates the lens with a cylindrical fitting and locking arrangement. Period Kinoptik brochures illustrate ARRIFLEX versions alongside C-thread and barrel variants. Later Bayonet and PL fittings are different interfaces; a modern remount does not establish the original production variant.",
+  },
+  "c-mount": {
+    era: "Cinema, television and industrial imaging",
+    formatNotes: "16 mm and Super 8 cinema, video and industrial sensors; coverage varies",
+    summary: "The one-inch, 32-thread-per-inch screw mount used across cine and imaging systems.",
+    description:
+      "C-mount has a nominal 17.526 mm flange distance. It appears on 16 mm cameras, interchangeable-lens Super 8 cameras and numerous television or industrial cameras. Its thread alone does not establish a recording format. CS-mount shares the thread but uses a shorter register and is not the same installation.",
+  },
+  "d-mount": {
+    era: "Historical 8 mm cinema system",
+    formatNotes: "Normal 8 film",
+    summary: "The smaller screw mount used for many interchangeable-lens 8 mm movie cameras.",
+    description:
+      "D-mount uses a 5/8-inch, 32-thread-per-inch screw attachment and a nominal 12.29 mm register. Period Schneider catalogs explicitly identify D-thread cine lenses. Bolex H8 Reflex optical requirements remain separate from the generic thread designation.",
+  },
+  "fujica-x": {
+    era: "Fujica AX 35 mm SLR system",
+    formatNotes: "35 mm film",
+    summary: "Fuji’s historical Fujica X bayonet for X-Fujinon SLR lenses.",
+    description:
+      "The Fujica AX system used a dedicated bayonet with aperture coupling for X-Fujinon lenses. The AX-5 manual specifies a 43.5 mm flange distance. This film-SLR interface is distinct from the modern short-register Fujifilm X mirrorless mount.",
+  },
+  "graflex-xl": {
+    era: "Graflex XL medium-format camera system",
+    formatNotes: "Medium-format roll film",
+    summary: "The Graflex XL combination lens bayonet and focusing-ring interface.",
+    description:
+      "Graflex XL cameras accept dedicated lens assemblies in a combination bayonet and focusing ring, including the Zeiss Planar 80mm f/2.8. The lens installation belongs to the XL system; it is distinct from the boards used on Graflex press cameras.",
+  },
+  "mamiya-ze": {
+    era: "Mamiya ZE electronic 35 mm SLR system",
+    formatNotes: "35 mm film",
+    summary: "Mamiya’s electronic bayonet for the Sekor E and EF lens families.",
+    description:
+      "Mamiya ZE cameras use Sekor E and EF lenses with electronic contacts for camera-controlled exposure. The manufacturer lens manual describes their bayonet attachment and lists the E-series zooms. Mamiya NC is a separate SLR interface and is not assigned to ZE lenses.",
+  },
+  "miranda-bayonet": {
+    era: "Miranda 35 mm SLR system",
+    formatNotes: "35 mm film",
+    summary: "The external Miranda SLR bayonet used by Auto Miranda and Auto EC lenses.",
+    description:
+      "Miranda SLR bodies combine an external bayonet with a separate internal screw attachment. Auto EC lenses use the bayonet; the RE-II manual describes their locking rotation and lens release. Metering and diaphragm couplings vary between body and lens generations, so a common mount designation is not a guarantee of every automatic function.",
+  },
+  "pentacon-six": {
+    era: "Praktisix and Pentacon six medium-format SLR system",
+    formatNotes: "6×6 roll film",
+    summary: "The medium-format bayonet shared by Praktisix and Pentacon six lenses.",
+    description:
+      "Carl Zeiss Jena manufacturer catalogs list 6×6 Biometar and Flektogon lenses for Praktisix and Pentacon six cameras. Their medium-format bayonet is distinct from the Praktina, M42 and Praktica B interfaces used by other Jena production variants.",
+  },
+  "praktica-b": {
+    era: "Praktica B 35 mm SLR system",
+    formatNotes: "35 mm film",
+    summary: "The Praktica B bayonet used by PRAKTICAR lenses.",
+    description:
+      "Praktica B introduced a dedicated SLR bayonet for PRAKTICAR lenses with aperture-value transmission. Jena’s manufacturer sheets specify the B-camera system and a 44.4 mm register. Earlier M42 Praktica lenses and the separate Praktina bayonet belong to different catalog mount families.",
+  },
+  "voigtlander-prominent": {
+    era: "Postwar Voigtländer Prominent 35 mm rangefinder system",
+    formatNotes: "35 mm film",
+    summary: "Voigtländer’s interchangeable lens system for the postwar Prominent rangefinder.",
+    description:
+      "Prominent standard lenses such as the Ultron 2/50 and Nokton 1.5/50 use a quick-change bayonet around the body shutter. Other system optics have different mechanical arrangements: the Telomar telephoto uses a dedicated reflex housing. The catalog groups their complete Prominent installations without implying that every lens attaches like a standard 50mm unit.",
+  },
   "canon-ef": {
     era: "Canon EOS SLR and DSLR mount, introduced in 1987",
     formatNotes:

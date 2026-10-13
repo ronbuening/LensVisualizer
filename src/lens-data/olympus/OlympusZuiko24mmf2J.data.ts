@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2         ║
+ * ║           LENS DATA — OLYMPUS J.ZUIKO AUTO-W 24mm f/2         ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 3,830,559 Example 1 (Olympus / Matsubara).       ║
  * ║  Retrofocus super-wide-angle for 35 mm SLR, F/2.0, 84°.          ║
@@ -35,7 +35,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "olympus-zuiko-24f2-j",
   maker: "Olympus",
-  name: "OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2",
+  name: "OLYMPUS J.ZUIKO AUTO-W 24mm f/2",
   subtitle: "US 3,830,559 EXAMPLE 1 — OLYMPUS / MATSUBARA",
   specs: ["10 ELEMENTS / 8 GROUPS", "f ≈ 24.0 mm", "F/2.0", "2ω ≈ 84°", "ALL-SPHERICAL"],
 

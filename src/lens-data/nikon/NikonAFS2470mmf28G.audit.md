@@ -25,10 +25,6 @@ Reviewed local untracked patent file `patents/US7508592.pdf`, Example 2 / Table 
 - US 7,508,592 does not publish per-surface clear apertures or effective diameters for Example 2.
 - Current SDs remain renderer clear-aperture estimates. They make rational optical sense against FIG. 3: a large wide-angle front group, a reduced stop-adjacent G3, and a rear re-expansion through G4/G5 while keeping the hybrid-asphere and rear asphere within safe sag/slope limits.
 
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.
-
 ## 2026-08-18 — Hoya M-NBF1 coefficient assignment
 
 - Visually rechecked local `patents/US7508592.pdf`, PDF page 15, Example 2 / Table 2. Surface 1 remains `nd = 1.744429`, `νd = 49.52`.

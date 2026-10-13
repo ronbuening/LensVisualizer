@@ -15,24 +15,31 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    all authored [infinity, close] pairs are therefore identical.         ║
  * ║                                                                            ║
  * ║  ZOOM MODEL:                                                               ║
- * ║    Variable gaps D2, D8, D19, D21, D23, and rear BF are transcribed at  ║
+ * ║    Variable gaps D2, D8, D19, D21, D23, and D25 are transcribed at         ║
  * ║    the patent wide/middle/tele positions. D19 + D21 is nearly conserved ║
  * ║    because B4 is the translating focus unit, but no close-focus row is   ║
  * ║    reconstructed from that mechanism evidence.                            ║
  * ║                                                                            ║
- * ║  REAR REFERENCE-PLANE NORMALIZATION:                                      ║
- * ║    Patent surfaces 26-27 are GB, an optical filter/faceplate block, and  ║
- * ║    are excluded. Surface 25 d is replaced by d25 + 1.50/1.51633 + 1.12 ║
- * ║    so the omitted plate retains its first-order air-equivalent effect.    ║
+ * ║  REAR GLASS BLOCK GB:                                                      ║
+ * ║    Patent surfaces 26-27 are GB, an optical filter/faceplate block         ║
+ * ║    (1.50 mm, nd 1.51633, νd 64.1; S-BSL7 class). GB and d27 = 1.12 mm      ║
+ * ║    are modeled in `rearPlates` (traced, not drawn). Surface 25 d stores    ║
+ * ║    the patent d25 gap to GB: 11.12 / 34.65 / 35.56 mm; the paraxial        ║
+ * ║    equivalent BF is 13.229 / 36.759 / 37.669 mm (patent BF 13.24 /         ║
+ * ║    36.77 / 37.68).                                                         ║
  * ║                                                                            ║
  * ║  SCALE: none. Patent radii, thicknesses, and asphere coefficients remain ║
  * ║    at their native Example 1 scale. Patent k is the standard conic K.    ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: inferred, not patent-listed.                              ║
- * ║    SDs were derived from exact meridional on-axis pupil-edge rays and    ║
- * ║    the default 0.60-field off-axis bundle at all three zoom states, then ║
- * ║    constrained by edge thickness, actual rim slope, shared-gap intrusion,║
- * ║    the patent Figure 1 silhouette, and the production 67 mm filter size. ║
+ * ║    SDs were derived from exact meridional on-axis pupil-edge rays and      ║
+ * ║    the default 0.60-field off-axis bundle at all three zoom states, then   ║
+ * ║    constrained by edge thickness, actual rim slope, shared-gap intrusion,  ║
+ * ║    the patent Figure 1 silhouette, and the production 67 mm filter size.   ║
+ * ║    Surfaces 1-8 and 22A-25 were raised to pass the traced chief ray to     ║
+ * ║    the patent image heights: Y = 19.90 mm at wide (a design circle, 92%    ║
+ * ║    of the corner) and 21.64 mm at middle and tele (2026-09-24              ║
+ * ║    field-coverage audit).                                                  ║
  * ║                                                                            ║
  * ║  GLASS: d-line nd/νd are patent data. Vendor identity is unresolved.      ║
  * ║    Generic coordinate/class labels are used; the 1.53110/55.9 aspheric  ║
@@ -244,23 +251,23 @@ const LENS_DATA = {
       fl: 76.673936,
       glass: "847239 class (vendor unresolved)",
       apd: false,
-      role: "Single positive rear unit B6, immediately ahead of the normalized image-space gap.",
+      role: "Single positive rear unit B6, immediately ahead of the rear GB block and image-space gap.",
     },
   ],
 
   /* ── Surface prescription ──
    * Flat optical planes use the project infinity-radius convention R = 1e15.
-   * Surface 25 d is the air-equivalent surface-25-to-image distance after GB omission.
+   * Surface 25 d is the patent d25 gap to the GB block, which is modeled in rearPlates.
    */
   surfaces: [
-    { label: "1", R: 56.962, d: 6.4, nd: 1.60311, elemId: 1, sd: 17.5 },
-    { label: "2", R: 421.715, d: 1.44, nd: 1, elemId: 0, sd: 17 },
-    { label: "3", R: 142.374, d: 1.2, nd: 1.90366, elemId: 2, sd: 11.5 },
-    { label: "4", R: 15.994, d: 8.29, nd: 1, elemId: 0, sd: 11 },
-    { label: "5", R: -85.062, d: 1, nd: 1.60311, elemId: 3, sd: 9.5 },
-    { label: "6", R: 30.559, d: 0.17, nd: 1, elemId: 0, sd: 9.5 },
-    { label: "7", R: 24.88, d: 4.9, nd: 1.84666, elemId: 4, sd: 9.7 },
-    { label: "8", R: 162.207, d: 24.94, nd: 1, elemId: 0, sd: 9.5 },
+    { label: "1", R: 56.962, d: 6.4, nd: 1.60311, elemId: 1, sd: 21.3 },
+    { label: "2", R: 421.715, d: 1.44, nd: 1, elemId: 0, sd: 20.7 },
+    { label: "3", R: 142.374, d: 1.2, nd: 1.90366, elemId: 2, sd: 16.2 },
+    { label: "4", R: 15.994, d: 8.29, nd: 1, elemId: 0, sd: 12.6 },
+    { label: "5", R: -85.062, d: 1, nd: 1.60311, elemId: 3, sd: 12.2 },
+    { label: "6", R: 30.559, d: 0.17, nd: 1, elemId: 0, sd: 12.2 },
+    { label: "7", R: 24.88, d: 4.9, nd: 1.84666, elemId: 4, sd: 11.9 },
+    { label: "8", R: 162.207, d: 24.94, nd: 1, elemId: 0, sd: 11.7 },
     { label: "9", R: 25.551, d: 2.3, nd: 1.90366, elemId: 5, sd: 7.5 },
     { label: "10", R: 1e15, d: 0.82, nd: 1, elemId: 0, sd: 7.3 },
     { label: "11", R: 16.661, d: 4.5, nd: 1.60311, elemId: 6, sd: 6.8 },
@@ -274,10 +281,23 @@ const LENS_DATA = {
     { label: "19", R: 1e15, d: 2.5, nd: 1, elemId: 0, sd: 5.6 },
     { label: "20", R: 42.206, d: 0.7, nd: 1.91082, elemId: 11, sd: 5.5 },
     { label: "21", R: 16.989, d: 15.04, nd: 1, elemId: 0, sd: 5.4 },
-    { label: "22A", R: -51.498, d: 2, nd: 1.5311, elemId: 12, sd: 7.7 },
-    { label: "23A", R: -800, d: 1.16, nd: 1, elemId: 0, sd: 8.3 },
-    { label: "24", R: 144.43, d: 3.6, nd: 1.84666, elemId: 13, sd: 11.5 },
-    { label: "25", R: -116.569, d: 13.229230576457631, nd: 1, elemId: 0, sd: 11.8 },
+    { label: "22A", R: -51.498, d: 2, nd: 1.5311, elemId: 12, sd: 11.9 },
+    { label: "23A", R: -800, d: 1.16, nd: 1, elemId: 0, sd: 12.8 },
+    { label: "24", R: 144.43, d: 3.6, nd: 1.84666, elemId: 13, sd: 16.1 },
+    { label: "25", R: -116.569, d: 11.12, nd: 1, elemId: 0, sd: 16.5 },
+  ],
+
+  /* ── Glass block GB (patent surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "GB",
+      thicknessMm: 1.5,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 1.12,
+      source: "US 2021/0003831 A1, Numerical Example 1 surfaces 26–27",
+    },
   ],
 
   /* ── Aspherical surfaces ──
@@ -335,9 +355,9 @@ const LENS_DATA = {
       [19.87, 19.87],
     ],
     "25": [
-      [13.229230576457631, 13.229230576457631],
-      [36.759230576457625, 36.759230576457625],
-      [37.66923057645763, 37.66923057645763],
+      [11.12, 11.12],
+      [34.65, 34.65],
+      [35.56, 35.56],
     ],
   },
   varLabels: [
@@ -346,7 +366,7 @@ const LENS_DATA = {
     ["19", "D19 / PRE-FOCUS (ZOOM)"],
     ["21", "D21 / POST-FOCUS (ZOOM)"],
     ["23A", "D23 (ZOOM)"],
-    ["25", "BF / AIR-EQUIVALENT (ZOOM)"],
+    ["25", "D25 / TO GB (ZOOM)"],
   ],
 
   zoomPositions: [24.72, 66.67, 101.85],

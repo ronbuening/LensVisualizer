@@ -67,7 +67,9 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2018/0164556 A1",
   patentAuthors: ["Takahiko Ohishi"],
-  patentAssignees: ["Takahiko Ohishi"],
+  // A1 front page omits an organization; same-application assignment recorded 2017-11-29.
+  // Source and reel/frame 044243/0469 are documented in the companion analysis.
+  patentAssignees: ["Ricoh Co., Ltd."],
   patentYear: 2018,
   elementCount: 16,
   groupCount: 11,

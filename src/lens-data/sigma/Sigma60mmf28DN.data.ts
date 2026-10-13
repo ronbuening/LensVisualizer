@@ -14,14 +14,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON FILTER/COVER GLASS:                                       ║
  * ║    Patent surfaces 16–17 are the camera-side filter F, not part    ║
- * ║    of the lens optical system per ¶0051. The filter is excluded    ║
- * ║    here and its optical path is folded into surface 15's final     ║
- * ║    air-equivalent back distance: 23.0700 + 2.2000/1.51680 +       ║
- * ║    1.0000 = 25.52042194 mm.                                       ║
+ * ║    of the lens optical system per ¶0051: a 2.2000 mm plate         ║
+ * ║    (nd 1.51680, νd 64.20) plus BF = 1.0000 mm. It is modeled in    ║
+ * ║    `rearPlates` (traced, not drawn); surface 15 keeps the patent   ║
+ * ║    d15 = 23.0700 mm to the filter.                                 ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS DATA:                                               ║
- * ║    The patent directly tabulates the INF and 800 mm states. The    ║
- * ║    close-focus entries below extend the same one-degree internal   ║
+ * ║    The patent INF and 800 mm states are exact keyframes. The       ║
+ * ║    close-focus entries extend the same one-degree internal         ║
  * ║    focus motion to Sigma's published 0.50 m MFD by paraxial        ║
  * ║    conjugate solve while conserving D6 + D10. The result gives    ║
  * ║    beta ≈ -0.139, matching Sigma's 1:7.2 maximum magnification.   ║
@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ Excludes camera-side filter/cover glass and mechanical parts ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -185,7 +185,20 @@ const LENS_DATA = {
     { label: "12", R: 20.38, d: 2.9, nd: 1.0, elemId: 0, sd: 9.8 },
     { label: "13", R: 61.64, d: 0.7, nd: 1.69895, elemId: 7, sd: 9.8 },
     { label: "14", R: 17.98, d: 4.85, nd: 2.001, elemId: 8, sd: 12.2 },
-    { label: "15", R: 100.0, d: 25.5204219409, nd: 1.0, elemId: 0, sd: 12.2 },
+    { label: "15", R: 100.0, d: 23.07, nd: 1.0, elemId: 0, sd: 12.2 },
+  ],
+
+  /* ── Camera-side filter F (patent surfaces 16–17): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 2.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "BSC7 (HOYA)",
+      gapAfterMm: 1.0,
+      source: "JP 2014-145954 A, Numerical Example 1 surfaces 16–17",
+    },
   ],
 
   asph: {
@@ -200,9 +213,10 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.6254433871190281, 1],
   var: {
-    STO: [10.13, 4.43018],
-    "10A": [1.94, 7.63982],
+    STO: [10.13, 6.6783, 4.43018],
+    "10A": [1.94, 5.3917, 7.63982],
   },
 
   varLabels: [
@@ -222,12 +236,14 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.5,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
-    "Inner focus: the two-element positive second group moves toward the object from infinity to near focus while G1, the stop, and G3 remain fixed.",
+    "Inner focus: the patent 800 mm state is exact before the constrained 0.50 m endpoint. The positive G2 moves objectward while G1, the stop, and G3 remain fixed.",
 
-  nominalFno: 2.8,
+  nominalFno: 2.92,
   maxFstop: 22,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.92, 4, 5.6, 8, 11, 16, 22],
 
   scFill: 0.62,
   yScFill: 0.62,

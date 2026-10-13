@@ -58,3 +58,33 @@ Runtime checks during this audit found two behavior mismatches that are not pres
 ### Phase 4 - Analysis sync
 
 No prose edits made. The existing analysis already states that semi-diameters are estimated and that the patent table image controls over noisy OCR. A future analysis update should mention that off-axis/chromatic UI behavior for annular folded systems depends on annular-aware field and focus solvers, not on an ordinary central chief ray.
+
+## 2026-09-29 - Folded-interval layout correction
+
+### Phase 2 - Retained-information audit
+
+Real rays through the viewer traced EFL ≈ 2430 mm with the axis crossing at z ≈ 560, against the header's 1001.40 mm.
+The prescription values above are right; the lab-frame layout of the folded intervals was not. The patent lists the
+folded path sequentially, so after the double pass through M1 (R3→R4→R3) the 147.0 interval runs from R3 to R5, and
+after the double pass through M2 the 150.0 interval runs from R5 to r7. The 2026-06-05 layout measured 147.0 from R4,
+counting the 10.0 primary thickness once and moving M2 and the rear group 10.0 mm rearward.
+
+| Surface / field | Before | After | Justification |
+|---|---:|---:|---|
+| `2` `d` (L1 rear → M2R) | 14.7 | 4.7 | M2F (R5) sits 147.0 in front of R3: z = 165.1 − 147.0 = 18.1, so R6 is at 14.8 |
+| `M2F` `d` (R5 → R3) | 137.0 | 147.0 | Patent M1–M2 interval measured from R3 |
+| `M1R` `d` (R4 → r7) | 3.0 | -7.0 | r7 = R5 + 150.0 = 168.1, 3.0 behind R3, inside the primary perforation |
+| `opticalPath.imagePlane.z` | 273.8236 | 263.8236 | r10 (z = 174.2) + BFD 89.6236 |
+
+With the corrected layout an independent lab-frame paraxial trace gives EFL 1001.40 mm and BFD 89.62 mm from r10,
+and viewer real rays across the usable annulus focus at z = 263.8 with EFL 1001.2–1001.3 mm. The rear L2-L3 group
+now lies inside the primary perforation, as the data-file header and patent Fig. 1 describe.
+
+### Phase 4 - Analysis sync
+
+- Updated the first-order paragraph's image-plane position from z = 273.824 mm to z = 263.824 mm.
+
+### Follow-ups
+
+- Re-check the 2026-06-05 note about ~8 mm LoCA from the outer annular marginal ray; it was measured on the
+  mis-laid-out model.

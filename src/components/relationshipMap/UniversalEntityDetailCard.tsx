@@ -6,27 +6,36 @@
  * provides the handoff from a catalog party to the existing focused map.
  */
 
+import LensEntryLink from "../content/LensEntryLink.js";
+import { isUniversalCorporateEdge } from "../../utils/catalog/universalRelationshipGraph.js";
 import { Link } from "react-router";
+import type { RefObject } from "react";
 import type { Theme } from "../../types/theme.js";
 import type {
   UniversalRelationshipEdge,
   UniversalRelationshipGraph,
   UniversalRelationshipNode,
+  UniversalPatentNode,
 } from "../../utils/catalog/universalRelationshipGraph.js";
 import { panelCard } from "../../utils/style/styles.js";
 import { pluralize } from "../../utils/text.js";
+import { catalogCollator } from "../../utils/catalog/collation.js";
 
 interface UniversalEntityDetailCardProps {
   graph: UniversalRelationshipGraph;
   node: Exclude<UniversalRelationshipNode, { kind: "patent" }>;
   theme: Theme;
   onClose: () => void;
+  onSelectNode: (nodeId: string, keyboard?: boolean) => void;
+  headingRef?: RefObject<HTMLHeadingElement | null>;
 }
 
 function nodeKindLabel(node: Exclude<UniversalRelationshipNode, { kind: "patent" }>): string {
   if (node.kind === "author") return "inventor";
   if (node.kind === "family") return "corporate family";
   if (node.kind === "organization") return "external organization";
+  if (node.kind === "maker") return "catalog maker";
+  if (node.kind === "lens") return "non-patent catalog model";
   return "assignee";
 }
 
@@ -46,19 +55,53 @@ function relationshipParts(
   if (edge.kind === "successor") return { prefix: outgoing ? "Successor of" : "Succeeded by", other };
   if (edge.kind === "acquisition") return { prefix: outgoing ? "Acquired by" : "Acquired", other };
   if (edge.kind === "subsidiary") return { prefix: outgoing ? "Subsidiary of" : "Parent of", other };
+  if (edge.kind === "catalog-maker") return { prefix: outgoing ? "Catalog maker" : "Catalog model", other };
   if (edge.kind === "family") return { prefix: outgoing ? "Corporate family" : "Family member", other };
   return { prefix: "Related entity", other };
 }
 
-export default function UniversalEntityDetailCard({ graph, node, theme: t, onClose }: UniversalEntityDetailCardProps) {
+export default function UniversalEntityDetailCard({
+  graph,
+  node,
+  theme: t,
+  onClose,
+  onSelectNode,
+  headingRef,
+}: UniversalEntityDetailCardProps) {
   const nodeById = new Map(graph.nodes.map((entry) => [entry.id, entry]));
-  const corporateEdges = graph.edges.filter(
+  const entityEdges = graph.edges.filter(
     (edge) =>
-      edge.kind !== "authorship" && edge.kind !== "assignment" && (edge.from === node.id || edge.to === node.id),
+      (isUniversalCorporateEdge(edge.kind) || edge.kind === "catalog-maker") &&
+      (edge.from === node.id || edge.to === node.id),
   );
   const patentEdges = graph.edges.filter(
     (edge) =>
       (edge.kind === "authorship" || edge.kind === "assignment") && (edge.from === node.id || edge.to === node.id),
+  );
+  const patents = [...new Set(patentEdges.map((edge) => (edge.from === node.id ? edge.to : edge.from)))]
+    .map((id) => nodeById.get(id))
+    .filter((entry): entry is UniversalPatentNode => entry?.kind === "patent")
+    .sort(
+      (a, b) =>
+        (a.patent.patentYear ?? Infinity) - (b.patent.patentYear ?? Infinity) ||
+        catalogCollator.compare(a.name, b.name),
+    );
+  const nodeButton = (target: UniversalRelationshipNode) => (
+    <button
+      type="button"
+      onClick={(event) => onSelectNode(target.id, event.detail === 0)}
+      style={{
+        background: "none",
+        border: "none",
+        padding: "4px 0",
+        font: "inherit",
+        color: t.descLinkColor,
+        cursor: "pointer",
+        textAlign: "left",
+      }}
+    >
+      {target.name}
+    </button>
   );
 
   return (
@@ -88,7 +131,13 @@ export default function UniversalEntityDetailCard({ graph, node, theme: t, onClo
         Close
       </button>
 
-      <h3 style={{ color: t.title, fontSize: "0.95rem", margin: "0 0 0.25rem", paddingRight: "3rem" }}>{node.name}</h3>
+      <h3
+        ref={headingRef}
+        tabIndex={headingRef ? -1 : undefined}
+        style={{ color: t.title, fontSize: "0.95rem", margin: "0 0 0.25rem", paddingRight: "3rem" }}
+      >
+        {node.name}
+      </h3>
       <p style={{ color: t.muted, fontSize: "0.7rem", margin: "0 0 0.6rem", textTransform: "uppercase" }}>
         {nodeKindLabel(node)}
         {patentEdges.length > 0 && ` · ${patentEdges.length} ${pluralize(patentEdges.length, "patent connection")}`}
@@ -103,15 +152,40 @@ export default function UniversalEntityDetailCard({ graph, node, theme: t, onClo
         </Link>
       )}
 
-      {corporateEdges.length > 0 && (
+      {node.kind === "maker" && (
+        <Link to={`/makers/${node.slug}/`} style={{ color: t.descLinkColor, fontSize: "0.76rem" }}>
+          Open maker page →
+        </Link>
+      )}
+
+      {node.kind === "lens" && (
+        <LensEntryLink lensKey={node.lens.key} text="Open lens model →" specs={node.lens.specs} theme={t} />
+      )}
+
+      {patents.length > 0 && (
+        <section aria-label="Related patents" style={{ marginTop: "0.75rem" }}>
+          <h4 style={{ color: t.label, fontSize: "0.75rem", margin: "0 0 0.35rem" }}>Related patents</h4>
+          <ul style={{ maxHeight: "20rem", overflowY: "auto", listStyle: "none", padding: 0, margin: 0 }}>
+            {patents.map((patent) => (
+              <li
+                key={patent.id}
+                style={{ fontSize: "0.75rem", borderTop: `1px solid ${t.panelDivider}`, padding: "0.25rem 0" }}
+              >
+                {nodeButton(patent)}
+                {patent.patent.patentYear !== undefined && (
+                  <span style={{ marginLeft: "0.5rem", color: t.muted }}>{patent.patent.patentYear}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {entityEdges.length > 0 && (
         <ul style={{ listStyle: "none", padding: 0, margin: "0.75rem 0 0" }}>
-          {corporateEdges.map((edge) => {
+          {entityEdges.map((edge) => {
             const date = relationshipDate(edge);
             const { prefix, other } = relationshipParts(edge, node.id, nodeById);
-            const otherFocusedPath =
-              other?.kind === "author" || other?.kind === "assignee"
-                ? `/relationships/#focus=${other.ref.role}:${other.ref.slug}`
-                : undefined;
             return (
               <li
                 key={edge.id}
@@ -128,13 +202,7 @@ export default function UniversalEntityDetailCard({ graph, node, theme: t, onClo
                   }}
                 >
                   <span>{prefix}:</span>
-                  {otherFocusedPath ? (
-                    <Link to={otherFocusedPath} style={{ color: t.descLinkColor, textDecoration: "none" }}>
-                      {other?.name ?? "Unknown organization"}
-                    </Link>
-                  ) : (
-                    <span>{other?.name ?? "Unknown organization"}</span>
-                  )}
+                  {other ? nodeButton(other) : <span>Unknown organization</span>}
                 </div>
                 {edge.note && (
                   <span style={{ color: t.muted, display: "block", marginTop: "0.25rem", lineHeight: 1.45 }}>

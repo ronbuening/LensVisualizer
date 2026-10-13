@@ -14,11 +14,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    field (front group) and 60% field (mid/rear), with 8%           ║
  * ║    mechanical clearance. Validated against edge thickness           ║
  * ║    (≥ 0.3 mm), sd/|R| < 0.90, and cross-gap sag intrusion.        ║
+ * ║    Surface 1 was raised to 14.2 mm, the L1 front rim drawn in      ║
+ * ║    Fig. 1A, so the traced chief ray passes the patent's            ║
+ * ║    Y = 10.00 mm image height (2026-09-24 field-coverage audit).    ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -26,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "panasonic-leica-dg-9f17",
   maker: "Panasonic",
-  name: "PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH",
+  name: "PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH.",
   subtitle: "US 2023/0367186 A1, Example 1 — Panasonic IP Management",
   specs: ["12 ELEMENTS / 9 GROUPS", "f ≈ 9.35 mm", "F/1.77", "2ω ≈ 99.6°", "4 ASPHERICAL SURFACES"],
 
@@ -202,12 +205,13 @@ const LENS_DATA = {
    *  25 patent surfaces → 22 data-file surfaces after folding three
    *  UV-curable resin cement layers (nd = 1.56732, d ≈ 0.01 mm each)
    *  into the preceding element thickness.
-   *  Cover glass (nd = 1.51680, d = 4.20 mm) excluded; air-equivalent
-   *  BFD folded into the last surface d value.
+   *  Cover glass (patent surfaces 26–27, nd = 1.51680, t = 4.20 mm) is
+   *  modeled in `rearPlates` below (traced, not drawn); the last surface d
+   *  is the physical patent gap d25 = 10.43 mm to the cover glass.
    */
   surfaces: [
     // ── G1A: Negative front group (L1–L6) ──
-    { label: "1", R: 21.5241, d: 1.3, nd: 1.8042, elemId: 1, sd: 10.3 },
+    { label: "1", R: 21.5241, d: 1.3, nd: 1.8042, elemId: 1, sd: 14.2 },
     { label: "2", R: 11.4951, d: 2.8898, nd: 1.0, elemId: 0, sd: 10.1 },
     { label: "3A", R: 10.1831, d: 2.5, nd: 1.5338, elemId: 2, sd: 9.5 },
     { label: "4A", R: 6.6667, d: 4.6172, nd: 1.0, elemId: 0, sd: 8.0 },
@@ -236,7 +240,19 @@ const LENS_DATA = {
 
     // ── G3: Field corrector (L12) ──
     { label: "20", R: 157.2184, d: 2.7252, nd: 1.62299, elemId: 12, sd: 7.5 },
-    { label: "21", R: -29.5709, d: 14.199, nd: 1.0, elemId: 0, sd: 7.5 }, // BFD incl. air-equiv CG
+    { label: "21", R: -29.5709, d: 10.43, nd: 1.0, elemId: 0, sd: 7.5 }, // d25: physical gap to cover glass
+  ],
+
+  /* ── Cover glass (patent surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2023/0367186 A1, Example 1 Table 1A surfaces 26–27",
+    },
   ],
 
   /* ── Aspherical coefficients ──
@@ -312,6 +328,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.095,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus via G2 (L10+L11 cemented doublet); linear motor AF.",
 
   /* ── Aperture configuration ── */

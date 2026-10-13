@@ -5,7 +5,8 @@
 - **Small, focused commits** — one logical change per commit (add a type, fix a bug, update a component, add a test)
 - **Commit and push frequently** — after each working stage, not only at the end
 - **Break larger tasks into stages** — commit at the end of each stage before moving to the next
-- **Update branch records at stage boundaries** — keep a short high-signal note in `agent_docs/records/` following `agent_docs/record_keeping.md`
+- **The PR description is the record** — do not write per-branch notes under `agent_docs/records/`; see
+  `agent_docs/documentation-policy.md`
 
 Typical stage breakdown:
 1. Types / interfaces → commit
@@ -13,12 +14,45 @@ Typical stage breakdown:
 3. UI components → commit
 4. Final typecheck + lint + format pass → commit
 
-## Branch Records
+## Commands
 
-- For multi-step work, keep a concise branch/task record in `agent_docs/records/`
-- Record scope, meaningful changes, verification commands, and follow-ups
-- Before opening a PR, make sure the record reflects the final branch state
-- See `agent_docs/record_keeping.md` for the preferred format and pruning rules
+`CLAUDE.md` lists the day-to-day subset. This is the full script inventory; `__tests__/docDrift.test.ts` fails when
+`package.json` and this fence disagree.
+
+```bash
+npm install
+npm run dev                # Generate metadata, then start Vite on http://localhost:5173
+npm run build              # Organize lens data, generate metadata + folder readmes, build, prerender, sitemap, RSS feeds
+npm run generate:metadata  # Organize lens data, refresh src/generated/build-metadata.json, rewrite src/**/readme.md
+npm run generate:readmes   # Rewrite the src/**/readme.md folder docs alone (also runs inside generate:metadata)
+npm run generate:feeds     # Rebuild dist/feeds/ RSS from metadata, lens summaries, changelog
+npm run organize:lens-data # Move stray root-level lens files into maker folders
+npm run preview
+npm run test
+npm run test:coverage
+npm run test:tooling               # Benchmark-harness and audit-script tests excluded from npm test
+npm run generate:reports           # Every report generator in reports/ (rewrites agent_docs/generated/)
+npm run generate:glass-reports
+npm run generate:mirror-reports
+npm run generate:mount-svgs
+npm run generate:sa-figure-svgs     # Regenerate static spherical-aberration article figures from their components
+npm run generate:holiday-branding   # Recolor the base marks into public/branding/holiday/
+npm run audit:aperture              # traced vs stated f-number per lens and zoom station, and what limits it
+npm run audit:catalog-pgf           # glass catalog PgF fields that disagree with the entry's own curve
+npm run audit:dependencies          # Fail on non-allowlisted high/critical npm advisories
+npm run audit:dpgf                  # dPgF values that fit a source normal line instead of the engine's
+npm run audit:field-coverage        # traced analysis half-field vs format corner, and the rim that stops it
+npm run audit:image-circle          # semi-diameters that cannot cover their own image circle
+npm run audit:patent-figure         # measure a patent cross-section against a lens data file
+npm run audit:surface               # aspheric domain scan + validator with trial semi-diameters
+npm run benchmark:optics-rendering  # On-demand optics/render benchmark (not part of build or test)
+npm run typecheck
+npm run lint
+npm run lint:fix
+npm run format
+npm run format:check
+npm run seo:audit
+```
 
 ## Pre-Commit Checks
 
@@ -47,6 +81,11 @@ GitHub Pages is an active mirror/backup.
   `X-Frame-Options`) and the SPA `200` rewrites therefore do **not** apply on the GitHub Pages mirror. Canonical URLs
   point at surfaceandstop.com, which mitigates duplicate-content SEO from the mirror.
 - Builds use the normal pipeline and deploy the generated `dist/` output.
+- Cloudflare build logs stay short on purpose: `vite.config.js` switches to `logLevel: "warn"` when `CF_PAGES` is
+  set, and the metadata step unshallows with `git fetch --quiet`. On 2026-09-16 Cloudflare dropped the ~900-line
+  per-asset listing mid-stream and failed the build stage with "an internal error occurred"; GitHub Actions and local
+  builds keep the full listing. If that error recurs, retry the deployment from the Cloudflare dashboard before
+  debugging the build.
 - Base path set to `/` in `vite.config.js` because Cloudflare Pages serves the production site from the domain root
 - Quality checks run on PRs via `.github/workflows/quality.yml` (lint, format, typecheck, test, npm audit, build)
 - Build pipeline: `generate-build-metadata.mjs` (routes + metadata) → `vite build` → `prerender.mjs` (SSR static HTML +

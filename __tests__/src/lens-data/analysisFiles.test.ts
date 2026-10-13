@@ -38,8 +38,8 @@ const CHECKS: { label: string; ok: (text: string) => boolean }[] = [
     ok: (text) => /^\*\*(Inventor|Applicant|Assignee|Designer)/m.test(text),
   },
   {
-    label: "date line (**Filed/Filing/Published/Granted/Priority/Issued**)",
-    ok: (text) => /^\*\*(Filed|Filing|Published|Granted|Priority|Issued)/m.test(text),
+    label: "date line (**Filed/Filing/Published/Granted/Priority/Issued/Registered**)",
+    ok: (text) => /^\*\*(Filed|Filing|Published|Granted|Priority|Issued|Registered)/m.test(text),
   },
   { label: "at least 5 H2/H3 sections", ok: (text) => (text.match(/^#{2,3} /gm) ?? []).length >= 5 },
 ];

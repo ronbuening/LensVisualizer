@@ -33,18 +33,6 @@ Catalog version: local working tree, 2026-06-25
 - `apd: false` remains appropriate for all elements. The patent provides no partial-dispersion columns or anomalous-dispersion claims for Example 5.
 - High-index status is already represented by the LaK/LaF/SF glass labels and element roles. There is no separate high-index schema field to add.
 
-### Phase 4 - Analysis sync
-
-- No analysis prose change was required. The analysis already describes the all-spherical high-index lanthanum/dense-flint double-Gauss strategy and does not claim APD glass.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests); generated report state retained.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
-- `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
-
 ## 2026-08-18 - Example 5 coefficient backfill
 
 - Visually rechecked Table 5 on rendered page 6 of `patents/US3874771.pdf`; it confirms the seven stored d-line

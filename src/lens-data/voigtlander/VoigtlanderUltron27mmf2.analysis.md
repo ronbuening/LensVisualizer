@@ -73,19 +73,19 @@ L4 is the final negative meniscus and the only element behind the 3.89 mm air sp
 
 Its negative standalone power does not make G2 negative. The preceding positive components and their separations leave the complete functional group positive. Surface-by-surface Petzval calculation gives the two L4 surfaces a combined contribution of approximately −0.01429 mm⁻¹, offsetting positive field-curvature contributions elsewhere in the system.
 
-The data file stores OHARA line indices nC = 1.64923, nF = 1.66571, and ng = 1.67517, together with dPgF = −0.0036. These are catalog-derived spectral properties; the prescription's nd and νd remain the patent values.
+The data file stores OHARA line indices nC = 1.64923, nF = 1.66571, and ng = 1.67517, together with dPgF = −0.003029. That figure is the partial dispersion of those indices (PgF = 0.5740) measured from the engine's normal line, 0.6438 − 0.001682·νd; OHARA's data sheet quotes Δθg,F = −0.0036 against its own line. These are catalog-derived spectral properties; the prescription's nd and νd remain the patent values.
 
 ## Glass Identification and Selection
 
-The prescription uses five distinct named glasses across six elements. Patent nd and νd values govern the optical model. The spectral-line indices and dPgF fields are catalog-derived additions used for chromatic modeling.
+The prescription uses five distinct named glasses across six elements. Patent nd and νd values govern the optical model. The spectral-line indices are catalog-derived additions used for chromatic modeling. The patent prints no partial dispersion, so each dPgF is the PgF of those stored indices minus the engine's normal line (0.6438 − 0.001682·νd), not a vendor data-sheet deviation, which each vendor measures from its own line.
 
 | Glass | Elements | nd | νd | dPgF | Provenance and role |
 |---|---|---:|---:|---:|---|
 | TAFD37A (HOYA) | L1f, L2r | 1.90043 | 37.37 | −0.0043 | High-index positive members in both cemented pairs; line indices evaluated from HOYA catalog dispersion data. |
-| J-SF14 (HIKARI) | L1r | 1.76181 | 26.58 | +0.0130 | Negative front-doublet partner; HIKARI line indices support anomalous partial-dispersion behavior. |
-| FDS90 (HOYA) | L2f | 1.84666 | 23.78 | +0.0137 | Strong, high-dispersion negative member behind the stop. |
-| TAFD55 (HOYA) | L3 | 2.00100 | 29.13 | +0.0036 | Highest-index positive element; satisfies the patent's nd > 1.9 condition. |
-| S-NBH5 (OHARA) | L4 | 1.65411 | 39.68 | −0.0036 | Rear negative meniscus; OHARA line indices agree with the stored prescription at source precision. |
+| J-SF14 (HIKARI) | L1r | 1.76181 | 26.58 | +0.013637 | Negative front-doublet partner; HIKARI line indices support anomalous partial-dispersion behavior. |
+| FDS90 (HOYA) | L2f | 1.84666 | 23.78 | +0.015379 | Strong, high-dispersion negative member behind the stop. |
+| TAFD55 (HOYA) | L3 | 2.00100 | 29.13 | +0.004679 | Highest-index positive element; satisfies the patent's nd > 1.9 condition. |
+| S-NBH5 (OHARA) | L4 | 1.65411 | 39.68 | −0.003029 | Rear negative meniscus; OHARA line indices agree with the stored prescription at source precision. |
 
 No cross-vendor substitute is used in the data file. The named vendor glasses agree with the patent's nd/νd pairs within transcription precision. The available line data justify discussion of anomalous partial dispersion in individual elements, but they do not establish an apochromatic classification for the complete lens.
 
@@ -106,7 +106,7 @@ The normalized object-plane-to-image-plane distance is 0.24906 m. Cosina markets
 
 Chromatic correction is distributed across both cemented components and the rear negative meniscus. D1 pairs a high-index positive TAFD37A member with lower-Abbe J-SF14. D2 pairs the very dispersive negative FDS90 member with another TAFD37A positive member. These pairings allow positive and negative refractive powers to be balanced while their wavelength dependence differs.
 
-The stored line data provide more than an Abbe-only approximation. J-SF14 has dPgF = +0.0130, FDS90 has +0.0137, and the two TAFD37A elements have −0.0043. L4 contributes dPgF = −0.0036. The opposing signs give the model a basis for secondary-spectrum behavior that cannot be represented by nd and νd alone.
+The stored line data provide more than an Abbe-only approximation. Measured from the engine's normal line, J-SF14 has dPgF = +0.013637, FDS90 has +0.015379, and the two TAFD37A elements have −0.0043. L4 contributes dPgF = −0.003029. The opposing signs give the model a basis for secondary-spectrum behavior that cannot be represented by nd and νd alone.
 
 The patent expressly attributes axial-color correction to the cemented groups around the stop and specifies anomalous-dispersion behavior for the rear meniscus. The analysis does not extend those statements into an APO claim, because neither the patent nor the verified model establishes apochromatic correction of the complete system.
 

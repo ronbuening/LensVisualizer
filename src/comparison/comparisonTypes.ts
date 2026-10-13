@@ -18,7 +18,7 @@ export type ComparisonAction =
   | { type: "SET_SCALE_MODE"; scaleMode: "independent" | "normalized" }
   | { type: "SET_SHARED_FOCUS_T"; value: number }
   | { type: "SET_SHARED_STOPDOWN_T"; value: number }
-  | { type: "SET_SHARED_ZOOM_T"; value: number }
+  | { type: "SET_SHARED_ZOOM_T"; value: number; focusT?: number }
   | { type: "SET_SHARED_SHIFT_MM"; value: number }
   | { type: "SET_SHARED_TILT_DEG"; value: number }
   | { type: "ENTER_COMPARE"; catalogKeys?: string[] }

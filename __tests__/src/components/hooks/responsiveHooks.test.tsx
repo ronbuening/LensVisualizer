@@ -51,15 +51,17 @@ function HeaderHeightProbe({
   panelId = "a",
   lensKey = "lens-a",
   onHeaderHeight,
+  enabled = true,
 }: {
   panelId?: string;
   lensKey?: string;
   onHeaderHeight?: (panelId: string, height: number) => void;
+  enabled?: boolean;
 }) {
-  const { headerRef, headerHeight } = useHeaderHeight({ panelId, lensKey, onHeaderHeight });
+  const { headerRef, headerHeight } = useHeaderHeight({ panelId, lensKey, onHeaderHeight, enabled });
   return (
     <>
-      <div ref={headerRef}>Header</div>
+      {enabled && <div ref={headerRef}>Header</div>}
       <output>{headerHeight}</output>
     </>
   );
@@ -72,6 +74,18 @@ function SideLayoutProbe({ enabled, dep }: { enabled: boolean; dep: string }) {
     <div ref={containerRef}>
       <output>{useSideLayout ? "side" : "stacked"}</output>
     </div>
+  );
+}
+
+/** The measured container can be absent, as while the panel shows an error state. */
+function LateContainerProbe({ mounted }: { mounted: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
+  const useSideLayout = useSideLayoutDetection({ enabled: true, containerRef, deps: ["a"] });
+  return (
+    <>
+      {mounted ? <div ref={containerRef} /> : null}
+      <output>{useSideLayout ? "side" : "stacked"}</output>
+    </>
   );
 }
 
@@ -106,6 +120,21 @@ describe("responsive layout hooks", () => {
 
     expect(screen.getByText("148")).toBeTruthy();
     expect(onHeaderHeight).toHaveBeenLastCalledWith("left", 148);
+    scrollHeight = 71.5;
+    act(() => resizeObserver.trigger());
+    expect(onHeaderHeight).toHaveBeenLastCalledWith("left", 72);
+  });
+
+  it("remeasures a header restored after zoom mode removes it", () => {
+    const resizeObserver = installResizeObserverMock();
+    const onHeaderHeight = vi.fn();
+    const { rerender } = render(<HeaderHeightProbe enabled onHeaderHeight={onHeaderHeight} />);
+    rerender(<HeaderHeightProbe enabled={false} onHeaderHeight={onHeaderHeight} />);
+    expect(resizeObserver.instances[0].disconnect).toHaveBeenCalled();
+    scrollHeight = 80;
+    rerender(<HeaderHeightProbe enabled onHeaderHeight={onHeaderHeight} />);
+    expect(onHeaderHeight).toHaveBeenLastCalledWith("a", 80);
+    expect(resizeObserver.instances[1].observe).toHaveBeenCalled();
   });
 
   it("cleans up header ResizeObserver subscriptions on unmount", () => {
@@ -153,6 +182,27 @@ describe("responsive layout hooks", () => {
     act(() => resizeObserver.trigger());
 
     expect(screen.getByText("stacked")).toBeTruthy();
+  });
+
+  it("picks up a container that mounts later and keeps its decision while the container is absent", () => {
+    const resizeObserver = installResizeObserverMock();
+
+    rectWidth = 900;
+    const { rerender } = render(<LateContainerProbe mounted={false} />);
+    expect(screen.getByText("stacked")).toBeTruthy();
+
+    // No dependency changes when the content returns; the hook must still attach to the new element.
+    rerender(<LateContainerProbe mounted />);
+    expect(screen.getByText("side")).toBeTruthy();
+    expect(resizeObserver.instances).toHaveLength(1);
+
+    rerender(<LateContainerProbe mounted={false} />);
+    expect(screen.getByText("side")).toBeTruthy();
+    expect(resizeObserver.instances[0].disconnect).toHaveBeenCalledTimes(1);
+
+    rerender(<LateContainerProbe mounted />);
+    expect(screen.getByText("side")).toBeTruthy();
+    expect(resizeObserver.instances).toHaveLength(2);
   });
 
   it("subscribes to resize changes and removes listeners on unmount", () => {

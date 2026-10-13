@@ -12,7 +12,7 @@ Example 2 was identified as the production design on the basis of three independ
 
 A note on aspherical element counts: Canon's own product page specifies "Three Aspherical Elements and One UD Element," and DXoMark's review (based on Canon press materials) further identifies them as "2 large-diameter ground aspherical lens elements, and 1 glass-molded aspherical lens element." Some third-party retailers simplify this to "one aspherical element" in abbreviated spec sheets; the Canon first-party specification of three aspherical elements is authoritative and matches the patent.
 
-The patent's Example 2 surface data contains OCR transcription errors in the published text at surfaces 14–18, where the radii of curvature were corrupted by cross-contamination with Example 3. The correct values were recovered by rasterizing the patent PDF at 400 DPI and reading the prescription table directly from the image. Five radii were corrected: surface 14 (251.143, not −73.147), surface 15 (87.566, not 307.461), surface 16 (−43.447, not −33.624), surface 17 (105.692, not 109.612), and surface 18 (161.695, not 244.351). The corrected prescription reproduces all patent-stated parameters: EFL = 51.10 mm, BFD = 14.60 mm, total track = 111.01 mm, and all 15 element focal lengths, all group focal lengths, and all nine conditional expression values from Table 1.
+The printed Numerical Data 2 table is correct, but machine-text copies of it (OCR and web text) replace the radii of surfaces 14–18 with Example 3's values. The data follows the printed table: surface 14 is 251.143 (not −73.147), surface 15 is 87.566 (not 307.461), surface 16 is −43.447 (not −33.624), surface 17 is 105.692 (not 109.612), and surface 18 is 161.695 (not 244.351). The corrected prescription reproduces all patent-stated parameters: EFL = 51.10 mm, BFD = 14.60 mm, total track = 111.01 mm, and all 15 element focal lengths, all group focal lengths, and all nine conditional expression values from Table 1.
 
 
 ## Optical Layout
@@ -22,6 +22,8 @@ The lens consists of 15 glass elements arranged in 9 air-separated groups, organ
 - **Front Lens Group (LF):** Surfaces 1–10, 6 elements (G1–G6) in 4 groups — positive overall power (f_LF = 198.77 mm)
 - **Aperture Stop (SP):** Surface 11
 - **Rear Lens Group (LR):** Surfaces 12–25, 9 elements (G7–G15) in 5 groups — positive overall power (f_LR = 44.87 mm)
+
+The diagram labels the two focus units, L1 and L2, rather than LF and LR, so that the group-movement view follows the patent's focus arrow.
 
 The system is further divided into two mechanically distinct lens units for focusing:
 
@@ -37,7 +39,7 @@ This is a front-group extension focus architecture: the focus unit L1 contains t
 |-----------|----------|--------|
 | EFL | 51.100 mm | 51.10 mm |
 | F-number | 1.25 | 1.25 |
-| Half-field angle | 22.95° | 22.95° |
+| Half-field angle | 23.05° (real chief ray to 21.64 mm) | 22.95° |
 | Image height | 21.64 mm | 21.64 mm |
 | Total track | 111.01 mm | 111.01 mm |
 | Back focal distance | 14.60 mm | 14.60 mm |
@@ -60,7 +62,7 @@ The front group's primary responsibilities are to converge the incoming marginal
 - Center thickness: 9.67 mm
 - Cemented with G2 (Doublet D1)
 
-G1 is the most critical element in the design. As the positive lens "Lp" closest to the object, it carries the patent's primary conditional expression constraint: fLp/Dps = 1.240, meaning its focal length is 1.24× the distance from its front surface to the stop. This relationship ensures that the axial marginal ray is sufficiently converged by the time it reaches the stop, keeping the stop diameter manageable without introducing excessive spherical aberration. The front surface is one of two large-diameter ground aspherical surfaces. At the verified semi-diameter of 25.5 mm, the aspherical departure reaches −758 µm, monotonically increasing in magnitude from center to rim. This profile progressively reduces the convex curvature toward the edge, which is the classic correction for undercorrected spherical aberration at f/1.2 — the outer zones of the aperture are made less convergent to bring marginal rays closer to the paraxial focus. The biconvex form with relatively similar front and rear curvatures (R1/|R2| ≈ 1.17) limits the practical semi-diameter to approximately 25.5 mm due to edge thickness constraints, despite the 77 mm filter thread allowing a larger physical barrel diameter. The choice of S-LAH65V (a lanthanum-heavy crown with nd = 1.804) allows the element to achieve strong refraction while maintaining a moderate Abbe number (νd = 46.6), providing a favorable balance between power contribution and chromatic aberration.
+G1 is the most critical element in the design. As the positive lens "Lp" closest to the object, it carries the patent's primary conditional expression constraint: fLp/Dps = 1.240, meaning its focal length is 1.24× the distance from its front surface to the stop. This relationship ensures that the axial marginal ray is sufficiently converged by the time it reaches the stop, keeping the stop diameter manageable without introducing excessive spherical aberration. The front surface is one of two large-diameter ground aspherical surfaces. At the 21.3 mm semi-diameter FIG. 3 draws for the G1/G2 doublet, the aspherical departure reaches −354 µm, monotonically increasing in magnitude from center to rim; the f/1.25 axial beam needs 20.4 mm there. This profile progressively reduces the convex curvature toward the edge, which is the classic correction for undercorrected spherical aberration at f/1.2 — the outer zones of the aperture are made less convergent to bring marginal rays closer to the paraxial focus. The biconvex form with relatively similar front and rear curvatures (R1/|R2| ≈ 1.17) keeps the edge thin; the drawn 21.3 mm rim sits well inside what the 77 mm filter thread would allow. The choice of S-LAH65V (a lanthanum-heavy crown with nd = 1.804) allows the element to achieve strong refraction while maintaining a moderate Abbe number (νd = 46.6), providing a favorable balance between power contribution and chromatic aberration.
 
 **G2 — Biconcave Negative**
 - Glass: S-TIM28 (OHARA), nd = 1.68893, νd = 31.07
@@ -77,7 +79,7 @@ G2 forms the negative component of the front cemented doublet. Its lower refract
 - Radii: R1 = +42.184 mm, R2 = +2510.576 mm (near-plano rear)
 - Center thickness: 7.47 mm
 
-G3 is optically the most remarkable element in the design. Its 001291 coordinate is catalog-equivalent to OHARA S-LAH99, an ultra-high-index dense lanthanum flint with nd = 2.001; the patent's ΔθgF = +0.0050 also agrees with the S-LAH99 partial-dispersion row more closely than the same-coordinate HOYA TAFD55 alternative. Both radii are positive (meniscus form, concave toward the image), but the rear surface is essentially flat (R2 ≈ 2511 mm), so the element functions as a near-plano-convex with all power concentrated at the front surface. The extremely high refractive index allows a relatively gentle curvature (R1 = 42.2 mm) to produce substantial power (f = +42.8 mm). This is the primary converging element of the front group. The high refractive index means that for a given surface power φ = (n−1)/R, the factor (n−1) = 1.001 is very large, so R can be proportionally larger, which reduces higher-order aberrations. The tradeoff is severe chromatic aberration (νd = 29.1 is very dispersive), which must be compensated elsewhere. The strong front curvature constrains the practical SD to approximately 23 mm due to edge thickness limits: at larger apertures, the front surface sag exceeds the center thickness.
+G3 is optically the most remarkable element in the design. Its 001291 coordinate is catalog-equivalent to OHARA S-LAH99, an ultra-high-index dense lanthanum flint with nd = 2.001; the patent's ΔθgF = +0.0050 also agrees with the S-LAH99 partial-dispersion row more closely than the same-coordinate HOYA TAFD55 alternative. Both radii are positive (meniscus form, concave toward the image), but the rear surface is essentially flat (R2 ≈ 2511 mm), so the element functions as a near-plano-convex with all power concentrated at the front surface. The extremely high refractive index allows a relatively gentle curvature (R1 = 42.2 mm) to produce substantial power (f = +42.8 mm). This is the primary converging element of the front group. The high refractive index means that for a given surface power φ = (n−1)/R, the factor (n−1) = 1.001 is very large, so R can be proportionally larger, which reduces higher-order aberrations. The tradeoff is severe chromatic aberration (νd = 29.1 is very dispersive), which must be compensated elsewhere. The strong front curvature limits the edge thickness. The model uses a 21.0 mm front rim, leaving about 2 mm of edge; FIG. 3 draws G3 at about 20 mm.
 
 **G4 — Negative Meniscus**
 - Glass: S-NBH5 (OHARA), nd = 1.65412, νd = 39.68
@@ -85,7 +87,7 @@ G3 is optically the most remarkable element in the design. Its 001291 coordinate
 - Radii: R1 = +99.979 mm, R2 = +24.508 mm (both positive, R1 > R2)
 - Center thickness: 1.60 mm
 
-G4 is a steeply curved negative meniscus that serves two purposes. First, it partially corrects the spherical aberration generated by G3's strong positive surface. Second, its moderate-dispersion glass provides some chromatic compensation against G3. The meniscus form (both radii positive, concave toward the image) is important: it bends the already-converging rays further while introducing the opposite sign of spherical aberration compared to G3's convex surface. The large radius difference (R1/R2 ≈ 4.1) creates strong negative power despite the meniscus shape. The rear surface (R2 = +24.508 mm) is very steeply curved, and the sag of this surface into the following 7.45 mm air gap is the binding cross-gap constraint in the front group, limiting the SD in this region to approximately 16.5 mm.
+G4 is a steeply curved negative meniscus that serves two purposes. First, it partially corrects the spherical aberration generated by G3's strong positive surface. Second, its moderate-dispersion glass provides some chromatic compensation against G3. The meniscus form (both radii positive, concave toward the image) is important: it bends the already-converging rays further while introducing the opposite sign of spherical aberration compared to G3's convex surface. The large radius difference (R1/R2 ≈ 4.1) creates strong negative power despite the meniscus shape. The rear surface (R2 = +24.508 mm) is very steeply curved. Its sag, together with G5's front sag, uses up the 7.45 mm air gap, and the two surfaces would touch at about 16.2 mm. FIG. 3 draws them meeting at about that height. The f/1.25 axial beam needs 15.6 mm at G4's rear surface, so the model sets that rim to 16.0 mm, leaving about 0.24 mm between the rims.
 
 **G5 — Biconcave Negative (Ln)**
 - Glass: CDGM H-ZBaF4 catalog equivalent for patent 666356; production supplier unspecified, nd = 1.66565, νd = 35.64, ΔθgF = −0.0018
@@ -97,7 +99,7 @@ G4 is a steeply curved negative meniscus that serves two purposes. First, it par
 G5 is the negative lens "Ln" identified in the patent's conditional expressions — the most image-side negative element in the front group. Its role is to correct residual spherical aberration from the upstream positive elements (particularly G3) just before the beam enters the stop region. The patent constrains fLn/Dns = −4.156, ensuring that G5's focal length is appropriately balanced against its distance from the stop: too weak and spherical aberration goes uncorrected; too strong and the correction overshoots. The biconcave form generates strong negative power efficiently.
 
 **G6 — Positive Meniscus**
-- Glass: 954323 ultra-high-index dense flint, nd = 1.95375, νd = 32.32
+- Glass: S-LAH98 catalog equivalent (OHARA; patent code 954323, supplier not identified), nd = 1.95375, νd = 32.32
 - Focal length: +38.91 mm
 - Radii: R1 = +34.799 mm, R2 = +516.053 mm
 - Center thickness: 5.56 mm
@@ -127,7 +129,7 @@ G7 is the most distinctive element in the rear group — it uses S-FPL51 fluorop
 The pairing of G7 (high νd, positive power) with G8 (low νd, negative power) in cemented doublet D3 creates a powerful chromatic corrector. Unlike the weakly powered front-group doublets, D3 has significant net negative power (f_D3 = −67.4 mm), contributing negative Petzval curvature that helps flatten the field.
 
 **G8 — Biconcave Negative**
-- Glass: 738323 niobium dense flint, nd = 1.73800, νd = 32.26
+- Glass: S-NBH53 catalog equivalent (OHARA; patent code 738323, supplier not identified), nd = 1.73800, νd = 32.26
 - Focal length: −26.19 mm
 - Radii: R1 = −20.985 mm (junction), R2 = +251.143 mm
 - Center thickness: 1.29 mm
@@ -136,7 +138,7 @@ The pairing of G7 (high νd, positive power) with G8 (low νd, negative power) i
 G8 is the strongest negative element in the entire system (f = −26.19 mm). Nearly all of its power originates from the steeply curved junction surface (R = −20.985 mm), while the rear surface (R = +251.143 mm) contributes only moderate additional refraction. Its high-dispersion niobium flint glass (νd = 32.26) provides aggressive chromatic compensation against G7's low-dispersion positive contribution. The cemented junction between G7 and G8 — where light transitions from nd = 1.497 to nd = 1.738, a Δnd of 0.241 — is the site of the most powerful chromatic correction in the lens. This large index step at the junction generates substantial negative longitudinal chromatic aberration that offsets the accumulated positive chromatic aberration from the front group's high-index positive elements.
 
 **G9 — Biconvex Positive**
-- Glass: 764485 lanthanum crown, nd = 1.76385, νd = 48.51
+- Glass: S-LAH96 catalog equivalent (OHARA; patent code 764485, supplier not identified), nd = 1.76385, νd = 48.51
 - Focal length: +38.96 mm
 - Radii: R1 = +87.566 mm (corrected), R2 = −43.447 mm (corrected)
 - Center thickness: 7.29 mm
@@ -149,7 +151,7 @@ G8 is the strongest negative element in the entire system (f = −26.19 mm). Nea
 - Center thickness: 1.28 mm
 - Cemented with G9 (Doublet D4)
 
-Doublet D4 (G9+G10) has moderate positive power (f_D4 = +204.8 mm). G9 uses a lanthanum crown glass with good Abbe number (νd = 48.5), providing positive power with relatively low chromatic contribution. G10, using the same H-ZBaF4-equivalent 666356 dense flint as G5, provides the negative chromatic correction. This doublet helps correct residual lateral chromatic aberration and contributes to the overall power balance of the rear group.
+Doublet D4 (G9+G10) has moderate positive power (f_D4 = +204.8 mm). G9 uses a lanthanum glass with a fairly high Abbe number (νd = 48.5), providing positive power with relatively low chromatic contribution. G10, using the same H-ZBaF4-equivalent 666356 dense flint as G5, provides the negative chromatic correction. This doublet helps correct residual lateral chromatic aberration and contributes to the overall power balance of the rear group.
 
 **G11 — Biconvex Positive, aspherical front surface**
 - Glass: S-LAH58 / TAFD30 class (883408), nd = 1.88300, νd = 40.80
@@ -157,7 +159,7 @@ Doublet D4 (G9+G10) has moderate positive power (f_D4 = +204.8 mm). G9 uses a la
 - Radii: R1 = +161.695 mm (aspherical, corrected), R2 = −42.423 mm
 - Center thickness: 7.96 mm
 
-G11 is the last element of the focus unit (L1) and carries the second ground aspherical surface. Its front surface (surface 18*) has a departure of approximately −391 µm at the verified 21.5 mm semi-diameter, progressively reducing the surface's convex curvature outward. This asphere is positioned in the converging beam after the stop, where it corrects residual higher-order spherical aberration and reduces the sensitivity of off-axis performance to focus position. The high-index 883408 glass class allows the biconvex element to generate strong positive power while maintaining manageable surface curvatures.
+G11 is the last element of the focus unit (L1) and carries the second ground aspherical surface. Its front surface (surface 18*) has a departure of approximately −215 µm at the 18.7 mm semi-diameter FIG. 3 draws, progressively reducing the surface's convex curvature outward. This asphere is positioned in the converging beam after the stop, where it corrects residual higher-order spherical aberration and reduces the sensitivity of off-axis performance to focus position. The high-index 883408 glass class allows the biconvex element to generate strong positive power while maintaining manageable surface curvatures.
 
 The air gap immediately after G11 (surface 19, d = 1.95 mm at infinity, expanding to 16.11 mm at closest focus) is the sole variable spacing in the system. This gap defines the focus interface between the moving unit L1 and the stationary unit L2; the BFD after L2 remains constant at 14.60 mm.
 
@@ -191,7 +193,7 @@ Doublet D5 (G12+G13) is the first element group of the stationary unit L2. Its m
 - Center thickness: 5.08 mm
 - Cemented with G14 (Doublet D6)
 
-Doublet D6 (G14+G15) is the final optical group before the image plane, and it carries the third aspherical surface on G15's rear face. This doublet has moderate negative power (f_D6 = −154.7 mm), functioning as a field-flattening element that reduces Petzval curvature. The aspherical departure on surface 25* is positive — approximately +293 µm at the verified 16.5 mm semi-diameter — meaning the surface becomes less concave toward the rim. This rear-most asphere primarily corrects field-dependent astigmatism and field curvature at the image periphery. Given its position close to the image plane where chief ray heights are large and marginal ray heights are small, it preferentially affects off-axis rather than on-axis performance.
+Doublet D6 (G14+G15) is the final optical group before the image plane, and it carries the third aspherical surface on G15's rear face. This doublet has moderate negative power (f_D6 = −154.7 mm), functioning as a field-flattening element that reduces Petzval curvature. The aspherical departure on surface 25* is positive: about +570 µm at the 19.1 mm rim FIG. 3 draws. The sag reaches a shallow extremum near 16.3 mm and the surface slope stays under 3° out to the rim, so the drawn rim is a gentle inflection rather than a turnover. The profile flattens toward the rim, and its sag reaches an extremum at about 16.3 mm, a gentle inflection. The rim is set just past it because the corner chief ray crosses this surface at 16.2 mm at infinity and 16.9 mm at closest focus. This rear-most asphere primarily corrects field-dependent astigmatism and field curvature at the image periphery. Given its position close to the image plane where chief ray heights are large and marginal ray heights are small, it preferentially affects off-axis rather than on-axis performance.
 
 G15 uses the same S-LAH65V glass as the front element G1, creating a bookend symmetry in the glass selection. The production lens likely manufactures this final aspherical surface by glass molding (GMo) rather than grinding, consistent with Canon's stated specification of "two ground aspherical elements and one glass-molded aspherical element" — the two large-diameter aspherics on G1 and G11 would require grinding, while the smaller rear element G15 is suitable for precision glass molding. (OHARA produces S-LAH65V in both conventional and PGM-compatible variants, the latter designated L-LAH65V, confirming the glass is available for molding.)
 
@@ -202,9 +204,9 @@ The design employs three aspherical surfaces on three separate elements, all wit
 
 | Surface | Element | R (mm) | Position | Manufacturing | Departure at SD |
 |---------|---------|--------|----------|---------------|-----------------|
-| 1* | G1 (front) | +80.110 | Front of lens | Ground | −758 µm at 25.5 mm |
-| 18* | G11 (front) | +161.695 | After stop | Ground | −391 µm at 21.5 mm |
-| 25* | G15 (rear) | −216.191 | Last surface | Glass-molded | +293 µm at 16.5 mm |
+| 1* | G1 (front) | +80.110 | Front of lens | Ground | −354 µm at 21.3 mm |
+| 18* | G11 (front) | +161.695 | After stop | Ground | −215 µm at 18.7 mm |
+| 25* | G15 (rear) | −216.191 | Last surface | Glass-molded | +570 µm at 19.1 mm |
 
 The aspherical surfaces are strategically distributed through the system to address different aberrations. Surface 1* operates at the largest beam diameter and targets zonal and marginal spherical aberration — the dominant aberration in any f/1.2 design. Its departure increases monotonically in magnitude from center to rim, progressively flattening the convex surface to reduce the convergence of marginal rays. Surface 18* sits in the converging beam after the stop, where it corrects residual higher-order spherical aberration and helps maintain correction across the focus range. Surface 25*, near the image plane, primarily addresses field-dependent aberrations (astigmatism and field curvature) without significantly affecting on-axis performance.
 
@@ -265,9 +267,9 @@ The computed Petzval sum is +0.00164 mm⁻¹, corresponding to a Petzval radius 
 
 ## Focusing Mechanism
 
-The lens employs a **front-group extension focus** system (Claim 8 of the patent): focusing from infinity to the closest distance (0.40 m, magnification −0.19) is accomplished by translating lens unit L1 (elements G1–G11, including the aperture stop) as a rigid block toward the object. Lens unit L2 (elements G12–G15) remains stationary relative to the sensor. Only the air gap d19 — between the last element of L1 (G11) and the first element of L2 (G12) — changes during focusing. The BFD (d25 = 14.60 mm) remains constant because L2 does not move.
+The lens employs a **front-group extension focus** system (¶0031, FIG. 3): focusing from infinity to the closest distance (0.40 m, magnification −0.19) is accomplished by translating lens unit L1 (elements G1–G11, including the aperture stop) as a rigid block toward the object. Lens unit L2 (elements G12–G15) remains stationary relative to the sensor. Only the air gap d19 — between the last element of L1 (G11) and the first element of L2 (G12) — changes during focusing. The BFD (d25 = 14.60 mm) remains constant because L2 does not move.
 
-This focus architecture has a single variable gap but is distinct from unit focus: in unit focus, the entire lens translates and only the BFD changes; here, a subunit extends while the rear group and BFD are fixed. It is also distinct from classical inner focus, where the moving group is flanked on both sides by stationary groups, typically producing two variable gaps. The patent distinguishes this architecture (Claim 8, Examples 1–3) from the floating-focus variant in Example 4, where both L1 and L2 move independently along different loci with two variable gaps (d19 and d25).
+This focus architecture has a single variable gap but is distinct from unit focus: in unit focus, the entire lens translates and only the BFD changes; here, a subunit extends while the rear group and BFD are fixed. It is also distinct from classical inner focus, where the moving group is flanked on both sides by stationary groups, typically producing two variable gaps. The patent distinguishes this architecture (Examples 1–3, ¶0030–0031) from the floating-focus variant in Example 4, where both L1 and L2 move independently along different loci with two variable gaps (d19 and d25).
 
 | Parameter | Infinity | Closest Focus |
 |-----------|----------|---------------|
@@ -275,7 +277,9 @@ This focus architecture has a single variable gap but is distinct from unit focu
 | d25 (BFD, constant) | 14.60 mm | 14.60 mm |
 | Focus extension | — | 14.16 mm |
 
-The 14.16 mm extension corresponds to roughly 0.28× the system EFL. Because the aperture stop moves with the focus unit, the entrance pupil position shifts during focusing, but the f-number remains nominally constant. The front-group extension approach — rather than the more common internal-focus or rear-focus designs — was chosen because it minimizes variations in spherical aberration during focusing. This is critical at f/1.2, where even small spherical aberration changes produce visible shifts in focus quality. The patent notes (¶0062) that this architecture "satisfactorily reduces" focus-induced aberration variations while simultaneously reducing the effective front lens diameter compared to unit-focusing alternatives.
+The patent publishes only these two states. The closest state is defined by magnification −0.19. With d19 = 16.11 mm, the model focuses at 274.8 mm in front of surface 1, or 400.0 mm from object to image (calculated), with β = −0.1925. This matches the production 0.40 m minimum focus distance.
+
+The 14.16 mm extension corresponds to roughly 0.28× the system EFL. Because the aperture stop moves with the focus unit, the entrance pupil position shifts during focusing, but the f-number remains nominally constant. The front-group extension approach — rather than the more common internal-focus or rear-focus designs — was chosen because it minimizes variations in spherical aberration during focusing. This is critical at f/1.2, where even small spherical aberration changes produce visible shifts in focus quality. The patent states (¶0062) that moving L1 keeps the spherical and other aberration changes during focusing small while also reducing the lens outer diameters, in particular the front lens's effective diameter.
 
 The focus is driven by a ring-type Ultrasonic Motor (USM) with Canon's optimized focusing algorithms and a high-speed CPU. The focus limiter switch (0.8 m – ∞) allows photographers to restrict the focus range for faster acquisition in situations where close-focus capability is unnecessary.
 
@@ -319,7 +323,7 @@ The six cemented doublets account for 12 of the 15 elements. Only G3, G4, and G1
 | Aspherical elements | 3 (surfaces 1*, 18*, 25*) | 3 (2 ground + 1 GMo) |
 | UD elements | 1 (G7, S-FPL51) | 1 |
 | Diagonal field | 45.90° | 46° |
-| Closest focus | 0.40 m (implied by m = −0.19) | 0.40 m |
+| Closest focus | 0.400 m object-to-image (calculated from d19 = 16.11 mm, β = −0.19) | 0.40 m |
 | Max magnification | −0.19 | 0.19× |
 | Total track | 111.01 mm | 108 mm (barrel length, excl. mount protrusion) |
 | BFD | 14.60 mm | 14.6 mm (rear element recessed ~5.4 mm behind flange) |
@@ -332,7 +336,7 @@ The BFD of 14.60 mm in the patent is the air-equivalent distance from the last l
 
 ## Appendix: Corrected Surface Prescription (Example 2)
 
-The following prescription reflects the verified values after OCR correction. Surfaces marked with asterisks (*) are aspherical. Surfaces highlighted in bold italics had OCR errors that were corrected from the rasterized patent PDF.
+The following prescription follows the printed Numerical Data 2 table. Surfaces marked with asterisks (*) are aspherical. Bold rows are the radii that machine-text copies of the patent misread.
 
 | Surface | R (mm) | d (mm) | nd | νd | Element |
 |---------|--------|--------|-------|-------|---------|

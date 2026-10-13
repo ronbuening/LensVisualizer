@@ -6,17 +6,21 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 2011/0090576 A1, Third Numerical Embodiment / Example 3 (Shigenobu Sugita, Canon).      ║
  * ║ Native patent scale: f = 584.89 mm; no uniform scaling is applied.                                 ║
- * ║ Active LensVisualizer model: 15 elements / 11 air-separated groups, all spherical.                 ║
+ * ║ Active LensVisualizer model: 15 elements / 11 air-separated groups, all spherical, plus the rear     ║
+ * ║ filter plate G.                                                                                      ║
  * ║                                                                                                      ║
  * ║ Product correlation: Canon EF 600mm f/4L IS II USM. Canon publishes 16 elements / 12 groups        ║
  * ║ including the rear 52 mm drop-in filter, two fluorite elements at G2/G4, 4.5 m MFD, and 0.15x      ║
- * ║ maximum magnification. The separate patent rear glass block G is excluded from this active model.   ║
+ * ║ maximum magnification. The separate patent rear glass block G is drawn as a plate element.           ║
  * ║ Canon sources: https://global.canon/en/c-museum/product/ef413.html and                              ║
  * ║ https://www.cla.canon.com/en/p/ef-600mm-f-4l-is-ii-usm                                            ║
  * ║                                                                                                      ║
- * ║ REAR REFERENCE-PLANE NORMALIZATION: rows 28-29 are glass block G (filter/faceplate) and are          ║
- * ║ omitted. Patent paragraph 0021 defines back focus with G absent, so surface 27 uses d = 121.13 mm   ║
- * ║ directly to the image plane instead of the raw 12.00 mm spacing to G.                               ║
+ * ║ REAR FILTER PLATE: rows 28-29 are glass block G (filter/faceplate): 2.00 mm, nd 1.51633, vd 64.1,    ║
+ * ║ 12.00 mm behind surface 27. It is drawn as a plane-parallel plate element, not counted in            ║
+ * ║ elementCount. The patent's 31.00 mm effective diameter for G is a ray-envelope value, so the plate's ║
+ * ║ semi-diameter is a ray-trace estimate that does not limit the bundles the rest of the model passes.  ║
+ * ║ Patent paragraph 0021 defines back focus with G absent (121.13 mm), so the air behind the plate is   ║
+ * ║ 121.13 - 12.00 - 2.00/1.51633 = 107.811026 mm.                                                       ║
  * ║                                                                                                      ║
  * ║ FOCUS — CONSTRAINED_RECONSTRUCTION: the patent publishes only that cemented L16 moves image-side   ║
  * ║ for close focusing. A paraxial solve constrained to that sole axial focus group and Canon's 4.5 m   ║
@@ -47,7 +51,7 @@ const LENS_DATA = {
   name: "CANON EF 600mm f/4 L IS II USM",
   subtitle: "US 2011/0090576 A1 Example 3 — Shigenobu Sugita / Canon Inc.",
   specs: [
-    "15 ACTIVE ELEMENTS / 11 GROUPS",
+    "15 ACTIVE ELEMENTS / 11 GROUPS (PLUS REAR FILTER PLATE G)",
     "f = 584.82 mm (MODELED)",
     "F/4.12 DESIGN",
     "2ω = 4.24°",
@@ -59,6 +63,7 @@ const LENS_DATA = {
   apertureMarketing: 4,
   apertureDesign: 4.12,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "US 2011/0090576 A1",
   patentAuthors: ["Shigenobu Sugita"],
@@ -290,6 +295,18 @@ const LENS_DATA = {
       cemented: "L25",
       role: "Patent Gn1 high-index/high-dispersion negative component nearest the image side.",
     },
+    {
+      id: 16,
+      name: "G",
+      diagramLabel: "G",
+      label: "Drop-in filter G",
+      type: "Plane-Parallel Plate",
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7 (OHARA)",
+      dPgF: -0.0007,
+      role: "Plane-parallel glass block G of the patent prescription (rows 28-29; X = dPgF = -0.0007), in the rear 52 mm drop-in filter holder. The patent defines back focus with it absent; Canon counts the drop-in filter in the production lens.",
+    },
   ],
 
   /* ── Surface prescription ── */
@@ -327,7 +344,11 @@ const LENS_DATA = {
     { label: "24", R: 177.571, d: 4.59, nd: 1.0, elemId: 0, sd: 15.605 },
     { label: "25", R: -882.223, d: 4.17, nd: 1.7495, elemId: 14, sd: 15.505 },
     { label: "26", R: -44.263, d: 1.9, nd: 1.92286, elemId: 15, sd: 15.52 },
-    { label: "27", R: -147.669, d: 121.13, nd: 1.0, elemId: 0, sd: 15.705 },
+    { label: "27", R: -147.669, d: 12.0, nd: 1.0, elemId: 0, sd: 15.705 },
+    // Drop-in filter G (patent rows 28-29), drawn as a plane-parallel plate. Its sd is a ray-trace estimate; the
+    // patent's 31.00 mm effective diameter is a ray envelope and would narrow this model's half-field.
+    { label: "28", R: 1e15, d: 2.0, nd: 1.51633, elemId: 16, sd: 18.0 },
+    { label: "29", R: 1e15, d: 107.811026, nd: 1.0, elemId: 0, sd: 18.0 }, // drop-in filter → image plane
   ],
 
   asph: {},

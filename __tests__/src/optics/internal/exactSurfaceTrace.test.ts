@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { traceExactSurfaceStack } from "../../../../src/optics/internal/exactSurfaceTrace.js";
+import { traceExactSurfaceStack, type ExactTraceLens } from "../../../../src/optics/internal/exactSurfaceTrace.js";
 import { sag } from "../../../../src/optics/internal/surfaceMath.js";
 import type { SurfaceData } from "../../../../src/types/optics.js";
 
@@ -63,6 +63,15 @@ describe("traceExactSurfaceStack", () => {
     expect(result.clipped).toBe(true);
     expect(isFinite(result.y)).toBe(true);
     expect(isFinite(result.uy)).toBe(true);
+  });
+
+  it("clips at the semi-diameter itself, with no margin a lens object could widen it by", () => {
+    /* `clipMargin` once multiplied every clip radius; a lens object that still carries one must not move the clip. */
+    const margined = { S: flatSurfaces, asphByIdx: {}, clipMargin: 1.05 } as ExactTraceLens;
+    const trace = (y0: number) => traceExactSurfaceStack(margined, { y0, uy0: 0 }, { checkSemiDiameter: true });
+
+    expect(trace(9.999).clipped).toBe(false);
+    expect(trace(10.001).clipped).toBe(true);
   });
 
   it("reports intersection or refraction failure as a clipped failed trace", () => {

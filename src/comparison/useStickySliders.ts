@@ -15,18 +15,12 @@ import { snapToCommon } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult } from "./comparisonSliders.js";
 import { SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T } from "./comparisonReducer.js";
 import type { LensAction } from "../types/state.js";
-import type { RuntimeLens } from "../types/optics.js";
-
-interface ComparisonLenses {
-  LA: RuntimeLens;
-  LB: RuntimeLens;
-}
 
 interface UseStickySliderResult {
-  handleSharedFocusChange: (rawT: number) => void;
-  handleSharedStopdownChange: (rawT: number) => void;
-  handleFocusPointerDown: () => void;
-  handleAperturePointerDown: () => void;
+  handleSharedFocusChange: (rawT: number, direct?: boolean) => void;
+  handleSharedStopdownChange: (rawT: number, direct?: boolean) => void;
+  handleFocusPointerDown: (value?: number) => void;
+  handleAperturePointerDown: (value?: number) => void;
   flashPanel: string | null;
   resetSticky: () => void;
   prevStopdownT: MutableRefObject<number>;
@@ -36,7 +30,6 @@ export default function useStickySliders(
   dispatch: Dispatch<LensAction>,
   focusPair: FocusPairResult | null,
   aperturePair: AperturePairResult | null,
-  comparisonLenses: ComparisonLenses | null,
 ): UseStickySliderResult {
   const focusStuck = useRef<boolean>(false);
   const apertureStuck = useRef<boolean>(false);
@@ -58,7 +51,14 @@ export default function useStickySliders(
   }, []);
 
   const handleSharedFocusChange = useCallback(
-    (rawT: number): void => {
+    (rawT: number, direct = false): void => {
+      // Presets and keyboard input select exactly; the detent belongs to pointer drags.
+      if (direct) {
+        focusStuck.current = false;
+        prevFocusT.current = rawT;
+        dispatch({ type: SET_SHARED_FOCUS_T, value: rawT });
+        return;
+      }
       const cp = focusPair?.commonPoint;
       const stickyActive = cp != null && cp > 0.01 && cp < 0.99;
 
@@ -73,8 +73,7 @@ export default function useStickySliders(
           dispatch({ type: SET_SHARED_FOCUS_T, value: cp });
           prevFocusT.current = cp;
           focusStuck.current = true;
-          const { LA, LB } = comparisonLenses!;
-          triggerFlash(LA.closeFocusM > LB.closeFocusM ? "a" : "b");
+          triggerFlash(focusPair!.focusA > focusPair!.focusB ? "a" : "b");
           return;
         }
       }
@@ -82,11 +81,18 @@ export default function useStickySliders(
       prevFocusT.current = v;
       dispatch({ type: SET_SHARED_FOCUS_T, value: v });
     },
-    [focusPair, comparisonLenses, triggerFlash, dispatch],
+    [focusPair, triggerFlash, dispatch],
   );
 
   const handleSharedStopdownChange = useCallback(
-    (rawT: number): void => {
+    (rawT: number, direct = false): void => {
+      // Presets and keyboard input select exactly; the detent belongs to pointer drags.
+      if (direct) {
+        apertureStuck.current = false;
+        prevStopdownT.current = rawT;
+        dispatch({ type: SET_SHARED_STOPDOWN_T, value: rawT });
+        return;
+      }
       const cp = aperturePair?.commonPoint;
       const stickyActive = cp != null && cp > 0.01 && cp < 0.99;
 
@@ -101,8 +107,7 @@ export default function useStickySliders(
           dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
           prevStopdownT.current = cp;
           apertureStuck.current = true;
-          const { LA, LB } = comparisonLenses!;
-          triggerFlash(LA.FOPEN > LB.FOPEN ? "a" : "b");
+          if (aperturePair?.limitingPanel) triggerFlash(aperturePair.limitingPanel);
           return;
         }
       }
@@ -110,14 +115,16 @@ export default function useStickySliders(
       prevStopdownT.current = v;
       dispatch({ type: SET_SHARED_STOPDOWN_T, value: v });
     },
-    [aperturePair, comparisonLenses, triggerFlash, dispatch],
+    [aperturePair, triggerFlash, dispatch],
   );
 
-  const handleFocusPointerDown = useCallback((): void => {
+  const handleFocusPointerDown = useCallback((value?: number): void => {
+    if (value != null) prevFocusT.current = value;
     focusStuck.current = false;
   }, []);
 
-  const handleAperturePointerDown = useCallback((): void => {
+  const handleAperturePointerDown = useCallback((value?: number): void => {
+    if (value != null) prevStopdownT.current = value;
     apertureStuck.current = false;
   }, []);
 

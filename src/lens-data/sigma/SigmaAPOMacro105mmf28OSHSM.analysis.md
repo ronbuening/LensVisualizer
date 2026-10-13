@@ -1,4 +1,4 @@
-# Sigma APO Macro 105mm F2.8 EX DG OS HSM — Optical Analysis
+# Sigma MACRO 105mm F2.8 EX DG OS HSM — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -11,7 +11,7 @@
 **Title:** Macro Lens (マクロレンズ)  
 **Embodiment analyzed:** Example 4 (実施例４)
 
-JP 2012-58682 A describes a floating inner-focus macro lens for 1:2 to 1:1 photography, with a lens-shift optical-stabilizer group and a diagonal field in the 20°–25° class. Six numerical examples are given. Example 4 is the prescription transcribed here and is the best match to the production Sigma APO Macro 105mm F2.8 EX DG OS HSM.
+JP 2012-58682 A describes a floating inner-focus macro lens for 1:2 to 1:1 photography, with a lens-shift optical-stabilizer group and a diagonal field in the 20°–25° class. Six numerical examples are given. Example 4 is the prescription transcribed here and is the best match to the production Sigma MACRO 105mm F2.8 EX DG OS HSM. Sigma does not brand this lens APO; the name is reserved for its 150mm and 180mm macro siblings.
 
 The identification rests on converging evidence rather than on a single number. Example 4 has 16 glass elements in 11 air-separated groups when cemented pairs are counted as groups. Sigma's official product specification lists the production lens as 16 elements in 11 groups, a full-frame DG lens, with a 23.3° angle of view, 1:1 maximum magnification, 31.2 cm minimum focusing distance, a 62 mm filter thread, nine rounded diaphragm blades, and optical stabilization. The patent example gives f = 101.71 mm, Fno = 2.91, 2ω = 24.09° at infinity, and β = 1:1 at the closest tabulated focus position. The small difference between the patent's 101.71 mm design focal length and the marketed 105 mm designation is within ordinary production naming practice; the data file records both values rather than scaling the patent prescription.
 

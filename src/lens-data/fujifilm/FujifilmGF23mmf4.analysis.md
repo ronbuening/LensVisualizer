@@ -18,14 +18,14 @@ Example 1 is the closest public patent embodiment found for the Fujinon GF23mmF4
 2. **Field angle.** The patent reports $2\omega = 101.6^\circ$ at infinity; Fujifilm publishes 99.9° for the finished product. The difference is consistent with patent paraxial field definition, distortion treatment, and late-stage production optimization.
 3. **Special-element count.** Example 1 contains two doubly-aspherical elements, one very-low-dispersion S-FPL55/Super-ED element, and three additional ED-class elements. Fujifilm publishes two aspherical elements, one Super ED element, and three ED elements for the production lens.[^fuji-spec]
 4. **Focusing architecture.** The patent describes a fixed first group, a positive second group that moves for focusing, and a fixed third group. That is consistent with a compact internal-focus GF wide-angle lens driven by a linear motor.
-5. **Format.** The field angle and image height correspond to the 44 × 33 mm GFX image format. The patent includes a rear parallel plate PP with $n_d = 1.51680$ and 3.2 mm thickness, modeling the camera-side cover-glass/filter stack rather than a lens element.
+5. **Format.** The field angle and image height correspond to the 44 × 33 mm GFX image format. The patent includes a rear parallel plate PP with $n_d = 1.51680$ and 3.2 mm thickness, modeling the camera-side cover-glass/filter stack rather than a lens element. The data file carries it in `rearPlates`, so every analysis traces it, but it is not drawn.
 6. **Timing.** The January 2017 Japanese priority date precedes the commercial GF23mmF4 R LM WR release window and fits Fujifilm's patent-to-product cadence for the early GFX lens set.
 
 The patent closest-point state is 0.25 m, while Fujifilm's production specification gives a minimum focus distance of 0.38 m.[^fuji-spec] The data file therefore records the patent's 0.25 m focus endpoint because that is the only published variable-spacing state in the prescription. The analysis distinguishes that patent state from the production minimum focus limit.
 
 ## Optical Architecture
 
-Example 1 is a three-mechanical-group, internally focusing ultra-wide-angle design. It is better described as **inverted-telephoto-derived** rather than as a strict retrofocus lens. The front section begins with three negative menisci, which is retrofocus-like, but the computed air-equivalent back focal distance from the final glass surface is 22.317 mm after folding the patent's 3.2 mm cover glass into air; this is slightly shorter than the verified effective focal length of 23.695 mm. The strict optical criterion $\mathrm{BFD} > \mathrm{EFL}$ is therefore not met for the transcribed patent example.
+Example 1 is a three-mechanical-group, internally focusing ultra-wide-angle design. It is better described as **inverted-telephoto-derived** rather than as a strict retrofocus lens. The front section begins with three negative menisci, which is retrofocus-like, but the air-equivalent back focal distance from the final glass surface is 22.317 mm when the patent's 3.2 mm PP plate is reduced to its paraxial air equivalent (the physical distance is 23.407 mm); this is slightly shorter than the verified effective focal length of 23.695 mm. The strict optical criterion $\mathrm{BFD} > \mathrm{EFL}$ is therefore not met for the transcribed patent example.
 
 The net paraxial focal lengths of the three patent groups are:
 
@@ -254,11 +254,13 @@ Here $BS$ is the physical axial distance from the stop to the image plane includ
 
 ## Data-File Implementation Notes
 
-The project data file excludes sensor glass and camera-side cover glass. The patent's PP plate is therefore not entered as a separate optical element or surface. Instead, its optical path is folded into the final back-focus gap as
+The patent's PP plate (Table 1 surfaces 27–28: 3.2000 mm, $n_d = 1.51680$, $\nu_d = 64.20$, 0.0000 mm to the image plane) is modeled in `rearPlates` as an N-BK7-class plate. Surface 26 stores the patent's physical 20.2074 mm gap to PP, and every analysis traces the plate, but it is not drawn or counted as an element. Its paraxial air equivalent is
 
 $$
-20.2074 + \frac{3.2}{1.51680} = 22.3171\ \text{mm}.
+20.2074 + \frac{3.2}{1.51680} = 22.3171\ \text{mm},
 $$
+
+the value earlier versions of the data file stored as a folded last gap.
 
 The patent does not publish clear apertures or semi-diameters. The data-file semi-diameters were estimated from paraxial marginal and chief-ray geometry, then reduced where necessary to satisfy practical rendering constraints: $sd/|R| < 0.90$, front/rear semi-diameter ratio within each element not exceeding 1.25, edge thickness above 0.3 mm, and cross-gap sag intrusion below 90% of the relevant air gap. The selected stop semi-diameter is 6.175 mm, derived from the patent F/4 entrance pupil using the paraxial front-group pupil magnification.
 
@@ -278,7 +280,7 @@ Independent paraxial tracing confirmed the following values at the d-line:
 | Surface-by-surface Petzval sum | +0.0038489 mm⁻¹ | not tabulated |
 | Petzval radius | +259.8 mm | not tabulated |
 | Physical BFD from final lens surface to image, including PP thickness | 23.4074 mm | 20.2074 + 3.2 mm |
-| Data-file folded air-equivalent BFD | 22.3171 mm | PP excluded by data convention |
+| Air-equivalent BFD (PP reduced to t/n) | 22.3171 mm | 20.2074 + 3.2 / 1.51680 mm |
 
 The prescription is internally consistent. The main limitations are not transcription errors but production/patent differences: the production lens adds one element and one group, and its published minimum focus distance is 0.38 m rather than the patent example's 0.25 m.
 

@@ -27,3 +27,15 @@ Patent: US 4,726,669 A, Example 1 / Figure 1.
 - Rechecked the supplied viewer screenshot against Example 1 / Figure 1a. The eight surface forms, two cemented junctions, all-spherical flag, and stored semi-diameters match the source drawing within the documented raster limits; both focused geometry audits pass.
 - Added the patent identifiers `L1` through `L8` to the diagram. Removed the source-foreign displayed `D1` / `D2` cemented-pair shorthands; inspector badges identify the pairs as `L5/L6` and `L7/L8`, while the patent's published spacing symbols `D2`, `D6`, and `D11` remain unchanged.
 - Reconfirmed `P. ANGÉNIEUX DEM 180mm f/2.3 APO`, the romanized inventor name `Pierre Angénieux`, and L2 as the only patent-supported APD element.
+
+## 2026-09-25 — MTF image-plane census
+
+Visually checked `patents/US4726669.pdf`, Example 1 on PDF p. 7 (column 3). All 14 radii, thicknesses/gaps and eight refractive indices/Abbe values match after uniform ×1.8 scaling, except the already documented and supported V1 emendation: Example 1 prints 6.12, Example 2 prints 61.2 for the same n=1.589. Retain 61.2; it does not affect the reference-index paraxial focus. No aspheres or rear plate.
+
+Infinity D2=1.67, D6=14.99, D11=9.99; close values 0.24/16.41/0.32 are also correctly scaled. The inferred stop splits D8=6.11×1.8=10.998 into equal air gaps without changing first-order propagation. Printed BF=44.79 scales to 80.622; ΣD=61.41 scales to 110.538. Every scaled source dimension agrees, including weak rear R14=−376.983×1.8=−678.5694.
+
+Independent native EFL=99.959463939 and BFL=44.708683191 versus F=100/BF=44.79. Scaled EFL=179.927035090, BFL=80.475629744, offset −0.146370256. Rounded nd values may contribute, but no single supported misprint or alternative plate path resolves the discrepancy.
+
+**Cause/action:** source inconsistency; retain published BF and prescription. Offset **−0.146370 → −0.146370 mm**; Section E row deleted. No numerical change/changelog.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.

@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║      LENS DATA — NIKON AI NIKKOR 600mm f/5.6 IF-ED                ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP1981-035116 Example 1, Nippon Kogaku K.K.          ║
+ * ║  Data source: JP 1981-035116 Example 1, Nippon Kogaku K.K.          ║
  * ║  Production correlation: Nikon AI Nikkor 600mm f/5.6 IF-ED.       ║
  * ║  7 elements / 6 air-separated groups; all spherical.              ║
  * ║                                                                    ║
@@ -62,7 +62,7 @@ const LENS_DATA = {
   key: "nikon-ai-nikkor-600mm-f56-if-ed",
   maker: "Nikon",
   name: "NIKON AI NIKKOR 600mm f/5.6 IF-ED",
-  subtitle: "JP1981-035116 Example 1 — Nippon Kogaku K.K. / Nakamura & Arashida",
+  subtitle: "JP 1981-035116 Example 1 — Nippon Kogaku K.K. / Nakamura & Arashida",
   specs: ["7 ELEMENTS / 6 GROUPS", "600mm f/5.6", "4°10′", "INTERNAL FOCUS", "5.5 m MFD"],
 
   focalLengthMarketing: 600,
@@ -71,7 +71,7 @@ const LENS_DATA = {
   apertureDesign: 5.6,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1981-035116",
+  patentNumber: "JP 1981-035116 A",
   patentAuthors: ["Soichi Nakamura", "Kazuo Arashida"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1981,
@@ -198,10 +198,11 @@ const LENS_DATA = {
   asph: {},
 
   /* ── Focus model ── */
+  focusPositions: [0, 0.7891907622974426, 1],
   var: {
     // Original patent d6 = S6→STO + STO→S7. STO is fixed; G2 moves imageward (rearward).
-    STO: [48.765, 59.190804222],
-    "11": [17.778, 7.352195778],
+    STO: [48.765, 56.769, 59.190804222],
+    "11": [17.778, 9.774, 7.352195778],
   },
   varLabels: [
     ["STO", "D6 (IF front gap)"],
@@ -216,8 +217,10 @@ const LENS_DATA = {
   doublets: [{ text: "L4+L5", fromSurface: "7", toSurface: "9" }],
 
   closeFocusM: 5.5,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: functional G2 (L4–L6) translates imageward (rearward) 10.425804222 mm from infinity to the 5.5 m product endpoint. The patent's adjacent d6/d11 total is conserved exactly. Because the inferred aperture stop is fixed at the midpoint of d6, focus variation is stored on STO→S7 and S11→S12.",
+    "Functional G2 (L4–L6) translates imageward. The patent finite-focus row and constrained 5.5 m product endpoint are exact keyframes, and the adjacent d6/d11 total is conserved. Because the inferred aperture stop is fixed at the midpoint of d6, focus variation is stored on STO→S7 and S11→S12.",
 
   nominalFno: 5.6,
   fstopSeries: [5.6, 8, 11, 16, 22],

@@ -11,10 +11,6 @@ Patent: US 2,745,315, Example 1
 - Stored SDs preserve that broad f/2 silhouette while respecting the tight spherical-rim limit at the stop-facing R5 surface and the narrow rear L5-L6 air gap.
 - No SD values changed. Current values remain inferred from paraxial marginal/chief-ray traces, figure proportions, edge-thickness checks, spherical-rim limits, and same-element diameter constraints.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-08-11 — Phase 92 HOYA F7 recovery
 
 - Visually rechecked US 2,745,315 Examples 1–3 on rendered PDF pages 2–3: L3 and L4 use the rounded

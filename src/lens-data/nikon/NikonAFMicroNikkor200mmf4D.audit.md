@@ -66,7 +66,7 @@ The source correspondence values for conditions (1)–(7) are 2.12, −1.65, 0.8
 - The prescription is used at native scale; no focal-length scale transformation is applied.
 - The patent publishes no aperture-stop position, stop diameter, or clear semi-diameters. Any `STO` and `sd` values are therefore disclosed modeling inferences.
 - The source caption “Variable Interval in Zooming” is a wording error for this fixed-focal-length prime. The three columns are focus states.
-- The prose says G1 moves objectward along a convex nonlinear path, but the numerical table returns d5 to 6.6432 mm at β = −1.0000 after an intermediate 14.2044 mm excursion. The numerical table is retained; the endpoint-only prime schema cannot represent that reversal exactly.
+- The prose says G1 moves objectward along a convex nonlinear path, but the numerical table returns d5 to 6.6432 mm at β = −1.0000 after an intermediate 14.2044 mm excursion. The numerical table is retained as an explicit focus keyframe, so the published reversal is represented exactly at all three source states.
 
 ## Fresh optical calculation
 
@@ -254,11 +254,6 @@ Repository verification completed:
 - Fresh patent-only y–ν trace and ABCD multiplication: PASS.
 - Fresh patent vs final-data optical matrices: PASS to < 1×10⁻¹² at infinity, β = −0.5 and β = −1.
 - Stage-4 verifier against the integrated data and analysis: PASS, 30 assertions.
-- `npm run generate:glass-reports`: PASS; strict Sellmeier coverage is restored to 13/13 elements with no catalog mismatch.
-- `npm run typecheck`: PASS.
 - Focused analysis, patent-metadata, lens-data, catalog, and production render-diagnostics tests: PASS, 149 tests.
-- `npm run format:check` and `npm run lint`: PASS.
-- Full `npm run test`: PASS, 254 files / 2487 tests.
-- `npm run build`: PASS; all 1080 routes prerendered. The build emits the updated US 5,402,268 page at `/lens/nikon-af-micro-nikkor-200mm-f4d/` and emits no `-if-ed` replacement route or redirect.
 
 No patent-derived radius, spacing, refractive index, Abbe value, focus endpoint, element/group count, or spherical-surface status required correction during repository integration.

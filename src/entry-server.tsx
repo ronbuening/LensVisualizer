@@ -16,6 +16,7 @@ import { StaticRouter } from "react-router";
 import { HelmetProvider } from "react-helmet-async";
 import ErrorBoundary from "./components/errors/ErrorBoundary.js";
 import routeManifest from "./routes/routeManifest.js";
+import { markPrerenderedHeadTags } from "./utils/seo/prerenderedHead.js";
 import { Routes, Route } from "react-router";
 
 /** Route patterns from the manifest (excluding the catch-all wildcard). */
@@ -60,13 +61,16 @@ function splitPrerenderMarkup(markup: string): RenderResult {
   const jsonLdScripts = collectTags(bodyWithJsonLd, JSON_LD_SCRIPT_PATTERN);
   const headMarkup = nativeHead + jsonLdScripts;
 
+  /* Every emitted head tag carries the prerender marker so the client bootstrap
+   * can remove the static copies after React hoists its own; see
+   * `src/utils/seo/prerenderedHead.ts`. */
   return {
     html: bodyWithJsonLd.replace(JSON_LD_SCRIPT_PATTERN, ""),
     helmet: {
-      title: headSection(collectTags(headMarkup, /<title(?:\s[^>]*)?>[\s\S]*?<\/title>/g)),
-      meta: headSection(collectTags(headMarkup, /<meta(?:\s[^>]*)?\/?\s*>/g)),
-      link: headSection(collectTags(headMarkup, /<link(?:\s[^>]*)?\/?\s*>/g)),
-      script: headSection(collectTags(headMarkup, /<script(?:\s[^>]*)?>[\s\S]*?<\/script>/g)),
+      title: headSection(markPrerenderedHeadTags(collectTags(headMarkup, /<title(?:\s[^>]*)?>[\s\S]*?<\/title>/g))),
+      meta: headSection(markPrerenderedHeadTags(collectTags(headMarkup, /<meta(?:\s[^>]*)?\/?\s*>/g))),
+      link: headSection(markPrerenderedHeadTags(collectTags(headMarkup, /<link(?:\s[^>]*)?\/?\s*>/g))),
+      script: headSection(markPrerenderedHeadTags(collectTags(headMarkup, /<script(?:\s[^>]*)?>[\s\S]*?<\/script>/g))),
     },
   };
 }

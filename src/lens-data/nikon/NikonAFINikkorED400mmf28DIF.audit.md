@@ -18,14 +18,29 @@ Patent: US 5,438,455 A, Example 1
 - Added Hikari `J-LLF6` to the catalog from the retained first-party Nikon/Hikari workbook. Its vendor coefficients resolve L22b here and the same named glass in the existing Nikon AF-P DX 10–20mm record.
 - Normalized the display name to `NIKON AF-I NIKKOR 400mm f/2.8D IF-ED`.
 
-### Verification
-
-- `npm run audit:surface -- src/lens-data/nikon/NikonAFINikkorED400mmf28DIF.data.ts`
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAFINikkorED400mmf28DIF.data.ts`
-- Full repository checks are recorded in the integrating commit.
-
 ## 2026-08-18 — Screenshot follow-up
 
 - Rechecked the supplied rendering against Figure 1. The revised G2/G3 diameter ladder is the closest validator-safe match; no further SD change was supported.
 - Confirmed the published focus order: G2 moves `+17.8317mm` imageward while G1 and G3 remain fixed.
 - Corrected L3b's displayed type to `Negative Meniscus`, marked L11/L12/L3a as the three inferred ED positions, and retained the source subgroup labels without inventing additional product claims.
+
+## 2026-09-23 — Rear filter modeled as `rearPlates`
+
+- Read Table 1 on PDF page 8 at 200 dpi: s17 d = 46.34; surfaces 18–19 are a 2.00 mm plane-parallel plate, ν 64.1,
+  n 1.51680; Bf = 104.5069 at both infinity and the β = −0.1446 close state. Figure 1 labels the plate FILTER.
+- The STO row (modeled 23.7 mm behind s17) now stores the physical 22.64 mm gap to the filter instead of the folded
+  128.4654654 mm; `rearPlates` FILTER is J-BK7A (Hikari, as the elements; resolves for 1.51680 / 64.1) with
+  gapAfter 104.5069 mm. Paraxial check against the previous data: EFL identical and defocus unchanged at both focus
+  states (worst difference 2e-14 mm). Physical track grows by 0.681 mm to 374.228 mm.
+
+## 2026-10-04 — Slip-in filter drawn as an element
+
+- The rear slip-in filter plate F moved out of `rearPlates` into the drawn prescription: surfaces 18–19 and element 11
+  (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place and
+  a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
+- The source lists no clear aperture for the plate. Its semi-diameter, 24 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at infinity, mid and
+  close focus (22.45 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
+  axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
+  corner.

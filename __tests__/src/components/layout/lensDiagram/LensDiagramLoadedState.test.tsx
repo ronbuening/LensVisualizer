@@ -78,6 +78,7 @@ function baseProps(overrides: Partial<LensDiagramLoadedStateProps> = {}): LensDi
     onApertureExpandedChange: vi.fn(),
     onLegendExpandedChange: vi.fn(),
     onSliderPointerUp: vi.fn(),
+    onPatentStationChange: vi.fn(),
     onAbbeShowGlassTypeChange: vi.fn(),
     onGlassMapOpenChange: vi.fn(),
   };
@@ -130,6 +131,7 @@ function baseProps(overrides: Partial<LensDiagramLoadedStateProps> = {}): LensDi
       dark: true,
       isWide: true,
       compact: false,
+      analysisControls: "dock",
       showControls: true,
       showSliders: true,
       maxSvgHeight: "60vh",
@@ -169,6 +171,7 @@ function baseProps(overrides: Partial<LensDiagramLoadedStateProps> = {}): LensDi
       showEffectiveFocalLength: false,
       showEffectiveAperture: false,
       abbeShowGlassType: false,
+      patentPositions: false,
     },
     overlays: {
       showChromaticOverlay: false,

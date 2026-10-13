@@ -45,7 +45,6 @@ const ApertureSweepDiagram = memo(function ApertureSweepDiagram({ isDark }: { is
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 640 270"
       width="100%"
-      height="auto"
       role="img"
       aria-label="Aperture sweep: smaller openings exclude outer pupil zones"
     >

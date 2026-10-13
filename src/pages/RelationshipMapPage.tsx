@@ -31,6 +31,7 @@ import { catalogCollator } from "../utils/catalog/collation.js";
 import roleChip from "../components/relationshipMap/roleChip.js";
 import { pluralize } from "../utils/text.js";
 import { panelCard } from "../utils/style/styles.js";
+import { universalMapHash } from "../utils/state/universalMapUrl.js";
 
 const TOP_COUNT = 12;
 
@@ -112,14 +113,22 @@ export default function RelationshipMapPage() {
                   {focus.name}
                   <span style={roleChip(t, focus.role)}>{focus.role === "assignee" ? "assignee" : "inventor"}</span>
                 </h1>
-                {graph.center.hasPage && (
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem 1rem" }}>
+                  {graph.center.hasPage && (
+                    <Link
+                      to={`/authors/${focus.slug}/`}
+                      style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.75rem" }}
+                    >
+                      View patent list page →
+                    </Link>
+                  )}
                   <Link
-                    to={`/authors/${focus.slug}/`}
+                    to={`${canonicalPagePath("/relationships/universal")}${universalMapHash("", graph.center.id)}`}
                     style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.75rem" }}
                   >
-                    View patent list page →
+                    View in universal relationship map →
                   </Link>
-                )}
+                </div>
               </div>
 
               <div style={{ marginBottom: "1rem" }}>

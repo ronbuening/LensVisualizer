@@ -11,10 +11,6 @@ Patent: DE 2444954 A1, Claim 3 / Example 3
 - The stored SDs preserve the figure hierarchy at the 75 mm scale: 21.0 mm at the outer front and rear, 10.2-10.6 mm at the central groups, and an 8.72 mm stop.
 - No SD values changed. Current values remain inferred from the patent drawing, ray clearance, and the production 67 mm filter / 60 mm rear-barrel envelope noted in the data file.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-30 - SK3 catalog recovery
 
 - Verified SUMITA SK3 in the vendor's 2025-11-07 all-glass catalog, including its formula-3 dispersion polynomial and the exact `1.60881 / 58.9` d-line coordinate.

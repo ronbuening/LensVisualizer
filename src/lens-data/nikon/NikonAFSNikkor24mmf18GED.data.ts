@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Nikon AF-S NIKKOR 24mm f/1.8G ED
+ * NIKON AF-S NIKKOR 24mm f/1.8 G ED
  *
  * Data source: JP 2017-3807 A, Example 4 (Konica Minolta / Nikon).
  * Prescription is retained at patent scale: computed d-line EFL = 24.423 mm;
@@ -25,7 +25,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-24mm-f18g-ed",
   maker: "Nikon",
-  name: "Nikon AF-S NIKKOR 24mm f/1.8G ED",
+  name: "NIKON AF-S NIKKOR 24mm f/1.8 G ED",
   subtitle: "JP 2017-3807 A Example 4 — Konica Minolta / Nikon",
   specs: [
     "12 elements / 9 groups",
@@ -300,11 +300,13 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.23,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Rear-group inner focus: Gr1 is fixed; Gr2 moves 4.98 mm object-ward from infinity to close focus while BFD increases by 4.98 mm.",
 
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.86,
+  fstopSeries: [1.86, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
 
   scFill: 0.58,

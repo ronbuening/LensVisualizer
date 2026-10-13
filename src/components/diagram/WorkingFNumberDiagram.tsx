@@ -107,7 +107,6 @@ const WorkingFNumberDiagram = memo(function WorkingFNumberDiagram({ isDark }: { 
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 640 230"
       width="100%"
-      height="auto"
       role="img"
       aria-label="Working f-number vs nominal f-number diagram"
     >

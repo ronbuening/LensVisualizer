@@ -20,7 +20,6 @@ const ZonalCurvesDiagram = memo(function ZonalCurvesDiagram({ isDark }: { isDark
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 640 250"
       width="100%"
-      height="auto"
       role="img"
       aria-label="Four longitudinal spherical-aberration curve shapes"
     >

@@ -6,6 +6,7 @@
  */
 
 import { Link } from "react-router";
+import { TELECONVERTER_SUMMARY_LIST } from "../../utils/catalog/teleconverterSummaries.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -13,14 +14,16 @@ interface IndexNavBarProps {
   theme: Theme;
 }
 
+/* The teleconverter section is built only once the catalog holds a published converter, so its link follows. */
 const INDEX_LINKS = [
   { label: "Mounts", to: "/mounts" },
   { label: "Formats", to: "/formats" },
+  ...(TELECONVERTER_SUMMARY_LIST.length > 0 ? [{ label: "Teleconverters", to: "/teleconverters" }] : []),
   { label: "Patents", to: "/patents" },
   { label: "Authors", to: "/authors" },
   { label: "Relationships", to: "/relationships" },
   { label: "Articles", to: "/articles" },
-] as const;
+];
 
 export default function IndexNavBar({ theme: t }: IndexNavBarProps) {
   return (

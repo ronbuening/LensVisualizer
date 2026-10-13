@@ -273,9 +273,10 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.2935270851067281, 1],
   var: {
-    "8": [4.971, 0.561],
-    "25": [37.865, 42.274],
+    "8": [4.971, 4.145, 0.561],
+    "25": [37.865, 38.69, 42.274],
   },
   varLabels: [
     ["8", "D8 / Gr1–Gr2"],
@@ -296,8 +297,10 @@ const LENS_DATA = {
   focusDescription:
     "Rear focusing: the complete second lens group Gr2 translates 4.410 mm toward the object side from infinity to close focus while Gr1 remains fixed.",
   closeFocusM: 0.25,
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
+  nominalFno: 1.43,
+  fstopSeries: [1.43, 2, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 9,
   apertureBladeRoundedness: 0.85,
   yScFill: 0.72,

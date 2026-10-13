@@ -29,19 +29,12 @@ const MODE_LABELS: Record<GroupMovementMode, string> = {
   combined: "Combined",
 };
 
-function movementColors(t: Theme): string[] {
-  return [
-    t.sliderAccent,
-    t.rayOffWarm,
-    t.rayCool,
-    t.rayWarm,
-    t.pupilExit,
-    t.stopLabel,
-    t.apdInferText,
-    t.apdPatentText,
-    t.chromDispLow,
-    t.rayChromV,
-  ];
+/**
+ * Group colors from the validated categorical slots. Each group owns a labeled row, so identity never
+ * rests on color alone, and repeating the five slots down the rows keeps neighboring rows distinct.
+ */
+function movementColors(t: Theme): readonly string[] {
+  return t.chartSeries;
 }
 
 function positionTicksForProfile(profile: GroupMovementProfile): number[] {
@@ -67,9 +60,11 @@ function seriesPositionRange(series: GroupMovementProfile["series"][number]): [n
 }
 
 function LensGroupMovementChart({ profile, t }: { profile: GroupMovementProfile; t: Theme }) {
-  const width = 680;
+  // Eight-pixel monospace labels need room before the plot and the axis title.
+  const labelMargin = Math.max(72, ...profile.series.map(({ group }) => group.label.length * 5 + 30));
+  const width = Math.max(680, labelMargin + 500);
   const height = Math.max(250, profile.series.length * 34 + 76);
-  const area = createPlotArea(width, height, { top: 28, right: 18, bottom: 38, left: 72 });
+  const area = createPlotArea(width, height, { top: 28, right: 18, bottom: 38, left: labelMargin });
   const { margin, plotW, plotH } = area;
   const plotTop = margin.top;
   const plotBottom = margin.top + plotH;

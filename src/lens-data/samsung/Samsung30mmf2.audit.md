@@ -40,13 +40,3 @@ identifies Samsung's production supplier.
 - Retained `SAMSUNG 30mm f/2`: Samsung's EX-S30NB support page calls the product “30mm F2.0,” and NX is already
   represented by `lensMounts: ["samsung-nx"]`.
 - Updated the companion analysis to use the catalog-equivalent glass labels and to keep supplier/APO claims bounded.
-
-### Verification
-
-- `npm run audit:patent-figure -- src/lens-data/samsung/Samsung30mmf2.data.ts patents/US20100149663A1.pdf 2 0.32,0.20,0.61,0.44` — completed; final disposition uses the hand-read rims documented above because overlapping elements contaminated automated candidates.
-- `npm run audit:image-circle -- src/lens-data/samsung/Samsung30mmf2.data.ts` — 1 checked, 0 undersized, 0 skipped.
-- `npm run audit:surface -- src/lens-data/samsung/Samsung30mmf2.data.ts` — no validation errors.
-- `npm run generate:glass-reports` — all 13 report tests passed; lens coverage remains 4/5 with no mismatch.
-- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed.
-- `npm run test` — 220 files / 2591 tests passed.
-- `npm run build` — passed; 1008 routes prerendered.

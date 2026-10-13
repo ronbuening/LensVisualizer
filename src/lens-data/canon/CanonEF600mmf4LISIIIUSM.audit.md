@@ -32,12 +32,6 @@ Patent: US 2019/0041605 A1, Numerical Data 4 / Figure 4A
 - Normalized the structured assignee to the repository-wide `Canon Inc.` spelling; the analysis retains the patent's
   printed Canon Kabushiki Kaisha wording.
 
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed, 0 undersized.
-- `npm run generate:glass-reports` - passed, 8 files / 15 tests.
-
 ## 2026-08-21 - Diagram-label, movement, and chromatic follow-up
 
 ### Patent-figure review
@@ -57,8 +51,16 @@ Patent: US 2019/0041605 A1, Numerical Data 4 / Figure 4A
 - Confirmed that E8/L2 translates 18.906939851 mm imageward from infinity to the modeled 4.2 m state, while L1/L3
   remain fixed. This prime lens has no zoom travel; L3B's only source-described motion is transverse IS.
 
-### Verification
+## 2026-10-04 — Drop-in filter drawn as an element
 
-- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed, 0 undersized.
-- `npm run generate:glass-reports` - passed, 8 files / 15 tests; 16/16 strict and trusted coverage, 0 mismatches.
+- Patent check (US 2019/0041605 A1, Numerical Data 4): surfaces 30–31 are two flat surfaces, 2.20 mm thick, nd 1.51633,
+  νd 64.14, θgF 0.5353, 5.25 mm behind surface 29 and 73.90 mm ahead of the image plane. Paragraph 0070 says the two
+  surfaces closest to the image in each data set "correspond to a glass block, for example, a filter", and paragraph
+  0069 defines BF as the air-equivalent value with such plates removed.
+- The file had omitted G and carried the 80.59 mm air-equivalent BF on surface 29. G is now drawn: surfaces 30–31 and
+  element 17 (`Plane-Parallel Plate`) with the printed spacings, whose air equivalent is 80.600871 mm.
+- The source lists no clear aperture for the plate. Its semi-diameter, 17.0 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format at infinity, mid and close focus (15.98 mm), plus 5%,
+  rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, stop radius and analysis half-field are unchanged. The image plane sits 0.011 mm further
+  from the paraxial focus, from the rounding of the printed spacings.

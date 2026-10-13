@@ -25,6 +25,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    fraction across all three zoom positions, with sd/|R| ≤ 0.88   ║
  * ║    constraint (spherical) and slope-based check (aspherical).     ║
  * ║    Front group constrained by 46 mm filter thread geometry.       ║
+ * ║    Surface 1 and L41 (17-18) were raised to pass the traced       ║
+ * ║    chief ray to the patent's Ymax = 14.20 mm APS-C corner at all  ║
+ * ║    three stations, sized to FIG. 15's drawn extents (2026-09-24   ║
+ * ║    field-coverage audit).                                         ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS:                                                    ║
  * ║    Patent publishes infinity-focus zoom spacings only, but states ║
@@ -202,7 +206,7 @@ const LENS_DATA = {
   surfaces: [
     // ── G1: Negative front group (f = −26.32 mm) ──
     // L11 hybrid composite: glass body + resin asphere
-    { label: "1", R: 164.2409, d: 1.2, nd: 1.83481, elemId: 1, sd: 10.0 }, // L11b front
+    { label: "1", R: 164.2409, d: 1.2, nd: 1.83481, elemId: 1, sd: 13.2 }, // L11b front
     { label: "2", R: 13.2012, d: 0.12, nd: 1.56093, elemId: 2, sd: 9.8 }, // L11b/r junction → resin
     { label: "3A", R: 11.5762, d: 4.97, nd: 1.0, elemId: 0, sd: 9.5 }, // L11r rear (asph, K=−1) → air
     // L12
@@ -232,8 +236,8 @@ const LENS_DATA = {
     { label: "16A", R: 56.3004, d: 3.66, nd: 1.0, elemId: 0, sd: 5.6 }, // L31 rear (asph) → air (d16 = zoom var)
 
     // ── G4: Positive field flattener (f = +37.73 mm) — fixed ──
-    { label: "17", R: -345.3773, d: 4.2, nd: 1.95375, elemId: 10, sd: 8.0 }, // L41 front → glass
-    { label: "18", R: -32.7802, d: 10.05, nd: 1.0, elemId: 0, sd: 8.6 }, // L41 rear → BFD to image
+    { label: "17", R: -345.3773, d: 4.2, nd: 1.95375, elemId: 10, sd: 14.5 }, // L41 front → glass
+    { label: "18", R: -32.7802, d: 10.05, nd: 1.0, elemId: 0, sd: 14.5 }, // L41 rear → BFD to image
   ],
 
   /* ── Aspherical coefficients ──

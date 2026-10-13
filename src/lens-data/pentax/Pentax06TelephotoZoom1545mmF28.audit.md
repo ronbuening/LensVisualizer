@@ -13,8 +13,6 @@ Patent: US 9,784,950 B2, Numerical Embodiment 1
 - Rechecked the visible glass tags, doublet labels, group signs, stop, pupils, image-plane marker, official hyphenated
   display name, and headline specifications. All 14 elements retain exact, coefficient-backed OHARA identities.
 - Local viewer QA confirmed all 14 element labels and the corrected rear-group silhouette without diagram errors.
-- `npm run generate:glass-reports` passed (8 files, 14 tests); the surface and image-circle audits, typecheck, format
-  check, lint, 2,947-test suite, and production build also passed (1,052 routes prerendered).
 
 ## 2026-08-08 - Integration, semi-diameter, identity, and glass audit
 
@@ -25,7 +23,13 @@ Patent: US 9,784,950 B2, Numerical Embodiment 1
 - Normalized the structured patent assignee from all caps to `Ricoh Imaging Company, Ltd.`, resolving the metadata
   convention test failure.
 - Confirmed coefficient-backed catalog dispersion on all 14 glass elements; no new glass row is required.
-- `npm run audit:image-circle -- src/lens-data/pentax/Pentax06TelephotoZoom1545mmF28.data.ts` passed.
-- `npm run generate:glass-reports` passed (8 files, 14 tests).
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` passed (2,947 tests).
-- `npm run build` passed; 1,052 routes prerendered.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent surface-25 gap with the physical rear stack from Table 1 / Table 2 (PDF p. 33): optical
+  filter OP (surfaces 26–27) t = 1.05 mm, nd 1.51633, νd 64.1, OHARA S-BSL7 class; d25 prints 9.28 and fB
+  0.56 / 0.55 / 0.53. `rearPlates` holds one fixed trailing gap (0.56, wide fB), and the file's previously verified
+  paraxial image plane is kept, so d25 = 9.277 / 9.272 / 9.244 mm carries the 0.03 mm fB variation and table rounding.
+- Plate check against the previous data: EFL identical and paraxial defocus unchanged at every zoom station and focus
+  keyframe (worst |Δ| 3.6e-15). Physical track grows by 1.05 × (1 − 1/1.51633) = 0.358 mm. Surface validation and the
+  image-circle audit pass.

@@ -17,7 +17,7 @@ import type {
 import { normalizeMountSpec } from "../../../../src/optics/mount/defaults.js";
 import { buildMountSvgDoc } from "../../../../src/optics/mount/renderMount.js";
 import { mountSvgDocToString } from "../../../../src/optics/mount/toSvgString.js";
-import { emitMountJson } from "../../../../src/optics/mount/emitMountJson.js";
+import { emitMountJson, emitMountJsonString } from "../../../../src/optics/mount/emitMountJson.js";
 import { MOUNT_LAYER_ORDER } from "../../../../src/optics/mount/layers.js";
 
 /* ── envelope builders ── */
@@ -348,7 +348,7 @@ describe("emitMountJson", () => {
     expect(json.render.views.cameraSideFront.viewBox).toMatch(/^-?\d+ -?\d+ \d+ \d+$/);
     expect(json.render.views.lensSideRear.viewBox).toMatch(/^-?\d+ -?\d+ \d+ \d+$/);
     expect(json.render.views.axialSection.viewBox).toMatch(/^-?\d+ -?\d+ \d+ \d+$/);
-    // round-trips through JSON cleanly
-    expect(() => JSON.parse(JSON.stringify(json))).not.toThrow();
+    // The string form the mount report embeds round-trips to the same record.
+    expect(JSON.parse(emitMountJsonString(SPEC))).toEqual(json);
   });
 });

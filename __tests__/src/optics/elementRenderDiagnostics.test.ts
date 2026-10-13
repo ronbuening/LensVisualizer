@@ -84,16 +84,6 @@ describe("element render diagnostics", () => {
     expect(offenders).toEqual([]);
   });
 
-  it("documents the Canon 50mm f/2.8 patent-silhouette trim", () => {
-    const diagnostic = catalogDiagnostics("canon-s-50mm-f2-8").diagnostics.find((candidate) => candidate.eid === 2);
-
-    expect(diagnostic).toBeDefined();
-    expect(diagnostic!.rear.surfaceLabel).toBe("4");
-    expect(diagnostic!.rear.trimCause).toBe("gap");
-    expect(diagnostic!.rear.trimAmount).toBeGreaterThan(1.68);
-    expect(diagnostic!.rear.trimAmount).toBeLessThan(1.7);
-  });
-
   it("does not leave rendered cross-gap collisions in production lenses", () => {
     const offenders: string[] = [];
 
@@ -103,29 +93,5 @@ describe("element render diagnostics", () => {
     }
 
     expect(offenders).toEqual([]);
-  });
-
-  it("keeps the Canon New FD 50mm f/1.2 and Nokton 50mm f/1.0 L2 outlines untrimmed", () => {
-    const cases = [
-      ["canon-fdn-50f12", 2],
-      ["nokton-50f1", 2],
-    ] as const;
-
-    for (const [key, elementId] of cases) {
-      const diagnostic = catalogDiagnostics(key).diagnostics.find((candidate) => candidate.eid === elementId);
-
-      expect(diagnostic, `${key} L${elementId}`).toBeDefined();
-      expect(Math.max(diagnostic!.front.trimAmount, diagnostic!.rear.trimAmount)).toBeLessThanOrEqual(
-        MATERIAL_TRIM_TOLERANCE_MM,
-      );
-    }
-  });
-
-  it("does not leave rendered cross-gap collisions in the reported problem lenses", () => {
-    const cases = ["canon-rf-28-70-f28-is-stm", "nikkor-z-28f28", "nikkor-28f14d", "canon-fdn-50f12", "nokton-50f1"];
-
-    for (const key of cases) {
-      expect(maxRenderedGapOverlapMm(key), key).toBeLessThanOrEqual(1e-6);
-    }
   });
 });

@@ -1,15 +1,28 @@
 /**
  * DiagramControls — Zoom, focus, and aperture slider controls for the
  * lens diagram. Extracted from LensDiagramPanel for separation of concerns.
+ *
+ * In patent-positions mode the zoom and focus tracks become station buttons that land only on source-published
+ * stations, the aperture is held wide open, and aberration control is held at neutral. Shift and tilt stay live:
+ * they move the whole lens without changing the prescription.
  */
 
-import { useCallback, useEffect } from "react";
-import { eflAtZoom, formatDist } from "../../optics/optics.js";
+import { useCallback, useEffect, useMemo } from "react";
+import { eflAtZoom, formatDist, formatFNumber, marketedApertureNote } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
+import { closeFocusAtZoom, remapFocusDistance } from "../../optics/focusDistance.js";
 import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
-import { perspectiveControlSteps } from "../../optics/lensMovement.js";
+import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/lensMovement.js";
+import {
+  nearestPublishedStation,
+  publishedFocusStations,
+  publishedZoomStations,
+} from "../../optics/publishedStations.js";
 import { snapToZeroStop } from "../../utils/style/sliderStops.js";
+import { focusStationOptions, focusTAfterZoomStep, patentStationNotes, zoomStationOptions } from "./patentStations.js";
 import SliderControl from "./SliderControl.js";
+import SliderResetButton from "./SliderResetButton.js";
+import StationStepper from "./StationStepper.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -20,18 +33,13 @@ interface VarReadout {
   val: string;
 }
 
-/** Format f-number for display: one decimal below f/10, rounded above. */
-function fmtF(f: number): string {
-  return f < 10 ? f.toFixed(1) : String(Math.round(f));
-}
-
 interface DiagramControlsProps {
   L: RuntimeLens;
   t: Theme;
   compact: boolean;
   useSideLayout: boolean;
   zoomT: number;
-  onZoomChange?: (value: number) => void;
+  onZoomChange?: (value: number, focusT?: number) => void;
   aberrationT: number;
   onAberrationChange?: (value: number) => void;
   focusT: number;
@@ -62,7 +70,15 @@ interface DiagramControlsProps {
   onInteractionChange?: (interacting: boolean) => void;
   showSliders: boolean;
   onOpenGroupMovement?: (mode: GroupMovementMode) => void;
+  /** Step zoom and focus through source-published stations; `zoomT` / `focusT` are then expected on a station. */
+  patentPositions?: boolean;
+  /** Receives canonical station coordinates: zoomT [0, 1], focusT [0 = infinity, 1 = close focus]. */
+  onPatentStationChange?: (zoomT: number, focusT: number) => void;
 }
+
+/** Shown on the locked aperture control; "this position's" because some wide-open values are not patent-printed. */
+const APERTURE_LOCK_REASON = "Held wide open at this position's f-number";
+const ABERRATION_LOCK_REASON = "Patent positions: held at the neutral setting";
 
 export default function DiagramControls({
   L,
@@ -101,9 +117,13 @@ export default function DiagramControls({
   onInteractionChange,
   showSliders,
   onOpenGroupMovement,
+  patentPositions = false,
+  onPatentStationChange,
 }: DiagramControlsProps) {
   const { interacting, beginInteraction, endInteraction, onChangeActivity } = useInteractionSignal();
   const pcSteps = L.perspectiveControl ? perspectiveControlSteps(L.perspectiveControl) : null;
+  const shiftEnabled = L.perspectiveControl ? isMovementAxisEnabled(L.perspectiveControl.shiftRangeMm) : false;
+  const tiltEnabled = L.perspectiveControl ? isMovementAxisEnabled(L.perspectiveControl.tiltRangeDeg) : false;
   const groupMovementAvailability = getGroupMovementAvailability(L);
 
   useEffect(() => {
@@ -118,9 +138,14 @@ export default function DiagramControls({
   const handleZoomChange = useCallback(
     (v: number) => {
       onChangeActivity();
-      onZoomChange?.(v);
+      onZoomChange?.(
+        v,
+        groupMovementAvailability.focus
+          ? remapFocusDistance(focusT, closeFocusAtZoom(zoomT, L), closeFocusAtZoom(v, L))
+          : 0,
+      );
     },
-    [onChangeActivity, onZoomChange],
+    [onChangeActivity, onZoomChange, groupMovementAvailability.focus, focusT, zoomT, L],
   );
 
   const handleFocusChange = useCallback(
@@ -163,6 +188,51 @@ export default function DiagramControls({
     [onChangeActivity, onTiltChange, pcSteps],
   );
 
+  const handleShiftReset = useCallback(() => {
+    handleShiftChange(0);
+    handlePointerUp();
+  }, [handlePointerUp, handleShiftChange]);
+
+  const handleTiltReset = useCallback(() => {
+    handleTiltChange(0);
+    handlePointerUp();
+  }, [handlePointerUp, handleTiltChange]);
+
+  /* ── Patent-positions mode ──
+   * A step is one discrete render, so it skips the drag-interaction signal and flushes the URL directly, as the
+   * f-stop shortcuts do. */
+  const station = useMemo(
+    () => (patentPositions ? nearestPublishedStation(L, zoomT, focusT) : null),
+    [patentPositions, L, zoomT, focusT],
+  );
+  const zoomStations = useMemo(() => (patentPositions ? zoomStationOptions(L) : []), [patentPositions, L]);
+  const focusStations = useMemo(
+    () => (station ? focusStationOptions(L, station.zoomIndex, station.zoomT) : []),
+    [station, L],
+  );
+  const stationNotes = useMemo(() => (station ? patentStationNotes(L, station.zoomIndex) : {}), [station, L]);
+
+  const handleZoomStation = useCallback(
+    (zoomIndex: number) => {
+      const target = publishedZoomStations(L).find((entry) => entry.index === zoomIndex);
+      if (!target || !station) return;
+      onPatentStationChange?.(target.zoomT, focusTAfterZoomStep(L, zoomIndex, station.focusT));
+      onSliderPointerUp?.();
+    },
+    [L, station, onPatentStationChange, onSliderPointerUp],
+  );
+
+  const handleFocusStation = useCallback(
+    (focusIndex: number) => {
+      if (!station) return;
+      const target = publishedFocusStations(L, station.zoomIndex).find((entry) => entry.index === focusIndex);
+      if (!target) return;
+      onPatentStationChange?.(station.zoomT, target.focusT);
+      onSliderPointerUp?.();
+    },
+    [L, station, onPatentStationChange, onSliderPointerUp],
+  );
+
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const projection = L.projection ?? { kind: "rectilinear" };
   const isFisheye = isFisheyeProjection(projection);
@@ -170,22 +240,26 @@ export default function DiagramControls({
   const apertureReferenceValue = fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? dynamicEFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
   const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
-  const availableFStops = L.fstopSeries.filter((value) => value >= currentFOPEN - 0.1 && value <= L.maxFstop);
+  const availableFStops = [
+    currentFOPEN,
+    ...L.fstopSeries.filter((value) => value > currentFOPEN + 0.001 && value <= L.maxFstop),
+  ];
   const hasApertureRange = L.maxFstop > currentFOPEN + 0.15;
   const showApertureControl = showSliders && (hasApertureRange || availableFStops.length > 1);
   const signed = (value: number, digits: number, unit: string) =>
     `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
+  const shownAberrationT = patentPositions ? 0 : aberrationT;
   const aberrationValue = (() => {
     const min = Number(L.aberrationControl?.minLabel);
     const center = Number(L.aberrationControl?.centerLabel);
     const max = Number(L.aberrationControl?.maxLabel);
     if (L.aberrationControl?.centerLabel && Number.isFinite(min) && Number.isFinite(center) && Number.isFinite(max)) {
-      return (aberrationT <= 0 ? center + (center - min) * aberrationT : center + (max - center) * aberrationT).toFixed(
-        1,
-      );
+      return (
+        shownAberrationT <= 0 ? center + (center - min) * shownAberrationT : center + (max - center) * shownAberrationT
+      ).toFixed(1);
     }
-    if (Number.isFinite(min) && Number.isFinite(max)) return (min + (max - min) * aberrationT).toFixed(1);
-    return `${Math.round(aberrationT * 100)}%`;
+    if (Number.isFinite(min) && Number.isFinite(max)) return (min + (max - min) * shownAberrationT).toFixed(1);
+    return `${Math.round(shownAberrationT * 100)}%`;
   })();
   const motionButton = (mode: GroupMovementMode, label: string) => (
     <button
@@ -223,10 +297,22 @@ export default function DiagramControls({
           onPointerDown={beginInteraction}
           onChange={handleZoomChange}
           onPointerUp={handlePointerUp}
-          minLabel={`${L.zoomPositions![0]} mm`}
-          maxLabel={`${L.zoomPositions![L.zoomPositions!.length - 1]} mm`}
+          minLabel={`${Number(L.zoomPositions![0].toFixed(2))} mm`}
+          maxLabel={`${Number(L.zoomPositions![L.zoomPositions!.length - 1].toFixed(2))} mm`}
           flexBasis="200px"
           action={groupMovementAvailability.zoom ? motionButton("zoom", "zoom") : undefined}
+          track={
+            station ? (
+              <StationStepper
+                t={t}
+                ariaLabel="Zoom position"
+                stations={zoomStations}
+                activeId={station.zoomIndex}
+                onSelect={handleZoomStation}
+                note={stationNotes.zoom}
+              />
+            ) : undefined
+          }
         >
           <button
             onClick={onToggleEffectiveFocalLength}
@@ -260,14 +346,15 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="FOCUS"
           labelMinWidth={85}
-          displayValue={formatDist(focusT, L)}
+          /* A lens with no modeled focus travel stays at infinity whatever focusT a shared URL carries. */
+          displayValue={groupMovementAvailability.focus ? formatDist(focusT, L, zoomT) : "\u221e"}
           value={focusT}
           step={L.focusStep}
           onPointerDown={beginInteraction}
           onChange={handleFocusChange}
           onPointerUp={handlePointerUp}
           minLabel={"\u221e"}
-          maxLabel={`${L.closeFocusM} m`}
+          maxLabel={groupMovementAvailability.focus ? formatDist(1, L, zoomT) : "Not modeled"}
           disabled={!groupMovementAvailability.focus}
           disabledReason="No modeled focus travel data"
           flexBasis="260px"
@@ -275,6 +362,19 @@ export default function DiagramControls({
           expanded={focusExpanded}
           onExpandedChange={onFocusExpandedChange}
           action={groupMovementAvailability.focus ? motionButton("focus", "focus") : undefined}
+          track={
+            station ? (
+              <StationStepper
+                t={t}
+                ariaLabel="Focus position"
+                stations={focusStations}
+                activeId={station.focusIndex}
+                onSelect={handleFocusStation}
+                disabled={!groupMovementAvailability.focus}
+                note={stationNotes.focus}
+              />
+            ) : undefined
+          }
         >
           {focusExpanded && (
             <>
@@ -332,9 +432,11 @@ export default function DiagramControls({
           label={L.aberrationControl.label}
           labelMinWidth={85}
           displayValue={aberrationValue}
-          value={aberrationT}
+          value={shownAberrationT}
           step={L.aberrationControl.step ?? 0.01}
           min={L.aberrationControl.centerLabel ? -1 : 0}
+          disabled={patentPositions}
+          disabledReason={ABERRATION_LOCK_REASON}
           onPointerDown={beginInteraction}
           onChange={handleAberrationChange}
           onPointerUp={handlePointerUp}
@@ -378,7 +480,7 @@ export default function DiagramControls({
         </SliderControl>
       )}
 
-      {showSliders && L.perspectiveControl && pcSteps && (
+      {showSliders && L.perspectiveControl && pcSteps && shiftEnabled && (
         <SliderControl
           t={t}
           compact={compact}
@@ -396,10 +498,11 @@ export default function DiagramControls({
           minLabel={signed(L.perspectiveControl.shiftRangeMm[0], 1, "mm")}
           maxLabel={signed(L.perspectiveControl.shiftRangeMm[1], 1, "mm")}
           flexBasis="190px"
+          action={<SliderResetButton axisLabel="shift" value={shiftMm} onReset={handleShiftReset} t={t} />}
         />
       )}
 
-      {showSliders && L.perspectiveControl && pcSteps && (
+      {showSliders && L.perspectiveControl && pcSteps && tiltEnabled && (
         <SliderControl
           t={t}
           compact={compact}
@@ -417,6 +520,7 @@ export default function DiagramControls({
           minLabel={signed(L.perspectiveControl.tiltRangeDeg[0], 1, "deg")}
           maxLabel={signed(L.perspectiveControl.tiltRangeDeg[1], 1, "deg")}
           flexBasis="190px"
+          action={<SliderResetButton axisLabel="tilt" value={tiltDeg} onReset={handleTiltReset} t={t} />}
         />
       )}
 
@@ -427,20 +531,26 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="APERTURE"
           labelMinWidth={85}
-          displayValue={`f/${fmtF(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (eff. f/${fmtF(effectiveFNum)})` : ""}`}
+          displayValue={`f/${formatFNumber(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (eff. f/${formatFNumber(effectiveFNum)})` : ""}`}
+          displayNote={marketedApertureNote(L.data, fNumber, currentFOPEN)}
           displayValueStyle={{ minWidth: "3.5em" }}
-          value={stopdownT}
+          value={patentPositions ? 0 : stopdownT}
           step={L.apertureStep}
+          disabled={patentPositions}
+          disabledReason={APERTURE_LOCK_REASON}
           onPointerDown={beginInteraction}
           onChange={handleStopdownChange}
           onPointerUp={handlePointerUp}
-          minLabel={`f/${currentFOPEN.toFixed(1)}`}
+          minLabel={`f/${formatFNumber(currentFOPEN)}`}
           maxLabel={`f/${L.maxFstop}`}
           flexBasis="220px"
           collapsible={true}
           expanded={apertureExpanded}
           onExpandedChange={onApertureExpandedChange}
         >
+          {patentPositions && (
+            <div style={{ marginTop: 5, fontSize: 9, color: t.focusEndpoint }}>{APERTURE_LOCK_REASON}</div>
+          )}
           {apertureExpanded && (
             <>
               <div
@@ -452,44 +562,47 @@ export default function DiagramControls({
                   transition: "color 0.3s",
                 }}
               >
-                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · EP {"\u2300"}{" "}
+                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · Est. wide-open EP {"\u2300"}{" "}
                 {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
               </div>
-              <div
-                style={{
-                  marginTop: 6,
-                  display: "flex",
-                  gap: 14,
-                  flexWrap: "wrap",
-                  fontSize: 9,
-                  color: t.spacingVal,
-                  fontVariantNumeric: "tabular-nums",
-                  transition: "color 0.3s",
-                }}
-              >
-                {availableFStops.map((n) => (
-                  <button
-                    key={n}
-                    onClick={() => {
-                      handleStopdownChange(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
-                      handlePointerUp();
-                    }}
-                    aria-label={`Set aperture to f/${n}`}
-                    style={{
-                      background: "none",
-                      border: "none",
-                      padding: 0,
-                      font: "inherit",
-                      color: "inherit",
-                      cursor: "pointer",
-                      opacity: Math.abs(fNumber - n) < 0.15 ? 1 : 0.55,
-                      transition: "opacity 0.15s",
-                    }}
-                  >
-                    f/{n}
-                  </button>
-                ))}
-              </div>
+              {/* The shortcuts would leave the held wide-open aperture. */}
+              {!patentPositions && (
+                <div
+                  style={{
+                    marginTop: 6,
+                    display: "flex",
+                    gap: 14,
+                    flexWrap: "wrap",
+                    fontSize: 9,
+                    color: t.spacingVal,
+                    fontVariantNumeric: "tabular-nums",
+                    transition: "color 0.3s",
+                  }}
+                >
+                  {availableFStops.map((n) => (
+                    <button
+                      key={n}
+                      onClick={() => {
+                        handleStopdownChange(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
+                        handlePointerUp();
+                      }}
+                      aria-label={`Set aperture to f/${formatFNumber(n)}`}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        padding: 0,
+                        font: "inherit",
+                        color: "inherit",
+                        cursor: "pointer",
+                        opacity: Math.abs(fNumber - n) < 0.15 ? 1 : 0.55,
+                        transition: "opacity 0.15s",
+                      }}
+                    >
+                      f/{formatFNumber(n)}
+                    </button>
+                  ))}
+                </div>
+              )}
               <button
                 onClick={onToggleEffectiveAperture}
                 aria-pressed={showEffectiveAperture}

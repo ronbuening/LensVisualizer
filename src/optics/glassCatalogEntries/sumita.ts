@@ -5,6 +5,16 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "K-LaK12",
+    vendor: "Sumita",
+    polynomial: [2.7644388, -0.011785176, 0.017957173, 0.00034733134, 0.0000036439617, -0.0000003286378],
+    nd: 1.6779,
+    vd: 55.5,
+    code6: "678555",
+    source:
+      "SUMITA K-LaK12 datasheet, Ver. 14.01.00, https://www.sumita-opt.co.jp/abbe/pdf/k-lak12.pdf; vendor A0-A5 polynomial, accessed 2026-09-16.",
+  },
   /* Phase 87: legacy SK1 recovered during the Pentax Super-Takumar
    * 135mm f/2.5 follow-up glass audit.
    */
@@ -49,7 +59,7 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [3.5274271, -0.01463666, 0.040395739, 0.0015517485, -0.000046386509, 0.0000091517458],
     nd: 1.911,
     vd: 35.2,
-    PgF: 0.583,
+    PgF: 0.5836,
     code6: "911352",
     source: "SUMITA K-LaSFn23 optical-glass datasheet, catalog Ver. 14.01.00; vendor formula-3 polynomial A0-A5.",
   },
@@ -418,7 +428,7 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.005049695326, 0.01621519052, 121.8498943],
     nd: 1.5924,
     vd: 68.3,
-    PgF: 0.5468,
+    PgF: 0.546,
     code6: "592683",
     source:
       "Sumita AGF (sumita_2017-02-02.agf) form-1 polynomial; Sellmeier-1 fit, max abs index error 6.7e-6 across 365–1014 nm. APO-relevant.",
@@ -460,7 +470,7 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.4786815, -0.010928711, 0.014104052, 0.00015365594, 0.00001194296, -0.00000053372519],
     nd: 1.5866,
     vd: 59.0,
-    PgF: 0.541,
+    PgF: 0.5415,
     code6: "587590",
     source: "Sumita Optical Glass K-SKLD200 datasheet, catalog Ver. 14.01.00; formula-3 coefficients A0-A5.",
   },
@@ -542,5 +552,109 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.548803,
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor K-VC80(M) formula-1 polynomial and molding-state optical coordinate. The catalog reuses base-family code 694531, so code6 is omitted because that code does not encode the molding-state nd/vd pair.",
+  },
+  {
+    name: "K-PSK200",
+    vendor: "Sumita",
+    nd: 1.61305,
+    vd: 59.0,
+    polynomial: [2.5593395, -0.0088787219, 0.015115397, 0.0002035651, 7.5991137e-6, -1.5375246e-7],
+    code6: "613590",
+    source:
+      "Sumita vendor Zemax catalog, https://refractiveindex.info/download/data/2017/sumita_2017-02-02.agf; accessed 2026-09-11 via refractiveindex.info vendor-data mirror.",
+  },
+  {
+    name: "K-PFK80",
+    vendor: "Sumita",
+    nd: 1.497,
+    vd: 81.3504,
+    polynomial: [2.2178347, -0.0055966846, 0.0083703747, 0.0001097485, -0.0000033983937, 0.00000025836351],
+    code6: "497815",
+    source:
+      "SUMITA Zemax all-glass catalog, download dated 2026-08-26 (header 2026-08-21), https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf; accessed 2026-09-11. Vendor formula-1 polynomial for the unmolded K-PFK80 row; not K-PFK80(M). vd is coefficient-evaluated (81.3504); the source lists nominal vd=81.5. Coefficients are retained verbatim.",
+  },
+  {
+    name: "K-SSK4",
+    vendor: "Sumita",
+    polynomial: [2.5720683, -0.010564186, 0.015625643, 0.00040593207, -1.3424134e-5, 6.4355621e-7],
+    nd: 1.61765,
+    vd: 55.1,
+    code6: "618551",
+    source: "SUMITA Zemax catalog 2017-02-02 via refractiveindex.info, K-SSK4 formula-3 polynomial (0.36–1.55 µm).",
+  },
+  {
+    name: "LLF7",
+    vendor: "Sumita",
+    polynomial: [2.351324, -0.008234544, 0.01618468, 0.0003389461, 0.000007331352, 0.0000008692234],
+    nd: 1.54869,
+    vd: 45.4,
+    code6: "549454",
+    source:
+      "SUMITA all-glass Zemax catalog (header 2026-08-21), https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf; accessed 2026-10-03. Vendor formula-1 polynomial for discontinued LLF7.",
+  },
+  {
+    name: "LAKN12",
+    vendor: "Sumita",
+    polynomial: [2.94109, -0.01179168, 0.02246613, 0.0003476198, -0.000001763954, 0.000001030437],
+    nd: 1.7335,
+    vd: 51.2,
+    code6: "734512",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for discontinued LAKN12.",
+  },
+  {
+    // SUMITA publishes this molding-state row as K-PG395(M); the hyphenated
+    // suffix keeps the vendor variant directly tokenizable.
+    name: "K-PG395-M",
+    vendor: "Sumita",
+    polynomial: [2.6598043, -0.0097241142, 0.023341531, 0.0010595162, -0.000049515252, 0.0000075464331],
+    nd: 1.65296,
+    vd: 36.8,
+    PgF: 0.588,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor K-PG395(M) formula-1 polynomial and molding-state optical coordinate. The catalog reuses base-glass product code 658369, so code6 is omitted because that code does not encode the molding-state nd/vd pair.",
+  },
+  {
+    name: "K-VC181",
+    vendor: "Sumita",
+    polynomial: [3.1886895, -0.013820455, 0.029631617, 0.0010659501, -0.000037795055, 0.0000043966629],
+    nd: 1.81055,
+    vd: 41.1,
+    PgF: 0.5689,
+    code6: "811411",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor K-VC181 formula-1 polynomial. The molding-state K-VC181(M) row (nd 1.80614) is not included.",
+  },
+  {
+    name: "KF5",
+    vendor: "Sumita",
+    polynomial: [2.280554, -0.008202632, 0.01380944, 0.0002399509, 0.000002033821, 0.0000007990625],
+    nd: 1.5231,
+    vd: 50.9,
+    PgF: 0.5557,
+    code6: "523509",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for discontinued KF5.",
+  },
+  {
+    name: "BASF3",
+    vendor: "Sumita",
+    polynomial: [2.520025, -0.007458861, 0.02146852, 0.0002819514, 0.00004046225, 0.0000002021043],
+    nd: 1.60717,
+    vd: 40.2,
+    PgF: 0.5764,
+    code6: "607402",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for discontinued BASF3.",
+  },
+  {
+    name: "K-LaK10",
+    vendor: "Sumita",
+    polynomial: [2.8960747, -0.011713123, 0.021599254, 0.00043811038, 0.000005752903, -0.00000017364157],
+    nd: 1.72,
+    vd: 50.3,
+    PgF: 0.5536,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for K-LaK10. It shares a six-digit code with other vendors' rows, so code6 is omitted.",
   },
 ];

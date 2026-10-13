@@ -10,8 +10,6 @@
 - Reduced L1's front/rear SDs from `46.2 / 45.8` to `38.0 / 37.8` mm. The former outline was materially larger than
   the patent's front-group envelope relative to L2, L3, and the fixed rear groups.
 - Retained the remaining inferred SDs, whose clean rims already follow the figure's stepped envelope.
-- `npm run audit:surface -- src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts` and
-  `npm run audit:image-circle -- src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts` passed.
 
 ### Glass
 
@@ -36,3 +34,13 @@
   the same Abbe number. It is labeled as a catalog equivalent because the patent does not identify the production
   supplier.
 - Strict and trusted catalog coverage are now complete at `22/22`; no geometry or asphere coefficients changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Table 7 (Third Example) and Table 9A on PDF page 24 (printed page 13) at 200 dpi: surface 45 d = 31.00000;
+  surfaces 46–47 are the parallel plate P (the patent's LPF/cover-glass stand-in), 2.10000 mm, nd 1.51680, νd 64.2;
+  BF = 1.0900 at wide, middle, and tele. 31 + 2.1/1.51680 + 1.09 reproduces the legacy 33.4744936709 mm fold.
+- Surface 45 now stores 31.0 mm, with `rearPlates` P labeled N-BK7 (exact 1.51680 / 64.2 class; the lens's other
+  elements carry no single vendor) and gapAfter 1.09 mm. Paraxial check against the previous data: EFL identical and
+  defocus unchanged (worst difference 1.4e-11 mm) at all three zoom stations. Physical track grows by 0.715506 mm to
+  224.9999 / 224.9998 / 224.9998 mm, matching Table 9A's total lens length.

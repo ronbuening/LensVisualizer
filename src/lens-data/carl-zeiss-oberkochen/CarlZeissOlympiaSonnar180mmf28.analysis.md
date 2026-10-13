@@ -224,3 +224,11 @@ The large air gap d₆ = 48.3 mm (27% of the total track) is the defining struct
 | Filter thread | 67 mm |
 | Weight | ~1 kg |
 | Overall length | ~130 mm |
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Table II / claim 2 values match at uniform scale ×180.
+Printed Schnittweite 0.4126 becomes 74.268 mm, while paraxial BFL is
+74.367782 mm (offset +0.099782); EFL is 180.055230 versus nominal 180.
+No plate or transcription error found. The patent does not establish a
+designer best-focus convention; retain its printed image distance.

@@ -28,7 +28,7 @@ The production lens includes Optical SteadyShot. The patent prescription analyze
 
 The lens is a four-group negative-positive-negative-positive standard zoom. The patent emphasizes this `GR1(-) / GR2(+) / GR3(-) / GR4(+)` power distribution because it supports a roughly 37° wide-end half-field, compact front diameter, favorable off-axis aberration correction by negative groups placed around the stop, and reduced sensor-side ray angles from the positive rear group (¶0004, ¶0040).
 
-GR1 contains three spherical elements: two negative lenses followed by a positive meniscus. Its job is to form the wide-angle retrofocus front section. At the wide end, the air-equivalent back focal distance after folding the patent filter is about 33.17 mm, greater than the 28.85 mm computed EFL; the design is therefore retrofocus at the wide end. At the long end this description should not be extended into a telephoto-ratio claim; the patent uses "telephoto end" only as a zoom-position term.
+GR1 contains three spherical elements: two negative lenses followed by a positive meniscus. Its job is to form the wide-angle retrofocus front section. At the wide end, the air-equivalent back focal distance through the patent filter is about 33.17 mm, greater than the 28.85 mm computed EFL; the design is therefore retrofocus at the wide end. At the long end this description should not be extended into a telephoto-ratio claim; the patent uses "telephoto end" only as a zoom-position term.
 
 GR2 is the main positive group. It contains G4, the stop, the G5/G6 cemented ED doublet, and G7. It carries the strongest positive power in the lens and most of the high-order spherical-aberration correction through the two double-sided molded-asphere candidates G4 and G7.
 
@@ -36,7 +36,7 @@ GR3 is a single biconcave negative lens, G8. It is both a zooming group and the 
 
 GR4 is a fixed positive meniscus, G9. It remains stationary during zooming and focusing. Its weak positive power bends the exit bundle toward the optical axis and participates in field-curvature correction close to the image plane. The patent specifically favors a single spherical positive lens in this rear group to control cost where lens diameter is relatively large (¶0040, ¶0060).
 
-The patent includes a flat filter `FL` between G9 and the image plane. The data file excludes that filter from the surfaces array and folds it into the final air-equivalent back focal distance: `30.521 + 2.500 / 1.51680 + 1.000 = 33.169207 mm`.
+The patent includes a flat filter `FL` between G9 and the image plane (Table 13 surfaces 19–20: 2.500 mm, nd 1.51680, νd 64.20, N-BK7 class). The data file models it in `rearPlates`: surface 18 keeps the patent's 30.521 mm gap to the filter, and the filter plus its 1.000 mm gap to the image are traced by every analysis but not drawn. Its paraxial air equivalent is `30.521 + 2.500 / 1.51680 + 1.000 = 33.169207 mm`.
 
 The patent does not publish semi-diameters. The data-file semi-diameters are conservative mechanical clear-aperture estimates, constrained by the patent drawing, the computed ray envelopes, element front/rear diameter ratios, edge thickness, and cross-gap sag clearance across both infinity and close-focus states. They should not be read as measured production clear apertures.
 
@@ -138,7 +138,7 @@ The patent states that the third lens group travels during focusing. In Numerica
 | 44.26 mm | 0.359 m | 8.085 | 10.812 | 8.477 | 5.750 | 0.163x |
 | 67.90 mm | 0.450 m | 14.420 | 18.517 | 16.115 | 12.018 | 0.193x |
 
-The finite-conjugate solve uses the physical patent track for the MFD constraint, including the flat filter thickness, even though the data file folds that filter into the final air-equivalent BFD for rendering. The tele-end computed magnification, `0.193x`, is within rounding of Sony's published `0.19x` maximum magnification.
+The finite-conjugate solve uses the physical patent track for the MFD constraint, including the flat filter thickness, which the data file now models physically in `rearPlates`. The tele-end computed magnification, `0.193x`, is within rounding of Sony's published `0.19x` maximum magnification.
 
 ## Aspherical Surfaces
 

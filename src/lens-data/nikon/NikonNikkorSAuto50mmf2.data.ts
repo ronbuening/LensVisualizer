@@ -48,7 +48,7 @@ const LENS_DATA = {
   apertureDesign: 2,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP 1964-025754",
+  patentNumber: "JP 1964-025754 B",
   patentAuthors: ["Saburo Murakami"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1964,

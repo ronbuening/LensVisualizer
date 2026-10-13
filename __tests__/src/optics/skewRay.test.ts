@@ -20,7 +20,6 @@ import {
   traceSkewRay as traceSkewRayFacade,
   traceSkewRayVector as traceSkewRayVectorFacade,
   traceSkewRayVectorChromatic as traceSkewRayVectorChromaticFacade,
-  wavelengthNd,
 } from "../../../src/optics/rayTrace.js";
 import { computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "../../../src/optics/aberration/offAxis.js";
 import {
@@ -221,19 +220,6 @@ describe("rayTrace facade adapters", () => {
 });
 
 describe("chromatic fallback helpers", () => {
-  it("orders fallback refractive indices by wavelength channel", () => {
-    const red = wavelengthNd(1.5, 50, "R");
-    const green = wavelengthNd(1.5, 50, "G");
-    const blue = wavelengthNd(1.5, 50, "B");
-    const violet = wavelengthNd(1.5, 50, "V");
-
-    expect(wavelengthNd(1, 50, "B")).toBe(1);
-    expect(wavelengthNd(1.5, undefined, "R")).toBe(1.5);
-    expect(red).toBeLessThan(green);
-    expect(green).toBeLessThan(blue);
-    expect(blue).toBeLessThan(violet);
-  });
-
   it("measures chromatic spread while omitting clipped and zero-slope axialIntercepts", () => {
     const spread = computeChromaticRayFanSpread(
       {
@@ -441,10 +427,10 @@ describe("traceSkewRayChromatic", () => {
       digits: { x: 2, y: 2, ux: 2, uy: 2 },
     },
     {
-      label: "the Sonnar 50/1.5",
+      label: "the Sonnar 50/1.5 (catalog dispersion with rounded patent nd)",
       make: sharedSonnar50f15,
       launch: [0, 5, 0, 0] as const,
-      digits: { x: 8, y: 6, ux: 8, uy: 6 },
+      digits: { x: 8, y: 3, ux: 8, uy: 4 },
     },
   ])("matches monochromatic skew tracing at channel G on $label", ({ make, launch, digits }) => {
     const L = make();

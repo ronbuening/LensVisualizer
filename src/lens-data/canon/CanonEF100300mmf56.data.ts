@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — CANON EF 100-300mm f/5.6                                      ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JPS61-77818A, Numerical Example 1 (Canon).                         ║
+ * ║ Source: JP S61-77818 A, Numerical Example 1 (Canon).                         ║
  * ║ 15 elements / 9 air-separated physical groups / 4 functional zoom groups. ║
  * ║ All refracting surfaces are spherical; one explicit aperture stop lies    ║
  * ║ between functional Groups III and IV.                                      ║
@@ -51,7 +51,7 @@ const LENS_DATA = {
   key: "canon-ef-100-300mm-f5-6",
   maker: "Canon",
   name: "CANON EF 100-300mm f/5.6",
-  subtitle: "JPS61-77818A Example 1 — strong inferred correlation to the Canon EF100-300mm f/5.6",
+  subtitle: "JP S61-77818 A Example 1 — strong inferred correlation to the Canon EF100-300mm f/5.6",
   specs: [
     "15 ELEMENTS / 9 GROUPS",
     "100-300mm f/5.6 (MARKETED)",
@@ -66,7 +66,7 @@ const LENS_DATA = {
   apertureDesign: 5.6,
   lensMounts: ["canon-ef"],
   imageFormat: "135-full-frame",
-  patentNumber: "JPS61-77818A",
+  patentNumber: "JP S61-77818 A",
   patentAuthors: [
     "Keiji Ikemori",
     "Sadatoshi Takahashi",
@@ -361,6 +361,8 @@ const LENS_DATA = {
 
   /* ── Product / aperture metadata ── */
   closeFocusM: 2,
+  // Every authored zoom station is a source row: the patent's four-column spacing table (69 / 100 / 198 / 290 mm).
+  publishedStations: { zoom: [0, 1, 2, 3] },
   nominalFno: 5.6,
   fstopSeries: [5.6, 8, 11, 16, 22],
   maxFstop: 22,

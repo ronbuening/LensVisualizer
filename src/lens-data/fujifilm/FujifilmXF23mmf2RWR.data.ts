@@ -26,9 +26,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    are ray-trace estimates constrained by f/2.06 marginal rays,    ║
  * ║    APS-C field coverage, element SD ratios ≤ 1.25, sd/|R| < 0.90, ║
  * ║    positive edge thickness, and cross-gap sag intrusion ≤ 90%.     ║
+ * ║    Surfaces 15-17 (L31/L32) were raised to pass the traced chief   ║
+ * ║    ray to the APS-C corner that the patent's ω = 32.4° reaches     ║
+ * ║    (2026-09-24 field-coverage audit).                              ║
  * ║                                                                    ║
- * ║  IMPORTANT: Sensor cover glass / optical member PP is not included ║
- * ║    as a surface. Its optical path is folded into the final BFD.    ║
+ * ║  OPTICAL MEMBER PP: patent surfaces 18–19 (2.850 mm, nd 1.51680,   ║
+ * ║    νd 64.20, θgF 0.53430) and the 1.000 mm air gap to the image    ║
+ * ║    are modeled in `rearPlates` (traced, not drawn). Surface 17     ║
+ * ║    keeps the patent's 10.862 mm gap to PP.                         ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -223,9 +228,23 @@ const LENS_DATA = {
     { label: "12", R: -15.5086, d: 2.312, nd: 1.0, elemId: 0, sd: 8.6 },
     { label: "13A", R: -32.42595, d: 1.75, nd: 1.80312, elemId: 8, sd: 8.0 },
     { label: "14A", R: 2385.05256, d: 5.764, nd: 1.0, elemId: 0, sd: 7.9 },
-    { label: "15", R: -205.25324, d: 1.1, nd: 1.7847, elemId: 9, sd: 7.5 },
-    { label: "16", R: 33.79, d: 3.98, nd: 1.804, elemId: 10, sd: 7.5 },
-    { label: "17", R: -96.69231, d: 13.740955696202532, nd: 1.0, elemId: 0, sd: 7.4 },
+    { label: "15", R: -205.25324, d: 1.1, nd: 1.7847, elemId: 9, sd: 8.8 },
+    { label: "16", R: 33.79, d: 3.98, nd: 1.804, elemId: 10, sd: 9.4 },
+    { label: "17", R: -96.69231, d: 10.862, nd: 1.0, elemId: 0, sd: 9.9 }, // patent gap to optical member PP
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 18–19): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.00152,
+      gapAfterMm: 1.0,
+      source: "US 2017/0351051 A1, Example 1 Table 1 surfaces 18–19 (patent θgF 0.53430)",
+    },
   ],
 
   asph: {
@@ -315,9 +334,10 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.3666506780181183, 1],
   var: {
-    "12": [2.312, 4.586087444736031],
-    "14A": [5.764, 3.489912555263969],
+    "12": [2.312, 2.984, 4.586087444736031],
+    "14A": [5.764, 5.092, 3.489912555263969],
   },
   varLabels: [
     ["12", "DD[12]"],
@@ -337,11 +357,13 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.22,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
-    "Inner focus by G2 only. The single negative L21 element moves imageward; G1 and G3 remain fixed. Close endpoint solves the patent prescription to the production 0.22 m MFD.",
+    "Inner focus by G2 only. The patent beta=-0.041 row is stored exactly before the constrained production 0.22 m endpoint; G1 and G3 remain fixed.",
 
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.06,
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
 
   scFill: 0.55,

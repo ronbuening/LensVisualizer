@@ -18,6 +18,14 @@ export interface AuthorBiography {
 }
 
 export const AUTHOR_BIOGRAPHIES = {
+  "Michael Michaelovitch Roossinov": {
+    summary:
+      "Mikhail Mikhailovich Rusinov, named Michael Michaelovitch Roossinov in his U.S. patents, was a Soviet optical designer associated with the Russar family of wide-angle aerial-survey objectives. His early designs used strongly curved exterior menisci and aberrational vignetting to improve illumination across very wide fields. The Russar-21, -22, -23 and -24 series received recognition in 1941. His later work at LITMO, now ITMO University, extended into photogrammetry and space imaging. Russar identifies this design tradition; it does not establish one manufacturer for all of its lenses.",
+    sources: [
+      { label: "ITMO Museum — Mikhail Mikhailovich Rusinov", url: "https://museum.itmo.ru/person/212/" },
+      { label: "ITMO Museum — Russar optical design tradition", url: "https://museum.itmo.ru/page/84/" },
+    ],
+  },
   "Paul Rudolph": {
     summary:
       "Paul Rudolph was a German physicist and one of the foundational designers of modern photographic objectives. At Carl Zeiss he developed the Protar, the first widely successful anastigmatic lens, followed by the Planar and Tessar. These designs established durable solutions for correcting astigmatism, field curvature, and other aberrations, and their names and optical descendants have remained influential for more than a century.",

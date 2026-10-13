@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — PENTAX SMC PENTAX-FA 28mm f/2.8 Soft          ║
+ * ║           LENS DATA — PENTAX SMC FA 28mm f/2.8 Soft          ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 5,822,132 Example 1 (Asahi Optical / Hirakawa).    ║
  * ║  Retrofocus wide-angle soft-focus prime: negative front group,      ║
@@ -23,6 +23,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  49 mm filter envelope, and renderer constraints: sd/|R| < 0.90,    ║
  * ║  element front/rear SD ratio ≤ 1.25, positive edge thickness, and   ║
  * ║  cross-gap sag intrusion ≤ 90% of the air gap.                      ║
+ * ║  Surfaces 1-3 were raised to pass the traced chief ray to the       ║
+ * ║  21.65 mm full-frame corner, just past the patent's Y = 21.21 mm    ║
+ * ║  (2026-09-24 field-coverage audit).                                 ║
  * ║                                                                    ║
  * ║  Focus: the patent publishes only infinity focus. The production    ║
  * ║  0.25 m / 0.18× close-focus specification is modeled as unit focus  ║
@@ -33,7 +36,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-fa-28mm-f28-soft",
   maker: "Pentax",
-  name: "PENTAX SMC PENTAX-FA 28mm f/2.8 Soft",
+  name: "PENTAX SMC FA 28mm f/2.8 Soft",
   subtitle: "US 5,822,132 Example 1 — Asahi Optical / Hirakawa",
   specs: [
     "5 elements / 5 groups",
@@ -116,9 +119,9 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 378.28, d: 2.9204, nd: 1.58913, elemId: 1, sd: 15.2 },
-    { label: "2", R: -422.7832, d: 0.098, nd: 1.0, elemId: 0, sd: 13.4 },
-    { label: "3", R: 63.112, d: 2.3352, nd: 1.62041, elemId: 2, sd: 13.0 },
+    { label: "1", R: 378.28, d: 2.9204, nd: 1.58913, elemId: 1, sd: 17.1 },
+    { label: "2", R: -422.7832, d: 0.098, nd: 1.0, elemId: 0, sd: 16.1 },
+    { label: "3", R: 63.112, d: 2.3352, nd: 1.62041, elemId: 2, sd: 14.3 },
     { label: "4", R: 13.9272, d: 19.474, nd: 1.0, elemId: 0, sd: 12.4 },
     { label: "5", R: 23.5956, d: 10.7044, nd: 1.7725, elemId: 3, sd: 12.0 },
     { label: "6", R: -47.5944, d: 3.92, nd: 1.0, elemId: 0, sd: 10.0 },
@@ -147,8 +150,8 @@ const LENS_DATA = {
   focusDescription:
     "Patent publishes infinity only. Close focus is modeled as inferred unit focus: final back-focus gap increases by about 5.04 mm from the Ricoh 0.18× maximum-magnification specification.",
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.54,

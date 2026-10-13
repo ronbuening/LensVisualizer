@@ -6,7 +6,7 @@
  * Centralizing that structure keeps SharedSlidersBar focused on domain values.
  */
 
-import type { CSSProperties, ReactNode } from "react";
+import { useRef, type CSSProperties, type ReactNode } from "react";
 import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../utils/style/styles.js";
 import type { Theme } from "../types/theme.js";
 
@@ -20,7 +20,10 @@ interface SharedSliderSectionProps {
   sliderMin?: number;
   sliderMax?: number;
   sliderStep?: number;
+  disabled?: boolean;
+  disabledReason?: string;
   onSliderChange: (value: number) => void;
+  onDirectChange?: (value: number) => void;
   onPointerDown?: () => void;
   onPointerUp?: () => void;
   markerPositions?: number[];
@@ -88,7 +91,10 @@ export default function SharedSliderSection({
   sliderMin = 0,
   sliderMax = 1,
   sliderStep = 0.004,
+  disabled = false,
+  disabledReason,
   onSliderChange,
+  onDirectChange,
   onPointerDown,
   onPointerUp,
   markerPositions = [],
@@ -96,6 +102,11 @@ export default function SharedSliderSection({
   readouts,
   footer,
 }: SharedSliderSectionProps) {
+  const pointerActive = useRef(false);
+  const endPointer = () => {
+    pointerActive.current = false;
+    onPointerUp?.();
+  };
   return (
     <div style={{ flex: 1 }}>
       <div style={LABEL_ROW}>
@@ -111,19 +122,41 @@ export default function SharedSliderSection({
         </span>
         {action && <span style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>{action}</span>}
       </div>
-      <div style={SLIDER_ROW}>
+      <div
+        style={{ ...SLIDER_ROW, opacity: disabled ? 0.42 : 1, filter: disabled ? "grayscale(1)" : undefined }}
+        title={disabled ? disabledReason : undefined}
+      >
         <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minLabel}</span>
         <div style={SLIDER_WRAP}>
           {markerPositions.length > 0 && <CommonPointMarkers theme={t} positions={markerPositions} />}
           <input
             type="range"
+            aria-label={label}
+            disabled={disabled}
             min={sliderMin}
             max={sliderMax}
             step={sliderStep}
             value={sliderValue}
-            onPointerDown={onPointerDown}
-            onChange={(event) => onSliderChange(parseFloat(event.target.value))}
-            onPointerUp={onPointerUp}
+            onPointerDown={
+              disabled
+                ? undefined
+                : () => {
+                    pointerActive.current = true;
+                    onPointerDown?.();
+                  }
+            }
+            onKeyDown={() => {
+              pointerActive.current = false;
+            }}
+            onBlur={endPointer}
+            onPointerCancel={endPointer}
+            onChange={(event) => {
+              if (!disabled) {
+                const change = pointerActive.current ? onSliderChange : (onDirectChange ?? onSliderChange);
+                change(parseFloat(event.target.value));
+              }
+            }}
+            onPointerUp={disabled ? undefined : endPointer}
             style={sliderInput(t, { sizing: "full" })}
           />
         </div>

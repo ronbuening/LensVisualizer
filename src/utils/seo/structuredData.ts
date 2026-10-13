@@ -1,4 +1,4 @@
-import buildMeta from "../../generated/build-metadata.json";
+import buildMeta from "../../generated/client-metadata.json";
 import { SITE_NAME, SITE_URL } from "../catalog/lensMetadata.js";
 import { canonicalPageUrl, normalizeSitePageUrl } from "./siteUrls.js";
 

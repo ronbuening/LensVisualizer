@@ -64,6 +64,12 @@ const LENS_DATA = {
     tiltRangeDeg: [-8.5, 8.5],
     shiftStepMm: 0.1,
     tiltStepDeg: 0.1,
+    // Reference-state rear vertex fallback; not a measured mechanical tilt hinge.
+    tiltPivot: {
+      frame: "camera",
+      basis: "rear-vertex-fallback",
+      zOffsetFromImagePlaneMm: -56.5,
+    },
   },
 
   /* ── Elements ── */
@@ -375,8 +381,8 @@ const LENS_DATA = {
     "Rear-group unit focus: G2 and aperture stop translate together along the axis while G1 remains fixed. Nikon markets this as 'Rear Focusing' with 'Close Range Correction.'",
 
   /* ── Aperture configuration ── */
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 3.6,
+  fstopSeries: [3.6, 4, 5.6, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.45,

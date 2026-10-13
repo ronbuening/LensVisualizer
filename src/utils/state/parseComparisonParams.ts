@@ -101,7 +101,7 @@ export function encodeSliderParams({ zoom, focus, aperture }: BuildURLSliders): 
  * @param lensKeyA  — first lens key
  * @param lensKeyB  — second lens key (comparison mode only)
  * @param sliders   — optional slider values { zoom, focus, aperture }
- * @returns URL search string (e.g. "?a=...&b=...&focus=0.300")
+ * @returns URL search string (e.g. "?a=...&b=...&focus=0.3")
  */
 export function buildComparisonURL(
   comparing: boolean,

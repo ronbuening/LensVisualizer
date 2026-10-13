@@ -33,6 +33,9 @@ describe("chromatic index resolver", () => {
 
     expect(wavelengthNd2(1, vd, "B")).toBe(1);
     expect(wavelengthNd2(nd, undefined, "B")).toBe(nd);
+    expect(wavelengthNd2(nd, 0, "B")).toBe(nd);
+    // BK7-like glass: the C-F spread approximates the Abbe definition (nd - 1) / vd.
+    expect(blue - red).toBeCloseTo((nd - 1) / vd, 4);
     expect(red).toBeLessThan(green);
     expect(green).toBe(nd);
     expect(blue).toBeGreaterThan(green);

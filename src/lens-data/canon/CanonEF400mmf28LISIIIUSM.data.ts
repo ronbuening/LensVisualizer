@@ -9,9 +9,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  architecture, focus/IS arrangement, patent timing, and Canon product data.         ║
  * ║  Active model: 16 elements / 12 air-separated groups, all spherical.                ║
  * ║                                                                                    ║
- * ║  FILTER NORMALIZATION: Patent surfaces 30–31 are the explicit rear glass block G   ║
- * ║  (filter) and are excluded. Its optical effect is folded into surface 29's final    ║
- * ║  air spacing: 7.77 + 2.20/1.51633 + 60.70 = 69.92087151213786 mm.                 ║
+ * ║  REAR FILTER PLATE: patent surfaces 30–31 are the explicit rear glass block G      ║
+ * ║  (filter): 2.20 mm, nd 1.51633, νd 64.14, θgF 0.5353. It is drawn as a             ║
+ * ║  plane-parallel plate element, not counted in elementCount, with a ray-trace       ║
+ * ║  estimated semi-diameter (the patent lists none); surface 29 keeps the patent d29  ║
+ * ║  = 7.77 mm and 60.70 mm of air follows the plate. Air-equivalent BF for reference: ║
+ * ║  7.77 + 2.20/1.51633 + 60.70 = 69.920872 mm.                                       ║
  * ║                                                                                    ║
  * ║  SCALING: none (s = 1). The patent publishes f = 392.00 mm; the rounded             ║
  * ║  prescription independently traces to EFL = 391.938134284 mm. The marketed         ║
@@ -51,7 +54,7 @@ const LENS_DATA = {
   name: "CANON EF 400mm f/2.8 L IS III USM",
   subtitle: "US 2019/0041605 A1 — Example 2 / Numerical Data 2; production correlation inferred",
   specs: [
-    "16 active elements / 12 groups (rear filter omitted)",
+    "16 active elements / 12 groups (plus rear filter plate G)",
     "Patent f = 392.00 mm; traced EFL = 391.938 mm",
     "Design F/2.90; 2ω = 6.32°",
     "Imageward L2 inner focus; transverse L3B image-stabilization group",
@@ -320,6 +323,17 @@ const LENS_DATA = {
       role: "Negative member of the fixed L3C cemented pair D4.",
       cemented: "D4",
     },
+    {
+      id: 17,
+      name: "G",
+      label: "Drop-in filter G",
+      type: "Plane-Parallel Plate",
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7 (OHARA)",
+      dPgF: -0.00062,
+      role: "Plane-parallel filter plate of the patent prescription (US 2019/0041605 A1, Numerical Data 2 surfaces 30–31; patent θgF 0.5353), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
   /* ── Surface prescription: US 2019/0041605 A1, Numerical Data 2 ── */
@@ -352,7 +366,11 @@ const LENS_DATA = {
     { label: "26", R: -1080.069, d: 6.25, nd: 1.0, elemId: 0, sd: 23.5 },
     { label: "27", R: 71.025, d: 10.18, nd: 1.72047, elemId: 15, sd: 24.0 },
     { label: "28", R: -58.624, d: 1.5, nd: 1.8081, elemId: 16, sd: 24.0 },
-    { label: "29", R: -358.198, d: 69.92087151213786, nd: 1.0, elemId: 0, sd: 24.0 },
+    { label: "29", R: -358.198, d: 7.77, nd: 1.0, elemId: 0, sd: 24.0 },
+    // Drop-in filter G (US 2019/0041605 A1, Numerical Data 2 surfaces 30–31), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    { label: "30", R: 1e15, d: 2.2, nd: 1.51633, elemId: 17, sd: 21.5 },
+    { label: "31", R: 1e15, d: 60.7, nd: 1.0, elemId: 0, sd: 21.5 }, // drop-in filter → image plane
   ],
 
   asph: {},

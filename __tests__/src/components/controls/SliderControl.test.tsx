@@ -56,6 +56,29 @@ describe("SliderControl", () => {
     expect(onChange).toHaveBeenCalledWith(0.75);
   });
 
+  it("swaps the range input for a custom track while keeping the frame around it", () => {
+    render(
+      <SliderControl
+        {...baseProps}
+        disabled
+        disabledReason="Held at the patent position"
+        action={<button>MOTION</button>}
+        track={<div role="radiogroup" aria-label="Focus position" />}
+      >
+        <div>Gap readouts</div>
+      </SliderControl>,
+    );
+
+    expect(screen.queryByRole("slider")).toBeNull();
+    expect(screen.queryByText("INF")).toBeNull();
+    expect(screen.getByText("Focus")).toBeTruthy();
+    expect(screen.getByText("2.5m")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "MOTION" })).toBeTruthy();
+    expect(screen.getByText("Gap readouts")).toBeTruthy();
+    const track = screen.getByRole("radiogroup", { name: "Focus position" });
+    expect(track.closest("[title]")?.getAttribute("title")).toBe("Held at the patent position");
+  });
+
   it("disables the range input without hiding slider context", () => {
     const onChange = vi.fn();
     render(<SliderControl {...baseProps} disabled disabledReason="No modeled data" onChange={onChange} />);

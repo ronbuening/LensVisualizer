@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║   LENS DATA — OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4              ║
+ * ║   LENS DATA — OLYMPUS ZUIKO AUTO-ZOOM 65-200mm f/4              ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 4,568,150, Embodiment 4 / claim 7, Olympus Optical.       ║
  * ║  Four-group positive-negative-positive-positive telephoto zoom.             ║
@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "olympus-zuiko-auto-zoom-65-200mm-f4",
   maker: "Olympus",
-  name: "OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4",
+  name: "OLYMPUS ZUIKO AUTO-ZOOM 65-200mm f/4",
   subtitle: "US 4,568,150 Embodiment 4 — Olympus Optical / Ikari & Fujii",
   specs: [
     "14 elements / 11 groups",
@@ -295,8 +295,9 @@ const LENS_DATA = {
   closeFocusM: 0.85,
   focusDescription:
     "Front-group manual focus in production; patent US 4,568,150 publishes only infinity-focus zoom spacings, so close-focus travel is intentionally not modeled.",
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 4.24,
+  zoomApertureModel: "fixed-iris",
+  fstopSeries: [4.24, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
   scFill: 0.72,
   yScFill: 0.62,

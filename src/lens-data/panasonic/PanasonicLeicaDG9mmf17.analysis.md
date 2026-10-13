@@ -141,7 +141,7 @@ $n_d = 1.62299$, $\nu_d = 58.1$. Glass: S-BSM15 (OHARA). $f = +40.2$ mm.
 
 L12 is the sole element of G3, the fixed rear positive group. Its biconvex form ($R_1 = +157.22$, $R_2 = -29.57$) concentrates power at the rear surface, producing a weakly positive field-correcting lens. Its 1.62299 / 58.1 coordinate matches OHARA S-BSM15 rather than the former phosphate-crown assignment.
 
-Positioned close to the image plane with a large air gap behind it ($d_{25} = 10.43$ mm to the cover glass), L12 acts primarily as a field flattener and telecentric corrector. Its weak positive power helps control the chief ray angle at the sensor — critical for Micro Four Thirds sensors with on-chip microlenses that are sensitive to non-telecentric illumination. The patent constrains G3's axial extent via Inequality (14): $0.01 < \mathrm{DG3}/\mathrm{LL} < 0.10$, with Example 1 yielding 0.038.
+Positioned close to the image plane with a large air gap behind it ($d_{25} = 10.43$ mm to the 4.20 mm cover glass, which is modeled in `rearPlates` — traced by every analysis but not drawn — followed by 1.00 mm of air to the image plane), L12 acts primarily as a field flattener and telecentric corrector. Its weak positive power helps control the chief ray angle at the sensor — critical for Micro Four Thirds sensors with on-chip microlenses that are sensitive to non-telecentric illumination. The patent constrains G3's axial extent via Inequality (14): $0.01 < \mathrm{DG3}/\mathrm{LL} < 0.10$, with Example 1 yielding 0.038.
 
 ## Glass Selection
 

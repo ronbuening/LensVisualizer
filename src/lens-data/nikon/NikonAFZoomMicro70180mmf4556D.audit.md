@@ -24,14 +24,6 @@ Patent: US 5,717,527, seventh embodiment, Table 8.
 
 - Updated the L1/L2 descriptions and glass-identification table to remove the misleading TAFD25/J-LASFH13HS class wording.
 
-### Verification
-
-- `npm run generate:glass-reports` — passed; catalog mismatches dropped to zero.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run test` — passed.
-- `npm run lint` — passed.
-
 ## 2026-07-29 — Glass coverage follow-up
 
 - Current Hikari J-SFH2 provides a source-backed coordinate successor for L1/L2: it retains `nd=1.86074`, while

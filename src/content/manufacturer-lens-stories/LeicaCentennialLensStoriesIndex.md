@@ -17,7 +17,7 @@ Leica's _Time Travel Through a Century_ was published for the company's 2025 cen
 | --- | --- | --- | --- |
 | 1975 | APO-Telyt-R 180mm f/3.4 | [Sharp-Eyed Newcomer](https://timeline.leica-camera.com/en-US/years/1975) | — |
 | 1966 | Noctilux 50mm f/1.2 | [Breathing New Life into Light and Shadow](https://timeline.leica-camera.com/en/years/1966) | — |
-| 1959 | Summilux 50mm f/1.4 | [Developed for Brighter Times](https://timeline.leica-camera.com/en/years/1959) | — |
+| 1959 | Summilux 50mm f/1.4 | [Developed for Brighter Times](https://timeline.leica-camera.com/en/years/1959) | [Summilux-M 50mm f/1.4 I](/lens/leica-summilux-m-50mm-f14-i) |
 | 1953 | Summicron 50mm f/2 | [The Lens of New Beginnings](https://timeline.leica-camera.com/en/years/1953) | — |
 
 The table names the first lens associated with each milestone where Leica's chapter discusses a family name rather than printing a complete model designation. Surface & Stop links are limited to the same historical generation, not a later lens carrying the same name.

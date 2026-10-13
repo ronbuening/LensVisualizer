@@ -2,45 +2,56 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AI ZOOM-NIKKOR 80-200mm f/4                          ║
+ * ║  LENS DATA — NIKON AI ZOOM-NIKKOR 80-200mm f/4                             ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Patent source: US 4,452,513, Embodiment 1 (Yoshinari Hamanishi /       ║
- * ║  Nippon Kogaku K.K.). Exact active prescription: 13 elements in 9       ║
- * ║  air-separated groups, 22 spherical refracting surfaces.                ║
- * ║                                                                          ║
- * ║  Production identity: Nikon's instruction manual specifies 80-200mm     ║
- * ║  f/4, 13 elements in 9 groups, Nikon bayonet mount, 135-format coverage,║
- * ║  and a 1.2 m focal-plane minimum focus distance. The patent design is    ║
- * ║  80.0-195.2 mm f/4 and is not dimensionally rescaled.                   ║
- * ║                                                                          ║
- * ║  Zoom variable gaps: D5, D11, and D14. Only the patent-published wide   ║
- * ║  and tele endpoint spacings are stored; intermediate slider positions   ║
- * ║  are linear interpolation, not additional patent-published states.      ║
- * ║                                                                          ║
- * ║  Focus status: CONSTRAINED_RECONSTRUCTION. Nikon specifies parfocal     ║
- * ║  focusing to 1.2 m. G1-only travel was solved from the patent arrays    ║
- * ║  with G2-G4 and the image plane fixed: 17.047774 mm at 80 mm and        ║
- * ║  17.048840 mm at 195.2 mm. The patent's 0.998 m and 0.680 m test states ║
- * ║  are not exposed as production focus endpoints.                         ║
- * ║                                                                          ║
- * ║  Stop inference: the patent omits an iris surface. STO is inserted at   ║
- * ║  the G4 entrance, immediately before r15. A 14.065342 mm stop           ║
- * ║  semi-diameter yields f/4.000000 at 80 mm and f/4.000037 at 195.2 mm;   ║
- * ║  the inferred position also reproduces the patent h∞ chief-ray datum    ║
- * ║  to about 0.12 mm in the paraxial model.                                ║
- * ║                                                                          ║
- * ║  Semi-diameters are inferred from f/4 marginal rays at infinity and     ║
- * ║  1.2 m, the patent Fig. 3 section, and Nikon's 62 mm attachment /       ║
- * ║  73 mm barrel envelope. Full-field mechanical vignetting is retained.   ║
- * ║  A normalized FIG. 3 check reduced the oversized G1 profile: L11's       ║
- * ║  clear radius is about 23.5 mm and the smaller L12 is about 18.5 mm.     ║
- * ║  gapSagFrac=0.96 is required at the r9-r10 air lens; the selected         ║
- * ║  13.8 mm shared semi-diameter leaves about 0.182 mm physical rim gap.   ║
- * ║                                                                          ║
- * ║  Glass vendors and line indices are unpublished. Six-digit nd-vd classes ║
- * ║  are retained except for coefficient-backed equivalents; J-LAFH3        ║
- * ║  reproduces L42's d-line index and one-decimal Abbe class. nC, nF, ng,   ║
- * ║  and dPgF are therefore omitted.                                         ║
+ * ║  Patent source: US 4,452,513, Embodiment 1 (Yoshinari Hamanishi /          ║
+ * ║  Nippon Kogaku K.K.). Exact active prescription: 13 elements in 9          ║
+ * ║  air-separated groups, 22 spherical refracting surfaces.                   ║
+ * ║                                                                            ║
+ * ║  Production identity: Nikon's instruction manual specifies 80-200mm        ║
+ * ║  f/4, 13 elements in 9 groups, Nikon bayonet mount, 135-format coverage,   ║
+ * ║  and a 1.2 m focal-plane minimum focus distance. The patent design is      ║
+ * ║  80.0-195.2 mm f/4 and is not dimensionally rescaled.                      ║
+ * ║                                                                            ║
+ * ║  Zoom variable gaps: D5, D11, and D14. Only the patent-published wide      ║
+ * ║  and tele endpoint spacings are stored; intermediate slider positions      ║
+ * ║  are linear interpolation, not additional patent-published states.         ║
+ * ║                                                                            ║
+ * ║  Focus status: CONSTRAINED_RECONSTRUCTION. Nikon specifies parfocal        ║
+ * ║  focusing to 1.2 m. G1-only travel was solved from the patent arrays       ║
+ * ║  with G2-G4 and the image plane fixed: 17.047774 mm at 80 mm and           ║
+ * ║  17.048840 mm at 195.2 mm. The patent's 0.998 m and 0.680 m test states    ║
+ * ║  are not exposed as production focus endpoints.                            ║
+ * ║                                                                            ║
+ * ║  Stop inference: the patent omits an iris surface. STO is inserted at      ║
+ * ║  the G4 entrance, immediately before r15. The authored 14.065342 mm        ║
+ * ║  semi-diameter is the paraxial f/4 radius (f/4.000000 at 80 mm,            ║
+ * ║  f/4.000037 at 195.2 mm). The fixed iris is traced from nominalFno at      ║
+ * ║  14.1233 mm, which alone gives f/4.000 at 80 mm and f/3.997 at             ║
+ * ║  195.2 mm. The inferred position reproduces the patent h∞ chief-ray        ║
+ * ║  datum to about 0.12 mm in the paraxial model.                             ║
+ * ║                                                                            ║
+ * ║  Semi-diameters are inferred from the f/4 on-axis beam, the patent         ║
+ * ║  Fig. 3 section, and Nikon's 62 mm attachment / 73 mm barrel envelope.     ║
+ * ║  Full-field mechanical vignetting is retained. In G1 the f/4 on-axis       ║
+ * ║  ray reaches 24.400 / 24.021 / 23.826 / 23.491 / 23.145 mm on surfaces     ║
+ * ║  1-5 at 195.2 mm and infinity focus. Surfaces 1, 3 and 4 carry that        ║
+ * ║  height rounded up to 0.1 mm: 24.5, 23.9 and 23.5 mm. FIG. 3 cuts the      ║
+ * ║  rims of L11a and L12 square, so surface 2 carries surface 1's 24.5 mm     ║
+ * ║  and surface 5 carries surface 4's 23.5 mm; L11b steps in to 23.9 mm       ║
+ * ║  at surface 3, as FIG. 3 steps L11 in at the cemented surface.             ║
+ * ║  Wide open at infinity the 80 mm station traces f/4.00 on the iris and     ║
+ * ║  the 195.2 mm station f/4.00 on the surface-4 rim. At 1.2 m and            ║
+ * ║  195.2 mm that rim bounds the on-axis beam and the iris is filled to       ║
+ * ║  87 % of its radius; surfaces 6-22 pass the f/4 beam at both focus         ║
+ * ║  limits. FIG. 3 draws L11 at about 28.1 mm and L12 at about 26.2 mm.       ║
+ * ║  gapSagFrac=0.96 is required at the r9-r10 air lens; the selected          ║
+ * ║  13.8 mm shared semi-diameter leaves about 0.182 mm physical rim gap.      ║
+ * ║                                                                            ║
+ * ║  Glass vendors and line indices are unpublished. Six-digit nd-vd classes   ║
+ * ║  are retained except for coefficient-backed equivalents; J-LAFH3           ║
+ * ║  reproduces L42's d-line index and one-decimal Abbe class. nC, nF, ng,     ║
+ * ║  and dPgF are therefore omitted.                                           ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -224,11 +235,13 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 109.097, d: 1.7, nd: 1.80518, elemId: 1, sd: 23.5 },
-    { label: "2", R: 62.65, d: 8.1, nd: 1.62041, elemId: 2, sd: 23.5 },
-    { label: "3", R: -716, d: 0.1, nd: 1, elemId: 0, sd: 23 },
-    { label: "4", R: 134.056, d: 4, nd: 1.5168, elemId: 3, sd: 18.5 },
-    { label: "5", R: 603.844, d: 3.034, nd: 1, elemId: 0, sd: 18.5 },
+    // Surfaces 1, 3, 4: the f/4 on-axis ray height at 195.2 mm, infinity focus, rounded up to 0.1 mm.
+    // Surfaces 2 and 5 carry the front-face value of their element: FIG. 3 cuts L11a and L12 square.
+    { label: "1", R: 109.097, d: 1.7, nd: 1.80518, elemId: 1, sd: 24.5 },
+    { label: "2", R: 62.65, d: 8.1, nd: 1.62041, elemId: 2, sd: 24.5 },
+    { label: "3", R: -716, d: 0.1, nd: 1, elemId: 0, sd: 23.9 },
+    { label: "4", R: 134.056, d: 4, nd: 1.5168, elemId: 3, sd: 23.5 },
+    { label: "5", R: 603.844, d: 3.034, nd: 1, elemId: 0, sd: 23.5 },
     { label: "6", R: -300, d: 1, nd: 1.78797, elemId: 4, sd: 15.5 },
     { label: "7", R: 55, d: 6.1, nd: 1.7552, elemId: 5, sd: 15.2 },
     { label: "8", R: -40, d: 0.9, nd: 1.58144, elemId: 6, sd: 14.6 },
@@ -298,6 +311,7 @@ const LENS_DATA = {
     "not exposed.",
 
   nominalFno: 4,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
 

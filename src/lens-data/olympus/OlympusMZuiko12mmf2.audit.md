@@ -10,7 +10,3 @@ Patent: US 8,248,716 B2, Numerical Example 1
 - The patent publishes prescription and aspherical data, but no full per-surface clear-aperture table. The data file intentionally omits the sensor-side cover-glass stack from the rendered prescription.
 - FIG. 1 shows a tapered front group, a smaller stop waist, and a rear group that widens toward the final relay element. Stored SDs follow that silhouette: 10.4-6.4 mm through the front/middle run, a 4.564608 mm stop, and 6.1-8.7 mm through the rear group.
 - No SD values changed. Current values remain inferred from the patent figure, marginal/chief ray envelopes, and renderer geometry constraints.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

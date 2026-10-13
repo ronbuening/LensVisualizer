@@ -192,10 +192,10 @@ This air lens is central to the double-Gauss character of the rear group. It pro
 
 ## Data-File Notes
 
-The patent includes a 2.00 mm flat cover glass at $n_d = 1.51633$ after the 38.06 mm air space following surface 23. The project data file excludes sensor or cover glass. The cover glass was therefore folded into the final air gap as an air-equivalent distance:
+The patent includes a 2.00 mm flat cover glass CG ($n_d = 1.51633$, $\nu_d = 64.1$, S-BSL7 class) after the 38.06 mm air space following surface 23, and Table 9 gives $f_B = 0.50$ mm from the cover glass to the image. The data file stores the patent's physical 38.06 mm gap on surface 23A and models the cover glass in `rearPlates`: it is traced by every analysis but not drawn in the cross-section. Its paraxial air-equivalent back focal distance is
 
 $$
-d_{23A} = 38.06 + \frac{2.00}{1.51633} + 0.50 = 39.878974\ \mathrm{mm}.
+38.06 + \frac{2.00}{1.51633} + 0.50 = 39.879\ \mathrm{mm}.
 $$
 
 The patent does not publish semi-diameters. The data file uses conservative inferred clear apertures from a d-line marginal/chief-ray trace, constrained by the 82 mm filter thread, spherical rim limit, element edge thickness, signed cross-gap sag, and element front/rear semi-diameter ratio. The inferred apertures are not claimed as manufacturer-published mechanical clear apertures.
@@ -207,7 +207,7 @@ All values in this section were recomputed from the transcribed Example 3 prescr
 | Quantity | Recomputed | Patent / source value | Status |
 |---|---:|---:|---|
 | Effective focal length | 83.409 mm | 83.42 mm | match |
-| Back focal distance from last lens surface, cover folded | 39.879 mm | derived from Table 7 + Table 9 | match |
+| Back focal distance from last lens surface, air-equivalent | 39.879 mm | derived from Table 7 + Table 9 | match |
 | Physical patent length to image plane | 156.20 mm | 156.20 mm | match |
 | Design F-number | 1.46 | 1.46 | match by stop sizing |
 | Full-frame semi-image height | 21.64 mm | 21.64 mm | match |
@@ -220,7 +220,7 @@ All values in this section were recomputed from the transcribed Example 3 prescr
 | Petzval radius | +629.4 mm | not tabulated | computed |
 | $P\cdot f$ | 0.1325 | not tabulated | computed |
 
-The companion data file adopts the same verified conventions used in this table: exact catalog labels where the match is exact, cover-glass folding into the final back focal distance, and semi-diameter estimates constrained by edge thickness and signed cross-gap sag.
+The companion data file adopts the same verified conventions used in this table: exact catalog labels where the match is exact, the patent cover glass modeled in `rearPlates` behind the physical 38.06 mm final gap, and semi-diameter estimates constrained by edge thickness and signed cross-gap sag.
 
 ## Sources
 

@@ -8,7 +8,7 @@ describe("buildComparePath", () => {
 
   it("appends slider params as query string", () => {
     const path = buildComparePath("NikkorZ50f12", "Nokton50f1", { focus: 0.3, aperture: 0.5 });
-    expect(path).toBe("/compare/NikkorZ50f12/Nokton50f1/?focus=0.300&aperture=0.500");
+    expect(path).toBe("/compare/NikkorZ50f12/Nokton50f1/?focus=0.3&aperture=0.5");
   });
 
   it("appends zoom param", () => {

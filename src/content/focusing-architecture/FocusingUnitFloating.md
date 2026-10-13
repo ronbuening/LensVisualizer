@@ -21,9 +21,9 @@ In a floating-element design, the lens barrel extends to focus at closer distanc
 
 The key principle is the same insight that underlies the dual-side IF architecture (and Nikon's Close-Range Correction system): by identifying air spacings whose changes selectively affect specific aberrations, the designer can compensate for conjugate-shift-induced degradation [^1]. The floating-element approach applies this insight within an extending-barrel form — the barrel still extends and most of the lens mass still translates, distinguishing it mechanically from true internal focusing.
 
-### Case Example: Voigtländer APO-Lanthar 50mm f/2.0 Aspherical
+### Case Example: Voigtländer APO-Lanthar 50mm f/2 Aspherical
 
-The [Voigtländer APO-Lanthar 50mm f/2.0 Aspherical](/lens/apo-lanthar-50f2) [^2] is a particularly sophisticated example. Its floating focus mechanism employs three independently moving groups — a front group, an intermediate group, and a rear group including a field-flattening element — with **three variable air gaps** that adjust to maintain quasi-symmetric aberration balance across the conjugate range. The barrel extends slightly during focusing, but the essential optical action is the differential movement of internal groups.
+The [Voigtländer APO-Lanthar 50mm f/2 Aspherical](/lens/apo-lanthar-50f2) [^2] is a particularly sophisticated example. Its floating focus mechanism employs three independently moving groups — a front group, an intermediate group, and a rear group including a field-flattening element — with **three variable air gaps** that adjust to maintain quasi-symmetric aberration balance across the conjugate range. The barrel extends slightly during focusing, but the essential optical action is the differential movement of internal groups.
 
 This three-parameter floating correction enables the APO-Lanthar's apochromatic performance to be maintained from infinity through close focus — a result that a rigid unit-focusing translation could not achieve. The design is conceptually closer to a dual-side IF architecture than to a simple extending helicoid, though its barrel extension distinguishes it mechanically from true internal focusing.
 

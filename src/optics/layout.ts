@@ -5,6 +5,7 @@
  * diagram rendering and analysis panels.
  */
 
+import { closeFocusAtZoom, FOCUS_INFINITY_THRESHOLD } from "./focusDistance.js";
 import type { LayoutResult, RuntimeLens } from "../types/optics.js";
 import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
 import { conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
@@ -13,8 +14,7 @@ import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
 /** Number of straight SVG segments used when rendering one surface profile. */
 export const SVG_PATH_SUBDIVISIONS: number = 96;
 const BISECT_ITERATIONS: number = 30;
-/** Focus slider values below this threshold are treated as infinity. */
-export const FOCUS_INFINITY_THRESHOLD: number = 0.003;
+export { FOCUS_INFINITY_THRESHOLD } from "./focusDistance.js";
 
 /**
  * Compute rendered sag for a RuntimeLens surface.
@@ -108,6 +108,7 @@ export function thick(i: number, focusT: number, zoomT: number, L: RuntimeLens, 
     focusT,
     zoomT,
     aberrationT,
+    L.focusPositions,
   );
 }
 
@@ -152,6 +153,7 @@ export function stateSurfaces(focusT: number, zoomT: number, L: RuntimeLens, abe
     zoomT,
     L.aberrationControl?.varByIdx,
     aberrationT,
+    L.focusPositions,
   );
 }
 
@@ -332,7 +334,7 @@ export function effectiveFNumber(
   if (focusT < FOCUS_INFINITY_THRESHOLD) return nominalFNumber;
 
   const efl = eflAtFocus(focusT, zoomT, L, aberrationT);
-  const focusDistMm = (L.closeFocusM / focusT) * 1000;
+  const focusDistMm = (closeFocusAtZoom(zoomT, L) / focusT) * 1000;
   const denom = focusDistMm - efl;
   if (Math.abs(denom) < 1e-10) return nominalFNumber;
   const m = -efl / denom;

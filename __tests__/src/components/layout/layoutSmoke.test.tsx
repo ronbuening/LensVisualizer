@@ -1,17 +1,12 @@
 // @vitest-environment jsdom
 
 /**
- * Smoke tests for layout orchestration components:
- *   - SingleLensContent (desktop/mobile view branching)
- *   - LensDiagramPanel (diagram composition with error/loaded states)
- *   - LensViewer (top-level orchestration)
- *
- * These tests verify rendering paths without crashing. Heavy child
- * components and hooks are mocked to keep tests fast and focused.
+ * Smoke tests for SingleLensContent's desktop/mobile view branching. LensDiagramPanel and
+ * DescriptionPanel are mocked; the real panel is rendered in LensDiagramPanelCoverage.test.tsx.
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { screen, cleanup } from "@testing-library/react";
 import { installMatchMediaMock, clearBrowserState, renderWithLensContext } from "../../../testUtils.js";
 import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
 import themes from "../../../../src/utils/theme/themes.js";
@@ -48,61 +43,6 @@ vi.mock("../../../../src/components/layout/DescriptionPanel.js", () => ({
     <div data-testid="description-panel">{markdown ?? "No description"}</div>
   ),
 }));
-
-/* Mock all hooks used by LensDiagramPanel (for the real component if tested directly).
-   The shared shapes live in testUtils.mockLensDiagramHooks; factories must be async
-   and dynamically import it because vi.mock calls are hoisted above imports. */
-vi.mock(
-  "../../../../src/components/hooks/useLensComputation.js",
-  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useLensComputation,
-);
-
-vi.mock(
-  "../../../../src/components/hooks/useRayTracing.js",
-  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useRayTracing,
-);
-
-vi.mock(
-  "../../../../src/components/hooks/useDispatchAdapters.js",
-  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useDispatchAdapters,
-);
-
-vi.mock(
-  "../../../../src/components/hooks/useOverlayState.js",
-  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useOverlayState,
-);
-
-vi.mock(
-  "../../../../src/components/hooks/useHeaderHeight.js",
-  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useHeaderHeight,
-);
-
-vi.mock(
-  "../../../../src/components/hooks/useFlashOverlay.js",
-  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useFlashOverlay,
-);
-
-vi.mock(
-  "../../../../src/components/hooks/useSideLayoutDetection.js",
-  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useSideLayoutDetection,
-);
-
-vi.mock(
-  "../../../../src/components/hooks/useViewBoxZoom.js",
-  async () =>
-    (await import("../../../testUtils.js")).mockLensDiagramHooks({
-      useViewBoxZoom: () => ({
-        viewBox: "0 0 1200 600",
-        handlers: {},
-        zoomLevel: 1,
-        reset: vi.fn(),
-        zoomIn: vi.fn(),
-        zoomOut: vi.fn(),
-        isPanned: false,
-        isZoomed: false,
-      }),
-    }).useViewBoxZoom,
-);
 
 /* ─────────────────── Shared State ─────────────────── */
 
@@ -206,34 +146,5 @@ describe("SingleLensContent", () => {
     renderWithLensContext(<SingleLensContent {...baseProps} lensKey="my-special-lens" />, { state });
 
     expect(screen.getByText("DiagramPanel:my-special-lens")).toBeDefined();
-  });
-});
-
-/* ═══════════════════════════════════════════════════════
-   LensDiagramPanel (integration via SingleLensContent)
-   ═══════════════════════════════════════════════════════ */
-
-/* LensDiagramPanel is mocked above so its rendering is verified
-   indirectly through SingleLensContent tests. We verify that
-   the mock correctly receives props from SingleLensContent. */
-
-import LensDiagramPanel from "../../../../src/components/layout/LensDiagramPanel.js";
-
-describe("LensDiagramPanel mock integration", () => {
-  beforeEach(() => {
-    installMatchMediaMock(false);
-    clearBrowserState();
-  });
-  afterEach(() => cleanup());
-
-  it("mock renders with expected lensKey and panelId", () => {
-    const state = makeState();
-    renderWithLensContext(
-      <LensDiagramPanel lensKey="nikon-z50" panelId="test-panel" scaleRatio={null} compact={false} />,
-      { state },
-    );
-
-    expect(screen.getByTestId("diagram-panel-test-panel")).toBeDefined();
-    expect(screen.getByText("DiagramPanel:nikon-z50")).toBeDefined();
   });
 });

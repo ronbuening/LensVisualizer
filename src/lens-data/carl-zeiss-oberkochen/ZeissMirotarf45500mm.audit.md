@@ -1,0 +1,38 @@
+# Audit Log — CARL ZEISS MIROTAR 500mm f/4.5
+
+Patent: GB 975,446; GB 975,446 Example 1 — correlated to ZEISS Mirotar f/4.5 500 mm
+
+## 2026-09-16 — Patent geometry, glass, and metadata
+
+### Retained-information and optical-rim review
+
+Exact local source: `patents/GB_975446_A.pdf`, PDF page 4–5 split drawing, 6 rotated overview.
+
+Retained SDs and annular bands. The two front correctors have comparable rims; the rear corrector is approximately one third of the primary radius, consistent with the authored 23.5 mm versus 62.5 mm. Ray bundles and the split sheet prevent reliable automated sequential photogrammetry. The primary remains tied to the patent f/4 collecting-diameter statement, not illustration scale.
+
+### Glass classification
+
+The patent refractive indices and Abbe numbers are retained. Catalog curves are coordinate-compatible dispersion proxies, not evidence of the historical supplier or production melt.
+
+| Element | Patent index / Abbe | Runtime curve |
+|---|---|---|
+| L1 | 1.5168 / 64.2 (d) | N-BK7 |
+| L2 | 1.5184 / 60.34 (d) | BALK3 |
+| L3 | 1.5614 / 45.27 (d) | LLF4 |
+| L4 | 1.5168 / 64.2 (d) | N-BK7 |
+
+The listed curves are catalog proxies; production identities remain unproven. Unresolved coordinates were checked against the current catalog and public glass-code/index searches; no sufficiently evidenced new curve was recovered for them. Source coordinates, spectral reference, radii, and axial spacings are retained.
+
+### Metadata and analysis
+
+The imported curved r1 was labeled STO and entered glass, violating the air-stop contract. It is now surface 1, preceded by a neutral flat STO at the same vertex (zero air spacing). No radius, glass thickness, mirror path, or image-plane location changes. Canonical assignee spelling is Carl-Zeiss-Stiftung.
+
+Companion analysis now lists the actual runtime glass curves and preserves source-versus-model limitations.
+
+## 2026-09-16 — Local-site diagram and controls review
+
+Reviewed the live SVG against the exact local patent figure cited above, including glass bodies, cemented interfaces, element identifiers, dispersion colors, and aperture/stop annotations. The model is a prime; no zoom travel is authored. Fixed patent optics. The production lens uses bellows focusing to 3.5 m; bellows travel is not modeled.
+
+Glass labels now name the actual selected catalog curve and explicitly separate the dispersion proxy from historical supplier identity. The selected curves have no positive ΔPgF large enough to justify an inferred APD tag; unsupported APD tags were not added.
+
+The local-site review exposed a shared rendering omission: standalone reflecting interfaces outside glass-element spans were not drawn. Both mirrors now use their actual surface profiles, retaining the primary mirror's central opening. Folded-path labels are separated in screen space and the legend explains mirror annotations. Optical SDs and the traced prescription remain unchanged after comparison with both patent figure sheets.

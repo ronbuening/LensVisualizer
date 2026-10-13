@@ -5,9 +5,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Data source: US 2018/0149842 A1, Example 1, Anhui Changgeng Optics Technology Co., Ltd. / Xiaohua Zhang.
  *
  * This is the patent prescription at f = 15.5 mm. No production-scale rescaling has been applied.
- * The image-side plane-parallel plate listed at patent surfaces 24-25 is excluded from the surfaces array per the
- * project data specification. Its 2.0 mm physical thickness at nd = 1.51680 has been folded into the final
- * air-equivalent back-focus spacing: D23 + 2.0 / 1.51680 + D25.
+ * The image-side plane-parallel plate listed at patent surfaces 24-25 (2.0 mm, nd 1.51680, νd 64.20) and the
+ * D(25) = 1.0 mm air gap to the image are modeled in `rearPlates` (traced, not drawn). Surface 23A stores the
+ * patent's physical D(23) gap to the plate: 15.6837 mm at infinity, 15.9816 mm at the 0.020x state.
  *
  * Focus model: the patent publishes only the infinity state and a 0.020x comparison state. The variable gaps below
  * therefore model the published patent focus interval only, not the full production 0.15 m / 0.25x macro travel.
@@ -15,7 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * Semi-diameters are inferred render apertures, not patent-published clear apertures. They were constrained by
  * paraxial marginal/chief-ray geometry, the 72 mm production filter thread, conic limits, rim slope, edge thickness,
  * and cross-gap sag intrusion. The off-axis ray field fraction is deliberately conservative because this is a
- * 109.4 degree full-field ultra-wide design and the viewer's diagnostic rays are paraxial.
+ * 109.4 degree full-field ultra-wide design and the viewer's diagnostic rays are paraxial. Surface 23A was later
+ * raised from 9.0 to 10.1 mm to pass the traced chief ray to the full-frame corner (21.65 mm at 53.4°; patent
+ * Y = 21.63 mm, ω = 54.7°) in the 2026-09-24 field-coverage audit; surface 22A stays at 9.0 mm, inside its
+ * 9.61 mm conic limit.
  */
 
 const LENS_DATA = {
@@ -222,7 +225,19 @@ const LENS_DATA = {
     { label: "20", R: 30.3336, d: 7.0, nd: 1.497, elemId: 11, sd: 10.0 },
     { label: "21", R: -24.3462, d: 10.5287, nd: 1.0, elemId: 0, sd: 10.0 },
     { label: "22A", R: -14.0614, d: 1.8, nd: 1.58313, elemId: 12, sd: 9.0 },
-    { label: "23A", R: -20.0, d: 18.002265400843882, nd: 1.0, elemId: 0, sd: 9.0 },
+    { label: "23A", R: -20.0, d: 15.6837, nd: 1.0, elemId: 0, sd: 10.1 },
+  ],
+
+  /* ── Image-side plane-parallel plate (patent surfaces 24–25): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2018/0149842 A1, Example 1 surfaces 24–25; D(25) = 1.0000",
+    },
   ],
 
   asph: {
@@ -266,7 +281,7 @@ const LENS_DATA = {
 
   var: {
     "12": [3.448, 3.15],
-    "23A": [18.002265400843882, 18.30016540084388],
+    "23A": [15.6837, 15.9816],
   },
   varLabels: [
     ["12", "D12"],
@@ -286,9 +301,11 @@ const LENS_DATA = {
   focusDescription:
     "Patent rear/inner focus: Gr1 fixed; the stop plus Gr2 translate objectward by 0.298 mm at the patent 0.020x state. The production 0.15 m / 0.25x close-focus spacing is not published in the patent and is not extrapolated here.",
   closeFocusM: 0.97,
-  nominalFno: 2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
+  nominalFno: 2.06,
   maxFstop: 22,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22],
   scFill: 0.62,
   yScFill: 0.58,
   offAxisFieldFrac: 0.2,

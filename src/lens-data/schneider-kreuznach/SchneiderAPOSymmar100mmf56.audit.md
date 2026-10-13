@@ -25,17 +25,7 @@ L2 and L5 remain non-APD N-BALF5 barium light flints. The patent's environmental
 ### Phase 3 - Spectral / metadata enrichment
 
 - The patent does not publish nC, nF, ng, PgF, theta-gF, or dPgF tables. No line-index enrichment was added.
-- `npm run generate:glass-reports` reports this lens at 4/6 trusted Sellmeier rows; L3 remains explicit unmatched phosphate-crown APD, and L4 / N-PK51 remains an Abbe row until catalog coefficients are added.
 
 ### Phase 4 - Analysis sync
 
 - Updated the L3/L4 and glass-strategy prose to use the corrected e-line 522/695 class note for L3 and N-PK51 code 529770 for L4.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed.
-

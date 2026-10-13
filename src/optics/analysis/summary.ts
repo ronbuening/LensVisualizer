@@ -2,6 +2,8 @@
  * Current-state optical summary derived from a prepared engine state.
  */
 
+import { closeFocusAtZoom } from "../focusDistance.js";
+
 import type { FieldGeometryState } from "../optics.js";
 import { FOCUS_INFINITY_THRESHOLD, eflAtZoom } from "../layout.js";
 import { computeCardinalElements2 } from "../first-order/cardinals.js";
@@ -28,7 +30,11 @@ export interface OpticalSummaryMetrics2 {
   aberrationT: number;
   imagePlaneZMm: number | null;
   totalTrackMm: number | null;
+  /** Authored lens surfaces; synthetic rear plates are reported separately. */
   surfaceCount: number;
+  rearPlateCount: number;
+  /** Summed physical thickness of modeled rear plates in mm (0 when none). */
+  rearPlateThicknessMm: number;
   opticalPath: "sequential" | "folded";
   cardinalEFLMm: number | null;
   bfdMm: number | null;
@@ -88,7 +94,9 @@ export function computeOpticalSummaryForState2(
     aberrationT: state.aberrationT,
     imagePlaneZMm: finiteOrNull(state.imgZ),
     totalTrackMm: finiteOrNull(state.totalTrack),
-    surfaceCount: state.surfaces.length,
+    surfaceCount: L.S.filter((surface) => !surface.synthetic).length,
+    rearPlateCount: L.data.rearPlates?.length ?? 0,
+    rearPlateThicknessMm: (L.data.rearPlates ?? []).reduce((sum, plate) => sum + plate.thicknessMm, 0),
     opticalPath: state.lens.flags.isFoldedOptics ? "folded" : "sequential",
     cardinalEFLMm: finiteOrNull(cardinals?.distances.efl.valueMm),
     bfdMm: finiteOrNull(cardinals?.distances.bfd.valueMm),
@@ -98,7 +106,7 @@ export function computeOpticalSummaryForState2(
 }
 
 function focusDistanceForState(state: PreparedOpticalState): number | null {
-  const closeFocusM = state.lens.runtime.closeFocusM;
+  const closeFocusM = closeFocusAtZoom(state.zoomT, state.lens.runtime);
   if (state.focusT < FOCUS_INFINITY_THRESHOLD) return null;
   if (!Number.isFinite(closeFocusM) || closeFocusM <= 0 || state.focusT <= 0) return null;
   return closeFocusM / state.focusT;

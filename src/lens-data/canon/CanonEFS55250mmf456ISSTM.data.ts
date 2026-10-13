@@ -336,6 +336,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.85,
+  // Every authored zoom station is a source row.
+  publishedStations: { zoom: [0, 1, 2, 3, 4] },
   focusDescription:
     "Rear inner focus by L5; close-focus travel omitted because only infinity zoom spacings are available for the full-field patent columns.",
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],

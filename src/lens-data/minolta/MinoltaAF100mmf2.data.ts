@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "minolta-af-100mm-f2",
   maker: "Minolta",
   name: "MINOLTA AF 100mm f/2",
-  subtitle: "JP1987-244010 A Example 2 — Minolta Co., Ltd.",
+  subtitle: "JP 1987-244010 A Example 2 — Minolta Co., Ltd.",
   specs: ["7 ELEMENTS / 6 GROUPS", "100mm f/2", "1.0m MFD", "FLOATING FOCUS", "9-BLADE DIAPHRAGM"],
 
   /* ── Marketing / design metadata ── */
@@ -50,9 +50,9 @@ const LENS_DATA = {
   apertureDesign: 2,
   lensMounts: ["sony-a"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1987-244010 A",
+  patentNumber: "JP 1987-244010 A",
   patentAuthors: ["Naoshi Okada", "Hisashi Tokumaru"],
-  patentAssignees: ["Minolta Co., Ltd."],
+  patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1987,
   elementCount: 7,
   groupCount: 6,
@@ -189,6 +189,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED — L1-L6 translate together relative to fixed L7 and the image plane; patent d11 increases from 0.880 mm at infinity to 16.339 mm at close focus (β ≈ -0.126).",
 

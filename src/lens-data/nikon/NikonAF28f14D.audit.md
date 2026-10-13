@@ -23,10 +23,6 @@ Reviewed local untracked patent file `patents/US5315441.pdf`, Embodiment 1 / Tab
 - US 5,315,441 does not publish per-surface clear apertures or effective diameters for Embodiment 1.
 - Current SDs remain documented renderer estimates. They make rational sense against FIG. 1: a large front retrofocus meniscus, broad G2 positive cell, a stop constrained near `sd = 13.6 mm`, and re-expansion through the aspherical G3/G4 rear groups without exceeding sag or edge-thickness limits.
 
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.
-
 ## 2026-07-29 Glass Coverage Follow-up
 
 - Relabeled L8b from an unresolved very-dense-flint note to coefficient-backed Hikari J-SFH2.
@@ -45,3 +41,15 @@ Reviewed local untracked patent file `patents/US5315441.pdf`, Embodiment 1 / Tab
   `nd = 1.748099`, `νd = 52.304982`, exactly reproducing L6a's patent coordinate within printed precision.
 - Relabeled L6a as a supplier-neutral E-LAKH1 catalog equivalent and synchronized the analysis. This supersedes
   the earlier current-catalog no-match disposition; no prescription, asphere, focus, APD, or semi-diameter values changed.
+
+## 2026-09-08 — Source audit; local live check pending
+
+Original US5315441.pdf, Embodiment 1: Table 1/equation p.12 and Figure 1 p.2 at 600 dpi. All nineteen source radii, thicknesses and glass coordinates retained. Corrected source conic k=1.974 to engine K=0.974; polynomial terms retained. Source FNO1.41 and full field75.37 surfaced. Independent matrix beta−0.1000181 gives near distance0.397032626m, replacing0.35m; source variable gaps preserved. G1 fixed, G2/stop and G4 objectward3.5248mm, G3 objectward3.8773mm.
+
+Stop inferred at4.65mm after S11; full D11 remains12.55→12.1975mm, partial readout relabeled Stop–G3. Optical rims refined against82.75mm vertex span. S7 and L8a retain explicit numerical-geometry constraints instead of conflicting larger figure trials. Corrected L4b/L8a shape labels, isolated element focal lengths and unsupported glass/process claims. No cover/filter source rows.
+
+Surface and image-circle checks passed; three source regression tests pass, including independent sag, magnification and fixed-image movement with no hidden rim trimming. Production infinity baseline inspected. Local live verification is pending because CUA reports the Mac locked; not marked complete. Batch21–30 full gates/commit pending.
+
+## 2026-09-09 — Live verification completed
+
+Local infinity, near, midpoint, f16 and movement chart verified. Near40cm: D2=10.38, Stop–G3=7.55, D16=.85, BF=41.63mm. Midpoint79cm/EFL29.04mm; f16 stop2.59mm. G1 fixed; maximum group travel3.88mm. Earlier lock blocker resolved. Full batch validation passed2877 tests, typecheck, format, lint, glass checks and build; included in batch21–30.

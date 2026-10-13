@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP1988-201614 A\
+**Patent:** JP 1988-201614 A\
 **Application Number:** 特願昭62-35188\
 **Filed:** 1987-02-17\
 **Published:** 1988-08-19\
@@ -9,7 +9,7 @@
 **Title:** 小型のレトロフォーカス型広角レンズ (Compact retrofocus-type wide-angle lens)\
 **Embodiment analyzed:** Example 4
 
-The modeled prescription is Example 4 of JP1988-201614 A, correlated in this corpus to the MINOLTA AF 35mm f/2. The correlation is fixed for this entry but is not presented as a manufacturer-confirmed patent-to-product identification. It rests on several convergent features:
+The modeled prescription is Example 4 of JP 1988-201614 A, correlated in this corpus to the MINOLTA AF 35mm f/2. The correlation is fixed for this entry but is not presented as a manufacturer-confirmed patent-to-product identification. It rests on several convergent features:
 
 1. Example 4 resolves to seven physical elements in six air-separated groups, matching the Minolta service manual's 7-element/6-group construction.
 2. The patent example is normalized to $f=100$; a uniform scale factor of $s=0.35$ gives a computed EFL of 35.000165853 mm, corresponding to the production lens's marketed 35 mm focal length.
@@ -133,7 +133,7 @@ The inferred semi-diameters also satisfy the local geometry and containment chec
 
 ## Sources / References
 
-- Minolta Camera Co., Ltd., **JP1988-201614 A**, *小型のレトロフォーカス型広角レンズ*, Example 4; prescription and figures on the published patent pages 3–5.
+- Minolta Camera Co., Ltd., **JP 1988-201614 A**, *小型のレトロフォーカス型広角レンズ*, Example 4; prescription and figures on the published patent pages 3–5.
 - Minolta Camera Co., Ltd., **AF 35mm F2 / MAXXUM AF 35mm F2 Service Manual**, codes 2597-100 / 2597-600; product specification page, optical construction section, and focusing description.
 - OHARA INC., **Glass Type** and **Comparative Table of Recommended Glasses**; current d-line catalog coordinates and cross-vendor equivalents used only for the supplier-neutral glass audit.
 - SCHOTT, **Optical Glass — Refractive Index and Dispersion / Optical Glass Collection**, SF6 entry; current/legacy d-line coordinate check for 805254.

@@ -63,10 +63,12 @@ diameter" of 48.31 mm, but that value does not reproduce the patent f/2.90 when 
 therefore uses an inferred physical stop semi-diameter of 23.251414 mm, calibrated from the final prescription so that
 the modeled entrance pupil reproduces f/2.90.
 
-The separate rear glass block `G` is omitted from the active model. The patent explicitly defines back focus as the
-distance from the final active lens surface `Re` to the image plane with `G` absent, so surface 27 carries the
-patent-normalized 70.72 mm air spacing to the image plane. No sensor cover, filter element, or synthetic replacement
-layer is added.
+The separate rear glass block `G` is drawn as a plane-parallel plate from patent rows 28–29: 2.2 mm thick, nd 1.51633,
+νd 64.14, 15.00 mm behind surface 27. Its semi-diameter is a ray-trace estimate, because the patent's 36.00 mm effective
+diameter is a ray envelope that would limit this model's corner bundle. The patent explicitly defines back
+focus as the distance from the final active lens surface `Re` to the image plane with `G` absent (70.72 mm), so
+70.72 − 15.00 − 2.2/1.51633 = 54.269129 mm of air follows the plate and the authored track equals the patent's
+`Lt = 372.00 mm`. No sensor cover or synthetic replacement layer is added.
 
 ## Element-by-Element Analysis
 
@@ -316,9 +318,9 @@ results are:
 |---|---:|---:|
 | EFL | 392.260742 mm | 392.15 mm patent focal length |
 | EFL residual | +0.110742 mm | +0.02824% |
-| BFL from final active surface | 70.778452 mm | 70.72 mm patent back focus |
+| BFL from final active surface, `G` absent | 70.778452 mm | 70.72 mm patent back focus |
 | Active vertex track, surface 1 → Re | 300.530000 mm | direct sum of Example-2 spacings |
-| Normalized model track, surface 1 → IP | 371.250000 mm | physical patent `Lt = 372.00 mm` before no-`G` normalization |
+| Model track, surface 1 → IP, with `G` | 371.999129 mm | 372.00 mm patent `Lt` |
 | Front principal plane H1 | -337.499626 mm from surface 1 | independent ABCD result |
 | Rear principal plane H2 | -20.952290 mm from surface 1 | 321.482290 mm objectward of Re |
 | Modeled infinity f-number | 2.900000 | 2.90 patent design value |

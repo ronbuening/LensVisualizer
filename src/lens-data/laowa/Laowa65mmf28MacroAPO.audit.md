@@ -19,18 +19,9 @@ Patent: CN 110161666A, Example 2
 - Confirmed flagged rows against local `patents/CN110161666A.pdf`, Example 2 table. Stored nd/vd values matched the patent.
 - Non-flagged prescription fields were not fully rekeyed in this queue pass.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No catalog entries added; selected matches already resolve through the project catalog.
-
 ### Phase 4 — Analysis sync
 
 - Updated affected element notes and the glass identification table.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
 
 ## 2026-06-24 — Full local patent audit
 
@@ -58,7 +49,12 @@ Patent: CN 110161666A, Example 2
 
 - Updated `Laowa65mmf28MacroAPO.analysis.md` so L3 and L10 use unbroken six-digit code labels and explicitly explain why they remain unresolved rather than resolved to H-LAK51/H-LAK52.
 
-### Verification
+## 2026-09-23 — Rear plate modeled as `rearPlates`
 
-- `npm run generate:glass-reports` — passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` — passed.
+- Read Example 2 on rendered PDF pages 8–9 ([0060]–[0061]) and the focus table [0070]: surface 26 d = 12.3000;
+  surfaces 27–28 are one flat plate, 2.0000 mm, nd 1.51680, νd 64.20; D(28) = 1.0000 mm at infinity and 1.95×. No
+  patent designation or clear aperture is printed, so the plate has no `label` or `sd`.
+- Surface 24 (patent 26) now stores the physical 12.3 mm, with `rearPlates` glass H-K9L (exact CDGM 1.51680 / 64.20,
+  matching the file's CDGM element labels) and gapAfter 1.0 mm. Paraxial check against the previous data: EFL
+  identical; defocus changes by 0.0014 mm at both focus keyframes (rounding in the old folded 14.62 vs 14.6186).
+  Physical track grows by 0.68 mm (2.0 × (1 − 1/1.5168)) to 111.57 mm.

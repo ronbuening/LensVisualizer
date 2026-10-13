@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — HD PENTAX-DA 20–40mm F2.8–4 ED Limited DC WR                                                         ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JP 2015-11156 A, Numerical Example 1 (Ricoh Imaging; inventor Takahiko Oishi).                    ║
+ * ║ Data source: JP 2015-11156 A, Numerical Example 1 (Ricoh Imaging; inventor Takahiko Ohishi).                   ║
  * ║ Production correlation: HD PENTAX-DA 20–40mm F2.8–4 ED Limited DC WR; no uniform scaling is applied.             ║
  * ║ 9 elements / 8 air-spaced groups; one aspherical surface, raw patent surface 4* → LensVisualizer label 4A.       ║
  * ║                                                                                                                      ║
@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-hd-da-20-40-f28-4-limited",
   maker: "Pentax",
-  name: "HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR",
+  name: "PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR",
   subtitle: "JP 2015-11156 A — Numerical Example 1; production correlation inferred",
   specs: [
     "9 ELEMENTS / 8 GROUPS",
@@ -58,7 +58,7 @@ const LENS_DATA = {
   lensMounts: ["pentax-k"],
   imageFormat: "aps-c",
   patentNumber: "JP 2015-11156 A",
-  patentAuthors: ["Takahiko Oishi"],
+  patentAuthors: ["Takahiko Ohishi"],
   patentAssignees: ["Ricoh Imaging Company, Ltd."],
   patentYear: 2015,
   elementCount: 9,

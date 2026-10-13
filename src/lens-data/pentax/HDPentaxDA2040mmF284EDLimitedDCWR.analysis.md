@@ -4,7 +4,7 @@
 **Application Number:** 特願2013-136070 (P2013-136070)\
 **Filed:** 2013-06-28\
 **Published:** 2015-01-19\
-**Inventor:** Takahiko Oishi\
+**Inventor:** Takahiko Ohishi (大石 崇彦)\
 **Applicant:** Ricoh Imaging Company, Ltd.\
 **Title:** ズームレンズ系 ("Zoom lens system")\
 **Embodiment analyzed:** Numerical Example 1

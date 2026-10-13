@@ -41,7 +41,7 @@ Embodiment 3 is one of the 28.9 mm / F2.87 / 74° designs. It employs seven elem
 | 3 | 12.829 | 3.87 | 1.84042 | 43.3 | L2a front |
 | 4 | −1726.972 | 1.00 | 1.64831 | 33.8 | L2a/L2b cement |
 | 5 | 12.785 | 4.00 | 1.0 | — | L2b rear → air |
-| — | (stop) | — | — | — | In the air gap |
+| — | (stop) | — | — | — | In the air gap (data file: 1.80 mm behind surface 5, see §10) |
 | 6 | 51.931 | 2.50 | 1.81600 | 46.8 | L3a front |
 | 7 | −17.040 | 1.00 | 1.61750 | 30.8 | L3a/L3b cement |
 | 8 | 54.857 | 1.31 | 1.0 | — | L3b rear → air |
@@ -132,7 +132,7 @@ The computed Petzval sum is **+0.00649 mm⁻¹**, corresponding to a Petzval rad
 
 **Shape and role:** L1 is a steeply curved negative meniscus with its convex surface facing the incoming light. Both radii are positive, with R₂ < R₁, making the rear surface more steeply curved. The diverging action of L1 widens the beam entering the system, enabling the lens to accept light from a 74° field of view. By bending rather than strongly refracting off-axis rays, the meniscus shape minimizes the introduction of higher-order coma and astigmatism.
 
-**Glass identification:** The refractive index 1.53172 with ν<sub>d</sub> = 49.1 matches **OHARA S-NSL3** (n<sub>d</sub> = 1.53172, ν<sub>d</sub> = 48.84; also cross-referenced as HOYA E-C3 or Schott N-K5 equivalents). This is a lightweight crown glass in the "normal special low-index" family. The six-digit glass code is 532/491. The low refractive index (condition 7 requires N₁ < 1.70) is deliberate: the patent explains that a low-index negative meniscus at the front keeps the Petzval sum from going excessively negative while providing sufficient field-flattening power. A higher-index glass here would over-correct the Petzval sum and introduce excessive negative coma at wide field angles.
+**Glass identification:** The pair 1.53172 / 49.1 (six-digit code 532491) is the LLF6 family of light flints — Hikari J-LLF6 (n<sub>d</sub> = 1.53172, ν<sub>d</sub> = 48.78), OHARA PBL6Y / S-TIL6 (1.53172 / 48.96 and 48.84) and Schott LLF6 all share the index, and every current catalog row sits 0.1–0.3 below the patent's ν<sub>d</sub>. The patent names no supplier; the data file uses the Hikari catalog equivalent **J-LLF6** for the dispersion model. The low refractive index (condition 7 requires N₁ < 1.70) is deliberate: the patent explains that a low-index negative meniscus at the front keeps the Petzval sum from going excessively negative while providing sufficient field-flattening power. A higher-index glass here would over-correct the Petzval sum and introduce excessive negative coma at wide field angles.
 
 ### L2 — Cemented Positive Meniscus Doublet
 
@@ -148,7 +148,7 @@ L2 consists of two cemented elements: L2a (biconvex, positive) and L2b (biconcav
 | Glass | n<sub>d</sub> = 1.84042, ν<sub>d</sub> = 43.3 |
 | Individual focal length | +15.2 mm |
 
-**Glass identification:** The index 1.84042 with ν<sub>d</sub> = 43.3 is an exact match for **HOYA TAFD25** (n<sub>d</sub> = 1.84042, ν<sub>d</sub> = 43.27). This is a dense lanthanum flint glass with unusually high refractive index for its relatively moderate dispersion. The "TAFD" designation in the HOYA system indicates a heavy lanthanum flint suitable for high-performance designs. The very high index (1.84) allows the strongly positive front surface (R₃ = 12.829 mm) to bend rays with reduced surface curvature compared to what a lower-index glass would require, helping control spherical aberration. The nearly flat rear surface (R₄ ≈ ∞) means almost all of L2a's refractive power comes from the front surface.
+**Glass identification:** The index 1.84042 with ν<sub>d</sub> = 43.3 (code 840433) has no coefficient-backed match in any current public catalog: the nearest rows are HOYA TAFD5 (1.83500 / 42.98) and OHARA S-LAH55 (1.83481 / 42.7), both about 0.005 low in n<sub>d</sub>. The same 840433 coordinate recurs in several other embodiments of this patent (Tables 1, 2, 7 and 13), so it is a real lanthanum dense-flint melt of the period whose supplier the patent does not name; the data file keeps the code-only label `840433` and models its dispersion from the Abbe number alone. The very high index (1.84) allows the strongly positive front surface (R₃ = 12.829 mm) to bend rays with reduced surface curvature compared to what a lower-index glass would require, helping control spherical aberration. The nearly flat rear surface (R₄ ≈ ∞) means almost all of L2a's refractive power comes from the front surface.
 
 #### L2b — Biconcave Negative Element
 
@@ -160,13 +160,13 @@ L2 consists of two cemented elements: L2a (biconvex, positive) and L2b (biconcav
 | Glass | n<sub>d</sub> = 1.64831, ν<sub>d</sub> = 33.8 |
 | Individual focal length | −19.6 mm |
 
-**Glass identification:** The index 1.64831 with ν<sub>d</sub> = 33.8 is an exact match for **HOYA E-FD4** (also designated FD4; n<sub>d</sub> = 1.64831, ν<sub>d</sub> = 33.79). This is a dense flint glass with high dispersion. Paired with the lanthanum crown L2a, this creates a classic crown/flint achromatic doublet. The large dispersion difference (ν<sub>d</sub> = 43.3 vs. 33.8, a gap of about 10 units) provides the chromatic correction needed to control longitudinal chromatic aberration across the front group.
+**Glass identification:** The index 1.64831 with ν<sub>d</sub> = 33.8 (code 648338) is an SF2-class dense flint. No current catalog row carries this exact index; the nearest coefficient-backed glasses are HOYA E-FD2, OHARA S-TIM22, Schott SF2 and Hikari J-SF2, all at 1.64769 (0.0006 low) with ν<sub>d</sub> 33.7–33.85. The data file labels the element as an **E-FD2** catalog equivalent so that its dispersion is modeled from measured coefficients rather than the Abbe number alone. Paired with the higher-ν<sub>d</sub> lanthanum glass L2a, this creates a classic crown/flint achromatic doublet. The large dispersion difference (ν<sub>d</sub> = 43.3 vs. 33.8, a gap of about 10 units) provides the chromatic correction needed to control longitudinal chromatic aberration across the front group.
 
 **Doublet as a unit:** The L2 doublet has a combined focal length of **+41.8 mm**. Its overall external shape is a meniscus (R₃ = +12.829 mm front, R₅ = +12.785 mm rear — nearly equal radii) with its convex side toward the object. The cemented junction at R₄ ≈ −1727 mm is essentially flat, meaning the two elements are bonded at a plane surface. This flat junction minimizes Fresnel reflection losses and simplifies manufacturing. The positive power of L2 is the primary converging element in G1, partially compensating L1's divergence to make G1 weakly positive overall.
 
 ### Aperture Stop
 
-The stop is located in the 4.00 mm air gap between L2 (surface 5) and L3 (surface 6). In the production 28Ti, this gap houses the between-lens leaf shutter — a 7-blade mechanism that also functions as the aperture diaphragm. The entrance pupil semi-diameter at f/2.87 is approximately 5.03 mm, giving a full entrance pupil diameter of about 10.1 mm.
+The stop is located in the 4.00 mm air gap between L2 (surface 5) and L3 (surface 6); the patent's background section notes that this gap has to leave room for the aperture stop, shutter unit and barrel of a between-lens design. Table 3 has no stop row; the Fig. 3 stop symbol sits 1.8 mm behind surface 5, and the floating-focus sibling Embodiment 11 tabulates its stop 1.650 mm behind L2 and 2.350 mm ahead of L3 in the same 4.000 mm gap. The entrance pupil semi-diameter at f/2.87 is approximately 5.03 mm (full entrance pupil about 10.1 mm), which the exact trace maps to an iris radius of about 4.36 mm at the stop plane.
 
 ### L3 — Cemented Positive Meniscus Doublet
 
@@ -182,9 +182,9 @@ L3 is the first component after the stop. Like L2, it consists of a biconvex pos
 | Glass | n<sub>d</sub> = 1.81600, ν<sub>d</sub> = 46.8 |
 | Individual focal length | +16.0 mm |
 
-**Glass identification:** The index 1.81600 with ν<sub>d</sub> = 46.8 matches **OHARA S-LAH59** or equivalently **HOYA TAFD5** (both: n<sub>d</sub> = 1.81600, ν<sub>d</sub> = 46.62). The patent states ν<sub>d</sub> = 46.8, which is slightly higher than the catalog value of 46.62 — this is within normal patent-rounding tolerance. This is another dense lanthanum glass, slightly lower index than L2a's TAFD25 but with a somewhat higher Abbe number, making it less dispersive. The patent's conditional expression (6) requires that the index difference N₃₁ − N₃₂ between the positive and negative elements in L3 fall between 0.04 and 0.25; for Embodiment 3, this difference is 0.199 — the largest of any embodiment — indicating aggressive Petzval correction through the refractive index differential at the cemented interface.
+**Glass identification:** The index 1.81600 with ν<sub>d</sub> = 46.8 (code 816468) is the LAH59 family of lanthanum crowns — OHARA S-LAH59 (1.81600 / 46.62), Hikari J-LASF09A (1.81600 / 46.59) and HOYA TAF5 (1.81600 / 46.57) share the index, each about 0.2 below the patent's ν<sub>d</sub>. The data file uses the Hikari catalog equivalent **J-LASF09A**. This is another dense lanthanum glass, slightly lower index than L2a's 840433 but with a somewhat higher Abbe number, making it less dispersive. The patent's conditional expression (6) requires that the index difference N₃₁ − N₃₂ between the positive and negative elements in L3 fall between 0.04 and 0.25; for Embodiment 3, this difference is 0.199 — the largest of any embodiment — indicating aggressive Petzval correction through the refractive index differential at the cemented interface.
 
-**This glass is a strong candidate for the "low-dispersion" or "ED" element** referenced in manufacturer descriptions of the 28Ti. While not a fluorite-crown or FK-type glass in the traditional ED sense, lanthanum-based glasses like S-LAH59/TAFD5 exhibit anomalous partial dispersion (positive ΔPgF deviation from the normal glass line). This anomalous dispersion characteristic helps correct secondary chromatic aberration — the residual chromatic error that persists even after primary achromatization. Nikon's marketing of "ED glass" or "low-dispersion glass" for this lens likely refers to this property of the lanthanum elements rather than to a conventional FK-type ED glass.
+This is not an anomalous-dispersion glass: the catalog partial dispersion of S-LAH59 (P<sub>g,F</sub> = 0.5654 at ν<sub>d</sub> 46.6) lies on the normal glass line, and the patent names no low-dispersion or ED element anywhere in its thirteen embodiments. See §7.
 
 #### L3b — Biconcave Negative Element
 
@@ -196,7 +196,7 @@ L3 is the first component after the stop. Like L2, it consists of a biconvex pos
 | Glass | n<sub>d</sub> = 1.61750, ν<sub>d</sub> = 30.8 |
 | Individual focal length | −20.9 mm |
 
-**Glass identification:** The index 1.61750 with ν<sub>d</sub> = 30.8 is an exact match for **HOYA EF3** (n<sub>d</sub> = 1.61750, ν<sub>d</sub> = 30.80). This is a short flint glass with very high dispersion. Paired with L3a's lanthanum crown, the L3 doublet forms a strongly corrected achromat. The very low Abbe number of 30.8 provides a large chromatic lever arm (ν<sub>d</sub> difference of 16.0 between L3a and L3b — much larger than L2's 9.5 unit gap), making L3 the primary chromatic correction element in the rear group.
+**Glass identification:** The index 1.61750 with ν<sub>d</sub> = 30.8 (code 617308) has no coefficient-backed match in any current public catalog, and it is not HOYA E-F3 (1.61293 / 37.0). Its dispersion is unusually high for its index — ordinary flints reach ν<sub>d</sub> ≈ 31 only near n<sub>d</sub> 1.70 — which places it off the common flint series; its composition is unknown. The data file keeps the code-only label `617308` and models its dispersion from the Abbe number alone. Paired with L3a's lanthanum crown, the L3 doublet forms a strongly corrected achromat. The very low Abbe number of 30.8 provides a large chromatic lever arm (ν<sub>d</sub> difference of 16.0 between L3a and L3b — much larger than L2's 9.5 unit gap), making L3 the primary chromatic correction element in the rear group.
 
 **Doublet as a unit:** The L3 doublet has a combined focal length of **+61.4 mm**. Its overall shape is a weak meniscus (R₆ = +51.931, R₈ = +54.857 — nearly equal radii) with its convex side toward the object. Unlike L2's flat junction, L3's cemented interface at R₇ = −17.040 mm is strongly curved. This steeply curved junction surface is where the critical spherical aberration correction occurs: the patent specifically identifies the interplay between r₃₂ (the last surface of L3, i.e., R₈) and r₄₁ (the first surface of L4, i.e., R₉) as the mechanism for controlling spherical aberration and enabling the fast f/2.87 aperture.
 
@@ -226,7 +226,7 @@ L3 is the first component after the stop. Like L2, it consists of a biconvex pos
 
 **Shape and role:** L5 mirrors L1's role at the rear of the system — a negative meniscus that bends the converging beam from G2 outward toward the image corners, expanding the cone of illumination to cover the full 35mm frame. Its concave surface faces the object (toward the stop), providing the symmetric counterpart to L1's convex-toward-object orientation. The symmetry between L1 and L5 about the stop is a defining characteristic of the Biogon type and is essential for controlling distortion and lateral chromatic aberration over the wide field.
 
-**Glass identification:** The index 1.59507 with ν<sub>d</sub> = 35.5 (code 595/355) does not precisely match any current catalog glass. The closest candidates are OHARA S-FTM16 (n<sub>d</sub> = 1.59270, ν<sub>d</sub> = 35.45) and HOYA FF5 (n<sub>d</sub> = 1.59270, ν<sub>d</sub> = 35.44), both with a residual Δn<sub>d</sub> of about 0.0024. This is a moderately dispersive flint glass. The relatively low index (condition 8 requires N₅ < 1.70) keeps the Petzval contribution of this negative element in balance with the positive elements. Like L1's glass, the modest index prevents the negative components from over-correcting the Petzval sum.
+**Glass identification:** The index 1.59507 with ν<sub>d</sub> = 35.5 (code 595355) does not precisely match any current catalog glass. The closest candidates are OHARA S-FTM16 (n<sub>d</sub> = 1.59270, ν<sub>d</sub> = 35.31) and HOYA FF5 (n<sub>d</sub> = 1.59270, ν<sub>d</sub> = 35.45), both with a residual Δn<sub>d</sub> of about 0.0024; the data file uses **S-FTM16** as a catalog equivalent for the dispersion model. This is a moderately dispersive flint glass. The relatively low index (condition 8 requires N₅ < 1.70) keeps the Petzval contribution of this negative element in balance with the positive elements. Like L1's glass, the modest index prevents the negative components from over-correcting the Petzval sum.
 
 ---
 
@@ -246,32 +246,30 @@ This is notable for a wide-angle lens of this era and speaks to the quality of t
 
 Multiple sources describe the 28Ti lens as incorporating "ED" or "extra-low-dispersion" glass with "integrated coatings." The Wikipedia article on Nikon Ti cameras states that the 28Ti uses "low-dispersion glass." The Camerapedia and Camera-wiki entries describe "ED (extra low dispersion) glass."
 
-Based on the prescription analysis, the likely candidates for the "low-dispersion" designation are the three lanthanum-based glasses used in L2a, L3a, and L4:
+The patent does not support that description for Embodiment 3. Its three high-index glasses are ordinary lanthanum types:
 
-| Element | Glass | n<sub>d</sub> | ν<sub>d</sub> | Glass family |
+| Element | Glass (data-file label) | n<sub>d</sub> | ν<sub>d</sub> | Glass family |
 |---|---|---|---|---|
-| L2a | HOYA TAFD25 | 1.84042 | 43.3 | Dense lanthanum flint |
-| L3a | OHARA S-LAH59 / HOYA TAFD5 | 1.81600 | 46.8 | Dense lanthanum crown |
+| L2a | 840433 (catalog unresolved) | 1.84042 | 43.3 | Lanthanum dense flint |
+| L3a | J-LASF09A / S-LAH59 / TAF5 class | 1.81600 | 46.8 | Lanthanum crown |
 | L4 | J-LASF017 catalog equivalent (797454) | 1.79668 | 45.4 | Lanthanum crown |
 
-These lanthanum glasses exhibit anomalous partial dispersion — their partial dispersion ratio PgF deviates positively from the "normal line" on the PgF vs. ν<sub>d</sub> diagram. This anomalous dispersion characteristic is functionally similar to what conventional "ED" glasses (like fluorite crowns or FK-type glasses such as OHARA S-FPL51) provide: it enables correction of secondary spectrum (the residual chromatic aberration that remains after primary achromatization). However, unlike conventional FK-type ED glasses which achieve low dispersion through low refractive index and high Abbe number, these lanthanum glasses achieve their anomalous dispersion while maintaining very high refractive indices — a combination that simultaneously controls the Petzval sum and secondary chromatic aberration.
-
-Nikon's use of the term "ED" or "low-dispersion" for this lens is therefore best understood as referring to the anomalous partial dispersion properties of the lanthanum elements rather than to the presence of FK-type extra-low-dispersion glass in the traditional sense. This is a legitimate but somewhat distinctive use of the term.
+None of them is a low-dispersion glass in any sense — ν<sub>d</sub> 43–47 is mid-range — and none shows anomalous partial dispersion: the catalog P<sub>g,F</sub> of S-LAH59 (0.5654 at ν<sub>d</sub> 46.6) and J-LASF017 (0.5598 at 45.3) lie on or slightly below the normal glass line, not above it as ED and fluorite-crown glasses do. The patent itself names no ED, anomalous-dispersion or low-dispersion element in any of its thirteen embodiments; its chromatic correction comes from conventional crown/flint pairing in the two cemented doublets. The data file therefore marks no element as anomalous-dispersion. If the production lens really used an ED-type glass, it is not in this prescription, and the marketing description cannot be tied to any element here.
 
 ---
 
 ## 8. Focusing Mechanism
 
-Embodiments 1–8 in the patent do not specify variable air spacings, implying unit focus (the entire lens assembly moves as a unit). However, Embodiments 9–13 introduce a **floating-focus** mechanism in which G1 and G2 move by different amounts during focusing:
+Embodiments 1–8 in the patent do not specify variable air spacings, implying unit focus (the entire lens assembly moves as a unit); the patent's closing remarks state that with this "general axial movement" focusing the aberration fluctuations remain very small. Embodiments 9–13 introduce a **floating-focus** mechanism in which G1 and G2 move by different amounts during focusing:
 
 The patent defines the floating parameter Δ = (δ₁ − δ₂) / δ₂, where δ₁ and δ₂ are the axial movements of G1 and G2 respectively. For the construction type used in Embodiments 1–7 and 9–12 (where G2 is more strongly positive than G1 — the "type (a)" architecture), the patent explains that the third-order astigmatism coefficient III of G2 is positive. Therefore, making δ₂ smaller than δ₁ (i.e., moving G2 less than G1) suppresses the positive astigmatism that would otherwise arise during close-focus.
 
 **Embodiment 11** is the floating-focus version most closely related to Embodiment 3. It uses identical glasses for L1, L2a, and L2b, with slight modifications to L3, L4, and L5 glass types and adjusted radii. Its variable spacing data:
 
-| Gap | Infinity | 300 mm (close) |
+| Gap (Table 14) | Infinity | 300 mm (close) |
 |---|---|---|
-| d₅ (G1–G2 air gap) | 1.650 mm | 1.545 mm |
-| BFD (image distance) | 20.514 mm | 24.033 mm |
+| d₅ (L2 rear → stop; the stop stays 2.350 mm ahead of L3) | 1.650 mm | 1.545 mm |
+| Bf (image distance) | 20.514 mm | 24.033 mm |
 
 The 28Ti production lens, which includes autofocus, almost certainly implements a floating-focus variant like Embodiment 11 rather than the simpler unit-focus Embodiment 3. The floating focus suppresses off-axis aberration changes during focus travel — critical for a compact camera where the user has no manual control over focusing and relies entirely on the AF system to deliver consistent image quality from infinity to close focus. The production 28Ti's minimum focus distance is 0.40 m (manufacturer specification), compared to the 300 mm close-focus distance used in the patent's floating-focus embodiments.
 
@@ -293,30 +291,34 @@ The total optical track from the front vertex to the image plane is 44.76 mm (BF
 
 ### Stop Position
 
-The patent prescription table for Embodiment 3 does not include a separate stop row — it simply states that the stop is located between L2 and L3 (i.e., in the 4.00 mm air gap after surface 5). From the patent cross-section drawing (Fig. 3), the stop appears approximately centered in this gap. The data file splits the gap 2.00 mm / 2.00 mm, inserting a flat stop surface (R = ∞) between the two halves.
+The patent prescription table for Embodiment 3 does not include a separate stop row — it simply states that the stop is located between L2 and L3 (i.e., in the 4.00 mm air gap after surface 5). Measured on the Fig. 3 cross-section (0.02714 mm/px, scale set by the 23.80 mm span from the first to the last vertex), the stop symbol sits 66 px = 1.8 mm behind surface 5. Embodiment 11 — the floating-focus re-optimization of this design with the same L1, L2 and L4 glasses — tabulates its stop 1.650 mm behind L2 and 2.350 mm ahead of L3 in an identical 4.000 mm gap. The data file therefore splits the gap 1.80 mm / 2.20 mm, inserting a flat stop surface (R = ∞) between the two parts; the position is figure-derived, not tabulated.
 
 ### Semi-Diameter Estimation
 
-The patent does not provide semi-diameter (clear aperture) values. SDs were estimated via a paraxial ray trace combining:
+The patent does not provide semi-diameter (clear aperture) values. The stored values are estimates from the f/2.87 axial beam and the ω = 37° chief ray, checked surface by surface against the Fig. 3 cross-section at the scale above. Fig. 3 draws L1 and L5 with flat mounting annuli beyond the ends of their steep concave surfaces, L2 and L3 as stepped doublets, and L4 nested into L5:
 
-1. **Marginal ray** — parallel to the axis at height EP_SD = EFL/(2·FNo) = 28.9/(2 × 2.87) ≈ 5.03 mm, propagated through all surfaces.
-2. **Chief ray** — entering at the half-field angle (37°), constrained to pass through the center of the stop (y = 0 at STO).
+| Element | Fig. 3 (optical extent, mm) | Data file (mm) | Disposition |
+|---|---|---|---|
+| L1 | front 9.1–9.4, rear curve end 7.8 (annulus to 9.6) | 9.1 / 7.5 | Front follows the figure; rear within 4 % |
+| L2a | 7.0 / 7.0 | 6.5 / 6.2 | Within 8–13 %, retained |
+| L2b | rear curve end 4.9, rim 5.8 | 5.8 | Rim retained; the axial beam needs 4.4 mm |
+| L3a | 6.0 / 6.0 | 6.0 / 6.0 | Follows the figure |
+| L3b | 6.9 | 6.2 | Capped: the tabulated surfaces 8 and 9 close their 1.31 mm air gap at h ≈ 6.3 mm |
+| L4 | 6.8 / 7.5 (rim 7.7) | 6.0 / 6.9 | Within 9–13 %; the surface 10/11 gap (0.80 mm) closes near 6.95 mm |
+| L5 | 7.2–7.7 / 9.1 | 7.5 / 8.5 | Within 7 %, retained |
 
-The envelope at each surface was computed as the combination of marginal and chief ray heights, with 8–10% clearance added for mechanical margins. The following constraints were verified:
+The exact meridional trace at f/2.87 clears every rim on axis (smallest margin 1.4 mm at surface 5) and passes the 37° chief ray with at least 1.4 mm to spare at every surface (surface 10: chief 5.53 mm against sd 6.9). The corner bundle is limited by geometry rather than by these rims: at 37° the rays that would fill the lower half of the pupil miss the R = 8.919 mm sphere of surface 2 altogether, and the upper half is cut by the L4 front rim, so roughly 43 % of the meridional pupil passes at the corner and 88 % at 70 % of the field. The steepest rims remain L1 rear (sd/|R| = 0.841) and L5 front (0.845).
 
-- **sd/|R| < 0.90** for all surfaces (renderer limit on surface slope at rim)
-- **SD ratio ≤ 1.25** between front and rear surfaces of each element
-- **Positive edge thickness** for all elements (sag difference does not exceed center thickness)
-- **Cross-gap sag clearance** — no surface pair intrudes beyond the available air gap
+### Aperture
 
-The most constraining surfaces are L1 rear (R = +8.919 mm, sd/|R| = 0.841) and L5 front (R = −8.874 mm, sd/|R| = 0.845), both steeply curved meniscus surfaces on the outermost elements.
+`nominalFno` is the patent's F<sub>NO</sub> 2.87 (marketed as f/2.8); the engine derives the iris radius (about 4.36 mm) from it, and the aperture slider runs from f/2.87 to the production lens's f/22 minimum.
 
 ### Focus Model
 
 The data file models **unit focus** (entire lens assembly moves axially), consistent with Embodiment 3's patent specification which does not list variable air spacings. Only the back focal distance changes:
 
-- **Infinity focus:** BFD = 20.96 mm
-- **Close focus (0.40 m):** BFD ≈ 23.21 mm (computed as BFD_∞ + f²/(s − f) where s = 400 mm)
+- **Infinity focus:** BF = 20.96 mm (paraxial 20.963 mm)
+- **Close focus (0.40 m film-plane distance):** BF = 23.44 mm — calculated by paraxial trace, not published. The object sits 352.8 mm ahead of surface 1, the whole lens extends 2.48 mm, and the magnification is −0.086. (The thin-lens estimate f²/(s − f) with s = 400 mm gives 2.25 mm, which corresponds to a 433 mm object-to-image distance.)
 
 The production 28Ti likely uses the floating-focus variant described in Embodiment 11 (which shares the same glass types for the front group), but the core optical architecture is identical and the unit-focus model provides a faithful representation of the Embodiment 3 prescription.
 

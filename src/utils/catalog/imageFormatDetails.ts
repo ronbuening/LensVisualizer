@@ -15,6 +15,83 @@ export interface ImageFormatDetails {
 }
 
 export const IMAGE_FORMAT_DETAILS: Record<ImageFormatId, ImageFormatDetails> = {
+  "1-2.7-inch-type": {
+    summary: "A compact CCD sensor class.",
+    description:
+      "The inch-type name comes from historical optical-format conventions rather than a physical diagonal in inches. This catalog uses a nominal 5.371 × 4.035 mm frame. Individual cameras can use a slightly different active area or crop; the format alone does not identify a sensor part or establish a lens’s corner performance.",
+    commonUses: "Compact digital cameras",
+    coverageNotes: "Nominal 5.371 × 4.035 mm frame; approximately 6.72 mm diagonal",
+  },
+  "1-1.8-inch-type": {
+    summary: "A compact-camera sensor class.",
+    description:
+      "The catalog uses a nominal 7.176 × 5.319 mm frame for this optical class. The designation is not the physical diagonal in inches. Production recording dimensions and electronic crops can differ, so this reference does not replace source-listed patent image heights.",
+    commonUses: "Compact CCD cameras",
+    coverageNotes: "Nominal 7.176 × 5.319 mm frame; approximately 8.93 mm diagonal",
+  },
+  "2-3-inch-type": {
+    summary: "A 4:3 optical format used by both compact digital cameras and television systems.",
+    description:
+      "The nominal 8.8 × 6.6 mm frame has an 11 mm diagonal. The Fujifilm X10 and Olympus E-10/E-20 use this sensor class. Historically the designation also described pickup tubes; the active image area is much smaller than two thirds of an inch measured diagonally. A common optical class does not imply interchangeable camera mounts.",
+    commonUses: "Premium compact cameras and television imaging",
+    coverageNotes: "Nominal 8.8 × 6.6 mm frame; 11 mm diagonal",
+  },
+  "1.25-inch-tube": {
+    summary: "A historical television pickup-tube class with a nominal 16 × 12 mm target.",
+    description:
+      "Schneider listed the TV-Variogon 20–600mm among lenses for 1¼-inch pickup tubes. The catalog uses the 16 × 12 mm, 20 mm diagonal image reference documented for 30 mm Plumbicon tubes. The inch designation refers to the tube class, not the active image diagonal. Actual target scanning and camera prisms vary.",
+    commonUses: "Historical studio and outside-broadcast television cameras",
+    coverageNotes: "Nominal 16 × 12 mm target; 20 mm diagonal",
+  },
+  "1.5-inch-type": {
+    summary: "The large compact-camera sensor class used by the Canon PowerShot G1 X family.",
+    description:
+      "Canon specifies an 18.7 × 14.0 mm sensor envelope for the G1 X and G1 X Mark II. The Mark II uses a multi-aspect sensor with different 3:2 and 4:3 recording crops. This catalog reference describes the nominal envelope; it does not reconstruct those crops or certify full-envelope optical coverage at every zoom position.",
+    commonUses: "Canon PowerShot G1 X and G1 X Mark II",
+    coverageNotes: "Nominal 18.7 × 14.0 mm sensor envelope; approximately 23.36 mm diagonal",
+  },
+  "super-35-cinema": {
+    summary: "The 24.9 × 18.7 mm ANSI Super 35 Silent camera aperture.",
+    description:
+      "ARRI publishes this silent-aperture reference in its Ultra Prime technical specifications. Its approximately 31.14 mm diagonal is larger than the 22 × 16 mm Normal 35 camera aperture. Super 35 gates and digital crops vary; this entry records the full silent-film reference rather than every frame marketed under the Super 35 name.",
+    commonUses: "Super 35 motion-picture film cameras and compatible cinema lenses",
+    coverageNotes: "24.9 × 18.7 mm reference aperture; approximately 31.14 mm diagonal",
+  },
+  "super-35-1.9": {
+    summary: "A 26.2 × 13.8 mm Super 35 digital cinema reference with a 1.9:1 shape.",
+    description:
+      "Canon lists this EOS C500 frame in the CN7×17 operating manual, alongside the smaller 24.6 × 13.8 mm C300 frame. It needs an approximately 29.61 mm diagonal and fits the CN7’s specified 29.6 mm image circle within source rounding. The taller Super 35 Silent film aperture needs a larger circle and is a separate catalog format.",
+    commonUses: "Digital cinema cameras using the EOS C500 1.9:1 frame reference",
+    coverageNotes: "26.2 × 13.8 mm reference frame; approximately 29.61 mm diagonal",
+  },
+  "normal-8": {
+    summary: "The original 8 mm motion-picture format, also called Standard or Regular 8.",
+    description:
+      "Schneider's historical Variogon publication specifies a 4.9 × 3.6 mm Normal-8 frame and lists the Variogon 2.8/10–40 for that format. Its 6.08 mm diagonal is the minimum frame-coverage reference, not a measured limit of the lens's illuminated image circle.",
+    coverageNotes: "4.9 × 3.6 mm reference gate; 6.08 mm minimum coverage diagonal",
+    commonUses: "Normal-8 motion-picture cameras",
+  },
+  "super-8": {
+    summary: "The enlarged 8 mm motion-picture frame introduced with Super 8.",
+    description:
+      "Schneider's historical Variogon publication specifies a 5.69 × 4.22 mm Super-8 frame. US 3,442,573 also explicitly describes full illumination of this frame. Its 7.08 mm diagonal is a minimum frame-coverage reference; it does not certify a larger usable circle or a particular reconstruction's corner performance.",
+    coverageNotes: "5.69 × 4.22 mm reference gate; 7.08 mm minimum coverage diagonal",
+    commonUses: "Super-8 motion-picture cameras",
+  },
+  "16mm-cinema": {
+    summary: "Standard 16 mm motion-picture film, distinct from the wider Super 16 gate.",
+    description:
+      "The nominal camera aperture is 10.26 × 7.49 mm, requiring a 12.70 mm diagonal. Projection apertures and viewfinder framelines can crop this area. A lens marketed for standard 16 mm is not automatically certified for Super 16.",
+    coverageNotes: "10.26 × 7.49 mm reference gate; 12.70 mm minimum coverage diagonal",
+    commonUses: "Standard 16 mm motion-picture cameras",
+  },
+  "35mm-cinema": {
+    summary: "A 22 × 16 mm reference image area for 35 mm motion-picture lenses.",
+    description:
+      "This reference follows the 16 × 22 mm coverage quoted in the Kinoptik Tegea manufacturer brochure. It is smaller than 24 × 36 mm still film and is not a claim of full-frame or Super 35 coverage. Actual camera gates and projection crops vary.",
+    coverageNotes: "22 × 16 mm reference area; 27.20 mm minimum coverage diagonal",
+    commonUses: "35 mm motion-picture cameras",
+  },
   "110": {
     commonUses: "Pocket film cameras and miniature interchangeable-lens systems",
     coverageNotes: "17 x 13 mm frame with a 21.4 mm diagonal",
@@ -22,14 +99,21 @@ export const IMAGE_FORMAT_DETAILS: Record<ImageFormatId, ImageFormatDetails> = {
     description:
       "The 110 format was introduced for pocket cameras, using cartridge film to make loading simple and camera bodies extremely compact. The exposed image is only 17 x 13 mm in this catalog's reference geometry, so even a lens that covers the whole frame can use a much smaller image circle than a 35 mm still-camera lens. That is why 110 cameras and systems such as Pentax Auto 110 could put interchangeable optics into bodies that feel closer to compact cameras than conventional SLRs.\n\nOptically, 110 designs operate in a very different scale from 35 mm systems. Focal lengths are short, entrance pupils are small for a given f-number, and depth of field is naturally deep at equivalent angles of view. Designers can keep lenses physically tiny, but the small negative also asks a lot from film grain, manufacturing tolerances, and alignment. In this catalog, 110-format lenses are useful for seeing how familiar optical formulas shrink when the capture area becomes much smaller than full-frame.",
   },
-  "1/2.3-inch-type": {
+  "1-2.55-inch-type": {
+    commonUses: "Smartphone main cameras, including the Samsung Galaxy S9",
+    coverageNotes: "Nominal 5.6448 x 4.2336 mm capture area with a 7.056 mm diagonal and 4:3 aspect ratio",
+    summary: "A small smartphone sensor class paired with short-focal-length integrated camera lenses.",
+    description:
+      "Samsung specifies the Galaxy S9 main camera as 1/2.55-inch type with a 4:3 aspect ratio and 1.4 µm pixels. The catalog's nominal capture area follows from 4032 x 3024 pixels at that pitch. The inch-type designation is a historical optical-format label, not a physical diagonal in inches. Sensor implementations and usable crops can vary.\n\nThis format identifies the intended capture area for catalog grouping and image-field calculations. A patent model associated with a production camera can still have incomplete aperture geometry; assigning the sensor format does not certify that the reconstruction reproduces the production lens's full-field performance.",
+  },
+  "1-2.3-inch-type": {
     commonUses: "Small-sensor compact cameras, superzooms, action cameras, and early Pentax Q bodies",
     coverageNotes: "6.17 x 4.55 mm sensor with a 7.67 mm diagonal",
     summary: "A very small digital still-camera sensor class used where pocketable bodies and long zoom ranges matter.",
     description:
       "The 1/2.3-inch type format is much smaller than its name suggests. The inch-type label comes from older video tube naming conventions, not from the sensor's physical diagonal; in this catalog it maps to a 6.17 x 4.55 mm active area. That tiny frame made it common in compact cameras and long-range superzooms, where manufacturers could pair very short focal lengths with lenses that delivered dramatic equivalent zoom ranges in a small body.\n\nOptically, this format pushes lens design toward miniature scale. Image circles are small, focal lengths are extremely short, and depth of field is deep even at relatively bright f-numbers. The tradeoff is that diffraction, sensor pixel density, manufacturing tolerances, and alignment become more visible limits. When catalog entries use this format, they show how photographic lens formulas behave when the capture area is closer to compact-camera territory than interchangeable-lens still systems.",
   },
-  "1/1.7-inch-type": {
+  "1-1.7-inch-type": {
     commonUses: "Premium compact cameras and later small-sensor interchangeable-lens compacts",
     coverageNotes: "7.44 x 5.58 mm sensor with a 9.3 mm diagonal",
     summary: "A premium compact-camera sensor class slightly larger than the common 1/2.3-inch type format.",

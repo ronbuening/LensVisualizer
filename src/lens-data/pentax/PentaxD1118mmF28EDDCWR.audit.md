@@ -2,6 +2,13 @@
 
 Patent: US 2018/0164556 A1, Numerical Example 1
 
+## 2026-09-30 — Same-application assignee verification
+
+- Visually checked the local A1 front page: it omits an organizational assignee.
+- Verified US application 15/825,178 and its publication linkage in the [assignment history](https://patents.google.com/patent/US20180164556A1/en). It reports **Ricoh Co., Ltd. (recorded as RICOH COMPANY, LTD.)**, recorded **2017-11-29**, effective 2017-11-27, reel/frame **044243/0469**.
+- Updated `patentAssignees` to Ricoh Co., Ltd. and documented the prepublication assignment basis in the analysis. The underlying instrument was not independently inspected.
+- This restores the assignee-to-patent relationship in the universal map. Optical data and production-correlation qualifications are unchanged. Earlier audit entries retain their historical metadata state.
+
 ## 2026-07-30 - Glass-code source review
 
 ### Patent verification
@@ -16,11 +23,3 @@ Patent: US 2018/0164556 A1, Numerical Example 1
 - OHARA PBL1/S-TIL1, HOYA E-FEL1, and SUMITA LLF1/LLF7 converge on the same light-flint family. The closest group is `nd = 1.54814`, `vd = 45.75–45.90`, safely inside the runtime compatibility window.
 - Their coefficient curves are materially interchangeable at the trace lines: across Schott LLF1, OHARA S-TIL1, and HOYA E-FEL1, the largest evaluated index spread is about `0.000032` at the g line.
 - Relabeled L14 to HOYA E-FEL1 as the catalog equivalent because its `45.82` Abbe number has the smallest residual against the patent row. The annotation explicitly leaves the production supplier unspecified.
-
-### Verification
-
-- `npm run generate:glass-reports` — 8 files / 10 tests passed.
-- `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` — 4 files / 237 tests passed.
-- `npm run typecheck`
-- `npm run format:check`
-- `git diff --check`

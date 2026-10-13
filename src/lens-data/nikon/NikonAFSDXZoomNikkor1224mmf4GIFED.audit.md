@@ -36,16 +36,6 @@ a duplicate glass record. The remaining proprietary/code-only rows stay unresolv
 - Updated both ED element descriptions, the glass table, chromatic discussion, SD provenance, and Hikari source.
 - The production display name already followed the repository's designation-spacing convention.
 
-### Verification
-
-- Stored prescription: `npm run audit:surface -- <data-file>` — passed.
-- Image-circle floor: `npm run audit:image-circle -- <data-file>` — passed.
-- `npm test -- elementRenderDiagnostics` — passed (6 tests).
-- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed; lint retained three unrelated pre-existing warnings.
-- `npm run test` — passed (209 files, 2450 tests).
-- `npm run build` — passed (966 routes prerendered).
-- In-app browser screenshots were unavailable; visual comparison used the rendered 300 dpi patent page plus the passing full-catalog render diagnostics.
-
 ## 2026-08-18 — Hoya M-NBF1 coefficient assignment
 
 - Visually rechecked local `patents/US6940655.pdf`, PDF page 14, Example 1 / Table 1. L1 remains `nd = 1.744429`, `νd = 49.55`.

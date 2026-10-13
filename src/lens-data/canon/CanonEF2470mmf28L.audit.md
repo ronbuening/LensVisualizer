@@ -28,15 +28,3 @@ Patent: JP 2014-41222 A, Numerical Example 1
 
 - Zoom behavior is not reversed. The patent labels the columns `広角 / 中間 / 望遠`, and paragraph 0033 describes the same wide-to-tele motion stored here: G1 moves imageward; G2, G3, G4, and G5 move objectward; G6 remains fixed.
 - The modeled close-focus state is consistent with paragraph 0058: the fifth group moves imageward from infinity to close focus. In data terms, D25 increases and D29 decreases while conserving D25 + D29 at each zoom position.
-
-### Phase 3 - Spectral / metadata enrichment
-
-- No data changes required. The file already includes the patent-published line indices, anomalous partial-dispersion notes for the special glass and ED element, patent year, element count, group count, mount, format, and focus description.
-
-### Phase 4 - Analysis sync
-
-- No analysis changes required. The companion analysis file already documents the patent reference, wide-to-tele zoom motion, and the modeled close-focus caveat consistently with the audited data.
-
-### Verification
-
-- Ran a local `tsx` comparison of the `.data.ts` surface table and infinity `var` rows against the patent values; all checked values passed.

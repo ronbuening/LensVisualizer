@@ -10,10 +10,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 11 elements / 8 air-spaced groups / all-spherical.                         ║
  * ║                                                                            ║
  * ║ Focus status: PUBLISHED. G1+G2 move together; the stop and G3 move as a    ║
- * ║ second unit. The data endpoints are the patent's infinity and 0.20× states.║
- * ║ The published 0.10× state is independently verified in the audit but the   ║
- * ║ prime-lens schema has only endpoint pairs, so it is not a discrete control ║
- * ║ point. The production 0.25×/0.34 m endpoint is not reconstructed.          ║
+ * ║ second unit. Infinity, 0.10×, and 0.20× are exact focus keyframes.         ║
+ * ║ The production 0.25×/0.34 m endpoint is not reconstructed.                 ║
  * ║                                                                            ║
  * ║ Source corrections carried forward:                                       ║
  * ║ - Table 2 ZD0 at 0.00× is modeled as Infinity, not the printed 0.10.       ║
@@ -22,9 +20,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - The repeated 586.56 nm d-line label is treated as a typo for the         ║
  * ║   standard 587.56 nm d line.                                               ║
  * ║                                                                            ║
- * ║ Sensor plate normalization: patent surfaces 21–22 are excluded. Their      ║
- * ║ 4.20 mm thickness at nd=1.51680 is folded into the rear air spacing as     ║
- * ║ 4.20/1.51680 = 2.768987341772 mm.                                          ║
+ * ║ Sensor plate: patent surfaces 21–22 (4.20 mm, nd 1.51680, νd 64.20; the    ║
+ * ║ image lies on surface 22, d22 = 0.00) are modeled in `rearPlates`          ║
+ * ║ (traced, not drawn). Surface 20 keeps the printed ZD20 gap to the plate.   ║
  * ║                                                                            ║
  * ║ Semi-diameters: the patent publishes none. Values were derived from the    ║
  * ║ f/0.93 inferred physical stop (sd=14.0833547383 mm), exact spherical ray   ║
@@ -226,19 +224,32 @@ const LENS_DATA = {
     { label: "17", R: 28.992, d: 7.68, nd: 1.883, elemId: 10, sd: 17.5 },
     { label: "18", R: -79.175, d: 0.2, nd: 1, elemId: 0, sd: 17 },
     { label: "19", R: 37.592, d: 3.52, nd: 1.883, elemId: 11, sd: 15.8 },
-    { label: "20", R: 73.007, d: 18.20898734177215, nd: 1, elemId: 0, sd: 15.4 },
+    { label: "20", R: 73.007, d: 15.44, nd: 1, elemId: 0, sd: 15.4 },
+  ],
+
+  /* ── Sensor plate (patent surfaces 21–22): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "BSC7",
+      gapAfterMm: 0,
+      source: "JP 2021-076740 A, Example 2 Table 2 surfaces 21–22 (d22 = 0.00 to IMG)",
+    },
   ],
 
   asph: {},
 
+  focusPositions: [0, 0.4792059482960617, 1],
   var: {
-    "11": [8.1, 22.74],
-    "20": [18.20898734177215, 28.208987341772154],
+    "11": [8.1, 14.29, 22.74],
+    "20": [15.44, 20.05, 25.44],
   },
 
   varLabels: [
     ["11", "ZD11"],
-    ["20", "BF (cover normalized)"],
+    ["20", "ZD20"],
   ],
 
   groups: [
@@ -254,8 +265,10 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.34,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
-    "PUBLISHED two-unit floating focus: G1+G2 move together while STO+G3 move independently. The data endpoints reproduce the patent infinity and 0.20× states; the published 0.10× state is audit-verified but not a discrete schema point. closeFocusM=0.34 m is the manufacturer product specification; no 0.25× internal state is reconstructed.",
+    "PUBLISHED two-unit floating focus: G1+G2 move together while STO+G3 move independently. The infinity, 0.10×, and 0.20× patent rows are exact focus keyframes. closeFocusM=0.34 m is the manufacturer product specification; no 0.25× internal state is reconstructed.",
 
   nominalFno: 0.93,
   fstopSeries: [0.95, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

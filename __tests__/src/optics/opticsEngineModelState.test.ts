@@ -34,6 +34,7 @@ const ZOOM_STATES: readonly EngineSliderState[] = [
 
 const ENGINE_STATE_FIXTURES: readonly EngineStateFixture[] = [
   { key: "nikkor-z-50f18s", states: PRIME_STATES },
+  { key: "nikon-ai-af-micro-nikkor-105mm-f28s", states: [{ focusT: 0.8113045208264971, zoomT: 0 }] },
   { key: "nikon-z-24-70f4s", states: ZOOM_STATES },
   { key: "canon-ef-8-15mm-f4l-fisheye-usm", states: ZOOM_STATES },
   { key: "varisoft-rokkor-85f28", states: [{ focusT: 0, zoomT: 0, aberrationT: 0.75 }] },
@@ -63,8 +64,11 @@ describe("Optics engine LensData normalization and compatibility", () => {
       expect(runtime.data.key).toBe(key);
       expect(engine.key).toBe(key);
       expect(engine.surfaces).toHaveLength(runtime.N);
-      expect(engine.elements).toHaveLength(runtime.elements.length);
+      /* Engine elements are every traced medium; runtime.elements drops synthetic rear plates for display. */
+      expect(engine.elements).toHaveLength(runtime.data.elements.length);
       expect(engine.runtime).toBe(runtime);
+      // Perspective control is opt-in: lenses without the data block build with movement disabled.
+      if (runtime.data.perspectiveControl == null) expect(runtime.perspectiveControl, key).toBeNull();
     }
   });
 
@@ -93,6 +97,7 @@ describe("Optics engine LensData normalization and compatibility", () => {
     expect(engine.imagePlane.label).toBe("IMG");
     expect(engine.imagePlane.normal).toEqual([0, 0, 1]);
     expectClose(engine.imagePlane.point[2], runtime.totalTrack);
+    expect(engine.variables.focusPositions).toEqual([0, 1]);
   });
 
   it("can normalize directly from LensData without mutating lens data surfaces", () => {

@@ -20,18 +20,9 @@ Patent: US 2015/0268449 A1, Numerical Example 2
 - Confirmed flagged rows against local `patents/US_2015268449_A1.pdf`, Table 6. Stored nd/vd values matched the patent.
 - Non-flagged prescription fields were not fully rekeyed in this queue pass.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No catalog entries added; public catalog/source checks did not support unique vendor labels for the changed rows.
-
 ### Phase 4 — Analysis sync
 
 - Updated the analysis narrative, glass table, manufacturing notes, and source note to use patent-code labels instead of unsupported vendor claims.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
 
 ## 2026-06-24 - Systematic patent-table audit
 

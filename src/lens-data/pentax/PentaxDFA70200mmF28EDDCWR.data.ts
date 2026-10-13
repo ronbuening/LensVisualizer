@@ -468,6 +468,7 @@ const LENS_DATA = {
     "5.615212 mm (100 mm), and 15.514881 mm (194 mm); d15+d20 is conserved at each zoom station. " +
     "The patent publishes the direction and mechanism but no finite-focus spacing table.",
   nominalFno: 2.9,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

@@ -4,10 +4,20 @@
  * Lens data files store stable ids from this module rather than free-typed
  * display labels. That keeps catalog filters and image-field analysis working
  * from the same vocabulary.
+ *
+ * Mount and image-format ids also become `/mounts/:mountId` and
+ * `/formats/:formatId` route params, so each id must be a single URL path
+ * segment (lowercase slug, no "/"). Renaming an id needs a 301 in
+ * `public/_redirects` for the old page URL.
  */
 
 export const LENS_MOUNTS = [
   { id: "agfa-ambi-silette", label: "Agfa Ambi Silette", sortOrder: 50 },
+  { id: "alpa", label: "ALPA (35 mm SLR)", sortOrder: 55 },
+  { id: "arri-pl", label: "ARRI PL", sortOrder: 60 },
+  { id: "arri-standard", label: "ARRI Standard", sortOrder: 65 },
+  { id: "c-mount", label: "C-mount", sortOrder: 70 },
+  { id: "d-mount", label: "D-mount", sortOrder: 75 },
   { id: "canon-ef", label: "Canon EF", sortOrder: 100 },
   { id: "canon-ef-s", label: "Canon EF-S", sortOrder: 103 },
   { id: "canon-ef-m", label: "Canon EF-M", sortOrder: 105 },
@@ -24,9 +34,11 @@ export const LENS_MOUNTS = [
   { id: "dkl", label: "DKL / Deckel", sortOrder: 190 },
   { id: "exakta", label: "Exakta", sortOrder: 195 },
   { id: "fujifilm-x", label: "Fujifilm X", sortOrder: 200 },
+  { id: "fujica-x", label: "Fujica X", sortOrder: 205 },
   { id: "fujifilm-g", label: "Fujifilm G", sortOrder: 210 },
   { id: "fuji-g690", label: "Fuji G690", sortOrder: 220 },
   { id: "fuji-gx680", label: "Fuji GX680", sortOrder: 230 },
+  { id: "graflex-xl", label: "Graflex XL", sortOrder: 240 },
   { id: "hasselblad-h", label: "Hasselblad H", sortOrder: 250 },
   { id: "hasselblad-v", label: "Hasselblad V", sortOrder: 260 },
   { id: "hasselblad-xcd", label: "Hasselblad XCD", sortOrder: 270 },
@@ -45,8 +57,10 @@ export const LENS_MOUNTS = [
   { id: "mamiya-nc", label: "Mamiya NC", sortOrder: 375 },
   { id: "mamiya-rb67", label: "Mamiya RB67", sortOrder: 380 },
   { id: "mamiya-rz67", label: "Mamiya RZ67", sortOrder: 385 },
+  { id: "mamiya-ze", label: "Mamiya ZE", sortOrder: 390 },
   { id: "minolta-sr", label: "Minolta SR", sortOrder: 400 },
   { id: "minolta-v", label: "Minolta V", sortOrder: 410 },
+  { id: "miranda-bayonet", label: "Miranda Bayonet", sortOrder: 420 },
   { id: "nikon-1", label: "Nikon 1", sortOrder: 490 },
   { id: "nikon-f", label: "Nikon F", sortOrder: 500 },
   { id: "nikonos", label: "Nikonos", sortOrder: 503 },
@@ -62,7 +76,9 @@ export const LENS_MOUNTS = [
   { id: "pentax-67", label: "Pentax 67", sortOrder: 708 },
   { id: "pentax-k", label: "Pentax K", sortOrder: 710 },
   { id: "pentax-q", label: "Pentax Q", sortOrder: 720 },
+  { id: "pentacon-six", label: "Pentacon Six / Praktisix", sortOrder: 725 },
   { id: "praktina", label: "Praktina", sortOrder: 730 },
+  { id: "praktica-b", label: "Praktica B", sortOrder: 735 },
   { id: "rollei-6000", label: "Rollei 6000", sortOrder: 740 },
   { id: "rollei-qbm", label: "Rollei QBM", sortOrder: 750 },
   { id: "samsung-nx", label: "Samsung NX", sortOrder: 760 },
@@ -70,6 +86,7 @@ export const LENS_MOUNTS = [
   { id: "sigma-sa", label: "Sigma SA", sortOrder: 770 },
   { id: "sony-a", label: "Sony A", sortOrder: 800 },
   { id: "sony-fe", label: "Sony E", sortOrder: 810 },
+  { id: "voigtlander-prominent", label: "Voigtländer Prominent", sortOrder: 830 },
   { id: "bronica-etr", label: "Zenza Bronica ETR", sortOrder: 850 },
   { id: "bronica-gs", label: "Zenza Bronica GS", sortOrder: 860 },
   { id: "bronica-sq", label: "Zenza Bronica SQ", sortOrder: 870 },
@@ -98,6 +115,42 @@ export function isLensMountId(value: unknown): value is LensMountId {
 
 export const IMAGE_FORMATS = [
   {
+    id: "normal-8",
+    label: "Normal 8",
+    widthMm: 4.9,
+    heightMm: 3.6,
+    diagonalMm: Math.hypot(4.9, 3.6),
+    aspectRatio: 4.9 / 3.6,
+    sortOrder: 90,
+  },
+  {
+    id: "super-8",
+    label: "Super 8",
+    widthMm: 5.69,
+    heightMm: 4.22,
+    diagonalMm: Math.hypot(5.69, 4.22),
+    aspectRatio: 5.69 / 4.22,
+    sortOrder: 95,
+  },
+  {
+    id: "16mm-cinema",
+    label: "16 mm cinema",
+    widthMm: 10.26,
+    heightMm: 7.49,
+    diagonalMm: 12.7,
+    aspectRatio: 10.26 / 7.49,
+    sortOrder: 145,
+  },
+  {
+    id: "35mm-cinema",
+    label: "35 mm cinema (22 × 16 mm)",
+    widthMm: 22,
+    heightMm: 16,
+    diagonalMm: 27.2,
+    aspectRatio: 22 / 16,
+    sortOrder: 195,
+  },
+  {
     id: "110",
     label: "110",
     widthMm: 17,
@@ -107,7 +160,28 @@ export const IMAGE_FORMATS = [
     sortOrder: 100,
   },
   {
-    id: "1/2.3-inch-type",
+    // Nominal frame dimensions and sources: LENS_MOUNT_FORMAT_OPTIONS.md.
+    id: "1-2.7-inch-type",
+    label: "1/2.7-inch type",
+    widthMm: 5.371,
+    heightMm: 4.035,
+    diagonalMm: Math.hypot(5.371, 4.035),
+    aspectRatio: 5.371 / 4.035,
+    sortOrder: 105,
+  },
+  {
+    // Nominal active area: 4032 × 3024 pixels at 1.4 µm (Galaxy S9).
+    // Sources and derivation: LENS_MOUNT_FORMAT_OPTIONS.md.
+    id: "1-2.55-inch-type",
+    label: "1/2.55-inch type",
+    widthMm: 5.6448,
+    heightMm: 4.2336,
+    diagonalMm: 7.056,
+    aspectRatio: 4 / 3,
+    sortOrder: 110,
+  },
+  {
+    id: "1-2.3-inch-type",
     label: "1/2.3-inch type",
     widthMm: 6.17,
     heightMm: 4.55,
@@ -116,13 +190,33 @@ export const IMAGE_FORMATS = [
     sortOrder: 120,
   },
   {
-    id: "1/1.7-inch-type",
+    // Nominal frame dimensions and sources: LENS_MOUNT_FORMAT_OPTIONS.md.
+    id: "1-1.8-inch-type",
+    label: "1/1.8-inch type",
+    widthMm: 7.176,
+    heightMm: 5.319,
+    diagonalMm: Math.hypot(7.176, 5.319),
+    aspectRatio: 7.176 / 5.319,
+    sortOrder: 125,
+  },
+  {
+    id: "1-1.7-inch-type",
     label: "1/1.7-inch type",
     widthMm: 7.44,
     heightMm: 5.58,
     diagonalMm: 9.3,
     aspectRatio: 4 / 3,
     sortOrder: 130,
+  },
+  {
+    // Nominal frame dimensions and sources: LENS_MOUNT_FORMAT_OPTIONS.md.
+    id: "2-3-inch-type",
+    label: "2/3-inch type",
+    widthMm: 8.8,
+    heightMm: 6.6,
+    diagonalMm: Math.hypot(8.8, 6.6),
+    aspectRatio: 8.8 / 6.6,
+    sortOrder: 140,
   },
   {
     id: "1-inch-type",
@@ -134,6 +228,16 @@ export const IMAGE_FORMATS = [
     sortOrder: 150,
   },
   {
+    // Nominal frame dimensions and sources: LENS_MOUNT_FORMAT_OPTIONS.md.
+    id: "1.25-inch-tube",
+    label: "1¼-inch television tube",
+    widthMm: 16,
+    heightMm: 12,
+    diagonalMm: Math.hypot(16, 12),
+    aspectRatio: 16 / 12,
+    sortOrder: 170,
+  },
+  {
     id: "four-thirds",
     label: "Four Thirds",
     widthMm: 17.3,
@@ -141,6 +245,36 @@ export const IMAGE_FORMATS = [
     diagonalMm: 21.64,
     aspectRatio: 4 / 3,
     sortOrder: 180,
+  },
+  {
+    // Nominal frame dimensions and sources: LENS_MOUNT_FORMAT_OPTIONS.md.
+    id: "1.5-inch-type",
+    label: "1.5-inch type",
+    widthMm: 18.7,
+    heightMm: 14,
+    diagonalMm: Math.hypot(18.7, 14),
+    aspectRatio: 18.7 / 14,
+    sortOrder: 190,
+  },
+  {
+    // Nominal frame dimensions and sources: LENS_MOUNT_FORMAT_OPTIONS.md.
+    id: "super-35-cinema",
+    label: "Super 35 cinema (24.9 × 18.7 mm)",
+    widthMm: 24.9,
+    heightMm: 18.7,
+    diagonalMm: Math.hypot(24.9, 18.7),
+    aspectRatio: 24.9 / 18.7,
+    sortOrder: 196,
+  },
+  {
+    // Nominal frame dimensions and sources: LENS_MOUNT_FORMAT_OPTIONS.md.
+    id: "super-35-1.9",
+    label: "Super 35 digital (26.2 × 13.8 mm)",
+    widthMm: 26.2,
+    heightMm: 13.8,
+    diagonalMm: Math.hypot(26.2, 13.8),
+    aspectRatio: 26.2 / 13.8,
+    sortOrder: 197,
   },
   {
     id: "aps-c",

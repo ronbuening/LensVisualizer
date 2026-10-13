@@ -23,16 +23,24 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    via paraxial inner-focus solve (D7 + D9 = 16.48 mm constant). ║
  * ║                                                                    ║
  * ║  COVER GLASS:                                                      ║
- * ║    Patent specifies SG: nd = 1.516798, d = 2.00 mm, followed by  ║
- * ║    1.00 mm air to image. Excluded from surfaces array; physical   ║
- * ║    path folded into air-equivalent BFD on surface 13.             ║
- * ║    BFD = 11.78 + 2.00/1.5168 + 1.00 ≈ 14.10 mm.                 ║
+ * ║    Patent Table 1 surfaces 14–15 (optical member SG, 2.00 mm,      ║
+ * ║    nd 1.516798, νd 64.2) and the 1.00 mm air gap to the image      ║
+ * ║    are modeled in `rearPlates` (traced, not drawn). Surface 13     ║
+ * ║    keeps the patent's 11.78 mm gap to SG.                          ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF image-plane audit (2026-09-25): US20150092100A1 Example 1, Tables 1–3
+ * (PDF p. 26) matches every radius, spacing, nd/vd and aspheric coefficient.
+ * The physical SG stack is already complete: 11.78 mm air + 2 mm glass
+ * (n=1.516798) + 1 mm air. The printed infinity state gives EFL 53.612458 mm
+ * (53.61 printed), but paraxial focus is 0.039278 mm behind the authored plane.
+ * No single transcription error was found. Retain the published plane; a
+ * finite-aperture best-focus interpretation is possible, not established.
  */
 
 const LENS_DATA = {
@@ -173,8 +181,21 @@ const LENS_DATA = {
 
     // ── G3: Rear sub-group GR (L32) ──
     { label: "12", R: -18.057, d: 1.2, nd: 1.69895, elemId: 7, sd: 13.5 },
-    // BFD: 11.78 air + 2.00/1.5168 CG + 1.00 air ≈ 14.10 mm (air-equivalent to image)
-    { label: "13", R: -39.016, d: 14.1, nd: 1.0, elemId: 0, sd: 13.5 },
+    // Last surface: patent gap to the optical member SG
+    { label: "13", R: -39.016, d: 11.78, nd: 1.0, elemId: 0, sd: 13.5 },
+  ],
+
+  /* ── Optical member SG (patent Table 1 surfaces 14–15): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "SG",
+      thicknessMm: 2.0,
+      nd: 1.516798,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2015/0092100 A1, Example 1 Table 1 surfaces 14–15",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -228,12 +249,13 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (inner focus) ──
    *  G2 (L21) translates along axis; D_STO and D_9A change.
-   *  Infinity gaps from patent Table 2. Close-focus gaps at MFD = 0.5 m
-   *  computed via paraxial inner-focus solve (gap sum = 16.48 mm conserved).
+   *  Patent infinity and beta=-0.033 states precede the reconstructed 0.5 m
+   *  endpoint (gap sum = 16.48 mm conserved).
    */
+  focusPositions: [0, 0.2855768087246185, 1],
   var: {
-    STO: [2.81, 8.08],
-    "9A": [13.67, 8.4],
+    STO: [2.81, 4.07, 8.08],
+    "9A": [13.67, 12.41, 8.4],
   },
   varLabels: [
     ["STO", "D7"],
@@ -254,11 +276,14 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.5,
-  focusDescription: "Inner focus — G2 (single element L21) translates via linear motor. G1, STO, and G3 fixed.",
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
+  focusDescription:
+    "Inner focus: the patent beta=-0.033 row is exact before the constrained 0.5 m endpoint. G2 (single element L21) translates while G1, STO, and G3 remain fixed.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 1.86,
+  fstopSeries: [1.86, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

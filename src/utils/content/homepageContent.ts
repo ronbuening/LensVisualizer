@@ -17,10 +17,11 @@
  *   3. The article will appear on the homepage and /articles page automatically
  */
 
-import buildMetaRaw from "../../generated/build-metadata.json";
+import buildMetaRaw from "../../generated/client-metadata.json";
 import { canonicalPagePath } from "../seo/siteUrls.js";
+import { stripFrontmatter } from "./stripFrontmatter.js";
 
-/** Shape of an entry in build-metadata.json → articles[]. Declared here because
+/** Shape of an entry in client-metadata.json → articles[]. Declared here because
  *  optional fields (series/seriesOrder/toc) may be absent from the JSON schema
  *  until at least one article declares them. */
 interface BuildMetaArticle {
@@ -90,11 +91,6 @@ export interface SeriesSummary {
 export const HOMEPAGE_ARTICLE_LIMIT = 5;
 
 /* ── Auto-discovered markdown content ──────────────────────────────── */
-
-/** Strip YAML frontmatter (---...---) from the top of a markdown string. */
-export function stripFrontmatter(raw: string): string {
-  return raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n*/, "");
-}
 
 const _mdModules = import.meta.glob<string>("../../content/**/*.md", {
   eager: true,

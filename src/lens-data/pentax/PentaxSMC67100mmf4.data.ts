@@ -36,7 +36,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-smc-67-100mm-f4",
   maker: "Pentax",
-  name: "PENTAX SMC 67 Macro 100mm f/4",
+  name: "PENTAX SMC 67 MACRO 100mm f/4",
   subtitle: "US 6,002,533 Embodiment 1 — Asahi / Yoneyama",
   specs: ["6 elements / 4 groups", "f = 99.97 mm", "F/4", "2ω = 47.6° over 6×7", "all spherical"],
 
@@ -181,6 +181,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.443,
+  // Patent read 2026-10-06, no published focus row: Patent Table 1 prints d11 = 13.30~15.58 mm only for the main
+  // lens with the close-up attachment (M = -0.455 to -1.087); it gives no standalone 0.443 m spacing or back focus.
   focusDescription:
     "Patent Table 1 provides only d11 variation for the main lens while used with the close-up attachment. The data file splits d11 around the fixed stop and varies computed back focus; published standalone close focus is 0.443 m.",
   nominalFno: 4,

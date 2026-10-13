@@ -36,16 +36,3 @@ semi-diameter was not changed.
 
 - Updated the glass table and element narratives for E-LAF11 and J-LAK8.
 - Recorded the FIG. 1 relay-front SD correction and removed stale pre-correction geometry figures.
-
-### Verification
-
-- `npm run audit:surface -- ./src/lens-data/nikon/NikonAINikkor80200mmf45.data.ts` — passed.
-- `npm run audit:image-circle -- ./src/lens-data/nikon/NikonAINikkor80200mmf45.data.ts` — 0 undersized.
-- `npm run audit:patent-figure -- ... US4223981.pdf 2 ... --dpi=300` — rerun after the SD correction.
-- `npm test -- dispersion.test.ts` — passed (47 tests).
-- `npm run generate:glass-reports` — passed (7 report scans).
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed with 3 pre-existing warnings.
-- `npm run test` — passed (207 files, 2440 tests).
-- `npm run build` — passed (942 routes prerendered).

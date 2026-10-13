@@ -31,6 +31,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    and then constrained by edge thickness, signed cross-gap sag,    ║
  * ║    sd/|R| < 0.90, and element SD ratio ≤ 1.25. They are not Canon   ║
  * ║    mechanical clear-aperture specifications.                        ║
+ * ║    Surfaces 1-5 were raised to pass the traced chief ray at the     ║
+ * ║    patent's W = 57° (2026-09-24 field-coverage audit), taking the   ║
+ * ║    L1 and L3 SD ratios past 1.25. Surface 2 runs to 24.3 mm, a      ║
+ * ║    71.6° rim past sd/|R| = 0.90, so maxRimAngleDeg is raised to 72; ║
+ * ║    the chief ray clears every rim to the corner.                    ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:            ║
  * ║    ✓ Glass elements and surfaces from front element to image plane  ║
@@ -231,11 +236,11 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 42.002138, d: 3.039168, nd: 1.6968, elemId: 1, sd: 27.5 },
-    { label: "2", R: 25.615842, d: 11.302342, nd: 1, elemId: 0, sd: 22.8 },
-    { label: "3A", R: 57.492089, d: 5.714195, nd: 1.60311, elemId: 2, sd: 18.2 },
-    { label: "4", R: 51.161657, d: 0.140054, nd: 1, elemId: 0, sd: 15.2 },
-    { label: "5", R: 30.783828, d: 1.66664, nd: 1.6968, elemId: 3, sd: 15 },
+    { label: "1", R: 42.002138, d: 3.039168, nd: 1.6968, elemId: 1, sd: 31.6 },
+    { label: "2", R: 25.615842, d: 11.302342, nd: 1, elemId: 0, sd: 24.3 },
+    { label: "3A", R: 57.492089, d: 5.714195, nd: 1.60311, elemId: 2, sd: 24 },
+    { label: "4", R: 51.161657, d: 0.140054, nd: 1, elemId: 0, sd: 20 },
+    { label: "5", R: 30.783828, d: 1.66664, nd: 1.6968, elemId: 3, sd: 17.7 },
     { label: "6", R: 15.658016, d: 6.946669, nd: 1, elemId: 0, sd: 14 },
     { label: "7", R: 41.609987, d: 1.27449, nd: 1.7725, elemId: 4, sd: 12.5 },
     { label: "8", R: 18.164979, d: 5.476104, nd: 1, elemId: 0, sd: 12 },
@@ -289,6 +294,8 @@ const LENS_DATA = {
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
+  // Surface 2, the rear of the L1 meniscus, runs to a 71.6° rim to pass the chief ray at the patent's W = 57°.
+  maxRimAngleDeg: 72,
   scFill: 0.66,
   yScFill: 0.72,
   offAxisFieldFrac: 0.38,

@@ -22,7 +22,7 @@ Example 1 of US 3,524,697 is the appropriate patent embodiment for the Nikon Fis
 
 The patent prescription is normalized at f = 10. Independent paraxial tracing of the Example 1 numerical prescription gives EFL = 10.004615 patent units and BFD = 17.860390 patent units. The delivered data file scales all radii, thicknesses, BFD, and estimated semi-diameters by 0.599723199, giving a production-scale EFL of 6.000 mm. This replaces the earlier draft's 0.56 scale factor, which was inferred from the 21.6 mm circular image diameter and the equidistant projection formula rather than from Nikon's nominal focal-length specification.
 
-The flat filter element published as patent L5 is excluded from the `*.data.ts` surfaces and elements arrays. This follows the LensVisualizer data rule that filters are not modeled as lens elements. Its first-order effect is retained by folding its glass thickness into the adjacent air gap as an equivalent paraxial air thickness: d = 3.2 + 1.9/1.51743 + 6.4 = 10.852117 patent units between patent r7 and r10.
+The flat filter element published as patent L5 is excluded from the `*.data.ts` surfaces and elements arrays. The patent calls L5 an optional filter, and filters the source calls optional are not modeled. Its first-order effect is retained by folding its glass thickness into the adjacent air gap as an equivalent paraxial air thickness: d = 3.2 + 1.9/1.51743 + 6.4 = 10.852117 patent units between patent r7 and r10.
 
 ## Optical Architecture
 

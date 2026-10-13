@@ -149,8 +149,8 @@ export function orientedRefractionNormal(normal: Vec3, incidentSide: IncidentSid
 /**
  * Resolve the refractive index after crossing a surface.
  *
- * Rear-side incidence walks back to the previous physical medium; front-side incidence
- * uses the surface's authored nd. The optional resolver swaps d-line nd for a chromatic
+ * Rear-side incidence walks back to the previous physical medium ({@link rearMediumSurfaceIndex});
+ * front-side incidence uses the surface's authored nd. The optional resolver swaps d-line nd for a chromatic
  * channel index without changing the physical medium sequence.
  *
  * @param surfaceIndex - zero-based prepared surface index
@@ -167,11 +167,42 @@ export function resolvedNextIndex(
   surfaces: readonly CompiledStateSurface[],
   indexAtSurface?: (surfaceIndex: number, nd: number) => number,
 ): number {
-  const mediumSurfaceIndex = incidentSide === "front" ? surfaceIndex : surfaceIndex > 0 ? surfaceIndex - 1 : null;
+  const mediumSurfaceIndex = incidentSide === "front" ? surfaceIndex : rearMediumSurfaceIndex(surfaceIndex, surfaces);
   const physicalNextNd =
     mediumSurfaceIndex === null ? 1 : incidentSide === "front" ? surface.nd : surfaces[mediumSurfaceIndex].nd;
   if (!indexAtSurface) return physicalNextNd === 1 ? 1 : physicalNextNd;
   return physicalNextNd === 1 || mediumSurfaceIndex === null ? 1 : indexAtSurface(mediumSurfaceIndex, physicalNextNd);
+}
+
+/** Clear-zone fields read by {@link rearMediumSurfaceIndex}; `innerSd` marks an annular zone. */
+interface ZonedSurface {
+  sd?: number;
+  innerSd?: number | null;
+}
+
+/**
+ * Index of the surface whose authored `nd` is the medium a rear-side (reverse) crossing enters, or null for
+ * object space.
+ *
+ * Surfaces are listed front to rear, so this is normally the previous surface. A zoned blank breaks that: when an
+ * annular mirror zone and a clear central plug share one station, the plug (and anything listed just before it)
+ * lies wholly inside the annulus' hole, so the medium in front of the annulus is the last earlier surface whose
+ * clear zone overlaps it. Surfaces without `innerSd` always overlap, so ordinary sequences keep the previous surface.
+ *
+ * @param surfaceIndex - zero-based index of the surface being crossed from its rear side
+ * @param surfaces - surfaces in authored front-to-rear order
+ * @returns index of the surface whose `nd` fills the entered medium, or null for object space
+ */
+export function rearMediumSurfaceIndex(surfaceIndex: number, surfaces: readonly ZonedSurface[]): number | null {
+  const surface = surfaces[surfaceIndex];
+  for (let index = surfaceIndex - 1; index >= 0; index--) {
+    if (clearZonesOverlap(surfaces[index], surface)) return index;
+  }
+  return null;
+}
+
+function clearZonesOverlap(a: ZonedSurface, b: ZonedSurface): boolean {
+  return (a.sd ?? Infinity) > (b.innerSd ?? 0) && (b.sd ?? Infinity) > (a.innerSd ?? 0);
 }
 
 /**

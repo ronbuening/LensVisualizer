@@ -1,6 +1,11 @@
 import { useMemo } from "react";
 import { analysisJobsForState2, summarizeChromaticFieldFocus2 } from "../../../optics/compat.js";
-import { CHROMATIC_CHANNEL_ORDER } from "../../../optics/chromatic/channels.js";
+import {
+  CHROMATIC_CHANNEL_ORDER,
+  chromaticChannelLineList,
+  chromaticChannelWavelengthLabel,
+  lensChromaticReference,
+} from "../../../optics/chromatic/channels.js";
 import { probe } from "../../../utils/perfProbe.js";
 import ChromaticFieldCurvaturePlot from "./ChromaticFieldCurvaturePlot.js";
 import LateralColorChart from "./LateralColorChart.js";
@@ -8,6 +13,7 @@ import LongitudinalChromaticFocusChart from "./LongitudinalChromaticFocusChart.j
 import { AnalysisEmptyState, AnalysisMetricRow } from "./analysisUi.js";
 import { formatUmMagnitude } from "./chromaticChartUtils.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
+import PerspectiveChromaticAnalysis from "./perspective/PerspectiveChromaticAnalysis.js";
 import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
@@ -58,7 +64,61 @@ const metricsStyle = {
   fontSize: 9.5,
 };
 
-export default function ChromaticTab({
+export default function ChromaticTab(props: ChromaticTabProps) {
+  const { analysisContext, t } = props;
+  const perspectiveAnalysis = useMemo(
+    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveChromaticAnalysis() : null),
+    [analysisContext],
+  );
+  const intrinsicLongitudinal = useMemo(
+    () => (analysisContext?.movementActive ? analysisContext.computeIntrinsicLongitudinalChromaticFocus() : null),
+    [analysisContext],
+  );
+
+  if (analysisContext?.movementActive) {
+    return (
+      <div style={{ padding: "8px 0" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 9.5 }}>
+          <section style={{ ...sectionStyle(t), borderTop: "none", paddingTop: 0 }}>
+            <span style={sectionTitleStyle(t)}>Intrinsic Lens-Axis LoCA (Classical)</span>
+            <span style={sectionCopyStyle(t)}>
+              This established on-axis longitudinal color result remains in the intrinsic lens frame. It describes the
+              lens itself and does not represent wavelength focus or transverse color on the stationary sensor after
+              tilt/shift.
+            </span>
+            <LongitudinalChromaticFocusChart
+              result={intrinsicLongitudinal}
+              t={t}
+              channelReference={lensChromaticReference(props.L.elements)}
+            />
+            <div style={metricsStyle}>
+              <AnalysisMetricRow
+                label="Intrinsic LoCA"
+                value={formatFiniteUm(intrinsicLongitudinal?.longitudinalSpreadUm)}
+                suffix={finiteUmSuffix(intrinsicLongitudinal?.longitudinalSpreadUm)}
+                note={
+                  intrinsicLongitudinal
+                    ? `${(intrinsicLongitudinal.marginalFraction * 100).toFixed(0)}% pupil, lens-local`
+                    : "lens-local"
+                }
+                t={t}
+              />
+            </div>
+          </section>
+          {perspectiveAnalysis ? (
+            <PerspectiveChromaticAnalysis result={perspectiveAnalysis} t={t} />
+          ) : (
+            <AnalysisEmptyState t={t}>Movement-aware chromatic analysis is unavailable.</AnalysisEmptyState>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return <CenteredChromaticTab {...props} />;
+}
+
+function CenteredChromaticTab({
   L,
   t,
   focusT,
@@ -71,6 +131,7 @@ export default function ChromaticTab({
   analysisContext,
 }: ChromaticTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
+  const channelReference = lensChromaticReference(L.elements);
   const analysis = useMemo(
     () =>
       probe(
@@ -134,9 +195,13 @@ export default function ChromaticTab({
         <section style={{ ...sectionStyle(t), borderTop: "none", paddingTop: 0 }}>
           <span style={sectionTitleStyle(t)}>Chromatic Analysis</span>
           <span style={sectionCopyStyle(t)}>
-            Geometric traces at C, d, F, and g spectral lines. These readouts report focus and image-height spread; they
-            do not classify apochromatic correction, diffraction, transmission, flare, or sensor response. Spectral set:
-            C-line 656.3 nm, d-line 587.6 nm, F-line 486.1 nm, g-line 435.8 nm.
+            Geometric traces at {chromaticChannelLineList(channelReference)} spectral lines. These readouts report focus
+            and image-height spread; they do not classify apochromatic correction, diffraction, transmission, flare, or
+            sensor response. Spectral set:{" "}
+            {CHROMATIC_CHANNEL_ORDER.map((channel) => chromaticChannelWavelengthLabel(channel, channelReference)).join(
+              ", ",
+            )}
+            .
           </span>
           <div style={metricsStyle}>
             <AnalysisMetricRow
@@ -191,7 +256,7 @@ export default function ChromaticTab({
             On-axis LoCA from the outermost usable marginal chromatic ray. The chart is relative to the selected
             reference line, so common defocus is not counted as chromatic focus separation.
           </span>
-          <LongitudinalChromaticFocusChart result={longitudinal} t={t} />
+          <LongitudinalChromaticFocusChart result={longitudinal} t={t} channelReference={channelReference} />
           {longitudinal ? (
             <div style={metricsStyle}>
               <AnalysisMetricRow
@@ -229,7 +294,7 @@ export default function ChromaticTab({
             Chief-ray image-height spread at the current image plane. This is chromatic magnification error across the
             field, separate from axial focus shift.
           </span>
-          <LateralColorChart result={lateral} t={t} />
+          <LateralColorChart result={lateral} t={t} channelReference={channelReference} />
           {lateral ? (
             <div style={metricsStyle}>
               <AnalysisMetricRow

@@ -12,7 +12,7 @@
 **Title:** Lens Optical System with High Resolution  
 **Embodiment analyzed:** Third embodiment, optical system 100-3, Tables 7-9 and Figs. 9-12
 
-The third embodiment is the strongest match for the production Samyang AF 35-150mm f/2-2.8 FE / L optical formula. The patent prescription in Table 7 has 21 physical lens elements in 18 air-separated groups when the hybrid resin layer is counted as part of its glass substrate lens and the sensor cover plate is excluded. The production specifications list the same 21 elements in 18 groups, and the patent's special-surface pattern - one hybrid asphere at surface 6 and two dual-sided all-glass aspherical lenses at surfaces 30-31 and 40-41 - corresponds directly to the production statement of 2 ASP + 1 H-ASP. The patent prescription itself exposes five clear νd≈81.6 ED fluorophosphate elements; the sixth ED element in the production specification remains a manufacturer classification that cannot be uniquely assigned from the patent's nd/νd values alone.
+The third embodiment is the strongest match for the production Samyang AF 35-150mm f/2-2.8 FE / L optical formula. The patent prescription in Table 7 has 21 physical lens elements in 18 air-separated groups when the hybrid resin layer is counted as part of its glass substrate lens and the sensor cover plate is not counted as a lens element. The production specifications list the same 21 elements in 18 groups, and the patent's special-surface pattern - one hybrid asphere at surface 6 and two dual-sided all-glass aspherical lenses at surfaces 30-31 and 40-41 - corresponds directly to the production statement of 2 ASP + 1 H-ASP. The patent prescription itself exposes five clear νd≈81.6 ED fluorophosphate elements; the sixth ED element in the production specification remains a manufacturer classification that cannot be uniquely assigned from the patent's nd/νd values alone.
 
 The computed patent focal-length range is 35.989-146.969 mm at infinity, with F-numbers 2.07 / 2.63 / 2.90 at the wide, middle, and telephoto positions. This agrees with the marketed 35-150mm f/2-2.8 designation after normal production rounding. The patent full field angles of 61.8° and 16.4° also agree with full-frame 35 mm and 150 mm behavior. The focus mechanism matches as well: Table 9 varies only D31 and D33 for close focus, meaning that the single negative Gm3 element translates internally while the overall lens-to-sensor length remains fixed.
 
@@ -26,7 +26,7 @@ The design is a positive-lead, high-ratio full-frame zoom arranged as three fron
 
 The first group G13 contains a cemented front doublet and a separate ED meniscus. It is a positive collector group, not a negative retrofocus front group. The second group G23 is the principal negative variator. The third group G33 is a weak relay between the variator and the rear correction block. Behind the stop, Gf3 supplies most of the positive power and chromatic correction, Gm3 is the single moving focus group, and Gr3 completes the image-side correction.
 
-The zoom movement is dominated by D5, the air gap between G13 and G23. At infinity D5 expands from 1.200 mm at the wide end to 49.374 mm at the telephoto end. At the same time, D12 and D18 collapse, pulling the variator and relay groups closer to the rear assembly. The patent table also lists D41, the distance from the final lens surface to the sensor cover plate. In the data file the cover plate is omitted and its air-equivalent path is folded into the last surface's back-focus variable.
+The zoom movement is dominated by D5, the air gap between G13 and G23. At infinity D5 expands from 1.200 mm at the wide end to 49.374 mm at the telephoto end. At the same time, D12 and D18 collapse, pulling the variator and relay groups closer to the rear assembly. The patent table also lists D41, the distance from the final lens surface to the sensor cover plate. The data file stores D41 as the last surface's physical gap and models the cover plate itself in `rearPlates`.
 
 | Variable | Wide infinity | Middle infinity | Tele infinity | Function |
 |---|---:|---:|---:|---|
@@ -35,9 +35,10 @@ The zoom movement is dominated by D5, the air gap between G13 and G23. At infini
 | D18 | 23.915 mm | 10.809 mm | 1.700 mm | G33-to-stop/rear zoom separation |
 | D31 | 3.373 mm | 2.868 mm | 1.195 mm | Gf3-to-Gm3 spacing; zoom + focus |
 | D33 | 10.067 mm | 9.585 mm | 11.269 mm | Gm3-to-Gr3 spacing; zoom + focus |
-| BF in air | 14.749 mm | 29.911 mm | 37.521 mm | D41 plus cover-glass air-equivalent path |
+| D41 | 12.602 mm | 27.764 mm | 35.374 mm | Last lens surface to cover plate |
+| BFE in air | 14.749 mm | 29.911 mm | 37.521 mm | D41 plus cover-plate air-equivalent path (paraxial equivalent) |
 
-The rear cover/filter plate in the patent is a 2.5 mm flat plate of nd = 1.5168 followed by a small residual air spacing. It is a sensor-side protection or filter element, not a photographic lens element. Omitting it from the data file changes no refractive power and preserves the paraxial focus by using the patent's BFE-in-air values as the final variable back focus.
+The rear cover/filter plate in the patent (Table 7 surfaces 42-44) is a 2.5 mm flat plate of nd = 1.5168, νd = 64.1973 (N-BK7 class) followed by 0.5031 − 0.0031 = 0.5 mm of air to the image plane. It is a sensor-side protection or filter element, not a photographic lens element. The data file models it in `rearPlates`: every analysis traces it, but it is not drawn. The plate adds no refractive power; its air-equivalent path (2.5 / 1.5168 ≈ 1.648 mm) plus D41 and the 0.5 mm trailing air reproduces the patent's BFE-in-air values.
 
 ## Element-by-Element Analysis
 
@@ -217,7 +218,7 @@ Focusing is internal and is performed by Gm3, a single negative meniscus element
 | Middle | 2.868 mm | 7.233 mm | 9.585 mm | 5.220 mm | 4.365 mm imageward |
 | Tele | 1.195 mm | 8.764 mm | 11.269 mm | 3.700 mm | 7.569 mm imageward |
 
-The patent lists close-focus magnification β = 0.175 / 0.174 / 0.183 at the wide, middle, and telephoto positions. It also lists MOD object distances D0 = 157.000 / 334.990 / 635.000 mm from the first lens surface. Adding the patent OAL values gives approximate sensor-to-subject distances of 0.314 m, 0.496 m, and 0.810 m. These are close to, but not identical with, the official production values: 0.33 m / 0.85 m for the FE version and 0.32 m / 0.85 m for the L-mount version. The difference is consistent with normal production tuning, mount-specific metadata, and the patent's first-surface object-distance convention.
+The patent lists close-focus magnification β = 0.175 / 0.174 / 0.183 at the wide, middle, and telephoto positions. It also lists MOD object distances D0 = 157.000 / 334.990 / 635.000 mm from the first lens surface. The patent's OAL row cannot be added to D0 to reach the sensor, because it stops at the last lens surface (see Verification Summary). Adding the physical first-surface-to-image track instead, 172.951 / 191.650 / 213.518 mm (derived; D31 + D33 is unchanged by focus), gives sensor-to-subject distances of 0.330 m, 0.527 m, and 0.849 m. The wide and telephoto values match the official production figures of 0.33 m / 0.85 m for the FE version; the L-mount version lists 0.32 m / 0.85 m.
 
 ## Aspherical Surfaces
 
@@ -264,9 +265,9 @@ The average-index condition limits the amount of very high-index, high-specific-
 
 ## Verification Summary
 
-A direct prescription audit against Table 7 found no surface-order, radius, thickness, refractive-index, or Abbe-number mismatches in the data file after the sensor cover plate was intentionally excluded. The Table 8 aspherical coefficients also match the data file coefficient-by-coefficient. Table 9 variable spacings match the data file, with D41 represented by the patent's BFE-in-air row because the cover glass is folded into the final back-focus spacing.
+A direct prescription audit against Table 7 found no surface-order, radius, thickness, refractive-index, or Abbe-number mismatches in the data file, with the sensor cover plate carried in `rearPlates`. The Table 8 aspherical coefficients also match the data file coefficient-by-coefficient. Table 9 variable spacings match the data file, including the physical D41 row.
 
-A paraxial y-nu ray trace was run from the patent prescription after omitting the plane sensor cover and folding its air-equivalent path into the last back-focus spacing. The independent trace reproduces the patent within the precision expected from rounded table values.
+A paraxial y-nu ray trace was run from the patent prescription with the plane sensor cover replaced by its air-equivalent path in the last back-focus spacing (the plate has no power, so this is paraxially equivalent to tracing it). The independent trace reproduces the patent within the precision expected from rounded table values.
 
 | Quantity | Wide patent | Wide computed | Middle patent | Middle computed | Tele patent | Tele computed |
 |---|---:|---:|---:|---:|---:|---:|
@@ -274,6 +275,8 @@ A paraxial y-nu ray trace was run from the patent prescription after omitting th
 | BFE in air | 14.749 mm | 14.765 mm | 29.911 mm | 29.921 mm | 37.521 mm | 37.509 mm |
 
 The maximum EFL residual is 0.075 mm, and the maximum BFE residual is 0.016 mm. Those differences are consistent with the number of decimal places published in the prescription.
+
+Table 9's OAL row (157.349 / 160.886 / 175.144 mm) is not a first-surface-to-image length, even though the text defines OAL that way. It equals, to the printed digit, the sum of Table 7 thicknesses from surface 1 to the last lens surface 41, excluding D41, the cover plate, and the trailing air. The same holds within 0.002 mm for all four embodiments, so the printed definition, not the prescription, is wrong. The physical track to the image plane is 172.951 / 191.650 / 213.518 mm (derived): the lens length plus D41, the 2.5 mm plate and 0.5 mm of air. Adding BFE in air instead of the physical plate stack gives 172.098 / 190.797 / 212.665 mm.
 
 The same trace gives these standalone in-air group focal lengths at the wide configuration: G13 = +125.7 mm, G23 = -29.5 mm, G33 = +1977 mm, Gf3 = +33.3 mm, Gm3 = -50.2 mm, and Gr3 = +435.8 mm. These are standalone group powers only; they are not the same as the in-situ contribution of each group in the assembled zoom.
 

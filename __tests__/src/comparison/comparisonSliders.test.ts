@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   computeFocusPair,
+  comparisonFocusAfterZoom,
   computeAperturePair,
   computeZoomPair,
   computeMovementPair,
@@ -8,13 +9,30 @@ import {
   sharedFNumber,
   snapToCommon,
 } from "../../../src/comparison/comparisonSliders.js";
+import { formatDist } from "../../../src/optics/optics.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
+import { build, buildVariableStopGapLens, buildSimplePositiveElementLens } from "../optics/testLensFixtures.js";
+
 /* ── Mock lens objects (only the fields these functions use) ── */
-const lensA = { closeFocusM: 0.45, FOPEN: 1.0, maxFstop: 16 } as unknown as RuntimeLens;
-const lensB = { closeFocusM: 0.9, FOPEN: 1.93, maxFstop: 16 } as unknown as RuntimeLens;
+const focusData = buildVariableStopGapLens([1, 2]).data;
+const lensA = build({ ...focusData, closeFocusM: 0.45, nominalFno: 1, maxFstop: 16 });
+const lensB = build({ ...focusData, closeFocusM: 0.9, nominalFno: 1.93, maxFstop: 16 });
 
 describe("computeFocusPair", () => {
+  it("excludes unmodeled travel from both the request scale and per-panel focus", () => {
+    const fixed = buildSimplePositiveElementLens();
+    for (const shared of [0, 0.5, 1]) {
+      const none = computeFocusPair(shared, fixed, fixed);
+      expect(none).toEqual({ focusA: 0, focusB: 0, commonPoint: 0, minCloseFocus: 0, maxCloseFocus: 0 });
+      const mixed = computeFocusPair(shared, fixed, lensB);
+      expect(mixed.focusA).toBe(0);
+      expect(mixed.focusB).toBe(shared);
+      expect(mixed.minCloseFocus).toBe(0.9);
+      expect(mixed.commonPoint).toBe(1);
+      expect(computeFocusPair(shared, lensB, fixed).focusA).toBe(shared);
+    }
+  });
   it("returns 0 for both at infinity (sharedT=0)", () => {
     const r = computeFocusPair(0, lensA, lensB);
     expect(r.focusA).toBe(0);
@@ -47,7 +65,7 @@ describe("computeFocusPair", () => {
   });
 
   it("identical lenses: commonPoint=1, both track equally", () => {
-    const same = { closeFocusM: 0.45, FOPEN: 1.2, maxFstop: 16 } as unknown as RuntimeLens;
+    const same = build({ ...focusData, closeFocusM: 0.45, nominalFno: 1.2, maxFstop: 16 });
     const r = computeFocusPair(0.6, same, same);
     expect(r.commonPoint).toBeCloseTo(1.0, 5);
     expect(r.focusA).toBeCloseTo(0.6, 5);
@@ -101,10 +119,45 @@ describe("computeAperturePair", () => {
   });
 
   it("identical lenses: commonPoint=0, both track equally", () => {
-    const same = { closeFocusM: 0.45, FOPEN: 1.2, maxFstop: 16 } as unknown as RuntimeLens;
+    const same = build({ ...focusData, closeFocusM: 0.45, nominalFno: 1.2, maxFstop: 16 });
     const r = computeAperturePair(0.5, same, same);
     expect(r.commonPoint).toBe(0);
     expect(r.stopdownA).toBeCloseTo(r.stopdownB, 5);
+  });
+
+  it("moves the zoom limit marker without changing the request scale or panel slider positions", () => {
+    const a = { ...lensA, FOPEN: 2, isZoom: true, zoomFOPENs: [2, 8] } as RuntimeLens;
+    const b = { ...lensB, FOPEN: 4, isZoom: true, zoomFOPENs: [4, 10] } as RuntimeLens;
+    const requestedT = Math.log(8 / 2) / Math.log(16 / 2);
+    const wide = computeAperturePair(requestedT, a, b, 0, 0);
+    const tele = computeAperturePair(requestedT, a, b, 1, 1);
+    expect(wide.fNumberA).toBeCloseTo(8, 10);
+    expect(wide.fNumberB).toBeCloseTo(8, 10);
+    expect(tele.fNumberA).toBeCloseTo(8, 10);
+    expect(tele.fNumberB).toBeCloseTo(10, 10);
+    expect(tele.stopdownA).toBe(wide.stopdownA);
+    expect(tele.stopdownB).toBe(wide.stopdownB);
+    expect(tele.widerFOPEN).toBe(wide.widerFOPEN);
+    expect(sharedFNumber(tele.commonPoint, tele.widerFOPEN, tele.sharedMaxFstop)).toBeCloseTo(10, 10);
+    expect(tele.commonPoint).toBeGreaterThan(wide.commonPoint);
+    expect(tele.limitingPanel).toBe("b");
+  });
+
+  it("tracks which lens limits the aperture when their zoom schedules cross", () => {
+    const a = { ...lensA, FOPEN: 2, isZoom: true, zoomFOPENs: [2, 8] } as RuntimeLens;
+    const b = { ...lensB, FOPEN: 4 } as RuntimeLens;
+    expect(computeAperturePair(0, a, b, 0, 0).limitingPanel).toBe("b");
+    expect(computeAperturePair(0, a, b, 1, 0).limitingPanel).toBe("a");
+  });
+
+  it("reports each stopped-down limit and omits a marker for disjoint or fixed ranges", () => {
+    const a = { ...lensA, FOPEN: 2, maxFstop: 8 } as RuntimeLens;
+    const b = { ...lensB, FOPEN: 10, maxFstop: 16 } as RuntimeLens;
+    const pair = computeAperturePair(1, a, b);
+    expect([pair.fNumberA, pair.fNumberB]).toEqual([8, 16]);
+    expect(pair.commonPoint).toBe(0);
+    const fixed = { ...a, maxFstop: 2 };
+    expect(computeAperturePair(0, fixed, fixed).commonPoint).toBe(0);
   });
 });
 
@@ -251,6 +304,12 @@ describe("computeMovementPair", () => {
     },
   } as unknown as RuntimeLens;
   const ordinary = { perspectiveControl: null } as unknown as RuntimeLens;
+  const shiftOnly = {
+    perspectiveControl: {
+      shiftRangeMm: [-11, 11],
+      tiltRangeDeg: [0, 0],
+    },
+  } as unknown as RuntimeLens;
 
   it("hides movement controls for two non-PC lenses", () => {
     const r = computeMovementPair(5, 5, ordinary, ordinary);
@@ -276,5 +335,57 @@ describe("computeMovementPair", () => {
     expect(r.tiltB).toBe(8);
     expect(r.shiftStepMm).toBe(0.1);
     expect(r.tiltStepDeg).toBe(0.1);
+  });
+
+  it("clamps unsupported tilt to zero for a shift-only lens", () => {
+    const r = computeMovementPair(8, 5, shiftOnly, ordinary);
+    expect(r.showMovement).toBe(true);
+    expect(r.shiftA).toBe(8);
+    expect(r.tiltA).toBe(0);
+    expect(r.shiftRangeMm).toEqual([-11, 11]);
+    expect(r.tiltRangeDeg).toEqual([0, 0]);
+  });
+});
+
+describe("zoom-dependent focus distance", () => {
+  it("preserves distance across zoom, including a change in the closest modeled lens", () => {
+    const zoom = build({
+      ...buildVariableStopGapLens([
+        [1, 2],
+        [2, 3],
+        [3, 4],
+      ]).data,
+      closeFocusM: 0.3,
+      zoomCloseFocusM: [0.3, 0.45, 0.6],
+    });
+    const prime = build({ ...focusData, closeFocusM: 0.4 });
+    const focus = comparisonFocusAfterZoom(0.3, 0, 1, zoom, prime);
+    expect(focus).toBeCloseTo(0.4, 12);
+    const pair = computeFocusPair(focus, zoom, prime, 1, 0);
+    expect(0.6 / pair.focusA).toBeCloseTo(1, 12);
+    expect(0.4 / pair.focusB).toBeCloseTo(1, 12);
+    expect(comparisonFocusAfterZoom(focus, 1, 0, zoom, prime)).toBeCloseTo(0.3, 12);
+    expect(comparisonFocusAfterZoom(1, 0, 1, zoom, prime)).toBe(1);
+    expect(comparisonFocusAfterZoom(0, 0, 1, zoom, prime)).toBe(0);
+    const fixed = buildSimplePositiveElementLens();
+    expect(comparisonFocusAfterZoom(0.5, 0, 1, zoom, fixed)).toBe(1);
+    expect(comparisonFocusAfterZoom(0.5, 0, 1, fixed, fixed)).toBe(0);
+  });
+  it("uses the current zoom endpoint for labels and comparison clamping", () => {
+    const zoom = build({
+      ...buildVariableStopGapLens([
+        [1, 2],
+        [2, 3],
+        [3, 4],
+      ]).data,
+      zoomCloseFocusM: [0.5, 1, 2],
+    });
+    const prime = { ...lensB, closeFocusM: 1 } as RuntimeLens;
+    expect(formatDist(1, zoom, 0)).toBe("50 cm");
+    expect(formatDist(1, zoom, 0.5)).toBe("1.00 m");
+    expect(formatDist(1, zoom, 1)).toBe("2.00 m");
+    const pair = computeFocusPair(0.5, zoom, prime, 1, 0);
+    expect(pair.focusA).toBe(1);
+    expect(pair.focusB).toBe(0.5);
   });
 });

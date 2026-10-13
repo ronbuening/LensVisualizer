@@ -61,19 +61,6 @@ describe("boundingSphereLaunchVector", () => {
 });
 
 describe("solveChiefRay launchSurface dispatch", () => {
-  it("reports object-plane launch for in-domain fields", () => {
-    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
-    const result = solveChiefRay(20, 0, 0, L);
-    expect(result.launchSurface).toBe("object-plane");
-    expect(result.status).not.toBe("out-of-domain");
-  });
-
-  it("dispatches past-cap fields through the bounding-sphere launch arm", () => {
-    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
-    const result = solveChiefRay(MAX_FIELD_LAUNCH_DEG + 5, 0, 0, L);
-    expect(result.launchSurface).toBe("bounding-sphere");
-  });
-
   it("rectilinear lenses cap-dispatch: object-plane below MAX_FIELD_LAUNCH_DEG, bounding-sphere at/above", () => {
     // Cap-based dispatch only applies to rectilinear projections after Step 6.
     // Fisheye lenses route through bounding-sphere unconditionally — see the

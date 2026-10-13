@@ -22,15 +22,24 @@ import type { LensDataInput } from "../../types/optics.js";
  * Scaling: none. Patent radii, thicknesses, spacings, and asphere coefficients are used at source scale.
  * The patent uses the standard conic constant K directly; all Example 1 K values are 0.
  *
- * Aperture stop: the patent publishes the stop plane but not its clear diameter. STO sd = 6.95 mm is an
- * inferred single physical stop semi-diameter consistent with all three one-decimal patent FNO values.
- * nominalFno stores the exact modeled f-numbers produced by that stop and the transcribed prescription.
+ * Aperture stop: the patent publishes the stop plane but not its clear diameter (Table 1 row 16 is a bare
+ * plane), and Table 2 prints FNO 3.6 / 4.4 / 5.8 to one decimal. The model is one wide-open iris radius for
+ * the whole zoom range (zoomApertureModel "fixed-iris"). By real marginal ray, any single radius from 7.0156
+ * to 7.0716 mm gives all three printed values within their rounding. The three nominalFno values are those of
+ * one real-ray iris radius at the midpoint of that interval consistent with the printed 3.6 / 4.4 / 5.8:
+ * 3.5647 sizes the iris at the wide station (7.0435 mm traced; midpoint 7.0436 mm), and 4.432 / 5.776 are the
+ * f-numbers that radius gives at the mid and tele stations. The STO row's sd of 6.95 mm is superseded at
+ * build time by the radius traced from nominalFno[0]. No apertureDesign is set: the printed 3.6 is a one-decimal
+ * rounding of the 3.5647 the model uses.
  *
  * Semi-diameters: not published. They are modeling values derived from independent marginal/chief-ray
  * envelopes across all three zoom states, the patent Fig. 1/Fig. 4 silhouettes, and the current geometry
  * limits (edge thickness, actual rim slope, shared-gap intrusion). Full-field envelopes inform the large
  * G1/G4 apertures; strongly curved G2 surfaces are capped by physical sag/gap limits while containing the
  * default 0.6-field off-axis bundle with clearance. These SDs are not claimed as patent values.
+ * Surfaces 6A and 7 (the L21 resin layer and its junction) were raised to 13.1 mm to pass the traced
+ * wide chief ray to the patent's Y = 14.24 mm; surface 8 stays at 11.0 mm, capped by its 12.493 mm
+ * radius (2026-09-24 field-coverage audit).
  *
  * Glass labels: the patent publishes d-line nd/vd coordinates but no vendors. Vendor-neutral six-digit
  * optical codes are used where defensible; the hybrid resin is explicitly unmatched. No nC/nF/ng/dPgF
@@ -46,12 +55,12 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hd-pentax-da-16-85mm-f35-56-ed-dc-wr",
   maker: "Pentax",
-  name: "HD PENTAX-DA 16-85mm f/3.5-5.6 ED DC WR",
+  name: "PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR",
   subtitle: "JP 2016-114800 A Example 1 — Ricoh Imaging / Yoichi Nomura",
   specs: [
     "16 ELEMENTS / 12 GROUPS",
     "16-85mm f/3.5-5.6 (marketing)",
-    "16.48-82.45mm, modeled f/3.585-5.764 (Example 1)",
+    "16.48-82.45mm, modeled f/3.565-5.776 (Example 1)",
     "3 ASPHERICAL SURFACES",
     "1 PRODUCTION ED ELEMENT",
     "APS-C / PENTAX K",
@@ -265,8 +274,8 @@ const LENS_DATA = {
     { label: "3", R: 840.691, d: 0.15, nd: 1.0, elemId: 0, sd: 30.0 },
     { label: "4", R: 60.115, d: 4.797, nd: 1.804, elemId: 3, sd: 24.0 },
     { label: "5", R: 155.158, d: 2.523, nd: 1.0, elemId: 0, sd: 24.0 },
-    { label: "6A", R: 54.995, d: 0.2, nd: 1.52972, elemId: 4, sd: 11.0 },
-    { label: "7", R: 48.193, d: 1.25, nd: 1.883, elemId: 5, sd: 11.0 },
+    { label: "6A", R: 54.995, d: 0.2, nd: 1.52972, elemId: 4, sd: 13.1 },
+    { label: "7", R: 48.193, d: 1.25, nd: 1.883, elemId: 5, sd: 13.1 },
     { label: "8", R: 12.493, d: 7.732, nd: 1.0, elemId: 0, sd: 11.0 },
     { label: "9", R: -29.668, d: 1.2, nd: 1.7725, elemId: 6, sd: 9.5 },
     { label: "10", R: 54.485, d: 0.469, nd: 1.0, elemId: 0, sd: 9.5 },
@@ -380,7 +389,8 @@ const LENS_DATA = {
     "the production 0.35 m MFD is metadata and does not define internal focus travel.",
 
   /* ── Aperture configuration ── */
-  nominalFno: [3.585229851, 4.435970318, 5.763925078],
+  nominalFno: [3.5647, 4.432, 5.776],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 7,
 

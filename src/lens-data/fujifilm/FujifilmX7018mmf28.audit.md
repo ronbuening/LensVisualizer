@@ -8,7 +8,6 @@ Patent: US 2017/0075089 A1
 - Updated surface 1 to `S-FTM16 (OHARA)` for nd=1.59270, vd=35.31.
 - Updated surface 5 to `S-TIM35 (OHARA)` for nd=1.69895, vd=30.13.
 
-
 ## 2026-07-24 - Patent-figure semi-diameter audit
 
 | Surface | Field | Before | After | Justification |
@@ -31,4 +30,4 @@ Patent: US 2017/0075089 A1
   `__tests__/src/lens-data/oddAsphereBackfill.test.ts` updated to match.
 - Verification: `npm run typecheck` passed; `npm run test` 2440 tests passed; cross-section re-rendered
   and compared with FIG. 1.
-- Full method and per-lens results: agent_docs/patent-figure-sd-audit.md.
+- Full method and per-lens results: agent_docs/records/patent-figure-sd-audit-2026-07.md.

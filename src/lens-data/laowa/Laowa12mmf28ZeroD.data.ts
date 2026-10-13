@@ -5,7 +5,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║           LENS DATA — LAOWA 12mm f/2.8 ZERO-D                       ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: CN205720849U / WO2017177665A1 Example 2.              ║
- * ║  Applicant: Anhui Changgeng Optical Technology Co., Ltd.            ║
+ * ║  Applicant: Anhui Changgeng Optics Technology Co., Ltd.             ║
  * ║  Inventor: Zhang Xiaohua.                                           ║
  * ║                                                                    ║
  * ║  Patent scale: f = 12.5 mm, Fno = 2.87, half-field = 60.1 deg.      ║
@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "laowa-12mm-f28-zero-d",
   maker: "Laowa",
   name: "LAOWA 12mm f/2.8 Zero-D",
-  subtitle: "CN205720849U Example 2 — Anhui Changgeng Optical Technology / Zhang Xiaohua",
+  subtitle: "CN205720849U Example 2 — Anhui Changgeng Optics Technology / Zhang Xiaohua",
   specs: [
     "16 elements / 10 groups",
     "Design f = 12.4999 mm",
@@ -53,6 +53,7 @@ const LENS_DATA = {
   focalLengthDesign: 12.49993,
   apertureMarketing: 2.8,
   apertureDesign: 2.87,
+  lensMounts: ["canon-ef", "canon-rf", "nikon-f", "nikon-z", "sony-a", "sony-fe", "pentax-k", "l-mount"],
   imageFormat: "135-full-frame",
   patentNumber: "CN 205720849 U",
   patentAuthors: ["Xiaohua Zhang"],
@@ -365,10 +366,12 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.18,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Floating focus: G1 fixed; G2 and G3 move. The patent variable-gaps encode infinity and a beta=0.02x finite-focus check, not the production 0.2x minimum-focus endpoint.",
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.87,
+  fstopSeries: [2.87, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   scFill: 0.64,
   yScFill: 0.42,

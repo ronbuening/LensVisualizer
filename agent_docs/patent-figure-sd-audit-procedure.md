@@ -3,7 +3,8 @@
 A step-by-step runbook for auditing one lens's semi-diameters (`sd`) and cross-section proportions against its
 patent. Follow it in order. Each step says what to run, what the output means, and when to stop.
 
-Worked example of the whole thing: [patent-figure-sd-audit.md](patent-figure-sd-audit.md).
+Worked example of the whole thing (historical, 2026-07-24):
+[records/patent-figure-sd-audit-2026-07.md](records/patent-figure-sd-audit-2026-07.md).
 Work queue: [sd-audit-queue.md](sd-audit-queue.md).
 
 ## What you are deciding
@@ -16,11 +17,43 @@ Your job is to find the ones that are **wrong**, not to repaint the ones that ar
 
 Change an `sd` only when you have one of these:
 
-- **Proof** — the surface fails the image-circle floor (Step 1). Always fix these.
+- **Proof** — the surface fails the image-circle floor, or the traced check shows it clipping the corner chief ray of
+  a design whose printed image height reaches that corner (Step 1). Always fix these.
 - **Strong figure evidence** — the patent drawing disagrees by more than ~25%, both measurements agree, and you
   confirmed it on a zoomed render (Steps 3–4).
+- **A clipped stated beam** — an inferred rim clips the on-axis beam of the f-number the source prints
+  (`npm run audit:aperture`). The on-axis ray is a physical floor: a lens cannot have its design f-number with a rim
+  below it. Make the change that alters shape and comparative size the least: only the surfaces that clip move, and
+  each rises only to the height the stated ray reaches there (`npm run audit:aperture -- <file> --raise`), rounded
+  up at the precision the file uses. A surface that does not clip keeps its value, so rims stay as tight as the
+  f-number allows and the modeled vignetting is kept. Two things keep the silhouette as the patent draws it:
+  - **Square rims stay square.** An element whose two faces carry one value, and which the figure draws with a
+    square-cut rim, keeps one value: both faces take the higher of the two ray heights (the tool's second column).
+    An element the figure draws stepped or chamfered is raised face by face.
+  - **Facing surfaces that nearly meet.** Where the raise is refused by the validator's cross-gap limit although the
+    surfaces do not cross and the figure draws the elements meeting at the rim, set `gapSagFrac` for that lens to
+    the smallest value that admits the raise, and name the pair in the header.
+
+  The figure is a check, not the source of the value: where it draws the element smaller than the ray needs, or the
+  raise is over ~15%, leave the row in [sd-audit-queue.md](sd-audit-queue.md) Section I and read the figure and the
+  prescription before changing anything. Compare the rendered section with the figure afterwards (Step 8).
 
 Anything inside ~15% is noise. Leave it and say so in the log.
+
+## Scope
+
+This is a rendering and ray-clearance audit of `sd` only. It is not a licence to change `R`, `d`, `nd`, glass labels
+or focus mechanics — those need the separate patent-table pass in [lens-patent-audit.md](lens-patent-audit.md). If a
+figure fit exposes a suspect glass label, audit it in the same pass only when the patent table settles it, then run
+`npm run generate:glass-reports` and keep the regenerated reports in the commit only if they changed.
+
+Two rules to hold throughout:
+
+- **Table truth beats diagram inference.** If the patent publishes effective diameters, use them (`sd` = φ/2) and say
+  so in the header. Otherwise the header says "estimated" or "inferred" and names the inputs used.
+- **Do not invent focus mechanics from a static figure.** CRC, floating and internal-focus spacings the patent does
+  not tabulate stay fixed, or get a clearly labelled approximation from manufacturer MFD/reproduction data; a
+  cross-section sheet is not evidence for either.
 
 ## Prerequisites
 
@@ -29,6 +62,10 @@ Anything inside ~15% is noise. Leave it and say so in the log.
 - `pdftoppm` (poppler) on PATH: `which pdftoppm`.
 - Know which embodiment the lens is: the `subtitle` field says e.g. `US 2014/0247506 A1 EXAMPLE 1`. Example 3 means
   you need Example 3's cross-section sheet, not Example 1's.
+- Know the scale factor. If the prescription was uniformly scaled (patent f = 100, production f = 50, …), every `sd`
+  decision scales by the same factor as `R` and `d`.
+- Treat manufacturer constraints — filter thread, barrel diameter, image format, reproduction ratio — as **outer
+  bounds** only. A 52 mm filter thread does not mean the front surfaces reach that radius.
 
 ## Step 1 — Image-circle floor (always do this first)
 
@@ -45,7 +82,19 @@ amount. This needs no patent and has no measurement error — it is the stronges
   figure (Steps 2–4) to pick the actual value, and only fall back to `floor` + ~0.5 mm if the figure is unusable.
 - **Row marked `wide — verify by trace`** → the lens's half-field is past ~42°, where the script's exit-pupil
   approximation breaks down. Symmetric ultra-wides really do have small rear elements. **Do not change these on the
-  strength of this check alone.** Note it and move on.
+  strength of this check alone.** The traced check below settles them.
+
+Then trace it, with no approximation:
+
+```bash
+npm run audit:field-coverage -- ./src/lens-data/<maker>/<Lens>.data.ts --below=1.01
+```
+
+It follows the real chief ray to the format corner at every zoom station and names the rim that stops it (`clip`, or
+`blocked` when the aimed rays leave a clear aperture before they can reach the stop centre). A stopped field is
+proof only when the patent's printed image height reaches the corner. Many patents print a smaller maximum image
+height and leave the corners to in-camera distortion correction; there the short field is correct, and the lens's
+row in [sd-audit-queue.md](sd-audit-queue.md) Section F says so.
 
 ## Step 2 — Find the right figure sheet
 
@@ -124,6 +173,8 @@ curve ends — not the outer rectangle.
 ## Step 5 — Choose the new values
 
 - Scale every surface of an element by the same factor, so the author's front/rear relationship survives.
+- Work by element neighbourhood, not isolated rows: front and rear surfaces of one element change smoothly unless it
+  is a strong meniscus, a cemented junction, or the figure shows a real step or bevel.
 - Round to 0.1 mm.
 - Do not change `STO` — the stop semi-diameter derives the entrance pupil and therefore the f-number.
 - Where the figure and the floor disagree, take the larger, and say why in the log.
@@ -154,24 +205,35 @@ short of it — losing a millimetre here is correct, not a compromise.
 ## Step 7 — Apply the edit
 
 Edit the `sd` values in the `*.data.ts` surface table, and update the file's `NOTE ON SEMI-DIAMETERS` header block to
-say what changed and why.
+say what changed and why — "from patent effective diameters", "estimated from FIG. n", or "inferred from …". If the
+pass changed a focus assumption, a glass classification, or a previously stated mechanical interpretation, update the
+`*.analysis.md` prose to match.
 
-**If any surface you changed is aspheric and its rim departure is quoted anywhere, three files move together:**
+**If any surface you changed is aspheric and its rim departure is quoted anywhere, two files move together:**
 
 1. `*.data.ts` — the `sd`.
 2. `*.analysis.md` — every "at the data-file semi-diameters … µm" sentence. Recompute with
    `npm run audit:surface -- <file> --scan <label> <newSd>` and read the departure at the last row, or compute it at
    exactly the new height.
-3. `__tests__/src/lens-data/oddAsphereBackfill.test.ts` — the height and expected value in the assertion.
 
-Missing any one of these leaves the repo self-inconsistent; the test will catch #3 but nothing catches #2.
+Nothing automated checks #2, so recompute it every time and note the new values in the `*.audit.md` log.
 
 ## Step 8 — Verify
 
+Between edits on one lens the narrow checks are enough:
+
 ```bash
 npm run audit:image-circle -- ./src/lens-data/<maker>/<Lens>.data.ts
+npm test -- buildLens elementRenderDiagnostics
+```
+
+Before committing, run the full gate:
+
+```bash
 npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
+
+Do not keep per-lens audit tests; see `agent_docs/architecture/testing.md` § Per-Lens And Audit Test Retention.
 
 Then look at the rendered cross-section and compare it with the figure — this is the actual deliverable, and a
 number can be right while the picture is wrong:
@@ -192,7 +254,11 @@ Append a dated section to the sibling `*.audit.md` (create it if absent — see
 - anything you could not do and why,
 - the verification commands you ran.
 
-Then update the lens's row in [sd-audit-queue.md](sd-audit-queue.md).
+The `*.audit.md` is for a formal audit pass; for a lens still being authored, the data-file header plus the analysis
+file carry the SD rationale.
+
+Then delete the lens's row from [sd-audit-queue.md](sd-audit-queue.md) — the queue holds only open rows, and the
+sidecar is the evidence.
 
 ## Pitfalls, with symptoms
 
@@ -203,7 +269,7 @@ Then update the lens's row in [sd-audit-queue.md](sd-audit-queue.md).
 | Front elements read far too big on a figure with rays | entering bundle straddles the axis outside the glass | trust RIM, confirm by zoom |
 | Figure value impossible (bigger than \|R\|) | you are reading a bracket or a neighbouring element | re-crop, or measure that element by hand |
 | Validator rejects a value the figure clearly shows | the drawing includes a mounting flange | use the optical extent |
-| Aspheric departure sanity-checks stop making sense after the edit | quoted departures still reference the old heights | Step 7, all three files |
+| Aspheric departure sanity-checks stop making sense after the edit | quoted departures still reference the old heights | Step 7, both files |
 
 ## When to stop and just write it down
 
@@ -212,7 +278,7 @@ Record as a blocker and change nothing when:
 - the patent PDF is missing from `patents/`;
 - the figure is a thumbnail (fewer than ~20 px per element edge even at 600 dpi);
 - the sheet is a scan with ray overlays that will not measure after two honest crop attempts;
-- the lens is flagged `wide — verify by trace`;
+- the lens is flagged `wide — verify by trace` and the traced check does not show its corner chief ray clipped;
 - the only way to reach the figure's value is past an aspheric turnover or through a validator rejection.
 
 A blocker recorded precisely is worth more than a guessed number.

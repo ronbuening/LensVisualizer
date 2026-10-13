@@ -331,3 +331,14 @@ large front trio, narrowing middle unit, and revised rear progression preserve b
 
 Verification: `audit:image-circle`, `audit:surface`, production render diagnostics, glass reports, typecheck, formatting,
 lint, full tests, and production build all pass.
+
+## 2026-09-23 — Sensor plate modeled as `rearPlates`
+
+- Re-read Table 2 on patent page 19: surfaces 21–22 are an unlabeled 4.20 mm plate, nd 1.51680, νd 64.20, with
+  d22 = 0.00 (image on the plate's rear face); ZD20 = 15.44 / 20.05 / 25.44 mm at 0.00× / 0.10× / 0.20×. Surface 20 and
+  its `var` row now store these printed gaps, and the plate is one `rearPlates` entry with `gapAfterMm: 0`.
+- Glass: `BSC7`, the exact 1.51680 / 64.20 HOYA row, matching the HOYA optical-equivalent labels already used for L2, L4,
+  L6, and L10 (N-BK7 also resolves; the patent names no vendor).
+- Paraxial check against the previous folded data: EFL identical and defocus unchanged (worst difference 4e-15 mm) at
+  all three focus keyframes, since 15.44 + 4.20/1.51680 + 0 reproduces the old 18.208987 mm exactly. Physical track grows
+  by 1.431013 mm to the Table 2 row sum of 99.00 mm; the patent's 97.57 mm TL is the air-equivalent length.

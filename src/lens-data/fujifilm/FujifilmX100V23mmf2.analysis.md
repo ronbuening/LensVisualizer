@@ -28,7 +28,7 @@ The previous X100-series lens (X100 through X100F, 2013–2018) used a different
 
 ## Optical Architecture
 
-The lens follows a three-group telephoto-type configuration arranged, from object to image, as: a first positive lens group (G1), an aperture stop (St), a second positive lens group (G2), and a third negative lens group (G3). The positive–positive–negative power distribution shortens the total length relative to the focal length — the total track is only 38.35 mm for a 23.7 mm EFL, yielding a telephoto ratio of approximately 1.62. This compact geometry is essential for the X100V's thin body profile, where much of the optical assembly resides within the camera body itself.
+The lens follows a three-group telephoto-type configuration arranged, from object to image, as: a first positive lens group (G1), an aperture stop (St), a second positive lens group (G2), and a third negative lens group (G3). The positive–positive–negative power distribution shortens the total length relative to the focal length — the total track is only 38.35 mm for a 23.7 mm EFL (the patent's TL, with the back focus taken as an air-equivalent distance), yielding a telephoto ratio of approximately 1.62. This compact geometry is essential for the X100V's thin body profile, where much of the optical assembly resides within the camera body itself.
 
 G1 comprises two elements forming a single cemented doublet (L11+L12) with moderate positive power ($f_{G1} \approx +42.7$ mm). The doublet corrects axial chromatic aberration while keeping the front group compact.
 
@@ -115,7 +115,7 @@ The design uses six distinct glass types across eight elements. Two glasses — 
 | L23 | 1.80780 | 40.86 | Unmatched (near TAFD33 (HOYA), $\Delta n_d = 0.0017$) | Approximate | Aspherical biconvex, primary convergence in G2 |
 | L31 | 1.51633 | 64.06 | S-BSL7 (OHARA) | Exact | BK7-class crown, aspherical field corrector |
 
-The chromatic correction strategy relies on two cemented doublets. In G1, the TAFD25 flint ($\nu_d = 29.5$) partners with the high-index lanthanum-dense flint ($\nu_d = 39.2$) — a modest Abbe differential of approximately 10 units, supplemented by the high refractive-index differential at the cemented junction. In G2, S-TIM35 ($\nu_d = 30.1$) partners with S-LAH66 ($\nu_d = 49.6$) — a larger Abbe differential of approximately 19.5 units, providing the primary axial chromatic correction. No ED or anomalous-partial-dispersion glasses are used; the design achieves its chromatic correction through conventional high/low-dispersion flint pairings.
+The chromatic correction strategy relies on two cemented doublets. In G1, the S-TIH1 flint ($\nu_d = 29.5$) partners with the high-index lanthanum-dense flint ($\nu_d = 39.2$) — a modest Abbe differential of approximately 10 units, supplemented by the high refractive-index differential at the cemented junction. In G2, S-TIM35 ($\nu_d = 30.1$) partners with S-LAH66 ($\nu_d = 49.6$) — a larger Abbe differential of approximately 19.5 units, providing the primary axial chromatic correction. No ED or anomalous-partial-dispersion glasses are used; the design achieves its chromatic correction through conventional high/low-dispersion flint pairings.
 
 The two glasses that lack exact catalog matches ($n_d = 1.88300 / \nu_d = 39.22$ and $n_d = 1.80780 / \nu_d = 40.86$) share a common pattern: their $n_d$ values match known catalog entries, but the $\nu_d$ values diverge by 1–2 units. This is consistent with either proprietary glass compositions (particularly for the precision-molded aspherical L23) or deliberate slight obfuscation in the patent filing — a common practice in Japanese optical patents.
 
@@ -159,7 +159,7 @@ The companion data file stores Table 3 directly. Patent columns 8–11 map in or
 | 9A | -3.1786078E-11 | -2.6828331E-12 | 1.9590923E-13 | 6.6935119E-15 | -8.5735230E-16 | -4.4918245E-18 | 1.6151998E-18 | 8.0183252E-20 | -8.8086271E-21 |
 | 10A | 5.9393956E-11 | -3.9309708E-12 | 6.5830604E-13 | -5.2709876E-14 | 1.1668344E-15 | 2.1822742E-17 | 3.5346850E-19 | 3.5695647E-19 | -3.5705496E-20 |
 
-The exact profiles depart from their paraxial spheres by +27.447 µm at 7A ($h=6.3$ mm), +94.584 µm at 8A ($h=6.2$ mm), +662.051 µm at 9A ($h=9.4$ mm), and +563.937 µm at 10A ($h=9.4$ mm).
+The exact profiles depart from their paraxial spheres by +74.985 µm at 7A ($h=7.9$ mm), +307.126 µm at 8A ($h=8.5$ mm), +662.051 µm at 9A ($h=9.4$ mm), and +563.937 µm at 10A ($h=9.4$ mm).
 
 ### Surface-by-surface aspherical roles
 
@@ -167,7 +167,7 @@ The exact profiles depart from their paraxial spheres by +27.447 µm at 7A ($h=6
 
 **L23 rear (surface 8A, $R = -33.48$ mm).** The rear surface carries a strong positive $A_4$ departure that opens up the periphery, creating a complex correction profile that varies across aperture zones. Surfaces 7A and 8A work as a correction pair to balance the spherical aberration budget of the entire system.
 
-**L31 front and rear (surfaces 9A and 10A).** These surfaces carry smaller departures than L23's, consistent with L31's weak paraxial power and its role as a field corrector. Because L31 is positioned far from the aperture stop and close to the image, off-axis ray bundles are well separated radially at these surfaces, and the patent (¶0044) identifies L31's aspherical contribution as primarily correcting astigmatism.
+**L31 front and rear (surfaces 9A and 10A).** These surfaces depart from their spheres at least as much as L23's do, even at equal height, although L31 has weak paraxial power and works as a field corrector. Because L31 is positioned far from the aperture stop and close to the image, off-axis ray bundles are well separated radially at these surfaces, and the patent (¶0044) identifies L31's aspherical contribution as primarily correcting astigmatism.
 
 ## Verification Summary
 
@@ -177,12 +177,14 @@ The following patent-stated values were independently verified via paraxial y-nu
 |-----------|-------------|----------------|-----------|
 | $f$ (EFL) | 23.689 mm | 23.689 mm | $\Delta < 0.001$ mm |
 | $B_f$ (air equiv.) | 4.861 mm | 4.861 mm | Exact |
-| $\text{TL}$ | 38.35 mm | 38.35 mm | Exact |
+| $\text{TL}$ (air equiv.) | 38.35 mm | 38.35 mm | Exact |
 | $2\omega$ | 62.0° | 61.9° (paraxial) | $\Delta = 0.1°$ |
 | $f_{G12}/f$ | 0.79 | 0.786 | $\Delta = 0.004$ |
 | $(R_a + R_b)/(R_a - R_b)$ | 0.02 | 0.018 | $\Delta = 0.002$ |
 | $\text{FNo} \times \text{TL} / Y_\text{max}$ | 5.56 | 5.56 | Exact |
 | Petzval sum | — | 0.0032 mm$^{-1}$ | $R_P \approx 311$ mm |
+
+The patent's Table 1 ends with an optical member PP (surfaces 16–17: t = 1.300 mm, $n_d = 1.51680$, $\nu_d = 64.20$) between a 3.504 mm air gap after L33 and a 0.500 mm gap to the image plane, representing filters and sensor cover glass. The data file models PP physically in `rearPlates` (N-BK7 class): it is traced by every analysis but not drawn, and the last lens surface keeps the patent's 3.504 mm gap to the plate. The plate has no power, so EFL and paraxial focus match the air-equivalent $B_f = 3.504 + 1.300/1.51680 + 0.500 = 4.861$ mm. The physical first-surface-to-image length is 38.79 mm, the air-converted TL plus the plate's $1.300 \times (1 - 1/1.51680) = 0.44$ mm.
 
 All conditional expressions (1) through (6) are satisfied within the specified bounds.
 
@@ -192,4 +194,4 @@ All conditional expressions (1) through (6) are satisfied within the specified b
 - Fujifilm X100V product page, https://fujifilm-x.com/global/products/cameras/x100v/specifications/ — confirms 8 elements / 6 groups, 2 aspherical elements, fixed FUJINON 23mm f/2 lens, MFD ≈ 10 cm.
 - Fujifilm X100VI specifications, https://fujifilm-dsc.com/en/manual/x100vi/technical_notes/spec/ — confirms sensor dimensions (23.5 × 15.7 mm APS-C), focal length f = 23 mm, maximum aperture F2.0.
 - OHARA optical glass catalog — used for S-TIH1, S-TIM35, S-LAH66, S-BSL7, and S-LAH79 identification.
-- HOYA optical glass catalog — used for TAFD25, TAFD33 identification.
+- HOYA optical glass catalog — used for the TAFD33 near-match noted for the unmatched L23.

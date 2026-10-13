@@ -38,8 +38,9 @@ No uniform scaling is applied. All active surfaces are spherical, so no conic co
 is applicable.
 
 Several modeling normalizations are material to interpreting the file. Patent paragraph 0021 defines back focus from the
-last active lens surface Re to the image surface with glass block G absent. Rows 28–29 are therefore omitted as a
-filter/faceplate and surface 27 is followed by the normalized 121.13 mm plate-absent image-space distance. The aperture
+last active lens surface Re to the image surface with glass block G absent. Rows 28–29, the filter/faceplate, are drawn
+as a plane-parallel plate 12.00 mm behind surface 27 (2.00 mm, nd 1.51633, νd 64.1, ray-trace estimated semi-diameter), and
+121.13 − 12.00 − 2.00/1.51633 = 107.811026 mm of air follows it, which keeps the plate-absent back focus. The aperture
 stop position and its 43.11 mm effective diameter are both retained from the Example 3 table. A first-order projection of
 that stop through the front unit gives a paraxial f-number of about 4.036, but a finite-aperture spherical marginal-ray
 solve gives a 141.971800 mm admitted parallel beam and f/4.119247 at the computed EFL. The published Fno = 4.12 is
@@ -375,9 +376,9 @@ leaving 0.316737 mm of positive rim clearance. The per-lens `gapSagFrac` is cons
 apertures remain representable without permitting physical intersection. No layout parameter is used to conceal an
 invalid edge thickness or cross-gap intrusion.
 
-The rear glass block G is excluded from these paraxial, Petzval, and geometry results. That exclusion follows the patent's
-own back-focus definition and the project rule that rear filters/faceplates are not ordinary active prescription
-surfaces.
+The rear glass block G is a flat plate, so it does not enter the focal length or the Petzval sum; the back focal
+distance above is the plate-absent value the patent defines. The plate is drawn because the lens is computed with the
+drop-in filter in place.
 
 ## Sources / References
 

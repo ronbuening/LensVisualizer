@@ -1,4 +1,4 @@
-# NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED
+# NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6 D ED
 
 ## Patent Reference and Design Identification
 

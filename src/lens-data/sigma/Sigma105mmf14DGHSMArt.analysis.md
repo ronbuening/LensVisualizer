@@ -25,7 +25,7 @@ A reader who knows the lens but not the patent can verify the identification fro
 
 ## Optical Architecture
 
-The design is a **two-group, positive–positive, internal-focus short-telephoto prime** rather than a true telephoto optical layout. Its physical track is longer than its focal length (about $171.92/101.85 = 1.69$ before cover-glass folding), so the term "short telephoto" is used here in the photographic focal-length sense, not in the optical-engineering sense of a telephoto ratio below unity. In the convention used by the patent, the system divides into a fixed front group **G1** (surfaces 1–14) and a moving rear group **G2** (surfaces 15–30, spanning the aperture stop). Independent paraxial slice traces give the group focal lengths
+The design is a **two-group, positive–positive, internal-focus short-telephoto prime** rather than a true telephoto optical layout. Its physical track is longer than its focal length (about $171.92/101.85 = 1.69$, including the cover plate), so the term "short telephoto" is used here in the photographic focal-length sense, not in the optical-engineering sense of a telephoto ratio below unity. In the convention used by the patent, the system divides into a fixed front group **G1** (surfaces 1–14) and a moving rear group **G2** (surfaces 15–30, spanning the aperture stop). Independent paraxial slice traces give the group focal lengths
 
 $$f_{G1} = +334.5\ \text{mm}, \qquad f_{G2} = +90.3\ \text{mm},$$
 
@@ -251,7 +251,7 @@ evaluates to $P = 1.243\times10^{-3}\ \text{mm}^{-1}$, a Petzval radius of $1/P 
 All quantitative claims in this document were checked against an independent paraxial model of the Example-1 prescription:
 
 - **Effective focal length:** computed $101.85$ mm vs. patent $101.85$ mm.
-- **Total track:** computed $171.92$ mm vs. patent $171.92$ mm when the patent's flat cover plate is retained. The companion `.data.ts` file excludes that cover plate, per project convention, and folds it into an air-equivalent final back-focus distance.
+- **Total track:** computed $171.92$ mm vs. patent $171.92$ mm, with the patent's flat cover plate included. The companion `.data.ts` file models that plate through `rearPlates`: every analysis traces it, but it is not drawn. Surface 30A keeps the patent's gap to the plate.
 - **Telephoto ratio check:** physical track / EFL $\approx 1.69$, so the optical prescription is not a true telephoto construction despite the 105 mm short-telephoto focal length.
 - **Group focal lengths:** all seven (G1, G2, G1a, G1b, G1c, G2a, G2b) reproduce the patent's lens-group table to rounding.
 - **Element powers and shapes:** all 17 element signs and meniscus/biconvex/biconcave classifications follow directly from the transcribed radii.

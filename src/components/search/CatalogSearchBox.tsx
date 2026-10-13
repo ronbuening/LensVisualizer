@@ -3,7 +3,7 @@
  *
  * Exact, unambiguous submissions open their destination immediately. Broader
  * queries move to the search route, while optional homepage suggestions expose
- * direct lens, patent, and author links as the visitor types.
+ * direct lens, teleconverter, patent, and author links as the visitor types.
  */
 
 import { useMemo, useRef, useState } from "react";
@@ -33,6 +33,13 @@ function suggestionDetails(match: CatalogSearchMatch): { label: string; meta: st
       label: match.author.name,
       meta: `Author · ${match.author.patentCount} ${pluralize(match.author.patentCount, "patent")}`,
       to: canonicalPagePath(`/authors/${match.author.slug}`),
+    };
+  }
+  if (match.type === "teleconverter") {
+    return {
+      label: match.data.name,
+      meta: `Teleconverter · ${match.data.magnification}×`,
+      to: canonicalPagePath(`/teleconverters/${match.key}`),
     };
   }
   if (match.type === "patent") {
@@ -67,10 +74,12 @@ export default function CatalogSearchBox({
   const suggestions = useMemo(() => {
     if (!showSuggestions) return [];
     const results = searchCatalog(currentQuery);
-    return [...results.lenses.slice(0, 3), ...results.patents.slice(0, 3), ...results.authors.slice(0, 3)].slice(
-      0,
-      suggestionLimit,
-    );
+    return [
+      ...results.lenses.slice(0, 3),
+      ...results.teleconverters.slice(0, 2),
+      ...results.patents.slice(0, 3),
+      ...results.authors.slice(0, 3),
+    ].slice(0, suggestionLimit);
   }, [currentQuery, showSuggestions, suggestionLimit]);
   const suggestionsVisible = showSuggestions && suggestionsOpen && normalizedQuery.length > 0;
   const suggestionsRef = useDismissableDropdown<HTMLDivElement>(suggestionsVisible, inputRef, () =>
@@ -112,7 +121,7 @@ export default function CatalogSearchBox({
       )}
       <form onSubmit={handleSubmit} role="search" style={{ display: "flex", gap: "0.5rem" }}>
         <label htmlFor="catalog-search-input" style={VISUALLY_HIDDEN}>
-          Search lenses, aliases, manufacturers, patents, and authors
+          Search lenses, teleconverters, aliases, manufacturers, patents, and authors
         </label>
         <input
           ref={inputRef}
@@ -124,7 +133,7 @@ export default function CatalogSearchBox({
             setSuggestionsOpen(event.target.value.trim().length > 0);
           }}
           onFocus={() => setSuggestionsOpen(normalizedQuery.length > 0)}
-          placeholder="Lens, alias, manufacturer, patent, or author"
+          placeholder="Lens, teleconverter, alias, manufacturer, patent, or author"
           autoComplete="off"
           /* aria-expanded belongs on a combobox role this input does not claim;
              aria-controls only renders while its target exists. */

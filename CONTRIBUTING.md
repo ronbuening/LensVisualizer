@@ -1,7 +1,7 @@
 # Contributing to Surface & Stop
 
 Contributions can improve the application, its optical models, or its documentation. This guide covers the shared
-workflow; specialized authoring guides contain the domain-specific requirements.
+workflow; the per-task guides below hold the domain-specific requirements.
 
 ## Before you begin
 
@@ -15,43 +15,35 @@ Include a patent or prescription source when possible.
 
 ## Development setup
 
-Surface & Stop requires Node.js 24.15.0 or newer within the Node 24 release line. The repository provides `.nvmrc` and
-`.node-version` files for compatible version managers.
-
-```bash
-git clone https://github.com/ronbuening/LensVisualizer.git
-cd LensVisualizer
-nvm use # Optional: if you use nvm
-npm ci
-npm run dev
-```
-
-The development server runs at `http://localhost:5173`.
+Surface & Stop requires Node.js 24.15.0 or newer within the Node 24 release line (`.nvmrc` and `.node-version` are
+provided). Clone the repository, run `npm ci`, then `npm run dev` for the development server at
+`http://localhost:5173`. The [README](README.md#run-it-locally) has the full block and the common commands.
 
 ## Choose the relevant guide
 
 - **Lens prescription:** [Adding a New Lens](agent_docs/adding_a_lens.md) and the
   [lens data specification](src/lens-data/LENS_DATA_SPEC.md)
 - **Lens write-up:** [Lens analysis format](src/lens-data/LENS_ANALYSIS_SPEC.md)
+- **Checking an existing lens against its patent:** [Lens patent audit](agent_docs/lens-patent-audit.md)
+- **Glass catalog entry:** [Glass catalog buildout](agent_docs/glass-catalog-buildout.md)
 - **Article:** [Adding an Article](agent_docs/adding_an_article.md)
 - **Analysis drawer tab:** [Adding an Analysis Tab](agent_docs/adding_an_analysis_tab.md)
 - **URL-shareable state:** [Adding URL State](agent_docs/adding_url_state.md)
 - **Route:** [Adding a Route](agent_docs/adding_a_route.md)
 - **UI control:** [Adding UI Controls](agent_docs/adding_ui_controls.md)
 - **Mount diagram:** [Mount SVG specification](src/mounts/MOUNT_SVG_SPEC.md)
+- **Tests:** [Testing recipes](agent_docs/testing_recipes.md)
 
-The [developer docs index](agent_docs/README.md) links to architecture notes, testing recipes, and focused workflow
-guides.
+The [developer docs index](agent_docs/README.md) tags every architecture note, recipe, policy, and work queue.
 
 ## Project conventions
 
-- Keep optics helpers pure and pass the runtime lens object explicitly.
-- Use exact surface tracing and the shared projection/chief-ray paths; do not add alternate trace modes.
-- Keep state-dependent analysis outside `buildLens()`.
+- Keep optics helpers pure, pass the runtime lens object explicitly, and use the shared exact-trace and chief-ray paths.
+- Keep lens diagrams as inline SVG and component styling inline; the project uses no CSS files or UI library.
 - Reuse shared controls, renderers, utilities, and theme tokens before adding another abstraction.
-- Keep lens diagrams as inline SVG and component styling inline; the project does not use CSS files or a UI library.
-- Add tests at the same level as the change. See [testing recipes](agent_docs/testing_recipes.md) for existing patterns.
-- Keep changes focused and do not include generated or unrelated local files.
+- Do not add per-lens or per-batch test files; the corpus sweeps already validate every catalog lens.
+
+The complete working rules are the Core Working Rules in [`CLAUDE.md`](CLAUDE.md).
 
 ## Adding or correcting lens data
 
@@ -61,8 +53,6 @@ inferred values as patent values.
 
 Start from [`src/lens-data/TEMPLATE.data.ts.template`](src/lens-data/TEMPLATE.data.ts.template). Lens files are
 auto-registered, and `npm run generate:metadata` or `npm run build` moves a root-level draft into its maker folder.
-The detailed [lens authoring guide](agent_docs/adding_a_lens.md) covers validation, companion analysis files, mount and
-format metadata, folded systems, and semi-diameter troubleshooting.
 
 ## Verification
 
@@ -80,9 +70,10 @@ changes. The quality workflow runs the typecheck, formatting check, lint, depend
 
 ## Pull-request checklist
 
-- Explain the user-visible result and the reason for the change.
+- Explain the user-visible result and the reason for the change; the PR description is the record of the work, so do
+  not add notes under `agent_docs/records/`.
 - Link the relevant issue, patent, specification, or other source.
 - Include screenshots for meaningful interface or rendering changes.
 - Add or update tests for behavior changes.
 - List the verification commands you ran and any known limitations.
-- Confirm that generated metadata and reports were refreshed when the relevant authoring guide requires them.
+- Confirm that generated metadata and reports were refreshed when the relevant guide requires them.

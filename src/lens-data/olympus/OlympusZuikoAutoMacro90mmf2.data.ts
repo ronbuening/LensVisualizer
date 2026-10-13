@@ -202,11 +202,16 @@ const LENS_DATA = {
    *  Focus type: unit focus + floating element (whole lens advances,
    *  Group III at 63% of subsystem speed → single variable gap).
    */
+  focusPositions: [0, 0.42200636994498253, 1],
   var: {
-    "12": [0.7999, 18.2493],
+    "12": [0.7999, 4.7547, 18.2493],
+    "18": [39.8578, 46.59164864864865, 69.56894054054054],
   },
 
-  varLabels: [["12", "D₁₃"]],
+  varLabels: [
+    ["12", "D₁₃"],
+    ["18", "BF"],
+  ],
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -219,6 +224,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.4,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Differential-speed whole-lens advance. Groups I+II advance as a unit; Group III advances at 63% of subsystem speed. Single variable gap d₁₃ expands from 0.80 mm (∞) to 18.25 mm (1/2×). Helicoid travel ≈ 47 mm.",
 

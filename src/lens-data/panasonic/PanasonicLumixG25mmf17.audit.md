@@ -35,3 +35,9 @@ No glass-label relabels or numeric prescription changes were made in this pass. 
 
 - Confirmed the analysis already identifies the chromatic strategy as L3, L6, and L7 only.
 - Tightened the glass-identification wording to state that Table 23 line-index availability is not itself an APD badge.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read Numerical Example 4 on the rendered page 22 of `patents/US20170059832A1.pdf`: Table 22 surfaces 16–19 give d16 = 10.80000, plate M d17 = 4.20000 (nd 1.51680, νd 64.2), d18 = 1.00000, then BF; Table 23 gives M's nC 1.51432, nF 1.52237, ng 1.52667, PgF 0.53418; Table 25 gives BF = 0.00461 / 0.00488 / 0.00594 mm (∞ / 939.5 mm / 175 mm d0). The legacy fold 10.8 + 4.2/1.5168 + 1.0 + BF reproduces the stored 14.5736 / 14.5739 / 14.5749 mm exactly.
+- M is now a `rearPlates` entry (label M, 4.2 mm, BSC7 (Hoya) — resolves for 1.51680 / 64.2 and matches the file's Hoya element labels — with the patent line indices and dPgF −0.00164 from θgF 0.53418) with `gapAfterMm` 1.00461 (d18 + infinity BF). Surface 16 stores the physical gap to M: 10.8 / 10.80027 / 10.80133 mm, carrying the 0.0013 mm close-focus BF growth ahead of the plate so the lens-to-image path stays as printed.
+- Plate check against HEAD: EFL identical and paraxial defocus unchanged at all three focus keyframes (worst |Δ| ≈ 1e-15 mm). Physical track grows by 4.2 × (1 − 1/1.5168) = 1.4310 mm to 71.0046 mm at infinity, matching the patent's printed overall length. `closeFocusM` 0.25 is the production specification and was left unchanged.

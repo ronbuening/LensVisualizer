@@ -18,6 +18,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    mechanical clearance. Front group capped by 49 mm filter       ║
  * ║    thread (max SD ≈ 23 mm) and validated against edge thickness   ║
  * ║    ≥ 0.7 mm and cross-gap sag overlap constraints.                ║
+ * ║    Surfaces 12-13 (L7) were raised to pass the traced chief ray   ║
+ * ║    to the full-frame corner (23.8°, just past the patent's        ║
+ * ║    ω = 23°); L7's edge thins to 0.20 mm there, below the 0.7 mm   ║
+ * ║    target (2026-09-24 field-coverage audit).                      ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                           ║
  * ║    STO position inferred from Fig. 1 — approximately 25% of the  ║
@@ -154,8 +158,8 @@ const LENS_DATA = {
     { label: "9", R: -25.565, d: 0.095, nd: 1.0, elemId: 0, sd: 13.0 },
     { label: "10", R: -53.085, d: 4.45, nd: 1.8061, elemId: 6, sd: 14.0 },
     { label: "11", R: -23.38, d: 0.115, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "12", R: 93.92, d: 2.85, nd: 1.6935, elemId: 7, sd: 14.0 },
-    { label: "13", R: -114.865, d: 37.16, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "12", R: 93.92, d: 2.85, nd: 1.6935, elemId: 7, sd: 16.5 },
+    { label: "13", R: -114.865, d: 37.16, nd: 1.0, elemId: 0, sd: 16.5 },
   ],
 
   /* ── Aspherical coefficients ── */

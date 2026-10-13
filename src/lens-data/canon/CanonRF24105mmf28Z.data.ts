@@ -1,39 +1,41 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — Canon RF24-105mm F2.8 L IS USM Z                     ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2024/0192474 A1, Numerical Example 4 (¶0082).    ║
- * ║  Inventor: Shunji Iwamoto, Canon Kabushiki Kaisha.                ║
- * ║  JP Priority: 2022-192641 (Dec. 1, 2022).                        ║
- * ║  Positive–negative–positive–rear-group zoom for RF mount.         ║
- * ║  23 elements / 18 groups (24 optical bodies), 3 aspherical        ║
- * ║  surfaces (2× GMo + 1× replica).                                 ║
- * ║  Focus: Dual-group floating focus via two Nano USM motors.        ║
- * ║    L5 (S35-S36) moves image-ward; L6 (S37-S38) moves             ║
- * ║    object-ward when focusing close.                               ║
- * ║                                                                    ║
- * ║  Internal zoom (constant overall length 211.98 mm).               ║
- * ║  Zoom variable gaps: d8, d15, d24 (zoom primary).                ║
- * ║  Zoom + focus variable gaps: d34, d36, d38, d43.                 ║
- * ║  Non-monotonic BFD: d43 peaks at middle zoom position.           ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                          ║
- * ║    Estimated from combined marginal + chief ray envelope across   ║
- * ║    all zoom positions, then refined against Canon's published     ║
- * ║    construction diagram so rendered element heights follow the    ║
- * ║    production silhouette more closely. Values remain constrained  ║
- * ║    by positive edge thickness, cross-gap sag intrusion (≤ 90% of  ║
- * ║    gap), and 82 mm filter thread (front elements capped at        ║
- * ║    SD ≤ 39 mm). The replica resin layer is capped separately      ║
- * ║    because it is only 0.05 mm thick at center. Significant        ║
- * ║    vignetting is expected at field corners, especially in L2.     ║
- * ║                                                                    ║
- * ║  NOTE ON CLOSE FOCUS:                                              ║
- * ║    Patent provides no close-focus air spacing data for this       ║
- * ║    example. All var entries use identical inf/close values.        ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * LENS DATA — Canon RF24-105mm F2.8 L IS USM Z
+ *
+ * Data source: US 2024/0192474 A1 (Canon / Shunji Iwamoto), Numerical Example 4 (¶0082, FIG. 7, FIGS. 8A/8B).
+ * JP priority 2022-192641 (Dec. 1, 2022). Prescription stored at the patent's native scale (f = 24.78–102.06).
+ * Positive–negative–positive + rear group (L4 +, L5 −, L6 +, L7 −); 24 optical bodies = 23 elements in 18 groups
+ * when the 0.05 mm replica resin layer on L13 is not counted separately. Three aspherical surfaces (S22 replica
+ * layer, S32, S37; K = 0 in the patent's (1+K) conic formula). The GMo / replica identification is Canon's
+ * published construction, not patent text.
+ *
+ * ZOOM: L1 is fixed to the image plane (¶0069) and the overall length is 211.98 mm at all three tabulated stations
+ * (wide / middle / tele, all published — no interpolated stations). Every other unit moves: L2 +33.90 mm toward the
+ * image; L3 −5.88 mm, L4 −24.72 mm, L5 −26.12 mm, L6 −27.00 mm toward the object; L7 −14.11 mm toward the object
+ * from wide to middle then +6.74 mm back toward the image (derived from the patent gap table). Zoom gaps d8, d15,
+ * d24, d34, d36, d38, d43.
+ *
+ * FOCUS: ¶0069 — during focusing to a short distance L5 (S35–S36) and L6 (S37–S38) both move toward the image
+ * side (FIG. 7 arrows agree). The patent publishes no close-focus gaps for any example, so the finite-focus
+ * entries repeat the infinity values; focus travel is not modeled (never invented). closeFocusM = 0.45 m is
+ * Canon's production minimum focus distance, shown for reference only.
+ *
+ * BACK FOCUS: the patent lists no cover glass or filter; d43 is the patent's air back focus (stored values focus
+ * within 0.015 mm paraxially at every station).
+ *
+ * APERTURE: patent Fno 2.90 at all stations. The stop (S16, in L3) moves with L3 and no iris diameters are
+ * published, so zoomApertureModel "from-nominal-fno" infers the iris per station (traced radii ≈ 10.9 / 13.7 /
+ * 15.1 mm, wide / middle / tele). STO sd 15.2 records the largest (tele) iris.
+ *
+ * NOTE ON SEMI-DIAMETERS:
+ *   Not published. Values were first estimated from a marginal + chief-ray envelope and refined against Canon's
+ *   construction diagram; the 2026-09-23 audit re-checked them against FIG. 7 (scale 7.63 px/mm at 300 dpi, from
+ *   the S1–image vertex span) and an exact real-ray trace at Y = 21.6 mm, Fno 2.9. S9/S10 were enlarged to the
+ *   figure (the wide-angle corner chief ray was blocked), S32A was reduced to its asphere turnover (it was past
+ *   it), and L24 was reduced to the figure. Other rims are within ~15 % of FIG. 7 and were kept; the L4 rims run
+ *   ~8–11 % larger than the figure. The replica resin layer (S22A/S23) stays capped at 15.5 mm because it is only
+ *   0.05 mm thick on axis.
  */
 
 const LENS_DATA = {
@@ -122,7 +124,7 @@ const LENS_DATA = {
       vd: 40.8,
       fl: -35.0,
       glass: "S-LAH58 (OHARA)",
-      role: "Primary negative in variator; strongest individual negative element",
+      role: "Primary negative in variator; strongest negative element in L2",
     },
     {
       id: 6,
@@ -178,12 +180,12 @@ const LENS_DATA = {
       id: 10,
       name: "L10",
       label: "Element 10",
-      type: "Positive Meniscus",
+      type: "Negative Meniscus",
       nd: 2.001,
       vd: 29.1,
       fl: -98.2,
       glass: "S-LAH99 (OHARA)",
-      role: "Highest-index glass in design; strong correction at cemented junction",
+      role: "Highest-index glass in design; negative meniscus front of cemented doublet Db, strong index step at the junction",
       cemented: "Db",
     },
     {
@@ -207,7 +209,7 @@ const LENS_DATA = {
       vd: 30.1,
       fl: -1256.1,
       glass: "UV-curing optical resin (replica aspheric)",
-      role: "Replica aspherical layer; first Canon improved replica aspheric on RF lens",
+      role: "Replica aspherical resin layer (0.05 mm on axis) bonded to L13; carries aspherical surface S22",
       cemented: "Ha",
     },
     {
@@ -259,7 +261,7 @@ const LENS_DATA = {
       fl: 61.2,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
-      role: "UD element; strongest individual positive in L4",
+      role: "UD element; standalone positive singlet in L4",
     },
     {
       id: 17,
@@ -293,7 +295,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       fl: 41.2,
-      glass: "N-SK14 (Schott)",
+      glass: "S-BSM14 (OHARA)",
       role: "Positive partner in GMo aspherical doublet; dominant positive power in rear of L4",
       cemented: "Dd",
     },
@@ -308,7 +310,7 @@ const LENS_DATA = {
       vd: 54.7,
       fl: -47.4,
       glass: "S-LAL18 (OHARA)",
-      role: "Focus group A (Nano USM #1); moves image-ward when focusing close",
+      role: "Focus group A (Nano USM #1); moves image-ward when focusing close (¶0069)",
     },
 
     // ── Lens Unit L6 (focus group B, f = +112.74 mm) ──
@@ -320,8 +322,8 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       fl: 112.7,
-      glass: "OHARA L-BAL42 PGM glass (583/594)",
-      role: "Focus group B (Nano USM #2); GMo aspherical, moves object-ward when focusing close",
+      glass: "L-BAL42 (OHARA)",
+      role: "Focus group B (Nano USM #2); aspherical S37, moves image-ward when focusing close (¶0069)",
     },
 
     // ── Lens Unit L7 (rear field corrector, f = −90.78 mm) ──
@@ -375,8 +377,8 @@ const LENS_DATA = {
     { label: "8", R: -880.3, d: 0.8, nd: 1.0, elemId: 0, sd: 26.4 }, // E4 rear → air [var d8]
 
     // ── L2: Negative variator ──
-    { label: "9", R: 915.083, d: 1.2, nd: 1.883, elemId: 5, sd: 17.5 }, // E5 front
-    { label: "10", R: 29.841, d: 5.73, nd: 1.0, elemId: 0, sd: 15.8 }, // E5 rear → air
+    { label: "9", R: 915.083, d: 1.2, nd: 1.883, elemId: 5, sd: 20.0 }, // E5 front
+    { label: "10", R: 29.841, d: 5.73, nd: 1.0, elemId: 0, sd: 17.0 }, // E5 rear → air
     { label: "11", R: -218.33, d: 1.0, nd: 1.59522, elemId: 6, sd: 15.8 }, // E6 front
     { label: "12", R: 63.389, d: 3.69, nd: 1.0, elemId: 0, sd: 14.9 }, // E6 rear → air
     { label: "13", R: -74.215, d: 1.1, nd: 1.497, elemId: 7, sd: 14.9 }, // E7 front (UD, cemented Da)
@@ -402,7 +404,7 @@ const LENS_DATA = {
     { label: "29", R: -105.932, d: 2.3, nd: 1.0, elemId: 0, sd: 21.2 }, // E16 rear → air
     { label: "30", R: 63.231, d: 6.49, nd: 1.497, elemId: 17, sd: 21.9 }, // E17 front (UD)
     { label: "31", R: -97.379, d: 0.15, nd: 1.0, elemId: 0, sd: 21.9 }, // E17 rear → air
-    { label: "32A", R: 85.354, d: 2.4, nd: 1.854, elemId: 18, sd: 21.0 }, // E18 front (GMo asph, cemented Dd)
+    { label: "32A", R: 85.354, d: 2.4, nd: 1.854, elemId: 18, sd: 18.0 }, // E18 front (GMo asph, cemented Dd)
     { label: "33", R: 34.925, d: 8.89, nd: 1.60311, elemId: 19, sd: 19.7 }, // E18→E19 junction
     { label: "34", R: -78.017, d: 2.5, nd: 1.0, elemId: 0, sd: 19.7 }, // E19 rear → air [var d34]
 
@@ -418,8 +420,8 @@ const LENS_DATA = {
     { label: "39", R: 210.344, d: 5.69, nd: 1.80518, elemId: 22, sd: 17.4 }, // E22 front (cemented De)
     { label: "40", R: -46.896, d: 1.5, nd: 1.48749, elemId: 23, sd: 17.4 }, // E22→E23 junction
     { label: "41", R: 59.11, d: 9.57, nd: 1.0, elemId: 0, sd: 17.0 }, // E23 rear → air
-    { label: "42", R: -33.883, d: 1.2, nd: 2.00069, elemId: 24, sd: 20.6 }, // E24 front
-    { label: "43", R: -66.006, d: 11.63, nd: 1.0, elemId: 0, sd: 21.8 }, // E24 rear → BFD [var d43]
+    { label: "42", R: -33.883, d: 1.2, nd: 2.00069, elemId: 24, sd: 18.0 }, // E24 front
+    { label: "43", R: -66.006, d: 11.63, nd: 1.0, elemId: 0, sd: 18.0 }, // E24 rear → image [var d43]
   ],
 
   /* ── Aspherical coefficients ── */
@@ -453,9 +455,9 @@ const LENS_DATA = {
     },
   },
 
-  /* ── Variable air spacings (zoom + focus) ──
-   *  No close-focus spacing data in patent for Example 4.
-   *  All var entries use identical infinity/close values.
+  /* ── Variable air spacings (zoom; patent Various Data, all three stations tabulated) ──
+   *  No close-focus spacing data in the patent for any example, so every
+   *  [infinity, close] pair repeats the infinity value (focus travel not modeled).
    */
   var: {
     "8": [
@@ -502,7 +504,7 @@ const LENS_DATA = {
     ["34", "D34"],
     ["36", "D36"],
     ["38", "D38"],
-    ["43", "BF"],
+    ["43", "D43"],
   ],
 
   /* ── Zoom configuration ── */
@@ -515,10 +517,10 @@ const LENS_DATA = {
     { text: "L1 (fixed)", fromSurface: "1", toSurface: "8" },
     { text: "L2 (variator)", fromSurface: "9", toSurface: "15" },
     { text: "L3 (compensator)", fromSurface: "STO", toSurface: "24" },
-    { text: "L4 (relay)", fromSurface: "25", toSurface: "34" },
-    { text: "L5 (focus A)", fromSurface: "35", toSurface: "36" },
-    { text: "L6 (focus B)", fromSurface: "37A", toSurface: "38" },
-    { text: "L7 (corrector)", fromSurface: "39", toSurface: "43" },
+    { text: "L4", fromSurface: "25", toSurface: "34" },
+    { text: "L5", fromSurface: "35", toSurface: "36" },
+    { text: "L6", fromSurface: "37A", toSurface: "38" },
+    { text: "L7", fromSurface: "39", toSurface: "43" },
   ],
 
   doublets: [
@@ -533,11 +535,14 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
   focusDescription:
-    "Dual-group floating focus: L5 (neg. meniscus) moves image-ward, L6 (pos. meniscus, GMo asph) moves object-ward. Driven by two independent Nano USM motors. Close-focus gap data not available from patent; identical inf/close values used.",
+    "Dual-group floating focus: L5 (negative meniscus) and L6 (positive meniscus, aspherical S37) both move toward the image when focusing close (patent ¶0069), driven by two Nano USM motors. The patent publishes no close-focus gaps, so focus travel is not modeled; 0.45 m is Canon's production minimum focus distance.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
+  nominalFno: 2.9,
+  // Physical iris schedule inferred by tracing the patent's f/2.90 entrance pupil at each zoom station.
+  zoomApertureModel: "from-nominal-fno",
+  fstopSeries: [2.9, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
+  maxFstop: 22,
 
   /* ── Layout tuning ── */
   scFill: 0.42,

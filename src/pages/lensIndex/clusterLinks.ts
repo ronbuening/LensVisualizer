@@ -4,6 +4,7 @@
 
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
+import { teleconverterLensPath } from "../../utils/catalog/teleconverterSummaries.js";
 
 export type LensLibraryBreadcrumbContext = { type: "mount"; id: LensMountId } | { type: "format"; id: ImageFormatId };
 
@@ -11,7 +12,8 @@ export type LensBreadcrumbSource =
   | { type: "lenses"; returnTo: string; context?: LensLibraryBreadcrumbContext }
   | { type: "maker"; slug: string; label: string }
   | { type: "mount"; id: LensMountId }
-  | { type: "format"; id: ImageFormatId };
+  | { type: "format"; id: ImageFormatId }
+  | { type: "teleconverter"; id: string };
 
 export interface LensNavigationState {
   lensBreadcrumb: LensBreadcrumbSource;
@@ -57,5 +59,13 @@ export function lensLinkFromFormat(lensKey: string, formatId: ImageFormatId): Le
   return {
     to: canonicalPagePath(`/lens/${lensKey}`),
     state: { lensBreadcrumb: { type: "format", id: formatId } },
+  };
+}
+
+/** Link from a teleconverter page to a host lens with that converter mounted. */
+export function lensLinkFromTeleconverter(lensKey: string, teleconverterKey: string): LensLinkTarget {
+  return {
+    to: teleconverterLensPath(lensKey, teleconverterKey),
+    state: { lensBreadcrumb: { type: "teleconverter", id: teleconverterKey } },
   };
 }

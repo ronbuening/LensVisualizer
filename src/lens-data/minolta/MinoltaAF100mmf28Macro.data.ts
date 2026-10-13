@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,764,000",
   patentAuthors: ["Hisashi Tokumaru"],
-  patentAssignees: ["Minolta Co., Ltd."],
+  patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1988,
   elementCount: 8,
   groupCount: 8,
@@ -178,10 +178,11 @@ const LENS_DATA = {
 
   asph: {},
 
+  focusPositions: [0, 0.853009797094441, 1],
   var: {
-    "8": [5.0, 27.5],
-    "12": [24.0, 1.5],
-    "16": [43.1530002237, 113.4895036789],
+    "8": [5.0, 18.36, 27.5],
+    "12": [24.0, 10.64, 1.5],
+    "16": [43.1530002237, 76.5518, 113.4895036789],
   },
   varLabels: [
     ["8", "D8"],
@@ -199,9 +200,11 @@ const LENS_DATA = {
   focusDescription:
     "Three-group floating focus: Groups I and III move together toward the object, while the negative Group II moves in the same direction by a smaller amount; D8 increases, D12 decreases, and BF lengthens to the β = -1.0 close-focus state.",
   closeFocusM: 0.35,
-  nominalFno: 2.8,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
+  nominalFno: 2.83,
   maxFstop: 32,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [2.83, 4, 5.6, 8, 11, 16, 22, 32],
   offAxisFieldFrac: 0.3,
   scFill: 0.62,
   yScFill: 0.42,

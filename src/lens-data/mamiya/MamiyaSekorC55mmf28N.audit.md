@@ -8,7 +8,6 @@ Catalog version: local working tree, 2026-08-07
 ### Figure and geometry review
 
 - No matching local patent PDF is present in `patents/`, so the project's patent-figure audit procedure blocks a direct semi-diameter revision for this lens.
-- `npm run audit:image-circle -- src/lens-data/mamiya/MamiyaSekorC55mmf28N.data.ts` reports zero undersized surfaces.
 - Reviewed all eight surface-derived element types, D1/D2 cemented boundaries, two functional-block spans, and rounded Abbe badges; they agree with the stored prescription and the supplied site screenshot.
 
 ### Glass, labels, and identity review

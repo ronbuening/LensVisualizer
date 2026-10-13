@@ -15,7 +15,7 @@ function summary(overrides: Partial<LensSummary> & Pick<LensSummary, "key" | "na
 }
 
 describe("aggregatePatentRecords — party display order", () => {
-  /* Sanctioned by the code-health plan (C1 step 3 / U3 step 4): per-patent
+  /* Sanctioned in agent_docs/decisions.md (party display order): per-patent
      inventor/assignee display order is lens-file source order, first occurrence
      wins across merged lenses. Only identity-level lists sort. */
   it("preserves lens-file source order for merged authors and assignees", () => {
@@ -50,6 +50,22 @@ describe("patent catalog", () => {
     expect(espacenetPatentUrl("JP S56-140311")).toBe(
       "https://worldwide.espacenet.com/patent/search?q=pn%3DJPS56140311",
     );
+  });
+
+  it("normalizes catalog formats that diverge from DOCDB publication numbers", () => {
+    const search = (publicationNumber: string) =>
+      `https://worldwide.espacenet.com/patent/search?q=pn%3D${publicationNumber}`;
+    expect(espacenetPatentUrl("US 2018/0164556 A1")).toBe(search("US2018164556A1"));
+    expect(espacenetPatentUrl("US 2001/0030812 A1")).toBe(search("US2001030812A1"));
+    expect(espacenetPatentUrl("JP S62-078520 A")).toBe(search("JPS6278520A"));
+    expect(espacenetPatentUrl("JP H9-105860 A")).toBe(search("JPH09105860A"));
+    expect(espacenetPatentUrl("JP 1991-141313 A")).toBe(search("JPH03141313A"));
+    expect(espacenetPatentUrl("JP 1974-023892 A")).toBe(search("JPS4923892A"));
+    expect(espacenetPatentUrl("JP 1989-039542 A")).toBe(search("JPS6439542A"));
+    expect(espacenetPatentUrl("JP 1989-100000 A")).toBe(search("JPH01100000A"));
+    expect(espacenetPatentUrl("JP 2016-090725 A")).toBe(search("JP2016090725A"));
+    expect(espacenetPatentUrl("JP 2025-50505 A")).toBe(search("JP2025050505A"));
+    expect(espacenetPatentUrl("JP 2001-7512 A")).toBe(search("JP2001007512A"));
   });
 
   it("distinguishes publication numbers from local source fallback labels", () => {

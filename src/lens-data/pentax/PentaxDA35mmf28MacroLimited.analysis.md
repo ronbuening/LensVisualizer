@@ -17,7 +17,7 @@ The prescription transcribed here is Example 1 of US 7,715,118 B2, a Hoya-assign
 The production lens match is based on convergent evidence rather than on a published Pentax prescription.
 
 1. **Element and group count.** Example 1 is a 9-element / 8-group design. Ricoh publishes the HD Pentax-DA 35 mm F2.8 Macro Limited as 9 elements in 8 groups, and the same count applies to the earlier smc version.
-2. **Aperture.** The patent lists $F_{NO} = 1{:}2.88$ for Example 1. Ricoh markets the lens as f/2.8 with a minimum aperture of f/22. The data file therefore records f/2.8 as the production nominal aperture and 2.88 as the patent design aperture.
+2. **Aperture.** The patent lists $F_{NO} = 1{:}2.88$ for Example 1. Ricoh markets the lens as f/2.8 with a minimum aperture of f/22. The data file therefore records f/2.8 as the marketed aperture (`apertureMarketing`) and 2.88 as the patent design aperture, which is also `nominalFno`, the f-number the stop opens to.
 3. **Focal length.** Independent paraxial tracing of Example 1 gives $f = 34.41498\ \mathrm{mm}$, matching the patent's $f = 34.41\ \mathrm{mm}$. The production hard spec is the marketed 35 mm.
 4. **Image format and field.** The patent aberration plots for Example 1 use $y = 14.24\ \mathrm{mm}$ and list $\omega = 23.4°$. Ricoh publishes a 44° angle of view for the production APS-C K-mount lens. The Ricoh value is treated as the manufacturer hard spec; the patent value is retained as the optical example's reported half-field.
 5. **Macro range.** The patent tabulates the surface-13 air space at infinity, -0.5x, and -1.0x. Re-solving the finite conjugates with the patent back focus gives $m \approx -0.9994$ at $d_{13}=24.13\ \mathrm{mm}$ and an object-to-image distance of about 139.0 mm, matching Ricoh's 0.139 m minimum focusing distance and 1.00x maximum magnification.
@@ -163,7 +163,7 @@ The data file transcribes Example 1 at patent scale. The final surface distance 
 
 The patent places the aperture stop 4.425 mm in front of surface 8, so the original surface-7-to-surface-8 air space of 8.43 mm is split into $d_7 = 4.005\ \mathrm{mm}$ and $d_{STO} = 4.425\ \mathrm{mm}$. The physical stop semi-diameter used in the data file is 6.86 mm, computed from the patent F-number by tracing the paraxial entrance pupil.
 
-The variable gap is stored as `"13": [1.00, 24.13]`, matching the patent's infinity and -1.0x entries. The -0.5x value, 12.57 mm, is documented in the analysis but not encoded in the two-endpoint focus slider.
+The variable gap is stored as `"13": [1.00, 12.57, 24.13]`, matching the patent's infinity, -0.5x, and -1.0x entries as exact focus keyframes.
 
 Semi-diameters are inferred because the patent does not list them. The selected values preserve the published ray geometry closely enough for visualization while satisfying renderer limitations at the small-radius surfaces and narrow air gaps. These values should not be read as manufacturer-published clear apertures.
 

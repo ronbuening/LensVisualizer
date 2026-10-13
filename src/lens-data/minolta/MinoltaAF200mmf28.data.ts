@@ -22,7 +22,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-200mm-f28",
   maker: "Minolta",
-  name: "MINOLTA AF APO Tele 200mm f/2.8",
+  name: "MINOLTA AF APO TELE 200mm f/2.8",
   subtitle: "US 4,786,152 Embodiment 3 — Minolta / Arimoto",
   specs: [
     "200mm f/2.8",
@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,786,152",
   patentAuthors: ["Tetsuya Arimoto"],
-  patentAssignees: ["Minolta Co., Ltd."],
+  patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1988,
   elementCount: 8,
   groupCount: 7,

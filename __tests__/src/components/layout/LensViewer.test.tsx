@@ -133,6 +133,9 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerChrome.js", () => ({
     configurationOptions,
     activeConfigurationKey,
     onConfigurationChange,
+    teleconverterOptions,
+    activeTeleconverterKey,
+    onTeleconverterChange,
   }: {
     comparing: boolean;
     lensKeyA: string;
@@ -149,6 +152,9 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerChrome.js", () => ({
     configurationOptions: ReadonlyArray<{ key: string; label: string }>;
     activeConfigurationKey: string;
     onConfigurationChange: (key: string) => void;
+    teleconverterOptions: ReadonlyArray<{ key: string; label: string }>;
+    activeTeleconverterKey: string | null;
+    onTeleconverterChange: (panel: "a" | "b", key: string | null) => void;
   }) => (
     <div data-testid="viewer-chrome">
       <span data-testid="chrome-mode">{comparing ? "compare" : "single"}</span>
@@ -159,6 +165,13 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerChrome.js", () => ({
       <span data-testid="desktop-view">{effectiveDesktopView}</span>
       <span data-testid="desktop-toggle">{showDesktopToggle ? "shown" : "hidden"}</span>
       <span data-testid="active-configuration">{activeConfigurationKey}</span>
+      <span data-testid="active-teleconverter">{activeTeleconverterKey ?? "none"}</span>
+      {teleconverterOptions.map((option) => (
+        <button key={option.key} onClick={() => onTeleconverterChange("a", option.key)}>
+          mount {option.key}
+        </button>
+      ))}
+      <button onClick={() => onTeleconverterChange("a", "not-a-real-converter")}>mount unknown</button>
       {configurationOptions.map((option) => (
         <button key={option.key} onClick={() => onConfigurationChange(option.key)}>
           {option.label}
@@ -190,6 +203,7 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerContent.js", () => (
     markdown,
     onSliderPointerUp,
     diagramLensKey,
+    teleconverterKey,
   }: {
     comparing: boolean;
     effectiveDesktopView: string;
@@ -197,6 +211,7 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerContent.js", () => (
     markdown: string | null;
     onSliderPointerUp: () => void;
     diagramLensKey: string;
+    teleconverterKey: string | null;
   }) => (
     <div data-testid="viewer-content">
       <span data-testid="content-mode">{comparing ? "compare-content" : "single-content"}</span>
@@ -204,6 +219,7 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerContent.js", () => (
       <span data-testid="content-mobile">{mobileView}</span>
       <span data-testid="markdown-state">{markdown ? "markdown" : "none"}</span>
       <span data-testid="diagram-lens-key">{diagramLensKey}</span>
+      <span data-testid="diagram-teleconverter">{teleconverterKey ?? "none"}</span>
       <button onClick={onSliderPointerUp}>slider up</button>
     </div>
   ),
@@ -232,6 +248,11 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerOverlays.js", () => 
 
 import LensViewer from "../../../../src/components/layout/LensViewer.js";
 import { ALL_CATALOG_KEYS, CATALOG_KEYS, COMPARISON_CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
+import {
+  ALL_TELECONVERTER_KEYS,
+  TELECONVERTER_CATALOG,
+  resolveTeleconverterKey,
+} from "../../../../src/utils/catalog/teleconverterCatalog.js";
 import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
 
 function makeState(overrides: Partial<LensState> = {}): LensState {
@@ -284,6 +305,7 @@ describe("LensViewer", () => {
     expect(mocks.dispatch).toHaveBeenCalledWith({
       type: "SET_OPTICAL_CONFIGURATION",
       key: alternateKey,
+      teleconverterKey: null,
     });
     expect(mocks.navigate).not.toHaveBeenCalled();
 
@@ -293,6 +315,42 @@ describe("LensViewer", () => {
     rerender(<LensViewer initialLensKey={baseKey} />);
     expect(screen.getByTestId("active-configuration").textContent).toBe(alternateKey);
     expect(screen.getByTestId("diagram-lens-key").textContent).toBe(alternateKey);
+  });
+
+  it("offers and mounts teleconverters for an eligible lens and ignores one the lens cannot take", () => {
+    /* The viewer reads the real catalogs, so resolve a real converter–host pair instead of naming a lens. */
+    const teleconverterKey = ALL_TELECONVERTER_KEYS[0];
+    const hostKey = CATALOG_KEYS.find((key) => resolveTeleconverterKey(key, teleconverterKey) !== null)!;
+    const hostLens = { ...makeState().lens, lensKeyA: hostKey, selectedConfigurationKey: hostKey };
+    mocks.state = makeState({ lens: hostLens });
+
+    const { rerender } = render(<LensViewer initialLensKey={hostKey} />);
+    expect(screen.getByTestId("active-teleconverter").textContent).toBe("none");
+    if (TELECONVERTER_CATALOG[teleconverterKey].visible === false) {
+      /* A hidden test model is never offered on the bare lens; only a URL mounts it. */
+      expect(screen.queryByRole("button", { name: `mount ${teleconverterKey}` })).toBeNull();
+    } else {
+      fireEvent.click(screen.getByRole("button", { name: `mount ${teleconverterKey}` }));
+      expect(mocks.dispatch).toHaveBeenCalledWith({ type: "SET_TELECONVERTER", panel: "a", key: teleconverterKey });
+      mocks.dispatch.mockClear();
+    }
+    fireEvent.click(screen.getByRole("button", { name: "mount unknown" }));
+    expect(mocks.dispatch).not.toHaveBeenCalled();
+
+    /* Once mounted, even a hidden converter is listed so the control can switch it off again. */
+    mocks.state = makeState({ lens: { ...hostLens, teleconverterKeyA: teleconverterKey } });
+    rerender(<LensViewer initialLensKey={hostKey} />);
+    expect(screen.getByTestId("active-teleconverter").textContent).toBe(teleconverterKey);
+    expect(screen.getByTestId("diagram-teleconverter").textContent).toBe(teleconverterKey);
+    expect(screen.getByRole("button", { name: `mount ${teleconverterKey}` })).toBeTruthy();
+
+    /* A converter key left in state for a lens that cannot take it is not passed to the diagram. */
+    mocks.state = makeState({
+      lens: { ...makeState().lens, lensKeyA: "apo-lanthar-50f2", teleconverterKeyA: teleconverterKey },
+    });
+    rerender(<LensViewer initialLensKey="apo-lanthar-50f2" />);
+    expect(screen.getByTestId("diagram-teleconverter").textContent).toBe("none");
+    expect(screen.queryByRole("button", { name: `mount ${teleconverterKey}` })).toBeNull();
   });
 
   it("uses a fixed-height desktop app shell with a scroll-contained content slot", () => {
@@ -337,6 +395,8 @@ describe("LensViewer", () => {
 
     expect(mocks.navigate).toHaveBeenCalledWith("/compare/apo-lanthar-50f2/apo-lanthar-50f2/", { replace: true });
     expect(mocks.navigate).toHaveBeenCalledWith("/compare/sonnar-50f15/apo-lanthar-50f2/", { replace: true });
+    /* Replacing the path drops the query; each switch reschedules the writer so per-pane state survives. */
+    expect(mocks.updateURLWithSliders).toHaveBeenCalledTimes(2);
   });
 
   it("offers configuration variants in compare without exposing debug fixtures", () => {

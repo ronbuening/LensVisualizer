@@ -35,7 +35,7 @@ The design is a three-group inner-focus system with a positive–negative–posi
 - **Group 2 (G2):** Negative. A single concave element that translates along the optical axis for focusing. Its negative power diverges the converging beam from G1, and the magnitude of that divergence controls the image conjugate.
 - **Group 3 (G3):** Positive (weakly). A biconvex element followed by a negative meniscus; together they serve as a field-flattening and telecentric relay that delivers the image to the sensor.
 
-Between the optical system and the image plane, a flat cover glass (CG, nd = 1.51680, νd = 64.2) is present. Per the patent (¶0095), this CG is optional and models the camera's sensor stack.
+Between the optical system and the image plane, a flat cover glass (CG, nd = 1.51680, νd = 64.2) is present. Per the patent (¶0095), this CG is optional and models the camera's sensor stack. The data file models the 2.10 mm CG (N-BK7 class) and its 1.00 mm gap to the image in `rearPlates`: every analysis traces it, but it is not drawn. The last lens surface stores the patent's 12.42 mm gap to the CG; the paraxially equivalent air-only distance would be 12.42 + 2.10/1.51680 + 1.00 = 14.80 mm.
 
 ### Verified system parameters (paraxial ray trace)
 

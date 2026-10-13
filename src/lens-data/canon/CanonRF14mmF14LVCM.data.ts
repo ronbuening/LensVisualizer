@@ -400,6 +400,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.24,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED rear-focus state: patent L2 (data surfaces 23–29A) translates toward the object; D22 5.08→4.08 mm and D29 2.20→3.21 mm. The patent's 240.532 mm row is preserved in the audit and treated as an image-plane-referenced total object distance/MFD because literal first-surface use contradicts the stated -0.1× conjugate.",
 

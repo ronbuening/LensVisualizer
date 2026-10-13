@@ -100,7 +100,7 @@ The [Minolta Varisoft Rokkor 85mm f/2.8](/lens/varisoft-rokkor-85f28/) uses a va
 
 A defocus-control lens uses a smaller residual and compensates the accompanying image-plane movement. The main subject can remain concentrated while the radial distribution of foreground and background points changes.
 
-The [Nikon AF DC-Nikkor 135mm f/2D](/lens/nikon-af-dc-nikkor-135mm-f2/) uses **R** for an undercorrected state favoring softer-edged background blur and **F** for an overcorrected state favoring foreground blur.[^4] [^8]
+The [Nikon AF DC-Nikkor 135mm f/2 D](/lens/nikon-af-dc-nikkor-135mm-f2/) uses **R** for an undercorrected state favoring softer-edged background blur and **F** for an overcorrected state favoring foreground blur.[^4] [^8]
 
 ### A user-adjustable under–sharp–over range
 
@@ -112,7 +112,7 @@ The [Voigtländer Portrait Heliar 75mm f/1.8](/lens/voigtlander-portrait-heliar-
 | --- | --- | --- |
 | [NIKON NIKKOR Z 135mm f/1.8 S Plena](/lens/nikon-z-135f18-plena/) | Fixed high correction | A complex fixed design holds one intended balance across a very large aperture and changing focus distance.[^10] |
 | [MINOLTA VARISOFT ROKKOR 85mm f/2.8](/lens/varisoft-rokkor-85f28/) | Variable subject softness | The in-focus subject changes from concentrated to core-and-halo rendering. |
-| [NIKON AF DC-NIKKOR 135mm f/2D](/lens/nikon-af-dc-nikkor-135mm-f2/) | Variable foreground–background bias | The subject can remain concentrated while **R** and **F** exchange the favored side of defocus. |
+| [NIKON AF DC-NIKKOR 135mm f/2 D](/lens/nikon-af-dc-nikkor-135mm-f2/) | Variable foreground–background bias | The subject can remain concentrated while **R** and **F** exchange the favored side of defocus. |
 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](/lens/voigtlander-portrait-heliar-75f18/) | Adjustable under–sharp–over range | Subject softness and defocus weighting both change with the control. |
 
 A fifth example shows that the entire optical arrangement can also be changed. In the [Nikon Fuwatto Soft 90mm f/4.8](/lens/nikon-fuwatto-soft-90mm-f48/), a cemented doublet is reversed and a rear corrector is removed to create a fixed soft-focus configuration.[^11]

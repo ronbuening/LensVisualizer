@@ -2,21 +2,24 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S NIKKOR 600mm f/4E FL ED VR                       ║
+ * ║  LENS DATA — NIKON AF-S NIKKOR 600mm f/4 E FL ED VR                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2018/0031811 A1, Example 4 (Miwa / Yamashita / Nikon).   ║
  * ║  Production correlation: Nikon AF-S NIKKOR 600mm f/4E FL ED VR (2015).   ║
  * ║  Patent train: 16 imaging elements / 12 groups + protective meniscus HG. ║
- * ║  Model train: 17 physical optical elements / 13 air-spaced groups.        ║
+ * ║  Model train: 17 powered elements / 13 air-spaced groups + filter plate.  ║
  * ║  Focus status: PUBLISHED. Cemented negative G2 translates imageward by   ║
  * ║  15.559 mm from infinity to the published close state.                   ║
  * ║                                                                            ║
  * ║  SOURCE-PLANE NORMALIZATION:                                               ║
  * ║    - The curved front HG protective meniscus is retained as a real weak  ║
  * ║      optical element.                                                     ║
- * ║    - Source S32-S33 rear low-pass filter FL is excluded. Its 1.50 mm     ║
- * ║      plate at nd=1.51680 is replaced by air-equivalent spacing, making   ║
- * ║      S31-to-image d = 82.25892405063291 mm.                              ║
+ * ║    - Source S32-S33 rear low-pass filter FL (1.50 mm, nd 1.51680,        ║
+ * ║      νd 63.88) is drawn as a plane-parallel plate element and traced by  ║
+ * ║      every analysis, with its 75.12 mm gap to the image; S31.d keeps the ║
+ * ║      patent's 6.15 mm gap to FL. Its semi-diameter is a ray-trace        ║
+ * ║      estimate (the source lists none) and it is not counted in           ║
+ * ║      `elementCount`.                                                     ║
  * ║    - No dimensional scaling is applied: s = 1.000000.                    ║
  * ║                                                                            ║
  * ║  STOP / PUPIL MODEL:                                                       ║
@@ -43,7 +46,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-nikkor-600mm-f4e-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 600mm f/4E FL ED VR",
+  name: "NIKON AF-S NIKKOR 600mm f/4 E FL ED VR",
   subtitle: "US 2018/0031811 A1 — Example 4; correlated to the 2015 AF-S production lens",
   specs: [
     "16 IMAGING ELEMENTS / 12 GROUPS + PROTECTIVE MENISCUS",
@@ -298,12 +301,23 @@ const LENS_DATA = {
       glass: "J-BAF10 catalog equivalent (patent 670471; production supplier unspecified)",
       role: "Final positive lens of G3 and the patent's G3adjA rear adjustment subgroup.",
     },
+    {
+      id: 18,
+      name: "FL",
+      label: "Rear filter FL",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      role: "Plane-parallel filter plate FL of the patent prescription (US 2018/0031811 A1, Example 4 Table 4 surfaces 32–33), which the patent calls a low-pass filter. It sits 75.12 mm ahead of the image, at the lens's slip-in filter position, so it is drawn and traced as part of the lens. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
   /* ── Surface prescription ──
    * Labels preserve Example-4 source surface numbers except source S15, which is the required STO label.
    * Cemented junctions S10, S13, S17, and S20 carry the downstream element's elemId and index.
-   * Source S32-S33 low-pass filter FL is omitted; the source-equivalent image plane is encoded in S31.d.
+   * Source S32-S33 low-pass filter FL is drawn as a plane-parallel plate element; S31.d is the patent's
+   * 6.15 mm gap to FL.
    */
   surfaces: [
     { label: "1", R: 1200.5127, d: 5, nd: 1.5168, elemId: 1, sd: 78 },
@@ -336,7 +350,11 @@ const LENS_DATA = {
     { label: "28", R: -59.2874, d: 2.45, nd: 1.59319, elemId: 16, sd: 19 },
     { label: "29", R: 42.619, d: 1.95, nd: 1, elemId: 0, sd: 19 },
     { label: "30", R: 51.7215, d: 5.4, nd: 1.67003, elemId: 17, sd: 19.5 },
-    { label: "31", R: -154.5582, d: 82.25892405063291, nd: 1, elemId: 0, sd: 20 },
+    { label: "31", R: -154.5582, d: 6.15, nd: 1, elemId: 0, sd: 20 },
+    // Rear filter FL (US 2018/0031811 A1, Example 4 Table 4 surfaces 32–33), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    { label: "32", R: 1e15, d: 1.5, nd: 1.5168, elemId: 18, sd: 18 },
+    { label: "33", R: 1e15, d: 75.12, nd: 1, elemId: 0, sd: 18 }, // rear filter → image plane
   ],
 
   asph: {},
@@ -368,6 +386,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 4.4,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focus: cemented negative G2 (L21+L22) translates imageward by 15.559 mm; " +
     "D11 increases 17.545→33.104 mm while D14 decreases 45.385→29.826 mm, conserving D11+D14=62.930 mm. " +

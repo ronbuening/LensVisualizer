@@ -131,6 +131,18 @@ describe("SSR render — native metadata extraction", () => {
     expect(html).not.toContain('type="application/ld+json"');
     expect(html).not.toContain("data-prerender-body");
   });
+
+  it("stamps every emitted head tag for the client bootstrap to remove", () => {
+    const { html, helmet } = render("/");
+    for (const section of [helmet.title, helmet.meta, helmet.link, helmet.script]) {
+      const markup = section.toString();
+      const openingTags = markup.match(/<(?:title|meta|link|script)\b/g) ?? [];
+      const stamps = markup.match(/data-prerender-head=""/g) ?? [];
+      expect(openingTags.length).toBeGreaterThan(0);
+      expect(stamps).toHaveLength(openingTags.length);
+    }
+    expect(html).not.toContain("data-prerender-head");
+  });
 });
 
 /* ── Home page ── */

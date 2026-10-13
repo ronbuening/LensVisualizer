@@ -1,20 +1,24 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useId, useMemo } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import DiagramSVG from "../../diagram/DiagramSVG.js";
 import ChromaticOverlayContent from "../../diagram/ChromaticOverlayContent.js";
 import PetzvalOverlayContent from "../../diagram/PetzvalOverlayContent.js";
 import AnalysisDrawer from "../AnalysisDrawer.js";
+import AnalysisDock from "./AnalysisDock.js";
 import PanelOverlay from "../PanelOverlay.js";
 import { ANALYSIS_TABS } from "./analysisTabs.js";
 import { summarizeDispersionQuality } from "../../../optics/dispersion.js";
+import { lensChromaticReference } from "../../../optics/chromatic/channels.js";
 import { elementHasAsphericSurface } from "../../display/asphericElementUtils.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 import type { ChromaticRayFanSpreadByAxis } from "../../../types/optics.js";
+import type { AnalysisControlsMode } from "./panelModel.js";
 
 interface DiagramViewportProps extends Omit<
   ComponentProps<typeof DiagramSVG>,
   "onLocaInsetClick" | "onPetzvalBadgeClick"
 > {
+  minDiagramHeight?: number;
   chromaticRayFanSpreads?: ChromaticRayFanSpreadByAxis;
   showChromaticOverlay: boolean;
   showPetzvalOverlay: boolean;
@@ -27,6 +31,8 @@ interface DiagramViewportProps extends Omit<
   analysisDrawerTab: AnalysisTabId;
   onAnalysisTabChange: (tab: AnalysisTabId) => void;
   isWide: boolean;
+  /** Launcher for the analysis drawer; see AnalysisControlsMode. */
+  analysisControls: AnalysisControlsMode;
   analysisContent: ReactNode;
   /** Whether zoom/pan mode is active */
   zoomPanActive: boolean;
@@ -96,6 +102,7 @@ export default function DiagramViewport({
   maxSvgHeight,
   useSideLayout,
   fillAvailableHeight,
+  minDiagramHeight,
   headerHeight,
   compact,
   flashVisible,
@@ -112,6 +119,7 @@ export default function DiagramViewport({
   analysisDrawerTab,
   onAnalysisTabChange,
   isWide,
+  analysisControls,
   analysisContent,
   zoomPanActive,
   onZoomPanToggle,
@@ -140,6 +148,8 @@ export default function DiagramViewport({
   const dispersionQuality = useMemo(() => summarizeDispersionQuality(L), [L]);
   const onAxisChromSpread = chromaticRayFanSpreads ? chromaticRayFanSpreads.onAxis : chromaticRayFanSpread;
   const overlayChromSpread = chromaticRayFanSpreads ? chromaticRayFanSpreads.onAxis : chromaticRayFanSpread;
+  const drawerId = useId();
+  const showPillControls = analysisControls === "pill";
   const selectedAsphericElementId = useMemo(() => {
     if (isWide || sel == null || !onOpenAsphericCompare) return null;
     return elementHasAsphericSurface(L, sel) ? sel : null;
@@ -192,82 +202,85 @@ export default function DiagramViewport({
 
   const viewportStyle = fillAvailableHeight
     ? {
-        flex: "1 1 auto",
+        flex: minDiagramHeight ? `1 0 ${minDiagramHeight}px` : "1 1 auto",
         minWidth: 0,
-        minHeight: 0,
+        minHeight: minDiagramHeight ?? 0,
         position: "relative" as const,
-        overflow: "hidden",
+        overflow: minDiagramHeight ? "clip" : "hidden",
       }
     : useSideLayout
       ? { flex: 1, minWidth: 0, position: "relative" as const }
       : { position: "relative" as const };
 
-  return (
-    <div style={viewportStyle}>
-      <DiagramSVG
-        L={L}
-        t={t}
-        dark={dark}
-        sx={sx}
-        sy={sy}
-        CX={CX}
-        IX={IX}
-        effectiveSC={effectiveSC}
-        movementTransform={movementTransform}
-        lensAxis={lensAxis}
-        zPos={zPos}
-        IMG_MM={IMG_MM}
-        shapes={shapes}
-        filterId={filterId}
-        stopZ={stopZ}
-        currentPhysStopSD={currentPhysStopSD}
-        rays={rays}
-        offAxisRays={offAxisRays}
-        chromaticRays={chromaticRays}
-        chromaticRayFanSpread={onAxisChromSpread}
-        dispersionQuality={dispersionQuality}
-        showOnAxis={showOnAxis}
-        showOffAxis={showOffAxis}
-        showChromatic={showChromatic}
-        showPupils={showPupils}
-        showCardinals={showCardinals}
-        showCardinalFocal={showCardinalFocal}
-        showCardinalPrincipal={showCardinalPrincipal}
-        showCardinalNodal={showCardinalNodal}
-        showCardinalDimensions={showCardinalDimensions}
-        showCardinalEfl={showCardinalEfl}
-        showCardinalBfd={showCardinalBfd}
-        showCardinalFfd={showCardinalFfd}
-        showCardinalHiatus={showCardinalHiatus}
-        showCardinalTotalTrack={showCardinalTotalTrack}
-        cardinalElements={cardinalElements}
-        foldedHitOrderLabels={foldedHitOrderLabels}
-        zoomT={zoomT}
-        act={act}
-        onHover={onHover}
-        onSelect={onSelect}
-        sel={sel}
-        maxSvgHeight={maxSvgHeight}
-        useSideLayout={useSideLayout}
-        fillAvailableHeight={fillAvailableHeight}
-        headerHeight={headerHeight}
-        compact={compact}
-        flashVisible={flashVisible}
-        flashKey={flashKey}
-        flashFading={flashFading}
-        onLocaInsetClick={onOpenChromaticOverlay}
-        onPetzvalBadgeClick={onOpenPetzvalOverlay}
-        viewBoxOverride={viewBoxOverride}
-        zoomPanActive={zoomPanActive}
-        isPanning={isPanning}
-        onSvgWheel={onSvgWheel}
-        onSvgPointerDown={onSvgPointerDown}
-        onSvgPointerMove={onSvgPointerMove}
-        onSvgPointerUp={onSvgPointerUp}
-        onSvgTouchStart={onSvgTouchStart}
-        onSvgTouchMove={onSvgTouchMove}
-        onSvgTouchEnd={onSvgTouchEnd}
-      />
+  const diagram = (
+    <DiagramSVG
+      L={L}
+      t={t}
+      dark={dark}
+      sx={sx}
+      sy={sy}
+      CX={CX}
+      IX={IX}
+      effectiveSC={effectiveSC}
+      movementTransform={movementTransform}
+      lensAxis={lensAxis}
+      zPos={zPos}
+      IMG_MM={IMG_MM}
+      shapes={shapes}
+      filterId={filterId}
+      stopZ={stopZ}
+      currentPhysStopSD={currentPhysStopSD}
+      rays={rays}
+      offAxisRays={offAxisRays}
+      chromaticRays={chromaticRays}
+      chromaticRayFanSpread={onAxisChromSpread}
+      dispersionQuality={dispersionQuality}
+      showOnAxis={showOnAxis}
+      showOffAxis={showOffAxis}
+      showChromatic={showChromatic}
+      showPupils={showPupils}
+      showCardinals={showCardinals}
+      showCardinalFocal={showCardinalFocal}
+      showCardinalPrincipal={showCardinalPrincipal}
+      showCardinalNodal={showCardinalNodal}
+      showCardinalDimensions={showCardinalDimensions}
+      showCardinalEfl={showCardinalEfl}
+      showCardinalBfd={showCardinalBfd}
+      showCardinalFfd={showCardinalFfd}
+      showCardinalHiatus={showCardinalHiatus}
+      showCardinalTotalTrack={showCardinalTotalTrack}
+      cardinalElements={cardinalElements}
+      foldedHitOrderLabels={foldedHitOrderLabels}
+      zoomT={zoomT}
+      act={act}
+      onHover={onHover}
+      onSelect={onSelect}
+      sel={sel}
+      maxSvgHeight={maxSvgHeight}
+      useSideLayout={useSideLayout}
+      fillAvailableHeight={fillAvailableHeight}
+      headerHeight={headerHeight}
+      compact={compact}
+      flashVisible={flashVisible}
+      flashKey={flashKey}
+      flashFading={flashFading}
+      onLocaInsetClick={onOpenChromaticOverlay}
+      onPetzvalBadgeClick={onOpenPetzvalOverlay}
+      viewBoxOverride={viewBoxOverride}
+      zoomPanActive={zoomPanActive}
+      isPanning={isPanning}
+      onSvgWheel={onSvgWheel}
+      onSvgPointerDown={onSvgPointerDown}
+      onSvgPointerMove={onSvgPointerMove}
+      onSvgPointerUp={onSvgPointerUp}
+      onSvgTouchStart={onSvgTouchStart}
+      onSvgTouchMove={onSvgTouchMove}
+      onSvgTouchEnd={onSvgTouchEnd}
+    />
+  );
+  const stageContent = (
+    <>
+      {minDiagramHeight ? <div style={{ position: "absolute", inset: 0 }}>{diagram}</div> : diagram}
 
       {/* Overlays — hidden in zoom/pan mode */}
       {!zoomPanActive && showChromaticOverlay && showChromatic && overlayChromSpread ? (
@@ -279,6 +292,7 @@ export default function DiagramViewport({
             IMG_MM={IMG_MM}
             t={t}
             dispersionQuality={dispersionQuality}
+            channelReference={lensChromaticReference(L.elements)}
           />
         </PanelOverlay>
       ) : null}
@@ -295,8 +309,8 @@ export default function DiagramViewport({
         </PanelOverlay>
       ) : null}
 
-      {/* Analysis drawer toggle — hidden in zoom/pan mode */}
-      {!zoomPanActive && !analysisDrawerOpen ? (
+      {/* Analysis drawer toggle (mobile) — hidden in zoom/pan mode */}
+      {showPillControls && !zoomPanActive && !analysisDrawerOpen ? (
         <button
           onClick={() => onAnalysisDrawerToggle(true)}
           style={{
@@ -353,8 +367,8 @@ export default function DiagramViewport({
         </button>
       ) : null}
 
-      {/* Zoom/pan toggle button — bottom-right, hidden when zoom mode active */}
-      {!zoomPanActive ? (
+      {/* Zoom/pan toggle button (mobile) — bottom-right, hidden when zoom mode active */}
+      {showPillControls && !zoomPanActive ? (
         <button
           aria-label="Enter zoom and pan mode"
           onClick={() => onZoomPanToggle(true)}
@@ -449,10 +463,39 @@ export default function DiagramViewport({
         onTabChange={onAnalysisTabChange}
         tabs={ANALYSIS_TABS}
         t={t}
-        isWide={isWide}
+        showTabs={showPillControls}
+        id={drawerId}
       >
         {analysisContent}
       </AnalysisDrawer>
+    </>
+  );
+
+  if (analysisControls !== "dock") return <div style={viewportStyle}>{stageContent}</div>;
+
+  /* Desktop dock: the drawer and overlays cover only the stage, so the dock
+     below stays visible as the tab switcher. Zoom mode hands the dock's space
+     back to the diagram. */
+  const stageStyle = fillAvailableHeight
+    ? { position: "relative" as const, flex: "1 1 auto", minHeight: 0, overflow: "hidden" }
+    : { position: "relative" as const };
+
+  return (
+    <div style={{ ...viewportStyle, display: "flex", flexDirection: "column" }}>
+      <div style={stageStyle}>{stageContent}</div>
+      {!zoomPanActive ? (
+        <AnalysisDock
+          tabs={ANALYSIS_TABS}
+          activeTab={analysisDrawerTab}
+          drawerOpen={analysisDrawerOpen}
+          onAnalysisTabChange={onAnalysisTabChange}
+          onAnalysisDrawerToggle={onAnalysisDrawerToggle}
+          onZoomPanToggle={onZoomPanToggle}
+          t={t}
+          drawerId={drawerId}
+          variant="inline"
+        />
+      ) : null}
     </div>
   );
 }

@@ -189,3 +189,15 @@ no-change band. The renderer-safe surface-8 and surface-10 values remain the clo
 
 Verification: `audit:image-circle`, `audit:surface`, production render diagnostics, glass reports, typecheck, formatting,
 lint, full tests, and production build all pass.
+
+## 2026-09-25 — MTF image-plane census
+
+Classification: small source image-plane/paraxial mismatch; preserve the source's air-equivalent plane.
+
+Visually checked local `patents/JPA 2022012964-000000.pdf`, Example 2/Table 2, PDF p. 20, and the focus/spacing definitions in paragraphs 67–79 (pp. 17–19). All 16 active rows, eight nd/vd pairs, and ASP15/ASP16 A4/A6/A8/A10 terms match. The spherical base in the sag equation corresponds to K=0. No scale is applied. F10 is explicitly infinity; ZD9=5.30 and ZD12=0.15 remain fixed, while ZD16 changes from 25.00 to 29.12 for the 630 mm F14 object distance.
+
+Paragraph 77 explicitly states that sensor faceplates/IR/low-pass filters are converted to optically equivalent air spacing in the system back focus. Table 2 supplies no physical plate thickness, index or gaps; therefore a `rearPlates` stack cannot be reconstructed without inventing values. This is source folding, not a hand-folding error in this file. ZD16=25.00 is the complete published equivalent rear distance.
+
+Independent EFL 49.598277061 mm agrees with 49.60 printed; BFL is 24.972488217 mm rather than 25.00. The rounded spacings total TLL=40.01 rather than the prose 40.00. Offset **−0.027511783 mm remains unchanged** (limit 0.024030102 mm). The patent discusses spherical aberration and paraxial focus, but does not tie ZD16 to a named designer-best-focus criterion. A reference-index axial geometric diagnostic (812 rays, grid 32, 10/20/40 lp/mm) selects −0.004458428 mm, score 0.962008 → 0.970201. This is consistent with a small finite-aperture compromise but does not prove it. No single misprint explains the residual; retain the published prescription and remove the completed Section E row. No changelog entry.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.

@@ -224,3 +224,10 @@ so none is added or compensated by an air-equivalent plate correction.
    24 × 36 mm format, interchangeable 50 mm bayonet, coupled body focusing, and 3 ft 6 in distance-scale entry.
 3. Official optical-glass catalogs and data portals from OHARA, HOYA, SCHOTT, HIKARI, CDGM, and Sumita, used only for
    class-level residual comparison; the patent does not identify a glass vendor.
+
+
+## Production mount assignment
+
+The Voigtländer Prominent manual identifies the Ultron 2/50 and Nokton 1.5/50 as interchangeable standard lenses and describes their quick-change bayonet. This assignment selects the documented Prominent production context, not later Cosina VM lenses. [Manufacturer source](https://butkus.org/chinon/voigtlander_pdf/prominent/voigtlander_prominent.pdf).
+
+`lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.

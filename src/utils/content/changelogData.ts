@@ -19,6 +19,727 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-13",
+    type: "fix",
+    summary: "Fixed the Distortion tab naming barrel distortion as pincushion and pincushion as barrel",
+  },
+  {
+    date: "2026-10-13",
+    type: "fix",
+    summary: "Corrected HOYA FCD1 glass dispersion, slightly shifting violet focus in the lenses that use it",
+  },
+  {
+    date: "2026-10-13",
+    type: "lens",
+    summary: "Added six Olympus, Panasonic, Sigma and Yashica lenses, including a 60-600mm zoom and a 2x macro",
+  },
+  {
+    date: "2026-10-12",
+    type: "fix",
+    summary: "Fixed four Canon and Sony telephoto lenses tracing slower than their stated aperture",
+  },
+  {
+    date: "2026-10-12",
+    type: "fix",
+    summary: "Fixed heavy spherical aberration and an f/3.5 long end on the Sony FE 70-200mm f/2.8 GM OSS",
+  },
+  {
+    date: "2026-10-12",
+    type: "lens",
+    summary: "Added three Canon, Hasselblad and Panasonic lenses plus Canon and Sony teleconverters",
+  },
+  {
+    date: "2026-10-11",
+    type: "lens",
+    summary: "Added six Leica, Samyang and Sigma lenses, including a 15mm f/1.4 fisheye and two macros",
+  },
+  {
+    date: "2026-10-10",
+    type: "lens",
+    summary: "Added six Laowa, Sigma and Sony lenses, including the Argus 45mm f/0.95 and 105mm f/2 STF",
+  },
+  {
+    date: "2026-10-10",
+    type: "fix",
+    summary: "Fixed the Vivitar Series 1 70-210mm f/3.5 passing light only near its aperture center",
+  },
+  {
+    date: "2026-10-09",
+    type: "fix",
+    summary: "Fixed sensor cover glass narrowing the off-axis ray fan of the Nikon AF-S 18-35mm at 35mm",
+  },
+  {
+    date: "2026-10-09",
+    type: "lens",
+    summary: "Added six Laowa, Sigma, Thypoch and Voigtländer lenses, including three macros",
+  },
+  {
+    date: "2026-10-08",
+    type: "lens",
+    summary: "Added nine Zeiss, Laowa, Olympus, Sigma and Voigtländer lenses, from 8mm fisheye to 135mm f/1.4",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
+    summary: "Fixed false color-focus error on lenses with e-line glass data, mostly Leica and Rodenstock",
+  },
+  {
+    date: "2026-10-08",
+    type: "improvement",
+    summary: "Improved MTF: diffraction from traced rays, clipped corners charted, traced f-number shown",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
+    summary: "Opened lenses to their patent design f-number; zooms now hold it at every focal length",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
+    summary: "Corrected patent misprints, zoom f-numbers, clipped apertures and glass dispersion data",
+  },
+  {
+    date: "2026-10-07",
+    type: "improvement",
+    summary: "Standardized display names on 135 lenses: capitals, hyphens and aperture-suffix spacing",
+  },
+  {
+    date: "2026-10-07",
+    type: "lens",
+    summary: "Added Nikon Z 24-70mm f/2.8 S II, Fujifilm XC 50-230mm II, Olympus 25mm f/1.8 and four Sigma primes",
+  },
+  {
+    date: "2026-10-06",
+    type: "lens",
+    summary: "Added four Sigma Art and three Tamron Di III models, from the 14-24mm f/2.8 to the 90mm Macro VXD",
+  },
+  {
+    date: "2026-10-06",
+    type: "feature",
+    summary: "Added a patent positions mode that steps zoom and focus through source-tabulated states",
+  },
+  {
+    date: "2026-10-05",
+    type: "lens",
+    summary: "Added the Sigma 12mm f/1.4 DC Contemporary patent model",
+  },
+  {
+    date: "2026-10-05",
+    type: "fix",
+    summary: "Fixed steep wide-angle rays clipping on phantom asphere surfaces beyond the glass edge",
+  },
+  {
+    date: "2026-10-05",
+    type: "lens",
+    summary: "Added six Nikon models, from the Nikkor-QD·C Auto 15mm f/5.6 to the Z 70-200mm f/2.8 VR S II",
+  },
+  {
+    date: "2026-10-04",
+    type: "fix",
+    summary: "Fixed the controls dropping below the diagram when a converter is switched with an analysis tab open",
+  },
+  {
+    date: "2026-10-04",
+    type: "improvement",
+    summary: "Added a warning over MTF charts when the lens data is incomplete, listing each gap",
+  },
+  {
+    date: "2026-10-04",
+    type: "feature",
+    summary: "Added teleconverters: mount the Fujifilm XF1.4X, XF2X or GF1.4X on compatible lenses",
+  },
+  {
+    date: "2026-10-04",
+    type: "improvement",
+    summary: "Drew the rear filters of 21 Canon, Nikon and Minolta telephoto lenses as lens elements",
+  },
+  {
+    date: "2026-10-04",
+    type: "lens",
+    summary: "Added six Minolta MD Zoom patent models, from the 24-35mm f/3.5 to the 75-150mm f/4",
+  },
+  {
+    date: "2026-10-03",
+    type: "lens",
+    summary: "Added post-war Biogon 35mm, S-Biogon 40mm and Sony RX1 Sonnar 35mm patent models",
+  },
+  {
+    date: "2026-10-03",
+    type: "lens",
+    summary: "Added Voigtländer Tele-Dynar, Cine-Tele-Anastigmat and Super Wide-Heliar SL models",
+  },
+  {
+    date: "2026-10-02",
+    type: "fix",
+    summary: "Corrected aperture readouts, focus behavior, presets, and saved slider precision",
+  },
+  {
+    date: "2026-10-02",
+    type: "fix",
+    summary: "Improved lens search for focal lengths and f-numbers, including equivalent notation and zoom endpoints",
+  },
+  {
+    date: "2026-10-02",
+    type: "improvement",
+    summary:
+      "Reduced browser downloads by trimming display metadata and separating viewer help from the article registry",
+  },
+  {
+    date: "2026-10-02",
+    type: "improvement",
+    summary:
+      "Added collapsible comparison details, a compact desktop toolbar, and scrolling that preserves diagram space",
+  },
+  {
+    date: "2026-10-02",
+    type: "improvement",
+    summary: "Filled 40 missing lens mounts and added historical and cinema mount families",
+  },
+  {
+    date: "2026-10-02",
+    type: "improvement",
+    summary: "Added compact-camera, tube and cinema formats and filled missing lens assignments",
+  },
+  {
+    date: "2026-10-02",
+    type: "lens",
+    summary: "Added Nikon S-100, COOLPIX SQ and COOLPIX 4300 patent lens models",
+  },
+  {
+    date: "2026-10-02",
+    type: "lens",
+    summary: "Added Schneider TV-Variogon 20–600mm, Tele-Variogon 80–240mm and Tele-Xenar 180mm",
+  },
+  {
+    date: "2026-10-01",
+    type: "lens",
+    summary: "Added the Konica Varifocal Hexanon AR 35–100mm f/2.8 patent model",
+  },
+  {
+    date: "2026-10-01",
+    type: "lens",
+    summary: "Added Russar-21 60mm f/18 and Russar-22 70mm f/8 patent models",
+  },
+  {
+    date: "2026-10-01",
+    type: "fix",
+    summary: "Corrected the Canon RF 800mm f/11 focus-element outline against its patent figure",
+  },
+  {
+    date: "2026-10-01",
+    type: "improvement",
+    summary: "Clarified Canon RF 16–28mm and Nikon 58mm patent-model labels",
+  },
+  {
+    date: "2026-10-01",
+    type: "lens",
+    summary: "Added Canon RF 10–20mm f/4 L IS STM and RF 16–28mm f/2.8 IS STM patent models",
+  },
+  {
+    date: "2026-10-01",
+    type: "lens",
+    summary: "Added the Canon RF-S 14–30mm f/4–6.3 IS STM PZ patent model",
+  },
+  {
+    date: "2026-09-30",
+    type: "fix",
+    summary: "Updated patent assignments across the lens catalog",
+  },
+  {
+    date: "2026-09-30",
+    type: "lens",
+    summary: "Added Nikon AF-S NIKKOR 500mm f/4G ED VR and 70–200mm f/4G ED VR",
+  },
+  {
+    date: "2026-09-30",
+    type: "lens",
+    summary: "Added Canon CINE-SERVO 17–120mm T2.95–3.9 (CN7×17 KAS S/E1)",
+  },
+  {
+    date: "2026-09-30",
+    type: "lens",
+    summary: "Added inferred iPhone 7 and iPhone 12 Wide-camera patent models",
+  },
+  {
+    date: "2026-09-30",
+    type: "lens",
+    summary: "Added the Industar 52.39mm f/3.56 ITMO 2013 Variant 2 source model",
+  },
+  {
+    date: "2026-09-29",
+    type: "lens",
+    summary: "Added Nikon AF-S 17–35mm f/2.8D and 24–85mm f/3.5–4.5G IF-ED and ED VR zooms",
+  },
+  {
+    date: "2026-09-28",
+    type: "lens",
+    summary: "Added Meyer-Optik Lydith 30mm f/3.5, Primagon 35mm f/4.5, and Orestegor 500mm f/5.6",
+  },
+  {
+    date: "2026-09-28",
+    type: "lens",
+    summary: "Added Schneider Xenar 50mm f/2.8, Xenon 50mm f/1.9, and Retina-Xenon C 50mm f/2",
+  },
+  {
+    date: "2026-09-27",
+    type: "lens",
+    summary: "Added Fujinon XC 15–45mm OIS PZ, XC 16–50mm OIS II, and XF 8–16mm R LM WR",
+  },
+  {
+    date: "2026-09-27",
+    type: "lens",
+    summary: "Added Minolta Auto Tele Rokkor-PF 100mm f/2, MD 135mm f/2.8, and MD 50mm f/2",
+  },
+  {
+    date: "2026-09-26",
+    type: "lens",
+    summary: "Added Miranda Auto EC 35mm f/2.8, 135mm f/2.8, and 200mm f/3.5",
+  },
+  {
+    date: "2026-09-26",
+    type: "lens",
+    summary: "Added Nikon 1 NIKKOR VR 10-30mm PD-ZOOM and AF-S DX 10-24mm and 16-80mm zooms",
+  },
+  {
+    date: "2026-09-25",
+    type: "lens",
+    summary: "Added Canon RF 200-800mm f/6.3-9 IS USM and Leica Telyt-S 800mm f/6.3",
+  },
+  {
+    date: "2026-09-25",
+    type: "lens",
+    summary: "Added Sony FE 400-800mm f/6.3-8 G OSS and FE 400mm f/2.8 GM OSS",
+  },
+  {
+    date: "2026-09-25",
+    type: "lens",
+    summary: "Added Sony FE 70-200mm f/4 Macro G OSS II and FE 8-14mm f/3.5 Fisheye G",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
+    summary:
+      "Corrected 17 lenses against their patents: miscopied or over-rounded values, and cover plates and filters now traced at their physical spacing",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary:
+      "Corrected chromatic focus and lateral color for 256 lenses whose glasses have only an index and Abbe number",
+  },
+  {
+    date: "2026-09-24",
+    type: "improvement",
+    summary:
+      "Made vignetting, pupil and lens-group movement chart colors easier to tell apart, especially in light mode",
+  },
+  {
+    date: "2026-09-24",
+    type: "improvement",
+    summary: "Made Zoom span both rows at the right of the desktop analysis buttons",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary: "Enlarged undersized element rims on 68 lenses so their analysis reaches the image corner",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary: "Extended the analysis tabs to the sensor corner on wide lenses that used to stop short",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary: "Fixed corner rays missing the front asphere on ultra-wides like the Nikon Z 14-24mm",
+  },
+  {
+    date: "2026-09-24",
+    type: "improvement",
+    summary: "Added a two-row analysis button bar with tooltips under the desktop lens diagram",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary: "Placed the patent filters in four Nikon super-teles, including the 180-400mm's slip-in filter",
+  },
+  {
+    date: "2026-09-24",
+    type: "lens",
+    summary: "Marked our 800th lens with three Nikkor 800mms: f/8 ED, AF-S f/5.6E FL ED VR and Z f/6.3 VR S",
+  },
+  {
+    date: "2026-09-23",
+    type: "feature",
+    summary: "Added simulated lens MTF: diffraction-corrected photopic curves at 10–50 lp/mm out to the format corner",
+  },
+  {
+    date: "2026-09-23",
+    type: "improvement",
+    summary:
+      "Sensor cover glass and rear filters from the patent are now traced in every analysis, without being drawn",
+  },
+  {
+    date: "2026-09-23",
+    type: "fix",
+    summary:
+      "Reviewed and corrected 40 more lens diagrams against their patents: rims, zoom motion, apertures and glass",
+  },
+  {
+    date: "2026-09-23",
+    type: "lens",
+    summary: "Added two Kodak Ektars, Leica Summilux-C 100, Super-Angulon-R 21 and SL/TL Super-Vario-Elmars",
+  },
+  {
+    date: "2026-09-22",
+    type: "lens",
+    summary: "Added three Fujinon XF zooms and Meyer Orestor, Kino-Plasmat and Double-Plasmat models",
+  },
+  {
+    date: "2026-09-22",
+    type: "fix",
+    summary: "Reviewed and corrected 20 lens diagrams against their patents: rims, apertures, focus states and glass",
+  },
+  {
+    date: "2026-09-21",
+    type: "lens",
+    summary: "Added six Leica Summilux lenses and three Minolta 28mm designs",
+  },
+  {
+    date: "2026-09-20",
+    type: "lens",
+    summary: "Added three Schneider Variogon zooms and Sony GM 50mm f/1.2, 50mm f/1.4 and 50–150mm f/2",
+  },
+  {
+    date: "2026-09-19",
+    type: "lens",
+    summary: "Added three Kinoptik Tegea lenses and Nikon AF600, AF 35mm and Micro-Nikkor 60mm",
+  },
+  {
+    date: "2026-09-18",
+    type: "lens",
+    summary: "Added four Sony ZEISS Vario-Sonnar zooms, Vario-Prakticar and Ultra Prime 135mm",
+  },
+  {
+    date: "2026-09-17",
+    type: "article",
+    summary: "Added ZEISS, Sony and Angénieux pages to the manufacturer lens story index",
+  },
+  {
+    date: "2026-09-17",
+    type: "article",
+    summary: "Added Canon's lens history timeline and SIGMA's RETICENCE manufacturing series",
+  },
+  {
+    date: "2026-09-17",
+    type: "article",
+    summary: "Added Nikon's Frontiers of Vision series to the manufacturer story index",
+  },
+  {
+    date: "2026-09-17",
+    type: "improvement",
+    summary: "Linked more Fujifilm, Panasonic and Pentax manufacturer stories to lens diagrams",
+  },
+  {
+    date: "2026-09-17",
+    type: "improvement",
+    summary: "Added links from inventor and assignee maps to focus their nodes on the universal map",
+  },
+  {
+    date: "2026-09-17",
+    type: "lens",
+    summary: "Added Schacht Travenar 135mm f/3.5 and Schneider Angulon 210mm f/6.8 patent designs",
+  },
+  {
+    date: "2026-09-17",
+    type: "lens",
+    summary: "Added Schneider Cine-Xenon 25mm f/1.4 and Curtagon 35mm f/2.8 and 28mm f/4 designs",
+  },
+  {
+    date: "2026-09-16",
+    type: "feature",
+    summary:
+      "Added double-click zoom on the universal relationship map overview to magnify and center on a chosen spot",
+  },
+  {
+    date: "2026-09-16",
+    type: "fix",
+    summary:
+      "Fixed Espacenet links for US application publications and pre-2000 Japanese patent numbers, and added kind codes to 21 Japanese patents",
+  },
+  {
+    date: "2026-09-16",
+    type: "improvement",
+    summary:
+      "Added corporate history links for Cosina, Leitz Canada, Fujifilm, HOYA, Jenoptik Jena, and Agfa to the relationship map",
+  },
+  {
+    date: "2026-09-16",
+    type: "fix",
+    summary: "Corrected five anachronistic patent assignees and unified five split inventor spellings on lens pages",
+  },
+  {
+    date: "2026-09-16",
+    type: "fix",
+    summary: "Normalized 24 Japanese patent numbers so they group under Japan on the patents index",
+  },
+  {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Schacht Travenar 90mm and S-Travenar 135mm f/2.8 patent designs",
+  },
+  {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Schneider-Kreuznach Cinegon 6.5mm f/1.9 and 10mm f/1.8 patent designs",
+  },
+  {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Samsung 4.3mm f/1.5 patent design associated with the Galaxy S9",
+  },
+  {
+    date: "2026-09-16",
+    type: "fix",
+    summary: "Fixed 1/2.3-inch and 1/1.7-inch type format pages showing Page Not Found",
+  },
+  {
+    date: "2026-09-16",
+    type: "fix",
+    summary: "Fixed shared lens-comparison links briefly showing Page Not Found before loading",
+  },
+  {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Zeiss Flektogon 20mm and 50mm f/4 and Prakticar 50mm f/1.4 patent designs",
+  },
+  {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Zeiss Planar 80mm f/2.8 6×6 and Graflex XL designs and Mirotar 500mm f/4.5",
+  },
+  {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Leica Summicron 35mm f/2 I and Summilux-M 35mm f/1.4 patent models",
+  },
+  {
+    date: "2026-09-15",
+    type: "lens",
+    summary: "Added Leica Summicron-C 40mm f/2 and Macro-Elmar-M 90mm f/4 patent designs",
+  },
+  {
+    date: "2026-09-15",
+    type: "lens",
+    summary: "Added Leica DC zoom patent designs for Panasonic LX7, LX100 II, FZ300 and FZ2500",
+  },
+  {
+    date: "2026-09-15",
+    type: "lens",
+    summary: "Added Fujinon XF 27mm f/2.8, XF 30mm f/2.8 Macro and XF 35mm f/2 patent designs",
+  },
+  {
+    date: "2026-09-15",
+    type: "lens",
+    summary: "Added ZEISS Batis 18mm f/2.8, Batis 85mm f/1.8 and Biotar 50mm f/1.4 patent designs",
+  },
+  {
+    date: "2026-09-14",
+    type: "improvement",
+    summary:
+      "Enhanced the universal relationship map with search, connected navigation, shareable selections, neighborhood emphasis and an interactive overview",
+  },
+  {
+    date: "2026-09-14",
+    type: "lens",
+    summary: "Added Fujinon XF 8mm f/3.5, 18mm f/1.4 and 50mm f/2 patent designs",
+  },
+  {
+    date: "2026-09-14",
+    type: "lens",
+    summary: "Added Zeiss Biometar 80mm and 120mm f/2.8 and Distagon T* 25mm f/2.8 designs",
+  },
+  {
+    date: "2026-09-14",
+    type: "lens",
+    summary: "Added Nikon Zoom-Nikkor 28–45mm f/4.5 from patent Embodiment III",
+  },
+  {
+    date: "2026-09-13",
+    type: "improvement",
+    summary: "Linked more Nikon, Fujifilm, Canon and Tamron manufacturer stories to lens diagrams",
+  },
+  {
+    date: "2026-09-13",
+    type: "lens",
+    summary: "Added Nikon 28mm, 300mm ED, 600mm ED and Nikkor-SW 75mm patent designs",
+  },
+  {
+    date: "2026-09-13",
+    type: "lens",
+    summary: "Added Nikon Zoom-Nikkor Auto 50–300mm f/4.5 patent design",
+  },
+  {
+    date: "2026-09-13",
+    type: "improvement",
+    summary: "Expanded Nikon glass dispersion coverage and refined patent-diagram proportions",
+  },
+  {
+    date: "2026-09-12",
+    type: "lens",
+    summary: "Added Fujifilm XF18-120mm, XF18-135mm and EBC X-Fujinon W 24mm designs",
+  },
+  {
+    date: "2026-09-12",
+    type: "lens",
+    summary: "Added Hasselblad HC 50mm II, XCD 30mm and XCD 45mm patent designs",
+  },
+  {
+    date: "2026-09-12",
+    type: "improvement",
+    summary: "Expanded glass dispersion coverage with NHG H-LaK77 and audited catalog matches",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added Canon EF 35mm L II, RF 35mm Macro and TS-E 24mm L II designs",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added Fujifilm XF55-200mm with audited patent rims and glass dispersion",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added Voigtländer Apo-Lanthar 210mm, Skoparex 35mm and Telomar 180mm designs",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added Fujifilm XF14mm, both XF16mm primes, XF70-300mm and XF100-400mm",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added six Fujifilm lens designs and the Viltrox AF 14mm f/4 Air",
+  },
+  {
+    date: "2026-09-10",
+    type: "improvement",
+    summary: "Unified patent-assignee relationships",
+  },
+  {
+    date: "2026-09-10",
+    type: "lens",
+    summary: "Added five Viltrox prime lens designs",
+  },
+  {
+    date: "2026-09-09",
+    type: "lens",
+    summary: "Added six Samyang AF and XP prime lens designs with audited diagrams and glass",
+  },
+  {
+    date: "2026-09-09",
+    type: "fix",
+    summary: "Reviewed and corrected the oldest 40 lens diagrams, prescriptions, and movements",
+  },
+  {
+    date: "2026-09-08",
+    type: "lens",
+    summary: "Added Canon EF 50mm f/1.2L USM, EF 70-300mm IS USM, and EF-S 18-55mm lens designs",
+  },
+  {
+    date: "2026-09-07",
+    type: "lens",
+    summary: "Added Canon EF 70-200mm f/2.8L IS, f/4L IS, and f/4L USM lens designs",
+  },
+  {
+    date: "2026-09-06",
+    type: "lens",
+    summary: "Added six Canon EF, EF-S, EF-M, and PowerShot lens designs",
+  },
+  {
+    date: "2026-09-05",
+    type: "lens",
+    summary: "Added six Konica Hexanon AR prime and zoom lens designs",
+  },
+  {
+    date: "2026-09-04",
+    type: "improvement",
+    summary: "Improved patent-based focus accuracy across 55 lens models",
+  },
+  {
+    date: "2026-09-04",
+    type: "lens",
+    summary: "Added six Nikon AI and AI AF prime, macro, and zoom lens designs",
+  },
+  {
+    date: "2026-09-03",
+    type: "fix",
+    summary: "Matched centered tilt-shift diagram scale to ordinary lenses",
+  },
+  {
+    date: "2026-09-03",
+    type: "fix",
+    summary: "Corrected the Fujifilm GF30 tilt pivot from patent mechanism guidance",
+  },
+  {
+    date: "2026-09-03",
+    type: "improvement",
+    summary: "Added independent reset controls for tilt-shift movement axes",
+  },
+  {
+    date: "2026-09-03",
+    type: "fix",
+    summary: "Fixed tilt-shift diagrams and analyses to trace moved lenses against a fixed sensor",
+  },
+  {
+    date: "2026-09-03",
+    type: "lens",
+    summary: "Added Nikon 200mm f/2, 300mm f/2, and 80-200mm f/2.8 ED designs",
+  },
+  {
+    date: "2026-09-02",
+    type: "improvement",
+    summary: "Optimized and enhanced the universal relationship map",
+  },
+  {
+    date: "2026-09-02",
+    type: "lens",
+    summary: "Added Nikon AI 50-300mm, PC 35mm, and Series E 36-72mm lens designs",
+  },
+  {
+    date: "2026-09-02",
+    type: "lens",
+    summary: "Added Nikon 100-300mm, 200-400mm ED, and Medical-Nikkor 120mm designs",
+  },
+  {
+    date: "2026-09-01",
+    type: "lens",
+    summary: "Added three Konica patent-derived prime and telephoto lens designs",
+  },
+  {
+    date: "2026-08-30",
+    type: "lens",
+    summary: "Added three Nikon AF-S DX patent-derived zoom lens designs",
+  },
+  {
+    date: "2026-08-29",
+    type: "lens",
+    summary: "Added three Konica Zoom-Hexanon AR patent-derived zoom lens designs",
+  },
+  {
+    date: "2026-08-28",
+    type: "lens",
+    summary: "Added three Konica UC Hexanon AR patent-derived lens designs",
+  },
+  {
+    date: "2026-08-27",
+    type: "lens",
+    summary: "Added three Sony ZEISS patent-derived zoom lens designs",
+  },
+  {
     date: "2026-08-26",
     type: "feature",
     summary: "Added searchable lens aliases and sourced contract-manufacturer details",

@@ -26,7 +26,7 @@ const TRACE_CLIP_ABS_TOLERANCE = 1e-9;
  * zone for secondary obstructions or mirror holes, so a hit can be geometrically
  * on the surface but optically pass through the center.
  *
- * @param state - prepared optical state carrying stop and display margins
+ * @param state - prepared optical state; supplies the stop surface index
  * @param surface - prepared surface being hit
  * @param radius - radial hit distance from the local optical axis in mm
  * @param stopSemiDiameter - optional current physical stop radius override
@@ -73,8 +73,8 @@ function activeSemiDiameter(
   stopSemiDiameter: number | undefined,
 ): number | null {
   if (surface.physicalIndex === state.lens.stop.surfaceIndex && stopSemiDiameter !== undefined) return stopSemiDiameter;
-  if (typeof surface.sd !== "number") return null;
-  return surface.sd * state.lens.display.clipMargin;
+  if (typeof surface.sd !== "number" || !surface.clips) return null;
+  return surface.sd;
 }
 
 function exceedsAperture(radius: number, semiDiameter: number): boolean {

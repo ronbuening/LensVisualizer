@@ -1,32 +1,9 @@
 import type { LensDataInput } from "../../types/optics.js";
 
-/**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — CANON RF 24-70mm f/2.8L IS USM              ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2019/0278068 A1 Example 5 (Canon / T. Hatada).   ║
- * ║  7-unit positive-lead zoom: L1(+) L2(−) L3(+) L4(−) L5(+)        ║
- * ║    L6(−) L7(+).                                                    ║
- * ║  21 elements / 15 groups, 5 aspherical surfaces (3 GMo elements). ║
- * ║  Focus: L6 (single neg. meniscus) moves rearward for close focus. ║
- * ║                                                                    ║
- * ║  Zoom variable gaps: D5, D15, D21, D24, D31, D33, D37 (BF).      ║
- * ║  Reversing groups: D21 (non-monotonic, 2.26 → 2.23 → 2.54 mm).   ║
- * ║                                                                    ║
- * ║  NOTE ON FOCUS DATA:                                               ║
- * ║    The patent provides variable gap data at infinity focus only,   ║
- * ║    at three zoom positions. Close-focus gap values are not given   ║
- * ║    in the numerical example. All variable gaps are therefore       ║
- * ║    entered as zoom-only (identical inf/close values). The focus    ║
- * ║    slider will have no visible effect in the renderer. The focus   ║
- * ║    group (L6) moves rearward; gaps D31, D33, and D37 would vary.  ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    SDs start from the patent's "effective diameter" column (÷ 2), ║
- * ║    then are refined against Canon's construction diagram so the    ║
- * ║    rendered glass outlines better match physical element scale.    ║
- * ║    These are render clear-aperture estimates, not ray-trace data.  ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+/** US20190278068A1 Numerical Example 5, PDF page 23 and Figure 9.
+ * All three source infinity-focus zoom stations retained; no finite-focus table.
+ * Published effective diameters define SDs subject to explicit rendering limits.
+ * No filter or cover-glass rows occur in this selected prescription.
  */
 
 const LENS_DATA = {
@@ -39,8 +16,9 @@ const LENS_DATA = {
     "21 ELEMENTS / 15 GROUPS",
     "f = 24.7–67.9 mm",
     "F/2.91",
+    "Infinity-focus model; centered IS",
     "2ω = 82.4°–35.4°",
-    "5 ASPHERICAL SURFACES (3 GMo ELEMENTS)",
+    "5 ASPHERICAL SURFACES / 3 ELEMENTS",
   ],
 
   /* ── Explicit metadata ── */
@@ -67,10 +45,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80809,
       vd: 22.8,
-      fl: -183.0,
-      glass: "S-NPH1 (OHARA)",
+      fl: -184.26,
+      glass: "S-NPH1 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D1",
-      role: "Leading negative meniscus — high-dispersion flint. Conditional expression (1): νd1n = 22.76. Bends chief ray inward to reduce downstream diameters.",
+      role: "Negative Meniscus element of cemented doublet D1",
     },
     {
       id: 2,
@@ -79,10 +57,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: 162.3,
-      glass: "S-LAH66 (OHARA)",
+      fl: 160.58,
+      glass: "S-LAH66 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D1",
-      role: "Achromatic partner to G1n (Δνd ≈ 27). Lanthanum crown provides chromatic contrast without extreme curvature.",
+      role: "Positive Meniscus element of cemented doublet D1",
     },
     {
       id: 3,
@@ -91,9 +69,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72916,
       vd: 54.7,
-      fl: 125.6,
-      glass: "S-LAL18 (OHARA)",
-      role: "Second positive lens in L1. Carries bulk of L1's converging power.",
+      fl: 122.21,
+      glass: "S-LAL18 — compatible catalog counterpart; patent identity unspecified",
+      role: "Positive Meniscus singlet",
     },
     // ── Unit 2: Variator / zoom diverging group (f = −18.58 mm) ──
     {
@@ -103,9 +81,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.883,
       vd: 40.8,
-      fl: -29.2,
-      glass: "S-LAH58 (OHARA)",
-      role: "Leading element of L2. Strong negative power; steeply curved rear surface diverges converged beam from L1.",
+      fl: -29.56,
+      glass: "S-LAH58 — compatible catalog counterpart; patent identity unspecified",
+      role: "Negative Meniscus singlet",
     },
     {
       id: 5,
@@ -114,12 +92,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.497,
       vd: 81.5,
-      fl: -36.3,
-      glass: "S-FPL51 (OHARA) — UD 1 of 3",
-      apd: "inferred",
-      apdNote: "S-FPL51: anomalous partial dispersion (below normal line on Pg,F diagram).",
+      fl: -36.22,
+      glass: "S-FPL51 — compatible catalog counterpart; patent identity unspecified",
+      apd: false,
       cemented: "D2",
-      role: "First UD element. Anomalous dispersion corrects secondary spectrum of variator group.",
+      role: "Biconcave Negative element of cemented doublet D2",
     },
     {
       id: 6,
@@ -128,10 +105,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.85478,
       vd: 24.8,
-      fl: 45.5,
-      glass: "S-NBH56 (OHARA)",
+      fl: 42.59,
+      glass: "S-NBH56 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D2",
-      role: "High-dispersion niobophosphate flint partner to E5. UD–flint pair controls lateral color across zoom range.",
+      role: "Positive Meniscus element of cemented doublet D2",
     },
     {
       id: 7,
@@ -140,9 +117,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72916,
       vd: 54.7,
-      fl: -59.2,
-      glass: "S-LAL18 (OHARA)",
-      role: "Weakly curved biconcave adding negative power with minimal higher-order contribution. Same glass as E3.",
+      fl: -59.15,
+      glass: "S-LAL18 — compatible catalog counterpart; patent identity unspecified",
+      role: "Biconcave Negative singlet",
     },
     {
       id: 8,
@@ -151,10 +128,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.3,
-      fl: 32.8,
-      glass: "S-FTM16 (OHARA)",
+      fl: 33.41,
+      glass: "S-FTM16 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D3",
-      role: "Rear doublet of L2 — provides chromatic correction and Petzval sum control.",
+      role: "Biconvex Positive element of cemented doublet D3",
     },
     {
       id: 9,
@@ -163,10 +140,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.7,
-      fl: -44.5,
-      glass: "S-LAH55V (OHARA)",
+      fl: -45,
+      glass: "S-LAH55V — compatible catalog counterpart; patent identity unspecified",
       cemented: "D3",
-      role: "Dense lanthanum partner correcting Petzval contribution of L2.",
+      role: "Negative Meniscus element of cemented doublet D3",
     },
     // ── Unit 3: Aperture stop + relay group (f = +35.84 mm) ──
     {
@@ -176,9 +153,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.76385,
       vd: 48.5,
-      fl: 44.2,
-      glass: "764485 — lanthanum crown (patent nd=1.76385, νd=48.5)",
-      role: "Immediately after stop. Strong convergence; controls spherical aberration on-axis.",
+      fl: 44.79,
+      glass: "S-LAH96 — compatible catalog counterpart; patent identity unspecified",
+      role: "Biconvex Positive singlet",
     },
     {
       id: 11,
@@ -187,12 +164,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
-      fl: 36.9,
-      glass: "S-FPL51 (OHARA) — UD 2 of 3",
-      apd: "inferred",
-      apdNote: "S-FPL51: anomalous partial dispersion.",
+      fl: 38.2,
+      glass: "S-FPL51 — compatible catalog counterpart; patent identity unspecified",
+      apd: false,
       cemented: "D4",
-      role: "Second UD element. Paired with ultra-high-index TAFD40 for powerful chromatic + Petzval correction.",
+      role: "Biconvex Positive element of cemented doublet D4",
     },
     {
       id: 12,
@@ -201,10 +177,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.00069,
       vd: 25.5,
-      fl: -44.2,
-      glass: "TAFD40 (HOYA)",
+      fl: -44.38,
+      glass: "TAFD40 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D4",
-      role: "Ultra-high-index (nd > 2.0) dense flint. Δnd = 0.504 with E11 provides extreme chromatic correction; strong negative Petzval contribution flattens field.",
+      role: "Negative Meniscus element of cemented doublet D4",
     },
     // ── Unit 4: Image stabilization group (f = −69.07 mm) ──
     {
@@ -214,10 +190,10 @@ const LENS_DATA = {
       type: "Biconcave Neg. (1× Asph)",
       nd: 1.58313,
       vd: 59.4,
-      fl: -45.5,
-      glass: "S-BAL42 (OHARA) — PGM",
+      fl: -45.29,
+      glass: "S-BAL42 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D5",
-      role: "IS group front element. S22 aspherical. PGM glass-moulded. Mild asphere corrects coma during IS decentration.",
+      role: "Biconcave Negative (1× Asph) element of cemented doublet D5; centered IS group",
     },
     {
       id: 14,
@@ -226,10 +202,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.76182,
       vd: 26.5,
-      fl: 131.9,
-      glass: "S-TIH14 (OHARA)",
+      fl: 129.1,
+      glass: "S-TIH14 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D5",
-      role: "IS group rear element. High-dispersion titanium flint balances chromatic shift during IS operation.",
+      role: "Positive Meniscus element of cemented doublet D5; centered IS group",
     },
     // ── Unit 5: Main converging group (f = +28.29 mm) ──
     {
@@ -239,11 +215,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
-      fl: 38.5,
-      glass: "S-FPL51 (OHARA) — UD 3 of 3",
-      apd: "inferred",
-      apdNote: "S-FPL51: anomalous partial dispersion. This is Gfp per conditional expressions (13)–(14).",
-      role: "Third UD element (Gfp). 'Chromatic anchor' — corrects axial LoCA at tele and lateral color at wide per §0053.",
+      fl: 39.6,
+      glass: "S-FPL51 — compatible catalog counterpart; patent identity unspecified",
+      apd: false,
+      role: "Biconvex Positive singlet",
     },
     {
       id: 16,
@@ -252,10 +227,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.738,
       vd: 32.3,
-      fl: -115.3,
-      glass: "738323 — niobium dense flint (patent nd=1.73800, νd=32.3)",
+      fl: -120,
+      glass: "J-KZFH9 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D6",
-      role: "Niobium dense flint. Fine-tunes secondary spectrum correction.",
+      role: "Negative Meniscus element of cemented doublet D6",
     },
     {
       id: 17,
@@ -264,10 +239,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.53775,
       vd: 74.7,
-      fl: 36.7,
-      glass: "S-FPM3 (OHARA)",
+      fl: 37.59,
+      glass: "S-FPM3 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D6",
-      role: "Phosphate crown provides net positive power and secondary spectrum fine-tuning.",
+      role: "Biconvex Positive element of cemented doublet D6",
     },
     {
       id: 18,
@@ -276,9 +251,9 @@ const LENS_DATA = {
       type: "Biconcave Neg. (2× Asph)",
       nd: 1.854,
       vd: 40.4,
-      fl: -126.8,
-      glass: "854404 — moldable high-index lanthanum glass (patent nd=1.85400, νd=40.4) — PGM",
-      role: "Double-asphere corrector plate. S30 has −0.75 mm departure — dominates the nearly-flat base curve. Corrects field-dependent coma and astigmatism.",
+      fl: -126.62,
+      glass: "L-LAH85V — compatible catalog counterpart; patent identity unspecified",
+      role: "Biconcave Negative (2× Asph) singlet",
     },
     // ── Unit 6: Focus group (f = −49.77 mm) ──
     {
@@ -288,9 +263,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.804,
       vd: 46.6,
-      fl: -49.2,
-      glass: "S-LAH65 (OHARA)",
-      role: "Single thin meniscus — focus element driven by Nano USM. 0.90 mm CT minimizes mass for fast AF response.",
+      fl: -49.77,
+      glass: "S-LAH65 — compatible catalog counterpart; patent identity unspecified",
+      role: "Negative Meniscus singlet; source focus group, finite motion unavailable",
     },
     // ── Unit 7: Rear field-flattening group (f = +785.94 mm) ──
     {
@@ -300,9 +275,9 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.58313,
       vd: 59.4,
-      fl: -91.9,
-      glass: "S-BAL42 (OHARA) — PGM",
-      role: "Double-asphere field corrector. S35 departure of −1.5 mm on R ≈ −3211 mm base = essentially pure aspheric plate. Targets wide-angle distortion and field curvature.",
+      fl: -91.93,
+      glass: "S-BAL42 — compatible catalog counterpart; patent identity unspecified",
+      role: "Negative Meniscus (2× Asph) singlet",
     },
     {
       id: 21,
@@ -311,64 +286,64 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.001,
       vd: 29.1,
-      fl: 84.2,
-      glass: "TAFD55 (HOYA) / S-LAH99 (OHARA)",
-      role: "Positive lens Grp — conditional expressions (2)–(3). Ultra-high nd = 2.001 corrects lateral color at both zoom ends via varying BF ray height (§0037). Also flattens Petzval sum.",
+      fl: 84.48,
+      glass: "TAFD55 — compatible catalog counterpart; patent identity unspecified",
+      role: "Biconvex Positive singlet",
     },
   ],
 
   /* ── Surface prescription ── */
   surfaces: [
     // ── Unit 1 (L1): E1–E3, front positive group ──
-    { label: "1", R: 232.357, d: 2.1, nd: 1.80809, elemId: 1, sd: 34.35 }, // G1n front
-    { label: "2", R: 90.381, d: 5.78, nd: 1.7725, elemId: 2, sd: 32.98 }, // G1n→G2p junction
+    { label: "1", R: 232.357, d: 2.1, nd: 1.80809, elemId: 1, sd: 34.345 }, // G1n front
+    { label: "2", R: 90.381, d: 5.78, nd: 1.7725, elemId: 2, sd: 32.975 }, // G1n→G2p junction
     { label: "3", R: 323.713, d: 0.15, nd: 1.0, elemId: 0, sd: 32.69 }, // G2p rear → air
-    { label: "4", R: 59.139, d: 7.05, nd: 1.72916, elemId: 3, sd: 30.34 }, // G3p front
+    { label: "4", R: 59.139, d: 7.05, nd: 1.72916, elemId: 3, sd: 30.335 }, // G3p front
     { label: "5", R: 166.984, d: 0.8, nd: 1.0, elemId: 0, sd: 29.73 }, // G3p rear → air (variable: L1→L2)
 
     // ── Unit 2 (L2): E4–E9, variator ──
-    { label: "6", R: 67.802, d: 1.4, nd: 1.883, elemId: 4, sd: 18.2 }, // E4 front (clamped to ≤1.25×sd7 for renderer)
-    { label: "7", R: 18.663, d: 8.67, nd: 1.0, elemId: 0, sd: 14.6 }, // E4 rear → air
+    { label: "6", R: 67.802, d: 1.4, nd: 1.883, elemId: 4, sd: 19.265 }, // E4 front
+    { label: "7", R: 18.663, d: 8.67, nd: 1.0, elemId: 0, sd: 14.595 }, // E4 rear → air
     { label: "8", R: -115.164, d: 1.2, nd: 1.497, elemId: 5, sd: 14.17 }, // E5 front (UD 1)
-    { label: "9", R: 21.412, d: 3.87, nd: 1.85478, elemId: 6, sd: 12.44 }, // E5→E6 junction
+    { label: "9", R: 21.412, d: 3.87, nd: 1.85478, elemId: 6, sd: 12.435 }, // E5→E6 junction
     { label: "10", R: 47.653, d: 4.17, nd: 1.0, elemId: 0, sd: 11.93 }, // E6 rear → air
     { label: "11", R: -48.039, d: 1.0, nd: 1.72916, elemId: 7, sd: 11.34 }, // E7 front
     { label: "12", R: 425.782, d: 0.29, nd: 1.0, elemId: 0, sd: 11.02 }, // E7 rear → air
-    { label: "13", R: 93.568, d: 6.03, nd: 1.5927, elemId: 8, sd: 10.87 }, // E8 front
+    { label: "13", R: 93.568, d: 6.03, nd: 1.5927, elemId: 8, sd: 10.865 }, // E8 front
     { label: "14", R: -24.518, d: 1.05, nd: 1.83481, elemId: 9, sd: 11.25 }, // E8→E9 junction
-    { label: "15", R: -71.957, d: 16.15, nd: 1.0, elemId: 0, sd: 11.93 }, // E9 rear → air (variable: L2→L3)
+    { label: "15", R: -71.957, d: 16.15, nd: 1.0, elemId: 0, sd: 11.925 }, // E9 rear → air (variable: L2→L3)
 
     // ── Unit 3 (L3): Stop + E10–E12, relay group ──
-    { label: "STO", R: 1e15, d: 0.4, nd: 1.0, elemId: 0, sd: 12.96 }, // Aperture stop
-    { label: "17", R: 78.059, d: 4.31, nd: 1.76385, elemId: 10, sd: 12.6 }, // E10 front
-    { label: "18", R: -59.447, d: 0.15, nd: 1.0, elemId: 0, sd: 12.4 }, // E10 rear → air
-    { label: "19", R: 40.155, d: 7.4, nd: 1.497, elemId: 11, sd: 15.6 }, // E11 front (UD 2)
-    { label: "20", R: -33.807, d: 1.1, nd: 2.00069, elemId: 12, sd: 15.3 }, // E11→E12 junction
-    { label: "21", R: -143.919, d: 2.26, nd: 1.0, elemId: 0, sd: 15.0 }, // E12 rear → air (variable: L3→L4)
+    { label: "STO", R: 1e15, d: 0.4, nd: 1.0, elemId: 0, sd: 12.955 }, // Aperture stop
+    { label: "17", R: 78.059, d: 4.31, nd: 1.76385, elemId: 10, sd: 13.43 }, // E10 front
+    { label: "18", R: -59.447, d: 0.15, nd: 1.0, elemId: 0, sd: 13.565 }, // E10 rear → air
+    { label: "19", R: 40.155, d: 7.4, nd: 1.497, elemId: 11, sd: 13.46 }, // E11 front (UD 2)
+    { label: "20", R: -33.807, d: 1.1, nd: 2.00069, elemId: 12, sd: 13.135 }, // E11→E12 junction
+    { label: "21", R: -143.919, d: 2.26, nd: 1.0, elemId: 0, sd: 13.165 }, // E12 rear → air (variable: L3→L4)
 
     // ── Unit 4 (L4): E13–E14, IS group ──
-    { label: "22A", R: -63.149, d: 1.65, nd: 1.58313, elemId: 13, sd: 16.2 }, // E13 front (asph)
-    { label: "23", R: 45.825, d: 1.92, nd: 1.76182, elemId: 14, sd: 16.0 }, // E13→E14 junction
-    { label: "24", R: 84.251, d: 11.08, nd: 1.0, elemId: 0, sd: 15.8 }, // E14 rear → air (variable: L4→L5)
+    { label: "22A", R: -63.149, d: 1.65, nd: 1.58313, elemId: 13, sd: 13.03 }, // E13 front (asph)
+    { label: "23", R: 45.825, d: 1.92, nd: 1.76182, elemId: 14, sd: 13.135 }, // E13→E14 junction
+    { label: "24", R: 84.251, d: 11.08, nd: 1.0, elemId: 0, sd: 13.12 }, // E14 rear → air (variable: L4→L5)
 
     // ── Unit 5 (L5): E15–E18, main converging group ──
-    { label: "25", R: 26.393, d: 8.28, nd: 1.497, elemId: 15, sd: 16.5 }, // E15 front (Gfp, UD 3)
-    { label: "26", R: -69.36, d: 0.35, nd: 1.0, elemId: 0, sd: 16.2 }, // E15 rear → air
-    { label: "27", R: 39.335, d: 1.15, nd: 1.738, elemId: 16, sd: 15.4 }, // E16 front
-    { label: "28", R: 26.899, d: 7.03, nd: 1.53775, elemId: 17, sd: 15.0 }, // E16→E17 junction
-    { label: "29", R: -73.879, d: 0.15, nd: 1.0, elemId: 0, sd: 14.5 }, // E17 rear → air
-    { label: "30A", R: -602.944, d: 1.7, nd: 1.854, elemId: 18, sd: 14.0 }, // E18 front (asph)
-    { label: "31A", R: 131.941, d: 2.16, nd: 1.0, elemId: 0, sd: 13.6 }, // E18 rear → air (asph, variable: L5→L6)
+    { label: "25", R: 26.393, d: 8.28, nd: 1.497, elemId: 15, sd: 13.705 }, // E15 front (Gfp, UD 3)
+    { label: "26", R: -69.36, d: 0.35, nd: 1.0, elemId: 0, sd: 13.625 }, // E15 rear → air
+    { label: "27", R: 39.335, d: 1.15, nd: 1.738, elemId: 16, sd: 13.45 }, // E16 front
+    { label: "28", R: 26.899, d: 7.03, nd: 1.53775, elemId: 17, sd: 13.07 }, // E16→E17 junction
+    { label: "29", R: -73.879, d: 0.15, nd: 1.0, elemId: 0, sd: 12.75 }, // E17 rear → air
+    { label: "30A", R: -602.944, d: 1.7, nd: 1.854, elemId: 18, sd: 12.64 }, // E18 front (asph)
+    { label: "31A", R: 131.941, d: 2.16, nd: 1.0, elemId: 0, sd: 12.45 }, // E18 rear → air (asph, variable: L5→L6)
 
     // ── Unit 6 (L6): E19, focus group ──
-    { label: "32", R: 60.209, d: 0.9, nd: 1.804, elemId: 19, sd: 11.5 }, // E19 front
-    { label: "33", R: 23.878, d: 12.96, nd: 1.0, elemId: 0, sd: 11.2 }, // E19 rear → air (variable: L6→L7)
+    { label: "32", R: 60.209, d: 0.9, nd: 1.804, elemId: 19, sd: 12.755 }, // E19 front
+    { label: "33", R: 23.878, d: 12.96, nd: 1.0, elemId: 0, sd: 12.53 }, // E19 rear → air (variable: L6→L7)
 
     // ── Unit 7 (L7): E20–E21, rear field-flattening group ──
-    { label: "34A", R: -52.714, d: 1.7, nd: 1.58313, elemId: 20, sd: 13.2 }, // E20 front (asph)
-    { label: "35A", R: -3211.285, d: 0.15, nd: 1.0, elemId: 0, sd: 14.2 }, // E20 rear → air (asph)
-    { label: "36", R: 317.277, d: 3.23, nd: 2.001, elemId: 21, sd: 15.0 }, // E21 front (Grp)
-    { label: "37", R: -114.7, d: 14.37, nd: 1.0, elemId: 0, sd: 15.4 }, // E21 rear → BFD (variable)
+    { label: "34A", R: -52.714, d: 1.7, nd: 1.58313, elemId: 20, sd: 14.925 }, // E20 front (asph)
+    { label: "35A", R: -3211.285, d: 0.15, nd: 1.0, elemId: 0, sd: 16.485 }, // E20 rear → air (asph)
+    { label: "36", R: 317.277, d: 3.23, nd: 2.001, elemId: 21, sd: 17.635 }, // E21 front (Grp)
+    { label: "37", R: -114.7, d: 14.37, nd: 1.0, elemId: 0, sd: 17.91 }, // E21 rear → BFD (variable)
   ],
 
   /* ── Aspherical coefficients ──
@@ -426,7 +401,7 @@ const LENS_DATA = {
   /* ── Variable air spacings (zoom only — no close-focus data available) ──
    *  Zoom format: each value is [[d_inf, d_close], ...] per zoom position.
    *  Since the patent provides only infinity-focus data, d_inf === d_close for all gaps.
-   *  Focus group is L6 (E19); in production, gaps D31, D33, D37 would vary during focus.
+   *  Focus group is L6 (E19); in production, gaps D31 and D33 would vary during focus.
    */
   var: {
     "5": [
@@ -463,7 +438,7 @@ const LENS_DATA = {
       [14.37, 14.37],
       [26.78, 26.78],
       [35.69, 35.69],
-    ], // BF (zoom only; focus would vary this gap)
+    ], // BF (zoom only; L6 focus does not move L7)
   },
 
   varLabels: [
@@ -479,7 +454,7 @@ const LENS_DATA = {
   /* ── Zoom lens fields ── */
   zoomPositions: [24.72, 44.86, 67.89],
   zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  zoomLabels: ["24.72 mm", "67.89 mm"],
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -504,11 +479,12 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.21, // Canon-specified MFD (wide end); tele MFD is 0.38 m
   focusDescription:
-    "Inner focus — L6 (single negative meniscus, E19) moves rearward via Nano USM. Close-focus gap data not available from patent; zoom-only variable gaps shown.",
+    "Infinity-focus model: the patent describes rearward focus motion of L6 (E19) but publishes no finite-focus gaps. Focus is disabled; the 0.21 m label is retained retail metadata, not a modeled conjugate. IS is centered. Numerical zoom gaps take precedence over the contradictory all-groups-objectward narrative. Only D31 and D33 change for isolated L6 focus motion; BF belongs to zoom.",
 
   /* ── Aperture configuration ── */
+  zoomApertureModel: "from-nominal-fno",
   nominalFno: 2.91,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.42,

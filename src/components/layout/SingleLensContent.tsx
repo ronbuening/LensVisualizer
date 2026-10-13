@@ -20,6 +20,7 @@ interface SingleLensContentProps {
   mobileView: MobileView;
   lensKey: string;
   lens?: LensData;
+  teleconverterKey?: string | null;
   markdown: string | null | undefined;
 }
 
@@ -30,12 +31,14 @@ export default function SingleLensContent({
   mobileView,
   lensKey,
   lens,
+  teleconverterKey = null,
   markdown,
 }: SingleLensContentProps) {
   const resolvedDesktopView = ENABLE_ANALYSIS_VIEW ? effectiveDesktopView : "diagram";
   const singleDiagramContent = (
     <LensDiagramPanel
       lensKey={lensKey}
+      teleconverterKey={teleconverterKey}
       scaleRatio={null}
       panelId="main"
       compact={false}

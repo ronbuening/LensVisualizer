@@ -1,12 +1,12 @@
 # Canon New FD 50mm f/1.2 — Optical Analysis
 
 **Patent:** US 4,364,643
-**Inventor:** Momiyama
-**Assignee:** Canon K.K.
+**Inventor:** Kikuo Momiyama
+**Assignee:** Canon Inc. (Canon Kabushiki Kaisha, Tokyo)
 **Japanese priority:** JP 54-67047, May 30, 1979
 **Filed:** May 28, 1980
 **Granted:** December 21, 1982
-**Embodiment analyzed:** Embodiment 3 (7 elements in 6 groups, all spherical)
+**Embodiment analyzed:** Embodiment 3 (FIG. 3, claim 4; 7 elements in 6 groups, all spherical)
 
 ---
 
@@ -37,7 +37,7 @@ The patent presents three numerical examples, all sharing the same 7-in-6 topolo
 
 ## 3. Prescription Summary
 
-The patent normalizes all data to f = 1. Scaling to the marketed 50 mm focal length (scale factor ≈ 50.0) yields the following prescription. The computed effective focal length from paraxial ray trace is 50.00 mm, confirming correct transcription.
+The patent normalizes all data to f = 1 (F.No. 1:1.2, 2ω = 46°). The published Embodiment 3 rows trace to a paraxial focal length of 1.000022, so the data file multiplies every radius and spacing by one factor, s = 50 / 1.000022 = 49.9989, which places the computed effective focal length at 50.00 mm. All thirteen radii and twelve spacings reproduce the patent values times s to the stored 0.001 mm.
 
 | Surface | R (mm) | d (mm) | nd | Element |
 |---|---|---|---|---|
@@ -58,6 +58,12 @@ The patent normalizes all data to f = 1. Scaling to the marketed 50 mm focal len
 
 **Computed BFD:** 35.38 mm. Total vertex-to-vertex track: 47.05 mm. Total optical length (to image): 82.43 mm.
 
+**Diaphragm.** The patent text places a diaphragm between the third and fourth components but gives no spacing. FIG. 3 draws it at 0.49 ± 0.02 of the D6 air space, so the data file splits D6 evenly (7.797 mm on each side). The drawn iris half-opening, about 13.3 mm, is close to the 13.8 mm at which the exact f/1.2 marginal ray crosses that plane.
+
+**Semi-diameters.** The patent publishes no clear apertures. The data file's values for the front three surfaces and the two surfaces facing the stop are estimates that agree with FIG. 3 within 5 %. The rear group (surfaces 8–13) follows the FIG. 3 rims — about 16.8 mm for L4, 17.7 mm for L5, 18.6 mm for L6 and 17.1 mm for L7 at the 50 mm scale — and was checked against an exact f/1.2 axial ray trace, which needs 16.8 to 18.4 mm there. The rear elements are therefore nearly as tall as L2, as the patent drawing shows.
+
+**A limit inside the published prescription.** With the published R4, R5 and D4, the air space between L2 and L3 closes at a height of 16.86 mm (0.337 f): beyond that height the two glass surfaces would intersect. The f/1.2 marginal ray crosses R4 and R5 at about 17.4 mm (0.347 f), so the numerical example as printed passes an on-axis beam of roughly f/1.24 rather than a full f/1.2. FIG. 3 draws L2 and L3 touching at their rims, which is consistent with an edge-contact mounting, but the drawing is not dimensionally exact there. The data file sets both surfaces to 16.6 mm, just inside the contact height. This is a derived geometric result, not a statement in the patent.
+
 ## 4. Element-by-Element Analysis
 
 ### 4.1 Element L1 — Front Positive Meniscus (1st Component)
@@ -67,7 +73,7 @@ The patent normalizes all data to f = 1. Scaling to the marketed 50 mm focal len
 | Surfaces | R1 = +41.18, R2 = +298.39 |
 | Shape | Positive meniscus, convex toward object |
 | Glass | nd = 1.788, νd = 47.4 — **Lanthanum special flint** [788474] |
-| Catalog match | OHARA LASF014 (per Cavina); also HOYA NBFD13, Schott LaF21 |
+| Catalog match | OHARA S-LAH64 catalog equivalent (data file); Cavina attributes the legacy OHARA LASF014 type; HOYA TAF4 and Schott N-LAF21 share the coordinate |
 | Thick-lens focal length | +60.0 mm |
 
 L1 is a steeply curved positive meniscus that serves as the primary light-gathering element. Its relatively high refractive index (1.788) is essential to the patent's core strategy: maintaining a low Petzval sum despite the strong positive power needed at f/1.2. The surface pair contributes moderate positive spherical aberration (Σ I = +0.67) while providing substantial positive Petzval contribution (+0.46), consistent with its role as a collecting element.
@@ -90,7 +96,7 @@ L2 shares the same lanthanum special flint glass as L1 and continues the positiv
 | Surfaces | R5 = +84.27, R6 = +17.73 |
 | Shape | Negative meniscus, convex toward object |
 | Glass | nd = 1.6668, νd = 33.0 — **Dense flint** [667330] |
-| Catalog match | CDGM H-ZF39 coefficient-backed equivalent; production supplier unspecified |
+| Catalog match | OHARA S-TIM39 catalog equivalent (1.66680 / 33.05); production supplier unspecified |
 | Thick-lens focal length | −34.1 mm |
 
 L3 is the most optically critical element in the front group and the subject of patent condition (5): n3 < 1.67. This is a deliberately *low*-index glass for a negative element — counterintuitive in a design that otherwise maximizes refractive index everywhere. The patent explains the rationale: using a comparatively low refractive index in L3 improves the Petzval sum by reducing the negative Petzval contribution's magnitude relative to what a higher-index flint would produce. The surface at R6 (+17.73 mm) is the sharpest curvature in the entire front group and generates the largest negative spherical aberration in the front half (I = −0.60 at surface 6), serving as the front group's primary SA corrector.
@@ -104,7 +110,7 @@ Together with the preceding surface R4 (L2 rear), R5 forms a strong diverging ai
 | Surfaces | R7 = −18.21, R8 = −1568.14 | R8 = −1568.14, R9 = −29.37 |
 | Shape | Negative meniscus, convex toward image | Positive meniscus, convex toward image |
 | Glass | nd = 1.80518, νd = 25.4 — **SF6-type dense flint** [805254] | nd = 1.7725, νd = 49.6 — **Lanthanum special flint** [773496] |
-| Catalog match | OHARA SF6 (per Cavina); also Schott SF6, HOYA FDS6 | OHARA LASF016 (per Cavina); also HOYA NBFD10 |
+| Catalog match | Schott SF6 catalog equivalent (data file); Cavina attributes an OHARA SF6-type glass; HOYA FD60 shares the coordinate | OHARA S-LAH66 catalog equivalent (data file); Cavina attributes the legacy OHARA LASF016 type; Schott N-LAF34 shares the coordinate |
 | Thick-lens focal length | −22.9 mm | +38.7 mm |
 | Doublet focal length | −81.7 mm (net negative) |
 
@@ -153,19 +159,19 @@ The use of only five distinct glass types across seven elements — with L1 = L2
 
 ### Glass Identification Summary
 
-| Element(s) | nd | νd | 6-Digit Code | OHARA (old catalog) | HOYA equivalent | Family |
+| Element(s) | nd | νd | 6-Digit Code | Data-file catalog equivalent | Cavina's attribution | Family |
 |---|---|---|---|---|---|---|
-| L1, L2 | 1.78800 | 47.4 | 788474 | LASF014 | NBFD13 | Lanthanum special flint |
-| L3 | 1.66680 | 33.0 | 667330 | H-ZF39 equivalent | CDGM | Dense flint |
-| L4 | 1.80518 | 25.4 | 805254 | SF6 | FDS6 | Dense flint |
-| L5, L7 | 1.77250 | 49.6 | 773496 | LASF016 | NBFD10 | Lanthanum special flint |
-| L6 | 1.86300 | 41.5 | 863415 | LASFN13 optical equivalent | Supplier unspecified | Lanthanum special flint |
+| L1, L2 | 1.78800 | 47.4 | 788474 | OHARA S-LAH64 (1.78800 / 47.37) | OHARA LASF014 | Lanthanum special flint |
+| L3 | 1.66680 | 33.0 | 667330 | OHARA S-TIM39 (1.66680 / 33.05) | — | Dense flint |
+| L4 | 1.80518 | 25.4 | 805254 | Schott SF6 (1.80518 / 25.43) | OHARA SF6 type | Dense flint |
+| L5, L7 | 1.77250 | 49.6 | 773496 | OHARA S-LAH66 (1.77250 / 49.60) | OHARA LASF016 | Lanthanum special flint |
+| L6 | 1.86300 | 41.5 | 863415 | LASFN13 (1.86300 / 41.59) | — | Lanthanum special flint |
 
-Cavina attributes several production glasses to historical OHARA types. For chromatic tracing, the data file uses compatible coefficient-backed curves and treats those names as optical equivalents unless the primary patent itself identifies a supplier. L6 now uses LASFN13 at the patent's `863415` coordinate.
+The patent lists only nd and νd; it names no glass and no supplier. Cavina attributes several production glasses to historical OHARA types. For chromatic tracing, the data file uses coefficient-backed catalog glasses whose nd and νd match the patent pairs, and treats those names as optical equivalents rather than as production identities.
 
 ## 6. Aberration Budget
 
-The patent provides complete third-order (Seidel) aberration coefficients for Embodiment 3. The system totals are:
+The patent provides complete third-order (Seidel) aberration coefficients for Embodiment 3. Its legend labels column II "astigmatic" and column III "coma", but the printed values satisfy III = II² / I surface by surface (surface 1: 0.1266² / 0.4410 = 0.0363), which identifies II as coma and III as astigmatism. The usual assignment is used below. The system totals are:
 
 | Coefficient | Symbol | Sum | Interpretation |
 |---|---|---|---|
@@ -187,7 +193,7 @@ The Petzval sum of 0.178 (normalized to f) is well controlled for an f/1.2 desig
 
 The patent does not specify any variable air spacings or internal focusing groups. Combined with the simple 7-in-6 topology and the absence of any floating-element mechanism (which is explicitly noted as a feature of the *L* variant), this confirms that the Canon New FD 50mm f/1.2 uses **unit focusing** — the entire optical assembly translates forward along the optical axis to focus on closer objects.
 
-At the minimum focus distance of 0.5 m (measured from the film plane), thick-lens analysis using the ABCD-derived principal plane positions yields a focus extension of approximately 6.2 mm and a magnification of 0.123×, consistent with Canon's published specification of 0.13×. The principal planes of this design are crossed — the rear principal plane H' lies 12.4 mm in front of the front principal plane H — a common configuration in compact double-Gauss lenses that significantly affects the conjugate geometry relative to a thin-lens approximation.
+At the minimum focus distance of 0.5 m (measured from the film plane), thick-lens analysis using the ABCD-derived principal plane positions yields a focus extension of 6.15 mm and a magnification of 0.123×, close to Canon's published specification of 0.13×. This close-focus state is calculated; the patent publishes no finite-distance data. The principal planes of this design are crossed — the rear principal plane H' lies 12.4 mm in front of the front principal plane H — a common configuration in compact double-Gauss lenses that significantly affects the conjugate geometry relative to a thin-lens approximation.
 
 Unit focusing is the simplest and most common approach for standard lenses of this era. Its primary disadvantage is degraded off-axis performance at close focus distances, since the design is optimized for infinity. The L variant addressed this limitation by incorporating floating elements that adjust internal air spacings during focusing.
 
@@ -211,7 +217,7 @@ As an all-spherical f/1.2 design from 1979, the lens operates at the edge of wha
 
 **No floating elements:** Unit focusing means off-axis performance degrades at close distances. The large central air gap (D6 = 15.6 mm) is fixed during focusing, so the careful balance of aberration coefficients established for infinity is progressively disturbed as the lens extends.
 
-**Vignetting:** The f/1.2 aperture with a 52 mm filter thread implies tight mechanical margins, particularly at the front elements. Marginal ray heights at R1 exceed 20.8 mm, while the 52 mm filter thread limits the maximum clear aperture to roughly 24 mm semi-diameter — leaving minimal room for off-axis ray bundles at the extreme field angles. This manifests as the significant wide-open vignetting noted in user reports.
+**Vignetting:** The f/1.2 aperture with a 52 mm filter thread implies tight mechanical margins, particularly at the front elements. Inside the lens the L2–L3 rim contact described in Section 3 is the tightest point for the axial beam. Marginal ray heights at R1 exceed 20.8 mm, while the 52 mm filter thread limits the maximum clear aperture to roughly 24 mm semi-diameter — leaving minimal room for off-axis ray bundles at the extreme field angles. This manifests as the significant wide-open vignetting noted in user reports.
 
 Despite these limitations, the design represents a carefully optimized solution within its constraints. Stopped to f/2 or smaller, the lens performs at a level consistent with its lanthanum-glass optical quality, and the Petzval sum of 0.178 delivers flat-field results that many simpler designs cannot match even at smaller apertures.
 

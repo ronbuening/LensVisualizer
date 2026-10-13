@@ -1,4 +1,4 @@
-# Nikon AF Nikkor 20mm f/2.8D — Optical Analysis
+# NIKON AF NIKKOR 20mm f/2.8 D — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -13,7 +13,7 @@
 **Total embodiments:** Six numerical embodiments, Tables 1–6  
 **Claims:** 13
 
-The First Embodiment of US 4,690,517 is the closest patent prescription for the Nikon AF Nikkor 20mm f/2.8D optical formula. The prescription is normalized to `f = 100`, `F-number = 2.8`, and `2ω = 94°`; all data-file radii, thicknesses, spacings, back focus, and inferred semi-diameters are scaled by 0.2 for the production 20 mm class lens.
+The First Embodiment of US 4,690,517 is the closest patent prescription for the NIKON AF NIKKOR 20mm f/2.8 D optical formula. The prescription is normalized to `f = 100`, `F-number = 2.8`, and `2ω = 94°`; all data-file radii, thicknesses, spacings, back focus, and inferred semi-diameters are scaled by 0.2 for the production 20 mm class lens.
 
 The identification rests on the convergence of the numerical prescription and Nikon's published production data. Table 1 gives a 12-element, 9-group retrofocus wide-angle lens with `2ω = 94°`, `Bf = 186.3`, and `f₁₋₄ = −0.737 f`. Nikon's production specification for the AF Nikkor 20mm f/2.8D gives a 20 mm f/2.8 FX-format lens with a 94° angle of view, 12 elements in 9 groups, CRC close-range correction, a 0.25 m minimum focus distance, 0.12× maximum reproduction ratio, and a 7-blade diaphragm. The patent and production lens are also consistent in being all-spherical; the production specification does not list ED or aspherical elements.
 
@@ -188,7 +188,7 @@ The Table 1 prescription was independently re-traced using a paraxial reduced-an
 
 The explicit `STO` surface in the data file is an inferred split of the patent's surface-14 air gap. The stop split is optically neutral in first order and is used only to render and trace the aperture position. With the selected `STO` semi-diameter of `6.12 mm`, pupil tracing gives approximately `f/2.7995`, consistent with the patent and production f/2.8 designation.
 
-The inferred clear apertures were checked against the current renderer constraints. The maximum `sd/|R|` value is approximately `0.868`, below the `0.90` spherical rim limit. The minimum computed edge thickness remains greater than `1.0 mm`. The largest positive cross-gap sag-intrusion fraction is approximately `0.834`, below the `0.90` project limit.
+The inferred clear apertures were checked against the current renderer constraints. The maximum `sd/|R|` value is approximately `0.896` (surface 4), below the `0.90` spherical rim limit. The minimum computed edge thickness remains greater than `1.0 mm`. The largest positive cross-gap sag-intrusion fraction is approximately `0.834`, below the `0.90` project limit.
 
 ## Design Heritage and Context
 

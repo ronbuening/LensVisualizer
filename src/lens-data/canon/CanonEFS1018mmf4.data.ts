@@ -21,6 +21,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  ray trace at all 3 zoom positions, taking max SD per surface,     ║
  * ║  +10% mechanical clearance, constrained by sd/|R| < 0.90.          ║
  * ║  Edge thickness verified ≥ 0.3 mm for all 14 elements.            ║
+ * ║  Surfaces 1 and 4A were raised to pass the traced chief ray to the ║
+ * ║  APS-C corner at the wide end (2026-09-24 field-coverage audit).   ║
+ * ║  The K = -0.476 conic on 4A is defined to h = 17.0 mm, so its      ║
+ * ║  14.8 mm rim may lie beyond |R| = 12.3 mm.                         ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE-FOCUS: Patent provides only infinity-focus data.    ║
  * ║  Close-focus spacings solved via system ABCD matrix at MFD = 0.22m ║
@@ -224,10 +228,10 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     /* ── Group 1: Front negative group (L1–L5, surfaces 1–10) ── */
-    { label: "1", R: 55.999, d: 1.2, nd: 1.7725, elemId: 1, sd: 18.5 },
+    { label: "1", R: 55.999, d: 1.2, nd: 1.7725, elemId: 1, sd: 21.3 },
     { label: "2", R: 18.939, d: 0.21, nd: 1.0, elemId: 0, sd: 16.9 },
     { label: "3", R: 18.794, d: 3.0, nd: 1.52996, elemId: 2, sd: 16.7 },
-    { label: "4A", R: 12.302, d: 13.97, nd: 1.0, elemId: 0, sd: 10.9 },
+    { label: "4A", R: 12.302, d: 13.97, nd: 1.0, elemId: 0, sd: 14.8 },
     { label: "5", R: 27.078, d: 0.85, nd: 1.7725, elemId: 3, sd: 11.2 },
     { label: "6", R: 11.734, d: 5.86, nd: 1.0, elemId: 0, sd: 8.2 },
     { label: "7", R: -18.556, d: 0.86, nd: 1.59522, elemId: 4, sd: 8.2 },

@@ -235,10 +235,11 @@ const LENS_DATA = {
 
   asph: {},
 
-  /* Production-calibrated close-focus endpoint; total first-surface-to-image track remains constant. */
+  /* Patent finite state plus production-calibrated endpoint; total track remains constant. */
+  focusPositions: [0, 0.8745516541873473, 1],
   var: {
-    "4": [6.318, 3.953324],
-    "20": [36.500171, 38.864847],
+    "4": [6.318, 4.392, 3.953324],
+    "20": [36.500171, 38.426171, 38.864847],
   },
   varLabels: [
     ["4", "FLOAT"],
@@ -255,6 +256,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.25,
+  // Only the listed focus rows are source-tabulated; the others are reconstructed.
+  publishedStations: { focus: [1] },
   nominalFno: 3.5,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],
   scFill: 0.62,

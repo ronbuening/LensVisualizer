@@ -10,7 +10,3 @@ Patent: JP 2014-142520 A, Numerical Example 1 / FIG. 1
 - The patent does not publish clear-aperture semi-diameters. The data file's SDs remain inferred from paraxial on-axis marginal rays plus full-field chief rays, then checked for edge thickness, SD ratios, rim limits, and signed cross-gap sag clearance.
 - FIG. 1 is faint in the local PDF, but it shows G1 and G2 as broadly similar-height groups with a smaller internal stop. Current SDs match that silhouette: front and rear element surfaces sit mostly between 14.0 and 16.0 mm, with an 11.4428784521 mm stop.
 - No SD values changed.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

@@ -27,11 +27,6 @@ Patent: US 4,364,644, Example 1
 
 - Updated the companion analysis glass table and L1/L2/L6/L8 discussion.
 
-### Verification
-
-- `npm test -- dispersion`
-- `npm test -- glassRelabelByLensScan`
-
 ## 2026-07-29 - Catalog expansion follow-up
 
 - Corrected L3 from `S-TIM27` to OHARA `S-TIM6`, the exact 1.63636 / 35.39 row.

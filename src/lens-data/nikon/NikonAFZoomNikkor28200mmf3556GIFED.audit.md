@@ -34,13 +34,3 @@ the analysis identifies both assignments as coordinate successors rather than pr
 
 - Normalized the display name to separate the aperture from the `G` designation.
 - Updated the analysis heading, element descriptions, glass table, chromatic discussion, SD provenance, and Hikari source.
-
-### Verification
-
-- Stored prescription: `npm run audit:surface -- <data-file>` — passed.
-- Image-circle floor: `npm run audit:image-circle -- <data-file>` — passed.
-- `npm test -- elementRenderDiagnostics` — passed (6 tests).
-- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed; lint retained three unrelated pre-existing warnings.
-- `npm run test` — passed (209 files, 2450 tests).
-- `npm run build` — passed (966 routes prerendered).
-- In-app browser screenshots were unavailable; visual comparison used the rendered 300 dpi patent page plus the passing full-catalog render diagnostics.

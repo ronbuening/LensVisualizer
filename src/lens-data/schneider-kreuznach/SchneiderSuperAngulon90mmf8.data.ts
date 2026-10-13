@@ -56,7 +56,11 @@ const LENS_DATA = {
   focalLengthDesign: 90.3,
   apertureMarketing: 8,
   apertureDesign: 8,
+  lensMounts: ["large-format-lens-board"],
   imageFormat: "4x5",
+  imageCircleMm: 215.2, // Schneider Super-Angulon brochure (1976): 215.2 mm at f/22 (100°), 187.0 mm at f/8
+  // audit:image-circle flags rear surfaces 9–10 at this circle, but only through its wide-angle exit-pupil proxy;
+  // an exact engine chief ray at the published 50° half-field clears them (20.6 mm vs sd 23.25 at surface 10).
   patentNumber: "DE 975 637 C",
   patentAuthors: ["Günter Klemt"],
   patentAssignees: ["Jos. Schneider & Co., Optische Werke"],

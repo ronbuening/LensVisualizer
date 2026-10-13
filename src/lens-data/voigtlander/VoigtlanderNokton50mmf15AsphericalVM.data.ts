@@ -22,6 +22,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ edge-thickness, actual-rim-slope, shared-gap, off-axis, and render-trim     ║
  * ║ checks. They are modeling values, not manufacturer dimensions.              ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF image-plane audit (2026-09-25): JP2022012964A Example 2, Table 2
+ * (PDF p. 20), matches all radii, spacings, nd/vd and A4–A10 terms.
+ * The source itself folds unspecified sensor plates into air-equivalent
+ * back focus (paragraph 77); no physical plate values are available to
+ * unfold. Published infinity ZD16=25.00 mm gives a -0.027512 mm paraxial
+ * offset. Preserve it: no transcription error was found, and designer
+ * best-focus intent is not explicit despite the small finite-aperture residual.
  */
 
 const LENS_DATA = {
@@ -217,6 +225,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.7,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Published F10/F14 unit focus: internal gaps ZD9=5.30 mm and ZD12=0.15 mm remain fixed; " +
     "air-equivalent rear spacing ZD16 changes from 25.00 to 29.12 mm. The close source row uses " +

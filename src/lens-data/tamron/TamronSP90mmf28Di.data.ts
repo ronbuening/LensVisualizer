@@ -29,6 +29,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Re-review checks: min edge thickness 0.517 mm; max signed gap     ║
  * ║  intrusion 0.879 of its air gap; max sd/|R| 0.701.                ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: US9063253B2 Embodiment 7 (PDF pp. 84–85) reproduces
+ * all stored prescription values but not its own printed infinity focal length.
+ * EFL = 92.556419 mm versus 92.74; paraxial BFL = 47.033197 mm versus
+ * the published air path 44.5749 + 2.1644 = 46.7393 mm (offset +0.293897 mm).
+ * Surface 27 is a dummy air plane, not a plate. Preserve the source image plane.
  */
 
 const LENS_DATA = {
@@ -137,7 +143,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.24,
       fl: -44.0474,
-      glass: "S-FSL 5 (OHARA; catalog νd 70.23, patent 70.24)",
+      glass: "S-FSL5 (OHARA; catalog νd 70.23, patent 70.24)",
       dPgF: 0.0022,
       nC: 1.48534,
       nF: 1.49228,
@@ -224,7 +230,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.42,
       fl: 94.256,
-      glass: "S-TIH 6 (OHARA)",
+      glass: "S-TIH6 (OHARA)",
       dPgF: 0.0158,
       nC: 1.79611,
       nF: 1.82777,
@@ -293,17 +299,17 @@ const LENS_DATA = {
   asph: {},
 
   /* ── Three-group floating inner focus ──
-   * Values are [infinity, 1:1]. The patent's 1:2 state is not an endpoint
-   * in the data model but is recorded and verified in the analysis.
+   * Values are [infinity, 1:2, 1:1].
    * STO is the axial D(14) spacing after the fixed stop, not stop diameter.
    */
+  focusPositions: [0, 0.7976078358456278, 1],
   var: {
-    "7": [1.2, 19.2488],
-    "13": [20.05, 2.0012],
-    STO: [14.0, 1.7],
-    "16": [6.7201, 1.4506],
-    "19": [1.7996, 19.369],
-    "26": [46.7393, 46.7641],
+    "7": [1.2, 9.8415, 19.2488],
+    "13": [20.05, 11.4085, 2.0012],
+    STO: [14.0, 9.2987, 1.7],
+    "16": [6.7201, 1.0992, 1.4506],
+    "19": [1.7996, 12.1217, 19.369],
+    "26": [46.7393, 46.7793, 46.7641],
   },
   varLabels: [
     ["7", "D7"],
@@ -329,8 +335,10 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.3,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
-    "Three-group floating inner focus. G2 translates 18.049 mm imageward; G3 and G4 translate 12.300 mm and 17.570 mm objectward from infinity to 1:1. The viewer interpolates between those endpoints.",
+    "Three-group floating inner focus. G2 translates 18.049 mm imageward; G3 and G4 translate 12.300 mm and 17.570 mm objectward from infinity to 1:1. The infinity, 1:2, and 1:1 patent rows are exact focus keyframes.",
 
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],

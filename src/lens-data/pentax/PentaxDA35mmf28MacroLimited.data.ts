@@ -188,8 +188,9 @@ const LENS_DATA = {
   ],
 
   asph: {},
+  focusPositions: [0, 0.858792011850653, 1],
   var: {
-    "13": [1.0, 24.13],
+    "13": [1.0, 12.57, 24.13],
   },
   varLabels: [["13", "D13"]],
   groups: [
@@ -204,8 +205,10 @@ const LENS_DATA = {
   focusDescription:
     "Front assembly focus: groups G10 and G20 move objectward together while G30 remains fixed. Modeled by D13 increasing from 1.00 mm at infinity to 24.13 mm at 1:1.",
   closeFocusM: 0.139,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   focusStep: 0.001,
   apertureStep: 0.004,

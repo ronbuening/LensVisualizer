@@ -3,21 +3,21 @@
  *
  * Renders above the TopBar in the LensViewer, matching the breadcrumb
  * pattern used on the multipage layout pages (LensPage, MakerPage, etc.).
- * Includes a right-aligned Settings button that opens a portal-based overlay
- * panel with theme controls (Dark/Light and High Contrast toggles).
+ * Right-aligned search link and inline theme selectors (High Contrast and
+ * Auto/Dark/Light) match PageNavBar on the static pages.
+ *
+ * The single-lens SLIDERS / PATENT POSITIONS toggle sits ahead of them: it changes how the whole page's zoom and
+ * focus controls behave, so it lives with the page-level switches and not with the ray toggles.
  *
  * Reads theme state and dispatches theme changes directly via context,
  * consistent with how LensDiagramPanel and ControlsBar wire theme actions.
  */
 
-import { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
-import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import type { Theme } from "../../types/theme.js";
-import { headerSearchBtn, headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
-import { themeSlotDisplay } from "../../utils/theme/themeConstants.js";
-import { useActiveHoliday } from "../../utils/theme/useActiveHoliday.js";
+import { headerSearchBtn, headerStrip } from "../../utils/style/styles.js";
 import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
+import { TELECONVERTER_CATALOG } from "../../utils/catalog/teleconverterCatalog.js";
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import {
   IMAGE_FORMAT_BY_ID,
@@ -26,7 +26,7 @@ import {
   isLensMountId,
 } from "../../utils/catalog/lensTaxonomy.js";
 import { useLensCtx, useLensDispatch } from "../../utils/state/LensContext.js";
-import { SET_DARK, SET_HIGH_CONTRAST } from "../../utils/state/lensReducer.js";
+import { SET_DARK, SET_HIGH_CONTRAST, SET_PATENT_POSITIONS } from "../../utils/state/lensReducer.js";
 import { FILTER_BOUNDS } from "../../pages/lensIndex/catalog.js";
 import { isValidLensLibraryReturnPath } from "../../pages/lensIndex/urlState.js";
 import type { LensBreadcrumbSource, LensNavigationState } from "../../pages/lensIndex/clusterLinks.js";
@@ -37,8 +37,8 @@ import {
   themeModeFromDarkPreference,
   type ThemeMode,
 } from "../../utils/theme/themePreferences.js";
-import DropdownPanel from "./DropdownPanel.js";
-import type { DropdownPanelPos } from "./DropdownPanel.js";
+import PositionModeToggle from "../controls/PositionModeToggle.js";
+import ThemeToggleGroup from "./ThemeToggleGroup.js";
 
 interface BreadcrumbBarProps {
   theme: Theme;
@@ -56,7 +56,16 @@ function validBreadcrumbSource(source: LensBreadcrumbSource | undefined): LensBr
   }
   if (source.type === "mount" && isLensMountId(source.id)) return source;
   if (source.type === "format" && isImageFormatId(source.id)) return source;
-  if (source.type === "maker" && /^[a-z0-9]+(?:[.-][a-z0-9]+)*$/.test(source.slug) && source.label.trim().length > 0) {
+  if (
+    source.type === "maker" &&
+    typeof source.slug === "string" &&
+    /^[a-z0-9]+(?:[.-][a-z0-9]+)*$/.test(source.slug) &&
+    typeof source.label === "string" &&
+    source.label.trim().length > 0
+  ) {
+    return source;
+  }
+  if (source.type === "teleconverter" && typeof source.id === "string" && TELECONVERTER_CATALOG[source.id]) {
     return source;
   }
   return null;
@@ -90,23 +99,10 @@ function sourceFromSearch(search: string): LensBreadcrumbSource | null {
 
 export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbBarProps) {
   const location = useLocation();
-  const reducedMotion = usePrefersReducedMotion();
-  const [settingsOpen, setSettingsOpen] = useState(false);
-  const [settingsPos, setSettingsPos] = useState<DropdownPanelPos | null>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
   const { state } = useLensCtx();
   const dispatch = useLensDispatch();
   const { dark, highContrast } = state.display;
   const themeMode: ThemeMode = themeModeFromDarkPreference(dark);
-  const holiday = useActiveHoliday();
-  const slot = themeSlotDisplay(themeMode, holiday);
-
-  const openSettings = useCallback(() => {
-    if (!triggerRef.current) return;
-    const rect = triggerRef.current.getBoundingClientRect();
-    setSettingsPos({ top: rect.bottom + 2, right: window.innerWidth - rect.right });
-    setSettingsOpen(true);
-  }, []);
 
   const { comparing, lensKeyB } = state.lens;
   const lensA = LENS_CATALOG[lensKey];
@@ -221,6 +217,18 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
                   <span style={separatorStyle}>/</span>
                   <span style={{ color: t.body }}>{lensA.name}</span>
                 </>
+              ) : source?.type === "teleconverter" ? (
+                <>
+                  <Link to="/teleconverters/" style={linkStyle}>
+                    Teleconverters
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <Link to={`/teleconverters/${source.id}/`} style={linkStyle}>
+                    {TELECONVERTER_CATALOG[source.id].name}
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <span style={{ color: t.body }}>{lensA.name}</span>
+                </>
               ) : (
                 <>
                   <Link to="/makers/" style={linkStyle}>
@@ -239,71 +247,29 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: 12, flexShrink: 0 }}>
+          {/* Single-lens only: comparison shares its sliders between two lenses and never steps. */}
+          {!comparing && (
+            <PositionModeToggle
+              t={t}
+              compact={!isWide}
+              patentPositions={state.panels.patentPositions}
+              onChange={(enabled) => dispatch({ type: SET_PATENT_POSITIONS, enabled })}
+            />
+          )}
           <Link to="/search/" aria-label="Search" style={headerSearchBtn(t)}>
             ⌕
           </Link>
-          <button
-            ref={triggerRef}
-            type="button"
-            aria-expanded={settingsOpen}
-            aria-haspopup="true"
-            aria-label="Settings"
-            onClick={settingsOpen ? () => setSettingsOpen(false) : openSettings}
-            style={{
-              ...topBarBtn(t, isWide),
-              flexShrink: 0,
-              display: "flex",
-              alignItems: "center",
-              gap: 5,
-              padding: isWide ? "4px 12px" : "4px 8px",
-            }}
-          >
-            {isWide ? <span>SETTINGS</span> : <span style={{ fontSize: 13, lineHeight: 1 }}>⚙</span>}
-            <span
-              style={{
-                display: "inline-block",
-                transform: settingsOpen ? "rotate(180deg)" : "rotate(0deg)",
-                transition: reducedMotion ? undefined : "transform 0.2s",
-                fontSize: 10,
-                lineHeight: 1,
-              }}
-            >
-              ▾
-            </span>
-          </button>
+          <ThemeToggleGroup
+            theme={t}
+            themeMode={themeMode}
+            highContrast={highContrast}
+            onToggleTheme={() =>
+              dispatch({ type: SET_DARK, dark: darkPreferenceFromThemeMode(nextThemeMode(themeMode)) })
+            }
+            onToggleHC={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
+          />
         </div>
       </nav>
-
-      <DropdownPanel
-        open={settingsOpen}
-        pos={settingsPos}
-        triggerRef={triggerRef}
-        onClose={() => setSettingsOpen(false)}
-        theme={t}
-      >
-        <div style={{ padding: 10 }}>
-          <div style={toggleGroup(t)}>
-            <button
-              type="button"
-              aria-pressed={highContrast}
-              onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
-              style={toggleBtn(t, highContrast)}
-            >
-              <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
-              <span>HC</span>
-            </button>
-            <button
-              type="button"
-              aria-label={`Theme: ${slot.label}. Cycle theme`}
-              onClick={() => dispatch({ type: SET_DARK, dark: darkPreferenceFromThemeMode(nextThemeMode(themeMode)) })}
-              style={toggleBtn(t, false, { hasRightBorder: false })}
-            >
-              <span style={{ fontSize: themeMode === "auto" ? 12 : 14, lineHeight: 1 }}>{slot.icon}</span>
-              <span>{slot.label}</span>
-            </button>
-          </div>
-        </div>
-      </DropdownPanel>
     </div>
   );
 }

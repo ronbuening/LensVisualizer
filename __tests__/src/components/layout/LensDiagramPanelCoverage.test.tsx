@@ -6,6 +6,7 @@ import type { Dispatch, ReactNode } from "react";
 import LensDiagramPanel from "../../../../src/components/layout/LensDiagramPanel.js";
 import type { LensAction, LensState } from "../../../../src/types/state.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
+import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/index.js";
 import { CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import {
   LensDispatchContext,
@@ -127,7 +128,17 @@ vi.mock("../../../../src/components/controls/DiagramHeader.js", () => ({
 }));
 
 vi.mock("../../../../src/components/layout/lensDiagram/AnalysisDrawerContent.js", () => ({
-  default: ({ activeTab }: { activeTab: string }) => <div data-testid="analysis-content">{activeTab}</div>,
+  default: ({
+    activeTab,
+    perspectiveTraceContext,
+  }: {
+    activeTab: string;
+    perspectiveTraceContext?: PerspectiveTraceContext | null;
+  }) => (
+    <div data-testid="analysis-content" data-perspective-cache-key={perspectiveTraceContext?.cacheKey}>
+      {activeTab}
+    </div>
+  ),
 }));
 
 vi.mock("../../../../src/components/layout/lensDiagram/LensDiagramErrorState.js", () => ({
@@ -299,6 +310,60 @@ describe("LensDiagramPanel orchestration", () => {
         flashVisible: true,
       },
     });
+  });
+
+  it("resolves sliders to published stations only in single-lens patent-positions mode", () => {
+    const sliders = { focusT: 0.37, zoomT: 0.4, aberrationT: 0.2, stopdownT: 0.5, shiftMm: 0, tiltDeg: 0 };
+    const patentPanels = { ...makeState().panels, patentPositions: true };
+    mocks.lensComputation.mockReturnValue(computation({ focusT: 1, zoomT: 0.5, aberrationT: 0, stopdownT: 0 }));
+
+    renderPanel(makeState({ sliders, panels: patentPanels }));
+    expect(mocks.lensComputation.mock.calls.at(-1)?.[0]).toMatchObject({
+      focusT: 0.37,
+      zoomT: 0.4,
+      aberrationT: 0.2,
+      stopdownT: 0.5,
+      snapToPublishedStations: true,
+    });
+    /* Everything downstream renders with what the hook resolved, not with the requested sliders. */
+    expect(mocks.loadedState.mock.calls.at(-1)?.[0]).toMatchObject({
+      computed: { focusT: 1, zoomT: 0.5, aberrationT: 0, stopdownT: 0 },
+      displayFlags: { patentPositions: true },
+    });
+    expect(mocks.rayTracing.mock.calls.at(-1)?.[0]).toMatchObject({ focusT: 1, zoomT: 0.5, aberrationT: 0 });
+
+    cleanup();
+    renderPanel(makeState({ sliders, panels: patentPanels, lens: { ...makeState().lens, comparing: true } }));
+    expect(mocks.lensComputation.mock.calls.at(-1)?.[0]).toMatchObject({ snapToPublishedStations: false });
+    expect(mocks.loadedState.mock.calls.at(-1)?.[0]).toMatchObject({ displayFlags: { patentPositions: false } });
+
+    cleanup();
+    renderPanel(makeState({ sliders }));
+    expect(mocks.lensComputation.mock.calls.at(-1)?.[0]).toMatchObject({ snapToPublishedStations: false });
+  });
+
+  it("passes the fixed-camera perspective trace context to ray orchestration", () => {
+    const perspectiveTraceContext = {
+      cacheKey: "perspective:shift=2:tilt=1",
+      pose: { active: true },
+    } as unknown as PerspectiveTraceContext;
+    mocks.lensComputation.mockReturnValueOnce(computation({ perspectiveTraceContext }));
+
+    renderPanel(
+      makeState({
+        panels: { ...makeState().panels, analysisDrawerOpen: true },
+      }),
+    );
+
+    expect(mocks.rayTracing).toHaveBeenCalledWith(
+      expect.objectContaining({
+        perspectiveTraceContext,
+      }),
+    );
+    expect(mocks.rayTracing.mock.calls[0]?.[0]).not.toHaveProperty("movementTransform");
+    expect(screen.getByTestId("analysis-content").getAttribute("data-perspective-cache-key")).toBe(
+      perspectiveTraceContext.cacheKey,
+    );
   });
 
   it("tracks hover locally and dispatches selected element changes", () => {

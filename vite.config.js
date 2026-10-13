@@ -1,9 +1,22 @@
 import react from "@vitejs/plugin-react";
 import { configDefaults, defineConfig } from "vitest/config";
 
+/* Tests of manual-only dev tooling (the benchmark harness and the audit-script npm entries).
+ * `npm test` skips them; `npm run test:tooling` (vitest.tooling.config.js) runs them. */
+export const TOOLING_TESTS = [
+  "__tests__/src/benchmarks/**/*.test.ts",
+  "__tests__/scripts/auditImageCircle.test.ts",
+  "__tests__/scripts/benchmarkOpticsRenderingScript.test.ts",
+];
+
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
   base: "/",
+  /* Cloudflare Pages (CF_PAGES=1) has dropped the ~900-line per-asset build
+   * listing mid-stream and then failed the build stage with "an internal error
+   * occurred", so keep the client build quiet there. Warnings and errors still
+   * print; GitHub Actions and local builds keep the full listing. */
+  logLevel: process.env.CF_PAGES ? "warn" : undefined,
   /* Honor an externally assigned dev-server port (e.g. preview tooling); Vite ignores PORT by default. */
   server: process.env.PORT ? { port: Number(process.env.PORT) } : undefined,
   build: {
@@ -37,18 +50,24 @@ export default defineConfig(({ isSsrBuild }) => ({
      * ad-hoc `npx vitest run <file>` behaves like `npm test` (the npm scripts
      * used to pass --testTimeout 30000 on the CLI). */
     testTimeout: 30000,
-    exclude: [...configDefaults.exclude, "**/.claude/**"],
+    /* Report generators live in reports/*.report.ts, outside the default *.test.* pattern;
+     * `npm run generate:reports` (vitest.reports.config.js) runs them. */
+    exclude: [...configDefaults.exclude, "**/.claude/**", ...TOOLING_TESTS],
     coverage: {
       provider: "v8",
+      /* Source files only: a bare `**` also pulled in each folder's readme.md, which the
+       * remapper then failed to parse. */
       include: [
-        "src/optics/**",
-        "src/utils/**",
-        "src/pages/**",
-        "src/routes/**",
-        "src/components/**",
-        "src/comparison/**",
+        "src/optics/**/*.{ts,tsx}",
+        "src/utils/**/*.{ts,tsx}",
+        "src/pages/**/*.{ts,tsx}",
+        "src/routes/**/*.{ts,tsx}",
+        "src/components/**/*.{ts,tsx}",
+        "src/comparison/**/*.{ts,tsx}",
       ],
       exclude: [
+        /* The src/** globs also matched the mirrored helpers under __tests__/src/ (fixtures, harnesses). */
+        "__tests__/**",
         "src/comparison/comparisonTypes.ts",
         "src/components/diagram/diagramSvgTypes.ts",
         "src/pages/lensIndex/types.ts",

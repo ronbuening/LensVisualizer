@@ -7,7 +7,7 @@
 **Published:** March 4, 2021 (WO); August 25, 2022 (US)
 **Embodiment analyzed:** Example 2 / LS(2), Table 2
 
-The prescription transcribed here is **Example 2** of Nikon's WO2021039813A1 family, with the same numerical data available in the English Google Patents text of **US20220269056A1**. The applicant is Nikon Corporation. The relevant embodiment is the zoom optical system **LS(2)**, and its numerical prescription is **Table 2**. The uploaded WO pamphlet scan contains the publication front matter and early description pages; the full Table 2 numerical data used for this review was therefore cross-checked against the text-searchable equivalent publication.
+The prescription transcribed here is **Example 2** of Nikon's WO2021039813A1 family, with the same numerical data available in the English Google Patents text of **US20220269056A1**. The applicant is Nikon Corporation. The relevant embodiment is the zoom optical system **LS(2)**, and its numerical prescription is **Table 2**. The WO pamphlet is an image-only scan with no text layer; Table 2 begins on pamphlet p. 29 (PDF p. 31), and its surface rows, aspherical coefficients, and variable spacings agree with the data file to the printed digit.
 
 The production lens identified with this embodiment is the **Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR**. Nikon's official specifications give a 10-20 mm DX-format zoom, maximum aperture f/4.5-5.6, 14 elements in 11 groups, three aspherical lens elements, vibration reduction, internal focusing, closest focus distance 0.22 m from the focal plane, and maximum reproduction ratio 0.17x. The patent example gives a 10.310-19.394 mm design focal-length range, 14 production lens elements in 11 air-separated groups, three aspherical surfaces on three elements, an internal focusing G3 group, and an L23 vibration-reduction sub-group.
 
@@ -203,7 +203,17 @@ The table also repeats the same L13 values under the `N3` notation for the objec
 
 The data file transcribes the Table 2 prescription directly, with no focal-length scaling. The patent's surface 17 is labeled `STO`, and aspherical surfaces 3, 4, and 26 are labeled `3A`, `4A`, and `26A`. The virtual surface 11 is retained with R = infinity and an air spacing of 1.100 mm.
 
-The aperture stop semi-diameter in the data file is **4.846 mm**. This value was chosen from the paraxial entrance-pupil calculation to reproduce the patent FNO values of 4.625, 5.233, and 5.828 to rounding across the zoom range. The displayed `nominalFno` values use the manufacturer-marketed f/4.5-5.6 range rather than the patent's slightly slower design FNO values.
+The `nominalFno` values are the Table 2 design FNO values of 4.625, 5.233, and 5.828 at the wide, middle, and telephoto positions. The manufacturer-marketed f/4.5-5.6 range is slightly faster; its wide value is recorded separately as `apertureMarketing`.
+
+Table 2 lists no stop diameter, and the Example 2 text locates the stop S only by position, inside G2 between L23 and the L24/L25 doublet. The data file models one iris radius for the whole zoom range (`zoomApertureModel: "fixed-iris"`). A real marginal ray traced at the wide position for f/4.625 reaches the stop at **4.890 mm**, and that single radius traces f/4.625, f/5.233, and f/5.828 at the three zoom positions, which are the Table 2 values to the printed digit. The stop travels with G2, so the 1.455 mm and 1.802 mm air gaps on either side of it are the same at every position.
+
+| Zoom position | Table 2 FNO | Real-ray stop radius for that FNO | FNO traced with the 4.890 mm iris |
+|---|---:|---:|---:|
+| Wide | 4.625 | 4.8900 mm | 4.625 |
+| Middle | 5.233 | 4.8899 mm | 5.233 |
+| Telephoto | 5.828 | 4.8901 mm | 5.828 |
+
+The semi-diameter written on the `STO` row is **4.846 mm**, the paraxial stop radius for the middle position's f/5.233; the paraxial radii for the wide and telephoto values are 4.859 mm and 4.832 mm. The wide-open iris is the real-ray 4.890 mm radius derived from `nominalFno`, not the `STO` row value.
 
 The production lens has 14 glass elements. The data file has 16 element records because the two molded resin layers on L11 and L12 must be modeled as separate optical materials. This is a data-modeling distinction, not a change to the production element count.
 

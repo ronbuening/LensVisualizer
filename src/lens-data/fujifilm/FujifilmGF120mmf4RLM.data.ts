@@ -19,15 +19,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    respectively). Front-element SD well within 72 mm filter       ║
  * ║    thread constraint.                                              ║
  * ║                                                                    ║
- * ║  COVER GLASS: Excluded per spec. Patent lists a parallel plate    ║
- * ║    (PP, nd = 1.51680, d = 3.200 mm) followed by 1.022 mm air.    ║
- * ║    Air-equivalent optical path folded into final surface BFD:     ║
- * ║    36.746 + 3.200/1.51680 + 1.022 ≈ 39.878 mm.                   ║
+ * ║  COVER GLASS: Patent Table 1 surfaces 25–26 (optical member PP,   ║
+ * ║    3.200 mm, nd 1.51680, νd 64.20, θgF 0.53430) and the 1.022 mm  ║
+ * ║    air gap to Sim are modeled in `rearPlates` (traced, not        ║
+ * ║    drawn). Surface 24 keeps the patent's 36.746 mm gap to PP;     ║
+ * ║    air-equivalent BF 36.746 + 3.200/1.51680 + 1.022 ≈ 39.878 mm.  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -282,7 +283,21 @@ const LENS_DATA = {
     // D5: L51 + L52 cemented doublet = entire G5
     { label: "22", R: -51.37287, d: 1.31, nd: 1.804, elemId: 13, sd: 13.5 },
     { label: "23", R: 39.448, d: 5.38, nd: 1.834, elemId: 14, sd: 13.5 },
-    { label: "24", R: 1e15, d: 39.878, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "24", R: 1e15, d: 36.746, nd: 1.0, elemId: 0, sd: 14.0 }, // L52 rear → PP (patent gap)
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 25–26): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.00152,
+      gapAfterMm: 1.022,
+      source: "US 2018/0059384 A1, Example 1 Table 1 surfaces 25–26",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -324,14 +339,17 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
+  // Patent read 2026-10-06: Close-focus gaps are Example 1 Table 3's closest-distance column (object distance
+  // 0.28075 m, beta about -0.5x), reproduced verbatim and unscaled.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual-group inner focus. G2 moves 13.5 mm toward image; G4 moves 12.4 mm toward object. " +
     "Two linear motors, constant overall length. MFD 0.45 m (β = −0.5×).",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4.0,
+  nominalFno: 4.12,
   apertureBlades: 9,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [4.12, 5.6, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

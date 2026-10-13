@@ -46,6 +46,7 @@ const LENS_DATA = {
   focalLengthDesign: 135.2107,
   apertureMarketing: 2.3,
   apertureDesign: 2.3,
+  lensMounts: ["canon-fd", "nikon-f", "minolta-sr", "olympus-om"],
   imageFormat: "135-full-frame",
   patentNumber: "GB 1,408,910",
   patentAuthors: ["Ellis I. Betensky"],
@@ -55,7 +56,7 @@ const LENS_DATA = {
   groupCount: 6,
 
   focusDescription:
-    "Front objective L1-L5 translates objectward while the weak negative L6 compensator remains fixed relative to the film plane.",
+    "Front objective L1-L5 translates objectward while the weak negative L6 compensator remains fixed. The patent close row is exact before the constrained 0.9 m endpoint.",
 
   /* ── Elements ── */
   elements: [
@@ -148,8 +149,9 @@ const LENS_DATA = {
   asph: {},
 
   /* ── Focus ── */
+  focusPositions: [0, 0.5595405625339631, 1],
   var: {
-    "10": [0.87, 21.081081],
+    "10": [0.87, 10.4, 21.081081],
   },
   varLabels: [["10", "FOCUS"]],
 
@@ -162,6 +164,8 @@ const LENS_DATA = {
 
   /* ── Product / UI data ── */
   closeFocusM: 0.9,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   nominalFno: 2.3,
   fstopSeries: [2.3, 2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,

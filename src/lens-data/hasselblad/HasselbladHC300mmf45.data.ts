@@ -221,8 +221,8 @@ const LENS_DATA = {
   focusDescription: "Inner focus — Group 20 (G21+G22 cemented doublet) translates rearward.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4.5,
-  fstopSeries: [4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 45],
+  nominalFno: 4.66,
+  fstopSeries: [4.66, 5.6, 6.3, 8, 11, 16, 22, 32, 45],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

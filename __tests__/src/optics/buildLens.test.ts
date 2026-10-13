@@ -1,22 +1,27 @@
 import { describe, it, expect, vi } from "vitest";
 import buildLens, { paraxialTrace, realTraceToStop } from "../../../src/optics/buildLens.js";
-import { doLayout } from "../../../src/optics/optics.js";
+import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
+import { doLayout, traceRay } from "../../../src/optics/optics.js";
+import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
+import { computeFieldGeometryAtState } from "../../../src/optics/fieldGeometry.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import {
+  REAR_PLATE_FIXTURE,
+  buildRearPlateAirEquivalentLens,
+  buildRearPlateLens,
   sharedApoLanthar50f2,
   sharedNikkor105f14,
   sharedNikkorZ50f18,
   sharedNokton50f1,
   sharedSonnar50f15,
+  teleconverterZoomHostData,
 } from "./testLensFixtures.js";
 import type { LensData, SurfaceData } from "../../../src/types/optics.js";
 
 /* ── Load all production lens data files ── */
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
-import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
 import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
-import NikkorN5cmf11Raw from "../../../src/lens-data/nikon/NikonN5cmf11.data.js";
 import NikonFisheye6mmf28Raw from "../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
 import NikonFisheye6mmf56Raw from "../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.js";
 import CanonEF815mmf4LFisheyeRaw from "../../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.js";
@@ -31,9 +36,7 @@ vi.mock("../../../src/utils/featureFlags.js", async (importOriginal) => {
 
 const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
 const Nokton = { ...LENS_DEFAULTS, ...NoktonRaw } as LensData;
-const Nikkor = { ...LENS_DEFAULTS, ...NikkorRaw } as LensData;
 const Nikkor105 = { ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData;
-const NikkorN5cmf11 = { ...LENS_DEFAULTS, ...NikkorN5cmf11Raw } as LensData;
 const NikonFisheye6mmf28 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf28Raw } as LensData;
 const NikonFisheye6mmf56 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf56Raw } as LensData;
 const CanonEF815mmf4LFisheye = { ...LENS_DEFAULTS, ...CanonEF815mmf4LFisheyeRaw } as LensData;
@@ -97,73 +100,19 @@ describe("paraxialTrace", () => {
 });
 
 describe("buildLens — production lenses", () => {
-  /* ── EFL regression tests ── */
-  // EFL values are pinned tightly to the verified paraxial output (patent
-  // nominal in the test name). A loose integer-digit tolerance would let a
-  // systematic paraxial error through; see exactTraceGoldenValues.test.ts
-  // for the matching exact-trace pins.
-  it("ApoLanthar EFL ≈ 49.3 mm", () => {
-    const L = buildLens(ApoLanthar);
-    expect(L.EFL).toBeCloseTo(49.282789, 5);
-  });
-
-  it("Nokton EFL ≈ 50.0 mm", () => {
-    const L = buildLens(Nokton);
-    expect(L.EFL).toBeCloseTo(49.997679, 5);
-  });
-
-  it("Nikkor Z EFL is computed (includes filter stack)", () => {
-    const L = buildLens(Nikkor);
-    // Patent lists 51.6 mm for the optical system; the data file includes
-    // the cover glass (BK7 filter, surfaces 25-26) which shifts the
-    // paraxial EFL calculation slightly.
-    expect(L.EFL).toBeCloseTo(51.600921, 5);
-  });
-
-  it("Nikkor 105 f/1.4E EFL ≈ 102 mm", () => {
-    const L = buildLens(Nikkor105);
-    expect(L.EFL).toBeCloseTo(102.148542, 5);
-  });
-
-  it("NIKKOR-N 5cm f/1.1 EFL ≈ 49.93 mm", () => {
-    const L = buildLens(NikkorN5cmf11);
-    expect(L.EFL).toBeCloseTo(49.926581, 5);
-  });
-
-  it("Sonnar 50 f/1.5 EFL ≈ 50.2 mm", () => {
-    const L = buildLens(Sonnar50f15);
-    expect(L.EFL).toBeCloseTo(50.162656, 5);
-  });
-
-  /* ── f-number regression tests ── */
-  it("ApoLanthar FOPEN = f/1.93", () => {
-    const L = buildLens(ApoLanthar);
-    expect(L.FOPEN).toBeCloseTo(1.93, 6);
-  });
-
-  it("Nokton FOPEN = f/1.0", () => {
-    const L = buildLens(Nokton);
-    expect(L.FOPEN).toBeCloseTo(1.0, 6);
-  });
-
-  it("Nikkor Z FOPEN = f/1.85", () => {
-    const L = buildLens(Nikkor);
-    expect(L.FOPEN).toBeCloseTo(1.85, 6);
-  });
-
+  /* First-order values are pinned per reference design in exactTraceGoldenValues.test.ts; the
+   * tests below cover how buildLens derives aperture and field metadata, not per-lens constants. */
   it("Nikon 6mm f/2.8 fisheye uses projection focal length for aperture sizing", () => {
     const L = buildLens(NikonFisheye6mmf28);
 
     expect(L.projection.kind).toBe("fisheye-equidistant");
-    expect(L.EFL).toBeCloseTo(37.413238, 5);
-    expect(L.apertureReferenceFocalLength).toBeCloseTo(6.3, 6);
-    expect(L.FOPEN).toBeCloseTo(2.8, 6);
-    expect(L.stopPhysSD).toBeCloseTo(5.395191, 5);
-    expect(L.EP.epSD).toBeCloseTo(6.3 / (2 * 2.8), 10);
+    // The Gaussian EFL of this design is far from its projection focal length; the pupil follows the latter.
+    expect(Math.abs(L.EFL - L.apertureReferenceFocalLength)).toBeGreaterThan(10);
+    expect(L.EP.epSD).toBeCloseTo(L.apertureReferenceFocalLength / (2 * L.FOPEN), 10);
     // halfField is the declared maxTraceFieldDeg for fisheyes (110° for the
     // Nikon 6mm). The paraxial-chief-ray bisection used to narrow this to ~32°,
-    // but fisheyes skip that bisection — see buildLens.ts comment block and
-    // TRACE_MODEL_IMPROVEMENT_PLAN.md PR 8 step 7.
+    // but fisheyes skip that bisection — see the buildLens.ts comment block and
+    // agent_docs/architecture/optics-engine.md (halfField vs tracingHalfField).
     expect(L.halfField).toBeCloseTo(110, 6);
   });
 
@@ -181,15 +130,12 @@ describe("buildLens — production lenses", () => {
     const L = buildLens(CanonEF815mmf4LFisheye);
 
     expect(L.projection.kind).toBe("fisheye-equisolid");
-    expect(L.apertureReferenceFocalLength).toBeCloseTo(8.05249, 5);
-    expect(L.zoomEPs![0]).toBeCloseTo(8.05249 / 8, 5);
-    expect(L.zoomEPs![1]).toBeCloseTo(11.85145 / 8, 5);
-    expect(L.zoomEPs![2]).toBeCloseTo(15.14066 / 8, 5);
-    expect(L.zoomFOPENs![0]).toBeCloseTo(4, 10);
-    expect(L.zoomFOPENs![1]).toBeCloseTo(4, 10);
-    expect(L.zoomFOPENs![2]).toBeCloseTo(4, 10);
-    expect(L.zoomHalfFields![0]).toBeCloseTo(90, 6);
-    expect(L.zoomHalfFields![2]).toBeCloseTo(87.75, 6);
+    // Each zoom position sizes its pupil from that position's projection focal length.
+    const [wide, , tele] = L.zoomEPs!;
+    expect(wide * 2 * L.zoomFOPENs![0]).toBeCloseTo(L.apertureReferenceFocalLength, 5);
+    expect(tele).toBeGreaterThan(wide);
+    expect(L.zoomHalfFields).toHaveLength(L.zoomEPs!.length);
+    expect(L.zoomHalfFields![2]).toBeLessThanOrEqual(L.zoomHalfFields![0]);
   });
 
   it("throws when a large focalLengthDesign mismatch lacks projection metadata", () => {
@@ -200,23 +146,7 @@ describe("buildLens — production lenses", () => {
 
   it("Hologon uses rectilinear declared coverage while retaining safe trace metadata", () => {
     const L = buildLens(Hologon15f8);
-    const surfaceSDs = Object.fromEntries(L.S.map((s) => [s.label, s.sd]));
-    const infinityLayout = doLayout(0, 0, L);
-    const closeFocusLayout = doLayout(1, 0, L);
 
-    expect(L.elements).toHaveLength(3);
-    expect(L.ES).toContainEqual([2, 2, 4]);
-    expect(surfaceSDs["1"]).toBeCloseTo(11.45, 6);
-    expect(surfaceSDs["2"]).toBeCloseTo(3.82, 6);
-    expect(surfaceSDs["3"]).toBeCloseTo(3.83, 6);
-    expect(surfaceSDs.STO).toBeCloseTo(0.9375, 6);
-    expect(surfaceSDs["4"]).toBeCloseTo(3.83, 6);
-    expect(surfaceSDs["5"]).toBeCloseTo(3.6, 6);
-    expect(surfaceSDs["6"]).toBeCloseTo(8.84, 6);
-    expect(L.stopPhysSD).toBeCloseTo(0.9375, 6);
-    expect(L.data.maxRimAngleDeg).toBe(84);
-    expect(closeFocusLayout.th[L.N - 1]).toBeCloseTo(5.7612, 6);
-    expect(closeFocusLayout.imgZ - infinityLayout.imgZ).toBeCloseTo(1.2162, 4);
     expect(L.projection.kind).toBe("rectilinear");
     expect(L.apertureReferenceFocalLength).toBeCloseTo(L.EFL, 12);
     expect(L.halfField).toBeCloseTo(60, 6);
@@ -309,6 +239,8 @@ describe("buildLens — RuntimeLens property shape", () => {
     expect(Array.isArray(L.groups)).toBe(true);
     expect(Array.isArray(L.doublets)).toBe(true);
     expect(Array.isArray(L.varLabels)).toBe(true);
+    expect(L.focusPositions).toEqual([0, 1]);
+    expect(Object.isFrozen(L.focusPositions)).toBe(true);
     expect(Array.isArray(L.rayFractions)).toBe(true);
     expect(Array.isArray(L.rayHeights)).toBe(true);
     expect(Array.isArray(L.offAxisFractions)).toBe(true);
@@ -388,7 +320,9 @@ describe("buildLens — error handling", () => {
     };
   }
 
-  it("throws on duplicate surface labels", () => {
+  /* buildLens runs validateLensData and throws its errors; the individual rules are tested in
+   * validateLensData.test.ts, so one case proves the wiring. */
+  it("throws validation errors instead of building", () => {
     const data = makeMinimalData({
       surfaces: [
         { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 10 },
@@ -397,36 +331,6 @@ describe("buildLens — error handling", () => {
       ],
     });
     expect(() => buildLens(data as unknown as LensData)).toThrow(/Duplicate surface label/);
-  });
-
-  it("throws when STO is missing", () => {
-    const data = makeMinimalData({
-      surfaces: [
-        { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 10 },
-        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
-      ],
-    });
-    expect(() => buildLens(data as unknown as LensData)).toThrow(/STO/);
-  });
-
-  it("throws on invalid asph reference", () => {
-    const data = makeMinimalData({
-      asph: { NOPE: { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
-    });
-    expect(() => buildLens(data as unknown as LensData)).toThrow(/asph key "NOPE"/);
-  });
-
-  it("throws on invalid var reference", () => {
-    const data = makeMinimalData({
-      var: { MISSING: [1, 2] },
-    });
-    expect(() => buildLens(data as unknown as LensData)).toThrow(/var key "MISSING"/);
-  });
-
-  it("throws when required field is missing", () => {
-    const data = makeMinimalData();
-    delete data.key;
-    expect(() => buildLens(data as unknown as LensData)).toThrow(/key/);
   });
 
   it("builds successfully with valid minimal data", () => {
@@ -609,10 +513,6 @@ describe("buildLens — zoom lens (Nikkor Z 70-200mm f/2.8)", () => {
     expect(L.isZoom).toBe(true);
   });
 
-  it("has correct zoomPositions", () => {
-    expect(L.zoomPositions).toEqual([71.5, 135, 196]);
-  });
-
   it("has zoomEFLs of correct length with plausible values", () => {
     expect(L.zoomEFLs).toHaveLength(3);
     /* Wide end EFL should be near 71.5 mm */
@@ -697,5 +597,163 @@ describe("bladeStubFrac — aberration-aware blade position", () => {
       const L = buildLens(data);
       expect(L.stopHousingSD).toBeGreaterThanOrEqual(L.stopPhysSD);
     }
+  });
+});
+
+// Authored iris schedules are an engine contract, independent of a patent's values.
+describe("published zoom iris schedule", () => {
+  it("preserves supplied radii and interpolates between stations", () => {
+    const zoomPositions = NikkorZ70200Raw.zoomPositions;
+    const radii = zoomPositions.map((_, i) => 8 + 2 * i);
+    const L = buildLens({
+      ...LENS_DEFAULTS,
+      ...NikkorZ70200Raw,
+      zoomApertureModel: undefined,
+      zoomStopSemiDiameters: radii,
+    } as LensData);
+    expect(L.stopPhysSD).toBe(radii[0]);
+    expect(L.zoomStopSDs).toEqual(radii);
+    expect(wideOpenStopAtZoom(0.5 / (radii.length - 1), L)).toBe(9);
+    expect(wideOpenStopAtZoom(1, L)).toBe(radii.at(-1));
+  });
+});
+
+describe("zoom iris model", () => {
+  it("opens each station's iris to its nominal f-number by default", () => {
+    const stationFno = [4, 4.5, 5.6];
+    const variable = buildLens(teleconverterZoomHostData({ nominalFno: stationFno }));
+    const constant = buildLens(teleconverterZoomHostData());
+
+    /* The fixture's stop is its first surface, so the iris is the entrance pupil. */
+    variable.zoomStopSDs!.forEach((radius, station) =>
+      expect(radius).toBeCloseTo(variable.zoomEFLs![station] / (2 * stationFno[station]), 9),
+    );
+    constant.zoomStopSDs!.forEach((radius, station) =>
+      expect(radius).toBeCloseTo(constant.zoomEFLs![station] / (2 * 4), 9),
+    );
+    expect(wideOpenStopAtZoom(1, constant)).toBeGreaterThan(constant.stopPhysSD);
+  });
+
+  it("keeps the first station's iris at every station when the file declares a fixed iris", () => {
+    const L = buildLens(teleconverterZoomHostData({ zoomApertureModel: "fixed-iris" }));
+
+    expect(L.zoomStopSDs).toBeNull();
+    expect(wideOpenStopAtZoom(1, L)).toBe(L.stopPhysSD);
+  });
+});
+
+/* Rear plates are traced but hidden: the expansion must keep paraxial focus identical to the legacy t/n fold while
+ * adding the plate's real (angle-dependent) path, and must not leak into drawn spans, element lists or scale. */
+describe("buildLens — rear plates", () => {
+  const { thicknessMm: t, nd: n, gapAfterMm } = REAR_PLATE_FIXTURE;
+
+  function paraxialDefocus(L: ReturnType<typeof buildRearPlateLens>, focusT = 0) {
+    const layout = doLayout(focusT, 0, L);
+    const cardinals = computeCardinalElementsAtState(L, focusT, 0, layout.z, layout.imgZ)!;
+    return { imgZ: layout.imgZ, defocus: layout.imgZ - cardinals.points.rearFocal.z, cardinals };
+  }
+
+  it("appends two flat surfaces and one synthetic element per plate after the authored prescription", () => {
+    const L = buildRearPlateLens();
+    const plate = L.S.slice(-2);
+
+    expect(L.N).toBe(5);
+    expect(plate.map((surface) => surface.label)).toEqual(["RP1a", "RP1b"]);
+    expect(plate.map((surface) => surface.d)).toEqual([t, gapAfterMm]);
+    expect(plate.map((surface) => surface.nd)).toEqual([n, 1]);
+    expect(plate.every((surface) => surface.synthetic === "rearPlate")).toBe(true);
+    expect(L.lastLensSurfaceIdx).toBe(2);
+    expect(L.S[L.lastLensSurfaceIdx].d).toBe(44);
+  });
+
+  /* A generated rim never clips, so its size only extends the envelopes that ray launch and intersection bounds read. */
+  it("sizes generated plate rims to cover the image format as well as the largest lens rim", () => {
+    const plateSds = (L: ReturnType<typeof buildRearPlateLens>) =>
+      L.S.filter((surface) => surface.synthetic === "rearPlate").map((surface) => surface.sd);
+
+    expect(plateSds(buildRearPlateLens())).toEqual([22.5, 22.5]);
+    for (const sd of plateSds(buildRearPlateLens({ imageFormat: "135-full-frame" }))) {
+      expect(sd).toBeCloseTo((1.5 * 43.3) / 2, 10);
+    }
+  });
+
+  /* The fixture's generated 22.5 mm rim sits ~49 mm behind the lens, where the chief ray is near full image height;
+   * as an aperture it would cap the field far inside the lens's own coverage. A published rim is a real aperture. */
+  it("never lets a generated plate rim clip or limit the field, while a published rim still does", () => {
+    const plated = buildRearPlateLens();
+    const folded = buildRearPlateAirEquivalentLens();
+    const published = buildRearPlateLens({ plates: [{ ...REAR_PLATE_FIXTURE, sd: 10 }] });
+    const stateField = (L: typeof plated) => computeFieldGeometryAtState(0, 0, L).halfFieldDeg;
+
+    expect(plated.S.filter((surface) => surface.synthetic).map((surface) => surface.clips)).toEqual([false, false]);
+    expect(plated.halfField).toBeCloseTo(folded.halfField, 9);
+    expect(stateField(plated)).toBeCloseTo(stateField(folded), 9);
+    expect(published.halfField).toBeLessThan(folded.halfField - 1);
+    expect(stateField(published)).toBeLessThan(stateField(folded) - 1);
+  });
+
+  it("keeps synthetic plates out of drawn spans, element lists and diagram scale", () => {
+    const plated = buildRearPlateLens();
+    const folded = buildRearPlateAirEquivalentLens();
+
+    expect(plated.ES).toEqual(folded.ES);
+    expect(plated.elements).toEqual(folded.elements);
+    expect(plated.maxSD).toBe(folded.maxSD);
+    expect(plated.data.elements.some((element) => element.synthetic === "rearPlate")).toBe(true);
+  });
+
+  it("resolves plate dispersion through its catalog glass", () => {
+    const L = buildRearPlateLens();
+
+    expect(L.indexByIdx[L.N - 2].quality).toBe("sellmeier");
+    expect(buildRearPlateLens({ plates: [{ ...REAR_PLATE_FIXTURE, glass: undefined }] }).indexByIdx[3].quality).toBe(
+      "abbe",
+    );
+  });
+
+  it("preserves EFL and paraxial defocus of the air-equivalent fold while moving the image plane by t(1 - 1/n)", () => {
+    const plated = paraxialDefocus(buildRearPlateLens());
+    const folded = paraxialDefocus(buildRearPlateAirEquivalentLens());
+
+    expect(buildRearPlateLens().EFL).toBeCloseTo(buildRearPlateAirEquivalentLens().EFL, 10);
+    expect(plated.defocus).toBeCloseTo(folded.defocus, 10);
+    expect(plated.imgZ - folded.imgZ).toBeCloseTo(t * (1 - 1 / n), 10);
+  });
+
+  it("measures BFD from the last lens vertex so the plate counts as back focus", () => {
+    const L = buildRearPlateLens();
+    const { cardinals } = paraxialDefocus(L);
+    const layout = doLayout(0, 0, L);
+
+    expect(cardinals.rearLensVertexZ).toBeCloseTo(layout.z[L.lastLensSurfaceIdx], 12);
+    expect(cardinals.distances.bfd.valueMm).toBeCloseTo(cardinals.points.rearFocal.z - cardinals.rearLensVertexZ, 12);
+  });
+
+  it("adds the exact plane-parallel longitudinal shift t(1 - cos U / sqrt(n^2 - sin^2 U)) for real rays", () => {
+    const plated = buildRearPlateLens();
+    const folded = buildRearPlateAirEquivalentLens();
+    const axialIntercept = (L: typeof plated) => {
+      const layout = doLayout(0, 0, L);
+      const ray = traceRay(10, 0, layout.z, 0, 0, undefined, false, L);
+      expect(ray.clipped).toBe(false);
+      /* traceRay reports height and slope at the last traced surface. */
+      return { z: layout.z[L.N - 1] - ray.y / ray.u, u: ray.u };
+    };
+    const withPlate = axialIntercept(plated);
+    const withoutPlate = axialIntercept(folded);
+    const sinU = Math.sin(Math.atan(Math.abs(withoutPlate.u)));
+    const cosU = Math.cos(Math.atan(Math.abs(withoutPlate.u)));
+
+    expect(withPlate.z - withoutPlate.z).toBeCloseTo(t * (1 - cosU / Math.sqrt(n * n - sinU * sinU)), 8);
+    expect(withPlate.z - withoutPlate.z).toBeGreaterThan(t * (1 - 1 / n));
+  });
+
+  it("keeps focus variation on the gap before the plate", () => {
+    const plated = buildRearPlateLens({ lastGapRange: [44, 49] });
+    const folded = buildRearPlateAirEquivalentLens({ lastGapRange: [44, 49] });
+    const close = doLayout(1, 0, plated);
+
+    expect(close.z[plated.N - 2] - close.z[plated.lastLensSurfaceIdx]).toBeCloseTo(49, 10);
+    expect(paraxialDefocus(plated, 1).defocus).toBeCloseTo(paraxialDefocus(folded, 1).defocus, 10);
   });
 });

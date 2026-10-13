@@ -7,6 +7,7 @@
 
 import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 import type { AsphericCoefficients } from "./asphericSchema.js";
+import type { AttachedTeleconverterInfo } from "./teleconverter.js";
 
 /** One sparse coefficient in a rotationally symmetric optical-path polynomial W(h). */
 export interface RadialPhaseTerm {
@@ -35,6 +36,44 @@ export interface SurfaceData {
   stopPlacement?: "inside-element";
   interaction?: SurfaceInteraction;
   diffractive?: DiffractivePhaseSurface;
+  /** Set only by `expandRearPlates()`; authored data must not use it. Traced, never drawn. */
+  synthetic?: SyntheticOpticsKind;
+  /**
+   * `false` only on a rear plate with a generated rim, set by `expandRearPlates()`; authored data must not use it.
+   * Such a surface never clips a ray or limits the field, and its `sd` serves only as an envelope extent.
+   */
+  clips?: false;
+}
+
+/** Marker for engine-generated optics that participate in tracing but are hidden from drawing and element UI. */
+export type SyntheticOpticsKind = "rearPlate";
+
+/**
+ * Source-documented plane-parallel plate behind the last lens surface — sensor cover glass, IR/low-pass stack, or a
+ * rear filter. `buildLens()` expands each plate into two flat refracting surfaces so every trace and analysis sees
+ * it, while the diagram and element lists do not. When present, the last authored surface's `d` is the physical gap
+ * to the first plate (not an air-equivalent back focus).
+ */
+export interface RearPlateData {
+  /** Source designation such as "CG", "FL" or "LPF" (documentation and tooltips only). */
+  label?: string;
+  /** Physical plate thickness in mm. */
+  thicknessMm: number;
+  nd: number;
+  vd: number;
+  /** Catalog glass label resolved exactly like an element's `glass`. */
+  glass?: string;
+  indexReference?: RefractiveIndexReferenceLine;
+  dPgF?: number;
+  nC?: number;
+  nF?: number;
+  ng?: number;
+  /** Physical air gap after this plate in mm; for the last plate, the distance to the image plane. */
+  gapAfterMm: number;
+  /** Published clear semi-diameter; omitted plates get a non-clipping generated value. */
+  sd?: number;
+  /** Source citation, e.g. "US 2019/0000000 A1, Table 1 surfaces 27–28". */
+  source?: string;
 }
 
 export type SurfaceIncidentSide = "front" | "rear" | "both";
@@ -158,6 +197,8 @@ export interface ElementData {
   name: string;
   /** Optional patent/source identifier shown beneath the element in the diagram. */
   diagramLabel?: string;
+  /** Source-backed front/rear aperture ratio limit; defaults to 3. Does not relax rim or crossing checks. */
+  maxSdRatio?: number;
   label: string;
   type: string;
   nd: number;
@@ -167,6 +208,8 @@ export interface ElementData {
    * helium d line; use `"e"` when those schema slots preserve patent ne / νe.
    */
   indexReference?: RefractiveIndexReferenceLine;
+  /** Historical source-line uncertainty; displays source coordinates without claiming d/e identity. Does not alter tracing. */
+  indexReferenceNote?: string;
   fl?: number;
   glass?: string;
   role?: string;
@@ -186,6 +229,8 @@ export interface ElementData {
   /** Explicit physical span for elements that contain optically neutral internal surfaces such as an embedded stop. */
   fromSurface?: string;
   toSurface?: string;
+  /** Set only by `expandRearPlates()`; synthetic elements feed dispersion lookup but are never drawn or listed. */
+  synthetic?: SyntheticOpticsKind;
 }
 
 export interface AnnotationData {
@@ -200,11 +245,28 @@ export interface ResolvedAnnotation {
   toSurface: number;
 }
 
+/** Camera-fixed axial reference used to make perspective-control tilt geometry deterministic. */
+export interface TiltPivot {
+  /** Pivot coordinates are expressed in the camera frame, whose image plane remains fixed. */
+  frame: "camera";
+  /**
+   * `mechanical-axis` is a directly sourced physical rotation axis.
+   * `patent-principal-point-guidance` is a patent-directed optical design target, not a measured
+   * production hinge. `rear-vertex-fallback` is a deterministic geometry fallback.
+   */
+  basis: "mechanical-axis" | "patent-principal-point-guidance" | "rear-vertex-fallback";
+  /** Signed axial offset from the fixed image plane in mm; negative values lie objectward. */
+  zOffsetFromImagePlaneMm: number;
+}
+
 export interface PerspectiveControlConfig {
+  /** A [0, 0] range disables that movement axis for shift-only or tilt-only lenses. */
   shiftRangeMm: [number, number];
   tiltRangeDeg: [number, number];
   shiftStepMm?: number;
   tiltStepDeg?: number;
+  /** Required by validation whenever tilt has non-zero travel; omitted for shift-only lenses. */
+  tiltPivot?: TiltPivot;
 }
 
 export interface RectilinearProjectionConfig {
@@ -253,11 +315,11 @@ export interface ResolvedAberrationControlConfig extends Omit<AberrationControlC
   varLabels: [number, string][];
 }
 
-/** Variable gap range for prime lenses: [d_infinity, d_close] */
-export type PrimeVarRange = [number, number];
+/** Variable gap range for prime lenses: one thickness per normalized focus position. */
+export type PrimeVarRange = [number, number, ...number[]];
 
-/** Variable gap for zoom lenses: array of [d_infinity, d_close] per zoom position */
-export type ZoomVarRange = [number, number][];
+/** Variable gap for zoom lenses: one focus-thickness vector per zoom position. */
+export type ZoomVarRange = PrimeVarRange[];
 
 /** Variable gap: prime or zoom */
 export type VarRange = PrimeVarRange | ZoomVarRange;
@@ -311,10 +373,69 @@ export interface LensManufacturerData {
   note?: string;
 }
 
+/** Explicit source-backed finite configuration; interpolation never establishes a new conjugate. */
+export interface FiniteConjugate {
+  focusT: number;
+  zoomT: number;
+  objectDistanceMm: number;
+  distanceReference: "first-surface" | "image-plane";
+  /** Publication/embodiment/table or other evidence establishing both distance and focus spacings. */
+  source: string;
+}
+
+/** Which authored zoom/focus stations the cited source tabulates; see LENS_DATA_SPEC.md § Published Stations. */
+export interface PublishedStations {
+  /** Indices into `zoomPositions` whose infinity row the source tabulates. Omitted: every authored station. Zoom only. */
+  zoom?: number[];
+  /**
+   * Indices (>= 1) into `focusPositions` the source tabulates beyond infinity: one list applied at every published
+   * zoom station, or one list per `zoomPositions` entry. Omitted: infinity only.
+   */
+  focus?: number[] | number[][];
+}
+
+/**
+ * Evidence a source erratum may cite. Four kinds are internal to the cited document; `family-publication` is another
+ * publication of the same application that prints the corrected value. An MTF chart is never one.
+ */
+export type SourceErratumEvidence =
+  | "source-summary"
+  | "sibling-example"
+  | "aberration-figure"
+  | "claims"
+  | "family-publication";
+
+/** A value the source prints that contradicts the source's own data and is corrected in this file. */
+export interface CorrectedSourceErratum {
+  status: "corrected";
+  /** Label of the surface the value belongs to. */
+  surface: string;
+  /** `asph` coefficient key (`K`, `A4`, …) or surface field (`R`, `d`, `nd`). */
+  field: string;
+  /** Value as the source prints it. */
+  printed: number;
+  /** Value this file carries instead. */
+  applied: number;
+  /** At least two independent kinds. */
+  evidence: SourceErratumEvidence[];
+  note: string;
+}
+
+/** A contradiction inside the source whose cause is not isolated; the file keeps the printed values. */
+export interface UnresolvedSourceErratum {
+  status: "unresolved";
+  note: string;
+}
+
+export type SourceErratum = CorrectedSourceErratum | UnresolvedSourceErratum;
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
+  /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
+  publishedAt?: string;
   key: string;
-  maker?: string;
+  /** null explicitly records an unconfirmed manufacturer; omission retains name inference. */
+  maker?: string | null;
   name: string;
   aliases?: readonly LensAliasData[];
   manufacturedBy?: readonly LensManufacturerData[];
@@ -326,32 +447,56 @@ export interface LensData {
   apertureDesign?: number;
   lensMounts?: LensMountId[];
   imageFormat?: ImageFormatId;
+  /** Published circular image diameter, independent of any assumed projection law. */
+  imageCircleMm?: number;
   /** Source patent publication or grant identifier, including jurisdiction and kind code when published. */
   patentNumber?: string;
   /** Inventors named by the source patent, in source order; empty when the patent names none. */
   patentAuthors?: string[];
-  /** Assignees or applicants named by the source patent; empty when the patent names none. */
+  /** Organizational assignees or applicants named by the source patent; empty when no organization is named. */
   patentAssignees?: string[];
   patentYear?: number;
+  /** Departures from, and unresolved contradictions in, the source's printed values; see LENS_DATA_SPEC.md. */
+  sourceErrata?: SourceErratum[];
   elementCount?: number;
   groupCount?: number;
   visible?: boolean;
   opticalConfiguration?: OpticalConfigurationData;
+  /** The lens takes dedicated (non-universal) rear teleconverters made for one of its mounts. */
+  acceptsTeleconverters?: boolean;
+  /** Written only by `attachTeleconverter()` on a composed host + converter system; never authored. */
+  attachedTeleconverter?: AttachedTeleconverterInfo;
   perspectiveControl?: PerspectiveControlConfig;
   projection?: LensProjectionConfig;
   opticalPath?: OpticalPathData;
   aberrationControl?: AberrationControlConfig;
   nominalFno?: number | number[];
   closeFocusM: number;
+  /** Object-to-image close distances at the authored zoom stations, in metres. */
+  zoomCloseFocusM?: number[];
+  /** Published physical iris semi-diameters in mm, one per source zoom station. */
+  zoomStopSemiDiameters?: number[];
+  /**
+   * How a zoom's wide-open iris follows the zoom. Omitted or `"from-nominal-fno"`: each station's radius is traced
+   * from its nominal f-number. `"fixed-iris"`: the first station's radius is kept at every station.
+   */
+  zoomApertureModel?: "from-nominal-fno" | "fixed-iris";
   focusStep: number;
   maxFstop: number;
   apertureStep: number;
   fstopSeries: number[];
   elements: ElementData[];
   surfaces: SurfaceData[];
+  /** Source-documented rear plates, ordered lens → image; see `RearPlateData`. */
+  rearPlates?: RearPlateData[];
   asph?: Record<string, AsphericCoefficients>;
   var?: Record<string, VarRange>;
   varLabels?: [string, string][];
+  /** Normalized focusT coordinates for each authored focus thickness; defaults to [0, 1]. */
+  focusPositions?: number[];
+  finiteConjugates?: FiniteConjugate[];
+  /** Source provenance for the authored stations; absent means every zoom station at infinity focus. */
+  publishedStations?: PublishedStations;
   groups?: AnnotationData[];
   doublets?: AnnotationData[];
   zoomPositions?: number[];
@@ -362,7 +507,6 @@ export interface LensData {
   svgH: number;
   scFill: number;
   yScFill: number;
-  clipMargin: number;
   maxRimAngleDeg: number;
   gapSagFrac: number;
   maxAspectRatio: number;
@@ -386,7 +530,6 @@ type DefaultedFields =
   | "svgW"
   | "svgH"
   | "scFill"
-  | "clipMargin"
   | "maxRimAngleDeg"
   | "gapSagFrac"
   | "maxAspectRatio"
@@ -394,8 +537,9 @@ type DefaultedFields =
   | "apertureStep"
   | "maxFstop";
 
-/** Raw lens data shape before defaults merging (used in .data.ts files) */
-export type LensDataInput = Omit<LensData, DefaultedFields> & Partial<Pick<LensData, DefaultedFields>>;
+/** Raw lens data shape before defaults merging (used in .data.ts files); composer-only fields are not authorable. */
+export type LensDataInput = Omit<LensData, DefaultedFields | "attachedTeleconverter"> &
+  Partial<Pick<LensData, DefaultedFields>>;
 
 /** Entrance pupil data */
 export interface EntrancePupil {
@@ -420,11 +564,16 @@ export interface SurfaceSpectral {
 
 /** Frozen runtime lens object returned by buildLens() */
 export interface RuntimeLens {
+  /** Lens data after defaults and `expandRearPlates()`; `surfaces`/`elements` include synthetic plates. */
   readonly data: LensData;
   readonly S: SurfaceData[];
   readonly N: number;
+  /** Drawable element spans; synthetic rear plates are excluded. */
   readonly ES: ElementSpan[];
+  /** Displayable elements; synthetic rear plates are excluded (they remain in `data.elements`). */
   readonly elements: ElementData[];
+  /** Index of the last authored (non-synthetic) surface — the rear lens vertex for back-focus readouts. */
+  readonly lastLensSurfaceIdx: number;
   readonly asphByIdx: Record<number, AsphericCoefficients>;
   readonly varByIdx: Record<number, VarRange>;
   readonly vdByIdx: Record<number, number>;
@@ -466,7 +615,6 @@ export interface RuntimeLens {
   readonly maxRimSin: number;
   readonly maxRimTan: number;
   readonly gapSagFrac: number;
-  readonly clipMargin: number;
   readonly gridPitch: number;
   readonly gridCount: number;
   readonly lyDoublet: number;
@@ -487,7 +635,9 @@ export interface RuntimeLens {
   readonly offAxisFractions: number[];
   readonly offAxisHeights: number[];
   readonly closeFocusM: number;
+  readonly zoomCloseFocusM?: readonly number[];
   readonly focusStep: number;
+  readonly focusPositions: readonly number[];
   readonly focusDescription?: string;
   readonly maxFstop: number;
   readonly apertureStep: number;
@@ -507,6 +657,7 @@ export interface RuntimeLens {
   readonly zoomXpZRelLastSurfs: number[] | null;
   readonly zoomXpSDs: number[] | null;
   readonly zoomFOPENs: number[] | null;
+  readonly zoomStopSDs?: readonly number[] | null;
   readonly zoomStep: number;
   readonly zoomLabels: string[] | null;
   readonly labelIdx: Record<string, number>;
@@ -581,7 +732,7 @@ export interface SurfaceAccentPathData {
   pathD: string;
   labelX: number;
   labelY: number;
-  kind: "second-surface-coating" | "diffractive-phase";
+  kind: "second-surface-coating" | "first-surface-mirror" | "diffractive-phase";
 }
 
 export interface ElementShape {

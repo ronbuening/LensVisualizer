@@ -1,6 +1,6 @@
 # Audit Log - MINOLTA AF 400mm f/4.5 APO G
 
-Patent: JP1996-327896 A, Example 1
+Patent: JP 1996-327896 A, Example 1
 
 ## 2026-08-11 - Glass opportunity audit
 

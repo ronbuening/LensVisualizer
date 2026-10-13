@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Lens data - NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED
+ * Lens data - NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED
  *
  * Source: US 2005/0157403 A1, Example 1 (Susumu Sato / Nikon Corporation).
  * Production correlation: Nikon's original 2003 AF-S VR Zoom-Nikkor 200-400mm f/4G IF-ED.
@@ -17,8 +17,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * d7 + d12 remains 78.75748 mm. G2 and G3 provide zoom motion. G4m shifts transversely for VR; that decenter is a
  * source fact but is not an authored axial var state in the ordinary sequential prescription.
  *
- * Rear normalization: source filter surfaces 44-45 (2.00 mm, nd=1.51680) are excluded. Surface 43 therefore uses the
- * air-equivalent rear spacing 3.00 + 2.00/1.51680 + 91.16781 = 95.48637540084388 mm to the image plane.
+ * Rear filter: source surfaces 44-45 (rear-inserting filter BFL, 2.00 mm, nd=1.51680, vd=64.12) are drawn as a
+ * plane-parallel plate element and traced by every analysis. Surface 43 stores the printed 3.00 mm gap to the filter
+ * and the plate carries the printed Bf = 91.16781 mm (identical at every zoom and focus state) to the image plane.
+ * The air-equivalent rear spacing 3.00 + 2.00/1.51680 + 91.16781 = 95.48637540084388 mm is unchanged. The plate's
+ * semi-diameter is a ray-trace estimate (the source lists none) and it is not counted in `elementCount`.
  *
  * Field stop S2 is retained as an optically neutral clear-aperture plane because the patent explicitly places a field
  * stop between G4f and G4m. Its sd=17.90 mm is inferred from the full-field (Y=21.60 mm) paraxial envelope at S2
@@ -40,7 +43,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-afs-vr-200400f4g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED",
+  name: "NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED",
   subtitle: "US 2005/0157403 A1 Example 1 - Susumu Sato / Nikon Corporation",
   specs: [
     "24 ELEMENTS / 17 GROUPS",
@@ -372,7 +375,17 @@ const LENS_DATA = {
       fl: -66.168729,
       glass: "847238 - dense-flint class",
       cemented: "D48",
-      role: "Negative partner of L48 and final active glass element before the normalized rear image spacing.",
+      role: "Negative partner of L48 and final active glass element before the rear filter plate.",
+    },
+    {
+      id: 25,
+      name: "BFL",
+      label: "Slip-in filter BFL",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.12,
+      glass: "J-BK7A",
+      role: "Plane-parallel filter plate of the patent prescription (US 2005/0157403 A1, Example 1 Table 1 surfaces 44–45), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
     },
   ],
 
@@ -419,7 +432,11 @@ const LENS_DATA = {
     { label: "40", R: -91.116, d: 0.1, nd: 1, elemId: 0, sd: 20 },
     { label: "41", R: 64.829, d: 6.5, nd: 1.64, elemId: 23, sd: 19.8 },
     { label: "42", R: -64.829, d: 1.7, nd: 1.84666, elemId: 24, sd: 19.8 },
-    { label: "43", R: 417.363, d: 95.48637540084388, nd: 1, elemId: 0, sd: 19.8 },
+    { label: "43", R: 417.363, d: 3, nd: 1, elemId: 0, sd: 19.8 }, // gap to the BFL filter plate
+    // Slip-in filter BFL (US 2005/0157403 A1, Example 1 Table 1 surfaces 44–45), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    { label: "44", R: 1e15, d: 2, nd: 1.5168, elemId: 25, sd: 19.5 },
+    { label: "45", R: 1e15, d: 91.16781, nd: 1, elemId: 0, sd: 19.5 }, // slip-in filter → image plane
   ],
 
   asph: {},
@@ -481,10 +498,13 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focus: G1m (L15-L17) translates 17.49408 mm imageward from infinity to the patent's 2 m state; G2/G3 zoom gaps are published. G4m VR decenter is transverse and is not represented as an axial var state.",
 
   nominalFno: 4.08,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.08, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
   apertureBlades: 9,

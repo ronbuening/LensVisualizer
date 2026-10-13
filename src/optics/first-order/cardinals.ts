@@ -53,7 +53,10 @@ export interface CardinalElements2 {
     totalTrack: CardinalDistance2;
   };
   frontVertexZ: number;
+  /** Rear vertex of the traced system (matrix reference; includes synthetic rear plates). */
   rearVertexZ: number;
+  /** Rear lens vertex used for BFD; differs from `rearVertexZ` only when rear plates are modeled. */
+  rearLensVertexZ: number;
   imagePlaneZ: number;
   objectIndex: number;
   imageIndex: number;
@@ -79,6 +82,8 @@ export function computeCardinalElements2(state: PreparedOpticalState): CardinalE
     ...matrix,
     frontVertexZ: state.z[0],
     rearVertexZ: state.z[state.surfaces.length - 1],
+    /* Hand-built RuntimeLens fixtures may omit lastLensSurfaceIdx; they never carry rear plates. */
+    rearLensVertexZ: state.z[state.lens.runtime.lastLensSurfaceIdx ?? state.surfaces.length - 1],
     imagePlaneZ: state.imgZ,
   });
 }
@@ -99,6 +104,7 @@ export function buildCardinalElementsFromMatrix2({
   D,
   frontVertexZ,
   rearVertexZ,
+  rearLensVertexZ = rearVertexZ,
   imagePlaneZ,
   objectIndex,
   imageIndex,
@@ -109,6 +115,8 @@ export function buildCardinalElementsFromMatrix2({
   D: number;
   frontVertexZ: number;
   rearVertexZ: number;
+  /** Last authored lens vertex; BFD is measured from here so modeled rear plates count as back focus. */
+  rearLensVertexZ?: number;
   imagePlaneZ: number;
   objectIndex: number;
   imageIndex: number;
@@ -124,7 +132,7 @@ export function buildCardinalElementsFromMatrix2({
   const rearNodalZ = rearVertexZ - A * nodalDistanceToFrontVertex - objectIndex * B;
 
   const efl = rearFocalZ - rearPrincipalZ;
-  const bfd = rearFocalZ - rearVertexZ;
+  const bfd = rearFocalZ - rearLensVertexZ;
   const ffd = frontVertexZ - frontFocalZ;
   const hiatus = frontPrincipalZ - rearPrincipalZ;
   const nodalPrincipalCoincident =
@@ -141,13 +149,14 @@ export function buildCardinalElementsFromMatrix2({
     },
     distances: {
       efl: { id: "EFL", fromZ: rearPrincipalZ, toZ: rearFocalZ, valueMm: efl },
-      bfd: { id: "BFD", fromZ: rearVertexZ, toZ: rearFocalZ, valueMm: bfd },
+      bfd: { id: "BFD", fromZ: rearLensVertexZ, toZ: rearFocalZ, valueMm: bfd },
       ffd: { id: "FFD", fromZ: frontVertexZ, toZ: frontFocalZ, valueMm: ffd },
       hiatus: { id: "Hiatus", fromZ: rearPrincipalZ, toZ: frontPrincipalZ, valueMm: hiatus },
       totalTrack: { id: "Total track", fromZ: frontVertexZ, toZ: imagePlaneZ, valueMm: imagePlaneZ - frontVertexZ },
     },
     frontVertexZ,
     rearVertexZ,
+    rearLensVertexZ,
     imagePlaneZ,
     objectIndex,
     imageIndex,

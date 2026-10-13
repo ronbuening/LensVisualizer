@@ -43,4 +43,36 @@ Patent: US 2020/0333569 A1, Example 1
   d = 2.67) reaches zero edge thickness at h ~ 8.0 mm, so the drawn outline there is also a flange.
 - Verification: `npm run typecheck` passed; `npm run test` 2440 tests passed; cross-section re-rendered
   and compared with FIG. 2.
-- Full method and per-lens results: agent_docs/patent-figure-sd-audit.md.
+- Full method and per-lens results: agent_docs/records/patent-figure-sd-audit-2026-07.md.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent back focus (stored 4.861 mm) with the physical rear stack from Example 1 Table 1
+  (p. 19): S14 d = 3.504 mm (patent d15), then `rearPlates` PP 1.300 mm, nd 1.51680, νd 64.20 (N-BK7 class; the
+  elements' OHARA S-BSL7 is nd 1.51633, so the exact-nd Schott label was used), and 0.500 mm to the image.
+- Paraxial check against the previous data: EFL identical; defocus changes by +0.00007 mm at infinity and close focus,
+  the rounding in the old 4.861 mm (exact fold 4.86107 mm, which also matches Table 2 Bf). Physical track grows by
+  1.300 × (1 − 1/1.51680) = 0.443 mm, to 38.79 mm against the air-converted TL of 38.35 mm.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Table 2 (PDF p.19) prints 2ω = 62.0° and Ymax = 14.20 mm for Example 1, and the traced chief ray reaches the 14.175 mm
+APS-C corner at 30.94°, so the design covers the corner. The estimated L23 rims clipped the real chief ray (solved
+through the stop centre) from 25.4°, first at 8A, leaving the analysis field at 79% of the corner. The data's post-stop
+labels run one lower than the patent's, so 7A/8A are the patent's surfaces *8/*9 (R 34.72225 / −33.47682). The corner
+chief ray needs 7A ≥ 7.38 and 8A ≥ 7.92 mm; no other rim clips. Both values are floor + ~0.5 mm, each surface set by its
+own traced height. `--scan` shows no turnover on either surface to 1.2× the new heights (rim slopes 15.5° and 6.7°), and
+the 2026-07 figure audit put their polynomial limits near 10.7 and 10.5 mm. FIG. 2 (PDF p.3) is to scale (28.30 px/mm at
+200 dpi; S7A, S8A and both PP faces within 1 px of the prescription) and draws L23's curved faces meeting a flat edge at
+9.70 mm, with drawn sags that match the prescription there. That is 14–23% above the new values, short of the ~25% the
+procedure asks for before a drawing overrides the trace, so the figure is recorded as headroom rather than used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 7A | 6.3 | 7.9 | corner chief ray 7.38 mm + clearance (patent *8; FIG. 2 edge 9.70 mm) |
+| 8A | 6.2 | 8.5 | corner chief ray 7.92 mm + clearance (patent *9; FIG. 2 edge 9.70 mm) |
+
+The validator accepts the new values, the traced edge now reaches 14.17 mm at 30.9° with every rim clear, and the
+image-circle floor reports nothing undersized. The analysis now quotes the L23 departures at the new rims (7A +74.985 µm
+at 7.9 mm, 8A +307.126 µm at 8.5 mm), and its L31 paragraph no longer claims smaller departures than L23's, which was
+false at both the old and new rims.

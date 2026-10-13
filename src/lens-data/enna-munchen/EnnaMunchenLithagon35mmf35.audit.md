@@ -11,10 +11,6 @@ Patent: US 2,821,112, sole numerical example
 - Stored SDs match that outline: L1 is much larger than the triplet at 19.5-20.0 mm, L2 and L4 are similar compact positive members at 8.3-9.0 mm, and L3 narrows to 6.2-6.5 mm around the stop-adjacent waist.
 - No SD values changed. Current values remain inferred from the patent figure, marginal/chief-ray envelope, f/3.5 stop solution, and mechanical edge-clearance checks.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-08-11 — Phase 92 HOYA PC2 recovery
 
 - Visually rechecked US 2,821,112's rendered prescription page: L1 is `1.51821 / 65.2`.

@@ -1,6 +1,6 @@
 # Audit Log - MINOLTA AF 100mm f/2
 
-Patent: JP1987-244010 A, Example 2
+Patent: JP 1987-244010 A, Example 2
 
 ## 2026-08-11 - Glass opportunity audit
 

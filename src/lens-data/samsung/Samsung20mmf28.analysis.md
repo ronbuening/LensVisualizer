@@ -188,8 +188,8 @@ without changing the source's 0.337 mm intermediate travel or 3.647 mm near trav
 | Intermediate | 22.876 mm | 25.035895 mm | 25.064129 mm | 0.337 mm toward the object |
 | Near | 26.186 mm | 28.345895 mm | 28.374129 mm | 3.647 mm toward the object |
 
-The viewer defines the published infinity and near endpoints. The intermediate row remains a source verification point
-rather than a third authored slider endpoint.
+The viewer stores the published infinity, intermediate, and near rows as exact focus keyframes. Motion between them
+remains a piecewise-linear visualization rather than a claim about the continuous helicoid trajectory.
 
 With the normalized near gap, the rounded prescription solves to an object distance of 115.519 mm from S1 and
 $|m|=0.179746$. The patent gives 115.583 mm, a 0.064 mm difference attributable to source precision. Using the patent's

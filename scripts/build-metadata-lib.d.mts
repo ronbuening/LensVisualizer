@@ -42,6 +42,13 @@ export interface AuthorRouteInput {
   patentCount: number;
 }
 
+/** A teleconverter page is as fresh as the newest of the converter file and the host lenses it lists. */
+export interface TeleconverterRouteInput {
+  key: string;
+  freshness: FreshnessEntry;
+  compatibleLensKeys: string[];
+}
+
 export type ExecFileSyncLike = (file: string, args: string[], options: { cwd?: string; encoding: string }) => string;
 
 export function assertFullGitHistory(options?: {
@@ -140,7 +147,41 @@ export function buildRouteFreshness(options: {
   mountIds?: string[];
   formatIds?: string[];
   authors?: AuthorRouteInput[];
+  teleconverters?: TeleconverterRouteInput[];
   makerDetailsFreshness: FreshnessEntry | null;
   assigneeCorporateHistoryFreshness?: FreshnessEntry | null;
   fallbackDate: string;
 }): Record<string, FreshnessEntry>;
+
+export function projectClientMetadata<A extends Record<string, unknown>, B, C>(metadata: {
+  lensFreshness: Record<string, FreshnessEntry & { publicationOrder?: number }>;
+  routeFreshness: Record<string, FreshnessEntry>;
+  articles: A[];
+  makerSlugs: string[];
+  authors: B[];
+  assignees: C[];
+}): {
+  lensFreshness: Record<string, Pick<FreshnessEntry, "publishedOn" | "lastModified"> & { publicationOrder?: number }>;
+  routeFreshness: Record<string, Pick<FreshnessEntry, "publishedOn" | "lastModified">>;
+  articles: Partial<
+    Pick<
+      A,
+      Extract<
+        keyof A,
+        | "slug"
+        | "title"
+        | "summary"
+        | "tag"
+        | "series"
+        | "seriesOrder"
+        | "toc"
+        | "publishedOn"
+        | "lastModified"
+        | "file"
+      >
+    >
+  >[];
+  makerSlugs: string[];
+  authors: B[];
+  assignees: C[];
+};

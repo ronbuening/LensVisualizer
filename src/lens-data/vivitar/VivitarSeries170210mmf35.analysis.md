@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP S51-63635 (特開昭51-63635; JPA 1976063635)  
+**Patent:** JP S51-63635 A (特開昭51-63635; JPA 1976063635)  
 **Original Japanese application:** JP 46-41643  
 **Filed in Japan:** 18 June 1971, as printed on the Japanese publication  
 **Published:** 2 June 1976  
@@ -12,13 +12,13 @@
 **Embodiment analyzed:** Table 1, the sole numerical example  
 **English counterpart:** US 3,817,600, *Zoom Lens Having Close-Up Focusing Mode of Operation*, granted 18 June 1974
 
-The Japanese publication and the US counterpart disagree slightly on the earliest application date. The Japanese cover page prints 18 June 1971, while the US cover claims Japanese foreign priority from 14 June 1971 under application 46-41643. The Japanese date is used for the metadata of JP S51-63635; the US date is retained only as patent-family information.
+The Japanese publication and the US counterpart disagree slightly on the earliest application date. The Japanese cover page prints 18 June 1971, while the US cover claims Japanese foreign priority from 14 June 1971 under application 46-41643. The Japanese date is used for the metadata of JP S51-63635 A; the US date is retained only as patent-family information.
 
 Table 1 on patent pages 3–4 defines a 15-element, four-principal-group zoom with nominal focal length $f = 70$–$205$ mm and relative aperture 1:3.65. The prescription is identified with high confidence as the optical basis of the first Vivitar Series 1 70–210mm f/3.5 VMC Macro Focusing Auto Zoom for the following convergent reasons:
 
 1. The production specification is 15 elements in 10 groups; the patent contains 15 physical elements in 10 air-separated groups.
-2. The production range is 70–210 mm at f/3.5; the patent states 70–205 mm at 1:3.65. Direct paraxial tracing of the unscaled table gives 72.6621 mm and 204.9403 mm.
-3. Both sources describe tele-end macro operation. The patent moves Groups II and III together at a fixed 6.000 mm separation and permits an object distance of approximately 80 mm from the front surface. The reconstructed limiting state gives 54.3490 mm EFL and 1:2.230 paraxial magnification, closely matching the production 54 mm macro focal length and 1:2.2 ratio.
+2. The production range is 70–210 mm at f/3.5; the patent states 70–205 mm at 1:3.65. Direct paraxial tracing of the unscaled table gives 71.9792 mm and 203.0138 mm.
+3. Both sources describe tele-end macro operation. The patent moves Groups II and III together at a fixed 6.000 mm separation and permits an object distance of approximately 80 mm from the front surface. The reconstructed limiting state gives 53.9716 mm EFL and 1:2.251 paraxial magnification, closely matching the production 54 mm macro focal length and 1:2.2 ratio.
 4. The patent specifies normal focusing by Group I to approximately 1.8 m from the front lens, consistent with a production minimum distance of approximately 2.0 m when measured from the film plane.
 5. Kino Precision’s authorship and the 1971–1976 patent chronology are consistent with the first production version.
 
@@ -35,7 +35,7 @@ The lens is a mechanically compensated four-principal-group zoom with positive�
 - **Group III, surfaces 11–13:** negative compensator; one cemented doublet.
 - **Group IV, surfaces 14–25:** positive fixed master group; seven elements in five air-separated groups.
 
-The stop is immediately after surface $r_{21}$. The note beside the continuation of Table 1 on patent page 4 states this directly. The data file therefore assigns zero distance after surface 21 and inserts a separate `STO` plane carrying the published 49.846 mm spacing to surface 22.
+The stop is immediately after surface $r_{21}$ according to the note beside the continuation of Table 1 on patent page 4, but no distance is printed. The model places an aperture plane 1.2 mm behind the vertex and assigns the remaining 48.646 mm to `STO`, preserving the published 49.846 mm gap to surface 22. This inferred plane rounds the 1.194486 mm sag at surface 21’s 15 mm clear radius upward to 0.1 mm so that every hit within that cap lies before the stop. It is an aperture-plane abstraction, not a measured iris position or a mechanical lower bound. A zero vertex gap puts the plane behind nonaxial hits on the preceding positive-sag surface.
 
 The zoom-variable air gaps are $d_5$, $d_{10}$, and $d_{13}$. Their endpoint sums are 55.054 and 55.055 mm; the 0.001 mm difference is table rounding. The first-to-last glass-surface track is correspondingly 160.000 and 160.001 mm, agreeing with the US counterpart’s stated 160.000 mm overall glass track.
 
@@ -44,15 +44,15 @@ From wide to tele, both Groups II and III move imageward relative to the fixed G
 | Quantity | Wide patent state | Tele patent state |
 |---|---:|---:|
 | Patent nominal focal length | 70 mm | 205 mm |
-| Independently traced EFL | 72.6621 mm | 204.9403 mm |
+| Independently traced EFL | 71.9792 mm | 203.0138 mm |
 | $d_5$ | 2.041 mm | 47.555 mm |
 | $d_{10}$ | 28.624 mm | 6.000 mm |
 | $d_{13}$ | 24.389 mm | 1.500 mm |
-| Paraxial BFL | 40.8616 mm | 40.8859 mm |
+| Paraxial BFL | 39.9912 mm | 40.0151 mm |
 
-The patent omits the final distance from surface 25 to the image plane. The data file uses 40.873732 mm, the mean of the independently traced endpoint BFLs. This leaves endpoint longitudinal residuals of only $±0.012143$ mm without inventing a focal-length-dependent image plane.
+The patent omits the final distance from surface 25 to the image plane. The data file uses 40.003152 mm, the mean of the independently traced endpoint BFLs. This leaves endpoint longitudinal residuals of only $±0.011916$ mm without inventing a focal-length-dependent image plane.
 
-The complete first-surface-to-image track at tele is 200.8747 mm, giving $TL/EFL = 0.9802$. The complete system therefore satisfies the strict telephoto criterion $TL/EFL < 1$ narrowly at the long endpoint. The patent separately describes Group IV itself as a telephoto-type master objective.
+The complete first-surface-to-image track at tele is 200.0042 mm, giving $TL/EFL = 0.9852$. The complete system therefore satisfies the strict telephoto criterion $TL/EFL < 1$ narrowly at the long endpoint. The patent separately describes Group IV itself as a telephoto-type master objective.
 
 The patent supplies no numerical intermediate zoom spacings. Page 4 plots aberrations at 70, 130, and 205 mm, and the US Figure 8 shows the nonlinear group-motion curves, but neither source tabulates the corresponding intermediate values of $d_5$, $d_{10}$, and $d_{13}$. The data file therefore treats only the 70 and 205 mm states as prescription-grounded. Continuous slider interpolation between them is schematic and does not reproduce the physical zoom cam exactly.
 
@@ -116,11 +116,11 @@ L11 adds weak positive relay power between the two cemented achromats in the fro
 
 ### L12 + L13 — Cemented Positive Achromat
 
-**L12:** $n_d = 1.48749$, $\nu_d = 70.0$. Glass: FK5 class. $f = +58.5$ mm.
+**L12:** $n_d = 1.48749$, $\nu_d = 70.0$. Glass: FK5 class. $f = +58.3$ mm.
 
 **L13:** $n_d = 1.64328$, $\nu_d = 47.8$. Glass: BAF9 barium flint, exact legacy SUMITA match. $f = -77.0$ mm.
 
-The pair has a net focal length of approximately +206.9 mm. It completes the positive front section of Group IV immediately before the stop. Together, surfaces 14–21 have a paraxial focal length of +44.7671 mm.
+The pair has a net focal length of approximately +204.0 mm. It completes the positive front section of Group IV immediately before the stop. Together, surfaces 14–21 have a paraxial focal length of +44.6412 mm.
 
 ### L14 — Negative Meniscus, Concave to Object
 
@@ -132,7 +132,7 @@ L14 is the strong negative element behind the long stop gap. Its Abbe number pla
 
 $n_d = 1.58921$, $\nu_d = 41.0$. Glass: LF2 light flint, exact legacy SUMITA match. $f = +65.8$ mm.
 
-L15 partially offsets L14. The separated L14–L15 pair remains net negative at approximately −211.4 mm, while the complete Group IV remains positive at $F_{IV}=+44.1873$ mm.
+L15 partially offsets L14. The separated L14–L15 pair remains net negative at approximately −211.4 mm, while the complete Group IV remains positive at $F_{IV}=+44.0400$ mm.
 
 ## Glass Identification and Selection
 
@@ -161,7 +161,7 @@ The exact legacy SUMITA vendor-polynomial records are now present for all previo
 
 The lens has two mechanically distinct focus modes.
 
-**Normal focus:** Group I moves axially while Groups II–IV retain the zoom-specific spacings. With the image plane fixed at the inferred 40.873732 mm BFD, a paraxial object 1.8 m in front of surface 1 requires Group-I objectward travel of 9.420944 mm at wide and 9.462059 mm at tele.
+**Normal focus:** Group I moves axially while Groups II–IV retain the zoom-specific spacings. With the image plane fixed at the inferred 40.003152 mm BFD, a paraxial object 1.8 m in front of surface 1 requires Group-I objectward travel of 9.4209 mm at wide and 9.4621 mm at tele.
 
 **Macro focus:** The mechanism first reaches the tele endpoint and the Group-I 1.8 m focus position. Groups II and III then move objectward equally while $d_{10}$ remains fixed at 6.000 mm. Consequently, $d_5$ decreases and $d_{13}$ increases by the same amount.
 
@@ -173,7 +173,7 @@ The lens has two mechanically distinct focus modes.
 | Tele, normal minimum focus | 57.0171 mm | 6.0000 mm | 1.5000 mm |
 | Tele, maximum macro | 11.7804 mm | 6.0000 mm | 46.7367 mm |
 
-The macro assembly moves 45.2367 mm objectward from the tele normal-focus position. The resulting configuration has 54.3490 mm EFL. For an object 80 mm in front of surface 1, the paraxial lateral magnification is −0.44843, or 1:2.230, and the object-to-image-plane distance is 290.3368 mm.
+The macro assembly moves 45.2367 mm objectward from the tele normal-focus position. The resulting configuration has 53.9716 mm EFL. For an object 80 mm in front of surface 1, the paraxial lateral magnification is −0.44422, or 1:2.251, and the object-to-image-plane distance is 289.4662 mm.
 
 The data format supplies one interpolated focus interval at each zoom control point. It therefore stores the wide normal-focus endpoint and the tele maximum-macro endpoint. Those endpoint states are verified; intermediate focus-slider states are diagrammatic and do not reproduce the physical two-stage focus and macro cam.
 
@@ -219,29 +219,34 @@ All three Japanese conditions are satisfied. The US claims preserve the lower di
 
 ## Verification Summary
 
-All results were recomputed from a literal transcription of Table 1 using a reduced-angle $[y,n\theta]$ ABCD trace. The patent values were not scaled.
+All paraxial results were recomputed from a literal transcription of Table 1 using a reduced-angle $[y,n\theta]$ ABCD trace; the wide-open iris radius and its f-numbers come from a real marginal-ray trace of the same prescription. The patent values were not scaled.
 
 | Quantity | Patent statement | Independent result |
 |---|---:|---:|
 | Group I focal length | +126.000 mm | +125.9999 mm |
 | Group II focal length | −63.900 mm | −63.8983 mm |
 | Group III focal length | −82.888 mm | −82.8897 mm |
-| Group IV focal length | approximately +44.04 mm | +44.1873 mm |
+| Group IV focal length | approximately +44.04 mm | +44.0400 mm |
 | Groups II+III at 6.000 mm | −34.620 mm | −34.6203 mm |
-| Wide EFL / BFL | nominal 70 mm / not stated | 72.6621 / 40.8616 mm |
-| Tele EFL / BFL | nominal 205 mm / not stated | 204.9403 / 40.8859 mm |
-| Fixed data-file BFD | not stated | 40.873732 mm |
-| Stop semi-diameter for 1:3.65 | not stated | 14.457801 mm |
-| Endpoint f-numbers | 3.65 | 3.64950 / 3.65050 |
+| Wide EFL / BFL | nominal 70 mm / not stated | 71.9792 / 39.9912 mm |
+| Tele EFL / BFL | nominal 205 mm / not stated | 203.0138 / 40.0151 mm |
+| Fixed data-file BFD | not stated | 40.003152 mm |
+| Paraxial stop radius for 1:3.65, wide / tele | not stated | 14.1070 / 14.1108 mm |
+| Wide-open iris radius, real marginal ray at 1:3.65 | not stated | 14.7778 mm |
+| Endpoint f-numbers from that iris alone | 3.65 | 3.650 / 3.646 |
 | First-to-last glass track | 160.000 mm | 160.000 / 160.001 mm |
-| Petzval sum, $\sum \phi/(nn')$ | not stated | +0.000340709 mm$^{-1}$ |
-| Petzval-radius magnitude | not stated | 2935.1 mm |
-| Maximum-macro EFL | not stated | 54.3490 mm |
-| Maximum macro magnification | not stated | 0.44843× = 1:2.230 |
+| Petzval sum, $\sum \phi/(nn')$ | not stated | +0.000385045 mm$^{-1}$ |
+| Petzval-radius magnitude | not stated | 2597.1 mm |
+| Maximum-macro EFL | not stated | 53.9716 mm |
+| Maximum macro magnification | not stated | 0.44422× = 1:2.251 |
 
-The wide-end difference between the patent’s nominal 70 mm and the 72.6621 mm result follows directly from the rounded numerical prescription. It is treated as ordinary nominal or table rounding rather than corrected by uniform scaling. The tele endpoint reproduces 205 mm within 0.06 mm.
+The table gives 71.9792 mm at the wide station and 203.0138 mm at the tele station, 2.83% above and 0.97% below the patent’s nominal 70 and 205 mm. Both differences follow directly from the printed prescription: the endpoint gap sums agree to 0.001 mm and the two back focal lengths agree to 0.024 mm, which leaves no room for a misread zoom spacing at either station. The 70–205 mm figures are treated as nominal and are not corrected by uniform scaling.
 
-The full-frame diagonal fields computed from the paraxial EFLs are 33.16° at wide and 12.05° at tele. These are approximate Gaussian fields and do not include distortion.
+With the inferred 1.2 mm stop offset, the wide-open iris is one radius at both stations, 14.7778 mm, traced with a real marginal ray from the 1:3.65 design aperture at the wide station. The tele station needs 14.7614 mm for 1:3.65, a 0.11% spread. Including the authored clear apertures, the endpoint axial beams are f/3.6500 and f/3.6463 and are limited by the iris. The stored `STO` semi-diameter is the wide-station result rounded to six decimals; the runtime still derives its radius from the design aperture.
+
+Stop placement remains an inference. Moving the plane to 1.5 or 3.0 mm instead changes the derived iris radius to 14.7213 or 14.4384 mm and the tele axial f-number to 3.6463 or 3.6461. The paraxial focal lengths and conjugates are unchanged because the total air gap is preserved, but pupil positions, field limits, and vignetting depend on the placement. The 1.2 mm choice keeps the plane close behind the authored clear cap without fitting it to a sampled ray grid.
+
+The full-frame diagonal fields computed from the paraxial EFLs are 33.46° at wide and 12.17° at tele. These are approximate Gaussian fields and do not include distortion.
 
 ## Data-File Construction Notes
 
@@ -257,7 +262,7 @@ The selected values give:
 
 The revised apertures make the front group taper from 31.8 to 28.8 mm and keep the master group near 17 mm before stepping down to 16 mm behind the stop. That closer match to the patent silhouette still passes every edge, rim-slope, cross-gap, and rendered-collision check.
 
-Surface-20 thickness is read directly as 1.023 mm on patent page 4. This value also reproduces the published tele endpoint and the stated 160 mm glass track.
+Surface-20 thickness is read directly as 1.023 mm on patent page 4. This value also reproduces the stated 160 mm glass track.
 
 The patent supplies only endpoint zoom gaps. An attempted exact intermediate reconstruction would require assumptions about the unpublished nonlinear cam and clear apertures. No such inferred cam points are stored; the data file preserves the two directly published states.
 
@@ -269,8 +274,15 @@ The production owner’s manual specifies a 70–210mm f/3.5 lens with 15 elemen
 
 ## Sources
 
-- JP S51-63635 (特開昭51-63635), *Zoom Lens*, published 2 June 1976. Table 1 appears on pages 3–4; the stop note, optical diagram, and endpoint aberration plots appear on page 4.
+- JP S51-63635 A (特開昭51-63635), *Zoom Lens*, published 2 June 1976. Table 1 appears on pages 3–4; the stop note, optical diagram, and endpoint aberration plots appear on page 4.
 - US 3,817,600, *Zoom Lens Having Close-Up Focusing Mode of Operation*, Rinzō Watanabe and Ellis I. Betensky, granted 18 June 1974. Used for the English group descriptions, published group focal lengths, nonlinear motion curves, and mechanical cam explanation.
 - Vivitar, *Vivitar Series 1 70mm–210mm f3.5 Macro Focusing Auto Zoom Lens — Owner’s Manual*, dated March 1975.
 - SUMITA Optical Glass, official all-glass Zemax catalog, including discontinued standard types SF1, SK5, BK1, SF11, BAF11, K5, F1, FK5, SF6, BAF9, LAFN2, and LF2.
 - HIKARI Glass Co., Ltd., official optical-glass catalog, used as an independent cross-check for current J-series equivalents where available.
+
+
+## Production mount assignment
+
+Vivitar’s service manual 3746004C / Revision D (May 1980), PDF page 6, explicitly lists seven mount configurations: universal thread, Minolta MD/SRT/SR, Canon FL/FD, Nikon F/AI, Konica Autoreflex, Olympus OM and Pentax K/M. Canon FL and FD are two catalog ids for one listed configuration. This is the first 15-element 70–210mm f/3.5 family; later f/2.8–4 models are not inferred from it. [Source](https://allphotolenses.com/public/files/pdfs/1aa8836d8ab55113cf3fd62c6b9f17cc.pdf).
+
+The assignment records the correlated production installation, not manufacturer confirmation of an exact patent-to-factory prescription.

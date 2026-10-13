@@ -56,6 +56,11 @@ export default function DiagramLegend({
   onOpenAbbeDiagram,
 }: DiagramLegendProps) {
   const hasAbbeData = L.elements.some((e) => e.vd != null);
+  const mirrorKinds = new Set(
+    L.S?.filter((surface) => surface.interaction?.type === "reflect").map(
+      (surface) => surface.interaction?.mirrorKind ?? "first-surface",
+    ),
+  );
   const hasDiffractiveSurface = L.S?.some((surface) => surface.diffractive !== undefined) ?? false;
   const axisSpreads = chromaticRayFanSpreads ?? { onAxis: chromaticRayFanSpread, offAxis: null };
   const activeChannelCount = [chromR, chromG, chromB, chromV].filter(Boolean).length;
@@ -116,6 +121,22 @@ export default function DiagramLegend({
             </svg>
             <span style={{ color: t.legendText }}>Aspheric surface</span>
           </div>
+          {[...mirrorKinds].map((kind) => (
+            <div key={kind} style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden="true">
+                <path
+                  d="M5,1 Q2,5.5 5,10"
+                  fill="none"
+                  stroke={t.silveredSurfaceStroke}
+                  strokeWidth={1.6}
+                  strokeDasharray={kind === "second-surface" ? "3,2" : undefined}
+                />
+              </svg>
+              <span style={{ color: t.legendText }}>
+                {kind === "second-surface" ? "S: silvered rear surface" : "M: reflecting surface"}
+              </span>
+            </div>
+          ))}
           {hasDiffractiveSurface && (
             <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden="true">

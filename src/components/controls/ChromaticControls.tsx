@@ -5,8 +5,8 @@
  * individual R/G/B channel buttons for selective wavelength display.
  */
 import { toggleGroup, toggleBtn, chromChannelBtn } from "../../utils/style/styles.js";
-import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
-import type { ChromaticChannel } from "../../types/optics.js";
+import { chromaticChannelWavelengthLabel } from "../../optics/chromatic/channels.js";
+import type { ChromaticChannel, RefractiveIndexReferenceLine } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
 interface ChromaticControlsProps {
@@ -21,6 +21,8 @@ interface ChromaticControlsProps {
   onChromGChange?: (value: boolean) => void;
   onChromBChange?: (value: boolean) => void;
   onChromVChange?: (value: boolean) => void;
+  /** Lines the lens's channels are traced at; "e" names C′/e/F′ in the tooltips. */
+  channelReference?: RefractiveIndexReferenceLine;
 }
 
 export default function ChromaticControls({
@@ -35,6 +37,7 @@ export default function ChromaticControls({
   onChromGChange,
   onChromBChange,
   onChromVChange,
+  channelReference = "d",
 }: ChromaticControlsProps) {
   return (
     <div style={toggleGroup(t, { width: "100%" })}>
@@ -96,7 +99,7 @@ export default function ChromaticControls({
             key={ch}
             onClick={() => set?.(!active)}
             style={chromChannelBtn(t, active, idx < 3)}
-            title={CHROMATIC_CHANNEL_METADATA[ch].wavelengthLabel}
+            title={chromaticChannelWavelengthLabel(ch, channelReference)}
           >
             <span
               style={{

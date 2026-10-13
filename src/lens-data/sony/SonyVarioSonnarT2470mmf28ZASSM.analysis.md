@@ -465,9 +465,11 @@ close-focus states, the minimum sampled element axial thickness is 0.950 mm, the
 full-published-field chief-ray clear-aperture ratio from exact meridional Snell tracing is 0.959451. These checks
 establish internal geometric consistency of the inferred apertures; they do not turn those apertures into patent-published dimensions.
 
-The physical stop position is not inferred: the patent places it at r15, with 1.700 mm to r16. The effective wide-open
+The physical stop position is not inferred: the patent places it at r15, with 1.700 mm to r16. The paraxial wide-open
 stop radii required by the modeled FNO values are 9.253019, 10.505057, and 12.429422 mm from wide through tele; only the
 wide-state value is stored as the base `STO.sd`, with the zoom-dependent pupil behavior derived from the f-number model.
+The wide-open iris radii traced from those FNO values are 9.408, 10.819, and 13.157 mm, and at tele the r17 rim limits
+the traced beam to about f/3.31.
 
 ## Sources and References
 

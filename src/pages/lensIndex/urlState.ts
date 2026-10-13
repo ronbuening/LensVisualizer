@@ -11,7 +11,7 @@ import {
   isImageFormatId,
   isLensMountId,
 } from "../../utils/catalog/lensTaxonomy.js";
-import buildMeta from "../../generated/build-metadata.json";
+import buildMeta from "../../generated/client-metadata.json";
 import { clampNumericFilterValue, defaultCustomFilter, hasActiveCustomFilters } from "./catalog.js";
 import type { CustomFilterState, FilterBounds, GroupMode, LensIndexViewMode, NumericFilterField } from "./types.js";
 import { catalogCollator } from "../../utils/catalog/collation.js";

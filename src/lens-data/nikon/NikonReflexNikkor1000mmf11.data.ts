@@ -8,7 +8,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * second-surface mirrors, and a rear two-element negative correcting group.
  *
  * Verification, using an independent meridional ray trace of the folded path:
- *   EFL = 1001.40 mm; BFD from r10 = 89.62 mm; image plane z = 273.82 mm.
+ *   EFL = 1001.40 mm; BFD from r10 = 89.62 mm; image plane z = 263.82 mm.
  *   Standalone refractive focal lengths: L1 1316.0 mm, M1 substrate -1759.6 mm,
  *   M2 substrate -909.5 mm, L2 -99.3 mm, L3 283.1 mm.
  *
@@ -21,8 +21,10 @@ import type { LensDataInput } from "../../types/optics.js";
  *   M1 and M2 are second-surface Mangin mirrors. The primary mirror is annular, with a central
  *   perforation for the final beam and rear correcting group. The synthetic OBS surface represents
  *   the central obstruction from the secondary assembly; it is not a separate glass element.
- *   opticalPath.surfaceOrder gives the actual optical hit sequence. Physical surface order remains
- *   front-to-rear along the common axis, so the rear correcting group lies in the primary perforation.
+ *   opticalPath.surfaceOrder gives the actual optical hit sequence. The patent's folded intervals run
+ *   from the surface light leaves: after the double pass through M1 (R3→R4→R3), 147.0 is measured from
+ *   R3 to R5 and, after the double pass through M2, 150.0 from R5 to r7. The rear correcting group
+ *   therefore lies inside the primary perforation, 3.0 mm behind R3, so the M1R→L2F gap is negative.
  *
  * NOTE ON FOCUS:
  *   The patent gives only the infinity prescription and no variable spacing table. The production
@@ -52,7 +54,7 @@ const LENS_DATA = {
 
   opticalPath: {
     surfaceOrder: ["STO", "OBS", "1", "2", "M1F", "M1R", "M1F", "M2F", "M2R", "M2F", "L2F", "L2R", "L3F", "L3R"],
-    imagePlane: { z: 273.8236, label: "IMG" },
+    imagePlane: { z: 263.8236, label: "IMG" },
     maxInteractions: 16,
   },
 
@@ -126,7 +128,7 @@ const LENS_DATA = {
 
     // L1 front corrector.
     { label: "1", R: 682.0, d: 10.0, nd: 1.51823, elemId: 1, sd: 52.0 },
-    { label: "2", R: 1e15, d: 14.7, nd: 1.0, elemId: 0, sd: 52.0 },
+    { label: "2", R: 1e15, d: 4.7, nd: 1.0, elemId: 0, sd: 52.0 },
 
     // M2 is physically near L1. Light later reaches M2F first, reflects from M2R, and exits M2F.
     {
@@ -138,14 +140,14 @@ const LENS_DATA = {
       sd: 22.0,
       interaction: { type: "reflect", mirrorKind: "second-surface" },
     },
-    { label: "M2F", R: -169.43, d: 137.0, nd: 1.0, elemId: 0, sd: 22.0 },
+    { label: "M2F", R: -169.43, d: 147.0, nd: 1.0, elemId: 0, sd: 22.0 },
 
-    // Primary Mangin. The 10 mm patent thickness is R3→R4; the rear correctors sit just behind the central opening.
+    // Primary Mangin. The 10 mm patent thickness is R3→R4; the rear correctors sit inside the central opening.
     { label: "M1F", R: -319.0, d: 10.0, nd: 1.54072, elemId: 2, sd: 48.0, innerSd: 16.5 },
     {
       label: "M1R",
       R: -485.185,
-      d: 3.0,
+      d: -7.0,
       nd: 1.0,
       elemId: 0,
       sd: 48.0,

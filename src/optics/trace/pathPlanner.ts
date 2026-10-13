@@ -7,6 +7,7 @@
 
 import type { FoldedPathAutoCandidateSkip } from "../../types/optics.js";
 import { intersectSurfaceProfile, type SurfaceIntersectionResult } from "../math/intersection.js";
+import { intersectRayPlane, type RayPlaneIntersection } from "../math/plane.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { incidentSideFor, resolvedNextIndex } from "./interactions.js";
@@ -20,10 +21,7 @@ export interface SurfaceHitCandidate {
 }
 
 /** Intersection of a ray with the current image plane. */
-export interface ImagePlaneIntersection {
-  point: Vec3;
-  t: number;
-}
+export type ImagePlaneIntersection = RayPlaneIntersection;
 
 /**
  * Compute the bounded search length for the next sequential surface.
@@ -54,6 +52,32 @@ export function sequentialSurfaceMaxT(
     return Math.max(1e-6, (boundZ - origin[2]) / direction[2]);
   }
   return launchBoundT && launchBoundT > 0 ? launchBoundT : 0;
+}
+
+/**
+ * Compute where the search for a ray's first-surface hit starts.
+ *
+ * Aspheric polynomials are fitted only over the clear aperture and diverge outside it. A steep ray launched far
+ * upstream, such as a wide-field chief ray from the diagram lead, is well outside the aperture there and can meet
+ * that non-physical extension before reaching the glass. The glass never lies more than its rim sag ahead of the
+ * vertex, so the search starts one millimetre ahead of that plane: the launch plane the chief-ray solver uses.
+ *
+ * @param state - prepared optical state
+ * @param surfaceIndex - surface being targeted
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @returns non-negative parametric minT; 0 for later surfaces and for origins already past the start plane
+ */
+export function sequentialSurfaceMinT(
+  state: PreparedOpticalState,
+  surfaceIndex: number,
+  origin: Vec3,
+  direction: Vec3,
+): number {
+  if (surfaceIndex !== 0 || !(direction[2] > 1e-12)) return 0;
+  const surface = state.surfaces[0];
+  const startZ = surface.z - Math.abs(surface.profile.sag(surface.sd ?? 0)) - 1;
+  return startZ > origin[2] ? (startZ - origin[2]) / direction[2] : 0;
 }
 
 /**
@@ -112,7 +136,11 @@ export function intersectStateSurface(
   } = {},
 ): SurfaceIntersectionResult {
   const surface = state.surfaces[surfaceIndex];
-  return intersectSurfaceProfile(ray, surface.profile, surface.z, { ...options, directionNormalized: true });
+  return intersectSurfaceProfile(ray, surface.profile, surface.z, {
+    ...options,
+    directionNormalized: true,
+    clearRadius: surface.sd,
+  });
 }
 
 /**
@@ -128,20 +156,7 @@ export function intersectImagePlane(
   direction: Vec3,
   state: PreparedOpticalState,
 ): ImagePlaneIntersection | null {
-  const imagePlane = state.imagePlane;
-  const denom =
-    imagePlane.normal[0] * direction[0] + imagePlane.normal[1] * direction[1] + imagePlane.normal[2] * direction[2];
-  if (Math.abs(denom) <= 1e-12) return null;
-  const numer =
-    imagePlane.normal[0] * (origin[0] - imagePlane.point[0]) +
-    imagePlane.normal[1] * (origin[1] - imagePlane.point[1]) +
-    imagePlane.normal[2] * (origin[2] - imagePlane.point[2]);
-  const t = -numer / denom;
-  if (!Number.isFinite(t) || t <= 1e-7) return null;
-  return {
-    t,
-    point: [origin[0] + direction[0] * t, origin[1] + direction[1] * t, origin[2] + direction[2] * t],
-  };
+  return intersectRayPlane({ origin, direction }, state.imagePlane);
 }
 
 /**

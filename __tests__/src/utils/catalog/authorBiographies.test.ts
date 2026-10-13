@@ -22,6 +22,7 @@ const PROFILED_AUTHORS = [
   "Kouichi Ohshita",
   "Ludwig Bertele",
   "Masaki Isshiki",
+  "Michael Michaelovitch Roossinov",
   "Paul Rudolph",
   "Robert Richter",
   "Saburo Murakami",

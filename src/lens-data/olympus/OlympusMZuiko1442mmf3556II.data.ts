@@ -280,6 +280,9 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 0.25,
+  // Patent read 2026-10-06: Close-focus gaps are the patent's infinity gaps plus Example 1 second-mode movements (G1
+  // 0.75/0.76/0.86, G3 0.82/2.06/4.49 mm) published for a 243.2 mm object-to-image distance.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent Example 1 second shooting mode: front group G1 shifts object-ward and the single-element G3 focus unit shifts image-ward; G4 remains fixed.",
 

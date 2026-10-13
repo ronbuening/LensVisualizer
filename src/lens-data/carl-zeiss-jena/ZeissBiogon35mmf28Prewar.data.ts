@@ -22,6 +22,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    The patent lists no clear apertures. SDs are conservative        ║
  * ║    rendering estimates from paraxial marginal/chief-ray geometry,   ║
  * ║    adjusted to maintain edge thickness and cross-gap clearance.     ║
+ * ║    Surface 11 was raised to 15.2 mm, the R11 height on the patent   ║
+ * ║    drawing, to pass the traced chief ray to the 24x36 corner        ║
+ * ║    (2026-09-24 field-coverage audit).                               ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -162,7 +165,7 @@ const LENS_DATA = {
     { label: "8", R: 14.273873, d: 13.177494, nd: 1.6716, elemId: 6, sd: 7.0 },
     { label: "9", R: -27.451367, d: 2.196249, nd: 1.0, elemId: 0, sd: 8.7 },
     { label: "10", R: -16.470122, d: 8.784996, nd: 1.5333, elemId: 7, sd: 10.2 },
-    { label: "11", R: -58.666735, d: 6.464821, nd: 1.0, elemId: 0, sd: 12.4 },
+    { label: "11", R: -58.666735, d: 6.464821, nd: 1.0, elemId: 0, sd: 15.2 },
   ],
 
   asph: {},

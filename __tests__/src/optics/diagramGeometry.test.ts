@@ -3,6 +3,7 @@ import {
   createCoordinateTransforms,
   computeElementRenderDiagnostics,
   computeElementShapes,
+  computeStandaloneMirrorPaths,
 } from "../../../src/optics/diagramGeometry.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import nikonPf500Data from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
@@ -94,6 +95,16 @@ describe("createCoordinateTransforms", () => {
     expect(bounded.effectiveSC).toBeLessThan(unbounded.effectiveSC);
     expect(bounded.sx(-300)).toBeGreaterThanOrEqual(37.9);
     expect(bounded.sx(140)).toBeLessThanOrEqual(800 - 37.9);
+  });
+
+  it("reduces both axis scales when a moved-lens y extent would exceed the viewport", () => {
+    const unbounded = createCoordinateTransforms(base);
+    const bounded = createCoordinateTransforms({ ...base, yExtent: { min: -100, max: 100 } });
+
+    expect(bounded.effectiveSC).toBeLessThan(unbounded.effectiveSC);
+    expect(bounded.sy(-100)).toBeGreaterThanOrEqual(19.9);
+    expect(bounded.sy(100)).toBeLessThanOrEqual(400 - 19.9);
+    expect(bounded.sx(100) - bounded.sx(0)).toBeLessThan(unbounded.sx(100) - unbounded.sx(0));
   });
 
   it("clampedRayEnd passes through when ray is within viewport", () => {
@@ -205,7 +216,6 @@ describe("computeElementShapes", () => {
         svgH: 400,
         scFill: 0.55,
         yScFill: 0.55,
-        clipMargin: 1,
         maxRimAngleDeg: 64,
         gapSagFrac: partial.gapSagFrac ?? 0.9,
         maxAspectRatio: 1.6,
@@ -251,7 +261,6 @@ describe("computeElementShapes", () => {
       svgH: 400,
       scFill: 0.55,
       yScFill: 0.55,
-      clipMargin: 1,
       maxRimTan: partial.maxRimTan ?? maxRimTan,
       gapSagFrac: partial.gapSagFrac ?? 0.9,
       maxAspectRatio: 1.6,
@@ -865,5 +874,51 @@ describe("computeElementShapes", () => {
     /* Silvering is present only in the annular glass band, so the SVG accent must not cross |y| < innerSd. */
     expect(coating.pathD.match(/M/g)).toHaveLength(2);
     expect(coords.every(([, y]) => Math.abs(y) >= 8 - 1e-9)).toBe(true);
+  });
+});
+
+describe("standalone reflecting surfaces", () => {
+  it("renders annular and tilted mirrors without inventing glass bodies", () => {
+    const base = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const L = { ...base, ES: [], S: base.S.map((surface) => ({ ...surface })) };
+    const primary = L.S.findIndex((surface) => surface.label === "M1");
+    L.S[primary].innerSd = 5;
+    const layout = doLayout(0, 0, L);
+    const paths = computeStandaloneMirrorPaths(
+      L,
+      layout.z,
+      (z) => z,
+      (y) => y,
+    );
+    const annulus = paths.find((path) => path.surfIdx === primary)!;
+    expect(annulus.kind).toBe("first-surface-mirror");
+    expect(annulus.pathD.match(/M/g)).toHaveLength(2);
+    const points = [...annulus.pathD.matchAll(/[ML]([^, ]+),([^ ]+)/g)].map((match) => [
+      Number(match[1]),
+      Number(match[2]),
+    ]);
+    expect(points.every(([z, y]) => Number.isFinite(z) && Math.abs(y) >= 5)).toBe(true);
+    expect(paths).toHaveLength(2);
+    const moved = computeStandaloneMirrorPaths(
+      L,
+      layout.z,
+      (z) => z,
+      (y) => y,
+      (z, y) => [z + 3, y + 4],
+    );
+    expect(moved[0].labelX).toBeCloseTo(paths[0].labelX + 3);
+    expect(moved[0].labelY).toBeCloseTo(paths[0].labelY + 4);
+  });
+
+  it("leaves glass-bound mirror coatings to the element renderer", () => {
+    const L = buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]);
+    const layout = doLayout(0, 0, L);
+    const standalone = computeStandaloneMirrorPaths(
+      L,
+      layout.z,
+      (z) => z,
+      (y) => y,
+    );
+    expect(standalone.some((path) => path.surfIdx === L.labelIdx.MG2)).toBe(false);
   });
 });

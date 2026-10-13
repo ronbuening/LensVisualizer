@@ -427,8 +427,8 @@ const LENS_DATA = {
   closeFocusM: 0.38,
   focusDescription:
     "Internal focus by imageward translation of the fifth group; close-focus spacings are paraxially solved because JP 2014-41222 A publishes infinity-focus spacings only.",
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.92,
+  fstopSeries: [2.92, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   scFill: 0.7,
   yScFill: 0.65,

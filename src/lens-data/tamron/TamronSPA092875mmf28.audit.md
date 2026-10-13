@@ -19,8 +19,3 @@ Patent: US 7,075,731 B2, Example 1, Figure 1
 - Recomputed the three zoom stations and constrained close-focus states. G2 alone moves objectward toward G1 for closer focus, and the zoom gaps remain correctly ordered from wide to telephoto.
 - Replaced long sign/focus prose with the patent's concise `G1`-`G4` labels.
 - Added physical lens labels around all four hybrid layers (`4r`, `10r`, `15r`, and `16r`) so the SVG counts the source's 16 physical pieces instead of presenting 20 media IDs as lens numbers.
-
-### Verification
-
-- `npm run audit:image-circle -- src/lens-data/tamron/TamronSPA092875mmf28.data.ts` — zero undersized surfaces.
-- `npm run generate:glass-reports` — passed.

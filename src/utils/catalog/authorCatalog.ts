@@ -6,7 +6,7 @@
  * AuthorPage consumes the grouped records; search consumes the author index.
  */
 
-import buildMeta from "../../generated/build-metadata.json";
+import buildMeta from "../../generated/client-metadata.json";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";

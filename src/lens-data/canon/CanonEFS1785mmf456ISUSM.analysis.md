@@ -37,7 +37,7 @@ The intrinsic air-equivalent focal lengths below are computed for the isolated u
 | L4 | E12-E14 | -27.918158 mm | Negative unit containing the IS subunit |
 | L5 | E15-E17 | +34.075353 mm | Positive rear unit containing the double-sided asphere and weak-negative G5b pair |
 
-The aperture stop lies between surfaces 13 and 15. Surface label `STO` carries the patent's variable spacing `d14`. Its authored semi-diameter of 5.42 mm is not source-published; it is a derived physical clear limit large enough for the modeled maximum-aperture states.
+The aperture stop lies between surfaces 13 and 15. Surface label `STO` carries the patent's variable spacing `d14`. Its authored semi-diameter of 5.42 mm is not source-published; it is derived from the paraxial stop radii of the modeled maximum-aperture states.
 
 The infinity zoom table is transcribed at 17.55, 35.00, and 82.48 mm. Patent spacings `d5`, `d13`, `d14`, `d20`, and `d25` remain exact. The stop-to-L3 spacing has a small reversal, 4.28 → 1.72 → 1.74 mm, so the interpolation is intentionally piecewise rather than globally monotonic.
 
@@ -253,7 +253,7 @@ The residuals are consistent with the patent's printed precision. Using the publ
 
 The data uses Figure 2's f/4.11, f/4.45, and f/5.77 values as `nominalFno`. The patent header instead prints f/4.0-5.77, while Canon markets the production lens as f/4-5.6. These three levels of description remain separate. Because the patent does not publish a physical stop diameter, the maximum-aperture stop opening is solved from the source f-number states rather than used as an independent f-number check.
 
-The required physical stop diameters are 9.213486, 10.819226, and 9.689501 mm at the three zoom positions. The maximum required radius is 5.409613 mm at 35 mm, so the data's `STO.sd = 5.42 mm` leaves approximately 0.01039 mm of radial clearance. The physical clear limit is fixed; the active wide-open iris opening is zoom-dependent.
+The paraxially required physical stop diameters are 9.213486, 10.819226, and 9.689501 mm at the three zoom positions. The maximum paraxial radius is 5.409613 mm at 35 mm, so the data's `STO.sd = 5.42 mm` leaves approximately 0.01039 mm of radial clearance over that value. The active wide-open iris opening is zoom-dependent: tracing the nominal entrance-pupil marginal ray exactly gives iris radii of 4.637, 5.463, and 4.877 mm, so the 35 mm opening is slightly larger than `STO.sd`.
 
 All surface semi-diameters are modeling inferences because the patent provides no clear-aperture table. They were sized around full-pupil paraxial marginal/chief bundles through 0.60 times the published 13.65 mm image height at infinity and at the reconstructed 0.35 m state, then limited by edge thickness, actual rim slope, conic domain, and shared-gap intrusion. The resulting model intentionally does not claim full-pupil clearance at the extreme image corner.
 

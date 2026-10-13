@@ -189,8 +189,8 @@ const LENS_DATA = {
   focusDescription:
     "Unit-focus model: the patent gives only the infinity prescription; close focus is modeled by increasing BFD by 3.444 mm for a 0.7 m film-plane-to-subject distance.",
 
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  nominalFno: 4.08,
+  fstopSeries: [4.08, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.5,

@@ -3,26 +3,28 @@
 ## Patent and Production Identification
 
 **Patent:** US 4,057,330
-**Inventor:** Sei Matui (松井 清, commonly romanized as Matsui)
+**Inventor:** Sei Matsui (printed on the patent as "Sei Matui")
 **Assignee:** Nippon Kogaku K.K.
 **Filed:** October 3, 1974
 **Granted:** November 8, 1977
 **Title:** Lens System Having Large Relative Aperture and Long Focus
 **Embodiment analyzed:** Example 2
 
-US Patent 4,057,330, "Lens System Having Large Relative Aperture and Long Focus," was filed on October 3, 1974, by inventor Sei Matui (松井 清, commonly romanized as Matsui) and assigned to Nippon Kogaku K.K. (the corporate name Nikon used until 1988). The patent was granted November 8, 1977. It presents three numerical examples, all specified at a normalized composite focal length of f = 100 mm, a relative aperture of 1:2.8, and a half-angle of view of 9.05° (full angle 18.1°).
+US Patent 4,057,330, "Lens System Having Large Relative Aperture and Long Focus," was filed on October 3, 1974, by inventor Sei Matsui (the patent prints the Kunrei-style spelling "Sei Matui") and assigned to Nippon Kogaku K.K. (the corporate name Nikon used until 1988). The patent was granted November 8, 1977. It presents three numerical examples, all specified at a normalized composite focal length of f = 100 mm, a relative aperture of 1:2.8, and a half-angle of view of 9.05° (full angle 18.1°).
 
 The patent's 5-element, 4-group Ernostar-variant layout matches the production AI Nikkor 135mm f/2.8 specification exactly. The "New K" version of this lens was introduced in 1976 with the revised 5/4 formula and carried forward through the AI (1977) and AI-S (1981–2005) versions without optical change. The earlier Nikkor-Q 135mm f/2.8 (1965–1976) used a simpler 4-element, 4-group construction; the patent design replaced it with the addition of a fifth element (L2) to improve correction of spherical aberration and coma at the f/2.8 aperture.
 
-The patent names Sei Matui as inventor, establishing him as the designer of this optical formula. Separately, Nikon's *Thousand and One Nights* (Tale 76) identifies Matsui as the designer of the later Nikon Series E 135mm f/2.8 — a different, cost-reduced 4-element/4-group lens introduced in 1981 — and states that in designing it, "he probably compared it with the AI Nikkor 135mm f/2.8, which had already been on the market for some time." This indirectly corroborates Matsui's association with the 135mm f/2.8 design lineage, though the primary evidence for his authorship of the AI Nikkor design is the patent itself.
+The patent names Sei Matsui as sole inventor, establishing him as the designer of this optical formula. Separately, Nikon's *Thousand and One Nights* (Tale 76) identifies Matsui as the designer of the later Nikon Series E 135mm f/2.8 — a different, cost-reduced 4-element/4-group lens introduced in 1981 — and states that in designing it, "he probably compared it with the AI Nikkor 135mm f/2.8, which had already been on the market for some time." This indirectly corroborates Matsui's association with the 135mm f/2.8 design lineage, though the primary evidence for his authorship of the AI Nikkor design is the patent itself.
 
 ### Which Example Was Produced?
 
-All three patent examples share the same 5-element, 4-group construction, f/2.8 aperture, and field angle. Without independent measurement of a production sample, we cannot definitively confirm which example was implemented. However, **Example 2 is the most likely candidate** based on manufacturing practicality analysis: Example 1's lower-index doublet glasses (n3 = 1.699, n4 = 1.689) sit near the lower bound of the patent's Condition II and may not provide sufficient g-line correction for Nikon's quality standards. Example 3 requires an exotic ultra-high-index flint (nd = 1.918, likely a lanthanum-dense flint) that would have been substantially more expensive. Example 2 uses readily available, moderately priced dense flints with strong catalog matches across multiple manufacturers — the pragmatic middle ground. The remainder of this analysis focuses on Example 2 on this basis.
+All three patent examples share the same 5-element, 4-group construction, f/2.8 aperture, and field angle. Without independent measurement of a production sample, we cannot definitively confirm which example was implemented. However, **Example 2 is the most likely candidate** based on manufacturing practicality analysis: Example 1's lower-index doublet glasses (n3 = 1.699, n4 = 1.689) sit near the lower bound of the patent's Condition II and may not provide sufficient g-line correction for Nikon's quality standards. Example 3 requires an ultra-high-index flint (nd = 1.91761, νd = 21.4 — coordinates of the SF58 extra-dense flint type) that would have been substantially more expensive. Example 2 uses readily available, moderately priced dense flints with strong catalog matches across multiple manufacturers — the pragmatic middle ground. The remainder of this analysis focuses on Example 2 on this basis.
 
 ### Scale Factor
 
-The patent prescription is normalized to f = 100 mm. Paraxial ray tracing of Example 2 yields a computed EFL of 100.006 mm, confirming internal consistency. The production focal length is 135 mm, giving a uniform scale factor of **1.35** applied to all linear dimensions (radii, thicknesses, spacings, and semi-diameters). At production scale the computed EFL is 135.0 mm.
+The patent prescription is normalized to f = 100 mm. Paraxial ray tracing of Example 2 yields a computed EFL of 100.006 mm, confirming internal consistency. The production focal length is 135 mm, giving a uniform scale factor of **1.35** applied to every radius, thickness, and air space (rounded to 0.001 mm). The patent lists no clear apertures, so the data file's semi-diameters are production-scale estimates rather than scaled patent values. At production scale the computed EFL is 135.0 mm.
+
+The factor is supported by the numbers themselves: multiplied by 1.35, the normalized thicknesses return round values (7.3, 0.6, 13.0, 2.8, 4.7, 1.5, 34.7, and 2.2 mm), as do several radii (r2 = 405.4 mm, r3 = 38.85 mm, r8 = 84.0 mm). The same is true of Examples 1 and 3, which indicates that all three were designed at f = 135 mm and normalized for publication; the roundness therefore confirms the scale but does not by itself identify which example was built.
 
 ### Production Specifications
 
@@ -106,9 +108,9 @@ At 9.630 mm center thickness (the thickest element in the system), L2 carries si
 
 L3 is the positive component of the cemented doublet that forms the patent's "third lens member." Its front surface (r5 = +157.876) is weakly convex, while the cemented junction (r6 = −58.637) carries substantially more curvature. As a standalone element, L3 has a focal length of +54.9 mm — moderately strong positive power, comparable in magnitude to L1 and L2. However, within the cemented assembly, its contribution is substantially modulated by the junction interface: because n3 (1.785) is only slightly higher than n4 (1.740), the refraction at the junction surface r6 is very weak, and L3's effective contribution to the doublet subsystem is primarily through its front surface r5.
 
-The glass is a high-index dense flint: nd = 1.78470, νd = 26.1. The best catalog match is **OHARA S-TIH23** (nd = 1.78470, νd = 26.10). This glass has notable anomalous partial dispersion: dPgF ≈ +0.014 above the Schott normal line, meaning its blue-violet dispersion is disproportionately high relative to a "normal" glass of the same Abbe number. This anomalous dispersion is deliberately exploited — the patent's Condition II requires n3 > n4 and 32 > ν4 > ν3 precisely to leverage the differential secondary spectrum behavior between L3 and L4 for control of spherochromatism.
+The glass is a high-index dense flint: nd = 1.78470, νd = 26.1 (code 785261). The patent names no glass; the exact catalog equivalent is **Schott SF56A** (nd = 1.78470, νd = 26.08), with OHARA PBH23 / S-TIH23 (νd = 26.22 / 26.29) as near neighbours. Like every heavy flint of this class it sits slightly above the normal line (ΔPgF ≈ +0.010 for SF56A), but the patent does not invoke partial dispersion: Condition II is written purely in terms of nd and νd (n3 > n4 and 32 > ν4 > ν3) and of the junction radius r6.
 
-**Optical role:** L3's primary function is chromatic rather than refractive in the power-balancing sense. The patent explains that L3 "is provided with the effect of directing the spherical aberration near the g-line toward the direction of under-correction." In other words, L3's high-index, high-dispersion glass with anomalous partial dispersion causes short-wavelength marginal rays to be refracted differently than the d-line marginal rays, shifting the chromatic balance of spherical aberration (spherochromatism) to counteract the overcorrection inherited from the Ernostar-type positive front group.
+**Optical role:** L3's primary function is chromatic rather than refractive in the power-balancing sense. The patent explains that L3 "is provided with the effect of directing the spherical aberration near the g-line toward the direction of under-correction." In other words, L3's high-index, high-dispersion glass causes short-wavelength marginal rays to be refracted differently than the d-line marginal rays, shifting the chromatic balance of spherical aberration (spherochromatism) to counteract the overcorrection inherited from the Ernostar-type positive front group.
 
 ### L4 — Biconcave Negative (Cemented Doublet, Rear)
 
@@ -122,7 +124,7 @@ The glass is a high-index dense flint: nd = 1.78470, νd = 26.1. The best catalo
 
 L4 is the strongly negative component of the cemented doublet and the most powerful individual element in the system (|fl| ≈ 20 mm at patent scale). Its rear surface r7 = +19.616 has the steepest curvature of any surface in the prescription — meaning light exits this element through a sharply concave surface into the large air gap d7. This surface dominates the system's negative Petzval contribution (−0.0217 per surface), which is essential for field flattening.
 
-The glass is an exact match to **OHARA S-TIH13** (nd = 1.74000, νd = 28.20). Like L3's glass, S-TIH13 exhibits anomalous partial dispersion (dPgF ≈ +0.013), but its slightly lower index and slightly higher Abbe number relative to L3 create the differential the patent requires. The condition n3 > n4 ensures the junction surface r6 contributes a small positive refraction (since light passes from a higher-index to a lower-index medium at a concave surface), while ν4 > ν3 ensures the axial chromatic balance favors correction rather than overcorrection. The patent notes that "the biconcave lens L4 has the counter effect to that of the biconvex lens L3" regarding g-line spherical aberration, and that the conditions n3 > n4 and ν4 > ν3 are necessary to prevent this counter-effect from dominating.
+The patent pair nd = 1.74000, νd = 28.2 (code 740282) corresponds to the SF3 glass type; the exact catalog equivalent in the project catalog is **HOYA FD3** (nd = 1.74000, νd = 28.25), with OHARA S-TIH3 (νd = 28.30) close behind. OHARA S-TIH13 (nd = 1.74077, νd = 27.79) is a different glass and does not match the patent index. FD3's slightly lower index and slightly higher Abbe number relative to L3 create the differential the patent requires. The condition n3 > n4 ensures the junction surface r6 contributes a small positive refraction (since light passes from a higher-index to a lower-index medium at a concave surface), while ν4 > ν3 ensures the axial chromatic balance favors correction rather than overcorrection. The patent notes that "the biconcave lens L4 has the counter effect to that of the biconvex lens L3" regarding g-line spherical aberration, and that the conditions n3 > n4 and ν4 > ν3 are necessary to prevent this counter-effect from dominating.
 
 **Optical role:** Provides the system's primary negative power, strongly bending the marginal ray to create the telephoto-like compactness. Critically responsible for negative Petzval contribution (field flattening). Works in concert with L3 through the cemented junction to finely control the chromatic variation of spherical aberration (spherochromatism).
 
@@ -144,7 +146,7 @@ The junction radius r6 = −58.637 satisfies the patent's Condition II: 0.4f ≤
 
 L5 is separated from the cemented doublet by the system's largest air gap (d7 = 25.704 mm at patent scale, 34.7 mm at production scale). This large separation is a defining feature of the Ernostar architecture: the patent's Condition I requires the front group track (d1 through d6) to be no more than 0.53 times the total optical track, ensuring this gap remains substantial.
 
-The glass is **Schott SF10** or equivalently **OHARA S-TIH11** (nd = 1.72825, νd = 28.41/28.46). Both are exact nd matches. This is a standard dense flint glass with essentially no anomalous partial dispersion (dPgF ≈ 0.000), sitting almost exactly on the Schott normal line. The choice of a "normal" flint here is deliberate: L5's role is not chromatic correction but rather geometric aberration management. Using a glass with anomalous dispersion would disturb the carefully balanced secondary spectrum established by L3+L4.
+The patent pair nd = 1.72825, νd = 28.3 (code 728283) is the SF10 glass type. The exact catalog equivalent is **HOYA E-FD10** (nd = 1.72825, νd = 28.32); Hikari J-SF10 (28.38), Schott SF10 (28.41), and OHARA S-TIH10 (28.46) share the index and differ only in the second decimal of νd. It is an ordinary dense flint (ΔPgF ≈ +0.010, the same small positive deviation as L3's glass). L5's role is geometric aberration management rather than chromatic correction.
 
 **Optical role:** The patent explains this element's function in detail: by placing a positive element at a large distance behind the doublet, the principal ray in an oblique beam enters L5 at a high position, where it introduces negative distortion to counterbalance the positive (pincushion) distortion generated by L1 and L2. The patent warns that reducing d7 (by increasing the front group track beyond 0.53Σd) would diminish this correction and introduce irrecoverable coma.
 
@@ -152,11 +154,13 @@ The glass is **Schott SF10** or equivalently **OHARA S-TIH11** (nd = 1.72825, ν
 
 ## Aperture Stop Location
 
-The patent does not explicitly specify the aperture stop position. From the patent's Figure 1, the iris diaphragm appears to reside in the air gap d4 (between the rear surface of L2 and the front surface of the cemented doublet L3). This gap is 2.074 mm at patent scale (2.80 mm at production scale).
+The patent does not specify the aperture stop: no diaphragm appears in the prescription tables, in the text, or in Figure 1, which draws the five elements only. The stop position in the data file is therefore an inference, and it is labelled as such.
 
-For the data file, the stop is modeled as a flat surface (R = ∞) within d4, splitting the gap into approximately 2.00 mm before the stop and 0.80 mm after (at production scale). This places the stop roughly 71% of the way through d4, biased toward L2, consistent with the iris location visible in the patent figure. The stop semi-diameter of 17.4 mm (production scale) yields an entrance pupil of approximately 48.2 mm diameter, matching the f/2.8 specification.
+The inference rests on the patent's own astigmatism plots (Figs. 2(b), 3(b), and 4(b)), whose sagittal and meridional curves depend on where the chief ray crosses the axis. Real-ray sagittal and tangential foci were computed for each example with the stop at a series of trial positions and compared with the plotted values at 6.3° and 9.05°. A stop in the narrow d4 gap between L2 and L3 misses the plotted curves by 0.075–0.078 mm RMS in all three examples — for Example 2 it predicts a meridional focus of −0.16 mm at full field, where the patent plots roughly −0.06 mm, and for Example 1 it predicts +0.11 mm against a plotted −0.03 mm. A stop in the large air space d7, 8–12 units (f = 100) behind the r7 vertex, reproduces all three plots to 0.010–0.018 mm RMS, which is about the reading accuracy of the scanned figures. Distortion is insensitive to the choice (+0.62 % to +0.67 % at 9.05° for every trial position, against a plotted value of about +0.6 %).
 
-Placement of the stop between the front positive group (L1+L2) and the negative group (L3+L4) is conventional for Ernostar-type designs. It allows the front group to operate as a pre-stop converging system while the negative doublet and rear element handle post-stop correction. The narrow gap constrains the physical stop diameter; the entrance pupil as seen from the object side is magnified by the front group's converging power.
+The data file therefore places the stop 10 units behind r7 — 13.5 mm at production scale — splitting d7 = 34.7 mm into 13.5 mm (r7 → stop) and 21.2 mm (stop → r8). The position carries an uncertainty of roughly ±3 mm. The stop semi-diameter of 13.5 mm is the traced height of the f/2.8 marginal ray at that plane (13.52 mm), not a published iris diameter; the entrance pupil is 48.2 mm in diameter.
+
+This location is the usual one for the Ernostar family: the iris sits in the long air space behind the negative member, with the whole positive-negative front assembly ahead of it and only the weak rear corrector behind. It is also the mechanically easier one. The d4 gap is only 2.8 mm on axis and narrows to about 1.4 mm at a height of 19 mm, which leaves very little room for an iris that would need a 37 mm opening there, whereas the d7 space is unobstructed. The same designer's contemporaneous 135 mm f/2 patent (US 4,062,630) draws its diaphragm in the corresponding air space behind the cemented negative member.
 
 ---
 
@@ -164,11 +168,11 @@ Placement of the stop between the front positive group (L1+L2) and the negative 
 
 The patent provides no variable air gap data — all three examples specify spacings only at infinity focus. The production AI Nikkor 135mm f/2.8 uses **unit focusing**: the entire 5-element optical assembly moves forward as a rigid unit on a helicoid. The only dimension that changes during focusing is the back focal distance (the air space between the last surface r9 and the film plane). No internal focus groups, floating elements, or variable air gaps are employed.
 
-At the minimum focus distance of 1.3 m (production spec), the required lens extension is approximately:
+The production minimum focus distance of 1.3 m is measured from the film plane, so the close-focus state is found by solving for the extension x at which the subject-to-film distance equals 1300 mm. With the subject distance from the front principal plane s = f + f²/x, the image distance s′ = f + x, and the principal-plane separation taken from the paraxial trace, the solution is
 
-> Δ = f² / (d_o − f) = 135² / (1300 − 135) ≈ 15.6 mm
+> x ≈ 18.0 mm, magnification ≈ −0.134 (about 1:7.5), subject 1156 mm in front of the first vertex
 
-This modest extension (about 11.6% of the focal length) is easily accommodated by a conventional helicoid mechanism. The production-scale BFD increases from 59.5 mm at infinity to approximately 75.2 mm at close focus.
+This extension (about 13% of the focal length) is easily accommodated by a conventional helicoid mechanism. The production-scale BFD increases from 59.5 mm at infinity to a calculated 77.5 mm at close focus. The close-focus value is derived, not published.
 
 The unit-focus approach has a known tradeoff: aberration balance shifts as the object distance decreases. As Nikon's *Thousand and One Nights* (Tale 76) notes for this Ernostar-type design family, spherical aberration "changes to a negative value (indicating insufficient correction) as the distance decreases," which "also serves to soften background bokeh" — a characteristic valued in portrait photography. Modern designs typically use internal focusing or floating elements to maintain correction across the focus range, but for a mid-1970s telephoto prime of moderate speed, unit focus was the standard and pragmatic choice.
 
@@ -178,25 +182,27 @@ The unit-focus approach has a known tradeoff: aberration balance shifts as the o
 
 The patent provides aberration plots for Example 2 in Figures 3(a), 3(b), and 3(c).
 
-**Spherical aberration and sine condition (Fig. 3a):** The spherical aberration curve at f/2.8 shows modest overcorrection for the d-line (approximately +0.2 mm longitudinal SA at the margin), with the g-line curve showing somewhat more overcorrection but substantially less than what the patent describes as typical for unmodified Ernostar designs. The sine condition (OSC) deviation remains small, indicating good coma correction. At f/4 and f/5.6, the aberration curves tighten considerably.
+**Spherical aberration and sine condition (Fig. 3a):** The d-line spherical aberration is slightly undercorrected over the whole aperture: about −0.13 mm in the f/4 zone, returning to roughly −0.05 mm at the f/2.8 margin (a real-ray trace of the prescription gives −0.08 mm and −0.03 mm at f = 100). The g-line curve crosses the axis near f/4 and is overcorrected by about +0.17 mm at the f/2.8 margin — the residual short-wavelength overcorrection that the patent sets out to reduce relative to unmodified Ernostar designs. The dashed sine-condition curve departs to about −0.27 mm at the margin.
 
-**Astigmatism (Fig. 3b):** The sagittal and meridional field curves show moderate separation at the full 9.05° half-field, with the sagittal surface lying slightly ahead of the meridional. The separation remains under 0.5 mm across the field — consistent with the very flat Petzval surface computed from the prescription.
+**Astigmatism (Fig. 3b):** Both field curves stay within about 0.1 mm of the paraxial image plane out to the full 9.05° half-field (sagittal about −0.08 to −0.10 mm, meridional about −0.05 to −0.07 mm at f = 100), and they separate by less than 0.05 mm — consistent with the very flat Petzval surface computed from the prescription. These curves are the basis for the stop-position inference described above.
 
-**Distortion (Fig. 3c):** Pincushion distortion reaching approximately +0.7% at the full 9.05° half-field. This is modest for a telephoto of this type and consistent with the patent's discussion of L5's role in counterbalancing the positive distortion generated by L1 and L2.
+**Distortion (Fig. 3c):** Pincushion distortion reaching approximately +0.6% at the full 9.05° half-field (a real chief-ray trace gives +0.66%). This is modest for a telephoto of this type and consistent with the patent's discussion of L5's role in counterbalancing the positive distortion generated by L1 and L2.
 
 ---
 
 ## Glass Summary and Anomalous Dispersion
 
-| Element | nd | νd | Best Match | Family | dPgF |
+| Element | nd | νd | Catalog equivalent | Family | Code |
 |---|---|---|---|---|---|
-| L1 | 1.62041 | 60.3 | OHARA S-BSM16 | Barium silicate crown | ~0.000 |
-| L2 | 1.62041 | 60.3 | OHARA S-BSM16 | Barium silicate crown | ~0.000 |
-| L3 | 1.78470 | 26.1 | OHARA S-TIH23 | Dense titanium flint | +0.014 |
-| L4 | 1.74000 | 28.2 | OHARA S-TIH13 | Dense titanium flint | +0.013 |
-| L5 | 1.72825 | 28.3 | Schott SF10 / OHARA S-TIH11 | Dense flint | ~0.000 |
+| L1 | 1.62041 | 60.3 | OHARA S-BSM16 (νd 60.29) | Barium silicate crown (SK16 type) | 620603 |
+| L2 | 1.62041 | 60.3 | OHARA S-BSM16 (νd 60.29) | Barium silicate crown (SK16 type) | 620603 |
+| L3 | 1.78470 | 26.1 | Schott SF56A (νd 26.08) | Dense flint | 785261 |
+| L4 | 1.74000 | 28.2 | HOYA FD3 (νd 28.25) | Dense flint (SF3 type) | 740282 |
+| L5 | 1.72825 | 28.3 | HOYA E-FD10 (νd 28.32) | Dense flint (SF10 type) | 728283 |
 
-The glass selection reveals a clear two-tier strategy. The front group (L1, L2) uses a single type of moderate-index, high-Abbe-number crown glass (S-BSM16), consistent with the Ernostar principle that the front positive elements tolerate inexpensive, lower-index glasses. The rear elements (L3, L4, L5) use three different dense flint glasses with low Abbe numbers. L3 and L4's glasses are deliberately chosen for their anomalous partial dispersion properties — both sit above the normal line on the PgF vs. νd diagram, and their differential APD (with L3's glass having slightly more anomaly than L4's) is the mechanism by which the design controls secondary spectrum in the spherochromatism. L5's "normal" dense flint avoids disturbing this balance.
+The patent gives only nd and νd; every name above is a catalog equivalent, and the production melt supplier is not documented.
+
+The glass selection reveals a clear two-tier strategy. The front group (L1, L2) uses a single type of moderate-index, high-Abbe-number crown glass (S-BSM16), consistent with the Ernostar principle that the front positive elements tolerate inexpensive, lower-index glasses. The rear elements (L3, L4, L5) use three different dense flint glasses with low Abbe numbers. The cemented pair is chosen, per Condition II, so that the positive element has the higher index and the lower Abbe number (n3 > n4, ν3 < ν4 < 32); the small index step across the strongly curved junction is what steers the g-line spherical aberration. All three flints carry the small positive partial-dispersion deviation that is normal for this glass family (ΔPgF roughly +0.005 to +0.010); none is an anomalous-dispersion glass in the ED or short-flint sense, and the patent makes no partial-dispersion argument.
 
 The use of identical glass for L1 and L2 across all three patent examples is noteworthy: it reduces the glass inventory required for manufacturing and ensures the two front elements introduce matching chromatic contributions, simplifying the design's aberration balancing.
 
@@ -266,21 +272,24 @@ The telephoto ratio of 0.936 indicates that the system is about 6% shorter than 
 
 ## Semi-Diameter Estimation
 
-Semi-diameters for the data file were estimated by tracing combined marginal (f/2.8) and chief (65% field) rays through the production-scale prescription, with 8% mechanical clearance applied. Two physical constraints impose upper limits on certain surfaces:
+The patent lists no clear apertures, so every semi-diameter in the data file is an estimate. Three inputs were used.
 
-- **52 mm filter thread:** The clear aperture of the front element (S1) is capped at approximately 24.0 mm semi-diameter.
-- **Narrow air gaps d2 and d4:** Cross-gap sag intrusion limits constrain S2 and S3 to approximately 22.0 mm and S4 to approximately 18.0 mm. These constraints reflect the physical nesting geometry of the closely-spaced front elements and the tight d4 gap housing the iris mechanism.
+**Axial beam.** An exact trace of the f/2.8 marginal ray (entrance height 24.11 mm) requires 24.11, 23.65, 21.95, 18.57, 17.81, 17.15, 14.58, 10.98, and 10.77 mm on surfaces 1–9. Every stored value clears these heights.
 
-The cemented doublet surfaces (S5, S6, S7) share closely matched semi-diameters in the 16.5–17.0 mm range. L5's semi-diameters (18.0–17.5 mm) are slightly larger than the doublet because the chief ray height has grown substantially across the large d7 air gap.
+**Patent Figure 1.** The single cross-section serves all three examples, but its vertex spacings follow Example 2 to within 0.5 mm at f = 100. Measured at 300 dpi (0.107 mm per pixel at production scale), the drawn rims are 25.6 mm for L1, 24.3 mm for L2 (with the rear surface r4 ending at 19.7 mm, below a bevel), 19.8 mm for the cemented doublet (with r7 ending at 14.5 mm, again below a bevel), and 14.5 mm for L5. The drawing is schematic: the sags drawn for r1 and r3 at those rims correspond to only 23.8 mm and 22.0 mm, so the figure is reliable to about ±7%.
+
+**Production bound.** The 52 mm filter thread limits the front clear aperture to somewhat under 26 mm semi-diameter. It is an outer bound only.
+
+The resulting values are 24.8 mm for both faces of L1 (the middle of the figure bracket, 3% above the axial beam, inside the filter thread); 19.2 mm for r4, r5, and r6 (the drawn rim × 0.97); and 14.5 mm for both faces of L5 (the drawn rim). Surfaces 3 (22.0 mm) and 7 (16.5 mm) keep ray-trace estimates that agree with the figure within 15% and clear the axial beam. With these apertures and the stop in d7, the full-field bundle at 9.05° is trimmed by about 35% on the upper side at L1 and about 28% on the lower side at L5 — ordinary mechanical vignetting for a fast telephoto of this period.
 
 ---
 
 ## Summary
 
-The AI Nikkor 135mm f/2.8 exemplifies a mature approach to fast telephoto prime design in the pre-computational era. Sei Matsui took the well-established Ernostar architecture and refined it with a single additional element (L2) and a carefully optimized cemented doublet (L3+L4), achieving f/2.8 performance with just five all-spherical elements. The glass selection is economical and purposeful: two inexpensive barium silicate crowns for the front group, two anomalous-dispersion dense titanium flints for the chromatic doublet, and one standard dense flint for the rear corrector. The design uses no aspherical surfaces, no exotic glass types, and no internal focusing mechanisms — its optical quality comes entirely from classical principles of power distribution, bending optimization, and chromatic balancing through glass selection.
+The AI Nikkor 135mm f/2.8 exemplifies a mature approach to fast telephoto prime design in the pre-computational era. Sei Matsui took the well-established Ernostar architecture and refined it with a single additional element (L2) and a carefully optimized cemented doublet (L3+L4), achieving f/2.8 performance with just five all-spherical elements. The glass selection is economical and purposeful: two inexpensive barium silicate crowns for the front group, two dense flints of slightly different index and dispersion for the chromatic doublet, and one standard dense flint for the rear corrector. The design uses no aspherical surfaces, no exotic glass types, and no internal focusing mechanisms — its optical quality comes entirely from classical principles of power distribution, bending optimization, and chromatic balancing through glass selection.
 
 The lens remained in production essentially unchanged for nearly three decades (1976–2005), a testament to the robustness of Matsui's design choices.
 
 ---
 
-*Analysis based on US Patent 4,057,330 (Example 2), paraxial ray trace verification, glass catalog cross-referencing (OHARA, Schott, HOYA), and Nikon first-party documentation (Thousand and One Nights, Tale 76). All focal lengths computed via thick-lens ABCD matrix method. Standalone (in-air) focal lengths reported for individual elements; combined subsystem focal length reported for the cemented doublet. Semi-diameters estimated via combined marginal + chief ray trace with cross-gap sag and filter-thread constraints.*
+*Analysis based on US Patent 4,057,330 (Example 2), paraxial ray trace verification, glass catalog cross-referencing (OHARA, Schott, HOYA), and Nikon first-party documentation (Thousand and One Nights, Tale 76). All focal lengths computed via thick-lens ABCD matrix method. Standalone (in-air) focal lengths reported for individual elements; combined subsystem focal length reported for the cemented doublet. Semi-diameters estimated from an exact f/2.8 marginal-ray trace and measurements of patent Figure 1; the aperture-stop position is inferred from the patent's astigmatism plots, as the patent does not show a diaphragm.*

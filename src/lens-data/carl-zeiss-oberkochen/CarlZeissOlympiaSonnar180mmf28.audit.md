@@ -32,14 +32,14 @@ Catalog version: local working tree, 2026-06-25
 - `apd: false` remains appropriate. The patent provides no partial-dispersion data.
 - High-index/high-dispersion status for SF56A/SF11 and SF4 is already represented in glass names and element roles.
 
-### Phase 4 - Analysis sync
+## 2026-09-25 — MTF image-plane census
 
-- No analysis prose change was required. The existing analysis already describes the four-element glass pairing and patent constraints.
+Source `patents/DE_1268404_B.pdf`: visually checked Table II (Fig. 2), PDF p. 2; repeated prescription in claim 2 on p. 4; explanatory text on p. 1. All eight radii, seven intersurface distances, four nd/νd pairs and printed Schnittweite s′=0.4126 agree after ×180 scaling. All spherical/plano, no plate or published finite-focus station. Inferred stop splits d6=0.2685×180=48.33 into 17+31.33 mm without optical change.
 
-### Verification
+Native EFL 1.000306832 and BFL 0.413154345 differ from normalized f=1 and s′=0.4126. Scaled BFL 74.367782142 versus authored 74.268 gives +0.099782142 mm, slightly over the 0.092129690 limit. There is no supported single transcription correction. Source text discusses balanced aberrations and Gauss error but does not identify the printed s′ as a designer best-focus plane.
 
-- `npm run generate:glass-reports` - passed (7 files, 7 tests); generated report state retained.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
-- `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
+As a diagnostic, the reference-index axial geometric MTF calculation (32 pupil grid, 812 accepted rays, 10/20/40 lp/mm) prefers +0.080320 mm shift, score 0.542973→0.788628. This is neither proof of designer intent nor a full-field optimization, and it does not validate the authored plane as axial best focus.
+
+**Cause/action:** small source image-distance discrepancy of unresolved design/rounding origin; preserve the printed prescription and document the limit of attribution. Offset **+0.099782 → +0.099782 mm**; Section E row deleted. No numerical change/changelog.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.

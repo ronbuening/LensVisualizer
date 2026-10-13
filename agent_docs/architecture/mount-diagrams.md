@@ -21,7 +21,7 @@ reference artifact. It implements the Lens Mount SVG Specification Package, sche
 | Pure geometry + renderer | `src/optics/mount/` (no React) |
 | React components | `src/components/mount/` (`MountDiagram`, `MountDiagramPanel`) |
 | Page cross-link sidebars | `src/components/content/LinkListSidebar.tsx` (maker→mounts, mount→makers) |
-| Report generator | `__tests__/src/optics/mount/mountSvgSpecificationsReport.test.ts` |
+| Report generator | `reports/mountSvgSpecificationsReport.report.ts` (`npm run generate:mount-svgs`) |
 | Generated artifacts (committed) | `agent_docs/generated/lens-mount-svg-specifications.md`, `agent_docs/generated/mounts/*.svg` |
 
 Mount ids are the canonical `LensMountId` values from `src/utils/catalog/lensTaxonomy.ts` (the same

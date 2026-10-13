@@ -14,7 +14,7 @@
 
 The Nikkor 135mm f/2 is a six-element, four-group telephoto lens. The patent itself classifies it as a "Tele-Sonnar type," while Nikon's later Thousand and One Nights series (No. 30, by Kouichi Ohshita) identifies it more specifically as a "variant Ernostar type." Both labels trace to the same design lineage: Ludwig Bertele's Ernostar (1924) — a fast four-group, four-element configuration — was the ancestor of his Sonnar (1929), which introduced a cemented triplet for improved correction. The telescopic (telephoto) Sonnar family adapted this approach for longer focal lengths. Ohshita describes the Ernostar configuration as one where the Sonnar's cemented triplet is decomposed back into two separated elements, yielding a structurally simpler four-group, four-element arrangement suited to fast telephoto designs. Matsui's variant departs from this baseline by cementing both the second and third groups into doublets, yielding a six-element, four-group system that provides additional degrees of freedom for chromatic and spherical aberration control while retaining the compact asymmetric layout characteristic of the Ernostar family.
 
-The patent prescription is normalized to a 100 mm focal length. The production Nikkor 135mm f/2 is uniformly scaled by a factor of approximately **1.350** to reach the marketed 135 mm focal length. All values in this analysis are given at both patent scale (f = 100 mm) and production scale (f = 135 mm) where appropriate.
+The patent prescription is normalized to a 100 mm focal length. The data file stores it uniformly scaled by **1.35** to the marketed 135 mm focal length (every radius, thickness, air gap and semi-diameter × 1.35; there are no aspherical coefficients to transform). The factor is more than a convenience: at × 1.35 the normalized values of Example V return round millimetre figures — r₂ = 420, r₃ = 51.5, r₄ = 30.5, r₅ = 270, r₇ = −47 mm and thicknesses of 11.1, 0.5, 3.7, 17.9, 3.5, 12.0, 1.6, 33.9 and 12.0 mm — which indicates that the examples were designed at 135 mm and divided down for publication. Values in this analysis are given at both patent scale (f = 100 mm) and production scale (f = 135 mm) where appropriate.
 
 ### Key Design Parameters (Patent → Production)
 
@@ -22,6 +22,7 @@ The patent prescription is normalized to a 100 mm focal length. The production N
 |---|---|---|
 | Effective focal length | 100.00 mm | 135.0 mm |
 | Maximum aperture | f/2.0 | f/2.0 |
+| Minimum aperture | — | f/22 |
 | Full field angle | 18° | 18° |
 | Back focal distance | 29.22 mm | 39.4 mm |
 | Total track (T.L.) | 100.48 mm | 135.6 mm |
@@ -45,7 +46,7 @@ The telephoto ratio of 1.005 means the lens is almost exactly as long as its foc
 
 ## 3. Prescription and Optical Layout
 
-The ten surfaces, front to rear, define six elements arranged in four air-separated groups:
+The ten surfaces, front to rear, define six elements arranged in four air-separated groups. The table is at patent scale (f = 100 mm); the data file stores each R and d multiplied by 1.35:
 
 | Surface | R (mm) | d (mm) | n_d | Element |
 |---|---|---|---|---|
@@ -60,9 +61,9 @@ The ten surfaces, front to rear, define six elements arranged in four air-separa
 | r₉ | +63.661 | 8.89 | 1.71736 | L6 (entry) |
 | r₁₀ | +624.694 | BFD | air | L6 (exit) |
 
-**Note on r₃:** The OCR of the main text (page 4) renders r₃ as "38.48," but Claim 8 (page 7) unambiguously gives r₃ = 38.148. The Claim 8 value produces EFL = 100.00 mm (matching the patent's stated focal length), while the OCR variant yields EFL ≈ 101.4 mm — confirming that 38.148 is correct and "38.48" is a scanning artifact.
+**Note on r₃:** The OCR text layer of the Example V table (column 4) renders r₃ as "38.48," but the printed page reads 38.148 both there and in Claim 8 (column 6). The Claim 8 value produces EFL = 100.00 mm (matching the patent's stated focal length), while the OCR variant yields EFL ≈ 101.4 mm — confirming that 38.148 is correct and "38.48" is a scanning artifact.
 
-The aperture stop is located in the 2.59 mm air gap between the rear surface of Group II (r₅) and the flat front surface of Group III (r₆). The patent does not explicitly specify the stop position, but the cross-sectional drawing (Fig. 1) clearly shows the iris diaphragm in this gap. From the marginal ray trace at f/2, the ray height decreases monotonically across this gap from 17.32 mm at r₅ to 15.89 mm at r₆, placing the effective stop at or very near the flat entrance face of L4. In the data file, the gap is split as 2.09 mm (r₅ → STO) + 0.50 mm (STO → r₆), with the stop semi-diameter of 16.2 mm representing the full f/2 aperture.
+The patent neither tabulates nor describes the aperture stop; its only evidence is Fig. 1, which draws the diaphragm as two bars in the long d₈ air space behind the cemented negative member (L4 + L5), not between Groups II and III. Measured on the 300 dpi drawing (16.07 px/mm from the r₈–r₉ vertex spacing), the bars stand 8.3 mm behind the r₈ vertex at patent scale. The data file therefore splits d₈ = 33.90 mm as 11.2 mm (r₈ → STO) + 22.70 mm (STO → r₉) at production scale. The split is a figure measurement, not a patent value. It is self-consistent: the exact f/2 marginal ray has a height of 15.7 mm at that plane, and the drawn half-opening scales to 16.5 mm. With the stop here the entrance pupil lies deep inside the lens (about 109 mm behind the front vertex), so the full-field chief ray crosses the front element 17.5 mm below the axis and the corner bundle is trimmed by the L1 and L6 rims — ordinary mechanical vignetting for a fast Sonnar-type telephoto.
 
 ---
 
@@ -164,7 +165,7 @@ The patent further requires that both ν₄ and ν₅ be less than 35, ensuring 
 
 **Glass identification:** Same glass as L5 — HOYA E-FD1-W / Schott SF1 family. Six-digit code: 717/295.
 
-**Optical role:** L6 sits well behind the aperture stop, separated from Group III by the largest air gap in the system (25.11 mm patent / 33.9 mm production). This element serves two functions. First, it provides positive power that works together with the front groups to establish the system's 100 mm effective focal length. Second, its position far behind the stop gives it strong leverage over off-axis aberrations — particularly field curvature, astigmatism, and distortion. The choice of a dense flint glass (ν_d = 29.5) for this rear positive element is unusual; most telephoto designs use crown or lanthanum crown glass in positive elements to minimize chromatic contribution. Here, the use of a high-dispersion glass in L6 works in concert with the chromatic design of Group III to maintain the overall balance: since Groups III and IV are both composed of dense flints with similar dispersion, their chromatic contributions tend to cancel in the aggregate, leaving the primary chromatic correction to the conventional achromat in Group II.
+**Optical role:** L6 sits behind the aperture stop, separated from Group III by the largest air gap in the system (25.11 mm patent / 33.9 mm production); Fig. 1 draws the diaphragm in the front third of that gap, leaving about 22.7 mm (production) between the iris and L6. This element serves two functions. First, it provides positive power that works together with the front groups to establish the system's 100 mm effective focal length. Second, its position well behind the stop gives it strong leverage over off-axis aberrations — particularly field curvature, astigmatism, and distortion. The choice of a dense flint glass (ν_d = 29.5) for this rear positive element is unusual; most telephoto designs use crown or lanthanum crown glass in positive elements to minimize chromatic contribution. Here, the use of a high-dispersion glass in L6 works in concert with the chromatic design of Group III to maintain the overall balance: since Groups III and IV are both composed of dense flints with similar dispersion, their chromatic contributions tend to cancel in the aggregate, leaving the primary chromatic correction to the conventional achromat in Group II.
 
 ---
 
@@ -178,7 +179,7 @@ The system divides cleanly into a positive front section and a negative rear sec
 | Rear (Groups III + IV) | −77.4 mm | −104.5 mm |
 | Whole system | +100.0 mm | +135.0 mm |
 
-The front group's focal length (+45.3 mm) is less than half the system focal length, meaning it converges light aggressively. The rear group then diverges this converging beam, extending the effective focal length while maintaining a compact physical package. The air gap between the two sections (d₅ = 2.59 mm) is remarkably small, placing the front and rear groups close together — a trait of Ernostar-type designs where the stop sits in a tight space between the converging and diverging components.
+The front group's focal length (+45.3 mm) is less than half the system focal length, meaning it converges light aggressively. The rear group then diverges this converging beam, extending the effective focal length while maintaining a compact physical package. The air gap between the two sections (d₅ = 2.59 mm patent / 3.5 mm production) is remarkably small, placing the front and rear groups close together; there is no room for an iris there, and Fig. 1 draws the diaphragm behind the negative doublet instead, in the long d₈ space.
 
 The back focal distance of 29.2 mm (patent) scales to 39.4 mm in production — approximately 7 mm shorter than the 46.5 mm Nikon F-mount flange focal distance. This means the last optical surface (r₁₀) protrudes roughly 7 mm past the lens mount flange into the camera's mirror box, which is typical of telephoto lenses. The remaining 39.4 mm from the rear element to the film plane provides adequate clearance for the reflex mirror.
 
@@ -262,15 +263,15 @@ All numerical values in this document were independently verified by paraxial ra
 - Principal plane separation: 3.47 mm (patent scale) / 4.68 mm (production)
 - MFD magnification: 1:7.5 (matches JAPB-published manufacturer spec exactly)
 - Focus extension at MFD 1.3 m: 18.1 mm (production) / 13.4 mm (patent scale)
-- BFD at close focus: 42.62 mm (patent scale)
+- BFD at close focus: 42.62 mm (patent scale) / 57.54 mm (production scale, as stored; a calculated value — the patent publishes no finite-distance data)
 - All five patent design conditions verified as satisfied
 - r₃ value confirmed as 38.148 per Claim 8 (OCR "38.48" in main text is a scanning artifact; yields EFL ≈ 101.4 mm, inconsistent with patent's stated f = 100 mm)
 
 Element focal lengths were computed using the thick-lens ABCD method rather than thin-lens approximations. For L3, the thickest element (d = 13.26 mm), the thick-lens value (+42.1 mm) differs from the thin-lens approximation (+43.2 mm) by 2.7% — a meaningful correction that justifies the thick-lens approach.
 
-Semi-diameters were estimated by combined marginal ray (at f/2) and chief ray (at 65% of the 9° half-field angle) traces with 8% mechanical clearance. The front element (r₁) is capped by the 72 mm filter thread constraint. The cemented junction r₄ is limited to sd = 20.3 mm by the sd/|R| < 0.90 constraint (|R₄| = 22.593 mm). Within each element, the front-to-rear SD ratio is held within the 1.25 limit.
+Semi-diameters are not published in the patent. Surfaces 6, 7, 9 and 10 follow rims measured on Fig. 1 (300 dpi, 16.09 px/mm; the single drawing serves all five examples, and its vertex spacings follow Example V within 0.7 mm at patent scale): the L4/L5 common rim scales to 25.8 mm and the L6 rim to 17.5 mm at production scale. Surfaces 1–5 and 8 keep the earlier ray-trace estimates (× 1.35), which agree with the drawn rims (35.5, 31.8, 29.1 and 18.0 mm for L1, L2, L3 and the r₈ curve end) within about 15 %. The cemented junction r₄ is held at sd = 27.4 mm by the renderer's rim-slope limit sd/|R| ≤ 0.90 (|R₄| = 30.5 mm), short of the drawn L3 rim. An exact real-ray trace at f/2 needs 33.75 / 32.83 / 30.28 / 26.34 / 24.71 / 23.13 / 20.70 / 16.72 / 11.89 / 10.17 mm on surfaces 1–10 and clears every stored value; the chief ray that reaches the 21.6 mm image corner leaves at 8.97°, matching the patent's 2W = 18°.
 
-**Note on Example V as the production design:** The patent contains five numerical examples, all sharing the same six-element, four-group structure at f = 100 mm, f/2.0, 2W = 18°. Example V is conventionally identified as the production prescription because it is the final and most refined example in the patent, its aberration performance (Figs. 6a–6c) is arguably the best balanced among the five, and its glass selection (particularly the use of matched dense flints in Group III) most closely aligns with the patent's stated design objectives. However, Nikon has never publicly confirmed which example was manufactured, and the optical prescriptions of all five examples are structurally similar enough that definitive identification would require physical measurement of a production lens.
+**Note on Example V as the production design:** The patent contains five numerical examples, all sharing the same six-element, four-group structure at f = 100 mm, f/2.0, 2W = 18°. Example V is conventionally identified as the production prescription because it is the final and most refined example in the patent, its aberration performance (Figs. 6a–6c) is arguably the best balanced among the five, and its glass selection (particularly the use of matched dense flints in Group III) most closely aligns with the patent's stated design objectives. The × 1.35 round-number pattern noted in §1 appears in all five examples (for instance r₅ = 240 mm in Example IV and r₇ = −60 mm, r₉ = 72 mm in Example III), so it confirms the 135 mm design scale but does not discriminate between them. However, Nikon has never publicly confirmed which example was manufactured, and the optical prescriptions of all five examples are structurally similar enough that definitive identification would require physical measurement of a production lens.
 
 ---
 

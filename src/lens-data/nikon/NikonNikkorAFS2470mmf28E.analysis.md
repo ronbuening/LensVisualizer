@@ -31,6 +31,8 @@ Example 1's numerical prescription yields the following at the three tabulated z
 
 The image circle (Y = 21.60 mm) corresponds to a 43.2 mm diagonal — FX format (36 × 24 mm sensor). The zoom ratio is 67.85 / 24.80 ≈ 2.74×. The production lens covers 24–70 mm (2.92×); the patent example's slightly shorter telephoto end (67.85 vs. 70 mm) and slightly longer wide end (24.80 vs. 24 mm) are typical of patent numerical examples, which optimize for aberration balance rather than marketing round numbers. The F/2.92 design aperture reflects the typical gap between a patent's optimized prescription and the marketed F/2.8 value.
 
+Example 1 is the example in this publication that matches the production construction. Examples 1 and 2 share the same 20-element, 16-group layout, but Example 2 adds a fifth aspherical surface on the vibration-reduction group (its surface 26), giving five aspherical elements instead of Nikon's four (three aspherical elements plus one ASP/ED element). Example 1 has exactly four: L11, the composite L12, L41 and L46.
+
 Example 1 contains exactly 20 optical elements. The "16 groups" count follows the standard Japanese convention where each **lens component** — whether a singleton or a cemented assembly (doublet or triplet) — counts as one group. Example 1 has 13 singletons, 2 cemented doublets, and 1 cemented triplet, totaling exactly 16 components.
 
 ---
@@ -39,12 +41,12 @@ Example 1 contains exactly 20 optical elements. The "16 groups" count follows th
 
 The system follows a classic **negative-lead zoom** (retrofocus-derivative) configuration: G1(−) · G2(+) · G3(−) · G4(+). Zooming is accomplished by changing the air spacings between all four groups. The design sub-divides G2 and G3 into operationally independent sub-groups:
 
-- **G1 (negative, f = −38.47 mm):** Front diverging group, 3 elements. Moves during zoom.
+- **G1 (negative, f = −38.47 mm):** Front diverging group, 3 elements. Moves toward the image and then back toward the object during zoom (patent ¶[0153]), so its travel reverses near the intermediate station.
 - **G2 (positive, f = +42.49 mm):** Main converging group, 6 elements split into G21 (focusing sub-group, 5 elements, f = +78.58 mm) and G22 (1 element, f = +64.02 mm). The entire G2 moves during zoom; G21 alone moves rearward for close focusing.
 - **G3 (negative, f = −39.26 mm):** Intermediate group, 5 elements split into G31 (3 elements, axially fixed during VR, f = −65.76 mm) and G32 (2 elements, the vibration-reduction sub-group, f = −121.07 mm). G31 serves as the patent's "intermediate group Gn."
-- **G4 (positive, f = +48.95 mm):** Rear converging group, 6 elements. Moves during zoom.
+- **G4 (positive, f = +48.95 mm):** Rear converging group, 6 elements. Moves toward the object during zoom.
 
-An aperture stop (S) and a first flare-cut diaphragm (FC1) are located between G2 and G3, both axially fixed during zoom. A second flare-cut diaphragm (FC2) sits between G4 and the image plane.
+An aperture stop (S) and a first flare-cut diaphragm (FC1) are located between G2 and G3. A second flare-cut diaphragm (FC2) sits between G4 and the image plane. All three are fixed relative to the image plane during zoom; G2 moves toward the object and G3 moves toward the image and then back toward the object.
 
 The overall power distribution — negative, positive, negative, positive — gives the system wide-angle capability (the negative front group diverges the field) while the rear positive group provides a long back focal distance compatible with the SLR mirror box (BFD ≈ 41.0–55.7 mm across the zoom range).
 
@@ -71,20 +73,20 @@ G1's three elements handle the extreme angular divergence at the wide end (half-
 
 **L11 — Negative Meniscus (convex toward object), 1× aspherical**
 nd = 1.74389, νd = 49.5 · Glass: Hoya M-NBF1 catalog equivalent (patent code 744495; supplier unspecified) · fl = −53.4 mm
-The front element of the entire system. Its meniscus shape keeps the angle of incidence moderate despite the wide field angle, reducing surface reflection losses and coma. The aspherical rear surface (surface 2A) corrects spherical aberration and distortion introduced by the steep ray bending at the wide end. The aspherical coefficients (K = 0, A4 = +2.215×10⁻⁶) add a small positive sag departure at the rim, steepening the surface slightly relative to the base sphere.
+The front element of the entire system. Its meniscus shape keeps the angle of incidence moderate despite the wide field angle, reducing surface reflection losses and coma. The aspherical rear surface (surface 2A) corrects distortion and field aberrations introduced by the steep ray bending at the wide end. The patent gives κ = 0 in its conic convention (κ = 1 is a sphere), so the base surface is a paraboloid (K = −1). Together with the polynomial terms, the surface is about 1.46 mm shallower than the 29.64 mm base sphere at its 23.8 mm clear-aperture estimate. This weakens the element's negative power toward the rim, the usual way to control barrel distortion in a wide-angle front group.
 
 **L12 — Biconcave Negative (composite aspherical)**
-Glass body (L12g): nd = 1.80400, νd = 46.6 · Glass: S-LAH65V (OHARA) · fl = −55.2 mm
-Resin layer (L12r): nd = 1.56093, νd = 36.6 · UV-curing polymer, 0.200 mm thick · fl ≈ ∞
-A powerful negative element that, together with L11, establishes G1's diverging power. The composite aspherical front surface (surface 3A, on the resin layer, K = 1.0, A4 = −3.834×10⁻⁷) corrects higher-order field aberrations — primarily astigmatism and field curvature — across the full zoom range. In the data file, L12 is modeled as a cemented doublet (L12r + L12g) per the hybrid composite pattern, giving two renderer elements from one physical element.
+Glass body (L12g): nd = 1.80400, νd = 46.6 · Glass: Hikari J-LASF015 catalog equivalent · fl = −55.2 mm
+Resin layer (L12r): nd = 1.56093, νd = 36.6 · UV-curing polymer, 0.200 mm thick · fl ≈ +2,116 mm (thick-lens value; optically negligible)
+A powerful negative element that, together with L11, establishes G1's diverging power. The composite aspherical front surface (surface 3A, on the resin layer; κ = 1, so the base is spherical with K = 0; A4 = −3.834×10⁻⁷, about −0.13 mm departure at 22.8 mm) corrects higher-order field aberrations — primarily astigmatism and field curvature — across the full zoom range. In the data file, L12 is modeled as a cemented doublet (L12r + L12g) per the hybrid composite pattern, giving two renderer elements from one physical element.
 
 **L13 — Positive Meniscus (convex toward object) — HRI Element**
-nd = 2.00100, νd = 29.1 · Glass: S-LAH99 / TAFD55 class (001291) · fl = +80.2 mm
+nd = 2.00100, νd = 29.1 · Glass: Hoya TAFD55 catalog equivalent (001291; Ohara S-LAH99 has the same code) · fl = +80.2 mm
 This is the **HRI element** highlighted in Nikon's marketing. With nd > 2.0, this glass bends light significantly per unit thickness, allowing a single element to contribute the corrective positive power that would otherwise require two or three conventional elements. Its placement at the rear of G1 partially compensates the group's strong negative power, reducing the Petzval sum contribution. Compared to a hypothetical element of the same power made from typical crown glass (n ≈ 1.5), L13's Petzval contribution is reduced by a factor of 1.5/2.001 ≈ 0.75 — a 25% reduction.
 
 ### Group 2: Main Converging Group (f = +42.49 mm)
 
-G2 is the most complex group, containing six elements across two sub-groups. It carries the majority of the system's positive power and bears primary responsibility for correcting spherical aberration and axial coma at the design aperture of f/2.8.
+G2 is the most complex group, containing six elements across two sub-groups. It carries the majority of the system's positive power and bears primary responsibility for correcting spherical aberration and axial coma at the design aperture of f/2.92.
 
 **Sub-group G21 — Focusing Group (f = +78.58 mm)**
 
@@ -92,11 +94,11 @@ G21 contains five elements and moves rearward (toward the image) by 6.735 mm dur
 
 | Element | nd | νd | fl (mm) | Glass | Shape |
 |---|---|---|---|---|---|
-| L21 | 1.59349 | 67.0 | +194.6 | 593670 fluorophosphate crown | Biconvex |
-| L22 | 1.59349 | 67.0 | +121.5 | 593670 fluorophosphate crown | Positive meniscus |
-| L23 | 1.59349 | 67.0 | +89.4 | 593670 fluorophosphate crown | Biconvex (cemented Ja) |
-| L24 | 1.90366 | 31.3 | −37.5 | S-LAH95 | Biconcave (cemented Ja) |
-| L25 | 1.77250 | 49.6 | +71.2 | S-LAH66 | Biconvex |
+| L21 | 1.59349 | 67.0 | +194.6 | J-PSKH4 (Hikari equivalent) | Biconvex |
+| L22 | 1.59349 | 67.0 | +121.5 | J-PSKH4 (Hikari equivalent) | Positive meniscus |
+| L23 | 1.59349 | 67.0 | +89.4 | J-PSKH4 (Hikari equivalent) | Biconvex (cemented Ja) |
+| L24 | 1.90366 | 31.3 | −37.5 | J-LASFH13 (Hikari equivalent) | Biconcave (cemented Ja) |
+| L25 | 1.77250 | 49.6 | +71.2 | J-LASF016 (Hikari equivalent) | Biconvex |
 
 The L23+L24 cemented doublet is a **chromatic corrector** — a classic crown-flint pair with a net negative focal length of −67.6 mm. Despite G21's overall positive power, this doublet is intentionally net-negative, correcting longitudinal chromatic aberration generated by the surrounding positive elements. The large Abbe number difference (Δνd ≈ 36) provides strong achromatization.
 
@@ -104,7 +106,7 @@ The L23+L24 cemented doublet is a **chromatic corrector** — a classic crown-fl
 
 | Element | nd | νd | fl (mm) | Glass | Shape |
 |---|---|---|---|---|---|
-| L26 | 1.81600 | 46.6 | +64.0 | S-LAH59 | Biconvex |
+| L26 | 1.81600 | 46.6 | +64.0 | J-LASF09A (Hikari equivalent) | Biconvex |
 
 A single powerful positive element acting as a relay between G21 and the aperture stop. During focusing, G21 moves rearward while L26 remains fixed relative to the zoom motion, so the G21–G22 air gap (D16) changes. L26's high refractive index (1.816) enables strong convergence with moderate curvatures.
 
@@ -118,9 +120,9 @@ G31's role, as described in the patent, is to restore the converging beam from G
 
 | Element | nd | νd | fl (mm) | Glass | Shape |
 |---|---|---|---|---|---|
-| L31 | 1.80400 | 46.6 | −33.4 | S-LAH65V | Biconcave |
-| L32 | 1.60300 | 65.4 | −129.7 | S-PHM53 | Neg. meniscus (concave obj.) |
-| L33 | 1.84666 | 23.8 | +51.5 | S-TIH53 | Biconvex |
+| L31 | 1.80400 | 46.6 | −33.4 | J-LASF015 (Hikari equivalent) | Biconcave |
+| L32 | 1.60300 | 65.4 | −129.7 | J-PSK03 (Hikari equivalent) | Neg. meniscus (concave obj.) |
+| L33 | 1.84666 | 23.8 | +51.5 | J-SF03 (Hikari equivalent) | Biconvex |
 
 L32 is a candidate for one of the two ED glass elements in Nikon's specification. Phosphate crowns in the nd ≈ 1.60, νd ≈ 65 region can exhibit measurable anomalous partial dispersion. However, confirmation from nd/νd alone is not possible without published ΔPgF data.
 
@@ -130,8 +132,8 @@ L33 is an unusual "positive flint" element — its extremely low Abbe number (23
 
 | Element | nd | νd | fl (mm) | Glass | Shape |
 |---|---|---|---|---|---|
-| L34 | 1.59349 | 67.0 | −72.6 | 593670 fluorophosphate crown | Biconcave |
-| L35 | 1.80518 | 25.5 | +180.9 | S-TIH6 | Positive meniscus |
+| L34 | 1.59349 | 67.0 | −72.6 | J-PSKH4 (Hikari equivalent) | Biconcave |
+| L35 | 1.80518 | 25.5 | +180.9 | J-SF6 (Hikari equivalent) | Positive meniscus |
 
 G32's deliberately weak negative power (−121 mm vs. the 24.8–67.9 mm system range) minimizes the aberration penalty of decentration during VR operation.
 
@@ -140,20 +142,20 @@ G32's deliberately weak negative power (−121 mm vs. the 24.8–67.9 mm system 
 G4 is the rear positive group responsible for final image formation. It contains six elements including the **aspherical ED element** (L41), an **ED glass element** (L44), and the aspherical rear element (L46). G4 corresponds to the patent's "image-side lens group RP."
 
 **L41 — Biconvex Positive — Aspherical ED Element**
-nd = 1.55332, νd = 71.7 · Glass: 553717 ASP/ED fluorophosphate crown · fl = +106.8 mm
-This is **Nikon's first aspherical ED glass element** — the "ASP/ED" designation. The patent gives only nd/νd for this glass, so the data file keeps a code-based label rather than asserting a public catalog match. The aspherical front surface (29A) has an oblate ellipsoidal base (K = 1.0) with positive fourth-order correction, which steepens the surface at the margin to control zonal spherical aberration. Combining aspherical and ED properties in one element eliminates the need for a separate spherical ED corrector, contributing to compact design.
+nd = 1.55332, νd = 71.7 · Glass: Hoya M-FCD500 catalog equivalent (553717) · fl = +106.8 mm
+This is the element Nikon markets as **aspherical ED** ("ASP/ED"). The patent gives only nd/νd; the pair matches Hoya's mold-press ED glass M-FCD500 exactly, which fits a molded aspherical ED element, but the patent does not name the glass. The aspherical front surface (31A) has a spherical base (κ = 1, so K = 0) with positive fourth-order correction. It departs about +0.53 mm from the base sphere at 18.4 mm, steepening the surface at the margin to control zonal spherical aberration. Combining aspherical and ED properties in one element eliminates the need for a separate spherical ED corrector, contributing to compact design.
 
 **L42 + L43 — Cemented Doublet (Jb), net f = +128.1 mm**
-L42 (Neg. Meniscus): nd = 1.83481, νd = 42.7 · S-LAH55 · fl = −101.1 mm
-L43 (Biconvex): nd = 1.59319, νd = 67.9 · 593679 fluorophosphate crown · fl = +56.3 mm
-L43 (nd = 1.59319, νd = 67.9) is a candidate for the second ED element in Nikon's specification. It sits in the fluorophosphate-crown region, but the patent does not publish partial-dispersion data and no exact public catalog match is asserted.
+L42 (Neg. Meniscus): nd = 1.83481, νd = 42.7 · S-LAH55 (Ohara catalog equivalent) · fl = −101.1 mm
+L43 (Biconvex): nd = 1.59319, νd = 67.9 · J-PSKH1 (Hikari catalog equivalent) · fl = +56.3 mm
+L43 (nd = 1.59319, νd = 67.9) is a candidate for the second ED element in Nikon's specification. It matches Hikari's J-PSKH1 phosphate crown exactly, but the patent does not publish partial-dispersion data or say which elements are ED.
 
 **L44 + L45 + L46 — Cemented Triplet (Tc), net f = +393.4 mm**
-L44 (Biconvex): nd = 1.49782, νd = 82.6 · **S-FPL51 / FCD1-class ED** · fl = +44.8 mm
-L45 (Biconcave): nd = 1.80518, νd = 25.5 · S-TIH6 · fl = −37.1 mm
-L46 (Pos. Meniscus, 1× asph): nd = 1.69350, νd = 53.3 · 694533 lanthanum crown · fl = +180.6 mm
+L44 (Biconvex): nd = 1.49782, νd = 82.6 · **J-FKH1 (Hikari catalog equivalent), S-FPL51-class ED** · fl = +44.8 mm
+L45 (Biconcave): nd = 1.80518, νd = 25.5 · J-SF6 (Hikari catalog equivalent) · fl = −37.1 mm
+L46 (Pos. Meniscus, 1× asph): nd = 1.69350, νd = 53.3 · LAC13 (Hoya catalog equivalent) · fl = +180.6 mm
 
-This is the system's **final chromatic and field corrector**. L44 is an ED fluorophosphate crown in the S-FPL51 / FCD1 region, not S-FPL53 Super-ED; νd = 82.6 provides primary secondary-spectrum correction. L45's dense flint provides complementary dispersion. L46 adds a third glass type and the aspherical rear surface (37A, K = 1.0) is the **final aberration corrector**, addressing residual field curvature and astigmatism.
+This is the system's **final chromatic and field corrector**. L44 matches Hikari's J-FKH1 fluorophosphate ED glass exactly. That is S-FPL51-class ED, not S-FPL53 Super-ED, and νd = 82.6 provides the main secondary-spectrum correction. L45's dense flint provides complementary dispersion. L46 adds a third glass type. Its aspherical rear surface (39A; spherical base, κ = 1 so K = 0; about +0.69 mm departure at 17.4 mm) is the **final aberration corrector**, addressing residual field curvature and astigmatism.
 
 ---
 
@@ -161,14 +163,14 @@ This is the system's **final chromatic and field corrector**. L44 is an ED fluor
 
 The design employs four aspherical surfaces across four elements:
 
-| Surface | Element | Position | K | A4 | Purpose |
-|---|---|---|---|---|---|
-| 2A | L11 rear | G1 | 0.0 | +2.215e−6 | Wide-angle distortion & SA correction |
-| 3A | L12r front (resin) | G1 | +1.0 | −3.834e−7 | Field curvature & astigmatism |
-| 29A | L41 front | G4 | +1.0 | +4.809e−6 | Zonal SA & coma (ASP/ED) |
-| 37A | L46 rear | G4 | +1.0 | +7.565e−6 | Residual field curvature & astigmatism |
+| Surface | Element | Position | Patent κ | K (stored) | A4 | Departure at stored rim | Purpose |
+|---|---|---|---|---|---|---|---|
+| 2A | L11 rear | G1 | 0 | −1 | +2.215e−6 | −1.46 mm at 23.8 mm | Wide-angle distortion & field correction |
+| 3A | L12r front (resin) | G1 | 1 | 0 | −3.834e−7 | −0.13 mm at 22.8 mm | Field curvature & astigmatism |
+| 31A | L41 front | G4 | 1 | 0 | +4.809e−6 | +0.53 mm at 18.4 mm | Zonal SA & coma (ASP/ED) |
+| 39A | L46 rear | G4 | 1 | 0 | +7.565e−6 | +0.69 mm at 17.4 mm | Residual field curvature & astigmatism |
 
-Surfaces 29A and 37A both have K = +1.0, meaning their base conic is an **oblate ellipsoid** ((1+K) = 2). An oblate base steepens the surface curvature at the margin relative to a sphere — the sag grows faster with height than the spherical baseline.
+The patent's Equation (a) writes the conic term as (1 − κ·y²/R²)^½, so κ = 1 is a sphere and the data file stores K = κ − 1. Three of the four aspheres therefore sit on spherical bases and are shaped entirely by their polynomial terms. The front asphere 2A sits on a paraboloid (κ = 0). Departures are measured from the base sphere of the same vertex radius, at the data file's estimated clear apertures, which the patent does not publish.
 
 ---
 
@@ -178,26 +180,26 @@ The design uses 16 distinct material types across its 20 elements (15 optical gl
 
 | Six-Digit Code | nd | νd | Count | Classification | Probable Catalog Match |
 |---|---|---|---|---|---|
-| M-NBF1 equivalent / 744495 | 1.74389 | 49.5 | 1 | Lanthanum crown | Coefficient-backed Hoya equivalent; patent supplier unspecified |
+| M-NBF1 equivalent / 744495 | 1.74389 | 49.5 | 1 | Lanthanum crown | Coefficient-backed Hoya equivalent (nearest, not exact); patent supplier unspecified |
 | 561/366 | 1.56093 | 36.6 | 1 | UV resin | Composite asph. resin |
-| 804/466 | 1.80400 | 46.6 | 2 | Lanthanum flint | S-LAH65V |
-| 2001/291 | 2.00100 | 29.1 | 1 | **HRI glass** | **S-LAH99 / TAFD55** |
-| 593/670 | 1.59349 | 67.0 | 4 | Fluorophosphate crown | 593670 code |
-| 904/313 | 1.90366 | 31.3 | 1 | Dense lanthanum flint | S-LAH95 |
-| 773/496 | 1.77250 | 49.6 | 1 | Lanthanum crown | S-LAH66 |
-| 816/466 | 1.81600 | 46.6 | 1 | Dense lanthanum crown | S-LAH59 |
-| 603/654 | 1.60300 | 65.4 | 1 | Phosphate crown | S-PHM53 |
-| 847/238 | 1.84666 | 23.8 | 1 | Dense flint | S-TIH53 |
-| 805/255 | 1.80518 | 25.5 | 2 | Dense flint | S-TIH6 |
-| 553/717 | 1.55332 | 71.7 | 1 | **ED fluorophosphate crown** | **553717 ASP/ED code** |
-| 835/427 | 1.83481 | 42.7 | 1 | Lanthanum crown | S-LAH55 |
-| 593/679 | 1.59319 | 67.9 | 1 | Fluorophosphate crown | 593679 code |
-| 498/826 | 1.49782 | 82.6 | 1 | **ED fluorophosphate crown** | **S-FPL51 / FCD1 class** |
-| 694/533 | 1.69350 | 53.3 | 1 | Lanthanum crown | 694533 code |
+| 804/466 | 1.80400 | 46.6 | 2 | Lanthanum flint | Hikari J-LASF015 |
+| 2001/291 | 2.00100 | 29.1 | 1 | **HRI glass** | **Hoya TAFD55 / Ohara S-LAH99** |
+| 593/670 | 1.59349 | 67.0 | 4 | Phosphate crown | Hikari J-PSKH4 |
+| 904/313 | 1.90366 | 31.3 | 1 | Dense lanthanum flint | Hikari J-LASFH13 |
+| 773/496 | 1.77250 | 49.6 | 1 | Lanthanum crown | Hikari J-LASF016 |
+| 816/466 | 1.81600 | 46.6 | 1 | Dense lanthanum crown | Hikari J-LASF09A |
+| 603/654 | 1.60300 | 65.4 | 1 | Phosphate crown | Hikari J-PSK03 |
+| 847/238 | 1.84666 | 23.8 | 1 | Dense flint | Hikari J-SF03 |
+| 805/255 | 1.80518 | 25.5 | 2 | Dense flint | Hikari J-SF6 |
+| 553/717 | 1.55332 | 71.7 | 1 | **ED fluorophosphate crown** | **Hoya M-FCD500 (mold-press ED)** |
+| 835/427 | 1.83481 | 42.7 | 1 | Lanthanum crown | Ohara S-LAH55 |
+| 593/679 | 1.59319 | 67.9 | 1 | Phosphate crown | Hikari J-PSKH1 |
+| 498/826 | 1.49782 | 82.6 | 1 | **ED fluorophosphate crown** | **Hikari J-FKH1 (S-FPL51 class)** |
+| 694/533 | 1.69350 | 53.3 | 1 | Lanthanum crown | Hoya LAC13 |
 
-Glass identifications are best-effort matches based on nd/νd pairs against the OHARA May 2023 pocket catalog. The six-digit codes (nd×1000 / νd×100 rounded) serve as manufacturer-agnostic identifiers.
+The patent lists only nd and νd, never glass names. The matches above are catalog equivalents with the same nd/νd, preferring Hikari (Nikon's usual glass supplier) where the repository catalog has an exact entry and Hoya or Ohara otherwise. The six-digit codes (nd×1000 / νd×10) serve as manufacturer-agnostic identifiers.
 
-The chromatic correction strategy relies on three tiers: the HRI element L13 (nd = 2.001) for monochromatic field flattening in G1, the ASP/ED element L41 (νd = 71.7) for combined aspherical + ED correction in G4, and the S-FPL51 / FCD1-class ED element L44 (νd = 82.6) in the rear triplet for secondary spectrum control.
+The chromatic correction strategy relies on three tiers: the HRI element L13 (nd = 2.001) for monochromatic field flattening in G1, the ASP/ED element L41 (νd = 71.7) for combined aspherical + ED correction in G4, and the J-FKH1 ED element L44 (νd = 82.6) in the rear triplet for secondary spectrum control.
 
 ---
 
@@ -205,7 +207,9 @@ The chromatic correction strategy relies on three tiers: the HRI element L13 (nd
 
 Focusing from infinity to close distance is performed by moving **G21 (5 elements: L21–L25)** rearward along the optical axis by 6.735 mm. This distance is constant across all three tabulated zoom positions, yielding imaging distances of 0.42 m (wide), 0.38 m (mid), and 0.40 m (tele). The mid-zoom minimum of 0.38 m matches the production lens's specified minimum focus distance.
 
-The inner-focus design keeps the front element (L11) and the rear group (G4) fixed during focusing, so the overall lens length does not change during focus and the front element does not rotate (permitting polarizer use). The air gap D16 between G21 and G22 absorbs the focus travel: at infinity D16 = 7.735 mm, decreasing to approximately 1.0 mm at close focus.
+The inner-focus design keeps the front element (L11) and the rear group (G4) fixed during focusing, so the overall lens length does not change during focus and the front element does not rotate (permitting polarizer use). The air gap D16 between G21 and G22 absorbs the focus travel: at infinity D16 = 7.735 mm, decreasing to exactly 1.000 mm at close focus, while D7 grows by the same 6.735 mm.
+
+The patent publishes only the travel and the imaging distance, not a close-focus gap table. The data file's close gaps are therefore calculated as D7 + 6.735 and D16 − 6.735. A paraxial trace of those gaps focuses at 418.3 / 381.0 / 396.6 mm object-to-image, matching the published 0.4183 / 0.3810 / 0.3966 m, and the viewer uses those per-station distances for its close-focus endpoint. Magnification at close focus is about −0.10 (wide), −0.22 (mid) and −0.29 (tele).
 
 ---
 
@@ -217,15 +221,17 @@ Zooming from wide (24.80 mm) to telephoto (67.85 mm) involves movement of all fo
 |---|---|---|---|---|---|
 | D7 | G1 → G21 | 48.95 | 10.93 | 1.90 | Contracts (zoom + focus) |
 | D16 | G21 → G22 | 7.74 | 7.74 | 7.74 | Fixed during zoom (focus only) |
-| D18+FC1 | G22 → STO | 3.00 | 19.13 | 30.64 | Expands (zoom only) |
+| D18 + FC1 | G22 → STO | 3.00 | 19.13 | 30.64 | Expands (zoom only) |
 | D20 | STO → G31 | 2.09 | 4.67 | 3.62 | Non-monotonic |
 | D26 | G31 → G32 | 1.25 | 1.25 | 1.25 | Fixed |
 | D30 | G32 → G4 | 17.69 | 7.68 | 1.49 | Contracts (zoom only) |
-| BFD | G4 → image | 41.04 | 48.52 | 55.69 | Expands (zoom only) |
+| D39 + D40 (BF) | G4 → image | 41.04 | 48.52 | 55.69 | Expands (zoom only) |
 
 Key observations:
 
-D7 (G1–G2 gap) contracts dramatically from 49 mm to under 2 mm — the primary zoom motion. D30 (G32–G4 gap) also contracts significantly, indicating G4 moves forward to contribute to telephoto magnification. D26 (G31–G32 gap within G3) remains constant at 1.25 mm — G31 and G32 move as a unit during zoom. D20 (stop–G3 gap) exhibits **non-monotonic behavior**, first expanding then partially contracting, indicating G3 reverses direction during the zoom stroke. D16 (G21–G22 gap within G2) remains constant at 7.735 mm during zoom (only during focusing does G21 separate from G22).
+D7 (G1–G2 gap) contracts dramatically from 49 mm to under 2 mm — the primary zoom motion. D30 (G32–G4 gap) also contracts significantly, indicating G4 moves forward to contribute to telephoto magnification. D26 (G31–G32 gap within G3) remains constant at 1.25 mm — G31 and G32 move as a unit during zoom. D16 (G21–G22 gap within G2) remains constant at 7.735 mm during zoom (only during focusing does G21 separate from G22).
+
+Because the stop, FC1 and FC2 do not move, the tabulated gaps give each group's position directly. Measured from the image plane, G1's front vertex sits at 220.25 / 198.42 / 200.83 mm and G3's front vertex at 103.12 / 100.59 / 101.57 mm. Both groups therefore move toward the image and then back toward the object, as ¶[0153] and the arrows in Fig. 1 describe. D20 (stop–G3 gap) is **non-monotonic** for the same reason. G2 (front vertex 144.99 → 161.18 → 172.61 mm) and G4 (69.82 → 77.30 → 84.47 mm) move steadily toward the object. The stop stays 105.2 mm from the image at every station, within the 0.02 mm variation of the published D40.
 
 ---
 
@@ -269,9 +275,21 @@ Expression (1) ensures that the composite focal length from G1 to the intermedia
 
 ## 11. Data File Construction Notes
 
-### Flare-Cut Diaphragm Handling
+### Flare-Cut Diaphragm Handling and Surface Labels
 
-The patent prescription includes two flare-cut diaphragms: FC1 (patent surface 19, d = 1.200 mm, between G22 and the aperture stop) and FC2 (patent surface 40, between G4 and the image plane). These are not optical elements and are omitted from the data file. Their air gap contributions are folded into adjacent surfaces: FC1's 1.200 mm is added to the L26 rear→STO gap (surface "18" d = patent D18 + 1.200), and FC2's gap is added to the BFD (surface "37A" d = patent D39 + D40).
+The patent prescription includes two flare-cut diaphragms: FC1 (patent surface 19, d = 1.200 mm, between G22 and the aperture stop) and FC2 (patent surface 40, between G4 and the image plane). These are not optical elements and are omitted from the data file. Their air gap contributions are folded into adjacent surfaces: FC1's 1.200 mm is added to the L26 rear→STO gap (surface "18" d = patent D18 + 1.200, labelled "D18 + FC1"), and FC2's gap is added to the last gap (surface "39A" d = patent D39 + D40, labelled "D39 + D40 (BF)"; the sum equals the patent's BF). Every other surface keeps its patent number: the stop is patent surface 20, and data surfaces 21–39A are patent surfaces 21–39.
+
+### Conic Convention
+
+Table 1's aspheric equation uses κ with κ = 1 for a sphere. The data file stores K = κ − 1: K = −1 for surface 2A and K = 0 for 3A, 31A and 39A.
+
+### Aperture Model
+
+The patent gives FNo 2.92 at all three stations but no iris diameters. Because the stop is fixed while the groups around it move, a constant f-number needs a larger iris at longer focal lengths. The data file uses the viewer's inferred model (`zoomApertureModel: "from-nominal-fno"`), which traces each station's f/2.92 entrance pupil to the stop. The resulting iris radii are 9.47 / 11.21 / 12.36 mm. These are calculated values, not patent data. The f-stop scale starts at the patent's f/2.92 and ends at the production lens's f/22.
+
+### Semi-Diameters
+
+The patent publishes no clear apertures. The data file's semi-diameters are estimates checked two ways: against an exact real-ray trace at FNo 2.92 and full image height (Y = 21.6 mm) at all three stations, and against the Fig. 1 cross-section (wide-angle row, about 0.147 mm per 300 dpi pixel). The front element (32.0 mm) follows the figure and clears the wide-angle chief ray, which needs 28.6 mm. L21 (17.8 mm) and the G3 elements (11.5–13.4 mm) follow the figure. L24's rear face and L25's front face (17.9 mm) are set by the telephoto axial beam, where their 1.64 mm air gap nearly closes at the rim. The rest of G1, L22–L26 and G4 are within about 15 % of the figure and keep their earlier values. The trace reproduces the patent's half-field angles (42.5° / 22.7° / 17.1–17.2°). Off-axis bundles are vignetted at the wide-angle corners, mostly by G3 and G4.
 
 ### Composite Aspherical Treatment
 
@@ -285,10 +303,10 @@ Six variable gaps are defined for the zoom lens format, classified as zoom-only,
 |---|---|---|---|
 | D7 | "7" | Zoom + focus | G21 moves +6.735 mm rearward during focus |
 | D16 | "16" | Focus only | Fixed during zoom at 7.735; decreases to 1.0 at close |
-| D18+FC1 | "18" | Zoom only | Includes FC1's 1.200 mm |
+| D18 + FC1 | "18" | Zoom only | Includes FC1's 1.200 mm |
 | D20 | "STO" | Zoom only | Non-monotonic across zoom range |
-| D30 | "28" | Zoom only | — |
-| BFD | "37A" | Zoom only | Includes FC2 gap |
+| D30 | "30" | Zoom only | — |
+| D39 + D40 (BF) | "39A" | Zoom only | Includes FC2 gap; equals patent BF |
 
 ---
 

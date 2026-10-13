@@ -5,15 +5,30 @@
  *
  * Extracted from LensDiagramPanel to isolate the computation pipeline
  * from rendering concerns.
+ *
+ * In patent-positions mode the hook resolves the requested sliders to the nearest source-published station before
+ * anything is computed, and returns the resolved values. Resolving here, in the same render that builds `L`, means
+ * a URL, a history entry, or a configuration switch that leaves the sliders off-station never produces an
+ * off-station frame, and no effect has to chase the state back onto a station.
  */
 
 import { useMemo, useRef } from "react";
-import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
+import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.js";
+import { wideOpenStopAtZoom } from "../../optics/apertureStop.js";
+import { fNumberAtStopdown } from "../../optics/aperture.js";
 import buildLens from "../../optics/buildLens.js";
 import { computeCardinalElementsAtState, type CardinalElements } from "../../optics/cardinalElements.js";
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
 import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
+import { prepareRuntimeState } from "../../optics/compat.js";
+import { nearestPublishedStation } from "../../optics/publishedStations.js";
 import {
+  computePerspectiveMovementViewportExtent,
+  createPerspectiveTraceContext,
+  type PerspectiveTraceContext,
+} from "../../optics/perspective/index.js";
+import {
+  anchorLayoutToCamera,
   computeAnalysisFieldGeometryAtState,
   doLayout,
   effectiveFNumber,
@@ -28,6 +43,8 @@ import type { FieldGeometryState } from "../../optics/optics.js";
 
 interface UseLensComputationParams {
   lensKey: string;
+  /** Converter composed onto the catalog lens before building; ignored when `runtimeLens` is supplied. */
+  teleconverterKey?: string | null;
   runtimeLens?: RuntimeLens;
   focusT: number;
   zoomT: number;
@@ -38,6 +55,8 @@ interface UseLensComputationParams {
   scaleRatio: number | null;
   panelId: string;
   includeCardinalExtents?: boolean;
+  /** Patent-positions mode: land on the nearest published station, wide open, aberration control neutral. */
+  snapToPublishedStations?: boolean;
 }
 
 interface VarReadout {
@@ -48,6 +67,11 @@ interface VarReadout {
 interface UseLensComputationResult {
   L: RuntimeLens | undefined;
   buildError: unknown;
+  /** Slider values the computation used: the requested ones, or the published station they resolved to. */
+  focusT: number;
+  zoomT: number;
+  aberrationT: number;
+  stopdownT: number;
   IMG_MM: number;
   zPos: number[];
   sx: (z: number) => number;
@@ -58,6 +82,7 @@ interface UseLensComputationResult {
   effectiveSC: number;
   movement: ResolvedLensMovement;
   movementTransform: LensMovementTransform;
+  perspectiveTraceContext: PerspectiveTraceContext | null;
   lensAxis: [[number, number], [number, number]] | null;
   shapes: ElementShape[];
   shapeError: unknown;
@@ -78,29 +103,41 @@ interface UseLensComputationResult {
 
 export default function useLensComputation({
   lensKey,
+  teleconverterKey = null,
   runtimeLens,
-  focusT,
-  zoomT,
-  aberrationT = 0,
-  stopdownT,
+  focusT: requestedFocusT,
+  zoomT: requestedZoomT,
+  aberrationT: requestedAberrationT = 0,
+  stopdownT: requestedStopdownT,
   shiftMm = 0,
   tiltDeg = 0,
   scaleRatio,
   panelId,
   includeCardinalExtents = false,
+  snapToPublishedStations = false,
 }: UseLensComputationParams): UseLensComputationResult {
   /* ── Build lens from catalog ── */
   const buildResult = useMemo((): { L: RuntimeLens; error?: undefined } | { L?: undefined; error: unknown } => {
     if (runtimeLens) return { L: runtimeLens };
     try {
-      return { L: buildLens(LENS_CATALOG[lensKey]) };
+      return { L: buildLens(resolveLensSystemData(lensKey, teleconverterKey)) };
     } catch (e) {
       return { error: e };
     }
-  }, [lensKey, runtimeLens]);
+  }, [lensKey, teleconverterKey, runtimeLens]);
 
   const L = buildResult.L;
   const buildError = buildResult.error;
+
+  /* ── Patent-positions resolution ── */
+  const station = useMemo(
+    () => (snapToPublishedStations && L ? nearestPublishedStation(L, requestedZoomT, requestedFocusT) : null),
+    [snapToPublishedStations, L, requestedZoomT, requestedFocusT],
+  );
+  const focusT = station ? station.focusT : requestedFocusT;
+  const zoomT = station ? station.zoomT : requestedZoomT;
+  const aberrationT = station ? 0 : requestedAberrationT;
+  const stopdownT = station ? 0 : requestedStopdownT;
 
   /* ── Layout ──
    * Compute surface z-positions with a fixed reference: infinity focus at the
@@ -108,22 +145,38 @@ export default function useLensComputation({
    * the current layout so the image plane stays at a fixed SVG position
    * regardless of focus or zoom changes. */
   const ref = useMemo(() => (L ? doLayout(0, 0, L) : null), [L]);
-  const IMG_MM = ref ? ref.imgZ : 0;
   const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L, aberrationT) : null), [focusT, zoomT, aberrationT, L]);
-  const dz = ref && cur ? IMG_MM - cur.imgZ : 0;
+  const cameraLayout = useMemo(() => (ref && cur ? anchorLayoutToCamera(ref, cur) : null), [ref, cur]);
+  const IMG_MM = cameraLayout ? cameraLayout.imgZ : 0;
   const zPosRef = useRef<number[]>([]);
   const zPos = useMemo((): number[] => {
-    const next = cur ? cur.z.map((v) => v + dz) : [];
+    const next = cameraLayout?.z ?? [];
     const prev = zPosRef.current;
     if (prev.length === next.length && next.every((v, i) => Math.abs(v - prev[i]) < 1e-9)) {
       return prev;
     }
     zPosRef.current = next;
     return next;
-  }, [cur, dz]);
+  }, [cameraLayout]);
 
   const movement = useMemo(() => clampLensMovement(L, { shiftMm, tiltDeg }), [L, shiftMm, tiltDeg]);
   const movementTransform = useMemo(() => createLensMovementTransform(IMG_MM, movement), [IMG_MM, movement]);
+  const preparedState = useMemo(
+    () => (L ? prepareRuntimeState(L, focusT, zoomT, aberrationT) : null),
+    [L, focusT, zoomT, aberrationT],
+  );
+  const perspectiveTraceContext = useMemo(
+    () =>
+      preparedState
+        ? createPerspectiveTraceContext({
+            preparedState,
+            cameraZPos: zPos,
+            movement: { shiftMm: movement.shiftMm, tiltDeg: movement.tiltDeg },
+            tiltPivot: movement.config?.tiltPivot,
+          })
+        : null,
+    [preparedState, zPos, movement],
+  );
   const lensAxis = useMemo(
     () => (movement.active && L && zPos.length > 0 ? movementTransform.axis(zPos[0] - L.rayLead, IMG_MM) : null),
     [L, IMG_MM, movement.active, movementTransform, zPos],
@@ -153,6 +206,28 @@ export default function useLensComputation({
     };
   }, [includeCardinalExtents, cardinalElements, L, zPos, IMG_MM]);
 
+  const movementViewportExtent = useMemo(
+    () =>
+      L
+        ? computePerspectiveMovementViewportExtent({
+            zPos,
+            maxSemiDiameterMm: L.maxSD,
+            imagePlaneZ: IMG_MM,
+            config: L.perspectiveControl,
+            movement,
+          })
+        : null,
+    [L, zPos, IMG_MM, movement],
+  );
+
+  const coordinateZExtent = useMemo(() => {
+    if (!cardinalZExtent && !movementViewportExtent) return null;
+    return {
+      min: Math.min(0, IMG_MM, cardinalZExtent?.min ?? Infinity, movementViewportExtent?.z.min ?? Infinity),
+      max: Math.max(0, IMG_MM, cardinalZExtent?.max ?? -Infinity, movementViewportExtent?.z.max ?? -Infinity),
+    };
+  }, [cardinalZExtent, movementViewportExtent, IMG_MM]);
+
   /* ── Coordinate transforms (optical mm → SVG pixels) ── */
   const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(
     (): CoordinateTransforms =>
@@ -165,7 +240,8 @@ export default function useLensComputation({
             lensShiftFrac: L.lensShiftFrac,
             imgMM: IMG_MM,
             scaleRatio,
-            zExtent: cardinalZExtent,
+            zExtent: coordinateZExtent,
+            yExtent: movementViewportExtent?.y,
           })
         : {
             sx: (_z: number) => 0,
@@ -176,7 +252,7 @@ export default function useLensComputation({
             IX: 0,
             effectiveSC: 1,
           },
-    [L, IMG_MM, scaleRatio, cardinalZExtent],
+    [L, IMG_MM, scaleRatio, coordinateZExtent, movementViewportExtent],
   );
 
   /* ── Element shapes ── */
@@ -200,22 +276,23 @@ export default function useLensComputation({
   const stopZ = L ? zPos[L.stopIdx] : 0;
   /* Zoom-aware wide-open f-number (varies for variable-aperture zooms) */
   const currentFOPEN = L ? fopenAtZoom(zoomT, L) : 1;
-  /* Base formula uses L.FOPEN (widest across zoom range) so that a set
-   * f-number stays constant when zooming.  Clamp to currentFOPEN — the
-   * lens can't open wider than the zoom position allows. */
-  const rawFNumber = L ? L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT) : 1;
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = L ? (L.stopPhysSD * L.FOPEN) / fNumber : 0;
+  const fNumber = L ? fNumberAtStopdown(stopdownT, zoomT, L) : 1;
+  // Stop-down is relative to this zoom state: its wide-open marking retains the full iris.
+  const wideOpenStopSD = L ? wideOpenStopAtZoom(zoomT, L) : 0;
+  const currentPhysStopSD = L ? (wideOpenStopSD * currentFOPEN) / fNumber : 0;
   /* Use the current focus/zoom front-group magnification for pupil-dependent analyses. */
   const baseEPSD =
-    L && fieldGeometry ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
-  const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
+    L && fieldGeometry ? entrancePupilAtState(wideOpenStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
+  const currentEPSD = L ? (baseEPSD * currentFOPEN) / fNumber : 0;
 
   /* ── Variable gap readouts ── */
   const varReadouts: VarReadout[] = L
     ? L.varLabels.map(([idx, label]) => {
         const val = thick(idx, focusT, zoomT, L, aberrationT).toFixed(2);
-        return { label, val };
+        /* With modeled rear plates a lens gap can end at a plate rather than the sensor. That is the last lens
+           gap for an ordinary lens, and the host's last gap when a lens-side plate sits ahead of a teleconverter. */
+        const toPlate = L.S[idx + 1]?.synthetic !== undefined;
+        return { label: toPlate ? `${label} (to plate)` : label, val };
       })
     : [];
   const aberrationReadouts: VarReadout[] = L?.aberrationControl
@@ -242,6 +319,10 @@ export default function useLensComputation({
   return {
     L,
     buildError,
+    focusT,
+    zoomT,
+    aberrationT,
+    stopdownT,
     IMG_MM,
     zPos,
     sx,
@@ -252,6 +333,7 @@ export default function useLensComputation({
     effectiveSC,
     movement,
     movementTransform,
+    perspectiveTraceContext,
     lensAxis,
     shapes,
     shapeError,

@@ -18,12 +18,6 @@ Patent: US 2006/0072213 A1, Example 2
 - The glass audit retained only the two bonded resin layers as unmatched and recovered L41 with compatible OHARA `S-LAL12`; no new catalog row was required.
 - Normalized the display name to `NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6G IF-ED`.
 
-### Verification
-
-- `npm run audit:surface -- src/lens-data/nikon/NikonAFSDXVRZoomNikkor18200mmf3556GIFED.data.ts --scan 6A 15`
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAFSDXVRZoomNikkor18200mmf3556GIFED.data.ts`
-- Full repository checks are recorded in the integrating commit.
-
 ## 2026-08-18 — Screenshot follow-up
 
 - Rechecked the supplied wide-state rendering against Figure 5. The revised G2 envelope remains the closest validator-safe silhouette, and no further SD edit was supported.

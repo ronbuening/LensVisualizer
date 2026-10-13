@@ -9,7 +9,7 @@
 **Applicant:** Nikon Corporation  
 **Title:** Variable Power Optical System, Optical Equipment, and Method for Manufacturing Variable Power Optical System  
 **Embodiment analyzed:** Second embodiment, Example 1; Figures 7–9 and Tables 8–11  
-**Lens:** NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR
+**Lens:** NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR
 
 The primary data file transcribes the converter-out form of Example 1, while the supplemental optical-configuration file
 transcribes the complete converter-in form published for the same example. The correlation with the production lens is
@@ -96,8 +96,8 @@ standalone value does not describe the element's effective contribution inside t
 
 `nd = 1.43385, νd = 95.23. Glass: Fluorite (CaF2; production-correlation supported). f = +402.954 mm.`
 
-L11 is the most object-side collector. Its low index, very high Abbe number, and directly published
-`dPgF = +0.0649` make it the strongest documented anomalous-dispersion component in the prescription. Nikon's product
+L11 is the most object-side collector. Its low index, very high Abbe number, and directly published patent deviation
+`ΔθgF = +0.0649` make it the strongest documented anomalous-dispersion component in the prescription. Nikon's product
 specification independently states that the commercial lens contains one fluorite element, supporting the material-class
 correlation without proving that every detail of the patent element was carried into production.
 
@@ -105,9 +105,9 @@ correlation without proving that every detail of the patent element was carried 
 
 `nd = 1.49782, νd = 82.57. Glass: J-FKH1 class (HIKARI exact nd/νd pair). f = +218.169 mm.`
 
-L12 supplies more standalone positive power than L11 while retaining high dispersion control. Table 11 publishes
-`dPgF = +0.0391` for this element. HIKARI's J-FKH1 catalog coordinate reproduces the patent's `nd`/`νd` pair exactly; the
-class label does not establish Nikon's procurement source.
+L12 supplies more standalone positive power than L11 while retaining high dispersion control. Table 11 publishes the
+patent's deviation `ΔθgF = +0.0391` for this element. HIKARI's J-FKH1 catalog coordinate reproduces the patent's
+`nd`/`νd` pair exactly; the class label does not establish Nikon's procurement source.
 
 #### L13 — Biconcave Negative
 
@@ -244,7 +244,8 @@ establish the converging beam in which Gx is inserted.
 `L410: nd = 1.62730, νd = 37.62. Glass: 627376 flint class (catalog unresolved). f = +105.926 mm.`
 
 The pair's computed net EFL is +187.588989 mm. It receives the beam either directly from G4C or through the inserted
-converter and begins the final rear correction.
+converter and begins the final rear correction. The 1.5 mm slip-in filter FL1 follows it, with 6.5 mm of air on each
+side, before L411.
 
 #### L411 — Biconvex Positive
 
@@ -365,13 +366,17 @@ focus positions are solved separately because Gx changes the finite-conjugate re
 
 The modeled tele-end magnitudes, 0.2515x without Gx and 0.3529x with Gx, are close to Nikon's marketed 0.25x and 0.36x
 maximum reproduction ratios. They are reconstruction results, not production measurements. The small residuals reflect
-the rounded patent prescription, active plate normalization, and the imposed 2.0 m image-plane distance.
+the rounded patent prescription and the imposed 2.0 m image-plane distance. That distance was solved on the
+air-equivalent track; with FL1 and FL2 now at their printed physical positions, the image plane sits 1.192511 mm further
+back, so the same keyframes give a physical object-to-image distance of 2.001193 m with unchanged magnifications.
 
 ## Chromatic Correction Strategy
 
 Table 11 publishes anomalous-partial-dispersion deviations of +0.0649 for L11 and +0.0391 for L12. Both exceed the
-patent's condition (2-11) threshold of 0.025, and L11 exceeds the condition (2-12) threshold of 0.045. These values are
-stored directly as `dPgF` on the two elements.
+patent's condition (2-11) threshold of 0.025, and L11 exceeds the condition (2-12) threshold of 0.045. These are the
+patent's own `ΔθgF = θgF − (0.648327 − 0.0018024·νd)` (¶0155–0158), not the engine's deviation. Both data files, converter
+out and converter in, store the recovered `θgF` (0.5416 and 0.5386) minus the engine's normal line `0.6438 − 0.001682·νd`:
+`dPgF = +0.057961` for L11 and `+0.033686` for L12.
 
 G1A places the two documented low-dispersion positives ahead of L13 and the L14+L15 cemented pair. G2 and G3 each combine
 a high-Abbe member with a much lower-Abbe, high-index partner. G4 continues this pattern around the stop, VR group, and
@@ -402,8 +407,9 @@ the complete centered prescriptions; it is not a claim about final off-axis imag
 ## Conditional Expressions
 
 The second embodiment defines thirteen conditions. The table compares the patent's Table 11 value with a fresh
-calculation from the normalized converter-out TypeScript arrays. The small difference in `Dc/Σ4` results from removing FL1
-and retaining its d-line air-equivalent propagation.
+calculation from the converter-out TypeScript arrays, which carry FL1 at its printed physical thickness. The two `ΔθgF`
+rows are the patent's own deviation; their active-model figures convert the stored engine-line `dPgF` back to the
+patent's line.
 
 | Condition | Patent bound | Table 11 | Active model | Result |
 | --- | --- | ---: | ---: | --- |
@@ -415,7 +421,7 @@ and retaining its d-line air-equivalent propagation.
 | `(−f1B)/f1` | `0.40 < x < 1.00` | 0.672 | 0.672094 | Pass |
 | `Σ1/L1` | `0.30 < x < 1.30` | 0.525 | 0.525024 | Pass |
 | `f1C/f1` | `0.70 < x < 1.65` | 1.329 | 1.329132 | Pass |
-| `Dc/Σ4` | `0.15 < x < 0.50` | 0.352 | 0.353044 | Pass |
+| `Dc/Σ4` | `0.15 < x < 0.50` | 0.352 | 0.351505 | Pass |
 | `Dc/f4` | `0.02 < x < 0.50` | 0.182 | 0.181819 | Pass |
 | G1A positive-element `ΔθgF` | `≥ 0.025` | 0.0649; 0.0391 | 0.0649; 0.0391 | Pass |
 | Most object-side positive `ΔθgF` | `≥ 0.045` | 0.0649 | 0.0649 | Pass |
@@ -443,14 +449,14 @@ master remains fixed, but exact off-axis performance during VR motion lies outsi
 The final TypeScript arrays were recompiled and retraced before authoring. Sequential reduced-angle y–ν matrices and an
 independent ordinary-angle ABCD implementation agree to floating-point precision.
 
-| State | Patent EFL (mm) | Computed EFL (mm) | Computed BFL (mm) | Active track (mm) | Modeled f-number |
+| State | Patent EFL (mm) | Computed EFL (mm) | Air-equivalent BFL (mm) | Physical track (mm) | Modeled f-number |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| TC out, wide | 183.600 | 183.329809 | 52.841092 | 391.092489 | 4.080000 |
-| TC out, middle | 300.000 | 299.590409 | 52.862857 | 391.092489 | 4.081545 |
-| TC out, tele | 392.000 | 391.534943 | 52.890425 | 391.091489 | 4.083209 |
-| TC in, wide | 257.052 | 258.113085 | 53.281167 | 391.079489 | 5.744300 |
-| TC in, middle | 420.020 | 421.911480 | 53.324321 | 391.079489 | 5.748016 |
-| TC in, tele | 548.825 | 551.583895 | 53.379016 | 391.078489 | 5.752315 |
+| TC out, wide | 183.600 | 183.329809 | 52.841092 | 392.285000 | 4.080000 |
+| TC out, middle | 300.000 | 299.590409 | 52.862857 | 392.285000 | 4.081545 |
+| TC out, tele | 392.000 | 391.534943 | 52.890425 | 392.284000 | 4.083209 |
+| TC in, wide | 257.052 | 258.113085 | 53.281167 | 392.272000 | 5.744300 |
+| TC in, middle | 420.020 | 421.911480 | 53.324321 | 392.272000 | 5.748016 |
+| TC in, tele | 548.825 | 551.583895 | 53.379016 | 392.271000 | 5.752315 |
 
 The converter-out residuals are −0.15% or less. The converter-in residuals are approximately +0.41% to +0.50%. The
 rounded active arrays therefore compute conversion factors of 1.407917, 1.408294, and 1.408773 rather than exactly 1.4.
@@ -467,8 +473,16 @@ proportional checks. The smallest modeled element edge thickness is 0.056448 mm 
 model geometry, not manufacturing dimensions, bevel allowances, or assembly tolerances.
 
 Same-index bookkeeping planes 10, 16, 29, 30, 40, and 46 or 68 are removed or folded into adjacent spacings as applicable.
-Plane plates FL1 and FL2 are excluded, and their d-line propagation is retained through documented air-equivalent
-spacings. Sensor cover glass, the production protective plate, filters, and mechanical parts are not included.
+The patent's two optical filters are modeled at their printed positions (¶0254; Table 8 surfaces 50–51 and 57–58,
+Table 10 surfaces 62–63 and 69–70; both 1.51680 / 63.88). FL1 (1.5 mm) sits inside G4D between the L49+L410 pair and
+L411 with 6.5 mm of air on each side; this is the slip-in filter position, and Nikon's user's manual says a filter must
+be inserted in the slip-in holder, which ships with a 40.5 mm NC filter, so FL1 is drawn as a plane-parallel plate but
+not counted in `elementCount`. FL2 (2.0 mm) lies behind the last lens, 10.827 + 40.582 mm after L412 (the same-index
+dummy plane between them is folded out) and 0.114 mm (TC out) or 0.100 mm (TC in) ahead of the image plane; it is
+traced as a rear plate but not drawn. Physical tracks therefore equal the sums of the printed spacings (392.285 /
+392.272 mm at wide) and exceed the former air-equivalent tracks by 1.5(1 − 1/1.5168) + 2.0(1 − 1/1.5168) = 1.192511 mm;
+the patent's "TL (air-equivalent)" row converts FL2 only. The production protective glass and mechanical parts are not
+included.
 
 No uniform scaling is applied. Because both prescriptions are all-spherical, there is no patent conic convention or
 aspheric coefficient transformation to report.
@@ -480,10 +494,13 @@ natural pupil truncation rather than surface-geometry failures.
 ## Sources
 
 - WO 2019/131993 A1, *Variable Power Optical System, Optical Equipment, and Method for Manufacturing Variable Power
-  Optical System*, especially ¶0097–¶0100, Figures 7–9, and Tables 8–11.
+  Optical System*, especially ¶0097–¶0100, ¶0254, Figures 7–9, and Tables 8–11.
 - Nikon product specification:
   <https://imaging.nikon.com/imaging/lineup/lens/f-mount/zoom/telephotozoom/af-s_180-400mmf_4e_tc14_fl_ed_vr/>
 - Nikon product announcement, 9 January 2018:
   <https://www.nikon.com/company/news/2018/0109_lens_01.html>
+- Nikon, *AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR User's Manual*, slip-in filter holder section (a filter must be
+  inserted; the holder ships with a 40.5 mm NC filter):
+  <https://downloadcenter.nikonimglib.com/en/products/469/AF-S_NIKKOR_180-400mm_f_4E_TC14_FL_ED_VR.html>
 - OHARA optical-glass catalog and comparison table:
   <https://www.ohara-inc.co.jp/en/product/01000/> and <https://www.ohara-inc.co.jp/en/product/01002/>

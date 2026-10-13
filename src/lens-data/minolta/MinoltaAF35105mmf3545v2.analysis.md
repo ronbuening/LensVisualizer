@@ -84,7 +84,7 @@ L3 is a positive meniscus placed behind the front doublet. It strengthens Group 
 
 ### L4 - Strong Negative Meniscus, convex to object
 
-`nd = 1.77250, νd = 49.77. Glass: unresolved 773498 dense lanthanum-flint or crown/flint-boundary class. f = -24.1 mm.`
+`nd = 1.77250, νd = 49.77. Glass: 772498 lanthanum flint class (N-LAF34 / TAF1 catalog equivalent). f = -24.1 mm.`
 
 L4 is the first and strongest element in Group II, the negative variator group. Its short negative focal length is a major contributor to the zoom ratio. The high index permits strong negative power without forcing both surfaces to extremely small radii.
 
@@ -171,7 +171,7 @@ The patent gives refractive index and Abbe number, not glass trade names. Exact 
 | L1, L6 | 1.84666 / 23.83 | 847/238 | SF57-class dense flint; exact Schott SF57 match | High-index, high-dispersion flint for front achromat and Group II chromatic balance |
 | L2, L5, L8 | 1.67000 / 57.07 | 670571 | S-LAL52 (OHARA catalog-equivalent; supplier unspecified) | Coefficient-backed model for positive power and moderate negative corrective power |
 | L3 | 1.69680 / 56.47 | 697565 | H-LAK12 (CDGM equivalent to old LAL64 family) | Additional front-group positive power |
-| L4 | 1.77250 / 49.77 | 773498 | Unresolved dense lanthanum-flint or crown/flint-boundary class | Strong negative variator power |
+| L4 | 1.77250 / 49.77 | 772498 | Lanthanum flint class; N-LAF34 (Schott) / TAF1 (Hoya) catalog equivalent, Δνd −0.15 | Strong negative variator power |
 | L7 | 1.61800 / 63.39 | 618/634 | N-PSK53A-class high-Abbe crown; exact Schott N-PSK53A match | High-Abbe negative corrector at rear of Group II |
 | L9 | 1.51680 / 64.20 | 517/642 | BK7-family borosilicate crown | Low-dispersion positive member of the Group III-F doublet |
 | L10 | 1.80741 / 31.59 | 807316 | Unresolved high-index dense flint | Strong negative cemented partner to L9 |

@@ -273,8 +273,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.3,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.90444,
+  fstopSeries: [2.90444, 4, 5.6, 8, 11, 16],
   scFill: 0.62,
   yScFill: 0.48,
 } satisfies LensDataInput;

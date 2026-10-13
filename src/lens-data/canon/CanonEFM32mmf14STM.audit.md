@@ -34,11 +34,9 @@ Catalog version: local working tree, 2026-05-19
 - Updated the LF/LR doublet prose to include the newly stored derived dPgF values.
 - Updated the glass-identification table to note that L8 retains the unmatched 675348 code but now has a derived partial-dispersion value.
 
-### Verification
+### Report status
 
-- `npm run generate:glass-reports` - passed; the unresolved 675348 row remains in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
+- The unresolved 675348 row remains in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
 
 ## 2026-08-07 - Partial-dispersion ambiguity audit
 
@@ -48,3 +46,13 @@ Catalog version: local working tree, 2026-05-19
   approximately 0.54432. The patent does not identify the production supplier.
 - Retained the patent's structured `dPgF: 0.0157`; the dispersion cascade now preserves that authored evidence at
   the g-line even when a compatible catalog curve supplies C/d/F.
+
+## 2026-09-23 — Glass block modeled as `rearPlates`
+
+- Read Numerical Data 1 on PDF page 12 (printed page 12) at 110 dpi: surface 23 d = 8.52; surfaces 24–25 are one
+  plate, 1.75 mm, nd 1.54400, νd 60.0 (no θgF printed), labeled GB in FIG. 1; 25 → image is 1.55 mm. Surface 23 now
+  stores 8.52 mm, with `rearPlates` GB and gapAfter 1.55 mm. No catalog glass is compatible with 1.544 / 60.0, so
+  the plate carries no `glass` label and uses the Abbe-number estimate.
+- Paraxial check against the previous data: EFL identical; defocus changes by 0.00002 mm at both focus keyframes
+  (rounding in the old 11.2034). Physical track grows by 1.75 × (1 − 1/1.544) = 0.617 mm, to 68.91 mm; the patent's
+  68.28 mm lens length is the air-equivalent figure.

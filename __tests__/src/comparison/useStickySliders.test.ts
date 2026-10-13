@@ -4,27 +4,21 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import useStickySliders from "../../../src/comparison/useStickySliders.js";
 import { SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T } from "../../../src/comparison/comparisonReducer.js";
-import type { RuntimeLens } from "../../../src/types/optics.js";
 import type { LensAction } from "../../../src/types/state.js";
 import type { FocusPairResult, AperturePairResult } from "../../../src/comparison/comparisonSliders.js";
+import { computeAperturePair } from "../../../src/comparison/comparisonSliders.js";
+import type { RuntimeLens } from "../../../src/types/optics.js";
 import type { Dispatch } from "react";
 
 /* ── Mock helpers ── */
-
-function makeLens(closeFocusM: number, FOPEN: number): RuntimeLens {
-  return { closeFocusM, FOPEN } as unknown as RuntimeLens;
-}
 
 function makeFocusPair(commonPoint: number | null): FocusPairResult {
   return { commonPoint, focusTForA: 0, focusTForB: 0 } as unknown as FocusPairResult;
 }
 
 function makeAperturePair(commonPoint: number | null): AperturePairResult {
-  return { commonPoint, stopdownTForA: 0, stopdownTForB: 0 } as unknown as AperturePairResult;
+  return { commonPoint, stopdownTForA: 0, stopdownTForB: 0, limitingPanel: "b" } as unknown as AperturePairResult;
 }
-
-const LA = makeLens(0.3, 1.4);
-const LB = makeLens(0.5, 2.0);
 
 describe("useStickySliders", () => {
   let dispatch: Dispatch<LensAction>;
@@ -37,7 +31,7 @@ describe("useStickySliders", () => {
 
   it("dispatches SET_SHARED_FOCUS_T on focus change without sticky", () => {
     const focusPair = makeFocusPair(null);
-    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null, { LA, LB }));
+    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null));
     act(() => {
       result.current.handleSharedFocusChange(0.5);
     });
@@ -46,7 +40,7 @@ describe("useStickySliders", () => {
 
   it("dispatches SET_SHARED_STOPDOWN_T on stopdown change without sticky", () => {
     const aperturePair = makeAperturePair(null);
-    const { result } = renderHook(() => useStickySliders(dispatch, null, aperturePair, { LA, LB }));
+    const { result } = renderHook(() => useStickySliders(dispatch, null, aperturePair));
     act(() => {
       result.current.handleSharedStopdownChange(0.3);
     });
@@ -55,7 +49,7 @@ describe("useStickySliders", () => {
 
   it("sticks at focus common point when crossing it", () => {
     const focusPair = makeFocusPair(0.5);
-    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null, { LA, LB }));
+    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null));
 
     /* Move from below CP to above it — should stick */
     act(() => {
@@ -71,7 +65,7 @@ describe("useStickySliders", () => {
 
   it("stays stuck after crossing focus common point until pointerDown", () => {
     const focusPair = makeFocusPair(0.5);
-    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null, { LA, LB }));
+    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null));
 
     /* Cross the CP to get stuck */
     act(() => result.current.handleSharedFocusChange(0.3));
@@ -94,7 +88,7 @@ describe("useStickySliders", () => {
 
   it("sticks at aperture common point when crossing it", () => {
     const aperturePair = makeAperturePair(0.4);
-    const { result } = renderHook(() => useStickySliders(dispatch, null, aperturePair, { LA, LB }));
+    const { result } = renderHook(() => useStickySliders(dispatch, null, aperturePair));
 
     act(() => result.current.handleSharedStopdownChange(0.2));
     dispatchMock.mockClear();
@@ -103,9 +97,44 @@ describe("useStickySliders", () => {
     expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_STOPDOWN_T, value: 0.4 });
   });
 
+  it("flashes the current-zoom limiting lens after its aperture schedule crosses the other lens", () => {
+    const a = { FOPEN: 2, maxFstop: 16, isZoom: true, zoomFOPENs: [2, 8] } as unknown as RuntimeLens;
+    const b = { FOPEN: 4, maxFstop: 16 } as unknown as RuntimeLens;
+    const { result, rerender } = renderHook(
+      ({ zoom }) => useStickySliders(dispatch, null, computeAperturePair(0, a, b, zoom, 0)),
+      { initialProps: { zoom: 0 } },
+    );
+    rerender({ zoom: 1 });
+    act(() => result.current.handleSharedStopdownChange(0.9));
+    expect(dispatchMock).toHaveBeenLastCalledWith({
+      type: SET_SHARED_STOPDOWN_T,
+      value: Math.log(8 / 2) / Math.log(16 / 2),
+    });
+    expect(result.current.flashPanel).toBe("a");
+  });
+
+  it("direct selections clear an existing detent and do not snap nearby values", () => {
+    const { result } = renderHook(() => useStickySliders(dispatch, makeFocusPair(0.5), makeAperturePair(0.5)));
+    act(() => result.current.handleSharedStopdownChange(0.7));
+    act(() => result.current.handleSharedStopdownChange(0.504, true));
+    expect(dispatchMock).toHaveBeenLastCalledWith({ type: SET_SHARED_STOPDOWN_T, value: 0.504 });
+    act(() => result.current.handleSharedFocusChange(0.7));
+    act(() => result.current.handleSharedFocusChange(0.504, true));
+    expect(dispatchMock).toHaveBeenLastCalledWith({ type: SET_SHARED_FOCUS_T, value: 0.504 });
+  });
+
+  it("starts a new drag from the displayed value after zoom or URL changes", () => {
+    const { result } = renderHook(() => useStickySliders(dispatch, makeFocusPair(0.5), makeAperturePair(0.5)));
+    act(() => result.current.handleFocusPointerDown(0.8));
+    act(() => result.current.handleSharedFocusChange(0.9));
+    expect(dispatchMock).toHaveBeenLastCalledWith({ type: SET_SHARED_FOCUS_T, value: 0.9 });
+    act(() => result.current.handleSharedFocusChange(0.4));
+    expect(dispatchMock).toHaveBeenLastCalledWith({ type: SET_SHARED_FOCUS_T, value: 0.5 });
+  });
+
   it("resetSticky clears stuck state", () => {
     const focusPair = makeFocusPair(0.5);
-    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null, { LA, LB }));
+    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null));
 
     /* Get stuck */
     act(() => result.current.handleSharedFocusChange(0.3));
@@ -122,7 +151,7 @@ describe("useStickySliders", () => {
   });
 
   it("dispatches the raw focus value (never NaN) when there is no focus pair", () => {
-    const { result } = renderHook(() => useStickySliders(dispatch, null, null, null));
+    const { result } = renderHook(() => useStickySliders(dispatch, null, null));
     act(() => {
       result.current.handleSharedFocusChange(0.42);
     });
@@ -130,7 +159,7 @@ describe("useStickySliders", () => {
   });
 
   it("dispatches the raw stopdown value (never NaN) when there is no aperture pair", () => {
-    const { result } = renderHook(() => useStickySliders(dispatch, null, null, null));
+    const { result } = renderHook(() => useStickySliders(dispatch, null, null));
     act(() => {
       result.current.handleSharedStopdownChange(0.37);
     });
@@ -140,7 +169,7 @@ describe("useStickySliders", () => {
   it("dispatches the raw value (never NaN) when the pair has a null commonPoint", () => {
     const focusPair = makeFocusPair(null);
     const aperturePair = makeAperturePair(null);
-    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, aperturePair, { LA, LB }));
+    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, aperturePair));
     act(() => {
       result.current.handleSharedFocusChange(0.42);
       result.current.handleSharedStopdownChange(0.37);
@@ -153,7 +182,7 @@ describe("useStickySliders", () => {
     vi.useFakeTimers();
     try {
       const focusPair = makeFocusPair(0.5);
-      const { result, unmount } = renderHook(() => useStickySliders(dispatch, focusPair, null, { LA, LB }));
+      const { result, unmount } = renderHook(() => useStickySliders(dispatch, focusPair, null));
 
       /* Cross the CP to trigger the 400ms flash timer */
       act(() => result.current.handleSharedFocusChange(0.3));
@@ -173,7 +202,7 @@ describe("useStickySliders", () => {
      * The slider should still dispatch normally without entering the stuck state.
      * Move well past the CP to avoid snapToCommon's snap range. */
     const focusPair = makeFocusPair(0.005);
-    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null, { LA, LB }));
+    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null));
 
     act(() => result.current.handleSharedFocusChange(0.001));
     dispatchMock.mockClear();

@@ -23,6 +23,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    ✓ Aperture stop and variable focus gaps                        ║
  * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF audit: JP2015041012A Example 1, paragraphs 0077–0080, matches
+ * every radius, gap, index and all six K/A4–A10 rows at native scale.
+ * Printed d13=20.03 mm precedes the image directly (no plate). EFL
+ * 35.948432 / BFL 20.500542 do not reproduce source 36.06 / 20.03 mm.
+ * Retain the source contradiction and +0.470542 mm offset; see audit.
  */
 
 const LENS_DATA = {
@@ -256,12 +262,14 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.35,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus — single negative element (L121/G2) moves object→image. Linear AF motor.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
+  nominalFno: 2.884,
   apertureBlades: 7,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.884, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

@@ -20,15 +20,3 @@ Patent: US 7,864,451 B2, First Numerical Example
 
 - No new patent line-index or partial-dispersion table was found.
 - E4 remains `apd: "inferred"` from the S-FPL51 catalog material and Canon's one-UD production description.
-
-### Phase 4 - Analysis sync
-
-- No analysis changes needed; the companion analysis already documents the patent match, SD conversion, focus reconstruction, and UD element treatment.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests).
-- `npm run typecheck` - passed before and after metadata regeneration.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).

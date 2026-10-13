@@ -15,7 +15,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Semi-diameters are estimated clear apertures, not patent-listed values. They
  * were constrained by paraxial marginal/chief-ray envelopes, positive element
  * edge thickness, the sd/|R| limit on the steep spherical front group surfaces,
- * and the narrow 0.05 mm air gap between surfaces 20 and 21.
+ * and the narrow 0.05 mm air gap between surfaces 20 and 21. Surface 1A was
+ * raised to pass the traced chief ray to the APS-C corner at 10.3 mm, as FIG. 9
+ * draws it (2026-09-24 field-coverage audit).
  */
 
 const LENS_DATA = {
@@ -263,7 +265,7 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1A", R: 15000.0, d: 3.5, nd: 1.583126, elemId: 1, sd: 17.0 },
+    { label: "1A", R: 15000.0, d: 3.5, nd: 1.583126, elemId: 1, sd: 25.0 },
     { label: "2", R: 18.867, d: 14.03, nd: 1.0, elemId: 0, sd: 16.8 },
     { label: "3", R: -226.498, d: 1.3, nd: 1.772499, elemId: 2, sd: 13.0 },
     { label: "4", R: 18.212, d: 0.06, nd: 1.52421, elemId: 3, sd: 13.0 },

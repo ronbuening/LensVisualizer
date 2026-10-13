@@ -24,4 +24,3 @@ Patent: JP 2004-101739 A, sole numerical embodiment
 
 - The patent includes condition text around front effective diameter and 67 mm-class sizing, but it does not publish a per-surface clear-aperture table.
 - Existing SDs remain inferred from the 67 mm filter target, paraxial envelope, aspheric slope, edge thickness, and zoom/focus clearance constraints. No SD edits were made.
-

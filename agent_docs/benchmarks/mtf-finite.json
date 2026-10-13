@@ -1,0 +1,205 @@
+{
+  "createdAt": "2026-10-07T19:00:45.383Z",
+  "commit": "359f74ea61cc80a479a2bcd2db43edd012456545",
+  "node": "v24.15.0",
+  "cpu": "Apple M4 Pro",
+  "method": "diffraction",
+  "spectrum": "reference",
+  "apertureScale": 0.25,
+  "focusT": 1,
+  "fieldFractions": [
+    0,
+    0.5,
+    1
+  ],
+  "rows": [
+    {
+      "key": "fujifilm-gf80-f17",
+      "maxGridSize": 32,
+      "support": "candidate",
+      "conjugate": {
+        "focusT": 1,
+        "zoomT": 0,
+        "objectDistanceMm": 576.6736,
+        "distanceReference": "first-surface",
+        "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
+      },
+      "medianMs": 99.87,
+      "geometry": {
+        "referenceHeightMm": 27.39,
+        "modeledEdgeHeightMm": 26.62160700835025,
+        "modeledEdgeAngleDeg": 17.717793361291065,
+        "chiefEdgeHeightMm": 25.06673029815515,
+        "chiefEdgeAngleDeg": 16.644795314416065,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.012015387961860746
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 13.695028203118042,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.0201071826854205
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": null,
+          "status": "unavailable",
+          "reason": "outside-modeled-field",
+          "gridSize": 0,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "fujifilm-gf80-f17",
+      "maxGridSize": 64,
+      "support": "candidate",
+      "conjugate": {
+        "focusT": 1,
+        "zoomT": 0,
+        "objectDistanceMm": 576.6736,
+        "distanceReference": "first-surface",
+        "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
+      },
+      "medianMs": 190.29,
+      "geometry": {
+        "referenceHeightMm": 27.39,
+        "modeledEdgeHeightMm": 26.62160700835025,
+        "modeledEdgeAngleDeg": 17.717793361291065,
+        "chiefEdgeHeightMm": 25.06673029815515,
+        "chiefEdgeAngleDeg": 16.644795314416065,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.004095620948640022
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 13.695028203118042,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.007850219879780296
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": null,
+          "status": "unavailable",
+          "reason": "outside-modeled-field",
+          "gridSize": 0,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "fujifilm-gf80-f17",
+      "maxGridSize": 128,
+      "support": "candidate",
+      "conjugate": {
+        "focusT": 1,
+        "zoomT": 0,
+        "objectDistanceMm": 576.6736,
+        "distanceReference": "first-surface",
+        "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
+      },
+      "medianMs": 186.4,
+      "geometry": {
+        "referenceHeightMm": 27.39,
+        "modeledEdgeHeightMm": 26.62160700835025,
+        "modeledEdgeAngleDeg": 17.717793361291065,
+        "chiefEdgeHeightMm": 25.06673029815515,
+        "chiefEdgeAngleDeg": 16.644795314416065,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.004095620948640022
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 13.695028203118042,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.007850219879780296
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": null,
+          "status": "unavailable",
+          "reason": "outside-modeled-field",
+          "gridSize": 0,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "fujifilm-gf80-f17",
+      "maxGridSize": 256,
+      "support": "candidate",
+      "conjugate": {
+        "focusT": 1,
+        "zoomT": 0,
+        "objectDistanceMm": 576.6736,
+        "distanceReference": "first-surface",
+        "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
+      },
+      "medianMs": 186.55,
+      "geometry": {
+        "referenceHeightMm": 27.39,
+        "modeledEdgeHeightMm": 26.62160700835025,
+        "modeledEdgeAngleDeg": 17.717793361291065,
+        "chiefEdgeHeightMm": 25.06673029815515,
+        "chiefEdgeAngleDeg": 16.644795314416065,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.004095620948640022
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 13.695028203118042,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.007850219879780296
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": null,
+          "status": "unavailable",
+          "reason": "outside-modeled-field",
+          "gridSize": 0,
+          "maxDelta": null
+        }
+      ]
+    }
+  ]
+}

@@ -18,7 +18,7 @@ export function assertFullGitHistory({ cwd, execFileImpl = execFileSync, allowFe
 
     if (isShallow === "true" && allowFetch) {
       try {
-        execFileImpl("git", ["fetch", "--unshallow"], {
+        execFileImpl("git", ["fetch", "--unshallow", "--quiet"], {
           cwd,
           encoding: "utf-8",
         });
@@ -434,6 +434,7 @@ export function buildRouteFreshness({
   mountIds = [],
   formatIds = [],
   authors = [],
+  teleconverters = [],
   makerDetailsFreshness,
   assigneeCorporateHistoryFreshness,
   fallbackDate,
@@ -461,6 +462,13 @@ export function buildRouteFreshness({
   routeFreshness["/patents"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/mounts"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/formats"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
+  /* No published converter means no /teleconverters section, so no route to date. */
+  if (teleconverters.length > 0) {
+    routeFreshness["/teleconverters"] = combineFreshnessEntries(
+      teleconverters.map((teleconverter) => teleconverter.freshness),
+      fallbackDate,
+    );
+  }
   routeFreshness["/articles"] = combineFreshnessEntries(allArticleFreshness, fallbackDate);
   routeFreshness["/updates"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/relationships"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
@@ -500,6 +508,16 @@ export function buildRouteFreshness({
     routeFreshness[`/formats/${formatId}`] = combineFreshnessEntries(formatLensFreshness, fallbackDate);
   }
 
+  /* A teleconverter page lists its host lenses, so a newly compatible host refreshes the page too. */
+  for (const teleconverter of teleconverters) {
+    const hostKeys = new Set(teleconverter.compatibleLensKeys);
+    const hostFreshness = lenses.filter((lens) => hostKeys.has(lens.key)).map((lens) => lens.freshness);
+    routeFreshness[`/teleconverters/${teleconverter.key}`] = combineFreshnessEntries(
+      [teleconverter.freshness, ...hostFreshness],
+      fallbackDate,
+    );
+  }
+
   for (const author of authors) {
     const authorLensKeys = new Set(author.lensKeys);
     const authorLensFreshness = lenses.filter((lens) => authorLensKeys.has(lens.key)).map((lens) => lens.freshness);
@@ -507,4 +525,40 @@ export function buildRouteFreshness({
   }
 
   return routeFreshness;
+}
+
+/** Project public display metadata without shipping Git identity or build-only route inventories. */
+export function projectClientMetadata(metadata) {
+  const publicFreshness = ({ publishedOn, lastModified }) => ({ publishedOn, lastModified });
+  const articleFields = [
+    "slug",
+    "title",
+    "summary",
+    "tag",
+    "series",
+    "seriesOrder",
+    "toc",
+    "publishedOn",
+    "lastModified",
+    "file",
+  ];
+  return {
+    lensFreshness: Object.fromEntries(
+      Object.entries(metadata.lensFreshness).map(([key, value]) => [
+        key,
+        { ...publicFreshness(value), publicationOrder: value.publicationOrder },
+      ]),
+    ),
+    routeFreshness: Object.fromEntries(
+      Object.entries(metadata.routeFreshness).map(([route, value]) => [route, publicFreshness(value)]),
+    ),
+    articles: metadata.articles.map((article) =>
+      Object.fromEntries(
+        articleFields.filter((field) => article[field] !== undefined).map((field) => [field, article[field]]),
+      ),
+    ),
+    makerSlugs: metadata.makerSlugs,
+    authors: metadata.authors,
+    assignees: metadata.assignees,
+  };
 }

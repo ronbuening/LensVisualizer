@@ -32,6 +32,7 @@ function routePriority(route) {
     route === "/patents" ||
     route === "/mounts" ||
     route === "/formats" ||
+    route === "/teleconverters" ||
     route === "/articles"
   )
     return "0.7";
@@ -39,6 +40,7 @@ function routePriority(route) {
     route.startsWith("/makers/") ||
     route.startsWith("/mounts/") ||
     route.startsWith("/formats/") ||
+    route.startsWith("/teleconverters/") ||
     route.startsWith("/articles/") ||
     route.startsWith("/authors/")
   ) {

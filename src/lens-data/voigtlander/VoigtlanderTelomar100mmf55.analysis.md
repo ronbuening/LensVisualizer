@@ -127,3 +127,10 @@ No sensor or film cover glass, filter, inactive dummy plane, shutter component, 
 1. Albrecht Wilhelm Tronnier, US 2,662,446 A, *Photographic teleobjective having a composite positive front part axially spaced from a composite negative rear part*, filed December 13, 1951, granted December 15, 1953; especially the drawings on page 1 and the Numerical Example and conditions on pages 3–5.
 2. Voigtländer A.G., *Prominent — A Milestone in Progress*, period brochure W 3115; pages 10–13 identify the Telomar 100mm f/5.5, the 24×36 mm Prominent format, five-element optical section, reflex housing, and proposed 150 mm interchangeable-element configuration.
 3. Voigtländer, *Telomar f/5.5 100 mm and 150 mm With Reflex Housing for the Voigtländer Prominent: Instructions for Use*; focusing and finder instructions on manual pages 4–6.
+
+
+## Production mount assignment
+
+The Prominent manual lists the Telomar telephoto with its dedicated reflex housing. The catalog mount denotes the complete Prominent-system installation; the Telomar does not attach like a bare standard 50mm lens. [Manufacturer source](https://butkus.org/chinon/voigtlander_pdf/prominent/voigtlander_prominent.pdf).
+
+`lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.

@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Nikon AI Zoom-Nikkor 50-135mm f/3.5S
+ * NIKON AI ZOOM-NIKKOR 50-135mm f/3.5 S
  *
  * Data source: US 4,497,547, Example 1 (Kiyoshi Hayashi / Nippon Kogaku K.K.).
  * Patent prescription: 16 elements / 13 groups; all-spherical; four-group positive/negative/negative/positive zoom.
@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-zoom-nikkor-50-135mm-f35s",
   maker: "Nikon",
-  name: "Nikon AI Zoom-Nikkor 50-135mm f/3.5S",
+  name: "NIKON AI ZOOM-NIKKOR 50-135mm f/3.5 S",
   subtitle: "US 4,497,547 Example 1 — Kiyoshi Hayashi / Nippon Kogaku",
   specs: [
     "16 elements / 13 groups",
@@ -318,6 +318,7 @@ const LENS_DATA = {
     "Front-group unit focus in production and patent text; patent close-focus spacings are not published, so this file models only the infinity-focus zoom states.",
   closeFocusM: 0.6,
   nominalFno: 3.5,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 7,
   apertureBladeRoundedness: 0.1,

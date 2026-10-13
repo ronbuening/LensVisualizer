@@ -1,10 +1,13 @@
 // @vitest-environment jsdom
 
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, renderHook, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import useStickySliders from "../../../src/comparison/useStickySliders.js";
 import SharedSlidersBar from "../../../src/comparison/SharedSlidersBar.js";
+import { buildSimplePositiveElementLens, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
 import themes from "../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
+import { computeAperturePair } from "../../../src/comparison/comparisonSliders.js";
 import type {
   AperturePairResult,
   FocusPairResult,
@@ -20,6 +23,7 @@ function lens(overrides: Partial<RuntimeLens> & Record<string, unknown> = {}): R
     maxFstop: 16,
     closeFocusM: 0.5,
     isZoom: false,
+    varByIdx: { 0: [1, 2] },
     fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
     ...overrides,
   } as unknown as RuntimeLens;
@@ -36,6 +40,9 @@ const focusPair: FocusPairResult = {
 const aperturePair: AperturePairResult = {
   stopdownA: 0.2,
   stopdownB: 0.4,
+  fNumberA: 2.1,
+  fNumberB: 2.2,
+  limitingPanel: "b",
   commonPoint: 0.35,
   widerFOPEN: 1.4,
   narrowerFOPEN: 2,
@@ -48,6 +55,9 @@ function renderSharedSliders({
   zoomPair = null,
   movementPair = null,
   sharedZoomT = 0.5,
+  sharedStopdownT = 0.3,
+  currentAperturePair = aperturePair,
+  isWide = true,
   sharedShiftMm = 0,
   sharedTiltDeg = 0,
   showEffectiveFocalLength = false,
@@ -73,6 +83,9 @@ function renderSharedSliders({
   zoomPair?: ZoomPairResult | null;
   movementPair?: MovementPairResult | null;
   sharedZoomT?: number;
+  sharedStopdownT?: number;
+  currentAperturePair?: AperturePairResult;
+  isWide?: boolean;
   sharedShiftMm?: number;
   sharedTiltDeg?: number;
   showEffectiveFocalLength?: boolean;
@@ -99,7 +112,7 @@ function renderSharedSliders({
         LA={LA}
         LB={LB}
         sharedFocusT={0.25}
-        sharedStopdownT={0.3}
+        sharedStopdownT={sharedStopdownT}
         sharedZoomT={sharedZoomT}
         sharedShiftMm={sharedShiftMm}
         sharedTiltDeg={sharedTiltDeg}
@@ -112,7 +125,7 @@ function renderSharedSliders({
         onAperturePointerDown={onAperturePointerDown}
         onSliderPointerUp={onSliderPointerUp}
         focusPair={focusPair}
-        aperturePair={aperturePair}
+        aperturePair={currentAperturePair}
         zoomPair={zoomPair}
         movementPair={movementPair}
         dynamicEflA={dynamicEflA}
@@ -125,7 +138,7 @@ function renderSharedSliders({
         onToggleEffectiveAperture={onToggleEffectiveAperture}
         onOpenGroupMovement={onOpenGroupMovement}
         theme={themes.dark}
-        isWide={true}
+        isWide={isWide}
       />,
     ),
     callbacks: {
@@ -146,6 +159,93 @@ function renderSharedSliders({
 
 describe("SharedSlidersBar", () => {
   afterEach(() => cleanup());
+
+  it("lets presets and keyboard changes pass a sticky limit while drags still stop", () => {
+    const dispatch = vi.fn();
+    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, aperturePair));
+    renderSharedSliders({
+      onSharedFocusChange: result.current.handleSharedFocusChange,
+      onSharedStopdownChange: result.current.handleSharedStopdownChange,
+      onFocusPointerDown: result.current.handleFocusPointerDown,
+      onAperturePointerDown: result.current.handleAperturePointerDown,
+    });
+    const slider = screen.getByRole("slider", { name: "FOCUS" });
+    fireEvent.pointerDown(slider);
+    fireEvent.change(slider, { target: { value: "0.7" } });
+    expect(dispatch).toHaveBeenLastCalledWith({ type: "SET_SHARED_FOCUS_T", value: 0.5 });
+    fireEvent.pointerUp(slider);
+    fireEvent.keyDown(slider, { key: "End" });
+    fireEvent.change(slider, { target: { value: "1" } });
+    expect(dispatch).toHaveBeenLastCalledWith({ type: "SET_SHARED_FOCUS_T", value: 1 });
+    for (const f of [4, 8, 16]) {
+      fireEvent.click(screen.getByRole("button", { name: `Set aperture to f/${f}` }));
+      expect(dispatch).toHaveBeenLastCalledWith({
+        type: "SET_SHARED_STOPDOWN_T",
+        value: Math.log(f / 1.4) / Math.log(16 / 1.4),
+      });
+    }
+  });
+
+  it.each([true, false])("labels unsupported focus and disables only all-static comparisons (wide: %s)", (isWide) => {
+    const fixed = buildSimplePositiveElementLens();
+    const modeled = buildVariableStopGapLens([1, 2]);
+    renderSharedSliders({ LA: fixed, LB: fixed, isWide });
+    expect((screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement).disabled).toBe(true);
+    expect(screen.getByText("A: Not modeled")).toBeTruthy();
+    expect(screen.getByText("B: Not modeled")).toBeTruthy();
+    cleanup();
+    renderSharedSliders({ LA: fixed, LB: modeled, isWide });
+    expect((screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement).disabled).toBe(false);
+    expect(screen.getByText("A: Not modeled")).toBeTruthy();
+    expect(screen.queryByText("B: Not modeled")).toBeNull();
+  });
+
+  it.each([true, false])("shows actual apertures independently of the effective toggle (wide layout: %s)", (isWide) => {
+    const LA = lens({ FOPEN: 2, isZoom: true, zoomFOPENs: [2, 7.2], zoomPositions: [50, 100], zoomEFLs: [50, 100] });
+    const LB = lens({ FOPEN: 4, isZoom: true, zoomFOPENs: [4, 9.18], zoomPositions: [50, 100], zoomEFLs: [50, 100] });
+    const sharedStopdownT = Math.log(8 / 2) / Math.log(16 / 2);
+    renderSharedSliders({
+      LA,
+      LB,
+      isWide,
+      sharedStopdownT,
+      currentAperturePair: computeAperturePair(sharedStopdownT, LA, LB, 1, 1),
+      zoomPair: { zoomA: 1, zoomB: 1, showZoom: true },
+      showEffectiveAperture: false,
+      effectiveFNumA: 8,
+      effectiveFNumB: 9.18,
+    });
+    expect(screen.getByText("Requested f/8.0")).toBeTruthy();
+    expect(screen.getByText("A: f/8.0")).toBeTruthy();
+    expect(screen.getByText("B: f/9.18")).toBeTruthy();
+    expect(screen.queryByText(/A eff\./)).toBeNull();
+  });
+
+  it("does not present a zoom limit as a close-focus effective-aperture correction", () => {
+    const LA = lens({ FOPEN: 2 });
+    const LB = lens({ FOPEN: 4 });
+    renderSharedSliders({
+      LA,
+      LB,
+      sharedStopdownT: 0,
+      currentAperturePair: computeAperturePair(0, LA, LB),
+      effectiveFNumA: 2,
+      effectiveFNumB: 4,
+      showEffectiveAperture: true,
+    });
+    expect(screen.getByText("B: f/4.0")).toBeTruthy();
+    expect(screen.queryByText(/A eff\./)).toBeNull();
+  });
+
+  it("shows one aperture when both lenses can reach the request", () => {
+    const LA = lens({ FOPEN: 2 });
+    const LB = lens({ FOPEN: 4 });
+    const sharedStopdownT = Math.log(11 / 2) / Math.log(16 / 2);
+    renderSharedSliders({ LA, LB, sharedStopdownT, currentAperturePair: computeAperturePair(sharedStopdownT, LA, LB) });
+    expect(screen.queryByText(/Requested f/)).toBeNull();
+    expect(screen.queryByText(/A: f\//)).toBeNull();
+    expect(screen.getAllByText("f/11").length).toBeGreaterThan(0);
+  });
 
   it("renders focus and aperture controls without zoom for two primes", () => {
     const { callbacks } = renderSharedSliders();
@@ -211,6 +311,8 @@ describe("SharedSlidersBar", () => {
 
     expect(screen.getByText("SHIFT")).toBeTruthy();
     expect(screen.getByText("TILT")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Reset shift to center" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Reset tilt to center" })).toBeTruthy();
     expect(screen.getAllByRole("slider")).toHaveLength(4);
 
     fireEvent.change(screen.getAllByRole("slider")[0], { target: { value: "-2" } });
@@ -222,6 +324,62 @@ describe("SharedSlidersBar", () => {
     fireEvent.change(screen.getAllByRole("slider")[1], { target: { value: "-0.1" } });
     expect(callbacks.onSharedShiftChange).toHaveBeenLastCalledWith(0);
     expect(callbacks.onSharedTiltChange).toHaveBeenLastCalledWith(0);
+  });
+
+  it("resets shared shift and tilt independently", () => {
+    const LA = lens({
+      name: "PC A",
+      perspectiveControl: { shiftRangeMm: [-12, 12], tiltRangeDeg: [-7.5, 7.5] },
+    });
+    const movementPair: MovementPairResult = {
+      showMovement: true,
+      shiftA: 4,
+      shiftB: 0,
+      tiltA: -3,
+      tiltB: 0,
+      shiftRangeMm: [-12, 12],
+      tiltRangeDeg: [-7.5, 7.5],
+      shiftStepMm: 0.1,
+      tiltStepDeg: 0.1,
+    };
+    const { callbacks } = renderSharedSliders({
+      LA,
+      movementPair,
+      sharedShiftMm: 4,
+      sharedTiltDeg: -3,
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset shift to center" }));
+    expect(callbacks.onSharedShiftChange).toHaveBeenCalledWith(0);
+    expect(callbacks.onSharedTiltChange).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset tilt to center" }));
+    expect(callbacks.onSharedTiltChange).toHaveBeenCalledWith(0);
+    expect(callbacks.onSliderPointerUp).toHaveBeenCalledTimes(2);
+  });
+
+  it("omits the tilt slider for shift-only perspective-control comparisons", () => {
+    const LA = lens({
+      name: "Shift-only PC",
+      perspectiveControl: { shiftRangeMm: [-11, 11], tiltRangeDeg: [0, 0] },
+    });
+    const movementPair: MovementPairResult = {
+      showMovement: true,
+      shiftA: 4,
+      shiftB: 0,
+      tiltA: 0,
+      tiltB: 0,
+      shiftRangeMm: [-11, 11],
+      tiltRangeDeg: [0, 0],
+      shiftStepMm: 0.1,
+      tiltStepDeg: 0.1,
+    };
+    renderSharedSliders({ LA, movementPair, sharedShiftMm: 4 });
+
+    expect(screen.getByText("SHIFT")).toBeTruthy();
+    expect(screen.queryByText("TILT")).toBeNull();
+    expect(screen.getByRole("button", { name: "Reset shift to center" })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Reset tilt to center" })).toBeNull();
   });
 
   it("renders dual-zoom union endpoints, marker positions, and quick f-stop callbacks", () => {
@@ -253,7 +411,7 @@ describe("SharedSlidersBar", () => {
 
     fireEvent.click(screen.getByText("f/4"));
 
-    expect(onSharedStopdownChange).toHaveBeenCalledWith(expect.any(Number));
+    expect(onSharedStopdownChange).toHaveBeenCalledWith(expect.any(Number), true);
     expect(onSliderPointerUp).toHaveBeenCalledTimes(1);
   });
 

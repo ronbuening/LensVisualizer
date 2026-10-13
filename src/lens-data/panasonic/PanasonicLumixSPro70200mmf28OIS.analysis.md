@@ -42,9 +42,10 @@ prescribed source normalization. [2]
 
 The patent's five 0.01 mm adhesive shells are not represented as generic cement elements. Each shell is collapsed into
 the downstream glass, preserving the external vertex positions and using the downstream element's index at the cemented
-junction. The parallel plate P is also omitted from the ordinary lens prescription. Its optical thickness is retained by
-replacing the physical rear sequence with an air-equivalent spacing of 33.4744936709 mm after surface 45. These are
-modeling normalizations, not corrections to the patent.
+junction. This is a modeling normalization, not a correction to the patent. The parallel plate P (Table 7 surfaces
+46–47, 2.1 mm, nd 1.51680, νd 64.2) is modeled physically in `rearPlates`: surface 45 keeps the printed 31.0 mm gap, and
+the plate is followed by the 1.09 mm BF of Table 9A. Every analysis traces the plate, but it is not drawn in the lens
+section. Its paraxial air equivalent is 31 + 2.1/1.51680 + 1.09 = 33.4744936709 mm after surface 45.
 
 No source radius, index, Abbe number, aspheric coefficient, or published zoom spacing is corrected. No scale factor or
 asphere-coefficient transformation is applied.
@@ -82,9 +83,10 @@ During zooming, G5 moves imageward to the middle state and then partly returns, 
 a fixed negative rear group that completes the relay to the image plane.
 
 The prescription is a telephoto zoom by focal-length category, but not a strict telephoto-form design under the project
-criterion `TL/EFL < 1`. At the tele state, the normalized air-equivalent track divided by EFL is 1.161945. The normalized
-Gaussian back focal distance from the last active vertex is 33.471741 mm, far below the 193.024882 mm EFL, so the design
-is not retrofocus under the criterion `BFD > EFL`.
+criterion `TL/EFL < 1`. At the tele state, the normalized physical track (224.9998 mm, including plate P) divided by EFL
+is 1.165652; the air-equivalent ratio is 1.161945. The normalized air-equivalent Gaussian back focal distance from the
+last active vertex is 33.471741 mm, far below the 193.024882 mm EFL, so the design is not retrofocus under the criterion
+`BFD > EFL`.
 
 ## Element-by-Element Analysis
 
@@ -275,8 +277,8 @@ power.
 `f = +77.1082 mm`.
 
 L22 partially offsets L21 but does not reverse the group sign; G7 remains negative at −81.848742 mm. Its rear surface is
-the last active refracting surface. The following physical plate in the patent is omitted, and the image plane is reached
-through the documented 33.4744936709 mm air-equivalent spacing.
+the last active refracting surface. It is followed by the patent's 31.0 mm air gap, the 2.1 mm parallel plate P
+(modeled in `rearPlates`, traced but not drawn), and the 1.09 mm BF to the image plane.
 
 ## Glass Identification and Selection
 
@@ -415,9 +417,11 @@ ABCD matrices. The normalized states are:
 | Middle | 120.016563673 mm | 2.894433760 | 224.284293671 mm | 33.461460762 mm |
 | Tele | 193.024881576 mm | 2.928545591 | 224.284293671 mm | 33.471741039 mm |
 
-The small difference between the fixed 33.4744936709 mm rear spacing and each Gaussian focus distance is the disclosed
-result of replacing the proprietary adhesive shells and rear plate with the normalized LensVisualizer model. It is not a
-correction to the patent table.
+The track and BFD columns are air-equivalent: plate P contributes 2.1/1.51680 mm. With the plate modeled physically in
+`rearPlates`, the physical track is 224.999900 mm at wide and 224.999800 mm at middle and tele, reproducing Table 9A's
+total lens length. The small difference between the 33.4744936709 mm air-equivalent rear spacing and each Gaussian focus
+distance is the disclosed result of replacing the proprietary adhesive shells with the normalized LensVisualizer model.
+It is not a correction to the patent table.
 
 Surface-by-surface Petzval summation using `φ/(n·n′)` gives `0.001173825349 mm⁻¹`, corresponding to a reciprocal magnitude
 of 851.915492 mm under the stated sign convention. The value describes the paraxial surface-power sum; it is not a direct
@@ -431,7 +435,7 @@ angle of 36.994770°, a minimum cross-gap clearance of 0.371128 mm, and a maximu
 junction.
 
 The stop location is source-published, but its diameter and all element semi-diameters are modeling inferences. The rear
-parallel plate is omitted with its optical effect retained in air-equivalent spacing. No dummy or mechanical surfaces are
+parallel plate is modeled in `rearPlates` with the printed thickness, index, Abbe number, and gaps. No dummy or mechanical surfaces are
 included. No close-focus trajectory, O.I.S. decenter, spectral line data, or scale transformation is invented.
 
 ## Sources

@@ -4,7 +4,7 @@ These notes were created while mapping imports, exports, and file relationships 
 
 ## Several files use deep relative imports
 
-- Evidence: ChromaticTab.tsx (8), DistortionTab.tsx (8), VignettingTab.tsx (7), OpticalSummaryTab.tsx (6), PupilAberrationTab.tsx (6), AberrationsPanel.tsx (5)
+- Evidence: ChromaticTab.tsx (8), DistortionTab.tsx (8), VignettingTab.tsx (7), MtfTab.tsx (6), OpticalSummaryTab.tsx (6), PupilAberrationTab.tsx (6)
 - Implementation overview: Prefer a local index module or existing public surface for repeated cross-folder imports. Where a domain already has a stable barrel, migrate callers to that surface instead of reaching through multiple parent directories.
 - Upstream considerations: Adding barrels can increase accidental public API area; document intended exports and avoid exposing internal helpers.
 - Downstream considerations: Changing import paths is mechanically simple but can mask circular dependencies, so re-run lint/typecheck and inspect bundle warnings if new barrels are introduced.

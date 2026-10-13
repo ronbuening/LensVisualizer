@@ -219,7 +219,7 @@ The prescription was re-entered from Example 1 and checked with an independent d
 
 The surface-by-surface Petzval sum is +0.007924 mm^-1, corresponding to a Petzval radius of approximately -126.2 mm under the sign convention used here. That is relatively gentle for a 7.2 mm ultra-wide-angle design and is consistent with the fixed rear field-correction doublet.
 
-The patent does not publish semi-diameter data. The data file therefore uses estimated clear apertures. The last-surface semi-diameter is anchored to Example 1 condition (10), DL/YM = 1.658; with YM = 10.815 mm, this corresponds to an effective full diameter of about 17.93 mm, or a semi-diameter of about 8.96 mm. Other semi-diameters are conservative rendering clearances constrained by edge thickness, gap sag, and element-diameter continuity.
+The patent does not publish semi-diameter data. The data file therefore uses estimated clear apertures. The last-surface semi-diameter is anchored to Example 1 condition (10), DL/YM = 1.658; with YM = 10.815 mm, this corresponds to an effective full diameter of about 17.93 mm, or a semi-diameter of about 8.96 mm. Other semi-diameters are conservative rendering clearances constrained by edge thickness, gap sag, and element-diameter continuity, except surfaces 1–8 and 21–26, which were raised so the real chief ray reaches the 10.815 mm image height at every zoom station without clipping.
 
 ## Sources
 

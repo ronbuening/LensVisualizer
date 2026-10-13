@@ -52,10 +52,18 @@ describe("loadPrefs", () => {
     expect(loadPrefs()).toEqual({});
   });
 
+  it("ignores rayTracksF saved before the v3 TRACKS FOCUS default", () => {
+    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ v: 2, rayTracksF: false, showOnAxis: false }));
+    const prefs = loadPrefs();
+    expect(prefs.rayTracksF).toBeUndefined();
+    expect(prefs.showOnAxis).toBe(false);
+  });
+
   it("loads boolean preferences", () => {
     mockLocalStorage.setItem(
       PREFS_KEY,
       JSON.stringify({
+        v: 3,
         dark: true,
         highContrast: false,
         showOnAxis: true,
@@ -131,6 +139,7 @@ describe("loadPrefs", () => {
         legendExpanded: false,
         abbeShowGlassType: false,
         showEffectiveFocalLength: true,
+        patentPositions: true,
       }),
     );
     const prefs = loadPrefs();
@@ -140,6 +149,10 @@ describe("loadPrefs", () => {
     expect(prefs.legendExpanded).toBe(false);
     expect(prefs.abbeShowGlassType).toBe(false);
     expect(prefs.showEffectiveFocalLength).toBe(true);
+    expect(prefs.patentPositions).toBe(true);
+
+    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ patentPositions: "yes" }));
+    expect(loadPrefs()).not.toHaveProperty("patentPositions");
   });
 
   it("ignores non-boolean values for collapsible panel fields", () => {

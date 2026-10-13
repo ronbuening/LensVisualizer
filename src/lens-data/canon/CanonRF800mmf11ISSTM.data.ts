@@ -32,8 +32,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ actual spherical rim slope, shared-gap intrusion, and comparison with     ║
  * ║ patent Fig. 2 and Canon's official optical block diagram. Outer off-axis  ║
  * ║ rays may vignette at the front element; no default off-axis ray first     ║
- * ║ clips at a cemented interface. A clean 600 dpi Fig. 2 row sets the E5     ║
- * ║ focus element to 16.1 mm.                                                  ║
+ * ║ clips at a cemented interface. A remeasured 600 dpi Fig. 2 optical rim    ║
+ * ║ sets the E5 focus element to an estimated 12.3 mm semi-diameter.          ║
  * ║                                                                            ║
  * ║ GLASS: the patent supplies only nd/νd and no vendor identities or line    ║
  * ║ indices. Elements retain their six-digit patent coordinates and identify ║
@@ -231,8 +231,8 @@ const LENS_DATA = {
     { label: "5", R: 105.769, d: 70.95, nd: 1.0, elemId: 0, sd: 31.5 },
     { label: "6", R: -53.038, d: 1.35, nd: 1.6968, elemId: 4, sd: 17.0 },
     { label: "7", R: -106.842, d: 38.42721463001324, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "8", R: 69.898, d: 2.4, nd: 1.48749, elemId: 5, sd: 16.1 },
-    { label: "9", R: 455.147, d: 18.90278536998676, nd: 1.0, elemId: 0, sd: 16.1 },
+    { label: "8", R: 69.898, d: 2.4, nd: 1.48749, elemId: 5, sd: 12.3 },
+    { label: "9", R: 455.147, d: 18.90278536998676, nd: 1.0, elemId: 0, sd: 12.3 },
     { label: "STO", R: 1e15, d: 6.44, nd: 1.0, elemId: 0, sd: 8.323960831362765 },
     { label: "11", R: -42.741, d: 1.0, nd: 1.90043, elemId: 6, sd: 9.6 },
     { label: "12", R: 42.741, d: 3.85, nd: 1.65412, elemId: 7, sd: 9.6 },
@@ -272,6 +272,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 6.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: the patent infinity row conflicts with its own cardinal data. The modeled infinity state conserves d7+d9 = 57.33 mm and solves the single L2 translation for EFL = 776.37 mm (d7 = 38.42721463001324 mm, d9 = 18.90278536998676 mm). L2 moves objectward toward close focus. The published near row 21.25/36.08 mm is retained and traces to about 6.014 m from the image plane; Canon specifies a 6.0 m production MFD.",
 

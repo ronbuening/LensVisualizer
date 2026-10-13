@@ -186,6 +186,8 @@ const LENS_DATA = {
   doublets: [],
 
   closeFocusM: 0.9,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED unit focus: the full optical assembly extends 10.70 mm; BF changes from 39.64 mm at infinity to 50.34 mm at the patent's ZD0 = 800 mm state.",
 

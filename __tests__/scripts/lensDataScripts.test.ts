@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import {
   MAKER_PREFIXES,
   collectLensData,
+  collectLensDataAsync,
   collectRootLensMovePlan,
   deriveMakerSlug,
   organizeRootLensFiles,
@@ -18,7 +19,10 @@ function createTempLensDataDir() {
   return { rootDir, lensDataDir };
 }
 
-function writeLensDataFile(filePath: string, { key, name, maker }: { key: string; name: string; maker?: string }) {
+function writeLensDataFile(
+  filePath: string,
+  { key, name, maker }: { key: string; name: string; maker?: string | null },
+) {
   writeFileSync(
     filePath,
     [
@@ -26,7 +30,7 @@ function writeLensDataFile(filePath: string, { key, name, maker }: { key: string
       "",
       "const LENS_DATA = {",
       `  key: "${key}",`,
-      maker ? `  maker: "${maker}",` : null,
+      maker === null ? "  maker: null," : maker ? `  maker: "${maker}",` : null,
       `  name: "${name}",`,
       "  surfaces: [],",
       "  elements: [],",
@@ -53,6 +57,18 @@ afterEach(() => {
 describe("lens-data scripts", () => {
   it("keeps generated runtime maker prefixes in sync with the script source", () => {
     expect(runtimeMakerPrefixes).toEqual(MAKER_PREFIXES);
+  });
+
+  it("preserves explicit unknown makers when organizing branded prescriptions", () => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    writeLensDataFile(join(lensDataDir, "Prototype.data.ts"), {
+      key: "prototype",
+      name: "CANON prototype",
+      maker: null,
+    });
+    expect(deriveMakerSlug("CANON prototype", null)).toBe("unattributed");
+    expect(collectRootLensMovePlan(lensDataDir)[0].makerSlug).toBe("unattributed");
   });
 
   it("derives canonical maker slugs from maker fields and fallback names", () => {
@@ -158,6 +174,84 @@ describe("lens-data scripts", () => {
     });
 
     expect(() => organizeRootLensFiles(lensDataDir, { log: () => undefined })).toThrow(/destination already exists/);
+  });
+
+  it("collects quoted TypeScript metadata keys in both build collectors", async () => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    const dataPath = join(lensDataDir, "Quoted.data.ts");
+    writeFileSync(
+      dataPath,
+      `const LENS_DATA = {
+      "key": "quoted-lens", "name": "CANON QUOTED", "maker": "Canon",
+      "lensMounts": ["canon-ef"], "imageFormat": "135-full-frame",
+      "publishedAt": "2026-10-03T01:00:00Z", "visible": false
+    };`,
+    );
+    const options = {
+      rootDir,
+      lensDataDir,
+      fallbackDate: "2026-10-03",
+      trackedLensRecordsByKey: {},
+      getFreshness: () => ({ publishedOn: "2026-10-03", lastModified: "2026-10-03" }),
+    };
+    const records = collectLensData(options);
+    expect(await collectLensDataAsync(options)).toEqual(records);
+    expect(records).toHaveLength(1);
+    expect(records[0]).toMatchObject({
+      key: "quoted-lens",
+      name: "CANON QUOTED",
+      makerSlug: "canon",
+      visible: false,
+      lensMountIds: ["canon-ef"],
+      imageFormatId: "135-full-frame",
+      freshness: { publishedAt: "2026-10-03T01:00:00.000Z" },
+    });
+  });
+
+  it("publishes replacement models consistently in both collectors without losing later modifications", async () => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    const dataPath = join(lensDataDir, "Replacement.data.ts");
+    const writePublication = (timestamp: string) =>
+      writeFileSync(
+        dataPath,
+        `const LENS_DATA = { key: "replacement", name: "TEST REPLACEMENT", publishedAt: "${timestamp}" };`,
+      );
+    writePublication("2026-09-14T12:06:25Z");
+    const options = {
+      rootDir,
+      lensDataDir,
+      fallbackDate: "2026-09-15",
+      trackedLensRecordsByKey: {},
+      getFreshness: () => ({
+        publishedOn: "2020-01-01",
+        publishedAt: "2020-01-01T00:00:00Z",
+        publishedCommit: "original",
+        lastModified: "2026-09-15",
+        lastModifiedAt: "2026-09-15T09:00:00Z",
+        lastModifiedCommit: "later",
+      }),
+    };
+    const sync = collectLensData(options);
+    expect(await collectLensDataAsync(options)).toEqual(sync);
+    expect(sync[0].freshness).toEqual({
+      publishedOn: "2026-09-14",
+      publishedAt: "2026-09-14T12:06:25.000Z",
+      lastModified: "2026-09-15",
+      lastModifiedAt: "2026-09-15T09:00:00Z",
+      lastModifiedCommit: "later",
+    });
+    const old = collectLensData({
+      ...options,
+      getFreshness: () => ({ publishedOn: "2020-01-01", lastModified: "2020-01-01" }),
+    });
+    expect(old[0].freshness.lastModified).toBe("2026-09-14");
+    for (const invalid of ["2026-09-14", "2026-02-30T00:00:00Z", "2026-09-14T12:00:00-04:00"]) {
+      writePublication(invalid);
+      expect(() => collectLensData(options)).toThrow(/Invalid lens publishedAt/);
+      await expect(collectLensDataAsync(options)).rejects.toThrow(/Invalid lens publishedAt/);
+    }
   });
 
   it("preserves original published dates for lenses moved before the rename commit exists", () => {

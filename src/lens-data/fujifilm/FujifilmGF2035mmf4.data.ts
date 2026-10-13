@@ -15,15 +15,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * The middle close-focus DD[7]/DD[11] values below are linearly interpolated between the wide and tele
  * focus travels only for the LensVisualizer focus slider. Infinity positions are patent-transcribed.
  *
- * Cover-glass handling: the patent lists a rear 3.20 mm, nd=1.51680 parallel plate plus 2.05 mm air.
- * The project data format excludes sensor/cover glass, so surface 25 folds this into an air-equivalent BFD:
- * 17.0778 + 3.20/1.51680 + 2.05 = 21.237504641 mm.
+ * Cover-glass handling: the patent lists a rear optical member PP (surfaces 26-27: 3.20 mm,
+ * nd=1.51680, vd=64.20, θgF=0.53430) followed by 2.05 mm air to the image. It is modeled in
+ * `rearPlates` (traced, not drawn); surface 25 keeps the patent's physical 17.0778 mm gap to the plate.
+ * Air-equivalent BFD: 17.0778 + 3.20/1.51680 + 2.05 = 21.2375 mm (patent Bf 21.24).
  *
  * Aspheres: surfaces 3A, 4A, 10A, 11A, 17A, 18A, 22A, and 23A store the exact
  * Example 10 Table 30 odd/even A4-A10 polynomials. Patent KA=1 maps to project K=0.
  *
  * Semi-diameters: only ED values for surfaces 8 and 23 are patent-listed (diameters 18.11 and 27.73 mm).
  * Other SDs are conservative renderer estimates checked for edge thickness and cross-gap sag clearance.
+ * Surfaces 1-4A and 24-25 were raised to pass the traced chief ray to the 44x33 corner that the patent's
+ * 2ω = 110.0°/87.6°/74.6° reaches at every station; 3A and 4A stop at the 2-3A and 4A-5 gap-intrusion
+ * limits (2026-09-24 field-coverage audit).
  */
 
 const LENS_DATA = {
@@ -233,10 +237,10 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 42.2962, d: 1.4, nd: 1.95906, elemId: 1, sd: 17.0 },
-    { label: "2", R: 21.1899, d: 6.3511, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "3A", R: 61.1798, d: 2.29, nd: 1.58313, elemId: 2, sd: 15.0 },
-    { label: "4A", R: 19.1309, d: 9.1788, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "1", R: 42.2962, d: 1.4, nd: 1.95906, elemId: 1, sd: 22.0 },
+    { label: "2", R: 21.1899, d: 6.3511, nd: 1.0, elemId: 0, sd: 17.8 },
+    { label: "3A", R: 61.1798, d: 2.29, nd: 1.58313, elemId: 2, sd: 17.4 },
+    { label: "4A", R: 19.1309, d: 9.1788, nd: 1.0, elemId: 0, sd: 14.3 },
     { label: "5", R: -56.2094, d: 1.21, nd: 1.497, elemId: 3, sd: 14.5 },
     { label: "6", R: 26.1773, d: 4.79, nd: 1.84667, elemId: 4, sd: 14.0 },
     { label: "7", R: 137.3349, d: 17.46, nd: 1.0, elemId: 0, sd: 14.0 },
@@ -256,8 +260,22 @@ const LENS_DATA = {
     { label: "21", R: 42.3986, d: 4.7645, nd: 1.0, elemId: 0, sd: 11.0 },
     { label: "22A", R: -45.8664, d: 1.5, nd: 1.6935, elemId: 13, sd: 13.4 },
     { label: "23A", R: -277.6916, d: 5.08, nd: 1.0, elemId: 0, sd: 13.865 },
-    { label: "24", R: -254.4443, d: 6.55, nd: 1.8707, elemId: 14, sd: 15.5 },
-    { label: "25", R: -45.2499, d: 21.2375046414, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "24", R: -254.4443, d: 6.55, nd: 1.8707, elemId: 14, sd: 21.0 },
+    { label: "25", R: -45.2499, d: 17.0778, nd: 1.0, elemId: 0, sd: 21.8 },
+  ],
+
+  /* ── Optical member PP (patent surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.00152,
+      gapAfterMm: 2.05,
+      source: "US 2022/0236544 A1, Example 10 Table 28 surfaces 26–27 (patent θgF 0.53430)",
+    },
   ],
 
   asph: {
@@ -408,11 +426,13 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.35,
+  // Source-tabulated focus rows differ by zoom station.
+  publishedStations: { focus: [[1], [], [1]] },
   focusDescription:
     "Inner focus by entire G2 (L21-L22). Patent Table 29 gives beta=-0.1 focus spacings at wide and tele; middle close-focus spacing is interpolated for the viewer.",
-  nominalFno: 4,
+  nominalFno: 4.11,
   maxFstop: 22,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [4.11, 5.6, 8, 11, 16, 22],
 
   scFill: 0.72,
   yScFill: 0.48,

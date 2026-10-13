@@ -27,15 +27,6 @@ Patent: US 2006/0209426 A1, Example 1
 
 - Updated G13, G21, G31, G32, source notes, and the glass selection summary.
 
-### Verification
-
-- `npm test -- dispersion` — passed.
-- `npm run typecheck` — passed.
-- `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
-- `npm run lint` — passed.
-- `npm run format:check` — passed.
-- `git diff --check` — passed.
-
 ## 2026-05-19 — Missing-Sellmeier queue follow-up
 
 ### Phase 1 — Glass corrections
@@ -59,14 +50,6 @@ Patent: US 2006/0209426 A1, Example 1
 ### Phase 4 — Analysis sync
 
 - Updated G12/G33 narratives, the glass-identification table, and the glass-reuse summary.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed, 131 test files / 1666 tests.
 
 ## 2026-06-24 - APD, high-index, and SD audit
 

@@ -219,6 +219,8 @@ const LENS_DATA = {
 
   /* ── UI / behavior ── */
   closeFocusM: 0.1,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus by L9. Variable gaps reproduce the patent's 1 m state; production MFD is 0.1 m.",
   nominalFno: 3.5,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],

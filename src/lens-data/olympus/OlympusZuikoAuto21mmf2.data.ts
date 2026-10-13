@@ -41,7 +41,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "olympus-zuiko-auto-w-21mm-f2",
   maker: "Olympus",
-  name: "OLYMPUS OM ZUIKO AUTO-W 21mm f/2",
+  name: "OLYMPUS ZUIKO AUTO-W 21mm f/2",
   subtitle: "US 4,210,388 EXAMPLE 1 — OLYMPUS / Y. IKEDA",
   specs: ["11 ELEMENTS / 9 GROUPS", "f ≈ 21 mm (marketed) / 28.5 mm (computed)", "F/2.0", "2ω = 92°", "ALL SPHERICAL"],
 

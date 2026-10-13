@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP 1964-025754 (特公昭39-25754)
+**Patent:** JP 1964-025754 B (特公昭39-25754)
 **Application Number:** 特願昭34-3734
 **Filed:** 1959-02-10
 **Published:** 1964-11-14
@@ -220,7 +220,7 @@ five-group, seven-element solution rather than the later 50 mm f/2 formula.
 
 ## Sources
 
-- JP 1964-025754 (特公昭39-25754), *Photographic lens*, Embodiment 1, original patent publication.
+- JP 1964-025754 B (特公昭39-25754), *Photographic lens*, Embodiment 1, original patent publication.
 - [Nikon, “NIKKOR — The Thousand and One Nights No.2”](https://imaging.nikon.com/imaging/information/story/0002/).
 - [Nikon, “Debut of Nikon F — Camera Chronicle”](https://imaging.nikon.com/imaging/information/chronicle/history-f/).
 - [OHARA optical-glass product and catalog resources](https://www.ohara-inc.co.jp/en/product/).

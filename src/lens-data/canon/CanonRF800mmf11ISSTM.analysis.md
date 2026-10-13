@@ -77,7 +77,7 @@ nd = 1.48749, νd = 70.2. Glass: `487702 patent coordinate; S-FSL5 catalog spect
 
 E5 is the complete L2 unit and is the only internal focusing element in Numerical Example 2. The patent specifies that L2 moves toward the object when focusing from infinity toward a near object (¶0036). Its single-element construction is also consistent with the patent's stated preference for reducing focus-unit mass (¶0033–¶0034).
 
-The modeled 16.1 mm semi-diameter follows the clean rim of E5 in the 600 dpi Figure 2 measurement rather than the smaller ray-envelope-only estimate. No patent dimension is implied.
+The modeled 12.3 mm semi-diameter follows a fresh optical-rim measurement of Figure 2 at 600 dpi. Both envelope and rim measurements give approximately 12.26 mm, corroborated by the roughly 120-pixel optical diameter at 0.20428 mm/pixel. This supersedes the earlier 16.1 mm estimate. The patent publishes no clear-aperture dimension, so this remains a figure-derived estimate. Before/after ray sampling found no change in aperture survival across the modeled field and focus states; the correction improves silhouette fidelity rather than establishing improved optical performance.
 
 The production lens uses a lead-screw STM focusing drive according to Canon. That motor specification is a manufacturer fact; the patent prescribes the optical movement but does not specify STM for Numerical Example 2.
 

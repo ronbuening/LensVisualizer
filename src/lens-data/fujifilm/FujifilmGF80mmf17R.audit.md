@@ -37,13 +37,8 @@ Catalog version: 88dde1c
 - Reframed the glass source note because the patent gives optical constants, not vendor glass names.
 - Kept the existing Example 1 identification and aspherical coefficient discussion; its S14 `A20` table already matched Patent Table 4.
 
-### Verification
+### Report status
 
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan` — passed; reports regenerated.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed (129 files, 1664 tests). React error-boundary tests print expected stack traces while passing.
 - Generated reports now show no GF80 catalog-mismatch or relabel-candidate rows. One unresolved GF80 entry remains: L31 / S16 `883392`, intentionally code-labeled because no current catalog glass matches Patent Table 1 nd=1.88300, vd=39.22.
 
 ## 2026-05-19 — Six-digit Sellmeier source recheck
@@ -60,3 +55,14 @@ Catalog version: 88dde1c
 
 - Corrected L11 from `S-NBH55 (OHARA)` to `S-LAH52Q (OHARA)`. S-LAH52Q exactly matches 1.79952 / 42.24; S-NBH55 is the distinct 1.80000 / 29.84 glass.
 - Synchronized the element narrative and glass summary.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1 on PDF page 18 (printed page 8) at 160 dpi: surface 22 d = 20.1247; surfaces 23–24 are the
+  parallel-plate optical member PP, 3.2000 mm, nd 1.51680, νd 64.20; surface 24 → Sim is 1.0500 mm. 20.1247 +
+  3.20/1.51680 + 1.05 = 23.2844 reproduces the legacy folded 23.2843 and Table 2 Bf 23.28.
+- Surface 22 now stores the patent's 20.1247 mm, with `rearPlates` PP (N-BK7, consistent with L33's 1.51680 glass;
+  `resolveCompatibleGlass` accepts 1.51680 / 64.20) and gapAfter 1.05 mm. `closeFocusM` 0.7 is the patent's quoted
+  object-to-image distance and was left unchanged.
+- Paraxial check against the previous data: EFL identical; defocus changes by 0.0001 mm at infinity and at 700 mm
+  (rounding in the old 23.2843). Physical track grows by 1.090 mm (3.20 × (1 − 1/1.51680)).

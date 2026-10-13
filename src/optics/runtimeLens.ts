@@ -47,6 +47,7 @@ import type {
 } from "../types/optics.js";
 import { ENABLE_UNIFORM_SCALING } from "../utils/featureFlags.js";
 import { diffractivePetzvalContribution } from "./math/diffractivePhase.js";
+import { expandRearPlates, lastLensSurfaceIndex } from "./prescription/rearPlates.js";
 
 /**
  * Paraxial ray trace through a surface array.
@@ -351,13 +352,16 @@ function hasFoldedOptics(data: LensData): boolean {
  * @returns       frozen runtime lens object (L)
  * @throws        if validation finds any issues
  */
-export default function buildLens(data: LensData): RuntimeLens {
-  const validationErrors = validateLensData(data as Record<string, any>);
+export default function buildLens(authoredData: LensData): RuntimeLens {
+  const validationErrors = validateLensData(authoredData as Record<string, any>);
   if (validationErrors.length > 0)
     throw new Error(
-      `Lens data "${data.key || "?"}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join("\n  • ")}`,
+      `Lens data "${authoredData.key || "?"}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join("\n  • ")}`,
     );
 
+  /* Rear plates become real traced surfaces here, before any derived constant, so EFL, pupils, field limits,
+   * prepared states and every analysis agree; synthetic plates are dropped only from drawn spans and lists. */
+  const data = expandRearPlates(authoredData);
   const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
   const N = S.length;
   const projection = resolveProjection(data);
@@ -366,6 +370,7 @@ export default function buildLens(data: LensData): RuntimeLens {
   const labelIdx = buildLabelIndex(S);
   const asphByIdx = buildAsphereIndex(data.asph, labelIdx);
   const varByIdx = buildVarIndex(data.var, labelIdx);
+  const focusPositions = Object.freeze([...(data.focusPositions ?? [0, 1])]);
   const aberrationControl = data.aberrationControl
     ? {
         label: data.aberrationControl.label,
@@ -384,7 +389,9 @@ export default function buildLens(data: LensData): RuntimeLens {
   const varLabels: [number, string][] = (data.varLabels || []).map(
     ([label, text]: [string, string]) => [labelIdx[label], text] as [number, string],
   );
-  const ES = buildElementSpans(S, data.elements);
+  const displayElements = data.elements.filter((element) => !element.synthetic);
+  const ES = buildElementSpans(S, displayElements);
+  const lastLensSurfaceIdx = lastLensSurfaceIndex(S);
 
   /* ── Per-surface dispersion data (for chromatic tracing) ── */
   const vdByIdx = buildVdIndex(S, data.elements);
@@ -417,7 +424,6 @@ export default function buildLens(data: LensData): RuntimeLens {
       S,
       asphByIdx,
       stopIdx,
-      clipMargin: data.clipMargin,
       opticalPath,
       imagePlane,
       isFoldedOptics: true,
@@ -483,7 +489,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     const tracingHalfField = halfField;
     const totalTrack = axialExtent;
 
-    const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
+    const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac } = data;
     const SC = (svgW * scFill) / totalTrack;
     let YSC: number;
     let effectiveSvgH: number;
@@ -523,7 +529,8 @@ export default function buildLens(data: LensData): RuntimeLens {
       S,
       N,
       ES,
-      elements: data.elements,
+      elements: displayElements,
+      lastLensSurfaceIdx,
       asphByIdx,
       varByIdx,
       vdByIdx,
@@ -557,7 +564,6 @@ export default function buildLens(data: LensData): RuntimeLens {
       maxRimSin,
       maxRimTan,
       gapSagFrac,
-      clipMargin,
       gridPitch,
       gridCount,
       lyDoublet,
@@ -578,7 +584,9 @@ export default function buildLens(data: LensData): RuntimeLens {
       offAxisFractions: data.offAxisFractions,
       offAxisHeights,
       closeFocusM: data.closeFocusM,
+      zoomCloseFocusM: data.zoomCloseFocusM,
       focusStep: data.focusStep,
+      focusPositions,
       focusDescription: data.focusDescription,
       maxFstop: data.maxFstop,
       apertureStep: data.apertureStep,
@@ -624,7 +632,9 @@ export default function buildLens(data: LensData): RuntimeLens {
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
   const nominalEPSD = apertureReferenceFocalLength / (2 * baseNomFno);
   const nomRealY = realTraceToStop(S, asphByIdx, nominalEPSD, 0, stopIdx);
-  if (!preserveAuthoredStopSD) {
+  if (data.zoomStopSemiDiameters) {
+    S[stopIdx].sd = data.zoomStopSemiDiameters[0];
+  } else if (!preserveAuthoredStopSD) {
     S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
   }
 
@@ -707,8 +717,8 @@ export default function buildLens(data: LensData): RuntimeLens {
    *  Find the maximum chief-ray angle (field angle) before any surface
    *  clips the ray.  Uses two basis rays (marginal hA and chief hB) to
    *  build a linear model of ray height vs field angle at each surface.
-   *  The minimum sd/|coefficient| across all surfaces gives the
-   *  vignetting-limited half-field angle.
+   *  The minimum sd/|coefficient| across all clipping surfaces gives the
+   *  vignetting-limited half-field angle (generated rear-plate rims never clip).
    */
   const hA = paraxialTrace(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
   const hB = paraxialTrace(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
@@ -717,7 +727,7 @@ export default function buildLens(data: LensData): RuntimeLens {
   const r = hB[stopIdx] / hA[stopIdx];
   let minU = Infinity;
   for (let i = 0; i < N; i++) {
-    if (i === stopIdx) continue;
+    if (i === stopIdx || S[i].clips === false) continue;
     const c = Math.abs(hB[i] - r * hA[i]);
     if (c > 1e-8) {
       const uMax = S[i].sd / c;
@@ -810,9 +820,10 @@ export default function buildLens(data: LensData): RuntimeLens {
     totalTrack = z[N - 1] + S[N - 1].d;
   }
   const imagePlane = resolveImagePlane(data, totalTrack);
-  const maxSD = Math.max(...S.map((s) => s.sd));
+  /* Synthetic rear plates carry generous non-clipping rims; keep them out of the diagram's vertical scale. */
+  const maxSD = Math.max(...S.filter((s) => !s.synthetic).map((s) => s.sd));
 
-  const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
+  const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac } = data;
   const SC = (svgW * scFill) / totalTrack;
   let YSC: number;
   let effectiveSvgH: number;
@@ -861,6 +872,12 @@ export default function buildLens(data: LensData): RuntimeLens {
    *  - zoomYRatios:   marginal ray height ratio at stop (for EP scaling)
    *  - zoomBs:        chief ray height at stop (for off-axis ray placement)
    */
+  /* A zoom's wide-open iris follows its station f-numbers unless the file publishes a schedule, declares one fixed
+   * iris, or the stop is a surface of drawn glass. */
+  const zoomStopSDs: number[] | null =
+    isZoom && (data.zoomStopSemiDiameters || (data.zoomApertureModel !== "fixed-iris" && !preserveAuthoredStopSD))
+      ? []
+      : null;
   let zoomEFLs: number[] | null = null,
     zoomEPs: number[] | null = null,
     zoomHalfFields: number[] | null = null,
@@ -882,7 +899,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     zoomXpZRelLastSurfs = [];
     zoomXpSDs = [];
     for (let zi = 0; zi < nz; zi++) {
-      const tmpS = buildStateSurfaces(S, varByIdx, true, 0, zoomIndexToT(zi, nz));
+      const tmpS = buildStateSurfaces(S, varByIdx, true, 0, zoomIndexToT(zi, nz), {}, 0, focusPositions);
 
       /* EFL — capture y and u at last surface for exit pupil computation */
       const zMargLast = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true });
@@ -896,7 +913,12 @@ export default function buildLens(data: LensData): RuntimeLens {
       const zApertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, zZoomT) ?? zEfl;
       const zNomEP = zApertureReferenceFocalLength / (2 * zNomFno);
       const zRealY = realTraceToStop(tmpS, asphByIdx, zNomEP, 0, stopIdx);
-      if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
+      const stationStopSD =
+        data.zoomStopSemiDiameters?.[zi] ??
+        Math.abs(isFinite(zRealY) && Math.abs(zRealY) > 1e-15 ? zRealY : zNomEP * epT.y);
+      if (data.zoomStopSemiDiameters) tmpS[stopIdx].sd = stationStopSD;
+      else if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
+      zoomStopSDs?.push(stationStopSD);
       zoomEPs.push(zNomEP);
       zoomYRatios.push(epT.y);
 
@@ -942,7 +964,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       const zr = Math.abs(zA[stopIdx]) > 1e-15 ? zB2[stopIdx] / zA[stopIdx] : r;
       let zMinU = Infinity;
       for (let j = 0; j < N; j++) {
-        if (j === stopIdx) continue;
+        if (j === stopIdx || tmpS[j].clips === false) continue;
         const coeff = Math.abs(zB2[j] - zr * zA[j]);
         if (coeff > 1e-8) {
           const uMax = tmpS[j].sd / coeff;
@@ -1002,7 +1024,8 @@ export default function buildLens(data: LensData): RuntimeLens {
     S,
     N,
     ES,
-    elements: data.elements,
+    elements: displayElements,
+    lastLensSurfaceIdx,
     asphByIdx,
     varByIdx,
     vdByIdx,
@@ -1023,7 +1046,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     apertureReferenceFocalLength,
     EP,
     B,
-    FOPEN,
+    FOPEN: zoomFOPENs ? Math.min(...zoomFOPENs) : FOPEN,
     halfField,
     tracingHalfField,
     petzvalSum,
@@ -1036,7 +1059,6 @@ export default function buildLens(data: LensData): RuntimeLens {
     maxRimSin,
     maxRimTan,
     gapSagFrac,
-    clipMargin,
     gridPitch,
     gridCount,
     lyDoublet,
@@ -1057,7 +1079,9 @@ export default function buildLens(data: LensData): RuntimeLens {
     offAxisFractions: data.offAxisFractions,
     offAxisHeights,
     closeFocusM: data.closeFocusM,
+    zoomCloseFocusM: data.zoomCloseFocusM,
     focusStep: data.focusStep,
+    focusPositions,
     focusDescription: data.focusDescription,
     maxFstop: data.maxFstop,
     apertureStep: data.apertureStep,
@@ -1077,6 +1101,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     zoomXpZRelLastSurfs,
     zoomXpSDs,
     zoomFOPENs,
+    zoomStopSDs,
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
     labelIdx,

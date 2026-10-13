@@ -119,7 +119,7 @@ L13 supplies the dominant negative power of B5. The complete B5 group is negativ
 
 nd = 1.91082, νd = 35.3. Glass: TAFD35 / TAFD35L class (HOYA). f = +33.8 mm.
 
-L14 is the single positive element of B6. It acts as a rear relay and field-shaping element before the sensor cover glass block. In the data file, the cover glass is excluded and its optical path is folded into the final back-focus distance after surface 28.
+L14 is the single positive element of B6. It acts as a rear relay and field-shaping element before the sensor cover glass block. In the data file, the cover glass block is modeled in `rearPlates` behind the patent d28 gap; it is traced by every analysis but not drawn.
 
 ## Glass Identification and Selection
 
@@ -198,25 +198,25 @@ Condition (1) is especially diagnostic of this design. R24 = +37.777 mm and R25 
 
 Patent surface 10 is an optically inert flat air-to-air reference surface with d = -0.10 mm. Negative thickness cannot be passed to the renderer, so the data file omits surface 10 and folds it into the preceding B2-B3 gap. The renderer gap labeled 9 is therefore d9 + d10: 22.01 / 10.44 / 0.25 mm rather than the patent's 22.11 / 10.54 / 0.35 mm followed by -0.10 mm.
 
-Patent surfaces 29 and 30 are the optical block immediately in front of the sensor. The data file excludes this cover glass and folds the glass path into an air-equivalent image-plane spacing after surface 28. The folded image-plane spacings are 7.742 / 12.572 / 13.852 mm, obtained from d28 + 1.55 / 1.51633 + 3.31, and correspond to the patent BF row of 7.75 / 12.57 / 13.86 mm. A separate marginal-ray calculation on the rounded published prescription gives Gaussian BFLs of 7.963 / 12.589 / 14.238 mm from surface 28. The data file follows the patent image-plane spacing rather than refocusing the rounded table.
+Patent surfaces 29 and 30 are the optical block immediately in front of the sensor. The data file models this block physically in `rearPlates` (1.55 mm, nd 1.51633, νd 64.1, S-BSL7 class), with the patent d28 = 3.41 / 8.24 / 9.52 mm before it and d30 = 3.31 mm after it. It is traced by every analysis but not drawn. Paraxially the stack equals an air-equivalent image-plane spacing of 7.742 / 12.572 / 13.852 mm, d28 + 1.55 / 1.51633 + 3.31, matching the patent BF row of 7.75 / 12.57 / 13.86 mm. Because the block is traced physically, the physical track is 0.528 mm longer than the air-equivalent track. A separate marginal-ray calculation on the rounded published prescription gives Gaussian BFLs of 7.963 / 12.589 / 14.238 mm from surface 28. The data file follows the patent image-plane spacing rather than refocusing the rounded table.
 
 The patent does not provide semi-diameters. Renderer semi-diameters were inferred from multi-state ray envelopes and then reduced only as needed to satisfy the project constraints: sd/|R| < 0.90, front/rear element semi-diameter ratio <= 1.25, signed cross-gap sag intrusion <= 90% of the air gap, and positive edge thickness. The tightest retained checks are the L2 rim edge thickness at about 0.48 mm, the L14 rim edge thickness at about 0.48 mm, the surface 5 to 6 gap at about 89.5% intrusion, the surface 18A to 19 gap at about 86.3%, and the surface 24 to 25A gap at about 89.5%.
 
 ## Verification Summary
 
-All load-bearing paraxial quantities were re-derived from the patent prescription using a y-nu ray trace. The trace treats surface 20 and surface 21 as a zero-air-gap contact pair, folds out the surface 10 negative reference spacing for renderer data only, and folds the cover glass into an air-equivalent final back focus for the data file.
+All load-bearing paraxial quantities were re-derived from the patent prescription using a y-nu ray trace. The trace treats surface 20 and surface 21 as a zero-air-gap contact pair, folds out the surface 10 negative reference spacing for renderer data only, and reduces the cover glass to its air-equivalent final back focus for the paraxial comparison.
 
 | Quantity | Computed from re-extracted prescription | Patent / source value | Result |
 |---|---:|---:|---|
 | Gaussian EFL, wide | 12.571 mm | Patent focal row 12.84 mm | Deliberate distinction; record both values. |
 | Gaussian EFL, middle | 22.807 mm | Patent focal row 22.90 mm | Close agreement. |
 | Gaussian EFL, tele | 62.196 mm | Patent focal row 60.72 mm | Deliberate distinction; record both values. |
-| Data-file folded image-plane gap, wide | 7.742 mm | Patent BF row 7.75 mm | Matches cover-glass folding. |
-| Data-file folded image-plane gap, middle | 12.572 mm | Patent BF row 12.57 mm | Matches cover-glass folding. |
-| Data-file folded image-plane gap, tele | 13.852 mm | Patent BF row 13.86 mm | Matches cover-glass folding. |
-| Marginal-ray Gaussian BFL from surface 28, wide | 7.963 mm | Folded patent image-plane gap 7.742 mm | Rounded-table residual +0.221 mm. |
-| Marginal-ray Gaussian BFL from surface 28, middle | 12.589 mm | Folded patent image-plane gap 12.572 mm | Rounded-table residual +0.017 mm. |
-| Marginal-ray Gaussian BFL from surface 28, tele | 14.238 mm | Folded patent image-plane gap 13.852 mm | Rounded-table residual +0.386 mm. |
+| Air-equivalent image-plane gap, wide | 7.742 mm | Patent BF row 7.75 mm | Matches the air-equivalent cover-glass path. |
+| Air-equivalent image-plane gap, middle | 12.572 mm | Patent BF row 12.57 mm | Matches the air-equivalent cover-glass path. |
+| Air-equivalent image-plane gap, tele | 13.852 mm | Patent BF row 13.86 mm | Matches the air-equivalent cover-glass path. |
+| Marginal-ray Gaussian BFL from surface 28, wide | 7.963 mm | Air-equivalent patent image-plane gap 7.742 mm | Rounded-table residual +0.221 mm. |
+| Marginal-ray Gaussian BFL from surface 28, middle | 12.589 mm | Air-equivalent patent image-plane gap 12.572 mm | Rounded-table residual +0.017 mm. |
+| Marginal-ray Gaussian BFL from surface 28, tele | 14.238 mm | Air-equivalent patent image-plane gap 13.852 mm | Rounded-table residual +0.386 mm. |
 | B1 group focal length | +59.406 mm | +59.41 mm | Matches. |
 | B2 group focal length | -12.765 mm | -12.77 mm | Matches. |
 | B3 group focal length | +27.735 mm | +27.73 mm | Matches. |
@@ -226,7 +226,7 @@ All load-bearing paraxial quantities were re-derived from the patent prescriptio
 | Surface-by-surface Petzval sum | +0.003088 mm^-1 | Not tabulated | Derived. |
 | Petzval radius | +323.8 mm | Not tabulated | Derived. |
 
-All six zoom-group focal lengths re-compute to the patent values within normal table rounding. The patent's focal-length row is retained as the zoom-position label set, while the Gaussian paraxial EFL is documented separately. The data file keeps the patent image-plane spacing after cover-glass folding; it does not shift the image plane to the marginal-ray focus of the rounded public table.
+All six zoom-group focal lengths re-compute to the patent values within normal table rounding. The patent's focal-length row is retained as the zoom-position label set, while the Gaussian paraxial EFL is documented separately. The data file keeps the patent image-plane spacing, with the cover glass traced physically; it does not shift the image plane to the marginal-ray focus of the rounded public table.
 
 ## Sources
 
@@ -235,3 +235,18 @@ All six zoom-group focal lengths re-compute to the patent values within normal t
 - Canon regional official PowerShot G1 X Mark II specifications: source for 14 elements in 11 groups, one double-sided UA aspherical lens, two double-sided aspherical lenses, 5 cm wide-angle closest focus, and 40 cm telephoto closest focus.
 - OHARA official glass catalog/search pages for S-NPH2, S-LAH66, S-LAL8, S-NPH3, S-FSL5, S-TIH6, and S-LAH60V.
 - HOYA optical glass catalog and molding-glass catalog data for TAFD35 / TAFD35L, M-TAF101, TAFD40, M-LAC130 / MP-LAC130, and M-TAFD305.
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Numerical Example 2 (PDF pp. 30–31) matches the stored
+prescription, including all six aspheres and the rear sensor block. At wide
+infinity, EFL 12.571053 differs from printed 12.84; air BFL 7.962884
+differs from printed BF 7.75 and rear reduced path 7.742205 mm.
+Paragraph 0085 explicitly calls BF paraxial. Preserve the source values
+and residual +0.220679 mm offset; this is not established designer best focus.
+
+## Image-format reference
+
+`imageFormat: "1.5-inch-type"` records the nominal 18.7 × 14.0 mm sensor envelope from [Canon’s Mark II sales sheet](https://device.report/m/a4df8e71c17310fa51e7f6b594febf20fec3401f37c55af516a88ccecd3977b1.pdf). The production camera crops this multi-aspect sensor for 3:2 and 4:3 recording. The metadata does not reconstruct those crops or replace the patent’s zoom-dependent image heights with sensor dimensions.
+
+At the modeled wide infinity station, the aperture-contained chief-ray edge reaches about 7.94 mm image height, 68% of the nominal 11.68 mm sensor-envelope corner. Surface 4 limits the edge, and the corner solve is unreachable in the present model. This is a limit of the authored optical model, not a measurement of production sensor cropping or camera performance.

@@ -15,3 +15,7 @@ Patent: JP 2017-068114 A, Example 1 / Figure 1.
 - Rechecked the supplied viewer screenshot against Example 1 / Figure 1. The 18 element forms, five cemented interfaces, single asphere on surface 3A, and stored semi-diameters remain source-consistent across the authored zoom/focus states; both focused geometry audits pass.
 - Added the patent identifiers `L11` through `L213` to the diagram. Removed displayed cemented-pair shorthands `D1`–`D5` because the patent uses `D1` and `D2` for variable air gaps; inspector badges identify each cemented pair by its member identities instead.
 - Reconfirmed the Nikon display designation and the romanized inventor names Tetsushi Miwa, Hiroshi Yamamoto, and Haruo Sato. The patent supplies Abbe data but no partial-dispersion evidence, so no APD flag was added.
+
+## 2026-09-23 — Inventor romanization
+
+- The JP 2017-068114 A front page names 三輪 哲史 at Nikon, the same Nikon inventor as the US front pages of US 2010/0220400 A1, US 2018/0031811 A1, and US 2021/0026133 A1, which all publish `Satoshi Miwa`. Normalized the inventor from Tetsushi Miwa to the corpus-canonical Satoshi Miwa in lens metadata and analysis prose, superseding the romanization recorded above.

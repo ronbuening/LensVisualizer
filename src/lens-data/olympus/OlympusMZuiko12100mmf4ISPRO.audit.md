@@ -25,3 +25,21 @@ Patent: JP2017-090535A, Numerical Example 1
 ### Analysis sync
 
 - Updated the L4 element paragraph and glass summary row.
+
+## 2026-09-24 — Surface 6A raised to pass the patent's wide field
+
+Numerical Example 1 prints 2ω = 83.05° at the wide end, f 12.36 mm (JP 2017-090535 A ¶0271, PDF p. 33). IH is defined
+(¶0268) but not printed for this example; the real chief ray (solved through the stop centre) at ω = 41.53° lands at
+9.76 mm, 90% of the Four Thirds corner, while the middle and tele fields reach the corner. So the wide end relies on
+in-camera distortion correction, and 9.76 mm is its design image height. The 12.5 mm rim of surface 6A clipped that
+chief ray, which crosses it at 12.81 mm, so the wide analysis field ended at 88.1% of the corner (9.53 mm). Surface 6A
+takes its floor + ~0.5 mm; its partner 7A (R 14.12, the concave rear of the L4 meniscus) carries 9.78 mm of that chief
+ray against its 10.2 mm rim and is unchanged.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 6A | 12.5 | 13.4 | wide chief ray at the printed ω crosses it at 12.81 mm + clearance; no turnover to 16.1 mm |
+
+The validator accepts the new value and the image-circle floor still reports nothing undersized. The wide analysis field
+now runs to 43.0° (10.20 mm, 94% of the corner), where 6A clips again; the middle and tele stations still reach 100%.
+The 6A departure at the new rim is +144.9 µm (was +91.1 µm at 12.5 mm); the analysis paragraph and table were updated.

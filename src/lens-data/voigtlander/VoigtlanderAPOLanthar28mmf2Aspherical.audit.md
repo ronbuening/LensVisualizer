@@ -1,5 +1,8 @@
 # VoigtlanderAPOLanthar28mmf2Aspherical — Stage 4 Independent Audit
 
+> Superseded numerical baseline: the 2026-09-25 audit below found two S17 transcription errors. Earlier calculations and source-precision trials used those errors; use the latest section and current analysis for corrected results.
+
+
 ## Job Card and Scope
 
 - **Patent:** JP 2026-98935 A / JP2026098935A
@@ -62,7 +65,7 @@ The fresh calculation used both height/reduced-angle (`y–ν`) and conventional
 | 14 |  | −34.531 | 0.30 | 0.30 | 1.00000 | — | — |
 | 15 |  | 36.135 | 4.92 | 4.92 | 1.90525 | 35.04 | −0.0005 |
 | 16 |  | −36.135 | 0.15 | 0.15 | 1.00000 | — | — |
-| 17 |  | 580.103 | 5.15 | 5.15 | 1.55032 | 75.50 | +0.0277 |
+| 17 (corrected 2026-09-25) |  | 580.403 | 5.45 | 5.45 | 1.55032 | 75.50 | +0.0277 |
 | 18 |  | −19.000 | 1.00 | 1.00 | 1.72047 | 34.71 | −0.0025 |
 | 19 |  | 161.504 | 5.64 | 5.64 | 1.00000 | — | — |
 | 20 | yes | −116.659 | 2.10 | 2.10 | 1.80610 | 40.73 | −0.0056 |
@@ -251,3 +254,61 @@ Local Stage 4 audit: **PASS**. Repository-specific integration checks remain for
 ## 2026-08-01 Repository Integration Gate
 
 This final integration gate supersedes the earlier environment-availability notes. The stored prescription passes the repository surface and image-circle audits; refreshed glass reports show 11/12 strict and 12/12 trusted chromatic coverage with zero catalog mismatches. Typecheck, format check, all 2,528 tests in 213 files, and the 990-route production build pass. Lint reports only the repository's three pre-existing type-assertion warnings and no errors.
+
+## 2026-09-25 — MTF image-plane census
+
+Source reopened: local `patents/JPA 2026098935-000000.pdf`, Example 2 Tables 5–8, PDF pp.14–17, Fig.4 p.24. Compared all 21 R/d rows, twelve nd/νd/ΔPgF tuples, both infinity/close spacing rows and all four K/A4–A14 blocks visually. Native scale and standard K; no plate is present.
+
+**Cause: transcription errors plus remaining source inconsistency.** Table 6 S17 clearly prints **R=580.403, D=5.45**, not 580.103/5.15 in the old data and earlier audit's extraction. Corrected both. Other source values match. Recomputed EFL 28.942108012 (source 28.84), BFL 18.144591739 (D21=18.21), and physical TL 71.55 (summary 71.19). Runtime offset **+0.372765 → -0.065408 mm**, still above the 0.049868 mm threshold. The source is not fully self-consistent and no additional single supported correction was found.
+
+Checked the small residual against Fig.4 and a 32-grid, d-line axial MTF diagnostic at 10/20/40 lp/mm: the retained plane is not the sampled best focus (best shift about -0.087 mm; score 0.434→0.964 before the minor stop recalibration). This does not establish designer intent or a whole-field optimum; preserve D21. Do not relabel the residual as proven best focus.
+
+Updated dependent EFL, L15f power, group/track/Petzval/close-conjugate calculations and the inferred stop calibration (7.864192220 mm to retain source f/2.06). The close object-to-image matrix B is now -0.647619051 mm, not +6.097174; its source endpoint is retained. **Earlier extraction, source-precision trials and quantitative conclusions in this historical audit are superseded wherever they depend on S17.** The erroneous source-table row below is corrected and labeled. Section E row deleted; changelog records the material data correction.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+- Patent formula: `ΔPgF = PgF − 0.64833 + 0.00180·νd` with `PgF = (ng − nF)/(nF − nC)` — Example 2 note ¶0061 (local
+  `patents/JPA 2026098935-000000.pdf` p. 15); the same definition closes claims 6–9 (pp. 3–4) and ¶0011–¶0014
+  (pp. 5–6). The patent's normal line is therefore `0.64833 − 0.00180·νd`; the engine's is `0.6438 − 0.001682·νd`.
+  The two differ by `0.00453 − 0.000118·νd`.
+- Printed partial dispersion: Table 6 (p. 15, an image; read on the page rendered at 200 dpi) has the columns R, D,
+  Nd, νd and ΔPgF. It prints the patent's deviation for all twelve glasses and no absolute PgF. ¶0063–¶0066
+  (pp. 16–17) repeat the L13f/L13r/L14/L15f/L15r figures in text.
+- All twelve elements stored the Table 6 deviation directly as `dPgF`. Each value was converted through the patent's
+  own line: `PgF = ΔPgF + 0.64833 − 0.00180·νd`, then `dPgF = PgF − (0.6438 − 0.001682·νd)`, using the stored `νd`.
+  Nine values moved by more than 0.0003 and were rewritten to six decimals; three were already within 0.0003 of the
+  engine-line value and stay exactly as stored.
+- Every element authors `nC`, `nF` and `ng`, so the trace uses those indices and `dPgF` is an annotation; no ray
+  result changes. The recovered PgF agrees with each element's own line indices and, where the label resolves, with
+  the catalog curve to within 0.0005 (largest gap: L10r, 0.600856 against 0.6013 from the authored indices).
+
+| Element | νd | Source figure (Table 6 ΔPgF, patent's line) | Recovered PgF | Stored before | Stored after |
+|---|---:|---:|---:|---:|---:|
+| L9 | 64.20 | +0.0031 | 0.535870 | 0.0031 | 0.000054 |
+| L10f | 40.78 | −0.0054 | 0.569526 | −0.0054 | −0.0054 (kept; engine-line value −0.005682) |
+| L10r | 28.43 | +0.0037 | 0.600856 | 0.0037 | 0.004875 |
+| L11 | 29.13 | +0.0036 | 0.599496 | 0.0036 | 0.004693 |
+| L12f | 37.37 | −0.0044 | 0.576664 | −0.0044 | −0.0044 (kept; engine-line value −0.004280) |
+| L12r | 25.15 | +0.0072 | 0.610260 | 0.0072 | 0.008762 |
+| L13f | 34.71 | −0.0025 | 0.583352 | −0.0025 | −0.002066 |
+| L13r | 59.17 | +0.0139 | 0.555724 | 0.0139 | 0.011448 |
+| L14 | 35.04 | −0.0005 | 0.584758 | −0.0005 | −0.000105 |
+| L15f | 75.50 | +0.0277 | 0.540130 | 0.0277 | 0.023321 |
+| L15r | 34.71 | −0.0025 | 0.583352 | −0.0025 | −0.002066 |
+| L16 | 40.73 | −0.0056 | 0.569416 | −0.0056 | −0.0056 (kept; engine-line value −0.005876) |
+
+- The nine rewritten `apdNote` strings now quote the patent's ΔPgF, the patent's line, the implied PgF and the
+  runtime value. The data-file header replaces "Patent dPgF is retained directly" with a note that `dPgF` is PgF
+  minus the engine line and names the patent's formula. `nd`, `νd`, `nC`/`nF`/`ng`, glass labels and `apd` tags are
+  unchanged; the file still builds and validates.
+- Left: L10f (−0.0054), L12f (−0.0044) and L16 (−0.0056). The line gap at their Abbe numbers is 0.000282, 0.000120
+  and 0.000276, under the 0.0003 keep-as-is tolerance, so the printed four-decimal figure stands and their `apdNote`
+  strings are untouched. L16's label does not resolve to a catalog curve, which does not matter here because the
+  patent prints its deviation.
+- Analysis: the conditional-expression table keeps the patent's ΔPgF in rows 10, 13, 16, 17 and 19, now labelled
+  "(patent)" with a sentence naming the patent's formula, and the element notes still quote the patent's ΔPgF. The
+  four statements that said the file stores or retains the patent's ΔPgF were corrected, the glass section states
+  both lines, and the glass table column is headed "Patent ΔPgF". Statements in earlier sections of this log that
+  the patent `ΔPgF` values are stored unchanged are superseded by this section.

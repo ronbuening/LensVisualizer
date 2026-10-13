@@ -74,7 +74,7 @@ flowchart LR
 - Direct source files: 12
 - Direct subfolders: 0
 - Main outbound areas: src/types (10), src/utils/content (8), src/utils/style (8), package:react (6), package:react-router (6), src/utils/seo (4), src/utils/catalog (3), same folder (2), +2 more
-- External consumers: src/components/controls, src/components/layout, src/components/relationshipMap, src/components/search, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/HomePage.tsx, +7 more
+- External consumers: src/components/controls, src/components/layout, src/components/relationshipMap, src/components/search, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/HomePage.tsx, +8 more
 
 ## Files
 
@@ -84,11 +84,11 @@ flowchart LR
 | `ArticleList.tsx` | React component module | package:react-router, same folder, src/types, src/utils/content | src/pages/HomePage.tsx | default, ArticleList |
 | `ArticleTOC.tsx` | React component module | src/utils/style (2), package:react, src/components/markdown, src/types, src/utils/useMediaQuery.ts | src/pages/ArticlePage.tsx | TOCHeading, ArticleTOCProps, ARTICLE_SCROLL_MARGIN_TOP, TOC_OBSERVER_THRESHOLDS, TOC_OBSERVER_BOTTOM_ROOT_MARGIN, extractTOCHeadings, resolveActiveHeadingId, default, +1 more |
 | `ChangelogList.tsx` | React component module | src/utils/content (3), src/types, src/utils/style | src/pages/UpdatesPage.tsx | default, ChangelogList |
-| `InventorLinks.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/catalog | src/components/controls, src/pages/AuthorPage.tsx, src/pages/PatentsIndexPage.tsx | default, InventorLinks |
-| `LensEntryLink.tsx` | React component module | package:react, package:react-router, src/types, src/utils/seo, src/utils/style | src/components/relationshipMap, src/components/search, src/pages/AuthorPage.tsx, src/pages/lensIndex, src/pages/MakerPage.tsx, +1 more | default, LensEntryLink |
+| `InventorLinks.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/catalog | src/components/controls, src/pages/AuthorPage.tsx, src/pages/PatentsIndexPage.tsx, src/pages/TeleconverterPage.tsx | default, InventorLinks |
+| `LensEntryLink.tsx` | React component module | package:react, package:react-router, src/types, src/utils/seo, src/utils/style | src/components/relationshipMap (2), src/components/search, src/pages/AuthorPage.tsx, src/pages/lensIndex, src/pages/MakerPage.tsx, +2 more | default, LensEntryLink |
 | `LensIdentityRelations.tsx` | React component module | src/types (2), src/utils/catalog | src/components/controls, src/components/layout, src/pages/LensPage.tsx | default, LensIdentityRelations |
 | `LinkListSidebar.tsx` | React component module | src/utils/style (2), package:react, package:react-router, src/types, src/utils/seo | src/pages/AuthorPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MakerPage.tsx, src/pages/MountPage.tsx, src/pages/PatentsIndexPage.tsx | LinkListSidebarItem, default, LinkListSidebar |
-| `PatentNumberLink.tsx` | React component module | package:react, src/utils/catalog | src/components/controls, src/components/relationshipMap, src/pages/AuthorPage.tsx, src/pages/LensPage.tsx, src/pages/PatentsIndexPage.tsx | default, PatentNumberLink |
+| `PatentNumberLink.tsx` | React component module | package:react, src/utils/catalog | src/components/controls, src/components/relationshipMap, src/pages/AuthorPage.tsx, src/pages/LensPage.tsx, src/pages/PatentsIndexPage.tsx, +1 more | default, PatentNumberLink |
 | `PatentPartyList.tsx` | React component module | package:react | same folder, src/components/relationshipMap | default, PatentPartyList |
 | `SeriesCard.tsx` | React component module | src/utils/content (2), package:react-router, src/types, src/utils/seo, src/utils/style | src/pages/ArticlesPage.tsx | default, SeriesCard |
 | `SidebarLayout.tsx` | React component module | src/utils/useMediaQuery.ts | src/pages/AuthorPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MakerPage.tsx, src/pages/MountPage.tsx, src/pages/PatentsIndexPage.tsx | default, SidebarLayout |

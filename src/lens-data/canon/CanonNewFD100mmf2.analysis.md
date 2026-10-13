@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP S53-133028 (特開昭53-133028)  
+**Patent:** JP S53-133028 A (特開昭53-133028)  
 **Application Number:** Shō 52-48044  
 **Filed:** April 25, 1977  
 **Published:** November 20, 1978  
@@ -10,7 +10,7 @@
 **Classification:** G02B 13/02, G02B 9/34  
 **Embodiment analyzed:** Sole worked numerical example
 
-JP S53-133028 gives one numerical prescription for a 35 mm-format, large-aperture long-focus lens. The prescription is normalized to $f = 1$, with aperture ratio $1{:}2$, field angle $2\omega = 24°$, and back focus $0.4270f$. The patent text describes the design as a development of the tele-Sonnar type, intended to retain high contrast while reducing spherical aberration and field curvature.
+JP S53-133028 A gives one numerical prescription for a 35 mm-format, large-aperture long-focus lens. The prescription is normalized to $f = 1$, with aperture ratio $1{:}2$, field angle $2\omega = 24°$, and back focus $0.4270f$. The patent text describes the design as a development of the tele-Sonnar type, intended to retain high contrast while reducing spherical aberration and field curvature.
 
 The identification with the Canon New FD 100mm f/2 rests on convergent evidence rather than on an explicit product name in the patent:
 
@@ -92,7 +92,7 @@ The palette is conventional for a late-1970s fast tele-Sonnar-derived lens. The 
 
 ## Focus Mechanism
 
-The data file models focusing by unit extension from the patent's infinity prescription. This is an implementation model, not a second patent state: JP S53-133028 does not publish a close-focus prescription, variable-spacing table, or floating-group movement.
+The data file models focusing by unit extension from the patent's infinity prescription. This is an implementation model, not a second patent state: JP S53-133028 A does not publish a close-focus prescription, variable-spacing table, or floating-group movement.
 
 At infinity the scaled back focal distance is $42.700$ mm. Solving the finite-conjugate paraxial focus condition for Canon's 1.0 m minimum-focus distance gives $BFD = 55.142$ mm, an extension of $12.442$ mm. The corresponding object distance from the first surface is $877.49$ mm because the 1.0 m manufacturer distance is measured from the film plane.
 
@@ -146,6 +146,6 @@ The data-file stop placement and semi-diameters are not patent values. They are 
 
 ## Sources
 
-- JP S53-133028 (特開昭53-133028), "長焦点レンズ," published November 20, 1978. Applicant: Canon Inc.; inventor: Tsuji Sadahiko.
+- JP S53-133028 A (特開昭53-133028), "長焦点レンズ," published November 20, 1978. Applicant: Canon Inc.; inventor: Tsuji Sadahiko.
 - Canon Camera Museum, "New FD100mm f/2," https://global.canon/en/c-museum/product/nfd216.html.
 - OHARA INC., Optical Glass product catalog / S-glass CSV, including S-BSM15, S-BSM14, S-TIH18, S-TIM25, S-FTM16, and S-LAH53, https://www.ohara-inc.co.jp/en/product/catalog/.

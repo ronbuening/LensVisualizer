@@ -271,9 +271,10 @@ const LENS_DATA = {
   },
 
   /* ── Variable air spacings (inner focus) ── */
+  focusPositions: [0, 0.26868481558865914, 1],
   var: {
-    "11": [2.442, 12.782], // D11: Lp3 rear → L21 front
-    "15": [12.684, 2.344], // D15: L22 rear → L31 front
+    "11": [2.442, 4.592, 12.782], // D11: Lp3 rear → L21 front
+    "15": [12.684, 10.534, 2.344], // D15: L22 rear → L31 front
   },
   varLabels: [
     ["11", "D11"],
@@ -294,12 +295,14 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription: "Inner focus — GR2 (L21 + L22, 2 elements) translates axially; GR1 and GR3 fixed. Ring Drive SSM.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
+  nominalFno: 1.45,
   apertureBlades: 11,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
 
   /* ── Layout tuning ── */

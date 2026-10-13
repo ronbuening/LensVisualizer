@@ -18,7 +18,7 @@
  * wires sub-components.
  */
 
-import { useState, useEffect, useMemo, useRef, useCallback, type RefObject } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback, type RefObject, type ComponentProps } from "react";
 import useLensComputation from "../hooks/useLensComputation.js";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import useRayTracing from "../hooks/useRayTracing.js";
@@ -42,9 +42,12 @@ import type { RuntimeLens } from "../../types/optics.js";
 import { foldedHitOrderLabelsForDisplay } from "../../optics/foldedPathDisplay.js";
 import { isHeavyLensForRayWork } from "../../optics/raySampling.js";
 import { normalizePanelId, selectedElementKeyForPanel } from "../../types/state.js";
+import { lensSystemKey } from "../../utils/catalog/teleconverterCatalog.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;
+  /** Converter mounted on this panel's lens; ignored when a prebuilt `runtimeLens` is supplied. */
+  teleconverterKey?: string | null;
   runtimeLens?: RuntimeLens;
   focusT?: number;
   zoomT?: number;
@@ -59,14 +62,19 @@ interface LensDiagramPanelProps {
   showSliders?: boolean;
   maxSvgHeight?: string;
   minHeaderHeight?: number;
+  minDiagramHeight?: number;
+  comparisonDetails?: ComponentProps<typeof DiagramHeader>["comparisonDetails"];
   onHeaderHeight?: (panelId: string, height: number) => void;
   flashOverlay?: boolean;
   sideLayoutEnabled?: boolean;
   fillAvailableHeight?: boolean;
+  /** Desktop comparison view: the shared dock under both panes replaces this panel's analysis launcher. */
+  sharedAnalysisControls?: boolean;
 }
 
 export default function LensDiagramPanel({
   lensKey,
+  teleconverterKey = null,
   runtimeLens,
   focusT: focusTProp,
   zoomT: zoomTProp,
@@ -81,15 +89,18 @@ export default function LensDiagramPanel({
   showSliders = true,
   maxSvgHeight = "calc(100vh - 260px)",
   minHeaderHeight,
+  minDiagramHeight,
+  comparisonDetails,
   onHeaderHeight,
   flashOverlay = false,
   sideLayoutEnabled = false,
   fillAvailableHeight = false,
+  sharedAnalysisControls = false,
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
   const dispatch = useLensDispatch();
-  const { rays: raysState, display, sliders } = state;
+  const { rays: raysState, display, sliders, lens } = state;
   const panels = usePanelCtx();
   const {
     showOnAxis,
@@ -134,18 +145,30 @@ export default function LensDiagramPanel({
     groupMovementMode,
   } = panels;
 
-  /* Per-instance sliders: use props if provided (comparison mode), else context */
-  const focusT = focusTProp ?? sliders.focusT;
-  const zoomT = zoomTProp ?? sliders.zoomT;
-  const aberrationT = aberrationTProp ?? sliders.aberrationT ?? 0;
-  const stopdownT = stopdownTProp ?? sliders.stopdownT;
+  /* Per-instance sliders: use props if provided (comparison mode), else context. These are the requested values;
+     the ones this panel renders with come back from useLensComputation, which resolves them to a published
+     station in patent-positions mode. */
+  const requestedFocusT = focusTProp ?? sliders.focusT;
+  const requestedZoomT = zoomTProp ?? sliders.zoomT;
+  const requestedAberrationT = aberrationTProp ?? sliders.aberrationT ?? 0;
+  const requestedStopdownT = stopdownTProp ?? sliders.stopdownT;
+  /* Single-lens only: comparison panes take their sliders from the shared bar and never show their own. */
+  const patentPositionsActive = panels.patentPositions && showSliders && !lens.comparing;
   const shiftMm = shiftMmProp ?? sliders.shiftMm;
   const tiltDeg = tiltDegProp ?? sliders.tiltDeg;
 
   /* ── Extracted hooks ── */
   const adapters = useDispatchAdapters();
-  const overlays = useOverlayState(lensKey);
-  const { headerRef, headerHeight } = useHeaderHeight({ panelId, lensKey, onHeaderHeight });
+  /* Every lens-keyed reset below (overlays, header height, hover, error boundary) must also fire when a converter
+     is mounted or removed, so they key on the lens-plus-converter system rather than the lens alone. */
+  const systemKey = lensSystemKey(lensKey, teleconverterKey);
+  const overlays = useOverlayState(systemKey);
+  const { headerRef, headerHeight } = useHeaderHeight({
+    panelId,
+    lensKey: systemKey,
+    onHeaderHeight,
+    enabled: !zoomPanActive,
+  });
   const { flashKey, flashVisible, flashFading } = useFlashOverlay(flashOverlay);
 
   /* ── Hover/selection state ── */
@@ -157,19 +180,23 @@ export default function LensDiagramPanel({
 
   useEffect(() => {
     setHov(null);
-  }, [lensKey]);
+  }, [systemKey]);
 
   /* ── Side-panel overflow detection ── */
   const useSideLayout = useSideLayoutDetection({
     enabled: sideLayoutEnabled,
     containerRef: panelContainerRef,
-    deps: [lensKey, showSliders, showControls, showChromatic],
+    deps: [systemKey, showSliders, showControls, showChromatic],
   });
 
   /* ── Lens computation (build, layout, transforms, shapes, aperture) ── */
   const {
     L,
     buildError,
+    focusT,
+    zoomT,
+    aberrationT,
+    stopdownT,
     IMG_MM,
     zPos,
     sx,
@@ -180,6 +207,7 @@ export default function LensDiagramPanel({
     effectiveSC,
     movement,
     movementTransform,
+    perspectiveTraceContext,
     lensAxis,
     shapes,
     shapeError,
@@ -198,16 +226,18 @@ export default function LensDiagramPanel({
     filterId,
   } = useLensComputation({
     lensKey,
+    teleconverterKey,
     runtimeLens,
-    focusT,
-    zoomT,
-    aberrationT,
-    stopdownT,
+    focusT: requestedFocusT,
+    zoomT: requestedZoomT,
+    aberrationT: requestedAberrationT,
+    stopdownT: requestedStopdownT,
     shiftMm,
     tiltDeg,
     scaleRatio,
     panelId,
     includeCardinalExtents: ENABLE_CARDINAL_ELEMENTS && (showCardinals || showCardinalDimensions),
+    snapToPublishedStations: patentPositionsActive,
   });
   const resolvedMovement = movement ?? { shiftMm: 0, tiltDeg: 0, active: false };
   const foldedHitOrderLabels = useMemo(
@@ -307,7 +337,7 @@ export default function LensDiagramPanel({
     sx,
     sy,
     clampedRayEnd,
-    movementTransform,
+    perspectiveTraceContext: perspectiveTraceContext ?? undefined,
     currentPhysStopSD,
     currentEPSD,
     rayDensity: effectiveRayDensity,
@@ -319,28 +349,28 @@ export default function LensDiagramPanel({
     chromG,
     chromB,
     chromV,
-    lensKey,
+    lensKey: systemKey,
   });
   return (
-    <PanelErrorBoundary lensKey={lensKey}>
+    <PanelErrorBoundary lensKey={systemKey}>
       {buildError ? (
         <LensDiagramErrorState
           error={buildError}
-          lensKey={lensKey}
+          lensKey={systemKey}
           component="LensDiagramPanel (buildLens)"
           title="Failed to build lens"
         />
       ) : shapeError ? (
         <LensDiagramErrorState
           error={shapeError}
-          lensKey={lensKey}
+          lensKey={systemKey}
           component="LensDiagramPanel (element shapes)"
           title="Failed to compute lens element shapes"
         />
       ) : rayError ? (
         <LensDiagramErrorState
           error={rayError}
-          lensKey={lensKey}
+          lensKey={systemKey}
           component="LensDiagramPanel (ray tracing)"
           title="Ray tracing failed"
         />
@@ -393,12 +423,14 @@ export default function LensDiagramPanel({
             dark,
             isWide,
             compact,
+            analysisControls: !isWide ? "pill" : sharedAnalysisControls ? "shared" : "dock",
             showControls,
             showSliders,
             headerHeight,
             maxSvgHeight,
             useSideLayout,
             fillAvailableHeight,
+            minDiagramHeight,
             zoomPanActive,
             showOnAxis,
             showOffAxis,
@@ -432,6 +464,7 @@ export default function LensDiagramPanel({
             showEffectiveFocalLength,
             showEffectiveAperture,
             abbeShowGlassType,
+            patentPositions: patentPositionsActive,
           }}
           overlays={panelOverlays}
           adapters={adapters}
@@ -468,8 +501,9 @@ export default function LensDiagramPanel({
                 dynamicEFL={dynamicEFL}
                 currentEPSD={currentEPSD}
                 currentPhysStopSD={currentPhysStopSD}
+                fNumber={fNumber}
                 fieldGeometry={fieldGeometry}
-                movementActive={resolvedMovement.active}
+                perspectiveTraceContext={perspectiveTraceContext}
                 sliderInteracting={sliderInteracting}
                 aberrationsExpanded={aberrationsExpanded}
                 onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
@@ -530,6 +564,7 @@ export default function LensDiagramPanel({
                 headerInfoExpanded={headerInfoExpanded}
                 onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
                 minHeaderHeight={minHeaderHeight}
+                comparisonDetails={comparisonDetails}
               />
             ) : null
           }

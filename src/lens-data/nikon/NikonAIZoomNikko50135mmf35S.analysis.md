@@ -1,4 +1,4 @@
-# Nikon AI Zoom-Nikkor 50-135mm f/3.5S
+# NIKON AI ZOOM-NIKKOR 50-135mm f/3.5 S
 
 ## Patent Reference and Design Identification
 

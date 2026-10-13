@@ -17,7 +17,7 @@ The second embodiment in the patent, Tables 7-12 and Figs. 7-12, is a 9-element 
 
 ## Optical Architecture
 
-The lens is a compact full-frame wide-angle design organized into three patent-level compound lenses: a fixed converging first compound lens before the aperture stop, a movable second compound lens divided into two independently movable partial compound lenses, and a fixed rear compound lens consisting of one bi-aspheric negative element. Although ZEISS uses the Distagon name, this first embodiment is not a classical long-back-focus retrofocus lens. The physical distance from the last lens surface AF16 to the image plane is only 5.000 mm when the sensor/filter plates are included, and its folded air-equivalent distance is 4.3186 mm. Both are far shorter than the 35 mm focal length.
+The lens is a compact full-frame wide-angle design organized into three patent-level compound lenses: a fixed converging first compound lens before the aperture stop, a movable second compound lens divided into two independently movable partial compound lenses, and a fixed rear compound lens consisting of one bi-aspheric negative element. Although ZEISS uses the Distagon name, this first embodiment is not a classical long-back-focus retrofocus lens. The physical distance from the last lens surface AF16 to the image plane is only 5.000 mm including the sensor/filter plates, and its air-equivalent distance is 4.3186 mm. Both are far shorter than the 35 mm focal length.
 
 The corrected paraxial trace, using catalog-matched OHARA glass values, gives an effective focal length of 35.00036 mm, an entrance-pupil-derived working aperture of f/1.976, and a full diagonal field of about 63.5 degrees. The physical structural length from AF2, the first glass surface, to the image plane is 57.000 mm, exactly matching the patent's compactness statement in ¶0048. The patent's first reference plane AF1 lies 10.000 mm in front of AF2 and is a distance-reference plane rather than a glass surface.
 
@@ -31,7 +31,7 @@ The power distribution is deliberately asymmetric. The first compound lens has a
 | 4 | L6 + L7 | Partial compound lens 22 | Positive focus subgroup with rear bi-asphere | Movable |
 | 5 | L8 | Compound lens 30 | Fixed negative bi-aspheric rear corrector | Fixed |
 
-The `.data.ts` transcription excludes AF17-AF20 because the patent identifies the two flat plates between lens and sensor as filters that are not part of camera lens 1. Their optical path is folded into the final surface-to-image distance.
+The patent identifies the two flat plates AF17-AF20 between lens and sensor as filters that are not part of camera lens 1. The `.data.ts` transcription therefore keeps them out of the lens surface array and models them in `rearPlates`: the last lens surface AF16 stores the patent's 0.500 mm gap to the first plate, and both plates are traced by every analysis but not drawn.
 
 ## Element-by-Element Analysis
 
@@ -101,11 +101,11 @@ AF15 has a concave spherical base with +1.3566 mm of aspherical departure at the
 
 ### Sensor Filter Plates
 
-AF17-AF20 are two flat BK7 plates between L8 and the sensor. The patent states in ¶0064 that these filters are not part of camera lens 1, although their thickness and refractive index are considered in the design. They are therefore excluded from the lens surface array and folded into the final air-equivalent back focal distance.
+AF17-AF20 are two flat BK7 plates between L8 and the sensor. The patent states in ¶0064 that these filters are not part of camera lens 1, although their thickness and refractive index are considered in the design. They are therefore not drawn as lens elements; the data file models them in `rearPlates` with the Table 1 spacing (AF16 0.50 mm air, AF17 1.20 mm BK7, AF18 0.50 mm air, AF19 0.80 mm BK7, AF20 2.00 mm air to the image) and catalog N-BK7 values ($n_d = 1.51680$, $\nu_d = 64.17$), since the patent names the glass without printing its constants. The plates are traced by every analysis but not drawn. Their paraxial air-equivalent AF16-to-image distance is 4.318565 mm.
 
 ## Glass Identification and Selection
 
-The patent Table 1 gives glass trade names but does not print the numeric $n_d$ and $\nu_d$ values. The following table uses catalog values for the named OHARA glasses and treats the Schott BK7 filter stack only as part of the folded optical path.
+The patent Table 1 gives glass trade names but does not print the numeric $n_d$ and $\nu_d$ values. The following table uses catalog values for the named OHARA glasses and uses catalog N-BK7 values for the Schott BK7 filter plates modeled in `rearPlates`.
 
 | Element | Glass | $n_d$ | $\nu_d$ | Optical role |
 |---|---|---:|---:|---|
@@ -169,10 +169,10 @@ Independent paraxial calculations using the corrected catalog glass data confirm
 | Rear compound-lens power ratio | -1.055 | -1.05508 | Matches |
 | Entrance-pupil position ratio | $x/L \leq 0.2$ | $6.831/57.000 = 0.120$ | Satisfies condition |
 | Surface-by-surface Petzval sum | Not tabulated | +0.001970 mm$^{-1}$ | Verified |
-| Folded final BFD excluding filters | Not separately tabulated | 4.318565 mm | Consistent with AF17-AF20 filter stack |
+| Air-equivalent AF16-to-image distance | Not separately tabulated | 4.318565 mm | Consistent with AF17-AF20 filter stack |
 | Max verified asphere slope | $<60^\circ$ | 53.9 degrees | Satisfies condition |
 
-The `.data.ts` file uses the patent's listed surface radii, thicknesses, focus gaps, aspheric coefficients, and semi-diameters, with catalog-corrected glass indices and an air-equivalent folded final BFD in place of the two flat filter plates. A separate Gaussian refocus of the catalog-valued paraxial model would place the image plane 4.311 mm behind AF16; the data file instead retains the patent-derived folded value of 4.318565 mm. The 0.007 mm difference is within the practical uncertainty introduced by rounded patent distances and nominal catalog glass constants, so no refocus offset was applied to the transcription.
+The `.data.ts` file uses the patent's listed surface radii, thicknesses, focus gaps, aspheric coefficients, and semi-diameters, with catalog-corrected glass indices and the two flat filter plates modeled physically in `rearPlates`, so the stored AF2-to-image track is the patent's 57.000 mm. A separate Gaussian refocus of the catalog-valued paraxial model would place the image plane at an air-equivalent 4.311 mm behind AF16; the data file instead retains the patent's printed spacing, whose air-equivalent distance is 4.318565 mm. The 0.007 mm difference is within the practical uncertainty introduced by rounded patent distances and nominal catalog glass constants, so no refocus offset was applied to the transcription.
 
 ## Sources
 
@@ -180,4 +180,4 @@ The `.data.ts` file uses the patent's listed surface radii, thicknesses, focus g
 2. [ZEISS ZX1 specifications](https://cop-community.zeiss.com/s/article/8-8-Specifications?language=en_US), ZEISS COP Community, for the published 35 mm f/2 lens and 30 cm minimum focus distance.
 3. OHARA Corporation official glass data pages: [S-TIH6](https://oharacorp.com/glass/s-tih6/), [S-LAM61](https://oharacorp.com/glass/s-lam61/), [S-NPH1](https://oharacorp.com/glass/s-nph1/), [S-TIH1](https://oharacorp.com/glass/s-tih1/), [S-FPM2](https://oharacorp.com/glass/s-fpm2/), and [S-LAH59](https://oharacorp.com/glass/s-lah59/).
 4. [OHARA Technical Data: Pressing & Forming for Low Tg Optical Glasses](https://oharacorp.com/wp-content/uploads/2023/07/low-tg-v-9-1-2022-english.pdf), for L-LAM69 and low-Tg molding context.
-5. [SCHOTT N-BK7 datasheet](https://media.schott.com/api/public/content/41e799d0bf874807a0bb8e702fbb75b5?v=54856406), for the folded flat-filter optical path.
+5. [SCHOTT N-BK7 datasheet](https://media.schott.com/api/public/content/41e799d0bf874807a0bb8e702fbb75b5?v=54856406), for the flat filter plates.

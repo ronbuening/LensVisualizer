@@ -263,6 +263,7 @@ export {
 export {
   computeElementRenderDiagnostics2,
   computeElementShapes2,
+  computeStandaloneMirrorPaths2,
   createCoordinateTransforms2,
   stateForRuntimeDiagram2,
 } from "./diagram/runtimeDiagramAdapter.js";
@@ -275,6 +276,15 @@ export {
   type AnalysisComputationContext,
   type AnalysisComputationContextParams,
 } from "./analysis/analysisContext.js";
+export {
+  AnalysisSectionUnavailableError,
+  analysisSectionAvailability,
+  assertAnalysisSectionAvailable,
+  assertCenteredAnalysisSectionAvailable,
+  type AnalysisSectionAvailability,
+  type AnalysisSectionId,
+  type AnalysisSectionMode,
+} from "./analysis/analysisMovementSupport.js";
 export {
   computeComaAnalysis2,
   computeComaAnalysisForState2,

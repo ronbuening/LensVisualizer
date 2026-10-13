@@ -4,20 +4,35 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — Canon Serenar 50mm f/1.8                     ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2,681,594 Claim 3 (Hiroshi Ito / Canon).         ║
+ * ║  Data source: US 2,681,594 sole numerical example (description     ║
+ * ║  table, repeated verbatim in claim 3) — Hiroshi Ito / Canon.       ║
  * ║  Modified Gauss (double-Gauss) for 35mm rangefinder (M39 LTM).    ║
  * ║  6 elements / 4 groups, 0 aspherical surfaces.                    ║
  * ║  Focus: unit focusing (entire lens moves).                        ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
- * ║    Patent at f = 1.00 (normalized); all R, d, sd values scaled    ║
- * ║    ×55.725 to f ≈ 50 mm production focal length.                  ║
- * ║    Computed EFL (normalized) = 0.8973; scaled EFL ≈ 50.0 mm.      ║
+ * ║    The table is headed f = 1.00, but both printed copies compute   ║
+ * ║    to paraxial EFL 0.8973 (no single-digit misprint consistent     ║
+ * ║    with the figure restores 1.00). All R and d are scaled ×55.725  ║
+ * ║    so the design EFL is the production 50 mm (49.99 mm).          ║
  * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Estimated from marginal ray trace at f/1.8 with 8–12%          ║
- * ║    mechanical clearance. Front element constrained by 40 mm        ║
- * ║    filter thread. Cemented pair SDs held within 1.25 ratio.       ║
+ * ║  NOTE ON SEMI-DIAMETERS (2026-09-23 audit):                        ║
+ * ║    The patent publishes none. Absolute size is set by the exact    ║
+ * ║    f/1.8 marginal ray plus margin (L1 15.5 mm, retained); element  ║
+ * ║    proportions follow the patent figure's rim heights (L1 : II :   ║
+ * ║    III : IV = 252 : 211 : 186 : 208 px at 300 dpi). S5 and S6 stop ║
+ * ║    at the figure's drawn optical extent inside a bevel; the       ║
+ * ║    doublet rims carry the flat outer edge.                         ║
+ * ║                                                                    ║
+ * ║  NOTE ON STOP POSITION:                                            ║
+ * ║    Not tabulated and not drawn (the figure shows glass only); the  ║
+ * ║    text places it between r5 and r6. Mid-d5 split is a model      ║
+ * ║    choice. STO sd records the f/1.8 iris radius (8.47 mm).        ║
+ * ║                                                                    ║
+ * ║  NOTE ON CLOSE FOCUS:                                              ║
+ * ║    No close state in the patent. The 1.0 m keyframe (production    ║
+ * ║    MFD) is a derived unit-focus extension of 2.77 mm measured from ║
+ * ║    the image plane.                                                ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -26,7 +41,7 @@ const LENS_DATA = {
   key: "canon-serenar-50f18",
   maker: "Canon",
   name: "CANON SERENAR 50mm f/1.8",
-  subtitle: "US 2,681,594 Claim 3 — Hiroshi Ito / Canon Camera Co.",
+  subtitle: "US 2,681,594 sole example (claim 3) — Hiroshi Ito / Canon Camera Co.",
   specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 50.0 mm", "F/1.8", "2ω ≈ 46°", "ALL SPHERICAL"],
 
   /* ── Explicit metadata ── */
@@ -124,21 +139,21 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  Patent f = 1.00 scaled ×55.725 to production f ≈ 50 mm.
-   *  Stop placed at center of patent air gap d₅ = 0.132 (split 0.066 / 0.066).
+   *  Patent table (headed f = 1.00, computes to 0.8973) scaled ×55.725 to EFL 49.99 mm.
+   *  Stop placed at center of patent air gap d₅ = 0.132 (split 0.066 / 0.066; model choice).
    */
   surfaces: [
-    { label: "1", R: 32.32, d: 5.294, nd: 1.6204, elemId: 1, sd: 15.5 },
-    { label: "2", R: 211.76, d: 0.279, nd: 1.0, elemId: 0, sd: 14.3 },
-    { label: "3", R: 19.89, d: 8.08, nd: 1.6261, elemId: 2, sd: 13.2 },
-    { label: "4", R: -117.02, d: 2.452, nd: 1.74, elemId: 3, sd: 10.6 },
-    { label: "5", R: 13.43, d: 3.678, nd: 1.0, elemId: 0, sd: 9.8 },
-    { label: "STO", R: 1e15, d: 3.678, nd: 1.0, elemId: 0, sd: 8.4 },
-    { label: "6", R: -31.35, d: 1.95, nd: 1.5014, elemId: 4, sd: 8.7 },
-    { label: "7", R: 24.41, d: 9.195, nd: 1.6385, elemId: 5, sd: 8.7 },
-    { label: "8", R: -44.58, d: 0.167, nd: 1.0, elemId: 0, sd: 8.4 },
-    { label: "9", R: 94.73, d: 3.901, nd: 1.6385, elemId: 6, sd: 8.3 },
-    { label: "10", R: -70.05, d: 25.43, nd: 1.0, elemId: 0, sd: 7.8 },
+    { label: "1", R: 32.32, d: 5.294, nd: 1.6204, elemId: 1, sd: 15.5 }, // L1 front
+    { label: "2", R: 211.76, d: 0.279, nd: 1.0, elemId: 0, sd: 14.3 }, // L1 rear → air
+    { label: "3", R: 19.89, d: 8.08, nd: 1.6261, elemId: 2, sd: 13.2 }, // L2 front (D1)
+    { label: "4", R: -117.02, d: 2.452, nd: 1.74, elemId: 3, sd: 13.2 }, // L2→L3 junction (D1)
+    { label: "5", R: 13.43, d: 3.678, nd: 1.0, elemId: 0, sd: 9.8 }, // L3 rear → air
+    { label: "STO", R: 1e15, d: 3.678, nd: 1.0, elemId: 0, sd: 8.5 }, // Aperture stop (center of d₅)
+    { label: "6", R: -31.35, d: 1.95, nd: 1.5014, elemId: 4, sd: 8.7 }, // L4 front (D2)
+    { label: "7", R: 24.41, d: 9.195, nd: 1.6385, elemId: 5, sd: 11.4 }, // L4→L5 junction (D2)
+    { label: "8", R: -44.58, d: 0.167, nd: 1.0, elemId: 0, sd: 11.4 }, // L5 rear → air
+    { label: "9", R: 94.73, d: 3.901, nd: 1.6385, elemId: 6, sd: 12.8 }, // L6 front
+    { label: "10", R: -70.05, d: 25.43, nd: 1.0, elemId: 0, sd: 12.8 }, // L6 rear → BFD
   ],
 
   /* ── Aspherical coefficients ── */
@@ -146,7 +161,7 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (unit focus — BFD only) ── */
   var: {
-    "10": [25.43, 28.06],
+    "10": [25.43, 28.2],
   },
   varLabels: [["10", "BF"]],
 
@@ -165,7 +180,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
-  focusDescription: "Unit focusing — entire lens group moves axially.",
+  focusDescription:
+    "Unit focusing — entire lens group moves axially; the 1 m keyframe is a derived extension (patent publishes no close state).",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.8,

@@ -207,6 +207,8 @@ const LENS_DATA = {
   doublets: [{ text: "J1", fromSurface: "9", toSurface: "11" }],
 
   closeFocusM: 0.9,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED unit focus: the complete optical system extends toward the object. " +
     "The camera-fixed model varies only the surface-16 rear gap from 27.39997mm at infinity " +

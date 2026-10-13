@@ -16,18 +16,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    The production 16 mm value is treated as the marketed nominal    ║
  * ║    focal length.                                                    ║
  * ║                                                                    ║
- * ║  NOTE ON COVER GLASS:                                               ║
- * ║    Patent surfaces 31-32 are a 2.0000 mm plane-parallel plate       ║
- * ║    (nd = 1.51680) plus BF = 1.0000 mm. The plate is excluded from   ║
- * ║    the surfaces array and folded into surface 30's air-equivalent   ║
- * ║    final gap: 15.5341 + 2.0000 / 1.51680 + 1.0000 =                ║
- * ║    17.8527 mm.                                             ║
+ * ║  NOTE ON COVER GLASS:                                              ║
+ * ║    Patent surfaces 31-32 are a 2.0000 mm plane-parallel plate      ║
+ * ║    (nd 1.51680, νd 64.20) plus BF = 1.0000 mm. It is modeled in    ║
+ * ║    `rearPlates` (traced, not drawn); surface 30 keeps the patent   ║
+ * ║    d30 = 15.5341 mm to the plate.                                  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent omits clear-aperture data. Semi-diameters are         ║
  * ║    paraxial estimates constrained by f/1.46 axial rays, 0.35-field  ║
  * ║    displayed off-axis rays, edge thickness, sd/|R| < 0.90, and      ║
- * ║    cross-gap sag intrusion <= 90% of the air gap.                  ║
+ * ║    cross-gap sag intrusion <= 90% of the air gap. Surfaces 1-3      ║
+ * ║    were raised to pass the traced chief ray to the patent's         ║
+ * ║    Y = 14.20 mm APS-C corner (2026-09-24 field-coverage audit).     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -255,9 +256,9 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 125.246, d: 2.9671, nd: 1.5168, elemId: 1, sd: 17 },
-    { label: "2", R: 404.5429, d: 0.5, nd: 1, elemId: 0, sd: 16.6 },
-    { label: "3", R: 34.369, d: 1.4, nd: 2.001, elemId: 2, sd: 14.6 },
+    { label: "1", R: 125.246, d: 2.9671, nd: 1.5168, elemId: 1, sd: 21 },
+    { label: "2", R: 404.5429, d: 0.5, nd: 1, elemId: 0, sd: 20.5 },
+    { label: "3", R: 34.369, d: 1.4, nd: 2.001, elemId: 2, sd: 16 },
     { label: "4", R: 16.3986, d: 5.0945, nd: 1, elemId: 0, sd: 14.4 },
     { label: "5", R: 26, d: 1.5, nd: 1.58913, elemId: 3, sd: 13.8 },
     { label: "6A", R: 15.576, d: 10.6088, nd: 1, elemId: 0, sd: 13.45 },
@@ -284,7 +285,19 @@ const LENS_DATA = {
     { label: "27", R: 17.8877, d: 3.7091, nd: 1, elemId: 0, sd: 10.45 },
     { label: "28", R: 660, d: 6.0973, nd: 1.437, elemId: 15, sd: 10.45 },
     { label: "29", R: -17.1474, d: 0.9, nd: 1.90366, elemId: 16, sd: 10.8 },
-    { label: "30", R: -26.4237, d: 17.8526654008, nd: 1, elemId: 0, sd: 11 },
+    { label: "30", R: -26.4237, d: 15.5341, nd: 1, elemId: 0, sd: 11 },
+  ],
+
+  /* ── Cover glass (patent surfaces 31–32): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "JP 2018-205527 A, Numerical Example 1 surfaces 31–32",
+    },
   ],
 
   asph: {
@@ -310,9 +323,10 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.33549152620017336, 1],
   var: {
-    "23A": [3.3044, 1.6090594577],
-    "25": [2.0917, 3.7870405423],
+    "23A": [3.3044, 2.8751, 1.6090594577],
+    "25": [2.0917, 2.521, 3.7870405423],
   },
 
   varLabels: [
@@ -336,11 +350,13 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.25,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
-    "Single-element inner focus: G3 / L31 moves toward the object. The close endpoint extrapolates the patent kinematics to Sigma's published 0.25 m / 1:9.9 specification; the patent's own tabulated near state is beta = -1/40.",
+    "Single-element inner focus: G3 / L31 moves toward the object. The patent beta=-1/40 row is exact, followed by a constrained endpoint matching Sigma's published 0.25 m / 1:9.9 specification.",
 
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   offAxisFieldFrac: 0.35,
   scFill: 0.68,

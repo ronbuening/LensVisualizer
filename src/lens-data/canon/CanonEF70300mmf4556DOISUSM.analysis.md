@@ -237,12 +237,11 @@ published iris radius. The 21-entry `nominalFno` schedule retains the printed
 at the middle station. Marketing f/4.5 remains metadata and is not exposed as a
 model aperture stop.
 
-The current viewer does not retain those per-zoom physical stops. Its scalar
-wide-stop formula passes about 7.219 mm at tele wide open, corresponding to an
-exact geometric f-number near 8.215 while the nominal label remains f/5.8.
-This is an engine capability limit, not a prescription or aperture claim; the
-data preserves the source f-number schedule and the clear apertures required
-when per-zoom stop support is added.
+The viewer applies those exact per-zoom openings: at each zoom station it
+traces that station's `nominalFno` to a wide-open iris radius, so the traced
+f-number matches the nominal label at all 21 stations. These radii are modeling
+results from the f-number schedule, not a prescription or aperture claim; the
+authored clear apertures pass each station's wide-open axial beam.
 
 ## Source Normalization and Known Patent Defect
 
@@ -318,7 +317,7 @@ The model leaves these boundaries explicit:
 
 - no production three-layer geometry, order efficiency, scatter, or flare;
 - no decentered IS motion or stabilized-state aberration model;
-- no source-backed surface apertures or zoom-dependent physical iris model;
+- no source-backed surface apertures or iris radii;
 - no direct continuous evaluation of the high-order cams between the 21 sampled knots;
 - no proven glass supplier, partial dispersion, or APO designation;
 - no claim that the patent example is the shipped 18-element product formula.

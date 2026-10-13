@@ -11,12 +11,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  states that the published group/element count includes the required     ║
  * ║  plug-in normal or ND4X filter.                                          ║
  * ║                                                                            ║
- * ║  NOTE ON FILTER MODELING:                                                 ║
- * ║    The patent includes r15-r16 as a 2.0 mm plane-parallel plug-in filter. ║
- * ║    Project data rules exclude filters from the surfaces array, so r15-r16 ║
- * ║    are folded into the final air-equivalent BFD:                          ║
- * ║      d14_to_IMG = d14 + d15 / n_filter + BFD_after_r16                   ║
- * ║                 = 2.7 + 2.0 / 1.5168 + 62.3611466 = 66.379712 mm.         ║
+ * ║  NOTE ON FILTER MODELING:                                                  ║
+ * ║    The patent tabulates r15-r16 as a 2.0 mm plane-parallel plate (N10      ║
+ * ║    1.5168, v10 64.20) 2.7 mm behind r14 and draws it in FIG. 10; it is the ║
+ * ║    required plug-in filter. It is drawn as a plate element. The table      ║
+ * ║    stops at r16, so the air behind it, 62.3611466 mm, is the paraxial back ║
+ * ║    focus of the prescription.                                              ║
  * ║                                                                            ║
  * ║  NOTE ON SHARED PRIMARY BLANK:                                            ║
  * ║    The patent uses the primary mirror blank in two radial roles. M1 is    ║
@@ -43,7 +43,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-reflex-500mm-f8",
   maker: "Minolta",
-  name: "MINOLTA AF Reflex 500mm f/8",
+  name: "MINOLTA AF REFLEX 500mm f/8",
   subtitle: "US 4,951,078 Embodiment 1 — Okada / Minolta",
   specs: [
     "500 mm f/8 fixed",
@@ -61,7 +61,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,951,078",
   patentAuthors: ["Takashi Okada"],
-  patentAssignees: ["Minolta Co., Ltd."],
+  patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1990,
   elementCount: 7,
   groupCount: 5,
@@ -84,8 +84,10 @@ const LENS_DATA = {
       "L5R",
       "13",
       "14",
+      "15",
+      "16",
     ],
-    imagePlane: { z: 153.979711986463, label: "IMG" },
+    imagePlane: { z: 154.66114658561912, label: "IMG" },
     maxInteractions: 20,
   },
 
@@ -183,6 +185,17 @@ const LENS_DATA = {
       apd: false,
       role: "Rear negative meniscus controlling Petzval curvature and final relay aberrations.",
     },
+    {
+      id: 8,
+      name: "F",
+      label: "Plug-in filter",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "BSC7 / N-BK7 class (517/642)",
+      apd: false,
+      role: "Plane-parallel plate of the patent prescription (r15-r16, element N10), the rear plug-in filter. The manufacturer's 7-element / 5-group count includes the required normal or ND4X filter.",
+    },
   ],
 
   surfaces: [
@@ -212,7 +225,7 @@ const LENS_DATA = {
     // L5F/L5R are the central clear plug; M1F/M1R are the complementary annular mirror shell.
     // The zero axial gaps are intentional same-station splits with non-overlapping radial material bands.
     { label: "L5F", R: -168.58, d: 0.0, nd: 1.67, elemId: 6, sd: 12.0 },
-    { label: "M1F", R: -168.58, d: 11.7, nd: 1.67, elemId: 2, sd: 38.5, innerSd: 13.5 },
+    { label: "M1F", R: -168.58, d: 11.7, nd: 1.67, elemId: 2, sd: 38.5, innerSd: 12.0 },
     {
       label: "M1R",
       R: -204.757,
@@ -220,13 +233,17 @@ const LENS_DATA = {
       nd: 1.0,
       elemId: 0,
       sd: 38.5,
-      innerSd: 13.5,
+      innerSd: 12.0,
       interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "second-surface" },
     },
     { label: "L5R", R: -204.757, d: 4.5, nd: 1.0, elemId: 0, sd: 12.0 },
 
     { label: "13", R: -23.966, d: 2.5, nd: 1.67, elemId: 7, sd: 11.2 },
-    { label: "14", R: -39.52, d: 66.379711986463, nd: 1.0, elemId: 0, sd: 11.2 },
+    { label: "14", R: -39.52, d: 2.7, nd: 1.0, elemId: 0, sd: 11.2 },
+    // Plug-in filter (patent r15-r16), drawn as a plane-parallel plate. Its sd is a ray-trace estimate (the
+    // source lists none); the last gap is the paraxial back focus, which the patent's table does not print.
+    { label: "15", R: 1e15, d: 2.0, nd: 1.5168, elemId: 8, sd: 12.5 },
+    { label: "16", R: 1e15, d: 62.36114658561912, nd: 1.0, elemId: 0, sd: 12.5 }, // filter → image plane
   ],
 
   asph: {},

@@ -14,8 +14,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    object field medium is water (nw = 1.3306, νw = 53.98). The first      ║
  * ║    unit is a flat plate, so the on-axis paraxial EFL/BFD of the rearward   ║
  * ║    lens prescription still verifies at f ≈ 51.6 mm. The declared          ║
- * ║    rectilinear field is the production underwater field, not the in-air    ║
- * ║    35 mm diagonal field implied by f = 51.6 mm.                            ║
+ * ║    rectilinear field is the production 35° underwater field converted to  ║
+ * ║    air through the flat port (17.5° in water = 23.59° in air), because the ║
+ * ║    app launches rays in air; it reaches the 35 mm frame corner.            ║
  * ║                                                                            ║
  * ║  NOTE ON APERTURE STOP:                                                    ║
  * ║    The patent does not tabulate a stop surface. The stop is inferred from  ║
@@ -59,10 +60,12 @@ const LENS_DATA = {
   patentYear: 1993,
   elementCount: 10,
   groupCount: 9,
+  /* The app traces with air in front of the flat port, so the production 35° underwater field is declared at its
+   * in-air equivalent: asin(1.3306 · sin 17.5°) = 23.59° half-field. */
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 35,
-    maxTraceFieldDeg: 17.5,
+    fullFieldDeg: 47.18,
+    maxTraceFieldDeg: 23.59,
   },
 
   elements: [
@@ -215,9 +218,10 @@ const LENS_DATA = {
 
   asph: {},
 
+  focusPositions: [0, 0.6967361668974719, 1],
   var: {
-    "2": [43.0605, 5.4172],
-    "15": [4.4407, 42.084],
+    "2": [43.0605, 24.2389, 5.4172],
+    "15": [4.4407, 23.2623, 42.084],
   },
   varLabels: [
     ["2", "D2"],
@@ -235,6 +239,8 @@ const LENS_DATA = {
 
   focusDescription: "Inner focus: G2 + G3 translate toward the object; D2 decreases while D15 increases.",
   closeFocusM: 0.167,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,

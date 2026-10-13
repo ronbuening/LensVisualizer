@@ -57,7 +57,9 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2008/0212200 A1",
   patentAuthors: ["Dayong Li", "Akio Arakawa"],
-  patentAssignees: [],
+  // A1 front page omits the organization; same-application assignment predates publication.
+  // Assignment-record evidence and dates are documented in the analysis/audit.
+  patentAssignees: ["Tamron Co., Ltd."],
   patentYear: 2008,
   elementCount: 18,
   groupCount: 13,
@@ -373,6 +375,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: G1R (L3-L5) moves 19.124 mm objectward to 0.95 m; D3 decreases and D8 increases by the same amount at each zoom position, preserving the adjacent-gap sum. The patent's printed 9.124 mm value does not reproduce 0.95 m.",
 
   nominalFno: 2.88,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 9,
   maxFstop: 32,

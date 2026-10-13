@@ -25,7 +25,7 @@ The power distribution is positive L1, converging primary mirror M1, diverging s
 
 The prescription is all-spherical. The architectural distinction is not an aspherical correction method but the use of reverse-surface mirrors. A front-surface mirror would be intrinsically achromatic but would not provide the same spherical-aberration correction. A Mangin mirror uses a refracting front surface and a reflecting rear surface, so each mirror substrate contributes both refraction and reflection.
 
-An independent folded-path paraxial trace of Embodiment 1 gives EFL = 1001.399 mm and BFD = 89.624 mm measured from r10, the last refracting surface. In the physical layout used by the viewer, that places the image plane at z = 273.824 mm. The EFL differs from the patent's nominal f = 1000.0 by 0.14%, consistent with rounded patent values and d-line calculation. Normalized marginal-ray heights are approximately 1.00 at L1, 0.88 at M1, 0.34 at M2, and 0.09 through the rear corrector group, supporting the patent's statement that the secondary can be much smaller than the primary.
+An independent folded-path paraxial trace of Embodiment 1 gives EFL = 1001.399 mm and BFD = 89.624 mm measured from r10, the last refracting surface. In the physical layout used by the viewer, that places the image plane at z = 263.824 mm, with the L2-L3 group inside the primary perforation. The EFL differs from the patent's nominal f = 1000.0 by 0.14%, consistent with rounded patent values and d-line calculation. Normalized marginal-ray heights are approximately 1.00 at L1, 0.88 at M1, 0.34 at M2, and 0.09 through the rear corrector group, supporting the patent's statement that the secondary can be much smaller than the primary.
 
 ## Element-by-Element Analysis
 

@@ -252,7 +252,7 @@ The positive GP2 contribution and the negative GN1/GN2/GN3 contributions nearly 
 
 The patent does not publish semi-diameters. The data file therefore uses inferred semi-diameters constrained by the 62 mm production filter envelope, ray-envelope estimates, edge thickness, element front/rear semi-diameter ratios, sd/|R| limits, and signed cross-gap sag clearance. These semi-diameters are renderer-supporting estimates and should not be read as measured mechanical clear apertures.
 
-The patent's FNO values cannot be represented by a single fixed physical stop semi-diameter at all three zoom positions. A paraxial trace gives the stop semi-diameters required to reproduce the patent FNOs as approximately **8.990 mm** at wide, **8.835 mm** at mid, and **8.524 mm** at tele. The data file uses a fixed **9.0 mm** stop semi-diameter for the optical diagram and a `nominalFno` zoom array of **[4.5, 5.1, 6.3]** for the displayed maximum aperture behavior.
+The patent's FNO values cannot be represented by a single fixed physical stop semi-diameter at all three zoom positions. A paraxial trace gives the stop semi-diameters required to reproduce the patent FNOs as approximately **8.990 mm** at wide, **8.835 mm** at mid, and **8.524 mm** at tele. The data file stores a **9.0 mm** stop semi-diameter on the STO row and a `nominalFno` zoom array of **[4.5, 5.1, 6.3]**; the wide-open iris radius at each zoom position is traced from that array.
 
 ## Sources and References
 

@@ -17,7 +17,7 @@ export const SPECIAL_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0025264, 0.0100783, 1200.5557],
     nd: 1.43385,
     vd: 95.1,
-    PgF: 0.5348,
+    PgF: 0.5387,
     source: "Daimon & Masumura, Appl. Opt. 41 (2002), CaF2 room-temperature fit.",
   },
   /* ────── Special: fused silica (SiO2) ──────

@@ -27,7 +27,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-nikkor-28mm-f28s",
   maker: "Nikon",
-  name: "NIKON AI NIKKOR 28mm f/2.8S",
+  name: "NIKON AI NIKKOR 28mm f/2.8 S",
   subtitle: "US 5,917,663 Example 2 - Nikon / Kenzaburo Suzuki",
   specs: ["8 elements / 8 groups", "f = 28.610 mm", "FNO = 2.89", "2omega = 74.1 deg", "all-spherical"],
 
@@ -182,8 +182,8 @@ const LENS_DATA = {
   focusDescription:
     "Production CRC changes the L4-L5 interval while the whole lens extends; patent Example 2 lists only infinity spacing, so close focus is approximated by BFD extension to the published 1:3.9 reproduction ratio.",
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.89,
+  fstopSeries: [2.89, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.58,

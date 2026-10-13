@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "laowa-58mm-f28-2x-macro-apo",
   maker: "Laowa",
-  name: "LAOWA 58mm f/2.8 2× Ultra-Macro APO",
+  name: "LAOWA 58mm f/2.8 2× Ultra Macro APO",
   subtitle: "CN 116520542 A Example 2 — Laowa / Li Dayong",
   specs: ["14 ELEMENTS / 11 GROUPS", "f ≈ 59.2 mm", "F/2.9", "2ω ≈ 39.9°", "ALL SPHERICAL", "2× MACRO (MFD 0.185 m)"],
 
@@ -305,6 +305,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.185,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual-group internal focusing. G2 (L3–L9 + STO) advances 47.0 mm toward object; " +
     "G3 (L10–L14) advances 8.1 mm. G1 (L1–L2) fixed. Constant barrel length (internal focusing).",

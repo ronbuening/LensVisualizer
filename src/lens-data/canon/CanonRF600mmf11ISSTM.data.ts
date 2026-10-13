@@ -257,6 +257,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 4.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: inner focus by the single positive L2 element (S6-S7), moving objectward " +
     "toward close focus. The patent's raw infinity d5/d7=16.25/22.19 mm is internally inconsistent; " +

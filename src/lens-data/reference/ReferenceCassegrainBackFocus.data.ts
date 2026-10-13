@@ -7,6 +7,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * centrally blocking secondary. Off-axis pupil samples pass around the
  * secondary, reflect from the primary, reflect from the secondary, then pass
  * through the primary hole to a back-focus image plane.
+ *
+ * The secondary is flat, so it cannot relay focus behind the primary: the
+ * paraxial focus is the primary focus (z = 0) folded about the secondary, at
+ * z = 70, and the z = 135 plane sits 65 mm past it. That defocus is deliberate
+ * for this trace fixture; exactTraceGoldenValues.test.ts pins its rays at this
+ * plane, so moving the plane or curving the secondary re-pins those values.
  */
 
 const LENS_DATA = {

@@ -155,6 +155,14 @@ The patent states several advantages of this focus architecture (¶0043): inner 
 
 The production lens specifies an MFD of 0.7 m with a maximum magnification of 0.15×, and uses a DC motor with a GMR (giant magnetoresistive) position sensor for autofocus.
 
+For finite MTF, the published close station is explicitly recorded in `finiteConjugates`. Paragraph 0084 measures
+700 mm from the object to the physical image plane. Summing Table 1's physical spacings with Table 3's close gaps,
+including PP and its following air gap, gives 123.3264 mm from the first vertex to that plane. The object therefore
+lies 576.6736 mm ahead of the first vertex. MTF retains this object location because the authored model removes PP
+and uses an air-equivalent back focus; interpreting 700 mm relative to that shortened model plane would move the
+object. This certifies the source station only, not intermediate focus positions or production-lens MTF. Existing
+omitted odd aspheric terms and the omitted PP remain model limitations.
+
 
 ## Aspherical Surfaces
 
@@ -266,6 +274,8 @@ Independent paraxial verification (y-nu marginal ray trace, surface-by-surface) 
 | Petzval sum | — | +0.001268 mm$^{-1}$ ($R_P$ ≈ 788 mm) | — |
 
 Group focal lengths: $f_{G1}$ ≈ 814 mm (weak positive), $f_{G2}$ ≈ 88 mm (strong positive), $f_{G3}$ ≈ 1675 mm (very weak positive).
+
+**Optical member PP:** Table 1 places a 3.20 mm parallel plate PP (nd = 1.51680, νd = 64.20, N-BK7 class) 20.1247 mm behind L34, followed by 1.05 mm of air to the image plane. The data file models it in `rearPlates`: every analysis traces it, but it is not drawn. The air-equivalent back focus 20.1247 + 3.20/1.51680 + 1.05 = 23.284 mm is the paraxial equivalent of the patent's $Bf$ = 23.28 mm; the physical rear-surface-to-image distance is 24.375 mm.
 
 
 ## Sources

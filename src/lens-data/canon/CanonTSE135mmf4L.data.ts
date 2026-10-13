@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — CANON TS-E 135mm f/4L MACRO                  ║
+ * ║           LENS DATA — CANON TS-E 135mm f/4 L MACRO                  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP 2018-132674 A, Numerical Example 1.               ║
  * ║  Canon / Mizuma Akira; all-spherical 11-element tilt-shift macro.  ║
@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-tse-135mm-f4l",
   maker: "Canon",
-  name: "CANON TS-E 135mm f/4L MACRO",
+  name: "CANON TS-E 135mm f/4 L MACRO",
   subtitle: "JP 2018-132674 A Example 1 — Canon / Mizuma Akira",
   specs: [
     "11 elements / 7 groups",
@@ -61,6 +61,12 @@ const LENS_DATA = {
     tiltRangeDeg: [-10, 10],
     shiftStepMm: 0.1,
     tiltStepDeg: 0.1,
+    // Reference-state rear vertex fallback; not a measured mechanical tilt hinge.
+    tiltPivot: {
+      frame: "camera",
+      basis: "rear-vertex-fallback",
+      zOffsetFromImagePlaneMm: -78.33,
+    },
   },
   focusDescription:
     "Double floating focus: L2/FN moves imageward and L3/FP moves objectward; L1, STO, and L4/RF remain fixed.",
@@ -298,8 +304,10 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.486,
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32, 45],
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
+  nominalFno: 4.05,
+  fstopSeries: [4.05, 5.6, 8, 11, 16, 22, 32, 45],
   maxFstop: 45,
   apertureBlades: 9,
   apertureBladeRoundedness: 1,

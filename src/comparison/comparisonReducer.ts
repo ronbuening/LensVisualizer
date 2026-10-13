@@ -36,7 +36,14 @@ export default function comparisonReducer(state: LensState, action: LensAction):
     case SET_SHARED_STOPDOWN_T:
       return { ...state, sharedSliders: { ...state.sharedSliders, sharedStopdownT: action.value } };
     case SET_SHARED_ZOOM_T:
-      return { ...state, sharedSliders: { ...state.sharedSliders, sharedZoomT: action.value } };
+      return {
+        ...state,
+        sharedSliders: {
+          ...state.sharedSliders,
+          sharedZoomT: action.value,
+          sharedFocusT: action.focusT ?? state.sharedSliders.sharedFocusT,
+        },
+      };
     case SET_SHARED_SHIFT_MM:
       return { ...state, sharedSliders: { ...state.sharedSliders, sharedShiftMm: action.value } };
     case SET_SHARED_TILT_DEG:
@@ -47,10 +54,14 @@ export default function comparisonReducer(state: LensState, action: LensAction):
       const lens = {
         ...state.lens,
         lensKeyA: state.lens.selectedConfigurationKey,
+        teleconverterKeyB: null,
         comparing: true as const,
       };
-      /* Pick next lens if A===B */
-      if (lens.lensKeyA === lens.lensKeyB && action.catalogKeys && action.catalogKeys.length > 1) {
+      /* With a converter mounted the natural comparison is the same lens without it: pane A keeps the
+         converter and pane B becomes the bare host. Otherwise pick the next lens if A===B. */
+      if (lens.teleconverterKeyA !== null) {
+        lens.lensKeyB = lens.lensKeyA;
+      } else if (lens.lensKeyA === lens.lensKeyB && action.catalogKeys && action.catalogKeys.length > 1) {
         const idx = action.catalogKeys.indexOf(lens.lensKeyA);
         lens.lensKeyB = action.catalogKeys[(idx + 1) % action.catalogKeys.length];
       }
@@ -64,7 +75,8 @@ export default function comparisonReducer(state: LensState, action: LensAction):
     case EXIT_COMPARE:
       return {
         ...state,
-        lens: { ...state.lens, comparing: false },
+        /* Pane A becomes the single-lens view and keeps its converter; pane B's has nowhere to go. */
+        lens: { ...state.lens, comparing: false, teleconverterKeyB: null },
         sliders: {
           ...state.sliders,
           focusT: action.focusA ?? state.sliders.focusT,

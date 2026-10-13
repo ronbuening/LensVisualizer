@@ -38,7 +38,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,871,239",
   patentAuthors: ["Hisayuki Masumoto", "Akira Fukushima"],
-  patentAssignees: ["Minolta Co., Ltd."],
+  patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1989,
   elementCount: 13,
   groupCount: 10,
@@ -100,7 +100,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.77,
       fl: -24.1,
-      glass: "773498 - dense lanthanum-flint boundary class (unresolved)",
+      glass: "772498 - lanthanum flint class (N-LAF34 / TAF1 catalog equivalent)",
       role: "Strong negative leading element of the variator group.",
     },
     {

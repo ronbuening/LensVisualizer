@@ -15,10 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    ×0.599723199 to the manufacturer nominal 6.0 mm focal length.       ║
  * ║                                                                    ║
  * ║  NOTE ON FILTER:                                                   ║
- * ║    Patent L5 is a flat built-in filter. Per project data rules it   ║
- * ║    is excluded from the surfaces/elements arrays. Its first-order   ║
- * ║    effect is folded into the r7-to-r10 air gap as t/n =            ║
- * ║    1.9 / 1.51743 patent units.                                     ║
+ * ║    Patent L5 is a flat filter that the patent calls optional, so   ║
+ * ║    it is not modeled. The r7-to-r10 air gap keeps its air-         ║
+ * ║    equivalent thickness, t/n = 1.9 / 1.51743 patent units, so the  ║
+ * ║    published first-order values hold.                              ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent does not publish clear apertures. SD values are       ║

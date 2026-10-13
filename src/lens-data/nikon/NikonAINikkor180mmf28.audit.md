@@ -23,14 +23,6 @@ Patent: US 4,338,001, Embodiment 2
 - No line-index table, partial-dispersion table, or aspherical data was found in the patent.
 - The only APD status remains the inferred ED-class front element; no additional APD flags were added.
 
-### Phase 4 - Analysis sync
-
-- No analysis file changes were needed.
-
-### Verification
-
-- Pending full Nikon batch verification.
-
 ## 2026-07-30 SUMITA KF3 coefficient recovery
 
 - Added SUMITA's discontinued-inclusive KF3 vendor polynomial at catalog code `515546`.

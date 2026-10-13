@@ -22,7 +22,3 @@ Reviewed local untracked patent file `patents/US20100220400A1.pdf`, Example 1 / 
 - US 2010/0220400 A1 does not publish per-surface clear-aperture radii for Example 1.
 - Current SDs remain reconstructed rendering apertures constrained by ray envelopes, FIG. 1 proportions, the 77 mm filter limit, edge-thickness checks, `sd/|R| < 0.90`, and cross-gap sag clearance.
 - The proportions are rational for the drawing: broad front collector, tightened variator/stop region, and moderate rear re-expansion through the positive imaging group.
-
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.

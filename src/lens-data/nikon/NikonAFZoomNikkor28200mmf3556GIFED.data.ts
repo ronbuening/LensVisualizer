@@ -381,6 +381,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.43,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED G2 inner focusing. The second group translates toward the object while D5 decreases and " +
     "D14 increases with D5 + D14 conserved at each zoom station. Published close-state G2 travel is " +

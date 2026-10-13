@@ -47,6 +47,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    were then matched to patent FIG. 2, especially the narrower     ║
  * ║    L5 doublet and the renewed flare through L6-L7. Validation keeps║
  * ║    positive edge, ray-envelope, rim-slope, and air-gap clearances. ║
+ * ║    Surfaces 1-3 were raised to pass the traced chief ray to the    ║
+ * ║    full-frame corner (42.95°, just past the patent's ω = 42.5°)    ║
+ * ║    (2026-09-24 field-coverage audit).                              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -197,9 +200,9 @@ const LENS_DATA = {
 
   /* ── Surfaces ── */
   surfaces: [
-    { label: "1", R: 49.1616, d: 2.94, nd: 1.6968, elemId: 1, sd: 10.8 },
-    { label: "2", R: 147.2808, d: 0.0984, nd: 1.0, elemId: 0, sd: 10.2 },
-    { label: "3", R: 23.5944, d: 0.9792, nd: 1.6129, elemId: 2, sd: 8.7 },
+    { label: "1", R: 49.1616, d: 2.94, nd: 1.6968, elemId: 1, sd: 13.0 },
+    { label: "2", R: 147.2808, d: 0.0984, nd: 1.0, elemId: 0, sd: 12.3 },
+    { label: "3", R: 23.5944, d: 0.9792, nd: 1.6129, elemId: 2, sd: 9.9 },
     { label: "4", R: 9.0144, d: 3.5688, nd: 1.0, elemId: 0, sd: 7.2 },
     { label: "5", R: 51.6384, d: 0.9792, nd: 1.6385, elemId: 3, sd: 6.9 },
     { label: "6", R: 14.16, d: 2.3232, nd: 1.0, elemId: 0, sd: 6.6 },

@@ -16,8 +16,23 @@ Patent: US 5,745,306 A, Example 1, Fig. 1 (PDF page 2)
 - Restored concise source group labels G1, G2, and G3.
 - Confirmed published negative-G2 travel is 10.8239 mm imageward toward near focus. This prime lens has no zoom travel.
 
-### Verification
+## 2026-09-24 — Rear filter modeled as `rearPlates`
 
-- Per-lens image-circle audit: passed with 0 undersized surfaces.
-- Per-lens surface validator and regenerated glass-report suite: passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test` (2,493 tests), and `npm run build` (1,112 prerendered routes): passed.
+- Replaced the air-equivalent S22-to-image gap (106.9520654 mm) with Table 1's physical rear stack: d22 14.5 + d23 7.0 =
+  21.5 mm to the filter (field-stop plane S23 folded out), `rearPlates` surfaces 24–25 at 2.0 mm, nd 1.516800, νd 64.10
+  (J-BK7A catalog equivalent), then d25 10.0 + Bf 74.1335 = 84.1335 mm to the image (field-stop plane S26 folded out).
+- Nikon's instruction manual says always to use a filter with the lens; the 52 mm slip-in holder ships with an NC filter.
+- EFL and paraxial defocus are identical at infinity and close focus. Physical track grows by 0.681435 mm to 315.074700 mm
+  from S3 (TL/EFL 1.071210, still not telephoto under the project criterion).
+
+## 2026-10-04 — Slip-in filter drawn as an element
+
+- The rear slip-in filter plate F moved out of `rearPlates` into the drawn prescription: surfaces 24–25 and element 12
+  (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place and
+  a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
+- The source lists no clear aperture for the plate. Its semi-diameter, 19.5 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at infinity, mid and
+  close focus (18.37 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
+  axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
+  corner.

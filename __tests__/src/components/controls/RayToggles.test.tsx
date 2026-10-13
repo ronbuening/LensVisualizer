@@ -107,8 +107,9 @@ describe("RayToggles", () => {
 
   it("handles missing callbacks gracefully", () => {
     render(<RayToggles t={mockTheme} showOnAxis={true} showOffAxis="off" showPupils={false} />);
-    // Click should not throw when handlers are undefined
-    fireEvent.click(screen.getByText("ON-AXIS"));
-    fireEvent.click(screen.getByText("OFF-AXIS"));
+    expect(() => {
+      fireEvent.click(screen.getByText("ON-AXIS"));
+      fireEvent.click(screen.getByText("OFF-AXIS"));
+    }).not.toThrow();
   });
 });

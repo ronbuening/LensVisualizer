@@ -48,15 +48,6 @@ describe("solveChiefRay", () => {
     expect(second).toBe(first);
   });
 
-  it("routes past-cap field angles through the bounding-sphere launch path", () => {
-    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
-    const result = solveChiefRay(MAX_FIELD_LAUNCH_DEG + 1, 0, 0, L);
-    expect(result.launchSurface).toBe("bounding-sphere");
-    // Past-cap convergence depends on lens geometry; we only assert the
-    // dispatch found the bounding-sphere arm (rather than the old
-    // unconditional out-of-domain pre-empt).
-  });
-
   it("returns paraxial fallback (iterations=0) for near-axis fields", () => {
     const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
     const result = solveChiefRay(0.5, 0, 0, L);

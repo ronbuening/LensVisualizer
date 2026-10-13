@@ -13,20 +13,24 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Patent does not list semi-diameters. SDs estimated from         ║
  * ║    combined marginal + chief ray trace at f/2.86 with 60%          ║
  * ║    field fraction and ~5–10% mechanical clearance.                 ║
+ * ║    Surfaces 12-15 (L7, L8) were raised to pass the traced          ║
+ * ║    chief ray to the patent's Y = 14.20 mm corner (2026-09-24       ║
+ * ║    field-coverage audit), each element scaled as one unit.         ║
  * ║                                                                    ║
- * ║  COVER GLASS CONVENTION:                                           ║
- * ║    Patent filter F (surfaces 16–17, nd = 1.52301, d = 1.2 mm)     ║
- * ║    excluded. Air-equivalent path folded into BFD on surface 15:    ║
- * ║    BFD = 1.0 + 1.2/1.52301 + 4.93 ≈ 6.72 mm.                     ║
+ * ║  FILTER F:                                                         ║
+ * ║    Patent filter F (surfaces 16–17: d = 1.2 mm, nd = 1.52301,      ║
+ * ║    νd = 58.59, then 4.93 mm to the image) is modeled in            ║
+ * ║    `rearPlates` (traced, not drawn); surface 15 keeps the          ║
+ * ║    patent d15 = 1.0 mm to the filter.                              ║
  * ║                                                                    ║
  * ║  CLOSE-FOCUS EXTRAPOLATION:                                        ║
- * ║    Patent publishes data at ∞ and 1000 mm only. Close-focus gap    ║
+ * ║    Patent ∞ and 1000 mm states are exact keyframes. Close gap      ║
  * ║    at MFD = 0.28 m solved via paraxial finite-conjugate trace.     ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -158,7 +162,7 @@ const LENS_DATA = {
 
   /* ── Surface prescription ──
    *  Patent surfaces 1–15, with S4 → STO and S9 → 9A (aspherical).
-   *  Filter F (patent S16–S17) excluded; air-equivalent BFD on S15.
+   *  Filter F (patent S16–S17) is in `rearPlates`; S15 keeps the patent d15.
    */
   surfaces: [
     /* ── G1A: L1 + L2 cemented doublet ── */
@@ -179,10 +183,23 @@ const LENS_DATA = {
     /* ── G2: L6, L7, L8 air-spaced ── */
     { label: "10", R: 150.15, d: 0.9, nd: 1.58144, elemId: 6, sd: 6.9 },
     { label: "11", R: 43.88, d: 5.46, nd: 1.0, elemId: 0, sd: 6.9 },
-    { label: "12", R: -12.38, d: 0.9, nd: 1.53172, elemId: 7, sd: 7.3 },
-    { label: "13", R: -1000.0, d: 0.15, nd: 1.0, elemId: 0, sd: 7.5 },
-    { label: "14", R: 63.82, d: 4.55, nd: 1.91082, elemId: 8, sd: 7.6 },
-    { label: "15", R: -49.1, d: 6.72, nd: 1.0, elemId: 0, sd: 8.3 },
+    { label: "12", R: -12.38, d: 0.9, nd: 1.53172, elemId: 7, sd: 9.8 },
+    { label: "13", R: -1000.0, d: 0.15, nd: 1.0, elemId: 0, sd: 10.1 },
+    { label: "14", R: 63.82, d: 4.55, nd: 1.91082, elemId: 8, sd: 11.3 },
+    { label: "15", R: -49.1, d: 1.0, nd: 1.0, elemId: 0, sd: 12.3 },
+  ],
+
+  /* ── Filter F (patent surfaces 16–17): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 1.2,
+      nd: 1.52301,
+      vd: 58.59,
+      glass: "C12 (HOYA)",
+      gapAfterMm: 4.93,
+      source: "JP 2013-156459 A, Numerical Example 4 surfaces 16–17",
+    },
   ],
 
   /* ── Aspherical coefficients ──
@@ -208,8 +225,9 @@ const LENS_DATA = {
    *  Patent: d9 = 2.32 (∞), 2.88 (1000 mm).
    *  MFD = 0.28 m: d9 ≈ 4.65 (solved via paraxial finite-conjugate trace).
    */
+  focusPositions: [0, 0.281750958383782, 1],
   var: {
-    "9A": [2.32, 4.65],
+    "9A": [2.32, 2.88, 4.65],
   },
   varLabels: [["9A", "BF"]],
 
@@ -225,12 +243,15 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.28,
-  focusDescription: "Front-group unit focus: G1 (L1–L5 + aperture stop) translates forward along the optical axis.",
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
+  focusDescription:
+    "Front-group unit focus: the patent 1000 mm state is exact before the constrained 0.28 m endpoint; G1 (L1–L5 plus stop) translates objectward.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
+  nominalFno: 2.86,
   apertureBlades: 9,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [2.86, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

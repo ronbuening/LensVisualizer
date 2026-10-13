@@ -3,6 +3,7 @@
  * and doublet labels rendered in the SVG diagram.
  */
 import { memo } from "react";
+import { teleconverterGroupLabel } from "../../optics/teleconverter.js";
 import type { RuntimeLens, ElementShape } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -86,7 +87,23 @@ const ElementAnnotations = memo(function ElementAnnotations({
     : [];
   const packedAbbeLabels = packLabelRows(abbeLabels, 3).map((item) => ({ ...item, y: item.y + item.row * 10 }));
   const lowerAnnotationShift = packedAbbeLabels.reduce((maxShift, { row }) => Math.max(maxShift, row * 10), 0);
-  const groupLabels = L.groups
+  /* An attached converter is always labelled. The composer adds its group annotation only when the host authors
+   * groups (authored groups replace the group-movement overlay's fallback), so otherwise it comes from the
+   * descriptor here. */
+  const teleconverter = L.data.attachedTeleconverter;
+  const teleconverterLabel = teleconverter ? teleconverterGroupLabel(teleconverter.magnification) : null;
+  const groups =
+    teleconverter && teleconverterLabel && !L.groups.some((group) => group.text === teleconverterLabel)
+      ? [
+          ...L.groups,
+          {
+            text: teleconverterLabel,
+            fromSurface: L.labelIdx[teleconverter.firstSurfaceLabel],
+            toSurface: L.labelIdx[teleconverter.lastSurfaceLabel],
+          },
+        ]
+      : L.groups;
+  const groupLabels = groups
     .map(({ text, fromSurface, toSurface }) => {
       const [x, y] = screenPoint((zPos[fromSurface] + zPos[toSurface]) / 2, L.lyGroup);
       return { text, x, y, fontSize: 9 };

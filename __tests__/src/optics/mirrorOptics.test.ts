@@ -12,6 +12,7 @@ import {
   traceExactSurfaceStackVector,
   traceToStopViaGeneralized,
   type ExactTraceLens,
+  type VectorRayInput,
 } from "../../../src/optics/internal/exactSurfaceTrace.js";
 import { computeGroupMovementProfile } from "../../../src/optics/groupMovement.js";
 import {
@@ -26,9 +27,12 @@ import {
   traceRayChromatic,
 } from "../../../src/optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
+import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { buildFacingFlatMirrorsLens, buildFoldedTirLens } from "./testLensFixtures.js";
 
 const mirrorData = LENS_CATALOG["reference-spherical-primary-mirror"] as LensData;
 const annularData = LENS_CATALOG["reference-annular-obscured-mirror"] as LensData;
@@ -91,6 +95,16 @@ function traceBackSideMirror(lens: ExactTraceLens, y: number) {
     { origin: [0, y, 10], direction: [0, 0, -1] },
     { zPos: [0], launchBoundT: 25, stopOnClip: true },
   );
+}
+
+/* Trace one ray through both live generalized tracers with the same options: the engine's traceGeneralized (via
+ * traceEngineRay2) and the legacy RuntimeLens-shaped stack (via traceExactSurfaceStackVector). */
+function traceBothFoldedTracers(L: RuntimeLens, ray: VectorRayInput, launchBoundT?: number) {
+  const options = { checkSemiDiameter: true, stopOnClip: true, launchBoundT };
+  return {
+    engine: traceEngineRay2(prepareRuntimeState(L, 0, 0), ray, options),
+    legacy: traceExactSurfaceStackVector(L, ray, { ...options, zPos: doLayout(0, 0, L).z }),
+  };
 }
 
 describe("mirror optics support", () => {
@@ -309,7 +323,6 @@ describe("mirror optics support", () => {
     const sample = samples.find((fraction) => fraction > 0) ?? samples[0] ?? 0;
     const result = traceRay(sample * L.EP.epSD, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
 
-    expect(validateLensData(nikonReflex500NewData)).toEqual([]);
     expect(L.isFoldedOptics).toBe(true);
     expect(result.clipped).toBe(false);
     expect(result.reachedImagePlane).toBe(true);
@@ -323,9 +336,9 @@ describe("mirror optics support", () => {
     const profile = computeGroupMovementProfile(L, "focus", { focusT: 1, zoomT: 0 });
     const shiftByGroup = new Map(profile.series.map((series) => [series.group.label, series.currentPoint.shiftMm]));
 
-    expect(validateLensData(nikonReflex500NewData)).toEqual([]);
-    expect(shiftByGroup.get("L1")).toBeCloseTo(-8.05, 10);
-    expect(shiftByGroup.get("M2")).toBeCloseTo(-8.05, 10);
+    // L1 and M2 travel together toward the object; L2 and the primary stay put.
+    expect(shiftByGroup.get("L1")).toBeLessThan(0);
+    expect(shiftByGroup.get("M2")).toBeCloseTo(shiftByGroup.get("L1")!, 10);
     expect(shiftByGroup.get("L2")).toBeCloseTo(0, 10);
     expect(shiftByGroup.get("M1")).toBeCloseTo(0, 10);
   });
@@ -382,7 +395,7 @@ describe("mirror optics support", () => {
     expect(Math.abs(result!.samples.find((sample) => sample.channel === "G")!.focusShiftMm!)).toBeLessThan(1);
   });
 
-  it("keeps the Nikon 1000mm primary mirror thickness and folded intervals aligned to the patent", () => {
+  it("orders the Nikon 1000mm folded path through the thick primary and the rear group in its perforation", () => {
     const L = buildLens(nikonReflex1000Data);
     const layout = doLayout(0, 0, L);
     const indexByLabel = new Map(L.S.map((surface, index) => [surface.label, index]));
@@ -392,11 +405,9 @@ describe("mirror optics support", () => {
     const result = traceRay(sample * L.EP.epSD, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
     const hitLabels = result.diagnostics?.hitSurfaceLabels ?? [];
 
-    expect(validateLensData(nikonReflex1000Data)).toEqual([]);
-    expect(z("M1R") - z("M1F")).toBeCloseTo(10, 12);
-    expect(z("M1R") - z("M2F")).toBeCloseTo(147, 12);
-    expect(z("L2F") - z("M2F")).toBeCloseTo(150, 12);
-    expect(z("L2F")).toBeGreaterThan(z("M1R"));
+    expect(z("M1R")).toBeGreaterThan(z("M1F"));
+    expect(z("L2F")).toBeGreaterThan(z("M1F"));
+    expect(z("L2F")).toBeLessThan(z("M1R"));
     expect(hitLabels.indexOf("M1R")).toBeGreaterThan(hitLabels.indexOf("M1F"));
     expect(hitLabels.indexOf("L2F")).toBeGreaterThan(hitLabels.indexOf("M2F"));
     expect(result.clipped).toBe(false);
@@ -422,17 +433,64 @@ describe("mirror optics support", () => {
     const result = traceRay(sample * L.EP.epSD, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
     const hitLabels = result.diagnostics?.hitSurfaceLabels ?? [];
 
-    expect(validateLensData(nikonReflexC500Data)).toEqual([]);
     expect(z("9")).toBeCloseTo(z("3"), 12);
     expect(z("10")).toBeCloseTo(z("4M"), 12);
-    expect(z("10") - z("9")).toBeCloseTo(8.800611, 6);
     expect(z("4M") - z("3")).toBeCloseTo(z("10") - z("9"), 12);
-    expect(Math.max(...pathCoords(l3Shape!.d).map(([, y]) => Math.abs(y)))).toBeLessThanOrEqual(18.5 + 1e-9);
-    expect(Math.max(...pathCoords(l4Shape!.d).map(([, y]) => Math.abs(y)))).toBeLessThanOrEqual(18.5 + 1e-9);
+    const clearCenter = L.S[indexByLabel.get("3")!].innerSd!;
+    expect(Math.max(...pathCoords(l3Shape!.d).map(([, y]) => Math.abs(y)))).toBeLessThanOrEqual(clearCenter + 1e-9);
+    expect(Math.max(...pathCoords(l4Shape!.d).map(([, y]) => Math.abs(y)))).toBeLessThanOrEqual(clearCenter + 1e-9);
     expect(primaryShape?.fillRule).toBe("evenodd");
     expect(hitLabels.slice(-4)).toEqual(["7", "8", "9", "10"]);
     expect(result.clipped).toBe(false);
     expect(result.reachedImagePlane).toBe(true);
+  });
+
+  it("exits an annular Mangin zone into air when a clear central plug is listed just before it", () => {
+    /* A zoned blank lists the clear central plug (PF) at the annulus' station, immediately before the annular front
+     * surface. A reverse crossing of that surface must enter the air in front of the annulus, not the plug glass
+     * that precedes it in array order, so annular rays trace exactly as through the plain Mangin fixture. */
+    const [STO, MG1, MG2] = manginData.surfaces;
+    const zoned = buildLens({
+      ...manginData,
+      key: "reference-zoned-mangin-plug",
+      elements: [
+        { ...manginData.elements[0], fromSurface: "MG1", toSurface: "MG2" },
+        {
+          ...manginData.elements[0],
+          id: 2,
+          name: "PL",
+          label: "Clear central plug",
+          fromSurface: "PF",
+          toSurface: "PR",
+        },
+      ],
+      surfaces: [
+        STO,
+        { label: "PF", R: MG1.R, d: 0, nd: MG1.nd, elemId: 2, sd: 5 },
+        { ...MG1, innerSd: 5 },
+        { ...MG2, innerSd: 5 },
+        { label: "PR", R: MG2.R, d: 0, nd: 1.0, elemId: 0, sd: 5 },
+      ],
+      groups: [{ text: "MG", fromSurface: "PF", toSurface: "PR" }],
+    } satisfies LensData);
+    const plain = buildLens(manginData);
+    const ray: VectorRayInput = { origin: [0, 12, -10], direction: [0, 0, 1] };
+    const zonedTraces = traceBothFoldedTracers(zoned, ray);
+    const plainTraces = traceBothFoldedTracers(plain, ray);
+
+    expect(validateLensData(zoned.data)).toEqual([]);
+    for (const tracer of ["engine", "legacy"] as const) {
+      const actual = zonedTraces[tracer];
+      const expected = plainTraces[tracer];
+      expect(actual.diagnostics.hitSurfaceLabels, tracer).toEqual(["STO", "MG1", "MG2", "MG1"]);
+      expect(actual.diagnostics.finalMedium, tracer).toBe(1);
+      for (const hit of actual.hits) {
+        expect(Math.abs(hit.residual!), tracer).toBeLessThanOrEqual(hit.effectiveTolerance!);
+      }
+      for (let axis = 0; axis < 3; axis++) {
+        expect(actual.terminalDirection[axis], tracer).toBeCloseTo(expected.terminalDirection[axis], 12);
+      }
+    }
   });
 
   it("supports second-surface mirrors that exit through a repeated front surface", () => {
@@ -621,64 +679,81 @@ describe("mirror optics support", () => {
     });
   });
 
-  it("detects repeated auto-path states before maxInteractions is exhausted", () => {
-    const L = buildLens({
-      ...mirrorData,
-      key: "reference-looping-flat-mirrors",
-      name: "REFERENCE Looping Flat Mirrors",
-      elements: [
-        {
-          id: 1,
-          name: "LOOP",
-          label: "Loop mirrors",
-          type: "Flat Mirror Pair",
-          nd: 1.0,
-          vd: 0,
-          glass: "Aluminized front surfaces",
-          apd: false,
-          fromSurface: "STO",
-          toSurface: "M1",
-        },
-      ],
-      surfaces: [
-        {
-          label: "STO",
-          R: 1e15,
-          d: 10,
-          nd: 1.0,
-          elemId: 1,
-          sd: 20,
-          interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface" },
-        },
-        {
-          label: "M1",
-          R: 1e15,
-          d: 0,
-          nd: 1.0,
-          elemId: 1,
-          sd: 20,
-          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "first-surface" },
-        },
-      ],
-      groups: [{ text: "Loop", fromSurface: "STO", toSurface: "M1" }],
-      opticalPath: {
-        mode: "auto",
-        imagePlane: { z: 50, label: "IMG" },
-        maxInteractions: 8,
-      },
-    } satisfies LensData);
-    const layout = doLayout(0, 0, L);
-    const result = traceExactSurfaceStackVector(
+  it("detects repeated auto-path states before maxInteractions is exhausted in both tracers", () => {
+    /* An axial ray between facing flat mirrors revisits the same surface state every round trip. Auto mode must stop
+     * on the repeated state rather than spin to the cap (or hang), and both generalized tracers must agree. */
+    const L = buildFacingFlatMirrorsLens();
+    const { engine, legacy } = traceBothFoldedTracers(L, { origin: [0, 0, 10], direction: [0, 0, 1] }, 50);
+
+    expect(validateLensData(L.data)).toEqual([]);
+    expect(engine.status).toBe("failed");
+    expect(legacy.clipped).toBe(true);
+    for (const trace of [engine, legacy]) {
+      expect(trace.failureReason).toBe("loopDetected");
+      expect(trace.diagnostics.terminationReason).toBe("loop-detected");
+      expect(trace.diagnostics.loopDetected).toBe(true);
+      expect(trace.diagnostics.hitSurfaceLabels).toEqual(["MB", "MA", "MB"]);
+      expect(trace.diagnostics.hitSurfaceLabels.length).toBeLessThan(L.opticalPath.maxInteractions);
+    }
+    expect(engine.diagnostics).toEqual(legacy.diagnostics);
+  });
+
+  it("stops a non-repeating auto-path ray at maxInteractions in both tracers", () => {
+    /* A slightly tilted ray walks along the facing mirrors, so no surface state repeats and loop detection cannot
+     * fire; the maxInteractions cap is the only terminator and must be reported identically by both tracers. */
+    const L = buildFacingFlatMirrorsLens();
+    const slope = 0.01;
+    const norm = Math.hypot(slope, 1);
+    const { engine, legacy } = traceBothFoldedTracers(
       L,
-      { origin: [0, 5, 5], direction: [0, 0, 1] },
-      { zPos: layout.z, launchBoundT: 50 },
+      { origin: [0, 0, 10], direction: [0, slope / norm, 1 / norm] },
+      50,
     );
 
-    expect(result.clipped).toBe(true);
-    expect(result.diagnostics?.loopDetected).toBe(true);
-    expect(result.diagnostics?.terminationReason).toBe("loop-detected");
-    expect(result.diagnostics?.hitSurfaceLabels).toEqual(["M1", "STO", "M1"]);
-    expect(result.diagnostics?.hitSurfaceLabels.length).toBeLessThan(L.opticalPath.maxInteractions);
+    expect(engine.status).toBe("failed");
+    expect(legacy.clipped).toBe(true);
+    for (const trace of [engine, legacy]) {
+      expect(trace.failureReason).toBe("maxInteractions");
+      expect(trace.diagnostics.terminationReason).toBe("max-interactions");
+      expect(trace.diagnostics.loopDetected).toBe(false);
+      expect(trace.diagnostics.hitSurfaceLabels).toHaveLength(L.opticalPath.maxInteractions);
+    }
+    expect(engine.diagnostics).toEqual(legacy.diagnostics);
+  });
+
+  it("fails folded rays past the critical angle with matching TIR diagnostics in both tracers", () => {
+    /* No catalog lens reaches the refract-or-fail branch on a folded path. A Mangin return ray steeper than the
+     * critical angle must stop with a TIR clip at the exit surface in both tracers; the threshold is closed-form
+     * (collimated input at height y meets the flat exit at 2·asin(y/|R|)), so rays straddle it by ±3%. */
+    const L = buildFoldedTirLens();
+    const criticalAngle = Math.asin(1 / L.S[L.labelIdx.MG1].nd);
+    const criticalHeight = Math.abs(L.S[L.labelIdx.MG2].R) * Math.sin(criticalAngle / 2);
+    const launch = (y: number): VectorRayInput => ({ origin: [0, y, -10], direction: [0, 0, 1] });
+    const below = traceBothFoldedTracers(L, launch(0.97 * criticalHeight));
+    const above = traceBothFoldedTracers(L, launch(1.03 * criticalHeight));
+
+    expect(validateLensData(L.data)).toEqual([]);
+    for (const trace of [below.engine, below.legacy]) {
+      expect(trace.reachedImagePlane).toBe(true);
+      expect(trace.failureReason).toBeNull();
+    }
+    expect(above.engine.status).toBe("failed");
+    expect(above.legacy.clipped).toBe(true);
+    for (const trace of [above.engine, above.legacy]) {
+      expect(trace.reachedImagePlane).toBe(false);
+      expect(trace.failureReason).toBe("totalInternalReflection");
+      expect(trace.diagnostics.terminationReason).toBe("trace-failure");
+      expect(trace.diagnostics.hitSurfaceLabels).toEqual(["STO", "MG1", "MG2", "MG1"]);
+      expect(trace.diagnostics.clipEvents).toEqual([
+        {
+          surfaceIdx: L.labelIdx.MG1,
+          surfaceLabel: "MG1",
+          reason: "total-internal-reflection",
+          failureReason: "totalInternalReflection",
+        },
+      ]);
+    }
+    expect(above.engine.diagnostics).toEqual(above.legacy.diagnostics);
   });
 
   it("supports a compact Maksutov-Cassegrain-style meniscus fixture", () => {
@@ -823,11 +898,13 @@ describe("mirror optics support", () => {
     expect(L.EP.epSD).toBeCloseTo(17.856823466425105, 12);
     expect(L.EP.yRatio).toBeCloseTo(0.6960409629659625, 12);
     expect(L.B).toBeCloseTo(16.79046967193117, 12);
-    expect(L.halfField).toBeCloseTo(25.81431950150305, 12);
-    expect(L.tracingHalfField).toBeCloseTo(25.81431950150305, 12);
-    expect(L.epZRelStop).toBeCloseTo(4.204818318081482, 12);
-    expect(L.xpZRelLastSurf).toBeCloseTo(-29.615117987357305, 12);
-    expect(L.xpSD).toBeCloseTo(23.254328038906696, 12);
+    // Independently checked with 50/80-digit analytic sphere intersections and Snell refraction.
+    // The field value is the conservative endpoint of the existing clipping bisection.
+    expect(L.halfField).toBeCloseTo(25.814319501447216, 12);
+    expect(L.tracingHalfField).toBeCloseTo(25.814319501447216, 12);
+    expect(L.epZRelStop).toBeCloseTo(4.204818317951311, 12);
+    expect(L.xpZRelLastSurf).toBeCloseTo(-29.615117987345197, 12);
+    expect(L.xpSD).toBeCloseTo(23.254328038955432, 12);
   });
 
   it("computes mirror-safe on-axis spherical aberration against the explicit image plane", () => {

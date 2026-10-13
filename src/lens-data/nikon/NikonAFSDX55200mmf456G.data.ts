@@ -25,6 +25,7 @@ const LENS_DATA = {
   groupCount: 9,
   closeFocusM: 1.1,
   nominalFno: [4, 4.94, 5.6],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 7,
   apertureBladeRoundedness: 0.6,

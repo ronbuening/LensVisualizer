@@ -4,13 +4,13 @@ import {
   sagSlope,
   thick,
   doLayout,
+  entrancePupilAtState,
   formatDist,
   traceRay,
   traceRayChromatic,
   computeChromaticRayFanSpread,
   traceToImage,
   conjugateK,
-  wavelengthNd,
   eflAtZoom,
   eflAtFocus,
   effectiveFNumber,
@@ -93,6 +93,14 @@ describe("thick", () => {
     expect(thick(0, 1.0, 0, L)).toBe(10.0);
   });
 
+  it("interpolates prime focus keyframes piecewise and preserves a reversal", () => {
+    const L = buildVariableStopGapLens([5.0, 2.0, 10.0], "test-prime-focus-keyframes", [0, 0.25, 1]);
+    expect(thick(0, 0, 0, L)).toBe(5.0);
+    expect(thick(0, 0.25, 0, L)).toBe(2.0);
+    expect(thick(0, 0.625, 0, L)).toBe(6.0);
+    expect(thick(0, 1, 0, L)).toBe(10.0);
+  });
+
   it("interpolates zoom variable spacing", () => {
     const L = buildVariableStopGapLens([
       [2.0, 4.0],
@@ -112,6 +120,20 @@ describe("thick", () => {
     // zoomT=0.25, focusT=0.5 → between z0 and z1, mid focus
     // d_inf = 2 + (6-2)*0.5 = 4, d_close = 4 + (8-4)*0.5 = 6, result = 4 + (6-4)*0.5 = 5
     expect(thick(0, 0.5, 0.25, L)).toBe(5.0);
+  });
+
+  it("interpolates focus keyframes within bracketing zoom positions", () => {
+    const L = buildVariableStopGapLens(
+      [
+        [2.0, 5.0, 4.0],
+        [6.0, 9.0, 8.0],
+        [10.0, 13.0, 12.0],
+      ],
+      "test-zoom-focus-keyframes",
+      [0, 0.5, 1],
+    );
+    expect(thick(0, 0.5, 0.25, L)).toBe(7.0);
+    expect(thick(0, 0.75, 0.25, L)).toBe(6.5);
   });
 });
 
@@ -244,48 +266,6 @@ describe("traceRay — exact Snell", () => {
     expect(isFinite(result.y)).toBe(true);
     expect(isFinite(result.u)).toBe(true);
   });
-
-  it("does not emit fallback ghost points for non-ghost total internal reflection", () => {
-    const L = buildTirLens();
-    const { z: zPos } = doLayout(0, 0, L);
-    const result = traceRay(5, 1, zPos, 0, 0, 20, false, L);
-
-    expect(result.clipped).toBe(true);
-    expect(result.ghostPts).toHaveLength(0);
-  });
-});
-
-describe("wavelengthNd", () => {
-  it("returns 1.0 for air regardless of channel", () => {
-    expect(wavelengthNd(1.0, 64.17, "R")).toBe(1.0);
-    expect(wavelengthNd(1.0, 64.17, "G")).toBe(1.0);
-    expect(wavelengthNd(1.0, 64.17, "B")).toBe(1.0);
-  });
-
-  it("returns nd for green channel", () => {
-    expect(wavelengthNd(1.5168, 64.17, "G")).toBe(1.5168);
-  });
-
-  it("red < nd < blue for dispersive glass", () => {
-    const nd = 1.5168,
-      vd = 64.17;
-    expect(wavelengthNd(nd, vd, "R")).toBeLessThan(nd);
-    expect(wavelengthNd(nd, vd, "B")).toBeGreaterThan(nd);
-  });
-
-  it("computes BK7 dispersion approximately", () => {
-    // BK7: nd=1.5168, vd=64.17, nF-nC = (nd-1)/vd ≈ 0.00806
-    const nd = 1.5168,
-      vd = 64.17;
-    const nR = wavelengthNd(nd, vd, "R");
-    const nB = wavelengthNd(nd, vd, "B");
-    expect(nB - nR).toBeCloseTo((nd - 1) / vd, 4);
-  });
-
-  it("returns nd when vd is undefined or 0", () => {
-    expect(wavelengthNd(1.5, undefined, "R")).toBe(1.5);
-    expect(wavelengthNd(1.5, 0, "B")).toBe(1.5);
-  });
 });
 
 describe("traceRayChromatic", () => {
@@ -319,22 +299,6 @@ describe("traceRayChromatic", () => {
     expect(blue.y).toBeCloseTo(0, 10);
   });
 
-  it("returns clipped=true on chromatic total internal reflection", () => {
-    /* High-index to low-index at steep angle with dispersive glass */
-    const L = buildTirLens("test-chromatic-tir-lens");
-    const { z: zPos } = doLayout(0, 0, L);
-    const { clipped } = traceRayChromatic(5, 1, zPos, 0, 0, 20, true, L, "B");
-    expect(clipped).toBe(true);
-  });
-
-  it("ghost mode continues through chromatic TIR and returns ghostPts", () => {
-    const L = buildTirLens("test-chromatic-tir-ghost-lens");
-    const { z: zPos } = doLayout(0, 0, L);
-    const result = traceRayChromatic(5, 1, zPos, 0, 0, 20, true, L, "B");
-    /* Ghost mode should produce some points even when clipped */
-    expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(0);
-  });
-
   it("non-ghost mode breaks on chromatic TIR without ghostPts", () => {
     const L = buildTirLens("test-chromatic-tir-non-ghost-lens");
     const { z: zPos } = doLayout(0, 0, L);
@@ -353,32 +317,13 @@ describe("traceRayChromatic", () => {
     expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(1);
   });
 
-  it("green channel matches exact traceRay", () => {
-    const L = mkChromElement();
-    const { z: zPos } = doLayout(0, 0, L);
-    const ref = traceRay(5, 0, zPos, 0, 0, 15, false, L);
-    const chrom = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, "G");
-
-    expect(chrom.y).toBeCloseTo(ref.y, 7);
-    expect(chrom.u).toBeCloseTo(ref.u, 7);
-  });
-
-  it("ghost mode continues through chromatic TIR", () => {
-    const L = buildTirLens("test-chromatic-tir-duplicate-ghost-lens");
+  it("ghost mode continues through chromatic TIR and keeps rendering points", () => {
+    const L = buildTirLens("test-chromatic-tir-ghost-lens");
     const { z: zPos } = doLayout(0, 0, L);
     const result = traceRayChromatic(5, 1, zPos, 0, 0, 20, true, L, "B");
 
     expect(result.clipped).toBe(true);
     expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(0);
-  });
-
-  it("non-ghost exact chromatic TIR does not emit fallback ghost points", () => {
-    const L = buildTirLens("test-chromatic-tir-duplicate-non-ghost-lens");
-    const { z: zPos } = doLayout(0, 0, L);
-    const result = traceRayChromatic(5, 1, zPos, 0, 0, 20, false, L, "B");
-
-    expect(result.clipped).toBe(true);
-    expect(result.ghostPts).toHaveLength(0);
   });
 });
 
@@ -596,11 +541,11 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   });
 
   it("ghost mode returns rendering points even when clipped", () => {
-    // Use a marginal ray that hits several surfaces before missing a later one.
+    // Deliberately close the iris around an otherwise transmitting pupil ray.
     const h = 0.7 * L.EP.epSD;
-    const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, true, L);
+    const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD * 0.1, true, L);
     expect(clipped).toBe(true);
-    // Preceding valid hits still render even though tracing stops at the miss.
+    // Preceding valid hits and the clipped span remain available to render.
     expect(pts.length + ghostPts.length).toBeGreaterThan(1);
   });
 
@@ -617,6 +562,38 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
 });
 
 /* ── conjugateK with real-ray trace ── */
+
+/** Image height at the sensor for a meridional ray launched at height h with slope h·k. */
+function imageHeightAtSensor(L: RuntimeLens, focusT: number, h: number, k: number): number | null {
+  const { z, imgZ } = doLayout(focusT, 0, L);
+  const ray = traceRay(h, h * k, z, focusT, 0, L.stopPhysSD, true, L);
+  const imageHeight = ray.y + ray.u * (imgZ - z[L.N - 1]);
+  return isFinite(imageHeight) ? imageHeight : null;
+}
+
+/** Bisect the launch slope-per-height that lands the ray on the axis at the sensor. */
+function solveKForImageHeight(L: RuntimeLens, focusT: number, h: number): number | null {
+  let lo = -0.05;
+  let hi = 0.05;
+  let loHeight = imageHeightAtSensor(L, focusT, h, lo);
+  const hiHeight = imageHeightAtSensor(L, focusT, h, hi);
+  if (loHeight === null || hiHeight === null || Math.sign(loHeight) === Math.sign(hiHeight)) return null;
+
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    const midHeight = imageHeightAtSensor(L, focusT, h, mid);
+    if (midHeight === null) return null;
+    if (Math.abs(midHeight) < 1e-9) return mid;
+    if (Math.sign(midHeight) === Math.sign(loHeight)) {
+      lo = mid;
+      loHeight = midHeight;
+    } else {
+      hi = mid;
+    }
+  }
+  return (lo + hi) / 2;
+}
+
 describe("conjugateK", () => {
   const allLenses: [string, RuntimeLens][] = [
     ["ApoLanthar50f2", buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData)],
@@ -650,6 +627,19 @@ describe("conjugateK", () => {
     for (const t of [0.25, 0.5, 0.75]) {
       const K = conjugateK(t, 0, L);
       expect(isFinite(K), `${name}: conjugateK(${t}) must be finite`).toBe(true);
+    }
+  });
+
+  /* Independent check of the tracked-focus slope: bisect the launch
+   * slope-per-height that lands a near-axis ray on the axis at the sensor and
+   * require conjugateK to agree. Guards the near-minimum-focus regression first
+   * seen on the Fujifilm XF 56 mm (2026-04) without pinning a lens constant. */
+  it.each(allLenses)("%s: conjugateK agrees with an independent near-axis image-height solve", (name, L) => {
+    for (const focusT of [0.5, 1]) {
+      const h = 0.1 * entrancePupilAtState(L.stopPhysSD, focusT, 0, L).epSD;
+      const solved = solveKForImageHeight(L, focusT, h);
+      expect(solved, `${name}: focusT=${focusT} should bracket a near-axis solve`).not.toBeNull();
+      expect(conjugateK(focusT, 0, L), `${name}: focusT=${focusT}`).toBeCloseTo(solved!, 4);
     }
   });
 

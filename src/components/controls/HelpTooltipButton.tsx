@@ -4,41 +4,21 @@
  * layers above neighboring panels and tab content.
  */
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
+import { useEffect, useRef, useState } from "react";
+import PortalTooltip from "./PortalTooltip.js";
 import type { Theme } from "../../types/theme.js";
 
 interface HelpTooltipButtonProps {
   theme: Theme;
   label: string;
   text: string;
+  /** Tooltip width in px; defaults to the shared tooltip width. */
+  width?: number;
 }
 
-interface TooltipPos {
-  top: number;
-  left: number;
-}
-
-const TOOLTIP_WIDTH = 220;
-const VIEWPORT_MARGIN = 12;
-
-export default function HelpTooltipButton({ theme: t, label, text }: HelpTooltipButtonProps) {
+export default function HelpTooltipButton({ theme: t, label, text, width }: HelpTooltipButtonProps) {
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const [open, setOpen] = useState(false);
-  const [pos, setPos] = useState<TooltipPos | null>(null);
-
-  useLayoutEffect(() => {
-    if (!open || !triggerRef.current) return;
-    const rect = triggerRef.current.getBoundingClientRect();
-    const left = Math.min(
-      Math.max(rect.right - TOOLTIP_WIDTH, VIEWPORT_MARGIN),
-      window.innerWidth - TOOLTIP_WIDTH - VIEWPORT_MARGIN,
-    );
-    setPos({
-      top: rect.bottom + 6,
-      left,
-    });
-  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -66,33 +46,6 @@ export default function HelpTooltipButton({ theme: t, label, text }: HelpTooltip
     };
   }, [open]);
 
-  const tooltip =
-    open && pos
-      ? ReactDOM.createPortal(
-          <div
-            role="tooltip"
-            style={{
-              position: "fixed",
-              top: pos.top,
-              left: pos.left,
-              zIndex: 9999,
-              width: TOOLTIP_WIDTH,
-              padding: "8px 10px",
-              borderRadius: 8,
-              background: t.panelBg,
-              border: `1px solid ${t.panelBorder}`,
-              color: t.muted,
-              fontSize: 9,
-              lineHeight: 1.45,
-              boxShadow: "0 6px 18px rgba(0, 0, 0, 0.18)",
-            }}
-          >
-            {text}
-          </div>,
-          document.body,
-        )
-      : null;
-
   return (
     <>
       <button
@@ -101,8 +54,14 @@ export default function HelpTooltipButton({ theme: t, label, text }: HelpTooltip
         aria-label={label}
         aria-expanded={open}
         onClick={() => setOpen((value) => !value)}
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
+        /* Hover is a mouse affordance. A tap also fires a compatibility mouseenter before its click, which
+         * would open the tooltip only for the click to toggle it shut, so only a mouse pointer hovers. */
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse") setOpen(true);
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse") setOpen(false);
+        }}
         onBlur={() => setOpen(false)}
         style={{
           width: 16,
@@ -123,7 +82,7 @@ export default function HelpTooltipButton({ theme: t, label, text }: HelpTooltip
       >
         ?
       </button>
-      {tooltip}
+      <PortalTooltip anchorRef={triggerRef} open={open} text={text} theme={t} width={width} />
     </>
   );
 }

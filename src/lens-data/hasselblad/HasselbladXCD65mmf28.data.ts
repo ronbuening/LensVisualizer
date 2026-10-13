@@ -14,15 +14,23 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    (Di/2). Patent lists effective diameters for all surfaces.       ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent lists two cover glass plates (S18–S20). Excluded per     ║
- * ║    project convention. Air-equivalent BFD folded into final        ║
- * ║    surface d: 20.73 + 0.80/1.53741 + 1.00/1.52312 = 21.91 mm.    ║
+ * ║    Patent Fig. 2 surfaces 18–20 list two cemented COVER plates     ║
+ * ║    (0.80 mm nd 1.53741 νd 61.81; 1.00 mm nd 1.52312 νd 54.36).     ║
+ * ║    S20 has no distance, so the image plane sits on the rear face   ║
+ * ║    (gap after 0). Modeled in `rearPlates` (traced, not drawn);     ║
+ * ║    S17 keeps the patent's 20.73 mm gap to the cover glass.         ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gap                         ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: US20200319427A1 Fig. 2–3 values match at infinity.
+ * The printed cover stack ends at S20 (image plane in Fig. 1); paraxial
+ * focus falls 0.232471 mm beyond it. EFL 65.015872 agrees with 65.02,
+ * but the air-equivalent rear path 21.906903 does not equal BFL 22.139374.
+ * Retain the source rearPlates and physical image plane; no focus tuning.
  */
 
 const LENS_DATA = {
@@ -215,7 +223,27 @@ const LENS_DATA = {
 
     // L33: negative meniscus singleton, concave to object
     { label: "16", R: -35.501, d: 2.2, nd: 1.48749, elemId: 10, sd: 20.0 },
-    { label: "17", R: -1023.357, d: 21.91, nd: 1.0, elemId: 0, sd: 21.8 }, // air-eq BFD
+    { label: "17", R: -1023.357, d: 20.73, nd: 1.0, elemId: 0, sd: 21.8 }, // patent gap to the cover glass
+  ],
+
+  /* ── Cover glass (patent Fig. 2 surfaces 18–20, cemented pair): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "COVER",
+      thicknessMm: 0.8,
+      nd: 1.53741,
+      vd: 61.81,
+      gapAfterMm: 0,
+      source: "US 2020/0319427 A1, Example 1 Fig. 2 surfaces 18–19",
+    },
+    {
+      label: "COVER",
+      thicknessMm: 1.0,
+      nd: 1.52312,
+      vd: 54.36,
+      gapAfterMm: 0,
+      source: "US 2020/0319427 A1, Example 1 Fig. 2 surfaces 19–20 (S20 = image plane, no distance printed)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -225,8 +253,9 @@ const LENS_DATA = {
    *  Single variable gap: G1+Stop+G2 move as unit toward object; G3 fixed.
    *  Patent Fig. 3: d12 = 1.00 (infinity) → 14.46 (400 mm from S1, ≈ 0.50 m MFD from image plane).
    */
+  focusPositions: [0, 0.1758096778953822, 1],
   var: {
-    "12": [1.0, 14.46],
+    "12": [1.0, 3.02, 14.46],
   },
 
   varLabels: [["12", "BF"]],
@@ -247,7 +276,10 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.5,
-  focusDescription: "Front-group focus: G1, stop, and G2 move as a unit toward the object. G3 is fixed.",
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
+  focusDescription:
+    "Front-group focus: G1, stop, and G2 move as a unit toward the object while G3 remains fixed. The patent's infinity, 2400 mm, and 400 mm object-distance states are represented exactly.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.8,

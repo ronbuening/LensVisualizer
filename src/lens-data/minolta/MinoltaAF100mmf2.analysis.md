@@ -5,12 +5,12 @@
 **Filed:** 17 April 1986<br>
 **Published:** 24 October 1987<br>
 **Inventors:** Naoshi Okada; Hisashi Tokumaru<br>
-**Applicant:** Minolta Co., Ltd.<br>
+**Applicant:** Minolta Camera Co., Ltd.<br>
 **Title:** 中望遠レンズ (Medium Telephoto Lens)<br>
 **Embodiment analyzed:** Example 2<br>
 **Lens:** MINOLTA AF 100mm f/2
 
-The prescription is Example 2 of Minolta Co., Ltd.'s Japanese publication JP S62-244010 A. The numerical example publishes a nominal focal length of 100.0 mm, an f-number of 2.0, seven glass elements, and the focus-variable spacing used in this model. The production correlation adopted for this entry is the Minolta AF 100mm f/2. It is a technical correlation rather than a manufacturer statement that the patent is the production prescription.
+The prescription is Example 2 of Minolta Camera Co., Ltd.'s Japanese publication JP S62-244010 A. The numerical example publishes a nominal focal length of 100.0 mm, an f-number of 2.0, seven glass elements, and the focus-variable spacing used in this model. The production correlation adopted for this entry is the Minolta AF 100mm f/2. It is a technical correlation rather than a manufacturer statement that the patent is the production prescription.
 
 The correlation is supported by several convergent features:
 
@@ -139,6 +139,6 @@ The prescription has no aspherical, diffractive, folded-path, stabilization, per
 
 ## Sources
 
-- Minolta Co., Ltd., **JP S62-244010 A**, 「中望遠レンズ」, filed 17 April 1986, published 24 October 1987. Example 2 prescription on patent p. 50; the Example 2 optical layout in Fig. 4 on p. 51.
-- Minolta Co., Ltd., **AF 100mm F2 Service Manual**, code 2598-100. Production specifications and focusing documentation used for product identity, 7-element/6-group construction, Gauss designation, f/2 aperture, 1.0 m minimum focus, nine-blade diaphragm, and the L1-L6/L7 floating-focus relationship.
+- Minolta Camera Co., Ltd., **JP S62-244010 A**, 「中望遠レンズ」, filed 17 April 1986, published 24 October 1987. Example 2 prescription on patent p. 50; the Example 2 optical layout in Fig. 4 on p. 51.
+- Minolta Camera Co., Ltd., **AF 100mm F2 Service Manual**, code 2598-100. Production specifications and focusing documentation used for product identity, 7-element/6-group construction, Gauss designation, f/2 aperture, 1.0 m minimum focus, nine-blade diaphragm, and the L1-L6/L7 floating-focus relationship.
 - Public optical-glass catalog coordinates from OHARA, HOYA, Schott, HIKARI, CDGM, and Sumita were used only to test coordinate compatibility. No historical vendor identity is assigned from nd/νd alone.

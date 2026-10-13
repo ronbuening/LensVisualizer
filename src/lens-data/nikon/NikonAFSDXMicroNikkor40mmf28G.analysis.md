@@ -1,4 +1,4 @@
-# NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G — Patent Analysis
+# NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G — Patent Analysis
 
 ## Patent Reference and Design Identification
 
@@ -32,7 +32,7 @@ No scale factor is applied. Example 1 is already a 40.00 mm design, and the comp
 
 Example 1 is a three-power-group macro lens with a positive–positive–negative sequence: G1 is positive overall, G2 is positive, and G3 is negative (¶¶0092, 0096–0099). G1 is itself divided into a negative front subgroup G1F and a positive rear subgroup G1R. Independent paraxial calculation from the final data gives focal lengths of approximately −681.94 mm for G1F, +186.44 mm for G1R, +222.05 mm for G1, +34.10 mm for G2, and −170.52 mm for G3.
 
-The front section is best described as a modified-Gaussian, retrofocus-derived architecture rather than labeling the entire lens a retrofocus system. The patent states that the G1/G2 balance gives a retrofocus effect to a modified Gaussian arrangement (¶0038), and Nikon's retrospective likewise describes the production first and second groups as retrofocus-based.[^nikon-story] Under the project's strict whole-system criterion, however, the modeled rear focal distance does not exceed the EFL: the normalized S18 back focal distance is 39.070621 mm versus a 40.001074 mm EFL. The complete modeled lens is therefore not classified as retrofocus under the strict $BFD>EFL$ definition. It is also not telephoto: the patent infinity total track is much longer than the EFL.
+The front section is best described as a modified-Gaussian, retrofocus-derived architecture rather than labeling the entire lens a retrofocus system. The patent states that the G1/G2 balance gives a retrofocus effect to a modified Gaussian arrangement (¶0038), and Nikon's retrospective likewise describes the production first and second groups as retrofocus-based.[^nikon-story] Under the project's strict whole-system criterion, however, the modeled rear focal distance does not exceed the EFL: the air-equivalent S18 back focal distance is 39.070621 mm versus a 40.001074 mm EFL. The complete modeled lens is therefore not classified as retrofocus under the strict $BFD>EFL$ definition. It is also not telephoto: the patent infinity total track is much longer than the EFL.
 
 G1 contains four air-spaced elements in negative/positive/positive/negative order. The patent uses the front negative-positive pair to control ray angles and off-axis behavior, while the positive rear subgroup restores net positive power (¶¶0040–0057). G2 lies immediately behind the aperture stop and contains the only cemented pair, L21/L22, followed by positive L23. G3 is a fixed two-element negative-positive rear group that receives the converging beam from G1/G2 and leaves the image plane stationary during focusing (¶¶0058–0059, 0098–0099).
 
@@ -148,7 +148,7 @@ The patent divides the G1→G2 interval around the stop into `d1a` and `d1b`. Th
 
 Taking infinity as the zero position, independent kinematic calculation gives G2 objectward travel of 12.1610 mm at MID and 24.4988 mm at CLD. G1 travels 12.4091 mm at MID and 26.8627 mm at CLD. The G1 travel reproduces the patent's conditional value $X_1/f=0.672$ after source-precision rounding.
 
-The runtime focus control uses one linear focus parameter between the published INF and CLD endpoints for surface `8` (`d1a`) and `14A` (`d2`). The published MID pair does not lie on that single linear interpolation: its normalized position is 0.104954 along `d1a` but 0.496392 along `d2`. The MID state is therefore retained as an independent verification anchor rather than represented exactly by the runtime interpolation. Recalculation from the final TypeScript arrays at the published MID spacings gives lateral magnification −0.500004; the published CLD endpoint gives −0.999991.
+The runtime focus control stores INF, MID, and CLD as exact keyframes. The published MID pair does not lie on a single endpoint interpolation: its normalized position is 0.104954 along `d1a` but 0.496392 along `d2`. At `focusT = 0.9106579317813288`, both gaps now reach the source row together. Recalculation at the published MID spacings gives lateral magnification −0.500004; the published CLD endpoint gives −0.999991.
 
 Product and patent close-distance numbers are intentionally separated. Nikon specifies a production minimum focus distance of **0.163 m from the focal plane**.[^nikon-spec] The patent's CLD geometry gives an object-to-image-plane distance of **0.15264661 m** after the source reference planes are normalized. The 10.35 mm difference is one of the reasons the selected embodiment is treated as a strong production correlate rather than silently equated with every production dimension.
 
@@ -213,14 +213,16 @@ Independent calculation was rerun from the final TypeScript surface and element 
 |---|---:|---|
 | EFL | 40.001074 mm | Patent $f=40.00$ mm |
 | Modeled wide-open f-number | 2.6799999 | Patent FNO = 2.68 |
-| S18 paraxial BFL | 39.070621 mm | Independent calculation |
-| Modeled S18→IMG air gap | 39.071320 mm | Normalized from patent INF ACTL |
-| Infinity active track | 86.173720 mm | Patent ACTL = 86.17372 mm |
+| S18 paraxial BFL (air-equivalent) | 39.070621 mm | Independent calculation |
+| Modeled S18→P1 air gap | 0.100 mm | Patent d18 |
+| Modeled P1→IMG gap | 37.65276 mm | Derived from patent INF TL/ACTL (printed Bf = 37.65) |
+| Air-equivalent S18→IMG | 39.071320 mm | Patent INF ACTL normalization |
+| Infinity physical track | 86.855160 mm | Patent TL = 86.85516 mm (ACTL = 86.17372 mm) |
 | MID magnification | −0.500004 | Patent $\beta=-0.5$ |
 | CLD magnification | −0.999991 | Patent $\beta=-1.0$ |
 | Petzval sum | +0.003020087 mm⁻¹ | Surface-by-surface $\phi/(n n')$ calculation |
 
-The low-pass plate published as patent surfaces 19–20 is intentionally excluded from the active lens model. Its optical effect is folded into a **39.07132 mm air-equivalent S18→IMG spacing**, derived from the published infinity ACTL. The patent's raw `Bf`/`ACBf` entries exhibit an internal reference-plane inconsistency; the analysis therefore follows the normalized data model instead of silently substituting either raw value.
+The low-pass filter P1 published as patent surfaces 19–20 (2.000 mm, nd = 1.51680, νd = 64.12) is modeled in `rearPlates`: every analysis traces it, but the diagram does not draw it. The file stores the patent's 0.100 mm S18→P1 gap and a 37.65276 mm P1→IMG gap derived from the published infinity TL/ACTL (Table 1 prints Bf as 37.65), so the paraxial equivalent remains a **39.07132 mm air-equivalent S18→IMG spacing** and the physical infinity track equals the patent TL of 86.85516 mm. The patent's raw `Bf`/`ACBf` entries exhibit an internal reference-plane inconsistency; the analysis therefore follows the normalized data model instead of silently substituting either raw value.
 
 The stop axial position is source-published, but its diameter is inferred from the modeled f-number. All element semi-diameters are likewise modeling inferences because the patent supplies no clear apertures. Independent Stage-2 geometry checks found positive edge thicknesses, acceptable actual rim slopes, a valid conic domain, no prohibited cross-gap intrusion, and containment of all 42 representative on-axis/off-axis rays across INF, MID, and CLD. These checks validate the authored geometry as a LensVisualizer model; they do not convert inferred semi-diameters into production dimensions.
 

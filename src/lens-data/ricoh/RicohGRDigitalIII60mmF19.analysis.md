@@ -42,7 +42,7 @@ The aperture stop lies between Group I and Group II exactly as published. Group 
 
 The first cemented pair D1, L4-L5, has a cemented net focal length of +60.6607 mm, while the second pair D2, L6-L7, is more strongly positive at +23.2810 mm. Taken together at the published 0.20 mm inter-pair spacing, the Group-II front section has equivalent focal length +17.0212 mm; including L8 gives Group II +12.9339 mm. The cemented-pair and group quantities are matrix-derived net powers of those actual subassemblies; the element values below are standalone focal lengths for each element isolated in air.
 
-The normalized active-lens back focal distance from surface 15 is 7.2464761 mm, greater than the 5.9997208 mm EFL. It therefore satisfies the project's strict numerical definition of a retrofocus system, `BFD > EFL`. The patent's own background also discusses retrofocus-type wide-angle architectures in this application class (¶0007).
+The air-equivalent active-lens back focal distance from surface 15 is 7.2464761 mm (physical 5.52 mm air, the 1.24 mm plate, then 0.8998 mm air), greater than the 5.9997208 mm EFL. It therefore satisfies the project's strict numerical definition of a retrofocus system, `BFD > EFL`. The patent's own background also discusses retrofocus-type wide-angle architectures in this application class (¶0007).
 
 The modeled semi-diameters are not patent values. Example 4 publishes neither clear apertures nor a stop diameter. The stop position is explicit in the patent, but its modeled semi-diameter, 3.2766967 mm, is calibrated to the published F=1.93. The other clear semi-diameters are derived from meridional ray containment and geometry checks, then checked against Figure 4. That comparison reduced L3's two rims to 4.1 mm so its relative height matches the isolated positive element in the drawing while retaining at least 0.60 mm of clearance around the traced display rays at both published focus endpoints. The clear apertures remain modeling inferences rather than source facts.
 
@@ -142,9 +142,11 @@ The source and model spacings are:
 | A: surface 6 → stop | 6.12 mm | 6.02 mm | Group I shifts 0.10 mm imageward |
 | B: stop → surface 8 | 3.82 mm | 3.68 mm | Group II shifts 0.14 mm objectward |
 | Source C: surface 15 → equivalent filter | 5.52 mm | 5.66 mm | Source rear gap grows 0.14 mm |
-| Modeled surface 15 → IMG | 7.2464761 mm | 7.3864761 mm | Air-equivalent normalized rear spacing |
+| Modeled surface 15 → plate | 5.52 mm | 5.66 mm | Printed C, stored physically |
+| Modeled plate → IMG | 0.8998094 mm | 0.8998094 mm | Derived, not printed; camera-fixed |
+| Air-equivalent surface 15 → IMG | 7.2464761 mm | 7.3864761 mm | Paraxial equivalent of the rear path |
 
-The final modeled rear spacing differs from source C because the patent's surfaces 16-17 represent an equivalent 1.24 mm, n=1.50000 sensor-cover/color-filter plate. That plate is excluded from the ordinary LensVisualizer prescription. Its optical effect, together with the inferred post-plate infinity air gap, is folded into the surface-15-to-image air spacing. This is a modeling normalization, not a claim that the patent printed 7.2464761 mm as its C value.
+The patent's surfaces 16-17 represent an equivalent 1.24 mm, n=1.50000, ν=64.00 sensor-cover/color-filter plate. It is modeled in `rearPlates`, so every analysis traces it, but it is not drawn in the section. Surface 15 stores the printed C value, and the plate's trailing air gap is not printed (surface 17 has no D entry): the 0.8998094 mm value is derived so that the air-equivalent rear path stays at the previously normalized 7.2464761 mm infinity image plane. Physical track is 0.4133 mm longer than the old folded track, the plate's t(1 − 1/n).
 
 The focus status is `PUBLISHED`; no constrained reconstruction is used for the modeled endpoints. The patent's 300 mm datum is object-to-image-plane distance, whereas Ricoh's production focus distances are specified from the front of the lens. Accordingly, `closeFocusM: 0.3` identifies the only modeled close endpoint in the viewer and should not be interpreted as an independently reconstructed production minimum-focus state. A paraxial back-solve using the printed 0.01 mm Table 11 spacings gives about 293.5 mm from object to image plane; changing the close-state C spacing by -0.00343 mm, still inside the table's ±0.005 mm rounding interval, returns 300.0 mm. The difference is therefore consistent with source rounding rather than evidence for an unreported focus state.
 
@@ -195,13 +197,13 @@ All three computed values lie within the patent's preferred ranges as well as it
 
 Independent computation from the modeled prescription gives an infinity EFL of 5.9997208296 mm, within 0.0002792 mm of the patent's printed 6.00 mm. ABCD multiplication and an independent sequential y-ν basis trace agree to machine precision.
 
-The normalized BFL from surface 15 is 7.2464760762 mm. The summed Petzval curvature, calculated surface by surface as `φ/(n·n′)`, is +0.01809050253 mm^-1, corresponding to +55.2776 mm under the project's reciprocal sign convention.
+The air-equivalent BFL from surface 15 is 7.2464760762 mm (5.52 mm physical air to the `rearPlates` cover plate, which is traced but not drawn). The summed Petzval curvature, calculated surface by surface as `φ/(n·n′)`, is +0.01809050253 mm^-1, corresponding to +55.2776 mm under the project's reciprocal sign convention.
 
 The physical stop semi-diameter is not published; it is calibrated in the model so that the actual prescription gives the source F=1.93. The resulting stop semi-diameter is 3.2766967 mm and the recomputed f-number is 1.9300000 by construction. This is therefore an authored aperture inference, not an independent source measurement.
 
 The derived clear semi-diameters pass the reproduced edge-thickness, actual rim-slope, conic-domain, shared-gap-intrusion, and ray-containment checks at both modeled focus endpoints. At infinity, the traced 39.1° chief ray reaches image height 4.7955 mm, consistent with the patent's Y'=4.8 mm value without using the image height as a semi-diameter fit target.
 
-No sensor cover plate, inactive dummy surface, flare cutter, folded path, or mechanical component remains in the active prescription. No uniform scale is applied, and no production 1 cm macro state is reconstructed.
+The sensor-cover/color-filter plate is carried in `rearPlates` rather than as drawn surfaces; no inactive dummy surface, flare cutter, folded path, or mechanical component remains in the active prescription. No uniform scale is applied, and no production 1 cm macro state is reconstructed.
 
 ## Sources
 

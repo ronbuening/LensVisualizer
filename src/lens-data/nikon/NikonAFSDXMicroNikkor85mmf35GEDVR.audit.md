@@ -16,12 +16,6 @@ Patent: US 2009/0190220 A1, Example 1
 - Replaced class-only annotations with the compatible catalog entries already selected by the resolver; no new catalog row was required.
 - Normalized the display name to `NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR`.
 
-### Verification
-
-- `npm run audit:surface -- src/lens-data/nikon/NikonAFSDXMicroNikkor85mmf35GEDVR.data.ts`
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAFSDXMicroNikkor85mmf35GEDVR.data.ts`
-- Full repository checks are recorded in the integrating commit.
-
 ## 2026-08-18 — Screenshot follow-up
 
 - Compared the supplied rendering directly with Figure 2. The revised G1 and VR-pair heights align with the source silhouette; no further SD change was justified.
@@ -39,9 +33,3 @@ Patent: US 2009/0190220 A1, Example 1
 | L41 / L42 (D4) | 19 / 20 / 21 | 10.5 / 10.5 / 10.3 | 9.5 / 9.5 / 9.4 | G5 > D4 ≈ G3 |
 
 - The image-circle audit reports no undersized surfaces, and the real validator accepts all six reduced SDs without edge-thickness, rim-slope, cross-gap, or SD-ratio errors. Restoring the smaller D1 rim also makes the earlier lens-specific `gapSagFrac = 0.94` allowance unnecessary, so the lens now uses the default `0.90` policy with +0.139453 mm clearance at the shared 13.0 mm material rim.
-
-### Verification
-
-- `npm run audit:patent-figure -- src/lens-data/nikon/NikonAFSDXMicroNikkor85mmf35GEDVR.data.ts patents/US20090190220A1.pdf 3 0.075,0.36,0.63,0.78 --rot90 --axis=0.622 --dpi=600`
-- `npm run audit:surface -- src/lens-data/nikon/NikonAFSDXMicroNikkor85mmf35GEDVR.data.ts --sd 5=13.25 6=13.0 7=12.7 19=9.5 20=9.5 21=9.4`
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAFSDXMicroNikkor85mmf35GEDVR.data.ts`

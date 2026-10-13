@@ -11,10 +11,6 @@ Patent: DE 2444954 A1, Claim 4 / worked data set 4
 - The figure shows large outer elements, a narrowed central stop waist, and mirrored rear growth. Stored SDs follow that scaled silhouette: 18.0 mm at the outer front and rear, 8.8-9.3 mm at the stop-adjacent inner groups, and a 7.5445 mm stop.
 - No SD values changed. Current values remain inferred from the patent figure, exact-ray stop geometry, and the production-style envelope noted in the data file.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-30 - Reference-line metadata
 
 - Added `indexReference: "e"` to all eight elements because the stored `nd` / `vd` slots preserve patent

@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JPH04294310A\
+**Patent:** JP H04-294310 A\
 **Application Number:** 特願平3-59980\
 **Filed:** 1991-03-25\
 **Published:** 1992-10-19\
@@ -9,7 +9,7 @@
 **Title:** Internal-Focusing Telephoto Lens (内焦望遠レンズ)\
 **Embodiment analyzed:** Example 1 (実施例1)
 
-This analysis treats JPH04294310A Example 1 as the fixed production correlation for the **NIKON AF-I NIKKOR 300mm f/2.8D IF-ED**. The patent itself does not name the commercial lens, so the correlation should not be read as manufacturer confirmation. It is instead supported by convergent timing and optical characteristics.
+This analysis treats JP H04-294310 A Example 1 as the fixed production correlation for the **NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED**. The patent itself does not name the commercial lens, so the correlation should not be read as manufacturer confirmation. It is instead supported by convergent timing and optical characteristics.
 
 1. Nikon records that the AF-I Nikkor 300mm f/2.8D IF-ED appeared in September 1992 with a completely renewed optical design and a built-in focusing motor. The selected application was filed in March 1991 and published the following month after that product introduction.
 2. Example 1 gives a headline focal length of 294.0 mm, a more precise design value of 293.9647 mm, and `FN = 2.9`. These are close to, but intentionally kept separate from, the production designation of 300mm f/2.8.
@@ -180,7 +180,7 @@ The aperture geometry requires a disclosed modeling inference. Example 1 shows s
 
 The prescription likewise contains no numerical clear semi-diameters. Every `sd` in the final data file is therefore a modeling inference constrained by the patent optical section, the `H = 51.0` infinity aperture reference, marginal/chief-ray envelopes, and geometry checks. In the final model, the minimum computed element edge thickness is **1.0335 mm**, the maximum shared-gap sag-intrusion fraction is **0.6405**, and the minimum checked ray clearance over the defined infinity/close bundles is **0.2769 mm**. These are validation properties of the authored geometry, not patent specifications.
 
-A separate source-plane issue occurs behind surface 20. The patent publishes `Bf = 114.1141 mm` at infinity and `114.1140 mm` at the close state, but the rounded bare 20-surface prescription focuses at **113.4293098 mm** and **113.4289881 mm** respectively. The approximately 0.685 mm offset is too large to attribute to the printed precision: an adversarial perturbation of every published radius, spacing, and index within half of its last printed unit still leaves the largest tested infinity BFL well short of 114.1141 mm. Nikon documents a rear slip-in-filter system for the production AF-I 300mm f/2.8D IF-ED, so an omitted plate is physically plausible, but the selected patent does not publish a plate thickness, index, or station and does not establish that as the cause.
+A separate source-plane issue occurs behind surface 20. The patent publishes `Bf = 114.1141 mm` at infinity and `114.1140 mm` at the close state, but the rounded bare 20-surface prescription focuses at **113.4293098 mm** and **113.4289881 mm** respectively. The approximately 0.685 mm offset is too large to attribute to the printed precision: an adversarial perturbation of every published radius, spacing, and index within half of its last printed unit still leaves the largest tested infinity BFL well short of 114.1141 mm. Nikon documents a rear slip-in-filter system for the production AF-I 300mm f/2.8D IF-ED, and its instruction manual directs the user always to use a filter (the 39 mm holder ships with an L37C filter). A 2 mm crown plate would lengthen the back focus by about 0.68 mm, the same magnitude as the offset, so an omitted filter is physically plausible. The selected patent, however, has no filter row in any example's table, no filter or plate prose, and no plate drawn in Figs. 1, 4, or 7. With no printed thickness, index, or station, the model adds no plate; the data specification models only source-listed plates.
 
 The final data file therefore omits any synthetic plate and fixes the authored image plane at the rounded prescription's infinity bare-air conjugate, **113.4293098 mm** behind surface 20. At the published close state the rounded prescription's exact paraxial conjugate is only **0.0003217 mm** nearer than that fixed plane. The residual is left as source-precision error rather than encoded as a second focus variable, so the only authored focus motion is the patent-published translation of G2.
 
@@ -188,7 +188,8 @@ No patent radius, thickness, index, or Abbe value was corrected in constructing 
 
 ## Sources
 
-- **Primary prescription:** JPH04294310A, *Internal-Focusing Telephoto Lens* (内焦望遠レンズ), Example 1, especially ¶0006–¶0015 and ¶0022–¶0029, Fig. 1, and the Example 1 numerical table.
+- **Primary prescription:** JP H04-294310 A, *Internal-Focusing Telephoto Lens* (内焦望遠レンズ), Example 1, especially ¶0006–¶0015 and ¶0022–¶0029, Fig. 1, and the Example 1 numerical table.
 - **Nikon product history:** Nikon, *NIKKOR — The Thousand and One Nights No.11*. The historical chronology states that the AF-I Nikkor 300mm f/2.8D IF-ED appeared in September 1992 with a completely renewed optical design and a built-in motor. <https://imaging.nikon.com/imaging/information/story/0011/>
 - **Rear filter system:** Nikon Support, *Slip-in circular polarizing filters*. The compatibility table includes the AF-I 300mm f/2.8D IF-ED and documents Nikon's rear slip-in filter system for this lens class. <https://www.nikonimgsupport.com/eu/BV_article?articleNo=000048272&lang=en_GB>
+- **Filter requirement:** Nikon, *AF-I Nikkor ED 300mm f/2.8D IF* instruction manual. Slip-in glass filter holder for 39 mm screw-in filters; always use a filter with the lens; the holder comes mounted with an L37C filter. <https://cdn-10.nikon-cdn.com/pdf/manuals/archive/AF-I%20Nikkor%20ED%20300mm%20f-2.8%20D%20IF.pdf>
 - **Glass-coordinate cross-checks:** HIKARI Optical Glass catalog pages for J-FKH1, J-LAF7, J-LAK14, J-PSKH1, J-SK5, and J-SF6; SCHOTT SF3 datasheet. These are used only to test whether the authored class/code labels are coordinate-compatible, not to claim Nikon used those exact vendor melts.

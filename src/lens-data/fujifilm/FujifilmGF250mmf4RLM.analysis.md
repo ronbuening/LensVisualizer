@@ -33,11 +33,11 @@ The independently recomputed group focal lengths are:
 | G3 | L31 singlet and D5 cemented pair | −34.849860 mm | Transverse OIS group immediately behind the stop |
 | G4 | D6 cemented pair, L43, and L44 | +68.730717 mm | Rear relay and residual correction |
 
-The active air-equivalent total length is 223.893850 mm against an EFL of 242.544222 mm, so `TL/EFL = 0.9231`. It therefore qualifies as a telephoto layout under the strict criterion `TL/EFL < 1`. It is not retrofocus: the air-converted BFD is 70.953850 mm, substantially shorter than the EFL.
+The active air-equivalent total length is 223.893850 mm against an EFL of 242.544222 mm, so `TL/EFL = 0.9231`. It therefore qualifies as a telephoto layout under the strict criterion `TL/EFL < 1`. It is not retrofocus: the air-converted BFD is 70.953850 mm, substantially shorter than the EFL. The physical track from the first vertex to the image plane, including the 3.200 mm `PP` plate, is 224.983 mm; the plate adds `t(1 − 1/n) = 1.090 mm` over the air-equivalent length.
 
 G1 is the dominant front assembly. The patent specifically uses a positive singlet followed by three cemented pairs and states that this arrangement supports spherical and longitudinal chromatic correction while limiting size (¶¶0042–0045). G2 is a compact cemented negative-positive meniscus pair and is the only axial focusing component. The stop lies directly behind G2. G3 is a compact negative stabilizing assembly; placing it immediately behind the stop keeps ray heights and moving mass limited (¶0049). G4 provides the final positive relay power and includes a cemented pair, as required by the patent's rear-group strategy (¶¶0053–0055).
 
-The patent includes an optional plane-parallel member `PP` behind L44 (¶0040). The model omits this cover/filter plate and replaces the published rear sequence with an air-equivalent final spacing of 70.952704641 mm. This preserves the plate's paraxial optical-path effect without representing sensor cover glass as a lens element.
+The patent includes an optional plane-parallel member `PP` behind L44 (¶0040). The model carries this filter/cover plate in `rearPlates` with the published Table 1 values: 68.817 mm air after L44, a 3.200 mm plate (`nd = 1.51680`, `νd = 64.20`, `θgF = 0.53430`), then 0.026 mm to the image plane. Every analysis traces through the plate, but it is not drawn as a lens element. Its air-equivalent rear distance is 70.952704641 mm.
 
 ## Element-by-Element Analysis
 
@@ -125,7 +125,7 @@ Its role is best described at group level rather than as a separately verified a
 
 L44 is the final refracting element and a negative meniscus concave toward the object side. The validated data assigns it a residual field-correction role, but the patent does not isolate its individual aberration contribution. Its rear position and weak standalone negative power make that interpretation plausible without requiring a stronger claim.
 
-The optical member `PP` shown after L44 in the patent is not part of L44 and is not represented as a seventeenth element. Its paraxial effect is included only through the normalized final air spacing.
+The optical member `PP` shown after L44 in the patent is not part of L44 and is not represented as a seventeenth element. It is modeled as a traced, undrawn rear plate (`rearPlates`).
 
 ## Glass Identification and Selection
 
@@ -223,7 +223,7 @@ Independent sequential height/reduced-angle tracing and an ABCD check applied to
 
 The stop diameter is not published. The physical stop semi-diameter of `13.522135 mm` is inferred from the patent EFL and F/4.12 after tracing the entrance pupil. Surface semi-diameters are also modeled values rather than patent data. They were checked in the infinity and reconstructed-close states: the minimum non-stop ray clearance is `0.294770 mm`, the minimum modeled edge thickness is `0.180213 mm`, the maximum actual rim angle is `52.977888°`, and the tightest shared-band cross-gap margin is `0.095434 mm`.
 
-The final rear gap preserves the omitted plate's published air-equivalent distance. It differs from the independently recomputed BFD by 0.001145 mm; that residual is documented rather than silently removing the source normalization. No scale transformation and no aspheric-coefficient transformation are involved because the prescription remains at native scale and Example 1 is all-spherical.
+The rear sequence uses the patent's printed 68.817 mm gap, `PP` plate, and 0.026 mm final air, whose air-equivalent sum is 70.952704641 mm. That differs from the independently recomputed BFD by 0.001145 mm; the residual is source rounding and is documented rather than silently removed. No scale transformation and no aspheric-coefficient transformation are involved because the prescription remains at native scale and Example 1 is all-spherical.
 
 ## Sources and References
 

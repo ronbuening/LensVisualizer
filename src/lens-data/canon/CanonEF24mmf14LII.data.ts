@@ -258,8 +258,8 @@ const LENS_DATA = {
   closeFocusM: 0.25,
   focusDescription:
     "Rear focus: L1 fixed; complete L2 moves objectward. Close spacings are a paraxial inference from the published 0.25 m MFD.",
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.58,

@@ -35,3 +35,15 @@ Patent: US 5,257,137, Embodiment 1
   the earlier explicit-unmatched safeguard is no longer applicable.
 - Relabeled L2F to J-LASFH2, completing the lens at 10/10 strict Sellmeier surfaces. No source values or geometry
   changed.
+
+## 2026-09-24 — Declared field converted to its in-air equivalent
+
+| Field | Before | After | Justification |
+|---|---|---|---|
+| `projection.maxTraceFieldDeg` | 17.5 | 23.59 | The production 35° field is an underwater angle, but the app launches rays in air in front of the flat port; asin(1.3306 · sin 17.5°) = 23.59° is the same ray in air (nw = 1.3306 from patent col. 10). |
+| `projection.fullFieldDeg` | 35 | 47.18 | Twice the in-air half-field (rounded up so the half-field rule holds). |
+
+The underwater declaration had stopped the analysis field at 17.5° in air, 74% of the 35 mm corner. The traced
+chief ray reaches the corner at 23.5° with every rim clear, consistent with the analysis note that the frame
+corner is 22.75° image-side and about 16.9° underwater. The `specs` line keeps "35° underwater field". No
+prescription or semi-diameter changed.

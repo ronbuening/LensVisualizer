@@ -96,6 +96,7 @@ function surfaceSummary(surface: SurfaceData): string | null {
 interface ElementDispersionRow {
   surfaceLabel: string;
   quality: DispersionQuality;
+  qualityLabel: string;
   glassName: string | null;
   indices: Record<ChromaticChannel, number>;
 }
@@ -104,10 +105,15 @@ function elementDispersionRows(info: ElementData, L: RuntimeLens): ElementDisper
   const rows: ElementDispersionRow[] = [];
   for (const idx of surfaceIndexesForElement(info, L)) {
     const entry = L.indexByIdx?.[idx];
-    if (!entry || entry.quality === "air") continue;
+    // At a cemented rear interface the transmitted medium belongs to the next element.
+    if (!entry || entry.quality === "air" || L.S[idx]?.elemId !== info.id) continue;
     rows.push({
       surfaceLabel: L.S[idx]?.label ?? String(idx + 1),
       quality: entry.quality,
+      qualityLabel:
+        entry.quality === "sellmeier" && (entry.glassEntry?.polynomial || entry.glassEntry?.powerSeries)
+          ? "Catalog polynomial"
+          : DISPERSION_QUALITY_LABEL[entry.quality],
       glassName: entry.glassEntry?.name ?? null,
       indices: {
         R: entry.fn("R"),
@@ -127,6 +133,10 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
     .filter((row): row is { surface: SurfaceData; summary: string } => Boolean(row.summary));
   const imagePlane = L.isFoldedOptics && L.data.opticalPath?.imagePlane ? L.imagePlane : null;
   const dispersionRows = showChromatic ? elementDispersionRows(info, L) : [];
+  const cementedCount = info.cemented
+    ? (L.data?.elements ?? []).filter((element) => element.cemented === info.cemented).length
+    : 0;
+  const cementedLabel = cementedCount === 2 ? "DOUBLET" : cementedCount === 3 ? "TRIPLET" : "CEMENTED";
 
   return (
     <div>
@@ -142,7 +152,9 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
         >
           {info.label}
         </span>
-        <span style={{ fontSize: 11, color: t.muted, transition: "color 0.3s" }}>{info.name}</span>
+        {info.name !== info.label && (
+          <span style={{ fontSize: 11, color: t.muted, transition: "color 0.3s" }}>{info.name}</span>
+        )}
         {info.apd && (
           <span
             style={{
@@ -171,7 +183,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
               transition: "all 0.3s",
             }}
           >
-            DOUBLET {info.cemented}
+            {cementedLabel} {info.cemented}
           </span>
         )}
         {(() => {
@@ -217,23 +229,22 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
         })()}
       </div>
       <div style={{ fontSize: 10.5, color: t.elemType, marginBottom: 5, transition: "color 0.3s" }}>{info.type}</div>
+      {info.indexReferenceNote && (
+        <div style={{ fontSize: 10.5, color: t.muted, marginBottom: 5 }}>{info.indexReferenceNote}</div>
+      )}
       <div style={INSPECTOR_GRID}>
         <div>
-          <span style={{ color: t.propLabel }}>n{indexReference} = </span>
+          <span style={{ color: t.propLabel }}>{info.indexReferenceNote ? "n (source)" : `n${indexReference}`} = </span>
           <span style={{ color: t.value }}>{info.nd}</span>
         </div>
         <div>
-          <span style={{ color: t.propLabel }}>
-            {"\u03bd"}
-            {indexReference} ={" "}
-          </span>
+          <span style={{ color: t.propLabel }}>{info.indexReferenceNote ? "ν (source)" : `ν${indexReference}`} = </span>
           <span style={{ color: t.value }}>{info.vd}</span>
         </div>
         <div>
           <span style={{ color: t.propLabel }}>FL = </span>
           <span style={{ color: t.value }}>
-            {(info.fl ?? 0) > 0 ? "+" : ""}
-            {info.fl} mm
+            {info.fl === undefined ? "—" : `${info.fl > 0 ? "+" : ""}${Number(info.fl.toFixed(2))} mm`}
           </span>
         </div>
         <div>
@@ -288,21 +299,19 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
                   Dispersion{dispersionRows.length > 1 ? ` ${row.surfaceLabel}` : ""}:{" "}
                 </span>
                 <span style={{ color: t.value }}>
-                  {DISPERSION_QUALITY_LABEL[row.quality]}
+                  {row.qualityLabel}
                   {row.glassName ? ` (${row.glassName})` : ""}
                 </span>
               </div>
               <div>
-                <span style={{ color: t.propLabel }}>
-                  {indexReference === "e" && row.quality !== "sellmeier" ? "nF′−nC′" : "nF−nC"} ={" "}
-                </span>
+                <span style={{ color: t.propLabel }}>{indexReference === "e" ? "nF′−nC′" : "nF−nC"} = </span>
                 <span style={{ color: t.value }}>{(row.indices.B - row.indices.R).toFixed(5)}</span>
               </div>
               <div style={{ gridColumn: "1 / -1" }}>
                 {CHROMATIC_CHANNEL_ORDER.map((ch, idx) => {
                   const color =
                     ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : ch === "B" ? t.rayChromB : t.rayChromV;
-                  const usesNativeELineChannels = indexReference === "e" && row.quality !== "sellmeier";
+                  const usesNativeELineChannels = indexReference === "e";
                   const indexLabel = usesNativeELineChannels
                     ? ch === "R"
                       ? "nC′"

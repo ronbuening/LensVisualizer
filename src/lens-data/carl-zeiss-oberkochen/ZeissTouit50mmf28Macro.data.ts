@@ -10,9 +10,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: floating inner focus; G2 moves imageward, G4 and G5 move objectward.       ║
  * ║                                                                                      ║
  * ║  NOTE ON COVER GLASS:                                                                ║
- * ║    The patent's PP plate (surfaces 27-28, nd = 1.51680, d = 1.22 mm) is sensor-    ║
- * ║    side cover glass and is excluded per project convention. Its optical path is     ║
- * ║    folded into the final BFD: 1.00 + 1.22 / 1.51680 + 22.81 = 24.6143248945 mm.    ║
+ * ║    The patent's PP plate (surfaces 27-28, d = 1.22 mm, nd = 1.51680, νd = 64.20)     ║
+ * ║    and the trailing 22.81 mm air gap are modeled physically in `rearPlates`          ║
+ * ║    (traced, not drawn). Surface 26 stores the patent's 1.00 mm gap to the plate.     ║
  * ║                                                                                      ║
  * ║  NOTE ON ASPHERES:                                                                   ║
  * ║    Surfaces 4A and 7A carry the patent's exact odd/even coefficients (A3-A15,       ║
@@ -21,10 +21,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    because the patent gives even powers only.                                       ║
  * ║                                                                                      ║
  * ║  NOTE ON FOCUS DATA:                                                                 ║
- * ║    The patent gives β = 0, -0.5, and -0.98 spacings. LensVisualizer's current       ║
- * ║    prime-focus var schema stores only infinity and close-focus endpoints. The       ║
- * ║    non-monotonic DD[18] path is therefore encoded as [1.52, 1.51]; the intermediate ║
- * ║    β = -0.5 value, 2.54 mm, is documented in the analysis but not interpolated.     ║
+ * ║    The patent's β = 0, -0.5, and -0.98 rows are exact focus keyframes, including    ║
+ * ║    the non-monotonic DD[18] path of 1.52 → 2.54 → 1.51 mm.                           ║
  * ║                                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                                            ║
  * ║    The patent does not publish clear apertures. SD values here are conservative     ║
@@ -258,7 +256,20 @@ const LENS_DATA = {
     { label: "23", R: -47.2254, d: 1.33, nd: 1.51742, elemId: 13, sd: 8.8 },
     { label: "24", R: 1e15, d: 1.48, nd: 1.0, elemId: 0, sd: 10.0 },
     { label: "25", R: 297.4201, d: 2.58, nd: 1.67003, elemId: 14, sd: 11.7 },
-    { label: "26", R: -68.6822, d: 24.6143248945, nd: 1.0, elemId: 0, sd: 11.7 },
+    { label: "26", R: -68.6822, d: 1.0, nd: 1.0, elemId: 0, sd: 11.7 }, // patent d26 to the PP plate
+  ],
+
+  /* ── Optical member PP (patent surfaces 27–28): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 1.22,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 22.81,
+      source: "JP 2015-161792 A, Example 1 Table 1 surfaces 27–28",
+    },
   ],
 
   asph: {
@@ -307,12 +318,13 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.7599103882848731, 1],
   var: {
-    "5": [1.6, 9.61],
-    "10": [9.1, 1.1],
-    STO: [12.68, 2.47],
-    "18": [1.52, 1.51],
-    "20": [1.85, 12.08],
+    "5": [1.6, 5.25, 9.61],
+    "10": [9.1, 5.45, 1.1],
+    STO: [12.68, 6.82, 2.47],
+    "18": [1.52, 2.54, 1.51],
+    "20": [1.85, 6.69, 12.08],
   },
   varLabels: [
     ["5", "DD[5] G1-G2"],
@@ -339,8 +351,10 @@ const LENS_DATA = {
   focusDescription:
     "Floating inner focus: G2 translates imageward while G4 and G5 translate objectward; G1, G3, stop, and G6 remain fixed.",
   closeFocusM: 0.15,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   scFill: 0.58,
   yScFill: 0.56,

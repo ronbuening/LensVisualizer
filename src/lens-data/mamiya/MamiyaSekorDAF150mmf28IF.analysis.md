@@ -178,7 +178,8 @@ The patent publishes a finite row at `|β| = 0.15`. Independent tracing of the s
 `β = -0.150132`, a scaled object-to-image distance of 1.211700 m, a close-state EFL of 138.080009 mm, and f/2.9635,
 consistent with the page-11 plot label f/2.97. It does not reach the production endpoint of 1.0 m and 0.19×.
 
-The stored close-focus endpoint is therefore a **constrained reconstruction**. It preserves the fixed image plane, the
+The published row is stored as an exact focus keyframe. The close-focus endpoint remains a **constrained
+reconstruction**. It preserves the fixed image plane, the
 manufacturer's 1000 mm minimum focus distance measured from the image plane, and the terminal patent movement ratio
 `X2/X3 = 0.7967231325`.
 
@@ -193,8 +194,8 @@ is 999.999999991 mm and the signed magnification is -0.192615980. The effective 
 135.421855 mm, while the fixed physical stop gives f/2.982452.
 
 The reconstruction defines a mechanism-constrained endpoint, not the undocumented production cam law at every
-intermediate distance. Linear interpolation of the three stored gaps preserves their sum and produces positive spacings
-throughout the modeled range.
+intermediate distance. Piecewise-linear interpolation between the infinity, published, and reconstructed states
+preserves the gap sum and produces positive spacings throughout the modeled range; only the keyframes are claimed exact.
 
 ## Scaling, Aperture, and Geometry Modeling
 

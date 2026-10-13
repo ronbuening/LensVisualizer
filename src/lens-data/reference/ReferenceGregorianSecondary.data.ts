@@ -1,9 +1,14 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Hidden regression fixture for a Gregorian-style secondary path. The secondary
- * is positioned beyond the primary focus on the object side, exercising a
+ * Hidden regression fixture for a Gregorian-style secondary path. The concave
+ * secondary sits beyond the primary focus on the object side, exercising a
  * different secondary curvature/sign convention than the Cassegrain fixtures.
+ *
+ * Closed-form first order: the primary (R = -100, f1 = 50) focuses at z = 50.
+ * The secondary (R = +80, f2 = 40) at z = -10 is s = 60 beyond that focus, so it
+ * re-images at s' = 1 / (1/40 - 1/60) = 120, i.e. z = 110, behind the primary
+ * hole. Secondary magnification s'/s = 2 gives EFL = f1 * 2 = 100.
  */
 
 const LENS_DATA = {
@@ -35,7 +40,7 @@ const LENS_DATA = {
   },
   opticalPath: {
     surfaceOrder: ["M1", "SEC"],
-    imagePlane: { z: 135, label: "IMG" },
+    imagePlane: { z: 110, label: "IMG" },
     maxInteractions: 10,
   },
 
@@ -47,7 +52,7 @@ const LENS_DATA = {
       type: "Annular Concave First-Surface Mirror",
       nd: 1.0,
       vd: 0,
-      fl: 100,
+      fl: 50,
       glass: "Aluminized annular front surface",
       apd: false,
       fromSurface: "M1",
@@ -73,7 +78,7 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 100, nd: 1.0, elemId: 0, sd: 30 },
     {
       label: "M1",
-      R: -200,
+      R: -100,
       d: 2,
       nd: 1.0,
       elemId: 1,
@@ -81,17 +86,17 @@ const LENS_DATA = {
       innerSd: 9,
       interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
     },
-    { label: "M1B", R: 1e15, d: -127, nd: 1.0, elemId: 1, sd: 30, innerSd: 9 },
+    { label: "M1B", R: 1e15, d: -112, nd: 1.0, elemId: 1, sd: 30, innerSd: 9 },
     {
       label: "SEC",
       R: 80,
-      d: 1,
+      d: 2,
       nd: 1.0,
       elemId: 2,
-      sd: 12,
+      sd: 16,
       interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface" },
     },
-    { label: "SECB", R: 1e15, d: 159, nd: 1.0, elemId: 2, sd: 12 },
+    { label: "SECB", R: 1e15, d: 118, nd: 1.0, elemId: 2, sd: 16 },
   ],
 
   asph: {},

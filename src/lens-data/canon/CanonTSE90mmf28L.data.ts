@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — CANON TS-E 90mm f/2.8L MACRO                 ║
+ * ║           LENS DATA — CANON TS-E 90mm f/2.8 L MACRO                 ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP2018205474A, Numerical Example 1 (Canon).          ║
  * ║  Modified double-Gauss macro perspective-control lens.             ║
@@ -41,7 +41,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-tse-90mm-f28l-macro",
   maker: "Canon",
-  name: "CANON TS-E 90mm f/2.8L MACRO",
+  name: "CANON TS-E 90mm f/2.8 L MACRO",
   subtitle: "JP2018205474A Example 1 — Canon / Yamagishi",
   specs: [
     "11 elements / 9 groups",
@@ -71,6 +71,12 @@ const LENS_DATA = {
     tiltRangeDeg: [-10, 10],
     shiftStepMm: 0.1,
     tiltStepDeg: 0.1,
+    // Reference-state rear vertex fallback; not a measured mechanical tilt hinge.
+    tiltPivot: {
+      frame: "camera",
+      basis: "rear-vertex-fallback",
+      zOffsetFromImagePlaneMm: -71.85725,
+    },
   },
 
   elements: [
@@ -248,8 +254,10 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.39,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32, 45],
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
+  nominalFno: 2.91,
+  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22, 32, 45],
   maxFstop: 45,
   scFill: 0.62,
   yScFill: 0.48,

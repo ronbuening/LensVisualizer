@@ -14,6 +14,14 @@ import type { Theme } from "../../../types/theme.js";
 import type { ChromaticRaySegment } from "../../hooks/useChromaticRays.js";
 import type { RaySegment } from "../../hooks/useOnAxisRays.js";
 
+/**
+ * Where the analysis drawer is launched from:
+ * - "pill": mobile launcher pill + ZOOM button on the diagram; drawer has its own tab strip.
+ * - "dock": desktop two-row AnalysisDock under the diagram (single-lens view).
+ * - "shared": desktop comparison view; one SharedAnalysisDock under both panes drives every panel.
+ */
+export type AnalysisControlsMode = "pill" | "dock" | "shared";
+
 export interface VarReadout {
   label: string;
   val: string;
@@ -67,12 +75,14 @@ export interface PanelDisplayFlagsModel {
   dark: boolean;
   isWide: boolean;
   compact: boolean;
+  analysisControls: AnalysisControlsMode;
   showControls: boolean;
   showSliders: boolean;
   headerHeight: number;
   maxSvgHeight: string;
   useSideLayout: boolean;
   fillAvailableHeight: boolean;
+  minDiagramHeight?: number;
   zoomPanActive: boolean;
   showOnAxis: boolean;
   showOffAxis: OffAxisMode;
@@ -106,6 +116,8 @@ export interface PanelDisplayFlagsModel {
   showEffectiveFocalLength: boolean;
   showEffectiveAperture: boolean;
   abbeShowGlassType: boolean;
+  /** Patent-positions mode is in effect for this panel (never in comparison panes). */
+  patentPositions: boolean;
 }
 
 export interface PanelOverlaysModel {
@@ -132,7 +144,7 @@ export interface PanelAdaptersModel {
   onAberrationsExpandedChange: (expanded: boolean) => void;
   onEffectiveFocalLengthChange: (expanded: boolean) => void;
   onEffectiveApertureChange: (expanded: boolean) => void;
-  onZoomChange: (value: number) => void;
+  onZoomChange: (value: number, focusT?: number) => void;
   onAberrationChange: (value: number) => void;
   onFocusChange: (value: number) => void;
   onStopdownChange: (value: number) => void;
@@ -142,6 +154,7 @@ export interface PanelAdaptersModel {
   onApertureExpandedChange: (expanded: boolean) => void;
   onLegendExpandedChange: (expanded: boolean) => void;
   onSliderPointerUp: () => void;
+  onPatentStationChange: (zoomT: number, focusT: number) => void;
   onAbbeShowGlassTypeChange: (value: boolean) => void;
   onGlassMapOpenChange: (value: boolean) => void;
 }

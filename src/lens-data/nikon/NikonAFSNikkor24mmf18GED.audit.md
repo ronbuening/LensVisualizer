@@ -22,7 +22,3 @@ Reviewed local untracked patent file `patents/JP2017003807A.pdf`, Example 4 / pa
 - JP 2017-3807 A does not publish per-surface clear apertures or effective diameters for Example 4.
 - Current SDs remain documented estimates. They make rational sense against FIG. 4: broad front-group apertures for the retrofocus field, a stop at `sd = 10.46 mm`, post-stop ED doublets near the stop, and modest rear expansion through the final hybrid asphere.
 - No SD values were changed in this pass.
-
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.

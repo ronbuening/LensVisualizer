@@ -5,6 +5,77 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "N-SF6",
+    vendor: "Schott",
+    B: [1.77931763, 0.338149866, 2.08734474],
+    C: [0.0133714182, 0.0617533621, 174.01759],
+    nd: 1.80518,
+    vd: 25.36,
+    code6: "805254",
+    source:
+      "SCHOTT Zemax catalog 2017-01-20b, N-SF6; https://refractiveindex.info/database/data/specs/schott/optical/N-SF6.yml (accessed 2026-09-18).",
+  },
+  {
+    name: "N-PSK53",
+    vendor: "Schott",
+    B: [1.3434087, 0.241417935, 0.952896897],
+    C: [0.00675074317, 0.0219910513, 103.551457],
+    nd: 1.62014,
+    vd: 63.48,
+    PgF: 0.5423,
+    code6: "620635",
+    source:
+      "SCHOTT Zemax catalog 2017-01-20b, inquiry glass N-PSK53; https://refractiveindex.info/database/data/specs/schott/optical/N-PSK53.yml (accessed 2026-09-18).",
+  },
+  {
+    name: "N-PSK3",
+    vendor: "Schott",
+    B: [0.88727211, 0.489592425, 1.04865296],
+    C: [0.004698241, 0.0161818463, 104.374975],
+    nd: 1.55232,
+    vd: 63.46,
+    PgF: 0.5365,
+    code6: "552635",
+    source:
+      "SCHOTT N-PSK3 datasheet (2014-02-01), vendor Sellmeier constants; https://media.schott.com/api/public/content/d2ffcfdb186243899d40a9454e3b88a4?v=9a79cc5b (accessed 2026-09-17).",
+  },
+  {
+    name: "BAFN6",
+    vendor: "Schott",
+    B: [1.36719201, 0.10907994, 1.02108011],
+    C: [0.00882820704, 0.0438731646, 113.58602],
+    nd: 1.589,
+    vd: 48.45,
+    PgF: 0.5625,
+    code6: "589485",
+    source:
+      "SCHOTT Inquiry Glass datasheet collection (2019-08-28), PDF p. 5, BAFN6 sheet dated 2014-02-01; https://www.schott.com/en-dk/products/optical-glass/-/media/project/onex/products/o/optical-glass/downloads/schott-optical-glass-inquiry-glass-collection-datasheets-english-28082019.pdf (accessed 2026-09-17).",
+  },
+  {
+    name: "N-LAK21",
+    vendor: "Schott",
+    B: [1.22718116, 0.420783743, 1.01284843],
+    C: [0.00602075682, 0.0196862889, 88.4370099],
+    nd: 1.64049,
+    vd: 60.1,
+    PgF: 0.5411,
+    code6: "640601",
+    source:
+      "SCHOTT Optical Glass collection (May 2019), PDF p. 54, N-LAK21 datasheet dated 2014-02-01; https://www.schott.com/en-gb/products/optical-glass/-/media/Project/OnEx/Products/O/optical-glass/Downloads/schott-optical-glass-collection-datasheets-english-may2019.pdf (accessed 2026-09-15).",
+  },
+  {
+    name: "LAFN7",
+    vendor: "Schott",
+    B: [1.66842615, 0.298512803, 1.0774376],
+    C: [0.010316, 0.0469216348, 82.5078509],
+    nd: 1.7495,
+    vd: 34.95,
+    PgF: 0.5825,
+    code6: "750350",
+    source:
+      "SCHOTT LAFN7 datasheet (2014-02-01), vendor Sellmeier constants; https://media.schott.com/api/public/content/c842d31345bc40ae86b67732d6eb4eea?v=02357659 (accessed 2026-09-07).",
+  },
   /* Phase 91: official N-KF9 datasheet recovered while auditing the Canon
    * EF 100-300mm f/5.6 patent coordinate 523508.
    */
@@ -128,8 +199,8 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
    * SF2: legacy dense flint (648/339), fills the gap between SF1 and N-BK7 in
    *   pre-1990 Schott-dominant double-Gauss and Sonnar designs.
    * N-SK16: dense lanthanum crown (620/603) ubiquitous in Zeiss, classic Nikon,
-   *   Leica Elmarit, and other pre-1990 normal/standard designs (also sold as
-   *   Hoya BACD5 — same glass, different vendor name).
+   *   Leica Elmarit, and other pre-1990 normal/standard designs (Hoya's
+   *   620/603 counterpart is BACD16; BACD5 is the 589/613 SK5-class crown).
    * N-KZFS4: KZFS family with negative ΔPgF; APO paired glass for ED crowns.
    * N-FK51A: fluorcrown with strong positive ΔPgF (+0.034); APO-relevant in
    *   Zeiss and Nikon telephoto designs.
@@ -160,7 +231,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5412,
     code6: "620603",
     source:
-      "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Dense lanthanum crown; Hoya BACD5-equivalent.",
+      "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Dense lanthanum crown; Hoya BACD16-equivalent.",
   },
   {
     name: "N-KZFS4",
@@ -499,7 +570,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0111826126, 0.0508594669, 112.041888],
     nd: 1.6727,
     vd: 32.21,
-    PgF: 0.5901,
+    PgF: 0.5919,
     code6: "673322",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; SF5 page.",
   },
@@ -510,7 +581,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.011254756, 0.0588995392, 129.141675],
     nd: 1.67271,
     vd: 32.25,
-    PgF: 0.5969,
+    PgF: 0.5984,
     code6: "673323",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-SF5 page.",
   },
@@ -532,7 +603,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00724270156, 0.0243353131, 85.4686868],
     nd: 1.691,
     vd: 54.71,
-    PgF: 0.5368,
+    PgF: 0.5447,
     code6: "691547",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAK9 page.",
   },
@@ -543,7 +614,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00706416337, 0.0233251345, 97.4847345],
     nd: 1.618,
     vd: 63.39,
-    PgF: 0.5366,
+    PgF: 0.5424,
     code6: "618634",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-PSK53A page.",
   },
@@ -554,7 +625,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0101711622, 0.0442431765, 100.687748],
     nd: 1.74397,
     vd: 44.85,
-    PgF: 0.5588,
+    PgF: 0.5656,
     code6: "744449",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAF2 page.",
   },
@@ -565,7 +636,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00779980626, 0.0315631177, 105.965875],
     nd: 1.56883,
     vd: 55.98,
-    PgF: 0.5431,
+    PgF: 0.5487,
     code6: "569560",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-BAK4 page.",
   },
@@ -576,7 +647,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00610105538, 0.0201388334, 90.638038],
     nd: 1.6516,
     vd: 58.52,
-    PgF: 0.5417,
+    PgF: 0.5433,
     code6: "652585",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAK7 page.",
   },
@@ -587,7 +658,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00942015382, 0.0531087291, 110.278856],
     nd: 1.60568,
     vd: 43.72,
-    PgF: 0.5584,
+    PgF: 0.5733,
     code6: "606437",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-BAF4 page.",
   },
@@ -598,7 +669,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00823982975, 0.0333736841, 106.870822],
     nd: 1.62229,
     vd: 53.27,
-    PgF: 0.5542,
+    PgF: 0.5526,
     code6: "622533",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-SSK2 page.",
   },
@@ -636,5 +707,27 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5748,
     code6: "581409",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; LF5 page.",
+  },
+  {
+    name: "N-SSK8",
+    vendor: "Schott",
+    B: [1.44857867, 0.117965926, 1.06937528],
+    C: [0.00869310149, 0.0421566593, 111.300666],
+    nd: 1.61773,
+    vd: 49.83,
+    code6: "618498",
+    source: "SCHOTT Zemax catalog 2017-01-20b via refractiveindex.info, N-SSK8 Sellmeier constants (0.35–2.5 µm).",
+  },
+  {
+    name: "N-LAF35",
+    vendor: "Schott",
+    B: [1.51697436, 0.455875464, 1.07469242],
+    C: [0.00750943203, 0.0260046715, 80.5945159],
+    nd: 1.7433,
+    vd: 49.4,
+    PgF: 0.5523,
+    code6: "743494",
+    source:
+      "SCHOTT Zemax catalog 2017-01-20b, N-LAF35; https://refractiveindex.info/database/data/specs/schott/optical/N-LAF35.yml (accessed 2026-10-10).",
   },
 ];

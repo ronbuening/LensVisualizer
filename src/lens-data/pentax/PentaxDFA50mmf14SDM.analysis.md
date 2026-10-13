@@ -17,7 +17,7 @@ The patent discloses five numerical examples of a fast standard lens having back
 
 The identification with the HD PENTAX-D FA★ 50mm F1.4 SDM AW is strong but not unique to the last manufacturing tolerance. Example 1, Example 2, and Example 3 all share the same broad architecture. Example 1 is used here because it is the first-disclosed embodiment and matches the published production specification closely.
 
-1. **Element and group count.** Example 1 contains fifteen glass elements in nine air-separated groups when the sensor cover plate is excluded. PENTAX publishes the production lens as 15 elements / 9 groups.
+1. **Element and group count.** Example 1 contains fifteen glass elements in nine air-separated groups, not counting the sensor cover plate. PENTAX publishes the production lens as 15 elements / 9 groups.
 2. **Special optical elements.** Example 1 has three low-dispersion or anomalous-dispersion positive elements of interest: L22 in G1b and the two fluorophosphate ED-class elements L32 and L42 in G2. It also has a single final glass element with both faces aspherical, surfaces 24 and 25. PENTAX product material states that the production lens uses three super-low-dispersion glass elements and one aspherical element.
 3. **Architecture.** PENTAX describes a modified-Gauss rear focus-lens group preceded by a front optical group of aberration-correction elements. Example 1 has that same division: a weakly positive front group G1 with a negative G1a front-converter sub-group, followed by a stronger modified-Gauss rear group G2 around the stop (¶0061-0065, ¶0088, ¶0095).
 4. **Focal length and aperture.** Example 1 gives f = 49.57 mm and Fno = 1.45 at infinity. The production specification rounds this to 50 mm and F1.4.
@@ -176,13 +176,13 @@ Example 1 uses rear-group unit focusing. The first group G1 remains stationary w
 | Spacing | Infinity | Short-distance state | Change |
 |---|---:|---:|---:|
 | D11, G1 to G2 | 10.407 mm | 1.012 mm | -9.395 mm |
-| D25, patent physical gap to cover plate | 37.310 mm | 46.706 mm | +9.396 mm |
-| Folded air-equivalent final gap in data file | 39.628974 mm | 49.024974 mm | +9.396 mm |
+| D25, patent physical gap to cover plate (stored on surface 25A) | 37.310 mm | 46.706 mm | +9.396 mm |
+| Air-equivalent final gap, D25 + 2.000/1.51633 + 1.000 | 39.629 mm | 49.025 mm | +9.396 mm |
 | Patent total physical lens length | 149.24 mm | 149.24 mm | 0 |
 | F-number | 1.45 | 1.74 | — |
 | Effective focal length | 49.57 mm | 48.01 mm | -1.56 mm |
 
-Only two variable gaps are required because G2 moves as a rigid unit. The data file omits the patent sensor cover plate, per project convention, and folds the cover plate's optical path into the final air gap: D25 + 2.000/1.51633 + 1.000.
+Only two variable gaps are required because G2 moves as a rigid unit. The patent's sensor cover plate CG (surfaces 26-27, 2.000 mm, nd = 1.51633, νd = 64.1) and the 1.00 mm BF behind it are modeled in `rearPlates`: every analysis traces through the plate, but it is not drawn. Surface 25A stores the physical D25, and the air-equivalent final gap above is the paraxial equivalent of that stack.
 
 ## Aspherical Surfaces
 
@@ -232,12 +232,12 @@ Derived group values used for the focal-ratio checks are f1 = +203.8 mm, f2 = +7
 
 ## Verification Summary
 
-A fresh paraxial y-nu trace was run directly from the FIG. 31 prescription, including the patent sensor cover plate for patent comparison and with the cover plate folded into air-equivalent back focus for the data file.
+A fresh paraxial y-nu trace was run directly from the FIG. 31 prescription, including the patent sensor cover plate, which the data file models in `rearPlates`.
 
 - Infinity EFL: computed 49.567 mm; patent value 49.57 mm.
 - Short-distance EFL: computed 48.011 mm; patent value 48.01 mm.
 - Patent physical total length: 149.237 mm from surface 1 to image plane, matching the stated 149.24 mm after rounding.
-- Folded data-file optical length: 148.556 mm, lower by the physical cover-glass excess path but optically equivalent for paraxial focus.
+- Data-file physical track, including the `rearPlates` cover plate: 149.237 mm, the same as the patent total length. The air-equivalent optical length is 148.556 mm, shorter by the plate's 2.000 × (1 - 1/1.51633) = 0.681 mm excess path.
 - Stop semi-diameter: 15.32 mm gives Fno = 1.450 from the traced entrance pupil.
 - Petzval sum: +2.126E-03 mm^-1 by the surface-by-surface formula Σ(n' - n)/(n n' R), corresponding to a Petzval radius of about +470 mm.
 - Semi-diameter estimates pass the adopted checks: element surface-ratio <= 1.25, edge thickness >= 0.5 mm, the tightest rear aspherical element remains about 0.93 mm at the rim, and cross-gap signed sag intrusion stays below 90% of each air gap.

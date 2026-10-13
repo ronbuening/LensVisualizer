@@ -68,6 +68,12 @@ const LENS_DATA = {
     tiltRangeDeg: [-7.5, 7.5],
     shiftStepMm: 0.1,
     tiltStepDeg: 0.1,
+    // Reference-state rear vertex fallback; not a measured mechanical tilt hinge.
+    tiltPivot: {
+      frame: "camera",
+      basis: "rear-vertex-fallback",
+      zOffsetFromImagePlaneMm: -56.38,
+    },
   },
 
   /* ── Elements ── */
@@ -400,12 +406,15 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.25,
+  // Patent read 2026-10-06: Close-focus gaps (d16 3.14, d32 60.01) are the patent's Example 1 POS2 row, printed for
+  // an object 80.48 mm ahead of surface 1 (about 0.25 m from the image plane).
+  publishedStations: { focus: [1] },
   focusDescription:
     "Rear-group focus: Gr2 and aperture stop translate axially toward object (3.67 mm travel). Gr1 remains fixed relative to image plane.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4,
-  fstopSeries: [4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32],
+  nominalFno: 4.08,
+  fstopSeries: [4.08, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

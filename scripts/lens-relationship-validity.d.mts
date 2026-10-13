@@ -1,7 +1,7 @@
 export interface LensRelationshipRouteInput {
   key: string;
   name: string;
-  maker?: string;
+  maker?: string | null;
   lensMounts?: string[];
   aliases?: Array<{
     maker: string;

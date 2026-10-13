@@ -182,7 +182,7 @@ The movement signs in Table 1 follow the patent definition in ¶0035: objectward
 
 ## Verification Summary
 
-The prescription was re-extracted from the patent numerical table and recomputed with a paraxial reduced-angle matrix trace. The final faceplate/cover glass was treated as the patent instructs: the last two surfaces are not lens elements, and BF is the air-equivalent distance from the last lens surface to the image plane.
+The prescription was re-extracted from the patent numerical table and recomputed with a paraxial reduced-angle matrix trace. The final faceplate/cover glass was treated as the patent instructs: the last two surfaces are not lens elements, and BF is the air-equivalent distance from the last lens surface to the image plane. The patent total length likewise uses this air-equivalent BF; the modeled physical track, with the 1.33 mm plate in place, is 0.453 mm longer (1.33 × (1 − 1/1.51633)).
 
 | Quantity | Wide | Mid | Tele |
 |---|---:|---:|---:|
@@ -194,7 +194,7 @@ The prescription was re-extracted from the patent numerical table and recomputed
 
 Standalone in-air element focal lengths are N1 = −20.775 mm, N2 = −94.999 mm, N3 = +43.892 mm, P1 = +18.562 mm, P2 = +8.297 mm, P3 = −6.116 mm, L3+ = +31.066 mm, Fa = −44.689 mm, and GRP = +50.328 mm. The cemented P2/P3 net in-situ focal length is −37.368 mm. The surface-by-surface Petzval sum, using φ/(n·n′), is +0.005814 mm⁻¹, corresponding to a Petzval radius of about +172 mm.
 
-For the data file, the patent's faceplate surfaces 20 and 21 are omitted. Their optical path is folded into the final BFD values after surface 19A: 9.307, 7.767, and 4.707 mm. Semi-diameters are not published in the patent and were estimated from combined marginal/chief-ray clearance, then reduced where necessary to satisfy edge-thickness and cross-gap sag constraints for rendering. The most visible trims are the N1/N2 air gap and the SP2 flare-stop region, both of which are constrained by short air gaps between strongly curved surfaces.
+For the data file, the patent's faceplate surfaces 20 and 21 are not lens elements, so they are modeled in `rearPlates` rather than in the surface list: a 1.33 mm plate (nd = 1.51633, νd = 64.1, S-BSL7 class) followed by 0.50 mm of air to the image plane. Every analysis traces the plate, including its own spherical aberration and colour in the converging beam, but the diagram does not draw it. Surface 19A stores the patent d19 (7.93, 6.39, and 3.33 mm); paraxially this is equivalent to the air-equivalent BF values 9.307, 7.767, and 4.707 mm. Semi-diameters are not published in the patent and were estimated from combined marginal/chief-ray clearance, then reduced where necessary to satisfy edge-thickness and cross-gap sag constraints for rendering. The most visible trims are the N1/N2 air gap and the SP2 flare-stop region, both of which are constrained by short air gaps between strongly curved surfaces.
 
 ## Image Stabilization
 

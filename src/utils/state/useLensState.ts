@@ -13,6 +13,7 @@ import { lensViewQueryToUrlState, parseLensViewQuery } from "./lensViewUrlState.
 import useMediaQuery from "../useMediaQuery.js";
 import type { LensState, LensAction, URLState } from "../../types/state.js";
 import { resolveOpticalConfigurationKey } from "../catalog/lensCatalog.js";
+import { resolveTeleconverterKey } from "../catalog/teleconverterCatalog.js";
 
 export default function useLensState(
   catalogKeys: string[],
@@ -54,8 +55,26 @@ export default function useLensState(
       const canonicalLensKey = urlState.singleLens ?? urlState.lensKeyA ?? keys[0];
       if (urlState.comparing) {
         delete urlState.configurationKey;
+        delete urlState.teleconverterKey;
+        delete urlState.patentPositions;
+        /* Each pane's converter is checked against that pane's own lens. */
+        urlState.teleconverterKeyA = resolveTeleconverterKey(
+          urlState.lensKeyA ?? "",
+          parsedViewState.teleconverterKeyA,
+        );
+        urlState.teleconverterKeyB = resolveTeleconverterKey(
+          urlState.lensKeyB ?? "",
+          parsedViewState.teleconverterKeyB,
+        );
       } else if (canonicalLensKey) {
+        delete urlState.teleconverterKeyA;
+        delete urlState.teleconverterKeyB;
         urlState.configurationKey = resolveOpticalConfigurationKey(canonicalLensKey, parsedViewState.configurationKey);
+        /* A converter mounts on the prescription actually shown, so it is checked against the resolved variant. */
+        urlState.teleconverterKey = resolveTeleconverterKey(
+          urlState.configurationKey,
+          parsedViewState.teleconverterKey,
+        );
       }
       return createInitialState(prefs, urlState, wide, keys);
     },

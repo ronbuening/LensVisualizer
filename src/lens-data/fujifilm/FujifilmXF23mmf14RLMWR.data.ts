@@ -8,8 +8,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Scale: all radii, thicknesses, semi-diameters, and aspherical polynomial coefficients were uniformly scaled by 0.973614465993
  * to match the manufacturer-published 23 mm focal length. Refractive indices and Abbe numbers are unchanged.
  *
- * Sensor cover/filter plate PP from patent surfaces 27-28 is excluded per project convention; its optical path is
- * folded into the final air-equivalent back focal distance on surface 26A.
+ * Parallel-plate optical member PP (patent Table 25 surfaces 27-28: 2.8500 mm, nd 1.51680, νd 64.20) and its
+ * 0.2112 mm gap to the image are modeled in `rearPlates` (traced, not drawn), scaled by the same factor as the lens.
+ * Surface 26A keeps the patent's 12.4725 mm gap to PP (12.143406 mm scaled).
  *
  * Semi-diameters are estimated from an independent paraxial marginal/chief-ray envelope at f/1.4 and the patent
  * 33.8° half-field, then adjusted for smooth element apertures and checked against edge-thickness and air-gap
@@ -18,6 +19,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * Surfaces 21A, 22A, 25A, and 26A store the exact Example 7 odd/even asphere polynomials through A14.
  * Because the prescription is scaled by s = 0.973614465993, each patent coefficient is transformed with
  * A_n(scaled) = A_n(patent) / s^(n-1). The patent's KA = 1 converts to the standard conic constant K = 0.
+ *
+ * Partial dispersion: the patent tabulates only Nd and νd and states no partial-dispersion formula or normal line of
+ * its own. `dPgF` on the three FCD505 elements is therefore catalog-derived: PgF of the repo's HOYA FCD505 catalog
+ * curve (0.544337) minus the engine's normal line (0.6438 − 0.001682·νd) = +0.015956. HOYA's catalog ΔPg,F (+0.0194)
+ * is taken against HOYA's own normal line (through C7 and F2, about 0.6484 − 0.0018·νd) and is not stored.
  */
 
 const LENS_DATA = {
@@ -144,9 +150,10 @@ const LENS_DATA = {
       vd: 68.62,
       fl: 25.84,
       glass: "FCD505 (HOYA) ED fluorophosphate crown",
-      apd: "patent",
-      dPgF: 0.0194,
-      apdNote: "FCD505 catalog: positive anomalous partial dispersion",
+      apd: "inferred",
+      dPgF: 0.015956,
+      apdNote:
+        "Catalog-derived (patent lists only nd and νd): the repo's HOYA FCD505 catalog curve gives PgF = 0.5443, runtime dPgF +0.01596; HOYA's catalog ΔPgF +0.0194 is on HOYA's own line.",
       role: "ED positive at G2 entrance.",
       cemented: "D21-22",
     },
@@ -198,9 +205,10 @@ const LENS_DATA = {
       vd: 68.62,
       fl: 22.676,
       glass: "FCD505 (HOYA) ED fluorophosphate crown",
-      apd: "patent",
-      dPgF: 0.0194,
-      apdNote: "FCD505 catalog: positive anomalous partial dispersion",
+      apd: "inferred",
+      dPgF: 0.015956,
+      apdNote:
+        "Catalog-derived (patent lists only nd and νd): the repo's HOYA FCD505 catalog curve gives PgF = 0.5443, runtime dPgF +0.01596; HOYA's catalog ΔPgF +0.0194 is on HOYA's own line.",
       role: "Lp lens: strongest positive lens in G2.",
     },
     {
@@ -224,9 +232,10 @@ const LENS_DATA = {
       vd: 68.62,
       fl: 56.305,
       glass: "FCD505 (HOYA) ED fluorophosphate crown",
-      apd: "patent",
-      dPgF: 0.0194,
-      apdNote: "FCD505 catalog: positive anomalous partial dispersion",
+      apd: "inferred",
+      dPgF: 0.015956,
+      apdNote:
+        "Catalog-derived (patent lists only nd and νd): the repo's HOYA FCD505 catalog curve gives PgF = 0.5443, runtime dPgF +0.01596; HOYA's catalog ΔPgF +0.0194 is on HOYA's own line.",
       role: "Stationary rear-group ED positive.",
     },
     {
@@ -269,7 +278,20 @@ const LENS_DATA = {
     { label: "23", R: 40.831249, d: 3.378442, nd: 1.59282, elemId: 14, sd: 13.1438 },
     { label: "24", R: -177.253231, d: 0.166001, nd: 1, elemId: 0, sd: 11.97546 },
     { label: "25A", R: -94.043271, d: 1.557783, nd: 1.68863, elemId: 15, sd: 11.97546 },
-    { label: "26A", R: 38.839234, d: 14.178412, nd: 1, elemId: 0, sd: 11.97546 },
+    { label: "26A", R: 38.839234, d: 12.143406, nd: 1, elemId: 0, sd: 11.97546 },
+  ],
+
+  /* ── Optical member PP (patent Table 25 surfaces 27–28, scaled by s): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.774801,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.205627,
+      source: "US 2022/0276464 A1, Example 7 Table 25 surfaces 27–28 (2.8500 / 0.2112 mm, scaled by 0.973614465993)",
+    },
   ],
 
   asph: {
@@ -353,10 +375,12 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.19,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus: G2 (surfaces 13-22A) translates objectward as a unit; G1, the stop, and G3 remain fixed.",
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.44,
+  fstopSeries: [1.44, 2, 2.8, 4, 5.6, 8, 11, 16],
   maxFstop: 16,
   scFill: 0.56,
   yScFill: 0.58,

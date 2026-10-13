@@ -34,7 +34,7 @@ The patent's Japanese priority date (June 17, 2013) precedes the lens announceme
 | Elements / Groups | 11 / 8 | 11 / 8 |
 | Aspherical elements | 1 (L21, 2 aspherical surfaces) | 1 |
 | Back focus (air equiv.) | 12.60 mm | — |
-| Total optical track | ~74.3 mm (including cover glass) | — |
+| Total optical track | ~75.06 mm physical, including the 2.80 mm plate PP (74.11 mm air-equivalent) | — |
 | Filter thread | — | ø62 mm |
 | Aperture blades | — | 7 (rounded) |
 | Close focus distance | — | 0.28 m |
@@ -49,7 +49,7 @@ All key parameters were verified via independent paraxial ray trace using the AB
 | Parameter | Patent | Computed | Match |
 |---|---|---|---|
 | EFL | 23.74 mm | 23.738 mm | ✓ |
-| BFL (from S20) | 12.60 mm | 12.604 mm | ✓ |
+| BFL (from S20, air-equivalent) | 12.60 mm | 12.604 mm | ✓ |
 | Fno | 1.45 | — (stop SD = 8.19 mm) | ✓ |
 
 ---
@@ -205,7 +205,7 @@ The near-paraboloidal conic base (K = −0.90) provides a starting correction, w
 | Surface | R (mm) | d (mm) | nd | νd |
 |---|---|---|---|---|
 | S19 (front) | −91.051 | 1.20 | 1.80810 | 22.8 |
-| S20 (rear) | +249.640 | 12.60 → image | — | — |
+| S20 (rear) | +249.640 | 10.00 → plate PP | — | — |
 
 - **Glass:** S-NPH1 (OHARA) — same glass as L123.
 - **Shape:** Biconcave, weakly negative (f ≈ −82.4 mm).
@@ -222,7 +222,7 @@ The lens uses **inner focusing** with the front group (G1) and L25 held stationa
 | Stop to L21 | STO | 7.13 mm | 4.93 mm | −2.20 mm |
 | Triplet rear to L25 | 18 | 0.90 mm | 3.10 mm | +2.20 mm |
 
-The focus group translates approximately 2.20 mm toward the object at closest focus. The back focal distance (from S20 to the image plane) remains constant at 12.60 mm.
+The focus group translates approximately 2.20 mm toward the object at closest focus. The back focal distance (from S20 to the image plane) remains constant: 10.00 mm of air, the 2.80 mm plate PP, and 0.754 mm to the image, 12.60 mm air-equivalent.
 
 ### Benefits of This Focus Scheme
 
@@ -303,7 +303,7 @@ The patent's aspheric formula uses the κ (kappa) convention, where the discrimi
 
 ### Back Focal Distance
 
-The patent lists D20 = 10.00 mm (to the cover glass) plus a 2.80 mm parallel plate (nd = 1.5168). Since sensor glass is excluded per project spec, the last surface d is set to the paraxial air-equivalent BFD = 12.60 mm.
+Table 7 lists D20 = 10.00 mm to the parallel plate PP (surfaces 21–22: 2.80 mm, nd = 1.51680, νd = 64.2). The data file stores the physical 10.00 mm on S20 and models PP in `rearPlates` as N-BK7; it is traced by every analysis but not drawn. The patent does not print the gap from PP to the image, so the 0.754 mm trailing gap is derived from the Table 11 back focus of 12.60 mm, read as air-equivalent: 12.60 − 10.00 − 2.80/1.5168. This keeps the image plane where the previous air-equivalent model placed it, so 12.60 mm remains the paraxial equivalent back focus, while the physical track grows by 2.80 × (1 − 1/1.5168) ≈ 0.95 mm.
 
 ### Close-Focus Gaps
 

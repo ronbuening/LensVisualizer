@@ -214,6 +214,28 @@ describe("every registered mount spec", () => {
     expect(offenders).toEqual([]);
   });
 
+  it("renders every view without mutating the spec", () => {
+    const deepFreeze = <T>(value: T): T => {
+      if (value && typeof value === "object") {
+        for (const child of Object.values(value)) deepFreeze(child);
+        Object.freeze(value);
+      }
+      return value;
+    };
+    const offenders: string[] = [];
+    for (const [mountId, spec] of ENTRIES) {
+      const frozen = deepFreeze(structuredClone(spec));
+      for (const view of VIEWS) {
+        try {
+          buildMountSvgDoc(frozen, frozen.mvp.profileModel.selectedMvpProfileId, view);
+        } catch (error) {
+          offenders.push(`${mountId}/${view}: ${String(error)}`);
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
   it("emits a schema-shaped JSON block", () => {
     const offenders: string[] = [];
     for (const [mountId, spec] of ENTRIES) {

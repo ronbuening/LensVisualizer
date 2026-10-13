@@ -52,6 +52,20 @@ function createNativeEvent(type: string, properties: Record<string, unknown> = {
 }
 
 describe("useViewBoxZoom", () => {
+  it("centers atomically, preserves optional zoom, clamps limits, and rejects invalid requests", () => {
+    const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true));
+    act(() => result.current.centerOn(300, 200, 4));
+    expect(result.current.state).toEqual({ vbX: 150, vbY: 125, vbW: 300, vbH: 150, zoom: 4 });
+    act(() => result.current.centerOn(600, 300));
+    expect(result.current.state.zoom).toBe(4);
+    expect(result.current.state.vbX).toBe(450);
+    const previous = result.current.state;
+    act(() => result.current.centerOn(NaN, 10));
+    expect(result.current.state).toBe(previous);
+    act(() => result.current.centerOn(0, 0, 100));
+    expect(result.current.state.zoom).toBe(50);
+    expect(result.current.state.vbX + result.current.state.vbW / 2).toBe(0);
+  });
   describe("default state", () => {
     it("initializes with default viewBox matching svgW/svgH at 1x zoom", () => {
       const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true));

@@ -48,10 +48,6 @@ function makeLens(surfaces: SurfaceData[], asphByIdx: Record<number, AsphericCoe
 describe("AsphericComparisonOverlay — single aspheric surface", () => {
   const L = makeLens([surf1, surf2], { 0: asph });
 
-  it("renders without crashing", () => {
-    render(<AsphericComparisonOverlay L={L} info={elementInfo} theme={mockTheme} />);
-  });
-
   it("renders the mode toggle buttons", () => {
     render(<AsphericComparisonOverlay L={L} info={elementInfo} theme={mockTheme} />);
     expect(screen.getByText("Base sphere (R)")).toBeTruthy();
@@ -139,10 +135,6 @@ describe("AsphericComparisonOverlay — single aspheric surface", () => {
 describe("AsphericComparisonOverlay — both surfaces aspheric", () => {
   const asph2: AsphericCoefficients = { K: -0.3, A4: -5e-8, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
   const L = makeLens([surf1, surf3], { 0: asph, 1: asph2 });
-
-  it("renders without crashing", () => {
-    render(<AsphericComparisonOverlay L={L} info={elementInfo} theme={mockTheme} />);
-  });
 
   it("renders stats for both surfaces", () => {
     render(<AsphericComparisonOverlay L={L} info={elementInfo} theme={mockTheme} />);

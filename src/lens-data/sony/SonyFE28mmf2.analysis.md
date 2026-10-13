@@ -40,7 +40,7 @@ The manufacturer's 8-group count is not the same as the patent's three functiona
 
 The design's compactness comes from distributing wide-angle correction across six aspherical surfaces and two ED elements rather than from a large number of additional spherical relay elements. The moving focus group is a single negative meniscus, so the autofocus moving mass is low.
 
-The patent includes a 2.5 mm sensor-side cover glass with nd = 1.516798 and a final 1.0 mm air gap. The data file excludes that cover glass per project convention and folds it into the final air-equivalent back focal distance:
+The patent includes a 2.5 mm sensor-side cover glass (Table 28 surfaces 19–20, nd = 1.516798, νd = 64.2, N-BK7 class) after a 15.309 mm air gap, with a final 1.0 mm BF to the image. The data file models that plate in `rearPlates`: surface 18 keeps the patent's 15.309 mm gap, and every analysis traces the plate and its 1.0 mm gap to the image, but the plate is not drawn. Its paraxial air-equivalent back focal distance is:
 
 `15.309 + 2.5 / 1.516798 + 1.000 = 17.957209 mm`.
 
@@ -133,7 +133,7 @@ The design therefore uses six distinct glass positions, not five. Repeated glass
 
 The focus system is inner focus by movement of G2, which consists only of L6. G1, the aperture stop, and G3 remain fixed relative to the image plane. The movement direction is imageward when the subject distance changes from infinity to proximity.
 
-The patent does not tabulate close-focus variable gaps for Example 10. The data file therefore solves the G2 travel paraxially against Sony's published close-focus distances while holding the image plane fixed in the folded-cover data coordinate. The lens has two manufacturer-published close-focus states: 0.29 m in AF and 0.25 m in MF. The data file uses 0.25 m as the absolute minimum focus distance and records the AF value in the focus description. Using the physical cover-glass thickness instead of the folded-air coordinate changes the solved 0.25 m travel by only about 0.02 mm, so the difference is below the precision justified by the patent's rounded close-focus data.
+The patent does not tabulate close-focus variable gaps for Example 10. The data file therefore solves the G2 travel paraxially against Sony's published close-focus distances while holding the image plane fixed; the solve was made when the cover glass was still folded into air, and the modeled plate leaves the paraxial image position unchanged. The lens has two manufacturer-published close-focus states: 0.29 m in AF and 0.25 m in MF. The data file uses 0.25 m as the absolute minimum focus distance and records the AF value in the focus description. Using the physical cover-glass thickness instead of the folded-air coordinate changes the solved 0.25 m travel by only about 0.02 mm, so the difference is below the precision justified by the patent's rounded close-focus data.
 
 | State | D(STO-L6) | D(L6-G3) | Paraxial magnification |
 |---|---:|---:|---:|
@@ -176,7 +176,7 @@ The data file records the exact computed ratio rather than forcing the value int
 
 ## Verification Summary
 
-All first-order numerical claims below were recomputed from Table 28 using a reduced-angle ABCD paraxial trace. The cover glass was included for patent verification and then folded into air-equivalent distance for the data file.
+All first-order numerical claims below were recomputed from Table 28 using a reduced-angle ABCD paraxial trace. The cover glass was included for patent verification; the data file models it physically in `rearPlates`.
 
 | Quantity | Computed | Patent / source value | Result |
 |---|---:|---:|---|
@@ -191,7 +191,7 @@ All first-order numerical claims below were recomputed from Table 28 using a red
 | f2/f3 | -0.8394 | -0.84 | matches rounding |
 | Petzval sum, surface-by-surface φ/(n n') | +0.003055 mm^-1 | not listed | derived |
 | Reciprocal Petzval-sum magnitude | 327.3 mm | not listed | derived |
-| Air-equivalent final BFD after removing cover glass | 17.9572 mm | not listed | derived |
+| Air-equivalent final BFD including the cover glass | 17.9572 mm | not listed | derived |
 | 0.25 m close-focus G2 travel | 4.4192 mm imageward | Sony 0.25 m MF / 0.16x | solved; magnification matches |
 
 The patent's listed half angle, 38.27°, should be used as the prescription field specification. A simple first-order calculation from the 21.63 mm full-frame semi-diagonal and 28.2339 mm EFL gives arctan(21.63 / 28.2339) = 37.47°, which is lower because it ignores the wide-angle distortion and the angle definition used in the full patent design.

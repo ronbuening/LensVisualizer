@@ -12,10 +12,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  Semi-diameters: patent 有効径 values divided by two.              ║
  * ║                                                                    ║
- * ║  Filter note: patent surfaces 30-31 are a plane-parallel optical   ║
- * ║  filter / cover plate. Per project convention they are omitted     ║
- * ║  from the surface array and folded into the final air-equivalent   ║
- * ║  back distance: 11.9400 + 4.2000 / 1.51680 + 0.9999 = 15.708887.   ║
+ * ║  Filter note: patent surfaces 30-31 (optical filter F, 4.2000 mm,  ║
+ * ║  nd 1.51680, νd 64.20) and the BF 0.9999 mm air gap to the image   ║
+ * ║  are modeled in `rearPlates` (traced, not drawn). Surface 29 keeps ║
+ * ║  the patent's 11.9400 mm gap to the filter.                        ║
+ * ║                                                                    ║
+ * ║  Partial dispersion: the patent prints no PgF and defines no       ║
+ * ║  normal line (its table gives nd and νd only). `dPgF` is the PgF   ║
+ * ║  of the element's own HOYA nC/nF/ng minus the engine's normal      ║
+ * ║  line (0.6438 − 0.001682·νd). It is not HOYA's catalog ΔPgF,       ║
+ * ║  which is measured from HOYA's own C7–F2 line                      ║
+ * ║  (≈ 0.6483 − 0.0018·νd) and is quoted in the analysis. L5, L6      ║
+ * ║  and L13 already sit within 0.0003 of the engine-line value and    ║
+ * ║  keep their stored figure.                                         ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -57,7 +66,7 @@ const LENS_DATA = {
       vd: 64.2,
       fl: 208.4,
       glass: "BSC7 (Hoya)",
-      dPgF: 0.0016,
+      dPgF: -0.001654,
       nC: 1.51432,
       nF: 1.52237,
       ng: 1.52667,
@@ -72,7 +81,7 @@ const LENS_DATA = {
       vd: 41.15,
       fl: -28.9,
       glass: "BAFD7 (Hoya)",
-      dPgF: 0.0028,
+      dPgF: 0.001954,
       nC: 1.69651,
       nF: 1.71356,
       ng: 1.72339,
@@ -87,7 +96,7 @@ const LENS_DATA = {
       vd: 61.25,
       fl: -46.2,
       glass: "M-BACD5N (Hoya)",
-      dPgF: -0.0007,
+      dPgF: -0.003355,
       nC: 1.58618,
       nF: 1.5958,
       ng: 1.60097,
@@ -103,8 +112,9 @@ const LENS_DATA = {
       fl: -37.9,
       glass: "FCD100 (Hoya)",
       apd: "inferred",
-      apdNote: "HOYA catalog equivalent; ΔPgF = +0.0564.",
-      dPgF: 0.0564,
+      apdNote:
+        "HOYA catalog equivalent; the patent prints no partial dispersion. PgF = 0.5326 from the authored nC/nF/ng; HOYA's catalog ΔPgF = +0.0564 is measured from HOYA's own normal line (≈ 0.6483 − 0.0018·νd); runtime dPgF +0.048767.",
+      dPgF: 0.048767,
       nC: 1.43559,
       nF: 1.44019,
       ng: 1.44264,
@@ -151,7 +161,7 @@ const LENS_DATA = {
       vd: 42.72,
       fl: 23.9,
       glass: "TAFD5F (Hoya)",
-      dPgF: -0.0062,
+      dPgF: -0.00695,
       nC: 1.82898,
       nF: 1.84852,
       ng: 1.85956,
@@ -166,7 +176,7 @@ const LENS_DATA = {
       vd: 27.76,
       fl: -95.1,
       glass: "E-FD13 (Hoya)",
-      dPgF: 0.0093,
+      dPgF: 0.010236,
       nC: 1.73307,
       nF: 1.75976,
       ng: 1.77597,
@@ -182,8 +192,9 @@ const LENS_DATA = {
       fl: 31.2,
       glass: "FCD100 (Hoya)",
       apd: "inferred",
-      apdNote: "HOYA catalog equivalent; ΔPgF = +0.0564.",
-      dPgF: 0.0564,
+      apdNote:
+        "HOYA catalog equivalent; the patent prints no partial dispersion. PgF = 0.5326 from the authored nC/nF/ng; HOYA's catalog ΔPgF = +0.0564 is measured from HOYA's own normal line (≈ 0.6483 − 0.0018·νd); runtime dPgF +0.048767.",
+      dPgF: 0.048767,
       nC: 1.43559,
       nF: 1.44019,
       ng: 1.44264,
@@ -199,7 +210,7 @@ const LENS_DATA = {
       vd: 31.32,
       fl: -61.5,
       glass: "TAFD25 (Hoya)",
-      dPgF: 0.0028,
+      dPgF: 0.003475,
       nC: 1.89526,
       nF: 1.92412,
       ng: 1.94128,
@@ -215,7 +226,7 @@ const LENS_DATA = {
       vd: 61.25,
       fl: 124.5,
       glass: "M-BACD5N (Hoya)",
-      dPgF: -0.0007,
+      dPgF: -0.003355,
       nC: 1.58618,
       nF: 1.5958,
       ng: 1.60097,
@@ -230,7 +241,7 @@ const LENS_DATA = {
       vd: 70.45,
       fl: 71.4,
       glass: "FC5 (Hoya)",
-      dPgF: 0.0092,
+      dPgF: 0.005044,
       nC: 1.48535,
       nF: 1.49227,
       ng: 1.49594,
@@ -261,8 +272,9 @@ const LENS_DATA = {
       fl: 24.4,
       glass: "FCD705 (Hoya)",
       apd: "inferred",
-      apdNote: "HOYA catalog equivalent; ΔPgF = +0.0277.",
-      dPgF: 0.0277,
+      apdNote:
+        "HOYA catalog equivalent; the patent prints no partial dispersion. PgF = 0.5405 from the authored nC/nF/ng; HOYA's catalog ΔPgF = +0.0277 is measured from HOYA's own normal line (≈ 0.6483 − 0.0018·νd); runtime dPgF +0.023657.",
+      dPgF: 0.023657,
       nC: 1.5481,
       nF: 1.55539,
       ng: 1.55933,
@@ -278,7 +290,7 @@ const LENS_DATA = {
       vd: 23.78,
       fl: -56.2,
       glass: "FDS90 (Hoya)",
-      dPgF: 0.0137,
+      dPgF: 0.015299,
       nC: 1.83649,
       nF: 1.87209,
       ng: 1.89413,
@@ -316,7 +328,21 @@ const LENS_DATA = {
     { label: "26", R: 17.82, d: 2.66, nd: 1.0, elemId: 0, sd: 9.255 },
     { label: "27", R: 54.88, d: 6.35, nd: 1.55032, elemId: 14, sd: 9.51 },
     { label: "28", R: -17.08, d: 1.0, nd: 1.84666, elemId: 15, sd: 9.785 },
-    { label: "29", R: -27.35, d: 15.70888734177215, nd: 1.0, elemId: 0, sd: 10.2 },
+    // Last surface: patent gap to the optical filter F
+    { label: "29", R: -27.35, d: 11.94, nd: 1.0, elemId: 0, sd: 10.2 },
+  ],
+
+  /* ── Optical filter F (patent surfaces 30–31): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "BSC7 (Hoya)",
+      gapAfterMm: 0.9999,
+      source: "JP 2017-167327 A, Numerical Example 1 surfaces 30–31 (BF 0.9999)",
+    },
   ],
 
   asph: {
@@ -364,10 +390,12 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Internal focus by L12/G3: d22 decreases and d24 increases by 1.6864 mm from infinity to 0.20 m.",
 
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   scFill: 0.56,
   yScFill: 0.46,

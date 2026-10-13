@@ -183,13 +183,13 @@ against the patent's rounded $20.49\ \mathrm{mm}$. Retaining the printed dimensi
 
 ### Aperture and field
 
-The patent design aperture is f/2.9. The production data uses Canon's marketed f/2.8. The infinity pre-stop paraxial matrix has $A=1.89484971$. A stop semi-diameter of
+The patent design aperture is f/2.9, and `nominalFno` (the f-number the stop opens to) is that design value; `apertureMarketing` records Canon's marketed f/2.8. The infinity pre-stop paraxial matrix has $A=1.89484971$. The authored stop semi-diameter of
 
 $$
 6.936038\ \mathrm{mm}
 $$
 
-produces a $3.660469\ \mathrm{mm}$ entrance-pupil radius and f/2.800000. A patent-faithful f/2.9 stop would instead have a $6.696864\ \mathrm{mm}$ semi-diameter.
+corresponds paraxially to a $3.660469\ \mathrm{mm}$ entrance-pupil radius and f/2.800000, the marketed aperture. A patent-faithful f/2.9 stop has a $6.696864\ \mathrm{mm}$ paraxial semi-diameter; the runtime sizes the iris from the design f-number by real-ray trace, giving $6.7526\ \mathrm{mm}$.
 
 The data file declares Canon's rounded 94° diagonal rectilinear field. The patent's 93.1° source-design value remains separately documented.
 

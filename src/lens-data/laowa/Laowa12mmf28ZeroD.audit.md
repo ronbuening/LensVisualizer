@@ -49,12 +49,3 @@ Patent: CN205720849U / WO2017177665A1, Example 2
 ### Phase 3 - Spectral / metadata enrichment
 
 - The patent publishes only nd and vd for the glass rows. No nC, nF, ng, PgF, theta_gF, dPgF, or Sellmeier coefficient source was found in the local patent, so no spectral constants were added.
-
-### Phase 4 - Analysis sync
-
-- No analysis text changes were required for this pass.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` - passed.

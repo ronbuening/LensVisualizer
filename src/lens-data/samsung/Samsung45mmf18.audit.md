@@ -47,12 +47,12 @@ classification. `apd: false` remains appropriate because the patent provides no 
   “45mm F1.8”; NX remains correctly represented by `lensMounts: ["samsung-nx"]`.
 - Updated the companion analysis to use the catalog-equivalent glass labels and to keep supplier/APO claims bounded.
 
-### Verification
+## 2026-09-23 — Rear plate modeled as `rearPlates`
 
-- `npm run audit:patent-figure -- src/lens-data/samsung/Samsung45mmf18.data.ts patents/US20130314588A1.pdf 2 0.22,0.36,0.64,0.565` — envelope and rim estimates agreed for all seven elements.
-- `npm run audit:image-circle -- src/lens-data/samsung/Samsung45mmf18.data.ts` — 1 checked, 0 undersized, 0 skipped.
-- `npm run audit:surface -- src/lens-data/samsung/Samsung45mmf18.data.ts` — no validation errors.
-- `npm run generate:glass-reports` — all 13 report tests passed; lens coverage is 5/7 with no mismatch.
-- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed.
-- `npm run test` — 220 files / 2591 tests passed.
-- `npm run build` — passed; 1008 routes prerendered.
+- Read the Example 1 lens data on PDF page 12 at 200 dpi: surface 14 d = 21.48; surfaces 15–16 are filter 400,
+  2.80 mm, nd 1.51679, νd 64.2; 16 → IMG is 0.12 mm. 21.48 + 2.80/1.51679 + 0.12 = 23.446003732 reproduces the
+  legacy folded surface-14 gap exactly.
+- Surface 14 now stores the patent's 21.48 mm, with an unlabeled `rearPlates` entry (N-BK7 class; the patent prints
+  no designation beyond reference numeral 400) and gapAfter 0.12 mm. Paraxial check against the previous data: EFL
+  identical and defocus unchanged (worst difference 9e-16 mm) at both focus keyframes. Physical track grows by
+  0.953996 mm to the patent's 68.43 mm.

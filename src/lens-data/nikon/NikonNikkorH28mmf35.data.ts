@@ -21,7 +21,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-nikkor-h-auto-28mm-f35",
   maker: "Nikon",
-  name: "NIKON NIKKOR-H Auto 2.8cm f/3.5",
+  name: "NIKON NIKKOR-H AUTO 2.8cm f/3.5",
   subtitle: "JP Showa 38-26133 / JPB 1963026133 — Nippon Kogaku / Wakimoto",
   specs: ["6 elements / 6 groups", "f ≈ 28.0 mm", "F/3.5", "2ω = 75° patent field", "all-spherical"],
 
@@ -31,7 +31,7 @@ const LENS_DATA = {
   apertureDesign: 3.5,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP S38-26133",
+  patentNumber: "JP S38-26133 B",
   patentAuthors: ["Zenji Wakimoto"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1963,

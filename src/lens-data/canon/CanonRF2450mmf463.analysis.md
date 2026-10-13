@@ -9,9 +9,9 @@
 
 ## 1. Overview
 
-The Canon RF 24-50mm F4.5-6.3 IS STM is an ultracompact, retractable full-frame zoom lens introduced alongside the Canon EOS R8 in early 2023. It weighs just 210 g and measures ø69.0 × 58 mm when retracted, making it among the smallest full-frame compatible zoom lenses ever produced. Canon achieves this miniaturization through an aggressive combination of optical compromises and manufacturing cost-reduction strategies: a narrow variable maximum aperture (f/4.5–6.3), a modest 2× zoom ratio, two plastic molded (PMo) aspherical elements, and a heavy reliance on in-camera electronic correction for distortion and vignetting.
+The Canon RF 24-50mm F4.5-6.3 IS STM is an ultracompact, retractable full-frame zoom lens introduced alongside the Canon EOS R8 in early 2023. It weighs just 210 g and measures ø69.0 × 58 mm when retracted, making it among the smallest full-frame compatible zoom lenses ever produced. Canon achieves this miniaturization through an aggressive combination of optical compromises and manufacturing cost-reduction strategies: a narrow variable maximum aperture (f/4.5–6.3), a modest 2× zoom ratio, two aspherical elements with an optical-resin index/dispersion coordinate, and a heavy reliance on in-camera electronic correction for distortion and vignetting.
 
-The optical formula consists of **8 elements in 8 groups** — every element is air-separated. The construction is organized into four zoom units: a three-element negative lead group (L1), a three-element positive group (L2), a single positive focus element (L3/LP), and a single negative plastic element (L4). Three of the eight optical surfaces are aspherical, all on the two PMo resin elements.
+The optical formula consists of **8 elements in 8 groups** — every element is air-separated. The construction is organized into four zoom units: a three-element negative lead group (L1), a three-element positive group (L2), a single positive focus element (L3/LP), and a single weak negative aspherical element (L4). Three of the sixteen lens surfaces are aspherical: one on G2 and both on L4, the two elements that share the resin-class 1.5311 / 55.9 coordinate. The patent's Examples 2 and 3 have the same eight-element layout; Example 1 is the FIG. 1 embodiment and is the one modeled here.
 
 ### Published Specifications (Canon)
 
@@ -20,7 +20,7 @@ The optical formula consists of **8 elements in 8 groups** — every element is 
 | Focal length | 24–50 mm |
 | Maximum aperture | f/4.5 (24 mm) – f/6.3 (50 mm) |
 | Construction | 8 elements / 8 groups |
-| Aspherical elements | 2 (PMo) |
+| Aspherical elements | 2 |
 | Diaphragm blades | 7 |
 | Close focus | 0.30 m (24 mm), 0.35 m (50 mm) |
 | Max magnification | 0.11× (24 mm), 0.19× (50 mm) |
@@ -49,9 +49,11 @@ This is a negative-lead zoom architecture — architecturally related to the ret
 
 ### 2.2 Zoom Mechanism
 
-During zooming from the wide-angle end to the telephoto end, the dominant movement is the closing of the L1–L2 gap (d6): it collapses from 27.85 mm to just 1.02 mm, a change of −26.83 mm. Simultaneously, the back focal distance (d18) extends by +20.25 mm. The remaining variable gaps (d14, d16) change by less than 0.3 mm across the zoom range — essentially constant. This means the zoom action is driven almost entirely by the relative motion of L1 and L2, with the rear group (L3 + L4) moving as a near-rigid assembly.
+During zooming from the wide-angle end to the telephoto end, the dominant movement is the closing of the L1–L2 gap (d6): it collapses from 27.85 mm to just 1.02 mm, a change of −26.83 mm. At the same time the back focal distance (d18) extends by +20.25 mm. The remaining variable gaps (d14, d16) change by less than 0.35 mm across the zoom range, and their sum stays at 21.28 mm at every station.
 
-The patent's figure drawing shows simplified movement trajectories: L1 moves toward the image as the lens zooms to the telephoto end, while L2 and L4 move toward the object side. L3 (LP) also moves toward the object side. The overall lens length *decreases* by about 6.6 mm from wide to tele, meaning the lens is physically longest at 24 mm. This is consistent with the production lens's retractable barrel design, where the lens extends when zoomed to 24 mm and shortens toward 50 mm.
+The patent states the motion directly (¶0070). L1 moves on a path convex toward the image side. L2, L3 and L4 move monotonically toward the object, and L2 and L4 move as one on the same trajectory. The gap table confirms it. Measured from the image plane (derived from the tabulated gaps), the L1 front vertex sits at 105.60 → 98.52 → 99.03 mm, so L1 first moves about 7.1 mm toward the image and then turns back by about 0.5 mm near the middle station. The stop (L2) sits at 50.82 → 59.73 → 71.07 mm and the L4 rear vertex at 16.94 → 25.84 → 37.19 mm; both move +20.25 mm. The LP front vertex moves 34.63 → 43.20 → 54.62 mm (+19.99 mm), so LP drifts only a few tenths of a millimetre relative to the L2–L4 block. Zooming is therefore L1 against a nearly rigid L2–LP–L4 assembly.
+
+The optical overall length is longest at the wide end (105.60 mm), shortest near the middle station (98.52 mm) and 99.03 mm at the telephoto end. The patent does not describe the retracting barrel, so how the mechanical length tracks this is not stated.
 
 | Variable Gap | Wide (24.71 mm) | Middle (35.01 mm) | Tele (48.53 mm) | Δ (W→T) |
 |---|---|---|---|---|
@@ -67,13 +69,13 @@ Focusing is performed by the L3 (LP) unit — a single positive element (surface
 
 The fact that L3/LP is a single element (f ≈ +62.75 mm) with very modest refractive power means that its movement during focusing introduces only limited aberration variation. The patent notes, however, that the lens element closest to the object in the focus unit "has a shape with a concave surface on the object side" (R₁ = −65.961 mm, a concave-toward-object meniscus shape). This concave object-side surface reduces the angle of incidence of off-axis rays entering the focus element, which helps control field curvature variation during focusing.
 
-**Note on close-focus data:** The patent provides variable spacing tables only at infinity focus. Close-focus spacings in the data file are estimated from Canon's published minimum focus distances (0.30 m at 24 mm, 0.35 m at 50 mm), assuming LP movement of approximately 1.5–2.0 mm toward the object side. The actual close-focus gap data may differ from these estimates.
+**Note on close-focus data:** The patent provides variable spacing tables only at infinity focus. The close-focus d14/d16 values in the data file are calculated. They are the paraxial LP positions that focus Canon's published minimum distances (0.30 m at 24 mm and 0.35 m at 50 mm, object to image plane; 0.32 m at 35 mm is interpolated), with the image plane held fixed. LP travels 3.27 / 4.79 / 6.88 mm toward the object at the wide / middle / telephoto stations. The resulting magnifications, −0.116× at 24 mm and −0.195× at 50 mm, agree with Canon's published 0.11× and 0.19× maxima, which supports the single-unit LP focus model. The travel itself is not patent data.
 
 ### 2.4 Aperture and Diaphragm
 
 The aperture stop (surface 13, "Diaphragm") is located between L2 and LR, at the image-side end of the second lens unit. The patent specifies a flare-cutting stop (FP, surface 14) immediately after the diaphragm, represented as a flat surface with variable spacing to L3. The diaphragm placement satisfies the patent's inequality (3): 0.25 < DSPw/TLw < 0.53, where DSPw is the distance from the diaphragm to the image plane and TLw is the total lens length at the wide end. For Example 1: DSPw = 50.82 mm and TLw = 105.60 mm, giving DSPw/TLw ≈ 0.48.
 
-The maximum aperture is variable: f/4.63 at the wide end, f/5.66 at the middle position, and f/6.48 at the telephoto end. In practice, Canon rounds these to the marketed f/4.5–6.3 range. The production lens reports f/4.5 only at exactly 24 mm; by 25 mm it has already stepped to f/5.0, and f/6.3 is reached by 39 mm.
+The maximum aperture is variable: f/4.63 at the wide end, f/5.66 at the middle position, and f/6.48 at the telephoto end. The patent publishes no iris diameters, so the viewer infers the physical iris at each station from these f-numbers. The inferred radii are 4.58 / 4.40 / 4.58 mm: the iris stops down slightly at the middle station and opens again at the telephoto end. The front-page figure draws the SP opening at about 4.4 mm. In practice, Canon rounds these to the marketed f/4.5–6.3 range. The production lens reports f/4.5 only at exactly 24 mm; by 25 mm it has already stepped to f/5.0, and f/6.3 is reached by 39 mm.
 
 ### 2.5 Image Stabilization
 
@@ -100,9 +102,9 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 
 **Optical role:** G1 is the first element the light encounters. Its strong negative meniscus shape — a gently curved front surface (R₁ = +238.756 mm) paired with a steeply curved rear surface (R₂ = +18.479 mm), both convex toward the object — provides the bulk of L1's negative refractive power. The rear surface carries the dominant refraction: with a radius of just 18.5 mm, it is the most steeply curved surface in the entire lens. As the outermost element in a negative-lead zoom, G1 must diverge the beam sharply to widen the field of view at the wide-angle end.
 
-**Semi-diameter constraint:** The rear surface R₂ = +18.479 mm imposes a hard physical limit on the clear aperture. The slope at the rim reaches the 64.2° fabrication threshold at sd ≈ 16.6 mm (sd/|R| ≈ 0.90), constraining the maximum clear aperture. The data file uses a smaller rear SD of 14.4 mm to better match Canon's published construction diagram while staying comfortably inside the rim-slope limit.
+**Semi-diameter constraint:** The rear surface R₂ = +18.479 mm imposes a hard physical limit on the clear aperture. The slope at the rim reaches the 64.2° fabrication threshold at sd ≈ 16.6 mm (sd/|R| ≈ 0.90). In the patent's FIG. 1 the rear curve ends at about 14.8 mm, and a flat flange carries the element out to the front surface's 18.8 mm rim. The data file uses 18.8 mm for the front surface and 14.4 mm for the rear, both within a few percent of the figure.
 
-### Element 2 — G2: Second Negative Lens (PMo Aspherical)
+### Element 2 — G2: Second Negative Lens (Aspherical)
 
 | Parameter | Value |
 |-----------|-------|
@@ -115,9 +117,9 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 | Thick-lens f | −112.73 mm |
 | Shape factor | −1.120 |
 
-**Material identification:** The nd/νd pair does not match any conventional optical glass in the OHARA, SCHOTT, HOYA, or Sumita catalogs. Instead, it matches cyclo-olefin polymer (COP) optical resins used in precision molded (PMo) elements, such as ZEONEX E48R (nd ≈ 1.5310, νd ≈ 56.0, residual Δnd = 0.0001, Δνd = 0.1). The patent explicitly anticipates this at [0062]: the negative lens G2 may be made of a resin material to reduce the weight of the large-diameter front group.
+**Material identification:** The nd/νd pair does not match any conventional optical glass in the OHARA, SCHOTT, HOYA, or Sumita catalogs. Instead, it matches cyclo-olefin polymer (COP) optical resins used in precision molded (PMo) elements, such as ZEONEX E48R (nd ≈ 1.531, νd ≈ 56). The patent allows for this at [0062]: the negative lens G2 may be made of a resin material to reduce the weight of the large-diameter front group. The patent does not name the material, so the resin identification is inferred from the coordinate; the data file stores the code `531559` rather than a trade name.
 
-**Aspherical surface (3A):** The object-side surface carries the aspherical profile. At the estimated semi-diameter of 14.0 mm, the aspherical departure from the base sphere reaches approximately +126 µm. The dominant term is A4 (+2.06 × 10⁻⁶), which provides a positive departure — the surface becomes flatter than the base sphere at the margins, reducing its effective negative curvature at larger aperture heights.
+**Aspherical surface (3A):** The object-side surface carries the aspherical profile. At the estimated semi-diameter of 14.0 mm, the aspherical departure from the base sphere reaches approximately +126 µm. The dominant term is A4 (+2.06 × 10⁻⁶). The positive departure bends the margin further toward the image than the base sphere, so the convex surface becomes steeper toward its edge. This adds surface power in the outer zone, which only the wide-angle off-axis bundles use.
 
 **Optical role:** G2 provides supplementary negative power in L1, assisting G1 in diverging the beam at the wide-angle end. Its aspherical front surface is the primary wide-angle aberration corrector: the aspherical departure on a nearly flat base curve (R = 994.673 mm) effectively creates a freeform correction plate at the front of the lens. The very weak base curvature means the aspherical terms dominate the surface profile at larger heights — the polynomial coefficients, not the base sphere, define the optical function of this surface at the periphery.
 
@@ -134,11 +136,11 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 | Thick-lens f | +67.52 mm |
 | Shape factor | +2.504 |
 
-**Glass identification:** Exact match to OHARA S-TIH6 or HOYA FD60/E-FD60. This is a dense flint glass — high refractive index and high dispersion (low νd). S-TIH6 is one of the most common dense flint glasses in consumer zoom lenses.
+**Glass identification:** The nd/νd pair matches OHARA S-TIM35 (1.69895 / 30.13). This is a flint glass with a fairly high refractive index and high dispersion (low νd).
 
 **Optical role:** L1P is the only positive element in the otherwise negative L1 unit. It serves as a chromatic corrector for G1 and G2: the negative elements (G1: νd = 55.4; G2: νd = 55.9) introduce lateral and longitudinal chromatic aberration, and L1P's low νd = 30.1 (high dispersion) provides the counter-dispersive correction.
 
-**Edge thickness constraint:** L1P's strongly bent meniscus shape (shape factor +2.504) means the sag difference between the front and rear surfaces grows rapidly with aperture height. The render-tuned SDs of 13.2/12.7 mm preserve a visibly smaller third front-group element, matching the manufacturer section while leaving healthier edge-thickness margin than a full ray-envelope estimate.
+**Edge thickness constraint:** L1P's strongly bent meniscus shape (shape factor +2.504) means the sag difference between the front and rear surfaces grows rapidly with aperture height. The stored SDs of 13.2/12.7 mm are estimates; FIG. 1 draws L1P to about 14.3 mm, within about 11 % of them, so they were kept.
 
 ### Element 4 — L2 First Element (Positive)
 
@@ -153,7 +155,7 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 | Thick-lens f | +23.29 mm |
 | Shape factor | +0.941 |
 
-**Glass identification:** Exact match to OHARA S-LAH55V or HIKARI E-LASFH13. This is a lanthanum-containing heavy flint glass — the highest refractive index in the entire lens (nd = 1.90366). S-LAH55V is an eco-friendly ("S-" prefix) glass with exceptional refractive index, commonly used in high-power positive elements where minimizing surface curvature is essential.
+**Glass identification:** The nd/νd pair matches OHARA S-LAH95 (1.90366 / 31.34). This is a lanthanum dense flint glass with the highest refractive index in the lens (nd = 1.90366). Glasses of this class are used in strong positive elements where keeping surface curvatures moderate matters.
 
 **Optical role:** This element provides the dominant positive refractive power for L2 (the converging group). Its ultra-high refractive index allows the front surface curvature (R₁ = +21.644 mm) to remain relatively gentle despite the strong +23.29 mm focal length. The nearly planoconvex shape (shape factor +0.941) is close to the minimum-spherical-aberration orientation for a positive singlet. This is the primary image-forming element in the system.
 
@@ -170,7 +172,7 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 | Thick-lens f | −16.45 mm |
 | Shape factor | −0.728 |
 
-**Glass identification:** Exact nd match to OHARA S-TIH53, HOYA TAFD5, or HIKARI E-FDS1. This is a very high-index, very high-dispersion dense flint glass — the most dispersive element in the entire lens (νd = 23.9).
+**Glass identification:** The nd/νd pair matches OHARA S-NPH53 (1.84666 / 23.88). This is a very high-index, very high-dispersion dense flint glass — the most dispersive element in the entire lens (νd = 23.9).
 
 **Optical role:** Element 5 is the chromatic corrector for the L2 positive group. Its biconcave shape distributes the negative power across both surfaces, with the more steeply curved rear surface (R₂ = +16.164 mm) carrying the bulk of the refraction. The thin center thickness (0.70 mm) and strong negative power (f = −16.45 mm) indicate this element operates as an air-spaced flint component of a broken-contact (air-spaced) doublet. The L2 group operates as a positive-negative-positive (PNP) triplet — an Ernostar-derived configuration — where the central negative flint provides chromatic correction while the outer positive elements provide convergence.
 
@@ -187,7 +189,7 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 | Thick-lens f | +25.80 mm |
 | Shape factor | +0.486 |
 
-**Glass identification:** Exact match to OHARA S-LAH53 or HOYA TAFD25. This is a high-index lanthanum glass with moderate dispersion.
+**Glass identification:** The nd/νd pair matches OHARA S-LAH66 (1.77250 / 49.60). This is a high-index lanthanum glass with moderate dispersion.
 
 **Optical role:** Element 6 is the second positive element in L2's PNP triplet. Its biconvex shape (shape factor +0.486, more symmetric than Element 4's near-planoconvex) distributes the refraction across both surfaces, which helps balance higher-order aberrations (particularly oblique spherical aberration and coma at intermediate field angles). Its moderate Abbe number (νd = 49.6) places it between the high-dispersion flint (Element 5, νd = 23.9) and the low-dispersion crown L3 (νd = 70.2), creating a smooth chromatic transition across the relay.
 
@@ -204,11 +206,11 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 | Thick-lens f | +62.75 mm |
 | Shape factor | −1.948 |
 
-**Glass identification:** Exact match to OHARA S-FSL5, HOYA FC5, or SCHOTT N-FK5. This is a fluorine-containing (fluor silicate) crown glass — the lowest refractive index (1.48749) and lowest dispersion (νd = 70.2) in the entire system. S-FSL5 is lightweight (density ~2.46 g/cm³) and inexpensive — an ideal choice for a focus element that must be physically moved by the STM motor during video autofocus.
+**Glass identification:** The nd/νd pair matches OHARA S-FSL5 (1.48749 / 70.24); HOYA FC5 and SCHOTT N-FK5 are the same glass class. This is a fluorine-containing (fluor silicate) crown glass — the lowest refractive index (1.48749) and lowest dispersion (νd = 70.2) in the entire system. S-FSL5 is lightweight (density ~2.46 g/cm³) and inexpensive — an ideal choice for a focus element that must be physically moved by the STM motor during video autofocus.
 
 **Optical role:** L3/LP is the focus element — the only moving group during focus. The concave-toward-object shape is unusual for a positive focus element and is a deliberate aberration-management choice: when an off-axis ray enters the focus element through the concave front surface, the angle of incidence is reduced compared to a convex-toward-object orientation, which reduces field curvature variation during focus racking. The low dispersion (νd = 70.2) ensures minimal focus-dependent chromatic aberration.
 
-### Element 8 — L4: Fourth Lens Unit (PMo Aspherical, Negative)
+### Element 8 — L4: Fourth Lens Unit (Aspherical, Negative)
 
 | Parameter | Value |
 |-----------|-------|
@@ -221,14 +223,14 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 | Thick-lens f | −185.51 mm |
 | Shape factor | +1.177 |
 
-**Material identification:** Same COP resin as G2 — nd/νd = 1.53110/55.9, matching ZEONEX E48R or an equivalent cyclo-olefin polymer. Both PMo elements share identical optical constants, confirming they use the same injection-molding resin.
+**Material identification:** Same coordinate as G2 — nd/νd = 1.53110/55.9, the usual value for a cyclo-olefin optical resin. The patent does not name the material for L4 either. The shared constants suggest both aspherical elements use the same molding resin, but that is an inference.
 
 **Aspherical surfaces (17A, 18A):** Both surfaces of L4 are aspherical, with very large departures from their base spheres:
 
 - **Surface 17A** (front): departure ≈ −1.8 mm at the estimated SD of 11.8 mm. The A4 term (−1.02 × 10⁻⁴) provides the dominant low-order departure, but the A10 term (−1.16 × 10⁻¹¹) contributes significantly at larger heights due to the h¹⁰ dependence. The surface becomes substantially more concave than its base sphere at the margins.
 - **Surface 18A** (rear): departure ≈ −1.7 mm at the estimated SD of 12.5 mm. Again A4-dominated (−9.01 × 10⁻⁵), with the surface becoming more concave than its nearly flat base sphere (R = −1111.779 mm).
 
-These are still large, millimeter-scale aspherical departures. Such departures are feasible only through injection molding of optical-grade polymer and would be prohibitively expensive to achieve via glass grinding and polishing.
+These are still large, millimeter-scale aspherical departures, of the kind usually made by molding rather than by grinding and polishing. In the patent's FIG. 1, the 17A curve ends at about 12.1 mm and a flat flange carries L4 out to about 13.5 mm.
 
 **Optical role:** L4 is the rearmost element in the system. Despite its weak negative power (f = −185.51 mm), L4 performs a critical aberration correction role. The two heavily aspherized surfaces serve as a field-correction lens — a final aberration compensator that adjusts field curvature, astigmatism, and distortion before the image reaches the sensor plane. The negative power contribution also slightly extends the back focal distance. The two aspherical surfaces provide substantially more degrees of freedom for wavefront correction than any other element in the system.
 
@@ -236,17 +238,17 @@ These are still large, millimeter-scale aspherical departures. Such departures a
 
 ## 4. Aspherical Surface Summary
 
-The lens has three aspherical surfaces across two plastic molded elements:
+The lens has three aspherical surfaces across two elements:
 
 | Surface | Element | R (mm) | K | Departure at SD | Dominant term |
 |---------|---------|--------|---|-----------------|---------------|
-| 3A | G2 (PMo) | +994.673 | 0 | +126 µm (sd 14.0) | A4 = +2.06 × 10⁻⁶ |
-| 17A | L4 (PMo) | −90.404 | 0 | −1844 µm (sd 11.8) | A4 = −1.02 × 10⁻⁴ |
-| 18A | L4 (PMo) | −1111.779 | 0 | −1744 µm (sd 12.5) | A4 = −9.01 × 10⁻⁵ |
+| 3A | G2 | +994.673 | 0 | +126 µm (sd 14.0) | A4 = +2.06 × 10⁻⁶ |
+| 17A | L4 | −90.404 | 0 | −1844 µm (sd 11.8) | A4 = −1.02 × 10⁻⁴ |
+| 18A | L4 | −1111.779 | 0 | −1744 µm (sd 12.5) | A4 = −9.01 × 10⁻⁵ |
 
-All three surfaces have K = 0 (spherical base curve, no conic component). The aspherical profiles are defined entirely by the even-order polynomial coefficients A4 through A12. The conic constant being zero on all surfaces is typical of injection-molded plastic optics — the polynomial terms alone provide sufficient degrees of freedom, and a nonzero K would complicate the mold fabrication.
+All three surfaces have K = 0 (spherical base curve, no conic component). The aspherical profiles are defined entirely by the even-order polynomial coefficients A4 through A12. The patent's aspheric formula (¶0078) uses the standard (1 + K) conic form, so K = 0 means a spherical base and the stored K = 0 needs no conversion.
 
-The departures on surfaces 17A and 18A remain large — roughly 1.8 mm and 1.7 mm respectively. These values are strongly SD-dependent because of the high-order terms (particularly A10 and A12), which grow very rapidly with ray height. This is characteristic of injection-molded plastic optics where the entire surface profile is designed as a high-order polynomial rather than as a perturbation of a base sphere.
+The departures on surfaces 17A and 18A remain large — roughly 1.8 mm and 1.7 mm respectively. These values are strongly SD-dependent because of the high-order terms (particularly A10 and A12), which grow very rapidly with ray height. On these two surfaces the polynomial terms, rather than the base sphere, set most of the rim profile.
 
 The aspherical strategy follows a clear design philosophy: **surface 3A corrects wide-angle field aberrations** (where the beam footprint on G2 is largest), while **surfaces 17A and 18A correct residual field curvature and astigmatism across all zoom positions** (where the converged beam is small but the angular spread of off-axis rays is significant).
 
@@ -259,19 +261,19 @@ The lens uses six distinct optical materials: four conventional optical glasses 
 | Element | Material | nd | νd | Glass family | Role |
 |---------|----------|----|----|-------------|------|
 | G1 | S-BSM18 | 1.63854 | 55.4 | Barium silicate crown | Structural negative |
-| G2 | PMo resin (COP) | 1.53110 | 55.9 | Cyclo-olefin polymer | Aspherical corrector |
-| L1P | S-TIH6 / FD60 | 1.69895 | 30.1 | Dense flint | Chromatic balance for L1 |
-| L2a | S-LAH55V | 1.90366 | 31.3 | Lanthanum heavy flint | Primary convergence |
-| L2b | S-TIH53 / TAFD5 | 1.84666 | 23.9 | Dense flint | Chromatic balance for L2 |
-| L2c | S-LAH53 / TAFD25 | 1.77250 | 49.6 | Lanthanum glass (high-index) | Secondary convergence |
-| LP | S-FSL5 / FC5 | 1.48749 | 70.2 | Fluor silicate crown | Lightweight focus |
-| L4 | PMo resin (COP) | 1.53110 | 55.9 | Cyclo-olefin polymer | Field corrector |
+| G2 | Resin, inferred (531559) | 1.53110 | 55.9 | Optical resin (COP class) | Aspherical corrector |
+| L1P | S-TIM35 | 1.69895 | 30.1 | Flint | Chromatic balance for L1 |
+| L2a | S-LAH95 | 1.90366 | 31.3 | Lanthanum dense flint | Primary convergence |
+| L2b | S-NPH53 | 1.84666 | 23.9 | Dense flint | Chromatic balance for L2 |
+| L2c | S-LAH66 | 1.77250 | 49.6 | Lanthanum glass (high-index) | Secondary convergence |
+| LP | S-FSL5 | 1.48749 | 70.2 | Fluor silicate crown | Lightweight focus |
+| L4 | Resin, inferred (531559) | 1.53110 | 55.9 | Optical resin (COP class) | Field corrector |
 
 Several patterns emerge from this glass map:
 
 **Cost-conscious material selection.** The glasses are all mainstream catalog types — no exotic special-dispersion or ED glass appears anywhere in the design. There are no fluorite elements, no anomalous-partial-dispersion glasses, and no UD (ultra-low dispersion) types. This is a deliberate cost optimization consistent with the lens's $299 retail price.
 
-**Weight minimization through PMo.** The two largest elements by diameter (G2 in the front group, L4 in the rear) are both plastic, with COP resin having a density of approximately 1.01 g/cm³ — roughly 60% lighter than the lightest glass in the system (S-FSL5 at ~2.46 g/cm³). This resin-for-glass substitution is a major contributor to the lens's remarkably low 210 g weight, alongside the compact mechanical barrel and the reduced element count enabled by accepting electronic correction.
+**Weight minimization through resin.** Two of the larger elements (G2 in the front group, L4 in the rear) have a resin-class index coordinate, and the patent names weight reduction as the reason for a resin G2 (¶0062). COP resin has a density of approximately 1.01 g/cm³ — roughly 60% lighter than the lightest glass in the system (S-FSL5 at ~2.46 g/cm³). This resin-for-glass substitution is a major contributor to the lens's remarkably low 210 g weight, alongside the compact mechanical barrel and the reduced element count enabled by accepting electronic correction.
 
 **Chromatic correction through flint/crown pairing.** Each powered group contains an internal flint-crown chromatic balance: L1 pairs its low-dispersion negatives (G1 νd = 55.4, G2 νd = 55.9) with a high-dispersion positive (L1P νd = 30.1), while L2 pairs its high-index positives (L2a νd = 31.3, L2c νd = 49.6) with an ultra-dispersive negative (L2b νd = 23.9). This is a textbook zoom chromatic correction strategy.
 
@@ -318,11 +320,11 @@ The ratio fLP/fL2 = 1.59 sits near the center of the allowed range, indicating a
 
 The Canon RF 24-50mm F4.5-6.3 IS STM represents an extreme of modern zoom lens design philosophy: minimizing physical size, weight, and cost while relying on computational imaging to compensate for optical shortcomings. The uncorrected raw images from this lens exhibit substantial barrel distortion at 24 mm and heavy vignetting, both of which Canon corrects via mandatory lens profile corrections applied in-camera (the correction profile cannot be disabled for JPEG output).
 
-The extent of this reliance on electronic correction is quantifiable from the patent data. At the wide-angle end, the patent's paraxial half-field angle of 36.23° yields an image height of 18.10 mm — a native image circle diameter of just 36.2 mm. A full-frame sensor has a 43.3 mm diagonal, meaning the lens optically covers only about 84% of the sensor at 24 mm. Canon's marketed 84° diagonal angle of view (corresponding to a true 24 mm perspective) requires image content out to a half-diagonal of 21.6 mm — but the optics only deliver an 18.1 mm image height at the stated field angle. The barrel distortion profile pushes peripheral image content outward beyond the paraxial prediction, and Canon's electronic correction then de-warps and brightens the expanded image to fill the frame. At the telephoto end, coverage improves to about 96% (image circle 41.4 mm vs. sensor diagonal 43.3 mm), explaining why the optical performance and vignetting are noticeably better at 50 mm.
+The extent of this reliance on electronic correction is quantifiable from the patent data. At the wide-angle end the patent lists a half-field of 36.23° and an image height of 18.10 mm, which is simply f·tan ω, an image circle of 36.2 mm against the 43.3 mm full-frame diagonal. The real image is smaller still. An exact ray trace puts the chief ray at 36.23° on 15.8 mm, about −13 % barrel distortion, which matches the distortion curve of FIG. 2A. Reaching 18.1 mm takes a real field of about 41.3°, and no ray reaches 21.6 mm at 24 mm at all; the trace tops out near 20.6 mm. Barrel distortion compresses the edge of the field inward, and Canon's in-camera correction stretches and brightens that compressed periphery to fill the frame. At the telephoto end, coverage improves to about 96% (image circle 41.4 mm vs. sensor diagonal 43.3 mm), explaining why the optical performance and vignetting are noticeably better at 50 mm.
 
 This "design-for-correction" approach allows the optical designers to accept significantly more aberration than would be tolerable in an optically-corrected design, enabling the 8-element/8-group construction that would otherwise require 12–14 elements to achieve comparable corrected image quality at 24 mm.
 
-The two-PMo-element strategy is particularly noteworthy: by using the same COP resin for both G2 and L4, Canon can manufacture both aspherical elements using the same material supply chain. The three aspherical surfaces across these two elements provide 15 polynomial degrees of freedom (5 coefficients × 3 surfaces) for aberration correction — a substantial optimization budget that compensates for the absence of cemented doublets, ED glass, and the additional elements found in more complex zooms.
+The two-aspherical-element strategy is particularly noteworthy: G2 and L4 share one resin-class coordinate, which suggests (the patent does not say) one molding material for both aspherical elements. The three aspherical surfaces across these two elements provide 15 polynomial degrees of freedom (5 coefficients × 3 surfaces) for aberration correction — a substantial optimization budget that compensates for the absence of cemented doublets, ED glass, and the additional elements found in more complex zooms.
 
 ---
 
@@ -332,7 +334,7 @@ The two-PMo-element strategy is particularly noteworthy: by using the same COP r
 |---------|--------|--------|----|----|---------|
 | 1 | +238.756 | 1.40 | 1.63854 | 55.4 | G1 |
 | 2 | +18.479 | 7.21 | — | — | air |
-| 3A | +994.673 | 3.70 | 1.53110 | 55.9 | G2 (PMo) |
+| 3A | +994.673 | 3.70 | 1.53110 | 55.9 | G2 |
 | 4 | +56.399 | 0.30 | — | — | air |
 | 5 | +28.004 | 3.60 | 1.69895 | 30.1 | L1P |
 | 6 | +65.231 | (var) | — | — | air |
@@ -346,7 +348,7 @@ The two-PMo-element strategy is particularly noteworthy: by using the same COP r
 | 14 (FP) | ∞ | (var) | — | — | flare stop |
 | 15 | −65.961 | 2.95 | 1.48749 | 70.2 | LP |
 | 16 | −21.205 | (var) | — | — | air |
-| 17A | −90.404 | 3.50 | 1.53110 | 55.9 | L4 (PMo) |
+| 17A | −90.404 | 3.50 | 1.53110 | 55.9 | L4 |
 | 18A | −1111.779 | (var) | — | — | air → image |
 
 ## Appendix B: Aspherical Coefficients

@@ -54,6 +54,7 @@ const LENS_DATA = {
   apertureMarketing: 2,
   apertureDesign: 2.059788166,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "JP 2018-049102 A",
   patentAuthors: ["Tomohiko Ishibashi"],
@@ -239,6 +240,8 @@ const LENS_DATA = {
 
   /* ── Optical / UI parameters ── */
   closeFocusM: 0.9,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   nominalFno: 2.059788166,
   fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 8,

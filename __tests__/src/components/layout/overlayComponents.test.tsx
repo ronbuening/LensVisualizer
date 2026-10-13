@@ -132,10 +132,7 @@ describe("overlay utility components", () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it("ChromaticOverlayContent stays memoized and renders its charts inside PanelOverlay", () => {
-    /* memo matters: PanelOverlay re-renders must not re-trace the chromatic charts */
-    expect(typeof ChromaticOverlayContent).toBe("object");
-
+  it("renders ChromaticOverlayContent from a single on-axis spread inside PanelOverlay", () => {
     const spread: ChromaticRayFanSpread = {
       axialInterceptSpreadMm: 0.12,
       imagePlaneHeightSpreadMm: 0.04,

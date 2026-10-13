@@ -15,7 +15,7 @@ import {
 } from "../../../../src/utils/content/changelogHelpers.js";
 import { CHANGELOG } from "../../../../src/utils/content/changelogData.js";
 import type { ChangelogEntry } from "../../../../src/utils/content/changelogData.js";
-import { stripFrontmatter } from "../../../../src/utils/content/homepageContent.js";
+import { stripFrontmatter } from "../../../../src/utils/content/stripFrontmatter.js";
 
 const entry = (over: Partial<ChangelogEntry> = {}): ChangelogEntry =>
   ({ date: "2026-08-04", type: "feature", summary: "Example summary", ...over }) as ChangelogEntry;

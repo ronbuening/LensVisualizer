@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP1981-119109 A (特開昭56-119109)<br>
+**Patent:** JP 1981-119109 A (特開昭56-119109)<br>
 **Application Number:** 特願昭55-21884<br>
 **Filed:** 23 February 1980<br>
 **Published:** 18 September 1981<br>
@@ -9,7 +9,7 @@
 **Title:** Wide-Angle Zoom Lens (広角ズームレンズ)
 **Embodiment analyzed:** Example 1
 
-The data model transcribes Example 1 of JP1981-119109 A and correlates it with the MAMIYA-SEKOR ZOOM E 28-50mm
+The data model transcribes Example 1 of JP 1981-119109 A and correlates it with the MAMIYA-SEKOR ZOOM E 28-50mm
 f/3.5-4.5. The patent describes a retrofocus wide-angle zoom formed by a negative-power front major group and a
 positive-power rear major group, with zooming produced by changing the air space between them. Example 1 contains nine
 glass elements in eight air-separated lens groups and gives a variable f-number sequence of 1:3.5, 1:3.9, and 1:4.5.
@@ -280,7 +280,7 @@ unpublished close-focus or pupil prescription.
 
 ## Sources and References
 
-- JP1981-119109 A (特開昭56-119109), *Wide-Angle Zoom Lens* (広角ズームレンズ), Example 1, supplied patent publication,
+- JP 1981-119109 A (特開昭56-119109), *Wide-Angle Zoom Lens* (広角ズームレンズ), Example 1, supplied patent publication,
   pp. 33-36.
 - Mamiya, *Mamiya-Sekor E and Mamiya-Sekor EF Lenses* instruction manual, especially the lens specification table and
   push-pull zoom instructions: <https://www.cameramanuals.org/mamiya_pdf/mamiya-sekor_ze_lenses.pdf>.
@@ -290,3 +290,10 @@ unpublished close-focus or pupil prescription.
   <https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=25&url=database>.
 - SCHOTT, optical-glass technical/catalog documentation for the international six-digit glass-code convention:
   <https://media.schott.com/api/public/content/ff189abcb12f498aa221f54fd0b2055c>.
+
+
+## Production mount assignment
+
+The Mamiya E/EF manufacturer manual lists the 28–50mm E zoom and describes bayonet mounting with electronic contacts. This is the ZE system, distinct from Mamiya NC. [Manufacturer source](https://www.cameramanuals.org/mamiya_pdf/mamiya-sekor_ze_lenses.pdf).
+
+`lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.

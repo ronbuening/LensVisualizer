@@ -16,17 +16,34 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    convention converts to the standard renderer constant K = −1. ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters. Estimated via combined     ║
- * ║    marginal ray (f/1.45) + chief ray (60% field) trace with ~5–8% ║
- * ║    clearance. Constrained by 52 mm filter thread (front group),   ║
- * ║    edge thickness ≥ 0.3 mm, and cross-gap sag overlap ≤ gap×1.1. ║
- * ║    S10A is limited to 8.4 mm by exact-profile rim slope; S11A    ║
- * ║    and S12 are limited by the tight 0.45 mm air gap.             ║
+ * ║    Patent does not list semi-diameters. Values are estimates from ║
+ * ║    the f/1.45 exact marginal ray, Fig. 1 (page 1, 0.0484 mm/px    ║
+ * ║    from the S1–S15 vertex span) and edge/gap checks. Fig. 1 draws ║
+ * ║    L21 to ≈8.6 mm, the triplet shoulder (S14/S15) to ≈12.4 mm and ║
+ * ║    the stop opening to ≈7.6 mm. S10A stays at 8.4 mm: the Table 2 ║
+ * ║    polynomial steepens past 60° there and diverges beyond ≈8.6 mm.║
+ * ║    S11A at 8.4 mm leaves 0.05 mm to plano S12 (Fig. 1 shows the   ║
+ * ║    L21 rim almost touching L22). S3 (L12 front) is 13.0 mm: Fig.  ║
+ * ║    1 draws ≈13.2 mm, and no ray that clears S4/S5 (≤11.3 mm,      ║
+ * ║    capped by the 0.20 mm L12–L13 gap) and the f/1.45 stop rises   ║
+ * ║    above 12.9 mm there. Other rims are within ≈15 % of Fig. 1 and ║
+ * ║    were kept.                                                     ║
  * ║                                                                    ║
- * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent includes a 2.80 mm flat cover glass (nd = 1.51680,      ║
- * ║    νd = 64.2) between S15 and the image plane. Excluded from      ║
- * ║    surfaces array; optical path folded into BFD (21.98 mm).       ║
+ * ║  NOTE ON COVER GLASS / BACK FOCUS:                                 ║
+ * ║    Table 1 lists D15 = 17.00 mm air, then a 2.80 mm plate PP       ║
+ * ║    (nd 1.51680, νd 64.2, surfaces 16–17); S17 prints no gap.       ║
+ * ║    S15 stores the physical 17.00 mm; PP is modeled in              ║
+ * ║    `rearPlates` (traced, not drawn). Its 3.134 mm gap to the       ║
+ * ║    image is derived, not printed: Table 7 air-equivalent BF        ║
+ * ║    21.98 − 17.00 − 2.80/1.5168. Physical S15-to-image ≈22.93 mm.   ║
+ * ║                                                                    ║
+ * ║  NOTE ON FOCUS:                                                    ║
+ * ║    Patent publishes the infinity state only. The 0.28 m close      ║
+ * ║    gap (23.04 mm to PP, 6.04 mm extension, paraxial m ≈ −0.167)    ║
+ * ║    is CALCULATED for unit focus at the production 0.28 m MFD       ║
+ * ║    (object to image plane with the plate folded as t/n; the        ║
+ * ║    physical object-to-image distance is ≈281.2 mm); production     ║
+ * ║    max. magnification 0.17×.                                       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -74,7 +91,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       fl: 47.1,
-      glass: "S-LAH65VS (OHARA)",
+      glass: "S-LAH65V (OHARA)",
       apd: false,
       role: "Strongest positive element in front group — high-index lanthanum glass reduces curvature needed for power",
     },
@@ -160,7 +177,7 @@ const LENS_DATA = {
     // ── Front Group GF (positive) ──
     { label: "1", R: 31.767, d: 4.7, nd: 1.755, elemId: 1, sd: 16.8 },
     { label: "2", R: 108.05, d: 0.15, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "3", R: 16.733, d: 5.01, nd: 1.804, elemId: 2, sd: 14.7 },
+    { label: "3", R: 16.733, d: 5.01, nd: 1.804, elemId: 2, sd: 13.0 },
     { label: "4", R: 25.973, d: 0.2, nd: 1.0, elemId: 0, sd: 11.3 },
     { label: "5", R: 27.72, d: 1.35, nd: 1.69895, elemId: 3, sd: 11.3 },
     { label: "6", R: 10.424, d: 6.27, nd: 1.0, elemId: 0, sd: 9.0 },
@@ -170,18 +187,32 @@ const LENS_DATA = {
     // ── Aperture Stop ──
     // STO position: patent surface S9, between L14 and L21.
     // Patent lists D9 = 3.20 mm from stop to S10 (L21 front).
-    { label: "STO", R: 1e15, d: 3.2, nd: 1.0, elemId: 0, sd: 8.3 },
+    { label: "STO", R: 1e15, d: 3.2, nd: 1.0, elemId: 0, sd: 7.6 },
 
     // ── Rear Group GR (positive) ──
     { label: "10A", R: -94.514, d: 2.5, nd: 1.5176, elemId: 5, sd: 8.4 },
-    { label: "11A", R: 45.548, d: 0.45, nd: 1.0, elemId: 0, sd: 6.5 },
+    { label: "11A", R: 45.548, d: 0.45, nd: 1.0, elemId: 0, sd: 8.4 },
 
     // ── Cemented triplet T1: L22 + L23 + L24 ──
     { label: "12", R: 1e15, d: 6.72, nd: 1.883, elemId: 6, sd: 9.5 },
     { label: "13", R: -11.174, d: 1.2, nd: 1.76182, elemId: 7, sd: 9.8 },
-    { label: "14", R: -124.5, d: 4.99, nd: 1.883, elemId: 8, sd: 9.9 },
-    { label: "15", R: -20.516, d: 21.98, nd: 1.0, elemId: 0, sd: 10.4 },
-    // d = 21.98 mm: air-equivalent BFD to image (cover glass excluded)
+    { label: "14", R: -124.5, d: 4.99, nd: 1.883, elemId: 8, sd: 12.4 },
+    // d = 17.00 mm: Table 1 D15, physical air gap to the plate PP
+    { label: "15", R: -20.516, d: 17.0, nd: 1.0, elemId: 0, sd: 12.4 },
+  ],
+
+  /* ── Parallel plate PP (patent Table 1 surfaces 16–17): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.8,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 3.134,
+      source:
+        "US 2014/0285903 A1, Example 1 Table 1 surfaces 16–17; gap to image derived, not printed (Table 7 BF 21.98 − 17.00 − 2.80/1.5168)",
+    },
   ],
 
   /* ── Exact Example 1, Table 2 aspherical coefficients ──
@@ -234,10 +265,14 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (unit focus) ──
    *  Unit focus: entire lens moves as a unit, only BFD changes.
-   *  Close focus 0.28 m: extension ≈ 5.37 mm, BFD_close ≈ 27.35 mm.
+   *  S15 stores the physical gap to the plate PP (infinity 17.00 mm).
+   *  Close focus 0.28 m (CALCULATED, not a patent state): paraxial
+   *  extension 6.04 mm puts the object 280.2 mm from the image plane
+   *  with PP folded as t/n (≈281.2 mm physical) at m ≈ −0.167
+   *  (production: 0.28 m MFD, 0.17× max. magnification).
    */
   var: {
-    "15": [21.98, 27.35],
+    "15": [17.0, 23.04],
   },
   varLabels: [["15", "BF"]],
 
@@ -251,11 +286,12 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.28,
   focusDescription:
-    "Unit focus — all lens groups move together, only BFD changes. Simple mechanism preserves aberration correction across focus range.",
+    "Unit focus — all lens groups move together, only BFD changes. Close-focus extension is calculated for the production 0.28 m MFD; the patent tabulates infinity only.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
+  maxFstop: 16,
   apertureBlades: 7,
   apertureBladeRoundedness: 0.7,
 

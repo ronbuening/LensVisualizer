@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — Canon FD 300mm f/4 S.S.C.                    ║
+ * ║           LENS DATA — CANON FD 300mm f/4 S.S.C.                    ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 4,251,133, Numerical Example 3 (Canon / Tsuji).   ║
  * ║  Six-element, six-group, all-spherical F/4 rear-focusing telephoto.║
@@ -42,7 +42,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-fd-300mm-f4-ssc",
   maker: "Canon",
-  name: "Canon FD 300mm f/4 S.S.C.",
+  name: "CANON FD 300mm f/4 S.S.C.",
   subtitle: "US 4,251,133 Example 3 — Canon / Tsuji",
   specs: ["6 elements / 6 groups", "f ≈ 299.5 mm", "F/4", "2ω ≈ 8.25°", "all-spherical", "rear focusing"],
 

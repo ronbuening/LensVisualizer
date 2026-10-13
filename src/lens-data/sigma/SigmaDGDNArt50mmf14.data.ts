@@ -45,6 +45,8 @@ const LENS_DATA = {
 
   focalLengthMarketing: 50,
   focalLengthDesign: 48.72,
+  lensMounts: ["sony-fe", "l-mount"],
+  imageFormat: "135-full-frame",
   apertureMarketing: 1.4,
   apertureDesign: 1.45,
   patentNumber: "JP 2023-183894 A",
@@ -227,7 +229,7 @@ const LENS_DATA = {
       nd: 1.68948,
       vd: 31.02,
       fl: -109.8,
-      glass: "S-TIM28 (OHARA)",
+      glass: "L-TIM28 (OHARA)",
       apd: false,
       role: "Final field-flattening element with aspherical rear surface; shapes residual field curvature and astigmatism across the image circle (GR2R).",
     },
@@ -371,8 +373,8 @@ const LENS_DATA = {
     "Single-element inner focus. L8 (GR1) — negative meniscus with 2× aspherical surfaces — translates toward image. GF, stop, and GR2 fixed. HLA linear motor drive.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

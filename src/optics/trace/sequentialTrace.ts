@@ -12,7 +12,7 @@ import { evaluateAperture } from "./aperture.js";
 import { pushClipEvent } from "./foldedDiagnostics.js";
 import { interactRefractiveSurface } from "./interactions.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
-import { intersectStateSurface, sequentialSurfaceMaxT } from "./pathPlanner.js";
+import { intersectStateSurface, sequentialSurfaceMaxT, sequentialSurfaceMinT } from "./pathPlanner.js";
 import type { EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
 import {
   clampTraceCount,
@@ -69,6 +69,7 @@ export function traceSequential(
   let origin: Vec3 = [input.origin[0], input.origin[1], input.origin[2]];
   let direction: Vec3 = direction0;
   let n = 1;
+  let opticalPathLengthMm = 0;
   let clipped = false;
   let terminalPoint: Vec3 = origin;
   let terminalSurfaceIndex = -1;
@@ -76,8 +77,9 @@ export function traceSequential(
 
   for (let i = 0; i < tracedCount; i++) {
     const surface = state.surfaces[i];
-    const maxT = sequentialSurfaceMaxT(state, i, origin, direction, launchBoundT);
-    const hit = intersectStateSurface({ origin, direction }, state, i, { maxT, refractiveIndex: n });
+    const minT = sequentialSurfaceMinT(state, i, origin, direction);
+    const maxT = Math.max(minT, sequentialSurfaceMaxT(state, i, origin, direction, launchBoundT));
+    const hit = intersectStateSurface({ origin, direction }, state, i, { minT, maxT, refractiveIndex: n });
 
     if (!hit.ok) {
       // A miss is terminal even in ghost mode: prior hits still display, while
@@ -89,6 +91,7 @@ export function traceSequential(
     }
 
     const point = hit.point;
+    if (options.recordOpticalPath) opticalPathLengthMm += hit.opticalPathLength ?? n * hit.segmentLength;
     const normal = hit.normal;
     const radius = hit.radius;
     terminalPoint = point;
@@ -114,6 +117,8 @@ export function traceSequential(
       normal,
       incidentDirection,
       radius,
+      residual: hit.residual,
+      effectiveTolerance: hit.effectiveTolerance,
       clipped: hitClipped,
       fallback: false,
       failureReason: null,
@@ -156,7 +161,7 @@ export function traceSequential(
   }
 
   const returnVertexIndex = resolveReturnVertexIndex(stopAt, skipLastTransfer, terminalSurfaceIndex, total);
-  return finalizeTraceResult({
+  const result = finalizeTraceResult({
     state,
     input: { origin: input.origin, direction: direction0 },
     hits,
@@ -174,6 +179,7 @@ export function traceSequential(
     autoSteps: [],
     loopKey: null,
   });
+  return options.recordOpticalPath ? { ...result, opticalPathLengthMm } : result;
 }
 
 function failedBeforeHit(

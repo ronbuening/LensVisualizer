@@ -40,9 +40,9 @@ The infinity-focus variable gaps make the architecture explicit:
 | G2→stop, `D9` | 22.449 mm | 6.704 mm | 1.333 mm | Zoom; also changes during focus |
 | Stop→G3 | 1.000 mm | 1.000 mm | 1.000 mm | Fixed within the moving G3/stop unit |
 
-The final modeled EFLs are 5.139325, 10.000203, and 14.824615 mm. The corresponding powered back focal distances measured from surface 17A are 11.072439, 17.053317, and 22.792783 mm. Under the project's architectural definitions, $BFD>EFL$ at all three states, so the normalized prescription is **retrofocus** throughout the tabulated zoom range. It is not telephoto: the active modeled track remains much longer than EFL at every state.
+The final modeled EFLs are 5.139325, 10.000203, and 14.824615 mm. The corresponding air-equivalent back focal distances measured from surface 17A are 11.072439, 17.053317, and 22.792783 mm. Under the project's architectural definitions, $BFD>EFL$ at all three states, so the prescription is **retrofocus** throughout the tabulated zoom range. It is not telephoto: the active modeled track remains much longer than EFL at every state.
 
-The patent includes an optical filter and cover glass behind G3. They are not lens elements in the LensVisualizer model. Their first-order effect is preserved by replacing the physical plate stack with a state-dependent air-equivalent distance from the final powered surface 17A to the same source-defined image plane. This normalization is described quantitatively in the verification summary below.
+The patent includes an optical filter and cover glass behind G3. They are not lens elements; the model carries them as `rearPlates` behind surface 17A, where every analysis traces them but the diagram does not draw them. The rear stack is described quantitatively in the verification summary below.
 
 ## Element-by-Element Analysis
 
@@ -122,7 +122,7 @@ L34 is the final powered element. Both surfaces, 16A and 17A, are aspherical. It
 
 The element remains `Unmatched` because the stored $n_d/\nu_d$ pair does not justify a specific current-catalog identity. As with L31, no spectral fields are synthesized from nearby catalog glasses.
 
-Surface 17A is also the normalization boundary for the omitted optical filter and cover glass. Its authored rear distance is therefore not the patent's raw `d17`; it is the verified air-equivalent distance from the last powered surface to the source-defined image plane.
+Surface 17A is also the last surface before the optical filter and cover glass. Its authored rear distance is the patent's physical `d17` to the filter OP; the plates and their trailing air follow in `rearPlates`.
 
 ## Glass Identification and Selection
 
@@ -214,14 +214,14 @@ For condition (2), $d_{23w}$ is the full G2-to-G3 separation. It equals the pate
 
 ## Verification Summary
 
-Independent first-order evaluation of the final normalized prescription gives the following state values:
+Independent first-order evaluation of the final prescription gives the following state values:
 
 | Quantity | Wide | Intermediate | Tele |
 |---|---:|---:|---:|
 | EFL | 5.139325 mm | 10.000203 mm | 14.824615 mm |
 | Patent nominal $f$ | 5.14 mm | 10.00 mm | 14.83 mm |
-| Powered BFL from 17A | 11.072439 mm | 17.053317 mm | 22.792783 mm |
-| OP/CG-normalized rear distance | 11.073487 mm | 17.057487 mm | 22.798487 mm |
+| Air-equivalent powered BFL from 17A | 11.072439 mm | 17.053317 mm | 22.792783 mm |
+| Air-equivalent rear distance to image (d17 + OP/CG stack) | 11.073487 mm | 17.057487 mm | 22.798487 mm |
 | Design FNO. | 2.8 | 3.7 | 4.6 |
 | Inferred wide-open stop SD | 3.470750 mm | 3.366312 mm | 3.278723 mm |
 
@@ -231,15 +231,15 @@ The patent gives the stop **position** but not its physical diameter. The stop s
 
 The patent likewise gives no clear-aperture semi-diameters. The authored semi-diameters are inferred from exact spherical/aspherical meridional tracing over the three infinity states and the three constrained 0.3 m focus states, with conservative clearance. The final geometry has a minimum non-stop representative-ray clearance of **0.354892 mm**, a maximum actual rim-slope angle of **37.15°**, a minimum modeled material edge thickness of **0.355665 mm**, and a worst shared-band cross-gap intrusion ratio of **0.812681**, below the project's 0.90 limit. These values validate the modeled clear apertures; they are not source-published dimensions.
 
-The optical filter OP and cover glass CG in the patent are intentionally omitted from the ordinary lens model. Their plate effect is folded into the rear air spacing according to
+The optical filter OP and cover glass CG (patent surfaces 18–21: two 0.500 mm plates of $n_d=1.51633$, $\nu_d=64.1$, S-BSL7 class, separated by 0.620 mm air and followed by `fB = 0.53 mm`) are modeled in `rearPlates`: traced by every analysis but not drawn. Surface 17A stores the patent's physical `d17` = 9.264 / 15.248 / 20.989 mm. The paraxially equivalent air distance from 17A to the image plane is
 
 $$
-d_{17,\mathrm{model}}=d_{17}+\frac{0.500}{1.51633}+0.620+\frac{0.500}{1.51633}+0.530.
+d_{17,\mathrm{air}}=d_{17}+\frac{0.500}{1.51633}+0.620+\frac{0.500}{1.51633}+0.530.
 $$
 
-This gives 11.073487 / 17.057487 / 22.798487 mm at wide/intermediate/tele. The corresponding powered BFL residuals are 0.001048 / 0.004170 / 0.005704 mm, consistent with the patent's rounded `fB = 0.53 mm` and printed spacing precision.
+This gives 11.073487 / 17.057487 / 22.798487 mm at wide/intermediate/tele, the value the file stored before the plates were modeled. The physical track is 0.340513 mm longer than that air-equivalent track, $2 \times 0.500\,(1-1/1.51633)$. The corresponding powered BFL residuals are 0.001048 / 0.004170 / 0.005704 mm, consistent with the patent's rounded `fB = 0.53 mm` and printed spacing precision.
 
-No dummy, flare-cutter, blocking, folded-path, or mechanical planes are retained. No scaling is applied. The image-format assignment and all semi-diameters are explicit modeling inferences; the focus close pairs are a constrained reconstruction; the OP/CG treatment is a reference-plane normalization; and the L32/L33 group-location discrepancy noted above is a patent prose error resolved by the prescription table and figures.
+No dummy, flare-cutter, blocking, folded-path, or mechanical planes are retained. No scaling is applied. The image-format assignment and all semi-diameters are explicit modeling inferences; the focus close pairs are a constrained reconstruction; the OP/CG stack is taken directly from the patent's printed rear plates; and the L32/L33 group-location discrepancy noted above is a patent prose error resolved by the prescription table and figures.
 
 ## Sources / References
 

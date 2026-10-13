@@ -35,7 +35,7 @@ The second group, G2, spans surfaces 12-16 and has $f_{G2} = +34.73$ mm. It is t
 
 The third group, G3, is a single biconcave element L8 at surfaces 17-18 with $f_{G3} = -25.62$ mm. It is the rear negative compacting and field-control group. Its negative power increases the rear-group lateral magnification and helps hold the back focus and overall length within the patent’s compactness conditions.
 
-The system effective focal length independently computed from the prescription is 24.709 mm. The project data file excludes the patent cover glass and folds its optical path into the final air gap: $18.907 + 2.500/1.51680 + 1.000 = 21.555$ mm, matching the patent’s air-equivalent back focus.
+The system effective focal length independently computed from the prescription is 24.709 mm. The data file stores the patent’s 18.907 mm gap after surface 18 and models the cover glass CG (surfaces 19-20: 2.500 mm, $n_d = 1.51680$, $\nu_d = 64.20$, then 1.000 mm to the image) in `rearPlates`, so every analysis traces it but it is not drawn. Its paraxial equivalent is $18.907 + 2.500/1.51680 + 1.000 = 21.555$ mm, matching the patent’s air-equivalent back focus; the physical track including the plate is 60.852 mm.
 
 ## Element-by-Element Analysis
 
@@ -130,7 +130,7 @@ L8 also has the largest listed clear aperture in the patent prescription: $H = 9
 
 Only L5 and L7 carry patent-published ΔPgF values. Catalog anomalous-dispersion values are not asserted for L1/L2 or L4 because the patent does not publish those values, and catalog-name matching from nd/νd alone is not enough to prove a partial-dispersion curve.
 
-The anomalous-dispersion reference used by the patent is defined through the C7 and F2 glass points: $PgF = 0.5393$, $\nu_d = 60.49$ and $PgF = 0.5829$, $\nu_d = 36.30$. This yields a patent-normal line of approximately $PgF_{normal} = 0.6484 - 0.001803\nu_d$. Values quoted from the patent therefore should not be mixed silently with Schott-normal-line catalog ΔPgF values.
+The anomalous-dispersion reference used by the patent is defined through the C7 and F2 glass points: $PgF = 0.5393$, $\nu_d = 60.49$ and $PgF = 0.5829$, $\nu_d = 36.30$. This yields a patent-normal line of $PgF_{normal} = 0.648327 - 0.0018024\nu_d$. Values quoted from the patent therefore should not be mixed silently with Schott-normal-line catalog ΔPgF values. For the same reason the data file does not store the patent's ΔPgF directly: its `dPgF` is the $PgF$ implied by the patent's line (0.5386 for L5, 0.5382 for L7) minus the ray-trace engine's normal line $0.6438 - 0.001682\nu_d$, which gives +0.032101 for L5 and +0.031607 for L7.
 
 The chromatic strategy is concentrated in two places. First, L4/L5 forms a high-dispersion-negative / low-dispersion-positive cemented doublet in the converging portion of G1b. Second, L7 keeps the moving focus group’s positive power in a low-dispersion fluorophosphate material so chromatic aberration does not vary excessively with focus position.
 
@@ -249,7 +249,7 @@ All load-bearing values were re-derived from the patent surface table using a pa
 
 Standalone and compound focal lengths were also checked: L1 = -36.45 mm, L2 glass = -33.11 mm, L2/L2r composite = -43.98 mm, L3 = +21.68 mm, L4 = -21.65 mm, L5 = +15.19 mm, L4/L5 doublet = +37.77 mm, L6r/L6 composite = -67.89 mm, L7 = +25.40 mm, and L8 = -25.62 mm.
 
-The data file reproduces the patent prescription with two deliberate implementation choices. First, sensor cover glass is excluded and folded into the final air-equivalent back focus, following the project data specification. Second, the aperture-stop semi-diameter is set to 5.6105 mm so the paraxial entrance pupil reproduces the patent F-number of 2.884; the patent’s tabulated stop H value of 5.769 mm is retained in the analysis as a clear-aperture value rather than as the entrance-pupil-defining stop radius.
+The data file reproduces the patent prescription with three deliberate implementation choices. First, the sensor cover glass is modeled as a traced but undrawn rear plate (`rearPlates`) behind the patent’s 18.907 mm final lens gap, so the air-equivalent back focus of 21.555 mm is reproduced by the plate path rather than folded into the last air gap. Second, the aperture-stop semi-diameter is set to 5.6105 mm so the paraxial entrance pupil reproduces the patent F-number of 2.884; the patent’s tabulated stop H value of 5.769 mm is retained in the analysis as a clear-aperture value rather than as the entrance-pupil-defining stop radius. Third, `dPgF` for L5 and L7 is stored against the engine's normal line (+0.032101 and +0.031607) rather than as the patent's own ΔPgF (+0.0374 and +0.0369), which this analysis keeps quoting wherever it evaluates the patent's condition (4).
 
 ## Sources
 

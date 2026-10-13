@@ -1,16 +1,8 @@
 /** Build-time validation and route metadata for lens aliases/manufacturers. */
 
-const ALIAS_KINDS = new Set(["rebrand", "regional-name", "cosmetic-variant"]);
+import { normalizeLensSearchText } from "../src/utils/catalog/slugText.ts";
 
-function normalizedIdentity(value) {
-  return value
-    .normalize("NFKD")
-    .replace(/\p{M}/gu, "")
-    .toLocaleLowerCase()
-    .replace(/[^\p{L}\p{N}]+/gu, " ")
-    .trim()
-    .replace(/\s+/g, " ");
-}
+const ALIAS_KINDS = new Set(["rebrand", "regional-name", "cosmetic-variant"]);
 
 function validateSources(sources, label, errors) {
   if (!Array.isArray(sources) || sources.length === 0) {
@@ -64,7 +56,7 @@ export function assertLensRelationshipValidity(lensSummaries, { knownMountIds } 
   const claimedNames = new Map();
 
   for (const lens of lensSummaries) {
-    const normalizedName = normalizedIdentity(lens.name ?? "");
+    const normalizedName = normalizeLensSearchText(lens.name ?? "");
     if (normalizedName) {
       const existing = claimedNames.get(normalizedName);
       if (existing && existing !== lens.key) errors.push(`${lens.key}: canonical name collides with ${existing}`);
@@ -73,7 +65,12 @@ export function assertLensRelationshipValidity(lensSummaries, { knownMountIds } 
   }
 
   for (const lens of lensSummaries) {
-    for (const [index, alias] of (lens.aliases ?? []).entries()) {
+    for (const field of ["aliases", "manufacturedBy"]) {
+      if (lens[field] !== undefined && (!Array.isArray(lens[field]) || lens[field].length === 0)) {
+        errors.push(`${lens.key}.${field} must be a non-empty array when provided`);
+      }
+    }
+    for (const [index, alias] of (Array.isArray(lens.aliases) ? lens.aliases : []).entries()) {
       const label = `${lens.key}.aliases[${index}]`;
       if (!alias || typeof alias !== "object" || Array.isArray(alias)) {
         errors.push(`${label} must be an object`);
@@ -85,7 +82,7 @@ export function assertLensRelationshipValidity(lensSummaries, { knownMountIds } 
       if (typeof alias.name !== "string" || alias.name.trim() === "") {
         errors.push(`${label}.name must be a non-empty string`);
       } else {
-        const normalizedName = normalizedIdentity(alias.name);
+        const normalizedName = normalizeLensSearchText(alias.name);
         const existing = claimedNames.get(normalizedName);
         if (existing) errors.push(`${label}.name collides with ${existing}`);
         else claimedNames.set(normalizedName, lens.key);
@@ -98,7 +95,7 @@ export function assertLensRelationshipValidity(lensSummaries, { knownMountIds } 
       validateSources(alias.sources, label, errors);
     }
 
-    for (const [index, manufacturer] of (lens.manufacturedBy ?? []).entries()) {
+    for (const [index, manufacturer] of (Array.isArray(lens.manufacturedBy) ? lens.manufacturedBy : []).entries()) {
       const label = `${lens.key}.manufacturedBy[${index}]`;
       if (!manufacturer || typeof manufacturer !== "object" || Array.isArray(manufacturer)) {
         errors.push(`${label} must be an object`);

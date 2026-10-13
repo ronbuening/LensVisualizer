@@ -2,7 +2,7 @@
 
 Hidden/reference fixtures that exercise mirror, folded-path, annular, blocker, and image-plane metadata.
 
-**Regenerate this file** by running `npm test -- mirrorFixtureAuthoringReport`.
+**Regenerate this file** by running `npm run generate:reports -- mirrorFixtureAuthoringReport`.
 Regenerate the mirror report set with `npm run generate:mirror-reports`.
 
 ## Summary
@@ -21,7 +21,7 @@ Regenerate the mirror report set with `npm run generate:mirror-reports`.
 | [REFERENCE Annular Ring Blocker](../../src/lens-data/reference/ReferenceAnnularRingBlocker.data.ts) | auto | `RING` | IMG: z=120, y=0, n=(1, 0) | None | `RING` | `RING` -> `RINGB` | None | OK |
 | [REFERENCE Cassegrain Back Focus](../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.ts) | auto | `M1` -> `SEC` | IMG: z=135, y=0, n=(1, 0) | `SEC` -> `M1` | None | `M1` -> `M1B` | None | OK |
 | [REFERENCE Folded Diffractive Plate](../../src/lens-data/reference/ReferenceFoldedDiffractivePlate.data.ts) | explicit | `STO` -> `PF` -> `FOLD` | IMG: z=120, y=-100, n=(0, 1) | `FOLD` | None | None | None | OK |
-| [REFERENCE Gregorian Secondary](../../src/lens-data/reference/ReferenceGregorianSecondary.data.ts) | explicit | `M1` -> `SEC` | IMG: z=135, y=0, n=(1, 0) | `M1` -> `SEC` | None | `M1` -> `M1B` | None | OK |
+| [REFERENCE Gregorian Secondary](../../src/lens-data/reference/ReferenceGregorianSecondary.data.ts) | explicit | `M1` -> `SEC` | IMG: z=110, y=0, n=(1, 0) | `M1` -> `SEC` | None | `M1` -> `M1B` | None | OK |
 | [REFERENCE Maksutov Cassegrain Meniscus](../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.ts) | explicit | `MEN1` -> `MEN2` -> `M1` -> `SEC` | IMG: z=135, y=0, n=(1, 0) | `SEC` -> `M1` | None | `M1` -> `M1B` | None | OK |
 | [REFERENCE Mangin Second-Surface Mirror](../../src/lens-data/reference/ReferenceManginSecondSurfaceMirror.data.ts) | explicit | `STO` -> `MG1` -> `MG2` -> `MG1` | IMG: z=35, y=0, n=(1, 0) | `MG2` | None | None | `MG2` | OK |
 | [REFERENCE Newtonian Side Focus](../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.ts) | auto | `M1` -> `SEC` | IMG: z=35, y=25, n=(0, 1) | `SEC` -> `M1` | None | None | None | OK |
@@ -86,7 +86,7 @@ Regenerate the mirror report set with `npm run generate:mirror-reports`.
 - Key: `reference-gregorian-secondary`
 - Path mode: explicit
 - Hit order: `M1` -> `SEC`
-- Image plane: IMG: z=135, y=0, n=(1, 0)
+- Image plane: IMG: z=110, y=0, n=(1, 0)
 - Reflective surfaces: `M1` -> `SEC`
 - Blocking surfaces: None
 - Annular surfaces: `M1` -> `M1B`

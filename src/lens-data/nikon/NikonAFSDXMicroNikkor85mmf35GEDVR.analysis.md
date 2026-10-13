@@ -1,4 +1,4 @@
-# NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR
+# NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Title:** *Imaging Lens, Optical Device Thereof, and Method for Manufacturing Imaging Lens*\
 **Embodiment analyzed:** Example 1
 
-The prescription is the Example 1 system shown in Fig. 2 and Table 1 of US 2009/0190220 A1. The patent describes a five-power-group macro lens with two internal focusing groups and a transverse vibration-proof group (¶0103–¶0111). This analysis treats Example 1 as the selected production correlation for the NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR. The correlation is an inference from convergent optical and product characteristics; neither the patent nor Nikon's product literature explicitly identifies the production lens as Example 1.
+The prescription is the Example 1 system shown in Fig. 2 and Table 1 of US 2009/0190220 A1. The patent describes a five-power-group macro lens with two internal focusing groups and a transverse vibration-proof group (¶0103–¶0111). This analysis treats Example 1 as the selected production correlation for the NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR. The correlation is an inference from convergent optical and product characteristics; neither the patent nor Nikon's product literature explicitly identifies the production lens as Example 1.
 
 The principal correlation evidence is:
 
@@ -187,7 +187,7 @@ The patent supplies three complete stations:
 
 All dimensions are millimeters. Relative to infinity, G2 moves +8.03144 mm at β = -0.5 and +15.28499 mm at β = -1.0. G3 moves -6.66609 mm and -12.99224 mm respectively. The aperture stop remains at 42.48520 mm from surface 1, and the image plane remains at 131.13521 mm from surface 1. The fixed rear gap `Bf = 41.97225 mm` is unchanged in all three source rows.
 
-The final prime-lens data structure stores the published infinity and β = -1.0 values as its two focus endpoints. The patent's β = -0.5 station remains a published source state and is independently verified, but it is not exactly reproduced by a single common linear interpolation parameter between the two authored endpoints because G2 and G3 reach that station at slightly different normalized fractions. The continuous viewer interpolation should therefore be read as an interpolation between two source endpoints, not as a replacement for the patent's exact intermediate row.
+The final data structure stores all three published rows as exact focus keyframes. The β = -0.5 station is not reproduced by a single endpoint interpolation because G2 and G3 reach it at slightly different normalized fractions, so the explicit middle vector is required. Continuous motion between the source rows remains piecewise-linear visualization.
 
 At β = -1.0, the patent gives `d0 = 133.0597 mm` from the object plane to surface 1. Adding the fixed 131.13521 mm first-surface-to-image track gives a modeled object-to-image distance of 264.19491 mm. Nikon specifies a production minimum focus distance of 0.286 m measured from the focal plane. The 21.80509 mm difference is retained as a product-to-patent discrepancy; the published focus table is not reconstructed to remove it.
 

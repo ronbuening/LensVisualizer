@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP H05-164961 (特開平5-164961)
+**Patent:** JP H05-164961 A (特開平5-164961)
 **Application Number:** 特願平3-350777
 **Filed:** 1991-12-12
 **Published:** 1993-06-29
@@ -165,12 +165,12 @@ The Petzval sum here uses the surface-by-surface expression $\sum \phi/(n n')$, 
 
 ## Design Heritage and Context
 
-The patent cites earlier modified Xenotar-type photographic lenses, including JP S34-379 and JP S37-13039, as the baseline. Those earlier examples were intended for cameras that did not need a large central shutter-unit space. JP H05-164961 adapts the type to a lens-shutter camera by creating more clearance between the front and rear sections and then correcting the aberration penalties introduced by that clearance.
+The patent cites earlier modified Xenotar-type photographic lenses, including JP S34-379 and JP S37-13039, as the baseline. Those earlier examples were intended for cameras that did not need a large central shutter-unit space. JP H05-164961 A adapts the type to a lens-shutter camera by creating more clearance between the front and rear sections and then correcting the aberration penalties introduced by that clearance.
 
 The Hexar AF context is therefore not incidental. A focal-plane-shutter camera would not need the same middle spacing, while published Hexar AF specifications describe a lens-shutter 24 × 36 mm camera with a 35 mm f/2, 7-element / 6-group lens and 0.6 m minimum shooting distance.
 
 ## Sources
 
-- JP H05-164961 (特開平5-164961), Konica Corporation, published 1993-06-29; Example 1 prescription and conditions.
+- JP H05-164961 A (特開平5-164961), Konica Corporation, published 1993-06-29; Example 1 prescription and conditions.
 - Konica Hexar instruction manual, specifications page: 35 mm lens-shutter camera, 24 × 36 mm frame, Konica Hexar 35 mm f/2, 6 groups / 7 elements, f/22 minimum aperture, 0.6 m to infinity shooting range.
 - OHARA Corporation glass data pages and datasheets for S-LAH66, S-LAL61, S-TIH1, S-FTM16, and S-TIH10.

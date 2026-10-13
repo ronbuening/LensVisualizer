@@ -44,13 +44,24 @@ function findKatexStylesheet() {
  *   expanded route with a matching prefix.
  * - Patterns in CLIENT_ONLY_PATTERNS are skipped — these are rendered
  *   exclusively on the client (e.g. comparison pages with arbitrary pairs).
+ * - Sections in OPTIONAL_SECTIONS may be absent as a whole: the build emits
+ *   none of their routes while the catalog holds no published entry for them
+ *   (every teleconverter can be a hidden test model). A partly emitted section
+ *   is still checked.
  */
 const CLIENT_ONLY_PATTERNS = ["/compare/:slugA/:slugB"];
+const OPTIONAL_SECTIONS = ["/teleconverters"];
+
+function isUnpublishedOptionalSection(pattern, routes) {
+  const section = OPTIONAL_SECTIONS.find((prefix) => pattern === prefix || pattern.startsWith(`${prefix}/`));
+  return section !== undefined && !routes.some((r) => r === section || r.startsWith(`${section}/`));
+}
 
 function validateManifestCoverage(manifestPaths, routes) {
   const missing = [];
   for (const pattern of manifestPaths) {
     if (CLIENT_ONLY_PATTERNS.includes(pattern)) continue;
+    if (isUnpublishedOptionalSection(pattern, routes)) continue;
     if (pattern.includes(":")) {
       const prefix = pattern.slice(0, pattern.indexOf(":"));
       if (!routes.some((r) => r.startsWith(prefix))) {

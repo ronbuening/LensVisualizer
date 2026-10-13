@@ -13,7 +13,7 @@
 **Worked examples:** 6  
 **Embodiment analyzed:** Example 1 / claim 5
 
-The prescription transcribed here is Example 1 of US 4,392,724. It is identified as the design basis for the production Nikon AI Micro-Nikkor 105mm f/2.8S, the manual-focus 105 mm macro lens released in 1984.
+The prescription transcribed here is Example 1 of US 4,392,724. It is identified as the design basis for the production NIKON AI MICRO-NIKKOR 105mm f/2.8 S, the manual-focus 105 mm macro lens released in 1984.
 
 The identification rests on convergent evidence. Example 1 gives $f = 105$ mm, $F/2.8$, $2\omega = 23.25^\circ$, a close-focus condition of $\beta = -0.5$, and a ten-element/nine-group prescription. Nikon's product specification for the Micro-NIKKOR 105mm f/2.8 gives 105 mm, f/2.8, FX/35 mm coverage, $23^\circ20'$ angle of view, ten elements in nine groups, manual focus, Close Range Correction, and close-up operation to 0.41 m / 1:2. Nikon's *NIKKOR: The Thousand and One Nights*, No. 72, states that the AI Micro-Nikkor 105mm f/2.8S was a complete optical redesign released in 1984 and separately identifies Hamanishi as the designer of the manual-focus Micro-Nikkor 105mm f/2.8.
 

@@ -136,6 +136,7 @@ describe("extractTOCHeadings", () => {
       "Episode index",
       "GROUND BREAKING",
       "Volume index",
+      "RETICENCE",
     ]);
   });
 });

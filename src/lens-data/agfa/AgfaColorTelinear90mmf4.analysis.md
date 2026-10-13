@@ -67,7 +67,7 @@ The 515/547 pair matches SUMITA's discontinued-inclusive KF3 coefficient row (ca
 ### L5 — Biconvex Positive (Lens V)
 
 $n_d = 1.60729$, $
-u_d = 49.2$. Glass: BAM5 class, barium middle glass. $f = +24.3$ mm.
+u_d = 49.2$. Glass: BAF5 (HOYA) class, BAM5-type barium flint (catalog equivalent). $f = +24.3$ mm.
 
 L5 is the positive rear element of the negative telephoto doublet. It is cemented to L4 at R7 and exits to air at R8 = −0.28966F. In combination with L4, it moderates the rear group's negative power to $-0.84190F$ while maintaining the required concave-concave outer air-surface geometry.
 
@@ -84,7 +84,7 @@ u_d$ | Code | Identification | Optical role |
 | L2 | 1.62606 | 39.1 | 626/391 | BASF1 / BAM21 class barium flint | High-dispersion negative element in front doublet |
 | L3 | 1.57041 | 48.1 | 570/481 | Probable KzF4 short-flint class | Main positive-power singlet |
 | L4 | 1.51454 | 54.7 | 515/547 | KF3 (SUMITA catalog equivalent) | Strong negative element in rear doublet |
-| L5 | 1.60729 | 49.2 | 607/492 | BAM5 class barium middle glass | Positive partner in rear negative doublet |
+| L5 | 1.60729 | 49.2 | 607/492 | BAF5 (HOYA) class, BAM5-type barium flint (1.60729 / 49.34) | Positive partner in rear negative doublet |
 
 The chromatic design relies on a wide front crown/flint split of 24.9 Abbe units in L1 + L2, a moderate-dispersion positive power element in L3, and a narrower 5.5-unit split in the rear doublet. The rear doublet is therefore not an independently aggressive achromat; it is part of a system-level balance that also controls astigmatism, field curvature, and distortion through its concave-concave exterior surfaces.
 

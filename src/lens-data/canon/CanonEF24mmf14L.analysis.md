@@ -9,7 +9,7 @@
 **Inventor:** Makoto Misaka (三坂 誠)  
 **Applicant:** Canon Inc.  
 **Title:** レトロフォーカス型レンズ (_Retrofocus-Type Lens_)  
-**Embodiment analyzed:** Numerical Example 6, Table 7, Figure 7  
+**Embodiment analyzed:** Numerical Example 6, Table 6, Figure 7\
 **Worked examples:** 7  
 **Claims:** 3
 
@@ -38,12 +38,12 @@ melt names or the complete production focusing cam in the patent.
 
 ### Patent-table corrections required by internal consistency
 
-Two entries in Table 7 cannot be used literally without contradicting other numbers in the same patent.
+Two entries in Table 6 cannot be used literally without contradicting other numbers in the same patent.
 
-- **L7 Abbe number:** Table 7 prints $\nu_d=28.64$. The published d-, C-, and F-line indices give
+- **L7 Abbe number:** Table 6 prints $\nu_d=28.64$. The published d-, C-, and F-line indices give
   $\nu_d=(1.728250-1)/(1.746453-1.720865)=28.4606$. The corrected value also corresponds to the 728/285 S-TIH10/SF10
   glass class. The data file uses 28.4606.
-- **L10 d-line index:** Table 7 prints $n_d=1.613112$, which is greater than its printed F-line index 1.610018 and is
+- **L10 d-line index:** Table 6 prints $n_d=1.613112$, which is greater than its printed F-line index 1.610018 and is
   therefore spectrally impossible for a normal optical glass. Reading the value as **1.603112** gives
   $\nu_d=60.6997$, identifies the 603/607 S-BSM14/J-SK14 class, and reproduces the patent's own condition-(9)
   correspondence value $f_{2b}/f=1.47$. The data file uses 1.603112 while preserving the printed value in the patent-consistency
@@ -69,7 +69,7 @@ The corrected d-line paraxial powers are:
 | Assembly                   | Patent surfaces |            Focal length |
 | -------------------------- | --------------: | ----------------------: |
 | B1 negative-only component |             1–4 |  $-47.771\ \mathrm{mm}$ |
-| Complete B1                |             1–6 | $-118.406\ \mathrm{mm}$ |
+| Complete B1                |             1–6 | $-118.754\ \mathrm{mm}$ |
 | B2a                        |            7–14 |  $+81.513\ \mathrm{mm}$ |
 | B2b                        |           16–22 |  $+36.235\ \mathrm{mm}$ |
 | Complete B2                |            7–22 |  $+33.457\ \mathrm{mm}$ |
@@ -80,8 +80,8 @@ Both cemented pairs are net negative despite containing a positive component. Th
 in-air focal length of an individual component is not its in-situ contribution after cementing to a glass of different
 index.
 
-The corrected complete prescription has $\mathrm{EFL}=24.815\ \mathrm{mm}$ and a Gaussian back focal length of
-$38.215\ \mathrm{mm}$ from surface 22. Thus $\mathrm{BFL}/\mathrm{EFL}=1.540>1$, the defining long-back-focus geometry
+The corrected complete prescription has $\mathrm{EFL}=24.599\ \mathrm{mm}$ and a Gaussian back focal length of
+$38.134\ \mathrm{mm}$ from surface 22. Thus $\mathrm{BFL}/\mathrm{EFL}=1.550>1$, the defining long-back-focus geometry
 of a retrofocus SLR wide-angle. It is not a telephoto system; its front group is strongly negative and its image-side
 clearance exceeds its focal length.
 
@@ -232,7 +232,7 @@ data to prove the exact production cam law.
 
 | Quantity               |  Published infinity state |                       Close-focus state |
 | ---------------------- | ------------------------: | --------------------------------------: |
-| Numerical prescription |                   Table 7 |                           Not published |
+| Numerical prescription |                   Table 6 |                           Not published |
 | B1 motion              | Fixed in preferred scheme |               Fixed in preferred scheme |
 | B2a/B2b motion         |  Single infinity position | Objectward; mutual separation decreases |
 | Minimum focus distance |                         — |         0.25 m production specification |
@@ -251,7 +251,7 @@ X=\frac{h^2/r}{1+\sqrt{1-(h/r)^2}}+Ah^2+Bh^4+Ch^6+Dh^8+Eh^{10}.
 $$
 
 The radicand is the standard conic expression with $K=0$, so the base is spherical rather than a shifted Japanese
-$\kappa$ convention. Table 7 adds a coefficient F even though the printed equation stops at E. The dimensionally
+$\kappa$ convention. Table 6 adds a coefficient F even though the printed equation stops at E. The dimensionally
 consistent interpretation is that F multiplies $h^{12}$; this assignment is an editorial inference and is identified as
 such.
 
@@ -261,7 +261,7 @@ such.
 | $A_4$                | B                 |  $+2.04769\times10^{-5}$ |
 | $A_6$                | C                 |  $+2.22129\times10^{-8}$ |
 | $A_8$                | D                 | $-2.10838\times10^{-11}$ |
-| $A_{10}$             | E                 | $-1.46493\times10^{-13}$ |
+| $A_{10}$             | E                 | $-1.48493\times10^{-13}$ |
 | $A_{12}$             | F, inferred order | $+2.10282\times10^{-16}$ |
 
 At the inferred semi-diameter $h=15.7\ \mathrm{mm}$, the base sphere has sag $-3.6365\ \mathrm{mm}$ and the complete
@@ -279,7 +279,7 @@ the normalized group powers. Claim 3's definition sentence mistakenly describes 
 focal length of the **rear subgroup B2b**.
 
 The patent normalizes group powers by its stated $f=24.6\ \mathrm{mm}$, so the same denominator is used below rather than
-the independently calculated 24.815 mm EFL.
+the independently calculated 24.599 mm EFL.
 
 | No. | Patent expression          |          Example 6 result | Patent correspondence | Status    |
 | --: | -------------------------- | ------------------------: | --------------------: | --------- |
@@ -290,7 +290,7 @@ the independently calculated 24.815 mm EFL.
 | (5) | $0.5<S_{2aNF}/f<2.0$       |     $25.812/24.6=1.04927$ |                 1.049 | Satisfied |
 | (6) | $P_{g,F}>-0.0016\nu+0.645$ |       $0.537603>0.514424$ |                     — | Satisfied |
 | (7) | $2.0<f_{2a}/f<5.0$         |     $81.513/24.6=3.31354$ |                  3.31 | Satisfied |
-| (8) | $-10<f_1/f<-2.0$           |  $-118.406/24.6=-4.81324$ |                 −4.83 | Satisfied |
+| (8) | $-10<f_1/f<-2.0$           |  $-118.754/24.6=-4.82741$ |                 −4.83 | Satisfied |
 | (9) | $1.0<f_{2b}/f<2.0$         |     $36.235/24.6=1.47295$ |                  1.47 | Satisfied |
 
 For condition (5), $S_{2aNF}$ is measured from the rear surface of L5, surface 9, to the stop:
@@ -329,16 +329,14 @@ $\mathrm{EFL}=-1/C$ and $\mathrm{BFL}=-A/C$.
 
 | Trace                                           |          EFL | Difference from patent 24.6 mm | Gaussian BFL from s22 | Difference from printed $d_{22}$ |
 | ----------------------------------------------- | -----------: | -----------------------------: | --------------------: | -------------------------------: |
-| Literal Table 7, including impossible L10 $n_d$ | 24.498246 mm |                   −0.101754 mm |          37.673189 mm |                     +1.206189 mm |
-| Corrected material data used in the files       | 24.815116 mm |                   +0.215116 mm |          38.214989 mm |                     +1.747989 mm |
+| Literal Table 6, including impossible L10 $n_d$ | 24.285845 mm |                   −0.314155 mm |          37.593888 mm |                     +1.126888 mm |
+| Corrected material data used in the files       | 24.599402 mm |                   −0.000598 mm |          38.133626 mm |                     +1.666626 mm |
 
-The literal table happens to reproduce the nominal EFL more closely, but it cannot represent a physically consistent
-L10 glass and fails the patent's own condition-(9) correspondence. The corrected material value is therefore retained.
-The remaining 0.874% EFL difference and the 1.748 mm BFL/image-plane difference are disclosed rather than "repaired" by
-an unsupported radius or spacing change. The data file preserves the patent's printed final spacing
-$d_{22}=36.467\ \mathrm{mm}$.
+Correcting the transcribed S2 gap from 5.050 to the printed 6.050 mm reproduces the stated 24.6 mm EFL within 0.000598 mm with the justified material emendation. S18's A10 also changes from −1.46493e−13 to the printed −1.48493e−13; this higher-order coefficient does not change paraxial focus. The literal L10 index cannot represent a physically consistent glass and fails the patent's condition-(9) correspondence, so the corrected material value is retained.
 
-The axial track is 81.171 mm from surface 1 to surface 22 and 117.638 mm from surface 1 to the printed image plane.
+The 1.666626 mm BFL/image-plane difference remains a source inconsistency after those corrections. The source lists no rear plate and no further supported transcription change resolves it. The data preserves the printed final spacing $d_{22}=36.467\ \mathrm{mm}$ rather than tuning it to focus.
+
+The axial track is 82.171 mm from surface 1 to surface 22 and 118.638 mm from surface 1 to the printed image plane.
 
 ### Petzval curvature
 
@@ -379,7 +377,7 @@ These semi-diameters are engineering reconstructions, not patent-published dimen
 
 ## Sources
 
-1. JP 1999-030743 A (特開平11-30743), Canon Inc., _レトロフォーカス型レンズ_. Numerical Example 6: Table 7 and
+1. JP 1999-030743 A (特開平11-30743), Canon Inc., _レトロフォーカス型レンズ_. Numerical Example 6: Table 6 and
    Figure 7; claims on page 2; conditions and focusing discussion in ¶0011–0039; asphere equation in ¶0042; correspondence
    table in ¶0050.
 2. Canon Camera Museum, “EF24mm f/1.4 L USM”: production date, 9-group/11-element construction, 0.25 m minimum focus,
