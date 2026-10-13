@@ -10,8 +10,8 @@
 import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
 import buildLens from "../../../../src/optics/buildLens.js";
+import { DEFAULT_MAX_RIM_ANGLE_DEG } from "../../../../src/optics/geometry/surfaceProfile.js";
 import {
   FLAT_RADIUS,
   PrescriptionIngestError,
@@ -171,7 +171,7 @@ describe("canonical prescription: catalog round trip", () => {
       const failure = failureOf(() => {
         const result = ingestLensV1(data);
         expect(toLensDataInput(result)).toEqual(data);
-        expect(toLensData(result)).toEqual({ ...LENS_DEFAULTS, ...data });
+        expect(toLensData(result)).toEqual({ ...v1CatalogDefaults(), ...data });
       });
       return failure === null ? [] : [`${file}: ${failure}`];
     });
@@ -229,8 +229,24 @@ describe("canonical prescription: catalog round trip", () => {
 /* ── Schema defaults ── */
 
 describe("canonical prescription: schema defaults", () => {
-  it("restates the catalog's merged defaults exactly, while src/lens-data/defaults.ts still exists", () => {
-    expect(v1CatalogDefaults()).toEqual(LENS_DEFAULTS);
+  it("keeps the catalog defaults the V1 file src/lens-data/defaults.ts held before S2.P1.T2 deleted it", () => {
+    expect(v1CatalogDefaults()).toEqual({
+      visible: true,
+      rayFractions: [-0.83, -0.5, -0.17, 0.17, 0.5, 0.83],
+      rayLeadFrac: 0.35,
+      lensShiftFrac: 0.08,
+      offAxisFieldFrac: 0.6,
+      offAxisFractions: [-0.75, -0.375, 0, 0.375, 0.75],
+      svgW: 1080,
+      svgH: 490,
+      scFill: 0.55,
+      maxRimAngleDeg: DEFAULT_MAX_RIM_ANGLE_DEG,
+      gapSagFrac: 0.9,
+      maxAspectRatio: 1.6,
+      focusStep: 0.004,
+      apertureStep: 0.004,
+      maxFstop: 16,
+    });
   });
 
   it("cites a reader that exists for every default", () => {
@@ -336,8 +352,8 @@ describe("canonical prescription: schema defaults", () => {
     /* The view gives each file back as written, and the engine's merged form as the catalog makes it. */
     expect(toLensDataInput(a)).toEqual(omitted);
     expect(toLensDataInput(b)).toEqual(written);
-    expect(toLensData(a)).toEqual({ ...LENS_DEFAULTS, ...omitted });
-    expect(toLensData(b)).toEqual({ ...LENS_DEFAULTS, ...written });
+    expect(toLensData(a)).toEqual({ ...v1CatalogDefaults(), ...omitted });
+    expect(toLensData(b)).toEqual({ ...v1CatalogDefaults(), ...written });
   });
 
   it("takes any falsy zoomStep as the default, as buildLens reads it, and gives the authored value back", () => {
@@ -426,7 +442,7 @@ describe("canonical prescription: spellings held as one", () => {
       const index = data.surfaces.findIndex((surface) => surface.label === label);
       expect(ingested(data).prescription.surfaces[index].asphere, `${data.key} ${label}`).toEqual({});
       expect(
-        buildLens({ ...LENS_DEFAULTS, ...data } as LensData).asphByIdx[index],
+        buildLens({ ...v1CatalogDefaults(), ...data } as LensData).asphByIdx[index],
         `${data.key} ${label}`,
       ).toBeDefined();
     }
@@ -604,7 +620,7 @@ describe("canonical prescription: stop radius", () => {
     const view = toLensData(result);
     expect(view.surfaces[stop].sd).toBe(data.surfaces[stop].sd);
     const fromView = buildLens(view);
-    const fromCatalog = buildLens({ ...LENS_DEFAULTS, ...data } as LensData);
+    const fromCatalog = buildLens({ ...v1CatalogDefaults(), ...data } as LensData);
     expect(fromView.S).toEqual(fromCatalog.S);
     expect([fromView.stopPhysSD, fromView.EFL, fromView.FOPEN, fromView.EP]).toEqual([
       fromCatalog.stopPhysSD,
@@ -620,7 +636,7 @@ describe("canonical prescription: stop radius", () => {
     const offenders: string[] = [];
     const counts = { authored: 0, schedule: 0, derived: 0 };
     for (const { file, data, ingested: result } of INGESTED) {
-      const merged = { ...LENS_DEFAULTS, ...data } as LensData;
+      const merged = { ...v1CatalogDefaults(), ...data } as LensData;
       const stop = merged.surfaces.find((surface) => surface.label === "STO");
       if (!stop) {
         offenders.push(`${file}: no STO surface`);

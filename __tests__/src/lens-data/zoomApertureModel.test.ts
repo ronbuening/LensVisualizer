@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { catalogLensData } from "../optics/testLensFixtures.js";
 import buildLens from "../../../src/optics/buildLens.js";
-import type { LensData, LensDataInput } from "../../../src/types/optics.js";
+import type { LensDataInput } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensDataInput }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 
@@ -32,7 +32,7 @@ const FIXED_IRIS_OFF_STATED: readonly string[] = [
 describe("zoom aperture model", () => {
   it("declares a fixed iris only where one radius gives the stated f-number at every station", () => {
     const fixedIris = Object.values(modules)
-      .map(({ default: data }) => ({ ...LENS_DEFAULTS, ...data }) as LensData)
+      .map(({ default: data }) => catalogLensData(data))
       .filter((data) => data.zoomApertureModel === "fixed-iris");
     expect(fixedIris.length).toBeGreaterThan(0);
 

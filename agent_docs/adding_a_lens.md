@@ -26,7 +26,7 @@ On `npm run build`, every visible lens is also eligible for `/feeds/lenses.xml` 
 - **AI construction/integration handoff:** [lens-data-integration-handoff.md](lens-data-integration-handoff.md) —
   compact process and recurring issues from recent lens batches
 - **Annotated template:** `src/lens-data/TEMPLATE.data.ts.template` (includes the semi-diameter guidelines)
-- **Shared defaults:** `src/lens-data/defaults.ts`
+- **Shared defaults:** `src/optics/prescription/defaults.ts` (the schema defaults canonical ingest applies)
 - **Mirror/folded reference fixtures:** `src/lens-data/reference/*.data.ts` — hidden synthetic examples listed under
   "Reference Fixtures" in the spec; regenerate `agent_docs/generated/mirror-fixtures.generated.md` with
   `npm run generate:mirror-reports` after changing them
@@ -48,8 +48,8 @@ a `.analysis.md` suffix. Set `visible: false` in the data object to hide a lens 
 `src/lens-data/LENS_DATA_SPEC.md` is the single home for field meaning and validation rules. The sections you will need
 most often while authoring:
 
-- **Shared defaults merge** — "Required but have defaults (from `defaults.ts`)": defaults are merged under each lens, so
-  override only values that differ (e.g. `svgW`, `svgH`, `maxRimAngleDeg`).
+- **Shared defaults merge** — "Required but have defaults (from `src/optics/prescription/defaults.ts`)": canonical
+  ingest applies them under each lens, so override only values that differ (e.g. `svgW`, `svgH`, `maxRimAngleDeg`).
 - **`maker`** — "Optional" top-level fields: set it explicitly; when omitted it is derived from `name` by prefix matching.
 - **`name`** — "Display Name Convention": normalized all-caps manufacturer and line, separated tokens, and the camera body
   in parentheses for fixed-lens cameras.

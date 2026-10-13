@@ -5,9 +5,9 @@
  * calls are not duplicated.
  */
 
-import LENS_DEFAULTS from "../../lens-data/defaults.js";
+import { ingestLensV1, toLensData } from "../../optics/buildLens.js";
 import { loadChunkWithReload } from "../chunkLoadRetry.js";
-import type { LensData } from "../../types/optics.js";
+import type { LensData, LensDataInput } from "../../types/optics.js";
 import { catalogCollator } from "./collation.js";
 
 export interface OpticalConfigurationOption {
@@ -17,24 +17,37 @@ export interface OpticalConfigurationOption {
 }
 
 /* Eagerly import all lens data files under src/lens-data/ — Vite resolves the glob at build time.
- * Each module's default export is a LENS_DATA object; defaults are merged
- * underneath so per-lens values take precedence. */
-const _modules = import.meta.glob<{ default: LensData }>("../../lens-data/**/*.data.ts", { eager: true });
+ * Each module's default export is a file as authored. A catalog entry is that file read through canonical ingest,
+ * whose V1 view applies the schema defaults. Ingest runs the first time an entry is read and the entry is kept, so a
+ * page pays only for the lenses it shows and every read of a key returns the same object, which caches key on. The
+ * key lists below read only identity fields, from the files as authored. */
+const _modules = import.meta.glob<{ default: LensDataInput }>("../../lens-data/**/*.data.ts", { eager: true });
+const AUTHORED: Record<string, LensDataInput> = {};
 const LENS_CATALOG: Record<string, LensData> = {};
 for (const [path, mod] of Object.entries(_modules)) {
   const data = mod.default;
   if (data?.key) {
-    LENS_CATALOG[data.key] = { ...LENS_DEFAULTS, ...data } as LensData;
+    AUTHORED[data.key] = data;
+    let entry: LensData | undefined;
+    Object.defineProperty(LENS_CATALOG, data.key, {
+      enumerable: true,
+      get: () => (entry ??= toLensData(ingestLensV1(data))),
+    });
   } else {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);
   }
 }
 function sortLensKeysByName(keys: string[]): string[] {
-  return keys.sort((a, b) => catalogCollator.compare(LENS_CATALOG[a].name, LENS_CATALOG[b].name));
+  return keys.sort((a, b) => catalogCollator.compare(AUTHORED[a].name, AUTHORED[b].name));
+}
+
+/** A key's identity fields, read without ingesting the lens; an entry added at run time is read as it is. */
+function identityOf(key: string): LensDataInput | LensData | undefined {
+  return AUTHORED[key] ?? LENS_CATALOG[key];
 }
 
 function isDebugLensKey(key: string): boolean {
-  const data = LENS_CATALOG[key];
+  const data = identityOf(key)!;
   if (data.visible === false && data.opticalConfiguration !== undefined) return false;
   return (
     data.visible === false ||
@@ -48,8 +61,8 @@ function isDebugLensKey(key: string): boolean {
 const ALL_CATALOG_KEYS: string[] = sortLensKeysByName(Object.keys(LENS_CATALOG));
 
 /* Visible lenses sorted alphabetically by display name */
-const CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((k) => LENS_CATALOG[k].visible !== false).sort((a, b) =>
-  catalogCollator.compare(LENS_CATALOG[a].name, LENS_CATALOG[b].name),
+const CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((k) => AUTHORED[k].visible !== false).sort((a, b) =>
+  catalogCollator.compare(AUTHORED[a].name, AUTHORED[b].name),
 );
 
 /* Debug/reference lenses sorted alphabetically by display name. */
@@ -57,7 +70,7 @@ const DEBUG_CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter(isDebugLensKey);
 
 const OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP = new Map<string, OpticalConfigurationOption[]>();
 for (const key of ALL_CATALOG_KEYS) {
-  const config = LENS_CATALOG[key].opticalConfiguration;
+  const config = AUTHORED[key].opticalConfiguration;
   if (!config) continue;
   const options = OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.get(config.groupKey) ?? [];
   options.push({ key, label: config.label, order: config.order });
@@ -71,7 +84,7 @@ for (const options of OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.values()) {
 
 /** Ordered alternate prescriptions available for the supplied catalog key. */
 function opticalConfigurationOptionsForKey(key: string): ReadonlyArray<OpticalConfigurationOption> {
-  const groupKey = LENS_CATALOG[key]?.opticalConfiguration?.groupKey;
+  const groupKey = identityOf(key)?.opticalConfiguration?.groupKey;
   if (!groupKey) return [];
   return OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.get(groupKey) ?? [];
 }

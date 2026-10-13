@@ -223,8 +223,10 @@ and bundled there.
 - `seamAdapter.ts` is the only file that names engine modules. It reaches each through an eager `import.meta.glob`,
   which yields nothing for a file a revision lacks, and resolves every capability from an ordered list of candidate
   exports. A change that renames or moves a seam export adds the new name to that list in the same change. A few
-  capabilities are optional: only the head's bundle is asked for them, so a revision that lacks one still resolves
-  its seam and reports the capability as `absent`. Canonical ingest, which the fingerprint needs, is one of them.
+  capabilities are optional, so a revision that lacks one still resolves its seam and reports the capability as
+  `absent`. Canonical ingest, which the fingerprint needs, is one of them and is asked of the head's bundle alone. The
+  catalog merge is another: each bundle merges a host as its own catalog does, by spreading its V1 defaults object at
+  a ref before S2.P1.T2, and by ingest and the V1 view at a later one (`catalogLensData` in `captureEntry.ts`).
 - `requests.ts` defines a tier as a deterministic list of lens × state × request family, and cuts a list into
   shards. The three tiers are described under "Tiers" below.
 - `payload.ts` holds the encoding (JSON that round-trips under `Object.is`, with tags for -0, NaN, and the

@@ -201,7 +201,7 @@ describe("computeCardinalElementsAtState", () => {
   });
 
   it("returns null for afocal or zero-power systems", () => {
-    const L = minimalCardinalLens([{ label: "1", R: 1e15, d: 0, nd: 1, elemId: 1, sd: 10 }]);
+    const L = minimalCardinalLens([{ label: "1", R: 1e15, d: 0, nd: 1, elemId: 0, sd: 10 }]);
 
     expect(computeCardinalElementsAtState(L, 0, 0, [0], 10)).toBeNull();
   });

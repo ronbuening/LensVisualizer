@@ -15,7 +15,7 @@ import {
   effectiveFNumber,
 } from "../../../src/optics/optics.js";
 import { sag } from "../../../src/optics/geometry/surfaceProfile.js";
-import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
+import type { RuntimeLens, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
 import {
   buildChromaticPositiveElementLens,
@@ -404,7 +404,7 @@ describe("computeChromaticRayFanSpread", () => {
 
 /* ── Production lens ray tracing ── */
 import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { catalogLensData } from "./testLensFixtures.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
 import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
@@ -413,7 +413,7 @@ import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 
 describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
-  const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
+  const L = buildLens(catalogLensData(Sonnar50f15Raw));
   const { z: zPos, imgZ } = doLayout(0, 0, L);
 
   it("on-axis marginal ray at entrance-pupil edge reports aperture clipping", () => {
@@ -564,11 +564,11 @@ function solveKForImageHeight(L: RuntimeLens, focusT: number, h: number): number
 
 describe("conjugateK", () => {
   const allLenses: [string, RuntimeLens][] = [
-    ["ApoLanthar50f2", buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData)],
-    ["Nokton50f1", buildLens({ ...LENS_DEFAULTS, ...NoktonRaw } as LensData)],
-    ["NikkorZ50mmf18S", buildLens({ ...LENS_DEFAULTS, ...NikkorRaw } as LensData)],
-    ["Nikkor105f14E", buildLens({ ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData)],
-    ["Sonnar50f15", buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData)],
+    ["ApoLanthar50f2", buildLens(catalogLensData(ApoLantharRaw))],
+    ["Nokton50f1", buildLens(catalogLensData(NoktonRaw))],
+    ["NikkorZ50mmf18S", buildLens(catalogLensData(NikkorRaw))],
+    ["Nikkor105f14E", buildLens(catalogLensData(Nikkor105Raw))],
+    ["Sonnar50f15", buildLens(catalogLensData(Sonnar50f15Raw))],
   ];
 
   /* Includes the Sonnar50f15 regression case: |K(0)| was 0.00442 with the
@@ -585,7 +585,7 @@ describe("conjugateK", () => {
 
   it("returns 0 gracefully for TIR conditions", () => {
     // Pathological lens that causes TIR at zonal height
-    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
+    const L = buildLens(catalogLensData(Sonnar50f15Raw));
     // Manually corrupt EP to trigger NaN path
     const badL = { ...L, EP: { ...L.EP, epSD: 1e6 } };
     expect(conjugateK(0, 0, badL)).toBe(0);
@@ -612,7 +612,7 @@ describe("conjugateK", () => {
   });
 
   it("Sonnar50f15: |conjugateK| increases monotonically from t=0 to t=1", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
+    const L = buildLens(catalogLensData(Sonnar50f15Raw));
     const K0 = Math.abs(conjugateK(0, 0, L)); // ≈ 0
     const K25 = Math.abs(conjugateK(0.25, 0, L));
     const K50 = Math.abs(conjugateK(0.5, 0, L));
@@ -674,13 +674,13 @@ describe("centered aberration-control interpolation", () => {
 
 describe("eflAtFocus", () => {
   it("returns static EFL at infinity focus for prime lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    const L = buildLens(catalogLensData(ApoLantharRaw));
     expect(eflAtFocus(0, 0, L)).toBe(L.EFL);
     expect(eflAtFocus(0.001, 0, L)).toBe(L.EFL); // below threshold
   });
 
   it("returns a different EFL at close focus for internal-focusing lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData);
+    const L = buildLens(catalogLensData(Nikkor105Raw));
     const eflInf = eflAtFocus(0, 0, L);
     const eflClose = eflAtFocus(1, 0, L);
     expect(eflInf).toBeCloseTo(L.EFL, 2);
@@ -689,13 +689,13 @@ describe("eflAtFocus", () => {
   });
 
   it("returns zoom-interpolated EFL at infinity for zoom lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
+    const L = buildLens(catalogLensData(NikkorZ70200Raw));
     expect(eflAtFocus(0, 0, L)).toBeCloseTo(eflAtZoom(0, L), 5);
     expect(eflAtFocus(0, 1, L)).toBeCloseTo(eflAtZoom(1, L), 5);
   });
 
   it("returns finite positive value at close focus", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    const L = buildLens(catalogLensData(ApoLantharRaw));
     const efl = eflAtFocus(1, 0, L);
     expect(isFinite(efl)).toBe(true);
     expect(efl).toBeGreaterThan(0);
@@ -704,20 +704,20 @@ describe("eflAtFocus", () => {
 
 describe("effectiveFNumber", () => {
   it("returns nominal f-number at infinity focus", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    const L = buildLens(catalogLensData(ApoLantharRaw));
     expect(effectiveFNumber(2.0, 0, 0, L)).toBe(2.0);
     expect(effectiveFNumber(2.0, 0.001, 0, L)).toBe(2.0); // below threshold
   });
 
   it("returns higher effective f-number at close focus", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    const L = buildLens(catalogLensData(ApoLantharRaw));
     const nominalF = 2.0;
     const effF = effectiveFNumber(nominalF, 1, 0, L);
     expect(effF).toBeGreaterThan(nominalF);
   });
 
   it("increases monotonically as focus gets closer", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    const L = buildLens(catalogLensData(ApoLantharRaw));
     const f1 = effectiveFNumber(2.0, 0.3, 0, L);
     const f2 = effectiveFNumber(2.0, 0.6, 0, L);
     const f3 = effectiveFNumber(2.0, 1.0, 0, L);
@@ -726,7 +726,7 @@ describe("effectiveFNumber", () => {
   });
 
   it("works with zoom lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
+    const L = buildLens(catalogLensData(NikkorZ70200Raw));
     const effF = effectiveFNumber(2.8, 1, 0, L);
     expect(effF).toBeGreaterThan(2.8);
     expect(isFinite(effF)).toBe(true);

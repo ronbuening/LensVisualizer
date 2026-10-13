@@ -12,7 +12,7 @@
  */
 
 import { describe, expect, it } from "vitest";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { catalogLensData } from "./testLensFixtures.js";
 import FoldedDiffractiveRaw from "../../../src/lens-data/reference/ReferenceFoldedDiffractivePlate.data.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
@@ -28,7 +28,7 @@ const LAUNCH_HEIGHTS = [8, 5, 2];
 const PHASE = FoldedDiffractiveRaw.surfaces.find((surface) => surface.label === "PF")!.diffractive!;
 
 function buildFixture(): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...FoldedDiffractiveRaw } as LensData);
+  return buildLens(catalogLensData(FoldedDiffractiveRaw));
 }
 
 /** The same fixture with the phase term removed: a plain same-index flat plate. */
@@ -37,7 +37,7 @@ function buildRefractiveControl(): RuntimeLens {
     const { diffractive: _diffractive, ...rest } = surface as Record<string, unknown>;
     return rest;
   });
-  return buildLens({ ...LENS_DEFAULTS, ...FoldedDiffractiveRaw, surfaces } as unknown as LensData);
+  return buildLens({ ...catalogLensData(FoldedDiffractiveRaw), surfaces } as unknown as LensData);
 }
 
 /**
@@ -62,7 +62,7 @@ function tangentFromKick(kick: number): number {
 
 describe("folded diffractive fixture — data contract", () => {
   it("validates as authored", () => {
-    expect(validateLensData({ ...LENS_DEFAULTS, ...FoldedDiffractiveRaw } as LensData)).toEqual([]);
+    expect(validateLensData(catalogLensData(FoldedDiffractiveRaw))).toEqual([]);
   });
 
   it("is hidden from the public catalog", () => {
@@ -73,7 +73,7 @@ describe("folded diffractive fixture — data contract", () => {
     const surfaces = FoldedDiffractiveRaw.surfaces.map((surface) =>
       surface.label === "FOLD" ? { ...surface, diffractive: PHASE } : surface,
     );
-    const errors = validateLensData({ ...LENS_DEFAULTS, ...FoldedDiffractiveRaw, surfaces } as unknown as LensData);
+    const errors = validateLensData({ ...catalogLensData(FoldedDiffractiveRaw), surfaces } as unknown as LensData);
 
     expect(errors.some((error) => error.includes("diffractive is only valid on refracting surfaces"))).toBe(true);
   });

@@ -12,13 +12,13 @@ import {
 } from "../../../../src/optics/optics.js";
 import { createCoordinateTransforms } from "../../../../src/optics/diagramGeometry.js";
 import { raySampleCountForDensity } from "../../../../src/optics/raySampling.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
+import { catalogLensData } from "../../optics/testLensFixtures.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 
-const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
-const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
+const Sonnar = catalogLensData(SonnarRaw);
+const ApoLanthar = catalogLensData(ApoLantharRaw);
 const displayLocaFallbackFractions = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
 
 function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {

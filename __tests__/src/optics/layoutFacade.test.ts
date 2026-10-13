@@ -60,8 +60,8 @@ describe("layout facade edge cases", () => {
       isZoom: false,
       EFL: 75,
       S: [
-        { label: "1", R: 1e15, d: 5, nd: 1, sd: 10, elemId: 1 },
-        { label: "2", R: 1e15, d: 50, nd: 1, sd: 10, elemId: 1 },
+        { label: "1", R: 1e15, d: 5, nd: 1, sd: 10, elemId: 0 },
+        { label: "2", R: 1e15, d: 50, nd: 1, sd: 10, elemId: 0 },
       ],
       varByIdx: {},
       aberrationControl: null,
@@ -76,8 +76,8 @@ describe("layout facade edge cases", () => {
       EFL: 500,
       closeFocusM: 0.5,
       S: [
-        { label: "1", R: 1e15, d: 5, nd: 1, sd: 10, elemId: 1 },
-        { label: "2", R: 1e15, d: 50, nd: 1, sd: 10, elemId: 1 },
+        { label: "1", R: 1e15, d: 5, nd: 1, sd: 10, elemId: 0 },
+        { label: "2", R: 1e15, d: 50, nd: 1, sd: 10, elemId: 0 },
       ],
       varByIdx: {},
       aberrationControl: null,

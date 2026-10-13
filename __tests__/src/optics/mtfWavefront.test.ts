@@ -13,9 +13,9 @@ describe("sequential optical path capture", () => {
     surfaces: [
       { label: "STO", R: 1e15, d: 2, nd: 1, sd: 10, elemId: 0 },
       { label: "1", R: 1e15, d: 5, nd: 1.5168, sd: 10, elemId: 1 },
-      { label: "2", R: 1e15, d: 20, nd: 1, sd: 10, elemId: 1 },
+      { label: "2", R: 1e15, d: 20, nd: 1, sd: 10, elemId: 0 },
       { label: "3", R: 50, d: 5, nd: 1.5168, sd: 10, elemId: 2 },
-      { label: "4", R: -50, d: 50, nd: 1, sd: 10, elemId: 2 },
+      { label: "4", R: -50, d: 50, nd: 1, sd: 10, elemId: 0 },
     ],
   });
   const state = prepareRuntimeState(plate, 0, 0);

@@ -4,8 +4,7 @@ import { describe, it, expect } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useComparisonDisplayValues from "../../../src/comparison/useComparisonDisplayValues.js";
 import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import type { LensData } from "../../../src/types/optics.js";
+import { catalogLensData } from "../optics/testLensFixtures.js";
 import type { ComparisonLensesResult } from "../../../src/comparison/useComparisonMode.js";
 import { computeFocusPair, computeAperturePair, computeZoomPair } from "../../../src/comparison/comparisonSliders.js";
 import SonnarRaw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
@@ -13,8 +12,8 @@ import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLant
 import { build, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
 import useLensComputation from "../../../src/components/hooks/useLensComputation.js";
 
-const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
-const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
+const Sonnar = catalogLensData(SonnarRaw);
+const ApoLanthar = catalogLensData(ApoLantharRaw);
 
 function buildFixture() {
   const LA = buildLens(Sonnar);

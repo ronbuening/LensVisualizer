@@ -46,7 +46,8 @@ interface EngineModuleTypes {
   constants: typeof import("../../optics/constants.js");
   geometry: typeof import("../../optics/geometry.js");
   layout: typeof import("../../optics/layout.js");
-  lensDefaults: typeof import("../../lens-data/defaults.js");
+  /* Deleted in S2.P1.T2, so it has no type to query at the head; older refs still export the V1 defaults object. */
+  lensDefaults: { readonly default: Readonly<Record<string, unknown>> };
   lensMovement: typeof import("../../optics/lensMovement.js");
   mtf: typeof import("../../optics/mtf.js");
   optics: typeof import("../../optics/optics.js");
@@ -69,7 +70,6 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
  * overlay's departure and best-fit helpers and the LoCA inset's bar scaling), so a payload notices when either copy drifts.
  */
 const SEAM_CANDIDATES = {
-  lensDefaults: [["lensDefaults", "default"]],
   flatRadiusThreshold: [
     ["geometry", "FLAT_R_THRESHOLD"],
     ["constants", "FLAT_R_THRESHOLD"],
@@ -202,13 +202,17 @@ export function resolveSeam(): EngineSeam {
 }
 
 /*
- * Capabilities only the head's bundle is asked for. A driver fingerprints both catalogs with the head alone, and a
- * base that predates a capability must still resolve its seam, so each of these resolves to `undefined` at a ref
- * without any candidate instead of failing the bundle. The same candidate order rules apply.
+ * Capabilities a ref may lack. Each resolves to `undefined` at a ref without any candidate instead of failing the
+ * bundle, and the same candidate order rules apply.
+ * - Canonical ingest is asked of the head's bundle alone: a driver fingerprints both catalogs with the head.
+ * - The catalog merge is asked of every bundle, each for its own: a ref before S2.P1.T2 spreads its V1 defaults
+ *   object, and a later one has no such object and reads lens data through canonical ingest and its V1 view.
  */
 const OPTIONAL_SEAM_CANDIDATES = {
   ingestLens: [["buildLens", "ingestLensV1"]],
   ingestTeleconverter: [["buildLens", "ingestTeleconverterV1"]],
+  lensView: [["buildLens", "toLensData"]],
+  lensDefaults: [["lensDefaults", "default"]],
 } as const satisfies Readonly<Record<string, readonly SeamCandidate[]>>;
 
 /** Capabilities a ref may lack, typed by the export their first candidate names. */

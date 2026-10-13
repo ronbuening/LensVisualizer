@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
+  ALL_CATALOG_KEYS,
   LENS_CATALOG,
   CATALOG_KEYS,
   COMPARISON_CATALOG_KEYS,
@@ -7,8 +8,36 @@ import {
   loadMdForKey,
   resolveOpticalConfigurationKey,
 } from "../../../../src/utils/catalog/lensCatalog.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import buildLens, {
+  ingestLensV1,
+  ingestTeleconverterV1,
+  toLensData,
+  toTeleconverterData,
+} from "../../../../src/optics/buildLens.js";
+import { attachTeleconverter } from "../../../../src/optics/teleconverter.js";
 import { catalogCollator } from "../../../../src/utils/catalog/collation.js";
+import {
+  ALL_TELECONVERTER_KEYS,
+  TELECONVERTER_CATALOG,
+  resolveLensSystemData,
+  resolveTeleconverterKey,
+} from "../../../../src/utils/catalog/teleconverterCatalog.js";
+import type { LensDataInput } from "../../../../src/types/optics.js";
+import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
+
+/* Every file as authored, by key: what the catalogs read through canonical ingest. */
+const AUTHORED_LENSES = new Map(
+  Object.values(
+    import.meta.glob<{ default: LensDataInput }>("../../../../src/lens-data/**/*.data.ts", { eager: true }),
+  ).map(({ default: data }) => [data.key, data] as const),
+);
+const AUTHORED_CONVERTERS = new Map(
+  Object.values(
+    import.meta.glob<{ default: TeleconverterData }>("../../../../src/lens-data/**/*.teleconverter.ts", {
+      eager: true,
+    }),
+  ).map(({ default: data }) => [data.key, data] as const),
+);
 
 describe("lensCatalog", () => {
   it("keeps nested maker-folder lenses discoverable with matching analysis markdown", async () => {
@@ -89,5 +118,55 @@ describe("lensCatalog — buildLens integration", () => {
       expect(L.stopIdx, `${key}: stopIdx out of range`).toBeLessThan(L.N);
       expect(L.S[L.stopIdx].label, `${key}: STO label mismatch`).toBe("STO");
     }
+  });
+});
+
+/* ── Catalog ingest: every entry is its file read through canonical ingest, once ── */
+describe("lensCatalog and teleconverterCatalog — canonical ingest", () => {
+  it("reads every lens and converter through ingest, so a refusal fails here", () => {
+    const refused: string[] = [];
+    const read = (key: string, entry: () => unknown) => {
+      try {
+        entry();
+      } catch (error) {
+        refused.push(`${key}: ${(error as Error).message}`);
+      }
+    };
+    for (const key of ALL_CATALOG_KEYS) read(key, () => LENS_CATALOG[key]);
+    for (const key of ALL_TELECONVERTER_KEYS) read(key, () => TELECONVERTER_CATALOG[key]);
+    expect(refused).toEqual([]);
+    expect(ALL_CATALOG_KEYS.length).toBe(AUTHORED_LENSES.size);
+    expect(ALL_TELECONVERTER_KEYS.length).toBe(AUTHORED_CONVERTERS.size);
+  });
+
+  it("returns the same object on every read of a key: the V1 view of the file, not the file", () => {
+    for (const key of ALL_CATALOG_KEYS) {
+      const entry = LENS_CATALOG[key];
+      expect(LENS_CATALOG[key], key).toBe(entry);
+      expect(entry, key).not.toBe(AUTHORED_LENSES.get(key));
+      expect(entry, key).toEqual(toLensData(ingestLensV1(AUTHORED_LENSES.get(key)!)));
+    }
+    for (const key of ALL_TELECONVERTER_KEYS) {
+      const entry = TELECONVERTER_CATALOG[key];
+      expect(TELECONVERTER_CATALOG[key], key).toBe(entry);
+      expect(entry, key).not.toBe(AUTHORED_CONVERTERS.get(key));
+      expect(entry, key).toEqual(toTeleconverterData(ingestTeleconverterV1(AUTHORED_CONVERTERS.get(key)!)));
+    }
+  });
+
+  it("composes every permitted pair from a host and a converter that each came through ingest", () => {
+    /* The test above shows each catalog entry is its file's ingested view; this shows a pair is composed from them. */
+    let pairs = 0;
+    for (const lensKey of ALL_CATALOG_KEYS) {
+      expect(resolveLensSystemData(lensKey, null), lensKey).toBe(LENS_CATALOG[lensKey]);
+      for (const converterKey of ALL_TELECONVERTER_KEYS) {
+        if (resolveTeleconverterKey(lensKey, converterKey) !== converterKey) continue;
+        pairs++;
+        expect(resolveLensSystemData(lensKey, converterKey), `${lensKey} + ${converterKey}`).toEqual(
+          attachTeleconverter(LENS_CATALOG[lensKey], TELECONVERTER_CATALOG[converterKey]),
+        );
+      }
+    }
+    expect(pairs).toBeGreaterThan(0);
   });
 });

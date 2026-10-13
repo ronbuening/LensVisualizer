@@ -9,6 +9,7 @@
 import { describe, expect, it, vi } from "vitest";
 import {
   captureRecords,
+  catalogLensData,
   exportCatalog,
   fingerprintCatalog,
   permittedPairs,
@@ -75,7 +76,7 @@ import {
 } from "../../../src/benchmarks/engineDiff/seamAdapter.js";
 import { MTF_BENCHMARK_CASES, MTF_FINITE_BENCHMARK_CASE } from "../../../src/benchmarks/mtfCases.js";
 import { BENCHMARK_SCENARIOS, DEFAULT_BENCHMARK_LENS_KEYS } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
-import buildLens, { ingestLensV1, ingestTeleconverterV1 } from "../../../src/optics/buildLens.js";
+import buildLens, { ingestLensV1, ingestTeleconverterV1, toLensData } from "../../../src/optics/buildLens.js";
 import {
   ELEMENT_SCHEMA_DEFAULTS,
   LENS_SCHEMA_DEFAULTS,
@@ -590,11 +591,20 @@ describe("engineDiff seam adapter", () => {
     const seam = resolveSeam();
     const optional = resolveOptionalSeam();
     const sources = describeSeam();
-    expect(Object.keys(sources).sort()).toEqual([...Object.keys(seam), ...Object.keys(optional)].sort());
+    const absent = Object.keys(sources).filter(
+      (capability) => sources[capability as keyof typeof sources] === "absent",
+    );
+    expect(Object.keys(sources).sort()).toEqual([...Object.keys(seam), ...Object.keys(optional), ...absent].sort());
     expect(sources.traceRay).toBe("compat.traceEngineRay2");
     expect(seam.buildLens).toBe(buildLens);
-    expect(optional).toEqual({ ingestLens: ingestLensV1, ingestTeleconverter: ingestTeleconverterV1 });
+    expect(optional).toEqual({
+      ingestLens: ingestLensV1,
+      ingestTeleconverter: ingestTeleconverterV1,
+      lensView: toLensData,
+    });
     expect(sources.ingestLens).toBe("buildLens.ingestLensV1");
+    /* S2.P1.T2 deleted the V1 defaults object; the catalog merge at this checkout is ingest and the V1 view. */
+    expect(absent).toEqual(["lensDefaults"]);
   });
 
   it("leaves out an optional capability a ref lacks, without failing the rest", () => {
@@ -650,7 +660,7 @@ describe("engineDiff catalog export", () => {
         .filter(
           (converter) =>
             seam.teleconverterCompatibility(
-              { ...seam.lensDefaults, ...lenses.get(host.key) } as LensData,
+              catalogLensData(lenses.get(host.key)!),
               decodeValue(converter.prescription) as Parameters<typeof seam.teleconverterCompatibility>[1],
             ).ok,
         )
@@ -1582,7 +1592,7 @@ describe("engineDiff capture", () => {
     const converter = decodeValue(
       CATALOG.teleconverters.find((entry) => entry.key === PAIR.teleconverter)!.prescription,
     ) as Parameters<typeof seam.attachTeleconverter>[1];
-    const composed = seam.attachTeleconverter({ ...seam.lensDefaults, ...host }, converter);
+    const composed = seam.attachTeleconverter(catalogLensData(host), converter);
     expect(composition.compatibility.ok).toBe(true);
     expect(composition.prescription).toEqual(throughJson(normalizeAuthoredData(composed, seam.flatRadiusThreshold)));
     expect(composition.prescription.surfaces.length).toBeGreaterThan(host.surfaces.length);
@@ -2018,7 +2028,7 @@ describe("engineDiff semantic fingerprint", () => {
     const flat = lens.surfaces.filter((surface) => Math.abs(surface.R) > seam.flatRadiusThreshold);
     expect(flat.length).toBeGreaterThan(1);
     for (const surface of flat) surface.R = -2e15;
-    expect(stopRadiusAuthority({ ...seam.lensDefaults, ...lens })).toBe("derived");
+    expect(stopRadiusAuthority(catalogLensData(lens))).toBe("derived");
     lens.surfaces.find((surface) => surface.label === "STO")!.sd *= 0.97;
   };
 

@@ -8,7 +8,7 @@
  * aspheric coefficient V1 requires, `[wide, tele]` zoom labels where only the end stations are labelled.
  *
  * Two forms:
- * - `toLensData` is what the engine consumes, the catalog defaults merged in: the V1 `{ ...LENS_DEFAULTS, ...data }`;
+ * - `toLensData` is what the engine consumes, the catalog defaults merged in, as the V1 catalog spread them;
  * - `toLensDataInput` is the file as authored, which the converter writes back for `--to-version 1`.
  */
 

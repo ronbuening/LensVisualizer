@@ -1266,6 +1266,19 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - Once `buildLens` ingests, unmerged data takes the table's `lensShiftFrac` and `offAxisFieldFrac` in place of
       the inline `|| 0` and `?? 0.7`. Before changing a test whose expectation moves, list each one with its old and
       new values. If one is a physical expectation rather than a fixture's layout offset, stop and ask the maintainer.
+    - `buildLens` knows a composed pair only by the `attachedTeleconverter` marker `attachTeleconverter()` writes,
+      never by a flag a caller passes, and builds it without ingest: its host and converter each came through ingest
+      in their catalogs. This is a temporary seam; S5.P1.T1 moves composition onto the canonical form.
+    - The validator speaks first, as before: a file it rejects throws its messages, and a file it accepts that ingest
+      refuses throws the refusal, naming the field and its authored path.
+    - Nothing outside tests spreads the defaults table. Lens data gets its defaults through ingest and the V1 view,
+      which `buildLens.ts` re-exports for code outside the engine, as the seam guard requires. Test helpers take
+      merged data the same way; a test that needs the raw table imports `src/optics/prescription/defaults.ts`. The one
+      exception is `buildLens` on a file ingest refuses: the validator needs merged data and a refused file has no
+      view, so it spreads the table to ask the validator whether its messages come first, and builds nothing from it.
+    - The catalogs ingest lazily, memoized per entry: every read of a key returns the same object, because caches key
+      on it.
+    - `src/lens-data/defaults.ts` is deleted.
   - **Files:**
     - `src/utils/catalog/{lensCatalog, teleconverterCatalog}.ts`
     - `src/optics/buildLens.ts`
@@ -1274,7 +1287,12 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - `reports/glassScanLib.ts`
     - `scripts/audit-surface-probe.mjs`
     - `scripts/audit-field-coverage.mjs`
-  - **Tests:** the existing suites.
+  - **Tests:** the existing suites, and:
+    - a corpus test that reads every lens and converter through its catalog, so a refusal fails CI;
+    - every read of a catalog key returns the same object;
+    - every permitted pair is composed from a host and a converter that each came through ingest.
+  - **Benchmarks:** the first step that can move startup time and retained heap. The PR carries the paired timing and
+    memory commands with blank tables, and the maintainer's machine measures them before merge.
   - **Gate:** C0, with Tier P bit-identical.
 
 **Phase 2.2 — V2 schema**
@@ -1744,6 +1762,8 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     - Rear plates are expanded once, by `prescription/rearPlates.ts`, now operating on canonical data and keeping the
       S2.P2.T1 rim rule.
     - It replaces `internal/lensState.ts`, the `prescription/` compilers and `normalizeLensData.ts`.
+    - Converter composition moves onto the canonical form, which retires the S2.P1.T2 seam where `buildLens` builds a
+      composed pair, known by its `attachedTeleconverter` marker, without ingest.
     - `EngineLens` is renamed `CompiledLens`.
   - **Tests:**
     - One compilation and one material resolution per identity, shown by spying on the compiler and the resolver.

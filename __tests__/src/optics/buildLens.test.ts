@@ -1,22 +1,29 @@
 import { describe, it, expect, vi } from "vitest";
-import buildLens, { paraxialTrace, realTraceToStop } from "../../../src/optics/buildLens.js";
+import buildLens, { ingestLensV1, paraxialTrace, realTraceToStop, toLensData } from "../../../src/optics/buildLens.js";
+import { PrescriptionIngestError } from "../../../src/optics/prescription/canonical.js";
+import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
+import { withLensDefaults } from "../../../src/optics/prescription/normalizeLensData.js";
+import { attachTeleconverter } from "../../../src/optics/teleconverter.js";
+import validateLensData from "../../../src/optics/validateLensData.js";
 import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
 import { doLayout, traceRay } from "../../../src/optics/optics.js";
 import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
 import { computeFieldGeometryAtState } from "../../../src/optics/fieldGeometry.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import {
   REAR_PLATE_FIXTURE,
   buildRearPlateAirEquivalentLens,
+  catalogLensData,
   buildRearPlateLens,
   sharedApoLanthar50f2,
   sharedNikkor105f14,
   sharedNikkorZ50f18,
   sharedNokton50f1,
   sharedSonnar50f15,
+  teleconverterFixture,
+  teleconverterHostData,
   teleconverterZoomHostData,
 } from "./testLensFixtures.js";
-import type { LensData, SurfaceData } from "../../../src/types/optics.js";
+import type { LensData, LensDataInput, SurfaceData } from "../../../src/types/optics.js";
 
 /* ── Load all production lens data files ── */
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
@@ -34,17 +41,17 @@ vi.mock("../../../src/utils/featureFlags.js", async (importOriginal) => {
   return { ...actual, ENABLE_UNIFORM_SCALING: true };
 });
 
-const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
-const Nokton = { ...LENS_DEFAULTS, ...NoktonRaw } as LensData;
-const Nikkor105 = { ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData;
-const NikonFisheye6mmf28 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf28Raw } as LensData;
-const NikonFisheye6mmf56 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf56Raw } as LensData;
-const CanonEF815mmf4LFisheye = { ...LENS_DEFAULTS, ...CanonEF815mmf4LFisheyeRaw } as LensData;
-const Sonnar50f15 = { ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData;
-const Hologon15f8 = { ...LENS_DEFAULTS, ...Hologon15f8Raw } as LensData;
+const ApoLanthar = catalogLensData(ApoLantharRaw);
+const Nokton = catalogLensData(NoktonRaw);
+const Nikkor105 = catalogLensData(Nikkor105Raw);
+const NikonFisheye6mmf28 = catalogLensData(NikonFisheye6mmf28Raw);
+const NikonFisheye6mmf56 = catalogLensData(NikonFisheye6mmf56Raw);
+const CanonEF815mmf4LFisheye = catalogLensData(CanonEF815mmf4LFisheyeRaw);
+const Sonnar50f15 = catalogLensData(Sonnar50f15Raw);
+const Hologon15f8 = catalogLensData(Hologon15f8Raw);
 
 /* Shared frozen instances of the same five production lenses (identical
- * LENS_DEFAULTS-merge + buildLens path) for loops that only read the built
+ * ingest + buildLens path) for loops that only read the built
  * lens — order matches [ApoLanthar, Nokton, Nikkor, Nikkor105, Sonnar50f15]. */
 const SHARED_PRODUCTION_LENSES = [
   sharedApoLanthar50f2,
@@ -281,10 +288,27 @@ describe("buildLens — RuntimeLens property shape", () => {
   });
 });
 
+describe("buildLens — canonical ingest", () => {
+  it("reads an authored file through ingest and its V1 view", () => {
+    expect(withLensDefaults(ApoLantharRaw as unknown as LensData)).toEqual(toLensData(ingestLensV1(ApoLantharRaw)));
+  });
+
+  it("builds a composed pair as it is, known only by the marker attachTeleconverter writes", () => {
+    const composed = attachTeleconverter(teleconverterHostData(), teleconverterFixture());
+    expect(composed.attachedTeleconverter).toBeDefined();
+    /* Ingest refuses the marker, so a pair that builds did not pass through it. */
+    expect(() => ingestLensV1(composed as unknown as LensDataInput)).toThrow(/attachedTeleconverter is written only/);
+    const forBuild = withLensDefaults(composed);
+    expect(forBuild).toEqual(composed);
+    expect(forBuild).not.toBe(composed);
+    expect(buildLens(composed).EFL).toBeGreaterThan(buildLens(teleconverterHostData()).EFL);
+  });
+});
+
 describe("buildLens — error handling", () => {
+  /* Authored, without defaults: buildLens applies them, so its own error path is what these cases reach. */
   function makeMinimalData(overrides: Record<string, unknown> = {}): Record<string, unknown> {
     return {
-      ...LENS_DEFAULTS,
       key: "test",
       name: "Test Lens",
       nominalFno: 2.0,
@@ -331,6 +355,15 @@ describe("buildLens — error handling", () => {
       ],
     });
     expect(() => buildLens(data as unknown as LensData)).toThrow(/Duplicate surface label/);
+    /* Ingest refuses the repeated label too; the validator's message comes first, as it did before ingest. */
+    expect(() => ingestLensV1(data as unknown as LensDataInput)).toThrow(PrescriptionIngestError);
+  });
+
+  it("throws ingest's refusal, naming the field and its path, for a file the validator accepts", () => {
+    const data = makeMinimalData({ zoomLabels: ["Wide", "Tele"] });
+    expect(validateLensData({ ...v1CatalogDefaults(), ...data })).toEqual([]);
+    expect(() => buildLens(data as unknown as LensData)).toThrow(PrescriptionIngestError);
+    expect(() => buildLens(data as unknown as LensData)).toThrow(/zoomLabels is a zoom field/);
   });
 
   it("builds successfully with valid minimal data", () => {
@@ -505,7 +538,7 @@ describe("scaleRatio for normalized comparison", () => {
  * ═══════════════════════════════════════════════════════════════════ */
 
 describe("buildLens — zoom lens (Nikkor Z 70-200mm f/2.8)", () => {
-  const NikkorZ70200 = { ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData;
+  const NikkorZ70200 = catalogLensData(NikkorZ70200Raw);
   const L = buildLens(NikkorZ70200);
 
   it("builds successfully and is frozen", () => {
@@ -605,12 +638,9 @@ describe("published zoom iris schedule", () => {
   it("preserves supplied radii and interpolates between stations", () => {
     const zoomPositions = NikkorZ70200Raw.zoomPositions;
     const radii = zoomPositions.map((_, i) => 8 + 2 * i);
-    const L = buildLens({
-      ...LENS_DEFAULTS,
-      ...NikkorZ70200Raw,
-      zoomApertureModel: undefined,
-      zoomStopSemiDiameters: radii,
-    } as LensData);
+    const L = buildLens(
+      catalogLensData({ ...NikkorZ70200Raw, zoomApertureModel: undefined, zoomStopSemiDiameters: radii }),
+    );
     expect(L.stopPhysSD).toBe(radii[0]);
     expect(L.zoomStopSDs).toEqual(radii);
     expect(wideOpenStopAtZoom(0.5 / (radii.length - 1), L)).toBe(9);

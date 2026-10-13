@@ -30,7 +30,7 @@ import { pathToFileURL } from "node:url";
 const ROOT = join(import.meta.dirname, "..");
 const { conicPolySag, sag, sagSlopeRaw } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
 const validateLensData = (await import(pathToFileURL(join(ROOT, "src/optics/validateLensData.ts")).href)).default;
-const LENS_DEFAULTS = (await import(pathToFileURL(join(ROOT, "src/lens-data/defaults.ts")).href)).default;
+const { ingestLensV1, toLensData } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
 
 const argv = process.argv.slice(2);
 const dataFile = argv[0];
@@ -89,7 +89,8 @@ for (let index = 0; index < argv.length; index++) {
   }
 }
 
-const candidate = structuredClone({ ...LENS_DEFAULTS, ...lens });
+/* Canonical ingest's V1 view applies the schema defaults and hands back a fresh copy to edit. */
+const candidate = toLensData(ingestLensV1(lens));
 for (const surface of candidate.surfaces) if (overrides.has(surface.label)) surface.sd = overrides.get(surface.label);
 for (const label of overrides.keys()) {
   if (!candidate.surfaces.some((surface) => surface.label === label)) console.log(`!! no surface labelled "${label}"`);

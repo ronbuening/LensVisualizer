@@ -21,7 +21,7 @@ describe("traceExactSurfaceStack", () => {
   it("records physical spherical sag hit points", () => {
     const surfaces = [
       { label: "1", R: 50, nd: 1.5168, d: 5, sd: 15, elemId: 1 },
-      { label: "2", R: -50, nd: 1.0, d: 80, sd: 15, elemId: 1 },
+      { label: "2", R: -50, nd: 1.0, d: 80, sd: 15, elemId: 0 },
     ] satisfies SurfaceData[];
 
     const result = traceExactSurfaceStack(
@@ -77,7 +77,7 @@ describe("traceExactSurfaceStack", () => {
   it("reports intersection or refraction failure as a clipped failed trace", () => {
     const surfaces = [
       { label: "1", R: 10, nd: 2.0, d: 5, sd: 20, elemId: 1 },
-      { label: "2", R: 1e15, nd: 1.0, d: 10, sd: 20, elemId: 1 },
+      { label: "2", R: 1e15, nd: 1.0, d: 10, sd: 20, elemId: 0 },
     ] satisfies SurfaceData[];
 
     const result = traceExactSurfaceStack(

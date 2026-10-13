@@ -78,6 +78,7 @@ describe("sequential diffractive surface", () => {
     const phaseSurface = sameIndexData.surfaces.find((surface) => surface.label === PHASE_SURFACE_LABEL)!;
     const precedingIndex = sameIndexData.surfaces[sameIndexData.surfaces.indexOf(phaseSurface) - 1].nd;
     phaseSurface.nd = precedingIndex;
+    sameIndexData.elements.find((element) => element.id === phaseSurface.elemId)!.nd = precedingIndex;
     const sameIndex = build(sameIndexData);
     const state = prepareRuntimeState(sameIndex, 0, 0);
     const phaseSurfaceIndex = sameIndex.labelIdx[PHASE_SURFACE_LABEL];
