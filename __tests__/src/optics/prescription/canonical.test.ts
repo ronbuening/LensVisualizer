@@ -28,7 +28,7 @@ import {
 } from "../../../../src/optics/prescription/defaults.js";
 import { ingestLensV1, ingestTeleconverterV1 } from "../../../../src/optics/prescription/ingestV1.js";
 import { toLensData, toLensDataInput, toTeleconverterData } from "../../../../src/optics/prescription/toLensData.js";
-import type { LensData, LensDataInput } from "../../../../src/types/optics.js";
+import type { FiniteConjugate, LensData, LensDataInput } from "../../../../src/types/optics.js";
 import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
 
 const LENS_FILES = import.meta.glob<{ default: LensDataInput }>("../../../../src/lens-data/**/*.data.ts", {
@@ -575,6 +575,24 @@ describe("canonical prescription: spellings held as one", () => {
     expect(() => ingested(conjugate(0.5))).toThrow(/finiteConjugates\[0\]\.focusT 0\.5 is no focus keyframe/);
   });
 
+  it("measures a conjugate's zoomT in station index, as the validator does", () => {
+    /* Three stations sit 0.5 apart in zoomT, so a tolerance of 1e-8 in station index is 5e-9 in zoomT. */
+    const conjugate = (zoomT: number): LensDataInput => ({
+      ...zoom(),
+      finiteConjugates: [
+        { focusT: 1, zoomT, objectDistanceMm: 500, distanceReference: "first-surface", source: "Test table 1" },
+      ],
+    });
+    const near = ingested(conjugate(0.5 + 4e-9));
+    expect(near.prescription.focus.conjugates![0].zoomStation).toBe(1);
+    expect(near.provenance.ignored["focus.conjugates[0].zoomT"]).toBe(0.5 + 4e-9);
+    expect(() => buildLens(conjugate(0.5 + 4e-9) as LensData)).not.toThrow();
+    expect(() => ingested(conjugate(0.5 + 7.5e-9))).toThrow(
+      /finiteConjugates\[0\]\.zoomT 0\.5000000075 is no zoom station/,
+    );
+    expect(() => buildLens(conjugate(0.5 + 7.5e-9) as LensData)).toThrow();
+  });
+
   it("puts [wide, tele] zoom labels on the end stations and gives the pair back", () => {
     const labelled = { ...zoom(), zoomLabels: ["Wide", "Tele"] };
     const result = ingested(labelled);
@@ -680,6 +698,15 @@ describe("canonical prescription: refusals", () => {
     change(data);
     return data;
   };
+  /** A record as untyped data, to write what the V1 types would refuse. */
+  const untyped = (record: object): Record<string, unknown> => record as Record<string, unknown>;
+  const conjugateAt = (focusT: number, zoomT: number): FiniteConjugate => ({
+    focusT,
+    zoomT,
+    objectDistanceMm: 500,
+    distanceReference: "first-surface",
+    source: "Test table 1",
+  });
 
   it.each<[string, () => LensDataInput, RegExp]>([
     [
@@ -764,10 +791,177 @@ describe("canonical prescription: refusals", () => {
       () => edit(zoom, (data) => (data.publishedStations = { zoom: [0, 3] })),
       /publishedStations\.zoom\[1\] 3 names no zoom station \(0\.\.2\)/,
     ],
+    /* The validator reads `asph: null` and `var: null` as absent, so ingest is the check that names them. */
+    [
+      "an asph of null",
+      () => edit(prime, (data) => (untyped(data).asph = null)),
+      /^asph must be an object of aspheric entries keyed by surface label$/,
+    ],
+    [
+      "an asph written as a list",
+      () => edit(prime, (data) => (untyped(data).asph = [{ K: -0.5 }])),
+      /^asph must be an object of aspheric entries keyed by surface label$/,
+    ],
+    [
+      "a var of null",
+      () =>
+        edit(prime, (data) => {
+          untyped(data).var = null;
+          delete data.varLabels;
+        }),
+      /^var must be an object of gaps keyed by surface label$/,
+    ],
+    [
+      "a var written as a number",
+      () =>
+        edit(prime, (data) => {
+          untyped(data).var = 84;
+          delete data.varLabels;
+        }),
+      /^var must be an object of gaps keyed by surface label$/,
+    ],
+    [
+      "an aspheric entry on a surface that does not exist",
+      () => edit(prime, (data) => (data.asph!["9"] = { ...data.asph!["1A"] })),
+      /^asph\["9"\]: no surface is labelled "9"$/,
+    ],
+    [
+      "an aspheric entry of a number",
+      () => edit(prime, (data) => (untyped(data.asph!)["1A"] = 5)),
+      /^asph\["1A"\] must be an object of aspheric coefficients$/,
+    ],
+    [
+      "an aspheric term the schema does not define",
+      () => edit(prime, (data) => (untyped(data.asph!["1A"]).B4 = 1e-9)),
+      /^asph\["1A"\]\.B4 is not an aspheric coefficient$/,
+    ],
+    [
+      "varLabels that are not a list",
+      () => edit(prime, (data) => (untyped(data).varLabels = { "2": "BF" })),
+      /^varLabels must be a list$/,
+    ],
+    [
+      "a label pair of three members",
+      () => edit(prime, (data) => (untyped(data).varLabels = [["2", "BF", "back focus"]])),
+      /^varLabels\[0\] must be a \[label, text\] pair$/,
+    ],
+    [
+      "a gap labelled twice",
+      () => edit(prime, (data) => data.varLabels!.push(["2", "D2"])),
+      /^varLabels\[1\] labels "2" a second time$/,
+    ],
+    [
+      "varLabels naming a member every object inherits",
+      () => edit(prime, (data) => data.varLabels!.push(["toString", "D9"])),
+      /^varLabels\[1\] labels "toString", which has no var entry$/,
+    ],
+    [
+      "a gap on a surface that does not exist",
+      () => edit(prime, (data) => (data.var!["9"] = [1, 2])),
+      /^var\["9"\]: no surface is labelled "9"$/,
+    ],
+    [
+      "a prime's gap that is not a list of thicknesses",
+      () => edit(prime, (data) => (untyped(data.var!)["2"] = [80, "84"])),
+      /^var\["2"\] must be a list of thicknesses$/,
+    ],
+    [
+      "a zoom's gap that is not one row per station",
+      () => edit(zoom, (data) => (data.var!["2"] = [80, 84])),
+      /^var\["2"\] must be one row of thicknesses per zoom station$/,
+    ],
+    [
+      "a per-station f-number on a prime",
+      () => edit(prime, (data) => (untyped(data).nominalFno = [2.8, 4])),
+      /^nominalFno is a per-station list, and a prime has no stations to hold it$/,
+    ],
+    [
+      "zoom positions of one station",
+      () => edit(prime, (data) => (data.zoomPositions = [50])),
+      /^zoomPositions must list at least two station focal lengths$/,
+    ],
+    [
+      "a per-station list of the wrong length",
+      () => edit(zoom, (data) => (data.zoomCloseFocusM = [0.5, 0.6])),
+      /^zoomCloseFocusM must hold one value per zoom station \(3\)$/,
+    ],
+    [
+      "a finite conjugate between focus keyframes",
+      () => edit(prime, (data) => (data.finiteConjugates = [conjugateAt(0.5, 0)])),
+      /^finiteConjugates\[0\]\.focusT 0\.5 is no focus keyframe$/,
+    ],
+    [
+      "a finite conjugate between zoom stations",
+      () => edit(zoom, (data) => (data.finiteConjugates = [conjugateAt(1, 0.25)])),
+      /^finiteConjugates\[0\]\.zoomT 0\.25 is no zoom station$/,
+    ],
+    [
+      "a finite conjugate member V1 does not define",
+      () => edit(prime, (data) => (data.finiteConjugates = [{ ...conjugateAt(1, 0), note: "x" } as FiniteConjugate])),
+      /^finiteConjugates\[0\]\.note is not a V1 field$/,
+    ],
+    [
+      "finite conjugates that are not a list",
+      () => edit(prime, (data) => (untyped(data).finiteConjugates = { 0: conjugateAt(1, 0) })),
+      /^finiteConjugates must be a list$/,
+    ],
+    [
+      "published stations that are not an object",
+      () => edit(prime, (data) => (untyped(data).publishedStations = [0])),
+      /^publishedStations must be an object of zoom and focus station indices$/,
+    ],
+    [
+      "a published-stations member V1 does not define",
+      () => edit(zoom, (data) => (untyped(data).publishedStations = { stations: [0] })),
+      /^publishedStations\.stations is not a V1 field$/,
+    ],
+    [
+      "published zoom stations on a prime",
+      () => edit(prime, (data) => (data.publishedStations = { zoom: [0] })),
+      /^publishedStations\.zoom is a zoom field on a prime$/,
+    ],
+    [
+      "per-station published focus on a prime",
+      () => edit(prime, (data) => (data.publishedStations = { focus: [[0]] })),
+      /^publishedStations\.focus on a prime must be one index list$/,
+    ],
+    [
+      "published zoom stations that are not a list of indices",
+      () => edit(zoom, (data) => (untyped(data).publishedStations = { zoom: "all" })),
+      /^publishedStations\.zoom must be a list of station indices$/,
+    ],
+    [
+      "published focus rows for some zoom stations",
+      () => edit(zoom, (data) => (data.publishedStations = { focus: [[0], [1]] })),
+      /^publishedStations\.focus must be one index list or one list per zoom station \(3\)$/,
+    ],
+    ["a required field left out", () => edit(prime, (data) => delete untyped(data).yScFill), /^yScFill is required$/],
+    [
+      "surfaces that are not a list of objects",
+      () => edit(prime, (data) => (untyped(data).surfaces = [1, 2])),
+      /^surfaces must be a list of objects$/,
+    ],
+    [
+      "rear plates that are not a list",
+      () => edit(prime, (data) => (untyped(data).rearPlates = {})),
+      /^rearPlates must be a list$/,
+    ],
   ])("refuses %s, naming it", (_name, make, message) => {
     const issues = refusal(make());
     expect(issues).toHaveLength(1);
     expect(issues[0]).toMatch(message);
+  });
+
+  it("names an asph or var of null through buildLens, where the validator reads either as absent", () => {
+    const nullAsph = edit(prime, (data) => (untyped(data).asph = null));
+    const nullVar = edit(prime, (data) => {
+      untyped(data).var = null;
+      delete data.varLabels;
+    });
+    expect(() => buildLens(nullAsph as LensData)).toThrow(
+      /asph must be an object of aspheric entries keyed by surface label/,
+    );
+    expect(() => buildLens(nullVar as LensData)).toThrow(/var must be an object of gaps keyed by surface label/);
   });
 
   it("names every reason at once, and the error carries the lens key", () => {
