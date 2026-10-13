@@ -1,8 +1,10 @@
 /**
  * Surface-profile intersection solver — finds exact ray hits on sag and tilted-plane surfaces.
  *
- * Combines bracketed root search with Newton refinement so trace modules can distinguish
- * aperture misses from true intersection failures.
+ * Planes solve analytically. A sphere, and an asphere with no polynomial term, is solved in closed form
+ * (`intersectConic.ts`) and the root is accepted by evaluating the profile at it. Every other curved solve, and
+ * every closed-form root that cannot be accepted that way, takes the iterative path: a bracketed root search with
+ * safeguarded Newton refinement, so trace modules can distinguish aperture misses from true intersection failures.
  */
 
 import {
@@ -12,60 +14,28 @@ import {
   VECTOR_EPSILON,
 } from "../constants.js";
 import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../types.js";
-import { clamp } from "./numerics.js";
-import { dot, normalize, subtract } from "./vector.js";
-import { planeResidualRoundoff, sagResidualRoundoff } from "./intersectionTolerance.js";
+import { clamp } from "../math/numerics.js";
+import { dot, normalize, subtract } from "../math/vector.js";
+import { intersectConicClosedForm } from "./intersectConic.js";
+import { planeResidualRoundoff, sagResidualRoundoff } from "./intersectTolerance.js";
+import type {
+  ClosedFormFallbackReason,
+  ParameterInterval,
+  SurfaceIntersectionFailure,
+  SurfaceIntersectionFailureReason,
+  SurfaceIntersectionOptions,
+  SurfaceIntersectionResult,
+  SurfaceIntersectionSuccess,
+} from "./intersectTypes.js";
 
-/** Typed reason for an exact surface-intersection failure. */
-export type SurfaceIntersectionFailureReason =
-  | "invalidDirection"
-  | "invalidBounds"
-  | "noBracket"
-  | "noConvergedIntersection";
-
-/**
- * Search and reporting options for intersecting a ray with one surface profile.
- *
- * Bounds are parametric ray distances in millimeters because ray directions are
- * normalized. `refractiveIndex`, when supplied, also reports optical path length.
- */
-export interface SurfaceIntersectionOptions {
-  minT?: number;
-  maxT?: number;
-  tolerance?: number;
-  maxIterations?: number;
-  bracketSamples?: number;
-  refractiveIndex?: number;
-  directionNormalized?: boolean;
-  /** Authored asphere radius; exterior hits remain diagnostic when the ray misses the cap. */
-  clearRadius?: number;
-}
-
-/** Successful ray/surface intersection with geometry at the hit point. */
-export interface SurfaceIntersectionSuccess {
-  ok: true;
-  t: number;
-  point: Vec3;
-  radius: number;
-  normal: Vec3;
-  residual: number;
-  /** Accepted residual bound in mm; larger than requested only for coordinate roundoff. */
-  effectiveTolerance: number;
-  iterations: number;
-  segmentLength: number;
-  opticalPathLength: number | null;
-}
-
-/** Failed ray/surface intersection with the best residual when available. */
-export interface SurfaceIntersectionFailure {
-  ok: false;
-  failureReason: SurfaceIntersectionFailureReason;
-  residual: number | null;
-  iterations: number;
-}
-
-/** Union result for exact surface-profile intersection. */
-export type SurfaceIntersectionResult = SurfaceIntersectionSuccess | SurfaceIntersectionFailure;
+export type {
+  ClosedFormFallbackReason,
+  SurfaceIntersectionFailure,
+  SurfaceIntersectionFailureReason,
+  SurfaceIntersectionOptions,
+  SurfaceIntersectionResult,
+  SurfaceIntersectionSuccess,
+} from "./intersectTypes.js";
 
 /** Bisections that locate where a ray crosses the edge of a surface's domain (~1e-12 of the sample spacing). */
 const DOMAIN_EDGE_BISECTIONS = 40;
@@ -85,9 +55,10 @@ interface SurfaceEvaluation {
  * Intersect a normalized ray with a surface profile at a vertex plane.
  *
  * Flat and tilted planes solve analytically. Curved profiles solve
- * f(t) = ray.z(t) - surface.z(ray.x(t), ray.y(t)) with a safeguarded Newton
- * iteration inside a sign-changing bracket, so grazing and steep-rim roots
- * remain bounded and cannot stall.
+ * f(t) = ray.z(t) - surface.z(ray.x(t), ray.y(t)). A sphere and a polynomial-free conic take the closed-form
+ * root when the profile evaluates within the raw residual target at it; the rest, and every closed-form root that
+ * does not, use a safeguarded Newton iteration inside a sign-changing bracket, so grazing and steep-rim roots
+ * remain bounded and cannot stall. The result says which through `closedFormFallback`.
  *
  * @param ray - origin and direction in engine coordinates
  * @param profile - surface sag/normal evaluator
@@ -101,9 +72,103 @@ export function intersectSurfaceProfile(
   vertexZ: number,
   options: SurfaceIntersectionOptions = {},
 ): SurfaceIntersectionResult {
+  const closedForm = solveClosedForm(ray, profile, vertexZ, options);
+  if (closedForm !== null && typeof closedForm !== "string") return closedForm;
+  // The iterative path takes the caller's inputs and nothing from the closed form: no seed and no bracket.
+  const result = solveIteratively(ray, profile, vertexZ, options);
+  return closedForm === null ? result : { ...result, closedFormFallback: closedForm };
+}
+
+/**
+ * Try the closed form, on the profiles and calls it serves.
+ *
+ * @returns its hit or miss, the reason it falls back, or null when it does not apply
+ */
+function solveClosedForm(
+  ray: Ray3,
+  profile: SurfaceProfile,
+  vertexZ: number,
+  options: SurfaceIntersectionOptions,
+): SurfaceIntersectionResult | ClosedFormFallbackReason | null {
+  // An iteration budget or a scan density describes the iterative path, so a caller that sets one gets that path.
+  if (options.maxIterations !== undefined || options.bracketSamples !== undefined) return null;
+  // The four kinds stay: a conic is an aspheric profile without a polynomial term.
+  if (profile.kind !== "spherical" && !(profile.kind === "aspheric" && !profile.hasPolynomial)) return null;
+  const { minT = 0, maxT = Infinity, tolerance = INTERSECTION_TOLERANCE } = options;
+  const direction = options.directionNormalized ? ray.direction : normalize(ray.direction);
+  // Input the iterative path rejects goes to it, so the failure it reports stays the one reported.
+  if (!direction || !isValidBounds(minT, maxT) || !Number.isFinite(maxT)) return null;
+  // Spheres get no cap selection, whatever their clear radius.
+  const cap = profile.kind === "aspheric" ? capInterval(ray.origin, direction, options.clearRadius, minT, maxT) : null;
+  return intersectConicClosedForm(
+    ray.origin,
+    direction,
+    profile,
+    vertexZ,
+    minT,
+    maxT,
+    tolerance,
+    cap,
+    options.refractiveIndex,
+  );
+}
+
+/** The bracketed search with Newton refinement, then cap selection on an aspheric profile. */
+function solveIteratively(
+  ray: Ray3,
+  profile: SurfaceProfile,
+  vertexZ: number,
+  options: SurfaceIntersectionOptions,
+): SurfaceIntersectionResult {
   const hit = intersectProfile(ray, profile, vertexZ, options);
-  if (!hit.ok) return hit;
-  return selectAsphericCapHit(ray, profile, vertexZ, options, hit);
+  if (hit.ok) return selectAsphericCapHit(ray, profile, vertexZ, options, hit);
+  if (hit.failureReason !== "noConvergedIntersection") return hit;
+  /* The unbounded solve found a bracket and ran out of iterations on it: a numerical failure, usually on the
+   * polynomial continuation outside the cap. It says nothing about the cap, so a root inside it is still looked
+   * for, in ray order. With none found the failure stands. */
+  const direction = options.directionNormalized ? ray.direction : normalize(ray.direction);
+  const cap =
+    profile.kind === "aspheric" && direction
+      ? capInterval(ray.origin, direction, options.clearRadius, options.minT ?? 0, options.maxT ?? Infinity)
+      : null;
+  if (cap === null) return hit;
+  const capHit = intersectProfile(ray, profile, vertexZ, { ...options, minT: cap.minT, maxT: cap.maxT }, "ordered");
+  return capHit.ok ? capHit : hit;
+}
+
+/**
+ * Cut a ray's search bounds to the authored cap, the cylinder r <= clearRadius around the axis.
+ *
+ * @param origin - ray origin in mm
+ * @param direction - ray direction as the solve holds it
+ * @param clearRadius - authored cap radius in mm
+ * @param minT - lower parametric bound of the search
+ * @param maxT - upper parametric bound of the search
+ * @returns the bounds inside the cap; null without a usable radius, when the ray never enters the cap, or when
+ *   nothing of the bounds is inside it
+ */
+function capInterval(
+  origin: Vec3,
+  direction: Vec3,
+  clearRadius: number | undefined,
+  minT: number,
+  maxT: number,
+): ParameterInterval | null {
+  if (!(clearRadius !== undefined && Number.isFinite(clearRadius) && clearRadius > 0)) return null;
+  const speed2 = direction[0] ** 2 + direction[1] ** 2;
+  const dotXY = origin[0] * direction[0] + origin[1] * direction[1];
+  const offset = origin[0] ** 2 + origin[1] ** 2 - clearRadius ** 2;
+  if (speed2 === 0) {
+    if (offset > 0) return null;
+  } else {
+    const discriminant = dotXY ** 2 - speed2 * offset;
+    if (discriminant < 0) return null;
+    const root = Math.sqrt(discriminant);
+    minT = Math.max(minT, (-dotXY - root) / speed2);
+    maxT = Math.min(maxT, (-dotXY + root) / speed2);
+  }
+  if (!isValidBounds(minT, maxT) || !Number.isFinite(maxT)) return null;
+  return { minT, maxT };
 }
 
 /** Select an authored cap after an established successful solve, avoiding a second old solve. */
@@ -121,21 +186,10 @@ export function selectAsphericCapHit(
   // so ordinary aperture misses still report their first clip instead of becoming transmitted rays.
   const direction = options.directionNormalized ? ray.direction : normalize(ray.direction);
   if (!direction) return hit;
+  const cap = capInterval(ray.origin, direction, radius, options.minT ?? 0, options.maxT ?? Infinity);
+  if (cap === null) return hit;
+  const { minT, maxT } = cap;
   const speed2 = direction[0] ** 2 + direction[1] ** 2;
-  const dotXY = ray.origin[0] * direction[0] + ray.origin[1] * direction[1];
-  const offset = ray.origin[0] ** 2 + ray.origin[1] ** 2 - radius ** 2;
-  let minT = options.minT ?? 0;
-  let maxT = options.maxT ?? Infinity;
-  if (speed2 === 0) {
-    if (offset > 0) return hit;
-  } else {
-    const discriminant = dotXY ** 2 - speed2 * offset;
-    if (discriminant < 0) return hit;
-    const root = Math.sqrt(discriminant);
-    minT = Math.max(minT, (-dotXY - root) / speed2);
-    maxT = Math.min(maxT, (-dotXY + root) / speed2);
-  }
-  if (!isValidBounds(minT, maxT) || !Number.isFinite(maxT)) return hit;
   const transverseSpeed = Math.sqrt(speed2);
   const axialSpeed = Math.abs(direction[2]);
   const requestedMinT = options.minT ?? 0;
