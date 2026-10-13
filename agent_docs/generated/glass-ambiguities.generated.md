@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **922** lenses scanned
-- **10431** glass elements examined
-- **3188** elements have multiple coordinate-compatible candidates
-- **574** lens files are affected
-- **313** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **928** lenses scanned
+- **10538** glass elements examined
+- **3192** elements have multiple coordinate-compatible candidates
+- **576** lens files are affected
+- **314** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **208** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1832 |
-| Evidence-source priority | 1022 |
+| Smallest reference-index residual | 1833 |
+| Evidence-source priority | 1025 |
 | Vendor context | 320 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -1451,7 +1451,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `648338 — SF2 class (catalog equivalent; vendor unconfirmed)` | 1.64830 / 33.80 (d) | SF2 — direct name evidence outranks six-digit code evidence. | H-ZF1 (CDGM, code, alternate code row)<br>E-FD2 (Hoya, code, alternate code row)<br>S-TIM22 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR-S AUTO 5cm f/2](../../src/lens-data/nikon/NikonNikkorSAuto50mmf2.data.ts) L4 |
 | `741278 — SF13 / S-TIH13 class (catalog equivalent; vendor unconfirmed)` | 1.74080 / 27.70 (d) | S-TIH13 — direct name evidence outranks six-digit code evidence. | E-FD13 (Hoya, code, alternate code row) | 1 | [NIKON NIKKOR-S AUTO 5cm f/2](../../src/lens-data/nikon/NikonNikkorSAuto50mmf2.data.ts) L5 |
 | `744449 — LAF2 / S-LAM2 class (catalog equivalent; vendor unconfirmed)` | 1.74400 / 44.90 (d) | S-LAM2 — direct name evidence outranks alias evidence. | J-LAF2 (Hikari, alias)<br>H-LaF3B (CDGM, code, preferred code row)<br>N-LAF2 (Schott, code, alternate code row) | 2 | [NIKON NIKKOR-S AUTO 5cm f/2](../../src/lens-data/nikon/NikonNikkorSAuto50mmf2.data.ts) L6 |
+| `607402 — barium flint (BAFD3 coordinate-compatible dispersion proxy; supplier unresolved)` | 1.60717 / 40.20 (d) | BAFD3 — direct name evidence outranks six-digit code evidence. | BASF3 (Sumita, code, preferred code row) | 1 | [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) L3A |
 | `717295 — dense flint coordinate class (vendor unresolved)` | 1.71736 / 29.50 (d) | SF1 — smallest d-line \|Δn\| (1.5e-7 vs 1.8e-6) | S-TIH1 (Ohara, code, alternate code row) | 1 | [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) L3B |
+| `607402 — barium dense flint, BaSF/BaFD3 class (BAFD3 HOYA coordinate-compatible, Δνd +0.16; supplier unconfirmed)` | 1.60717 / 40.20 (d) | BAFD3 — direct name evidence outranks six-digit code evidence. | BASF3 (Sumita, code, vendor ✗, preferred code row) | 1 | [NIKON NIKKOR-SW 90mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW90mmf45.data.ts) L3A |
 | `SF1 class (717295; Hoya E-FD1 / Ohara S-TIH1 / Schott SF1 coordinate-exact)` | 1.71736 / 29.50 (d) | SF1 — smallest d-line \|Δn\| (1.5e-7 vs 1.8e-6) | S-TIH1 (Ohara, name, vendor ✓) | 1 | [NIKON NIKKOR-SW 90mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW90mmf45.data.ts) L3B |
 | `734510 — lanthanum crown, LaKN12 class (LAKN12 SUMITA coordinate-compatible, Δνd +0.2; TAC4 HOYA alternate; supplier unconfirmed)` | 1.73350 / 51.00 (d) | LAKN12 — smallest d-line \|Δn\| (5.6e-6 vs 5.0e-4) | TAC4 (Hoya, name, vendor ✓) | 1 | [NIKON NIKKOR-SW 90mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW90mmf45.data.ts) L4 |
 | `Nikon ED glass (near S-FPL51 / FCD1)` | 1.49782 / 82.56 (d) | FCD1 — smallest d-line \|Δn\| (8.2e-4 vs 8.2e-4) | S-FPL51 (Ohara, name) | 1 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8 D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) L21 |
@@ -1604,6 +1606,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `Dense flint class (673/322, E-FD5/SF5 class)` | 1.67270 / 32.20 (d) | E-FD5 — smallest d-line \|Δn\| (2.0e-7 vs 2.5e-6) | SF5 (Schott, name)<br>H-ZF2 (CDGM, code, alternate code row) | 1 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) L7 |
 | `N-BK7 / S-BSL7 class (borosilicate crown)` | 1.51680 / 64.20 (d) | N-BK7 — smallest d-line \|Δn\| (3.5e-8 vs 4.7e-4) | S-BSL7 (Ohara, name) | 2 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) L9 |
 | `S-TIH6 / N-SF6 class (OHARA/Schott dense flint)` | 1.80518 / 25.50 (d) | N-SF6 — smallest d-line \|Δn\| (1.8e-7 vs 7.1e-7) | S-TIH6 (Ohara, name, vendor ✓) | 1 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) L15 |
+| `N-LASF44 (SCHOTT; HOYA TAF3D shares the coordinate; supplier unconfirmed)` | 1.80420 / 46.50 (d) | N-LASF44 — smallest d-line \|Δn\| (1.0e-7 vs 1.7e-6) | TAF3D (Hoya, name, vendor ✓) | 1 | [PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO](../../src/lens-data/panasonic/PanasonicLumixS1428mmF456.data.ts) L1 |
 | `PBH21 (OHARA discontinued catalog-equivalent to patent 923209; supplier not identified)` | 1.92286 / 20.90 (d) | PBH21 — direct name evidence outranks six-digit code evidence. | N-SF66 (Schott, code, vendor ✗, preferred code row)<br>E-FDS1 (Hoya, code, vendor ✗, alternate code row) | 1 | [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) L11 |
 | `923209 — high-index flint class` | 1.92286 / 20.90 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, code, alternate code row)<br>PBH21 (Ohara, code, alternate code row) | 1 | [PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S.](../../src/lens-data/panasonic/PanasonicLumixS24105mmf4MacroOIS.data.ts) L1 |
 | `729547 — lanthanum crown class` | 1.72916 / 54.70 (d) | TAC8 — smallest d-line \|Δn\| (6.0e-8 vs 3.1e-6) | S-LAL18 (Ohara, code, preferred code row) | 2 | [PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S.](../../src/lens-data/panasonic/PanasonicLumixS24105mmf4MacroOIS.data.ts) L2 |
@@ -2320,6 +2323,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `805255 — dense-flint class (vendor unresolved)` | 1.80518 / 25.46 (d) | J-SF6 — smallest d-line \|Δn\| (3.3e-8 vs 4.4e-8) | H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) L5f |
 | `648338 — dense-flint class (vendor unresolved)` | 1.64769 / 33.84 (d) | E-FD2 — smallest d-line \|Δn\| (1.8e-7 vs 1.2e-6) | S-TIM22 (Ohara, code, preferred code row)<br>H-ZF1 (CDGM, code, alternate code row) | 1 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) L5r |
 | `785257 — dense-flint class (vendor unresolved)` | 1.78472 / 25.72 (d) | H-ZF13 — smallest d-line \|Δn\| (1.8e-9 vs 2.7e-6) | S-TIH11 (Ohara, code, preferred code row) | 1 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) L6f |
+| `607402 — BAFD3 compatible spectral proxy; patent vendor unspecified` | 1.60717 / 40.20 (d) | BAFD3 — direct name evidence outranks six-digit code evidence. | BASF3 (Sumita, code, preferred code row) | 1 | [VOIGTLÄNDER SKOPAREX 35mm f/3.4 (Bessamatic)](../../src/lens-data/voigtlander/VoigtlanderSkoparex35mmf34Bessamatic.data.ts) L4 |
 | `773496 — coordinate class (supplier unconfirmed)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 3 | [VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltraWideHeliar12mmf56AsphericalL39.data.ts) L11 +1 files |
 | `805255 — coordinate class (supplier unconfirmed)` | 1.80518 / 25.50 (d) | J-SF6 — smallest d-line \|Δn\| (3.3e-8 vs 4.4e-8) | H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltraWideHeliar12mmf56AsphericalL39.data.ts) L13 |
 | `847238 — coordinate class (supplier unconfirmed)` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltraWideHeliar12mmf56AsphericalL39.data.ts) L21 |
