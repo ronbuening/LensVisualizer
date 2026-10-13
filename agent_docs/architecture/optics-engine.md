@@ -587,7 +587,11 @@ A fourth comes from a hit that moves by an ulp or two. Two surfaces that share a
 a ray near the axis on the iterative path, whose evaluated residual is quantized more coarsely than the surfaces are
 apart there, and floats an ulp or two apart in closed form. The candidate search of the generalized tracer takes the
 nearest hit and keeps the lower surface index on a tie (`findNearestGeneralizedSurfaceHit()` in
-`trace/pathPlanner.ts`), so which of two such surfaces a ray meets can change.
+`trace/pathPlanner.ts`), so which of two such surfaces a ray meets can change. On the Zeiss Mirotar 500mm f/4.5 the
+two are the rear face of the second corrector and the secondary mirror coated on it, `3.8e-15` mm apart at
+`5.6e-5` mm from the axis. The closed form puts the mirror's blocked side first there, as the prescription has it,
+where the iterative path had let the ray through; the state's raw half-field, a bisection that ends on such a ray,
+moves by one of its steps.
 
 On the iterative path both solvers, `geometry/intersect.ts` and the legacy `internal/surfaceIntersection.ts`, share
 the same safeguarded Newton step (rtsafe). A step is accepted only inside the sign-changing bracket and when it moves
