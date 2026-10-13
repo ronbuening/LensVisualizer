@@ -48,7 +48,8 @@ const DOMAIN_EDGE_BISECTIONS = 40;
 
 /**
  * Most profile evaluations the seeded Newton iteration may spend. A solve that needs more is the iterative path's,
- * with that path's whole budget: these are not charged to it.
+ * with that path's whole budget: these are not charged to it. Like that path's cap it is a measured margin, not a
+ * convergence guarantee: the most a certified solve of the catalog needs, where three is usual.
  */
 const SEED_MAX_EVALUATIONS = 6;
 
@@ -62,6 +63,9 @@ const SEED_MAX_EVALUATIONS = 6;
  * move t leaves a residual that is already inside it.
  */
 const SEED_ENVELOPE_SHARE = 31 / 32;
+
+/** Smallest normal double. A square below it has lost digits, and is zero for an operand under about 1.5e-162. */
+const SMALLEST_NORMAL = 2 ** -1022;
 
 interface SurfaceEvaluation {
   t: number;
@@ -153,7 +157,8 @@ interface SeedCertificate {
   normalTurn: number;
   /**
    * The ray starts inside the cap and the stretch's largest radius is at that start. A certificate about any other
-   * point of the ray then starts at the same point and covers a radius at least as large, so none is tighter.
+   * point of the ray then starts at the same point and covers a radius at least as large, so none is tighter, but
+   * for the last bits of its coordinate rounding: there a refusal that is taken as final is conservative.
    */
   settled: boolean;
 }
@@ -175,13 +180,15 @@ interface SeedCertificate {
  *   the iterative path reports the target too, not its envelope.
  * - The same point, within budget. Two points of the stretch that both meet the target lie within
  *   2 (target + rounding) / min|f'| of each other. That is held to `MAX_ROOT_MOVE` along the ray and, times the
- *   turn of the normal, to `MAX_NORMAL_MOVE`.
+ *   turn of the normal, to `MAX_NORMAL_MOVE`; and the two are not on either side of the radius at which a normal
+ *   becomes the axis', unless the normal steps there by no more than that.
  * - No rule of the iterative path's own. The point is farther than that move from both bounds and from the rim,
  *   and is not within twice the target of the vertex plane unless it is the vertex-plane crossing, the point
- *   that path stops on there.
+ *   that path stops on there. One step of that path's scan is longer than the tolerance, the distance along the
+ *   ray within which its cap selection takes two hits for one.
  *
  * Anything else is refused with a reason, and the caller runs the iterative path with its own inputs: nothing
- * computed here is passed on. Exported for tests, as `selectAsphericCapHit` is.
+ * computed here is passed on. Exported for tests: nothing in `src/` calls it but `intersectSurfaceProfile`.
  *
  * @param ray - origin and direction in engine coordinates
  * @param profile - surface sag/normal evaluator
@@ -224,6 +231,9 @@ export function seedAsphereSolve(
   /* ── Lengths along the ray ── */
 
   const speed2 = direction[0] ** 2 + direction[1] ** 2;
+  /* The cap interval is solved from this square, and the transverse speed is its root. Where the square underflows
+   * neither is the ray's, and a ray that is not axial can be held as axial. */
+  if (speed2 < SMALLEST_NORMAL && (direction[0] !== 0 || direction[1] !== 0)) return "coordinateRoundoff";
   const transverseSpeed = Math.sqrt(speed2);
   const axialSpeed = Math.abs(direction[2]);
   const length = Math.sqrt(speed2 + direction[2] ** 2);
@@ -235,6 +245,10 @@ export function seedAsphereSolve(
   const coordinateLimit = capCoordinateTolerance(clearRadius);
   // One step of the iterative path's scan of the bounds, with the rounding of a sample's position.
   const scanStep = (maxT - minT) / INTERSECTION_BRACKET_SAMPLES + 4 * Number.EPSILON * maxT;
+  /* Cap selection takes two hits for one root when their parameters differ by no more than the tolerance, which is
+   * a length only on a unit direction. Any other root is more than one scan step from the point's, so a step
+   * longer than the tolerance keeps that rule from returning another root in the point's place. */
+  if (!(scanStep > tolerance)) return "shortBounds";
   // ... and the farthest apart two points of one root may lie.
   const step = scanStep + MAX_ROOT_MOVE / length;
   const curvature = profile.curvature;
@@ -264,9 +278,10 @@ export function seedAsphereSolve(
     let normalTurn = 0;
     if (transverseSpeed > 0) {
       /* Per mm of radius the unit normal turns by at most |sag''| in the meridional plane and |sag'| / r about
-       * the axis. The conic's part of both is within |c| max(1, w⁻³) for its conic root w, and each term of the
-       * polynomial part of the slope bound, p |A_p| r^(p−1), differentiates to at most (p − 1) / r of itself.
-       * All of it grows with r, so the stretch's largest radius bounds it. */
+       * the axis. The conic's part of both is within |c| max(1, w⁻³) for its conic root w, and each polynomial
+       * term of the slope bound, p |A_p| r^(p−1), differentiates to at most (p − 1) / r of itself. The whole slope
+       * bound stands in for its polynomial part here, the conic's slope and the bound's slack with it, which
+       * only raises the bound. All of it grows with r, so the stretch's largest radius bounds it. */
       const w2 = 1 - (1 + profile.conic) * curvature * curvature * conservativeRadius * conservativeRadius;
       const conicTurn =
         curvature === 0 ? 0 : w2 > 0 ? Math.abs(curvature) * Math.max(1, 1 / (w2 * Math.sqrt(w2))) : Infinity;
@@ -320,9 +335,19 @@ export function seedAsphereSolve(
     if (Math.abs(at.sag) <= 2 * tolerance && at.t !== vertexPlaneT) return "vertexPlane";
     // That path tests each bound before it looks between them, and returns a bound that passes.
     if (!(at.t - minT > move && maxT - at.t > move)) return "atBound";
-    // Both paths' points are inside the cap: this one by the move between them and the rounding of both radii.
-    const rimSlack = 2 * certificate.coordinateRoundoff + transverseSpeed * move;
-    if (!(at.radius + rimSlack <= clearRadius)) return "atRim";
+    // The two paths' radii differ by no more than the move between their points and the rounding of both.
+    const radiusSlack = 2 * certificate.coordinateRoundoff + transverseSpeed * move;
+    // Both paths' points are inside the cap: this one by that much.
+    if (!(at.radius + radiusSlack <= clearRadius)) return "atRim";
+    /* Under VECTOR_EPSILON of radius a normal is the axis' (`normalFromSlope`), and from there on the surface's,
+     * so it steps there by the slope. The turn of the normal bounds a smooth normal only: where the two points
+     * can lie on either side of that radius, the slope at the outer one bounds how far their normals differ. */
+    if (
+      Math.abs(at.radius - VECTOR_EPSILON) <= radiusSlack &&
+      !((profile.maxAbsSlope?.(VECTOR_EPSILON + radiusSlack) ?? Infinity) <= MAX_NORMAL_MOVE)
+    ) {
+      return "axisNormal";
+    }
     return null;
   };
 
@@ -371,7 +396,7 @@ export function seedAsphereSolve(
 
   /* The window's certificate covers a point inside the window. Where it does not serve, one about the point
    * itself may: its stretch is shorter, so its slope bound can be lower. A settled certificate that covers the
-   * point is already the tightest about it, and its refusal stands. */
+   * point is already the tightest about it but for the rounding of its coordinate bound, and its refusal stands. */
   const inWindow = found.t >= windowLo && found.t <= windowHi;
   const windowRefusal = inWindow ? refusalAt(windowCertificate, found) : null;
   if (!inWindow || windowRefusal !== null) {

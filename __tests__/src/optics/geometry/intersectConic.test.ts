@@ -776,6 +776,9 @@ describe("base-conic root", () => {
 
     const miss = sphere(50, { origin: [100, 0, -10], direction: [0, 0, 1] }, { maxT: 20 });
     expect(rootOf(miss, 0, 20)).toBeNull();
+    // A line that passes the sphere 10 mm outside it has no root anywhere, however wide the interval.
+    const passing = sphere(50, { origin: [60, 0, -100], direction: [0, 0, 1] }, { maxT: 400 });
+    expect(rootOf(passing, 0, 400)).toBeNull();
     // A ray parallel to a flat base never crosses its vertex plane.
     expect(baseConicRoot([0, 1, -5], [1, 0, 0], 0, 0, 0, 0, 20)).toBeNull();
   });
