@@ -30,33 +30,22 @@ import type { LensDataInput } from "../../types/optics.js";
  * after comparison with Figure 7 (drawn at focus position F2) and Figures 8a and 8c. The
  * figures give each element a square-cut edge about 1.1–1.8 mm beyond its larger printed
  * half-diameter, with flat annuli on the smaller faces; that mechanical edge is not modeled.
- * Source inconsistencies (see sourceErrata): the prose calls L19 biconcave although Table 1 and
- * Figure 7 show it biconvex; paragraph 0057 gives 37.13 degrees where Figure 11a prints 38.04;
- * Table 2 prints 753 for one relative-illumination entry.
+ * With the front filter restored, the printed apertures and the 15.80 mm stop reproduce Table 2's
+ * relative illumination within 0.2 percentage points at 546.074 nm (full field 44.8 / 47.3 /
+ * 51.4 % against 45.0 / 47.3 / 51.5 %), so the printed column is the patent's own beam limit.
+ * Source inconsistencies, none of them in the prescription: paragraph 0045 calls L14 a positive
+ * meniscus and L17 biconcave where Table 1's radii make L14 biconvex and L17 a negative meniscus;
+ * the prose and claim 12 call L19 biconcave although Table 1, Figure 7 and claim 1 show it
+ * biconvex; paragraph 0057 gives 37.13 degrees where Figure 11a prints 38.04; Table 2 prints 753
+ * for one relative-illumination entry (the trace gives 75.1) and 79.1 for the F2 entry at
+ * normalized height 0.65 (the trace gives 71.9). The model uses Table 1 throughout, so these are
+ * kept here and in the analysis, not in sourceErrata, which is for contradictions in the table.
  */
 
 const LENS_DATA = {
   key: "leica-summilux-c-18mm-t14",
   maker: "Leica",
   name: "LEICA SUMMILUX-C 18mm T1.4",
-  sourceErrata: [
-    {
-      status: "unresolved",
-      note: "Paragraph 0045 calls L14 a positive meniscus and L17 biconcave, but Table 1's vertex radii make L14 biconvex and L17 a negative meniscus with an aspheric rear surface; the model uses the Table 1 radii.",
-    },
-    {
-      status: "unresolved",
-      note: "Paragraph 0045 and claim 12 call L19 biconcave, but Table 1, Figure 7 and claim 1 show a positive biconvex element; the model uses the Table 1 radii.",
-    },
-    {
-      status: "unresolved",
-      note: "Paragraph 0057 gives 37.13 degrees as the Figure 11a full-field angle, but Figure 11a prints 38.04 degrees and 37.13 degrees is the Figure 11c value; the figure labels are used.",
-    },
-    {
-      status: "unresolved",
-      note: "Table 2 prints 753 for the F3 relative illumination at normalized height 0.65, presumably 75.3; the value is not used in the model.",
-    },
-  ],
   subtitle: "EP 2 321 688 B1, First Embodiment — research correlation; production prescription unconfirmed",
   specs: [
     "18 ELEMENTS / 15 GROUPS",
@@ -735,7 +724,7 @@ const LENS_DATA = {
   ],
   closeFocusM: 0.34155146125108476,
   focusDescription:
-    "PUBLISHED three-state floating focus (Table 1, F1/F2/F3). The front sub-group G1a is fixed. From infinity to the nearest printed state, G1b moves 1.657 mm toward the image and G2, which carries the iris, moves 1.777 mm toward the object (0.699 mm and 0.899 mm at the middle state); the image plane stays fixed. Displayed distances replace the patent's optional front filter by its air-equivalent thickness: 341.6 mm and 532.3 mm from object to image, against 342.6 mm and 533.3 mm with the filter in place. Positions between the printed states are interpolated. The marketed close focus (0.35 m to 0.5 m depending on the listing) is not the patent's near state.",
+    "PUBLISHED three-state floating focus (Table 1, F1/F2/F3). The front sub-group G1a is fixed. From infinity to the nearest printed state, G1b moves 1.657 mm toward the image and G2, which carries the iris, moves 1.777 mm toward the object (0.699 mm and 0.899 mm at the middle state); the image plane stays fixed. Displayed distances replace the patent's optional front filter by its air-equivalent thickness: 341.6 mm and 532.3 mm from object to image, against 342.6 mm and 533.3 mm with the filter in place. The patent text quotes the same two states from its first surface instead, as about 15 cm and 34 cm. Positions between the printed states are interpolated. The marketed close focus (0.35 m to 0.5 m depending on the listing) is not the patent's near state.",
   nominalFno: 1.3209570317518873,
   fstopSeries: [1.3209570317518873, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
   gapSagFrac: 0.9705,

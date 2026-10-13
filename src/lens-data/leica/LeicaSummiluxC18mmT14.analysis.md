@@ -217,8 +217,12 @@ filter. Each name was resolved in the current OHARA catalog, and the nd/νd pair
 SCHOTT, HIKARI, CDGM and SUMITA catalogs; the OHARA names are kept because the patent prints them. [1, ¶0038; 6–11]
 
 The table gives the d-line nd and νd used in the model and the catalog-derived ΔPgF. Current catalog data stand in for
-the melts of the original design, which the patent does not publish. Two printed codes differ from the current catalog
-in the last digit of νd: 741527 for S-LAL61 (now 52.64) and 618634 for S-PHM52 (now 63.33).
+the melts of the original design, which the patent does not publish. All eleven printed codes are the code numbers the
+current OHARA catalog still lists for these glasses. Four of them end in a digit that today's catalog νd no longer
+rounds to: 741527 for S-LAL61 (now 52.637), 497816 for S-FPL51 (81.546), 439950 for S-FPL53 (94.946) and 618634 for
+S-PHM52 (63.334). Each is less than 0.07 from the code's νd, and a code carries the index to three decimals only, so
+the catalog values are used. With them the group focal lengths match the printed ones; the three-decimal code indices
+would put G1b at +95.49 mm against the printed +95.67 mm.
 
 | OHARA glass |      nd |    νd | ΔPgF from the catalog data | Elements              |
 | ----------- | ------: | ----: | -------------------------: | --------------------- |
@@ -239,8 +243,8 @@ catalog line. Each element names its OHARA glass and traces on that glass's cata
 wavelength; the seven elements the patent calls abnormal-dispersion are marked as such in the element inspector.
 
 Paragraph 0046 connects S-FPL51 and S-FPL53 with extra freedom for chromatic correction and S-NPH1 with compensation of
-secondary dispersion. That is the patent's stated strategy; the chromatic performance of the complete lens has not been
-recomputed here. [1, ¶0046; 6]
+secondary dispersion. That is the patent's stated strategy; the five-wavelength ray fans and polychromatic MTF
+recomputed under Source Performance and Discrepancies are consistent with it. [1, ¶0046; 6]
 
 ## Focus Mechanism
 
@@ -263,6 +267,9 @@ not the filter's small oblique and chromatic effects. [1, Table 1; ¶0042]
 | ----- | -----------------------------------: | --------------------------------: |
 | F2    |                              533.273 |                     532.251461251 |
 | F3    |                              342.573 |                     341.551461251 |
+
+Paragraph 0048 quotes F2 and F3 from the first surface S1 instead, as about 34 cm and 15 cm (340.000 mm and 149.300 mm
+in Table 1); the distances above and on the focus control are measured to the image plane. [1, Table 1; ¶0048]
 
 The model therefore uses a close-focus distance of 0.341551461251 m and places F2 at 0.641710706530 of the focus
 control, with F1 at 0 and F3 at 1. These values come from the patent's conjugates, not from the marketed minimum focus
@@ -328,8 +335,8 @@ usual 0.90, without changing a radius, spacing or clear aperture.
 
 All printed clear apertures act as hard limits. They vignette off-axis bundles, as in the patent: ¶0051 puts the
 full-field beam area at about 42% of the axial beam. The stop is therefore not filled at every field and focus state,
-and at wide field some rays are clipped at the cemented interface S31. No full-aperture, full-field transmission figure
-is claimed for the model. [1, Table 1; ¶0051]
+and at wide field some rays are clipped at the cemented interface S31. The relative illumination that results is
+compared with Table 2 below. [1, Table 1; ¶0051]
 
 ## Source Performance and Discrepancies
 
@@ -343,10 +350,30 @@ Applying the patent's breathing equation to those printed angles gives 2.392219%
 as having no breathing. [1, ¶0055; 4]
 
 The same trace of the printed prescription, using current OHARA catalog indices, reproduces the Table 2 distortion at
-all twelve nonzero field and focus combinations within 0.006189 percentage points. The patent's diffraction MTF and
-relative illumination have not been recomputed. Table 2 prints 753 for the F3 relative illumination at normalized
-height 0.65, presumably 75.3. The patent also gives 769 mm Hg as its standard atmospheric pressure, where 760 mm Hg is
-the usual value; no correction is applied for it. [1, Table 2; ¶0035]
+all twelve nonzero field and focus combinations within 0.006189 percentage points. The patent also gives 769 mm Hg as
+its standard atmospheric pressure, where 760 mm Hg is the usual value; no correction is applied for it. [1, Table 2;
+¶0035]
+
+Integrated over the pupil at 546.074 nm, with the front filter in place and every printed clear aperture acting as a
+hard limit, the same prescription reproduces Table 2's relative illumination within 0.2 percentage points at ten of
+the twelve points: 83.7, 70.6, 56.6 and 44.8% at F1 against the printed 83.8, 70.6, 56.6 and 45.0%, and 47.3% and 51.4%
+at full field for F2 and F3 against 47.3% and 51.5%. The other two entries are misprints. Table 2 prints 753 for F3 at
+normalized height 0.65, where the trace gives 75.1, and 79.1 for F2 at the same height, where it gives 71.9. Just behind
+the last surface the full-field beam is 41.8% of the axial beam, the “around 42%” of ¶0051. These values belong to the
+printed 15.80 mm stop: a 14.86 mm stop, f/1.4, would give 49.8, 53.0 and 56.9% at full field. With the filter omitted,
+as in the model, the F1 values are 84.0, 70.8, 57.0 and 45.2% at the d line. [1, Table 2; ¶0051]
+
+Recomputed for the five wavelengths of Figures 10a and 10b, the model's ray fans stay within 0.01 mm over the inner 85%
+of the pupil, on axis and at full field, and reach 0.014–0.015 mm at the rim for 455 nm; ¶0053 puts the patent's at
+around 0.01 mm except for the extreme on-axis rays. [1, Figures 10a–10b; ¶0053]
+
+The polychromatic diffraction MTF was recomputed at the printed image plane with the wavelengths and weights printed
+in Figures 11a–c. At infinity and 60 cycles/mm it gives 0.70 for the radial curve at 0.4 field, 0.66 on axis and
+0.48–0.55 for the other seven curves; Figure 11a shows 0.70, 0.68 and 0.48–0.54. At 40 cycles/mm the model gives 0.84,
+0.80 and 0.70–0.75 against 0.84, 0.81 and 0.70–0.75. One micrometre of focus accounts for the on-axis difference. The
+curves of Figures 11b and 11c are matched within about 0.03. The diffraction-limit curve drawn in the three figures
+corresponds to f/1.31 ± 0.03. The fields that Figure 11a labels 0.7 and 0.8 are the normalized image heights 0.65 and
+0.85 of Table 2 (26.84° and 33.63°). [1, Figures 11a–c; ¶0057]
 
 The d-line Petzval sum is 0.002667623619 mm⁻¹, calculated surface by surface as φ/(n·n′); it is a first-order quantity,
 not a traced field-curvature result.
@@ -357,8 +384,8 @@ None of these discrepancies changes a number in the model: the Table 1 values ar
 
 1. European Patent Office, Iain A. Neil (printed as Ian A. Neil), _Objective lens system_,
    [EP 2 321 688 B1](https://patents.google.com/patent/EP2321688B1/en), granted 22 July 2020. Front page; first
-   embodiment, Table 1 and notes (pp. 7–8), Figure 7, ¶0035–¶0058, ¶0098, claims 1, 8, 9 and 12. All numerical values
-   are taken from the published patent PDF.
+   embodiment, Table 1 and notes (pp. 7–8), Table 2, Figures 7–11c, ¶0035–¶0058, ¶0098, claims 1, 7–10 and 12. All
+   numerical values are taken from the published patent PDF.
 2. Iain Neil,
    [Leica Summilux-C design article](https://www.fdtimes.com/pdfs/articles/leica/64FDTimes4.3-LeicaCWSonderoptic-150.pdf),
    signed April 2013, reprinted in _Film and Digital Times_ no. 64, September 2014, pp. 30–31. The article describes
