@@ -515,13 +515,18 @@ export interface OneSidedCounts {
 /**
  * What a semantic data change did to the statuses, the computed numbers and the outcomes of a lens's records, path
  * by path. A side has a status at a path where it holds a string in a member named `status`, a number where it holds
- * a number, and an outcome where it holds a boolean in a member named `ok`. An array that changed length is paired
- * by index, so its first elements are at paths both sides have.
+ * a number, and an outcome where it holds a boolean in a member named `ok`. A status the prescription hands back,
+ * such as that of a source erratum, was authored and is none of these. An array that changed length is paired by
+ * index, so its first elements are at paths both sides have.
  */
 export interface ImpactPaths {
   /** Statuses at a path where both sides have one. */
   statuses: {
-    /** No failure on the base data and a failure on the head data. Each one blocks. */
+    /**
+     * No failure on the base data and a failure on the head data. Each one blocks, whatever the status on the base
+     * data was: one that held a result (`ok`, `usable`, `converged`) or one that held none (`clipped`,
+     * `unbracketed`).
+     */
     toFailure: number;
     /** A failure on the base data and none on the head data. */
     fromFailure: number;
@@ -533,17 +538,33 @@ export interface ImpactPaths {
     /** Not finite on the base data and finite on the head data. */
     fromNonFinite: number;
   };
-  /** Outcomes of a record, an analysis job or a probe, where both sides have one. */
+  /**
+   * Outcomes where both sides have one: a boolean in a member named `ok`. That is the outcome of a record, of an
+   * analysis job and of a tracer's near-axis probes, and in a composition record the fit predicate's answer, which
+   * the composer applies, so a pair it refuses throws as its record does.
+   */
   outcomes: {
-    /** Returned on the base data and throws on the head data. Each one blocks. */
+    /** True on the base data and false on the head data: it returned, and now throws. Each one blocks. */
     toThrown: number;
-    /** Threw on the base data and returns on the head data. */
+    /** False on the base data and true on the head data: it threw, and now returns. */
     fromThrown: number;
   };
   /** At paths only the base data has: work the head data no longer does. Counted, and no gate. */
   baseOnly: OneSidedCounts;
   /** At paths only the head data has: work the base data never did. Counted, failures included, and no gate. */
   headOnly: OneSidedCounts;
+  /**
+   * Arrays at a path both sides have that changed length and hold what the rule reads: a status, an outcome or a
+   * computed number that is not finite. Their elements are paired by index, which sets the same things side by
+   * side only where the longer side's extra elements are at its end. Where an element was put in or taken out
+   * ahead of others, a status that turned to a failure can show as one side's alone, and one that did not can show
+   * as turned. Nothing here gates: it tells a reader where to check the pairing.
+   */
+  resized: {
+    arrays: number;
+    /** The first of them, up to `MAX_IMPACT_BLOCKERS`, each as its record, its path and the two lengths. */
+    listed: Finding[];
+  };
   /**
    * Every status that differs, as `base -> head` with `absent` for a side that has none at the path, against how
    * many paths show it. A run keeps the first `MAX_STATUS_CHANGES` distinct changes of a lens.
@@ -735,11 +756,25 @@ export interface DifferentialRun {
  * trace or in the digest of a nested one, `bracket-failed` for a chief-ray solve and `evaluation-failed` for a root
  * solve or a sensor lock. A semantic data change may not turn a status that is none of them into one of them. Every
  * other status is an outcome a prescription can legitimately move between: clipped, missed-sensor, chief-unreachable,
- * outside the projection domain, unbracketed, an iteration limit, a paraxial fallback, unavailable. */
+ * outside the projection domain, unbracketed, an iteration limit, a paraxial fallback, unavailable.
+ *
+ * The rule asks of the base status only that it is no failure, so it also blocks where the base data held no result
+ * either: a ray that was `clipped` and is `failed`, a root solve that was `unbracketed` and is `evaluation-failed`.
+ * The fans of a traces record are traced on past a rim, so the first is a vignetted ray that went on to miss a
+ * surface. The report marks the status changes that block, and a reader tells those from a result that was lost. */
 const FAILED_STATUS = /failed/;
+
+/** Whether a status that changed between the two sides of a data change blocks it. */
+function turnedToFailure(base: string, head: string): boolean {
+  return !FAILED_STATUS.test(base) && FAILED_STATUS.test(head);
+}
 
 /** What a data change may turn from good to bad at a path both sides have, as the members of `ImpactPaths`. */
 type ImpactBlocker = "statuses" | "numbers" | "outcomes";
+
+/** How a status change is written where one side has no status at the path. */
+const NO_STATUS = "absent";
+const STATUS_CHANGE_ARROW = " -> ";
 
 function emptyImpactPaths(): ImpactPaths {
   return {
@@ -748,6 +783,7 @@ function emptyImpactPaths(): ImpactPaths {
     outcomes: { toThrown: 0, fromThrown: 0 },
     baseOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
     headOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
+    resized: { arrays: 0, listed: [] },
     statusChanges: {},
     statusChangesUnlisted: 0,
   };
@@ -774,9 +810,13 @@ function blockersOf(paths: ImpactPaths, blocker: ImpactBlocker): number {
  *
  * This walk is the rule's own. The paired walk of the engine comparison reports an array of another length once and
  * does not enter it, which hid a status that turned to a failure there. This one pairs such an array by index: its
- * first elements are at paths both sides have, and the rest belong to the longer side alone. A value that is a
- * container on one side and something else on the other, or a number against anything that is none, is each side's
- * alone.
+ * first elements are at paths both sides have, and the rest belong to the longer side alone. That sets the same
+ * things side by side only while nothing was put in or taken out ahead of them, so each such array that holds a
+ * status, an outcome or a computed number that is not finite is reported. A value that is a container on one side
+ * and something else on the other, or a number against anything that is none, is each side's alone.
+ *
+ * A status or a non-finite number that hands the prescription back was authored, and is no part of the rule: the
+ * `status` of a source erratum, the focal length of a plane element.
  *
  * The digest of a nested trace is an object at a path both sides have, and its members are read like any others:
  * its `status` is a status, and its hit count, largest residual share and largest effective tolerance are numbers.
@@ -785,14 +825,16 @@ function blockersOf(paths: ImpactPaths, blocker: ImpactBlocker): number {
  *
  * @param base - a record of the base data on the head engine
  * @param head - the record of the head data for the same request
- * @param paths - the lens's counts, which this adds to
+ * @param paths - the lens's counts, which this adds to; its list of resized arrays is the caller's to fill
  * @param block - called for each blocker with its kind, its path and the two values
+ * @param resized - called for each array that changed length and holds what the rule reads, with its path
  */
 function judgeDataChange(
   base: ComparableRecord,
   head: ComparableRecord,
   paths: ImpactPaths,
   block: (blocker: ImpactBlocker, path: string, base: unknown, head: unknown) => void,
+  resized: (path: string, base: readonly unknown[], head: readonly unknown[]) => void,
 ): void {
   const keys: (string | number)[] = [];
   /* The path as the budget table reads it, with "[]" for an array level. */
@@ -802,10 +844,23 @@ function judgeDataChange(
       (path, key) => (typeof key === "number" ? `${path}[${key}]` : path ? `${path}.${key}` : key),
       "",
     );
-  /* A non-finite number that hands the prescription back was authored: the focal length of a plane element. */
-  const authored = () => resolveBudgetRule(head.request, segments)?.authored === true;
+  /* Whether the field at the current path hands the prescription back, by the budget table. A record has few
+   * distinct paths and many leaves at each, so the answer is kept per path. */
+  const authoredAt = new Map<string, boolean>();
+  const authored = (): boolean => {
+    const pattern = JSON.stringify(segments);
+    let answer = authoredAt.get(pattern);
+    if (answer === undefined) {
+      answer = resolveBudgetRule(head.request, segments)?.authored === true;
+      authoredAt.set(pattern, answer);
+    }
+    return answer;
+  };
+  /* A status is a string in a member named `status` that the engine wrote. */
+  const isStatusHere = (value: unknown): value is string =>
+    typeof value === "string" && segments[segments.length - 1] === "status" && !authored();
   const noteStatus = (was: string | null, is: string | null) => {
-    const change = `${was ?? "absent"} -> ${is ?? "absent"}`;
+    const change = `${was ?? NO_STATUS}${STATUS_CHANGE_ARROW}${is ?? NO_STATUS}`;
     if (Object.hasOwn(paths.statusChanges, change)) paths.statusChanges[change]++;
     else if (Object.keys(paths.statusChanges).length < MAX_STATUS_CHANGES) paths.statusChanges[change] = 1;
     else paths.statusChangesUnlisted++;
@@ -815,7 +870,7 @@ function judgeDataChange(
   const alone = (value: unknown, which: "baseOnly" | "headOnly"): void => {
     const side = paths[which];
     if (!isContainer(value)) {
-      if (typeof value === "string" && segments[segments.length - 1] === "status") {
+      if (isStatusHere(value)) {
         side.statuses++;
         if (FAILED_STATUS.test(value)) side.failedStatuses++;
         noteStatus(which === "baseOnly" ? value : null, which === "headOnly" ? value : null);
@@ -838,6 +893,30 @@ function judgeDataChange(
     }
   };
 
+  /**
+   * Whether a value at the current path holds, at any depth, what the rule reads: a status, an outcome or a
+   * computed number that is not finite.
+   */
+  const holdsWhatGates = (value: unknown): boolean => {
+    if (!isContainer(value)) {
+      if (isStatusHere(value) || (typeof value === "boolean" && segments[segments.length - 1] === "ok")) return true;
+      const number = numberOf(value);
+      return number !== undefined && !Number.isFinite(number) && !authored();
+    }
+    if (Array.isArray(value)) {
+      segments.push("[]");
+      const found = value.some((item) => holdsWhatGates(item));
+      segments.pop();
+      return found;
+    }
+    return Object.entries(value).some(([key, member]) => {
+      segments.push(key);
+      const found = holdsWhatGates(member);
+      segments.pop();
+      return found;
+    });
+  };
+
   /** Compare what both sides hold at the current path. */
   const both = (a: unknown, b: unknown): void => {
     if (a === b) return;
@@ -846,6 +925,10 @@ function judgeDataChange(
       if (aIsArray) {
         const [items, others] = [a as unknown[], b as unknown[]];
         const common = Math.min(items.length, others.length);
+        if (items.length !== others.length && (holdsWhatGates(items) || holdsWhatGates(others))) {
+          paths.resized.arrays++;
+          resized(pathOf(), items, others);
+        }
         segments.push("[]");
         for (let index = 0; index < common; index++) {
           keys.push(index);
@@ -874,17 +957,16 @@ function judgeDataChange(
       }
       return;
     }
-    const key = keys[keys.length - 1];
-    if (key === "status" && typeof a === "string" && typeof b === "string") {
-      const [was, is] = [FAILED_STATUS.test(a), FAILED_STATUS.test(b)];
+    if (isStatusHere(a) && isStatusHere(b)) {
       noteStatus(a, b);
-      if (was && !is) paths.statuses.fromFailure++;
-      if (!was && is) {
+      if (turnedToFailure(b, a)) paths.statuses.fromFailure++;
+      if (turnedToFailure(a, b)) {
         paths.statuses.toFailure++;
         block("statuses", pathOf(), a, b);
       }
       return;
     }
+    const key = keys[keys.length - 1];
     if (key === "ok" && typeof a === "boolean" && typeof b === "boolean") {
       if (b) paths.outcomes.fromThrown++;
       else {
@@ -953,10 +1035,15 @@ function countBlockers(record: ComparableRecord): BlockerCounts {
       return;
     }
     const members = value as Record<string, unknown>;
-    if (typeof members.status === "string" && FAILED_STATUS.test(members.status)) counts.failedStatuses++;
     for (const key of Object.keys(members)) {
       segments.push(key);
-      visit(members[key]);
+      const member = members[key];
+      /* A status the prescription hands back was authored, like a non-finite number there. */
+      if (key === "status" && typeof member === "string") {
+        if (FAILED_STATUS.test(member) && !resolveBudgetRule(record.request, segments)?.authored) {
+          counts.failedStatuses++;
+        }
+      } else visit(member);
       segments.pop();
     }
   };
@@ -1246,26 +1333,38 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
          * path by path, by a walk that enters what the paired one does not. */
         tallyDifferences("impact", base, head, tally, () => false);
         const blockingBefore = entry.blocking;
-        judgeDataChange(base, head, paths, (blocker, path, was, is) => {
-          /* Every blocker is counted, and the verdict reads the count. The list keeps the first of each kind, so
-           * one kind cannot crowd the paths of another out of the report. */
-          entry.blocking++;
-          if (blockersOf(paths, blocker) > MAX_IMPACT_BLOCKERS) return;
-          entry.blockers.push({
-            comparison: "impact",
-            lens,
-            state: stateId(head.state),
-            request: head.request,
-            ...(head.variant === undefined ? {} : { variant: head.variant }),
-            path,
-            kind: blocker === "numbers" ? "nonFinite" : "discrete",
-            quantity: null,
-            base: describe(was),
-            head: describe(is),
-            measure: null,
-            budget: null,
-          });
+        const located = (path: string, kind: DifferenceKind, was: unknown, is: unknown): Finding => ({
+          comparison: "impact",
+          lens,
+          state: stateId(head.state),
+          request: head.request,
+          ...(head.variant === undefined ? {} : { variant: head.variant }),
+          path,
+          kind,
+          quantity: null,
+          base: describe(was),
+          head: describe(is),
+          measure: null,
+          budget: null,
         });
+        judgeDataChange(
+          base,
+          head,
+          paths,
+          (blocker, path, was, is) => {
+            /* Every blocker is counted, and the verdict reads the count. The list keeps the first of each kind, so
+             * one kind cannot crowd the paths of another out of the report. */
+            entry.blocking++;
+            if (blockersOf(paths, blocker) > MAX_IMPACT_BLOCKERS) return;
+            entry.blockers.push(located(path, blocker === "numbers" ? "nonFinite" : "discrete", was, is));
+          },
+          (path, was, is) => {
+            /* Counted by the walk; the list keeps the first of them. */
+            if (paths.resized.listed.length < MAX_IMPACT_BLOCKERS) {
+              paths.resized.listed.push(located(path, "shape", was, is));
+            }
+          },
+        );
         if (entry.blocking > blockingBefore) keepPair("impact", index, lines.baseData[index]);
       });
       /* A count or another exact field has no budget to be ranked by, and follows the numbers that do. */
@@ -2528,9 +2627,14 @@ function formatMeasure(value: number | null): string {
   return value === null ? "" : String(Number(value.toPrecision(4)));
 }
 
-function cell(text: string): string {
-  const flat = text.replace(/\|/g, "\\|").replace(/\s+/g, " ");
+/** A value as one line of a report: its whitespace flattened, and cut at 80 characters. */
+function oneLine(text: string): string {
+  const flat = text.replace(/\s+/g, " ");
   return flat.length > 80 ? `${flat.slice(0, 77)}...` : flat;
+}
+
+function cell(text: string): string {
+  return oneLine(text.replace(/\|/g, "\\|"));
 }
 
 function table(header: readonly string[], rows: readonly (readonly string[])[]): string[] {
@@ -2936,22 +3040,26 @@ const IMPACT_RULE =
   "data's alone is not finite, and where a record, an analysis job or a near-axis probe returned on the base data " +
   "and throws on the head data, which is how a lens that no longer builds shows. A status or a number at a path " +
   "only one side has is counted, failures among them, and blocks nothing: it is work the base data never did, or " +
-  "work the head data no longer does.";
+  "work the head data no longer does. An array that changed length is paired by index.";
 
 /**
- * Blockers of a data change as a list: a table cell is cut at 80 characters, and a blocker is its path.
+ * Findings of a data change as a list: a table cell is cut at 80 characters, and such a finding is its path.
  *
- * @param blockers - the findings to list; the first `MARKDOWN_SAMPLES` are written
+ * The path is written whole. The two values are each written as one line and cut like a table cell, since one of
+ * them can be the message of a lens that did not build, which runs over several lines.
+ *
+ * @param findings - the findings to list; the first `MARKDOWN_SAMPLES` are written
  * @param named - whether each line names its lens, where the list holds several
- * @returns one line per blocker, with its record, its whole path and the two values
+ * @returns one line per finding, with its record, its whole path and the two values
  */
-function blockerLines(blockers: readonly Finding[], named: boolean): string[] {
-  return blockers
+function findingLines(findings: readonly Finding[], named: boolean): string[] {
+  return findings
     .slice(0, MARKDOWN_SAMPLES)
     .map(
-      (blocker) =>
-        `- ${named ? `${blocker.lens}, ` : ""}\`${requestLabel(blocker)}\`, ${blocker.state}: ` +
-        `\`${blocker.path}\` is ${blocker.base} on the base data and ${blocker.head} on the head data.`,
+      (finding) =>
+        `- ${named ? `${finding.lens}, ` : ""}\`${requestLabel(finding)}\`, ${finding.state}: ` +
+        `\`${finding.path}\` is ${oneLine(finding.base)} on the base data and ${oneLine(finding.head)} on the ` +
+        "head data.",
     );
 }
 
@@ -2961,8 +3069,9 @@ function oneSidedCell({ statuses, failedStatuses, nonFinite }: OneSidedCounts): 
 }
 
 /**
- * The data-impact rule in `summary.md`: one row of counts per changed lens, the blocked ones first, and the first
- * blockers of the run with their paths, those of a new lens that does not build among them.
+ * The data-impact rule in `summary.md`: one row of counts per changed lens, the blocked ones first and the first
+ * `MARKDOWN_SAMPLES` of them, and the first blockers of the run with their paths, those of a new lens that does not
+ * build among them.
  */
 function dataImpactTables(dataImpact: readonly DataImpact[]): string[] {
   const changed = dataImpact
@@ -2976,7 +3085,7 @@ function dataImpactTables(dataImpact: readonly DataImpact[]): string[] {
       ? [
           `### Blocking data changes (${shownOf(Math.min(blockers.length, MARKDOWN_SAMPLES), blocking)})`,
           "",
-          ...blockerLines(blockers, true),
+          ...findingLines(blockers, true),
           "",
         ]
       : []),
@@ -2998,9 +3107,10 @@ function changedLensTable(changed: readonly DataImpact[]): string[] {
         "Returned, now throws",
         "Head data only: statuses / failures / non-finite",
         "Base data only: statuses / failures / non-finite",
+        "Arrays paired by index",
       ],
       changed.slice(0, MARKDOWN_SAMPLES).map(({ lens, blocking: blocked, paths }) => {
-        const { statuses, numbers, outcomes, headOnly, baseOnly } = paths as ImpactPaths;
+        const { statuses, numbers, outcomes, headOnly, baseOnly, resized } = paths as ImpactPaths;
         return [
           lens,
           String(blocked),
@@ -3010,6 +3120,7 @@ function changedLensTable(changed: readonly DataImpact[]): string[] {
           String(outcomes.toThrown),
           oneSidedCell(headOnly),
           oneSidedCell(baseOnly),
+          String(resized.arrays),
         ];
       }),
     ),
@@ -3017,9 +3128,16 @@ function changedLensTable(changed: readonly DataImpact[]): string[] {
   ];
 }
 
+/** Whether a status change, as `ImpactPaths.statusChanges` writes one, is a blocker at every path that shows it. */
+function statusChangeBlocks(change: string): boolean {
+  const cut = change.indexOf(STATUS_CHANGE_ARROW);
+  const [was, is] = [change.slice(0, cut), change.slice(cut + STATUS_CHANGE_ARROW.length)];
+  return was !== NO_STATUS && is !== NO_STATUS && turnedToFailure(was, is);
+}
+
 /** One changed lens in `data-impact.md`: what its records hold path by path, and every status change. */
 function impactPathSection(paths: ImpactPaths): string[] {
-  const { statuses, numbers, outcomes, headOnly, baseOnly, statusChanges, statusChangesUnlisted } = paths;
+  const { statuses, numbers, outcomes, headOnly, baseOnly, resized, statusChanges, statusChangesUnlisted } = paths;
   /* The most frequent first, and code-unit order between equals, so two runs list them alike. */
   const changes = Object.entries(statusChanges).sort(([a, x], [b, y]) => y - x || (a < b ? -1 : 1));
   const oneSidedRow = (side: string, { statuses: held, failedStatuses, nonFinite }: OneSidedCounts) => [
@@ -3034,8 +3152,8 @@ function impactPathSection(paths: ImpactPaths): string[] {
     ...table(
       ["At a path both sides have", "Count", "Gate"],
       [
-        ["Statuses turned from good to a failure", String(statuses.toFailure), "blocks"],
-        ["Statuses turned from a failure to good", String(statuses.fromFailure), ""],
+        ["Statuses turned to a failure from a status that is none", String(statuses.toFailure), "blocks"],
+        ["Statuses turned from a failure to a status that is none", String(statuses.fromFailure), ""],
         ["Computed numbers turned from finite to non-finite", String(numbers.toNonFinite), "blocks"],
         ["Computed numbers turned from non-finite to finite", String(numbers.fromNonFinite), ""],
         ["Records, jobs and probes that returned and now throw", String(outcomes.toThrown), "blocks"],
@@ -3051,13 +3169,34 @@ function impactPathSection(paths: ImpactPaths): string[] {
       ],
     ),
     "",
+    ...(resized.arrays > 0
+      ? [
+          `${resized.arrays} ${resized.arrays === 1 ? "array that holds" : "arrays that hold"} a status, an ` +
+            "outcome or a computed non-finite number changed length and " +
+            `${resized.arrays === 1 ? "was" : "were"} paired by index ` +
+            `(${shownOf(Math.min(resized.listed.length, MARKDOWN_SAMPLES), resized.arrays)} listed). The elements ` +
+            "both sides have are at the same paths only where the longer side's extra elements are at its end. " +
+            "Where one was put in or taken out ahead of others, a status that turned to a failure can be counted " +
+            "above as one side's alone, and one that did not can be counted as turned: check the pairing.",
+          "",
+          ...findingLines(resized.listed, false),
+          "",
+        ]
+      : []),
     ...(changes.length > 0
       ? [
+          "Every status that differs: a change at a path both sides have, or a status one side has alone " +
+            `(\`${NO_STATUS}\` on the other). A change marked here blocks at each of its paths. The rule asks of ` +
+            "the status on the base data only that it is no failure, so one that held no result there (`clipped`, " +
+            "`unbracketed`) blocks like one that did.",
+          "",
           ...table(
-            ["Status on the base data -> on the head data", "Paths"],
+            ["Status on the base data -> on the head data", "Paths", "Gate"],
             [
-              ...changes.map(([change, count]) => [change, String(count)]),
-              ...(statusChangesUnlisted > 0 ? [["any other change", String(statusChangesUnlisted)]] : []),
+              ...changes.map(([change, count]) => [change, String(count), statusChangeBlocks(change) ? "blocks" : ""]),
+              ...(statusChangesUnlisted > 0
+                ? [["any other change", String(statusChangesUnlisted), "see the blockers listed above"]]
+                : []),
             ],
           ),
           "",
@@ -3113,7 +3252,7 @@ export function renderDataImpactMarkdown(summary: RunSummary, context: RunContex
       ? [
           `### Blocking (${shownOf(Math.min(impact.blockers.length, MARKDOWN_SAMPLES), impact.blocking)})`,
           "",
-          ...blockerLines(impact.blockers, false),
+          ...findingLines(impact.blockers, false),
           "",
         ]
       : []),
