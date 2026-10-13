@@ -4,8 +4,8 @@
  * The engine still consumes V1 `LensData`, so until the compiler reads the canonical prescription directly every
  * lens reaches it through this view. Given V1 provenance, the view gives the file back as written: the defaulted
  * fields stay omitted, and the authored values the engine ignores and the V1 spellings return from provenance. Given
- * none (a prescription from another format), it writes one V1 spelling of each fact: `1e15` for a flat radius, every
- * aspheric coefficient V1 requires, `[wide, tele]` zoom labels where only the end stations are labelled.
+ * none (a prescription from another format), it writes the plain V1 spelling of each field: `1e15` for a flat
+ * radius, every aspheric coefficient V1 requires, `[wide, tele]` zoom labels where only the end stations are labelled.
  *
  * Two forms:
  * - `toLensData` is what the engine consumes, the catalog defaults merged in, as the V1 catalog spread them;
@@ -55,7 +55,7 @@ function put(target: Untyped, field: string, value: unknown): void {
 /** What the view writes for one defaulted field. */
 interface ViewContext {
   readonly provenance: CanonicalProvenance;
-  /** How the file spelled it in V1; empty for a file of another format, which takes one V1 spelling of each fact. */
+  /** How the file spelled it in V1; empty for a file of another format, which takes the plain V1 spelling. */
   readonly v1: V1Spelling;
   /** Write the catalog defaults, as the V1 catalog merges them; otherwise write only what the file authored. */
   readonly mergeCatalogDefaults: boolean;

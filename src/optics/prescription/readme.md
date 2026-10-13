@@ -92,7 +92,7 @@ flowchart LR
 | `groups.ts` | Groups helper module | same folder, src/optics/types.ts, src/types | same folder | compileElements, compileAnnotations |
 | `ingestCommon.ts` | Ingest Common helper module | same folder (2), src/types (2) | same folder (2) | Untyped, IngestContext, copy, has, put, isNumberList, isRecord, refuseUnknownFields, +6 more |
 | `ingestV1.ts` | Ingest V1 helper module | same folder (3), src/types (2), src/optics/geometry | same folder (2), src/optics/buildLens.ts, src/optics/validateTeleconverterData.ts | V1_FLAT_RADIUS, ingestLensV1, ingestTeleconverterV1 |
-| `ingestV2.ts` | Ingest V2 helper module | same folder (4), src/types (3), src/optics/geometry | same folder, src/optics/buildLens.ts | LENS_DATA_V2_SCHEMA, ingestLensV2, ingestTeleconverterV2, ingestLens, ingestTeleconverter |
+| `ingestV2.ts` | Ingest V2 helper module | same folder (4), src/types (3), src/optics/geometry | same folder, src/optics/buildLens.ts | LENS_DATA_V2_SCHEMA, ingestLensV2, ingestTeleconverterV2, isV1File, ingestLens, ingestTeleconverter |
 | `interactions.ts` | Interactions helper module | src/optics/math, src/optics/types.ts, src/types | same folder | yzNormalToVec3, compileSurfaceInteraction, resolvedImagePlaneToPlane3, imagePlaneDataToPlane3 |
 | `labels.ts` | Labels helper module | src/types | same folder (4) | Optics2LensNormalizationError, buildSurfaceLabelMap, resolveLabel |
 | `normalizeLensData.ts` | Normalize Lens Data helper module | same folder (9), src/types (2), src/optics/geometry, src/optics/math, src/optics/runtimeLens.ts, +1 more | src/optics/chromatic (2), src/optics/first-order (2), src/optics/compat.ts, src/optics/diagram, src/optics/field, +1 more | withLensDefaults, normalizeLensData, normalizeRuntimeLens |

@@ -417,7 +417,7 @@ export interface CanonicalProvenance {
    * step that falls back to the default, a conjugate coordinate that only matches its station within tolerance.
    */
   ignored: Record<string, unknown>;
-  /** Present on a V1 file. Without it the V1 view writes one V1 spelling of each fact. */
+  /** Present on a V1 file. Without it the V1 view writes the plain V1 spelling of each field. */
   v1?: V1Spelling;
   /** Present on a V2 file. */
   v2?: V2Spelling;

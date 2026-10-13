@@ -29,7 +29,7 @@ import { buildSurfaceLabelMap } from "./labels.js";
 import { compileVariableGaps, compileVariableLabels } from "./variables.js";
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 import { v1CatalogDefaults } from "./defaults.js";
-import { ingestLens } from "./ingestV2.js";
+import { ingestLens, isV1File } from "./ingestV2.js";
 import { toLensData } from "./toLensData.js";
 
 /**
@@ -62,7 +62,7 @@ export function withLensDefaults(data: LensData | LensDataV2Input): LensData {
      * catalog entry was ingested by its getter before it got here, so a catalog file both refuse reports ingest's
      * refusal. This ends no later than S5.P1.T3, which validates canonical data; S5.P1.T1, which replaces this
      * module, carries it or ends it. */
-    if (!("schema" in data)) assertValidLensData({ ...v1CatalogDefaults(), ...data } as LensData);
+    if (isV1File(data)) assertValidLensData({ ...v1CatalogDefaults(), ...data });
     throw error;
   }
 }
