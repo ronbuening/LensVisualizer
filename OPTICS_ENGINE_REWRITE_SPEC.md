@@ -476,6 +476,8 @@ are unmeasured. Loosening a budget later is itself a C3 change.
 | Analysis lengths (focus shifts, blur, field curves, pupil shifts) | 1e-8 mm | The governing solver criterion, propagated by a finite-difference derivative the harness computes |
 | Percentages (distortion, illumination) | 1e-8 points | As above |
 | MTF modulation | 1e-7 | As above, and never looser than 1e-4 |
+| Weighted bin statistics of a bokeh profile (bin density and energy share, centre and rim density, their ratio) | 1e-10 relative | Same as C1 |
+| Ratio of two analysis lengths (coma tail skew, sagittal over tangential span of a spot) | 1e-8 relative | Same as C1 |
 | Statuses, counts, sample positions and order, labels, warnings | exact unless declared | exact unless declared |
 
 How `budgets.ts` applies the table:
@@ -483,14 +485,40 @@ How `budgets.ts` applies the table:
 - **Clipped or not.** A hit takes the unclipped or the clipped budget by its own flags. A flag that differs between the
   two sides is a discrete transition.
 - **Relative budgets** bound `|a − b|` by the budget times the larger magnitude. Lengths also have an absolute floor of
-  1e-12 mm, so a length at zero has a bound. Ratios such as f-numbers and the Petzval sum have no floor.
+  1e-12 mm, so a length at zero has a bound. Ratios such as f-numbers and the Petzval sum have no floor, and neither
+  has a weighted bin statistic or a ratio of two analysis lengths.
 - **A clipped or diagnostic point far from the lens.** The 1e-7 mm of the table is the whole budget for a point
   within 100 m of the lens. Beyond that the bound is 1e-12 of the point's own size. A clipped ray that the legacy
   tracer follows as a ghost path can leave the lens altogether: on one catalog lens its points run from 3.1e8 mm to
   1e250 mm, where adjacent floating-point values are more than 1e-7 mm apart and two engines that agree to rounding
   cannot meet an absolute bound. The first Tier S against A0 failed on that one ray and on nothing else.
 - **Fields the table does not name.** Layout lengths, refractive indices and prescription values the engine hands back
-  take the first-order budget. Slopes are compared as direction cosines. Count ratios and binned statistics are exact.
+  take the first-order budget. Slopes are compared as direction cosines. Count ratios are exact.
+- **Bins of a bokeh profile.** A bokeh footprint weighs each ray by its transmission and sums the weights into the
+  bins of a radial profile: a bin's density and energy share, the centre and rim densities, and the centre-to-rim
+  ratio. The footprint's record holds the weights, as `points[].weight`.
+  - Where every point has one and the same weight on both sides, these are ratios of counts and stay exact. That is
+    every lens with no absorbing element. A difference is a ray that changed bin: a discrete transition, declared
+    like any other.
+  - Through an absorbing element they are sums of exp(−α · path), whose last bits move when a hit moves inside its
+    tolerance: on the Minolta STF 135, S3.P2.T1 moved 328 of them, by 1.6e-13 of themselves at most. They are
+    bit-exact under C0 and held to 1e-10 relative under C1 and C2, with no floor. The weights are never negative,
+    so a faint bin moves by no more of itself than a full one, and a bin that is zero on one side only has gained a
+    ray. A ray that changes bin in such a footprint fails as a number beyond budget, which no transition line
+    declares.
+  - The blur character of spherical aberration bins rays of one weight on every lens: the engine multiplies no
+    transmission into it. Its five statistics are ratios of counts and stay exact.
+- **Ratios of two analysis lengths.** `tailSkewRatio` is the longer extent of a spot from its centroid over the
+  shorter, and `sagittalToTangentialRatio` one span of a spot over the other. Each length is allowed 1e-8 mm and a
+  sharp spot is some thousandths of a millimetre across, so such a ratio cannot be held to the 1e-10 of a fraction:
+  S3.P2.T1 moved the extents by 1.2e-13 mm and 17 ratios by 1.07e-10 to 2.95e-10 of themselves. They are held to
+  1e-8 relative under C1 and C2, with no floor. That is a fixed bound: far tighter than the lengths' own budget
+  implies for a spot under a millimetre across, and looser for a wider one, where the lengths' own rows, in the
+  same record, are the tighter ones. A pupil footprint's aspect and centroid offset are measured in fractions of
+  the pupil and keep the budget of a fraction.
+  - Two smooth ratios stay at 1e-10 although their parts imply more: `chiefRayCorrection`, a solved launch height
+    over a paraxial one that is under 1 mm at the innermost fields, and `mag` of the LoCA inset, a constant over
+    the largest focus shift where its bars are clamped. Neither is a ratio of two analysis lengths.
 - **A hit's `effectiveTolerance`** is bit-exact under C0, as every number is, and held to 1e-12 relative under C1 and
   C2, with no absolute floor.
   - It is the 1e-12 mm target except at a stalled root, where it is a computed float, max(1e-12, 16·ε·scale) over the
@@ -1132,6 +1160,11 @@ promotion, so the V2 authoring documents must not reach it earlier.
       - **Still open: a number with no discrete evidence.** An aggregate that moves because one boundary sample did,
         or a bisected output that moves by one quantum, has no transition to declare. It is settled when a run
         first shows one.
+    - **S3.P2.T1, the first step to move every curved hit,** settled two budgets on 2026-10-13, in the harness PR
+      that precedes its engine change: the weighted bins of a bokeh profile went from exact to 1e-10 relative above
+      C0, and a ratio of two analysis lengths from 1e-10 to 1e-8 relative. Both are stated under
+      [Quantity budgets](#quantity-budgets). Like the settlement before it, this is not a later loosening: the PR
+      changes no engine and moves no anchor, and it does not count towards the class of a stage or promotion run.
     - **S3.P2.T4, the first C2 step.** The C2 budgets. `--class c2` applies the C1 table until this step adds the
       propagated criteria.
     - **The first engine C3.** The cumulative comparison of the anchor rule. `--class c3` reports engine differences
@@ -2001,6 +2034,8 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 32 | S3.P1.T1 moves and fuses only: four profile kinds, both sphere clamps, and only aspheric numbers move | S3.P1.T1 |
 | 33 | A merge of `main` that changes what the engine computes moves the anchor, after a Tier S check of everything since the old one | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
 | 34 | A clipped or diagnostic point is held to 1e-7 mm, or to 1e-12 of its own size where that is more | [Quantity budgets](#quantity-budgets) |
+| 35 | The bin statistics of a bokeh profile whose rays weigh differently are held to 1e-10 relative above C0; counts, count ratios and the bins of a footprint of one weight stay exact | [Quantity budgets](#quantity-budgets) |
+| 36 | A ratio of two analysis lengths is held to 1e-8 relative above C0 | [Quantity budgets](#quantity-budgets) |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
