@@ -1352,10 +1352,11 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - `buildLens` knows a composed pair only by the `attachedTeleconverter` marker `attachTeleconverter()` writes,
       never by a flag a caller passes, and builds it without ingest: its host and converter each came through ingest
       in their catalogs. This is a temporary seam; S5.P1.T4 moves composition onto the canonical form.
-    - Nothing outside tests spreads the defaults table. Lens data gets its defaults through ingest and the V1 view.
-      `buildLens.ts` re-exports `toLensData` and `toTeleconverterData` for code outside the engine, as the seam guard
-      requires; the re-export is temporary and leaves with the V1 view at S8.P1.T2. Test helpers take merged data the
-      same way; a test that needs the raw table imports `src/optics/prescription/defaults.ts`.
+    - Nothing outside tests spreads the defaults table but the validator-first spread below. Lens data gets its
+      defaults through ingest and the V1 view. `buildLens.ts` re-exports `toLensData` and `toTeleconverterData` for
+      code outside the engine, as the seam guard requires; the re-export is temporary and leaves with the V1 view at
+      S8.P1.T2. Test helpers take merged data the same way; a test that needs the raw table imports
+      `src/optics/prescription/defaults.ts`.
     - **The validator speaks first** when `buildLens` is handed a V1 file, and this is the one spread of the table
       outside tests:
       - a file the validator rejects throws its messages, whatever ingest or the view threw on it, a `TypeError` on
@@ -1892,8 +1893,6 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     - Rear plates are expanded once, by `prescription/rearPlates.ts`, now operating on canonical data and keeping the
       S2.P2.T1 rim rule.
     - It replaces `internal/lensState.ts`, the `prescription/` compilers and `normalizeLensData.ts`.
-    - Converter composition moves onto the canonical form, which retires the S2.P1.T2 seam where `buildLens` builds a
-      composed pair, known by its `attachedTeleconverter` marker, without ingest.
     - `EngineLens` is renamed `CompiledLens`.
   - **Tests:**
     - One compilation and one material resolution per identity, shown by spying on the compiler and the resolver.
@@ -1922,7 +1921,9 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
   - **Gate:** C0.
 - **S5.P1.T4 Composition on canonical data, and MTF worker init.**
   - **Change:**
-    - `attachTeleconverter` composes canonical prescriptions, and the compatibility predicate stays import-free;
+    - `attachTeleconverter` composes canonical prescriptions, and the compatibility predicate stays import-free. This
+      retires the S2.P1.T2 seam where `buildLens` builds a composed pair, known by its `attachedTeleconverter`
+      marker, without ingest;
     - the MTF worker receives the canonical prescription and compiles it once, which deletes the strip-and-rebuild of
       synthetic plates in `src/components/hooks/mtf.worker.ts`.
   - **Tests:** the teleconverter suites and the converter-pair sweep; worker/main-thread equality.
