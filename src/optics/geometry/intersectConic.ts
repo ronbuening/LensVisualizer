@@ -31,14 +31,13 @@
  */
 
 import type { SurfaceProfile, Vec3 } from "../types.js";
-import type { ClosedFormFallbackReason, SurfaceIntersectionFailure, SurfaceIntersectionSuccess } from "./intersect.js";
+import type {
+  ClosedFormFallbackReason,
+  ParameterInterval,
+  SurfaceIntersectionFailure,
+  SurfaceIntersectionSuccess,
+} from "./intersectTypes.js";
 import { normalFromSlope } from "./surfaceProfile.js";
-
-/** A span of ray parameters. */
-export interface ParameterInterval {
-  minT: number;
-  maxT: number;
-}
 
 /**
  * Smallest |df/dt| per mm of path at which a closed-form root is returned.

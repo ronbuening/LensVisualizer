@@ -16,80 +16,26 @@ import {
 import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../types.js";
 import { clamp } from "../math/numerics.js";
 import { dot, normalize, subtract } from "../math/vector.js";
-import { intersectConicClosedForm, type ParameterInterval } from "./intersectConic.js";
+import { intersectConicClosedForm } from "./intersectConic.js";
 import { planeResidualRoundoff, sagResidualRoundoff } from "./intersectTolerance.js";
+import type {
+  ClosedFormFallbackReason,
+  ParameterInterval,
+  SurfaceIntersectionFailure,
+  SurfaceIntersectionFailureReason,
+  SurfaceIntersectionOptions,
+  SurfaceIntersectionResult,
+  SurfaceIntersectionSuccess,
+} from "./intersectTypes.js";
 
-/** Typed reason for an exact surface-intersection failure. */
-export type SurfaceIntersectionFailureReason =
-  | "invalidDirection"
-  | "invalidBounds"
-  | "noBracket"
-  | "noConvergedIntersection";
-
-/**
- * Why a closed-form solve was handed to the iterative path.
- *
- * - `failedValidation`: the proposed root, at the point that would be returned, does not evaluate within the raw
- *   residual target, or the quadratic's coefficients are not finite.
- * - `nearTangency`: the ray grazes the surface, so the sign of the discriminant, a touch without a crossing, or the
- *   position of the root is inside rounding.
- * - `domainEdge`: a root lies at the edge of what is searched, where the iterative path's own edge handling
- *   decides the answer: the conic's domain radius, the cap's rim, or, for the later of two roots, the upper bound.
- */
-export type ClosedFormFallbackReason = "failedValidation" | "nearTangency" | "domainEdge";
-
-/**
- * Search and reporting options for intersecting a ray with one surface profile.
- *
- * Bounds are parametric ray distances in millimeters because ray directions are
- * normalized. `refractiveIndex`, when supplied, also reports optical path length.
- */
-export interface SurfaceIntersectionOptions {
-  minT?: number;
-  maxT?: number;
-  tolerance?: number;
-  /** Iteration budget of the iterative path. Setting it, or `bracketSamples`, asks for that path alone. */
-  maxIterations?: number;
-  bracketSamples?: number;
-  refractiveIndex?: number;
-  directionNormalized?: boolean;
-  /** Authored asphere radius; exterior hits remain diagnostic when the ray misses the cap. */
-  clearRadius?: number;
-}
-
-/** Successful ray/surface intersection with geometry at the hit point. */
-export interface SurfaceIntersectionSuccess {
-  ok: true;
-  t: number;
-  point: Vec3;
-  radius: number;
-  normal: Vec3;
-  residual: number;
-  /** Accepted residual bound in mm; larger than requested only for coordinate roundoff. */
-  effectiveTolerance: number;
-  iterations: number;
-  segmentLength: number;
-  opticalPathLength: number | null;
-  /**
-   * How the closed form fared on this solve. `intersectSurfaceProfile` alone sets it: null when the closed form
-   * gave this result, the reason when it handed the solve to the iterative path, and absent when it was not
-   * tried. It is the kernel's own diagnostic; the tracers do not copy it into a hit record.
-   */
-  closedFormFallback?: ClosedFormFallbackReason | null;
-}
-
-/** Failed ray/surface intersection with the best residual when available. */
-export interface SurfaceIntersectionFailure {
-  ok: false;
-  failureReason: SurfaceIntersectionFailureReason;
-  residual: number | null;
-  iterations: number;
-  /** As on a success: null for a closed-form miss, the reason after a fallback, absent when it was not tried. */
-  closedFormFallback?: ClosedFormFallbackReason | null;
-}
-
-/** Union result for exact surface-profile intersection. */
-export type SurfaceIntersectionResult = SurfaceIntersectionSuccess | SurfaceIntersectionFailure;
+export type {
+  ClosedFormFallbackReason,
+  SurfaceIntersectionFailure,
+  SurfaceIntersectionFailureReason,
+  SurfaceIntersectionOptions,
+  SurfaceIntersectionResult,
+  SurfaceIntersectionSuccess,
+} from "./intersectTypes.js";
 
 /** Bisections that locate where a ray crosses the edge of a surface's domain (~1e-12 of the sample spacing). */
 const DOMAIN_EDGE_BISECTIONS = 40;
