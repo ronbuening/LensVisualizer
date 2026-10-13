@@ -336,7 +336,7 @@ describe("build metadata helpers", () => {
       lastModifiedCommit: "commit-b",
     });
     expect(calls[0][0]).toBe("git");
-    expect(calls[0][1]).toEqual(["log", "--follow", "--format=%cI%x09%H", "--", "path with spaces.md"]);
+    expect(calls[0][1]).toEqual(["log", "--follow", "--format=%cI%x09%H%x09%s", "--", "path with spaces.md"]);
   });
 
   it("maps with bounded concurrency while preserving result order", async () => {

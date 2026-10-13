@@ -60,7 +60,7 @@ export interface OrganizeRootLensFilesResult {
 export const MAKER_PREFIXES: MakerPrefix[];
 
 export function deriveMakerSlug(nameOrMaker: string, makerField?: string | null): string;
-export function extractLensIdentityContent(content: string): LensIdentity;
+export function extractLensIdentityContent(content: string, fileName?: string): LensIdentity;
 export function extractLensIdentity(
   filePath: string,
   options?: { readFile?: (filePath: string, encoding: string) => string },
@@ -87,14 +87,8 @@ export function collectLensData(options?: {
   trackedLensRecordsByKey?: Record<string, TrackedLensRecord>;
   readdir?: (path: string, options?: { recursive?: boolean }) => Array<string | unknown>;
   exists?: (path: string) => boolean;
-  getFreshness?: (
-    paths: string[],
-    options?: { cwd?: string; fallbackDate?: string },
-  ) => LensFreshness | null;
-  combineFreshness?: (
-    entries: Array<LensFreshness | null | undefined>,
-    fallbackDate: string,
-  ) => LensFreshness;
+  getFreshness?: (paths: string[], options?: { cwd?: string; fallbackDate?: string }) => LensFreshness | null;
+  combineFreshness?: (entries: Array<LensFreshness | null | undefined>, fallbackDate: string) => LensFreshness;
 }): LensDataRecord[];
 
 export function collectLensDataAsync(options?: {
@@ -108,10 +102,7 @@ export function collectLensDataAsync(options?: {
     paths: string[],
     options?: { cwd?: string; fallbackDate?: string },
   ) => Promise<LensFreshness | null> | LensFreshness | null;
-  combineFreshness?: (
-    entries: Array<LensFreshness | null | undefined>,
-    fallbackDate: string,
-  ) => LensFreshness;
+  combineFreshness?: (entries: Array<LensFreshness | null | undefined>, fallbackDate: string) => LensFreshness;
   concurrency?: number;
 }): Promise<LensDataRecord[]>;
 

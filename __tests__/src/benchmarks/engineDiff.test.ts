@@ -82,6 +82,7 @@ import buildLens, {
   ingestTeleconverter,
   ingestTeleconverterV1,
   toLensData,
+  toTeleconverterData,
 } from "../../../src/optics/buildLens.js";
 import {
   ELEMENT_SCHEMA_DEFAULTS,
@@ -93,6 +94,7 @@ import { doLayout, traceRay } from "../../../src/optics/optics.js";
 import type { MtfMethod, MtfSpectrum } from "../../../src/types/mtf.js";
 import type { LensData, LensDataInput } from "../../../src/types/optics.js";
 import { DEFAULT_MTF_PREFERENCES } from "../../../src/utils/state/mtfPreferences.js";
+import { FIXTURE_PAIRS } from "../optics/prescription/ingestV2Fixtures.js";
 import plainTwin from "./engineDiffFixtures/fingerprintTwinPlain.js";
 import restyledTwin from "./engineDiffFixtures/fingerprintTwinRestyled.js";
 
@@ -604,7 +606,12 @@ describe("engineDiff seam adapter", () => {
     expect(sources.traceRay).toBe("compat.traceEngineRay2");
     expect(seam.buildLens).toBe(buildLens);
     /* From S2.P2.T1 canonical ingest reads a file of either version by its schema. */
-    expect(optional).toEqual({ ingestLens, ingestTeleconverter, lensView: toLensData });
+    expect(optional).toEqual({
+      ingestLens,
+      ingestTeleconverter,
+      lensView: toLensData,
+      teleconverterView: toTeleconverterData,
+    });
     expect(sources.ingestLens).toBe("buildLens.ingestLens");
     expect(sources.ingestTeleconverter).toBe("buildLens.ingestTeleconverter");
     /* S2.P1.T2 deleted the V1 defaults object; the catalog merge at this checkout is ingest and the V1 view. */
@@ -982,6 +989,55 @@ describe("engineDiff request catalog", () => {
     }
     expect(lenses.some((lens) => lens.focusPositions.length > 2)).toBe(true);
     expect(lenses.every((lens) => lens.focusPositions[0] === 0 && lens.focusPositions.at(-1) === 1)).toBe(true);
+  });
+});
+
+describe("engineDiff on V2 prescriptions", () => {
+  /* A three-station zoom with three focus keyframes, and a host with the converter it fits, in both versions. */
+  const FAMILIES = ["zoom with focus keyframes", "converter host"];
+  const fixtureCatalog = (version: "v1" | "v2"): SerializedCatalog => {
+    const lenses = FIXTURE_PAIRS.filter((pair) => FAMILIES.includes(pair.family)).map((pair) => pair[version]);
+    const converter = FIXTURE_PAIRS.find((pair) => pair.kind === "teleconverter")![version];
+    const catalog: SerializedCatalog = {
+      lenses: lenses.map((lens) => ({ key: lens.key, file: "fixture", prescription: encodeValue(lens) })),
+      teleconverters: [{ key: converter.key, file: "fixture", prescription: encodeValue(converter) }],
+      pairs: [],
+    };
+    return { ...catalog, pairs: permittedPairs(catalog) };
+  };
+
+  /**
+   * Tier S of the catalog with a fixture set added, cut down to the fixture lenses' requests. Every tier names
+   * catalog lenses, so a fixture set alone has no tier; its station rows come from its own facts either way.
+   */
+  const fixtureRequests = (catalog: SerializedCatalog) => {
+    const fixtures = requestCatalog(catalog);
+    return tierRequests("s", {
+      lenses: [...REQUEST_CATALOG.lenses, ...fixtures.lenses],
+      pairs: [...REQUEST_CATALOG.pairs, ...fixtures.pairs],
+    }).filter((request) => request.lens.key.startsWith("fixture-"));
+  };
+
+  it("derives the same request list and the same permitted pairs from a V2 set as from its V1 twin", () => {
+    const [v1, v2] = [fixtureCatalog("v1"), fixtureCatalog("v2")];
+    expect(v1.pairs).toEqual([{ host: "fixture-converter-host", teleconverter: "test-teleconverter" }]);
+    expect(v2.pairs).toEqual(v1.pairs);
+    expect(requestCatalog(v2)).toEqual(requestCatalog(v1));
+    expect(requestCatalog(v1).lenses.find((lens) => lens.key === "fixture-zoom-focus-keyframes")).toMatchObject({
+      zoomStations: 3,
+      focusPositions: [0, 0.5, 1],
+    });
+    const requests = fixtureRequests(v1);
+    expect(requests.filter((request) => request.lens.teleconverter).length).toBeGreaterThan(0);
+    expect(fixtureRequests(v2)).toEqual(requests);
+  });
+
+  it("captures the same records from a V2 set as from its V1 twin", () => {
+    const [v1, v2] = [fixtureCatalog("v1"), fixtureCatalog("v2")];
+    const requests = fixtureRequests(v1);
+    const records = captureRecords(v1, requests);
+    expect(records.filter((record) => !record.payload.ok)).toEqual([]);
+    expect(recordDigests(captureRecords(v2, requests))).toEqual(recordDigests(records));
   });
 });
 

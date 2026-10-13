@@ -186,7 +186,8 @@ describe("lens-data scripts", () => {
       "key": "quoted-lens", "name": "CANON QUOTED", "maker": "Canon",
       "lensMounts": ["canon-ef"], "imageFormat": "135-full-frame",
       "publishedAt": "2026-10-03T01:00:00Z", "visible": false
-    };`,
+    };
+    export default LENS_DATA;`,
     );
     const options = {
       rootDir,
@@ -216,7 +217,8 @@ describe("lens-data scripts", () => {
     const writePublication = (timestamp: string) =>
       writeFileSync(
         dataPath,
-        `const LENS_DATA = { key: "replacement", name: "TEST REPLACEMENT", publishedAt: "${timestamp}" };`,
+        `const LENS_DATA = { key: "replacement", name: "TEST REPLACEMENT", publishedAt: "${timestamp}" };\n` +
+          "export default LENS_DATA;",
       );
     writePublication("2026-09-14T12:06:25Z");
     const options = {

@@ -1040,8 +1040,13 @@ The stop radius has exactly one authority per lens:
 - **The converter.**
   - Lives in `scripts/lens-data-convert/`.
   - Reads source with the TypeScript compiler API (`typescript` is already a dev dependency) and never executes input.
-  - Evaluates the literal forms the corpus uses: object and array literals, numbers, strings, booleans, `null`,
-    `satisfies`, `as const`, and top-level `const` bindings within the same file.
+  - Evaluates the literal forms the corpus uses: object and array literals and their spreads, numbers with a leading
+    sign, strings, booleans, `null`, `undefined`, `Infinity`, `satisfies`, `as const`, and top-level `const`
+    bindings within the same file. It also evaluates `+ - * /` between numbers and `+` between strings, which the
+    corpus uses too (2026-10-13: 39 computed numbers in 3 files, such as a dPgF written as
+    `0.5769 - (0.6438 - 0.001682 * 37.2)`, and 133 joined strings). The shared reader is `scripts/lens-data-ast.mjs`
+    (S2.P2.T2), which evaluates every catalog file to the value its module exports. How the printer writes a computed
+    number back (its expression text, or the value) is settled in S2.P3.T1.
   - Prints V2 or V1 deterministically, then formats with Prettier.
   - Keeps the source text of numeric literals, so `1.05587e-7` is not reprinted as `1.05587E-7`.
 - **Comments.** Leading and trailing comments are attached to the authored path they annotate and re-emitted at the
@@ -1405,24 +1410,42 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - **Where.** The skip is applied where `scripts/build-metadata-lib.mjs` reads a file's git dates, to the modified
       date only. `publishedOn` stays the oldest commit, and a file whose every commit is skipped keeps that commit's
       date.
+  - **As built:**
+    - The AST reader is `scripts/lens-data-ast.mjs`. It evaluates a file's default export without running it, in the
+      literal forms the corpus uses (see [Ingest, conversion and comments](#ingest-conversion-and-comments)), and
+      `readLensIdentity` reads identity from either version. Every catalog file evaluates to the value its module
+      exports, and every lens's identity equals what the regexes read. Parsing every file is slower than the regexes
+      were, in a step that runs before `dev`, `test` and `typecheck`; the maintainer's machine times it.
+    - Summaries and converter fit read a V2 file through the engine's canonical ingest and its V1 view
+      (`scripts/lens-summaries.mjs`), loaded on the first V2 file. A V1 file is read as it is, so today's generated
+      metadata is byte-identical. `teleconverterCompatibility.ts` is unchanged: every caller now hands it V1 views,
+      the harness included (`catalogTeleconverterData`, an optional `teleconverterView` seam capability). The
+      harness hands a converter ingest refuses on as authored, as before, so a broken converter still fails its
+      pairs' builds and blocks instead of losing its pairs.
+    - The dPgF audit and extract scripts and the MTF dispersion audit read only fields both versions keep in place
+      (`key`, `visible`, `elements`) and build through `buildLens`, which reads either version, so they are
+      unchanged. The glass scan and the field-coverage and surface-probe audits ingest through the dispatcher.
+    - The committed list of commit ids is `scripts/format-only-commits.mjs`, empty today. "That commit" for a file
+      whose every commit is skipped is its oldest.
   - **Files:**
-    - `scripts/lens-data-lib.mjs`
-    - `scripts/build-metadata-lib.mjs`
-    - `scripts/generate-build-metadata.mjs`
-    - `scripts/organize-lens-data.mjs`
-    - `scripts/audit-dpgf.mjs`
-    - `scripts/extract-dpgf.mjs`
-    - `scripts/audit-mtf-dispersion.mjs`
+    - `scripts/lens-data-lib.mjs`, and `scripts/lens-data-ast.mjs` beside it
+    - `scripts/build-metadata-lib.mjs`, and `scripts/format-only-commits.mjs`
+    - `scripts/generate-build-metadata.mjs`, and `scripts/lens-summaries.mjs`
+    - `scripts/organize-lens-data.mjs` (through `rewriteLensDataTypesImport` in `lens-data-lib.mjs`)
+    - `scripts/audit-dpgf.mjs`, `scripts/extract-dpgf.mjs`, `scripts/audit-mtf-dispersion.mjs` (checked; unchanged)
+    - `scripts/audit-field-coverage.mjs`, `scripts/audit-surface-probe.mjs`
     - `reports/glassScanLib.ts`
-    - `src/benchmarks/engineDiff/captureEntry.ts`
-    - `src/optics/prescription/teleconverterCompatibility.ts`
+    - `src/benchmarks/engineDiff/{captureEntry, seamAdapter}.ts`
+    - `src/optics/prescription/teleconverterCompatibility.ts` (unchanged: it reads V1 views)
   - **Tests:** `__tests__/scripts/`.
     - A V2 fixture and its V1 twin produce byte-identical generated metadata and summaries.
     - Page dates: a file whose newest commit is a conversion commit keeps the date of the commit before it; a later
       content commit moves it; the ` (#NNN)` suffix; a step ID in mid-subject does not match; a listed id; a history
       of conversion commits only; a teleconverter file; a newer analysis sidecar; the published-date clamp.
     - The harness derives the same request list and the same permitted pairs from a V2 fixture set and from its V1
-      twin. The set has a three-station zoom, three focus keyframes and a host with a converter.
+      twin. The set has a three-station zoom, three focus keyframes and a host with a converter. This case is in the
+      tooling suite (`__tests__/src/benchmarks/engineDiff.test.ts`), beside the harness, and also captures the set's
+      records on both twins, bit-identical.
   - **Gate:** C0.
 
 **Phase 2.3 — Converter**

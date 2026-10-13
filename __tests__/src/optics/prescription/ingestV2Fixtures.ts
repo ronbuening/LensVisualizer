@@ -10,7 +10,7 @@
 import type { LensDataV2Input, SurfaceV2Input, TeleconverterDataV2Input } from "../../../../src/types/lensDataV2.js";
 import type { ElementData, LensDataInput, SurfaceData } from "../../../../src/types/optics.js";
 import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
-import { teleconverterFixture } from "../testLensFixtures.js";
+import { teleconverterFixture, teleconverterHostData } from "../testLensFixtures.js";
 
 export type FixturePair =
   | { family: string; kind: "lens"; v1: LensDataInput; v2: LensDataV2Input }
@@ -174,6 +174,16 @@ const MEDIA_ELEMENTS: ElementData[] = [
 /* ── Pairs ── */
 
 const TELECONVERTER_V1 = teleconverterFixture();
+
+/** Back focus of the converter host: the simple positive lens in exact paraxial focus, which the converter fits. */
+const HOST_BACK_FOCUS = teleconverterHostData().surfaces[2].d;
+
+/** A three-station zoom with three focus keyframes: the stop gap zooms and the back focus focuses. */
+const ZOOM_FOCUS_BACK_FOCUS: [number, number, number][] = [
+  [80, 80.8, 82],
+  [80, 80.9, 82.2],
+  [80, 81, 82.4],
+];
 
 export const FIXTURE_PAIRS: readonly FixturePair[] = [
   {
@@ -590,6 +600,41 @@ export const FIXTURE_PAIRS: readonly FixturePair[] = [
         { label: "STO", R: "flat", d: 2.5, sd: 10, medium: 1, stopPlacement: "inside-element" },
         { label: "2", R: -50, d: 80, sd: 15 },
       ],
+    }),
+  },
+  {
+    family: "zoom with focus keyframes",
+    kind: "lens",
+    v1: v1Zoom("fixture-zoom-focus-keyframes", {
+      nominalFno: 2,
+      focusPositions: [0, 0.5, 1],
+      var: {
+        STO: ZOOM_STOP_GAPS.map(([inf]): [number, number, number] => [inf, inf, inf]),
+        "2": ZOOM_FOCUS_BACK_FOCUS.map((row): [number, number, number] => [...row]),
+      },
+    }),
+    v2: v2Zoom("fixture-zoom-focus-keyframes", {
+      surfaces: v2Surfaces({ stopGap: null, imageGap: null }),
+      focus: { closeFocusM: 0.5, keyframes: [0, 0.5, 1] },
+      gaps: {
+        STO: { values: ZOOM_STOP_GAPS.map(([inf]) => [inf, inf, inf]) },
+        "2": { values: ZOOM_FOCUS_BACK_FOCUS.map((row) => [...row]) },
+      },
+    }),
+  },
+  {
+    family: "converter host",
+    kind: "lens",
+    v1: v1Prime("fixture-converter-host", {
+      lensMounts: ["nikon-f"],
+      acceptsTeleconverters: true,
+      elementCount: 1,
+      groupCount: 1,
+      surfaces: v1Surfaces(1, HOST_BACK_FOCUS),
+    }),
+    v2: v2Prime("fixture-converter-host", {
+      catalog: { lensMounts: ["nikon-f"], elementCount: 1, groupCount: 1, acceptsTeleconverters: true },
+      surfaces: v2Surfaces({ imageGap: HOST_BACK_FOCUS }),
     }),
   },
   {

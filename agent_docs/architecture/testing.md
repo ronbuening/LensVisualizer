@@ -231,7 +231,12 @@ and bundled there.
   capabilities are optional, so a revision that lacks one still resolves its seam and reports the capability as
   `absent`. Canonical ingest, which the fingerprint needs, is one of them and is asked of the head's bundle alone. The
   catalog merge is another: each bundle merges a host as its own catalog does, by spreading its V1 defaults object at
-  a ref before S2.P1.T2, and by ingest and the V1 view at a later one (`catalogLensData` in `captureEntry.ts`).
+  a ref before S2.P1.T2, and by ingest and the V1 view at a later one (`catalogLensData` in `captureEntry.ts`). A
+  converter is read the same way where the ref has its view (`catalogTeleconverterData`), and as authored before
+  and wherever ingest refuses it: a converter is compared only through its pairs, so a broken one must still fail its
+  pairs' builds, which blocks, rather than lose its pairs.
+  From S2.P2.T1 ingest reads either lens-data version, and the request list reads a V2 file's stations and keyframes
+  (`requestCatalog`), so a V2 set and its V1 twin give the same requests, pairs and records.
 - `requests.ts` defines a tier as a deterministic list of lens × state × request family, and cuts a list into
   shards. The three tiers are described under "Tiers" below.
 - `payload.ts` holds the encoding (JSON that round-trips under `Object.is`, with tags for -0, NaN, and the
@@ -863,6 +868,9 @@ When refactoring:
 - Add equality tests when adding optional precomputed inputs to optics helpers.
 - Add reducer guard tests when tightening string state into literal unions.
 - Add script helper tests when changing metadata generation, route expansion, or git freshness lookup.
+  `__tests__/scripts/lensDataV2Readers.test.ts` holds the lens-data readers to both versions: the AST reader against
+  every catalog module, identity, summaries and converter fit from V2 twins, the organizer's V2 import, and page dates
+  that skip conversion commits.
 - Add fixture-backed optics tests whenever changing `SurfaceData.interaction`, `innerSd`, `opticalPath`, generalized
   stop tracing, generalized image-plane intersection, obstruction-aware sampling, or folded analysis gating. Prefer
   hidden reference fixtures under `src/lens-data/reference/` for canonical mirror/telescope behavior.
