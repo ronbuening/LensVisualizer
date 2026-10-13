@@ -10,7 +10,7 @@
 **Title:** *Internal Focusing Telephoto Lens*\
 **Embodiment analyzed:** Example 1 (Fig. 1 and Table 1)
 
-This prescription is the project-selected correlation for the **NIKON AI AF-S NIKKOR ED 300mm f/2.8D IF**. The patent
+This prescription is the project-selected correlation for the **NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED**. The patent
 itself does not identify a commercial product by model name, and the cited Nikon product material does not explicitly
 state that US 5,745,306 is the production patent. The identification therefore rests on convergent correspondence rather
 than a manufacturer-published patent cross-reference.
@@ -29,7 +29,7 @@ than a manufacturer-published patent cross-reference.
    state labeled $R=2500$ mm with $\beta=-0.1413$ and directly tabulates the internal focusing spacings used in the model.
 7. Nikon specifies a 52 mm drop-in filter, and the user's manual says always to use a filter with the lens (the holder
    ships with an NC filter). Example 1 includes a plane-parallel rear filter before its final image-side reference
-   planes; the model traces that plate at its printed position without drawing it, as described below.
+   planes; the model draws and traces that plate at its printed position, as described below.
 
 The patent's general descriptive text contains one internal shape contradiction: it describes L11 in one passage as a
 "biconcave positive" element, while Fig. 1, Table 1, and the specific Example 1 description show the positive L11 as
@@ -70,10 +70,11 @@ also smaller than its EFL, so it is not retrofocus under the corresponding proje
 
 The data model begins at patent surface S3, the front surface of L11. The plane-parallel S1-S2 front protection glass is
 excluded because it is not part of the active powered prescription. At the rear, the inactive field-stop planes S23 and
-S26 are folded out, and the S24-S25 filter plate (2.0 mm, nd 1.516800, νd 64.10) is modeled as a traced but undrawn rear
-plate: 21.5 mm of air from S22 to the filter (d22 + d23), the plate, then 84.1335 mm to the image (d25 + Bf). The
-air-equivalent S22-to-image spacing is unchanged at **106.9520654 mm**, so the model preserves the patent's image-plane
-location to source precision.
+S26 are folded out, and the S24-S25 filter plate (2.0 mm, nd 1.516800, νd 64.10) is drawn as a plane-parallel plate
+element and traced by every analysis: 21.5 mm of air from S22 to the filter (d22 + d23), the plate, then 84.1335 mm to
+the image (d25 + Bf). The air-equivalent S22-to-image spacing is unchanged at **106.9520654 mm**, so the model preserves
+the patent's image-plane location to source precision. The plate's semi-diameter is a ray-trace estimate because the
+source lists none, and the plate is not counted in `elementCount`.
 
 The patent publishes the aperture-stop position at S16, retained as the single `STO`. It does **not** publish the physical
 stop diameter. The modeled stop semi-diameter, 19.356356 mm, is therefore an authoring quantity back-solved from the final
@@ -185,8 +186,8 @@ $n_d=1.487490$, $\nu_d=70.41$. Glass: N-FK5 catalog equivalent (patent 487704; p
 
 L33 is the final positive element of G3 and the last powered element in the active model. Its high Abbe number contrasts
 with the low-Abbe L32 immediately ahead of it, completing the positive-negative-positive sequence within the rear group.
-The final surface is followed by 21.5 mm of air to the patent's rear filter, which is traced but not drawn, and then
-84.1335 mm to the image; the two inactive field-stop planes are folded out.
+The final powered surface is followed by 21.5 mm of air to the patent's rear filter, which is drawn and traced as a
+plane-parallel plate, and then 84.1335 mm to the image; the two inactive field-stop planes are folded out.
 
 ## Glass Identification and Selection
 

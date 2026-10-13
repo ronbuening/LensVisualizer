@@ -6,11 +6,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╠══════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Patent source: US 2019/0041605 A1, Example 4 / Numerical Data 4.                ║
  * ║  Production correlation: inferred from Canon's EF600mm f/4L IS III USM data.     ║
- * ║  Active LensVisualizer model: 16 elements / 12 air-separated groups, all spherical.║
- * ║  Patent surfaces 30–31 are the final parallel glass block G (e.g. filter) and are ║
- * ║  omitted under the current data specification. Surface 29 therefore uses the      ║
- * ║  patent's 80.59 mm air-equivalent BF to the image plane instead of raw d29=5.25. ║
- * ║  The production 17-element / 13-group count is recovered when G is counted.       ║
+ * ║  Active LensVisualizer model: 16 elements / 12 air-separated groups, all spherical, ║
+ * ║  plus the rear filter plate G.                                                      ║
+ * ║  REAR FILTER PLATE: patent surfaces 30–31 are the final parallel glass block G      ║
+ * ║  (e.g. filter): 2.20 mm, nd 1.51633, νd 64.14, θgF 0.5353. It is drawn as a plane-  ║
+ * ║  parallel plate element, not counted in elementCount, with a ray-trace estimated    ║
+ * ║  semi-diameter (the patent lists none). Surface 29 keeps the patent d29 = 5.25 mm   ║
+ * ║  and 73.90 mm of air follows the plate. Air-equivalent BF for reference: 5.25 +     ║
+ * ║  2.20/1.51633 + 73.90 = 80.600871 mm (patent 80.59). The production 17-element /    ║
+ * ║  13-group count is recovered when G is counted.                                     ║
  * ║                                                                                     ║
  * ║  NO SCALING: the Example-4 prescription is retained at its published dimensions.  ║
  * ║  Marketing/design separation: 600 mm / f/4 marketed; EFL≈587.932 mm / F4.12 model.║
@@ -284,6 +288,18 @@ const LENS_DATA = {
       dPgF: 0.02974552,
       cemented: "E15-E16",
     },
+    {
+      id: 17,
+      name: "G",
+      diagramLabel: "G",
+      label: "Drop-in filter G",
+      type: "Plane-Parallel Plate",
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7 (OHARA)",
+      dPgF: -0.00062,
+      role: "Plane-parallel filter plate of the patent prescription (US 2019/0041605 A1, Numerical Data 4 surfaces 30–31; patent θgF 0.5353), in the rear drop-in filter holder. The patent states the last two surfaces of each example are a glass block such as a filter; Canon counts it in the production lens.",
+    },
   ],
 
   /* ── Surface prescription ── */
@@ -316,7 +332,11 @@ const LENS_DATA = {
     { label: "26", R: 2687.062, d: 30.08, nd: 1.0, elemId: 0, sd: 15.2 },
     { label: "27", R: 99.601, d: 9.53, nd: 1.66565, elemId: 15, sd: 15.5 },
     { label: "28", R: -56.296, d: 1.5, nd: 1.89286, elemId: 16, sd: 15.5 },
-    { label: "29", R: 979.304, d: 80.59, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "29", R: 979.304, d: 5.25, nd: 1.0, elemId: 0, sd: 15.5 },
+    // Drop-in filter G (US 2019/0041605 A1, Numerical Data 4 surfaces 30–31), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    { label: "30", R: 1e15, d: 2.2, nd: 1.51633, elemId: 17, sd: 17.0 },
+    { label: "31", R: 1e15, d: 73.9, nd: 1.0, elemId: 0, sd: 17.0 }, // drop-in filter → image plane
   ],
 
   asph: {},

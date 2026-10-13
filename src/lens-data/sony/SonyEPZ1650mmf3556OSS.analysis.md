@@ -116,7 +116,7 @@ from the current HOYA data, while the patent's 40.80 Abbe number remains unchang
 ### L2 — Positive Meniscus
 
 `nd = 2.00272`, `νd = 19.32`. Glass: **E-FDS2 (HOYA coordinate identification)**. Standalone EFL:
-**+47.5267 mm**. Catalog-derived `dPgF = +0.0316`.
+**+47.5267 mm**. Catalog-derived `dPgF = +0.033851`.
 
 L2 is the second member of GR1 and is described by the patent as a positive meniscus with its convex surface toward the
 object (¶0161). Its positive power partially offsets L1, while the two-element group remains negative as a whole at
@@ -130,7 +130,7 @@ first group contributes to correction of distortion, coma, lateral chromatic abe
 ### L3 — Positive Meniscus, Two Aspherical Surfaces
 
 `nd = 1.69350`, `νd = 53.20`. Glass: **M-LAC130 (HOYA coordinate identification)**. Standalone EFL:
-**+19.9718 mm**. Catalog-derived `dPgF = -0.0059`.
+**+19.9718 mm**. Catalog-derived `dPgF = -0.007538`.
 
 L3 is the object-side positive lens of G2f and carries aspherical surfaces 5A and 6A. The patent's design rationale gives
 special attention to this position: conditional expression (3) constrains the focal length of the most object-side
@@ -145,7 +145,7 @@ correction while reducing zoom-group travel.
 ### L4/L5 — Cemented Positive/Negative Pair
 
 **L4:** `nd = 1.49700`, `νd = 81.61`. Glass: **FCD1 (HOYA coordinate identification)**. Standalone EFL:
-**+16.9652 mm**. Catalog-derived `dPgF = +0.0374`.
+**+16.9652 mm**. Catalog-derived `dPgF = +0.032056`.
 
 **L5:** `nd = 1.83400`, `νd = 37.34`. Glass: **NBFD10 (HOYA coordinate identification)**. Standalone EFL:
 **-8.2421 mm**. Catalog-derived `dPgF = -0.0021`.
@@ -167,7 +167,7 @@ assign a production ED label to either member.
 ### L6 — Biconvex Positive
 
 `nd = 1.48749`, `νd = 70.44`. Glass: **FC5 (HOYA coordinate identification)**. Standalone EFL:
-**+22.3245 mm**. Catalog-derived `dPgF = +0.0090`.
+**+22.3245 mm**. Catalog-derived `dPgF = +0.005027`.
 
 L6 is the final positive lens of G2f and is described as biconvex (¶0163). In the front subgroup it follows the net
 negative L4/L5 cemented pair, restoring the subgroup's positive net power together with L3. The complete G2f
@@ -180,7 +180,7 @@ to carry excessive power (¶0011-0012, ¶0110-0112). L6 is one of those distribu
 ### L7 — Biconvex Positive, Shake-Correction Subgroup
 
 `nd = 1.48749`, `νd = 70.44`. Glass: **FC5 (HOYA coordinate identification)**. Standalone EFL:
-**+46.8674 mm**. Catalog-derived `dPgF = +0.0090`.
+**+46.8674 mm**. Catalog-derived `dPgF = +0.005027`.
 
 L7 is the entire rear subgroup G2r and is described as a biconvex positive lens (¶0164). Because G2r consists of this
 single element in Example 1, the element's standalone focal length and the isolated subgroup focal length are the same
@@ -198,7 +198,7 @@ its printed precision.
 ### L8 — Biconcave Negative, Rear Asphere; Axial Focus Group
 
 `nd = 1.69680`, `νd = 55.46`. Glass: **697-555 — HOYA LAC14/M-LAC14 coordinate family**. Standalone EFL:
-**-19.3463 mm**. Catalog-derived `dPgF = -0.0060`.
+**-19.3463 mm**. Catalog-derived `dPgF = -0.007523`.
 
 L8 alone forms GR3, the negative third power group, and the patent describes it as biconcave (¶0165). Surface 16A on its
 image side is aspherical. The patent further specifies that the negative third group can move axially for focusing
@@ -216,7 +216,7 @@ claim.
 ### L9 — Biconvex Positive, Two Aspherical Surfaces
 
 `nd = 1.80610`, `νd = 40.73`. Glass: **806407 — NBFD13 / M-NBFD130 coordinate family (supplier unresolved)**.
-Standalone EFL: **+45.7715 mm**. Catalog-family `dPgF = -0.0059`.
+Standalone EFL: **+45.7715 mm**. Catalog-family `dPgF = -0.008339`.
 
 L9 alone forms GR4 and is described by the patent as biconvex (¶0166). Both surfaces, 17A and 18A, are aspherical. The
 positive rear group supplies the final converging section before the image plane, while D18 changes substantially across
@@ -234,19 +234,22 @@ comparison found a coherent match to HOYA coordinates across the Example 1 palet
 **coordinate identifications**, not as evidence of Sony's actual procurement.
 
 Where a HOYA coordinate resolves to a coefficient-backed optical family, the final data file stores catalog `nC`, `nF`,
-`ng`, and `dPgF` directly on the element. This improves chromatic modeling while keeping the source hierarchy explicit:
-patent `nd/νd` remain the prescription authority, and the line data are catalog-derived augmentation.
+and `ng` directly on the element, together with a `dPgF` annotation. This improves chromatic modeling while keeping the
+source hierarchy explicit: patent `nd/νd` remain the prescription authority, and the line data are catalog-derived
+augmentation. The patent prints no partial dispersion and defines no normal line of its own, so each `dPgF` is the
+`P_g,F` of the element's authored `nC/nF/ng` minus the engine's normal line, `0.6438 - 0.001682·νd`. L1 and L5 keep
+four-decimal values that agree with that figure within 0.0003. The trace uses the authored line indices directly.
 
 | Element(s) | `nd` | `νd` | Data-file glass annotation | `dPgF` | Status |
 |---|---:|---:|---|---:|---|
 | L1 | 1.88300 | 40.80 | TAFD30 | -0.0093 | Historical patent coordinate; current catalog displays νd=40.81 |
-| L2 | 2.00272 | 19.32 | E-FDS2 | +0.0316 | Spectrally resolved catalog coordinate |
-| L3 | 1.69350 | 53.20 | M-LAC130 | -0.0059 | Spectrally resolved catalog coordinate |
-| L4 | 1.49700 | 81.61 | FCD1 | +0.0374 | Spectrally resolved catalog coordinate |
+| L2 | 2.00272 | 19.32 | E-FDS2 | +0.033851 | Spectrally resolved catalog coordinate |
+| L3 | 1.69350 | 53.20 | M-LAC130 | -0.007538 | Spectrally resolved catalog coordinate |
+| L4 | 1.49700 | 81.61 | FCD1 | +0.032056 | Spectrally resolved catalog coordinate |
 | L5 | 1.83400 | 37.34 | NBFD10 | -0.0021 | Spectrally resolved catalog coordinate |
-| L6, L7 | 1.48749 | 70.44 | FC5 | +0.0090 | Spectrally resolved catalog coordinate |
-| L8 | 1.69680 | 55.46 | 697-555 LAC14/M-LAC14 family | -0.0060 | Physical-form suffix unresolved; spectral values coincide |
-| L9 | 1.80610 | 40.73 | 806407 NBFD13/M-NBFD130 family | -0.0059 | Coefficient-backed optical family; physical form and supplier unresolved |
+| L6, L7 | 1.48749 | 70.44 | FC5 | +0.005027 | Spectrally resolved catalog coordinate |
+| L8 | 1.69680 | 55.46 | 697-555 LAC14/M-LAC14 family | -0.007523 | Physical-form suffix unresolved; spectral values coincide |
+| L9 | 1.80610 | 40.73 | 806407 NBFD13/M-NBFD130 family | -0.008339 | Coefficient-backed optical family; physical form and supplier unresolved |
 
 HOYA classifies optical-glass families by refractive index and Abbe number and encodes those coordinates in its six-digit
 catalog code. For example, FCD1's 1.49700/81.61 coordinate is represented as 497-816. That coding convention explains why
@@ -337,8 +340,9 @@ classify them as molded, polished, hybrid/composite, or another fabrication type
 
 The source prescription itself supplies only `nd` and `νd`, but the final data file augments L1-L8 with catalog line
 indices and `dPgF` where the HOYA coordinate identification is spectrally unambiguous. This permits dispersion modeling
-beyond a simple Abbe approximation without changing the patent's d-line prescription. L9 remains deliberately limited
-to `nd/νd` because the 806-407 coordinate does not resolve to one unique current spectral subtype.
+beyond a simple Abbe approximation without changing the patent's d-line prescription. L9 carries the NBFD13 row's line
+indices and a matching `dPgF` annotation as well; its 806-407 coordinate does not settle the physical-form suffix, so
+the supplier and form remain unresolved.
 
 The patent attributes chromatic correction at the architecture level rather than assigning a wavelength-correction role
 to each glass. In particular, it states that the two-element negative first group contributes to correction of lateral and

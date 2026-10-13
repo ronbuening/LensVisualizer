@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — CANON EF 70-200mm f/2.8L IS USM                                    ║
+ * ║  LENS DATA — CANON EF 70-200mm f/2.8 L IS USM                                    ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Source prescription: JP2002162564A, Example 1 / Numerical Example 1.             ║
  * ║  Patent applicant: Canon Inc.; inventor: Akira Harada.                             ║
@@ -52,7 +52,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-ef-70-200f28l-is-usm",
   maker: "Canon",
-  name: "CANON EF 70-200mm f/2.8L IS USM",
+  name: "CANON EF 70-200mm f/2.8 L IS USM",
   subtitle: "JP2002162564A Example 1 — correlated patent embodiment; not the exact 23/18 production formula",
   specs: [
     "PATENT EXAMPLE: 21 ELEMENTS / 19 GROUPS",
@@ -67,6 +67,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.9,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "JP 2002-162564 A",
   patentAuthors: ["Akira Harada"],
@@ -454,6 +455,7 @@ const LENS_DATA = {
     "Patent g2 is the axial focusing unit, but Example 1 has no published close-focus spacing table. This data model therefore keeps all internal focus endpoints identical; 1.4 m is Canon production metadata only.",
 
   nominalFno: 2.9,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 8,
   maxFstop: 32,

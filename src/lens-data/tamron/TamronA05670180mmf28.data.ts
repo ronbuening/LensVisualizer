@@ -492,6 +492,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.85,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED two-group floating focus: Gf moves imageward and G6 moves objectward from infinity to the patent's " +
     "850 mm shooting-distance state at each zoom position; no internal reconstruction is used.",

@@ -5,9 +5,13 @@
  * `expandRearPlates()` appends two flat refracting surfaces and one synthetic element per plate so the exact
  * tracer, dispersion lookup and every analysis see the plate. The synthetic marker keeps the plate out of
  * drawn element spans, element lists and diagram scale (see `buildElementSpans` and `buildLens`).
+ *
+ * A composed host + teleconverter system is the one case where plates are not all trailing: a lens-side drop-in
+ * filter stays ahead of the converter, so its surfaces are emitted between the host's last surface and the
+ * converter's first.
  */
 
-import type { ElementData, LensData, RearPlateData, SurfaceData } from "../../types/optics.js";
+import type { ElementData, LensData, SurfaceData } from "../../types/optics.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
 
 /** Flat-surface radius used by authored prescriptions. */
@@ -15,9 +19,8 @@ const FLAT_R = 1e15;
 
 /**
  * Generated plate semi-diameter as a multiple of the larger of the largest authored semi-diameter and the image
- * semi-diagonal, so the plate never clips or limits the field. A plate sits just ahead of the image, where the
- * corner chief ray is already near full image height: compact designs whose rear element is much smaller than the
- * format need the image term, or the plate would set the half-field.
+ * semi-diagonal. A generated rim is marked `clips: false`, so it never clips a ray or limits the field at any size;
+ * the value only extends the envelopes that ray launch and intersection bounds read from surface rims.
  */
 const GENERATED_SD_FACTOR = 1.5;
 
@@ -45,18 +48,9 @@ export function rearPlateSurfaceLabels(plateIndex: number): [string, string] {
   return [`RP${plateIndex + 1}a`, `RP${plateIndex + 1}b`];
 }
 
-/**
- * Sum of the air-equivalent distances of a plate stack: Σ(t/n + gapAfter).
- *
- * Adding the physical gap before the first plate gives the legacy folded back-focus value, so migrations can check
- * that paraxial focus is unchanged.
- *
- * @param plates - authored rear plates
- * @returns air-equivalent length of the plates and trailing gaps in mm
- */
-export function rearPlateAirEquivalentMm(plates: readonly RearPlateData[]): number {
-  return plates.reduce((sum, plate) => sum + plate.thicknessMm / plate.nd + plate.gapAfterMm, 0);
-}
+/* The air-equivalent fold lives in the import-free teleconverter fit module so the build script can load it under
+ * plain Node; re-exported here so plate callers keep one import path. */
+export { rearPlateAirEquivalentMm } from "./teleconverterCompatibility.js";
 
 /**
  * Append synthetic plate surfaces and elements for lenses that declare `rearPlates`.
@@ -64,6 +58,10 @@ export function rearPlateAirEquivalentMm(plates: readonly RearPlateData[]): numb
  * The last authored surface keeps its `d` and `var` entry, which now describe the physical gap to the first plate;
  * plate thicknesses and trailing gaps are fixed camera-side distances. Lenses without plates are returned unchanged
  * (same object), so the zero-plate path is identity.
+ *
+ * With an attached teleconverter, the descriptor's `platesAhead` leading plates go in front of the converter's first
+ * surface; the composer has already set the last of them to trail into the converter. Expansion stays the only
+ * place plates become surfaces, so a rebuild from stripped runtime data (the MTF worker) reproduces the same stack.
  *
  * @param data - validated lens data after defaults merging
  * @returns lens data whose `surfaces` and `elements` include the synthetic plates
@@ -75,13 +73,24 @@ export function expandRearPlates(data: LensData): LensData {
   const generatedSd =
     GENERATED_SD_FACTOR * Math.max(...data.surfaces.map((surface) => surface.sd), imageSemiDiagonalMm(data));
   let nextElementId = Math.max(0, ...data.elements.map((element) => element.id)) + 1;
-  const surfaces: SurfaceData[] = [...data.surfaces];
+  const teleconverter = data.attachedTeleconverter;
+  const platesAhead = teleconverter?.platesAhead ?? 0;
+  const converterStart =
+    platesAhead > 0
+      ? data.surfaces.findIndex((surface) => surface.label === teleconverter!.firstSurfaceLabel)
+      : data.surfaces.length;
+  /* Plates ahead of a converter are collected here and spliced in before it; the rest append as usual. */
+  const aheadSurfaces: SurfaceData[] = [];
+  const trailingSurfaces: SurfaceData[] = [];
   const elements: ElementData[] = [...data.elements];
 
   plates.forEach((plate, plateIndex) => {
+    const surfaces = plateIndex < platesAhead ? aheadSurfaces : trailingSurfaces;
     const elemId = nextElementId++;
     const [frontLabel, rearLabel] = rearPlateSurfaceLabels(plateIndex);
-    const sd = plate.sd ?? generatedSd;
+    /* A published rim is a real aperture; a generated one only stands in for an unknown plate size. */
+    const rim: Pick<SurfaceData, "sd" | "clips"> =
+      plate.sd === undefined ? { sd: generatedSd, clips: false } : { sd: plate.sd };
     const name = plate.label ?? `Rear plate ${plateIndex + 1}`;
     elements.push({
       id: elemId,
@@ -100,12 +109,21 @@ export function expandRearPlates(data: LensData): LensData {
       synthetic: "rearPlate",
     });
     surfaces.push(
-      { label: frontLabel, R: FLAT_R, d: plate.thicknessMm, nd: plate.nd, elemId, sd, synthetic: "rearPlate" },
-      { label: rearLabel, R: FLAT_R, d: plate.gapAfterMm, nd: 1, elemId: 0, sd, synthetic: "rearPlate" },
+      { label: frontLabel, R: FLAT_R, d: plate.thicknessMm, nd: plate.nd, elemId, ...rim, synthetic: "rearPlate" },
+      { label: rearLabel, R: FLAT_R, d: plate.gapAfterMm, nd: 1, elemId: 0, ...rim, synthetic: "rearPlate" },
     );
   });
 
-  return { ...data, surfaces, elements };
+  return {
+    ...data,
+    surfaces: [
+      ...data.surfaces.slice(0, converterStart),
+      ...aheadSurfaces,
+      ...data.surfaces.slice(converterStart),
+      ...trailingSurfaces,
+    ],
+    elements,
+  };
 }
 
 /**

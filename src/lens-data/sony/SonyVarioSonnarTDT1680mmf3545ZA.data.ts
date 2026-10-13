@@ -28,8 +28,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  default 0.60 off-axis trace fraction, Fig. 1 proportions, and geometry limits.    ║
  * ║  7A also encloses the 13.700760 mm effective height implied by patent Table 15.     ║
  * ║  25A encloses the 8.772220 mm effective height implied by patent Table 14.          ║
- * ║  STO.sd is the maximum inferred physical wide-open radius (tele anchor); per-zoom  ║
- * ║  modeled openings are governed by nominalFno.                                       ║
+ * ║  STO.sd is the paraxial wide-open stop radius at the tele anchor; per-zoom modeled   ║
+ * ║  openings are governed by nominalFno and trace to 6.019 / 6.445 / 8.234 mm.          ║
  * ║                                                                                      ║
  * ║  GLASS: the patent supplies only d-line nd/νd coordinates, not vendor names or      ║
  * ║  nC/nF/ng/dPgF. Neutral coordinate codes and qualified catalog-equivalent curves    ║

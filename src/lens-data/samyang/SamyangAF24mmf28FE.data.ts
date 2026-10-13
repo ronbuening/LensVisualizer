@@ -225,6 +225,8 @@ const LENS_DATA = {
 
   /* Production MFD is 0.24 m; the patent's close row is labeled TL=0.2m. */
   closeFocusM: 0.24,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Published internal focus: G21 (L51–L61) translates 1.08634 mm objectward from infinity to the patent TL=0.2m row; " +
     "D1 and D2 preserve all three published spacing states. closeFocusM=0.24 m is the production specification and is " +

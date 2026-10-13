@@ -147,11 +147,11 @@ D4 and D5 consequently form a useful source-documented design motif: two cemente
 
 ### Gr4 — D6, L16 Positive Meniscus + L17 Negative Meniscus
 
-**L16:** nd = 1.92286, νd = 20.88. Glass: E-FDS1 (HOYA catalog equivalent; supplier unspecified). Standalone f = +15.292940 mm. Patent dPgF = +0.028.  
+**L16:** nd = 1.92286, νd = 20.88. Glass: E-FDS1 (HOYA catalog equivalent; supplier unspecified). Standalone f = +15.292940 mm. Patent ΔPgF = +0.028 (on the patent's own line); stored dPgF = +0.030156.  
 **L17:** nd = 1.91082, νd = 35.25. Glass: TAFD35 (HOYA catalog equivalent; supplier unspecified). Standalone f = -21.901881 mm.  
 **Computed cemented D6 net f = +56.419642 mm.**
 
-D6 is the forward cemented pair of the negative rear group. L16 is the only positive element in Gr4 and is therefore the element to which Example 1's condition-(6) material value can be assigned. Table 1 publishes ΔPgF = +0.028, and the data stores that value directly on L16.
+D6 is the forward cemented pair of the negative rear group. L16 is the only positive element in Gr4 and is therefore the element to which Example 1's condition-(6) material value can be assigned. Table 1 publishes ΔPgF = +0.028, measured from the patent's own line ΔPgF = PgF + 0.0018·νd − 0.64842 (¶0041), which implies PgF = 0.638836 at νd = 20.88. The data stores that partial dispersion on L16 as dPgF = +0.030156, the same PgF measured from the viewer's normal line 0.6438 − 0.001682·νd.
 
 The patent states that a positive Gr4 element satisfying ΔPgF > 0.01 is used to shift the wide-end g-line lateral chromatic aberration toward the negative image-height direction and thereby aid secondary-spectrum correction (¶¶0041–0042). The data supports the published ΔPgF value, but the patent does not provide L16's nC, nF, and ng line indices. Accordingly, the analysis does not claim an independently reconstructed partial-dispersion curve or apochromatic performance.
 
@@ -187,7 +187,7 @@ HOYA's cross-reference documentation is particularly useful because it documents
 
 The 1.58313/59.39 coordinate illustrates the policy. OHARA L-BAL42 reproduces it exactly, so L2 and L11 carry that label as a catalog equivalent; nearby HOYA M-BACD12 (νd 59.46) and HIKARI J-SK12 (νd 59.42) show why the label is not a supplier claim. Similarly, the TAFD35L line-index data retained in the audit evidence are catalog-candidate properties only; those nC/nF/ng values are not authored onto L10, L13, L14, L17, or L18 because the supplier/melt identity has not been proven.
 
-L16 is the only element with prescription-specific partial-dispersion data in the final model. Its dPgF = +0.028 comes directly from Example 1's Table 1 and condition (6). That is sufficient to discuss the patent's stated ΔPgF condition, but not to assign a complete line-index model or to characterize the whole lens as apochromatic.
+L16 is the only element with prescription-specific partial-dispersion data in the final model. Its stored dPgF = +0.030156 is Example 1's Table 1 and condition (6) value, the patent's ΔPgF = +0.028, re-expressed on the viewer's normal line. That is sufficient to discuss the patent's stated ΔPgF condition, but not to assign a complete line-index model or to characterize the whole lens as apochromatic.
 
 ## Focus Mechanism
 

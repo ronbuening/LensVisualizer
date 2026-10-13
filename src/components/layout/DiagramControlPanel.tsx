@@ -65,6 +65,8 @@ interface DiagramControlPanelProps {
   onSliderPointerUp: () => void;
   onSliderInteractionChange?: (interacting: boolean) => void;
   onOpenGroupMovement?: (mode: GroupMovementMode) => void;
+  patentPositions?: boolean;
+  onPatentStationChange?: (zoomT: number, focusT: number) => void;
   info: ElementData | null;
   showOnAxis: boolean;
   showOffAxis: OffAxisMode;
@@ -122,6 +124,8 @@ export default function DiagramControlPanel({
   onSliderPointerUp,
   onSliderInteractionChange,
   onOpenGroupMovement,
+  patentPositions,
+  onPatentStationChange,
   info,
   showOnAxis,
   showOffAxis,
@@ -201,6 +205,8 @@ export default function DiagramControlPanel({
         onInteractionChange={onSliderInteractionChange}
         showSliders={showSliders}
         onOpenGroupMovement={onOpenGroupMovement}
+        patentPositions={patentPositions}
+        onPatentStationChange={onPatentStationChange}
       />
 
       <div

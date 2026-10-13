@@ -349,6 +349,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.889248,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Published three-state floating focus: G1a fixed; G1b and G2 move independently but coordinately toward object space for closer focus. Table 5 gives F3 as 0.696 m from S0 to S1; after adding the 0.193248 m S1-to-image track, closeFocusM = 0.889248 m is the patent F3 object-to-image distance used by the focus control, not the marketed 0.99 m production MFD.",
 

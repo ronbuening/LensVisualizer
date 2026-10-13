@@ -29,6 +29,10 @@ export interface TraceHit {
   incidentDirection?: Vec3;
   outgoingDirection?: Vec3;
   radius: number;
+  /** Signed residual of the accepted intersection, in mm. */
+  residual: number;
+  /** Residual bound that intersection met, in mm; above the requested target only for roundoff. */
+  effectiveTolerance: number;
   clipped: boolean;
   fallback: boolean;
   failureReason: TraceFailureReason | null;

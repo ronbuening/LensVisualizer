@@ -246,6 +246,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.8,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Published inner focus — cemented doublet G2 (L5+L6) translates 13.584 mm. The patent labels its second station 8.5 m despite f=1 normalization; the marketed 1.8 m minimum is not a verified source conjugate.",
 
   /* ── Aperture configuration ── */

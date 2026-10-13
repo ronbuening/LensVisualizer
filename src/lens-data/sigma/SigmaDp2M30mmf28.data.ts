@@ -243,13 +243,15 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.28,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Front-group unit focus: the patent 1000 mm state is exact before the constrained 0.28 m endpoint; G1 (L1–L5 plus stop) translates objectward.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
+  nominalFno: 2.86,
   apertureBlades: 9,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [2.86, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

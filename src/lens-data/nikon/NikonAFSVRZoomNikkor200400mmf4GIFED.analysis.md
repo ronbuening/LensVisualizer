@@ -1,4 +1,4 @@
-# NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED — Optical Analysis
+# NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -30,7 +30,7 @@ This is a convergent production-to-patent correlation rather than a manufacturer
 
 Two source-table issues are explicitly normalized in the model. First, Table 1 prints the infinity/392 mm spacing d7 as -54.90581 mm even though the same focus-only subgroup is fixed at +54.90581 mm in the other infinity zoom states. Using the printed negative sign destroys the stated optical state; using +54.90581 mm restores the 392 mm EFL and published back focus. Second, Table 1 omits d26 in all infinity rows. Because the patent states that G1m alone performs focusing, d26 is a zoom-only G3-to-stop spacing; the model therefore reuses the published closest-focus d26 values at infinity. This is a mechanism-constrained fill of a source omission, not an invented focus reconstruction.
 
-The source rear-inserting filter BFL is carried as a physical plate. Patent surfaces 44–45 form a 2.00 mm plane-parallel plate at nd = 1.51680, νd = 64.12. The model stores it in `rearPlates`, so every analysis traces it but the diagram does not draw it: surface 43 keeps the printed 3.00 mm gap to the filter, and the plate carries the printed Bf = 91.16781 mm to the image plane. The paraxial air-equivalent of that rear stack is 3.00 + 2.00/1.51680 + 91.16781 = 95.48637540084388 mm. No optical dimensions are scaled.
+The source rear-inserting filter BFL is carried as a physical plate. Patent surfaces 44–45 form a 2.00 mm plane-parallel plate at nd = 1.51680, νd = 64.12. The model draws it as a plane-parallel plate element, so every analysis traces it: surface 43 keeps the printed 3.00 mm gap to the filter, and the plate carries the printed Bf = 91.16781 mm to the image plane. The paraxial air-equivalent of that rear stack is 3.00 + 2.00/1.51680 + 91.16781 = 95.48637540084388 mm. The plate's semi-diameter is a ray-trace estimate because the source lists none, and the plate is not counted in `elementCount`. No optical dimensions are scaled.
 
 The patent publishes the aperture stop S1 and field stop S2 but no complete per-surface clear-aperture table. The model therefore uses an independently solved S1 semi-diameter of 19.12567431 mm and derived surface semi-diameters constrained by the published group effective diameters, ray envelopes, the optical section, and geometry validation. S2 is retained as an optically neutral clear-aperture plane with an inferred 17.90 mm semi-diameter. These aperture dimensions are modeling results, not patent-published per-surface clear apertures.
 
@@ -246,7 +246,7 @@ The occurrence count of this coordinate matches Nikon's marketed count of four E
 
 The final cemented pair has a computed net focal length of +205.230140 mm. L48 is strongly positive in isolation and L49 negative; the cemented result is a moderate positive relay contribution.
 
-The smallest modeled element edge thickness occurs in this final pair and remains positive under the derived semi-diameter set. After L49, the source's 3.00 mm air gap, 2.00 mm filter plate, and published Bf are stored as printed: the gap on surface 43 and the filter as a traced but undrawn `rearPlates` entry rather than as a lens element.
+The smallest modeled element edge thickness occurs in this final pair and remains positive under the derived semi-diameter set. After L49, the source's 3.00 mm air gap, 2.00 mm filter plate, and published Bf are stored as printed: the gap on surface 43 and the filter as a drawn and traced plane-parallel plate (surfaces 44–45) rather than as a lens element.
 
 ## Glass Identification and Selection
 
@@ -347,7 +347,7 @@ The tightest modeled air-space geometry occurs between G2 surfaces 19 and 20. At
 
 Across the final semi-diameter set, the maximum spherical rim slope is 0.481772 in dz/dy magnitude and the minimum modeled element edge thickness is 0.304695 mm. The S2 full-field envelope is 17.825984 mm, below its inferred 17.90 mm clear semi-diameter. These checks support the modeled apertures without treating them as source-published mechanical diameters.
 
-No aspheres are present, so there are no conic-domain or polynomial-departure checks. No sensor cover, flare-cutter, or dummy plane is in the active sequential model. The separate source rear filter is modeled in `rearPlates` with its printed thickness, index, and gaps; it is traced by every analysis but not drawn.
+No aspheres are present, so there are no conic-domain or polynomial-departure checks. No sensor cover, flare-cutter, or dummy plane is in the active sequential model. The separate source rear filter is drawn as a plane-parallel plate element with its printed thickness, index, and gaps, and it is traced by every analysis.
 
 ## Sources and References
 

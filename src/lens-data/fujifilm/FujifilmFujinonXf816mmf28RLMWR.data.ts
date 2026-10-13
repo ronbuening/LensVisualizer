@@ -37,7 +37,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-fujinon-xf-8-16mm-f28-r-lm-wr",
   maker: "Fujifilm",
-  name: "Fujinon XF 8-16mm f/2.8 R LM WR",
+  name: "FUJIFILM FUJINON XF 8-16mm f/2.8 R LM WR",
   subtitle: "US 2019/0302431 A1 Example 1 — strong production-lens correlation; published focus states",
   specs: [
     "20 ELEMENTS / 13 GROUPS",
@@ -427,6 +427,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "PUBLISHED focus model: G4/Gf moves imageward from infinity to the patent 500 mm-from-image-plane state; DD[26] and DD[32] preserve their sum at each zoom endpoint. The production 0.25 m MFD is not reconstructed.",
 
   nominalFno: 2.88,

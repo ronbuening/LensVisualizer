@@ -344,6 +344,44 @@ describe("AnalysisDrawerContent", () => {
     });
   });
 
+  it("defers a lens replaced in place together with its perspective context", async () => {
+    // A converter or optical-configuration switch swaps L without remounting the drawer. Pairing the new lens
+    // with the previous lens's deferred perspective context throws in createAnalysisComputationContext.
+    const lensA = baseProps.L;
+    const lensB = { ...baseProps.L } as RuntimeLens;
+    const stateFor = (lens: RuntimeLens) => {
+      const key = lens === lensB ? "lens-b" : "lens-a";
+      return { ...mockPreparedState, cacheKey: `${key}:0:0:0`, lens: { key } };
+    };
+    const contextFor = (lens: RuntimeLens) =>
+      ({ cacheKey: "centered", pose: { active: false }, state: stateFor(lens) }) as unknown as PerspectiveTraceContext;
+    mockPrepareRuntimeState.mockImplementation((lens: RuntimeLens) => stateFor(lens));
+    const { rerender } = render(
+      <AnalysisDrawerContent
+        {...baseProps}
+        activeTab="summary"
+        L={lensA}
+        perspectiveTraceContext={contextFor(lensA)}
+      />,
+    );
+
+    rerender(
+      <AnalysisDrawerContent
+        {...baseProps}
+        activeTab="summary"
+        L={lensB}
+        perspectiveTraceContext={contextFor(lensB)}
+      />,
+    );
+
+    await waitFor(() => expect(mockOpticalSummaryTab.mock.calls.at(-1)?.[0].L).toBe(lensB));
+    for (const [props] of mockOpticalSummaryTab.mock.calls) {
+      const context = props.analysisContext as AnalysisComputationContext;
+      expect(context.perspectiveTraceContext?.state.lens.key).toBe(context.preparedState.lens.key);
+      expect(context.preparedState.lens.key).toBe(props.L === lensB ? "lens-b" : "lens-a");
+    }
+  });
+
   it("has exactly one renderer for every registered analysis tab and maps each tab to its component", () => {
     const expectations: Record<
       AnalysisTabId,

@@ -47,9 +47,9 @@ const LENS_DATA = {
   groupCount: 8,
 
   closeFocusM: 0.18,
-  nominalFno: 2.4,
+  nominalFno: 2.45,
   maxFstop: 22,
-  fstopSeries: [2.4, 2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.45, 2.8, 4, 5.6, 8, 11, 16, 22],
   scFill: 0.52,
   yScFill: 0.46,
   offAxisFieldFrac: 0.5,

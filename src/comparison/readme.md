@@ -81,7 +81,7 @@ flowchart LR
 
 - Direct source files: 14
 - Direct subfolders: 0
-- Main outbound areas: same folder (28), src/types (14), package:react (8), src/utils/state (4), src/components/layout (3), src/optics/optics.ts (3), src/utils/style (3), src/optics/groupMovement.ts (2), +11 more
+- Main outbound areas: same folder (28), src/types (14), package:react (8), src/utils/state (5), src/components/layout (3), src/optics/optics.ts (3), src/utils/style (3), src/optics/groupMovement.ts (2), +11 more
 - External consumers: src/components/layout, src/pages/ComparePage.tsx, src/types, src/utils/catalog, src/utils/state
 
 ## Files
@@ -89,7 +89,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `ComparisonContent.tsx` | React component module | same folder (8), src/types (2), package:react, src/components/errors, src/utils/state | src/components/layout | default, ComparisonContent |
-| `ComparisonLayout.tsx` | React component module | same folder (2), package:react, src/components/layout, src/types, src/utils/useMediaQuery.ts | same folder | default, ComparisonLayout |
+| `ComparisonLayout.tsx` | React component module | same folder (2), package:react, src/components/layout, src/types, src/utils/catalog, +1 more | same folder | default, ComparisonLayout |
 | `comparisonReducer.ts` | Comparison Reducer module with default export | src/types | same folder (3), src/utils/state | SET_SCALE_MODE, SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T, SET_SHARED_ZOOM_T, SET_SHARED_SHIFT_MM, SET_SHARED_TILT_DEG, ENTER_COMPARE, EXIT_COMPARE, +2 more |
 | `comparisonSliders.ts` | Comparison Sliders helper module | src/optics/aperture.ts, src/optics/focusDistance.ts, src/optics/groupMovement.ts, src/optics/lensMovement.ts, src/optics/optics.ts, +2 more | same folder (7), src/components/layout | FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult, computeFocusPair, computeAperturePair, formatSharedFocusDist, sharedFNumber, +4 more |
 | `comparisonTypes.ts` | Comparison Types helper module | none | src/types | SharedSlidersSlice, ComparisonAction |
@@ -100,5 +100,5 @@ flowchart LR
 | `SharedSliderSection.tsx` | React component module | package:react, src/types, src/utils/style | same folder | default, SharedSliderSection |
 | `useComparisonDisplayValues.ts` | React hook module | same folder (3), package:react, src/optics/optics.ts | same folder | default, useComparisonDisplayValues |
 | `useComparisonMode.ts` | React hook module | same folder (2), package:react, src/optics/buildLens.ts, src/types, src/utils/catalog | same folder (4), src/components/layout | ComparisonLensesOk, ComparisonLensesResult, isComparisonOk, default, useComparisonMode |
-| `useComparisonOrchestration.ts` | React hook module | same folder (6), package:react, package:react-router, src/types, src/utils/seo | src/components/layout | isComparisonOk, ComparisonLensesResult, ComparisonOrchestration, default, useComparisonOrchestration |
+| `useComparisonOrchestration.ts` | React hook module | same folder (6), package:react, package:react-router, src/types, src/utils/seo, +1 more | src/components/layout | isComparisonOk, ComparisonLensesResult, ComparisonOrchestration, default, useComparisonOrchestration |
 | `useStickySliders.ts` | React hook module | same folder (3), package:react, src/types | same folder | default, useStickySliders |

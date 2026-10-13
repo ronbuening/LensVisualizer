@@ -446,6 +446,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED 0.5 m focus states at all three zoom control points. G4 (L14+L15 with rear resin) translates toward the image plane; only D25 and D29 change with focus and their sum is conserved to patent-table rounding. The correlated SEL18200LE likewise specifies a 0.5 m minimum focus distance.",
 

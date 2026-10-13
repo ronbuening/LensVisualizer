@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * LENS DATA — NIKON AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR
+ * LENS DATA — NIKON AF-S DX NIKKOR 16-80mm f/2.8-4 E ED VR
  *
  * Source: US 2018/0252903 A1, Example 1 (ZL1), Satoshi Yamaguchi / Nikon Corporation.
  * Patent prescription retained at scale s = 1; design focal lengths are not forced to the marketed 16–80 mm labels.
@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-dx-nikkor-16-80mm-f28-4-e-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR",
+  name: "NIKON AF-S DX NIKKOR 16-80mm f/2.8-4 E ED VR",
   subtitle: "US 2018/0252903 A1 Example 1 — production correlation, not manufacturer-confirmed",
   specs: [
     "17 ELEMENTS / 13 GROUPS",
@@ -408,6 +408,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.350001,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "PUBLISHED: G2 translates objectward between the patent Table 3 infinity and short-distance states; W/M/T endpoints preserve source D5/D14 pairs while D22, D27, and BF are zoom-only.",
 
   nominalFno: [2.72, 3.38, 4.16],

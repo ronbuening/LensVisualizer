@@ -121,3 +121,65 @@ Pentax K).
 - Only the two tabulated zoom stations exist; intermediate gaps are interpolated and cannot follow the curved cam
   paths of Fig. 2.
 - The close-focus extension is calculated from production data; the patent publishes no near-conjugate state.
+
+## 2026-10-07 — Patent-audit queue: Table I prescription re-read
+
+Source: `patents/US3975089.pdf` (300 dpi one-bit scan, read from 600 dpi crops). Queue row: the stored prescription
+computes 38.46 / 89.08 mm where the patent states 36–83 mm, and Group IV computes 0.0319 against Table III's .0333.
+No prescription value changed; the file already matches the print.
+
+| Field | Before | After | Source |
+|---|---|---|---|
+| `sourceErrata` | absent | one `unresolved` entry: Table I computes f = 38.46 / 89.08 mm and back focus 45.82 mm against the stated 36–83 mm and 40.06 mm; Group IV 0.0319 against .0333; no single Group IV value reproduces the stated values together | Table I, p. 4 col. 2 and p. 5 col. 3; "36-83mm" at p. 4 col. 2 l. 51–54 and p. 5 col. 3 l. 48–50; Table III and "back focal length … 40.06mm" at p. 6 col. 5 l. 25–43 |
+| Header, Certificate of Correction sentence | "fixes only claim 17's 5.93 → 5.98" | one table value (claim 17's 5.93 → 5.98) plus a formula and a claim dependency | Certificate, p. 9: col. 6 l. 25 expression; claim 17 "claim 13" → "claim 9"; col. 10 l. 30 "5.93" → "5.98" |
+| Header, EFL-discrepancy note | "Table III group powers I–III … match the printed rows"; "the claim tables repeat Table I verbatim" | computed powers beside the printed ones (III −.0100 against −.0098, I–III −.0306 against −.0301); claim 8's R21 −35.95 named; front-vertex distances added | Table III, p. 6 col. 5; claim 8 table, p. 7 col. 8 l. 56 |
+| Analysis note, overview and discrepancy section | the same two statements | the same corrections, with the row-for-row match and the unresolved erratum stated | as above |
+| Header, Table II / Fig. 2 sentence | "Table II travels (19.07 / 8.14 mm) and the Fig. 2 cam plot are reproduced by these gaps" | Group II / III travels and the ends of their Fig. 2 curves reproduced; Group I curve about 0.7 mm above the R6–R13 distance | Table II, p. 6 col. 5; Fig. 2, p. 3 |
+| Analysis note, Table II sentence | "the data file's variable gaps reproduce all three figures" | Group II and Group III figures reproduced exactly; Group I's two end positions differ by 0.06 mm | Table II, p. 6 col. 5; R6–R13 distance 34.04 / 33.98 mm from the printed gaps |
+
+- Table I, Group IV first: R13 53.32 / 2.90 / 1.620 / 60.3; R14 −42.06 / 2.00; R15 −502.33 / 5.00 / 1.487 / 70.4; R16
+  −14.89 / 0.90 / 1.805 / 25.5; R17 −45.59 / 11.53 (stored as 4.15 + 7.38 around the stop); R18 125.96 / 3.50 / 1.639
+  / 45.1; R19 −25.90 / 5.98; R20 −19.40 / 1.296 / 1.805 / 25.5; R21 −35.59. Groups I–III: all twelve radii, nine fixed
+  distances and seven Nd/Vd pairs, and footnotes (1) .47–19.48, (2) 15.94–5.01, (3) 9.33–1.19. Every value equals the
+  file. The file applies no scale factor.
+- The three claim copies were read the same way. Claim 7 (p. 7) is identical to Table I. Claim 8 (p. 7 col. 8) differs
+  only in R21, printed −35.95. Claim 17 (p. 8 col. 10) differs only in the R19–R20 distance, printed 5.93 and changed
+  to 5.98 by the Certificate. The Certificate's first item is the expression at description column 6 line 25, not a
+  claim 6 inequality as the 2026-09-21 entry has it.
+- Computed from the stored rows (own paraxial trace; the zoom-iris helper prints the same focal lengths): EFL 38.461 /
+  89.077 mm, back focus 45.820 / 46.372 mm, front-vertex distance 138.91 / 139.40 mm, R1–R21 length 93.086 / 93.026
+  mm. Powers: I 0.01578, II −0.03949, III −0.00997, I–III at wide −0.03059, IV 0.03192, whole lens at wide 0.02600,
+  against Table III's .0157, −.0395, −.0098, −.0301, .0333, .0277. `focalLengthDesign`, the element `fl` values and
+  the stored back focus agree with these and stay.
+- The stated values agree with one another and not with the table: Table III's whole-lens .0277 is the power of a
+  36.1 mm lens; the back focus exceeds the focal length over 8.6 % of a 36–83 mm range ("over 8 percent"; the table
+  gives 14.5 %); 135.7 / 83 = 1.63 as the text says (table 1.565); R9 = 17.98 is half of 36 (claim 2). One of them
+  does not fit the rest: a front-vertex distance growing 2.0 mm from 133.7 to 135.7 mm cannot come from Table II's net
+  Group I travel of 0.09 mm with a single back focus.
+- Errata standard: only one kind of evidence is available (`source-summary`), and it does not isolate a value. The
+  patent has no aberration plots and no second example; the claim copies carry the same Group IV rows; the printed
+  rows satisfy every claimed condition (back focus above the short focal length; R9, R10 at 0.47 / 0.43 of it; Ra
+  62.29; Ra/FLm 1.06; short focal length 0.889 of the 43.27 mm diagonal; zoom ratio 2.32). No value was corrected.
+- Single-value search over Group IV, each value solved for f = 36.00 at wide. Every solution gives 83.2–83.4 mm at
+  tele, so the tele focal length does not discriminate. None also gives back focus 40.06 mm and power .0333. The
+  radius and index solutions leave the back focus long: R13 47.54 (40.94 mm, power 0.03305), L8 index 1.652 (41.03,
+  0.03304), R14 −38.59 (41.12, 0.03301), R15 +1412 (41.29, 0.03297), all others 41.5 mm or more. Of the distance
+  solutions only R19–R20 = 8.00 mm comes near (39.27 mm, 0.03332), and the Certificate confirms 5.98 there. Reading
+  R15 as +502.33, which the text's "L9 is bi-convex" would suggest, gives 34.94 / 80.86 mm, back focus 39.34 mm and
+  power 0.03346, past the stated values on the other side. Claim 8's R21 gives 38.86 / 90.02 mm.
+- In Groups I–III the only single value that brings Group III to −.0098 and I–III to −.0301 is an L7 thickness of
+  about 6.1 mm in place of 3.10. It leaves Group IV at 0.0319 and the back focus at 42.2 mm, and Fig. 2 excludes it:
+  the Group II curve runs from 29.3 to about 10 mm ahead of R13, where the printed distances give 29.37 and 10.30 mm.
+- Fig. 2 (p. 3), read at 300 dpi against its 1 mm grid at 36 and 83 mm: Group II 29.3 / 10.1 and Group III 9.3 / 1.3
+  mm, against R9–R13 29.37 / 10.30 and R12–R13 9.33 / 1.19 mm from the printed gaps; Group I 34.7 / 34.7 mm, against
+  an R6–R13 distance of 34.04 / 33.98 mm. Table II's 19.07 and 8.14 mm follow exactly from the gaps; the two stations
+  put Group I 0.06 mm apart and cannot show its 3.24 / 3.15 mm out-and-back motion.
+- Fig. 1 (p. 2), a figure reading only and not counted as evidence: the section is drawn near the tele gaps, and
+  R1–R21 measures about 1270 px at 300 dpi, 93 mm at the 13.6 px/mm that the drawn Group I length gives, against the
+  table's 93.03 mm; the L11–L12 gap is drawn at about 5.8 mm. The drawing gives no sign that an axial distance is
+  misprinted. The image plane is drawn about 37 mm behind R21, nearer the stated 40.06 mm than the computed 46.37 mm.
+- Left open: which Group IV value or values the text's 36–83 mm design differs in. Settling it needs a second printing
+  of the prescription, such as a foreign counterpart of application 462,366; this patent alone cannot. The Section G
+  row of `agent_docs/sd-audit-queue.md` and the Section F row marked "needs a corrected Table I" stay open on that.
+- The tele rim limit is as before: f/2.8 stated, f/3.01 traced at 83 mm (surface 10 rim) and f/2.84 at 36 mm (surface
+  14 rim), with the fixed iris at 11.583 mm limiting at neither station. No semi-diameter was touched.

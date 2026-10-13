@@ -386,12 +386,15 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.8,
+  // Source rows only; the other zoom stations are solved or sampled control points.
+  publishedStations: { zoom: [0, 9] },
   focusDescription:
     "RECONSTRUCTED, not published: rigid unit extension of the whole powered system against the plane plate that claim 2 fixes to the camera, so only l7 changes (+1.78 mm at 35 mm rising to +6.58 mm at 65 mm for the secondary-sourced 0.80 m object-to-image minimum, solved at each of the ten zoom stations). Eight of those stations are code-solved fixed-image-plane states, not published. The separate 1:3 macro mode at the long end is not modelled.",
 
   /* ── Aperture configuration ── one modelled f-number per zoom station, from a single fixed
    *   iris of 9.241 mm semi-diameter calibrated to the patent's published k = 2.7 at wide. */
   nominalFno: [2.7, 2.8122, 2.9242, 3.0362, 3.1482, 3.2602, 3.3722, 3.4842, 3.5962, 3.6678],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.7, 3.5, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22, // marketed minimum aperture, half-stop detents
 

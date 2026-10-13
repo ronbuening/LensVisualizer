@@ -329,6 +329,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.17,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus: only G2/L21 moves objectward. Infinity and the patent 1 m state are published; the 0.17 m endpoint is a constrained one-DOF reconstruction using FUJIFILM's sensor-plane MFD and conserved DD15 + DD17 = 7.61 mm.",
 

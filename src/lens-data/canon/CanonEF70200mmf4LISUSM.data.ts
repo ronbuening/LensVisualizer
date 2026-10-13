@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * LENS DATA — CANON EF 70-200mm f/4L IS USM
+ * LENS DATA — CANON EF 70-200mm f/4 L IS USM
  *
  * Source: JP2008070450A, Example 1 (Canon Inc.; Yoshiyuki Taki).
  * Production correlation: strong inference. The embodiment has the production lens's 20 elements / 15 groups,
@@ -48,7 +48,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-ef-70-200mm-f4l-is-usm",
   maker: "Canon",
-  name: "CANON EF 70-200mm f/4L IS USM",
+  name: "CANON EF 70-200mm f/4 L IS USM",
   subtitle: "JP2008070450A Example 1 — strong production correlation; unscaled patent prescription",
   specs: [
     "20 ELEMENTS / 15 GROUPS",
@@ -62,6 +62,7 @@ const LENS_DATA = {
   apertureMarketing: 4,
   apertureDesign: 4.1,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "JP 2008-070450 A",
   patentAuthors: ["Yoshiyuki Taki"],
@@ -398,6 +399,7 @@ const LENS_DATA = {
     "NO_INTERNAL_RECONSTRUCTION: JP2008070450A Example 1 identifies L2 (surfaces 9-15) as the focus group but publishes no finite-focus spacing state. The data preserves only the three published infinity zoom states; 1.2 m is Canon production metadata and the zoom gaps repeat their infinity values at the close-focus endpoint.",
 
   nominalFno: 4.1,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.1, 5.6, 8, 11, 16, 22, 32],
   apertureBlades: 8,
   maxFstop: 32,

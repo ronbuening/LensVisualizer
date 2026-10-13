@@ -12,6 +12,7 @@ import UpdatesPage from "../../../../src/pages/UpdatesPage.js";
 import type { LensAction, LensState } from "../../../../src/types/state.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { ALL_LENSES_BY_DATE } from "../../../../src/utils/catalog/lensSummaries.js";
+import { ALL_TELECONVERTER_KEYS, TELECONVERTER_CATALOG } from "../../../../src/utils/catalog/teleconverterCatalog.js";
 import { LensDispatchContext, LensStateContext, type LensCtxValue } from "../../../../src/utils/state/LensContext.js";
 import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
 import { deriveMaker } from "../../../../src/utils/catalog/lensMetadata.js";
@@ -169,6 +170,8 @@ describe("page, markdown, and breadcrumb coverage", () => {
         lensKeyA,
         lensKeyB,
         selectedConfigurationKey: lensKeyA,
+        teleconverterKeyA: null,
+        teleconverterKeyB: null,
         comparing: true,
         scaleMode: "independent",
       },
@@ -190,6 +193,24 @@ describe("page, markdown, and breadcrumb coverage", () => {
       </MemoryRouter>,
     );
     expect(container.textContent).toBe("");
+  });
+
+  it("offers the position-mode toggle beside the page-level switches on a single-lens page only", () => {
+    const dispatch = vi.fn();
+    renderBreadcrumb({ dispatch });
+
+    expect(screen.getByRole("button", { name: "SLIDERS" }).getAttribute("aria-pressed")).toBe("true");
+    fireEvent.click(screen.getByRole("button", { name: "PATENT POSITIONS" }));
+    expect(dispatch).toHaveBeenCalledWith({ type: "SET_PATENT_POSITIONS", enabled: true });
+
+    cleanup();
+    const on = makeState({ panels: { patentPositions: true } as LensState["panels"] });
+    renderBreadcrumb({ state: on, isWide: false });
+    expect(screen.getByRole("button", { name: "PATENT" }).getAttribute("aria-pressed")).toBe("true");
+
+    cleanup();
+    renderBreadcrumb({ state: makeState({ lens: { comparing: true } as LensState["lens"] }) });
+    expect(screen.queryByRole("group", { name: "Zoom and focus positions" })).toBeNull();
   });
 
   it("renders source-aware lens breadcrumbs for library, mount, and format sources", () => {
@@ -276,6 +297,35 @@ describe("page, markdown, and breadcrumb coverage", () => {
 
     expect(screen.getByRole("link", { name: "Formats" }).getAttribute("href")).toBe("/formats/");
     expect(screen.getByRole("link", { name: "APS-C" }).getAttribute("href")).toBe("/formats/aps-c/");
+
+    cleanup();
+    const teleconverterKey = ALL_TELECONVERTER_KEYS[0];
+    renderBreadcrumb({
+      lensKey,
+      state,
+      initialEntry: {
+        pathname: `/lens/${lensKey}/`,
+        state: { lensBreadcrumb: { type: "teleconverter", id: teleconverterKey } },
+      },
+    });
+
+    expect(screen.getByRole("link", { name: "Teleconverters" }).getAttribute("href")).toBe("/teleconverters/");
+    expect(screen.getByRole("link", { name: TELECONVERTER_CATALOG[teleconverterKey].name }).getAttribute("href")).toBe(
+      `/teleconverters/${teleconverterKey}/`,
+    );
+
+    /* An unknown converter id falls back to the default maker trail instead of rendering a dead link. */
+    cleanup();
+    renderBreadcrumb({
+      lensKey,
+      state,
+      initialEntry: {
+        pathname: `/lens/${lensKey}/`,
+        state: { lensBreadcrumb: { type: "teleconverter", id: "not-a-real-converter" } },
+      },
+    });
+    expect(screen.queryByRole("link", { name: "Teleconverters" })).toBeNull();
+    expect(screen.getByRole("link", { name: "Makers" }).getAttribute("href")).toBe("/makers/");
 
     cleanup();
     renderBreadcrumb({ lensKey, state, initialEntry: `/lens/${lensKey}?from=mount&id=not-real` });

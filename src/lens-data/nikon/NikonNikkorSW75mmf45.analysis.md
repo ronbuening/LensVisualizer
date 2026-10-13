@@ -41,7 +41,7 @@ L1 is the complete first divergent component. Its meniscus orientation is explic
 
 #### L2A — Biconvex Positive
 
-`nd = 1.80218, νd = 44.4. Glass: 802444 — high-index crown/lanthanum coordinate class (vendor unresolved). f = +19.1630 mm.`
+`nd = 1.80218, νd = 44.4. Glass: NBFD14 (HOYA) class, 802444 lanthanum dense flint (discontinued-glass equivalent; vendor unresolved). f = +19.1630 mm.`
 
 L2A is the strongly positive front member of the triplet. The patent makes its center thickness `d3` larger than the L1-to-L2 air separation `d2`; this is condition (2), tied in the patent text to meridional-field correction. Its rear surface also participates in the preferred `|r4| < r3` curvature relation.
 
@@ -84,7 +84,7 @@ The patent publishes native d-line `nd` and `νd` values but does not name a gla
 | Element | `nd` | `νd` | Authored glass label | Catalog-audit disposition |
 |---|---:|---:|---|---|
 | L1 | 1.57250 | 57.5 | 573575 — barium crown coordinate class | Exact/near cross-vendor equivalents exist; supplier unresolved |
-| L2A | 1.80218 | 44.4 | 802444 — high-index crown/lanthanum coordinate class | No defensible named assignment retained |
+| L2A | 1.80218 | 44.4 | 802444 — NBFD14 (HOYA) class | Discontinued HOYA NBFD14 (1.80170 / 44.32) used as the coordinate equivalent; vendor unresolved |
 | L2B | 1.67163 | 38.8 | 672388 — dense-flint/lanthanum coordinate class | No defensible named assignment retained |
 | L2C | 1.52000 | 70.1 | 520701 — low-index high-Abbe crown coordinate class | No defensible named assignment retained |
 | L3A | 1.60717 | 40.2 | 607402 — barium flint coordinate class | SUMITA BASF3 is an exact catalog-coordinate match; provenance unresolved |

@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP1969-025743 (特公昭44-25743)
+**Patent:** JP 1969-025743 B (特公昭44-25743)
 **Application Number:** 特願昭41-51387
 **Filed:** 1966-08-05
 **Published:** 1969-10-29
@@ -16,7 +16,7 @@ The implemented prescription is based on Example 2 of the Japanese patent public
 units. Its numerical table contains fourteen refracting surfaces forming seven separate air-spaced elements; Figure 1 on
 patent PDF page 6 shows the same seven-element layout. The LensVisualizer model uniformly scales all dimensional
 prescription values by 28 so that the normalized example represents a nominal 28 mm lens. Indices and Abbe numbers are
-unchanged by that transformation. (JP1969-025743, p. 3, Example 2; Fig. 1, p. 6.)
+unchanged by that transformation. (JP 1969-025743 B, p. 3, Example 2; Fig. 1, p. 6.)
 
 The production-lens identification is a research correlation rather than a manufacturer-confirmed patent attribution.
 A Minolta *The Minolta SR System* brochure lists the 28 mm f/3.5 family as seven elements in seven groups, with a 76° angle
@@ -30,7 +30,7 @@ Two radius entries in the printed Example 2 table require correction before the 
 published optical behavior. Page 3 prints `r9 = +0.5260` and `r12 = -5421`; the Example 2 Seidel/Petzval table on page 4
 requires `r9 = -0.5260` and `r12 = -0.5421`. With those corrections, the recomputed surface-9 and surface-12 Petzval terms
 match the printed signs and magnitudes, and the first-order focal length returns to approximately the patent's normalized
-`f = 1`. The raw printed values remain preserved in the dossier rather than being overwritten. (JP1969-025743, pp. 3–4.)
+`f = 1`. The raw printed values remain preserved in the dossier rather than being overwritten. (JP 1969-025743 B, pp. 3–4.)
 
 ## Optical Architecture
 
@@ -43,7 +43,7 @@ from the computed BFL is retained rather than concealed.
 The first three elements form a net divergent subsystem with an air-boundary EFL of `-61.016024 mm`. The four rear elements
 form a net convergent subsystem with an air-boundary EFL of `+30.456367 mm`. These are subsystem powers calculated from the
 implemented prescription, not claims about isolated production modules. Figure 1 shows the correspondingly large air space
-between the front and rear sections. (JP1969-025743, Fig. 1, p. 6.)
+between the front and rear sections. (JP 1969-025743 B, Fig. 1, p. 6.)
 
 All fourteen refracting surfaces are spherical or plane. The patent provides no aspheric equation or coefficients, and the
 data file therefore contains no aspheres. There are no cemented interfaces: every element is separated from the next by a
@@ -158,7 +158,7 @@ all seven pass. Ratios with an infinite-radius denominator are treated as their 
 | `-0.6 < r14/r13 < 0.15` | `r14/r13 → 0` because `r13 = ∞` | satisfied |
 
 These checks confirm consistency with the patent's stated parameter ranges; they do not by themselves establish that the
-production lens used exactly this prescription. (JP1969-025743, conditions on p. 2 and claim on p. 5.)
+production lens used exactly this prescription. (JP 1969-025743 B, conditions on p. 2 and claim on p. 5.)
 
 ## Modeled Stop and Clear Apertures
 
@@ -196,7 +196,7 @@ track does not meet the project's `TL/EFL < 1` telephoto criterion, so no teleph
 
 ## Sources and References
 
-1. Japan Patent Office. **特公昭44-25743 / JP1969-025743**, *レトロフォーカス型写真用広角レンズ* (Retrofocus-type photographic wide-angle lens), inventor Toshinobu Ogura, applicant Minolta Camera Co., Ltd., published 1969-10-29. Prescription: p. 3, Example 2; Seidel/Petzval table: p. 4; claim/conditions: pp. 2 and 5; optical diagram: Fig. 1, p. 6.
+1. Japan Patent Office. **特公昭44-25743 / JP 1969-025743 B**, *レトロフォーカス型写真用広角レンズ* (Retrofocus-type photographic wide-angle lens), inventor Toshinobu Ogura, applicant Minolta Camera Co., Ltd., published 1969-10-29. Prescription: p. 3, Example 2; Seidel/Petzval table: p. 4; claim/conditions: pp. 2 and 5; optical diagram: Fig. 1, p. 6.
 2. Minolta Camera Co., Ltd. **The Minolta SR System** (manufacturer brochure; archival scan hosted by Pacific Rim Camera): https://www.pacificrimcamera.com/rl/01951/01951.pdf . Used only for family-level 28 mm f/3.5 product specifications; it is not v2-specific patent attribution evidence.
 3. Ad Dieleman, **Minolta 28 mm lens history**: https://www.addieleman.nl/minolta/minolta-28mm-lenses.htm . Secondary historical source for the compact 1968 MC W.Rokkor-SG variant.
 4. **MINOLTA Manual Lens List**: https://minolta.eazypix.de/lenses/ . Secondary product database used for variant cross-checking.

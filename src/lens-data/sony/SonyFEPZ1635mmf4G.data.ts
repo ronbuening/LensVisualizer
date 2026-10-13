@@ -310,6 +310,8 @@ const LENS_DATA = {
   // Sony's production specification is 0.28 m wide / 0.24 m tele; this scalar records the marketed minimum.
   // The var close rows above remain the patent's independent published d0 = 279 mm state and are not reconstructed.
   closeFocusM: 0.24,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focus: GR3 moves objectward. Patent Table 23 supplies infinity and d0=279 mm close spacings at all three zoom states; the external d0 reference plane is unresolved, so no reconstruction to the production 0.28 m wide / 0.24 m tele MFD is applied.",
   nominalFno: 4.12,

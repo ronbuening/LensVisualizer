@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G                       ║
+ * ║ LENS DATA — NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 2011/0170195 A1, Example 1 (Muratani / Tanaka / Nikon).    ║
  * ║ Patent model: 9 refractive elements / 8 air-separated glass assemblies,    ║
@@ -59,7 +59,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-dx-micro-nikkor-40mm-f28g",
   maker: "Nikon",
-  name: "NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G",
+  name: "NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G",
   subtitle: "US 2011/0170195 A1 — Example 1; strong production correlate with documented group-count mismatch",
   specs: [
     "PATENT: 9 ELEMENTS / 8 GROUPS",
@@ -252,6 +252,8 @@ const LENS_DATA = {
   doublets: [{ text: "L21–L22", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 0.163,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED: Example 1 supplies exact INF, β=-0.5 MID, and β=-1.0 CLD focus keyframes. G1 and G2 move objectward while d1a changes; the stop co-moves with G2, d1b stays 4.00000 mm, and G3 remains fixed to the physical image plane. The modeled CLD conjugate is 0.15264661 m object-to-physical-focal-plane, while closeFocusM retains Nikon's separate 0.163 m marketed minimum-focus specification.",
 

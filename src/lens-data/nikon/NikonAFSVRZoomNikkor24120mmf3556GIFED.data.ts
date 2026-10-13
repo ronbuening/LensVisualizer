@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED                 ║
+ * ║ LENS DATA — NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED                 ║
  * ╠════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 2004/0218274 A1, Example 2 (Misako Aoki / Nikon Corporation).    ║
  * ║ Five-group positive-negative-positive-negative-positive VR zoom.                  ║
@@ -42,7 +42,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-afs-vr-zoom-nikkor-24-120-f35-56g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED",
+  name: "NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED",
   subtitle: "US 2004/0218274 A1 Example 2 — constrained G2 close-focus reconstruction",
   specs: [
     "15 ELEMENTS / 13 GROUPS",

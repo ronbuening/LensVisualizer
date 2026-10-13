@@ -18,6 +18,7 @@ import { headerStrip, toggleBtn, toggleGroup } from "../../../utils/style/styles
 import type { Theme } from "../../../types/theme.js";
 import type { DesktopView, MobileView } from "../../../types/state.js";
 import type { OpticalConfigurationOption } from "../../../utils/catalog/lensCatalog.js";
+import type { TeleconverterOption } from "../../../utils/catalog/teleconverterCatalog.js";
 
 interface ViewerChromeProps {
   theme: Theme;
@@ -39,6 +40,11 @@ interface ViewerChromeProps {
   configurationOptions: ReadonlyArray<OpticalConfigurationOption>;
   activeConfigurationKey: string;
   onConfigurationChange: (key: string) => void;
+  teleconverterOptions: ReadonlyArray<TeleconverterOption>;
+  activeTeleconverterKey: string | null;
+  teleconverterOptionsB: ReadonlyArray<TeleconverterOption>;
+  activeTeleconverterKeyB: string | null;
+  onTeleconverterChange: (panel: "a" | "b", key: string | null) => void;
   controlsBarProps: Omit<ComponentProps<typeof ControlsBar>, "compact" | "showScaleMode">;
   mobileView: MobileView;
   onMobileViewChange: (value: MobileView) => void;
@@ -68,6 +74,11 @@ export default function ViewerChrome({
   configurationOptions,
   activeConfigurationKey,
   onConfigurationChange,
+  teleconverterOptions,
+  activeTeleconverterKey,
+  teleconverterOptionsB,
+  activeTeleconverterKeyB,
+  onTeleconverterChange,
   controlsBarProps,
   mobileView,
   onMobileViewChange,
@@ -133,6 +144,11 @@ export default function ViewerChrome({
         configurationOptions={configurationOptions}
         activeConfigurationKey={activeConfigurationKey}
         onConfigurationChange={onConfigurationChange}
+        teleconverterOptions={teleconverterOptions}
+        activeTeleconverterKey={activeTeleconverterKey}
+        teleconverterOptionsB={teleconverterOptionsB}
+        activeTeleconverterKeyB={activeTeleconverterKeyB}
+        onTeleconverterChange={onTeleconverterChange}
       />
 
       {comparing && <ControlsBar {...controlsBarProps} compact={false} showScaleMode={true} inlineGroups={isWide} />}

@@ -97,8 +97,8 @@ const GOLDEN_LENSES: GoldenLens[] = [
     key: "zeiss-touit-50mm-f28-macro",
     design: "odd-order asphere (A3/A5/A7 terms)",
     efl: 51.50581892028711,
-    epSD: 9.197467664336985,
-    stopPhysSD: 9.15243124498173,
+    epSD: 8.941982451438735,
+    stopPhysSD: 8.887545707713688,
     /* Rear plate PP (1.22 mm, nd 1.5168) is modeled in rearPlates: imgZ grows by t(1 − 1/n) and the last
      * vertex is the plate's rear face; EFL, pupil and exit slopes are unchanged. */
     imgZ: 95.37,

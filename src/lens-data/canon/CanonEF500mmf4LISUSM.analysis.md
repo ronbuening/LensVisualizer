@@ -50,7 +50,7 @@ transversely for image stabilization.
 
 The physical Example 24 design contains 17 elements in 13 air-separated groups when the plane HG protection plate and
 plane FL rear filter are counted, matching Canon's published production count. The active LensVisualizer prescription
-contains 15 powered elements in 11 air-separated groups with FL traced separately as a hidden rear plate, HG omitted, as
+contains 15 powered elements in 11 air-separated groups with FL drawn as a separate plane-parallel plate, HG omitted, as
 is the inactive FC flare-cutter plane. The structured physical element/group metadata therefore remains 17/13 while the
 active arrays remain 15/11.
 
@@ -349,8 +349,9 @@ are no aspherical coefficients in Example 24 in any event. The patent's Certific
 numerical examples but does not alter the Example 24 numeric prescription; no silent source correction is present in the
 modeled surfaces.
 
-The active model omits HG, FL, and inactive FC by design. The rear-filter effect is retained through the documented
-air-equivalent final spacing, and the close-focus object reference is normalized for the omitted front and rear plates.
+The active model omits HG and the inactive FC by design and draws FL as a plane-parallel plate at its source position.
+The close-focus endpoint was solved on the air-equivalent path, so its object reference stays normalized for the omitted
+front plate and for the filter's glass thickness.
 These are modeling transformations of reference planes, not changes to the patent's powered prescription.
 
 ## Sources and References

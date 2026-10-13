@@ -198,8 +198,8 @@ const LENS_DATA = {
   focusDescription: "Unit focus — entire optical assembly extends toward object (STM drive).",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22],
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.6,

@@ -143,7 +143,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.24,
       fl: -44.0474,
-      glass: "S-FSL 5 (OHARA; catalog νd 70.23, patent 70.24)",
+      glass: "S-FSL5 (OHARA; catalog νd 70.23, patent 70.24)",
       dPgF: 0.0022,
       nC: 1.48534,
       nF: 1.49228,
@@ -230,7 +230,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.42,
       fl: 94.256,
-      glass: "S-TIH 6 (OHARA)",
+      glass: "S-TIH6 (OHARA)",
       dPgF: 0.0158,
       nC: 1.79611,
       nF: 1.82777,
@@ -335,6 +335,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.3,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Three-group floating inner focus. G2 translates 18.049 mm imageward; G3 and G4 translate 12.300 mm and 17.570 mm objectward from infinity to 1:1. The infinity, 1:2, and 1:1 patent rows are exact focus keyframes.",
 

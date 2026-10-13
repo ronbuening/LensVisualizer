@@ -53,3 +53,54 @@ The validator accepts the new values; the thinnest glass edge is still the L12 r
 (was 0.30 mm at 11.6 mm). The traced edge reaches 14.17 mm at every station (Wide 55.18°, 14.99 mm 43.67°, Tele
 36.25°; 100%), and the image-circle floor still reports nothing undersized. The analysis quotes no semi-diameters or
 aspheric departures, so it is unchanged.
+
+## 2026-10-07 — Zoom iris and station f-numbers against the patent
+
+WO 2021/039813 A1 Example 2, Table 2 general data ([全体諸元], pamphlet p. 29, PDF p. 31) prints FNO 4.625 / 5.233 /
+5.828 in columns W / M / T. The file carried the marketed f/4.5-5.6 range with an interpolated middle value. The three
+station values are the patent's, and `zoomApertureModel: "fixed-iris"` stays.
+
+| Field | Before | After | Source |
+|---|---|---|---|
+| `nominalFno[0]` (wide, 10.31 mm) | 4.5 | 4.625 | Table 2 general data, FNO row, column W; pamphlet p. 29 (PDF p. 31) |
+| `nominalFno[1]` (middle, 14.99 mm) | 5.1 | 5.233 | Table 2 general data, FNO row, column M; pamphlet p. 29 (PDF p. 31) |
+| `nominalFno[2]` (tele, 19.39 mm) | 5.6 | 5.828 | Table 2 general data, FNO row, column T; pamphlet p. 29 (PDF p. 31) |
+| `fstopSeries[0]` | 4.5 | 4.625 | follows the wide-station `nominalFno`; the series stays ascending |
+
+The fixed iris is sized by the real marginal ray at the wide station, so its radius goes from 5.0278 mm (f/4.5) to
+4.8900 mm (f/4.625). It is a derived value and is not stored in the file.
+
+Confirmed unchanged:
+
+- Example identity: the page headers carry WO 2021/039813, and the rows either side of the stop on pamphlet pp. 29-30
+  (PDF pp. 31-32) agree with the file: surface 16 R −25.45380 / D 1.455, surface 17 ∞ / 1.802 tagged 絞りS, and
+  surface 18 R 21.50780 / D 3.280 / nd 1.53172.
+- Focal lengths: Table 2 prints f = 10.310 / 14.992 / 19.394; the prescription computes 10.3099 / 14.9922 / 19.3940.
+- Variable gaps (pamphlet p. 30, PDF p. 32): D10 25.062 / 8.757 / 0.770, D20 1.457 / 2.644 / 3.179, D24 5.723 / 4.536 /
+  4.001, with BF 38.107 / 45.676 / 53.470 from the general data.
+- Stop position: surface 17, between L23 and the L24/L25 doublet in G2 ([0105], pamphlet pp. 27-28). The gaps before
+  and after it (1.455 and 1.802) are not variable, so the stop travels with G2.
+- One iris: Table 2 lists no stop diameter, and the Example 2 text ([0103]-[0109], pamphlet pp. 26-28) places the
+  stop only by position. The real-ray stop radii the three printed f-numbers need are 4.8900 / 4.8899 / 4.8901 mm,
+  and one radius between 4.8897 and 4.8903 mm fits all three within print rounding. Paraxially they need 4.8594 /
+  4.8457 / 4.8321 mm, which no single radius fits.
+- Traced result: with the 4.8900 mm iris the three stations trace f/4.625 / f/5.233 / f/5.828, each within 0.0 % of
+  its stated value. The stop is the limiter at every station; no rim clips the axial beam.
+- Fig. 4 (sheet 4/24, PDF p. 95) captions the three aberration plots FNO=4.62, NA=5.22 and NA=5.82; [0111]
+  (pamphlet p. 32) identifies them as the wide, middle and telephoto states at infinity. The file uses the
+  three-decimal Table 2 values.
+- `apertureDesign` 4.625 and the specs line quoting the patent FNO values already matched Table 2, and
+  `apertureMarketing` stays 4.5. No semi-diameter was changed.
+
+Analysis sync: the stop paragraph under "Data File Construction Notes" states the patent station f-numbers, the
+one-radius stop model and its 4.890 mm real-ray radius, with a table of the three stations. The "Patent Reference"
+paragraph said the WO scan held only front matter and early description pages; the local
+`patents/WO2021039813A1.pdf` is the full 119-page pamphlet with Table 2 on pamphlet pp. 29-32 (PDF pp. 31-34), so
+the paragraph cites the table there. All 29 surface rows, the three sets of aspherical coefficients and the variable
+gaps were compared with the file on those pages and agree to the printed digit.
+
+Left open:
+
+- The `STO` row still carries sd 4.846, the paraxial radius for the middle station's f/5.233. The engine replaces it
+  with the 4.890 mm radius traced from `nominalFno`, so it has no effect on the trace; aligning the authored value is a
+  semi-diameter edit and was left for a separate decision.

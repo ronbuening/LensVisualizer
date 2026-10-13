@@ -339,14 +339,17 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
+  // Patent read 2026-10-06: Close-focus gaps are Example 1 Table 3's closest-distance column (object distance
+  // 0.28075 m, beta about -0.5x), reproduced verbatim and unscaled.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual-group inner focus. G2 moves 13.5 mm toward image; G4 moves 12.4 mm toward object. " +
     "Two linear motors, constant overall length. MFD 0.45 m (β = −0.5×).",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4.0,
+  nominalFno: 4.12,
   apertureBlades: 9,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [4.12, 5.6, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

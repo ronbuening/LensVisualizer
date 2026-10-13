@@ -27,7 +27,6 @@ function minimalCardinalLens(surfaces: SurfaceData[]): RuntimeLens {
       svgH: 400,
       scFill: 0.55,
       yScFill: 0.55,
-      clipMargin: 1,
       maxRimAngleDeg: 64,
       gapSagFrac: 0.9,
       maxAspectRatio: 1.6,

@@ -266,27 +266,31 @@ This distinction is important because the source gives enough information to ide
 
 ### Scaled system behavior from the rounded prescription
 
-The table below is computed directly from the final `.data.ts`, including prism P. “Station” is the 20× transform of the TABLE IB focal-length label; “EFL” is the Gaussian effective focal length of the rounded implemented prescription; “BFD” is the Gaussian back focal distance measured from the rear face of prism P; and “modeled f/#” uses the fixed inferred/calibrated stop.
+The table below is computed directly from the final `.data.ts`, including prism P. “Station” is the 20× transform of the TABLE IB focal-length label; “EFL” is the Gaussian effective focal length of the rounded implemented prescription; “BFD” is the Gaussian back focal distance measured from the rear face of prism P; and “modeled f/#” is the f-number the one wide-open iris gives at that station, as stored in `nominalFno`.
 
 | Scaled TABLE IB station (mm) | Computed EFL (mm) | Computed BFD from prism rear (mm) | Modeled f/# |
 |---:|---:|---:|---:|
 | 20 | 19.833 | 4.648 | 2.100 |
-| 40 | 39.602 | 4.694 | 2.100 |
-| 80 | 79.014 | 4.842 | 2.100 |
-| 140 | 137.664 | 5.212 | 2.099 |
-| 200 | 196.048 | 5.731 | 2.097 |
-| 290 | 283.255 | 6.819 | 2.095 |
-| 400 | 394.669 | 9.666 | 2.919 |
-| 500 | 503.895 | 13.222 | 3.727 |
-| 592 | 613.643 | 17.433 | 4.538 |
+| 40 | 39.602 | 4.694 | 2.094 |
+| 80 | 79.014 | 4.842 | 2.087 |
+| 140 | 137.664 | 5.212 | 2.087 |
+| 200 | 196.048 | 5.731 | 2.096 |
+| 290 | 283.255 | 6.819 | 2.081 |
+| 400 | 394.669 | 9.666 | 2.899 |
+| 500 | 503.895 | 13.222 | 3.701 |
+| 592 | 613.643 | 17.433 | 4.507 |
 
-These values expose two source/model inconsistencies that are intentionally not reconciled by retuning. First, the rounded TABLE I/IB prescription accumulates enough first-order error that its computed EFL departs from the scaled station labels, reaching about 613.6 mm at the 592 mm source station. Second, the patent gives a 0.162 mm BFD from the rear face of prism P, which scales to 3.24 mm, but the rounded model's Gaussian BFD varies from 4.648 mm to 17.433 mm across the authored states. The component focal lengths, by contrast, reproduce TABLE IA within 0.5%, indicating that the source-level inconsistency is dominated by accumulated rounding sensitivity rather than a single obvious sign or topology error.
+These values expose a contradiction inside the source. It is recorded as an `unresolved` entry in `sourceErrata` and is not reconciled by retuning. Every radius, thickness, index, and TABLE IB airspace in the file is the printed value multiplied by 20: the reprint of TABLE I in claim 3 agrees with the description, and the two airspace sums that must stay constant, d15 + d21 + d24 = 117.74 mm and d31 + d34 + d39 = 32.60 mm, hold at all nine stations. Even so, the computed EFL departs from the scaled station labels by −0.83% at 20 mm, −2.33% at 290 mm, and +3.66% at 592 mm, and the Gaussian BFD runs from 4.648 mm to 17.433 mm where the patent's 0.162 mm back focus from the rear face of prism P scales to a fixed 3.24 mm.
+
+The component table locates most of the disagreement. Component 1 computes +138.630 mm against TABLE IA's +138.020 mm, and component 7 computes +55.190 mm against +55.460 mm. Rounding the printed radii and thicknesses to 0.01 and the indices to 0.001 allows a one-standard-deviation spread of ±0.22 mm and ±0.09 mm on those two focal lengths, so each residual is close to three times its spread, while components 2-6 lie within 1.6 times theirs. Example 2 (TABLE II) prints components 1-6 at 1.257 times the Example 1 values, and its first component shows the same excess: 8.712 against TABLE IIA's 8.675 in patent units. With component 1 scaled uniformly to the TABLE IA focal length and nothing else changed, the nine stations compute 19.865, 39.791, 79.786, 139.886, 200.377, 291.764, 402.010, 503.444, and 597.102 mm, between −0.68% and +0.86% of their labels, and the Gaussian BFD stays between 3.90 mm and 4.64 mm. TABLES IA and IB therefore describe a first component about 0.44% stronger than the one TABLE I prints. No single printed radius, thickness, or index is isolated: a change to any one of several values in L6-L8 (r11 to r15, or one of the three indices) would bring component 1 to the TABLE IA focal length and every station within 1% of its label, both examples print those values consistently, and rounding alone is unlikely but not excluded. The file keeps the printed prescription.
 
 ### Aperture model
 
-The patent states that an unchanged diaphragm gives approximately f/2.1 through the lower subrange and progressively falls to f/6.3 at the maximum focal length; it also describes an adjustable-diaphragm option that can maintain f/2.1 throughout. [US 3,912,373, PDF p. 10, printed col. 5.]
+The patent prints no per-station f-number. Its text states that, with the diaphragm opening left unchanged, the relative aperture has a constant value of 1:2.1 from the minimum to the intermediate focal length and decreases progressively to a final 1:6.3 at the maximum focal length. It then describes, as a further feature shown in FIG. 1 and claimed in claims 8-10, a diaphragm coupled to the zoom mechanism that opens in proportion to the focal length in the upper subrange and holds 1:2.1 over the entire range. [US 3,912,373, PDF p. 10, printed col. 5; PDF p. 15, printed col. 16.]
 
-The source does not publish the physical iris diameter. The final model therefore calibrates the inferred stop semi-diameter to **22.20096 mm** so that the wide state is f/2.1, then holds that physical iris fixed. With the rounded prescription, the model remains near f/2.1 through the 290 mm station and reaches only f/4.538 at the 592 mm station. This does not reproduce either the patent's fixed-iris f/6.3 statement or the marketed f/6.6 designation. The data field `nominalFno` consequently records the modeled fixed-iris values, while `apertureMarketing` and the product name retain the separate marketed designation.
+The source does not publish the physical iris diameter. The file models the unchanged opening (`zoomApertureModel: "fixed-iris"`). The authored `STO` semi-diameter, **22.20096 mm**, is the paraxial marginal-ray height of f/2.1 at the 20 mm station. The wide-open iris used in tracing is the height the real f/2.1 marginal ray reaches at the stop at that station, 22.353 mm, and it is kept at every station. `nominalFno` stores the f-numbers that one radius gives: f/2.094, 2.087, 2.087, and 2.096 at 40, 80, 140, and 200 mm by real marginal ray, and f/2.081, 2.899, 3.701, and 4.507 at 290, 400, 500, and 592 mm paraxially, because the real ray of that aperture cannot be traced to the stop at those stations.
+
+Nothing ahead of the stop moves above the intermediate focal length, so with an unchanged iris the f-number rises in proportion to the focal length. By the patent's own focal lengths that gives 2.1 × 29.6 / 14.5 = 4.29 at the maximum focal length, not the 1:6.3 its text states; the file's f/4.507 is the same ratio taken with the computed focal lengths, 2.0806 × 613.643 / 283.255. The model reproduces neither the patent's 1:6.3 nor the marketed f/6.6 and adopts neither; `apertureMarketing` and the product name retain the separate marketed designation.
 
 ### Petzval, semi-diameters, and geometry scope
 

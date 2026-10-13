@@ -107,19 +107,19 @@ The 138.188 mm D0 at life size is an optical object-to-first-surface distance. I
 
 Only source surface 27, the front of L46, is aspherical. Equation (B) uses the square-root factor 1 − κy²/R². Source κ = 1 therefore corresponds to standard K = 0, a spherical base; the existing conic interpretation is retained.
 
-| Coefficient | Source value |
+| Coefficient | Model value |
 |---|---:|
 | A4 | 9.61768 × 10⁻⁶ |
 | A6 | 1.56877 × 10⁻⁸ |
 | A8 | −4.92862 × 10⁻¹¹ |
-| A10 | −1.29299 × 10⁻¹³ |
+| A10 | +1.29299 × 10⁻¹³ (source prints −1.29299 × 10⁻¹³) |
 | A12 | −7.46540 × 10⁻¹⁷ |
 
-The coefficients and vertex radius −26.4605 mm are retained exactly from the source. The surface sits in the fixed rear group; its optical profile does not change during focus. Its enlarged inferred rim is checked against the exact polynomial and adjacent geometry. The source does not establish a polishing, molding or resin process.
+The vertex radius −26.4605 mm and the A4, A6, A8 and A12 coefficients are the source values. A10 is a corrected source erratum: Table 1 prints −1.29299 × 10⁻¹³ and the model uses +1.29299 × 10⁻¹³. With the printed sign the prescription gives a full field of 23.08° at the stated 21.70 mm image height, against the stated 24.06°, with +3.33% distortion at that height and a tangential focus 16.7 mm behind the image plane; Figure 2(A) shows about −0.96% distortion and astigmatism curves within 0.3 mm. The positive sign gives 24.05°, −0.97% and −0.11 mm. Example 2, which shares the G2–G4 construction, prints a positive A10 and reproduces its own stated field only with that sign. The surface sits in the fixed rear group; its optical profile does not change during focus. Its enlarged inferred rim is checked against the corrected polynomial and adjacent geometry. The source does not establish a polishing, molding or resin process.
 
 ## Sources and Modeling Limits
 
-- Original WO 2022/097401 A1: title page, equation (B) and distance definitions on p. 25, Example 1 tables on pp. 27–29, Figure 1 on p. 55.
+- Original WO 2022/097401 A1: title page, equation (B) and distance definitions on p. 25, Example 1 tables on pp. 27–29, Example 2 tables on pp. 30–32, Figure 1 on p. 55, Figure 2 on p. 56.
 - Coefficient-backed catalog counterparts supply dispersion models; source θgF controls the two APD elements.
 - Rims are inferred from the figure. Focus endpoints are source distances plus optical track. Intermediate controls are reconstructed estimates.
 - Production supplier, ED-element identity, coatings, actuator design and barrel working distance are not established by the numerical example.

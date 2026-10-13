@@ -237,8 +237,8 @@ const LENS_DATA = {
   focusDescription:
     "Patent-described G2 focusing; close-focus spacings are unpublished, so this file models verified infinity zoom positions only.",
   closeFocusM: 0.12,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
 
   scFill: 0.58,
   yScFill: 0.72,

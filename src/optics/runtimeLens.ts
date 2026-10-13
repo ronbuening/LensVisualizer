@@ -424,7 +424,6 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
       S,
       asphByIdx,
       stopIdx,
-      clipMargin: data.clipMargin,
       opticalPath,
       imagePlane,
       isFoldedOptics: true,
@@ -490,7 +489,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     const tracingHalfField = halfField;
     const totalTrack = axialExtent;
 
-    const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
+    const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac } = data;
     const SC = (svgW * scFill) / totalTrack;
     let YSC: number;
     let effectiveSvgH: number;
@@ -565,7 +564,6 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
       maxRimSin,
       maxRimTan,
       gapSagFrac,
-      clipMargin,
       gridPitch,
       gridCount,
       lyDoublet,
@@ -719,8 +717,8 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
    *  Find the maximum chief-ray angle (field angle) before any surface
    *  clips the ray.  Uses two basis rays (marginal hA and chief hB) to
    *  build a linear model of ray height vs field angle at each surface.
-   *  The minimum sd/|coefficient| across all surfaces gives the
-   *  vignetting-limited half-field angle.
+   *  The minimum sd/|coefficient| across all clipping surfaces gives the
+   *  vignetting-limited half-field angle (generated rear-plate rims never clip).
    */
   const hA = paraxialTrace(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
   const hB = paraxialTrace(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
@@ -729,7 +727,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
   const r = hB[stopIdx] / hA[stopIdx];
   let minU = Infinity;
   for (let i = 0; i < N; i++) {
-    if (i === stopIdx) continue;
+    if (i === stopIdx || S[i].clips === false) continue;
     const c = Math.abs(hB[i] - r * hA[i]);
     if (c > 1e-8) {
       const uMax = S[i].sd / c;
@@ -825,7 +823,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
   /* Synthetic rear plates carry generous non-clipping rims; keep them out of the diagram's vertical scale. */
   const maxSD = Math.max(...S.filter((s) => !s.synthetic).map((s) => s.sd));
 
-  const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
+  const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac } = data;
   const SC = (svgW * scFill) / totalTrack;
   let YSC: number;
   let effectiveSvgH: number;
@@ -874,8 +872,10 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
    *  - zoomYRatios:   marginal ray height ratio at stop (for EP scaling)
    *  - zoomBs:        chief ray height at stop (for off-axis ray placement)
    */
+  /* A zoom's wide-open iris follows its station f-numbers unless the file publishes a schedule, declares one fixed
+   * iris, or the stop is a surface of drawn glass. */
   const zoomStopSDs: number[] | null =
-    (data.zoomStopSemiDiameters || (data.zoomApertureModel === "from-nominal-fno" && !preserveAuthoredStopSD)) && isZoom
+    isZoom && (data.zoomStopSemiDiameters || (data.zoomApertureModel !== "fixed-iris" && !preserveAuthoredStopSD))
       ? []
       : null;
   let zoomEFLs: number[] | null = null,
@@ -964,7 +964,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
       const zr = Math.abs(zA[stopIdx]) > 1e-15 ? zB2[stopIdx] / zA[stopIdx] : r;
       let zMinU = Infinity;
       for (let j = 0; j < N; j++) {
-        if (j === stopIdx) continue;
+        if (j === stopIdx || tmpS[j].clips === false) continue;
         const coeff = Math.abs(zB2[j] - zr * zA[j]);
         if (coeff > 1e-8) {
           const uMax = tmpS[j].sd / coeff;
@@ -1059,7 +1059,6 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     maxRimSin,
     maxRimTan,
     gapSagFrac,
-    clipMargin,
     gridPitch,
     gridCount,
     lyDoublet,

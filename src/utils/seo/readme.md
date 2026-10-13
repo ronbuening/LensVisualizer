@@ -28,7 +28,7 @@ flowchart LR
 - Direct source files: 4
 - Direct subfolders: 0
 - Main outbound areas: same folder, src/components/SEOHead.tsx, src/generated, src/utils/catalog
-- External consumers: src/comparison, src/components/content, src/components/homepage, src/components/layout, src/components/markdown, src/components/PrerenderedHeadCleanup.tsx, src/components/search, src/components/SEOHead.tsx, +23 more
+- External consumers: src/comparison, src/components/content, src/components/homepage, src/components/layout, src/components/markdown, src/components/PrerenderedHeadCleanup.tsx, src/components/search, src/components/SEOHead.tsx, +25 more
 
 ## Files
 
@@ -36,5 +36,5 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `prerenderedHead.ts` | Prerendered Head helper module | none | src/components/PrerenderedHeadCleanup.tsx, src/entry-server.tsx | PRERENDERED_HEAD_ATTRIBUTE, markPrerenderedHeadTags, removePrerenderedHeadTags |
 | `serializeJsonLd.ts` | Serialize Json Ld helper module | src/components/SEOHead.tsx | src/components/SEOHead.tsx | serializeJsonLd |
-| `siteUrls.ts` | Site Urls helper module | none | src/components/content (4), src/components/homepage (3), src/components/layout (3), src/utils/catalog (3), src/comparison (2), +10 more | SITE_URL, canonicalPagePath, canonicalPageUrl, normalizeSitePageUrl |
-| `structuredData.ts` | Structured Data helper module | same folder, src/generated, src/utils/catalog | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +13 more | ListItemEntry, BreadcrumbEntry, publisherJsonLd, websiteJsonLd, webApplicationJsonLd, datasetJsonLd, collectionPageJsonLd, itemListJsonLd, +4 more |
+| `siteUrls.ts` | Site Urls helper module | none | src/components/content (4), src/utils/catalog (4), src/components/homepage (3), src/components/layout (3), src/comparison (2), +11 more | SITE_URL, canonicalPagePath, canonicalPageUrl, normalizeSitePageUrl |
+| `structuredData.ts` | Structured Data helper module | same folder, src/generated, src/utils/catalog | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +15 more | ListItemEntry, BreadcrumbEntry, publisherJsonLd, websiteJsonLd, webApplicationJsonLd, datasetJsonLd, collectionPageJsonLd, itemListJsonLd, +4 more |

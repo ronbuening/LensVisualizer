@@ -228,7 +228,7 @@ The EFL residuals remain below the source precision implied by the patent's foca
 
 The surface-by-surface Petzval sum, using `φ/(n·n′)`, is **+0.002601899459 mm^-1**, corresponding to a reciprocal Petzval radius of **+384.334605 mm**. This is a computed first-order design quantity, not a patent-tabulated value.
 
-The physical stop diameter is not published. When the patent FNo values constrain the pupil solution, the required physical stop semi-radii are **5.966500 mm at W, 6.342609 mm at M, and 7.955325 mm at T**. The data file therefore uses `STO.sd = 7.955325 mm` as the maximum inferred mechanical opening, while the zoom-dependent `nominalFno` values define the modeled wide-open aperture at each anchor.
+The physical stop diameter is not published. When the patent FNo values constrain the paraxial pupil solution, the required physical stop semi-radii are **5.966500 mm at W, 6.342609 mm at M, and 7.955325 mm at T**. The data file therefore uses `STO.sd = 7.955325 mm`, the paraxial T opening, while the zoom-dependent `nominalFno` values define the modeled wide-open aperture at each anchor: the traced wide-open iris radii are 6.019, 6.445, and 8.234 mm, and at T the surface-22 rim limits the traced beam to about f/4.84.
 
 The Figure 1 rim review retained the source-condition floors at 7A and 25A, narrowed L3 and GR4, and enlarged L8 so the rendered silhouette follows the stepped patent profile more closely. The final set passes the project geometry and image-circle audits with minimum modeled element edge thickness **1.447005 mm**, maximum actual rim slope **63.243°**, and worst shared-band cross-gap intrusion **0.560223×** the air gap against the 0.90 limit.
 

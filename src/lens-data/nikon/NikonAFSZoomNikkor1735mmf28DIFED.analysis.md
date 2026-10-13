@@ -1,4 +1,4 @@
-# NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8D IF-ED — Optical Design Analysis
+# NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8 D IF-ED — Optical Design Analysis
 
 ## Patent Reference and Design Identification
 

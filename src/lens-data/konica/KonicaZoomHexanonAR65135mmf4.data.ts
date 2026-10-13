@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * LENS DATA — KONICA ZOOM-HEXANON AR 65–135mm f/4
+ * LENS DATA — KONICA ZOOM-HEXANON AR 65-135mm f/4
  *
  * Source: JP S58-149014 / JPS58-149014A, Example 3. The publication is a 1983 focusing-method disclosure
  * using a 65–135 mm, 13-element / 9-group formula strongly correlated with the earlier production lens;
@@ -46,7 +46,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "konica-zoom-hexanon-ar-65-135mm-f4",
   maker: "Konica",
-  name: "KONICA ZOOM-HEXANON AR 65–135mm f/4",
+  name: "KONICA ZOOM-HEXANON AR 65-135mm f/4",
   subtitle: "JPS58-149014A Example 3 — later focusing-method disclosure; production correlation",
   specs: [
     "13 ELEMENTS / 9 GROUPS",
@@ -337,6 +337,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.5,
+  // Source-tabulated focus rows differ by zoom station.
+  publishedStations: { focus: [[1], [], [1]] },
   focusDescription:
     "PUBLISHED: surfaces 1–13 translate together toward the object for focus. The 1.5 m model state uses the " +
     "published Table 8 wide/tele shifts of 4.694/22.040 mm; the 92.433 mm mid shift of 9.458720 mm is " +
@@ -344,6 +346,7 @@ const LENS_DATA = {
     "patent U is object-to-image distance and is not silently equated to the product MFD reference plane.",
 
   nominalFno: 4,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16],
 
   yScFill: 0.36,

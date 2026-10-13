@@ -70,7 +70,7 @@ Verified in code on 2026-07-06 (pins re-checked 2026-09-09):
 - **Analysis summary tab** — `src/optics/analysis/summary.ts` +
   `src/components/display/analysis/OpticalSummaryTab.tsx`. (AO#1.)
 - **Simulated MTF** — `src/optics/mtf.ts` + `src/components/display/analysis/MtfTab.tsx`; diffraction-corrected
-  photopic default, geometric and scalar diffraction methods, image-height fields to the format corner in 1–10 % steps,
+  photopic default with a geometric alternative, image-height fields to the format corner in 1–10 % steps,
   10–50 lp/mm chart frequencies, full-beam pupil sampling, optional best-axial focus, both chart views, a keyboard
   crosshair readout, CSV copy, an f/8 comparison overlay, qualified spectra and documented finite conjugates. Current eligibility and limitations live in
   `agent_docs/architecture/optics-engine.md`. Open follow-up: a worker pool if photopic 1–2 % sweeps prove slow on
@@ -97,6 +97,15 @@ Verified in code on 2026-07-06 (pins re-checked 2026-09-09):
   semantic diagram disclosure, and the Nikon AF-S NIKKOR 500mm f/5.6 E PF ED VR production lens. See
   the "Diffractive Phase Surfaces" section of
   [`agent_docs/architecture/optics-engine.md`](agent_docs/architecture/optics-engine.md). (F26.)
+- **Detachable teleconverters** — `*.teleconverter.ts` entities composed onto compatible hosts by
+  `attachTeleconverter()` (`src/optics/teleconverter.ts`), a TC control in the viewer and per compare pane (`tc`,
+  `a_tc` / `b_tc`), `/teleconverters` pages and search. Workflow in `agent_docs/adding_a_teleconverter.md`. Open
+  follow-ups, none started: teleconverter patents in the patent/author indexes, teleconverter glass in the `reports/`
+  scans, zoom-range-limited fit, and converters on folded, fisheye or perspective-control hosts.
+- **Patent-positions mode** — a SLIDERS / PATENT POSITIONS toggle on single-lens pages steps zoom and focus through
+  source-published stations with the aperture held wide open (`panels.patentPositions`, URL `pp`, stored
+  preference). Stations come from `LensData.publishedStations` via `src/optics/publishedStations.ts`. Open
+  follow-up: stepping in comparison mode.
 - **F8** (field-selectable coma fans) is the shipped row above; **F25** (patent relationship map,
   `/relationships`) shipped 2026-07-22 — outcome record
   `agent_docs/records/relationship-map-2026-07-22.md`; its original spec lives in git history as
@@ -371,7 +380,7 @@ model is intentionally the scope until exhausted.
 Carried from the analysis roadmap so nobody re-proposes them as "quick":
 
 - **Production-lens MTF / Strehl / wavefront error** — manufactured-lens claims require measured
-  data. Simulated geometric and scalar diffraction MTF can use complete authored prescriptions;
+  data. Simulated geometric and diffraction MTF can use complete authored prescriptions;
   source precision, omitted optics, spectral data, pupil mapping and numerical convergence limit
   their validity. See `agent_docs/architecture/optics-engine.md` for the simulated MTF contract.
   Extensions to folded mirrors, diffractive surfaces, fisheyes, active tilt/shift, tolerances or

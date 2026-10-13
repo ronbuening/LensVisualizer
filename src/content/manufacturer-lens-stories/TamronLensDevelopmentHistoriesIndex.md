@@ -46,7 +46,7 @@ Tamron's [History of the 90mm Macro Lens](https://www.tamron.com/global/consumer
 
 | Introduced | Lens | Model | Surface & Stop |
 | --- | --- | --- | --- |
-| 2024 | 90mm F2.8 Di III Macro VXD | F072 | — |
+| 2024 | 90mm F2.8 Di III Macro VXD | F072 | [90mm F2.8 Di III Macro VXD (F072)](/lens/tamron-f072-90mm-f28-di-iii-macro-vxd) |
 | 2016 | SP 90mm F2.8 Di Macro 1:1 VC USD | F017 | — |
 | 2012 | SP 90mm F2.8 Di Macro 1:1 VC USD | F004 | [SP 90mm F2.8 Di Macro (F004)](/lens/tamron-sp-90mm-f2-8-di-macro-vc-usd-f004) |
 | 2004 | SP AF 90mm F2.8 Di Macro 1:1 | 272E | — |

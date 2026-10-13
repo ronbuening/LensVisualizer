@@ -22,11 +22,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ only axial focusing unit, moving objectward while d15+d17 remains constant at each  ║
  * ║ zoom position. This is a modeled reconstruction, not a patent-published state.      ║
  * ║                                                                                      ║
- * ║ Semi-diameters use one-half of the patent effective diameters except:               ║
- * ║   • STO uses the physical iris radius inferred from the wide-state F/3.59 pupil.    ║
- * ║     Treating the patent's 14.52 mm stop "effective diameter" as the literal iris    ║
- * ║     does not reproduce the published F-numbers; it remains source metadata only.    ║
- * ║   • patent s9 is trimmed from 11.3000 to 11.2826 mm to satisfy the current 0.90     ║
+ * ║ Semi-diameters are one-half of the patent effective diameters, the stop included.    ║
+ * ║ Patent s20 prints 14.52 mm; a 7.26 mm iris traced with a real marginal ray gives     ║
+ * ║ F/3.591, 4.879 and 5.973 at the three stations, which round to the published         ║
+ * ║ F/3.59, 4.88 and 5.97. The viewer holds one iris, sized from the wide-state F/3.59   ║
+ * ║ (7.2618 mm), at every station. One exception to the halved diameters:                ║
+ * ║   • patent s9 is trimmed from 11.3000 to 11.2826 mm to satisfy the current 0.90      ║
  * ║     shared-gap sag criterion. This is a model trim, not a source correction.         ║
  * ║                                                                                      ║
  * ║ Glasses remain six-digit coordinate/class labels. The patent does not identify      ║
@@ -296,8 +297,8 @@ const LENS_DATA = {
     { label: "17", R: 150.44, d: 6.67, nd: 1.0, elemId: 0, sd: 6.96 },
     { label: "18", R: 30.381, d: 3.4, nd: 1.60311, elemId: 10, sd: 7.51 },
     { label: "19", R: -41.483, d: 0.83, nd: 1.0, elemId: 0, sd: 7.475 },
-    // Patent s20. Physical maximum iris radius inferred from the wide-state F/3.59 entrance pupil.
-    { label: "STO", R: 1e15, d: 3.3, nd: 1.0, elemId: 0, sd: 7.123822482626368 },
+    // Patent s20 (Stop). One-half of the printed 14.52 mm effective diameter.
+    { label: "STO", R: 1e15, d: 3.3, nd: 1.0, elemId: 0, sd: 7.26 },
     { label: "21", R: 25.373, d: 4.95, nd: 1.60311, elemId: 11, sd: 7.13 },
     { label: "22", R: -21.035, d: 0.75, nd: 1.84666, elemId: 12, sd: 6.74 },
     { label: "23", R: 86.598, d: 3.56, nd: 1.0, elemId: 0, sd: 6.59 },
@@ -383,6 +384,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: L4 alone moves objectward from infinity to 0.39 m; d15+d17 is conserved at each zoom position. The patent gives the focus direction but no close-focus spacing rows, so these finite-focus states are code-solved modeling states, not published patent data.",
 
   nominalFno: [3.59, 4.88, 5.97],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],
   apertureBlades: 7,
 

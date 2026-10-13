@@ -224,6 +224,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.4,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Differential-speed whole-lens advance. Groups I+II advance as a unit; Group III advances at 63% of subsystem speed. Single variable gap d₁₃ expands from 0.80 mm (∞) to 18.25 mm (1/2×). Helicoid travel ≈ 47 mm.",
 

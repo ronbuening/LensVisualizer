@@ -32,3 +32,15 @@ Patent: US 5,438,455 A, Example 1
   128.4654654 mm; `rearPlates` FILTER is J-BK7A (Hikari, as the elements; resolves for 1.51680 / 64.1) with
   gapAfter 104.5069 mm. Paraxial check against the previous data: EFL identical and defocus unchanged at both focus
   states (worst difference 2e-14 mm). Physical track grows by 0.681 mm to 374.228 mm.
+
+## 2026-10-04 — Slip-in filter drawn as an element
+
+- The rear slip-in filter plate F moved out of `rearPlates` into the drawn prescription: surfaces 18–19 and element 11
+  (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place and
+  a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
+- The source lists no clear aperture for the plate. Its semi-diameter, 24 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at infinity, mid and
+  close focus (22.45 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
+  axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
+  corner.

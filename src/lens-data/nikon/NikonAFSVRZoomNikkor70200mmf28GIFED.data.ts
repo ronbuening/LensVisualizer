@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED             ║
+ * ║ LENS DATA — NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED             ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 2003/0133200 A1, Example 1 (Susumu Sato / Nikon Corp.).    ║
  * ║ Production correlation: Nikon AF-S VR Zoom-Nikkor 70-200mm f/2.8G IF-ED. ║
@@ -49,7 +49,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-afs-vr-zoom-nikkor-70-200-f28g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED",
+  name: "NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED",
   subtitle: "US 2003/0133200 A1 Example 1 — strong production correlation; tele source label corrected to 196 mm",
   specs: [
     "21 ELEMENTS / 15 GROUPS",
@@ -443,10 +443,13 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focusing: G1R (L14-L15) translates 9.71956 mm toward the object from infinity to the patent's R=1500 mm object-to-image condition; D5 decreases and D9 increases by the same amount at all three zoom stations.",
 
   nominalFno: 2.88,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   maxFstop: 22,

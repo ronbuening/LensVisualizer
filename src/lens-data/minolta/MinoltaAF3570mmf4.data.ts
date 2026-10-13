@@ -29,7 +29,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-35-70-f4",
   maker: "Minolta",
-  name: "MINOLTA AF Zoom 35-70mm f/4",
+  name: "MINOLTA AF ZOOM 35-70mm f/4",
   subtitle: "US 4,560,253 Embodiment 2 — Minolta / Ogino",
   specs: [
     "6 components / 6 air-spaced groups",
@@ -200,8 +200,8 @@ const LENS_DATA = {
   focusDescription:
     "Front-group focus. The patent states that Group I alone shifts during focusing; close-focus spacings are paraxial estimates because the patent publishes no close-focus table.",
   closeFocusM: 1,
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16],
+  nominalFno: 4.1,
+  fstopSeries: [4.1, 5.6, 8, 11, 16],
   scFill: 0.64,
   yScFill: 0.5,
 } satisfies LensDataInput;

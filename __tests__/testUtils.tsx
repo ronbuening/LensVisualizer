@@ -224,6 +224,10 @@ export function makeLensComputationResult(overrides: Record<string, unknown> = {
   return {
     L: null,
     buildError: null,
+    focusT: 0,
+    zoomT: 0,
+    aberrationT: 0,
+    stopdownT: 0,
     IMG_MM: 0,
     zPos: [],
     sx: 1,

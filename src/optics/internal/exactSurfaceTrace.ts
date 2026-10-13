@@ -2,7 +2,9 @@
  * Exact surface stack tracer — RuntimeLens-shaped real-ray tracing for sequential and folded systems.
  *
  * Traces vector or slope launches through refractive, reflective, blocking, annular, and arbitrary
- * image-plane interactions; this is the only runtime real-ray path.
+ * image-plane interactions. Serves `buildLens()` constants, the `rayTrace.ts` facade, state pupil
+ * baselines, and folded image-plane validation; the public `optics.ts` trace exports run on the
+ * prepared-state engine in `trace/` instead, which shares `trace/interactions.ts` with this module.
  */
 
 import type {
@@ -19,6 +21,8 @@ import type {
   DiffractivePhaseSurface,
 } from "../../types/optics.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
+import { INTERSECTION_TOLERANCE } from "../constants.js";
+import { planeResidualRoundoff } from "../math/intersectionTolerance.js";
 import { interactRefractiveSurface, rearMediumSurfaceIndex } from "../trace/interactions.js";
 import { FLAT_R_THRESHOLD, conicPolySag } from "./surfaceMath.js";
 import {
@@ -41,6 +45,8 @@ export interface ExactTraceSurface {
   d: number;
   sd?: number;
   innerSd?: number;
+  /** `false` when `sd` is a generated rear-plate rim that never clips. */
+  clips?: boolean;
   interaction?: SurfaceInteraction;
   diffractive?: DiffractivePhaseSurface;
 }
@@ -50,7 +56,6 @@ export interface ExactTraceLens {
   S: readonly ExactTraceSurface[];
   asphByIdx: Record<number, AsphericCoefficients>;
   stopIdx?: number;
-  clipMargin?: number;
   opticalPath?: ResolvedOpticalPath;
   imagePlane?: ResolvedImagePlane;
   isFoldedOptics?: boolean;
@@ -110,6 +115,10 @@ export interface ExactSurfaceTraceHit {
   incidentDirection?: Vector3;
   outgoingDirection?: Vector3;
   radius: number;
+  /** Signed residual of the accepted intersection, in mm; null on a fallback point. */
+  residual: number | null;
+  /** Residual bound that intersection met, in mm; null on a fallback point. */
+  effectiveTolerance: number | null;
   clipped: boolean;
   fallback: boolean;
   failureReason: SurfaceIntersectionFailureReason | "totalInternalReflection" | "nonPropagatingDiffractionOrder" | null;
@@ -383,6 +392,8 @@ export function traceExactSurfaceStackVector(
       normal,
       incidentDirection,
       radius,
+      residual: hit.ok ? hit.residual : null,
+      effectiveTolerance: hit.ok ? hit.effectiveTolerance : null,
       clipped: hitClipped,
       fallback,
       failureReason: hitFailure,
@@ -605,7 +616,14 @@ function recordClippedHit(
   clipEvents: FoldedPathClipEvent[],
   lens: ExactTraceLens,
   surfaceIdx: number,
-  geometry: { point: Vector3; normal: Vector3; incidentDirection: Vector3; radius: number },
+  geometry: {
+    point: Vector3;
+    normal: Vector3;
+    incidentDirection: Vector3;
+    radius: number;
+    residual: number;
+    effectiveTolerance: number;
+  },
   clipReason: "inactive-side-block" | "block-surface" | "semi-diameter",
 ): void {
   pushClipEvent(clipEvents, lens, surfaceIdx, clipReason);
@@ -615,6 +633,8 @@ function recordClippedHit(
     normal: geometry.normal,
     incidentDirection: geometry.incidentDirection,
     radius: geometry.radius,
+    residual: geometry.residual,
+    effectiveTolerance: geometry.effectiveTolerance,
     clipped: true,
     fallback: false,
     failureReason: null,
@@ -742,6 +762,8 @@ function traceGeneralizedSurfaceStackVector(
         normal: fallbackPoint.normal,
         incidentDirection: [direction[0], direction[1], direction[2]],
         radius,
+        residual: null,
+        effectiveTolerance: null,
         clipped: true,
         fallback: true,
         failureReason: nextSurfaceHit.failureReason,
@@ -757,6 +779,7 @@ function traceGeneralizedSurfaceStackVector(
     const point = nextSurfaceHit.point;
     const normal = nextSurfaceHit.normal;
     const radius = nextSurfaceHit.radius;
+    const { residual, effectiveTolerance } = nextSurfaceHit;
     const incidentDirection: Vector3 = [direction[0], direction[1], direction[2]];
     terminalPoint = point;
     terminalSurfaceIdx = nextSurfaceIdx;
@@ -789,7 +812,7 @@ function traceGeneralizedSurfaceStackVector(
           clipEvents,
           lens,
           nextSurfaceIdx,
-          { point, normal, incidentDirection, radius },
+          { point, normal, incidentDirection, radius, residual, effectiveTolerance },
           clipReason,
         );
         terminationReason = "clipped";
@@ -805,6 +828,8 @@ function traceGeneralizedSurfaceStackVector(
       normal,
       incidentDirection,
       radius,
+      residual,
+      effectiveTolerance,
       clipped,
       fallback: false,
       failureReason: null,
@@ -943,8 +968,8 @@ function apertureSemiDiameter(
   stopSemiDiameter: number | undefined,
 ): number | null {
   if (surfaceIdx === lens.stopIdx && stopSemiDiameter !== undefined) return stopSemiDiameter;
-  if (typeof surface.sd !== "number") return null;
-  return surface.sd * (lens.clipMargin ?? 1);
+  if (typeof surface.sd !== "number" || surface.clips === false) return null;
+  return surface.sd;
 }
 
 function radiusWithinTraceAperture(radius: number, surface: ExactTraceSurface, semiDiameter: number): boolean {
@@ -1242,7 +1267,7 @@ function intersectTiltedMeridionalPlane(
   {
     minT = 0,
     maxT = Infinity,
-    tolerance = 1e-9,
+    tolerance = INTERSECTION_TOLERANCE,
     refractiveIndex,
   }: Pick<SurfaceIntersectionOptions, "minT" | "maxT" | "tolerance" | "refractiveIndex"> = {},
 ): SurfaceIntersectionResult {
@@ -1281,6 +1306,16 @@ function intersectTiltedMeridionalPlane(
     ray.origin[2] + direction[2] * clampedT,
   ];
   const residual = normalY * point[1] + normalZ * (point[2] - vertexZ);
+  const effectiveTolerance =
+    Math.abs(residual) <= tolerance
+      ? tolerance
+      : Math.max(
+          tolerance,
+          planeResidualRoundoff(ray.origin, direction, clampedT, [0, 0, vertexZ], [0, normalY, normalZ]),
+        );
+  if (!Number.isFinite(residual) || !(Math.abs(residual) <= effectiveTolerance)) {
+    return surfaceIntersectionFailure(surfaceIdx, "noConvergedIntersection", residual, 0);
+  }
   return {
     ok: true,
     surfaceIdx,
@@ -1289,6 +1324,7 @@ function intersectTiltedMeridionalPlane(
     radius: Math.hypot(point[0], point[1]),
     normal: [0, normalY, normalZ],
     residual,
+    effectiveTolerance,
     iterations: 0,
     segmentLength: clampedT,
     opticalPathLength: refractiveIndex === undefined ? null : refractiveIndex * clampedT,

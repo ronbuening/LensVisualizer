@@ -44,6 +44,20 @@ modeled group movement is available. Without modeled focus travel, the disabled 
 Shift/tilt sliders expose independent zero-reset actions through the shared
 `SliderResetButton`, which comparison mode's shared sliders reuse.
 
+Patent-positions mode is the SLIDERS / PATENT POSITIONS group drawn by `PositionModeToggle` in `BreadcrumbBar`, ahead
+of the search link and theme toggles. Below the wide breakpoint it collapses to one PATENT on/off button so the
+breadcrumb trail keeps its room. It changes how the page's zoom and
+focus controls behave, so it sits with the page-level switches; do not move it in with the ray toggles in
+`DiagramHeader` or `ControlsBar`. It is single-lens only: the breadcrumb bar omits it while comparing.
+With the mode on, `DiagramControls` hands `SliderControl` a `track` (a `StationStepper`) in place of the zoom and
+focus range inputs, keeping the label, readout, MOTION action and collapsible section. The buttons are the lens's
+source-published stations from `src/optics/publishedStations.ts`, labeled by `patentStations.ts`; a station list
+longer than twelve collapses to previous / next. A zoom step keeps the focus row only when the target station
+tabulates the same one, otherwise focus returns to infinity. The aperture slider is disabled at wide open and loses
+its f-stop shortcuts, an aberration control is disabled at neutral, and shift/tilt stay live. Notes under the
+buttons say what is missing (no certified close-focus row, focus not modeled, a converter mounted, modeled zoom
+stations that are not source rows).
+
 ## Display And Content Components
 
 `ElementInspector` renders its "Compare to sphere" link for aspheric elements only when the optional
@@ -81,10 +95,12 @@ To add a tab, follow the five registration points in `agent_docs/adding_an_analy
 thin container over the section components and data hooks in `src/components/display/analysis/aberrations/`; the
 distortion and vignetting tabs consume deferred/frozen inputs through `analysisJobsForState2`.
 
-`MtfTab` defaults to the diffraction-corrected method, a photopic spectrum (with a note when glass dispersion is
+`MtfTab` defaults to the diffraction-corrected method (`diffraction`), a photopic spectrum (with a note when glass dispersion is
 estimated from nd/νd, or the reference line and the reason when a glass blocks spectral sampling), best axial focus
 (with an explanatory note when the lens data's plane contradicts its own paraxial focus; "Design plane (auto)" and
-"Design plane (always)" remain) and the image-height view at 10 % field steps showing 10 and 30 lp/mm. Each dropdown
+"Design plane (always)" remain) and the image-height view at 10 % field steps showing 10 and 30 lp/mm. The header
+qualifies the label f-number with the traced one ("f/1.4 (traced f/1.49, limited by surface 14)") when
+`MtfResult.aperture` differs from it by more than 2 %, except at finite conjugates. Each dropdown
 explains its options in a mouse-hover or keyboard-focus `PortalTooltip`, also linked through `aria-describedby`; on
 hover-less (touch) devices a `HelpTooltipButton` beside each dropdown gives tap access. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
 (10–50 lp/mm) persist in localStorage through `src/utils/state/mtfPreferences.ts` and `useMtfPreferences`, which
@@ -96,7 +112,13 @@ on unmount. `MtfChart` gives each frequency a fixed `chartSeries` slot, labels c
 (Home/End, Escape) and announces values through a polite live region. When the working aperture is faster than
 f/8 and the lens reaches it, "Compare f/8" runs a second worker request with pupil and stop radii scaled by N/8 and
 draws it with thin lines in the same slots. `mtf/MtfControls`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
-the controls, status counts and per-field values; the table copies as CSV (`mtf/mtfCsv.ts`). Worker caching, numerical status and
+the controls, status counts and per-field values; the table copies as CSV (`mtf/mtfCsv.ts`). When
+`assessMtfDataLimitations` lists a `blocking` gap, `mtf/MtfDataWarning` blurs the chart and field summary, marks them
+`inert` and covers them with a warning card that lists every item. "Show chart anyway" records the blocking kinds for
+that lens system in `src/utils/state/mtfDataWarnings.ts` (`useMtfDataWarning`); the warning then collapses to a
+`<details>` line above the chart. Non-blocking notes (source errata) never blur the chart and appear in that line
+from the start. Dismissals are in memory only: they survive tab switches, reset on reload, and a kind of gap not yet
+dismissed on that lens brings the card back. Worker caching, numerical status, the gap kinds and
 optical eligibility are documented in [`Simulated MTF`](optics-engine.md#simulated-mtf).
 
 ## Display Overlays

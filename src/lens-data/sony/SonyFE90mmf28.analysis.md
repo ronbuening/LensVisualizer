@@ -77,7 +77,7 @@ GR1 carries the conditioning role: it captures on‑axis and off‑axis bundles,
 | **G3** | (−300.7794, +62.5282) | 1.800 | 1.8467 / 23.78 | OHARA **S‑TIH53** — exact | −61.00 | Heavy titanium dense flint, the negative partner cemented to G2 |
 | **G4** | (+46.3651, +478.0475A) | 4.722 | 1.7680 / 49.24 | OHARA **S‑LAM61** — exact (production glass for the aspheric is more likely the moldable variant **L‑LAM61**; see §10) | +66.54 | Positive meniscus; **rear surface S7 is aspherical** (κ = 0; the only asphere of the design) |
 
-The G2/G3 cement is the principal *axial* (longitudinal) chromatic correction in the front group. G2's strongly anomalous partial dispersion (catalog ΔP<sub>g,F</sub> ≈ +0.038 above the normal line per OHARA's published S‑FPL51 datasheet) paired with the heavy flint G3 gives *secondary‑spectrum* correction — the kind that an ordinary crown‑flint pairing cannot achieve.
+The G2/G3 cement is the principal *axial* (longitudinal) chromatic correction in the front group. G2's strongly anomalous partial dispersion (S‑FPL51 catalog P<sub>g,F</sub> = 0.5375, i.e. ΔP<sub>g,F</sub> ≈ +0.031 above the 0.6438 − 0.001682·ν<sub>d</sub> normal line the data file uses; OHARA's own catalog figure, +0.0280, is taken against OHARA's normal line) paired with the heavy flint G3 gives *secondary‑spectrum* correction — the kind that an ordinary crown‑flint pairing cannot achieve.
 
 The aspherical rear of G4 sits where the marginal ray height is still substantial (computed h ≈ 13.2 mm for an f/2.8 cone) but the chief‑ray height is small. This is the favoured location for an asphere in a fast lens: it lets the surface attack mid‑ to high‑order spherical aberration of the front group without simultaneously distorting the chief‑ray geometry. See §4 for the surface profile.
 
@@ -115,7 +115,7 @@ GR4 is the *advancing* focus group: as object distance shortens, GR4 moves **tow
 | Elem. | (R<sub>front</sub>, R<sub>rear</sub>) mm | d (mm) | n<sub>d</sub> / ν<sub>d</sub> | Glass match | f<sub>e</sub> (mm) | Role |
 |---|---|---|---|---|---|---|
 | **G10** | (+89.3718, −74.3718) | 3.942 | 1.7292 / 54.67 | OHARA **S‑LAL18** — exact | **+56.24** | Bi‑convex; entry of the second focus group |
-| **G11** | (+100.2759, −37.7081) | 5.427 | 1.4370 / 95.10 | HOYA **FCD100** — exact (unique among major vendors at this code; see §5.1) | +63.47 | **Super ED** — extreme low‑dispersion (ν<sub>d</sub> = 95.10, the highest in the design); HOYA‑published ΔP<sub>g,F</sub> ≈ +0.056, an extreme positive offset; cemented to G12 |
+| **G11** | (+100.2759, −37.7081) | 5.427 | 1.4370 / 95.10 | HOYA **FCD100** — exact (unique among major vendors at this code; see §5.1) | +63.47 | **Super ED** — extreme low‑dispersion (ν<sub>d</sub> = 95.10, the highest in the design); HOYA‑published ΔP<sub>g,F</sub> ≈ +0.056 against HOYA's own normal line (0.64833 − 0.00180·ν<sub>d</sub>; +0.050 on the 0.6438 − 0.001682·ν<sub>d</sub> line the data file uses), an extreme positive offset; cemented to G12 |
 | **G12** | (−37.7081, −188.5814) | 1.280 | 1.6727 / 32.17 | OHARA **S‑TIM35** — exact | −70.30 | Negative meniscus, the chromatic partner of the Super‑ED G11 |
 
 GR4 hosts the **Super‑ED element** of the design. Pairing G11 (Super ED, ν<sub>d</sub> = 95.10) with G12 (titanium flint, ν<sub>d</sub> = 32.17) creates an apochromatic doublet whose ν‑number ratio is so extreme (Δν ≈ 63) that strong colour control is achievable in a thin component.

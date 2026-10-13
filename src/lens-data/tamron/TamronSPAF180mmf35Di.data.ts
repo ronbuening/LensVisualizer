@@ -335,11 +335,13 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.47,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Floating internal focus: LG1 and the stop remain fixed; LG2 moves imageward, LG3 moves objectward, and LG4 moves slightly objectward from infinity to 1:1. The infinity, −1/2×, and −1× patent rows are exact focus keyframes.",
 
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16],
+  nominalFno: 3.536,
+  fstopSeries: [3.536, 4, 5.6, 8, 11, 16],
 
   scFill: 0.58,
   yScFill: 0.48,

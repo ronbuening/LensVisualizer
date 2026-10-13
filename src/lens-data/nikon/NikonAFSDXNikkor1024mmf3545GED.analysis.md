@@ -1,4 +1,4 @@
-# NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5G ED — US 8,169,718 B2, Example 4
+# NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED — US 8,169,718 B2, Example 4
 
 ## Patent Reference and Design Identification
 

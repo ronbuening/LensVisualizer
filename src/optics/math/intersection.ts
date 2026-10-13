@@ -14,6 +14,7 @@ import {
 import type { Ray3, SurfaceProfile, Vec3 } from "../types.js";
 import { clamp } from "./numerics.js";
 import { dot, normalize, subtract } from "./vector.js";
+import { planeResidualRoundoff, sagResidualRoundoff } from "./intersectionTolerance.js";
 
 /** Typed reason for an exact surface-intersection failure. */
 export type SurfaceIntersectionFailureReason =
@@ -36,6 +37,8 @@ export interface SurfaceIntersectionOptions {
   bracketSamples?: number;
   refractiveIndex?: number;
   directionNormalized?: boolean;
+  /** Authored asphere radius; exterior hits remain diagnostic when the ray misses the cap. */
+  clearRadius?: number;
 }
 
 /** Successful ray/surface intersection with geometry at the hit point. */
@@ -46,6 +49,8 @@ export interface SurfaceIntersectionSuccess {
   radius: number;
   normal: Vec3;
   residual: number;
+  /** Accepted residual bound in mm; larger than requested only for coordinate roundoff. */
+  effectiveTolerance: number;
   iterations: number;
   segmentLength: number;
   opticalPathLength: number | null;
@@ -91,6 +96,101 @@ export function intersectSurfaceProfile(
   ray: Ray3,
   profile: SurfaceProfile,
   vertexZ: number,
+  options: SurfaceIntersectionOptions = {},
+): SurfaceIntersectionResult {
+  const hit = intersectProfile(ray, profile, vertexZ, options);
+  if (!hit.ok) return hit;
+  return selectAsphericCapHit(ray, profile, vertexZ, options, hit);
+}
+
+/** Select an authored cap after an established successful solve, avoiding a second old solve. */
+export function selectAsphericCapHit(
+  ray: Ray3,
+  profile: SurfaceProfile,
+  vertexZ: number,
+  options: SurfaceIntersectionOptions,
+  hit: SurfaceIntersectionSuccess,
+): SurfaceIntersectionResult {
+  const radius = options.clearRadius;
+  if (profile.kind !== "aspheric" || !(radius !== undefined && Number.isFinite(radius) && radius > 0)) return hit;
+
+  // Only the authored cap contains optical material. Retain the exterior hit if no cap hit exists,
+  // so ordinary aperture misses still report their first clip instead of becoming transmitted rays.
+  const direction = options.directionNormalized ? ray.direction : normalize(ray.direction);
+  if (!direction) return hit;
+  const speed2 = direction[0] ** 2 + direction[1] ** 2;
+  const dotXY = ray.origin[0] * direction[0] + ray.origin[1] * direction[1];
+  const offset = ray.origin[0] ** 2 + ray.origin[1] ** 2 - radius ** 2;
+  let minT = options.minT ?? 0;
+  let maxT = options.maxT ?? Infinity;
+  if (speed2 === 0) {
+    if (offset > 0) return hit;
+  } else {
+    const discriminant = dotXY ** 2 - speed2 * offset;
+    if (discriminant < 0) return hit;
+    const root = Math.sqrt(discriminant);
+    minT = Math.max(minT, (-dotXY - root) / speed2);
+    maxT = Math.min(maxT, (-dotXY + root) / speed2);
+  }
+  if (!isValidBounds(minT, maxT) || !Number.isFinite(maxT)) return hit;
+  const transverseSpeed = Math.sqrt(speed2);
+  const axialSpeed = Math.abs(direction[2]);
+  const requestedMinT = options.minT ?? 0;
+  // Absolute operand scale matters when origin + direction*t nearly cancels.
+  // Refuse the certificate when coordinate roundoff can exceed solver tolerance.
+  const geometryError =
+    16 *
+    Number.EPSILON *
+    (Math.abs(ray.origin[0]) +
+      Math.abs(ray.origin[1]) +
+      transverseSpeed * Math.max(Math.abs(requestedMinT), Math.abs(hit.t), Math.abs(maxT)));
+  const geometryCertain =
+    Number.isFinite(geometryError) && geometryError <= (options.tolerance ?? INTERSECTION_TOLERANCE);
+  const monotoneWithinRadius = (radialBound: number): boolean => {
+    if (!geometryCertain) return false;
+    const conservativeRadius = radialBound * (1 + 1e-12) + geometryError + 1e-12;
+    const slopeBound = profile.maxAbsSlope?.(conservativeRadius) ?? Infinity;
+    // |d sag/dt| <= max|sag'| * transverseSpeed, so f' has one strict sign.
+    // Unknown, nonfinite and conic-edge bounds cannot certify uniqueness.
+    return Number.isFinite(slopeBound) && slopeBound >= 0 && axialSpeed > slopeBound * transverseSpeed + 1e-10;
+  };
+  const domainRadius = profile.finiteRadiusLimit();
+  const constantRadiusUnique =
+    geometryCertain &&
+    speed2 === 0 &&
+    axialSpeed > 1e-10 &&
+    (domainRadius === null ||
+      (Number.isFinite(domainRadius) && hit.radius + geometryError < domainRadius * (1 - 1e-12)));
+  if (hit.t >= minT && hit.t <= maxT && hit.radius + geometryError <= radius) {
+    const startX = ray.origin[0] + direction[0] * requestedMinT;
+    const startY = ray.origin[1] + direction[1] * requestedMinT;
+    const startRadius = Math.sqrt(startX * startX + startY * startY);
+    // Radius is convex along the ray, so {t >= requestedMinT : r(t) <= rho} is one interval containing hit.t.
+    // With rho = max(start, hit) it covers all of [requestedMinT, hit.t]; capped at the authored radius it still
+    // covers every cap point. A strictly monotone f on that interval leaves hit as the only cap root after minT.
+    if (constantRadiusUnique || monotoneWithinRadius(Math.min(Math.max(startRadius, hit.radius), radius))) return hit;
+  }
+  // A whole-cap certificate uses the full authored radius, not rounded interval endpoints.
+  // Every real physical cap point is covered, including any entry-edge sliver.
+  const uniqueCapRoot = constantRadiusUnique || monotoneWithinRadius(radius);
+  const capHit = intersectProfile(
+    ray,
+    profile,
+    vertexZ,
+    { ...options, minT, maxT },
+    uniqueCapRoot ? "monotone" : "ordered",
+  );
+  // A numerical failure inside the cap is unresolved, not proof that only the exterior root exists.
+  if (!capHit.ok && capHit.failureReason === "noBracket") return hit;
+  // Keep established numerics when the ordered cap search confirms the same root.
+  if (capHit.ok && Math.abs(capHit.t - hit.t) <= (options.tolerance ?? INTERSECTION_TOLERANCE)) return hit;
+  return capHit;
+}
+
+function intersectProfile(
+  ray: Ray3,
+  profile: SurfaceProfile,
+  vertexZ: number,
   {
     minT = 0,
     maxT = Infinity,
@@ -100,6 +200,7 @@ export function intersectSurfaceProfile(
     refractiveIndex,
     directionNormalized = false,
   }: SurfaceIntersectionOptions = {},
+  scan: BracketScan = "default",
 ): SurfaceIntersectionResult {
   const direction = directionNormalized ? ray.direction : normalize(ray.direction);
   if (!direction) return failure("invalidDirection", null, 0);
@@ -116,7 +217,7 @@ export function intersectSurfaceProfile(
   const domainRadius = profile.finiteRadiusLimit();
   const evalAt = (t: number): SurfaceEvaluation =>
     evaluateProfile(ray.origin, direction, profile, vertexZ, t, domainRadius);
-  const bracket = findBracket(evalAt, minT, maxT, tolerance, bracketSamples);
+  const bracket = findBracket(evalAt, minT, maxT, tolerance, bracketSamples, scan);
   if (bracket.kind === "success")
     return makeSuccess(bracket.value, profile, vertexZ, tolerance, refractiveIndex, bracket.iterations);
   if (bracket.kind === "failure") return failure(bracket.failureReason, bracket.residual, bracket.iterations);
@@ -135,6 +236,24 @@ export function intersectSurfaceProfile(
    * well-conditioned rim root elsewhere in it. */
   let stepBeforeLast = hi - lo;
   let lastStep = stepBeforeLast;
+  const roundoffTolerance = (value: SurfaceEvaluation): number => {
+    const slopeMagnitude =
+      profile.kind === "aspheric"
+        ? (profile.maxAbsSlope?.(value.radius) ?? NaN)
+        : Math.abs(profile.slope(value.radius));
+    return Math.max(
+      tolerance,
+      sagResidualRoundoff(
+        ray.origin,
+        direction,
+        value.t,
+        vertexZ,
+        value.radius,
+        profile.sag(value.radius),
+        slopeMagnitude,
+      ),
+    );
+  };
 
   for (let iterations = 1; iterations <= maxIterations; iterations++) {
     const current = evalAt(t);
@@ -151,16 +270,40 @@ export function intersectSurfaceProfile(
     }
 
     const newtonT = isFiniteEvaluation(current) ? t - current.value / current.derivative : NaN;
+    // A correction smaller than one representable t cannot improve this point.
+    // Try the raw target first; use the operand-based envelope only at a stall.
+    if (newtonT === t) {
+      const effectiveTolerance = roundoffTolerance(current);
+      if (Math.abs(current.value) <= effectiveTolerance) {
+        return makeSuccess(current, profile, vertexZ, effectiveTolerance, refractiveIndex, iterations);
+      }
+    }
     const acceptNewton =
       isFinite(newtonT) && newtonT > lo && newtonT < hi && Math.abs(newtonT - t) <= Math.abs(stepBeforeLast) / 2;
+    const nextT = acceptNewton ? newtonT : lo + (hi - lo) / 2;
+    // The safeguarded midpoint can round to this endpoint even when the raw
+    // Newton correction differs: an adjacent-float bracket cannot shrink further.
+    if (nextT === t) {
+      const effectiveTolerance = roundoffTolerance(current);
+      if (Math.abs(current.value) <= effectiveTolerance) {
+        return makeSuccess(current, profile, vertexZ, effectiveTolerance, refractiveIndex, iterations);
+      }
+    }
     stepBeforeLast = lastStep;
     lastStep = acceptNewton ? newtonT - t : (hi - lo) / 2;
-    t = acceptNewton ? newtonT : lo + lastStep;
+    t = nextT;
   }
 
-  const finalEval = evalAt((lo + hi) / 2);
-  if (isFiniteEvaluation(finalEval) && Math.abs(finalEval.value) <= tolerance * 10) {
+  // Evaluate the pending step; discarding it can lose the last Newton improvement.
+  const finalEval = evalAt(t);
+  if (isFiniteValueEvaluation(finalEval) && Math.abs(finalEval.value) <= tolerance) {
     return makeSuccess(finalEval, profile, vertexZ, tolerance, refractiveIndex, maxIterations);
+  }
+  if (isFiniteEvaluation(finalEval) && t - finalEval.value / finalEval.derivative === t) {
+    const effectiveTolerance = roundoffTolerance(finalEval);
+    if (Math.abs(finalEval.value) <= effectiveTolerance) {
+      return makeSuccess(finalEval, profile, vertexZ, effectiveTolerance, refractiveIndex, maxIterations);
+    }
   }
 
   return failure("noConvergedIntersection", isFiniteValueEvaluation(finalEval) ? finalEval.value : null, maxIterations);
@@ -189,6 +332,13 @@ function intersectProfilePlane(
   const clampedT = clamp(t, minT, maxT);
   const point = addRay(origin, direction, clampedT);
   const residual = dot(normal, subtract(point, planePoint));
+  const effectiveTolerance =
+    Math.abs(residual) <= tolerance
+      ? tolerance
+      : Math.max(tolerance, planeResidualRoundoff(origin, direction, clampedT, planePoint, normal));
+  if (!Number.isFinite(residual) || !(Math.abs(residual) <= effectiveTolerance)) {
+    return failure("noConvergedIntersection", residual, 0);
+  }
   return {
     ok: true,
     t: clampedT,
@@ -196,6 +346,7 @@ function intersectProfilePlane(
     radius: Math.hypot(point[0], point[1]),
     normal,
     residual,
+    effectiveTolerance,
     iterations: 0,
     segmentLength: clampedT,
     opticalPathLength: refractiveIndex === undefined ? null : refractiveIndex * clampedT,
@@ -222,6 +373,12 @@ function evaluateProfile(
   return { t, point, radius, value, derivative };
 }
 
+/**
+ * Bracket search mode: `ordered` refuses whole-interval shortcuts so the first root wins; `monotone` is for a
+ * caller-certified strictly monotone f, where same-signed valid endpoints prove that no root exists.
+ */
+type BracketScan = "default" | "ordered" | "monotone";
+
 type BracketResult =
   | { kind: "success"; value: SurfaceEvaluation; iterations: number }
   | { kind: "failure"; failureReason: SurfaceIntersectionFailureReason; residual: number | null; iterations: number }
@@ -233,16 +390,24 @@ function findBracket(
   maxT: number,
   tolerance: number,
   bracketSamples: number,
+  scan: BracketScan,
 ): BracketResult {
+  const ordered = scan === "ordered";
   const loEval = evalAt(minT);
   const loValid = isFiniteValueEvaluation(loEval);
   if (loValid && Math.abs(loEval.value) <= tolerance) return { kind: "success", value: loEval, iterations: 0 };
 
   const hiEval = evalAt(maxT);
   const hiValid = isFiniteValueEvaluation(hiEval);
-  if (hiValid && Math.abs(hiEval.value) <= tolerance) return { kind: "success", value: hiEval, iterations: 0 };
-  if (loValid && hiValid && !sameSign(loEval.value, hiEval.value))
+  if (!ordered && hiValid && Math.abs(hiEval.value) <= tolerance)
+    return { kind: "success", value: hiEval, iterations: 0 };
+  if (!ordered && loValid && hiValid && !sameSign(loEval.value, hiEval.value))
     return { kind: "bracket", lo: minT, hi: maxT, fLo: loEval.value };
+  // A strictly monotone f with same-signed endpoints has no interior root; sampling could only rediscover that.
+  if (scan === "monotone" && loValid && hiValid) {
+    const residual = Math.abs(loEval.value) < Math.abs(hiEval.value) ? loEval.value : hiEval.value;
+    return { kind: "failure", failureReason: "noBracket", residual, iterations: 0 };
+  }
 
   /* Scan for the first sign change between surface points. Points outside the surface's domain are skipped, but
    * the domain edge itself joins the scan: a steep near-hemispherical rim is crossed in the sliver between that
@@ -307,7 +472,7 @@ function makeSuccess(
   evaluation: SurfaceEvaluation,
   profile: SurfaceProfile,
   vertexZ: number,
-  _tolerance: number,
+  effectiveTolerance: number,
   refractiveIndex: number | undefined,
   iterations: number,
 ): SurfaceIntersectionSuccess {
@@ -318,6 +483,7 @@ function makeSuccess(
     radius: evaluation.radius,
     normal: profile.normalAt(evaluation.point, vertexZ),
     residual: evaluation.value,
+    effectiveTolerance,
     iterations,
     segmentLength: evaluation.t,
     opticalPathLength: refractiveIndex === undefined ? null : refractiveIndex * evaluation.t,

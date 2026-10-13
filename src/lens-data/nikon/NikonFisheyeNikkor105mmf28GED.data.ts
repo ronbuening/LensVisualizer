@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════╗
- * ║ NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8G ED                         ║
+ * ║ NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8 G ED                         ║
  * ╠════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 7,161,746 B2, Example 9, Table 9 and FIG. 17.        ║
  * ║ Corrected transcription of the all-spherical patent prescription.    ║
@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-fisheye-nikkor-105mm-f28g-ed",
   maker: "Nikon",
-  name: "NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8G ED",
+  name: "NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8 G ED",
   subtitle: "US 7,161,746 B2 Example 9 — Nikon / Keiko Mizuguchi",
   specs: [
     "10 elements / 7 groups",
@@ -211,9 +211,9 @@ const LENS_DATA = {
     { label: "18", R: -44.74, d: 41.114155, nd: 1, elemId: 0, sd: 10.3 },
   ],
 
-  nominalFno: 2.8,
+  nominalFno: 2.88,
   closeFocusM: 0.14,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   focusDescription:
     "CRC / floating-group focus is described by the patent and Nikon, but Example 9 publishes only the infinity prescription.",

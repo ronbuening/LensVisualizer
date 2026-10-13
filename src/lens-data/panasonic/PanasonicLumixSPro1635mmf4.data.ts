@@ -519,6 +519,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.25,
+  // Source rows only; the other zoom stations are solved or sampled control points.
+  publishedStations: { zoom: [0, 16, 32] },
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: G3 alone moves imageward. The three published infinity zoom anchors are retained and 30 derived control points are inserted along their piecewise-linear zoom path. At all 33 points, D17 increases and D20 decreases equally, preserving D17 + D20 and fixed BF while solving the 0.25 m sensor-plane conjugate. Between-knot states remain ordinary piecewise-linear UI interpolation. The patent publishes the mechanism and direction but no close-focus spacing rows.",
 

@@ -13,3 +13,15 @@ Patent: US 6,115,188 A, Numerical Example 1
   keyframe (worst difference 6×10⁻¹¹ mm). Physical track grows by 0.681 mm to 268.002 mm; the L2 close-focus travel
   was solved on the old air-equivalent track, so the same object now sits 2.500681 m from the image plane and
   `closeFocusM` keeps Canon's marketed 2.5 m.
+
+## 2026-10-04 — Drop-in filter drawn as an element
+
+- The rear drop-in filter plate FL moved out of `rearPlates` into the drawn prescription: surfaces 28–29 and element
+  16 (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place
+  and a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
+- The source lists no clear aperture for the plate. Its semi-diameter, 22 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at infinity, mid and
+  close focus (20.90 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
+  axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
+  corner.

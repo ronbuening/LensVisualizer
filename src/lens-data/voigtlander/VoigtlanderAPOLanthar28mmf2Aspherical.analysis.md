@@ -114,7 +114,7 @@ The complete L13 doublet remains net negative, with a net air-to-air EFL of −4
 
 **nd = 1.90525, νd = 35.04. Glass: S-LAH93 (OHARA) equivalent, 905350. Standalone f = +20.625740 mm.**
 
-L14 forms G2b and is the strongest positive component in the rear macro-group. The patent requires $f_2/f_{2b}>2.5$ and $\Delta P_{gF}>-0.001$ for the strongest positive lens in G2. The authored array gives a ratio of 2.60580 and L14 has $\Delta P_{gF}=-0.0005$.
+L14 forms G2b and is the strongest positive component in the rear macro-group. The patent requires $f_2/f_{2b}>2.5$ and $\Delta P_{gF}>-0.001$ for the strongest positive lens in G2. The authored array gives a ratio of 2.60580 and L14 has a patent $\Delta P_{gF}=-0.0005$.
 
 Its high index and symmetric biconvex form concentrate positive power near the center of G2, between two net-negative subassemblies.
 
@@ -146,7 +146,7 @@ The patent gives $n_d$, $\nu_d$, and $\Delta P_{gF}=-0.0056$ but no glass vendor
 
 The patent publishes $n_d$, $\nu_d$, and $\Delta P_{gF}$ for every element but names no vendor. The data file therefore uses qualified catalog equivalents or class labels. The stored patent constants remain authoritative; catalog line indices are derived results, with a disclosed proxy only for L16.
 
-| Element(s) | Catalog-equivalent label | nd | νd | ΔPgF | Function in the prescription |
+| Element(s) | Catalog-equivalent label | nd | νd | Patent ΔPgF | Function in the prescription |
 |---|---|---:|---:|---:|---|
 | L9 | H-K9LGT equivalent | 1.51680 | 64.20 | +0.0031 | Front aspheric crown meniscus |
 | L10f | S-LAH89 equivalent | 1.85150 | 40.78 | −0.0054 | High-index positive member of G1b |
@@ -160,7 +160,7 @@ The patent publishes $n_d$, $\nu_d$, and $\Delta P_{gF}$ for every element but n
 | L15f | FCD705 equivalent | 1.55032 | 75.50 | +0.0277 | Strong positive low-dispersion corrector |
 | L16 | Unmatched 806407 class; Q-LASF03S line-index proxy | 1.80610 | 40.73 | −0.0056 | Terminal aspheric negative element |
 
-All twelve elements carry numeric $\Delta P_{gF}$ because the patent prints those values. Those numerical fields are separate from the `apd` classification: Cosina's production section marks six positions, which map by the matching Example 2 topology to L10r, L12r, L13f, L13r, L15f, and L15r. The data records those six flags as `inferred`, because the patent-to-production correlation is strong but not manufacturer-confirmed. The other six elements remain unflagged even though their patent $\Delta P_{gF}$ values are retained.
+All twelve elements carry a numeric `dPgF` because the patent prints $\Delta P_{gF}$ for every glass. The patent defines its deviation as $\Delta P_{gF}=P_{gF}-0.64833+0.00180\nu_d$ (¶0061), and every $\Delta P_{gF}$ figure quoted in this analysis is that patent deviation. The data file instead stores `dPgF` as $P_{gF}$ minus the engine's normal line $0.6438-0.001682\nu_d$, with $P_{gF}$ recovered from the printed deviation, so the stored numbers differ from the table by $0.00453-0.000118\nu_d$; L10f, L12f, and L16 keep the printed figure because that gap is below 0.0003 at their Abbe numbers. Those numerical fields are separate from the `apd` classification: Cosina's production section marks six positions, which map by the matching Example 2 topology to L10r, L12r, L13f, L13r, L15f, and L15r. The data records those six flags as `inferred`, because the patent-to-production correlation is strong but not manufacturer-confirmed. The other six elements remain unflagged even though the partial dispersion implied by their patent $\Delta P_{gF}$ values is stored.
 
 ## Focus Mechanism
 
@@ -208,7 +208,7 @@ The front pair shapes the wide-angle entrance bundle and is the limiting region 
 
 ## Chromatic Correction Strategy
 
-The production lens is marketed as APO-LANTHAR, and the manufacturer explicitly describes an apochromatic design. In this model, the chromatic discussion is supported by more than the name: every element stores patent $\Delta P_{gF}$, and the catalog-resolved elements carry `nC`, `nF`, and `ng` line indices.
+The production lens is marketed as APO-LANTHAR, and the manufacturer explicitly describes an apochromatic design. In this model, the chromatic discussion is supported by more than the name: every element stores a `dPgF` derived from the patent's $\Delta P_{gF}$ and expressed against the engine's normal line, and the catalog-resolved elements carry `nC`, `nF`, and `ng` line indices.
 
 The rear half contains the clearest complementary pairings. L13 combines negative S-NBH8-class glass at $\Delta P_{gF}=-0.0025$ with positive J-PSKH8-class glass at +0.0139. L15 combines FCD705-class low-dispersion glass at +0.0277 with the same −0.0025 negative partner. These pairs place opposite-signed anomalous partial dispersion in cemented units that remain net negative, allowing chromatic power to be adjusted without requiring those units to become positive.
 
@@ -218,7 +218,7 @@ The analysis does not claim that the catalog-equivalent vendor names are the act
 
 ## Conditional Expressions
 
-The following values were recomputed from the authored TypeScript arrays and stored element constants, rather than copied from the patent summary table. All nineteen conditions pass.
+The following values were recomputed from the authored TypeScript arrays and stored element constants, rather than copied from the patent summary table. The exception is the five $\Delta P_{gF}$ rows (10, 13, 16, 17, and 19): they quote the patent's own deviation from Table 6, $\Delta P_{gF}=P_{gF}-0.64833+0.00180\nu_d$, which is the quantity the conditions are written in, not the engine-line `dPgF` stored in the data file. All nineteen conditions pass.
 
 | No. | Condition | Authored-model value | Result |
 |---:|---|---:|:---:|
@@ -231,16 +231,16 @@ The following values were recomputed from the authored TypeScript arrays and sto
 | 7 | $1.86>n_{d1bm}>1.76$ | 1.78880 | Pass |
 | 8 | $\nu_{d1bp}>29$ | 40.78 | Pass |
 | 9 | $30\geq\nu_{d1bm}>28.4$ | 28.43 | Pass |
-| 10 | $\Delta P_{gF2p}>0.013$ | +0.0139 | Pass |
+| 10 | $\Delta P_{gF2p}>0.013$ | +0.0139 (patent) | Pass |
 | 11 | $n_{d2p}>1.62$ | 1.62846 | Pass |
 | 12 | $n_{d2m}<1.73$ | 1.72047 | Pass |
-| 13 | $\Delta P_{gF2m}<-0.002$ | −0.0025 | Pass |
+| 13 | $\Delta P_{gF2m}<-0.002$ | −0.0025 (patent) | Pass |
 | 14 | $-55<f_{2abal}<0$ | −47.89453 mm | Pass |
 | 15 | $f_{2abal}/f_{2abalm}>3.75$ | 3.77918 | Pass |
-| 16 | $\Delta P_{gF2abalp}>0.013$ | +0.0139 | Pass |
-| 17 | $\Delta P_{gF2abalm}<-0.002$ | −0.0025 | Pass |
+| 16 | $\Delta P_{gF2abalp}>0.013$ | +0.0139 (patent) | Pass |
+| 17 | $\Delta P_{gF2abalm}<-0.002$ | −0.0025 (patent) | Pass |
 | 18 | $f_2/f_{2b}>2.5$ | 2.60580 | Pass |
-| 19 | $\Delta P_{gF2bp}>-0.001$ | −0.0005 | Pass |
+| 19 | $\Delta P_{gF2bp}>-0.001$ | −0.0005 (patent) | Pass |
 
 The recomputed ratios differ slightly from the patent's Table 5 ratios because the raw prescription produces EFL and subgroup powers that do not exactly reproduce every printed summary value. The pass/fail conclusions are unchanged.
 
@@ -263,7 +263,7 @@ The stop diameter is not published. The authored `STO.sd` of 7.864192 mm is an i
 
 At the full 37.02° half field, the verified sampled pupil range is approximately −0.40 to +0.70. The front aspheric meniscus limits negative-side pupil samples, while L14 limits the most positive samples. This is a model-containment result, not a manufacturer vignetting specification.
 
-Two patent text errors are interpreted without changing numerical data. The Example 2 definitions on p. 14 copy forward L5/L5f from Example 1; the surrounding Example 2 description and ¶0065 require L13/L13f. Paragraph ¶0048 also refers to optical system 100 where the context requires system 200. S17 radius and thickness have been corrected to Table 6; the source indices, Abbe numbers, $\Delta P_{gF}$ values and aspheres are retained.
+Two patent text errors are interpreted without changing numerical data. The Example 2 definitions on p. 14 copy forward L5/L5f from Example 1; the surrounding Example 2 description and ¶0065 require L13/L13f. Paragraph ¶0048 also refers to optical system 100 where the context requires system 200. S17 radius and thickness have been corrected to Table 6; the source indices, Abbe numbers and aspheres are retained, and the source $\Delta P_{gF}$ values are stored re-expressed against the engine's normal line.
 
 No uniform scale was applied, no plate was omitted and replaced by an air-equivalent gap, and no inactive optical surface was removed from Example 2.
 

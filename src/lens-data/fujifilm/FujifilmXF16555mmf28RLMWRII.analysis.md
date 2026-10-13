@@ -131,7 +131,7 @@ L42 is the negative half of G4. The L41–L42 cemented doublet has net negative 
 
 ### L51 — Positive Meniscus, convex to image, double-sided asphere
 
-nd = 1.51625, νd = 64.05. Glass: BSC7 / BK7-class moldable crown. f = 98.3 mm.
+nd = 1.51625, νd = 64.05. Glass: L-BSL7 (OHARA) class moldable crown (BSC7 / BK7 type). f = 98.3 mm.
 
 L51 is the only element in G5/GE. It is fixed during zooming and focusing in Example 1 and uses two aspherical faces to control exit-ray geometry, field curvature, and distortion at the rear of the system.
 
@@ -156,7 +156,7 @@ The glass assignments were reworked from the patent's nd, νd, and θgF values a
 | L36 | 1.61884 | 63.56 | 0.54321 | +0.00632 | PCD4 / S-PHM52 class | Anomalous crown asphere |
 | L41 | 1.98613 | 16.48 | 0.66558 | +0.04950 | FDS16-W class | Focus doublet positive |
 | L42 | 1.83400 | 37.21 | 0.57834 | -0.00287 | NBFD10 / S-LAH60V class | Focus doublet negative |
-| L51 | 1.51625 | 64.05 | 0.53616 | +0.00009 | BSC7 / BK7-class crown | Rear asphere |
+| L51 | 1.51625 | 64.05 | 0.53616 | +0.00009 | L-BSL7-class crown (BSC7 / BK7 type) | Rear asphere |
 
 The one Super ED element is L33. The three ED elements are L12, L24, and L35. Those positions are inferred from the patent glass data and Fujifilm's published count, not from a manufacturer slot diagram.
 

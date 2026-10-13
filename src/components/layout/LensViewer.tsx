@@ -25,6 +25,7 @@ import {
   COMPARISON_CATALOG_KEYS,
   opticalConfigurationOptionsForKey,
 } from "../../utils/catalog/lensCatalog.js";
+import { resolveTeleconverterKey, teleconverterOptionsForLens } from "../../utils/catalog/teleconverterCatalog.js";
 import useLensAnalysisMarkdown from "../hooks/useLensAnalysisMarkdown.js";
 import usePreferences from "../../utils/state/usePreferences.js";
 import useURLSync from "../../utils/state/useURLSync.js";
@@ -52,6 +53,7 @@ import {
   SET_MOBILE_VIEW,
   SET_DESKTOP_VIEW,
   SET_OPTICAL_CONFIGURATION,
+  SET_TELECONVERTER,
 } from "../../utils/state/lensReducer.js";
 import useComparisonOrchestration from "../../comparison/useComparisonOrchestration.js";
 import useOverlays from "../hooks/useOverlays.js";
@@ -101,7 +103,8 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
 
   /* ── Destructure state slices for convenient access ── */
   const { lens, display, rays, sharedSliders, panels, overlays } = state;
-  const { lensKeyA, lensKeyB, selectedConfigurationKey, comparing, scaleMode } = lens;
+  const { lensKeyA, lensKeyB, selectedConfigurationKey, teleconverterKeyA, teleconverterKeyB, comparing, scaleMode } =
+    lens;
   const { dark, highContrast, mobileView, desktopView } = display;
   const {
     showOnAxis,
@@ -139,9 +142,40 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const switchOpticalConfiguration = useCallback(
     (key: string) => {
       if (!configurationOptions.some((option) => option.key === key)) return;
-      dispatch({ type: SET_OPTICAL_CONFIGURATION, key });
+      /* Keep the mounted converter only if it also fits the prescription being switched to. */
+      dispatch({
+        type: SET_OPTICAL_CONFIGURATION,
+        key,
+        teleconverterKey: resolveTeleconverterKey(key, teleconverterKeyA),
+      });
     },
-    [configurationOptions, dispatch],
+    [configurationOptions, dispatch, teleconverterKeyA],
+  );
+
+  /* Detachable teleconverters mount on the prescription actually shown: the configured diagram lens in the
+     single view (in comparison mode pane A's key already is the variant), and each pane's own lens when comparing.
+     The mounted key is passed so a hidden test model opened from a URL stays listed and can be switched off. */
+  const teleconverterOptions = useMemo(
+    () => teleconverterOptionsForLens(diagramLensKey, teleconverterKeyA),
+    [diagramLensKey, teleconverterKeyA],
+  );
+  const teleconverterOptionsB = useMemo(
+    () => (comparing ? teleconverterOptionsForLens(lensKeyB, teleconverterKeyB) : []),
+    [comparing, lensKeyB, teleconverterKeyB],
+  );
+  const activeTeleconverterKey = teleconverterOptions.some((option) => option.key === teleconverterKeyA)
+    ? teleconverterKeyA
+    : null;
+  const activeTeleconverterKeyB = teleconverterOptionsB.some((option) => option.key === teleconverterKeyB)
+    ? teleconverterKeyB
+    : null;
+  const switchTeleconverter = useCallback(
+    (panel: "a" | "b", key: string | null) => {
+      const options = panel === "b" ? teleconverterOptionsB : teleconverterOptions;
+      if (key !== null && !options.some((option) => option.key === key)) return;
+      dispatch({ type: SET_TELECONVERTER, panel, key });
+    },
+    [dispatch, teleconverterOptions, teleconverterOptionsB],
   );
 
   /* ── Comparison mode orchestration ── */
@@ -219,17 +253,21 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     [viewerCatalogKeys],
   );
 
-  /* ── Lens switching (single-lens mode resets sliders, comparison mode does not) ── */
+  /* ── Lens switching (single-lens mode resets sliders, comparison mode does not) ──
+   * A compare-route switch replaces the path and so drops the query. The URL writer only reruns when the view
+   * state it watches changes, which a switch on the other pane (or a swap of identical converters) does not do,
+   * so it is scheduled explicitly: the surviving pane's `a_tc` / `b_tc` must stay in a shareable URL. */
   const switchLensA = useCallback(
     (key: string) => {
       dispatch({ type: SET_LENS_A, key });
       if (isComparePage) {
         void navigate(canonicalPagePath(`/compare/${key}/${lensKeyB}`), { replace: true });
+        updateURLWithSliders();
       } else if (isLensPage && !state.lens.comparing) {
         void navigate(canonicalPagePath(`/lens/${key}`), { replace: true });
       }
     },
-    [dispatch, isLensPage, isComparePage, lensKeyB, state.lens.comparing, navigate],
+    [dispatch, isLensPage, isComparePage, lensKeyB, state.lens.comparing, navigate, updateURLWithSliders],
   );
 
   const switchLensB = useCallback(
@@ -237,17 +275,19 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
       dispatch({ type: SET_LENS_B, key });
       if (isComparePage) {
         void navigate(canonicalPagePath(`/compare/${lensKeyA}/${key}`), { replace: true });
+        updateURLWithSliders();
       }
     },
-    [dispatch, isComparePage, lensKeyA, navigate],
+    [dispatch, isComparePage, lensKeyA, navigate, updateURLWithSliders],
   );
 
   const swapLenses = useCallback(() => {
     dispatch({ type: SWAP_LENSES });
     if (isComparePage) {
       void navigate(canonicalPagePath(`/compare/${lensKeyB}/${lensKeyA}`), { replace: true });
+      updateURLWithSliders();
     }
-  }, [dispatch, isComparePage, lensKeyA, lensKeyB, navigate]);
+  }, [dispatch, isComparePage, lensKeyA, lensKeyB, navigate, updateURLWithSliders]);
 
   /* ── Context value (replaces sharedProps prop drilling) ── */
   const ctxValue = useMemo(
@@ -333,6 +373,11 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
                 configurationOptions={configurationOptions}
                 activeConfigurationKey={diagramLensKey}
                 onConfigurationChange={switchOpticalConfiguration}
+                teleconverterOptions={teleconverterOptions}
+                activeTeleconverterKey={activeTeleconverterKey}
+                teleconverterOptionsB={teleconverterOptionsB}
+                activeTeleconverterKeyB={activeTeleconverterKeyB}
+                onTeleconverterChange={switchTeleconverter}
                 controlsBarProps={controlsBarProps}
                 mobileView={mobileView}
                 onMobileViewChange={(val) => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
@@ -351,6 +396,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
                 lensKeyA={lensKeyA}
                 lensKeyB={lensKeyB}
                 diagramLensKey={diagramLensKey}
+                teleconverterKey={activeTeleconverterKey}
                 comparisonLenses={comparisonLenses}
                 focusPair={focusPair}
                 aperturePair={aperturePair}

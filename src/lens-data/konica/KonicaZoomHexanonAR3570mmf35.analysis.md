@@ -9,7 +9,7 @@
 **Title:** 広角ズームレンズ ("Wide-angle zoom lens")
 **Embodiment analyzed:** Example 1 (`実施例1`), Figure 4; aberration data in Figure 6
 
-The data file models a correlation between Example 1 of JPS55-21005A and the **KONICA ZOOM-HEXANON AR 35–70mm f/3.5**. The patent itself does not name the production lens, so that correspondence is an authorial production correlation rather than a manufacturer statement. The identification is supported by several convergent facts:
+The data file models a correlation between Example 1 of JPS55-21005A and the **KONICA ZOOM-HEXANON AR 35-70mm f/3.5**. The patent itself does not name the production lens, so that correspondence is an authorial production correlation rather than a manufacturer statement. The identification is supported by several convergent facts:
 
 1. Example 1 is headed `f = 35.146–69.137, F 3.5`, matching the marketed 35–70 mm constant-f/3.5 class (JPS55-21005A, PDF p. 7).
 2. The prescription contains nine air-separated elements in nine groups, matching Konica's Cat. No. 703-172 specification of 9 elements / 9 groups.

@@ -50,3 +50,13 @@ Batch21–30 full gates and commit pending; source-summary contradictions remain
 - Paraxial check against the previous data: EFL identical and defocus unchanged at infinity and 0.8 m (worst |Δ|
   2e-15), because the old d21 was the exact fold. Physical track grows by 0.545 mm, to 110.811 mm at infinity (the
   printed row sum); the TL 111.35 mm summary discrepancy remains open.
+
+## 2026-10-07 — Source contradiction recorded as unresolved `sourceErrata`
+
+- JP 2020-173366 A Example 3 (pp. 16–17, ¶0069–¶0070) states FL 83.00, FNO 1.85, 2ω 29.26, TL 111.35, bf 0.92. The
+  printed rows, which the file carries unchanged, trace to EFL 82.222194 mm and a first-surface-to-image track of
+  110.811 mm (0.778 mm and 0.539 mm short of the summary). The axial marginal ray at the F/1.85 entrance height
+  (22.222 mm) crosses the axis 0.137 mm short of the near-axis focus.
+- Added one `unresolved` entry; no `R`, `d`, `nd` or `νd` changed. This turns the 2026-09-08 note "source-summary
+  contradictions remain follow-up" into a recorded, still-open contradiction; the isolation work is the Nikkor Z 85
+  row in `agent_docs/sd-audit-queue.md` Section G.

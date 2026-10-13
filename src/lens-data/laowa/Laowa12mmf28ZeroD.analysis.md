@@ -4,14 +4,14 @@
 
 **Patent:** CN205720849U
 **Inventor:** Zhang Xiaohua
-**Assignee:** Anhui Changgeng Optical Technology Co., Ltd.
+**Assignee:** Anhui Changgeng Optics Technology Co., Ltd.
 **Filed:** April 12, 2016
 **Published:** November 23, 2016
 **Granted:** November 23, 2016
 **Title:** 一种大光圈广角微距镜头 / Large-aperture wide-angle macro lens
 **Embodiment analyzed:** Example 2 / 第二实施例
 
-The relevant filing is **CN205720849U**, *一种大光圈广角微距镜头* / “large-aperture wide-angle macro lens,” assigned to **Anhui Changgeng Optical Technology Co., Ltd.** and naming **Zhang Xiaohua** as inventor. The Chinese utility-model application was filed on 2016-04-12 and published/granted on 2016-11-23. The same optical disclosure is also present in **WO2017177665A1**, *一种超广角大光圈镜头*, which is text-searchable and was used as a cross-check against the image-only CN scan.
+The relevant filing is **CN205720849U**, *一种大光圈广角微距镜头* / “large-aperture wide-angle macro lens,” assigned to **Anhui Changgeng Optics Technology Co., Ltd.** and naming **Zhang Xiaohua** as inventor. The Chinese utility-model application was filed on 2016-04-12 and published/granted on 2016-11-23. The same optical disclosure is also present in **WO2017177665A1**, *一种超广角大光圈镜头*, which is text-searchable and was used as a cross-check against the image-only CN scan.
 
 This analysis uses **Example 2 / 第二实施例**. In the attached CN document, Example 2 is the design drawn in Figure 3, with its aberration plots in Figure 4. The numerical example gives **f = 12.5 mm**, **Fno = 2.87**, and **half-field angle ω = 60.1°**. Independent reduced-angle paraxial tracing of the transcribed prescription gives **EFL = 12.49993 mm** and **back focal distance = 38.83061 mm**, matching the patent’s stated focal length and the infinity **LB = 38.8325 mm** spacing within transcription precision.
 
@@ -253,7 +253,7 @@ The corrected interpretation is internally consistent: Example 2 is a 16-element
 
 ## Sources and References
 
-1. **CN205720849U**, *一种大光圈广角微距镜头*, Anhui Changgeng Optical Technology Co., Ltd., filed 2016-04-12 and published/granted 2016-11-23. Key pages: bibliographic page; Example 2 prescription and variable spacing table; aspheric coefficient table; Figure 3 and Figure 4.
+1. **CN205720849U**, *一种大光圈广角微距镜头*, Anhui Changgeng Optics Technology Co., Ltd., filed 2016-04-12 and published/granted 2016-11-23. Key pages: bibliographic page; Example 2 prescription and variable spacing table; aspheric coefficient table; Figure 3 and Figure 4.
 2. **WO2017177665A1**, *一种超广角大光圈镜头*, same family disclosure. Used as a text-searchable cross-check for Example 2 numerical data, conditional expressions, and the surface 26 aspheric coefficient row.
 3. **Laowa / Laowa product documentation** for the Laowa 12mm f/2.8 Zero-D production specifications: 12 mm, f/2.8, 121.96° angle of view, full-frame coverage, 16 elements in 10 groups, two aspherical elements, three ED elements, 0.18 m minimum focus, and 1:5 maximum magnification.
 4. **HOYA Optical Glass technical documentation**, used for six-digit glass-code interpretation and catalog checks for FCD1, E-F1, FD140, E-FDS1, E-F3, E-F2, FD110, and TAFD35 / TAFD35L-class materials.

@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { CATALOG_KEYS } from "../../../src/utils/catalog/lensCatalog.js";
+import { ALL_TELECONVERTER_KEYS, TELECONVERTER_KEYS } from "../../../src/utils/catalog/teleconverterCatalog.js";
 import { CATALOG_ENTRIES } from "../../../src/pages/lensIndex/catalog.js";
 import buildMeta from "../../../src/generated/build-metadata.json";
 
@@ -58,6 +59,23 @@ describe("build-route-sync", () => {
     expect(lensRoutes.length).toBe(lensKeys.length);
     for (const key of lensKeys) {
       expect(lensRoutes).toContain(`/lens/${key}`);
+    }
+  });
+
+  it("teleconverterKeys match the published catalog and the routes with /teleconverters/ prefix", () => {
+    const teleconverterRoutes = buildMeta.routes.filter((r: string) => r.startsWith("/teleconverters/"));
+
+    /* Hidden test models get no route; the section index exists only once a published converter does. */
+    expect(buildMeta.teleconverterKeys).toEqual([...TELECONVERTER_KEYS].sort());
+    expect(teleconverterRoutes.length).toBe(TELECONVERTER_KEYS.length);
+    for (const key of TELECONVERTER_KEYS) {
+      expect(teleconverterRoutes).toContain(`/teleconverters/${key}`);
+    }
+    expect(buildMeta.routes.includes("/teleconverters")).toBe(TELECONVERTER_KEYS.length > 0);
+    expect(Object.hasOwn(buildMeta.routeFreshness, "/teleconverters")).toBe(TELECONVERTER_KEYS.length > 0);
+    /* A teleconverter is never a lens: it must not gain a /lens/ page. */
+    for (const key of ALL_TELECONVERTER_KEYS) {
+      expect(buildMeta.routes).not.toContain(`/lens/${key}`);
     }
   });
 

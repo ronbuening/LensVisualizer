@@ -81,11 +81,10 @@ function chiefRayTracer(L, state, zoomT, geometry) {
   };
   /* Rims are compared on the unclipped physical path. The engine's aperture-checked ghost trace stops refracting
    * after a clipped hit beyond a sphere's radius, so every clip it reports after that one would be spurious. */
-  const clipMargin = state.lens.display.clipMargin;
   const clipsOf = (trace) =>
     trace.hits
       .filter((hit) => typeof state.surfaces[hit.surfaceIndex].sd === "number")
-      .filter((hit) => hit.radius > state.surfaces[hit.surfaceIndex].sd * clipMargin + 1e-9)
+      .filter((hit) => hit.radius > state.surfaces[hit.surfaceIndex].sd + 1e-9)
       .map((hit) => ({
         label: hit.surfaceLabel,
         height: hit.radius,

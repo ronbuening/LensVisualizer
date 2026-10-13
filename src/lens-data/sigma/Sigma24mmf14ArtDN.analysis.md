@@ -51,7 +51,7 @@ L1 is the leading negative meniscus and the first wide-field correction element.
 
 ### L2 — Negative Meniscus, convex to object (FLD class)
 
-nd = 1.43700, νd = 95.1. Glass: 437951 fluorophosphate ED class, close to FCD100 / S-FPL53; Sigma FLD class. f = -125.0 mm. ΔθgF = +0.056526.
+nd = 1.43700, νd = 95.1. Glass: 437951 fluorophosphate ED class, close to FCD100 / S-FPL53; Sigma FLD class. f = -125.0 mm. Patent ΔθgF = +0.056526.
 
 L2 is the first of the two fluorophosphate-class low-dispersion elements. It sits in G1 where chief-ray height is high, so its unusually high Abbe number and positive anomalous partial-dispersion deviation contribute mainly to lateral color and secondary-spectrum control across the wide field.
 
@@ -103,7 +103,7 @@ L9-L10 form the cemented pair at the rear of G3. The pair is weakly positive as 
 
 ### L11 — Biconvex Positive (SLD class, cemented with L12)
 
-nd = 1.55032, νd = 75.5. Glass: 550755 ED crown class, close to FCD705 / H-FK55; Sigma SLD class. f = +37.6 mm. ΔθgF = +0.027580.
+nd = 1.55032, νd = 75.5. Glass: 550755 ED crown class, close to FCD705 / H-FK55; Sigma SLD class. f = +37.6 mm. Patent ΔθgF = +0.027580.
 
 ### L12 — Biconcave Negative (cemented with L11)
 
@@ -117,7 +117,7 @@ nd = 1.77047, νd = 29.7. Glass: 770297 dense-flint class, close to NBFD29-famil
 
 ### L14 — Positive Meniscus, convex to object (FLD class, cemented with L13)
 
-nd = 1.43700, νd = 95.1. Glass: 437951 fluorophosphate ED class, close to FCD100 / S-FPL53; Sigma FLD class. f = +67.4 mm. ΔθgF = +0.056526.
+nd = 1.43700, νd = 95.1. Glass: 437951 fluorophosphate ED class, close to FCD100 / S-FPL53; Sigma FLD class. f = +67.4 mm. Patent ΔθgF = +0.056526.
 
 L13-L14 implement the claim-6 cemented interface: the cemented surface is convex to the object side, and the object-side medium has a higher index than the image-side medium. The patent states that such an interface helps suppress coma and spherical aberration in G4 (§0077-0078). The unit is nearly afocal in first-order power; its importance is chromatic and aberrational rather than power-bearing.
 
@@ -141,9 +141,9 @@ L17 is the final field element. Both faces are aspheric. It corresponds to the p
 
 ## Glass Identification and Selection
 
-The patent gives nd, νd, and a small signed partial-dispersion deviation value for each glass. Those deviations are retained in the data file for chromatic tracing, but they are not all APD designations. APD highlighting is limited to L2, L11, and L14, matching the production two-FLD/one-SLD special-element census. The patent does not name a glass vendor. The names below are therefore catalog-class identifications from the nd/νd codes and common cross-reference families, not proof that Sigma used that exact catalog melt.
+The patent gives nd, νd, and a small signed partial-dispersion deviation value for each glass. The column is headed θgF, but it prints the deviation the patent defines against its own normal line, ΔθgF = θgF − (0.648285 − 0.00180123·νd) (claim 1, §0009, §0026); the table below quotes those patent deviations. The data file does not copy them: for chromatic tracing it stores `dPgF` as the recovered θgF minus the engine's normal line (0.6438 − 0.001682·νd), so its numbers differ from this column (L2 and L14 store +0.049672, L11 +0.023063). The deviations are not all APD designations. APD highlighting is limited to L2, L11, and L14, matching the production two-FLD/one-SLD special-element census. The patent does not name a glass vendor. The names below are therefore catalog-class identifications from the nd/νd codes and common cross-reference families, not proof that Sigma used that exact catalog melt.
 
-| Catalog class | nd | νd | ΔθgF | Element(s) | Role |
+| Catalog class | nd | νd | Patent ΔθgF | Element(s) | Role |
 |---|---:|---:|---:|---|---|
 | 437951 fluorophosphate ED, FCD100 / S-FPL53 class | 1.43700 | 95.1 | +0.056526 | L2, L14 | FLD-class lateral and axial color correction |
 | 550755 ED crown, FCD705 / H-FK55 class | 1.55032 | 75.5 | +0.027580 | L11 | SLD-class positive lens in G4 |
@@ -158,7 +158,7 @@ The patent gives nd, νd, and a small signed partial-dispersion deviation value 
 | 613443 lanthanum flint, S-NBM51 / LAF45 class | 1.61340 | 44.3 | -0.005289 | L4, L10, L16 | Moderate-index negative elements |
 | 806407 lanthanum flint, M-NBFD130 class | 1.80610 | 40.7 | -0.005657 | L17 | Rear aspheric field element |
 
-The key chromatic pattern is the split use of ED/fluorophosphate glass. One FLD-class element is placed in the high-chief-ray front group (L2), and the second is placed behind the stop in G4 (L14). L11 adds an SLD-class positive element in the same rear-of-stop group. Other ordinary glasses retain their patent-published signed deviations, but they are not treated as special APD elements. This distribution follows the patent's description of using the positive lenses behind the stop to address axial color, lateral color, and peripheral color flare at the same time (§0023-0024).
+The key chromatic pattern is the split use of ED/fluorophosphate glass. One FLD-class element is placed in the high-chief-ray front group (L2), and the second is placed behind the stop in G4 (L14). L11 adds an SLD-class positive element in the same rear-of-stop group. Other ordinary glasses also carry `dPgF` values derived from their patent-published signed deviations, but they are not treated as special APD elements. This distribution follows the patent's description of using the positive lenses behind the stop to address axial color, lateral color, and peripheral color flare at the same time (§0023-0024).
 
 ## Focus Mechanism
 
@@ -219,13 +219,13 @@ The patent states sixteen conditions. Conditions (1)-(4) are mandatory in claim 
 | (15) | nd_G1P | > 1.8500 | 1.8657 |
 | (16) | nd_G5P | > 1.8500 | 2.0010 |
 
-The patent correspondence table labels conditions (3) and (4) as G5L1. For Example 1 this is equivalent to G5P because L15 is the only positive lens in G5.
+The patent correspondence table labels conditions (3) and (4) as G5L1. For Example 1 this is equivalent to G5P because L15 is the only positive lens in G5. The ΔθgF rows are the patent's own deviations, θgF − (0.648285 − 0.00180123·νd), averaged from the patent's printed column; they are not the data file's `dPgF`, which is measured from the engine's normal line.
 
 ## Data File Transcription and Semi-Diameter Notes
 
 The TypeScript data file uses the unscaled Example 1 prescription from the patent. It includes all 17 glass elements, the aperture stop, the two focus-variable air gaps, and all eight aspherical surfaces. The source lists the image immediately after S32 with BF as its spacing; it supplies no rear cover/filter plate prescription. No plate is invented.
 
-The patent-published signed partial-dispersion deviations are stored on every glass as `dPgF` for chromatic tracing. The APD marker is narrower: it is applied only to L2, L11, and L14, the two FLD-class elements and one SLD-class element supported by the production special-element census.
+Every glass carries a `dPgF` for chromatic tracing. It is the glass's θgF, recovered from the patent-published signed deviation and the patent's line (0.648285 − 0.00180123·νd), minus the engine's normal line (0.6438 − 0.001682·νd); the patent's ΔθgF is not copied directly. The APD marker is narrower: it is applied only to L2, L11, and L14, the two FLD-class elements and one SLD-class element supported by the production special-element census.
 
 The patent does not publish clear apertures or semi-diameters. The data file therefore uses estimated semi-diameters derived from a first-order marginal/chief-ray trace at half field, then constrained to maintain plausible element shapes, edge thickness, surface-slope limits, and cross-gap sag clearance in the renderer. The stop semi-diameter is 12.90 mm, derived from the patent f = 23.86 mm and F-number = 1.46.
 

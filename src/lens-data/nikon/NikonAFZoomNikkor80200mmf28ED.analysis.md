@@ -7,7 +7,7 @@
 **Inventor:** Yoshinari Hamanishi
 **Applicant:** Nippon Kogaku K.K.
 **Title:** Large-Aperture-Ratio Telephoto Zoom Lens (大口径比望遠ズームレンズ)
-**Embodiment analyzed:** Example 3 / Table 3 / Figure 1 optical section / Figures 3A–3D aberration plots
+**Embodiment analyzed:** Example 3 / Table 3 / Figure 1 optical section / Figures 4A–4D aberration plots
 
 The prescription is the user-selected correlation for the **NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED**. The patent itself does not identify a commercial lens model, so the production association is a correlation rather than a manufacturer statement that this patent is the product design.
 
@@ -15,7 +15,7 @@ Several independent points converge on that correlation. First, Example 3 is a f
 
 Nikon's historical account states that the smaller autofocus 80–200 mm f/2.8 ED was released in 1988 and that its optical design continued into the 1996 D version without noteworthy optical changes. Nikon's later D-version specification gives 80–200 mm, f/2.8, Nikon F bayonet, FX/35 mm coverage, 16 elements in 11 groups, and three ED elements. Those manufacturer sources establish the product-side identity and continuity used for the correlation; they do not replace the patent as the authority for the exact prescription.
 
-The data file therefore keeps marketed and design quantities separate. `focalLengthMarketing` is 80–200 mm and `apertureMarketing` is f/2.8. The independently traced design endpoints are 79.99278 mm and 195.98427 mm, while both `apertureDesign` and `nominalFno` are 2.88. No uniform scale factor is applied.
+The data file therefore keeps marketed and design quantities separate. `focalLengthMarketing` is 80–200 mm and `apertureMarketing` is f/2.8. The independently traced design endpoints are 79.99990 mm and 196.00205 mm, while both `apertureDesign` and `nominalFno` are 2.88. No uniform scale factor is applied.
 
 The patent-published close states are also kept separate from later product marketing. The data model terminates at approximately 1.800 m object-to-image-plane distance because that is what the Example 3 finite-conjugate rows produce. Nikon's later D-version specification lists 1.5 m minimum focus distance; that later mechanical specification is not substituted for the patent state.
 
@@ -27,7 +27,7 @@ Example 3 contains 16 physical glass elements in 11 air-separated groups. The pa
 |---|---:|---|---|
 | G1 | +123.500000 mm | Positive focusing group | Fixed during zoom; moves objectward for close focus |
 | G2 | -34.146299 mm | Negative variator | Moves 40.601 mm imageward from 80 to 196 mm |
-| G3 | +86.835387 mm | Positive compensator | Moves 15.956 mm imageward from 80 to 196 mm |
+| G3 | +86.829295 mm | Positive compensator | Moves 15.956 mm imageward from 80 to 196 mm |
 | G4 | +112.999959 mm | Positive relay group | Fixed during zoom and focus; contains the aperture stop |
 
 These focal lengths describe each functional group evaluated as a standalone optical unit in air. They are not the same as each group's in-situ contribution to the effective focal length of the assembled zoom.
@@ -36,7 +36,7 @@ The patent's structural discussion is unusually specific about G2 and G4. G2 is 
 
 At infinity, the zooming action is entirely internal to the spacing between the four functional groups. G1 and G4 retain fixed axial stations, while G2 and G3 move imageward by different amounts. The patent publishes only the 80 mm and 196 mm endpoint rows for Example 3. LensVisualizer therefore interpolates the three variable group gaps linearly between those two endpoints; no intermediate focal-length prescription is represented as a published patent state.
 
-Although the patent title uses the term “telephoto,” the project applies a stricter geometrical classification. The published infinity track is 217.233 mm. The resulting T.L./EFL ratios are 2.7157 at the wide endpoint and 1.1084 at the tele endpoint, both greater than 1. The prescription is therefore not classified as telephoto under the project's `T.L./EFL < 1` rule. Likewise, BFL/EFL is 0.8270 at wide and 0.3376 at tele, so neither endpoint is retrofocus under the `BFD > EFL` criterion.
+Although the patent title uses the term “telephoto,” the project applies a stricter geometrical classification. The published infinity track is 217.133 mm, the T.L. value of the applicant's amendment appended to the publication. The resulting T.L./EFL ratios are 2.7142 at the wide endpoint and 1.1078 at the tele endpoint, both greater than 1. The prescription is therefore not classified as telephoto under the project's `T.L./EFL < 1` rule. Likewise, BFL/EFL is 0.8270 at wide and 0.3375 at tele, so neither endpoint is retrofocus under the `BFD > EFL` criterion.
 
 ## Element-by-Element Analysis
 
@@ -104,7 +104,7 @@ The combination D2 + D3 + L25 makes G2 a strong negative variator without requir
 
 ### G3 — Positive Compensator
 
-G3 has a standalone focal length of +86.835387 mm. It consists of the positive singlet L31 followed by the cemented positive component D4. The patent assigns G3 the compensating role: its axial motion offsets the image-plane displacement that would otherwise result from the larger variator motion of G2.
+G3 has a standalone focal length of +86.829295 mm. It consists of the positive singlet L31 followed by the cemented positive component D4. The patent assigns G3 the compensating role: its axial motion offsets the image-plane displacement that would otherwise result from the larger variator motion of G2.
 
 #### L31 — Biconvex Positive
 
@@ -118,9 +118,9 @@ Because the entire G3 translates as a rigid unit in the published endpoint model
 
 **L32:** nd = 1.56384, νd = 60.8. Glass: 564608 crown class (N-SK11 coordinate; supplier unresolved). Standalone f = +63.245156 mm.
 
-**L33:** nd = 1.75692, νd = 31.7. Glass: 757317 — E-LAF11 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved. Standalone f = -77.421006 mm.
+**L33:** nd = 1.75692, νd = 31.7. Glass: 757317 — E-LAF11 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved. Standalone f = -77.414233 mm.
 
-**Cemented D4:** net standalone f = +311.686059 mm.
+**Cemented D4:** net standalone f = +311.671797 mm.
 
 D4 is a weak net-positive cemented component formed from a strong positive biconvex element and a negative meniscus. The pair therefore contributes less net power than either physical member suggests in isolation. That is a useful distinction in this prescription: L32 and L33 are individually strong, but their cemented net power is comparatively gentle.
 
@@ -166,7 +166,7 @@ The patent defines a shape-factor condition for this element, `q4C`. Example 3 e
 
 L44 is the final refracting element and restores positive power after L43. Its biconvex form completes the relay-group sequence positive / positive-cemented / stop / negative / positive described by the patent.
 
-The last refracting surface is followed by the 66.158 mm source spacing to the image plane. At infinity the independently calculated BFL is 66.15718 mm at the wide endpoint and 66.15791 mm at the tele endpoint, so the source rear spacing is reproduced to the precision expected from the rounded prescription values.
+The last refracting surface is followed by the 66.158 mm source spacing to the image plane. At infinity the independently calculated BFL is 66.15858 mm at the wide endpoint and 66.15930 mm at the tele endpoint, so the source rear spacing is reproduced to the precision expected from the rounded prescription values.
 
 ## Glass Identification and Selection
 
@@ -203,7 +203,7 @@ The patent publishes the focus motion; no close-focus reconstruction is used. G1
 
 At either focal-length endpoint, d5 increases by 10.496 mm while d13 and d18 remain unchanged. In a fixed image-plane frame, that is a 10.496 mm objectward translation of the entire G1. The identical stroke at both endpoints is a source-published mechanism constraint, not an inferred simplification.
 
-Independent conjugate tracing gives β = -0.055057 at the wide close state and β = -0.134869 at the tele close state, reproducing the patent's rounded values. The corresponding object-to-image-plane distances are 1799.862 mm and 1800.127 mm. `closeFocusM` is therefore 1.8 m in the data model.
+Independent conjugate tracing gives β = -0.055046 at the wide close state and β = -0.134874 at the tele close state, reproducing the patent's rounded values. The corresponding object-to-image-plane distances are 1800.223 mm and 1800.104 mm. `closeFocusM` is therefore 1.8 m in the data model.
 
 The later D-version 1.5 m minimum focus distance is a production mechanical specification from Nikon, not an Example 3 spacing row. It is deliberately not used to extend the LensVisualizer focus slider beyond the patent's published finite state.
 
@@ -225,7 +225,7 @@ The patent defines a series of conditions governing functional-group power, refr
 |---|---:|---:|:---:|
 | (1) f4 / (f1 · Fn) | 0.317701 | 0.24–0.45 | Pass |
 | (2) |f4 / (f2 · Fn)| | 1.149059 | 0.85–1.30 | Pass |
-| (3) f4 / (f3 · Fn) | 0.451845 | 0.33–0.55 | Pass |
+| (3) f4 / (f3 · Fn) | 0.451876 | 0.33–0.55 | Pass |
 | (4) mean of the two lowest G2 negative-component indices | 1.54032 | 1.45–1.60 | Pass |
 | (5) mean of the first two pre-stop G4 positive-component indices | 1.492655 | 1.45–1.65 | Pass |
 | (6) |f2 / f1| | 0.276488 | 0.20–0.30 | Pass |
@@ -240,13 +240,13 @@ The five quantities printed directly beneath Example 3's Table 3 are reproduced 
 
 ## Modeling Inferences and Scope
 
-The prescription surfaces, refractive indices, Abbe numbers, focal/zoom endpoint spacings, and 66.158 mm rear spacing are patent-transcribed quantities. Several visualization fields are necessarily modeled because the patent does not publish them.
+The prescription surfaces, refractive indices, Abbe numbers, focal/zoom endpoint spacings, and 66.158 mm rear spacing are patent-transcribed quantities. One entry follows the applicant's amendment (手続補正書) appended to the publication rather than Table 3 as first printed: the thickness after surface 17, the center thickness of L33, is 1.700 mm where the table prints 1.800 mm, and the same amendment gives the total length as 217.133 mm in place of 217.233 mm. The surface gaps of the data file sum to 217.133 mm at both infinity endpoints. Several visualization fields are necessarily modeled because the patent does not publish them.
 
 The aperture stop is the most important inference. The patent drawing places stop S inside the 11.400 mm air interval after source surface 23 and before source surface 24, but it gives neither the axial offset within that interval nor the stop diameter. The data file preserves the source interval by splitting it symmetrically: 5.700 mm from surface 23 to `STO` and 5.700 mm from `STO` to surface 24. This midpoint is a modeling choice, not a measured patent dimension.
 
-The physical stop semi-diameter is likewise inferred. The authored `STO.sd` is 14.759011 mm, solved from the actual TypeScript prescription so that the wide-infinity entrance pupil gives F/2.88. With the same fixed stop, the tele-infinity model gives F/2.880021, reproducing the patent's constant endpoint aperture to source precision. Because the inserted `STO` is optically neutral air-to-air, the 5.700/5.700 mm split does not alter the source's first-order refracting prescription.
+The physical stop semi-diameter is likewise inferred. The authored `STO.sd` is 14.759011 mm, a paraxial entrance-pupil value for the patent's F/2.88: traced through the actual TypeScript prescription it gives F/2.880041 at wide infinity and, with the same fixed stop, F/2.880062 at tele infinity, reproducing the patent's constant endpoint aperture to source precision. The traced iris is set from `nominalFno` by the real marginal ray rather than from that paraxial value: its radius is 15.6801 mm at the 80 mm station and is held at the 196 mm station, where F/2.88 needs 15.7146 mm, so the iris alone gives f/2.880 and f/2.886. Because the inserted `STO` is optically neutral air-to-air, the 5.700/5.700 mm split does not alter the source's first-order refracting prescription.
 
-Semi-diameters are not tabulated by the patent. The data file therefore uses derived clear semi-diameters based on code-traced on-axis and off-axis rays across all four published states, the 21.6 mm image height, the patent optical section, mechanical constraints, and the current geometry checks. The 38.0 mm front semi-diameter is a modeling value; Nikon's later 77 mm filter specification supplies only a production mechanical upper bound, not a patent clear-aperture measurement.
+Semi-diameters are not tabulated by the patent. The data file therefore uses derived clear semi-diameters based on code-traced on-axis and off-axis rays across all four published states, the 21.6 mm image height, the patent optical section, mechanical constraints, and the current geometry checks. Surfaces 7, 9, 10, 12, 13, 15, 16, and 18 through 23 sit at the height the stated F/2.88 on-axis ray reaches at the 196 mm station, rounded up to 0.1 mm; that station needs more than the 80 mm station at every one of them. Three components that Figure 1 draws with a square-cut rim carry one value on every face, the highest any of their faces needs: L24 is 18.8 mm on surfaces 10 and 11, where the ray reaches 18.707 mm and 18.695 mm; L31 is 19.7 mm on surfaces 14 and 15, where it reaches 19.417 mm and 19.614 mm; and the cemented D4 is 20.0 mm on surfaces 16, 17, and 18, where it reaches 19.925 mm, 19.873 mm, and 19.962 mm. Surfaces 11 and 12, the rear of D3 and the front of L25, face each other across the 2.500 mm d11 air gap. Over the 18.7 mm they share, their combined sag is 2.276 mm, 0.9103 of the gap, which leaves 0.224 mm between the two rims; Figure 1 draws these two faces meeting at the rim. The data file sets `gapSagFrac` to 0.92 for that pair, the smallest two-decimal value that admits it, in place of the default 0.90. The iris limits the on-axis beam at both stations, which trace f/2.88 at 80 mm and f/2.89 at 196 mm. The 38.0 mm front semi-diameter is a modeling value; Nikon's later 77 mm filter specification supplies only a production mechanical upper bound, not a patent clear-aperture measurement.
 
 All surfaces are spherical. `asph` is empty, so no aspheric equation, conic convention, coefficient scaling, or aspheric departure applies. No cover glass, filter, inactive dummy plane, flare cutter, or mechanical component is present in the sequential model. No scaling is applied to the patent prescription.
 
@@ -258,21 +258,21 @@ The final data file was recomputed from its actual TypeScript arrays with sequen
 
 | State | EFL | BFL | First vertex→image | Calculated β |
 |---|---:|---:|---:|---:|
-| 80 mm infinity | 79.992778 mm | 66.157181 mm | 217.233 mm | approximately 0 |
-| 196 mm infinity | 195.984273 mm | 66.157907 mm | 217.233 mm | approximately 0 |
-| 80 mm close | 88.257646 mm | 61.298783 mm | 227.729 mm | -0.055057 |
-| 196 mm close | 193.190719 mm | 40.102529 mm | 227.729 mm | -0.134869 |
+| 80 mm infinity | 79.999896 mm | 66.158577 mm | 217.133 mm | approximately 0 |
+| 196 mm infinity | 196.002053 mm | 66.159303 mm | 217.133 mm | approximately 0 |
+| 80 mm close | 88.263067 mm | 61.299449 mm | 227.629 mm | -0.055046 |
+| 196 mm close | 193.178579 mm | 40.103199 mm | 227.629 mm | -0.134874 |
 
 The ABCD determinants are unity to floating-point precision. The surface-by-surface Petzval sum is +0.0008730952 mm^-1, corresponding to a signed Petzval radius of approximately +1145.35 mm in the adopted convention.
 
-The modeled stop gives F/2.87999994 at wide infinity and F/2.88002120 at tele infinity. The 21.6 mm image height gives paraxial infinity half-fields of 15.1109° and 6.2894°, consistent with Nikon's rounded production full angles of 30°10′ and 12°20′ without using those marketing angles to alter the patent prescription.
+The modeled stop gives F/2.88004081 at wide infinity and F/2.88006207 at tele infinity on the paraxial reading. Traced with the real marginal ray through the authored clear apertures, the on-axis beam is f/2.88 at 80 mm and f/2.89 at 196 mm, limited by the iris at both stations. The 21.6 mm image height gives paraxial infinity half-fields of 15.1096° and 6.2888°, consistent with Nikon's rounded production full angles of 30°10′ and 12°20′ without using those marketing angles to alter the patent prescription.
 
-The authored semi-diameters pass the independent geometry gate across all four published states. The minimum element edge thickness is 0.261662 mm, the maximum actual spherical rim-slope angle is 30.914°, and the worst positive shared-gap sag intrusion is 0.871386 of the available gap, below the current 0.90 limit. The sampled 60%-field ray bundles do not use a cemented interface as a hidden first aperture.
+The authored semi-diameters pass the independent geometry gate across all four published states. The minimum element edge thickness is 0.261662 mm, at L12; the maximum actual spherical rim-slope angle is 30.914°, at surface 25; and the worst positive shared-gap sag intrusion is 0.910266 of the available gap, at the 2.500 mm d11 gap between D3 and L25, followed by 0.875508 at the 7.100 mm d8 gap between D2 and D3. The d11 pair is inside the 0.92 limit this file sets through `gapSagFrac`; the d8 pair is also below the default 0.90. The sampled 60%-field ray bundles do not use a cemented interface as a hidden first aperture.
 
 These checks establish numerical consistency of the analysis with the final data file. Repository-specific `buildLens()` validation, production render-trim diagnostics, and corpus tests remain integration-stage checks when the LensVisualizer repository is available.
 
 ## Sources / References
 
-1. **JP S62-108218 A (特開昭62-108218)**, Yoshinari Hamanishi, Nippon Kogaku K.K., filed 1985-11-06, published 1987-05-19. Example 3 / Table 3 supplies the prescription, endpoint variable spacings, F-number, image height, group definitions, and patent conditional expressions; Figure 1 supplies the optical section, while Figures 3A–3D are the Example 3 aberration plots.
+1. **JP S62-108218 A (特開昭62-108218)**, Yoshinari Hamanishi, Nippon Kogaku K.K., filed 1985-11-06, published 1987-05-19. Example 3 / Table 3 supplies the prescription, endpoint variable spacings, F-number, image height, group definitions, and patent conditional expressions; Figure 1 supplies the optical section, while Figures 4A–4D are the Example 3 aberration plots. The applicant's amendment appended to the publication supplies the 1.700 mm thickness after surface 17 and the 217.133 mm total length.
 2. **Nikon Imaging — NIKKOR: The Thousand and One Nights No. 67**, “Striving for silent focusing! Secrets behind development of a fast telephoto zoom lens.” Nikon's historical discussion states that the smaller autofocus 80–200 mm f/2.8 ED was released in 1988 and that its optical design continued into the 1996 D version without noteworthy optical changes. https://imaging.nikon.com/imaging/information/story/0067/
 3. **Nikon USA — AF Zoom-NIKKOR 80-200mm f/2.8D ED.** Production metadata used only for the correlation and mechanical/marketing fields: 80–200 mm, f/2.8, Nikon F bayonet, FX/35 mm, 16 elements / 11 groups, three ED elements, 1.5 m MFD for the later D version, 77 mm filter, and rounded FX angles of view. https://www.nikonusa.com/p/af-zoom-nikkor-80-200mm-f28d-ed/1986/overview

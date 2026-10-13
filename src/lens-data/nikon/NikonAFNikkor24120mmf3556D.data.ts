@@ -29,8 +29,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ F-number correction: Table 1's wide-angle F/2.6 is a source error. The    ║
  * ║ Working Example 1 aberration sheets establish F/3.60, F/4.68, F/5.90.   ║
- * ║ A constant 7.92 mm physical stop semi-diameter is used; it reproduces     ║
- * ║ the inferred stop diameter across the three states to within 1.2%.        ║
+ * ║ The patent prints no stop diameter. One fixed iris of 8.1162 mm radius is  ║
+ * ║ traced, set by a real marginal ray at F/3.60 in the wide state and held    ║
+ * ║ through the zoom, where it traces f/4.66 at 50 mm and f/5.89 at 116.5 mm.  ║
+ * ║ The STO row's 7.92 mm semi-diameter is the paraxial inference and does     ║
+ * ║ not size the beam.                                                         ║
+ * ║                                                                            ║
+ * ║ Aspheres: patent EQ. 3 has k multiplying the height term directly, with    ║
+ * ║ no (1 + k) factor, so its k = 1 is a sphere and K = k - 1. Surfaces 17A    ║
+ * ║ and 34A print k = 0.0000, entered as K = -1 (paraboloid base); C4-C10 are  ║
+ * ║ entered as printed. The traced d-line spherical aberration follows         ║
+ * ║ FIGS. 3A(I)-3C(I) at all three zoom states.                                ║
  * ║                                                                            ║
  * ║ Semi-diameters: surfaces 17A and 34A use the patent clear diameters       ║
  * ║ phi1 = 27.3 mm and phi2 = 15.6 mm. Other values were derived from exact  ║
@@ -294,9 +303,14 @@ const LENS_DATA = {
     { label: "38", R: -39.94, d: 39.3381, nd: 1.0, elemId: 0, sd: 11.0 },
   ],
 
+  /*
+   * Conic convention: patent EQ. 3 (col. 15) prints the conic root as [1 + (1 - k·y²)^(1/2)], with k multiplying the
+   * height term directly and no (1 + k) factor, so the patent's k = 1 is a sphere and K here is k - 1. Both surfaces
+   * print k = 0.0000, which is K = -1 (paraboloid base). C4-C10 are entered as printed; C10 of surface 34 is positive.
+   */
   asph: {
     "17A": {
-      K: 0,
+      K: -1,
       A4: 1.5685e-5,
       A6: -2.039e-8,
       A8: 2.6186e-11,
@@ -305,11 +319,11 @@ const LENS_DATA = {
       A14: 0,
     },
     "34A": {
-      K: 0,
+      K: -1,
       A4: -3.4324e-5,
       A6: -7.4054e-8,
       A8: -3.4715e-10,
-      A10: -1.0897e-12,
+      A10: 1.0897e-12,
       A12: 0,
       A14: 0,
     },
@@ -369,6 +383,7 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: patent-published infinity zoom states with a code-solved 0.5 m endpoint. Only G2 moves for focus; d16 + d26 is conserved while d31 and Bf remain fixed at each zoom position. The telephoto endpoint traces to approximately 0.21756x (about 1:4.60), rather than the rounded marketed 1:4.8.",
 
   nominalFno: [3.6, 4.68, 5.9],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

@@ -52,6 +52,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.91,
   lensMounts: ["sony-fe"],
+  acceptsTeleconverters: true, // Sony lists SEL14TC / SEL20TC teleconverter compatibility
   imageFormat: "135-full-frame",
   patentNumber: "JP 2025-63175 A",
   patentAuthors: ["Riki Maruyama"],
@@ -433,6 +434,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 2.7,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED GR2 inner focus: 19.70 mm objectward; d14 51.13→31.43 and d17 9.69→29.39 mm; 2.7 m datum undefined.",
 

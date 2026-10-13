@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 600mm f/4E FL ED VR — Optical Design Analysis
+# NIKON AF-S NIKKOR 600mm f/4 E FL ED VR — Optical Design Analysis
 
 ## Patent Reference and Design Identification
 
@@ -14,7 +14,7 @@
 
 The data model transcribes the fourth numerical example of US 2018/0031811 A1. The patent describes a positive first group G1, a negative internal-focus group G2, an aperture stop, and a positive third group G3, with a transversely movable vibration-reduction subassembly and a rear adjustment subassembly intended to compensate manufacturing errors (¶0303–0312). Table 4 supplies the complete d-line prescription, two published focus states, group focal lengths, overall focal length, f-number, field, track length, back focus, and the values associated with eighteen conditional expressions (¶0313).
 
-The project treats Example 4 as the fixed production correlation for the NIKON AF-S NIKKOR 600mm f/4E FL ED VR. This is a convergent identification, not a manufacturer statement that the commercial lens uses this exact patent example. The principal correlations are:
+The project treats Example 4 as the fixed production correlation for the NIKON AF-S NIKKOR 600mm f/4 E FL ED VR. This is a convergent identification, not a manufacturer statement that the commercial lens uses this exact patent example. The principal correlations are:
 
 1. The patent gives a design focal length of 587.80 mm and FNO 4.08, while Nikon markets the production lens as 600 mm f/4.
 2. The patent gives a full field of 4.19° at Y = 21.60 mm; Nikon specifies 4°10′ on FX format.
@@ -28,9 +28,9 @@ The project treats Example 4 as the fixed production correlation for the NIKON A
 
 Nikon's current global product page contains a source inconsistency: one overview bullet says three ED elements, while the detailed construction row states four ED elements. The data file follows the detailed construction specification and does not use the inconsistent overview sentence to relabel individual patent elements.
 
-The rear plane-parallel low-pass filter FL, source surfaces 32–33, is modeled in the data file's `rearPlates` field rather than as a drawn element: the 1.50 mm plate (`nd = 1.51680`, `νd = 63.88`, J-BK7 class) sits 6.15 mm behind L39 with 75.12 mm of air to the image plane, exactly as Table 4 prints it. Every analysis traces the plate, but the diagram does not draw it. Its air-equivalent distance from L39's rear surface to the image plane is 82.258924 mm (Table 4's air-converted BF 82.26 mm); the physical distance is 82.77 mm (BF 82.77 mm). The curved front protective meniscus HG is retained as a drawn element because it is a powered optical plate represented in both the patent architecture and the production lens description. No uniform scale is applied.
+The rear plane-parallel low-pass filter FL, source surfaces 32–33, is drawn in the data file as a plane-parallel plate element: the 1.50 mm plate (`nd = 1.51680`, `νd = 63.88`, J-BK7 class) sits 6.15 mm behind L39 with 75.12 mm of air to the image plane, exactly as Table 4 prints it. Every analysis traces the plate; its semi-diameter is a ray-trace estimate because the source lists none, and it is not counted in `elementCount`. Its air-equivalent distance from L39's rear surface to the image plane is 82.258924 mm (Table 4's air-converted BF 82.26 mm); the physical distance is 82.77 mm (BF 82.77 mm). The curved front protective meniscus HG is retained as a drawn element because it is a powered optical plate represented in both the patent architecture and the production lens description. No uniform scale is applied.
 
-The production specification therefore remains “16 elements in 12 groups plus one meniscus protective glass element,” whereas the data object's physical optical model contains 17 elements in 13 air-spaced groups. These are two descriptions of the same modeled train under different counting conventions.
+The production specification therefore remains “16 elements in 12 groups plus one meniscus protective glass element,” whereas the data object's physical optical model draws 17 powered elements in 13 air-spaced groups plus the FL filter plate. These are two descriptions of the same modeled train under different counting conventions.
 
 ## Optical Architecture
 
@@ -56,7 +56,7 @@ A 600 dpi review of local PDF page 12 confirmed the Fig. 11 silhouette. After ex
 
 HG is optically almost afocal: its two radii are nearly equal and its net refractive power is extremely small. Its importance in the model is therefore not as a contributor to system focal length but as the real curved front plate that the patent includes in G1 and Nikon describes as a meniscus protective glass. Because the production element carries a fluorine coating while the patent prescription concerns bulk optical geometry, the coating is not represented as an additional optical surface.
 
-The data model draws HG as an element rather than treating it like the rear low-pass filter. This distinction follows geometry and function: HG is curved and weakly powered, whereas FL is a plane-parallel plate behind the last lens, which the data file carries in `rearPlates` (traced, not drawn).
+The data model counts HG as an element rather than treating it like the rear low-pass filter. This distinction follows geometry and function: HG is curved and weakly powered, whereas FL is a plane-parallel plate behind the last lens, which the data file draws as a plate element and traces but does not count in `elementCount`.
 
 ### L11 — Biconvex Positive Fluorite Element
 
@@ -156,7 +156,7 @@ Figure 13(a) studies a +0.2 mm change to the air gap after L38 and associates th
 
 L39 is the final imaging element and alone constitutes the patent's positive G3adjA subgroup. Its standalone EFL is therefore also the subgroup EFL. L36 through L39 together form Gadj, whose centered nominal EFL is approximately +77.323 mm.
 
-The patent's adjustment concept changes the air gap between Ln and L39 by assembly spacers or equivalent mechanisms. The LensVisualizer model represents the nominal design value and terminates after L39 with the patent's 6.15 mm gap to FL, followed by the `rearPlates` filter and its 75.12 mm gap to the image.
+The patent's adjustment concept changes the air gap between Ln and L39 by assembly spacers or equivalent mechanisms. The LensVisualizer model represents the nominal design value and terminates after L39 with the patent's 6.15 mm gap to FL, followed by the drawn FL filter plate and its 75.12 mm gap to the image.
 
 ## Glass Identification and Selection
 
@@ -257,7 +257,7 @@ The final data arrays were independently re-traced with explicit sequential heig
 | EFL at infinity | 587.816484 mm | 587.80 mm overall / 587.801 mm variable-distance table |
 | Modeled wide-open f-number | 4.080000 | FNO 4.08; stop diameter itself is not published |
 | Air-equivalent total track | 468.588924 mm | Air-converted TL 468.59 mm |
-| Physical total track (FL traced in `rearPlates`) | 469.10 mm | TL 469.10 mm |
+| Physical total track (FL drawn as a plate element) | 469.10 mm | TL 469.10 mm |
 | Air-equivalent image distance from L39 / S31 | 82.258924 mm | Air-converted BF 82.26 mm |
 | Physical image distance from L39 / S31 (6.15 + 1.50 + 75.12) | 82.77 mm | BF 82.77 mm |
 | Paraxial best focus after L39 / S31 (air-equivalent) | 82.268176 mm | +0.009252 mm from the source image plane, consistent with rounded source data |

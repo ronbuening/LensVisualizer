@@ -212,8 +212,8 @@ const LENS_DATA = {
     "Unit focus — entire lens assembly moves axially; all inter-element spacings remain fixed during focusing.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.58,

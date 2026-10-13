@@ -29,7 +29,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-apo-macro-180mm-f28-os-hsm",
   maker: "Sigma",
-  name: "SIGMA APO Macro 180mm f/2.8 EX DG OS HSM",
+  name: "SIGMA APO MACRO 180mm f/2.8 EX DG OS HSM",
   subtitle: "JP 2013-104994 A — Numerical Example 2",
   specs: [
     "19 elements / 14 groups",
@@ -381,11 +381,13 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.47,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Floating internal focus: L2 moves imageward while L3 moves objectward; L1, L4, L5/OS, and L6 remain fixed relative to the image plane.",
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
+  nominalFno: 2.92,
+  fstopSeries: [2.92, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.62,

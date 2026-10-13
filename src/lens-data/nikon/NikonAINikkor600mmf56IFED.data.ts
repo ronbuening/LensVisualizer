@@ -217,6 +217,8 @@ const LENS_DATA = {
   doublets: [{ text: "L4+L5", fromSurface: "7", toSurface: "9" }],
 
   closeFocusM: 5.5,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Functional G2 (L4–L6) translates imageward. The patent finite-focus row and constrained 5.5 m product endpoint are exact keyframes, and the adjacent d6/d11 total is conserved. Because the inferred aperture stop is fixed at the midpoint of d6, focus variation is stored on STO→S7 and S11→S12.",
 

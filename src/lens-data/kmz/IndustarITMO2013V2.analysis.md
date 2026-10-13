@@ -92,7 +92,7 @@ alone does not quantify the element's contribution to total chromatic error. [Iv
 
 ### L3 — Negative Meniscus
 
-nd = 1.52949, νd = 51.81. Glass: Unmatched (OF1; PG&F 2010 d-line proxy; historic melt unconfirmed). f = −29.647367 mm.
+nd = 1.52949, νd = 51.81. Glass: SBF2 (HOYA) class (OF1 / KzF2-type special flint; spectral proxy, historic melt unconfirmed). f = −29.647367 mm.
 
 L3 occupies surfaces 5–6 and forms the front component of the rear cemented doublet D1. Its weakly curved front and more
 strongly curved rear face give negative power when this element is considered alone in air. In the assembled doublet,
@@ -121,7 +121,7 @@ The same TK14 proxy is used in L1 and L4, while LF5 and OF1 provide distinct ind
 The source does not specify optimization targets or explain individual glass-selection decisions. L2 uses the coordinate-exact CDGM QF3 dispersion curve as a supplier-neutral spectral proxy: its calculated g-line index 1.592808 also agrees with the retained PG&F value 1.59281. This is not a claim of historic CDGM supply. No anomalous-dispersion designation is assigned.
 
 Supported g-line indices are retained: ng = 1.62561 for TK14, 1.59281 for LF5 and 1.54225 for OF1. Verified C- and F-line
-indices and coefficient-backed curves remain unavailable for TK14 and OF1; no source-measured partial-dispersion deviations are supplied. L1, L3 and L4 therefore retain Abbe fallback; an isolated ng value does not establish a complete dispersion curve. L2 resolves to the coefficient-backed QF3 proxy. The model
+indices and coefficient-backed curves remain unavailable for TK14; no source-measured partial-dispersion deviations are supplied. L1 and L4 therefore retain Abbe fallback; an isolated ng value does not establish a complete dispersion curve. L2 resolves to the coefficient-backed QF3 proxy, and L3 to the discontinued HOYA SBF2 (KzF2 type, 1.52944 / 51.64), whose legacy six-term formula reproduces the retained OF1 g-line index 1.54225. The model
 does not substantiate apochromatic correction or secondary-spectrum performance. [PG&F catalog][pgf]
 
 ## Focus Mechanism

@@ -90,7 +90,14 @@ function recordClippedHit(
   clipEvents: FoldedPathClipEvent[],
   state: PreparedOpticalState,
   surfaceIndex: number,
-  geometry: { point: Vec3; normal: Vec3; incidentDirection: Vec3; radius: number },
+  geometry: {
+    point: Vec3;
+    normal: Vec3;
+    incidentDirection: Vec3;
+    radius: number;
+    residual: number;
+    effectiveTolerance: number;
+  },
   clipReason: "inactive-side-block" | "block-surface" | "semi-diameter",
 ): void {
   pushClipEvent(clipEvents, state, surfaceIndex, clipReason);
@@ -101,6 +108,8 @@ function recordClippedHit(
     normal: geometry.normal,
     incidentDirection: geometry.incidentDirection,
     radius: geometry.radius,
+    residual: geometry.residual,
+    effectiveTolerance: geometry.effectiveTolerance,
     clipped: true,
     fallback: false,
     failureReason: null,
@@ -246,6 +255,7 @@ export function traceGeneralized(
     const point = nextSurfaceHit.point;
     const normal = nextSurfaceHit.normal;
     const radius = nextSurfaceHit.radius;
+    const { residual, effectiveTolerance } = nextSurfaceHit;
     const incidentDirection: Vec3 = [direction[0], direction[1], direction[2]];
     terminalPoint = point;
     terminalSurfaceIndex = nextSurfaceIndex;
@@ -273,7 +283,7 @@ export function traceGeneralized(
           clipEvents,
           state,
           nextSurfaceIndex,
-          { point, normal, incidentDirection, radius },
+          { point, normal, incidentDirection, radius, residual, effectiveTolerance },
           clipReason,
         );
         terminationReason = "clipped";
@@ -290,6 +300,8 @@ export function traceGeneralized(
       normal,
       incidentDirection,
       radius,
+      residual,
+      effectiveTolerance,
       clipped,
       fallback: false,
       failureReason: null,

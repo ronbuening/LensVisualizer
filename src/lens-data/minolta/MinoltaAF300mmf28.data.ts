@@ -226,9 +226,11 @@ const LENS_DATA = {
     "Inner focus by image-side translation of subunit II-2 (L6-L8). Patent Table 9 gives 11.760 mm travel for a 3 m object distance; production MFD is 2.5 m but is not tabulated in the patent.",
 
   closeFocusM: 3.0,
-  nominalFno: 2.8,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
+  nominalFno: 2.9,
   maxFstop: 32,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
 
   scFill: 0.74,
   yScFill: 0.72,

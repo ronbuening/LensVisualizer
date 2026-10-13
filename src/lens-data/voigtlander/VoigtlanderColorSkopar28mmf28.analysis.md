@@ -109,9 +109,9 @@ The patent supplies only $n_d$ and $\nu_d$ and does not name glass vendors. A fr
 | L7 | E-FD2 (HOYA) | 648-338 | 1.64769 | 33.84 | Exact at source precision |
 | L8 | NBFD13/M-NBFD130 class (HOYA) | 806-407 | 1.80610 | 40.73 | Nominal pair exact; process variant unresolved |
 
-The data stores catalog line indices for L1-L7 and HOYA $dP_{gF}$ values for L2-L7. L8 remains at $n_d/\nu_d$ level because the NBFD13 and M-NBFD130 entries share the nominal pair but differ slightly in line data and $dP_{gF}$; selecting one would overstate the available evidence.
+The data stores catalog line indices for L1-L7 and a `dPgF` annotation for L2-L7. That annotation is $P_{gF}$ of the stored line indices minus the engine's normal line, $0.6438-0.001682\nu_d$; it is not HOYA's catalog $\Delta P_{g,F}$, which HOYA states against its own C7-F2 normal line (approximately $0.6484-0.0018\nu_d$). L5 and L6 keep $-0.0093$, which lies within 0.0003 of the engine-line value. The patent prints no partial dispersion, and the trace uses the stored line indices directly. L8 remains at $n_d/\nu_d$ level because the NBFD13 and M-NBFD130 entries share the nominal pair but differ slightly in line data and $dP_{gF}$; selecting one would overstate the available evidence.
 
-Cosina's production diagram marks the L3 and L4 positions as extraordinary-partial-dispersion elements. The matched HOYA entries give $dP_{gF}=+0.0137$ for the 847-238 class and $+0.0067$ for E-FD8. The data therefore records `apd: "inferred"` for L3 and L4, explicitly tying that inference to the product diagram and catalog match. No APO claim is made, and the catalog matches are not treated as manufacturer confirmation of the production melts.
+Cosina's production diagram marks the L3 and L4 positions as extraordinary-partial-dispersion elements. The matched HOYA entries give a catalog $\Delta P_{g,F}$ of $+0.0137$ for the 847-238 class and $+0.0067$ for E-FD8, both on HOYA's own normal line; against the engine's line the data stores $+0.015299$ and $+0.007435$. The data therefore records `apd: "inferred"` for L3 and L4, explicitly tying that inference to the product diagram and catalog match. No APO claim is made, and the catalog matches are not treated as manufacturer confirmation of the production melts.
 
 ## Focus Mechanism
 

@@ -14,6 +14,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  SDs are estimates: Fig. 10 optical rims support 15 mm for LE;   ║
  * ║  other rims retain their conservative approximations.            ║
  * ║  2026-09-08: corrected ASP19 A6 sign from rendered Table 5.       ║
+ * ║                                                                    ║
+ * ║  NOTE ON PARTIAL DISPERSION:                                       ║
+ * ║    Table 5 prints a dPgF deviation for Lfb (0.0376) and Lfc        ║
+ * ║    (0.0195); the patent states no normal-line formula for it.      ║
+ * ║    The engine reads `dPgF` as PgF minus its own normal line        ║
+ * ║    (0.6438 − 0.001682·νd). Lfc is stored that way: PgF 0.5443 from ║
+ * ║    the HOYA FCD505 catalog curve, which reproduces the patent's    ║
+ * ║    0.0195 on 0.64833 − 0.00180·νd. Lfb is the patent's 0.0376      ║
+ * ║    read against that same line (PgF 0.5390), which Cosina's later  ║
+ * ║    patents JP 2026-98935 A and JP 2026-121744 A print.             ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -21,7 +31,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "apo-lanthar-50f2",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical",
+  name: "VOIGTLÄNDER APO-LANTHAR 50mm f/2 Aspherical",
   subtitle: "JP2021-43376A EXAMPLE 5 — COSINA / SUGANO",
   specs: [
     "10 ELEMENTS / 8 GROUPS",
@@ -83,7 +93,9 @@ const LENS_DATA = {
       glass: "S-FPL51 / N-PK52A (catalog-compatible equivalents; supplier unspecified)",
       apd: "patent",
       role: "Positive low-dispersion element; patent dPgF = +0.0376 supports secondary-spectrum correction",
-      dPgF: 0.0376, apdNote: "dPgF = +0.0376 (patent-listed)",
+      dPgF: 0.0325,
+      apdNote:
+        "Patent dPgF = +0.0376 (Table 5; the patent states no normal line). Read against 0.64833 − 0.00180·νd, the line the same applicant's later patents print, PgF = 0.5390 and runtime dPgF +0.0325.",
     },
     {
       id: 4,
@@ -96,7 +108,9 @@ const LENS_DATA = {
       glass: "FCD505 (catalog-compatible model; supplier unspecified)",
       apd: "patent",
       role: "Positive element with patent dPgF = +0.0195; shares positive power with Lfb",
-      dPgF: 0.0195, apdNote: "dPgF = +0.0195 (patent-listed)",
+      dPgF: 0.015956,
+      apdNote:
+        "Patent dPgF = +0.0195 (Table 5; the patent states no normal line). Runtime dPgF +0.015956 is catalog-derived: HOYA FCD505 PgF 0.5443 minus the engine's line. The same PgF reads +0.0195 on 0.64833 − 0.00180·νd, the patent's figure.",
     },
     {
       id: 5,
@@ -281,6 +295,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.45495,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Patent F36 floating focus: front group, Jb, and Ja+LE move 8.94, 8.54, and 5.53 mm toward the object. Close endpoint is 0.455 m from the image plane (370 mm from surface 1). Intermediate motion is interpolated.",
 

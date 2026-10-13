@@ -100,7 +100,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.77,
       fl: -24.1,
-      glass: "773498 - dense lanthanum-flint boundary class (unresolved)",
+      glass: "772498 - lanthanum flint class (N-LAF34 / TAF1 catalog equivalent)",
       role: "Strong negative leading element of the variator group.",
     },
     {

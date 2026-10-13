@@ -27,3 +27,15 @@ Patent: US 5,745,306 A, Example 2, Fig. 4 (PDF page 7)
   supplied in the slip-in holder).
 - EFL and paraxial defocus are identical at infinity and at the corrected close state. Physical track grows by 0.681435 mm
   to 422.122200 mm from surface 3 (TL/EFL 0.861543).
+
+## 2026-10-04 — Slip-in filter drawn as an element
+
+- The rear slip-in filter plate F moved out of `rearPlates` into the drawn prescription: surfaces 25–26 and element 12
+  (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place and
+  a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
+- The source lists no clear aperture for the plate. Its semi-diameter, 20.5 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at infinity, mid and
+  close focus (19.14 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
+  axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
+  corner.

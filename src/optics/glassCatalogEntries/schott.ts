@@ -199,8 +199,8 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
    * SF2: legacy dense flint (648/339), fills the gap between SF1 and N-BK7 in
    *   pre-1990 Schott-dominant double-Gauss and Sonnar designs.
    * N-SK16: dense lanthanum crown (620/603) ubiquitous in Zeiss, classic Nikon,
-   *   Leica Elmarit, and other pre-1990 normal/standard designs (also sold as
-   *   Hoya BACD5 — same glass, different vendor name).
+   *   Leica Elmarit, and other pre-1990 normal/standard designs (Hoya's
+   *   620/603 counterpart is BACD16; BACD5 is the 589/613 SK5-class crown).
    * N-KZFS4: KZFS family with negative ΔPgF; APO paired glass for ED crowns.
    * N-FK51A: fluorcrown with strong positive ΔPgF (+0.034); APO-relevant in
    *   Zeiss and Nikon telephoto designs.
@@ -231,7 +231,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5412,
     code6: "620603",
     source:
-      "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Dense lanthanum crown; Hoya BACD5-equivalent.",
+      "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Dense lanthanum crown; Hoya BACD16-equivalent.",
   },
   {
     name: "N-KZFS4",
@@ -570,7 +570,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0111826126, 0.0508594669, 112.041888],
     nd: 1.6727,
     vd: 32.21,
-    PgF: 0.5901,
+    PgF: 0.5919,
     code6: "673322",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; SF5 page.",
   },
@@ -581,7 +581,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.011254756, 0.0588995392, 129.141675],
     nd: 1.67271,
     vd: 32.25,
-    PgF: 0.5969,
+    PgF: 0.5984,
     code6: "673323",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-SF5 page.",
   },
@@ -603,7 +603,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00724270156, 0.0243353131, 85.4686868],
     nd: 1.691,
     vd: 54.71,
-    PgF: 0.5368,
+    PgF: 0.5447,
     code6: "691547",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAK9 page.",
   },
@@ -614,7 +614,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00706416337, 0.0233251345, 97.4847345],
     nd: 1.618,
     vd: 63.39,
-    PgF: 0.5366,
+    PgF: 0.5424,
     code6: "618634",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-PSK53A page.",
   },
@@ -625,7 +625,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0101711622, 0.0442431765, 100.687748],
     nd: 1.74397,
     vd: 44.85,
-    PgF: 0.5588,
+    PgF: 0.5656,
     code6: "744449",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAF2 page.",
   },
@@ -636,7 +636,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00779980626, 0.0315631177, 105.965875],
     nd: 1.56883,
     vd: 55.98,
-    PgF: 0.5431,
+    PgF: 0.5487,
     code6: "569560",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-BAK4 page.",
   },
@@ -647,7 +647,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00610105538, 0.0201388334, 90.638038],
     nd: 1.6516,
     vd: 58.52,
-    PgF: 0.5417,
+    PgF: 0.5433,
     code6: "652585",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAK7 page.",
   },
@@ -658,7 +658,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00942015382, 0.0531087291, 110.278856],
     nd: 1.60568,
     vd: 43.72,
-    PgF: 0.5584,
+    PgF: 0.5733,
     code6: "606437",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-BAF4 page.",
   },
@@ -669,7 +669,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00823982975, 0.0333736841, 106.870822],
     nd: 1.62229,
     vd: 53.27,
-    PgF: 0.5542,
+    PgF: 0.5526,
     code6: "622533",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-SSK2 page.",
   },
@@ -707,5 +707,27 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5748,
     code6: "581409",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; LF5 page.",
+  },
+  {
+    name: "N-SSK8",
+    vendor: "Schott",
+    B: [1.44857867, 0.117965926, 1.06937528],
+    C: [0.00869310149, 0.0421566593, 111.300666],
+    nd: 1.61773,
+    vd: 49.83,
+    code6: "618498",
+    source: "SCHOTT Zemax catalog 2017-01-20b via refractiveindex.info, N-SSK8 Sellmeier constants (0.35–2.5 µm).",
+  },
+  {
+    name: "N-LAF35",
+    vendor: "Schott",
+    B: [1.51697436, 0.455875464, 1.07469242],
+    C: [0.00750943203, 0.0260046715, 80.5945159],
+    nd: 1.7433,
+    vd: 49.4,
+    PgF: 0.5523,
+    code6: "743494",
+    source:
+      "SCHOTT Zemax catalog 2017-01-20b, N-LAF35; https://refractiveindex.info/database/data/specs/schott/optical/N-LAF35.yml (accessed 2026-10-10).",
   },
 ];

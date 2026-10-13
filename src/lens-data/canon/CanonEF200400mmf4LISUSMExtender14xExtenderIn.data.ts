@@ -15,10 +15,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * Zoom-only variable gaps: d8, d18, d25. Each var pair keeps infinity/close values identical at a given zoom
  * position.
  *
- * Stop: patent surface 30 (SP/STO). Physical iris diameter 38.73079462883983 mm was solved from the patent f/4.12
- * OUT states. The patent's 39.75 mm surface-30 effective diameter is a clear-beam entry, not the mechanical iris.
- * Semi-diameters: one-half of the patent effective diameters on every optical surface except STO, which uses the
- * solved physical iris SD.
+ * Stop: patent surface 30 (SP/STO), in the fixed fourth unit ahead of the extender. Its semi-diameter is 19.875 mm,
+ * one-half of the patent's 39.75 mm surface-30 effective diameter. By real marginal ray that opening gives f/5.764
+ * at 287.00 mm and f/5.765 at 545.98 mm, 0.1 % under the patent's f/5.77 (the computed focal lengths are 0.06 %
+ * under the printed ones); a paraxial f-number for the same opening is f/5.617.
+ * The trace sizes the wide-open iris from nominalFno by real marginal ray: 19.872 mm, 0.015 % under the printed
+ * radius, held at both zoom positions and the same opening the EXT OUT member traces.
+ * Semi-diameters: one-half of the patent effective diameters on every optical surface, the stop included.
  *
  * No scaling is applied. All surfaces are spherical; no asphere or conic conversion is applicable.
  * Glass source: the patent publishes nd/νd only and is vendor-silent. Glass strings therefore use coordinate
@@ -699,14 +702,14 @@ const LENS_DATA = {
       elemId: 0,
       sd: 21.025000,
     },
-    // Physical iris SD solved from the patent f/4.12 OUT states; the 39.75 mm patent entry is an effective diameter.
+    // Patent surface 30 (stop): one-half of the printed 39.75 mm effective diameter.
     {
       label: "STO",
       R: 1e15,
       d: 22.15,
       nd: 1.0,
       elemId: 0,
-      sd: 19.365397314420,
+      sd: 19.875000,
     },
     {
       label: "31",
@@ -966,6 +969,7 @@ const LENS_DATA = {
     "prescription.",
 
   nominalFno: [5.765010383668428, 5.764593653737933],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [5.6, 8, 11, 16, 22, 32, 45],
   apertureBlades: 9,
   maxFstop: 45,

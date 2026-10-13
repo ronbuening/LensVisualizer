@@ -8,11 +8,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Large-aperture positive-negative-positive inner-focus telephoto-   ║
  * ║ type design with optical image stabilization by L32 decentering.   ║
  * ║                                                                    ║
- * ║ Patent/product count: 17 elements / 12 groups including the        ║
- * ║ 2.00 mm drop-in filter plate F (surfaces 29–30, nd 1.51633,        ║
- * ║ νd 64.1). Surfaces hold the 16 powered elements; F and its 60.36   ║
- * ║ mm gap to the image are modeled in `rearPlates` (traced, not       ║
- * ║ drawn). Surface 28 keeps the patent's 3.27 mm gap to the filter.   ║
+ * ║ Patent/product count: 17 elements / 12 groups including the 2.00   ║
+ * ║ mm drop-in filter plate F (surfaces 29–30, nd 1.51633, νd 64.1).   ║
+ * ║ All 17 are drawn: the 16 powered elements, then F as a             ║
+ * ║ plane-parallel plate element with the patent's 3.27 mm gap ahead   ║
+ * ║ of it and 60.36 mm to the image. F's semi-diameter is a ray-trace  ║
+ * ║ estimate; the patent lists none.                                   ║
  * ║                                                                    ║
  * ║ Focus: L2 cemented doublet moves imageward. Paraxial close-focus   ║
  * ║ reconstruction for the official 1.9 m MFD gives +12.5604 mm        ║
@@ -20,7 +21,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║ Semi-diameters: estimated from the F/2.05 entrance-pupil geometry, ║
  * ║ patent section drawing proportions, and renderer constraints.      ║
- * ║ Stop SD = 19.9207 mm gives EP SD ≈ 47.56 mm and F/2.05.           ║
+ * ║ Surfaces 6, 7, 9 and 20-23 are set to the height of the F/2.05     ║
+ * ║ axial marginal ray at infinity focus, rounded up to 0.1 mm; FIG. 1 ║
+ * ║ draws each of those elements taller. Element L4 and the L12+L13    ║
+ * ║ doublet (D4) are drawn square-cut, so each carries one height:     ║
+ * ║ 39.9 mm on surfaces 7 and 8, 17.4 mm on 21-23. Two air-spaced      ║
+ * ║ pairs meet at the rim in FIG. 1, so gapSagFrac is 0.95: at 39.9    ║
+ * ║ mm, 0.005 mm is left of the 0.10 mm gap between surfaces 6 and 7   ║
+ * ║ (they touch at 40.99 mm); at 17.3 mm, 0.23 mm is left of the 3.93  ║
+ * ║ mm gap between surfaces 20 and 21 (they touch at 17.83 mm).        ║
+ * ║ Stop: the stored 19.9207 mm is the paraxial stop radius for EP SD  ║
+ * ║ 47.56 mm (F/2.05). The exact F/2.05 marginal ray meets the stop    ║
+ * ║ at 20.38 mm, which the build uses as the wide-open iris.           ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -30,7 +42,7 @@ const LENS_DATA = {
   name: "CANON EF 200mm f/2 L IS USM",
   subtitle: "JP 2008-145584 A Example 1 — Canon / Yokoyama",
   specs: [
-    "17 elements / 12 groups incl. filter; 16 powered elements rendered",
+    "17 elements / 12 groups incl. drop-in filter",
     "f = 194.991 mm design; 200 mm marketed",
     "F/2.05 design; f/2.0 marketed",
     "All-spherical, fluorite + 2 UD-class elements",
@@ -42,6 +54,7 @@ const LENS_DATA = {
   apertureMarketing: 2.0,
   apertureDesign: 2.05,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x II / EF2x II compatibility
   imageFormat: "135-full-frame",
   patentNumber: "JP 2008-145584 A",
   patentAuthors: ["Takayoshi Yokoyama"],
@@ -288,6 +301,16 @@ const LENS_DATA = {
       ng: 1.82569,
       role: "Final high-index positive meniscus for rear-group convergence and field correction.",
     },
+    {
+      id: 17,
+      name: "F",
+      label: "Drop-in filter F",
+      type: "Plane-Parallel Plate",
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      role: "Plane-parallel filter plate of the patent prescription (JP 2008-145584 A, Numerical Example 1 (Table 1) surfaces 29–30), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Included in elementCount, which follows the maker's published count.",
+    },
   ],
 
   surfaces: [
@@ -296,10 +319,10 @@ const LENS_DATA = {
     { label: "3", R: 91.926, d: 18.49, nd: 1.43387, elemId: 2, sd: 52 },
     { label: "4", R: -15019.281, d: 1.94, nd: 1.0, elemId: 0, sd: 51 },
     { label: "5", R: 82.868, d: 17.12, nd: 1.497, elemId: 3, sd: 45 },
-    { label: "6", R: -583.653, d: 0.1, nd: 1.0, elemId: 0, sd: 38 },
-    { label: "7", R: -545.88, d: 4.4, nd: 1.65412, elemId: 4, sd: 38 },
-    { label: "8", R: 159.373, d: 1.49, nd: 1.0, elemId: 0, sd: 38 },
-    { label: "9", R: 92.975, d: 5.0, nd: 1.6968, elemId: 5, sd: 32 },
+    { label: "6", R: -583.653, d: 0.1, nd: 1.0, elemId: 0, sd: 39.9 },
+    { label: "7", R: -545.88, d: 4.4, nd: 1.65412, elemId: 4, sd: 39.9 },
+    { label: "8", R: 159.373, d: 1.49, nd: 1.0, elemId: 0, sd: 39.9 },
+    { label: "9", R: 92.975, d: 5.0, nd: 1.6968, elemId: 5, sd: 34.8 },
     { label: "10", R: 37.36, d: 14.85, nd: 1.497, elemId: 6, sd: 31 },
     { label: "11", R: 135.809, d: 14.87, nd: 1.0, elemId: 0, sd: 31 },
     { label: "12", R: -1035.916, d: 3.97, nd: 1.84666, elemId: 7, sd: 27 },
@@ -310,28 +333,19 @@ const LENS_DATA = {
     { label: "17", R: 41.666, d: 9.38, nd: 1.7725, elemId: 10, sd: 22 },
     { label: "18", R: -320.108, d: 2.75, nd: 1.0, elemId: 0, sd: 22 },
     { label: "19", R: -392.917, d: 1.9, nd: 1.6968, elemId: 11, sd: 18 },
-    { label: "20", R: 63.948, d: 3.93, nd: 1.0, elemId: 0, sd: 16.5 },
-    { label: "21", R: -114.597, d: 4.01, nd: 1.84666, elemId: 12, sd: 16.5 },
-    { label: "22", R: -40.943, d: 1.9, nd: 1.54072, elemId: 13, sd: 16.5 },
-    { label: "23", R: 81.99, d: 3.03, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "20", R: 63.948, d: 3.93, nd: 1.0, elemId: 0, sd: 17.3 },
+    { label: "21", R: -114.597, d: 4.01, nd: 1.84666, elemId: 12, sd: 17.4 },
+    { label: "22", R: -40.943, d: 1.9, nd: 1.54072, elemId: 13, sd: 17.4 },
+    { label: "23", R: 81.99, d: 3.03, nd: 1.0, elemId: 0, sd: 17.4 },
     { label: "24", R: 104.809, d: 8.01, nd: 1.72916, elemId: 14, sd: 20 },
     { label: "25", R: -41.124, d: 2.0, nd: 1.80518, elemId: 15, sd: 20 },
     { label: "26", R: -347.988, d: 0.2, nd: 1.0, elemId: 0, sd: 20 },
     { label: "27", R: 72.365, d: 3.73, nd: 1.804, elemId: 16, sd: 21 },
     { label: "28", R: 518.348, d: 3.27, nd: 1.0, elemId: 0, sd: 21 }, // patent gap to drop-in filter F
-  ],
-
-  /* ── Drop-in filter F (patent surfaces 29–30): traced, not drawn ── */
-  rearPlates: [
-    {
-      label: "F",
-      thicknessMm: 2.0,
-      nd: 1.51633,
-      vd: 64.1,
-      glass: "S-BSL7",
-      gapAfterMm: 60.36,
-      source: "JP 2008-145584 A, Numerical Example 1 (Table 1) surfaces 29–30",
-    },
+    // Drop-in filter F (JP 2008-145584 A, Numerical Example 1 (Table 1) surfaces 29–30), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    { label: "29", R: 1e15, d: 2.0, nd: 1.51633, elemId: 17, sd: 21.5 },
+    { label: "30", R: 1e15, d: 60.36, nd: 1.0, elemId: 0, sd: 21.5 }, // drop-in filter → image plane
   ],
 
   asph: {},
@@ -360,12 +374,15 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.9,
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 2.05,
+  fstopSeries: [2.05, 2.8, 4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
   apertureBlades: 8,
   focusDescription:
     "Inner focus by imageward translation of the negative L2 cemented doublet; paraxial close-focus reconstruction gives +12.560 mm travel at 1.9 m MFD.",
+  // Two air-spaced pairs meet at the rim in FIG. 1: 0.005 mm of the 0.10 mm gap between surfaces 6 and 7 is left at
+  // 39.9 mm, and 0.23 mm of the 3.93 mm gap between surfaces 20 and 21 at 17.3 mm.
+  gapSagFrac: 0.95,
   scFill: 0.58,
   yScFill: 0.7,
 } satisfies LensDataInput;

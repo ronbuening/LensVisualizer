@@ -240,7 +240,7 @@ The prescription was re-entered from the patent, omitting only the camera cover 
 
 The small BF differences are within the expected sensitivity of a paraxial calculation using rounded patent table values. The group focal lengths computed independently are +110.52, -14.17, +23.28, -24.12, and +39.58 mm, matching the patent table.
 
-The stop semi-diameter is a renderer accommodation rather than a patent value. Solving for F/4.08 from the paraxial entrance pupil gives approximate physical stop semi-diameters of 5.43 mm, 7.08 mm, and 8.28 mm at the three zoom positions. The data file carries 8.3 mm so the wide-open tele position is not under-stopped; the viewer's nominal f-number remains the marketed f/4.
+The stop semi-diameter is a renderer accommodation rather than a patent value. Solving for F/4.08 from the paraxial entrance pupil gives approximate physical stop semi-diameters of 5.43 mm, 7.08 mm, and 8.28 mm at the three zoom positions. The data file carries 8.3 mm so the wide-open tele position is not under-stopped; the viewer's nominal f-number (`nominalFno`) is the patent design value 4.08, and `apertureMarketing` records the marketed f/4.
 
 ## Sources
 

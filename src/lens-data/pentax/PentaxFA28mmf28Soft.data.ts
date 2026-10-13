@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — PENTAX SMC PENTAX-FA 28mm f/2.8 Soft          ║
+ * ║           LENS DATA — PENTAX SMC FA 28mm f/2.8 Soft          ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 5,822,132 Example 1 (Asahi Optical / Hirakawa).    ║
  * ║  Retrofocus wide-angle soft-focus prime: negative front group,      ║
@@ -36,7 +36,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-fa-28mm-f28-soft",
   maker: "Pentax",
-  name: "PENTAX SMC PENTAX-FA 28mm f/2.8 Soft",
+  name: "PENTAX SMC FA 28mm f/2.8 Soft",
   subtitle: "US 5,822,132 Example 1 — Asahi Optical / Hirakawa",
   specs: [
     "5 elements / 5 groups",
@@ -150,8 +150,8 @@ const LENS_DATA = {
   focusDescription:
     "Patent publishes infinity only. Close focus is modeled as inferred unit focus: final back-focus gap increases by about 5.04 mm from the Ricoh 0.18× maximum-magnification specification.",
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.54,

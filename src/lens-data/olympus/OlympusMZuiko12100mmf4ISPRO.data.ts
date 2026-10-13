@@ -56,9 +56,9 @@ const LENS_DATA = {
   focusDescription:
     "Inner focus by the fourth zoom group, the L14-L15 cemented negative doublet. JP2017-090535A Example 1 publishes infinity-focus zoom spacings only; close-focus spacings are not modeled.",
 
-  nominalFno: 4,
+  nominalFno: 4.08,
   maxFstop: 22,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [4.08, 5.6, 8, 11, 16, 22],
   apertureBlades: 7,
   apertureBladeRoundedness: 1,
 

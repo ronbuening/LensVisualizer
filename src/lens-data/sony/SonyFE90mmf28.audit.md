@@ -61,3 +61,32 @@ as that bound.
 The validator accepts the new values, the traced edge now reaches 21.65 mm at 13.3° with every rim clear, and the
 image-circle floor still reports nothing undersized. No aspheric surface changed (the S7 departure the analysis quotes
 is untouched), and the analysis quotes none of the changed rims.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+Patent formula: none. Read the whole description and claims of local `patents/WO2016136352A1.pdf` as page images (the
+PDF has no text layer). The symbol list [0065] (PDF p. 17, printed p. 15) defines only ri, di, Ni (d-line) and νi;
+Example 2 Table 5 (PDF p. 24) has only those columns; conditions (1)–(4) (PDF pp. 5, 9–12; Table 16 on PDF p. 34) are
+|fr/f|, y′/BF, f/ff and 1/GF. The patent prints no partial dispersion, no deviation and no normal line, so both stored
+values were vendor-catalog deviations, and the catalog rule applies: `dPgF` = PgF of the catalog glass the label
+resolves to, minus the engine's line 0.6438 − 0.001682·νd.
+
+| Element | νd | Source figure | Stored before | Stored after |
+|---|---|---|---|---|
+| G2, S-FPL51 (OHARA) | 81.61 | patent: none; catalog curve PgF 0.5375 | 0.038 | 0.030928 |
+| G11, FCD100 (HOYA) | 95.1 | patent: none; catalog curve PgF 0.5336 (HOYA ΔPg,F 0.0564 on HOYA's line) | 0.056 | 0.049777 |
+
+- Which line the old values were on, from the local vendor files: `tmp/pdfs/HOYA20260707_include_obsolete.agf` lists
+  ΔPg,F 0.0564 for FCD100 and 0.0375 for FCD1, with C7 and F2 at zero; the line through that file's C7 and F2 curves
+  is 0.6484 − 0.001802·νd, i.e. 0.64833 − 0.0018·νd. G11's 0.056 was HOYA's figure rounded (the catalog PgF gives
+  +0.0565 on that line). G2's 0.038 fits no S-FPL51 reading (+0.0309 engine line, +0.0360 on 0.64833 − 0.0018·νd,
+  0.0280 in `tmp/pdfs/ohara-260701/OHARA_260701.AGF` on OHARA's own line); it is HOYA's 0.0375 for the equivalent FCD1
+  rounded, so it was a HOYA-line value as well.
+- Nothing left: these are the only two elements that carry `dPgF`, neither authors nC/nF/ng, and neither is e-line.
+- Open, not changed here (glass labels were out of scope): Table 5 prints νd 81.6084 for G2, which is FCD1's value
+  from the HOYA file (81.608) and not S-FPL51's (81.546). Under an FCD1 label the same rule would give about +0.0312
+  (repo FCD1 curve) to +0.0323 (HOYA file curve) instead of +0.0309.
+- Analysis: the G2 sentence in the GR1 section and the G11 table cell now name the line each figure is taken against
+  and give the engine-line value; the vendor figures stay, labelled as the vendor's. The data-file header gained a
+  partial-dispersion note and both `apdNote` strings were rewritten.
+- `dpgfcheck.mjs` on the edited file: builds and validates; both stored values equal the catalog engine-line figures.

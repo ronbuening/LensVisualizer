@@ -45,7 +45,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "hd-pentax-d-fa-150-450-f45-56-ed-dc-aw",
   maker: "Pentax",
-  name: "HD PENTAX-D FA 150-450mm f/4.5-5.6 ED DC AW",
+  name: "PENTAX HD D FA 150-450mm f/4.5-5.6 ED DC AW",
   subtitle: "US 2016/0327774 A1 Numerical Embodiment 1 — production correlation",
   specs: [
     "Marketed 150–450mm f/4.5–5.6",
@@ -386,6 +386,7 @@ const LENS_DATA = {
   focusDescription: "CONSTRAINED_RECONSTRUCTION: the patent publishes infinity zoom states and specifies G5 rear focus. Close-focus values are code-solved at the official 2.0 m MFD with only G5 moving imageward; D26 + BF is conserved at each zoom position. These close-focus spacings are not patent-published.",
 
   nominalFno: [4.6, 5.1, 5.7],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
   maxFstop: 27,

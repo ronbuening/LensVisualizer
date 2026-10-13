@@ -66,9 +66,20 @@ legacy query URLs parse through `src/utils/state/parseComparisonParams.ts`, and 
 debounced callback in `src/utils/state/useURLSync.ts`. To add a shareable field, including a pane-specific `a_`/`b_`
 variant, follow `agent_docs/adding_url_state.md`.
 
+Patent-positions mode is single-lens only. Compare panes render with `showSliders={false}`, the `pp` param is neither
+read nor written on compare routes, and the flag stays in state so the stored preference survives a compare session.
+
 Compare identity may be a hidden member of a visible lens's `opticalConfiguration` group. The selector allow-list is
 the visible catalog plus those group members; unrelated hidden debug/reference fixtures remain unavailable. This makes
 configurations such as TC OUT versus TC IN directly comparable without an ambiguous pane-specific `cfg` query.
+
+Each pane can also carry a detachable teleconverter (`teleconverterKeyA` / `teleconverterKeyB`, URL `a_tc` / `b_tc`).
+`useComparisonMode` builds each pane through `resolveLensSystemData()`, and `ComparisonLayout` reads the converter back
+from the built lens so pane identity follows the built system. Both panes may hold the same lens: pressing COMPARE
+with a converter mounted opens lens + converter against the bare lens. Changing a pane's lens clears that pane's
+converter, and a swap carries each converter with its lens. A compare-route lens switch replaces the path and drops
+the query, so `LensViewer` reschedules the URL writer after it; otherwise the other pane's `a_tc` / `b_tc` would be
+missing from the address bar until some unrelated view state changed.
 
 ## Header Details And Vertical Space
 

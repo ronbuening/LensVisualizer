@@ -34,11 +34,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - Source discrepancy retained in audit: paragraph 0096 says G2 moves imageward      ║
  * ║   W->T, while Table 11 sensor-fixed geometry requires 3.7597 mm objectward motion.   ║
  * ║                                                                                      ║
- * ║ STOP / F-NUMBER                                                                       ║
- * ║ - The patent publishes F-number but no stop diameter. STO sd = 5.5092719271 mm is   ║
- * ║   an inferred single fixed-stop fit to the three published F-numbers after project  ║
- * ║   normalization; it is not a patent-listed aperture. nominalFno stores the exact    ║
- * ║   modeled values from this final prescription and fixed stop.                        ║
+ * ║ STOP / F-NUMBER                                                                      ║
+ * ║ - The patent publishes F-number but no stop diameter. nominalFno stores the Table 11 ║
+ * ║   F-No. row, 3.6708 / 5.4085 / 5.9148, and apertureDesign its wide-end value.        ║
+ * ║ - zoomApertureModel "fixed-iris" holds one wide-open iris at every station. It is    ║
+ * ║   5.5773 mm, the semi-diameter whose real marginal ray gives f/3.6708 at 14.43 mm,   ║
+ * ║   and it traces f/5.406 at 57.85 mm and f/5.908 at 145.40 mm, 0.05 % and 0.11 %      ║
+ * ║   below the patent values. The iris is the limiting aperture at all three stations.  ║
+ * ║ - Taken one station at a time, the three F-numbers need 5.5773 / 5.5744 / 5.5708 mm  ║
+ * ║   by real marginal ray, a 0.12 % spread, so one stop fits Table 11 to about 0.1 %.   ║
+ * ║ - The authored STO sd = 5.5092719271 mm is the mean of the paraxial radii the three  ║
+ * ║   F-numbers imply (5.53950 / 5.48791 / 5.50041 mm). It is not a patent-listed        ║
+ * ║   aperture, and the wide-open iris is sized from nominalFno rather than from it.     ║
  * ║                                                                                      ║
  * ║ SEMI-DIAMETERS                                                                         ║
  * ║ - Example 3 publishes no clear-aperture table. SDs are modeling inferences from      ║
@@ -67,7 +74,7 @@ const LENS_DATA = {
   specs: [
     "17 ELEMENTS / 13 GROUPS",
     "PATENT 14.43-145.40 mm",
-    "MODELED f/3.6909-5.9053",
+    "PATENT f/3.6708-5.9148",
     "4 ASPHERICAL SURFACES",
     "0.5 m MOD (CONSTRAINED RECONSTRUCTION)",
   ],
@@ -75,7 +82,7 @@ const LENS_DATA = {
   focalLengthMarketing: [14, 150],
   focalLengthDesign: [14.432369813903854, 145.38500443927072],
   apertureMarketing: 3.5,
-  apertureDesign: 3.6909409460450076,
+  apertureDesign: 3.6708,
   lensMounts: ["micro-four-thirds"],
   imageFormat: "four-thirds",
   patentNumber: "US 2014/0347522 A1",
@@ -462,7 +469,8 @@ const LENS_DATA = {
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: production 0.5 m subject-to-image-plane MOD solved by translating G4 only, with the rear plate traced physically; D28 + D32 is conserved at each zoom position. Patent Table 12 itself represents an approximately 1.0 m subject-to-image state.",
 
-  nominalFno: [3.6909409460450076, 5.387525251923575, 5.9052849086316925],
+  nominalFno: [3.6708, 5.4085, 5.9148],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 7,
   maxFstop: 22,

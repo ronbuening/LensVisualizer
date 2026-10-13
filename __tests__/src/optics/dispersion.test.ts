@@ -29,8 +29,11 @@ import {
   makeSurfaceDispersion,
   normalLinePdC,
   normalLinePeC,
+  normalLinePgFPrime,
   summarizeDispersionQuality,
 } from "../../../src/optics/dispersion.js";
+import { traceParaxialSurfaces2 } from "../../../src/optics/math/paraxial.js";
+import type { ChromaticChannel, ElementData, SurfaceData } from "../../../src/types/optics.js";
 import {
   buildChromaticPositiveElementLens,
   buildSimplePositiveElementLens,
@@ -164,6 +167,17 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(33.7170166, 6);
     expect(decodeCode6(entry!.code6!)).toEqual({ nd: 1.654, vd: 33.7 });
     expect(resolveGlass("654337")?.name).toBe("FD9");
+  });
+
+  it("FCD1 carries the HOYA dispersion without taking elements from the rows that share code 497816", () => {
+    const entry = resolveGlass("FCD1 (HOYA)")!;
+    const nC = evaluateSellmeier(entry, LINE_NM.C);
+    const nF = evaluateSellmeier(entry, LINE_NM.F);
+    expect(evaluateCatalogAbbeNumber(entry)).toBeCloseTo(81.61, 2);
+    expect((evaluateSellmeier(entry, LINE_NM.g) - nF) / (nF - nC)).toBeCloseTo(0.5389, 3);
+    // These rows are ranked by d-line residual, so FCD1's n(d) has to stay between S-FPL51's and H-FK61's.
+    expect(resolveCompatibleGlass("S-FPL51 (OHARA) / FCD1 (HOYA)", 1.497, 81.54)?.name).toBe("FCD1");
+    expect(resolveCompatibleGlass("497816 class (vendor unresolved)", 1.497, 81.6)?.name).toBe("H-FK61");
   });
 
   it("L-TIM28P reproduces the published OHARA line indices and Abbe number", () => {
@@ -491,17 +505,46 @@ describe("resolveGlass", () => {
     expect(resolveGlass("517642 — N-BK7 (Schott)")?.name).toBe("N-BK7");
   });
 
-  it("resolves an alias (BSC7 → S-BSL7, BK7 → N-BK7)", () => {
-    expect(resolveGlass("BSC7 (HOYA)")?.name).toBe("S-BSL7");
+  it("resolves an alias (BK7 → N-BK7)", () => {
     expect(resolveGlass("BK7")?.name).toBe("N-BK7");
   });
 
   it("resolves Hoya patent-class aliases to coefficient-backed rows", () => {
     expect(resolveGlass("TAF1 (HOYA)")?.name).toBe("S-LAH66");
-    expect(resolveGlass("PCD51 (HOYA)")?.name).toBe("M-PCD51");
-    expect(resolveGlass("MP-PCD51-70 precision-mold preform")?.name).toBe("M-PCD51");
-    expect(resolveGlass("M-NBFD130 (HOYA)")?.name).toBe("NBFD13");
-    expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("NBFD13");
+    expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("M-NBFD130");
+  });
+
+  it("resolves Hoya names that once aliased to a neighbouring row to their own curves", () => {
+    expect(resolveGlass("PCD51 (HOYA)")?.name).toBe("PCD51");
+    expect(resolveGlass("MP-PCD51-70 precision-mold preform")?.name).toBe("MP-PCD51-70");
+    expect(resolveCompatibleGlass("M-PCD51 (HOYA)", 1.59201, 67.02)?.name).toBe("M-PCD51");
+    // BACD5 is the 589/613 crown; the 620/603 N-SK16 counterpart is BACD16.
+    expect(resolveCompatibleGlass("BACD5 (HOYA)", 1.58913, 61.25)?.name).toBe("BACD5");
+    expect(resolveCompatibleGlass("BACD5 (HOYA)", 1.62041, 60.35)).toBeNull();
+    expect(resolveCompatibleGlass("BACD16 (HOYA)", 1.62041, 60.35)?.name).toBe("BACD16");
+    expect(resolveGlass("620603")?.name).toBe("N-SK16");
+    // BSC7 is the 517/642 crown, not the 516/641 S-BSL7 its old alias pointed at.
+    expect(resolveCompatibleGlass("BSC7 (HOYA)", 1.5168, 64.2)?.name).toBe("BSC7");
+    expect(resolveCompatibleGlass("S-BSL7 (OHARA) / BSC7 (HOYA) class", 1.51633, 64.1)?.name).toBe("S-BSL7");
+    expect(resolveGlass("517642")?.name).toBe("N-BK7");
+    // TAFD35L has its own vendor curve (PgF 0.5833 against TAFD35's 0.5822).
+    expect(resolveCompatibleGlass("TAFD35L (HOYA)", 1.91082, 35.25)?.name).toBe("TAFD35L");
+    expect(resolveGlass("911353")?.name).toBe("TAFD35");
+  });
+
+  it("resolves vendor rows that share a product code without moving the bare code", () => {
+    expect(resolveCompatibleGlass("E-FEL2 (HOYA)", 1.54072, 47.2)?.name).toBe("E-FEL2");
+    expect(resolveGlass("541472")?.name).toBe("S-TIL2");
+    expect(resolveCompatibleGlass("E-FD15L (HOYA)", 1.69895, 30.05)?.name).toBe("E-FD15L");
+    expect(resolveGlass("699301")?.name).toBe("S-TIM35");
+    expect(resolveCompatibleGlass("J-LASF03 (Hikari)", 1.8061, 40.97)?.name).toBe("J-LASF03");
+    expect(resolveGlass("806410")?.name).toBe("H-ZLaF52A");
+    // Molding-state row: the base-glass code 658369 does not encode 1.65296 / 36.8.
+    expect(resolveCompatibleGlass("K-PG395-M (SUMITA K-PG395(M))", 1.65296, 36.79)?.name).toBe("K-PG395-M");
+    expect(resolveGlass("658369")).toBeNull();
+    // M-NBFD130 has its own vendor curve (ΔPgF −0.0056 against NBFD13's −0.0078).
+    expect(resolveCompatibleGlass("M-NBFD130 (HOYA)", 1.8061, 40.73)?.name).toBe("M-NBFD130");
+    expect(resolveGlass("806407")?.name).toBe("NBFD13");
   });
 
   it("resolves named Ohara PGM curves before remaining catalog aliases", () => {
@@ -695,25 +738,68 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.glassEntry).toBeUndefined();
   });
 
-  it("uses an explicit e-line-compatible catalog curve at physical C/d/F/g wavelengths", () => {
+  it("anchors an explicit e-line catalog curve to the authored ne at C′/e/F′/g", () => {
+    // Authored ne rounded to three decimals, as e-line patents often print it: 2.8e-4 above catalog N-BK7.
+    const ne = 1.519;
     const d = makeSurfaceDispersion(
-      { R: 0, d: 0, sd: 0, label: "", nd: 1.51872, elemId: 1 },
-      {
-        id: 1,
-        name: "L1",
-        label: "L1",
-        type: "Test",
-        nd: 1.51872,
-        vd: 63.96,
-        indexReference: "e",
-        glass: "N-BK7",
-      },
+      { R: 0, d: 0, sd: 0, label: "", nd: ne, elemId: 1 },
+      { id: 1, name: "L1", label: "L1", type: "Test", nd: ne, vd: 64, indexReference: "e", glass: "N-BK7" },
       undefined,
     );
+    const nbk7 = d.glassEntry!;
+    const fromE = (lineNm: number) => evaluateSellmeier(nbk7, lineNm) - evaluateSellmeier(nbk7, LINE_NM.e);
     expect(d.quality).toBe("sellmeier");
-    expect(d.glassEntry?.name).toBe("N-BK7");
-    expect(d.fn("G")).toBeCloseTo(1.5168, 5);
-    expect(d.fn("G")).not.toBeCloseTo(1.51872, 5);
+    expect(nbk7.name).toBe("N-BK7");
+    expect(d.fn("G")).toBe(ne);
+    expect(d.fn("R")).toBeCloseTo(ne + fromE(LINE_NM.CPrime), 12);
+    expect(d.fn("B")).toBeCloseTo(ne + fromE(LINE_NM.FPrime), 12);
+    expect(d.fn("V")).toBeCloseTo(ne + fromE(LINE_NM.g), 12);
+  });
+
+  it("traces a partly catalog-resolved e-line doublet at one set of lines", () => {
+    // Crown resolves to catalog N-BK7; the flint carries F2's ne/νe under a name the catalog cannot resolve.
+    const crown = { id: 1, name: "L1", label: "L1", type: "Test", nd: 1.519, vd: 64, glass: "N-BK7" };
+    const flint = { id: 2, name: "L2", label: "L2", type: "Test", nd: 1.62408, vd: 36.11, glass: "Unmatched flint" };
+    const elements: ElementData[] = [crown, flint].map((element) => ({ ...element, indexReference: "e" }));
+    const surfaces: SurfaceData[] = [
+      { label: "1", R: 60, d: 6, nd: crown.nd, sd: 12, elemId: 1 },
+      { label: "2", R: -45, d: 2.5, nd: flint.nd, sd: 12, elemId: 2 },
+      { label: "3", R: -130, d: 95, nd: 1.0, sd: 12, elemId: 2 },
+    ];
+    const dispersion = surfaces.map((surface) =>
+      makeSurfaceDispersion(
+        surface,
+        elements.find((element) => element.id === surface.elemId && surface.nd !== 1),
+        undefined,
+      ),
+    );
+    expect(dispersion.map(({ quality }) => quality)).toEqual(["sellmeier", "abbe", "air"]);
+
+    const backFocus = (indexAt: (surfaceIndex: number) => number) => {
+      const traced = surfaces.map((surface, index) => ({ ...surface, nd: indexAt(index) }));
+      const { y, u } = traceParaxialSurfaces2(traced, 1, 0, { skipLastTransfer: true });
+      return -y / u;
+    };
+    const channelFocus = (channel: ChromaticChannel) => backFocus((index) => dispersion[index].fn(channel));
+    const reference = backFocus((index) => surfaces[index].nd);
+    // G is the authored ne on both tiers. Catalog nd on the crown alone moved this focus by 0.68 mm.
+    expect(Math.abs(channelFocus("G") - reference)).toBeLessThan(0.003);
+
+    // The same doublet with the flint named resolves both glasses; estimating one must not move the color foci far.
+    const resolved = surfaces.map((surface) =>
+      makeSurfaceDispersion(
+        surface,
+        elements
+          .map((element) => (element.id === 2 ? { ...element, glass: "F2" } : element))
+          .find((element) => element.id === surface.elemId && surface.nd !== 1),
+        undefined,
+      ),
+    );
+    expect(resolved.map(({ quality }) => quality)).toEqual(["sellmeier", "sellmeier", "air"]);
+    for (const channel of ["R", "B", "V"] as const) {
+      const fullyResolved = backFocus((index) => resolved[index].fn(channel));
+      expect(Math.abs(channelFocus(channel) - fullyResolved)).toBeLessThan(0.03);
+    }
   });
 
   it("keeps authored ne in the fallback G channel when no e-line catalog name is trusted", () => {
@@ -793,6 +879,27 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(residuals.length).toBeGreaterThan(500);
     expect(residuals[Math.floor(residuals.length / 2)]).toBeLessThan(0.002);
     expect(residuals.at(-1)!).toBeLessThan(0.02);
+  });
+
+  it("reaches g from F′ on e-line spans like the catalog glasses", () => {
+    const residuals = allEntries()
+      .map((entry) => {
+        const [nC, nd, nF, ng, nRed, ne, nBlue] = [
+          LINE_NM.C,
+          LINE_NM.d,
+          LINE_NM.F,
+          LINE_NM.g,
+          LINE_NM.CPrime,
+          LINE_NM.e,
+          LINE_NM.FPrime,
+        ].map((line) => evaluateSellmeier(entry, line));
+        // The glass's own deviation from the d-line normal line, which the e-line counterpart must carry over.
+        const dPgF = (ng - nF) / (nF - nC) - (0.6438 - 0.001682 * ((nd - 1) / (nF - nC)));
+        return Math.abs((ng - nBlue) / (nBlue - nRed) - normalLinePgFPrime((ne - 1) / (nBlue - nRed), dPgF));
+      })
+      .sort((a, b) => a - b);
+    expect(residuals[Math.floor(residuals.length / 2)]).toBeLessThan(0.002);
+    expect(residuals.at(-1)!).toBeLessThan(0.01);
   });
 
   it("dPgF on the element shifts the V-channel index away from the normal-line baseline", () => {

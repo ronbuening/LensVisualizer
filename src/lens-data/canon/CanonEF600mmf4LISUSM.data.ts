@@ -8,9 +8,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Production correlation: Canon EF600mm f/4L IS USM, marketed Sep. 1999.     ║
  * ║                                                                            ║
  * ║ The patent source path contains 17 media elements / 13 groups when the     ║
- * ║ front protection glass (HG) and rear filter (FL) are counted. Per current  ║
- * ║ HG and inactive FC remain omitted; FL is traced via rearPlates.          ║
- * ║ The visible model has 15 elements / 11 groups. No scaling is applied.     ║
+ * ║ front protection glass (HG) and rear filter (FL) are counted.              ║
+ * ║ HG and inactive FC remain omitted; FL is a drawn plate element with a      ║
+ * ║ ray-trace estimated semi-diameter, not counted in elementCount. The        ║
+ * ║ visible model has 15 powered elements / 11 groups plus FL. No scaling is   ║
+ * ║ applied.                                                                   ║
  * ║                                                                            ║
  * ║ Design quantities: patent f = 585.20 mm, Fno = 4.12, 2ω = 4.2°. The       ║
  * ║ actual active arrays compute EFL ≈ 585.327789 mm. nominalFno therefore     ║
@@ -41,8 +43,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ labels are retained where the vendor is unresolved.                        ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  *
- * Image-plane source audit: Example 22 R/d/N/v all match. FL is traced
- * via rearPlates with D29=12.00, t=2.00, nd=1.516330, vd=64.4 and
+ * Image-plane source audit: Example 22 R/d/N/v all match. FL is a drawn
+ * plate element with D29=12.00, t=2.00, nd=1.516330, vd=64.4 and
  * D31+D32=103.78 mm after it. Source image distance 117.78 mm exceeds
  * physical paraxial BFL 117.286743 mm. Preserve the -0.493257 mm source
  * discrepancy; no supported single misprint explains it. See audit.
@@ -55,7 +57,7 @@ const LENS_DATA = {
   name: "CANON EF 600mm f/4 L IS USM",
   subtitle: "US 6,115,188 A — Numerical Example 22; production-correlated",
   specs: [
-    "15 modeled elements / 11 groups",
+    "15 powered elements / 11 groups + filter",
     "Patent f = 585.20 mm; computed EFL ≈ 585.328 mm",
     "Design F/4.12; marketed f/4",
     "2ω = 4.2°",
@@ -287,6 +289,16 @@ const LENS_DATA = {
       role: "Negative rear member; the complete L3c subunit remains strongly net positive.",
       cemented: "L3c-D1",
     },
+    {
+      id: 16,
+      name: "FL",
+      label: "Drop-in filter FL",
+      type: "Plane-Parallel Plate",
+      nd: 1.51633,
+      vd: 64.4,
+      glass: "S-BSL7 (OHARA index match; patent prints νd 64.4 against the catalog 64.14; supplier unconfirmed)",
+      role: "Plane-parallel filter plate of the patent prescription (US 6,115,188 A, Numerical Example 22, R30–R31), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
   /* ── Surface prescription: patent R3–R29, with R16 relabeled STO ── */
@@ -318,11 +330,11 @@ const LENS_DATA = {
     { label: "27", R: 79.378, d: 4.27, nd: 1.7495, elemId: 14, sd: 15.5 },
     { label: "28", R: -194.536, d: 1.9, nd: 1.846658, elemId: 15, sd: 15.5 },
     { label: "29", R: 218.38, d: 12.0, nd: 1.0, elemId: 0, sd: 15.5 },
-  ],
-
-  rearPlates: [
-    { label: "FL", thicknessMm: 2.0, nd: 1.51633, vd: 64.4, gapAfterMm: 103.78,
-      source: "US 6,115,188 A, Numerical Example 22, R30–R32; D31 + D32" },
+    // Drop-in filter FL (US 6,115,188 A, Numerical Example 22, R30–R31), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    // Gap to the image: D31 + D32 to the image, inactive FC plane R32 omitted
+    { label: "30", R: 1e15, d: 2.0, nd: 1.51633, elemId: 16, sd: 17.5 },
+    { label: "31", R: 1e15, d: 103.78, nd: 1.0, elemId: 0, sd: 17.5 }, // drop-in filter → image plane
   ],
 
   asph: {},

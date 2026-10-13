@@ -25,6 +25,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON ASPHERES: patent surface 4 includes odd-order terms.       ║
  * ║  Numerical Example 2 A3–A14 are transcribed exactly; the other      ║
  * ║  six aspheres retain their patent even-order coefficients.          ║
+ * ║                                                                      ║
+ * ║  NOTE ON PARTIAL DISPERSION: the patent lists θgF per element.       ║
+ * ║  `dPgF` is θgF minus the engine's normal line (0.6438 − 0.001682·νd),║
+ * ║  not the patent's dPgF = θgF − (0.648285 − 0.00180123·νd), which the ║
+ * ║  analysis quotes as ΔPgF. L1 and L7 already sat within 0.0003 of the ║
+ * ║  engine-line value (the two lines cross near νd 37.6) and keep their ║
+ * ║  four-decimal figures.                                               ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -55,9 +62,9 @@ const LENS_DATA = {
   elementCount: 13,
   groupCount: 10,
 
-  nominalFno: 2.8,
+  nominalFno: 2.92,
   closeFocusM: 0.116,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.92, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   zoomPositions: [10.3, 13.5, 17.5],
@@ -66,7 +73,6 @@ const LENS_DATA = {
 
   yScFill: 0.62,
   scFill: 0.58,
-  clipMargin: 1.05,
   focusStep: 0.004,
   apertureStep: 0.004,
 
@@ -96,7 +102,7 @@ const LENS_DATA = {
       vd: 67.02,
       fl: -41.78,
       glass: "M-PCD51 (Hoya)",
-      dPgF: 0.0082,
+      dPgF: 0.004728,
       apd: false,
       role: "Second object-convex negative meniscus; both faces are aspherical in the patent.",
     },
@@ -109,9 +115,10 @@ const LENS_DATA = {
       vd: 95.1,
       fl: -30.94,
       glass: "FCD100 (Hoya)",
-      dPgF: 0.0565,
+      dPgF: 0.049658,
       apd: "patent",
-      apdNote: "θgF = 0.5335; ΔPgF = +0.0565; FLD-class crown",
+      apdNote:
+        "Patent θgF = 0.5335; ΔPgF = +0.0565 by the patent's line (θgF − 0.648285 + 0.00180123·νd), runtime dPgF +0.04966; FLD-class crown",
       role: "Fluorite-class negative member of the front cemented achromatizing doublet.",
       cemented: "D1",
     },
@@ -124,7 +131,7 @@ const LENS_DATA = {
       vd: 40.73,
       fl: 25.66,
       glass: "TAFD32 (Hoya)",
-      dPgF: -0.0068,
+      dPgF: -0.007192,
       apd: false,
       role: "Dense positive partner to L3; completes a weakly positive cemented front-group corrector.",
       cemented: "D1",
@@ -138,7 +145,7 @@ const LENS_DATA = {
       vd: 30.0,
       fl: 66.89,
       glass: "NBFD30 (Hoya)",
-      dPgF: 0.0036,
+      dPgF: 0.00446,
       apd: false,
       role: "Weak positive collector at the front of the rear positive lens group.",
     },
@@ -151,7 +158,7 @@ const LENS_DATA = {
       vd: 26.94,
       fl: -27.22,
       glass: "TAFD65 (Hoya)",
-      dPgF: 0.0052,
+      dPgF: 0.006513,
       apd: false,
       role: "Very-high-index negative member NR1 of the first rear cemented doublet.",
       cemented: "D2",
@@ -179,7 +186,7 @@ const LENS_DATA = {
       vd: 31.6,
       fl: -37.18,
       glass: "S-LAH88 (Ohara)",
-      dPgF: -0.0004,
+      dPgF: 0.000351,
       apd: false,
       role: "Dense negative member NR2 of the second rear cemented doublet.",
       cemented: "D3",
@@ -193,9 +200,10 @@ const LENS_DATA = {
       vd: 95.1,
       fl: 32.12,
       glass: "FCD100 (Hoya)",
-      dPgF: 0.0565,
+      dPgF: 0.049658,
       apd: "patent",
-      apdNote: "θgF = 0.5335; ΔPgF = +0.0565; FLD-class crown, PR2",
+      apdNote:
+        "Patent θgF = 0.5335; ΔPgF = +0.0565 by the patent's line (θgF − 0.648285 + 0.00180123·νd), runtime dPgF +0.04966; FLD-class crown, PR2",
       role: "Fluorite-class positive member PR2 behind the stop.",
       cemented: "D3",
     },
@@ -208,9 +216,10 @@ const LENS_DATA = {
       vd: 71.68,
       fl: 21.32,
       glass: "M-FCD500 (Hoya)",
-      dPgF: 0.021,
+      dPgF: 0.016966,
       apd: "patent",
-      apdNote: "θgF = 0.5402; ΔPgF = +0.0210; strongest non-FLD SLD candidate.",
+      apdNote:
+        "Patent θgF = 0.5402; ΔPgF = +0.0210 by the patent's line (θgF − 0.648285 + 0.00180123·νd), runtime dPgF +0.01697; strongest non-FLD SLD candidate.",
       role: "Strong positive aspherical low-dispersion element immediately behind the stop group.",
     },
     {
@@ -222,7 +231,7 @@ const LENS_DATA = {
       vd: 49.22,
       fl: -25.7,
       glass: "NBF1 (Hoya) / H-LaF53 (CDGM equivalent)",
-      dPgF: -0.0103,
+      dPgF: -0.011712,
       apd: false,
       role: "Single-element inner-focus group moving imageward for near focus.",
     },
@@ -235,9 +244,10 @@ const LENS_DATA = {
       vd: 95.1,
       fl: 24.41,
       glass: "FCD100 (Hoya)",
-      dPgF: 0.0565,
+      dPgF: 0.049658,
       apd: "patent",
-      apdNote: "θgF = 0.5335; ΔPgF = +0.0565; FLD-class crown",
+      apdNote:
+        "Patent θgF = 0.5335; ΔPgF = +0.0565 by the patent's line (θgF − 0.648285 + 0.00180123·νd), runtime dPgF +0.04966; FLD-class crown",
       role: "Rear fluorite-class positive element contributing strong gathering power in G5.",
     },
     {
@@ -249,7 +259,7 @@ const LENS_DATA = {
       vd: 40.73,
       fl: -37.03,
       glass: "M-NBFD130 (Hoya)",
-      dPgF: -0.0056,
+      dPgF: -0.005992,
       apd: false,
       role: "Rear aspherical negative field/distortion corrector.",
     },

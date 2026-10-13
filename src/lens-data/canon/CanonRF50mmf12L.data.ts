@@ -396,6 +396,8 @@ const LENS_DATA = {
 
   /* ── Focus ── */
   closeFocusM: 0.4,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Front-group extension focus: L1 (G1–G11 + stop) translates toward object; L2 (G12–G15) stationary. Single variable gap (d19); BFD constant. Ring-type USM.",
 

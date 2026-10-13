@@ -294,15 +294,17 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus — G2 (single FLD biconcave L2a) moves forward toward the object. " +
     "Gap conservation: Δd4 + Δd6 = 0; total track and BFD fixed. " +
     "Patent close focus at 200 mm (object to image); production dp0 Quattro specifies MFD = 18 cm.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4.0,
+  nominalFno: 4.13,
   apertureBlades: 7,
-  fstopSeries: [4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
+  fstopSeries: [4.13, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

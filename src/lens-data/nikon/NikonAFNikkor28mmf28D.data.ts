@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║            LENS DATA — Nikon AF Nikkor 28mm f/2.8D                 ║
+ * ║            LENS DATA — NIKON AF NIKKOR 28mm f/2.8 D                 ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 5,557,473, Third Embodiment / Table 5, FIG. 3.    ║
  * ║  Nikon compact all-spherical retrofocus wide-angle formula.         ║
@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-nikkor-28mm-f28d",
   maker: "Nikon",
-  name: "Nikon AF Nikkor 28mm f/2.8D",
+  name: "NIKON AF NIKKOR 28mm f/2.8 D",
   subtitle: "US 5,557,473, Third Embodiment — Nikon / Sugiyama & Sato",
   specs: ["6 elements / 6 groups", "f = 28.60 mm", "F/2.86 design", "2ω = 75.4°", "all-spherical retrofocus"],
 
@@ -161,8 +161,8 @@ const LENS_DATA = {
     "by increasing BF from 38.09 mm to 43.17 mm at a 0.25 m metric reference state.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.86,
+  fstopSeries: [2.86, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   /* ── Layout tuning ── */

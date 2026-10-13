@@ -24,3 +24,15 @@ Patent: US 6,239,919 B1, Example 4, Fig. 10 (PDF page 11)
   normalization) is kept by storing the gap before the filter as 29.2000730 mm, so EFL and paraxial defocus are
   identical at infinity and at the 3.4 m keyframe (worst difference 7e-15 mm); the 3.4 m G2 solve is unaffected.
 - Physical track grows by 2.0 × (1 − 1/1.5168) = 0.681 mm, to 377.768 mm from surface 3.
+
+## 2026-10-04 — Slip-in filter drawn as an element
+
+- The rear slip-in filter plate F moved out of `rearPlates` into the drawn prescription: surfaces 25–26 and element 12
+  (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place and
+  a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
+- The source lists no clear aperture for the plate. Its semi-diameter, 19 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at infinity, mid and
+  close focus (17.76 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
+  axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
+  corner.

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S NIKKOR ED 500mm f/4D IF                      ║
+ * ║ LENS DATA — NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED                      ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 5,745,306 A, Example 2 / Fig. 4 / Table 2 (Sato/Nikon). ║
  * ║ Native patent scale: F=490.0 mm; independent EFL=489.960550 mm.          ║
@@ -16,7 +16,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Filters/planes: source surfaces 1-2 (front plane-glass filter), source ║
  * ║ surface 24 (field stop S2) and prose-only S3 are omitted. Source         ║
  * ║ surfaces 25-26 (drop-in filter, 2.0 mm, nd 1.516800, νd 64.10) are       ║
- * ║ modeled in `rearPlates` (traced, not drawn): surface 23 stores           ║
+ * ║ drawn as a plane-parallel plate element and traced by every analysis;    ║
+ * ║ its semi-diameter is a ray-trace estimate (the source lists none) and    ║
+ * ║ it is not counted in `elementCount`. Surface 23 stores                   ║
  * ║ d23 40.4 + d24 5.0 = 45.4 mm to the filter (S2 folded out), then the     ║
  * ║ printed Bf 113.7034 mm to the image. Air-equivalent surface-23-to-image  ║
  * ║ spacing is unchanged at 160.421965401 mm; physical track from surface 3  ║
@@ -47,7 +49,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-s-nikkor-500mm-f4d-if-ed",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR ED 500mm f/4D IF",
+  name: "NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED",
   subtitle: "US 5,745,306 A — Example 2 / second embodiment (Fig. 4, Table 2)",
   specs: [
     "11 ELEMENTS / 9 GROUPS",
@@ -204,9 +206,19 @@ const LENS_DATA = {
       glass: "J-PKH1 catalog equivalent (patent 519700; production supplier unspecified)",
       role: "Final positive meniscus of fixed rear group G3.",
     },
+    {
+      id: 12,
+      name: "F",
+      label: "Slip-in filter F",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      role: "Plane-parallel filter plate of the patent prescription (US 5,745,306 A, Example 2 Table 2 surfaces 25–26), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
-  /* ── Surface prescription: active patent surfaces 3–23 ── */
+  /* ── Surface prescription: active patent surfaces 3–23, plus rear filter surfaces 25–26 ── */
   surfaces: [
     { label: "3", R: 187.7545, d: 15.2, nd: 1.49782, elemId: 1, sd: 61.54 },
     { label: "4", R: -1311.4956, d: 1.8, nd: 1.0, elemId: 0, sd: 60.5 },
@@ -230,18 +242,11 @@ const LENS_DATA = {
     { label: "22", R: -5088.9661, d: 5.9, nd: 1.518601, elemId: 11, sd: 16.5 },
     // Surface 23 → drop-in filter: source d23 40.4 + d24 5.0 (field stop S2 folded out)
     { label: "23", R: -75.9168, d: 45.4, nd: 1.0, elemId: 0, sd: 17.0 },
-  ],
-
-  /* ── Drop-in filter (patent Table 2 surfaces 25–26): traced, not drawn ── */
-  rearPlates: [
-    {
-      thicknessMm: 2.0,
-      nd: 1.5168,
-      vd: 64.1,
-      glass: "J-BK7A",
-      gapAfterMm: 113.7034,
-      source: "US 5,745,306 A, Example 2 Table 2 surfaces 25–26 (Bf 113.7034 at infinity and close focus)",
-    },
+    // Slip-in filter F (US 5,745,306 A, Example 2 Table 2 surfaces 25–26), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    // Gap to the image: Bf 113.7034 at infinity and close focus
+    { label: "25", R: 1e15, d: 2.0, nd: 1.5168, elemId: 12, sd: 20.5 },
+    { label: "26", R: 1e15, d: 113.7034, nd: 1.0, elemId: 0, sd: 20.5 }, // slip-in filter → image plane
   ],
 
   asph: {},

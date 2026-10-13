@@ -84,7 +84,7 @@ const LENS_DATA = {
   surfaces: [
     { label: "STO", R: 1e15, d: 10, nd: 1.0, elemId: 0, sd: 30 },
     { label: "MEN1", R: 300, d: 4, nd: 1.5168, elemId: 1, sd: 30 },
-    { label: "MEN2", R: -300, d: 21, nd: 1.0, elemId: 1, sd: 30 },
+    { label: "MEN2", R: -300, d: 21, nd: 1.0, elemId: 0, sd: 30 },
     {
       label: "SEC",
       R: 1e15,

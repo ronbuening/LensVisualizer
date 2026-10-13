@@ -37,7 +37,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-da-16-50-f28",
   maker: "Pentax",
-  name: "PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM",
+  name: "PENTAX DA* 16-50mm f/2.8 ED AL [IF] SDM",
   subtitle: "US 7,301,711 B2 Example 6 — PENTAX / Saori",
   specs: [
     "15 ELEMENTS / 12 GROUPS",
@@ -430,9 +430,9 @@ const LENS_DATA = {
     "Internal focus (IF) via SDM ultrasonic motor. Patent provides zoom-only data; close-focus gaps not modeled.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
+  nominalFno: 2.9,
   apertureBlades: 9,
-  fstopSeries: [2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
+  fstopSeries: [2.9, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

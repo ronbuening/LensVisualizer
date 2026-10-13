@@ -40,3 +40,23 @@ The remaining J-series labels either already resolve to catalog coefficients or 
 
 - Updated the element-by-element glass names, the glass-identification table, and the L13 APD/ED explanation in `NikonAFP70300mmf4556E.analysis.md`.
 - Kept all focal length, zoom, focus, VR, conditional-expression, and verification values unchanged.
+
+## 2026-10-07 — Zoom iris and station f-numbers against the patent
+
+Read against US 2019/0353880 A1, First Example, Table 1 (PDF page 45, printed page 7) and the spherical-aberration legends of FIGS. 2A, 3, and 4A (sheets 2-4, PDF pages 3-5).
+
+| Field | Before | After | Source |
+|---|---|---|---|
+| `nominalFno[0]` (wide, 72.1 mm) | 4.5 | 4.49 | Table 1, [Various data], FNO row, W column (PDF p. 45, printed p. 7) |
+| `nominalFno[2]` (tele, 292.0 mm) | 5.6 | 5.88 | Table 1, [Various data], FNO row, T column (same page); FIG. 4A legend FNO=5.88 (sheet 4, PDF p. 5) |
+| `apertureDesign` | absent | 4.49 | Table 1, [Various data], FNO row, W column |
+| `fstopSeries[0]` | 4.5 | 4.49 | Follows `nominalFno[0]`, the wide-open value the series starts from |
+
+- `zoomApertureModel: "fixed-iris"` is kept. The patent states no stop diameter and says nothing about the stop changing with zoom: Table 1 row 20 prints only `∞ / 14.110 / (Stop S)`, ¶0128 places stop S between the L33/L34 and L35/L36 cemented pairs in G3, and ¶0136 says the legend FNO is the maximum-aperture value. The single opening rests on the printed f-numbers: by the real marginal ray, 4.49 / 4.86 / 5.88 need stop radii of 11.6075 / 11.6209 / 11.6202 mm, a spread of 0.12 %, and any radius from 11.6103 to 11.6204 mm satisfies all three within print rounding.
+- The fixed iris is the radius traced from the wide value, 11.6075 mm. It sits 0.02 % below that common window, so the middle and tele stations trace one count high in the last printed digit: f/4.49 at 72.1 mm (0.0 %), f/4.87 at 100.0 mm (+0.1 %), f/5.89 at 292.0 mm (+0.1 %). The iris limits the on-axis beam at all three stations; no element rim does.
+- The marketed f/4.5-5.6 remains in the lens name and the `specs` line "Marketed 70-300 mm f/4.5-5.6".
+- Confirmed unchanged: example identity (all 33 [Lens data] rows of Table 1 match the file's R, D, and nd, from s1 `109.4870 / 4.600 / 1.48749` to s33 `-106.0000 / BF`); focal lengths 72.1 / 100.0 / 292.0 mm (computed EFL 72.0992 / 99.9974 / 292.0075 mm); d5, d13, d25, and d29 at infinity and at short distance; BF 39.12 / 46.45 / 67.12 mm; stop at surface 20 with 2.700 mm before it and 14.110 mm after it; `nominalFno[1]` = 4.86, as printed in the M column.
+- No semi-diameter changed. The STO row keeps `sd: 11.2`, a paraxial estimate rather than a patent value (the paraxial radii for the printed f-numbers are 11.1940 / 11.2011 / 11.1715 mm); it does not size the wide-open iris, which is traced from `nominalFno`. The 2026-06-24 note "stop at `sd = 11.2 mm`" refers to that authored row.
+- Open: the patent prints a second f-number set in the figure legends, FIG. 2A FNO=4.48, FIG. 3 FNO=4.87, FIG. 4A FNO=5.88, differing from Table 1 by 0.01 at wide and middle. The file follows Table 1. The legend set needs real-ray radii of 11.6355 / 11.5951 / 11.6202 mm (spread 0.35 %) and has no common radius within print rounding.
+- Open: the file has no `apertureMarketing`. Nikon's marketed wide aperture is f/4.5, 0.2 % from the design 4.49; the field is not added in this pass.
+- Open: `closeFocusM: 1.2` is paired with the Table 1 short-distance gaps, but the patent prints no object distance for that state (FIGS. 5A-5C give numerical apertures only). The analysis note reconstructs it as β ≈ -0.033 at about 2.10 / 2.91 / 8.55 m from the first surface. Not addressed in this pass.

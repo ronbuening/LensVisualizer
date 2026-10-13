@@ -10,8 +10,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Focus status: PUBLISHED. G2 translates imageward 17.8317 mm; d9 + d14 remains 31.2811 mm.           ║
  * ║                                                                                                      ║
  * ║ REAR FILTER: patent surfaces 18-19 are a 2.00 mm plane-parallel filter (n 1.51680, ν 64.1) behind    ║
- * ║ G3 and S. It is modeled in `rearPlates` (traced, not drawn) with the printed Bf = 104.5069 mm to     ║
- * ║ the image; s17 → filter stays the patent 46.34 mm (air-equivalent s17 → image 152.1654654 mm).       ║
+ * ║ G3 and S. It is drawn as a plane-parallel plate element and traced by every analysis, with the       ║
+ * ║ printed Bf = 104.5069 mm to the image; s17 → filter stays the patent 46.34 mm (air-equivalent        ║
+ * ║ s17 → image 152.1654654 mm). Its semi-diameter is a ray-trace estimate (the source lists none)       ║
+ * ║ and it is not counted in `elementCount`.                                                             ║
  * ║                                                                                                      ║
  * ║ STO MODEL: the patent locates S only graphically between G3 and the filter. Figure 1 gives an        ║
  * ║ approximate s17→S / s17→filter fraction of about one-half; S is modeled 23.7 mm behind s17.          ║
@@ -38,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-i-nikkor-400mm-f28d-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-I NIKKOR 400mm f/2.8D IF-ED",
+  name: "NIKON AF-I NIKKOR 400mm f/2.8 D IF-ED",
   subtitle: "US 5,438,455 A — Example 1; production-lens correlation",
   specs: [
     "10 ELEMENTS / 7 GROUPS",
@@ -225,6 +227,16 @@ const LENS_DATA = {
       role: "Rear member of G3; its two in-situ interface powers sum positive in the cemented assembly.",
       cemented: "L3",
     },
+    {
+      id: 11,
+      name: "F",
+      label: "Slip-in filter F",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      role: "Plane-parallel filter plate of the patent prescription (US 5,438,455 A, Example 1 Table 1 surfaces 18–19), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
   /* ── Surface prescription ── */
@@ -247,19 +259,10 @@ const LENS_DATA = {
     { label: "16", R: -80.085, d: 5.0, nd: 1.68893, elemId: 10, sd: 30.0 },
     { label: "17", R: -130.842, d: 23.7, nd: 1.0, elemId: 0, sd: 30.0 },
     { label: "STO", R: 1e15, d: 22.64, nd: 1.0, elemId: 0, sd: 22.3038064323743 },
-  ],
-
-  /* ── Rear filter FILTER (patent surfaces 18–19, Fig. 1 label): traced, not drawn ── */
-  rearPlates: [
-    {
-      label: "FILTER",
-      thicknessMm: 2.0,
-      nd: 1.5168,
-      vd: 64.1,
-      glass: "J-BK7A",
-      gapAfterMm: 104.5069,
-      source: "US 5,438,455 A, Example 1 Table 1 surfaces 18–19",
-    },
+    // Slip-in filter F (US 5,438,455 A, Example 1 Table 1 surfaces 18–19), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    { label: "18", R: 1e15, d: 2.0, nd: 1.5168, elemId: 11, sd: 24 },
+    { label: "19", R: 1e15, d: 104.5069, nd: 1.0, elemId: 0, sd: 24 }, // slip-in filter → image plane
   ],
 
   asph: {},
@@ -287,6 +290,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 3.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focus: negative unit G2 translates 17.8317 mm imageward from infinity to the patent R=3.300 m endpoint; d9 expands 8.2485→26.0802 mm while d14 contracts 23.0326→5.2009 mm, preserving d9+d14=31.2811 mm. No reconstructed focus state is used.",
 

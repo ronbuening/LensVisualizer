@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * LENS DATA — HD PENTAX-DA645 28-45mm f/4.5 ED AW SR
+ * LENS DATA — PENTAX HD DA645 28-45mm f/4.5 ED AW SR
  *
  * Data source: JP 2015-87681 A, Numerical Example 1 (RICOH IMAGING COMPANY, LTD.; Tatsuyuki Onozaki).
  * Production correlation: HD PENTAX-DA645 28-45mm F4.5 ED AW SR.
@@ -52,8 +52,8 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hd-pentax-da645-28-45mm-f45-ed-aw-sr",
   maker: "Pentax",
-  name: "HD PENTAX-DA645 28-45mm f/4.5 ED AW SR",
-  subtitle: "JP 2015-87681 A Example 1 — strong HD PENTAX-DA645 28-45mm f/4.5 ED AW SR correlation",
+  name: "PENTAX HD DA645 28-45mm f/4.5 ED AW SR",
+  subtitle: "JP 2015-87681 A Example 1 — strong PENTAX HD DA645 28-45mm f/4.5 ED AW SR correlation",
   specs: [
     "17 PHYSICAL LENSES / 12 GROUPS",
     "28-45mm f/4.5 MARKETED",
@@ -241,7 +241,7 @@ const LENS_DATA = {
       nd: 1.72047,
       vd: 34.7,
       fl: 31.962544,
-      glass: "S-NBH 8 (OHARA catalog model; supplier not established)",
+      glass: "S-NBH8 (OHARA catalog model; supplier not established)",
       nC: 1.714365,
       nF: 1.735123,
       ng: 1.747234,
@@ -272,7 +272,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       fl: 123.466869,
-      glass: "S-TIH 6 (OHARA catalog model; supplier not established)",
+      glass: "S-TIH6 (OHARA catalog model; supplier not established)",
       nC: 1.796106,
       nF: 1.827775,
       ng: 1.847286,
@@ -366,7 +366,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       fl: 52.809504,
-      glass: "S-FSL 5 (OHARA catalog model; supplier not established)",
+      glass: "S-FSL5 (OHARA catalog model; supplier not established)",
       nC: 1.485344,
       nF: 1.492285,
       ng: 1.495964,

@@ -9,7 +9,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Physical/source count: 17 elements / 13 air-separated groups.    ║
  * ║  Active model: 15 powered elements / 11 air-separated groups.     ║
  * ║  elementCount/groupCount retain the physical 17/13 count.         ║
- * ║  HG is omitted; FL is traced via rearPlates; FC is inactive.        ║
+ * ║  HG is omitted; FL is a drawn plate element; FC is inactive.       ║
  * ║                                                                    ║
  * ║  No scaling is applied. Patent f = 490.56 mm and Fno = 4.1; the   ║
  * ║  rounded prescription recomputes to EFL ≈ 491.356789 mm.           ║
@@ -24,8 +24,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  equivalent active-model MFD is 4.497548307 m. L3b stabilization  ║
  * ║  motion is transverse only and is not represented as axial focus. ║
  * ║                                                                    ║
- * ║  Rear filter FL is traced via rearPlates: D29=30.00, t=2.20,      ║
- * ║  nd=1.516330, vd=64.1; trailing air D31+D32=70.28 mm.             ║
+ * ║  Rear filter FL is a drawn plate element: D29=30.00, t=2.20,      ║
+ * ║  nd=1.516330, vd=64.1; trailing air D31+D32=70.28 mm. Its         ║
+ * ║  semi-diameter is a ray-trace estimate (the patent lists none).   ║
  * ║  Example 24 reproduces EFL 491.356789, not printed 490.56 mm.     ║
  * ║  Its physical image distance 102.48 mm is 0.670443 mm ahead of   ║
  * ║  paraxial focus. Published values retained; see the audit log.    ║
@@ -53,7 +54,7 @@ const LENS_DATA = {
   name: "CANON EF 500mm f/4 L IS USM",
   subtitle: "US 6,115,188 A — Numerical Example 24; correlated to the Canon EF 500mm f/4L IS USM",
   specs: [
-    "15 MODELED ELEMENTS / 11 GROUPS",
+    "15 POWERED ELEMENTS / 11 GROUPS + FILTER",
     "PATENT f = 490.56 mm; ARRAY EFL ≈ 491.36 mm",
     "F/4.1 DESIGN / f/4 MARKETED",
     "2ω = 5.0°",
@@ -249,6 +250,16 @@ const LENS_DATA = {
       cemented: "L3c",
       role: "Negative cemented partner that tempers the strong positive power of L3c.",
     },
+    {
+      id: 16,
+      name: "FL",
+      label: "Drop-in filter FL",
+      type: "Plane-Parallel Plate",
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7 (OHARA coordinate match; supplier unconfirmed)",
+      role: "Plane-parallel filter plate of the patent prescription (US 6,115,188 A, Numerical Example 24, R30–R31), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Included in elementCount, which follows the maker's published count.",
+    },
   ],
 
   /* ── Surface prescription ── */
@@ -280,12 +291,12 @@ const LENS_DATA = {
     { label: "27", R: 62.574, d: 7.6, nd: 1.517417, elemId: 14, sd: 13.6 },
     { label: "28", R: -62.574, d: 1.8, nd: 1.72, elemId: 15, sd: 13.2 },
     { label: "29", R: -235.693, d: 30.0, nd: 1.0, elemId: 0, sd: 13.0 },
+    // Drop-in filter FL (US 6,115,188 A, Numerical Example 24, R30–R31), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    // Gap to the image: D31 + D32 to the image, inactive FC plane R32 omitted
+    { label: "30", R: 1e15, d: 2.2, nd: 1.51633, elemId: 16, sd: 17.5 },
+    { label: "31", R: 1e15, d: 70.28, nd: 1.0, elemId: 0, sd: 17.5 }, // drop-in filter → image plane
   ],
-
-  rearPlates: [{
-    label: "FL", thicknessMm: 2.2, nd: 1.51633, vd: 64.1, gapAfterMm: 70.28,
-    source: "US 6,115,188 A, Numerical Example 24, R30–R32; D31 + D32",
-  }],
 
   asph: {},
 

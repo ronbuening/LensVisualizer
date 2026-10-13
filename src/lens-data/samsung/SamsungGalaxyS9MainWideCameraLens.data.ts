@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "samsung-galaxy-s9-main-wide",
   maker: "Samsung",
-  name: "SAMSUNG 4.3mm f/1.5 (Galaxy S9)",
+  name: "SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)",
   subtitle: "US 2021/0149156 A1 Example 1 — partial reconstruction; Galaxy S9 association unconfirmed",
   specs: [
     "7 ELEMENTS / 7 GROUPS",

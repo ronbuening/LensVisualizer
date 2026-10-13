@@ -1,14 +1,14 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * NIKON AF-S NIKKOR 500mm f/4G ED VR — patent-correlated model.
+ * NIKON AF-S NIKKOR 500mm f/4 G ED VR — patent-correlated model.
  *
  * Source prescription: US 2009/0190239 A1, Example 1 (Figs. 6-7), unscaled.
  * The optical-specification correlation to Nikon's production lens is substantial but not manufacturer-confirmed;
  * the source publication names Takashi Suzuki and no assignee/applicant. Same-application
  * assignment history identifies Fujinon Corporation (recorded 2009-01-22, effective 2009-01-07).
  *
- * Model: 15 physical glass elements / 12 air-spaced groups when the front protective meniscus
+ * Model: 15 lens elements / 12 air-spaced groups when the front protective meniscus
  * is counted; this corresponds to Nikon's 14 elements / 11 groups plus one protective glass.
  * Example 1 is all-spherical. G2 is the published axial focus group. G3a is the published
  * vibration-reduction group; its published lateral motion is not an
@@ -18,9 +18,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * d16=13.18 mm), not at Nikon's 4.0 m AF / 3.85 m MF production MFD. No 4 m internal state
  * is reconstructed.
  *
- * Rear plate: source GF surfaces 29-30 are represented with the current `rearPlates` model.
- * Surface 28 therefore keeps the published 25.00 mm physical gap to GF; GF is 2.00 mm
- * thick at nd=1.51680, followed by the published Bf=82.68 mm air gap to the image plane.
+ * Rear plate: source GF surfaces 29-30 are drawn as a plane-parallel plate element and traced
+ * by every analysis. Surface 28 therefore keeps the published 25.00 mm physical gap to GF; GF is
+ * 2.00 mm thick at nd=1.51680, followed by the published Bf=82.68 mm air gap to the image plane.
+ * The GF semi-diameter is a ray-trace estimate (the source lists none), and GF is not counted
+ * in `elementCount`.
  *
  * Stop: the patent publishes the AD plane and Fno=4.08 but no physical diaphragm diameter.
  * STO sd=19.048637040084 mm is a paraxial f/4.08 calibration, not a published stop size.
@@ -38,7 +40,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-500mm-f4g-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 500mm f/4G ED VR",
+  name: "NIKON AF-S NIKKOR 500mm f/4 G ED VR",
   subtitle: "US 2009/0190239 A1 Example 1 — optical-specification correlation; attribution not manufacturer-confirmed",
   specs: [
     "14 ELEMENTS / 11 GROUPS + PROTECTIVE GLASS",
@@ -256,6 +258,17 @@ const LENS_DATA = {
       fl: -189.50034,
       glass: "J-FK5 (HIKARI coordinate match; supplier unconfirmed)",
       },
+    {
+      id: 16,
+      name: "GF",
+      label: "Rear plate GF",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.2,
+      indexReference: "d",
+      glass: "J-BK7A (HIKARI coordinate match; supplier unconfirmed)",
+      role: "Plane-parallel plate GF of the patent prescription (US 2009/0190239 A1, Example 1 Fig. 6 surfaces 29-30). The patent describes it generically as an optical filter, cover glass or prism; it sits 82.68 mm ahead of the image, at the lens's slip-in filter position, so it is drawn and traced as part of the lens. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
   surfaces: [
@@ -287,19 +300,11 @@ const LENS_DATA = {
     { label: "26", R: -1227.6, d: 0.3, nd: 1, elemId: 0, sd: 16 },
     { label: "27", R: 382.23, d: 2.5, nd: 1.48749, elemId: 15, sd: 16.4 },
     { label: "28", R: 74.239, d: 25, nd: 1, elemId: 0, sd: 16.4 },
-  ],
-
-  rearPlates: [
-    {
-      label: "GF",
-      thicknessMm: 2,
-      nd: 1.5168,
-      vd: 64.2,
-      indexReference: "d",
-      glass: "J-BK7A (HIKARI coordinate match; supplier unconfirmed)",
-      gapAfterMm: 82.68,
-      source: "US 2009/0190239 A1, Example 1 Fig. 6 surfaces 29-30; Fig. 7 Bf=82.68 mm",
-    },
+    // Rear plate GF (US 2009/0190239 A1, Example 1 Fig. 6 surfaces 29-30), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    // Gap to the image: Fig. 7 Bf=82.68 mm
+    { label: "29", R: 1e15, d: 2, nd: 1.5168, elemId: 16, sd: 18.5 },
+    { label: "30", R: 1e15, d: 82.68, nd: 1, elemId: 0, sd: 18.5 }, // rear plate → image plane
   ],
 
   asph: {},
@@ -326,6 +331,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED — G2 translates 10.84 mm imageward from infinity to the patent 5 m state; no production-MFD extrapolation.",
 

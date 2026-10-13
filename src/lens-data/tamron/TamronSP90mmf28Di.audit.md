@@ -9,3 +9,12 @@ The terminal surface 27 is a zero-power air reference. D26=44.5749 plus D27=2.16
 **Cause/action:** source contradiction; retain the repeated prescription and published image path. Runtime offset **+0.293897 → +0.293897 mm**. Section E row deleted; continued census inclusion is expected. No user-visible numerical change or changelog entry.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-10-06 — Glass label canonicalization
+
+The labels of L6 and L12 were written with OHARA's spaced typography (`S-FSL 5`, `S-TIH 6`), which the glass resolver
+does not tokenize, so the two labels matched no catalog row and the elements were covered only through their
+authored C/F/g line indices. They now read `S-FSL5` and `S-TIH6` in the data and analysis files and resolve to the
+existing OHARA catalog rows (1.48749 / 70.24 and 1.80518 / 25.43, equal to the stored pairs within 0.01 in νd). No
+index, Abbe number, line index or identification changed, and the authored line indices still drive tracing; all
+fourteen labels now match a catalog row.

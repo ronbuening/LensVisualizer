@@ -268,6 +268,8 @@ const LENS_DATA = {
 
   // ZEISS marketed MFD is 0.80 m; the rounded patent MOD conjugate is about 0.810 m object-to-image.
   closeFocusM: 0.8,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription: "PUBLISHED inner focus: G2 moves imageward through INF, |β|=0.025, and MOD |β|=0.125 states.",
 
   nominalFno: 1.85,

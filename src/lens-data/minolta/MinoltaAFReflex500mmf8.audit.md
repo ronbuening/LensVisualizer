@@ -58,3 +58,17 @@ Viewer real rays now give EFL 496.3–496.9 mm with focus at z = 154.0–154.1 a
 - The explicit folded path cannot vignette the innermost returning rays (entrance heights ≈ 13.6–15 mm) that cross
   the primary station inside r = 12 mm, where the cemented relay face would physically intercept them; they still
   trace through the plug zone without refraction.
+
+## 2026-10-04 — Plug-in filter drawn as an element
+
+- Patent check (US 4,951,078, Table 1): r15 and r16 are both flat, d15 = 2.0, N10 = 1.5168, ν10 = 64.20, 2.7 mm
+  behind r14. The table stops at r16 and the patent never names the plate; FIG. 10 draws it behind the rear
+  meniscus. The manufacturer's instructions require the normal or ND4X plug-in filter to be installed.
+- The file had omitted the plate and folded 2.0 / 1.5168 into the last gap. It is now drawn: surfaces 15–16 and
+  element 8 (`Plane-Parallel Plate`), added to the explicit surface order. The air behind it, 62.361147 mm, is the
+  paraxial back focus of the prescription, since the patent prints none; the image plane moves from z = 153.9797
+  to 154.6611 mm, the physical path.
+- The source lists no clear aperture for the plate. Its semi-diameter, 12.5 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format (11.88 mm), plus 5%, rounded up to 0.5 mm.
+- Before/after check: EFL, stop radius and analysis half-field are unchanged, and the same rays of a 74,165-ray
+  field sweep reach the image plane.

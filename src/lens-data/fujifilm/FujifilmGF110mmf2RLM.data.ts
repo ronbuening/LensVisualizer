@@ -328,9 +328,9 @@ const LENS_DATA = {
     "Inner focus — only G2 (L21+L22 cemented doublet) translates toward image. G1, G3, and aperture stop fixed. Linear motor (LM) drive.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2,
+  nominalFno: 2.06,
   apertureBlades: 9,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.52,

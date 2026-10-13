@@ -4,7 +4,7 @@
 
 **Patent:** JP 2023-039817 A, "Zoom Lens and Imaging Device" (ズームレンズ、および撮像装置).
 **Applicant:** Sony Group Corporation (ソニーグループ株式会社).
-**Inventors:** Naoki Miyakawa (宮川 直己), Shūgo Takahashi (高橋 周吾).
+**Inventors:** Naoki Miyagawa (宮川 直己), Shūgo Takahashi (高橋 周吾).
 **Filed:** September 9, 2021. **Published:** March 22, 2023.
 **Embodiment analyzed:** Example 2 (実施例2, Numerical Example 2).
 
@@ -52,19 +52,19 @@ The design achieves a constant aperture of F/2.88 across the zoom range. The tot
 
 #### L11 — Negative Meniscus, convex to object
 
-$n_d$ = 1.77660, $\nu_d$ = 29.7. Glass: dense flint (six-digit 777/297, no confident catalog match). $f$ = −398 mm.
+$n_e$ = 1.77660, $\nu_d$ = 29.7. Glass: NBFD29 (HOYA), from the exact e-line match; supplier unconfirmed. $f$ = −398 mm.
 
-L11 is a weakly negative meniscus at the front of the lens. Its high-index, high-dispersion glass keeps the surface curvatures moderate despite the large 67 mm clear aperture. The nearest catalog glasses are FD110 (HOYA) and S-NPH4 (OHARA) at $n_d$ = 1.78472, $\nu_d$ = 26.1, but the index and dispersion offsets are both significant ($\Delta n_d$ = 0.008, $\Delta \nu_d$ = 3.6), so the patent values likely represent a proprietary melt or deliberate obfuscation. The element's primary role is to introduce negative Petzval contribution at the largest beam diameter, counterbalancing the strong positive power of L12 and L13 and flattening the field. The relatively high index ($n_d$ = 1.776) also minimizes surface reflections from the steep meniscus shape. As the first optical surface, it bears Sony's fluorine coating for environmental protection.
+L11 is a weakly negative meniscus at the front of the lens. Its high-index, high-dispersion glass keeps the surface curvatures moderate despite the large 67 mm clear aperture. The printed pair is HOYA NBFD29 read at the e line: that glass has $n_d$ = 1.77047, $n_e$ = 1.77660 and $\nu_d$ = 29.74, and it is the only catalog row that matches. The element's primary role is to introduce negative Petzval contribution at the largest beam diameter, counterbalancing the strong positive power of L12 and L13 and flattening the field. As the first optical surface, it bears Sony's fluorine coating for environmental protection.
 
 #### L12 — Biconvex Positive (Super ED)
 
-$n_d$ = 1.43810, $\nu_d$ = 95.1. Glass: S-FPL55 class (OHARA) or FCD100 (HOYA) — fluorite-equivalent super-extra-low-dispersion crown. $f$ = +197 mm.
+$n_e$ = 1.43810, $\nu_d$ = 95.1. Glass: FCD100 (HOYA), from the exact e-line match — fluorite-equivalent super-extra-low-dispersion crown; supplier unconfirmed. $f$ = +197 mm.
 
-L12 is the first of two Super ED elements in GR1. With $\nu_d$ = 95.1 it lies at the extreme low-dispersion end of the glass map, in the fluorophosphate crown family near crystalline calcium fluoride. The biconvex shape provides strong positive power at a height where the axial marginal ray is near its maximum, making it the primary contributor to GR1's positive focal length and the primary corrector of axial chromatic aberration. The R4 surface (rear of L12) has an extremely large radius of −9920.911 mm, making it nearly flat — the element is effectively plano-convex, which simplifies manufacturing for this large-diameter Super ED blank.
+L12 is the first of two Super ED elements in GR1. With $\nu_d$ = 95.1 it lies at the extreme low-dispersion end of the glass map, in the fluorophosphate crown family near crystalline calcium fluoride. The printed index is the e-line value of HOYA FCD100 ($n_d$ = 1.43700, $n_e$ = 1.43810, $\nu_d$ = 95.10); OHARA S-FPL53 and S-FPL55 ($n_d$ = 1.43875) are 0.0007 away at the d line and 0.0018 away at the e line. The biconvex shape provides strong positive power at a height where the axial marginal ray is near its maximum, making it the primary contributor to GR1's positive focal length and the primary corrector of axial chromatic aberration. The R4 surface (rear of L12) has an extremely large radius of −9920.911 mm, making it nearly flat — the element is effectively plano-convex, which simplifies manufacturing for this large-diameter Super ED blank.
 
 #### L13 — Positive Meniscus, convex to object (Super ED)
 
-$n_d$ = 1.43810, $\nu_d$ = 95.1. Glass: S-FPL55 class (OHARA) or FCD100 (HOYA) — same Super ED glass as L12. $f$ = +191 mm.
+$n_e$ = 1.43810, $\nu_d$ = 95.1. Glass: FCD100 (HOYA), from the exact e-line match — same Super ED glass as L12. $f$ = +191 mm.
 
 L13 completes the front collector with additional positive power in the same fluorite-class glass. The meniscus shape (R5 = +78.201, R6 = +1122.581) directs the convergence of the off-axis beam while preserving the achromatism established by L12. Using two Super ED elements rather than one allows the total positive power of GR1 to be split across four refracting surfaces, keeping the individual surface powers moderate and reducing higher-order spherical aberration. The combined effect of L11 + L12 + L13 is a compact achromatic positive group ($f_{GR1}$ = +131.5 mm) that establishes the telephoto ratio and provides first-order chromatic correction for the entire system.
 
@@ -72,19 +72,19 @@ L13 completes the front collector with additional positive power in the same flu
 
 #### L21 — Negative Meniscus, convex to object
 
-$n_d$ = 1.77621, $\nu_d$ = 49.6. Glass: unmatched 776496 lanthanum glass; S-LAH66 is a family comparison only. $f$ = −61.8 mm.
+$n_e$ = 1.77621, $\nu_d$ = 49.6. Glass: S-LAH66 (OHARA), from the exact e-line match; supplier unconfirmed. $f$ = −61.8 mm.
 
-L21 is a single-element group with the strongest negative power of any variator sub-group ($f_{GR2}$ = −62.1 mm). OHARA S-LAH66 matches the Abbe number but misses the patent index by about 0.0037, so it remains a family comparison rather than supplying spectral coefficients. With $\nu_d$ = 49.6 the glass sits at the crown–flint boundary in the lanthanum family.
+L21 is a single-element group with the strongest negative power of any variator sub-group ($f_{GR2}$ = −62.1 mm). The 0.0037 by which OHARA S-LAH66 was earlier judged to miss the patent index is the difference between that glass's d-line and e-line indices: S-LAH66 has $n_d$ = 1.77250 and $n_e$ = 1.77621, the printed value, with $\nu_d$ = 49.60. HOYA TAF1 (49.63), SCHOTT N-LAF34 and HIKARI J-LASF016 (both 49.62) share the coordinate and match equally at the printed precision; the data file names S-LAH66, the row under which the site catalog holds this coordinate. With $\nu_d$ = 49.6 the glass sits at the crown–flint boundary in the lanthanum family.
 
 ### GR3 — Second Variator (Moving, Negative)
 
 #### L31 — Biconcave Negative (ED)
 
-$n_d$ = 1.49845, $\nu_d$ = 81.6. Glass: S-FPL51 class (OHARA) — extra-low-dispersion fluorophosphate crown. $f$ = −69.3 mm.
+$n_e$ = 1.49845, $\nu_d$ = 81.6. Glass: FCD1 (HOYA), from the exact e-line match — extra-low-dispersion fluorophosphate crown; supplier unconfirmed. $f$ = −69.3 mm.
 
 #### L32 — Positive Meniscus, convex to object
 
-$n_d$ = 1.86290, $\nu_d$ = 24.8. Glass: 863248 patent-code ultra-high-index dense flint. $f$ = +100.9 mm.
+$n_e$ = 1.86290, $\nu_d$ = 24.8. Glass: S-NBH56 (OHARA), from the exact e-line match — ultra-high-index dense flint; supplier unconfirmed. $f$ = +100.9 mm.
 
 L31 and L32 form a cemented doublet with a combined group focal length of $f_{GR3}$ = −214.8 mm. The cemented interface at R10 = +63.489 mm is the achromatizing surface: the transition from the low-index, low-dispersion ED crown (L31) to the high-index, high-dispersion dense flint (L32) produces a strong negative chromatic contribution that compensates for zoom-induced color shifts. The ED + dense flint pairing ($\nu_d$ = 81.6 vs. 24.8, a span of 56.8 Abbe units) provides more effective achromatization per unit of power than a conventional crown–flint doublet. The overall negative power of GR3 supplements GR2's zooming action, while the cemented construction eliminates the air-gap alignment sensitivity that would otherwise arise in a moving group.
 
@@ -92,9 +92,9 @@ L31 and L32 form a cemented doublet with a combined group focal length of $f_{GR
 
 #### L41 — Positive Meniscus, convex to object
 
-$n_d$ = 1.79191, $\nu_d$ = 25.7. Glass: unmatched 792257 dense flint (patent-listed; supplier unidentified). $f$ = +192.5 mm.
+$n_e$ = 1.79191, $\nu_d$ = 25.7. Glass: FD110 (HOYA), from the e-line match (catalog $n_e$ = 1.79191); supplier unconfirmed. $f$ = +192.5 mm.
 
-L41 is a single positive meniscus element that forms the positive sub-group of the variator. Its role is to partially converge the beam exiting the two preceding negative groups, reducing the diameter of the axial bundle before it enters the fixed GR5 relay. At the wide-angle position, where the beam diameter in the variator is largest, L41 sits farthest from GR5 (d13 = 18.00 mm); at the telephoto end, it closes up to d13 = 1.49 mm. The patent notes (¶0035) that positioning the positive variator group on the image side of the variator block — where the axial ray height is highest at the wide end — is advantageous for reducing the diameter of subsequent groups. Current first-party coefficient catalogs contain no d-line row inside the resolver window. Hikari J-SF11 reaches $n_e$ = 1.791929 at the e line, but its d-line coordinate is only $n_d$ = 1.784720, $\nu_d$ = 25.64; borrowing that curve would mix reference lines. The high refractive index allows strong curvature with minimal thickness and weight, consistent with the patent's emphasis on lightweight variator construction (¶0024).
+L41 is a single positive meniscus element that forms the positive sub-group of the variator. Its role is to partially converge the beam exiting the two preceding negative groups, reducing the diameter of the axial bundle before it enters the fixed GR5 relay. At the wide-angle position, where the beam diameter in the variator is largest, L41 sits farthest from GR5 (d13 = 18.00 mm); at the telephoto end, it closes up to d13 = 1.49 mm. The patent notes (¶0035) that positioning the positive variator group on the image side of the variator block — where the axial ray height is highest at the wide end — is advantageous for reducing the diameter of subsequent groups. The printed pair is the 785/257 dense flint ($n_d$ = 1.78472) read at the e line. HOYA FD110 equals it to five decimals ($n_e$ = 1.79191, $\nu_d$ = 25.72); OHARA S-TIH11 is 0.00001 higher ($n_e$ = 1.79192, $\nu_d$ = 25.68), and HIKARI J-SF11 is 0.00002 higher with $\nu_d$ = 25.64. The data file names S-TIH11 because FD110 has no row in the site catalog; the two curves are nearly identical ($P_{g,F}$ = 0.6162 and 0.6158) and the trace anchors the curve to the printed index. The high refractive index allows strong curvature with minimal thickness and weight, consistent with the patent's emphasis on lightweight variator construction (¶0024).
 
 ### GR5 — Fixed Relay (Positive, Contains Aperture Stop)
 
@@ -102,9 +102,9 @@ GR5 is the most complex group in the system, containing five elements and the ap
 
 #### L51 — Biconvex Positive, 2× Aspherical (ED Aspherical Element)
 
-$n_d$ = 1.49856, $\nu_d$ = 81.6. Glass: S-FPL51 class (OHARA) — ED fluorophosphate crown. $f$ = +65.1 mm.
+$n_e$ = 1.49856, $\nu_d$ = 81.6. Glass: M-FCD1 (HOYA), from the exact e-line match — moldable ED fluorophosphate crown; supplier unconfirmed. $f$ = +65.1 mm.
 
-L51 is positioned immediately ahead of the aperture stop and is the single most powerful positive element in GR5. Both surfaces (S14, S15) are aspherical. This is the "ED aspherical element" cited in Sony's marketing — an element that simultaneously corrects chromatic aberration (through its ED glass composition) and spherical aberration (through the aspherical surface profiles). The aspherical coefficients on S14 are small (A4 = −1.544 × 10⁻⁷), indicating gentle correction of residual spherical aberration at the full aperture. S15's coefficients extend to A14 (−5.779 × 10⁻²⁰), showing that the rear surface provides higher-order correction. The biconvex shape with both surfaces aspherical suggests this element is a precision glass-molded (PGM) aspherical element manufactured from a moldable ED glass formulation.
+L51 is positioned immediately ahead of the aperture stop and is the single most powerful positive element in GR5. Both surfaces (S14, S15) are aspherical. This is the "ED aspherical element" cited in Sony's marketing — an element that simultaneously corrects chromatic aberration (through its ED glass composition) and spherical aberration (through the aspherical surface profiles). The aspherical coefficients on S14 are small (A4 = −1.544 × 10⁻⁷), indicating gentle correction of residual spherical aberration at the full aperture. S15's coefficients extend to A14 (−5.779 × 10⁻²⁰), showing that the rear surface provides higher-order correction. The biconvex shape with both surfaces aspherical suggests this element is a precision glass-molded (PGM) aspherical element manufactured from a moldable ED glass formulation. The printed index agrees: 1.49856 is the e-line index of HOYA M-FCD1 ($n_d$ = 1.49710, $\nu_d$ = 81.56), the molding grade of FCD1, and it differs from the 1.49845 printed for the two polished ED elements L31 and L81.
 
 #### Aperture Stop (STO)
 
@@ -112,17 +112,17 @@ The aperture stop sits between L51 and L52 at surface S16, within GR5. This posi
 
 #### L52 — Biconcave Negative
 
-$n_d$ = 1.86290, $\nu_d$ = 24.8. Glass: 863248 patent-code ultra-high-index dense flint, same glass as L32. $f$ = −47.5 mm.
+$n_e$ = 1.86290, $\nu_d$ = 24.8. Glass: S-NBH56 (OHARA), from the exact e-line match, same glass as L32. $f$ = −47.5 mm.
 
 L52 follows the stop and provides strong negative power to achromatize GR5 against the positive ED element L51. The $\nu_d$ = 24.8 flint paired with the $\nu_d$ = 81.6 ED crown yields a chromatic lever of 56.8 Abbe units, identical to the GR3 doublet pairing. L52's biconcave shape (R17 = −192.404, R18 = +52.285) places the stronger curvature on the rear surface, which faces toward the incoming converging beam from the stop, maximizing its effectiveness at correcting spherical and coma contributions from L51.
 
 #### L53 + L54 — Cemented Doublet (OIS Group)
 
 **L53** — Negative Meniscus, convex to object.
-$n_d$ = 1.86290, $\nu_d$ = 24.8. Glass: 863248 patent-code dense flint. $f$ = −145.7 mm.
+$n_e$ = 1.86290, $\nu_d$ = 24.8. Glass: S-NBH56 (OHARA), from the exact e-line match. $f$ = −145.7 mm.
 
 **L54** — Biconvex Positive, 1× Aspherical (rear surface S21).
-$n_d$ = 1.58547, $\nu_d$ = 59.4. Glass: Ohara L-BAL43 catalog equivalent (patent code 585594; supplier unspecified). $f$ = +40.7 mm.
+$n_e$ = 1.58547, $\nu_d$ = 59.4. Glass: L-BAL42 (OHARA), from the exact e-line match; supplier unconfirmed. $f$ = +40.7 mm.
 
 The cemented L53 + L54 doublet is identified by the patent (¶0091) as the optical image stabilization (OIS) group: "the cemented lens composed of L53 and L54 can be used as the stabilization lens group by moving perpendicular to the optical axis." This is the "decentering" element that shifts laterally to counteract hand-shake blur. The cemented construction ensures that L53 and L54 move as a rigid unit during OIS operation without introducing decenter-induced coma from an air gap.
 
@@ -132,9 +132,9 @@ The net power of the cemented pair ($f$ ≈ +56 mm) is positive, contributing to
 
 #### L55 — Biconvex Positive, 2× Aspherical (XA Element)
 
-$n_d$ = 1.58547, $\nu_d$ = 59.4. Glass: Ohara L-BAL43 catalog equivalent, same material slot as L54. $f$ = +126.2 mm.
+$n_e$ = 1.58547, $\nu_d$ = 59.4. Glass: L-BAL42 (OHARA), from the exact e-line match, same glass as L54. $f$ = +126.2 mm.
 
-L55 is a standalone biconvex element with both surfaces (S22, S23) aspherical. This is the XA (Extreme Aspherical) element, manufactured to 0.01-micron surface precision per Sony's specification. The XA designation indicates a glass-molded aspherical element with surface accuracy an order of magnitude tighter than standard aspherical elements, specifically designed to suppress "onion ring" bokeh patterns that arise from periodic surface irregularities in conventional aspherics. The patent-code barium crown glass ($n_d$ = 1.58547) is well-suited to precision glass molding (PGM), but the audit did not find a unique public catalog entry for the exact pair.
+L55 is a standalone biconvex element with both surfaces (S22, S23) aspherical. This is the XA (Extreme Aspherical) element, manufactured to 0.01-micron surface precision per Sony's specification. The XA designation indicates a glass-molded aspherical element with surface accuracy an order of magnitude tighter than standard aspherical elements, specifically designed to suppress "onion ring" bokeh patterns that arise from periodic surface irregularities in conventional aspherics. The barium crown is well-suited to precision glass molding (PGM): the printed 1.58547 is the e-line index of OHARA L-BAL42 ($n_d$ = 1.58313, $\nu_d$ = 59.39), a low-softening-temperature molding glass. OHARA S-BAL42 (59.37) and HIKARI J-SK12 (59.42) share the coordinate; HOYA M-BACD12 has the same index but $\nu_d$ = 59.46, which would print as 59.5.
 
 S22 has very weak base curvature (R = +325.773 mm) but significant aspherical departure (A4 = 6.525 × 10⁻⁶), functioning almost as a Schmidt-plate-type corrector that manages field-dependent spherical aberration. S23 has stronger base curvature (R = −95.070) with aspherical terms extending to A14, providing combined sagittal and tangential field correction. Together, L55's two aspherical surfaces fine-tune the wavefront across the field at all zoom positions, balancing sharpness against bokeh quality — a hallmark of the G Master design philosophy.
 
@@ -143,14 +143,14 @@ S22 has very weak base curvature (R = +325.773 mm) but significant aspherical de
 #### L61 + L62 — Cemented Doublet
 
 **L61** — Plano-Convex, convex to image.
-$n_d$ = 1.93323, $\nu_d$ = 20.9. Glass: 933209 patent-code ultra-high-index ultra-dense flint; no unique public catalog match found. $f$ = +58.6 mm.
+$n_e$ = 1.93323, $\nu_d$ = 20.9. Glass: E-FDS1 (HOYA), from the exact e-line match — ultra-high-index ultra-dense flint; supplier unconfirmed. $f$ = +58.6 mm.
 
 **L62** — Biconcave Negative.
-$n_d$ = 1.65803, $\nu_d$ = 39.7. Glass: 658397 patent-code short flint; no unique public catalog match found. $f$ = −29.7 mm.
+$n_e$ = 1.65803, $\nu_d$ = 39.7. Glass: S-NBH5 (OHARA), from the exact e-line match — short flint; supplier unconfirmed. $f$ = −29.7 mm.
 
 GR6 is the first of two floating focus groups, with a combined group focal length of $f_{GR6}$ = −61.0 mm. During focusing from infinity to close range, GR6 moves toward the image side (¶0091). At the telephoto end, GR6's focus travel is largest: d23 increases from 2.30 mm (infinity) to 11.53 mm (close focus at 1000 mm), corresponding to 9.23 mm of rearward motion. At the wide end the travel is much smaller (1.14 mm), consistent with the reduced sensitivity of the system to focus shifts at shorter focal lengths.
 
-L61's flat front surface (R24 = ∞) simplifies manufacturing and alignment, while its ultra-high-index 933209 patent-code glass ($n_d$ = 1.933, $\nu_d$ = 20.9) provides strong positive surface power at the cemented junction (R25 = −54.730). The junction transition from $n_d$ = 1.933 to $n_d$ = 1.658 produces a large index step (Δ$n$ = 0.275) that is the primary source of GR6's chromatic correction. The net negative power of the doublet provides divergence that is partially compensated by GR7's convergence, and the floating relationship between GR6 and GR7 controls the aberration balance (particularly spherical aberration and field curvature) as the object distance changes.
+L61's flat front surface (R24 = ∞) simplifies manufacturing and alignment, while its ultra-high-index dense flint ($n_e$ = 1.933, $\nu_d$ = 20.9) provides strong positive surface power at the cemented junction (R25 = −54.730). The junction transition from $n_e$ = 1.933 to $n_e$ = 1.658 produces a large index step (Δ$n$ = 0.275) that is the primary source of GR6's chromatic correction. The net negative power of the doublet provides divergence that is partially compensated by GR7's convergence, and the floating relationship between GR6 and GR7 controls the aberration balance (particularly spherical aberration and field curvature) as the object distance changes.
 
 Two of the lens's four XD Linear Motors are dedicated to driving GR6.
 
@@ -158,7 +158,7 @@ Two of the lens's four XD Linear Motors are dedicated to driving GR6.
 
 #### L71 — Biconvex Positive
 
-$n_d$ = 1.61669, $\nu_d$ = 44.3. Glass: unresolved 617443 patent-coordinate glass at the flint/crown boundary; the patent does not identify a supplier. $f$ = +50.5 mm.
+$n_e$ = 1.61669, $\nu_d$ = 44.3. Glass: S-NBM51 (OHARA), from the exact e-line match; supplier unconfirmed. $f$ = +50.5 mm.
 
 L71 is a single biconvex positive element forming the second focus group ($f_{GR7}$ = +50.8 mm). During focusing, GR7 moves toward the object side — opposite to GR6's direction. This counter-motion is the essence of the floating focus mechanism: by varying the separation between GR6 (negative) and GR7 (positive), the system adjusts focus while simultaneously correcting for the spherical aberration and field curvature shifts that would occur with single-group focusing. The patent states (¶0039) that this dual-group arrangement allows the lens to maintain high optical performance from infinity to close focus.
 
@@ -170,50 +170,55 @@ Two XD Linear Motors drive GR7 independently from GR6.
 
 #### L81 — Biconcave Negative (ED)
 
-$n_d$ = 1.49845, $\nu_d$ = 81.6. Glass: S-FPL51 class (OHARA) — ED fluorophosphate crown. $f$ = −104.9 mm.
+$n_e$ = 1.49845, $\nu_d$ = 81.6. Glass: FCD1 (HOYA), from the exact e-line match — ED fluorophosphate crown, same glass as L31. $f$ = −104.9 mm.
 
 L81 is an ED glass element in a negative role — an unusual but deliberate choice. Placing a low-dispersion glass in a negative element at the rear of the system provides negative chromatic contribution that helps balance the residual lateral color from the variator and relay groups. The biconcave shape provides substantial negative Petzval contribution, flattening the field at the image plane. The use of ED glass rather than a conventional crown minimizes the lateral chromatic aberration penalty that a negative rear element would otherwise introduce.
 
 #### L82 — Negative Meniscus, convex to image
 
-$n_d$ = 2.00912, $\nu_d$ = 29.1. Glass: unmatched 009/291 ultra-high-index lanthanum-flint class. $f$ = −84.5 mm.
+$n_e$ = 2.00912, $\nu_d$ = 29.1. Glass: TAFD55 (HOYA), from the exact e-line match; supplier unconfirmed. $f$ = −84.5 mm.
 
-The patent supplies the optical coordinate but not a supplier identity. HOYA FD225 was previously assigned here,
-but its official $n_d = 1.80809$, $\nu_d = 22.76$ row is incompatible with L82. No current catalog entry falls
-within the project's index and Abbe tolerances, so the model retains the patent values on the Abbe fallback path.
+The patent supplies the optical coordinate but not a supplier identity. The printed 2.00912 is the e-line index of the
+001/291 lanthanum dense flint ($n_d$ = 2.00100): HOYA TAFD55 ($\nu_d$ = 29.13), OHARA S-LAH99 (29.14) and HIKARI
+J-LASFH16 (29.12) all equal it to five decimals, and the data file names the HOYA row. HOYA FD225, assigned here in an
+early draft, is $n_d = 1.80809$, $\nu_d = 22.76$ and is incompatible with L82.
 
-L82 is the rearmost glass element, made of the highest-index glass in the system ($n_d$ = 2.009). The meniscus shape (both radii negative: R31 = −44.639, R32 = −95.059) curves toward the image, creating a divergent effect on the converging beam. Its primary role is to control the exit pupil position and telecentricity for the digital sensor, while contributing additional negative Petzval curvature. The ultra-high index minimizes the surface curvatures needed for a given power, keeping the element thin and the sag manageable at the ~32 mm semi-diameter.
+L82 is the rearmost glass element, made of the highest-index glass in the system ($n_e$ = 2.009). The meniscus shape (both radii negative: R31 = −44.639, R32 = −95.059) curves toward the image, creating a divergent effect on the converging beam. Its primary role is to control the exit pupil position and telecentricity for the digital sensor, while contributing additional negative Petzval curvature. The ultra-high index minimizes the surface curvatures needed for a given power, keeping the element thin and the sag manageable at the ~32 mm diameter.
 
 The combined GR8 power ($f_{GR8}$ = −45.9 mm) is the strongest negative group in the system, dominating the Petzval balance and ensuring flat-field performance across the image circle.
 
 
 ## Glass Identification and Selection
 
-The design employs glasses from at least two vendors (OHARA and HOYA), which is typical of Sony's optical engineering practice.
+Paragraph 0056 defines the table's `ndi` column as the refractive index at the d line (587.6 nm) and `νdi` as the d-line Abbe number. The printed indices are nevertheless e-line values (546.07 nm) paired with d-line Abbe numbers. All seventeen equal a HOYA or OHARA catalog glass at the e line — sixteen to all five printed decimals and L41 to within 0.00001 — each with that glass's $\nu_d$ at the one printed decimal. At the d line no catalog glass has an index within 0.00002 of any of the twelve distinct printed values. The model stores the printed values unchanged and treats the whole column as e-line (`indexReference: "e"` on all seventeen elements). Every element carries a catalog name and traces on that glass's dispersion curve, anchored to the printed index. The names identify catalog coordinates; they do not establish Sony's supplier or melt. Both HOYA and OHARA glasses appear, which is typical of Sony's optical engineering practice.
 
-| Element | $n_d$   | $\nu_d$ | Glass Identification       | Role               | Confidence |
-|---------|---------|---------|----------------------------|---------------------|------------|
-| L11     | 1.77660 | 29.7    | Dense flint (777/297)      | Dense flint         | Uncertain  |
-| L12     | 1.43810 | 95.1    | S-FPL55 (OHARA) / FCD100 (HOYA) | Super ED crown  | Close      |
-| L13     | 1.43810 | 95.1    | S-FPL55 (OHARA) / FCD100 (HOYA) | Super ED crown  | Close      |
-| L21     | 1.77621 | 49.6    | Unmatched 776496; S-LAH66 comparison | Lanthanum glass | Unresolved |
-| L31     | 1.49845 | 81.6    | S-FPL51 class (OHARA)     | ED crown            | Close      |
-| L32     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
-| L41     | 1.79191 | 25.7    | Unmatched 792257            | Dense flint         | Unresolved |
-| L51     | 1.49856 | 81.6    | S-FPL51 class (OHARA)     | ED crown (moldable) | Close      |
-| L52     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
-| L53     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
-| L54     | 1.58547 | 59.4    | L-BAL43 equivalent / 585594 | Barium crown        | Coefficient-backed equivalent |
-| L55     | 1.58547 | 59.4    | L-BAL43 equivalent / 585594 | Barium crown (XA)   | Coefficient-backed equivalent |
-| L61     | 1.93323 | 20.9    | 933209 patent-code         | Ultra-dense flint   | Patent-code |
-| L62     | 1.65803 | 39.7    | 658397 patent-code         | Short flint         | Patent-code |
-| L71     | 1.61669 | 44.3    | 617443 patent coordinate   | Flint/crown boundary | Unresolved |
-| L81     | 1.49845 | 81.6    | S-FPL51 class (OHARA)     | ED crown            | Close      |
-| L82     | 2.00912 | 29.1    | Unmatched 009/291 class    | Ultra-dense flint   | Patent coordinate |
+| Element | Printed $n$ (e line) | Printed $\nu_d$ | Data-file glass | Catalog $n_d$ / $\nu_d$ | Other rows matching at the e line | Role |
+|---------|---------|---------|----------------------------|-----------------|----------------------------|---------------------|
+| L11     | 1.77660 | 29.7    | NBFD29 (HOYA)              | 1.77047 / 29.74 | none                       | Dense flint         |
+| L12     | 1.43810 | 95.1    | FCD100 (HOYA)              | 1.43700 / 95.10 | none                       | Super ED crown      |
+| L13     | 1.43810 | 95.1    | FCD100 (HOYA)              | 1.43700 / 95.10 | none                       | Super ED crown      |
+| L21     | 1.77621 | 49.6    | S-LAH66 (OHARA)            | 1.77250 / 49.60 | HOYA TAF1, SCHOTT N-LAF34, HIKARI J-LASF016 | Lanthanum glass |
+| L31     | 1.49845 | 81.6    | FCD1 (HOYA)                | 1.49700 / 81.61 | CDGM H-FK61                | ED crown            |
+| L32     | 1.86290 | 24.8    | S-NBH56 (OHARA)            | 1.85478 / 24.80 | none                       | Ultra-dense flint   |
+| L41     | 1.79191 | 25.7    | FD110 (HOYA), $n_e$ 1.79191 | 1.78472 / 25.72 | OHARA S-TIH11 ($n_e$ 1.79192), CDGM H-ZF13 | Dense flint |
+| L51     | 1.49856 | 81.6    | M-FCD1 (HOYA)              | 1.49710 / 81.56 | none                       | ED crown (moldable) |
+| L52     | 1.86290 | 24.8    | S-NBH56 (OHARA)            | 1.85478 / 24.80 | none                       | Ultra-dense flint   |
+| L53     | 1.86290 | 24.8    | S-NBH56 (OHARA)            | 1.85478 / 24.80 | none                       | Ultra-dense flint   |
+| L54     | 1.58547 | 59.4    | L-BAL42 (OHARA)            | 1.58313 / 59.39 | OHARA S-BAL42, HIKARI J-SK12 | Barium crown (moldable) |
+| L55     | 1.58547 | 59.4    | L-BAL42 (OHARA)            | 1.58313 / 59.39 | OHARA S-BAL42, HIKARI J-SK12 | Barium crown (XA) |
+| L61     | 1.93323 | 20.9    | E-FDS1 (HOYA)              | 1.92286 / 20.88 | SCHOTT N-SF66              | Ultra-dense flint   |
+| L62     | 1.65803 | 39.7    | S-NBH5 (OHARA)             | 1.65412 / 39.68 | SCHOTT N-KZFS5             | Short flint         |
+| L71     | 1.61669 | 44.3    | S-NBM51 (OHARA)            | 1.61340 / 44.27 | HOYA ADF40 (discontinued)  | Flint/crown boundary |
+| L81     | 1.49845 | 81.6    | FCD1 (HOYA)                | 1.49700 / 81.61 | CDGM H-FK61                | ED crown            |
+| L82     | 2.00912 | 29.1    | TAFD55 (HOYA)              | 2.00100 / 29.13 | OHARA S-LAH99, HIKARI J-LASFH16 | Ultra-dense flint |
 
-The chromatic correction strategy is built on three tiers of low-dispersion glass. The two Super ED elements (L12, L13, $\nu_d$ = 95.1) handle primary axial color correction in GR1, where the marginal ray height is largest. Three ED elements (L31, L51, L81, $\nu_d$ = 81.6) provide secondary color correction distributed across the variator, relay, and rear groups. The achromatizing partners are consistently ultra-high-dispersion dense flints: the 863248 patent-code glass ($\nu_d$ = 24.8) appears in three elements (L32, L52, L53), providing chromatic lever arms of 56.8 Abbe units against the ED crowns. L82's unmatched patent-coordinate glass pushes the index to the extreme high end of the glass map, allowing a compact negative element at the rear of the system without implying a catalog identity the source does not establish.
+The chromatic correction strategy is built on three tiers of low-dispersion glass. The two Super ED elements (L12, L13, $\nu_d$ = 95.1) handle primary axial color correction in GR1, where the marginal ray height is largest. Three ED elements (L31, L51, L81, $\nu_d$ = 81.6) provide secondary color correction distributed across the variator, relay, and rear groups. The achromatizing partners are consistently ultra-high-dispersion dense flints: S-NBH56 ($\nu_d$ = 24.8) appears in three elements (L32, L52, L53), providing chromatic lever arms of 56.8 Abbe units against the ED crowns. L82's 001/291 glass pushes the index to the extreme high end of the glass map, allowing a compact negative element at the rear of the system.
 
-L11 (1.77660/29.7), L21 (1.77621/49.6), and L41 (1.79191/25.7) resist confident identification against the public catalog. For L21, S-LAH66 matches the Abbe number but misses the index beyond the resolver tolerance. For L41, the visually confirmed patent table explicitly uses d-line coordinates, rejecting the tempting J-SF11 e-line coincidence. These data labels stay explicitly unmatched. L54 and L55 now use the coefficient-backed L-BAL43 curve, whose 1.58573 / 59.70 coordinate fits the patent pair, while retaining the patent code and unspecified supplier. The Super ED and ED rows likewise remain class-level comparisons where the patent does not establish a unique vendor.
+Earlier revisions of this file read the column as d-line data, as the patent states. That reading left ten elements unmatched or on patent-code labels and assigned near neighbours to the other seven: S-FPL55 to L12 and L13, S-FPL51 to the three ED elements, and L-BAL43 to L54 and L55. Read at the e line, each of those gaps closes. The 0.0037 by which S-LAH66 missed L21 is that glass's own d-to-e index difference. The J-SF11 e-line coincidence noted for L41 was the 785/257 coordinate showing through. The Super ED pair sits 0.0007 from S-FPL55 because it is HOYA FCD100 at the e line.
+
+Where more than one vendor publishes the coordinate (L21, L31/L81, L41, L54/L55, L61, L62, L71, L82), the data file names one row and the table lists the others. Among rows the vendors still list, HOYA has one equal to five decimals for ten elements and OHARA for eight, or nine with S-LAH66, which OHARA has since discontinued. L82, which TAFD55 and S-LAH99 match equally, takes the HOYA name on that margin; L21 takes the OHARA name because the site catalog holds the coordinate under S-LAH66. The printed pairs cannot separate the candidates in either case. OHARA S-FPL51 has the index of L31 and L81 but $\nu_d$ = 81.55 (81.546 from its dispersion formula), which prints as 81.5.
+
+The Abbe slot keeps the printed d-line number. Catalog $\nu_e$ is 0.2 to 0.4 lower for these glasses, inside the runtime's ±2 match window, and because every element resolves to a catalog curve the printed Abbe number is not used to estimate dispersion. The patent publishes no partial-dispersion data, so the anomalous-dispersion flags on the Super ED and ED elements rest on the glass class.
 
 
 ## Focus Mechanism
@@ -301,7 +306,7 @@ S14's departure is negligible (17 µm), confirming its role as a gentle spherica
 
 ## Image Stabilization
 
-The patent identifies the cemented doublet L53 + L54 within GR5 as the OIS (Optical SteadyShot) element group (¶0091). This group shifts perpendicular to the optical axis to compensate for angular camera shake. The stabilization group is positioned between the aperture stop and the rear of GR5, where the beam diameter is moderate (semi-diameters of ~33–34 mm) and the principal ray height is sufficient to provide effective angular compensation.
+The patent identifies the cemented doublet L53 + L54 within GR5 as the OIS (Optical SteadyShot) element group (¶0091). This group shifts perpendicular to the optical axis to compensate for angular camera shake. The stabilization group is positioned between the aperture stop and the rear of GR5, where the beam diameter is moderate (~33–34 mm) and the principal ray height is sufficient to provide effective angular compensation.
 
 The production lens provides three OSS modes: Mode 1 (standard), Mode 2 (panning), and Mode 3 (moving subjects with emphasis on viewfinder stability). The aspherical surface on L54's rear (S21) is specifically designed to maintain image quality during decentered operation, minimizing the coma and astigmatism that would otherwise degrade the stabilized image.
 
@@ -333,5 +338,5 @@ The design also reflects Sony's vertically integrated glass and manufacturing ca
 1. JP 2023-039817 A, Sony Group Corporation, published March 22, 2023. Example 2.
 2. Sony Corporation, "FE 70-200mm F2.8 GM OSS II" official product specifications, https://www.sony.com/.
 3. OpticalLimits review of the Sony FE 70-200mm f/2.8 GM OSS II, June 2024.
-4. OHARA and HOYA optical glass catalogs, checked during the 2026-05-20 audit; L32/L52/L53, L54/L55, L61, and L62 remain patent-code labels where no unique coefficient-backed public match was found.
+4. OHARA, HOYA, SUMITA and HIKARI optical glass catalogs (vendor Zemax files and the site's coefficient catalog, which also holds SCHOTT and CDGM rows), compared with the printed pairs at both the d line and the e line in the 2026-10-08 audit.
 5. HOYA Optical Glass catalog (FD110, FD225, and FCD100); its E-FEL6 row was checked and rejected for L71, and its FD225 row was checked and rejected for L82.

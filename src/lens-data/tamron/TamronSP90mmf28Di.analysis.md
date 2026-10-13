@@ -86,7 +86,7 @@ The glass is an exact current-catalog match. Its $\nu_d$ places it in dense lant
 
 ### L6 — Biconcave Negative
 
-$n_d = 1.48749$, $\nu_d = 70.24$. Glass: OHARA S-FSL 5; the current catalog lists $\nu_d = 70.23$. $f = -44.05$ mm.
+$n_d = 1.48749$, $\nu_d = 70.24$. Glass: OHARA S-FSL5; the current catalog lists $\nu_d = 70.23$. $f = -44.05$ mm.
 
 L6 adds strong negative power with low refractive index and low dispersion. It counterbalances the high-index L5 and high-dispersion L7 within G2. The small one-hundredth difference in Abbe number is consistent with catalog revision or rounding and does not justify substituting a different glass.
 
@@ -130,7 +130,7 @@ S-LAL12Q is used rather than the older S-LAL12 label because the current OHARA c
 ### L11 + L12 — Cemented Negative VC Doublet
 
 **L11:** $n_d = 1.58913$, $\nu_d = 61.13$. Glass: OHARA S-BAL35; the current catalog lists $\nu_d = 61.14$. Standalone $f = -41.25$ mm.  
-**L12:** $n_d = 1.80518$, $\nu_d = 25.42$. Glass: OHARA S-TIH 6. Standalone $f = +94.26$ mm.
+**L12:** $n_d = 1.80518$, $\nu_d = 25.42$. Glass: OHARA S-TIH6. Standalone $f = +94.26$ mm.
 
 Together the two elements form a net-negative group with focal length −68.674 mm. G5 remains axially fixed during focusing but translates almost perpendicular to the optical axis for vibration compensation. A cemented doublet provides chromatic correction in a compact moving package and avoids an internal air gap that would increase the decentered assembly's length and mass.
 
@@ -163,13 +163,13 @@ The patent supplies only $n_d$ and $\nu_d$; it does not name glass vendors. Iden
 | L3 | 1.84666 | 23.78 | HOYA FDS90 | Exact | Dense-flint negative in D1 |
 | L4 | 1.43700 | 95.10 | HOYA FCD100 | Exact | Second XLD positive |
 | L5 | 1.81600 | 46.62 | OHARA S-LAH59 | Exact | High-index negative |
-| L6 | 1.48749 | 70.24 | OHARA S-FSL 5 | Near-exact; catalog $\nu_d=70.23$ | Low-dispersion negative |
+| L6 | 1.48749 | 70.24 | OHARA S-FSL5 | Near-exact; catalog $\nu_d=70.23$ | Low-dispersion negative |
 | L7 | 1.84666 | 23.78 | HOYA FDS90 | Exact | Positive dense-flint balance |
 | L8 | 1.59282 | 68.62 | HOYA FCD515 | Exact | LD moving positive |
 | L9 | 1.72825 | 28.46 | OHARA S-TIH10 | Exact | Negative member of D2 |
 | L10 | 1.67790 | 55.35 | OHARA S-LAL12Q | Exact | Positive member of D2 |
 | L11 | 1.58913 | 61.13 | OHARA S-BAL35 | Near-exact; catalog $\nu_d=61.14$ | Negative member of VC D3 |
-| L12 | 1.80518 | 25.42 | OHARA S-TIH 6 | Exact | Positive member of VC D3 |
+| L12 | 1.80518 | 25.42 | OHARA S-TIH6 | Exact | Positive member of VC D3 |
 | L13 | 1.72000 | 50.23 | OHARA S-LAL10 | Exact | Rear positive |
 | L14 | 1.84666 | 23.78 | HOYA FDS90 | Exact | Rear negative |
 
@@ -289,7 +289,7 @@ Model F004 was introduced in 2012 with VC and USD autofocus. Tamron replaced it 
 - Tamron Co., Ltd., official archived product specification for SP 90mm F/2.8 Di MACRO 1:1 VC USD, Model F004.
 - Tamron Co., Ltd., official product-history chronology for the 2012 F004 and 2016 F017.
 - HOYA Corporation, official optical-glass code and property listings for FCD100, FCD515, FDS90, and TAF1.
-- OHARA Inc., Optical Glass Data, catalog release April 2, 2026, for S-LAH66N, S-LAH59, S-FSL 5, S-TIH10, S-LAL12Q, S-BAL35, S-TIH 6, and S-LAL10.
+- OHARA Inc., Optical Glass Data, catalog release April 2, 2026, for S-LAH66N, S-LAH59, S-FSL5, S-TIH10, S-LAL12Q, S-BAL35, S-TIH6, and S-LAL10.
 
 ## Image-plane source audit (2026-09-25)
 

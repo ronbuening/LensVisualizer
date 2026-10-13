@@ -136,7 +136,11 @@ export function intersectStateSurface(
   } = {},
 ): SurfaceIntersectionResult {
   const surface = state.surfaces[surfaceIndex];
-  return intersectSurfaceProfile(ray, surface.profile, surface.z, { ...options, directionNormalized: true });
+  return intersectSurfaceProfile(ray, surface.profile, surface.z, {
+    ...options,
+    directionNormalized: true,
+    clearRadius: surface.sd,
+  });
 }
 
 /**

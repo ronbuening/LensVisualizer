@@ -49,7 +49,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-dx-micro-nikkor-85mm-f35g-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR",
+  name: "NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR",
   subtitle: "US 2009/0190220 A1 Example 1 — production correlation inferred; published focus keyframes",
   specs: [
     "14 ELEMENTS / 10 GROUPS",
@@ -317,6 +317,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.26419491,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED dual-group internal focus: G2 moves toward the image while G3 moves toward the object; the infinity, beta=-0.5, and beta=-1.0 patent rows are exact focus keyframes. Patent beta=-1.0 normalizes to 0.26419491 m object-to-image distance; Nikon markets 0.286 m MFD from the focal plane.",
 

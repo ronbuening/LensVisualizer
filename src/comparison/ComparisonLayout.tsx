@@ -9,6 +9,7 @@ import LensDiagramPanel from "../components/layout/LensDiagramPanel.js";
 import type { Theme } from "../types/theme.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { ComparisonLensesOk } from "./useComparisonMode.js";
+import { lensSystemKey } from "../utils/catalog/teleconverterCatalog.js";
 
 interface ComparisonLayoutProps {
   theme: Theme;
@@ -26,7 +27,7 @@ interface ComparisonLayoutProps {
   flashPanel: string | null;
 }
 
-/** Keyed by lens so only the replaced pane loses its local disclosure choice. */
+/** Keyed by lens-plus-converter system so only the replaced pane loses its local disclosure choice. */
 function ComparisonPane({
   defaultExpanded,
   ...props
@@ -60,6 +61,9 @@ export default function ComparisonLayout({
   const shortViewport = useMediaQuery("(max-height: 800px)", { ssrDefault: false, clientOnly: true });
   const maxSvgHeight = isWide ? "none" : "42vh";
   const minHeaderHeight = isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined;
+  /* Each pane's converter is read from the lens it was built into, so pane identity follows the built system. */
+  const teleconverterKeyA = comparisonLenses?.LA.data.attachedTeleconverter?.key ?? null;
+  const teleconverterKeyB = comparisonLenses?.LB.data.attachedTeleconverter?.key ?? null;
 
   return (
     <div
@@ -82,10 +86,11 @@ export default function ComparisonLayout({
         }}
       >
         <ComparisonPane
-          key={lensKeyA}
+          key={lensSystemKey(lensKeyA, teleconverterKeyA)}
           defaultExpanded={!shortViewport}
           minDiagramHeight={isWide ? 280 : undefined}
           lensKey={lensKeyA}
+          teleconverterKey={teleconverterKeyA}
           runtimeLens={comparisonLenses?.LA}
           focusT={focusPair.focusA}
           zoomT={zoomPair.zoomA}
@@ -115,10 +120,11 @@ export default function ComparisonLayout({
         }}
       >
         <ComparisonPane
-          key={lensKeyB}
+          key={lensSystemKey(lensKeyB, teleconverterKeyB)}
           defaultExpanded={!shortViewport}
           minDiagramHeight={isWide ? 280 : undefined}
           lensKey={lensKeyB}
+          teleconverterKey={teleconverterKeyB}
           runtimeLens={comparisonLenses?.LB}
           focusT={focusPair.focusB}
           zoomT={zoomPair.zoomB}

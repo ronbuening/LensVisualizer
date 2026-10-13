@@ -43,6 +43,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 806-407 coordinate resolves to the coefficient-backed NBFD13 family; the    ║
  * ║ NBFD13/M-NBFD130 suffix remains a physical-form distinction, not a supplier ║
  * ║ claim.                                                                       ║
+ * ║                                                                            ║
+ * ║ NOTE ON PARTIAL DISPERSION:                                                ║
+ * ║   The patent prints only N and ν (¶0151, Table 1): no PgF, no ΔPgF and no  ║
+ * ║   normal-line formula of its own. `dPgF` is the PgF of each element's      ║
+ * ║   authored nC/nF/ng minus the engine's normal line (0.6438 − 0.001682·νd), ║
+ * ║   not a deviation from the 0.64833 − 0.00180·νd line. L1 and L5 keep       ║
+ * ║   four-decimal values that agree with their line indices within 0.0003.    ║
+ * ║   The trace uses the authored line indices, so `dPgF` only annotates them. ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -102,7 +110,7 @@ const LENS_DATA = {
       nC: 1.98812,
       nF: 2.04003,
       ng: 2.07352,
-      dPgF: 0.0316,
+      dPgF: 0.033851,
       role: "GR1 second positive meniscus.",
     },
     {
@@ -119,7 +127,7 @@ const LENS_DATA = {
       nC: 1.68954,
       nF: 1.70258,
       ng: 1.70971,
-      dPgF: -0.0059,
+      dPgF: -0.007538,
       role: "Object-side positive element of GR2 front subgroup G2f; both surfaces are aspherical.",
     },
     {
@@ -136,7 +144,7 @@ const LENS_DATA = {
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      dPgF: 0.0374,
+      dPgF: 0.032056,
       cemented: "D1",
       role: "Positive component of the cemented L4/L5 pair in GR2 front subgroup G2f.",
     },
@@ -172,7 +180,7 @@ const LENS_DATA = {
       nC: 1.48535,
       nF: 1.49227,
       ng: 1.49594,
-      dPgF: 0.009,
+      dPgF: 0.005027,
       role: "Image-side positive element of GR2 front subgroup G2f.",
     },
     {
@@ -189,7 +197,7 @@ const LENS_DATA = {
       nC: 1.48535,
       nF: 1.49227,
       ng: 1.49594,
-      dPgF: 0.009,
+      dPgF: 0.005027,
       role: "GR2 rear subgroup G2r; the patent moves this element laterally for shake correction.",
     },
     {
@@ -206,7 +214,7 @@ const LENS_DATA = {
       nC: 1.69297,
       nF: 1.70553,
       ng: 1.71235,
-      dPgF: -0.006,
+      dPgF: -0.007523,
       role: "GR3 negative focus-group element; the rear surface is aspherical, but close-focus travel is unpublished.",
     },
     {
@@ -223,7 +231,7 @@ const LENS_DATA = {
       nC: 1.80022,
       nF: 1.82001,
       ng: 1.83123,
-      dPgF: -0.0059,
+      dPgF: -0.008339,
       role: "GR4 positive biconvex element; both surfaces are aspherical.",
     },
   ],

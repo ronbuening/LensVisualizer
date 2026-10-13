@@ -7,6 +7,7 @@ import useComparisonMode, {
   type ComparisonLensesResult,
 } from "../../../src/comparison/useComparisonMode.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { ALL_TELECONVERTER_KEYS, resolveTeleconverterKey } from "../../../src/utils/catalog/teleconverterCatalog.js";
 import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
 
 /* Pick two valid catalog keys for testing */
@@ -57,6 +58,25 @@ describe("useComparisonMode", () => {
       delete LENS_CATALOG[prime.key];
     }
   });
+  it("builds each pane with its own teleconverter so a lens can be compared against itself", () => {
+    /* The hook reads the real catalogs, so resolve a real converter–host pair instead of naming a lens. */
+    const teleconverterKey = ALL_TELECONVERTER_KEYS[0];
+    const hostKey = CATALOG_KEYS.find((key) => resolveTeleconverterKey(key, teleconverterKey) !== null)!;
+    const { result } = renderHook(() =>
+      useComparisonMode(
+        makeParams({ comparing: true, lensKeyA: hostKey, lensKeyB: hostKey, teleconverterKeyA: teleconverterKey }),
+      ),
+    );
+
+    const lenses = result.current.comparisonLenses;
+    expect(isComparisonOk(lenses)).toBe(true);
+    if (!isComparisonOk(lenses)) return;
+    expect(lenses.LA.data.attachedTeleconverter?.key).toBe(teleconverterKey);
+    expect(lenses.LB.data.attachedTeleconverter).toBeUndefined();
+    expect(lenses.LA.stopPhysSD).toBeCloseTo(lenses.LB.stopPhysSD, 9);
+    expect(lenses.LA.EFL).toBeGreaterThan(lenses.LB.EFL);
+  });
+
   it("returns null for all fields when not comparing", () => {
     const { result } = renderHook(() => useComparisonMode(makeParams({ comparing: false })));
     expect(result.current.comparisonLenses).toBeNull();

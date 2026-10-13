@@ -7,3 +7,4 @@ export {
   resolveMtfSpectrum,
 } from "./analysis/mtfSupport.js";
 export { computeMtf, computeMtfSteps, resolveMtfGeometry, type MtfJobCache } from "./analysis/mtf.js";
+export { assessMtfDataLimitations, type MtfDataLimitationInput } from "./analysis/mtfDataLimitations.js";

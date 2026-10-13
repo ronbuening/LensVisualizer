@@ -1,4 +1,4 @@
-# Nikon AF-S NIKKOR 58mm f/1.4 G (patent design candidate)
+# NIKON AF-S NIKKOR 58mm f/1.4 G (patent design candidate)
 
 ## Patent Reference and Design Identification
 

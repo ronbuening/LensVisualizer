@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5G ED                  ║
+ * ║ LENS DATA — NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED                  ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 8,169,718 B2, Embodiment / Example 4.                         ║
  * ║ Production correlation is convergent, not manufacturer-confirmed.          ║
@@ -45,7 +45,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-dx-nikkor-10-24mm-f35-45g-ed",
   maker: "Nikon",
-  name: "NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5G ED",
+  name: "NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED",
   subtitle: "US 8,169,718 B2 — Example 4; convergent production correlation",
   specs: [
     "14 PHYSICAL ELEMENTS / 9 GROUPS",

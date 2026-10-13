@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-300mm-f4e-pf-ed-vr",
-  name: "NIKON AF-S NIKKOR 300mm f/4E PF ED VR",
+  name: "NIKON AF-S NIKKOR 300mm f/4 E PF ED VR",
   maker: "Nikon",
   subtitle: "JP 2015-102852 A — Example 1; strong production correlation; unscaled patent design",
 

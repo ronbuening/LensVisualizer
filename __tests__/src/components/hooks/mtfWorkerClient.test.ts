@@ -36,6 +36,7 @@ const job: MtfJob = {
   options: {
     method: "geometric",
     spectrum: "reference",
+    focus: "design",
     pupilSemiDiameterMm: 1,
     stopSemiDiameterMm: 1,
     fieldFractions: [0],

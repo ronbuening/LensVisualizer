@@ -154,7 +154,7 @@ const LENS_DATA = {
       nd: 1.642,
       vd: 58.1,
       fl: -23.0,
-      glass: "LaK/SK crown (642/581)",
+      glass: "LAC6 (HOYA) class (642581 lanthanum crown, LaK6 type; Δnd +0.0005, Δνd −0.14; equivalent)",
       apd: false,
       role: "Rear field-flattening meniscus — Petzval correction and quasi-symmetric distortion control",
       cemented: undefined,

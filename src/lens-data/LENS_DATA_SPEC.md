@@ -30,18 +30,29 @@ Per-lens patent audit logs use `*.audit.md` alongside the data file. They are no
 - Variable air gaps for focus and zoom
 - Mirror or blocking surfaces that participate in a folded path
 - Annular clear apertures or central obstructions when they are optically meaningful
-- **Required in-lens drop-in / slip-in filters** — a plane plate the source prescription lists ahead of the last lens
-  surface, when the manufacturer says a filter must stay inserted (super-telephoto filter holders shipped with an NC
-  or clear filter). Author it at the source position as two flat surfaces and a drawn `Plane-Parallel Plate` element
-  with the source's physical gaps; never fold t/n into a neighbouring air gap. Keep it out of `elementCount`.
+- **Required drop-in / slip-in filters** — a plane plate the source prescription lists at the lens's own filter
+  holder, whether ahead of the last lens surface or behind it, when the lens is computed with a filter in place
+  (super-telephoto holders shipped with an NC or clear filter, a mirror lens's plug-in filter). It belongs to the
+  lens: a teleconverter mounts behind it. Author it at the source position as two flat surfaces and a drawn
+  `Plane-Parallel Plate` element with the source's physical gaps; never fold t/n into a neighbouring air gap. When the
+  source gives no clear aperture, or only a ray-envelope "effective diameter" that would limit bundles the rest of
+  the model passes, size the semi-diameter by ray trace — the largest height on the plate of any ray that reaches the
+  image format or the diagram's off-axis field, at every focus and zoom end, plus 5%, rounded up to 0.5 mm — and log
+  the estimate in the `*.audit.md` sidecar. Count it in `elementCount` only when the maker's published count includes
+  it.
 
 **Model through `rearPlates`, not as surfaces or elements:**
-- **Sensor glass / cover glass and rear filter plates** that the source prescription lists behind the last lens
-  surface (cover glass, IR-cut / low-pass stacks, rear drop-in filters). See [Rear Plates](#rear-plates-rearplates).
+- **Camera-side plates** the source prescription lists behind the last lens surface: sensor cover glass and IR-cut /
+  low-pass stacks, which sit a few millimetres ahead of the image and stay with the camera when the lens or a
+  teleconverter changes. See [Rear Plates](#rear-plates-rearplates). A drop-in filter in the lens's own holder is not
+  one of these, even when it is the last glass in the prescription.
 
 **Do NOT include:**
 - **Optional front or mid-lens filters** — accessory UV, ND, polarizing or protection plates mounted ahead of or
-  inside the lens, and any plate the source does not list (required drop-in filters are included; see above)
+  inside the lens, and any plate the source does not list (required drop-in filters are included; see above). A
+  listed filter that the source itself calls optional, removable or free to sit elsewhere is also left out, as
+  several fisheye patents do: keep its air-equivalent spacing (gap before + t/n + gap after) where it stood, so the
+  published first-order values hold, and quote the source's wording in the file header and the `*.audit.md` sidecar
 - **Dummy / flare-cutter planes** — source-table bookkeeping surfaces that do not change medium and are not active
   blockers in the modeled path
 - **Mechanical components** — focus motors, aperture blades (mechanical detail), barrel, mounts
@@ -68,7 +79,7 @@ propagation, not higher-order or chromatic behavior. See
 | `name` | `string` | Full UI display name following the display-name convention below (e.g. `"NIKON NIKKOR Z 50mm f/1.8 S"`) |
 | `elements` | `array` | Physical glass/mirror elements (min 1); ordinary lenses list front to rear, while folded models document their stable model order |
 | `surfaces` | `array` | Optical surfaces (min 1); ordinary lenses list front to rear, while folded models may use signed displacements and explicit path order |
-| `nominalFno` | `number \| number[]` | Nominal f-number — single value for primes/constant-aperture zooms, or array (one per zoom position) for variable-aperture zooms (e.g. `[4.5, 5.76]`) |
+| `nominalFno` | `number \| number[]` | F-number the stop opens to: the source's design value (`apertureDesign`) when it states one, never the faster marketed number, which belongs in `apertureMarketing`. Single value for primes/constant-aperture zooms, or array (one per zoom position) for variable-aperture zooms (e.g. `[4.5, 5.76]`) |
 | `closeFocusM` | `number` | Minimum focus distance in meters |
 | `zoomCloseFocusM` | `number[]` (optional) | Positive object-to-image endpoint distances matching `zoomPositions`; overrides the scalar at each zoom station |
 | `fstopSeries` | `array` | F-stop values for quick-select UI buttons |
@@ -81,7 +92,6 @@ These are merged automatically. Override only when needed.
 |-------|---------|-------------|
 | `svgW` | `1080` | SVG viewport width (px) |
 | `svgH` | `490` | SVG viewport height (px) |
-| `clipMargin` | `1.0` | Clipping margin for element trimming |
 | `maxRimAngleDeg` | `~64.2` | Maximum actual spherical/aspherical rim-slope angle; the default equals the old `sd/|R| = 0.9` threshold for a sphere |
 | `gapSagFrac` | `0.90` | Cross-gap sag intrusion fraction, synchronized with validation and rendering; must be > 0 and ≤ 1 |
 | `maxAspectRatio` | `1.6` | Max YSC/SC ratio — clamps vertical scale to prevent horizontal squashing on long lenses |
@@ -114,10 +124,11 @@ Keep it normalized even when the product's official styling varies by source:
   `FUJIFILM FUJINON`, `OLYMPUS M.ZUIKO`, `LEICA SUMMICRON`, `CARL ZEISS PLANAR`.
 - Separate mount, system, and series tokens from the focal length. Use `CANON RF 24-105mm`, `FUJIFILM FUJINON XF 23mm`,
   `NIKON NIKKOR Z DX 16-50mm`, not `RF24-105mm`, `XF23mm`, or `ZDX16-50mm`.
-- Write focal lengths as `<number>mm` or `<wide>-<tele>mm`, followed by a space and aperture as `f/<number>`.
-  Keep characteristics separated after the aperture, e.g. `f/2.8 L`, `f/1.4 G`, `f/5.6 R LM OIS WR`.
-- For fixed-lens cameras, put the camera body name in parentheses after the lens name and leave the camera name in
-  normal product-title case, e.g. `FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)`.
+- Write focal lengths as `<number>mm` or `<wide>-<tele>mm` with a plain hyphen, never an en dash, followed by a space
+  and aperture as `f/<number>`. Keep characteristics separated after the aperture, single suffix letters included:
+  `f/2.8 L`, `f/1.4 G`, `f/2.8 D IF-ED`, `f/5.6 R LM OIS WR`.
+- For fixed-lens cameras, put the camera body name, with its maker, in parentheses after the lens name and leave the
+  camera name in normal product-title case, e.g. `FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)`.
 
 ### Optional
 
@@ -127,12 +138,13 @@ Keep it normalized even when the product's official styling varies by source:
 | `publishedAt` | `string` | Git-derived | Optional explicit UTC ISO timestamp (`YYYY-MM-DDTHH:mm:ssZ`) for a newly published replacement model. Overrides inherited file publication history in recent lenses, feeds, and SEO; last-modified remains Git-derived but cannot precede publication. Omit for normal additions and routine corrections. |
 | `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
 | `opticalConfiguration` | `object` | | Links complete prescriptions that are switchable optical states of one catalog lens. See Alternate Optical Configurations below. |
+| `acceptsTeleconverters` | `boolean` | | `true` when the lens takes dedicated rear teleconverters made for one of its `lensMounts`. Universal converters ignore this flag. See [TELECONVERTER_DATA_SPEC.md](TELECONVERTER_DATA_SPEC.md). |
 | `subtitle` | `string` | | Compact patent/example/design-correlation context. Used as the UI-header fallback when structured patent metadata is unavailable and retained by several corpus reports for source/example matching. |
 | `specs` | `string[]` | | Spec strings displayed in header |
 | `focalLengthMarketing` | `number \| [number, number]` | | Marketed/nominal focal length in mm. Single number for primes (e.g. `50`); `[wide, tele]` tuple for zooms (e.g. `[70, 200]`). |
 | `focalLengthDesign` | `number \| [number, number]` | | Design/patent focal length in mm (computed EFL). Single number for primes; `[wide, tele]` for zooms. May differ from marketing value. |
-| `apertureMarketing` | `number` | | Marketed/nominal maximum f-number (e.g. `1.8` for an "f/1.8" lens). |
-| `apertureDesign` | `number` | | Design/patent maximum f-number (precise computed value, e.g. `1.85`). May differ from marketing value. |
+| `apertureMarketing` | `number` | | Marketed maximum f-number (e.g. `1.8` for an "f/1.8" lens). Shown beside the wide-open readout when it differs from the design value. |
+| `apertureDesign` | `number` | | Design/patent maximum f-number as the source states it (e.g. `1.85`). `nominalFno` must not be faster than this by more than 0.5 %; a corpus sweep enforces it. |
 | `lensMounts` | `LensMountId[]` | | Canonical mount ids for production variants represented by this optical formula. May contain multiple ids, e.g. `["nikon-z", "sony-fe"]`. |
 | `imageCircleMm` | `number` | | Optional published circular image diameter in millimetres, independent of projection law. Positive and finite; overrides the format diagonal for analysis-field bounds and the image-circle audit. Does not imply a projection law or certify reconstructed edge performance. |
 | `imageFormat` | `ImageFormatId` | | Single canonical image-circle/format id, e.g. `"135-full-frame"`, `"aps-c"`, or `"110"`. Required for normalized fixed-sensor perspective field sampling. |
@@ -140,6 +152,7 @@ Keep it normalized even when the product's official styling varies by source:
 | `patentAuthors` | `string[]` | | Inventors named by the source patent, in source order. Use one complete personal name per entry. An empty array means the patent names no individual inventor. |
 | `patentAssignees` | `string[]` | | Organizational assignees named by the source patent, or organizational applicants when that jurisdiction publishes applicants rather than assignees. Use one canonical display name for each historical legal entity. When the front page omits the organization, a verified same-application assignment predating publication may supply the assignee; document its source and dates in the analysis/audit. An empty array means no organizational attribution is supported by these sources. |
 | `patentYear` | `number` | | Year the patent was published or granted (e.g. `2019`). |
+| `sourceErrata` | `object[]` | | Values this file carries that differ from what the source prints, and contradictions in the source that are not yet isolated. See [Source Errata](#source-errata-sourceerrata). |
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
 | `perspectiveControl` | `object` | | Optional shift-Y/tilt-X limits and camera-frame tilt pivot for perspective-control lenses. Omit for all ordinary and folded lenses. |
@@ -151,6 +164,7 @@ Keep it normalized even when the product's official styling varies by source:
 | `var` | `object` | | Variable air gaps for focus (see below) |
 | `varLabels` | `array` | | Display labels for variable gaps |
 | `focusPositions` | `number[]` | `[0, 1]` | Optional normalized `focusT` coordinates for multi-keyframe focus interpolation |
+| `publishedStations` | `object` | | Which authored zoom stations and focus keyframes the source tabulates. See [Published Stations](#published-stations-publishedstations). |
 | `aberrationControl` | `object` | | Optional independent soft-focus or spherical-aberration-control slider (see below) |
 | `groups` | `array` | | Group annotations for SVG diagram |
 | `doublets` | `array` | | Cemented doublet annotations for SVG diagram |
@@ -185,6 +199,9 @@ opticalConfiguration: {
   configurations can be selected independently.
 - Record material source differences between configurations in each file's header and `subtitle`. A shared
   `groupKey` communicates a UI relationship, not that the source necessarily publishes a matched before/after pair.
+- This mechanism is for converters built into one lens. A detachable teleconverter is its own
+  `*.teleconverter.ts` entity that the viewer composes onto any compatible host; never author a host + converter copy
+  as a hidden configuration member. See [TELECONVERTER_DATA_SPEC.md](TELECONVERTER_DATA_SPEC.md).
 
 ---
 
@@ -261,10 +278,42 @@ patentAssignees: ["Canon Inc."],
   corporate-history registry's successor dates, plus a short list of curated overrides. These checks flag
   impossible or non-canonical values for source review; they never infer or rewrite an assignee automatically.
 
+## Source Errata (`sourceErrata`)
+
+A source can contradict itself: a printed coefficient whose sign disagrees with the patent's own field angle,
+distortion and aberration plots, or a table whose focal length differs from the stated one. `sourceErrata` records
+both cases in a form the validator checks and the MTF tab discloses. The evidence standard for a correction is in
+`agent_docs/lens-patent-audit.md`.
+
+```ts
+sourceErrata: [
+  {
+    status: "corrected",
+    surface: "27A",            // surface label
+    field: "A10",              // asph coefficient key, or surface R / d / nd
+    printed: -1.29299e-13,     // as the source prints it
+    applied: 1.29299e-13,      // the value this file carries
+    evidence: ["source-summary", "sibling-example", "aberration-figure"],
+    note: "Printed sign gives 2ω 23.08° against the stated 24.06°; Example 2 carries the positive sign.",
+  },
+  { status: "unresolved", note: "Table traces to f = 82.22 mm; the summary states 83.00 mm." },
+],
+```
+
+- `corrected`: the file must carry `applied` at `surface` / `field`, and `evidence` must cite at least two of
+  `source-summary` (stated f, F-number, field angle, back focus, total length), `sibling-example` (another example
+  of the same source), `aberration-figure` (the source's own aberration plots), `claims` and `family-publication`
+  (another publication of the same application prints the applied value). A manufacturer chart, a measured lens or
+  "the trace looks better" is never evidence.
+- `unresolved`: the source disagrees with itself and the cause is not isolated. Keep the printed values and state
+  the contradiction in `note`.
+- Place the field after the identity block (`key`, `name`, `maker`), and keep the erratum explained in the file
+  header and the `*.audit.md` sidecar as well.
+
 ## Rear Plates (`rearPlates`)
 
-Use `rearPlates` when the source prescription lists plane-parallel plates between the last lens surface and the image
-plane: sensor cover glass, IR-cut or low-pass stacks, or a rear filter. Copy the source values as printed:
+Use `rearPlates` when the source prescription lists camera-side plane-parallel plates between the last lens surface and
+the image plane: sensor cover glass and IR-cut or low-pass stacks. Copy the source values as printed:
 
 ```ts
 surfaces: [
@@ -310,7 +359,8 @@ Rules:
   migrating.
 - BFD in the Summary tab and cardinal overlay is measured from the last lens vertex, so it includes the plates.
 - Not supported with `opticalPath` / non-refracting surfaces or with `perspectiveControl`. Keep the air-equivalent fold
-  for those lenses. A plate ahead of the last lens surface cannot use `rearPlates`; see What to Include.
+  for those lenses. A plate ahead of the last lens surface cannot use `rearPlates`, and a drop-in filter in the lens's
+  own holder is a drawn element wherever it sits; see What to Include.
 - Do not invent a camera stack: use `rearPlates` only for plates the source lists.
 
 ## Element Bulk Absorption
@@ -733,7 +783,8 @@ for ordinary d-line data. Use `"e"` only when the stored values preserve a sourc
 Native e-line elements can use catalog Sellmeier data only when an explicit glass name or alias reproduces their
 `ne` / `νe` pair at C′/e/F′. Six-digit catalog codes remain d-line-only because they encode `nd` / `νd`. Do not mark
 an element merely because the source also publishes an e-line anchor, or when the data file has already converted the
-source values to d-line coordinates.
+source values to d-line coordinates. E-line color channels are traced at C′/e/F′/g on every dispersion tier, so naming
+only some of a lens's e-line glasses is safe; do not add d-line `nC` / `nF` to an e-line element.
 
 **Common `type` values:**
 - `"Biconvex Positive"`, `"Biconcave Negative"`
@@ -817,6 +868,14 @@ If the source defines a different normal line, recover its absolute `P_g,F` firs
 `dPgF = P_g,F − normalLinePgF(vd)` using the engine's baseline in
 [`dispersion.ts`](../optics/dispersion.ts). Do not copy a patent-specific deviation directly.
 Keep the source's original deviation separately in the analysis when evaluating its conditions.
+A catalog deviation is on its maker's own line too (HOYA's runs near 0.6483 − 0.0018·vd) and is
+converted the same way. Where a source prints a deviation without stating its line, take the line
+from the same applicant's stated formula or from printed figures that equal a maker's catalog
+deviations; if neither settles it, keep the printed figure and queue the element in
+[`glass-relabel-followup.md`](../../agent_docs/glass-relabel-followup.md). Where the source prints
+nothing, use the resolved catalog glass's `P_g,F` and say so in `apdNote`. A stored value within
+0.0003 of the correct one is left as written. `npm run audit:dpgf` lists stored values that fit a
+source line and miss the engine's.
 A published partial-dispersion ratio alone does not justify `apd: "patent"`; that display tag
 requires the source to identify the material as anomalous.
 
@@ -1054,15 +1113,22 @@ var: {
 },
 ```
 
-`zoomStopSemiDiameters: [8.26, 10.465, 13.325]` supplies published physical iris radii in mm, one per source zoom station. Values must be positive and finite. The first radius is the baseline iris; intermediate radii are interpolated and focus retains the current zoom iris. Do not combine this source schedule with `zoomApertureModel`.
+A zoom's wide-open iris follows the zoom. At every source zoom station the builder traces the entrance-pupil radius the station's `nominalFno` names (a scalar applies to every station) to the stop and keeps that radius, so each station traces at its stated f-number. Radii between stations are interpolated, and focus keeps the current zoom radius. These radii are calculated from the f-numbers, not read from the source. `zoomApertureModel: "from-nominal-fno"` names this default explicitly and changes nothing.
 
-`zoomApertureModel: "from-nominal-fno"` opts a zoom into a physical iris schedule inferred from the source station f-numbers. The builder traces each nominal infinity entrance-pupil radius to the stop and retains that station radius. Intermediate radii are interpolated; focus keeps the current zoom radius. This is a calculated aperture model, not a patent-published diameter schedule, and must be identified as inferred in the analysis. Omission retains the existing fixed physical iris.
+`zoomStopSemiDiameters: [8.26, 10.465, 13.325]` supplies published physical iris radii in mm instead, one per source zoom station. Values must be positive and finite. The first radius is the baseline iris; intermediate radii are interpolated and focus retains the current zoom iris. Do not combine this source schedule with `zoomApertureModel`.
+
+`zoomApertureModel: "fixed-iris"` keeps the first station's radius at every station. Declare it only when the source states that the stop diameter does not change with zoom, or when the file's own stop model is one iris radius whose traced f-numbers are what `nominalFno` stores. The station f-numbers then label the readout without sizing the iris, so they must be the ones that radius gives: a corpus sweep (`__tests__/src/lens-data/zoomApertureModel.test.ts`) fails when a station's traced radius differs from the fixed one by more than 3 %.
+
+An aperture stop that is a surface of drawn glass (`stopPlacement: "inside-element"`) keeps its authored semi-diameter at every station.
+
+Semi-diameters are physical clear radii: a ray beyond one is clipped, with no margin. When a station's stated beam does not fit through a rim, the lens traces slower than its label there; `npm run audit:aperture` lists those stations (see `agent_docs/sd-audit-queue.md`, Section I). Do not enlarge a rim to pass the beam.
 
 `zoomCloseFocusM` preserves zoom-dependent near-focus conjugates when a patent publishes different object distances at its zoom stations (for example, states at approximately constant magnification). Supply one positive finite distance in metres per `zoomPositions` entry. Distances between stations interpolate in the same normalized zoom coordinates; labels at intermediate focus use inverse-distance interpolation and remain estimates. Source-derived endpoints should be identified as calculated in the analysis. Single-lens labels, breathing, summary, effective-f-number estimates and comparison focus mapping use the current zoom endpoint. Omit the field for the existing scalar behavior.
 
 `focusPositions` follows the existing focus control: `0` is infinity and `1` is `closeFocusM`. When a published
 object-to-image distance is available, its coordinate is `closeFocusM / focusDistanceM`. Values between authored
 positions are piecewise-linearly interpolated and should not be presented as source-published mechanical positions.
+Which authored keyframes the source itself tabulates is recorded in `publishedStations`.
 
 `finiteConjugates` optionally certifies individual authored states for finite-distance MTF. Each entry has
 `focusT` (an authored nonzero focus station), `zoomT` (0 for a prime; source zoom station index divided by
@@ -1071,7 +1137,8 @@ positions are piecewise-linearly interpolated and should not be presented as sou
 Distance is axial, from the object plane to the current first vertex or fixed image plane. Duplicate stations
 are invalid. MTF never infers these entries from `closeFocusM`, production MFD, or interpolated slider labels;
 undocumented intermediate states remain unavailable. Do not certify calculated focus travel as a published
-configuration. Source-rounded prescriptions may retain residual defocus: MTF evaluates the authored image plane
+configuration. Every entry also counts as a published station (see
+[Published Stations](#published-stations-publishedstations)). Source-rounded prescriptions may retain residual defocus: MTF evaluates the authored image plane
 by default, reports the axial best-focus shift as a diagnostic, and moves the plane only when the viewer asks.
 Do not edit the authored image distance to improve simulated MTF.
 
@@ -1175,7 +1242,7 @@ Array of focal lengths in mm at each defined zoom position. Must have at least 2
 zoomPositions: [24, 50, 70],
 ```
 
-These are interpolation control points, not discrete stops. The zoom slider is continuous — between any two defined positions, spacing values are linearly interpolated, giving smooth movement at every intermediate focal length.
+These are interpolation control points, not discrete stops. The zoom slider is continuous — between any two defined positions, spacing values are linearly interpolated, giving smooth movement at every intermediate focal length. When some control points are solved or sampled, not tabulated by the source, list the tabulated ones in `publishedStations.zoom`.
 
 **Non-monotonic (reversing) groups:** Some zoom designs have groups that move forward then reverse direction. This is naturally handled by the piecewise-linear interpolation — if a gap's spacing goes `[2.0, 5.0, 3.0]` across three zoom positions, the interpolation correctly produces the forward-then-backward motion. Include enough zoom positions to bracket any reversals (standard zoom patents provide 3–5 positions, which is sufficient).
 
@@ -1230,6 +1297,53 @@ When `zoomPositions` is present:
 
 ---
 
+## Published Stations (`publishedStations`)
+
+Authored stations are interpolation control points; not all of them come from the source. `publishedStations` records
+which ones the cited patent or publication tabulates, so the viewer's patent-positions mode can step through source
+configurations only. "Published" means the source tabulates that configuration. It does not promise verbatim values:
+a station whose rounded source row was re-solved for paraxial consistency is still published.
+
+```typescript
+publishedStations: {
+  zoom: [0, 16, 32],   // indices into zoomPositions
+  focus: [1],          // indices into focusPositions, applied at every published zoom station
+},
+```
+
+| Field | Type | When omitted | Meaning |
+|---|---|---|---|
+| `zoom` | `number[]` | every authored zoom station | Indices into `zoomPositions` whose infinity row the source tabulates. Zoom lenses only. |
+| `focus` | `number[]` or `number[][]` | infinity only | Indices (≥ 1) into `focusPositions` (or the implicit `[0, 1]`) the source tabulates beyond infinity. A flat list applies at every published zoom station; a nested list gives one list per `zoomPositions` entry. |
+
+- Omit the whole field when the defaults are right: every authored zoom station is a source row, and only the
+  infinity-focus spacings are tabulated.
+- Infinity focus (keyframe 0) is implied at every published zoom station and is never listed.
+- Use the nested `focus` form when the tabulated focus keyframe differs by zoom station, with `[]` where a station
+  has infinity only:
+
+  ```typescript
+  publishedStations: { focus: [[4, 5], [3, 5], [2, 5], [1, 5]] },
+  ```
+
+- A zoom with more than three authored stations must declare `zoom`, even when every station is a source row. Dense
+  station lists usually mix source rows with solved or sampled cam points, so the corpus test asks for an explicit
+  answer.
+- Every `finiteConjugates` entry is treated as published without being repeated here. Use `focus` for a tabulated
+  focus row that cannot carry a certified object distance.
+- Do not list a reconstructed close-focus endpoint, a production minimum-focus distance, or a code-solved keyframe.
+- A teleconverter cannot declare the field. A composed host + converter system keeps the host's stations; its focal
+  lengths and f-numbers at those stations are computed, not tabulated.
+
+Validation: `publishedStations` must be an object declaring `zoom` and/or `focus` and nothing else. `zoom` is a
+non-empty, strictly increasing list of valid `zoomPositions` indices on a zoom lens. `focus` lists are strictly
+increasing indices from 1 to the last focus keyframe; the nested form needs one list per zoom position, at least one
+non-empty list, and an empty list at every zoom station `zoom` omits. Each listed focus keyframe must move at least
+one `var` gap away from its infinity value at that zoom station. A `finiteConjugates` entry may not sit on a zoom
+station that `zoom` omits.
+
+---
+
 ## Group & Doublet Annotations
 
 Visual brackets shown on the SVG diagram.
@@ -1279,7 +1393,14 @@ doublets: [
     and non-negative `gapAfterMm`, and is not combined with `opticalPath`, non-refracting surfaces, or
     `perspectiveControl`; authored surfaces may not use the reserved `RP<n>a` / `RP<n>b` labels or the engine-only
     `synthetic` field
-21. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
+21. `acceptsTeleconverters`, when present, is a boolean; authored surface labels may not start with the reserved
+    `TC` prefix, and the composer-written `attachedTeleconverter` descriptor is not an authorable field
+22. `sourceErrata`, when present, is an array whose `corrected` entries name an existing surface and field, carry
+    the `applied` value in the file, differ from `printed`, and cite at least two kinds of source-internal
+    evidence; every entry has a non-empty `note`
+23. `publishedStations`, when present, satisfies the index, shape, and focus-travel rules in
+    [Published Stations](#published-stations-publishedstations)
+24. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
 
 On failure, `buildLens()` throws with all errors listed.
 
@@ -1318,13 +1439,14 @@ When transcribing from an optical patent:
 
 ### Zoom-Specific Sourcing (additional steps for zoom lenses)
 
-12. **Variable spacing tables at multiple focal lengths** — Look for tables giving air gap values at 3–5 focal length positions (wide/mid/tele). The column header focal lengths become `zoomPositions`; each gap row provides the per-position `var` pairs
+12. **Variable spacing tables at multiple focal lengths** — Look for tables giving air gap values at 3–5 focal length positions (wide/mid/tele). The column header focal lengths become `zoomPositions`; each gap row provides the per-position `var` pairs. If you add solved or sampled control points between the source columns, list the source columns in `publishedStations.zoom`
 13. **Zoom-only vs zoom+focus gaps** — Identify which variable gaps change only with zoom (the patent's infinity-focus spacing varies across focal lengths, but the close-focus table shows the same change pattern) vs gaps that change with both zoom and focus (different infinity/close values at each position). Document which is which in the file header
 14. **Non-monotonic (reversing) groups** — Check whether any gap's spacing goes up then down (or vice versa) across zoom positions — e.g., `[28.12, 22.59, 27.71]`. This is handled automatically by piecewise-linear interpolation, but include enough zoom positions to bracket any reversals. Note reversals in the file header
 15. **EFL verification at each zoom position** — After transcribing all surfaces and variable gaps, verify the computed EFL at each zoom position (from `buildLens()` → `zoomEFLs`) against the patent's stated focal lengths. Mismatches usually indicate a transcription error in the variable gap table
 
 For prime or zoom lenses with three or more published focus states, use `focusPositions` and preserve every published
 spacing row. This supports non-linear and reversing focus travel without changing the zoom or aberration-control axes.
+Flag the focus rows the source tabulates in `publishedStations.focus`.
 
 ---
 

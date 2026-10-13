@@ -26,7 +26,11 @@ export interface GlassEntry {
   readonly nd: number;
   /** Reference Abbe number vd. For sanity-check / display. */
   readonly vd: number;
-  /** Reference partial dispersion P_g,F (optional, when vendor publishes it). */
+  /**
+   * Reference partial dispersion P_g,F = (ng − nF)/(nF − nC) of the vendor's published dispersion formula, to four
+   * decimals. Never the engine's normal line plus a vendor ΔP_g,F: each vendor measures that from its own line.
+   * `npm run audit:catalog-pgf` lists fields that disagree with the entry's curve.
+   */
   readonly PgF?: number;
   /** Optional six-digit Schott-style code "nnn vvv" without space, e.g. "517642" for N-BK7. */
   readonly code6?: string;

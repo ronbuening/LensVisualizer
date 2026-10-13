@@ -255,6 +255,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.6,
+  // Patent read 2026-10-06: Close-focus gaps apply the patent's FIG. 9B Example 4 focusing amount (0.1177 at f=1,
+  // 5.885 mm at x50) to the FIG. 8 gaps; the patent states no distance, 0.6 m is the production MFD.
+  publishedStations: { focus: [1] },
   focusDescription: "Rear focus — G2 (L21–L24) translates 5.9 mm toward object. Flare-cut fc2 co-travels with G2.",
 
   /* ── Aperture configuration ── */

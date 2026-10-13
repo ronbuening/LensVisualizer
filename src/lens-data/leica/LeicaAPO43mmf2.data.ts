@@ -378,6 +378,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.6, // patent close-object state: d0 531.6251 + TL 68.3749 = 600.0 mm object-to-image
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription: "Floating inner focus: G2 (L6–L7) and G4 (L10) translate toward object. Constant overall length.",
 
   /* ── Aperture configuration ── */

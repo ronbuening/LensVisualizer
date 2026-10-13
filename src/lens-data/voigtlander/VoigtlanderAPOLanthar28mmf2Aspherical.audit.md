@@ -266,3 +266,49 @@ Checked the small residual against Fig.4 and a 32-grid, d-line axial MTF diagnos
 Updated dependent EFL, L15f power, group/track/Petzval/close-conjugate calculations and the inferred stop calibration (7.864192220 mm to retain source f/2.06). The close object-to-image matrix B is now -0.647619051 mm, not +6.097174; its source endpoint is retained. **Earlier extraction, source-precision trials and quantitative conclusions in this historical audit are superseded wherever they depend on S17.** The erroneous source-table row below is corrected and labeled. Section E row deleted; changelog records the material data correction.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+- Patent formula: `ΔPgF = PgF − 0.64833 + 0.00180·νd` with `PgF = (ng − nF)/(nF − nC)` — Example 2 note ¶0061 (local
+  `patents/JPA 2026098935-000000.pdf` p. 15); the same definition closes claims 6–9 (pp. 3–4) and ¶0011–¶0014
+  (pp. 5–6). The patent's normal line is therefore `0.64833 − 0.00180·νd`; the engine's is `0.6438 − 0.001682·νd`.
+  The two differ by `0.00453 − 0.000118·νd`.
+- Printed partial dispersion: Table 6 (p. 15, an image; read on the page rendered at 200 dpi) has the columns R, D,
+  Nd, νd and ΔPgF. It prints the patent's deviation for all twelve glasses and no absolute PgF. ¶0063–¶0066
+  (pp. 16–17) repeat the L13f/L13r/L14/L15f/L15r figures in text.
+- All twelve elements stored the Table 6 deviation directly as `dPgF`. Each value was converted through the patent's
+  own line: `PgF = ΔPgF + 0.64833 − 0.00180·νd`, then `dPgF = PgF − (0.6438 − 0.001682·νd)`, using the stored `νd`.
+  Nine values moved by more than 0.0003 and were rewritten to six decimals; three were already within 0.0003 of the
+  engine-line value and stay exactly as stored.
+- Every element authors `nC`, `nF` and `ng`, so the trace uses those indices and `dPgF` is an annotation; no ray
+  result changes. The recovered PgF agrees with each element's own line indices and, where the label resolves, with
+  the catalog curve to within 0.0005 (largest gap: L10r, 0.600856 against 0.6013 from the authored indices).
+
+| Element | νd | Source figure (Table 6 ΔPgF, patent's line) | Recovered PgF | Stored before | Stored after |
+|---|---:|---:|---:|---:|---:|
+| L9 | 64.20 | +0.0031 | 0.535870 | 0.0031 | 0.000054 |
+| L10f | 40.78 | −0.0054 | 0.569526 | −0.0054 | −0.0054 (kept; engine-line value −0.005682) |
+| L10r | 28.43 | +0.0037 | 0.600856 | 0.0037 | 0.004875 |
+| L11 | 29.13 | +0.0036 | 0.599496 | 0.0036 | 0.004693 |
+| L12f | 37.37 | −0.0044 | 0.576664 | −0.0044 | −0.0044 (kept; engine-line value −0.004280) |
+| L12r | 25.15 | +0.0072 | 0.610260 | 0.0072 | 0.008762 |
+| L13f | 34.71 | −0.0025 | 0.583352 | −0.0025 | −0.002066 |
+| L13r | 59.17 | +0.0139 | 0.555724 | 0.0139 | 0.011448 |
+| L14 | 35.04 | −0.0005 | 0.584758 | −0.0005 | −0.000105 |
+| L15f | 75.50 | +0.0277 | 0.540130 | 0.0277 | 0.023321 |
+| L15r | 34.71 | −0.0025 | 0.583352 | −0.0025 | −0.002066 |
+| L16 | 40.73 | −0.0056 | 0.569416 | −0.0056 | −0.0056 (kept; engine-line value −0.005876) |
+
+- The nine rewritten `apdNote` strings now quote the patent's ΔPgF, the patent's line, the implied PgF and the
+  runtime value. The data-file header replaces "Patent dPgF is retained directly" with a note that `dPgF` is PgF
+  minus the engine line and names the patent's formula. `nd`, `νd`, `nC`/`nF`/`ng`, glass labels and `apd` tags are
+  unchanged; the file still builds and validates.
+- Left: L10f (−0.0054), L12f (−0.0044) and L16 (−0.0056). The line gap at their Abbe numbers is 0.000282, 0.000120
+  and 0.000276, under the 0.0003 keep-as-is tolerance, so the printed four-decimal figure stands and their `apdNote`
+  strings are untouched. L16's label does not resolve to a catalog curve, which does not matter here because the
+  patent prints its deviation.
+- Analysis: the conditional-expression table keeps the patent's ΔPgF in rows 10, 13, 16, 17 and 19, now labelled
+  "(patent)" with a sentence naming the patent's formula, and the element notes still quote the patent's ΔPgF. The
+  four statements that said the file stores or retains the patent's ΔPgF were corrected, the glass section states
+  both lines, and the glass table column is headed "Patent ΔPgF". Statements in earlier sections of this log that
+  the patent `ΔPgF` values are stored unchanged are superseded by this section.

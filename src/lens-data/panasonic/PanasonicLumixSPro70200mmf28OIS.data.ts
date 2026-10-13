@@ -464,7 +464,8 @@ const LENS_DATA = {
     "two rear focus groups. G5/G6 close-focus trajectories are underdetermined, so the viewer retains the " +
     "infinity-focus spacings at every focus setting.",
 
-  nominalFno: 2.832625,
+  nominalFno: [2.832625, 2.89443376, 2.928545591],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   apertureBlades: 11,

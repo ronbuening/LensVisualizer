@@ -34,3 +34,24 @@ Patent: JP 2021-85935, Example 1
   the patent coordinate within catalog precision and reproduces L5's patent-listed `θgF`; the authored patent
   `dPgF` remains authoritative.
 - No geometry, focus, aperture, or patent `nd`/`νd` value changed.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+- Patent formula: condition (8), `θgF_LN − (0.648285 − 0.00180123 × Vd_LN) < 0.010`, printed in claim 4 (PDF page 2),
+  ¶0060 (PDF page 9) and the footnote of the condition table (PDF page 27; Example 1 value printed as 0.007). The
+  patent's line is therefore `0.648285 − 0.00180123 × νd`, not the engine's `0.6438 − 0.001682 × νd`.
+- Numerical Example 1 (PDF pages 12–13, re-read on the rendered page) prints an absolute `θgF` column with one entry
+  only: surface 8 (L5) `θgF = 0.6103`. No deviation is tabulated per element.
+- The stored `dPgF = 0.0073` was the patent's own deviation (0.6103 − 0.602984 = +0.007316) copied directly. It is
+  now the patent `θgF` minus the engine line: 0.6103 − (0.6438 − 0.001682 × 25.15) = +0.008802.
+
+| Element | νd | Source figure | Stored before | Stored after |
+|---|---:|---|---:|---:|
+| L5 | 25.15 | Patent `θgF = 0.6103` (Example 1, surface 8, PDF page 12); patent deviation +0.007316 | 0.0073 | 0.008802 |
+
+- L5 `apdNote` now quotes the patent `θgF`, the patent's own deviation and the runtime value; a header note in the
+  data file names both lines. The analysis keeps the patent's `+0.0073` wherever it evaluates condition (8) and now
+  states the stored value separately.
+- Left: nothing. No other element carries `dPgF`, none was added (L8 and L10 share the L5 glass but the patent prints
+  no `θgF` on their rows), and no element authors `nC`/`nF`/`ng`. No `nd`, `νd`, glass label, `apd` tag or surface
+  changed.

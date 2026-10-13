@@ -200,9 +200,11 @@ const LENS_DATA = {
   focusDescription:
     "Three-group floating focus: Groups I and III move together toward the object, while the negative Group II moves in the same direction by a smaller amount; D8 increases, D12 decreases, and BF lengthens to the β = -1.0 close-focus state.",
   closeFocusM: 0.35,
-  nominalFno: 2.8,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
+  nominalFno: 2.83,
   maxFstop: 32,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+  fstopSeries: [2.83, 4, 5.6, 8, 11, 16, 22, 32],
   offAxisFieldFrac: 0.3,
   scFill: 0.62,
   yScFill: 0.42,

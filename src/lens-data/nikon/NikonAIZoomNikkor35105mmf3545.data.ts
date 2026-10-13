@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S     ║
+ * ║           LENS DATA — NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S     ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Source: US 4,699,475, Seventh Embodiment / Table 7.               ║
  * ║  Source-supported match for the 35–105mm production zoom.          ║
@@ -25,7 +25,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-zoom-nikkor-35-105mm-f3-5-4-5s",
   maker: "Nikon",
-  name: "Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S",
+  name: "NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S",
   subtitle: "US 4,699,475 — Seventh Embodiment / Table 7",
   specs: ["16 elements / 12 groups", "35–105 mm", "f/3.5–4.5", "52 mm filter", "all spherical"],
   focalLengthMarketing: [35, 105],

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — MEYER-OPTIK GÖRLITZ LYDITH 30mm f/3.5                       ║
+ * ║  LENS DATA — MEYER OPTIK GÖRLITZ LYDITH 30mm f/3.5                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Source: DE 1 794 971, Zahlenbeispiel / Example 1.                        ║
  * ║  Historical Lydith correlation: strong inference, not manufacturer-       ║
@@ -40,7 +40,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "meyer-optik-gorlitz-lydith-30f35",
   maker: "Meyer Optik Görlitz",
-  name: "MEYER-OPTIK GÖRLITZ LYDITH 30mm f/3.5",
+  name: "MEYER OPTIK GÖRLITZ LYDITH 30mm f/3.5",
   subtitle: "DE 1 794 971 — Example 1; historical Lydith correlation is strong inference, not manufacturer-confirmed",
   specs: [
     "5 ELEMENTS / 5 GROUPS",

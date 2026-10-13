@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR — Optical Design Analysis
+# NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR — Optical Design Analysis
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Embodiment analyzed:** Example 1 / 第1実施例\
 
 The prescription is the first numerical embodiment in JP 2015-215559 A, described in ¶0122–0133 and tabulated in
-Table 1. The production correlation is to the **NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR**. This correlation is an
+Table 1. The production correlation is to the **NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR**. This correlation is an
 analytical identification of the selected patent embodiment; Nikon does not publish a statement identifying Example 1
 as the production prescription.
 
@@ -36,15 +36,16 @@ Several independent features converge on that identification:
 No uniform dimensional scaling is applied. The marketed 400 mm and f/2.8 specifications remain separate from the
 FLG-normalized design values stored in the data file.
 
-The patent's first example also includes two auxiliary optical components that are not drawn as ordinary elements in the
+The patent's first example also includes two auxiliary optical components that are not counted as lens elements in the
 LensVisualizer model. The front FLG meniscus protective glass at source surfaces 1–2 is explicitly described as
 substantially powerless and is omitted under the current data specification; its removal requires a small +0.069284 mm
 paraxial image-plane refocus. The rear plane filter FL occupies source surfaces 32–33 (2.00 mm, nd = 1.51680,
-νd = 63.88; ¶0123, ¶0128–0130). It is traced as a rear plate with the printed 9.00 mm gap ahead of it and the printed
-71.551 mm Bf behind it, so its spherical and chromatic contribution in the converging beam is part of every analysis, but
-it is not drawn. FL is the production lens's slip-in filter position: Nikon's user's manual says a filter must be
+νd = 63.88; ¶0123, ¶0128–0130). It is drawn as a plane-parallel plate element with the printed 9.00 mm gap ahead of it
+and the printed 71.551 mm Bf behind it, so its spherical and chromatic contribution in the converging beam is part of
+every analysis. FL is the production lens's slip-in filter position: Nikon's user's manual says a filter must be
 inserted in the slip-in holder, which ships with a 40.5 mm neutral color (NC) filter, so the plate belongs to the working
-prescription. The FLG omission and refocus are modeling normalizations, not corrections to the patent.
+prescription. The FLG omission and refocus are modeling normalizations, not corrections to the patent. The FL
+semi-diameter is a ray-trace estimate because the source lists none, and FL is not counted in `elementCount`.
 
 ## Optical Architecture
 
@@ -265,7 +266,8 @@ material gives the design another high-index, low-Abbe refractive contribution w
 positive.
 
 The final image spacing follows source surface 31: the printed 9.00 mm air gap (plus the FLG refocus) to the rear
-filter FL, the 2.00 mm plate itself, and the printed 71.551 mm Bf. FL is traced but not drawn or counted as an element.
+filter FL, the 2.00 mm plate itself, and the printed 71.551 mm Bf. FL is drawn and traced as a plane-parallel plate
+(surfaces 32–33) but is not counted as an element.
 
 ## Glass Identification and Selection
 
@@ -274,7 +276,7 @@ the final data are therefore **catalog-derived coordinate matches**, not supplie
 active optical-glass coordinate pairs match current HIKARI catalog entries; L11 and L12 are treated separately as
 crystalline CaF2 because their source coordinates and the production specification converge on fluorite.
 
-The final data also carries nC, nF, ng, and dPgF on every element. For the HIKARI-resolved entries these are catalog
+The final data also carries nC, nF, ng, and dPgF on every powered element. For the HIKARI-resolved entries these are catalog
 enrichments. The current HIKARI catalog contains both J-SF03 and the optically coordinate-identical J-SF03HS variant at
 nd = 1.84666 and νd = 23.80; the data uses the base J-SF03 label as a catalog-family annotation, not as a determination
 of the production quality variant. For L11/L12, the line indices come from the Malitson CaF2 dispersion relation while

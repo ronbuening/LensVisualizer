@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKON AF-S NIKKOR 105mm f/1.4E ED           ║
+ * ║           LENS DATA — NIKON AF-S NIKKOR 105mm f/1.4 E ED           ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: WO2019/116563 A1 Example 3 (Nikon / Yamashita).     ║
  * ║  Three-group telephoto prime with APD glass for secondary          ║
@@ -22,7 +22,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-105-f14e-ed",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 105mm f/1.4E ED",
+  name: "NIKON AF-S NIKKOR 105mm f/1.4 E ED",
   subtitle: "WO2019/116563 A1 Example 3 — Nikon / Yamashita, Ito et al.",
   specs: ["14 ELEMENTS / 9 GROUPS", "f = 102.148 mm", "F/1.45", "2ω = 23.842°", "ALL SPHERICAL"],
 
@@ -340,6 +340,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus (IF). G2 cemented doublet (L21+L22) translates 12 mm toward the image side from infinity to the patent close station (β = −0.132, approximately 1 m). G1 and G3 fixed. Lens does not change external length.",
 

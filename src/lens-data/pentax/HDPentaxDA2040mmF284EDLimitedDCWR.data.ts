@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-hd-da-20-40-f28-4-limited",
   maker: "Pentax",
-  name: "HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR",
+  name: "PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR",
   subtitle: "JP 2015-11156 A — Numerical Example 1; production correlation inferred",
   specs: [
     "9 ELEMENTS / 8 GROUPS",

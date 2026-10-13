@@ -215,6 +215,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.8,
+  // Patent read 2026-10-06: Close-focus d_A7 = 11.433 is the patent's printed FIGS. 10a/10b value (13.45 at
+  // magnification 0.11, f = 100) scaled x0.85; the patent states it in text, not in a table.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus — Group AI (L1–L4) moves forward; AII (L5) and B (L6) remain stationary. " +
     "Separate 4-position click-stopped ring varies d_B0 for soft-focus control.",

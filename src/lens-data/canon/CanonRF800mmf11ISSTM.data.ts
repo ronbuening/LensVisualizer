@@ -272,6 +272,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 6.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: the patent infinity row conflicts with its own cardinal data. The modeled infinity state conserves d7+d9 = 57.33 mm and solves the single L2 translation for EFL = 776.37 mm (d7 = 38.42721463001324 mm, d9 = 18.90278536998676 mm). L2 moves objectward toward close focus. The published near row 21.25/36.08 mm is retained and traces to about 6.014 m from the image plane; Canon specifies a 6.0 m production MFD.",
 

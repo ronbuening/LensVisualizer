@@ -388,6 +388,7 @@ const LENS_DATA = {
     "NO_INTERNAL_RECONSTRUCTION: the patent publishes infinity-focus zoom states only. All modeled infinity/close pairs are identical; the manufacturer 0.5 m minimum-focus specification is metadata only.",
 
   nominalFno: [3.6, 4.6, 5.7],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.6, 4, 4.6, 5.6, 5.7, 8, 11, 16, 22, 32, 38],
   maxFstop: 38,
   apertureBlades: 9,

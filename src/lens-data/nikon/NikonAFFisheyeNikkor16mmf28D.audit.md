@@ -28,3 +28,12 @@ Surface 2 remains at 14.3 mm because its steep rim and adjacent gap are the phys
 - Rechecked the supplied viewer screenshot against Example 1 / Figure 1 after the SD revision above. The element shapes, three cemented junctions, all-spherical flag, and revised apertures remain source-consistent; both focused geometry audits pass.
 - Added the patent's compound identifiers `L1`, `L2`, `L31`, `L32`, `L41`, `L42`, `L51`, and `L52` to the diagram while retaining the patent component labels `L3`, `L4`, and `L5` for the three cemented pairs.
 - Reconfirmed the Nikon display designation and the romanized inventor name Haruo Sato. No patent partial-dispersion evidence supports an APD flag.
+
+## 2026-10-04 — Patent filter left out as optional
+
+- Patent check (US 5,434,713, First Embodiment, Table 1): surfaces 14–15 are both printed `r = 0.000` (flat), 1.20 mm
+  thick, n 1.51680, ν 64.1, 0.88 mm behind the last element, with Bf 38.5974 mm behind the plate. Fig. 1 labels it F.
+- The patent calls F "a so-called filter" that can be "disposed everywhere in the optical system" and says that with
+  none the fundamental performance is unaffected. Filters the source calls optional are not modeled, so the file is
+  unchanged: no plate, and the last gap is the filter-absent back focus, 0.88 + 1.20/1.51680 + 38.5974 = 40.268539 mm.
+- The header and the inline comment now give that reason in place of "filter normalization".

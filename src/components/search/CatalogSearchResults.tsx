@@ -2,7 +2,8 @@
  * CatalogSearchResults — grouped results for the dedicated search route.
  *
  * Each result links to its final destination: lens-name and patent matches
- * open a lens page, while inventor matches open the corresponding author page.
+ * open a lens page, teleconverter matches open the converter's page (where a
+ * host lens is chosen), and inventor matches open the corresponding author page.
  */
 
 import { Link } from "react-router";
@@ -66,12 +67,12 @@ const resultLinkStyle = (t: Theme): React.CSSProperties => ({
 export default function CatalogSearchResults({ query, theme: t }: CatalogSearchResultsProps) {
   const trimmedQuery = query.trim();
   const results = searchCatalog(trimmedQuery);
-  const total = results.lenses.length + results.patents.length + results.authors.length;
+  const total = results.lenses.length + results.teleconverters.length + results.patents.length + results.authors.length;
 
   if (!trimmedQuery) {
     return (
       <p style={{ color: t.muted, fontSize: "0.82rem", lineHeight: 1.6 }}>
-        Enter a lens name, a published patent number, or an inventor name to search the catalog.
+        Enter a lens or teleconverter name, a published patent number, or an inventor name to search the catalog.
       </p>
     );
   }
@@ -101,6 +102,18 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
             style={resultLinkStyle(t)}
             metaStyle={{ fontSize: "0.7rem" }}
           />
+        ))}
+      </ResultSection>
+
+      <ResultSection title="Teleconverters" count={results.teleconverters.length} theme={t}>
+        {results.teleconverters.slice(0, RESULT_LIMIT).map(({ key, data }) => (
+          <Link key={key} to={`/teleconverters/${key}/`} style={resultLinkStyle(t)}>
+            <span>{data.name}</span>
+            <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem" }}>
+              — {data.magnification}× · {data.compatibleLensKeys.length} compatible{" "}
+              {pluralize(data.compatibleLensKeys.length, "lens")}
+            </span>
+          </Link>
         ))}
       </ResultSection>
 

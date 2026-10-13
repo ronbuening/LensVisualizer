@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5D IF-ED                                     ║
+ * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5 D IF-ED                                     ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2001/0030812 A1, Example 2 (Akiko Furuta).                                       ║
  * ║  Production correlation: Nikon AI AF Zoom-Nikkor 18-35mm f/3.5-4.5D IF-ED.                         ║
@@ -47,7 +47,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-af-zoom-nikkor-18-35mm-f3-5-4-5d-if-ed",
   maker: "Nikon",
-  name: "NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5D IF-ED",
+  name: "NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5 D IF-ED",
   subtitle: "US 2001/0030812 A1 Example 2 — production-correlated design",
   specs: [
     "18-35mm f/3.5-4.5",
@@ -301,6 +301,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.33,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner-focus states: G2a translates imageward while d9+d12 is conserved at each zoom position; " +
     "near rows are labeled R=0.33 m. The printed Example 2 d0 row is internally inconsistent with the patent's " +

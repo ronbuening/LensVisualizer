@@ -54,6 +54,8 @@ export interface SurfaceProfile {
   normalAt(point: Vec3, vertexZ: number): Vec3;
   pointAt(vertexZ: number, x: number, y: number): Vec3;
   finiteRadiusLimit(): number | null;
+  /** Conservative absolute radial slope bound; absent for unproved/custom geometry. */
+  maxAbsSlope?(radius: number): number;
 }
 
 /** Compiled refract/reflect/block behavior for one physical surface. */
@@ -92,6 +94,8 @@ export interface CompiledSurface {
   nd: number;
   sd: number;
   innerSd: number | null;
+  /** False when `sd` is a generated rear-plate rim: the surface never clips a ray or limits the field. */
+  clips: boolean;
   elemId: number;
   stopPlacement: "inside-element" | null;
   asphere: AsphericCoefficients | null;
@@ -173,7 +177,6 @@ export interface DisplaySpec {
   svgH: number;
   scFill: number;
   yScFill: number;
-  clipMargin: number;
   maxRimAngleDeg: number;
   maxRimTan: number;
   gapSagFrac: number;

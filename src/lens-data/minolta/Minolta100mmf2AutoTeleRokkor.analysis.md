@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP1963-011590\
+**Patent:** JP 1963-011590 B\
 **Application Number:** 特願 昭33-9941\
 **Filed:** 1958-04-11\
 **Published:** 1963-07-08\
@@ -9,7 +9,7 @@
 **Title:** 大口径比望遠写真対物 — *Large-aperture-ratio telephoto photographic objective* (working translation)\
 **Embodiment analyzed:** Example 2
 
-The implemented prescription is Example 2 of JP1963-011590. The patent prints a focal length of 100 mm, an aperture ratio
+The implemented prescription is Example 2 of JP 1963-011590 B. The patent prints a focal length of 100 mm, an aperture ratio
 of 1:2, and a 24° included field angle, and it gives a six-element prescription arranged in five air-separated groups.
 Those source values are transcribed from the Example 2 table spanning patent pages 1–2. The optical section in Fig. 1 on
 page 3 confirms the five-group layout and places the diaphragm in the long air space between the third and fourth groups.
@@ -18,7 +18,7 @@ The production-lens correlation is convergent rather than manufacturer-confirmed
 *The Minolta SR System* brochure lists an Auto Tele Rokkor / MC Tele Rokkor 100mm f/2 with six elements in five groups and
 a 24° angle of view. Those three product specifications independently coincide with Example 2's 100 mm, 1:2, 6/5, and 24°
 source data. The patent also describes the objective as intended for a Leica-format small camera. No primary Minolta source
-located in the dossier explicitly states that JP1963-011590 Example 2 is the production prescription, so the identification
+located in the dossier explicitly states that JP 1963-011590 B Example 2 is the production prescription, so the identification
 should be read as a strong optical and product-specification match, not as a documented factory attribution.
 
 The data file therefore separates product metadata from exact design quantities. The marketed focal length and aperture
@@ -147,7 +147,7 @@ stated in the patent.
 
 ## Focus Mechanism
 
-The optical model is **NO_INTERNAL_RECONSTRUCTION**. JP1963-011590 publishes no finite-distance spacing table, focus-group
+The optical model is **NO_INTERNAL_RECONSTRUCTION**. JP 1963-011590 B publishes no finite-distance spacing table, focus-group
 movement law, or second prescription state from which an internal focus mechanism can be solved. The data file therefore
 contains no `var` entries and represents the published Example 2 prescription only at infinity.
 
@@ -209,7 +209,7 @@ production render diagnostics remain integration-stage checks rather than claime
 
 ## Sources and References
 
-1. Japan Patent Office. **JP1963-011590**, `大口径比望遠写真対物`. Example 2 prescription and conditions on pp. 1–2;
+1. Japan Patent Office. **JP 1963-011590 B**, `大口径比望遠写真対物`. Example 2 prescription and conditions on pp. 1–2;
    optical section and diaphragm placement in Fig. 1 on page 3; Seidel coefficient table on p. 2. Filed 1958-04-11;
    published 1963-07-08. Supplied original patent PDF in this dossier.
 2. Minolta Camera Co., Ltd. **The Minolta SR System**. Manufacturer brochure; the archived scan used by the dossier lists

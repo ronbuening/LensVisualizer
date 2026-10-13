@@ -25,6 +25,8 @@ interface ViewerContentProps {
   lensKeyA: string;
   lensKeyB: string;
   diagramLensKey: string;
+  /** Converter mounted on the single-lens diagram; null = bare lens. */
+  teleconverterKey: string | null;
   comparisonLenses: ComparisonLensesResult;
   focusPair: FocusPairResult | null;
   aperturePair: AperturePairResult | null;
@@ -62,6 +64,7 @@ export default function ViewerContent({
   lensKeyA,
   lensKeyB,
   diagramLensKey,
+  teleconverterKey,
   comparisonLenses,
   focusPair,
   aperturePair,
@@ -134,6 +137,7 @@ export default function ViewerContent({
       showDesktopToggle={showDesktopToggle}
       mobileView={mobileView}
       lensKey={diagramLensKey}
+      teleconverterKey={teleconverterKey}
       markdown={markdown}
     />
   );

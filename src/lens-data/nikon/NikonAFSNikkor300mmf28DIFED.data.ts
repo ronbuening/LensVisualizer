@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AI AF-S NIKKOR ED 300mm f/2.8D IF                     ║
+ * ║  LENS DATA — NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED                     ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 5,745,306 A, Example 1 (Susumu Sato / Nikon Corporation).║
  * ║  Production correlation: Nikon AF-S Nikkor 300mm f/2.8D IF-ED (1996).     ║
@@ -14,8 +14,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    - Source S1-S2 front protection glass is excluded from this active     ║
  * ║      sequential model. The model begins at source S3 (L11 front).         ║
  * ║    - Source S23 and S26 inactive field-stop planes are folded out. The    ║
- * ║      S24-S25 rear filter (2.0 mm, nd 1.516800, νd 64.10) is modeled in    ║
- * ║      `rearPlates` (traced, not drawn): S22 stores d22 14.5 + d23 7.0 =    ║
+ * ║      S24-S25 rear filter (2.0 mm, nd 1.516800, νd 64.10) is drawn as a    ║
+ * ║      plane-parallel plate element and traced by every analysis; its       ║
+ * ║      semi-diameter is a ray-trace estimate (the source lists none) and    ║
+ * ║      it is not counted in `elementCount`. S22 stores d22 14.5 + d23 7.0 = ║
  * ║      21.5 mm to the filter; the plate is followed by d25 10.0 + Bf        ║
  * ║      74.1335 = 84.1335 mm to the image. The air-equivalent S22-to-image   ║
  * ║      spacing is unchanged at 106.9520654 mm; physical track from S3 is    ║
@@ -49,7 +51,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-s-nikkor-300mm-f28d-if-ed",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR ED 300mm f/2.8D IF",
+  name: "NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED",
   subtitle: "US 5,745,306 A — Example 1; correlated to the 1996 AF-S production lens",
   specs: [
     "11 ELEMENTS / 8 GROUPS",
@@ -207,6 +209,16 @@ const LENS_DATA = {
       glass: "N-FK5 catalog equivalent (patent 487704; production supplier unspecified)",
       role: "Final positive meniscus of G3 ahead of the normalized rear air space.",
     },
+    {
+      id: 12,
+      name: "F",
+      label: "Slip-in filter F",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      role: "Plane-parallel filter plate of the patent prescription (US 5,745,306 A, Example 1 Table 1 surfaces 24–25), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
   /* ── Surface prescription ──
@@ -235,18 +247,11 @@ const LENS_DATA = {
     { label: "21", R: -175.8037, d: 6.7, nd: 1.48749, elemId: 11, sd: 16.0 },
     // S22 → rear filter: source d22 14.5 + d23 7.0 (field-stop plane S23 folded out)
     { label: "22", R: -53.035, d: 21.5, nd: 1, elemId: 0, sd: 16.5 },
-  ],
-
-  /* ── Rear filter (patent Table 1 surfaces 24–25): traced, not drawn ── */
-  rearPlates: [
-    {
-      thicknessMm: 2.0,
-      nd: 1.5168,
-      vd: 64.1,
-      glass: "J-BK7A",
-      gapAfterMm: 84.1335,
-      source: "US 5,745,306 A, Example 1 Table 1 surfaces 24–25 (d25 10.0 + Bf 74.1335, field-stop plane S26 folded out)",
-    },
+    // Slip-in filter F (US 5,745,306 A, Example 1 Table 1 surfaces 24–25), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    // Gap to the image: d25 10.0 + Bf 74.1335, field-stop plane S26 folded out
+    { label: "24", R: 1e15, d: 2.0, nd: 1.5168, elemId: 12, sd: 19.5 },
+    { label: "25", R: 1e15, d: 84.1335, nd: 1, elemId: 0, sd: 19.5 }, // slip-in filter → image plane
   ],
 
   asph: {},
@@ -275,6 +280,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 2.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED internal focus: negative G2 translates imageward by 10.8239 mm; D10 increases 29.5505→40.3744 mm while D15 decreases 19.2807→8.4568 mm. The rear image spacing is fixed.",
 

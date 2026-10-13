@@ -208,8 +208,8 @@ const LENS_DATA = {
     "Unit focus. The full optical system translates ahead of the fixed sensor cover glass.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.897,
+  fstopSeries: [2.897, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   /* ── Layout tuning ── */

@@ -38,6 +38,7 @@ const LENS_DATA = {
   focalLengthMarketing: [400, 800],
   focalLengthDesign: [399.6505110182551, 774.7038088758065],
   lensMounts: ["sony-fe"],
+  acceptsTeleconverters: true, // Sony lists SEL14TC / SEL20TC teleconverter compatibility
   imageFormat: "135-full-frame",
   patentNumber: "WO 2024/154461 A1",
   patentAuthors: ["Fumikazu Kanetaka"],
@@ -508,6 +509,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 3.799,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED G6 inner-focus state at 3.799 m: G6 moves imageward by 4.80 / 9.69 / 16.07 mm at Wide / Mid / Tele; production MFD is not reconstructed.",
 

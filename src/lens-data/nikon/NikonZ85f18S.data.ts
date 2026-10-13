@@ -5,7 +5,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Rims are inferred from the optical outline at600dpi, not listed clear apertures.
  * PT surfaces 22–23 (1.6 mm, nd 1.51680, νd 64.20) are modeled in `rearPlates`
  * (traced, not drawn): d21 = 11.000 mm to PT, bf 0.92 mm after it.
- * Source summaries FL83 and TL111.35 disagree with the numerical table; see analysis.
+ * Source summaries FL 83.00 and TL 111.35 disagree with the numerical table, which traces to
+ * EFL 82.222 and a 110.811 mm track. The cause is not isolated, so every printed value is kept and
+ * the contradiction is an unresolved `sourceErrata` entry; see analysis.
  */
 
 const LENS_DATA = {
@@ -32,6 +34,12 @@ const LENS_DATA = {
   patentAuthors: ["Ryosuke Imajima", "Takakazu Hirose", "Daisuke Tanahashi", "Yasushi Yamamoto", "Mami Muratani"],
   patentAssignees: ["Konica Minolta, Inc.","Nikon Corporation"],
   patentYear: 2020,
+  sourceErrata: [
+    {
+      status: "unresolved",
+      note: "The printed Example 3 table traces to f = 82.22 mm and a total length of 110.81 mm; the patent states 83.00 mm and 111.35 mm.",
+    },
+  ],
   elementCount: 12,
   groupCount: 8,
 
@@ -301,6 +309,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.8,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Source POS2 is 0.8 m object-to-image: Gr2 moves imageward 3.838 mm and Gr3 objectward 6.762 mm. Gr1, stop and Gr4 are fixed (0.001 mm table rounding). Intermediate motion is interpolated; the rounded prescription gives about 0.803 m at POS2.",
 

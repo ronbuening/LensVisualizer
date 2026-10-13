@@ -34,9 +34,9 @@ The patent's design strategy centers on a strongly negative G2 divided into two 
 
 The patent title calls the family a telephoto zoom. Under the project's strict geometric classification, the long endpoint is telephoto because total track divided by EFL is 0.804133, while the wide endpoint is not because the ratio is 2.324001. Neither endpoint is retrofocus because back focal distance is smaller than EFL in both states.
 
-The patent does not publish an aperture-stop station or stop diameter. The data model therefore inserts exactly one neutral `STO` as an explicit modeling inference in the 49.000 mm air space between r20 and r21, 3.000 mm behind r20 and 46.000 mm ahead of r21. Its 11.387365 mm semi-diameter is solved from the final prescription, giving modeled endpoint f-numbers of 5.599962 and 5.600038. A production-lens teardown places the iris mechanism in the rear optical assembly, which supports the general region but not the exact modeled axial station. [3]
+The patent does not publish an aperture-stop station or stop diameter. The data model therefore inserts exactly one neutral `STO` as an explicit modeling inference in the 49.000 mm air space between r20 and r21, 3.000 mm behind r20 and 46.000 mm ahead of r21. Its authored 11.387365 mm semi-diameter is the paraxial solve for f/5.6 on the final prescription, giving paraxial endpoint f-numbers of 5.599962 and 5.600038. The model holds one fixed iris across the zoom range and opens it by real-ray trace from the stated f-number, to 11.7515 mm; the traced on-axis beam is f/5.600 at 102 mm and f/5.603 at 294.784 mm, and the iris is the limiter at both stations. A production-lens teardown places the iris mechanism in the rear optical assembly, which supports the general region but not the exact modeled axial station. [3]
 
-The patent likewise publishes no clear semi-diameters. The authored apertures are modeling values constrained by paraxial and off-axis ray envelopes, the Fig. 2A section, and production mechanical dimensions. They are not patent measurements. No cover glass, filter, inactive dummy plane, folded path, or aspherical surface is included in the active optical model.
+The patent likewise publishes no clear semi-diameters. The authored apertures are modeling values constrained by paraxial and off-axis ray envelopes, the Fig. 2A section, and production mechanical dimensions. They are not patent measurements. The G3 compensator carries one 14.9 mm rim on all three surfaces: Fig. 2A draws the doublet with a square-cut rim, and 14.9 mm is the height the f/5.6 on-axis ray reaches on its rear face, rounded up to 0.1 mm, the smallest square rim that passes the stated beam. No cover glass, filter, inactive dummy plane, folded path, or aspherical surface is included in the active optical model.
 
 ## Element-by-Element Analysis
 
@@ -186,9 +186,15 @@ These values are calculations from the final modeled prescription, not numbers c
 
 ## Verification Summary
 
-The exact US 4,641,928 patent PDF was inspected at high resolution on PDF page 5, Fig. 2A. Comparing optical rims rather
-than brackets, labels, or leader lines supports enlarging L12 to a 30.0 mm semi-diameter and reducing the G3 compensator
-to 13.5 mm. The revised silhouette follows the source more closely while retaining the required ray and geometry margins.
+Fig. 2A on PDF page 5 of the US 4,641,928 patent draws the 102 mm state. The axial vertex spacings from r1 to r24 set
+one scale for the lens body (only the back focus is drawn short). On that scale the optical rims, read without
+brackets, labels, or leader lines, are about 30.9 mm for L11, 30.6 mm for L12, 16.0 mm for G2, 16.7 mm for L3, and
+16.8 mm for L41. L12 is modeled at the 30.0 mm front-group rim. Fig. 2A draws the L3 doublet with a square-cut common
+rim: the front face, the cemented junction, and the rear face all end on one straight rim line. The G3 compensator is
+therefore modeled with one 14.9 mm rim on surfaces 12, 13, and 14. The f/5.6 on-axis ray reaches 14.514, 14.606, and
+14.829 mm on those surfaces in the 102 mm state, and the rim is the highest of the three rounded up to 0.1 mm, the
+smallest square rim that passes the stated beam. It sits 11% inside the drawn L3 outline, and the relay elements sit
+6–12% inside theirs.
 
 The final data file was retraced independently with reduced-angle sequential rays and an ABCD matrix cross-check. The two methods agree to floating-point precision for both published zoom endpoints.
 
@@ -198,12 +204,13 @@ The final data file was retraced independently with reduced-angle sequential ray
 | Patent EFL | 102.000000 mm | 294.784000 mm |
 | Computed BFD | 67.041979 mm | 67.043524 mm |
 | Patent Bf | 67.047000 mm | 67.047000 mm |
-| Modeled f-number | 5.599962 | 5.600038 |
+| Paraxial f-number at the authored STO semi-diameter | 5.599962 | 5.600038 |
+| Traced on-axis f-number (real ray, 11.7515 mm iris) | 5.600 | 5.603 |
 | Total track | 237.033000 mm | 237.033000 mm |
 
 The residuals are consistent with the precision of the printed radii and refractive indices. The final arrays also reproduce the patent's published group/component focal-length invariants within source-aware tolerances.
 
-Because the aperture stop and clear apertures are inferred rather than published, their geometry was checked separately. The revised apertures pass the surface-domain, positive-edge-thickness, rim-slope, shared-gap, and image-circle checks. The full on-axis marginal fan clears every modeled surface at both zoom endpoints. At the default telephoto off-axis sample, peripheral vignetting begins at the front exterior aperture rather than at a cemented interface.
+Because the aperture stop and clear apertures are inferred rather than published, their geometry was checked separately. The apertures pass the surface-domain, positive-edge-thickness, rim-slope, shared-gap, and image-circle checks: L3a keeps 1.779 mm of edge thickness and L3b 2.549 mm, and the 1.061 mm G2–G3 vertex gap at 294.784 mm opens to 1.920 mm at the rim. The f/5.6 on-axis marginal ray clears every glass rim at both zoom endpoints, so the iris sets the beam; the tightest rim is the rear face of G3 (surface 14), 0.07 mm outside the ray at 102 mm, with the junction and the front face 0.29 and 0.39 mm outside it. At the default telephoto off-axis sample, peripheral vignetting begins at the front exterior aperture rather than at a cemented interface.
 
 The stop and semi-diameter results establish a self-consistent visualization model; they do not convert those inferred dimensions into patent facts. No asphere departure, scaling transform, cover-glass correction, or internal close-focus reconstruction is applicable to this data set.
 

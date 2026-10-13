@@ -456,6 +456,7 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: [3.4058710003870507, 5.605121129350794, 6.482831860675359],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 5.6, 6.3, 8, 11, 16, 22, 32, 40],
   apertureBlades: 7,
   maxFstop: 40,

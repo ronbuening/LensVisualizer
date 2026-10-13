@@ -158,7 +158,7 @@ The patent provides refractive index (n_d) and Abbe number (V_d) for each elemen
 | L₅ | 1.56993 | 57.5 | 570/575 | No close match (nearest BaK1-type 1.5725/57.5) | −0.0026 | 0.0 | Family (BaK crown) |
 | L₆ | 1.62500 | 53.3 | 625/533 | SSK2 (1.6223/53.3) | +0.0027 | 0.0 | Family (SSK dense crown) |
 | L₇ | 1.71966 | 29.3 | 720/293 | SF1 (1.7174/29.5) | +0.0023 | −0.2 | Family (SF flint) |
-| L₈ | 1.64200 | 58.1 | 642/581 | LAK6 / S-BSM36 class (1.6425/58.1–58.4) | −0.0005 | 0.0 | Several suppliers fit; unresolved |
+| L₈ | 1.64200 | 58.1 | 642/581 | LAK6 / S-BSM36 class (1.6425/58.1–58.4) | −0.0005 | 0.0 | LaK6-type curve (HOYA LAC6) used as the equivalent; supplier unresolved |
 
 ### 5.2 Discussion of Glass Choices
 

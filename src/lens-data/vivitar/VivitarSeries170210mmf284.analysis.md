@@ -111,7 +111,11 @@ This cemented achromatic doublet is the strongest subassembly in G3a. L10 is a t
 
 #### Aperture Stop
 
-The stop is located 6.70 mm after surface S18, within the 25.96 mm D3 airspace separating G3a from G3b. At the wide-angle setting (72 mm), the stop semi-diameter corresponds to f/2.89; at the telephoto end (204 mm), it corresponds to f/4.01. The variable f-number arises because the entrance pupil diameter, set by G1 and G2 ahead of the stop, does not grow in proportion to the focal length increase during zooming.
+The stop is located 6.70 mm after surface S18, within the 25.96 mm D3 airspace separating G3a from G3b. Table IV prints f/2.89, f/3.49, and f/4.01 at the three zoom positions and no stop diameter. The variable f-number arises because the entrance pupil diameter, formed by G1, G2, and G3a ahead of the stop, does not grow in proportion to the focal length increase during zooming. The printed column is consistent with a single stop opening to within about 1 %: in the paraxial model a stop semi-diameter of 14.9 mm gives f/2.90, f/3.48, and f/4.01.
+
+The data file models one iris of fixed size (`zoomApertureModel: "fixed-iris"`), opened to the height the real f/2.89 on-axis ray reaches at the stop at the wide end, 15.92 mm. Traced on axis against every clear aperture, the model gives f/2.89 at 72.1 mm and f/3.46 at 134.9 mm, both with the iris as the limiter.
+
+At the telephoto end the model is limited ahead of the iris. The real f/4.01 on-axis ray reaches the facing concave surfaces of L5 and L6 (S8 and S9) about 15.62 mm from the axis, but with the printed radii (37.576 and −40.656 mm) and the printed 6.210 mm spacing those two surfaces meet at 15.26 mm. A real f/4.01 on-axis ray therefore cannot pass the printed prescription; the largest that can is about f/4.11, at the height where the two elements touch. The patent prints no semi-diameters, and FIG. 4 draws L5 and L6 in edge contact. The data file holds S8 and S9 at 14.45 mm, which leaves 0.67 mm of air between the two rims, and traces f/4.36 at 203.8 mm with the rim of S8 as the limiter.
 
 #### Subgroup G3b — Field Corrector (f ≈ −512 mm)
 

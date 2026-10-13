@@ -20,6 +20,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * - Focus status is NO_INTERNAL_RECONSTRUCTION. All zoom var vectors repeat infinity values at the UI close endpoint.
  *   closeFocusM = 0.03 m is production minimum-focus metadata only; it is not a solved internal close-focus prescription.
  *
+ * Partial dispersion: Table 1 prints a per-glass deviation "dPgF"; the patent states no formula or normal line for it.
+ * The line is inferred, not printed. L1-L4, L6, L8, L9, L11, L14, L16 and plate P sit on a HOYA catalog nd/νd and carry
+ * HOYA's catalog ΔPgF to four decimals, as do eight more HOYA glasses in Examples 2-4. HOYA measures ΔPgF from its
+ * C7-F2 line, PgF = 0.64842 − 0.001802·νd. For those elements `dPgF` is PgF minus the engine's normal line
+ * (0.6438 − 0.001682·νd), with PgF = printed deviation + 0.64842 − 0.001802·νd; L9 moves by under 0.0003 and keeps
+ * the printed figure. L5, L7, L10, L12, L13 and L15 match no HOYA figure at their coordinates, so their line is not
+ * established and they keep the patent's printed deviation unconverted. The analysis quotes the patent's deviations.
+ *
  * Semi-diameters are modeled, not patent-published. They were inferred from exact meridional d-line ray envelopes at
  * the three published zoom states, containing the full-field chief ray plus the viewer's default on/off-axis bundles;
  * representative intermediate zoom samples were also checked. Final SDs pass portable edge-thickness, actual rim-slope,
@@ -62,7 +70,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -122.847038,
       glass: "J-LASFH13 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      dPgF: 0.0028,
+      dPgF: 0.003664,
       cemented: "D1",
     },
     {
@@ -76,10 +84,10 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 85.461478,
       glass: "FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      dPgF: 0.0194,
+      dPgF: 0.015788,
       cemented: "D1",
       apd: "patent",
-      apdNote: "US 2018/0081156 A1 Table 1: ΔPgF = +0.0194; supplier unconfirmed.",
+      apdNote: "US 2018/0081156 A1 Table 1: patent dPgF = +0.0194, printed without a formula. It equals HOYA's catalog ΔPgF at this nd/νd, which HOYA measures from its own line (PgF − 0.64842 + 0.001802·νd), so PgF = 0.5442; runtime dPgF +0.015788. Supplier unconfirmed.",
     },
     {
       id: 3,
@@ -92,9 +100,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 106.4645,
       glass: "FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      dPgF: 0.0194,
+      dPgF: 0.015788,
       apd: "patent",
-      apdNote: "US 2018/0081156 A1 Table 1: ΔPgF = +0.0194; supplier unconfirmed.",
+      apdNote: "US 2018/0081156 A1 Table 1: patent dPgF = +0.0194, printed without a formula. It equals HOYA's catalog ΔPgF at this nd/νd, which HOYA measures from its own line (PgF − 0.64842 + 0.001802·νd), so PgF = 0.5442; runtime dPgF +0.015788. Supplier unconfirmed.",
     },
     {
       id: 4,
@@ -107,7 +115,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -17.273281,
       glass: "J-LASFH21 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      dPgF: 0,
+      dPgF: 0.000744,
     },
     {
       id: 5,
@@ -133,9 +141,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 27.305795,
       glass: "FDS18 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      dPgF: 0.0386,
+      dPgF: 0.04106,
       apd: "patent",
-      apdNote: "US 2018/0081156 A1 Table 1: ΔPgF = +0.0386; supplier unconfirmed.",
+      apdNote: "US 2018/0081156 A1 Table 1: patent dPgF = +0.0386, printed without a formula. It equals HOYA's catalog ΔPgF at this nd/νd, which HOYA measures from its own line (PgF − 0.64842 + 0.001802·νd), so PgF = 0.6546; runtime dPgF +0.041060. Supplier unconfirmed.",
     },
     {
       id: 7,
@@ -161,10 +169,10 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 15.76195,
       glass: "H-FK61 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      dPgF: 0.0375,
+      dPgF: 0.032328,
       cemented: "D2",
       apd: "patent",
-      apdNote: "US 2018/0081156 A1 Table 1: ΔPgF = +0.0375; supplier unconfirmed.",
+      apdNote: "US 2018/0081156 A1 Table 1: patent dPgF = +0.0375, printed without a formula. It equals HOYA's catalog ΔPgF at this nd/νd, which HOYA measures from its own line (PgF − 0.64842 + 0.001802·νd), so PgF = 0.5389; runtime dPgF +0.032328. Supplier unconfirmed.",
     },
     {
       id: 9,
@@ -207,7 +215,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -33.629244,
       glass: "SF15 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      dPgF: 0.0086,
+      dPgF: 0.00962,
       cemented: "D3",
     },
     {
@@ -248,7 +256,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -8.39882,
       glass: "N-LASF44 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      dPgF: -0.0066,
+      dPgF: -0.00756,
       cemented: "D4",
     },
     {
@@ -276,10 +284,10 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -25.769745,
       glass: "FDS24 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      dPgF: 0.0151,
+      dPgF: 0.01684,
       cemented: "D5",
       apd: "patent",
-      apdNote: "US 2018/0081156 A1 Table 1: ΔPgF = +0.0151; supplier unconfirmed.",
+      apdNote: "US 2018/0081156 A1 Table 1: patent dPgF = +0.0151, printed without a formula. It equals HOYA's catalog ΔPgF at this nd/νd, which HOYA measures from its own line (PgF − 0.64842 + 0.001802·νd), so PgF = 0.6203; runtime dPgF +0.016840. Supplier unconfirmed.",
     },
   ],
 

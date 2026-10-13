@@ -392,6 +392,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.410,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Published double-floating focus: GR2 moves image-side 6.1293 mm and GR4 moves object-side 4.6776 mm from infinity to the patent near endpoint (d0 = 280 mm from the first surface, about 0.410 m object-to-IMG). The focus label follows this patent endpoint; Sony markets the minimum distance as 0.4 m.",
 

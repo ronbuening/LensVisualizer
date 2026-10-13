@@ -29,7 +29,7 @@ Two external catalogs also make the production correlation: [Photons to Photos �
 
 Example 1 is an all-spherical, positive–negative–positive telephoto architecture. The final parsed model has a computed infinity-focus EFL of `489.788641528 mm`. With the source-listed rear GF plate represented explicitly, the physical surface-1-to-image track is `427.170000 mm`, giving `TL/EFL = 0.872152`; the design therefore satisfies the project's telephoto criterion `TL/EFL < 1`. The computed physical back focal distance from surface 28 through GF to best paraxial focus is `109.679722245 mm`, or `0.223933 × EFL`, so the design is not retrofocus under the project's `BFD > EFL` criterion.
 
-The drawn lens prescription contains 15 physical glass pieces and 12 air-spaced groups when the front protective meniscus is counted. For comparison with Nikon's product specification, the optical train behind that protective glass is 14 elements in 11 groups. The separate source-listed rear member `GF` is represented through `rearPlates`; under the current data specification it participates in optical tracing but is not drawn and is not included in `elementCount` or `groupCount`. The patent's power-group organization is different from the physical air-gap count:
+The drawn lens prescription contains 15 lens elements and 12 air-spaced groups when the front protective meniscus is counted, plus the flat rear `GF` plate. For comparison with Nikon's product specification, the optical train behind that protective glass is 14 elements in 11 groups. The separate source-listed rear member `GF` is drawn as a plane-parallel plate element (surfaces 29–30) and traced by every analysis; its semi-diameter is a ray-trace estimate because the source lists none, and it is not included in `elementCount` or `groupCount`. The patent's power-group organization is different from the physical air-gap count:
 
 - **G1:** positive; surfaces 1–11; computed standalone group focal length `+218.539 mm`.
 - **G2:** negative focusing group; surfaces 12–16; computed standalone group focal length `−62.382 mm`.
@@ -39,7 +39,7 @@ The drawn lens prescription contains 15 physical glass pieces and 12 air-spaced 
 
 The aperture diaphragm is the patent's surface 17, between G2 and G3. The data file maps that plane to the required `STO` label without moving it axially. The patent publishes `Fno = 4.08` but no physical diaphragm diameter, so the authored stop semi-diameter `19.048637040084 mm` is a paraxial calibration that makes the modeled entrance pupil reproduce f/4.08. It is not a source-published stop measurement.
 
-The source also includes a flat rear member `GF` at surfaces 29–30. Patent ¶0044 describes GF generically as an optical filter, cover glass, or prism between the final group and image plane. Under the current LensVisualizer data specification, a source-listed plane plate behind the last lens surface is modeled with `rearPlates` rather than by folding its reduced distance into the final air gap. Surface 28 therefore retains the source physical gap of `25.00 mm`; `GF` is modeled as a `2.00 mm` plate at `nd = 1.51680`, followed by the source `Bf = 82.68 mm` air gap to the image plane.
+The source also includes a flat rear member `GF` at surfaces 29–30. Patent ¶0044 describes GF generically as an optical filter, cover glass, or prism between the final group and image plane. The data file draws this source-listed plane plate as a plane-parallel plate element, traced by every analysis, rather than folding its reduced distance into the final air gap. Surface 28 therefore retains the source physical gap of `25.00 mm`; `GF` is modeled as a `2.00 mm` plate at `nd = 1.51680`, followed by the source `Bf = 82.68 mm` air gap to the image plane.
 
 The plate leaves the system EFL unchanged. Re-tracing the physical final model gives a back focal distance of `82.679722245 mm` from the rear face of GF, differing from the printed `82.68 mm` by `−0.000277755 mm`. Measured from surface 28, the corresponding physical back focal distance is `25.00 + 2.00 + 82.679722245 = 109.679722245 mm`. The former air-equivalent representation, `25.00 + 2.00 / 1.51680 + 82.68 = 108.998565401 mm`, is retained only as a migration cross-check and is no longer the authored rear spacing.
 
@@ -167,7 +167,7 @@ C3's positive net power does not make G3b positive as a whole, because the follo
 
 L14 is the final powered lens element and the rear member of G3b. Its negative standalone power helps leave G3b with computed focal length `−423.899 mm` even though the preceding C3 cemented pair is net positive.
 
-The complete G3 remains positive because the stronger positive G3a is followed by the weaker negative G3b. The final rear optical member `GF` printed by the patent is not L14; it is a separate flat filter/cover-glass/prism member represented through `rearPlates` rather than as a drawn lens element.
+The complete G3 remains positive because the stronger positive G3a is followed by the weaker negative G3b. The final rear optical member `GF` printed by the patent is not L14; it is a separate flat filter/cover-glass/prism member drawn as a plane-parallel plate element rather than as a lens element.
 
 ## Glass Identification and Selection
 

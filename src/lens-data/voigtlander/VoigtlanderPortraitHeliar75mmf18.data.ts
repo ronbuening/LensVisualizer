@@ -196,6 +196,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.70008,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED unit focus — the complete optical assembly translates; BF changes from 47.08 mm at infinity to " +
     "57.00 mm at the 0.70008 m image-plane-referenced close state. The independent S.A. control requires refocusing.",

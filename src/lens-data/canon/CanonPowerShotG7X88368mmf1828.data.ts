@@ -42,7 +42,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-powershot-g7x-8-8-36-8-f1-8-2-8",
   maker: "Canon",
-  name: "CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)",
+  name: "CANON 8.8-36.8mm f/1.8-2.8 (Canon PowerShot G7 X)",
   subtitle: "US 2016/0062096 A1 Example 1 — Canon / Hatada",
   specs: [
     "Patent f=9.06-35.69 mm",

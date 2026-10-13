@@ -32,7 +32,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hasselblad-hc-macro-4-120",
   maker: "Hasselblad",
-  name: "HASSELBLAD HC Macro 120mm f/4",
+  name: "HASSELBLAD HC MACRO 120mm f/4",
   subtitle: "JP 2004-302170 A EXAMPLE 4 — FUJI PHOTO OPTICAL / OHNO",
   specs: ["9 ELEMENTS / 9 GROUPS", "f ≈ 118.7 mm", "F/4.0", "2ω ≈ 32.8°", "ALL SPHERICAL"],
 
@@ -217,11 +217,14 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.39,
+  // Patent read 2026-10-06: Close-focus D13 = 61.46812 is JP 2004-302170 A Table 4's printed 1:1 (等倍) value 51.78443
+  // scaled x1.187; the patent tabulates only infinity and 1:1.
+  publishedStations: { focus: [1] },
   focusDescription: "Front-group unit focus (L1–L6 translate forward, rear group fixed). Infinity to 1:1.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 4.0,
-  fstopSeries: [4, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 45],
+  nominalFno: 4.1,
+  fstopSeries: [4.1, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 45],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

@@ -94,7 +94,7 @@ const LENS_DATA = {
       vd: 44.4,
       indexReference: "d",
       fl: 19.163020085821618,
-      glass: "802444 — high-index crown/lanthanum coordinate class (vendor unresolved)",
+      glass: "NBFD14 (HOYA) class (802444 lanthanum dense flint; Δnd −0.0005, Δνd −0.08; discontinued-glass equivalent, vendor unresolved)",
       cemented: "T1",
       role: "Positive first element of the cemented L2 triplet.",
     },

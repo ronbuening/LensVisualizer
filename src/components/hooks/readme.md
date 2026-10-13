@@ -23,6 +23,7 @@ flowchart LR
     n_src_components_hooks_src_components_hooks_useLensComputation_ts["useLensComputation.ts"]
     n_src_components_hooks_src_components_hooks_useModalDialog_ts["useModalDialog.ts"]
     n_src_components_hooks_src_components_hooks_useMtfComputation_ts["useMtfComputation.ts"]
+    n_src_components_hooks_src_components_hooks_useMtfDataWarning_ts["useMtfDataWarning.ts"]
     n_src_components_hooks_src_components_hooks_useMtfPreferences_ts["useMtfPreferences.ts"]
     n_src_components_hooks_src_components_hooks_useOffAxisRays_ts["useOffAxisRays.ts"]
     n_src_components_hooks_src_components_hooks_useOnAxisRays_ts["useOnAxisRays.ts"]
@@ -67,6 +68,7 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useModalDialog_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useMtfComputation_ts --> n_external_pkg_react
+  n_src_components_hooks_src_components_hooks_useMtfDataWarning_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useMtfPreferences_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useOffAxisRays_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useOnAxisRays_ts --> n_external_pkg_react
@@ -74,15 +76,14 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useOverlayState_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useRayTracing_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useSvgViewport_ts --> n_external_pkg_react
-  n_src_components_hooks_src_components_hooks_useViewBoxZoom_ts --> n_external_pkg_react
   n_src_components_hooks_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 23
+- Direct source files: 24
 - Direct subfolders: 0
-- Main outbound areas: package:react (21), src/types (21), same folder (15), src/optics/perspective (8), src/optics/optics.ts (7), src/utils/state (4), src/optics/raySampling.ts (3), src/optics/buildLens.ts (2), +12 more
+- Main outbound areas: package:react (22), src/types (22), same folder (15), src/optics/perspective (8), src/optics/optics.ts (7), src/utils/state (5), src/optics/raySampling.ts (3), src/optics/buildLens.ts (2), +13 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search
 
 ## Files
@@ -100,9 +101,10 @@ flowchart LR
 | `useHeaderHeight.ts` | React hook module | package:react (2) | src/components/layout | default, useHeaderHeight |
 | `useInteractionSignal.ts` | React hook module | package:react | src/components/controls | InteractionSignal, default, useInteractionSignal |
 | `useLensAnalysisMarkdown.ts` | React hook module | package:react, src/utils/catalog, src/utils/featureFlags.ts | src/components/layout | default, useLensAnalysisMarkdown |
-| `useLensComputation.ts` | React hook module | src/optics/lensMovement.ts (2), src/optics/optics.ts (2), package:react, src/optics/aperture.ts, src/optics/apertureStop.ts, +7 more | src/components/layout | default, useLensComputation |
+| `useLensComputation.ts` | React hook module | src/optics/lensMovement.ts (2), src/optics/optics.ts (2), package:react, src/optics/aperture.ts, src/optics/apertureStop.ts, +8 more | src/components/layout | default, useLensComputation |
 | `useModalDialog.ts` | React hook module | package:react | src/components/layout (2) | default, useModalDialog |
 | `useMtfComputation.ts` | React hook module | src/types (2), package:react, same folder | src/components/display | MtfComputation, useMtfComputation |
+| `useMtfDataWarning.ts` | React hook module | package:react, src/types, src/utils/state | src/components/display | useMtfDataWarning |
 | `useMtfPreferences.ts` | React hook module | package:react, src/utils/state | src/components/display | useMtfPreferences |
 | `useOffAxisRays.ts` | React hook module | same folder (3), src/optics/perspective (2), src/types (2), package:react, src/optics/optics.ts, +1 more | same folder | default, useOffAxisRays |
 | `useOnAxisRays.ts` | React hook module | src/optics/perspective (2), src/types (2), package:react, same folder, src/optics/optics.ts, +1 more | same folder (4), src/benchmarks, src/components/layout | RaySegment, default, useOnAxisRays |

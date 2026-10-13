@@ -171,7 +171,7 @@ a geometry result for the inferred clear apertures, not a patent-published mecha
 
 ### L10 — Biconvex Positive, rear member of G6
 
-`nd = 1.6780`, `νd = 50.8`. Glass: **Unmatched (678508; no coordinate-compatible current catalog glass located)**.
+`nd = 1.6780`, `νd = 50.8`. Glass: **LACL9 (HOYA) class (678508 lanthanum crown, LaLK9 type; discontinued-glass equivalent)**.
 Standalone `f = +14.969 mm`.
 
 L10 closes the cemented triplet and the optical train. The combined G6 focal length from the rounded Example 1 table is
@@ -197,7 +197,7 @@ The patent refractive indices and Abbe numbers are retained. Catalog curves are 
 | L7 | 1.61 / 38 (d) | S-TIM3 |
 | L8 | 1.678 / 32.2 (d) | Unresolved; patent-coordinate fallback |
 | L9 | 1.516 / 56.8 (d) | C2 |
-| L10 | 1.678 / 50.8 (d) | Unresolved; patent-coordinate fallback |
+| L10 | 1.678 / 50.8 (d) | LACL9 (discontinued HOYA LaLK9-type equivalent, 1.67790 / 50.55) |
 
 Named curves pass the catalog coordinate guard without changing the patent coordinates. No catalog-derived line indices are copied into the elements. Unresolved rows retain their source-based fallback; nearby glass families do not establish a unique historical identity. No APO or anomalous-dispersion claim follows from these assignments.
 

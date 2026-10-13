@@ -26,7 +26,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-fujinon-xc-15-45mm-f35-56-ois-pz",
   maker: "Fujifilm",
-  name: "Fujinon XC 15-45mm f/3.5-5.6 OIS PZ",
+  name: "FUJIFILM FUJINON XC 15-45mm f/3.5-5.6 OIS PZ",
   subtitle: "JP 2021-15312 A Example 3 — strong production correlation; not manufacturer-confirmed",
   specs: [
     "MARKETED 15-45mm f/3.5-5.6",
@@ -366,6 +366,8 @@ const LENS_DATA = {
   doublets: [{ text: "L2b+L2c", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 1.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "PUBLISHED: G3 focuses from infinity to the patent 1 m state only; this is not the production MFD.",
 
   nominalFno: [3.58, 4.22, 5.76],

@@ -14,6 +14,7 @@ coordinated edits; `src/utils/state/lensViewUrlState.ts` is the code-level sourc
   `VIEW_STATE_FIELDS`, so a table entry reaches the reducer with no extra plumbing.
 - `configurationKey` → `cfg` deliberately stays out of the table: generic parsing enforces only a bounded key syntax,
   while `useLensState` and `useURLSync` validate group membership against the canonical lens before hydration.
+  Teleconverter keys (`tc`, `a_tc`, `b_tc`) follow the same pattern and are resolved against the lens they mount on.
 
 ## The Three Coordinated Edits
 
@@ -29,7 +30,7 @@ Every new field touches exactly these three places. Using `myOverlayOpen` → pa
    `parseBooleanParam(params, "myo")` and assign only when not `undefined`; in `buildLensViewQuery()` destructure the
    option, `params.set("myo", "1")` when true, and add it to the `usesV1ViewState` disjunction; in
    `buildLensViewQueryFromState()` read `state.panels.myOverlayOpen`. Pick a short, unused param key — existing keys:
-   `el`, `a_el`, `b_el`, `gm`, `chr`, `ptz`, `ad`, `tab`, `mv`, `cfg`.
+   `el`, `a_el`, `b_el`, `gm`, `chr`, `ptz`, `ad`, `tab`, `mv`, `cfg`, `tc`, `a_tc`, `b_tc`, `pp`.
 
 ### Custom-Encoded Fields
 
@@ -37,6 +38,11 @@ A non-boolean field (compare `analysisDrawerTab` → `tab` and `groupMovementMod
 entry in step 1 and instead needs a validated parse (an `isAnalysisTabId(tab)`-style guard in `src/types/`), an explicit
 build branch that omits the param at its default, and an explicit line in both `lensViewQueryToUrlState()` and the
 reducer's `APPLY_URL_VIEW_STATE` branch.
+
+A boolean that is also a stored preference (compare `patentPositions` → `pp`) is custom-encoded too. A
+`VIEW_STATE_FIELDS` boolean reads an absent param as `false`, which would override the preference on every load and
+reset it on every history entry. Parse it as tri-state, leave it out of `DEFAULT_URL_STATE`, and seed it in
+`createInitialState` as `urlState.x ?? prefs.x ?? false`.
 
 ## Tests
 
@@ -52,6 +58,8 @@ field being dropped when `v` is missing or ≠ 1.
 - Comparison mode uses `a_`/`b_`-prefixed variants for per-panel fields (`selectedElementIdA/B` is the model); decide
   whether your field needs per-panel treatment. Optical configuration is the counterexample: single-lens URLs use `cfg`,
   while compare routes carry each variant in `/compare/:slugA/:slugB` and never serialize `cfg`.
+- State that must survive entering or leaving compare mode has to be in the navigation URL itself: the route change
+  mounts a fresh viewer that initializes from the URL before the debounced writer runs.
 
 ## Verification
 

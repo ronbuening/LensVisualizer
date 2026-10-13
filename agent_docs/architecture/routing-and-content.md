@@ -26,6 +26,8 @@ build metadata.
 | `MountsIndexPage.tsx` | `src/pages/` | Mount index at `/mounts`, lists represented mounts with counts. |
 | `FormatPage.tsx` | `src/pages/` | Image-format page at `/formats/:formatId`, lists lenses for one format. |
 | `FormatsIndexPage.tsx` | `src/pages/` | Image-format index at `/formats`, lists represented formats with counts. |
+| `TeleconverterPage.tsx` | `src/pages/` | Teleconverter page at `/teleconverters/:teleconverterKey`: specs, patent, and the lenses it can mount on. No diagram; each lens link opens the viewer with `?v=1&tc=<key>`. |
+| `TeleconvertersIndexPage.tsx` | `src/pages/` | Teleconverter index at `/teleconverters`. |
 | `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO fallback content plus client-only `LensViewer`. |
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
@@ -187,7 +189,12 @@ Metadata generation is split across:
 - `scripts/lens-data-lib.mjs` - lens data scanning, root-file organization helpers, maker slug derivation.
 - `scripts/build-metadata-lib.mjs` - git freshness helpers, bounded concurrency, route freshness aggregation.
 - `scripts/generate-build-metadata.mjs` - top-level metadata orchestration, concrete route enumeration, generated route
-  freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh.
+  freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh. It also writes
+  `src/generated/teleconverter-summaries.json`: each `*.teleconverter.ts` summary plus `compatibleLensKeys`, resolved
+  by importing the import-free fit predicate (`src/optics/prescription/teleconverterCompatibility.ts`) under plain Node
+  so the page lists and the viewer cannot disagree. Hidden converters (`visible: false`) keep a summary but get no
+  route, and `/teleconverters` itself is emitted only when a published converter exists; `scripts/prerender.mjs`
+  lists the section in `OPTIONAL_SECTIONS` so its manifest patterns may go uncovered in that case.
 - `scripts/maker-prefixes.mjs` - single source of truth for maker prefixes, emitted to
   `src/generated/maker-prefixes.json`.
 

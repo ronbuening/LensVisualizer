@@ -49,9 +49,9 @@ const ANALYSIS_TAB_SECTIONS: Record<AnalysisTabId, readonly AnalysisSectionId[]>
 
 export default function AnalysisDrawerContent({
   activeTab,
-  L,
+  L: currentL,
   t,
-  zPos,
+  zPos: currentZPos,
   focusT,
   zoomT,
   aberrationT = 0,
@@ -65,10 +65,12 @@ export default function AnalysisDrawerContent({
   aberrationsExpanded,
   onAberrationsExpandedChange,
 }: AnalysisDrawerContentProps) {
-  // Defer all slider-derived inputs so analysis tabs only recompute when React
+  // Defer the lens and all slider-derived inputs so analysis tabs only recompute when React
   // has idle time, keeping the main viewport responsive during drag.
   const currentAnalysisSnapshot = useMemo(
     () => ({
+      L: currentL,
+      zPos: currentZPos,
       focusT,
       zoomT,
       aberrationT,
@@ -80,6 +82,8 @@ export default function AnalysisDrawerContent({
       perspectiveTraceContext,
     }),
     [
+      currentL,
+      currentZPos,
       focusT,
       zoomT,
       aberrationT,
@@ -91,12 +95,13 @@ export default function AnalysisDrawerContent({
       perspectiveTraceContext,
     ],
   );
-  // Defer one immutable snapshot so scalar controls and the prepared perspective
-  // context can never transiently describe different slider states.
+  // Defer one immutable snapshot so the lens, scalar controls and the prepared perspective
+  // context can never transiently describe different lenses or slider states. The lens is part
+  // of it because a converter or optical-configuration switch replaces it without a remount.
   const analysisSnapshot = useDeferredValue(currentAnalysisSnapshot);
-  const deferredPerspectiveTraceContext = analysisSnapshot.perspectiveTraceContext;
+  const { L, zPos, perspectiveTraceContext: deferredPerspectiveTraceContext } = analysisSnapshot;
   const analysisInputs = useMemo(() => {
-    const { perspectiveTraceContext: _perspectiveTraceContext, ...inputs } = analysisSnapshot;
+    const { L: _L, zPos: _zPos, perspectiveTraceContext: _perspectiveTraceContext, ...inputs } = analysisSnapshot;
     return inputs;
   }, [analysisSnapshot]);
   const analysisQuality: AnalysisQuality = sliderInteracting ? "interactive" : "settled";

@@ -474,6 +474,9 @@ const LENS_DATA = {
 
   /* ── Focus & Aperture ── */
   closeFocusM: 0.2,
+  // Patent read 2026-10-06: Close-focus gaps at W/M/T are WO 2022/264542 A1 Example 1 Table 1 close-distance rows (β
+  // = -0.151/-0.147/-0.333; object distance 96.613/280.487/248.897 mm).
+  publishedStations: { focus: [1] },
   focusDescription: "G4 inner focus (cemented doublet L41+L42 moves image-ward). STM AF motor.",
   nominalFno: [3.5, 5.0, 6.3],
   apertureBlades: 7,

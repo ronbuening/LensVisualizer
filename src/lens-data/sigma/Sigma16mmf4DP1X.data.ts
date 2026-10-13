@@ -179,6 +179,8 @@ const LENS_DATA = {
   focusDescription:
     "Rear-group internal focusing: G5 moves 3.5896 mm toward the object from infinity to 0.30 m while the first-surface-to-image track remains 56.2503 mm.",
   closeFocusM: 0.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   nominalFno: 4,
   fstopSeries: [4, 5.6, 8, 11, 16],
   yScFill: 0.55,

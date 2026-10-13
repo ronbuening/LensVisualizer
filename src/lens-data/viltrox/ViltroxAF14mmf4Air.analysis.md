@@ -170,7 +170,7 @@ The modeled close state preserves the published D1 motion and the required fixed
 | D1 + D2 | 8.31 mm | 8.31 mm |
 | Computed EFL | 14.192130 mm | 13.615918 mm |
 
-The computed focal-length change is -4.060% from infinity to the constrained close state. The UI field `closeFocusM = 0.13 m` follows Viltrox's marketed minimum focus distance. It is not used to redefine the patent's nominal 0.12 m spacing endpoint because neither source establishes an explicitly common distance reference plane.
+The computed focal-length change is -4.060% from infinity to the constrained close state. The UI field `closeFocusM = 0.12 m` is the patent's nominal distance for this spacing row, so the close-focus label matches the state it describes. Viltrox markets a 0.13 m minimum focus distance; neither source states its distance reference plane, so the two figures are not reconciled here.
 
 ## Aspherical Surfaces
 

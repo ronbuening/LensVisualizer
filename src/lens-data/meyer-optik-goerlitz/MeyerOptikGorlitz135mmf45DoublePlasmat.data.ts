@@ -109,7 +109,7 @@ const LENS_DATA = {
       nd: 1.6223,
       vd: 53.2,
       fl: 150.48019445506026,
-      glass: "Unmatched (622532 — historical D-line SSK/BSM-class coordinate; supplier unresolved)",
+      glass: "SSK2 (Schott) class (622532 — historical D-line SSK coordinate; catalog equivalent, supplier unresolved)",
       role: "Positive meniscus adjacent to the median diaphragm on the object-side half.",
     },
     {
@@ -121,7 +121,7 @@ const LENS_DATA = {
       nd: 1.6223,
       vd: 53.2,
       fl: 150.48019445506026,
-      glass: "Unmatched (622532 — historical D-line SSK/BSM-class coordinate; supplier unresolved)",
+      glass: "SSK2 (Schott) class (622532 — historical D-line SSK coordinate; catalog equivalent, supplier unresolved)",
       role: "Positive meniscus adjacent to the median diaphragm on the image-side half.",
     },
     {

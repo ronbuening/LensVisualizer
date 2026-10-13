@@ -80,13 +80,13 @@ Together, L1 and L2 form D1. In the normalized model that cemented pair has a ne
 
 L2 is the positive member of D1 and is a meniscus with its convex face toward the object according to ¶0034. Its patent dPgF value is +0.0194. Unlike most element-level design-role statements, the patent explicitly assigns chromatic significance to this coordinate: conditions (5), (5a), and (5b) use L2's dPgF, and ¶0123 states that satisfying the condition makes secondary-spectrum correction easier.
 
-The data file therefore preserves dPgF = +0.0194 directly on L2. It does not infer a supplier or catalog melt from the coordinate.
+The data file stores that figure moved onto the dispersion engine's normal line, dPgF = +0.015788 on L2; the patent's +0.0194 is measured from a different line (see Glass Identification and Selection). It does not infer a supplier or catalog melt from the coordinate.
 
 ### L3 — Positive Meniscus, G1
 
 **nd = 1.59282, νd = 68.6. Glass: FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +106.464500 mm.**
 
-L3 is the rear element of G1 and shares L2's nd, νd, and dPgF coordinate. The patent again gives it a direct chromatic condition: condition (6) is defined from L3's dPgF, and ¶0127 links that condition to easier secondary-spectrum correction. Its +0.0194 value satisfies the patent's preferred +0.015 threshold.
+L3 is the rear element of G1 and shares L2's nd, νd, and dPgF coordinate. The patent again gives it a direct chromatic condition: condition (6) is defined from L3's dPgF, and ¶0127 links that condition to easier secondary-spectrum correction. Its patent value of +0.0194 satisfies the patent's preferred +0.015 threshold.
 
 Because G1 is fixed through the zoom, L3's axial station relative to L1 and L2 does not change across the published zoom states.
 
@@ -110,7 +110,7 @@ The two aspheric surfaces are retained geometrically rather than being interpret
 
 **nd = 1.94595, νd = 18.0. Glass: FDS18 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +27.305795 mm.**
 
-L6 is the positive rear element of the otherwise negative G2 and is described by the patent as biconvex (¶0035). Its dPgF is +0.0386, but the patent does not assign L6 a dedicated conditional expression analogous to L2 or L3, so no specific chromatic correction role is inferred here from that number alone.
+L6 is the positive rear element of the otherwise negative G2 and is described by the patent as biconvex (¶0035). Its patent dPgF is +0.0386, but the patent does not assign L6 a dedicated conditional expression analogous to L2 or L3, so no specific chromatic correction role is inferred here from that number alone.
 
 The aperture stop follows L6. Consequently, the G2-to-stop spacing is one of the principal zoom variables used by condition (3).
 
@@ -150,7 +150,7 @@ The normalized L10+L11 pair D3 has a net isolated focal length of +24.345539 mm.
 
 **nd = 1.69895, νd = 30.0. Glass: SF15 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = -33.629244 mm.**
 
-L11 is the negative member of D3. The patent describes it as a meniscus with its concave surface toward the object (¶0036). Its dPgF is +0.0086.
+L11 is the negative member of D3. The patent describes it as a meniscus with its concave surface toward the object (¶0036). Its patent dPgF is +0.0086.
 
 As at the other cemented junctions, the final model uses the downstream element index at the shared radius and incorporates the source's 0.005 mm interface layer into L11's thickness. The resulting standalone value is therefore a property of the normalized element, while +24.345539 mm describes D3 as an isolated cemented assembly.
 
@@ -174,7 +174,7 @@ L13 is cemented to the negative L14. Because D4 is the entirety of G4, the norma
 
 **nd = 1.80420, νd = 46.5. Glass: N-LASF44 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = -8.398820 mm.**
 
-L14 is the strong negative member of D4 and is biconcave in the patent (¶0037). Its dPgF is -0.0066. The combination of positive L13 and stronger negative L14 produces G4's net negative power.
+L14 is the strong negative member of D4 and is biconcave in the patent (¶0037). Its patent dPgF is -0.0066. The combination of positive L13 and stronger negative L14 produces G4's net negative power.
 
 G4 is also the patent's focus group. It moves toward the object side during zooming (¶0039), but ¶0040 states that it moves toward the image side when focusing from infinity toward proximity. The patent does not publish numerical close-focus spacings, so that focusing motion is not reconstructed in the data.
 
@@ -219,7 +219,9 @@ The active element palette is:
 | L15 | 1.80525 / 40.9 | d-line | S-LAH53; supplier-neutral proxy | 0.000848 / 0.026 |
 | L16 | 1.92119 / 24 | d-line | FDS24; supplier-neutral proxy | -0.000001 / -0.040 |
 
-The glass audit compared these coordinates against current authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalog resources. Those comparisons are useful for class-level interpretation but do not establish the physical supplier or melt used in a patent embodiment. The data consequently omits unsupported nC, nF, and ng values and retains the patent's dPgF values directly.
+The glass audit compared these coordinates against current authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalog resources. Those comparisons are useful for class-level interpretation but do not establish the physical supplier or melt used in a patent embodiment. The data consequently omits unsupported nC, nF, and ng values. It stores the patent's dPgF values either converted to the dispersion engine's normal line or, where the patent's line cannot be established, unconverted, as set out next.
+
+**Normal line of the patent's dPgF column.** The patent defines dPgF only as "an anomalous dispersion of g-line and F-line" (¶0145) and states no formula or reference line for it. The line is therefore inferred rather than read. Eleven of the seventeen Table 1 rows (L1, L2, L3, L4, L6, L8, L9, L11, L14, L16 and plate P) sit on a HOYA catalog nd/νd and carry that glass's HOYA catalog ΔPgF to four decimals, and eight further HOYA glasses in Examples 2-4 do the same. HOYA measures ΔPgF from its own normal line through C7 and F2, PgF = 0.64842 − 0.001802·νd, while the dispersion engine reads `dPgF` against 0.6438 − 0.001682·νd. For nine of those ten elements the data file stores PgF minus the engine's line, with PgF recovered as the patent figure + 0.64842 − 0.001802·νd: L1 +0.003664, L2 and L3 +0.015788, L4 +0.000744, L6 +0.041060, L8 +0.032328, L11 +0.009620, L14 −0.007560 and L16 +0.016840. L9 moves by less than 0.0003 and keeps −0.0094. L5, L7, L10, L12, L13 and L15 match no HOYA catalog figure at their printed coordinates, so the line behind their figures is not established and the data file keeps the patent's −0.0066, −0.0070, +0.0194, +0.0074, +0.0074 and −0.0066 unconverted. The match establishes which line the converted figures are measured from; the glass labels remain supplier-neutral proxies. Every dPgF quoted in this analysis is the patent's printed deviation unless it is called a stored value.
 
 L5/L15 use S-LAH53 and L12/L13 use S-TIM28 as near-coordinate spectral proxies. Their catalog partial-dispersion signs agree with the patent; the patent values −0.0066 and +0.0074 remain authoritative at the g-line. These matches do not establish exact production compositions.
 
@@ -283,7 +285,7 @@ The patent provides unusually explicit chromatic design guidance for L2 and L3. 
 
 That patent statement supports a limited secondary-spectrum interpretation for the fixed front group. It does not, by itself, establish that the complete lens is apochromatic. The data lacks published C-, F-, and g-line indices for each element, and supplier-level Sellmeier identities are not established for the complete glass set. Accordingly, no APO claim is made.
 
-Several other elements carry large positive or negative dPgF values in Table 1, including L6 (+0.0386), L8 (+0.0375), and L9 (-0.0094). Those values are preserved for the dispersion engine's dPgF-corrected Abbe fallback, but this analysis does not infer a specific aberration assignment for them unless the patent states one.
+Several other elements carry large positive or negative dPgF values in Table 1, including L6 (+0.0386), L8 (+0.0375), and L9 (-0.0094). Those are the patent's deviations; the data file keeps them for the dispersion engine's dPgF-corrected Abbe fallback, converted to the engine's normal line where the patent's line is established (see Glass Identification and Selection), but this analysis does not infer a specific aberration assignment for them unless the patent states one.
 
 The production specification's four-ED-lens statement is also kept separate. It is useful correlation evidence, but it does not authorize relabeling four patent elements as specific production ED parts.
 
@@ -297,10 +299,10 @@ The patent uses six principal conditions to bound power distribution, stop place
 | (2) | abs(f4) / fw | 1.960697 | 1.96 | 0.5 < value < 4.0 |
 | (3) | D13w / (D12w + D13w) | 0.383098 | 0.38 | value > 0.15 |
 | (4) | T21t / T21w | 0.598198 | 0.60 | value < 1.0 |
-| (5) | dPgF2 | 0.019400 | 0.0194 | value > 0.005 |
-| (6) | dPgF3 | 0.019400 | 0.0194 | value > 0.005 |
+| (5) | dPgF2 (patent's deviation) | 0.019400 | 0.0194 | value > 0.005 |
+| (6) | dPgF3 (patent's deviation) | 0.019400 | 0.0194 | value > 0.005 |
 
-The small differences in conditions (1), (2), and (4) relative to the printed Table 13 values are expected consequences of evaluating the expressions on the normalized active model rather than on the raw 35-plane source model. Conditions (3), (5), and (6) are unchanged because their governing quantities survive the normalization directly.
+The small differences in conditions (1), (2), and (4) relative to the printed Table 13 values are expected consequences of evaluating the expressions on the normalized active model rather than on the raw 35-plane source model. Condition (3) is unchanged because its governing quantities survive the normalization directly. Conditions (5) and (6) are evaluated with the patent's own deviation, +0.0194, because their thresholds are defined against the patent's normal line; the data file stores the same glass as dPgF = +0.015788 on the engine's line.
 
 The active values also fall within the patent's tighter preferred ranges: condition (1) is between 6.5 and 12, condition (2) between 1.0 and 3.0, condition (3) between 0.25 and 0.45, condition (4) between 0.4 and 0.8, and conditions (5) and (6) exceed 0.015. These comparisons follow ¶0100-¶0129; they are not substitutes for the full aberration plots in Figure 2.
 

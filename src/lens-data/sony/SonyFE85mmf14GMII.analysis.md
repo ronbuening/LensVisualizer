@@ -70,7 +70,7 @@ The air gap between L4 and the stop (d = 10.63 mm) plus the stop-to-G2 gap (d9 =
 
 ### Aperture Stop (STO)
 
-The stop is positioned between G1 and G2, at the rear of G1 in the patent's grouping. Its semi-diameter of 36.49 mm sets the entrance pupil size that produces the design f/1.46 aperture. The 11-blade circular diaphragm is located here. Sony's compact circular aperture unit is a key contributor to the lens's reduced size relative to its predecessor.
+The stop is positioned between G1 and G2, at the rear of G1 in the patent's grouping. Its diameter of 36.49 mm (semi-diameter 18.245 mm) sets the entrance pupil size that produces the design f/1.46 aperture. The 11-blade circular diaphragm is located here. Sony's compact circular aperture unit is a key contributor to the lens's reduced size relative to its predecessor.
 
 ### L5 — Biconcave Negative (cemented front of 2A)
 

@@ -6,10 +6,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 2011/0090576 A1, Second Numerical Embodiment / Example 2 / Fig. 3.                ║
  * ║ Production correlation: Canon EF 400mm f/2.8L IS II USM; correlation is inferred, not patent-named.║
- * ║ Active model: 15 refractive elements / 11 air-separated groups, all spherical.                   ║
- * ║ The patent's separate rear glass block G (filter/faceplate) is excluded. Surface 27 therefore    ║
- * ║ uses the patent-normalized no-G air back focus Re→IP = 70.72 mm. The authored first-surface→IP   ║
- * ║ track is 371.25 mm versus patent physical Lt = 372.00 mm; the difference is the G-plane shift.   ║
+ * ║ Active model: 15 refractive elements / 11 air-separated groups, all spherical, plus rear plate G.  ║
+ * ║ REAR FILTER PLATE: patent rows 28-29 are the separate rear glass block G (filter/faceplate): 2.2   ║
+ * ║ mm, nd 1.51633, vd 64.14, 15.00 mm behind surface 27. It is drawn as a plane-parallel plate        ║
+ * ║ element, not counted in elementCount. The patent's 36.00 mm effective diameter for G is a ray-     ║
+ * ║ envelope value, so the plate's semi-diameter is a ray-trace estimate that does not limit the       ║
+ * ║ bundles the rest of the model passes. The patent defines back focus with G absent (Re to IP =      ║
+ * ║ 70.72 mm), so the air behind the plate is 70.72 - 15.00 - 2.2/1.51633 = 54.269129 mm. The authored ║
+ * ║ first-surface to IP track is then 372.00 mm, the patent's Lt.                                      ║
  * ║                                                                                                    ║
  * ║ SCALE: none (s = 1.0). Patent f = 392.15 mm; the active authored arrays compute EFL ≈ 392.260742 mm.║
  * ║ Marketing 400 mm f/2.8 is kept separate from the patent/model design values.                      ║
@@ -19,9 +23,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ entrance pupil gives the patent f/2.90.                                                            ║
  * ║                                                                                                    ║
  * ║ FOCUS — CONSTRAINED_RECONSTRUCTION: patent states cemented L16 moves imageward but gives no      ║
- * ║ finite-focus spacing table. Canon's 2.7 m MFD is referenced to the physical image plane, then   ║
- * ║ normalized to the no-G model: Lt = 372.00 mm, model track = 371.25 mm, object→surface 1 =       ║
- * ║ 2328.00 mm. Holding D10 + D13 = 59.95 mm gives close D10 = 45.149493819 mm and                  ║
+ * ║ finite-focus spacing table. Canon's 2.7 m MFD is referenced to the physical image plane: with Lt = ║
+ * ║ 372.00 mm the object sits 2328.00 mm ahead of surface 1. Holding D10 + D13 = 59.95 mm gives close  ║
+ * ║ D10 = 45.149493819 mm and                                                                          ║
  * ║ D13 = 14.800506181 mm. This close state is reconstructed, not patent-published.                 ║
  * ║                                                                                                    ║
  * ║ IS: cemented L22 plus negative L23 form the patent's transverse stabilization unit. No axial IS   ║
@@ -53,7 +57,7 @@ const LENS_DATA = {
   name: "CANON EF 400mm f/2.8 L IS II USM",
   subtitle: "US 2011/0090576 A1 Example 2 — production correlation; constrained L16 focus reconstruction",
   specs: [
-    "15 ACTIVE ELEMENTS / 11 GROUPS (G FILTER EXCLUDED)",
+    "15 ACTIVE ELEMENTS / 11 GROUPS (PLUS REAR FILTER PLATE G)",
     "PATENT f = 392.15 mm; COMPUTED EFL 392.2607 mm",
     "PATENT F/2.90 / MARKETED 400mm f/2.8",
     "ALL-SPHERICAL",
@@ -66,6 +70,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.9,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "US 2011/0090576 A1",
   patentAuthors: ["Shigenobu Sugita"],
@@ -273,6 +278,18 @@ const LENS_DATA = {
       role:
         "Gn1 negative nearest the image; patent uses it for lateral color, field-curvature, and astigmatism control.",
     },
+    {
+      id: 16,
+      name: "G",
+      label: "Drop-in filter G",
+      type: "Plane-Parallel Plate",
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "516641 class (vendor unresolved; multiple catalog equivalents)",
+      dPgF: -0.0007,
+      role:
+        "Plane-parallel glass block G of the patent prescription (rows 28-29; X = dPgF = -0.0007), in the rear drop-in filter holder. The patent defines back focus with it absent; Canon counts the drop-in filter in the production lens.",
+    },
   ],
 
   /* ── Optical prescription ── */
@@ -303,7 +320,11 @@ const LENS_DATA = {
     { label: "24", R: -125.549, d: 0.2, nd: 1.0, elemId: 0, sd: 18.53 },
     { label: "25", R: 92.173, d: 10.46, nd: 1.65412, elemId: 14, sd: 18.715 },
     { label: "26", R: -43.681, d: 1.8, nd: 1.8081, elemId: 15, sd: 18.49 },
-    { label: "27", R: 261.177, d: 70.72, nd: 1.0, elemId: 0, sd: 18.455 },
+    { label: "27", R: 261.177, d: 15.0, nd: 1.0, elemId: 0, sd: 18.455 },
+    // Drop-in filter G (patent rows 28-29), drawn as a plane-parallel plate. Its sd is a ray-trace estimate; the
+    // patent's 36.00 mm effective diameter is a ray envelope and would limit this model's corner bundle.
+    { label: "28", R: 1e15, d: 2.2, nd: 1.51633, elemId: 16, sd: 21.5 },
+    { label: "29", R: 1e15, d: 54.269129, nd: 1.0, elemId: 0, sd: 21.5 }, // drop-in filter → image plane
   ],
 
   asph: {},
@@ -320,9 +341,8 @@ const LENS_DATA = {
   closeFocusM: 2.7,
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: the patent publishes L16 imageward inner focusing but no finite-focus spacing " +
-    "table. Canon's 2.7 m MFD is treated as physical image-plane-referenced and normalized to the no-G model " +
-    "(patent Lt = 372.00 mm; " +
-    "modeled first-surface-to-IP track = 371.25 mm), giving an object-to-first-surface distance of 2328.00 mm. " +
+    "table. Canon's 2.7 m MFD is treated as physical image-plane-referenced (patent Lt = 372.00 mm, the modeled " +
+    "first-surface-to-IP track with filter plate G), giving an object-to-first-surface distance of 2328.00 mm. " +
     "The close endpoint moves L16 +28.929493819 mm while holding D10 + D13 = 59.95 mm; it is reconstructed, " +
     "not patent-published.",
 

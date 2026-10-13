@@ -152,6 +152,54 @@ describe("useComparisonOrchestration", () => {
     expect(navigate).toHaveBeenCalledWith("/compare/lens-a-variant/lens-b/", { replace: false });
   });
 
+  it("passes each pane's teleconverter to the lens builder and compares a mounted one against its bare host", () => {
+    const navigate = vi.fn();
+
+    useComparisonModeMock.mockReturnValue({
+      comparisonLenses: null,
+      scaleRatios: null,
+      focusPair: null,
+      aperturePair: null,
+      zoomPair: null,
+      movementPair: null,
+      handleHeaderHeight: vi.fn(),
+      maxHeaderHeight: 0,
+    });
+    useStickySlidersMock.mockReturnValue({
+      handleSharedFocusChange: vi.fn(),
+      handleSharedStopdownChange: vi.fn(),
+      handleFocusPointerDown: vi.fn(),
+      handleAperturePointerDown: vi.fn(),
+      flashPanel: null,
+      resetSticky: vi.fn(),
+      prevStopdownT: { current: 0 },
+    });
+
+    const state = buildState({ lensKeyA: "lens-a", lensKeyB: "lens-b", teleconverterKeyA: "tc-14" });
+    const { result } = renderHook(() =>
+      useComparisonOrchestration({ state, dispatch: vi.fn(), navigate, catalogKeys: ["lens-a", "lens-b"] }),
+    );
+
+    expect(useComparisonModeMock).toHaveBeenCalledWith(
+      expect.objectContaining({ teleconverterKeyA: "tc-14", teleconverterKeyB: null }),
+    );
+    act(() => result.current.toggleCompare());
+    /* The compare route remounts the viewer from the URL, so the converter must be in the navigation itself. */
+    expect(navigate).toHaveBeenCalledWith("/compare/lens-a/lens-a/?v=1&a_tc=tc-14", { replace: false });
+
+    const comparing = buildState({
+      comparing: true,
+      lensKeyA: "lens-a",
+      lensKeyB: "lens-a",
+      teleconverterKeyA: "tc-14",
+    });
+    const exit = renderHook(() =>
+      useComparisonOrchestration({ state: comparing, dispatch: vi.fn(), navigate, catalogKeys: ["lens-a", "lens-b"] }),
+    );
+    act(() => exit.result.current.toggleCompare());
+    expect(navigate).toHaveBeenLastCalledWith("/lens/lens-a/?v=1&tc=tc-14", { replace: false });
+  });
+
   it("exits comparison mode and restores lens A slider values", () => {
     const dispatch = vi.fn();
     const navigate = vi.fn();

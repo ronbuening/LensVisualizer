@@ -164,6 +164,8 @@ const LENS_DATA = {
 
   /* ── Product / UI data ── */
   closeFocusM: 0.9,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   nominalFno: 2.3,
   fstopSeries: [2.3, 2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,

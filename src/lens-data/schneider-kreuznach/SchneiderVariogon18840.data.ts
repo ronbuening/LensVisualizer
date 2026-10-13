@@ -293,6 +293,7 @@ const LENS_DATA = {
   focusDescription: "The patent publishes zoom travel only. Internal focus travel is not modeled; the Bauer C2 installation focuses from 3 ft to infinity.",
 
   nominalFno: 1.8,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   yScFill: 0.5,

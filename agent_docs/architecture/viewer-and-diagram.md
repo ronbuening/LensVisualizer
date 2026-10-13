@@ -40,6 +40,11 @@ Key responsibilities:
 - Builds or receives a `RuntimeLens` through the stable `src/optics/buildLens.ts` entry point. In comparison mode,
   `ComparisonContent` / `ComparisonLayout` pass prebuilt runtime lenses to avoid rebuilding the same lens inside each
   panel.
+- Takes an optional `teleconverterKey`. `useLensComputation` builds `resolveLensSystemData(lensKey, teleconverterKey)`
+  (`src/utils/catalog/teleconverterCatalog.ts`), and every lens-keyed reset in the panel — overlay state, header
+  height, hover, the error boundary — keys on `lensSystemKey()` so mounting or removing a converter resets them too.
+  `LensViewer` offers converters through `TeleconverterControl` in `TopBar`, from `teleconverterOptionsForLens()`
+  for the prescription actually shown; a converter the lens cannot take is never passed down.
 - Wires computation hooks for layout, density-controlled rays, chromatic spread, overlays, and slider feedback.
 - Builds one `PerspectiveTraceContext` for supported perspective-control lenses from the camera-anchored layout,
   clamped movement, fixed sensor, and authored tilt pivot. The same context drives the diagram rays and analysis drawer
@@ -59,7 +64,7 @@ Hooks live in `src/components/hooks/`. The ones with non-obvious contracts:
 
 | Hook | Behavior |
 | --- | --- |
-| `useLensComputation.ts` | Lens building/reuse, camera-anchored layout, rigid lens pose, element shapes, aperture, current-state field geometry, and the shared fixed-sensor `PerspectiveTraceContext`. It imports stable optics modules directly; there is no old-vs-new selector. Stabilizes `zPos` by element-wise comparison. |
+| `useLensComputation.ts` | Lens building/reuse, camera-anchored layout, rigid lens pose, element shapes, aperture, current-state field geometry, and the shared fixed-sensor `PerspectiveTraceContext`. It imports stable optics modules directly; there is no old-vs-new selector. Stabilizes `zPos` by element-wise comparison. With `snapToPublishedStations` it first resolves the requested sliders to the nearest published station (wide open, aberration control neutral) and returns the resolved `focusT` / `zoomT` / `aberrationT` / `stopdownT`; `LensDiagramPanel` renders everything with those. |
 | `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density, and reports the first ray error. With active PC movement, its children trace through the physically posed lens and project the exiting rays onto the fixed sensor. Folded systems receive generalized trace results terminating on `L.imagePlane`; missed surfaces stop tracing while preserving preceding display hits. |
 | `useOnAxisRays.ts` | Density-derived on-axis ray fan segments, solving through the moved stop when PC movement is active and using obstruction-aware sampling for folded mirror systems. |
 | `useOffAxisRays.ts` / `offAxisRayUtils.ts` | Density-derived visible off-axis rays using camera-space scene directions, state-aware field geometry, and folded image-plane termination; the utils share tracing geometry and optional edge-projection endpoints with the chromatic fans. |

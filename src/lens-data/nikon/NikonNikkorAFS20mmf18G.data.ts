@@ -352,9 +352,9 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "18", toSurface: "21" },
   ],
 
-  nominalFno: 1.8,
+  nominalFno: 1.86,
   closeFocusM: 0.2,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [1.86, 2, 2.8, 4, 5.6, 8, 11, 16],
   focusStep: 0.004,
   apertureStep: 0.004,
   maxFstop: 16,

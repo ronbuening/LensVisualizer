@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 2015/0168697 A1",
   patentAuthors: ["Yasuji Ogata"],
-  patentAssignees: ["Olympus Corporation"],
+  patentAssignees: ["Olympus Imaging Corporation"],
   patentYear: 2015,
   elementCount: 16,
   groupCount: 10,
@@ -416,11 +416,13 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.7,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Dual VCM floating focus: G4 (VCM 1) and G5 (VCM 2) move independently.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.48,

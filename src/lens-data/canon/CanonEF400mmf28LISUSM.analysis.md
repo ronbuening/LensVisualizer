@@ -36,9 +36,9 @@ lens is literally Numerical Example 25:
 5. The patent priority and filing chronology precede the lens's September 1999 market introduction. [1; 2]
 
 The active LensVisualizer model follows the current prescription rules rather than Canon's marketed element count. It
-retains the front protection glass as a drawn element, models the rear optical filter FL in `rearPlates` (traced by
-every analysis but not drawn or counted), and omits the inactive flare-cutter bookkeeping plane, leaving 16 modeled glass
-elements in 12 air-separated groups. No source dimension is scaled. Example 25 is entirely
+retains the front protection glass as a drawn element, draws the rear optical filter FL as a plane-parallel plate
+element outside the stored count, and omits the inactive flare-cutter bookkeeping plane, leaving 16 counted glass
+elements in 12 air-separated groups plus FL. No source dimension is scaled. Example 25 is entirely
 spherical, so there are no aspheric coefficients and no coefficient transformation to perform. The USPTO Certificate of
 Correction does not amend Numerical Example 25; no numerical correction to the selected prescription is applied. [1,
 PDF pp. 79–83]
@@ -77,8 +77,9 @@ configured off-axis bundles, and the current edge-thickness, rim-slope, and shar
 patent measurements.
 
 Rear normalization is another explicit modeling boundary. Patent surfaces R30–R31 form the 2.20 mm rear optical filter
-($n_d = 1.516330$, $\nu_d = 64.1$), and R32 is the inactive flare-cutter plane. The filter is modeled in `rearPlates`:
-traced by every analysis but not drawn, with the printed D31 + D32 = 15.28 + 38.95 = 54.23 mm behind it; the FC plane is
+($n_d = 1.516330$, $\nu_d = 64.1$), and R32 is the inactive flare-cutter plane. The filter is drawn as a plane-parallel
+plate element and traced by every analysis, with the printed D31 + D32 = 15.28 + 38.95 = 54.23 mm behind it and a
+ray-trace estimated semi-diameter (the patent lists none); the FC plane is
 omitted because it does not change medium. Paraxially, the printed rear path is equivalent to an air distance of
 70.680871512 mm from R29 to the source image plane; the rounded prescription's independently traced infinity focus lies
 0.016884094 mm farther back. The modeled R29→FL gap is therefore 15.016884094 mm rather than the printed 15.00 mm
@@ -101,8 +102,8 @@ temperature-dependent expansion or contraction. Canon also states that the relea
 counts it among the 17 marketed elements. [1, col. 32; 2]
 
 The plate contributes no paraxial power in isolation. It is nevertheless retained because it is an optical medium in the
-patent path and part of the production element count; the rear filter, by contrast, is traced as a `rearPlates` entry
-without being drawn or counted as a modeled element.
+patent path and part of the production element count; the rear filter, by contrast, is drawn as a
+plane-parallel plate element without being counted in `elementCount`.
 
 ### L1a — Front positive subunit
 
@@ -204,7 +205,7 @@ negative stabilizer so that L3b can be made sufficiently negative for image-disp
 the positive net power required of L3. [1, cols. 28, 31–32]
 
 The final powered surface is R29. The rear filter and flare-cutter planes shown in Figure 88 lie after it in the patent
-source path. The filter is traced as a `rearPlates` entry but not drawn or counted as a modeled element; the FC plane
+source path. The filter is drawn as a plane-parallel plate element but not counted in `elementCount`; the FC plane
 is not represented.
 
 ## Glass Identification and Selection
@@ -354,7 +355,7 @@ curvature value.
 
 The inferred semi-diameter model also passes the independent spherical geometry preflight at both defined focus states:
 minimum modeled element edge thickness is 0.773590768 mm, the largest actual rim-slope angle is 63.488585°, and the
-smallest remaining clearance to the configured shared-gap intrusion limit is 0.030738156 mm. These values validate the
+smallest remaining clearance to the configured shared-gap intrusion limit is 0.017269037 mm. These values validate the
 internal geometry of the authored clear apertures but do not convert the inferred semi-diameters into source facts.
 
 ## Sources and References

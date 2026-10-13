@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "panasonic-leica-dg-9f17",
   maker: "Panasonic",
-  name: "PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH",
+  name: "PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH.",
   subtitle: "US 2023/0367186 A1, Example 1 — Panasonic IP Management",
   specs: ["12 ELEMENTS / 9 GROUPS", "f ≈ 9.35 mm", "F/1.77", "2ω ≈ 99.6°", "4 ASPHERICAL SURFACES"],
 
@@ -328,6 +328,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.095,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Inner focus via G2 (L10+L11 cemented doublet); linear motor AF.",
 
   /* ── Aperture configuration ── */

@@ -95,3 +95,32 @@ is still outstanding.
 - Paraxial check against the previous data: EFL and defocus identical at every zoom station and focus state (the old
   fold used the exact 1.400/1.51680 + 0.500). Physical track grows by 0.477 mm and now matches the patent's
   147.938 / 142.212 / 144.659 mm total lengths to within 0.002 mm.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+Source: local `patents/JP2018087903A.pdf`. The patent defines its deviation as ΔPgf = Pgf + 0.0018×Vd − 0.64842, with
+Pgf = (ng − nF)/(nF − nC) (¶0041, PDF p. 9; repeated in claim 8, PDF p. 3, and in ¶0014, PDF p. 5). It prints no
+absolute Pgf and no nC/nF/ng for any glass. The only partial-dispersion figure for Example 1 is the deviation
+ΔPgf = 0.028 in Table 1 and again in the condition-(6) row of Table 2 (both PDF p. 24). Condition (6) applies to a
+positive lens in Gr4, and L16 (surfaces 27/28, 1.92286 / 20.88) is the only positive element there.
+
+The file had copied that deviation straight into `dPgF`, which the engine reads against its own line
+0.6438 − 0.001682·νd. The patent's line and the engine's line differ by 0.00462 − 0.000118·νd, which is +0.002156 at
+νd = 20.88. Recovered PgF = 0.028 + 0.64842 − 0.0018 × 20.88 = 0.638836, and
+dPgF = 0.638836 − (0.6438 − 0.001682 × 20.88) = +0.030156.
+
+| Element | νd | Source figure | Stored before | Stored after |
+| --- | --- | --- | --- | --- |
+| L16 | 20.88 | ΔPgf = 0.028 on the patent's line (Table 1, PDF p. 24); PgF = 0.638836 | 0.028 | 0.030156 |
+
+Cross-check only, not used for the value: the catalog E-FDS1 (HOYA) curve gives PgF 0.6390, which is +0.028 on the
+patent's line and +0.0303 on the engine's line, so the label and the patent figure agree.
+
+Also changed: L16 `apdNote` now quotes the patent's ΔPgf, its line, the implied PgF and the runtime value; the header
+box has a partial-dispersion note; the analysis sentences that said the data stores +0.028 directly now give the stored
++0.030156, while the condition-(6) discussion and table keep the patent's ΔPgF = +0.028. The two earlier sections above
+that say "L16 keeps its patent ΔPgF +0.028" describe the file as it stood on 2026-09-23.
+
+Left: nothing. L16 is the only element with a `dPgF`; the other 17 elements carry none and none was added. No element
+authors nC, nF or ng, and none uses `indexReference: "e"`. nd, νd, glass labels, the `apd` tag and all surfaces are
+unchanged. `dpgfcheck.mjs` reports that the file still builds and validates.

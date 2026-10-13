@@ -176,6 +176,39 @@ describe("lens-data scripts", () => {
     expect(() => organizeRootLensFiles(lensDataDir, { log: () => undefined })).toThrow(/destination already exists/);
   });
 
+  it("collects quoted TypeScript metadata keys in both build collectors", async () => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    const dataPath = join(lensDataDir, "Quoted.data.ts");
+    writeFileSync(
+      dataPath,
+      `const LENS_DATA = {
+      "key": "quoted-lens", "name": "CANON QUOTED", "maker": "Canon",
+      "lensMounts": ["canon-ef"], "imageFormat": "135-full-frame",
+      "publishedAt": "2026-10-03T01:00:00Z", "visible": false
+    };`,
+    );
+    const options = {
+      rootDir,
+      lensDataDir,
+      fallbackDate: "2026-10-03",
+      trackedLensRecordsByKey: {},
+      getFreshness: () => ({ publishedOn: "2026-10-03", lastModified: "2026-10-03" }),
+    };
+    const records = collectLensData(options);
+    expect(await collectLensDataAsync(options)).toEqual(records);
+    expect(records).toHaveLength(1);
+    expect(records[0]).toMatchObject({
+      key: "quoted-lens",
+      name: "CANON QUOTED",
+      makerSlug: "canon",
+      visible: false,
+      lensMountIds: ["canon-ef"],
+      imageFormatId: "135-full-frame",
+      freshness: { publishedAt: "2026-10-03T01:00:00.000Z" },
+    });
+  });
+
   it("publishes replacement models consistently in both collectors without losing later modifications", async () => {
     const { rootDir, lensDataDir } = createTempLensDataDir();
     tempRoots.push(rootDir);

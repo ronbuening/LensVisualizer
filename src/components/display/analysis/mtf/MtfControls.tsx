@@ -25,9 +25,8 @@ interface MtfControlsProps {
 }
 
 const METHODS: ReadonlyArray<[MtfMethod, string]> = [
-  ["geometric-dl", "Diffraction-corrected"],
+  ["diffraction", "Diffraction-corrected"],
   ["geometric", "Geometric"],
-  ["diffraction", "Scalar diffraction"],
 ];
 const SPECTRA: ReadonlyArray<[MtfSpectrum, string]> = [
   ["photopic", "Photopic (V(λ))"],
@@ -47,9 +46,8 @@ const SAMPLING: ReadonlyArray<[MtfGridCap, string]> = [
 
 /* Hover/focus explanations, one line per option in menu order. */
 const METHOD_HELP = [
-  "Diffraction-corrected: ray-traced (geometric) MTF multiplied by the aperture's diffraction limit. The closest match to manufacturer charts.",
-  "Geometric: rays only. Ignores diffraction, so it overstates contrast for sharp or stopped-down lenses.",
-  "Scalar diffraction: computed from the traced wavefront. The reference for well-corrected lenses, but slower, and unavailable where blur or ray angles exceed its validated range.",
+  "Diffraction-corrected: ray-traced MTF including the diffraction of the lens's actual aperture. Compare with charts that include diffraction, such as Sigma's Diffraction MTF and Zeiss.",
+  "Geometric: rays only. Ignores diffraction, so it overstates contrast for sharp or stopped-down lenses. Compare with design charts that omit diffraction, as Nikon's, Sony's and Tamron's appear to.",
 ].join("\n");
 const SPECTRUM_HELP = [
   "Photopic: five wavelengths from 470 to 650 nm, weighted by the eye's sensitivity V(λ), like white-light charts.",

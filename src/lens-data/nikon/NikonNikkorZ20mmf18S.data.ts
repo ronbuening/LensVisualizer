@@ -353,6 +353,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.20096149,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED focus model: G2 moves imageward while G4 moves objectward. The patent's infinity, middle, and near rows are exact focus keyframes.",
   nominalFno: 1.85,

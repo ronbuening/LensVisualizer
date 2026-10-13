@@ -18,7 +18,7 @@ That failure of the pupil zones to agree is *spherical aberration*. It is common
 
 Lens designers manage the residual and its imaging consequences through surface curvature, lens bending, glass choice, the division of power among elements, aspherical surfaces, focus-dependent group movement, and the weighting of the pupil through transmission or aperture. In some lenses they deliberately retain or vary it. A controlled residual can place a concentrated core inside a broader halo, bias the light distribution of out-of-focus disks, or allow the photographer to exchange one foreground–background rendering for another. The design objective is therefore rarely "zero spherical aberration" in an absolute sense. It is a useful distribution of residual error across pupil zone, aperture, wavelength, field position, and focus distance.
 
-> **About the figures.** The explanatory figures are simplified, static schematics: they are not computed from named prescriptions, dimensionally accurate, or interactive. In blur-disk comparisons, displayed diameter is normalized to emphasize radial weighting; integrated energy, peak intensity, and exposure are not quantitative. Lens-specific discussion links to implemented Surface & Stop models, including the [Nikon AF DC-Nikkor 135mm f/2D](/lens/nikon-af-dc-nikkor-135mm-f2/). Those pages are patent-derived simulations rather than production-sample measurements.
+> **About the figures.** The explanatory figures are simplified, static schematics: they are not computed from named prescriptions, dimensionally accurate, or interactive. In blur-disk comparisons, displayed diameter is normalized to emphasize radial weighting; integrated energy, peak intensity, and exposure are not quantitative. Lens-specific discussion links to implemented Surface & Stop models, including the [Nikon AF DC-Nikkor 135mm f/2 D](/lens/nikon-af-dc-nikkor-135mm-f2/). Those pages are patent-derived simulations rather than production-sample measurements.
 
 > **At a glance.** Four ideas organize the discussion: pupil zones may prefer different focus positions; aperture changes which zones contribute; the radial weighting of defocus tends to reverse on opposite sides of focus; and wavelength can change the spherical-aberration balance. The case studies show how designers suppress, retain, or deliberately vary those effects.
 
@@ -199,7 +199,7 @@ Aesthetic labels remain scene dependent. A center-weighted disk may be unobtrusi
 
 A conventional soft-focus lens deliberately changes the in-focus point-spread function: the subject receives a core plus halo. A defocus-control lens can pursue a narrower goal. It can vary the sign and amount of spherical aberration modestly, then compensate the image-plane movement so that the main subject remains concentrated while the foreground–background distribution changes.
 
-Nikon's patent for the [Nikon AF DC-Nikkor 135mm f/2D model](/lens/nikon-af-dc-nikkor-135mm-f2/) makes that distinction explicit: it varies out-of-focus depiction while retaining useful sharpness at the main object, with coordinated changes to spherical aberration, coma, and astigmatism.[^8] [^9]
+Nikon's patent for the [Nikon AF DC-Nikkor 135mm f/2 D model](/lens/nikon-af-dc-nikkor-135mm-f2/) makes that distinction explicit: it varies out-of-focus depiction while retaining useful sharpness at the main object, with coordinated changes to spherical aberration, coma, and astigmatism.[^8] [^9]
 
 ## 7. Spherochromatism: When Spherical Aberration Changes with Wavelength
 
@@ -281,7 +281,7 @@ A fixed lens can also allocate a restrained residual without offering a control�
 | --- | --- | --- | --- | --- |
 | [Nikon Nikkor Z 135mm f/1.8 S Plena](/lens/nikon-z-135f18-plena/) | Fixed high correction | Multi-element design with aspherical, specialized-dispersion, and floating-focus variables | Concentrated subject; one designed foreground–background balance | Normal focusing only |
 | [Minolta Varisoft Rokkor 85mm f/2.8](/lens/varisoft-rokkor-85f28/) | Variable soft focus | Rear air-space change with coordinated compensation | Adjustable core-and-halo subject rendering; defocus changes secondarily | Mechanically compensated; verify focus |
-| [Nikon AF DC-Nikkor 135mm f/2D](/lens/nikon-af-dc-nikkor-135mm-f2/) | Variable foreground–background bias | DC-group spacing plus rear-group compensation | Concentrated subject; **R** favors background softness and **F** foreground softness | Refocus or verify after adjustment |
+| [Nikon AF DC-Nikkor 135mm f/2 D](/lens/nikon-af-dc-nikkor-135mm-f2/) | Variable foreground–background bias | DC-group spacing plus rear-group compensation | Concentrated subject; **R** favors background softness and **F** foreground softness | Refocus or verify after adjustment |
 | [Voigtländer Portrait Heliar 75mm f/1.8](/lens/voigtlander-portrait-heliar-75f18/) | Adjustable under–sharp–over range | Variable spacing between principal groups | Subject ranges from sharp to soft; defocus weighting changes with the control | Refocusing required |
 
 ## 11. Four Primary Design Strategies in Practice
@@ -302,9 +302,9 @@ Minolta's user instructions describe a concentrated subject point surrounded by 
 
 The Varisoft therefore illustrates controlled soft focus rather than a simple increase in one coefficient: its moving-group geometry varies spherical aberration while restraining astigmatism and coma, and the linked model exposes the actual spacing changes.
 
-### 11.3 NIKON AF DC-NIKKOR 135mm f/2D: Controlling Defocus While Retaining the Subject
+### 11.3 NIKON AF DC-NIKKOR 135mm f/2 D: Controlling Defocus While Retaining the Subject
 
-The [Nikon AF DC-Nikkor 135mm f/2D model](/lens/nikon-af-dc-nikkor-135mm-f2/)[^9] pursues a different goal. US 4,908,639 describes a long-focus, large-aperture system in which spacing within the positive forward group is varied to change spherical aberration, coma, and associated astigmatism while a positive rear group performs focusing and image-plane compensation.[^8] The second embodiment is a full-scale 135mm f/2 prescription with seven elements in six groups, closely matching Nikon's published production cross-section and design history.[^18]
+The [Nikon AF DC-Nikkor 135mm f/2 D model](/lens/nikon-af-dc-nikkor-135mm-f2/)[^9] pursues a different goal. US 4,908,639 describes a long-focus, large-aperture system in which spacing within the positive forward group is varied to change spherical aberration, coma, and associated astigmatism while a positive rear group performs focusing and image-plane compensation.[^8] The second embodiment is a full-scale 135mm f/2 prescription with seven elements in six groups, closely matching Nikon's published production cross-section and design history.[^18]
 
 At its neutral setting, Nikon describes spherical aberration as nearly corrected. Turning the production DC ring toward **R** produces undercorrection and favors a softer-edged background distribution; turning it toward **F** produces overcorrection and favors foreground defocus. The patent's central distinction from ordinary soft-focus lenses is that the main subject can remain sharply concentrated while the foreground–background distribution changes. Extreme ring travel can still produce a soft-focus effect, but that is not the ordinary purpose of the calibrated settings.
 
@@ -318,7 +318,7 @@ The correlated patent embodiment is an all-spherical positive-negative-positive 
 
 Cosina states that overcorrection retains a focused core while making the background blur harder and more bubble-like; undercorrection softens the focused subject, introduces highlight flare, and makes the background blur smoother.[^19] In the terminology of Section 6, those descriptions are consistent with a shift toward more edge-weighted versus more center-weighted background disks, but the exact appearance remains lens- and scene-dependent.
 
-> **Sidebar: NIKON Fuwatto Soft 90mm f/4.8—changing the architecture rather than turning a control.** The [Nikon Fuwatto Soft 90mm f/4.8 model](/lens/nikon-fuwatto-soft-90mm-f48/) shows another route. Nikon's inexpensive 1995 Fun Fun LensSet used one convertible optical assembly for a 120mm macro state and a 90mm soft-focus state. For the Fuwatto configuration, the rear negative corrector is removed and the front cemented doublet is reversed.[^22] [^23] [^24] The first-order power of the doublet remains similar when reversed, but its higher-order aberration balance changes substantially. The result is a fixed soft-focus lens rather than a continuously adjustable one. It is a compact demonstration that orientation and group topology can be creative controls as consequential as adding a specialized surface.
+> **Sidebar: NIKON FUWATTO SOFT 90mm f/4.8—changing the architecture rather than turning a control.** The [Nikon Fuwatto Soft 90mm f/4.8 model](/lens/nikon-fuwatto-soft-90mm-f48/) shows another route. Nikon's inexpensive 1995 Fun Fun LensSet used one convertible optical assembly for a 120mm macro state and a 90mm soft-focus state. For the Fuwatto configuration, the rear negative corrector is removed and the front cemented doublet is reversed.[^22] [^23] [^24] The first-order power of the doublet remains similar when reversed, but its higher-order aberration balance changes substantially. The result is a fixed soft-focus lens rather than a continuously adjustable one. It is a compact demonstration that orientation and group topology can be creative controls as consequential as adding a specialized surface.
 
 ---
 
@@ -497,7 +497,7 @@ Canon's EF 135mm f/2.8 Softfocus brought selectable soft focus into an autofocus
 
 ### B.3 From Subject Softness to Defocus-Image Control
 
-Nikon's [AF DC-Nikkor 135mm f/2D](/lens/nikon-af-dc-nikkor-135mm-f2/), whose optical concept entered production in 1991, drew a conceptual line between conventional soft focus and foreground–background control. In its calibrated range, the goal was to keep the main subject concentrated while varying the radial distribution of defocused points. The R direction undercorrects for the background; the F direction overcorrects for the foreground. Extreme travel can produce subject flare, but Nikon's primary design argument was control of the defocus image rather than routine softening of the focal plane.[^8] [^18]
+Nikon's [AF DC-Nikkor 135mm f/2 D](/lens/nikon-af-dc-nikkor-135mm-f2/), whose optical concept entered production in 1991, drew a conceptual line between conventional soft focus and foreground–background control. In its calibrated range, the goal was to keep the main subject concentrated while varying the radial distribution of defocused points. The R direction undercorrects for the background; the F direction overcorrects for the foreground. Extreme travel can produce subject flare, but Nikon's primary design argument was control of the defocus image rather than routine softening of the focal plane.[^8] [^18]
 
 The distinction is important historically. Earlier adjustable soft-focus lenses asked how much halo should surround the subject. The DC design asked which side of focus should receive the more diffuse-edged point distribution while the subject remained sharp.
 
@@ -529,7 +529,7 @@ Across this lineage, the mechanism changes but the underlying design decision re
 
 [^8]: M. Yanagisawa, "Optical system having a variable out-of-focus state," U.S. Patent 4,908,639, Mar. 13, 1990. [Online]. Available: https://patents.google.com/patent/US4908639A/en. [Accessed: Aug. 6, 2026].
 
-[^9]: Surface & Stop, "NIKON AF DC-NIKKOR 135mm f/2D." [Online]. Available: https://surfaceandstop.com/lens/nikon-af-dc-nikkor-135mm-f2/. [Accessed: Aug. 6, 2026].
+[^9]: Surface & Stop, "NIKON AF DC-NIKKOR 135mm f/2 D." [Online]. Available: https://surfaceandstop.com/lens/nikon-af-dc-nikkor-135mm-f2/. [Accessed: Aug. 6, 2026].
 
 [^10]: Surface & Stop, "From Achromat to APO." [Online]. Available: https://surfaceandstop.com/articles/achromat-apochromat/. [Accessed: Aug. 6, 2026].
 
@@ -559,7 +559,7 @@ Across this lineage, the mechanism changes but the underlying design decision re
 
 [^23]: K. Ohshita, "Lens system with switchable soft focus," U.S. Patent 5,796,530, Aug. 18, 1998. [Online]. Available: https://patents.google.com/patent/US5796530A/en. [Accessed: Aug. 6, 2026].
 
-[^24]: Surface & Stop, "NIKON Fuwatto Soft 90mm f/4.8." [Online]. Available: https://surfaceandstop.com/lens/nikon-fuwatto-soft-90mm-f48/. [Accessed: Aug. 6, 2026].
+[^24]: Surface & Stop, "NIKON FUWATTO SOFT 90mm f/4.8." [Online]. Available: https://surfaceandstop.com/lens/nikon-fuwatto-soft-90mm-f48/. [Accessed: Aug. 6, 2026].
 
 [^25]: Surface & Stop, "About Surface & Stop." [Online]. Available: https://surfaceandstop.com/articles/about-site/. [Accessed: Aug. 6, 2026].
 

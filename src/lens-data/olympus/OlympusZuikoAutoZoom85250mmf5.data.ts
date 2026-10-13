@@ -7,10 +7,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * Patent prescription: f = 85.0-250.0 mm, F/5, 15 elements in 11 air-separated components.
  *
  * Optical layout: four zoom groups. Group I is the front focusing group; Group II is the negative variator;
- * Group III is the positive compensator; Group IV is a fixed positive relay. The patent does not specify an
- * aperture-stop surface in the numerical table. The stop is inserted here in the D2 air gap, 0.75 mm ahead of
- * Group III, as inferred from Fig. 2 and fitted so the paraxial entrance pupil gives approximately F/5 at all
- * three tabulated zoom positions.
+ * Group III is the positive compensator; Group IV is a fixed positive relay.
+ *
+ * Aperture stop: the patent gives no stop position. The Embodiment 2 table and Claim 3 list no stop surface,
+ * Figs. 1-3 draw only the lens elements, and the text never mentions a diaphragm. The STO row is a modeling
+ * inference with no figure basis: a flat surface in the D2 air gap, 0.75 mm ahead of r13, moving with
+ * Group III. Its inputs are the patent's F = 1:5 for the whole 85.0-250.0 mm range (table header; F5 on the
+ * Figs. 6A-6C and 7A-7C plots at f = 85.0, 151.4 and 250.0), the tabulated D1-D3 spacings, and the requirement
+ * that one fixed opening give F/5 at all three positions. A 13.42 mm semi-diameter at this plane does so
+ * paraxially within 0.05%. That requirement excludes Groups I and II, where the paraxial F/5 marginal-ray
+ * height changes with zoom (8.12 / 10.21 / 13.33 mm at r12), and is met anywhere from Group III to the image
+ * (13.836 / 13.825 / 13.824 mm at r16). The on-axis F-number therefore does not depend on the choice within
+ * that region; pupil position, vignetting and off-axis ray selection do. The 0.75 mm offset leaves 0.74 mm to
+ * r12 at 250 mm, where D2 is 1.49 mm.
  *
  * Patent erratum: the Embodiment 2 table prints r20 as 8.663 in the specification text. Claim 3 prints the
  * same surface as 28.663, which is consistent with adjacent embodiments and with the verified EFL/BFD trace.
@@ -309,6 +318,7 @@ const LENS_DATA = {
   focusDescription:
     "Front-group focusing. Group I advances for close focus; close-focus D1 values are paraxially inferred for 2.0 m because the patent gives 3 m aberration curves but no close-focus spacing table.",
   nominalFno: 5,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [5, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
   scFill: 0.82,

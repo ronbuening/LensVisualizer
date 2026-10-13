@@ -205,6 +205,8 @@ const LENS_DATA = {
   doublets: [{ text: "C1", fromSurface: "1", toSurface: "3" }],
 
   closeFocusM: 0.45,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Focus status PUBLISHED: the single biconcave G2 element moves imageward while D1/D2 change from 2.99/6.81 mm to 7.01/2.78 mm. The source implies 4.02–4.03 mm of travel because the two-decimal gap sums differ by 0.01 mm. No reconstruction replaces the published close row; D0=407.1 mm is not an exact paraxial conjugate with the retained image plane.",
 

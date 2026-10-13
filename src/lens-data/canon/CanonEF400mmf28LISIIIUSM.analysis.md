@@ -25,8 +25,8 @@ job-card assignment.
    its 2019 US publication. Canon lists 17 elements in 13 groups, 2.5 m closest focus, 0.17× maximum magnification, nine
    diaphragm blades, and optical image stabilization for the production lens.[2]
 4. The patent's unfiltered Numerical Data 2 reaches 17 optical media entries in 13 air-separated groups only when the
-   explicit image-side glass block G is counted. The LensVisualizer model carries that filter as a `rearPlates` entry
-   (traced by every analysis but not drawn), so its drawn prescription is 16 elements in 12 groups. The drawn count
+   explicit image-side glass block G is counted. The LensVisualizer model draws that filter as a plane-parallel plate
+   element behind the 16 powered elements in 12 groups, and keeps it out of `elementCount`. The stored 16/12 count
    therefore should not be compared directly with Canon's marketed 17/13 specification.
 
 Canon also describes two fluorite elements and one Super UD element in the production lens.[2] Those marketed material
@@ -214,7 +214,7 @@ index residual. Its power is moderated by the negative rear member, giving D4 a 
 
 Element 16 closes the active refractive prescription. It is a high-index, high-dispersion negative partner to Element 15.
 The D4 pair remains net positive, and with Element 14 forms the verified **+63.939 mm** L3C sub-unit. The active model ends
-at its rear surface; the patent's following glass block G is not drawn, but it is modeled in `rearPlates` at its
+at its rear surface; the patent's following glass block G is drawn as a plane-parallel plate element at its
 physical position (7.77 mm behind surface 29) and traced by every analysis.
 
 ## Glass Identification and Selection
@@ -345,9 +345,10 @@ motion parameter.
 
 The final LensVisualizer data model preserves the patent's Numerical Data 2 without uniform scaling (`s = 1`). The
 marketed 400 mm f/2.8 identity is stored separately from the design values: **391.938134 mm traced EFL** and **F/2.90**.
-The patent's explicit image-side glass block G at surfaces 30–31 (2.20 mm, nd 1.51633, νd 64.14) is modeled in
-`rearPlates`: surface 29 keeps the patent's 7.77 mm gap, and 60.70 mm of air follows the plate to the image. It is traced
-by every analysis but not drawn. The physical model track is **372.010000 mm**; its air-equivalent rear spacing of
+The patent's explicit image-side glass block G at surfaces 30–31 (2.20 mm, nd 1.51633, νd 64.14) is drawn as a
+plane-parallel plate element: surface 29 keeps the patent's 7.77 mm gap, and 60.70 mm of air follows the plate to the
+image. Every analysis traces it; its semi-diameter is a ray-trace estimate because the patent lists none. The physical
+model track is **372.010000 mm**; its air-equivalent rear spacing of
 **69.920872 mm** gives the **371.260872 mm** air-equivalent track.
 
 The stop position is a patent fact, but its clear size is not. The model uses a stop semi-diameter of **23.608078 mm**,

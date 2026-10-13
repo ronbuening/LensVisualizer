@@ -123,3 +123,44 @@ text pages for ¶0062–0081, ¶0105–0116 and ¶0129.
 - Paraxial check against the previous data: EFL identical at all three stations; defocus moves by 0.0010 mm at each
   station, the rounding of the old fold (17.494 stored against 14.614 + 2.850/1.51680 + 1.000 = 17.493). Physical
   track grows by 0.970 mm (t(1 − 1/n) = 0.971).
+
+## 2026-10-08 - dPgF checked against the patent
+
+- Reviewed local `patents/US20200166735A1.pdf` (61 pages). ¶[0023] on PDF page 38 (printed page 2) defines the partial
+  dispersion ratio as θgF = (Ng − NF)/(NF − NC). The patent states no normal line and no deviation formula: none of
+  conditional expressions (1)–(21) uses θgF (Table 34, PDF pages 58–59), and no ΔθgF figure is printed anywhere.
+- Table 31 (Example 11, PDF page 58, printed page 22) prints an absolute θgF for every glass row; ¶[0107] on PDF page 47
+  describes that column. The digits below were read from the 300 dpi render of page 58 and agree with the text layer.
+- Every stored `dPgF` equals the Table 31 θgF minus the engine's line 0.6438 − 0.001682·νd, to within 0.000005 (the
+  five-decimal rounding of the stored figure). No `dPgF`, `apdNote` or comment changed in the data file, and the analysis
+  sidecar needed no edit: its statement that the stored values are θgF − (0.6438 − 0.001682·νd) is correct.
+- A screen that compares stored values with catalog curves flagged this file. That is a false alarm. Table 31's θgF
+  differs from the catalog curve of the labelled glass on several rows: S-PHM52 0.54015 against 0.5441 (L22, L33),
+  S-TIH53 0.61771 against 0.6205 (L24, L32; L11 prints 0.62054), LAC13 0.54844 against 0.5457 (L52), MC-NBFD135 0.56949
+  against 0.5685 (L21) and N-BK7 0.53430 against 0.5349 (L51, PP). The stored values follow the patent's printed
+  figures, not the catalog curves, so a mismatch against the catalog says nothing about which line they are on.
+
+| Element | νd | Source figure (Table 31, PDF page 58) | Stored before | Stored after |
+| --- | ---: | --- | ---: | ---: |
+| L11 | 23.78 | Row 1: θgF 0.62054; minus the engine line = +0.016738 | 0.01674 | 0.01674 (unchanged) |
+| L12 | 54.67 | Row 2: θgF 0.54503; minus the engine line = −0.006815 | −0.00682 | −0.00682 (unchanged) |
+| L13 | 55.53 | Row 4: θgF 0.54404; minus the engine line = −0.006359 | −0.00636 | −0.00636 (unchanged) |
+| L21 | 40.89 | Row 6: θgF 0.56949; minus the engine line = −0.005533 | −0.00553 | −0.00553 (unchanged) |
+| L22 | 63.39 | Row 8: θgF 0.54015; minus the engine line = +0.002972 | 0.00297 | 0.00297 (unchanged) |
+| L23 | 20.88 | Row 10: θgF 0.63943; minus the engine line = +0.030750 | 0.03075 | 0.03075 (unchanged) |
+| L24 | 23.79 | Row 12: θgF 0.61771; minus the engine line = +0.013925 | 0.01392 | 0.01392 (unchanged) |
+| L31 | 31.16 | Row 15: θgF 0.60397; minus the engine line = +0.012581 | 0.01258 | 0.01258 (unchanged) |
+| L32 | 23.79 | Row 17: θgF 0.61771; minus the engine line = +0.013925 | 0.01392 | 0.01392 (unchanged) |
+| L33 | 63.39 | Row 18: θgF 0.54015; minus the engine line = +0.002972 | 0.00297 | 0.00297 (unchanged) |
+| L34 | 81.56 | Row 20: θgF 0.53859; minus the engine line = +0.031974 | 0.03197 | 0.03197 (unchanged) |
+| L41 | 22.73 | Row 22: θgF 0.62844; minus the engine line = +0.022872 | 0.02287 | 0.02287 (unchanged) |
+| L42 | 39.59 | Row 23: θgF 0.57297; minus the engine line = −0.004240 | −0.00424 | −0.00424 (unchanged) |
+| L51 | 64.20 | Row 25: θgF 0.53430; minus the engine line = −0.001516 | −0.00152 | −0.00152 (unchanged) |
+| L52 | 53.35 | Row 26: θgF 0.54844; minus the engine line = −0.005625 | −0.00563 | −0.00563 (unchanged) |
+| L53 | 59.46 | Row 28: θgF 0.54067; minus the engine line = −0.003118 | −0.00312 | −0.00312 (unchanged) |
+| PP (`rearPlates`) | 64.20 | Row 30: θgF 0.53430; minus the engine line = −0.001516 | −0.00152 | −0.00152 (unchanged) |
+
+- Left as stored: all 16 elements and the rear plate. Each value is already the engine-line figure for the patent's
+  printed θgF, so the five-decimal values were not re-rounded to six decimals.
+- Left as written: the `apdNote` on L23 and L34. Both already quote the Table 31 θgF and the deviation from the
+  engine's line, and the patent gives no deviation of its own to add.

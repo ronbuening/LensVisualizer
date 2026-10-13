@@ -7,6 +7,7 @@
 
 import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 import type { AsphericCoefficients } from "./asphericSchema.js";
+import type { AttachedTeleconverterInfo } from "./teleconverter.js";
 
 /** One sparse coefficient in a rotationally symmetric optical-path polynomial W(h). */
 export interface RadialPhaseTerm {
@@ -37,6 +38,11 @@ export interface SurfaceData {
   diffractive?: DiffractivePhaseSurface;
   /** Set only by `expandRearPlates()`; authored data must not use it. Traced, never drawn. */
   synthetic?: SyntheticOpticsKind;
+  /**
+   * `false` only on a rear plate with a generated rim, set by `expandRearPlates()`; authored data must not use it.
+   * Such a surface never clips a ray or limits the field, and its `sd` serves only as an envelope extent.
+   */
+  clips?: false;
 }
 
 /** Marker for engine-generated optics that participate in tracing but are hidden from drawing and element UI. */
@@ -344,6 +350,52 @@ export interface FiniteConjugate {
   source: string;
 }
 
+/** Which authored zoom/focus stations the cited source tabulates; see LENS_DATA_SPEC.md § Published Stations. */
+export interface PublishedStations {
+  /** Indices into `zoomPositions` whose infinity row the source tabulates. Omitted: every authored station. Zoom only. */
+  zoom?: number[];
+  /**
+   * Indices (>= 1) into `focusPositions` the source tabulates beyond infinity: one list applied at every published
+   * zoom station, or one list per `zoomPositions` entry. Omitted: infinity only.
+   */
+  focus?: number[] | number[][];
+}
+
+/**
+ * Evidence a source erratum may cite. Four kinds are internal to the cited document; `family-publication` is another
+ * publication of the same application that prints the corrected value. An MTF chart is never one.
+ */
+export type SourceErratumEvidence =
+  | "source-summary"
+  | "sibling-example"
+  | "aberration-figure"
+  | "claims"
+  | "family-publication";
+
+/** A value the source prints that contradicts the source's own data and is corrected in this file. */
+export interface CorrectedSourceErratum {
+  status: "corrected";
+  /** Label of the surface the value belongs to. */
+  surface: string;
+  /** `asph` coefficient key (`K`, `A4`, …) or surface field (`R`, `d`, `nd`). */
+  field: string;
+  /** Value as the source prints it. */
+  printed: number;
+  /** Value this file carries instead. */
+  applied: number;
+  /** At least two independent kinds. */
+  evidence: SourceErratumEvidence[];
+  note: string;
+}
+
+/** A contradiction inside the source whose cause is not isolated; the file keeps the printed values. */
+export interface UnresolvedSourceErratum {
+  status: "unresolved";
+  note: string;
+}
+
+export type SourceErratum = CorrectedSourceErratum | UnresolvedSourceErratum;
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
@@ -369,10 +421,16 @@ export interface LensData {
   /** Organizational assignees or applicants named by the source patent; empty when no organization is named. */
   patentAssignees?: string[];
   patentYear?: number;
+  /** Departures from, and unresolved contradictions in, the source's printed values; see LENS_DATA_SPEC.md. */
+  sourceErrata?: SourceErratum[];
   elementCount?: number;
   groupCount?: number;
   visible?: boolean;
   opticalConfiguration?: OpticalConfigurationData;
+  /** The lens takes dedicated (non-universal) rear teleconverters made for one of its mounts. */
+  acceptsTeleconverters?: boolean;
+  /** Written only by `attachTeleconverter()` on a composed host + converter system; never authored. */
+  attachedTeleconverter?: AttachedTeleconverterInfo;
   perspectiveControl?: PerspectiveControlConfig;
   projection?: LensProjectionConfig;
   opticalPath?: OpticalPathData;
@@ -383,8 +441,11 @@ export interface LensData {
   zoomCloseFocusM?: number[];
   /** Published physical iris semi-diameters in mm, one per source zoom station. */
   zoomStopSemiDiameters?: number[];
-  /** Infer physical iris radii at source zoom stations from their nominal f-numbers. */
-  zoomApertureModel?: "from-nominal-fno";
+  /**
+   * How a zoom's wide-open iris follows the zoom. Omitted or `"from-nominal-fno"`: each station's radius is traced
+   * from its nominal f-number. `"fixed-iris"`: the first station's radius is kept at every station.
+   */
+  zoomApertureModel?: "from-nominal-fno" | "fixed-iris";
   focusStep: number;
   maxFstop: number;
   apertureStep: number;
@@ -399,6 +460,8 @@ export interface LensData {
   /** Normalized focusT coordinates for each authored focus thickness; defaults to [0, 1]. */
   focusPositions?: number[];
   finiteConjugates?: FiniteConjugate[];
+  /** Source provenance for the authored stations; absent means every zoom station at infinity focus. */
+  publishedStations?: PublishedStations;
   groups?: AnnotationData[];
   doublets?: AnnotationData[];
   zoomPositions?: number[];
@@ -409,7 +472,6 @@ export interface LensData {
   svgH: number;
   scFill: number;
   yScFill: number;
-  clipMargin: number;
   maxRimAngleDeg: number;
   gapSagFrac: number;
   maxAspectRatio: number;
@@ -433,7 +495,6 @@ type DefaultedFields =
   | "svgW"
   | "svgH"
   | "scFill"
-  | "clipMargin"
   | "maxRimAngleDeg"
   | "gapSagFrac"
   | "maxAspectRatio"
@@ -441,8 +502,9 @@ type DefaultedFields =
   | "apertureStep"
   | "maxFstop";
 
-/** Raw lens data shape before defaults merging (used in .data.ts files) */
-export type LensDataInput = Omit<LensData, DefaultedFields> & Partial<Pick<LensData, DefaultedFields>>;
+/** Raw lens data shape before defaults merging (used in .data.ts files); composer-only fields are not authorable. */
+export type LensDataInput = Omit<LensData, DefaultedFields | "attachedTeleconverter"> &
+  Partial<Pick<LensData, DefaultedFields>>;
 
 /** Entrance pupil data */
 export interface EntrancePupil {
@@ -518,7 +580,6 @@ export interface RuntimeLens {
   readonly maxRimSin: number;
   readonly maxRimTan: number;
   readonly gapSagFrac: number;
-  readonly clipMargin: number;
   readonly gridPitch: number;
   readonly gridCount: number;
   readonly lyDoublet: number;

@@ -42,6 +42,8 @@ const LENS_DATA = {
   zoomApertureModel: "from-nominal-fno",
   nominalFno: [4.58, 5.76],
   closeFocusM: 0.98, // Figure2 finite object distances plus system track, rounded.
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
 
   fstopSeries: [4.58, 5.76, 8, 11, 16, 22, 32],
   maxFstop: 32,

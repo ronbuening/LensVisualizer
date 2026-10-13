@@ -224,7 +224,7 @@ The prescription was re-entered directly from the patent’s numerical tables, n
 - **Total track:** 133.60 mm at all three zoom positions.
 - **Petzval sum:** +3.2503 × 10−3 mm−1, computed surface-by-surface as Σφ/(n·n′), corresponding to Petzval radius −307.7 mm by the project sign convention.
 - **Semi-diameters:** not patent-published. The data file uses inferred renderer semi-diameters checked for edge thickness, surface slope, element SD ratio, and cross-gap sag intrusion. These should not be mistaken for manufacturer-published clear apertures.
-- **Aperture stop:** a single `STO.sd` value is used in the data file. The paraxial stop radius required to reproduce F1.86 differs by zoom position because the entrance-pupil magnification changes; the data file uses the tele-end maximum clear stop radius and records the patent F-number separately as `apertureDesign`.
+- **Aperture stop:** a single `STO.sd` value is used in the data file. The paraxial stop radius required to reproduce F1.86 differs by zoom position because the entrance-pupil magnification changes; the data file uses the tele-end maximum clear stop radius and records the patent F-number as both `nominalFno` and `apertureDesign`.
 
 ## Sources and References
 

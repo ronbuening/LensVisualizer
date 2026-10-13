@@ -60,7 +60,7 @@ The high Abbe number provides positive power with low primary dispersion. Table 
 
 nd = 1.59282, νd = 68.62; FCD505-compatible catalog model, supplier unspecified; isolated focal length +55.0002 mm.
 
-Lfc shares positive power with Lfb and carries the other published anomalous-dispersion value, ΔPgF = +0.0195. The runtime retains that patent value. A close catalog coordinate match is a dispersion-model proxy, not evidence of a Cosina–Sumita or Cosina–HOYA supply relationship.
+Lfc shares positive power with Lfb and carries the other published anomalous-dispersion value, ΔPgF = +0.0195. That figure is the patent's, and the patent states no normal-line formula for it. The runtime does not store it directly: `dPgF` for Lfc is +0.015956, the PgF of the compatible FCD505 curve (0.5443) minus the engine's normal line 0.6438 − 0.001682·νd. The same PgF reads +0.0195 against 0.64833 − 0.0018·νd, so the stored value and the patent's figure describe the same glass. Lfb's `dPgF` is +0.0325: the patent's +0.0376 read against the same 0.64833 − 0.0018·νd line, which the same applicant's later patents print, gives PgF 0.5390. A close catalog coordinate match is a dispersion-model proxy, not evidence of a Cosina–Sumita or Cosina–HOYA supply relationship.
 
 ### Element 5 — Lfd: Negative Meniscus
 

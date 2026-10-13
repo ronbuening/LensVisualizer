@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { explainCompatibleGlassResolution, resolveCompatibleGlass } from "../../../src/optics/glassCatalog.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { TELECONVERTER_CATALOG } from "../../../src/utils/catalog/teleconverterCatalog.js";
 
 /**
  * Data contract: for every catalog element whose annotation is ambiguous (two or more
@@ -13,7 +14,8 @@ describe("glass resolution parity", () => {
   it("explains the same catalog row the runtime resolver selects for every ambiguous element", () => {
     let ambiguous = 0;
     const offenders: string[] = [];
-    for (const data of Object.values(LENS_CATALOG)) {
+    /* Teleconverter elements resolve glass through the same path once composed onto a host. */
+    for (const data of [...Object.values(LENS_CATALOG), ...Object.values(TELECONVERTER_CATALOG)]) {
       for (const element of data.elements) {
         if (!element.glass || element.nd === 1) continue;
         const { glass, nd, vd, indexReference } = element;

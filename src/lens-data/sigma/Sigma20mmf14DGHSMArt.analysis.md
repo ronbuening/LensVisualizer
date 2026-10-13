@@ -233,7 +233,7 @@ $$
 
 A direct paraxial trace through the glass elements gives an air-equivalent focal distance of 38.4532 mm from the last glass vertex; the 0.004 mm difference is within the rounding implied by the patent table.
 
-The stop semi-diameter in the data file is 12.8688 mm, computed from the marketed f/1.4 nominal aperture. The patent design FNO = 1.46 would correspond to a stop semi-diameter of about 12.3400 mm. Using the marketed value is intentional: `nominalFno` represents the production lens, while `apertureDesign` records the patent value.
+The stop semi-diameter in the data file is 12.8688 mm, computed from the marketed f/1.4 aperture. The patent design FNO = 1.46 would correspond to a stop semi-diameter of about 12.3400 mm. The model does not open to the authored value: `nominalFno` (the f-number the stop opens to) is the patent design value 1.46, from which the runtime sizes the iris by real-ray trace to about 12.635 mm, and `apertureMarketing` records the marketed f/1.4.
 
 The patent does not list semi-diameters. The values in the data file are conservative renderer-safe estimates, not physical clear-aperture specifications. They were derived from a combined marginal/chief paraxial envelope and then constrained by edge thickness, element semi-diameter ratio, signed cross-gap sag clearance, and the renderer's rim-angle/sd-to-radius limits. The small gap between surfaces 25 and 26A is the strongest rear-group constraint.
 

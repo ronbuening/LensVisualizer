@@ -342,9 +342,12 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.13,
+  closeFocusM: 0.12, // patent Table 3 close row; Viltrox markets 0.13 m
+  // Patent read 2026-10-06: Close row is CN 121091494 A Table 3 at 0.12 m (D1 3.75, D2 printed 4.65); D2 is authored
+  // as 4.56, a 0.09 mm transposition fix keeping D1+D2 = 8.31 mm.
+  publishedStations: { focus: [1] },
   focusDescription:
-    "Internal focus: G2 (L7-L9) translates 1.10 mm objectward from infinity to the patent's nominal 0.12 m endpoint. The modeled close state uses D1=3.75 mm and mechanism-constrained D2=4.56 mm (printed D2=4.65 mm); the UI close-focus distance remains Viltrox's marketed 0.13 m.",
+    "Internal focus: G2 (L7-L9) translates 1.10 mm objectward from infinity to the patent's nominal 0.12 m endpoint. The modeled close state uses D1=3.75 mm and mechanism-constrained D2=4.56 mm (printed D2=4.65 mm). The close-focus distance is the patent's 0.12 m; Viltrox markets 0.13 m.",
 
   /* ── Aperture configuration ── */
   nominalFno: 4,

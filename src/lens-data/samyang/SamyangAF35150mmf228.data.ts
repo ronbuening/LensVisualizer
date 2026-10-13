@@ -486,6 +486,8 @@ const LENS_DATA = {
 
   /* ── UI / controls ── */
   closeFocusM: 0.33,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Internal focusing by single negative group Gm3 (L17); D31 increases and D33 decreases.",
   fstopSeries: [2, 2.2, 2.5, 2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,

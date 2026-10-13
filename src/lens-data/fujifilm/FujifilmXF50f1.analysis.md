@@ -261,7 +261,7 @@ The XF 50mm f/1.0 R WR is a 12-element, 9-group inner-focus prime with an f/1.0 
 - A **single doubly-aspherical element** (L2a) immediately behind the stop, carrying 20th-order polynomial figuring for residual aberration correction.
 - A **lightweight 5-element focusing group** with two cemented doublets for chromatic stability across the focus range.
 
-The numerical example is refractive. L1a and L1d use S-TIL2 and S-NPH3 catalog-compatible models; the patent does not establish suppliers or manufacturing methods. L1b/L1c use J-PSKH1 and L1f uses S-NPH4 only as coordinate-compatible spectral proxies; these improve chromatic tracing without asserting Fujifilm's production suppliers.
+The numerical example is refractive. L1a and L1d use S-TIL2 and S-NPH3 catalog-compatible models; the patent does not establish suppliers or manufacturing methods. L1b/L1c use J-PSKH1, L1f uses S-NPH4 and L1g uses S-NPH1 (1.80810 / 22.76, catalog θgF 0.6307 against the patent's 0.63073) only as coordinate-compatible spectral proxies; these improve chromatic tracing without asserting Fujifilm's production suppliers.
 
 ---
 

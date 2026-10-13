@@ -486,6 +486,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.4924,
+  // Every authored zoom station is a source row.
+  publishedStations: { zoom: [0, 1, 2, 3], focus: [1] },
   // Calculated object-to-image distances of the Table 1 near states (D0 + lens track + near BF), W / M1 / M2 / T.
   zoomCloseFocusM: [0.4924, 0.5425, 0.6426, 0.693],
   focusDescription:

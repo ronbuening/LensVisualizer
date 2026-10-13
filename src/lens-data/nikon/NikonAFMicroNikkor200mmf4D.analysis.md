@@ -9,7 +9,7 @@
 **Title:** “Telephoto Lens System Allowing Short-Distance Photographing Operation”<br />
 **Embodiment analyzed:** Example 1 / First Embodiment, Fig. 1, Table 1, claim 14
 
-The prescription models the NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED with the first numerical embodiment of
+The prescription models the NIKON AF MICRO-NIKKOR 200mm f/4 D IF-ED with the first numerical embodiment of
 US 5,402,268. The patent does not identify a commercial lens by product name, so the production correlation is an
 inference rather than a manufacturer-confirmed patent attribution. The correlation is nevertheless supported by several
 independent points of agreement.

@@ -24,6 +24,8 @@ const perField = process.argv.includes("--fields");
 const list = process.argv.includes("--list");
 const limit = Number(process.argv.find((arg) => arg.startsWith("--limit="))?.slice(8) ?? Infinity);
 const focusCensus = process.argv.includes("--focus");
+/** Image plane of the `--fields` census: the authored plane, so availability reflects the lens data as written. */
+const FIELD_FOCUS = "design";
 const inconsistent = [];
 const tally = (counts, key) => (counts[key] = (counts[key] ?? 0) + 1);
 const support = {};
@@ -43,6 +45,7 @@ for (const file of files) {
   const options = {
     method: "geometric",
     spectrum,
+    focus: FIELD_FOCUS,
     maxGridSize: 32,
     pupilSemiDiameterMm: L.EP.epSD,
     stopSemiDiameterMm: L.stopPhysSD,
@@ -81,6 +84,6 @@ inconsistent.sort((a, b) => Math.abs(b.offsetMm) - Math.abs(a.offsetMm));
 const report = focusCensus
   ? { audited, candidates: support.candidate ?? 0, inconsistent: inconsistent.length, lenses: inconsistent }
   : perField
-    ? { spectrum, audited, support, fields, ...(list ? { unavailable } : {}) }
+    ? { spectrum, focus: FIELD_FOCUS, audited, support, fields, ...(list ? { unavailable } : {}) }
     : support;
 console.log(JSON.stringify(report, null, 2));

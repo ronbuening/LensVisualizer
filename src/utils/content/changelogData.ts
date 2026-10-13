@@ -19,6 +19,156 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-13",
+    type: "fix",
+    summary: "Fixed the Distortion tab naming barrel distortion as pincushion and pincushion as barrel",
+  },
+  {
+    date: "2026-10-13",
+    type: "fix",
+    summary: "Corrected HOYA FCD1 glass dispersion, slightly shifting violet focus in the lenses that use it",
+  },
+  {
+    date: "2026-10-13",
+    type: "lens",
+    summary: "Added six Olympus, Panasonic, Sigma and Yashica lenses, including a 60-600mm zoom and a 2x macro",
+  },
+  {
+    date: "2026-10-12",
+    type: "fix",
+    summary: "Fixed four Canon and Sony telephoto lenses tracing slower than their stated aperture",
+  },
+  {
+    date: "2026-10-12",
+    type: "fix",
+    summary: "Fixed heavy spherical aberration and an f/3.5 long end on the Sony FE 70-200mm f/2.8 GM OSS",
+  },
+  {
+    date: "2026-10-12",
+    type: "lens",
+    summary: "Added three Canon, Hasselblad and Panasonic lenses plus Canon and Sony teleconverters",
+  },
+  {
+    date: "2026-10-11",
+    type: "lens",
+    summary: "Added six Leica, Samyang and Sigma lenses, including a 15mm f/1.4 fisheye and two macros",
+  },
+  {
+    date: "2026-10-10",
+    type: "lens",
+    summary: "Added six Laowa, Sigma and Sony lenses, including the Argus 45mm f/0.95 and 105mm f/2 STF",
+  },
+  {
+    date: "2026-10-10",
+    type: "fix",
+    summary: "Fixed the Vivitar Series 1 70-210mm f/3.5 passing light only near its aperture center",
+  },
+  {
+    date: "2026-10-09",
+    type: "fix",
+    summary: "Fixed sensor cover glass narrowing the off-axis ray fan of the Nikon AF-S 18-35mm at 35mm",
+  },
+  {
+    date: "2026-10-09",
+    type: "lens",
+    summary: "Added six Laowa, Sigma, Thypoch and Voigtländer lenses, including three macros",
+  },
+  {
+    date: "2026-10-08",
+    type: "lens",
+    summary: "Added nine Zeiss, Laowa, Olympus, Sigma and Voigtländer lenses, from 8mm fisheye to 135mm f/1.4",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
+    summary: "Fixed false color-focus error on lenses with e-line glass data, mostly Leica and Rodenstock",
+  },
+  {
+    date: "2026-10-08",
+    type: "improvement",
+    summary: "Improved MTF: diffraction from traced rays, clipped corners charted, traced f-number shown",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
+    summary: "Opened lenses to their patent design f-number; zooms now hold it at every focal length",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
+    summary: "Corrected patent misprints, zoom f-numbers, clipped apertures and glass dispersion data",
+  },
+  {
+    date: "2026-10-07",
+    type: "improvement",
+    summary: "Standardized display names on 135 lenses: capitals, hyphens and aperture-suffix spacing",
+  },
+  {
+    date: "2026-10-07",
+    type: "lens",
+    summary: "Added Nikon Z 24-70mm f/2.8 S II, Fujifilm XC 50-230mm II, Olympus 25mm f/1.8 and four Sigma primes",
+  },
+  {
+    date: "2026-10-06",
+    type: "lens",
+    summary: "Added four Sigma Art and three Tamron Di III models, from the 14-24mm f/2.8 to the 90mm Macro VXD",
+  },
+  {
+    date: "2026-10-06",
+    type: "feature",
+    summary: "Added a patent positions mode that steps zoom and focus through source-tabulated states",
+  },
+  {
+    date: "2026-10-05",
+    type: "lens",
+    summary: "Added the Sigma 12mm f/1.4 DC Contemporary patent model",
+  },
+  {
+    date: "2026-10-05",
+    type: "fix",
+    summary: "Fixed steep wide-angle rays clipping on phantom asphere surfaces beyond the glass edge",
+  },
+  {
+    date: "2026-10-05",
+    type: "lens",
+    summary: "Added six Nikon models, from the Nikkor-QD·C Auto 15mm f/5.6 to the Z 70-200mm f/2.8 VR S II",
+  },
+  {
+    date: "2026-10-04",
+    type: "fix",
+    summary: "Fixed the controls dropping below the diagram when a converter is switched with an analysis tab open",
+  },
+  {
+    date: "2026-10-04",
+    type: "improvement",
+    summary: "Added a warning over MTF charts when the lens data is incomplete, listing each gap",
+  },
+  {
+    date: "2026-10-04",
+    type: "feature",
+    summary: "Added teleconverters: mount the Fujifilm XF1.4X, XF2X or GF1.4X on compatible lenses",
+  },
+  {
+    date: "2026-10-04",
+    type: "improvement",
+    summary: "Drew the rear filters of 21 Canon, Nikon and Minolta telephoto lenses as lens elements",
+  },
+  {
+    date: "2026-10-04",
+    type: "lens",
+    summary: "Added six Minolta MD Zoom patent models, from the 24-35mm f/3.5 to the 75-150mm f/4",
+  },
+  {
+    date: "2026-10-03",
+    type: "lens",
+    summary: "Added post-war Biogon 35mm, S-Biogon 40mm and Sony RX1 Sonnar 35mm patent models",
+  },
+  {
+    date: "2026-10-03",
+    type: "lens",
+    summary: "Added Voigtländer Tele-Dynar, Cine-Tele-Anastigmat and Super Wide-Heliar SL models",
+  },
+  {
     date: "2026-10-02",
     type: "improvement",
     summary: "Improved universal map labels, navigation, and rendering at different zoom levels",

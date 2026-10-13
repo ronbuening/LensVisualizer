@@ -211,6 +211,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.84537,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus — Gr2 and the aperture stop translate 9.6 mm toward the object; Gr1 and Gr3 stay fixed. Source near distance: 719.0 mm before the first vertex, or 0.84537 m to the image plane. Track 126.370 mm.",
 

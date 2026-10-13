@@ -13,7 +13,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * Focus status: NO_INTERNAL_RECONSTRUCTION. Example 7 publishes infinity-focus zoom states only.
  * Every zoom var pair therefore uses identical infinity/close values; product MOD 0.49 m is metadata only.
  * Zoom gaps: D7, D15, D23, normalized D26→S28, and BFD D37. D23 reverses after the middle state.
- * Patent figure FNO states: 3.628 / 3.628 / 6.459 at wide / middle / tele.
+ * Patent figure FNO labels: 3.628 / 3.628 / 6.459 at wide / middle / tele (Figs. 26(a), 27(a), 28(a)).
+ * Source erratum, middle FNO: the Fig. 27(a) label repeats the wide value. The wide and tele labels trace to one
+ * stop radius (9.4992 and 9.4998 mm), which gives f/5.546 at 91.5 mm, and the d-line curve plotted in Fig. 27(a)
+ * is that beam's (−0.36 mm at the pupil edge against −0.377 mm traced). An f/3.628 beam at 91.5 mm needs a stop
+ * radius of at least 14.24 mm (the paraxial figure), beyond the zero-edge heights of L9 (13.06 mm) and L10
+ * (12.51 mm), and would plot off the ±1.00 mm axis. nominalFno stores 3.628 / 5.546 / 6.459, apertureDesign the
+ * wide label, and the stop is one 9.499 mm iris at every station (zoomApertureModel "fixed-iris").
  * Source S27 is an inactive air datum (R=0, air→air) and is omitted; D27 is folded into D26.
  *
  * Asphere convention: patent epsilon maps to LensVisualizer K = epsilon - 1; Example 7 has K=0 on all aspheres.
@@ -36,7 +42,7 @@ const LENS_DATA = {
   specs: [
     "19 ELEMENTS / 15 GROUPS",
     "28-300mm marketed; 28.776-291.262mm patent states",
-    "FNO 3.628 / 3.628 / 6.459 modeled",
+    "FNO 3.628 / 5.546 / 6.459 modeled",
     "5 ASPHERICAL SURFACES",
     "5-GROUP +−+−+ ZOOM",
   ],
@@ -484,7 +490,12 @@ const LENS_DATA = {
 
   closeFocusM: 0.49,
   focusDescription: "NO_INTERNAL_RECONSTRUCTION — patent Example 7 publishes infinity-focus zoom states only; product MOD 0.49 m is metadata and no close-focus internal motion is invented.",
-  nominalFno: [3.628, 3.628, 6.459],
+  apertureDesign: 3.628,
+  nominalFno: [3.628, 5.546, 6.459], // middle: Fig. 27(a) prints 3.628 (source erratum); the fixed iris gives 5.546
+  // One iris radius (9.50 mm) gives the wide and tele FNO of Figs. 26(a) and 28(a) to 0.01 % and f/5.546 at 91.5 mm,
+  // the beam whose spherical aberration Fig. 27(a) plots. The 3.628 printed there repeats the wide label and would
+  // need an iris of at least 14.24 mm, past the zero-edge heights of L9 and L10 behind the stop.
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 40],
   apertureBlades: 7,
   maxFstop: 40,

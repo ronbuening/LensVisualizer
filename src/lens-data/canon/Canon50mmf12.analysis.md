@@ -60,7 +60,7 @@ A separate trace of Example 1 gives $f=100.067687$, with first- and second-compo
 
 ### L1 — Positive Meniscus, Convex Toward Object
 
-$n_d=1.6935$, $\nu_d=53.5$. Glass: **694535 lanthanum-crown class; modern H-LaK6A/LAC13/S-LAL13 equivalents are non-unique**. Standalone in-air $f=+211.289588$ patent units (+105.644794 mm at nominal one-half scale).
+$n_d=1.6935$, $\nu_d=53.5$. Glass: **LAC13 (HOYA) class, 694535 lanthanum crown; H-LaK6A and S-LAL13 share the coordinate**. Standalone in-air $f=+211.289588$ patent units (+105.644794 mm at nominal one-half scale).
 
 The same-sign radii form a positive meniscus with its convex face toward the object. L1 is the first half of the split front collector. Its relatively high index supplies positive power without requiring the curvature of a lower-index crown.
 
@@ -82,7 +82,7 @@ The published values give $n_4-n_3=0.0789$, $\nu_3-\nu_4=26.0$, and $|r_6|=321.7
 ### L5–L6 — Cemented Weak Positive Meniscus
 
 **L5:** $n_d=1.5174$, $\nu_d=52.5$. Glass: **OHARA S-NSL36 close coordinate equivalent (517524 versus patent 517525); the original Canon melt is not identified**. Standalone in-air $f=-52.957585$ patent units (−26.478792 mm).  
-**L6:** $n_d=1.6935$, $\nu_d=53.5$. Glass: **694535 lanthanum-crown class; modern H-LaK6A/LAC13/S-LAL13 equivalents are non-unique**. Standalone in-air $f=+55.786638$ patent units (+27.893319 mm).
+**L6:** $n_d=1.6935$, $\nu_d=53.5$. Glass: **LAC13 (HOYA) class, 694535 lanthanum crown; H-LaK6A and S-LAL13 share the coordinate**. Standalone in-air $f=+55.786638$ patent units (+27.893319 mm).
 
 L5 is biconcave and L6 is biconvex. Their substantial opposing powers nearly cancel in situ: the cemented net is $f=+1512.727034$ patent units (+756.363517 mm), making G4 only weakly positive. Both outer radii are negative, so the component is a meniscus with its convex outer face toward the image.
 
@@ -90,17 +90,17 @@ The published values give $n_6-n_5=0.1761$, $|r_8|=43.02$, and $r_9=76.74$, sati
 
 ### L7 — Biconvex Positive Rear Singlet
 
-$n_d=1.6935$, $\nu_d=53.5$. Glass: **694535 lanthanum-crown class; modern H-LaK6A/LAC13/S-LAL13 equivalents are non-unique**. Standalone in-air $f=+90.454422$ patent units (+45.227211 mm).
+$n_d=1.6935$, $\nu_d=53.5$. Glass: **LAC13 (HOYA) class, 694535 lanthanum crown; H-LaK6A and S-LAL13 share the coordinate**. Standalone in-air $f=+90.454422$ patent units (+45.227211 mm).
 
 L7 is the strongest positive air-spaced component. Together with G4, the rear block has $f=+79.041977$ patent units (+39.520989 mm).
 
 ## Glass Identification and Selection
 
-The patent supplies only rounded optical constants and no glass-maker names. The identifiers below are therefore manufacturer-catalog comparisons, not identifications of the original 1955 melts. The data file uses exact or near-exact coordinate equivalents for L2-L5 so chromatic tracing has published dispersion curves, while keeping the non-unique 694535 positions explicitly unmatched.
+The patent supplies only rounded optical constants and no glass-maker names. The identifiers below are therefore manufacturer-catalog comparisons, not identifications of the original 1955 melts. The data file uses exact or near-exact coordinate equivalents for L2-L5 so chromatic tracing has published dispersion curves, and uses HOYA LAC13 as the dispersion curve for the 694535 positions, where three catalog glasses share the coordinate and differ only slightly in νd.
 
 | Elements | Patent pair | Authoritative modern catalog comparisons | Residual $\Delta n_d/\Delta\nu_d$ | Assessment |
 |---|---:|---|---:|---|
-| L1, L6, L7 | 1.6935 / 53.5 | CDGM H-LaK6A 1.69350/53.38; HOYA LAC13 1.69350/53.34; OHARA S-LAL13 1.69350/53.21 | 0.00000/−0.12; 0.00000/−0.16; 0.00000/−0.29 | Non-unique lanthanum-crown class |
+| L1, L6, L7 | 1.6935 / 53.5 | CDGM H-LaK6A 1.69350/53.38; HOYA LAC13 1.69350/53.34; OHARA S-LAL13 1.69350/53.21 | 0.00000/−0.12; 0.00000/−0.16; 0.00000/−0.29 | LAC13 curve used; lanthanum-crown class, supplier non-unique |
 | L2 | 1.7173 / 47.9 | OHARA S-LAM3 1.71700/47.92; CDGM H-LaF2 1.71700/47.89 | −0.00030/+0.02; −0.00030/−0.01 | Modeled with S-LAM3; lanthanum flint, $\nu_d<50$ |
 | L3 | 1.6385 / 55.5 | Sumita K-SK18 1.63854/55.50; OHARA S-BSM18 1.63854/55.38 | +0.00004/+0.00; +0.00004/−0.12 | Modeled with K-SK18, the exact six-digit code match |
 | L4 | 1.7174 / 29.5 | OHARA S-TIH1 1.71736/29.52; SCHOTT SF1 1.71736/29.51 | −0.00004/+0.02; −0.00004/+0.01 | Modeled with S-TIH1; dense flint |

@@ -264,6 +264,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.17,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Published focus: L1 and L2 move together toward the object while L3 stays fixed. Their rear gap increases from 0.95 mm at infinity to 18.25 mm at 0.5× magnification.",
 

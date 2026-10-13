@@ -41,13 +41,13 @@ The physical front-to-rear order is not the same as the optical encounter order.
 
 The most important structural correction in this review is the treatment of the primary mirror blank. The radii and axial stations of r3/r4/r5 and r11/r12 are not merely reused tooling values. They are the same physical primary blank used in two radial roles: an annular silvered shell for the primary Mangin reflection and a clear central plug that becomes the last member of the rear cemented relay after the secondary reflection. The data file therefore splits this one physical blank into complementary rendered regions: `M1F`/`M1R` for the annular mirror shell and `L5F`/`L5R` for the clear central plug. Their radial material bands do not overlap. This is a tracing and rendering split only; it is not an additional physical glass body.
 
-The patent's bottom-line value $d=92.3$ in Table 1 is also not a paraxial back focal distance. It is the algebraic axial station of r16 relative to r1: the sum of the listed signed separations through d15 is exactly 92.3 mm. The patent does not tabulate the final image distance. Independent paraxial tracing places the paraxial focus 62.361 mm behind r16. Because the project data file excludes filters from the modeled surface array, the 2.0 mm filter is folded into the final air-equivalent distance from r14 to the image plane:
+The patent's bottom-line value $d=92.3$ in Table 1 is also not a paraxial back focal distance. It is the algebraic axial station of r16 relative to r1: the sum of the listed signed separations through d15 is exactly 92.3 mm. The patent does not tabulate the final image distance. Independent paraxial tracing places the paraxial focus 62.361 mm behind r16. The data file draws the 2.0 mm filter as a plate, so the r14-to-image distance is the physical path:
 
 $$
-2.7 + \frac{2.0}{1.5168} + 62.3611466 = 66.379712\ \text{mm}.
+2.7 + 2.0 + 62.3611466 = 67.061147\ \text{mm}.
 $$
 
-This gives a modeled r14-to-image distance of 66.379712 mm and a filter-excluded, air-equivalent model distance from r1 to the image plane of 153.979712 mm. The physical station of the paraxial focus in the patent path is 154.661147 mm from r1, because the 2.0 mm filter remains physical glass rather than an air-equivalent gap.
+This puts the image plane 154.661147 mm from r1, the physical station of the paraxial focus in the patent path. The air-equivalent r14-to-image distance, with the plate's thickness divided by its index, is 66.379712 mm.
 
 The power distribution along the encounter path is positive front correction, strongly positive primary mirror, negative secondary mirror, positive rear relay, and negative field correction. The primary Mangin unit has an effective focal length of +110.34 mm; the secondary Mangin unit has an effective focal length of −37.00 mm and supplies the Cassegrain magnification that turns the short primary focus into a 496 mm effective focal length.
 
@@ -109,7 +109,7 @@ $n_d = 1.51680$, $\nu_d = 64.20$. Glass: BSC7 / N-BK7 class plane-parallel filte
 
 The patent includes a 2.0 mm plane-parallel plate after r14. Sony's production instructions identify the plug-in filters as components of the optical system and require either the normal filter or the ND4X filter to be installed while shooting. Sony's specifications also state that the 5-group / 7-element count includes one filter element.
 
-The project data file does not model filter surfaces, following the lens-data rule that filters are excluded from the `surfaces` array. The filter is instead folded into the final air-equivalent distance from r14 to the image plane. The analysis still describes it because it is present in the patent and in the manufacturer's published construction count. In physical terms, the formula is six non-filter glass bodies plus one required plug-in filter; the data file's separate M1 and L5 entries are the complementary radial split of one shared primary blank.
+The project data file draws the filter as a plane-parallel plate element (surfaces 15–16), because the patent tabulates it and the manufacturer requires one to be installed. The patent lists no clear aperture for it, so its semi-diameter is a ray-trace estimate. In physical terms, the formula is six non-filter glass bodies plus one required plug-in filter; the data file's separate M1 and L5 entries are the complementary radial split of one shared primary blank.
 
 ## Glass Identification and Selection
 
@@ -177,7 +177,7 @@ Key modeling points:
 - `OBS` is a synthetic central blocker representing the unusable central aperture caused by the secondary obstruction. It is kept separate from the stop because `innerSd` on a stop would pass the central hole rather than block it.
 - `STO` is a fixed synthetic aperture derived from $F_{NO}(OUT)$ rather than an iris diaphragm.
 - `SEC_R → SEC_M → SEC_R` models the secondary Mangin path from the rear side of the substrate to the silvered object-side surface and back out again.
-- r15–r16 are excluded from the data file as filter surfaces; their optical path is folded into the r14-to-image distance.
+- r15–r16 are the drawn filter plate; the explicit surface order ends 14 → 15 → 16 → image.
 
 The patent figure supports this interpretation: Figure 10 labels r3/r4 on the primary mirror shell, r11/r12 in the central region of that same large blank, and r15/r16 as the rear plane-parallel filter.
 
@@ -193,13 +193,13 @@ All numerical checks below were recomputed from Table 1 using a paraxial $y$–$
 | Marketed aperture | f/8 fixed | — | Manufacturer value retained as `nominalFno`. |
 | Table 1 bottom value $d$ | 92.3 mm | 92.3 mm physical station of r16 | Sum of d1 through d15, not BFD. |
 | BFD after r16 | not tabulated | 62.3611 mm | Paraxial image distance behind the filter. |
-| Data-file r14-to-image distance | not tabulated | 66.3797 mm | Includes air-equivalent filter path. |
+| Data-file r14-to-image distance | not tabulated | 67.0611 mm | Physical path through the drawn filter; 66.3797 mm air-equivalent. |
 | Petzval sum | not tabulated | $+9.95398\times10^{-4}\ \mathrm{mm^{-1}}$ | Surface-by-surface $\phi/(n n')$ with signed indices. |
 | Petzval radius | not tabulated | 1004.62 mm | Approximately 2.03× patent EFL. |
 | Primary Mangin focal length | not tabulated | +110.34 mm | r3 → r4 reflection → r5. |
 | Secondary Mangin focal length | not tabulated | −37.00 mm | r6 → r7 reflection → r8. |
 | Rear cemented relay focal length | not tabulated | +120.71 mm | r9–r12, including clear central plug. |
-| Physical element count | 5 groups / 7 elements incl. filter | six non-filter bodies + required filter | Data array splits the shared primary blank for tracing, while filter surfaces are folded out. |
+| Physical element count | 5 groups / 7 elements incl. filter | six non-filter bodies + required filter | Data array splits the shared primary blank for tracing and draws the filter plate. |
 
 The previous interpretation that the patent's 92.3 mm value was a final image distance was not retained. The signed-distance sum verifies that it is the axial station of the last filter surface, while the paraxial focus is a separate computed quantity.
 

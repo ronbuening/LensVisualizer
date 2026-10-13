@@ -15,7 +15,7 @@ page 20, and the seven condition values are in Table 16 on page 20. Figure 7, th
 Figure 8, its wide/intermediate/tele aberration plots, appear on PDF page 25. Example 4 is introduced in ¶0106 and
 continues through ¶0117.
 
-The association with the production **NIKON AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR** is a selected research correlation,
+The association with the production **NIKON AF-S NIKKOR 24-85mm f/3.5-4.5 G ED VR** is a selected research correlation,
 not a manufacturer-confirmed patent mapping. The evidence is convergent but not exact:
 
 1. The patent was filed in April 2010 and published in November 2011; Nikon announced the production lens on 2012-06-14

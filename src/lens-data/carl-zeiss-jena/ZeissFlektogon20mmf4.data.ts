@@ -201,7 +201,7 @@ const LENS_DATA = {
       vd: 50.8,
       indexReference: "d",
       fl: 14.969,
-      glass: "Unmatched (678508; no coordinate-compatible current catalog glass located)",
+      glass: "LACL9 (HOYA) class (678508 lanthanum crown, LaLK9 type; Δnd −0.0001, Δνd −0.25; discontinued-glass equivalent)",
       apd: false,
       cemented: "G6",
       role: "Positive rear member of the rear cemented triplet.",

@@ -31,6 +31,7 @@ const mockShapes: ElementShape[] = [
 ];
 
 const mockLens = {
+  data: {},
   elements: mockElements,
   lyElemNum: -15,
   lyVdBadge: -20,
@@ -62,6 +63,34 @@ describe("ElementAnnotations", () => {
     expect(texts[0].textContent).toBe("1");
     expect(texts[1].textContent).toBe("2");
     expect(texts[2].textContent).toBe("3");
+  });
+
+  it("labels an attached teleconverter from its descriptor, without duplicating an authored group", () => {
+    const attachedTeleconverter = { magnification: 1.4, firstSurfaceLabel: "TC1", lastSurfaceLabel: "TC2" };
+    const converted = { ...mockLens, data: { attachedTeleconverter }, labelIdx: { TC1: 4, TC2: 5 } };
+    const groupTexts = (L: unknown) =>
+      [
+        ...render(
+          <svg>
+            <ElementAnnotations
+              L={L as RuntimeLens}
+              t={mockTheme}
+              shapes={mockShapes}
+              sx={identity}
+              sy={identity}
+              zPos={[0, 5, 6, 11, 12, 17]}
+              act={null}
+              showChromatic={false}
+            />
+          </svg>,
+        ).container.querySelectorAll("text"),
+      ].map((text) => text.textContent);
+
+    expect(groupTexts(converted).filter((text) => text === "TC 1.4×")).toHaveLength(1);
+    /* The composer already added the converter group for a host that authors groups. */
+    const authored = { ...converted, groups: [...mockLens.groups, { text: "TC 1.4×", fromSurface: 4, toSurface: 5 }] };
+    expect(groupTexts(authored).filter((text) => text === "TC 1.4×")).toHaveLength(1);
+    expect(groupTexts(mockLens)).not.toContain("TC 1.4×");
   });
 
   it("prefers authored patent element identifiers and staggers crowded labels", () => {

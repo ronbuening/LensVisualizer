@@ -1,4 +1,4 @@
-# Olympus OM Zuiko 16mm f/3.5 Fisheye — Patent Example 1 Analysis
+# Olympus Zuiko Auto-Fisheye 16mm f/3.5 — Patent Example 1 Analysis
 
 ## Patent Reference and Design Identification
 
@@ -90,7 +90,7 @@ The patent places a filter between the fourth and fifth lenses. In Table 1 it ap
 
 The filter has no paraxial optical power because both surfaces are plane. It nevertheless matters in the axial calculation. Treating it as air gives $f = 0.98353$ and $f_B = 2.27284$, which does not reproduce the patent. Treating it as a normal crown plate ($n \approx 1.51633$, N-BK7 / S-BSL7 equivalent) gives $f = 0.99997$ and $f_B = 2.29160$, matching the patent's stated $f = 1.0$ and $f_B = 2.2916$. The filter index is not printed in the U.S. table, so the normal-crown assignment is a reconstruction for paraxial verification, not a manufacturer-identified glass.
 
-In the data file, the filter is excluded per project convention. Its optical-path contribution is folded into an air-equivalent reduced gap: $d_\text{reduced} = d_9 + d_{10}/n_\text{filter} + d_{11} = 0.0792 + 0.0742/1.51633 + 0.0829 = 0.211034$ (normalized), or 3.377 mm at production scale. This preserves the correct EFL and BFD identically to the full-filter model.
+In the data file, the filter is left out: the patent prints no index for it and says it may be placed at any other position. Its optical-path contribution is folded into an air-equivalent reduced gap: $d_\text{reduced} = d_9 + d_{10}/n_\text{filter} + d_{11} = 0.0792 + 0.0742/1.51633 + 0.0829 = 0.211034$ (normalized), or 3.377 mm at production scale. This preserves the correct EFL and BFD identically to the full-filter model.
 
 ### L5 — Cemented Biconvex Doublet
 

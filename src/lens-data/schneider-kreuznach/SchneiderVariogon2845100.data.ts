@@ -342,9 +342,12 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.2,
+  // Every authored zoom station is a source row.
+  publishedStations: { zoom: [0, 1, 2, 3] },
   focusDescription: "The patent describes front-component focusing but publishes no finite-focus spacings. Focus travel is not modeled; the production minimum focus distance is 1.2 m.",
 
   nominalFno: 2.8,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 

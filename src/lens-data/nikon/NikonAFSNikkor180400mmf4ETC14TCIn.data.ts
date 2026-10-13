@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x IN
+ * NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x IN
  *
  * Source: WO 2019/131993 A1, second embodiment, Example 1, Figure 9 and Tables 8-10.
  * Table 10 explicitly states that object and surfaces 1-45 are identical to Table 8,
@@ -22,6 +22,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * and equals the sum of the printed spacings. The 2.0 m close-focus solve was made on
  * the air-equivalent track, so the physical object-to-image distance is 2.001193 m.
  * No uniform scaling is applied. The source uses d-line nd and vd and is all-spherical.
+ *
+ * Partial dispersion: the patent prints no θgF column, only the Table 11 deviations
+ * ΔθgF = 0.0649 (L11) and 0.0391 (L12) against its own line, ΔθgF = θgF −
+ * (0.648327 − 0.0018024·νd) (¶0155–0156). `dPgF` is the θgF recovered from that
+ * deviation minus the engine's normal line (0.6438 − 0.001682·νd), not the patent's ΔθgF.
  *
  * Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes axial movement of
  * cemented G1B (L16+L17) but no finite-focus spacing table. The close-focus rows are
@@ -46,7 +51,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in",
   maker: "Nikon",
   visible: false,
-  name: "NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged",
+  name: "NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged",
   subtitle: "WO 2019/131993 A1 second embodiment Example 1 — TC in; constrained 2.0 m focus reconstruction",
   specs: [
     "TC 1.4x IN — EXAMPLE 1",
@@ -84,8 +89,9 @@ const LENS_DATA = {
       fl: 402.95402032801616,
       glass: "Fluorite (CaF2; production-correlation supported)",
       apd: "patent",
-      apdNote: "dPgF = +0.0649 (WO 2019/131993 A1, Table 11)",
-      dPgF: 0.0649,
+      apdNote:
+        "Patent Table 11 ΔθgF = +0.0649 by the patent's line (θgF − 0.648327 + 0.0018024·νd), i.e. θgF = 0.5416; runtime dPgF +0.05796.",
+      dPgF: 0.057961,
       role: "Positive front collector in G1A.",
     },
     {
@@ -98,8 +104,9 @@ const LENS_DATA = {
       fl: 218.16887759143026,
       glass: "J-FKH1 class (HIKARI exact nd/νd pair)",
       apd: "patent",
-      apdNote: "dPgF = +0.0391 (WO 2019/131993 A1, Table 11)",
-      dPgF: 0.0391,
+      apdNote:
+        "Patent Table 11 ΔθgF = +0.0391 by the patent's line (θgF − 0.648327 + 0.0018024·νd), i.e. θgF = 0.5386; runtime dPgF +0.03369.",
+      dPgF: 0.033686,
       role: "Second low-dispersion positive collector in G1A.",
     },
     {
@@ -582,6 +589,7 @@ const LENS_DATA = {
   zoomPositions: [257.052, 420.02, 548.825],
   zoomLabels: ["Wide", "Tele"],
   nominalFno: [5.744299827765631, 5.748016468623415, 5.752314818203145],
+  zoomApertureModel: "fixed-iris",
   var: {
     "9": [[6.984, 27.108738235048598], [6.984, 26.975463184639125], [6.984, 26.94299428825733]],
     "13": [[27.415, 7.290261764951399], [27.415, 7.423536815360876], [27.415, 7.456005711742666]],

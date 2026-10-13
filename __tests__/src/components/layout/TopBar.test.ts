@@ -10,7 +10,7 @@
 
 import { createElement } from "react";
 import type { ComponentProps } from "react";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import TopBar from "../../../../src/components/layout/TopBar.js";
 import themes from "../../../../src/utils/theme/themes.js";
@@ -39,6 +39,11 @@ const baseProps: ComponentProps<typeof TopBar> = {
   configurationOptions: [],
   activeConfigurationKey: "lens-a",
   onConfigurationChange: vi.fn(),
+  teleconverterOptions: [],
+  activeTeleconverterKey: null,
+  teleconverterOptionsB: [],
+  activeTeleconverterKeyB: null,
+  onTeleconverterChange: vi.fn(),
 };
 
 describe("TopBar", () => {
@@ -110,5 +115,63 @@ describe("TopBar", () => {
     expect(screen.getByRole("button", { name: "OPTIC A" }).getAttribute("aria-pressed")).toBe("true");
     fireEvent.click(screen.getByRole("button", { name: "OPTIC B" }));
     expect(baseProps.onConfigurationChange).toHaveBeenCalledWith("lens-a-optic-b");
+  });
+
+  it("offers compatible teleconverters as a toggle and hides the control when a lens takes none", () => {
+    const teleconverterOptions = [
+      { key: "tc-14", name: "Converter 1.4x", label: "1.4×", magnification: 1.4 },
+      { key: "tc-20", name: "Converter 2x", label: "2×", magnification: 2 },
+    ];
+    const { rerender } = render(
+      createElement(TopBar, { ...baseProps, comparing: false, teleconverterOptions, activeTeleconverterKey: "tc-14" }),
+    );
+
+    expect(screen.getByRole("group", { name: "Teleconverter" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "1.4×" }).getAttribute("aria-pressed")).toBe("true");
+    expect(screen.getByRole("button", { name: "NONE" }).getAttribute("aria-pressed")).toBe("false");
+    fireEvent.click(screen.getByRole("button", { name: "2×" }));
+    expect(baseProps.onTeleconverterChange).toHaveBeenCalledWith("a", "tc-20");
+    fireEvent.click(screen.getByRole("button", { name: "NONE" }));
+    expect(baseProps.onTeleconverterChange).toHaveBeenCalledWith("a", null);
+
+    rerender(createElement(TopBar, { ...baseProps, comparing: false, teleconverterOptions: [] }));
+    expect(screen.queryByRole("group", { name: "Teleconverter" })).toBeNull();
+  });
+
+  it("gives each comparison pane its own teleconverter control", () => {
+    const options = [{ key: "tc-14", name: "Converter 1.4x", label: "1.4×", magnification: 1.4 }];
+    render(
+      createElement(TopBar, {
+        ...baseProps,
+        comparing: true,
+        teleconverterOptions: options,
+        activeTeleconverterKey: "tc-14",
+        teleconverterOptionsB: options,
+        activeTeleconverterKeyB: null,
+      }),
+    );
+
+    const paneA = screen.getByRole("group", { name: "Teleconverter for lens A" });
+    const paneB = screen.getByRole("group", { name: "Teleconverter for lens B" });
+    expect(within(paneA).getByRole("button", { name: "1.4×" }).getAttribute("aria-pressed")).toBe("true");
+    expect(within(paneB).getByRole("button", { name: "1.4×" }).getAttribute("aria-pressed")).toBe("false");
+    fireEvent.click(within(paneB).getByRole("button", { name: "1.4×" }));
+    expect(baseProps.onTeleconverterChange).toHaveBeenCalledWith("b", "tc-14");
+  });
+
+  it("falls back to a named dropdown when two converters share a magnification", () => {
+    render(
+      createElement(TopBar, {
+        ...baseProps,
+        comparing: false,
+        teleconverterOptions: [
+          { key: "tc-14-ii", name: "Converter 1.4x II", label: "1.4×", magnification: 1.4 },
+          { key: "tc-14-iii", name: "Converter 1.4x III", label: "1.4×", magnification: 1.4 },
+        ],
+      }),
+    );
+
+    expect(screen.queryByRole("group", { name: "Teleconverter" })).toBeNull();
+    expect(screen.getByText("No teleconverter")).toBeTruthy();
   });
 });

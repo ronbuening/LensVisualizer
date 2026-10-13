@@ -252,6 +252,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.395,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Floating macro focus: the positive front group, aperture stop, and negative rear group move independently toward the object from infinity to 1:1.",
 

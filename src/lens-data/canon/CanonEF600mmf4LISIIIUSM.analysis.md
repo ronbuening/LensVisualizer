@@ -36,7 +36,7 @@ The active 16-element/12-group model divides as follows:
 
 The nearly afocal character of L3 is sensitive to the patent's two-decimal spacing precision. The published Table 1 value for the L3 focal length is −47,873.47 mm, while the rounded prescription gives −50,069.95 mm. The source audit shows that an unprinted value inside the rounding interval of the published 3.79 mm spacing is sufficient to recover the Table 1 value; no prescription spacing is altered in the data file.
 
-The final parallel glass block G at patent surfaces 30–31 is omitted from the LensVisualizer prescription. Surface 29 instead carries the patent's 80.59 mm air-equivalent back focus to the image plane. This preserves the source's own LD/BF reference convention while excluding the filter-like plate from the ordinary sequential model.
+The final parallel glass block G at patent surfaces 30–31 is drawn as a plane-parallel plate: 2.20 mm thick, nd 1.51633, νd 64.14, 5.25 mm behind surface 29, with 73.90 mm of air to the image plane. Those printed spacings give an air-equivalent back focus of 5.25 + 2.20/1.51633 + 73.90 = 80.600871 mm against the patent's rounded 80.59 mm. The patent lists no clear aperture for the plate, so its semi-diameter is a ray-trace estimate.
 
 All surface semi-diameters are modeling values because Numerical Data 4 does not publish clear apertures. They were derived from the F4.12 marginal ray and then constrained by edge thickness, actual rim slope, cross-gap geometry, and off-axis ray containment. No layout parameter is used as a substitute for physical clearance.
 
@@ -225,7 +225,7 @@ The patent does not publish the transverse displacement used for stabilization. 
 
 ## Verification Summary
 
-Independent reduced-angle tracing of the final TypeScript surfaces gives an EFL of 587.932441 mm and a BFL of 80.573809 mm from surface 29. The patent's rounded values are 588.00 mm and 80.59 mm. The authored surface-1-to-image track is exactly 474.78 mm because surface 29 carries the source-defined air-equivalent BF.
+Independent reduced-angle tracing of the final TypeScript surfaces gives an EFL of 587.932441 mm and a BFL of 80.573809 mm from surface 29. The patent's rounded values are 588.00 mm and 80.59 mm. The authored surface-1-to-image track is 475.54 mm with the filter plate G in place; the patent's 474.78 mm total length uses the air-equivalent BF.
 
 The sequential y–ν basis trace and independently multiplied ABCD matrix agree to machine precision, and the cardinal-factorization check differs by only `2.78 × 10⁻17`. Surface-by-surface Petzval summation using `φ/(n·n′)` gives `−4.2618813 × 10⁻5 mm⁻1`, corresponding to a Petzval radius of approximately −23.464 m.
 

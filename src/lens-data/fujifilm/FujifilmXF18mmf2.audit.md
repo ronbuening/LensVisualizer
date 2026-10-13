@@ -108,3 +108,17 @@ against fitting a gap to focus applies to published distances. The S13 A10 corre
 Image-plane offset: +4.992891 → +0.000276 mm (limit 0.047005 mm). The Section E row is deleted. The suspected d12
 misprint (printed 2.40 mm, ≈ 3.2 mm by the printed f, Table 17 and FIG. 4) stays unchanged and recorded above; if d12 is
 corrected, `gapAfterMm` must drop to about 2.38 mm. The data header and analysis now describe the adopted plane.
+
+## 2026-10-09 — Element indices aligned with the traced surface indices
+
+Table 7 prints six-decimal indices. The surfaces carried them, but three element labels rounded them to five decimals.
+Tracing and dispersion read the surface value, so nothing numeric changes; the V2 lens-data format keeps one index per
+medium, and its converter requires the two to agree.
+
+| Element | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L1 | `nd` | 1.51742 | 1.517417 | Table 7 surface 1; equals the S-NSL36 catalog nd |
+| L3 | `nd` | 1.64769 | 1.647689 | Table 7 surface 6 |
+| L8 | `nd` | 1.83481 | 1.834807 | Table 7 surface 15 |
+
+The analysis element tables and glass summary now quote the six-decimal Table 7 values for all eight elements.

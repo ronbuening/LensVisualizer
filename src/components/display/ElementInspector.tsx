@@ -304,16 +304,14 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
                 </span>
               </div>
               <div>
-                <span style={{ color: t.propLabel }}>
-                  {indexReference === "e" && row.quality !== "sellmeier" ? "nF′−nC′" : "nF−nC"} ={" "}
-                </span>
+                <span style={{ color: t.propLabel }}>{indexReference === "e" ? "nF′−nC′" : "nF−nC"} = </span>
                 <span style={{ color: t.value }}>{(row.indices.B - row.indices.R).toFixed(5)}</span>
               </div>
               <div style={{ gridColumn: "1 / -1" }}>
                 {CHROMATIC_CHANNEL_ORDER.map((ch, idx) => {
                   const color =
                     ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : ch === "B" ? t.rayChromB : t.rayChromV;
-                  const usesNativeELineChannels = indexReference === "e" && row.quality !== "sellmeier";
+                  const usesNativeELineChannels = indexReference === "e";
                   const indexLabel = usesNativeELineChannels
                     ? ch === "R"
                       ? "nC′"

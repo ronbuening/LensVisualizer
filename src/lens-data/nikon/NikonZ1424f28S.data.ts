@@ -431,6 +431,8 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   closeFocusM: 0.28,
+  // Source-tabulated focus rows differ by zoom station.
+  publishedStations: { zoom: [0, 1, 2, 3], focus: [[4, 5], [3, 5], [2, 5], [1, 5]] },
   nominalFno: 2.91,
   // Physical iris schedule inferred by tracing the source f/2.91 entrance pupil at each zoom station.
   zoomApertureModel: "from-nominal-fno",

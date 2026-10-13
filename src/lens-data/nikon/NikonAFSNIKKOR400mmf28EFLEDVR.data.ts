@@ -17,8 +17,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NORMALIZATION: source protective glass FLG (surfaces 1-2) is      ║
  * ║  omitted per project scope. The rear filter FL (surfaces 32-33,    ║
- * ║  2.00 mm, nd 1.51680, νd 63.88) is modeled in `rearPlates`         ║
- * ║  (traced, not drawn) with the printed Bf 71.551 mm to the image.   ║
+ * ║  2.00 mm, nd 1.51680, νd 63.88) is drawn as a plane-parallel plate ║
+ * ║  element and traced by every analysis, with the printed Bf         ║
+ * ║  71.551 mm to the image; its semi-diameter is a ray-trace estimate ║
+ * ║  (the source lists none) and it is not counted in `elementCount`.  ║
  * ║  Surface 31 stores the printed 9.00 mm gap to FL plus a            ║
  * ║  +0.0692839947 mm paraxial refocus caused by removal of the        ║
  * ║  weak-power front FLG: 9.0692839947 mm. Physical track from        ║
@@ -52,8 +54,8 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-400mm-f28e-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR",
-  subtitle: "JP 2015-215559 A Example 1 — FLG omitted; rear filter FL traced",
+  name: "NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR",
+  subtitle: "JP 2015-215559 A Example 1 — FLG omitted; rear filter FL drawn",
   specs: [
     "16 ELEMENTS / 12 GROUPS",
     "2 FLUORITE + 2 ED",
@@ -333,6 +335,16 @@ const LENS_DATA = {
       role: "Negative member of the final cemented pair in G3c.",
       cemented: "D4",
     },
+    {
+      id: 17,
+      name: "FL",
+      label: "Slip-in filter FL",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      role: "Plane-parallel filter plate of the patent prescription (JP 2015-215559 A, Example 1 Table 1 surfaces 32–33), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
   surfaces: [
@@ -366,19 +378,11 @@ const LENS_DATA = {
     { label: "30", R: -391.1361, d: 1.9, nd: 1.84666, elemId: 16, sd: 16.4 },
     // Printed 9.00 mm gap to FL + 0.0692839947 mm refocus after omitting FLG
     { label: "31", R: 276.0025, d: 9.06928399470577, nd: 1, elemId: 0, sd: 16.3 },
-  ],
-
-  /* ── Rear filter FL (patent Table 1 surfaces 32–33): traced, not drawn ── */
-  rearPlates: [
-    {
-      label: "FL",
-      thicknessMm: 2.0,
-      nd: 1.5168,
-      vd: 63.88,
-      glass: "J-BK7",
-      gapAfterMm: 71.551,
-      source: "JP 2015-215559 A, Example 1 Table 1 surfaces 32–33 (Bf 71.551 at infinity; +0.024 close carried in d31)",
-    },
+    // Slip-in filter FL (JP 2015-215559 A, Example 1 Table 1 surfaces 32–33), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    // Gap to the image: Bf 71.551 at infinity; +0.024 close carried in d31
+    { label: "32", R: 1e15, d: 2.0, nd: 1.5168, elemId: 17, sd: 18 },
+    { label: "33", R: 1e15, d: 71.551, nd: 1, elemId: 0, sd: 18 }, // slip-in filter → image plane
   ],
 
   asph: {},
@@ -410,6 +414,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 2.6,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED: G2 moves 15.400 mm imageward from infinity to the patent close-focus state (β = −0.173). " +
     "The source also increases Bf by 0.024 mm; this is preserved as a 0.024 mm increase in the gap ahead of the " +

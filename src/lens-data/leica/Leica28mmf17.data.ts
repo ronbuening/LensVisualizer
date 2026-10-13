@@ -339,6 +339,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Floating inner focus: G2 (doublet) and G4 (singlet) move toward object. Macro mode (M2) extends G1–G4 as a unit to 0.17 m.",
 

@@ -248,6 +248,8 @@ const LENS_DATA = {
   doublets: [],
 
   closeFocusM: 3.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: negative G2 (L5–L6) translates 14.423 mm imageward. The printed Example-1 d8/d12 endpoints are preserved; the patent's '700' close-distance label conflicts with those spacings and is not corrected.",
 

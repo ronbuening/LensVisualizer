@@ -24,3 +24,12 @@ Patent: US 3,524,697, Example 1
 - Visually rechecked local `patents/US3524697.pdf`, PDF page 4. Example 1 prints L8 at `nd = 1.76764`, `νd = 46.5`.
 - Hikari J-LASFH2, added to the project after the earlier review, evaluates to `1.766840 / 46.780` (`Δnd = -0.000800`, `Δνd = +0.280`).
 - Relabeled L8 as a qualified J-LASFH2 spectral proxy while retaining patent code `768465` and leaving Nikon's production melt unspecified. The rejected NBFD3 identification remains rejected; geometry and APD metadata are unchanged.
+
+## 2026-10-04 — Patent filter left out as optional
+
+- Patent check (US 3,524,697, first embodiment): r8 and r9 are both flat (element L5), d8 = 1.9, nd 1.51743, νd 58.5,
+  with 3.2 before and 6.4 after in patent units, just ahead of the stop. Fig. 1 draws it.
+- The patent says "L5 is an optional filter". Filters the source calls optional are not modeled, so the file is
+  unchanged: no plate, and the r7-to-r10 gap keeps the plate's air-equivalent thickness (t/n), which preserves the
+  published first-order values. A literally empty slot would be 0.39 mm longer at the file's scale.
+- The header now gives that reason in place of "built-in filter excluded per project data rules".

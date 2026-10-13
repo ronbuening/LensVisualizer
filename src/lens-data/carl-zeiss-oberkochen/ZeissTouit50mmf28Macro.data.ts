@@ -351,8 +351,10 @@ const LENS_DATA = {
   focusDescription:
     "Floating inner focus: G2 translates imageward while G4 and G5 translate objectward; G1, G3, stop, and G6 remain fixed.",
   closeFocusM: 0.15,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
+  nominalFno: 2.88,
+  fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   scFill: 0.58,
   yScFill: 0.56,

@@ -215,7 +215,7 @@ The Petzval sum, computed surface by surface using φ/(n·n′) through the last
 
 The data file preserves the patent surface sequence through surface 28 and carries the cover plate surfaces 29-30 as a traced, undrawn `rearPlates` entry (J-BK7A class for 1.51680 / 64.2, fB = 1.00 mm). The two 0.01 mm cement layers are modeled explicitly as thin optical media to preserve the patent paraxial power. Semi-diameters are inferred because the patent does not list clear apertures; they are chosen for stable rendering rather than as measured production clear apertures.
 
-The data file uses the marketed aperture, nominalFno = 1.8, as required by the LensVisualizer data specification. The patent design aperture, F/1.86, is recorded separately as apertureDesign.
+The data file uses the patent design aperture, nominalFno = 1.86, as the f-number the stop opens to; the same F/1.86 is recorded as apertureDesign. The marketed aperture, f/1.8, is recorded separately as apertureMarketing.
 
 ## Sources
 

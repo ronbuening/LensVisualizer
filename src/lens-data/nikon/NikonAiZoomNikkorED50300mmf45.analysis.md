@@ -55,8 +55,11 @@ high-magnification region.
 
 The physical diaphragm is in the air space immediately ahead of G4. The patent places it 2.0 mm ahead of surface 19. In the
 sequential data model the published `d18` is split into the distance from surface 18 to `STO` and a constant 2.0 mm from `STO`
-to surface 19. A common modeled stop semi-diameter of 12.72462 mm reproduces f/4.5 at all three published zoom states; the
-independently required values are 12.72440, 12.72462, and 12.72475 mm, the small spread being consistent with source rounding.
+to surface 19. Paraxially, a common modeled stop semi-diameter of 12.72462 mm reproduces f/4.5 at all three published zoom
+states; the independently required values are 12.72440, 12.72462, and 12.72475 mm, the small spread being consistent with
+source rounding. Traced with real rays, the fixed iris opens to 12.7356 mm, the f/4.5 radius at the 50.000 mm state, and the
+wide-open on-axis beam is f/4.50, f/4.51, and f/4.49 at 50.000, 122.458, and 295.200 mm, with the iris as the limiter at
+each state.
 
 By the project's structural terminology, the lens is telephoto only at the long design endpoint: total track/EFL is 0.95370
 there, but 5.63067 at the wide endpoint. It is not retrofocus at the wide endpoint because the computed BFD of 39.7320 mm is
@@ -311,13 +314,16 @@ enter this sum, so it is common to all zoom states.
 
 The patent does not publish clear semi-diameters. The `sd` values in the data file are therefore modeling inferences derived
 from the verified physical stop, published field angles, representative marginal/chief-ray envelopes, the optical section,
-and geometry limits. They are not asserted as manufacturing apertures. A 600-dpi audit of Example 3's FIG. 3 found the
-original 45/45/44/44/42 mm G1 profile materially oversized relative to the median G2/G3 height and the 11.5-12.5 mm G5
-profile undersized relative to G4. The reviewed 35/35/34/34/33 mm G1 and 14/14/15.5/15.5/15.5/15.5 mm G5 profiles follow
-the patent's group-height progression more closely while retaining the existing G2-G4 rims. Across the three infinity and
-three reconstructed close-focus endpoint states, the model retains positive representative off-axis clearance, positive
-element edge thickness, rim slopes below the project limit, and shared-band cross-gap intrusion below the configured 0.90
-fraction.
+and geometry limits. They are not asserted as manufacturing apertures. The 35/35/34/34/33 mm G1 and
+14/14/15.5/15.5/15.5/15.5 mm G5 profiles are set against the median G2/G3 height in a 600-dpi reading of Example 3's FIG. 3,
+so that the group-height progression follows the patent drawing. The two G4 surfaces both carry 12.6 mm, one square-cut rim
+as FIG. 3 draws L12. The f/4.5 on-axis marginal ray reaches 12.533 mm at surface 19 and 12.360 mm at surface 20 in the
+122.458 mm state, the largest of the three, and both faces take the higher of the two, rounded up to 0.1 mm. FIG. 3 draws
+L12 level with L13, at about 13.0-13.7 mm on the figure's vertex scales, and draws its stop marks slightly wider than L12,
+as the 12.7356 mm iris is in the model. At this value L12 has 3.484 mm of edge thickness, rim slopes of 6.2° and 7.3°, and
+an air gap to L13 that widens from 0.963 mm on axis to 2.603 mm at the 12.6 mm rim. Across the three infinity and three
+reconstructed close-focus endpoint states, the model retains positive representative off-axis clearance, positive element
+edge thickness, rim slopes below the project limit, and shared-band cross-gap intrusion below the configured 0.90 fraction.
 
 No plate, filter, dummy optical surface, or patent lens surface has been removed. The neutral `STO` plane only splits the
 published G3-to-G4 air gap at the stated diaphragm station. No source number was silently corrected, no uniform scale factor was

@@ -1,19 +1,21 @@
 /**
- * Shared MTF numerical contracts: sampling ladder, convergence band, request limits, and
- * scalar-diffraction validity gates.
+ * Shared MTF numerical contracts: sampling ladder, convergence band and request limits.
  *
  * Option validation, the engine, and user-facing messages all read these values so text and
  * behavior cannot drift apart.
  */
 
-import type { MtfGridCap } from "../../types/mtf.js";
+import type { MtfFocusMode, MtfGridCap } from "../../types/mtf.js";
 
-/** Pupil-grid refinement ladder; geometric runs start at 16, scalar diffraction at 32. */
+/** Pupil-grid refinement ladder. */
 export const MTF_GRID_LADDER = Object.freeze([16, 32, 64, 128, 256] as const);
 
 /** Grid sizes a request may cap refinement at. */
 export const MTF_GRID_CAPS: readonly MtfGridCap[] = Object.freeze([32, 64, 128, 256]);
 export const MTF_DEFAULT_GRID_CAP: MtfGridCap = 128;
+
+/** Image-plane policies a request may name; a request must name one. */
+export const MTF_FOCUS_MODES: readonly MtfFocusMode[] = Object.freeze(["auto", "design", "best-axial"]);
 
 /** Absolute MTF change between successive grids that counts as converged. */
 export const MTF_CONVERGENCE_TOLERANCE = 0.01;
@@ -56,13 +58,11 @@ export const MTF_ESTIMATED_DISPERSION_MAX_VD = 65;
  */
 export const MTF_IMAGE_PLANE_DEPTHS = 10;
 
-/** Conservative scalar-diffraction suitability limits; see agent_docs/architecture/optics-engine.md. */
-export const MTF_DIFFRACTION_LIMITS = Object.freeze({
-  maxChiefIncidenceDeg: 15,
-  maxConeDirectionCosine: 0.25,
-  maxBlurToReferenceRadius: 0.02,
-  maxPhaseStepWaves: 0.25,
-});
+/**
+ * Share of a field's sheared-pair overlap that may straddle a gap in the beam before the field says so. The
+ * diffraction estimate takes such a pair's phase from its two ends alone, which is right only for defocus.
+ */
+export const MTF_STRADDLING_NOTE_SHARE = 0.01;
 
 /** Transmitted rays inside a footprint's guard band widen it and retrace, at most this many times per field. */
 export const MTF_MAX_FOOTPRINT_EXPANSIONS = 2;

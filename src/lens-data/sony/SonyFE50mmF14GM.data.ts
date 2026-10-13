@@ -352,6 +352,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: G2 (L21–L22) moves 9.84 mm imageward from infinity to the patent 0.45 m state; G1 and G3 remain fixed. No additional travel to the production 0.41 m AF / 0.38 m MF limits is reconstructed.",
 

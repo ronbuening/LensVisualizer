@@ -51,10 +51,10 @@ const LENS_DATA = {
   focusDescription:
     "First-group unit focus: G1 (L11-L17 plus the stop) moves objectward while G2 remains fixed. The close-focus dF value is a paraxial estimate for a 0.20 m object distance from the first surface; the patent tabulates only the infinity position.",
   apertureBlades: 9,
-  nominalFno: 4,
+  nominalFno: 4.12,
   closeFocusM: 0.2,
   maxFstop: 22,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [4.12, 5.6, 8, 11, 16, 22],
   scFill: 0.5,
   yScFill: 0.78,
 

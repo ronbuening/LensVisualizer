@@ -331,8 +331,8 @@ const LENS_DATA = {
   focusDescription: "G1+G2 integral unit focus; G3 fixed relative to image plane.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.06,
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

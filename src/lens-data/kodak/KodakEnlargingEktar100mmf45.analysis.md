@@ -53,7 +53,7 @@ The patent identifies the high-index single negative component as a preferred fe
 
 ### L4 — Negative Meniscus
 
-nd = 1.575, νd = 41.4. Glass: Unmatched vintage light-flint class, 575/414. f = -78.53 mm.
+nd = 1.575, νd = 41.4. Glass: LF7-class light flint, 575/414 (J-LF7 catalog equivalent; the original Kodak melt is not known). f = -78.53 mm.
 
 L4 is the negative member of the rear cemented doublet. Its front surface R6 = +400.9 mm is very weak, so the element's optical action is concentrated mostly at the cemented junction R7 = +40.5 mm.
 
@@ -76,7 +76,7 @@ The patent publishes only D-line refractive indices and Abbe numbers. It does no
 | L1 | 1.611 | 57.2 | 611/572 | Unmatched vintage high-index crown class | Front positive crown |
 | L2 | 1.573 | 57.5 | 573/575 | SUMITA BAK1 catalog equivalent; production supplier unspecified | Front doublet negative partner |
 | L3 | 1.605 | 38.2 | 605/382 | Unmatched vintage dense-flint class | Central negative component |
-| L4 | 1.575 | 41.4 | 575/414 | Unmatched vintage light-flint class | Rear doublet negative partner |
+| L4 | 1.575 | 41.4 | 575/414 | LF7-class light flint (J-LF7 equivalent, 1.57501 / 41.51) | Rear doublet negative partner |
 | L5 | 1.744 | 45.8 | 744/458 | Unmatched vintage high-index flint class | Rear positive high-index element |
 
 The chromatic strategy is asymmetric. The front doublet uses nearly matched Abbe numbers and therefore uses its cemented surface primarily for rim-ray correction rather than color correction. The central negative element provides the strongest flint dispersion in the system. The rear doublet then supplies the remaining chromatic balance, but in Example 6 L4 is deliberately less dispersive than the corresponding element in the sibling examples. That substitution leaves the slight infinity-conjugate longitudinal color undercorrection identified by the patent.

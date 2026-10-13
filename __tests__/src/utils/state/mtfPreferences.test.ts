@@ -31,6 +31,12 @@ describe("MTF preferences", () => {
     expect(parseMtfPreferences({ focus: "design" }).focus).toBe("design");
     expect(parseMtfPreferences({ focus: "auto" }).focus).toBe("auto");
     expect(parseMtfPreferences({ focus: "sideways" }).focus).toBe("best-axial");
+    // The diffraction-corrected product stored by earlier versions became the diffraction estimate.
+    expect(DEFAULT_MTF_PREFERENCES.method).toBe("diffraction");
+    expect(parseMtfPreferences({ method: "geometric-dl" }).method).toBe("diffraction");
+    expect(parseMtfPreferences({ method: "geometric" }).method).toBe("geometric");
+    for (const unknown of ["scalar", "constructor", "__proto__", 7])
+      expect(parseMtfPreferences({ method: unknown }).method).toBe("diffraction");
     expect(
       parseMtfPreferences({
         method: "diffraction",

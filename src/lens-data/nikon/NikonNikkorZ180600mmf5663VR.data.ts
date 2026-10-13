@@ -457,6 +457,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 2.4,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED: G5 (L20) moves imageward to the complete 2.4 m patent state at each zoom position; " +
     "the marketed 1.3 m wide-end MFD is not reconstructed.",

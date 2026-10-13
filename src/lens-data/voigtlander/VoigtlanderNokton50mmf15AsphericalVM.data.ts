@@ -225,6 +225,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.7,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Published F10/F14 unit focus: internal gaps ZD9=5.30 mm and ZD12=0.15 mm remain fixed; " +
     "air-equivalent rear spacing ZD16 changes from 25.00 to 29.12 mm. The close source row uses " +

@@ -281,8 +281,8 @@ const LENS_DATA = {
   focusDescription:
     "Rear focus: the patent states that G1 is fixed and G2 moves toward the object for close focus; no close-focus variable-gap table is published, so this data file carries the verified infinity prescription only.",
   closeFocusM: 0.85,
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 9,
 
   scFill: 0.64,

@@ -233,9 +233,9 @@ const LENS_DATA = {
   focusDescription: "Rear focus — G1 fixed, aperture stop + G2 move as a unit (SSM drive).",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
+  nominalFno: 1.45,
   apertureBlades: 9,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.52,

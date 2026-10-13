@@ -221,6 +221,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "13", toSurface: "15" }],
 
   closeFocusM: 0.3,
+  // Only the listed focus rows are source-tabulated; the others are reconstructed.
+  publishedStations: { focus: [1] },
   nominalFno: 2,
   fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
   scFill: 0.55,

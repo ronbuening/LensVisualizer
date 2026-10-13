@@ -328,6 +328,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.340742447,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Published floating internal focus: G23 and G33 move objectward by 5.796 and 6.962 mm relative to G13. " +
     "G13 is mechanically fixed in the patent. The preserved image-reference spacing adds a 0.044 mm common " +

@@ -34,6 +34,21 @@ proprietary glass lives in [proprietary-glass-backfill.md](proprietary-glass-bac
   lanthanum flint on its existing Abbe model. Closing it needs source line indices; Leitz mil-spec documentation is
   sparse, so this may stay open indefinitely.
 
+- **`dPgF` still on a source line (2026-10).** `npm run audit:dpgf` lists the candidates and the rule is in
+  `src/lens-data/LENS_DATA_SPEC.md`. Two files are open after the corpus pass. `FujifilmX1071284mmf228`: US
+  2014/0133036 A1 is not held locally, and both values (L32, L35) are annotations beside authored line indices.
+  `LeicaDCVarioElmarit88176mmf2845ASPHPanasonicFZ2500FZ2000FZH1`: US 2018/0081156 A1 prints a deviation without
+  stating its line; the rows that equal a HOYA catalog figure were converted on HOYA's line, while L7, L12 and L13
+  match no HOYA glass and L10 prints FCD515's figure on an FCD705-class glass, so those four keep the printed value.
+
+- **Labels the partial-dispersion pass called into question (2026-10).** Each resolves to a curve whose νd or PgF
+  disagrees with the patent's printed figure; the stored `dPgF` follows the patent or the label as it stands.
+  `SonyFE90mmf28` G2 and `VoigtlanderApoLanthar50f2` Lfb are labelled S-FPL51 at 1.49700 / 81.61, which is HOYA
+  FCD1's coordinate (the Sony patent prints νd 81.6084). `TamronSPA00970200mmf28VC` "TAF1 (Hoya)" resolves to OHARA
+  S-LAH66. `Sigma24mmf14ArtDN` L1 (S-BAL42, patent θgF 0.5423 against 0.5434) and `Sigma85mmf14Art` L13 (S-TIM25,
+  patent PgF 0.5962 against 0.5989) differ from their labels by more than 0.001. Also to check on the Tamron: L21
+  stores nd 1.6968 where the patent's surface 36 prints 1.6980.
+
 ## Closed families — do not re-audit
 
 Engine and reporting decisions:
@@ -59,15 +74,31 @@ Relabeled to catalog equivalents (production supplier unspecified unless the pat
 Explicitly unmatched after source review (a new source is needed, not another catalog pass):
 
 - Minolta `493836` fluorophosphate (4 files / 9 elements) — proprietary; the AF 200mm keeps its patent `dPgF` (2026-07).
-- Olympus `504668` (1.50378 / 66.8); Nikon `748523` (1.74810 / 52.30); Sony `961323` (1.96073 / 32.3) (2026-07).
+- Olympus `504668` (1.50378 / 66.8); Nikon `748523` (1.74810 / 52.30) (2026-07).
 - Pentax FA 31 `728403` L8 (M-LAF81 / L-LAM69 miss nd by 0.00027); Sony Planar FE 50 `995293` L21 (2026-07).
-- Sony FE 12-24 `678322` L22 (SF5 misses nd by 0.0049); Sony FE 70-200 GM II `792257` L41 — Hikari J-SF11's 1.791929 is its e-line index, not a match (2026-07).
+- Sony FE 70-200 GM II `792257` L41 — Hikari J-SF11's 1.791929 is its e-line index, not a match (2026-07).
 - Canon RF 20 G10/G16 at 1.66565 / 35.6 — the patent θgF contradicts H-ZBaF4 (2026-07).
 - Pentax DA 70 L5 `544601` (not BaK2); Canon FD 150-600 `534555`; Fujifilm XF 16-55 `685309`; Nikon Z DX 50-250 `902253`; Olympus Macro 50 `683447`; Sony 28-70 L71 at 2.00009 / 16.5; Nikon 24-200 L61 H-LAF3 (2026-07).
 - E-line rows that must not borrow d-line curves: Sony FE 14 `856401` (Ne); Nikon Ultra-Micro 29.5 F8/SF8-class (2026-07).
 - Voigtländer Nokton 50/1.0 `808406`; Nikon 20-35 L31a; the Nikon 180-400's nine remaining six-digit classes; seven Minolta rows outside the guard; N-LAF21 / N-SF8 / K5 class annotations, which are near matches only (2026-08).
 
+- **Index columns that hold e-line values under a d-line heading (2026-10).** `SonyFE1224mmf28GM` stored the indices
+  of WO 2021/200206 A1 Table 6 as `nd`; they are each glass's ne beside its νd, and the file now stores d-line
+  values (its audit log has the evidence). A corpus scan for elements whose stored index equals a catalog ne to
+  1.5e-4 at the catalog νd, and equals no catalog nd, lists these files, none of them checked against its patent
+  yet: `SonyFE14mmf18GM` (11 of 11 elements; its labels already note the ne agreement), `SonyFE70200mmf28GMII`
+  (17 of 17), `SonyFE70200mmF4MacroGOSSII` (18 of 19), `SonyVarioTessarTFE1635mmf4ZAOSS` (12 of 13),
+  `SonyFE2870mmf2GM` (16 of 20) and `SamyangAF35mmf28FE` (5 of 7). `ViltroxAF50mmf18FE` has one element at
+  1.96073 / 32.3. The closed rows below that mention Sony FE 14 `856401` and Sony FE 70-200 GM II `792257` are the
+  same effect and should be reopened with their files.
+
 ## Decision rules for recurring patterns
+
+- A whole prescription with no catalog match, each index sitting 0.001 to 0.010 above a catalog glass of the same
+  νd: test whether the column is ne. Confirm on the patent before changing anything: the notation paragraph, a
+  d-line figure printed elsewhere (a conditional-expression table, a sibling example), and whether the printed group
+  focal lengths are reproduced with the d-line or the printed indices. Store d-line values when the patent's own
+  data is d-line; use `indexReference: "e"` only for a source that is natively ne / νe.
 
 - No candidate inside Δnd 0.003 / Δνd 2.0: open the patent prescription table, identify the glass at that surface
   (code or vendor part number), relabel if it is in the catalog, otherwise add it only when several lens files need

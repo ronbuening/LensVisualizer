@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED                                                        ║
+ * ║ LENS DATA — NIKON AF MICRO-NIKKOR 200mm f/4 D IF-ED                                                        ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 5,402,268, Example 1 (Wataru Tatsuno / Nikon Corporation).                                ║
  * ║ Prescription: 13 elements / 8 air-separated physical groups; 4 functional focus groups (+ / + / - / +).   ║
@@ -37,7 +37,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-micro-nikkor-200mm-f4d",
   maker: "Nikon",
-  name: "NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED",
+  name: "NIKON AF MICRO-NIKKOR 200mm f/4 D IF-ED",
   subtitle: "US 5,402,268 Example 1 — Wataru Tatsuno / Nikon Corporation",
   specs: ["13 ELEMENTS / 8 GROUPS", "f = 200.1457 mm", "F/4.0", "2ω = 12.33°", "ALL SPHERICAL"],
 
@@ -298,6 +298,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.5,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED focus keyframes from US 5,402,268 Example 1. G3 moves imageward while G2/G4 remain fixed; source d8 is represented as fixed S8.d plus variable STO.d. G1 reverses at beta=-0.5, where d5 reaches 14.2044 mm before returning to 6.6432 mm at 1:1. STO placement is inferred, not patent-published.",
 

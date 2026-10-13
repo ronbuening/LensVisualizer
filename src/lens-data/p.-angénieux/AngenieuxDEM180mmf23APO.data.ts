@@ -244,6 +244,8 @@ const LENS_DATA = {
   doublets: [],
 
   closeFocusM: 1.7886507000747824,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED compound internal focus using the patent's D2, D6, and D11 endpoints at infinity and β = −0.12. D2 contracts by 2.574 mm and D11 by 17.406 mm; the rounded D2+D6 totals leave a 0.018 mm coordinate residual, so Component IV shifts 17.424 mm relative to R1. The authored BF endpoint is the fixed-image-plane completion; the corresponding model object-to-image distance is 1.78865 m and the traced magnification is −0.120513.",
 

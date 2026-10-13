@@ -27,7 +27,7 @@ A source-normalization issue affects axial length. Patent surface 1 is explicitl
 
 ## Optical Architecture
 
-Numerical Example 4 is a six-unit positive-lead zoom with the moving-unit power sequence **P–N–P–N–P–P** (¶0088). In the data file the units are labeled L1 through L6. L5 is subdivided into positive L5A and negative L5B; L5B is the image-stabilizing subunit. The aperture stop lies between L4 and L5A, corresponding to patent surface 20. Figure 13 shows the same overall arrangement.
+Numerical Example 4 is a six-unit positive-lead zoom with the moving-unit power sequence **P–N–P–N–P–P** (¶0088). In the data file the units are labeled L1 through L6. L5 is subdivided into positive L5A and negative L5B; L5B is the image-stabilizing subunit. The aperture stop is patent surface 20 and lies inside L5A, 0.83 mm behind the front singlet E10 and 3.30 mm ahead of the cemented pair C3. Figure 13 shows the same overall arrangement.
 
 The isolated paraxial focal lengths of the moving units, computed from the final data arrays in air, are:
 
@@ -57,9 +57,9 @@ Negative values in this table mean motion toward the object when positions are m
 
 The wide, middle, and telephoto patent stations are stored at 18.60, 50.99, and 130.48 mm. Independent paraxial computation from the data arrays gives 18.599255, 51.026653, and 130.546393 mm. The difference is attributable to the source table's rounded refractive indices, radii, and spacings rather than to rescaling.
 
-The stop requires a modeling distinction. Patent surface 20 has a listed “effective diameter” of 14.52 mm, but treating that number as the literal physical iris does not reproduce the published f-numbers. The authored `STO` radius is therefore 7.123822 mm, inferred from the wide-state f/3.59 entrance pupil. The source 14.52 mm value is therefore retained as the patent's effective-diameter metadata; the model does not assert that the patent itself defines it as a mechanical iris or a clearance diameter.
+Patent surface 20 is the stop, with a listed “effective diameter” of 14.52 mm, and the authored `STO` semi-diameter is its half, 7.26 mm. Traced with a real marginal ray, a 7.26 mm iris gives f/3.591, f/4.879, and f/5.973 at the three stations, which round to the published f/3.59, f/4.88, and f/5.97, so the printed stop diameter and the printed f-numbers describe one constant opening. A paraxial pupil calculation for the same radius gives f/3.52, f/4.78, and f/5.86; the agreement holds for the real marginal ray only. The patent text does not say whether the stop diameter changes during zooming (¶0038 only defines SP as the member that limits the full-aperture F-number light flux), so the constant opening is read from the numbers rather than from a statement. The viewer holds a single wide-open iris at every station, sized by real-ray trace from the wide-state f/3.59 at 7.2618 mm, which agrees with half the printed diameter to two decimals.
 
-Semi-diameters otherwise use one-half of the patent effective diameters, with one narrow validator-driven exception. Surface 9 is modeled at 11.2826 mm rather than the source 11.3000 mm so that the facing surfaces 8 and 9 satisfy the current 0.90 shared-gap sag criterion. The 0.0174 mm radial reduction is a rendering/validation model trim, not a correction to the patent prescription.
+Semi-diameters use one-half of the patent effective diameters, with one narrow validator-driven exception. Surface 9 is modeled at 11.2826 mm rather than the source 11.3000 mm so that the facing surfaces 8 and 9 satisfy the current 0.90 shared-gap sag criterion. The 0.0174 mm radial reduction is a rendering/validation model trim, not a correction to the patent prescription.
 
 ## Element-by-Element Analysis
 
@@ -129,7 +129,7 @@ The data file also assigns L4 the axial focus motion, but this is **not** a pate
 
 **E10:** `nd = 1.60311`, `νd = 60.6`. Glass: `603607 — crown class`. `f = +29.605 mm`.
 
-E10 is a biconvex positive singlet at the front of L5A, immediately behind the aperture stop. It supplies most of the direct positive action at the front of the fifth unit before the C3 cemented pair.
+E10 is a biconvex positive singlet at the front of L5A, immediately ahead of the aperture stop. It supplies most of the direct positive action at the front of the fifth unit before the C3 cemented pair.
 
 L5A as a whole has an isolated focal length of +25.351 mm. It precedes the negative, transversely movable L5B subunit, so L5 retains positive net power while still placing the IS subunit in the rear portion of the fifth unit as required by the patent (¶0089).
 
@@ -270,13 +270,13 @@ Independent height/reduced-angle tracing and an independently rebuilt ABCD basis
 
 At infinity focus:
 
-| State | Computed EFL | Patent focal length | Computed BFD | Patent BF | F/# from authored physical stop | `nominalFno` |
+| State | Computed EFL | Patent focal length | Computed BFD | Patent BF | F/# of the 7.26 mm stop (real marginal ray) | `nominalFno` |
 |---|---:|---:|---:|---:|---:|---:|
-| Wide | 18.599255 mm | 18.60 mm | 35.605086 mm | 35.60 mm | 3.590000 | 3.59 |
-| Middle | 51.026653 mm | 50.99 mm | 55.924349 mm | 55.89 mm | 4.873061 | 4.88 |
-| Tele | 130.546393 mm | 130.48 mm | 71.753311 mm | 71.70 mm | 5.975224 | 5.97 |
+| Wide | 18.599255 mm | 18.60 mm | 35.605086 mm | 35.60 mm | 3.5908 | 3.59 |
+| Middle | 51.026653 mm | 50.99 mm | 55.924349 mm | 55.89 mm | 4.8791 | 4.88 |
+| Tele | 130.546393 mm | 130.48 mm | 71.753311 mm | 71.70 mm | 5.9732 | 5.97 |
 
-The maximum focal-length discrepancy from the rounded patent table is 0.0719%, and the maximum BFD discrepancy is 0.0533 mm. Those residuals are consistent with the source precision. The single physical iris inferred at the wide state remains within 0.007 f-number of the published middle and telephoto values, while `nominalFno` carries the exact source schedule used by the viewer.
+The maximum focal-length discrepancy from the rounded patent table is 0.0719%, and the maximum BFD discrepancy is 0.0533 mm. Those residuals are consistent with the source precision. The 7.26 mm stop radius, half the printed 14.52 mm diameter, traced with a real marginal ray, stays within 0.004 f-number of the published value at every station. The viewer's fixed iris, 7.2618 mm from the wide-state f/3.59, gives f/3.590, f/4.878, and f/5.972; `nominalFno` carries the source schedule as the readout labels.
 
 Every one of the 16 standalone element focal lengths in the data file was independently recomputed from the TypeScript surfaces, and the six moving-unit powers reproduce the required P–N–P–N–P–P sequence. The five patent conditional expressions also recompute to the values shown above.
 

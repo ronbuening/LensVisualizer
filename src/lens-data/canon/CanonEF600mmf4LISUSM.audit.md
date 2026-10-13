@@ -54,3 +54,19 @@ Source: local `patents/US6115188.pdf`, Numerical Example 22, PDF pp.78–79 (col
 **Cause: folded filter plus source image-distance contradiction.** Restored source FL surfaces 30–31 in rearPlates: 2.00 mm, nd=1.516330, νd=64.4 (the actual printed filter value), with D29=12.00 and trailing D31+D32=64.77+39.01=103.78 mm across inactive FC. The front HG plate remains omitted under existing rules; it adds no infinity optical power. No inferred glass identity was assigned to FL. Independent EFL 585.327789123 mm differs from printed 585.20, air BFL is 116.605717247, and physical BFL is 117.286743145 versus source image distance 117.78. No single source-backed misprint resolves the discrepancy. Preserve the source values. Runtime offset **-0.493257 → -0.493257 mm**. Section E row deleted; changelog records physical filter restoration.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-10-04 — Drop-in filter drawn as an element
+
+- The rear drop-in filter plate FL moved out of `rearPlates` into the drawn prescription: surfaces 30–31 and element
+  16 (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place
+  and a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
+- The source lists no clear aperture for the plate. Its semi-diameter, 17.5 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at infinity, mid and
+  close focus (16.30 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
+  axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
+  corner.
+- Glass: the filter is labelled S-BSL7 by its index. Example 22 prints νd 64.4 where Examples 1, 24 and 25 of the same
+  patent print 64.1 for the same filter, and no catalog glass sits at 1.51633 / 64.4. The printed value is kept and
+  Ohara S-BSL7 (νd 64.14) supplies the dispersion curve; the supplier is not confirmed. The plate previously had no
+  glass label and traced on the Abbe-number estimate.

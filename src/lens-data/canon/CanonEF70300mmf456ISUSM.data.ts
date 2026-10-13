@@ -303,6 +303,7 @@ const LENS_DATA = {
   zoomStep: 0.004,
   zoomLabels: ["72.4 mm", "290 mm"],
   nominalFno: [4.0333081, 4.74696994, 5.94591516],
+  zoomApertureModel: "fixed-iris",
   closeFocusM: 1.5,
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,

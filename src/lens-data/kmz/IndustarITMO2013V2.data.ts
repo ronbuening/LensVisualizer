@@ -77,7 +77,7 @@ const LENS_DATA = {
       indexReference: "d",
       ng: 1.54225,
       fl: -29.647366552,
-      glass: "Unmatched (OF1; PG&F 2010 d-line proxy; historic melt unconfirmed)",
+      glass: "SBF2 (HOYA) class (OF1 / KzF2-type special flint, 529516; spectral proxy, historic melt unconfirmed)",
       cemented: "D1",
     },
     {

@@ -1,4 +1,4 @@
-# NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR
+# NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Title:** *Imaging Lens, Optical Device Thereof, and Method for Manufacturing Imaging Lens*\
 **Embodiment analyzed:** Example 1
 
-The prescription is the Example 1 system shown in Fig. 2 and Table 1 of US 2009/0190220 A1. The patent describes a five-power-group macro lens with two internal focusing groups and a transverse vibration-proof group (¶0103–¶0111). This analysis treats Example 1 as the selected production correlation for the NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR. The correlation is an inference from convergent optical and product characteristics; neither the patent nor Nikon's product literature explicitly identifies the production lens as Example 1.
+The prescription is the Example 1 system shown in Fig. 2 and Table 1 of US 2009/0190220 A1. The patent describes a five-power-group macro lens with two internal focusing groups and a transverse vibration-proof group (¶0103–¶0111). This analysis treats Example 1 as the selected production correlation for the NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR. The correlation is an inference from convergent optical and product characteristics; neither the patent nor Nikon's product literature explicitly identifies the production lens as Example 1.
 
 The principal correlation evidence is:
 

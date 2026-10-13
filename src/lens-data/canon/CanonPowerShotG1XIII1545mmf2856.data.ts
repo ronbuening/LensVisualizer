@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-powershot-g1x-iii-15-45-f28-56",
   maker: "Canon",
-  name: "CANON ZOOM LENS 15-45mm f/2.8-5.6 (PowerShot G1 X Mark III)",
+  name: "CANON 15-45mm f/2.8-5.6 (Canon PowerShot G1 X Mark III)",
   subtitle: "JP 2018-106021 A Example 1 — Canon / Ito Daisuke",
   specs: [
     "9 elements / 8 groups",

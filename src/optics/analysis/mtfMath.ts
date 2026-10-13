@@ -60,28 +60,6 @@ export function otfMagnitude(otf: ComplexOtf): number[] {
   return otf.real.map((re, i) => Math.min(1, Math.hypot(re, otf.imaginary[i])));
 }
 
-/** Move a locally centered PSF back to its common image coordinates before spectral addition. */
-export function translateOtf(otf: ComplexOtf, frequencies: readonly number[], displacementMm: number): ComplexOtf {
-  const real: number[] = [],
-    imaginary: number[] = [];
-  frequencies.forEach((f, i) => {
-    const phase = -2 * Math.PI * f * displacementMm,
-      c = Math.cos(phase),
-      s = Math.sin(phase);
-    real.push(otf.real[i] * c - otf.imaginary[i] * s);
-    imaginary.push(otf.real[i] * s + otf.imaginary[i] * c);
-  });
-  return { real, imaginary };
-}
-
-/** Scale a complex OTF by a real, per-frequency transfer factor such as a diffraction limit. */
-export function multiplyOtf(otf: ComplexOtf, gain: readonly number[]): ComplexOtf {
-  return {
-    real: otf.real.map((value, i) => value * gain[i]),
-    imaginary: otf.imaginary.map((value, i) => value * gain[i]),
-  };
-}
-
 /** Incoherent wavelengths add as complex OTFs weighted by transmitted intensity, before magnitude. */
 export function combineOtfs(samples: readonly { otf: ComplexOtf; weight: number }[]): ComplexOtf {
   const total = samples.reduce((sum, sample) => sum + sample.weight, 0);

@@ -1,0 +1,82 @@
+// Author teleconverter files directly in a maker folder: lens-data/<maker>/YourConverter.teleconverter.ts.
+// The import must stay type-only. See TELECONVERTER_DATA_SPEC.md § Quick Start.
+import type { TeleconverterDataInput } from "../../types/teleconverter.js";
+
+/**
+ * ╔══════════════════════════════════════════════════════════════════════╗
+ * ║           TELECONVERTER DATA — [CONVERTER NAME]                      ║
+ * ╠══════════════════════════════════════════════════════════════════════╣
+ * ║  Data source: [Patent number] [Example number] ([Company/Author]).   ║
+ * ║  [N] elements / [N] groups, [N] aspherical surfaces.                 ║
+ * ║                                                                      ║
+ * ║  MASTER LENS: [the master the source combines the converter with,    ║
+ * ║    and its catalog key if it is in the catalog].                     ║
+ * ║  GEOMETRY: master back focus in air [NN.NNNN] mm − master-to-        ║
+ * ║    converter gap [N.NNNN] mm = masterImageDistanceMm [NN.NNNN].      ║
+ * ║    Combined back focus in air [NN.NN] mm.                            ║
+ * ║                                                                      ║
+ * ║  NOTE ON SEMI-DIAMETERS: [patent-listed, estimated from the master's ║
+ * ║    marginal and chief rays, refined against a published figure, ...] ║
+ * ║                                                                      ║
+ * ║  Optical design only. Rear cover/filter plates the source lists      ║
+ * ║  behind the converter go in `rearPlates`.                            ║
+ * ║  See TELECONVERTER_DATA_SPEC.md.                                     ║
+ * ╚══════════════════════════════════════════════════════════════════════╝
+ */
+
+const TELECONVERTER_DATA = {
+
+  /* ── Identity ── See TELECONVERTER_DATA_SPEC.md § Fields */
+  key:      "unique-teleconverter-key",                 // REQUIRED: lowercase a-z/0-9 words joined by single hyphens; becomes the /teleconverters/ URL
+  maker:    "Manufacturer",                             // optional: canonical maker-page name
+  name:     "MANUFACTURER BRAND TELECONVERTER 1.4x",    // REQUIRED: display name
+  subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",
+  specs: [
+    "N ELEMENTS / N GROUPS",
+    "1.4×",
+  ],
+
+  /* ── Fit ── See TELECONVERTER_DATA_SPEC.md § Compatibility */
+  magnification: 1.4,                   // REQUIRED: nominal focal-length multiplier, > 1
+  lensMounts:    ["nikon-z"],           // REQUIRED: canonical ids from src/utils/catalog/lensTaxonomy.ts
+  // universal: true,                   // optional: fits any host sharing a mount; otherwise hosts declare acceptsTeleconverters
+  // minHostFno: 2.8,                   // optional: fastest host f-number the clear apertures pass
+  // incompatibleLensKeys: ["lens-key"], // optional: hosts excluded for rim contact or mechanical interference
+
+  /* ── Patent metadata ── same rules as LENS_DATA_SPEC.md § Patent Metadata */
+  patentNumber:    "US 0,000,000 B2",
+  patentAuthors:   ["Inventor Name"],
+  patentAssignees: ["Assignee Name"],
+  patentYear:      2020,
+  elementCount:    0,                   // the converter's own element count
+  groupCount:      0,                   // the converter's own air-separated group count
+
+  /* ── Elements ── same shape as lens elements; no fromSurface/toSurface spans */
+  elements: [
+    { id: 1, name: "L1", label: "Element 1", type: "Negative Meniscus", nd: 1.00000, vd: 00.0, fl: -00.0, glass: "GLASS", role: "…" },
+  ],
+
+  /* ── Surfaces ── refracting only, front to rear. No "STO": the host's stop is the system stop.
+   *  Last surface's d = back focus to the image plane, or the physical gap to the first rear plate. */
+  surfaces: [
+    { label: "1", R: 000.0000, d: 0.0000, nd: 1.00000, elemId: 1, sd: 00.0 },
+    { label: "2", R: 000.0000, d: 00.0000, nd: 1.0, elemId: 0, sd: 00.0 },
+  ],
+
+  /* ── Rear plates ── optional; only plates the source lists behind the converter */
+  // rearPlates: [
+  //   { label: "PP", thicknessMm: 0.00, nd: 1.51680, vd: 64.20, gapAfterMm: 0.00, source: "…" },
+  // ],
+
+  asph: {},
+  groups: [],
+  doublets: [],
+
+  /* ── Geometry ── See TELECONVERTER_DATA_SPEC.md § Geometry
+   *  Air-equivalent distance from the first vertex to the host's native image plane:
+   *  master back focus in air − master-to-converter gap. */
+  masterImageDistanceMm: 00.0000,
+
+} satisfies TeleconverterDataInput;
+
+export default TELECONVERTER_DATA;

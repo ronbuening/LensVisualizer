@@ -23,9 +23,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    patent's 93.1° full field on the 36 × 24 mm format.              ║
  * ║                                                                    ║
  * ║  NOTE ON APERTURE AND FIELD:                                        ║
- * ║    The patent design is f/2.9 and 93.1° full field. The data file  ║
- * ║    uses Canon's marketed f/2.8 and published 94° diagonal field.   ║
- * ║    Stop SD 6.936038 mm gives f/2.800000 paraxially.                ║
+ * ║    The patent design is f/2.9 and 93.1° full field. nominalFno     ║
+ * ║    carries f/2.9; the published 94° diagonal field is kept. The    ║
+ * ║    authored stop SD 6.936038 mm gives f/2.800000 paraxially.       ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS:                                                     ║
  * ║    The patent supplies only infinity D6 = 3.97 mm and no close     ║
@@ -293,8 +293,8 @@ const LENS_DATA = {
   closeFocusM: 0.25,
   focusDescription:
     "Rear focus: fixed negative L1; complete positive L2, including the stop, moves 2.977699 mm objectward in the paraxial 0.25 m reconstruction.",
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   offAxisFieldFrac: 0.42,
   scFill: 0.58,

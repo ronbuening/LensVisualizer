@@ -97,3 +97,62 @@ Verification: surface and image-circle audits passed; focused ASP19/F36/hidden-t
 Unresolved source limits: no numerical SDs, no intermediate F36 cam law, no verified production prescription or glass supplier, and no partial-dispersion data for the other eight elements. These limits are now explicit in the analysis and focus description.
 
 Independent paraxial y–ν matrix check: EFL 49.2827886 mm at infinity and 49.4662068 mm at F36. Rounded F36 spacings solve to 370.1693 mm from surface 1, consistent with the printed 370 mm endpoint to table precision. The published spacing values were retained.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+Both stored values moved: Lfc from the catalog curve, Lfb from the patent's figure once its line was established (see "Lfb converted" at the end of this section, which supersedes the "Left" item on Lfb).
+
+### Patent evidence
+
+- Patent formula: none. Read local `patents/JP2021043376A.pdf` (51 pages, native text layer, page header "JP 2021-43376 A 2021.3.18"; its Table 5 matches this file's prescription). ¶0069 (PDF p. 18) is the only definition of the table column: `dPgF(i)` is the anomalous partial dispersion value given for glasses of large anomalous partial dispersion. It gives no formula, no definition of PgF and no line constants. Optical conditions 1–3 are DF3/DR3, DF4/DR4 and DT12/(FL/FNO), none of which uses partial dispersion, and the only formula image in the document is 数1, the aspheric sag (PDF p. 19). The full text layer was searched for ＰｇＦ, 部分分散 and 異常分散; the only other numerical mention is ¶0120 (PDF pp. 33–34), which concerns Example 9.
+- Printed partial dispersion: Table 5 (PDF p. 27, an image, read on the page rendered at 200 dpi) has the columns R, D, nd, Vd, dPgF and FL. It fills dPgF on two rows only: surface 5 (Lfb) 0.0376 and surface 7 (Lfc) 0.0195. No absolute PgF / θgF and no nC, nF or ng appear anywhere.
+- Both stored `dPgF` values were those two figures copied directly. The engine reads `dPgF` against 0.6438 − 0.001682·νd, so they meant PgF 0.5441 (Lfb) and 0.5479 (Lfc).
+- With no stated line, the patent's deviation cannot be turned into an absolute PgF from the patent alone. No a and b were assumed for it.
+
+### Change
+
+| Element | νd | Source figure | Stored before | Stored after |
+|---|---:|---|---:|---:|
+| Lfb (3) | 81.61 | Patent dPgF 0.0376 (Table 5; line unstated). OHARA S-FPL51 catalog curve PgF 0.537460 does not reproduce it | 0.0376 | 0.0325 (see "Lfb converted") |
+| Lfc (4) | 68.62 | Patent dPgF 0.0195 (Table 5; line unstated). HOYA FCD505 catalog curve PgF 0.544337 | 0.0195 | 0.015956 |
+
+- Lfc is catalog-derived. The label resolves to the repo's HOYA FCD505 curve (nd 1.59283, νd 68.66), whose PgF = (ng − nF)/(nF − nC) is 0.544337. At the stored νd that PgF reads +0.019523 on 0.64833 − 0.0018·νd, which is the patent's 0.0195 to four decimals, and +0.015956 on the engine's line. The old number therefore sat on a non-engine line, and the new one is the same glass on the engine's line: 0.544337 − (0.6438 − 0.001682 × 68.62) = 0.544337 − 0.528381 = +0.015956.
+- Cross-check only, not a source: converting the patent's 0.0195 through 0.64833 − 0.0018·νd gives PgF 0.544314 and +0.015933, 0.000023 from the stored value. The Lfc result does not depend on which of the two routes is used.
+- No element authors nC, nF or ng and none uses `indexReference: "e"`, so the authored `dPgF` sets the g-line index of both elements. Lfc's runtime PgF drops from 0.5479 to 0.5443.
+- Lfc's `apdNote` now quotes the patent's figure as the patent's, says its line is not stated, and gives the runtime value as catalog-derived. Lfb's `apdNote` now says the figure is stored as printed. The header box gained a partial-dispersion note. No nd, νd, glass label, `apd` tag, `role` or surface changed.
+- Analysis: the sentence under Element 4 that said the runtime retains the patent value now gives the stored value and its origin, and says Lfb still holds the patent's figure. Every other ΔPgF in the analysis is the patent's figure and is unchanged.
+- This supersedes the statements in the 2026-04-30 Phase 3, 2026-06-04 and 2026-06-23 sections that the patent-listed `dPgF` values are correct as stored. They are correct transcriptions of Table 5, not engine-line values.
+
+### Left
+
+- Lfb stays at 0.0376. Its label resolves to the repo's OHARA S-FPL51 curve, PgF 0.537460, which reads +0.030928 on the engine's line and +0.036028 on 0.64833 − 0.0018·νd. Neither is the patent's 0.0376 (0.0067 and 0.0016 away), so that curve is not shown to be the glass the patent's figure describes, and substituting it would change the glass's PgF, not only the convention. The patent figure is kept over a catalog curve that disagrees with it.
+- The value is very likely still on a non-engine line. Table 5 prints it in the same column as Lfc's figure, and the six repo curves at 1.497 / 81.6 (S-FPL51, FCD1, M-FCD1, H-FK61, J-FK01A, K-PFK80) read +0.0304 to +0.0319 on the engine's line and +0.0355 to +0.0370 on 0.64833 − 0.0018·νd, so the engine-line reading PgF 0.5441 is 0.0057 to 0.0072 above every one of them. For reference only: the local HOYA AGF (`tmp/pdfs/HOYA20260707_include_obsolete.agf`) lists ΔPgF 0.0375 for FCD1 (1.49700 / 81.61) and 0.0194 for FCD505 (1.59282 / 68.62), each 0.0001 below the patent's figure.
+- Open for a ruling: if the patent's line may be taken as 0.64833 − 0.0018·νd, Lfb becomes PgF 0.0376 + 0.64833 − 0.0018 × 81.61 = 0.539032 and `dPgF` = 0.539032 − 0.506532 = +0.032500. That line is not printed in this patent, so the conversion was not made here.
+- LF, Lfa, Lfd, Lrd, Lrc, Lrb, Lra and LE carry no `dPgF`. The patent prints none for them and none was added.
+- The `apd: "patent"` tags on Lfb and Lfc stay: the patent singles out these two elements by printing a dPgF for them.
+- Unrelated to Example 5 but seen in passing: ¶0120 gives 0.0369 as the dPgF magnitude of Example 9's two positive menisci, while Table 9 (PDF p. 35) prints 0.0376 for both, on the same 1.49700 / 81.61 glass as Lfb.
+
+Checked with `.lens-work/audit-tools/dpgfcheck.mjs`: the edited file builds and validates. No test, typecheck, lint, format or build command was run in this pass.
+
+### Second reading
+
+- Table 5 re-read on PDF p. 27 at 300 dpi: 0.0376 on surface 5 (1.49700 / 81.61) and 0.0195 on surface 7 (1.59282 / 68.62). No formula for the column exists anywhere in the document. Lfc's +0.015956 recomputes from PgF 0.544337 at νd 68.62. Against the committed data file only one `dPgF` number, two `apdNote` strings and the header comment differ. No value was changed in this reading.
+- Evidence for the open Lfb ruling that the first pass did not have: the patent fills the dPgF column for two more glasses. Table 11 (PDF p. 39) surface 3 is 1.43875 / 94.94 with 0.0571; Table 13 (PDF p. 43) surfaces 5A, 12A and 18A are 1.82115 / 24.06 with 0.0188. Three of the four glasses are exact HOYA coordinates, so HOYA's own dispersion polynomial was evaluated from `tmp/pdfs/HOYA20260707_include_obsolete.agf` (it returns the catalog nd and νd exactly):
+
+| Glass in the patent | Patent dPgF | Dispersion data | PgF | On 0.64833 − 0.0018·νd | On the engine's line |
+|---|---:|---|---:|---:|---:|
+| 1.82115 / 24.06 (Table 13) | 0.0188 | HOYA M-FDS910 polynomial; HOYA prints ΔPgF 0.0187 | 0.623719 | +0.0187 | +0.0204 |
+| 1.59282 / 68.62 (Table 5, Lfc) | 0.0195 | HOYA FCD505 polynomial; HOYA prints 0.0194 | 0.544115 | +0.0193 | +0.0157 |
+| 1.49700 / 81.61 (Table 5, Lfb) | 0.0376 | HOYA FCD1 polynomial; HOYA prints 0.0375 | 0.538852 | +0.0374 | +0.0323 |
+| 1.43875 / 94.94 (Table 11) | 0.0571 | Repo OHARA S-FPL53 curve; Ohara prints 0.0461 on its own line | 0.534305 | +0.0569 | +0.0502 |
+
+- All four patent figures sit 0.0001 to 0.0002 above the reading on 0.64833 − 0.0018·νd. Against the engine's line they miss by −0.0016, +0.0038, +0.0053 and +0.0069, changing sign below νd ≈ 38 exactly as the gap between the two lines does. The least-squares line through the four points (PgF minus the patent's figure, against νd) is 0.64827 − 0.001802·νd, with residuals under 0.00003. The S-FPL53 row also shows the column is one convention applied to every glass, not each vendor's own catalog figure.
+- The repo's FCD1 and FCD505 entries are Sellmeier refits of HOYA's 2017 polynomial. The FCD1 refit gives PgF 0.537732, 0.0011 below the current AGF polynomial's 0.538852, and the FCD505 refit gives 0.544337 against 0.544115. That gap in the repo curves, not the patent's figure, is why the six repo curves at 1.497 / 81.6 read 0.0006 to 0.0021 below 0.0376 on the conventional line.
+- Lfb is still not converted here: the line is inferred from the patent's tables and vendor data, not printed, so the ruling stays with the maintainer. The candidates on the engine's line are +0.032500 (patent's 0.0376 through 0.64833 − 0.0018·νd), +0.032320 (HOYA FCD1 polynomial), +0.031200 (repo FCD1 refit) and +0.030928 (repo S-FPL51 curve, the one the label resolves to). The stored 0.0376 is 0.0051 to 0.0067 above them.
+
+### Lfb converted
+
+- Lfb `dPgF` 0.0376 -> 0.0325. The patent's 0.0376 is read against 0.64833 − 0.0018·νd: PgF = 0.0376 + 0.64833 − 0.0018 × 81.61 = 0.539032, and 0.539032 − (0.6438 − 0.001682 × 81.61) = +0.032500.
+- Basis for the line, which this patent does not print: the same applicant (株式会社コシナ, applicant number 391044915 on the front page of both) states ΔPgF = PgF − 0.64833 + 0.00180·νd in JP 2026-98935 A (PDF p. 15, text layer) and JP 2026-121744 A; and the four dPgF figures this patent prints (Tables 5, 11 and 13, listed under Second reading) fit one line, 0.64827 − 0.001802·νd, to 0.00003.
+- The two candidate lines differ by 0.0002 at νd 81.61 (+0.0323 on the fitted line). HOYA FCD1, the catalog glass whose own-line deviation the patent's figure matches, reads +0.0323 on the engine's line.
+- This closes the "Left" item above. Both stored values are now on the engine's line; the header note and both `apdNote` strings say how each was obtained.

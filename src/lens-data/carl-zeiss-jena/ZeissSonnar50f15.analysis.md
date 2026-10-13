@@ -81,7 +81,7 @@ in the patent drawing.
 
 ### L5 — Weakly Curved Negative Meniscus
 
-nd = 1.5481, ν = 45.9. Glass: unmatched patent medium, supplier unspecified.
+nd = 1.5481, ν = 45.9. Glass: LLF1 (Schott) class extra-light flint (catalog equivalent; supplier unspecified).
 The authored isolated focal length is approximately −56.4 mm.
 
 This is the front of the rear triplet. Its nearly planar front has a finite

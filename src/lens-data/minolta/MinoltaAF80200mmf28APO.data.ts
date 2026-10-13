@@ -35,6 +35,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  spherical marginal-ray checks, paraxial chief-ray/full-frame checks, the  ║
  * ║  patent optical section, the reconstructed 1.8 m state, and current        ║
  * ║  edge-thickness / rim-slope / shared-band cross-gap rules.                 ║
+ * ║  Group II (surfaces 8-14) is sized by the f/2.88 on-axis ray at 195 mm,    ║
+ * ║  each rim at that ray height rounded up to 0.1 mm. Fig. 1 draws the group  ║
+ * ║  as one square block of about 18.5-19.0 mm half-height whose concave       ║
+ * ║  faces meet their neighbours just inside its edge. L7 (11/12, 18.5 mm)     ║
+ * ║  and L8 (13/14, 19.0 mm, the higher face) carry square rims. Surfaces 9    ║
+ * ║  and 10 stay at their 17.9 mm ray height: their spheres meet at 18.19 mm,  ║
+ * ║  below the square values 18.8 and 18.5 mm, so L5 (18.8 / 17.9 mm) and L6   ║
+ * ║  (17.9 / 18.5 mm) are stepped.                                             ║
+ * ║  gapSagFrac = 0.97 admits the two near-contact pairs: 9/10 (L5 rear, L6    ║
+ * ║  front) uses 96.8 % of the 5.67 mm gap with 0.184 mm rim clearance;        ║
+ * ║  12/13 (L7 rear, L8 front) uses 94.8 % of the 2.42 mm gap with 0.126 mm.   ║
  * ║                                                                            ║
  * ║  Glass: the patent publishes only nd and νd. No per-element nC, nF, ng,   ║
  * ║  or dPgF data are available, so those fields are deliberately omitted.     ║
@@ -266,13 +277,20 @@ const LENS_DATA = {
     { label: "5", R: 112.8, d: 2.25, nd: 1.74, elemId: 3, sd: 34.0 },
     { label: "6", R: 50.0, d: 13.25, nd: 1.60311, elemId: 4, sd: 33.0 },
     { label: "7", R: 2736.05, d: 3.461, nd: 1.0, elemId: 0, sd: 33.0 },
-    { label: "8", R: -279.86, d: 1.3, nd: 1.60311, elemId: 5, sd: 16.8 },
-    { label: "9", R: 45.28, d: 5.67, nd: 1.0, elemId: 0, sd: 16.8 },
-    { label: "10", R: -90.0, d: 1.3, nd: 1.60311, elemId: 6, sd: 16.8 },
-    { label: "11", R: 40.35, d: 6.15, nd: 1.75, elemId: 7, sd: 16.8 },
-    { label: "12", R: 2100.0, d: 2.42, nd: 1.0, elemId: 0, sd: 16.8 },
-    { label: "13", R: -78.442, d: 1.3, nd: 1.6935, elemId: 8, sd: 17.5 },
-    { label: "14", R: 2100.0, d: 25.308, nd: 1.0, elemId: 0, sd: 17.5 },
+    // 8-14 (Group II): rims sized by the f/2.88 on-axis ray at 195 mm, rounded up to 0.1 mm. 8: ray 18.717 mm
+    { label: "8", R: -279.86, d: 1.3, nd: 1.60311, elemId: 5, sd: 18.8 },
+    // 9 and 10: rays 17.850 / 17.851 mm. Their spheres meet at 18.19 mm, below the square values 18.8 and 18.5, so the
+    // two faces cannot both carry them and both stay at the ray height (L5 18.8 / 17.9, L6 17.9 / 18.5); they take
+    // 0.9676 of the 5.67 mm gap between them (gapSagFrac 0.97)
+    { label: "9", R: 45.28, d: 5.67, nd: 1.0, elemId: 0, sd: 17.9 },
+    { label: "10", R: -90.0, d: 1.3, nd: 1.60311, elemId: 6, sd: 17.9 },
+    // 11 and 12 (L7): rays 18.447 / 18.496 mm, one square rim
+    { label: "11", R: 40.35, d: 6.15, nd: 1.75, elemId: 7, sd: 18.5 },
+    { label: "12", R: 2100.0, d: 2.42, nd: 1.0, elemId: 0, sd: 18.5 },
+    // 13 and 14 (L8): rays 18.503 / 18.974 mm, one square rim at the higher face; 12 and 13 take 0.9480 of the
+    // 2.42 mm gap between them
+    { label: "13", R: -78.442, d: 1.3, nd: 1.6935, elemId: 8, sd: 19.0 },
+    { label: "14", R: 2100.0, d: 25.308, nd: 1.0, elemId: 0, sd: 19.0 },
     { label: "15", R: 384.91, d: 4.2, nd: 1.7725, elemId: 9, sd: 20.5 },
     { label: "16", R: -82.5, d: 0.15, nd: 1.0, elemId: 0, sd: 20.5 },
     { label: "17", R: 104.3, d: 7.0, nd: 1.48749, elemId: 10, sd: 20.5 },
@@ -342,10 +360,13 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: 2.88,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
 
   /* ── Layout ── */
+  // Surfaces 9 and 10 (L5 rear, L6 front) take 0.9676 of the 5.670 mm d9 air gap at 17.9 mm; 12 and 13 take 0.9480
+  gapSagFrac: 0.97,
   yScFill: 0.3,
 } satisfies LensDataInput;
 

@@ -23,8 +23,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ Plane plates: patent surfaces 1-2 (front protective plate) are omitted;    ║
  * ║ their translation is normalized to air. The rear fixed filter F (surfaces  ║
- * ║ 19-20: 2.00 mm, nd 1.51680, vd 64.1) is modeled in `rearPlates` (traced,   ║
- * ║ not drawn). STO keeps the physical 42.9 mm to F (65.20 - 22.3); F to image ║
+ * ║ 19-20: 2.00 mm, nd 1.51680, vd 64.1) is drawn as a plane-parallel plate    ║
+ * ║ element and traced by every analysis; its semi-diameter is a ray-trace     ║
+ * ║ estimate (the source lists none) and it is not counted in `elementCount`.  ║
+ * ║ STO keeps the physical 42.9 mm to F (65.20 - 22.3); F to image             ║
  * ║ is 135.3069 mm, the corrected focus-table d20 (constant table: 135.31).    ║
  * ║                                                                            ║
  * ║ Stop placement: the patent numerically gives 65.20 mm from surface 18 to   ║
@@ -46,7 +48,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-i-nikkor-600mm-f4d-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-I NIKKOR 600mm f/4D IF-ED",
+  name: "NIKON AF-I NIKKOR 600mm f/4 D IF-ED",
   subtitle: "JP H04-238311 A Example 5 — constrained 6 m production-focus reconstruction",
   specs: [
     "9 ELEMENTS / 7 GROUPS",
@@ -181,6 +183,16 @@ const LENS_DATA = {
       apdNote: "ED-class correlation from the patent coordinate; the source publishes nd/vd only.",
       role: "Fixed positive rear group G3.",
     },
+    {
+      id: 10,
+      name: "F",
+      label: "Slip-in filter F",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      role: "Plane-parallel filter plate of the patent prescription (JP H04-238311 A, Example 5 surfaces 19–20), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
   surfaces: [
@@ -202,19 +214,11 @@ const LENS_DATA = {
     { label: "18", R: -187.896, d: 22.3, nd: 1, elemId: 0, sd: 26.5 },
     // STO -> rear filter F: patent 18->F 65.20 mm minus the inferred 22.3 mm 18->STO
     { label: "STO", R: 1e15, d: 42.9, nd: 1, elemId: 0, sd: 21.83991871847553 },
-  ],
-
-  /* ── Rear fixed filter F (patent surfaces 19–20): traced, not drawn ── */
-  rearPlates: [
-    {
-      label: "F",
-      thicknessMm: 2,
-      nd: 1.5168,
-      vd: 64.1,
-      glass: "J-BK7A",
-      gapAfterMm: 135.3069,
-      source: "JP H04-238311 A, Example 5 surfaces 19–20; gap after = corrected focus-table d20 (constant table prints 135.31)",
-    },
+    // Slip-in filter F (JP H04-238311 A, Example 5 surfaces 19–20), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    // Gap to the image: corrected focus-table d20 (the constant table prints 135.31)
+    { label: "19", R: 1e15, d: 2, nd: 1.5168, elemId: 10, sd: 25.5 },
+    { label: "20", R: 1e15, d: 135.3069, nd: 1, elemId: 0, sd: 25.5 }, // slip-in filter → image plane
   ],
 
   asph: {},

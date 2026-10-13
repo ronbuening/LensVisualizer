@@ -2,12 +2,13 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S NIKKOR ED 600mm f/4D II IF                      ║
+ * ║ LENS DATA — NIKON AI AF-S NIKKOR 600mm f/4 D IF-ED II                      ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 5,745,306 A, Example 3 (Susumu Sato / Nikon Corporation).       ║
  * ║ Correlation: Nikon AI AF-S Nikkor ED 600mm f/4D II IF.                     ║
- * ║ The model has 10 elements / 7 groups after omission of the patent's          ║
- * ║ front protective plate and inactive S2; the rear filter is `rearPlates`.     ║
+ * ║ The model draws 10 powered elements / 7 groups plus the rear filter plate    ║
+ * ║ after omission of the patent's front protective plate and inactive S2; the   ║
+ * ║ filter plate is not counted in `elementCount`.                               ║
  * ║ All powered surfaces are spherical.                                         ║
  * ║                                                                              ║
  * ║ FOCUS STATUS: PUBLISHED. G2 translates imageward by 10.8634 mm from the     ║
@@ -20,9 +21,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                              ║
  * ║ NORMALIZATION: source surfaces 1–2 (front protective plate) and source       ║
  * ║ surface 21 (inactive field-stop bookkeeping plane) are omitted. Source       ║
- * ║ surfaces 22–23 (rear filter, 2.0 mm, nd 1.516800, νd 64.10) are modeled in   ║
- * ║ `rearPlates` (traced, not drawn): STO stores 36.5 + 2.0 = 38.5 mm to the     ║
- * ║ filter (the S21 plane is folded out), then Bf = 115.6862 mm to the image.    ║
+ * ║ surfaces 22–23 (rear filter, 2.0 mm, nd 1.516800, νd 64.10) are drawn as a   ║
+ * ║ plane-parallel plate element and traced by every analysis; its               ║
+ * ║ semi-diameter is a ray-trace estimate (the source lists none). STO stores    ║
+ * ║ 36.5 + 2.0 = 38.5 mm to the filter (the S21 plane is folded out), then       ║
+ * ║ Bf = 115.6862 mm to the image.                                               ║
  * ║ Air-equivalent STO-to-image: 38.5 + 2.0/1.5168 + 115.6862 = 155.504765 mm.   ║
  * ║                                                                              ║
  * ║ SEMI-DIAMETERS: the patent does not tabulate per-surface clear apertures.    ║
@@ -47,7 +50,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-nikkor-600mm-f4d-if-ed-ii",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR ED 600mm f/4D II IF",
+  name: "NIKON AI AF-S NIKKOR 600mm f/4 D IF-ED II",
   subtitle: "US 5,745,306 A — Example 3 — Nikon internal-focus telephoto correlation",
   specs: [
     "10 ELEMENTS / 7 GROUPS",
@@ -207,9 +210,19 @@ const LENS_DATA = {
       cemented: "L3",
       role: "Negative rear component of the cemented positive rear group G3.",
     },
+    {
+      id: 11,
+      name: "F",
+      label: "Slip-in filter F",
+      type: "Plane-Parallel Plate",
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      role: "Plane-parallel filter plate of the patent prescription (US 5,745,306 A, Example 3 Table 3 surfaces 22–23), in the rear filter holder. The design is computed with it in place, so it is drawn and traced as part of the working system. Semi-diameter is a ray-trace estimate; the source lists none. Not counted in elementCount.",
+    },
   ],
 
-  /* ── Active prescription: patent source surfaces 3–20 ── */
+  /* ── Active prescription: patent source surfaces 3–20, plus rear filter surfaces 22–23 ── */
   surfaces: [
     { label: "3", R: 247.184, d: 18.3, nd: 1.49782, elemId: 1, sd: 72.05 },
     { label: "4", R: -702.03, d: 0.2, nd: 1.0, elemId: 0, sd: 72.05 },
@@ -230,18 +243,11 @@ const LENS_DATA = {
     { label: "19", R: -160.774, d: 2.7, nd: 1.0, elemId: 0, sd: 20.5 },
     // STO → rear filter: source d20 36.5 + d21 2.0 (inactive S21 plane folded out)
     { label: "STO", R: 1e15, d: 38.5, nd: 1.0, elemId: 0, sd: 19.057002615443462 },
-  ],
-
-  /* ── Rear filter (patent Table 3 surfaces 22–23): traced, not drawn ── */
-  rearPlates: [
-    {
-      thicknessMm: 2.0,
-      nd: 1.5168,
-      vd: 64.1,
-      glass: "J-BK7A",
-      gapAfterMm: 115.6862,
-      source: "US 5,745,306 A, Example 3 Table 3 surfaces 22–23 (Bf 115.6862 at infinity and close focus)",
-    },
+    // Slip-in filter F (US 5,745,306 A, Example 3 Table 3 surfaces 22–23), drawn as a plane-parallel plate.
+    // Its sd is a ray-trace estimate (the source lists none).
+    // Gap to the image: Bf 115.6862 at infinity and close focus
+    { label: "22", R: 1e15, d: 2.0, nd: 1.5168, elemId: 11, sd: 21 },
+    { label: "23", R: 1e15, d: 115.6862, nd: 1.0, elemId: 0, sd: 21 }, // slip-in filter → image plane
   ],
 
   asph: {},
@@ -267,6 +273,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 6.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: G2 translates imageward by 10.8634 mm from infinity to the patent R=6000 mm object-to-image state; d11 33.4177→44.2811 mm and d16 16.5738→5.7105 mm. This endpoint is not Nikon's marketed 5.4/5.6 m MFD.",
 

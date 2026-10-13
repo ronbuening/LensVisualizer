@@ -1,5 +1,5 @@
 /**
- * Catalog search — ranked matching for lens names, patent numbers, and authors.
+ * Catalog search — ranked matching for lens names, teleconverters, patent numbers, and authors.
  *
  * The index is derived entirely from lightweight generated metadata, keeping
  * homepage and search-route interactions independent of the full lens catalog.
@@ -9,6 +9,8 @@ import { AUTHORS } from "./authorCatalog.js";
 import type { AuthorMetadata } from "./authorCatalog.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
+import { TELECONVERTER_SUMMARY_LIST } from "./teleconverterSummaries.js";
+import type { TeleconverterSummary } from "./teleconverterSummaries.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";
 import { catalogCollator } from "./collation.js";
 import { transliterateCatalogText } from "./slugText.js";
@@ -17,6 +19,12 @@ export interface LensNameSearchMatch {
   type: "lens";
   key: string;
   data: LensSummary;
+}
+
+export interface TeleconverterSearchMatch {
+  type: "teleconverter";
+  key: string;
+  data: TeleconverterSummary;
 }
 
 export interface PatentSearchMatch {
@@ -32,11 +40,12 @@ export interface AuthorSearchMatch {
 
 export interface CatalogSearchResults {
   lenses: LensNameSearchMatch[];
+  teleconverters: TeleconverterSearchMatch[];
   patents: PatentSearchMatch[];
   authors: AuthorSearchMatch[];
 }
 
-export type CatalogSearchMatch = LensNameSearchMatch | PatentSearchMatch | AuthorSearchMatch;
+export type CatalogSearchMatch = LensNameSearchMatch | TeleconverterSearchMatch | PatentSearchMatch | AuthorSearchMatch;
 
 /** Normalize punctuation, case, and diacritics while preserving word boundaries. */
 export function normalizeSearchText(value: string): string {
@@ -113,12 +122,19 @@ const SEARCH_LENSES = SUMMARY_KEYS.map((key) => {
   };
 });
 
+/* Teleconverter names carry the same optical quantities as lens names, so they share the lens-name matcher. */
+const SEARCH_TELECONVERTERS = TELECONVERTER_SUMMARY_LIST.map((data) => ({
+  key: data.key,
+  data,
+  ...indexLensName(data.name),
+}));
+
 const SEARCH_AUTHORS = AUTHORS.map((author) => ({ author, normalizedName: normalizeSearchText(author.name) }));
 
 /** Return all ranked catalog matches for a query, separated by destination type. */
 export function searchCatalog(query: string): CatalogSearchResults {
   const normalizedQuery = normalizeSearchText(query);
-  if (!normalizedQuery) return { lenses: [], patents: [], authors: [] };
+  if (!normalizedQuery) return { lenses: [], teleconverters: [], patents: [], authors: [] };
   const compactQuery = normalizedQuery.replaceAll(" ", "");
   const lensQuery = normalizeLensSearchText(query);
 
@@ -127,6 +143,11 @@ export function searchCatalog(query: string): CatalogSearchResults {
     .map((entry) => ({ ...entry, score: matchScore(entry.normalizedName, lensQuery) }))
     .sort((a, b) => a.score - b.score || catalogCollator.compare(a.data.name, b.data.name))
     .map(({ key, data }) => ({ type: "lens" as const, key, data }));
+
+  const teleconverters = SEARCH_TELECONVERTERS.filter((entry) => matchesIndexedLens(entry, lensWords))
+    .map((entry) => ({ ...entry, score: matchScore(entry.normalizedName, lensQuery) }))
+    .sort((a, b) => a.score - b.score || catalogCollator.compare(a.data.name, b.data.name))
+    .map(({ key, data }) => ({ type: "teleconverter" as const, key, data }));
 
   const patents = SEARCH_LENSES.filter(({ normalizedPatent, compactPatent }) => {
     if (!normalizedPatent || !compactPatent) return false;
@@ -147,7 +168,7 @@ export function searchCatalog(query: string): CatalogSearchResults {
     .sort((a, b) => a.score - b.score || catalogCollator.compare(a.author.name, b.author.name))
     .map(({ author }) => ({ type: "author" as const, author }));
 
-  return { lenses, patents, authors };
+  return { lenses, teleconverters, patents, authors };
 }
 
 /** Resolve an exact unambiguous query to the page Enter should open directly. */
@@ -160,12 +181,15 @@ export function exactSearchTarget(query: string): string | null {
   const lensMatches = SEARCH_LENSES.filter(({ normalizedName }) => normalizedName === lensQuery).map(({ key }) =>
     canonicalPagePath(`/lens/${key}`),
   );
+  const teleconverterMatches = SEARCH_TELECONVERTERS.filter(({ normalizedName }) => normalizedName === lensQuery).map(
+    ({ key }) => canonicalPagePath(`/teleconverters/${key}`),
+  );
   const patentMatches = SEARCH_LENSES.filter(({ compactPatent }) => compactPatent === compactQuery).map(({ key }) =>
     canonicalPagePath(`/lens/${key}`),
   );
   const authorMatches = SEARCH_AUTHORS.filter(({ normalizedName }) => normalizedName === normalizedQuery).map(
     ({ author }) => canonicalPagePath(`/authors/${author.slug}`),
   );
-  const targets = [...new Set([...lensMatches, ...patentMatches, ...authorMatches])];
+  const targets = [...new Set([...lensMatches, ...teleconverterMatches, ...patentMatches, ...authorMatches])];
   return targets.length === 1 ? targets[0] : null;
 }

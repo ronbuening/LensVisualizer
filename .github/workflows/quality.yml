@@ -48,7 +48,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run test
-      - run: npm run test:tooling
+      # The tooling suite, run through Vitest directly: `npm run test:tooling` would first regenerate the
+      # metadata that `npm run test` generated in the step above.
+      - run: npx vitest run --config vitest.tooling.config.js
 
   audit:
     runs-on: ubuntu-latest

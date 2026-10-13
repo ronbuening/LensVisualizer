@@ -1,4 +1,4 @@
-# Canon FD 300mm f/4 S.S.C. — US 4,251,133, Example 3
+# CANON FD 300mm f/4 S.S.C. — US 4,251,133, Example 3
 
 ## Patent Reference and Design Identification
 
@@ -14,7 +14,7 @@
 
 The transcribed prescription is Numerical Example 3 of US 4,251,133. The example is normalized to $f = 1$ at F/4 and places the diaphragm 0.0532 normalized units behind $R_8$. For the production-scale data file, all patent radii and axial separations are multiplied by 300. The rounded patent table ray-traces to $f = 0.998429$, or 299.529 mm at that scale; the marketed focal length remains 300 mm.
 
-The supported production identification is the **Canon FD 300mm f/4 S.S.C.**, not either of the FD 300mm f/4L variants. The basis is mechanical and optical rather than a single coincidental number:
+The supported production identification is the **CANON FD 300mm f/4 S.S.C.**, not either of the FD 300mm f/4L variants. The basis is mechanical and optical rather than a single coincidental number:
 
 1. **Element and group count.** Example 3 is a six-element, six-group, fully air-spaced design. Canon's FD 300mm f/4 S.S.C. specification is also six elements in six groups. The FD 300mm f/4L and New FD 300mm f/4L are both seven-element, seven-group lenses, so they cannot be this six-element patent prescription.
 2. **Glass set.** Example 3 uses ordinary catalog glasses: two FK5-class fluorocrowns, a dense flint, a barium crown, a flint, and a high-index lanthanum flint. It contains no Canon UD element. Canon's New FD 300mm f/4L description explicitly states two UD elements, and the earlier FD 300mm f/4L is also a separate seven-element L-series formula using anomalous-dispersion glass.

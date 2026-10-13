@@ -8,6 +8,8 @@ import {
   SET_STOPDOWN_T,
   SET_SHIFT_MM,
   SET_TILT_DEG,
+  SET_PATENT_POSITIONS,
+  SET_PATENT_STATION,
   SET_RAY_TOGGLE,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
@@ -145,6 +147,13 @@ const DISPATCH_CASES: Array<{ adapter: AdapterName; args: unknown[]; expected: R
   },
   /* ── Analysis tab ── */
   { adapter: "onAnalysisTabChange", args: ["distortion"], expected: { type: SET_ANALYSIS_TAB, tab: "distortion" } },
+  /* ── Patent-positions mode ── */
+  { adapter: "onPatentPositionsChange", args: [true], expected: { type: SET_PATENT_POSITIONS, enabled: true } },
+  {
+    adapter: "onPatentStationChange",
+    args: [0.5, 1],
+    expected: { type: SET_PATENT_STATION, zoomT: 0.5, focusT: 1 },
+  },
 ];
 
 describe("useDispatchAdapters", () => {
@@ -157,6 +166,8 @@ describe("useDispatchAdapters", () => {
       "onShiftChange",
       "onTiltChange",
       "onSliderPointerUp",
+      "onPatentPositionsChange",
+      "onPatentStationChange",
       "onShowOnAxisChange",
       "onShowOffAxisChange",
       "onRayTracksFChange",

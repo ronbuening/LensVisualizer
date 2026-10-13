@@ -22,6 +22,7 @@ import {
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { LensState, LensAction } from "../types/state.js";
 import { canonicalPagePath } from "../utils/seo/siteUrls.js";
+import { buildLensViewQuery } from "../utils/state/lensViewUrlState.js";
 
 export { isComparisonOk } from "./useComparisonMode.js";
 export type { ComparisonLensesResult } from "./useComparisonMode.js";
@@ -59,7 +60,7 @@ export default function useComparisonOrchestration({
   catalogKeys,
 }: UseComparisonOrchestrationParams): ComparisonOrchestration {
   const { lens, sharedSliders } = state;
-  const { lensKeyA, lensKeyB, comparing, scaleMode } = lens;
+  const { lensKeyA, lensKeyB, teleconverterKeyA, teleconverterKeyB, comparing, scaleMode } = lens;
   const { sharedFocusT, sharedStopdownT, sharedZoomT, sharedShiftMm, sharedTiltDeg } = sharedSliders;
 
   /* ── Comparison mode: lens building, slider pairs, scale ratios, header alignment ── */
@@ -76,6 +77,8 @@ export default function useComparisonOrchestration({
     comparing,
     lensKeyA,
     lensKeyB,
+    teleconverterKeyA,
+    teleconverterKeyB,
     scaleMode,
     sharedFocusT,
     sharedStopdownT,
@@ -121,11 +124,19 @@ export default function useComparisonOrchestration({
       resetSticky();
       justEnteredCompare.current = true;
       const comparisonKeyA = lens.selectedConfigurationKey;
+      /* Mirrors ENTER_COMPARE: a mounted converter is compared against its own bare host. */
       const autoB =
-        comparisonKeyA === lensKeyB && catalogKeys.length > 1
-          ? catalogKeys[(catalogKeys.indexOf(comparisonKeyA) + 1) % catalogKeys.length]
-          : lensKeyB;
-      void navigate(canonicalPagePath(`/compare/${comparisonKeyA}/${autoB}`), { replace: false });
+        teleconverterKeyA !== null
+          ? comparisonKeyA
+          : comparisonKeyA === lensKeyB && catalogKeys.length > 1
+            ? catalogKeys[(catalogKeys.indexOf(comparisonKeyA) + 1) % catalogKeys.length]
+            : lensKeyB;
+      /* The compare route mounts a fresh viewer that initializes from the URL, so a mounted converter has to
+         travel in the navigation itself; the debounced URL writer would run too late to carry it across. */
+      const search = buildLensViewQuery({ comparing: true, teleconverterKeyA }).toString();
+      void navigate(canonicalPagePath(`/compare/${comparisonKeyA}/${autoB}${search ? `?${search}` : ""}`), {
+        replace: false,
+      });
     } else {
       dispatch({
         type: EXIT_COMPARE,
@@ -133,12 +144,15 @@ export default function useComparisonOrchestration({
         stopdownA: aperturePair?.stopdownA,
         ...(movementPair ? { shiftA: movementPair.shiftA, tiltA: movementPair.tiltA } : {}),
       });
-      void navigate(canonicalPagePath(`/lens/${lensKeyA}`), { replace: false });
+      /* Same remount on the way out: pane A's converter follows its lens back to the single-lens route. */
+      const search = buildLensViewQuery({ teleconverterKey: teleconverterKeyA }).toString();
+      void navigate(canonicalPagePath(`/lens/${lensKeyA}${search ? `?${search}` : ""}`), { replace: false });
     }
   }, [
     comparing,
     lensKeyA,
     lensKeyB,
+    teleconverterKeyA,
     lens.selectedConfigurationKey,
     focusPair,
     aperturePair,

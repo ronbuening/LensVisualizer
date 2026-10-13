@@ -93,3 +93,7 @@ Retained: patent number, inventor (窪田 高士, Takashi Kubota, sole inventor 
 - Paraxial check against the previous data: EFL identical; defocus changes by +0.000007 mm in both focus states
   (rounding of the derived distance). Physical track grows by 2.5 × (1 − 1/1.5168) = 0.852 mm, so `closeFocusM` moves
   from 0.248 (folded track) to the physical object-to-image distance 0.249 (object 198.1 mm + track 50.78 mm).
+
+## 2026-10-08 — Glass coverage: catalog row for one unresolved element
+
+L2 (1.8061 / 40.4, aspherical) carried the code label 806404 with no catalog row and traced on the Abbe estimate. OHARA's discontinued low-softening-temperature L-LAH81 has exactly that coordinate (1.80610 / 40.40) and was added to the site catalog from the OHARA 2026-07-01 catalog file. The label now names it as a coordinate equivalent, and all ten elements trace on catalog curves. Stored nd and νd are unchanged.

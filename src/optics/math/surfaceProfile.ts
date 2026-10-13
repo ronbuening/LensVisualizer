@@ -9,6 +9,7 @@ import { FLAT_R_THRESHOLD, VECTOR_EPSILON } from "../constants.js";
 import type { SurfaceProfile, Vec3 } from "../types.js";
 import type { AsphericCoefficients, SurfaceData } from "../../types/optics.js";
 import { conicPolySag, sag, sagSlopeRaw } from "../internal/surfaceMath.js";
+import { ASPHERIC_POLYNOMIAL_TERMS } from "../../types/asphericSchema.js";
 import { normalize } from "./vector.js";
 
 /**
@@ -70,15 +71,52 @@ export function createSphericalProfile(R: number): SurfaceProfile {
   });
 }
 
+/** Profiles for frozen coefficient objects, keyed by coefficients then base radius. */
+const IMMUTABLE_ASPHERIC_PROFILES = new WeakMap<AsphericCoefficients, Map<number, SurfaceProfile>>();
+
 /**
  * Create a conic-polynomial aspheric surface profile.
+ *
+ * Frozen coefficient objects reuse one cached profile and precompile its slope bound; mutable ones get a fresh
+ * profile whose bound re-reads the coefficients on every call.
  *
  * @param R - signed base radius in mm
  * @param asphere - conic constant and polynomial coefficients (even A4–A20 plus optional odd A3–A19)
  * @returns sag profile with finite-radius limits derived from the conic domain
  */
 export function createAsphericProfile(R: number, asphere: AsphericCoefficients): SurfaceProfile {
-  return Object.freeze({
+  const immutable = Object.isFrozen(asphere);
+  const cached = immutable ? IMMUTABLE_ASPHERIC_PROFILES.get(asphere)?.get(R) : undefined;
+  if (cached) return cached;
+  // Nonnegative coefficients of sum |A_p| * p * r^(p-1), indexed by exponent, so the bound is one Horner pass.
+  // Mutable coefficient objects are re-read on every call so a bound can never go stale.
+  const compileBound = (): Float64Array => {
+    const coefficients = new Float64Array(20);
+    for (const term of ASPHERIC_POLYNOMIAL_TERMS) {
+      coefficients[term.power - 1] += Math.abs(asphere[term.key] ?? 0) * term.power;
+    }
+    return coefficients;
+  };
+  const frozenBound = immutable ? compileBound() : null;
+  const slopeBound = (radius: number): number => {
+    if (!(Number.isFinite(radius) && radius >= 0)) return Infinity;
+    let bound = 0;
+    if (Math.abs(R) <= FLAT_R_THRESHOLD) {
+      const q = 1 - (1 + asphere.K) * (radius / R) ** 2;
+      if (!(q > 1e-12)) return Infinity;
+      // |r/R| / sqrt(1-(1+K)(r/R)^2) is increasing for all real conic branches.
+      bound = Math.abs(radius / R) / Math.sqrt(q);
+    }
+    // Horner over nonnegative terms: relative roundoff is far below the 1e-12 slack below.
+    const coefficients = frozenBound ?? compileBound();
+    let poly = 0;
+    for (let exponent = coefficients.length - 1; exponent >= 0; exponent--)
+      poly = poly * radius + coefficients[exponent];
+    bound += poly;
+    // Deliberate floating-point safety slack; doubtful/tangent/domain-edge cases fall back.
+    return bound * (1 + 1e-12) + 1e-12;
+  };
+  const profile: SurfaceProfile = Object.freeze({
     kind: "aspheric" as const,
     sag: (radius: number) => conicPolySag(radius, R, asphere),
     slope: (radius: number) => sagSlopeRaw(radius, R, asphere),
@@ -86,7 +124,17 @@ export function createAsphericProfile(R: number, asphere: AsphericCoefficients):
     pointAt: (vertexZ: number, x: number, y: number) =>
       [x, y, vertexZ + conicPolySag(Math.hypot(x, y), R, asphere)] as Vec3,
     finiteRadiusLimit: () => conicFiniteRadiusLimit(R, asphere.K),
+    maxAbsSlope: slopeBound,
   });
+  if (immutable) {
+    let byRadius = IMMUTABLE_ASPHERIC_PROFILES.get(asphere);
+    if (!byRadius) {
+      byRadius = new Map();
+      IMMUTABLE_ASPHERIC_PROFILES.set(asphere, byRadius);
+    }
+    byRadius.set(R, profile);
+  }
+  return profile;
 }
 
 /**

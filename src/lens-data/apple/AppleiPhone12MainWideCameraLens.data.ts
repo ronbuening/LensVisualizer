@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * APPLE iPhone 12 Wide 4.36mm f/1.6 (inferred patent model) — patent model
+ * APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12) — patent model
  *
  * Source: US 2018/0364457 A1, Example 7 / lens system 710, Tables 7A–7F.
  * Seven air-separated refractive elements; all fourteen lens surfaces are aspheric.
@@ -30,7 +30,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "apple-iphone-12-main-wide",
   maker: "Apple",
-  name: "APPLE iPhone 12 Wide 4.36mm f/1.6 (inferred patent model)",
+  name: "APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12)",
   subtitle: "US 2018/0364457 A1 Example 7 — plausible iPhone 12 Main correlation; not Apple-confirmed",
   specs: [
     "7 ELEMENTS / 7 GROUPS",

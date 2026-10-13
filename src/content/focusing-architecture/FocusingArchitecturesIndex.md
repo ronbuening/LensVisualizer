@@ -27,7 +27,7 @@ This series walks through the seven recurrent patterns, one primer per architect
 
 ### Internal-focusing architectures
 
-- **[Front-of-Stop Focusing](/articles/focusing-front-of-stop)** — a group ahead of the stop moves. Case study: the [Nikon AF-S Nikkor 105mm f/1.4E ED](/lens/nikkor-105-f14e-ed).
+- **[Front-of-Stop Focusing](/articles/focusing-front-of-stop)** — a group ahead of the stop moves. Case study: the [Nikon AF-S Nikkor 105mm f/1.4 E ED](/lens/nikkor-105-f14e-ed).
 - **[Rear-of-Stop Focusing](/articles/focusing-rear-of-stop)** — a compact group behind the stop moves. Case study: the [Canon RF 135mm f/1.8 L IS USM](/lens/canon-rf-135f18).
 - **[Dual-Side Focusing](/articles/focusing-dual-side)** — two groups, one on each side of the stop, move independently. The modern CRC architecture. Case study: the [Nikon AF-S Micro-Nikkor 105mm f/2.8G VR](/lens/nikon-afs-105f28-vr-micro).
 - **[Monolithic Group Focusing](/articles/focusing-monolithic)** — a single central group containing the stop translates as a unit. Case study: the [Nikon AF-S Nikkor 85mm f/1.4G](/lens/nikkor-85f14g).

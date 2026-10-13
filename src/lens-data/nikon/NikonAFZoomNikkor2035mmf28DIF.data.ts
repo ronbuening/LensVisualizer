@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF                           ║
+ * ║ LENS DATA — NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8 D IF                           ║
  * ╠════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 5,276,553 A, Example 1 (Wataru Tatsuno / Nikon Corporation).          ║
  * ║ Patent prescription: 14 elements / 11 air-separated units / 4 zoom groups.       ║
@@ -59,7 +59,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-zoom-nikkor-20-35mm-f28d-if",
   maker: "Nikon",
-  name: "NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF",
+  name: "NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8 D IF",
   subtitle: "US 5,276,553 A — Example 1 — production correlation",
   specs: [
     "14 ELEMENTS / 11 AIR-SEPARATED UNITS / 4 ZOOM GROUPS",

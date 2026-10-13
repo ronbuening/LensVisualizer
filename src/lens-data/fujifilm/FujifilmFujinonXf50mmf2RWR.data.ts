@@ -301,6 +301,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.39,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus: G2 (L21) moves toward the image. Infinity and 1 m states are published; the 0.39 m endpoint is reconstructed from the production minimum focus distance.",
 

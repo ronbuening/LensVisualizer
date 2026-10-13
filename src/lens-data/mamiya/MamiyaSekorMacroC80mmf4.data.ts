@@ -183,6 +183,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.3580979406302213,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED floating-focus model using the patent beta=0 to beta=-1/2 internal gaps; the rear image distance is the independently solved finite conjugate. The bare lens reaches 1:2. The published beta=-1 state uses the optional Auto Macro Spacer and is not included.",
 

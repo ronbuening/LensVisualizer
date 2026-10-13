@@ -30,7 +30,8 @@ src/comparison/       - Comparison mode feature module
 src/optics/           - Pure optical engine and analysis helpers (math, trace, field, prescription, state, analysis, mount)
 src/types/            - Shared TypeScript types
 src/utils/            - State, URL sync, themes, catalog, SEO, metadata utilities
-src/lens-data/        - Auto-registered *.data.ts prescriptions, *.analysis.md notes, *.audit.md audit logs
+src/lens-data/        - Auto-registered *.data.ts prescriptions, *.teleconverter.ts converters, *.analysis.md notes,
+                        *.audit.md audit logs
 src/mounts/           - Mount diagram *.mount.ts specs, schema, and authoring guide
 src/content/          - Auto-registered markdown articles and static content
 src/benchmarks/       - Optics/render benchmark harness
@@ -67,11 +68,12 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 - Change recipes (lens, article, route, analysis tab, URL state, UI control, theme token, tests): `agent_docs/adding_*.md`,
   `agent_docs/testing_recipes.md`, `agent_docs/theme_tokens.md`
 - Lens data formats: `src/lens-data/LENS_DATA_SPEC.md`, `src/lens-data/LENS_ANALYSIS_SPEC.md`,
-  `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md`, `src/lens-data/TEMPLATE.data.ts.template`; mounts: `src/mounts/MOUNT_SVG_SPEC.md`
+  `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md`, `src/lens-data/TEMPLATE.data.ts.template`,
+  `src/lens-data/TELECONVERTER_DATA_SPEC.md`; mounts: `src/mounts/MOUNT_SVG_SPEC.md`
 - Patent and semi-diameter audits: `agent_docs/lens-patent-audit.md`, `agent_docs/patent-figure-sd-audit-procedure.md`;
   open queues: `agent_docs/sd-audit-queue.md`, `agent_docs/lens-mount-format-backfill.md`, glass queues via the index
 - Planned features: `FEATURE_ADDITION_PLAN.md`; open efficiency items: `EFFICIENCY_IMPROVEMENT_PLAN.md`; trace-model status
-  and deferred work: `TRACE_MODEL_IMPROVEMENT_PLAN.md`
+  and deferred work: `TRACE_MODEL_IMPROVEMENT_PLAN.md`; MTF accuracy findings and open stages: `MTF_ACCURACY_PLAN.md`
 - Standing "do not rebuild / do not fix" decisions: `agent_docs/decisions.md`; failure modes: `agent_docs/gotchas.md`
 - Conventions and process: `agent_docs/code_conventions.md`, `agent_docs/commenting_guide.md`, `agent_docs/workflow.md`,
   `agent_docs/changelog.md`, `agent_docs/article_formatting.md`; what to document where: `agent_docs/documentation-policy.md`
@@ -89,8 +91,12 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 - Folded-system complex analysis stays guarded until the specific path is mirror-safe: the drawer guards coma,
   distortion, vignetting, and pupils, and field curvature/astigmatism stays section-guarded inside the Aberrations tab.
   Details in `agent_docs/architecture/optics-engine.md`.
-- Source-listed rear cover glass / filter plates go in `LensData.rearPlates` with the source's physical gaps; never fold
-  t/n into the last gap by hand. `buildLens()` traces them everywhere and hides them from drawing via `synthetic`.
+- Source-listed camera-side cover glass / filter plates go in `LensData.rearPlates` with the source's physical gaps;
+  never fold t/n into the last gap by hand. `buildLens()` traces them everywhere and hides them from drawing via
+  `synthetic`. A required drop-in filter in the lens's own holder is a drawn `Plane-Parallel Plate` element instead.
+- Detachable teleconverters are `*.teleconverter.ts` entities composed onto a host by `attachTeleconverter()` before
+  `buildLens()`; never author a host + converter copy, and keep `buildLens()` and analyses converter-unaware. Built-in
+  converters stay on `opticalConfiguration`.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions; render article and lens-description markdown
   with `src/components/markdown/ThemedMarkdown.tsx`.
@@ -111,6 +117,7 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 ## Adding Content
 
 - Lens: `agent_docs/adding_a_lens.md` (template, `satisfies LensDataInput`, optional `*.analysis.md`, canonical mount/format ids).
+- Teleconverter: `agent_docs/adding_a_teleconverter.md` (`satisfies TeleconverterDataInput`; hosts declare `acceptsTeleconverters`).
 - Mount diagram: `src/mounts/MOUNT_SVG_SPEC.md`, then `npm run generate:mount-svgs`.
 - Article: `agent_docs/adding_an_article.md` (`slug` and `title` frontmatter; `series`/`seriesOrder`; `toc: true` for long pieces).
 

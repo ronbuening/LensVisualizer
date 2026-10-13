@@ -75,6 +75,7 @@ const LENS_DATA = {
   apertureMarketing: 4.5, // wide-end marketing value; tele-end f/5.6 is carried by the product name
   apertureDesign: 4.6, // wide-end design value; full 4.6/5.1/5.8 sequence is nominalFno
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "JP 2000-47107 A",
   patentAuthors: ["Hiroshi Endo"],

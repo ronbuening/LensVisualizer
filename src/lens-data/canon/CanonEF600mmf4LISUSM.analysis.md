@@ -30,7 +30,7 @@ statement that this patent is the production prescription. Four independent feat
    focusing and image-stabilization functions, and the patent predates Canon's September 1999 market introduction.
 
 The visible model contains **15 powered elements in 11 groups**; front HG and inactive
-FC remain omitted. Rear FL is traced through `rearPlates` with D29=12.00 mm, t=2.00 mm,
+FC remain omitted. Rear FL is drawn as a plane-parallel plate element with D29=12.00 mm, t=2.00 mm,
 nd=1.516330, νd=64.4 and trailing air D31+D32=103.78 mm. No scaling is applied.
 The 2001 Certificate of Correction does not alter Numerical Example 22.
 
@@ -244,7 +244,7 @@ L3c-1 contributes substantial additional power.
 **nd = 1.846658, νd = 23.9. Glass: 847238/847239 dense-flint class (vendor unresolved; source vd rounded 23.9). Standalone f = −121.262876 mm.**
 
 L3c-3 is the final powered element of the active model. Its negative standalone power tempers the strong positive
-L3c-2 while leaving both the cemented pair and the complete L3c subunit positive. The rear filter is traced as a hidden plate; the inactive flare-cutter plane is omitted.
+L3c-2 while leaving both the cemented pair and the complete L3c subunit positive. The rear filter is drawn as a plane-parallel plate; the inactive flare-cutter plane is omitted.
 
 The final authored spacing is the source's 12.00 mm physical air gap to FL.
 
@@ -414,8 +414,8 @@ No asphere, folded path, uniform scaling or hidden focal-length correction is ap
 
 ## Image-plane source audit (2026-09-25)
 
-Image-plane source audit: Example 22 R/d/N/v all match. FL is traced
-via rearPlates with D29=12.00, t=2.00, nd=1.516330, vd=64.4 and
+Image-plane source audit: Example 22 R/d/N/v all match. FL is a drawn
+plate element with D29=12.00, t=2.00, nd=1.516330, vd=64.4 and
 D31+D32=103.78 mm after it. Source image distance 117.78 mm exceeds
 physical paraxial BFL 117.286743 mm. Preserve the -0.493257 mm source
 discrepancy; no supported single misprint explains it. See audit.

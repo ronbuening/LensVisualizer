@@ -72,3 +72,43 @@ Patent: JP 2018-005099 A, Example 4
   line; C12 (HOYA) coordinate-compatible spectral proxy, as in the Sigma 105 mm pilot), and BF 1.0000 mm.
 - Paraxial check against the previous data: EFL identical; defocus changes by at most 0.00024 mm (rounding in the
   old 39.032 / 49.416). Physical track grows by 0.498 mm and now matches the patent's printed 166.36 mm total length.
+
+## 2026-10-08 - dPgF moved to the engine's normal line
+
+- Patent formula: ¶0023 (local `patents/JP2018005099A.pdf`, PDF page 6), `ΔPgF = PgF − 0.64833 + 0.00180 × νd`. The
+  patent's line is therefore `0.64833 − 0.00180 × νd`, not the engine's `0.6438 − 0.001682 × νd`; the two cross near
+  νd 38.4.
+- Numerical Example 4 (PDF page 19) prints an absolute `PgF` column for every glass row (¶0080, PDF page 12, defines
+  the column). The condition table (¶0131, PDF page 24) additionally prints the patent's own deviation for the three
+  G1 negative elements only: ΔPgFLm1 = −0.0053 (L3), ΔPgFLm2 = −0.0005 (L4), ΔPgFLm3 = −0.0005 (L5).
+- Every stored `dPgF` was the patent `PgF` referred to the patent's line and rounded to four decimals. Each is now
+  the patent `PgF` minus the engine line, six decimals, unless it already agreed within 0.0003.
+
+| Element | νd | Source figure (Example 4, PDF page 19) | Stored before | Stored after |
+|---|---:|---|---:|---:|
+| L1 | 54.67 | Patent `PgF = 0.5452` (surface 1); patent-line deviation −0.004724 | −0.0047 | −0.006645 |
+| L2 | 75.50 | Patent `PgF = 0.5399` (surface 3); patent-line deviation +0.027470 | 0.0275 | 0.023091 |
+| L3 | 44.27 | Patent `PgF = 0.5633` (surface 5); patent ΔPgFLm1 = −0.0053 (PDF page 24) | −0.0053 | −0.006038 |
+| L4 | 32.26 | Patent `PgF = 0.5898` (surface 7); patent ΔPgFLm2 = −0.0005 (PDF page 24) | −0.0005 | 0.000261 |
+| L5 | 32.26 | Patent `PgF = 0.5898` (surface 9); patent ΔPgFLm3 = −0.0005 (PDF page 24) | −0.0005 | 0.000261 |
+| L6 | 20.88 | Patent `PgF = 0.6388` (surface 11); patent-line deviation +0.028054 | 0.0281 | 0.030120 |
+| L7 | 75.50 | Patent `PgF = 0.5399` (surface 13); patent-line deviation +0.027470 | 0.0275 | 0.023091 |
+| L8 | 40.80 | Patent `PgF = 0.5654` (surface 15); patent-line deviation −0.009490 | −0.0095 | −0.0095 (unchanged) |
+| L9 | 46.50 | Patent `PgF = 0.5571` (surface 17); patent-line deviation −0.007530 | −0.0075 | −0.008487 |
+| L10 | 30.05 | Patent `PgF = 0.6028` (surface 18); patent-line deviation +0.008560 | 0.0086 | 0.009544 |
+| L11 | 32.26 | Patent `PgF = 0.5898` (surface 21); patent-line deviation −0.000462 | −0.0005 | 0.000261 |
+| L12 | 40.80 | Patent `PgF = 0.5654` (surface 22); patent-line deviation −0.009490 | −0.0095 | −0.0095 (unchanged) |
+| L13 | 32.17 | Patent `PgF = 0.5962` (surface 24); patent-line deviation +0.005776 | 0.0058 | 0.006510 |
+| L14 | 40.10 | Patent `PgF = 0.5694` (surface 26); patent-line deviation −0.006750 | −0.0067 | −0.0067 (unchanged) |
+
+- L4, L5 and L11 change sign: the same `PgF = 0.5898` is 0.0005 below the patent's line and 0.0003 above the
+  engine's at νd 32.26. The patent's condition (4) is still evaluated with the patent's −0.0005 in the analysis.
+- L2, L6 and L7 `apdNote` strings now quote the patent `PgF`, the patent's own deviation and the runtime value; a
+  header note in the data file names both lines. The analysis keeps the patent's ΔPgF in the element text, glass
+  table and conditions (4) and (6), and now states the stored values separately.
+- Left: L8 and L12 (engine-line value −0.009774, stored −0.0095, difference 0.000274) and L14 (engine-line value
+  −0.006952, stored −0.0067, difference 0.000252) already agree with the correct value within 0.0003 and keep their
+  four-decimal figures. The `rearPlates` LPF `dPgF = −0.00035` was already the patent `PgF = 0.5449` minus the
+  engine line (−0.000352) and is unchanged. L13 uses the patent `PgF = 0.5962`, not the S-TIM25 catalog curve
+  (0.5989); the patent decides. No element authors `nC`/`nF`/`ng`, and no `nd`, `νd`, glass label, `apd` tag or
+  surface changed.

@@ -1,4 +1,4 @@
-# Nikon AF Nikkor 20mm f/2.8D — Optical Analysis
+# NIKON AF NIKKOR 20mm f/2.8 D — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -13,7 +13,7 @@
 **Total embodiments:** Six numerical embodiments, Tables 1–6  
 **Claims:** 13
 
-The First Embodiment of US 4,690,517 is the closest patent prescription for the Nikon AF Nikkor 20mm f/2.8D optical formula. The prescription is normalized to `f = 100`, `F-number = 2.8`, and `2ω = 94°`; all data-file radii, thicknesses, spacings, back focus, and inferred semi-diameters are scaled by 0.2 for the production 20 mm class lens.
+The First Embodiment of US 4,690,517 is the closest patent prescription for the NIKON AF NIKKOR 20mm f/2.8 D optical formula. The prescription is normalized to `f = 100`, `F-number = 2.8`, and `2ω = 94°`; all data-file radii, thicknesses, spacings, back focus, and inferred semi-diameters are scaled by 0.2 for the production 20 mm class lens.
 
 The identification rests on the convergence of the numerical prescription and Nikon's published production data. Table 1 gives a 12-element, 9-group retrofocus wide-angle lens with `2ω = 94°`, `Bf = 186.3`, and `f₁₋₄ = −0.737 f`. Nikon's production specification for the AF Nikkor 20mm f/2.8D gives a 20 mm f/2.8 FX-format lens with a 94° angle of view, 12 elements in 9 groups, CRC close-range correction, a 0.25 m minimum focus distance, 0.12× maximum reproduction ratio, and a 7-blade diaphragm. The patent and production lens are also consistent in being all-spherical; the production specification does not list ED or aspherical elements.
 

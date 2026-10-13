@@ -1,4 +1,4 @@
-# NIKON NIKKOR 300mm f/2S IF-ED
+# NIKON AI NIKKOR 300mm f/2 S IF-ED
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Title:** *Fast Telephoto Lens*\
 **Embodiment analyzed:** Example 4 / fourth embodiment
 
-The LensVisualizer prescription represents the job-card correlation between the production **NIKON NIKKOR 300mm f/2S IF-ED** and the fourth embodiment of US 4,732,459 A. The patent is a Nippon Kogaku design source and Example 4 is a native-scale 300 mm, f/2 design using a single translating internal-focus group. The production correlation is treated as the selected analytical premise; the patent itself does not name the commercial lens.
+The LensVisualizer prescription represents the job-card correlation between the production **NIKON AI NIKKOR 300mm f/2 S IF-ED** and the fourth embodiment of US 4,732,459 A. The patent is a Nippon Kogaku design source and Example 4 is a native-scale 300 mm, f/2 design using a single translating internal-focus group. The production correlation is treated as the selected analytical premise; the patent itself does not name the commercial lens.
 
 The production identity has separate manufacturer support. Nikon's archived AF Teleconverter TC-16 manual lists the **Nikkor 300mm f/2S IF-ED** among compatible AI-type Nikkor lenses and distinguishes AI-S lenses by their aperture-direct-readout scale. That manual supports the lens name and F-mount/AI-S system identity, but it does not identify US 4,732,459 A or Example 4 as the production prescription.
 

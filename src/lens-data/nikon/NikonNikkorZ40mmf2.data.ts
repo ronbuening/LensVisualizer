@@ -261,6 +261,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.28,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus (IF): G2 (L21–L23) translates 1.21 mm toward the object to the patent's near state (1.28 m, calculated). G1, aperture stop, and G3 remain fixed.",
 

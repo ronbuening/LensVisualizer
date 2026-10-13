@@ -390,6 +390,8 @@ const LENS_DATA = {
 
   /* ── Focus / aperture configuration ── */
   closeFocusM: 0.32,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Internal focus: G2 alone translates objectward. Infinity and 1.2 m are patent-published; 0.32 m is a " +
     "code-solved constrained reconstruction with DD8 + DD17 fixed at 11.410 mm.",

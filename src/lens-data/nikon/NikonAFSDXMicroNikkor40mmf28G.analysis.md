@@ -1,4 +1,4 @@
-# NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G — Patent Analysis
+# NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G — Patent Analysis
 
 ## Patent Reference and Design Identification
 

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║ NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D                 ║
+ * ║ NIKON AF ZOOM-MICRO NIKKOR 70-180mm f/4.5-5.6 D ED                 ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 5,717,527, Table 8 / seventh embodiment.            ║
  * ║ Shibayama / Nikon four-group macro zoom prescription.               ║
@@ -34,7 +34,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-zoom-micro-70-180mm-f45-56d",
   maker: "Nikon",
-  name: "NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D",
+  name: "NIKON AF ZOOM-MICRO NIKKOR 70-180mm f/4.5-5.6 D ED",
   subtitle: "US 5,717,527 Table 8 — Nikon / Shibayama",
   specs: [
     "18 elements / 14 groups",
@@ -58,6 +58,8 @@ const LENS_DATA = {
 
   nominalFno: [4.5, 5.3, 5.6],
   closeFocusM: 0.37,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
 

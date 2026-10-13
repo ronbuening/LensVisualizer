@@ -276,12 +276,14 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.5,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus: the patent beta=-0.033 row is exact before the constrained 0.5 m endpoint. G2 (single element L21) translates while G1, STO, and G3 remain fixed.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 1.86,
+  fstopSeries: [1.86, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

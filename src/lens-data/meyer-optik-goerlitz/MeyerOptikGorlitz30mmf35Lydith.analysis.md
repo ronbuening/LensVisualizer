@@ -1,4 +1,4 @@
-# MEYER-OPTIK GÖRLITZ LYDITH 30mm f/3.5
+# MEYER OPTIK GÖRLITZ LYDITH 30mm f/3.5
 
 ## Patent Reference and Design Identification
 

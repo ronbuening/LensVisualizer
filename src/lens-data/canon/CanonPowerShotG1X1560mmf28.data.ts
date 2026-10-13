@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — CANON POWERSHOT G1 X 15.1-60.4mm f/2.8-5.8  ║
+ * ║           LENS DATA — CANON 15.1-60.4mm f/2.8-5.8 (Canon PowerShot G1 X)  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2013/0176385 A1, Numerical Example 4.            ║
  * ║  Canon positive-negative-positive-positive compact zoom.            ║
@@ -46,7 +46,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-powershot-g1x-1560-f28",
   maker: "Canon",
-  name: "CANON POWERSHOT G1 X 15.1-60.4mm f/2.8-5.8",
+  name: "CANON 15.1-60.4mm f/2.8-5.8 (Canon PowerShot G1 X)",
   subtitle: "US 2013/0176385 A1 Example 4 — Canon / Hiroshi Saruwatari",
   specs: [
     "11 elements / 10 groups",

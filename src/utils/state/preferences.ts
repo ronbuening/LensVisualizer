@@ -74,6 +74,7 @@ export function loadPrefs(): Partial<Preferences> {
     if (typeof p.showEffectiveAperture === "boolean") out.showEffectiveAperture = p.showEffectiveAperture;
     if (typeof p.aberrationsExpanded === "boolean") out.aberrationsExpanded = p.aberrationsExpanded;
     if (isAnalysisTabId(p.analysisDrawerTab)) out.analysisDrawerTab = p.analysisDrawerTab;
+    if (typeof p.patentPositions === "boolean") out.patentPositions = p.patentPositions;
     return out;
   } catch {
     return {};

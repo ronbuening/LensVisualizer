@@ -1,5 +1,12 @@
 import { afterEach, expect, it, vi } from "vitest";
-import { build, buildChromaticPositiveElementLens, REAR_PLATE_FIXTURE } from "../../optics/testLensFixtures.js";
+import {
+  build,
+  buildChromaticPositiveElementLens,
+  REAR_PLATE_FIXTURE,
+  teleconverterFixture,
+  teleconverterHostData,
+} from "../../optics/testLensFixtures.js";
+import { attachTeleconverter } from "../../../../src/optics/prescription/teleconverter.js";
 import { computeMtf } from "../../../../src/optics/mtf.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
 import type { MtfOptions } from "../../../../src/types/mtf.js";
@@ -36,12 +43,26 @@ it("rebuilds serializable prescriptions in the worker and matches the pure engin
     ...L.data,
     rearPlates: [REAR_PLATE_FIXTURE, { ...REAR_PLATE_FIXTURE, gapAfterMm: 20 }],
   });
-  const methods = ["geometric", "geometric-dl", "diffraction"] as const;
+  // A composed host + converter prescription must rebuild too: its reserved labels are only valid
+  // alongside the descriptor, and its host plates have to re-expand on the right side of the converter —
+  // the drop-in filter ahead of it, the cover glass behind.
+  const hostData = teleconverterHostData({
+    plates: [{ ...REAR_PLATE_FIXTURE, label: "F", gapAfterMm: 38 }, REAR_PLATE_FIXTURE],
+  });
+  const converterData = teleconverterFixture();
+  const converted = build(
+    attachTeleconverter(
+      { ...hostData, elements: [{ ...hostData.elements[0], glass: "N-BK7" }] },
+      { ...converterData, elements: [{ ...converterData.elements[0], glass: "N-BK7" }] },
+    ),
+  );
+  const methods = ["geometric", "diffraction"] as const;
   const spectra = ["reference", "cdf", "photopic"] as const;
   // The full method × spectrum grid proves dispatch once; the plated rebuild needs only one combination.
   const cases = [
     { lens: L, methods, spectra },
     { lens: plated, methods: ["diffraction"] as const, spectra: ["photopic"] as const },
+    { lens: converted, methods: ["diffraction"] as const, spectra: ["photopic"] as const },
   ];
   let id = 10;
   for (const { lens, methods, spectra } of cases) {
@@ -51,6 +72,7 @@ it("rebuilds serializable prescriptions in the worker and matches the pure engin
         const options: MtfOptions = {
           method,
           spectrum,
+          focus: "design",
           pupilSemiDiameterMm: 0.1,
           stopSemiDiameterMm: 0.1,
           fieldFractions: [0],
@@ -76,6 +98,7 @@ it("drops cancelled requests and reuses finished fields when only the field list
   const options: MtfOptions = {
     method: "geometric",
     spectrum: "reference",
+    focus: "design",
     pupilSemiDiameterMm: 0.5,
     stopSemiDiameterMm: 0.5,
     fieldFractions: Array.from({ length: 101 }, (_, i) => i / 100),

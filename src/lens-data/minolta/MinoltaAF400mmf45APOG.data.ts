@@ -221,6 +221,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 3.0,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: Gr2 (L4-L7, surfaces 7-12) moves imageward from infinity to 3 m. " +
     "T6 changes 29.311→43.262 mm and T12 changes 21.978→8.028 mm. Raw patent endpoints are preserved; " +

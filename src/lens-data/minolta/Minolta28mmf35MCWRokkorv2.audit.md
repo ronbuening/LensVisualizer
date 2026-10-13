@@ -1,6 +1,6 @@
 # Audit — MINOLTA MC W.ROKKOR-SG 28mm f/3.5
 
-Patent: JP1969-025743, Example 2.
+Patent: JP 1969-025743 B, Example 2.
 
 ## 2026-09-21 — Patent figure, glass and metadata integration
 
@@ -44,3 +44,7 @@ The f=1, F/3.5 source is uniformly scaled ×28, including BF=1.32 →36.96 mm. N
 **Cause/action:** residual source contradiction; preserve published dimensions and BF. Runtime offset **−0.245917 → −0.245917 mm**; Section E row deleted. No numerical data change or changelog entry.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-10-11 — Patent number in catalog form
+
+`patentNumber` is now `JP 1969-025743 B` (was `JP1969-025743`): 特公昭44-25743, an examined patent publication, so kind code B. Written without a space after the country code, the number was not recognised as a publication number: the site showed it as plain text with no Espacenet link and listed it under "Other jurisdictions" instead of Japan. `subtitle`, the header comment and the analysis use the same form. No optical value changed.

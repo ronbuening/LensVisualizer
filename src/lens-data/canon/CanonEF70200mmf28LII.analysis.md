@@ -238,7 +238,7 @@ US 2009/0296231 A1 is not an image-stabilizer mechanism patent. The centered pre
 
 ## Data-File Semi-Diameters
 
-The patent does not publish clear-aperture semi-diameters. The data file uses inferred semi-diameters from a paraxial on-axis marginal ray and full-field chief ray envelope, then reduces several neighboring surface diameters where the renderer's cross-gap sag policy would otherwise show surface overlap. This is most relevant at the very thin d21 = 0.09 mm air space between L11 and L12 and at several tightly spaced positive-positive or positive-negative air gaps in the front and variator sections.
+The patent does not publish clear-aperture semi-diameters. The data file uses inferred semi-diameters from a paraxial on-axis marginal ray and full-field chief ray envelope, then reduces neighboring surface diameters where the renderer's cross-gap sag policy would otherwise show surface overlap; that reduction now applies only at the 2/3 and 8/9 air gaps. Nine faces around four other closely spaced pairs (12/13, 15/16, 21/22 and 28/29, including the 0.09 mm d21 air space between L11 and L12) are set to the height the f/2.9 axial marginal ray reaches at 194 mm. FIG. 4 draws those pairs meeting at the rim, and the file's gap-sag allowance is 0.97 so they can: between 0.004 and 0.47 mm of air remains at the rims.
 
 These semi-diameters are therefore drawing and ray-containment estimates, not manufacturer mechanical clear-aperture disclosures. The prescription radii, thicknesses, refractive indices, Abbe numbers, stop position, variable gaps, and back focus remain direct transcriptions of the patent table.
 

@@ -307,6 +307,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.6,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "PUBLISHED inner focus: Gr1 and Gr3 remain fixed while Gr2 moves objectward. POS1 = infinity, POS2 = 1.0 m at focusT = 0.6, POS3 = 0.6 m at focusT = 1. Piecewise interpolation between those source states is modeling.",
 

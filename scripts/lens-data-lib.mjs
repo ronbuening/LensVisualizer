@@ -22,20 +22,20 @@ function deriveMakerSlug(nameOrMaker, makerField) {
 
 /** Extract the `key`/`name`/`maker` tuple from a lens data file using regexes. */
 function extractLensIdentityContent(content) {
-  const keyMatch = content.match(/key:\s*"([^"]+)"/);
-  const publishedAtMatch = content.match(/publishedAt:\s*"([^"]+)"/);
-  const nameMatch = content.match(/name:\s*"([^"]+)"/);
-  const makerMatch = content.match(/maker:\s*"([^"]+)"/);
-  const visibleFalseMatch = content.match(/visible:\s*false\b/);
-  const lensMountsMatch = content.match(/lensMounts:\s*\[([^\]]*)\]/m);
-  const imageFormatMatch = content.match(/imageFormat:\s*"([^"]+)"/);
+  const keyMatch = content.match(/(?:\bkey|"key"|'key')\s*:\s*"([^"]+)"/);
+  const publishedAtMatch = content.match(/(?:\bpublishedAt|"publishedAt"|'publishedAt')\s*:\s*"([^"]+)"/);
+  const nameMatch = content.match(/(?:\bname|"name"|'name')\s*:\s*"([^"]+)"/);
+  const makerMatch = content.match(/(?:\bmaker|"maker"|'maker')\s*:\s*"([^"]+)"/);
+  const visibleFalseMatch = content.match(/(?:\bvisible|"visible"|'visible')\s*:\s*false\b/);
+  const lensMountsMatch = content.match(/(?:\blensMounts|"lensMounts"|'lensMounts')\s*:\s*\[([^\]]*)\]/m);
+  const imageFormatMatch = content.match(/(?:\bimageFormat|"imageFormat"|'imageFormat')\s*:\s*"([^"]+)"/);
   const lensMountIds = lensMountsMatch ? [...lensMountsMatch[1].matchAll(/"([^"]+)"/g)].map((match) => match[1]) : [];
 
   return {
     key: keyMatch ? keyMatch[1] : null,
     publishedAt: publishedAtMatch ? publishedAtMatch[1] : null,
     name: nameMatch ? nameMatch[1] : null,
-    maker: makerMatch ? makerMatch[1] : /maker:\s*null\b/.test(content) ? null : undefined,
+    maker: makerMatch ? makerMatch[1] : /(?:\bmaker|"maker"|'maker')\s*:\s*null\b/.test(content) ? null : undefined,
     lensMountIds,
     imageFormatId: imageFormatMatch ? imageFormatMatch[1] : null,
     visible: visibleFalseMatch ? false : true,

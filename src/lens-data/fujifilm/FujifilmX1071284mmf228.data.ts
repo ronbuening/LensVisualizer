@@ -388,6 +388,7 @@ const LENS_DATA = {
     "NO_INTERNAL_RECONSTRUCTION: only published infinity-focus zoom states are modeled. The required close-focus metadata uses the X10 ordinary wide-angle 0.50 m limit; the separate 0.01 m Super Macro mode is not reconstructed.",
 
   nominalFno: [2.0635977497452442, 2.356517333967113, 2.8750952795678733],
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2, 2.8, 4, 5.6, 8, 11],
   maxFstop: 11,
 

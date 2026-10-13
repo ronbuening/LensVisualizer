@@ -13,7 +13,7 @@
 
 import { useMemo, useState, useCallback } from "react";
 import buildLens from "../optics/buildLens.js";
-import { LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
+import { lensSystemKey, resolveLensSystemData } from "../utils/catalog/teleconverterCatalog.js";
 import { computeFocusPair, computeAperturePair, computeZoomPair, computeMovementPair } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { RuntimeLens } from "../types/optics.js";
@@ -46,6 +46,9 @@ interface UseComparisonModeParams {
   comparing: boolean;
   lensKeyA: string;
   lensKeyB: string;
+  /** Converter mounted on each pane's lens; null = bare lens. */
+  teleconverterKeyA?: string | null;
+  teleconverterKeyB?: string | null;
   scaleMode: string;
   sharedFocusT: number;
   sharedStopdownT: number;
@@ -71,6 +74,8 @@ export default function useComparisonMode({
   comparing,
   lensKeyA,
   lensKeyB,
+  teleconverterKeyA = null,
+  teleconverterKeyB = null,
   scaleMode,
   sharedFocusT,
   sharedStopdownT,
@@ -82,11 +87,17 @@ export default function useComparisonMode({
   const comparisonLenses: ComparisonLensesResult = useMemo(() => {
     if (!comparing) return null;
     try {
-      return { LA: buildLens(LENS_CATALOG[lensKeyA]), LB: buildLens(LENS_CATALOG[lensKeyB]) } as ComparisonLensesOk;
+      return {
+        LA: buildLens(resolveLensSystemData(lensKeyA, teleconverterKeyA)),
+        LB: buildLens(resolveLensSystemData(lensKeyB, teleconverterKeyB)),
+      } as ComparisonLensesOk;
     } catch (e) {
-      return { error: e, failedKeys: `${lensKeyA} vs ${lensKeyB}` } as ComparisonLensesErr;
+      return {
+        error: e,
+        failedKeys: `${lensSystemKey(lensKeyA, teleconverterKeyA)} vs ${lensSystemKey(lensKeyB, teleconverterKeyB)}`,
+      } as ComparisonLensesErr;
     }
-  }, [comparing, lensKeyA, lensKeyB]);
+  }, [comparing, lensKeyA, lensKeyB, teleconverterKeyA, teleconverterKeyB]);
 
   /* ── Normalized scale ratios ── */
   const scaleRatios = useMemo(() => {

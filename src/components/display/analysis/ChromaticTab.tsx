@@ -1,6 +1,11 @@
 import { useMemo } from "react";
 import { analysisJobsForState2, summarizeChromaticFieldFocus2 } from "../../../optics/compat.js";
-import { CHROMATIC_CHANNEL_ORDER } from "../../../optics/chromatic/channels.js";
+import {
+  CHROMATIC_CHANNEL_ORDER,
+  chromaticChannelLineList,
+  chromaticChannelWavelengthLabel,
+  lensChromaticReference,
+} from "../../../optics/chromatic/channels.js";
 import { probe } from "../../../utils/perfProbe.js";
 import ChromaticFieldCurvaturePlot from "./ChromaticFieldCurvaturePlot.js";
 import LateralColorChart from "./LateralColorChart.js";
@@ -81,7 +86,11 @@ export default function ChromaticTab(props: ChromaticTabProps) {
               lens itself and does not represent wavelength focus or transverse color on the stationary sensor after
               tilt/shift.
             </span>
-            <LongitudinalChromaticFocusChart result={intrinsicLongitudinal} t={t} />
+            <LongitudinalChromaticFocusChart
+              result={intrinsicLongitudinal}
+              t={t}
+              channelReference={lensChromaticReference(props.L.elements)}
+            />
             <div style={metricsStyle}>
               <AnalysisMetricRow
                 label="Intrinsic LoCA"
@@ -122,6 +131,7 @@ function CenteredChromaticTab({
   analysisContext,
 }: ChromaticTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
+  const channelReference = lensChromaticReference(L.elements);
   const analysis = useMemo(
     () =>
       probe(
@@ -185,9 +195,13 @@ function CenteredChromaticTab({
         <section style={{ ...sectionStyle(t), borderTop: "none", paddingTop: 0 }}>
           <span style={sectionTitleStyle(t)}>Chromatic Analysis</span>
           <span style={sectionCopyStyle(t)}>
-            Geometric traces at C, d, F, and g spectral lines. These readouts report focus and image-height spread; they
-            do not classify apochromatic correction, diffraction, transmission, flare, or sensor response. Spectral set:
-            C-line 656.3 nm, d-line 587.6 nm, F-line 486.1 nm, g-line 435.8 nm.
+            Geometric traces at {chromaticChannelLineList(channelReference)} spectral lines. These readouts report focus
+            and image-height spread; they do not classify apochromatic correction, diffraction, transmission, flare, or
+            sensor response. Spectral set:{" "}
+            {CHROMATIC_CHANNEL_ORDER.map((channel) => chromaticChannelWavelengthLabel(channel, channelReference)).join(
+              ", ",
+            )}
+            .
           </span>
           <div style={metricsStyle}>
             <AnalysisMetricRow
@@ -242,7 +256,7 @@ function CenteredChromaticTab({
             On-axis LoCA from the outermost usable marginal chromatic ray. The chart is relative to the selected
             reference line, so common defocus is not counted as chromatic focus separation.
           </span>
-          <LongitudinalChromaticFocusChart result={longitudinal} t={t} />
+          <LongitudinalChromaticFocusChart result={longitudinal} t={t} channelReference={channelReference} />
           {longitudinal ? (
             <div style={metricsStyle}>
               <AnalysisMetricRow
@@ -280,7 +294,7 @@ function CenteredChromaticTab({
             Chief-ray image-height spread at the current image plane. This is chromatic magnification error across the
             field, separate from axial focus shift.
           </span>
-          <LateralColorChart result={lateral} t={t} />
+          <LateralColorChart result={lateral} t={t} channelReference={channelReference} />
           {lateral ? (
             <div style={metricsStyle}>
               <AnalysisMetricRow

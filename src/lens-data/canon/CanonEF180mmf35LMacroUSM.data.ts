@@ -63,6 +63,7 @@ const LENS_DATA = {
   apertureMarketing: 3.5,
   apertureDesign: 3.6,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "JP 1997-211319 A",
   patentAuthors: ["Hideki Ogawa"],
@@ -305,6 +306,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.48,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2, 3] },
   focusDescription:
     "PUBLISHED floating focus: L2 moves imageward and L3 moves objectward while the stop, L1, L4, and image plane remain fixed. The infinity, 0.1×, 0.5×, and 1.0× patent rows are exact focus keyframes.",
 

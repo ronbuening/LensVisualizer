@@ -304,6 +304,7 @@ const LENS_DATA = {
     "Front-group focusing is source-documented; no finite-focus internal spacing is reconstructed.",
 
   nominalFno: 2.8,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
 
   yScFill: 0.48,

@@ -432,8 +432,8 @@ const LENS_DATA = {
     "Internal focus (IF) via sub-group 10R (L4 + L5); constant travel ≈13.5 mm across all focal lengths.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,
 
   /* ── Layout tuning ── */

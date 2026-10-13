@@ -236,6 +236,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "17", toSurface: "19" }],
 
   closeFocusM: 0.25,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: the complete rear group Gr translates toward the object with the patent-published beta=0.1 state stored exactly before the reconstructed 0.25 m endpoint. D4 and r19-to-IMG change by equal and opposite amounts to keep the image plane fixed.",
 

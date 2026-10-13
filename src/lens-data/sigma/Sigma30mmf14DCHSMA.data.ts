@@ -220,11 +220,13 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "12", toSurface: "14" }],
 
   closeFocusM: 0.3,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Rear-group focus: G1 is fixed; G2 and the stop translate objectward as a rigid group. The patent 600 mm row is exact before the constrained 0.30 m endpoint.",
 
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.46,
+  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   scFill: 0.55,
   yScFill: 0.48,

@@ -40,7 +40,7 @@ The series uses four primary examples because they pursue different goals:
 | --- | --- |
 | [Nikon Nikkor Z 135mm f/1.8 S Plena](/lens/nikon-z-135f18-plena/) | A fixed modern design that strongly controls the residual across a very large aperture |
 | [Minolta Varisoft Rokkor 85mm f/2.8](/lens/varisoft-rokkor-85f28/) | A variable soft-focus lens that changes the in-focus subject from concentrated to core-and-halo rendering |
-| [Nikon AF DC-Nikkor 135mm f/2D](/lens/nikon-af-dc-nikkor-135mm-f2/) | A defocus-control lens that changes foreground–background rendering while retaining a concentrated subject |
+| [Nikon AF DC-Nikkor 135mm f/2 D](/lens/nikon-af-dc-nikkor-135mm-f2/) | A defocus-control lens that changes foreground–background rendering while retaining a concentrated subject |
 | [Voigtländer Portrait Heliar 75mm f/1.8](/lens/voigtlander-portrait-heliar-75f18/) | A current lens with an explicit under–sharp–over spherical-aberration control |
 
 These lenses should not be treated as interchangeable examples of "good bokeh." One changes subject softness, another changes the preferred side of defocus, another spans undercorrection through overcorrection, and the Plena serves as a fixed-correction baseline. The mechanism and design goal matter more than the marketing category.

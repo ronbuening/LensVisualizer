@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-a-star-135mm-f18",
   maker: "Pentax",
-  name: "PENTAX SMC PENTAX-A★ 135mm f/1.8",
+  name: "PENTAX SMC A* 135mm f/1.8",
   subtitle: "US4447137 Example 2 — Asahi / Yasunori Arai",
   specs: ["7 elements / 6 groups", "f = 134.99 mm", "F/1.8", "2ω = 18°", "all-spherical", "fixed rear element focus"],
 
@@ -161,6 +161,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "3", toSurface: "5" }],
 
   closeFocusM: 1.2,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Fixed rear-element focus: the patent beta=-0.1 state is exact before the constrained 1.2 m endpoint; L1-L6 move together while L7 remains fixed.",
   nominalFno: 1.8,

@@ -245,6 +245,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "12", toSurface: "14" }],
 
   closeFocusM: 1.0,
+  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+  publishedStations: { focus: [1] },
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: G1 is fixed; G2 (L4-L7 plus STO) and G3 (L8) move objectward. " +
     "The patent-published |beta| = 0.15 state and the reconstructed 1.0 m endpoint are exact keyframes. " +

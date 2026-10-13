@@ -332,11 +332,13 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.5,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focusing: the eight-element G2 focus unit, including the aperture stop, moves 11.19 mm toward the object; G1 and G3 remain fixed relative to the image plane.",
 
-  nominalFno: 1.7,
-  fstopSeries: [1.7, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 1.75,
+  fstopSeries: [1.75, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   scFill: 0.58,

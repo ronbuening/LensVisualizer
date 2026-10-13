@@ -102,6 +102,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.88,
   lensMounts: ["fujifilm-x"],
+  acceptsTeleconverters: true, // XF1.4X TC WR and XF2X TC WR per Fujifilm's compatibility list
   imageFormat: "aps-c",
   patentNumber: "US 2017/0090163 A1",
   patentAuthors: ["Tetsuya Ori"],
@@ -303,6 +304,7 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: 2.88, // Patent FNo. 2.88 / 2.89 / 2.88 (W/M/T); one fixed iris holds it at every station
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [2.88, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
   maxFstop: 22, // Production minimum aperture f/22
   apertureBlades: 7,

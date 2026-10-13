@@ -14,10 +14,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  the patent prints Σd = 4.0336; no value is forced to close it.    ║
  * ║                                                                    ║
  * ║  Source construction: 11 elements / 8 groups including G6 filter. ║
- * ║  Active LensVisualizer model: 10 elements / 7 groups; G6 omitted. ║
- * ║  The omitted plane-parallel G6 filter (t = 0.0933, n = 1.5994) is ║
- * ║  replaced by its paraxial air-equivalent thickness t/n. The G5→G7║
- * ║  effective air gap is therefore 7.302950006252345 mm at ×16.      ║
+ * ║  Active LensVisualizer model: 10 elements / 7 groups. The patent   ║
+ * ║  calls G6 an interchangeable filter that can be removed or placed  ║
+ * ║  behind the last element, so it is not modeled. The plane-parallel ║
+ * ║  G6 (t = 0.0933, n = 1.5994) is replaced by its paraxial air-      ║
+ * ║  equivalent thickness t/n, which keeps the published first-order   ║
+ * ║  values; the G5 to G7 air gap is therefore 7.302950006252345 mm at ║
+ * ║  ×16.                                                              ║
  * ║                                                                    ║
  * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. Minolta publishes      ║
  * ║  minimum focus 0.3 m, but the selected patent publishes no focus  ║

@@ -523,6 +523,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.21, // manufacturer spec: 0.21 m at 24 mm (0.30 m at 70 mm)
+  // Patent read 2026-10-06: Close-focus gaps at all three zoom stations are WO 2023/181666 Table 18 rows (beta
+  // -0.229/-0.182/-0.292, d0 74.00/171.81/151.21 mm), not solved for the 0.21 m production MFD.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Dual floating inner focus: Gr5 (negative singlet) and Gr6 (positive singlet) move on independent trajectories, driven by four XD Linear Motors.",
 

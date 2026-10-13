@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.5481,
       vd: 45.9,
       fl: -56.4,
-      glass: "Unmatched (supplier unspecified; patent nd=1.5481, νd=45.9)",
+      glass: "LLF1 (Schott) class (548459 extra-light flint; Δnd +0.00004, Δνd −0.15; equivalent, supplier unspecified)",
       apd: false,
       role: "Nearly plano-concave first element of rear triplet. Controls entrance angle of light into the powerful biconvex L6.",
       cemented: "T2",

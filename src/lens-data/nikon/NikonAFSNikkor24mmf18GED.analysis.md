@@ -1,4 +1,4 @@
-# Nikon AF-S NIKKOR 24mm f/1.8G ED — Optical Analysis
+# NIKON AF-S NIKKOR 24mm f/1.8 G ED — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 
 The prescription transcribed here is Example 4 of JP 2017-3807 A. The patent describes a compact large-aperture wide-angle lens for an interchangeable-lens digital camera, with a field angle above 70°, F-number below 2, a first group arranged in negative-negative-positive-negative-positive sequence, and a positive second group that moves object-ward for close focusing.
 
-Convergent identification with the production Nikon AF-S NIKKOR 24mm f/1.8G ED rests on the following points.
+Convergent identification with the production NIKON AF-S NIKKOR 24mm f/1.8 G ED rests on the following points.
 
 1. The patent Example 4 contains 12 photographic elements in 9 air-separated groups when the two sub-1 mm resin layers are counted as hybrid aspherical layers rather than separate photographic elements. Nikon's official construction is 12 elements in 9 groups.
 2. Example 4 has two hybrid aspherical surfaces, S5 and S22, and two positive S-FPL51-class ED elements of nd = 1.49700, νd = 81.6 behind the aperture stop. Nikon lists two aspherical elements and two ED elements.

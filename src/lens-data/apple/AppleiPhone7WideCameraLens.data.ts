@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "apple-iphone-7-wide-camera-lens",
   maker: "Apple",
-  name: "APPLE iPhone 7 Wide 4.10mm f/1.8 (inferred patent model)",
+  name: "APPLE WIDE 4.10mm f/1.8 (Apple iPhone 7)",
   subtitle: "US 2016/0341934 A1 Example 11 — inferred iPhone 7 wide-camera correlation",
   specs: ["6 ELEMENTS / 6 GROUPS", "PATENT f = 4.10 mm", "f/1.8", "74° FULL FIELD", "12 ASPHERICAL SURFACES"],
 

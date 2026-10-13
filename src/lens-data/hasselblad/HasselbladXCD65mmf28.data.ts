@@ -276,6 +276,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.5,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Front-group focus: G1, stop, and G2 move as a unit toward the object while G3 remains fixed. The patent's infinity, 2400 mm, and 400 mm object-distance states are represented exactly.",
 

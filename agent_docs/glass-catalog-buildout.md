@@ -125,7 +125,7 @@ The YAML's `DATA[].coefficients` field for `type: formula 2` (Sellmeier-1, Zemax
 
 For `type: formula 3` (Zemax polynomial / power series), do **not** force the values into `B`/`C`. If the exponents are exactly `0, 2, -2, -4, -6, -8`, store the six terms in `polynomial: [a0, a1, a2, a3, a4, a5]` where `n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸`. If the source uses explicit exponents outside that fixed shorthand, such as Hikari entries with `λ⁴`, `λ⁻¹⁰`, or `λ⁻¹²`, store them in `powerSeries: [[coefficient, exponent], ...]` exactly as published. The d-line consistency test covers both forms.
 
-PgF is **not** published in the rii.info YAML (only `dPgF` is). Compute PgF for the catalog entry from the Schott normal-line baseline plus dPgF: `PgF ≈ 0.6438 − 0.001682·vd + dPgF`. The catalog's PgF field is decorative — the dispersion engine derives V-channel partial dispersion from the lens-data element's `dPgF`, not from the catalog. If you need vendor-direct PgF (rare), pull from the OHARA/Schott PDF datasheet instead.
+PgF is **not** published in the rii.info YAML or in a vendor AGF; both carry only the vendor's ΔPgF (`dPgF`, the AGF `ED` line), measured from that vendor's own normal line (HOYA C7/F2, OHARA NSL7/PBM2, CDGM H-K6/F4, Schott K7/F2). Never add it to the engine's Schott baseline. Set the entry's `PgF` from the row's own coefficients, `(n_g − n_F) / (n_F − n_C)` to four decimals; a Schott or Hikari printed value agrees with that to rounding. The field is not traced — the engine takes g from the element's `dPgF` or the catalog curve — but the glass-scan reports rank candidates against it. `npm run audit:catalog-pgf` lists fields that disagree with their curve and says whether the difference is the gap between the two normal lines.
 
 The 1e-4 round-trip test will catch any transcription error — never relax the tolerance, fix the source.
 
@@ -152,7 +152,7 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
    or a six-digit code that does not encode the listed coordinates. Fix the transcription or source — never relax the
    tolerance to admit a bad row.
 
-6. **If the glass has a common informal alias** (`BSC7` for `S-BSL7`, `BK7` for `N-BK7`) add a structured entry to
+6. **If the glass has a common informal alias** (`BK7` for `N-BK7`, `SK16` for `N-SK16`) add a structured entry to
    `ALIAS_RECORDS` in [src/optics/glassCatalogAliases.ts](../src/optics/glassCatalogAliases.ts), including the alias
    `kind` and a short note explaining why the alias is safe. `ALIASES` is derived from those records.
 
@@ -173,6 +173,15 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
 - **Partial-dispersion sign conflicts.** When a vendor's published ΔPgF has the opposite sign from the patent's `dPgF` / θgF evidence, the curve is the wrong glass family even if nd/νd fall inside the compatibility window. Leave the row explicitly unmatched.
 - **Variants sharing a six-digit code.** Suffix variants (`S-NBH53` vs `S-NBH53V`, `H-K9L` vs `H-K9LGT`, molding-state `(M)` grades) are distinct rows even when they share a code and coefficients. For a molding-state row, omit a reused base-glass product code so the bare code stays bound to its established coordinate.
 - **Internally inconsistent vendor records.** If a record's nominal `nd` disagrees with the value its own polynomial evaluates to, do not add it until another source resolves the discrepancy.
+- **Never alias a vendor name onto a neighbour with a different six-digit code.** A "cross-vendor equivalent" is a
+  class, not a coordinate: HOYA BSC7 is 517/642 while OHARA S-BSL7 is 516/641, and HOYA BACD5 is 589/613 while Schott
+  N-SK16 is 620/603 (its HOYA counterpart is BACD16). Add the vendor's own row instead; an alias is safe only when the
+  two names share published optical constants.
+- **Changing an existing row's curve can move elements to another row.** Rows that share a six-digit code are ranked
+  by d-line residual, often at 1e-7, so a curve whose n(d) differs in the seventh decimal hands multi-name and
+  code-only labels to a neighbour. Dump `resolveCompatibleGlass` for every element of every `*.data.ts` and
+  `*.teleconverter.ts` before and after, and require an empty diff. If it is not empty, hold the row's n(d) instead of
+  relabeling elements; HOYA FCD1 does this (`decisions.md`, 2026-10-13).
 - **Do not invent evidence.** Never add a nominal resin, a duplicate six-digit curve, or a patent `dPgF` value to close a coverage gap; unpublished bonded/compound layers stay on the fallback path.
 
 ## When to Stop

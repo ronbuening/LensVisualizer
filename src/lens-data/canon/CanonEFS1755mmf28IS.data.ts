@@ -548,8 +548,8 @@ const LENS_DATA = {
   focusDescription: "Inner focus — Group 2 (5 elements) translates as rigid body toward object.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.45,

@@ -419,6 +419,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus: G2 (L21–L26) moves 2.50 mm toward the object. The published close state places the object 110 mm ahead of the first surface; the other groups and image plane stay fixed.",
 

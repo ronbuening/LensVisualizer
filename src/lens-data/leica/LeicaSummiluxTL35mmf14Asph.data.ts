@@ -320,6 +320,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.4,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED inner focus: the single negative Gr2 element L21 moves 7.10 mm imageward from infinity (D14=2.29 mm, D16=12.12 mm) to the patent POS2 state at 306 mm from source surface 1 (D14=9.39 mm, D16=5.02 mm). The corresponding source object-to-image distance is approximately 0.4008 m; interpolation between endpoints is not a published mechanical trajectory.",
 

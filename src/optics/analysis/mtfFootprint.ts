@@ -52,16 +52,18 @@ const REACH_BISECTIONS = 24;
  * @param classify - launch classifier for this field and wavelength
  * @param seedRadiusMm - entrance-pupil semi-diameter used to size the first scan
  * @param mirror - true when x and -x are known to classify alike, halving the scan
+ * @param growths - doublings of the scanned box before giving up; fewer make a cheaper lit-or-dark probe
  * @returns footprint box, or null when neither a scanned ray nor the chief ray reaches the image
  */
 export function findMtfFootprint(
   classify: MtfLaunchClassifier,
   seedRadiusMm: number,
   mirror = false,
+  growths = MAX_GROWTHS,
 ): MtfFootprint | null {
   let half = Math.max(seedRadiusMm, 1e-3) * SEED_SCALE;
   let found: MtfFootprint | null = null;
-  for (let attempt = 0; attempt <= MAX_GROWTHS; attempt++) {
+  for (let attempt = 0; attempt <= growths; attempt++) {
     const scan = scanFootprint(classify, half, half, 0, mirror);
     if (scan.footprint) found = scan.footprint;
     if (scan.footprint && !scan.touchesX && !scan.touchesY) return found;

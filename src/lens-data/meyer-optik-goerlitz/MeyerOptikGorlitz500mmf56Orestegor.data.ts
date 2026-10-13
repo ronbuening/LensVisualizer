@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — MEYER-OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6                  ║
+ * ║ LENS DATA — MEYER OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6                  ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: DE 1 980 417, Example 1 / Zahlenbeispiel (VEB Feinoptisches      ║
  * ║ Werk Görlitz). The patent works at f' = 100 mm; all prescription lengths  ║
@@ -39,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "meyer-optik-gorlitz-orestegor-500mm-f56",
   maker: "Meyer Optik Görlitz",
-  name: "MEYER-OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6",
+  name: "MEYER OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6",
   subtitle: "DE 1 980 417, Example 1 — 5× scaled production correlation; modeled stop and semi-diameters",
   specs: ["4 ELEMENTS / 4 GROUPS", "f = 497.79 mm DESIGN / 500 mm MARKETED", "f/5.6", "6×6 / 10° PUBLISHED", "ALL-SPHERICAL"],
 

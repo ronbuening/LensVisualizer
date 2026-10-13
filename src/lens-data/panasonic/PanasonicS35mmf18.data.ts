@@ -359,12 +359,14 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.24,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus — single negative element (L21, Group G2) driven by linear motor. Total travel 6.92 mm; overall optical length is constant.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 1.871,
+  fstopSeries: [1.871, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

@@ -428,6 +428,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.2,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus via G4 (cemented negative doublet L11+L12). G4 translates toward the image side for close focus. " +
     "All other groups stationary during focus. Supports wobbling for video CDAF.",

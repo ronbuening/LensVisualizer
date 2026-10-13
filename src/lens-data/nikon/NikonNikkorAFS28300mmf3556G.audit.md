@@ -97,3 +97,7 @@ is listed, and no single further supported misprint explains the conflicts.
 Keep the published Bf and all other source values, without fitting focus.
 The header and analysis now disclose this; Section E row deleted, census
 flag expected. Existing glass and spectral data remain unchanged.
+
+## 2026-10-08 — Glass coverage: catalog row for one unresolved element
+
+L21 (1.76546 / 46.73, aspherical) was labelled Unmatched beside HIKARI J-LASFH2, which sits 0.0014 away in nd. HIKARI's moulding glass Q-LASFPH2S, already in the site catalog, is 1.76544 / 46.75: within 0.00002 and 0.02 of the patent pair, and a moulding glass suits the aspherical element. The label now names it as a coordinate equivalent and L21 traces on its catalog curve. Stored nd and νd are unchanged; the resin layer L43r remains the one medium on the Abbe estimate.

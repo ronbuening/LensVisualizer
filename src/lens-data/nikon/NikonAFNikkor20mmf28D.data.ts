@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — Nikon AF Nikkor 20mm f/2.8D                  ║
+ * ║           LENS DATA — NIKON AF NIKKOR 20mm f/2.8 D                  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 4,690,517, Table 1, Fujie / Nippon Kogaku.        ║
  * ║  Retrofocus 20mm-class wide-angle design for Nikon F / FX format.  ║
@@ -39,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-nikkor-20mm-f28d",
   maker: "Nikon",
-  name: "Nikon AF Nikkor 20mm f/2.8D",
+  name: "NIKON AF NIKKOR 20mm f/2.8 D",
   subtitle: "US 4,690,517 Table 1 — Fujie / Nippon Kogaku",
   specs: ["20mm", "f/2.8", "94° FX", "12 elements / 9 groups", "CRC floating focus"],
 

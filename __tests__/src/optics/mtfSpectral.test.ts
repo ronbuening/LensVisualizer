@@ -12,7 +12,8 @@ import {
   MTF_PHOTOPIC_LINES,
   resolveMtfSpectrum,
 } from "../../../src/optics/analysis/mtfSupport.js";
-import { combineOtfs, geometricOtf, otfMagnitude, translateOtf } from "../../../src/optics/analysis/mtfMath.js";
+import { combineOtfs, geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtfMath.js";
+import { shearedOtf } from "../../../src/optics/analysis/mtfShearedOtf.js";
 import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtfTracing.js";
 import { computeMtf } from "../../../src/optics/mtf.js";
 import { evaluateCatalogAbbeNumber, evaluateSellmeier, resolveGlass } from "../../../src/optics/glassCatalog.js";
@@ -38,6 +39,7 @@ function withGlass(patch: { nd?: number; vd?: number; dPgF?: number }) {
 const options: MtfOptions = {
   method: "geometric",
   spectrum: "cdf",
+  focus: "design",
   pupilSemiDiameterMm: 0.1,
   stopSemiDiameterMm: 0.1,
   fieldFractions: [0.15],
@@ -98,7 +100,8 @@ describe("qualified spectral MTF", () => {
   });
   it("combines complex OTFs before magnitude, preserving lateral color and throughput", () => {
     const base = { real: [1, 1], imaginary: [0, 0] };
-    const shifted = translateOtf(base, [0, 10], 0.05);
+    // The same point image 0.05 mm away: half a cycle out of phase at 10 lp/mm.
+    const shifted = geometricOtf([{ x: 0.05, y: 0, weight: 1 }], [0, 10], "x");
     expect(
       otfMagnitude(
         combineOtfs([
@@ -193,9 +196,42 @@ describe("qualified spectral MTF", () => {
         expect(values[i]).toBeCloseTo(v, 11),
       );
     }
-    const diffraction = computeMtf(state, { ...options, method: "diffraction", fieldFractions: [0] });
-    expect(diffraction.fields[0].reason).toBeNull();
-    expect(diffraction.fields[0].sagittal[0]).toBeCloseTo(1, 12);
+  });
+  it("sums each wavelength's sheared OTF as a complex number about one image reference", () => {
+    // f/8 off axis: lateral color and coma give every line its own image shift, which only a complex sum keeps.
+    const request: MtfOptions = { ...options, method: "diffraction", pupilSemiDiameterMm: 3, stopSemiDiameterMm: 3 };
+    const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
+    const support = assessMtfSupport(state, request);
+    const result = computeMtf(state, request).fields[0];
+    expect(result.reason).toBeNull();
+    const frequencies = request.frequenciesPerMm!;
+    const bundles = MTF_CDF_LINES.map(
+      (line) => traceMtfFieldPupil(state, request, support, result.fieldAngleDeg!, result.gridSize, line)!,
+    );
+    // Every line is sheared on its own lattice but referred to the first line's chief.
+    const lines = bundles.map((bundle, i) => ({
+      weight: MTF_CDF_LINES[i].weight * bundle.rays.reduce((sum, ray) => sum + ray.weight, 0),
+      sheared: shearedOtf(bundle, bundles[0].chief, MTF_CDF_LINES[i].wavelengthNm * 1e-6, frequencies),
+      own: shearedOtf(bundle, bundle.chief, MTF_CDF_LINES[i].wavelengthNm * 1e-6, frequencies),
+    }));
+    const total = lines.reduce((sum, line) => sum + line.weight, 0);
+    const complexSum = otfMagnitude(
+      combineOtfs(lines.map(({ sheared, weight }) => ({ otf: sheared.tangential, weight }))),
+    );
+    const ownReferences = otfMagnitude(combineOtfs(lines.map(({ own, weight }) => ({ otf: own.tangential, weight }))));
+    frequencies.forEach((_, i) => {
+      expect(result.tangential[i]).toBeCloseTo(complexSum[i], 11);
+      const limit = lines.reduce((sum, line) => sum + line.weight * line.sheared.limit.tangential[i], 0) / total;
+      expect(result.diffractionLimit!.tangential[i]).toBeCloseTo(limit, 11);
+    });
+    // Neither a sum of moduli nor per-line references gives the same curve.
+    const moduli = frequencies.map(
+      (_, i) => lines.reduce((sum, line) => sum + line.weight * otfMagnitude(line.sheared.tangential)[i], 0) / total,
+    );
+    const largest = (other: number[]) => Math.max(...other.map((value, i) => Math.abs(value - result.tangential[i])));
+    expect(largest(moduli)).toBeGreaterThan(0.001);
+    expect(largest(ownReferences)).toBeGreaterThan(0.001);
+    expect(result.diffractionLimit!.tangential[1]).not.toBeCloseTo(lines[0].sheared.limit.tangential[1], 6);
   });
   it("weights five photopic lines by V(λ) and anchors lateral color at 555 nm", () => {
     const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);

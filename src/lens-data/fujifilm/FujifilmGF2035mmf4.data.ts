@@ -426,11 +426,13 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.35,
+  // Source-tabulated focus rows differ by zoom station.
+  publishedStations: { focus: [[1], [], [1]] },
   focusDescription:
     "Inner focus by entire G2 (L21-L22). Patent Table 29 gives beta=-0.1 focus spacings at wide and tele; middle close-focus spacing is interpolated for the viewer.",
-  nominalFno: 4,
+  nominalFno: 4.11,
   maxFstop: 22,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [4.11, 5.6, 8, 11, 16, 22],
 
   scFill: 0.72,
   yScFill: 0.48,

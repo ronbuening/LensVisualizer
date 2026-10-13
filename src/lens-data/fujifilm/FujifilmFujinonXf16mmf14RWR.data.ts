@@ -377,6 +377,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.15,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription: "PUBLISHED floating focus: G1 fixed; G2 and G3 move objectward on distinct paths. Infinity/middle/close spacings are patent Table 3; focusPositions[1]=0.2499413665 is a solved UI coordinate. Optional plate PP is modeled in rearPlates behind the patent DD25 gap.",
 
   nominalFno: 1.44,

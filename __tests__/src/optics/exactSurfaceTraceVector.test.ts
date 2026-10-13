@@ -1,4 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { build } from "./testLensFixtures.js";
+import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import {
   traceExactSurfaceStack,
@@ -188,6 +191,58 @@ describe("traceExactSurfaceStackVector", () => {
     for (const [z, y] of points) {
       expect(Number.isFinite(z)).toBe(true);
       expect(Number.isFinite(y)).toBe(true);
+    }
+  });
+});
+
+// Shared cap/root-order guard: aperture checks must classify the first physical hit, never search for a clear one.
+describe("asphere cap tracing and clipping", () => {
+  const coefficients = { K: 0, A3: -6, A4: 11, A5: -6, A6: 1, A8: 0, A10: 0, A12: 0, A14: 0 };
+  const ray = { origin: [0, 4, 0] as [number, number, number], direction: [0, -1, 0] as [number, number, number] };
+
+  it.each([0, 2.25])("preserves the first stop/inner-hole clip instead of using a later clear root (%s)", (innerSd) => {
+    const L = build({
+      closeFocusM: 0.5,
+      yScFill: 0.55,
+      nominalFno: 2,
+      fstopSeries: [2, 4, 8],
+      key: "test-asphere-cap-order",
+      name: "Asphere cap fixture",
+      focalLengthDesign: 50,
+      apertureDesign: 2,
+      elements: [{ id: 1, name: "Fixture", label: "L1", type: "positive", nd: 1.5, vd: 50 }],
+      surfaces: [
+        { label: "STO", R: 1e15, nd: 1, sd: 2.5, innerSd, d: 1, elemId: 0 },
+        { label: "1", R: 50, nd: 1.5, sd: 3, d: 1, elemId: 1 },
+        { label: "2", R: -50, nd: 1, sd: 3, d: 20, elemId: 1 },
+      ],
+      asph: { STO: coefficients },
+    });
+    // The runtime builder sizes its diaphragm from the nominal f-number. This intersection fixture
+    // explicitly authors the cap and overrides only the active stop radius in the trace options.
+    const state = prepareRuntimeState(L, 0, 0);
+    const capState = {
+      ...state,
+      surfaces: state.surfaces.map((surface, i) => (i === 0 ? { ...surface, sd: 2.5, innerSd } : surface)),
+    };
+    const capLens = { ...L, S: L.S.map((surface, i) => (i === 0 ? { ...surface, sd: 2.5, innerSd } : surface)) };
+    const prepared = traceEngineRay2(capState, ray, {
+      launchBoundT: 4,
+      checkSemiDiameter: true,
+      stopSemiDiameter: innerSd ? 2.5 : 1.5,
+      stopOnClip: true,
+    });
+    const legacy = traceExactSurfaceStackVector(capLens, ray, {
+      launchBoundT: 4,
+      checkSemiDiameter: true,
+      stopSemiDiameter: innerSd ? 2.5 : 1.5,
+      stopOnClip: true,
+    });
+    for (const result of [prepared, legacy]) {
+      expect(result.hits).toHaveLength(1);
+      expect(result.hits[0].radius).toBeCloseTo(2, 8);
+      expect(result.hits[0].clipped).toBe(true);
+      expect(result.hits[0].clipReason).toBe(innerSd ? "inner-hole" : "semi-diameter");
     }
   });
 });

@@ -10,6 +10,13 @@ import ArticlePage from "../../../src/pages/ArticlePage.js";
 import LensPage from "../../../src/pages/LensPage.js";
 import ComparePage from "../../../src/pages/ComparePage.js";
 import NotFoundPage from "../../../src/pages/NotFoundPage.js";
+import TeleconverterPage from "../../../src/pages/TeleconverterPage.js";
+import TeleconvertersIndexPage from "../../../src/pages/TeleconvertersIndexPage.js";
+import { LENS_SUMMARIES } from "../../../src/utils/catalog/lensSummaries.js";
+import {
+  ALL_TELECONVERTER_SUMMARY_LIST,
+  TELECONVERTER_SUMMARY_LIST,
+} from "../../../src/utils/catalog/teleconverterSummaries.js";
 import { ARTICLE_CONTENT, ARTICLES, HOMEPAGE_ARTICLES } from "../../../src/utils/content/homepageContent.js";
 import { CATALOG_KEYS, COMPARISON_CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { lensDisplaySubtitle } from "../../../src/utils/catalog/lensPatentMetadata.js";
@@ -21,6 +28,11 @@ vi.mock("../../../src/components/SEOHead.js", () => ({
     return null;
   },
 }));
+
+/* One synthetic published converter joins the generated list; see teleconverterSummaryFixtures.ts. */
+vi.mock("../../../src/generated/teleconverter-summaries.json", async (importOriginal) =>
+  (await import("../utils/catalog/teleconverterSummaryFixtures.js")).withPublishedTeleconverter(importOriginal),
+);
 
 vi.mock("../../../src/components/ClientOnly.js", () => ({
   default: function ClientOnly({ fallback = null }: { fallback?: ReactNode }) {
@@ -72,6 +84,9 @@ describe("static page renders", () => {
     const indexNav = screen.getByRole("navigation", { name: "Catalog indexes" });
     expect(within(indexNav).getByRole("link", { name: "Mounts" }).getAttribute("href")).toBe("/mounts/");
     expect(within(indexNav).getByRole("link", { name: "Formats" }).getAttribute("href")).toBe("/formats/");
+    expect(within(indexNav).getByRole("link", { name: "Teleconverters" }).getAttribute("href")).toBe(
+      "/teleconverters/",
+    );
     expect(within(indexNav).getByRole("link", { name: "Patents" }).getAttribute("href")).toBe("/patents/");
     expect(within(indexNav).getByRole("link", { name: "Authors" }).getAttribute("href")).toBe("/authors/");
     expect(within(indexNav).getByRole("link", { name: "Articles" }).getAttribute("href")).toBe("/articles/");
@@ -273,6 +288,81 @@ describe("static page renders", () => {
     await waitFor(() => {
       expect(screen.getByText("lens archive")).toBeTruthy();
     });
+  });
+
+  it("lists published teleconverters, links each to its own page and leaves hidden test models out", () => {
+    renderRoutes(
+      "/teleconverters/",
+      <Routes>
+        <Route path="/teleconverters" element={<TeleconvertersIndexPage />} />
+      </Routes>,
+    );
+
+    expect(screen.getByRole("heading", { level: 1, name: "Teleconverters" })).toBeTruthy();
+    expect(TELECONVERTER_SUMMARY_LIST.length).toBeGreaterThan(0);
+    for (const teleconverter of ALL_TELECONVERTER_SUMMARY_LIST) {
+      const link = screen.queryByRole("link", { name: teleconverter.name });
+      if (teleconverter.visible) expect(link?.getAttribute("href")).toBe(`/teleconverters/${teleconverter.key}/`);
+      else expect(link, teleconverter.key).toBeNull();
+    }
+  });
+
+  it("renders a teleconverter page whose host links open the viewer with the converter mounted", () => {
+    const teleconverter = TELECONVERTER_SUMMARY_LIST.find((summary) => summary.compatibleLensKeys.length > 0)!;
+    const hostKey = teleconverter.compatibleLensKeys[0];
+    renderRoutes(
+      `/teleconverters/${teleconverter.key}/`,
+      <Routes>
+        <Route path="/teleconverters/:teleconverterKey" element={<TeleconverterPage />} />
+      </Routes>,
+    );
+
+    expect(screen.getByRole("heading", { level: 1, name: teleconverter.name })).toBeTruthy();
+    const hostLink = screen.getByRole("link", { name: new RegExp(`^${LENS_SUMMARIES[hostKey].name}`) });
+    expect(hostLink.getAttribute("href")).toBe(`/lens/${hostKey}/?v=1&tc=${teleconverter.key}`);
+    /* The page has no diagram: a converter is only ever drawn mounted on a lens. */
+    expect(document.querySelector("svg")).toBeNull();
+    expect(screen.queryByText(/Hidden test model/)).toBeNull();
+    cleanup();
+
+    /* A hidden test model has no listing, but its page still resolves from a hand-typed URL and says what it is. */
+    for (const hidden of ALL_TELECONVERTER_SUMMARY_LIST.filter((summary) => !summary.visible)) {
+      renderRoutes(
+        `/teleconverters/${hidden.key}/`,
+        <Routes>
+          <Route path="/teleconverters/:teleconverterKey" element={<TeleconverterPage />} />
+        </Routes>,
+      );
+      expect(screen.getByRole("heading", { level: 1, name: hidden.name })).toBeTruthy();
+      expect(screen.getByText(/Hidden test model/)).toBeTruthy();
+      cleanup();
+    }
+  });
+
+  it("redirects unknown teleconverter keys to the index and links converters from a host lens page", async () => {
+    renderRoutes(
+      "/teleconverters/not-a-real-converter/",
+      <Routes>
+        <Route path="/teleconverters/:teleconverterKey" element={<TeleconverterPage />} />
+        <Route path="/teleconverters" element={<LocationEcho />} />
+      </Routes>,
+    );
+    await waitFor(() => expect(screen.getByText("/teleconverters/")).toBeTruthy());
+    cleanup();
+
+    const teleconverter = TELECONVERTER_SUMMARY_LIST.find((summary) => summary.compatibleLensKeys.length > 0)!;
+    renderRoutes(
+      `/lens/${teleconverter.compatibleLensKeys[0]}/`,
+      <Routes>
+        <Route path="/lens/:slug" element={<LensPage />} />
+      </Routes>,
+    );
+    expect(screen.getByRole("link", { name: teleconverter.name }).getAttribute("href")).toBe(
+      `/teleconverters/${teleconverter.key}/`,
+    );
+    for (const hidden of ALL_TELECONVERTER_SUMMARY_LIST.filter((summary) => !summary.visible)) {
+      expect(screen.queryByRole("link", { name: hidden.name }), hidden.key).toBeNull();
+    }
   });
 
   it("renders the 404 page links", () => {

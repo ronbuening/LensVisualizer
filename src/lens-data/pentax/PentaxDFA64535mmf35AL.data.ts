@@ -274,6 +274,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.336052,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "PUBLISHED rear focus: G2 (13–19A, including STO) translates 7.810 mm objectward. " +
     "The patent endpoint is m=0.200 and solves to 0.336052 m object-to-image distance; the marketed " +

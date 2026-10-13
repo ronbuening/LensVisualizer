@@ -1,6 +1,6 @@
 {
-  "createdAt": "2026-09-23T00:33:38.673Z",
-  "commit": "e883df478908a07db70b3e2a01d7bde012f934a0",
+  "createdAt": "2026-10-07T18:59:09.293Z",
+  "commit": "359f74ea61cc80a479a2bcd2db43edd012456545",
   "node": "v24.15.0",
   "cpu": "Apple M4 Pro",
   "method": "geometric",
@@ -17,28 +17,39 @@
       "key": "canon-serenar-50f18",
       "maxGridSize": 32,
       "support": "candidate",
-      "medianMs": 23.28,
+      "medianMs": 22.27,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 23.726265288914608,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 23.726265288914608,
+        "basis": "format-corner"
+      },
       "fields": [
         {
           "fieldFraction": 0,
+          "imageHeightMm": 0,
           "status": "unconverged",
           "reason": null,
           "gridSize": 32,
-          "maxDelta": 0.15698414742507796
+          "maxDelta": 0.10314968967812758
         },
         {
           "fieldFraction": 0.5,
+          "imageHeightMm": 10.824995279390183,
           "status": "unconverged",
           "reason": null,
           "gridSize": 32,
-          "maxDelta": 0.13620948580269965
+          "maxDelta": 0.0752460718802444
         },
         {
           "fieldFraction": 1,
+          "imageHeightMm": 21.64995127806405,
           "status": "unconverged",
           "reason": null,
           "gridSize": 32,
-          "maxDelta": 0.31346609528384484
+          "maxDelta": 0.11905203821311502
         }
       ]
     },
@@ -46,28 +57,39 @@
       "key": "canon-serenar-50f18",
       "maxGridSize": 64,
       "support": "candidate",
-      "medianMs": 80.01,
+      "medianMs": 70.57,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 23.726265288914608,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 23.726265288914608,
+        "basis": "format-corner"
+      },
       "fields": [
         {
           "fieldFraction": 0,
+          "imageHeightMm": 0,
           "status": "unconverged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.052697000532214225
+          "maxDelta": 0.04686493648009419
         },
         {
           "fieldFraction": 0.5,
+          "imageHeightMm": 10.824995279390183,
           "status": "unconverged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.0697254499882731
+          "maxDelta": 0.021019508351795724
         },
         {
           "fieldFraction": 1,
+          "imageHeightMm": 21.64995127806405,
           "status": "unconverged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.04507155595263789
+          "maxDelta": 0.027403992813077233
         }
       ]
     },
@@ -75,28 +97,39 @@
       "key": "canon-serenar-50f18",
       "maxGridSize": 128,
       "support": "candidate",
-      "medianMs": 308.87,
+      "medianMs": 186.4,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 23.726265288914608,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 23.726265288914608,
+        "basis": "format-corner"
+      },
       "fields": [
         {
           "fieldFraction": 0,
-          "status": "unconverged",
+          "imageHeightMm": 0,
+          "status": "converged",
           "reason": null,
           "gridSize": 128,
-          "maxDelta": 0.038763438783168756
+          "maxDelta": 0.0032239292702447367
         },
         {
           "fieldFraction": 0.5,
-          "status": "unconverged",
+          "imageHeightMm": 10.824995279390183,
+          "status": "converged",
           "reason": null,
           "gridSize": 128,
-          "maxDelta": 0.015618637482561109
+          "maxDelta": 0.006201725923846102
         },
         {
           "fieldFraction": 1,
-          "status": "unconverged",
+          "imageHeightMm": 21.64995127806405,
+          "status": "converged",
           "reason": null,
           "gridSize": 128,
-          "maxDelta": 0.012754150092556564
+          "maxDelta": 0.004526999876288462
         }
       ]
     },
@@ -104,28 +137,39 @@
       "key": "canon-serenar-50f18",
       "maxGridSize": 256,
       "support": "candidate",
-      "medianMs": 1231.28,
+      "medianMs": 176.35,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 23.726265288914608,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 23.726265288914608,
+        "basis": "format-corner"
+      },
       "fields": [
         {
           "fieldFraction": 0,
+          "imageHeightMm": 0,
           "status": "converged",
           "reason": null,
-          "gridSize": 256,
-          "maxDelta": 0.0018509958420774228
+          "gridSize": 128,
+          "maxDelta": 0.0032239292702447367
         },
         {
           "fieldFraction": 0.5,
+          "imageHeightMm": 10.824995279390183,
           "status": "converged",
           "reason": null,
-          "gridSize": 256,
-          "maxDelta": 0.001402713170784249
+          "gridSize": 128,
+          "maxDelta": 0.006201725923846102
         },
         {
           "fieldFraction": 1,
+          "imageHeightMm": 21.64995127806405,
           "status": "converged",
           "reason": null,
-          "gridSize": 256,
-          "maxDelta": 0.002881993670141479
+          "gridSize": 128,
+          "maxDelta": 0.004526999876288462
         }
       ]
     },
@@ -133,28 +177,39 @@
       "key": "sony-fe-24-70mm-f28-gm-ii",
       "maxGridSize": 32,
       "support": "candidate",
-      "medianMs": 107.3,
+      "medianMs": 100.6,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 42.17904412239731,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 42.17904412239731,
+        "basis": "format-corner"
+      },
       "fields": [
         {
           "fieldFraction": 0,
+          "imageHeightMm": 0,
           "status": "unconverged",
           "reason": null,
           "gridSize": 32,
-          "maxDelta": 0.0316645741732583
+          "maxDelta": 0.011586297398492817
         },
         {
           "fieldFraction": 0.5,
+          "imageHeightMm": 10.824902449905974,
           "status": "unconverged",
           "reason": null,
           "gridSize": 32,
-          "maxDelta": 0.030604439094972125
+          "maxDelta": 0.027798855418408652
         },
         {
           "fieldFraction": 1,
+          "imageHeightMm": 21.64994055451169,
           "status": "unconverged",
           "reason": null,
           "gridSize": 32,
-          "maxDelta": 0.01170842898994262
+          "maxDelta": 0.01703457728355512
         }
       ]
     },
@@ -162,28 +217,39 @@
       "key": "sony-fe-24-70mm-f28-gm-ii",
       "maxGridSize": 64,
       "support": "candidate",
-      "medianMs": 441.36,
+      "medianMs": 334.77,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 42.17904412239731,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 42.17904412239731,
+        "basis": "format-corner"
+      },
       "fields": [
         {
           "fieldFraction": 0,
+          "imageHeightMm": 0,
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.007035650855340303
+          "maxDelta": 0.0028287343042558977
         },
         {
           "fieldFraction": 0.5,
+          "imageHeightMm": 10.824902449905974,
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.00916361581156977
+          "maxDelta": 0.00795842328341978
         },
         {
           "fieldFraction": 1,
-          "status": "converged",
+          "imageHeightMm": 21.64994055451169,
+          "status": "unconverged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.007208722436814918
+          "maxDelta": 0.0146028530809591
         }
       ]
     },
@@ -191,28 +257,39 @@
       "key": "sony-fe-24-70mm-f28-gm-ii",
       "maxGridSize": 128,
       "support": "candidate",
-      "medianMs": 442.6,
+      "medianMs": 523.4,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 42.17904412239731,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 42.17904412239731,
+        "basis": "format-corner"
+      },
       "fields": [
         {
           "fieldFraction": 0,
+          "imageHeightMm": 0,
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.007035650855340303
+          "maxDelta": 0.0028287343042558977
         },
         {
           "fieldFraction": 0.5,
+          "imageHeightMm": 10.824902449905974,
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.00916361581156977
+          "maxDelta": 0.00795842328341978
         },
         {
           "fieldFraction": 1,
+          "imageHeightMm": 21.64994055451169,
           "status": "converged",
           "reason": null,
-          "gridSize": 64,
-          "maxDelta": 0.007208722436814918
+          "gridSize": 128,
+          "maxDelta": 0.004683726257058429
         }
       ]
     },
@@ -220,28 +297,359 @@
       "key": "sony-fe-24-70mm-f28-gm-ii",
       "maxGridSize": 256,
       "support": "candidate",
-      "medianMs": 443.48,
+      "medianMs": 522.95,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 42.17904412239731,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 42.17904412239731,
+        "basis": "format-corner"
+      },
       "fields": [
         {
           "fieldFraction": 0,
+          "imageHeightMm": 0,
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.007035650855340303
+          "maxDelta": 0.0028287343042558977
         },
         {
           "fieldFraction": 0.5,
+          "imageHeightMm": 10.824902449905974,
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.00916361581156977
+          "maxDelta": 0.00795842328341978
         },
         {
           "fieldFraction": 1,
+          "imageHeightMm": 21.64994055451169,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.004683726257058429
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-1224f28-gm",
+      "maxGridSize": 32,
+      "support": "candidate",
+      "medianMs": 168.2,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 60.879646975884434,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 60.879646975884434,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.0003282726166468075
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 10.8250528743758,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.02781385743247442
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": 21.649929889794,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.02525990644179539
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-1224f28-gm",
+      "maxGridSize": 64,
+      "support": "candidate",
+      "medianMs": 447.71,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 60.879646975884434,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 60.879646975884434,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.0003282726166468075
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 10.8250528743758,
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "maxDelta": 0.007208722436814918
+          "maxDelta": 0.00841123102307123
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": 21.649929889794,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.009481153211951254
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-1224f28-gm",
+      "maxGridSize": 128,
+      "support": "candidate",
+      "medianMs": 445.93,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 60.879646975884434,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 60.879646975884434,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.0003282726166468075
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 10.8250528743758,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.00841123102307123
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": 21.649929889794,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.009481153211951254
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-1224f28-gm",
+      "maxGridSize": 256,
+      "support": "candidate",
+      "medianMs": 445.47,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 60.879646975884434,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 60.879646975884434,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.0003282726166468075
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 10.8250528743758,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.00841123102307123
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": 21.649929889794,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.009481153211951254
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-28-70mm-f2-gm",
+      "maxGridSize": 32,
+      "support": "candidate",
+      "medianMs": 102.4,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 39.20891275203005,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 39.20891275203005,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.09336584200455839
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 10.825068631762218,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.16234569255706596
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": 21.649966241176323,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.2765876736894324
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-28-70mm-f2-gm",
+      "maxGridSize": 64,
+      "support": "candidate",
+      "medianMs": 348.85,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 39.20891275203005,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 39.20891275203005,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.011522073768095775
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 10.825068631762218,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.05607449166604113
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": 21.649966241176323,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.1558915252643435
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-28-70mm-f2-gm",
+      "maxGridSize": 128,
+      "support": "candidate",
+      "medianMs": 1095.02,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 39.20891275203005,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 39.20891275203005,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.0037809967539181866
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 10.825068631762218,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.01274760475823027
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": 21.649966241176323,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.05835699909760651
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-28-70mm-f2-gm",
+      "maxGridSize": 256,
+      "support": "candidate",
+      "medianMs": 3311.06,
+      "geometry": {
+        "referenceHeightMm": 21.65,
+        "modeledEdgeHeightMm": 21.65,
+        "modeledEdgeAngleDeg": 39.20891275203005,
+        "chiefEdgeHeightMm": 21.65,
+        "chiefEdgeAngleDeg": 39.20891275203005,
+        "basis": "format-corner"
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "imageHeightMm": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.0037809967539181866
+        },
+        {
+          "fieldFraction": 0.5,
+          "imageHeightMm": 10.825068631762218,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 256,
+          "maxDelta": 0.0020754332232049205
+        },
+        {
+          "fieldFraction": 1,
+          "imageHeightMm": 21.649966241176323,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 256,
+          "maxDelta": 0.005325431446241449
         }
       ]
     }

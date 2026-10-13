@@ -68,6 +68,8 @@ most often while authoring:
   examples: `src/lens-data/nikon/NikonNikkorZ70200f28.data.ts` (constant aperture) and
   `src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts` (variable aperture). When a patent omits close-focus rows, follow
   the inference rule in `agent_docs/gotchas.md`.
+- **Source-tabulated stations** — "Published Stations (`publishedStations`)": flag the focus rows the source tabulates,
+  and list the source zoom stations when others are solved. Patent-positions mode steps only through these.
 - **Line indices (`nC` / `nF` / `ng` / `dPgF`)** — "Element Object" spectral-data notes: capture them directly on
   `ElementData` (there is no `spectral` wrapper). They matter for proprietary glasses that will not resolve to the
   Sellmeier catalog; the backlog is [proprietary-glass-backfill.md](proprietary-glass-backfill.md).

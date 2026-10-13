@@ -91,8 +91,17 @@ Existing tests cover:
   (`exactTraceCatalog.test.ts`), catalog and summary invariants under `__tests__/src/utils/catalog/`, and the
   data-contract sweeps under `__tests__/src/lens-data/`: structured patent metadata (`patentMetadata.test.ts`), the
   analysis-file metadata/section floor (`analysisFiles.test.ts`), exact focus-keyframe reproduction
-  (`focusKeyframes.test.ts`), and shared-prescription parity across switchable configuration groups
+  (`focusKeyframes.test.ts`), fixed-iris declarations that match their stated station f-numbers
+  (`zoomApertureModel.test.ts`), `dPgF` stored against the engine's normal line
+  (`partialDispersionLine.test.ts`), and shared-prescription parity across switchable configuration groups
   (`opticalConfigurationParity.test.ts`, which requires a contract entry for every `opticalConfiguration` group).
+- Teleconverters, which never enter `LENS_CATALOG` (`teleconverterCompatibility.test.ts`): every converter validates;
+  every converter–host pair the fit predicate allows composes, builds, passes the axial beam, keeps the host's stop
+  and, at every zoom station, reaches as much of the format corner as the bare lens; and a synthetic universal
+  converter is composed onto every catalog lens to hold the stop-preservation invariant across zoom tables, embedded
+  stops, rear plates and drop-in filters. Tests that need a real pair take it from `ALL_TELECONVERTER_KEYS` and
+  `resolveTeleconverterKey()` so they hold while the only converter is a hidden test model; page and search tests add
+  one synthetic published summary to the generated JSON.
 - Golden-value trace regressions (`exactTraceGoldenValues.test.ts`): pinned EFL, image-plane, marginal/skew ray, fisheye
   chief-ray, and folded-fixture values for reference designs, plus Schott datasheet anchors for N-BK7/SF6 in
   `dispersion.test.ts`. These complement the finite/unclipped catalog smoke test — if a pin moves, absolute trace or
@@ -123,8 +132,10 @@ Existing tests cover:
   `generate:glass-reports`, `generate:mirror-reports`, `generate:mount-svgs`, or `npm run generate:reports -- <name>`.
   An invariant a report depends on belongs in the suite as its own test, not as an `expect` inside the generator.
 - **Tooling tests** for manual-only dev tools (the benchmark harness and the audit-script npm entries) are listed in
-  `TOOLING_TESTS` in `vite.config.js` and run with `npm run test:tooling`; CI runs both commands. Add a file there only
-  when it guards a tool that neither the build nor the app uses.
+  `TOOLING_TESTS` in `vite.config.js` and run with `npm run test:tooling`. CI runs both suites in one job and calls
+  Vitest directly for this one (`npx vitest run --config vitest.tooling.config.js`), so the metadata `npm run test`
+  just generated is not generated again. Add a file there only when it guards a tool that neither the build nor the
+  app uses.
 
 ## Refactor Test Expectations
 

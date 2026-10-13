@@ -328,8 +328,10 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.5,
-  nominalFno: 1.2,
-  fstopSeries: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
+  nominalFno: 1.24,
+  fstopSeries: [1.24, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   scFill: 0.58,
   yScFill: 0.66,

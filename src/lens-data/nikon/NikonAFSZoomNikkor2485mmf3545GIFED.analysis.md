@@ -1,4 +1,4 @@
-# NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5G IF-ED
+# NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5 G IF-ED
 
 ## Patent Reference and Design Identification
 

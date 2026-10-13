@@ -23,6 +23,7 @@ this document only records where to import from and the contracts that are not v
 | Module | Import it for | Rule |
 | --- | --- | --- |
 | `src/optics/buildLens.ts` | `buildLens(data)` (default export) | The only runtime-lens constructor for app code. It validates/defaults lens data, resolves glass and state indices, and returns a frozen `RuntimeLens`. `paraxialTrace` / `realTraceToStop` are re-exported from `src/optics/runtimeLens.ts` for focused optics tests only. |
+| `src/optics/teleconverter.ts` | `attachTeleconverter(host, tc)`, `teleconverterCompatibility`, `teleconverterGeometry`, `validateTeleconverterData`, label helpers | Composes a detachable teleconverter onto a host `LensData`; the result goes through `buildLens()`. Never build a teleconverter alone. |
 | `src/optics/optics.ts` | Pure helpers: surface sag, layout (`doLayout`, `stateSurfaces`, `thick`), derived values (`eflAtZoom`, `effectiveFNumber`, ...), meridional/vector/skew tracing, pupil sampling, chromatic spread | Default barrel for UI hooks, display components, and analysis tabs. It preserves app-facing names over the engine implementation in `compat.ts`. |
 | `src/optics/fieldGeometry.ts` | Field and chief-ray helpers: `computeFieldGeometryAtState`, `computeAnalysisFieldGeometryAtState`, `entrancePupilAtState`, `solveChiefRay`, image-height inversion | Analysis tabs must use the `computeAnalysisFieldGeometryAtState` variant. Fisheye/ultra-wide launches go through `src/optics/projection.ts` and `solveChiefRay`; never inline `Math.tan(field)`. |
 | `src/optics/diagramGeometry.ts` | `createCoordinateTransforms`, `computeElementShapes`, `computeElementRenderDiagnostics` | The only SVG coordinate/shape entry point for diagram components; keeps UI decoupled from the engine's diagram submodule layout. |
@@ -30,6 +31,7 @@ this document only records where to import from and the contracts that are not v
 | `src/optics/analysisJobs.ts`, `src/optics/analysis/analysisContext.ts` | Grouped analysis job facades and the memoized per-panel analysis context | The context carries the complete perspective trace context and cache key; active movement is routed without centered-result fallback (`src/optics/analysis/analysisMovementSupport.ts` classifies section availability). |
 | `src/optics/perspective/index.ts`, `src/optics/perspective/analysis/index.ts` | Perspective pose/trace context, chief solving, field sampling, and the fixed-sensor analysis variants | Failed field-sample requests are retained with explicit statuses rather than dropped. |
 | `src/optics/lensMovement.ts` | Perspective-control clamping and diagram transform adapters | Keep movement here unless explicitly upgrading full moved-optics analysis. |
+| `src/optics/publishedStations.ts` | `publishedZoomStations`, `publishedFocusStations`, `nearestPublishedStation`, `isOnPublishedStation`, `publishedStationAvailability`, and the data-level `publishedStationGrid` | The only reader of station provenance. Returned `zoomT` / `focusT` are canonical station coordinates; `distanceM` is a slider-convention label, and only `conjugate` is a source claim. |
 
 ## Runtime Lens Contracts
 
@@ -52,6 +54,9 @@ sequential partial tracing.
 - Catalog: `src/utils/catalog/lensCatalog.ts` exports the full `LENS_CATALOG`; index-style pages and search must use
   the generated summaries in `src/utils/catalog/lensSummaries.ts` and the author/assignee/patent catalogs so they never
   ship full prescriptions. Mount and image-format ids come from `src/utils/catalog/lensTaxonomy.ts`.
+  Teleconverters mirror the split: `src/utils/catalog/teleconverterCatalog.ts` holds full prescriptions, per-lens
+  options and `resolveLensSystemData()` for the viewer, and `src/utils/catalog/teleconverterSummaries.ts` holds the
+  generated summaries with build-time `compatibleLensKeys` for pages and search.
 - Routing: `src/routes/routeManifest.tsx` is the single source of truth for route patterns used by both
   `src/router.tsx` and `src/entry-server.tsx`; concrete prerender paths are generated into build metadata.
 - State: `src/utils/state/lensReducer.ts` exports action constants (prefer them over string literals).

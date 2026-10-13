@@ -1,4 +1,4 @@
-# APPLE iPhone 12 Wide 4.36mm f/1.6 (inferred patent model)
+# APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12)
 
 ## Patent Reference and Design Identification
 

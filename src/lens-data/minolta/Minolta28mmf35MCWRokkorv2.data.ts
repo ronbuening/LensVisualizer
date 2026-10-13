@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — MINOLTA MC W.ROKKOR-SG 28mm f/3.5 (v2 correlation)          ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JP1969-025743, Example 2 (Toshinobu Ogura / Minolta).       ║
+ * ║ Data source: JP 1969-025743 B, Example 2 (Toshinobu Ogura / Minolta).    ║
  * ║ Seven elements / seven groups; all spherical/plane.                      ║
  * ║                                                                          ║
  * ║ SOURCE CORRECTIONS:                                                       ║
@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "minolta-mc-w-rokkor-sg-28f35-v2",
   maker: "Minolta",
   name: "MINOLTA MC W.ROKKOR-SG 28mm f/3.5",
-  subtitle: "JP1969-025743 Example 2 — scaled ×28; production correlation, not manufacturer-confirmed attribution",
+  subtitle: "JP 1969-025743 B, Example 2 — scaled ×28; production correlation, not manufacturer-confirmed attribution",
   specs: ["7 elements / 7 groups", "28mm", "f/3.5", "2ω = 75° (patent)"],
 
   focalLengthMarketing: 28,
@@ -61,7 +61,7 @@ const LENS_DATA = {
   apertureDesign: 3.499999895,
   lensMounts: ["minolta-sr"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1969-025743",
+  patentNumber: "JP 1969-025743 B",
   patentAuthors: ["Toshinobu Ogura"],
   patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1969,
@@ -178,7 +178,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.6,
   focusDescription:
-    "Focus travel is not modeled: JP1969-025743 Example 2 supplies one fixed optical state only; 0.6 m is production minimum-focus metadata and no internal focus motion is modeled.",
+    "Focus travel is not modeled: JP 1969-025743 B, Example 2 supplies one fixed optical state only; 0.6 m is production minimum-focus metadata and no internal focus motion is modeled.",
 
   nominalFno: 3.499999895,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],

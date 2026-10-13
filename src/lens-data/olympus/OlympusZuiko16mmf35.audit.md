@@ -32,3 +32,20 @@ Patent: US 3,850,509, Example 1
 - Replaced the provisional `517696 ... no public Sellmeier match` annotations on L6 and L7b with `S-APL1 (OHARA; 517696)`.
 - The official OHARA 2026-07-01 all-products catalog supplies the discontinued glass's formula-3 coefficients and exact 1.517277 / 69.563 coordinate.
 - Synchronized the analysis element text, glass table, and source note.
+
+## 2026-10-04 — Patent filter left out
+
+- Patent check (US 3,850,509, Table 1): r10 and r11 are both flat, d10 = 0.0742 at f = 1, between the fourth and fifth
+  lenses, with 0.0792 before and 0.0829 after. The table prints the word "filter" where an index would be; no index
+  or Abbe number is given.
+- The patent says "the filter may be of course placed at any other position". With no glass data printed and no fixed
+  position, the plate is not modeled, so the file is unchanged: surface 9 keeps the air-equivalent gap, which uses an
+  assumed index of 1.51633.
+- Olympus counts the built-in filter in its 11 elements / 8 groups; the header keeps that note and now states why the
+  plate is left out.
+
+## 2026-10-07 — Display name
+
+Display name changed from `OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye` to `OLYMPUS ZUIKO AUTO-FISHEYE 16mm f/3.5`, the name
+the lens carries (Zuiko Auto-Fisheye 16mm 1:3.5) and the form already used for the 8mm entry. The lens key is
+unchanged.

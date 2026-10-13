@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8D IF-ED                       ║
+ * ║ LENS DATA — NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8 D IF-ED                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: JP 2001-083421 A, Example 1 (Nikon Corporation / Naoko Fukuda).          ║
  * ║ Native patent scale; no uniform scaling is applied.                              ║
@@ -37,7 +37,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-zoom-nikkor-17-35mm-f28d-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8D IF-ED",
+  name: "NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8 D IF-ED",
   subtitle: "JP 2001-083421 A, Example 1 — strong production correlation; not manufacturer-confirmed",
   specs: [
     "13 ELEMENTS / 10 GROUPS",

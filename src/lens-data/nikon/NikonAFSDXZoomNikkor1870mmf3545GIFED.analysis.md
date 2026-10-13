@@ -1,4 +1,4 @@
-# NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED
+# NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5 G IF-ED
 
 ## Patent Reference and Design Identification
 

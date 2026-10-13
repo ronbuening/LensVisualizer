@@ -114,6 +114,47 @@ describe("DiagramHeader", () => {
     expect(screen.queryByText("legacy subtitle")).toBeNull();
   });
 
+  it("searches photos by the host lens and credits a converter's separate patent", () => {
+    const baseLens = lens();
+    const converted = (teleconverterPatent: string) =>
+      ({
+        ...baseLens,
+        data: {
+          ...baseLens.data,
+          name: "Header Test Lens + Test Converter",
+          patentNumber: "US 10,571,651 B2",
+          patentAuthors: ["Hideki Sakai"],
+          attachedTeleconverter: {
+            key: "test-converter",
+            name: "Test Converter",
+            magnification: 1.4,
+            hostKey: "test-diagram-header",
+            hostName: "Header Test Lens",
+            firstSurfaceLabel: "TC1",
+            lastSurfaceLabel: "TC2",
+            firstElementId: 2,
+            patentNumber: teleconverterPatent,
+            patentAuthors: ["Aiko Example"],
+          },
+        },
+      }) as RuntimeLens;
+
+    const { unmount } = renderHeader({ L: converted("US 9,000,000 B2") });
+    expect(screen.getByText("Header Test Lens + Test Converter")).toBeTruthy();
+    expect(screen.getByText("flickr ↗").getAttribute("href")).toBe(
+      "https://www.flickr.com/search/?text=Header%20Test%20Lens",
+    );
+    expect(screen.getByRole("link", { name: "US 9,000,000 B2 in Espacenet (opens in a new tab)" })).toBeTruthy();
+    /* Inventor names link only when the inventor is in the author catalog, so assert on the rendered line. */
+    expect(document.body.textContent).toContain(" · TC US 9,000,000 B2↗ — Aiko Example");
+    unmount();
+
+    /* A converter published in the lens's own patent is not credited twice. */
+    renderHeader({ L: converted("US 10,571,651 B2") });
+    expect(screen.getAllByRole("link", { name: "US 10,571,651 B2 in Espacenet (opens in a new tab)" })).toHaveLength(1);
+    expect(document.body.textContent).not.toContain("Aiko Example");
+  });
+
   it("routes desktop ray-mode and density controls to callbacks", () => {
     const onRayTracksFChange = vi.fn();
     const onRayDensityChange = vi.fn();

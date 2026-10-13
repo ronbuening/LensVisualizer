@@ -15,7 +15,7 @@ The prescription is identified as the basis for the production Fujinon GF110mmF2
 
 1. **Element and group count.** Example 1 contains 14 elements in 9 air-separated groups (6-element G1, 2-element G2, 6-element G3). The production lens is specified by Fujifilm as "14 elements in 9 groups."
 2. **Focal length.** The patent's computed EFL is 108.47 mm at the d-line; the production lens is marketed as 110 mm — a typical rounding for commercial designation on the GFX system (0.79× crop factor yields an 87 mm full-frame equivalent).
-3. **Aperture.** The patent states FNo. = 2.06 at infinity; the production lens is marketed as f/2 (manufacturer specification takes precedence).
+3. **Aperture.** The patent states FNo. = 2.06 at infinity; the production lens is marketed as f/2 (the data file's `nominalFno` is the patent design value 2.06; `apertureMarketing` records f/2).
 4. **Field angle.** The patent gives 2ω = 29.8°; Fujifilm specifies 27.9° for the production lens (the difference reflects the slightly longer marketed focal length and the 43.8 mm diagonal of the GFX sensor).
 5. **Four ED elements.** The patent prescription contains exactly four glasses with νd ≥ 65 (three instances of nd = 1.55032, νd = 75.50, and one of nd = 1.59282, νd = 68.62), matching Fujifilm's specification of "4 ED elements."
 6. **All-spherical design.** The patent contains no aspherical coefficient tables for Example 1, and Fujifilm's product page explicitly states "14 **spherical** lens elements in 9 groups." This is a notable design choice for a modern fast medium-format prime: aberration control is achieved entirely through glass selection and element count rather than through aspherical surfaces.

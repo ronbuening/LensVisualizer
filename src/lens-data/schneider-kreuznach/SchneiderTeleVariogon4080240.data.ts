@@ -786,8 +786,11 @@ const LENS_DATA = {
     },
   ],
   closeFocusM: 1.8,
+  // Source rows only; the other zoom stations are solved or sampled control points.
+  publishedStations: { zoom: [0, 32, 64] },
   focusDescription: "Only infinity-focus zoom states are modeled. Front-ring focusing is documented, but finite-focus optical spacings are unpublished.",
   nominalFno: 4,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22],
   scFill: 0.5,
   yScFill: 0.31,

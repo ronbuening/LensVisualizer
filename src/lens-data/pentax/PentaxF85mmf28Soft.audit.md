@@ -46,3 +46,11 @@ Patent: US 5,267,086, Example 1
 - Relabeled L1 from false HOYA `BACD14` wording to Schott `N-SSK5`, exact code 658509 already recorded in the annotation.
 - Relabeled L3 from false HOYA `FD60` wording to OHARA `S-TIH10`, exact code 728285 already recorded in the annotation.
 - Synchronized the analysis. No geometry or scale changed.
+
+## 2026-10-06 - L5 glass label after the HOYA BSC7 catalog row
+
+- The shared catalog gained the true HOYA BSC7 row (HOYA 2026-07-07 AGF: nd 1.51680, νd 64.20) and the old
+  `BSC7 → S-BSL7` alias was retired. L5 stores 1.51633/64.1, the 516/641 crown, so a bare `BSC7 (HOYA)` label would
+  now resolve to a curve 4.7e-4 high in nd.
+- Relabeled L5 from `BSC7 (HOYA)` to `S-BSL7 (OHARA) / BSC7 (HOYA) class`; it keeps resolving to the exact S-BSL7
+  curve (1.51633/64.14). Stored nd and νd are unchanged; the analysis element line and glass table follow.

@@ -179,7 +179,7 @@ The prescription was transcribed from the patent's Numerical Example 1 and reche
 
 Standalone element focal lengths are: L1 -67.6 mm, L2 -74.2 mm, L3 +39.8 mm, L4 +52.5 mm, L5 -43.7 mm, L6 -18.7 mm, L7 +31.4 mm, L8 +74.5 mm, and L9 +43.0 mm. The cemented L6+L7 pair is net negative at -60.2 mm. The surface-by-surface Petzval sum, computed as Σφ/(n·n′), is +4.153 × 10^-3 mm^-1, giving a Petzval radius of approximately -241 mm and P·f ≈ 0.128.
 
-The data file uses inferred semi-diameters because the patent does not publish clear apertures. They were set from paraxial on-axis marginal rays plus full-field chief rays, then checked for element edge thickness, front/rear semi-diameter ratio, spherical/aspherical rim behavior, and signed cross-gap sag clearance. The stop semi-diameter is 11.4429 mm, derived from the patent Fno = 1.46 design aperture; the catalog-facing `nominalFno` remains the manufacturer-marketed F1.4.
+The data file uses inferred semi-diameters because the patent does not publish clear apertures. They were set from paraxial on-axis marginal rays plus full-field chief rays, then checked for element edge thickness, front/rear semi-diameter ratio, spherical/aspherical rim behavior, and signed cross-gap sag clearance. The stop semi-diameter is 11.4429 mm, derived from the patent Fno = 1.46 design aperture; `nominalFno` (the f-number the stop opens to) is that same patent design value, 1.46, and `apertureMarketing` records the marketed F1.4.
 
 ## Design Heritage and Context
 

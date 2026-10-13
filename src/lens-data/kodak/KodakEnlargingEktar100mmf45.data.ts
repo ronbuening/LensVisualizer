@@ -76,7 +76,7 @@ const LENS_DATA = {
       nd: 1.575,
       vd: 41.4,
       fl: -78.53,
-      glass: "Unmatched (vintage light flint class, 575/414)",
+      glass: "J-LF7 (Hikari) / LF7 class (575414 light flint; Δnd +0.00001, Δνd +0.11; equivalent; the original Kodak melt is not known)",
       role: "Negative rear-doublet element selected in Example 6 to leave deliberate finite-conjugate color balance.",
       cemented: "D2",
     },

@@ -356,6 +356,8 @@ const LENS_DATA = {
 
   /* ── Focus and aperture configuration ── */
   closeFocusM: 0.1,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "PUBLISHED endpoints: G2 (L21-L23) moves 8.453 mm imageward; no internal focus reconstruction.",
   nominalFno: 2.9,
   fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],

@@ -47,7 +47,7 @@ An air gap separates L2′ from L1′. This separation is part of the published 
 
 ### L1′ — Object-side positive meniscus adjacent to the stop
 
-**nd = 1.62230 (source nD), νd = 53.2. Glass: Unmatched (622532 — historical D-line SSK/BSM-class coordinate; supplier unresolved). f = +150.480 mm.**
+**nd = 1.62230 (source nD), νd = 53.2. Glass: SSK2 (Schott) class (622532 — historical D-line SSK coordinate; catalog equivalent, supplier unresolved). f = +150.480 mm.**
 
 L1′ is the positive meniscus nearest the diaphragm on the object side. The patent describes the corresponding L1 as a highly refracting concavo-convex lens turned toward the diaphragm.[^patent] Its standalone positive power is weaker than that of L3′, while the complete three-element front single objective is positive with a computed focal length of 222.297684 mm.
 
@@ -55,7 +55,7 @@ The rear surface of L1′ is followed by the published median diaphragm spacing.
 
 ### L1 — Image-side positive meniscus adjacent to the stop
 
-**nd = 1.62230 (source nD), νd = 53.2. Glass: Unmatched (622532 — historical D-line SSK/BSM-class coordinate; supplier unresolved). f = +150.480 mm.**
+**nd = 1.62230 (source nD), νd = 53.2. Glass: SSK2 (Schott) class (622532 — historical D-line SSK coordinate; catalog equivalent, supplier unresolved). f = +150.480 mm.**
 
 L1 is the mirror-symmetric counterpart of L1′. It begins the image-side single objective immediately after the central diaphragm. Its index, dispersion coordinate, shape, thickness, and standalone focal length match L1′ after the global sign/order transformation.
 
@@ -83,7 +83,7 @@ The patent gives three distinct historical glass coordinates and repeats them sy
 
 | Patent glass | Elements | Stored nD | ν | Authored identification |
 |---|---|---:|---:|---|
-| G1 | L1′, L1 | 1.62230 | 53.2 | `Unmatched (622532 — historical D-line SSK/BSM-class coordinate; supplier unresolved)` |
+| G1 | L1′, L1 | 1.62230 | 53.2 | `SSK2 (Schott) class (622532 — historical D-line SSK coordinate; catalog equivalent, supplier unresolved)` |
 | G2 | L2′, L2 | 1.53980 | 47.3 | `Unmatched (540473 — historical D-line low-index flint / LLF-FEL-class coordinate; supplier unresolved)` |
 | G3 | L3′, L3 | 1.62070 | 56.9 | `Unmatched (621569 — historical D-line crown-class coordinate; supplier unresolved)` |
 

@@ -170,7 +170,7 @@ export default function MtfChart({
                 height={area.plotH}
                 fill={`url(#${patternId})`}
               >
-                <title>{`Outside the model: its clear apertures clip the chief ray beyond ${edge.toFixed(1)} mm.`}</title>
+                <title>{`Outside the model: beyond ${edge.toFixed(1)} mm its clear apertures pass no light, or no chief ray to place it by.`}</title>
               </rect>
               {plotRight - xScale(edge) >= 44 ? (
                 <text

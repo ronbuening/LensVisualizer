@@ -537,6 +537,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.47,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus — L23 (Foc, f = +69 mm) translates toward object. Patent data from ∞ to 1.0× magnification.",
 

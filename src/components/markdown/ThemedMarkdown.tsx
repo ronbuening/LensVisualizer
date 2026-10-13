@@ -27,7 +27,7 @@ import SpherochromatismDiagram from "../diagram/sphericalAberration/Spherochroma
 import LensBendingDiagram from "../diagram/sphericalAberration/LensBendingDiagram.js";
 import DesignGoalsDiagram from "../diagram/sphericalAberration/DesignGoalsDiagram.js";
 import type { Theme } from "../../types/theme.js";
-import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
+import { SITE_URL, canonicalPagePath, normalizeSitePageUrl } from "../../utils/seo/siteUrls.js";
 
 type MarkdownVariant = "article" | "description";
 
@@ -120,9 +120,16 @@ export default function ThemedMarkdown({
           borderBottom: `1px solid ${t.descLinkColor}40`,
         };
 
-        if (article && href?.startsWith("/lens/")) {
+        if (article && (href?.startsWith("/lens/") || href?.startsWith(`${SITE_URL}/lens/`))) {
+          /* Preserve the source article referrer while isolating the new tab. */
           return (
-            <a id={id} href={canonicalPagePath(href)} target="_blank" rel="noopener noreferrer" style={linkStyle}>
+            <a
+              id={id}
+              href={normalizeSitePageUrl(canonicalPagePath(href))}
+              target="_blank"
+              rel="noopener"
+              style={linkStyle}
+            >
               {children}
             </a>
           );

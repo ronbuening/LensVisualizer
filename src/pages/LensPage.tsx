@@ -11,6 +11,7 @@ import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
 import PatentNumberLink from "../components/content/PatentNumberLink.js";
 import { LENS_CATALOG, hasMdForKey } from "../utils/catalog/lensCatalog.js";
+import { teleconverterSummariesForLens } from "../utils/catalog/teleconverterSummaries.js";
 import { ENABLE_ANALYSIS_VIEW } from "../utils/featureFlags.js";
 import {
   lensPageTitle,
@@ -56,6 +57,8 @@ export default function LensPage() {
 
   const lens = LENS_CATALOG[slug];
   const maker = deriveMaker(lens.name, lens.maker);
+  /* Converters this lens takes; the prerendered text links each one's page. */
+  const teleconverters = teleconverterSummariesForLens(slug);
   /* Existence check only — the markdown body is code-split and loaded by the viewer */
   const hasAnalysis = ENABLE_ANALYSIS_VIEW && hasMdForKey(slug);
   const displaySubtitle = lensDisplaySubtitle(lens);
@@ -160,6 +163,22 @@ export default function LensPage() {
                     ))}
                   </tbody>
                 </table>
+              </section>
+            )}
+
+            {teleconverters.length > 0 && (
+              <section style={{ marginBottom: "1rem" }}>
+                <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.25rem" }}>Teleconverters</h2>
+                <p style={{ fontSize: "0.8rem", color: "#ccc", lineHeight: 1.5 }}>
+                  {teleconverters.map((teleconverter, index) => (
+                    <span key={teleconverter.key}>
+                      {index > 0 && ", "}
+                      <Link to={`/teleconverters/${teleconverter.key}/`} style={NAV_LINK_STYLE}>
+                        {teleconverter.name}
+                      </Link>
+                    </span>
+                  ))}
+                </p>
               </section>
             )}
 

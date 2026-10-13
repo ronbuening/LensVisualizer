@@ -25,3 +25,15 @@ Patent: US 2005/0157403 A1, Example 1, Figure 1
 - Paraxial check against the previous data: EFL identical and paraxial defocus unchanged at every zoom station and focus
   keyframe, because 3.00 + 2.00/1.51680 + 91.16781 reproduces the legacy value exactly. Physical track grows by
   0.681 mm (2.00 × (1 − 1/1.51680)).
+
+## 2026-10-04 — Slip-in filter drawn as an element
+
+- The rear slip-in filter plate BFL moved out of `rearPlates` into the drawn prescription: surfaces 44–45 and element
+  25 (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place
+  and a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
+- The source lists no clear aperture for the plate. Its semi-diameter, 19.5 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at wide, mid and tele,
+  each at infinity, mid and close focus (18.33 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
+  axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
+  corner.

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON ZOOM-NIKKOR ED 200-400mm f/4                            ║
+ * ║ LENS DATA — NIKON ZOOM-NIKKOR 200-400mm f/4 ED                            ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 4,452,513 A, Example 3 / Third Embodiment.                 ║
  * ║ Patent prescription retained at scale 1: 15 elements / 10 components,     ║
@@ -49,7 +49,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ais-zoom-nikkor-ed-200-400mm-f4",
   maker: "Nikon",
-  name: "NIKON ZOOM-NIKKOR ED 200-400mm f/4",
+  name: "NIKON ZOOM-NIKKOR 200-400mm f/4 ED",
   subtitle: "US 4,452,513 A — Example 3 / Third Embodiment; 4 m focus constrained reconstruction",
   specs: ["15 ELEMENTS / 10 GROUPS", "200-400mm", "F/4", "4 m MFD", "135 FORMAT"],
 
@@ -355,6 +355,7 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: 4.0,
+  zoomApertureModel: "fixed-iris",
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 32,
 

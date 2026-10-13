@@ -37,7 +37,10 @@ npm run generate:mirror-reports
 npm run generate:mount-svgs
 npm run generate:sa-figure-svgs     # Regenerate static spherical-aberration article figures from their components
 npm run generate:holiday-branding   # Recolor the base marks into public/branding/holiday/
+npm run audit:aperture              # traced vs stated f-number per lens and zoom station, and what limits it
+npm run audit:catalog-pgf           # glass catalog PgF fields that disagree with the entry's own curve
 npm run audit:dependencies          # Fail on non-allowlisted high/critical npm advisories
+npm run audit:dpgf                  # dPgF values that fit a source normal line instead of the engine's
 npm run audit:field-coverage        # traced analysis half-field vs format corner, and the rim that stops it
 npm run audit:image-circle          # semi-diameters that cannot cover their own image circle
 npm run audit:patent-figure         # measure a patent cross-section against a lens data file

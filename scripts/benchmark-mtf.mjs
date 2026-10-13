@@ -14,7 +14,7 @@ const spectrum = option("spectrum") ?? (process.argv.includes("--cdf") ? "cdf" :
 const apertureScale = process.argv.includes("--stopped-down") ? 0.25 : 1;
 const focusT = process.argv.includes("--finite") ? 1 : 0;
 const fieldCount = Number(option("fields") ?? (process.argv.includes("--sweep") ? 9 : 3));
-if (!["geometric", "geometric-dl", "diffraction"].includes(method)) throw new Error(`Unknown --method=${method}`);
+if (!["geometric", "diffraction"].includes(method)) throw new Error(`Unknown --method=${method}`);
 if (!["reference", "cdf", "photopic"].includes(spectrum)) throw new Error(`Unknown --spectrum=${spectrum}`);
 if (!Number.isInteger(fieldCount) || fieldCount < 2 || fieldCount > 101) throw new Error("--fields must be 2-101");
 // Fractions of the reference image height (the format corner when declared), evenly spaced.
@@ -28,6 +28,7 @@ for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
     const options = {
       method,
       spectrum,
+      focus: "design",
       maxGridSize,
       fieldFractions,
       pupilSemiDiameterMm: L.EP.epSD * apertureScale,
@@ -41,6 +42,7 @@ for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
       result = computeMtf(state, options);
       times.push(performance.now() - start);
     }
+    const samplesMs = [...times];
     times.sort((a, b) => a - b);
     rows.push({
       key: data.key,
@@ -48,6 +50,7 @@ for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
       support: result.support.reason ?? "candidate",
       ...(result.support.conjugate ? { conjugate: result.support.conjugate } : {}),
       medianMs: +times[1].toFixed(2),
+      samplesMs,
       geometry: result.geometry,
       fields: result.fields.map(({ fieldFraction, imageHeightMm, status, reason, gridSize, maxDelta }) => ({
         fieldFraction,

@@ -38,3 +38,15 @@ Patent: US 2018/0031811 A1, Example 4 / Figure 11
   HG) and gapAfter 75.12 mm. Paraxial check against the previous data: EFL identical and defocus unchanged at both
   focus states. Physical track grows by 0.511 mm to 469.10 mm, matching Table 4's TL; `closeFocusM` 4.4 already used
   the physical track and is unchanged.
+
+## 2026-10-04 — Rear filter drawn as an element
+
+- The rear filter plate FL moved out of `rearPlates` into the drawn prescription: surfaces 32–33 and element
+  18 (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place
+  and a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
+- The source lists no clear aperture for the plate. Its semi-diameter, 18 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at infinity, mid and
+  close focus (17.02 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
+  axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
+  corner.

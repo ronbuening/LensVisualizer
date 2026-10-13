@@ -21,6 +21,30 @@ export function formatFNumber(f: number): string {
   return rounded.toFixed(2).replace(/0$/, "");
 }
 
+/** Share by which the design f-number may differ from the marketed one before the readout names both. */
+const MARKETED_APERTURE_NOTE_FRACTION = 0.005;
+
+/**
+ * Marketed f-number to show beside the wide-open readout. The stop opens to the source's design f-number, which a
+ * maker rounds for the name on the barrel; a variable-aperture zoom markets a range, so it gets no single note.
+ *
+ * @param data - lens data carrying `apertureMarketing` and `nominalFno`
+ * @param fNumber - current f-number
+ * @param wideOpen - wide-open f-number at the current zoom
+ * @returns secondary label, empty when stopped down or when the two agree
+ */
+export function marketedApertureNote(
+  data: { apertureMarketing?: number; nominalFno?: number | number[] },
+  fNumber: number,
+  wideOpen: number,
+): string {
+  const marketed = data.apertureMarketing;
+  if (marketed === undefined || Array.isArray(data.nominalFno)) return "";
+  if (Math.abs(fNumber - wideOpen) > 1e-6 * wideOpen) return "";
+  if (Math.abs(wideOpen / marketed - 1) <= MARKETED_APERTURE_NOTE_FRACTION) return "";
+  return `marketed f/${formatFNumber(marketed)}`;
+}
+
 /**
  * Format a normalized focus slider as user-facing object distance.
  *

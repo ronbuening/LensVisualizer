@@ -427,6 +427,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.472,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Floating internal focus: F1 (L21–L22, weak negative) and F2 (L31–L32, positive) both move toward the object by different amounts (patent: 5.351 mm and 3.677 mm to β = −0.10). Front group A and final group R are fixed. Close state is the patent's β = −0.10 conjugate (0.472 m object-to-image, calculated); production MFD is 0.3 m.",
 

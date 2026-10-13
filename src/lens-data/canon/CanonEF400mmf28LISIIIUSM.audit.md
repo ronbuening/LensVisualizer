@@ -33,3 +33,16 @@ Patent: US 2019/0041605 A1, Numerical Data 2 / Figure 2A
 - Paraxial check against the previous data: EFL identical and defocus unchanged at infinity and at the 2.5 m keyframe
   (the old fold was computed unrounded). Physical track grows by 0.749 mm to 372.010 mm; the air-equivalent 371.261 mm
   still matches the patent's printed 371.25 total lens length.
+
+## 2026-10-04 — Drop-in filter drawn as an element
+
+- The rear drop-in filter plate G moved out of `rearPlates` into the drawn prescription: surfaces 30–31 and element 17
+  (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place and
+  a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
+- The source lists no clear aperture for the plate. Its semi-diameter, 21.5 mm, is a ray-trace estimate: the largest
+  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at infinity, mid and
+  close focus (20.00 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, entrance pupil, stop radius, image plane, analysis half-field and the traced axial,
+  mid-field and corner bundles are unchanged, and `npm run audit:field-coverage` still reports 100% of the corner. The
+  plate now clips the chief ray at 4.43° (the half-field was 5.10°, set by another rim); the format corner is 3.16°,
+  so coverage is unaffected, and the diagram's off-axis field narrows from 3.06° to 2.66°.

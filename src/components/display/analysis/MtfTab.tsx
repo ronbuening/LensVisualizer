@@ -1,16 +1,18 @@
 /** MTF stays outside render-time optics; requests execute only in the mounted tab's worker. */
 import { useMemo } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
-import type { MtfMethod, MtfOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
+import type { MtfAperture, MtfMethod, MtfOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { Theme } from "../../../types/theme.js";
-import { assessMtfSupport, resolveMtfSpectrum } from "../../../optics/mtf.js";
+import { assessMtfDataLimitations, assessMtfSupport, resolveMtfSpectrum } from "../../../optics/mtf.js";
 import { formatFNumber } from "../../../optics/optics.js";
 import { useMtfComputation } from "../../hooks/useMtfComputation.js";
+import { useMtfDataWarning } from "../../hooks/useMtfDataWarning.js";
 import { useMtfPreferences } from "../../hooks/useMtfPreferences.js";
 import { AnalysisEmptyState } from "./analysisUi.js";
 import MtfChart from "./MtfChart.js";
 import MtfControls from "./mtf/MtfControls.js";
+import MtfDataWarning from "./mtf/MtfDataWarning.js";
 import MtfFieldSummary from "./mtf/MtfFieldSummary.js";
 
 interface MtfTabProps {
@@ -27,11 +29,12 @@ interface MtfTabProps {
 
 /** Comparison aperture of manufacturer charts. */
 const COMPARISON_F_NUMBER = 8;
+/** Share by which the traced working f-number may differ from the label before the header says so. */
+const TRACED_APERTURE_NOTE_FRACTION = 0.02;
 
 const METHOD_LABELS: Record<MtfMethod, string> = {
-  "geometric-dl": "Diffraction-corrected",
+  diffraction: "Diffraction-corrected",
   geometric: "Geometric",
-  diffraction: "Scalar diffraction",
 };
 const SPECTRUM_LABELS: Record<MtfSpectrum, string> = {
   photopic: "photopic",
@@ -86,6 +89,17 @@ export default function MtfTab({
   );
   const { result, stale, running, error } = useMtfComputation(L, job);
   const shown = support.available ? result : null;
+  const dataLimitations = useMemo(
+    () =>
+      assessMtfDataLimitations(preparedState, {
+        preferredSpectrum: preferences.spectrum,
+        spectrum: spectrum.spectrum,
+        referenceWavelengthNm: support.referenceWavelengthNm,
+        result: shown,
+      }),
+    [preparedState, preferences.spectrum, spectrum.spectrum, support.referenceWavelengthNm, shown],
+  );
+  const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.data.key, dataLimitations);
   // Stop-down scales the pupil and stop radii by N/8, as the aperture control does.
   const compareF8Available = !!fNumber && fNumber < COMPARISON_F_NUMBER - 0.05 && L.maxFstop >= COMPARISON_F_NUMBER;
   const comparisonJob = useMemo(() => {
@@ -99,11 +113,18 @@ export default function MtfTab({
     return { ...job, options: stopped };
   }, [job, compareF8Available, preferences.compareF8, fNumber]);
   const comparison = useMtfComputation(L, comparisonJob);
+  const comparisonShown = comparisonJob && !comparison.stale ? comparison.result : null;
+  // A result kept from an earlier request, or one at a finite conjugate, says nothing about the label on screen.
+  const apertureOf = (result: MtfResult | null, superseded: boolean) =>
+    superseded || support.conjugate ? null : (result?.aperture ?? null);
+  const comparisonLabel = `f/${COMPARISON_F_NUMBER}${tracedApertureNote(COMPARISON_F_NUMBER, apertureOf(comparisonShown, false))}`;
   const muted = { color: t.muted, margin: "4px 0" };
   return (
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">
       <h3 style={{ margin: "0 0 4px", fontSize: 14 }}>Simulated MTF</h3>
-      <p style={muted}>{headerLine(options, support.referenceWavelengthNm, fNumber, focalLengthMm, shown)}</p>
+      <p style={muted}>
+        {headerLine(options, support.referenceWavelengthNm, fNumber, focalLengthMm, shown, apertureOf(shown, stale))}
+      </p>
       {spectrum.note ? <p style={muted}>{spectrum.note}</p> : null}
       <ImagePlaneNote result={shown} t={t} onUseAuto={() => updatePreferences({ focus: "auto" })} />
       <MtfControls
@@ -134,16 +155,23 @@ export default function MtfTab({
               Calculating f/8 comparison…
             </p>
           ) : null}
-          <MtfChart
-            result={shown}
-            view={preferences.view}
-            frequencies={preferences.frequencies}
+          <MtfDataWarning
+            limitations={dataLimitations}
+            acknowledged={warningAcknowledged}
+            onAcknowledge={acknowledgeWarning}
             t={t}
-            stale={stale}
-            comparison={comparisonJob && !comparison.stale ? comparison.result : null}
-            comparisonLabel="f/8"
-          />
-          <MtfFieldSummary result={shown} frequencies={preferences.frequencies} t={t} />
+          >
+            <MtfChart
+              result={shown}
+              view={preferences.view}
+              frequencies={preferences.frequencies}
+              t={t}
+              stale={stale}
+              comparison={comparisonShown}
+              comparisonLabel={comparisonLabel}
+            />
+            <MtfFieldSummary result={shown} frequencies={preferences.frequencies} t={t} />
+          </MtfDataWarning>
         </>
       )}
       <p style={muted}>
@@ -180,9 +208,10 @@ function headerLine(
   fNumber: number | undefined,
   focalLengthMm: number | undefined,
   result: MtfResult | null,
+  aperture: MtfAperture | null,
 ): string {
   const parts: string[] = [];
-  if (fNumber) parts.push(`f/${formatFNumber(fNumber)}`);
+  if (fNumber) parts.push(`f/${formatFNumber(fNumber)}${tracedApertureNote(fNumber, aperture)}`);
   if (focalLengthMm) parts.push(`${focalLengthMm.toFixed(1)} mm`);
   parts.push(METHOD_LABELS[options.method]);
   parts.push(
@@ -198,6 +227,17 @@ function headerLine(
     bestAxial ? `Best axial focus (${shift >= 0 ? "+" : "−"}${Math.abs(shift).toFixed(3)} mm)` : "Design image plane",
   );
   return parts.join(" · ");
+}
+
+/**
+ * Qualify a label f-number when the axial beam traces at a different aperture: a clear aperture can stop the
+ * marginal ray before the iris, and stop-down scales the wide-open iris linearly. Callers pass no aperture for a
+ * superseded result or a finite conjugate, where the working f-number differs from the label by design.
+ */
+function tracedApertureNote(fNumber: number, aperture: MtfAperture | null): string {
+  if (!aperture || Math.abs(aperture.tracedFNumber / fNumber - 1) <= TRACED_APERTURE_NOTE_FRACTION) return "";
+  const limit = aperture.limitingSurfaceLabel ? `, limited by surface ${aperture.limitingSurfaceLabel}` : "";
+  return ` (traced f/${formatFNumber(aperture.tracedFNumber)}${limit})`;
 }
 
 function progressText(result: MtfResult): string {

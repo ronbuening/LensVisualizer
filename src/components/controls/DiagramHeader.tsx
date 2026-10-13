@@ -20,6 +20,7 @@ import CollapseButton from "./CollapseButton.js";
 import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
+import { lensChromaticReference } from "../../optics/chromatic/channels.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import { lensDisplaySubtitle, lensPatentAttribution } from "../../utils/catalog/lensPatentMetadata.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -141,6 +142,17 @@ const DiagramHeader = memo(
     const projection = L.projection ?? { kind: "rectilinear" };
     const displaySubtitle = lensDisplaySubtitle(L.data);
     const patentAttribution = lensPatentAttribution(L.data);
+    /* With a converter attached the title names the whole system; photo searches and the second patent line
+       still need the two parts separately. A converter covered by the lens's own patent is not repeated. */
+    const teleconverter = L.data.attachedTeleconverter;
+    const photoSearchName = teleconverter?.hostName ?? L.data.name;
+    const teleconverterPatent =
+      teleconverter?.patentNumber && teleconverter.patentNumber !== L.data.patentNumber
+        ? lensPatentAttribution({
+            patentNumber: teleconverter.patentNumber,
+            patentAuthors: teleconverter.patentAuthors ?? [],
+          })
+        : null;
     const compactFocalReadout = isFisheyeProjection(projection)
       ? `Proj f ${(fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? L.apertureReferenceFocalLength).toFixed(1)}`
       : `EFL ${L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(1)}`;
@@ -175,10 +187,10 @@ const DiagramHeader = memo(
               </h1>
               {!compact && (
                 <a
-                  href={`https://www.flickr.com/search/?text=${encodeURIComponent(L.data.name)}`}
+                  href={`https://www.flickr.com/search/?text=${encodeURIComponent(photoSearchName)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  title={`Search Flickr for "${L.data.name}"`}
+                  title={`Search Flickr for "${photoSearchName}"`}
                   style={{
                     fontSize: 11,
                     color: t.descLinkColor,
@@ -223,6 +235,26 @@ const DiagramHeader = memo(
                     </>
                   ) : (
                     displaySubtitle
+                  )}
+                  {teleconverterPatent && (
+                    <>
+                      {" · TC "}
+                      <PatentNumberLink patentNumber={teleconverterPatent.patentNumber} color={t.descLinkColor} />
+                      {teleconverterPatent.authors.length > 0 && (
+                        <>
+                          {" — "}
+                          <InventorLinks
+                            names={teleconverterPatent.authors}
+                            theme={t}
+                            titleForName={(author) => `View patents by ${author}`}
+                            linkStyle={{
+                              borderBottom: `1px solid ${t.descLinkColor}60`,
+                              transition: "color 0.3s, border-color 0.3s",
+                            }}
+                          />
+                        </>
+                      )}
+                    </>
                   )}
                 </span>
               )}
@@ -384,6 +416,7 @@ const DiagramHeader = memo(
                   onChromGChange={onChromGChange}
                   onChromBChange={onChromBChange}
                   onChromVChange={onChromVChange}
+                  channelReference={lensChromaticReference(L.elements)}
                 />
               </div>
             </div>

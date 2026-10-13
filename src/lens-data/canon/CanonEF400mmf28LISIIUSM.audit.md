@@ -30,3 +30,22 @@ Patent: US 2011/0090576 A1, Example 2
 
 - Verified that `CANON EF 400mm f/2.8 L IS II USM` matches Canon's product identity after repository spacing normalization.
 - Normalized the patent assignee to the catalog's canonical `Canon Inc.` spelling, resolving the patent-metadata test failure.
+
+## 2026-10-04 — Drop-in filter drawn as an element
+
+- Patent check (US 2011/0090576 A1, Second Numerical Embodiment): rows 28–29 tabulate glass block G as two flat
+  surfaces, 2.2 mm thick, nd 1.51633, νd 64.14, θgF 0.5352, X −0.0007, effective diameter 36.00 mm, 15.00 mm behind
+  row 27. The description calls G "a glass block, such as an optical filter or a faceplate" and defines back focus
+  with it absent.
+- The file had excluded G and carried the 70.72 mm plate-absent back focus on surface 27. G is now drawn: surfaces
+  28–29 and element 16 (`Plane-Parallel Plate`). Surface 27 keeps the patent's 15.00 mm, and
+  70.72 − 15.00 − 2.2/1.51633 = 54.269129 mm of air follows the plate, which makes the authored track the patent's
+  Lt = 372.00 mm.
+- Semi-diameter: half the patent's effective diameter (18.0 mm) would cut the model's corner transmission from 0.670
+  to 0.605 and the half-field from 6.19° to 4.82°, because the model's front apertures are larger than the patent's
+  ray envelopes. The plate instead takes 21.5 mm, a ray-trace estimate: the largest height on the plate of any ray
+  that reaches the 135 format or the diagram's off-axis field at infinity, mid and close focus (20.01 mm), plus 5%,
+  rounded up to 0.5 mm. Not figure-audited.
+- Before/after check: EFL, stop radius, paraxial focus and the vignetting curve are unchanged. The plate now clips the
+  chief ray at 5.65° (the half-field was 6.19°, set by another rim); the format corner is 3.16°, so coverage is
+  unaffected, and the diagram's off-axis field narrows from 3.72° to 3.39°.

@@ -306,6 +306,8 @@ const LENS_DATA = {
   // Calculated conjugate of the patent's proximal state (object 700 mm from surface 1 + 115.07 mm air-converted
   // track; the physical PP plate adds 0.97 mm, 0.816 m object-to-image physically).
   closeFocusM: 0.815,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Inner focus — only the G2 cemented doublet (L21+L22) moves, 8.1 mm toward the image from infinity to the patent's proximal state (β ≈ −0.14, about 0.82 m). Production MFD 0.6 m (0.2×) is beyond the published data and is not modeled.",
 

@@ -29,9 +29,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ the air-equivalent D25 + 4.716045 mm matches the former folded value exactly.        ║
  * ║                                                                                      ║
  * ║ Stop: axial position is published. Physical semi-diameter is not published.          ║
- * ║ sd = 6.5985 mm is a Stage 2 calibration to the three published f-number states.     ║
- * ║ nominalFno therefore stores the modeled values from this calibrated common stop,     ║
- * ║ not the patent's FNo column and not an independently measured diaphragm diameter.    ║
+ * ║ nominalFno stores the patent's Table 2 FNo column, 2.8501 / 3.7238 / 5.0545. The     ║
+ * ║ wide-open iris is traced at each zoom station from that f-number with a real         ║
+ * ║ marginal ray: 6.9318 / 6.8859 / 6.8524 mm at wide / intermediate / tele. The iris    ║
+ * ║ limits the on-axis beam at all three stations. The authored STO sd = 6.5985 mm is    ║
+ * ║ the mean of the three paraxial stop radii (6.6323 / 6.5872 / 6.5760 mm); the traced  ║
+ * ║ iris replaces it, and none of these radii is a measured diaphragm diameter.          ║
  * ║                                                                                      ║
  * ║ Semi-diameters are Stage 2 modeled apertures. They were sized from exact d-line      ║
  * ║ meridional tracing of the on-axis stop bundle plus the default 0.6-field off-axis   ║
@@ -65,7 +68,7 @@ const LENS_DATA = {
     "12 PHYSICAL ELEMENTS / 10 GROUPS",
     "PATENT f = 14.71-69.8725 mm",
     "MARKETED 14.3-71.5 mm f/2.8-4.8",
-    "MODELED MAX APERTURE f/2.865-f/5.037",
+    "PATENT MAX APERTURE f/2.8501-f/5.0545",
     "5 ASPHERICAL SURFACES",
     "INFINITY-FOCUS ZOOM STATES ONLY",
   ],
@@ -73,7 +76,7 @@ const LENS_DATA = {
   focalLengthMarketing: [14.3, 71.5],
   focalLengthDesign: [14.722970051869138, 69.85319684814056],
   apertureMarketing: 2.8,
-  apertureDesign: 2.8646783257041806,
+  apertureDesign: 2.8501,
   lensMounts: ["fixed-lens-camera"],
   imageCircleMm: 26, // Figs. 2-4 plot to Y = 13.0 mm; DSC-R1 sensor 21.5 x 14.4 mm (25.9 mm diagonal)
   imageFormat: "aps-c",
@@ -451,7 +454,7 @@ const LENS_DATA = {
   focusDescription:
     "Patent-published infinity zoom states only. GR4/G8 is the axial focusing group, but no numerical close-focus spacing is published; no internal focus reconstruction is authored, and every focus pair is identical. The 0.35 m closeFocusM value records the marketed minimum macro distance rather than a modeled close-focus state.",
 
-  nominalFno: [2.8646783257041806, 3.7174215126729098, 5.03730193692091],
+  nominalFno: [2.8501, 3.7238, 5.0545],
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
 
   yScFill: 0.42,

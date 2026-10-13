@@ -29,6 +29,7 @@ flowchart LR
   n_external_src_utils_seo["src/utils/seo"]
   n_src_pages_lensIndex_src_pages_lensIndex_catalog_ts --> |7| n_external_src_utils_catalog
   n_src_pages_lensIndex_src_pages_lensIndex_LensIndexResults_tsx --> |2| n_external_src_types
+  n_src_pages_lensIndex_src_pages_lensIndex_clusterLinks_ts --> |2| n_external_src_utils_catalog
   n_src_pages_lensIndex_src_pages_lensIndex_LensIndexResults_tsx --> |2| n_external_src_utils_catalog
   n_src_pages_lensIndex_src_pages_lensIndex_types_ts --> |2| n_external_src_utils_catalog
   n_src_pages_lensIndex_src_pages_lensIndex_urlState_ts --> |2| n_external_src_utils_catalog
@@ -42,7 +43,6 @@ flowchart LR
   n_src_pages_lensIndex_src_pages_lensIndex_groupAnchors_ts --> n_external_src_types
   n_src_pages_lensIndex_src_pages_lensIndex_LensIndexFilterPanel_tsx --> n_external_src_types
   n_src_pages_lensIndex_src_pages_lensIndex_types_ts --> n_external_src_types
-  n_src_pages_lensIndex_src_pages_lensIndex_clusterLinks_ts --> n_external_src_utils_catalog
   n_src_pages_lensIndex_src_pages_lensIndex_groupAnchors_ts --> n_external_src_utils_catalog
   n_src_pages_lensIndex_src_pages_lensIndex_LensIndexFilterPanel_tsx --> n_external_src_utils_catalog
   n_src_pages_lensIndex_src_pages_lensIndex_clusterLinks_ts --> n_external_src_utils_seo
@@ -67,15 +67,15 @@ flowchart LR
 
 - Direct source files: 9
 - Direct subfolders: 0
-- Main outbound areas: src/utils/catalog (18), same folder (12), src/types (5), src/utils/style (4), package:react (2), src/utils/seo (2), package:react-router, src/components/content, +1 more
-- External consumers: src/components/layout, src/pages/AuthorPage.tsx, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MountPage.tsx, src/pages/MountsIndexPage.tsx, src/pages/PatentsIndexPage.tsx
+- Main outbound areas: src/utils/catalog (19), same folder (12), src/types (5), src/utils/style (4), package:react (2), src/utils/seo (2), package:react-router, src/components/content, +1 more
+- External consumers: src/components/layout, src/pages/AuthorPage.tsx, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MountPage.tsx, src/pages/MountsIndexPage.tsx, src/pages/PatentsIndexPage.tsx, +1 more
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `catalog.ts` | Catalog helper module | src/utils/catalog (7), same folder | same folder (3), src/components/layout, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, src/pages/LensIndexPage.tsx, +2 more | buildFilterBounds, defaultCustomFilter, buildMakerOptions, buildMountOptions, buildImageFormatOptions, matchesCustomFilter, hasActiveCustomFilters, groupByMaker, +19 more |
-| `clusterLinks.ts` | Cluster Links helper module | src/utils/catalog, src/utils/seo | same folder, src/components/layout, src/pages/FormatPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MountPage.tsx | LensLibraryBreadcrumbContext, LensBreadcrumbSource, LensNavigationState, LensLinkTarget, lensLinkFromLibrary, lensLinkFromMount, lensLinkFromFormat |
+| `clusterLinks.ts` | Cluster Links helper module | src/utils/catalog (2), src/utils/seo | same folder, src/components/layout, src/pages/FormatPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MountPage.tsx, +1 more | LensLibraryBreadcrumbContext, LensBreadcrumbSource, LensNavigationState, LensLinkTarget, lensLinkFromLibrary, lensLinkFromMount, lensLinkFromFormat, lensLinkFromTeleconverter |
 | `groupAnchors.ts` | Group Anchors helper module | src/types, src/utils/catalog | same folder, src/pages/AuthorPage.tsx, src/pages/LensIndexPage.tsx, src/pages/PatentsIndexPage.tsx | slugifyGroupKey, makerGroupAnchorId, patentPartyGroupAnchorId, mountGroupAnchorId, formatGroupAnchorId, yearGroupAnchorId, focalSectionAnchorId, focalSubGroupAnchorId |
 | `LensIndexFilterPanel.tsx` | Route-level React page | same folder (2), package:react, src/types, src/utils/catalog, src/utils/style | src/pages/LensIndexPage.tsx | default, LensIndexFilterPanel |
 | `LensIndexResults.tsx` | Route-level React page | same folder (4), src/types (2), src/utils/catalog (2), src/utils/style (2), package:react-router, +2 more | src/pages/LensIndexPage.tsx | default, LensIndexResults |

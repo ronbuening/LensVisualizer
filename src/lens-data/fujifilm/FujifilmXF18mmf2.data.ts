@@ -81,7 +81,7 @@ const LENS_DATA = {
       name: "L1",
       label: "Element 1",
       type: "Biconcave Negative",
-      nd: 1.51742,
+      nd: 1.517417,
       vd: 52.43,
       fl: -16.1,
       glass: "S-NSL36 (OHARA)",
@@ -105,7 +105,7 @@ const LENS_DATA = {
       name: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
-      nd: 1.64769,
+      nd: 1.647689,
       vd: 33.79,
       fl: -22.3,
       glass: "E-FD2 (HOYA)",
@@ -167,7 +167,7 @@ const LENS_DATA = {
       name: "L8",
       label: "Element 8",
       type: "Biconvex Positive",
-      nd: 1.83481,
+      nd: 1.834807,
       vd: 42.71,
       fl: 23.5,
       glass: "S-LAH55VS (OHARA)",
@@ -303,8 +303,8 @@ const LENS_DATA = {
   focusDescription: "Unit focusing — entire optical assembly translates along the optical axis.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.06,
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

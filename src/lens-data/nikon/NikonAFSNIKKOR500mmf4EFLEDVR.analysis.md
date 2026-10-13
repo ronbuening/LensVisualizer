@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 500mm f/4E FL ED VR
+# NIKON AF-S NIKKOR 500mm f/4 E FL ED VR
 
 ## Patent Reference and Design Identification
 
@@ -11,7 +11,7 @@
 **Title:** 光学系、光学装置、光学系の製造方法 (*Optical system, optical apparatus, and method for manufacturing an optical system*)\
 **Embodiment analyzed:** Example 1 / 第1実施例
 
-The prescription is the project-selected correlation for the **NIKON AF-S NIKKOR 500mm f/4E FL ED VR**. The patent does not identify a commercial lens by product name, so the correspondence is an evidence-based production correlation rather than an express manufacturer statement.
+The prescription is the project-selected correlation for the **NIKON AF-S NIKKOR 500mm f/4 E FL ED VR**. The patent does not identify a commercial lens by product name, so the correspondence is an evidence-based production correlation rather than an express manufacturer statement.
 
 Several independent features converge on that identification:
 

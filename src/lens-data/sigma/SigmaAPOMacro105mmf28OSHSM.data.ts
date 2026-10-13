@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║        LENS DATA — Sigma APO Macro 105mm F2.8 EX DG OS HSM                ║
+ * ║        LENS DATA — Sigma MACRO 105mm F2.8 EX DG OS HSM                    ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP 2012-58682 A, Example 4 (Sigma / Noriyuki Ogasawara).    ║
  * ║  16 elements / 11 air-separated groups, all spherical surfaces.           ║
@@ -26,7 +26,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-apo-macro-105mm-f28-os-hsm",
   maker: "Sigma",
-  name: "SIGMA APO Macro 105mm f/2.8 EX DG OS HSM",
+  name: "SIGMA MACRO 105mm f/2.8 EX DG OS HSM",
   subtitle: "JP 2012-58682 A Example 4 — Sigma / Ogasawara",
   specs: [
     "16 elements / 11 groups",
@@ -329,12 +329,15 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.312,
+  // Patent read 2026-10-06: Focus keyframes 1 and 2 are the patent's Example 4 variable-spacing columns for 1:2 and
+  // 1:1 magnification, transcribed unscaled.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Floating inner focus. L2a (E5-E7) moves imageward and L2c (E9-E11) moves objectward from infinity to 1:1 while L1, L2b/stop, L3a, and L3b remain fixed relative to the image plane.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.91,
+  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
   /* ── Layout tuning ── */

@@ -16,8 +16,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * clear apertures.  Surfaces 1A-4 were raised to pass the traced chief ray to the full-frame corner at
  * the 20.6 mm end, where FIG. 2(a) prints ω = 46.4° (2026-09-24 field-coverage audit).
  *
- * The data format has one physical stop semi-diameter.  The value below is the tele-end f/2.8 equivalent
- * stop radius; nominalFno remains the catalog aperture used by the UI.
+ * The STO `sd` below is the paraxial tele-end f/2.8 equivalent stop radius.  The wide-open iris radius at each
+ * zoom position is traced from nominalFno, the catalog aperture used by the UI.
  */
 
 const LENS_DATA = {

@@ -19,8 +19,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON APERTURE:                                                 ║
  * ║    The patent reports F/2.90 and does not publish a stop radius.    ║
- * ║    The STO semi-diameter below is inferred for the marketed f/2.8  ║
- * ║    production aperture; apertureDesign records the patent value.   ║
+ * ║    The STO semi-diameter below was inferred for the marketed f/2.8 ║
+ * ║    aperture; nominalFno and apertureDesign carry the patent value. ║
  * ║                                                                    ║
  * ║  NOTE ON TRACE FIELD:                                              ║
  * ║    maxTraceFieldDeg is 52.9°, the field of the Fig. 6 aberration   ║
@@ -260,8 +260,8 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.13,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   scFill: 0.58,
   yScFill: 0.48,

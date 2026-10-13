@@ -89,7 +89,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.4,
       fl: +44.6,
-      glass: "806404 — lanthanum flint (catalog unresolved; nd 1.8061, νd 40.4)",
+      glass: "L-LAH81 (OHARA discontinued low-softening glass, 806404; coordinate equivalent, supplier unconfirmed)",
       apd: false,
       role: "First positive member of Group 1; its aspherical front surface is the front-group corrector.",
     },
@@ -278,6 +278,8 @@ const LENS_DATA = {
    *  physical object-to-image ≈ 248.9 mm (198.1 + 50.78 mm track including the plate).
    */
   closeFocusM: 0.249,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription:
     "Floating focus — Group 1 (L1–L4 with the stop) and Group 2 (L5–L9) both advance toward the object; Group 2 moves farther (1.68 mm vs 1.07 mm at 200 mm).",
 

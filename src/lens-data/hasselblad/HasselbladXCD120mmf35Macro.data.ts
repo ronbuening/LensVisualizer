@@ -273,6 +273,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.43,
+  // Every focus keyframe is a source row.
+  publishedStations: { focus: [1, 2] },
   focusDescription:
     "Triple-group inner focus (G2 + G4 + G5 move toward object); constant overall length. G4 is primary focus element (40 mm travel). G5 reversal motion fine-tunes aberrations at macro magnifications.",
 

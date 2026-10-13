@@ -49,6 +49,7 @@ const LENS_DATA = {
   apertureMarketing: 5.6,
   apertureDesign: 5.7,
   lensMounts: ["fujifilm-g"],
+  acceptsTeleconverters: true, // GF1.4X TC WR per Fujifilm's compatibility chart
   imageFormat: "44x33",
   patentNumber: "WO 2025/013477 A1",
   patentAuthors: ["Takuya Tanaka", "Shunsuke Miyagishima"],

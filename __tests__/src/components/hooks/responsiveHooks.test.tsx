@@ -77,6 +77,18 @@ function SideLayoutProbe({ enabled, dep }: { enabled: boolean; dep: string }) {
   );
 }
 
+/** The measured container can be absent, as while the panel shows an error state. */
+function LateContainerProbe({ mounted }: { mounted: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
+  const useSideLayout = useSideLayoutDetection({ enabled: true, containerRef, deps: ["a"] });
+  return (
+    <>
+      {mounted ? <div ref={containerRef} /> : null}
+      <output>{useSideLayout ? "side" : "stacked"}</output>
+    </>
+  );
+}
+
 describe("responsive layout hooks", () => {
   beforeEach(() => {
     scrollHeight = 120;
@@ -170,6 +182,27 @@ describe("responsive layout hooks", () => {
     act(() => resizeObserver.trigger());
 
     expect(screen.getByText("stacked")).toBeTruthy();
+  });
+
+  it("picks up a container that mounts later and keeps its decision while the container is absent", () => {
+    const resizeObserver = installResizeObserverMock();
+
+    rectWidth = 900;
+    const { rerender } = render(<LateContainerProbe mounted={false} />);
+    expect(screen.getByText("stacked")).toBeTruthy();
+
+    // No dependency changes when the content returns; the hook must still attach to the new element.
+    rerender(<LateContainerProbe mounted />);
+    expect(screen.getByText("side")).toBeTruthy();
+    expect(resizeObserver.instances).toHaveLength(1);
+
+    rerender(<LateContainerProbe mounted={false} />);
+    expect(screen.getByText("side")).toBeTruthy();
+    expect(resizeObserver.instances[0].disconnect).toHaveBeenCalledTimes(1);
+
+    rerender(<LateContainerProbe mounted />);
+    expect(screen.getByText("side")).toBeTruthy();
+    expect(resizeObserver.instances).toHaveLength(2);
   });
 
   it("subscribes to resize changes and removes listeners on unmount", () => {

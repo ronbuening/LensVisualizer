@@ -63,6 +63,34 @@ const GOLDEN = (Math.sqrt(5) - 1) / 2;
 /** Coarse samples across the search range; aberrated beams can have several focus peaks. */
 const SCAN_SAMPLES = 41;
 const REFINE_ITERATIONS = 32;
+/** Share of transmitted flux ignored at each end of the axial-crossing distribution. */
+const CROSSING_TRIM = 0.02;
+/** Smallest margin beyond the crossings, and the farthest plane searched on either side, in mm. */
+const MIN_SEARCH_MARGIN_MM = 0.05;
+const MAX_SEARCH_SHIFT_MM = 10;
+/** Heights sampled across the last surface's clear aperture to find its rearmost point. */
+const REACH_SAMPLES = 32;
+
+/**
+ * Axial position of the rearmost point of the last surface inside its clear aperture.
+ *
+ * A ray cannot land on a plane it has already passed, so no image plane may sit in front of this
+ * position: some prescriptions leave only hundredths of a millimetre between the last surface and
+ * the image.
+ *
+ * @param state - prepared optical state
+ * @returns nearest usable image-plane position in mm, never behind the authored plane
+ */
+export function mtfNearestImagePlaneZ(state: PreparedOpticalState): number {
+  const last = state.surfaces.at(-1);
+  if (!last) return -Infinity;
+  let sag = 0;
+  for (let i = 1; i <= REACH_SAMPLES; i++) {
+    const value = last.profile.sag((last.sd * i) / REACH_SAMPLES);
+    if (Number.isFinite(value)) sag = Math.max(sag, value);
+  }
+  return Math.min(last.z + sag, state.imgZ);
+}
 
 /**
  * Maximise the mean axial MTF over the scored frequencies by moving one image plane.
@@ -70,12 +98,14 @@ const REFINE_ITERATIONS = 32;
  * @param bundles - traced axial bundles (reference wavelength first)
  * @param imagePlaneZ - authored axial image-plane position in mm
  * @param frequencies - scored frequencies in lp/mm (DC is ignored)
+ * @param nearestPlaneZ - nearest plane the rays can land on (see `mtfNearestImagePlaneZ`)
  * @returns best plane shift and the scores that justify it, or null when nothing can be scored
  */
 export function findAxialBestFocus(
   bundles: readonly MtfFocusBundle[],
   imagePlaneZ: number,
   frequencies: readonly number[],
+  nearestPlaneZ = -Infinity,
 ): MtfBestFocus | null {
   const scored = frequencies.filter((f) => f > 0);
   if (!scored.length || !bundles.length || bundles.some(({ bundle }) => bundle.rays.length < 4)) return null;
@@ -94,19 +124,21 @@ export function findAxialBestFocus(
     const values = otfMagnitude(combineOtfs(otfs));
     return values.reduce((sum, v) => sum + v, 0) / values.length;
   };
-  const range = searchRange(bundles[0].bundle, imagePlaneZ);
+  const range = searchRange(bundles, imagePlaneZ);
+  // The authored plane is always a candidate, so the nearest plane never excludes a zero shift.
+  const nearest = Math.max(range.nearest, Math.min(0, nearestPlaneZ - imagePlaneZ));
   const designScore = score(0);
   // Scan the whole range first: spherical aberration can split the score into separate peaks.
-  const step = (2 * range) / (SCAN_SAMPLES - 1);
+  const step = (range.farthest - nearest) / (SCAN_SAMPLES - 1);
   let best = { shift: 0, value: designScore };
   for (let i = 0; i < SCAN_SAMPLES; i++) {
-    const shift = -range + i * step;
+    const shift = nearest + i * step;
     const value = score(shift);
     if (value > best.value) best = { shift, value };
   }
   // Golden-section refinement inside the best sample's neighborhood.
-  let lo = best.shift - step;
-  let hi = best.shift + step;
+  let lo = Math.max(best.shift - step, nearest);
+  let hi = Math.min(best.shift + step, range.farthest);
   let a = hi - GOLDEN * (hi - lo);
   let b = lo + GOLDEN * (hi - lo);
   let fa = score(a);
@@ -153,20 +185,47 @@ function centroid(points: readonly MtfSpot[]): { x: number; y: number } {
 }
 
 /**
- * Search ±(largest axial crossing offset + margin): best focus of an aberrated beam lies between
- * its marginal and paraxial crossings, so the rays themselves bound the useful range.
+ * Plane shifts worth searching, from where the axial rays cross the axis: best focus of an
+ * aberrated beam lies between its marginal and paraxial crossings, so the rays themselves bound
+ * the useful range.
+ *
+ * The range spans the flux-weighted crossings of every wavelength with `CROSSING_TRIM` of the
+ * flux ignored at each end, so a few stray rays cannot stretch the scan until its steps straddle
+ * the focus. A ray already diverging from the axis counts with its virtual crossing in front of
+ * the last surface: the search then reaches toward a focus the authored plane lies far behind.
+ *
+ * @param bundles - traced axial bundles with their incident weights
+ * @param imagePlaneZ - authored axial image-plane position in mm
+ * @returns nearest and farthest plane shift in mm; the range always contains zero
  */
-function searchRange(bundle: MtfBundle, imagePlaneZ: number): number {
-  let extent = 0.05;
-  for (const ray of bundle.rays) {
-    const { terminalPoint: p, terminalDirection: d } = ray.trace;
-    const radius = Math.hypot(p[0], p[1]);
-    if (radius < 1e-9) continue;
-    // Axial rays are meridional: the path to the axis crossing is radius over the inward speed.
-    const inward = -(p[0] * d[0] + p[1] * d[1]) / radius;
-    if (!(inward > 1e-9)) continue;
-    const crossing = p[2] + (radius / inward) * d[2];
-    if (Number.isFinite(crossing)) extent = Math.max(extent, Math.abs(crossing - imagePlaneZ));
-  }
-  return Math.min(extent * 1.25, 10);
+function searchRange(bundles: readonly MtfFocusBundle[], imagePlaneZ: number): { nearest: number; farthest: number } {
+  const crossings: { offset: number; weight: number }[] = [];
+  for (const { bundle, weight } of bundles)
+    for (const ray of bundle.rays) {
+      const { terminalPoint: p, terminalDirection: d } = ray.trace;
+      const radius = Math.hypot(p[0], p[1]);
+      if (radius < 1e-9) continue;
+      // Axial rays are meridional: the path to the axis crossing is radius over the inward speed.
+      const inward = -(p[0] * d[0] + p[1] * d[1]) / radius;
+      if (!(Math.abs(inward) > 1e-9)) continue;
+      const offset = p[2] + (radius / inward) * d[2] - imagePlaneZ;
+      if (Number.isFinite(offset)) crossings.push({ offset, weight: weight * ray.weight });
+    }
+  crossings.sort((a, b) => a.offset - b.offset);
+  const total = crossings.reduce((sum, crossing) => sum + crossing.weight, 0);
+  const quantile = (share: number) => {
+    let cumulative = 0;
+    for (const crossing of crossings) {
+      cumulative += crossing.weight;
+      if (cumulative >= share * total) return crossing.offset;
+    }
+    return 0;
+  };
+  const first = Math.min(0, total > 0 ? quantile(CROSSING_TRIM) : 0);
+  const last = Math.max(0, total > 0 ? quantile(1 - CROSSING_TRIM) : 0);
+  const margin = Math.max(MIN_SEARCH_MARGIN_MM, 0.25 * (last - first));
+  return {
+    nearest: Math.max(first - margin, -MAX_SEARCH_SHIFT_MM),
+    farthest: Math.min(last + margin, MAX_SEARCH_SHIFT_MM),
+  };
 }

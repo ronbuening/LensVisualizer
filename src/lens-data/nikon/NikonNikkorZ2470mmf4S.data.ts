@@ -418,6 +418,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.3,
+  // The close-focus row is source-tabulated.
+  publishedStations: { focus: [1] },
   focusDescription: "Internal focus: G4 (L41 + L42) translates toward object. D18 + D22 sum conserved.",
 
   /* ── Aperture configuration ── */

@@ -46,6 +46,7 @@ const LENS_DATA = {
   focalLengthMarketing: [70, 300],
   focalLengthDesign: [72.053026443, 291.099455038],
   lensMounts: ["fujifilm-x"],
+  acceptsTeleconverters: true, // XF1.4X TC WR and XF2X TC WR per Fujifilm's compatibility charts
   imageFormat: "aps-c",
   patentNumber: "US 2021/0286156 A1",
   patentAuthors: ["Taiga Noda", "Ryosuke Nagami"],
