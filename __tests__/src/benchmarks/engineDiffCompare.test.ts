@@ -150,6 +150,49 @@ const RAY: Path = ["onAxis", "rays", 1];
 const HIT = 2;
 const HIT_POINT_Y: Path = [...RAY, "hits", "columns", "point", HIT, 1];
 
+/** An off-axis field of the bokeh preview, and the bokeh footprint of one sensor point of the posed focus analysis. */
+const BOKEH_FIELD: Path = ["jobs", "computeBokehPreviewPair", "value", "infinity", "fields", 1];
+const POSED_BOKEH: Path = ["jobs", "computePerspectiveFocusAnalysis", "value", "samples", 1, "bokeh"];
+/** An off-axis spot of the coma point cloud, and one of the posed coma analysis. */
+const COMA_FIELD: Path = ["jobs", "computeComaAnalysis", "value", "pointCloudPreview", "fields", 1];
+const POSED_COMA_SAMPLE: Path = ["jobs", "computePerspectiveFieldAberrations", "value", "coma", "samples", 1];
+/** The blur character of spherical aberration, in front of best focus. */
+const BLUR_CHARACTER: Path = ["jobs", "computeSphericalAberrationBlurCharacter", "value", "frontDefocus"];
+
+/** The Tier P lens with an absorbing element, whose rays do not all weigh the same. */
+const ABSORBING = lensId(FEATURE_REPRESENTATIVES.find(({ feature }) => feature === "bulk-absorption")!.lens);
+/**
+ * That lens's analysis record at the default state. The catalog's own prescription is captured once, by the first
+ * test that asks, and a test that edits the prescription captures its own.
+ */
+const absorbingAnalysisOf = (catalog: SerializedCatalog): PayloadRecord[] =>
+  captureRecords(
+    catalog,
+    TIER_P.filter(({ lens, family }) => lensId(lens) === ABSORBING && family === "analysis"),
+  );
+let absorbingRecords: PayloadRecord[] | undefined;
+const absorbingAnalysis = (): PayloadRecord[] => (absorbingRecords ??= absorbingAnalysisOf(CATALOG));
+
+/** The record path of a member, as the budget table is asked for it: "[]" for each array level. */
+const tablePath = (path: Path): string[] => path.map((step) => (typeof step === "number" ? "[]" : step));
+/** The same path as a finding prints it. */
+const pathText = (path: Path): string =>
+  path.reduce<string>(
+    (text, step) => (typeof step === "number" ? `${text}[${step}]` : text ? `${text}.${step}` : step),
+    "",
+  );
+/** The five statistics of a footprint's radial profile: two of a bin, two means of bins, and the ratio of the means. */
+const profileStatistics = (footprint: Path): Path[] => [
+  [...footprint, "radialProfile", "bins", 0, "density"],
+  [...footprint, "radialProfile", "bins", 0, "energyFraction"],
+  [...footprint, "radialProfile", "centerDensity"],
+  [...footprint, "radialProfile", "rimDensity"],
+  [...footprint, "centerToRimRatio"],
+];
+/** How many different weights the points of a footprint carry: one where the engine summed rays of one weight. */
+const distinctWeights = (records: readonly PayloadRecord[], footprint: Path): number =>
+  new Set((at(records, "analysis", [...footprint, "points"]) as { weight: number }[]).map(({ weight }) => weight)).size;
+
 /* ── budgets.ts ── */
 
 describe("engineDiff budget table", () => {
@@ -171,8 +214,15 @@ describe("engineDiff budget table", () => {
     expect(row("mtfModulation")).toEqual(["absolute", 1e-7, ""]);
     expect(row("count")).toEqual(["exact", 0, ""]);
     expect(row("requested")).toEqual(["exact", 0, ""]);
+    /* Two kinds of ratio the plan budgets by name, each a plain share of the value: the weighted bins of a bokeh
+     * footprint at the 1e-10 of a smooth ratio, and one analysis length over another at 1e-8. */
+    expect(row("binnedStatistic")).toEqual(["relative", 1e-10, "relative"]);
+    expect(QUANTITIES.binnedStatistic.floor).toBeUndefined();
+    expect(row("lengthRatio")).toEqual(["relative", 1e-8, "relative"]);
+    expect(QUANTITIES.lengthRatio.floor).toBeUndefined();
     const planRows = (Object.keys(QUANTITIES) as QuantityId[]).filter((id) => QUANTITIES[id].origin === "plan");
-    expect(planRows).toHaveLength(11);
+    expect(planRows).toHaveLength(13);
+    expect(planRows.slice(11)).toEqual(["binnedStatistic", "lengthRatio"]);
   });
 
   it("gives a relative class a floor only where its values may be zero, in the field's own unit", () => {
@@ -188,6 +238,11 @@ describe("engineDiff budget table", () => {
     expect(floors).toEqual([
       ["clippedHit", 1e-12, { bound: 1e-7, unit: "mm" }],
       ["firstOrder", 1e-12, lengthFloor],
+      /* A weighted bin is a sum of weights that are never negative. Nothing cancels in it, so it is never near zero
+       * without being zero, and a bin no ray falls in is zero on both sides. */
+      ["binnedStatistic", 1e-10, null],
+      /* One spot extent over another is 1 or more, and a span ratio is zero only for a footprint with no rays. */
+      ["lengthRatio", 1e-8, null],
       /* A hit's effective tolerance is a length that is never below the engine's 1e-12 mm target. */
       ["effectiveTolerance", 1e-12, null],
       ["layoutLength", 1e-12, lengthFloor],
@@ -248,13 +303,17 @@ describe("engineDiff budget table", () => {
     expect(resolveBudgetRule("analysis", ["jobs", "x", "value", "trace", "residualShare"])?.quantity).toBe(
       "nestedResidualShare",
     );
-    /* No class is looser than the plan's loosest row in its unit. */
-    const loosest: Record<string, number> = { mm: 1e-7, deg: 1e-10, relative: 1e-10, points: 1e-8, "": 1e-7 };
-    const looser = (Object.keys(QUANTITIES) as QuantityId[]).filter((id) => {
-      const { kind, c1, unit } = QUANTITIES[id];
-      return (kind === "absolute" || kind === "relative" || kind === "slope") && !(c1 <= loosest[unit]);
-    });
+    /* No class is looser than the plan's loosest row in its unit. Among the relative rows that is the ratio of two
+     * analysis lengths, at 1e-8. */
+    const loosest: Record<string, number> = { mm: 1e-7, deg: 1e-10, relative: 1e-8, points: 1e-8, "": 1e-7 };
+    const differenced = (Object.keys(QUANTITIES) as QuantityId[]).filter((id) =>
+      ["absolute", "relative", "slope"].includes(QUANTITIES[id].kind),
+    );
+    const looser = differenced.filter((id) => !(QUANTITIES[id].c1 <= loosest[QUANTITIES[id].unit]));
     expect(looser).toEqual([]);
+    /* That row is alone past the budget of a fraction: no other relative class may take its 1e-8 as a ceiling. */
+    const pastAFraction = differenced.filter((id) => QUANTITIES[id].unit === "relative" && QUANTITIES[id].c1 > 1e-10);
+    expect(pastAFraction).toEqual(["lengthRatio"]);
   });
 
   it("holds every class to its C1 budget under C2, and says which C2 criteria it does not apply", () => {
@@ -414,7 +473,7 @@ describe("engineDiff drift detection", () => {
     expect(compare("c1", head).passed).toBe(true);
   });
 
-  it.each<[RequestFamily, Path, QuantityId, number]>([
+  it.each<[RequestFamily, Path, QuantityId, number, (() => PayloadRecord[])?]>([
     ["traces", HIT_POINT_Y, "landing", 1],
     ["traces", [...RAY, "hits", "columns", "normal", HIT, 1], "directionCosine", 1],
     ["traces", [...RAY, "input", "origin", 1], "chiefLaunch", 1],
@@ -441,34 +500,49 @@ describe("engineDiff drift detection", () => {
     /* A bar of the LoCA inset is a focus shift drawn at about 201 px per mm. */
     ["analysis", ["jobs", "locaBarOffsets", "value", "barOffsets", "R"], "analysisLength", 201],
     ["analysis", ["jobs", "locaBarOffsets", "value", "legacy", "mag"], "ratio", 1],
+    /* The radial profile of a bokeh footprint whose rays weigh differently, which the benchmark prime's do not: a
+     * centre-to-rim ratio in the hundreds, and bins that are fractions of the profile's peak or of its total. */
+    ["analysis", [...BOKEH_FIELD, "centerToRimRatio"], "binnedStatistic", 1, absorbingAnalysis],
+    ["analysis", [...BOKEH_FIELD, "radialProfile", "bins", 0, "density"], "binnedStatistic", 1, absorbingAnalysis],
+    [
+      "analysis",
+      [...BOKEH_FIELD, "radialProfile", "bins", 0, "energyFraction"],
+      "binnedStatistic",
+      1,
+      absorbingAnalysis,
+    ],
+    ["analysis", [...BOKEH_FIELD, "radialProfile", "centerDensity"], "binnedStatistic", 1, absorbingAnalysis],
+    ["analysis", [...POSED_BOKEH, "radialProfile", "rimDensity"], "binnedStatistic", 1, absorbingAnalysis],
+    /* One image-plane length of a spot over another, in the centered coma analysis and the posed one. */
+    ["analysis", [...COMA_FIELD, "tailSkewRatio"], "lengthRatio", 1],
+    ["analysis", [...COMA_FIELD, "sagittalToTangentialRatio"], "lengthRatio", 1],
+    ["analysis", [...POSED_COMA_SAMPLE, "tailSkewRatio"], "lengthRatio", 1],
     ["mtf", ["result", "fields", 1, "sagittal", 5], "mtfModulation", 1],
     ["mtf", ["result", "focus", "bestAxialShiftMm"], "mtfFocusShift", 1],
-  ])("holds %s %j to the %s budget under C1: twice fails, half passes", (request, path, quantity, scale) => {
-    const value = numberAt(request, path);
+  ])("holds %s %j to the %s budget under C1: twice fails, half passes", (request, path, quantity, scale, from) => {
+    /* The benchmark prime's records, or those of the lens a row names where the prime has no such field. */
+    const source = from?.() ?? SERENAR_RECORDS;
+    const value = at(source, request, path);
+    if (typeof value !== "number") throw new Error(`${request} ${path.join(".")} is not a number`);
     const { kind, floor }: Quantity = QUANTITIES[quantity];
-    expect(
-      resolveBudgetRule(
-        request,
-        path.map((step) => (typeof step === "number" ? "[]" : step)),
-      )?.scale,
-    ).toBe(scale);
+    expect(resolveBudgetRule(request, tablePath(path))?.scale).toBe(scale);
     /* A relative budget is a share of the value, and of no less than the class's floor where it has one. */
     const bound = (budget: number) =>
       kind === "relative" ? Math.max(budget * Math.abs(value), floor?.bound ?? 0) : budget;
     const unit = bound(budgetOf(quantity, "c1")) * scale;
-    const moved = (factor: number) => withChange(request, path, () => value + factor * unit);
+    const moved = (factor: number) => withChange(request, path, () => value + factor * unit, source);
 
-    const beyond = compare("c1", moved(2));
+    const beyond = compare("c1", moved(2), source);
     expect(beyond.passed).toBe(false);
     expect(beyond.engine.failures).toEqual([expect.objectContaining({ request, kind: "number", quantity })]);
     const { measure, budget } = beyond.engine.failures[0];
     expect(measure! / budget!).toBeCloseTo(2, 1);
     expect(beyond.engine.quantities[quantity]).toMatchObject({ differing: 1, beyondBudget: 1 });
 
-    const within = compare("c1", moved(0.5));
+    const within = compare("c1", moved(0.5), source);
     expect(within.passed).toBe(true);
     expect(within.engine.quantities[quantity]).toMatchObject({ differing: 1, beyondBudget: 0 });
-    expect(compare("c0", moved(0.5)).passed).toBe(false);
+    expect(compare("c0", moved(0.5), source).passed).toBe(false);
   });
 
   it("holds a diagnostic point to 1e-7 mm near the lens and to 1e-12 of its size far from it", () => {
@@ -809,6 +883,261 @@ describe("engineDiff drift detection", () => {
     expect(compare("c1", pupil(2e-12), pupil(0)).passed).toBe(false);
     expect(compare("c1", pupil(0.5 + 5e-13), pupil(0.5)).passed).toBe(true);
     expect(compare("c1", pupil(0.5 * (1 + 1e-10)), pupil(0.5)).passed).toBe(false);
+  });
+
+  it("accepts the rounding in the weighted bins of an absorbing lens, and holds the counts beside them exact", () => {
+    /* A bokeh footprint weighs each ray by its transmission. Through this lens's absorbing element that is
+     * exp(−α · path), so a bin of the footprint's radial profile is a sum of such weights and no count, and its
+     * last bits move when a hit moves inside its tolerance. A run of closed-form roots against the iterative ones
+     * moved these bins by 1.6e-13 of themselves at most, and every count beside them not at all. */
+    const records = absorbingAnalysis();
+    expect(distinctWeights(records, BOKEH_FIELD)).toBeGreaterThan(1);
+
+    const ratio: Path = [...BOKEH_FIELD, "centerToRimRatio"];
+    const density: Path = [...BOKEH_FIELD, "radialProfile", "bins", 0, "density"];
+    const set = (path: Path, value: number, source: readonly PayloadRecord[] = records) =>
+      withChange("analysis", path, () => value, source);
+    const failed = (path: Path, kind: Finding["kind"], quantity: QuantityId) => ({
+      request: "analysis",
+      path: pathText(path),
+      kind,
+      quantity,
+    });
+    const bothBinned = [ratio, density].map((path) => failed(path, "number", "binnedStatistic"));
+
+    /* One field's centre-to-rim ratio and the density of its first bin as that run's base engine returned them,
+     * then as its head engine did, and then both moved by one factor. */
+    const scaled = (factor: number) =>
+      set(density, 0.6779483983704641 * factor, set(ratio, 323.8170972473501 * factor));
+    const base = scaled(1);
+    const found = set(density, 0.677948398370464, set(ratio, 323.81709724735));
+    for (const head of [found, scaled(1 + 2e-13)]) {
+      const summary = compare("c1", head, base);
+      expect(summary.passed).toBe(true);
+      expect(summary.engine.quantities.binnedStatistic).toMatchObject({ differing: 2, beyondBudget: 0 });
+      /* Under C0 every number is exact. */
+      expect(failuresOf(compare("c0", head, base))).toEqual(bothBinned);
+    }
+    expect(failuresOf(compare("c1", scaled(1 + 1e-9), base))).toEqual(bothBinned);
+
+    /* The bound is a share of the bin itself, however little of the light the bin holds. A sum of weights that are
+     * never negative loses nothing to cancellation, so a faint bin moves by no more of itself than a full one. The
+     * faintest bin of that run's record, at 1.7e-4 of its profile's peak, takes 2e-13 of itself and not 1e-9, which
+     * is 1.7e-13 of the peak. */
+    const bin = (value: number) => set(density, value);
+    const binFailed = [failed(density, "number", "binnedStatistic")];
+    const faint = 0.00017037667862741682;
+    expect(compare("c1", bin(faint * (1 + 2e-13)), bin(faint)).passed).toBe(true);
+    expect(failuresOf(compare("c1", bin(faint * (1 + 1e-9)), bin(faint)))).toEqual(binFailed);
+    /* A bin no ray falls in is exactly zero, on both sides. The class has no floor, so only zero agrees with zero:
+     * a bin that is empty on one side alone has gained a ray, whatever that ray weighs. */
+    for (const gained of [5e-11, 1e-300]) {
+      expect(failuresOf(compare("c1", bin(gained), bin(0)))).toEqual(binFailed);
+    }
+
+    /* The counts of the same footprint move by whole rays or not at all: the rays that passed, and their share of
+     * the rays launched. Neither takes the move the bins were allowed. */
+    const passed: Path = [...BOKEH_FIELD, "passedRays"];
+    const share: Path = [...BOKEH_FIELD, "transmission"];
+    const counted = (rays: number, surviving: number) => set(passed, rays, set(share, surviving));
+    expect(failuresOf(compare("c1", counted(336, 0.5), counted(337, 0.5)))).toEqual([
+      failed(passed, "discrete", "count"),
+    ]);
+    expect(failuresOf(compare("c1", counted(337, 0.5 * (1 + 2e-13)), counted(337, 0.5)))).toEqual([
+      failed(share, "discrete", "countRatio"),
+    ]);
+  });
+
+  it("keeps the bins of the spherical blur character exact, which the engine fills with rays of one weight", () => {
+    /* The same five statistics of the same kind of radial profile are budgeted by what the engine sums into the
+     * bins. A bokeh footprint weighs a ray by its transmission, in the centered analysis and in the posed one. The
+     * blur character of spherical aberration bins its rays at the pupil sampler's weight, one number for every ray,
+     * so its statistics are functions of counts on an absorbing lens too. Its record holds no points beside the
+     * profile to say so, as a footprint's does, so the table names the job. */
+    const classOf = (path: Path) => resolveBudgetRule("analysis", tablePath(path))?.quantity;
+    expect(profileStatistics(BLUR_CHARACTER).map(classOf)).toEqual(Array(5).fill("countRatio"));
+
+    /* That is a fact about the engine, so it is held here. With the absorption taken out of the prescription the
+     * rays of the bokeh footprint weigh the same again, and the blur character does not change by a bit. */
+    const cleared: SerializedCatalog = {
+      ...CATALOG,
+      lenses: CATALOG.lenses.map((entry) => {
+        if (entry.key !== ABSORBING) return entry;
+        const data = decodeValue(entry.prescription) as LensDataInput;
+        const elements = data.elements.map(({ absorptionCoefficientPerMm: _absorption, ...element }) => element);
+        return { ...entry, prescription: encodeValue({ ...data, elements }) };
+      }),
+    };
+    const [absorbing, clear] = [absorbingAnalysis(), absorbingAnalysisOf(cleared)];
+    expect(distinctWeights(absorbing, BOKEH_FIELD)).toBeGreaterThan(1);
+    expect(distinctWeights(clear, BOKEH_FIELD)).toBe(1);
+    const blurCharacter = at(absorbing, "analysis", BLUR_CHARACTER.slice(0, -1)) as Record<string, object>;
+    expect(Object.keys(blurCharacter)).toEqual(expect.arrayContaining(["frontDefocus", "rearDefocus"]));
+    expect(Object.keys(blurCharacter.frontDefocus)).not.toContain("points");
+    expect(at(clear, "analysis", BLUR_CHARACTER.slice(0, -1))).toEqual(blurCharacter);
+
+    /* So one of its statistics that moved at all has had a ray change bin, by however little it moved: the move
+     * that the weighted bins are allowed is a discrete difference here. */
+    const [density, , , , ratio] = profileStatistics(BLUR_CHARACTER);
+    const scaled = (factor: number) =>
+      withChange(
+        "analysis",
+        density,
+        () => 0.25 * factor,
+        withChange("analysis", ratio, () => 4 * factor, absorbing),
+      );
+    expect(failuresOf(compare("c1", scaled(1 + 2e-13), scaled(1)))).toEqual(
+      [ratio, density].map((path) => ({
+        request: "analysis",
+        path: pathText(path),
+        kind: "discrete",
+        quantity: "countRatio",
+      })),
+    );
+  });
+
+  it("keeps the bins of a footprint exact where its rays weigh the same, and reads that from its points", () => {
+    /* A footprint's record holds its points beside its profile, each with the weight the engine summed into a bin.
+     * Where no element absorbs, every point has one weight and each statistic of the profile is a function of the
+     * counts in the bins. Rounding cannot move it, so a difference, however small, is a ray that changed bin: a
+     * discrete transition, which a pull request may declare, and no number beyond a budget, which none may. */
+    const weighted = absorbingAnalysis();
+    const finding = (path: Path, kind: Finding["kind"], quantity: QuantityId | null) => ({
+      request: "analysis",
+      path: pathText(path),
+      kind,
+      quantity,
+    });
+    for (const footprint of [BOKEH_FIELD, POSED_BOKEH]) {
+      expect(distinctWeights(SERENAR_RECORDS, footprint)).toBe(1);
+      expect(distinctWeights(weighted, footprint)).toBeGreaterThan(1);
+      for (const path of profileStatistics(footprint)) {
+        const scaled = (source: readonly PayloadRecord[]) =>
+          withChange("analysis", path, (value) => Number(value) * (1 + 2e-13), source);
+        /* The move a weighted bin is allowed is a discrete difference between two sides of one weight each. */
+        expect(failuresOf(compare("c1", scaled(SERENAR_RECORDS)))).toEqual([finding(path, "discrete", "countRatio")]);
+        const rounding = compare("c1", scaled(weighted), weighted);
+        expect(rounding.passed).toBe(true);
+        expect(rounding.engine.quantities.binnedStatistic).toMatchObject({ differing: 1, beyondBudget: 0 });
+      }
+    }
+
+    const ratio: Path = [...BOKEH_FIELD, "centerToRimRatio"];
+    const points: Path = [...BOKEH_FIELD, "points"];
+    const moved = (factor: number, source: readonly PayloadRecord[] = SERENAR_RECORDS) =>
+      withChange("analysis", ratio, (value) => Number(value) * factor, source);
+    const beyond = [finding(ratio, "number", "binnedStatistic")];
+
+    /* Both sides have to say so. A side whose points do not all weigh the same holds sums of weights, and the pair
+     * is held to the budget: here one point weighs half of what the others do, in the head's footprint and then in
+     * the base's. */
+    const weight: Path = [...points, 0, "weight"];
+    const halved = (source: readonly PayloadRecord[]) =>
+      withChange("analysis", weight, (value) => Number(value) / 2, source);
+    const halvedWeight = finding(weight, "number", "ratio");
+    expect(failuresOf(compare("c1", halved(moved(1 + 2e-13))))).toEqual([halvedWeight]);
+    expect(failuresOf(compare("c1", halved(moved(1 + 1e-9))))).toEqual([...beyond, halvedWeight]);
+    expect(failuresOf(compare("c1", moved(1 + 2e-13), halved(SERENAR_RECORDS)))).toEqual([halvedWeight]);
+    expect(failuresOf(compare("c1", moved(1 + 1e-9), halved(SERENAR_RECORDS)))).toEqual([...beyond, halvedWeight]);
+
+    /* Nor do two sides of one weight each hold counts alone where the two weights are not the same: each side's
+     * sums then round in their own way. */
+    const reweighed = withChange(
+      "analysis",
+      points,
+      (list) => (list as { weight: number }[]).map((point) => ({ ...point, weight: point.weight * (1 + 1e-12) })),
+      moved(1 + 2e-13),
+    );
+    expect(distinctWeights(reweighed, BOKEH_FIELD)).toBe(1);
+    const rounded = compare("c1", reweighed);
+    expect(rounded.passed).toBe(true);
+    expect(rounded.engine.quantities.binnedStatistic).toMatchObject({ differing: 1, beyondBudget: 0 });
+
+    /* A footprint that lost every ray on one side has no weight to differ. Its profile is the empty one, and its
+     * difference from a profile of counts is discrete. */
+    const emptied = withChange("analysis", points, () => [], moved(1 + 2e-13));
+    expect(failuresOf(compare("c1", emptied))).toEqual([
+      finding(ratio, "discrete", "countRatio"),
+      finding(points, "shape", null),
+    ]);
+
+    /* A profile with no points beside it does not say what its rays weigh, and is held as a weighted one: on both
+     * sides, or on one. Nor do points that carry no weight say it. */
+    const bare = (source: readonly PayloadRecord[]) =>
+      withChange(
+        "analysis",
+        BOKEH_FIELD,
+        (field) => {
+          const { points: _points, ...rest } = field as Record<string, unknown>;
+          return rest;
+        },
+        source,
+      );
+    expect(compare("c1", bare(moved(1 + 2e-13)), bare(SERENAR_RECORDS)).passed).toBe(true);
+    expect(failuresOf(compare("c1", bare(moved(1 + 1e-9)), bare(SERENAR_RECORDS)))).toEqual(beyond);
+    expect(failuresOf(compare("c1", bare(moved(1 + 1e-9))))).toEqual([...beyond, finding(points, "shape", null)]);
+    const unweighed = (source: readonly PayloadRecord[]) =>
+      withChange(
+        "analysis",
+        points,
+        (list) => (list as Record<string, unknown>[]).map(({ weight: _weight, ...point }) => point),
+        source,
+      );
+    expect(failuresOf(compare("c1", unweighed(moved(1 + 1e-9)), unweighed(SERENAR_RECORDS)))).toEqual(beyond);
+  });
+
+  it("holds one spot extent over another to 1e-8 of the ratio, where the budget of a fraction cannot", () => {
+    /* The skew of a coma tail is the longer extent of a spot from its centroid over the shorter. A spot is some
+     * thousandths of a millimetre across, so rounding that moves an extent by 1e-13 mm, five orders inside the
+     * budget of an analysis length, moves the ratio by 1e-10 of itself. */
+    const skew: Path = [...POSED_COMA_SAMPLE, "tailSkewRatio"];
+    const spans: Path = [...COMA_FIELD, "sagittalToTangentialRatio"];
+    const set = (path: Path, value: number) => withChange("analysis", path, () => value);
+    const failed = (path: Path, quantity: QuantityId) => [
+      { request: "analysis", path: pathText(path), kind: "number", quantity },
+    ];
+
+    /* The pair furthest apart in a run of closed-form roots against the iterative ones: 2.95e-10 of the ratio. */
+    const [base, head] = [set(skew, 1.092679840905723), set(skew, 1.0926798412280463)];
+    const found = compare("c1", head, base);
+    expect(found.passed).toBe(true);
+    expect(found.engine.quantities.lengthRatio).toMatchObject({ differing: 1, beyondBudget: 0 });
+    expect(found.engine.quantities.lengthRatio!.largest!.measure! / 1e-10).toBeCloseTo(2.95, 2);
+    /* Under C0 every number is exact. */
+    expect(failuresOf(compare("c0", head, base))).toEqual(failed(skew, "lengthRatio"));
+
+    /* 3e-10 of the ratio passes and 1e-7 fails: for the skew of the posed analysis, and for both ratios of the
+     * centered one. */
+    for (const path of [skew, [...COMA_FIELD, "tailSkewRatio"], spans]) {
+      const scaled = (factor: number) => set(path, 1.6 * factor);
+      expect(compare("c1", scaled(1 + 3e-10), scaled(1)).passed).toBe(true);
+      const beyond = compare("c1", scaled(1 + 1e-7), scaled(1));
+      expect(failuresOf(beyond)).toEqual(failed(path, "lengthRatio"));
+      expect(beyond.engine.failures[0].measure! / 1e-8).toBeCloseTo(10, 3);
+    }
+    /* The class has no floor. A footprint with no rays reports a span ratio of exactly 0, and only zero agrees
+     * with zero. */
+    expect(failuresOf(compare("c1", set(spans, 1e-300), set(spans, 0)))).toEqual(failed(spans, "lengthRatio"));
+
+    /* What is measured in fractions of the pupil stays a fraction, where 3e-10 is past the budget: the aspect of
+     * a pupil footprint and the offset of its centroid. */
+    for (const member of ["catEyeAspect", "shiftRadius"]) {
+      const path: Path = [...BOKEH_FIELD, "pupilFootprint", member];
+      expect(failuresOf(compare("c1", set(path, 0.9 * (1 + 3e-10)), set(path, 0.9)))).toEqual(failed(path, "ratio"));
+    }
+    /* The correction of a chief ray's launch height stays a smooth ratio as well. It is one length over another,
+     * the solved launch height over the paraxial one, but neither is an analysis length, and the plan's row does
+     * not name it. The row is tighter than its parts all the same: at the innermost sampled field the paraxial
+     * height is a fraction of a millimetre, and the 1e-9 mm of a launch height is more than 1e-10 of that. */
+    const correction: Path = ["jobs", "computeBothPupilAberrationProfiles", "value", "ep", "samples", 1];
+    expect(numberAt("analysis", [...correction, "chiefRayCorrection"])).toBeGreaterThan(0);
+    expect(resolveBudgetRule("analysis", tablePath([...correction, "chiefRayCorrection"]))?.quantity).toBe("ratio");
+    const paraxialHeightMm =
+      numberAt("analysis", ["inputs", "fieldGeometry", "epRatio"]) *
+      Math.tan((numberAt("analysis", [...correction, "fieldDeg"]) * Math.PI) / 180);
+    expect(paraxialHeightMm).toBeGreaterThan(0.1);
+    expect(paraxialHeightMm).toBeLessThan(1);
+    expect(QUANTITIES.chiefLaunch.c1 / paraxialHeightMm).toBeGreaterThan(QUANTITIES.ratio.c1);
   });
 
   it("reports a failing solver output in quanta of its solver", () => {
