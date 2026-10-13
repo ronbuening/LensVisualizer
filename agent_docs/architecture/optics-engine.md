@@ -294,8 +294,20 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
   its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within 1e-8), a zoom
   field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, `varLabels` that name no gap,
   and fields V1 does not define or only the engine writes.
+- `ingestLensV2` and `ingestTeleconverterV2` (`ingestV2.ts`) map a `schema: 2` file (`src/types/lensDataV2.ts`) onto
+  it, and `ingestLens` / `ingestTeleconverter` send a file of either version to its ingest by `schema`. V2 ingest
+  applies the same defaults at their canonical paths, numbers undrawn media by first use as V1 ingest does (their
+  authored ids and names go to provenance, so they never reach the fingerprint), and takes a variable gap's first
+  value as its surface's `d`. It also refuses V2's own rules at their authored paths: a medium naming no element or
+  medium, an unused or duplicate medium, a gap keyed by no surface or out of step with the station and keyframe
+  counts, a station field on some stations only, an element span naming no surface, and a stop `sd` the engine would
+  not read or a missing one it would. The rules both versions share (unknown fields, defaults, aspheres, rear plates)
+  are in `ingestCommon.ts`.
+- A stop whose radius is derived or scheduled carries no `sd` in V2. `validateLensData` accepts it absent, generated
+  rear-plate rims skip it (below), and `lensDataStopRadiusAuthority` in `canonical.ts` reads that authority from V1
+  data for both.
 - `toLensData` (`toLensData.ts`) is the V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
-  and `toLensDataInput` gives it back as authored.
+  and `toLensDataInput` gives it back as authored. A V2 file's view writes one V1 spelling of each fact.
 - Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the
   defaults table. `buildLens.ts` re-exports the two ingest functions and the two V1 views, the way code outside the
   engine reaches them.
@@ -324,7 +336,8 @@ A plate without a published `sd` gets a generated rim marked `clips: false`. The
 in `trace/aperture.ts` and its legacy twin in `internal/exactSurfaceTrace.ts`) and the paraxial half-field estimates
 (`buildLens`, `computeFieldGeometryAtState2`) skip it, so the plate never clips a ray or limits the field at any rim
 size. The rim, 1.5 × the larger of the largest authored `sd` and the image semi-diagonal, still extends the envelopes
-that ray launch and intersection bounds read from surface rims. A published plate `sd` is a real aperture.
+that ray launch and intersection bounds read from surface rims. A derived or scheduled stop's `sd` does not count:
+the engine never reads it, and V2 leaves it out. A published plate `sd` is a real aperture.
 
 What is hidden, and where:
 

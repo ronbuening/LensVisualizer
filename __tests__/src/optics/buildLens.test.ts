@@ -707,6 +707,33 @@ describe("buildLens — rear plates", () => {
     }
   });
 
+  /* V2 leaves a derived stop's `sd` out, so a generated rim must not grow with a value the engine never reads. */
+  it("sizes generated plate rims without a derived stop's sd", () => {
+    const plateSds = (stop: Partial<SurfaceData>) =>
+      buildLens(
+        catalogLensData({
+          key: "test-rear-plate-wide-stop",
+          name: "Test rear plate, wide stop",
+          closeFocusM: 0.5,
+          yScFill: 0.55,
+          nominalFno: 2,
+          fstopSeries: [2, 2.8, 4],
+          elements: [{ id: 1, name: "L1", label: "E1", type: "positive", nd: 1.5168, vd: 64.17 }],
+          surfaces: [
+            { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, ...stop },
+            { label: "1", R: 50, d: 5, nd: 1.5168, elemId: 1, sd: 15 },
+            { label: "2", R: -50, d: 44, nd: 1, elemId: 0, sd: 15 },
+          ],
+          rearPlates: [REAR_PLATE_FIXTURE],
+        }),
+      )
+        .S.filter((surface) => surface.synthetic === "rearPlate")
+        .map((surface) => surface.sd);
+
+    expect(plateSds({ sd: 30 })).toEqual([22.5, 22.5]);
+    expect(plateSds({})).toEqual([22.5, 22.5]);
+  });
+
   /* The fixture's generated 22.5 mm rim sits ~49 mm behind the lens, where the chief ray is near full image height;
    * as an aperture it would cap the field far inside the lens's own coverage. A published rim is a real aperture. */
   it("never lets a generated plate rim clip or limit the field, while a published rim still does", () => {

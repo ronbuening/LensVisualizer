@@ -1336,23 +1336,49 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - add `LensDataV2Input` and `TeleconverterDataV2Input`, and `ingestV2`, which dispatches on `schema`;
     - V2-specific validation reports authored paths: unknown `medium`, gap labels, station counts, spans, and
       stop-radius authority.
+  - **As built:**
+    - `ingestLensV2` and `ingestTeleconverterV2` read a `schema: 2` file. `ingestLens` and `ingestTeleconverter`
+      dispatch a file of either version, and `buildLens`, the two catalogs and the harness's ingest capability read
+      through them, so this is the first commit that reads a V2 file. A V1 file keeps the validator-first order of
+      S2.P1.T2. A V2 file's refusals come from V2 ingest at the file's own paths, and the validator then reads its V1
+      view. The rules both versions share (unknown fields, defaults, aspheres, rear plates) live in `ingestCommon.ts`.
+    - **Undrawn media** are numbered by first use, `m1`, `m2`, …, as V1 ingest numbers them. A V2 medium's own id and
+      name stay in provenance, so they never reach the semantic fingerprint and a hand-named V2 medium survives
+      `--to-version 1` and back. A medium no surface uses, one with the index of air, and one repeating another
+      medium's index are refused, because V1 cannot hold them apart.
+    - **V2's own refusals,** each at its authored path: a medium naming no element or medium; a gap keyed by no
+      surface; a gap surface that also writes `d`, or a surface with neither; gap rows out of step with the station
+      or keyframe counts; a station field (`nominalFNumber`, `stopSemiDiameter`, `closeFocusM`) on some stations
+      only; station labels other than all, or the first and last; no published station; a published keyframe, or a
+      conjugate's station or keyframe, that names none; an element span naming no surface or running backwards; a
+      design f-number stated both on the aperture and on the stations, or neither; and a stop `sd` the engine would
+      not read, or a missing one it would.
   - **Derived stops carry no `sd`:**
+    - "Derived" here is every stop whose radius is not authored: derived from the f-number, or scheduled. The engine
+      reads neither stop's `sd`, so both may leave it out (891 stops in the field mapping; 906 on 2026-10-13).
     - the existing validator accepts an absent `sd` on a derived stop;
     - generated rear-plate rims take the largest authored `sd` among surfaces other than a derived stop. A generated
       rim never clips (`clips: false`), so its size only extends launch and intersection envelopes. This is C0 on
       today's catalog, which has no lens whose stop is the largest authored `sd` alongside generated rims.
+    - `lensDataStopRadiusAuthority` (`canonical.ts`) reads the authority from V1 data for the validator, the rims and
+      V1 ingest.
   - **Files:**
     - `src/types/lensDataV2.ts`
-    - `src/optics/prescription/ingestV2.ts`
+    - `src/optics/prescription/ingestV2.ts`, and `ingestCommon.ts` beside it
     - `src/optics/validateLensData.ts`
     - `src/optics/prescription/rearPlates.ts`
+    - the dispatch: `src/optics/buildLens.ts`, `src/optics/prescription/normalizeLensData.ts`,
+      `src/utils/catalog/{lensCatalog, teleconverterCatalog}.ts`, `src/benchmarks/engineDiff/seamAdapter.ts`
   - **Tests:**
     - `__tests__/src/optics/prescription/ingestV2.test.ts`: one V1/V2 fixture pair per feature family, with equal
       semantic fingerprints. The families: prime, zoom, focus keyframes, published stations, conjugates, aberration
       control, folded (auto and explicit), mirrors with spans, diffractive, absorption, rear plates, media, perspective
-      control, projection and teleconverter.
+      control, projection and teleconverter. Each pair also builds to the same harness build record.
     - An offender-collecting sweep that rebuilds every derived-stop catalog lens with its authored stop `sd` removed,
-      and requires every payload except the authored-data echo to be bit-identical.
+      and requires every payload except the authored-data echo to be bit-identical. In `npm run test` it compares the
+      Tier P build and layout records, which hold every constant `buildLens` derives; the echo drops a derived stop's
+      `sd` anyway (`normalizeAuthoredData`), so it is compared too. The full Tier P capture of the same sweep takes
+      about four minutes a side, and was run once for the PR.
     - The negative cases.
   - **Gate:** C0.
 - **S2.P2.T2 Tooling reads both versions.**

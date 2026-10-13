@@ -204,13 +204,20 @@ export function resolveSeam(): EngineSeam {
 /*
  * Capabilities a ref may lack. Each resolves to `undefined` at a ref without any candidate instead of failing the
  * bundle, and the same candidate order rules apply.
- * - Canonical ingest is asked of the head's bundle alone: a driver fingerprints both catalogs with the head.
+ * - Canonical ingest is asked of the head's bundle alone: a driver fingerprints both catalogs with the head. From
+ *   S2.P2.T1 it reads a file of either version by its `schema`; a ref before that reads V1 alone.
  * - The catalog merge is asked of every bundle, each for its own: a ref before S2.P1.T2 spreads its V1 defaults
  *   object, and a later one has no such object and reads lens data through canonical ingest and its V1 view.
  */
 const OPTIONAL_SEAM_CANDIDATES = {
-  ingestLens: [["buildLens", "ingestLensV1"]],
-  ingestTeleconverter: [["buildLens", "ingestTeleconverterV1"]],
+  ingestLens: [
+    ["buildLens", "ingestLens"],
+    ["buildLens", "ingestLensV1"],
+  ],
+  ingestTeleconverter: [
+    ["buildLens", "ingestTeleconverter"],
+    ["buildLens", "ingestTeleconverterV1"],
+  ],
   lensView: [["buildLens", "toLensData"]],
   lensDefaults: [["lensDefaults", "default"]],
 } as const satisfies Readonly<Record<string, readonly SeamCandidate[]>>;

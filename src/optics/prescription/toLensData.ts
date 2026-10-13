@@ -35,6 +35,7 @@ import {
   type CanonicalTeleconverter,
   type IngestedPrescription,
   type V1PublishedStationsSpelling,
+  type V1Spelling,
 } from "./canonical.js";
 import {
   ELEMENT_SCHEMA_DEFAULTS,
@@ -54,8 +55,14 @@ function put(target: Untyped, field: string, value: unknown): void {
 /** What the view writes for one defaulted field. */
 interface ViewContext {
   readonly provenance: CanonicalProvenance;
+  /** How the file spelled it in V1; empty for a file of another format, which takes one V1 spelling of each fact. */
+  readonly v1: V1Spelling;
   /** Write the catalog defaults, as the V1 catalog merges them; otherwise write only what the file authored. */
   readonly mergeCatalogDefaults: boolean;
+}
+
+function viewContext(provenance: CanonicalProvenance, mergeCatalogDefaults: boolean): ViewContext {
+  return { provenance, v1: provenance.v1 ?? { emptyContainers: [] }, mergeCatalogDefaults };
 }
 
 /**
@@ -190,7 +197,7 @@ function asphView(
     }
     entries.push([surface.label, terms]);
   });
-  if (entries.length === 0 && !view.provenance.v1.emptyContainers.includes("asph")) return undefined;
+  if (entries.length === 0 && !view.v1.emptyContainers.includes("asph")) return undefined;
   return Object.fromEntries(entries);
 }
 
@@ -237,7 +244,7 @@ function publishedStationsView(lens: CanonicalLens, view: ViewContext): Publishe
   const stations = lens.zoom?.stations;
   const published = stations ? stations.map((station) => station.published) : [true];
   const lists = stations ? stations.map((station) => station.publishedFocus) : [lens.focus.published ?? []];
-  const spelling = view.provenance.v1.publishedStations ?? plainPublishedSpelling(published, lists);
+  const spelling = view.v1.publishedStations ?? plainPublishedSpelling(published, lists);
   if (!spelling) return undefined;
 
   const out: PublishedStations = {};
@@ -284,8 +291,8 @@ function aberrationControlView(lens: CanonicalLens, view: ViewContext): Aberrati
     put(out, field, control[field]);
   }
   out.var = Object.fromEntries(control.gaps.map((gap) => [gap.surface, structuredClone(gap.values)]));
-  const labels = orderedLabels(control.gaps, view.provenance.v1.aberrationVarLabelsOrder);
-  if (labels.length > 0 || view.provenance.v1.emptyContainers.includes("aberrationControl.varLabels")) {
+  const labels = orderedLabels(control.gaps, view.v1.aberrationVarLabelsOrder);
+  if (labels.length > 0 || view.v1.emptyContainers.includes("aberrationControl.varLabels")) {
     out.varLabels = labels;
   }
   return out as unknown as AberrationControlConfig;
@@ -293,7 +300,7 @@ function aberrationControlView(lens: CanonicalLens, view: ViewContext): Aberrati
 
 function buildLensView(ingested: IngestedPrescription<CanonicalLens>, mergeCatalogDefaults: boolean): Untyped {
   const { prescription: lens, provenance } = ingested;
-  const view: ViewContext = { provenance, mergeCatalogDefaults };
+  const view = viewContext(provenance, mergeCatalogDefaults);
   const { catalog, source, zoom, focus, aperture } = lens;
   const out: Untyped = {};
 
@@ -346,13 +353,13 @@ function buildLensView(ingested: IngestedPrescription<CanonicalLens>, mergeCatal
   if (lens.rearPlates) out.rearPlates = lens.rearPlates.map((plate, index) => rearPlateView(plate, index, view));
   put(out, "asph", asphView(lens.surfaces, view));
 
-  const emptyContainers = provenance.v1.emptyContainers;
+  const emptyContainers = view.v1.emptyContainers;
   if (lens.gaps.length > 0 || emptyContainers.includes("var")) {
     out.var = Object.fromEntries(
       lens.gaps.map((gap) => [gap.surface, structuredClone(zoom ? gap.values : gap.values[0])]),
     );
   }
-  const varLabels = orderedLabels(lens.gaps, provenance.v1.varLabelsOrder);
+  const varLabels = orderedLabels(lens.gaps, view.v1.varLabelsOrder);
   if (varLabels.length > 0 || emptyContainers.includes("varLabels")) out.varLabels = varLabels;
 
   putDefaulted(out, lensRow("focus.keyframes"), "", focus.keyframes, view);
@@ -410,7 +417,7 @@ export function toLensDataInput(ingested: IngestedPrescription<CanonicalLens>): 
  */
 export function toTeleconverterData(ingested: IngestedPrescription<CanonicalTeleconverter>): TeleconverterData {
   const { prescription: converter, provenance } = ingested;
-  const view: ViewContext = { provenance, mergeCatalogDefaults: false };
+  const view = viewContext(provenance, false);
   const out: Untyped = {};
   put(out, "publishedAt", converter.publishedAt);
   out.key = converter.key;

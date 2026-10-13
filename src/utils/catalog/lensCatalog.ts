@@ -5,8 +5,9 @@
  * calls are not duplicated.
  */
 
-import { ingestLensV1, toLensData } from "../../optics/buildLens.js";
+import { ingestLens, toLensData } from "../../optics/buildLens.js";
 import { loadChunkWithReload } from "../chunkLoadRetry.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 import type { LensData, LensDataInput } from "../../types/optics.js";
 import { catalogCollator } from "./collation.js";
 
@@ -20,18 +21,29 @@ export interface OpticalConfigurationOption {
  * Each module's default export is a file as authored. A catalog entry is that file read through canonical ingest,
  * whose V1 view applies the schema defaults. Ingest runs the first time an entry is read and the entry is kept, so a
  * page pays only for the lenses it shows and every read of a key returns the same object, which caches key on. The
- * key lists below read only identity fields, from the files as authored. */
-const _modules = import.meta.glob<{ default: LensDataInput }>("../../lens-data/**/*.data.ts", { eager: true });
-const AUTHORED: Record<string, LensDataInput> = {};
+ * key lists below read only identity fields, from the files as authored, in either version. */
+const _modules = import.meta.glob<{ default: LensDataInput | LensDataV2Input }>("../../lens-data/**/*.data.ts", {
+  eager: true,
+});
+
+/** The fields the key lists read. V2 files keep them where V1 does, but for `catalog.opticalConfiguration`. */
+type LensIdentity = Pick<LensData, "key" | "name" | "visible" | "maker" | "opticalConfiguration">;
+
+function identityOfFile(data: LensDataInput | LensDataV2Input): LensIdentity {
+  const opticalConfiguration = "schema" in data ? data.catalog?.opticalConfiguration : data.opticalConfiguration;
+  return { key: data.key, name: data.name, visible: data.visible, maker: data.maker, opticalConfiguration };
+}
+
+const AUTHORED: Record<string, LensIdentity> = {};
 const LENS_CATALOG: Record<string, LensData> = {};
 for (const [path, mod] of Object.entries(_modules)) {
   const data = mod.default;
   if (data?.key) {
-    AUTHORED[data.key] = data;
+    AUTHORED[data.key] = identityOfFile(data);
     let entry: LensData | undefined;
     Object.defineProperty(LENS_CATALOG, data.key, {
       enumerable: true,
-      get: () => (entry ??= toLensData(ingestLensV1(data))),
+      get: () => (entry ??= toLensData(ingestLens(data))),
     });
   } else {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);
@@ -42,7 +54,7 @@ function sortLensKeysByName(keys: string[]): string[] {
 }
 
 /** A key's identity fields, read without ingesting the lens; an entry added at run time is read as it is. */
-function identityOf(key: string): LensDataInput | LensData | undefined {
+function identityOf(key: string): LensIdentity | undefined {
   return AUTHORED[key] ?? LENS_CATALOG[key];
 }
 

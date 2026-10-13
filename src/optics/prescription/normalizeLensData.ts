@@ -27,9 +27,10 @@ import { compileAnnotations, compileElements } from "./groups.js";
 import { compileSurfaceInteraction, resolvedImagePlaneToPlane3 } from "./interactions.js";
 import { buildSurfaceLabelMap } from "./labels.js";
 import { compileVariableGaps, compileVariableLabels } from "./variables.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 import { PrescriptionIngestError } from "./canonical.js";
 import { v1CatalogDefaults } from "./defaults.js";
-import { ingestLensV1 } from "./ingestV1.js";
+import { ingestLens } from "./ingestV2.js";
 import { toLensData } from "./toLensData.js";
 
 /**
@@ -41,20 +42,25 @@ import { toLensData } from "./toLensData.js";
  * ingest in their catalogs. That is a temporary seam until S5.P1.T1 composes on the canonical form. Rear plates
  * expand after this, in `buildLens()`.
  *
- * The validator speaks first, as it did when this spread the catalog defaults: a file it rejects throws its messages,
- * and a file it accepts that ingest refuses throws the refusal, which names each field and its authored path. Only a
- * refused file is spread over the catalog defaults, to ask the validator; nothing is built from that spread.
+ * A file of either version is read by its `schema`. On a V1 file the validator speaks first, as it did when this
+ * spread the catalog defaults: a file it rejects throws its messages, and a file it accepts that ingest refuses throws
+ * the refusal, which names each field and its authored path. Only a refused V1 file is spread over the catalog
+ * defaults, to ask the validator; nothing is built from that spread. The validator reads V1, so a V2 file's refusal
+ * comes from V2 ingest, at the file's own paths, and the validator then reads its view in `buildLens()`.
  *
- * @param data - an authored lens file, with or without the catalog defaults, or a composed pair
+ * @param data - an authored lens file of either version, a V1 one with or without the catalog defaults, or a
+ *   composed pair
  * @returns a fresh copy for the engine to hold
  * @throws Error with the validator's messages, or PrescriptionIngestError
  */
-export function withLensDefaults(data: LensData): LensData {
-  if (data.attachedTeleconverter !== undefined) return structuredClone(data);
+export function withLensDefaults(data: LensData | LensDataV2Input): LensData {
+  if ("attachedTeleconverter" in data && data.attachedTeleconverter !== undefined) return structuredClone(data);
   try {
-    return toLensData(ingestLensV1(data as unknown as LensDataInput));
+    return toLensData(ingestLens(data as LensDataInput | LensDataV2Input));
   } catch (error) {
-    if (error instanceof PrescriptionIngestError) assertValidLensData({ ...v1CatalogDefaults(), ...data } as LensData);
+    if (error instanceof PrescriptionIngestError && !("schema" in data)) {
+      assertValidLensData({ ...v1CatalogDefaults(), ...data } as LensData);
+    }
     throw error;
   }
 }

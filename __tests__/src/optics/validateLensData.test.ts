@@ -1988,3 +1988,42 @@ describe("source errata", () => {
     expect(errataErrors(sourceErrata).join(" ")).toContain(message);
   });
 });
+
+describe("stop semi-diameter", () => {
+  /** Stop first, in air, then one element: a stop whose radius the engine derives unless something else decides it. */
+  const stopFirst = (stop: Record<string, unknown>, overrides: Record<string, unknown> = {}) =>
+    makeValid({
+      surfaces: [
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, ...stop },
+        { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 10 },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+      ...overrides,
+    });
+  const sdErrors = (data: Record<string, unknown>) => validateLensData(data).filter((e) => e.includes("sd"));
+
+  it("accepts a stop without sd where the engine derives its radius or takes it from a schedule", () => {
+    expect(validateLensData(stopFirst({}))).toEqual([]);
+    expect(
+      sdErrors(stopFirst({}, { zoomPositions: [20, 35, 50], nominalFno: 2, zoomStopSemiDiameters: [8, 10, 12] })),
+    ).toEqual([]);
+  });
+
+  it("still checks a derived stop's sd where the file writes one", () => {
+    expect(sdErrors(stopFirst({ sd: -1 }))).toEqual(['surfaces[0] ("STO"): sd must be a positive finite number']);
+  });
+
+  it("requires the sd of a stop whose radius is authored: inside glass, or on a folded system", () => {
+    const embedded = makeValid({
+      elements: [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50, fromSurface: "1", toSurface: "2" }],
+      surfaces: [
+        { label: "1", R: 100, d: 2.5, nd: 1.5, elemId: 1, sd: 10 },
+        { label: "STO", R: 1e15, d: 2.5, nd: 1.5, elemId: 1, stopPlacement: "inside-element" },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+    });
+    expect(sdErrors(embedded)).toContain('surfaces[1] ("STO"): missing or invalid sd');
+    const folded = stopFirst({}, { opticalPath: { mode: "auto", imagePlane: { z: 57 } } });
+    expect(sdErrors(folded)).toContain('surfaces[0] ("STO"): missing or invalid sd');
+  });
+});

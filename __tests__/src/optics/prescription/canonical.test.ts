@@ -458,7 +458,7 @@ describe("canonical prescription: spellings held as one", () => {
     delete fixed.var;
     delete fixed.varLabels;
     const [, empty] = sameMeaning(fixed, { ...fixed, var: {}, varLabels: [] });
-    expect(empty.provenance.v1.emptyContainers).toEqual(["var", "varLabels"]);
+    expect(empty.provenance.v1!.emptyContainers).toEqual(["var", "varLabels"]);
   });
 
   it("orders gaps by surface and keeps the authored order of their labels for the view", () => {
@@ -480,8 +480,8 @@ describe("canonical prescription: spellings held as one", () => {
       ]),
     );
     expect(first.prescription.gaps.map((gap) => gap.surface)).toEqual(["STO", "2"]);
-    expect(second.provenance.v1.varLabelsOrder).toEqual(["2", "STO"]);
-    expect(first.provenance.v1.varLabelsOrder).toBeUndefined();
+    expect(second.provenance.v1!.varLabelsOrder).toEqual(["2", "STO"]);
+    expect(first.provenance.v1!.varLabelsOrder).toBeUndefined();
   });
 
   /** Ingest every spelling, require one prescription, and require each to come back as written. */
@@ -539,7 +539,7 @@ describe("canonical prescription: spellings held as one", () => {
       [true, []],
     ]);
     expect(absent.provenance.defaulted).toContain("publishedStations");
-    expect(absent.provenance.v1.publishedStations).toBeUndefined();
+    expect(absent.provenance.v1!.publishedStations).toBeUndefined();
     for (const result of spelled) expect(result.provenance.defaulted).not.toContain("publishedStations");
 
     /* A narrowed zoom list says something else, with focus rows or without. */
