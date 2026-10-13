@@ -10,10 +10,12 @@ export interface PrescriptionViews {
 export const SUMMARY_FIELDS: readonly string[];
 export const TELECONVERTER_SUMMARY_FIELDS: readonly string[];
 
+export function loadLensDataConversion(): Promise<PrescriptionViews>;
+
 export function v1Prescription(
   file: object,
   kind: "lens" | "teleconverter",
-  loadViews: () => Promise<PrescriptionViews>,
+  loadViews?: () => Promise<PrescriptionViews>,
 ): Promise<Prescription>;
 
 export function lensSummary(data: object): Prescription;

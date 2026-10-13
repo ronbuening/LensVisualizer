@@ -3,7 +3,7 @@
  *
  * The source is read with the TypeScript compiler API, and the literal forms the catalog uses are evaluated
  * (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest, conversion and comments):
- * - object and array literals, spreads of them included;
+ * - object and array literals, and spreads of them, which no catalog file has but a hand-written one may;
  * - numbers, with a leading sign, and `+ - * /` between numbers, which the catalog uses for a few derived values;
  * - strings and templates without substitutions, and `+` between strings, which long notes use;
  * - `true`, `false`, `null`, `undefined` and `Infinity`;

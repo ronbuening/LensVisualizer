@@ -66,6 +66,7 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
   { module: "src/optics/diagramGeometry.ts" },
   { module: "src/optics/fieldGeometry.ts" },
   { module: "src/optics/geometry.ts" },
+  { module: "src/optics/lensDataConversion.ts" },
   { module: "src/optics/mtf.ts" },
   { module: "src/optics/optics.ts" },
   {

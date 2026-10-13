@@ -23,7 +23,6 @@
  */
 
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { register } from "node:module";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
@@ -55,28 +54,9 @@ const LENS_SUMMARIES_FILE = join(OUT_DIR, "lens-summaries.json");
 const TELECONVERTER_SUMMARIES_FILE = join(OUT_DIR, "teleconverter-summaries.json");
 /* The fit predicate is import-free TypeScript, so plain Node's type stripping loads the same code the viewer runs. */
 const TELECONVERTER_COMPATIBILITY_FILE = join(ROOT, "src", "optics", "prescription", "teleconverterCompatibility.ts");
-const PRESCRIPTION_DIR = join(ROOT, "src", "optics", "prescription");
 const GIT_FRESHNESS_CONCURRENCY = 8;
 
 /* ── Lens summaries ───────────────────────────────────────────────────── */
-
-let prescriptionViews;
-
-/**
- * The engine's canonical ingest and V1 views, loaded on the first V2 file. They import other engine modules by their
- * `.js` specifiers, so the specifier hook is registered first; a V1-only catalog never loads them.
- */
-async function loadPrescriptionViews() {
-  if (!prescriptionViews) {
-    register("./ts-js-specifier-hook.mjs", import.meta.url);
-    const { ingestLens, ingestTeleconverter } = await import(pathToFileURL(join(PRESCRIPTION_DIR, "ingestV2.ts")).href);
-    const { toLensDataInput, toTeleconverterData } = await import(
-      pathToFileURL(join(PRESCRIPTION_DIR, "toLensData.ts")).href
-    );
-    prescriptionViews = { ingestLens, ingestTeleconverter, toLensDataInput, toTeleconverterData };
-  }
-  return prescriptionViews;
-}
 
 /**
  * Evaluate every default-exported data module under src/lens-data whose file name ends with `suffix`, in V1 field
@@ -94,7 +74,7 @@ async function importDataModules(suffix) {
     const file = (await import(pathToFileURL(filePath).href))?.default;
     if (!file?.key) continue;
     const kind = suffix === ".data.ts" ? "lens" : "teleconverter";
-    modules.push({ data: await v1Prescription(file, kind, loadPrescriptionViews), filePath });
+    modules.push({ data: await v1Prescription(file, kind), filePath });
   }
   return modules;
 }

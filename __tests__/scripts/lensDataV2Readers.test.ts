@@ -3,6 +3,7 @@
  * its V1 twin, the organizer's import rewrite, and page dates that skip the format-only conversion commits.
  */
 
+import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -172,6 +173,32 @@ describe("a V2 file and its V1 twin", () => {
     );
     expect(v1Summary.compatibleLensKeys).toEqual(["fixture-converter-host"]);
     expect(JSON.stringify(v2Summary)).toBe(JSON.stringify(v1Summary));
+  });
+
+  it("reach the engine through the script's own loader, under plain Node", async () => {
+    /* Build metadata passes no loader: `v1Prescription` loads the conversion seam by its path, through the specifier
+     * hook. Run that where build metadata runs, in plain Node, on every V2 fixture. */
+    const { rootDir } = tempLensDataDir();
+    const files = FIXTURE_PAIRS.map((pair) => ({ kind: pair.kind, file: pair.v2 }));
+    expect(JSON.parse(JSON.stringify(files)), "the fixtures survive JSON").toEqual(files);
+    const input = join(rootDir, "files.json");
+    writeFileSync(input, JSON.stringify(files));
+    const script = join(rootDir, "read.mjs");
+    const summaries = new URL("../../scripts/lens-summaries.mjs", import.meta.url).href;
+    writeFileSync(
+      script,
+      [
+        'import { readFileSync } from "node:fs";',
+        `import { v1Prescription } from ${JSON.stringify(summaries)};`,
+        `const files = JSON.parse(readFileSync(${JSON.stringify(input)}, "utf8"));`,
+        "const views = [];",
+        "for (const { kind, file } of files) views.push(await v1Prescription(file, kind));",
+        "console.log(JSON.stringify(views));",
+      ].join("\n"),
+    );
+    const output = execFileSync("node", [script], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    const inProcess = await Promise.all(files.map(({ kind, file }) => v1Prescription(file, kind, loadViews)));
+    expect(JSON.parse(output)).toEqual(JSON.parse(JSON.stringify(inProcess)));
   });
 
   it("is filed under its maker with its V2 type import rewritten", () => {

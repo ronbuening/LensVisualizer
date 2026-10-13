@@ -232,9 +232,9 @@ and bundled there.
   `absent`. Canonical ingest, which the fingerprint needs, is one of them and is asked of the head's bundle alone. The
   catalog merge is another: each bundle merges a host as its own catalog does, by spreading its V1 defaults object at
   a ref before S2.P1.T2, and by ingest and the V1 view at a later one (`catalogLensData` in `captureEntry.ts`). A
-  converter is read the same way where the ref has its view (`catalogTeleconverterData`), and as authored before
-  and wherever ingest refuses it: a converter is compared only through its pairs, so a broken one must still fail its
-  pairs' builds, which blocks, rather than lose its pairs.
+  converter is read the same way where the ref has its view (`catalogTeleconverterData`), and as authored before.
+  One that ingest refuses is handed on as authored, which blocks only where the composed build catches its fault;
+  the rule that a refused head converter fails the run is open (`OPTICS_ENGINE_REWRITE_SPEC.md`, S2.P2.T2).
   From S2.P2.T1 ingest reads either lens-data version, and the request list reads a V2 file's stations and keyframes
   (`requestCatalog`), so a V2 set and its V1 twin give the same requests, pairs and records.
 - `requests.ts` defines a tier as a deterministic list of lens × state × request family, and cuts a list into

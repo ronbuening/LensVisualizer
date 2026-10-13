@@ -10,6 +10,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
   captureRecords,
   catalogLensData,
+  catalogTeleconverterData,
   exportCatalog,
   fingerprintCatalog,
   permittedPairs,
@@ -93,6 +94,7 @@ import {
 import { doLayout, traceRay } from "../../../src/optics/optics.js";
 import type { MtfMethod, MtfSpectrum } from "../../../src/types/mtf.js";
 import type { LensData, LensDataInput } from "../../../src/types/optics.js";
+import type { TeleconverterData } from "../../../src/types/teleconverter.js";
 import { DEFAULT_MTF_PREFERENCES } from "../../../src/utils/state/mtfPreferences.js";
 import { FIXTURE_PAIRS } from "../optics/prescription/ingestV2Fixtures.js";
 import plainTwin from "./engineDiffFixtures/fingerprintTwinPlain.js";
@@ -672,7 +674,7 @@ describe("engineDiff catalog export", () => {
           (converter) =>
             seam.teleconverterCompatibility(
               catalogLensData(lenses.get(host.key)!),
-              decodeValue(converter.prescription) as Parameters<typeof seam.teleconverterCompatibility>[1],
+              catalogTeleconverterData(decodeValue(converter.prescription) as TeleconverterData),
             ).ok,
         )
         .map((converter) => ({ host: host.key, teleconverter: converter.key })),
@@ -1649,9 +1651,11 @@ describe("engineDiff capture", () => {
     };
     const seam = resolveSeam();
     const host = decodeValue(CATALOG.lenses.find((entry) => entry.key === PAIR.key)!.prescription) as LensData;
-    const converter = decodeValue(
-      CATALOG.teleconverters.find((entry) => entry.key === PAIR.teleconverter)!.prescription,
-    ) as Parameters<typeof seam.attachTeleconverter>[1];
+    const converter = catalogTeleconverterData(
+      decodeValue(
+        CATALOG.teleconverters.find((entry) => entry.key === PAIR.teleconverter)!.prescription,
+      ) as TeleconverterData,
+    );
     const composed = seam.attachTeleconverter(catalogLensData(host), converter);
     expect(composition.compatibility.ok).toBe(true);
     expect(composition.prescription).toEqual(throughJson(normalizeAuthoredData(composed, seam.flatRadiusThreshold)));

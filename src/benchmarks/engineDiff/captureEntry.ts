@@ -303,9 +303,12 @@ export function catalogLensData(authored: LensData): LensData {
  * A converter file as this engine's catalog hands it to the composer and the fit predicate: through canonical ingest
  * and its V1 view where the engine has them, so a V2 file reads, and as authored on an older ref.
  *
- * A file ingest refuses is handed on as authored, as it was before converters were ingested here. A converter is
- * compared only through its pairs, so a broken one must still be permitted where the predicate allows it and fail
- * its pairs' builds, which blocks; skipped, its pairs would only be reported lost.
+ * A file ingest refuses is handed on as authored, as it was before converters were ingested here. That fails its
+ * pairs' builds, which blocks, only where the fault is in a V1-form file and the composed build catches it. A V2
+ * file handed on as authored makes the fit predicate throw, so it permits no pair and the run reports only that it
+ * lost every pair. A V1 file refused over a field the composer does not copy (an unknown top-level field,
+ * `schema: 3`) composes and builds as before, and the run says nothing. The rule this lacks, that a converter of the
+ * head catalog the head engine's ingest refuses fails the run in every class, is open (S2.P2.T2 in the plan).
  *
  * @param authored - a converter file as authored
  * @returns the catalog's converter data, on this engine
