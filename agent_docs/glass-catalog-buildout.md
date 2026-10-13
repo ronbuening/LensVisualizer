@@ -177,6 +177,11 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
   class, not a coordinate: HOYA BSC7 is 517/642 while OHARA S-BSL7 is 516/641, and HOYA BACD5 is 589/613 while Schott
   N-SK16 is 620/603 (its HOYA counterpart is BACD16). Add the vendor's own row instead; an alias is safe only when the
   two names share published optical constants.
+- **Changing an existing row's curve can move elements to another row.** Rows that share a six-digit code are ranked
+  by d-line residual, often at 1e-7, so a curve whose n(d) differs in the seventh decimal hands multi-name and
+  code-only labels to a neighbour. Dump `resolveCompatibleGlass` for every element of every `*.data.ts` and
+  `*.teleconverter.ts` before and after, and require an empty diff. If it is not empty, hold the row's n(d) instead of
+  relabeling elements; HOYA FCD1 does this (`decisions.md`, 2026-10-13).
 - **Do not invent evidence.** Never add a nominal resin, a duplicate six-digit curve, or a patent `dPgF` value to close a coverage gap; unpublished bonded/compound layers stay on the fallback path.
 
 ## When to Stop

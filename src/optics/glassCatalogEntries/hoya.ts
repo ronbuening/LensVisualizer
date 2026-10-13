@@ -609,14 +609,18 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
     name: "FCD1",
     vendor: "Hoya",
-    B: [0.708299951, 0.5095943307, 0.5656963028],
-    C: [0.002809999603, 0.01255522353, 101.5038807],
+    // Not a Sellmeier fit: the vendor's own polynomial, with a0 raised from the published 2.2181132 by 7.8164e-6.
+    // The published curve returns n(d) = 1.4969972, which rounds to the listed 1.49700, but the resolver ranks
+    // the rows sharing code 497816 by d-line residual, far below printed precision. The offset holds n(d) at the
+    // 1.4969998381 this row returned as a Sellmeier fit, between S-FPL51 and H-FK61, so no element changes rows.
+    // The other five terms are verbatim, which keeps the vendor's νd and P_g,F. See agent_docs/decisions.md.
+    polynomial: [2.2181210164, -0.005799427, 0.0083470679, 0.000065046523, 0.0000085142186, -0.00000058852269],
     nd: 1.497,
     vd: 81.61,
     PgF: 0.5389,
     code6: "497816",
     source:
-      "Hoya AGF (hoya_2017-04-01.agf) form-1 polynomial; Sellmeier-1 fit, max abs index error 1.4e-5 across 365–1014 nm. ED, S-FPL51-equivalent.",
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor polynomial (AGF formula 1) for FCD1 with a0 raised from 2.2181132 by 7.8164e-6, moving n(d) from 1.4969972 to 1.4969998 inside the listed 1.49700. ED, S-FPL51-equivalent.",
   },
   {
     name: "FCD505",

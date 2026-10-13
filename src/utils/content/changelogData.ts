@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-13",
+    type: "fix",
+    summary: "Corrected HOYA FCD1 glass dispersion, slightly shifting violet focus in the lenses that use it",
+  },
+  {
     date: "2026-10-12",
     type: "fix",
     summary: "Fixed four Canon and Sony telephoto lenses tracing slower than their stated aperture",
