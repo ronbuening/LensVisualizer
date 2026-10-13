@@ -352,3 +352,90 @@ The two readings of surfaces 1–3 agree within 0.3 mm and both put the rim belo
 After the change the validator reports no errors and no rim clips the on-axis beam or the corner chief ray at any of the nine published states or on the intermediate zoom and focus grid. Traced corner coverage is 21.65 of 21.65 mm at all three stations. `gapSagFrac` is unchanged at 0.95; the largest gap fractions are still 0.9439 (16→17) and 0.8957 (8→9). Wide-open f-numbers are 4.48 / 5.55 / 6.50 as before. The engine's rim-limited half-field estimate is unchanged at the wide end (19.655°) and falls from 8.579° to 8.338° at the middle station and from 3.480° to 3.377° at the tele end, against patent half-fields of 6.66° and 2.12°.
 
 The data-file rim note, the two analysis passages that stated 49.0 mm and the middle and tele rows of the vignetting table were updated to match. The local page was viewed at 62.03 mm and 577.73 mm: no overlap, the on-axis fan passes, and an overlay on Figure 1 now puts the front component and L3 on the drawn lines.
+
+## 2026-10-13 — Second review: diagram, labels and movement
+
+An independent second look at the lens as the local page draws it, against `patents/JP2020020948A.pdf`: Figure 1 (PDF page 48), the Example 1 tables and group descriptions (PDF pages 23–26, ¶0117–0128) and the Example 1 longitudinal aberration plots (Figures 2, 9 and 16 on PDF pages 48–50). One rim changed, four kinds of label changed, and no `R`, `d`, `nd`, `vd`, gap value, stop radius, zoom/focus table, glass label or `gapSagFrac` was touched. Surfaces 1–5 were left as settled in the section above.
+
+### Figure 1 measured again
+
+The figure's own 1321 × 770 bitmap was read with new scratch code, not the first pass's. The optical axis is rows 316–317, the surface-1 vertex is at x = 112.5 and the image plane at x = 1267.5, 0.26657 mm/px. All 44 drawn vertex crossings fall within 0.6 px of the prescription at the wide, infinity state (the stop is drawn as two ticks off the axis, at x = 750–751 against a predicted 750.9), so the panel is Example 1 at the wide end.
+
+Vertical factor. Each arc was followed from its vertex without a model, then fitted for a vertical stretch and a free vertex offset. Surface 1 gives 1.130 (upper half) and 1.133 (lower half), surface 2 gives 1.137 and 1.138, and the weighted mean of the twelve best-conditioned arcs is 1.134 (range 1.116 to 1.142, residual 0.3 px). The first pass's 1.134 stands; heights are 0.2351 mm/px.
+
+Rims. Each rim is the centre of the two-pixel edge line, upper and lower half read separately.
+
+| Element | Surfaces | Upper / lower (px) | Figure (mm) | Stored (mm) |
+|---|---|---:|---:|---:|
+| L1–L2 | 1–3 | 202 / 202 | 47.5 | 47.6 |
+| L3 | 4–5 | 194 / 194 | 45.6 | 45.7 |
+| L4–L5 | 6–7 | 113 / 113 | 26.6 | 26.6 |
+| L6 | 9–10 | 100 / 101 | 23.6 | 23.7 |
+| L7 | 11–12 | 76 / 76 | 17.9 | 17.9 |
+| L8 | 13–14 | 70 / 71 | 16.6 | 16.6 |
+| L9 | 15 | 67 / 68 | 15.9 | 15.9 |
+| L10–L11 | 17–19 | 70 / 70 | 16.5 | 14.6 / 16.5 / 16.5 before this review |
+| L12 | 20–21 | 79 / 79 | 18.6 | 18.6 |
+| L13–L14 | 22–24 | 78 / 78 | 18.3 | 18.4 |
+| L15 | 26–27 | 70 / 71 | 16.6 | 16.6 |
+| L16 | 28–29 | 69 / 69 | 16.2 | 16.3 |
+| L17–L18 | 30–32 | 67 / 67 | 15.8 | 15.8 |
+| L19 | 33–34 | 65 / 65 | 15.3 | 15.2 |
+| L20 | 35–36 | 69 / 69 | 16.2 | 16.3 |
+| L21 | 37–38 | 69 / 69 | 16.2 | 16.3 |
+| L22 | 39–40 | 61 / 61 | 14.3 | 14.3 |
+| L23 | 41–42 | 59 / 60 | 14.0 | 14.0 |
+| L24–L25 | 43–45 | 64 / 65 | 15.2 | 15.1 |
+
+Every stored rim is within 0.1 mm (under half a pixel) of this reading, so the first pass's heights are kept. The surface-8 curve reaches L5's edge flat between 22.1 and 22.5 mm (stored 22.3), and the inner end of the lower stop tick is 66–67 px, 15.5 to 15.7 mm against the 15.494 mm iris.
+
+### Rim change
+
+| Surface | Before | After | Evidence |
+|---|---:|---:|---|
+| 17 (L10 front) | 14.6 | 16.5 | Figure 1 draws the cemented L10–L11 block square-cut at 70 px, 16.5 mm, on all three faces. With surface 17 at 14.6 mm the page drew the block with a roof-shaped edge 4.8 mm long. |
+
+The validator reports no errors with 17 = 16.5: the cross-gap check is made at the height the two facing surfaces share, still 14.6 mm, where they use 0.943877 of the 4.1944 mm gap and keep 0.2354 mm of air. `gapSagFrac` stays at 0.95 and nothing is trimmed in the drawing. L10's front corner sits at z = 94.99 mm, 0.4 mm on the object side of L9's rear corner (95.39 mm) and 1.9 mm above it; between 14.6 and 15.9 mm of height L9's inclined edge is 0.24 to 2.7 mm clear of L10's front face. The L10 edge is 5.44 mm thick at 16.5 mm.
+
+Three inclined edges were examined against the square blocks the figure draws.
+
+- L5 rear (surface 8 at 26.6 mm, the block height): refused. At L6's 23.7 mm rim the two faces would need 3.282 mm of a 3.232 mm gap, 1.0155 of it; the spheres meet at 23.52 mm. No `gapSagFrac` up to 1 admits it, because the figure's square corner is a flat annulus from 22.3 mm outward, not the sphere. Surface 8 stays at 22.3 mm; 0.95 would admit at most 22.95 mm.
+- L9 rear (surface 16 at 15.9 mm) passes on its own, and L10 front (surface 17 at 16.5 mm) passes on its own, each at the present 0.95. Both together are refused: 4.713 mm of a 4.194 mm gap at 15.9 mm, 1.124 of it; the spheres meet at 15.02 mm. Only one of the two can be squared, and the cemented block was chosen because its inclined edge was the longer (4.8 mm against 2.9 mm) and three faces now share one height. L9 keeps its inclined rear edge.
+
+L6, L16 and L24 keep one height on both faces as the first pass set them; taking the concave face down to where the figure's curve ends would trade a corner overshoot of about 1 mm along the axis for an inclined edge across the whole rim.
+
+Clearance is unchanged. A full-pupil skew-ray sweep (a cartesian grid over the whole front aperture, about 40 000 passing rays on axis, at 0, 40, 60, 80 and 100 % of the 21.63 mm image height, three zoom stations, three focus states, iris held at each station's infinity radius) gives identical transmitted counts with surface 17 at 14.6 and at 16.5 mm in all 45 cells; at infinity the corner values are 46.3 %, 71.5 % and 52.4 % of the axial beam. The rays surface 17 used to stop are stopped later by the iris or a rear rim. The analysis table's 192-sample counts are unchanged (85 / 85 / 85, 140 / 140 / 149, 101 / 109 / 115 at the corner). The engine's meridional curve at the wide end is unchanged at 100, 99.0, 100, 100, 97.9, 86.5, 70.8 and 45.8 % from 0° to 19.7°. Half-fields 19.655° / 8.338° / 3.377° and f-numbers 4.48 / 5.55 / 6.50 are the same before and after. No rim clips the on-axis beam or the corner chief ray at infinity, 13 m or 2.6 m; traced corner coverage is 21.65 of 21.65 mm at all three stations and the image-circle check lists nothing.
+
+### Labels changed
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `diagramLabel`, all 25 elements | absent; the diagram printed 1 … 25 | L1 … L25 | ¶0119–0127 name the elements L1 to L25 (¶0124–0125 misprint L12–L14 as G12–G14). The inspector and the analysis already used L1 … L25. |
+| `varLabels` | D5, D10, D19, D32, D38, BF | d5, d10, d19, d32, d38, BF | The patent's variable-spacing table and surface table print the gaps in lower case. "D5" was also the text of the fifth cemented bracket, so one string named two things. |
+| `groups` | G1 … G6 | G1, G2, G3, G3a (surfaces 11–14), G3b (15–19), G4, G5, G6 | Figure 1 draws G3a and G3b under G3, ¶0121–0123 describe them and the group table lists both (first surfaces 11 and 15). G3b is the stabilizing subgroup. |
+| `cemented`, twelve elements | L1–L2, L4–L5, L10–L11, L13–L14, L17–L18, L24–L25 | D1 … D6 | The inspector badge now carries the same name as the bracket above the pair. This was one of two files in the catalog with D-numbered brackets and a different `cemented` text. |
+
+The cemented brackets keep D1 to D6, the catalog's usual text; the gap labels took the patent's case instead. C1 to C6 is the catalog's second most common bracket text if a wider separation from "d5" is wanted.
+
+### Checked and found correct
+
+- Prescription. All 45 surface rows (R, d, nd, νd) and all 54 variable-gap values match the patent's text layer. Group focal lengths computed from the file are 237.552, −60.923, −246.402, 66.302, 72.871 and −57.898 mm, with G3a 76.823 and G3b −47.402, against the printed 237.55, −60.92, −246.41, 66.30, 72.87, −57.90, 76.82 and −47.40.
+- Brackets. G1 = 1–5, G2 = 6–10, G3 = 11–19, G4 = 20–32, G5 = 33–38 and G6 = 39–45 match the group table's first surfaces 1, 6, 11, 20, 33 and 39. D1 = 1–3, D2 = 6–8, D3 = 17–19, D4 = 22–24, D5 = 30–32 and D6 = 43–45 are the six rows with glass on both sides.
+- Element types agree with the signs of R and with ¶0119–0127 for all 25 elements, including the plano-convex L3 and the two menisci convex to the image, L18 and L22. The `role` strings are true. The example has no aspheric surface and the file marks none. The stop is patent surface 25, between L14 and L15.
+- Tags. The patent names no special glass; ¶0040 only prefers low-dispersion glass for the positive lenses of G1. `apd: "inferred"` on L2, L3, L17 and L23 matches the SLD position 2 and FLD positions 3, 17 and 23 that the batch coordinator read from Sigma's product page and construction diagram on 2026-10-13 (25 elements in 19 groups, nine rounded blades, minimum aperture F22–32, SA / EF / F mounts). No maker image was viewed in this review. The inspector was read for L2, L3, L10, L17, L23 and L25 and shows the stored type, index, focal length, glass, note and role.
+- Zoom. `zoomPositions` ascend 62.03, 183.64, 577.73 and every `var` array lists the stations in that order. First surface of each group to the image plane, wide / middle / tele: G1 307.89 / 364.39 / 407.88 mm (toward the object, 99.99 mm); G2 280.16 / 260.08 / 249.88 (toward the image, 30.28 mm); G3 234.71 / 234.71 / 234.71 (fixed); G4 154.46 / 179.68 / 203.80 (toward the object, 49.34 mm); G5 105.36 / 134.67 / 152.65 (toward the object, 47.28 mm); G6 83.47 / 107.13 / 128.56 (toward the object, 45.09 mm). All are monotonic and agree with the arrows under Figure 1 and with ¶0119–0127. The gaps d32 and d38 reverse (10.30 / 6.22 / 12.36 and 2.19 / 7.84 / 4.39 mm) while their groups do not.
+- Focus. Index 0 is infinity, then 13 m and 2.6 m, at every station. Only d38 and BF change, by equal and opposite amounts: G6 moves toward the image by 0.08 and 0.44 mm at the wide end, 0.47 and 2.39 mm at the middle and 3.32 and 15.90 mm at the tele end. The traced object-to-image distances are 13 001.9 and 2 599.9 mm at the wide end. The focus slider's far end reads 2.60 m.
+- Field behaviour against the patent's plots, infinity focus, at the printed half-fields. Distortion at full field: model −2.49 %, +0.89 % and +1.35 % at wide, middle and tele; the plots read −2.48 %, +0.89 % and +1.34 %. Sagittal and meridional focus at full field: model +0.08 / −0.10 mm, +0.01 / +0.02 mm and −0.29 / −0.62 mm; the plots read +0.07 / about −0.09 mm, within 0.02 mm of zero, and −0.28 / −0.63 mm. One plot pixel is 0.02 mm and 0.05 %.
+
+### The page after the edits
+
+The page was viewed at 62.03, 183.64 and 577.73 mm, at infinity and at closest focus, with both movement overlays at the wide and tele ends. No elements overlap and the on-axis fan passes in all six states. The L10–L11 block is square as drawn; an overlay of the outlines on Figure 1, compressed to true proportion, puts every rim on the drawn lines except the inclined rear edges of L5 and L9. The zoom overlay shows G1, G4, G5 and G6 moving toward the object, G2 toward the image and G3 fixed; the focus overlay shows only G6 moving, toward the image, by 0.44 mm at the wide end and 15.90 mm at the tele end. The gap read-out prints d5, d10, d19, d32, d38 and BF. The distortion tab prints −2.49 %, +0.90 % and +1.36 %.
+
+### Open limitations
+
+- Label row. No element label overlaps another. L15 and L18 sit 0.8 px apart at every station, and at the tele end L10 and L13 (0.8 px) and L11 and L14 (1.2 px) do too, because three label rows are not enough for the six elements between L13 and L18. The L2 label is placed in the second row, whose cap height reaches 3.6 px above the lower rim of the front doublet, so it overprints the rim tip at every station; the numeral 2 sat in the same place before. Both come from the diagram's label layout, not from this file.
+- The movement overlay counts the charted rows and now reads "Groups 8", with G3, G3a and G3b as three stationary rows. Removing the two sub-group entries returns it to six.
+- L5's and L9's rear edges stay inclined where the figure draws a flat annulus; a flat cannot be expressed with one spherical surface per face.
+- The distortion tab names the wide end "pincushion" and the middle and tele stations "barrel". The signs are right and the words are reversed (negative is barrel). The wording comes from the tab component and applies to every lens.
+
+Coordinator follow-up, same day: the parent `G3` bracket (surfaces 11–19) was removed so the third group is bracketed once, as FIG. 1 draws it, by its two subgroups G3a (11–14) and G3b (15–19, the stabiliser). The diagram and the movement overlay now list seven brackets (G1, G2, G3a, G3b, G4, G5, G6) for the patent's six groups. No optical value changed.

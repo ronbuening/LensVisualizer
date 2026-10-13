@@ -31,6 +31,12 @@ lenses, while the rear functional group contains a cemented pair and separate le
 The functional power sequence is negative, weakly negative, positive and positive in the published infinity state.
 A strongly divergent front section precedes the principal converging section and leaves substantial image-side clearance.
 
+Fig. 1 numbers the elements 1 to 11 and Table I lists them the same way; the patent text names the same lenses
+IA–ID, IIA–IIB, IIIA and IVA–IVD, the Roman numeral being the functional group. L1–L11 below follow the figure's
+numbers, so L5 is the patent's IIA and L8 its IVA. The diagram brackets the functional groups as I (−), II (−),
+III (+) and IV (+); their focal lengths are −24.3 mm, −510 mm, +20.8 mm and +74.9 mm. It marks the two cemented
+pairs as D1 (L5–L6, which is the whole of group II) and D2 (L8–L9, the front of group IV). [1, Fig. 1; cols. 3–4]
+
 The patent normalizes Example 1 to a focal length of 99.8. All lengths in the model are uniformly scaled by 20/99.8,
 without changing indices or Abbe numbers. The model's infinity EFL is 20.003 mm and the back focal distance from the
 final refracting vertex is 37.124 mm. Their ratio is 1.8559, which is what makes the design a retrofocus. The
@@ -44,6 +50,12 @@ The patent's Seidel analysis assumes a stop between the third and fourth functio
 position. The model places it at the midpoint of that air space. The stop semi-diameter in the data file, 4.922 mm,
 is set so that the paraxial entrance pupil, 3.031 mm in semi-diameter, gives f/3.3. It is a calibration to the stated
 aperture, not evidence for the physical diaphragm diameter. [1, cols. 5–6]
+
+Fig. 1 does not draw the diaphragm. The coefficients of Table II can be reproduced only with an entrance pupil 123.0
+normalized units behind the first vertex, 24.65 mm at this scale. The paraxial image of that pupil falls 0.38 mm
+behind the front vertex of L8, outside the air space, so the table records the pupil assumed for the third-order
+calculation and does not locate a physical diaphragm. The midpoint placement remains an inference; it gives an
+entrance pupil 23.72 mm behind the first vertex. [1, Table II; col. 6]
 
 ## Element-by-Element Analysis
 
@@ -167,8 +179,24 @@ normalization. The homogeneous ratios are unchanged by the model's uniform lengt
 - Requirement 4: the specified air gap plus the reduced thicknesses of functional group II, divided by f, is 0.53438, between 0.3 and 0.7.
 - Requirement 5: f times the rear-doublet index drop divided by its cemented-interface radius is 0.19426, between 0 and 0.5.
 
-These calculations verify the inequalities for the chosen table. They do not reproduce the patent's full Seidel
-analysis or establish image quality at all apertures and field angles.
+These calculations verify the inequalities for the chosen table. They do not establish image quality at all
+apertures and field angles.
+
+Table I can also be checked against the patent's own aberration data. Third-order coefficients computed from the
+printed radii, spacings and indices match 98 of the 100 surface entries of Table II to the last printed digit. One
+entry differs by one unit in the fifth decimal. The other, the coma term of surface 16, is printed as −0.38712
+against a computed −0.38742; the printed column sum agrees with the computed value, so that entry is a misprint in
+Table II. The spherical and Petzval columns do not depend on the stop, so this agreement rules out a wrong sign or
+digit in any radius, thickness or index of Table I.
+
+An exact ray trace of the model follows Figs. 1B–1D in sign and shape. Longitudinal spherical aberration is
++0.08 mm at f/3.3 and −0.19 mm at f/4.7; the figure reads about +0.10 mm and −0.20 mm at this scale. The tangential
+and sagittal field curves cross zero near 28° and 44°, as drawn, and barrel distortion peaks at −3.0% near 42°
+against about −3.4% in the figure. The drawn astigmatism excursions are larger than the model's: −0.54 mm against
+−0.32 mm for the tangential curve at 44°, and −0.21 mm against −0.16 mm for the sagittal curve at 33°. These
+values are sensitive to the unpublished stop position. Moving the model stop 0.65 mm toward L7 reproduces the drawn
+tangential excursion but moves the zero crossings to about 21° and 45°, away from the drawn ones, so the figures do
+not settle the stop position either. [1, Table II; Figs. 1B–1D]
 
 ## Aperture Geometry and Model Limits
 
@@ -179,12 +207,19 @@ thickness and air-gap clearance. The three front surfaces and the rear face of t
 real-ray envelope heights, which lie within 2–7% of the drawing. No source radius or axial spacing was altered to
 resolve a rim conflict.
 
+The figure draws the first, second and fourth elements with a flange: a flat land and a cylindrical edge beyond the
+end of the rear face. The model gives each of these elements the two curve-end heights, and the diagram joins them
+with a straight edge, so the flange appears as a slanted edge. A square rim at the flange height is not possible on
+the first element, whose rear radius is smaller than that height, and on the second and fourth it would carry the
+rear face over the front corner of the element behind it, which the figure does not show.
+
 The figure draws the cemented pair of functional group II, the separate positive lens of group III and the three
 rear-group components with square-cut rims that are markedly smaller than an unvignetted oblique bundle would need,
 and the model follows it. At the modeled maximum aperture the on-axis beam clears every rim, and the chief ray reaching
 the 21.63 mm corner of the 135 format, at a 48.0° semi-field, also clears. Oblique bundles are clipped: in a meridional
 trace the stop height that passes every rim is about 94% of the full aperture at 20°, 80% at 30°, 63% at 40° and 33%
-at the patent's 47.25°. The upper side is limited by the rear cemented pair and the meniscus behind it; the lower
+at the patent's 47.25°. Over the whole pupil the share of the stop area that passes every rim is about 96%, 81%, 58%
+and 26% at the same angles. The upper side is limited by the rear cemented pair and the meniscus behind it; the lower
 side by the group III lens at intermediate fields, by the rear face of the fourth element near 40° and by the strongly
 curved rear face of the first element near the corner. Consequently, the patent's 94.5° full viewing angle is a source
 specification, not a full-pupil coverage claim. These fractions describe figure-derived rims, not measured production

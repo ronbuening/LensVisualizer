@@ -178,3 +178,78 @@ Analysis: removed the description of how values were cross-checked, references t
 Result. Engine values are identical before and after this pass: focal length 88.2076 mm, f/3.638, stop 9.172 mm, half-field cap 9.499°, back focus 35.4020 mm and the four focus keyframes. The surface audit reports no validation errors. The lens page was viewed after the edits: title, patent line, specification line and focus panel read cleanly, the six tagged elements show as inferred, and the element inspector shows the new note and role.
 
 No open items. Known limits, recorded rather than open: the two-mode iris of the patent is not modeled, and the element positions of the manufacturer's special glasses are not confirmed by a construction diagram.
+
+## 2026-10-13 — Second review: diagram, labels and movement
+
+What was compared. The local lens page (infinity, β = −0.50, −1.00 and −2.00, the focus-movement overlay at both ends, and the inspector of all 18 elements) against `patents/JP2024066164A.pdf`: Fig. 2 panels (A) and (B) on page 35, the Example 1 text and table on pages 15 to 18, and the aberration plots of Figs. 3 and 4 on page 36. The figure was measured again from scratch on the embedded 1-bit raster itself (1281 × 1981 px, 452 ppi, extracted without resampling), with a separate reader from the first pass. The element outlines of the live page were taken from the page's own SVG and laid over both panels.
+
+Scale and state of the figure. The dash-dot axis is tilted 5.6 px per 1000 px in both panels and every height was taken from the local axis. Panel (A): surface 1 to 32 is 1299.5 px for 116.6697 mm (0.08978 mm/px), surface 1 to 16 is 851 px for 76.3862 mm (0.08976), surface 1 to the image is 1707 px for 153.4719 mm (0.08991); all 31 axis crossings (28 lens-vertex runs, the stop mark included, the two plate faces and the image plane) fall within 0.25 mm of the infinity prescription. Panel (B) has the same 1299.5 px glass span and D9 = 202.5 px (18.18 mm, table 18.2238), D14 = 52 px (4.67, table 4.632), D15 = 32 px (2.87, table 2.8945), D20 = 317.5 px (28.51, table 28.352), so it is the 2x state at the same scale. The radial scale was checked on a sag: the flat land behind surface 25 lies 30.5 px (2.74 mm) behind its vertex, which a 16.7825 mm radius reaches at 9.19 mm, and the curve leaves the land 101 to 102 px (9.1 to 9.2 mm) from the axis.
+
+Rims: no value changed. Outer rim of each element, in mm, as the mean of both sides of each panel (outermost ink less one pixel for the 3 px line):
+
+| Element (surfaces) | Panel (B) | Panel (A) | Stored |
+| --- | ---: | ---: | ---: |
+| L1 (1, 2) | 14.86 | 15.04 | 14.8 |
+| L2 (3, 4) | 14.50 | 14.64 | 14.5 |
+| L3 (5) | 13.92 | 14.10 | 13.9 |
+| L4 (6, 7) | 13.53 | 13.67 | 13.5 |
+| L5 (8, 9) | 12.57 | 12.75 | 12.7 |
+| L6 (10) | 11.31 | 11.40 | 11.3 |
+| L7 (11, 12) | 11.00 | 11.13 | 11.0 |
+| L8 (13, 14) | 10.01 | 10.15 | 10.3 |
+| L9 + L10 (16, 17, 18) | 11.49 | 11.54 | 11.6 |
+| L11 (19, 20) | 11.36 | 11.49 | 11.5 |
+| L12 (21, 22) | 10.55 | 10.59 | 10.7 |
+| L13 (23) | 10.19 | 10.28 | 10.2 |
+| L14 blank (24) | 10.00 | 10.07 | 10.0 |
+| L14 rear face (25) | curve ends 9.1 to 9.2 | same | 9.1 |
+| L15 (26, 27) | 9.76 | 9.83 | 9.8 |
+| L16 (28, 29) | 10.95 | 11.05 | 11.0 |
+| L17 (30) | 11.45 | 11.54 | 11.5 |
+| L18 (31, 32) | 11.18 | 11.27 | 11.2 |
+
+Panel (A) draws the elements 1 to 2 px taller than panel (B). Every stored value lies within 0.15 mm of one of the two panels except L8, which is 0.15 to 0.3 mm (2 %) above the drawing and was left as inside the reading error. The order of neighbouring heights is as drawn throughout (L1 above L2, L3 above L4, L6 above L7 above L8, the L9 + L10 pair above L11, L12 above L13 above L14 above L15, L17 above L16 and L18). The first pass's values are confirmed.
+
+Places where the page and the figure visibly differ, all from the renderer joining an element's two rim points with one straight edge:
+
+- L14 is drawn as a square block 10.0 mm high whose concave rear face ends at 9.1 to 9.2 mm in a flat land; the page slopes its rim from 10.0 mm at surface 24 to 9.1 mm at surface 25. Raising surface 25 is not available: surfaces 25 and 26 would meet at 9.6 mm and the validator's cross-gap limit stops the shared band at 9.1 mm. The figure settles which face stops short: surface 26 runs to L15's full rim (its curve meets the rim line 13 to 15 px on the object side of its vertex, and its sag at 9.8 mm is 14.8 px), and L15's front corner sits one to two pixels from L14's land, while surface 25 ends on the land. The stored pair (9.1 and 9.8) is therefore the drawn arrangement, not a validator artefact.
+- At the four stepped cemented joints (L3/L4, L6/L7, L13/L14, L17/L18) the figure draws both members square, the taller one 0.2 to 0.4 mm above the other, with the cemented curve running to the taller member's rim. One surface carries one value, so one member must taper. The junction carries the lower member's value, which keeps the member with the longer rim square in each pair (rim lengths 3.0 against 1.7 mm for L4 and L3, 3.7 against 1.4 mm for L7 and L6, 4.1 against 1.4 mm for L14 and L13, 3.2 against 2.3 mm for L18 and L17). Giving each pair one common height would square all eight elements and lose the drawn steps; that was not done.
+- The camera-side plate OF is traced but not drawn, and the page draws the infinity iris at 2x where panel (B) draws a smaller one; both are as intended and described below.
+
+Labels: one change.
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `groups` | G1, G2, G3, G4 (surfaces 21 to 32) | G1, G2, G3, G4a (21 to 22), G4b/IS (23 to 27), G4c (28 to 32) | Fig. 2 brackets G1, G2, G3, G4a, G4b and G4c in one row with G4 beneath; ¶0112 names the three subgroups and ¶0128 names G4b as the image-stabilizing group; the element roles and the analysis already refer to G4a, G4b and G4c, which the diagram did not show |
+
+The page packs group labels into rows by width, so a G4 label beside its three subgroups would land between G4b and G4c; the subgroup row was used alone. The focus-movement overlay now lists six rows, with G4a, G4b/IS and G4c fixed. The header comment gained a GROUPS paragraph, and the analysis one sentence in the architecture section.
+
+Checked and found correct:
+
+- Element designations. `name` and `diagramLabel` are L1 to L18, the reference signs of Fig. 2 and of ¶0120 to ¶0126; the inspector heads each element "Element n" followed by the same L-number, and the analysis uses the same names. Each `type` agrees with the signs of the two radii and with the patent's wording for all 18 elements (L1 and L9 negative menisci convex to the object, L4 negative meniscus convex to the image, L6 positive meniscus convex to the image, the rest biconvex or biconcave as stated).
+- Cemented brackets. Five, one per cemented pair, with the right surfaces: D1 5 to 7 (L3 + L4), D2 10 to 12 (L6 + L7), D3 16 to 18 (L9 + L10), D4 23 to 25 (L13 + L14), D5 30 to 32 (L17 + L18). The inspector shows a "Doublet Dn" badge on those ten elements and on no other.
+- Bracket and gap labels. No cemented-bracket text equals a variable-gap text: the brackets are D1 to D5 and the gaps D9, D14, D15 and D20. The gap labels are the patent's own upper-case notation (¶0131 and the table). Both sets share the letter D; the header now says which is which.
+- No aspheric surface: the Example 1 table has no aspheric data and the file has no `asph` entry or A-suffixed label.
+- Stop at surface 15 between L8 and L9, 48.67 mm behind the first vertex (figure 48.7 mm in both panels).
+- Special-glass tags. The patent text designates no anomalous-dispersion or named glass; its only material statement is that G3 has at least two positive elements with an Abbe number of 80 or more (L10 and L11). `apd: "inferred"` is therefore the right kind on all six. On the engine's normal line the catalog glasses give ΔPgF +0.049 for L5 and L10 (νd 94.66), +0.031 for L8 and L11 (νd 81.5 and 81.6), +0.016 for L2 and L3 (νd 68.62), and +0.004 for L1 (νd 70.23), the only other crown above νd 62; no untagged element fits the maker's two Super ED and four ED counts better. All 18 glass labels resolve in the catalog.
+
+Movement. The four `var` arrays hold the table's columns in the printed order, infinity first and β = −2.00 last. G2 moves toward the image by 4.2120, 9.4019 and 17.0307 mm and G3 toward the object by 7.2754, 13.8514 and 24.8259 mm; D9 + D14 is 22.8558 mm and D15 + D20 is 31.2465 mm at every state (22.8557 at β = −1.00), so the stop, G1 and G4 stay fixed, as ¶0127 states. Panel (B) shows the same: G2 16.8 mm imageward and G3 24.9 mm objectward of their panel (A) positions, stop unmoved. On the page the slider reads ∞, 33 cm, 25 cm and 22 cm at the four keyframes with the table's gaps and focal lengths 88.21, 76.51, 62.44 and 38.06 mm; the far-end label is 22 cm against the maker's 0.224 m, and the β = −1.00 label 25 cm against the maker's 0.250 m. The overlay draws G2 moving right and G3 moving left by 24.83 mm at most.
+
+Field behaviour against the patent's plots, by a separate exact chief-ray trace with Coddington sagittal and tangential foci, through the plate, at the 10.82 mm image height (the plots' solid curve is the sagittal focus and the dashed one the tangential):
+
+| State | Distortion, model / plot | Sagittal focus, model / plot | Tangential focus, model / plot |
+| --- | ---: | ---: | ---: |
+| Infinity | −0.21 % / −0.1 to −0.2 % | −0.004 / about 0 | −0.010 / about 0 |
+| β = −0.50 | −0.61 % / −0.60 to −0.64 % | −0.021 / −0.021 | −0.065 / −0.063 |
+| β = −1.00 | −0.77 % / −0.76 to −0.83 % | −0.029 / −0.029 | −0.097 / −0.091 |
+| β = −2.00 | −0.47 % / −0.51 to −0.56 % | −0.057 / −0.061 | −0.167 / −0.17 |
+
+At infinity both foci bow to −0.022 and −0.017 mm at 0.7 of the field (plot −0.021 mm), and the half-field for 10.82 mm is 7.008° (table 14.02° full). Signs and sizes agree at all four states, so no radius, gap or index carries a sign or digit error that the axial checks would miss.
+
+Stop statements. The stop marks of Fig. 2 end 103 to 104 px from the axis in panel (A) (9.25 to 9.34 mm) and 72 to 73 px in panel (B) (6.46 to 6.55 mm), inside the 9.3 and 6.6 ± 0.15 mm the header and analysis quote. A separate on-axis trace gives, with the 9.172 mm stop, working f-numbers 3.64 / 3.90 / 4.40 / 5.71 and ray heights of 13.72, 13.87 and 13.79 mm at surfaces 7, 8 and 9 at 2x, so L5 (12.7 mm) passes only the beam of an 8.44 mm stop, f/6.17; a 6.53 mm stop gives f/6.11 at 1x and f/7.92 at 2x. The statements in the header and the analysis are accurate. One addition: the full-aperture ends of the spherical-aberration curves are +0.13 mm at infinity, −0.15 mm at β = −0.50, +0.02 mm at β = −1.00 and −0.27 mm at β = −2.00, and the model gives +0.129, −0.156, +0.024 and −0.275 mm with stops of 9.172, 7.79, 6.97 and 6.52 mm, the sizes the printed FNO values imply; the 9.172 mm stop would give −0.172, +0.323 and +0.227 mm at the three finite states. The patent's computed data therefore use a different stop at each printed state, which the header and the analysis now say. The stop and the model were not changed.
+
+Engine values before and after: focal length 88.2076 mm, f/3.638, stop 9.172 mm and half-field cap 9.499° are identical; the surface audit reports no validation errors, the image-circle check no undersized surface, the traced corner coverage 100 % at 7.0°, and the clearance trace no clipped axial ray or blocked chief ray. The corner chief ray clears every rim by at least 3.5 mm at all four states. No rim changed, so vignetting is unchanged. For the record, the figures in the earlier section are meridional-fan fractions; a full-pupil count over a 240 × 240 grid gives 100 / 100 / 98.1 / 93.3 / 84.2 / 73.3 / 59.4 % at 0 / 1.2 / 2.3 / 3.5 / 4.7 / 5.8 / 7.0° with the present rims, and 48.1 % at 7.0° with the rims as they stood before the first pass.
+
+Live page after the edits: the label row under the diagram reads G1, G2, G3, G4a, G4b/IS, G4c on one line at infinity and at 2x, nothing overlaps, and the outlines fall on the drawn ones at both ends of the travel apart from the differences listed above.
+
+Open limitations: the bevel on L14 and the tapers on L3, L6, L13 and L17 remain; L8 renders 0.2 mm taller than drawn; the patent's smaller close-focus stops are not modeled; the maker's special-glass positions are still unconfirmed by a construction diagram.

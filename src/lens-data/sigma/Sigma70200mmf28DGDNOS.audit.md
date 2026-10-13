@@ -298,6 +298,8 @@ The stored `dPgF` values are unchanged: they are the patent PgF measured from th
 
 That is a one-to-one match with the patent example: the six 1.43700 / 95.10 elements, the 1.55032 / 75.50 and 1.49700 / 81.61 elements, and the aspherical surfaces 14 on L8, 21 on L12 and 25–26 on L15. The diagram was not viewed again for this section. The patent itself names neither FLD nor SLD, so the tag is "inferred", not "patent".
 
+Note added later on 2026-10-13: the second review (last section of this file) retagged L4 and L5 "patent" on the patent's conditions (3) and (4); the other six tags stand as described here.
+
 ### Fields changed
 
 Set by the coordinator before this pass: `name`, `subtitle`, `specs`, `apertureDesign` 2.91, the `source` strings of the rear plate and the three close-focus records, the 21 glass labels and the eight `apd` tags.
@@ -338,3 +340,99 @@ Results at the filed values. The repository validator reports no errors. The ima
 At the wide station L4 draws square-cut at 24 mm with no overlap. Against the drawing its rim stands 1 mm higher and its concave rear face runs about 3 mm further toward the image at the rim, because the drawn flat annulus is not modeled.
 
 The data-file header's semi-diameter note and the analysis aperture paragraph state the exception and the three corner values; the analysis gives 83 % at 11° and 54 % at the corner.
+
+## 2026-10-13 — Second review: diagram, labels and movement
+
+### What was compared
+
+The local page at 72.1, 118 and 194 mm, at infinity and at 1.0 m, its zoom and focus movement overlays at both ends, and the inspector of all 20 elements, against `patents/JP2025043459A.pdf`: FIG. 1 (PDF p. 45), the Numerical Example 1 tables (PDF pp. 17–19), paragraphs 0072–0075 (PDF pp. 16–17), the conditions (PDF pp. 12–13 and 42), aberration figures 2–7 (PDF pp. 46–48) and the front page (PDF p. 2). FIG. 1 was measured again from the 420 dpi page raster without reference to the first pass's readings. L4 (surfaces 6 and 7) was not open to change in this review.
+
+Maker information is the coordinator's viewing of Sigma's product page and construction diagram on 2026-10-13, recorded in the glass-label section above: 20 elements in 15 groups, FLD at elements 2, 3, 4, 10, 13 and 19, SLD at 5 and 20, aspherical elements 8, 12 and 15. No maker image was viewed in this review.
+
+### Figure measurement and rims
+
+The axis is at page row 1962.1. Surface 1 crosses it at x = 973, surface 11 at 1611, surface 36 at 2456 and the image plane at 2714, which gives 0.12754 mm/px on the 1-to-36 span (189.1458 mm over 1483 px) and the same on the two shorter spans. All 36 vertex crossings fall within 1 px of the prescription. Rim readings are the mean of the upper and lower outline, taken at the centre of the 3 px line.
+
+| Element | Surfaces | File (mm) | Figure, this review |
+|---|---|---:|---|
+| L1 | 1 | 35.0 | 274.0 px, 34.9 |
+| L2 | 2, 3 | 34.6 | 271.0 px, 34.6 |
+| L3 | 4, 5 | 34.4 | 268.5 px, 34.2 |
+| L4 | 6, 7 | 24 / 24 | blank 180.0 px, 23.0; rear curve end 19.2–19.5 (the owner's exception) |
+| L5 | 8, 9 | 18.7 | 146.5 px, 18.7 |
+| L6 | 10 | 18.4 | 143.5 px, 18.3 |
+| L7 | 11, 12 | 19.0 | 147.0 px, 18.7 |
+| L8 | 14A, 15 | 18.0 | 139.5 px, 17.8 |
+| L9 | 16 | 17.3 | 135.3 px, 17.3 |
+| L10 | 17, 18 | 16.6 | 129.5 px, 16.5 |
+| L11, L12 | 19, 20, 21A | 16.2 | 126.7 px, 16.2 |
+| L13 | 22, 23 | 16.6 | 129.5 px, 16.5 |
+| L14 | 24 | 16.7 | 130.7 px, 16.7 |
+| L15 | 25A, 26A | 17.0 | 133.0 px, 17.0 |
+| L16 | 27, 28 | 15.5 | 118.3 px, 15.1 |
+| L17 | 29 / 30 | 15.5 / 13.5 | block 117.0 px, 14.9; rear curve end 105 px, 13.4 |
+| L18 | 31, 32 | 18.0 | 139.0 px, 17.7 |
+| L19 | 33 / 34 | 17.1 / 15.5 | 133.5 px, 17.0; rear curve end 15.4–15.7 |
+| L20 | 35 / 36 | 15.5 / 17.2 | front curve end 15.4; 135.0 px, 17.2 |
+
+No semi-diameter was changed. Every reading agrees with the file within 0.2 mm except L17's front face (0.6 mm, 3.9 %), L16 (0.4 mm), L18 (0.3 mm) and L7 (0.25 mm), all inside the measurement band, and the drawn order of heights between neighbours is kept throughout. Overlaid at the figure's scale, the live outline lies on the drawn one everywhere except L4 and the corners named next.
+
+The corners the renderer bevels were each tested and left. Squaring L19 and L20 (34 at 17.1, 35 at 17.2) is refused by the validator: the combined sag of the two facing concave surfaces, 6.96 mm, exceeds the 6.39 mm gap, so the faces would cross. Squaring L17 (30 at 15.0) passes the validator but raises the modeled wide-corner transmission from 54.2 % to 59.4 %; the drawn curve end is the optical aperture, so 13.5 stays. Squaring L9 (17 at 17.3) would move the bevel to L10, whose rim the figure draws 0.7 mm lower, and would push the junction rim 1.2 mm past the drawn L9 blank.
+
+Aspheric limits: 14A turns over at 31.8 mm (rim 18.0), 21A at 21.6 mm (rim 16.2), 25A at 23.2 mm with its conic limit at 27.4 mm (rim 17.0), and 26A has no turnover inside its 53.0 mm conic limit (rim 17.0). The departures and rim slopes in the analysis table were recomputed and are unchanged.
+
+### Changes
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `diagramLabel`, all 20 elements | absent; the diagram printed 1…20 | "L1"…"L20" | The patent names groups G1–G8, GR, S, FL and I and no elements (PDF p. 45 legend and FIG. 1). The inspector and the prose already said L1–L20; the diagram now does too. |
+| `varLabels` | D5, D7, D10, D12, D26, D30, D32, D36 | d5, d7, d10, d12, d26, d30, d32, d36 | The patent writes the variable gaps in lowercase (PDF p. 18). "D5" was both the gap after surface 5 and the L13 + L14 cemented pair. The cemented-pair labels keep D1–D5. |
+| `apd`, `apdNote` on L4 and L5 | "inferred" | "patent" | Paragraph 0030 calls for anomalous-dispersion glass to correct the secondary spectrum, and conditions (3) and (4) bound the mean Abbe number and the mean anomalous dispersion ΔPgF of the negative lenses of G2 and G3 (PDF pp. 12–13; claim 3). L4 and L5 are the only such lenses. Example 1 lists 85.30 and 0.042 (PDF p. 42); from the printed PgF the two values are +0.05645 and +0.02767. |
+| `zoomLabels` | absent | "Wide", "Tele" | The corpus convention for zoom lenses; the patent's columns are wide, middle and tele. |
+| Header comment | gap names in capitals | lowercase gap names and a note on the labels and the two tags | Follows the changes above. |
+
+The other six special-glass tags stay "inferred": L2, L3, L10, L13 and L19 (FLD) and L20 (SLD) follow the maker's diagram only. The analysis states the element numbering, cites conditions (3) and (4) under L4, and names L4 and L5 as the two elements the patent text itself singles out.
+
+### Checked and found correct
+
+Prescription: the 36 surface rows, the plate, the stop, the four aspheric markers, all 40 printed aspheric values (the conic constant and A4 to A20 of each surface), the seven variable gaps and BF at all six states, and the three close-focus object distances were compared by script with the patent text layer; there is no mismatch. Element types agree with the signs of R and with paragraphs 0074–0075. Roles and the five cemented pairs (surfaces 1–3, 8–10, 16–18, 19–21A, 22–24) are right. The group ranges equal the patent's group table (start surfaces 1, 6, 8, 11, 13, 27, 31, 33); the table starts G5 at the stop, where FIG. 1 draws S just outside the G5 bracket. Front-page data: publication 2025-043459 A of 1 April 2025, application 2023-150744 filed 19 September 2023, applicant Sigma Corporation, inventor Masakazu Hibino.
+
+Zoom, wide to middle to tele, from the printed gaps and measured from surface 1, against paragraph 0073 and the FIG. 1 arrows:
+
+| Group | Position change, wide → middle and middle → tele (mm, + toward the image) | Patent |
+|---|---|---|
+| G1 | 0 | fixed |
+| G2 | +34.63, +31.92 | toward the image |
+| G3 | +30.26, +27.82 | toward the image |
+| G4 | +7.24, +12.41 | toward the image |
+| Stop, G5 | +0.0015, −0.0027 | fixed |
+| G6 | −1.38, −4.63 | toward the object |
+| G7 | −1.40, +4.41 | moves; curved arrow |
+| G8 | +0.0001, −0.0007 | fixed |
+
+`zoomPositions` ascend 72.1, 118, 194 and every `var` array lists the stations in that order with infinity first. Focus, infinity to 1.0 m: G6 moves +1.3184, +3.5739 and +7.8357 mm toward the image and G7 −1.2160, −2.7733 and −7.4217 mm toward the object at the three stations; G1 to G5 and G8 stay. The page's movement overlays show the same directions, with maximum travel 66.55 mm for zoom and 1.32 mm and 7.84 mm for focus at the two ends. The focus slider's far end reads 1.00 m; the printed object distance of 778.00 mm plus the 222.00 mm track is 1000.0 mm.
+
+Field behaviour against the patent's aberration figures, read at the top of each plot (1 px is 0.003 mm on the ±0.5 mm plots, 0.006 mm on the ±1.0 mm plots and 0.06 % in distortion) and computed with a separate exact skew-ray trace of the file's prescription, d-line, with the plate:
+
+| State, half-field | ΔS figure / model (mm) | ΔM figure / model (mm) | Distortion figure / model (%) |
+|---|---|---|---|
+| 72.1 mm, infinity, 16.47° | −0.063 / −0.058 | +0.017 / +0.017 | +1.49 / +1.50 |
+| 72.1 mm, 1.0 m, 16.45° | −0.205 / −0.200 | −0.400 / −0.395 | +1.46 / +1.53 |
+| 118 mm, infinity, 10.01° | −0.031 / −0.028 | +0.098 / +0.101 | +3.84 / +3.88 |
+| 118 mm, 1.0 m, 9.89° | −0.101 / −0.098 | +0.063 / +0.071 | +3.90 / +3.92 |
+| 194 mm, infinity, 6.09° | −0.043 / −0.037 | −0.096 / −0.090 | +4.41 / +4.46 |
+| 194 mm, 1.0 m, 6.08° | +0.079 / +0.079 | +0.57 just below the top / +0.60 | +4.76 / +4.79 |
+
+The chief ray at those half-fields lands at 21.637, 21.638 and 21.622 mm at infinity and 21.629, 21.632 and 21.617 mm at 1.0 m, against the printed 21.63. The spherical-aberration curves interlace too closely to tell the three lines apart; the model's d-line marginal values at infinity, −0.054, −0.014 and −0.048 mm, each fall on a curve end at the top of the plot (−0.052, −0.014 and −0.047). Astigmatism and distortion agree in sign and size at all six states, which also confirms the order of the zoom stations and of the two focus states.
+
+Vignetting: no rim changed, so it is unchanged. The page's figure is a meridional sweep (54.2 % at the 16.5° wide corner, before and after). A full-pupil count with the same separate trace gives 87.2 % at 11.0° and 53.0 % at 16.47° at the wide end, 44.3 % at the 118 mm corner and 39.6 % at the 194 mm corner.
+
+Engine values, identical before and after: half-field 20.64°, 12.70° and 7.36°; f-numbers 2.91, 2.89 and 2.92; iris radii 16.6986, 16.6640 and 16.7020 mm; focal lengths 72.1040, 118.0039 and 194.0008 mm. The validator reports no errors, the image-circle check lists no undersized surface, traced corner coverage is 100 % at the three stations, and no surface clips the on-axis beam or blocks the corner chief ray.
+
+The live page after the edits: labels L1–L20 sit in two rows without overlap at 72.1, 118 and 194 mm, at infinity and at 1.0 m. All eight group labels show at every state; at 194 mm G4 drops to a second row under G3. The gap readouts are d5 to d36 and equal the printed gaps at each state. The inspector shows the patent tag on L4 and L5, the inferred tag on the other six, the aspheric marks on L8, L12 and L15, and D1–D5 on the ten cemented elements.
+
+### Open limitations
+
+L4 at the long end. With surface 7 at 24 mm the rear rim point lies 7.65 mm behind its vertex. At 194 mm the gap to G3 is 8.10 mm and L5's front corner (18.7 mm) lies 6.15 mm behind that vertex, so the L4 bowl reaches 1.5 mm past the plane of L5's corner, outside L5's rim. The surfaces do not touch (1.69 mm axial clearance at 18.7 mm height), and the wrap appears from about 166 mm upward. The drawn blank, with its flat annulus 4.9 mm behind the vertex, would clear L5 by 1.3 mm. This follows from the owner's 24 mm rim and is left as it is; a rear face at or below 21.7 mm would not wrap.
+
+The bevelled corners of L9, L17, L19 and L20 remain, for the reasons given above. The two aspheric marks on L15 print side by side as "AA". The gap label d5 and the cemented-pair label D5 now differ in case only, as in the patent's own gap notation.

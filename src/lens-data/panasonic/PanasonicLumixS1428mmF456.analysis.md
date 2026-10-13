@@ -43,7 +43,7 @@ The negative leading group and long back focal distance make this a retrofocus d
 | Middle           |          19.803204 |                104.63759 |              23.04939 |                          20.5 |
 | Tele             |          26.926096 |                106.86514 |              33.41134 |                          21.0 |
 
-Measured from the fixed image plane, G1 first moves toward the image and then reverses toward the object across the tabulated stations, while G2, G3 and G4 move toward the object. The G3–G4 separation and the space behind G4 both grow toward the long end. [1, ¶0045 and Table 3D]
+Measured from the fixed image plane, G1 first moves toward the image and then reverses toward the object across the tabulated stations, while G2, G3 and G4 move toward the object. The G3–G4 separation and the space behind G4 both grow toward the long end. [1, ¶0045 and Table 3A]
 
 The three printed configurations are used as they stand, and the gaps between them are interpolated linearly. Paragraph 0027 states that the connecting lines in the figure are not the actual group movement, so the patent supplies no continuous zoom cam. The interpolated model and its focus error are discussed below.
 
@@ -59,13 +59,13 @@ L1 is the first negative meniscus of G1, convex toward the object, and is follow
 
 Figure 1 draws L1 with a stepped rim, so its front and rear clear radii are estimated separately, at 21.0 and 15.2 mm. The rear surface, R = 16.087 mm, is drawn almost to a hemisphere: at 15.2 mm its rim angle is 70.9° and its edge meets the front rim of L2. The flat shoulder outside that radius is a mounting surface, not clear aperture. [1, ¶¶0035, 0041]
 
-### L2 — Negative Meniscus (Asph), convex to object
+### L2 — Negative Meniscus (2× Asph), convex to object
 
-nd = 1.53380, νd = 55.6. Glass: Unmatched (patent optical material; nd 1.53380, nu 55.6). f = -41.5445 mm.
+nd = 1.53380, νd = 55.6. Glass: Unmatched (Panasonic moulding material 1.53380/55.6; no catalog row; line indices from US 2017/0059832 A1). f = -41.5445 mm.
 
 L2 is the second negative meniscus of G1 and is aspherical on both faces, patent surfaces 3 and 4. It is one of the design's two aspherical elements.
 
-Its pair nd 1.53380 / νd 55.6 has no row in the catalogs checked, so the glass stays Unmatched; Example 2 of the patent prints a different pair, 1.59201 / 67.0, in this position. The rear clear radius of 12.2 mm follows Figure 1, where the rear asphere ends just above the rim of L3 with 0.62 mm of air between the two faces. [1, ¶0041; Tables 1–2, 4]
+Its pair nd 1.53380 / νd 55.6 has no row in the catalogs checked, so the glass stays Unmatched, but it is a real material: Examples 1, 3, 4 and 5 all print it in this position (Example 2, a different construction, prints 1.59201 / 67.0), and Panasonic uses the same pair for double-aspherical elements in two earlier patents. One of them, US 2017/0059832 A1, prints its line indices (nC 1.53100, nF 1.54060, ng 1.54600, P_g,F 0.56232, ΔPgF +0.0120 on the Schott normal line); the model carries those values for L2, on the assumption that an identical nd / νd pair from the same applicant in the same role is the same material. [11] The rear clear radius of 12.2 mm follows Figure 1, where the rear asphere ends just above the rim of L3 with 0.62 mm of air between the two faces. [1, ¶0041; Tables 1–2, 4]
 
 ### L3 — Biconcave Negative
 
@@ -115,7 +115,7 @@ L8 is the biconvex positive rear element of D2. Despite its positive power the d
 
 HOYA FCD1 and SCHOTT N-PK52A match the printed pair. L8 is tagged as one of the three ED lenses Panasonic lists, a class-level assignment. [1, ¶¶0037, 0042; 2; 5, 7]
 
-### L9 — Biconvex Positive (Asph)
+### L9 — Biconvex Positive (2× Asph)
 
 nd = 1.55332, νd = 71.7. Glass: M-FCD500 (HOYA moulding glass; coordinate equivalent; supplier unconfirmed) — ED class, inferred. f = +19.0330 mm.
 
@@ -173,30 +173,30 @@ The camera-side plane-parallel plate is 2.1 mm thick with nd = 1.51680 and νd =
 
 The printed nd/νd pairs were compared with the current OHARA, HOYA, SCHOTT, HIKARI, CDGM and SUMITA catalogs. A catalog match fixes a glass type and its dispersion curve; it does not establish which supplier Panasonic used. [5–10]
 
-| Element |      nd |   νd | Glass                                                                    | Maker class (inferred) |
-| ------- | ------: | ---: | ------------------------------------------------------------------------ | ---------------------- |
-| L1      | 1.80420 | 46.5 | N-LASF44 (SCHOTT; HOYA TAF3D shares the coordinate; supplier unconfirmed)     | —                      |
-| L2      | 1.53380 | 55.6 | Unmatched (patent optical material; nd 1.53380, nu 55.6)                 | Aspherical             |
-| L3      | 1.59283 | 68.6 | FCD505 (HOYA; supplier unconfirmed)                                      | ED                     |
-| L4      | 1.67196 | 31.5 | Unmatched (patent dense-flint class; nd 1.67196, nu 31.5)                | —                      |
-| L5      | 1.77319 | 49.6 | Unmatched (patent high-index crown class; nd 1.77319, nu 49.6)           | —                      |
-| L6      | 1.70147 | 40.9 | Unmatched (patent high-index flint class; nd 1.70147, nu 40.9)           | —                      |
-| L7      | 2.00100 | 29.1 | S-LAH99 (OHARA; coordinate equivalent; supplier unconfirmed)   | UHR                    |
-| L8      | 1.49700 | 81.6 | FCD1 (HOYA; coordinate equivalent; supplier unconfirmed)       | ED                     |
-| L9      | 1.55332 | 71.7 | M-FCD500 (HOYA moulding glass; coordinate equivalent; supplier unconfirmed)         | Aspherical ED          |
-| L10     | 1.81012 | 21.2 | Unmatched (patent dense-flint class; nd 1.81012, nu 21.2)                | —                      |
-| L11     | 1.94595 | 18.0 | FDS18 (HOYA; coordinate equivalent; supplier unconfirmed) | —                      |
-| L12     | 1.92119 | 24.0 | FDS24 (HOYA; coordinate equivalent; supplier unconfirmed)            | —                      |
-| L13     | 1.49700 | 81.6 | FCD1 (HOYA; coordinate equivalent; supplier unconfirmed)       | ED                     |
-| L14     | 1.80309 | 35.2 | Unmatched (patent dense-flint class; nd 1.80309, nu 35.2)                | —                      |
+| Element |      nd |   νd | Glass                                                                                                      | Maker class (inferred) |
+| ------- | ------: | ---: | ---------------------------------------------------------------------------------------------------------- | ---------------------- |
+| L1      | 1.80420 | 46.5 | N-LASF44 (SCHOTT; HOYA TAF3D shares the coordinate; supplier unconfirmed)                                  | —                      |
+| L2      | 1.53380 | 55.6 | Unmatched (Panasonic moulding material 1.53380/55.6; no catalog row; line indices from US 2017/0059832 A1) | Aspherical             |
+| L3      | 1.59283 | 68.6 | FCD505 (HOYA; supplier unconfirmed)                                                                        | ED                     |
+| L4      | 1.67196 | 31.5 | Unmatched (patent dense-flint class; nd 1.67196, nu 31.5)                                                  | —                      |
+| L5      | 1.77319 | 49.6 | Unmatched (patent high-index crown class; nd 1.77319, nu 49.6)                                             | —                      |
+| L6      | 1.70147 | 40.9 | Unmatched (patent high-index flint class; nd 1.70147, nu 40.9)                                             | —                      |
+| L7      | 2.00100 | 29.1 | S-LAH99 (OHARA; coordinate equivalent; supplier unconfirmed)                                               | UHR                    |
+| L8      | 1.49700 | 81.6 | FCD1 (HOYA; coordinate equivalent; supplier unconfirmed)                                                   | ED                     |
+| L9      | 1.55332 | 71.7 | M-FCD500 (HOYA moulding glass; coordinate equivalent; supplier unconfirmed)                                | Aspherical ED          |
+| L10     | 1.81012 | 21.2 | Unmatched (patent dense-flint class; nd 1.81012, nu 21.2)                                                  | —                      |
+| L11     | 1.94595 | 18.0 | FDS18 (HOYA; coordinate equivalent; supplier unconfirmed)                                                  | —                      |
+| L12     | 1.92119 | 24.0 | FDS24 (HOYA; coordinate equivalent; supplier unconfirmed)                                                  | —                      |
+| L13     | 1.49700 | 81.6 | FCD1 (HOYA; coordinate equivalent; supplier unconfirmed)                                                   | ED                     |
+| L14     | 1.80309 | 35.2 | Unmatched (patent dense-flint class; nd 1.80309, nu 35.2)                                                  | —                      |
 
 The low-dispersion positive elements L8, L9 and L13 are paired with higher-dispersion negative or weakly positive partners in G2 and G4. The patent separately requires a high-Abbe negative lens in G1 (condition 2, L3) and a low-Abbe positive lens in G3 (condition 5, L11). Panasonic lists one aspherical ED lens, one aspherical lens, three ED lenses and one UHR lens, without positions; by glass class Example 1 supplies exactly that census, and the last column and the special-dispersion tags in the data file follow it. The match is at class level: no maker document assigns the positions. [2]
 
 L1, L3, L7, L8, L9, L11, L12, L13 and the rear plate resolve to catalog glasses (N-LASF44, FCD505, S-LAH99, FCD1, M-FCD500, FDS18, FDS24, FCD1 and N-BK7), and their indices away from the d line come from those glasses' catalog dispersion formulas. These are present-day catalog data, not measurements of the production melts. The stored ΔPgF values are the catalog P_g,F measured from the normal line ΔPgF = PgF − (0.6438 − 0.001682 νd): −0.008387 (L1), +0.004846 (L7), +0.032351 (L8 and L13), +0.017199 (L9), +0.041043 (L11), +0.016768 (L12) and −0.000916 (plate). FCD505's P_g,F of 0.5443 puts L3 at +0.0159 on the same line. Vendor ΔPgF columns use other reference lines and are not copied. [5–7]
 
-Six pairs have no catalog row: L2, L4, L5, L6, L10 and L14. Example 2 of the same patent prints different values in the same positions — L5 1.77250 / 49.6 and L6 1.70154 / 41.1, both catalog pairs, against Example 1's 1.77319 / 49.6 and 1.70147 / 40.9; L4 1.66945 / 32.4, L10 1.80827 / 21.6 and L14 1.80255 / 28.2. The Example 1 values are therefore taken as index values optimised for this design rather than misprints of catalog glasses, and those elements stay Unmatched. They and the cement layers are traced with a dispersion model based on the Abbe number alone. The d-line prescription is as printed in every case.
+Six pairs have no catalog row: L2, L4, L5, L6, L10 and L14. For five of them the patent's other examples print a different value in the same position every time — L4 1.67196 / 1.66945 / 1.67960 / 1.67179 / 1.68897, L5 1.77319 / 1.77250 / 1.77687 / 1.77468 / 1.78037, L6 1.70147 / 1.70154 / 1.69977 / 1.70096 / 1.70032, L10 1.81012 / 1.80827 / 1.79808 / 1.80859 / 1.81076 and L14 1.80309 / 1.80255 / 1.82937 / 1.80977 / 1.73051 across Examples 1–5 — and only Example 2's L5 and L6 land on catalog pairs. Those Example 1 values are therefore taken as index values optimised for this design rather than misprints of catalog glasses; the five elements stay Unmatched and, like the cement layers, are traced with a dispersion model based on the Abbe number alone. L2 is different: its pair recurs in four of the five examples and is traced with the line indices Panasonic published for it elsewhere. The d-line prescription is as printed in every case.
 
-With six materials unidentified, the chromatic traces describe this model and are not a measurement of the production lens's colour correction.
+With five materials unidentified and a sixth known only by its line indices, the chromatic traces describe this model and are not a measurement of the production lens's colour correction.
 
 ## Focus Mechanism
 
@@ -288,3 +288,4 @@ Chief rays traced at the patent's half-fields of 56.9492° / 47.4704° / 38.7833
 8. HIKARI, [optical-glass catalog](https://www.hikari-g.co.jp/optical_glass/catalog/): catalog data revised through June 1, 2025.
 9. CDGM, [optical glass](https://www.cdgmgd.com/): September 2026 glass-data file.
 10. SUMITA, [downloads](https://www.sumita-opt.co.jp/en/download/): glass data version 14.02.00 and glass-data file of August 21, 2026.
+11. Panasonic Intellectual Property Management Co., Ltd., US 2017/0059832 A1, Table 23: nC, nF, ng and P_g,F of the nd 1.53380 / νd 55.6 material.

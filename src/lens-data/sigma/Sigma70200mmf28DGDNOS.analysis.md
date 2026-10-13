@@ -90,7 +90,8 @@ The focal lengths below are standalone thick-element focal lengths in air, compu
 center thickness and printed d-line index. They are not the power of a cemented pair or a claimed isolated aberration contribution.
 Each glass named below is the catalog glass whose nd, νd and PgF equal the patent's printed values.
 The name selects a dispersion curve; it does not identify the supplier or melt.
-The element numbering follows the modeled front-to-rear lens sequence; the camera-side plate is treated separately.
+The patent designates the groups G1–G8 and no individual elements, so L1–L20 number the elements front to rear;
+the camera-side plate is treated separately.
 
 ### L1 — Negative Meniscus
 
@@ -136,7 +137,7 @@ Source surfaces 6–7; source PgF = 0.5336; modeled dPgF = +0.0497582.
 
 L4 alone forms the negative G2 zoom group. The stronger positive rear curvature gives negative isolated power.
 
-Its high Abbe number contributes to the source condition on negative glasses in G2 and G3.
+Its Abbe number and partial-dispersion ratio enter the source conditions (3) and (4) on the negative lenses of G2 and G3.
 
 The group moves imageward as the zoom changes from wide to tele (¶0073).
 
@@ -381,6 +382,8 @@ The six FCD100 elements and the FCD705 and FCD1 elements sit at the positions Si
 A matching catalog triple identifies neither the supplier nor the melt of the production glass.
 
 The patent measures anomalous dispersion as ΔPgF = PgF − 0.64833 + 0.00180 νd, and that convention is kept for its conditions.
+Conditions (3) and (4) apply it to the negative lenses of G2 and G3, which are L4 and L5 (ΔPgF +0.05645 and +0.02767);
+those two are the only elements for which the patent text itself calls for anomalous dispersion (¶0030–0037).
 The model stores dPgF = PgF − (0.6438 − 0.001682 νd), computed from the same printed PgF.
 All 21 media take their chromatic indices from the named catalog curves, not from measured data in the patent.
 That does not establish apochromatic correction or the polychromatic MTF of the production lens.

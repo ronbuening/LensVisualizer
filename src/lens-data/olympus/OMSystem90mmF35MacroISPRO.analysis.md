@@ -65,7 +65,9 @@ aberration decomposition of the present model. [1, ¶¶0024–0030]
 The rear assembly separates into G4a (L12), G4b (L13–L15), and G4c (L16–L18), with
 negative, negative, and positive net powers respectively. Their calculated EFLs
 are −103.013 mm, −27.032 mm, and +33.434 mm. G4b is the transverse stabilization
-group; the prescription modeled here is centered. [1, ¶¶0123–0128]
+group; the prescription modeled here is centered. The diagram brackets G4 by
+these three subgroups, as Figure 2 does, and marks G4b as the IS unit.
+[1, ¶¶0112, 0123–0128]
 
 Although the patent title uses “telephoto,” the infinity air-equivalent
 first-vertex-to-source-image track is 152.0730 mm and its ratio to the calculated
@@ -373,8 +375,12 @@ The smaller value is consistent with the printed FNO 0.51, which as focal length
 over paraxial entrance-pupil diameter corresponds to a 6.5 mm stop semi-diameter
 (the infinity stop would give 0.36), and with the manual: a 6.5 mm stop traces
 to a working f/7.9 at 2x and f/6.1 at 1x, and the infinity stop to f/4.4 at 1x.
-On the same reading the printed 2.71 and 1.61 correspond to 7.8 mm and 7.0 mm,
-which no drawing shows. [1, ¶¶0102–0104, ¶0133; Figs. 2–4]
+On the same reading the printed 2.71 and 1.61 correspond to 7.8 mm and 7.0 mm.
+Figure 2 has no panel for those states, but the spherical-aberration curves of
+Figures 3 and 4 fit the reading: at full aperture they end near −0.15, +0.02,
+and −0.27 mm at 0.5x, 1x, and 2x, and the model gives −0.16, +0.02, and −0.27 mm
+with stops of 7.8, 7.0, and 6.5 mm, against +0.32 and +0.23 mm at 1x and 2x with
+the infinity stop. [1, ¶¶0101–0104, ¶0133; Figs. 2–4]
 
 The model does not implement this change. It keeps the infinity stop, 9.172 mm
 for f/3.638 and set by aperture calibration rather than a printed dimension, at
@@ -464,7 +470,7 @@ should be interpreted:
 1. Japan Patent Office, **JP 2024-066164 A**, _望遠光学系、および望遠光学系を備える撮像装置_,
    published 15 May 2024. Original Japanese publication, `JP2024066164A.pdf`:
    front page; claims 1, 6, 11–21; ¶¶0024–0034, 0071–0090,
-   0102–0104, 0116–0133; Example 1 table on printed/PDF pp. 17–18;
+   0101–0104, 0112, 0116–0133; Example 1 table on printed/PDF pp. 17–18;
    Figures 1–2 on p. 35 and Figures 3–4 on p. 36. The original PDF governs
    the prescription, not a machine translation or a commercial lens drawing.
 2. OM Digital Solutions Corporation, [launch announcement for the M.Zuiko Digital ED

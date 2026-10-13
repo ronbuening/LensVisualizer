@@ -206,3 +206,114 @@ Analysis file: the L3 section and glass table follow the FCD505 label; the reaso
 The engine values are identical before and after the wording edits: EFL 14.5578 / 19.8032 / 26.9261 mm, f-number 4.1395 / 4.7859 / 5.6802, half-field 44.97° / 44.22° / 40.34°, stop radius 5.0758 mm, back focal distance 15.8106 / 22.3321 / 32.6932 mm, and the same focus keyframes; the validator reports no error. The local page was rendered at the three zoom stations after the last edit.
 
 Open: none. The glass strings of L1, L7, L8, L9, L11, L12, L13 and the rear plate were afterwards reworded from "coordinate candidate(s)" to the corpus form (one named catalog glass, "coordinate equivalent; supplier unconfirmed"); each resolves to the same catalog row as before (N-LASF44, S-LAH99, FCD1, M-FCD500, FDS18, FDS24, FCD1, N-BK7).
+
+## 2026-10-13 — Second review: diagram, labels and movement
+
+An independent second look at the lens as the local page draws it, against `patents/US20240192475A1.pdf`: FIG. 1 (PDF page 2, panels (a) wide, (d) middle, (e) telephoto), FIG. 2 (PDF page 3), ¶¶0024–0046 (PDF pages 15–16), Tables 1–3 (pages 24–25), the surface tables of Examples 2–5 (pages 25–30) and Table 16 (page 31). The measuring tools, the ray trace and the readings below were made afresh and do not reuse the first pass's.
+
+### Silhouette
+
+The sheet was taken from the PDF as its native 2560 × 3300 one-bit raster. Line-centre vertex crossings on the wide panel fit 10.187 px/mm over the sixteen lens crossings and 10.179 px/mm with the plate and image plane added; 10.185 px/mm (0.0982 mm/px) was adopted, with residuals of at most 1.0 px on the lens crossings. The axis rows are 1051.0 / 2277.4 / 2746.3 and the surface-1 vertex columns 903.2 / 940.2 / 916.5 for the wide / middle / telephoto panels. Columns here are those of the native raster; the 2550-px-wide page render at 300 dpi that the first pass measured is the same raster shifted 5 px to the left, at the same scale. The first pass's 10.198 px/mm differs from the value adopted here by 0.13 %, which is 0.03 mm at the largest rim. The prescription profiles laid over all three panels follow the drawn curves to about one pixel.
+
+Each rim was read as the line centre of the drawn edge on the upper and the lower half of each panel. Mean of the two halves, mm:
+
+| Rim | Stored | Wide | Middle | Telephoto | Mean | Mean against stored |
+|---|---:|---:|---:|---:|---:|---:|
+| L1 outer edge (surface 1) | 21 | 21.00 | 20.98 | 20.96 | 20.98 | −0.1 % |
+| L1 rear, where the sphere meets the flat land (surface 2) | 15.2 | 15.23 | 15.17 | 15.24 | 15.21 | +0.1 % |
+| L2 outer edge (surface 3A) | 14.8 | 14.83 | 14.92 | 14.86 | 14.87 | +0.5 % |
+| L2 rear, where the asphere meets the land (surface 4A) | 12.2 | 12.25 | 12.20 | 12.25 | 12.23 | +0.3 % |
+| L3 (5, 6) | 12 | 11.95 | 11.97 | 12.08 | 12.00 | 0.0 % |
+| L4 (7, 8) | 11.5 | 11.59 | 11.71 | 11.75 | 11.68 | +1.6 % |
+| L5 (10, 11) | 5.7 | 5.68 | 5.78 | 5.83 | 5.76 | +1.1 % |
+| L6 (12, 13) | 5.5 | 5.55 | 5.55 | 5.57 | 5.55 | +1.0 % |
+| L7 (14, 15) | 5.8 | 5.79 | 5.88 | 5.89 | 5.85 | +0.9 % |
+| L8 (16, 17) | 7.0 | 6.84 | 6.95 | 6.90 | 6.90 | −1.5 % |
+| L9 (18A, 19A) | 8.3 | 8.51 | 8.57 | 8.60 | 8.56 | +3.1 % |
+| L10 (20, 21) | 9 | 9.09 | 9.12 | 9.14 | 9.12 | +1.3 % |
+| L11–L12 (22–25) | 9 | 9.19 | 9.23 | 9.23 | 9.22 | +2.4 % |
+| L13 (26, 27) | 11 | 11.18 | 11.24 | 11.31 | 11.24 | +2.2 % |
+| L14 flange edge (surface 29) | 12.7 | 12.85 | 12.95 | 12.97 | 12.92 | +1.7 % |
+
+Every stored value is within 3.1 % of the drawing, inside the reading noise of a 5-pixel dithered line, and the drawn order of heights is kept everywhere (L5 over L6, L7 level with L5, L8 over L7, L9 under L10, L13 under the L14 flange). No semi-diameter was changed; the first pass has them right. A trial of L9 at the drawn 8.55 mm moves the field-curve figures below by at most 0.005 mm.
+
+The live render differs from the figure in three places, all of one kind: L1, L2 and L14 are drawn with a square shoulder (a cylindrical edge and a flat land) where the page joins the front and rear rim points with a straight chamfer. None can be squared. Surface 2 has R = 16.087 mm and cannot reach L1's 21 mm edge; surface 4A carried to L2's 14.8 mm edge passes the turnover of its polynomial at 14.54 mm and would run 1.6 mm behind the front rim of L3; surface 28 carried to the 12.7 mm flange would curl 3.3 mm back around the rim of L13 at a rim angle of 71.0°, which the validator refuses, where the figure draws a flat flange face. The camera-side plate the figure draws is traced and deliberately not drawn.
+
+Ray floors, from an exact three-dimensional trace written for this review that includes the rear plate: the on-axis marginal ray at the source f-number reaches at most 5.30 of 5.7 mm at surface 10, 5.06 of 5.5 mm at surface 12 and 5.61 of 8.3 mm at surface 19A; the chief ray at the printed half-fields and the chief ray to the 21.65 mm corner clear every rim at all three stations, with the smallest corner margins 12.44 of 12.7 mm at surface 29, 14.58 of 15.2 mm at surface 2, 20.37 of 21 mm at surface 1 and 10.61 of 11 mm at surfaces 27/28. The batch clear-aperture probe finds no chief ray at the wide station of this lens, with either of its root searches; the trace above replaces it there.
+
+### Labels and tags
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| L2 `type` | Negative Meniscus (Asph), convex to object | Negative Meniscus (2× Asph), convex to object | Table 1 marks surfaces 3 and 4 with an asterisk; ¶0041; the inspector badge already reads ASPH ×2 |
+| L9 `type` | Biconvex Positive (Asph) | Biconvex Positive (2× Asph) | Surfaces 18 and 19; ¶0042 |
+| Analysis headings for L2 and L9 | as the old `type` | as the new `type` | kept in step with the data file |
+| Analysis, group-movement sentence | cites ¶0045 and Table 3D | cites ¶0045 and Table 3A | Table 3A holds d8, d21, d25, d29; Table 3D holds the group magnifications |
+| Data-file header | — | one sentence on why C1–C4 keep a `diagramLabel` | the trial below |
+
+Cement labels in the element-number row. The row reads 1 2 3 4 5 C1 6 7 C2 8 9 10 11 C3 12 13 C4 14, and the four layer labels do crowd the rear half: C1 and C2 sit one row up, 12 sits two rows up over C3, 14 one row up beside C4. Hiding them was tried on the live page with an empty `diagramLabel`: the text disappears but the row packer still reserves a 9-pixel slot for each, so 12 stays two rows up and 14 one row up, now over nothing, which reads as a layout fault. The labels were therefore kept, in the corpus form. Writing L1–L14 in the row as well was weighed and not done: the patent's signs equal the ids, which the data specification says need no `diagramLabel`, and by the packer's width rule the wider labels would push L8 to a third row as well.
+
+Checked and left as they are. Element names L1–L14 are the patent's own signs (FIG. 1(a), ¶¶0035–0039) and the patent uses G1–G4 for groups, so nothing clashes; the inspector shows "Element n" with the name beside it and the prose uses the same names. Every `type` agrees with the signs of the radii, and every `role` was read against ¶¶0035–0046 and Table 16. The group brackets G1 (surfaces 1–8), G2 (stop to 21), G3 (22–25) and G4 (26–29) match FIG. 1(b) and Table 3C, which starts the second group at the stop; the figure adds the signs (−)(+)(−)(−). The cemented brackets D1 (10–13), D2 (14–17), D3 (22–25) and D4 (26–29) each span one bonded lens of ¶¶0037–0039. The gap labels d8, d21, d25, d29 are the figure's own, and none equals a bracket text. Surfaces 3A, 4A, 18A and 19A are the four the patent marks, and no others carry an asphere. The stop sits at the figure's A, 1.4 mm ahead of L5.
+
+Cement layers on the page. C1–C4 carry no `cemented` tag; the inspector shows "L5–L6 cement layer · C1 · Optical Cement Layer · FL = —" and L5, L6, L7, L8, L11, L12, L13, L14 show DOUBLET D1–D4, never a triplet. The two faces of C1 carry 5.7 / 5.5 mm and those of C2 5.8 / 7.0 mm, as the figure steps the joints; C3 and C4 carry one value each, since the figure draws no step at L11–L12 and the L14 step is a flange outside the cemented face.
+
+Tags. The patent text designates no anomalous-dispersion or named glass, so no element carries the patent tag. The four inferred tags (L3, L8, L13 and the aspherical L9) are the only four low-dispersion elements of Example 1 (νd 68.6, 81.6, 81.6, 71.7), which is the one way to place Panasonic's three ED lenses and one aspherical ED lens; L2 is then the aspherical lens and L7 (nd 2.001) the UHR lens. No maker construction diagram was viewed: the counts are those of Panasonic's specification page as recorded in the section above (14 elements in 10 groups, seven blades, 0.15 m, 0.5×).
+
+### Movement
+
+`zoomPositions` ascend (14.5582, 19.8039, 26.9273 mm) and every `var` row lists its stations in that order; all twelve values were read again against Table 3A (d8 20.3915 / 9.7847 / 2.1029, d21 2.8898 / 2.1657 / 1.4543, d25 6.6091 / 7.8261 / 8.0849, d29 13.4000 / 19.9157 / 30.3717 with BF 0.02728 / 0.03369 / −0.06036; the file's d29 of 13.4 / 19.92211 / 30.28406 carries the BF differences as its header says). Distance of each group's front surface from the image plane at wide / middle / telephoto:
+
+| Group | Wide | Middle | Telephoto | Travel | Patent ¶0045 |
+|---|---:|---:|---:|---|---|
+| G1 | 108.229 | 104.638 | 106.865 | 3.592 mm toward the image, then 2.228 mm back toward the object | "a locus that is convex toward the image plane" |
+| G2 (from the stop) | 61.896 | 68.911 | 78.820 | 16.924 mm toward the object, no reversal | toward the object |
+| G3 | 36.620 | 44.359 | 54.979 | 18.359 mm toward the object, no reversal | toward the object |
+| G4 | 25.535 | 32.057 | 42.419 | 16.884 mm toward the object, no reversal | toward the object |
+
+The G1–G2 and G2–G3 gaps shrink and the G3–G4 gap and the space behind G4 grow, as ¶0045 says. The three figure panels agree with the table. They draw the image plane at one page column to within 1.7 px (2003.9 / 2003.8 / 2005.5); against it surface 1 sits 3.63 mm nearer the image in the middle panel and 1.27 mm nearer in the telephoto panel than in the wide panel (3.59 and 1.36 mm by the table), surface 10 moves 7.07 and 16.99 mm toward the object (7.02 and 16.92), and surface 29 6.51 and 16.97 mm (6.52 and 16.88). The page's zoom-movement overlay shows the same at the wide, middle and telephoto settings: G1's group centre runs −95.3 → −91.7 → −93.9 mm and reverses, G2, G3 and G4 run monotonically toward the object, and the largest travel reads 18.36 mm (G3). No order or direction was changed.
+
+Focus is not modeled. With the focus control at its far end the page shows the infinity state, the control reads "Not modeled", and the movement overlay offers zoom only. The patent's focusing group is G3, moving toward the image (¶0046, the arrow under G3 in FIG. 1(b)), as `focusDescription` and the analysis say.
+
+### Field behaviour against FIG. 2
+
+Astigmatism (mm from the image plane) and distortion were traced at the printed image heights and compared with curve positions read off the plots (good to about 0.02 mm and 0.3 %).
+
+| Station, image height | FIG. 2: sagittal / meridional | Model, chief ray through the stop centre | Model, centre ray of the transmitted beam |
+|---|---|---|---|
+| Wide, 14 mm (0.7 H) | −0.09 and −0.13 (curves not told apart) | −0.120 / −0.095 | −0.108 / −0.132 |
+| Wide, 20 mm | −0.10 / −0.03 | −0.100 / −0.026 | −0.098 / −0.009 |
+| Middle, 14.35 mm (0.7 H) | −0.12 / −0.18 | −0.137 / −0.215 | −0.133 / −0.215 |
+| Middle, 20.5 mm | −0.12 / −0.31 | −0.086 / −0.097 | −0.117 / −0.314 |
+| Telephoto, 14.7 mm (0.7 H) | −0.05 / +0.09 | −0.022 / +0.199 | −0.050 / +0.089 |
+| Telephoto, 21 mm | both between −0.06 and −0.11 | +0.065 / +0.159 | −0.034 / −0.089 |
+
+Distortion read off the plots against the model at the same height: wide −6.4 % at 14.5 mm and −9.7 % at 18.7 mm (−6.4 %, −9.65 %), the model reaching −10.61 % at 20 mm where the plot's last readable point is −10.45 % at 19.7 mm; middle −2.9 % at 14.35 mm and −5.1 % at 20.5 mm (−2.81 %, −5.07 %); telephoto −2.5 % at 18.9 mm and −3.0 % at 21 mm (−2.47 %, −2.95 %).
+
+Signs and sizes agree at all three stations. Distortion agrees to about a tenth of a percent along the whole curve. The astigmatism curves agree to about 0.03 mm when the reference ray is the centre of the beam the rims actually pass, which is evidently how the plots were made; with the ray through the stop centre the outer part of the middle and telephoto curves differs by up to 0.25 mm, because those beams are cut on one side (84.7 % and 87.6 % of the iris diameter passes at the full printed field, 56.4 % at wide). The app's own field-curvature job gives the stop-centre values (for example −0.106 / −0.144 mm at 19.6 mm at the middle station and +0.038 / +0.174 mm at 19.9 mm at the telephoto station), and its distortion job gives −10.26 % / −4.70 % / −2.60 % at 19.48 mm at the three stations. The marginal ray at the source f-number focuses −0.032 / −0.039 / +0.060 mm from the image plane; the spherical-aberration plots read about −0.03 mm at wide and +0.07 mm at telephoto. The same surface zones carry the wide beams, where both conventions agree with the plot, so nothing here points to a misprinted value. One print detail: the chief ray at the printed half-fields lands at 19.9999 / 20.4953 / 20.9999 mm; the middle station reaches 20.5 mm at 47.4775°, 0.0071° above the printed 47.4704°, while the other two agree to 0.0002°.
+
+### Vignetting
+
+No rim changed, so every vignetting figure is as the first pass left it. The engine's wide-open curve at the wide station reads 100 % out to 56.3° and 63.5 % at 59.3° before and after the label edits. That curve and the batch helper sweep the meridional section only, so a full-pupil sweep was run as well (parallel rays on a 0.025 mm grid, clipped at every rim and the iris). Share of the iris area filled at 0.5 / 0.7 / 0.85 / 1.0 of the printed image height: wide 98.1 / 92.1 / 86.1 / 63.2 %; middle 98.7 / 94.3 / 90.2 / 86.1 %; telephoto 99.6 / 96.0 / 92.9 / 89.5 %. The losses are taken mainly by the rims of L5, L6 and L7 (surfaces 10, 12, 13, 15) and, at the wide corner, by the front rims of L1 and L4. The meridional shares at the full field, 56.4 / 84.7 / 87.6 %, equal the first pass's.
+
+### Glass: the six unmatched positions in all five examples
+
+| Position | Example 1 | Example 2 | Example 3 | Example 4 | Example 5 | Recurrence |
+|---|---|---|---|---|---|---|
+| L2 | 1.53380 / 55.6 | 1.59201 / 67.0 | 1.53380 / 55.6 | 1.53380 / 55.6 | 1.53380 / 55.6 | same pair in four of five examples |
+| L4 | 1.67196 / 31.5 | 1.66945 / 32.4 | 1.67960 / 31.6 | 1.67179 / 32.5 | 1.68897 / 32.7 | none |
+| L5 | 1.77319 / 49.6 | 1.77250 / 49.6 | 1.77687 / 49.5 | 1.77468 / 49.6 | 1.78037 / 49.3 | none |
+| L6 | 1.70147 / 40.9 | 1.70154 / 41.1 | 1.69977 / 40.7 | 1.70096 / 40.5 | 1.70032 / 38.2 | none |
+| L10 | 1.81012 / 21.2 | 1.80827 / 21.6 | 1.79808 / 21.6 | 1.80859 / 21.2 | 1.81076 / 21.2 | none |
+| L14 | 1.80309 / 35.2 | 1.80255 / 28.2 | 1.82937 / 39.4 | 1.80977 / 39.1 | 1.73051 / 42.8 | none |
+
+Tables 4, 7, 10 and 13 (PDF pages 25, 27, 28 and 29–30). Example 2 is a different construction (aspherical L1, L13 and L14 separated by 0.2 mm of air, five aspherical surfaces). L2's pair is a real material: it is printed unchanged in Examples 1, 3, 4 and 5, always on the double-aspherical L2 (Example 2 prints the pair of the moulding glass HOYA M-PCD51 there instead), and the same pair stands in two other Panasonic prescriptions in this catalog, again only on double-aspherical elements: the Lumix G 25mm f/1.7 file (US 2017/0059832 A1), which records that patent's line indices for it as nC 1.5310, nF 1.5406, ng 1.5460, and the Leica DG 9mm f/1.7 file (US 2023/0367186 A1). Those two patents were not opened in this review. The pair has no row in the six vendor glass catalogs. The other five positions take a different pair in every example, so those values are per-design index values; only Example 2 prints catalog pairs there (L5 1.77250 / 49.6, L6 1.70154 / 41.1). The description names no glass, resin, or hybrid or plastic aspherical element: the only material words are the adhesive of the bonded lenses (¶¶0037–0039), the "low-pass filter or cover glass" plate (¶0031) and the generic "high dispersion material" and "low refractive index material" of ¶¶0123, 0140 and 0145. The glass strings and the glass prose were left as they are and the finding passed to the integrator; the analysis sentence that takes all six Example 1 pairs as values optimised for this design does not hold for L2.
+
+### Engine values and the page after the edits
+
+Unchanged by this review: EFL 14.5578 / 19.8032 / 26.9261 mm, f-number 4.1395 / 4.7859 / 5.6802, iris radius 5.0758 mm, engine half-field 44.97° / 44.22° / 40.34°, traced corner coverage 21.65 mm at all three stations (59.3° / 49.2° / 39.7°), largest rim angle 70.885°; the validator reports no error and the image-circle floor no undersized surface. The engine half-field is a paraxial estimate and sits below the printed 56.95° and 47.47° at the wide and middle stations because it ignores the −10.6 % and −5.1 % distortion; the traced analysis field reaches the corner.
+
+The page was shot again at infinity and with the focus control at its far end at the wide and telephoto stations, at the middle station, with the zoom-movement overlay at wide and telephoto and with the focus overlay requested. The cross-section is pixel-identical to the one before the edits at all three stations; the inspector now reads "Negative Meniscus (2× Asph), convex to object" for L2 and "Biconvex Positive (2× Asph)" for L9. Laid over the figure panels at one scale with the surface-1 vertex aligned, the page's outlines fall on the drawn lines in all three panels apart from the three chamfers.
+
+Open. The L2 material and the glass wording, as above. The engine's paraxial half-field estimate, as above. A site matter outside this lens: the distortion panel labels this lens's −11.58 % edge value "pincushion".
+
+Coordinator follow-up, same day — L2 line indices. The second review's table of Examples 1–5 shows L2's pair (1.53380 / 55.6) in four of the five examples, so it is a real material, not an optimised value. The same pair stands on double-aspherical elements in two other Panasonic patents already in the corpus, and US 2017/0059832 A1 prints its line indices in Table 23 (read from the page image: nC 1.53100, nF 1.54060, ng 1.54600, P_g,F 0.56232). L2 now carries `nC` 1.531, `nF` 1.5406, `ng` 1.546 and `dPgF` +0.01204 (0.56232 − (0.6438 − 0.001682 × 55.6)), so it traces on published line indices instead of the Abbe-number model. This rests on one inference, stated in the label and note: an identical five-digit nd and νd from the same applicant in the same role is the same material. The label stays `Unmatched` because no catalog row exists. The five remaining pairs (L4, L5, L6, L10, L14) differ in every example and stay as they were.

@@ -44,6 +44,7 @@ const SOURCES = {
   nikonHistory: "https://www.nikon.com/company/corporate/history/",
   nittohHistory: "https://www.nittohkogaku.co.jp/en/company/history.html",
   olympusFounding: "https://www.olympus-global.com/company/milestones/founding.html?page=company",
+  olympusImagingTransfer: "https://www.olympus-global.com/news/2021/nr02010.html",
   olympusImaging: "https://www.olympus-global.com/company/milestones/history/05.html?page=company",
   olympusAnnual2016: "https://www.olympus-global.com/ir/data/integratedreport/pdf/ar2016e_A3.pdf",
   pentaconHistory: "https://de.wikipedia.org/wiki/Pentacon",
@@ -555,6 +556,24 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveFrom: "1917-07-25",
         effectiveTo: "1988-04-01",
         sourceUrl: SOURCES.nikonHistory,
+      },
+    ],
+  },
+  "OM Digital Solutions Corporation": {
+    successorOf: [
+      {
+        organization: "Olympus Corporation",
+        effectiveDate: "2021-01-01",
+        sourceUrl: SOURCES.olympusImagingTransfer,
+        note: "Took over Olympus's imaging business. Most of its shares passed to a Japan Industrial Partners holding company, so it is not an Olympus subsidiary.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Olympus",
+        effectiveFrom: "2021-01-01",
+        sourceUrl: SOURCES.olympusImagingTransfer,
+        note: "Continues the Olympus imaging business (OM SYSTEM cameras and M.Zuiko lenses) as a separate company.",
       },
     ],
   },

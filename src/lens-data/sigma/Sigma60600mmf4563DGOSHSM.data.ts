@@ -15,12 +15,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * readings, 47.6 and 47.5 mm), where L2 keeps 0.71 mm of edge; its edge reaches zero at
  * 49.27 mm. L3 carries its drawn 45.7 mm. Neither is a known factory blank. The patent's
  * f/6.50 beam needs 44.44 mm at surface 1.
- * Surface 8 ends where the figure ends its curve (22.3 mm). Surfaces 16-17 stay at 14.6 mm:
- * the figure draws them to the rims, but the two faces meet at 15.0 mm and the tele axial ray
- * needs 14.48 mm. Elements the figure draws square-cut carry one height on both faces (L1,
- * L6, L16 and L24 include a short flat the figure draws on the concave face).
- * gapSagFrac is 0.95 because the 16-17 air gap uses 0.944 of its 4.1944 mm at that 14.6 mm
- * rim; every other gap stays under the default 0.90.
+ * Surface 8 ends where the figure ends its curve (22.3 mm); the figure then squares L5 off
+ * with a flat out to 26.6 mm, which a spherical face cannot follow because it would meet L6
+ * at 23.5 mm. Surface 16 stays at 14.6 mm: surfaces 16 and 17 meet at 15.0 mm and the tele
+ * axial ray needs 14.47 mm. Surface 17 carries the 16.5 mm of the cemented L10-L11 block,
+ * which the figure draws square-cut, so only L9 keeps an inclined rear edge there. Elements
+ * the figure draws square-cut carry one height on both faces (L1, L6, L16 and L24 include a
+ * short flat the figure draws on the concave face).
+ * gapSagFrac is 0.95 because the 16-17 air gap uses 0.944 of its 4.1944 mm at the 14.6 mm
+ * height the two faces share; every other gap stays under the default 0.90.
+ * Diagram labels follow the patent: elements L1-L25, groups G1-G6 with the G3a / G3b split
+ * that Figure 1 draws (G3b is the stabilizing subgroup), and variable gaps d5, d10, d19, d32,
+ * d38 and BF in the patent's lower case; D1-D6 above the section mark the six cemented pairs.
  * The full on-axis beam passes at every state; off-axis vignetting is real and stays visible.
  * Iris radii are derived from the patent's infinity F-numbers (4.48 / 5.55 / 6.50), not from
  * published diameters, and are held at each zoom setting during focus. The F-numbers printed
@@ -81,6 +87,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "diagramLabel": "L1",
       "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.87071,
@@ -88,11 +95,12 @@ const LENS_DATA = {
       "fl": -325.00611,
       "glass": "TAFD32 (HOYA coordinate-compatible catalog equivalent; supplier unconfirmed)",
       "role": "Negative front meniscus of G1, cemented to L2",
-      "cemented": "L1–L2"
+      "cemented": "D1"
     },
     {
       "id": 2,
       "name": "L2",
+      "diagramLabel": "L2",
       "label": "Element 2",
       "type": "Positive Meniscus",
       "nd": 1.497,
@@ -102,11 +110,12 @@ const LENS_DATA = {
       "apd": "inferred",
       "apdNote": "FCD1-class low-dispersion coordinate (1.49700 / 81.61; catalog ΔPgF +0.0312 from the Schott normal line) at the one position Sigma's construction diagram marks as SLD glass; inferred, not a patent designation.",
       "role": "Positive low-dispersion meniscus of the G1 front doublet",
-      "cemented": "L1–L2"
+      "cemented": "D1"
     },
     {
       "id": 3,
       "name": "L3",
+      "diagramLabel": "L3",
       "label": "Element 3",
       "type": "Plano-Convex",
       "nd": 1.437,
@@ -120,6 +129,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
+      "diagramLabel": "L4",
       "label": "Element 4",
       "type": "Biconvex Positive",
       "nd": 1.80518,
@@ -127,11 +137,12 @@ const LENS_DATA = {
       "fl": 131.198805,
       "glass": "FD60-W (HOYA coordinate-compatible catalog equivalent; supplier unconfirmed)",
       "role": "Positive front member of the G2 variator doublet",
-      "cemented": "L4–L5"
+      "cemented": "D2"
     },
     {
       "id": 5,
       "name": "L5",
+      "diagramLabel": "L5",
       "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.87071,
@@ -139,11 +150,12 @@ const LENS_DATA = {
       "fl": -73.947125,
       "glass": "TAFD32 (HOYA coordinate-compatible catalog equivalent; supplier unconfirmed)",
       "role": "Negative rear member of the G2 variator doublet",
-      "cemented": "L4–L5"
+      "cemented": "D2"
     },
     {
       "id": 6,
       "name": "L6",
+      "diagramLabel": "L6",
       "label": "Element 6",
       "type": "Negative Meniscus",
       "nd": 1.87071,
@@ -155,6 +167,7 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "L7",
+      "diagramLabel": "L7",
       "label": "Element 7",
       "type": "Biconvex Positive",
       "nd": 1.60342,
@@ -166,6 +179,7 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "L8",
+      "diagramLabel": "L8",
       "label": "Element 8",
       "type": "Positive Meniscus",
       "nd": 1.51742,
@@ -177,6 +191,7 @@ const LENS_DATA = {
     {
       "id": 9,
       "name": "L9",
+      "diagramLabel": "L9",
       "label": "Element 9",
       "type": "Biconcave Negative",
       "nd": 1.757,
@@ -188,6 +203,7 @@ const LENS_DATA = {
     {
       "id": 10,
       "name": "L10",
+      "diagramLabel": "L10",
       "label": "Element 10",
       "type": "Biconcave Negative",
       "nd": 1.61997,
@@ -195,11 +211,12 @@ const LENS_DATA = {
       "fl": -50.435629,
       "glass": "PCD40 (HOYA coordinate-compatible catalog equivalent; supplier unconfirmed)",
       "role": "Negative front member of the G3b stabilizing doublet",
-      "cemented": "L10–L11"
+      "cemented": "D3"
     },
     {
       "id": 11,
       "name": "L11",
+      "diagramLabel": "L11",
       "label": "Element 11",
       "type": "Biconvex Positive",
       "nd": 1.85478,
@@ -207,11 +224,12 @@ const LENS_DATA = {
       "fl": 80.650523,
       "glass": "S-NBH56 (OHARA coordinate-compatible catalog equivalent; supplier unconfirmed)",
       "role": "Positive rear member of the G3b stabilizing doublet",
-      "cemented": "L10–L11"
+      "cemented": "D3"
     },
     {
       "id": 12,
       "name": "L12",
+      "diagramLabel": "L12",
       "label": "Element 12",
       "type": "Biconvex Positive",
       "nd": 1.8061,
@@ -223,6 +241,7 @@ const LENS_DATA = {
     {
       "id": 13,
       "name": "L13",
+      "diagramLabel": "L13",
       "label": "Element 13",
       "type": "Biconvex Positive",
       "nd": 1.59349,
@@ -230,11 +249,12 @@ const LENS_DATA = {
       "fl": 97.73541,
       "glass": "PCD51 (HOYA coordinate-compatible catalog equivalent; supplier unconfirmed)",
       "role": "Positive front member of the G4 doublet ahead of the stop",
-      "cemented": "L13–L14"
+      "cemented": "D4"
     },
     {
       "id": 14,
       "name": "L14",
+      "diagramLabel": "L14",
       "label": "Element 14",
       "type": "Biconcave Negative",
       "nd": 1.84666,
@@ -242,11 +262,12 @@ const LENS_DATA = {
       "fl": -175.915559,
       "glass": "FDS90-SG (HOYA coordinate-compatible catalog equivalent; supplier unconfirmed)",
       "role": "Negative rear member of the G4 doublet ahead of the stop",
-      "cemented": "L13–L14"
+      "cemented": "D4"
     },
     {
       "id": 15,
       "name": "L15",
+      "diagramLabel": "L15",
       "label": "Element 15",
       "type": "Positive Meniscus",
       "nd": 1.58913,
@@ -258,6 +279,7 @@ const LENS_DATA = {
     {
       "id": 16,
       "name": "L16",
+      "diagramLabel": "L16",
       "label": "Element 16",
       "type": "Negative Meniscus",
       "nd": 1.95375,
@@ -269,6 +291,7 @@ const LENS_DATA = {
     {
       "id": 17,
       "name": "L17",
+      "diagramLabel": "L17",
       "label": "Element 17",
       "type": "Biconvex Positive",
       "nd": 1.437,
@@ -278,11 +301,12 @@ const LENS_DATA = {
       "apd": "inferred",
       "apdNote": "FCD100-class fluorite-like coordinate (1.43700 / 95.10; catalog ΔPgF +0.0498 from the Schott normal line) at one of the three positions Sigma's construction diagram marks as FLD glass; inferred, not a patent designation.",
       "role": "Positive low-dispersion front member of the rear G4 doublet",
-      "cemented": "L17–L18"
+      "cemented": "D5"
     },
     {
       "id": 18,
       "name": "L18",
+      "diagramLabel": "L18",
       "label": "Element 18",
       "type": "Negative Meniscus",
       "nd": 1.91082,
@@ -290,11 +314,12 @@ const LENS_DATA = {
       "fl": -71.049712,
       "glass": "TAFD35L (HOYA coordinate-compatible catalog equivalent; supplier unconfirmed)",
       "role": "Negative rear member of the rear G4 doublet",
-      "cemented": "L17–L18"
+      "cemented": "D5"
     },
     {
       "id": 19,
       "name": "L19",
+      "diagramLabel": "L19",
       "label": "Element 19",
       "type": "Negative Meniscus",
       "nd": 1.87071,
@@ -306,6 +331,7 @@ const LENS_DATA = {
     {
       "id": 20,
       "name": "L20",
+      "diagramLabel": "L20",
       "label": "Element 20",
       "type": "Biconvex Positive",
       "nd": 1.56883,
@@ -317,6 +343,7 @@ const LENS_DATA = {
     {
       "id": 21,
       "name": "L21",
+      "diagramLabel": "L21",
       "label": "Element 21",
       "type": "Biconvex Positive",
       "nd": 1.62041,
@@ -328,6 +355,7 @@ const LENS_DATA = {
     {
       "id": 22,
       "name": "L22",
+      "diagramLabel": "L22",
       "label": "Element 22",
       "type": "Positive Meniscus",
       "nd": 1.673,
@@ -339,6 +367,7 @@ const LENS_DATA = {
     {
       "id": 23,
       "name": "L23",
+      "diagramLabel": "L23",
       "label": "Element 23",
       "type": "Biconcave Negative",
       "nd": 1.437,
@@ -352,6 +381,7 @@ const LENS_DATA = {
     {
       "id": 24,
       "name": "L24",
+      "diagramLabel": "L24",
       "label": "Element 24",
       "type": "Biconcave Negative",
       "nd": 1.95375,
@@ -359,11 +389,12 @@ const LENS_DATA = {
       "fl": -28.404169,
       "glass": "TAFD45L (HOYA coordinate-compatible catalog equivalent; supplier unconfirmed)",
       "role": "Negative front member of the final G6 doublet",
-      "cemented": "L24–L25"
+      "cemented": "D6"
     },
     {
       "id": 25,
       "name": "L25",
+      "diagramLabel": "L25",
       "label": "Element 25",
       "type": "Biconvex Positive",
       "nd": 1.85478,
@@ -371,7 +402,7 @@ const LENS_DATA = {
       "fl": 42.222023,
       "glass": "S-NBH56 (OHARA coordinate-compatible catalog equivalent; supplier unconfirmed)",
       "role": "Positive rear member of the final G6 doublet",
-      "cemented": "L24–L25"
+      "cemented": "D6"
     }
   ],
   "surfaces": [
@@ -509,7 +540,7 @@ const LENS_DATA = {
       "d": 1,
       "nd": 1.61997,
       "elemId": 10,
-      "sd": 14.6
+      "sd": 16.5
     },
     {
       "label": "18",
@@ -849,23 +880,23 @@ const LENS_DATA = {
   "varLabels": [
     [
       "5",
-      "D5"
+      "d5"
     ],
     [
       "10",
-      "D10"
+      "d10"
     ],
     [
       "19",
-      "D19"
+      "d19"
     ],
     [
       "32",
-      "D32"
+      "d32"
     ],
     [
       "38",
-      "D38"
+      "d38"
     ],
     [
       "45",
@@ -894,8 +925,13 @@ const LENS_DATA = {
       "toSurface": "10"
     },
     {
-      "text": "G3",
+      "text": "G3a",
       "fromSurface": "11",
+      "toSurface": "14"
+    },
+    {
+      "text": "G3b",
+      "fromSurface": "15",
       "toSurface": "19"
     },
     {

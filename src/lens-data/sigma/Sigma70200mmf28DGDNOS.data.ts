@@ -10,7 +10,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * Patent surfaces 37–38 are the filter FL next to the image, modeled as a camera-side rear plate with a fixed
  * 1.0 mm trailing gap; the printed back-focus variation (at most 0.0004 mm) is carried in d36.
  * PUBLISHED focus: infinity and 1.0 m at three zoom stations. The marketed 0.65 m wide-end minimum is not modeled.
- * Zoom-only gaps D5, D7, D10, D12; zoom and focus gaps D26, D30, D32; D36 carries the sub-micron printed variation.
+ * Zoom-only gaps d5, d7, d10, d12; zoom and focus gaps d26, d30, d32; d36 carries the sub-micron printed variation.
+ * LABELS: the patent names the groups G1–G8 and no elements, so elements are L1–L20 front to rear in the diagram,
+ * inspector and prose. Gap labels use the patent's lowercase d; D1–D5 are the five cemented pairs.
+ * L4 and L5 are tagged apd "patent": conditions (3) and (4) bound the mean Abbe number and mean anomalous
+ * dispersion of the negative lenses of G2 and G3. The other six special-glass tags follow Sigma's diagram.
  * G7 reverses direction across the three infinity zoom stations; the middle station is kept as printed.
  * The patent calls the stop and G5 fixed, but their printed gaps sum to 27.0814, 27.0803 and 27.0820 mm at the
  * three infinity stations, more than rounding allows; no gap is adjusted.
@@ -71,6 +75,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "diagramLabel": "L1",
       "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.7859,
@@ -84,6 +89,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L2",
+      "diagramLabel": "L2",
       "label": "Element 2",
       "type": "Biconvex Positive",
       "nd": 1.437,
@@ -99,6 +105,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L3",
+      "diagramLabel": "L3",
       "label": "Element 3",
       "type": "Biconvex Positive",
       "nd": 1.437,
@@ -113,28 +120,30 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
+      "diagramLabel": "L4",
       "label": "Element 4",
       "type": "Negative Meniscus",
       "nd": 1.437,
       "vd": 95.1,
       "fl": -119.97562234,
       "glass": "FCD100 (HOYA; equals the patent nd, νd and PgF; supplier unconfirmed)",
-      "apd": "inferred",
-      "apdNote": "One of the six FLD positions in Sigma's construction diagram (elements 2, 3, 4, 10, 13, 19); dPgF comes from the patent's printed PgF.",
+      "apd": "patent",
+      "apdNote": "Patent conditions (3) and (4) bound the mean Abbe number and mean anomalous dispersion of the negative lenses of G2 and G3, which are this element and L5 (Example 1: 85.30 and 0.042); also one of the six FLD positions in Sigma's construction diagram (elements 2, 3, 4, 10, 13, 19); dPgF comes from the patent's printed PgF.",
       "dPgF": 0.04975819999999992,
       "role": "Negative low-dispersion meniscus; the whole of zoom group G2."
     },
     {
       "id": 5,
       "name": "L5",
+      "diagramLabel": "L5",
       "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.55032,
       "vd": 75.5,
       "fl": -66.19298961,
       "glass": "FCD705 (HOYA; equals the patent nd, νd and PgF; supplier unconfirmed)",
-      "apd": "inferred",
-      "apdNote": "One of the two SLD positions in Sigma's construction diagram (elements 5 and 20); dPgF comes from the patent's printed PgF.",
+      "apd": "patent",
+      "apdNote": "Patent conditions (3) and (4) bound the mean Abbe number and mean anomalous dispersion of the negative lenses of G2 and G3, which are L4 and this element (Example 1: 85.30 and 0.042); also one of the two SLD positions in Sigma's construction diagram (elements 5 and 20); dPgF comes from the patent's printed PgF.",
       "dPgF": 0.02329099999999995,
       "role": "Negative low-dispersion member of the cemented zoom group G3.",
       "cemented": "D2"
@@ -142,6 +151,7 @@ const LENS_DATA = {
     {
       "id": 6,
       "name": "L6",
+      "diagramLabel": "L6",
       "label": "Element 6",
       "type": "Positive Meniscus",
       "nd": 1.85883,
@@ -155,6 +165,7 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "L7",
+      "diagramLabel": "L7",
       "label": "Element 7",
       "type": "Positive Meniscus",
       "nd": 1.8707,
@@ -167,6 +178,7 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "L8",
+      "diagramLabel": "L8",
       "label": "Element 8",
       "type": "Positive Meniscus (1× Asph)",
       "nd": 1.8061,
@@ -179,6 +191,7 @@ const LENS_DATA = {
     {
       "id": 9,
       "name": "L9",
+      "diagramLabel": "L9",
       "label": "Element 9",
       "type": "Negative Meniscus",
       "nd": 1.8061,
@@ -192,6 +205,7 @@ const LENS_DATA = {
     {
       "id": 10,
       "name": "L10",
+      "diagramLabel": "L10",
       "label": "Element 10",
       "type": "Positive Meniscus",
       "nd": 1.437,
@@ -207,6 +221,7 @@ const LENS_DATA = {
     {
       "id": 11,
       "name": "L11",
+      "diagramLabel": "L11",
       "label": "Element 11",
       "type": "Positive Meniscus",
       "nd": 1.80809,
@@ -220,6 +235,7 @@ const LENS_DATA = {
     {
       "id": 12,
       "name": "L12",
+      "diagramLabel": "L12",
       "label": "Element 12",
       "type": "Biconcave Negative (1× Asph)",
       "nd": 1.6935,
@@ -233,6 +249,7 @@ const LENS_DATA = {
     {
       "id": 13,
       "name": "L13",
+      "diagramLabel": "L13",
       "label": "Element 13",
       "type": "Biconvex Positive",
       "nd": 1.437,
@@ -248,6 +265,7 @@ const LENS_DATA = {
     {
       "id": 14,
       "name": "L14",
+      "diagramLabel": "L14",
       "label": "Element 14",
       "type": "Negative Meniscus",
       "nd": 1.85451,
@@ -261,6 +279,7 @@ const LENS_DATA = {
     {
       "id": 15,
       "name": "L15",
+      "diagramLabel": "L15",
       "label": "Element 15",
       "type": "Biconvex Positive (2× Asph)",
       "nd": 1.7645,
@@ -273,6 +292,7 @@ const LENS_DATA = {
     {
       "id": 16,
       "name": "L16",
+      "diagramLabel": "L16",
       "label": "Element 16",
       "type": "Positive Meniscus",
       "nd": 1.86966,
@@ -285,6 +305,7 @@ const LENS_DATA = {
     {
       "id": 17,
       "name": "L17",
+      "diagramLabel": "L17",
       "label": "Element 17",
       "type": "Negative Meniscus",
       "nd": 1.755,
@@ -297,6 +318,7 @@ const LENS_DATA = {
     {
       "id": 18,
       "name": "L18",
+      "diagramLabel": "L18",
       "label": "Element 18",
       "type": "Biconvex Positive",
       "nd": 1.651,
@@ -309,6 +331,7 @@ const LENS_DATA = {
     {
       "id": 19,
       "name": "L19",
+      "diagramLabel": "L19",
       "label": "Element 19",
       "type": "Biconcave Negative",
       "nd": 1.437,
@@ -323,6 +346,7 @@ const LENS_DATA = {
     {
       "id": 20,
       "name": "L20",
+      "diagramLabel": "L20",
       "label": "Element 20",
       "type": "Negative Meniscus",
       "nd": 1.497,
@@ -795,35 +819,35 @@ const LENS_DATA = {
   "varLabels": [
     [
       "5",
-      "D5"
+      "d5"
     ],
     [
       "7",
-      "D7"
+      "d7"
     ],
     [
       "10",
-      "D10"
+      "d10"
     ],
     [
       "12",
-      "D12"
+      "d12"
     ],
     [
       "26A",
-      "D26"
+      "d26"
     ],
     [
       "30",
-      "D30"
+      "d30"
     ],
     [
       "32",
-      "D32"
+      "d32"
     ],
     [
       "36",
-      "D36"
+      "d36"
     ]
   ],
   "zoomPositions": [
@@ -832,6 +856,10 @@ const LENS_DATA = {
     194.0
   ],
   "zoomApertureModel": "from-nominal-fno",
+  "zoomLabels": [
+    "Wide",
+    "Tele"
+  ],
   "groups": [
     {
       "text": "G1",

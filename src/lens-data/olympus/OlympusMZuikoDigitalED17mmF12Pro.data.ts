@@ -12,9 +12,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * not folded into an air-equivalent gap.
  * SEMI-DIAMETERS: estimated from Figure 4 optical curve endpoints (300 dpi,
  * 12.27 px/mm), excluding flanges and flat annuli; floor-checked by real-ray
- * trace of the full published iris at INF, CL1 and CL2. S20A and S25 stop
- * where the drawn concave curves meet their flat rear annuli (13.3, 9.5);
- * square-cut L3, L6 and L13 carry their own drawn height on both faces.
+ * trace of the full published iris at INF, CL1 and CL2. S25 stops where the
+ * drawn concave curve meets its flat rear annulus (9.5), because that rim
+ * limits mid-field rays. S20A runs to L11's drawn outer cap (14.2) so the
+ * element renders square as drawn; its drawn curve ends at 13.3 and no
+ * transmitted ray reaches the zone above that. Square-cut L3, L6 and L13
+ * carry their own drawn height on both faces.
  * STOP: printed diameter 28.98 mm. nominalFno is computed from the exact
  * on-axis entrance pupil of that stop, not from a fitted stop; the Gaussian
  * pupil gives a different value (F/1.149).
@@ -41,7 +44,7 @@ const LENS_DATA = {
     },
     {
       status: "unresolved",
-      note: "The INF table's full field 67.55° and image height 10.81 mm are not reproduced together by a chief ray through the stop centre. Traced as printed, with the camera plate, the prescription gives an image height of 10.48949 mm at that field; 10.81 mm needs a full field of 69.35885°. Figure 8C shows barrel distortion of about 6 %, consistent with the traced prescription. Which field definition the patent's summary uses is not established; the printed values are kept and nothing is corrected.",
+      note: "The INF table's full field 67.55° and image height 10.81 mm are not reproduced together by a chief ray through the stop centre. Traced as printed, with the camera plate, the prescription gives an image height of 10.48949 mm at that field; 10.81 mm needs a full field of 69.35885°. Figure 8C shows barrel distortion of about 6 %, consistent with the traced prescription, and its axis is captioned by image height, so the printed 2ω is the value that does not fit. Example 3 prints the same relation (f·tan ω = 11.15 mm in both examples), which points to a table convention for 2ω rather than a misprint. The printed values are kept and nothing is corrected.",
     },
   ],
   subtitle: "US 10,073,255 B2, Example 4 — production correlation inferred",
@@ -200,7 +203,7 @@ const LENS_DATA = {
       glass: "FCD100 (HOYA; coordinate equivalent; supplier unconfirmed)",
       apd: "inferred",
       apdNote:
-        "νd 95.10 glass, tagged by class as the single Super ED element the maker lists by count only; no maker construction diagram was viewed.",
+        "νd 95.10 glass, tagged by class as the single Super ED element the maker lists by count only; no maker construction diagram was viewed. The patent counts it, with L12, among the low-dispersion positive lenses of G2 that meet its condition (4), νd above 80.",
       cemented: "D3",
     },
     {
@@ -228,7 +231,7 @@ const LENS_DATA = {
       glass: "FCD1 (HOYA; coordinate equivalent; supplier unconfirmed)",
       apd: "inferred",
       apdNote:
-        "νd 81.61 double-aspherical element, tagged by class: the maker lists one ED-DSA element and, in its Asia listing, one EDA element, and this prescription has two such elements (L2 and L12); which is which is not published.",
+        "νd 81.61 double-aspherical element, tagged by class: the maker lists one ED-DSA element and, in its Asia listing, one EDA element, and this prescription has two such elements (L2 and L12); which is which is not published. The patent counts L12, with L10, among the low-dispersion positive lenses of G2 that meet its condition (4), νd above 80; it does not say which of the maker's two names applies.",
     },
     {
       id: 13,
@@ -431,7 +434,7 @@ const LENS_DATA = {
       d: 2.66,
       nd: 1,
       elemId: 0,
-      sd: 13.3,
+      sd: 14.2,
     },
     {
       label: "21A",

@@ -3,10 +3,18 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * US 3,856,386 A (Yoshisato Fujioka, Yashica), Example 1: Table I and FIG. 1. 11 elements / 9 groups; all spherical.
  * The patent normalises Example 1 to f = 99.8; every length here is scaled by 20/99.8. Indices and Abbe
- * numbers are as printed.
+ * numbers are as printed. Table I is confirmed by the patent's own Table II: Seidel coefficients computed from
+ * the printed radii, spacings and indices reproduce 98 of its 100 surface entries to the last printed digit
+ * (one differs by one unit in the fifth decimal; the other, surface 16 column F, is a misprint in Table II).
+ * Labels: elements are numbered 1-11 as in FIG. 1 and the "Lens" column of Table I; the patent text names the
+ * same lenses IA-ID, IIA-IIB, IIIA and IVA-IVD. The group brackets I-IV are the patent's four functional groups
+ * (focal lengths -24.3, -510, +20.8 and +74.9 mm); D1 and D2 are the two cemented pairs, elements 5-6 and 8-9.
  * Focus: the patent gives one infinity prescription and no focusing data, so no focus movement is modeled.
- * Stop: not tabulated. It is placed at the midpoint of the air space between the patent's groups III and IV,
- * and its semi-diameter is set so the paraxial entrance pupil gives f/3.3.
+ * Stop: not tabulated and not drawn in FIG. 1; the text (col. 6) says only that the diaphragm is taken to lie
+ * between groups III and IV. It is placed at the midpoint of that air space, and its semi-diameter is set so the
+ * paraxial entrance pupil gives f/3.3. Table II is reproduced with an entrance pupil 123.0 patent units behind
+ * r1; its paraxial conjugate lies 1.9 units past the vertex of r14, outside the air space, so the table does
+ * not fix the station of a physical diaphragm.
  * Glass: the patent prints nd and vd only. Each label names a catalog glass that matches them within
  * |dnd| <= 1e-4 and |dvd| <= 0.15; it selects the dispersion curve and does not identify the 1974 supplier.
  * Semi-diameters: no source values. Surfaces 4-7 and 9-20 are estimated from the patent's FIG. 1 outline
@@ -14,7 +22,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * and 8 keep real-ray envelope heights (plus a 10 % margin) that sit within 2-7 % of the figure.
  * The f/3.3 axial beam and the 21.63 mm corner chief ray (48.0 deg) clear every rim. Off-axis bundles are
  * vignetted as drawn: the meridional pupil passing is about 94 % at 20 deg, 80 % at 30 deg, 63 % at 40 deg
- * and 33 % at the patent's 47.25 deg, so full-pupil coverage of the outer field is not claimed.
+ * and 33 % at the patent's 47.25 deg (about 96, 81, 58 and 26 % of the stop area over the whole pupil), so
+ * full-pupil coverage of the outer field is not claimed.
+ * FIG. 1 draws elements 1, 2 and 4 with a flange: a flat land and a cylinder beyond the end of the rear face.
+ * The front and rear semi-diameters of those elements follow the two drawn curve ends, and the renderer joins them
+ * with a straight chord. A square rim is not used there: the rear face of element 1 has |R| below the
+ * flange height, and on elements 2 and 4 it would carry the rear face over the front corner of the next element.
  * The link to the production Auto Yashinon-DS 20mm f/3.3 rests on matching brochure specifications
  * (11 elements / 9 groups, f/3.3, 94.5 deg field); Yashica has not confirmed it.
  */
@@ -54,7 +67,7 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "role": "Front negative meniscus of functional group I; with Element 2 it forms the divergent pair the patent ties to the long back focus.",
+      "role": "Patent lens IA: front negative meniscus of functional group I. With Element 2 (IB) it forms the divergent pair whose combined focal length the patent bounds to balance distortion and coma against the long back focus.",
       "type": "Negative Meniscus",
       "nd": 1.72,
       "vd": 50.3,
@@ -66,7 +79,7 @@ const LENS_DATA = {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "role": "Second negative meniscus of functional group I, air-spaced behind Element 1.",
+      "role": "Patent lens IB: second negative meniscus of functional group I, air-spaced behind Element 1.",
       "type": "Negative Meniscus",
       "nd": 1.717,
       "vd": 47.9,
@@ -78,7 +91,7 @@ const LENS_DATA = {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "role": "Positive element inside the net-negative functional group I.",
+      "role": "Patent lens IC: the positive element inside the net-negative functional group I.",
       "type": "Biconvex Positive",
       "nd": 1.6968,
       "vd": 55.6,
@@ -90,7 +103,7 @@ const LENS_DATA = {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "role": "Rear negative meniscus of functional group I.",
+      "role": "Patent lens ID: rear negative meniscus of functional group I.",
       "type": "Negative Meniscus",
       "nd": 1.72,
       "vd": 50.3,
@@ -102,7 +115,7 @@ const LENS_DATA = {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "role": "Negative front member of the cemented pair that forms functional group II.",
+      "role": "Patent lens IIA: negative front member of the cemented pair that forms functional group II.",
       "type": "Biconcave Negative",
       "nd": 1.70154,
       "vd": 41.1,
@@ -115,7 +128,7 @@ const LENS_DATA = {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "role": "Thick positive rear member of the weakly negative cemented group II.",
+      "role": "Patent lens IIB: thick positive rear member of the weakly negative cemented group II.",
       "type": "Biconvex Positive",
       "nd": 1.6727,
       "vd": 32.2,
@@ -128,7 +141,7 @@ const LENS_DATA = {
       "id": 7,
       "name": "L7",
       "label": "Element 7",
-      "role": "Single positive lens forming functional group III, immediately ahead of the stop.",
+      "role": "Patent lens IIIA: the single positive lens forming functional group III, immediately ahead of the stop.",
       "type": "Biconvex Positive",
       "nd": 1.60717,
       "vd": 40.2,
@@ -140,7 +153,7 @@ const LENS_DATA = {
       "id": 8,
       "name": "L8",
       "label": "Element 8",
-      "role": "Negative front member of the cemented pair that opens functional group IV, behind the stop.",
+      "role": "Patent lens IVA: negative front member of the cemented pair that opens functional group IV, behind the stop.",
       "type": "Biconcave Negative",
       "nd": 1.74,
       "vd": 28.2,
@@ -153,7 +166,7 @@ const LENS_DATA = {
       "id": 9,
       "name": "L9",
       "label": "Element 9",
-      "role": "Positive rear member of the cemented pair in functional group IV.",
+      "role": "Patent lens IVB: positive rear member of the cemented pair in functional group IV.",
       "type": "Biconvex Positive",
       "nd": 1.58144,
       "vd": 40.8,
@@ -166,7 +179,7 @@ const LENS_DATA = {
       "id": 10,
       "name": "L10",
       "label": "Element 10",
-      "role": "Positive meniscus of functional group IV, convex toward the image.",
+      "role": "Patent lens IVC: positive meniscus of functional group IV, convex toward the image.",
       "type": "Positive Meniscus",
       "nd": 1.691,
       "vd": 54.8,
@@ -178,7 +191,7 @@ const LENS_DATA = {
       "id": 11,
       "name": "L11",
       "label": "Element 11",
-      "role": "Final positive element of functional group IV.",
+      "role": "Patent lens IVD: final positive element of functional group IV, a meniscus with a nearly flat front face.",
       "type": "Positive Meniscus",
       "nd": 1.64,
       "vd": 60.2,
@@ -355,6 +368,40 @@ const LENS_DATA = {
       "nd": 1.0,
       "elemId": 0,
       "sd": 8.4
+    }
+  ],
+  "groups": [
+    {
+      "text": "I (−)",
+      "fromSurface": "1",
+      "toSurface": "8"
+    },
+    {
+      "text": "II (−)",
+      "fromSurface": "9",
+      "toSurface": "11"
+    },
+    {
+      "text": "III (+)",
+      "fromSurface": "12",
+      "toSurface": "13"
+    },
+    {
+      "text": "IV (+)",
+      "fromSurface": "14",
+      "toSurface": "20"
+    }
+  ],
+  "doublets": [
+    {
+      "text": "D1",
+      "fromSurface": "9",
+      "toSurface": "11"
+    },
+    {
+      "text": "D2",
+      "fromSurface": "14",
+      "toSurface": "16"
     }
   ],
   "closeFocusM": 0.3,

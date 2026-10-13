@@ -6,7 +6,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Fourteen lens elements in ten groups. The patent prints the four 0.01 mm adhesive layers
  * (nd 1.56732, νd 42.8) inside L5–L6, L7–L8, L11–L12 and L13–L14; they are modeled as printed,
  * which gives eighteen element entries. The layer entries C1–C4 carry no `cemented` tag, so the
- * inspector counts D1–D4 as two-element doublets.
+ * inspector counts D1–D4 as two-element doublets. Their diagramLabel C1–C4 stands in for ids 15–18 in
+ * the element-number row; an empty label does not hide a layer cleanly, because the row packer still
+ * reserves its slot and leaves 12 and 14 floating over a gap.
  * Focus: NO_INTERNAL_RECONSTRUCTION. Only the three printed infinity stations are modeled and each
  * focus vector repeats its infinity value. G3 focuses toward the image, but the patent prints no
  * finite-focus spacings. closeFocusM is Panasonic's marketed 0.15 m minimum focus distance; it is
@@ -89,12 +91,19 @@ const LENS_DATA = {
       id: 2,
       name: "L2",
       label: "Element 2",
-      type: "Negative Meniscus (Asph), convex to object",
+      type: "Negative Meniscus (2× Asph), convex to object",
       nd: 1.5338,
       vd: 55.6,
       indexReference: "d",
       fl: -41.54453,
-      glass: "Unmatched (patent optical material; nd 1.53380, nu 55.6)",
+      glass:
+        "Unmatched (Panasonic moulding material 1.53380/55.6; no catalog row; line indices from US 2017/0059832 A1)",
+      nC: 1.531,
+      nF: 1.5406,
+      ng: 1.546,
+      dPgF: 0.01204,
+      apdNote:
+        "nC, nF and ng are the values Panasonic prints for this nd/νd material in US 2017/0059832 A1 (Table 23, P_g,F 0.56232); this patent prints nd and νd only.",
       role: "Negative meniscus of the first group, aspherical on both faces",
     },
     {
@@ -210,7 +219,7 @@ const LENS_DATA = {
       id: 9,
       name: "L9",
       label: "Element 9",
-      type: "Biconvex Positive (Asph)",
+      type: "Biconvex Positive (2× Asph)",
       nd: 1.55332,
       vd: 71.7,
       indexReference: "d",

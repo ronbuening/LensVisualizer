@@ -21,8 +21,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **5** visible lenses fully covered only after measured line-index data
 - **9801 / 10543** non-air surfaces use strict catalog Sellmeier data
 - **93.0%** strict Sellmeier surface coverage overall
-- **9810 / 10543** non-air surfaces use trusted chromatic data
-- **93.0%** trusted chromatic coverage overall
+- **9811 / 10543** non-air surfaces use trusted chromatic data
+- **93.1%** trusted chromatic coverage overall
 - **238 / 291** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -1181,11 +1181,11 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 263 | [MINOLTA AF APO TELE 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
 | 264 | [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
 | 265 | [VILTROX AF 33mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF33mmf14E.data.ts) | 50.0% | 50.0% | 5/10 | 5/10 | 5 | abbe: 5 |
+| 266 | [PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO](../../src/lens-data/panasonic/PanasonicLumixS1428mmF456.data.ts) | 50.0% | 44.4% | 9/18 | 8/18 | 9 | abbe: 9 |
 |  | **45-49.9% coverage** |  |  |  |  |  |  |
-| 266 | [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) | 46.2% | 46.2% | 6/13 | 6/13 | 7 | abbe: 7 |
+| 267 | [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) | 46.2% | 46.2% | 6/13 | 6/13 | 7 | abbe: 7 |
 |  | **40-44.9% coverage** |  |  |  |  |  |  |
-| 267 | [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) | 44.4% | 44.4% | 4/9 | 4/9 | 5 | abbe: 5 |
-| 268 | [PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO](../../src/lens-data/panasonic/PanasonicLumixS1428mmF456.data.ts) | 44.4% | 44.4% | 8/18 | 8/18 | 10 | abbe: 10 |
+| 268 | [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) | 44.4% | 44.4% | 4/9 | 4/9 | 5 | abbe: 5 |
 | 269 | [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
 | 270 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
 | 271 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 40.0% | 40.0% | 4/10 | 4/10 | 6 | abbe: 6 |
@@ -3050,6 +3050,20 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10 | Element L21 | abbe | `Unmatched (847238-class dense flint; nd=1.85, νd=23.79)` | Explicit unmatched/proprietary annotation |
 | 19 | Element L42 | abbe | `Unmatched (847238-class dense flint; nd=1.85, νd=23.79)` | Explicit unmatched/proprietary annotation |
 
+### [PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO](../../src/lens-data/panasonic/PanasonicLumixS1428mmF456.data.ts) - 50.0% trusted (9/18); 44.4% Sellmeier (8/18) - US 2024/0192475 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7 | Element 4 | abbe | `Unmatched (patent dense-flint class; nd 1.67196, nu 31.5)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 5 | abbe | `Unmatched (patent high-index crown class; nd 1.77319, nu 49.6)` | Explicit unmatched/proprietary annotation |
+| 11 | L5–L6 cement layer | abbe | `Optical cement (patent nd=1.56732, vd=42.8)` | No catalog match |
+| 12 | Element 6 | abbe | `Unmatched (patent high-index flint class; nd 1.70147, nu 40.9)` | Explicit unmatched/proprietary annotation |
+| 15 | L7–L8 cement layer | abbe | `Optical cement (patent nd=1.56732, vd=42.8)` | No catalog match |
+| 20 | Element 10 | abbe | `Unmatched (patent dense-flint class; nd 1.81012, nu 21.2)` | Explicit unmatched/proprietary annotation |
+| 23 | L11–L12 cement layer | abbe | `Optical cement (patent nd=1.56732, vd=42.8)` | No catalog match |
+| 27 | L13–L14 cement layer | abbe | `Optical cement (patent nd=1.56732, vd=42.8)` | No catalog match |
+| ... | ... | ... | ... | 1 more missing surface |
+
 ### [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) - 46.2% trusted (6/13); 46.2% Sellmeier (6/13) - JP 2021-076829 A
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -3071,20 +3085,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 6 | Element 4 | abbe | `Unmatched SF8-class dense flint (patent e-line index stored)` | Explicit unmatched/proprietary annotation |
 | 7 | Element 5 | abbe | `Unmatched (LAK9-class patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
 | 11 | Element 7 | abbe | `Unmatched (F8-class light flint; patent e-line index stored)` | Explicit unmatched/proprietary annotation |
-
-### [PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO](../../src/lens-data/panasonic/PanasonicLumixS1428mmF456.data.ts) - 44.4% trusted (8/18); 44.4% Sellmeier (8/18) - US 2024/0192475 A1
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 3A | Element 2 | abbe | `Unmatched (patent optical material; nd 1.53380, nu 55.6)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 4 | abbe | `Unmatched (patent dense-flint class; nd 1.67196, nu 31.5)` | Explicit unmatched/proprietary annotation |
-| 10 | Element 5 | abbe | `Unmatched (patent high-index crown class; nd 1.77319, nu 49.6)` | Explicit unmatched/proprietary annotation |
-| 11 | L5–L6 cement layer | abbe | `Optical cement (patent nd=1.56732, vd=42.8)` | No catalog match |
-| 12 | Element 6 | abbe | `Unmatched (patent high-index flint class; nd 1.70147, nu 40.9)` | Explicit unmatched/proprietary annotation |
-| 15 | L7–L8 cement layer | abbe | `Optical cement (patent nd=1.56732, vd=42.8)` | No catalog match |
-| 20 | Element 10 | abbe | `Unmatched (patent dense-flint class; nd 1.81012, nu 21.2)` | Explicit unmatched/proprietary annotation |
-| 23 | L11–L12 cement layer | abbe | `Optical cement (patent nd=1.56732, vd=42.8)` | No catalog match |
-| ... | ... | ... | ... | 2 more missing surfaces |
 
 ### [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) - 40.0% trusted (2/5); 40.0% Sellmeier (2/5) - US 2,279,384
 

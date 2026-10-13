@@ -252,7 +252,7 @@ includes the conic change.
 | 3A      |                      14.3 |                       +25.358 |                               +25.358 |                      23.488 |
 | 4A      |                      12.2 |                      +403.019 |                              -998.744 |                      44.987 |
 | 19A     |                      14.2 |                       -56.800 |                               -56.800 |                       7.365 |
-| 20A     |                      13.3 |                     +1015.903 |                             +1015.903 |                      36.282 |
+| 20A     |                      14.2 |                     +1388.758 |                             +1388.758 |                      40.971 |
 | 21A     |                      13.6 |                      +780.312 |                              +780.312 |                      29.179 |
 | 22A     |                      13.6 |                      +299.646 |                              +299.646 |                      28.049 |
 
@@ -351,6 +351,19 @@ Figure 8C shows barrel distortion of about 6 % at the edge of the field, which i
 traced prescription. It does not prove a typo or an alternative convention. No printed value is fitted or corrected to
 match the plot. [1, PDF page 10, Figure 8C; page 30]
 
+Measured on the 300 dpi scan (10.8 px per percent), the distortion curve of Figure 8C ends at −6.1 % ± 0.15 at the top
+of its axis, which is captioned with the printed image height (FIY = 10.81). That lies between the traced −6.29 % at
+10.81 mm and −5.93 % at the printed field, so the curve alone does not separate the two, but it rules out the −3.05 %
+the printed pair needs. The plots are drawn against image height, and the traced field curves agree with Figure 8B
+there. Measured from the Gaussian focus, the traced sagittal focus reaches −0.034 mm at 70 % of the height, where the
+plot’s solid curve reads −0.037 mm, and returns to +0.005 mm at the edge; the traced tangential focus stays within
++0.01 mm and ends at +0.021 mm, where the dashed curve reads +0.021 mm. The patent does not say which line style is
+which. The image height is thus the value the plots and the prescription share, and the printed 2ω is the one that
+departs. Example 3 of the same patent behaves the same way: its printed pair (2ω 66.07°, image height 10.87 mm,
+f 17.15 mm) implies −2.5 % where Figure 7C reads −5.3 %, and in both examples f·tan ω is 11.15 mm although the printed
+image heights differ. The printed field therefore looks like a convention of the summary table rather than the chief
+ray of the printed image height; the patent does not state one. [1, PDF pages 9–10, Figures 7C, 8B and 8C; page 30]
+
 ### Printed summary values and the model
 
 The table lists computed values beside the patent’s printed summaries where the two differ beyond the printed
@@ -404,15 +417,26 @@ Figure 8’s panel annotations align numerically with INF, CL1 and CL2 from top 
 description of the plot order reverses the end states. No state is swapped on that account. [1, PDF page 26, printed
 column 15; Figure 8; Example 4]
 
+The curves themselves do not follow those annotations in the lower two rows. The middle row (Figures 8E–8H, annotated
+with the CL1 values FNO 1.24 and FIY 10.89) shows the 94.99 mm state: both field curves reach about −0.053 mm near
+80 % of the height and the distortion ends at −5.2 %, against −0.051 mm and −5.27 % traced at CL2. The bottom row
+(Figures 8I–8L, annotated with the CL2 values 1.25 and 10.79) shows a distant-object state: the solid field curve
+reaches −0.035 mm and the distortion ends at −6.3 %, against −0.035 mm and −6.24 % traced at CL1. The top and bottom
+rows cannot be told apart at the resolution of the scan. The data file takes its three states from the table of
+variable gaps and object distances, which is unambiguous, and nothing in it depends on the plot order. [1, PDF page 10,
+Figure 8; page 30]
+
 ### Modeled apertures and vignetting
 
 The patent tabulates no lens rims, so every semi-diameter except the iris is an estimate read from Figure 4 at its
 300 dpi scan resolution (12.27 px/mm). Rim readings carry about ±0.15 mm of uncertainty, more where leader lines cross the
-outline. The concave rear curves of L11 and L14 stop where the drawing meets their flat annuli, at 13.3 mm (20A) and
-9.5 mm (25) rather than at the outer cap. The square-cut elements L3, L6 and L13 carry their own drawn height on both
-faces. At the 14.3 mm rims of surfaces 2 and 3A the two facing surfaces close 96.0 % of their 6.27 mm axial gap,
-leaving 0.249 mm; the data file’s allowance for facing surfaces is raised from the default 0.90 to 0.961 to admit the
-drawn rims, and the surfaces do not touch.
+outline. The concave rear curve of L14 stops where the drawing meets its flat annulus, at 9.5 mm (25) rather than at
+the outer cap, because that rim limits mid-field rays. The rear curve of L11 is drawn ending at a flat annulus too, at
+13.3 mm, but 20A is modeled out to the element’s 14.2 mm outer cap so that L11 is drawn square, as in the figure; no
+ray that passes the other rims reaches 20A above 13.2 mm, so the choice changes no traced result. The square-cut
+elements L3, L6 and L13 carry their own drawn height on both faces. At the 14.3 mm rims of surfaces 2 and 3A the two
+facing surfaces close 96.0 % of their 6.27 mm axial gap, leaving 0.249 mm; the data file’s allowance for facing
+surfaces is raised from the default 0.90 to 0.961 to admit the drawn rims, and the surfaces do not touch.
 
 A fan of on-axis rays filling the printed iris passes every rim at the three printed states and four interpolated
 positions; the smallest on-axis margin is 0.234 mm at 21A in CL2. The chief ray to the 10.82 mm format corner passes
@@ -428,8 +452,8 @@ No numerical MTF, production distortion, apochromatic, continuous-focus or measu
 ## Sources and References
 
 1. Morooka, Masaru, and Kenichi Nagasawa. [Single focal length lens and optical apparatus using the same](https://patents.google.com/patent/US10073255B2/en).
-   US 10,073,255 B2, Olympus Corporation, granted 2018-09-11. Front page; Figure 4 (PDF page 6); Figure 8
-   (PDF page 10); design conditions (printed columns 5–10); Example 4 description (printed columns 18–19); numerical
+   US 10,073,255 B2, Olympus Corporation, granted 2018-09-11. Front page; Figure 4 (PDF page 6); Figures 7 and 8
+   (PDF pages 9 and 10); design conditions (printed columns 5–10); Example 4 description (printed columns 18–19); numerical
    prescription, aspheres, states and condition summary (PDF page 30, printed columns 23–24); parameter summary
    (PDF page 31, printed column 25). Page numbers refer to the PDF of the granted patent.
 2. Olympus Corporation. [M.Zuiko Digital ED 17mm F1.2 PRO instructions, WD290801, IM007](https://download.omsystem.com/pages/inst/mzded17f12pro/manual_mzded17f12pro.pdf),

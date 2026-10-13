@@ -431,3 +431,135 @@ against the printed 185.2. The surface validator reports no errors.
 
 Open: none. The 1974 glass supplier and the identity of the production prescription remain unconfirmed; both are
 stated in the data file and the analysis and are limits of the sources, not pending work.
+
+## 2026-10-13 — Second review: diagram, labels and movement
+
+### What was compared
+
+- The local page at infinity, at the far end of the focus slider and with the movement overlay open, against FIG. 1,
+  Table I, Table II and FIGS. 1B–1E of US 3,856,386. Both local scans were read: `patents/US3856386.pdf` (isotropic
+  300 ppi) and `patents/US_3856386_A.pdf` (the same 2320 × 3408 raster embedded at 281 × 291 ppi).
+- No manufacturer cross-section was supplied or viewed. The maker evidence is still the brochure table quoted above
+  (11 elements in 9 groups); neither it nor the patent marks a special-glass or aspherical element.
+- The rims were re-measured independently on both copies of FIG. 1, and every optical check below was made with a
+  separately written closed-form sphere tracer, not with the first pass's tools.
+
+### Changes
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `groups` | absent; the diagram drew no group labels | I (−) surfaces 1–8, II (−) 9–11, III (+) 12–13, IV (+) 14–20 | FIG. 1 braces I–IV over lenses IA–ID, IIA–IIB, IIIA, IVA–IVD; cols. 3–4. Group focal lengths −24.34, −510.0, +20.80 and +74.88 mm |
+| `doublets` | absent; the diagram drew no cemented-pair labels | D1 surfaces 9–11, D2 surfaces 14–16 | Table I gives no air space after t5 and t8 (it has no d5 or d8); FIG. 1 draws elements 5–6 and 8–9 in contact. The elements already carried `cemented` D1 and D2 |
+| `role`, all eleven elements | functional-group wording only | the same wording led by the patent's lens name (IA … IVD); element 1 now names both sides of Requirement 1, element 11 its meniscus form | cols. 3–4 name the lenses; col. 4 lines 1–10 tie the first pair to distortion, coma and the back focus |
+| Header comment | no note on numbering, Table II, the undrawn stop or the flanges | adds those four notes | this section |
+| Analysis | no numbering or bracket note; said the Seidel analysis was not reproduced | numbering and bracket paragraph; Table II pupil note; Table II and FIGS. 1B–1D comparison; flange paragraph; whole-pupil clipping shares | this section |
+
+No semi-diameter, radius, spacing, index, glass label, stop value or focus field changed.
+
+### Rims: independent reading
+
+Scale on the front-page copy: first vertex at x = 46 px and last at 962.5 px of the crop, 916.5 px for 60.685 mm,
+0.0662 mm/px. On sheet 1: 686 px, 0.0885 mm/px. Heights are half the distance between the centres of the top and
+bottom rim lines.
+
+| Surfaces | Stored (mm) | Front page / sheet 1 (mm) | Verdict |
+|---|---|---|---|
+| 1 | 23.832 | 23.14 / 23.11 | kept, 3% above the drawing |
+| 2 | 17.085 | curve end 17.5 top and 18.5 bottom / 17.4 and 18.4; 17.2–17.5 by the drawn sag | kept; see below |
+| 3 | 17.085 | 17.51 / 17.43 | kept, 2% below |
+| 4 | 14.8 | curve end 14.96 / 14.73 | agrees |
+| 5, 6 | 15.1 | 15.11 / 15.04 | agrees |
+| 7 | 10.4 | 10.43 / 10.37 | agrees |
+| 8 | 8.375 | curve end 8.81 / 8.85 | kept, 5% below; see below |
+| 9, 10, 11 | 8.4 | 8.61 / 8.58 | kept, 2% below |
+| 12, 13 | 6.3 | 6.26 / 6.21 | agrees |
+| 14 | 5.1 | chamfer starts at 5.07 | agrees |
+| 15, 16 | 5.9 | 5.94 / 5.90 | agrees |
+| 17, 18 | 6.6 | 6.65 / 6.63 | agrees |
+| 19, 20 | 8.4 | 8.39 / 8.34 | agrees |
+
+The rim-height readings are within 0.1 mm of the first pass's and the three curve ends (surfaces 2, 4 and 8) within
+0.3 mm. The first pass has the rims right and nothing was changed.
+
+The three flanges. FIG. 1 draws elements 1, 2 and 4 with a flat land and a cylinder beyond the end of the rear
+face; the renderer joins the front and rear rim points with a straight chord.
+
+- Element 1. A square rim would need surface 2 at the flange height of 23.1 mm, above its radius of 20.80 mm. The
+  validator reports a rim slope of 90° at 23.1 and 84.4° at 20.7 against the 64.2° limit. No policy value admits it.
+  Raising surface 2 only to its drawn curve end, with surface 3 at 17.5, puts 5.11 mm of sag into the 5.351 mm gap
+  and would need `gapSagFrac` 0.96 (0.95 fails). It was not requested: by the drawn sag the curve end is 17.2–17.5,
+  1–2% from the stored value, and the two spheres of Table I meet at 17.7.
+- Element 2. Surface 4 at 17.085, equal to surface 3, passes the validator with no policy change. The corner chief
+  ray is unaffected (margin 0.167 mm at surface 2) and the whole-pupil clipping shares are unchanged at every field
+  angle. It was not applied: the figure ends the rear face at 14.7–15.0, level with the rim of element 3, and a
+  trial render shows the squared rear face reaching 1.4 mm behind the front corner of element 3 and 2 mm above its
+  rim, a lip the figure does not draw.
+- Element 4. Surface 8 at 10.4, equal to surface 7, has a rim slope of 64.9° and passes only with
+  `maxRimAngleDeg` 64.9 (64.8 fails); nothing else objects. It is not recommended: the squared face would reach
+  2.4 mm behind the front corner of the cemented pair, which the figure draws meeting the rear rim of element 4, and
+  it changes the clipping (whole pupil at 45° from 37.7% to 39.6%). Raising surface 8 only to its drawn 8.8 with the
+  pair at 8.6 would need `gapSagFrac` 0.94, as the first pass recorded.
+
+### Checked and found correct
+
+- Numbering. FIG. 1 puts the numerals 1–11 under the elements and Table I heads the same numbers "Lens". The
+  diagram prints 1–11 (no `diagramLabel` is set, so it prints the element id), the inspector shows "Element n" with
+  the short name Ln, and the analysis uses L1–L11. The three agree with the figure. The patent text's own names
+  (IA … IVD) are now in each role and in the analysis.
+- Element types against the signs of R: 1, 2 and 4 are negative menisci convex to the object (both radii positive,
+  rear shorter); 3, 6, 7 and 9 are biconvex; 5 and 8 are biconcave; 10 and 11 are positive menisci convex to the
+  image (both radii negative, rear shorter). All eleven `type` strings agree. There are no aspheric surfaces, no
+  `asph` entries and no `A` label suffixes.
+- Tags. No element carries `apd`; Table I prints only n and ν, and the text names no glass and no anomalous
+  dispersion. All eleven `glass` labels resolve.
+- Table I digits. Every radius, thickness, spacing, index and Abbe number was re-read on both scans; the two scans
+  agree on every digit and the file equals the print times 20/99.8.
+- Table II. Third-order coefficients computed from Table I as printed match 98 of the 100 surface entries of Table II
+  to the last printed digit, with the entrance pupil 123.0 normalized units behind r1. One entry (surface 19, coma)
+  differs by one unit in the fifth decimal. The other (surface 16, coma) is printed −0.38712 against a computed
+  −0.38742; the printed column sum 0.06336 agrees with the computed entry, so it is a misprint in Table II. The
+  spherical and Petzval columns do not depend on the pupil, so no radius, spacing or index has a wrong sign or digit.
+  A reversed sign on r6, r9 or r19 would each move a Petzval entry by 0.02 to 0.15.
+- Aberration plots, patent units in brackets. Spherical aberration: model +0.084 mm at f/3.3 and −0.194 mm at f/4.7
+  (+0.42 and −0.97); FIG. 1B reads +0.5 and −1.0. Astigmatism: the model's tangential curve crosses zero at 28.0° and
+  the sagittal at 43.7°; FIG. 1C crosses at 27.6° and 43.9°. The model reaches −1.60 tangential at 44° and −0.78
+  sagittal at 33°; the figure reads −2.7 and −1.07. Distortion: model −2.99% near 42° and −2.79% at 47.25°; FIG. 1D
+  reads −3.4% and −3.1%. Signs and shapes agree throughout; the drawn astigmatism is 1.4 to 1.8 times larger.
+- Stop. FIG. 1 does not draw it and Table I does not list it; col. 6 lines 48–53 say only that the diaphragm is taken
+  to lie between groups III and IV. The file puts it at the middle of that 3.818 mm air space, 1.909 mm behind r13,
+  between elements 7 and 8, and the header says how the position and the size were set. The engine opens the iris to
+  4.970 mm, which clears r13 and r14 at that station.
+- Focus and movement. The patent has no focusing spacings, the file has no `var` entries, the slider reads "Not
+  modeled", the far end of the slider draws the same section as infinity, and the movement overlay reports four
+  groups with no modeled movement. FIG. 1E plots astigmatism for object heights of 3760 and 5410 units, an object
+  about 50 focal lengths away, without spacings. A trace with the whole lens moved 0.40 mm forward gives the same
+  pattern as that figure (sagittal negative at 37°, both curves positive at the edge), so the figure is consistent
+  with whole-lens focusing and adds no spacing data.
+- Bibliographic data on the front page: Yoshisato Fujioka; Kabushiki Kaisha Yashica; filed 8 May 1973; granted
+  24 December 1974. The file's fields agree.
+
+### Clipping and engine values
+
+- Whole-pupil sweep with the independent tracer (0.04 mm grid over the pupil defined by the 4.970 mm iris; share
+  of the stop area that passes every rim): 100% at 10°, 95.8% at 20°, 80.7% at 30°, 70.4% at 35°, 57.8% at 40°,
+  37.7% at 45°, 26.2% at 47.25° and 20.4% at 48.02°. The meridional shares are 94.1%, 80.3%, 71.8%, 61.4%, 42.3%,
+  31.8% and 26.6% from 20° on. Surface 12 and the rear group cut the pupil at 20–30°, surface 8 joins from 35° and
+  surface 7 at 40°, and surface 2 takes 34–39% from 45° outward.
+- On axis the f/3.3 marginal ray clears every rim; the smallest margins are 0.27 mm at surface 14 and 0.57 mm at
+  surface 16. The chief ray reaches 21.035 mm at 47.25° and 21.630 mm at 48.02°; at the corner its smallest margins
+  are 0.167 mm at surface 2, 0.462 mm at surface 4 and 0.516 mm at surface 8.
+- No rim changed, so the clipping is unchanged by construction; the engine's own vignetting curve is identical
+  before and after the edits. Engine values are also identical: EFL 20.0032 mm, f/3.3, iris 4.9696 mm, half-field
+  estimate 38.66°. The surface validator reports no errors, the image-circle check lists nothing, and the traced
+  corner coverage is 100% to 21.65 mm at 48.0°.
+
+### Open
+
+- Stop station. Three indications disagree and none is a published position. Table II's pupil of 123.0 units
+  corresponds to a paraxial stop plane 20.95 units behind r13, 1.90 units past the vertex of r14 and outside the
+  19.05-unit air space. The magnitudes of FIG. 1C are matched best by a stop 1.25 mm behind r13 (tangential −2.71 at
+  44°), but that moves the zero crossings to 21° and 45°. The drawn zero crossings are matched by the mid-gap
+  station in the file. The station is left as it is; moving it would change `d` on two rows, which this review does
+  not edit.
+- The renderer cannot draw a stepped flange, so elements 1, 2 and 4 keep their slanted edges.
+- The clipping shares follow figure-derived rims and are not measured production vignetting.

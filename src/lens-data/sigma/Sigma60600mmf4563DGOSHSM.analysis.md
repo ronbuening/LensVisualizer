@@ -207,9 +207,9 @@ one side and by the air clearance to L10 on the other (¶123).
 nd = 1.61997, νd = 63.88. Glass: PCD40 (HOYA coordinate-compatible catalog equivalent; supplier unconfirmed). Standalone f = -50.4 mm.
 
 L10 is the negative biconcave front member of the stabilizer's cemented pair.
-Its front surface 17 shares the constrained 14.6 mm radius across the gap
-from L9; the cemented and rear faces of the pair carry the 16.5 mm read
-from Figure 1.
+All three faces of the pair carry the 16.5 mm that Figure 1 draws for the
+square-cut block. Across the gap, L9's rear face ends at the constrained
+14.6 mm radius.
 The modeled configuration is centered, not a displaced stabilization state.
 
 ### L11 — Biconvex Positive
@@ -530,10 +530,12 @@ needs 44.44 mm at surface 1 and 43.42 mm at L3.
 
 From G3 to G5 the read rims stand about 1.1 to 2.4 mm above the widest
 on-axis ray of the nine published states, apart from the constrained
-16–17 pair, and every positive element keeps 0.71 to 2.3 mm of
+surface 16, and every positive element keeps 0.71 to 2.3 mm of
 edge thickness. Elements the figure draws with a square-cut rim carry one
-radius on both faces, except at the gap-constrained rear of L5 and the
-16–17 pair.
+radius on both faces, except at the gap-constrained rear faces of L5 and
+L9. The figure squares those two off with a flat annulus outside the
+curve; a spherical face carried to the drawn rim would meet the next
+element first, at 23.5 mm for L5 and 15.0 mm for L9.
 
 The stop sits between L14 and L15, as printed. At each infinity zoom station,
 the computed EFL and the patent's f-number define the entrance-pupil
@@ -553,10 +555,12 @@ diaphragm diameter.
 
 The viewer normally lets facing surfaces use at most 0.90 of an air gap
 at the rim. The tele on-axis beam needs 14.47 and 14.48 mm at surfaces
-16 and 17, and at their common 14.6 mm radius the two faces use 0.943877
-of the 4.1944 mm gap, so this lens allows 0.95. That leaves 0.235403 mm
-of air between the elements; they do not touch, and nothing is trimmed
-in the drawing. Every other gap stays below 0.90.
+16 and 17. Surface 16 ends at 14.6 mm, and at that height the two faces
+use 0.943877 of the 4.1944 mm gap, so this lens allows 0.95. That leaves
+0.235403 mm of air between the elements there; they do not touch, and
+nothing is trimmed in the drawing. Surface 17 continues to the 16.5 mm
+rim of its cemented pair, beside L9's inclined edge. Every other gap
+stays below 0.90.
 
 At all nine published states, and at the zoom and focus positions between
 them, the full on-axis beam and the corner chief ray clear every rim.

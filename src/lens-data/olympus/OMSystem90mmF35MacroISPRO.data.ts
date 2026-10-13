@@ -13,6 +13,12 @@
  * REAR PLATE: the camera-side plate OF is in rearPlates; surface 32 keeps its
  * printed 30.649 mm air gap.
  *
+ * GROUPS: bracket labels follow Fig. 2. G1, G2 and G3 are labelled whole; the
+ * fixed fourth group carries the figure's three subgroup brackets, G4a (L12),
+ * G4b (L13 to L15, the image-stabilizing unit, labelled G4b/IS) and G4c (L16
+ * to L18). D1 to D5 are the five cemented pairs; D9, D14, D15 and D20 in the
+ * focus panel are the patent's own names for the four variable air gaps.
+ *
  * SEMI-DIAMETERS: estimated from patent Fig. 2 (both panels read at the native
  * 452 dpi, 0.0898 mm/px from the vertex spans) and floor-checked by exact
  * real-ray trace at the four published focus states; no clear apertures are
@@ -29,7 +35,11 @@
  * size. The printed finite-state FNO values 2.71 / 1.61 / 0.51 (figures 2.714 /
  * 1.607 / 0.509) are recorded but not imposed. Fig. 2(B) draws the 2x stop at
  * 6.6 ± 0.15 mm half-height against 9.3 mm at infinity; the model keeps the
- * infinity iris at every focus state.
+ * infinity iris at every focus state. The full-aperture ends of the
+ * spherical-aberration curves in Figs. 3 and 4 (about -0.15, +0.02 and
+ * -0.27 mm at 0.5x, 1x and 2x) are reproduced with stops of 7.8, 7.0 and
+ * 6.5 mm, the sizes the printed FNO values imply; a 9.172 mm stop would give
+ * +0.32 and +0.23 mm at 1x and 2x.
  *
  * CLOSE-FOCUS ANALYSIS LIMITS: ray fans at 1x and 2x are sparse. The off-axis
  * chromatic spread can fall back to the chief ray alone, the spherical-
@@ -635,8 +645,18 @@ const LENS_DATA = {
       toSurface: "20",
     },
     {
-      text: "G4",
+      text: "G4a",
       fromSurface: "21",
+      toSurface: "22",
+    },
+    {
+      text: "G4b/IS",
+      fromSurface: "23",
+      toSurface: "27",
+    },
+    {
+      text: "G4c",
+      fromSurface: "28",
       toSurface: "32",
     },
   ],
