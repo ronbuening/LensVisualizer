@@ -38,6 +38,7 @@ const LENS_DATA = {
   focalLengthMarketing: [400, 800],
   focalLengthDesign: [399.6505110182551, 774.7038088758065],
   lensMounts: ["sony-fe"],
+  acceptsTeleconverters: true, // Sony lists SEL14TC / SEL20TC teleconverter compatibility
   imageFormat: "135-full-frame",
   patentNumber: "WO 2024/154461 A1",
   patentAuthors: ["Fumikazu Kanetaka"],

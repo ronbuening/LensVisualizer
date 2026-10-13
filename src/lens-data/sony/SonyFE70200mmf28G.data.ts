@@ -18,9 +18,23 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  The var entries therefore model infinity-focus zoom positions only ║
  * ║  by repeating [infinity, close] pairs at each zoom point.            ║
  * ║                                                                    ║
+ * ║  Table 2, surface 31, A8: the US publication prints                  ║
+ * ║  +2.76793E-11. The same application's PCT publication,               ║
+ * ║  WO 2017/134929 A1, prints -2.76793E-11, which this file uses.       ║
+ * ║  The US value gives -6.7 mm of spherical aberration at f/2.88        ║
+ * ║  at every zoom position; FIG. 4 plots it within about 0.1 mm,        ║
+ * ║  and the PCT value traces to -0.09 mm or less.                       ║
+ * ║                                                                      ║
  * ║  Semi-diameters are inferred for LensVisualizer rendering from       ║
  * ║  paraxial stop geometry, the 77 mm filter constraint, element-rim    ║
- * ║  thickness checks, and cross-gap sag clearance checks.               ║
+ * ║  thickness checks, and cross-gap sag clearance checks. Surfaces      ║
+ * ║  2-5, 7-10, 14-17 and 20-22 are set to the height of the f/2.88      ║
+ * ║  axial marginal ray at its worst zoom position, rounded up to        ║
+ * ║  0.1 mm; FIG. 1 draws each of those elements taller. L23 and L24     ║
+ * ║  are drawn square-cut, so both faces carry the higher of their two   ║
+ * ║  heights. L1R1 and L1R2 meet at the rim in FIG. 1: at 28.3 mm,       ║
+ * ║  0.03 mm is left of the 0.75 mm air gap between surfaces 8 and 9,    ║
+ * ║  so gapSagFrac is 0.97.                                              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -28,13 +42,24 @@ const LENS_DATA = {
   key: "sony-fe-70-200-f28-gm-oss",
   maker: "Sony",
   name: "SONY FE 70-200mm f/2.8 GM OSS",
+  sourceErrata: [
+    {
+      status: "corrected",
+      surface: "31A",
+      field: "A8",
+      printed: 2.76793e-11,
+      applied: -2.76793e-11,
+      evidence: ["aberration-figure", "family-publication"],
+      note: "The US print gives -6.7 mm of spherical aberration at f/2.88 where FIG. 4 plots about 0.1 mm; WO 2017/134929 A1, the same application's PCT publication, prints the negative sign in Table 2.",
+    },
+  ],
   subtitle: "US 2019/0018229 A1 — Numerical Example 1",
   specs: [
-    "23 elements / 18 groups",
-    "70-200 mm marketed; 72.10-193.99 mm design",
-    "F2.8 marketed; F2.88 patent design",
-    "4 aspherical surfaces / 3 aspherical elements",
-    "Dual floating focus; OSS group in G6",
+    "23 ELEMENTS / 18 GROUPS",
+    "f = 72.1–194.0 mm",
+    "F/2.88",
+    "2ω = 34.3°–12.3°",
+    "4 ASPHERICAL SURFACES (3 ELEMENTS)",
   ],
 
   focalLengthMarketing: [70, 200],
@@ -42,6 +67,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.8823,
   lensMounts: ["sony-fe"],
+  acceptsTeleconverters: true, // Sony lists SEL14TC / SEL20TC teleconverter compatibility
   imageFormat: "135-full-frame",
   patentNumber: "US 2019/0018229 A1",
   patentAuthors: ["Naoki Miyagawa", "Yonghua Chen"],
@@ -55,6 +81,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1F1",
+      diagramLabel: "L1F1",
       label: "G1F negative meniscus",
       type: "Negative Meniscus",
       nd: 1.8042,
@@ -66,6 +93,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L1F2",
+      diagramLabel: "L1F2",
       label: "G1F Super ED positive",
       type: "Biconvex Positive",
       nd: 1.437,
@@ -79,6 +107,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L1F3",
+      diagramLabel: "L1F3",
       label: "G1F Super ED meniscus",
       type: "Positive Meniscus",
       nd: 1.437,
@@ -92,17 +121,19 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L1R1",
+      diagramLabel: "L1R1",
       label: "G1R negative focus element",
       type: "Negative Meniscus",
       nd: 1.7174,
       vd: 29.5005,
       fl: -240.1,
-      glass: "E-FD1L / S-TIH1 class (HOYA/OHARA, 717/295)",
+      glass: "E-FD1L (HOYA, 717/295)",
       role: "Negative flint component of the front focusing subgroup G1R.",
     },
     {
       id: 5,
       name: "L1R2",
+      diagramLabel: "L1R2",
       label: "G1R ED positive focus element",
       type: "Positive Meniscus",
       nd: 1.5928,
@@ -116,6 +147,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L21",
+      diagramLabel: "L21",
       label: "G2 leading negative",
       type: "Biconcave Negative",
       nd: 1.8042,
@@ -127,8 +159,9 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L22",
+      diagramLabel: "L22",
       label: "G2 ED negative doublet element",
-      type: "Negative Meniscus",
+      type: "Biconcave Negative",
       nd: 1.5928,
       vd: 68.6244,
       fl: -48.0,
@@ -141,18 +174,20 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L23",
+      diagramLabel: "L23",
       label: "G2 dense-flint doublet element",
-      type: "Positive Meniscus",
+      type: "Biconvex Positive",
       nd: 1.8081,
       vd: 22.7643,
       fl: 48.3,
-      glass: "FD225 / S-NPH1 class (HOYA/OHARA, 808/228)",
+      glass: "FD225 (HOYA, 808/228)",
       role: "High-dispersion positive partner in the G2 cemented variator corrector.",
       cemented: "D1",
     },
     {
       id: 9,
       name: "L24",
+      diagramLabel: "L24",
       label: "G2 trailing negative",
       type: "Negative Meniscus",
       nd: 1.8042,
@@ -164,6 +199,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L31",
+      diagramLabel: "L31",
       label: "G3 positive compensator",
       type: "Biconvex Positive",
       nd: 1.7433,
@@ -175,6 +211,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L32",
+      diagramLabel: "L32",
       label: "G3 ED positive doublet element",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -189,6 +226,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L33",
+      diagramLabel: "L33",
       label: "G3 negative doublet element",
       type: "Negative Meniscus",
       nd: 1.8061,
@@ -201,17 +239,19 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L41",
+      diagramLabel: "L41",
       label: "G4 aspherical positive",
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.5831,
       vd: 59.4609,
       fl: 216.8,
-      glass: "S-BAL42 / M-BACD12 class (OHARA/HOYA, 583/594)",
+      glass: "M-BACD12 (HOYA, 583/595; glass for molding)",
       role: "First post-stop aspherical positive element in the fixed G4 relay.",
     },
     {
       id: 14,
       name: "L42",
+      diagramLabel: "L42",
       label: "G4 ED positive",
       type: "Positive Meniscus",
       nd: 1.497,
@@ -225,6 +265,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L43",
+      diagramLabel: "L43",
       label: "G4 dense-flint negative doublet element",
       type: "Negative Meniscus",
       nd: 2.001,
@@ -237,65 +278,71 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L44",
+      diagramLabel: "L44",
       label: "G4 positive doublet element",
-      type: "Positive Meniscus",
+      type: "Biconvex Positive",
       nd: 1.5673,
       vd: 42.8418,
       fl: 35.9,
-      glass: "E-FL6 / S-TIL26 class (HOYA/OHARA, 567/428)",
+      glass: "E-FL6 (HOYA, 567/428)",
       role: "Positive partner in the G4 cemented field-correction doublet.",
       cemented: "D3",
     },
     {
       id: 17,
       name: "L51",
+      diagramLabel: "L51",
       label: "G5 double-aspherical focus element",
       type: "Biconcave Negative (2× Asph)",
       nd: 1.5831,
       vd: 59.4609,
       fl: -41.9,
-      glass: "S-BAL42 / M-BACD12 class (OHARA/HOYA, 583/594)",
+      glass: "M-BACD12 (HOYA, 583/595; glass for molding)",
       role: "Single-element rear focusing group G5; both surfaces are aspherical.",
     },
     {
       id: 18,
       name: "L61",
+      diagramLabel: "L61",
       label: "G6 aspherical OSS positive",
-      type: "Positive Meniscus (1× Asph)",
+      type: "Biconvex Positive (1× Asph)",
       nd: 1.5163,
       vd: 64.0651,
       fl: 48.1,
-      glass: "S-BSL7 / BSC7 / N-BK7 class (OHARA/HOYA/SCHOTT, 516-517/641-642)",
+      glass: "L-BSL7 (OHARA, 516/641; low-softening glass for molding)",
       role: "Positive aspherical front element of the G6 vibration-proof cemented group.",
       cemented: "D4",
     },
     {
       id: 19,
       name: "L62",
+      diagramLabel: "L62",
       label: "G6 negative OSS doublet element",
       type: "Negative Meniscus",
       nd: 1.8061,
       vd: 33.345,
       fl: -108.3,
-      glass: "NBFD15 (HOYA, 806/333)",
+      glass: "J-LASFH6 (HIKARI, 806/333)",
       role: "Negative partner of the G6 vibration-proof cemented group.",
       cemented: "D4",
     },
     {
       id: 20,
       name: "L63",
+      diagramLabel: "L63",
       label: "G6 positive doublet element",
       type: "Biconvex Positive",
       nd: 1.6727,
       vd: 32.1705,
       fl: 35.2,
-      glass: "E-FD5 / S-TIM25 class (HOYA/OHARA, 673/322)",
+      glass: "E-FD5 (HOYA, 673/322)",
       role: "Strong positive element in the rear relay cemented doublet.",
       cemented: "D5",
     },
     {
       id: 21,
       name: "L64",
+      diagramLabel: "L64",
       label: "G6 negative doublet element",
       type: "Negative Meniscus",
       nd: 1.8348,
@@ -308,6 +355,7 @@ const LENS_DATA = {
     {
       id: 22,
       name: "L65",
+      diagramLabel: "L65",
       label: "G6 rear negative",
       type: "Biconcave Negative",
       nd: 1.7292,
@@ -319,39 +367,40 @@ const LENS_DATA = {
     {
       id: 23,
       name: "L66",
+      diagramLabel: "L66",
       label: "G6 final negative meniscus",
       type: "Negative Meniscus",
       nd: 1.883,
       vd: 40.8054,
       fl: -54.8,
-      glass: "TAFD30 / S-LAH58 class (HOYA/OHARA, 883/408)",
+      glass: "TAFD30 (HOYA, 883/408)",
       role: "Final negative element controlling exit-pupil position and rear-field behavior.",
     },
   ],
 
   surfaces: [
     { label: "1", R: 580.0, d: 2.8, nd: 1.8042, elemId: 1, sd: 38.0 },
-    { label: "2", R: 168.1056, d: 1.2356, nd: 1.0, elemId: 0, sd: 33.5 },
-    { label: "3", R: 247.2306, d: 7.0, nd: 1.437, elemId: 2, sd: 33.5 },
-    { label: "4", R: -199.8985, d: 0.4, nd: 1.0, elemId: 0, sd: 32.5 },
-    { label: "5", R: 63.2082, d: 8.3, nd: 1.437, elemId: 3, sd: 33.0 },
+    { label: "2", R: 168.1056, d: 1.2356, nd: 1.0, elemId: 0, sd: 33.6 },
+    { label: "3", R: 247.2306, d: 7.0, nd: 1.437, elemId: 2, sd: 33.6 },
+    { label: "4", R: -199.8985, d: 0.4, nd: 1.0, elemId: 0, sd: 33.7 },
+    { label: "5", R: 63.2082, d: 8.3, nd: 1.437, elemId: 3, sd: 33.5 },
     { label: "6", R: 185.5895, d: 11.6178, nd: 1.0, elemId: 0, sd: 33.5 },
-    { label: "7", R: 63.8991, d: 2.5, nd: 1.7174, elemId: 4, sd: 24.5 },
-    { label: "8", R: 45.8463, d: 0.75, nd: 1.0, elemId: 0, sd: 23.5 },
-    { label: "9", R: 48.7435, d: 9.0, nd: 1.5928, elemId: 5, sd: 23.5 },
-    { label: "10", R: 205.2494, d: 2.6917, nd: 1.0, elemId: 0, sd: 22.5 },
+    { label: "7", R: 63.8991, d: 2.5, nd: 1.7174, elemId: 4, sd: 29.9 },
+    { label: "8", R: 45.8463, d: 0.75, nd: 1.0, elemId: 0, sd: 28.3 },
+    { label: "9", R: 48.7435, d: 9.0, nd: 1.5928, elemId: 5, sd: 28.3 },
+    { label: "10", R: 205.2494, d: 2.6917, nd: 1.0, elemId: 0, sd: 27.8 },
     { label: "11", R: -216.2455, d: 1.5, nd: 1.8042, elemId: 6, sd: 18.5 },
     { label: "12", R: 38.0084, d: 5.7979, nd: 1.0, elemId: 0, sd: 16.2 },
     { label: "13", R: -101.2705, d: 1.5, nd: 1.5928, elemId: 7, sd: 16.2 },
-    { label: "14", R: 39.7503, d: 5.35, nd: 1.8081, elemId: 8, sd: 16.0 },
-    { label: "15", R: -2054.9944, d: 2.7303, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "16", R: -56.913, d: 1.5, nd: 1.8042, elemId: 9, sd: 16.0 },
-    { label: "17", R: -183.2298, d: 26.367, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "14", R: 39.7503, d: 5.35, nd: 1.8081, elemId: 8, sd: 16.4 },
+    { label: "15", R: -2054.9944, d: 2.7303, nd: 1.0, elemId: 0, sd: 16.4 },
+    { label: "16", R: -56.913, d: 1.5, nd: 1.8042, elemId: 9, sd: 16.9 },
+    { label: "17", R: -183.2298, d: 26.367, nd: 1.0, elemId: 0, sd: 16.9 },
     { label: "18", R: 848.5024, d: 2.8, nd: 1.7433, elemId: 10, sd: 18.5 },
     { label: "19", R: -109.3368, d: 0.2, nd: 1.0, elemId: 0, sd: 18.0 },
-    { label: "20", R: 89.2729, d: 7.1912, nd: 1.497, elemId: 11, sd: 18.0 },
-    { label: "21", R: -47.2999, d: 1.8, nd: 1.8061, elemId: 12, sd: 17.6 },
-    { label: "22", R: -113.0282, d: 15.2719, nd: 1.0, elemId: 0, sd: 17.3 },
+    { label: "20", R: 89.2729, d: 7.1912, nd: 1.497, elemId: 11, sd: 18.2 },
+    { label: "21", R: -47.2999, d: 1.8, nd: 1.8061, elemId: 12, sd: 18.2 },
+    { label: "22", R: -113.0282, d: 15.2719, nd: 1.0, elemId: 0, sd: 18.5 },
     { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 17.5 },
     { label: "24A", R: 72.5977, d: 4.7, nd: 1.5831, elemId: 13, sd: 18.0 },
     { label: "25", R: 166.4337, d: 0.4, nd: 1.0, elemId: 0, sd: 18.0 },
@@ -376,7 +425,8 @@ const LENS_DATA = {
 
   asph: {
     "24A": { K: 0, A4: -2.1175e-6, A6: -2.28633e-10, A8: 1.66377e-12, A10: -1.62257e-15, A12: 0, A14: 0 },
-    "31A": { K: 0, A4: 1.06533e-6, A6: -4.12307e-9, A8: 2.76793e-11, A10: 7.79734e-14, A12: 0, A14: 0 },
+    // A8 is negative in the application's PCT publication (WO 2017/134929 A1, Table 2); the US print drops the sign (see sourceErrata).
+    "31A": { K: 0, A4: 1.06533e-6, A6: -4.12307e-9, A8: -2.76793e-11, A10: 7.79734e-14, A12: 0, A14: 0 },
     "32A": { K: 0, A4: -6.11153e-6, A6: -7.64389e-9, A8: -6.19757e-11, A10: 9.35929e-14, A12: 0, A14: 0 },
     "33A": { K: 0, A4: -6.31905e-7, A6: 2.79472e-9, A8: -6.29142e-12, A10: 0, A12: 0, A14: 0 },
   },
@@ -447,6 +497,8 @@ const LENS_DATA = {
   maxFstop: 22,
   fstopSeries: [2.8823, 4, 5.6, 8, 11, 16, 22],
 
+  // L1R1 and L1R2 meet at the rim in FIG. 1: 0.03 mm of the 0.75 mm gap between surfaces 8 and 9 is left at 28.3 mm.
+  gapSagFrac: 0.97,
   scFill: 0.55,
   yScFill: 0.82,
 } satisfies LensDataInput;

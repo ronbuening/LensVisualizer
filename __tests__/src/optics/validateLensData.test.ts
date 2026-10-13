@@ -1938,6 +1938,7 @@ describe("source errata", () => {
     expect(
       errataErrors([corrected, { status: "unresolved", note: "Table and summary focal lengths differ." }]),
     ).toEqual([]);
+    expect(errataErrors([{ ...corrected, evidence: ["aberration-figure", "family-publication"] }])).toEqual([]);
     const coefficient = { ...corrected, field: "A4", printed: 1e-6, applied: -1e-6 };
     const asph = { "1": { K: 0, A4: -1e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } };
     expect(

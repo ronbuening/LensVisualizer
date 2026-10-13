@@ -20,9 +20,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    closeFocusM = 1.0 matches the patent's numerical model.        ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent provides effective diameter (φi) for each surface.       ║
- * ║    SD = φi / 2, with S2/S3 trimmed slightly for render clearance   ║
- * ║    across the 0.29 mm front air gap.                               ║
+ * ║    Table 6 prints an effective diameter (φi) for every surface;    ║
+ * ║    SD = φi / 2 throughout, rounded half-up to 0.01 mm. S2 and S3   ║
+ * ║    are 33.08 (φ 66.15): they had been trimmed to 32.09 to pass     ║
+ * ║    the default cross-gap limit, which clipped the F/2.88 axial     ║
+ * ║    ray at 193.95 mm (33.06 mm at both surfaces; traced f/2.97).    ║
+ * ║    L11 rear and L12 front keep 0.011 mm of air at that rim and     ║
+ * ║    FIG. 14 draws them meeting there, so gapSagFrac is 0.97.        ║
  * ║                                                                    ║
  * ║  NOTE ON INDEX COLUMN AND GLASS:                                   ║
  * ║    Table 6 heads its index column ndi and ¶0056 calls it the       ║
@@ -58,6 +62,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.88,
   lensMounts: ["sony-fe"],
+  acceptsTeleconverters: true, // Sony lists SEL14TC / SEL20TC teleconverter compatibility
   imageFormat: "135-full-frame",
   patentNumber: "JP 2023-039817 A",
   patentAuthors: ["Naoki Miyagawa", "Shugo Takahashi"],
@@ -340,8 +345,8 @@ const LENS_DATA = {
   surfaces: [
     // GR1 — Fixed front collector (L11, L12, L13)
     { label: "1", R: 116.681, d: 2.82, nd: 1.7766, elemId: 1, sd: 33.68 }, // L11 front
-    { label: "2", R: 83.814, d: 0.29, nd: 1.0, elemId: 0, sd: 32.09 }, // L11 rear → air
-    { label: "3", R: 87.118, d: 8.34, nd: 1.4381, elemId: 2, sd: 32.09 }, // L12 front
+    { label: "2", R: 83.814, d: 0.29, nd: 1.0, elemId: 0, sd: 33.08 }, // L11 rear → air
+    { label: "3", R: 87.118, d: 8.34, nd: 1.4381, elemId: 2, sd: 33.08 }, // L12 front
     { label: "4", R: -9920.911, d: 0.2, nd: 1.0, elemId: 0, sd: 32.98 }, // L12 rear → air
     { label: "5", R: 78.201, d: 8.43, nd: 1.4381, elemId: 3, sd: 32.37 }, // L13 front
     { label: "6", R: 1122.581, d: 1.49, nd: 1.0, elemId: 0, sd: 32.01 }, // L13 rear → air (d6, zoom)
@@ -488,7 +493,7 @@ const LENS_DATA = {
     ["13", "D13"],
     ["23A", "D23"],
     ["26", "D26"],
-    ["28", "BF"],
+    ["28", "D28"],
   ],
 
   /* ── Zoom lens fields ── */
@@ -528,6 +533,7 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.48,
   yScFill: 0.32,
+  gapSagFrac: 0.97, // L11 rear / L12 front rims nearly meet (0.011 mm of air at 33.08 mm); FIG. 14 draws them meeting
   maxFstop: 22,
 } satisfies LensDataInput;
 

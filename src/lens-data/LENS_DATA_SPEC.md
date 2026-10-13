@@ -302,8 +302,9 @@ sourceErrata: [
 
 - `corrected`: the file must carry `applied` at `surface` / `field`, and `evidence` must cite at least two of
   `source-summary` (stated f, F-number, field angle, back focus, total length), `sibling-example` (another example
-  of the same source), `aberration-figure` (the source's own aberration plots) and `claims`. A manufacturer chart,
-  a measured lens or "the trace looks better" is never evidence.
+  of the same source), `aberration-figure` (the source's own aberration plots), `claims` and `family-publication`
+  (another publication of the same application prints the applied value). A manufacturer chart, a measured lens or
+  "the trace looks better" is never evidence.
 - `unresolved`: the source disagrees with itself and the cause is not isolated. Keep the printed values and state
   the contradiction in `note`.
 - Place the field after the identity block (`key`, `name`, `maker`), and keep the erratum explained in the file

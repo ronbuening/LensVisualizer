@@ -70,6 +70,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.9,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "US 2011/0090576 A1",
   patentAuthors: ["Shigenobu Sugita"],

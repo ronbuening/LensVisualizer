@@ -140,7 +140,7 @@ The cemented doublet L11+L12 has a combined focal length of $f = +162.0\ \text{m
 
 ### L13 — Negative Meniscus, convex to image (both surfaces aspherical)
 
-$n_d = 1.68822$, $\nu_d = 31.1$. Glass: L-TIM28(P) class (OHARA) — precision-glass-moldable (PGM) titanium flint. Closest catalog match: L-TIM28 ($n_d = 1.68893$, $\nu_d = 31.16$; $\Delta n_d = 0.0007$). $f = -52.3\ \text{mm}$.
+$n_d = 1.68822$, $\nu_d = 31.1$. Glass: L-TIM28 class (OHARA) — precision-glass-moldable (PGM) titanium flint. OHARA catalogs L-TIM28 at $n_d = 1.68948$, $\nu_d = 31.02$; the printed index is 0.0013 lower, the size of a typical moulding index drop. The nearest catalog curve is S-TIM28 ($n_d = 1.68893$, $\nu_d = 31.08$; $\Delta n_d = 0.0007$), which the model traces. $f = -52.3\ \text{mm}$.
 
 L13 is the rearmost optical element and the second aspherical element in the design. Both surfaces carry aspherical profiles with significantly stronger coefficients than L4: $A_4 = 1.33 \times 10^{-5}$ on S24 and $A_4 = 3.61 \times 10^{-6}$ on S25. The element is designated LGnR — the rearmost element of the rear group — and has negative power, as required by the patent's general construction (¶0027). Its meniscus shape (R24 = −30.73, R25 = −215.59, both negative) presents both surfaces concave to the object — R24 deeply so and R25 nearly flat — making it a meniscus convex to the image side. The deep object-side concavity on S24 provides the primary field-flattening curvature.
 
@@ -148,7 +148,7 @@ L13 is the rearmost optical element and the second aspherical element in the des
 
 The aspherical profiles on L13 correct the off-axis aberrations that accumulate through the entire system — primarily astigmatism, field curvature, and distortion. Because L13 is close to the image plane and far from the stop, the chief ray height is large relative to the marginal ray height, giving the aspherical surfaces strong leverage over field-dependent aberrations with minimal impact on axial correction. The fourth-order coefficient on S24 ($A_4 = +1.33 \times 10^{-5}$) is positive, indicating that the surface becomes less steeply curved toward the periphery — flattening the outer field zones and reducing the inward-curving Petzval contribution of the negative element.
 
-Given that both surfaces are aspherical, L13 is almost certainly manufactured by precision glass molding. The glass properties ($n_d = 1.688$, $\nu_d = 31.1$) are consistent with OHARA's L-TIM28(P) moldable titanium flint ($n_d = 1.68893$, $\nu_d = 31.16$; $\Delta n_d = 0.0007$), which is the standard fabrication method for rear-group aspherical correctors in modern mirrorless lens designs. Glass molding enables complex aspherical profiles on both surfaces simultaneously in a single manufacturing step.
+Given that both surfaces are aspherical, L13 is almost certainly manufactured by precision glass molding. The glass properties ($n_d = 1.688$, $\nu_d = 31.1$) are consistent with OHARA's L-TIM28 moldable titanium flint after moulding (catalog $n_d = 1.68948$, $\nu_d = 31.02$; $\Delta n_d = 0.0013$). Precision glass molding is the standard fabrication method for rear-group aspherical correctors in modern mirrorless lens designs. Glass molding enables complex aspherical profiles on both surfaces simultaneously in a single manufacturing step.
 
 ---
 

@@ -21,7 +21,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║ Semi-diameters: estimated from the F/2.05 entrance-pupil geometry, ║
  * ║ patent section drawing proportions, and renderer constraints.      ║
- * ║ Stop SD = 19.9207 mm gives EP SD ≈ 47.56 mm and F/2.05.           ║
+ * ║ Surfaces 6, 7, 9 and 20-23 are set to the height of the F/2.05     ║
+ * ║ axial marginal ray at infinity focus, rounded up to 0.1 mm; FIG. 1 ║
+ * ║ draws each of those elements taller. Element L4 and the L12+L13    ║
+ * ║ doublet (D4) are drawn square-cut, so each carries one height:     ║
+ * ║ 39.9 mm on surfaces 7 and 8, 17.4 mm on 21-23. Two air-spaced      ║
+ * ║ pairs meet at the rim in FIG. 1, so gapSagFrac is 0.95: at 39.9    ║
+ * ║ mm, 0.005 mm is left of the 0.10 mm gap between surfaces 6 and 7   ║
+ * ║ (they touch at 40.99 mm); at 17.3 mm, 0.23 mm is left of the 3.93  ║
+ * ║ mm gap between surfaces 20 and 21 (they touch at 17.83 mm).        ║
+ * ║ Stop: the stored 19.9207 mm is the paraxial stop radius for EP SD  ║
+ * ║ 47.56 mm (F/2.05). The exact F/2.05 marginal ray meets the stop    ║
+ * ║ at 20.38 mm, which the build uses as the wide-open iris.           ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -43,6 +54,7 @@ const LENS_DATA = {
   apertureMarketing: 2.0,
   apertureDesign: 2.05,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x II / EF2x II compatibility
   imageFormat: "135-full-frame",
   patentNumber: "JP 2008-145584 A",
   patentAuthors: ["Takayoshi Yokoyama"],
@@ -307,10 +319,10 @@ const LENS_DATA = {
     { label: "3", R: 91.926, d: 18.49, nd: 1.43387, elemId: 2, sd: 52 },
     { label: "4", R: -15019.281, d: 1.94, nd: 1.0, elemId: 0, sd: 51 },
     { label: "5", R: 82.868, d: 17.12, nd: 1.497, elemId: 3, sd: 45 },
-    { label: "6", R: -583.653, d: 0.1, nd: 1.0, elemId: 0, sd: 38 },
-    { label: "7", R: -545.88, d: 4.4, nd: 1.65412, elemId: 4, sd: 38 },
-    { label: "8", R: 159.373, d: 1.49, nd: 1.0, elemId: 0, sd: 38 },
-    { label: "9", R: 92.975, d: 5.0, nd: 1.6968, elemId: 5, sd: 32 },
+    { label: "6", R: -583.653, d: 0.1, nd: 1.0, elemId: 0, sd: 39.9 },
+    { label: "7", R: -545.88, d: 4.4, nd: 1.65412, elemId: 4, sd: 39.9 },
+    { label: "8", R: 159.373, d: 1.49, nd: 1.0, elemId: 0, sd: 39.9 },
+    { label: "9", R: 92.975, d: 5.0, nd: 1.6968, elemId: 5, sd: 34.8 },
     { label: "10", R: 37.36, d: 14.85, nd: 1.497, elemId: 6, sd: 31 },
     { label: "11", R: 135.809, d: 14.87, nd: 1.0, elemId: 0, sd: 31 },
     { label: "12", R: -1035.916, d: 3.97, nd: 1.84666, elemId: 7, sd: 27 },
@@ -321,10 +333,10 @@ const LENS_DATA = {
     { label: "17", R: 41.666, d: 9.38, nd: 1.7725, elemId: 10, sd: 22 },
     { label: "18", R: -320.108, d: 2.75, nd: 1.0, elemId: 0, sd: 22 },
     { label: "19", R: -392.917, d: 1.9, nd: 1.6968, elemId: 11, sd: 18 },
-    { label: "20", R: 63.948, d: 3.93, nd: 1.0, elemId: 0, sd: 16.5 },
-    { label: "21", R: -114.597, d: 4.01, nd: 1.84666, elemId: 12, sd: 16.5 },
-    { label: "22", R: -40.943, d: 1.9, nd: 1.54072, elemId: 13, sd: 16.5 },
-    { label: "23", R: 81.99, d: 3.03, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "20", R: 63.948, d: 3.93, nd: 1.0, elemId: 0, sd: 17.3 },
+    { label: "21", R: -114.597, d: 4.01, nd: 1.84666, elemId: 12, sd: 17.4 },
+    { label: "22", R: -40.943, d: 1.9, nd: 1.54072, elemId: 13, sd: 17.4 },
+    { label: "23", R: 81.99, d: 3.03, nd: 1.0, elemId: 0, sd: 17.4 },
     { label: "24", R: 104.809, d: 8.01, nd: 1.72916, elemId: 14, sd: 20 },
     { label: "25", R: -41.124, d: 2.0, nd: 1.80518, elemId: 15, sd: 20 },
     { label: "26", R: -347.988, d: 0.2, nd: 1.0, elemId: 0, sd: 20 },
@@ -368,6 +380,9 @@ const LENS_DATA = {
   apertureBlades: 8,
   focusDescription:
     "Inner focus by imageward translation of the negative L2 cemented doublet; paraxial close-focus reconstruction gives +12.560 mm travel at 1.9 m MFD.",
+  // Two air-spaced pairs meet at the rim in FIG. 1: 0.005 mm of the 0.10 mm gap between surfaces 6 and 7 is left at
+  // 39.9 mm, and 0.23 mm of the 3.93 mm gap between surfaces 20 and 21 at 17.3 mm.
+  gapSagFrac: 0.95,
   scFill: 0.58,
   yScFill: 0.7,
 } satisfies LensDataInput;

@@ -262,6 +262,11 @@ describe("attachTeleconverter", () => {
       { text: "D1", fromSurface: "1", toSurface: "2" },
       { text: "TC D1", fromSurface: "TC1", toSurface: "TC2" },
     ]);
+    // A converter bracket that repeats a composed element label ("T1") is namespaced as well.
+    const triplet = teleconverterFixture({ doublets: [{ text: "T1", fromSurface: "1", toSurface: "2" }] });
+    expect(attachTeleconverter(hostData, triplet).doublets).toEqual([
+      { text: "TC T1", fromSurface: "TC1", toSurface: "TC2" },
+    ]);
     expect(composed.attachedTeleconverter).toEqual({
       key: "test-teleconverter",
       name: "Test 1.4x converter",

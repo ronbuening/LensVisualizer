@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **919** lenses scanned
-- **10406** non-air surfaces examined
-- **10416** element glass declarations examined
-- **213** non-explicit-unmatched annotations did not resolve
-- **112** distinct unresolved glass-like tokens found
+- **922** lenses scanned
+- **10436** non-air surfaces examined
+- **10446** element glass declarations examined
+- **215** non-explicit-unmatched annotations did not resolve
+- **111** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -126,7 +126,6 @@ or per-lens patent backfills.
 | 916364 | 1 | 1 | |
 | 958300 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
-| KF5 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
 | LF7-CLASS | 1 | 1 | |
 | N3 | 1 | 1 | |
@@ -597,10 +596,6 @@ or per-lens patent backfills.
 ### FPL51 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 1: `FPL51 class (499/801, OHARA family)`
-
-### KF5 — 1 occurrence
-
-- [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) 6: `KF5 class (Sumita legacy catalog; Schott-type)`
 
 ### KZF4 — 1 occurrence
 
