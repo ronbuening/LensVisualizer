@@ -1719,6 +1719,58 @@
       }
     },
     {
+      "id": "asphere-far-oblique-in-cap",
+      "kind": "asphere",
+      "covers": "oblique ray launched 200 mm off the axis to a hit inside the cap: a transverse operand sum of 415 mm, past the 281 mm at which coordinate rounding reaches the residual target",
+      "surface": {
+        "R": 300,
+        "asphere": {
+          "K": 0,
+          "A4": 1e-7,
+          "A6": 0,
+          "A8": 0,
+          "A10": 0,
+          "A12": 0,
+          "A14": 0
+        },
+        "vertexZ": 0,
+        "sd": 20
+      },
+      "ray": {
+        "origin": [
+          0,
+          -200,
+          -60
+        ],
+        "direction": [
+          0,
+          0.9593655015712705,
+          0.28216632399155017
+        ]
+      },
+      "bounds": {
+        "minT": 200.641,
+        "maxT": 224.641
+      },
+      "roots": [
+        {
+          "t": "212.739701655648245043314003591651892908976655899344328518354097",
+          "point": [
+            "0",
+            "4.095130582993432389991411579711877942955779634696947543412201",
+            "0.027979583233365246332944935058989866536253527224657208385642"
+          ],
+          "radius": "4.095130582993432389991411579711877942955779634696947543412201",
+          "residualSlope": "0.269042992991049883536492704473776739512257171095474865451885",
+          "inCap": true,
+          "roundoffLimited": false
+        }
+      ],
+      "expect": {
+        "winner": 0
+      }
+    },
+    {
       "id": "asphere-flat-quartic-cap-edge",
       "kind": "asphere",
       "covers": "flat base, z = r^4 / 8: steep root exactly on the cap boundary r = sd",
