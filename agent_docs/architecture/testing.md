@@ -99,7 +99,7 @@ Existing tests cover:
   teleconverter round-trips V1 → canonical → V1 view exactly, ingest neither writes to nor shares objects with its
   input, every schema default applies exactly where a file leaves the field out, the stop-radius authority matches
   what `buildLens` does on every catalog lens, and each spelling the canonical form holds as one and each refusal
-  has a synthetic case.
+  ingest makes has a synthetic case.
 - V2 ingest (`__tests__/src/optics/prescription/ingestV2.test.ts`): one V1/V2 fixture pair per feature family
   (`ingestV2Fixtures.ts`), each sharing one prescription and semantic fingerprint and building to the same harness
   build record; dispatch on `schema`; V2 defaults; one case per V2 refusal. An offender-collecting sweep removes the
@@ -253,8 +253,10 @@ and bundled there.
   so it reads as a semantic change. A payload that hands authored data back (the `data` and `elements` of a built
   lens, the composed prescription of a pair, the conjugate an MTF result reports) is written through
   `normalizeAuthoredData`, which applies the spellings the canonical prescription holds as one, so a respelling the
-  fingerprint ignores does not change a record, and a test fails if it hides any other value. It runs on both
-  engines, so it restates the inline schema defaults in `ECHO_DEFAULTS`, which a test holds equal to
+  fingerprint ignores does not change a record. A test holds each of its rules, and the projection of a build
+  record's `elements`, to hiding nothing else: values other than the defaults, a conjugate off its station, a rear
+  plate's and a read stop's `sd`, a `var` that holds a gap, and label pairs in the order given. The echo runs on
+  both engines, so it restates the inline schema defaults in `ECHO_DEFAULTS`, which a test holds equal to
   `src/optics/prescription/defaults.ts`. An engine back-pointer is skipped by member name and leaves a marker in the
   payload.
 - `budgets.ts` holds the quantity classes and the table that gives a numeric payload path one of them. A class says
