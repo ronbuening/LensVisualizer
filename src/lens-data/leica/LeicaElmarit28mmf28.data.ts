@@ -46,9 +46,19 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
-  key: "elmarit-r-28f28",
+  key: "leica-elmarit-28mm-f28-11801",
+  /* Hidden 2026-10-13, pending re-identification. This prescription was published as the Elmarit-R 28mm f/2.8, which
+   * it is not: its back focus is 0.657 f = 18.4 mm (no SLR mirror clearance) and the 1970 Elmarit-R is eight
+   * air-spaced singlets (US 3,740,120, now at key "elmarit-r-28f28"). It is the M-mount Elmarit 28mm f/2.8, order
+   * no. 11801, in its second version (1972–1979, 8 elements / 6 groups, 0.7 m; the Leica Wiki credits Mandler,
+   * Edwards and Wagner, June 1968 — this patent's inventors). Order no. 11801 was also used for the first version
+   * (1965–1972, 9 elements / 6 groups), which is a different design.
+   * Before removing `visible`: `closeFocusM`, the focus `var` and `focusDescription` still hold the 0.30 m values
+   * of the R lens (production minimum focus is 0.7 m), and the header above and the `.analysis.md` still describe
+   * the Elmarit-R and the Leicaflex. */
+  visible: false,
   maker: "Leica",
-  name: "LEICA ELMARIT-R 28mm f/2.8",
+  name: "LEICA ELMARIT 28mm f/2.8 (11801)",
   subtitle: "US 3,591,257 Example 3 — Mandler / Edwards / Wagner",
   specs: ["8 ELEMENTS / 6 GROUPS", "f = 28 mm", "F/2.8", "2ω ≈ 74°", "ALL SPHERICAL"],
 
@@ -56,7 +66,7 @@ const LENS_DATA = {
   focalLengthMarketing: 28,
   focalLengthDesign: 28,
   apertureMarketing: 2.8,
-  lensMounts: ["leica-r"],
+  lensMounts: ["leica-m"],
   imageFormat: "135-full-frame",
   patentNumber: "US 3,591,257",
   patentAuthors: ["Walter Mandler", "Garry Edwards", "Erich Wagner"],

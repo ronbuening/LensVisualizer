@@ -23,7 +23,7 @@ const MISS = 0.0012;
 const LINE_NM = { C: 656.2725, F: 486.1327, g: 435.8343 };
 
 /**
- * Lenses the screen lists although their values are not copied deviations, or cannot be settled yet. Seven were read
+ * Lenses the screen lists although their values are not copied deviations, or cannot be settled yet. Eight were read
  * against the patent: it prints PgF for the melt, the stored value is that PgF minus the engine's line, and the
  * catalog glass differs from the melt by about the gap between the lines (the Canon EF 8-15mm patent prints its
  * deviation against the engine's own line). Open rows are in agent_docs/glass-relabel-followup.md: the Fujifilm X10,
@@ -40,6 +40,7 @@ const SOURCE_LINE_FIT_BY_COINCIDENCE: readonly string[] = [
   "fujifilm-x10-7-1-28-4-f2-2-8",
   "fujifilm-xf-16-55mm-f28-r-lm-wr-ii",
   "fujifilm-xf50-f1",
+  "hasselblad-xcd-35-100mm-f28-4-e",
   "leica-dc-vario-elmarit-fz2500-fz2000-fzh1",
 ];
 
