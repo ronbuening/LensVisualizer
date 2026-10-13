@@ -82,7 +82,7 @@ src/components/           - React UI components and hooks
   search/                 - Catalog search box and results list
 src/comparison/           - Comparison mode feature module
 src/optics/               - Pure optical engine and analysis helpers
-  geometry/               - Surface sag, slope, normals, and profiles (one implementation)
+  geometry/               - Surface sag, slope, normals, and profiles (one implementation); ray-surface intersection
   math/ trace/ field/     - Vector math, exact tracing, projection-aware field launch
   prescription/ state/    - Lens normalization and prepared optical state
   analysis/ aberration/   - State-aware analysis adapters and aberration helpers

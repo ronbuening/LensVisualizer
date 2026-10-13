@@ -7,8 +7,8 @@ import {
   type SurfaceIntersectionRay,
 } from "../../../src/optics/internal/surfaceIntersection.js";
 import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../src/optics/geometry/surfaceProfile.js";
-import { intersectSurfaceProfile } from "../../../src/optics/math/intersection.js";
-import { planeResidualRoundoff, sagResidualRoundoff } from "../../../src/optics/math/intersectionTolerance.js";
+import { intersectSurfaceProfile } from "../../../src/optics/geometry/intersect.js";
+import { planeResidualRoundoff, sagResidualRoundoff } from "../../../src/optics/geometry/intersectTolerance.js";
 import { doLayout } from "../../../src/optics/optics.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import type { AsphericCoefficients } from "../../../src/types/optics.js";

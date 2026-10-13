@@ -6,8 +6,8 @@
  */
 
 import type { FoldedPathAutoCandidateSkip } from "../../types/optics.js";
-import { intersectSurfaceProfile, type SurfaceIntersectionResult } from "../math/intersection.js";
-import { intersectRayPlane, type RayPlaneIntersection } from "../math/plane.js";
+import { intersectSurfaceProfile, type SurfaceIntersectionResult } from "../geometry/intersect.js";
+import { intersectRayPlane, type RayPlaneIntersection } from "../geometry/intersectPlane.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { incidentSideFor, resolvedNextIndex } from "./interactions.js";

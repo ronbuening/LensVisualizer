@@ -1,8 +1,10 @@
 /**
- * Intersection roundoff envelopes — coordinate-aware limits for otherwise stalled exact solves.
+ * Intersection roundoff envelopes — coordinate-aware limits for residuals that cannot reach the requested one.
  *
- * The requested residual remains the normal stopping criterion. These bounds account for
- * cancellation in origin + direction*t and amplification of transverse error by a steep sag.
+ * The requested residual remains the normal stopping criterion. An iterative solve may use its envelope only once
+ * it has stalled; an analytic plane hit or landing, which has one point to offer, uses its envelope when that point
+ * misses the raw target. These bounds account for cancellation in origin + direction*t and amplification of
+ * transverse error by a steep sag.
  */
 
 import type { Vec3 } from "../types.js";
@@ -18,8 +20,8 @@ import type { Vec3 } from "../types.js";
  * the power factor in the slope bound also covers polynomial power evaluation.
  *
  * @param origin - ray origin in mm
- * @param direction - unit ray direction
- * @param t - ray distance in mm
+ * @param direction - ray direction as the solve holds it, normally a unit vector
+ * @param t - ray parameter in that direction's parameterization; only the products direction*t are read
  * @param vertexZ - surface vertex in mm
  * @param radius - evaluated radial coordinate in mm
  * @param sag - evaluated axial sag in mm
@@ -54,11 +56,11 @@ export function sagResidualRoundoff(
  * This convention remains well-conditioned for vertical planes: never divide by n.z.
  *
  * @param origin - ray origin in mm
- * @param direction - unit ray direction
- * @param t - ray distance in mm
+ * @param direction - ray direction, of any length
+ * @param t - ray parameter in that direction's parameterization; only the products direction*t are read
  * @param planePoint - any point on the plane in mm
- * @param normal - unit plane normal
- * @returns normal-distance roundoff allowance in mm
+ * @param normal - plane normal; the allowance is in the units of normal · (point − planePoint), mm for a unit normal
+ * @returns roundoff allowance of that residual
  */
 export function planeResidualRoundoff(
   origin: Vec3,

@@ -22,7 +22,7 @@ import type {
 } from "../../types/optics.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
 import { INTERSECTION_TOLERANCE } from "../constants.js";
-import { planeResidualRoundoff } from "../math/intersectionTolerance.js";
+import { planeResidualRoundoff } from "../geometry/intersectTolerance.js";
 import { interactRefractiveSurface, rearMediumSurfaceIndex } from "../trace/interactions.js";
 import { FLAT_R_THRESHOLD, conicPolySag } from "../geometry/surfaceProfile.js";
 import {

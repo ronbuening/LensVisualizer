@@ -9,7 +9,7 @@
 import type { ChromaticChannel } from "../../../types/optics.js";
 import { entrancePupilFromStop2, paraxialPupilGeometry2 } from "../../first-order/pupils.js";
 import { formatCacheNumber } from "../../math/numerics.js";
-import { intersectRayPlane } from "../../math/plane.js";
+import { intersectRayPlane } from "../../geometry/intersectPlane.js";
 import { dot, normalize, scale, subtract } from "../../math/vector.js";
 import type { Plane3, PreparedOpticalState, Vec3 } from "../../types.js";
 import {

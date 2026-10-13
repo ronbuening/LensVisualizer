@@ -2,8 +2,8 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { FLAT_R_THRESHOLD, createSurfaceProfile } from "../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSagSurface } from "../../../src/optics/internal/surfaceIntersection.js";
-import { intersectSurfaceProfile, type SurfaceIntersectionSuccess } from "../../../src/optics/math/intersection.js";
-import { sagResidualRoundoff } from "../../../src/optics/math/intersectionTolerance.js";
+import { intersectSurfaceProfile, type SurfaceIntersectionSuccess } from "../../../src/optics/geometry/intersect.js";
+import { sagResidualRoundoff } from "../../../src/optics/geometry/intersectTolerance.js";
 import type { SurfaceProfile } from "../../../src/optics/types.js";
 import {
   FLAT_RADIUS_THRESHOLD,
@@ -49,20 +49,24 @@ interface ExpectedFinding {
  * loosen the fixture.
  */
 const EXPECTED_FINDINGS: readonly ExpectedFinding[] = [
-  // Both roots of the 0.58 mm chord fall between two samples of the 24-sample bracket scan (0.83 mm apart on these
-  // bounds), and the bounds' endpoints share a sign, so neither solver sees a sign change.
-  // Tracked as https://github.com/ronbuening/LensVisualizer/issues/779.
-  {
-    fixture: "sphere-grazing-chord",
-    solver: "production",
-    violations: ["no hit: noBracket"],
-    measured: { ok: false, failureReason: "noBracket", residual: -0.00038026840608391954, iterations: 24 },
-  },
+  // Both roots of the 0.58 mm chord fall between two samples of the legacy solver's 24-sample bracket scan (0.83 mm
+  // apart on these bounds), and the bounds' endpoints share a sign, so it sees no sign change. The production solver
+  // takes the roots from the sphere's quadratic and meets the contract here; the legacy one follows when it
+  // delegates. Tracked as https://github.com/ronbuening/LensVisualizer/issues/779.
   {
     fixture: "sphere-grazing-chord",
     solver: "legacy",
     violations: ["no hit: noBracket"],
     measured: { ok: false, failureReason: "noBracket", residual: -0.00038026840608391954, iterations: 24 },
+  },
+  // The same finding in another form: the ray is inside the sphere's 1.2 mm domain for 2 mm of a 177 mm search, and
+  // both roots lie between two samples 7.4 mm apart. The legacy solver follows its clamped continuation outside the
+  // domain, where the residual keeps one sign.
+  {
+    fixture: "sphere-short-domain-window",
+    solver: "legacy",
+    violations: ["no hit: noBracket"],
+    measured: { ok: false, failureReason: "noBracket", residual: -6.797655164416556, iterations: 24 },
   },
 ];
 
