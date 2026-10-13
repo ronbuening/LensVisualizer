@@ -1127,8 +1127,8 @@ describe("conic-seeded asphere solve", () => {
       });
       const result = expectIterative(launchedAt(-62), "roundoff", { iterative: 5, spent: 2 });
       expect(result.ok && result.radius).toBeCloseTo(1.98814, 5);
-      // From 50 mm off the axis the bound is 0.58 and the rounding 0.9e-12 mm.
-      expectSeeded(launchedAt(-50), { seeded: 2, iterative: 6 });
+      // From 40 mm off the axis the bound is 0.44 and the rounding 0.9e-12 mm.
+      expectSeeded(launchedAt(-40), { seeded: 3, iterative: 6 });
     });
 
     it("counts a scan step with the rounding of its samples' positions", () => {
@@ -1162,8 +1162,9 @@ describe("conic-seeded asphere solve", () => {
 
       it("is held to half a direction cosine's budget through the turn of the normal", () => {
         const options = { maxT: 2, clearRadius: 1.4 };
-        /* 56 degrees off the axis |f'| is 0.36: the two points lie within 6e-12 mm, a hundredth of what a hit may
-         * move, over which the normal turns by more than 5e-11. Known from the ray and the slope bound alone. */
+        /* 56 degrees off the axis the slope bound leaves |f'| no less than 0.17: the two points lie within
+         * 1.2e-11 mm, a fortieth of what a hit may move, over which the normal can turn by 9e-11. That is known
+         * from the ray and the slope bound alone. */
         const steep: Solve = {
           ray: { origin: [0, -1.05, -0.5], direction: normalize([0, 1.5, 1])! },
           profile: strong,
@@ -1171,13 +1172,15 @@ describe("conic-seeded asphere solve", () => {
           options,
         };
         expectIterative(steep, "nearTangency", { iterative: 6, spent: 0 });
-        const lessSteep: Solve = { ...steep, ray: { origin: [0, -0.95, -0.5], direction: normalize([0, 1.3, 1])! } };
+        // At 45 degrees |f'| is no less than 0.44, and the turn over the move 2.6e-11.
+        const lessSteep: Solve = { ...steep, ray: { origin: [0, -0.8, -0.5], direction: normalize([0, 1, 1])! } };
         expectSeeded(lessSteep, { seeded: 3, iterative: 6 });
       });
 
       it("counts the conic's curvature and the polynomial's in that turn", () => {
         /* A ray started 2.45 mm from the axis, 98% of the conic's domain radius, where the conic's own curvature is
-         * over half of the bound on the turn. Either part alone is inside the limit here; their sum is not. */
+         * over half of the bound on the turn. At 6.8 degrees the conic's part of the turn over the move is 3.3e-11
+         * and the polynomial's 2.5e-11: either alone is inside the limit, their sum is not. */
         const options = { maxT: 4, clearRadius: 2.49 };
         const nearEdge = (tilt: number): Solve => ({
           ray: { origin: [0, -2.45, -0.5], direction: normalize([0, tilt, 1])! },
@@ -1190,21 +1193,21 @@ describe("conic-seeded asphere solve", () => {
       });
 
       it("is counted toward the rim, with the rounding of both radii", () => {
-        /* The thin asphere's oblique ray, whose two points lie within 7e-13 mm of radius, with coordinates that
-         * round by 2e-13: a cap 5e-13 mm outside the hit is too near, one 2e-12 mm outside is not. */
+        /* The thin asphere's oblique ray, whose two points lie within 8e-13 mm of radius, with radii that round by
+         * 2e-13 between them: a cap 5e-13 mm outside the hit is too near, one 2e-12 mm outside is not. */
         const capOutsideBy = (gap: number): Solve => ({
           ...onThin,
           options: { maxT: 20, clearRadius: thinHit.radius + gap },
         });
         expectIterative(capOutsideBy(5e-13), "atRim", { iterative: 5, spent: 1 });
         expectSeeded(capOutsideBy(2e-12), { seeded: 1, iterative: 5 });
-        /* An axial ray 5 mm from the axis: its two points have one radius, which rounds by 1.5e-13 mm for each. */
+        // An axial ray 5 mm from the axis: its two points have one radius, which rounds by 6e-14 mm for each.
         const axialCapOutsideBy = (gap: number): Solve => ({
           ...onThin,
           ray: { origin: [3, 4, -10], direction: [0, 0, 1] },
           options: { maxT: 20, clearRadius: 5 + gap },
         });
-        expectIterative(axialCapOutsideBy(1e-13), "atRim", { iterative: 4, spent: 2 });
+        expectIterative(axialCapOutsideBy(5e-14), "atRim", { iterative: 4, spent: 2 });
         expectSeeded(axialCapOutsideBy(1e-12), { seeded: 2, iterative: 4 });
       });
     });
