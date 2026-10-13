@@ -32,7 +32,7 @@ const LENS = {
   surfaces: [
     { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 8 },
     { label: "1A", R: 50, d: 5, nd: 1.5168, elemId: 1, sd: 15 },
-    { label: "2", R: -50, d: 80, nd: 1, elemId: 1, sd: 15 },
+    { label: "2", R: -50, d: 80, nd: 1, elemId: 0, sd: 15 },
   ],
   asph: {
     "1A": { K: -0.5, A4: 1.25e-6, A6: -2e-10, A8: 0, A10: 0, A12: 0, A14: 0 },

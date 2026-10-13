@@ -10,17 +10,19 @@
  */
 
 import {
-  applyAuthorityRules,
   createResultEncoder,
   decodeValue,
   encodeValue,
+  normalizeAuthoredData,
   outcomeOf,
   projectBuildConstants,
   projectTrace,
   radiusOrFlat,
   semanticFingerprint,
+  snapConjugate,
   type EncodedValue,
   type Outcome,
+  type SemanticProjection,
 } from "./payload.js";
 import {
   ANALYSIS_CONTEXT_JOBS,
@@ -48,6 +50,7 @@ import {
 } from "./requests.js";
 import {
   ownCatalogFiles,
+  resolveOptionalSeam,
   resolveSeam,
   type EngineRay,
   type EngineSeam,
@@ -173,28 +176,31 @@ export function exportCatalog(): SerializedCatalog {
 /**
  * Semantic fingerprints of a serialized catalog under this bundle's engine rules.
  *
+ * The rules are the engine's canonical ingest, which a driver asks of the head's bundle alone: both catalogs are
+ * fingerprinted by one engine, and a base that predates canonical ingest has none to offer.
+ *
  * @param catalog - prescriptions from any ref
  * @returns fingerprint per lens key and per teleconverter key
+ * @throws when this bundle's engine has no canonical ingest
  */
 export function fingerprintCatalog(catalog: SerializedCatalog): {
   lenses: Record<string, string>;
   teleconverters: Record<string, string>;
 } {
-  const seam = resolveSeam();
-  const fingerprints = (entries: readonly SerializedPrescription[], lensDefaults: object) =>
+  const { ingestLens, ingestTeleconverter } = resolveOptionalSeam();
+  if (!ingestLens || !ingestTeleconverter) {
+    throw new Error("engineDiff: this engine has no canonical ingest; fingerprint catalogs with the head's bundle");
+  }
+  const fingerprints = (entries: readonly SerializedPrescription[], project: SemanticProjection) =>
     Object.fromEntries(
-      entries.map(({ key, prescription }) => [
-        key,
-        semanticFingerprint(decodeValue(prescription) as object, {
-          lensDefaults,
-          flatRadiusThreshold: seam.flatRadiusThreshold,
-        }),
-      ]),
+      entries.map(({ key, prescription }) => [key, semanticFingerprint(decodeValue(prescription) as object, project)]),
     );
   return {
-    lenses: fingerprints(catalog.lenses, seam.lensDefaults),
-    /* A converter is composed onto a defaulted host and takes no defaults of its own. */
-    teleconverters: fingerprints(catalog.teleconverters, {}),
+    lenses: fingerprints(catalog.lenses, (lens) => ingestLens(lens as LensData).prescription),
+    teleconverters: fingerprints(
+      catalog.teleconverters,
+      (converter) => ingestTeleconverter(converter as TeleconverterData).prescription,
+    ),
   };
 }
 
@@ -312,9 +318,9 @@ export function captureRecords(catalog: SerializedCatalog, requests: readonly Ca
         const converter = converterOf(converterKey);
         return {
           compatibility: seam.teleconverterCompatibility(host, converter),
-          /* The composer copies most of the host and the converter through. Written by the fingerprint's rules, the
-           * copy cannot move on a spelling the fingerprint treats as the same prescription. */
-          prescription: applyAuthorityRules(seam.attachTeleconverter(host, converter), seam.flatRadiusThreshold),
+          /* The composer copies most of the host and the converter through. Normalized as the fingerprint reads a
+           * file, the copy cannot move on a spelling the fingerprint treats as the same prescription. */
+          prescription: normalizeAuthoredData(seam.attachTeleconverter(host, converter), seam.flatRadiusThreshold),
         };
       };
     }
@@ -762,7 +768,12 @@ const captureMtf: StateCapture = (seam, lens, state, variant) => {
     /* MTF takes no pose. The viewer passes this flag, and a moved lens is reported unavailable instead. */
     movementActive: movement.active,
   };
-  return { options, result: seam.computeMtf(seam.prepareState(lens, focusT, zoomT, aberrationT), options) };
+  const result = seam.computeMtf(seam.prepareState(lens, focusT, zoomT, aberrationT), options);
+  /* The support record hands the authored conjugate back; its coordinates are recorded as the station it names. */
+  const { support } = result as { support?: { conjugate?: unknown } };
+  if (!support?.conjugate) return { options, result };
+  const conjugate = snapConjugate(support.conjugate, lens.focusPositions, lens.data.zoomPositions?.length ?? 1);
+  return { options, result: { ...result, support: { ...support, conjugate } } };
 };
 
 const STATE_FAMILIES: Record<StateFamily, StateCapture> = {

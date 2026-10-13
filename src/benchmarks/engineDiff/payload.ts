@@ -606,9 +606,10 @@ export function outcomeOf<Value>(compute: () => Value): Outcome<Value> {
  * Project a runtime lens to its build-constants payload.
  *
  * Every field is kept: a field the engine copies from the prescription is still one it chose, defaulted or filtered
- * (`elements` loses the synthetic plates, `maxFstop` and its like take a lens default). Four fields change form:
- * - `data`, the prescription after defaults and rear-plate expansion, is written through the authority rules, as a
- *   composed prescription is, so a respelling the fingerprint ignores cannot move it;
+ * (`elements` loses the synthetic plates, `maxFstop` and its like take a lens default). Some fields change form:
+ * - `data`, the prescription after defaults and rear-plate expansion, and `elements`, the authored elements the lens
+ *   shows, are written through `normalizeAuthoredData`, as a composed prescription is, so a respelling the
+ *   fingerprint ignores cannot move them;
  * - `S` keeps every member of every surface, the engine's own inner radius, stop placement, interaction and
  *   diffractive phase among them, and writes `R` as the authority rules do: a flat radius as its marker, because
  *   the engine hands a flat radius back as it was spelled and the spellings share a fingerprint;
@@ -629,7 +630,9 @@ export function projectBuildConstants(
   const out: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(lens)) {
     if (key === "data" && isRecord(value)) {
-      out.data = applyAuthorityRules(value, flatRadiusThreshold);
+      out.data = normalizeAuthoredData(value, flatRadiusThreshold);
+    } else if (key === "elements" && Array.isArray(value)) {
+      out.elements = value.map(withoutElementDefaults);
     } else if (key === "S" && Array.isArray(value)) {
       out.S = value.map((surface: unknown) =>
         isRecord(surface) && typeof surface.R === "number"
@@ -666,14 +669,6 @@ export function projectBuildConstants(
 
 /* ── Semantic fingerprint ── */
 
-/** Engine constants the fingerprint follows; each bundle supplies its own engine's. */
-export interface FingerprintRules {
-  /** Defaults merged under an authored lens; empty for a teleconverter, which takes none. */
-  readonly lensDefaults: object;
-  /** A radius beyond this magnitude is a flat surface, whatever its value or sign. */
-  readonly flatRadiusThreshold: number;
-}
-
 /** Where the engine takes the wide-open stop radius from. */
 export type StopRadiusAuthority = "authored" | "schedule" | "derived";
 
@@ -682,7 +677,9 @@ export type StopRadiusAuthority = "authored" | "schedule" | "derived";
  *
  * `buildLens` holds this rule inline and exports no predicate for it: a folded lens keeps the authored radius; any
  * other lens takes `zoomStopSemiDiameters[0]` when a schedule is present, keeps the authored radius when the stop
- * sits inside an element, and otherwise replaces it with the marginal-ray height traced at the stop.
+ * sits inside an element, and otherwise replaces it with the marginal-ray height traced at the stop. The canonical
+ * prescription states the same rule (`stopRadiusAuthority` in `src/optics/prescription/canonical.ts`); this copy
+ * runs on engines that predate it.
  *
  * @param prescription - lens data, before or after defaults
  * @returns `"authored"` when the engine reads the authored value, else where the radius comes from
@@ -727,26 +724,139 @@ export function radiusOrFlat(radius: number, flatRadiusThreshold: number): numbe
   return Math.abs(radius) > flatRadiusThreshold ? FLAT_RADIUS_MARKER : radius;
 }
 
+/** One schema default the engine applies where V1 data leaves the field out, in its V1 spelling. */
+export interface EchoDefault {
+  readonly v1Field: string;
+  readonly value: unknown;
+  /** The engine reads the field as `value || default`, so any falsy authored value is the default too. */
+  readonly falsyIsDefault?: true;
+}
+
 /**
- * Rewrite a prescription by the engine's authority rules, so spellings the rules treat as one come out identical.
+ * The schema defaults the engine applies inline, by the V1 record they belong to: a copy of the `engine` rows of
+ * `src/optics/prescription/defaults.ts`, which a tooling test holds equal. The harness keeps a copy because it runs
+ * against engines that predate that module. The `catalog` rows need none: the engine merges them before any record
+ * hands data back.
+ */
+export const ECHO_DEFAULTS: Readonly<Record<"lens" | "element" | "rearPlate", readonly EchoDefault[]>> = {
+  lens: [
+    { v1Field: "zoomApertureModel", value: "from-nominal-fno" },
+    { v1Field: "zoomStep", value: 0.004, falsyIsDefault: true },
+    { v1Field: "focusPositions", value: [0, 1] },
+    { v1Field: "publishedStations", value: { focus: [] } },
+  ],
+  element: [
+    { v1Field: "indexReference", value: "d" },
+    { v1Field: "apd", value: false },
+  ],
+  rearPlate: [{ v1Field: "indexReference", value: "d" }],
+};
+
+/** How far a finite conjugate may sit from the station it names: the validator's tolerance. */
+const STATION_COORDINATE_TOLERANCE = 1e-8;
+
+function isDefaultValue(row: EchoDefault, value: unknown): boolean {
+  if (row.falsyIsDefault && !value) return true;
+  return JSON.stringify(value) === JSON.stringify(row.value);
+}
+
+/** A copy of `record` without the members that hold their default. */
+function withoutDefaults(record: Record<string, unknown>, rows: readonly EchoDefault[]): Record<string, unknown> {
+  const out = { ...record };
+  for (const row of rows) {
+    if (Object.hasOwn(out, row.v1Field) && out[row.v1Field] !== undefined && isDefaultValue(row, out[row.v1Field])) {
+      delete out[row.v1Field];
+    }
+  }
+  return out;
+}
+
+function withoutElementDefaults(element: unknown): unknown {
+  return isRecord(element) ? withoutDefaults(element, ECHO_DEFAULTS.element) : element;
+}
+
+/** The coordinate in `stations` within the tolerance of `value`, or `value` itself. */
+function snapToStation(value: unknown, stations: readonly number[]): unknown {
+  if (typeof value !== "number") return value;
+  return stations.find((station) => Math.abs(station - value) < STATION_COORDINATE_TOLERANCE) ?? value;
+}
+
+/**
+ * A finite conjugate with its coordinates on the station they name, within the validator's tolerance. The canonical
+ * prescription addresses a conjugate by station, and the engine only ever matches it within that tolerance, but it
+ * hands the authored record back: in lens data, and as the conjugate an MTF result reports.
  *
- * - A radius beyond the flat threshold becomes `FLAT_RADIUS_MARKER`.
- * - A zero asphere term is dropped. The entry itself stays, even when that leaves it empty: an entry makes the
- *   surface aspheric to the engine and the UI whatever its coefficients.
- * - The `STO` semi-diameter is dropped where the engine derives or schedules the stop radius.
+ * @param conjugate - a `FiniteConjugate` as the engine holds it
+ * @param keyframes - the lens's focus keyframes
+ * @param stationCount - its zoom stations, 1 on a prime
+ * @returns a copy with `focusT` and `zoomT` snapped, or the value itself when it is no record
+ */
+export function snapConjugate(conjugate: unknown, keyframes: readonly number[], stationCount: number): unknown {
+  if (!isRecord(conjugate)) return conjugate;
+  const stations =
+    stationCount <= 1 ? [0] : Array.from({ length: stationCount }, (_, station) => station / (stationCount - 1));
+  return {
+    ...conjugate,
+    focusT: snapToStation(conjugate.focusT, keyframes),
+    zoomT: snapToStation(conjugate.zoomT, stations),
+  };
+}
+
+/**
+ * `publishedStations` in one spelling of what the engine reads: a zoom list only where it leaves a station out, in
+ * index order; focus rows as one list per zoom station, and none where no station has a row beyond infinity. A
+ * declaration of every station at infinity alone is the schema default, so it comes back `undefined`, as if absent.
+ */
+function normalizePublishedStations(
+  declared: Record<string, unknown>,
+  stationCount: number,
+): Record<string, unknown> | undefined {
+  const out = { ...declared };
+  const every = Array.from({ length: stationCount }, (_, station) => station);
+  /* `publishedStationGrid` reads a zoom list left out or written empty as every station. */
+  const zoom =
+    Array.isArray(out.zoom) && out.zoom.length > 0 ? [...new Set(out.zoom as number[])].sort((a, b) => a - b) : every;
+  if (JSON.stringify(zoom) === JSON.stringify(every)) delete out.zoom;
+  else out.zoom = zoom;
+
+  const focus = out.focus;
+  if (Array.isArray(focus)) {
+    const rows =
+      stationCount >= 2 && focus.every((entry) => typeof entry === "number")
+        ? every.map((station) => (zoom.includes(station) ? [...focus] : []))
+        : focus;
+    const noRows = stationCount >= 2 ? rows.every((row) => Array.isArray(row) && row.length === 0) : rows.length === 0;
+    if (noRows) delete out.focus;
+    else out.focus = rows;
+  }
+  return Object.keys(out).length === 0 ? undefined : out;
+}
+
+/**
+ * Rewrite authored lens or teleconverter data so the spellings that share a semantic fingerprint come out identical.
+ *
+ * Every record that hands authored data back goes through it: the `data` and `elements` of a built lens and the
+ * composed prescription of a converter pair. Otherwise a format-only change, which the fingerprint lets through,
+ * would still change a record that only echoes the file. The canonical prescription holds each of these as one:
+ * - a radius beyond the flat threshold is `FLAT_RADIUS_MARKER`;
+ * - a zero asphere term is dropped, and an empty `asph` with it. An entry itself stays, even when that leaves it
+ *   empty: an entry makes the surface aspheric to the engine and the UI whatever its coefficients;
+ * - the `STO` semi-diameter is dropped where the engine derives or schedules the stop radius;
+ * - a default the engine applies inline (`ECHO_DEFAULTS`) is dropped, on the lens, its elements and its plates;
+ * - an empty `var`, `varLabels` or ring `varLabels` is dropped. Label pairs keep the file's order: ingest refuses
+ *   pairs out of surface order, so their order is no spelling;
+ * - `publishedStations` takes one spelling: a zoom list left out, written empty or naming every station is dropped,
+ *   one focus list is spread over the zoom stations, and a declaration of every station at infinity alone, the
+ *   schema default, is dropped whole;
+ * - a finite conjugate's coordinates are snapped to the station they name within the validator's tolerance;
  * - -0 becomes 0.
  *
- * The fingerprint hashes the result, and a payload that hands authored data back (the composed prescription of a
- * converter pair, the `data` of a built lens) is written through it too. Otherwise a respelled flat radius would
- * keep the fingerprint and still change a record. The surfaces of a built lens take the first rule alone, through
- * `radiusOrFlat`: the rest of each is the engine's own.
- *
- * @param prescription - lens data that already carries whatever defaults apply to it
+ * @param prescription - lens or teleconverter data, with whatever defaults the engine merged
  * @param flatRadiusThreshold - the engine's flat-radius threshold
  * @returns a rewritten copy; the input is not changed
  */
-export function applyAuthorityRules(prescription: object, flatRadiusThreshold: number): Record<string, unknown> {
-  const data: Record<string, unknown> = { ...prescription };
+export function normalizeAuthoredData(prescription: object, flatRadiusThreshold: number): Record<string, unknown> {
+  const data = withoutDefaults({ ...prescription }, ECHO_DEFAULTS.lens);
   const stopRadiusIsRead = stopRadiusAuthority(data) === "authored";
 
   if (Array.isArray(data.surfaces)) {
@@ -759,49 +869,81 @@ export function applyAuthorityRules(prescription: object, flatRadiusThreshold: n
     });
   }
   if (isRecord(data.asph)) {
-    data.asph = Object.fromEntries(
-      Object.entries(data.asph).map(([label, entry]) => [
-        label,
-        isRecord(entry) ? Object.fromEntries(Object.entries(entry).filter(([, term]) => term !== 0)) : entry,
-      ]),
+    const entries = Object.entries(data.asph).filter(([, entry]) => entry !== undefined);
+    if (entries.length === 0) delete data.asph;
+    else {
+      data.asph = Object.fromEntries(
+        entries.map(([label, entry]) => [
+          label,
+          isRecord(entry) ? Object.fromEntries(Object.entries(entry).filter(([, term]) => term !== 0)) : entry,
+        ]),
+      );
+    }
+  }
+  if (Array.isArray(data.elements)) data.elements = data.elements.map(withoutElementDefaults);
+  if (Array.isArray(data.rearPlates)) {
+    data.rearPlates = data.rearPlates.map((plate: unknown) =>
+      isRecord(plate) ? withoutDefaults(plate, ECHO_DEFAULTS.rearPlate) : plate,
+    );
+  }
+  if (isRecord(data.var) && Object.values(data.var).every((range) => range === undefined)) delete data.var;
+  if (Array.isArray(data.varLabels) && data.varLabels.length === 0) delete data.varLabels;
+  if (
+    isRecord(data.aberrationControl) &&
+    Array.isArray(data.aberrationControl.varLabels) &&
+    data.aberrationControl.varLabels.length === 0
+  ) {
+    const control = { ...data.aberrationControl };
+    delete control.varLabels;
+    data.aberrationControl = control;
+  }
+
+  const stationCount = Array.isArray(data.zoomPositions) ? data.zoomPositions.length : 1;
+  if (isRecord(data.publishedStations)) {
+    const declared = normalizePublishedStations(data.publishedStations, stationCount);
+    if (declared === undefined) delete data.publishedStations;
+    else data.publishedStations = declared;
+  }
+  if (Array.isArray(data.finiteConjugates)) {
+    const keyframes = Array.isArray(data.focusPositions) ? (data.focusPositions as number[]) : [0, 1];
+    data.finiteConjugates = data.finiteConjugates.map((conjugate: unknown) =>
+      snapConjugate(conjugate, keyframes, stationCount),
     );
   }
   return withUnsignedZeros(data) as Record<string, unknown>;
 }
 
 /**
- * Semantic fingerprint of a prescription: a digest of the evaluated authored data after lens defaults and the
- * authority rules of `applyAuthorityRules`. Two files with one fingerprint are a format-only change as far as the
- * rules go; it is the capture that shows whether the engine agrees.
+ * The engine's canonical semantic projection: the prescription a file ingests to, without its provenance. It throws
+ * on a file the engine cannot ingest.
+ */
+export type SemanticProjection = (prescription: object) => object;
+
+/**
+ * Semantic fingerprint of a prescription: a digest of its canonical semantic projection.
  *
- * - Comments, formatting and source path never reach an evaluated object. Key order and `undefined`-valued members
- *   are removed by the encoding.
- * - Lens defaults are merged first, so an authored default equals an omitted one.
- * - Everything the authority rules leave alone is hashed as authored.
+ * The projection is the engine's (`ingestLensV1` and `ingestTeleconverterV1` in `src/optics/prescription/`), so the
+ * rules are the canonical prescription's: schema defaults applied, a default written out equal to one left out, a
+ * flat radius at any magnitude, zero asphere terms absent, a derived or scheduled stop radius left out, a conjugate
+ * addressed by its station, and the V1 spellings the canonical form holds once (see `normalizeAuthoredData`, which
+ * keeps the records that echo authored data in step). Provenance never reaches the projection: comments, layout,
+ * key order, `undefined` members, authored-or-default flags and authored values the engine ignores. Numbers compare
+ * bit for bit, -0 as 0.
  *
- * Today's engine and UI do not draw quite the same line as these rules. The differences known so far follow.
- *
- * Equal fingerprints that they can still tell apart:
- * - `validateLensData` rejects an asphere entry without `K` or one of `A4` to `A14`, so of the zero terms only the
- *   optional higher and odd ones can be left out of a file that builds.
- * - An authored `STO` semi-diameter that the engine otherwise replaces still has one reader: the generated rim of a
- *   rear plate takes the largest semi-diameter of the lens, the stop's included. A lens that comes to depend on that
- *   fails the catalog sweep in the harness tests.
- * - A flat radius is handed back as authored in a composed prescription, in the `data` and the surfaces of a built
- *   lens and as the best-fit radius of a flat-base asphere, and the aspheric overlay prints the radius of such a
- *   surface. The capture records the first four as the authority rules do; the overlay's readout is outside it.
- *
- * Different fingerprints for files they read alike:
- * - Defaults the engine applies inline (`apd: false`, `focusPositions: [0, 1]` and the like) are not restated here,
- *   so writing one out changes the fingerprint.
- * - Fields nothing reads today (`zoomLabels`, `apertureBlades`, `apertureBladeRoundedness`) are hashed: a
- *   converted file must still carry them.
+ * A file the projection refuses still gets a fingerprint, a digest of its refusal and its data, so a run classifies
+ * it as a semantic change instead of stopping. Two files that differ always differ there.
  *
  * @param prescription - evaluated lens or teleconverter data, as authored
- * @param rules - the engine's lens defaults and flat-radius threshold
+ * @param project - the engine's semantic projection for this kind of file
  * @returns the fingerprint as 64 hexadecimal digits
  */
-export function semanticFingerprint(prescription: object, rules: FingerprintRules): string {
-  const merged = { ...rules.lensDefaults, ...prescription };
-  return sha256Hex(JSON.stringify(encodeValue(applyAuthorityRules(merged, rules.flatRadiusThreshold))));
+export function semanticFingerprint(prescription: object, project: SemanticProjection): string {
+  let semantic: object;
+  try {
+    semantic = project(prescription);
+  } catch (thrown) {
+    const reason = thrown instanceof Error ? `${thrown.name}: ${thrown.message}` : String(thrown);
+    return sha256Hex(JSON.stringify(["unreadable", reason, encodeValue(prescription)]));
+  }
+  return sha256Hex(JSON.stringify(encodeValue(withUnsignedZeros(semantic))));
 }

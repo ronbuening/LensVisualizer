@@ -175,13 +175,14 @@ export function resolveCapabilities<Capability extends string>(
 
 let resolved: { seam: EngineSeam; sources: Record<keyof EngineSeam, string> } | undefined;
 
+function loadedModules(): Record<string, EngineModule | undefined> {
+  /* Each glob holds at most one module, keyed by its path. */
+  return Object.fromEntries(Object.entries(ENGINE_MODULES).map(([id, matches]) => [id, Object.values(matches)[0]]));
+}
+
 function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, string> } {
   if (!resolved) {
-    /* Each glob holds at most one module, keyed by its path. */
-    const modules = Object.fromEntries(
-      Object.entries(ENGINE_MODULES).map(([id, matches]) => [id, Object.values(matches)[0]]),
-    );
-    const { exports, sources } = resolveCapabilities(modules, SEAM_CANDIDATES);
+    const { exports, sources } = resolveCapabilities(loadedModules(), SEAM_CANDIDATES);
     resolved = { seam: exports as EngineSeam, sources };
   }
   return resolved;
@@ -200,13 +201,71 @@ export function resolveSeam(): EngineSeam {
   return resolveOnce().seam;
 }
 
+/*
+ * Capabilities only the head's bundle is asked for. A driver fingerprints both catalogs with the head alone, and a
+ * base that predates a capability must still resolve its seam, so each of these resolves to `undefined` at a ref
+ * without any candidate instead of failing the bundle. The same candidate order rules apply.
+ */
+const OPTIONAL_SEAM_CANDIDATES = {
+  ingestLens: [["buildLens", "ingestLensV1"]],
+  ingestTeleconverter: [["buildLens", "ingestTeleconverterV1"]],
+} as const satisfies Readonly<Record<string, readonly SeamCandidate[]>>;
+
+/** Capabilities a ref may lack, typed by the export their first candidate names. */
+export type OptionalEngineSeam = {
+  readonly [Capability in keyof typeof OPTIONAL_SEAM_CANDIDATES]?: ExportOf<
+    (typeof OPTIONAL_SEAM_CANDIDATES)[Capability][0]
+  >;
+};
+
 /**
- * Report which export each capability resolved to, for a run log and for telling two refs apart.
+ * Resolve each optional capability to the first candidate export that exists, or leave it out.
+ *
+ * @param modules - loaded modules by id; an id whose file does not exist at this ref is absent or `undefined`
+ * @param candidates - ordered `[module id, export name]` pairs per capability
+ * @returns the exports that resolved, and per capability its `module.export` or `"absent"`
+ */
+export function resolveOptionalCapabilities<Capability extends string>(
+  modules: Readonly<Record<string, EngineModule | undefined>>,
+  candidates: Readonly<Record<Capability, readonly (readonly [module: string, exportName: string])[]>>,
+): { exports: Partial<Record<Capability, unknown>>; sources: Record<Capability, string> } {
+  const exports: Partial<Record<Capability, unknown>> = {};
+  const sources = {} as Record<Capability, string>;
+  for (const capability of Object.keys(candidates) as Capability[]) {
+    const found = candidates[capability].find(([module, name]) => modules[module]?.[name] !== undefined);
+    sources[capability] = found ? `${found[0]}.${found[1]}` : "absent";
+    if (found) exports[capability] = modules[found[0]]?.[found[1]];
+  }
+  return { exports, sources };
+}
+
+let optionalResolved: { seam: OptionalEngineSeam; sources: Record<keyof OptionalEngineSeam, string> } | undefined;
+
+function resolveOptionalOnce(): { seam: OptionalEngineSeam; sources: Record<keyof OptionalEngineSeam, string> } {
+  if (!optionalResolved) {
+    const { exports, sources } = resolveOptionalCapabilities(loadedModules(), OPTIONAL_SEAM_CANDIDATES);
+    optionalResolved = { seam: exports as OptionalEngineSeam, sources };
+  }
+  return optionalResolved;
+}
+
+/**
+ * The optional capabilities of this ref's engine; a capability the ref lacks is absent.
+ *
+ * @returns the exports that resolved
+ */
+export function resolveOptionalSeam(): OptionalEngineSeam {
+  return resolveOptionalOnce().seam;
+}
+
+/**
+ * Report which export each capability resolved to, for a run log and for telling two refs apart. An optional
+ * capability the ref lacks reads `"absent"`.
  *
  * @returns capability name -> `module.export`
  */
-export function describeSeam(): Record<keyof EngineSeam, string> {
-  return { ...resolveOnce().sources };
+export function describeSeam(): Record<keyof EngineSeam | keyof OptionalEngineSeam, string> {
+  return { ...resolveOnce().sources, ...resolveOptionalOnce().sources };
 }
 
 /* The bundle's own catalog, read the way the app's catalog modules read it. Only the catalog export uses these;
