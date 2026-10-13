@@ -8,7 +8,7 @@ import {
 } from "../field/projection.js";
 import { eflAtFocus2 } from "../first-order/focusBreathing.js";
 import { xpZRelLastSurfAtZoom } from "../layout.js";
-import { intersectRayPlane } from "../math/plane.js";
+import { intersectRayPlane } from "../geometry/intersectPlane.js";
 import { add, dot, normalize, scale, subtract } from "../math/vector.js";
 import type { Plane3, Vec3 } from "../types.js";
 import { isPerspectiveDirectionInsideProjectionDomain } from "./chiefRay.js";

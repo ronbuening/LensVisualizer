@@ -5,9 +5,9 @@
  * failure reasons for regression tests and diagnostics.
  */
 
-import { selectAsphericCapHit } from "../math/intersection.js";
+import { selectAsphericCapHit } from "../geometry/intersect.js";
 import { INTERSECTION_BRACKET_SAMPLES, INTERSECTION_MAX_ITERATIONS, INTERSECTION_TOLERANCE } from "../constants.js";
-import { planeResidualRoundoff, sagResidualRoundoff } from "../math/intersectionTolerance.js";
+import { planeResidualRoundoff, sagResidualRoundoff } from "../geometry/intersectTolerance.js";
 import { FLAT_R_THRESHOLD, conicPolySag, createAsphericProfile, sagSlopeRaw } from "../geometry/surfaceProfile.js";
 import type { AsphericCoefficients } from "../../types/optics.js";
 

@@ -136,7 +136,9 @@ catalog on 2026-10-13, lens and teleconverter files together; the plan was first
 
 - **#774 merged on its own, ahead of the program,** as `79899f4d`.
 - **R0** is its parent, `d49857ae`. **A0** is the Stage 1 PR's merge commit on `engine-next`, tagged
-  `optics-rewrite/s1`; it contains #774.
+  `optics-rewrite/s1`; it contains #774. **A1** is `6d186968`, the merge commit of #788 (the first merge of `main`
+  that changed what the engine computes), tagged `optics-rewrite/a1`. Its Tier S check of the head before the merge
+  against A0 passed under C1 in all 8 shards.
 - Every differential comparison and speed measurement uses A0 or a later anchor (see
   [Anchors and comparison coverage](#anchors-and-comparison-coverage)), or the promotion merge commit for the
   Stage 2 gate alone. R0 is measured once, in S1.P1.T1, only to size the contract's own cost.
@@ -199,9 +201,10 @@ A review of #774 before it merged found these, which Stage 3 closes:
 The Stage 1 fixtures added one more, which Stage 3 also closes:
 
 - **Grazing chord** ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). A ray whose chord through a
-  sphere is shorter than one step of the 24-sample bracket scan is reported as a miss by both solvers. Closed-form
-  roots close it for spheres and conics (S3.P2.T1), and for the legacy solver when it delegates (S3.P2.T3). A short
-  chord on a polynomial asphere still depends on the scan, and S3.P2.T2 checks it.
+  sphere is shorter than one step of the 24-sample bracket scan, or whose span inside a conic's domain is, is
+  reported as a miss by both solvers. Closed-form roots close it for spheres and conics above the slope floors
+  (S3.P2.T1), and for the legacy solver when it delegates (S3.P2.T3). A short chord on a polynomial asphere, or
+  where the closed form falls back, still depends on the scan, and S3.P2.T2 checks it.
 
 ## Integration model
 
@@ -1191,10 +1194,13 @@ promotion, so the V2 authoring documents must not reach it earlier.
       - **The pupil constants' premise did not hold.** The plan expected a 1e-12 mm hit difference to move them by
         about 1e-8 relative. Both basis rays scale with 1e-4 and the quotient removes it, so the budget stays. This
         rests on a derivation and on S3.P1.T1's own run, which moves aspheric hits only. S3.P2.T1's run, the first
-        to move every curved hit, records their largest difference, and the rule is revisited there if it fails.
-      - **Still open: a number with no discrete evidence.** An aggregate that moves because one boundary sample did,
-        or a bisected output that moves by one quantum, has no transition to declare. It is settled when a run
-        first shows one.
+        to move every curved hit, recorded 4.79e-13 relative at most, with `epZRelStop` and `xpSD` bit-identical on
+        every lens, so the rule stands.
+      - **A number with no discrete evidence.** An aggregate that moves because one boundary sample did, or a
+        bisected output that moves by one quantum, has no transition to declare. S3.P2.T1's run showed the first: the
+        Mirotar's raw half-field, a bisection that moved one step. The maintainer approved it as a divergence and
+        merged the step with its check failing on that lens (S3.P2.T1). No form of declaration was added, and a
+        later one is brought to the maintainer the same way.
     - **S3.P2.T1, the first step to move every curved hit,** settled two budgets on 2026-10-13, in the harness PR
       that precedes its engine change: the weighted bins of a bokeh profile went from exact to 1e-10 relative above
       C0, and a ratio of two analysis lengths from 1e-10 to 1e-8 relative. Both are stated under
@@ -1711,22 +1717,61 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
       only a legacy ghost path that has already left the lens reaches.
   - **Gate:** C1.
 - **S3.P2.T1 Closed-form plane, sphere and conic roots.**
-  - **Change:** `geometry/intersect.ts` gains closed-form roots under the contract:
-    - a numerically stable quadratic, in Spencer & Murty's general ray-tracing form (*J. Opt. Soc. Am.* 52(6), 672,
-      1962, [doi:10.1364/JOSA.52.000672](https://doi.org/10.1364/JOSA.52.000672));
-    - cap selection and domain checks, with the cap search run even when the unbounded solve fails numerically;
-    - the residual is validated after clamping, and `intersectRayPlane` (image and sensor planes) validates its
-      residual under the same rule;
-    - the iterative path is the fallback when validation fails, for example near tangency.
+  - **Change:** the kernel moves from `math/` to `geometry/intersect*.ts` in its own bit-neutral commit, and
+    `geometry/intersectConic.ts` adds closed-form roots under the contract:
+    - a numerically stable quadratic in the curvature form c(X² + Y² + κZ²) − 2Z = 0 of the conic in Spencer &
+      Murty's general ray-tracing procedure (*J. Opt. Soc. Am.* 52(6), 672, 1962,
+      [doi:10.1364/JOSA.52.000672](https://doi.org/10.1364/JOSA.52.000672)), solved from the foot of the
+      perpendicular from the vertex;
+    - a sphere, and an aspheric profile with no polynomial term, take the closed form, and a call that sets
+      `maxIterations` or `bracketSamples` takes the iterative path;
+    - a closed-form hit is accepted only at the raw target, from one profile evaluation at the point returned. A
+      miss uses none and rests on the profile's `curvature` and `conic`;
+    - a root within rounding of a bound is proposed at the bound and validated there;
+    - the closed form decides nothing, and the iterative path runs unchanged with its normal budget, where:
+      - the discriminant's sign, or a touch, is inside the tolerance plus the rounding of the residual;
+      - the root validates but the iterative path's point could lie more than 5e-10 mm from it, or its normal more
+        than 5e-11 from its normal (at lens coordinates a floor of 4e-3 per mm on |f′|, raised by curvature and by
+        rounding far from the origin);
+      - a root, or the nearest point of a line that misses, has |w| ≤ 3e-2 and the bounds reach the domain radius
+        beside it;
+      - a root is on the cap's rim;
+      - the later of two roots is on the upper bound, or on a scan sample of the bounds or of the cap interval;
+      - a root's bound lies outside the domain;
+    - the reason is `closedFormFallback` on the kernel's result (null, a reason, or absent), and no trace record
+      carries it;
+    - the cap interval is also searched, in ray order, after `noConvergedIntersection`, and never after `noBracket`;
+    - `intersectRayPlane` validates the point it returns at the raw target, then at the plane's operand envelope.
+      For finite input the envelope covers the residual's rounding, so only a non-finite landing is rejected. A
+      sequential trace's returned x and y, and a camera trace already within 1e-9 mm of the sensor plane, do not
+      pass through it.
   - **Tests:**
     - the 50-digit fixtures;
     - tangent, grazing, steep-rim and backward rays;
     - a plane at zero gap behind a curved surface, reached by an oblique ray;
     - cap and exterior roots;
-    - every closed-form success uses at most 2 profile evaluations, counted by a profile the test wraps;
-    - every fallback reports its reason on the result (failed validation, near tangency or domain edge), takes the
-      unchanged iterative path with its normal budget, and meets the contract.
-  - **Gate:** C1.
+    - every closed-form hit uses one profile evaluation and every closed-form miss none, counted by a profile the
+      test wraps;
+    - every fallback reports its reason on the result, takes the unchanged iterative path with its normal budget,
+      and meets the contract.
+  - **Gate:** C1, with these classes of discrete change:
+    - a root the 24-sample scan does not resolve (#779): a chord, or the ray's span inside the domain, shorter than
+      one scan step;
+    - a hit accepted at the raw target where the iterative path stalled into the envelope on the same root;
+    - a plane at zero gap behind a surface that overlaps it off the axis, lost where the iterative path had stopped
+      on the vertex plane;
+    - two surfaces on one vertex whose hits the iterative path returned as equal floats. The candidate search keeps
+      the lower index on a tie, so a closed-form root an ulp nearer changes which surface the ray meets.
+  - **Approved divergence, Zeiss Mirotar 500mm f/4.5** (`carl-zeiss-mirotar-500f45`). The last class occurs once in
+    the catalog and cannot be declared as transitions.
+    - Surfaces "4" and "6" share a vertex and lie 3.8e-15 mm apart at the tested ray. The base returned one float
+      for both and the lower index won. The closed form puts "6", the secondary's blocked side, first, as the
+      prescription has it.
+    - The state's raw half-field is a bisection that ends on such a ray. It moves one step, 8.62e-5° to 4.31e-5°,
+      and every field-dependent output follows: 4,080 differences at Tier P, 4,033 of them numbers.
+    - The maintainer merged the step with its check failing on this lens alone (2026-10-13). A run whose base
+      predates the step fails on this lens for the same reason, until the anchor next moves. It is read as passing
+      when its failing findings are confined to this lens and its raw half-field takes this step.
 - **S3.P2.T2 Conic-seeded asphere solve.**
   - **Change:** Newton starts from the base-conic root. The bracket scan runs only when the seed fails certification,
     and the stall and roundoff rules are unchanged. The certificate's coordinate-roundoff gate gets its own bound
@@ -1756,7 +1801,7 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
 **Stage 3 gate:**
 
 - the analytic suite;
-- Tier S, C1/C2 against the anchor;
+- Tier S, C1/C2 against the anchor, read with S3.P2.T1's approved divergence on the Mirotar;
 - the Stage 3 targets are reported: mean evaluations per intersection and the fallback rate;
 - PC-Nikkor 19mm default analysis is at or below its stored R0 median, within the tolerance of efficiency gate 3;
 - the comparator report.
@@ -2115,6 +2160,7 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 34 | A clipped or diagnostic point is held to 1e-7 mm, or to 1e-12 of its own size where that is more | [Quantity budgets](#quantity-budgets) |
 | 35 | The bin statistics of a bokeh profile whose rays weigh differently are held to 1e-10 relative above C0; counts, count ratios and the bins of a footprint of one weight stay exact | [Quantity budgets](#quantity-budgets) |
 | 36 | A ratio of two analysis lengths is held to 1e-8 relative above C0 | [Quantity budgets](#quantity-budgets) |
+| 37 | The Zeiss Mirotar 500mm f/4.5's tie between two surfaces on one vertex is an approved divergence, and S3.P2.T1 merges with its check failing on that lens alone | S3.P2.T1 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
