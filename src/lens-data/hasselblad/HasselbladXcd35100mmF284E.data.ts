@@ -40,6 +40,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * Aspheres: the patent's κ is the conic constant of the (1 + κ) form and is zero on every
  * aspherical surface; A4–A12 as printed, no A14. A8 of surface 23 is the printed negative value
  * -1.98459e-10.
+ * LABELS: element names L1–L16 and the group brackets G1 (+) … G6 (+) are the patent's own reference signs
+ * (Figure 1A; the group brackets span the same surfaces as the figure's). The patent lists the stop (its "A")
+ * between G2 and G3, outside both. The three cemented pairs are bracketed by their element signs (L1+L2, L4+L5,
+ * L9+L10) so that they do not read like the patent's gap labels d3 … d30 shown with the zoom gaps.
  * GLASS: the patent prints nd, νd and θgF for every glass. Each glass label names a HOYA, OHARA
  * or SUMITA catalog glass whose nd, νd and θgF equal the print (L4: θgF 0.0005 apart; L9: nd 0.00001
  * apart) and selects its dispersion curve; supplier and melt are not identified. The three aspherical
@@ -83,7 +87,8 @@ const LENS_DATA = {
       glass: "E-FD15L (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: 0.009628199999999976,
       fl: -324.3865051254268,
-      cemented: "D1",
+      role: "Negative meniscus, front element of the cemented pair that forms the positive first group",
+      cemented: "L1+L2",
     },
     {
       id: 2,
@@ -96,7 +101,8 @@ const LENS_DATA = {
       glass: "LAC8 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.008940200000000065,
       fl: 96.367481773196,
-      cemented: "D1",
+      role: "Positive meniscus, rear element of the first group's cemented pair",
+      cemented: "L1+L2",
     },
     {
       id: 3,
@@ -109,6 +115,7 @@ const LENS_DATA = {
       glass: "TAFD5G (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.007278600000000024,
       fl: -40.355119817766685,
+      role: "Negative meniscus at the front of the negative second group",
     },
     {
       id: 4,
@@ -123,7 +130,8 @@ const LENS_DATA = {
       apdNote: "One of the five elements with νd of 71.7 or more (L4, L8, L10, L11, L15); Hasselblad states five ED elements. dPgF comes from the patent's printed θgF.",
       dPgF: 0.01659939999999993,
       fl: -38.532950227716604,
-      cemented: "D2",
+      role: "Biconcave front element of the second group's cemented pair; aspherical on its object side",
+      cemented: "L4+L5",
     },
     {
       id: 5,
@@ -136,7 +144,8 @@ const LENS_DATA = {
       glass: "NBFD27 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: 0.00898219999999994,
       fl: 38.088351666342064,
-      cemented: "D2",
+      role: "Positive meniscus, rear element of the second group's cemented pair",
+      cemented: "L4+L5",
     },
     {
       id: 6,
@@ -149,6 +158,7 @@ const LENS_DATA = {
       glass: "E-FD80 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: 0.011610199999999904,
       fl: -182.39712290466713,
+      role: "Negative meniscus at the rear of the second group, concave toward the object, ahead of the stop",
     },
     {
       id: 7,
@@ -161,6 +171,7 @@ const LENS_DATA = {
       glass: "NBFD10 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.002061400000000102,
       fl: 48.97392394041472,
+      role: "Positive meniscus at the front of the positive third group, directly behind the stop",
     },
     {
       id: 8,
@@ -175,6 +186,7 @@ const LENS_DATA = {
       apdNote: "One of the five elements with νd of 71.7 or more (L4, L8, L10, L11, L15); Hasselblad states five ED elements. dPgF comes from the patent's printed θgF.",
       dPgF: 0.032351200000000024,
       fl: 42.87056288808425,
+      role: "Biconvex positive element of the third group, between L7 and the cemented pair",
     },
     {
       id: 9,
@@ -187,7 +199,8 @@ const LENS_DATA = {
       glass: "S-NBH51 (OHARA; equals the patent νd and θgF, catalog nd 1.74950 against the printed 1.74951; supplier unconfirmed)",
       dPgF: -0.002625400000000111,
       fl: -18.82059568563722,
-      cemented: "D3",
+      role: "Biconcave front element of the third group's cemented pair",
+      cemented: "L9+L10",
     },
     {
       id: 10,
@@ -202,7 +215,8 @@ const LENS_DATA = {
       apdNote: "One of the five elements with νd of 71.7 or more (L4, L8, L10, L11, L15); Hasselblad states five ED elements. dPgF comes from the patent's printed θgF.",
       dPgF: 0.032351200000000024,
       fl: 59.15251429123069,
-      cemented: "D3",
+      role: "Positive meniscus, rear element of the third group's cemented pair",
+      cemented: "L9+L10",
     },
     {
       id: 11,
@@ -217,6 +231,7 @@ const LENS_DATA = {
       apdNote: "One of the five elements with νd of 71.7 or more (L4, L8, L10, L11, L15); Hasselblad states five ED elements. dPgF comes from the patent's printed θgF.",
       dPgF: 0.02329099999999995,
       fl: 30.66506351879886,
+      role: "Biconvex positive front element of the positive fourth group",
     },
     {
       id: 12,
@@ -229,6 +244,7 @@ const LENS_DATA = {
       glass: "L-LAL13 (OHARA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.006117600000000056,
       fl: -179.11987321597823,
+      role: "Negative meniscus at the rear of the fourth group; aspherical on both sides",
     },
     {
       id: 13,
@@ -241,6 +257,7 @@ const LENS_DATA = {
       glass: "K-VC181 (SUMITA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.005669800000000058,
       fl: -80.55101888238354,
+      role: "Negative meniscus at the front of the negative fifth group, the group the patent moves to focus; aspherical on both sides",
     },
     {
       id: 14,
@@ -253,6 +270,7 @@ const LENS_DATA = {
       glass: "FC5 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: 0.005212799999999906,
       fl: -110.66739532664758,
+      role: "Negative meniscus at the rear of the fifth group, concave toward the object",
     },
     {
       id: 15,
@@ -267,6 +285,7 @@ const LENS_DATA = {
       apdNote: "One of the five elements with νd of 71.7 or more (L4, L8, L10, L11, L15); Hasselblad states five ED elements. dPgF comes from the patent's printed θgF.",
       dPgF: 0.032351200000000024,
       fl: -366.8757712513046,
+      role: "Negative meniscus at the front of the positive sixth group, concave toward the object",
     },
     {
       id: 16,
@@ -279,6 +298,7 @@ const LENS_DATA = {
       glass: "FDS24-W (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: 0.016767999999999894,
       fl: 87.93669415030313,
+      role: "Biconvex positive last element, at the rear of the sixth group",
     },
   ],
   surfaces: [
@@ -658,17 +678,17 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "L1+L2",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "D2",
+      text: "L4+L5",
       fromSurface: "6A",
       toSurface: "8",
     },
     {
-      text: "D3",
+      text: "L9+L10",
       fromSurface: "16",
       toSurface: "18",
     },
