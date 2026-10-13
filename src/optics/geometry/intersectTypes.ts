@@ -20,9 +20,10 @@ export type SurfaceIntersectionFailureReason =
  * - `failedValidation`: the proposed root, at the point that would be returned, does not evaluate within the raw
  *   residual target, or the quadratic's coefficients are not finite.
  * - `nearTangency`: the ray grazes the surface, so the sign of the discriminant, a touch without a crossing, or the
- *   position of the root is inside rounding.
- * - `domainEdge`: a root lies at the edge of what is searched, where the iterative path's own edge handling
- *   decides the answer: the conic's domain radius, the cap's rim, or, for the later of two roots, the upper bound.
+ *   position of the root or of the normal there is inside rounding.
+ * - `domainEdge`: a root lies on a point the iterative path has a rule of its own for, and that rule decides the
+ *   answer: the edge of the conic's domain; the cap's rim; or, for the later of two roots, the upper bound or a
+ *   sample of the bracket scan, which that path tests before it has found the earlier root.
  */
 export type ClosedFormFallbackReason = "failedValidation" | "nearTangency" | "domainEdge";
 
