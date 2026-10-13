@@ -190,10 +190,12 @@ A review of #774 before it merged found these, which Stage 3 closes:
   (S3.P2.T4).
 - **The cap search depends on the unbounded solve.** `intersectSurfaceProfile` returns before the cap search when the
   unbounded solve fails, so a numerical failure outside the cap can hide a root inside it (S3.P2.T1).
-- **Certificate gate.** The asphere uniqueness certificate is refused when coordinate roundoff exceeds the residual
-  tolerance. At 1e-12 mm that is an operand sum of 281 mm (281 m at 1e-9), and beyond it each in-cap hit pays the
-  ordered 24-sample scan: 6 → 25 profile evaluations on one measured ray. Stage 1 counted 927 refusals in one Tier
-  P capture of 5,847 records, and S3.P2.T2 fixes it.
+- **Certificate gate.** The uniqueness certificate inside `selectAsphericCapHit` is refused when coordinate roundoff
+  exceeds the residual tolerance: at 1e-12 mm a transverse operand sum of 281 mm. Of 927 such refusals in one Tier P
+  capture, 62 have no other cause, all on Fujifilm GF 30mm T/S 1A. S3.P2.T2's seeded route takes 36 of them, the
+  measured ray among them (25 → 4 profile evaluations). The other 26 have a residual rounding over 31/32 of the
+  target, where no certificate can say which float the iterative path reports, and keep the scan. The shared gate
+  is unchanged.
 - **Legacy hits beyond |R|** are floor-assisted without being roundoff-limited, up to about 1e-8 mm. They are
   exterior and always clipped, and they go when the legacy solver delegates (S3.P2.T3).
 - **`intersectRayPlane`,** which lands rays on the image and sensor planes, does not validate its residual (S3.P2.T1).
@@ -204,7 +206,8 @@ The Stage 1 fixtures added one more, which Stage 3 also closes:
   sphere is shorter than one step of the 24-sample bracket scan, or whose span inside a conic's domain is, is
   reported as a miss by both solvers. Closed-form roots close it for spheres and conics above the slope floors
   (S3.P2.T1), and for the legacy solver when it delegates (S3.P2.T3). A short chord on a polynomial asphere, or
-  where the closed form falls back, still depends on the scan, and S3.P2.T2 checks it.
+  where the closed form falls back, still depends on the scan. S3.P2.T2 certifies one scan step past a seeded root
+  so that it never returns a root the scan does not resolve, and pins the miss by test.
 
 ## Integration model
 
@@ -1773,12 +1776,60 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
       predates the step fails on this lens for the same reason, until the anchor next moves. It is read as passing
       when its failing findings are confined to this lens and its raw half-field takes this step.
 - **S3.P2.T2 Conic-seeded asphere solve.**
-  - **Change:** Newton starts from the base-conic root. The bracket scan runs only when the seed fails certification,
-    and the stall and roundoff rules are unchanged. The certificate's coordinate-roundoff gate gets its own bound
-    instead of the residual tolerance.
-  - **Tests:** asphere fixtures; #774's 43-iteration exterior case; zero and exhausted budgets; steep quartics; an
-    in-cap hit whose operand sum exceeds 281 mm keeps its certificate.
-  - **Gate:** C1.
+  - **Change:** a polynomial asphere with an authored cap first tries a seeded route in `geometry/intersect.ts`, in
+    front of the iterative path, which is not edited:
+    - Newton starts from the first root of the ray on the base conic's sag sheet inside the cap interval
+      (`baseConicRoot` in `geometry/intersectConic.ts`; on a flat base, and within twice the target of the vertex
+      plane, the vertex-plane crossing). It has no bracket and spends at most 6 profile evaluations;
+    - its point is returned only at the raw target, and only under a certificate decided at solve time that the
+      iterative path returns the same root: by the slope bound, the residual is strictly monotone over every cap
+      point of the ray from the lower bound to one step of the 24-sample scan past the point;
+    - the certificate's coordinate rounding has its own bound: 16ε(|ox| + |oy| + |dxy| t), plus 16ε(|ox| + |oy|)²/sd
+      for the ends of the cap interval, is held to the clear-aperture tolerance max(1e-9, sd·1e-12) mm and added to
+      every radius the certificate compares;
+    - the residual's rounding is bounded in its own unit: the iterative path's envelope at the point, under the
+      stretch's slope bound, within 31/32 of the residual tolerance;
+    - the seeded route decides nothing, and the iterative path runs unchanged with its full budget, where:
+      - the call sets `maxIterations` or `bracketSamples`, its input is one the iterative path rejects, the profile
+        has no slope bound, there is no clear radius, or the ray has no span inside the cap;
+      - the base conic has no root on its sag sheet inside the cap interval;
+      - the coordinate rounding over the stretch is above the clear-aperture tolerance, or |dxy|² underflows;
+      - one scan step of the bounds is not longer than the tolerance, which a direction that is not a unit vector
+        reaches once it is about 1e12 long;
+      - the slope bound does not leave |f′| above 1e-10 over the stretch;
+      - the envelope is over 31/32 of the target, or the iterative path's point could lie more than 5e-10 mm from
+        the seeded one, or its normal more than 5e-11 from its normal, the step of the normal at 1e-12 mm of radius
+        included;
+      - Newton leaves the cap interval or the conic's domain, meets a derivative it cannot divide by, cannot move,
+        or has not met the target in 6 evaluations;
+      - the point is within that move of a bound or of the cap's rim, or within twice the target of the vertex
+        plane without being the vertex-plane crossing;
+      - a cap point beyond the stretch could be accepted by the iterative path under one of its own certificates;
+    - the gate inside `selectAsphericCapHit` is unchanged. It is shared with the legacy solver and with every
+      explicit-budget call, and a certificate granted there beyond 281 mm returns another point than the ordered
+      scan does: off the catalog another root;
+    - no result and no trace record gains a member. A seeded hit reports its evaluations as `iterations`.
+  - **Tests:**
+    - the asphere fixtures, with one more whose transverse operand sum is 415 mm, and which path answers each,
+      counted by a profile the test wraps;
+    - #774's 43-iteration exterior case stays a legacy-solver case; the kernel's `noBracket` for that ray is
+      unchanged and the route is not tried, the ray having no span inside the cap;
+    - zero and exhausted budgets select the iterative path and mean what they mean there; the route's own limit of
+      6 falls back to the unchanged iterative result;
+    - steep quartics, taken and refused;
+    - an in-cap hit whose transverse operand sum exceeds 281 mm keeps its certificate where its residual envelope
+      is within 31/32 of the target, and is left to the scan where it is not, with a pair on either side of 31/32;
+    - a second root inside one scan step of a certified one stays the iterative path's miss (#779), past the
+      point, before it, and at half a step;
+    - every refusal reason returns the unchanged iterative result, and every gate follows the caller's tolerance.
+  - **Gate:** C1. Every hit the seeded route returns is on the root the iterative path returns for the same input, at
+    the raw target, within 5e-10 mm and 5e-11 of normal, so the kernel changes no discrete outcome on a given input,
+    and Tier P shows none. One class is named for the tiers that follow, and declared line by line where one shows it:
+    a hit on an ill-conditioned asphere that changes between the raw target and the envelope because its incoming ray
+    moved by rounding upstream. S3.P2.T1's shared-vertex class is narrowed, not excluded: two surfaces on one vertex
+    can return floats an ulp or two apart wherever the hit is more than twice the target of sag from the vertex plane.
+    That matters only where the generalized tracer's candidate search chooses between them, and no catalog polynomial
+    asphere is in that position.
 - **S3.P2.T3 Legacy intersection delegates.**
   - **Change:** `internal/surfaceIntersection.ts` calls the kernel, and its duplicate Newton, bracket and constants are
     deleted.
@@ -2161,6 +2212,9 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 35 | The bin statistics of a bokeh profile whose rays weigh differently are held to 1e-10 relative above C0; counts, count ratios and the bins of a footprint of one weight stay exact | [Quantity budgets](#quantity-budgets) |
 | 36 | A ratio of two analysis lengths is held to 1e-8 relative above C0 | [Quantity budgets](#quantity-budgets) |
 | 37 | The Zeiss Mirotar 500mm f/4.5's tie between two surfaces on one vertex is an approved divergence, and S3.P2.T1 merges with its check failing on that lens alone | S3.P2.T1 |
+| 38 | S3.P2.T2's coordinate bound is the seeded route's own; the gate inside `selectAsphericCapHit` is unchanged | S3.P2.T2 |
+| 39 | A short chord on a polynomial asphere stays the scan's miss in S3.P2.T2 (#779) | S3.P2.T2 |
+| 40 | A hit that changes between the raw target and the envelope because its incoming ray moved by rounding is a declared transition | S3.P2.T2 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

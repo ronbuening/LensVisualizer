@@ -6,6 +6,7 @@ import {
   type SurfaceIntersectionOptions,
   type SurfaceIntersectionResult,
 } from "../../../../src/optics/geometry/intersect.js";
+import { baseConicRoot } from "../../../../src/optics/geometry/intersectConic.js";
 import { createSurfaceProfile, createTiltedPlaneProfile } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { normalize } from "../../../../src/optics/math/vector.js";
 import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../../../../src/optics/types.js";
@@ -691,5 +692,94 @@ describe("closed-form fallbacks", () => {
     const input = fixtureSolve("sphere-short-domain-window");
     expectClosedFormHit(input, input.roots[0]);
     expect(solveIteratively(input)).toMatchObject({ ok: false, failureReason: "noBracket", residual: null });
+  });
+});
+
+describe("base-conic root", () => {
+  /** `baseConicRoot` for one solve's ray and base conic, over an interval of ray parameters. */
+  const rootOf = ({ ray, profile, vertexZ }: Solve, lo: number, hi: number) =>
+    baseConicRoot(ray.origin, ray.direction, profile.curvature, profile.conic, vertexZ, lo, hi);
+
+  /** The bounds cut to the cylinder r <= sd, as the kernel cuts them; null when the ray has no span inside it. */
+  function capSpan({ ray, options }: Solve): { minT: number; maxT: number } | null {
+    const { minT = 0, maxT = Infinity, clearRadius } = options;
+    if (clearRadius === undefined) return null;
+    const [ox, oy] = ray.origin;
+    const [dx, dy] = ray.direction;
+    const speed2 = dx ** 2 + dy ** 2;
+    const along = ox * dx + oy * dy;
+    const offset = ox ** 2 + oy ** 2 - clearRadius ** 2;
+    if (speed2 === 0) return offset > 0 ? null : { minT, maxT };
+    const discriminant = along ** 2 - speed2 * offset;
+    if (discriminant < 0) return null;
+    const root = Math.sqrt(discriminant);
+    const span = { minT: Math.max(minT, (-along - root) / speed2), maxT: Math.min(maxT, (-along + root) / speed2) };
+    return span.maxT >= span.minT ? span : null;
+  }
+
+  it("is the closed form's root, bit for bit, wherever that root is between the bounds", () => {
+    const compared: string[] = [];
+    for (const { id, kind } of fixtures) {
+      if (kind === "asphere") continue;
+      const input = fixtureSolve(id);
+      const hit = solve(input);
+      const { minT = 0, maxT = Infinity } = input.options;
+      // A fallback's point is the iterative path's, and a root at a bound was moved onto it.
+      if (!(hit.ok && hit.closedFormFallback === null && hit.t > minT && hit.t < maxT)) continue;
+      // The interval the closed form selects in: the cap's on an aspheric profile, when the ray has one.
+      const span = (input.profile.kind === "aspheric" ? capSpan(input) : null) ?? { minT, maxT };
+      expect(rootOf(input, span.minT, span.maxT)?.t, id).toBe(hit.t);
+      compared.push(id);
+    }
+    expect(compared.length).toBeGreaterThan(20);
+    expect(compared).toContain("sphere-two-roots");
+
+    // The interval decides between two roots: over the bounds, the exterior root this ray meets first.
+    const exteriorFirst = fixtureSolve("conic-exterior-then-cap");
+    expect(compared).toContain("conic-exterior-then-cap");
+    const overBounds = rootOf(exteriorFirst, 0, exteriorFirst.options.maxT!);
+    expect(Math.abs(overBounds!.t - Number(exteriorFirst.roots[0].t))).toBeLessThan(1e-9);
+  });
+
+  it("returns the conic's sag at the root", () => {
+    const input = fixtureSolve("conic-ellipsoid");
+    const root = rootOf(input, 0, input.options.maxT!)!;
+    const point = input.ray.origin.map((origin, axis) => origin + input.ray.direction[axis] * root.t);
+    expect(Math.abs(root.sag - input.profile.sag(Math.hypot(point[0], point[1])))).toBeLessThan(1e-12);
+    expect(Math.abs(root.sag - (point[2] - input.vertexZ))).toBeLessThan(1e-12);
+  });
+
+  it("returns the vertex-plane crossing of a flat base bit for bit", () => {
+    const origin: Vec3 = [1, 2, -5];
+    const direction = normalize([0.1, 0.2, 1])!;
+    const vertexZ = 0.3;
+    const crossing = (vertexZ - origin[2]) / direction[2];
+    expect(baseConicRoot(origin, direction, 0, -3, vertexZ, 0, 20)).toEqual({ t: crossing, sag: 0 });
+    // The ends of the interval are inside it.
+    expect(baseConicRoot(origin, direction, 0, 0, vertexZ, crossing, crossing)).toEqual({ t: crossing, sag: 0 });
+  });
+
+  it("returns null for a root on the other sheet, outside the interval, or of no line that meets the quadric", () => {
+    // The hyperboloid's second sheet is crossed near t = 160 and its sag sheet near t = 200.
+    const sheets = fixtureSolve("conic-second-sheet-first");
+    expect(rootOf(sheets, 0, 180)).toBeNull();
+    expect(rootOf(sheets, 0, 250)?.t).toBeGreaterThan(199);
+
+    const behind = sphere(50, { origin: [0, 3, 5], direction: [0, 0, 1] }, { maxT: 20 });
+    expect(rootOf(behind, 0, 20)).toBeNull();
+    const chord = fixtureSolve("sphere-two-roots");
+    const [first, second] = chord.roots.map((root) => Number(root.t));
+    const between = (first + second) / 2;
+    expect(rootOf(chord, 0, between)?.t).toBeCloseTo(first, 9);
+    expect(rootOf(chord, between, chord.options.maxT!)?.t).toBeCloseTo(second, 9);
+    expect(rootOf(chord, between, second - 1e-6)).toBeNull();
+
+    const miss = sphere(50, { origin: [100, 0, -10], direction: [0, 0, 1] }, { maxT: 20 });
+    expect(rootOf(miss, 0, 20)).toBeNull();
+    // A line that passes the sphere 10 mm outside it has no root anywhere, however wide the interval.
+    const passing = sphere(50, { origin: [60, 0, -100], direction: [0, 0, 1] }, { maxT: 400 });
+    expect(rootOf(passing, 0, 400)).toBeNull();
+    // A ray parallel to a flat base never crosses its vertex plane.
+    expect(baseConicRoot([0, 1, -5], [1, 0, 0], 0, 0, 0, 0, 20)).toBeNull();
   });
 });

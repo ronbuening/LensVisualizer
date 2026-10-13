@@ -5,9 +5,27 @@
  * it has stalled; an analytic plane hit or landing, which has one point to offer, uses its envelope when that point
  * misses the raw target. These bounds account for cancellation in origin + direction*t and amplification of
  * transverse error by a steep sag.
+ *
+ * A residual is axial; a radius compared with an authored cap is transverse and has a tolerance of its own,
+ * `capCoordinateTolerance`.
  */
 
 import type { Vec3 } from "../types.js";
+
+/**
+ * Radial resolution of an authored cap: how near the clear radius a radius is still not told from it, in mm.
+ *
+ * It repeats the clear-aperture rule of `trace/aperture.ts`, which clips a hit only beyond
+ * `sd + max(1e-9, |sd| * 1e-12)`; `geometry/` does not import `trace/`. The conic-seeded asphere certificate holds
+ * the rounding of the transverse coordinates it compares with the cap to this length, the one at which the engine
+ * itself resolves which side of the cap a point is on.
+ *
+ * @param clearRadius - authored cap radius in mm
+ * @returns the tolerance in mm
+ */
+export function capCoordinateTolerance(clearRadius: number): number {
+  return Math.max(1e-9, Math.abs(clearRadius) * 1e-12);
+}
 
 /**
  * Bound residual roundoff in a radial sag equation, in axial millimeters.
