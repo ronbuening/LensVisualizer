@@ -45,7 +45,7 @@ L1 is the first element of the negative front group G1A. Its strong negative men
 
 ### L2 — Negative Meniscus, convex to object (2× Asph)
 
-$n_d = 1.53380$, $\nu_d = 55.6$. Glass: 534556 patent-code moldable crown; no unique public catalog match found. $f = -48.1$ mm.
+$n_d = 1.53380$, $\nu_d = 55.6$. Glass: Panasonic moulding material with no catalog match; its C, F and g indices are taken from US 2017/0059832 A1, which prints them for the same $n_d$ / $\nu_d$ pair. $f = -48.1$ mm.
 
 L2 is the first of the two aspherical elements in the design. Both surfaces (S3 and S4) carry aspherical profiles with significant conic constants ($K_3 = -0.414$, $K_4 = -0.748$, both prolate ellipsoids) and higher-order polynomial terms through $A_{12}$. The patent values identify a moldable crown class, but the audit did not find a unique public catalog entry for the exact nd/νd pair.
 
@@ -150,7 +150,7 @@ The design uses an all-OHARA glass palette of 10 distinct glasses across 12 elem
 | Element | Glass | $n_d$ | $\nu_d$ | Type | Role |
 |---------|-------|-------|---------|------|------|
 | L1 | S-LAH65V (OHARA) | 1.80420 | 46.5 | Lanthanum crown | High-index negative meniscus; controls surface curvature in the front group |
-| L2 | 534556 patent-code | 1.53380 | 55.6 | Moldable crown | Double-aspheric negative meniscus |
+| L2 | Unmatched moulding material | 1.53380 | 55.6 | Moldable crown | Double-aspheric negative meniscus |
 | L3 | S-FPL51 (OHARA) | 1.49700 | 81.6 | ED fluorophosphate | First ED element; lateral color correction in front group |
 | L4 | J-PSKH4 (Hikari) | 1.59349 | 67.0 | High-Abbe crown | High-$\nu_d$ negative in cemented doublet with L5 |
 | L5 | S-FTM16 (OHARA) | 1.59270 | 35.4 | Flint | Low-$\nu_d$ positive partner to L4; achromatization |
