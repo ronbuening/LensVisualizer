@@ -93,7 +93,7 @@ const ODD_SAG_LENGTH = vectorLength(false, (term) => term.sagSlot);
 const EVEN_SLOPE_LENGTH = vectorLength(true, (term) => term.slopeSlot);
 const ODD_SLOPE_LENGTH = vectorLength(false, (term) => term.slopeSlot);
 /** Highest power of h in the schema; the slope bound holds one coefficient per power of h below it. */
-const MAX_TERM_POWER = ASPHERIC_POLYNOMIAL_TERMS.reduce((power, term) => Math.max(power, term.power), 0);
+export const MAX_TERM_POWER = ASPHERIC_POLYNOMIAL_TERMS.reduce((power, term) => Math.max(power, term.power), 0);
 
 /** The four Horner vectors of one coefficient object, each with its highest nonzero slot (-1 when all zero). */
 interface HornerTerms {
