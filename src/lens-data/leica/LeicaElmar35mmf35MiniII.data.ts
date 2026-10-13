@@ -1,0 +1,241 @@
+import type { LensDataInput } from "../../types/optics.js";
+
+/**
+ * LEICA ELMAR 35mm f/3.5 (Leica Mini II)
+ * US 5,321,555 A (Leica Camera GmbH), the patent's only numerical example. It is unnumbered:
+ * Fig. 1 and claim 2. Four elements in three groups, all spherical. Indices and Abbe numbers
+ * are the patent's e-line (546 nm) values, stored with indexReference "e". No scaling.
+ *
+ * Source erratum, surface 3 radius. The table prints R3 = 19.1519, in the US print and in
+ * EP 0 537 469 B1 alike. As printed, the table traces to f = 34.5026 mm against the stated
+ * 33.6323 mm. R3 = 19.635 reproduces the stated focal length (33.6326 mm), the printed last
+ * gap (paraxial focus 24.5161 mm behind the stop against the printed 24.5165 mm) and the stated
+ * pupil magnification (0.7289 against 0.7290) together, and the patent's distortion and
+ * field-curvature plots (Figs. 2A, 2D) fit it and not the printed value. The printed decimals
+ * repeat those of the row above (39.1519). The fourth decimal of 19.635 is inferred from the
+ * stated focal length (within 0.0005); no publication prints it. See sourceErrata and the
+ * audit log.
+ *
+ * Every other radius, thickness and index is as printed, including d8 = 24.5165 mm from the
+ * stop to the image. The summary line's back focus S' = 26.7165 differs from d7 + d8 = 25.7165
+ * by exactly 1.0000 and is read as a digit slip in the summary; the file keeps the printed gaps.
+ *
+ * Semi-diameters are not published. They are inferred from the Fig. 1 proportions and the
+ * axial f/3.5 beam. The stop radius is the height of the real axial f/3.5 marginal ray at the
+ * stop plane, not a published diaphragm size.
+ * The camera brochure lists a fixed UVa protective filter. It is not in the patent and is not
+ * modeled.
+ * Focus: the patent gives the infinity state only. The camera focuses from 0.65 m to infinity
+ * by autofocus; that travel is not published, so no focus movement is modeled.
+ * Glass labels are index/Abbe classes. The patent names no glass type or supplier.
+ */
+
+const LENS_DATA = {
+  "key": "leica-elmar-35mm-f35-mini-ii",
+  "maker": "Leica",
+  "name": "LEICA ELMAR 35mm f/3.5 (Leica Mini II)",
+  "sourceErrata": [
+    {
+      "status": "corrected",
+      "surface": "3",
+      "field": "R",
+      "printed": 19.1519,
+      "applied": 19.635,
+      "evidence": [
+        "source-summary",
+        "aberration-figure"
+      ],
+      "note": "The printed table traces to f = 34.5026 mm against the stated 33.6323 mm. R3 = 19.635 reproduces the stated focal length (33.6326 mm), the printed last gap (paraxial focus 24.5161 mm behind the stop against the printed 24.5165 mm) and the stated pupil magnification (0.7289 against 0.7290) together. The patent's distortion and field-curvature plots (Figs. 2A, 2D) fit the corrected value and not the printed one. The printed decimals repeat those of the row above (39.1519). The fourth decimal of the applied value is inferred from the stated focal length (within 0.0005); no publication prints it, and the US and EP prints carry the same 19.1519. Separately, the summary back focus 26.7165 differs from the table's d7 + d8 = 25.7165 by exactly 1.0000 and is read as a digit slip in the summary line; the file keeps the printed gaps."
+    }
+  ],
+  "subtitle": "US 5,321,555 A, Fig. 1 / Claim 2 — qualified production correlation",
+  "specs": [
+    "4 ELEMENTS / 3 GROUPS",
+    "DESIGN f = 33.63 mm",
+    "DESIGN F/3.5",
+    "ALL SPHERICAL",
+    "INFINITY FOCUS ONLY"
+  ],
+  "focalLengthMarketing": 35,
+  "focalLengthDesign": 33.6326,
+  "apertureMarketing": 3.5,
+  "apertureDesign": 3.5,
+  "lensMounts": [
+    "fixed-lens-camera"
+  ],
+  "imageFormat": "135-full-frame",
+  "patentNumber": "US 5,321,555 A",
+  "patentAuthors": [
+    "Lothar Koelsch",
+    "Klaus-Dieter Schaefer"
+  ],
+  "patentAssignees": [
+    "Leica Camera GmbH"
+  ],
+  "patentYear": 1994,
+  "elementCount": 4,
+  "groupCount": 3,
+  "elements": [
+    {
+      "id": 1,
+      "name": "L1",
+      "diagramLabel": "L1",
+      "label": "Element 1",
+      "type": "Positive Meniscus",
+      "nd": 1.808109,
+      "vd": 46.34,
+      "indexReference": "e",
+      "fl": 18.21176023919409,
+      "glass": "Unmatched (native e-line lanthanum dense-flint class; supplier unconfirmed)",
+      "role": "Positive meniscus front element of the cemented doublet; its front surface is the strongest positive surface in the lens.",
+      "cemented": "D1"
+    },
+    {
+      "id": 2,
+      "name": "L2",
+      "diagramLabel": "L2",
+      "label": "Element 2",
+      "type": "Negative Meniscus",
+      "nd": 1.81264,
+      "vd": 25.23,
+      "indexReference": "e",
+      "fl": -50.831017,
+      "glass": "Unmatched (native e-line dense-flint class; supplier unconfirmed)",
+      "role": "Negative meniscus cemented behind L1, with nearly the same index and much higher dispersion; the patent uses the cemented surface to balance the lateral color of the last surface.",
+      "cemented": "D1"
+    },
+    {
+      "id": 3,
+      "name": "L3",
+      "diagramLabel": "L3",
+      "label": "Element 3",
+      "type": "Biconcave Negative",
+      "nd": 1.65223,
+      "vd": 33.57,
+      "indexReference": "e",
+      "fl": -12.67567822780607,
+      "glass": "Unmatched (native e-line flint class; supplier unconfirmed)",
+      "role": "Biconcave negative middle element of the triplet; it offsets the field curvature of the two positive groups."
+    },
+    {
+      "id": 4,
+      "name": "L4",
+      "diagramLabel": "L4",
+      "label": "Element 4",
+      "type": "Biconvex Positive",
+      "nd": 1.7167,
+      "vd": 42.89,
+      "indexReference": "e",
+      "fl": 16.046751890986677,
+      "glass": "Unmatched (native e-line intermediate-dispersion optical-glass class; supplier unconfirmed)",
+      "role": "Biconvex positive rear element, 1.2 mm ahead of the rear aperture stop."
+    }
+  ],
+  "surfaces": [
+    {
+      "label": "1",
+      "R": 11.0297,
+      "d": 2.73,
+      "nd": 1.808109,
+      "elemId": 1,
+      "sd": 6.6
+    },
+    {
+      "label": "2",
+      "R": 39.1519,
+      "d": 2.0219,
+      "nd": 1.81264,
+      "elemId": 2,
+      "sd": 6.6
+    },
+    {
+      "label": "3",
+      "R": 19.635, // patent prints 19.1519, repeating the decimals of the row above; corrected, see header and sourceErrata
+      "d": 0.7,
+      "nd": 1,
+      "elemId": 0,
+      "sd": 6.6
+    },
+    {
+      "label": "4",
+      "R": -40.8013,
+      "d": 1.0051,
+      "nd": 1.65223,
+      "elemId": 3,
+      "sd": 4.05
+    },
+    {
+      "label": "5",
+      "R": 10.4692,
+      "d": 0.8,
+      "nd": 1,
+      "elemId": 0,
+      "sd": 4.05
+    },
+    {
+      "label": "6",
+      "R": 20.7116,
+      "d": 3.543,
+      "nd": 1.7167,
+      "elemId": 4,
+      "sd": 4.0
+    },
+    {
+      "label": "7",
+      "R": -24.0136,
+      "d": 1.2,
+      "nd": 1,
+      "elemId": 0,
+      "sd": 4.0
+    },
+    {
+      "label": "STO",
+      "R": 1000000000000000.0,
+      "d": 24.5165, // printed d8, stop to image
+      "nd": 1,
+      "elemId": 0,
+      "sd": 3.544664 // height of the real axial f/3.5 marginal ray at the stop
+    }
+  ],
+  "asph": {},
+  "var": {},
+  "varLabels": [],
+  "groups": [
+    {
+      "text": "G1 (+)",
+      "fromSurface": "1",
+      "toSurface": "3"
+    },
+    {
+      "text": "G2 (-)",
+      "fromSurface": "4",
+      "toSurface": "5"
+    },
+    {
+      "text": "G3 (+)",
+      "fromSurface": "6",
+      "toSurface": "7"
+    }
+  ],
+  "doublets": [
+    {
+      "text": "D1",
+      "fromSurface": "1",
+      "toSurface": "3"
+    }
+  ],
+  "closeFocusM": 0.65,
+  "focusDescription": "Infinity focus only. The patent tabulates the infinity state alone, with the image 24.5165 mm behind the rear stop. The Leica mini II focuses from 0.65 m to infinity by infrared autofocus; the patent does not publish that travel, so no focus movement is modeled.",
+  "nominalFno": 3.5,
+  "fstopSeries": [
+    3.5,
+    4,
+    5.6,
+    8,
+    11,
+    16
+  ],
+  "yScFill": 0.3
+} satisfies LensDataInput;
+
+export default LENS_DATA;
