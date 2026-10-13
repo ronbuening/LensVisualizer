@@ -231,7 +231,8 @@ into `main` once, after the Stage 5 gate, and Stages 6 to 8 then merge to `main`
   passes the same gates as a step. `main` takes lens data, content and UI. An intentional engine behavior change moves
   the anchor only under the rule in [Anchors and comparison coverage](#anchors-and-comparison-coverage).
   - **What a lens batch on `main` still changes in engine files.** The glass catalog rows it needs, and now and then
-    a validator allowance or a converter rule. Lens work cannot wait for `engine-next`, so these land on `main`,
+    a validator allowance or a teleconverter composition rule. Lens work cannot wait for `engine-next`, so these land
+    on `main`,
     reach `engine-next` in the weekly merge, and move the anchor there.
 - **Promotion.** After the Stage 5 gate, `engine-next` merges into `main` as a merge commit, never a squash, so the
   anchor tags stay reachable from `main`. The promotion PR carries:
@@ -274,8 +275,8 @@ into `main` once, after the Stage 5 gate, and Stages 6 to 8 then merge to `main`
 ### Anchors and comparison coverage
 
 An anchor is a commit of the branch the program merges to, `engine-next` until promotion and `main` after it, whose
-**engine** the stage gates compare against. Anchors track engine revisions only, and lens data never moves one.
-Besides an engine C3, two things do: a merge of `main` that changes engine files, and the catalog conversion, once
+**engine** the stage gates compare against. Anchors track engine revisions only, and a changed lens file never moves
+one. Three things do: an engine C3, a merge of `main` that changes engine files, and the catalog conversion, once
 (see "Baselines and anchor moves" below).
 
 **Semantic fingerprint.** Each prescription has a semantic fingerprint: a hash of every canonical value the engine or
@@ -308,10 +309,22 @@ readings are fixed until the canonical prescription replaces it:
    base and head prescriptions are evaluated on the head engine and must be bit-identical.
 3. **Semantic data changes.** For each lens whose fingerprint changed, and each new lens, the run reports the impact:
    base data against head data, both on the head engine.
-   - These block the PR: a new failed status, a non-finite value, or a lens that no longer builds. A new lens, or a
-     converter pair the base data did not permit, has nothing to compare against and blocks only by not building.
-   - Everything else in the impact report is reviewed rather than gated. That includes a changed host or converter
-     that loses every pair it had, which the report puts first.
+   - A changed lens is judged path by path. These block the PR, each at a payload path that both sides have: a
+     status that is no failure on the base data and a failure on the head data; a number the engine computed that
+     is finite on the base data and not on the head data; and a record, an analysis job or a near-axis probe that
+     returned on the base data and throws on the head data, which is how a lens that no longer builds shows.
+   - A failure is a status that says `failed`: `failed`, `bracket-failed` and `evaluation-failed`. `clipped`,
+     `missed-sensor` and the other statuses are outcomes a prescription may move between. The base status need
+     only be no failure, so `clipped` to `failed` blocks as `ok` to `failed` does.
+   - A status or a number at a path only one side has does not block, a failure among them included. On the head
+     side it is work the base data never did, such as the rays of a sample that used to miss the sensor. On the
+     base side it is work no longer done. An array that changed length is paired by index, and the report lists
+     each such array that holds a status, an outcome or a non-finite number.
+   - A new lens, or a converter pair the base data did not permit, has nothing to compare against and blocks only
+     by not building.
+   - Everything else in the impact report is reviewed rather than gated. That includes a failure inside a pupil
+     bundle, which its digest does not name, and a changed host or converter that loses every pair it had, which
+     the report puts first.
 4. **Exceptions.** Some prescriptions cannot be evaluated by the base engine, for example a V2 file before V2 ingest
    (S2.P2.T1) exists in the base. The PR lists each such lens under a `## Engine-diff exceptions` heading in its
    description, one backticked lens id per bullet, and the CI job passes the description to `--exceptions`. A stage
@@ -375,22 +388,38 @@ readings are fixed until the canonical prescription replaces it:
 - **A merge of `main` that changes what the engine computes moves the anchor.** The glass catalog is engine source,
   and each engine is built with its own copy. A lens batch on `main` that adds a glass row and relabels a glass to
   it leaves `engine-next`'s engine different from the anchor's: the anchor's engine cannot resolve the new glass, so
-  the two disagree on that lens's chromatic indices by far more than any budget. A validator or converter rule
-  changed on `main` does the same. A changed lens file does not, because both engines are handed the same file.
-  - **Which merges.** One whose own `engine-diff` run shows engine drift, or a lens the engine before the merge
-    cannot build. A merge that brings only lens data, content and UI leaves the anchor where it is.
-  - **Before the anchor moves:** Tier S of the head of `engine-next` before the merge against the current anchor,
-    under the loosest class merged since it, with the transitions those PRs declared. It checks everything since
-    the old anchor, so no drift is lost. It may run after the merge has landed, since both commits exist; the anchor
-    moves when it passes.
-  - **Then** the merge commit is the anchor, tagged `optics-rewrite/a<n>` in order. `optics-rewrite/a1` is the first;
-    A0 is `optics-rewrite/s1`. Budgets accumulate from the new anchor.
-  - **The merge PR** carries `engine-diff:c3`, because `main`'s reviewed changes arrive in it and are reported, not
-    gated. It declares as exceptions the lenses the engine before the merge cannot build, and it records both
-    results: the Tier S above and Tier P against `main`.
+  the two disagree on that lens's chromatic indices by far more than any budget. A validator rule or a teleconverter
+  composition rule changed on `main` does the same. A changed lens file does not, because both engines are handed
+  the same file.
+  - **Which merges.** One that changes a file under `src/optics/` other than a `*.md`, or whose own `engine-diff`
+    run shows engine drift or a lens the engine before the merge cannot build. A merge that brings only lens data,
+    content and UI leaves the anchor where it is.
+  - **Before the merge PR merges:** Tier S of the head of `engine-next`, the commit that will be the merge's first
+    parent, against the current anchor, under the loosest class merged since it and with the transitions those PRs
+    declared. It checks every step since the old anchor on the lenses then in the catalog. No step merges in
+    between, and a failure holds the merge until it is understood and the run repeated. The first such merge, #788,
+    landed before its run; the rule is as written from the next one.
+  - **The merge itself** is checked by its PR's two Tier P runs, its own and the one against `main`. The PR names,
+    for each lens its own run reports as differing, the change on `main` that explains it, and a difference it
+    cannot explain holds the merge.
+  - **Then** the merge commit is the anchor. Every anchor moved before the conversion, by a merge or by an engine
+    C3, is tagged `optics-rewrite/a<n>` in order: `optics-rewrite/a1` is the first, and A0 is `optics-rewrite/s1`.
+    Budgets accumulate from the new anchor.
+  - **The merge PR** carries `engine-diff:c3`, because `main`'s reviewed engine-file changes arrive in it and are
+    reported, not gated. The label classes that one run. The merge is not an engine C3 under the bullet above, and
+    it does not count towards the class of a stage or promotion run.
+    - It declares as exceptions the lenses the engine before the merge cannot build.
+    - The label waives none of the checks that fail under every class: a format-only difference, a record that
+      throws on both engines, an exception that does not match, and a data-impact blocker. A blocker in a lens
+      `main` changed is fixed on `main` and the merge taken again.
   - **The efficiency gates keep their base.** A glass row or a validator rule changes no timing worth gating, so an
-    anchor moved this way is not a timing base.
+    anchor moved this way is not a timing base. Each side of a paired run bundles its own catalog, so against A0 the
+    differing-prescription warnings on a lens `main` has since changed are expected and listed, and the memory
+    record gives each side's lens count and the growth figure beside the absolute one.
   - **What still spans the whole program** is the promotion's Tier F against `main`, which depends on no anchor.
+  - **This rule ends at promotion.** After it, lens batches add glass rows on `main` directly, and what that does
+    to the Stage 2 gate's base and to the anchor of Stages 6 to 8 is open (see the list after the settled
+    decisions).
 - **The catalog conversion moves the anchor once.** A base has to build the head's catalog, and no commit older than
   V2 ingest (S2.P2.T1) reads a V2 file. Against an older anchor, every converted lens would be a declared exception
   and a stage gate would compare no engine output.
@@ -439,7 +468,7 @@ are unmeasured. Loosening a budget later is itself a C3 change.
 | Quantity | C1 budget | C2 budget |
 | --- | --- | --- |
 | Unclipped surface hit, image-plane landing | 1e-9 mm | — (traces are not C2) |
-| Clipped, exterior or diagnostic hit | 1e-7 mm | — |
+| Clipped, exterior or diagnostic hit | 1e-7 mm, or 1e-12 of the point's own size where that is more | — |
 | Direction cosines | 1e-10 | — |
 | First-order scalars (EFL, BFD, pupil positions and sizes, stop SD) | 1e-12 relative | — |
 | Chief-ray launch height | 1e-9 mm | Twice the solver's stop-residual tolerance (1e-7 mm today), mapped through ∂y_stop/∂y_launch |
@@ -455,6 +484,11 @@ How `budgets.ts` applies the table:
   two sides is a discrete transition.
 - **Relative budgets** bound `|a − b|` by the budget times the larger magnitude. Lengths also have an absolute floor of
   1e-12 mm, so a length at zero has a bound. Ratios such as f-numbers and the Petzval sum have no floor.
+- **A clipped or diagnostic point far from the lens.** The 1e-7 mm of the table is the whole budget for a point
+  within 100 m of the lens. Beyond that the bound is 1e-12 of the point's own size. A clipped ray that the legacy
+  tracer follows as a ghost path can leave the lens altogether: on one catalog lens its points run from 3.1e8 mm to
+  1e250 mm, where adjacent floating-point values are more than 1e-7 mm apart and two engines that agree to rounding
+  cannot meet an absolute bound. The first Tier S against A0 failed on that one ray and on nothing else.
 - **Fields the table does not name.** Layout lengths, refractive indices and prescription values the engine hands back
   take the first-order budget. Slopes are compared as direction cosines. Count ratios and binned statistics are exact.
 - **A hit's `effectiveTolerance`** is bit-exact under C0, as every number is, and held to 1e-12 relative under C1 and
@@ -508,7 +542,7 @@ How `budgets.ts` applies the table:
 | Engine or lens-data PR: touches `src/optics/**`, `src/types/**`, `src/lens-data/**` other than `*.md`, `src/utils/catalog/**`, `src/utils/featureFlags.ts`, or the harness itself | CI job `engine-diff` (S1.P2.T2) | Tier P against the merge-base under the PR's change class, plus every changed or new lens through every Tier P request |
 | Phase end | The PR that ends the phase | Every test the phase's steps added, run together; the phase exit criteria |
 | Weekly merge of `main` into `engine-next` | The merge PR's CI, then a run of the driver; a stage run when the anchor moves | The merge PR's own `engine-diff` job under its declared class; then Tier P of `engine-next` against `main`, recorded in that PR. When the merge changes what the engine computes: Tier S of the head before the merge against the anchor, after which the merge commit is the anchor |
-| Stage end | GitHub Actions: `engine-diff-stage.yml` by `workflow_dispatch`, sharded as a matrix (S1.P2.T3). Dispatch needs the workflow file on `main`, so a stub of it lands there before the first stage gate after Stage 1; a run on `engine-next` then uses that branch's version. A push to `engine-diff-stage/<name>` runs Tier S of the pushed commit against itself, which is what the Stage 1 gate and a PR that changes the workflow need. Timing runs on the maintainer's machine. | Tier S against the current anchor (the Stage 2 gate: against the promotion merge commit); the full suites; build; the stage's efficiency report; then the tag |
+| Stage end | GitHub Actions: `engine-diff-stage.yml` by `workflow_dispatch`, sharded as a matrix (S1.P2.T3). Dispatch needs the workflow file on `main`, so a stub of it is on `main` (#789); a run on `engine-next` then uses that branch's version. A push to `engine-diff-stage/<name>` runs Tier S of the pushed commit against itself, which is what the Stage 1 gate and a PR that changes the workflow need. Timing runs on the maintainer's machine. | Tier S against the current anchor (the Stage 2 gate: against the promotion merge commit); the full suites; build; the stage's efficiency report; then the tag |
 | Promotion, after the Stage 5 gate | `engine-diff-stage.yml`, sharded; timing on the maintainer's machine | Tier F of `engine-next` against `main`; the benchmark and memory comparison; the preview deployment; then the merge commit |
 | Before S8.P2 deletes code | `engine-diff-stage.yml`, sharded | Tier F against the current anchor |
 
@@ -1556,7 +1590,7 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     input, with their tests. The prepared-tracer probe copies the engine's own launch, so a step that changes that
     launch changes the copy with it.
   - **Known outside what the tiers sample.** A review found three properties of the Horner form that neither Tier P
-    nor Tier S on the lenses named shows. The Stage 3 gate is where another lens could:
+    nor Tier S on the lenses named shows. A later Tier S is where another lens could:
     - a ray grazing the rim of an ill-conditioned asphere can carry a 1e-12 mm hit move past 1e-9 mm downstream
       (Fujifilm XF 27mm, surface 8A);
     - an aspheric hit can switch between converging at the raw target and stalling at the roundoff envelope, in
@@ -1966,6 +2000,7 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 31 | A C1 step may update a test that pins rounding-level bits, listing each pin | [Numerical contract](#numerical-contract) |
 | 32 | S3.P1.T1 moves and fuses only: four profile kinds, both sphere clamps, and only aspheric numbers move | S3.P1.T1 |
 | 33 | A merge of `main` that changes what the engine computes moves the anchor, after a Tier S check of everything since the old one | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
+| 34 | A clipped or diagnostic point is held to 1e-7 mm, or to 1e-12 of its own size where that is more | [Quantity budgets](#quantity-budgets) |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
@@ -1979,6 +2014,11 @@ Open for the maintainer, none of them needed before promotion:
 - S2.P6.T5 drops `focalLengthMm` from nearly every catalog file. As written it moves nearly every page's modified
   date, soon after the conversion was kept from doing so.
 - The Stage 2 gate's items other than the anchor move, which the maintainer has seen only in outline.
+- What a glass row added on `main` after promotion does: to the Stage 2 gate, whose base is the promotion merge
+  commit, and to the anchor of Stages 6 to 8.
+- Whether an engine C3's anchor is a timing base.
+- Whether a status that turns to a failure from one that held no result either, such as `clipped` to `failed`,
+  should block a data change. It does today, and no catalog change since A0 shows one.
 
 ## Rollback
 
