@@ -346,10 +346,10 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
      `paraxial-fallback`, `unconverged`, `unavailable` and the out-of-domain statuses.
      - The status on the base data need only be no failure, so a status that held no result there blocks as one
        that held one does: a ray that was `clipped` and is `failed`, a root solve that was `unbracketed` and is
-       `evaluation-failed`. The fans of a traces record are traced on past a rim, so the first is a vignetted ray
-       that went on to miss a surface, and nothing that was good became bad. It blocks all the same, and nothing
-       excuses a data-impact block. The report's table of status changes marks each change that blocks, so a
-       reader tells such a block from a result that was lost.
+       `evaluation-failed`. The fans of a traces record are traced on past a rim, so the first is as a rule a
+       vignetted ray that went on to miss a surface, and nothing that was good became bad. It blocks all the same,
+       and nothing excuses a data-impact block. The report's table of status changes marks each change that blocks,
+       so a reader tells such a block from a result that was lost.
    - A number the engine computed that is finite on the base data and not on the head data.
    - An outcome that is true on the base data and false on the head data. An outcome is a boolean in a member named
      `ok`: that of the record itself, of an analysis job and of a tracer's near-axis probes, each of which returned

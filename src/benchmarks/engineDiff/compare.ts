@@ -760,8 +760,9 @@ export interface DifferentialRun {
  *
  * The rule asks of the base status only that it is no failure, so it also blocks where the base data held no result
  * either: a ray that was `clipped` and is `failed`, a root solve that was `unbracketed` and is `evaluation-failed`.
- * The fans of a traces record are traced on past a rim, so the first is a vignetted ray that went on to miss a
- * surface. The report marks the status changes that block, and a reader tells those from a result that was lost. */
+ * The fans of a traces record are traced on past a rim, so the first is as a rule a vignetted ray that went on to
+ * miss a surface. The report marks the status changes that block, and a reader tells those from a result that was
+ * lost. */
 const FAILED_STATUS = /failed/;
 
 /** Whether a status that changed between the two sides of a data change blocks it. */

@@ -2167,8 +2167,8 @@ describe("engineDiff cross-evaluation", () => {
 
     /* The status on the base data need only be no failure. A ray that was clipped and now fails blocks, and so
      * does a root solve that found no bracket and now cannot evaluate, although neither held a result on the base
-     * data: the fans of a traces record are traced on past a rim, so such a ray is a vignetted ray that went on to
-     * miss a surface. The table of status changes says which changes blocked. */
+     * data: the fans of a traces record are traced on past a rim, so such a ray is as a rule a vignetted ray that
+     * went on to miss a surface. The table of status changes says which changes blocked. */
     for (const [from, to] of [
       ["clipped", "failed"],
       ["unbracketed", "evaluation-failed"],
@@ -3014,6 +3014,25 @@ describe("engineDiff converter pairs", () => {
           },
         },
       ],
+    });
+
+    /* The fit predicate's answer in a composition record is a member named `ok`, and is read as any outcome is. The
+     * composer applies the predicate, so a pair it refuses throws as its record does. Were a record to return with
+     * the answer turned to false, that alone blocks. */
+    expect(at(head, "composition", ["compatibility", "ok"])).toBe(true);
+    const refused = withChange("composition", ["compatibility", "ok"], () => false, head);
+    const answered = createDifferentialRun({ changeClass: "c0", declaredExceptions: [], restricted: true });
+    answered.addLens({
+      lens: idOf(withFailedRay),
+      dataChange: "semantic",
+      baseEngine: structuredClone(refused),
+      headEngine: refused,
+      baseData: head,
+    });
+    expect(answered.finish().dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ request: "composition", path: "compatibility.ok", base: "true", head: "false" }],
+      paths: { outcomes: { toThrown: 1, fromThrown: 0 } },
     });
   });
 
