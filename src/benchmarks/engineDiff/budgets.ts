@@ -93,6 +93,11 @@ function relative(title: string, c1: number, origin: QuantityOrigin, floor?: Qua
  * the same number. */
 const LENGTH_FLOOR = { bound: 1e-12, unit: "mm" } as const;
 
+/* The floor of a class of fractions: 1e-10, which is the 1e-10 relative budget at 1, and the plan's percentage
+ * budget, 1e-8 points, restated for a fraction. A transmission, a weight or a bin's share of the light is often
+ * exactly zero, and below 1 this floor is the whole bound. */
+const FRACTION_FLOOR = { bound: 1e-10, unit: "" } as const;
+
 /* The floor of the class of clipped, exterior and diagnostic points: the plan's 1e-7 mm, which is the whole budget
  * for any point within 100 m of the lens. Beyond that the class is relative, at 1e-12 of the point's own size. A
  * clipped ray that the legacy tracer follows as a ghost path can leave the lens altogether, and its points then
@@ -136,9 +141,9 @@ const ANALYSIS_HALF_FIELD_QUANTUM_DEG = 5 / 2 ** 8;
  * The quantity classes.
  *
  * The first nine are the plan's rows with the plan's values, and `count` and `requested` are its tenth
- * row (statuses, counts, sample positions) for the numbers among them. A budget here is a ceiling for a declared
- * class of change, not a measurement: the C1 noise floor is measured by running the harness against a commit that
- * reorders one sum.
+ * row (statuses, counts, sample positions) for the numbers among them. `binnedStatistic` and `lengthRatio` are the
+ * plan's too: two kinds of ratio it budgets by name. A budget here is a ceiling for a declared class of change, not
+ * a measurement: the C1 noise floor is measured by running the harness against a commit that reorders one sum.
  */
 export const QUANTITIES = {
   landing: absolute("Unclipped surface hit, image-plane landing", "mm", 1e-9, "plan"),
@@ -152,9 +157,25 @@ export const QUANTITIES = {
   mtfModulation: absolute("MTF modulation", "", 1e-7, "plan"),
   count: exact("Count or index", "plan"),
   requested: exact("Sample position, request echo or authored value", "plan"),
+  /* A bokeh footprint weighs each ray by its transmission and sums the weights into the bins of a radial profile:
+   * a bin's density and its share of the energy, the mean density of the centre bins and of the rim bins, and the
+   * ratio of those two. Where no element absorbs, every ray weighs the same and each of these is a ratio of counts.
+   * Through an absorbing element a weight is exp(−α · path), so each is a sum of such weights, and its last bits
+   * move when a hit moves inside its tolerance: the class cannot be exact. Four of the five are fractions of the
+   * profile's peak or of its total, zero for an empty bin, so the class takes the budget and the floor of a smooth
+   * ratio. The centre-to-rim ratio runs to hundreds, and is relative there. A ray that changes bin moves a share
+   * by its whole weight, which is far outside the budget unless the ray is all but absorbed. */
+  binnedStatistic: relative("Binned ray-weight statistic", 1e-10, "plan", FRACTION_FLOOR),
+  /* One image-plane length an analysis measures over another: the extents of a spot on either side of its
+   * centroid, or its sagittal span over its tangential one. Each length is an analysis length, held to 1e-8 mm,
+   * and a spot is some thousandths of a millimetre across. Rounding that moves such an extent by 1e-13 mm moves
+   * the ratio by 1e-10 of itself, so the budget of a fraction cannot hold it. 1e-8 relative is a fixed bound, still
+   * far tighter than the one the lengths' own budget implies: 1e-8 mm in 1e-3 mm is 1e-5 of the ratio. Neither
+   * ratio comes near zero without being zero, which the span ratio of a footprint with no rays is, so the bound is
+   * plainly relative. */
+  lengthRatio: relative("Ratio of two analysis lengths", 1e-8, "plan"),
 
   countRatio: exact("Count ratio", "addition"),
-  binnedStatistic: exact("Binned statistic", "addition"),
   /* The tolerance a hit was accepted under is the engine's raw target, 1e-12 mm, except at a stalled root. There it
    * is a computed float, the larger of that target and a roundoff envelope: 16·ε times the sum of the ray's
    * absolute operands. Reordered arithmetic moves the last bits of that sum, so above C0 the field takes the plan's
@@ -257,7 +278,7 @@ export const QUANTITIES = {
   refractiveIndex: relative("Refractive index", 1e-12, "derived"),
   nonLength: relative("Ratio, f-number, power or scale", 1e-12, "derived"),
   prescription: relative("Prescription value handed back", 1e-12, "derived"),
-  ratio: relative("Smooth dimensionless ratio", 1e-10, "derived", { bound: 1e-10, unit: "" }),
+  ratio: relative("Smooth dimensionless ratio", 1e-10, "derived", FRACTION_FLOOR),
 } as const satisfies Record<string, Quantity>;
 
 export type QuantityId = keyof typeof QUANTITIES;
@@ -645,6 +666,17 @@ const TABLE: readonly TableRow[] = [
     "requested",
     ["analysis:jobs.groupMovement*.**.{x,focusT,zoomT,focalLengthMm}", "analysis:jobs.groupMovement*.**.xDomain[]"],
   ],
+  /* The blur character of spherical aberration bins its rays at the weight the pupil sampler gave them, the same
+   * for every ray: the engine multiplies no transmission into it, on an absorbing lens either. Each statistic of
+   * its radial profile is then a function of the counts in the bins, on every lens, and stays exact with the count
+   * ratios. The bokeh footprints, which do weigh a ray by its transmission, go by member name further down. */
+  [
+    "countRatio",
+    [
+      "analysis:jobs.computeSphericalAberrationBlurCharacter.**.{density,energyFraction}",
+      "analysis:jobs.computeSphericalAberrationBlurCharacter.**.{centerDensity,rimDensity,centerToRimRatio}",
+    ],
+  ],
   ["bestFitRadius", ["analysis:jobs.asphericComparison.**.bestFitRadius"]],
   ["requested", ["analysis:jobs.asphericComparison.**.h"]],
   ["analysisLength", ["analysis:jobs.asphericComparison.**.delta", "analysis:jobs.computeBestFocusZ.value"]],
@@ -738,7 +770,11 @@ const TABLE: readonly TableRow[] = [
     ],
   ],
   ["countRatio", ["analysis:**.{geometricTransmission,absoluteGeometricTransmission,mechanicalTransmission}"]],
+  /* The radial profile of a bokeh footprint, whose rays are weighed by their transmission. */
   ["binnedStatistic", ["analysis:**.{density,energyFraction,centerDensity,rimDensity,centerToRimRatio}"]],
+  /* The skew of a coma tail is the longer extent of a spot from its centroid over the shorter, and the other is
+   * the spot's sagittal span over its tangential span: each one image-plane length in mm over another. */
+  ["lengthRatio", ["analysis:**.{tailSkewRatio,sagittalToTangentialRatio}"]],
   [
     "requested",
     [
@@ -756,7 +792,9 @@ const TABLE: readonly TableRow[] = [
     [
       "analysis:**.{transmission,weight,usedWeight,totalWeight,usableWeight,transmittedWeight}",
       "analysis:**.{mechanicalWeight,photometricWeight,relativeIllumination,chiefRayCorrection}",
-      "analysis:**.{catEyeAspect,shiftRadius,tailSkewRatio,sagittalToTangentialRatio}",
+      /* The aspect of a pupil footprint and the offset of its centroid, in fractions of the pupil as its spans
+       * and centroid are: no length in mm is in either. */
+      "analysis:**.{catEyeAspect,shiftRadius}",
       "analysis:**.{geometricFactor,transmittedGeometricFactor,transmittedFlux,absoluteTransmittedFlux}",
       "analysis:**.{absoluteGeometricFactor,absoluteTransmittedGeometricFactor}",
       "analysis:**.*NormalizedToZeroCenter",

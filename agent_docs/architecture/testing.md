@@ -456,18 +456,20 @@ The classes in `budgets.ts`:
 
 - The rows of that quantity table keep its values: unclipped hits and image-plane landings 1e-9 mm, clipped,
   exterior or diagnostic hits 1e-7 mm (or 1e-12 of the point's own size where that is more, which it is beyond 100 m
-  from the lens, where a ghost path that has left the lens puts its points), direction cosines 1e-10, first-order scalars 1e-12 relative, chief-ray launch
-  heights 1e-9 mm, field angles from an image height 1e-10°, analysis lengths 1e-8 mm, percentages 1e-8 points, MTF
-  modulation 1e-7.
+  from the lens, where a ghost path that has left the lens puts its points), direction cosines 1e-10, first-order
+  scalars 1e-12 relative, chief-ray launch heights 1e-9 mm, field angles from an image height 1e-10°, analysis
+  lengths 1e-8 mm, percentages 1e-8 points, MTF modulation 1e-7, the weighted bin statistics of a bokeh profile
+  1e-10 relative, and a ratio of two analysis lengths 1e-8 relative.
 - A hit's coordinates, and a ray's terminal values, are budgeted as unclipped only when the clip flag or status
   beside them says so on both sides. A flag that differs is a transition of its own.
 - A relative budget is `|a − b| ≤ budget · max(|a|, |b|)`, and no less than the class's floor where it has one. A
   floor is an absolute bound in the field's own unit, for a class whose values may be zero: a first-order length, a
-  layout length and a best-fit radius are never held tighter than 1e-12 mm, and a smooth ratio, which is a fraction,
-  than 1e-10. A class whose fields are no lengths and never near zero has no floor and is plainly relative, so only
-  zero agrees with zero: refractive indices, and the f-numbers, ray-height ratios, Petzval sum and drawing scales. A
-  prescription the engine hands back is plainly relative too: its values have no one unit, and an asphere
-  coefficient is far smaller than any floor of a length.
+  layout length and a best-fit radius are never held tighter than 1e-12 mm, and a smooth ratio or a weighted bin
+  statistic, which is a fraction, than 1e-10. A class whose fields are no lengths and never near zero has no floor
+  and is plainly relative, so only zero agrees with zero: refractive indices, the f-numbers, ray-height ratios,
+  Petzval sum and drawing scales, and a ratio of two analysis lengths. A prescription the engine hands back is
+  plainly relative too: its values have no one unit, and an asphere coefficient is far smaller than any floor of a
+  length.
 - NaN and the infinities are compared with `Object.is` in every class.
 - An intersection residual is not differenced. Each side must lie within the effective tolerance recorded with it.
 - The effective tolerance itself is held to 1e-12 relative, with no floor. It is the engine's 1e-12 mm target
@@ -493,7 +495,24 @@ The classes in `budgets.ts`:
   - A solve accepted its residual only where its status says `converged`. One that ended any other way returned
     the miss of its nearest sample, which is a diagnostic and takes the clipped-hit budget, 1e-7 mm.
 - Slopes are compared as direction cosines.
-- Counts, indices, sample positions, request echoes, count ratios and binned statistics are exact.
+- Counts, indices, sample positions, request echoes and count ratios are exact.
+- The statistics of a bokeh footprint's radial profile are held to 1e-10 relative, with the floor of a smooth
+  ratio: a bin's `density` and `energyFraction`, the profile's `centerDensity` and `rimDensity`, and the
+  footprint's `centerToRimRatio`. A footprint weighs each ray by its transmission. Where no element absorbs, every
+  ray weighs the same and these are ratios of counts. Through an absorbing element they are sums of weights, whose
+  last bits move when a hit moves inside its tolerance, and no path of a record says which lens it holds. Under C0
+  they are bit-exact, as every number is. A ray that changes bin moves a share by its whole weight, which is far
+  outside the budget.
+  - The blur character of spherical aberration (`computeSphericalAberrationBlurCharacter`) fills the same kind of
+    profile with rays of one weight: the engine multiplies no transmission into it. Its statistics are functions
+    of counts on every lens, and stay exact as count ratios. The tests hold that to the engine: with the
+    absorption taken out of an absorbing lens's prescription, its blur character is the same to the bit.
+- A ratio of two analysis lengths is held to 1e-8 relative: `tailSkewRatio`, the longer extent of a spot from its
+  centroid over the shorter, and `sagittalToTangentialRatio`, one span of a spot over the other. Each length is
+  allowed 1e-8 mm and a spot is some thousandths of a millimetre across, so the 1e-10 of a fraction cannot hold
+  such a ratio: rounding that moves an extent by 1e-13 mm moves it by 1e-10 of itself. 1e-8 relative is a fixed
+  bound, still far tighter than the one the lengths' own budget implies. A pupil footprint's `catEyeAspect` and
+  `shiftRadius` are measured in fractions of the pupil and stay smooth ratios.
 - Layout lengths, refractive indices, the scalars that are no lengths and a prescription handed back take the
   first-order relative budget. Smooth ratios take 1e-10.
 - The pupil positions and sizes the engine builds from its two near-axis rays keep the first-order budget. It is
