@@ -1,4 +1,4 @@
-# Audit Log - Leica Elmarit-R 28mm f/2.8
+# Audit Log - Leica Elmarit 28mm f/2.8 (11801)
 
 Patent: US 3,591,257
 
@@ -101,4 +101,30 @@ All pages were rendered and read from the images, not from the OCR layer.
 
 - The patent publishes no semi-diameters, close-focus state or iris diameter. The stop radius and close-focus travel are derived.
 - The L3 coordinate (nₑ 1.79227 / νₑ 47.15) remains unmatched. N-LAF21 gives nₑ 1.79195 / νₑ 47.25.
-- The analysis §1 claims about the production 8-element / 8-group air-spaced version and the Wetzlar designer credit were not re-sourced in this pass.
+- The analysis §1 claims about the production 8-element / 8-group air-spaced version and the Wetzlar designer credit were not re-sourced in this pass. Closed 2026-10-13: those claims described the Elmarit-R, a different lens; see the section below.
+
+## 2026-10-13 — Re-identified as the M-mount Elmarit 28mm f/2.8 (11801)
+
+This file was published from 2026-04 as the Elmarit-R 28mm f/2.8 under key `elmarit-r-28f28`. That attribution was
+wrong, and the prescription itself is unchanged by this entry.
+
+- **Why it is not the Elmarit-R.** Example 3's back focal distance is 0.657 f, 18.4 mm at 28 mm, which cannot clear a
+  reflex mirror. The 1970 Elmarit-R is eight air-spaced singlets credited to Rudolf Rühl; it is now modelled from
+  US 3,740,120 Table III in `LeicaElmaritR28mmf28TableIII.data.ts`, which holds key `elmarit-r-28f28`.
+- **Why it is the M-mount lens, second version.** The Leica Wiki entry "28mm f/2.8 Elmarit II" lists order no.
+  11801 / 11802, production 1972–1979, M bayonet including M5 and CL, 8 lenses / 6 groups, f/2.8–f/22, 0.7 m, 300 g,
+  inscription LEITZ CANADA, and designers Walter Mandler, Garry Edwards and Erich Wagner, June 1968: the patent's
+  inventors and the month of its German priority. Its section drawing shows two front menisci, a thick cemented
+  doublet, the diaphragm, a meniscus, a cemented doublet and a rear meniscus, as Fig. 3 and the model do.
+  Order no. 11801 was also used for the first version (1965–1972, 9 lenses / 6 groups), a different design.
+- **Fields changed.** `key` → `leica-elmarit-28mm-f28-11801`; `name` → "LEICA ELMARIT 28mm f/2.8 (11801)" (the
+  owner's wording); `lensMounts` → `leica-m`; `closeFocusM` 0.3 → 0.7 with the close keyframe of surface 14 moved
+  from 21.964 to 19.657 mm (+1.261 mm from infinity, magnification −0.045, 700 mm object-to-image, paraxial, same
+  convention as the earlier 0.30 m value); `maxFstop` 16 → 22. The header and the analysis were rewritten for the
+  M lens; statements taken from Elmarit-R literature (the 1970 *LEICA Photography* description, the 40 mm
+  protrusion and 275 g, the 1994 floating-element successor) were removed.
+- **Checks.** Paraxial EFL 28.013 mm and BFD 18.378 mm are unchanged. With the M flange distance of 27.8 mm the rear
+  vertex sits 9.4 mm behind the flange and the front vertex 44.6 mm ahead of it.
+
+Open: no source consulted states the focusing mechanism; unit focusing is assumed because the patent has no moving
+subgroup. The production match rests on construction, designers and date; no production prescription is published.

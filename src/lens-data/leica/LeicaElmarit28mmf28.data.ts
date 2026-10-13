@@ -2,14 +2,22 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — LEICA ELMARIT-R 28mm f/2.8                     ║
+ * ║        LENS DATA — LEICA ELMARIT 28mm f/2.8 (11801)                  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 3,591,257 Example 3 (Mandler, Edwards, Wagner;      ║
  * ║  Ernst Leitz GmbH). Table: patent cols. 3–4 (also restated in claim  ║
  * ║  4, cols. 5–6); section drawing Fig. 3 and Fig. 6c.                  ║
- * ║  Retrofocus wide-angle for the Leicaflex SLR.                        ║
+ * ║  Moderate retrofocus wide-angle for the Leica M: the second          ║
+ * ║  version (Leitz Canada, 1972–1979; order no. 11801, also used        ║
+ * ║  for the nine-element first version, a different design).            ║
+ * ║  Production is 8 elements / 6 groups, credited to the patent's       ║
+ * ║  three inventors, and its section drawing matches Example 3.         ║
+ * ║  Until 2026-10 this file was published as the Elmarit-R 28mm         ║
+ * ║  f/2.8; the 18.4 mm back focus rules out an SLR, and that lens       ║
+ * ║  is the eight-singlet design of US 3,740,120.                        ║
  * ║  8 elements / 6 groups, 2 cemented doublets, all spherical.          ║
- * ║  Focus: unit focusing (entire lens translates).                      ║
+ * ║  Focus: modelled as unit focusing (entire lens translates);          ║
+ * ║  the patent describes no moving subgroup.                            ║
  * ║                                                                      ║
  * ║  NOTE ON SCALING:                                                    ║
  * ║    Patent normalized to f = 100. All R, d, sd scaled uniformly by    ║
@@ -47,16 +55,6 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "leica-elmarit-28mm-f28-11801",
-  /* Hidden 2026-10-13, pending re-identification. This prescription was published as the Elmarit-R 28mm f/2.8, which
-   * it is not: its back focus is 0.657 f = 18.4 mm (no SLR mirror clearance) and the 1970 Elmarit-R is eight
-   * air-spaced singlets (US 3,740,120, now at key "elmarit-r-28f28"). It is the M-mount Elmarit 28mm f/2.8, order
-   * no. 11801, in its second version (1972–1979, 8 elements / 6 groups, 0.7 m; the Leica Wiki credits Mandler,
-   * Edwards and Wagner, June 1968 — this patent's inventors). Order no. 11801 was also used for the first version
-   * (1965–1972, 9 elements / 6 groups), which is a different design.
-   * Before removing `visible`: `closeFocusM`, the focus `var` and `focusDescription` still hold the 0.30 m values
-   * of the R lens (production minimum focus is 0.7 m), and the header above and the `.analysis.md` still describe
-   * the Elmarit-R and the Leicaflex. */
-  visible: false,
   maker: "Leica",
   name: "LEICA ELMARIT 28mm f/2.8 (11801)",
   subtitle: "US 3,591,257 Example 3 — Mandler / Edwards / Wagner",
@@ -220,11 +218,11 @@ const LENS_DATA = {
   /* ── Variable air spacings (unit focus) ──
    *  Entire lens translates for focusing. Only BFD changes.
    *  Infinity BF = patent s′ 65.70 × 0.28. The patent publishes no close-focus state; the
-   *  0.30 m extension (+3.57 mm, m ≈ −0.127) is calculated by paraxial trace for a 300 mm
-   *  object-to-image distance.
+   *  0.70 m extension (+1.261 mm, m ≈ −0.045) is calculated by paraxial trace for a 700 mm
+   *  object-to-image distance, the production minimum focus.
    */
   var: {
-    "14": [18.396, 21.964],
+    "14": [18.396, 19.657],
   },
   varLabels: [["14", "BF"]],
 
@@ -241,13 +239,13 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.3,
-  focusDescription: "Unit focusing — entire optical assembly translates along the optical axis (0.30 m extension calculated).",
+  closeFocusM: 0.7,
+  focusDescription: "Unit focusing — entire optical assembly translates along the optical axis (0.70 m extension calculated).",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
-  maxFstop: 16,
+  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  maxFstop: 22,
 
   /* ── Layout tuning ── */
   scFill: 0.5,
