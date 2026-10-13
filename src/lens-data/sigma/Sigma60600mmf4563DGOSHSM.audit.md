@@ -306,3 +306,49 @@ Set by the coordinator before this pass and left as they are: `name` "SIGMA 60-6
 Identical before and after: computed EFL 62.0282 / 183.6417 / 577.7708 mm, wide-open f-number 4.48 / 5.55 / 6.50, engine half-field 19.655°, stop radius 15.4938 mm, paraxial BFD 53.5861 / 77.2473 / 98.6888 mm, and all nine focus keyframes. The only engine difference is the aperture-slider limit, 16 to 22. The validator reports no errors.
 
 No open items from this pass. The option of taking surfaces 1–5 from the corrected figure (47.6 and 45.7 mm) is recorded in the section above and rests with the site owner.
+
+## 2026-10-13 — Front-group rims re-read against FIG. 1
+
+The site owner asked for a second, independent reading of surfaces 1–5 before choosing between the 49.0 mm front rim set with his agreement during authoring and the figure's 47.6 mm. The second reading confirms the first, so the figure values are applied. This replaces the 49.0 mm value approved during authoring.
+
+### Previous values, for reverting
+
+Surfaces 1, 2 and 3 were 49.0 mm. Surfaces 4 and 5 were 47.1 mm (set in the semi-diameter pass above; 49.0 mm in the authored package). They are now 47.6, 47.6, 47.6, 45.7 and 45.7 mm. No other surface, the stop and `gapSagFrac` were not touched.
+
+### The two readings
+
+The first reading used a 400 dpi re-render thresholded at mid-grey and took the outermost ink of both halves. The second uses the figure's own 1321 × 770 bilevel bitmap extracted from the PDF at its native 399 dpi, with no resampling or threshold, reads each half of the panel separately, and takes the row where each fitted arc meets the rim instead of the outermost ink. On that bitmap the axis is rows 316–317, the surface-1 vertex is at x = 112.5 and the image plane at x = 1267.5, 0.266568 mm/px (0.266563 from surface 1 to surface 45).
+
+Both columns apply the same vertical correction of 1.134.
+
+| Surface | First reading | Second reading, top / bottom half |
+|---|---|---|
+| 1 | 203.0 px, 47.60 ± 0.25 mm | 202.0 / 202.0 px, 47.48 ± 0.25 mm |
+| 2 | 203.0 px, 47.60 ± 0.25 mm | 202.0 / 202.0 px, 47.48 ± 0.25 mm |
+| 3 | 203.0 px, 47.60 ± 0.25 mm | 201.5 / 202.0 px, 47.4 to 47.5 ± 0.25 mm |
+| 4 | 195.0 px, 45.72 ± 0.25 mm | 194.0 / 194.0 px, 45.60 ± 0.25 mm |
+| 5 | 195.0 px, 45.72 ± 0.25 mm | 194.0 / 194.0 px, 45.60 ± 0.25 mm |
+
+The readings differ by 0.12 mm, half a pixel, which is the resampling of a two-pixel line between the 399 and 400 dpi grids. The error is half a pixel of reading (0.12 mm) plus ±0.006 on the vertical factor (0.25 mm at this height).
+
+Two checks do not depend on the vertical factor at all, because they use positions along the axis. The corner where the surface-1 arc meets the rim sits at x = 134.5 to 135.2, a sag of 5.92 to 6.10 mm, which is a height of 47.2 to 48.0 mm; a 49.0 mm rim would put that corner at x = 136.2. L3's drawn edge is 5.6 ± 0.7 px, 1.49 ± 0.19 mm, which the prescription gives at 45.7 ± 0.5 mm; at 49.0 mm L3's edge would be 0.157 mm, 0.6 px.
+
+One detail is new: L1's rear face leaves the surface-2 arc at about 189 px (44.4 mm) and runs straight up to the rim, a flat, while the arc continues as L2's front face to the knife point it makes with surface 3. The model keeps one height on surface 2.
+
+### The correction, on G1 alone
+
+Fitting only the front-group arcs, each half separately, gives 1.128 / 1.132 for surface 1, 1.130 / 1.132 for surface 2 and 1.132 / 1.134 for surface 4, with 0.27 to 0.33 px residual. An uncorrected scale of 1.000 leaves 1.65 to 2.17 px. The front group alone therefore gives 1.131 ± 0.003 and re-confirms the correction; at 1.131 the second reading would be 47.61 and 45.72 mm. Surface 3 (R = 1000 mm) and the plane surface 5 cannot constrain the factor.
+
+### Cross-checks
+
+- Tele axial beam. The patent's f/6.50 at 577.77 mm is an entrance-pupil radius of 44.44 mm and reaches 44.44 / 43.72 / 43.64 / 43.42 / 43.11 mm at surfaces 1–5. The figure rims clear it by 3.16 mm at surface 1 and 2.28 mm at surface 4. The marketed 600 mm f/6.3 would be a 47.62 mm radius, reaching 47.62 / 46.78 / 46.74 / 46.48 / 46.31 mm: level with the 47.6 mm front rim and 0.78 mm outside L3's 45.7 mm. The earlier 49.0 and 47.1 mm cleared that beam too; the drawing is sized for the patent's own f-number.
+- L2's edge reaches zero at 49.265 mm. It is 0.114 mm at 49.0 mm, 0.706 mm at 47.6 mm and 0.748 mm at 47.5 mm. L3's edge is 0.944 mm at 47.1 mm and 1.500 mm at 45.7 mm.
+- Tele corner pupil samples at the patent's 21.63 mm image height, same sampler as before, out of 192: 107 / 113 / 119 with the 49.0 and 47.1 mm rims and 101 / 109 / 115 with the figure rims (infinity, 13 m, 2.6 m). At 60 % height: 156 / 165 / 176 and 152 / 161 / 174. The middle station goes from 149 / 153 / 157 to 140 / 140 / 149; the wide station is unchanged at 85.
+
+### Decision and result
+
+The two readings of surfaces 1–3 agree within 0.3 mm and both put the rim below 48.3 mm, so the figure does not draw 49.0 mm and the figure set is applied: 47.6 mm on surfaces 1–3 and 45.7 mm on surfaces 4–5.
+
+After the change the validator reports no errors and no rim clips the on-axis beam or the corner chief ray at any of the nine published states or on the intermediate zoom and focus grid. Traced corner coverage is 21.65 of 21.65 mm at all three stations. `gapSagFrac` is unchanged at 0.95; the largest gap fractions are still 0.9439 (16→17) and 0.8957 (8→9). Wide-open f-numbers are 4.48 / 5.55 / 6.50 as before. The engine's rim-limited half-field estimate is unchanged at the wide end (19.655°) and falls from 8.579° to 8.338° at the middle station and from 3.480° to 3.377° at the tele end, against patent half-fields of 6.66° and 2.12°.
+
+The data-file rim note, the two analysis passages that stated 49.0 mm and the middle and tele rows of the vignetting table were updated to match. The local page was viewed at 62.03 mm and 577.73 mm: no overlap, the on-axis fan passes, and an overlay on Figure 1 now puts the front component and L3 on the drawn lines.

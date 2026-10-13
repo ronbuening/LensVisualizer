@@ -88,6 +88,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -49.8162919336221,
       glass: "FCD1 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "νd 81.61 double-aspherical element, tagged by class: the maker lists one ED-DSA element and, in its Asia listing, one EDA element, and this prescription has two such elements (L2 and L12); which is which is not published.",
     },
     {
       id: 3,
@@ -139,6 +142,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 44.016735191431515,
       glass: "FCD515 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "νd 68.63 glass, tagged by class as one of the three ED elements the maker lists by count only; no maker construction diagram was viewed.",
       cemented: "D2",
     },
     {
@@ -164,6 +170,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 42.19603375893545,
       glass: "FCD515 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "νd 68.63 glass, tagged by class as one of the three ED elements the maker lists by count only; no maker construction diagram was viewed.",
     },
     {
       id: 9,
@@ -189,6 +198,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 71.25593151185143,
       glass: "FCD100 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "νd 95.10 glass, tagged by class as the single Super ED element the maker lists by count only; no maker construction diagram was viewed.",
       cemented: "D3",
     },
     {
@@ -214,6 +226,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 36.64205354736459,
       glass: "FCD1 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "νd 81.61 double-aspherical element, tagged by class: the maker lists one ED-DSA element and, in its Asia listing, one EDA element, and this prescription has two such elements (L2 and L12); which is which is not published.",
     },
     {
       id: 13,
@@ -252,6 +267,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 33.10341374848685,
       glass: "FCD515 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "νd 68.63 glass, tagged by class as one of the three ED elements the maker lists by count only; no maker construction diagram was viewed.",
     },
   ],
   surfaces: [
@@ -622,6 +640,8 @@ const LENS_DATA = {
   yScFill: 0.3,
   nominalFno: 1.2399077975009851,
   fstopSeries: [1.24, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  maxFstop: 16,
+  apertureBlades: 9,
 } satisfies LensDataInput;
 
 export default LENS_DATA;

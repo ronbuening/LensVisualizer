@@ -229,6 +229,8 @@ Readings are the mean of the upper and lower rim, in px above the axis and in mm
 | 33 | 15.5 | 134 px, 17.1 | 17.1 | L19 front curve runs to the rim |
 | 36 | 15.5 | 135.25 px, 17.2 | 17.2 | L20 rear curve runs to the rim, 1 px above L19 |
 
+Note added later on 2026-10-13: the rows for surfaces 6 and 7 record the figure readings and what this pass set. Both were afterwards restored to 24 mm (last section of this file), so 22 of the 24 changes stand and L4 no longer belongs in the list of elements with unequal faces below.
+
 Twenty-four surfaces changed. Surfaces 7, 30, 33 and 36 differed from the drawing by 10–20 %. The others were within 3–8 % but flattened the drawn step order: the file had L1 = L2, L5 = L6, L8 = L9 = L10, the stabilization doublet level with L13/L14, and L15 level with L8, where the drawing steps each of them.
 
 Retained, because they agree with the drawing within 3 % and keep the drawn order: 11 and 12 at 19 (figure 18.8), 14A and 15 at 18 (17.9), 27 and 28 at 15.5 (15.2), 29 at 15.5 (15.0), 31 and 32 at 18 (17.7), 34 at 15.5 (curve end 15.3) and 35 at 15.5 (curve end 15.2). The stop value was not touched.
@@ -313,3 +315,26 @@ Identical before and after the wording edits: EFL 72.1040, 118.0039 and 194.0008
 ### Open
 
 Closed for this lens: the repo's FCD1 dispersion curve is a fit to a 2017 HOYA file and gives νd 81.59 and PgF 0.5377 against the listed 81.61 and 0.5389. The engine takes the g-line index of a catalog-resolved element from its stored `dPgF` when one is authored (`dispersion.ts`), and L20 stores the patent's printed PgF, so the fitted curve's partial dispersion does not reach the trace; only its νd (0.02 low) does. A refit of the shared FCD1 entry would affect every lens that names it and is left as a catalog follow-up.
+
+## 2026-10-13 — Surfaces 6 and 7 restored to 24 mm
+
+Owner decision: L4 keeps its first-authored 24 mm rim, square-cut, on both faces. The semi-diameter pass had set surface 6 to 23.0 mm, the drawn blank, and surface 7 to 19.3 mm, where FIG. 1 ends the rear concave curve inside a flat annulus. The owner chose the old rim to hold wide-corner illumination. Surface 7 was restored first and surface 6 after it, on the coordinator's instruction, so that the element is in the state the 54 % figure belongs to. Every other rim from the semi-diameter pass stays. L4 is now the one element deliberately set away from FIG. 1.
+
+| Quantity | 23.0 front, 19.3 rear (figure) | 23.0 front, 24 rear (intermediate) | 24 on both faces (filed) |
+|---|---:|---:|---:|
+| Engine half-field at 72.1 mm | 17.87° | 20.50° | 20.64° |
+| Engine half-field at 118 mm | 12.70° | 12.70° | 12.70° |
+| Engine half-field at 194 mm | 7.36° | 7.36° | 7.36° |
+| Geometric transmission, wide end, wide open, 11.0° | 78.1 % | 83.3 % | 83.3 % |
+| Same, 13.7° | 61.5 % | 68.8 % | 68.8 % |
+| Same, 16.5° corner | 43.8 % | 52.1 % | 54.2 % |
+
+The three corner values on record for the choice: 43.8 % with the rear face at the drawn curve end (19.3 mm), 52.1 % with a square rim at the drawn blank height (23.0 mm on both faces), and 54.2 % with the filed square 24 mm rim. The wide-end field is now limited by surface 35 at 20.6°; surfaces 6 and 7 would limit at 21.3° and 21.9°.
+
+Correction to the semi-diameter section above: it quotes 54.2 % at the corner "with surface 7 left at 24". That figure was computed with both L4 faces at 24, which is the filed state. With surface 6 at 23.0 the corner value is 52.1 % for surface 7 anywhere from 23.0 to 24, because beyond 23 mm the front face is the limit.
+
+Results at the filed values. The repository validator reports no errors. The image-circle floor check lists no undersized surface. Traced corner coverage is 100 % at 72.1, 118 and 194 mm. No surface clips the on-axis beam or blocks the corner chief ray at any of the six published states; the largest on-axis and corner chief-ray heights are 17.60 and 17.99 mm at surface 6 and 16.85 and 16.59 mm at surface 7, against 24. The smallest on-axis margin is still 0.49 mm at 26A. F-numbers stay 2.91, 2.89 and 2.92 with unchanged iris radii. Hidden render trim is zero at 27 zoom and focus states. The minimum cross-gap policy margin is unchanged at 0.083819 mm between surfaces 34 and 35, and the 7-to-8 gap keeps 0.88 mm, so no `gapSagFrac` change is needed.
+
+At the wide station L4 draws square-cut at 24 mm with no overlap. Against the drawing its rim stands 1 mm higher and its concave rear face runs about 3 mm further toward the image at the rim, because the drawn flat annulus is not modeled.
+
+The data-file header's semi-diameter note and the analysis aperture paragraph state the exception and the three corner values; the analysis gives 83 % at 11° and 54 % at the corner.

@@ -531,9 +531,10 @@ The on-axis beam at the printed F-number clears every rim at all six published s
 the smallest margin is 0.49 mm, at surface 26A at 194 mm and 1.0 m.
 
 Off-axis bundles are vignetted by the estimated rims.
-At the wide end, wide open, the modeled geometric transmission is 78 % at 11° and 44 % at the 16.5° corner.
-About ten points of the corner loss come from surface 7, the concave rear face of L4,
-whose drawn curve ends at 19.3 mm inside a flat annulus that the model treats as non-transmitting.
+At the wide end, wide open, the modeled geometric transmission is 83 % at 11° and 54 % at the 16.5° corner.
+L4 is the one element deliberately set away from Figure 1: the model keeps a 24 mm rim on both of its faces to hold wide-corner illumination.
+The drawing shows its blank at 23.0 mm and ends the concave rear curve at 19.3 mm inside a flat annulus.
+The corner value would be 52 % with a square 23.0 mm rim and 44 % with the rear face at 19.3 mm.
 These values follow from rims read off a drawing; they are not measurements of the production lens.
 
 ## Camera-Side Plate and Reference Planes

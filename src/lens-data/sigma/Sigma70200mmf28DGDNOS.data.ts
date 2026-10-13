@@ -22,8 +22,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * NOTE ON SEMI-DIAMETERS: not published. Estimated from the FIG. 1 cross-section (wide end, infinity), measured on
  * the 420 dpi page raster at 0.1275 mm/px, and floor-checked by exact real-ray trace at all six published states
  * (axial ray at the nominal f-number with the infinity iris held; corner chief ray to Y = 21.63 mm).
- * Concave faces 7, 30, 34 and 35 stop where the drawn curve ends, not at the flat mounting annulus outside it;
+ * Concave faces 30, 34 and 35 stop where the drawn curve ends, not at the flat mounting annulus outside it;
  * cemented junctions 2 and 17 follow the smaller partner's rim. The figure's stop marks read 16.7 mm.
+ * Exception: L4 keeps a 24 mm rim on both faces (6 and 7). FIG. 1 draws its blank at 23.0 mm and ends the rear
+ * concave curve at 19.3 mm inside a flat annulus. L4 is the one element set away from the figure, a deliberate
+ * choice to hold wide-corner illumination: the modeled geometric transmission at the 16.5° wide corner is 54 %
+ * as modeled, 52 % with a square 23.0 mm rim and 44 % with the rear face at 19.3 mm.
  * The camera-side plate is always traced. No teleconverter is modeled.
  */
 
@@ -378,7 +382,7 @@ const LENS_DATA = {
       "d": 1.5,
       "nd": 1.437,
       "elemId": 4,
-      "sd": 23
+      "sd": 24
     },
     {
       "label": "7",
@@ -386,7 +390,7 @@ const LENS_DATA = {
       "d": 16.5679,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 19.3
+      "sd": 24
     },
     {
       "label": "8",

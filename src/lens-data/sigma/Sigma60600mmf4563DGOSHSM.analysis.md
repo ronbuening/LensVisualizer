@@ -128,7 +128,7 @@ L2 is the positive, object-convex member of the first cemented component.
 Its low-dispersion coordinate contrasts with the high-index L1 partner.
 The pair's calculated net focal length is +1271.790 mm, much weaker than
 either standalone element. Their common inferred clear radius is
-49.0 mm, just under the height at which L2's edge reaches zero. L2 sits
+47.6 mm, read from Figure 1, where L2 keeps 0.706 mm of edge. L2 sits
 at the position Sigma's construction diagram marks as SLD glass [2].
 
 ### L3 — Plano-Convex
@@ -521,17 +521,16 @@ the inner ends of the stop mark all agree on the factor. Rim heights are
 read after that correction, at about 0.234 mm per pixel. The profile is not
 uniquely determined by the patent and is not a recovered factory blank drawing.
 
-Surfaces 1–3 use a common 49.0 mm radius for the first cemented component,
-set just under the positive element's 49.265173 mm zero-edge height;
-the corrected figure reads 47.6 mm.
-At that rim the L1/L2 edge thicknesses are 7.760393 and
-0.114488 mm. The latter is positive but thin, and says nothing about
-manufacturing tolerances. L3 is drawn 1.9 mm
-shorter than that component and carries 47.1 mm.
+Surfaces 1–3 use the common 47.6 mm radius that Figure 1 draws for the
+first cemented component; two separate readings give 47.6 and 47.5 mm.
+At that rim the L1/L2 edge thicknesses are 7.466 and 0.706 mm, and the
+positive element's edge reaches zero at 49.265173 mm. L3 is drawn 1.9 mm
+shorter and carries 45.7 mm. The patent's f/6.50 beam at the tele end
+needs 44.44 mm at surface 1 and 43.42 mm at L3.
 
 From G3 to G5 the read rims stand about 1.1 to 2.4 mm above the widest
 on-axis ray of the nine published states, apart from the constrained
-16–17 pair, and every positive element behind L2 keeps 0.86 to 2.3 mm of
+16–17 pair, and every positive element keeps 0.71 to 2.3 mm of
 edge thickness. Elements the figure draws with a square-cut rim carry one
 radius on both faces, except at the gap-constrained rear of L5 and the
 16–17 pair.
@@ -571,12 +570,12 @@ At the patent's image semi-height of 21.63 mm, geometric pupil sampling gives:
 | Wide | Infinity | 85/192 | 189/192 |
 | Wide | 13 m | 85/192 | 189/192 |
 | Wide | 2.6 m | 85/192 | 189/192 |
-| Middle | Infinity | 149/192 | 192/192 |
-| Middle | 13 m | 153/192 | 192/192 |
-| Middle | 2.6 m | 157/192 | 192/192 |
-| Tele | Infinity | 107/192 | 156/192 |
-| Tele | 13 m | 113/192 | 165/192 |
-| Tele | 2.6 m | 119/192 | 176/192 |
+| Middle | Infinity | 140/192 | 192/192 |
+| Middle | 13 m | 140/192 | 192/192 |
+| Middle | 2.6 m | 149/192 | 192/192 |
+| Tele | Infinity | 101/192 | 152/192 |
+| Tele | 13 m | 109/192 | 161/192 |
+| Tele | 2.6 m | 115/192 | 174/192 |
 
 These counts use six equal-area rings with 32 azimuths in an entrance-plane
 disk scaled to the on-axis pupil. They are not measured transmission,

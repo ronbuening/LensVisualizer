@@ -275,8 +275,10 @@ longitudinal color at a large aperture. D3 is a clear example of a dense-flint/v
 cemented groups in G1 and G3 distribute positive and negative contributions differently. [1, printed columns 7–8]
 
 Six elements sit at low-dispersion catalog coordinates: L10 (νd 95.10), L2 and L12 (81.61, both double-aspherical), and
-L6, L8 and L15 (68.63). The data file tags none of them as a maker-designated special-dispersion element: the patent
-names no glass, and the manufacturer release is cited here only for its ED-DSA description. [1, 3]
+L6, L8 and L15 (68.63). The maker's specification lists one Super ED, three ED and one ED-DSA element (its Asia listing
+adds one EDA element), by count and without positions. The data file tags the six elements by class on that basis:
+L10 as the Super ED element, L6, L8 and L15 as the ED elements, and L2 and L12 as the ED-DSA and EDA pair, whose order
+is not published. No maker construction diagram was viewed, and the patent names no glass. [1, 3, 6]
 
 This is a patent-grounded correction strategy rather than proof of a particular residual spectrum. The d-line
 prescription and catalog dispersion curves do not establish apochromatic performance, production secondary-spectrum
@@ -438,3 +440,6 @@ No numerical MTF, production distortion, apochromatic, continuous-focus or measu
    2018-05-21. Retrospective confirmation of the January 2018 launch month.
 5. Authoritative catalog coordinate and dispersion records: [ohara_all_20260701.zip](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip); [ohara_s_5d.xlsx](https://oharacorp.com/wp-content/uploads/catalogs/ohara-20260402-5.xlsx); [ohara_l_5d.xlsx](https://oharacorp.com/wp-content/uploads/catalogs/ohara-20250312-L5.xlsx); [hoya_include_obsolete.agf](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf); [hoya.xlsx](https://www.hoya-opticalworld.com/common/xls/HOYA20260601.xlsx); [hikari.xlsx](https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_ALL_Catalog_Data.xlsx); [schott.zip](https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?v=3b65e351&download=true); [schott.xlsx](https://media.schott.com/api/public/content/7f5a58f7fa754445abab44cafc76acb3?v=a102056c&download=true); [sumita_download.zip](https://www.sumita-opt.co.jp/en/wp/wp-content/themes/sumita-opt-en-v2026/download-files.php); [CDGM202609.xlsx](https://www.cdgmgd.com/downloadFile.htm?uid=d5ilBXjFgXCK9VxoDmb); [CDGM-ZEMAX202609.AGF](https://www.cdgmgd.com/downloadFile.htm?uid=pvntrGdxCC64MZei1SX). The HOYA rows the model uses
    come from HOYA’s 2017-04-01 Zemax catalog. Catalog rows do not establish historical production suppliers or melts.
+6. OM Digital Solutions Corporation. [M.Zuiko Digital ED 17mm F1.2 PRO specifications](https://explore.omsystem.com/gb/en/m-zuiko-ed-17mm-f1-2-pro),
+   viewed 2026-10-13: 15 elements in 11 groups; 1 SED, 3 ED, 1 ED-DSA, 1 aspherical glass and 1 Super HR element; 9 circular
+   aperture blades; closest focusing distance 0.2 m.

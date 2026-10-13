@@ -11,12 +11,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * The sheet draws the section about 1.13x too tall for its axial scale (surface curvatures,
  * the L2 and L3 zero-edge heights and the stop mark agree on the factor), so rim heights are
  * read at 0.234 mm per pixel after that correction, good to about 0.25 mm.
- * Surfaces 1-3 share a 49.0 mm radius, just under L2's 49.27 mm zero-edge height (the figure
- * reads 47.6 mm; not a known factory blank); L3 keeps the drawn 1.9 mm step below it.
+ * Surfaces 1-3 share the 47.6 mm the figure draws for the front cemented component (two
+ * readings, 47.6 and 47.5 mm), where L2 keeps 0.71 mm of edge; its edge reaches zero at
+ * 49.27 mm. L3 carries its drawn 45.7 mm. Neither is a known factory blank. The patent's
+ * f/6.50 beam needs 44.44 mm at surface 1.
  * Surface 8 ends where the figure ends its curve (22.3 mm). Surfaces 16-17 stay at 14.6 mm:
  * the figure draws them to the rims, but the two faces meet at 15.0 mm and the tele axial ray
- * needs 14.48 mm. Elements the figure draws square-cut carry one height on both faces (L6,
- * L16 and L24 include a short flat the figure draws on the concave face).
+ * needs 14.48 mm. Elements the figure draws square-cut carry one height on both faces (L1,
+ * L6, L16 and L24 include a short flat the figure draws on the concave face).
  * gapSagFrac is 0.95 because the 16-17 air gap uses 0.944 of its 4.1944 mm at that 14.6 mm
  * rim; every other gap stays under the default 0.90.
  * The full on-axis beam passes at every state; off-axis vignetting is real and stays visible.
@@ -379,7 +381,7 @@ const LENS_DATA = {
       "d": 3,
       "nd": 1.87071,
       "elemId": 1,
-      "sd": 49
+      "sd": 47.6
     },
     {
       "label": "2",
@@ -387,7 +389,7 @@ const LENS_DATA = {
       "d": 10.0505,
       "nd": 1.497,
       "elemId": 2,
-      "sd": 49
+      "sd": 47.6
     },
     {
       "label": "3",
@@ -395,7 +397,7 @@ const LENS_DATA = {
       "d": 0.15,
       "nd": 1,
       "elemId": 0,
-      "sd": 49
+      "sd": 47.6
     },
     {
       "label": "4",
@@ -403,7 +405,7 @@ const LENS_DATA = {
       "d": 10.1084,
       "nd": 1.437,
       "elemId": 3,
-      "sd": 47.1
+      "sd": 45.7
     },
     {
       "label": "5",
@@ -411,7 +413,7 @@ const LENS_DATA = {
       "d": 4.4174,
       "nd": 1,
       "elemId": 0,
-      "sd": 47.1
+      "sd": 45.7
     },
     {
       "label": "6",
