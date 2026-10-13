@@ -398,7 +398,7 @@ and is their only outside door.
   `evaluate(radius)` that returns both, `normalAt`, `pointAt`, `finiteRadiusLimit()` (the conic domain radius), and,
   on aspheres only, `maxAbsSlope` (the absolute-term slope bound). It also exposes its base conic as data
   (`curvature`, `conic`, `hasPolynomial`, `planeNormal`), from which the intersection kernel takes closed-form roots
-  ([Exact Surface Trace](#exact-surface-trace)). A tilted plane's `sag` and `evaluate` read their argument as signed
+  and the seed of a polynomial-asphere solve ([Exact Surface Trace](#exact-surface-trace)). A tilted plane's `sag` and `evaluate` read their argument as signed
   y, not as a radius.
 - **Positional functions.** `sag(h, R)`, `conicPolySag(h, R, asph)`, and `sagSlopeRaw(h, R, asph)` serve callers that
   hold a radius and coefficients instead of a prepared surface: the RuntimeLens stack tracer, validation, layout, the
@@ -478,6 +478,12 @@ does not depend on the unbounded solve succeeding: when that solve finds a brack
 cylinder interval is still scanned in ray order, and a root found there is returned. With none found the failure
 stands. The legacy solver reaches the cap only after a successful solve, until it delegates.
 
+In `geometry/intersect.ts` a polynomial asphere with a cap and default budgets first tries the conic-seeded route
+described below, which returns a cap hit under a slope certificate of its own. That certificate covers every cap
+point of the ray from the lower bound to one step of the bracket scan past the hit, so the hit it returns is the
+same first cap root. Cap selection as described above is what runs when the route refuses, on every call that sets
+a budget, and in the legacy solver, whose only entry to the kernel it is.
+
 The exact tracer in `internal/exactSurfaceTrace.ts` exposes these entry points:
 
 - `traceExactSurfaceStack({ x0, y0, ux0, uy0 }, options)` — slope launch, normalizes
@@ -503,9 +509,12 @@ The Newton seed falls back to the bracket midpoint when the z-projected guess is
 - **Planes** (`flat`, `tilted-plane`) solve analytically.
 - **Spheres and polynomial-free conics** are solved in closed form by `geometry/intersectConic.ts`. A conic is an
   `aspheric` profile whose `hasPolynomial` is false: the four kinds stay, and a sphere still gets no cap selection.
+- **Polynomial aspheres with an authored cap** first try the conic-seeded route (`seedAsphereSolve`): a Newton
+  iteration from the root of the base conic, whose point is returned only under a certificate that the iterative
+  path returns the same root.
 - **Every other curved solve** takes the iterative path, a bracket scan with safeguarded Newton refinement. So does a
-  closed-form solve that falls back, and any call that sets `maxIterations` or `bracketSamples`, which describe that
-  path.
+  closed-form solve that falls back, a seeded solve that is refused, and any call that sets `maxIterations` or
+  `bracketSamples`, which describe that path.
 
 The closed form does not change the contract. It proposes a root, and the root is accepted as an iterative one is:
 
@@ -569,8 +578,9 @@ Three outcomes differ from the iterative path's, and the differential harness re
 - **Roots the scan does not resolve.** The closed form finds a chord, or a short span inside the conic's domain,
   that falls between two samples whose residuals share a sign
   ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). It does so only above the slope floors. A
-  shallower chord, and any such root on a polynomial asphere, still depends on the scan, and so does every solve of
-  the legacy solver until it delegates (`OPTICS_ENGINE_REWRITE_SPEC.md`, S3.P2.T2 and S3.P2.T3).
+  shallower chord, and any such root on a polynomial asphere, still depends on the scan: the conic-seeded route
+  certifies one scan step past its root, so it never returns a root the scan does not resolve. So does every solve
+  of the legacy solver until it delegates (`OPTICS_ENGINE_REWRITE_SPEC.md`, S3.P2.T3).
 - **The raw target where the iterative path stalls.** Where the rounding of the residual is close to the target,
   from an operand sum of a few hundred mm, the iterative path can stop on a float that evaluates just above the
   target and report the envelope, while the closed-form root evaluates inside the target and is accepted there. The
@@ -593,14 +603,94 @@ two are the rear face of the second corrector and the secondary mirror coated on
 where the iterative path had let the ray through; the state's raw half-field, a bisection that ends on such a ray,
 moves by one of its steps.
 
+The conic-seeded route (`seedAsphereSolve` in `geometry/intersect.ts`) does not change the contract either. It serves
+a polynomial asphere with an authored cap, on a call that sets no budget, and it decides one thing: a hit that the
+iterative path is shown to return as well, on the same root and at the raw target. Everything else is that path's.
+
+- **The seed.** `baseConicRoot` in `geometry/intersectConic.ts` gives the first root of the ray on the base conic's
+  sag sheet inside the cap's cylinder interval, from the closed form's quadratic. On a flat base, and wherever the
+  conic's root is within twice the target of the vertex plane, the seed is the vertex-plane crossing in the
+  iterative path's own expression. That path accepts that point when the sag there is within the target, and the
+  route then returns the same float.
+- **The iteration.** Plain Newton steps on the iterative path's residual, with that path's evaluation and domain
+  rule, accepted at the raw target alone. There is no bracket, no bisection, no halving rule and no envelope. The
+  route spends at most six profile evaluations, which are its own: they are not charged to
+  `INTERSECTION_MAX_ITERATIONS`. A step that leaves the cap interval or the conic's domain, or that cannot move the
+  ray parameter, ends it.
+- **The certificate.** One `maxAbsSlope` call over a stretch of the ray shows `|dz| − maxAbsSlope·|dxy| > 1e-10`
+  there, so the residual is strictly monotone on it. The stretch holds every cap point of the ray from the lower
+  bound to one step of the 24-sample scan past the point: a ray that starts inside the cap is covered from its lower
+  bound, and one that enters the cap later from a step before the point, and never from later than its entry. The
+  point's root is therefore the first inside the cap, and the two scan samples about it are inside the stretch, so
+  the scan resolves it. The certificate is computed for a window of one step about the seed before anything is
+  evaluated, and once more about the point itself when the point has left that window, or when the window's
+  certificate refuses the point and a shorter stretch could have a lower slope bound.
+- **Two roundings, each in its own unit.** The rounding of a transverse coordinate,
+  `16ε(|ox| + |oy| + |dxy|·t)`, with `16ε(|ox| + |oy|)²/sd` for the ends of the cap interval, which are solved from
+  the origin, is held to the clear-aperture tolerance `max(1e-9, sd·1e-12)` mm (`capCoordinateTolerance` in
+  `geometry/intersectTolerance.ts`) and added to every radius the certificate compares. The rounding of the
+  residual is the iterative path's envelope at the point, under the stretch's slope bound, and is held to 31/32 of
+  the target. One of the two floats about the root then evaluates inside the target, so that path accepts at the
+  raw target before its bracket can collapse, and reports the target as well.
+- **Agreement within budget.** Two points of the stretch that both meet the target lie within
+  `2·(target + envelope) / min|f'|` of each other along the ray. That move is held to `5e-10` mm and, times the
+  turn of the unit normal per mm of radius, to `5e-11`: the closed form's two limits (`MAX_ROOT_MOVE`,
+  `MAX_NORMAL_MOVE`), half the budgets of an unclipped hit and of a direction cosine.
+- **The points the iterative path has a rule for.** The point has to be farther than that move from both bounds,
+  and inside the cap by more than the move and the rounding of both paths' radii. Within twice the target of the
+  vertex plane it has to be the vertex-plane crossing itself.
+- **The result.** A hit with the members every hit has. `effectiveTolerance` is the requested tolerance,
+  `iterations` is the evaluations the route spent (1 to 6), the normal comes from the slope of the accepted
+  evaluation, bit for bit what `normalAt` builds, and `closedFormFallback` is absent, as on every polynomial-asphere
+  result. No trace record gains a member. The route returns no miss and no failure: every failure the kernel
+  reports is the iterative path's.
+- **Refusal.** Where any of this does not hold the route decides nothing, and the iterative path runs with the
+  caller's inputs and its full budget, taking no seed or bracket from the route. The result is then exactly that
+  path's. What the ray and the slope bound already decide is refused before the profile is evaluated; a refusal
+  after that has cost the route's evaluations on top of that path's. `seedAsphereSolve` returns the reason
+  (`SeedRefusal`), which is on no result:
+  - `noSeed`: the base conic has no root on its sag sheet inside the cap interval;
+  - `coordinateRoundoff`: the coordinate rounding over the stretch is above the clip tolerance. Its first term
+    takes a launch 280 m away; the term for the cap interval's ends takes one more than `530·sqrt(sd)` mm off the
+    axis, which is 0.5 m at a cap of 1 mm and 2.7 m at one of 25 mm;
+  - `slopeBound`: the slope bound does not leave `|f'|` above `1e-10` over the stretch. It is the usual refusal,
+    because the bound is a sum of absolute terms taken at the stretch's largest radius;
+  - `farEnvelope`: a cap point beyond the stretch could be accepted by the iterative path under one of its own
+    certificates, which takes bounds a few nanometres long;
+  - `roundoff`: the envelope is above 31/32 of the target, from about 270 mm of axial and slope-weighted
+    transverse operands;
+  - `nearTangency`: the move between the two paths' points, or between their normals, is not inside its limit;
+  - `notConverged`: the iteration left the cap interval or the domain, could not move, or has not met the target
+    in six evaluations;
+  - `vertexPlane`, `atBound`, `atRim`: the point is on one of the points the iterative path has a rule for.
+- **Not tried.** The route returns null, with nothing computed, on a call that sets `maxIterations` or
+  `bracketSamples`, on a profile without a polynomial term or a slope bound, on input the iterative path rejects,
+  and without a clear radius or for a ray with no span inside the cap: nothing certifies an exterior root. A zero
+  or exhausted budget therefore means what it means on the iterative path.
+- **Tolerance.** `tolerance` selects no path, and every gate uses the caller's value. At `1e-9` mm the move limit
+  refuses every solve; at `1e-13` mm the route is taken where the envelope allows.
+- **What rests on the profile's data.** The hit is accepted on the profile's own `evaluate`, and the residual is
+  shown monotone by its own `maxAbsSlope`. `curvature` and `conic` give the seed and the bound on the normal's
+  turn, so they have to describe the evaluators, as they do on a factory profile.
+
+A seeded hit differs from the iterative path's by a number inside budget and by no outcome. It is usually another
+float of the same root, a few ulps away, and its `iterations` counts the route's own evaluations. None of the closed
+form's three transitions is this route's: a root the scan does not resolve stays that path's miss, a hit whose
+rounding is near the target stays that path's hit, and a hit within the target of the vertex plane stays that path's
+point. The fourth is narrowed, not excluded. Two surfaces that share a vertex can return floats an ulp or two apart
+where the iterative path returned one, wherever the hit is more than twice the target of sag from the vertex plane.
+That matters only on a searched path, and the catalog's polynomial aspheres at zero gap from another surface are on
+listed ones.
+
 On the iterative path both solvers, `geometry/intersect.ts` and the legacy `internal/surfaceIntersection.ts`, share
 the same safeguarded Newton step (rtsafe). A step is accepted only inside the sign-changing bracket and when it moves
 at most half the step before last; otherwise the solver bisects, so grazing and steep-rim roots cannot stall. A zero
 or non-finite derivative bisects instead of failing. `geometry/intersect.ts` takes the sag and slope of each point it
 evaluates from one `SurfaceProfile.evaluate()` call and reuses that pair for the roundoff envelope; the legacy solver
-calls the positional functions.
+calls the positional functions. The seeded iteration is separate from it: no bracket, no envelope, and a limit of
+six evaluations.
 
-Both paths share a 72-iteration cap (`INTERSECTION_MAX_ITERATIONS`). A root whose residual cannot reach `1e-12` mm
+Both solvers share a 72-iteration cap (`INTERSECTION_MAX_ITERATIONS`). A root whose residual cannot reach `1e-12` mm
 leaves Newton taking steps of a few ulps, never exactly zero, so it is recognized only once bisection has collapsed
 the bracket to adjacent floats. That takes about log2(width / ulp) steps: 53 for a double, plus the Newton steps
 before it. The worst measured production solve, an exterior hit at a hemisphere's rim, needs 63; a captured legacy
@@ -620,8 +710,11 @@ through it. A sequential trace's returned `x` and `y` are projected to the retur
 (`projectCoordinateToZ()` in `trace/utils.ts`), and `projectTraceToSensor()` returns a camera trace's terminal point
 as it stands when that point is already within `1e-9` mm of the sensor plane. Parametric plane-bound
 slack and cap-root equivalence track the requested tolerance;
-neither widens the forward search. The asphere uniqueness certificate also requires coordinate error below the
-requested tolerance. Its separate conservative slope/radius safety margins remain proof guards, not acceptance limits.
+neither widens the forward search. The cap-selection certificate also requires coordinate error below the
+requested tolerance, which at `1e-12` mm is a transverse operand sum of 281 mm. The seeded route's certificate
+bounds its two roundings apart, each in its own unit: the transverse coordinates against the cap's clip tolerance,
+and the residual's envelope against 31/32 of the requested tolerance. The conservative slope/radius safety margins of
+both remain proof guards, not acceptance limits.
 
 Iterative curved solves attempt the raw target at every bracket sample and Newton evaluation. Only when a Newton
 correction cannot change the floating-point ray parameter, or the safeguarded midpoint cannot advance within its

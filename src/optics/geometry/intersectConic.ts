@@ -31,6 +31,9 @@
  * profile's evaluators, as a factory profile's do (`SurfaceProfile`). At the edge of an ellipsoid's domain they do
  * not, because an aspheric profile floors the conic root it evaluates (`surfaceProfile.ts`), and nothing is
  * decided there.
+ *
+ * `baseConicRoot` gives the same quadratic's root with none of that: it is where the solve of a polynomial asphere
+ * starts (`seedAsphereSolve` in `intersect.ts`), and that solve has an acceptance of its own.
  */
 
 import { INTERSECTION_BRACKET_SAMPLES, INTERSECTION_TOLERANCE, VECTOR_EPSILON } from "../constants.js";
@@ -44,8 +47,9 @@ import type {
 import { normalFromSlope } from "./surfaceProfile.js";
 
 /**
- * Farthest, in mm along the ray, that the point the iterative path stops on may lie from a closed-form root that is
- * returned: half the 1e-9 mm budget of an unclipped hit (`OPTICS_ENGINE_REWRITE_SPEC.md`, Quantity budgets).
+ * Farthest, in mm along the ray, that the point the iterative path stops on may lie from a point that is returned
+ * in its place, a closed-form root or the point of the conic-seeded route (`intersect.ts`): half the 1e-9 mm
+ * budget of an unclipped hit (`OPTICS_ENGINE_REWRITE_SPEC.md`, Quantity budgets).
  *
  * Two points whose evaluated residuals both meet the shipped target lie up to twice that target, plus the rounding
  * of an evaluation, over |f'| apart, so a root that path would also find can move by that much. At the coordinates

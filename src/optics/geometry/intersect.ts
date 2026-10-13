@@ -2,9 +2,12 @@
  * Surface-profile intersection solver — finds exact ray hits on sag and tilted-plane surfaces.
  *
  * Planes solve analytically. A sphere, and an asphere with no polynomial term, is solved in closed form
- * (`intersectConic.ts`) and the root is accepted by evaluating the profile at it. Every other curved solve, and
- * every closed-form root that cannot be accepted that way, takes the iterative path: a bracketed root search with
- * safeguarded Newton refinement, so trace modules can distinguish aperture misses from true intersection failures.
+ * (`intersectConic.ts`) and the root is accepted by evaluating the profile at it. A polynomial asphere with an
+ * authored cap first tries a Newton iteration from the root of its base conic (`seedAsphereSolve`), whose point is
+ * returned only under a certificate that the iterative path returns the same root. Every other curved solve, every
+ * closed-form root that cannot be accepted, and every seeded solve that is refused takes the iterative path: a
+ * bracketed root search with safeguarded Newton refinement, so trace modules can distinguish aperture misses from
+ * true intersection failures. That path takes nothing from the two in front of it.
  */
 
 import {
@@ -76,9 +79,10 @@ interface SurfaceEvaluation {
  *
  * Flat and tilted planes solve analytically. Curved profiles solve
  * f(t) = ray.z(t) - surface.z(ray.x(t), ray.y(t)). A sphere and a polynomial-free conic take the closed-form
- * root when the profile evaluates within the raw residual target at it; the rest, and every closed-form root that
- * does not, use a safeguarded Newton iteration inside a sign-changing bracket, so grazing and steep-rim roots
- * remain bounded and cannot stall. The result says which through `closedFormFallback`.
+ * root when the profile evaluates within the raw residual target at it, and the result says how that went through
+ * `closedFormFallback`. A polynomial asphere with a clear radius takes the point of the conic-seeded route where
+ * that route certifies it. The rest, and every solve those two hand back, use a safeguarded Newton iteration
+ * inside a sign-changing bracket, so grazing and steep-rim roots remain bounded and cannot stall.
  *
  * @param ray - origin and direction in engine coordinates
  * @param profile - surface sag/normal evaluator
@@ -268,10 +272,10 @@ export function seedAsphereSolve(
         curvature === 0 ? 0 : w2 > 0 ? Math.abs(curvature) * Math.max(1, 1 / (w2 * Math.sqrt(w2))) : Infinity;
       normalTurn = conicTurn + ((MAX_TERM_POWER - 1) * slopeBound) / conservativeRadius;
       /* Beyond the stretch nothing is known of the surface. The iterative path's own certificates hold there only
-       * where the slope bound is under |dz| / |dxy|, which bounds its envelope at a cap point there; and a cap
-       * point that such a certificate covers together with the root has a true residual of at least one scan step
-       * times the margin. That path accepts a point only within the target plus twice its envelope of the true
-       * residual, so beyond this it accepts none. */
+       * where the slope bound is under |dz| / |dxy|, which bounds its envelope at a cap point there. A cap point
+       * that such a certificate covers together with the root has a true residual of at least the margin times
+       * one scan step, and that path accepts a point only when its true residual is within the target plus twice
+       * its envelope. Past this gate it accepts none there. */
       if (end < maxT) {
         const farEnvelope = sagResidualRoundoff(
           origin,
