@@ -174,9 +174,9 @@ export function intersectConicClosedForm(
     if (!atDomainEdge && !(w > 0)) continue;
 
     /* How near a bound, in t, a computed root still belongs to it. Three parts:
-     * - the window in which the residual evaluated at the bound can be accepted: twice the tolerance plus the
-     *   rounding of that evaluation, over |f'| = s/|w|. The rounding is the solver's operand envelope with the
-     *   radius replaced by the transverse operand sum, which is at least the radius, so it is never too small;
+     * - the distance over which the residual evaluated at the bound can be accepted: twice the tolerance plus
+     *   the rounding of that evaluation, over |f'| = s/|w|. The rounding is the solver's operand envelope with
+     *   the radius replaced by the transverse operand sum, which is at least the radius, so it is never too small;
      * - the rounding of the root, from the coefficients';
      * - the rounding of the sum t0 + τ.
      * A slack that cannot be computed is infinite: the root goes to a bound and the evaluation there decides. */
@@ -192,8 +192,8 @@ export function intersectConicClosedForm(
     const tauRoundoff = far
       ? (qRoundoff + Math.abs(tau) * aRoundoff) / Math.abs(a)
       : (gRoundoff + Math.abs(tau) * qRoundoff) / Math.abs(q);
-    const window = (2 * tolerance * Math.abs(w) + residualRoundoff) / s;
-    const computed = window + tauRoundoff + 4 * Number.EPSILON * (Math.abs(t0) + Math.abs(tau));
+    const acceptance = (2 * tolerance * Math.abs(w) + residualRoundoff) / s;
+    const computed = acceptance + tauRoundoff + 4 * Number.EPSILON * (Math.abs(t0) + Math.abs(tau));
     const slack = computed >= 0 ? computed : Infinity;
 
     if (raw < minT - slack || raw > maxT + slack) continue;
