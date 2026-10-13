@@ -528,6 +528,20 @@ const CASES: readonly FixtureCase[] = [
     rootCount: 1,
   },
   {
+    id: "asphere-far-oblique-in-cap",
+    kind: "asphere",
+    covers:
+      "oblique ray launched 200 mm off the axis to a hit inside the cap: a transverse operand sum of 415 mm, past the 281 mm at which coordinate rounding reaches the residual target",
+    R: 300,
+    asphere: { K: 0, ...NO_POLYNOMIAL, A4: 1e-7 },
+    sd: 20,
+    origin: [0, -200, -60],
+    direction: [0, 3.4, 1],
+    minT: 200.641,
+    maxT: 224.641,
+    rootCount: 1,
+  },
+  {
     id: "asphere-flat-quartic-cap-edge",
     kind: "asphere",
     covers: "flat base, z = r^4 / 8: steep root exactly on the cap boundary r = sd",

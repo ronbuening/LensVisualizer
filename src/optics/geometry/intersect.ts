@@ -2,9 +2,12 @@
  * Surface-profile intersection solver — finds exact ray hits on sag and tilted-plane surfaces.
  *
  * Planes solve analytically. A sphere, and an asphere with no polynomial term, is solved in closed form
- * (`intersectConic.ts`) and the root is accepted by evaluating the profile at it. Every other curved solve, and
- * every closed-form root that cannot be accepted that way, takes the iterative path: a bracketed root search with
- * safeguarded Newton refinement, so trace modules can distinguish aperture misses from true intersection failures.
+ * (`intersectConic.ts`) and the root is accepted by evaluating the profile at it. A polynomial asphere with an
+ * authored cap first tries a Newton iteration from the root of its base conic (`seedAsphereSolve`), whose point is
+ * returned only under a certificate that the iterative path returns the same root. Every other curved solve, every
+ * closed-form root that cannot be accepted, and every seeded solve that is refused takes the iterative path: a
+ * bracketed root search with safeguarded Newton refinement, so trace modules can distinguish aperture misses from
+ * true intersection failures. That path takes nothing from the two in front of it.
  */
 
 import {
@@ -16,20 +19,23 @@ import {
 import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../types.js";
 import { clamp } from "../math/numerics.js";
 import { dot, normalize, subtract } from "../math/vector.js";
-import { intersectConicClosedForm } from "./intersectConic.js";
-import { planeResidualRoundoff, sagResidualRoundoff } from "./intersectTolerance.js";
+import { MAX_NORMAL_MOVE, MAX_ROOT_MOVE, baseConicRoot, intersectConicClosedForm } from "./intersectConic.js";
+import { capCoordinateTolerance, planeResidualRoundoff, sagResidualRoundoff } from "./intersectTolerance.js";
 import type {
   ClosedFormFallbackReason,
   ParameterInterval,
+  SeedRefusal,
   SurfaceIntersectionFailure,
   SurfaceIntersectionFailureReason,
   SurfaceIntersectionOptions,
   SurfaceIntersectionResult,
   SurfaceIntersectionSuccess,
 } from "./intersectTypes.js";
+import { MAX_TERM_POWER, normalFromSlope } from "./surfaceProfile.js";
 
 export type {
   ClosedFormFallbackReason,
+  SeedRefusal,
   SurfaceIntersectionFailure,
   SurfaceIntersectionFailureReason,
   SurfaceIntersectionOptions,
@@ -39,6 +45,27 @@ export type {
 
 /** Bisections that locate where a ray crosses the edge of a surface's domain (~1e-12 of the sample spacing). */
 const DOMAIN_EDGE_BISECTIONS = 40;
+
+/**
+ * Most profile evaluations the seeded Newton iteration may spend. A solve that needs more is the iterative path's,
+ * with that path's whole budget: these are not charged to it. Like that path's cap it is a measured margin, not a
+ * convergence guarantee: the most a certified solve of the catalog needs, where three is usual.
+ */
+const SEED_MAX_EVALUATIONS = 6;
+
+/**
+ * Share of the residual target that the rounding of the residual may take at a seeded point.
+ *
+ * Two adjacent floats about a root are at most ε|t| apart, so the nearer one has a true residual within
+ * ε|t| max|f'| / 2. The envelope (`sagResidualRoundoff`) is at least 16 ε|t| max|f'|, so that is 1/32 of it. With
+ * the envelope within 31/32 of the target, one of the two floats therefore evaluates inside the target: the
+ * iterative path accepts at the raw target before its bracket can collapse, and a Newton correction too small to
+ * move t leaves a residual that is already inside it.
+ */
+const SEED_ENVELOPE_SHARE = 31 / 32;
+
+/** Smallest normal double. A square below it has lost digits, and is zero for an operand under about 1.5e-162. */
+const SMALLEST_NORMAL = 2 ** -1022;
 
 interface SurfaceEvaluation {
   t: number;
@@ -56,9 +83,10 @@ interface SurfaceEvaluation {
  *
  * Flat and tilted planes solve analytically. Curved profiles solve
  * f(t) = ray.z(t) - surface.z(ray.x(t), ray.y(t)). A sphere and a polynomial-free conic take the closed-form
- * root when the profile evaluates within the raw residual target at it; the rest, and every closed-form root that
- * does not, use a safeguarded Newton iteration inside a sign-changing bracket, so grazing and steep-rim roots
- * remain bounded and cannot stall. The result says which through `closedFormFallback`.
+ * root when the profile evaluates within the raw residual target at it, and the result says how that went through
+ * `closedFormFallback`. A polynomial asphere with a clear radius takes the point of the conic-seeded route where
+ * that route certifies it. The rest, and every solve those two hand back, use a safeguarded Newton iteration
+ * inside a sign-changing bracket, so grazing and steep-rim roots remain bounded and cannot stall.
  *
  * @param ray - origin and direction in engine coordinates
  * @param profile - surface sag/normal evaluator
@@ -74,7 +102,11 @@ export function intersectSurfaceProfile(
 ): SurfaceIntersectionResult {
   const closedForm = solveClosedForm(ray, profile, vertexZ, options);
   if (closedForm !== null && typeof closedForm !== "string") return closedForm;
-  // The iterative path takes the caller's inputs and nothing from the closed form: no seed and no bracket.
+  // A closed form that fell back has its reason to report, and its solve is the iterative path's.
+  const seeded = closedForm === null ? seedAsphereSolve(ray, profile, vertexZ, options) : null;
+  if (seeded !== null && typeof seeded !== "string") return seeded;
+  // The iterative path takes the caller's inputs and nothing from the closed form or the seeded route: no seed
+  // and no bracket.
   const result = solveIteratively(ray, profile, vertexZ, options);
   return closedForm === null ? result : { ...result, closedFormFallback: closedForm };
 }
@@ -111,6 +143,283 @@ function solveClosedForm(
     cap,
     options.refractiveIndex,
   );
+}
+
+/** What one slope-bound call shows about a stretch of the ray, for the seeded route. */
+interface SeedCertificate {
+  /** Bound on the rounding of a transverse coordinate on the stretch, and of the cap interval's ends, in mm. */
+  coordinateRoundoff: number;
+  /** Bound on |sag'| over the radii of the stretch. */
+  slopeBound: number;
+  /** Least |f'| that bound leaves on the stretch. It is positive, so f is strictly monotone there. */
+  margin: number;
+  /** Bound on how far the unit normal turns per mm of radius on the stretch. */
+  normalTurn: number;
+  /**
+   * The ray starts inside the cap and the stretch's largest radius is at that start. A certificate about any other
+   * point of the ray then starts at the same point and covers a radius at least as large, so none is tighter, but
+   * for the last bits of its coordinate rounding: there a refusal that is taken as final is conservative.
+   */
+  settled: boolean;
+}
+
+/**
+ * Try the conic-seeded route: a plain Newton iteration from the root of the base conic, on a polynomial asphere
+ * with an authored cap, returned only where the iterative path is shown to return the same root.
+ *
+ * The route decides nothing but such a hit. Its point is returned at the raw target, and only when a certificate
+ * computed here, from the slope bound and the operands of the ray, establishes all of:
+ *
+ * - One root, and the first. Over a stretch of the ray that holds every cap point from the lower bound to one
+ *   step of the bracket scan past the point, |f'| stays above zero. The residual is then strictly monotone there,
+ *   so the point's root is the first inside the cap, and the two scan samples about it are inside the stretch,
+ *   so the scan resolves it. A root the scan does not resolve stays that path's miss.
+ * - Coordinates. The rounding of a transverse coordinate, with that of the ends of the cap interval, is within
+ *   the cap's clip tolerance (`capCoordinateTolerance`), and is added to every radius the certificate compares.
+ * - The raw target. The rounding of the residual at the point is within `SEED_ENVELOPE_SHARE` of the target, so
+ *   the iterative path reports the target too, not its envelope.
+ * - The same point, within budget. Two points of the stretch that both meet the target lie within
+ *   2 (target + rounding) / min|f'| of each other. That is held to `MAX_ROOT_MOVE` along the ray and, times the
+ *   turn of the normal, to `MAX_NORMAL_MOVE`; and the two are not on either side of the radius at which a normal
+ *   becomes the axis', unless the normal steps there by no more than that.
+ * - No rule of the iterative path's own. The point is farther than that move from both bounds and from the rim,
+ *   and is not within twice the target of the vertex plane unless it is the vertex-plane crossing, the point
+ *   that path stops on there. One step of that path's scan is longer than the tolerance, the distance along the
+ *   ray within which its cap selection takes two hits for one.
+ *
+ * Anything else is refused with a reason, and the caller runs the iterative path with its own inputs: nothing
+ * computed here is passed on. Exported for tests: nothing in `src/` calls it but `intersectSurfaceProfile`.
+ *
+ * @param ray - origin and direction in engine coordinates
+ * @param profile - surface sag/normal evaluator
+ * @param vertexZ - axial vertex position in mm
+ * @param options - search bounds, tolerance, clear radius, and optional optical-path index
+ * @returns the hit; the reason the route leaves this solve to the iterative path; or null where the route does
+ *   not apply: an explicit budget, another kind of profile, rejected input, or a ray with no span inside the cap
+ */
+export function seedAsphereSolve(
+  ray: Ray3,
+  profile: SurfaceProfile,
+  vertexZ: number,
+  options: SurfaceIntersectionOptions = {},
+): SurfaceIntersectionSuccess | SeedRefusal | null {
+  // An iteration budget or a scan density describes the iterative path, so a caller that sets one gets that path.
+  if (options.maxIterations !== undefined || options.bracketSamples !== undefined) return null;
+  if (profile.kind !== "aspheric" || profile.maxAbsSlope === undefined || !profile.hasPolynomial) return null;
+  const { minT = 0, maxT = Infinity, tolerance = INTERSECTION_TOLERANCE, clearRadius } = options;
+  const direction = options.directionNormalized ? ray.direction : normalize(ray.direction);
+  // Input the iterative path rejects goes to it, so the failure it reports stays the one reported.
+  if (!direction || !isValidBounds(minT, maxT) || !Number.isFinite(maxT)) return null;
+  // Only a hit inside the cap is certified, so a ray with no span inside the cap has nothing to try.
+  const cap = capInterval(ray.origin, direction, clearRadius, minT, maxT);
+  if (cap === null || clearRadius === undefined) return null;
+
+  /* ── Seed ── */
+
+  const origin = ray.origin;
+  const conicRoot = baseConicRoot(origin, direction, profile.curvature, profile.conic, vertexZ, cap.minT, cap.maxT);
+  if (conicRoot === null) return "noSeed";
+  /* The iterative path seeds from the vertex-plane crossing and accepts it when the sag there is within the
+   * target. Where the base conic puts the hit within twice the target of that plane, the route starts from the
+   * same float, in that path's own expression, so that it can return that path's own point. */
+  const vertexPlaneT = Math.abs(direction[2]) > VECTOR_EPSILON ? (vertexZ - origin[2]) / direction[2] : NaN;
+  const seed =
+    Math.abs(conicRoot.sag) <= 2 * tolerance && vertexPlaneT >= cap.minT && vertexPlaneT <= cap.maxT
+      ? vertexPlaneT
+      : conicRoot.t;
+
+  /* ── Lengths along the ray ── */
+
+  const speed2 = direction[0] ** 2 + direction[1] ** 2;
+  /* The cap interval is solved from this square, and the transverse speed is its root. Where the square underflows
+   * neither is the ray's, and a ray that is not axial can be held as axial. */
+  if (speed2 < SMALLEST_NORMAL && (direction[0] !== 0 || direction[1] !== 0)) return "coordinateRoundoff";
+  const transverseSpeed = Math.sqrt(speed2);
+  const axialSpeed = Math.abs(direction[2]);
+  const length = Math.sqrt(speed2 + direction[2] ** 2);
+  const radiusAt = (t: number): number => Math.hypot(origin[0] + direction[0] * t, origin[1] + direction[1] * t);
+  const originSum = Math.abs(origin[0]) + Math.abs(origin[1]);
+  /* The ends of the cap interval are roots of a quadratic solved from the origin, whose discriminant loses digits
+   * as (originSum / clearRadius)². The coordinate sum below holds no such term; this adds it. */
+  const rimRoundoff = (16 * Number.EPSILON * originSum * originSum) / clearRadius;
+  const coordinateLimit = capCoordinateTolerance(clearRadius);
+  // One step of the iterative path's scan of the bounds, with the rounding of a sample's position.
+  const scanStep = (maxT - minT) / INTERSECTION_BRACKET_SAMPLES + 4 * Number.EPSILON * maxT;
+  /* Cap selection takes two hits for one root when their parameters differ by no more than the tolerance, which is
+   * a length only on a unit direction. Any other root is more than one scan step from the point's, so a step
+   * longer than the tolerance keeps that rule from returning another root in the point's place. */
+  if (!(scanStep > tolerance)) return "shortBounds";
+  // ... and the farthest apart two points of one root may lie.
+  const step = scanStep + MAX_ROOT_MOVE / length;
+  const curvature = profile.curvature;
+
+  /* ── Certificate ── */
+
+  /** Certify the stretch that reaches one step past [from, to], or give the reason it cannot be certified. */
+  const certify = (from: number, to: number): SeedCertificate | SeedRefusal => {
+    /* A ray that starts inside the cap is covered from its lower bound. One that enters it later is covered from
+     * a step before `from`, and never from later than its entry, so every cap point before the stretch's end is
+     * inside the stretch's largest radius: the radius is convex along a ray. */
+    const start = cap.minT > minT ? Math.min(cap.minT, Math.max(minT, from - step)) : minT;
+    const end = Math.min(maxT, to + step);
+    const coordinateRoundoff =
+      16 * Number.EPSILON * (originSum + transverseSpeed * Math.max(cap.maxT, end)) + rimRoundoff;
+    if (!(Number.isFinite(coordinateRoundoff) && coordinateRoundoff <= coordinateLimit)) return "coordinateRoundoff";
+    const startRadius = radiusAt(start);
+    const endRadius = radiusAt(end);
+    // The margins of the cap-selection certificate, on a radius that also carries the coordinate rounding.
+    const conservativeRadius = Math.max(startRadius, endRadius) * (1 + 1e-12) + coordinateRoundoff + 1e-12;
+    const slopeBound = profile.maxAbsSlope?.(conservativeRadius) ?? Infinity;
+    // Unknown, nonfinite and conic-edge bounds certify nothing.
+    if (!(Number.isFinite(slopeBound) && slopeBound >= 0)) return "slopeBound";
+    // |d sag/dt| <= max|sag'| * transverseSpeed, so |f'| is at least this.
+    const margin = axialSpeed - slopeBound * transverseSpeed;
+    if (!(margin > 1e-10)) return "slopeBound";
+    let normalTurn = 0;
+    if (transverseSpeed > 0) {
+      /* Per mm of radius the unit normal turns by at most |sag''| in the meridional plane and |sag'| / r about
+       * the axis. The conic's part of both is within |c| max(1, w⁻³) for its conic root w, and each polynomial
+       * term of the slope bound, p |A_p| r^(p−1), differentiates to at most (p − 1) / r of itself. The whole slope
+       * bound stands in for its polynomial part here, the conic's slope and the bound's slack with it, which
+       * only raises the bound. All of it grows with r, so the stretch's largest radius bounds it. */
+      const w2 = 1 - (1 + profile.conic) * curvature * curvature * conservativeRadius * conservativeRadius;
+      const conicTurn =
+        curvature === 0 ? 0 : w2 > 0 ? Math.abs(curvature) * Math.max(1, 1 / (w2 * Math.sqrt(w2))) : Infinity;
+      normalTurn = conicTurn + ((MAX_TERM_POWER - 1) * slopeBound) / conservativeRadius;
+      /* Beyond the stretch nothing is known of the surface. The iterative path's own certificates hold there only
+       * where the slope bound is under |dz| / |dxy|, which bounds its envelope at a cap point there. A cap point
+       * that such a certificate covers together with the root has a true residual of at least the margin times
+       * one scan step, and that path accepts a point only when its true residual is within the target plus twice
+       * its envelope. Past this gate it accepts none there. */
+      if (end < maxT) {
+        const farEnvelope = sagResidualRoundoff(
+          origin,
+          direction,
+          maxT,
+          vertexZ,
+          clearRadius + coordinateLimit,
+          0,
+          axialSpeed / transverseSpeed,
+        );
+        if (!(margin * scanStep > tolerance + 2 * farEnvelope)) return "farEnvelope";
+      }
+    }
+    return {
+      coordinateRoundoff,
+      slopeBound,
+      margin,
+      normalTurn,
+      settled: cap.minT === minT && startRadius >= endRadius,
+    };
+  };
+
+  /**
+   * How far apart, in t, two points of a stretch that both meet the target can lie, from the rounding of the
+   * residual there and the least |f'|; or the reason the two paths' points are not shown to agree within budget.
+   */
+  const moveOf = (envelope: number, margin: number, normalTurn: number): number | SeedRefusal => {
+    if (!(envelope <= tolerance * SEED_ENVELOPE_SHARE)) return "roundoff";
+    const move = (2 * (tolerance + envelope)) / margin;
+    if (!(move * length <= MAX_ROOT_MOVE)) return "nearTangency";
+    if (transverseSpeed > 0 && !(move * transverseSpeed * normalTurn <= MAX_NORMAL_MOVE)) return "nearTangency";
+    return move;
+  };
+
+  /** The reason a point may not be returned under a certificate that covers it, or null when it may. */
+  const refusalAt = (certificate: SeedCertificate, at: SurfaceEvaluation): SeedRefusal | null => {
+    // The iterative path's envelope at the point, under the stretch's slope bound.
+    const envelope = sagResidualRoundoff(origin, direction, at.t, vertexZ, at.radius, at.sag, certificate.slopeBound);
+    const move = moveOf(envelope, certificate.margin, certificate.normalTurn);
+    if (typeof move === "string") return move;
+    // Inside the target of the vertex plane the iterative path stops on its seed there, not on the surface.
+    if (Math.abs(at.sag) <= 2 * tolerance && at.t !== vertexPlaneT) return "vertexPlane";
+    // That path tests each bound before it looks between them, and returns a bound that passes.
+    if (!(at.t - minT > move && maxT - at.t > move)) return "atBound";
+    // The two paths' radii differ by no more than the move between their points and the rounding of both.
+    const radiusSlack = 2 * certificate.coordinateRoundoff + transverseSpeed * move;
+    // Both paths' points are inside the cap: this one by that much.
+    if (!(at.radius + radiusSlack <= clearRadius)) return "atRim";
+    /* Under VECTOR_EPSILON of radius a normal is the axis' (`normalFromSlope`), and from there on the surface's,
+     * so it steps there by the slope. The turn of the normal bounds a smooth normal only: where the two points
+     * can lie on either side of that radius, the slope at the outer one bounds how far their normals differ. */
+    if (
+      Math.abs(at.radius - VECTOR_EPSILON) <= radiusSlack &&
+      !((profile.maxAbsSlope?.(VECTOR_EPSILON + radiusSlack) ?? Infinity) <= MAX_NORMAL_MOVE)
+    ) {
+      return "axisNormal";
+    }
+    return null;
+  };
+
+  const windowLo = Math.max(cap.minT, seed - step);
+  const windowHi = Math.min(cap.maxT, seed + step);
+  const windowCertificate = certify(windowLo, windowHi);
+  if (typeof windowCertificate === "string") return windowCertificate;
+  /* What no certificate can better is refused before anything is evaluated. Every point of the cap interval has
+   * at least the operands of its start. A settled certificate's slope bound, margin and normal turn are the best
+   * any has; otherwise the bound is taken as 0, the margin as |dz| and the turn as 0. */
+  const { settled } = windowCertificate;
+  const earliest = moveOf(
+    sagResidualRoundoff(origin, direction, cap.minT, vertexZ, 0, 0, settled ? windowCertificate.slopeBound : 0),
+    settled ? windowCertificate.margin : axialSpeed,
+    settled ? windowCertificate.normalTurn : 0,
+  );
+  if (typeof earliest === "string") return earliest;
+
+  /* ── Newton from the seed ── */
+
+  /* No bracket, no bisection and no envelope: the iteration either meets the raw target inside the cap interval
+   * within its evaluations, or the solve is the iterative path's. The evaluation is that path's own, domain rule
+   * included. */
+  const domainRadius = profile.finiteRadiusLimit();
+  const sagSlope: SagSlope = { sag: 0, slope: 0 };
+  let t = seed;
+  let found: SurfaceEvaluation | null = null;
+  let evaluations = 0;
+  while (evaluations < SEED_MAX_EVALUATIONS) {
+    evaluations++;
+    const current = evaluateProfile(origin, direction, profile, vertexZ, t, domainRadius, sagSlope);
+    if (!isFiniteValueEvaluation(current)) return "notConverged";
+    if (Math.abs(current.value) <= tolerance) {
+      found = current;
+      break;
+    }
+    if (!isFiniteEvaluation(current)) return "notConverged";
+    const next = t - current.value / current.derivative;
+    // A correction that cannot move t is a stall, and a stall is the iterative path's to judge.
+    if (next === t || !(next >= cap.minT && next <= cap.maxT)) return "notConverged";
+    t = next;
+  }
+  if (found === null) return "notConverged";
+
+  /* ── Acceptance ── */
+
+  /* The window's certificate covers a point inside the window. Where it does not serve, one about the point
+   * itself may: its stretch is shorter, so its slope bound can be lower. A settled certificate that covers the
+   * point is already the tightest about it but for the rounding of its coordinate bound, and its refusal stands. */
+  const inWindow = found.t >= windowLo && found.t <= windowHi;
+  const windowRefusal = inWindow ? refusalAt(windowCertificate, found) : null;
+  if (!inWindow || windowRefusal !== null) {
+    if (windowRefusal !== null && settled) return windowRefusal;
+    const pointCertificate = certify(found.t, found.t);
+    if (typeof pointCertificate === "string") return pointCertificate;
+    const pointRefusal = refusalAt(pointCertificate, found);
+    if (pointRefusal !== null) return pointRefusal;
+  }
+
+  return {
+    ok: true,
+    t: found.t,
+    point: found.point,
+    radius: found.radius,
+    // The slope of the same evaluation: bit for bit the normal `profile.normalAt` builds from its own.
+    normal: normalFromSlope(found.point[0], found.point[1], found.radius, found.slope),
+    residual: found.value,
+    effectiveTolerance: tolerance,
+    iterations: evaluations,
+    segmentLength: found.t,
+    opticalPathLength: options.refractiveIndex === undefined ? null : options.refractiveIndex * found.t,
+  };
 }
 
 /** The bracketed search with Newton refinement, then cap selection on an aspheric profile. */
