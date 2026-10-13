@@ -158,6 +158,16 @@ const COMA_FIELD: Path = ["jobs", "computeComaAnalysis", "value", "pointCloudPre
 const POSED_COMA_SAMPLE: Path = ["jobs", "computePerspectiveFieldAberrations", "value", "coma", "samples", 1];
 /** The blur character of spherical aberration, in front of best focus. */
 const BLUR_CHARACTER: Path = ["jobs", "computeSphericalAberrationBlurCharacter", "value", "frontDefocus"];
+/** The off-axis chromatic fan: where a ray of each channel crosses the axis, and the span of those crossings. */
+const FAN_SPREAD: Path = ["jobs", "computeChromaticRayFanAnalysis", "value", "spreads", "offAxis"];
+/** The pupil-aberration profiles, and one field of the exit pupil's, away from the axis. */
+const PUPIL_PROFILES: Path = ["jobs", "computeBothPupilAberrationProfiles", "value"];
+const XP_SAMPLE: Path = [...PUPIL_PROFILES, "xp", "samples", 13];
+/** A length in micrometres beside its twin in mm, and a bar of the LoCA inset, a focus shift in px. */
+const SA_UM: Path = ["jobs", "computeSphericalAberration", "value", "longitudinalSaUm"];
+const SA_MM: Path = ["jobs", "computeSphericalAberration", "value", "longitudinalSaMm"];
+const LOCA_BAR: Path = ["jobs", "locaBarOffsets", "value", "barOffsets", "R"];
+const LOCA_PX_PER_MM = 201;
 
 /** The Tier P lens with an absorbing element, whose rays do not all weigh the same. */
 const ABSORBING = lensId(FEATURE_REPRESENTATIVES.find(({ feature }) => feature === "bulk-absorption")!.lens);
@@ -209,7 +219,9 @@ describe("engineDiff budget table", () => {
     expect(row("firstOrder")).toEqual(["relative", 1e-12, "relative"]);
     expect(row("chiefLaunch")).toEqual(["absolute", 1e-9, "mm"]);
     expect(row("fieldAngle")).toEqual(["absolute", 1e-10, "deg"]);
-    expect(row("analysisLength")).toEqual(["absolute", 1e-8, "mm"]);
+    /* 1e-8 mm, as the plan has it, for any length under 100 mm; 1e-10 of the length's own size beyond that. */
+    expect(row("analysisLength")).toEqual(["relative", 1e-10, "relative"]);
+    expect(QUANTITIES.analysisLength.floor).toEqual({ bound: 1e-8, unit: "mm" });
     expect(row("percentage")).toEqual(["absolute", 1e-8, "points"]);
     expect(row("mtfModulation")).toEqual(["absolute", 1e-7, ""]);
     expect(row("count")).toEqual(["exact", 0, ""]);
@@ -225,11 +237,12 @@ describe("engineDiff budget table", () => {
     expect(planRows.slice(11)).toEqual(["binnedStatistic", "lengthRatio"]);
   });
 
-  it("gives a relative class a floor only where its values may be zero, in the field's own unit", () => {
+  it("gives a relative class a floor only where its values may be zero, in the class's unit", () => {
     /* A floor is the least a relative bound may be. A length may be exactly zero, so its classes keep 1e-12 mm; a
      * smooth ratio is a fraction that is often zero, and keeps its 1e-10. An index, an f-number, a ratio of ray
      * heights or the Petzval sum is no length and never near zero, and is held to the plain relative bound. A
-     * clipped or diagnostic point keeps the plan's 1e-7 mm as its floor, and is relative only far from the lens. */
+     * clipped or diagnostic point keeps the plan's 1e-7 mm as its floor and an analysis length the plan's 1e-8 mm:
+     * each is relative only far from the lens, a point beyond 100 m and a length beyond 100 mm. */
     const floors = (Object.keys(QUANTITIES) as QuantityId[]).flatMap((id) => {
       const { kind, c1, floor }: Quantity = QUANTITIES[id];
       return kind === "relative" ? [[id, c1, floor ?? null]] : [];
@@ -238,6 +251,7 @@ describe("engineDiff budget table", () => {
     expect(floors).toEqual([
       ["clippedHit", 1e-12, { bound: 1e-7, unit: "mm" }],
       ["firstOrder", 1e-12, lengthFloor],
+      ["analysisLength", 1e-10, { bound: 1e-8, unit: "mm" }],
       /* A weighted bin is a sum of weights that are never negative. Nothing cancels in it, so it is never near zero
        * without being zero, and a bin no ray falls in is zero on both sides. */
       ["binnedStatistic", 1e-10, null],
@@ -282,9 +296,11 @@ describe("engineDiff budget table", () => {
       ["buildHalfField", "absolute", fieldAngle.c1, "deg", 90 / 2 ** 40],
       ["rawHalfField", "absolute", fieldAngle.c1, "deg", 90 / 2 ** 20],
       ["analysisHalfField", "absolute", fieldAngle.c1, "deg", 5 / 2 ** 8],
-      ["mtfFocusShift", "absolute", analysisLength.c1, "mm", 1e-6],
+      /* A best-focus shift is a fraction of a millimetre, where an analysis length is held to its floor. */
+      ["mtfFocusShift", "absolute", analysisLength.floor?.bound, "mm", 1e-6],
       ["bestFitRadius", "relative", firstOrder.c1, "relative", 1e-7],
     ]);
+    expect(analysisLength.floor?.bound).toBe(1e-8);
     /* A residual is no output to difference. Its class is a contract: the tolerance of the solve, in mm, or the
      * one recorded beside a hit. */
     const residuals = (Object.keys(QUANTITIES) as QuantityId[]).flatMap((id) => {
@@ -311,9 +327,30 @@ describe("engineDiff budget table", () => {
     );
     const looser = differenced.filter((id) => !(QUANTITIES[id].c1 <= loosest[QUANTITIES[id].unit]));
     expect(looser).toEqual([]);
-    /* That row is alone past the budget of a fraction: no other relative class may take its 1e-8 as a ceiling. */
+    /* A floor is an absolute bound in the unit it names, and the whole budget of its class below the size where
+     * the share takes over, so it answers to the loosest row of that unit as a budget does. */
+    const floored = differenced.flatMap((id) => {
+      const { floor }: Quantity = QUANTITIES[id];
+      return floor ? [{ id, ...floor }] : [];
+    });
+    expect(floored.map(({ id }) => id)).toEqual([
+      "clippedHit",
+      "firstOrder",
+      "analysisLength",
+      "layoutLength",
+      "bestFitRadius",
+      "ratio",
+    ]);
+    expect(floored.filter(({ bound, unit }) => !(bound <= loosest[unit])).map(({ id }) => id)).toEqual([]);
+    /* That row is alone past the budget of a fraction: no other relative class may take its 1e-8 as a ceiling. An
+     * analysis length is a share of itself only beyond 100 mm, and then at the 1e-10 of a fraction, not past it. */
     const pastAFraction = differenced.filter((id) => QUANTITIES[id].unit === "relative" && QUANTITIES[id].c1 > 1e-10);
     expect(pastAFraction).toEqual(["lengthRatio"]);
+    /* A class that is a share of the value only far from the lens leaves its floor where the share is more: a
+     * diagnostic point at 100 m, an analysis length at 100 mm. */
+    const takeover = ({ c1, floor }: Quantity) => floor!.bound / c1;
+    expect(takeover(QUANTITIES.clippedHit)).toBeCloseTo(1e5, 6);
+    expect(takeover(QUANTITIES.analysisLength)).toBeCloseTo(100, 9);
   });
 
   it("holds every class to its C1 budget under C2, and says which C2 criteria it does not apply", () => {
@@ -489,7 +526,13 @@ describe("engineDiff drift detection", () => {
     ["chiefSolves", ["solves", 1, "fieldAngleDeg"], "analysisHalfField", 1],
     ["analysis", ["jobs", "computeBestFocusZ", "value"], "analysisLength", 1],
     /* A micrometre twin is held to a thousand times the millimetre budget. */
-    ["analysis", ["jobs", "computeSphericalAberration", "value", "longitudinalSaUm"], "analysisLength", 1000],
+    ["analysis", SA_UM, "analysisLength", 1000],
+    /* Where a channel of the off-axis fan crosses the axis, the span of those crossings, and the traced exit pupil
+     * of one field with its shift. On the benchmark prime each is under 100 mm; the far ones have a table below. */
+    ["analysis", [...FAN_SPREAD, "axialIntercepts", "B"], "analysisLength", 1],
+    ["analysis", [...FAN_SPREAD, "axialInterceptSpreadMm"], "analysisLength", 1],
+    ["analysis", [...XP_SAMPLE, "xpZRelLastSurf"], "analysisLength", 1],
+    ["analysis", [...XP_SAMPLE, "xpShiftMm"], "analysisLength", 1],
     ["analysis", ["jobs", "computeDistortionCurve", "value", 3, "distortionPercent"], "percentage", 1],
     ["analysis", ["jobs", "computeDistortionCurve", "value", 3, "fieldAngleDeg"], "fieldAngle", 1],
     ["analysis", ["jobs", "computeVignettingCurve", "value", 3, "relativeIllumination"], "ratio", 1],
@@ -498,7 +541,7 @@ describe("engineDiff drift detection", () => {
     ["build", ["EP", "yRatio"], "nonLength", 1],
     ["build", ["data", "surfaces", 0, "R"], "prescription", 1],
     /* A bar of the LoCA inset is a focus shift drawn at about 201 px per mm. */
-    ["analysis", ["jobs", "locaBarOffsets", "value", "barOffsets", "R"], "analysisLength", 201],
+    ["analysis", LOCA_BAR, "analysisLength", LOCA_PX_PER_MM],
     ["analysis", ["jobs", "locaBarOffsets", "value", "legacy", "mag"], "ratio", 1],
     /* The radial profile of a bokeh footprint whose rays weigh differently, which the benchmark prime's do not: a
      * centre-to-rim ratio in the hundreds, and bins that are fractions of the profile's peak or of its total. */
@@ -521,16 +564,34 @@ describe("engineDiff drift detection", () => {
     ["mtf", ["result", "focus", "bestAxialShiftMm"], "mtfFocusShift", 1],
   ])("holds %s %j to the %s budget under C1: twice fails, half passes", (request, path, quantity, scale, from) => {
     /* The benchmark prime's records, or those of the lens a row names where the prime has no such field. */
-    const source = from?.() ?? SERENAR_RECORDS;
+    expectTwiceFailsHalfPasses(request, path, quantity, scale, from?.() ?? SERENAR_RECORDS);
+  });
+
+  /**
+   * Move one number by twice what its class allows it under C1, and by half of that. The first fails as a number of
+   * the class at twice its budget, the second passes, and under C0 the second fails as well.
+   *
+   * @param scale - how many of the field's units make one of the class's, which the field's row must state
+   * @returns what the class allows the number, in the field's own unit, and whether that is the class's floor
+   */
+  function expectTwiceFailsHalfPasses(
+    request: RequestFamily,
+    path: Path,
+    quantity: QuantityId,
+    scale: number,
+    source: readonly PayloadRecord[],
+  ): { allowed: number; atFloor: boolean } {
     const value = at(source, request, path);
     if (typeof value !== "number") throw new Error(`${request} ${path.join(".")} is not a number`);
     const { kind, floor }: Quantity = QUANTITIES[quantity];
     expect(resolveBudgetRule(request, tablePath(path))?.scale).toBe(scale);
-    /* A relative budget is a share of the value, and of no less than the class's floor where it has one. */
-    const bound = (budget: number) =>
-      kind === "relative" ? Math.max(budget * Math.abs(value), floor?.bound ?? 0) : budget;
-    const unit = bound(budgetOf(quantity, "c1")) * scale;
-    const moved = (factor: number) => withChange(request, path, () => value + factor * unit, source);
+    /* An absolute budget and a floor are in the class's unit, and `scale` times as many of the field's. A relative
+     * budget is a share of the value, the same share in any unit, and no less than the class's floor where it has
+     * one. */
+    const share = budgetOf(quantity, "c1") * Math.abs(value);
+    const least = (floor?.bound ?? 0) * scale;
+    const allowed = kind === "relative" ? Math.max(share, least) : budgetOf(quantity, "c1") * scale;
+    const moved = (factor: number) => withChange(request, path, () => value + factor * allowed, source);
 
     const beyond = compare("c1", moved(2), source);
     expect(beyond.passed).toBe(false);
@@ -543,6 +604,179 @@ describe("engineDiff drift detection", () => {
     expect(within.passed).toBe(true);
     expect(within.engine.quantities[quantity]).toMatchObject({ differing: 1, beyondBudget: 0 });
     expect(compare("c0", moved(0.5), source).passed).toBe(false);
+    return { allowed, atFloor: kind === "relative" && least > share };
+  }
+
+  it.each<[string, Path, number, number, "floor" | "share"]>([
+    /* What the member is, its path, the scale of its row, a value in its own unit, and which term is the bound. */
+    ["the axial crossing of a channel, 71 mm away", [...FAN_SPREAD, "axialIntercepts", "B"], 1, -70.92, "floor"],
+    [
+      "the axial crossing of a channel, just short of 100 mm",
+      [...FAN_SPREAD, "axialIntercepts", "B"],
+      1,
+      -99.9,
+      "floor",
+    ],
+    [
+      "the axial crossing of a channel, 23 m away",
+      [...FAN_SPREAD, "axialIntercepts", "B"],
+      1,
+      -22772.388828468254,
+      "share",
+    ],
+    [
+      "the span of the channels' crossings, 39 m",
+      [...FAN_SPREAD, "axialInterceptSpreadMm"],
+      1,
+      39051.78268254464,
+      "share",
+    ],
+    ["a field's traced exit pupil, 21 mm away", [...XP_SAMPLE, "xpZRelLastSurf"], 1, -21.42, "floor"],
+    ["a field's traced exit pupil, 44 m away", [...XP_SAMPLE, "xpZRelLastSurf"], 1, -44222.18817793754, "share"],
+    ["a field's exit-pupil shift of 44 m", [...XP_SAMPLE, "xpShiftMm"], 1, -43964.31810696358, "share"],
+    ["a best-focus position at 99 mm", ["jobs", "computeBestFocusZ", "value"], 1, 99, "floor"],
+    ["a best-focus position at 400 mm", ["jobs", "computeBestFocusZ", "value"], 1, 400, "share"],
+    ["a micrometre twin of 0.6 mm", SA_UM, 1000, -606.1, "floor"],
+    ["a micrometre twin of 99 mm", SA_UM, 1000, 99e3, "floor"],
+    ["a micrometre twin of 20 m", SA_UM, 1000, 2e7, "share"],
+    ["a LoCA bar of a 0.07 mm shift, in px", LOCA_BAR, LOCA_PX_PER_MM, 14.76, "floor"],
+    ["a LoCA bar of a 99 mm shift, in px", LOCA_BAR, LOCA_PX_PER_MM, 99 * LOCA_PX_PER_MM, "floor"],
+    ["a LoCA bar of a 500 mm shift, in px", LOCA_BAR, LOCA_PX_PER_MM, 500 * LOCA_PX_PER_MM, "share"],
+  ])("holds %s to the analysis-length bound under C1: twice fails, half passes", (_, path, scale, value, term) => {
+    /* An analysis length is held to 1e-8 mm up to 100 mm and to 1e-10 of its own size beyond it. The length is
+     * the member's value in mm, whichever unit the member is stored in. */
+    const source = withChange("analysis", path, () => value);
+    const { allowed, atFloor } = expectTwiceFailsHalfPasses("analysis", path, "analysisLength", scale, source);
+    const lengthMm = Math.abs(value) / scale;
+    expect(lengthMm > 100 ? "share" : "floor").toBe(term);
+    expect(atFloor ? "floor" : "share").toBe(term);
+    expect(allowed / scale / (term === "floor" ? 1e-8 : 1e-10 * lengthMm)).toBeCloseTo(1, 12);
+  });
+
+  it("holds a length restated in micrometres or px to the bound of the same length in mm", () => {
+    /* One length three ways: in mm, as its micrometre twin, and as a bar of the LoCA inset at 201 px per mm. Each
+     * is moved by twice what the length is allowed in mm, and the comparison finds the three alike: at twice their
+     * budget. A floor or a share taken in the field's own unit would allow the twin a thousand times the length's
+     * share, and would end the floor of a bar at half a millimetre. */
+    const rows: [Path, number][] = [
+      [SA_MM, 1],
+      [SA_UM, 1000],
+      [LOCA_BAR, LOCA_PX_PER_MM],
+    ];
+    for (const [path, scale] of rows) {
+      expect(resolveBudgetRule("analysis", tablePath(path))).toMatchObject({ quantity: "analysisLength", scale });
+    }
+    for (const lengthMm of [0.6, 60, 99, 500, 20000]) {
+      const allowedMm = Math.max(1e-8, 1e-10 * lengthMm);
+      const shares = rows.map(([path, scale]) => {
+        const set = (mm: number) => withChange("analysis", path, () => mm * scale);
+        const beyond = compare("c1", set(lengthMm + 2 * allowedMm), set(lengthMm));
+        expect(failuresOf(beyond)).toEqual([
+          { request: "analysis", path: pathText(path), kind: "number", quantity: "analysisLength" },
+        ]);
+        expect(compare("c1", set(lengthMm + 0.5 * allowedMm), set(lengthMm)).passed).toBe(true);
+        const { measure, budget } = beyond.engine.failures[0];
+        return measure! / budget!;
+      });
+      for (const share of shares) expect(share).toBeCloseTo(2, 3);
+    }
+  });
+
+  it("passes the far crossings a conic-seeded asphere solve moved, and fails each at ten times its allowance", () => {
+    /* S3.P2.T2 seeds the asphere solve from the conic root and moves three quarters of asphere hits by rounding,
+     * none by more than 1.2e-11 mm across Tier S. Eleven numbers of two lenses moved past their budgets all the
+     * same, each a crossing of nearly parallel rays far from the lens:
+     * - an off-axis ray of a 70-200 mm zoom on a 1.4x converter leaves nearly parallel to the axis in two channels
+     *   and crosses it 16 m behind the lens and 23 m in front, so the span of the channels' crossings is 39 m;
+     * - the chief ray of one field of a compact zoom at its long end leaves nearly parallel to the axis, and its
+     *   traced exit pupil is 44 m in front of the last surface: the position, its shift from the paraxial pupil,
+     *   and the profile's two largest shifts, which are that shift again. */
+    const evidence: [Path, number, number][] = [
+      [[...FAN_SPREAD, "axialIntercepts", "B"], -22772.388828468254, -22772.388828525724],
+      [[...FAN_SPREAD, "axialIntercepts", "G"], 16279.393854076385, 16279.393854096963],
+      [[...FAN_SPREAD, "axialInterceptSpreadMm"], 39051.78268254464, 39051.78268262269],
+      [[...XP_SAMPLE, "xpShiftMm"], -43964.31810696358, -43964.31810645966],
+      [[...PUPIL_PROFILES, "xp", "maxAbsShiftMm"], 43964.31810696358, 43964.31810645966],
+      [[...PUPIL_PROFILES, "maxAbsXpShiftMm"], 43964.31810696358, 43964.31810645966],
+      [[...XP_SAMPLE, "xpZRelLastSurf"], -44222.18817793754, -44222.188177433614],
+    ];
+    for (const [path, base, head] of evidence) {
+      const set = (value: number) => withChange("analysis", path, () => value);
+      const failed = [{ request: "analysis", path: pathText(path), kind: "number", quantity: "analysisLength" }];
+      /* Each moved by more than the 1e-8 mm of the floor and by more than the 1e-12 of a first-order scalar, so
+       * neither passes it: the share of an analysis length does, and none comes within a fifth of it. */
+      const distance = Math.abs(head - base);
+      const allowance = 1e-10 * Math.max(Math.abs(base), Math.abs(head));
+      expect(distance).toBeGreaterThan(2e-8);
+      expect(distance / Math.abs(base)).toBeGreaterThan(1.2e-12);
+      expect(distance).toBeLessThan(allowance / 5);
+
+      const found = compare("c1", set(head), set(base));
+      expect(found.passed).toBe(true);
+      expect(found.engine.quantities.analysisLength).toMatchObject({ differing: 1, beyondBudget: 0 });
+      expect(found.engine.quantities.analysisLength!.largest!.measure! / (distance / allowance)).toBeCloseTo(1e-10, 15);
+      /* Ten times its allowance fails, and under C0 the move itself does. */
+      expect(failuresOf(compare("c1", set(base + 10 * allowance), set(base)))).toEqual(failed);
+      expect(failuresOf(compare("c0", set(head), set(base)))).toEqual(failed);
+    }
+  });
+
+  it("holds a field's traced exit pupil as an analysis length, and a paraxial pupil position as a first-order scalar", () => {
+    /* The pupil-aberration profile traces the solved chief ray of each field through the lens and puts that
+     * field's exit pupil where the ray crosses the axis: no paraxial constant, and far from the lens where the
+     * field is near-telecentric. The paraxial positions beside the samples, and the build's pupil constants, come
+     * from the engine's two near-axis rays and keep the first-order budget. */
+    const classOf = (family: RequestFamily, path: Path) => resolveBudgetRule(family, tablePath(path))?.quantity;
+    const sampleZ: Path = [...XP_SAMPLE, "xpZRelLastSurf"];
+    const paraxialZ: Path = [...PUPIL_PROFILES, "xp", "paraxialXpZRelLastSurf"];
+    /* What a field of each profile holds on the benchmark prime: the exit pupil's a position and its shift, the
+     * entrance pupil's a launch-height ratio and a shift, and no position. */
+    const membersOf = (path: Path) => Object.keys(at(SERENAR_RECORDS, "analysis", path) as object).sort();
+    expect(membersOf(XP_SAMPLE)).toEqual(["fieldDeg", "fieldFrac", "xpShiftMm", "xpZRelLastSurf"]);
+    expect(membersOf([...PUPIL_PROFILES, "ep", "samples", 13])).toEqual([
+      "chiefRayCorrection",
+      "epShiftMm",
+      "fieldDeg",
+      "fieldFrac",
+    ]);
+    expect(classOf("analysis", sampleZ)).toBe("analysisLength");
+    expect(classOf("analysis", [...XP_SAMPLE, "xpShiftMm"])).toBe("analysisLength");
+    expect(classOf("analysis", [...PUPIL_PROFILES, "ep", "samples", 13, "epShiftMm"])).toBe("analysisLength");
+    expect(classOf("analysis", [...PUPIL_PROFILES, "ep", "samples", 13, "chiefRayCorrection"])).toBe("ratio");
+    /* The row names the samples of the exit-pupil profile. The paraxial positions of the same record, the member
+     * of the same name in any other, the posed lens's intrinsic pupils and the build's constants are not in it. */
+    expect(classOf("analysis", paraxialZ)).toBe("firstOrder");
+    expect(classOf("analysis", [...PUPIL_PROFILES, "ep", "paraxialEpZRelStop"])).toBe("firstOrder");
+    expect(classOf("analysis", ["jobs", "x", "value", "xpZRelLastSurf"])).toBe("firstOrder");
+    const intrinsic: Path = ["jobs", "computePerspectivePupilAnalysis", "value", "intrinsic"];
+    expect(classOf("analysis", [...intrinsic, "exit", "zRelativeToLastSurfaceMm"])).toBe("firstOrder");
+    expect(classOf("analysis", [...intrinsic, "entrance", "zRelativeToStopMm"])).toBe("firstOrder");
+    for (const constant of ["xpZRelLastSurf", "epZRelStop"]) expect(classOf("build", [constant])).toBe("firstOrder");
+    for (const stations of ["zoomXpZRelLastSurfs", "zoomEpZRelStops"]) {
+      expect(classOf("build", [stations, 0])).toBe("firstOrder");
+    }
+
+    /* The compact zoom's move is 1.14e-11 of the position. A sample takes it, as the test above holds. On a
+     * paraxial position it is eleven times the budget: the profile's, the build's exit pupil and its entrance
+     * pupil. Rounding in the last bits passes there, as it did. */
+    const [base, head] = [-44222.18817793754, -44222.188177433614];
+    const paraxial: [RequestFamily, Path][] = [
+      ["analysis", paraxialZ],
+      ["build", ["xpZRelLastSurf"]],
+      ["build", ["epZRelStop"]],
+    ];
+    for (const [request, path] of paraxial) {
+      const set = (value: number) => withChange(request, path, () => value);
+      const moved = compare("c1", set(head), set(base));
+      expect(failuresOf(moved)).toEqual([{ request, path: pathText(path), kind: "number", quantity: "firstOrder" }]);
+      expect(moved.engine.failures[0].measure! / QUANTITIES.firstOrder.c1).toBeCloseTo(11.4, 1);
+      expect(compare("c1", set(base * (1 + 4 * Number.EPSILON)), set(base)).passed).toBe(true);
+    }
+    /* On the axis the chief ray is the axis and crosses it nowhere: that sample repeats the paraxial position,
+     * which the first-order row holds beside it. */
+    expect(numberAt("analysis", [...PUPIL_PROFILES, "xp", "samples", 0, "xpZRelLastSurf"])).toBe(
+      numberAt("analysis", paraxialZ),
+    );
   });
 
   it("holds a diagnostic point to 1e-7 mm near the lens and to 1e-12 of its size far from it", () => {

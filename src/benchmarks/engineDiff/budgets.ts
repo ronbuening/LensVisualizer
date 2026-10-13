@@ -26,8 +26,10 @@ export type ChangeClass = "c0" | "c1" | "c2" | "c3";
  *
  * - `absolute`: |a − b| ≤ budget.
  * - `relative`: |a − b| ≤ budget · max(|a|, |b|), and never less than the class's floor where it has one. A floor
- *   is an absolute bound in the field's own unit, for a class whose values may be zero or near it, where a relative
- *   difference means nothing. A class without one is plainly relative: at zero only zero agrees.
+ *   is an absolute bound in the class's unit. A class whose values may be zero or near it has one, since a relative
+ *   difference means nothing there. So has a class whose budget is an absolute one near the lens and can only be a
+ *   share of the value far from it: there the floor is the whole budget up to the size where the share is more. A
+ *   class without one is plainly relative: at zero only zero agrees.
  * - `slope`: a slope dx/dz or dy/dz is unbounded, so the pair is turned into direction cosines with its partner
  *   slope and each cosine is held to the budget.
  * - `residual`: a root-finder's residual moves anywhere inside its tolerance when the arithmetic is reordered, so
@@ -64,7 +66,7 @@ export interface Quantity {
   readonly c1: number;
   /** C2 budget in `unit`, or null where the C1 budget stands under C2 (see `C2_CRITERIA`). */
   readonly c2: number | null;
-  /** `relative` only: the least the bound may be, as an absolute difference in the field's own unit. */
+  /** `relative` only: the least the bound may be, as an absolute difference in the unit it names. */
   readonly floor?: { readonly bound: number; readonly unit: string };
   /**
    * `residual` only: the tolerance of a solver that accepts every residual under one, or a bound restated from it,
@@ -99,6 +101,16 @@ const LENGTH_FLOOR = { bound: 1e-12, unit: "mm" } as const;
  * run to 1e8 mm and far past it, where two adjacent floating-point values are more than 1e-7 mm apart and no
  * absolute bound can be met. */
 const FAR_POINT_FLOOR = { bound: 1e-7, unit: "mm" } as const;
+
+/* The floor of the class of analysis lengths: the plan's 1e-8 mm, which is the whole budget for a length under
+ * 100 mm. Beyond that the class is relative, at 1e-10 of the length's own size. A focus position, an axial intercept
+ * or a traced pupil position is where two rays cross, or where one crosses the axis: a height over a slope. Where
+ * the rays are nearly parallel that slope is small, the crossing lies metres from the lens, and rounding that
+ * moves the slope by some part of itself moves the crossing by the same part of its distance. An off-axis ray that
+ * leaves a teleconverter pair nearly parallel to the axis crosses it 23 m away, and the chief ray of a
+ * near-telecentric field 44 m away, where a move of 1e-11 of the position is 5e-7 mm and no absolute bound can be
+ * met. It is the far point of the clipped-hit class again, for a length an analysis reports. */
+const FAR_LENGTH_FLOOR = { bound: 1e-8, unit: "mm" } as const;
 
 function exact(title: string, origin: QuantityOrigin): Quantity {
   return { title, unit: "", kind: "exact", c1: 0, c2: null, origin };
@@ -147,7 +159,7 @@ export const QUANTITIES = {
   firstOrder: relative("First-order scalar", 1e-12, "plan", LENGTH_FLOOR),
   chiefLaunch: absolute("Chief-ray launch height", "mm", 1e-9, "plan"),
   fieldAngle: absolute("Field angle from image height", "deg", 1e-10, "plan"),
-  analysisLength: absolute("Analysis length", "mm", 1e-8, "plan"),
+  analysisLength: relative("Analysis length, 1e-8 mm at least", 1e-10, "plan", FAR_LENGTH_FLOOR),
   percentage: absolute("Percentage", "points", 1e-8, "plan"),
   mtfModulation: absolute("MTF modulation", "", 1e-7, "plan"),
   count: exact("Count or index", "plan"),
@@ -215,8 +227,9 @@ export const QUANTITIES = {
   },
 
   /* The outputs of solvers, each at the plan's budget for its kind of quantity and marked with its solver's quantum.
-   * A half-field is a field angle. A focus shift is an analysis length. A radius has no row of its own and takes the
-   * plan's one relative budget, with the floor of a length. */
+   * A half-field is a field angle. A focus shift is an analysis length, and one of a fraction of a millimetre, so it
+   * takes what that class allows a length under 100 mm: its floor, as a plain absolute bound. A radius has no row of
+   * its own and takes the plan's one relative budget, with the floor of a length. */
   buildHalfField: solverOutput(
     absolute("Half-field bisected at build", "deg", 1e-10, "derived"),
     "the 40-step bisection of the build half-field",
@@ -234,7 +247,7 @@ export const QUANTITIES = {
   ),
   /* The focus search ends when its golden-section bracket is 1e-6 mm wide. */
   mtfFocusShift: solverOutput(
-    absolute("MTF best-focus shift", "mm", 1e-8, "derived"),
+    absolute("MTF best-focus shift", "mm", FAR_LENGTH_FLOOR.bound, "derived"),
     "the golden-section search for best MTF focus",
     1e-6,
   ),
@@ -444,7 +457,13 @@ const binsByRayWeight: QuantitySelector = (leaf) => {
 /** One row of the budget table as the comparator applies it. */
 export interface BudgetRule {
   readonly quantity: QuantityId | QuantitySelector;
-  /** Multiplier on the quantity's budget, for a field that restates another in a different unit. */
+  /**
+   * How many of the field's units make one of the quantity's, for a field that restates another in a different
+   * unit: 1000 for micrometres, the px per mm of a drawing. The comparator divides by it before it compares, the
+   * values as well as their difference, so the bound is one physical bound whichever unit a number is stored in: an
+   * absolute budget and a floor are that many times larger in the field's unit, and a share of the value is the
+   * same share.
+   */
   readonly scale: number;
   /** `slope` only: the sibling member that holds the other slope of the same ray. */
   readonly partner?: string;
@@ -743,6 +762,14 @@ const TABLE: readonly TableRow[] = [
   ["ratio", ["analysis:**.pupilFootprint.{centroidSagittal,centroidTangential,spanSagittal,spanTangential}"]],
   /* The axial crossing and the image-plane height of each chromatic channel, keyed by channel. */
   ["analysisLength", ["analysis:**.axialIntercepts.*"]],
+  /* The exit pupil of one field of the pupil-aberration profile is where that field's solved chief ray, traced
+   * through the lens, crosses the axis: its height at the last surface over its slope there. It is a traced
+   * crossing, as the shift beside it is, and no paraxial constant: the chief ray of a near-telecentric field leaves
+   * nearly parallel to the axis, and the crossing is tens of metres away. The sample on the axis, and one whose
+   * chief ray gives no crossing, repeat the profile's paraxial position, which the first-order row further down
+   * holds beside the samples as `paraxialXpZRelLastSurf`. The entrance-pupil samples hold no position, only a
+   * shift, which is an analysis length by its name. */
+  ["analysisLength", ["analysis:jobs.computeBothPupilAberrationProfiles.value.xp.samples[].xpZRelLastSurf"]],
   ["landing", ["analysis:**.imagePlaneHeights.*"]],
 
   /* ── Analysis: rows by member name ── */
@@ -776,6 +803,7 @@ const TABLE: readonly TableRow[] = [
       "analysis:**.{currentEFLMm,infinityEFLMm,cardinalEFLMm,bfdMm,ffdMm,principalHiatusMm}",
       "analysis:**.{entrancePupilDiameterMm,physicalStopDiameterMm}",
       "analysis:**.{stopSemiDiameterMm,pupilSemiDiameterMm}",
+      /* Paraxial pupil positions. The traced one of each field of a pupil-aberration profile has its row above. */
       "analysis:**.{paraxialEpZRelStop,paraxialXpZRelLastSurf,xpZRelLastSurf}",
     ],
   ],

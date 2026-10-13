@@ -209,8 +209,14 @@ function diffRecords(
         return report("number", pattern, a, b, quantity, distance, budget);
       case "relative": {
         /* The bound is the budget times the larger magnitude, and the class's floor where that is more. Without a
-         * floor the magnitude is zero only between 0 and -0, which are no distance apart. */
-        const magnitude = Math.max(Math.abs(x), Math.abs(y), floor ? floor.bound / budget : 0);
+         * floor the magnitude is zero only between 0 and -0, which are no distance apart. The magnitude is taken
+         * in the quantity's unit, as the distance is: a floor is in that unit, so a field that restates a length
+         * in micrometres or px leaves the floor for the share of its value at the same length as its twin in mm. */
+        const magnitude = Math.max(
+          Math.abs(x) / rule.scale,
+          Math.abs(y) / rule.scale,
+          floor ? floor.bound / budget : 0,
+        );
         return report("number", pattern, a, b, quantity, distance === 0 ? 0 : distance / magnitude, budget);
       }
       case "slope": {

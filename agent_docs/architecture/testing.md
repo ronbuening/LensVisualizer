@@ -470,18 +470,55 @@ The classes in `budgets.ts`:
   exterior or diagnostic hits 1e-7 mm (or 1e-12 of the point's own size where that is more, which it is beyond 100 m
   from the lens, where a ghost path that has left the lens puts its points), direction cosines 1e-10, first-order
   scalars 1e-12 relative, chief-ray launch heights 1e-9 mm, field angles from an image height 1e-10°, analysis
-  lengths 1e-8 mm, percentages 1e-8 points, MTF modulation 1e-7, the weighted bin statistics of a bokeh profile
-  1e-10 relative, and a ratio of two analysis lengths 1e-8 relative.
+  lengths 1e-8 mm (or 1e-10 of the length's own size where that is more, which it is beyond 100 mm, where nearly
+  parallel rays cross), percentages 1e-8 points, MTF modulation 1e-7, the weighted bin statistics of a bokeh
+  profile 1e-10 relative, and a ratio of two analysis lengths 1e-8 relative.
 - A hit's coordinates, and a ray's terminal values, are budgeted as unclipped only when the clip flag or status
   beside them says so on both sides. A flag that differs is a transition of its own.
 - A relative budget is `|a − b| ≤ budget · max(|a|, |b|)`, and no less than the class's floor where it has one. A
-  floor is an absolute bound in the field's own unit, for a class whose values may be zero: a first-order length, a
-  layout length and a best-fit radius are never held tighter than 1e-12 mm, and a smooth ratio, which is a fraction,
-  than 1e-10. A class whose fields are no lengths and never near zero has no floor and is plainly relative, so only
-  zero agrees with zero: refractive indices, and the f-numbers, ray-height ratios, Petzval sum and drawing scales.
-  So are a weighted bin statistic and a ratio of two analysis lengths, which are zero only where they are exactly
-  zero on both sides: an empty bin, a footprint with no rays. A prescription the engine hands back is plainly
-  relative too: its values have no one unit, and an asphere coefficient is far smaller than any floor of a length.
+  floor is an absolute bound in the class's unit.
+  - A class whose values may be zero has one: a first-order length, a layout length and a best-fit radius are
+    never held tighter than 1e-12 mm, and a smooth ratio, which is a fraction, than 1e-10.
+  - So has a class whose budget is an absolute one and can be a share of the value only far from the lens. The
+    floor is its whole budget up to the size where the share is more: 1e-7 mm up to 100 m for a clipped or
+    diagnostic point, 1e-8 mm up to 100 mm for an analysis length. A report gives the measure of such a class as
+    a share, of the value or of that size for a smaller one, against the relative budget: for an analysis length
+    under 100 mm it is the distance in mm over 100, against 1e-10.
+  - A class whose fields are no lengths and never near zero has no floor and is plainly relative, so only zero
+    agrees with zero: refractive indices, and the f-numbers, ray-height ratios, Petzval sum and drawing scales.
+    So are a weighted bin statistic and a ratio of two analysis lengths, which are zero only where they are
+    exactly zero on both sides: an empty bin, a footprint with no rays. A prescription the engine hands back is
+    plainly relative too: its values have no one unit, and an asphere coefficient is far smaller than any floor
+    of a length.
+- An analysis length is held to 1e-8 mm, and to 1e-10 of its own size where that is more, which it is beyond
+  100 mm. Under C0 it is bit-exact, as every number is.
+  - A focus position, an axial intercept or a traced pupil position is where two rays cross, or where one crosses
+    the axis: a height over a slope. Where the rays are nearly parallel the slope is small and the crossing is far
+    from the lens, and rounding that moves the slope by some part of itself moves the crossing by the same part of
+    its distance. No absolute bound holds such a length. An off-axis ray that leaves a teleconverter pair nearly
+    parallel to the axis crosses it 23 m away, and the traced exit pupil of a near-telecentric field is 44 m away:
+    a change that moved no hit by more than 1.2e-11 mm moved those by 5.7e-8 mm and 5e-7 mm, 2.5e-12 and 1.1e-11
+    of themselves. It is the far point of the clipped-hit row again, for a length an analysis reports.
+  - The size is the length's own, in mm. A member that restates a length in another unit is divided by the scale
+    of its row before it is compared, its value as well as the difference: 1000 for a micrometre twin, 201 px per
+    mm for a bar of the LoCA inset. The floor ends at 100 mm of length whichever unit holds it, and the bound is
+    one physical bound.
+  - The rule goes by the value, not by how the value was computed. A position along the axis is counted from the
+    first vertex, so the focus positions and axial intercepts of a lens more than 100 mm long are past the floor
+    by their coordinate alone: at 250 mm the bound is 2.5e-8 mm. A parabasal focus close to the image plane is
+    conditioned by a small difference of slopes all the same, and keeps the floor.
+  - The MTF best-focus shift is a solver's output of a fraction of a millimetre, and keeps a plain 1e-8 mm.
+- The exit pupil that a pupil-aberration profile gives for each field is an analysis length:
+  `xp.samples[].xpZRelLastSurf` of `computeBothPupilAberrationProfiles`. The engine traces the solved chief ray of
+  that field through the lens and puts the pupil where the ray crosses the axis, its height at the last surface
+  over its slope there. `xpShiftMm` beside it is the same crossing less the paraxial position.
+  - The paraxial pupil positions stay first-order scalars: `paraxialXpZRelLastSurf` and `paraxialEpZRelStop` of the
+    same record, the `intrinsic` pupils of the posed lens, and the build's pupil constants. A member named
+    `xpZRelLastSurf` anywhere but in those samples is taken as paraxial.
+  - The sample on the axis, and one whose chief ray gives no crossing, repeat the profile's paraxial position.
+    The first-order row holds that position beside the samples.
+  - A sample of the entrance-pupil profile holds no position. Its `chiefRayCorrection` is a smooth ratio and its
+    `epShiftMm` an analysis length.
 - NaN and the infinities are compared with `Object.is` in every class.
 - An intersection residual is not differenced. Each side must lie within the effective tolerance recorded with it.
 - The effective tolerance itself is held to 1e-12 relative, with no floor. It is the engine's 1e-12 mm target
@@ -551,13 +588,15 @@ The classes in `budgets.ts`:
   first-order relative budget. Smooth ratios take 1e-10.
 - The pupil positions and sizes the engine builds from its two near-axis rays keep the first-order budget. It is
   not divided by the 1e-4 of those rays: both rays' slopes scale with it, and the quotient removes it. What no
-  budget shows is a basis ray that failed, and the probes of the traces record show that.
+  budget shows is a basis ray that failed, and the probes of the traces record show that. The exit pupil a
+  pupil-aberration profile traces for one field is no such constant, and is an analysis length.
 - The output of a fixed-step bisection or a bracketed search is held to the quantity table's row for its kind: a
-  half-field is a field angle (1e-10°), the MTF best-focus shift an analysis length (1e-8 mm), and the best-fit
-  sphere radius takes the first-order relative budget. Such an output moves by a whole step of its solver when one
-  comparison inside the solver falls the other way. The class records that step, the solver's quantum, for the
-  report alone: when such a field fails, `summary.md` names the solver and its quantum and gives the difference in
-  quanta, so a boundary transition (about a whole quantum) can be told from drift (a small part of one).
+  half-field is a field angle (1e-10°), the MTF best-focus shift an analysis length under 100 mm (1e-8 mm), and
+  the best-fit sphere radius takes the first-order relative budget. Such an output moves by a whole step of its
+  solver when one comparison inside the solver falls the other way. The class records that step, the solver's
+  quantum, for the report alone: when such a field fails, `summary.md` names the solver and its quantum and gives
+  the difference in quanta, so a boundary transition (about a whole quantum) can be told from drift (a small part
+  of one).
 - Solver iteration and evaluation counts are exact under C0. Above it a change is reported as a histogram.
 - A trace nested in an analysis result is in the record as a digest of six members: its status, its hit count, a
   hash, an outcome hash, its largest residual share and its largest effective tolerance. So are a posed pair of
