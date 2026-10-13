@@ -455,7 +455,8 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
 The classes in `budgets.ts`:
 
 - The rows of that quantity table keep its values: unclipped hits and image-plane landings 1e-9 mm, clipped,
-  exterior or diagnostic hits 1e-7 mm, direction cosines 1e-10, first-order scalars 1e-12 relative, chief-ray launch
+  exterior or diagnostic hits 1e-7 mm (or 1e-12 of the point's own size where that is more, which it is beyond 100 m
+  from the lens, where a ghost path that has left the lens puts its points), direction cosines 1e-10, first-order scalars 1e-12 relative, chief-ray launch
   heights 1e-9 mm, field angles from an image height 1e-10°, analysis lengths 1e-8 mm, percentages 1e-8 points, MTF
   modulation 1e-7.
 - A hit's coordinates, and a ray's terminal values, are budgeted as unclipped only when the clip flag or status

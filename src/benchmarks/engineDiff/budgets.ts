@@ -93,6 +93,13 @@ function relative(title: string, c1: number, origin: QuantityOrigin, floor?: Qua
  * the same number. */
 const LENGTH_FLOOR = { bound: 1e-12, unit: "mm" } as const;
 
+/* The floor of the class of clipped, exterior and diagnostic points: the plan's 1e-7 mm, which is the whole budget
+ * for any point within 100 m of the lens. Beyond that the class is relative, at 1e-12 of the point's own size. A
+ * clipped ray that the legacy tracer follows as a ghost path can leave the lens altogether, and its points then
+ * run to 1e8 mm and far past it, where two adjacent floating-point values are more than 1e-7 mm apart and no
+ * absolute bound can be met. */
+const FAR_POINT_FLOOR = { bound: 1e-7, unit: "mm" } as const;
+
 function exact(title: string, origin: QuantityOrigin): Quantity {
   return { title, unit: "", kind: "exact", c1: 0, c2: null, origin };
 }
@@ -135,7 +142,7 @@ const ANALYSIS_HALF_FIELD_QUANTUM_DEG = 5 / 2 ** 8;
  */
 export const QUANTITIES = {
   landing: absolute("Unclipped surface hit, image-plane landing", "mm", 1e-9, "plan"),
-  clippedHit: absolute("Clipped, exterior or diagnostic hit", "mm", 1e-7, "plan"),
+  clippedHit: relative("Clipped, exterior or diagnostic hit, 1e-7 mm at least", 1e-12, "plan", FAR_POINT_FLOOR),
   directionCosine: absolute("Direction cosine", "", 1e-10, "plan"),
   firstOrder: relative("First-order scalar", 1e-12, "plan", LENGTH_FLOOR),
   chiefLaunch: absolute("Chief-ray launch height", "mm", 1e-9, "plan"),

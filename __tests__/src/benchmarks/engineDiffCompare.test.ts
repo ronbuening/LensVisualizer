@@ -159,7 +159,9 @@ describe("engineDiff budget table", () => {
       return [kind, c1, unit];
     };
     expect(row("landing")).toEqual(["absolute", 1e-9, "mm"]);
-    expect(row("clippedHit")).toEqual(["absolute", 1e-7, "mm"]);
+    /* 1e-7 mm, as the plan has it, for any point within 100 m of the lens; relative beyond that. */
+    expect(row("clippedHit")).toEqual(["relative", 1e-12, "relative"]);
+    expect(QUANTITIES.clippedHit.floor).toEqual({ bound: 1e-7, unit: "mm" });
     expect(row("directionCosine")).toEqual(["absolute", 1e-10, ""]);
     expect(row("firstOrder")).toEqual(["relative", 1e-12, "relative"]);
     expect(row("chiefLaunch")).toEqual(["absolute", 1e-9, "mm"]);
@@ -176,13 +178,15 @@ describe("engineDiff budget table", () => {
   it("gives a relative class a floor only where its values may be zero, in the field's own unit", () => {
     /* A floor is the least a relative bound may be. A length may be exactly zero, so its classes keep 1e-12 mm; a
      * smooth ratio is a fraction that is often zero, and keeps its 1e-10. An index, an f-number, a ratio of ray
-     * heights or the Petzval sum is no length and never near zero, and is held to the plain relative bound. */
+     * heights or the Petzval sum is no length and never near zero, and is held to the plain relative bound. A
+     * clipped or diagnostic point keeps the plan's 1e-7 mm as its floor, and is relative only far from the lens. */
     const floors = (Object.keys(QUANTITIES) as QuantityId[]).flatMap((id) => {
       const { kind, c1, floor }: Quantity = QUANTITIES[id];
       return kind === "relative" ? [[id, c1, floor ?? null]] : [];
     });
     const lengthFloor = { bound: 1e-12, unit: "mm" };
     expect(floors).toEqual([
+      ["clippedHit", 1e-12, { bound: 1e-7, unit: "mm" }],
       ["firstOrder", 1e-12, lengthFloor],
       /* A hit's effective tolerance is a length that is never below the engine's 1e-12 mm target. */
       ["effectiveTolerance", 1e-12, null],
@@ -465,6 +469,34 @@ describe("engineDiff drift detection", () => {
     expect(within.passed).toBe(true);
     expect(within.engine.quantities[quantity]).toMatchObject({ differing: 1, beyondBudget: 0 });
     expect(compare("c0", moved(0.5)).passed).toBe(false);
+  });
+
+  it("holds a diagnostic point to 1e-7 mm near the lens and to 1e-12 of its size far from it", () => {
+    /* A clipped ray that the stack tracer follows as a ghost path can leave the lens: on one catalog lens its points
+     * run from 3.1e8 mm outwards, and two engines that agree to rounding differ there by more than 1e-7 mm. */
+    const ghost: Path = ["legacy", "rays", 1, "ghostPts"];
+    const withGhostPoint = (y: number) => withChange("traces", ghost, () => [[1, y]]);
+    const run = (base: number, head: number) => compare("c1", withGhostPoint(head), withGhostPoint(base));
+    const failed = (summary: RunSummary) =>
+      summary.engine.failures.map(({ kind, quantity, path }) => ({ kind, quantity, path }));
+    const breach = [{ kind: "number", quantity: "clippedHit", path: "legacy.rays[1].ghostPts[0][1]" }];
+
+    /* Near the lens the bound is the plan's 1e-7 mm, whatever the point's size up to 100 m. */
+    expect(failed(run(12, 12 + 5e-8))).toEqual([]);
+    expect(failed(run(12, 12 + 2e-7))).toEqual(breach);
+    expect(failed(run(9e4, 9e4 + 5e-8))).toEqual([]);
+    expect(failed(run(9e4, 9e4 + 2e-7))).toEqual(breach);
+
+    /* Far from it the bound is 1e-12 of the point: the catalog case passes, a gross difference does not. */
+    const far = 310512819.872093;
+    expect(failed(run(far, 310512819.87209314))).toEqual([]);
+    expect(failed(run(far, far + 1e-4))).toEqual([]);
+    expect(failed(run(far, far + 1e-3))).toEqual(breach);
+    expect(failed(run(3.3473764502675636e55, 3.347376450267574e55))).toEqual([]);
+    expect(failed(run(3.3473764502675636e55, 3.35e55))).toEqual(breach);
+
+    /* Under C0 every number is exact, far or near. */
+    expect(compare("c0", withGhostPoint(310512819.87209314), withGhostPoint(far)).passed).toBe(false);
   });
 
   it("budgets a hit as clipped when either side's flag says so, and lists the flag as a transition", () => {
