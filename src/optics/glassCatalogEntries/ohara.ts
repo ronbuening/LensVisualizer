@@ -2240,4 +2240,27 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued LAH53. It shares a six-digit code with a current row, so code6 is omitted.",
   },
+  {
+    name: "S-NBH57",
+    vendor: "Ohara",
+    B: [1.92026488, 0.37153524, 2.55205704],
+    C: [0.0118468028, 0.0532105472, 204.5493],
+    nd: 1.850249,
+    vd: 30.046429,
+    PgF: 0.5979,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for S-NBH57. It shares a six-digit code with another vendor's row, so code6 is omitted.",
+  },
+  {
+    name: "S-LAL54Q",
+    vendor: "Ohara",
+    B: [0.920085087, 0.758646115, 1.07073096],
+    C: [0.0160829667, 0.00292059306, 85.12112],
+    nd: 1.651,
+    vd: 56.238379,
+    PgF: 0.5421,
+    code6: "651562",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for S-LAL54Q.",
+  },
 ];

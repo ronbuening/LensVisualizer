@@ -24,6 +24,11 @@ export const CHANGELOG: ChangelogEntry[] = [
     summary: "Corrected HOYA FCD1 glass dispersion, slightly shifting violet focus in the lenses that use it",
   },
   {
+    date: "2026-10-13",
+    type: "lens",
+    summary: "Added six Olympus, Panasonic, Sigma and Yashica lenses, including a 60-600mm zoom and a 2x macro",
+  },
+  {
     date: "2026-10-12",
     type: "fix",
     summary: "Fixed four Canon and Sony telephoto lenses tracing slower than their stated aperture",
