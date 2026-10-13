@@ -116,6 +116,8 @@ Existing tests cover:
   from `Math.hypot` or another function the language leaves to the JavaScript runtime, so the file regenerates to the
   same bytes on any machine. A fixture the solvers fail stays in the file and is listed in the test's expected-findings
   table, which asserts the failure until the engine change that fixes it removes the entry.
+  `geometry/intersectConic.test.ts` reads the same file to hold which path answered each sphere and conic solve: the
+  closed form from one profile evaluation, or the iterative path with the reason for the fallback.
 - Planar pupil re-derivation (`planarPupilReference.test.ts`): the five Zeiss Planar build constants pinned in
   `mirrorOptics.test.ts` (half field, tracing half field, entrance- and exit-pupil position, exit-pupil semi-diameter)
   are held to values re-derived at 50 and 80 decimals by
