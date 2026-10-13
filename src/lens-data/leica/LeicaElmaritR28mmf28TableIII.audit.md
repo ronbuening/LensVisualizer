@@ -180,3 +180,79 @@ Analysis. The "Glass:" line of every element, the table in "Glass Identification
 In this file. The two older open lines on glass strings and on surfaces 12 and 13 are closed in place, and the semi-diameter section above is restated for the 8.25 mm state.
 
 Live check. The local page at infinity shows L6 square at 8.25 mm with its rear rim against L7's front face and no overlap; L7 is square and taller.
+
+## 2026-10-13 — Second review: diagram, labels and movement
+
+What was compared. The local page at infinity, at 0.30 m, with the focus-movement overlay in both states, and with the element inspector open on L1, L2, L4, L6 and L7, beside the patent's only drawing (`patents/US3740120A.pdf`, PDF page 2) brought to the same scale (20.59 px/mm). The patent text was read from page images of PDF pages 1 and 3 to 6. The drawing was measured again from the 300 dpi scan with fresh pixel scans, without using the first pass's readings.
+
+Scale and axis. Vertex crossings on stroke centres: r1 449.5, r2 522.5, r3 689.75, r4 766, r5 772, r6 817, r7 1060, r8 1243.5, r9 1318.75, r10 1423.5, r11 1496.5, r12 1528, r13 1569, r14 and r15 one stroke centred 1627.5, r16 1705 px. The r1–r16 span of 1255.5 px over 48.0956 mm gives 26.105 px/mm (730.9 px per f). Table III then predicts every vertex within 4.6 px (0.18 mm). The dash-dot axis rises 12.5 px over 1330 px (0.54°), so rims are half the top-to-bottom span and curve readings are top and bottom averaged.
+
+Rims re-measured. No semi-diameter was changed.
+
+| Element | Surfaces | Stored | Drawn, this pass | Drawn, first pass | Stored against drawn |
+|---|---|---:|---:|---:|---|
+| L1 | 1 | 17.69 | 17.81 | 17.82 | −0.7% |
+| L1 | 2 | 13.85 | 13.9 to 14.0 | 13.87 | inner end of the flat land |
+| L2 | 3, 4 | 13.77 | 13.94 | 13.97 | −1.2% |
+| L3 | 5 | 11.8 | 11.88 | 11.90 | −0.7% |
+| L3 | 6 | 8.3 | 8.52 | 8.47 | −2.6%, inner end of the flat land |
+| L4 | 7, 8 | 7.79 | 7.76 | 7.77 | +0.4% |
+| Stop | STO | 6.7507 | 6.81 | 6.80 | blade tips; not edited |
+| L5 | 9, 10 | 7.79 | 7.77 | 7.79 | +0.3% |
+| L6 | 11, 12 | 8.25 | 8.47 | 8.47 | −2.6%, held at the contact height |
+| L7 | 13, 14 | 8.82 | 8.98 | 8.97 | −1.8% |
+| L8 | 15, 16 | 10.61 | 10.58 | 10.59 | +0.3% |
+
+Every difference is inside the reading error of about ±0.1 mm or is the L6 contact limit, and the drawn order of heights (L1 > L2 > L3 > L8 > L7 > L6 > L4 = L5) is the rendered order. The blades sit at 0.72 ± 0.09 of d8 behind r8 (centre 1298 px between 1243.5 and 1318.75 px, stroke 14 px wide), against the stored 0.70.
+
+L6 and L7. At three times the scan resolution the drawing shows L6 with a square rim at 8.47 mm, L7 with a square rim at 8.98 mm, and the facing strokes of surfaces 12 and 13 merged from about 7.3 mm to L6's rim, on both sides of the axis. The front face of L6 leaves its sphere at about 6.7 mm (sag 0.69 mm) and runs flat to the rim. Surfaces 11 and 12 at 8.25 mm and surfaces 13 and 14 at 8.82 mm reproduce that picture: L6 square against L7, L7 square and 0.57 mm taller (0.51 mm drawn). The first pass's values stand.
+
+L1 and L3: flat lands rendered as chamfers. This is the one place where the page and the drawing visibly differ. The drawing gives both menisci a cylindrical edge and a flat annular land behind the concave face: on L1 the edge is about 3.3 mm long at 17.81 mm and the land lies 5.93 mm behind the r2 vertex, reaching in to 13.9 mm; on L3 the edge is about 3.8 mm long at 11.88 mm and the land lies 3.13 mm behind the r6 vertex, reaching in to 8.5 mm. The renderer joins the front rim point to the rear rim point with one straight line, so each step becomes a slanted edge. Squaring was tried both ways and neither is possible.
+
+| Trial | Result |
+|---|---|
+| Surface 2 = 17.69 (L1 square at its outer rim) | Validator error: rim slope 4.11 (76.3°) exceeds 2.06 (64.2°). The rear rim would lie 13.90 mm behind the r2 vertex, 16.5 mm from the front vertex and past L3's rear vertex at 14.04 mm, where the drawing has the land at 5.93 mm. |
+| Surface 6 = 11.8 (L3 square at its outer rim) | Validator error: rim slope 3.47 (73.9°) exceeds 2.06 (64.2°). The rear rim would lie 8.88 mm behind the r6 vertex, 0.45 mm short of L4's front vertex, where the drawing has the land at 3.13 mm. |
+| Surface 2 = 16.38, surface 6 = 11.05 (largest values the slope limit admits) | Validator passes, but L1's rear rim would lie 12.89 mm from the front vertex, behind L2's rear rim at 11.44 mm, so L1 would wrap L2; further from the drawing than the chamfer. The wider rear rims would also lift the meridional transmission at 38° from 67.2 to 80.2%, which nothing in the drawing supports. |
+| Surface 1 = 13.85 (L1 square at the curve end) | Blocks the 38° chief ray, which meets surface 1 at 15.31 mm; the element would also lose its drawn height. |
+| Surface 5 = 8.3 (L3 square at the curve end) | Blocks the 38° chief ray, which meets surface 5 at 9.62 mm. |
+
+Surfaces 2 and 6 therefore keep the curve-end values. On the Table III spheres the stored 13.85 mm and 8.3 mm put the rear rims 6.39 mm and 3.23 mm behind their vertices, against the drawn lands at 5.93 mm and 3.13 mm. Drawing the lands as steps needs a renderer feature (an outer rim height separate from the optical semi-diameter); no data field offers one.
+
+Which table the drawing fits, element by element. Each drawn surface was fitted with a circle through stroke-centre readings at three to eight heights; the residual of each table's radius against the same readings is in pixels (one pixel is 0.038 mm). Tables I and II share one set of thicknesses.
+
+| Element | Drawn radii (f) | Table I / II / III radii (f) | Residual I / II / III (px) | Thickness cue (f) | Fit of Table III |
+|---|---|---|---|---|---|
+| L1 | 1.14, 0.69 | 1.117, 0.639 / 1.218, 0.625 / 1.117, 0.650 | 1.4, 10.1 / 5.3, 13.4 / 1.4, 7.8 | d1 drawn 0.100; I, II 0.098; III 0.094 | Equal to I on r1, best on r2, worse on thickness; II worst |
+| L2 | 2.32, −5.70 | 3.004, −3.874 / 2.099, −3.782 / 2.513, −5.178 | 5.0, 1.7 / 2.5, 1.8 / 1.8, 0.4 | d3 drawn 0.105; I, II 0.114; III 0.106 | Better on all three cues |
+| L3 | 2.41, 0.47 | 2.928, 0.449 / 10.655, 0.447 / 2.692, 0.439 | 0.8, 2.8 / 3.5, 3.0 / 0.5, 4.1 | d5 drawn 0.062; all 0.066 | Best on r5, slightly worse on r6; II clearly worse |
+| L4 | 0.87, 1.21 | 0.797, 1.360 / 0.836, 1.584 / 0.807, 1.313 | 2.0, 2.1 / 1.0, 4.5 / 1.8, 1.6 | d7 drawn 0.251; all 0.250 | Marginally best; not decisive |
+| L5 | 2.23, −1.86 | 1.484, −1.981 / 1.470, −2.290 / 2.146, −1.614 | 4.0, 0.8 / 4.1, 1.9 / 0.6, 1.6 | d9 drawn 0.143; I, II 0.123; III 0.134 | Clearly better on r9 and thickness; I closer on r10 |
+| L6 | −1.10, 1.54 | −1.214, 1.336 / −2.095, 1.119 / −1.144, 1.606 | 1.1, 0.9 / 5.4, 2.2 / 0.4, 0.3 | d11 drawn 0.043; all 0.039 | Better on both faces; II far off |
+| L7 | −1.36, −0.73 | −1.466, −0.725 / −1.310, −0.718 / −1.470, −0.729 | 0.8, 0.3 / 0.4, 0.3 / 0.8, 0.3 | d13 drawn 0.076; all 0.079 | No distinction between tables |
+| L8 | 4.05, −1.10 | 4.148, −1.002 / 2.854, −1.071 / 4.193, −0.982 | 0.3, 1.5 / 0.9, 0.6 / 0.3, 1.8 | d15 drawn 0.105; all 0.107 | Equal to I; II better on r16, worse on r15 |
+
+Summed over the sixteen surfaces the residuals are 35.6 px for Table I, 50.8 px for Table II and 25.5 px for Table III. Table III is the better fit for L2, L5 and L6, level with Table I for L1, L3, L4 and L8, and no element fits it clearly worse than both other tables; the single cues against it are L1's centre thickness (drawn 2.80 mm, Table III 2.63 mm, Tables I and II 2.75 mm) and small residuals on r6, r10 and r16. The readings agree with the earlier ones for r9 to r12 (2.3, 1.9, 1.1 and 1.65 f then; 2.23, 1.86, 1.10 and 1.54 f now).
+
+Labels. One change.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `groups[0].text` (surfaces 1–6) | NEGATIVE FRONT GROUP | FLG (−) | The drawing brackets L_I to L_III as FLG; the text calls it the front lens group FLG, and the claims a negative front lens group |
+| `groups[1].text` (surfaces 7–16) | POSITIVE REAR GROUP | RLG (+) | The drawing brackets L_IV to L_VIII as RLG; the claims call it a positive rear lens group with the diaphragm arranged in it |
+
+Calculated group focal lengths are −33.44 mm and +26.40 mm, so the signs are right, and both surface ranges bracket the elements the drawing brackets. Checked and left as they are: `doublets` is empty and no element carries `cemented`, as the drawing shows eight air-spaced singlets; `diagramLabel` LI to LVIII are the patent's signs L_I to L_VIII, with `name` L1 to L8 for the inspector and the analysis; the eight `type` strings agree with the signs of the radii (L1 +, + negative meniscus; L2 +, − biconvex; L3 +, + negative meniscus; L4 +, + positive meniscus convex to the object, so concave toward the stop; L5 +, − biconvex; L6 −, + biconcave; L7 −, − positive meniscus concave toward the stop; L8 +, − biconvex) and with independently calculated focal lengths equal to the stored `fl` values; every `role` sentence is true; the stop is drawn between L4 and L5; `asph` is empty and the patent has no aspheric surface; every `apd` is false and the patent designates no anomalous-dispersion glass; `varLabels` names the one variable gap BF. The inspector shows the stored type, ne, νe, focal length, glass and role for the five elements opened.
+
+Movement. The file has one variable gap, the back focus, with infinity first (38.444 mm) and 0.30 m last (42.0387 mm), so the whole lens moves 3.5947 mm toward the object and no internal gap changes. An independent paraxial calculation from the printed Table III values gives f = 27.99883 mm, back focus 38.43733 mm, front focal point 8.208 mm behind the first vertex, and, for 300.000 mm from object to image, an extension of 3.5947 mm with the object 209.87 mm ahead of surface 1 and magnification −0.1284. That figure keeps the 0.0067 mm offset between the printed and the paraxial back focus; the strict paraxial conjugate of the stored plane is 299.60 mm. The overlay shows FLG and RLG both moving 3.59 mm away from the fixed focal plane, the page shows the section shifted toward the object with BF 42.04 and the slider's far end reads 30 cm. The patent prints no focusing data, so direction and amount are checked against the calculation only.
+
+Aberrations. The patent has no aberration plots: its single sheet is the lens section, and the text states only the aims (back focus above 1.35 f, at least f/2.8, good field flatness and little distortion to ±38°). There is nothing to compare numerically. For the record, an independent exact trace of the prescription at the e line gives longitudinal spherical aberration of −0.090, −0.126, −0.119 and −0.077 mm at 1.0, 0.85, 0.7 and 0.5 of the 5.000 mm pupil radius, the same as the engine; distortion of −0.27, −1.02, −1.77, −1.63 and −1.03% at 10°, 20°, 30°, 35° and 38° on the stored image plane (the 38° chief ray lands at 21.649 mm against f·tan ω = 21.875 mm); and sagittal and tangential foci, relative to the paraxial focus, of −0.23 and −0.19 mm at 20°, −0.34 and −0.35 mm at 30°, −0.16 and −0.38 mm at 35°, and +0.22 and −0.28 mm at 38°.
+
+Glass. The patent names no glass anywhere. It does state ranges: claim 3 (e) requires ne below 1.50 and νe above 65 for the two front menisci and (f) νe above 40 for the biconvex front element, and Table I (PDF pages 3 and 4) prints the limits within which the Abbe numbers of all three tables may vary: L1 70.22 (+12, −4), L2 43.63 (+8, −2), L3 70.22 (+10, −4), L4 41.64 (±8), L5 54.48 (±8), L6 25.87 (−5, with no plus figure printed), L7 54.48 (±10), L8 54.48 (±8). The assigned glasses satisfy the claim: N-FK5 has ne 1.489143 and νe 70.225, and J-BASF6 has νe 41.596. The catalog values differ from the printed ones by at most 0.044 in νe, far inside the Table I limits, with one fine point: read against Table I's own L2 value, the lower limit for L2 is 41.63, the printed Table III value of 41.64 sits 0.01 above it and J-BASF6's catalog 41.596 sits 0.03 below it. All eight labels resolve in the project catalog as written.
+
+Rays. Nothing that enters a trace was edited. Before and after: focal length 27.9988 mm, f/2.8, stop semi-diameter 6.7507 mm, declared half-field 38°, first-order tracing half-field 35.379°. The surface validator reports no errors, the image-circle audit 0 undersized, traced field coverage 100% at 38.0° (21.65 mm), the render diagnostics no trim, and the clearance probe no clipped axial ray and no blocked chief ray at infinity (ω = 37.98°) or at 0.30 m (ω = 36.46°). The engine's meridional transmission at f/2.8 is 100.0, 95.8, 90.6, 84.4, 77.1 and 67.2% at 23.4°, 26.3°, 29.2°, 32.2°, 35.1° and 38.0°, the first pass's final figures; with no rim changed the two-dimensional pupil fractions are untouched as well.
+
+Other files. The data header gained two notes (the flat lands of L1 and L3, and the patent's reference signs). The analysis gained one sentence on the patent's group and element signs and two on the flat lands.
+
+Source notes. Claim 3's reprint of r5 as −2.6916 gives f = 1.0254 when traced; the table's +2.6916 gives 1.0000. Claim 2's reprint of Table II (PDF page 5) prints νe 46.83 and 54.58 where Table II prints 46.82 and 54.48; Table III is not affected.
+
+Open. The flat lands of L1 and L3 remain chamfers on the page until the renderer can draw a rim land. L6 is 2.6% and L7 1.8% under their drawn heights for the reasons given in the first pass. The drawing is shared by three tables.

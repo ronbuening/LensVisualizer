@@ -20,6 +20,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * surfaces 11 and 12 are both 8.25 mm, which squares L6 against L7 just inside the contact height.
  * gapSagFrac is 1.00 for this lens because that pair is drawn in edge contact (0.99 admits only 8.22 mm).
  * The axial f/2.8 beam and the 38-degree chief ray clear.
+ * L1 and L3 are drawn with a flat annular land behind the concave face: outer rims 17.8 and 11.9 mm, the
+ * concave spheres ending at about 13.9 and 8.5 mm. Surfaces 2 and 6 store those curve ends (13.85 and 8.3 mm),
+ * so the diagram closes each element with a straight edge where the drawing has a step. Neither element can be
+ * squared: at the outer rim height the rear spheres have rim slopes of 76.3 and 73.9 degrees (limit 64.2), and
+ * front faces cut to the curve-end height block the 38-degree chief ray (15.31 mm on surface 1, 9.62 mm on 5).
+ * Diagram labels are the patent's reference signs: elements L_I to L_VIII (LI to LVIII), front lens group FLG
+ * (surfaces 1-6, negative) and rear lens group RLG (surfaces 7-16, positive, containing the diaphragm D).
  * Back focus is the printed 1.373 f (38.444 mm); the paraxial value is 38.437 mm.
  * The projection block declares the patent's 76-degree field (38-degree chief rays traced); rays are still
  * clipped by the modeled apertures.
@@ -322,12 +329,12 @@ const LENS_DATA = {
   "varLabels": [["16", "BF"]],
   "groups": [
     {
-      "text": "NEGATIVE FRONT GROUP",
+      "text": "FLG (−)",
       "fromSurface": "1",
       "toSurface": "6"
     },
     {
-      "text": "POSITIVE REAR GROUP",
+      "text": "RLG (+)",
       "fromSurface": "7",
       "toSurface": "16"
     }
