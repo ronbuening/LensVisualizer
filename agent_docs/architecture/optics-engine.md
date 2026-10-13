@@ -288,12 +288,14 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
 
 - `ingestLensV1` and `ingestTeleconverterV1` (`ingestV1.ts`) map a V1 file onto it, applying the schema defaults of
   `defaults.ts`. Each default row names its reader. A default written out and one left out ingest alike. A missing
-  `publishedStations` is one: every zoom station published at infinity alone, as `publishedStationGrid` reads it, and
-  ingest spreads it over the stations as it spreads a declaration. Ingest does not validate; it refuses only what the
-  canonical form cannot hold, naming the field and its authored path: two V1 copies that disagree (a surface `nd` and
-  its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within 1e-8), a zoom
-  field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, `varLabels` that name no gap,
-  and fields V1 does not define or only the engine writes.
+  `publishedStations`, or `{}`, is one: every zoom station published at infinity alone, as `publishedStationGrid`
+  reads it, and ingest spreads it over the stations as it spreads a declaration. Ingest does not validate; it refuses
+  only what the canonical form cannot hold, naming the field and its authored path: two V1 copies that disagree (a
+  surface `nd` and its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within
+  1e-8), a zoom field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, `varLabels` (or
+  the ring's) that name no gap or are out of surface order, and fields V1 does not define or only the engine writes.
+  Ingest does not check types, so wrong-typed input the validator refuses (`asph: null`) can fail with a plain
+  `TypeError`.
 - `toLensData` (`toLensData.ts`) is the V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
   and `toLensDataInput` gives it back as authored.
 - Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the

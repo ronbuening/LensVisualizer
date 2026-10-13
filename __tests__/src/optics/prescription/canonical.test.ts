@@ -461,27 +461,21 @@ describe("canonical prescription: spellings held as one", () => {
     expect(empty.provenance.v1.emptyContainers).toEqual(["var", "varLabels"]);
   });
 
-  it("orders gaps by surface and keeps the authored order of their labels for the view", () => {
-    const twoGaps = (labels: [string, string][]): LensDataInput => {
-      const data = prime();
-      data.surfaces[0].d = 1;
-      data.var = { STO: [1, 1.5], "2": [80, 84] };
-      data.varLabels = labels;
-      return data;
-    };
-    const [first, second] = sameMeaning(
-      twoGaps([
-        ["STO", "D0"],
-        ["2", "BF"],
-      ]),
-      twoGaps([
-        ["2", "BF"],
-        ["STO", "D0"],
-      ]),
-    );
-    expect(first.prescription.gaps.map((gap) => gap.surface)).toEqual(["STO", "2"]);
-    expect(second.provenance.v1.varLabelsOrder).toEqual(["2", "STO"]);
-    expect(first.provenance.v1.varLabelsOrder).toBeUndefined();
+  it("orders gaps by surface, whatever order the var object enumerates in", () => {
+    const data = prime();
+    data.var = { STO: [1, 1.5], "2": [80, 84] };
+    data.varLabels = [
+      ["STO", "D0"],
+      ["2", "BF"],
+    ];
+    /* An integer-like key enumerates first, so `var` lists "2" ahead of the stop that precedes it. */
+    expect(Object.keys(data.var)).toEqual(["2", "STO"]);
+    const result = ingested(data);
+    expect(result.prescription.gaps.map((gap) => [gap.surface, gap.label])).toEqual([
+      ["STO", "D0"],
+      ["2", "BF"],
+    ]);
+    expect(toLensDataInput(result)).toEqual(data);
   });
 
   /** Ingest every spelling, require one prescription, and require each to come back as written. */
@@ -527,6 +521,7 @@ describe("canonical prescription: spellings held as one", () => {
     /* No declaration is the schema default, every station at infinity alone, and so is any spelling of it. */
     const [absent, ...spelled] = oneMeaning([
       declared(),
+      declared({}),
       declared({ zoom: [0, 1, 2] }),
       declared({ zoom: [] }),
       declared({ focus: [] }),
@@ -554,7 +549,7 @@ describe("canonical prescription: spellings held as one", () => {
       if (publishedStations !== undefined) data.publishedStations = publishedStations;
       return data;
     };
-    const [absent] = oneMeaning([declared(), declared({ focus: [] })]);
+    const [absent] = oneMeaning([declared(), declared({}), declared({ focus: [] })]);
     expect(absent.prescription.focus.published).toEqual([]);
     expect(ingested(declared({ focus: [1] })).prescription).not.toEqual(absent.prescription);
   });
@@ -716,6 +711,33 @@ describe("canonical prescription: refusals", () => {
       "varLabels naming a gap that does not exist",
       () => edit(prime, (data) => data.varLabels!.push(["1A", "D1"])),
       /varLabels\[1\] labels "1A", which has no var entry/,
+    ],
+    [
+      "varLabels out of surface order",
+      () =>
+        edit(prime, (data) => {
+          data.var = { STO: [1, 1.5], "2": [80, 84] };
+          data.varLabels = [
+            ["2", "BF"],
+            ["STO", "D0"],
+          ];
+        }),
+      /^varLabels\[1\] labels "STO", which comes before "2" \(varLabels\[0\]\) in the surfaces: list the pairs in surface order$/,
+    ],
+    [
+      "the aberration ring's varLabels out of surface order",
+      () =>
+        edit(prime, (data) => {
+          data.aberrationControl = {
+            label: "Spherical aberration",
+            var: { STO: [1, 1.5, 2], "1A": [5, 5, 5] },
+            varLabels: [
+              ["1A", "D1"],
+              ["STO", "D0"],
+            ],
+          };
+        }),
+      /^aberrationControl\.varLabels\[1\] labels "STO", which comes before "1A" \(aberrationControl\.varLabels\[0\]\) in the surfaces/,
     ],
     [
       "a field V1 does not define",

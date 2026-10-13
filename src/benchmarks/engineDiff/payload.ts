@@ -613,8 +613,6 @@ export function outcomeOf<Value>(compute: () => Value): Outcome<Value> {
  * - `S` keeps every member of every surface, the engine's own inner radius, stop placement, interaction and
  *   diffractive phase among them, and writes `R` as the authority rules do: a flat radius as its marker, because
  *   the engine hands a flat radius back as it was spelled and the spellings share a fingerprint;
- * - `varLabels`, and those of the aberration-control ring, are in surface order: the engine keeps the file's order,
- *   which the canonical prescription does not hold;
  * - `asphByIdx` becomes the list of aspheric surface indices: which surfaces resolved an entry is the engine's doing,
  *   and the coefficients are in `data.asph`, zero terms dropped;
  * - each `indexByIdx` closure is evaluated at the given channels.
@@ -641,10 +639,6 @@ export function projectBuildConstants(
           ? { ...surface, R: radiusOrFlat(surface.R, flatRadiusThreshold) }
           : surface,
       );
-    } else if (key === "varLabels" && Array.isArray(value)) {
-      out.varLabels = byFirstMember(value);
-    } else if (key === "aberrationControl" && isRecord(value) && Array.isArray(value.varLabels)) {
-      out.aberrationControl = { ...value, varLabels: byFirstMember(value.varLabels) };
     } else if (key === "asphByIdx" && isRecord(value)) {
       out.asphericSurfaceIndexes = Object.keys(value).map(Number);
     } else if (key === "indexByIdx" && isRecord(value)) {
@@ -671,13 +665,6 @@ export function projectBuildConstants(
     }
   }
   return out;
-}
-
-/** `[surfaceIndex, text]` pairs in surface order. */
-function byFirstMember(pairs: readonly unknown[]): unknown[] {
-  return [...pairs].sort((a, b) =>
-    Array.isArray(a) && Array.isArray(b) && typeof a[0] === "number" && typeof b[0] === "number" ? a[0] - b[0] : 0,
-  );
 }
 
 /* ── Semantic fingerprint ── */
@@ -845,13 +832,6 @@ function normalizePublishedStations(
   return Object.keys(out).length === 0 ? undefined : out;
 }
 
-/** `[label, text]` pairs ordered by the surface each label names. */
-function bySurface(pairs: unknown, surfaceLabels: readonly unknown[]): unknown {
-  if (!Array.isArray(pairs)) return pairs;
-  const position = (pair: unknown) => (Array.isArray(pair) ? surfaceLabels.indexOf(pair[0]) : -1);
-  return [...pairs].sort((a, b) => position(a) - position(b));
-}
-
 /**
  * Rewrite authored lens or teleconverter data so the spellings that share a semantic fingerprint come out identical.
  *
@@ -863,7 +843,8 @@ function bySurface(pairs: unknown, surfaceLabels: readonly unknown[]): unknown {
  *   empty: an entry makes the surface aspheric to the engine and the UI whatever its coefficients;
  * - the `STO` semi-diameter is dropped where the engine derives or schedules the stop radius;
  * - a default the engine applies inline (`ECHO_DEFAULTS`) is dropped, on the lens, its elements and its plates;
- * - an empty `var`, `varLabels` or ring `varLabels` is dropped, and label pairs are put in surface order;
+ * - an empty `var`, `varLabels` or ring `varLabels` is dropped. Label pairs keep the file's order: ingest refuses
+ *   pairs out of surface order, so their order is no spelling;
  * - `publishedStations` takes one spelling: a zoom list left out, written empty or naming every station is dropped,
  *   one focus list is spread over the zoom stations, and a declaration of every station at infinity alone, the
  *   schema default, is dropped whole;
@@ -877,9 +858,6 @@ function bySurface(pairs: unknown, surfaceLabels: readonly unknown[]): unknown {
 export function normalizeAuthoredData(prescription: object, flatRadiusThreshold: number): Record<string, unknown> {
   const data = withoutDefaults({ ...prescription }, ECHO_DEFAULTS.lens);
   const stopRadiusIsRead = stopRadiusAuthority(data) === "authored";
-  const surfaceLabels = Array.isArray(data.surfaces)
-    ? data.surfaces.map((surface: unknown) => (isRecord(surface) ? surface.label : undefined))
-    : [];
 
   if (Array.isArray(data.surfaces)) {
     data.surfaces = data.surfaces.map((authored: unknown) => {
@@ -909,14 +887,15 @@ export function normalizeAuthoredData(prescription: object, flatRadiusThreshold:
     );
   }
   if (isRecord(data.var) && Object.values(data.var).every((range) => range === undefined)) delete data.var;
-  if (Array.isArray(data.varLabels)) {
-    if (data.varLabels.length === 0) delete data.varLabels;
-    else data.varLabels = bySurface(data.varLabels, surfaceLabels);
-  }
-  if (isRecord(data.aberrationControl) && Array.isArray(data.aberrationControl.varLabels)) {
-    const { varLabels, ...control } = data.aberrationControl;
-    data.aberrationControl =
-      varLabels.length === 0 ? control : { ...control, varLabels: bySurface(varLabels, surfaceLabels) };
+  if (Array.isArray(data.varLabels) && data.varLabels.length === 0) delete data.varLabels;
+  if (
+    isRecord(data.aberrationControl) &&
+    Array.isArray(data.aberrationControl.varLabels) &&
+    data.aberrationControl.varLabels.length === 0
+  ) {
+    const control = { ...data.aberrationControl };
+    delete control.varLabels;
+    data.aberrationControl = control;
   }
 
   const stationCount = Array.isArray(data.zoomPositions) ? data.zoomPositions.length : 1;

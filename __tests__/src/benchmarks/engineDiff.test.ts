@@ -2110,11 +2110,6 @@ describe("engineDiff semantic fingerprint", () => {
         delete lens.varLabels;
       },
     ],
-    [
-      "varLabels in another order",
-      firstLens((lens) => (lens.varLabels?.length ?? 0) >= 2),
-      (lens) => lens.varLabels!.reverse(),
-    ],
     ["apd: false left out", firstLens(elementsWith("apd", false)), withoutOnElements("apd")],
     [
       'indexReference: "d" left out',
@@ -2183,11 +2178,6 @@ describe("engineDiff semantic fingerprint", () => {
         conjugate.focusT -= 1e-12;
       },
     ],
-    [
-      "the aberration ring's varLabels in another order",
-      firstLens((lens) => (lens.aberrationControl?.varLabels?.length ?? 0) >= 2),
-      (lens) => lens.aberrationControl!.varLabels!.reverse(),
-    ],
   ];
 
   it.each(respellings)("keeps every Tier P record of a lens with %s", (_name, key, respell) => {
@@ -2195,9 +2185,33 @@ describe("engineDiff semantic fingerprint", () => {
     expect(recordDigests(after)).toEqual(recordDigests(before));
   });
 
+  /* An order of label pairs is no spelling: a V2 `gaps` object cannot carry one, so ingest refuses any but surface
+   * order, and the records keep the file's order unsorted. */
+  it.each<[name: string, key: string, reorder: (lens: LensData) => void, message: RegExp]>([
+    [
+      "varLabels",
+      firstLens((lens) => (lens.varLabels?.length ?? 0) >= 2),
+      (lens) => lens.varLabels!.reverse(),
+      /varLabels\[1\] labels "[^"]+", which comes before "[^"]+" \(varLabels\[0\]\) in the surfaces/,
+    ],
+    [
+      "the aberration ring's varLabels",
+      firstLens((lens) => (lens.aberrationControl?.varLabels?.length ?? 0) >= 2),
+      (lens) => lens.aberrationControl!.varLabels!.reverse(),
+      /aberrationControl\.varLabels\[1\] labels "[^"]+", which comes before "[^"]+" \(aberrationControl\.varLabels\[0\]\)/,
+    ],
+  ])("refuses %s out of surface order", (_name, key, reorder, message) => {
+    const authored = authoredOf(key);
+    const reordered = structuredClone(authored);
+    reorder(reordered);
+    expect(() => ingestLensV1(reordered)).toThrow(message);
+    expect(fingerprint(reordered)).not.toBe(fingerprint(authored));
+  });
+
   it("gives the published-station spellings V1 validation refuses the fingerprint and echo of their valid twin", () => {
-    /* An empty zoom or focus list fails `validateLensData`, so `buildLens` gives no record to capture for one. The
-     * engine's `publishedStationGrid` still reads each as its valid twin, and so do the fingerprint and the echo. */
+    /* An empty object, or an empty zoom or focus list, fails `validateLensData`, so `buildLens` gives no record to
+     * capture for one. The engine's `publishedStationGrid` still reads each as its valid twin, and so do the
+     * fingerprint and the echo. */
     const respelled = (key: string, declare: (lens: LensData) => LensData["publishedStations"]) => {
       const authored = decodeValue(CATALOG.lenses.find((entry) => entry.key === key)!.prescription) as LensData;
       const lens = structuredClone(authored);
@@ -2208,18 +2222,84 @@ describe("engineDiff semantic fingerprint", () => {
       );
     };
     const undeclaredZoom = firstLens((lens) => (lens.zoomPositions?.length ?? 0) >= 2 && !lens.publishedStations);
+    respelled(undeclaredZoom, () => ({}));
     respelled(undeclaredZoom, () => ({ zoom: [] }));
     respelled(undeclaredZoom, () => ({ focus: [] }));
     respelled(undeclaredZoom, (lens) => ({ focus: lens.zoomPositions!.map(() => []) }));
-    respelled(
-      firstLens((lens) => lens.zoomPositions === undefined && !lens.publishedStations),
-      () => ({ focus: [] }),
-    );
+    const undeclaredPrime = firstLens((lens) => lens.zoomPositions === undefined && !lens.publishedStations);
+    respelled(undeclaredPrime, () => ({}));
+    respelled(undeclaredPrime, () => ({ focus: [] }));
     const everyWithRows = firstLens((lens) => {
       const { zoom, focus } = lens.publishedStations ?? {};
       return zoom !== undefined && focus !== undefined && zoom.length === lens.zoomPositions?.length;
     });
     respelled(everyWithRows, (lens) => ({ ...lens.publishedStations, zoom: [] }));
+  });
+
+  it("hides no value that differs from what its rule holds as one", () => {
+    const echo = (lens: object) => normalizeAuthoredData(lens, seam.flatRadiusThreshold);
+
+    /* A value other than the default survives every echo-default row, on the lens, an element and a rear plate. */
+    const otherValues: Record<string, unknown> = {
+      "lens.zoomApertureModel": "fixed-iris",
+      "lens.zoomStep": 0.01,
+      "lens.focusPositions": [0, 0.5, 1],
+      "lens.publishedStations": { focus: [1] },
+      "element.indexReference": "e",
+      "element.apd": "inferred",
+      "rearPlate.indexReference": "e",
+    };
+    const rows = Object.entries(ECHO_DEFAULTS).flatMap(([kind, list]) => list.map((row) => `${kind}.${row.v1Field}`));
+    expect(Object.keys(otherValues).sort()).toEqual([...rows].sort());
+    const withPlates = authoredOf(firstLens((lens) => (lens.rearPlates?.length ?? 0) > 0));
+    for (const [row, value] of Object.entries(otherValues)) {
+      const [kind, field] = row.split(".");
+      const lens = structuredClone(withPlates) as unknown as Record<string, unknown> & {
+        elements: Record<string, unknown>[];
+        rearPlates: Record<string, unknown>[];
+      };
+      const holder = kind === "lens" ? lens : kind === "element" ? lens.elements[0] : lens.rearPlates[0];
+      holder[field] = structuredClone(value);
+      const echoed = echo(lens) as typeof lens;
+      const out = kind === "lens" ? echoed : kind === "element" ? echoed.elements[0] : echoed.rearPlates[0];
+      expect(out[field], row).toEqual(value);
+    }
+
+    /* A conjugate 1e-7 from its keyframe is beyond the validator's tolerance, so it is not snapped onto it. */
+    const conjugateKey = firstLens((lens) => (lens.finiteConjugates?.length ?? 0) > 0);
+    const offStation = structuredClone(authoredOf(conjugateKey));
+    const [conjugate] = offStation.finiteConjugates!;
+    conjugate.focusT += conjugate.focusT > 0.5 ? -1e-7 : 1e-7;
+    expect((echo(offStation).finiteConjugates as typeof offStation.finiteConjugates)![0].focusT).toBe(conjugate.focusT);
+
+    /* The build record keeps every non-zero asphere term and every label pair, in the file's order. */
+    const key = firstLens((lens) => aspheric(lens) && (lens.varLabels?.length ?? 0) >= 2);
+    const authored = authoredOf(key);
+    const [build] = captureRecords(CATALOG, [{ lens: { key }, state: null, family: "build" }]);
+    const record = valueOf(build) as {
+      data: { asph: Record<string, Record<string, number>>; varLabels: [string, string][] };
+      varLabels: [number, string][];
+    };
+    for (const [label, entry] of Object.entries(authored.asph!)) {
+      for (const [term, value] of Object.entries(entry)) {
+        if (value !== 0) expect(record.data.asph[label][term], `${label}.${term}`).toBe(value);
+      }
+    }
+    const indexed = (lens: LensData, pairs: [string, string][]) =>
+      pairs.map(([label, text]) => [lens.surfaces.findIndex((surface) => surface.label === label), text]);
+    expect(record.data.varLabels).toEqual(authored.varLabels);
+    expect(record.varLabels).toEqual(indexed(authored, authored.varLabels!));
+
+    const ringKey = firstLens((lens) => (lens.aberrationControl?.varLabels?.length ?? 0) >= 2);
+    const ringAuthored = authoredOf(ringKey);
+    const [ringBuild] = captureRecords(CATALOG, [{ lens: { key: ringKey }, state: null, family: "build" }]);
+    const ringRecord = valueOf(ringBuild) as {
+      data: { aberrationControl: { varLabels: [string, string][] } };
+      aberrationControl: { varLabels: [number, string][] };
+    };
+    const ringLabels = ringAuthored.aberrationControl!.varLabels!;
+    expect(ringRecord.data.aberrationControl.varLabels).toEqual(ringLabels);
+    expect(ringRecord.aberrationControl.varLabels).toEqual(indexed(ringAuthored, ringLabels));
   });
 
   it("keeps the composition record of a pair whose host leaves its element defaults out", () => {

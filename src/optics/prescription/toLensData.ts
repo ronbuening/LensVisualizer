@@ -194,14 +194,9 @@ function asphView(
   return Object.fromEntries(entries);
 }
 
-/** Order `[label, text]` pairs as the file did, or by surface. */
-function orderedLabels(
-  gaps: readonly { surface: string; label?: string }[],
-  authoredOrder: readonly string[] | undefined,
-): [string, string][] {
-  const pairs = gaps.filter((gap) => gap.label !== undefined).map((gap): [string, string] => [gap.surface, gap.label!]);
-  if (!authoredOrder) return pairs;
-  return authoredOrder.map((label) => pairs.find(([surface]) => surface === label)!);
+/** The `[label, text]` pairs of the labelled gaps, in surface order, as ingest requires the file to list them. */
+function gapLabels(gaps: readonly { surface: string; label?: string }[]): [string, string][] {
+  return gaps.filter((gap) => gap.label !== undefined).map((gap): [string, string] => [gap.surface, gap.label!]);
 }
 
 /* ── Lens ── */
@@ -284,7 +279,7 @@ function aberrationControlView(lens: CanonicalLens, view: ViewContext): Aberrati
     put(out, field, control[field]);
   }
   out.var = Object.fromEntries(control.gaps.map((gap) => [gap.surface, structuredClone(gap.values)]));
-  const labels = orderedLabels(control.gaps, view.provenance.v1.aberrationVarLabelsOrder);
+  const labels = gapLabels(control.gaps);
   if (labels.length > 0 || view.provenance.v1.emptyContainers.includes("aberrationControl.varLabels")) {
     out.varLabels = labels;
   }
@@ -352,7 +347,7 @@ function buildLensView(ingested: IngestedPrescription<CanonicalLens>, mergeCatal
       lens.gaps.map((gap) => [gap.surface, structuredClone(zoom ? gap.values : gap.values[0])]),
     );
   }
-  const varLabels = orderedLabels(lens.gaps, provenance.v1.varLabelsOrder);
+  const varLabels = gapLabels(lens.gaps);
   if (varLabels.length > 0 || emptyContainers.includes("varLabels")) out.varLabels = varLabels;
 
   putDefaulted(out, lensRow("focus.keyframes"), "", focus.keyframes, view);
