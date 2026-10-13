@@ -235,9 +235,10 @@ and bundled there.
   so it reads as a semantic change. A payload that hands authored data back (the `data` and `elements` of a built
   lens, the composed prescription of a pair, the conjugate an MTF result reports) is written through
   `normalizeAuthoredData`, which applies the spellings the canonical prescription holds as one, so a respelling the
-  fingerprint ignores does not change a record. It runs on both engines, so it restates the inline schema defaults
-  in `ECHO_DEFAULTS`, which a test holds equal to `src/optics/prescription/defaults.ts`. An engine back-pointer is
-  skipped by member name and leaves a marker in the payload.
+  fingerprint ignores does not change a record, and a test fails if it hides any other value. It runs on both
+  engines, so it restates the inline schema defaults in `ECHO_DEFAULTS`, which a test holds equal to
+  `src/optics/prescription/defaults.ts`. An engine back-pointer is skipped by member name and leaves a marker in the
+  payload.
 - `budgets.ts` holds the quantity classes and the table that gives a numeric payload path one of them. A class says
   how two values are compared and how far they may differ under C1. The table's rows are path patterns, and the
   first row that matches decides.
