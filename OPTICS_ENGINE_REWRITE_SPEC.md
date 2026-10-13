@@ -1159,10 +1159,13 @@ promotion, so the V2 authoring documents must not reach it earlier.
       - **The pupil constants' premise did not hold.** The plan expected a 1e-12 mm hit difference to move them by
         about 1e-8 relative. Both basis rays scale with 1e-4 and the quotient removes it, so the budget stays. This
         rests on a derivation and on S3.P1.T1's own run, which moves aspheric hits only. S3.P2.T1's run, the first
-        to move every curved hit, records their largest difference, and the rule is revisited there if it fails.
-      - **Still open: a number with no discrete evidence.** An aggregate that moves because one boundary sample did,
-        or a bisected output that moves by one quantum, has no transition to declare. It is settled when a run
-        first shows one.
+        to move every curved hit, recorded 4.79e-13 relative at most, with `epZRelStop` and `xpSD` bit-identical on
+        every lens, so the rule stands.
+      - **A number with no discrete evidence.** An aggregate that moves because one boundary sample did, or a
+        bisected output that moves by one quantum, has no transition to declare. S3.P2.T1's run showed the first: the
+        Mirotar's raw half-field, a bisection that moved one step. The maintainer approved it as a divergence and
+        merged the step with its check failing on that lens (S3.P2.T1). No form of declaration was added, and a
+        later one is brought to the maintainer the same way.
     - **S3.P2.T1, the first step to move every curved hit,** settled two budgets on 2026-10-13, in the harness PR
       that precedes its engine change: the weighted bins of a bokeh profile went from exact to 1e-10 relative above
       C0, and a ratio of two analysis lengths from 1e-10 to 1e-8 relative. Both are stated under
@@ -2078,6 +2081,7 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 34 | A clipped or diagnostic point is held to 1e-7 mm, or to 1e-12 of its own size where that is more | [Quantity budgets](#quantity-budgets) |
 | 35 | The bin statistics of a bokeh profile whose rays weigh differently are held to 1e-10 relative above C0; counts, count ratios and the bins of a footprint of one weight stay exact | [Quantity budgets](#quantity-budgets) |
 | 36 | A ratio of two analysis lengths is held to 1e-8 relative above C0 | [Quantity budgets](#quantity-budgets) |
+| 37 | The Zeiss Mirotar 500mm f/4.5's tie between two surfaces on one vertex is an approved divergence, and S3.P2.T1 merges with its check failing on that lens alone | S3.P2.T1 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
@@ -2096,9 +2100,6 @@ Open for the maintainer, none of them needed before promotion:
 - Whether an engine C3's anchor is a timing base.
 - Whether a status that turns to a failure from one that held no result either, such as `clipped` to `failed`,
   should block a data change. It does today, and no catalog change since A0 shows one.
-- A discrete change the harness sees only as numbers cannot be declared as a transition. The Mirotar's tie between
-  two surfaces on one vertex (S3.P2.T1) is the first, and the plan has no form for it but an approved divergence
-  and a failing check.
 
 ## Rollback
 
