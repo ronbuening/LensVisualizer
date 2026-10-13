@@ -288,12 +288,14 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
 
 - `ingestLensV1` and `ingestTeleconverterV1` (`ingestV1.ts`) map a V1 file onto it, applying the schema defaults of
   `defaults.ts`. Each default row names its reader. A default written out and one left out ingest alike. A missing
-  `publishedStations` is one: every zoom station published at infinity alone, as `publishedStationGrid` reads it, and
-  ingest spreads it over the stations as it spreads a declaration. Ingest does not validate; it refuses only what the
-  canonical form cannot hold, naming the field and its authored path: two V1 copies that disagree (a surface `nd` and
-  its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within 1e-8), a zoom
-  field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, `varLabels` that name no gap,
-  and fields V1 does not define or only the engine writes.
+  `publishedStations`, or `{}`, is one: every zoom station published at infinity alone, as `publishedStationGrid`
+  reads it, and ingest spreads it over the stations as it spreads a declaration. Ingest does not validate; it refuses
+  only what the canonical form cannot hold, naming the field and its authored path: two V1 copies that disagree (a
+  surface `nd` and its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within
+  1e-8), a zoom field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, `varLabels` (or
+  the ring's) that name no gap or are out of surface order, and fields V1 does not define or only the engine writes.
+  Ingest does not check types, so wrong-typed input the validator refuses (`asph: null`) can fail with a plain
+  `TypeError`.
 - `ingestLensV2` and `ingestTeleconverterV2` (`ingestV2.ts`) map a `schema: 2` file (`src/types/lensDataV2.ts`) onto
   it, and `ingestLens` / `ingestTeleconverter` send a file of either version to its ingest by `schema`. V2 ingest
   applies the same defaults at their canonical paths, numbers undrawn media by first use as V1 ingest does (their
@@ -309,15 +311,14 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
 - `toLensData` (`toLensData.ts`) is the V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
   and `toLensDataInput` gives it back as authored. A V2 file's view writes one V1 spelling of each fact.
 - Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the
-  defaults table. `buildLens.ts` re-exports the two ingest functions and the two V1 views, the way code outside the
-  engine reaches them.
+  defaults table but the validator-first spread below. `buildLens.ts` re-exports the two ingest functions and the two
+  V1 views (`toLensData`, `toTeleconverterData`), the way code outside the engine reaches them until S8.P1.T2.
   - `buildLens` reads an authored file through ingest and builds its view (`withLensDefaults` in
-    `normalizeLensData.ts`). The validator speaks first: a file it rejects throws its messages, and a file it accepts
-    that ingest refuses throws the refusal. Only on that refusal are the catalog defaults spread, to ask the
-    validator, and nothing is built from the spread.
+    `normalizeLensData.ts`). The validator speaks first on a V1 file; the comment at the spread in `withLensDefaults`
+    says how, and where that exception ends.
   - A pair `attachTeleconverter()` composed is known only by the `attachedTeleconverter` marker it writes and is
     built as it is: its host and converter each came through ingest in their catalogs. This is a temporary seam until
-    S5.P1.T1 composes on the canonical form. Rear plates expand after ingest, inside `buildLens`.
+    S5.P1.T4 composes on the canonical form. Rear plates expand after ingest, inside `buildLens`.
   - The lens and converter catalogs ingest an entry on its first read and keep it, so every read of a key returns
     the same object. Their key lists read only identity fields, from the files as authored.
   - The glass scan, the field-coverage and surface-probe audits, and the converter validator's reference host read

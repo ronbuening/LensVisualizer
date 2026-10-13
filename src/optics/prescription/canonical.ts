@@ -378,10 +378,6 @@ export type CanonicalPrescription = CanonicalLens | CanonicalTeleconverter;
 export interface V1Spelling {
   /** Containers written out empty: `asph: {}`, `var: {}`, `varLabels: []`, `aberrationControl.varLabels: []`. */
   emptyContainers: ("asph" | "var" | "varLabels" | "aberrationControl.varLabels")[];
-  /** Authored order of `varLabels`, where it is not surface order. */
-  varLabelsOrder?: string[];
-  /** Authored order of `aberrationControl.varLabels`, where it is not surface order. */
-  aberrationVarLabelsOrder?: string[];
   /** How the file wrote `publishedStations`; absent when it left the object out and took the default. */
   publishedStations?: V1PublishedStationsSpelling;
 }

@@ -136,9 +136,9 @@ const ANALYSIS_HALF_FIELD_QUANTUM_DEG = 5 / 2 ** 8;
  * The quantity classes.
  *
  * The first nine are the plan's rows with the plan's values, and `count` and `requested` are its tenth
- * row (statuses, counts, sample positions) for the numbers among them. A budget here is a ceiling for a declared
- * class of change, not a measurement: the C1 noise floor is measured by running the harness against a commit that
- * reorders one sum.
+ * row (statuses, counts, sample positions) for the numbers among them. `binnedStatistic` and `lengthRatio` are the
+ * plan's too: two kinds of ratio it budgets by name. A budget here is a ceiling for a declared class of change, not
+ * a measurement: the C1 noise floor is measured by running the harness against a commit that reorders one sum.
  */
 export const QUANTITIES = {
   landing: absolute("Unclipped surface hit, image-plane landing", "mm", 1e-9, "plan"),
@@ -152,9 +152,29 @@ export const QUANTITIES = {
   mtfModulation: absolute("MTF modulation", "", 1e-7, "plan"),
   count: exact("Count or index", "plan"),
   requested: exact("Sample position, request echo or authored value", "plan"),
+  /* A bokeh footprint weighs each ray by its transmission and sums the weights into the bins of a radial profile:
+   * a bin's density and its share of the energy, the mean density of the centre bins and of the rim bins, and the
+   * ratio of those two. Through an absorbing element a weight is exp(−α · path), so each of these is a sum of such
+   * weights or a ratio of two sums, and its last bits move when a hit moves inside its tolerance: the class cannot
+   * be exact. It takes the budget of a smooth ratio, and no floor. The weights are never negative, so nothing
+   * cancels in a sum of them, and a statistic moves by about as much of itself as its weights do, however faint
+   * its bin. A bin no ray falls in is exactly zero on both sides, and one that is zero on one side alone has gained
+   * a ray. A ray that changes bin moves a share by its whole weight, which is far outside the budget unless the ray
+   * is all but absorbed. A footprint whose rays all weigh the same holds counts, and is not of this class
+   * (`binsByRayWeight`). */
+  binnedStatistic: relative("Weighted bin statistic of a bokeh profile", 1e-10, "plan"),
+  /* One image-plane length an analysis measures over another: the extents of a spot on either side of its
+   * centroid, or its sagittal span over its tangential one. Each length is an analysis length, held to 1e-8 mm,
+   * and a sharp spot is some thousandths of a millimetre across. Rounding that moves such an extent by 1e-13 mm
+   * moves the ratio by 1e-10 of itself, so the budget of a fraction cannot hold it. 1e-8 relative is a fixed bound.
+   * For a spot under a millimetre across it is far tighter than the one the lengths' own budget implies: 1e-8 mm
+   * in 1e-3 mm is 1e-5 of the ratio. A spot may be tens of millimetres across, and there the lengths' own rows are
+   * the tighter ones: the spans, and the offsets and centroid the extents are taken from, are in the same record
+   * under them. Neither ratio comes near zero without being zero, which the span ratio of a footprint with no rays
+   * is, so the bound is plainly relative. */
+  lengthRatio: relative("Ratio of two analysis lengths", 1e-8, "plan"),
 
   countRatio: exact("Count ratio", "addition"),
-  binnedStatistic: exact("Binned statistic", "addition"),
   /* The tolerance a hit was accepted under is the engine's raw target, 1e-12 mm, except at a stalled root. There it
    * is a computed float, the larger of that target and a roundoff envelope: 16·ε times the sum of the ray's
    * absolute operands. Reordered arithmetic moves the last bits of that sum, so above C0 the field takes the plan's
@@ -396,6 +416,28 @@ function residualOfSolve(accepted: QuantityId, up = 0, member?: string): Quantit
     return converged(leaf.base[depth]) && converged(leaf.head[depth]) ? accepted : "clippedHit";
   };
 }
+
+/* The radial profile of a bokeh footprint sums the weights of the footprint's points into its bins, and the record
+ * holds those points beside the profile, each with its weight. Where every point of both sides has one and the same
+ * weight, each statistic is a function of the counts in the bins, which rounding cannot move. A difference is then
+ * a ray that changed bin: a discrete transition, declared as one. That is every lens with no absorbing element.
+ * Where the weights differ, within a side or between the two, the statistics are sums that round each in its own
+ * way and take the budget of a weighted bin. A ray that changes bin there is a number far beyond it, which no line
+ * declares. A profile with no points beside it does not say what its rays weigh, and is taken as weighted. */
+const binsByRayWeight: QuantitySelector = (leaf) => {
+  /* The footprint is the nearest container above the leaf that holds points, on either side. */
+  for (let depth = leaf.base.length - 1; depth >= 0; depth--) {
+    const sides = [memberOf(leaf.base[depth], "points"), memberOf(leaf.head[depth], "points")];
+    if (sides.every((points) => points === undefined)) continue;
+    if (!sides.every((points) => Array.isArray(points))) return "binnedStatistic";
+    /* A side that lost every ray has no weight to differ, and its empty profile is one of counts too. */
+    const points = (sides as unknown[][]).flat();
+    const first = memberOf(points[0], "weight");
+    const oneWeight = points.every((point) => first !== undefined && memberOf(point, "weight") === first);
+    return oneWeight ? "countRatio" : "binnedStatistic";
+  }
+  return "binnedStatistic";
+};
 
 /* ── The table ── */
 
@@ -645,11 +687,27 @@ const TABLE: readonly TableRow[] = [
     "requested",
     ["analysis:jobs.groupMovement*.**.{x,focusT,zoomT,focalLengthMm}", "analysis:jobs.groupMovement*.**.xDomain[]"],
   ],
+  /* The blur character of spherical aberration bins its rays at the weight the pupil sampler gave them, the same
+   * for every ray: the engine multiplies no transmission into it, on an absorbing lens either. Each statistic of
+   * its radial profile is then a function of the counts in the bins, on every lens, and stays exact with the count
+   * ratios. Its record holds no points beside the profile, so the row names the job. The bokeh footprints, which
+   * do weigh a ray by its transmission, go by member name further down and by the weights of their points. */
+  [
+    "countRatio",
+    [
+      "analysis:jobs.computeSphericalAberrationBlurCharacter.**.{density,energyFraction}",
+      "analysis:jobs.computeSphericalAberrationBlurCharacter.**.{centerDensity,rimDensity,centerToRimRatio}",
+    ],
+  ],
   ["bestFitRadius", ["analysis:jobs.asphericComparison.**.bestFitRadius"]],
   ["requested", ["analysis:jobs.asphericComparison.**.h"]],
   ["analysisLength", ["analysis:jobs.asphericComparison.**.delta", "analysis:jobs.computeBestFocusZ.value"]],
   /* The LoCA inset draws a focus shift at a fixed magnification, 70% of half its bar width for 0.15 mm, which is
-   * about 201 px per mm. A bar's offset in px is the shift restated; the magnification is a ratio of two scales. */
+   * about 201 px per mm. A bar's offset in px is the shift restated; the magnification is a ratio of two scales.
+   * Where the widest bar would leave the inset the engine shrinks them all, and the magnification is half the
+   * inset's width over the largest shift: a constant over one analysis length. The smooth ratio's 1e-10 is then
+   * tighter than that length's own budget implies, 3e-11 mm of a 0.3 mm shift against 1e-8 mm. The plan's ratio of
+   * two analysis lengths does not name it. */
   ["analysisLength", ["analysis:jobs.locaBarOffsets.**.barOffsets.*"], { scale: 201 }],
   ["ratio", ["analysis:jobs.locaBarOffsets.**.mag"]],
   /* Field angles inverted from an image height or a sensor point. The other analyses step through fractions of
@@ -738,7 +796,12 @@ const TABLE: readonly TableRow[] = [
     ],
   ],
   ["countRatio", ["analysis:**.{geometricTransmission,absoluteGeometricTransmission,mechanicalTransmission}"]],
-  ["binnedStatistic", ["analysis:**.{density,energyFraction,centerDensity,rimDensity,centerToRimRatio}"]],
+  /* The radial profile of a bokeh footprint, by what its points weigh: counts where every ray weighs the same,
+   * weighted bins where a ray's transmission is in its weight. */
+  [binsByRayWeight, ["analysis:**.{density,energyFraction,centerDensity,rimDensity,centerToRimRatio}"]],
+  /* The skew of a coma tail is the longer extent of a spot from its centroid over the shorter, and the other is
+   * the spot's sagittal span over its tangential span: each one image-plane length in mm over another. */
+  ["lengthRatio", ["analysis:**.{tailSkewRatio,sagittalToTangentialRatio}"]],
   [
     "requested",
     [
@@ -755,8 +818,14 @@ const TABLE: readonly TableRow[] = [
     "ratio",
     [
       "analysis:**.{transmission,weight,usedWeight,totalWeight,usableWeight,transmittedWeight}",
+      /* The correction of a chief ray's launch height is the solved height over the paraxial one: two lengths,
+       * neither an analysis length, so the plan's ratio of two of those does not name it. Under 10 mm of paraxial
+       * height the 1e-10 here is tighter than the solved height's own 1e-9 mm implies, which is 4e-9 of the ratio
+       * at the 0.23 mm of a wide lens's innermost sample. */
       "analysis:**.{mechanicalWeight,photometricWeight,relativeIllumination,chiefRayCorrection}",
-      "analysis:**.{catEyeAspect,shiftRadius,tailSkewRatio,sagittalToTangentialRatio}",
+      /* The aspect of a pupil footprint and the offset of its centroid, in fractions of the pupil as its spans
+       * and centroid are: no length in mm is in either. */
+      "analysis:**.{catEyeAspect,shiftRadius}",
       "analysis:**.{geometricFactor,transmittedGeometricFactor,transmittedFlux,absoluteTransmittedFlux}",
       "analysis:**.{absoluteGeometricFactor,absoluteTransmittedGeometricFactor}",
       "analysis:**.*NormalizedToZeroCenter",

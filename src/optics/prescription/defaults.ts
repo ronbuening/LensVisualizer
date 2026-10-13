@@ -12,8 +12,7 @@
  * - `engine`: the engine falls back to them where the field is absent, so the merged data keeps the omission.
  *
  * Nothing outside tests spreads this table: lens data gets its defaults through ingest and the V1 view. The one
- * exception is `buildLens` on a file ingest refuses, which spreads `v1CatalogDefaults()` only to ask the validator
- * whether its messages come first, and builds nothing from it.
+ * exception is the validator-first spread in `withLensDefaults` (`normalizeLensData.ts`), whose comment says why.
  *
  * Known reader disagreements, left as they are (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P4.T1 spec–code contradictions):
  * `buildLens` reads `lensShiftFrac || 0`, and the chromatic ray-fan summary reads `L.offAxisFieldFrac ?? 0.7`.
