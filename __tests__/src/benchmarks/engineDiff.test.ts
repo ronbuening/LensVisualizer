@@ -2255,7 +2255,10 @@ describe("engineDiff semantic fingerprint", () => {
     };
     const rows = Object.entries(ECHO_DEFAULTS).flatMap(([kind, list]) => list.map((row) => `${kind}.${row.v1Field}`));
     expect(Object.keys(otherValues).sort()).toEqual([...rows].sort());
-    const withPlates = authoredOf(firstLens((lens) => (lens.rearPlates?.length ?? 0) > 0));
+    /* A prime: on a zoom, a focus row of `publishedStations` is spread over the stations. */
+    const withPlates = authoredOf(
+      firstLens((lens) => (lens.rearPlates?.length ?? 0) > 0 && lens.zoomPositions === undefined),
+    );
     for (const [row, value] of Object.entries(otherValues)) {
       const [kind, field] = row.split(".");
       const lens = structuredClone(withPlates) as unknown as Record<string, unknown> & {
@@ -2269,12 +2272,96 @@ describe("engineDiff semantic fingerprint", () => {
       expect(out[field], row).toEqual(value);
     }
 
+    /* The build record's elements lose only the values their echo-default rows hold. */
+    const projectedElements = projectBuildConstants(
+      {
+        elements: [
+          { id: 1, indexReference: "e", apd: "inferred" },
+          { id: 2, indexReference: "d", apd: false },
+        ],
+      },
+      CHROMATIC_CHANNELS,
+      seam.flatRadiusThreshold,
+    ).elements;
+    expect(projectedElements).toEqual([{ id: 1, indexReference: "e", apd: "inferred" }, { id: 2 }]);
+
     /* A conjugate 1e-7 from its keyframe is beyond the validator's tolerance, so it is not snapped onto it. */
     const conjugateKey = firstLens((lens) => (lens.finiteConjugates?.length ?? 0) > 0);
     const offStation = structuredClone(authoredOf(conjugateKey));
     const [conjugate] = offStation.finiteConjugates!;
     conjugate.focusT += conjugate.focusT > 0.5 ? -1e-7 : 1e-7;
     expect((echo(offStation).finiteConjugates as typeof offStation.finiteConjugates)![0].focusT).toBe(conjugate.focusT);
+
+    /* zoomT is measured in station index, as the validator measures it: on three stations, 1e-8 of an index is 5e-9
+     * of zoomT. A conjugate within that is snapped onto its station, one beyond it or 1e-3 away is not. */
+    const zoomConjugate = (zoomT: number) =>
+      (echo({
+        zoomPositions: [50, 60, 70],
+        finiteConjugates: [{ ...conjugate, focusT: 1, zoomT }],
+      }).finiteConjugates as typeof offStation.finiteConjugates)![0].zoomT;
+    expect(zoomConjugate(0.5 + 4e-9)).toBe(0.5);
+    expect(zoomConjugate(0.5 + 7.5e-9)).toBe(0.5 + 7.5e-9);
+    expect(zoomConjugate(0.5 + 1e-3)).toBe(0.5 + 1e-3);
+    expect(zoomConjugate(1e-12)).toBe(0);
+
+    /* Only a derived or scheduled stop loses its semi-diameter: a stop the engine reads keeps it, and so does every
+     * other surface and every rear plate, in the file and in the build record's data, where the plates are surfaces. */
+    const plated = structuredClone(withPlates);
+    plated.rearPlates![0].sd = 12.5;
+    const echoed = echo(plated) as unknown as LensData;
+    expect(echoed.rearPlates![0].sd).toBe(12.5);
+    plated.surfaces.forEach((surface, index) => {
+      if (surface.label !== "STO") expect(echoed.surfaces[index].sd, surface.label).toBe(surface.sd);
+    });
+    expect(stopRadiusAuthority(plated)).not.toBe("authored");
+    expect(echoed.surfaces.find((surface) => surface.label === "STO")!.sd).toBeUndefined();
+    const builtData = projectBuildConstants(seam.buildLens(plated), CHROMATIC_CHANNELS, seam.flatRadiusThreshold)
+      .data as LensData;
+    const syntheticSurfaces = builtData.surfaces.filter((surface) => surface.synthetic === "rearPlate");
+    expect(syntheticSurfaces.length).toBeGreaterThan(0);
+    for (const surface of syntheticSurfaces) expect(surface.sd, surface.label).toBeGreaterThan(0);
+    const readStop = authoredOf(firstLens((lens) => stopRadiusAuthority(lens) === "authored"));
+    const readStopSd = readStop.surfaces.find((surface) => surface.label === "STO")!.sd;
+    expect((echo(readStop) as unknown as LensData).surfaces.find((surface) => surface.label === "STO")!.sd).toBe(
+      readStopSd,
+    );
+
+    /* `var` is dropped only when it holds no gap; one gap keeps it whole. */
+    const oneGap = { var: { "2": [80, 84] }, varLabels: [["2", "BF"]] };
+    expect(echo(oneGap)).toEqual(oneGap);
+    expect(echo({ var: {} })).toEqual({});
+
+    /* Label pairs come back in the order given, even an order ingest refuses: the records sort nothing. */
+    const outOfOrder: [string, string][] = [
+      ["2", "BF"],
+      ["STO", "D0"],
+    ];
+    const indexedOutOfOrder: [number, string][] = [
+      [2, "BF"],
+      [0, "D0"],
+    ];
+    const reordered = {
+      surfaces: [{ label: "STO" }, { label: "1A" }, { label: "2" }],
+      var: { STO: [1, 1.5], "2": [80, 84] },
+      varLabels: outOfOrder,
+      aberrationControl: { label: "Spherical aberration", var: { STO: [1, 1.5, 2] }, varLabels: outOfOrder },
+    };
+    const reorderedEcho = echo(reordered) as typeof reordered;
+    expect(reorderedEcho.varLabels).toEqual(outOfOrder);
+    expect(reorderedEcho.aberrationControl.varLabels).toEqual(outOfOrder);
+    const reorderedBuild = projectBuildConstants(
+      {
+        data: reordered,
+        varLabels: indexedOutOfOrder,
+        aberrationControl: { label: "Spherical aberration", varLabels: indexedOutOfOrder },
+      },
+      CHROMATIC_CHANNELS,
+      seam.flatRadiusThreshold,
+    ) as { data: typeof reordered; varLabels: unknown; aberrationControl: { varLabels: unknown } };
+    expect(reorderedBuild.data.varLabels).toEqual(outOfOrder);
+    expect(reorderedBuild.data.aberrationControl.varLabels).toEqual(outOfOrder);
+    expect(reorderedBuild.varLabels).toEqual(indexedOutOfOrder);
+    expect(reorderedBuild.aberrationControl.varLabels).toEqual(indexedOutOfOrder);
 
     /* The build record keeps every non-zero asphere term and every label pair, in the file's order. */
     const key = firstLens((lens) => aspheric(lens) && (lens.varLabels?.length ?? 0) >= 2);

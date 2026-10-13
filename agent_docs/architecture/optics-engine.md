@@ -292,10 +292,14 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
   reads it, and ingest spreads it over the stations as it spreads a declaration. Ingest does not validate; it refuses
   only what the canonical form cannot hold, naming the field and its authored path: two V1 copies that disagree (a
   surface `nd` and its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within
-  1e-8), a zoom field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, `varLabels` (or
-  the ring's) that name no gap or are out of surface order, and fields V1 does not define or only the engine writes.
-  Ingest does not check types, so wrong-typed input the validator refuses (`asph: null`) can fail with a plain
-  `TypeError`.
+  the validator's 1e-8, in station index for `zoomT`), a zoom field on a prime, `zoomLabels` that are neither
+  `[wide, tele]` nor one per station, `varLabels` (or the ring's) that name no gap, are not `[label, text]` pairs or
+  are out of surface order, an `asph` or `var` that is not an object keyed by surface label, and fields V1 does not
+  define or only the engine writes. Ingest does not otherwise check types, so other wrong-typed input can fail with a
+  plain `TypeError`, and `buildLens` asks the validator first on any throw. The validator reads `asph: null` and
+  `var: null` as absent, which is why ingest names those itself. Some refusals are stricter than the validator; the
+  plan's S2.P1.T1 lists them. A field added to `LensDataInput` fails the typecheck at `LENS_FIELDS` in `ingestV1.ts`
+  until ingest and the view carry it.
 - `ingestLensV2` and `ingestTeleconverterV2` (`ingestV2.ts`) map a `schema: 2` file (`src/types/lensDataV2.ts`) onto
   it, and `ingestLens` / `ingestTeleconverter` send a file of either version to its ingest by `schema`; `isV1File`
   is the one rule that tells the versions apart, for them and for `buildLens` and the lens catalog. V2 ingest applies
