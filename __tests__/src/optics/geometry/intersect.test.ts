@@ -1,10 +1,14 @@
 import { describe, expect, it } from "vitest";
 import type { AsphericCoefficients } from "../../../../src/types/optics.js";
-import type { SagSlope, Vec3 } from "../../../../src/optics/types.js";
+import type { SagSlope, SurfaceProfile, Vec3 } from "../../../../src/optics/types.js";
+import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/constants.js";
 import { intersectSurfaceProfile } from "../../../../src/optics/geometry/intersect.js";
 import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSagSurface } from "../../../../src/optics/internal/surfaceIntersection.js";
 import { dot, normalize } from "../../../../src/optics/math/vector.js";
+import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { build } from "../testLensFixtures.js";
 
 function expectClose(actual: number, expected: number, tolerance: number): void {
   expect(Math.abs(actual - expected)).toBeLessThanOrEqual(tolerance);
@@ -354,3 +358,145 @@ it.each([-1, NaN, Infinity])(
     expect(hit.ok && hit.radius).toBeCloseTo(3, 8);
   },
 );
+
+describe("cap search after a failed unbounded solve", () => {
+  /* z = r^2 / 60 - 1e-10 r^10 turns back toward the object outside its cap. This ray crosses that continuation at
+   * r = 12.6 and reaches the cap at r = 6.5. Outside the cap the sag here carries 1e-9 mm of alternating noise, so
+   * no iteration can bring the exterior root within the residual target. */
+  const clean = createSurfaceProfile({ R: 30 }, { K: 0, A4: 0, A6: 0, A8: 0, A10: -1e-10, A12: 0, A14: 0 });
+  const sd = 10;
+  const noisy = (): SurfaceProfile => {
+    let flip = false;
+    return {
+      ...clean,
+      evaluate: (radius: number, out?: SagSlope) => {
+        const { sag: cleanSag, slope } = clean.evaluate(radius, out);
+        if (radius <= sd) return { sag: cleanSag, slope };
+        flip = !flip;
+        return { sag: cleanSag + (flip ? 1e-9 : -1e-9), slope };
+      },
+    };
+  };
+  const ray = { origin: [0, 16, -12] as Vec3, direction: [0, -0.6, 0.8] as Vec3 };
+
+  it("finds the cap root although the solve cannot converge outside the cap", () => {
+    // Without a cap the exterior root is the answer, and the solve runs out of iterations on it.
+    expect(intersectSurfaceProfile(ray, noisy(), 0, { maxT: 20 })).toMatchObject({
+      ok: false,
+      failureReason: "noConvergedIntersection",
+      iterations: INTERSECTION_MAX_ITERATIONS,
+    });
+    const hit = intersectSurfaceProfile(ray, noisy(), 0, { maxT: 20, clearRadius: sd });
+    const reference = intersectSurfaceProfile(ray, clean, 0, { maxT: 20, clearRadius: sd });
+    expect(reference.ok && reference.radius).toBeCloseTo(6.478819365544, 9);
+    expect(hit.ok && reference.ok && Math.abs(hit.t - reference.t)).toBeLessThanOrEqual(1e-12);
+    expect(hit.ok && Math.abs(hit.residual)).toBeLessThanOrEqual(1e-12);
+  });
+
+  it("keeps the failure when the cap holds no root", () => {
+    // The bounds end before the ray reaches the cap root.
+    expect(intersectSurfaceProfile(ray, noisy(), 0, { maxT: 9, clearRadius: sd })).toMatchObject({
+      ok: false,
+      failureReason: "noConvergedIntersection",
+    });
+    expect(intersectSurfaceProfile(ray, clean, 0, { maxT: 9, clearRadius: sd })).toMatchObject({ ok: true });
+  });
+});
+
+describe("a plane at zero gap behind a curved surface", () => {
+  const oblique: Vec3 = [0, 0.6, 0.8];
+
+  it("moves an overshoot within the tolerance onto the plane and validates the residual there", () => {
+    const plane = createSurfaceProfile({ R: 1e15 });
+    // The origin is past the plane by 6e-13 mm, which is 7.5e-13 mm along the ray: inside the parametric slack.
+    const within = intersectSurfaceProfile({ origin: [0, 0, 6e-13], direction: oblique }, plane, 0, {
+      maxT: 5,
+      directionNormalized: true,
+    });
+    expect(within).toMatchObject({ ok: true, t: 0, point: [0, 0, 6e-13], residual: 6e-13, effectiveTolerance: 1e-12 });
+    // Past it by 9e-13 mm, 1.125e-12 mm along the ray: outside the slack, so the first case passed by no wider bound.
+    const beyond = intersectSurfaceProfile({ origin: [0, 0, 9e-13], direction: oblique }, plane, 0, {
+      maxT: 5,
+      directionNormalized: true,
+    });
+    expect(beyond).toMatchObject({ ok: false, failureReason: "noBracket" });
+  });
+
+  /* A dummy curved surface in air, then the stop plane at its vertex, then one element. Air on both sides of the
+   * curved surface leaves the ray straight, so the plane is asked from the curved hit along the launch direction. */
+  const zeroGapState = (R: number) =>
+    prepareRuntimeState(
+      build({
+        key: "test-zero-gap-plane",
+        name: "Zero-gap plane fixture",
+        closeFocusM: 0.5,
+        yScFill: 0.55,
+        nominalFno: 2,
+        fstopSeries: [2, 2.8, 4],
+        elements: [{ id: 1, name: "Fixture element", label: "L1", type: "positive", nd: 1.5168, vd: 64.17 }],
+        surfaces: [
+          { label: "1", R, nd: 1.0, sd: 15, d: 0, elemId: 0 },
+          { label: "STO", R: 1e15, nd: 1.0, sd: 15, d: 1, elemId: 0 },
+          { label: "2", R: 50, nd: 1.5168, sd: 15, d: 5, elemId: 1 },
+          { label: "3", R: -50, nd: 1.0, sd: 15, d: 80, elemId: 1 },
+        ],
+      }),
+      0,
+      0,
+    );
+  /** Trace the oblique ray that meets the first surface at height `y`. */
+  const traceThrough = (state: ReturnType<typeof zeroGapState>, y: number) => {
+    const { z, profile } = state.surfaces[0];
+    const target: Vec3 = [0, y, z + profile.sag(y)];
+    const origin: Vec3 = [0, target[1] - 2 * oblique[1], target[2] - 2 * oblique[2]];
+    return {
+      z,
+      profile,
+      ray: { origin, direction: oblique },
+      trace: traceEngineRay2(state, { origin, direction: oblique }, { checkSemiDiameter: true }),
+    };
+  };
+
+  it("reaches the plane from a hit just behind it, and from one just past it within the tolerance", () => {
+    // Concave toward the ray: off the axis the surface is ahead of its vertex plane, and the plane is a real step on.
+    const ahead = traceThrough(zeroGapState(-50), 3);
+    expect(ahead.trace.hits).toHaveLength(4);
+    expect(ahead.trace.hits[0].point[2]).toBeLessThan(ahead.z - 0.09);
+    expect(ahead.trace.hits[1].point[2]).toBe(ahead.z);
+
+    /* Convex toward the ray: the surface is past its vertex plane by its sag, 4e-13 mm at this height. The hit is
+     * on the surface, not on the vertex plane, so the plane lies 5e-13 mm back along the ray and the hit is moved
+     * onto it at t = 0, keeping its point and reporting the overshoot as the residual. */
+    const past = traceThrough(zeroGapState(5000), 6.32e-5);
+    expect(past.trace.hits).toHaveLength(4);
+    const [curved, plane] = past.trace.hits;
+    const overshoot = curved.point[2] - past.z;
+    expect(overshoot).toBeGreaterThan(3.9e-13);
+    expect(overshoot).toBeLessThan(4.1e-13);
+    expect(plane.point).toEqual(curved.point);
+    expect(plane.residual).toBe(overshoot);
+    expect(plane.effectiveTolerance).toBe(1e-12);
+    // The kernel's fallback diagnostic stays on its own result: no hit record carries it.
+    for (const hit of past.trace.hits) expect(hit).not.toHaveProperty("closedFormFallback");
+  });
+
+  it("misses the plane once the overshoot along the ray is outside the parametric slack", () => {
+    /* At this height the sag is 8.1e-13 mm, within the residual target but 1.01e-12 mm back along the ray. The
+     * closed-form hit is on the surface, so the plane is behind it by more than the slack and the trace ends
+     * there. The iterative path accepted its vertex-plane seed for this ray, a point on the plane itself, which
+     * is why it went on: the plane's slack is parametric, and the prescription overlaps here off the axis. */
+    const { z, profile, ray, trace } = traceThrough(zeroGapState(5000), 9e-5);
+    expect(trace.hits).toHaveLength(1);
+    expect(trace.failureReason).toBe("noBracket");
+    expect(trace.hits[0].point[2] - z).toBeGreaterThan(8e-13);
+    expect(Math.abs(trace.hits[0].residual!)).toBeLessThan(1e-15);
+
+    const seeded = intersectSurfaceProfile(ray, profile, z, {
+      maxT: 5,
+      directionNormalized: true,
+      maxIterations: INTERSECTION_MAX_ITERATIONS,
+    });
+    expect(seeded.ok && seeded.point[2]).toBe(z);
+    expect(seeded.ok && Math.abs(seeded.residual)).toBeGreaterThan(8e-13);
+  });
+});

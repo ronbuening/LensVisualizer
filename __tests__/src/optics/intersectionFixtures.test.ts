@@ -59,6 +59,15 @@ const EXPECTED_FINDINGS: readonly ExpectedFinding[] = [
     violations: ["no hit: noBracket"],
     measured: { ok: false, failureReason: "noBracket", residual: -0.00038026840608391954, iterations: 24 },
   },
+  // The same finding in another form: the ray is inside the sphere's 1.2 mm domain for 2 mm of a 177 mm search, and
+  // both roots lie between two samples 7.4 mm apart. The legacy solver follows its clamped continuation outside the
+  // domain, where the residual keeps one sign.
+  {
+    fixture: "sphere-short-domain-window",
+    solver: "legacy",
+    violations: ["no hit: noBracket"],
+    measured: { ok: false, failureReason: "noBracket", residual: -6.797655164416556, iterations: 24 },
+  },
 ];
 
 function solve(solver: Solver, { surface, ray, bounds }: IntersectionFixture, profile: SurfaceProfile) {
