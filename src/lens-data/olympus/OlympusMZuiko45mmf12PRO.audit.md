@@ -209,6 +209,8 @@ The cemented triplet. Figure 1 draws S11, S12, S13 and S14 ending on one straigh
 | 23 (L13 rear) | 11.8 | 130.0 | 10.66 | 10.7 | -9.3 % | curve end at the flange corner, x 1379.5 |
 | 24, 25 (L14) | 13.1 | 143.5 | 11.76 | 11.8 | -9.9 % | square-cut rim line |
 
+Superseded 2026-10-13: S8 (L4 front) is 15.3 mm, not 12.7 mm, after the second review below, and S6 and S8 are 4.427 mm apart at 13.4 mm, not 5.365 mm at 12.7 mm. Every other value in this section stands.
+
 All 24 semi-diameters other than the stop changed; the stop radius was not touched. Elements drawn square-cut (L1, L5, L6–L8, L9, L11, L12, L14) keep one height on both faces. L2, L3, L4, L10 and L13 are drawn with a flat annulus outside the concave face; that face carries the height where its curve ends and the other face the full rim. The five flange corners were read where the curve's centre line reaches the flange line, which is 2 to 3 px farther out than the start of the vertical ink run.
 
 Neighbour order. The figure's order of rim heights is L1, L2, triplet, L9, L3, cemented doublet L4–L5, L10, L11, L12–L13, L14. The delivered values had L9 (19.0 mm) above the triplet (18.3 mm); the figure draws the triplet one pixel row taller than L9, now 17.1 mm against 17.0 mm. Every other order was already as drawn and is kept.
@@ -242,3 +244,121 @@ Analysis file. The two paragraphs and the formula that described stored, rescale
 Key. `key` changed from `olympus-m-zuiko-45mm-f12-pro` to `olympus-mzuiko-digital-ed-45mm-f12-pro`, to match the 17mm f/1.2 PRO sibling. The file names and the display name are unchanged. No render was captured under the new key in this pass; the captures of the semi-diameter pass used the earlier key.
 
 Earlier sections. One-line "Superseded 2026-10-13" pointers were added above the passages that describe the delivered rims or the stored line indices, and the three open items of the deployment section were closed in place. The earlier text is otherwise as written.
+
+## 2026-10-13 — Second review: diagram, labels and movement
+
+Compared. The local page at infinity, at the 1:40 state and at 0.5 m, with the focus-movement overlay, against `patents/JP2019023693A.pdf`: Figure 1 (PDF page 20), the Example 1 tables (PDF pages 12–13), ¶0045–0072 and the longitudinal aberration plots of Figs. 2–4. Figure 1 was measured on its own 1331 × 777 px raster extracted from the PDF, with no resampling, by tools written for this review; nothing was copied from the first pass.
+
+### The figure's vertical stretch
+
+The first pass's reading stands: Figure 1 is drawn about 10 % taller than it is long, and heights belong to the vertical scale. Eight independent readings agree, and none supports one scale in both directions.
+
+1. Axial scale. Twenty-seven vertex crossings (S1–S6, S8–S27 and the image plane) fit the infinity prescription at 10.977 px/mm on the raster, worst residual 0.55 px.
+2. Arc fits. Thirteen unobstructed surface arcs (S1, S3, S5, S9, S12, S13, S16, S17, S19, S20, S22, S24, S25) were traced row by row on both halves. With the axial scale and the printed radius fixed, the scale across the axis is the only free quantity. It comes to 12.14–12.29 px/mm, mean 12.226, standard deviation 0.034, with residuals of 0.28–0.32 px rms, which is pixel quantisation. At the axial scale in both directions the same arcs miss by 0.6–5.3 px rms. The five flanged surfaces, fitted to their curve ends, give 12.219 (S4), 12.219 (S6), 12.248 (S8), 12.215 (S18) and 12.238 (S23).
+3. Arc shape. Fitting both semi-axes of an ellipse freely to the steepest arcs gives, in px per mm of printed radius along and across the axis, 10.74 and 12.11 (S3), 10.96 and 12.21 (S4), 10.95 and 12.21 (S9), 11.29 and 12.37 (S18), 11.37 and 12.45 (S23). The drawn arcs are ellipses, not circles. A circle through the same points would need 13.4–13.6 px/mm in both directions, which the vertex spacings rule out.
+4. The other cross-sections. Figures 8, 15 and 22 (Examples 2–4) were measured the same way against their own prescriptions: 10.978, 10.979 and 10.977 px/mm along the axis and 12.234, 12.225 and 12.208 px/mm across it (14, 12 and 13 arcs). The ratios are 1.1144, 1.1135 and 1.1121 against 1.1138 for Figure 1. The patent has no close-focus cross-section; its other figures are aberration plots.
+5. Stop marks. The inner ends of the drawn stop ticks stand 150.5 px from the axis in Figure 1, which is 12.31 mm at the vertical scale. The real marginal ray of the printed F1.28 crosses the stop plane at 12.365 mm. In Figures 8, 15 and 22 the ticks stand at 153.5, 149.5 and 152.0 px, which is 12.55, 12.23 and 12.45 mm, against 12.549, 12.276 and 12.407 mm for the printed F1.29 of Examples 2–4. The four differences are -0.4, 0.0, -0.4 and +0.4 %. At the axial scale the ticks would stand at 13.71, 13.98, 13.62 and 13.85 mm, 11–12 % too far out, which would be F1.14–1.15.
+6. Flange faces. The axial position of each drawn flat land gives the height at which the curve ends through the printed radius and the axial scale alone: 15.70 mm (S4), 13.50 mm (S6), 12.83 mm (S8), 13.07 mm (S18) and 10.67 mm (S23). The drawn corners, read at the end of the outer ink column of each land, stand 191.5, 164.5, 155.5, 159.5 and 129.5 px from the axis, which is 12.1–12.2 px/mm.
+7. Raster. `pdfimages -list` reports the Figure 1 raster at 398 × 403 ppi and those of Figures 8, 15 and 22 at 398 × 400, 401 × 402 and 400 × 400 ppi. The page placement is square to within 1.3 %, and for Figure 1 it works the other way: the drawing is 11.4 % taller than long on the raster and 10.1 % on the page. Rendered at 400 dpi the page scales are 11.05 and 12.16 px/mm; the first pass has 12.20, which is 0.3 % higher and inside its stated ±0.4 %.
+8. Lettering. The capital G of the group labels measures 36 × 36 px and the o of "focus" 22 × 24 px. The lettering is not stretched, so the lens drawing was scaled unequally before the labels were added.
+
+Two ray results agree with the vertical scale. L1's rim reads 23.68 mm, and the lower rim ray of the unvignetted full-field beam needs 23.62 mm at S1. The rays that pass every rim reach 16.93, 17.08, 17.00 and 16.95 mm on S13–S16, whose rims are 17.1 and 17.0 mm.
+
+Rims under each reading, from this review's own half-heights on the raster:
+
+| Surfaces | Half-height / px | At the vertical scale / mm | Stored after the first pass / mm | At the axial scale / mm | Delivered / mm |
+| --- | --- | --- | --- | --- | --- |
+| 1, 2 (L1) | 289.5 | 23.68 | 23.6 | 26.37 | 26.2 |
+| 3 (L2 front) | 230.0 | 18.81 | 18.8 | 20.95 | 20.9 |
+| 4 (L2 rear, curve end) | 191.5 | 15.70 | 15.7 | 17.45 | 17.7 |
+| 5 (L3 front) | 198.0 | 16.19 | 16.2 | 18.04 | 17.7 |
+| 6 (L3 rear, curve end) | 164.5 | 13.50 | 13.4 | 14.99 | 15.0 |
+| 8 (L4 front, curve end) | 155.5 | 12.83 | 12.7 | 14.17 | 14.2 |
+| 9, 10A (L4/L5, L5 rear) | 187.5 | 15.34 | 15.3 | 17.08 | 17.0 |
+| 11–14 (L6–L8) | 209.5 | 17.14 | 17.1 | 19.09 | 18.3 |
+| 15, 16 (L9) | 208.5 | 17.05 | 17.0 | 18.99 | 19.0 |
+| 17 (L10 front) | 181.5 | 14.85 | 14.8 | 16.54 | 16.5 |
+| 18 (L10 rear, curve end) | 159.5 | 13.07 | 13.0 | 14.53 | 14.6 |
+| 19, 20 (L11) | 163.0 | 13.33 | 13.3 | 14.85 | 14.8 |
+| 21, 22 (L12, joint) | 153.5 | 12.56 | 12.5 | 13.98 | 14.0 |
+| 23 (L13 rear, curve end) | 129.5 | 10.67 | 10.7 | 11.80 | 11.8 |
+| 24, 25 (L14) | 144.5 | 11.82 | 11.8 | 13.16 | 13.1 |
+
+The curve-end rows give the height from the flange position (item 6) in the third column and the corner pixel height at the axial scale in the fifth. The stored values lie within 0.08 mm of this review's vertical-scale readings except at S6 and S8 (0.10 and 0.13 mm), all inside the reading error, so no rim was changed for a measurement difference. The axial-scale column equals the delivered values to within 1.5 % except at the triplet and at S5, and it cannot be built: the triplet at 19.1 mm is above the 18.46 mm at which L8's edge thickness reaches zero, while the figure draws L8 with an edge of about 1.2 mm.
+
+Vignetting under each reading, at full aperture. The engine's meridional transmission at the 13.8° corner is 58.9 % with the stored rims and 69.3 % with the delivered ones. That measure is taken in one section of the beam. A full-pupil count with an independent skew-ray tracer (rays on a square grid in front of the lens, stopped at every rim and at the iris; the on-axis count gives a 34.46 mm pupil, F1.280) gives the passing share of the on-axis beam area:
+
+| State | Field | Stored rims | Delivered rims |
+| --- | --- | --- | --- |
+| Infinity | 6.9° | 89.2 % | 98.8 % |
+| Infinity | 11.5° | 70.1 % | 83.3 % |
+| Infinity | 13.78° (corner) | 55.5 % | 70.8 % |
+| 1:40 | corner | 57.3 % | 72.1 % |
+| 0.5 m | corner | 63.6 % | 77.4 % |
+
+In the same count the rims that stop rays no other rim stops are S4, S18, S19 and S23 at infinity and at 1:40, and S4, S15, S18 and S23 at 0.5 m. S6 and S8 never do. Clipping begins at 0.115 of the image height at infinity (S18) and at 0.030 at 0.5 m (S14).
+
+### Rim change
+
+| Surface | Before / mm | After / mm | Evidence |
+| --- | --- | --- | --- |
+| 8 (L4 front) | 12.7 | 15.3 | Figure 1 draws the L4–L5 doublet with one square-cut rim line over both elements (rows 253–254 and 628–629 of the raster, x 448–565, half-height 187.5 px, 15.34 mm). With S8 at its 12.7 mm curve end the page joined S8's rim to S9's rim with a slanted edge and cut the upper front corner off the block. |
+
+The whole trial set was checked before the edit. The surface validator accepts S8 at 15.3 mm with default limits. Among rays that pass every other rim and the iris, at eleven field heights from the axis to the corner at the three printed states, the largest height reached on S8 is 12.51 mm, so the zone the figure draws as a flat land carries no ray and the vignetting figures above are unchanged (58.9 % in the engine and 55.5 % in the area count, before and after). L4's front corner at 15.3 mm lies 4.607 mm ahead of the S8 vertex and 1.063 mm behind the stop plane; S6 and S8 are 4.427 mm apart at S6's 13.4 mm rim. In the half-section the picture now differs from the figure by a sliver of 1.7 mm² ahead of the drawn land, against 11.6 mm² cut off before.
+
+The other four flanged faces keep their curve-end values. Each was tried at its element's outer rim, and each passes the validator, but: S4 at 18.8 mm would reach 0.57 mm past the plane of L3's front rim and raises the engine's corner transmission to 60.9 %; S6 at 16.2 mm would reach 0.65 mm past the stop plane; S18 at 14.8 mm removes the clipping at 2.3° and would reach 1.61 mm past L11's front vertex at 0.5 m; S23 at 12.5 mm would reach 1.31 mm past L14's front vertex and raises the corner transmission to 63.5 %. S4, S18 and S23 are limiting rims of the model, so widening them would change real vignetting. The slanted edges on L2, L3, L10 and L13 therefore remain.
+
+### Labels
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `groups` | G1, G2, G3, G4 | G1, G2, G2a (S8–S10A), G2b (S11–S16), G3, G4 | Figure 1 draws a G2 bracket and, beneath it, G2a and G2b brackets. ¶0070 names both sub-groups, the group table lists G2a from surface 8 and G2b from surface 11, and condition (2) is f2b/f2a. |
+
+Checked and left as they are. Group ranges G1 S1–S6, G2 S8–S16, G3 S17–S18 and G4 S19–S25 match the group table (first surfaces 1, 8, 17, 19). The cemented brackets C1 (S8–S10A, a pair), C2 (S11–S14, a triplet) and C3 (S21–S23, a pair) cover the three cemented components; the patent gives them no names, and the letter C does not collide with the gap labels d16 and d18 that `varLabels` takes from the table. The patent calls the elements the first to fourteenth lens and labels none in the figure, so `name` L1–L14 is sequential and the page shows the numbers 1–14. Every `type` string agrees with the signs of the printed radii and with ¶0069–0072 (plano-convex L1; menisci convex to the object L2, L3, L10, L14; biconcave L4, L7, L13; biconvex L5, L6, L8, L9, L11, L12). The one aspheric surface is S10, carried as `10A` with its `asph` entry, and no other surface is marked. The stop is drawn between L3 and L4 at the printed surface 7.
+
+Tags. `apd: "inferred"` on L6 is right. The patent names no glass and nowhere mentions anomalous or partial dispersion: the words 異常分散 and 部分分散 and the symbol θ do not occur in its text. Its only dispersion conditions are (5) and (6) in ¶0045, which bound differences of Abbe numbers inside the cemented triplet, and ¶0047–0054 explain them by axial colour alone. The earlier deployment section records that Olympus's diagram marks element 6 as ED, elements 1, 2, 9 and 11 as HR and element 5 as aspherical; no maker image was viewed in this review. All 14 glass labels resolve to their catalog rows.
+
+The inspector was read for elements 5, 6, 10 and 12: type, nd, νd, focal length, glass, cemented-group badge, the asphere line on element 5 and the inferred-APD badge and note on element 6 are as authored.
+
+### Focus movement
+
+The variable-gap table (PDF page 13) lists INF, 40倍 and 0.5m in that order, and `var` keeps that order: d16 1.7000, 2.9131, 6.9499 and d18 9.5346, 8.3215, 4.2847. d16 + d18 is 11.2346 mm in all three, so only L10 moves, 1.2131 mm and 5.2499 mm toward the image, as ¶0071 says. `focusPositions` 0, 0.2717, 1 follow the inverse object-to-image distances 1840.10 mm and 500.00 mm, and `finiteConjugates` carries the printed d0 of 1738.8853 mm and 398.7806 mm from the first surface. On the page the slider reads ∞, 1.84 m and 50 cm with gap readouts 1.70 / 9.53, 2.91 / 8.32 and 6.95 / 4.28 and focal lengths 44.11, 43.72 and 42.17 mm; its far-end label is 50 cm. The movement overlay shows G1, G2, G2a, G2b and G4 fixed and G3 moving 5.25 mm toward the image. No ordering or direction error was found.
+
+### Aberrations against the patent's Figs. 2–4
+
+The plots are 384 × 546 px rasters; one pixel is 0.0045 mm on the spherical-aberration and astigmatism axes and 0.1 % on the distortion axis. Model values are from the independent tracer at the d line with the printed gaps; its infinity values equal the engine's (-0.042, -0.012, -0.007 and -0.003 mm at 1.0, 0.85, 0.7 and 0.5 of the pupil). The aperture fraction is taken on 1/(2 NA) of the printed F-number of each state.
+
+| State | Quantity | Position | Model | Read from the patent plot |
+| --- | --- | --- | --- | --- |
+| INF | Spherical aberration / mm | 0.5, 0.7, 0.85, 0.95, 0.977 of the aperture | -0.003, -0.006, -0.011, -0.025, -0.033 | -0.003, -0.009, -0.011, -0.026, -0.034 |
+| INF | ΔS, ΔM / mm | 0.5 of the image height | -0.007, +0.029 | -0.007, +0.029 |
+| INF | ΔS, ΔM / mm | 0.7 | -0.010, +0.046 | -0.009, +0.045 |
+| INF | ΔS, ΔM / mm | corner | -0.002, -0.002 | -0.002, 0.000 |
+| INF | Distortion | whole field | -0.04 to +0.01 % | on the axis line, within 0.1 % |
+| 1:40 | Spherical aberration / mm | 0.5, 0.7, 0.85, 0.95, 0.975 | +0.002, +0.003, 0.000, -0.013, -0.019 | +0.002, +0.003, 0.000, -0.016, -0.023 |
+| 1:40 | ΔS, ΔM / mm | 0.5 | -0.013, +0.014 | -0.014, +0.015 |
+| 1:40 | ΔS, ΔM / mm | 0.7 | -0.018, +0.029 | -0.018, +0.031 |
+| 1:40 | ΔS, ΔM / mm | corner | -0.002, +0.057 | -0.001, +0.056 |
+| 1:40 | Distortion | corner | +0.27 % | +0.28 % |
+| 0.5 m | Spherical aberration / mm | 0.5, 0.7, 0.85, 0.95, 1.0 | +0.016, +0.022, +0.017, -0.006, -0.032 | +0.016, +0.025, +0.018, -0.009, -0.033 |
+| 0.5 m | ΔS, ΔM / mm | 0.5 | -0.037, -0.055 | -0.038, -0.056 |
+| 0.5 m | ΔS, ΔM / mm | 0.7 | -0.057, -0.072 | -0.058, -0.072 |
+| 0.5 m | ΔS, ΔM / mm | corner | -0.037, +0.095 | -0.038, +0.094 |
+| 0.5 m | Distortion | 0.7, 0.85, corner | +0.33, +0.63, +1.11 % | +0.3, +0.65, +1.08 % |
+
+Every reading agrees to about one pixel. The chief-ray angles at S1 for the 10.82 mm image height are 13.78°, 13.74° and 13.62°, the values printed above the plots. The C- and g-line curves agree as well: paraxial C focus +0.021, +0.024 and +0.036 mm in the model against +0.022, +0.024 and +0.037 mm read, and paraxial g focus at 0.5 m -0.016 mm against -0.013 mm read. The catalog dispersion curves therefore reproduce the patent's colour curves at this resolution.
+
+Near-state aperture. At 0.5 m the patent's d-line curve crosses zero at 0.93–0.94 of the plot height and ends at -0.032 to -0.034 mm. The model does that when the full height is the ray whose 1/(2 NA) is the printed 1.34 (zero at 0.935, end -0.032 mm); that ray crosses the stop plane at 11.83 mm. With the full height at the edge of the fixed 12.365 mm iris (1/(2 NA) = 1.2745) the model has its zero at 0.89 and ends at -0.079 mm, ten pixels from the drawn curve. At 1:40 the two readings end 1.7 px apart (-0.029 mm for F1.30, whose ray crosses the stop plane at 12.19 mm, and -0.036 mm for the fixed iris), and the drawn curve, last visible at 0.98 of the height, lies between them, so that state does not decide. The printed near-state F-numbers are therefore working F-numbers of a beam narrower than the fixed iris passes. A fixed aperture of 14.70–14.75 mm semi-diameter at S11 would give the printed 1.28, 1.30 and 1.34 at the three states, and the same test on Examples 2 and 3 gives 14.16–14.22 mm and 14.77–14.86 mm at their S11; Example 4's two near-state ranges miss each other by 0.007 mm. ¶0067 says the lens figures show a flare-cut stop FS, but Figure 1 draws none and the surface table lists none. This is recorded as an inference; no aperture was added, and `nominalFno`, the stop radius and the fixed iris are as before.
+
+### Engine values, files and page
+
+EFL 44.105541 mm, wide-open f-number 1.28, stop radius 12.364614 mm and traceable half-field 15.6675° (limited by S23) are the same before and after. The surface validator accepts the file; the image-circle check reports no undersized surface; the corner coverage is 10.82 mm of 10.82 mm at 13.8°; the aperture census finds the traced f-number within 3 % with no rim clipping the axial beam; the meridional clearance trace at 13.78° (infinity) and 13.62° (0.5 m) shows no axial clip and no blocked chief ray.
+
+Data file: S8's semi-diameter, the two `groups` entries and the header's semi-diameter note. Analysis file: the clear-aperture paragraph (the L4 exception, the stop-mark and Examples 2–4 evidence, the S6–S8 clearance), the vignetting sentence (area share and limiting rims added to the meridional figure), the near-state F-number paragraph (the Fig. 4 comparison and ¶0067) and a table comparing the traced prescription with Figs. 2–4.
+
+The page was captured again at infinity, 1:40 and 0.5 m and with the movement overlay at both ends. The L4–L5 doublet now shows the square block of Figure 1, the group row reads G1, G2a, G2, G2b, G3, G4, and the rest of the outline is unchanged: an overlay of the model outline on the raster at 10.977 × 12.226 px/mm lies on every drawn arc and rim line.
+
+Open. The site writes group names as a row of text without bracket lines, so G2 stands between G2a and G2b and its span is not shown. L2, L3, L10 and L13 show a slanted edge where the figure draws a flat land and a cylinder. ¶0059 says the surface tables carry an effective-diameter column, but none is printed, so every rim remains a figure estimate. The plot readings are good to about one pixel. Figures 5–7 (transverse aberrations) were not compared.
+
+Coordinator follow-up, same day — group row. The parent `G2` entry was removed from `groups`, leaving G1, G2a, G2b, G3, G4. The site writes group names as one row of text without bracket lines, so "G2" stood between "G2a" and "G2b" with no visible span; the two sub-group names carry the patent's notation on their own. This closes the first sentence of the open note above. Recorded for the owner, not changed: Figure 4 ends at the printed F1.34 ray, a 14.7 mm aperture at S11 would reproduce the printed F1.30 / F1.34 near-focus values, and paragraph 0067 names a flare-cut stop the figure does not draw; the model keeps one iris at its infinity setting.
+

@@ -186,7 +186,7 @@ The patent prints F1.30 and F1.34 for the near states without defining the near-
 | 40倍 | 1.30 | 1.279465949 |
 | 0.5m | 1.34 | 1.274517472 |
 
-The printed near-state values therefore follow some other definition, and no movement of the iris is inferred from them.
+The printed near-state values therefore describe a narrower axial beam than a fixed iris passes. The patent's spherical-aberration plot for 0.5 m (Fig. 4) ends at about −0.03 mm at full aperture. The traced prescription gives −0.032 mm for the ray whose 1/(2 NA) is the printed 1.34, which crosses the stop plane 11.83 mm from the axis, and −0.079 mm for the ray through the edge of the 12.36 mm iris. ¶0067 mentions a flare-cut stop FS in the lens figures, but Figure 1 draws none and the surface table lists none. A fixed aperture of about 14.7 mm semi-diameter at S11 would reproduce both printed near-state values; that is an inference, and the model keeps the iris fixed and adds no such aperture. [P1, ¶0067, Figs. 3–4]
 
 ## Aspherical Surfaces
 
@@ -241,9 +241,9 @@ The filter F is 4.0000 mm thick with nd = 1.51680 and νd = 64.20, 13.5159 mm be
 
 ### Estimated clear apertures
 
-The patent prints no effective diameters, so every semi-diameter is an estimate read from Figure 1. The figure is drawn about 10 % taller than it is long. Its vertex spacings match the prescription at 11.05 px/mm along the axis (page rendered at 400 dpi), but its drawn surface curves fit the printed radii only at 12.20 px/mm across the axis, so heights are read at that vertical scale. Rims follow the ends of the curved surfaces and exclude the drawn mounting flanges.
+The patent prints no effective diameters, so every semi-diameter is an estimate read from Figure 1. The figure is drawn about 10 % taller than it is long. Its vertex spacings match the prescription at 11.05 px/mm along the axis (page rendered at 400 dpi), but its drawn surface curves fit the printed radii only at 12.20 px/mm across the axis, so heights are read at that vertical scale. The cross-sections of Examples 2–4 show the same stretch, and at that scale the drawn stop mark stands 12.31 mm from the axis against the 12.36 mm stop radius that gives F1.28. Rims follow the ends of the curved surfaces and exclude the drawn mounting flanges, with one exception: the front surface of L4, whose curve ends at 12.7 mm, carries the cemented doublet's 15.3 mm rim so that the doublet is drawn as the square block of the figure. No traced ray reaches that surface above 12.51 mm.
 
-The cemented triplet is drawn with one square-cut rim, which reads 17.1 mm. At that height L6 and L8 keep edges of 1.110 mm and 1.089 mm, against about 1.18 mm drawn for each, and the rim clears the largest axial marginal-ray height over the three printed states, 16.898 mm at 0.5 m with the iris fixed, by 0.20 mm. Read at the horizontal scale instead, the same outline would stand at 18.9 mm, above the 18.46 mm at which L8's edge thickness reaches zero. At a height of 15.7 mm L2 and L3 close to 0.687 of the axial gap between them, and across the stop S6 and S8 stay at least 5.365 mm apart. No surface profile reverses slope, and no neighboring surfaces touch at any focus position between the printed states.
+The cemented triplet is drawn with one square-cut rim, which reads 17.1 mm. At that height L6 and L8 keep edges of 1.110 mm and 1.089 mm, against about 1.18 mm drawn for each, and the rim clears the largest axial marginal-ray height over the three printed states, 16.898 mm at 0.5 m with the iris fixed, by 0.20 mm. Read at the horizontal scale instead, the same outline would stand at 18.9 mm, above the 18.46 mm at which L8's edge thickness reaches zero. At a height of 15.7 mm L2 and L3 close to 0.687 of the axial gap between them. Across the stop, S6 and S8 are 4.427 mm apart at the 13.4 mm rim of S6, and the front corner of L4 stays 1.063 mm behind the stop plane. No surface profile reverses slope, and no neighboring surfaces touch at any focus position between the printed states.
 
 ### Field angle and vignetting
 
@@ -257,11 +257,19 @@ The printed full field narrows slightly at the near states. Reading it as the an
 
 The patent does not say where its near-state angle is measured, so this reading is an inference from the agreement.
 
-At full aperture the axial beam and the chief ray of every field point pass unclipped at all three states. Off-axis beams are partly clipped by the estimated rims, from about 0.12 of the image height outward at infinity and from about 0.04 of it at 0.5 m; at the 10.82 mm corner a little under 60 % of the meridional beam height passes at infinity. That vignetting depends on the estimated semi-diameters and on the straight element edges drawn between them; it is not a published property of the lens. The ray model is geometric, at the d line, with a circular iris and no coating or absorption losses.
+At full aperture the axial beam and the chief ray of every field point pass unclipped at all three states. Off-axis beams are partly clipped by the estimated rims, from about 0.12 of the image height outward at infinity and from about 0.04 of it at 0.5 m; at the 10.82 mm corner a little under 60 % of the meridional beam height, and about 55 % of the on-axis beam's cross-sectional area, passes at infinity (about 64 % of the area at 0.5 m). The limiting rims are the curve ends of S4, S18 and S23, with the rim of S19 at infinity and that of S15 at 0.5 m. That vignetting depends on the estimated semi-diameters and on the straight element edges drawn between them; it is not a published property of the lens. The ray model is geometric, at the d line, with a circular iris and no coating or absorption losses.
 
 ## Performance Evidence and Applicability
 
 The patent gives longitudinal and transverse aberration diagrams for Example 1 at its three focus states, and Olympus describes the production lens's spherical aberration as deliberately shaped for its out-of-focus rendering. Neither is replaced here by a simulated performance curve. [P1, Figs. 2–7; M3]
+
+Traced at the d line, the prescription reproduces the patent's longitudinal plots (Figs. 2–4) to within their reading resolution of about 0.005 mm and 0.1 %. The aperture in each row is that of the printed F-number, and ΔS and ΔM are the sagittal and meridional image surfaces:
+
+| Patent state | Spherical aberration at 0.7 of the aperture / at its edge (mm) | ΔS / ΔM at 0.7 of the image height (mm) | ΔS / ΔM at the corner (mm) | Distortion at the corner |
+| --- | --- | --- | --- | --- |
+| INF | -0.006 / -0.041 | -0.010 / +0.046 | -0.002 / -0.002 | +0.01 % |
+| 40倍 | +0.003 / -0.029 | -0.018 / +0.029 | -0.002 / +0.057 | +0.27 % |
+| 0.5m | +0.022 / -0.032 | -0.057 / -0.072 | -0.037 / +0.095 | +1.11 % |
 
 No MTF, diffraction, polychromatic point-spread or bokeh simulation was computed for this analysis. The catalog-derived dispersion curves, the estimated rims and the circular model stop (the production lens has nine blades) limit what the model can say about production color correction, vignetting or out-of-focus rendering.
 

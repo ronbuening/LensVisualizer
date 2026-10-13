@@ -20,12 +20,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * SEMI-DIAMETERS: estimated from patent Figure 1; the patent prints no clear
  * apertures. The figure is drawn about 10 % taller than it is long (at 400 dpi,
  * 11.05 px/mm along the axis and 12.20 px/mm across it), so heights use the
- * vertical scale that makes the drawn surface curves fit the printed radii. Rims
- * follow the curve endpoints, excluding the drawn flanges at S4, S6, S8, S18 and
- * S23. The cemented triplet is drawn square-cut at 17.1 mm, where L6 and L8 keep
- * 1.1 mm edges. Every rim clears the axial marginal ray at the three printed
- * states with the iris fixed (least margin 0.20 mm, S14 at 0.5 m) and the corner
- * chief ray. No radius, spacing or index was adjusted.
+ * vertical scale that makes the drawn surface curves fit the printed radii. The
+ * figures of Examples 2–4 show the same stretch, and at that scale the drawn stop
+ * mark equals the F1.28 stop radius (12.31 mm drawn, 12.36 mm traced). Rims
+ * follow the curve endpoints, excluding the drawn flanges at S4, S6, S18 and
+ * S23. S8 also ends at a drawn flange (curve end 12.7 mm) but carries the
+ * cemented doublet's 15.3 mm rim, so that L4 draws as the square block of the
+ * figure; no traced ray reaches S8 above 12.51 mm. The cemented triplet is drawn
+ * square-cut at 17.1 mm, where L6 and L8 keep 1.1 mm edges. Every rim clears the
+ * axial marginal ray at the three printed states with the iris fixed (least
+ * margin 0.20 mm, S14 at 0.5 m) and the corner chief ray. No radius, spacing or
+ * index was adjusted.
  * STOP: position printed. The radius is set so that the infinity f-number equals
  * the printed 1.28 (nominalFno); it is not a measured diaphragm size.
  * GLASS: each element names the catalog glass at the patent's nd/νd; supplier and
@@ -330,7 +335,7 @@ const LENS_DATA = {
       d: 1.0,
       nd: 1.75211,
       elemId: 4,
-      sd: 12.7,
+      sd: 15.3,
     },
     {
       label: "9",
@@ -531,8 +536,13 @@ const LENS_DATA = {
       toSurface: "6",
     },
     {
-      text: "G2",
+      text: "G2a",
       fromSurface: "8",
+      toSurface: "10A",
+    },
+    {
+      text: "G2b",
+      fromSurface: "11",
       toSurface: "16",
     },
     {
