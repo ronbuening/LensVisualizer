@@ -28,6 +28,50 @@ export type SurfaceIntersectionFailureReason =
 export type ClosedFormFallbackReason = "failedValidation" | "nearTangency" | "domainEdge";
 
 /**
+ * Why the conic-seeded route of a polynomial asphere left a solve to the iterative path.
+ *
+ * It is what `seedAsphereSolve` returns in place of a hit, and it is on no result: a refused solve returns exactly
+ * what the iterative path returns for the same call. "The stretch" is the part of the ray the route's slope
+ * certificate covers: every cap point from the lower bound to one step of the bracket scan past the point.
+ *
+ * - `noSeed`: the base conic has no root on its sag sheet inside the cap interval.
+ * - `coordinateRoundoff`: the rounding of a transverse coordinate over the stretch, with that of the cap interval's
+ *   ends, is not finite or is above the cap's clip tolerance; or the square of the transverse speed, from which
+ *   the cap interval is solved, underflows.
+ * - `shortBounds`: one step of the bracket scan of the bounds is not longer than the tolerance, the distance along
+ *   the ray within which the iterative path's cap selection takes two hits for one root.
+ * - `slopeBound`: the slope bound over the stretch is unusable, or does not leave |f'| above 1e-10, so the residual
+ *   is not shown to be strictly monotone there.
+ * - `farEnvelope`: a cap point beyond the stretch could be accepted by the iterative path under one of its own
+ *   certificates.
+ * - `roundoff`: the rounding of the residual is above 31/32 of the target, where the iterative path can stall and
+ *   report its envelope.
+ * - `nearTangency`: |f'| is so low that the iterative path's point could lie more than 5e-10 mm from the seeded
+ *   one, or its normal more than 5e-11 from its normal.
+ * - `axisNormal`: the two points could lie on either side of the radius under which a normal is the axis', and
+ *   the normal steps there by more than 5e-11.
+ * - `notConverged`: the seeded Newton iteration left the cap interval or the conic's domain, met an unusable
+ *   derivative, could not move, or did not meet the target within its evaluations.
+ * - `vertexPlane`: the point is within twice the target of the vertex plane without being the vertex-plane
+ *   crossing, the point the iterative path accepts there.
+ * - `atBound`: the point is within that move of a search bound, where the iterative path tests the bound itself.
+ * - `atRim`: the point is within that move, and the rounding of its radius, of the cap's rim.
+ */
+export type SeedRefusal =
+  | "noSeed"
+  | "coordinateRoundoff"
+  | "shortBounds"
+  | "slopeBound"
+  | "farEnvelope"
+  | "roundoff"
+  | "nearTangency"
+  | "axisNormal"
+  | "notConverged"
+  | "vertexPlane"
+  | "atBound"
+  | "atRim";
+
+/**
  * Search and reporting options for intersecting a ray with one surface profile.
  *
  * Bounds are parametric ray distances in millimeters because ray directions are

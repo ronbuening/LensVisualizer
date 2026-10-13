@@ -31,9 +31,12 @@
  * profile's evaluators, as a factory profile's do (`SurfaceProfile`). At the edge of an ellipsoid's domain they do
  * not, because an aspheric profile floors the conic root it evaluates (`surfaceProfile.ts`), and nothing is
  * decided there.
+ *
+ * `baseConicRoot` gives the same quadratic's root with none of that: it is where the solve of a polynomial asphere
+ * starts (`seedAsphereSolve` in `intersect.ts`), and that solve has an acceptance of its own.
  */
 
-import { INTERSECTION_BRACKET_SAMPLES, INTERSECTION_TOLERANCE } from "../constants.js";
+import { INTERSECTION_BRACKET_SAMPLES, INTERSECTION_TOLERANCE, VECTOR_EPSILON } from "../constants.js";
 import type { SurfaceProfile, Vec3 } from "../types.js";
 import type {
   ClosedFormFallbackReason,
@@ -44,15 +47,16 @@ import type {
 import { normalFromSlope } from "./surfaceProfile.js";
 
 /**
- * Farthest, in mm along the ray, that the point the iterative path stops on may lie from a closed-form root that is
- * returned: half the 1e-9 mm budget of an unclipped hit (`OPTICS_ENGINE_REWRITE_SPEC.md`, Quantity budgets).
+ * Farthest, in mm along the ray, that the point the iterative path stops on may lie from a point that is returned
+ * in its place, a closed-form root or the point of the conic-seeded route (`intersect.ts`): half the 1e-9 mm
+ * budget of an unclipped hit (`OPTICS_ENGINE_REWRITE_SPEC.md`, Quantity budgets).
  *
  * Two points whose evaluated residuals both meet the shipped target lie up to twice that target, plus the rounding
  * of an evaluation, over |f'| apart, so a root that path would also find can move by that much. At the coordinates
  * of a lens that is 2e-12 mm / |f'|, which makes this a floor of 4e-3 per mm on |f'|; far from the origin of
  * coordinates the rounding raises it. Under it the iterative path decides, as it did.
  */
-const MAX_ROOT_MOVE = 5e-10;
+export const MAX_ROOT_MOVE = 5e-10;
 
 /**
  * Most that the unit normal may differ between those two points: half the 1e-10 budget of a direction cosine.
@@ -61,7 +65,7 @@ const MAX_ROOT_MOVE = 5e-10;
  * the surface is strongly curved: on a sphere, once |R| is under 10 mm. There it is a floor of 4e-2 mm times
  * that rate on |f'|.
  */
-const MAX_NORMAL_MOVE = 5e-11;
+export const MAX_NORMAL_MOVE = 5e-11;
 
 /**
  * Conic root |w| at or below which a point counts as on the edge of the conic's domain: within 0.05% of the domain
@@ -327,6 +331,77 @@ export function intersectConicClosedForm(
     opticalPathLength: refractiveIndex === undefined ? null : refractiveIndex * t,
     closedFormFallback: null,
   };
+}
+
+/**
+ * First root of a ray on the base conic's sag sheet inside an interval of ray parameters: a starting point for a
+ * solve on the profile that conic is the base of, never an answer.
+ *
+ * It is the quadratic of `intersectConicClosedForm`, the same expressions in the same order, so on a
+ * polynomial-free conic it is that function's root bit for bit wherever that root is not moved onto a bound.
+ * None of the closed form's rounding is bounded here: a root within rounding of an end of the interval, of
+ * tangency or of the other sheet is taken or left as the floats fall, and the caller's own acceptance decides.
+ * On a flat base the root is the vertex-plane crossing in the iterative path's own expression, the float that path
+ * starts its Newton iteration from.
+ *
+ * @param origin - ray origin in mm
+ * @param direction - ray direction as the kernel holds it; `t` is in its parameterization
+ * @param curvature - base curvature in 1/mm, 0 for a flat base
+ * @param conic - conic constant K
+ * @param vertexZ - axial vertex position in mm
+ * @param lo - lower end of the interval
+ * @param hi - upper end of the interval
+ * @returns the root's parameter and the conic's sag there in mm, or null with no such root inside the interval
+ */
+export function baseConicRoot(
+  origin: Vec3,
+  direction: Vec3,
+  curvature: number,
+  conic: number,
+  vertexZ: number,
+  lo: number,
+  hi: number,
+): { t: number; sag: number } | null {
+  const dx = direction[0];
+  const dy = direction[1];
+  const dz = direction[2];
+  if (curvature === 0) {
+    const t = Math.abs(dz) > VECTOR_EPSILON ? (vertexZ - origin[2]) / dz : NaN;
+    return t >= lo && t <= hi ? { t, sag: 0 } : null;
+  }
+  const c = curvature;
+  const kappa = 1 + conic;
+  const ox = origin[0];
+  const oy = origin[1];
+  const oz = origin[2] - vertexZ;
+
+  const transverse2 = dx * dx + dy * dy;
+  const dd = transverse2 + dz * dz;
+  const t0 = -(ox * dx + oy * dy + oz * dz) / dd;
+  const px = ox + dx * t0;
+  const py = oy + dy * t0;
+  const pz = oz + dz * t0;
+
+  const a = c * (transverse2 + kappa * dz * dz);
+  const b = c * (px * dx + py * dy + kappa * pz * dz) - dz;
+  const g = c * (px * px + py * py + kappa * pz * pz) - 2 * pz;
+  const discriminant = b * b - a * g;
+  // A NaN discriminant compares false too: no root is proposed from coefficients that are not finite.
+  if (!(discriminant >= 0)) return null;
+
+  const s = Math.sqrt(discriminant);
+  const q = b < 0 ? s - b : -(b + s);
+  let first: { t: number; sag: number } | null = null;
+  for (let index = 0; index < 2; index++) {
+    const tau = index === 1 ? q / a : g / q;
+    if (!Number.isFinite(tau)) continue;
+    const z = pz + tau * dz;
+    // The sign of the conic root names the sheet, as in the closed form.
+    if (!(1 - kappa * c * z > 0)) continue;
+    const t = t0 + tau;
+    if (t >= lo && t <= hi && (first === null || t < first.t)) first = { t, sag: z };
+  }
+  return first;
 }
 
 /**

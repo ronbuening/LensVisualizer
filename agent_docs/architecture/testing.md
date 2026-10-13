@@ -123,6 +123,8 @@ Existing tests cover:
   table, which asserts the failure until the engine change that fixes it removes the entry.
   `geometry/intersectConic.test.ts` reads the same file to hold which path answered each sphere and conic solve: the
   closed form from one profile evaluation, or the iterative path with the reason for the fallback.
+  `geometry/intersect.test.ts` reads it to hold which path answers each asphere fixture: the conic-seeded route, by
+  the profile evaluations a counting profile sees, or the iterative path with the same result as an explicit budget.
 - Planar pupil re-derivation (`planarPupilReference.test.ts`): the five Zeiss Planar build constants pinned in
   `mirrorOptics.test.ts` (half field, tracing half field, entrance- and exit-pupil position, exit-pupil semi-diameter)
   are held to values re-derived at 50 and 80 decimals by
