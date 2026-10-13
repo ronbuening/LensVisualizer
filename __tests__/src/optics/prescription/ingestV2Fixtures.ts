@@ -273,6 +273,17 @@ export const FIXTURE_PAIRS: readonly FixturePair[] = [
     }),
   },
   {
+    family: "fixed-iris zoom",
+    kind: "lens",
+    v1: v1Zoom("fixture-fixed-iris-zoom", { zoomApertureModel: "fixed-iris" }),
+    v2: v2Zoom("fixture-fixed-iris-zoom", {
+      zoom: {
+        stations: [{ focalLengthMm: 24 }, { focalLengthMm: 50 }, { focalLengthMm: 100 }],
+        apertureModel: "fixed-iris",
+      },
+    }),
+  },
+  {
     family: "focus keyframes",
     kind: "lens",
     v1: v1Prime("fixture-focus-keyframes", {

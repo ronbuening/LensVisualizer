@@ -184,6 +184,8 @@ Metadata generation is split across:
   fields come from `scripts/lens-data-ast.mjs`, which evaluates a file's default export from its source with the
   TypeScript compiler API, never running it, and reads a file of either lens-data version (a V2 file keeps its mounts
   and format in `catalog`). The organizer rewrites a filed file's `types/optics.js` or `types/lensDataV2.js` import.
+  The converter (`scripts/lens-data-convert/`) reads through the same module, which also shows it the syntax behind
+  each value (`walkLensDataSource`).
 - `scripts/lens-summaries.mjs` - lens and teleconverter summary fields, in V1 names. A V2 file is read through the
   engine's canonical ingest and its V1 view, so it and its V1 twin summarize alike. They come from the conversion
   seam, `src/optics/lensDataConversion.ts`, which the script loads by path on the first V2 file.

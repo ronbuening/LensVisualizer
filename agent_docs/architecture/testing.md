@@ -105,6 +105,10 @@ Existing tests cover:
   build record; dispatch on `schema`; V2 defaults; one case per V2 refusal. An offender-collecting sweep removes the
   authored `sd` of every catalog stop whose radius is derived or scheduled and requires every catalog lens's Tier P
   build and layout records to stay bit-identical.
+- The V2 view and source paths (`__tests__/src/optics/prescription/toLensDataV2.test.ts`): path spelling, source paths
+  recorded on request without changing the result, each fixture pair written by the V2 view from either side and
+  ingested back to its prescription, the V2 field order, the relations `v2SourceMap` composes, and
+  `prescriptionDifference`.
 - Teleconverters, which never enter `LENS_CATALOG` (`teleconverterCompatibility.test.ts`): every converter validates;
   every converter–host pair the fit predicate allows composes, builds, passes the axial beam, keeps the host's stop
   and, at every zoom station, reaches as much of the format corner as the bare lens; and a synthetic universal
@@ -914,7 +918,10 @@ When refactoring:
 - Add script helper tests when changing metadata generation, route expansion, or git freshness lookup.
   `__tests__/scripts/lensDataV2Readers.test.ts` holds the lens-data readers to both versions: the AST reader against
   every catalog module, identity, summaries and converter fit from V2 twins, the organizer's V2 import, and page dates
-  that skip conversion commits.
+  that skip conversion commits. `__tests__/scripts/convertLensData.test.ts` holds the converter library to synthetic
+  source-text fixtures (`convertLensDataFixtures.ts`, strings so `format:check` never reaches them): each fixture pair
+  converted and ingested back, pinned outputs and reports, a V2 source given back as written, one refusal of each
+  kind, and a run under plain Node.
 - Add fixture-backed optics tests whenever changing `SurfaceData.interaction`, `innerSd`, `opticalPath`, generalized
   stop tracing, generalized image-plane intersection, obstruction-aware sampling, or folded analysis gating. Prefer
   hidden reference fixtures under `src/lens-data/reference/` for canonical mirror/telescope behavior.

@@ -817,7 +817,7 @@ flowchart LR
 
 | Type | Owns | Lifetime |
 | --- | --- | --- |
-| `CanonicalPrescription` | The version-independent semantic content, with schema defaults and the engine's authority rules applied. Beside it, kept apart, is provenance: source paths for diagnostics, authored-or-default flags, and authored values the engine ignores. The semantic fingerprint covers only the semantic content. | One per authored file; plain data that can be sent to a worker |
+| `CanonicalPrescription` | The version-independent semantic content, with schema defaults and the engine's authority rules applied. Beside it, kept apart, is provenance: authored-or-default flags, authored values the engine ignores, and, recorded only when a caller asks, source paths: where ingest read each value, for the converter and for diagnostics. The semantic fingerprint covers only the semantic content. | One per authored file; plain data that can be sent to a worker |
 | `CompiledLens` (replaces `EngineLens`) | Indexed surfaces with compiled geometry profiles, media and dispersion resolvers, the stop, path plan, station tables, aperture model, annotations and display constants. It has no reference to `RuntimeLens`. | One per canonical identity, immutable |
 | `RuntimeLens` (unchanged name) | The frozen read model the UI consumes, derived from `CompiledLens` plus the first-order constants. The engine never takes it as input. | One per compiled lens |
 | `PreparedGeometry` (replaces `PreparedOpticalState`) | Vertex positions, current thicknesses, the image plane and iris for one exact `(focusT, zoomT, aberrationT)`. It shares the immutable surface records. | Bounded LRU per compiled lens |
@@ -837,7 +837,7 @@ flowchart LR
 
 | Directory | Contents |
 | --- | --- |
-| `prescription/` | Canonical types; V2 ingest; schema defaults; composition (rear plates, teleconverter); the compiler; `validate/`; `v1/`, the V1 mapping that only the converter imports |
+| `prescription/` | Canonical types; V2 ingest; schema defaults; source paths; composition (rear plates, teleconverter); the compiler; `validate/`; the V2 view the converter prints; `v1/`, the V1 mapping that only the converter imports |
 | `geometry/` | Surface profiles; fused sag and slope; bounds; the intersection kernel; tolerance envelopes; planes; vector math; diffractive phase |
 | `trace/` | Interactions; sequential and generalized traversal; path planning; apertures; capture; absorption; ray adapters |
 | `state/` | Control interpolation (focus, zoom, aberration); `PreparedGeometry` and its cache; stop and iris; layout; camera anchoring |
@@ -1060,11 +1060,18 @@ The stop radius has exactly one authority per lens:
   - An authoritative prime radius (`aperture.stopSemiDiameter`) is deferred until a source needs one. It would be a
     new authority row in this table, not a format change.
 - **The 891 authored stop values the engine overwrites are dropped.** They were never used and never audited: the
-  semi-diameter audit procedure said not to touch `STO`. 61 are more than 20% from the derived radius.
-- **Comments on dropped values are reviewed once, during migration.**
-  - 121 single-line stop entries carry comments, and 20 more stop entries span several lines.
+  semi-diameter audit procedure said not to touch `STO`. 61 are more than 20% from the wide station's derived radius,
+  the one a zoom's authored `sd` is overwritten with; 12 are more than 20% from the derived radius at every station.
+  A fixed-iris zoom holds that wide-station radius at every station; a zoom on the default aperture model derives one
+  per station.
+- **Comments on dropped values are reviewed once, during migration.** On 2026-10-13, counting every comment the
+  converter's report lists on a stop entry, a leading one included:
+  - 288 of the 906 dropped stop entries carry 364 comments; 3 of those entries span several lines.
   - Most comments justify the stop's position, which stays valid because `d` is unchanged.
-  - 26 discuss the radius: hand calibrations to an f-number, which the engine now performs, and a few figure readings.
+  - 75 comments on 73 entries discuss the radius: hand calibrations to an f-number, which the engine now performs, a
+    few figure readings, and section headings that name the f-number.
+  - 180 comment lines elsewhere in 172 files quote the authored radius and name the stop; they go stale when it is
+    dropped.
   - The conversion report flags them (S2.P3.T1), and each batch PR resolves them (S2.P5).
 
 ### Ingest, conversion and comments
@@ -1081,17 +1088,95 @@ The stop radius has exactly one authority per lens:
     (2026-10-13: 20 computed numbers in 3 files, 19 of them a dPgF such as `0.5769 - (0.6438 - 0.001682 * 37.2)` and
     one the X100's `rearPlates[0].gapAfterMm`; and 133 joined strings). No catalog file has a spread. The shared
     reader is `scripts/lens-data-ast.mjs` (S2.P2.T2), which evaluates every catalog file to the value its module
-    exports. How the printer writes a computed number back (its expression text, or the value) is settled in
-    S2.P3.T1.
-  - Prints V2 or V1 deterministically, then formats with Prettier.
-  - Keeps the source text of numeric literals, so `1.05587e-7` is not reprinted as `1.05587E-7`.
+    exports. The printer writes a computed number back as its expression text (literal text, below).
+  - Prints V2 deterministically, then formats it with Prettier's API (`format`, parser `typescript`) under the
+    repository's configuration, read once from its root. Never the CLI, which skips `src/lens-data/` and exits 0, and
+    never by the output's path. The V1 direction, `--to-version 1`, lands in S2.P3.T2.
+  - **Literal text.** Each number or string carried over unchanged prints with the source text of its expression: a
+    literal, a sign (`fl: +99.5`), a computed number, a `+` chain of strings. Objects and arrays print from structure.
+    - The text comes from inside `as`, `satisfies` and parentheses, and those wrappers are dropped (164 in 27 files).
+    - It is reused only when it names no binding and evaluates exactly to the printed value. Where V1 holds a value
+      twice, the text comes from the copy ingest keeps (an element's `nd`, a gap's value); where several surfaces
+      share one medium, from the first.
+    - Anything else prints from its value: `"flat"`, a station or keyframe index, anything written through a
+      top-level const.
+  - **Number tokens survive formatting.** Prettier respells some (`1.05587E-7` as `1.05587e-7`, `1.49700` as `1.497`;
+    1,710 of 189,571 catalog tokens, in 63 files). The converter parses its printed text and Prettier's with the AST
+    reader, pairs their number tokens in order and puts each printed token back, taking a token's text from the
+    source by position. It refuses the file when the two texts hold different numbers of tokens, when a pair differs
+    in value, or when the restored text, read back by path, does not hold at every value the tokens the printed text
+    has there. A converted file is therefore in the converter's spelling, not Prettier's (a restored token can pass
+    120 columns), and `src/lens-data/` stays in `.prettierignore`.
+  - **The file's frame.** Everything before the statement that declares the exported const is kept byte for byte,
+    except the type import, which names `LensDataV2Input` or `TeleconverterDataV2Input` from `types/lensDataV2.js` at
+    the import's own `../` depth. From that statement on, the file is printed and formatted: always
+    `const X = {…} satisfies T;` then `export default X;`, the const keeping its name. Any other top-level const sits in
+    that header and stays as written.
+  - **Order.** Fields print in the canonical V2 order. Gaps print in surface order from the canonical list, because a
+    JavaScript object lists integer-like keys first and would move `STO` and `14A` after every numbered gap (199
+    files); `var` prints the same way going to V1.
+  - **Blank lines.** One blank line separates the top-level groups, as in the Shape excerpt, and a row of `surfaces`
+    or `elements` keeps a blank line its source had before it or before one of its leading comments.
+  - **A V2 source** keeps its comments and number tokens at the same paths, its media's ids, names and order, its
+    explicit zero aspheric terms, and a numeric flat radius other than `1e15`. Zero padding is dropped only from a V1
+    source. Printing the converter's own V2 output again gives the same bytes.
+  - **`// prettier-ignore`** is carried like any comment, with no meaning of its own to the converter. The printer
+    writes every record in Prettier's one-line form (`{ id: 1, name: "L11" }`: bare keys, one space after each colon
+    and comma, no trailing comma), so a record under the directive stays on one line as printed. A moved directive
+    takes its prefix inside the comment (`// (moved from asph) prettier-ignore`) and no longer applies.
+  - **The write check.** The converted text is read back and ingested, and its prescription must equal the source's
+    under the fingerprint's number rule (bit for bit, -0 as 0), compared by `prescriptionDifference` in
+    `src/optics/prescription/`. The library returns a refusal as a value beside the report; the temp file, the
+    rename and the type-check are S2.P3.T2's.
+- **Path correspondence.** The converter carries comments and literal text by where ingest read each value, never by
+  a second statement of the field mapping.
+  - Asked for them, ingest records source paths in provenance as it reads: the authored path each canonical value,
+    record or copied subtree was read from; for each value set aside in `ignored`, its authored path and why; each
+    value the prescription holds in another form (a V1 surface's `nd` and `elemId`, held by its `medium`; a
+    conjugate's coordinates, held by its indices); and the home of each V1 container V2 dissolves. Without the
+    request the result is unchanged, and each recording site costs one branch.
+  - The homes: `var` and `varLabels` → `gaps`; `asph` → `surfaces`; `zoomPositions`, `zoomLabels`, a per-station
+    `nominalFno`, `zoomCloseFocusM` and `zoomStopSemiDiameters` → `zoom.stations`; `publishedStations` →
+    `focus.published` on a prime and `zoom.stations` on a zoom; the ring's `var` and `varLabels` →
+    `aberrationControl.gaps`.
+  - The V2 view (`toLensDataV2.ts`) records the canonical path behind each node it writes, and `v2SourceMap` composes
+    the two. Records and containers pair as well as values: a surface, an element, a plate and a conjugate with the
+    record each becomes, `asph[label]` with its surface's asphere, `var[label]` with its gap.
+  - Comments and number text are two relations. A comment on a V1 surface's `nd` or `elemId` goes to its `medium`;
+    an element's `nd` takes the element's own token, and a medium's `nd` the token of the first surface that names
+    it. A written value has at most one text source, and an index, flag or reference none.
+  - The report lists a set-aside value as dropped only when the V2 view did not write it back. No script recognises a
+    dropped stop radius or a zero term by a path's shape or by the label `STO`: ingest says why it set each aside.
+  - One spelling of a path (`sourcePaths.ts`) serves ingest, the V2 view and the converter's reader: `surfaces[3].R`,
+    `zoomPositions[1]`, `asph["3A"].A4`, `gaps["STO"]`.
 - **Comments.** Leading and trailing comments are attached to the authored path they annotate and re-emitted at the
-  mapped V2 path. A comment whose node has no V2 counterpart is emitted at the nearest mapped ancestor, prefixed
-  `// (moved from <V1 path>)`, and listed in the conversion report. Comments never become data fields.
+  mapped V2 path; a comment after the last entry of a record or list stays after the last entry of its counterpart.
+  A comment whose node has no V2 counterpart is emitted at the nearest mapped ancestor, or at the home of the
+  container it sat in, leading that node (or ending the file's object, when that is all it finds). It is prefixed
+  `// (moved from <V1 path>)` inside the comment, unless it already begins so, and listed in the conversion report.
+  The converter refuses a file unless every source comment is emitted exactly once. Comments never become data
+  fields.
 - **Dropped stop radii.** For every dropped stop radius, the conversion report lists:
-  - the authored radius and the derived radius;
-  - every comment on that stop entry, with comments that discuss the radius (`sd`, iris, radius, calibration or an
-    f-number) flagged for review.
+  - the authored radius as written, then the radius the engine uses in its place, labelled "engine radius" with no
+    method, to 0.001 mm:
+    - on a prime, the engine's radius;
+    - on a fixed-iris zoom, its one radius, marked as held at every station;
+    - on a zoom of the default aperture model, one per station, in station order, with no headline number;
+    - on a scheduled zoom, the schedule, labelled "schedule" and never "derived".
+
+    A stop that keeps its `sd` and a teleconverter get no entry. The radii come from `buildLens` on the converted V2
+    object (`zoomStopSDs`, else `stopPhysSD`), loaded by its path only when a file drops a stop radius. A build that
+    throws on a file that ingests leaves the first line of its error in their place, and the conversion is not
+    refused;
+  - every comment on that stop entry, with comments that discuss the radius (`sd`, iris, radius, calibration,
+    diameter or an f-number) flagged for review;
+  - "elsewhere in the file": each comment line outside the stop entry that quotes the authored radius and names the
+    stop, `sd`, the iris or the aperture. They are listed only, not rewritten or moved.
+- **V2 to V1** (S2.P3.T2) reads the same relation the other way: the V1 object the V1 view writes is ingested with
+  source paths and composed with the V2 source's. A comment on a V2 node V1 has no counterpart for (a station record,
+  `zoom`, `focus`, a medium) moves, prefixed, to the V1 node of its nearest mapped ancestor, or to the first V1
+  container in the file whose home holds it (`zoomPositions` for a station); the report lists each move and each
+  medium name V1 cannot hold. A restored flat radius prints `1e15`, not `String(1e15)`.
 - **The converter is permanent.** Lens files waiting in an archive for a later release, and files on external
   branches, may still be V1 long after migration. The converter, its V1 reader and its tests stay after the program,
   and V1 files enter the catalog only through it:
@@ -1531,17 +1616,38 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
 **Phase 2.3 — Converter**
 
 - **S2.P3.T1 AST reader, printer and comment mapping.**
-  - **Files:** `scripts/lens-data-convert/{read, print, comments}.mjs`, which use the object-level mapping in
-    `src/optics/prescription/`.
-  - **Tests:** a fixture for every AST form in the corpus:
+  - **Change:** the converter library. `convertLensDataSource(text, { file, kind })` converts a lens or teleconverter
+    file's text to V2 text and returns it with its conversion report, or returns why it refuses the file; it writes
+    nothing. Ingest records source paths on request, and the V2 view and its composition with them live in
+    `src/optics/prescription/` (see [Ingest, conversion and comments](#ingest-conversion-and-comments)). The V1
+    direction lands in S2.P3.T2.
+  - **Files:**
+    - `src/optics/prescription/{canonical, ingestCommon, ingestV1, ingestV2}.ts`, and `sourcePaths.ts` and
+      `toLensDataV2.ts` beside them
+    - `src/optics/lensDataConversion.ts`; `src/optics/buildLens.ts`, loaded by its path for the stop report and
+      unchanged
+    - `scripts/lens-data-convert/{read, print, comments, report, convert}.mjs`, with `.d.mts` declarations for the
+      modules tests import
+    - `scripts/lens-data-ast.mjs` and its `.d.mts`: `walkLensDataSource` shows the reader the syntax behind each value
+    - the seam loads through `loadLensDataConversion` (`scripts/lens-summaries.mjs`), unchanged, which the converter
+      also calls before it loads `buildLens.ts`
+    - the regenerated readmes of `src/optics/`, `src/optics/prescription/` and `src/types/`
+  - **Tests:** synthetic fixtures only (`__tests__/scripts/convertLensData.test.ts` and its source-text fixtures,
+    `__tests__/src/optics/prescription/toLensDataV2.test.ts`):
+    - a fixture for every AST form in the corpus: quoted keys, unquoted numeric keys, `null`, single-quoted strings
+      and escaped quotes, empty `[]` and `{}`, block comments, a comment separated from its entry by a blank line, a
+      comment after the last entry, a teleconverter file;
     - comment placement, including the moved-comment fallback;
-    - numeric literal text preserved;
-    - `R: 1e15` → `"flat"`;
-    - zero-padding removal;
-    - stop-radius authority, and the report entry and comment flag for each dropped stop radius;
+    - numeric literal text preserved, through Prettier;
+    - `R: 1e15` → `"flat"`, in each spelling;
+    - zero-padding removal, `asphere: {}` for an entry of zeros;
+    - stop-radius authority, and the report entry and comment flag for each dropped stop radius, for each of the
+      four kinds and for none of a folded stop, a stop inside an element or a teleconverter;
     - `var` shapes;
     - station records;
-    - media and spans.
+    - media and spans;
+    - each S2.P2.T1 fixture pair (a fixed-iris zoom added), converted and ingested to the pair's prescription;
+    - a V2 source given back as written, `// prettier-ignore`, the file's frame, and one refusal of each kind.
   - **Gate:** C0.
 - **S2.P3.T2 CLI and safety.**
   - **Change:** add `scripts/convert-lens-data.mjs` and its `npm run convert:lens-data` script.
@@ -1552,8 +1658,8 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - `--check`
     - `--write`
     - `--output <dir>` (optional; default in place)
-  - **Writes:** go to a temp file and are renamed into place only after the output re-ingests to the same semantic
-    fingerprint and type-checks.
+  - **Writes:** go to a temp file and are renamed into place only after the output re-ingests to the same canonical
+    prescription and type-checks.
   - **Behavior:** V2 input is idempotent, the tool refuses on collisions, and a failure leaves inputs unchanged.
   - **Tests:** the tooling suite covers each of those behaviors, plus an interrupted write and V2 → V1 → V2
     identity.
@@ -1561,8 +1667,8 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
 - **S2.P3.T3 Corpus conversion sweep.**
   - **Change:** add `__tests__/scripts/convertLensDataCorpus.test.ts`. For every lens and converter it:
     - converts the file to a temp directory;
-    - re-ingests it and checks the semantic fingerprint;
-    - converts it back to V1 and checks the semantic fingerprint again;
+    - checks that it re-ingests to the same canonical prescription;
+    - converts it back to V1 and checks that it re-ingests to the same canonical prescription again;
     - checks idempotence.
 
     It is offender-collecting, and its offender list must be empty. A new case is resolved by a C3 data correction
@@ -2269,6 +2375,7 @@ The maintainer settled these on 2026-10-13, answering the Stage 2 questions:
 | 38 | An undrawn medium carries `id`, an optional `name` and `nd`; other material fields are refused until an engine step reads them | [Field mapping](#field-mapping); S2.P2.T1 |
 | 39 | The engine's own ingest call sites read V2 from S2.P2.T1, telling the versions apart by one predicate | S2.P2.T1 |
 | 40 | A V2 stop carries `sd` only where its radius is authored, and V2 ingest reads a numeric radius past the flat threshold as flat | [Field mapping](#field-mapping); S2.P2.T1 |
+| 41 | Ingest records source paths only when asked; the reader records them, not the V1 view, and the converter carries comments and literal text by their composition with the V2 view | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T1 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

@@ -215,6 +215,7 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     key: "owner identity",
     perOwner: "one normalized EngineLens",
   },
+  "src/optics/prescription/sourcePaths.ts#LABEL_KEYED": { kind: "constant" },
   "src/optics/trace/bulkAbsorption.ts#ABSORPTION_BY_ELEMENT_ID": {
     kind: "weak-owner",
     owner: "RuntimeLens",

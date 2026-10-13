@@ -30,9 +30,9 @@ flowchart LR
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
   n_src_optics_TypeScript_modules --> |30| n_external_src_types
+  n_src_optics_TypeScript_modules --> |19| n_src_optics_src_optics_prescription
   n_src_optics_TypeScript_modules --> |18| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |17| n_src_optics_src_optics_internal
-  n_src_optics_TypeScript_modules --> |16| n_src_optics_src_optics_prescription
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_glassCatalogEntries
   n_src_optics_TypeScript_modules --> |7| n_src_optics_src_optics_chromatic
   n_src_optics_TypeScript_modules --> |6| n_src_optics_src_optics_aberration
@@ -52,7 +52,7 @@ flowchart LR
 
 - Direct source files: 42
 - Direct subfolders: 15
-- Main outbound areas: src/types (30), src/optics/analysis (18), src/optics/internal (17), src/optics/prescription (16), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), +31 more
+- Main outbound areas: src/types (30), src/optics/prescription (19), src/optics/analysis (18), src/optics/internal (17), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), +31 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +15 more
 
 ## Subfolders
@@ -103,7 +103,7 @@ flowchart LR
 | `glassCatalogTypes.ts` | Glass Catalog Types helper module | none | src/optics/glassCatalogEntries (8), src/optics/glassCatalog.ts, src/optics/glassCatalogData.ts | GlassEntry |
 | `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/cameraLayout.ts, src/optics/optics.ts | src/comparison (2), src/components/controls, src/components/display, src/optics/analysis, src/optics/publishedStations.ts | LensMovementGroup, GroupMovementPoint, GroupMovementSeries, GroupMovementAvailability, GroupMovementProfile, getGroupMovementAvailability, isGroupMovementModeAvailable, firstAvailableGroupMovementMode, +2 more |
 | `layout.ts` | Layout helper module | src/optics/focusDistance.ts (2), src/optics/internal (2), src/optics/geometry, src/types | src/optics/aberration (4), src/optics/analysis (4), src/optics/first-order (2), src/optics/chromatic, src/optics/optics.ts, +4 more | SVG_PATH_SUBDIVISIONS, FOCUS_INFINITY_THRESHOLD, renderSag, sagSlope, gapTrimHeight, slopeTrimHeight, thick, doLayout, +13 more |
-| `lensDataConversion.ts` | Lens Data Conversion helper module | src/optics/prescription (2) | none | ingestLens, ingestTeleconverter, toLensDataInput, toTeleconverterData |
+| `lensDataConversion.ts` | Lens Data Conversion helper module | src/optics/prescription (5) | none | ingestLens, ingestTeleconverter, toLensDataInput, toTeleconverterData, toLensDataV2Input, toTeleconverterDataV2Input, v2SourceMap, v2Writes, +3 more |
 | `lensMovement.ts` | Lens Movement helper module | src/optics/perspective, src/types | src/optics/perspective (4), src/comparison (2), src/benchmarks, src/components/controls, src/components/diagram, +3 more | LensMovementState, ResolvedLensMovement, LensMovementTransform, MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG, isMovementAxisEnabled, ZERO_LENS_MOVEMENT, perspectiveControlSteps, +5 more |
 | `mtf.ts` | Mtf helper module | src/optics/analysis (3) | src/components/display, src/components/hooks | assessMtfSupport, MTF_FIELDS, MTF_FREQUENCIES, MTF_PHOTOPIC_LINES, resolveMtfSpectrum, computeMtf, computeMtfSteps, resolveMtfGeometry, +3 more |
 | `optics.ts` | Optics helper module | src/optics/compat.ts (4), src/optics/cameraLayout.ts, src/optics/layout.ts, src/optics/opticsFormat.ts, src/optics/rayTrace.ts, +1 more | src/components/display (12), src/optics/analysis (8), src/components/hooks (6), src/comparison (3), src/components/controls (3), +8 more | anchorLayoutToCamera, CameraAnchoredLayout, FOCUS_INFINITY_THRESHOLD, SVG_PATH_SUBDIVISIONS, bAtZoom, epZRelStopAtZoom, gapTrimHeight, halfFieldAtZoom, +70 more |
