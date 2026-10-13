@@ -159,27 +159,30 @@ no anomalous-dispersion tag and no APO-performance claim is made.
 
 ### L6 — biconvex positive element with an object-side asphere
 
-nd = 1.58699, νd = 59.5. Glass: P-SK57 (near match on nd/νd; production supplier unspecified). Standalone f = +25.752143 mm.
+nd = 1.58699, νd = 59.5. Glass: K-CSK120 (SUMITA catalog equivalent, a moulding glass; production supplier unspecified). Standalone f = +25.752143 mm.
 
 This element is the first glass after the stop and begins the central positive group. The object-side surface is
 aspheric while the rear surface is spherical. The stop and group travel together in the source description. [P1], p. 9,
 ¶0044; Tables 5–6.
 
-P-SK57 is a near match (nd +0.00001, νd +0.1), not an exact one. Its C, F and g indices are stored explicitly in the
-data file and set the element's dispersion. The material's exact supplier and the asphere's manufacturing process remain
+SUMITA's moulding glass K-CSK120 reproduces the printed pair: its dispersion formula gives nd 1.586986 and νd 59.479,
+while its catalog line lists the rounded 1.58700 / 59.6. SCHOTT P-SK57 (1.58700 / 59.60) is the near alternative. A
+moulding glass suits an aspherical element, but the supplier and the asphere's manufacturing process remain
 unestablished.
 
 ### L7 — biconvex positive, double-aspheric stabilization element
 
-nd = 1.53380, νd = 55.6. Glass: Unmatched (1.53380/55.6; probably an optical resin; maker not stated). Standalone f = +39.071162 mm.
+nd = 1.53380, νd = 55.6. Glass: Unmatched (Panasonic moulding material 1.53380/55.6, resin by the patent's stated preference; no catalog row; line indices from US 2017/0059832 A1). Standalone f = +39.071162 mm.
 
 Both surfaces are aspheric. This element is the embodiment's L3b stabilization member, located before the central
 cemented pair. The patent describes transverse motion for image-shake correction; the centered model does not simulate
 that motion. [P1], ¶¶0032, 0044 and 0061.
 
 The patent presents a resin implementation of the stabilization member as desirable for reducing moving mass and
-actuator size. This supports reading the printed nd and νd as a resin, without identifying a commercial polymer or its
-dispersion curve. No catalog glass matches the pair, and none is assigned. [P1], p. 12, ¶¶0082–0083.
+actuator size. This supports reading the printed nd and νd as a resin, without identifying a commercial polymer. No
+catalog glass matches the pair, and none is assigned. The model carries the C, F and g indices that another Panasonic
+patent prints for the same nd and νd, on the inference set out under Glass Identification and Selection. [P1], p. 12,
+¶¶0082–0083; [P3], Table 23.
 
 ### L8 — negative meniscus at the central cemented interface
 
@@ -201,12 +204,12 @@ element coloured in the manufacturer's construction drawing. That supports the p
 which supplier's glass Panasonic used. [P1], ¶0044 and Tables 5, 7B; [M1].
 
 The S-FPL51-equivalent reference lies above the normal line (ΔPgF +0.031), and the element is tagged as an inferred
-anomalous-dispersion element. Whole-lens secondary spectrum remains approximate because the two unmatched moving
-elements have no known dispersion curve.
+anomalous-dispersion element. Whole-lens secondary spectrum remains approximate: nine elements trace on
+catalog-equivalent curves, and the two unmatched moving elements on line indices inferred from another Panasonic patent.
 
 ### L10 — biconcave negative, double-aspheric focus element
 
-nd = 1.53380, νd = 55.6. Glass: Unmatched (1.53380/55.6; probably an optical resin; maker not stated). Standalone f = -20.621214 mm.
+nd = 1.53380, νd = 55.6. Glass: Unmatched (Panasonic moulding material 1.53380/55.6, resin by the patent's stated preference; no catalog row; line indices from US 2017/0059832 A1). Standalone f = -20.621214 mm.
 
 This single element forms the negative fourth group. Both surfaces are aspheric, and the group moves imageward when
 focusing from infinity to the source close configuration. The direction is stated in the patent and reproduced by the
@@ -214,19 +217,20 @@ signed vertex positions. [P1], ¶¶0028, 0045 and 0062.
 
 The patent discusses the mass advantage of a single-element focus group and a preferred resin implementation. These
 statements do not identify a polymer grade or establish the production drive mechanism. As with the stabilization
-element, the model keeps only the printed nd and νd and uses the Abbe-number dispersion model. [P1], ¶¶0080–0085.
+element, the model keeps the printed nd and νd and carries the C, F and g indices that US 2017/0059832 A1 prints for
+that pair. [P1], ¶¶0080–0085; [P3], Table 23.
 
 ### L11 — positive meniscus, concave toward the object
 
-nd = 1.51742, νd = 52.1. Glass: H-KF6 (catalog equivalent; production supplier unspecified). Standalone f = +49.501578 mm.
+nd = 1.51742, νd = 52.1. Glass: E-CF6 (HOYA catalog equivalent, catalog νd 52.15; production supplier unspecified). Standalone f = +49.501578 mm.
 
 The final element alone forms the positive fifth group. Its object-side vertex is weakly concave and its image-side
 curvature is stronger; the source calls it a positive meniscus concave toward the object. [P1], ¶0046; Tables 5 and
 7B–C.
 
 The patent describes the group as fixed with respect to the image during zooming. The printed BF nevertheless varies by
-0.23 µm across the three stations, and those values are kept as printed. The H-KF6-equivalent C, F and g indices are
-stored explicitly in the data file. [P1], ¶0047.
+0.23 µm across the three stations, and those values are kept as printed. HOYA E-CF6 matches the printed nd, with a
+catalog νd of 52.15 against the printed 52.1; CDGM H-KF6 has the same coordinates. [P1], ¶0047.
 
 ## Glass Identification and Selection
 
@@ -241,27 +245,20 @@ agreement after rounding does not prove a common melt. [G1]–[G6].
 | L3 | 1.90366 / 31.3 | S-LAH95 (OHARA) | 1.903659 / 31.343065 | +0.005177 |
 | L4 | 1.62041 / 60.3 | S-BSM16 (OHARA) | 1.620411 / 60.289582 | +0.000263 |
 | L5 | 1.94595 / 18.0 | FDS18 (HOYA) | 1.945950 / 17.980000 | +0.041043 |
-| L6 | 1.58699 / 59.5 | P-SK57 (SCHOTT) | 1.587000 / 59.600000 | -0.002538 |
-| L7/L10 | 1.53380 / 55.6 | Unmatched, probably resin | None | None |
+| L6 | 1.58699 / 59.5 | K-CSK120 (SUMITA) | 1.586986 / 59.478836 | -0.003251 |
+| L7/L10 | 1.53380 / 55.6 | Unmatched; line indices from US 2017/0059832 A1 | None | +0.012039 |
 | L8 | 1.73800 / 32.3 | S-NBH53V (OHARA) | 1.737999 / 32.326590 | +0.000551 |
 | L9 | 1.49700 / 81.6 | S-FPL51 (OHARA) | 1.496999 / 81.545888 | +0.030911 |
-| L11 | 1.51742 / 52.1 | H-KF6 (CDGM) | 1.517420 / 52.149249 | +0.002916 |
+| L11 | 1.51742 / 52.1 | E-CF6 (HOYA) | 1.517420 / 52.150805 | +0.002771 |
 
-A catalog equivalent is a modeling reference. The line indices below come from each supplier's dispersion equation,
-evaluated at the reference wavelengths. They are not measured values for the patent melt, and the d-line index remains
-the patent's printed value. [G1]–[G4].
+For L6 the catalog column is the value SUMITA's dispersion formula evaluates to, which rounds to the printed pair; the
+catalog line itself lists 1.58700 / 59.6. SCHOTT P-SK57 (1.58700 / 59.60) is the near alternative it replaces. For L11,
+HOYA E-CF6 matches the printed nd and has a νd of 52.15 against the printed 52.1; CDGM H-KF6 has the same coordinates.
 
-| Element | nC | nF | ng |
-| --- | --- | --- | --- |
-| L1 | 1.799015392 | 1.823244843 | 1.837502102 |
-| L2 | 1.514318703 | 1.522368738 | 1.526669717 |
-| L3 | 1.895276989 | 1.924108228 | 1.941301176 |
-| L4 | 1.617275458 | 1.627565974 | 1.633150002 |
-| L5 | 1.931231591 | 1.983830070 | 2.018259293 |
-| L6 | 1.583993211 | 1.593842188 | 1.599172287 |
-| L8 | 1.731322009 | 1.754151491 | 1.767621402 |
-| L9 | 1.495136405 | 1.501231124 | 1.504506789 |
-| L11 | 1.514428850 | 1.524350757 | 1.529897936 |
+A catalog equivalent is a modeling reference. Nine of the eleven elements resolve to a catalog row, and the model
+traces each of them on that row's dispersion equation at the C, d and F lines. Its g-line index is rebuilt from the ΔPgF
+in the table and the printed νd. No line index is stored for these elements, and none of this is a measured value for
+the patent melt. [G1], [G2] and [G6].
 
 ΔPgF = (ng − nF)/(nF − nC) − (0.6438 − 0.001682·νd), with νd the patent's printed value. The reference wavelengths are
 C 656.2725 nm, d 587.5618 nm, F 486.1327 nm and g 435.8343 nm.
@@ -269,9 +266,18 @@ C 656.2725 nm, d 587.5618 nm, F 486.1327 nm and g 435.8343 nm.
 Suppliers quote partial-dispersion deviations against their own normal lines and rounding; the values above are
 recomputed against the line in the equation rather than copied from the catalogs.
 
-The model uses these explicit line indices for every matched element. The stabilization and focus elements (L7, L10)
-use the Abbe-number dispersion model; no C, F or g index, partial-dispersion value or anomalous-dispersion tag is
-assigned to either.
+The stabilization and focus elements (L7, L10) have no catalog row. Their printed pair, 1.53380 / 55.6, also stands on
+double-aspherical elements in three other Panasonic prescriptions in this catalog: the Lumix G 25mm f/1.7, the Leica DG
+9mm f/1.7 and the Lumix S 14-28mm. One of those patents, US 2017/0059832 A1, prints line indices for it in Table 23.
+
+| Elements | nC | nF | ng | Printed P_g,F | ΔPgF |
+| --- | --- | --- | --- | --- | --- |
+| L7, L10 | 1.53100 | 1.54060 | 1.54600 | 0.56232 | +0.012039 |
+
+The model carries those three indices on L7 and L10 and traces both elements on them. This rests on an inference: an
+identical five-digit nd and νd from the same applicant in the same role is taken to be the same material. JP 6814931 B2
+itself prints only nd and νd for these elements. The three indices as rounded give P_g,F 0.5625 and νd 55.604. Neither
+element carries an anomalous-dispersion tag. [P3], Table 23.
 
 The patent's stated preference for resin makes the unmatched pair plausible, but the exact material, its full
 dispersion curve, temperature behavior, absorption and manufacturing process are unknown. A catalog-level proxy cannot
@@ -385,16 +391,18 @@ inferred, not patent-specified manufacturing apertures. The rim angle includes t
 
 | Surface | Modeled clear radius, mm | Polynomial departure from spherical base, µm | Actual rim angle, ° |
 | --- | --- | --- | --- |
-| 11A | 6.5 | -78.245514 | 13.280611 |
-| 13A | 6.5 | -54.021256 | 4.442942 |
-| 14A | 6.5 | +8.801294 | 7.956904 |
-| 18A | 6.5 | -232.983768 | 15.469603 |
-| 19A | 6.5 | -295.275174 | 25.779143 |
+| 11A | 5.6 | -45.176108 | 11.219822 |
+| 13A | 5.8 | +1.887847 | 11.445080 |
+| 14A | 5.8 | +28.699674 | 3.445518 |
+| 18A | 5.6 | -108.377564 | 5.721285 |
+| 19A | 5.6 | -161.644336 | 23.718595 |
 
-On the first positive asphere and the front stabilization asphere, the negative polynomial departure shifts the modeled
-rim objectward relative to the spherical base. The rear stabilization asphere has the opposite departure sign. The focus
-element's two surfaces both have negative polynomial departures at the modeled rim. These geometric statements do not
-assign a measured aberration correction to an individual coefficient.
+On the first positive asphere the negative polynomial departure shifts the modeled rim objectward relative to the
+spherical base. The front stabilization asphere stays within about 5 µm of its spherical base over the modeled aperture
+and ends 1.9 µm imageward at the rim; the slope of its complete profile reverses near 6.7 mm, outside the modeled
+radius. The rear stabilization asphere also departs imageward. The focus element's two surfaces both have negative
+polynomial departures at the modeled rim. These geometric statements do not assign a measured aberration correction to
+an individual coefficient.
 
 The use of complete high-order terms matters: an interpretation based only on A4 would not describe the full rim shape.
 The patent's preference for resin in the moving members does not establish molding chemistry, process capability or a
@@ -440,12 +448,15 @@ named material. [P1], ¶¶0082–0083.
 
 ### Clear apertures and vignetting
 
-The patent does not publish clear semi-diameters. The modeled rims are estimated from the Fig. 5 section and from
-real-ray envelopes at the printed states, with a clearance margin and rounding. Front and rear rims of an element
-differ where the section shows a step.
+The patent does not publish clear semi-diameters. The modeled rims are measured on the three panels of Fig. 5 (wide,
+middle and tele, 0.144 mm per pixel) and checked against real-ray envelopes at the printed states. Most rims follow the
+drawing to within 0.2 mm. Two stay above it because the drawn radii would lower the corner illumination by about ten
+points: the focus element is set at the outer edge of its drawn outline (5.6 mm against a centre reading of 5.3 mm), and
+the front doublet stays about 6 % above the drawing (20.5 and 19.5 mm against 19.3 and 18.3 mm). The third element's
+rear surface stops at 9.2 mm, where the drawing's flat rear annulus begins, while its front face reaches 12.2 mm.
 
-At these radii the thinnest glass section is 0.170393638 mm and the tightest facing air gap uses 0.844426078 of its
-depth, below the default allowance of 0.90; no override is used.
+At these radii the thinnest glass section is 0.348258642 mm, at the rim of L2, and the tightest facing air gap uses
+0.844426078 of its depth, below the default allowance of 0.90; no override is used.
 
 The axial bundle at each printed f-number and the chief ray to the image corner pass at all six printed states. Some
 rays at the edge of the pupil are clipped at full field, so the model does not claim full-pupil illumination of the
@@ -481,27 +492,31 @@ default off-axis bundle at 0.6 of the derived half-field.
 
 | Infinity state | Printed ω, ° | Half-field derived from the semi-diameters, ° | Chief ray to the frame corner, ° | Default diagram field, ° |
 | --- | --- | --- | --- | --- |
-| Wide | 41.6837 | 39.506390 | 44.159739 | 23.703834 |
-| Middle | 21.5822 | 28.811227 | 21.594232 | 17.286736 |
-| Tele | 10.4396 | 11.860300 | 10.445229 | 7.116180 |
+| Wide | 41.6837 | 35.845846 | 44.159739 | 21.507508 |
+| Middle | 21.5822 | 26.965131 | 21.594236 | 16.179079 |
+| Tele | 10.4396 | 11.652932 | 10.445239 | 6.991759 |
 
 At the wide end the printed ω corresponds to the patent's 10.0 mm image height, short of the 10.82 mm frame corner
-that the analysis field reaches. The data format accepts one scalar field override, which cannot carry three
-zoom-dependent values, so none is set and the three fields above differ from the printed ω row.
+that the analysis field reaches. The derived wide half-field is a paraxial estimate set by the 9.2 mm rear surface of
+L3; the real chief ray crosses that surface at 8.39 mm for the printed ω and at 8.80 mm for the frame corner, so it is
+not clipped. The data format accepts one scalar field override, which cannot carry three zoom-dependent values, so none
+is set and the three fields above differ from the printed ω row.
 
 ### Reference-glass precision
 
-| Element | Reference glass | Catalog nd minus patent | Catalog νd minus patent | νd of the stored C and F indices with the patent nd |
+| Element | Reference glass | Catalog nd minus patent | Catalog νd minus patent | νd of the traced catalog curve |
 | --- | --- | --- | --- | --- |
-| L6 | P-SK57 | +0.00001000 | +0.100000 | 59.599081 |
-| L9 | S-FPL51 | -0.00000100 | -0.054112 | 81.546004 |
+| L6 | K-CSK120 | -0.00000400 | -0.021164 | 59.478836 |
+| L9 | S-FPL51 | -0.00000100 | -0.054112 | 81.545888 |
+| L11 | E-CF6 | 0.00000000 | +0.050805 | 52.150805 |
 
-OHARA lists S-FPL51 at νd 81.6 in its rounded column and 81.54 at higher precision (81.545888 from its dispersion
-equation). P-SK57 is a near match, not an exact one.
+K-CSK120 rounds to the printed 1.58699 / 59.5. OHARA lists S-FPL51 at νd 81.6 in its rounded column and 81.54 at higher
+precision (81.545888 from its dispersion equation). E-CF6 rounds to νd 52.2 against the printed 52.1; CDGM H-KF6
+(1.517420 / 52.149) is an alternative at the same coordinates.
 
-The catalog dispersion equations are evaluated unchanged while the d-line index remains the patent value, so the Abbe
-number implied by the stored indices need not equal the printed one exactly. Other makers and catalog editions offer
-alternatives at the same nd and νd; none identifies the supplier or melt. [G1]–[G6].
+The catalog dispersion equations are evaluated unchanged for the colour channels, so the traced Abbe number is the
+catalog's and need not equal the printed one exactly; the prescription keeps the patent's nd. Other makers and catalog
+editions offer alternatives at the same nd and νd; none identifies the supplier or melt. [G1]–[G6].
 
 ### Printed values kept as printed
 
@@ -512,6 +527,7 @@ group and the field-height residuals above are kept as the patent prints them. [
 
 [P1]: https://patents.google.com/patent/JP6814931B2/en
 [P2]: https://patents.google.com/patent/JP2017146588A/en
+[P3]: https://patents.google.com/patent/US20170059832A1/en
 [M1]: https://news.panasonic.com/jp/press/data/2016/02/jn160224-1/jn160224-1.pdf
 [M2]: https://help.na.panasonic.com/answers/features-and-specifications-lumix-lens-model-h-fs12060/
 [G1]: https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf
@@ -525,14 +541,16 @@ group and the field-height residuals above are kept as the patent prints them. [
   Tables 7B–D; p. 22, Table 8; p. 26, Table 13; p. 28, Figs. 5–8.
 - **[P2]:** Japan Patent Office, JP 2017-146588 A, earlier publication of the same application. Used to corroborate the
   printed coefficients, not as a different prescription or embodiment.
+- **[P3]:** Panasonic Intellectual Property Management Co., Ltd., US 2017/0059832 A1, Table 23: nC, nF, ng and P_g,F of
+  the nd 1.53380 / νd 55.6 material. Used only for the line indices of L7 and L10, on the inference stated above.
 - **[M1]:** Panasonic, H-FS12060 Japanese launch release. The construction drawing, published on Panasonic's Japanese
   product page (https://panasonic.jp/dc/products/H-FS12060.html), supports a qualitative structural comparison and is
   not a dimensioned manufacturing drawing.
 - **[M2]:** Panasonic support, H-FS12060 features and specifications. Production specifications are kept separate from
   patent-derived optical quantities.
-- **[G1]:** HOYA optical-glass catalog, including obsolete glasses. Relevant entries: NBFD15, BSC7 and FDS18.
+- **[G1]:** HOYA optical-glass catalog, including obsolete glasses. Relevant entries: NBFD15, BSC7, FDS18 and E-CF6.
 - **[G2]:** OHARA catalog. Relevant reference entries: S-LAH95, S-BSM16, S-NBH53V and S-FPL51.
-- **[G3]:** SCHOTT preferred and special glass catalog; P-SK57 reference dispersion.
-- **[G4]:** CDGM optical-glass catalog; H-KF6 reference dispersion.
+- **[G3]:** SCHOTT preferred and special glass catalog; P-SK57, the near alternative for L6.
+- **[G4]:** CDGM optical-glass catalog; H-KF6, the same-coordinate alternative for L11.
 - **[G5]:** HIKARI full catalog workbook, included in the glass search.
-- **[G6]:** Sumita optical-data download, included in the glass search.
+- **[G6]:** Sumita optical-data download. Relevant entry: K-CSK120.

@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-14",
+    type: "fix",
+    summary:
+      "Rebuilt the Leica Elmarit-R 28mm f/2.8 from its own patent; the old model is now the M-mount Elmarit (11801)",
+  },
+  {
+    date: "2026-10-14",
+    type: "lens",
+    summary: "Added six Hasselblad, Leica, Olympus, Panasonic and Tokina lenses, including the Summilux-C 18mm T1.4",
+  },
+  {
     date: "2026-10-13",
     type: "fix",
     summary: "Fixed the Distortion tab naming barrel distortion as pincushion and pincushion as barrel",

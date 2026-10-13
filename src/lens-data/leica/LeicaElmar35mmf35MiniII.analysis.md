@@ -43,27 +43,27 @@ The stop is behind every powered element, so the exit pupil is the physical stop
 
 ### L1 — Positive Meniscus, Convex to the Object
 
-nₑ = 1.808109, νₑ = 46.34. Glass: Unmatched native e-line lanthanum dense-flint class; supplier unconfirmed. Standalone-in-air f = +18.2118 mm.
+nₑ = 1.808109, νₑ = 46.34. Glass: S-LAH65V (OHARA catalog equivalent; production supplier unspecified). Standalone-in-air f = +18.2118 mm.
 
 The first surface supplies the largest positive surface power in the lens. Because L1 is cemented to L2, the focal length above describes the isolated element only.
 
-The patent requires a large Abbe-number separation within this doublet. LAH65-family catalog glasses are close candidates, but the source names no manufacturer or glass type.
+The patent requires a large Abbe-number separation within this doublet. OHARA S-LAH65V has the printed coordinates (catalog nₑ 1.808107, νₑ 46.338) and supplies the dispersion curve of the model. The source names no manufacturer or glass type.
 
 ### L2 — Negative Meniscus in the Front Cemented Group
 
-nₑ = 1.812640, νₑ = 25.23. Glass: Unmatched native e-line dense-flint class; supplier unconfirmed. Standalone-in-air f = −50.8310 mm. Its rear surface is the corrected third radius.
+nₑ = 1.812640, νₑ = 25.23. Glass: S-TIH6 (OHARA catalog equivalent; production supplier unspecified). Standalone-in-air f = −50.8310 mm. Its rear surface is the corrected third radius.
 
 The index difference at the cemented junction is small, while the Abbe-number difference between L1 and L2 is 21.11. The junction therefore has almost no power but a strong chromatic effect. The patent links the cemented surface and the final surface to lateral-color control (its fourth condition); this is a design claim, not a measurement of the production camera.
 
-TIH6/SF6-family catalog coordinates are close; no supplier is assigned. The complete front doublet has a calculated focal length of +25.0327 mm.
+OHARA S-TIH6 has the printed coordinates (catalog nₑ 1.812640, νₑ 25.220) and supplies the dispersion curve of the model; no supplier is identified. The complete front doublet has a calculated focal length of +25.0327 mm.
 
 ### L3 — Biconcave Negative Singlet
 
-nₑ = 1.652230, νₑ = 33.57. Glass: Unmatched native e-line flint class; supplier unconfirmed. Standalone-in-air f = −12.6757 mm.
+nₑ = 1.652230, νₑ = 33.57. Glass: E-FD2 (HOYA catalog equivalent; production supplier unspecified). Standalone-in-air f = −12.6757 mm.
 
 This strong negative middle group lies between the two positive groups. Its contribution to the Petzval sum (−0.0474 mm⁻¹) partly offsets the front (+0.0177 mm⁻¹) and rear (+0.0375 mm⁻¹) contributions. The total Petzval sum is +0.007885 mm⁻¹, a Petzval radius of 126.8 mm.
 
-Several SF2/PBM22/FD2-family catalog entries lie near the source coordinates; none is adopted.
+Several SF2/PBM22/FD2-family catalog entries lie near the source coordinates. HOYA E-FD2 (catalog nₑ 1.65222, νₑ 33.58, against the printed 1.65223 and 33.57) is used as the catalog equivalent and supplies the dispersion curve of the model.
 
 ### L4 — Biconvex Positive Rear Singlet
 
@@ -71,15 +71,19 @@ nₑ = 1.716700, νₑ = 42.89. Glass: Unmatched native e-line intermediate-disp
 
 The final positive singlet completes the triplet and stands 1.2 mm before the rear stop. Figure 1 labels it L4; the description's single reference to "L5" is inconsistent with that figure and does not imply a fifth element.
 
-The page image prints 1.716700; text-layer copies reading 1.76700 have dropped a digit. The nearest catalog candidate, LAFL4, differs in Abbe number and is not adopted.
+The page image prints 1.716700; text-layer copies reading 1.76700 have dropped a digit. The nearest catalog row, HOYA LAFL4 (nₑ 1.716613, νₑ 43.056), is 0.00009 away in index and 0.17 in Abbe number. That is not a catalog equivalent, so L4 stays unmatched.
 
 ## Glass Identification and Spectral Limits
 
 The source table explicitly gives n(546), and Figure 2C labels the e, C′, f′ and g wavelengths. The related EP 0 537 469 B1 table explicitly labels both nₑ and νₑ. The data file's nd/vd fields therefore hold the e-line values, with indexReference set to e; no d-line conversion is made.
 
-Catalog data from OHARA, HOYA, Schott, Hikari, CDGM and Sumita were compared. The front three elements have close family candidates; the fourth has no tight unique match.
+Catalog data from OHARA, HOYA, Schott, Hikari, CDGM and Sumita were compared. Three of the four printed pairs coincide with a catalog glass. OHARA S-LAH65V (nₑ 1.808107, νₑ 46.338) for L1 and OHARA S-TIH6 (1.812640, 25.220) for L2 agree with the print within 0.000002 in nₑ and 0.01 in νₑ. HOYA E-FD2 (1.652218, 33.584) for L3 differs by one unit in the last printed decimal of each value (1.65222 against 1.65223, 33.58 against 33.57). The data file names these three as catalog equivalents. They are equivalents at the printed precision, not identified suppliers: the patent names no glass, and two printed coordinates cannot single out a maker or a melt.
 
-All four glass labels remain qualified Unmatched classes. This avoids assigning a supplier, melt or detailed spectrum on the basis of two coordinates. No nC, nF, ng or anomalous-partial-dispersion values are supplied, so chromatic results rest on the Abbe numbers alone. On that basis the paraxial F′–C′ focus difference is about 0.16 mm, the blue focus nearer the lens, and the f/3.5 rim rays for C′, e and F′ land about 25, 28 and 31 µm from the axis in the e-line paraxial plane. Figure 2C draws its on-axis color curves between about 23 and 31 µm there. The partial dispersions needed for the g line are not published.
+L4 remains unmatched. Its nearest catalog row, HOYA LAFL4 (1.716613, 43.056), is 0.00009 away in nₑ and 0.17 in νₑ, which is too far to stand as an equivalent.
+
+The patent supplies no C′, F′ or g indices and no partial dispersions. For L1 to L3 the model takes the C′ and F′ indices from the named catalog curve, anchored at the printed nₑ (the printed nₑ plus the catalog's index difference from the e line). L4 uses an estimate from its Abbe number. On that basis the paraxial F′–C′ focus difference is about 0.165 mm, the blue focus nearer the lens, and the f/3.5 rim rays for C′, e and F′ land about 21, 28 and 27 µm from the axis in the e-line paraxial plane.
+
+Figure 2C plots the same on-axis curves. Scaled from the ±20 µm ticks of the European print, its C′ curve ends about 20 µm from the axis at the edge of the aperture, and its e and F′ curves, drawn together there, end about 28 µm from it. From 0.4 of the aperture to its edge the model follows the three plotted curves within about 1 µm. The redrawn Figure 2C of the US print sets its ±20 µm ticks about 1.4 times too far apart, while its curves are the same size as the European ones, so the US ticks are not used. No g-line result is quoted, because L4 has no published partial dispersion.
 
 ## Focus Mechanism
 
@@ -89,9 +93,9 @@ The manufacturer brochure specifies active infrared autofocus from 0.65 m to inf
 
 ## Aperture, Clearances and Image Plane
 
-The source does not publish clear semi-diameters. Figure 1 suggests approximately 6.6 mm for the cemented front group, 4.0 mm for the middle singlet and 3.9 mm for the rear singlet, subject to schematic-drawing uncertainty. The model uses 6.6 mm, 4.05 mm and 4.0 mm.
+The source does not publish clear semi-diameters. Figure 1, scaled from its vertex spacing, draws approximately 6.6 mm for the cemented front group, 4.0 mm for the middle singlet and 3.85 mm for the rear singlet, subject to schematic-drawing uncertainty. It draws the rear face of the front group polished only to about 4.0 mm, level with the rim of L3, and chamfered from there back to the full rim. The model uses 6.6 mm for the front and cemented surfaces, 4.05 mm for the rear face of the front group and for L3, and 4.0 mm for L4. The rendered section shows the chamfer as a straight edge from the cemented rim, without the short cylindrical land that Figure 1 gives L2.
 
-The f/3.5 axial ray enters at 4.8047 mm and reaches 3.929 mm on the front of L3 and 3.811 mm on the front of L4, inside those radii. At the 4.05 mm shared radius the first air gap has 0.6237 mm of sag intrusion into its 0.7000 mm axial spacing, leaving 0.0763 mm of air at the rim.
+The f/3.5 axial ray enters at 4.8047 mm and reaches 3.953 mm on the rear face of L2, 3.929 mm on the front of L3 and 3.811 mm on the front of L4, inside those radii. At the 4.05 mm shared radius the first air gap has 0.6237 mm of sag intrusion into its 0.7000 mm axial spacing, leaving 0.0763 mm of air at the rim.
 
 The stop semi-diameter, 3.5447 mm, is the height at the stop of the real axial ray that enters at EFL/(2 × 3.5). It sets the model aperture and is not a published diaphragm size. The paraxial value is 3.5023 mm, a stop 7.00 mm in diameter; the difference is pupil aberration.
 
@@ -110,6 +114,6 @@ With the third radius corrected, the model reproduces the patent's focal length,
 ## Sources
 
 - [US 5,321,555 A](https://patents.google.com/patent/US5321555A/en), PDF page 1 for metadata, page 2 Figure 1, pages 3–6 Figures 2A–2D, pages 7–8 for the prescription (printed twice), the paraxial summary and the claims.
-- [EP 0 537 469 B1](https://patents.google.com/patent/EP0537469B1/en), the European family member: its table and paraxial summary are identical to the US print, including the third radius.
+- [EP 0 537 469 B1](https://patents.google.com/patent/EP0537469B1/en), the European family member: its table and paraxial summary are identical to the US print, including the third radius. PDF page 9, Figure 2c, carries the scale ticks used for the on-axis color curves.
 - [Leica Mini II manufacturer brochure](https://www.summilux.net/documents/Leica-Mini-II.pdf), PDF pages 2–3 and 6 for the product, optical section and technical specifications; French edition code 910 533, IV/95/FY/L.
-- [OHARA catalog downloads](https://oharacorp.com/optical-glass/), [HOYA Optical World](https://www.hoya-opticalworld.com/), and the Schott, Hikari, CDGM and Sumita catalogs. Catalog comparisons identify possible families, not the original suppliers.
+- [OHARA catalog downloads](https://oharacorp.com/optical-glass/), [HOYA Optical World](https://www.hoya-opticalworld.com/), and the Schott, Hikari, CDGM and Sumita catalogs. Catalog comparisons identify catalog equivalents at the printed coordinates, not the original suppliers.

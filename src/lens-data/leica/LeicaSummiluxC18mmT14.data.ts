@@ -26,6 +26,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * of their air gap, leaving 0.27229555494834123 mm of clearance. No printed value was changed.
  * The printed clear apertures vignette off-axis bundles, so the full stop is not filled at
  * every field and focus state.
+ * Semi-diameters: all 34 sd values are Table 1's "Aperture Half Diameter" column, unchanged
+ * after comparison with Figure 7 (drawn at focus position F2) and Figures 8a and 8c. The
+ * figures give each element a square-cut edge about 1.1–1.8 mm beyond its larger printed
+ * half-diameter, with flat annuli on the smaller faces; that mechanical edge is not modeled.
  * Source inconsistencies (see sourceErrata): the prose calls L19 biconcave although Table 1 and
  * Figure 7 show it biconvex; paragraph 0057 gives 37.13 degrees where Figure 11a prints 38.04;
  * Table 2 prints 753 for one relative-illumination entry.
@@ -85,9 +89,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 376.00577089349554,
       glass: "S-LAL61 (OHARA)",
-      nC: 1.7367266495796825,
-      nF: 1.7508043113269263,
-      ng: 1.7585010823758724,
       dPgF: -0.00852893662738019,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
@@ -104,12 +105,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -119.74337503775803,
       glass: "S-FPL51 (OHARA)",
-      nC: 1.4951364052489096,
-      nF: 1.5012311244736123,
-      ng: 1.504506789458403,
+      apd: "patent",
+      apdNote: "Paragraph 0046 of EP 2 321 688 B1 names this element's glass, S-FPL51, as an abnormal-dispersion glass. ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
       dPgF: 0.030819721893589058,
-      apdNote:
-        "The patent names S-FPL51 as an abnormal-dispersion glass (paragraph 0046); ΔPgF is from the current OHARA catalog indices, measured from the line 0.6438 − 0.001682·νd.",
       role: "Negative meniscus of the fixed sub-group G1a; its rear surface is the first asphere.",
     },
     {
@@ -123,9 +121,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -27.77245453890973,
       glass: "S-LAM2 (OHARA)",
-      nC: 1.7390480958978114,
-      nF: 1.7556602000277308,
-      ng: 1.7650555630352145,
       dPgF: -0.0028958963843203067,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
@@ -142,9 +137,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 110.73832264893859,
       glass: "S-TIH6 (OHARA)",
-      nC: 1.7961055627673077,
-      nF: 1.827773968781163,
-      ng: 1.8472858512675383,
       dPgF: 0.015096328332417808,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
@@ -161,12 +153,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -48.78345797312347,
       glass: "S-FPL53 (OHARA)",
-      nC: 1.4373333571912175,
-      nF: 1.4419544083496807,
-      ng: 1.4444234598952423,
+      apd: "patent",
+      apdNote: "Paragraph 0046 of EP 2 321 688 B1 names this element's glass, S-FPL53, as an abnormal-dispersion glass. ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
       dPgF: 0.05020438775637859,
-      apdNote:
-        "The patent names S-FPL53 as an abnormal-dispersion glass (paragraph 0046); ΔPgF is from the current OHARA catalog indices, measured from the line 0.6438 − 0.001682·νd.",
       role: "Negative low-dispersion element of G1b.",
     },
     {
@@ -180,9 +169,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 51.87539682965142,
       glass: "S-NBH51 (OHARA)",
-      nC: 1.7432592658897934,
-      nF: 1.764472166678001,
-      ng: 1.7768151419264742,
       dPgF: -0.0025090345377279943,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
@@ -199,9 +185,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 109.88611560085475,
       glass: "S-LAH58 (OHARA)",
-      nC: 1.8765598190842074,
-      nF: 1.898220426420802,
-      ng: 1.9104968768099402,
       dPgF: -0.008469185412159463,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
@@ -218,12 +201,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 88.24645174540872,
       glass: "S-FPL53 (OHARA)",
-      nC: 1.4373333571912175,
-      nF: 1.4419544083496807,
-      ng: 1.4444234598952423,
+      apd: "patent",
+      apdNote: "Paragraph 0046 of EP 2 321 688 B1 names this element's glass, S-FPL53, as an abnormal-dispersion glass. ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
       dPgF: 0.05020438775637859,
-      apdNote:
-        "The patent names S-FPL53 as an abnormal-dispersion glass (paragraph 0046); ΔPgF is from the current OHARA catalog indices, measured from the line 0.6438 − 0.001682·νd.",
       role: "Positive low-dispersion meniscus of G1b, ahead of cemented doublet D1.",
     },
     {
@@ -237,9 +217,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 66.22947666344729,
       glass: "S-PHM52 (OHARA)",
-      nC: 1.615036087639131,
-      nF: 1.6247939546961332,
-      ng: 1.6301033908827245,
       dPgF: 0.006845473865652818,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
@@ -257,9 +234,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -49.04016232355233,
       glass: "S-LAM66 (OHARA)",
-      nC: 1.7942746044819007,
-      nF: 1.817181618348259,
-      ng: 1.8306142083833468,
       dPgF: 0.0014115533217575749,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
@@ -277,9 +251,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -41.391921574891114,
       glass: "S-NBH51 (OHARA)",
-      nC: 1.7432592658897934,
-      nF: 1.764472166678001,
-      ng: 1.7768151419264742,
       dPgF: -0.0025090345377279943,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
@@ -296,12 +267,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 96.79585426319893,
       glass: "S-FPL53 (OHARA)",
-      nC: 1.4373333571912175,
-      nF: 1.4419544083496807,
-      ng: 1.4444234598952423,
+      apd: "patent",
+      apdNote: "Paragraph 0046 of EP 2 321 688 B1 names this element's glass, S-FPL53, as an abnormal-dispersion glass. ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
       dPgF: 0.05020438775637859,
-      apdNote:
-        "The patent names S-FPL53 as an abnormal-dispersion glass (paragraph 0046); ΔPgF is from the current OHARA catalog indices, measured from the line 0.6438 − 0.001682·νd.",
       role: "Positive low-dispersion singlet of G2.",
     },
     {
@@ -315,12 +283,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 42.27173430793739,
       glass: "S-FPL53 (OHARA)",
-      nC: 1.4373333571912175,
-      nF: 1.4419544083496807,
-      ng: 1.4444234598952423,
+      apd: "patent",
+      apdNote: "Paragraph 0046 of EP 2 321 688 B1 names this element's glass, S-FPL53, as an abnormal-dispersion glass. ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
       dPgF: 0.05020438775637859,
-      apdNote:
-        "The patent names S-FPL53 as an abnormal-dispersion glass (paragraph 0046); ΔPgF is from the current OHARA catalog indices, measured from the line 0.6438 − 0.001682·νd.",
       role: "Positive low-dispersion front element of cemented doublet D2.",
       cemented: "D2",
     },
@@ -335,9 +300,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -169.52309525526877,
       glass: "S-LAH59 (OHARA)",
-      nC: 1.8107488029150882,
-      nF: 1.8282518064300182,
-      ng: 1.837997365977522,
       dPgF: -0.008590661934366195,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
@@ -355,12 +317,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 79.83888546636922,
       glass: "S-FPL53 (OHARA)",
-      nC: 1.4373333571912175,
-      nF: 1.4419544083496807,
-      ng: 1.4444234598952423,
+      apd: "patent",
+      apdNote: "Paragraph 0046 of EP 2 321 688 B1 names this element's glass, S-FPL53, as an abnormal-dispersion glass. ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
       dPgF: 0.05020438775637859,
-      apdNote:
-        "The patent names S-FPL53 as an abnormal-dispersion glass (paragraph 0046); ΔPgF is from the current OHARA catalog indices, measured from the line 0.6438 − 0.001682·νd.",
       role: "Positive low-dispersion front element of cemented doublet D3.",
       cemented: "D3",
     },
@@ -375,9 +334,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -34.42268104692358,
       glass: "S-NBH51 (OHARA)",
-      nC: 1.7432592658897934,
-      nF: 1.764472166678001,
-      ng: 1.7768151419264742,
       dPgF: -0.0025090345377279943,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
@@ -395,12 +351,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 88.04593514748984,
       glass: "S-NPH1 (OHARA)",
-      nC: 1.7980087514303307,
-      nF: 1.8335125158614243,
-      ng: 1.855904865132606,
+      apd: "patent",
+      apdNote: "Claim 10 of EP 2 321 688 B1 states that this element has abnormal partial dispersion; paragraph 0046 names its glass, S-NPH1, as the dense flint that compensates secondary dispersion. ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",
       dPgF: 0.025187215464019475,
-      apdNote:
-        "The patent uses this very dense flint to offset secondary dispersion from the rest of the lens (paragraph 0046); ΔPgF is from the current OHARA catalog indices, measured from the line 0.6438 − 0.001682·νd.",
       role: "Positive very dense flint singlet of G2; offsets secondary dispersion from the rest of the lens.",
     },
     {
@@ -414,9 +367,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 54.29467398640478,
       glass: "S-PHM52 (OHARA)",
-      nC: 1.615036087639131,
-      nF: 1.6247939546961332,
-      ng: 1.6301033908827245,
       dPgF: 0.006845473865652818,
       apdNote:
         "ΔPgF is from the current OHARA catalog indices for this glass, measured from the line 0.6438 − 0.001682·νd; the data of the original melt are not published.",

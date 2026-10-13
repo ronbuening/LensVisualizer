@@ -113,7 +113,7 @@ const LENS_DATA = {
       vd: 47.15,
       indexReference: "e",
       fl: 14.1,
-      glass: "Unmatched (LaF21-class patent e-line value; no verified d-line catalog identity)",
+      glass: "K-LaSFn16 (SUMITA catalog equivalent of LaF21, catalog ne 1.79226 / νe 47.17; patent ne 1.79227 / νe 47.15; production supplier unspecified)",
       apd: false,
       cemented: "D1",
       role: "Principal positive element — thick biconvex of lanthanum flint providing majority of system convergence",

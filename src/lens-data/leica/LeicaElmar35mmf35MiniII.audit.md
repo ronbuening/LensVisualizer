@@ -158,3 +158,84 @@ The analysis was recomputed from the corrected file: focal length, track and bac
 Open: the fourth decimal of R3 is inferred. Values from 19.6348 to 19.6352 fit the stated focal length, focus and pupil magnification within the rounding of the printed table.
 Open: no third print of the radius has been read. Page images of DE 41 33 844 A1 and EP 0 537 469 A1 would show whether an earlier print carries a different R3; a differing value there would add `family-publication` evidence.
 Open: semi-diameters remain inferred from Fig. 1 and the f/3.5 beam; the brochure's UVa filter and the autofocus travel are not published and not modeled.
+
+## 2026-10-13 — Semi-diameter pass against the patent figure
+
+Source. US 5,321,555 A, local PDF page 2 (Sheet 1 of 5), Fig. 1, measured on the scan at its native 300 dpi with the corrected third radius. The figure draws no optical axis, so each semi-height is half the drawn rim-to-rim height of that element.
+
+Scale. The seven vertex crossings lie at x = 672.5, 910, 1083.5, 1158, 1231, 1301.5 and 1620 px. Surface 1 to surface 7 is 947.5 px for 10.8000 mm, giving 87.73 px/mm (11.40 µm/px). Check spans: surfaces 1–3, 411 px for 4.7519 mm (86.5 px/mm); surfaces 3–7, 536.5 px for 6.0481 mm (88.7 px/mm). The figure draws the first air gap wider than the table (0.85 mm against 0.70) and L3 thinner (0.83 mm against 1.005). The drawn stop ticks open 631 px, a radius of 3.60 mm against the stored 3.545 mm, which checks the transverse scale to 1.5 %. Edge readings are good to about 3 px (0.03 mm); the scale is good to about 2 % (0.08 mm at 4 mm).
+
+| Surface | Before | Figure | After | Evidence |
+|---|---|---|---|---|
+| 1 (L1 front) | 6.6 | 6.59 | 6.6 | Flat rims 1156 px apart. Retained. |
+| 2 (cemented) | 6.6 | 6.59 | 6.6 | The junction runs to the same flat rim, with no step. Retained. |
+| 3 (L2 rear) | 6.6 | 3.97–4.00 | 4.05 | The concave arc ends at cusps 348.5–351 px from the midline (y ≈ 1565 and 2262). Outside them a straight chamfer runs back to the rim corner at x = 1075, 0.10 mm ahead of the surface 3 vertex. |
+| 4, 5 (L3) | 4.05 | 4.03 | 4.05 | Flat rims 707 px apart, square-cut. Retained. |
+| 6, 7 (L4) | 4.0 | 3.85 | 4.0 | Flat rims 675.5 px apart, square-cut. 3.9 % under the stored value, inside reading noise. Retained. |
+| STO | 3.5447 | 3.60 | 3.5447 | Not edited. |
+
+Surface 3. At 6.6 mm the modeled rear face of the front group ran on as a sphere to a rim 1.14 mm behind its vertex and overhung the front rim of L3. Fig. 1 ends the polished face at the height of L3's rim, with its line 12 px (0.14 mm) ahead of L3's front corner where the model has 0.076 mm of air, and chamfers the glass outside it. The stored value was about 65 % over the drawn extent. The new value is L3's 4.05 mm, because the figure draws the two rims at one height within 5 px, and it stands 0.097 mm above the axial f/3.5 ray (3.9525 mm).
+
+Rendering limit. The section joins the two rims of an element with one straight edge, so L2 is drawn with a straight chamfer from the cemented rim at 6.6 mm to the rear rim at 4.05 mm. Fig. 1 gives L2 a cylindrical land about 1.4 mm long (x = 953 to 1075 px) before the chamfer; semi-diameters alone cannot express it. Rim thickness of the front group at 6.6 mm: figure 2.53 mm, model 3.70 mm before and 1.10 mm after (L1 alone).
+
+Retained. L4 keeps 4.0 mm. The figure draws it 0.18 mm lower than L3 where the model has 0.05 mm; the order L3, L4, stop is the same in both, and the axial ray needs 3.811 mm there.
+
+Clearance, as numbers. Axial f/3.5 ray heights on surfaces 1–7: 4.805, 4.410, 3.953, 3.929, 3.763, 3.811 and 3.763 mm, and 3.5447 mm at the stop; the smallest margin is 0.097 mm at surface 3 (0.121 mm at surface 4). The corner chief ray (21.63 mm, 32.22°) crosses at 5.88, 5.02, 3.73, 3.49, 2.76, 2.40 and 1.08 mm, inside every rim. The surface validator reports no errors at the default gap fraction; the S3/S4 intrusion at the shared 4.05 mm radius is unchanged at 0.6237 mm of 0.7000 mm (0.891). The image-circle check lists no undersized surface, and corner coverage is 21.65 mm of 21.65 mm at 32.2°. Focal length 33.6326 mm, f/3.50 and the engine's half-field estimate of 28.12° are the same before and after.
+
+Vignetting. Meridional geometric transmission at f/3.5, before → after: 68.2 → 67.7 % at 20.5°, 56.8 → 55.7 % at 26.4°, 45.3 → 43.8 % at the 32.2° corner. Trial values of 4.10 and 4.00 mm give 44.8 % and 43.2 % at the corner.
+
+Maker's drawing. No maker image was viewed in this pass. The comparison recorded above stands: four elements in three groups, a thick cemented front pair, a thin biconcave middle lens about 0.66 of the front pair's diameter (model 4.05 / 6.6 = 0.61, unchanged; Fig. 1 4.03 / 6.59 = 0.61) and a biconvex rear lens, all spherical.
+
+Open: the figure's cylindrical land on L2 is not drawn (see the rendering limit).
+Open: the patent's f/3.52 relative-illumination curve (Fig. 2B, PDF page 4, digitised) reads about 63, 49, 38, 28 and 17 % at 9, 12, 15, 18 and 21.5 mm, where the engine gives about 68, 55, 43, 33 and 22 %. The change at surface 3 moves the model 0.5–0.8 points toward the plot. No rim was fitted to it; the figure supports no smaller rim.
+
+## 2026-10-13 — Glass labels resolved for L1–L3
+
+Decision. Three of the four printed nₑ / νₑ pairs coincide with a catalog glass, and the data file now names those glasses as catalog equivalents. No nₑ, νₑ, radius or thickness changed. The patent names no glass type or supplier, so the labels identify a dispersion curve and not a maker.
+
+| Element | Label before | Label after | Catalog nₑ / νₑ | Catalog − print |
+|---|---|---|---|---|
+| L1 | Unmatched (native e-line lanthanum dense-flint class; supplier unconfirmed) | S-LAH65V (OHARA catalog equivalent; patent ne 1.808109 / νe 46.34; production supplier unspecified) | 1.808107 / 46.338 | −0.000002 / −0.002 |
+| L2 | Unmatched (native e-line dense-flint class; supplier unconfirmed) | S-TIH6 (OHARA catalog equivalent; patent ne 1.81264 / νe 25.23; production supplier unspecified) | 1.812640 / 25.220 | 0.000000 / −0.010 |
+| L3 | Unmatched (native e-line flint class; supplier unconfirmed) | E-FD2 (HOYA catalog equivalent, catalog ne 1.65222 / νe 33.58; patent ne 1.65223 / νe 33.57; production supplier unspecified) | 1.652218 / 33.584 | −0.000012 / +0.014 |
+| L4 | Unmatched (native e-line intermediate-dispersion optical-glass class; supplier unconfirmed) | unchanged | nearest row HOYA LAFL4, 1.716613 / 43.056 | −0.000087 / +0.166 |
+
+L4. A residual of 0.00009 in nₑ and 0.17 in νₑ is not a catalog equivalent, so L4 stays unmatched and keeps the Abbe-number estimate of its C′, F′ and g indices.
+
+Effect in the model. L1 to L3 trace on the named catalog curve anchored at the printed nₑ (printed nₑ plus the catalog's index difference from the e line). Channel indices as built, C′ / e / F′: L1 1.799639 / 1.808109 / 1.817079; L2 1.797516 / 1.812640 / 1.829738; L3 1.642989 / 1.652230 / 1.662409; L4 (Abbe model) 1.708658 / 1.716700 / 1.725368. Every e-line quantity is unchanged.
+
+Chromatic numbers, before → after.
+
+| Quantity | Quoted before | All four on the Abbe model | As built |
+|---|---|---|---|
+| Paraxial F′–C′ focus difference (mm) | about 0.16 | 0.1648 | 0.1654 |
+| C′ focus − e focus (mm) | not quoted | +0.0931 | +0.1001 |
+| F′ focus − e focus (mm) | not quoted | −0.0717 | −0.0653 |
+| f/3.5 rim ray in the e paraxial plane, C′ / e / F′ (µm) | 25 / 28 / 31 | 22.5 / 27.6 / 28.3 | 21.4 / 27.6 / 27.2 |
+| Condition IV ratio, surfaces 2 and 7 | −0.989 | −0.9890 | −0.9898 |
+
+The earlier 25 / 28 / 31 µm are reproduced by placing e midway between C′ and F′ in every glass (24.8 / 27.6 / 30.6 µm, focus difference 0.1645 mm). The engine's Abbe model places e with a fitted normal line and gave the middle column before the relabel. The analysis now quotes 0.165 mm and 21 / 28 / 27 µm. The condition IV ratio stays −0.99 at the quoted precision.
+
+Fig. 2c, re-read. The on-axis panel was digitised from EP 0 537 469 B1, PDF page 9, at 300 dpi. Its ±20 µ ticks stand at y = 2566 and 2752.5 with the axis at 2654.5, so 186.5 px span 40 µm (4.66 px/µm); the fifth aperture tick is at x = 1968.5, 690.5 px from the axis. Heights below the axis in µm, model values in the e paraxial plane:
+
+| Aperture fraction | 0.5 | 0.6 | 0.7 | 0.8 | 0.85 | 0.9 | 0.95 | 1.0 |
+|---|---|---|---|---|---|---|---|---|
+| Fig. 2c, C′ | 2.6 | 7.0 | 12.4 | 18.0 | 20.3 | 22.0 | 22.5 | 20.1 |
+| As built, C′ | 2.2 | 6.7 | 12.3 | 18.1 | 20.5 | 22.2 | 22.7 | 21.4 |
+| Abbe model, C′ | 2.8 | 7.3 | 13.1 | 19.0 | 21.5 | 23.2 | 23.8 | 22.5 |
+| Fig. 2c, e | 9.1 | 14.2 | 20.2 | 26.6 | 27.6 | 29.6 | 30.0 | 27.6 |
+| As built, e | 8.7 | 14.0 | 20.1 | 26.1 | 28.4 | 29.7 | 29.7 | 27.6 |
+| Fig. 2c, F′ | 13.1 | 17.9 | 23.4 | 28.9 | 30.6 | 31.1 | 30.0 | 27.6 |
+| As built, F′ | 12.5 | 18.0 | 24.0 | 29.3 | 31.1 | 31.7 | 30.6 | 27.2 |
+| Abbe model, F′ | 12.9 | 18.6 | 24.7 | 30.1 | 31.9 | 32.6 | 31.6 | 28.3 |
+
+At 0.95 and 1.0 the figure draws e and F′ as one line. The left half of the panel gives 20.8 µm for C′ and 27.9 µm for e and F′ at the edge. Root-mean-square difference from the figure over these 24 readings: 0.5 µm as built against 1.0 µm on the Abbe model; the largest is 1.3 µm as built (C′ at the edge) against 2.4 µm. The catalog curves therefore fit Fig. 2c better than the Abbe estimate, and better than the 25 / 28 / 31 µm quoted before.
+
+The earlier section's "between about −23 and −31 µm at the edge of the aperture" is refined by this reading: at the fifth tick the curves end at 20 µm (C′) and 28 µm (e, F′); 22.5 µm and 31 µm are their extremes at 0.95 and 0.9 of the aperture.
+
+US print. Fig. 2C of US 5,321,555 A (PDF page 5) is a redrawing. Its curves are the same size as the European ones (C′ and the lowest curve 92.5 and 123.5 px from the axis at the fifth tick, against 93.5 and 128.5 px), but its ±20 µ ticks stand 109 px above and 152.5 px below the axis, 261.5 px apart, 1.4 times the European spacing. Read against the US ticks the curves would end at 14 and 19 µm. The European ticks are used.
+
+Analysis changes. The Glass lines of L1 to L3, the candidate sentences under each element, the Glass Identification and Spectral Limits section and the catalog line under Sources were rewritten to state the catalog equivalents, the L4 disposition and the recomputed numbers. No g-line result is quoted.
+
+Open: L4 has no catalog curve, so its C′ and F′ indices rest on its Abbe number alone and no g-line result is given for the lens.
+Open: the labels are catalog equivalents at the printed precision. A melt sheet or a maker's glass list would be needed to name the production glasses.

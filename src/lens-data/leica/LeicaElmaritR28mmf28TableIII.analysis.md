@@ -34,67 +34,67 @@ The following indices and Abbe numbers are the patent’s ne and νe, referenced
 
 ### L1 — Negative Meniscus
 
-ne = 1.48914, νe = 70.22. Glass: Unmatched (FK5-class low-index crown; supplier and melt unproven). f = -95.38 mm.
+ne = 1.48914, νe = 70.22. Glass: N-FK5 (Schott catalog equivalent of FK5; production supplier unspecified). f = -95.38 mm.
 
 L1 is a negative meniscus convex toward the object. Together with L3 it forms the diverging part of the front functional group. Its low index and comparatively high Abbe number directly satisfy the patent’s front-meniscus restrictions. The patent associates this choice with limiting front-group color dispersion; that argument is preserved as the patent’s rationale rather than as a measured chromatic-performance result.
 
 ### L2 — Biconvex Positive
 
-ne = 1.67133, νe = 41.64. Glass: Unmatched (BASF6-class barium flint; supplier and melt unproven). f = +70.97 mm.
+ne = 1.67133, νe = 41.64. Glass: J-BASF6 (HIKARI catalog equivalent of BaSF6; production supplier unspecified). f = +70.97 mm.
 
-L2 is the positive biconvex element between the two negative front menisci. Its standalone positive power partly offsets their negative power while the complete front group remains negative. The patent requires this element’s Abbe number to exceed 40. The barium-flint class is a coordinate-based inference, not identification of the historical supplier.
+L2 is the positive biconvex element between the two negative front menisci. Its standalone positive power partly offsets their negative power while the complete front group remains negative. The patent requires this element’s Abbe number to exceed 40. The J-BASF6 label is a match on the printed ne and νe, not identification of the historical supplier.
 
 ### L3 — Negative Meniscus
 
-ne = 1.48914, νe = 70.22. Glass: Unmatched (FK5-class low-index crown; supplier and melt unproven). f = -30.29 mm.
+ne = 1.48914, νe = 70.22. Glass: N-FK5 (Schott catalog equivalent of FK5; production supplier unspecified). f = -30.29 mm.
 
 L3 is the second negative meniscus convex toward the object. It uses the same glass as L1 but has substantially stronger isolated negative power. Its rear surface precedes the main separation between the front and rear functional groups. Power sign alone does not identify a particular coma or distortion contribution.
 
 ### L4 — Positive Meniscus
 
-ne = 1.67341, νe = 46.82. Glass: Unmatched (BAF10/BAFN10-class barium flint; supplier and melt unproven). f = +72.54 mm.
+ne = 1.67341, νe = 46.82. Glass: N-BAF10 (Schott catalog equivalent of BaF10; production supplier unspecified). f = +72.54 mm.
 
 L4 is a positive meniscus with its concave surface toward the diaphragm. The patent emphasizes that this element can remain a single component rather than a split or cemented construction. Its positive power begins the rear functional group; the stop lies in the following air gap.
 
 ### L5 — Biconvex Positive
 
-ne = 1.69401, νe = 54.48. Glass: Unmatched (LAK9-class lanthanum crown; supplier and melt unproven). f = +37.71 mm.
+ne = 1.69401, νe = 54.48. Glass: N-LAK9 (Schott catalog equivalent of LaK9; production supplier unspecified). f = +37.71 mm.
 
 L5 is a positive biconvex singlet immediately behind the diaphragm. Together with L4 it forms the first positive subgroup of the rear system. Table III’s relative bending differs from the other numerical tables, but schematic manufacturer artwork is insufficient to turn that distinction into a unique production attribution.
 
 ### L6 — Biconcave Negative
 
-ne = 1.79180, νe = 25.87. Glass: Unmatched (SF56-class dense flint; supplier and melt unproven). f = -23.47 mm.
+ne = 1.79180, νe = 25.87. Glass: SF56A (Schott catalog equivalent of SF56; production supplier unspecified). f = -23.47 mm.
 
-L6 is the biconcave negative singlet between the two positive rear subgroups. Its relatively high index and lower Abbe number contrast with the adjacent lanthanum-crown-class positive elements. This is a plausible dispersive counterweight in the architecture, but an Abbe-number-only glass model does not establish secondary-spectrum or apochromatic performance.
+L6 is the biconcave negative singlet between the two positive rear subgroups. Its relatively high index and lower Abbe number contrast with the adjacent lanthanum-crown-class positive elements. This is a plausible dispersive counterweight in the architecture, but a catalog-equivalent dispersion curve does not establish the secondary-spectrum or apochromatic performance of the 1970 lens.
 
 ### L7 — Positive Meniscus
 
-ne = 1.69401, νe = 54.48. Glass: Unmatched (LAK9-class lanthanum crown; supplier and melt unproven). f = +55.85 mm.
+ne = 1.69401, νe = 54.48. Glass: N-LAK9 (Schott catalog equivalent of LaK9; production supplier unspecified). f = +55.85 mm.
 
 L7 is a positive meniscus concave toward the diaphragm. It begins the final positive subgroup and shares its glass with L5 and L8. The small air gap in front of L7 is geometrically important: the facing surfaces bow toward one another, so their clear radii limit each other and cannot be enlarged independently.
 
 ### L8 — Biconvex Positive
 
-ne = 1.69401, νe = 54.48. Glass: Unmatched (LAK9-class lanthanum crown; supplier and melt unproven). f = +32.37 mm.
+ne = 1.69401, νe = 54.48. Glass: N-LAK9 (Schott catalog equivalent of LaK9; production supplier unspecified). f = +32.37 mm.
 
 L8 is the final positive biconvex singlet. It completes the second positive rear subgroup and leads into the long image-space back clearance needed by the retrofocus arrangement. Its inferred semi-diameter leaves the thinnest edge in the system, 0.388 mm.
 
 ## Glass Identification and Selection
 
-Five distinct glasses are used. A comparison of the patent’s ne and νe with the OHARA, HOYA, Schott, HIKARI, CDGM, and Sumita catalogs supports the following families:
+Five distinct glasses are used. A comparison of the patent’s ne and νe with the OHARA, HOYA, Schott, HIKARI, CDGM, and Sumita catalogs supports the following families and, in each, a catalog glass that reproduces the printed pair:
 
-| Elements | Patent ne | Patent νe | Glass class |
+| Elements | Patent ne | Patent νe | Glass class and catalog equivalent (catalog ne, νe) |
 |---|---:|---:|---|
-| L1, L3 | 1.48914 | 70.22 | FK5-class low-index crown |
-| L2 | 1.67133 | 41.64 | BASF6-class barium flint |
-| L4 | 1.67341 | 46.82 | BAF10/BAFN10-class barium flint |
-| L5, L7, L8 | 1.69401 | 54.48 | LAK9-class lanthanum crown |
-| L6 | 1.79180 | 25.87 | SF56-class dense flint |
+| L1, L3 | 1.48914 | 70.22 | FK5-class low-index crown: N-FK5, Schott (1.489143, 70.225) |
+| L2 | 1.67133 | 41.64 | BASF6-class barium flint: J-BASF6, HIKARI (1.671331, 41.596) |
+| L4 | 1.67341 | 46.82 | BAF10/BAFN10-class barium flint: N-BAF10, Schott (1.673411, 46.829) |
+| L5, L7, L8 | 1.69401 | 54.48 | LAK9-class lanthanum crown: N-LAK9, Schott (1.694013, 54.482) |
+| L6 | 1.79180 | 25.87 | SF56-class dense flint: SF56A, Schott (1.791799, 25.873) |
 
-Several current or discontinued catalog glasses are extremely close, some within the rounding of the printed values. That does not establish the supplier, melt, or composition used in the historical lens. The data therefore label each glass as an unmatched class and keep every patent ne/νe pair, referenced to the e line. Catalog dispersion data are not substituted for the patent values.
+The patent names no glass. Several current or discontinued catalog glasses are extremely close, some within the rounding of the printed values; that does not establish the supplier, melt, or composition used in the 1970 lens. The data label each element with the catalog glass listed above. The four Schott glasses agree with the printed values within 0.000003 in ne and 0.01 in νe; J-BASF6 agrees within 0.000001 in ne and is 0.04 low in νe. Every patent ne/νe pair is kept, referenced to the e line, and each label selects that glass’s catalog dispersion curve. The 1970 supplier and melts are not established.
 
-No d-line six-digit code is used to identify an e-line glass, and no catalog nC, nF, ng, or partial-dispersion value is entered as if it were a patent value. Color is therefore traced from each element’s e-line index and Abbe number alone. The chromatic results are approximate, with no claim of anomalous dispersion, secondary-spectrum correction, or APO performance.
+No d-line six-digit code is used to identify an e-line glass, and no catalog nC, nF, ng, or partial-dispersion value is entered as if it were a patent value. Each element is traced at the printed ne; at other wavelengths its index is the printed ne plus the index difference of the named catalog glass, so color follows the catalog curve anchored at the patent value. The chromatic results describe that catalog-equivalent model, not measured 1970 melts, with no claim of anomalous dispersion, secondary-spectrum correction, or APO performance.
 
 ## Focus Mechanism
 
@@ -127,11 +127,11 @@ All patent dimensions are scaled uniformly by 28. The system is all spherical, s
 
 The patent does not print the stop position. The model places the stop 2.0930 mm behind surface 8, leaving 0.9142 mm before surface 9: 0.70 of the 3.0072 mm diaphragm gap, taken from the PhotonsToPhotos reconstruction. The patent figure draws the diaphragm at 0.72 ± 0.07 of that gap, which is consistent. The stop semi-diameter of 6.750736 mm is set by real-ray tracing of the axial f/2.8 beam; it is not independent confirmation of a factory diaphragm. The corresponding paraxial exit/entrance pupil-diameter ratio is 2.049255, against the manufacturer’s rounded 2.06.
 
-All semi-diameters are inferred. Facing surfaces 12 and 13 use 7.8 mm instead of the secondary source’s 8.255 mm, the radius at which L6 and L7 would touch at their rims, as the patent figure draws them. At 7.8 mm the two surface sags take 0.89 of the air gap. The steepest rim slope is 49.5°, and the thinnest element edge is 0.388 mm.
+No semi-diameter is printed. The values follow the patent’s single drawing, by way of the secondary source and a re-measurement of the 300 dpi page; seven of the eight elements agree with the drawing within 2%. The drawing shows L6 and L7 with square-cut rims, 8.47 mm and 8.97 mm high, meeting at the edge. The Table III spheres of facing surfaces 12 and 13 meet at 8.265 mm, so only one of them can pass that height. Surface 13 follows L7’s drawn rim at 8.82 mm, the same as surface 14, and surfaces 11 and 12 are both 8.25 mm, which squares L6 against L7 just inside the contact height. At 8.25 mm the two surface sags take 0.996 of the air gap and leave 0.006 mm of air at the rim; the data set the gap allowance to 1.00 for this lens because the pair is drawn in edge contact. The steepest rim slope is 49.5°, and the thinnest element edge is 0.388 mm.
 
 Real rays clear the full axial f/2.8 beam, and chief rays through the stop center pass the whole ±38° field; the 36×24 mm format corner is reached at 37.98°. The data declare the patent’s 76° field explicitly because a first-order estimate from the modeled apertures gives only ±35.4°. Rays are still clipped at the modeled apertures.
 
-At f/2.8 a two-dimensional sample of the nominal entrance pupil transmits 98.87% at 22.8°, 89.15% at 30°, and 61.72% at 38°. These are geometric fractions for the inferred apertures, not measured relative illumination; they exclude cos⁴ falloff, coatings, absorption, diffraction, and factory tolerances. The smaller rims at surfaces 12 and 13 account for 2 to 4 percentage points of meridional transmission between 23° and 38°.
+At f/2.8 a two-dimensional sample of the nominal entrance pupil transmits 100.0% at 22.8°, 94.9% at 30°, and 68.3% at 38°. These are geometric fractions for the inferred apertures, not measured relative illumination; they exclude cos⁴ falloff, coatings, absorption, diffraction, and factory tolerances.
 
 The surface-by-surface Petzval sum is 0.006204587 mm⁻¹ at the e-line indices. This is the paraxial refracting-surface sum Σφ/(nn′), not a finite-field best-focus measurement.
 
@@ -142,6 +142,6 @@ The surface-by-surface Petzval sum is 0.006204587 mm⁻¹ at the e-line indices.
 3. Ernst Leitz GmbH, **Objectifs Leica R**, 1983, PDF page 6, code 11204. [Manufacturer catalog scan](https://summilux.net/documents/ObjectifsLeicaR_1983_HR.pdf).
 4. Ernst Leitz GmbH, **Leicaflex SL2 brochure**, XI/74, PDF page 22, optical cutaway artwork. [Manufacturer brochure scan](https://www.summilux.net/documents/BrochureLeicaflexSL2.pdf).
 5. Bill Claff / PhotonsToPhotos, **US 3,740,120 database Example 3**. Secondary source for a Table III reconstruction with its own stop position and apertures, which the patent does not print; not independent factory confirmation. [Prescription text](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/Data/US003740120_Example03P.txt).
-6. OHARA, HOYA, Schott, HIKARI, CDGM, and Sumita manufacturer glass catalogs, including current and discontinued glasses. Catalog agreement at the e line is cited only for family-level comparison.
+6. OHARA, HOYA, Schott, HIKARI, CDGM, and Sumita manufacturer glass catalogs, including current and discontinued glasses. Catalog agreement at the e line selects each labeled equivalent and its dispersion curve; it does not identify the 1970 supplier.
 7. Erwin Puts, **Leica R-Objektive, Kapitel 4: 28 mm und 35 mm Objektive**, September 2003, printed pages 1–2, 8, and 10: the 1970 lens, the 1994 Elmarit-R 28 mm f/2.8, and its floating element. [Chapter PDF](https://www.l-camera-forum.com/puts/04puts-kolumne-28-und-35-mm-leica-r-objektive_de.pdf).
 8. Leica Camera AG, **LEICA ELMARIT-R 28 mm f/2.8 technical data**, 2003: the later eight-element, seven-group lens with floating element. [Data sheet](https://125px.com/docs/manuals/lenses/35mm/slr/leica_r/Elmarit-R%2028%20mm%20Technical%20Data_en.pdf).

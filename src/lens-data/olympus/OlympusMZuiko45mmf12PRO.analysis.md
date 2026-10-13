@@ -154,13 +154,11 @@ The example gives d-line refractive indices and Abbe numbers only. Each pair was
 | HOYA FD225 | 1.80809 | 22.76 | +0.023135 | L13 |
 | HOYA BSC7 | 1.51680 | 64.20 | -0.001535 | plate F |
 
-The low-dispersion L6 and the high-dispersion L7 are the pair that the patent's Abbe-difference conditions address. That describes the intended balance of axial color; it does not support a numerical claim about secondary spectrum. HOYA lists FCD515 at νd 68.62 against the patent's 68.63, and the patent value is used. Olympus's four HR positions (L1, L2, L9, L11) are the four elements with nd above 1.9. [P1, ¶0045–0054; M3; G2]
+The low-dispersion L6 and the high-dispersion L7 are the pair that the patent's Abbe-difference conditions address. That describes the intended balance of axial color; it does not support a numerical claim about secondary spectrum. HOYA lists FCD515 at νd 68.62 against the patent's 68.63; the data file keeps the patent's value, and the traced dispersion is the catalog curve's. Olympus's four HR positions (L1, L2, L9, L11) are the four elements with nd above 1.9. [P1, ¶0045–0054; M3; G2]
 
-The C-, F- and g-line indices in the data file are not printed in the patent. They take the relative partial dispersions of the catalog glass and rescale them to the patent's nd and νd:
+The patent prints no indices at other wavelengths, and the data file stores none. Each element names the catalog glass at the patent's nd and νd, and the C-, F- and g-line indices used in color traces come from that glass's published dispersion curve. Those curves reproduce the printed nd to within 0.000005 and the printed νd to within 0.01. The rear filter is treated the same way.
 
-For the catalog glass, PdC = (nd,catalog − nC,catalog)/(nF,catalog − nC,catalog) and PgF = (ng,catalog − nF,catalog)/(nF,catalog − nC,catalog). The modeled span is Δn = (nd,patent − 1)/νd,patent, with nC = nd,patent − PdC·Δn, nF = nC + Δn and ng = nF + PgF·Δn. The stored deviation is ΔPgF = PgF − (0.6438 − 0.001682·νd,patent).
-
-This keeps the patent's d-line index and Abbe number exactly and takes only the shape of the dispersion curve from the catalog. The rear filter is treated the same way. The ΔPgF values in the table are therefore catalog-derived: the patent does not designate any glass as anomalous, and no apochromatic claim follows from them.
+ΔPgF in the table is the catalog glass's relative partial dispersion, PgF = (ng − nF)/(nF − nC), minus the normal line 0.6438 − 0.001682·νd at the patent's νd. The values are therefore catalog-derived: the patent does not designate any glass as anomalous, and no apochromatic claim follows from them.
 
 ## Focus Mechanism
 
@@ -204,7 +202,7 @@ The only aspherical surface is S10 (labeled 10A in the data file), the image-sid
 
 The patent prints no terms above A10, and the coefficients are used unscaled. The positive A4, A6 and A8 terms offset part of the negative sag of the spherical base toward the rim, which weakens this convex surface's positive power at the edge; the negative A10 term limits that trend. The patent does not state how the surface is made.
 
-At the estimated 17.0 mm semi-diameter of S10 the departure from the spherical base is +884.969076 µm. The surface slope is 1.119957° at that rim and at most 6.366956° inside it, with no reversal of sign. The 17.0 mm radius is an estimate, not a published effective diameter.
+At the estimated 15.3 mm semi-diameter of S10 the departure from the spherical base is +551.685208 µm. The surface slope is 3.948577° at that rim and at most 6.366956° inside it, with no reversal of sign. The 15.3 mm radius is an estimate read from Figure 1, not a published effective diameter.
 
 ## Conditional Expressions
 
@@ -243,9 +241,9 @@ The filter F is 4.0000 mm thick with nd = 1.51680 and νd = 64.20, 13.5159 mm be
 
 ### Estimated clear apertures
 
-The patent prints no effective diameters, so every semi-diameter is an estimate. Rims follow the ends of the curved surfaces in Figure 1 and exclude the drawn mounting flanges. The cemented triplet is the exception: it is drawn taller than the printed radii and thicknesses allow, since L8's edge thickness reaches zero at a semi-diameter of 18.46 mm.
+The patent prints no effective diameters, so every semi-diameter is an estimate read from Figure 1. The figure is drawn about 10 % taller than it is long. Its vertex spacings match the prescription at 11.05 px/mm along the axis (page rendered at 400 dpi), but its drawn surface curves fit the printed radii only at 12.20 px/mm across the axis, so heights are read at that vertical scale. Rims follow the ends of the curved surfaces and exclude the drawn mounting flanges.
 
-The triplet's shared radius is therefore 18.3 mm: the largest axial marginal-ray height over the three printed states, 16.898 mm at 0.5 m, plus 8 % and rounded up to 0.1 mm. That leaves L8 an edge 0.133 mm thick, the thinnest glass in the model and thinner than a manufactured edge would be, so the 18.3 mm rim is an upper bound rather than a production diameter. At their 17.7 mm rims L2 and L3 close to 0.895 of the axial gap between them, and across the stop S6 and S8 stay at least 3.257 mm apart. No surface profile reverses slope, and no neighboring surfaces touch at any focus position between the printed states.
+The cemented triplet is drawn with one square-cut rim, which reads 17.1 mm. At that height L6 and L8 keep edges of 1.110 mm and 1.089 mm, against about 1.18 mm drawn for each, and the rim clears the largest axial marginal-ray height over the three printed states, 16.898 mm at 0.5 m with the iris fixed, by 0.20 mm. Read at the horizontal scale instead, the same outline would stand at 18.9 mm, above the 18.46 mm at which L8's edge thickness reaches zero. At a height of 15.7 mm L2 and L3 close to 0.687 of the axial gap between them, and across the stop S6 and S8 stay at least 5.365 mm apart. No surface profile reverses slope, and no neighboring surfaces touch at any focus position between the printed states.
 
 ### Field angle and vignetting
 
@@ -259,7 +257,7 @@ The printed full field narrows slightly at the near states. Reading it as the an
 
 The patent does not say where its near-state angle is measured, so this reading is an inference from the agreement.
 
-At full aperture the axial beam and the chief ray of every field point pass unclipped at all three states. Off-axis beams are partly clipped by the estimated rims, from half field outward at infinity and from a quarter field at 0.5 m. That vignetting depends on the estimated semi-diameters and on the straight element edges drawn between them; it is not a published property of the lens. The ray model is geometric, at the d line, with a circular iris and no coating or absorption losses.
+At full aperture the axial beam and the chief ray of every field point pass unclipped at all three states. Off-axis beams are partly clipped by the estimated rims, from about 0.12 of the image height outward at infinity and from about 0.04 of it at 0.5 m; at the 10.82 mm corner a little under 60 % of the meridional beam height passes at infinity. That vignetting depends on the estimated semi-diameters and on the straight element edges drawn between them; it is not a published property of the lens. The ray model is geometric, at the d line, with a circular iris and no coating or absorption losses.
 
 ## Performance Evidence and Applicability
 

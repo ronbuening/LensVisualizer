@@ -115,8 +115,68 @@ Unit focus added. Erwin Puts, Leica R-Objektive, Kapitel 4 (September 2003), pre
 
 Fields changed in this pass. Data file: header comment, subtitle, specs, var, varLabels, closeFocusM and focusDescription (key and name were changed separately beforehand). Analysis: the identification paragraph on the three tables, the focus section, the former verification section (now "Model Scope and Limitations"), glass-section wording and two added sources. This file: stale pending markers closed in place and this section appended.
 
-Open: the glass strings remain "Unmatched (…)" although N-FK5 (elements 1 and 3), N-BAF10 (4), N-LAK9 (5, 7, 8) and SF56A (6) reproduce the patent ne/νe in the project catalog, and J-BASF6 matches element 2 to 0.04 in νe.
+Closed 2026-10-13 (was open): the glass strings read "Unmatched (…)" although N-FK5 (elements 1 and 3), N-BAF10 (4), N-LAK9 (5, 7, 8) and SF56A (6) reproduce the patent ne/νe in the project catalog, and J-BASF6 matches element 2 to 0.04 in νe. The strings now name those glasses; see the last section.
 
-Open: surfaces 12 and 13 could return to 8.255 mm with a gap allowance of 1.0.
+Closed 2026-10-13 (was open): surfaces 12 and 13 could return to 8.255 mm with a gap allowance of 1.0. Surface 12 is now 8.25 mm with `gapSagFrac` 1.00 and surface 13 follows L7's drawn rim at 8.82 mm; see the two sections below.
 
 Open: a Leitz document that states the focusing mechanism of the 1970 lens directly.
+
+## 2026-10-13 — Semi-diameter pass against the patent figure
+
+Source. `patents/US3740120A.pdf`, PDF page 2, the only drawing sheet (the front page says "3 Claims, 1 Drawing Figure" and carries a reduced copy of the same drawing). The drawing is shared by Tables I to III and is not labeled for Table III; the Table III prescription × 28 overlays it closely in every vertex and curvature, so proportions were read from it directly.
+
+Scale. The page is a 300 dpi one-bit scan (2320 × 3408 px), measured at native resolution on stroke centres. Vertex crossings in page pixels: r1 449.5, r2 522.5, r3 689.5, r4/r5 768 (one merged stroke), r6 817.5, r7 1060, r8 1243.5, r9 1319, r10 1423.5, r11 1496.5, r12 1528.5, r13 1569, r14/r15 1628 (merged), r16 1705. The r1–r16 span of 1255.5 px against 48.0956 mm gives 26.10 px/mm (38.3 µm/px); r3–r13 gives 26.12 and r7–r16 gives 26.09. The dash-dot axis is tilted 0.53° on the scan, so every rim is half the top-to-bottom span. Reading error is about ±0.1 mm (stroke width 6 to 10 px).
+
+| Surface | Before | Figure | After | Evidence |
+|---|---|---|---|---|
+| 1 | 17.69 | 17.82 | 17.69 | L1 front runs to the flat rim; retained (0.7%) |
+| 2 | 13.85 | 13.87 | 13.85 | inner end of the flat annulus on L1's rear; retained |
+| 3, 4 | 13.77 | 13.97 | 13.77 | L2, 1 mm flat rim; retained (1.5%) |
+| 5 | 11.8 | 11.90 | 11.8 | L3 front runs to the flat rim; retained |
+| 6 | 8.3 | 8.47 | 8.3 | inner end of the flat annulus on L3's rear; retained (2.0%) |
+| 7, 8 | 7.79 | 7.77 | 7.79 | L4 square-cut; retained |
+| STO | 6.7507 | 6.80 | 6.7507 | blade tips; not edited |
+| 9, 10 | 7.79 | 7.79 | 7.79 | L5 square-cut; retained |
+| 11 | 8.47 | 8.47 | 8.25 | L6 square-cut; held at the height where its rear face meets L7 |
+| 12 | 7.8 | 8.47 | 8.25 | L6 square-cut; meets L7 at this height, with `gapSagFrac` 1.00 (below) |
+| 13 | 7.8 | 8.97 | 8.82 | L7 square-cut, front face drawn to the rim; was 13% under |
+| 14 | 8.82 | 8.97 | 8.82 | L7 rear; retained (1.7%) |
+| 15, 16 | 10.61 | 10.59 | 10.61 | L8; retained |
+
+L6 and L7. The drawing shows both elements with square-cut rims, L7 standing 0.5 mm taller than L6, and the facing surfaces 12 and 13 running together into one stroke from about 7.3 mm up to L6's rim. That is what Table III predicts for 0.3 mm pen strokes: the two spheres close to 0.30 mm apart at 7.45 mm and meet at 8.265 mm. The stored 7.8 mm on both faces came from the default gap allowance, not from the drawing, and left both elements with rims tapering away from each other. The validator tests a facing pair at the smaller of the two rims, so one face can follow the drawing while the other stops. Surface 13 was given L7's rim (8.82 mm, as surface 14) because its mismatch was the larger and a chamfer on the thin L7 is the more visible error; L7 now renders square and taller than L6, as drawn. Surfaces 11 and 12 are both 8.25 mm, just inside the contact height, so L6 is square and its rear rim meets L7's front face. Surface 11 came down from 8.47 mm for that; the drawing also shows a bevel on L6's front corner above about 7 mm, so the sphere does not reach the full 8.47 mm there. Lowering surface 11 changes no traced value.
+
+Gap allowance for surface 12. The combined sag of surfaces 12 and 13 is 1.4275 mm of the 1.6044 mm gap at 7.8 mm (0.890), 1.5986 mm at 8.25 mm (0.996) and exceeds the gap at 8.27 mm. The largest rim admitted is 7.84 mm at `gapSagFrac` 0.90, 8.22 mm at 0.99 and 8.26 mm at 1.00. Surface 12 at 8.25 mm makes L6 square and puts its rear rim against L7 with 0.006 mm of air; the smallest two-decimal `gapSagFrac` that admits it is 1.00. The validator refuses 8.25 mm at 0.90, so this pass reported the pair and the coordinator then set surface 12 and `gapSagFrac` 1 together. Every other air gap stays at or below 0.76, and the render diagnostics report no trim. Surface 13 does not return to 8.255 mm; only surface 12 uses the allowance.
+
+Rays. Engine focal length 27.9988 mm, f/2.8, stop semi-diameter 6.7507 mm, declared half-field 38° and first-order tracing half-field 35.379° are the same before and after. The surface validator reports no errors, the image-circle audit reports 0 undersized, and traced field coverage is 100% at 38.0° (21.65 mm). The real-ray clearance probe at 21.63 mm image height shows no clipped axial ray and no blocked chief ray at infinity (ω = 37.98°) or at 0.30 m (ω = 36.46°); the axial f/2.8 ray reaches 6.59, 6.67 and 6.77 mm at surfaces 11, 12 and 13. Engine meridional transmission at f/2.8, at 23.4°, 26.3°, 35.1° and 38.0°: before 97.9, 93.2, 73.4 and 64.6%; after 100.0, 95.8, 77.1 and 67.2% (99.0, 94.3, 75.5 and 67.2% while surface 12 was still 7.8 mm). Surface 13 was the tighter of the two 7.8 mm rims; surface 12 now limits the pair.
+
+Analysis prose. The semi-diameter paragraph and the transmission sentence were rewritten for the new rims. The two-dimensional entrance-pupil fractions were recomputed with a uniform 401 × 401 grid over the paraxial entrance-pupil disk (radius 5.000 mm, 21.87 mm behind the first vertex): 100.0, 94.9 and 68.3% at 22.8°, 30° and 38° (98.6, 90.5 and 65.7% while surface 12 was still 7.8 mm). The same sampler gives 97.7, 88.8 and 62.1% for the rims before this pass, where the author's own sampler recorded 98.87, 89.15 and 61.72% (row F19 above), so the two methods differ by up to 1.2 points.
+
+Live check. The local page was viewed at infinity and at 0.30 m after the two rim edits, and again at infinity after surface 12 was set, and compared with the drawing at matched scale, with the model outline also laid over the scan. Seven elements coincide with the drawn outlines; L6 is square with its rear rim against L7, and L7 is square and taller than L6.
+
+Maker diagram. No maker image was viewed in this pass. The 2026-10-13 section above records the Leitz 11/70 brochure (code 11204) as showing "eight air-spaced singlets in the same order and shapes as the patent figure, with the diaphragm between L4 and L5"; no aspherical or special-glass element is marked. The patent drawing governs the rims.
+
+Limitations. The renderer closes a rim with a straight line from the front rim to the rear rim, so the flat mounting annuli drawn on the rear of L1 (13.87 to 17.82 mm) and L3 (8.47 to 11.90 mm) appear as chamfers; both optical extents agree with the drawing. L7 is 1.7% under its drawn height, and L6 is 2.6% under its drawn 8.47 mm, the most the contact height allows. The drawing is shared by three tables.
+
+## 2026-10-13 — Glass labels resolved and surface 12 squared
+
+Glass labels. The coordinator replaced the eight "Unmatched (…)" strings with the catalog glass that reproduces each printed e-line pair. No ne or νe changed. Catalog values below are evaluated from the project catalog's dispersion formulas at 546.074 nm, with νe on the F′ and C′ lines; they were recomputed independently in this pass and agree with the coordinator's figures.
+
+| Elements | Label before | Label after | Patent ne / νe | Catalog ne / νe | Δne | Δνe |
+|---|---|---|---|---|---:|---:|
+| L1, L3 | Unmatched (FK5-class low-index crown; supplier and melt unproven) | N-FK5 (Schott catalog equivalent of FK5; …) | 1.48914 / 70.22 | 1.489143 / 70.225 | +0.000003 | +0.005 |
+| L2 | Unmatched (BASF6-class barium flint; supplier and melt unproven) | J-BASF6 (HIKARI catalog equivalent of BaSF6, catalog νe 41.60; …) | 1.67133 / 41.64 | 1.671331 / 41.596 | +0.000001 | −0.044 |
+| L4 | Unmatched (BAF10/BAFN10-class barium flint; supplier and melt unproven) | N-BAF10 (Schott catalog equivalent of BaF10; …) | 1.67341 / 46.82 | 1.673411 / 46.829 | +0.000001 | +0.009 |
+| L5, L7, L8 | Unmatched (LAK9-class lanthanum crown; supplier and melt unproven) | N-LAK9 (Schott catalog equivalent of LaK9; …) | 1.69401 / 54.48 | 1.694013 / 54.482 | +0.000003 | +0.002 |
+| L6 | Unmatched (SF56-class dense flint; supplier and melt unproven) | SF56A (Schott catalog equivalent of SF56; …) | 1.7918 / 25.87 | 1.791799 / 25.873 | −0.000001 | +0.003 |
+
+Each new string continues "patent ne … / νe …; production supplier unspecified". Every element is traced at the printed ne; at the other traced lines its index is the printed ne plus the named glass's catalog index difference from the e line. The 1970 supplier and melts are not established, and no anomalous-dispersion or APO claim is made.
+
+Surface 12 and the gap allowance. The coordinator set surface 12 from 7.8 to 8.25 mm and `gapSagFrac` to 1 (default 0.90). Surfaces 11 and 12 are now both 8.25 mm, so L6 is square and its rear rim meets L7 as the drawing shows. The pair takes 1.5986 mm of the 1.6044 mm gap (0.996), leaving 0.006 mm of air; 0.99 admits only 8.22 mm. Every other air gap is at or below 0.76. On the file as it stands the surface validator reports no errors, the image-circle audit reports 0 undersized, traced field coverage is 100% at 38.0°, the render diagnostics report no trim, and the clearance probe shows no clipped axial ray and no blocked chief ray at infinity or at 0.30 m. Engine focal length 27.9988 mm, f/2.8, stop semi-diameter 6.7507 mm and the 38° declared half-field are unchanged.
+
+Transmission at f/2.8, recomputed on the file as it stands. Engine meridional curve at 23.4°, 26.3°, 35.1° and 38.0°: 97.9, 93.2, 73.4 and 64.6% with the authored rims (11 = 8.47, 12 = 13 = 7.8 mm); 99.0, 94.3, 75.5 and 67.2% after the semi-diameter pass; 100.0, 95.8, 77.1 and 67.2% now. Two-dimensional entrance-pupil sample (the sampler described in the section above) at 22.8°, 30° and 38°: 97.7, 88.8 and 62.1%; 98.6, 90.5 and 65.7%; 100.0, 94.9 and 68.3% now. The labels do not enter these figures, because the e-line indices are unchanged.
+
+Analysis. The "Glass:" line of every element, the table in "Glass Identification and Selection" (last column now "Glass class and catalog equivalent (catalog ne, νe)"), the two paragraphs after it, one sentence each under L2 and L6, and source 6 now state the catalog-anchored labels; the caveat on the 1970 supplier and melts and the sentence disclaiming anomalous dispersion, secondary-spectrum correction and APO performance are kept. The semi-diameter paragraph and the transmission sentence carry the 8.25 mm state. The analysis quotes no axial or lateral colour figure and no focus shift between spectral lines, so no chromatic number needed recomputing; its chromatic statements are qualitative and were reworded for the catalog-anchored trace.
+
+In this file. The two older open lines on glass strings and on surfaces 12 and 13 are closed in place, and the semi-diameter section above is restated for the 8.25 mm state.
+
+Live check. The local page at infinity shows L6 square at 8.25 mm with its rear rim against L7's front face and no overlap; L7 is square and taller.

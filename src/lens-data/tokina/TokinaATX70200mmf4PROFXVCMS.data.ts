@@ -14,15 +14,21 @@ import type { LensDataInput } from "../../types/optics.js";
  * about 6.3 mm out of focus, so zoomStep 0.5 makes the slider step from station to station.
  * Source inconsistencies: the printed zoom-gap sums are 42.32 / 42.32 / 42.31 mm, and the 0.01 mm tele difference
  * is kept as printed. Table 3 prints |FG4Y/FG4| = 0.540 where the prescription traces 0.5437 (sourceErrata).
- * Semi-diameters are inferred from the proportions of Figure 2 and checked against edge geometry and traced rays;
- * off-axis vignetting from these rims remains.
- * gapSagFrac 0.9549 is the smallest four-decimal value that admits the inferred s14 / s15 radii of 12.16 / 12.15 mm
- * (the tele F/4.1 axial ray needs 12.148 / 12.134 mm there): the two faces use 95.48 % of the 2.36 mm gap and keep
- * 0.107 mm of air at the rim.
+ * Semi-diameters are estimated from Figure 2 (200 ppi raster, 3.993 px/mm over the s1-s34 vertex span) and
+ * floor-checked by real-ray trace at the three stations. L5-L6, G3 and G4 follow the drawn rims, with the drawn
+ * cemented-joint steps at L5 / L6, L10 / L11 and L13 / L14. Two air-spaced pairs touch inside the drawn rims: s2 / s3
+ * at 29.04 mm (drawn 31.2 / 30.3 mm) and s14 / s15 at 12.43 mm (drawn 13.5 mm). G1 is therefore held at 0.93 of the
+ * drawing, keeping the drawn order L1 > L2 > L3 > L4 and square rims, and L7-L9 stay 6-10 % under it. s24 carries
+ * L14's 13.0 mm rim (the figure ends that curve near 11.4 mm, below the 12.06 mm the F/4.1 axial ray needs), and
+ * L18 keeps one 14.0 mm rim (the flat land drawn outside 12.4 mm on s31 is not modelled). Off-axis vignetting from
+ * these rims remains.
+ * gapSagFrac 0.96 is the smallest two-decimal value that admits s14 at 12.16 mm (the tele F/4.1 axial ray needs
+ * 12.148 mm there) beside s15: the two faces use 95.6 % of the 2.36 mm gap at that height and keep 0.10 mm of
+ * air. s15 takes L9's 12.5 mm rear rim, so L9 is square-cut as drawn.
  * Stop: the patent states about F/4.1 and no iris diameter, so the iris radius is computed from F/4.1 at each
  * station (13.32-13.33 mm); it is not a printed dimension.
- * nd / vd are as printed. Glass names are the catalog glasses that match them and supply the C, F and g line
- * indices; they do not identify the supplier. The stabilization doublet L15-L16 is modelled centred, and nothing
+ * nd / vd are as printed. Glass names are the catalog glasses that match them and supply the dispersion curve
+ * and dPgF; they do not identify the supplier. The stabilization doublet L15-L16 is modelled centred, and nothing
  * here describes close-focus, stabilized or production MTF performance.
  */
 const LENS_DATA = {
@@ -62,9 +68,6 @@ const LENS_DATA = {
       fl: -199.09969168407216,
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative front meniscus of the fixed subgroup G1X; air-spaced from L2",
-      nC: 1.7961055627673077,
-      nF: 1.827773968781163,
-      ng: 1.8472858512675383,
       dPgF: 0.015053668027861122,
     },
     {
@@ -79,9 +82,6 @@ const LENS_DATA = {
       fl: 257.6556262881089,
       glass: "S-PHM53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive meniscus of the fixed subgroup G1X",
-      nC: 1.600189289518681,
-      nF: 1.6094033375771257,
-      ng: 1.6143807031376118,
       dPgF: 0.0063959408339324675,
     },
     {
@@ -99,9 +99,6 @@ const LENS_DATA = {
       apdNote:
         "Tokina's construction diagram marks this element as SD glass (FK01); the patent prints only nd = 1.49700 and νd = 81.5 and names no glass.",
       role: "First positive element of the focus subgroup G1Y",
-      nC: 1.4951364052489096,
-      nF: 1.5012311244736123,
-      ng: 1.504506789458403,
       dPgF: 0.030742538991392454,
     },
     {
@@ -119,9 +116,6 @@ const LENS_DATA = {
       apdNote:
         "Tokina's construction diagram marks this element as SD glass (FK01); the patent prints only nd = 1.49700 and νd = 81.5 and names no glass.",
       role: "Second positive element of the focus subgroup G1Y",
-      nC: 1.4951364052489096,
-      nF: 1.5012311244736123,
-      ng: 1.504506789458403,
       dPgF: 0.030742538991392454,
     },
     {
@@ -136,9 +130,6 @@ const LENS_DATA = {
       fl: 88.32524535972566,
       glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive element of the front cemented doublet of the variator G2",
-      nC: 1.8364879394791955,
-      nF: 1.8720948800220796,
-      ng: 1.8941893765526123,
       dPgF: 0.016742550777214982,
       cemented: "D1",
     },
@@ -154,9 +145,6 @@ const LENS_DATA = {
       fl: -55.07403394874346,
       glass: "L-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Biconcave negative element of the front cemented doublet of the variator G2",
-      nC: 1.5138459058323628,
-      nF: 1.5219053544939998,
-      ng: 1.5262044696454842,
       dPgF: -0.002558334813007046,
       cemented: "D1",
     },
@@ -172,9 +160,6 @@ const LENS_DATA = {
       fl: -53.18129744723707,
       glass: "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative element of the second cemented doublet of the variator G2",
-      nC: 1.798816492622407,
-      nF: 1.816075837178681,
-      ng: 1.8256940394994021,
       dPgF: -0.008143737244217575,
       cemented: "D2",
     },
@@ -190,9 +175,6 @@ const LENS_DATA = {
       fl: 65.88733711933149,
       glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive element of the second cemented doublet of the variator G2",
-      nC: 1.8364879394791955,
-      nF: 1.8720948800220796,
-      ng: 1.8941893765526123,
       dPgF: 0.016742550777214982,
       cemented: "D2",
     },
@@ -208,9 +190,6 @@ const LENS_DATA = {
       fl: -42.48942294603724,
       glass: "S-LAH55 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Biconcave negative rear singlet of the variator G2",
-      nC: 1.8289752917073374,
-      nF: 1.84851955057791,
-      ng: 1.8595480610211823,
       dPgF: -0.0076947089450264405,
     },
     {
@@ -225,9 +204,6 @@ const LENS_DATA = {
       fl: 35.33690577626045,
       glass: "S-LAL7 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Biconvex positive element of the cemented compensator G3",
-      nC: 1.6482065190344424,
-      nF: 1.659335291174285,
-      ng: 1.6653742383811805,
       dPgF: -0.0025920779628301194,
       cemented: "D3",
     },
@@ -243,9 +219,6 @@ const LENS_DATA = {
       fl: -60.450358974592525,
       glass: "S-LAM66 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus cemented to L10 in the compensator G3",
-      nC: 1.7942746044819007,
-      nF: 1.817181618348259,
-      ng: 1.8306142083833468,
       dPgF: 0.0014663811893945722,
       cemented: "D3",
     },
@@ -264,9 +237,6 @@ const LENS_DATA = {
       apdNote:
         "Tokina's construction diagram marks this element as SD glass (FK01); the patent prints only nd = 1.49700 and νd = 81.6 and names no glass.",
       role: "Positive meniscus directly behind the stop; front element of the fixed subgroup G4X",
-      nC: 1.4951374776446764,
-      nF: 1.5012275045747954,
-      ng: 1.504509126705896,
       dPgF: 0.03230302590426204,
     },
     {
@@ -281,9 +251,6 @@ const LENS_DATA = {
       fl: -70.55164899956523,
       glass: "S-LAH60V (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative element of the cemented doublet of G4X",
-      nC: 1.827399147063951,
-      nF: 1.8498143572468078,
-      ng: 1.862832973453988,
       dPgF: -0.0004357506013965562,
       cemented: "D4",
     },
@@ -299,9 +266,6 @@ const LENS_DATA = {
       fl: 46.27054113846116,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive element of the cemented doublet of G4X",
-      nC: 1.4853439973490137,
-      nF: 1.4922847141496296,
-      ng: 1.4959636504067733,
       dPgF: 0.0043277423652714475,
       cemented: "D4",
     },
@@ -317,9 +281,6 @@ const LENS_DATA = {
       fl: 37.67083857590125,
       glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive element of the stabilization doublet G4Y",
-      nC: 1.8364879394791955,
-      nF: 1.8720948800220796,
-      ng: 1.8941893765526123,
       dPgF: 0.016742550777214982,
       cemented: "D5",
     },
@@ -335,9 +296,6 @@ const LENS_DATA = {
       fl: -21.176292358101744,
       glass: "S-LAM55 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Biconcave negative element of the stabilization doublet G4Y",
-      nC: 1.756385233465195,
-      nF: 1.775387664342339,
-      ng: 1.7863430312875654,
       dPgF: 0.00017269921044360537,
       cemented: "D5",
     },
@@ -353,9 +311,6 @@ const LENS_DATA = {
       fl: 60.20549255617132,
       glass: "S-BSM25 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Biconvex positive front singlet of the rear subgroup G4Z",
-      nC: 1.6545527833670168,
-      nF: 1.66749446061873,
-      ng: 1.6746912602347244,
       dPgF: -0.0020913850839844317,
     },
     {
@@ -370,9 +325,6 @@ const LENS_DATA = {
       fl: -60.84034539111274,
       glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus singlet of the rear subgroup G4Z",
-      nC: 1.8364879394791955,
-      nF: 1.8720948800220796,
-      ng: 1.8941893765526123,
       dPgF: 0.016742550777214982,
     },
     {
@@ -387,9 +339,6 @@ const LENS_DATA = {
       fl: 91.48790034992581,
       glass: "S-BAH27 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Biconvex positive last element of the rear subgroup G4Z",
-      nC: 1.6965028998555307,
-      nF: 1.7135141843463895,
-      ng: 1.7233230804737503,
       dPgF: 0.002109539072522204,
     },
   ],
@@ -408,7 +357,7 @@ const LENS_DATA = {
       d: 2.01,
       nd: 1,
       elemId: 0,
-      sd: 28.5,
+      sd: 29,
     },
     {
       label: "3",
@@ -416,7 +365,7 @@ const LENS_DATA = {
       d: 4.71,
       nd: 1.603,
       elemId: 2,
-      sd: 28,
+      sd: 28.2,
     },
     {
       label: "4",
@@ -424,7 +373,7 @@ const LENS_DATA = {
       d: 15.25,
       nd: 1,
       elemId: 0,
-      sd: 28.5,
+      sd: 28.2,
     },
     {
       label: "5",
@@ -432,7 +381,7 @@ const LENS_DATA = {
       d: 7.65,
       nd: 1.497,
       elemId: 3,
-      sd: 26.0,
+      sd: 27.0,
     },
     {
       label: "6",
@@ -440,7 +389,7 @@ const LENS_DATA = {
       d: 0.25,
       nd: 1,
       elemId: 0,
-      sd: 26.0,
+      sd: 27.0,
     },
     {
       label: "7",
@@ -448,7 +397,7 @@ const LENS_DATA = {
       d: 5.15,
       nd: 1.497,
       elemId: 4,
-      sd: 25.0,
+      sd: 26.2,
     },
     {
       label: "8",
@@ -456,7 +405,7 @@ const LENS_DATA = {
       d: 2.4,
       nd: 1,
       elemId: 0,
-      sd: 25.0,
+      sd: 26.2,
     },
     {
       label: "9",
@@ -464,7 +413,7 @@ const LENS_DATA = {
       d: 3.35,
       nd: 1.84666,
       elemId: 5,
-      sd: 14.5,
+      sd: 16.5,
     },
     {
       label: "10",
@@ -472,7 +421,7 @@ const LENS_DATA = {
       d: 1.5,
       nd: 1.51633,
       elemId: 6,
-      sd: 14.5,
+      sd: 16.0,
     },
     {
       label: "11",
@@ -480,7 +429,7 @@ const LENS_DATA = {
       d: 2.75,
       nd: 1,
       elemId: 0,
-      sd: 14.5,
+      sd: 16.0,
     },
     {
       label: "12",
@@ -496,7 +445,7 @@ const LENS_DATA = {
       d: 3.18,
       nd: 1.84666,
       elemId: 8,
-      sd: 12.5,
+      sd: 13.0,
     },
     {
       label: "14",
@@ -512,7 +461,7 @@ const LENS_DATA = {
       d: 1.2,
       nd: 1.83481,
       elemId: 9,
-      sd: 12.15,
+      sd: 12.5,
     },
     {
       label: "16",
@@ -528,7 +477,7 @@ const LENS_DATA = {
       d: 6.33,
       nd: 1.6516,
       elemId: 10,
-      sd: 14.5,
+      sd: 14.0,
     },
     {
       label: "18",
@@ -584,7 +533,7 @@ const LENS_DATA = {
       d: 6.91,
       nd: 1.48749,
       elemId: 14,
-      sd: 14,
+      sd: 13.0,
     },
     {
       label: "25",
@@ -592,7 +541,7 @@ const LENS_DATA = {
       d: 12.62,
       nd: 1,
       elemId: 0,
-      sd: 14,
+      sd: 13.0,
     },
     {
       label: "26",
@@ -600,7 +549,7 @@ const LENS_DATA = {
       d: 3.47,
       nd: 1.84666,
       elemId: 15,
-      sd: 13,
+      sd: 11.5,
     },
     {
       label: "27",
@@ -608,7 +557,7 @@ const LENS_DATA = {
       d: 1.2,
       nd: 1.762,
       elemId: 16,
-      sd: 13,
+      sd: 11.5,
     },
     {
       label: "28",
@@ -616,7 +565,7 @@ const LENS_DATA = {
       d: 5.73,
       nd: 1,
       elemId: 0,
-      sd: 13,
+      sd: 11.5,
     },
     {
       label: "29",
@@ -762,6 +711,6 @@ const LENS_DATA = {
       note: "Table 3 prints |FG4Y/FG4| = 0.540, but the printed prescription traces 0.5437; no value is changed.",
     },
   ],
-  gapSagFrac: 0.9549,
+  gapSagFrac: 0.96,
 } satisfies LensDataInput;
 export default LENS_DATA;

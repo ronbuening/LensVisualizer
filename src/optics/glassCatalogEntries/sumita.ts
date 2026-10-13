@@ -657,4 +657,25 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for K-LaK10. It shares a six-digit code with other vendors' rows, so code6 is omitted.",
   },
+  /* October 2026 patent-batch coverage additions (JP 6814931 B2 L6; US 3,591,257 Example 3 L3). */
+  {
+    name: "K-CSK120",
+    vendor: "Sumita",
+    polynomial: [2.4804566, -0.01071977, 0.0135632, 0.00034918608, -0.000023041786, 0.0000015937217],
+    nd: 1.586986,
+    vd: 59.479,
+    PgF: 0.5405,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for K-CSK120. nd and vd are the polynomial's values (the catalog line lists 1.58700 / 59.6, code 587596); code6 is omitted because the polynomial does not reproduce that pair to the code's precision. The molding-state row is K-CSK120-M.",
+  },
+  {
+    name: "K-LaSFn16",
+    vendor: "Sumita",
+    polynomial: [3.124535, -0.014985014, 0.024795878, 0.00096271556, -0.000064587038, 0.0000046162437],
+    nd: 1.7883,
+    vd: 47.42,
+    PgF: 0.5548,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for K-LaSFn16 (LaF21 type; ne 1.79226, νe 47.17). It shares a six-digit code with another vendor's row, so code6 is omitted.",
+  },
 ];

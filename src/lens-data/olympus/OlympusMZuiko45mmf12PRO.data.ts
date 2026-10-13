@@ -17,24 +17,27 @@ import type { LensDataInput } from "../../types/optics.js";
  * between the printed states are interpolated.
  * The printed 4 mm filter and the 1 mm air gap behind it are traced through
  * rearPlates at the printed distances, not folded into an air-equivalent gap.
- * SEMI-DIAMETERS: estimated; the patent prints no clear apertures. Rims follow the
- * Figure 1 curve endpoints, excluding the drawn flanges at S4, S6, S8, S18 and S23.
- * The cemented triplet is drawn taller than the printed radii allow (L8's edge
- * thickness reaches zero at 18.46 mm), so S11–S14 use the largest axial
- * marginal-ray height over the three printed states (16.90 mm) plus 8 %, rounded
- * up to 18.3 mm. No radius, spacing or index was adjusted.
+ * SEMI-DIAMETERS: estimated from patent Figure 1; the patent prints no clear
+ * apertures. The figure is drawn about 10 % taller than it is long (at 400 dpi,
+ * 11.05 px/mm along the axis and 12.20 px/mm across it), so heights use the
+ * vertical scale that makes the drawn surface curves fit the printed radii. Rims
+ * follow the curve endpoints, excluding the drawn flanges at S4, S6, S8, S18 and
+ * S23. The cemented triplet is drawn square-cut at 17.1 mm, where L6 and L8 keep
+ * 1.1 mm edges. Every rim clears the axial marginal ray at the three printed
+ * states with the iris fixed (least margin 0.20 mm, S14 at 0.5 m) and the corner
+ * chief ray. No radius, spacing or index was adjusted.
  * STOP: position printed. The radius is set so that the infinity f-number equals
  * the printed 1.28 (nominalFno); it is not a measured diaphragm size.
  * GLASS: each element names the catalog glass at the patent's nd/νd; supplier and
- * melt are not identified. nC/nF/ng follow that catalog glass's dispersion curve,
- * rescaled to the patent's nd and νd; dPgF is measured from the line
- * 0.6438 − 0.001682·νd. No apochromatic claim is made.
+ * melt are not identified. Each element traces on that catalog glass's dispersion
+ * curve; dPgF is the catalog value measured from the line 0.6438 − 0.001682·νd.
+ * No apochromatic claim is made.
  * SOURCE NOTES: condition (5) prints 43.82 where the printed νd give 43.83; ¶0046
  * calls G3 positive, while the claims, ¶0071 and the prescription make it negative.
  */
 
 const LENS_DATA = {
-  key: "olympus-m-zuiko-45mm-f12-pro",
+  key: "olympus-mzuiko-digital-ed-45mm-f12-pro",
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL ED 45mm f/1.2 PRO",
   subtitle: "JP 2019-023693 A, Example 1 — qualified production correlation",
@@ -68,9 +71,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 67.960052,
       glass: "S-LAH98 (OHARA, coordinate equivalent)",
-      nC: 1.9451401244651128,
-      nF: 1.974649716049271,
-      ng: 1.9920762685605677,
       dPgF: 0.0011008268048301462,
       apd: false,
       role: "Plano-convex front element of the fixed, weakly positive G1; an HR position in Olympus's diagram.",
@@ -85,9 +85,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 180.614377,
       glass: "E-FDS1 (HOYA, coordinate equivalent)",
-      nC: 1.9103758407176694,
-      nF: 1.9545741165797383,
-      ng: 1.9828154925427415,
       dPgF: 0.030290242252458133,
       apd: false,
       role: "Positive meniscus of fixed G1, convex to the object; an HR position in Olympus's diagram.",
@@ -102,9 +99,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -41.037395,
       glass: "E-FD2 (HOYA, coordinate equivalent)",
-      nC: 1.6421025011900383,
-      nF: 1.6612422766037498,
-      ng: 1.6725808090402121,
       dPgF: 0.005525645041737248,
       apd: false,
       role: "Negative meniscus closing fixed G1 just ahead of the stop; it leaves G1 only weakly positive.",
@@ -119,9 +113,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -18.281049,
       glass: "FF8 (HOYA, coordinate equivalent)",
-      nC: 1.7435217159705227,
-      nF: 1.773546067267928,
-      ng: 1.7921375145127114,
       dPgF: 0.01754638740719472,
       apd: false,
       role: "Negative front member of the cemented doublet G2a, the first lens behind the stop.",
@@ -137,9 +128,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 24.045506,
       glass: "M-TAFD305 (HOYA, coordinate equivalent)",
-      nC: 1.845052630388963,
-      nF: 1.8662833037056712,
-      ng: 1.8783745655600745,
       dPgF: -0.006833270180797935,
       apd: false,
       role: "Positive rear member of cemented G2a; its rear surface S10 is the only asphere, as in Olympus's diagram.",
@@ -155,9 +143,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 47.486961,
       glass: "FCD515 (HOYA, coordinate equivalent)",
-      nC: 1.5902020078058132,
-      nF: 1.5988399212547422,
-      ng: 1.6035399424888954,
       dPgF: 0.015751002430986927,
       apd: "inferred",
       apdNote:
@@ -175,9 +160,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -24.453757,
       glass: "S-NBH56 (OHARA, coordinate equivalent)",
-      nC: 1.8448769752325909,
-      nF: 1.8793439107164618,
-      ng: 1.9004476619299622,
       dPgF: 0.01020334718033511,
       apd: false,
       role: "High-dispersion negative middle member of the G2b cemented triplet.",
@@ -193,9 +175,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 28.614498,
       glass: "TAFD32 (HOYA, coordinate equivalent)",
-      nC: 1.8643517202767421,
-      nF: 1.8857290833997473,
-      ng: 1.8978763166436752,
       dPgF: -0.00706334704585132,
       apd: false,
       role: "Positive rear member of the G2b cemented triplet.",
@@ -211,9 +190,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 52.941265,
       glass: "E-FDS1 (HOYA, coordinate equivalent)",
-      nC: 1.9103758407176694,
-      nF: 1.9545741165797383,
-      ng: 1.9828154925427415,
       dPgF: 0.030290242252458133,
       apd: false,
       role: "Fixed positive element closing G2b, ahead of the focusing gap; an HR position in Olympus's diagram.",
@@ -228,9 +204,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -51.999822,
       glass: "E-FL6 (HOYA, coordinate equivalent)",
-      nC: 1.5633894046065737,
-      nF: 1.5766321683787492,
-      ng: 1.5842380034543493,
       dPgF: 0.002595832687554145,
       apd: false,
       role: "Single negative focusing element (G3); it moves toward the image for near focus.",
@@ -245,9 +218,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 28.175536,
       glass: "E-FDS1 (HOYA, coordinate equivalent)",
-      nC: 1.9103758407176694,
-      nF: 1.9545741165797383,
-      ng: 1.9828154925427415,
       dPgF: 0.030290242252458133,
       apd: false,
       role: "Positive front element of the fixed rear group G4; an HR position in Olympus's diagram.",
@@ -262,9 +232,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 44.402106,
       glass: "TAFD32 (HOYA, coordinate equivalent)",
-      nC: 1.8643517202767421,
-      nF: 1.8857290833997473,
-      ng: 1.8978763166436752,
       dPgF: -0.00706334704585132,
       apd: false,
       role: "Positive front member of the G4 cemented doublet; its front surface is nearly flat (R = 1000 mm).",
@@ -280,9 +247,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -18.236023,
       glass: "FD225 (HOYA, coordinate equivalent)",
-      nC: 1.7979895646922313,
-      nF: 1.833494397732653,
-      ng: 1.8558145927090692,
       dPgF: 0.023134620688329943,
       apd: false,
       role: "Negative rear member of the G4 cemented doublet.",
@@ -298,9 +262,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 84.566799,
       glass: "TAFD32 (HOYA, coordinate equivalent)",
-      nC: 1.8643517202767421,
-      nF: 1.8857290833997473,
-      ng: 1.8978763166436752,
       dPgF: -0.00706334704585132,
       apd: false,
       role: "Positive meniscus closing fixed G4, convex to the object; the last element before the filter.",
@@ -313,7 +274,7 @@ const LENS_DATA = {
       d: 5.7367,
       nd: 1.95375,
       elemId: 1,
-      sd: 26.2,
+      sd: 23.6,
     },
     {
       label: "2",
@@ -321,7 +282,7 @@ const LENS_DATA = {
       d: 0.5471,
       nd: 1.0,
       elemId: 0,
-      sd: 26.2,
+      sd: 23.6,
     },
     {
       label: "3",
@@ -329,7 +290,7 @@ const LENS_DATA = {
       d: 4.3742,
       nd: 1.92286,
       elemId: 2,
-      sd: 20.9,
+      sd: 18.8,
     },
     {
       label: "4",
@@ -337,7 +298,7 @@ const LENS_DATA = {
       d: 3.5949,
       nd: 1.0,
       elemId: 0,
-      sd: 17.7,
+      sd: 15.7,
     },
     {
       label: "5",
@@ -345,7 +306,7 @@ const LENS_DATA = {
       d: 1.0,
       nd: 1.64769,
       elemId: 3,
-      sd: 17.7,
+      sd: 16.2,
     },
     {
       label: "6",
@@ -353,7 +314,7 @@ const LENS_DATA = {
       d: 7.1072,
       nd: 1.0,
       elemId: 0,
-      sd: 15.0,
+      sd: 13.4,
     },
     {
       label: "STO",
@@ -369,7 +330,7 @@ const LENS_DATA = {
       d: 1.0,
       nd: 1.75211,
       elemId: 4,
-      sd: 14.2,
+      sd: 12.7,
     },
     {
       label: "9",
@@ -377,7 +338,7 @@ const LENS_DATA = {
       d: 7.5177,
       nd: 1.85135,
       elemId: 5,
-      sd: 17.0,
+      sd: 15.3,
     },
     {
       label: "10A",
@@ -385,7 +346,7 @@ const LENS_DATA = {
       d: 0.1629,
       nd: 1.0,
       elemId: 0,
-      sd: 17.0,
+      sd: 15.3,
     },
     {
       label: "11",
@@ -393,7 +354,7 @@ const LENS_DATA = {
       d: 6.5884,
       nd: 1.59282,
       elemId: 6,
-      sd: 18.3,
+      sd: 17.1,
     },
     {
       label: "12",
@@ -401,7 +362,7 @@ const LENS_DATA = {
       d: 0.8,
       nd: 1.85478,
       elemId: 7,
-      sd: 18.3,
+      sd: 17.1,
     },
     {
       label: "13",
@@ -409,7 +370,7 @@ const LENS_DATA = {
       d: 7.3908,
       nd: 1.8707,
       elemId: 8,
-      sd: 18.3,
+      sd: 17.1,
     },
     {
       label: "14",
@@ -417,7 +378,7 @@ const LENS_DATA = {
       d: 0.15,
       nd: 1.0,
       elemId: 0,
-      sd: 18.3,
+      sd: 17.1,
     },
     {
       label: "15",
@@ -425,7 +386,7 @@ const LENS_DATA = {
       d: 4.4981,
       nd: 1.92286,
       elemId: 9,
-      sd: 19.0,
+      sd: 17.0,
     },
     {
       label: "16",
@@ -433,7 +394,7 @@ const LENS_DATA = {
       d: 1.7,
       nd: 1.0,
       elemId: 0,
-      sd: 19.0,
+      sd: 17.0,
     },
     {
       label: "17",
@@ -441,7 +402,7 @@ const LENS_DATA = {
       d: 0.7,
       nd: 1.56732,
       elemId: 10,
-      sd: 16.5,
+      sd: 14.8,
     },
     {
       label: "18",
@@ -449,7 +410,7 @@ const LENS_DATA = {
       d: 9.5346,
       nd: 1.0,
       elemId: 0,
-      sd: 14.6,
+      sd: 13.0,
     },
     {
       label: "19",
@@ -457,7 +418,7 @@ const LENS_DATA = {
       d: 5.2311,
       nd: 1.92286,
       elemId: 11,
-      sd: 14.8,
+      sd: 13.3,
     },
     {
       label: "20",
@@ -465,7 +426,7 @@ const LENS_DATA = {
       d: 0.3677,
       nd: 1.0,
       elemId: 0,
-      sd: 14.8,
+      sd: 13.3,
     },
     {
       label: "21",
@@ -473,7 +434,7 @@ const LENS_DATA = {
       d: 3.4186,
       nd: 1.8707,
       elemId: 12,
-      sd: 14.0,
+      sd: 12.5,
     },
     {
       label: "22",
@@ -481,7 +442,7 @@ const LENS_DATA = {
       d: 0.8,
       nd: 1.80809,
       elemId: 13,
-      sd: 14.0,
+      sd: 12.5,
     },
     {
       label: "23",
@@ -489,7 +450,7 @@ const LENS_DATA = {
       d: 2.2933,
       nd: 1.0,
       elemId: 0,
-      sd: 11.8,
+      sd: 10.7,
     },
     {
       label: "24",
@@ -497,7 +458,7 @@ const LENS_DATA = {
       d: 2.5209,
       nd: 1.8707,
       elemId: 14,
-      sd: 13.1,
+      sd: 11.8,
     },
     {
       label: "25",
@@ -505,7 +466,7 @@ const LENS_DATA = {
       d: 13.5159,
       nd: 1.0,
       elemId: 0,
-      sd: 13.1,
+      sd: 11.8,
     },
   ],
   rearPlates: [
@@ -519,9 +480,6 @@ const LENS_DATA = {
       source:
         "JP 2019-023693 A, Example 1, surfaces 26–27: 4 mm filter plate and 1 mm air gap to the image, as printed; dispersion follows a BSC7-type curve at the printed nd/νd",
       indexReference: "d",
-      nC: 1.5143205455328304,
-      nF: 1.5223703897695904,
-      ng: 1.5266712668158835,
       dPgF: -0.001534821416379395,
     },
   ],

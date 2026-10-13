@@ -512,6 +512,55 @@ Fields changed in this pass. Data file: header comment, subtitle, specs, the fou
 
 Open: the choice between the printed-iris aperture (f/1.321, current) and the patent's stated f/1.4 is undecided.
 
-Open: the two finiteConjugates source strings still carry the earlier wording.
+Closed 2026-10-13: the two finiteConjugates source strings now read "EP 2 321 688 B1, Table 1, focus position F2 / F3: printed gaps; object distance with the optional front filter replaced by its air-equivalent thickness."
 
-Open: ¶0046 names the glass of L3, L6, L9, L13, L14 and L16 as abnormal-dispersion and claim 10 does the same for L18, but no element carries an apd tag; the 40 mm and 100 mm sibling files tag theirs “patent”.
+Closed 2026-10-13: L3, L6, L9, L13, L14 and L16 (¶0046: S-FPL51 and S-FPL53 named as abnormal-dispersion glasses) and L18 (claim 10; S-NPH1) now carry `apd: "patent"` with the paragraph or claim cited in `apdNote`, as the 40 mm and 100 mm sibling files do.
+
+## 2026-10-13 — Semi-diameter pass against the patent figure
+
+Result. No semi-diameter was changed. All 34 stored `sd` values equal the “Aperture Half Diameter” column of EP 2 321 688 B1 Table 1 (pages 7–8, typeset text, read from the text layer and from 170 dpi renders of both pages), including the 15.80 mm stop. Radius and separation were compared in the same pass and also agree on all 34 surfaces. The printed column governs over figure readings, so the figures were used to confirm the table and the rendered section, not to set values. The only file edit is a four-line semi-diameter note in the data-file header; the analysis is unchanged because no aspheric aperture moved (6A 26.45 mm, 32A 20.05 mm).
+
+Figures used. `patents/EP2321688B1.pdf` page 31 (Figure 7, a 300 ppi bilevel raster printed sideways) and page 32 (Figures 8a–8c). Figure 7 is drawn at focus position F2, not at infinity: the drawn S6–S7 gap measures 8.7 mm (Table 1: 7.955 / 8.654 / 9.612 at F1 / F2 / F3), S21–S23 measures 7.3 mm (9.099 / 7.501 / 5.665) and S36 to the image measures 45.7 mm (44.800 / 45.699 / 46.577). It was therefore compared with the model at the middle keyframe, and Figures 8a and 8c with the infinity and nearest keyframes.
+
+Scale. Figure 7 axial scale is 10.29 px/mm at 300 dpi: S1 vertex to the image plane is 1989.5 px for 193.273 mm, S7 to S36 is 1275 px for 123.873 mm (10.29) and S7 to S21 is 687 px for 66.934 mm (10.26); the sheet's 25.00 mm bar measures 259 px (10.36). The radial scale is 10.48 px/mm: the image line is 293 px long for the 28 mm image diagonal (10.46), and the S8 arc (R = 22.024 mm) read at 130, 150, 165 and 175 px off axis on both sides gives 10.55, 10.49, 10.51 and 10.47. The sheet is thus about 2% taller than wide and is sheared by about 0.7°; both were removed for the overlays. Figures 8a and 8c are 7.47 px/mm axially (S1 to image 1444.5 px and 1443 px) and about 7.4 px/mm radially (image line 208 px and 206 px for 28 mm); their “33.33 MM” bar measures 238 px (7.14 px/mm), 4.5% short of the prescription scale, so the bar was not used.
+
+What the figure draws. Rim heights were read on both sides of the axis from the flat edge runs (±1 px, about ±0.1 mm; the radial scale adds about ±0.5%). Every element is drawn with a square-cut edge that stands 1.1–1.8 mm above the larger printed half-diameter of that element, a ratio of 1.05–1.07; where the two faces have different printed apertures the smaller face is stepped out to the edge with a flat annulus. Surface arcs coincide with the modeled surfaces out to the printed apertures in all three overlays, and the figure's marginal rays graze the printed rims. The excess is a mechanical edge allowance, which a per-surface clear aperture cannot carry and which would remove real vignetting if it were added to `sd`.
+
+| Element | Surfaces | Printed = stored sd (mm) | Figure 7 edge (mm) | Edge − larger printed (mm) | Rim as drawn |
+| ------- | -------- | ------------------------ | -----------------: | -------------------------: | ------------ |
+| L2 | 3 / 4 | 38.13 / 37.07 | 39.9 | +1.8 | narrow cap |
+| L3 | 5 / 6A | 30.10 / 26.45 | 31.7 | +1.6 | square block, flat annulus on 6A |
+| L4 | 7 / 8 | 22.90 / 17.47 | 24.3 | +1.4 | square block, flat annulus on 8 |
+| L5 | 9 / 10 | 17.47 / 17.51 | 18.8 | +1.3 | narrow cap |
+| L6 | 11 / 12 | 17.48 / 18.79 | 20.1 | +1.3 | square block, flat annulus on 11 |
+| L7 | 13 / 14 | 20.79 / 20.81 | 22.2 | +1.4 | narrow cap |
+| L8 | 15 / 16 | 20.21 / 19.90 | 21.5 | +1.3 | narrow cap |
+| L9 | 17 / 18 | 15.96 / 15.92 | 17.1 | +1.1 | narrow cap |
+| L10 + L11 | 19 / 20 / 21 | 15.74 / 15.74 / 16.28 | 17.5 | +1.2 | one square top across the doublet |
+| L12 | 23 / 24 | 15.73 / 16.57 | 17.8 | +1.2 | square block |
+| L13 | 25 / 26 | 16.99 / 17.31 | 18.6 | +1.3 | narrow cap |
+| L14 + L15 | 27 / 28 / 29 | 17.88 / 17.95 / 18.89 | 20.1 | +1.2 | one top across the doublet, chamfered at 29 |
+| L16 | 30 / 31 | 17.91 / 17.78 | 19.2 | +1.3 | short step below L17 |
+| L17 | 31 / 32A | 17.78 / 20.05 | 21.4 | +1.3 | square block, flat annulus on its front face |
+| L18 | 33 / 34 | 20.42 / 20.75 | 22.0 | +1.3 | narrow cap |
+| L19 | 35 / 36 | 21.27 / 21.41 | 22.7 | +1.3 | narrow cap |
+
+The omitted filter L1 is drawn at 43.3 mm against its printed 41.46 mm. The order of heights between neighbours is the same in the figure and in the table for all 15 adjacent pairs (L2 > L3 > L4 > L5 < L6 < L7 > L8 > L9 < L10–L11 < L12 < L13 < L14–L15 > L16 < L17 < L18 < L19), and the L17-over-L16 step is 2.2 mm drawn against 2.14 mm printed, so no comparative step needed correcting.
+
+Rendered section. The local page was captured at infinity, at the middle keyframe and at the nearest keyframe, and the element outlines were taken from the rendered diagram and laid over Figures 8a, 7 and 8c at matched scale. Vertices, curvatures and the three group positions coincide with the drawings within the line width; the image plane stays fixed while L4 moves 0.699 mm and 1.657 mm toward the image and L19 moves 0.899 mm and 1.777 mm toward the object. All 18 elements render at their full printed half-diameters in the three states (largest difference 0.0000 mm, no hidden trim). The remaining difference from the figure is the edge treatment: the diagram joins the two printed rims of an element with a straight edge, so L3, L4, L6, L12, L17 and the outer members of the doublets show a sloped rim where the figure shows a square block about 1.3 mm taller.
+
+Clearance at the stored values. The image-circle check reports no undersized surface. The surface validator reports no errors at the file's `gapSagFrac` of 0.9705; the same data are rejected at 0.97 (S8–S9 sag 8.95 mm against 8.943 mm allowed) and at the default 0.90 (S8–S9 and S10–S11), so no printed rim is held below its value, and the smallest two-decimal setting that would admit them is 0.98. Field coverage is 100%: the chief ray reaches 14.00 mm at 38.04°, 37.67° and 37.12° for the three keyframes and stays inside every printed aperture (closest in proportion: 23.7–24.6 mm at S5 against 30.10 mm, and 29.6–30.6 mm at S3 against 38.13 mm). Aspheric surface 32A reverses slope near 15.3 mm, inside its printed 20.05 mm aperture; that is the printed design, not an extrapolation, and the value stays.
+
+On-axis beam at the file's f/1.321. The axial ray through the edge of the 15.80 mm stop was traced at each keyframe. At infinity it exceeds the printed half-diameters of S17–S21 by 0.074, 0.082, 0.081, 0.083 and 0.089 mm and clears S23–S26 by 0.012–0.065 mm. At F2 with the object 532.3 mm from the image it fills S23–S26 to within 0.008 mm and exceeds none by more than 0.001 mm. At F3 with the object 341.6 mm from the image it exceeds S23–S36 by 0.005–0.141 mm, the most at S35. With a 14.86 mm stop radius (f/1.4 at infinity) the axial ray clears every printed aperture at all three keyframes by more than 0.1 mm. The repository's aperture audit asks for 16.04 / 16.01 / 15.83 / 15.83 / 16.37 mm on S17–S21 to pass the f/1.321 ray; those raises were not made because the printed apertures govern and the aperture basis is an open decision.
+
+Unchanged engine values. EFL 18.258 mm, f/1.3210, stop radius 15.80 mm, half-field estimate 42.04° and traced corner field 38.0° are the same before and after, since no `sd` moved.
+
+Maker comparison. No manufacturer diagram was viewed in this pass. The deployment validation section above records that Leitz publishes no optical section or element count for this lens, so the patent figure is the only drawing the section can be compared with.
+
+Open limitations. The aperture basis (printed iris against the stated f/1.4) is still undecided, and the on-axis overfill listed above follows from it. The figure's mechanical edges and flat annuli are not represented. Figures 8a and 8c were overlaid but not measured element by element. The automatic figure screen was not run because Figure 7 carries ray bundles, leader lines and group boxes through every rim.
+
+## 2026-10-13 — Glass fields
+
+The 18 elements' `nC`, `nF` and `ng` were removed. They were copies of the current OHARA catalog values for the named glass (equal to the repository's catalog rows to 1e-15), so each element now traces on the same catalog curve directly instead of on three stored lines. Every `glass` label resolves to its named row (18 of 18), and `dPgF` is unchanged. Seven elements gained `apd: "patent"` as recorded above. No radius, thickness, index, Abbe number, semi-diameter or aperture value changed.
+
+Open: at f/1.321 the stop-edge axial ray exceeds the printed half-diameters of S17–S21 by 0.074–0.089 mm at infinity and of S23–S36 by up to 0.141 mm at the nearest state; a 14.86 mm stop (f/1.4) clears every printed aperture at all three states. This follows from the undecided aperture basis above.

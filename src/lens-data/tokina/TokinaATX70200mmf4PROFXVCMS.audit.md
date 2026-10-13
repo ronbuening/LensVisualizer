@@ -39,6 +39,8 @@ The final spectral proxy palette has 14 OHARA coordinate classes and HOYA FCD1 f
 
 ## Inferred apertures and minimum gap allowance
 
+Superseded 2026-10-13: the radii and the 95.49 % allowance below are the delivered state; the file now carries the rims of "Semi-diameter pass against the patent figure" and the 0.96 allowance of "Glass fields and gap allowance", both at the end of this log.
+
 The author first estimated clear radii from Figure 2. A direct figure-scaled 31 mm front boundary created overlap under the printed spacing and was rejected. Default 90% valid alternatives then clipped the native full-aperture tele axial bundle at s12 and, after s12 enlargement, s15. Tightening the iris or altering printed radii/gaps would change the source target and was not accepted as an alternative.
 
 The governing s14/s15 boundaries were refined independently. The native tele marginal heights are 12.147862871/12.134446840 mm. The selected 12.16/12.15 mm radii are the smallest on a 0.01 mm grid preserving at least 0.01 mm radial clearance beyond these axial ray heights. They leave 0.012137129/0.015553160 mm of radial clearance. The earlier equal 12.16 mm trial required 95.65%; the reviewer’s asymmetric refinement reduced the necessary policy.
@@ -116,4 +118,87 @@ Fields changed in this pass. No R, d, nd, νd, semi-diameter, variable gap, glas
 - `sourceErrata`. Reduced to the one contradiction inside the source, |FG4Y/FG4| printed 0.540 against 0.5437. Two entries that were not contradictions were removed and remain recorded here and in the header: Table 1 prints no image-side spacing and the 54.66 mm is derived (residual up to 0.0175 mm); the printed zoom-gap sums are 42.32 / 42.32 / 42.31 mm and the 0.01 mm tele difference is kept.
 - Analysis. Process wording removed, the back-focus, zoom, focus and aperture paragraphs rewritten in plain terms, element notes shortened, and the two product checks above added to the identification list.
 
-Open: the glass labels still read "(… coordinate-compatible class; supplier unproven)" and `zoomLabels` still say "native"; both were outside this pass. Open: focus is not modelled; the 13.53 mm G1Y advance above would be a reconstruction, not a printed state.
+Closed 2026-10-13: the glass labels now read "(… catalog equivalent; production supplier unspecified)" and `zoomLabels` is "Wide" / "Tele". Open: focus is not modelled; the 13.53 mm G1Y advance above would be a reconstruction, not a printed state.
+
+## 2026-10-13 — Semi-diameter pass against the patent figure
+
+Source. `patents/JP5857306B2.pdf`, page 17, Figure 2, the lens-arrangement drawing of Example 1. It draws one panel, the wide end, with the axis vertical and the object at the bottom. The figure is a 425 × 882 px bilevel raster at 200 ppi and was read at that resolution. Figure 1 (a) and (b) on the same page, the patent's general schematic at the wide and tele ends, was read only as a cross-check: its L1–L2 air space is not drawn to the Example 1 prescription.
+
+Scale. The s1 vertex is at row 2061.5 and the s34 vertex at row 1438.5, 623 px for the 156.01 mm wide-end track: 3.993 px/mm, 0.2504 mm/px. Two check spans agree: s5 to s16 is 125 px for 31.19 mm (4.008 px/mm) and s17 to the stop is 86 px for 21.69 mm (3.965 px/mm). The drawn axis is skewed by 0.32° (column 1031.5 at the image line, 1036 at s1), so every rim was taken as half the distance between its left and right edge lines. A rim reading is good to about ±0.15 mm.
+
+| Element | Surfaces        | Before (mm)  | Figure 2 (mm)                                       | After (mm)         | Basis                                                              |
+| ------- | --------------- | ------------ | --------------------------------------------------- | ------------------ | ------------------------------------------------------------------ |
+| L1      | s1 / s2         | 29 / 28.5    | 31.2, square rim                                    | 29 / 29            | Square rim; height kept (7 % under, capped by the s2 / s3 contact) |
+| L2      | s3 / s4         | 28 / 28.5    | 30.3, square rim, 0.9 below L1                      | 28.2 / 28.2        | Square rim at the drawn ratio to L1                                |
+| L3      | s5 / s6         | 26 / 26      | 29.0                                                | 27.0 / 27.0        | Was 10 % under; raised to the drawn ratio to L1                    |
+| L4      | s7 / s8         | 25 / 25      | 28.2                                                | 26.2 / 26.2        | Was 11 % under; raised to the drawn ratio to L1                    |
+| L5      | s9 / s10        | 14.5 / 14.5  | 16.5                                                | 16.5 / 16.0        | Was 12 % under; drawn rim, standing 0.4–0.5 above L6               |
+| L6      | s10 / s11       | 14.5 / 14.5  | 16.0, square rim                                    | 16.0 / 16.0        | Was 9 % under; drawn rim                                           |
+| L7      | s12 / s13       | 13 / 12.5    | 13.8, square rim                                    | 13 / 13.0          | Square rim; height kept (6 % under)                                |
+| L8      | s13 / s14       | 12.5 / 12.16 | 13.5                                                | 13.0 / 12.16       | s14 held by the s14 / s15 contact and the tele axial ray           |
+| L9      | s15 / s16       | 12.15 / 12.5 | 13.5, square rim                                    | 12.5 / 12.5        | Square rim, admitted by `gapSagFrac` 0.96 (below); 7 % under       |
+| L10     | s17 / s18       | 14.5 / 14.5  | 13.95                                               | 14.0 / 14.5        | Drawn step at the cemented joint: L10 stands 0.4 below L11         |
+| L11     | s18 / s19       | 14.5 / 14.5  | 14.35                                               | unchanged          | Agrees within 1 %                                                  |
+| L12     | s21 / s22       | 14.5 / 14.5  | 14.5                                                | unchanged          | Agrees                                                             |
+| L13     | s23 / s24       | 14 / 14      | 14.0 rim; the s24 curve ends near 11.4, land beyond | 14 / 13.0          | Rim agrees; s24 carries L14's rim                                  |
+| L14     | s24 / s25       | 14 / 14      | 13.0, square rim, inset in L13                      | 13.0 / 13.0        | Drawn step at the cemented joint; was 8 % over                     |
+| L15–L16 | s26 / s27 / s28 | 13 / 13 / 13 | 11.5, one rectangle                                 | 11.5 / 11.5 / 11.5 | Was 13 % over                                                      |
+| L17     | s29 / s30       | 13.5 / 13.5  | 13.4                                                | unchanged          | Agrees                                                             |
+| L18     | s31 / s32       | 14 / 14      | 14.4 rim; the s31 curve ends near 12.4, land beyond | unchanged          | Rim 3 % under; see below                                           |
+| L19     | s33 / s34       | 16 / 16      | 15.8                                                | unchanged          | Agrees within 1.5 %                                                |
+| Stop    | STO             | 16           | line drawn to 16.1                                  | not touched        | The line is not the iris opening                                   |
+
+Eighteen surface values changed: seventeen in this pass and s15 when `gapSagFrac` went to 0.96 the same day. Figure 1 read at about 3.5 px/mm gives L1 31, L2 30.2, L3 28.9, L4 28.3, L5 16.5, L6 16.0, L7 13.6, L8–L9 13.4, L10 13.9, L11 14.3, L12 14.4, L13 13.8, L14 13.0, L15–L16 12.0, L17 13.4, L18 14.7 and L19 15.9 mm (mean of the two panels). That is within 0.3 mm of Figure 2 everywhere except the stabilization doublet (12.0 against 11.5 mm); Figure 2 is the Example 1 drawing and governs.
+
+Edge-contact pairs. The figure draws two air-spaced pairs out to rims at which the printed radii would overlap.
+
+- s2 / s3 (2.01 mm gap): the faces touch at 29.04 mm. L1 and L2 are drawn 31.2 and 30.3 mm, where the faces would overlap by 0.19 mm, so no `gapSagFrac` admits the drawn L2. The 0.96 now in the file admits a shared height of 28.49 mm (0.9549 admitted 28.42 mm; 0.97 would admit 28.63 mm). The pair now uses 93.9 % of the gap at 28.2 mm with 0.123 mm of air; this supersedes the 92.5 % at 28.0 mm and the front radii 29 / 28.5 / 28 / 28.5 mm recorded above. Because L2 cannot reach its drawn rim, G1 is held at one ratio to the drawing, 29.0 / 31.2 = 0.93: L2 28.2, L3 27.0 and L4 26.2 mm. This keeps the drawn order L1 > L2 > L3 > L4 and four square rims. Setting L3 and L4 to their drawn 29.0 and 28.2 mm would have put L3 level with L1 and above L2.
+- s14 / s15 (2.36 mm gap): the faces touch at 12.43 mm and L8 and L9 are drawn 13.5 mm, where they would overlap by 0.43 mm, so no `gapSagFrac` admits the drawn rims. This pass left the pair at 12.16 / 12.15 mm (95.48 % of the gap) under 0.9549 and reported that 0.96 would admit s15 standing above s14 = 12.16 mm, and with it a square L9 rim. That was applied the same day: `gapSagFrac` is 0.96 and s15 is 12.5 mm, so L9 is 12.5 / 12.5 mm. The pair is tested at 12.16 mm, where it uses 95.64 % of the gap with 0.103 mm of air and the faces do not cross.
+
+Retained against the figure. L7–L9 stay 6–10 % under the drawing because of the s14 / s15 contact. The s24 curve is drawn to about 11.4 mm with a flat land beyond, which is below the 12.06 mm the F/4.1 axial ray needs there, so s24 takes L14's 13.0 mm rim instead. L18 is drawn with a 14.4 mm square rim and a flat land outside about 12.4 mm on s31. The renderer draws no lands. Ending s31 at 12.4 mm (with s32 at 14.4 mm) would lower the corner transmission by 5.2 points at every station (63.5 to 58.3 % at 72 mm), so L18 keeps 14 / 14 mm and its front corners reach about 1.4 mm further toward L17 than drawn.
+
+Clearance. A real-ray trace at F/4.1 with chief rays to 21.63 mm (17.22° / 11.60° / 6.21°) shows no clipped axial beam and no blocked chief ray. Largest axial heights over the three stations against the new radii: s1–s8 23.66 / 23.37 / 23.47 / 23.48 / 24.14 / 23.83 / 23.43 / 23.00 mm against 29 / 29 / 28.2 / 28.2 / 27 / 27 / 26.2 / 26.2; s9–s11 14.08 / 13.86 / 12.96 against 16.5 / 16 / 16; s12–s16 12.71 / 12.35 / 12.148 / 12.134 / 12.32 against 13 / 13 / 12.16 / 12.5 / 12.5 (s15 was 12.15 when this pass ended); s17 12.61 against 14.0; s24 / s25 12.06 / 11.50 against 13.0; s26–s28 8.87 / 8.63 / 8.19 against 11.5. The surface audit reports no errors at any station and the wide-end render is not trimmed, the image-circle audit no undersized circle, field coverage is 100 % at all three stations and the aperture audit finds all three within 3 % of F/4.1. The engine half-field went from 19.67° / 14.14° / 8.89° to 20.77° / 14.24° / 8.89°; EFL, F/4.1 and the iris radii 13.3201 / 13.3206 / 13.3308 mm are unchanged.
+
+Vignetting. Meridional geometric transmission wide open, before and after:
+
+| Station | Field | Before (%) | After (%) |
+| ------- | ----- | ---------- | --------- |
+| 72 mm   | 11.5° | 87.5       | 91.7      |
+| 72 mm   | 14.4° | 75.0       | 78.1      |
+| 72 mm   | 17.2° | 54.2       | 63.5      |
+| 105 mm  | 7.7°  | 92.7       | 95.8      |
+| 105 mm  | 9.7°  | 85.4       | 82.3      |
+| 105 mm  | 11.6° | 61.5       | 61.5      |
+| 194 mm  | 3.1°  | 86.5       | 88.5      |
+| 194 mm  | 5.2°  | 75.0       | 74.0      |
+| 194 mm  | 6.2°  | 61.5       | 63.5      |
+
+The 72 mm rise comes from L5–L6 following the drawing (54.2 to 63.5 % at the corner on its own). The stabilization doublet at 11.5 mm on its own lowers the zone near 0.83 of the field by 3 to 4 points (75.0 to 70.8 % at 72 mm, 85.4 to 81.3 % at 105 mm, 75.0 to 71.9 % at 194 mm) and leaves the corners unchanged; s17 and L14 each cost about one point in the zone. At 194 mm the ray at three quarters of the pupil radius is now cut from 56 % of the corner field angle (s5), where it was 50 %. A meridional trace of the default 0.6-field fan gives the result recorded above: the tele +0.75 sample clips the front rim and the other fourteen pass.
+
+Live render. The local page was viewed at 72, 105 and 194 mm and at the close-focus end of the focus slider (focus is not modelled, so it repeats infinity). The model outline was overlaid on Figure 2 at matched scale before and after, and on both panels of Figure 1. L5–L6, G3 and G4 lie on the drawn outlines; G1 is uniformly smaller than drawn and L7–L9 slightly so. No maker image was viewed in this pass; the construction-diagram comparison in the section above stands.
+
+Files. The header semi-diameter note and the aperture paragraphs of the analysis were rewritten to match. No surface is aspherical, so no departure figures needed recomputing.
+
+Open: G1 is 7 % under the drawing and L7–L9 6–10 % under it, both because of edge contact. The lands on s24 and s31 are not modelled. Figure 2 draws only the wide end; the middle and tele stations were compared with the Figure 1 schematic and by the live render. Focus is not modelled, so the L3–L4 rims are not checked at close focus.
+
+## 2026-10-13 — Glass fields and gap allowance
+
+State. After the semi-diameter pass the data file took three further changes, none of them to R, d, nd, νd, a zoom gap or the iris: `gapSagFrac` went from 0.9549 to 0.96 with s15 from 12.15 to 12.5 mm; `nC`, `nF` and `ng` were removed from all 19 elements; and the glass labels and `zoomLabels` were reworded. This section records the re-run numbers and the analysis text that follows from them.
+
+Gap allowance. s14 stays 12.16 mm (the tele F/4.1 axial ray reaches 12.148 mm) and s15 takes L9's 12.5 mm rear rim, so L9 is square-cut as Figure 2 draws it. The validator compares the pair at the smaller height. At 12.16 mm the sag intrusion is 2.2572 mm of the 2.36 mm gap, 95.64 %, against 2.2656 mm allowed at 0.96, and 0.103 mm of air remains, so the faces do not cross. 0.95 would allow 2.2420 mm and refuse it, so 0.96 is the smallest two-decimal value; it admits a shared height up to 12.18 mm. From 12.16 to 12.5 mm only L9's front face continues, 0.10 to 0.63 mm clear of L8's rim (the line from the s13 rim at 13.0 mm to the s14 rim). Carried to one height the two faces would touch at 12.43 mm and overlap by 0.027 mm at 12.5 mm, which is why s14 is not raised with s15. The s2 / s3 pair is unchanged at 93.9 % of its gap at 28.2 mm.
+
+Re-run with s15 at 12.5 mm. The surface audit reports no errors and the wide-end render is not trimmed; the image-circle, field-coverage (100 % at the three stations) and aperture audits read as before. The real-ray trace shows no clipped axial beam and no blocked chief ray: 12.148 against 12.16 mm at s14, 12.134 against 12.5 mm at s15 and 12.32 against 12.5 mm at s16. The engine half-field 20.77° / 14.24° / 8.89° and F/4.1 are unchanged. The meridional vignetting curve is identical to the previous state at every sampled field, because s14 still limits the pair:
+
+| Station | Corner, before (%) | Corner, now (%) | 0.83 field, before (%) | 0.83 field, now (%) |
+| ------- | ------------------ | --------------- | ---------------------- | ------------------- |
+| 72 mm   | 63.5               | 63.5            | 78.1                   | 78.1                |
+| 105 mm  | 61.5               | 61.5            | 82.3                   | 82.3                |
+| 194 mm  | 63.5               | 63.5            | 74.0                   | 74.0                |
+
+Glass fields. All 19 labels resolve to their catalog glass. For 18 elements the removed `nC`, `nF` and `ng` equalled the catalog curve at 656.2725 / 486.1327 / 435.8343 nm to 2 × 10⁻¹⁶. For L12 (HOYA FCD1) each of the three sat 2.6 × 10⁻⁶ below the FCD1 curve the repository now carries. `dPgF` is unchanged on every element and equals the catalog partial dispersion measured from 0.6438 − 0.001682·νd at the printed νd to within 6 × 10⁻⁹. The elements now trace on the catalog curve (C, d and F from the curve, g from `dPgF`) instead of on stored line indices; this supersedes "Selected catalog coefficients supply nC/nF/ng directly" above.
+
+Effect on the traced colours, as paraxial back focus per line: the C−d, F−d and g−d differences each moved by −1.8 µm at all three stations (C−d from 0.0676 to 0.0657 mm at 72 mm), and F−C moved by 0.002 µm or less. The common shift comes from the d channel, which now reads the catalog index (within 4.2 × 10⁻⁶ of the printed nd) instead of the printed nd, and from L12. EFL, back focus and iris radii are computed from the printed nd and did not change. The analysis quotes no chromatic focus or lateral-colour figure, so no number there needed recomputing.
+
+Analysis text. Two paragraphs changed: the s14–s15 paragraph now states 12.16 / 12.5 mm at 0.96 with the numbers above, and the glass paragraph now says each element traces on its named glass's catalog curve with ΔPgF as that glass's catalog value. No other sentence mentioned stored line indices.
+
+Live render. L9 was viewed at 72 mm on the local page and over Figure 2: a square rim at 12.5 mm, 7 % inside the drawn one, with L8's rear corner stepping down to 12.16 mm beside it and no overlap.

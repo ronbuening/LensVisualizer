@@ -112,7 +112,7 @@ convention; their signs alone do not identify a contribution to coma, distortion
 
 ### L1 — Negative Meniscus
 
-nd = 1.69895, νd = 30.1. Glass: 699301 — dense flint class (supplier and melt unconfirmed). f = -324.3865 mm.
+nd = 1.69895, νd = 30.1. Glass: E-FD15L (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = -324.3865 mm.
 
 The object-facing convex meniscus forms the front member of the first bonded pair. Its negative standalone power
 opposes the following positive member while the pair remains net positive. The lower Abbe number of this negative
@@ -125,18 +125,18 @@ assigned an unreported finite optical layer.
 
 ### L2 — Positive Meniscus
 
-nd = 1.71300, νd = 53.9. Glass: 713539 — lanthanum crown class (supplier and melt unconfirmed). f = +96.3675 mm.
+nd = 1.71300, νd = 53.9. Glass: LAC8 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = +96.3675 mm.
 
 This object-facing convex meniscus completes the positive first group. Its greater positive standalone power
 overcomes the front member's negative power, with the combined result set by thickness and the shared boundary as
 well as the surface curvatures. [P, ¶0036, ¶0043]
 
-The lanthanum-crown class label is a coordinate classification. It does not establish that HOYA supplied the
-production glass merely because a HOYA spectral-shape proxy is used.
+LAC8 is the catalog glass whose nd, νd and θgF equal the print. That equality does not establish that HOYA supplied
+the production glass.
 
 ### L3 — Negative Meniscus
 
-nd = 1.83481, νd = 42.7. Glass: 835427 — dense lanthanum flint class (supplier and melt unconfirmed). f = -40.3551 mm.
+nd = 1.83481, νd = 42.7. Glass: TAFD5G (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = -40.3551 mm.
 
 The first member of the second functional group is convex toward the object and supplies negative standalone power
 ahead of the bonded pair. The source shape is strongly asymmetric; it should not be interpreted as a thin,
@@ -148,7 +148,7 @@ curvature, thickness or refractive index.
 
 ### L4 — Negative Biconcave (1x Asph)
 
-nd = 1.55332, νd = 71.7. Glass: Unmatched (fluorophosphate-class patent coordinate; no all-coordinate catalog match). f = -38.5330 mm.
+nd = 1.55332, νd = 71.7. Glass: M-FCD500 (HOYA; equals the patent nd and νd, catalog θgF 0.5403 against the printed 0.5398; supplier unconfirmed). f = -38.5330 mm.
 
 The biconcave member has an aspherical object-side surface and is bonded to L5. Its relatively high Abbe number
 occurs on the negative member of this pair. The adjacent positive member has substantially lower Abbe number, so a
@@ -159,12 +159,13 @@ The patent constrains this member's Abbe number to balance wide-angle lateral ch
 sensitivity. That attribution concerns the stated design conditions, not an independently measured manufacturing
 tolerance. [P, ¶0140–0145]
 
-The full published glass coordinate is unmatched in the catalogs compared. M-FCD500 supplies only the disclosed
-spectral-shape approximation; it is not an identification of the source glass.
+M-FCD500, a HOYA moulding glass, equals the printed nd and νd. Its catalog curve gives θgF 0.5403 against the
+printed 0.5398, and the model keeps the printed value. The label is a catalog match, not an identification of the
+production glass.
 
 ### L5 — Positive Meniscus
 
-nd = 1.90110, νd = 27.1. Glass: 901271 — dense flint class (supplier and melt unconfirmed). f = +38.0884 mm.
+nd = 1.90110, νd = 27.1. Glass: NBFD27 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = +38.0884 mm.
 
 The object-facing convex member completes the second bonded pair. Despite its strong positive isolated power, the
 bonded pair's net power is weakly negative. The surrounding negative singlets make the complete second group much
@@ -176,18 +177,18 @@ than replaced by a more familiar achromat pairing. [P, ¶0134–0139]
 
 ### L6 — Negative Meniscus
 
-nd = 1.68960, νd = 31.1. Glass: 690311 — dense flint class (supplier and melt unconfirmed). f = -182.3971 mm.
+nd = 1.68960, νd = 31.1. Glass: E-FD80 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = -182.3971 mm.
 
 This image-facing convex meniscus closes the second group immediately before the stop interval. Its negative
-standalone power is weaker than that of L3 or L4. Its position and bending distinguish it from those preceding
-negative members, even though a broad flint class is shared. [P, ¶0037, ¶0044]
+standalone power is weaker than that of L3 or L4. Its position, bending and glass distinguish it from those
+preceding negative members. [P, ¶0037, ¶0044]
 
 No particular coma or distortion correction is assigned to it without a contribution analysis. The source
 establishes its shape, glass coordinates and position, not a unique single-element aberration function.
 
 ### L7 — Positive Meniscus
 
-nd = 1.83400, νd = 37.3. Glass: 834373 — dense lanthanum flint class (supplier and melt unconfirmed). f = +48.9739 mm.
+nd = 1.83400, νd = 37.3. Glass: NBFD10 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = +48.9739 mm.
 
 The first element behind the stop is an object-facing convex positive meniscus. It begins the net-positive third
 group and is followed by a lower-index positive element and a net-negative bonded pair. [P, ¶0038, ¶0045]
@@ -198,7 +199,7 @@ historical material.
 
 ### L8 — Positive Biconvex
 
-nd = 1.49700, νd = 81.6. Glass: 497816 — fluorophosphate class (supplier and melt unconfirmed). f = +42.8706 mm.
+nd = 1.49700, νd = 81.6. Glass: FCD1 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = +42.8706 mm.
 
 The low-index, high-Abbe biconvex element is a positive member of the third group. The patent's condition on
 positive lenses behind the stop includes this element and links the permitted Abbe-number interval to axial color
@@ -210,40 +211,41 @@ commercial melt. [H1]
 
 ### L9 — Negative Biconcave
 
-nd = 1.74951, νd = 35.3. Glass: Unmatched (barium flint-class patent coordinate; no all-coordinate catalog match). f = -18.8206 mm.
+nd = 1.74951, νd = 35.3. Glass: S-NBH51 (OHARA; equals the patent νd and θgF, catalog nd 1.74950 against the printed 1.74951; supplier unconfirmed). f = -18.8206 mm.
 
 This biconcave element is the negative member of the third bonded pair. The assembled pair remains negative even
 though its following member is positive. Its role within a positive functional group cannot be described by
 treating the entire group as a sequence of positive thin lenses. [P, ¶0038, ¶0045]
 
 The patent associates this member's partial-dispersion deviation with secondary-spectrum and axial-chromatic
-correction. The near S-NBH51 catalog candidate has a refractive-index mismatch and is used only for the disclosed
-shape proxy; the source coordinate stays unmatched. [P, ¶0146–0150]
+correction. OHARA S-NBH51 equals the printed νd and θgF; its catalog nd is 1.74950 against the printed 1.74951, and
+the prescription keeps the printed index. [P, ¶0146–0150]
 
 ### L10 — Positive Meniscus
 
-nd = 1.49700, νd = 81.6. Glass: 497816 — fluorophosphate class (supplier and melt unconfirmed). f = +59.1525 mm.
+nd = 1.49700, νd = 81.6. Glass: FCD1 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = +59.1525 mm.
 
 The object-facing convex positive member completes the third bonded pair. Its high Abbe number and source partial
 dispersion match the repeated low-index coordinate also used by other elements, but its curvature, power sign and
 beam location determine a distinct role. [P, ¶0038, ¶0045]
 
-The pair shares one rim radius in the model, as the figure draws it.
+In the model L9 and the cemented joint share one rim radius (12.1 mm), as the figure draws them. The rear face of
+L10 stops at 11.3 mm, where the figure bevels the rear corner of the pair.
 
 ### L11 — Positive Biconvex
 
-nd = 1.55032, νd = 75.5. Glass: 550755 — fluorophosphate class (supplier and melt unconfirmed). f = +30.6651 mm.
+nd = 1.55032, νd = 75.5. Glass: FCD705 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = +30.6651 mm.
 
 This positive member begins the fourth group. Its standalone positive power exceeds the magnitude of the following
 element's negative power, giving a positive group with the actual spacing included. Its high Abbe number is one of
 the positive-lens coordinates covered by the patent's post-stop dispersion condition. [P, ¶0039, ¶0046, ¶0151–0156]
 
-Its catalog-shape proxy differs from the repeated FCD1-related coordinate. Grouping all high-Abbe elements under a
-single material name would therefore discard source information.
+Its glass is FCD705, not the FCD1 of L8, L10 and L15. Grouping all high-Abbe elements under a single material name
+would therefore discard source information.
 
 ### L12 — Negative Meniscus (2x Asph)
 
-nd = 1.69350, νd = 53.2. Glass: 694532 — lanthanum crown class (supplier and melt unconfirmed). f = -179.1199 mm.
+nd = 1.69350, νd = 53.2. Glass: L-LAL13 (OHARA; equals the patent nd, νd and θgF; supplier unconfirmed). f = -179.1199 mm.
 
 The object-facing convex meniscus has aspheres on both sides and closes the fourth group. Its negative standalone
 power is relatively weak, but that paraxial observation does not bound the effect of its higher-order profile
@@ -255,7 +257,7 @@ the adopted optical region. The surface shape and aperture evidence are discusse
 
 ### L13 — Negative Meniscus (2x Asph)
 
-nd = 1.81055, νd = 41.1. Glass: 811411 — dense lanthanum flint class (supplier and melt unconfirmed). f = -80.5510 mm.
+nd = 1.81055, νd = 41.1. Glass: K-VC181 (SUMITA; equals the patent nd, νd and θgF; supplier unconfirmed). f = -80.5510 mm.
 
 The object-facing convex negative meniscus is the front member of the focus pair, with aspherical profiles on both
 sides. The next negative meniscus faces in the opposite direction. Together they form the patent's internal-focus
@@ -267,7 +269,7 @@ quantitative focus travel or close-focus aberration improvement is inferred from
 
 ### L14 — Negative Meniscus
 
-nd = 1.48749, νd = 70.4. Glass: 487704 — crown class (supplier and melt unconfirmed). f = -110.6674 mm.
+nd = 1.48749, νd = 70.4. Glass: FC5 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = -110.6674 mm.
 
 The image-facing convex meniscus completes the negative focus group. It has a lower index and higher Abbe number
 than the preceding aspherical member. The different coordinates and opposing bends give the pair more degrees of
@@ -278,7 +280,7 @@ them.
 
 ### L15 — Negative Meniscus
 
-nd = 1.49700, νd = 81.6. Glass: 497816 — fluorophosphate class (supplier and melt unconfirmed). f = -366.8758 mm.
+nd = 1.49700, νd = 81.6. Glass: FCD1 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = -366.8758 mm.
 
 The image-facing convex meniscus is the first member of the rear group. Its low-index, high-Abbe coordinate also
 appears in positive elements elsewhere; here the standalone power is negative and comparatively weak. Material
@@ -289,7 +291,7 @@ group, rather than a cemented doublet.
 
 ### L16 — Positive Biconvex
 
-nd = 1.92119, νd = 24.0. Glass: 921240 — dense flint class (supplier and melt unconfirmed). f = +87.9367 mm.
+nd = 1.92119, νd = 24.0. Glass: FDS24-W (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed). f = +87.9367 mm.
 
 The biconvex last lens supplies positive standalone power and completes the rear group. The patent explicitly
 constrains the partial-dispersion deviation of the last positive lens in relation to wide- and long-end
@@ -301,51 +303,58 @@ as a seventeenth lens element or displayed as part of the sixteen-element optica
 
 ## Glass Identification and Selection
 
-The source d-line index, Abbe number and partial-dispersion ratio were compared with the current
-OHARA, HOYA, Schott, HIKARI, CDGM and SUMITA catalog records. The following named materials are spectral-shape
-proxies, not selected suppliers or identified melts. The listed nd, νd and θgF are the printed values. [C1–C6]
+The printed d-line index, Abbe number and partial-dispersion ratio of every glass were compared with the current
+OHARA, HOYA, Schott, HIKARI, CDGM and SUMITA catalog records. Each element is labelled with the catalog glass whose
+nd, νd and θgF equal the print, and that label selects the dispersion curve the model traces. Supplier and melt are
+not identified. The nd, νd and θgF columns are the printed values; the last two columns come from the labelled
+glass's catalog dispersion formula. [C1–C6]
 
-| Use          | nd      | νd   | θgF    | ΔPgF (model) | Catalog spectral-shape proxy |
-| ------------ | ------- | ---- | ------ | ------------ | ---------------------------- |
-| L1           | 1.69895 | 30.1 | 0.6028 | +0.0096282   | E-FD15L (HOYA)               |
-| L2           | 1.71300 | 53.9 | 0.5442 | -0.0089402   | LAC8 (HOYA)                  |
-| L3           | 1.83481 | 42.7 | 0.5647 | -0.0072786   | TAFD5G (HOYA)                |
-| L4           | 1.55332 | 71.7 | 0.5398 | +0.0165994   | M-FCD500 (HOYA)              |
-| L5           | 1.90110 | 27.1 | 0.6072 | +0.0089822   | NBFD27 (HOYA)                |
-| L6           | 1.68960 | 31.1 | 0.6031 | +0.0116102   | E-FD80 (HOYA)                |
-| L7           | 1.83400 | 37.3 | 0.5790 | -0.0020614   | K-LaSFn14 (SUMITA)           |
-| L8, L10, L15 | 1.49700 | 81.6 | 0.5389 | +0.0323512   | FCD1 (HOYA)                  |
-| L9           | 1.74951 | 35.3 | 0.5818 | -0.0026254   | S-NBH51 (OHARA)              |
-| L11          | 1.55032 | 75.5 | 0.5401 | +0.0232910   | FCD705 (HOYA)                |
-| L12          | 1.69350 | 53.2 | 0.5482 | -0.0061176   | L-LAL13 (OHARA)              |
-| L13          | 1.81055 | 41.1 | 0.5690 | -0.0056698   | K-VC181 (SUMITA)             |
-| L14          | 1.48749 | 70.4 | 0.5306 | +0.0052128   | FC5 (HOYA)                   |
-| L16          | 1.92119 | 24.0 | 0.6202 | +0.0167680   | FDS24-W (HOYA)               |
-| CG           | 1.51680 | 64.2 | 0.5343 | -0.0015156   | BSC7 (HOYA)                  |
+| Use          | nd      | νd   | θgF    | ΔPgF (model) | Glass label      | Catalog νd | Catalog θgF |
+| ------------ | ------- | ---- | ------ | ------------ | ---------------- | ---------- | ----------- |
+| L1           | 1.69895 | 30.1 | 0.6028 | +0.0096282   | E-FD15L (HOYA)   | 30.05      | 0.60279     |
+| L2           | 1.71300 | 53.9 | 0.5442 | -0.0089402   | LAC8 (HOYA)      | 53.94      | 0.54422     |
+| L3           | 1.83481 | 42.7 | 0.5647 | -0.0072786   | TAFD5G (HOYA)    | 42.72      | 0.56475     |
+| L4           | 1.55332 | 71.7 | 0.5398 | +0.0165994   | M-FCD500 (HOYA)  | 71.68      | 0.54027     |
+| L5           | 1.90110 | 27.1 | 0.6072 | +0.0089822   | NBFD27 (HOYA)    | 27.06      | 0.60716     |
+| L6           | 1.68960 | 31.1 | 0.6031 | +0.0116102   | E-FD80 (HOYA)    | 31.14      | 0.60316     |
+| L7           | 1.83400 | 37.3 | 0.5790 | -0.0020614   | NBFD10 (HOYA)    | 37.35      | 0.57906     |
+| L8, L10, L15 | 1.49700 | 81.6 | 0.5389 | +0.0323512   | FCD1 (HOYA)      | 81.61      | 0.53885     |
+| L9           | 1.74951 | 35.3 | 0.5818 | -0.0026254   | S-NBH51 (OHARA)  | 35.33      | 0.58186     |
+| L11          | 1.55032 | 75.5 | 0.5401 | +0.0232910   | FCD705 (HOYA)    | 75.50      | 0.53999     |
+| L12          | 1.69350 | 53.2 | 0.5482 | -0.0061176   | L-LAL13 (OHARA)  | 53.19      | 0.54829     |
+| L13          | 1.81055 | 41.1 | 0.5690 | -0.0056698   | K-VC181 (SUMITA) | 41.14      | 0.56891     |
+| L14          | 1.48749 | 70.4 | 0.5306 | +0.0052128   | FC5 (HOYA)       | 70.44      | 0.53059     |
+| L16          | 1.92119 | 24.0 | 0.6202 | +0.0167680   | FDS24-W (HOYA)   | 23.96      | 0.62022     |
+| CG           | 1.51680 | 64.2 | 0.5343 | -0.0015156   | BSC7 (HOYA)      | 64.20      | 0.53428     |
 
-The repeated fluorophosphate-class coordinate is especially well represented by FCD1 in partial dispersion; a
-generic substitution by another commonly used ED glass would lose that agreement. OHARA L-LAL13 remains distinct
-from S-LAL13. Likewise, L- and S-prefix catalog families are not interchangeable aliases. The unmatched entries
-remain labeled as such, despite useful nearby spectral-shape candidates.
+Thirteen of the fifteen labels equal the print in all three coordinates, with the catalog θgF within about 0.0001
+of the printed value. The other two are close. M-FCD500 (L4) equals the printed nd and νd, but its curve gives θgF
+0.5403 against 0.5398. S-NBH51 (L9) equals the printed νd and θgF, with nd 1.74950 against 1.74951. Where several
+glasses share an nd and νd, θgF separates them. FCD1 fits the repeated coordinate of L8, L10 and L15, where OHARA
+S-FPL51 at the same nd and νd has θgF 0.5375. L12 is OHARA L-LAL13; HOYA M-LAC130 and OHARA S-LAL13 share its nd
+and νd but have θgF 0.5466 and 0.5473.
 
-The source defines the absolute ratio as θgF = (ng − nF)/(nF − nC). The modeled line values use the catalog proxy's
-PdC only to split the source Abbe span around nd:
+The three aspherical elements, L4, L12 and L13, carry the three moulding glasses of the set: M-FCD500, L-LAL13 and
+K-VC181. Five elements have νd of 71.7 or more: L4 (M-FCD500), L8, L10 and L15 (FCD1) and L11 (FCD705). That
+equals Hasselblad's count of five ED elements, and the model marks those five as inferred anomalous-dispersion
+elements. [H1]
 
-$$n_F-n_C=(n_d-1)/\nu_d,$$
+The source defines the absolute ratio as θgF = (ng − nF)/(nF − nC). Each element traces on its labelled glass's
+catalog dispersion curve at the C, d and F lines, and the g-line index is set from the printed ratio:
 
-$$
-n_C=n_d-P_{dC,\mathrm{proxy}}(n_F-n_C),\qquad
-n_g=n_F+\theta_{gF,\mathrm{source}}(n_F-n_C).
-$$
+$$n_g=n_F+\theta_{gF,\mathrm{source}}(n_F-n_C).$$
 
-The table's ΔPgF is measured from the model's normal line, θgF = 0.6438 − 0.001682νd. The patent instead uses ΔθgF =
-θgF − (0.648285 − 0.00180123νd) for its conditional expressions; the two must not be conflated. The model traces
-color with the computed C, F and g indices, and the d-line index stays as printed. [P, ¶0130]
+The traced Abbe number is therefore the catalog's, which differs from the one-decimal printed value by at most 0.05
+(30.05 for E-FD15L where the patent prints 30.1), while the traced θgF is the patent's. The catalog d-line indices
+differ from the printed ones by no more than 0.000006, and the prescription keeps the printed indices.
 
-These computed indices reproduce the published nd, νd and θgF but are not measured line indices of a historical
-melt. Current catalogs do not recover production supplier, molding process, batch variation, adhesive dispersion or
-the designer's original glass catalog revision. No apochromatic performance claim follows from the coordinate
-matches.
+The table's ΔPgF is the printed θgF measured from the model's normal line, θgF = 0.6438 − 0.001682νd, at the
+printed νd. The patent instead uses ΔθgF = θgF − (0.648285 − 0.00180123νd) for its conditional expressions; the two
+must not be conflated. [P, ¶0130]
+
+The catalog curves are current catalog data, not measured line indices of the production melts. Current catalogs
+do not recover production supplier, molding process, batch variation, adhesive dispersion or the designer's
+original glass catalog revision. No apochromatic performance claim follows from the coordinate matches.
 
 ## Focus Mechanism
 
@@ -404,9 +413,9 @@ Table 1D's fourth lens begins at surface 6, and the index after surface 21 is 1.
 the computed axial spherical aberration at F4.12 agrees with Figure 1B at all three stations (about −0.12, −0.07 and
 +0.08 mm at its largest). [P, Tables 1A, 1B, 1D; Fig. 1B]
 
-No manufacturing route is inferred merely from the presence of aspherical coefficients or from a catalog material's
-molding-related designation. The patent does not supply a finite resin or adhesive prescription for these optical
-surfaces.
+The three aspherical elements are labelled with moulding glasses (M-FCD500, L-LAL13 and K-VC181), which is
+consistent with moulded aspheres. The patent states no manufacturing route, and none is asserted here. It does not
+supply a finite resin or adhesive prescription for these optical surfaces.
 
 ## Chromatic Correction Strategy and Conditional Expressions
 
@@ -430,6 +439,10 @@ and the most restrictive preferred interval. [P, Table 6; ¶0134–0190]
 | 7         | f3 / fGR,w   | (0.0, 1.0)       | (0.4, 0.65)                         | 0.597387                        |
 | 8         | abs(f5 / f4) | (0.5, 2.0)       | (1.1, 1.3)                          | 1.237452                        |
 | 9         | tGR / tG5    | (0.2, 1.0)       | (0.4, 0.8)                          | 0.601335                        |
+
+Conditions 1, 3 and 5 are evaluated from the printed νd and θgF of L5, L9 and L16, and they round to the 0.0077,
+−0.0029 and 0.0151 that Table 6 prints. With the catalog Abbe numbers the model traces (27.06, 35.33 and 23.96)
+they would be 0.007653, −0.002843 and 0.015066, still inside every interval.
 
 For the second condition, the element table has νd = 71.7 whereas Table 6 reports 71.72. Their published
 precisions differ; no replacement of the source element value is made. The condition remains satisfied with the
@@ -527,19 +540,25 @@ is a consistency check only: every value in the model is the printed one.
 No surface semi-diameters or iris diameter are printed. The clear radii are estimated from the ends of the optical
 curves in Figure 1A, not from the wider mechanical flanges, with the drawing scaled by the printed distance from
 the first vertex to the front of the cover plate; the schematic drawing limits their precision. The axial beam of
-the fixed-iris model passes every rim at all three stations, with 0.36, 0.18 and 0.06 mm to spare at surface 14.
+the fixed-iris model passes every rim at all three stations. The tightest rim leaves 0.64 mm at surface 12 at the
+wide station, and 0.37 and 0.15 mm at surface 18 at the middle and long stations.
 
 For surfaces 21A/22A the figure gives a semi-extent of about 11.99 mm, with a plausible range of 11.34–12.64 mm.
 The adopted radius is 11.6 mm; the slope of 21A first returns to zero at 11.647 mm. Thus 11.6 mm lies inside the
-drawn rim range and below the turnover of the polynomial, which a 12.1 mm radius would cross. The rear face of L3
-uses the end of its drawn curve (17.4 mm), not the wider flange, and each cemented pair shares one rim radius. That
-the geometry fits is not evidence that a diameter is the production one.
+drawn rim range and below the turnover of the polynomial, which a 12.1 mm radius would cross.
+
+Each face follows the end of its own drawn curve. The rear face of L3 stops at 18.0 mm, where its wider flange
+begins, and the concave front face of L14 stops at 13.2 mm, at the flat land the figure draws below its 14.5 mm rim.
+In each cemented pair the front element and the joint share one rim radius. The rear faces of L5 (15.0 mm) and L10
+(11.3 mm) stop lower, where the figure bevels the rear corner of the pair. The diagram joins unequal face heights
+with a straight edge, so these lands and flanges appear as chamfers. That the geometry fits is not evidence that a
+diameter is the production one.
 
 Across the interpolated zoom range no two facing surfaces come closer than 0.3 mm, the smallest axial air gap, and
-the thinnest glass edge is 0.24 mm (L5 at its 17.4 mm rim).
+the thinnest glass edge is 0.69 mm (L2 at its 30.3 mm rim).
 
 At the 27.5 mm image corner the inferred rims, not the iris, limit the beam at the wide and middle stations. In the
-meridional section about 7 mm of the stop diameter is filled at the wide station and about 12 mm at the middle one,
+meridional section about 8 mm of the stop diameter is filled at the wide station and about 12 mm at the middle one,
 whether the iris radius is the fixed 12.18 mm or the smaller F4.12 value, so the wider model aperture adds light on
 axis and in the mid-field but not at the corner. Because the rims come from a schematic figure, corner illumination
 in the model is indicative only. No MTF, bokeh or transmission result for the production lens follows from it.

@@ -235,8 +235,8 @@ in the last digit of νd: 741527 for S-LAL61 (now 52.64) and 618634 for S-PHM52 
 | S-NPH1      | 1.80809 | 22.76 |                  +0.025187 | L18                   |
 
 Here PgF = (ng − nF)/(nF − nC), and ΔPgF is measured from the normal line 0.6438 − 0.001682νd, not from OHARA's own
-catalog line. Each element carries its catalog nC, nF and ng with the d-line nd and νd, and tracing at other wavelengths
-interpolates between those lines.
+catalog line. Each element names its OHARA glass and traces on that glass's catalog dispersion curve at every
+wavelength; the seven elements the patent calls abnormal-dispersion are marked as such in the element inspector.
 
 Paragraph 0046 connects S-FPL51 and S-FPL53 with extra freedom for chromatic correction and S-NPH1 with compensation of
 secondary dispersion. That is the patent's stated strategy; the chromatic performance of the complete lens has not been

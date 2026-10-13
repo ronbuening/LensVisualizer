@@ -6,13 +6,20 @@ import type { LensDataInput } from "../../types/optics.js";
  * Production correlation: first-version Leica Elmarit-R 28mm f/2.8 (1970). Table III is the best-supported
  * of the patent's three tables against the patent figure; which table was manufactured is not established.
  * Eight air-spaced spherical singlets. Indices and Abbe numbers are the patent's e-line values (ne, nu-e).
+ * The patent names no glass. Each label names the catalog glass that reproduces the printed ne and nu-e
+ * (Schott N-FK5, N-BAF10, N-LAK9 and SF56A within 0.000003 and 0.01; HIKARI J-BASF6 within 0.000001 and 0.04)
+ * and selects its dispersion curve, anchored at the printed ne; the 1970 supplier and melts are not established.
  * Stop: the patent places the diaphragm in d8 without a dimension. It is set 2.0930 mm behind surface 8
  * (0.70 of d8), following a PhotonsToPhotos reconstruction; the patent figure draws it at 0.72 +/- 0.07 of d8.
  * The stop semi-diameter is set by real-ray tracing of the axial f/2.8 beam.
- * Semi-diameters are not printed. They are inferred from the same PhotonsToPhotos reconstruction and checked
- * by ray tracing. Surfaces 12 and 13 use 7.8 mm instead of 8.255 mm (the L6/L7 edge-contact value) so the
- * facing rims stay inside the default air-gap allowance of 0.90. The axial f/2.8 beam and the 38-degree chief
- * ray still clear; the cost is 2 to 4 percentage points of off-axis transmission at f/2.8.
+ * Semi-diameters are not printed. They follow the patent's single drawing, by way of the same PhotonsToPhotos
+ * reconstruction and a re-measurement of the 300 dpi page (26.10 px/mm), and are floor-checked by real-ray
+ * trace; seven elements agree with the drawing within 2 %. The drawing shows L6 and L7 with square-cut rims
+ * (8.47 and 8.97 mm) meeting at the edge. The Table III spheres of surfaces 12 and 13 meet at 8.265 mm, so
+ * only one of them can pass that height: surface 13 follows L7's drawn rim (8.82 mm, as surface 14) and
+ * surfaces 11 and 12 are both 8.25 mm, which squares L6 against L7 just inside the contact height.
+ * gapSagFrac is 1.00 for this lens because that pair is drawn in edge contact (0.99 admits only 8.22 mm).
+ * The axial f/2.8 beam and the 38-degree chief ray clear.
  * Back focus is the printed 1.373 f (38.444 mm); the paraxial value is 38.437 mm.
  * The projection block declares the patent's 76-degree field (38-degree chief rays traced); rays are still
  * clipped by the modeled apertures.
@@ -67,7 +74,7 @@ const LENS_DATA = {
       "vd": 70.22,
       "indexReference": "e",
       "fl": -95.38291343579559,
-      "glass": "Unmatched (FK5-class low-index crown; supplier and melt unproven)",
+      "glass": "N-FK5 (Schott catalog equivalent of FK5; patent ne 1.48914 / νe 70.22; production supplier unspecified)",
       "apd": false,
       "role": "Object-facing negative meniscus of the net-negative front group."
     },
@@ -81,7 +88,7 @@ const LENS_DATA = {
       "vd": 41.64,
       "indexReference": "e",
       "fl": 70.96767856606199,
-      "glass": "Unmatched (BASF6-class barium flint; supplier and melt unproven)",
+      "glass": "J-BASF6 (HIKARI catalog equivalent of BaSF6, catalog νe 41.60; patent ne 1.67133 / νe 41.64; production supplier unspecified)",
       "apd": false,
       "role": "Biconvex positive element between the two front negative menisci."
     },
@@ -95,7 +102,7 @@ const LENS_DATA = {
       "vd": 70.22,
       "indexReference": "e",
       "fl": -30.28555772571423,
-      "glass": "Unmatched (FK5-class low-index crown; supplier and melt unproven)",
+      "glass": "N-FK5 (Schott catalog equivalent of FK5; patent ne 1.48914 / νe 70.22; production supplier unspecified)",
       "apd": false,
       "role": "Second object-facing negative meniscus, followed by the main air separation."
     },
@@ -109,7 +116,7 @@ const LENS_DATA = {
       "vd": 46.82,
       "indexReference": "e",
       "fl": 72.54205969182219,
-      "glass": "Unmatched (BAF10/BAFN10-class barium flint; supplier and melt unproven)",
+      "glass": "N-BAF10 (Schott catalog equivalent of BaF10; patent ne 1.67341 / νe 46.82; production supplier unspecified)",
       "apd": false,
       "role": "Positive meniscus before the diaphragm, concave toward the stop."
     },
@@ -123,7 +130,7 @@ const LENS_DATA = {
       "vd": 54.48,
       "indexReference": "e",
       "fl": 37.71400985024495,
-      "glass": "Unmatched (LAK9-class lanthanum crown; supplier and melt unproven)",
+      "glass": "N-LAK9 (Schott catalog equivalent of LaK9; patent ne 1.69401 / νe 54.48; production supplier unspecified)",
       "apd": false,
       "role": "Biconvex positive element immediately after the diaphragm."
     },
@@ -137,7 +144,7 @@ const LENS_DATA = {
       "vd": 25.87,
       "indexReference": "e",
       "fl": -23.473293899087828,
-      "glass": "Unmatched (SF56-class dense flint; supplier and melt unproven)",
+      "glass": "SF56A (Schott catalog equivalent of SF56; patent ne 1.7918 / νe 25.87; production supplier unspecified)",
       "apd": false,
       "role": "Biconcave negative element between the two positive rear subgroups."
     },
@@ -151,7 +158,7 @@ const LENS_DATA = {
       "vd": 54.48,
       "indexReference": "e",
       "fl": 55.84698001437243,
-      "glass": "Unmatched (LAK9-class lanthanum crown; supplier and melt unproven)",
+      "glass": "N-LAK9 (Schott catalog equivalent of LaK9; patent ne 1.69401 / νe 54.48; production supplier unspecified)",
       "apd": false,
       "role": "Image-side positive meniscus, concave toward the diaphragm."
     },
@@ -165,7 +172,7 @@ const LENS_DATA = {
       "vd": 54.48,
       "indexReference": "e",
       "fl": 32.36958575857208,
-      "glass": "Unmatched (LAK9-class lanthanum crown; supplier and melt unproven)",
+      "glass": "N-LAK9 (Schott catalog equivalent of LaK9; patent ne 1.69401 / νe 54.48; production supplier unspecified)",
       "apd": false,
       "role": "Rear biconvex positive element completing the second positive subgroup."
     }
@@ -265,7 +272,7 @@ const LENS_DATA = {
       "d": 1.1032,
       "nd": 1.7918,
       "elemId": 6,
-      "sd": 8.47
+      "sd": 8.25
     },
     {
       "label": "12",
@@ -273,7 +280,7 @@ const LENS_DATA = {
       "d": 1.6044,
       "nd": 1,
       "elemId": 0,
-      "sd": 7.8
+      "sd": 8.25
     },
     {
       "label": "13",
@@ -281,7 +288,7 @@ const LENS_DATA = {
       "d": 2.2064,
       "nd": 1.69401,
       "elemId": 7,
-      "sd": 7.8
+      "sd": 8.82
     },
     {
       "label": "14",
@@ -340,6 +347,7 @@ const LENS_DATA = {
   ],
   "maxFstop": 22,
   "yScFill": 0.3,
+  "gapSagFrac": 1,
   "projection": {
     "kind": "rectilinear",
     "fullFieldDeg": 76,

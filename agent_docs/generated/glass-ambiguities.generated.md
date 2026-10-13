@@ -12,18 +12,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **928** lenses scanned
-- **10538** glass elements examined
-- **3192** elements have multiple coordinate-compatible candidates
-- **576** lens files are affected
-- **314** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **935** lenses scanned
+- **10628** glass elements examined
+- **3199** elements have multiple coordinate-compatible candidates
+- **578** lens files are affected
+- **317** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **208** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1833 |
-| Evidence-source priority | 1025 |
-| Vendor context | 320 |
+| Smallest reference-index residual | 1836 |
+| Evidence-source priority | 1026 |
+| Vendor context | 323 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -539,6 +539,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `497816 low-dispersion class` | 1.49700 / 81.59 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 2 | [FUJIFILM FUJINON GF 30mm f/3.5 R WR](../../src/lens-data/fujifilm/FujifilmFujinonGf30mmf35RWR.data.ts) L12 |
 | `954323 class (S-LAH98 / TAFD45L exact-coordinate candidates)` | 1.95375 / 32.32 (d) | TAFD45L — smallest d-line \|Δn\| (2.8e-7 vs 5.9e-7) | S-LAH98 (Ohara, name)<br>J-LASFH21 (Hikari, code, alternate code row)<br>TAFD45 (Hoya, code, alternate code row) | 1 | [FUJIFILM FUJINON GF 30mm f/3.5 R WR](../../src/lens-data/fujifilm/FujifilmFujinonGf30mmf35RWR.data.ts) L23 |
 | `569560 crown class (H-BaK7GT / BAC4 near-coordinate candidates)` | 1.56883 / 56.06 (d) | BAC4 — direct name evidence outranks six-digit code evidence. | N-BAK4 (Schott, code, preferred code row) | 1 | [FUJIFILM FUJINON GF 30mm f/3.5 R WR](../../src/lens-data/fujifilm/FujifilmFujinonGf30mmf35RWR.data.ts) L34 |
+| `K-CSK120-M (Sumita catalog equivalent; patent code 585587, supplier unspecified)` | 1.58480 / 58.71 (d) | K-CSK120-M — smallest d-line \|Δn\| (3.6e-4 vs 2.2e-3) | K-CSK120 (Sumita, name, vendor ✓) | 3 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) L11 |
 | `FCD1 / M-FCD1 (HOYA, ED fluorophosphate)` | 1.49700 / 81.60 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 1.0e-4) | M-FCD1 (Hoya, name, vendor ✓) | 1 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) L13 |
 | `487/704 low-dispersion crown (S-FSL5 class; patent-listed)` | 1.48749 / 70.44 (d) | S-FSL5 — direct name evidence outranks six-digit code evidence. | N-FK5 (Schott, code, preferred code row)<br>H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 2 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) L16 |
 | `TAFD37 / TAFD37A (HOYA)` | 1.90043 / 37.37 (d) | TAFD37A — smallest d-line \|Δn\| (1.7e-6 vs 2.1e-6) | TAFD37 (Hoya, name, vendor ✓) | 1 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) L17 |
@@ -847,8 +848,11 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-TIM28 / L-TIM28 (OHARA)` | 1.68948 / 31.00 (d) | L-TIM28 — smallest d-line \|Δn\| (5.1e-7 vs 5.5e-4) | S-TIM28 (Ohara, name, vendor ✓) | 1 | [LEICA APO-SUMMICRON 43mm f/2 ASPH. (Leica Q3 43)](../../src/lens-data/leica/LeicaAPO43mmf2.data.ts) L6 |
 | `N-KZFS5 (Schott) / S-NBH5 (OHARA) — catalog equivalents (ne 1.65803 / νe 39.5)` | 1.65800 / 39.00 (e) | S-NBH5 — smallest e-line \|Δn\| (2.6e-5 vs 3.1e-5) | N-KZFS5 (Schott, name, vendor ✓) | 4 | [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) L2 |
 | `N-BAF10 (Schott; legacy BaF10 — e-line match ne = 1.67341, νe = 46.83)` | 1.67340 / 46.80 (e) | N-BAF10 — Annotation vendor context matches Schott. | BAF10 (Hoya, name, vendor ✗) | 1 | [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) L2 |
+| `K-LaSFn16 (SUMITA catalog equivalent of LaF21, catalog ne 1.79226 / νe 47.17; patent ne 1.79227 / νe 47.15; production supplier unspecified)` | 1.79227 / 47.15 (e) | K-LaSFn16 — direct name evidence outranks alias evidence. | N-LAF21 (Schott, alias, vendor ✗) | 1 | [LEICA ELMARIT 28mm f/2.8 (11801)](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) L3 |
 | `N-LAK9 catalog equivalent (Schott; patent coordinate 691548; production supplier unspecified)` | 1.69100 / 54.80 (d) | N-LAK9 — direct name evidence outranks six-digit code evidence. | K-LaK9 (Sumita, code, vendor ✗, preferred code row) | 1 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) L1 |
 | `E-FD7 catalog equivalent (exact patent code 640346; production supplier unspecified)` | 1.63980 / 34.60 (d) | E-FD7 — direct name evidence outranks six-digit code evidence. | J-SF7 (Hikari, code, alternate code row) | 1 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) L3 |
+| `N-FK5 (Schott catalog equivalent of FK5; patent ne 1.48914 / νe 70.22; production supplier unspecified)` | 1.48914 / 70.22 (e) | N-FK5 — Annotation vendor context matches Schott. | FK5 (Sumita, name, vendor ✗) | 2 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmaritR28mmf28TableIII.data.ts) L1 |
+| `N-BAF10 (Schott catalog equivalent of BaF10; patent ne 1.67341 / νe 46.82; production supplier unspecified)` | 1.67341 / 46.82 (e) | N-BAF10 — Annotation vendor context matches Schott. | BAF10 (Hoya, name, vendor ✗) | 1 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmaritR28mmf28TableIII.data.ts) L4 |
 | `FK5 / N-FK5 class (Schott legacy; patent n_e)` | 1.48920 / 69.90 (e) | N-FK5 — Annotation vendor context matches Schott. | FK5 (Sumita, name, vendor ✗) | 1 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) L1 |
 | `K-LaFK50-class (Sumita) / S-LAH66-class (OHARA)` | 1.77200 / 50.00 (d) | K-LaFK50 — smallest d-line \|Δn\| (3.6e-6 vs 5.0e-4) | S-LAH66 (Ohara, name, vendor ✓) | 1 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) L7 |
 | `BACD16 / S-BSM16 class (e-line catalog match; patent vendor not named)` | 1.62287 / 60.10 (e) | S-BSM16 — smallest e-line \|Δn\| (5.3e-6 vs 8.0e-6) | BACD16 (Hoya, name) | 1 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) L5 |

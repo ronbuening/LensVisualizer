@@ -20,14 +20,21 @@ import type { LensDataInput } from "../../types/optics.js";
  * stop to the image. The summary line's back focus S' = 26.7165 differs from d7 + d8 = 25.7165
  * by exactly 1.0000 and is read as a digit slip in the summary; the file keeps the printed gaps.
  *
- * Semi-diameters are not published. They are inferred from the Fig. 1 proportions and the
- * axial f/3.5 beam. The stop radius is the height of the real axial f/3.5 marginal ray at the
- * stop plane, not a published diaphragm size.
+ * Semi-diameters are not published. They are estimated from Fig. 1, scaled from its vertex
+ * spacing, and floor-checked against the real axial f/3.5 ray. Fig. 1 draws the rear face of
+ * the cemented pair (surface 3) polished only to about 4.0 mm, level with the rim of L3, and
+ * chamfered from there back to the 6.6 mm rim. Surface 3 therefore carries 4.05 mm while
+ * surfaces 1 and 2 keep 6.6 mm; the section draws that chamfer as a straight edge from the
+ * cemented rim, without the short cylindrical land Fig. 1 gives L2. The stop radius is the
+ * height of the real axial f/3.5 marginal ray at the stop plane, not a published diaphragm size.
  * The camera brochure lists a fixed UVa protective filter. It is not in the patent and is not
  * modeled.
  * Focus: the patent gives the infinity state only. The camera focuses from 0.65 m to infinity
  * by autofocus; that travel is not published, so no focus movement is modeled.
- * Glass labels are index/Abbe classes. The patent names no glass type or supplier.
+ * The patent names no glass type or supplier. L1 to L3 carry the catalog glass whose ne and νe
+ * equal the print (OHARA S-LAH65V and S-TIH6 within 0.000003 and 0.01; HOYA E-FD2 within 0.00001 and 0.02) and trace
+ * on that glass's dispersion curve anchored at the printed ne. L4 (1.7167 / 42.89) has no catalog
+ * glass closer than 0.00009 in ne and 0.17 in νe, so it stays unmatched on the Abbe model.
  */
 
 const LENS_DATA = {
@@ -86,7 +93,7 @@ const LENS_DATA = {
       "vd": 46.34,
       "indexReference": "e",
       "fl": 18.21176023919409,
-      "glass": "Unmatched (native e-line lanthanum dense-flint class; supplier unconfirmed)",
+      "glass": "S-LAH65V (OHARA catalog equivalent; patent ne 1.808109 / νe 46.34; production supplier unspecified)",
       "role": "Positive meniscus front element of the cemented doublet; its front surface is the strongest positive surface in the lens.",
       "cemented": "D1"
     },
@@ -100,7 +107,7 @@ const LENS_DATA = {
       "vd": 25.23,
       "indexReference": "e",
       "fl": -50.831017,
-      "glass": "Unmatched (native e-line dense-flint class; supplier unconfirmed)",
+      "glass": "S-TIH6 (OHARA catalog equivalent; patent ne 1.81264 / νe 25.23; production supplier unspecified)",
       "role": "Negative meniscus cemented behind L1, with nearly the same index and much higher dispersion; the patent uses the cemented surface to balance the lateral color of the last surface.",
       "cemented": "D1"
     },
@@ -114,7 +121,7 @@ const LENS_DATA = {
       "vd": 33.57,
       "indexReference": "e",
       "fl": -12.67567822780607,
-      "glass": "Unmatched (native e-line flint class; supplier unconfirmed)",
+      "glass": "E-FD2 (HOYA catalog equivalent, catalog ne 1.65222 / νe 33.58; patent ne 1.65223 / νe 33.57; production supplier unspecified)",
       "role": "Biconcave negative middle element of the triplet; it offsets the field curvature of the two positive groups."
     },
     {
@@ -154,7 +161,7 @@ const LENS_DATA = {
       "d": 0.7,
       "nd": 1,
       "elemId": 0,
-      "sd": 6.6
+      "sd": 4.05 // Fig. 1 draws this face polished to about 4.0 mm, then chamfered back to the 6.6 mm rim
     },
     {
       "label": "4",

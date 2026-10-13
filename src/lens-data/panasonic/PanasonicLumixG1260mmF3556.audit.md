@@ -72,7 +72,7 @@ The source has no published clear diameters or physical stop radius. Pass A inde
 
 The candidate uses a different, generally larger inferred silhouette. It is not retroactively substituted into the independent baseline. Source geometry is not dimensioned enough to uniquely select either radius set. Candidate clear radii were accepted only as conservative model choices after independent rechecking of their complete domains, actual sag derivatives, shared-band glass thickness, facing gaps across the stop, physical axial/chief envelopes, and genuine render diagnostics. The candidate has not been claimed pixel-exact or manufactured. Every non-stop radius exceeds the independently traced source axial/chief envelope with the declared 5%/0.5 mm rounding floor.
 
-Independent 1201-radius checks at all six source states confirm minimum glass thickness 0.170393638 mm, maximum facing intrusion 0.844426078 and maximum actual rim angle 61.927513°. The actual current engine separately checks 4097-radius profiles/elements, 513-radius shared gaps including S9→S11 across the stop, and 505 zoom/focus states. Default 90% allowance suffices; no override, layout disguise or hidden trim is used. All 505 genuine production outline/trim checks report zero trim. Selected actual SVG polygon outlines were rasterized for visual inspection of wide infinity and tele close; this is not a mounted interactive browser test.
+Independent 1201-radius checks at all six source states confirm minimum glass thickness 0.170393638 mm, maximum facing intrusion 0.844426078 and maximum actual rim angle 61.927513°. (Superseded 2026-10-13: after the semi-diameter pass below these are 0.348258642 mm, 0.844426078 and 50.633923°.) The actual current engine separately checks 4097-radius profiles/elements, 513-radius shared gaps including S9→S11 across the stop, and 505 zoom/focus states. Default 90% allowance suffices; no override, layout disguise or hidden trim is used. All 505 genuine production outline/trim checks report zero trim. Selected actual SVG polygon outlines were rasterized for visual inspection of wide infinity and tele close; this is not a mounted interactive browser test.
 
 All 114 required physical source rays pass. The complete 162-ray independently aimed meridional source set gives 158 clear and four physically blocked optional full-field edge rays. A new analytic-sphere/safeguarded-asphere intersection path extends the frozen Pass A Newton method for the wider fan; initial unrestricted Newton/bracketing difficulties are methodological diagnostics, not source edits or ignored rays. Physical apertures terminate tracing before any later off-surface solve can be mislabeled a numerical failure. Exact current engine classifications agree on all 162 rays and reached-surface heights agree within 2.2e−11 mm. The 13,635 separate public runtime-ray launches across 505 states have zero numerical failures and 2,072 classified physical clips. Full-pupil illumination, full 3-D field throughput and continuum/manufacturing tolerance proofs are not claimed.
 
@@ -84,7 +84,7 @@ The independent original-catalog parse retains 3,179 records across all six make
 
 Nine final explicit C/F/g proxy spectra agree exactly with independently evaluated original catalog equations. Absolute PgF is converted to the project normal line 0.6438−0.001682νd at the retained patent Abbe number. Native manufacturer deviations are not copied indiscriminately. Native OHARA coarse, higher-precision and equation-derived coordinates, the HOYA FDS18 workbook/AGF difference, and all relevant alternatives remain distinct.
 
-L6's P-SK57 label is corrected to near-coordinate proxy: native minus patent nd=+0.00001, νd=+0.1, beyond strict source-coordinate matching. Its spectrum remains a disclosed approximation. S-FPL51's coarse workbook νd=81.6, higher-precision 81.54 and AGF 81.545888 remain visible; the last differs from patent by −0.054112. No source pair or spectral coefficient was changed to manufacture agreement. L7/L10 remain Unmatched, Abbe-only, with no invented explicit spectral or anomalous-dispersion fields. Resin is a source-preferred implementation, not identified polymer chemistry. No APO or production chromatic-performance conclusion follows from these proxy spectra.
+L6's P-SK57 label is corrected to near-coordinate proxy: native minus patent nd=+0.00001, νd=+0.1, beyond strict source-coordinate matching. Its spectrum remains a disclosed approximation. S-FPL51's coarse workbook νd=81.6, higher-precision 81.54 and AGF 81.545888 remain visible; the last differs from patent by −0.054112. No source pair or spectral coefficient was changed to manufacture agreement. L7/L10 remain Unmatched, Abbe-only, with no invented explicit spectral or anomalous-dispersion fields. Resin is a source-preferred implementation, not identified polymer chemistry. No APO or production chromatic-performance conclusion follows from these proxy spectra. (Superseded 2026-10-13: L6 and L11 now name K-CSK120 and E-CF6, the nine stored proxy spectra were replaced by the catalog curves, and L7 and L10 carry line indices; see "Glass fields and key" below.)
 
 ## Runtime field paths and acceptance classification
 
@@ -93,6 +93,8 @@ L6's P-SK57 label is corrected to near-coordinate proxy: native minus patent nd=
 | Wide | 41.6837 | 39.506390 | 44.159739 | 23.703834 |
 | Middle | 21.5822 | 28.811227 | 21.594232 | 17.286736 |
 | Tele | 10.4396 | 11.860300 | 10.445229 | 7.116180 |
+
+Superseded 2026-10-13: after the semi-diameter pass below, the stored half-fields are 35.845846 / 26.965131 / 11.652932°, the analysis helper gives 44.159739 / 21.594236 / 10.445239° and the default diagram fields are 21.507508 / 16.179079 / 6.991759°.
 
 `runtimeLens.ts` computes rim-dependent vignetting estimates and tracing-safe fields. `offAxisRayUtils.ts` and the off-axis helper use state-aware inferred geometry and the default 0.6 field fraction. `useLensComputation.ts` invokes `computeAnalysisFieldGeometryAtState2`; that function walks real stop-centered chiefs to a format/clip boundary. Its quantitative limit is not the stored raw half-field. MTF field resolution has additional real-chief/beam refinements; executing those source helpers is not a completed MTF/UI test. The final analysis and native header/focusDescription now state these distinctions.
 
@@ -157,6 +159,82 @@ Fields changed in this pass (no optical value changed; the engine's EFL, f-numbe
 
 Two rounding-level differences in the patent are recorded in the header comment rather than treated as contradictions. Paragraph 0026 defines the middle focal length as the geometric mean of the end focal lengths (26.8374 mm), while Table 7A prints 26.8412 mm, which the middle prescription reproduces. Paragraph 0047 calls G5 fixed, while the printed BF varies by 0.23 µm (14.23623 to 14.23646 mm) across the three stations.
 
-Open: the data file still carries both differences as two `unresolved` `sourceErrata` entries, which makes the MTF tab report a self-contradicting source; removing them was requested for this pass but the edit was not applied.
+Closed 2026-10-13: the two `unresolved` `sourceErrata` entries are no longer in the data file; both differences stay in the header comment as printed. (Was open: the data file still carried both differences as two `unresolved` `sourceErrata` entries, which made the MTF tab report a self-contradicting source.)
 
-Open: the `glass` strings still read "… coordinate-compatible reference class (supplier/melt unconfirmed)"; P-SK57 (L6) and H-KF6 (L11) do not resolve in the repo glass catalog and rely on their stored C, F and g indices.
+Closed 2026-10-13: the `glass` strings follow the repo pattern, L6 names SUMITA K-CSK120 and L11 HOYA E-CF6, both of which resolve in the repo glass catalog, and the stored C, F and g copies are gone from the nine matched elements; see "Glass fields and key" below. (Was open: the `glass` strings still read "… coordinate-compatible reference class (supplier/melt unconfirmed)"; P-SK57 (L6) and H-KF6 (L11) did not resolve in the repo glass catalog and relied on their stored C, F and g indices.)
+
+## 2026-10-13 — Semi-diameter pass against the patent figure
+
+Source. `patents/JP6814931B2.pdf`, p. 28, Fig. 5 (optical system 202B, Numerical Example 2): panel (a) wide, (b) middle and (c) tele, all at infinity. The sheet is a 1146 × 1789 px bitmap at 399 ppi; it was measured on a 400 dpi render. The patent prints no effective diameters, so every value below is a figure reading with a ray-trace floor.
+
+Scale. In panel (a) the S1 vertex stroke is centred at x = 788 px and the S21 vertex at 1317 px: 529 px for 76.3499 mm, 0.1443 mm/px. The second span, S1 to the image plane (628.5 px for 90.5862 mm), gives 0.1441 mm/px. All twenty refracting vertices of panel (a) fall within about 2 px of the prescription. Panels (b) and (c) are drawn at the same scale with the image plane at the same x: S1 to S21 measures 523 px for 75.6494 mm (0.1446 mm/px) and 756 px for 109.2040 mm (0.1444 mm/px). The vertical scale was checked on geometry: the S2 and S3 strokes are 10 px apart at L2's rim, which the prescription gives at 18.3 mm, and the S5 sphere passes through its computed position at 5.3, 7.6 and 8.7 mm.
+
+Reading. The outline strokes are 4–7 px wide (0.6–1.0 mm). A rim height is half the distance between the centres of the top and bottom rim strokes; the L2 check above fits the stroke centre (18.3 mm) and not its outer edge (18.8 mm). The three panels agree within about 0.15 mm on every element. In panel (a) the lower rims of L6, L7 and L10 lie under the asterisk markers, so those three were read from the upper rim there; panels (b) and (c) are clean. The drawn stop ticks end 4.55–4.62 mm from the axis against the stored 4.768 mm; the stop was not touched.
+
+| Surface | Before | Figure (a) / (b) / (c), mm | After | Basis |
+| --- | --- | --- | --- | --- |
+| 1 (L1 front) | 20.5 | 19.3 / 19.4 / 19.2 | 20.5 | Retained, 6 % above the drawing; see below |
+| 2, 3 (L2) | 19.5 | 18.4 / 18.3 / 18.3 | 19.5 | Retained with L1; the 1.0 mm step between L1 and L2 is as drawn |
+| 4 (L3 front) | 13 | 12.3 / 12.1 / 12.2 | 12.2 | Figure; moved with surface 5 as one element |
+| 5 (L3 rear) | 10.5 | 8.8–9.3 in all three | 9.2 | Figure: the cavity ends where the flat rear annulus begins and L4's rim starts |
+| 6, 7 (L4) | 9 | 9.2 / 9.3 / 9.2 | 9 | Retained (ratio 1.03) |
+| 8, 9 (L5) | 8.5 | 9.2 / 9.3 / 9.2 | 9 | Figure draws L5 as tall as L4 in all three panels; raised to L4's height |
+| 11A, 12 (L6) | 6.5 | 5.5 / 5.6 / 5.6 | 5.6 | Figure |
+| 13A, 14A (L7) | 6.5 | 5.8 / 5.6 / 5.5 | 5.8 | Figure, upper end of the three readings |
+| 15, 16, 17 (L8+L9) | 6 | 5.5 / 5.3 / 5.6 | 5.6 | Figure, upper end; square-cut, one height on all three faces |
+| 18A, 19A (L10) | 6.5 | 5.3 / 5.3 / 5.3 | 5.6 | Outer edge of the drawn stroke (5.6), not its centre; see below |
+| 20, 21 (L11) | 12 | 11.0 / 11.1 / 11.0 | 11.1 | Figure |
+
+Before this pass L10 stood 0.5 mm taller than the L8+L9 doublet; the figure draws it level with or below the doublet in every panel. L3's rear surface at 10.5 mm reached 1.5 mm behind the drawn rear face and wrapped over L4's rim, at a 61.9° rim slope; at 9.2 mm the slope is 50.6°. The 13A polynomial turns over at 6.68 mm, so the earlier 6.5 mm sat 0.18 mm inside the turnover; at 5.8 mm it is clear of it.
+
+Ray floors, from the exact meridional trace at all six printed states. On-axis marginal heights at the printed f-numbers, largest over the states: 2.92 (4), 2.86 (5), 4.31 (8), 4.39 (9), 4.99 (11A), 5.03 (12), 4.75 (13A), 4.64 (14A), 4.45 (15), 4.29 (16), 4.20 (17), 2.99 (18A), 2.79 (19A), 2.24 (20) and 1.99 mm (21). Chief-ray heights at the wide station for the printed 41.68° (10.0 mm image height) and for the 10.815 mm frame corner (44.15°): 10.71 and 11.52 (4), 8.39 and 8.80 (5), 7.36 and 7.84 (8), 7.11 and 7.61 mm (9). Largest chief-ray heights behind the stop: 3.80 (18A), 4.05 (19A), 9.43 (20) and 9.81 mm (21). Every new value is above its floor; the trace reports no clipped axial bundle and no blocked chief ray at infinity or at the 250 mm close states.
+
+Engine values, before → after. Focal lengths 12.4642 / 26.8406 / 57.7834 mm, f-numbers 3.6221 / 4.7438 / 5.8464 and the 4.7679 mm stop radius are unchanged. The half-field derived from the semi-diameters is 39.506 / 28.811 / 11.860° → 35.846 / 26.965 / 11.653°. The wide value is a paraxial estimate limited by surface 5; the real chief ray is not clipped there, and traced corner coverage is 100 % at all three stations before and after. The image-circle check reports nothing undersized. The surface validator reports no errors: the thinnest glass section is now 0.348 mm at L2's rim (0.170 mm at L9 before), the tightest facing gap is still surface 5 to 6 at 0.844 of its depth, and the largest rim slope is 50.63° on surface 5. Neither `gapSagFrac` nor the rim-slope limit needed a change.
+
+Corner illumination, before → after (the engine's meridional vignetting curve, wide open, fraction of the pupil reaching the 10.82 mm corner at wide / middle / tele): 75.5 / 95.8 / 83.9 % → 79.7 / 91.1 / 79.7 % at infinity, and 76.0 / 95.8 / 89.6 % → 80.2 / 91.1 / 85.4 % at the close states. At the wide station's printed field (41.2° sample) it is 92.7 → 100 %. The wide gain is L5, which the earlier 8.5 mm rim clipped. At the middle station the L8+L9 doublet and L10 set the same limit, so restoring either one alone changes nothing. At tele, L7 with the doublet sets 79.7 % and L11 alone would set 80.2 %; L11 at 11.1 mm clips nothing that the other rims pass.
+
+Two rims are left above the drawing on purpose, because the drawn radius costs more than a few points:
+
+- L10 at its stroke-centre reading of 5.3 mm would take the corner from 79.7 to 70.3 % at wide and from 91.1 to 85.4 % at middle. It is set at 5.6 mm, the outer edge of the drawn stroke.
+- L1+L2 at the drawn 19.3 / 18.3 mm would take the tele corner from 79.7 to 66.1 %. They stay at 20.5 / 19.5 mm, 6 % above the drawing, with the drawn step between them.
+
+Aspheric surfaces at the new radii (polynomial departure from the spherical base, rim slope): 11A at 5.6 mm, −45.18 µm, 11.22°; 13A at 5.8 mm, +1.89 µm, 11.45°; 14A at 5.8 mm, +28.70 µm, 3.45°; 18A at 5.6 mm, −108.38 µm, 5.72°; 19A at 5.6 mm, −161.64 µm, 23.72°. The analysis table and the sentence on departure signs were rewritten to match, along with the clear-aperture paragraph and the field-angle table (chief ray to the frame corner now 44.159739 / 21.594236 / 10.445239°, default diagram field 21.507508 / 16.179079 / 6.991759°).
+
+Superseded by this pass: the 39.506390 / 28.811227 / 11.860300° half-fields and 23.703834 / 17.286736 / 7.116180° diagram fields in "Runtime field paths", and the 0.170393638 mm glass thickness and 61.927513° rim angle in "Independent figure, full-radius geometry and rays". Those sections describe the semi-diameters as delivered.
+
+Live page. The lens page was viewed at 12.46, 26.84 and 57.78 mm at infinity and at the close limit. The elements render without overlap, and the outlines were compared with the three panels on overlays drawn with the app's own element-outline routine at the figure's scale.
+
+Maker drawing. No manufacturer image was viewed in this pass. The 2026-10-13 deployment-validation section above records Panasonic's construction drawing as matching Example 2: cemented L1+L2; L3, L4, L5; aspherical L6 and L7; cemented L8+L9 with L9 marked ED; aspherical L10; L11 concave toward the object.
+
+Open limitations.
+
+- The renderer joins an element's front and rear rims with a straight edge, so L3 is drawn with a chamfer where the figure draws a square block with a flat rear annulus.
+- L1+L2 remain 6 % and L10 0.3 mm above the stroke-centre readings, as explained above.
+- The derived wide half-field (35.85°) is below the printed 41.68°; it is a paraxial estimate, not a traced limit.
+
+## 2026-10-13 — Glass fields and key
+
+The coordinator changed the data file's key and glass fields after the semi-diameter pass. This section records those changes and the analysis edits that follow them. No prescription value, semi-diameter or spacing changed.
+
+Key. `panasonic-lumix-g-12-60-f35-56` → `panasonic-lumix-g-vario-12-60mm-f35-56`. The lens page was not viewed in this follow-up; the page views recorded above were taken under the old key.
+
+L6. P-SK57 (SCHOTT, 1.58700 / 59.60, a near match) → K-CSK120, a SUMITA moulding glass. Its dispersion formula evaluates to nd 1.586986 and νd 59.478836, which round to the printed 1.58699 / 59.5; the catalog line lists the rounded 1.58700 / 59.6. Residual against the print: nd −0.000004, νd −0.021. Catalog P_g,F 0.540470; `dPgF` −0.003251 (−0.002538 for P-SK57). The row was added to the repository catalog from the vendor's Zemax file.
+
+L11. H-KF6 (CDGM, 1.517420 / 52.149249) → E-CF6 (HOYA), 1.517420 / 52.150805. Residual: nd 0, νd +0.051, so the catalog νd rounds to 52.2 against the printed 52.1. Catalog P_g,F 0.558939; `dPgF` +0.002771 (+0.002916 for H-KF6). H-KF6 has the same coordinates and rounds to 52.1, but it has no row in the repository catalog, so E-CF6 carries the dispersion curve.
+
+Matched elements. `nC`, `nF` and `ng` were removed from L1–L5, L6, L8, L9 and L11. They were copies of the named catalog rows, so nine of the eleven elements now resolve to a catalog row and trace on its dispersion equation at C, d and F, with g rebuilt from the stored `dPgF` and the printed νd. The `dPgF` values of L1–L5, L8 and L9 are unchanged, and their traced C, F and g indices equal the removed copies to six decimals. The traced indices that moved are L6, 1.583993 / 1.593842 / 1.599172 → 1.583973 / 1.593842 / 1.599176, and L11, 1.514429 / 1.524351 / 1.529898 → 1.514436 / 1.524357 / 1.529903. The d-line colour channel now uses each catalog's own nd, at most 0.000005 from the printed value (L5); the prescription keeps the printed nd.
+
+L7 and L10. Both print 1.53380 / 55.6, are double-aspherical and have no catalog row. They moved from the Abbe-number model to explicit line indices: `nC` 1.531, `nF` 1.5406, `ng` 1.546, `dPgF` 0.01204. The source is US 2017/0059832 A1, Table 23, which prints 1.53100 / 1.54060 / 1.54600 and P_g,F 0.56232 for this pair on its surfaces 11 and 13; the OCR text layer of `patents/US20170059832A1.pdf` shows the same digits. `dPgF` is 0.56232 − (0.6438 − 0.001682 × 55.6) = +0.012039. The Abbe model had placed the three lines at 1.530901 / 1.540502 / 1.545785, so C and F rise by 0.0001 and g by 0.000215. Residuals: the three rounded indices give P_g,F 0.5625, 0.00018 above the printed figure, and νd 55.604.
+
+This rests on one inference, stated in the label, the note and the analysis: an identical five-digit nd and νd from the same applicant in the same role is the same material. The same pair stands on double-aspherical elements in three other Panasonic prescriptions in this catalog (Lumix G 25mm f/1.7, Leica DG 9mm f/1.7, Lumix S 14-28mm). JP 6814931 B2 prints only nd and νd for these elements. The label stays `Unmatched` because no catalog row exists. The decision is the one recorded in `PanasonicLumixS1428mmF456.audit.md` under "Coordinator follow-up, same day — L2 line indices".
+
+Other fields. The three `finiteConjugates[].source` strings now read "JP 6814931 B2, Example 2, Tables 7A and 8: printed close-focus gaps; object distance plus track is 250 mm as printed". The two `unresolved` `sourceErrata` entries are gone; both differences remain in the header comment.
+
+Analysis brought in line:
+
+- The "Glass:" lines and prose of L6, L7, L10 and L11 name the new references; P-SK57 and H-KF6 remain only as named alternatives.
+- In "Glass Identification and Selection" the L6, L7/L10 and L11 rows carry the values above, and the nine-row table of stored C, F and g indices is replaced by the one row of printed line indices for L7 and L10, with the inference stated beside it.
+- "Reference-glass precision" now lists K-CSK120, S-FPL51 and E-CF6 against the traced catalog curve (νd 59.478836, 81.545888, 52.150805; before, 59.599081 and 81.546004 from the stored indices).
+- US 2017/0059832 A1 is added to the sources as [P3].
+
+The analysis quotes no axial-colour, lateral-colour or secondary-spectrum figure, so no whole-lens chromatic number needed recomputing; the per-element values above are the only chromatic quantities it carries.

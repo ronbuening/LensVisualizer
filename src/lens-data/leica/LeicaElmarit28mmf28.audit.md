@@ -128,3 +128,13 @@ wrong, and the prescription itself is unchanged by this entry.
 
 Open: no source consulted states the focusing mechanism; unit focusing is assumed because the patent has no moving
 subgroup. The production match rests on construction, designers and date; no production prescription is published.
+
+## 2026-10-13 — L3 glass resolved on a LaF21-type catalog row
+
+- L3 (patent nₑ 1.79227, νₑ 47.15) was the file's one unmatched element. SUMITA K-LaSFn16 was added to the glass
+  catalog from the vendor's Zemax file; its curve gives nₑ 1.79226 and νₑ 47.17, a difference of 0.00001 and 0.02.
+  The label now names it as the catalog equivalent of the LaF21 type, so L3 traces on that curve anchored at the
+  printed nₑ. Schott N-LAF21 (nₑ 1.79195) remains unused.
+- All eight elements now resolve to catalog dispersion data. No radius, thickness, index, Abbe number or
+  semi-diameter changed. The analysis glass table and the L3 paragraphs were updated to match.
+- Semi-diameters were not revisited: the 2026-09-23 diagram audit above already compared them with the patent figure.

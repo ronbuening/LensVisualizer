@@ -96,23 +96,23 @@ The absence of aspherical surfaces places a premium on the designer's ability to
 
 ## 5. Glass Identification
 
-The patent gives only nₑ and νₑ for each glass. It names no glass type and no supplier. Four of the five coordinates match Schott catalog glasses at the e-line: SK16, SF6, F2 and, as a proxy, the LaF10 class. The data therefore label them as catalog equivalents and do not assert a production melt.
+The patent gives only nₑ and νₑ for each glass. It names no glass type and no supplier. All five coordinates have catalog equivalents at the e-line: Schott SK16, SF6 and F2, SUMITA K-LaSFn16 for the LaF21 type and, as a proxy, OHARA S-BAH28 for the LaF10 class. The data therefore label them as catalog equivalents and do not assert a production melt.
 
-| Glass | Elements | nₑ | νₑ | SCHOTT Match | nᵈ | νᵈ | Family |
+| Glass | Elements | nₑ | νₑ | Catalog match | nᵈ | νᵈ | Family |
 |-------|----------|------:|------:|-------------|------:|------:|--------|
 | G1 | L1, L2, L5 | 1.62286 | 60.08 | **SK16** | 1.62041 | 60.32 | Dense barium crown |
-| G2 | L3 | 1.79227 | 47.15 | **Unmatched LaF21-class e-line glass** | 1.78800 | 47.49 | Lanthanum flint; d-line row is comparison only |
+| G2 | L3 | 1.79227 | 47.15 | **K-LaSFn16 (SUMITA; LaF21-type catalog equivalent)** | 1.78830 | 47.42 | Lanthanum flint; catalog curve gives nₑ 1.79226 / νₑ 47.17 |
 | G3 | L4, L7 | 1.81265 | 25.24 | **SF6 (catalog equivalent)** | 1.80518 | 25.43 | Dense flint; Schott SF6 curve reproduces nₑ 1.81265 / νₑ 25.24 exactly |
 | G4 | L6 | 1.72823 | 37.85 | **LaF10 class; S-BAH28 e-line spectral proxy** | 1.72793 | 37.68 at e | Supplier unspecified |
 | G5 | L8 | 1.62408 | 36.11 | **F2 (catalog equivalent)** | 1.62004 | 36.37 | Flint; exact e-line catalog-curve match |
 
 The L4/L7 row was carried for a time as the bare code `813252` because no coefficient-backed match had been verified. The repo's Schott SF6 Sellmeier entry now reproduces the patent pair exactly at the e-line (nₑ = 1.81265, νₑ = 25.24), so the row carries an SF6 catalog-equivalent label. The SK16 label resolves to the N-SK16 coefficients, which are compatible at C′/e/F′. Current SCHOTT "N-" designations are later lead-free reformulations, so legacy names describe a glass family and do not prove a coefficient identity.
 
-**Glass selection rationale:** The design uses only five distinct patent glass coordinates, a modest palette for an eight-element lens. Three elements (L1, L2, L5) share the SK16-class coordinate, and L4/L7 share the SF6-class dense-flint row. The LaF21-class name for L3 describes the glass family only. It is not a resolved catalog identity.
+**Glass selection rationale:** The design uses only five distinct patent glass coordinates, a modest palette for an eight-element lens. Three elements (L1, L2, L5) share the SK16-class coordinate, and L4/L7 share the SF6-class dense-flint row. L3 carries SUMITA K-LaSFn16, a LaF21-type glass whose curve gives nₑ 1.79226 / νₑ 47.17 against the printed 1.79227 / 47.15. Schott's current N-LAF21 (nₑ 1.79195) is a different coordinate and is not used.
 
-The glasses span a deliberate dispersion range. The SK16-class coordinate (νₑ ≈ 60) provides the low-dispersion crown needed for the front menisci and rear singlet. The unmatched LaF21-class row (νₑ ≈ 47) enables the strongly positive L3 element with manageable curvatures. The SF6-class glass (νₑ ≈ 25) is a high-index dense flint used for the negative elements of the cemented doublets. The LaF10-class L6 and catalog-backed F2 L8 provide intermediate dispersion values for the rear group's color correction.
+The glasses span a deliberate dispersion range. The SK16-class coordinate (νₑ ≈ 60) provides the low-dispersion crown needed for the front menisci and rear singlet. The LaF21-type row (νₑ ≈ 47) enables the strongly positive L3 element with manageable curvatures. The SF6-class glass (νₑ ≈ 25) is a high-index dense flint used for the negative elements of the cemented doublets. The LaF10-class L6 and catalog-backed F2 L8 provide intermediate dispersion values for the rear group's color correction.
 
-None of the glasses exhibit significant anomalous partial dispersion (ΔP_{g,F} < 0.009 for all five types). The design relies on classical achromatization through dispersion-contrast pairing of lanthanum flints with dense flints rather than the secondary spectrum correction that would become standard in later apochromatic Leica designs.
+None of the glasses exhibit significant anomalous partial dispersion (|ΔP_{g,F}| below 0.010 for all five types). The design relies on classical achromatization through dispersion-contrast pairing of lanthanum flints with dense flints rather than the secondary spectrum correction that would become standard in later apochromatic Leica designs.
 
 ## 6. Optical Topology and Design Rationale
 
@@ -144,12 +144,12 @@ Both menisci use SK16, a dense barium crown with moderately high index (nₑ = 1
 
 | Element | R_front | R_rear | d | Glass | f |
 |---------|--------:|-------:|----:|-------|----:|
-| L3 | +60.10 | −91.20 | 30.72 | Unmatched LaF21-class e-line glass | +50.2 |
+| L3 | +60.10 | −91.20 | 30.72 | K-LaSFn16 (LaF21 type) | +50.2 |
 | L4 | −91.20 | −549.30 | 17.61 | SF6 class | −137 |
 
 **Combined focal length:** f₂ ≈ +71.6 (patent: +71.4)
 
-This cemented doublet is the principal power element of the entire system. L3 is a thick biconvex element using the unmatched LaF21-class e-line coordinate (nₑ = 1.792), which enables strong positive power with moderate surface curvatures. The family name does not assert the modern N-LAF21 d-line Sellmeier row.
+This cemented doublet is the principal power element of the entire system. L3 is a thick biconvex element using the LaF21-type glass (nₑ = 1.792; SUMITA K-LaSFn16 as catalog equivalent), which enables strong positive power with moderate surface curvatures. The modern N-LAF21 row is a different coordinate and is not used.
 
 L4 is a negative meniscus of the SF6-class high-index dense flint (nₑ = 1.813, νₑ = 25.24), cemented to L3. Despite both glasses being classified as flints, the substantial dispersion contrast (Δνₑ ≈ 22) between the moderate-dispersion lanthanum flint L3 and the high-dispersion dense flint L4 provides effective achromatization: L3's positive power with lower dispersion is partially compensated in chromatic terms by L4's negative power with higher dispersion, bringing two wavelengths to a common focus. The nearly flat exit surface (R = −549.30) minimizes the negative contribution of this surface to the Petzval sum while maintaining adequate negative power for color correction.
 
@@ -293,7 +293,7 @@ The progression reveals Mandler's design strategy: as the field angle increases,
 
 1. **All spherical** — no aspherical surfaces. Aberration control relies entirely on glass selection, element spacing, and the three-group quasi-retrofocus topology.
 
-2. **Five patent glass coordinates**: SK16, LaF21-class, SF6, LaF10-class and F2. The patent gives only e-line values. SK16, SF6 and F2 are catalog equivalents, LaF10 is a spectral proxy, and L3 remains unmatched.
+2. **Five patent glass coordinates**: SK16, LaF21-class, SF6, LaF10-class and F2. The patent gives only e-line values. SK16, SF6, F2 and the LaF21 type (SUMITA K-LaSFn16) are catalog equivalents, and LaF10 is a spectral proxy.
 
 3. **Unit focus** — the entire optical assembly is modelled as translating for focusing to the 0.7m production minimum. The patent describes no floating elements.
 

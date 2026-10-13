@@ -18,15 +18,24 @@ import type { LensDataInput } from "../../types/optics.js";
  * 21.033 mm label and the marginal f-number about 4.123 against 4.291. An interpolated close state
  * between wide and middle can focus at about 139 mm object-to-image although all three printed close
  * states are 250 mm. The production 0.20 m minimum focus at the wide end is not modelled.
- * SEMI-DIAMETERS: not printed; estimated from the Fig. 5 section and checked by real-ray trace at all
- * six states. gapSagFrac stays at its 0.90 default.
+ * SEMI-DIAMETERS: not printed; measured on the three Fig. 5 panels (wide, middle, tele; 0.144 mm per
+ * pixel at 400 dpi, centre of the drawn stroke) and floor-checked by real-ray trace at all six states.
+ * L3, L5, L6, L7, L8+L9 and L11 follow the figure to within 0.2 mm; L4 was already there. L3's rear
+ * surface stops at 9.2 mm, where the figure's flat rear annulus begins, against 12.2 mm on its front.
+ * Two rims stay above the drawing because the drawn radius would cost about ten points of corner
+ * illumination: L10 is 5.6 mm, the outer edge of its drawn line (centre 5.3 mm), and L1+L2 stay at
+ * 20.5 / 19.5 mm against a drawn 19.3 / 18.3 mm. gapSagFrac stays at its 0.90 default.
  * The stop position is printed; its radius is set by a real axial ray for the patent's F-number at
  * each zoom station (4.768 mm at all three), not a published iris diameter.
  * Aspheres: the patent's κ is the standard conic constant of the (1 + κ) form and is zero on every
  * aspherical surface; even orders A4–A12.
- * Glass names are nd/νd catalog matches; neither supplier nor melt is established. nC, nF and ng come
- * from the matched glasses' catalog dispersion formulas, not from the patent. L7 and L10
- * (1.53380 / 55.6, resin by the patent's stated preference) have no catalog match and use the Abbe model.
+ * Glass names are nd/νd catalog matches and select that glass's dispersion curve; neither supplier nor
+ * melt is established. dPgF comes from the same catalog formulas, not from the patent. L6 (aspherical)
+ * equals SUMITA's moulding glass K-CSK120 as its dispersion formula evaluates (1.58699 / 59.5); L11
+ * equals HOYA E-CF6 in nd, with νd 52.15 against the printed 52.1. L7 and L10 (1.53380 / 55.6, resin
+ * by the patent's stated preference) have no catalog match. The same pair stands on double-aspherical
+ * elements in three other Panasonic prescriptions in this catalog, and US 2017/0059832 A1 prints its
+ * C, F and g indices (Table 23); those are carried here on the inference that it is the same material.
  * Paragraph 0026 defines the middle focal length as the geometric mean of the end focal lengths
  * (26.8374 mm); Table 7A prints 26.8412 mm, which the middle prescription reproduces, so the table is kept.
  * Paragraph 0047 calls G5 fixed; the printed BF varies from 14.23623 to 14.23646 mm (0.23 µm) across
@@ -37,7 +46,7 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
-  key: "panasonic-lumix-g-12-60-f35-56",
+  key: "panasonic-lumix-g-vario-12-60mm-f35-56",
   maker: "Panasonic",
   name: "PANASONIC LUMIX G VARIO 12-60mm f/3.5-5.6 ASPH. POWER O.I.S.",
   subtitle: "JP 6814931 B2, Example 2 — qualified production correlation",
@@ -71,13 +80,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -129.99180622246152,
       glass: "NBFD15 (catalog equivalent; production supplier unspecified)",
-      nC: 1.7990153921653096,
-      nF: 1.8232448433686932,
-      ng: 1.837502101737301,
+      apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       dPgF: 0.0006373971623230279,
       apd: false,
-      apdNote:
-        "nC, nF, ng and dPgF come from the reference glass's catalog dispersion formula; the patent prints nd and νd only.",
       cemented: "D1",
       role: "Negative meniscus front element of the cemented doublet D1, the positive first group",
     },
@@ -91,13 +96,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 57.25262757995004,
       glass: "BSC7 (catalog equivalent; production supplier unspecified)",
-      nC: 1.5143187028334537,
-      nF: 1.5223687377291046,
-      ng: 1.5266697166407783,
+      apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       dPgF: -0.001534821416379395,
       apd: false,
-      apdNote:
-        "nC, nF, ng and dPgF come from the reference glass's catalog dispersion formula; the patent prints nd and νd only.",
       cemented: "D1",
       role: "Positive meniscus rear element of the cemented doublet D1 in the first group",
     },
@@ -111,13 +112,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -15.801216548112134,
       glass: "S-LAH95 (catalog equivalent; production supplier unspecified)",
-      nC: 1.8952769886660195,
-      nF: 1.9241082281745439,
-      ng: 1.941301175711512,
+      apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       dPgF: 0.005177102262475919,
       apd: false,
-      apdNote:
-        "nC, nF, ng and dPgF come from the reference glass's catalog dispersion formula; the patent prints nd and νd only.",
       role: "High-index negative meniscus at the front of the negative second group",
     },
     {
@@ -130,13 +127,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -29.71062603666843,
       glass: "S-BSM16 (catalog equivalent; production supplier unspecified)",
-      nC: 1.6172754582751978,
-      nF: 1.627565974179034,
-      ng: 1.6331500021230938,
+      apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       dPgF: 0.00026288910444438596,
       apd: false,
-      apdNote:
-        "nC, nF, ng and dPgF come from the reference glass's catalog dispersion formula; the patent prints nd and νd only.",
       role: "Biconcave negative middle element of the second group",
     },
     {
@@ -149,13 +142,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 35.810812283390135,
       glass: "FDS18 (catalog equivalent; production supplier unspecified)",
-      nC: 1.9312315907201403,
-      nF: 1.9838300695392446,
-      ng: 2.018259292588765,
+      apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       dPgF: 0.04104289665738381,
       apd: false,
-      apdNote:
-        "nC, nF, ng and dPgF come from the reference glass's catalog dispersion formula; the patent prints nd and νd only.",
       role: "High-index, high-dispersion positive meniscus at the rear of the second group",
     },
     {
@@ -167,14 +156,10 @@ const LENS_DATA = {
       vd: 59.5,
       indexReference: "d",
       fl: 25.75214282371652,
-      glass: "P-SK57 (near match on nd/νd; production supplier unspecified)",
-      nC: 1.583993210634776,
-      nF: 1.5938421880439648,
-      ng: 1.5991722867692089,
-      dPgF: -0.0025380422371739098,
+      glass: "K-CSK120 (SUMITA catalog equivalent, a moulding glass; production supplier unspecified)",
+      dPgF: -0.003251,
+      apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       apd: false,
-      apdNote:
-        "nC, nF, ng and dPgF come from the reference glass's catalog dispersion formula; the patent prints nd and νd only.",
       role: "Biconvex positive front element of the third group, directly behind the stop; aspherical on its object side",
     },
     {
@@ -186,7 +171,14 @@ const LENS_DATA = {
       vd: 55.6,
       indexReference: "d",
       fl: 39.07116205673914,
-      glass: "Unmatched (1.53380/55.6; probably an optical resin; maker not stated)",
+      glass:
+        "Unmatched (Panasonic moulding material 1.53380/55.6, resin by the patent's stated preference; no catalog row; line indices from US 2017/0059832 A1)",
+      nC: 1.531,
+      nF: 1.5406,
+      ng: 1.546,
+      dPgF: 0.01204,
+      apdNote:
+        "nC, nF and ng are the values Panasonic prints for this nd/νd material in US 2017/0059832 A1 (Table 23, P_g,F 0.56232); this patent prints nd and νd only.",
       role: "Biconvex positive O.I.S. element of the third group, aspherical on both faces; its stabilizing shift is not modelled",
     },
     {
@@ -199,13 +191,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -14.503203701639677,
       glass: "S-NBH53V (catalog equivalent; production supplier unspecified)",
-      nC: 1.7313220086525056,
-      nF: 1.7541514908112212,
-      ng: 1.7676214016837908,
+      apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       dPgF: 0.0005512198265796853,
       apd: false,
-      apdNote:
-        "nC, nF, ng and dPgF come from the reference glass's catalog dispersion formula; the patent prints nd and νd only.",
       cemented: "D2",
       role: "Negative meniscus front element of the cemented doublet D2 in the third group",
     },
@@ -219,13 +207,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 13.289631174145423,
       glass: "S-FPL51 (catalog equivalent; production supplier unspecified)",
-      nC: 1.4951364052489096,
-      nF: 1.5012311244736123,
-      ng: 1.504506789458403,
+      apdNote: "Panasonic's construction drawing marks this position as the ED lens, and nd 1.497 / νd 81.6 is a fluorophosphate ED glass; dPgF comes from the named glass's catalog dispersion formula.",
       dPgF: 0.030910738991392517,
       apd: "inferred",
-      apdNote:
-        "Panasonic's construction drawing marks this position as the ED lens, and nd 1.497 / νd 81.6 is a fluorophosphate ED glass; nC, nF, ng and dPgF come from the reference glass's catalog dispersion formula.",
       cemented: "D2",
       role: "Low-dispersion biconvex positive rear element of the cemented doublet D2 in the third group",
     },
@@ -238,7 +222,14 @@ const LENS_DATA = {
       vd: 55.6,
       indexReference: "d",
       fl: -20.62121360452842,
-      glass: "Unmatched (1.53380/55.6; probably an optical resin; maker not stated)",
+      glass:
+        "Unmatched (Panasonic moulding material 1.53380/55.6, resin by the patent's stated preference; no catalog row; line indices from US 2017/0059832 A1)",
+      nC: 1.531,
+      nF: 1.5406,
+      ng: 1.546,
+      dPgF: 0.01204,
+      apdNote:
+        "nC, nF and ng are the values Panasonic prints for this nd/νd material in US 2017/0059832 A1 (Table 23, P_g,F 0.56232); this patent prints nd and νd only.",
       role: "Biconcave negative focus element forming the fourth group, aspherical on both faces; moves toward the image for close focus",
     },
     {
@@ -250,14 +241,10 @@ const LENS_DATA = {
       vd: 52.1,
       indexReference: "d",
       fl: 49.5015779090591,
-      glass: "H-KF6 (catalog equivalent; production supplier unspecified)",
-      nC: 1.5144288495924108,
-      nF: 1.5243507566666383,
-      ng: 1.5298979358333609,
-      dPgF: 0.0029161669453754424,
+      glass: "E-CF6 (HOYA catalog equivalent, catalog νd 52.15; production supplier unspecified)",
+      dPgF: 0.002771,
+      apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       apd: false,
-      apdNote:
-        "nC, nF, ng and dPgF come from the reference glass's catalog dispersion formula; the patent prints nd and νd only.",
       role: "Positive meniscus, concave toward the object, forming the fixed fifth group",
     },
   ],
@@ -292,7 +279,7 @@ const LENS_DATA = {
       d: 1.1,
       nd: 1.90366,
       elemId: 3,
-      sd: 13,
+      sd: 12.2,
     },
     {
       label: "5",
@@ -300,7 +287,7 @@ const LENS_DATA = {
       d: 5.7413,
       nd: 1.0,
       elemId: 0,
-      sd: 10.5,
+      sd: 9.2,
     },
     {
       label: "6",
@@ -324,7 +311,7 @@ const LENS_DATA = {
       d: 2.1,
       nd: 1.94595,
       elemId: 5,
-      sd: 8.5,
+      sd: 9,
     },
     {
       label: "9",
@@ -332,7 +319,7 @@ const LENS_DATA = {
       d: 26.1,
       nd: 1.0,
       elemId: 0,
-      sd: 8.5,
+      sd: 9,
     },
     {
       label: "STO",
@@ -348,7 +335,7 @@ const LENS_DATA = {
       d: 2.5,
       nd: 1.58699,
       elemId: 6,
-      sd: 6.5,
+      sd: 5.6,
     },
     {
       label: "12",
@@ -356,7 +343,7 @@ const LENS_DATA = {
       d: 5.8893,
       nd: 1.0,
       elemId: 0,
-      sd: 6.5,
+      sd: 5.6,
     },
     {
       label: "13A",
@@ -364,7 +351,7 @@ const LENS_DATA = {
       d: 1.66,
       nd: 1.5338,
       elemId: 7,
-      sd: 6.5,
+      sd: 5.8,
     },
     {
       label: "14A",
@@ -372,7 +359,7 @@ const LENS_DATA = {
       d: 1.0,
       nd: 1.0,
       elemId: 0,
-      sd: 6.5,
+      sd: 5.8,
     },
     {
       label: "15",
@@ -380,7 +367,7 @@ const LENS_DATA = {
       d: 0.6,
       nd: 1.738,
       elemId: 8,
-      sd: 6,
+      sd: 5.6,
     },
     {
       label: "16",
@@ -388,7 +375,7 @@ const LENS_DATA = {
       d: 3.25,
       nd: 1.497,
       elemId: 9,
-      sd: 6,
+      sd: 5.6,
     },
     {
       label: "17",
@@ -396,7 +383,7 @@ const LENS_DATA = {
       d: 1.8729,
       nd: 1.0,
       elemId: 0,
-      sd: 6,
+      sd: 5.6,
     },
     {
       label: "18A",
@@ -404,7 +391,7 @@ const LENS_DATA = {
       d: 1.2143,
       nd: 1.5338,
       elemId: 10,
-      sd: 6.5,
+      sd: 5.6,
     },
     {
       label: "19A",
@@ -412,7 +399,7 @@ const LENS_DATA = {
       d: 5.7284,
       nd: 1.0,
       elemId: 0,
-      sd: 6.5,
+      sd: 5.6,
     },
     {
       label: "20",
@@ -420,7 +407,7 @@ const LENS_DATA = {
       d: 4.0445,
       nd: 1.51742,
       elemId: 11,
-      sd: 12,
+      sd: 11.1,
     },
     {
       label: "21",
@@ -428,7 +415,7 @@ const LENS_DATA = {
       d: 14.23627,
       nd: 1.0,
       elemId: 0,
-      sd: 12,
+      sd: 11.1,
     },
   ],
   asph: {
@@ -524,21 +511,21 @@ const LENS_DATA = {
       zoomT: 0.0,
       objectDistanceMm: 250,
       distanceReference: "image-plane",
-      source: "JP6814931B2 Example 2, Tables 7A and 8; d0 + physical track = 250 mm to printed precision.",
+      source: "JP 6814931 B2, Example 2, Tables 7A and 8: printed close-focus gaps; object distance plus track is 250 mm as printed",
     },
     {
       focusT: 1,
       zoomT: 0.5,
       objectDistanceMm: 250,
       distanceReference: "image-plane",
-      source: "JP6814931B2 Example 2, Tables 7A and 8; d0 + physical track = 250 mm to printed precision.",
+      source: "JP 6814931 B2, Example 2, Tables 7A and 8: printed close-focus gaps; object distance plus track is 250 mm as printed",
     },
     {
       focusT: 1,
       zoomT: 1.0,
       objectDistanceMm: 250,
       distanceReference: "image-plane",
-      source: "JP6814931B2 Example 2, Tables 7A and 8; d0 + physical track = 250 mm to printed precision.",
+      source: "JP 6814931 B2, Example 2, Tables 7A and 8: printed close-focus gaps; object distance plus track is 250 mm as printed",
     },
   ],
   groups: [

@@ -13,8 +13,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * at every station, which gives f/2.84 at wide and f/3.414 at middle. nominalFno [2.84, 3.414,
  * 4.11983] reproduces that radius at each station (12.1828 / 12.1824 / 12.1833 mm). The wide and
  * middle f-numbers are derived, not printed; at the printed F4.12 the radii would be 8.355 / 10.054 /
- * 12.183 mm. The STO row's stored sd (8.355 mm) is that F4.12 wide radius; the engine replaces it
- * with the radius traced from nominalFno.
+ * 12.183 mm. The STO row stores the fixed iris radius, 12.18283 mm; the engine re-derives it from
+ * nominalFno at each station.
  * The printed 1.8 mm cover plate and the 1.0 mm of air behind it are in rearPlates; the last lens
  * gap is the printed gap to the plate. The image plane is where the patent puts it: the paraxial
  * focus lies +0.069704 / +0.036030 / -0.046516 mm from it at the three stations.
@@ -26,19 +26,25 @@ import type { LensDataInput } from "../../types/optics.js";
  * finite-focus gaps, so each focus vector repeats its infinity value. closeFocusM is Hasselblad's
  * 0.4 m minimum focus at the wide end (0.5 m at the long end); it is not modeled.
  * The stop position is printed (surface 11).
- * SEMI-DIAMETERS: not printed; estimated from the Figure 1A optical curves and checked by real-ray
- * trace. The axial beam of the fixed-iris model clears every rim at all three stations (smallest
- * margin 0.06 mm, surface 14, long end). L3's rear face follows the end of its drawn curve, which is
- * smaller than its mechanical flange. Surfaces 21A/22A are 11.6 mm, below the first slope turnover
- * of 21A at 11.646877 mm. gapSagFrac stays at its default.
+ * SEMI-DIAMETERS: not printed; estimated from the Figure 1A optical curves (all three panels) and
+ * floor-checked by real-ray trace. The axial beam of the fixed-iris model clears every rim at all
+ * three stations (smallest margin 0.15 mm, surface 18, long end). Each face follows the end of its
+ * own drawn curve: L3's rear face (18.0 mm) stops where its wider mechanical flange begins, L14's
+ * concave front face (13.2 mm) stops at the flat land below its 14.5 mm rim, and the rear faces of
+ * L5 (15.0 mm) and L10 (11.3 mm) stop below the bevelled rear corners of their cemented pairs. Each
+ * cemented joint keeps the height of the element in front of it. The diagram joins unequal face
+ * heights with a straight edge, so the drawn lands and flanges appear as chamfers. Surfaces 21A/22A
+ * are 11.6 mm, below the first slope turnover of 21A at 11.646877 mm. gapSagFrac stays at its default.
  * The printed half-angles put the chief ray at 27.481170 / 27.491995 / 27.508027 mm on the printed
  * image plane, against the summary 27.5000 mm; angles and image plane are kept as printed.
  * Aspheres: the patent's κ is the conic constant of the (1 + κ) form and is zero on every
  * aspherical surface; A4–A12 as printed, no A14. A8 of surface 23 is the printed negative value
  * -1.98459e-10.
- * Glass labels are nd/νd classes, not identified glasses. nC, nF and ng are computed from the
- * printed nd, νd and θgF, using a named catalog glass only for the d–C partial dispersion; they are
- * not measured indices. dPgF is measured from the engine's normal line, not the patent's.
+ * GLASS: the patent prints nd, νd and θgF for every glass. Each glass label names a HOYA, OHARA
+ * or SUMITA catalog glass whose nd, νd and θgF equal the print (L4: θgF 0.0005 apart; L9: nd 0.00001
+ * apart) and selects its dispersion curve; supplier and melt are not identified. The three aspherical
+ * elements are the three moulding glasses (M-FCD500, L-LAL13, K-VC181). dPgF is the printed θgF
+ * measured from the engine's normal line, 0.6438 − 0.001682 νd, not the patent's line.
  */
 const LENS_DATA = {
   key: "hasselblad-xcd-35-100mm-f28-4-e",
@@ -74,13 +80,8 @@ const LENS_DATA = {
       nd: 1.69895,
       vd: 30.1,
       indexReference: "d",
-      glass: "699301 — dense flint class (supplier and melt unconfirmed)",
-      nC: 1.6922188114727623,
-      nF: 1.7154397417053204,
-      ng: 1.7294373184495064,
+      glass: "E-FD15L (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: 0.009628199999999976,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from E-FD15L (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: -324.3865051254268,
       cemented: "D1",
     },
@@ -92,13 +93,8 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       indexReference: "d",
-      glass: "713539 — lanthanum crown class (supplier and melt unconfirmed)",
-      nC: 1.7089757945600477,
-      nF: 1.7222039949311052,
-      ng: 1.7294027815730346,
+      glass: "LAC8 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.008940200000000065,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from LAC8 (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: 96.367481773196,
       cemented: "D1",
     },
@@ -110,13 +106,8 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       indexReference: "d",
-      glass: "835427 — dense lanthanum flint class (supplier and melt unconfirmed)",
-      nC: 1.8289821346936843,
-      nF: 1.848532720173778,
-      ng: 1.8595729357943869,
+      glass: "TAFD5G (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.007278600000000024,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from TAFD5G (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: -40.355119817766685,
     },
     {
@@ -127,13 +118,10 @@ const LENS_DATA = {
       nd: 1.55332,
       vd: 71.7,
       indexReference: "d",
-      glass: "Unmatched (fluorophosphate-class patent coordinate; no all-coordinate catalog match)",
-      nC: 1.55097301637888,
-      nF: 1.5586901711905954,
-      ng: 1.5628558913579593,
+      glass: "M-FCD500 (HOYA; equals the patent nd and νd, catalog θgF 0.5403 against the printed 0.5398; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "One of the five elements with νd of 71.7 or more (L4, L8, L10, L11, L15); Hasselblad states five ED elements. dPgF comes from the patent's printed θgF.",
       dPgF: 0.01659939999999993,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from M-FCD500 (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: -38.532950227716604,
       cemented: "D2",
     },
@@ -145,13 +133,8 @@ const LENS_DATA = {
       nd: 1.9011,
       vd: 27.1,
       indexReference: "d",
-      glass: "901271 — dense flint class (supplier and melt unconfirmed)",
-      nC: 1.89150888397124,
-      nF: 1.924759806480465,
-      ng: 1.9449497666280664,
+      glass: "NBFD27 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: 0.00898219999999994,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from NBFD27 (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: 38.088351666342064,
       cemented: "D2",
     },
@@ -163,13 +146,8 @@ const LENS_DATA = {
       nd: 1.6896,
       vd: 31.1,
       indexReference: "d",
-      glass: "690311 — dense flint class (supplier and melt unconfirmed)",
-      nC: 1.6831698437705922,
-      nF: 1.7053434772111067,
-      ng: 1.718716395539081,
+      glass: "E-FD80 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: 0.011610199999999904,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from E-FD80 (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: -182.39712290466713,
     },
     {
@@ -180,13 +158,8 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.3,
       indexReference: "d",
-      glass: "834373 — dense lanthanum flint class (supplier and melt unconfirmed)",
-      nC: 1.8274195926769579,
-      nF: 1.8497788420067165,
-      ng: 1.8627248473686469,
+      glass: "NBFD10 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.002061400000000102,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from K-LaSFn14 (SUMITA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: 48.97392394041472,
     },
     {
@@ -197,13 +170,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       indexReference: "d",
-      glass: "497816 — fluorophosphate class (supplier and melt unconfirmed)",
-      nC: 1.4951400488960205,
-      nF: 1.5012307351705303,
-      ng: 1.5045130060038636,
+      glass: "FCD1 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "One of the five elements with νd of 71.7 or more (L4, L8, L10, L11, L15); Hasselblad states five ED elements. dPgF comes from the patent's printed θgF.",
       dPgF: 0.032351200000000024,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from FCD1 (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: 42.87056288808425,
     },
     {
@@ -214,13 +184,8 @@ const LENS_DATA = {
       nd: 1.74951,
       vd: 35.3,
       indexReference: "d",
-      glass: "Unmatched (barium flint-class patent coordinate; no all-coordinate catalog match)",
-      nC: 1.7432590863129223,
-      nF: 1.764491664216605,
-      ng: 1.7768447780409677,
+      glass: "S-NBH51 (OHARA; equals the patent νd and θgF, catalog nd 1.74950 against the printed 1.74951; supplier unconfirmed)",
       dPgF: -0.002625400000000111,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from S-NBH51 (OHARA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: -18.82059568563722,
       cemented: "D3",
     },
@@ -232,13 +197,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       indexReference: "d",
-      glass: "497816 — fluorophosphate class (supplier and melt unconfirmed)",
-      nC: 1.4951400488960205,
-      nF: 1.5012307351705303,
-      ng: 1.5045130060038636,
+      glass: "FCD1 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "One of the five elements with νd of 71.7 or more (L4, L8, L10, L11, L15); Hasselblad states five ED elements. dPgF comes from the patent's printed θgF.",
       dPgF: 0.032351200000000024,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from FCD1 (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: 59.15251429123069,
       cemented: "D3",
     },
@@ -250,13 +212,10 @@ const LENS_DATA = {
       nd: 1.55032,
       vd: 75.5,
       indexReference: "d",
-      glass: "550755 — fluorophosphate class (supplier and melt unconfirmed)",
-      nC: 1.548098126903805,
-      nF: 1.5553871335263216,
-      ng: 1.5593239260031428,
+      glass: "FCD705 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "One of the five elements with νd of 71.7 or more (L4, L8, L10, L11, L15); Hasselblad states five ED elements. dPgF comes from the patent's printed θgF.",
       dPgF: 0.02329099999999995,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from FCD705 (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: 30.66506351879886,
     },
     {
@@ -267,13 +226,8 @@ const LENS_DATA = {
       nd: 1.6935,
       vd: 53.2,
       indexReference: "d",
-      glass: "694532 — lanthanum crown class (supplier and melt unconfirmed)",
-      nC: 1.6895525661985078,
-      nF: 1.702588280484222,
-      ng: 1.7097344590556507,
+      glass: "L-LAL13 (OHARA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.006117600000000056,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from L-LAL13 (OHARA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: -179.11987321597823,
     },
     {
@@ -284,13 +238,8 @@ const LENS_DATA = {
       nd: 1.81055,
       vd: 41.1,
       indexReference: "d",
-      glass: "811411 — dense lanthanum flint class (supplier and melt unconfirmed)",
-      nC: 1.8046950569505333,
-      nF: 1.8244164681427475,
-      ng: 1.8356379511111174,
+      glass: "K-VC181 (SUMITA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.005669800000000058,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from K-VC181 (SUMITA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: -80.55101888238354,
     },
     {
@@ -301,13 +250,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.4,
       indexReference: "d",
-      glass: "487704 — crown class (supplier and melt unconfirmed)",
-      nC: 1.4853492639548278,
-      nF: 1.4922738378184641,
-      ng: 1.4959480167105095,
+      glass: "FC5 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: 0.005212799999999906,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from FC5 (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: -110.66739532664758,
     },
     {
@@ -318,13 +262,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       indexReference: "d",
-      glass: "497816 — fluorophosphate class (supplier and melt unconfirmed)",
-      nC: 1.4951400488960205,
-      nF: 1.5012307351705303,
-      ng: 1.5045130060038636,
+      glass: "FCD1 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "One of the five elements with νd of 71.7 or more (L4, L8, L10, L11, L15); Hasselblad states five ED elements. dPgF comes from the patent's printed θgF.",
       dPgF: 0.032351200000000024,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from FCD1 (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: -366.8757712513046,
     },
     {
@@ -335,13 +276,8 @@ const LENS_DATA = {
       nd: 1.92119,
       vd: 24.0,
       indexReference: "d",
-      glass: "921240 — dense flint class (supplier and melt unconfirmed)",
-      nC: 1.910222065006188,
-      nF: 1.9486049816728548,
-      ng: 1.9724100665895214,
+      glass: "FDS24-W (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: 0.016767999999999894,
-      apdNote:
-        "nd, νd and θgF are the patent's values. nC, nF and ng are computed from them, with the d–C partial dispersion taken from FDS24-W (HOYA); they are not measured indices, and the glass maker and melt are unknown. dPgF is measured from the engine's normal line.",
       fl: 87.93669415030313,
     },
   ],
@@ -384,7 +320,7 @@ const LENS_DATA = {
       d: 11.1395,
       nd: 1.0,
       elemId: 0,
-      sd: 17.4,
+      sd: 18.0,
     },
     {
       label: "6A",
@@ -408,7 +344,7 @@ const LENS_DATA = {
       d: 5.5461,
       nd: 1.0,
       elemId: 0,
-      sd: 17.4,
+      sd: 15.0,
     },
     {
       label: "9",
@@ -456,7 +392,7 @@ const LENS_DATA = {
       d: 5.44,
       nd: 1.497,
       elemId: 8,
-      sd: 12.7,
+      sd: 13.0,
     },
     {
       label: "15",
@@ -464,7 +400,7 @@ const LENS_DATA = {
       d: 1.4752,
       nd: 1.0,
       elemId: 0,
-      sd: 12.7,
+      sd: 13.0,
     },
     {
       label: "16",
@@ -472,7 +408,7 @@ const LENS_DATA = {
       d: 1.0,
       nd: 1.74951,
       elemId: 9,
-      sd: 12.6,
+      sd: 12.1,
     },
     {
       label: "17",
@@ -480,7 +416,7 @@ const LENS_DATA = {
       d: 4.4156,
       nd: 1.497,
       elemId: 10,
-      sd: 12.6,
+      sd: 12.1,
     },
     {
       label: "18",
@@ -488,7 +424,7 @@ const LENS_DATA = {
       d: 5.9766,
       nd: 1.0,
       elemId: 0,
-      sd: 12.6,
+      sd: 11.3,
     },
     {
       label: "19",
@@ -544,7 +480,7 @@ const LENS_DATA = {
       d: 1.0,
       nd: 1.48749,
       elemId: 14,
-      sd: 14.5,
+      sd: 13.2,
     },
     {
       label: "26",
@@ -594,10 +530,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      glass: "517642 — borosilicate crown class (supplier and melt unconfirmed)",
-      nC: 1.5143205455328304,
-      nF: 1.5223703897695904,
-      ng: 1.5266714215452912,
+      glass: "BSC7 (HOYA; equals the patent nd, νd and θgF; supplier unconfirmed)",
       dPgF: -0.0015156000000000613,
       gapAfterMm: 1.0,
       source: "US 2026/0036794 A1, Example 1 Table 1A surfaces 31–32; paragraph 0031.",
