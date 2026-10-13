@@ -9,8 +9,10 @@
  * - engine drift: every head prescription on the base engine and on the head engine, under the class;
  * - a format-only data change (the prescription differs, its semantic fingerprint does not): the base and head
  *   prescriptions on the head engine, which must be bit-identical in every class;
- * - a semantic data change or a new lens: the same pair as an impact report, which blocks only on a new failed
- *   status, a newly non-finite value, or a lens that no longer builds;
+ * - a semantic data change: the same pair as an impact report, judged path by path. It blocks only where both sides
+ *   have a status, a computed number or an outcome at one path and the head data's alone is a failure, is not
+ *   finite or threw, which is how a lens that no longer builds shows. What one side has alone is counted;
+ * - a new lens has no base data, and blocks only by not building;
  * - a lens the base engine cannot build is uncompared, and the uncompared lenses must be exactly the exceptions
  *   declared in the file given as `--exceptions`.
  *

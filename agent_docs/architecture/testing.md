@@ -244,8 +244,8 @@ and bundled there.
 - `compare.ts` pairs the records of two captures one lens at a time, judges each difference under the declared change
   class, and keeps totals, the largest difference per quantity and a bounded sample of findings. A lens with many
   records may be handed over in consecutive parts and is reported as one lens. It also sorts a catalog's changes into
-  format-only and semantic, sets the two engines' permitted pairs side by side, reads the declared exceptions and the
-  declared transitions, and writes the reports.
+  format-only and semantic, judges a semantic one path by path, sets the two engines' permitted pairs side by side,
+  reads the declared exceptions and the declared transitions, and writes the reports.
 
 The build record holds every field of the built lens. Each surface of `S` keeps every member the engine holds for it,
 its inner radius, stop placement, interaction and diffractive phase among them, with a flat radius written as the
@@ -344,17 +344,75 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
 2. **Format-only data change.** A lens whose serialized prescription differs from the base's while its semantic
    fingerprint does not: the base and head prescriptions are evaluated on the head engine and must be bit-identical
    in every class. Prescriptions are compared as evaluated data, so an edit to comments or layout is no change.
-3. **Semantic data change or new lens.** The same pair becomes an impact report, written to `data-impact.md`. It
-   blocks only on a new failed status, a newly non-finite value, or a lens that no longer builds. Failed statuses
-   and non-finite numbers are also counted per record on both sides, and an increase blocks, so one that came in
-   with a longer array or a new member is not missed. The count is per record and net: a failure that appears
-   behind a change of shape while another disappears from the same record leaves the count equal, is not blocked by
-   it, and is left to the reviewed impact report. A record that threw on the base data has nothing to count
-   against, so the count is not applied to it. A non-finite number that hands the prescription back, such as the
-   focal length of a plane element, was authored and is not counted. A new lens has no base data and blocks only by
-   not building. With nothing to count against, the failed statuses and computed non-finite numbers in its records
-   gate nothing: the report gives both counts for each of its records, for review. A teleconverter is no lens of a
-   run: a changed or new one is compared through the pairs it forms, and the report lists it with them.
+3. **Semantic data change or new lens.** The same pair becomes an impact report, written to `data-impact.md`. A
+   changed lens is judged path by path (`judgeDataChange` in `compare.ts`). It blocks only on these, each at a path
+   both sides have:
+   - A status that is no failure on the base data and a failure on the head data. A status is a string the engine
+     wrote in a member named `status`, and a failure is a status that says `failed`. The engine writes three:
+     `failed` for a traced ray, `bracket-failed` for a chief-ray solve, and `evaluation-failed` for a root solve or
+     a sensor lock. Every other status is an outcome a prescription can move between, and a change to one is listed
+     and does not block: `clipped`, `missed-sensor`, `chief-unreachable`, `unbracketed`, `iteration-limit`,
+     `paraxial-fallback`, `unconverged`, `unavailable` and the out-of-domain statuses.
+     - The status on the base data need only be no failure, so a status that held no result there blocks as one
+       that held one does: a ray that was `clipped` and is `failed`, a root solve that was `unbracketed` and is
+       `evaluation-failed`. The fans of a traces record are traced on past a rim, so the first is as a rule a
+       vignetted ray that went on to miss a surface, and nothing that was good became bad. It blocks all the same,
+       and nothing excuses a data-impact block. The report's table of status changes marks each change that blocks,
+       so a reader tells such a block from a result that was lost.
+   - A number the engine computed that is finite on the base data and not on the head data.
+   - An outcome that is true on the base data and false on the head data. An outcome is a boolean in a member named
+     `ok`: that of the record itself, of an analysis job and of a tracer's near-axis probes, each of which returned
+     and now throws. A lens that no longer builds shows as every one of its records doing so. The fit predicate's
+     answer in a composition record is such a member too. The composer applies that predicate, so a pair it
+     refuses throws as its record does.
+
+   What the prescription hands back is no part of the rule: a status or a non-finite number at a path the budget
+   table marks as authored. The `status` of a source erratum says `corrected` or `unresolved` of the source, and
+   the focal length of a plane element was authored as infinite.
+
+   What only one side has at a path is counted and blocks nothing, the failures in it too. On the head side it is
+   work the base data never did: a sample that missed the sensor and is usable now has its rays traced for the
+   first time, and a ray that fails among them is no regression. On the base side it is work no longer done. Where
+   that work stopped because a solve above it failed, the solve's status is at a path both sides have and blocks by
+   the first rule. A perspective sample's own status is never a failure: one that stopped being usable says
+   `missed-sensor`, `clipped` or `chief-unreachable`, so the work lost under it blocks nothing, and the report
+   lists the change.
+   - **Paths.** An array that changed length is paired by index: its first elements are at paths both sides have,
+     and the rest are the longer side's alone. So a status that turned to a failure in a fan that also grew at its
+     end blocks, whatever happened to the record's count of failed statuses. A member one side lacks, a value that
+     is a container on one side only, and a status or a number set against a value of another type, `null` among
+     them, are one side's alone.
+     - Pairing by index sets the same things side by side only where the longer side's extra elements are at its
+       end. Where an element was put in or taken out ahead of others, an index holds two different things: a status
+       that turned to a failure can count as the longer side's alone and pass, and one that did not can block. The
+       verdict stands as the paths give it. The report counts, for each lens, the arrays that changed length and
+       hold what the rule reads (a status, an outcome or a computed number that is not finite), and lists the first
+       ten with their paths and lengths, for a reader to check the pairing.
+   - **Digests.** The digest of a nested trace is an object at a path both sides have, and its members are read
+     like any others. Its `status` is a status. Its hit count, largest residual share and largest effective
+     tolerance are numbers, so a share that turned infinite blocks. Its `hash` and `outcome` are neither: a change
+     inside the trace that the other members do not show is a difference to review. A ray that fails inside a pupil
+     bundle, whose digest has no status, is therefore outside the rule.
+   - **Report.** `data-impact.md` gives for each changed lens:
+     - every blocker with its whole path and its two values, each value on one line and cut at 80 characters, the
+       first ten of each of the three kinds, under the count of all of them;
+     - how many statuses turned to a failure and from one, how many numbers turned non-finite and finite, and how
+       many outcomes turned to a throw and from one;
+     - the statuses, the failures among them and the computed non-finite numbers at paths only the head data has,
+       and the same at paths only the base data has;
+     - the arrays paired by index, as under "Paths";
+     - every status change as `base -> head` with the number of paths that show it and whether it blocks, `absent`
+       standing for a side with no status there. A run keeps the first 64 distinct changes of a lens and counts the
+       rest together.
+
+     `summary.md` has one row of those counts per changed lens, the blocked lenses first and at most 40 of them,
+     and the first 40 blockers of the run with their paths. The verdict reads the counts, and no list: a list that
+     is cut never passes a change.
+   - **New lenses.** A new lens has no base data and blocks only by not building. With no path to pair, the failed
+     statuses and computed non-finite numbers in its records gate nothing: the report gives both counts for each of
+     its records, for review.
+   - **Teleconverters.** A teleconverter is no lens of a run: a changed or new one is compared through the pairs it
+     forms, and the report lists it with them.
 4. **Uncompared lenses.** A lens the base engine cannot build is not compared. The uncompared lenses must be exactly
    the declared exceptions: one bullet per lens, its id in backticks, under a heading `## Engine-diff exceptions` in
    the pull request description. A converter pair is named `host+converter`.
@@ -384,11 +442,12 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
      in `data-impact.md`. A pair that only the head's prescriptions permit is compared as a new lens: it has
      nothing to compare against on the base data, so it blocks only by not building, and the report counts what
      its records hold as it does for a new lens.
-   - A pair the head's prescriptions no longer permit is not requested and does not block. The plan gates a data
-     change only on a new failed status, a non-finite value or a lens that no longer builds, and a converter that
-     fits nothing is none of these. A changed host or converter that lost every pair it had with the base data is
-     therefore named in a warning, with the pairs it lost: among the failure lines at the top of `summary.md`, and
-     on stderr. Nothing in the run evaluated such a converter, and the run does not fail on it.
+   - A pair the head's prescriptions no longer permit is not requested and does not block. Rule 3 gates a data
+     change only on a status that turned to a failure, a number that turned non-finite or a lens that no longer
+     builds, and a converter that fits nothing is none of these. A changed host or converter that lost every pair
+     it had with the base data is therefore named in a warning, with the pairs it lost: among the failure lines at
+     the top of `summary.md`, and on stderr. Nothing in the run evaluated such a converter, and the run does not
+     fail on it.
 
 ### Change Classes and Budgets
 
@@ -405,18 +464,21 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
 The classes in `budgets.ts`:
 
 - The rows of that quantity table keep its values: unclipped hits and image-plane landings 1e-9 mm, clipped,
-  exterior or diagnostic hits 1e-7 mm, direction cosines 1e-10, first-order scalars 1e-12 relative, chief-ray launch
-  heights 1e-9 mm, field angles from an image height 1e-10°, analysis lengths 1e-8 mm, percentages 1e-8 points, MTF
-  modulation 1e-7.
+  exterior or diagnostic hits 1e-7 mm (or 1e-12 of the point's own size where that is more, which it is beyond 100 m
+  from the lens, where a ghost path that has left the lens puts its points), direction cosines 1e-10, first-order
+  scalars 1e-12 relative, chief-ray launch heights 1e-9 mm, field angles from an image height 1e-10°, analysis
+  lengths 1e-8 mm, percentages 1e-8 points, MTF modulation 1e-7, the weighted bin statistics of a bokeh profile
+  1e-10 relative, and a ratio of two analysis lengths 1e-8 relative.
 - A hit's coordinates, and a ray's terminal values, are budgeted as unclipped only when the clip flag or status
   beside them says so on both sides. A flag that differs is a transition of its own.
 - A relative budget is `|a − b| ≤ budget · max(|a|, |b|)`, and no less than the class's floor where it has one. A
   floor is an absolute bound in the field's own unit, for a class whose values may be zero: a first-order length, a
   layout length and a best-fit radius are never held tighter than 1e-12 mm, and a smooth ratio, which is a fraction,
   than 1e-10. A class whose fields are no lengths and never near zero has no floor and is plainly relative, so only
-  zero agrees with zero: refractive indices, and the f-numbers, ray-height ratios, Petzval sum and drawing scales. A
-  prescription the engine hands back is plainly relative too: its values have no one unit, and an asphere
-  coefficient is far smaller than any floor of a length.
+  zero agrees with zero: refractive indices, and the f-numbers, ray-height ratios, Petzval sum and drawing scales.
+  So are a weighted bin statistic and a ratio of two analysis lengths, which are zero only where they are exactly
+  zero on both sides: an empty bin, a footprint with no rays. A prescription the engine hands back is plainly
+  relative too: its values have no one unit, and an asphere coefficient is far smaller than any floor of a length.
 - NaN and the infinities are compared with `Object.is` in every class.
 - An intersection residual is not differenced. Each side must lie within the effective tolerance recorded with it.
 - The effective tolerance itself is held to 1e-12 relative, with no floor. It is the engine's 1e-12 mm target
@@ -442,7 +504,46 @@ The classes in `budgets.ts`:
   - A solve accepted its residual only where its status says `converged`. One that ended any other way returned
     the miss of its nearest sample, which is a diagnostic and takes the clipped-hit budget, 1e-7 mm.
 - Slopes are compared as direction cosines.
-- Counts, indices, sample positions, request echoes, count ratios and binned statistics are exact.
+- Counts, indices, sample positions, request echoes and count ratios are exact.
+- The statistics of a bokeh footprint's radial profile go by what the footprint's rays weigh: a bin's `density`
+  and `energyFraction`, the profile's `centerDensity` and `rimDensity`, and the footprint's `centerToRimRatio`. A
+  footprint weighs each ray by its transmission and sums the weights into the bins, and its record holds the
+  weights beside the profile, as `points[].weight`.
+  - Where every point of a footprint has one and the same weight, on both sides, the statistics are functions of
+    the counts in the bins and stay exact as count ratios. That is every lens with no absorbing element. A
+    difference is a ray that changed bin: a discrete transition, declared like any other.
+  - Where the weights differ, within a side or between the two, the statistics are sums of transmissions through
+    an absorbing element, whose last bits move when a hit moves inside its tolerance. They are held to 1e-10
+    relative, with no floor. The weights are never negative, so nothing cancels in a sum of them: a faint bin
+    moves by no more of itself than a full one, and a bin that is zero on one side alone has gained a ray. Under
+    C0 they are bit-exact, as every number is.
+  - A ray that changes bin in such a footprint moves a share by its whole weight. It fails as a number beyond
+    budget, which no transition line declares: that is the limit of this rule.
+  - A profile with no points beside it does not say what its rays weigh, and is held as a weighted one.
+  - The blur character of spherical aberration (`computeSphericalAberrationBlurCharacter`) fills the same kind of
+    profile with rays of one weight: the engine multiplies no transmission into it, and its record holds no
+    points. Its statistics are functions of counts on every lens, and the table keeps them exact as count ratios
+    by the job's name. The tests hold that to the engine: with the absorption taken out of an absorbing lens's
+    prescription, its blur character is the same to the bit.
+- A ratio of two analysis lengths is held to 1e-8 relative, with no floor: `tailSkewRatio`, the longer extent of a
+  spot from its centroid over the shorter, and `sagittalToTangentialRatio`, one span of a spot over the other.
+  - Each length is allowed 1e-8 mm and a sharp spot is some thousandths of a millimetre across, so the 1e-10 of a
+    fraction cannot hold such a ratio: rounding that moves an extent by 1e-13 mm moves it by 1e-10 of itself.
+  - 1e-8 relative is a fixed bound. For a spot under a millimetre across it is far tighter than the one the
+    lengths' own budget implies. A spot may be tens of millimetres across, and there the lengths' own rows are the
+    tighter ones: the spans, and the offsets and centroid the extents are taken from, are in the same record as
+    analysis lengths.
+  - A pupil footprint's `catEyeAspect` and `shiftRadius` are measured in fractions of the pupil and stay smooth
+    ratios.
+- Two smooth ratios are held tighter than their parts imply, and the ratio of two analysis lengths does not name
+  them. A failure on either alone may be rounding inside the budgets of its lengths, and loosening either is the
+  plan's to settle.
+  - `chiefRayCorrection` is a solved chief-ray launch height over the paraxial one. Its 1e-10 is less than the
+    launch height's own 1e-9 mm implies wherever the paraxial height is under 10 mm: at the 0.23 mm of a wide
+    lens's innermost sample that is 4e-9 of the ratio.
+  - `mag` of the LoCA inset is a ratio of two drawing scales. Where the bars are clamped to the inset it is a
+    constant over the largest focus shift, and 1e-10 of it is 3e-11 mm of a 0.3 mm shift, against the 1e-8 mm of
+    an analysis length.
 - Layout lengths, refractive indices, the scalars that are no lengths and a prescription handed back take the
   first-order relative budget. Smooth ratios take 1e-10.
 - The pupil positions and sizes the engine builds from its two near-axis rays keep the first-order budget. It is
@@ -750,8 +851,16 @@ Three files in the tooling suite hold the harness to its contract.
   the accepted limit of the rule. The outcome masks exactly the numbers the table budgets, on captured traces, a
   near-axis probe that stops returning fails on either tracer, and a probe launch that threw on one engine fails as
   that outcome alone. It also covers cross-evaluation: a data-only change shows no engine difference
-  and an impact report, a format-only change that alters a value fails, a failed status or a non-finite number behind a
-  change of shape blocks, a changed converter is compared through its pairs, and a pair the engines disagree about fails
+  and an impact report, and a format-only change that alters a value fails. A semantic change is judged path by path:
+  a status that turned to a failure, a number that turned non-finite and a job that now throws each block at a path
+  both sides have, behind a change of shape and beside an improvement as well. So does a root solve that turned to a
+  failure with the work behind it gone, and a status that turned to a failure from one that held no result. Failures
+  at paths only the head data has pass and are counted, as is what only the base data has, on a modelled chromatic
+  channel and on the records the engine returns for a catalog lens with one glass unresolved. An array paired by
+  index is counted and listed, where it hides a status that turned to a failure and where it shows one that did not.
+  A status the prescription hands back is left out, a digest is read like any object, the message of a lens that
+  does not build is written on one line, and a list that is cut passes nothing. A changed converter is compared
+  through its pairs, and a pair the engines disagree about fails
   while one the data lost is listed. A pair the data gained passes with failed rays in its records and fails when it
   does not build, the impact report counts what the records of a new lens or a gained pair hold, and a changed converter
   that lost every pair is warned of. A pair the base engine cannot compose and build is uncompared in a run that meets

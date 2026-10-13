@@ -150,6 +150,49 @@ const RAY: Path = ["onAxis", "rays", 1];
 const HIT = 2;
 const HIT_POINT_Y: Path = [...RAY, "hits", "columns", "point", HIT, 1];
 
+/** An off-axis field of the bokeh preview, and the bokeh footprint of one sensor point of the posed focus analysis. */
+const BOKEH_FIELD: Path = ["jobs", "computeBokehPreviewPair", "value", "infinity", "fields", 1];
+const POSED_BOKEH: Path = ["jobs", "computePerspectiveFocusAnalysis", "value", "samples", 1, "bokeh"];
+/** An off-axis spot of the coma point cloud, and one of the posed coma analysis. */
+const COMA_FIELD: Path = ["jobs", "computeComaAnalysis", "value", "pointCloudPreview", "fields", 1];
+const POSED_COMA_SAMPLE: Path = ["jobs", "computePerspectiveFieldAberrations", "value", "coma", "samples", 1];
+/** The blur character of spherical aberration, in front of best focus. */
+const BLUR_CHARACTER: Path = ["jobs", "computeSphericalAberrationBlurCharacter", "value", "frontDefocus"];
+
+/** The Tier P lens with an absorbing element, whose rays do not all weigh the same. */
+const ABSORBING = lensId(FEATURE_REPRESENTATIVES.find(({ feature }) => feature === "bulk-absorption")!.lens);
+/**
+ * That lens's analysis record at the default state. The catalog's own prescription is captured once, by the first
+ * test that asks, and a test that edits the prescription captures its own.
+ */
+const absorbingAnalysisOf = (catalog: SerializedCatalog): PayloadRecord[] =>
+  captureRecords(
+    catalog,
+    TIER_P.filter(({ lens, family }) => lensId(lens) === ABSORBING && family === "analysis"),
+  );
+let absorbingRecords: PayloadRecord[] | undefined;
+const absorbingAnalysis = (): PayloadRecord[] => (absorbingRecords ??= absorbingAnalysisOf(CATALOG));
+
+/** The record path of a member, as the budget table is asked for it: "[]" for each array level. */
+const tablePath = (path: Path): string[] => path.map((step) => (typeof step === "number" ? "[]" : step));
+/** The same path as a finding prints it. */
+const pathText = (path: Path): string =>
+  path.reduce<string>(
+    (text, step) => (typeof step === "number" ? `${text}[${step}]` : text ? `${text}.${step}` : step),
+    "",
+  );
+/** The five statistics of a footprint's radial profile: two of a bin, two means of bins, and the ratio of the means. */
+const profileStatistics = (footprint: Path): Path[] => [
+  [...footprint, "radialProfile", "bins", 0, "density"],
+  [...footprint, "radialProfile", "bins", 0, "energyFraction"],
+  [...footprint, "radialProfile", "centerDensity"],
+  [...footprint, "radialProfile", "rimDensity"],
+  [...footprint, "centerToRimRatio"],
+];
+/** How many different weights the points of a footprint carry: one where the engine summed rays of one weight. */
+const distinctWeights = (records: readonly PayloadRecord[], footprint: Path): number =>
+  new Set((at(records, "analysis", [...footprint, "points"]) as { weight: number }[]).map(({ weight }) => weight)).size;
+
 /* ── budgets.ts ── */
 
 describe("engineDiff budget table", () => {
@@ -159,7 +202,9 @@ describe("engineDiff budget table", () => {
       return [kind, c1, unit];
     };
     expect(row("landing")).toEqual(["absolute", 1e-9, "mm"]);
-    expect(row("clippedHit")).toEqual(["absolute", 1e-7, "mm"]);
+    /* 1e-7 mm, as the plan has it, for any point within 100 m of the lens; relative beyond that. */
+    expect(row("clippedHit")).toEqual(["relative", 1e-12, "relative"]);
+    expect(QUANTITIES.clippedHit.floor).toEqual({ bound: 1e-7, unit: "mm" });
     expect(row("directionCosine")).toEqual(["absolute", 1e-10, ""]);
     expect(row("firstOrder")).toEqual(["relative", 1e-12, "relative"]);
     expect(row("chiefLaunch")).toEqual(["absolute", 1e-9, "mm"]);
@@ -169,21 +214,35 @@ describe("engineDiff budget table", () => {
     expect(row("mtfModulation")).toEqual(["absolute", 1e-7, ""]);
     expect(row("count")).toEqual(["exact", 0, ""]);
     expect(row("requested")).toEqual(["exact", 0, ""]);
+    /* Two kinds of ratio the plan budgets by name, each a plain share of the value: the weighted bins of a bokeh
+     * footprint at the 1e-10 of a smooth ratio, and one analysis length over another at 1e-8. */
+    expect(row("binnedStatistic")).toEqual(["relative", 1e-10, "relative"]);
+    expect(QUANTITIES.binnedStatistic.floor).toBeUndefined();
+    expect(row("lengthRatio")).toEqual(["relative", 1e-8, "relative"]);
+    expect(QUANTITIES.lengthRatio.floor).toBeUndefined();
     const planRows = (Object.keys(QUANTITIES) as QuantityId[]).filter((id) => QUANTITIES[id].origin === "plan");
-    expect(planRows).toHaveLength(11);
+    expect(planRows).toHaveLength(13);
+    expect(planRows.slice(11)).toEqual(["binnedStatistic", "lengthRatio"]);
   });
 
   it("gives a relative class a floor only where its values may be zero, in the field's own unit", () => {
     /* A floor is the least a relative bound may be. A length may be exactly zero, so its classes keep 1e-12 mm; a
      * smooth ratio is a fraction that is often zero, and keeps its 1e-10. An index, an f-number, a ratio of ray
-     * heights or the Petzval sum is no length and never near zero, and is held to the plain relative bound. */
+     * heights or the Petzval sum is no length and never near zero, and is held to the plain relative bound. A
+     * clipped or diagnostic point keeps the plan's 1e-7 mm as its floor, and is relative only far from the lens. */
     const floors = (Object.keys(QUANTITIES) as QuantityId[]).flatMap((id) => {
       const { kind, c1, floor }: Quantity = QUANTITIES[id];
       return kind === "relative" ? [[id, c1, floor ?? null]] : [];
     });
     const lengthFloor = { bound: 1e-12, unit: "mm" };
     expect(floors).toEqual([
+      ["clippedHit", 1e-12, { bound: 1e-7, unit: "mm" }],
       ["firstOrder", 1e-12, lengthFloor],
+      /* A weighted bin is a sum of weights that are never negative. Nothing cancels in it, so it is never near zero
+       * without being zero, and a bin no ray falls in is zero on both sides. */
+      ["binnedStatistic", 1e-10, null],
+      /* One spot extent over another is 1 or more, and a span ratio is zero only for a footprint with no rays. */
+      ["lengthRatio", 1e-8, null],
       /* A hit's effective tolerance is a length that is never below the engine's 1e-12 mm target. */
       ["effectiveTolerance", 1e-12, null],
       ["layoutLength", 1e-12, lengthFloor],
@@ -244,13 +303,17 @@ describe("engineDiff budget table", () => {
     expect(resolveBudgetRule("analysis", ["jobs", "x", "value", "trace", "residualShare"])?.quantity).toBe(
       "nestedResidualShare",
     );
-    /* No class is looser than the plan's loosest row in its unit. */
-    const loosest: Record<string, number> = { mm: 1e-7, deg: 1e-10, relative: 1e-10, points: 1e-8, "": 1e-7 };
-    const looser = (Object.keys(QUANTITIES) as QuantityId[]).filter((id) => {
-      const { kind, c1, unit } = QUANTITIES[id];
-      return (kind === "absolute" || kind === "relative" || kind === "slope") && !(c1 <= loosest[unit]);
-    });
+    /* No class is looser than the plan's loosest row in its unit. Among the relative rows that is the ratio of two
+     * analysis lengths, at 1e-8. */
+    const loosest: Record<string, number> = { mm: 1e-7, deg: 1e-10, relative: 1e-8, points: 1e-8, "": 1e-7 };
+    const differenced = (Object.keys(QUANTITIES) as QuantityId[]).filter((id) =>
+      ["absolute", "relative", "slope"].includes(QUANTITIES[id].kind),
+    );
+    const looser = differenced.filter((id) => !(QUANTITIES[id].c1 <= loosest[QUANTITIES[id].unit]));
     expect(looser).toEqual([]);
+    /* That row is alone past the budget of a fraction: no other relative class may take its 1e-8 as a ceiling. */
+    const pastAFraction = differenced.filter((id) => QUANTITIES[id].unit === "relative" && QUANTITIES[id].c1 > 1e-10);
+    expect(pastAFraction).toEqual(["lengthRatio"]);
   });
 
   it("holds every class to its C1 budget under C2, and says which C2 criteria it does not apply", () => {
@@ -410,7 +473,7 @@ describe("engineDiff drift detection", () => {
     expect(compare("c1", head).passed).toBe(true);
   });
 
-  it.each<[RequestFamily, Path, QuantityId, number]>([
+  it.each<[RequestFamily, Path, QuantityId, number, (() => PayloadRecord[])?]>([
     ["traces", HIT_POINT_Y, "landing", 1],
     ["traces", [...RAY, "hits", "columns", "normal", HIT, 1], "directionCosine", 1],
     ["traces", [...RAY, "input", "origin", 1], "chiefLaunch", 1],
@@ -437,34 +500,77 @@ describe("engineDiff drift detection", () => {
     /* A bar of the LoCA inset is a focus shift drawn at about 201 px per mm. */
     ["analysis", ["jobs", "locaBarOffsets", "value", "barOffsets", "R"], "analysisLength", 201],
     ["analysis", ["jobs", "locaBarOffsets", "value", "legacy", "mag"], "ratio", 1],
+    /* The radial profile of a bokeh footprint whose rays weigh differently, which the benchmark prime's do not: a
+     * centre-to-rim ratio in the hundreds, and bins that are fractions of the profile's peak or of its total. */
+    ["analysis", [...BOKEH_FIELD, "centerToRimRatio"], "binnedStatistic", 1, absorbingAnalysis],
+    ["analysis", [...BOKEH_FIELD, "radialProfile", "bins", 0, "density"], "binnedStatistic", 1, absorbingAnalysis],
+    [
+      "analysis",
+      [...BOKEH_FIELD, "radialProfile", "bins", 0, "energyFraction"],
+      "binnedStatistic",
+      1,
+      absorbingAnalysis,
+    ],
+    ["analysis", [...BOKEH_FIELD, "radialProfile", "centerDensity"], "binnedStatistic", 1, absorbingAnalysis],
+    ["analysis", [...POSED_BOKEH, "radialProfile", "rimDensity"], "binnedStatistic", 1, absorbingAnalysis],
+    /* One image-plane length of a spot over another, in the centered coma analysis and the posed one. */
+    ["analysis", [...COMA_FIELD, "tailSkewRatio"], "lengthRatio", 1],
+    ["analysis", [...COMA_FIELD, "sagittalToTangentialRatio"], "lengthRatio", 1],
+    ["analysis", [...POSED_COMA_SAMPLE, "tailSkewRatio"], "lengthRatio", 1],
     ["mtf", ["result", "fields", 1, "sagittal", 5], "mtfModulation", 1],
     ["mtf", ["result", "focus", "bestAxialShiftMm"], "mtfFocusShift", 1],
-  ])("holds %s %j to the %s budget under C1: twice fails, half passes", (request, path, quantity, scale) => {
-    const value = numberAt(request, path);
+  ])("holds %s %j to the %s budget under C1: twice fails, half passes", (request, path, quantity, scale, from) => {
+    /* The benchmark prime's records, or those of the lens a row names where the prime has no such field. */
+    const source = from?.() ?? SERENAR_RECORDS;
+    const value = at(source, request, path);
+    if (typeof value !== "number") throw new Error(`${request} ${path.join(".")} is not a number`);
     const { kind, floor }: Quantity = QUANTITIES[quantity];
-    expect(
-      resolveBudgetRule(
-        request,
-        path.map((step) => (typeof step === "number" ? "[]" : step)),
-      )?.scale,
-    ).toBe(scale);
+    expect(resolveBudgetRule(request, tablePath(path))?.scale).toBe(scale);
     /* A relative budget is a share of the value, and of no less than the class's floor where it has one. */
     const bound = (budget: number) =>
       kind === "relative" ? Math.max(budget * Math.abs(value), floor?.bound ?? 0) : budget;
     const unit = bound(budgetOf(quantity, "c1")) * scale;
-    const moved = (factor: number) => withChange(request, path, () => value + factor * unit);
+    const moved = (factor: number) => withChange(request, path, () => value + factor * unit, source);
 
-    const beyond = compare("c1", moved(2));
+    const beyond = compare("c1", moved(2), source);
     expect(beyond.passed).toBe(false);
     expect(beyond.engine.failures).toEqual([expect.objectContaining({ request, kind: "number", quantity })]);
     const { measure, budget } = beyond.engine.failures[0];
     expect(measure! / budget!).toBeCloseTo(2, 1);
     expect(beyond.engine.quantities[quantity]).toMatchObject({ differing: 1, beyondBudget: 1 });
 
-    const within = compare("c1", moved(0.5));
+    const within = compare("c1", moved(0.5), source);
     expect(within.passed).toBe(true);
     expect(within.engine.quantities[quantity]).toMatchObject({ differing: 1, beyondBudget: 0 });
-    expect(compare("c0", moved(0.5)).passed).toBe(false);
+    expect(compare("c0", moved(0.5), source).passed).toBe(false);
+  });
+
+  it("holds a diagnostic point to 1e-7 mm near the lens and to 1e-12 of its size far from it", () => {
+    /* A clipped ray that the stack tracer follows as a ghost path can leave the lens: on one catalog lens its points
+     * run from 3.1e8 mm outwards, and two engines that agree to rounding differ there by more than 1e-7 mm. */
+    const ghost: Path = ["legacy", "rays", 1, "ghostPts"];
+    const withGhostPoint = (y: number) => withChange("traces", ghost, () => [[1, y]]);
+    const run = (base: number, head: number) => compare("c1", withGhostPoint(head), withGhostPoint(base));
+    const failed = (summary: RunSummary) =>
+      summary.engine.failures.map(({ kind, quantity, path }) => ({ kind, quantity, path }));
+    const breach = [{ kind: "number", quantity: "clippedHit", path: "legacy.rays[1].ghostPts[0][1]" }];
+
+    /* Near the lens the bound is the plan's 1e-7 mm, whatever the point's size up to 100 m. */
+    expect(failed(run(12, 12 + 5e-8))).toEqual([]);
+    expect(failed(run(12, 12 + 2e-7))).toEqual(breach);
+    expect(failed(run(9e4, 9e4 + 5e-8))).toEqual([]);
+    expect(failed(run(9e4, 9e4 + 2e-7))).toEqual(breach);
+
+    /* Far from it the bound is 1e-12 of the point: the catalog case passes, a gross difference does not. */
+    const far = 310512819.872093;
+    expect(failed(run(far, 310512819.87209314))).toEqual([]);
+    expect(failed(run(far, far + 1e-4))).toEqual([]);
+    expect(failed(run(far, far + 1e-3))).toEqual(breach);
+    expect(failed(run(3.3473764502675636e55, 3.347376450267574e55))).toEqual([]);
+    expect(failed(run(3.3473764502675636e55, 3.35e55))).toEqual(breach);
+
+    /* Under C0 every number is exact, far or near. */
+    expect(compare("c0", withGhostPoint(310512819.87209314), withGhostPoint(far)).passed).toBe(false);
   });
 
   it("budgets a hit as clipped when either side's flag says so, and lists the flag as a transition", () => {
@@ -777,6 +883,261 @@ describe("engineDiff drift detection", () => {
     expect(compare("c1", pupil(2e-12), pupil(0)).passed).toBe(false);
     expect(compare("c1", pupil(0.5 + 5e-13), pupil(0.5)).passed).toBe(true);
     expect(compare("c1", pupil(0.5 * (1 + 1e-10)), pupil(0.5)).passed).toBe(false);
+  });
+
+  it("accepts the rounding in the weighted bins of an absorbing lens, and holds the counts beside them exact", () => {
+    /* A bokeh footprint weighs each ray by its transmission. Through this lens's absorbing element that is
+     * exp(−α · path), so a bin of the footprint's radial profile is a sum of such weights and no count, and its
+     * last bits move when a hit moves inside its tolerance. A run of closed-form roots against the iterative ones
+     * moved these bins by 1.6e-13 of themselves at most, and every count beside them not at all. */
+    const records = absorbingAnalysis();
+    expect(distinctWeights(records, BOKEH_FIELD)).toBeGreaterThan(1);
+
+    const ratio: Path = [...BOKEH_FIELD, "centerToRimRatio"];
+    const density: Path = [...BOKEH_FIELD, "radialProfile", "bins", 0, "density"];
+    const set = (path: Path, value: number, source: readonly PayloadRecord[] = records) =>
+      withChange("analysis", path, () => value, source);
+    const failed = (path: Path, kind: Finding["kind"], quantity: QuantityId) => ({
+      request: "analysis",
+      path: pathText(path),
+      kind,
+      quantity,
+    });
+    const bothBinned = [ratio, density].map((path) => failed(path, "number", "binnedStatistic"));
+
+    /* One field's centre-to-rim ratio and the density of its first bin as that run's base engine returned them,
+     * then as its head engine did, and then both moved by one factor. */
+    const scaled = (factor: number) =>
+      set(density, 0.6779483983704641 * factor, set(ratio, 323.8170972473501 * factor));
+    const base = scaled(1);
+    const found = set(density, 0.677948398370464, set(ratio, 323.81709724735));
+    for (const head of [found, scaled(1 + 2e-13)]) {
+      const summary = compare("c1", head, base);
+      expect(summary.passed).toBe(true);
+      expect(summary.engine.quantities.binnedStatistic).toMatchObject({ differing: 2, beyondBudget: 0 });
+      /* Under C0 every number is exact. */
+      expect(failuresOf(compare("c0", head, base))).toEqual(bothBinned);
+    }
+    expect(failuresOf(compare("c1", scaled(1 + 1e-9), base))).toEqual(bothBinned);
+
+    /* The bound is a share of the bin itself, however little of the light the bin holds. A sum of weights that are
+     * never negative loses nothing to cancellation, so a faint bin moves by no more of itself than a full one. The
+     * faintest bin of that run's record, at 1.7e-4 of its profile's peak, takes 2e-13 of itself and not 1e-9, which
+     * is 1.7e-13 of the peak. */
+    const bin = (value: number) => set(density, value);
+    const binFailed = [failed(density, "number", "binnedStatistic")];
+    const faint = 0.00017037667862741682;
+    expect(compare("c1", bin(faint * (1 + 2e-13)), bin(faint)).passed).toBe(true);
+    expect(failuresOf(compare("c1", bin(faint * (1 + 1e-9)), bin(faint)))).toEqual(binFailed);
+    /* A bin no ray falls in is exactly zero, on both sides. The class has no floor, so only zero agrees with zero:
+     * a bin that is empty on one side alone has gained a ray, whatever that ray weighs. */
+    for (const gained of [5e-11, 1e-300]) {
+      expect(failuresOf(compare("c1", bin(gained), bin(0)))).toEqual(binFailed);
+    }
+
+    /* The counts of the same footprint move by whole rays or not at all: the rays that passed, and their share of
+     * the rays launched. Neither takes the move the bins were allowed. */
+    const passed: Path = [...BOKEH_FIELD, "passedRays"];
+    const share: Path = [...BOKEH_FIELD, "transmission"];
+    const counted = (rays: number, surviving: number) => set(passed, rays, set(share, surviving));
+    expect(failuresOf(compare("c1", counted(336, 0.5), counted(337, 0.5)))).toEqual([
+      failed(passed, "discrete", "count"),
+    ]);
+    expect(failuresOf(compare("c1", counted(337, 0.5 * (1 + 2e-13)), counted(337, 0.5)))).toEqual([
+      failed(share, "discrete", "countRatio"),
+    ]);
+  });
+
+  it("keeps the bins of the spherical blur character exact, which the engine fills with rays of one weight", () => {
+    /* The same five statistics of the same kind of radial profile are budgeted by what the engine sums into the
+     * bins. A bokeh footprint weighs a ray by its transmission, in the centered analysis and in the posed one. The
+     * blur character of spherical aberration bins its rays at the pupil sampler's weight, one number for every ray,
+     * so its statistics are functions of counts on an absorbing lens too. Its record holds no points beside the
+     * profile to say so, as a footprint's does, so the table names the job. */
+    const classOf = (path: Path) => resolveBudgetRule("analysis", tablePath(path))?.quantity;
+    expect(profileStatistics(BLUR_CHARACTER).map(classOf)).toEqual(Array(5).fill("countRatio"));
+
+    /* That is a fact about the engine, so it is held here. With the absorption taken out of the prescription the
+     * rays of the bokeh footprint weigh the same again, and the blur character does not change by a bit. */
+    const cleared: SerializedCatalog = {
+      ...CATALOG,
+      lenses: CATALOG.lenses.map((entry) => {
+        if (entry.key !== ABSORBING) return entry;
+        const data = decodeValue(entry.prescription) as LensDataInput;
+        const elements = data.elements.map(({ absorptionCoefficientPerMm: _absorption, ...element }) => element);
+        return { ...entry, prescription: encodeValue({ ...data, elements }) };
+      }),
+    };
+    const [absorbing, clear] = [absorbingAnalysis(), absorbingAnalysisOf(cleared)];
+    expect(distinctWeights(absorbing, BOKEH_FIELD)).toBeGreaterThan(1);
+    expect(distinctWeights(clear, BOKEH_FIELD)).toBe(1);
+    const blurCharacter = at(absorbing, "analysis", BLUR_CHARACTER.slice(0, -1)) as Record<string, object>;
+    expect(Object.keys(blurCharacter)).toEqual(expect.arrayContaining(["frontDefocus", "rearDefocus"]));
+    expect(Object.keys(blurCharacter.frontDefocus)).not.toContain("points");
+    expect(at(clear, "analysis", BLUR_CHARACTER.slice(0, -1))).toEqual(blurCharacter);
+
+    /* So one of its statistics that moved at all has had a ray change bin, by however little it moved: the move
+     * that the weighted bins are allowed is a discrete difference here. */
+    const [density, , , , ratio] = profileStatistics(BLUR_CHARACTER);
+    const scaled = (factor: number) =>
+      withChange(
+        "analysis",
+        density,
+        () => 0.25 * factor,
+        withChange("analysis", ratio, () => 4 * factor, absorbing),
+      );
+    expect(failuresOf(compare("c1", scaled(1 + 2e-13), scaled(1)))).toEqual(
+      [ratio, density].map((path) => ({
+        request: "analysis",
+        path: pathText(path),
+        kind: "discrete",
+        quantity: "countRatio",
+      })),
+    );
+  });
+
+  it("keeps the bins of a footprint exact where its rays weigh the same, and reads that from its points", () => {
+    /* A footprint's record holds its points beside its profile, each with the weight the engine summed into a bin.
+     * Where no element absorbs, every point has one weight and each statistic of the profile is a function of the
+     * counts in the bins. Rounding cannot move it, so a difference, however small, is a ray that changed bin: a
+     * discrete transition, which a pull request may declare, and no number beyond a budget, which none may. */
+    const weighted = absorbingAnalysis();
+    const finding = (path: Path, kind: Finding["kind"], quantity: QuantityId | null) => ({
+      request: "analysis",
+      path: pathText(path),
+      kind,
+      quantity,
+    });
+    for (const footprint of [BOKEH_FIELD, POSED_BOKEH]) {
+      expect(distinctWeights(SERENAR_RECORDS, footprint)).toBe(1);
+      expect(distinctWeights(weighted, footprint)).toBeGreaterThan(1);
+      for (const path of profileStatistics(footprint)) {
+        const scaled = (source: readonly PayloadRecord[]) =>
+          withChange("analysis", path, (value) => Number(value) * (1 + 2e-13), source);
+        /* The move a weighted bin is allowed is a discrete difference between two sides of one weight each. */
+        expect(failuresOf(compare("c1", scaled(SERENAR_RECORDS)))).toEqual([finding(path, "discrete", "countRatio")]);
+        const rounding = compare("c1", scaled(weighted), weighted);
+        expect(rounding.passed).toBe(true);
+        expect(rounding.engine.quantities.binnedStatistic).toMatchObject({ differing: 1, beyondBudget: 0 });
+      }
+    }
+
+    const ratio: Path = [...BOKEH_FIELD, "centerToRimRatio"];
+    const points: Path = [...BOKEH_FIELD, "points"];
+    const moved = (factor: number, source: readonly PayloadRecord[] = SERENAR_RECORDS) =>
+      withChange("analysis", ratio, (value) => Number(value) * factor, source);
+    const beyond = [finding(ratio, "number", "binnedStatistic")];
+
+    /* Both sides have to say so. A side whose points do not all weigh the same holds sums of weights, and the pair
+     * is held to the budget: here one point weighs half of what the others do, in the head's footprint and then in
+     * the base's. */
+    const weight: Path = [...points, 0, "weight"];
+    const halved = (source: readonly PayloadRecord[]) =>
+      withChange("analysis", weight, (value) => Number(value) / 2, source);
+    const halvedWeight = finding(weight, "number", "ratio");
+    expect(failuresOf(compare("c1", halved(moved(1 + 2e-13))))).toEqual([halvedWeight]);
+    expect(failuresOf(compare("c1", halved(moved(1 + 1e-9))))).toEqual([...beyond, halvedWeight]);
+    expect(failuresOf(compare("c1", moved(1 + 2e-13), halved(SERENAR_RECORDS)))).toEqual([halvedWeight]);
+    expect(failuresOf(compare("c1", moved(1 + 1e-9), halved(SERENAR_RECORDS)))).toEqual([...beyond, halvedWeight]);
+
+    /* Nor do two sides of one weight each hold counts alone where the two weights are not the same: each side's
+     * sums then round in their own way. */
+    const reweighed = withChange(
+      "analysis",
+      points,
+      (list) => (list as { weight: number }[]).map((point) => ({ ...point, weight: point.weight * (1 + 1e-12) })),
+      moved(1 + 2e-13),
+    );
+    expect(distinctWeights(reweighed, BOKEH_FIELD)).toBe(1);
+    const rounded = compare("c1", reweighed);
+    expect(rounded.passed).toBe(true);
+    expect(rounded.engine.quantities.binnedStatistic).toMatchObject({ differing: 1, beyondBudget: 0 });
+
+    /* A footprint that lost every ray on one side has no weight to differ. Its profile is the empty one, and its
+     * difference from a profile of counts is discrete. */
+    const emptied = withChange("analysis", points, () => [], moved(1 + 2e-13));
+    expect(failuresOf(compare("c1", emptied))).toEqual([
+      finding(ratio, "discrete", "countRatio"),
+      finding(points, "shape", null),
+    ]);
+
+    /* A profile with no points beside it does not say what its rays weigh, and is held as a weighted one: on both
+     * sides, or on one. Nor do points that carry no weight say it. */
+    const bare = (source: readonly PayloadRecord[]) =>
+      withChange(
+        "analysis",
+        BOKEH_FIELD,
+        (field) => {
+          const { points: _points, ...rest } = field as Record<string, unknown>;
+          return rest;
+        },
+        source,
+      );
+    expect(compare("c1", bare(moved(1 + 2e-13)), bare(SERENAR_RECORDS)).passed).toBe(true);
+    expect(failuresOf(compare("c1", bare(moved(1 + 1e-9)), bare(SERENAR_RECORDS)))).toEqual(beyond);
+    expect(failuresOf(compare("c1", bare(moved(1 + 1e-9))))).toEqual([...beyond, finding(points, "shape", null)]);
+    const unweighed = (source: readonly PayloadRecord[]) =>
+      withChange(
+        "analysis",
+        points,
+        (list) => (list as Record<string, unknown>[]).map(({ weight: _weight, ...point }) => point),
+        source,
+      );
+    expect(failuresOf(compare("c1", unweighed(moved(1 + 1e-9)), unweighed(SERENAR_RECORDS)))).toEqual(beyond);
+  });
+
+  it("holds one spot extent over another to 1e-8 of the ratio, where the budget of a fraction cannot", () => {
+    /* The skew of a coma tail is the longer extent of a spot from its centroid over the shorter. A spot is some
+     * thousandths of a millimetre across, so rounding that moves an extent by 1e-13 mm, five orders inside the
+     * budget of an analysis length, moves the ratio by 1e-10 of itself. */
+    const skew: Path = [...POSED_COMA_SAMPLE, "tailSkewRatio"];
+    const spans: Path = [...COMA_FIELD, "sagittalToTangentialRatio"];
+    const set = (path: Path, value: number) => withChange("analysis", path, () => value);
+    const failed = (path: Path, quantity: QuantityId) => [
+      { request: "analysis", path: pathText(path), kind: "number", quantity },
+    ];
+
+    /* The pair furthest apart in a run of closed-form roots against the iterative ones: 2.95e-10 of the ratio. */
+    const [base, head] = [set(skew, 1.092679840905723), set(skew, 1.0926798412280463)];
+    const found = compare("c1", head, base);
+    expect(found.passed).toBe(true);
+    expect(found.engine.quantities.lengthRatio).toMatchObject({ differing: 1, beyondBudget: 0 });
+    expect(found.engine.quantities.lengthRatio!.largest!.measure! / 1e-10).toBeCloseTo(2.95, 2);
+    /* Under C0 every number is exact. */
+    expect(failuresOf(compare("c0", head, base))).toEqual(failed(skew, "lengthRatio"));
+
+    /* 3e-10 of the ratio passes and 1e-7 fails: for the skew of the posed analysis, and for both ratios of the
+     * centered one. */
+    for (const path of [skew, [...COMA_FIELD, "tailSkewRatio"], spans]) {
+      const scaled = (factor: number) => set(path, 1.6 * factor);
+      expect(compare("c1", scaled(1 + 3e-10), scaled(1)).passed).toBe(true);
+      const beyond = compare("c1", scaled(1 + 1e-7), scaled(1));
+      expect(failuresOf(beyond)).toEqual(failed(path, "lengthRatio"));
+      expect(beyond.engine.failures[0].measure! / 1e-8).toBeCloseTo(10, 3);
+    }
+    /* The class has no floor. A footprint with no rays reports a span ratio of exactly 0, and only zero agrees
+     * with zero. */
+    expect(failuresOf(compare("c1", set(spans, 1e-300), set(spans, 0)))).toEqual(failed(spans, "lengthRatio"));
+
+    /* What is measured in fractions of the pupil stays a fraction, where 3e-10 is past the budget: the aspect of
+     * a pupil footprint and the offset of its centroid. */
+    for (const member of ["catEyeAspect", "shiftRadius"]) {
+      const path: Path = [...BOKEH_FIELD, "pupilFootprint", member];
+      expect(failuresOf(compare("c1", set(path, 0.9 * (1 + 3e-10)), set(path, 0.9)))).toEqual(failed(path, "ratio"));
+    }
+    /* The correction of a chief ray's launch height stays a smooth ratio as well. It is one length over another,
+     * the solved launch height over the paraxial one, but neither is an analysis length, and the plan's row does
+     * not name it. The row is tighter than its parts all the same: at the innermost sampled field the paraxial
+     * height is a fraction of a millimetre, and the 1e-9 mm of a launch height is more than 1e-10 of that. */
+    const correction: Path = ["jobs", "computeBothPupilAberrationProfiles", "value", "ep", "samples", 1];
+    expect(numberAt("analysis", [...correction, "chiefRayCorrection"])).toBeGreaterThan(0);
+    expect(resolveBudgetRule("analysis", tablePath([...correction, "chiefRayCorrection"]))?.quantity).toBe("ratio");
+    const paraxialHeightMm =
+      numberAt("analysis", ["inputs", "fieldGeometry", "epRatio"]) *
+      Math.tan((numberAt("analysis", [...correction, "fieldDeg"]) * Math.PI) / 180);
+    expect(paraxialHeightMm).toBeGreaterThan(0.1);
+    expect(paraxialHeightMm).toBeLessThan(1);
+    expect(QUANTITIES.chiefLaunch.c1 / paraxialHeightMm).toBeGreaterThan(QUANTITIES.ratio.c1);
   });
 
   it("reports a failing solver output in quanta of its solver", () => {
@@ -1630,9 +1991,81 @@ describe("engineDiff cross-evaluation", () => {
     changeClass: ChangeClass = "c0",
   ): RunSummary {
     const run = createDifferentialRun({ changeClass, declaredExceptions: [], restricted: true });
-    run.addLens({ lens: key, dataChange, baseEngine: structuredClone(head), headEngine: head, baseData });
+    run.addLens({ lens: head[0].lens, dataChange, baseEngine: structuredClone(head), headEngine: head, baseData });
     return run.finish();
   }
+
+  /* A semantic data change is judged path by path. The tests below set a status, a number or an outcome on each
+   * side of one. */
+  const NO_PATHS = {
+    statuses: { toFailure: 0, fromFailure: 0 },
+    numbers: { toNonFinite: 0, fromNonFinite: 0 },
+    outcomes: { toThrown: 0, fromThrown: 0 },
+    baseOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
+    headOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
+    resized: { arrays: 0, listed: [] },
+    statusChanges: {},
+    statusChangesUnlisted: 0,
+  };
+  /** The digest that stands in for a trace nested in an analysis result. */
+  const digestOf = (status: string) => ({
+    status,
+    hitCount: 4,
+    hash: status,
+    outcome: status,
+    residualShare: 0.5,
+    largestTolerance: RAW_INTERSECTION_TOLERANCE_MM,
+  });
+  type TraceStatus = "ok" | "clipped" | "failed";
+  /** The rays of a fan as an analysis result holds them: a ray that was not traced keeps its place, with no trace. */
+  const fanOf = (traces: readonly (TraceStatus | null)[]) => ({
+    samples: traces.map((trace) => ({
+      status: trace === "ok" ? "usable" : trace === "clipped" ? "clipped" : "missed-sensor",
+      trace: trace && digestOf(trace),
+    })),
+  });
+  /**
+   * One channel of a chromatic perspective sample, in the shape the engine returns. A channel whose chief ray
+   * reaches the sensor holds the chief-ray solve with its root solve and its two traces, the sensor lock and a fan
+   * with a digest per traced ray. One that misses the sensor (`null`) holds no field sample, and its fan keeps the
+   * same rays, each `missed-sensor` and untraced.
+   */
+  const channelOf = (fan: readonly TraceStatus[] | null, rays = 3) => ({
+    status: fan ? "usable" : "missed-sensor",
+    fieldSample: fan && {
+      status: "usable",
+      chiefSolve: {
+        status: "usable",
+        rootSolve: { status: "converged" },
+        chiefTrace: digestOf("ok"),
+        stopTrace: digestOf("ok"),
+      },
+      sensorSolve: { status: "converged", scalarRoot: { status: "converged" } },
+    },
+    rayFan: fanOf(fan ?? new Array<null>(rays).fill(null)),
+  });
+  /**
+   * The same channel where the chief-ray solve found no root: the engine traces nothing past the solve, and calls
+   * the channel `chief-unreachable`.
+   */
+  const channelWithoutRoot = (rootSolve: string, rays = 3) => ({
+    status: "chief-unreachable",
+    fieldSample: {
+      status: "chief-unreachable",
+      chiefSolve: { status: "chief-unreachable", rootSolve: { status: rootSolve }, chiefTrace: null, stopTrace: null },
+      sensorSolve: null,
+    },
+    rayFan: fanOf(new Array<null>(rays).fill(null)),
+  });
+  /** The plain twin's records with such samples in one of them. */
+  const withSamples = (samples: readonly object[]) => withChange("traces", ["samples"], () => samples, plainRecords);
+  const pathsOf = (summary: RunSummary) => summary.dataImpact[0].paths!;
+  /** Statuses that say `failed`, as text: what a rule that counted them compared between the two sides. */
+  const failedStatusCount = (records: readonly PayloadRecord[]) =>
+    records.reduce(
+      (total, record) => total + (JSON.stringify(record).match(/"status":"[^"]*failed[^"]*"/g)?.length ?? 0),
+      0,
+    );
 
   it("sorts catalog changes into format-only, semantic, new and removed", () => {
     const base = catalogOf(plainTwin, { ...plainTwin, key: "engine-diff-leaving" });
@@ -1722,98 +2155,715 @@ describe("engineDiff cross-evaluation", () => {
     expect(evaluate("semantic", plainRecords, nan).passed).toBe(true);
   });
 
-  it("blocks a failed status or a non-finite number that a change of shape hides from the paired walk", () => {
-    /* The walk reports a longer array, a new member or a value of another type once, and does not enter it. What
-     * such a change brought with it shows in the record's own totals. */
+  it("passes a change whose new failures are all at paths the base data lacks, and counts them", () => {
+    /* The case that a count of failed statuses blocked: channels that missed the sensor become usable, and the rays
+     * traced for them for the first time hold some that fail. Every fan has the same rays on both sides, and the
+     * record holds one failed status on the base data and two on the head data. Nothing that was good became
+     * bad. */
+    const base = withSamples([channelOf(null), channelOf(null), channelOf(["ok", "failed", "ok"])]);
+    const head = withSamples([
+      channelOf(["ok", "failed", "clipped"]),
+      channelOf(["failed", "ok", "ok"]),
+      channelOf(["ok", "ok", "ok"]),
+    ]);
+    expect([failedStatusCount(base), failedStatusCount(head)]).toEqual([1, 2]);
+    const summary = evaluate("semantic", head, base);
+    expect(summary).toMatchObject({ passed: true, failures: [], dataImpact: [{ blocking: 0, blockers: [] }] });
+    expect(pathsOf(summary)).toEqual({
+      ...NO_PATHS,
+      /* The ray of the third channel that failed on the base data and is traced through on the head data. */
+      statuses: { toFailure: 0, fromFailure: 1 },
+      /* Each of the two channels gained a field sample of seven statuses and the digests of its three rays. */
+      headOnly: { statuses: 20, failedStatuses: 2, nonFinite: 0 },
+      statusChanges: {
+        /* The two channels, and four rays among their fans and the third channel's. */
+        "missed-sensor -> usable": 6,
+        "missed-sensor -> clipped": 1,
+        "absent -> ok": 7,
+        "absent -> converged": 6,
+        "absent -> usable": 4,
+        "absent -> failed": 2,
+        "absent -> clipped": 1,
+        "failed -> ok": 1,
+      },
+    });
+
+    const report = renderDataImpactMarkdown(summary, REPORT_CONTEXT);
+    expect(report).not.toContain("### Blocking");
+    expect(report).toContain("| Statuses turned to a failure from a status that is none | 0 | blocks |");
+    expect(report).toContain("| Statuses turned from a failure to a status that is none | 1 |  |");
+    expect(report).toContain("| The head data: work the base data never did | 20 | 2 | 0 |");
+    expect(report).toContain("| The base data: work no longer done | 0 | 0 | 0 |");
+    /* Each status change is listed with what it does to the gate. None of these blocks. */
+    expect(report).toContain("| absent -> failed | 2 |  |");
+    expect(report).toContain("| failed -> ok | 1 |  |");
+    expect(report).not.toMatch(/-> [a-z-]+ \| \d+ \| blocks \|/);
+    /* The most frequent change leads the list. */
+    expect(report.indexOf("| absent -> ok | 7 |")).toBeLessThan(report.indexOf("| absent -> failed | 2 |"));
+    const summaryReport = renderSummaryMarkdown(summary, REPORT_CONTEXT);
+    expect(summaryReport).toContain(`| ${key} | 0 | 0 | 1 | 0 | 0 | 20 / 2 / 0 | 0 / 0 / 0 | 0 |`);
+    expect(summaryReport).not.toContain("### Blocking data changes");
+
+    /* Work the head data no longer does is counted the same way, the failure in it too, and blocks nothing: the
+     * channel misses the sensor now, which is no failure, and its field sample and its traces are gone. */
+    const lost = evaluate("semantic", withSamples([channelOf(null)]), withSamples([channelOf(["ok", "failed", "ok"])]));
+    expect(lost).toMatchObject({ passed: true, dataImpact: [{ blocking: 0 }] });
+    expect(pathsOf(lost)).toEqual({
+      ...NO_PATHS,
+      baseOnly: { statuses: 10, failedStatuses: 1, nonFinite: 0 },
+      statusChanges: {
+        "usable -> missed-sensor": 3,
+        "ok -> absent": 4,
+        "converged -> absent": 3,
+        "usable -> absent": 2,
+        "failed -> absent": 1,
+      },
+    });
+    expect(renderDataImpactMarkdown(lost, REPORT_CONTEXT)).toContain(
+      "| The base data: work no longer done | 10 | 1 | 0 |",
+    );
+  });
+
+  it("passes the catalog case that a count of failed statuses blocked, on records of the real engine", () => {
+    /* One glass of a catalog lens resolves on the head data and not on the base data. Its chromatic perspective
+     * analysis then has channels that reach the sensor where they missed it, and the rays traced for them for the
+     * first time hold some that fail. The lens is a source of real records here, and what is asserted is the shape
+     * of the change, not its numbers. */
+    const id = "panasonic-lumix-s-pro-50-f14";
+    const asked = tierRequests("p", { ...requestCatalog(CATALOG), changedLensKeys: [id] }).filter(
+      (request) => lensId(request.lens) === id,
+    );
+    expect(asked.map((request) => request.family)).toContain("analysis");
+    const unresolved: SerializedCatalog = {
+      ...CATALOG,
+      lenses: CATALOG.lenses.map((entry) => {
+        if (entry.key !== id) return entry;
+        const data = decodeValue(entry.prescription) as LensDataInput;
+        const elements = data.elements.map((element, index) =>
+          index === data.elements.length - 1 ? { ...element, glass: "A glass no catalog holds" } : element,
+        );
+        return { ...entry, prescription: encodeValue({ ...data, elements }) };
+      }),
+    };
+    const [base, head] = [captureRecords(unresolved, asked), captureRecords(CATALOG, asked)];
+    /* What the count compared: the head data's records hold more failed statuses than the base data's. */
+    const gained = failedStatusCount(head) - failedStatusCount(base);
+    expect(gained).toBeGreaterThan(0);
+
+    const summary = evaluate("semantic", head, base);
+    expect(summary).toMatchObject({
+      passed: true,
+      failures: [],
+      dataImpact: [{ lens: id, blocking: 0, blockers: [] }],
+    });
+    const paths = pathsOf(summary);
+    /* Every one of those failures is at a path the base data has no status at, and nothing turned to a failure
+     * or stopped being finite at a path both sides have. */
+    expect(paths).toMatchObject({
+      statuses: { toFailure: 0, fromFailure: 0 },
+      numbers: { toNonFinite: 0 },
+      outcomes: { toThrown: 0 },
+      baseOnly: { statuses: 0, failedStatuses: 0 },
+      headOnly: { failedStatuses: gained },
+      /* The real shape pairs every array as it is: a fan keeps its rays, and an untraced ray holds no trace. */
+      resized: { arrays: 0 },
+    });
+    expect(paths.headOnly.statuses).toBeGreaterThan(gained);
+    expect(paths.statusChanges["missed-sensor -> usable"]).toBeGreaterThan(0);
+    expect(paths.statusChanges["absent -> failed"]).toBe(gained);
+    /* The other way round the same statuses are work no longer done, and that passes as well. */
+    expect(evaluate("semantic", base, head)).toMatchObject({
+      passed: true,
+      dataImpact: [{ blocking: 0, paths: { baseOnly: { failedStatuses: gained }, statuses: { toFailure: 0 } } }],
+    });
+  });
+
+  it("blocks a status that turned to a failure at a path both sides have, whatever the record's count of them", () => {
+    const fan: Path = ["onAxis", "rays"];
+    const failedAt = (ray: number, source: readonly PayloadRecord[] = plainRecords) =>
+      withChange("traces", [...fan, ray, "status"], () => "failed", source);
+    expect([1, 2].map((ray) => at(plainRecords, "traces", [...fan, ray, "status"]))).toEqual(["ok", "ok"]);
+
+    /* One ray fails on the base data and another on the head data: the record holds one failed status either way.
+     * The fan kept its length here, so the paired walk of the engine comparison finds the status as well. */
+    const moved = evaluate("semantic", failedAt(1), failedAt(2));
+    expect(moved.passed).toBe(false);
+    expect(moved.dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [
+        { request: "traces", path: "onAxis.rays[1].status", kind: "discrete", base: '"ok"', head: '"failed"' },
+      ],
+    });
+    expect(pathsOf(moved)).toEqual({
+      ...NO_PATHS,
+      statuses: { toFailure: 1, fromFailure: 1 },
+      statusChanges: { "ok -> failed": 1, "failed -> ok": 1 },
+    });
+
+    /* The hole in a count: the same behind a change of shape, where the fan also grew by a ray at its end. The
+     * paired walk of the engine comparison reports such a fan once and does not enter it, and the count of failed
+     * statuses is one on either side, so a rule that counted them passed this change. */
+    const grown = withChange("traces", fan, (rays) => [...(rays as object[]), (rays as object[])[2]], failedAt(1));
+    expect([failedStatusCount(failedAt(2)), failedStatusCount(grown)]).toEqual([1, 1]);
+    const hidden = evaluate("semantic", grown, failedAt(2));
+    expect(hidden.passed).toBe(false);
+    expect(hidden.failures).toEqual(["Data impact: 1 blocking difference."]);
+    expect(hidden.dataImpact[0]).toMatchObject({ blocking: 1, blockers: [{ path: "onAxis.rays[1].status" }] });
+    const rays = (at(plainRecords, "traces", fan) as unknown[]).length;
+    const resizedFan = {
+      arrays: 1,
+      listed: [
+        {
+          comparison: "impact",
+          lens: key,
+          state: stateId(DEFAULT_STATE),
+          request: "traces",
+          path: "onAxis.rays",
+          kind: "shape",
+          quantity: null,
+          base: `array of ${rays}`,
+          head: `array of ${rays + 1}`,
+          measure: null,
+          budget: null,
+        },
+      ],
+    };
+    expect(pathsOf(hidden)).toEqual({
+      ...NO_PATHS,
+      statuses: { toFailure: 1, fromFailure: 1 },
+      headOnly: { statuses: 1, failedStatuses: 0, nonFinite: 0 },
+      resized: resizedFan,
+      statusChanges: { "ok -> failed": 1, "failed -> ok": 1, "absent -> ok": 1 },
+    });
+
+    /* Both reports name the path. */
+    const report = renderDataImpactMarkdown(hidden, REPORT_CONTEXT);
+    expect(report).toContain("### Blocking (1)");
+    expect(report).toContain('`onAxis.rays[1].status` is "ok" on the base data and "failed" on the head data.');
+    expect(report).toContain("| Statuses turned to a failure from a status that is none | 1 | blocks |");
+    expect(report).toContain("| ok -> failed | 1 | blocks |");
+    expect(report).toContain("| failed -> ok | 1 |  |");
+    const summaryReport = renderSummaryMarkdown(hidden, REPORT_CONTEXT);
+    expect(summaryReport).toContain("- Data impact: 1 blocking difference.");
+    expect(summaryReport).toContain(`| ${key} | 1 | 1 | 1 | 0 | 0 | 1 / 0 / 0 | 0 / 0 / 0 | 1 |`);
+    expect(summaryReport).toContain("### Blocking data changes (1)");
+    expect(summaryReport).toContain(
+      `- ${key}, \`traces\`, ${stateId(DEFAULT_STATE)}: \`onAxis.rays[1].status\` is "ok" on the base data and ` +
+        '"failed" on the head data.',
+    );
+  });
+
+  it("pairs an array that changed length by index, and says where it did so", () => {
+    /* The elements of such an array are at paths both sides have only while nothing was put in or taken out ahead
+     * of them. Where something was, an index holds two different things, and the rule can miss a status that turned
+     * to a failure, or find one that did not. The verdict stands as the paths give it, and the report names every
+     * such array that holds what the rule reads, so a reader can check the pairing. */
+    const fan: Path = ["onAxis", "rays"];
+    const raysOf = (records: readonly PayloadRecord[]) => at(records, "traces", fan) as { status: string }[];
+    const withFan = (change: (rays: { status: string }[]) => object[]) =>
+      withChange("traces", fan, (rays) => change(rays as { status: string }[]), plainRecords);
+    const count = raysOf(plainRecords).length;
+    expect(raysOf(plainRecords).map((ray) => ray.status)).toEqual(new Array(count).fill("ok"));
+    const listedFan = (base: number, head: number) => [
+      expect.objectContaining({
+        request: "traces",
+        path: "onAxis.rays",
+        kind: "shape",
+        base: `array of ${base}`,
+        head: `array of ${head}`,
+      }),
+    ];
+
+    /* A miss: a ray is put in ahead of the others and the last ray fails. That ray was good on the base data, and
+     * it is now one index further on, where the base data has nothing. */
+    const shifted = withFan((rays) => [rays[0], ...rays.slice(0, -1), { ...rays[count - 1], status: "failed" }]);
+    const missed = evaluate("semantic", shifted, plainRecords);
+    expect(missed).toMatchObject({ passed: true, dataImpact: [{ blocking: 0 }] });
+    expect(pathsOf(missed)).toMatchObject({
+      statuses: { toFailure: 0, fromFailure: 0 },
+      headOnly: { statuses: 1, failedStatuses: 1 },
+      resized: { arrays: 1, listed: listedFan(count, count + 1) },
+    });
+    const report = renderDataImpactMarkdown(missed, REPORT_CONTEXT);
+    expect(report).toContain(
+      "1 array that holds a status, an outcome or a computed non-finite number changed length and was paired by " +
+        "index (1 listed).",
+    );
+    expect(report).toContain(
+      `- \`traces\`, ${stateId(DEFAULT_STATE)}: \`onAxis.rays\` is array of ${count} on the base data and ` +
+        `array of ${count + 1} on the head data.`,
+    );
+    expect(renderSummaryMarkdown(missed, REPORT_CONTEXT)).toContain(
+      `| ${key} | 0 | 0 | 0 | 0 | 0 | 1 / 1 / 0 | 0 / 0 / 0 | 1 |`,
+    );
+
+    /* A block that is none: the first ray is taken out, and the last one failed on both sides. */
+    const failedLast = withFan((rays) => [...rays.slice(0, -1), { ...rays[count - 1], status: "failed" }]);
+    const shortened = withFan((rays) => [...rays.slice(1, -1), { ...rays[count - 1], status: "failed" }]);
+    const found = evaluate("semantic", shortened, failedLast);
+    expect(found).toMatchObject({
+      passed: false,
+      dataImpact: [{ blocking: 1, blockers: [{ path: `onAxis.rays[${count - 2}].status` }] }],
+    });
+    expect(pathsOf(found)).toMatchObject({
+      baseOnly: { statuses: 1, failedStatuses: 1 },
+      resized: { arrays: 1, listed: listedFan(count, count - 1) },
+    });
+
+    /* An array of finite numbers that changed length holds nothing the rule reads, and is not listed: a hit
+     * column of a ray that crossed another number of surfaces. One that holds a number that is not finite is. */
+    const residuals: Path = [...RAY, "hits", "columns", "residual"];
+    const column = (...added: unknown[]) =>
+      withChange("traces", residuals, (held) => [...(held as unknown[]), ...added], plainRecords);
+    expect(pathsOf(evaluate("semantic", column(0), plainRecords))).toEqual(NO_PATHS);
+    expect(pathsOf(evaluate("semantic", column(0, encodeValue(Number.NaN)), plainRecords))).toMatchObject({
+      headOnly: { nonFinite: 1 },
+      resized: { arrays: 1, listed: [{ path: "onAxis.rays[1].hits.columns.residual" }] },
+    });
+    /* Nor is an array of the same length on both sides, whatever it holds. */
+    expect(pathsOf(evaluate("semantic", failedLast, plainRecords)).resized).toEqual({ arrays: 0, listed: [] });
+
+    /* The list keeps the first ten arrays of a lens, and the count has them all. */
+    const fans = (length: number) =>
+      withSamples(Array.from({ length: 12 }, () => ({ rayFan: fanOf(new Array<TraceStatus>(length).fill("ok")) })));
+    const many = pathsOf(evaluate("semantic", fans(3), fans(2)));
+    expect(many.resized.arrays).toBe(12);
+    expect(many.resized.listed).toHaveLength(10);
+    expect(many.resized.listed[9]).toMatchObject({ path: "samples[9].rayFan.samples" });
+  });
+
+  it("blocks a solve that turned to a failure although what it went on to compute is gone", () => {
+    /* The statuses that can turn to a failure with work under them are solves: a chief-ray solve whose root solve
+     * no longer evaluates returns no traces, and the engine calls its channel `chief-unreachable` and traces no ray
+     * of its fan. What the channel went on to compute is at paths only the base data has now, which is counted and
+     * no gate. The gate is the root solve's own status, at a path both sides have. */
+    const usable = withSamples([channelOf(["ok", "failed", "ok"])]);
+    const stopped = evaluate("semantic", withSamples([channelWithoutRoot("evaluation-failed")]), usable);
+    /* The two traces of the chief-ray solve, the two statuses of the sensor lock and the digests of three rays. */
+    const gone = { statuses: 7, failedStatuses: 1, nonFinite: 0 };
+    expect(stopped.passed).toBe(false);
+    expect(stopped.dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [
+        {
+          request: "traces",
+          path: "samples[0].fieldSample.chiefSolve.rootSolve.status",
+          base: '"converged"',
+          head: '"evaluation-failed"',
+        },
+      ],
+    });
+    expect(pathsOf(stopped)).toEqual({
+      ...NO_PATHS,
+      statuses: { toFailure: 1, fromFailure: 0 },
+      baseOnly: gone,
+      statusChanges: {
+        "converged -> evaluation-failed": 1,
+        /* The channel, its field sample and its chief-ray solve. None of them is a failure, and none blocks. */
+        "usable -> chief-unreachable": 3,
+        "usable -> missed-sensor": 2,
+        "ok -> absent": 4,
+        "converged -> absent": 2,
+        "failed -> absent": 1,
+      },
+    });
+    expect(renderDataImpactMarkdown(stopped, REPORT_CONTEXT)).toContain(
+      "| converged -> evaluation-failed | 1 | blocks |",
+    );
+
+    /* A root solve that ends without a root in any other way is no failure, and the same loss of work passes: the
+     * change is listed. So does a channel that only stopped being usable, as a perspective sample and a ray of a
+     * fan do: the engine writes no failure for either. */
+    for (const status of ["unbracketed", "iteration-limit", "invalid-input"]) {
+      const summary = evaluate("semantic", withSamples([channelWithoutRoot(status)]), usable);
+      expect(summary.passed, status).toBe(true);
+      expect(pathsOf(summary), status).toMatchObject({
+        statuses: { toFailure: 0, fromFailure: 0 },
+        baseOnly: gone,
+        statusChanges: { [`converged -> ${status}`]: 1 },
+      });
+    }
+    /* Were a sample itself to say `failed`, its status is at a path both sides have and would block the same way,
+     * with everything under it gone. */
+    const failedSample = evaluate("semantic", withSamples([{ ...channelOf(null), status: "failed" }]), usable);
+    expect(failedSample.dataImpact[0]).toMatchObject({ blocking: 1, blockers: [{ path: "samples[0].status" }] });
+  });
+
+  it("reads a failure as a status that says failed, whatever the status it turned from", () => {
+    const only = (status: unknown) => withSamples([{ status }]);
+    const became = (status: string, from = "usable") => evaluate("semantic", only(status), only(from));
+    /* The three failures the engine writes: a traced ray, a chief-ray solve, and a root solve or a sensor lock. */
+    for (const status of ["failed", "bracket-failed", "evaluation-failed"]) {
+      const summary = became(status);
+      expect(summary.passed, status).toBe(false);
+      expect(summary.dataImpact[0], status).toMatchObject({
+        blocking: 1,
+        blockers: [{ request: "traces", path: "samples[0].status", base: '"usable"', head: JSON.stringify(status) }],
+      });
+      expect(pathsOf(summary), status).toEqual({
+        ...NO_PATHS,
+        statuses: { toFailure: 1, fromFailure: 0 },
+        statusChanges: { [`usable -> ${status}`]: 1 },
+      });
+    }
+    /* Every other status is an outcome a prescription can move between. Such a change is listed and does not
+     * block. */
+    for (const status of [
+      "missed-sensor",
+      "clipped",
+      "chief-unreachable",
+      "outside-projection-domain",
+      "out-of-domain",
+      "unbracketed",
+      "iteration-limit",
+      "invalid-input",
+      "paraxial-fallback",
+      "unconverged",
+      "unavailable",
+    ]) {
+      const summary = became(status);
+      expect(summary.passed, status).toBe(true);
+      expect(pathsOf(summary), status).toEqual({ ...NO_PATHS, statusChanges: { [`usable -> ${status}`]: 1 } });
+    }
+
+    /* The status on the base data need only be no failure. A ray that was clipped and now fails blocks, and so
+     * does a root solve that found no bracket and now cannot evaluate, although neither held a result on the base
+     * data: the fans of a traces record are traced on past a rim, so such a ray is as a rule a vignetted ray that
+     * went on to miss a surface. The table of status changes says which changes blocked. */
+    for (const [from, to] of [
+      ["clipped", "failed"],
+      ["unbracketed", "evaluation-failed"],
+      ["out-of-domain", "bracket-failed"],
+    ]) {
+      const summary = became(to, from);
+      expect(summary.passed, from).toBe(false);
+      expect(summary.dataImpact[0], from).toMatchObject({
+        blocking: 1,
+        blockers: [{ path: "samples[0].status", base: JSON.stringify(from), head: JSON.stringify(to) }],
+      });
+      expect(renderDataImpactMarkdown(summary, REPORT_CONTEXT), from).toContain(`| ${from} -> ${to} | 1 | blocks |`);
+    }
+
+    /* One failure for another is no new failure, and neither is a failure the base data had. */
+    expect(evaluate("semantic", only("bracket-failed"), only("failed"))).toMatchObject({
+      passed: true,
+      dataImpact: [{ paths: { ...NO_PATHS, statusChanges: { "failed -> bracket-failed": 1 } } }],
+    });
+    expect(
+      renderDataImpactMarkdown(evaluate("semantic", only("bracket-failed"), only("failed")), REPORT_CONTEXT),
+    ).toContain("| failed -> bracket-failed | 1 |  |");
+    /* A side has a status where it holds a string. Against a member that holds none, or no member at all, a
+     * failure is the head data's alone: counted, and no gate. */
+    for (const base of [only(null), withSamples([{}])]) {
+      const summary = evaluate("semantic", only("failed"), base);
+      expect(summary.passed).toBe(true);
+      expect(pathsOf(summary)).toEqual({
+        ...NO_PATHS,
+        headOnly: { statuses: 1, failedStatuses: 1, nonFinite: 0 },
+        statusChanges: { "absent -> failed": 1 },
+      });
+    }
+  });
+
+  it("blocks a number that turned non-finite at a path both sides have, and counts one that one side has alone", () => {
     const nan = encodeValue(Number.NaN);
     const residuals: Path = [...RAY, "hits", "columns", "residual"];
-    const shapes: Record<string, [head: PayloadRecord[], base: PayloadRecord[], noun: string]> = {
+    const lone = { statuses: 0, failedStatuses: 0, nonFinite: 1 };
+
+    const inPlace = withChange("traces", [...RAY, "y"], () => nan, plainRecords);
+    const lost = evaluate("semantic", inPlace, plainRecords);
+    expect(lost.passed).toBe(false);
+    expect(lost.dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ request: "traces", path: "onAxis.rays[1].y", kind: "nonFinite", head: JSON.stringify(nan) }],
+    });
+    expect(pathsOf(lost)).toEqual({ ...NO_PATHS, numbers: { toNonFinite: 1, fromNonFinite: 0 } });
+    /* The other way round the number became finite, which is counted and blocks nothing. */
+    const found = evaluate("semantic", plainRecords, inPlace);
+    expect(found.passed).toBe(true);
+    expect(pathsOf(found)).toEqual({ ...NO_PATHS, numbers: { toNonFinite: 0, fromNonFinite: 1 } });
+
+    /* Behind a change of shape too: the first residual of a column that also grew by a hit. */
+    const grown = withChange(
+      "traces",
+      residuals,
+      (column) => [nan, ...(column as unknown[]).slice(1), 0],
+      plainRecords,
+    );
+    expect(evaluate("semantic", grown, plainRecords).dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ kind: "nonFinite", path: "onAxis.rays[1].hits.columns.residual[0]" }],
+    });
+
+    /* A non-finite number at a path only the head data has is work the base data never did. Each of these three
+     * changes one record's count of them from none to one. */
+    const oneSided: Record<string, [head: PayloadRecord[], base: PayloadRecord[]]> = {
       "NaN appended to a longer array": [
         withChange("traces", residuals, (column) => [...(column as unknown[]), nan], plainRecords),
         plainRecords,
-        "non-finite numbers",
       ],
-      "a failed ray added to a longer fan": [
-        withChange(
-          "traces",
-          ["onAxis", "rays"],
-          (rays) => [...(rays as object[]), { ...(rays as object[])[1], status: "failed" }],
-          plainRecords,
-        ),
-        plainRecords,
-        "failed statuses",
-      ],
-      "NaN where the base had null": [
+      "NaN where the base data holds no number": [
         withChange("traces", [...RAY, "imagePoint"], () => nan, plainRecords),
         withChange("traces", [...RAY, "imagePoint"], () => null, plainRecords),
-        "non-finite numbers",
       ],
-      "NaN in a member the base did not have": [
+      "NaN in a member the base data lacks": [
         withChange("traces", RAY, (ray) => ({ ...(ray as object), added: nan }), plainRecords),
         plainRecords,
-        "non-finite numbers",
       ],
     };
-    for (const [shape, [head, base, noun]] of Object.entries(shapes)) {
-      const [impact] = evaluate("semantic", head, base).dataImpact;
-      expect(impact.blocking, shape).toBe(1);
-      expect(impact.blockers, shape).toEqual([
-        expect.objectContaining({
-          request: "traces",
-          path: "",
-          kind: noun === "failed statuses" ? "discrete" : "nonFinite",
-          base: expect.stringMatching(new RegExp(`^\\d+ ${noun} in the record$`)),
-          head: expect.stringMatching(new RegExp(`^\\d+ ${noun} in the record$`)),
-          measure: 1,
-        }),
-      ]);
-      /* The other way round the record lost one, and nothing blocks. */
-      expect(evaluate("semantic", base, head).passed, shape).toBe(true);
+    for (const [shape, [head, base]] of Object.entries(oneSided)) {
+      /* The column that changed length is listed as paired by index, since it holds a number the rule reads. */
+      const resized = {
+        arrays: shape === "NaN appended to a longer array" ? 1 : 0,
+        listed: shape === "NaN appended to a longer array" ? [expect.objectContaining({ kind: "shape" })] : [],
+      };
+      const gained = evaluate("semantic", head, base);
+      expect(gained.passed, shape).toBe(true);
+      expect(pathsOf(gained), shape).toEqual({ ...NO_PATHS, headOnly: lone, resized });
+      const dropped = evaluate("semantic", base, head);
+      expect(dropped.passed, shape).toBe(true);
+      expect(pathsOf(dropped), shape).toEqual({ ...NO_PATHS, baseOnly: lone, resized });
     }
-    const report = renderDataImpactMarkdown(
-      evaluate("semantic", shapes["a failed ray added to a longer fan"][0], plainRecords),
-      REPORT_CONTEXT,
-    );
-    expect(report).toContain("| traces | (the record) | discrete |");
+    expect(
+      renderDataImpactMarkdown(evaluate("semantic", ...oneSided["NaN appended to a longer array"]), REPORT_CONTEXT),
+    ).toContain("| The head data: work the base data never did | 0 | 0 | 1 |");
 
-    /* One the walk located is counted once, with its path. */
-    const inPlace = withChange("traces", [...RAY, "y"], () => nan, plainRecords);
-    expect(evaluate("semantic", inPlace, plainRecords).dataImpact[0]).toMatchObject({
-      blocking: 1,
-      blockers: [{ path: "onAxis.rays[1].y" }],
-    });
-
-    /* A non-finite number that hands the prescription back was authored: a plane element's focal length. */
+    /* A non-finite number that hands the prescription back was authored: a plane element's focal length. It is
+     * no blocker where both sides have it, and is not counted where one has. */
     const infinite = encodeValue(Number.POSITIVE_INFINITY);
     const planeElement = withChange("build", ["elements", 0, "fl"], () => infinite, plainRecords);
     expect(evaluate("semantic", planeElement, plainRecords)).toMatchObject({
       passed: true,
-      dataImpact: [{ blocking: 0 }],
+      dataImpact: [{ blocking: 0, paths: NO_PATHS }],
     });
-    const appended = withChange(
+    const anotherElement = withChange(
       "build",
       ["elements"],
       (elements) => [...(elements as object[]), { ...(elements as object[])[0], fl: infinite }],
       plainRecords,
     );
-    expect(evaluate("semantic", appended, plainRecords).passed).toBe(true);
-    /* One the engine computed is not. */
-    const computed = withChange(
-      "build",
-      ["rayHeights"],
-      (heights) => [...(heights as number[]), infinite],
+    expect(evaluate("semantic", anotherElement, plainRecords)).toMatchObject({
+      passed: true,
+      dataImpact: [{ paths: { headOnly: { nonFinite: 0 } } }],
+    });
+    /* One the engine computed is neither. */
+    const heights = (change: (heights: unknown[]) => unknown[]) =>
+      withChange("build", ["rayHeights"], (held) => change(held as unknown[]), plainRecords);
+    expect(
+      evaluate(
+        "semantic",
+        heights(([, ...rest]) => [infinite, ...rest]),
+        plainRecords,
+      ).dataImpact[0],
+    ).toMatchObject({
+      blocking: 1,
+      blockers: [{ request: "build", kind: "nonFinite", path: "rayHeights[0]" }],
+    });
+    const longer = evaluate(
+      "semantic",
+      heights((held) => [...held, infinite]),
       plainRecords,
     );
-    expect(evaluate("semantic", computed, plainRecords).dataImpact[0].blocking).toBe(1);
+    expect(longer).toMatchObject({ passed: true, dataImpact: [{ paths: { headOnly: lone } }] });
+  });
+
+  it("leaves a status the prescription hands back out of the rule, as it does an authored number", () => {
+    /* A source erratum carries a status of its own, `corrected` or `unresolved`, and the build record hands the
+     * prescription back under `data`. Such a status is authored: it says nothing of what the engine did. */
+    const erratum = (status: string) => ({ status, note: "The source prints two values for one gap." });
+    const errata = (...list: object[]) => withChange("build", ["data", "sourceErrata"], () => list, plainRecords);
+    expect(at(plainRecords, "build", ["data", "sourceErrata"])).toBeUndefined();
+
+    /* An erratum the head data added is no work the base data never did, in a new list or in one that grew. */
+    for (const base of [plainRecords, errata(erratum("corrected"))]) {
+      const added = evaluate("semantic", errata(erratum("corrected"), erratum("unresolved")), base);
+      expect(added.passed).toBe(true);
+      expect(pathsOf(added)).toEqual(NO_PATHS);
+      expect(pathsOf(evaluate("semantic", base, errata(erratum("corrected"), erratum("unresolved"))))).toEqual(
+        NO_PATHS,
+      );
+    }
+    /* And one whose status says `failed` is no failure of the engine, at a path both sides have or at one. */
+    const reworded = errata(erratum("failed to reconcile"));
+    expect(evaluate("semantic", reworded, errata(erratum("unresolved")))).toMatchObject({
+      passed: true,
+      dataImpact: [{ blocking: 0, blockers: [], paths: NO_PATHS }],
+    });
+    expect(pathsOf(evaluate("semantic", reworded, plainRecords))).toEqual(NO_PATHS);
+    /* The records of a new lens are counted by the same reading. */
+    expect(evaluate("new", reworded, null).dataImpact[0].recordCounts).toEqual(
+      evaluate("new", plainRecords, null).dataImpact[0].recordCounts,
+    );
+    /* A status of the same name that the engine wrote, in the same record, is a status still. */
+    const computed = (status: string) => withChange("build", ["pupilSolve"], () => ({ status }), plainRecords);
+    expect(evaluate("semantic", computed("bracket-failed"), computed("converged")).dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ request: "build", path: "pupilSolve.status" }],
+    });
+  });
+
+  it("blocks a record or a job that returned and now throws, and counts what one that now returns holds", () => {
+    const job = "computePerspectiveFocusAnalysis";
+    const threw = withChange("analysis", ["jobs", job], () => ({
+      ok: false,
+      error: { name: "Error", message: "no focus" },
+    }));
+    const stopped = evaluate("semantic", threw, SERENAR_RECORDS);
+    expect(stopped.passed).toBe(false);
+    expect(stopped.dataImpact[0]).toMatchObject({
+      lens: SERENAR,
+      blocking: 1,
+      blockers: [{ request: "analysis", path: `jobs.${job}.ok`, kind: "discrete", base: "true", head: "false" }],
+    });
+    /* What the job returned on the base data is work no longer done. */
+    const held = pathsOf(stopped).baseOnly;
+    expect(held.statuses).toBeGreaterThan(0);
+    expect(pathsOf(stopped)).toEqual({
+      ...NO_PATHS,
+      outcomes: { toThrown: 1, fromThrown: 0 },
+      baseOnly: held,
+      statusChanges: expect.any(Object),
+    });
+
+    /* The other way round the job's result is work the base data never did. Its statuses are counted, a failed
+     * one among them too, and none of them blocks. */
+    const failedInside = withChange(
+      "analysis",
+      ["jobs", job, "value", "samples", 0, "fieldSample", "chiefTrace", "status"],
+      () => "failed",
+    );
+    const started = evaluate("semantic", failedInside, threw);
+    expect(started).toMatchObject({ passed: true, dataImpact: [{ blocking: 0, blockers: [] }] });
+    expect(pathsOf(started)).toEqual({
+      ...NO_PATHS,
+      outcomes: { toThrown: 0, fromThrown: 1 },
+      headOnly: { ...held, failedStatuses: held.failedStatuses + 1 },
+      statusChanges: expect.any(Object),
+    });
+
+    /* A lens that no longer builds is every one of its records throwing where it returned. */
+    const broken = captureRecords(catalogOf(unbuildable), requests);
+    const unbuilt = evaluate("semantic", broken, plainRecords);
+    expect(unbuilt.dataImpact[0].blocking).toBe(requests.length);
+    expect(pathsOf(unbuilt).outcomes).toEqual({ toThrown: requests.length, fromThrown: 0 });
+    /* And one that builds again blocks nothing. */
+    const rebuilt = evaluate("semantic", plainRecords, broken);
+    expect(rebuilt.passed).toBe(true);
+    expect(pathsOf(rebuilt).outcomes).toEqual({ toThrown: 0, fromThrown: requests.length });
+  });
+
+  it("reads the digest of a nested trace as it reads any object at a path both sides have", () => {
+    const digest: Path = [
+      "jobs",
+      "computePerspectiveFocusAnalysis",
+      "value",
+      "samples",
+      0,
+      "fieldSample",
+      "chiefTrace",
+    ];
+    const path = "jobs.computePerspectiveFocusAnalysis.value.samples[0].fieldSample.chiefTrace";
+    const withDigest = (member: string, value: unknown, source: readonly PayloadRecord[] = SERENAR_RECORDS) =>
+      withChange("analysis", [...digest, member], () => value, source);
+    expect(at(SERENAR_RECORDS, "analysis", [...digest, "status"])).toBe("ok");
+
+    /* Its status is a status. */
+    const failed = evaluate("semantic", withDigest("status", "failed"), SERENAR_RECORDS);
+    expect(failed.dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ request: "analysis", path: `${path}.status`, base: '"ok"', head: '"failed"' }],
+    });
+    /* The reports give such a path whole, which a table cell would cut. */
+    const named = `\`${path}.status\` is "ok" on the base data and "failed" on the head data.`;
+    expect(renderDataImpactMarkdown(failed, REPORT_CONTEXT)).toContain(named);
+    expect(renderSummaryMarkdown(failed, REPORT_CONTEXT)).toContain(named);
+    expect(evaluate("semantic", withDigest("status", "clipped"), SERENAR_RECORDS).passed).toBe(true);
+    /* Its two hashes are neither a status nor a number. What changed inside the trace is a difference to review,
+     * and blocks only through the members beside the hashes. */
+    const rehashed = withDigest("outcome", "0".repeat(64), withDigest("hash", "0".repeat(64)));
+    expect(evaluate("semantic", rehashed, SERENAR_RECORDS)).toMatchObject({
+      passed: true,
+      dataImpact: [{ blocking: 0, recordsDiffering: 1, transitions: 1, paths: NO_PATHS }],
+    });
+    /* Its largest residual share is a number: one that turned infinite blocks, and one where the base data has
+     * none is the head data's alone. */
+    const infinite = encodeValue(Number.POSITIVE_INFINITY);
+    expect(evaluate("semantic", withDigest("residualShare", infinite), SERENAR_RECORDS).dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ kind: "nonFinite", path: `${path}.residualShare` }],
+    });
+    const unshared = evaluate("semantic", withDigest("residualShare", infinite), withDigest("residualShare", null));
+    expect(unshared.passed).toBe(true);
+    expect(pathsOf(unshared)).toEqual({ ...NO_PATHS, headOnly: { statuses: 0, failedStatuses: 0, nonFinite: 1 } });
+  });
+
+  it("counts every blocker past those it lists, so no cap can pass a blocked change", () => {
+    const fan = (trace: TraceStatus, rays: number) =>
+      withSamples([channelOf(new Array<TraceStatus>(rays).fill(trace))]);
+    const many = evaluate("semantic", fan("failed", 25), fan("ok", 25));
+    expect(many.passed).toBe(false);
+    expect(many.failures).toEqual(["Data impact: 25 blocking differences."]);
+    expect(many.dataImpact[0].blocking).toBe(25);
+    expect(many.dataImpact[0].blockers).toHaveLength(10);
+    expect(many.dataImpact[0].blockers[9]).toMatchObject({ path: "samples[0].rayFan.samples[9].trace.status" });
+    expect(pathsOf(many).statuses).toEqual({ toFailure: 25, fromFailure: 0 });
+    expect(renderDataImpactMarkdown(many, REPORT_CONTEXT)).toContain("### Blocking (first 10 of 25)");
+    expect(renderSummaryMarkdown(many, REPORT_CONTEXT)).toContain("### Blocking data changes (first 10 of 25)");
+
+    /* The list is capped for each kind of blocker apart: a number that turned non-finite in a later record is
+     * still named. */
+    const nan = encodeValue(Number.NaN);
+    const withNumber = withChange("chiefSolves", ["halfFieldDeg"], () => nan, fan("failed", 25));
+    const both = evaluate("semantic", withNumber, fan("ok", 25));
+    expect(both.failures).toEqual(["Data impact: 26 blocking differences."]);
+    expect(both.dataImpact[0].blockers).toHaveLength(11);
+    expect(both.dataImpact[0].blockers[10]).toMatchObject({
+      request: "chiefSolves",
+      kind: "nonFinite",
+      path: "halfFieldDeg",
+    });
+
+    /* The list of status changes is capped as well, and counts what it leaves out. A status that turned to a
+     * failure past that cap blocks like any other, and is named. */
+    const distinct = (prefix: string, last: string) =>
+      withSamples([...Array.from({ length: 70 }, (_, index) => ({ status: `${prefix}${index}` })), { status: last }]);
+    const crowded = evaluate("semantic", distinct("after", "failed"), distinct("before", "ok"));
+    expect(crowded.passed).toBe(false);
+    expect(crowded.dataImpact[0]).toMatchObject({ blocking: 1, blockers: [{ path: "samples[70].status" }] });
+    expect(Object.keys(pathsOf(crowded).statusChanges)).toHaveLength(64);
+    expect(pathsOf(crowded).statusChangesUnlisted).toBe(7);
+    expect(renderDataImpactMarkdown(crowded, REPORT_CONTEXT)).toContain("| any other change | 7 |");
   });
 
   it("reports a new lens, and blocks it only when it does not build", () => {
     const added = evaluate("new", plainRecords, null);
     expect(added.passed).toBe(true);
     expect(added.dataImpact).toEqual([expect.objectContaining({ lens: key, change: "new", blocking: 0 })]);
+    /* It has no base data to pair a path with, so nothing of it is judged path by path. */
+    expect(added.dataImpact[0].paths).toBeUndefined();
     const broken = evaluate("new", captureRecords(catalogOf(unbuildable), requests), null);
     expect(broken.passed).toBe(false);
     expect(broken.dataImpact[0].blockers).toEqual([expect.objectContaining({ request: "build", path: "ok" })]);
+    /* Both reports name the record, and the summary has no row of path counts for a lens with no base data. */
+    const named = "`build`, lens: `ok` is absent on the base data and false (";
+    const impactReport = renderDataImpactMarkdown(broken, REPORT_CONTEXT);
+    expect(impactReport).toContain(`- ${named}`);
+    const summaryReport = renderSummaryMarkdown(broken, REPORT_CONTEXT);
+    expect(summaryReport).toContain("### Blocking data changes (1)");
+    expect(summaryReport).toContain(`- ${key}, ${named}`);
+    expect(summaryReport).not.toContain("Changed lenses (");
+    /* The engine's message for a lens that does not build lists its errors on lines of their own. A report writes
+     * the blocker as one line and cuts the message as it cuts a table cell, so the list it is in stays a list. */
+    const message = broken.dataImpact[0].blockers[0].head;
+    expect(message).toMatch(/^false \(.+\n.+\)$/s);
+    expect(message.length).toBeGreaterThan(80);
+    for (const report of [impactReport, summaryReport]) {
+      const lines = report.split("\n");
+      const index = lines.findIndex((line) => line.includes(named));
+      expect(lines[index]).toMatch(/and false \(Lens data .{1,62}\.\.\. on the head data\.$/);
+      expect(lines[index + 1]).toBe("");
+      expect(report).not.toContain(message);
+    }
   });
 
   it("counts what the records of a new lens hold, record by record, and blocks on none of it", () => {
@@ -1881,7 +2931,9 @@ describe("engineDiff cross-evaluation", () => {
       threw: true,
     });
     expect(renderDataImpactMarkdown(thrown, REPORT_CONTEXT)).toContain(`| ${state} | chiefSolves | threw | threw |`);
-    /* A changed lens is counted against its base data and blocked by the rule, so it carries no such list. */
+    /* A changed lens is judged path by path against its base data, so it carries no such list. The same records
+     * block there: the ray and the two numbers were good on the base data. */
+    expect(evaluate("semantic", holding, plainRecords).dataImpact[0]).toMatchObject({ blocking: 3 });
     expect(evaluate("semantic", holding, plainRecords).dataImpact[0].recordCounts).toBeUndefined();
   });
 
@@ -2022,13 +3074,20 @@ describe("engineDiff cross-evaluation", () => {
     const failedRay = withChange("traces", [...RAY, "status"], () => "failed", plainRecords);
     const thickerRecords = captureRecords(catalogOf(thicker), requests);
     const unbuilt = captureRecords(catalogOf(unbuildable), requests);
-    /* A failed ray that came with a longer fan: the paired walk does not enter the fan, the record's totals show it. */
+    /* A failed ray that came with a longer fan: it is at a path only the head data has. */
+    const fan: Path = ["onAxis", "rays"];
     const longerFan = withChange(
       "traces",
-      ["onAxis", "rays"],
+      fan,
       (rays) => [...(rays as object[]), { ...(rays as object[])[1], status: "failed" }],
       plainRecords,
     );
+    /* A ray that fails on the head data alone, in a fan that also grew, while another fails on the base data
+     * alone: the paired walk does not enter the fan, and the record holds one failed status on either side. */
+    const failedThird = withChange("traces", [...fan, 2, "status"], () => "failed", plainRecords);
+    const grownFan = withChange("traces", fan, (rays) => [...(rays as object[]), (rays as object[])[2]], failedRay);
+    /* Blockers of two kinds in two records, which a cut puts in two parts. */
+    const failedRayAndNumber = withChange("chiefSolves", ["halfFieldDeg"], () => encodeValue(Number.NaN), failedRay);
     const cases: Record<string, Captures> = {
       identical: { dataChange: "unchanged", baseEngine: plainRecords, headEngine: structuredClone(plainRecords) },
       drift: { dataChange: "unchanged", baseEngine: plainRecords, headEngine: drifted },
@@ -2041,7 +3100,14 @@ describe("engineDiff cross-evaluation", () => {
         baseData: plainRecords,
       },
       blocked: { dataChange: "semantic", baseEngine: failedRay, headEngine: failedRay, baseData: plainRecords },
-      blockedByCount: { dataChange: "semantic", baseEngine: longerFan, headEngine: longerFan, baseData: plainRecords },
+      blockedBehindShape: { dataChange: "semantic", baseEngine: grownFan, headEngine: grownFan, baseData: failedThird },
+      blockedTwice: {
+        dataChange: "semantic",
+        baseEngine: failedRayAndNumber,
+        headEngine: failedRayAndNumber,
+        baseData: plainRecords,
+      },
+      headOnlyFailure: { dataChange: "semantic", baseEngine: longerFan, headEngine: longerFan, baseData: plainRecords },
       added: { dataChange: "new", baseEngine: plainRecords, headEngine: plainRecords },
       addedUnbuilt: { dataChange: "new", baseEngine: unbuilt, headEngine: unbuilt },
       /* Whether a lens that builds nowhere is the data rules' to judge is settled by the part with its build record. */
@@ -2063,9 +3129,25 @@ describe("engineDiff cross-evaluation", () => {
     expect(whole.semantic.summary.dataImpact).toMatchObject([{ lens: key, change: "semantic", blocking: 0 }]);
     expect(whole.semantic.summary.dataImpact[0].recordsDiffering).toBeGreaterThan(1);
     expect(whole.blocked.summary.dataImpact).toMatchObject([{ blocking: 1, blockers: [{ request: "traces" }] }]);
-    expect(whole.blockedByCount.summary.dataImpact).toMatchObject([
-      { blocking: 1, blockers: [{ request: "traces", path: "" }] },
+    expect(whole.blocked.failingRecords).toEqual([expect.stringContaining('{"comparison":"impact","base":')]);
+    expect(whole.blockedBehindShape.summary).toMatchObject({
+      passed: false,
+      dataImpact: [{ blocking: 1, blockers: [{ request: "traces", path: "onAxis.rays[1].status" }] }],
+    });
+    expect(whole.blockedBehindShape.failingRecords).toHaveLength(1);
+    expect(whole.blockedTwice.summary.dataImpact).toMatchObject([
+      {
+        blocking: 2,
+        blockers: [{ request: "traces" }, { request: "chiefSolves", kind: "nonFinite" }],
+        paths: { statuses: { toFailure: 1 }, numbers: { toNonFinite: 1 } },
+      },
     ]);
+    expect(whole.blockedTwice.failingRecords).toHaveLength(2);
+    expect(whole.headOnlyFailure.summary).toMatchObject({
+      passed: true,
+      dataImpact: [{ blocking: 0, paths: { headOnly: { statuses: 1, failedStatuses: 1 } } }],
+    });
+    expect(whole.headOnlyFailure.failingRecords).toEqual([]);
     expect(whole.unbuiltUnchanged.summary.thrownOnBothEngines.records).toBe(requests.length);
     expect(whole.unbuiltChanged.summary).toMatchObject({
       thrownOnBothEngines: { records: 0 },
@@ -2265,8 +3347,9 @@ describe("engineDiff converter pairs", () => {
     );
     expect(report.match(/^### Failed statuses and computed non-finite numbers$/gm)).toHaveLength(hostPairs.length);
 
-    /* The count of failed statuses needs a record on the base data to count against. Set beside one that threw,
-     * every failed ray of the head's would be an increase. */
+    /* Were such a pair judged as a semantic change, its records would be set beside base data that threw. Every
+     * one of them then returns where it threw, and its failed rays are at paths only the head data has: counted,
+     * and no blocker. */
     const [withFailedRay] = hostPairs.filter(
       (pair) => failedStatuses(captureRecords(CATALOG, pairRequests(pair, requested))) > 0,
     );
@@ -2281,7 +3364,37 @@ describe("engineDiff converter pairs", () => {
       headEngine: head,
       baseData: onBaseData,
     });
-    expect(beside.finish()).toMatchObject({ passed: true, dataImpact: [{ blocking: 0 }] });
+    expect(beside.finish()).toMatchObject({
+      passed: true,
+      dataImpact: [
+        {
+          blocking: 0,
+          paths: {
+            outcomes: { toThrown: 0, fromThrown: head.length },
+            headOnly: { failedStatuses: failedStatuses(head) },
+          },
+        },
+      ],
+    });
+
+    /* The fit predicate's answer in a composition record is a member named `ok`, and is read as any outcome is. The
+     * composer applies the predicate, so a pair it refuses throws as its record does. Were a record to return with
+     * the answer turned to false, that alone blocks. */
+    expect(at(head, "composition", ["compatibility", "ok"])).toBe(true);
+    const refused = withChange("composition", ["compatibility", "ok"], () => false, head);
+    const answered = createDifferentialRun({ changeClass: "c0", declaredExceptions: [], restricted: true });
+    answered.addLens({
+      lens: idOf(withFailedRay),
+      dataChange: "semantic",
+      baseEngine: structuredClone(refused),
+      headEngine: refused,
+      baseData: head,
+    });
+    expect(answered.finish().dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ request: "composition", path: "compatibility.ok", base: "true", head: "false" }],
+      paths: { outcomes: { toThrown: 1, fromThrown: 0 } },
+    });
   });
 
   it("fails a pair that only the head data permits when it does not build", () => {
