@@ -398,8 +398,8 @@ and is their only outside door.
   `evaluate(radius)` that returns both, `normalAt`, `pointAt`, `finiteRadiusLimit()` (the conic domain radius), and,
   on aspheres only, `maxAbsSlope` (the absolute-term slope bound). It also exposes its base conic as data
   (`curvature`, `conic`, `hasPolynomial`, `planeNormal`), from which the intersection kernel takes closed-form roots
-  and the seed of a polynomial-asphere solve ([Exact Surface Trace](#exact-surface-trace)). A tilted plane's `sag` and `evaluate` read their argument as signed
-  y, not as a radius.
+  and the seed of a polynomial-asphere solve ([Exact Surface Trace](#exact-surface-trace)). A tilted plane's `sag`
+  and `evaluate` read their argument as signed y, not as a radius.
 - **Positional functions.** `sag(h, R)`, `conicPolySag(h, R, asph)`, and `sagSlopeRaw(h, R, asph)` serve callers that
   hold a radius and coefficients instead of a prepared surface: the RuntimeLens stack tracer, validation, layout, the
   aspheric-comparison helpers, and scripts.
@@ -615,8 +615,9 @@ iterative path is shown to return as well, on the same root and at the raw targe
 - **The iteration.** Plain Newton steps on the iterative path's residual, with that path's evaluation and domain
   rule, accepted at the raw target alone. There is no bracket, no bisection, no halving rule and no envelope. The
   route spends at most six profile evaluations, which are its own: they are not charged to
-  `INTERSECTION_MAX_ITERATIONS`. A step that leaves the cap interval or the conic's domain, or that cannot move the
-  ray parameter, ends it.
+  `INTERSECTION_MAX_ITERATIONS`. Six is a measured margin like that cap, not a convergence guarantee: it is the most
+  a certified solve of the catalog needs, and three is usual. A step that leaves the cap interval or the conic's
+  domain, a derivative that cannot be divided by, or a correction that cannot move the ray parameter ends it.
 - **The certificate.** One `maxAbsSlope` call over a stretch of the ray shows `|dz| − maxAbsSlope·|dxy| > 1e-10`
   there, so the residual is strictly monotone on it. The stretch holds every cap point of the ray from the lower
   bound to one step of the 24-sample scan past the point: a ray that starts inside the cap is covered from its lower
@@ -631,14 +632,22 @@ iterative path is shown to return as well, on the same root and at the raw targe
   `geometry/intersectTolerance.ts`) and added to every radius the certificate compares. The rounding of the
   residual is the iterative path's envelope at the point, under the stretch's slope bound, and is held to 31/32 of
   the target. One of the two floats about the root then evaluates inside the target, so that path accepts at the
-  raw target before its bracket can collapse, and reports the target as well.
+  raw target before its bracket can collapse, and reports the target as well. The cap interval is solved from
+  `|dxy|²`: where that square underflows, under a transverse speed of about `1e-154`, its ends are not the ray's
+  and the route refuses, an exactly axial ray excepted.
 - **Agreement within budget.** Two points of the stretch that both meet the target lie within
   `2·(target + envelope) / min|f'|` of each other along the ray. That move is held to `5e-10` mm and, times the
   turn of the unit normal per mm of radius, to `5e-11`: the closed form's two limits (`MAX_ROOT_MOVE`,
-  `MAX_NORMAL_MOVE`), half the budgets of an unclipped hit and of a direction cosine.
+  `MAX_NORMAL_MOVE`), half the budgets of an unclipped hit and of a direction cosine. The turn bounds a smooth
+  normal, and `normalFromSlope` returns the axis under `1e-12` mm of radius: where the two points can lie on either
+  side of that radius, the slope bound there has to be within `5e-11` as well. The normal steps there by about
+  `1e-12 / |R|`, so this binds only under a base radius of a few hundredths of a millimetre.
 - **The points the iterative path has a rule for.** The point has to be farther than that move from both bounds,
   and inside the cap by more than the move and the rounding of both paths' radii. Within twice the target of the
-  vertex plane it has to be the vertex-plane crossing itself.
+  vertex plane it has to be the vertex-plane crossing itself. And one scan step has to be longer than the
+  tolerance: cap selection takes two hits for one root when their ray parameters differ by no more than the
+  tolerance, which is a length only on a unit direction, and any other root is more than a scan step from the
+  point's.
 - **The result.** A hit with the members every hit has. `effectiveTolerance` is the requested tolerance,
   `iterations` is the evaluations the route spent (1 to 6), the normal comes from the slope of the accepted
   evaluation, bit for bit what `normalAt` builds, and `closedFormFallback` is absent, as on every polynomial-asphere
@@ -650,23 +659,31 @@ iterative path is shown to return as well, on the same root and at the raw targe
   after that has cost the route's evaluations on top of that path's. `seedAsphereSolve` returns the reason
   (`SeedRefusal`), which is on no result:
   - `noSeed`: the base conic has no root on its sag sheet inside the cap interval;
-  - `coordinateRoundoff`: the coordinate rounding over the stretch is above the clip tolerance. Its first term
-    takes a launch 280 m away; the term for the cap interval's ends takes one more than `530·sqrt(sd)` mm off the
-    axis, which is 0.5 m at a cap of 1 mm and 2.7 m at one of 25 mm;
+  - `coordinateRoundoff`: the coordinate rounding over the stretch is above the clip tolerance, or `|dxy|²`
+    underflows. The first term of the rounding takes a launch 280 m away; the term for the cap interval's ends
+    takes one more than `530·sqrt(sd)` mm off the axis, which is 0.5 m at a cap of 1 mm and 2.7 m at one of 25 mm;
+  - `shortBounds`: one scan step is not longer than the tolerance, which takes bounds no longer than 24 times the
+    tolerance in the ray parameter. On a unit direction that is a search of `2.4e-11` mm; a direction that is not a
+    unit vector reaches it with ordinary bounds once it is about `1e12` long;
   - `slopeBound`: the slope bound does not leave `|f'|` above `1e-10` over the stretch. It is the usual refusal,
     because the bound is a sum of absolute terms taken at the stretch's largest radius;
   - `farEnvelope`: a cap point beyond the stretch could be accepted by the iterative path under one of its own
-    certificates, which takes bounds a few nanometres long;
+    certificates. The envelope it is held against is taken under a slope of `|dz| / |dxy|`, so the bounds it
+    refuses grow as `1 / |dxy|`: a few nanometres long at `|dxy| = 1e-6`, a few millimetres at `1e-12`, and
+    every ordinary search below about `1e-13`. A stretch that reaches the upper bound, and an exactly axial ray,
+    are not tested;
   - `roundoff`: the envelope is above 31/32 of the target, from about 270 mm of axial and slope-weighted
     transverse operands;
   - `nearTangency`: the move between the two paths' points, or between their normals, is not inside its limit;
-  - `notConverged`: the iteration left the cap interval or the domain, could not move, or has not met the target
-    in six evaluations;
+  - `axisNormal`: the two points could lie on either side of the radius under which a normal is the axis', and
+    the normal steps there by more than `5e-11`;
+  - `notConverged`: the iteration left the cap interval or the domain, met a derivative it cannot divide by,
+    could not move, or has not met the target in six evaluations;
   - `vertexPlane`, `atBound`, `atRim`: the point is on one of the points the iterative path has a rule for.
-- **Not tried.** The route returns null, with nothing computed, on a call that sets `maxIterations` or
-  `bracketSamples`, on a profile without a polynomial term or a slope bound, on input the iterative path rejects,
-  and without a clear radius or for a ray with no span inside the cap: nothing certifies an exterior root. A zero
-  or exhausted budget therefore means what it means on the iterative path.
+- **Not tried.** The route returns null on a call that sets `maxIterations` or `bracketSamples`, on a profile
+  without a polynomial term or a slope bound, on input the iterative path rejects, and without a clear radius or
+  for a ray with no span inside the cap: nothing certifies an exterior root. Nothing is evaluated for it; the last
+  case costs the cap interval. A zero or exhausted budget therefore means what it means on the iterative path.
 - **Tolerance.** `tolerance` selects no path, and every gate uses the caller's value. At `1e-9` mm the move limit
   refuses every solve; at `1e-13` mm the route is taken where the envelope allows.
 - **What rests on the profile's data.** The hit is accepted on the profile's own `evaluate`, and the residual is
@@ -679,8 +696,8 @@ form's three transitions is this route's: a root the scan does not resolve stays
 rounding is near the target stays that path's hit, and a hit within the target of the vertex plane stays that path's
 point. The fourth is narrowed, not excluded. Two surfaces that share a vertex can return floats an ulp or two apart
 where the iterative path returned one, wherever the hit is more than twice the target of sag from the vertex plane.
-That matters only on a searched path, and the catalog's polynomial aspheres at zero gap from another surface are on
-listed ones.
+That matters only where the generalized tracer's candidate search chooses between the two surfaces; in a
+sequential trace, or under an explicit `surfaceOrder`, the order is fixed.
 
 On the iterative path both solvers, `geometry/intersect.ts` and the legacy `internal/surfaceIntersection.ts`, share
 the same safeguarded Newton step (rtsafe). A step is accepted only inside the sign-changing bracket and when it moves
