@@ -288,36 +288,41 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
 
 - `ingestLensV1` and `ingestTeleconverterV1` (`ingestV1.ts`) map a V1 file onto it, applying the schema defaults of
   `defaults.ts`. Each default row names its reader. A default written out and one left out ingest alike. A missing
-  `publishedStations` is one: every zoom station published at infinity alone, as `publishedStationGrid` reads it, and
-  ingest spreads it over the stations as it spreads a declaration. Ingest does not validate; it refuses only what the
-  canonical form cannot hold, naming the field and its authored path: two V1 copies that disagree (a surface `nd` and
-  its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within 1e-8), a zoom
-  field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, `varLabels` that name no gap,
-  and fields V1 does not define or only the engine writes.
+  `publishedStations`, or `{}`, is one: every zoom station published at infinity alone, as `publishedStationGrid`
+  reads it, and ingest spreads it over the stations as it spreads a declaration. Ingest does not validate; it refuses
+  only what the canonical form cannot hold, naming the field and its authored path: two V1 copies that disagree (a
+  surface `nd` and its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within
+  1e-8), a zoom field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, `varLabels` (or
+  the ring's) that name no gap or are out of surface order, and fields V1 does not define or only the engine writes.
+  Ingest does not check types, so wrong-typed input the validator refuses (`asph: null`) can fail with a plain
+  `TypeError`.
 - `ingestLensV2` and `ingestTeleconverterV2` (`ingestV2.ts`) map a `schema: 2` file (`src/types/lensDataV2.ts`) onto
-  it, and `ingestLens` / `ingestTeleconverter` send a file of either version to its ingest by `schema`. V2 ingest
-  applies the same defaults at their canonical paths, numbers undrawn media by first use as V1 ingest does (their
-  authored ids and names go to provenance, so they never reach the fingerprint), and takes a variable gap's first
-  value as its surface's `d`. It also refuses V2's own rules at their authored paths: a medium naming no element or
-  medium, an unused or duplicate medium, a gap keyed by no surface or out of step with the station and keyframe
-  counts, a station field on some stations only, an element span naming no surface, and a stop `sd` the engine would
-  not read or a missing one it would. The rules both versions share (unknown fields, defaults, aspheres, rear plates)
-  are in `ingestCommon.ts`.
-- A stop whose radius is derived or scheduled carries no `sd` in V2. `validateLensData` accepts it absent, generated
-  rear-plate rims skip it (below), and `lensDataStopRadiusAuthority` in `canonical.ts` reads that authority from V1
-  data for both.
+  it, and `ingestLens` / `ingestTeleconverter` send a file of either version to its ingest by `schema`; `isV1File`
+  is the one rule that tells the versions apart, for them and for `buildLens` and the lens catalog. V2 ingest applies
+  the same defaults at their canonical paths, numbers undrawn media by first use as V1 ingest does (their authored
+  ids and names go to provenance, so they never reach the fingerprint), and takes a variable gap's first value as its
+  surface's `d`. It also refuses V2's own rules at their authored paths: a medium naming no element or medium, an
+  unused or duplicate medium, a medium field other than `id`, `name` and `nd` or a `name` that is no non-empty
+  string, a gap keyed by no surface or out of step with the station and keyframe counts, a gap surface that also
+  writes `d`, a station field on some stations only, an element span naming no surface, and a stop `sd` the engine
+  would not read or a missing one it would. The rules both versions share (unknown fields, defaults, aspheres, rear
+  plates) are in `ingestCommon.ts`.
+- A stop carries `sd` in V2 only where its radius is authored. A stop whose radius is not authored (traced from the
+  design f-number, or taken from the station schedule) leaves it out, and V2 ingest refuses one written there.
+  `validateLensData` accepts it absent, generated rear-plate rims skip it (below), and `lensDataStopRadiusAuthority`
+  in `canonical.ts` reads that authority from V1 data for both.
 - `toLensData` (`toLensData.ts`) is the V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
-  and `toLensDataInput` gives it back as authored. A V2 file's view writes one V1 spelling of each fact.
+  and `toLensDataInput` gives it back as authored. A V2 file records no V1 spelling, so its view writes each field in
+  the plain V1 form.
 - Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the
-  defaults table. `buildLens.ts` re-exports the two ingest functions and the two V1 views, the way code outside the
-  engine reaches them.
+  defaults table but the validator-first spread below. `buildLens.ts` re-exports the two ingest functions and the two
+  V1 views (`toLensData`, `toTeleconverterData`), the way code outside the engine reaches them until S8.P1.T2.
   - `buildLens` reads an authored file through ingest and builds its view (`withLensDefaults` in
-    `normalizeLensData.ts`). The validator speaks first: a file it rejects throws its messages, and a file it accepts
-    that ingest refuses throws the refusal. Only on that refusal are the catalog defaults spread, to ask the
-    validator, and nothing is built from the spread.
+    `normalizeLensData.ts`). The validator speaks first on a V1 file; the comment at the spread in `withLensDefaults`
+    says how, and where that exception ends.
   - A pair `attachTeleconverter()` composed is known only by the `attachedTeleconverter` marker it writes and is
     built as it is: its host and converter each came through ingest in their catalogs. This is a temporary seam until
-    S5.P1.T1 composes on the canonical form. Rear plates expand after ingest, inside `buildLens`.
+    S5.P1.T4 composes on the canonical form. Rear plates expand after ingest, inside `buildLens`.
   - The lens and converter catalogs ingest an entry on its first read and keep it, so every read of a key returns
     the same object. Their key lists read only identity fields, from the files as authored.
   - The glass scan, the field-coverage and surface-probe audits, and the converter validator's reference host read
@@ -336,8 +341,8 @@ A plate without a published `sd` gets a generated rim marked `clips: false`. The
 in `trace/aperture.ts` and its legacy twin in `internal/exactSurfaceTrace.ts`) and the paraxial half-field estimates
 (`buildLens`, `computeFieldGeometryAtState2`) skip it, so the plate never clips a ray or limits the field at any rim
 size. The rim, 1.5 × the larger of the largest authored `sd` and the image semi-diagonal, still extends the envelopes
-that ray launch and intersection bounds read from surface rims. A derived or scheduled stop's `sd` does not count:
-the engine never reads it, and V2 leaves it out. A published plate `sd` is a real aperture.
+that ray launch and intersection bounds read from surface rims. The `sd` of a stop whose radius is not authored does
+not count: the engine never reads it, and V2 leaves it out. A published plate `sd` is a real aperture.
 
 What is hidden, and where:
 

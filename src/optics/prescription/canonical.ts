@@ -378,10 +378,6 @@ export type CanonicalPrescription = CanonicalLens | CanonicalTeleconverter;
 export interface V1Spelling {
   /** Containers written out empty: `asph: {}`, `var: {}`, `varLabels: []`, `aberrationControl.varLabels: []`. */
   emptyContainers: ("asph" | "var" | "varLabels" | "aberrationControl.varLabels")[];
-  /** Authored order of `varLabels`, where it is not surface order. */
-  varLabelsOrder?: string[];
-  /** Authored order of `aberrationControl.varLabels`, where it is not surface order. */
-  aberrationVarLabelsOrder?: string[];
   /** How the file wrote `publishedStations`; absent when it left the object out and took the default. */
   publishedStations?: V1PublishedStationsSpelling;
 }
@@ -421,7 +417,7 @@ export interface CanonicalProvenance {
    * step that falls back to the default, a conjugate coordinate that only matches its station within tolerance.
    */
   ignored: Record<string, unknown>;
-  /** Present on a V1 file. Without it the V1 view writes one V1 spelling of each fact. */
+  /** Present on a V1 file. Without it the V1 view writes the plain V1 spelling of each field. */
   v1?: V1Spelling;
   /** Present on a V2 file. */
   v2?: V2Spelling;

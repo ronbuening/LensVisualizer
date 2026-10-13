@@ -5,7 +5,7 @@
  * calls are not duplicated.
  */
 
-import { ingestLens, toLensData } from "../../optics/buildLens.js";
+import { ingestLens, isV1File, toLensData } from "../../optics/buildLens.js";
 import { loadChunkWithReload } from "../chunkLoadRetry.js";
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 import type { LensData, LensDataInput } from "../../types/optics.js";
@@ -30,7 +30,7 @@ const _modules = import.meta.glob<{ default: LensDataInput | LensDataV2Input }>(
 type LensIdentity = Pick<LensData, "key" | "name" | "visible" | "maker" | "opticalConfiguration">;
 
 function identityOfFile(data: LensDataInput | LensDataV2Input): LensIdentity {
-  const opticalConfiguration = "schema" in data ? data.catalog?.opticalConfiguration : data.opticalConfiguration;
+  const opticalConfiguration = isV1File(data) ? data.opticalConfiguration : data.catalog?.opticalConfiguration;
   return { key: data.key, name: data.name, visible: data.visible, maker: data.maker, opticalConfiguration };
 }
 

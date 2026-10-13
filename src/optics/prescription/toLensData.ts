@@ -4,8 +4,8 @@
  * The engine still consumes V1 `LensData`, so until the compiler reads the canonical prescription directly every
  * lens reaches it through this view. Given V1 provenance, the view gives the file back as written: the defaulted
  * fields stay omitted, and the authored values the engine ignores and the V1 spellings return from provenance. Given
- * none (a prescription from another format), it writes one V1 spelling of each fact: `1e15` for a flat radius, every
- * aspheric coefficient V1 requires, `[wide, tele]` zoom labels where only the end stations are labelled.
+ * none (a prescription from another format), it writes the plain V1 spelling of each field: `1e15` for a flat
+ * radius, every aspheric coefficient V1 requires, `[wide, tele]` zoom labels where only the end stations are labelled.
  *
  * Two forms:
  * - `toLensData` is what the engine consumes, the catalog defaults merged in, as the V1 catalog spread them;
@@ -55,7 +55,7 @@ function put(target: Untyped, field: string, value: unknown): void {
 /** What the view writes for one defaulted field. */
 interface ViewContext {
   readonly provenance: CanonicalProvenance;
-  /** How the file spelled it in V1; empty for a file of another format, which takes one V1 spelling of each fact. */
+  /** How the file spelled it in V1; empty for a file of another format, which takes the plain V1 spelling. */
   readonly v1: V1Spelling;
   /** Write the catalog defaults, as the V1 catalog merges them; otherwise write only what the file authored. */
   readonly mergeCatalogDefaults: boolean;
@@ -201,14 +201,9 @@ function asphView(
   return Object.fromEntries(entries);
 }
 
-/** Order `[label, text]` pairs as the file did, or by surface. */
-function orderedLabels(
-  gaps: readonly { surface: string; label?: string }[],
-  authoredOrder: readonly string[] | undefined,
-): [string, string][] {
-  const pairs = gaps.filter((gap) => gap.label !== undefined).map((gap): [string, string] => [gap.surface, gap.label!]);
-  if (!authoredOrder) return pairs;
-  return authoredOrder.map((label) => pairs.find(([surface]) => surface === label)!);
+/** The `[label, text]` pairs of the labelled gaps, in surface order, as ingest requires the file to list them. */
+function gapLabels(gaps: readonly { surface: string; label?: string }[]): [string, string][] {
+  return gaps.filter((gap) => gap.label !== undefined).map((gap): [string, string] => [gap.surface, gap.label!]);
 }
 
 /* ── Lens ── */
@@ -291,7 +286,7 @@ function aberrationControlView(lens: CanonicalLens, view: ViewContext): Aberrati
     put(out, field, control[field]);
   }
   out.var = Object.fromEntries(control.gaps.map((gap) => [gap.surface, structuredClone(gap.values)]));
-  const labels = orderedLabels(control.gaps, view.v1.aberrationVarLabelsOrder);
+  const labels = gapLabels(control.gaps);
   if (labels.length > 0 || view.v1.emptyContainers.includes("aberrationControl.varLabels")) {
     out.varLabels = labels;
   }
@@ -359,7 +354,7 @@ function buildLensView(ingested: IngestedPrescription<CanonicalLens>, mergeCatal
       lens.gaps.map((gap) => [gap.surface, structuredClone(zoom ? gap.values : gap.values[0])]),
     );
   }
-  const varLabels = orderedLabels(lens.gaps, view.v1.varLabelsOrder);
+  const varLabels = gapLabels(lens.gaps);
   if (varLabels.length > 0 || emptyContainers.includes("varLabels")) out.varLabels = varLabels;
 
   putDefaulted(out, lensRow("focus.keyframes"), "", focus.keyframes, view);

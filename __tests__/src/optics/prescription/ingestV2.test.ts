@@ -232,6 +232,26 @@ describe("V2 schema defaults", () => {
   });
 });
 
+describe("a numeric flat radius in a V2 file", () => {
+  it("reads any R beyond the flat threshold as flat, and keeps the number for the views", () => {
+    const flat = pairOf("prime").v2;
+    const index = flat.surfaces.findIndex((surface) => surface.R === "flat");
+    expect(index).toBeGreaterThanOrEqual(0);
+    /* No fixture writes a numeric flat radius, and 2e15 is no V1 spelling the converter writes either. */
+    const numeric = editedV2("prime", (file) => (file.surfaces[index].R = 2e15));
+
+    const read = ingestLensV2(numeric);
+    expect(read.prescription.surfaces[index].R).toBe("flat");
+    expect(read.prescription).toEqual(ingestLensV2(flat).prescription);
+    expect(lensFingerprint(numeric)).toBe(lensFingerprint(flat));
+    expect(buildRecord(buildLens(numeric as unknown as LensData))).toEqual(
+      buildRecord(buildLens(flat as unknown as LensData)),
+    );
+    expect(read.provenance.ignored[`surfaces[${index}].R`]).toBe(2e15);
+    expect(toLensData(read).surfaces[index].R).toBe(2e15);
+  });
+});
+
 describe("V2 refusals name the authored path", () => {
   type Refusal = [description: string, family: string, edit: (file: Record<string, any>) => void, issue: string];
   const refusals: Refusal[] = [
@@ -284,6 +304,19 @@ describe("V2 refusals name the authored path", () => {
       (file) => file.media.push({ id: "water", nd: 1.4 }),
       'media[2].id "water" repeats media[1].id',
     ],
+    ["a material field on a medium", "media", (file) => (file.media[0].vd = 55.8), "media[0].vd is not a V2 field"],
+    [
+      "a medium name that is no string",
+      "media",
+      (file) => (file.media[0].name = 5),
+      "media[0].name must be a non-empty string, or left out",
+    ],
+    [
+      "an empty medium name",
+      "media",
+      (file) => (file.media[0].name = ""),
+      "media[0].name must be a non-empty string, or left out",
+    ],
     [
       "a gap keyed by no surface",
       "focus keyframes",
@@ -294,7 +327,7 @@ describe("V2 refusals name the authored path", () => {
       "a gap surface that also writes d",
       "focus keyframes",
       (file) => (file.surfaces[2].d = 80),
-      'surfaces[2].d: the gap after "2" takes its thickness from gaps["2"].values',
+      'surfaces[2].d: the gap after "2" takes its thickness from gaps["2"].values, so the surface carries no d',
     ],
     [
       "a surface with neither d nor a gap",

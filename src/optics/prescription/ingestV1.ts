@@ -12,11 +12,13 @@
  * - two V1 copies of one value that disagree: a surface `nd` and the `nd` of its medium, a surface `d` and the first
  *   value of its variable gap (exact agreement), or a finite conjugate and the station it names (the validator's
  *   1e-8);
- * - a shape the station records cannot hold: a zoom field on a prime, `zoomLabels` that are neither `[wide, tele]`
- *   nor one per station, `varLabels` naming a gap that does not exist;
+ * - a shape the canonical records cannot hold: a zoom field on a prime, `zoomLabels` that are neither `[wide, tele]`
+ *   nor one per station, `varLabels` (or the ring's) naming a gap that does not exist or out of surface order;
  * - a field V1 does not define, or one only the engine writes.
- * Every reason found is reported at once, in a `PrescriptionIngestError`. The input is never modified, and the
- * result shares no object with it.
+ * Every reason found is reported at once, in a `PrescriptionIngestError` that names each field and its authored path.
+ * Ingest does not check types: input of the wrong type, such as `asph: null`, is the validator's to refuse, and
+ * ingest may fail on it with a plain `TypeError`. The input is never modified, and the result shares no object with
+ * it.
  */
 
 import type {
@@ -366,7 +368,7 @@ function ingestSurfaces(
       if (elements[element].nd !== nd) {
         context.issues.push(
           `${at}.nd ${String(nd)} differs from elements[${element}].nd ${String(elements[element].nd)}, the element ` +
-            `${at}.elemId names: V2 takes a surface's index from its medium alone`,
+            `${at}.elemId names: a surface takes its index from its element, so write the element's nd`,
         );
       }
     } else {
@@ -399,20 +401,18 @@ function ingestSurfaces(
 
 /* ── Gaps ── */
 
-/** Whether authored label pairs follow surface order, as the canonical gaps do. */
-function inSurfaceOrder(labels: readonly string[], labelIndex: ReadonlyMap<string, number>): boolean {
-  return labels.every((label, at) => at === 0 || labelIndex.get(labels[at - 1])! < labelIndex.get(label)!);
-}
-
 /**
  * Pair `var`-style ranges with their `varLabels`, in surface order.
+ *
+ * The pairs must follow surface order. Canonical gaps are held in surface order, and a V2 `gaps` object cannot carry
+ * another order (integer-like keys enumerate numerically), so an order of the pairs is no spelling ingest keeps.
  *
  * @param ranges - label-keyed ranges as authored
  * @param labels - authored `[label, text]` pairs, if any
  * @param where - V1 field names for messages: the ranges' and the labels'
  * @param labelIndex - surface index of each label
  * @param context - collects issues
- * @returns one entry per range, with its display label, in surface order; and the authored label order
+ * @returns one entry per range, with its display label, in surface order
  */
 function pairGaps<Values>(
   ranges: Untyped,
@@ -420,9 +420,9 @@ function pairGaps<Values>(
   where: { ranges: string; labels: string },
   labelIndex: ReadonlyMap<string, number>,
   context: IngestContext,
-): { gaps: { surface: string; label?: string; values: Values }[]; labelOrder: string[] } {
+): { surface: string; label?: string; values: Values }[] {
   const text = new Map<string, string>();
-  const labelOrder: string[] = [];
+  let previous: { label: string; at: number } | undefined;
   if (labels !== undefined && !Array.isArray(labels)) context.issues.push(`${where.labels} must be a list`);
   for (const [at, pair] of (Array.isArray(labels) ? labels : []).entries()) {
     const [label, value] = Array.isArray(pair) ? pair : [];
@@ -434,14 +434,22 @@ function pairGaps<Values>(
       context.issues.push(`${where.labels}[${at}] labels "${label}", which has no ${where.ranges} entry`);
     } else {
       text.set(label, value);
-      labelOrder.push(label);
+      const index = labelIndex.get(label);
+      const previousIndex = previous && labelIndex.get(previous.label);
+      if (index !== undefined && previousIndex !== undefined && index < previousIndex) {
+        context.issues.push(
+          `${where.labels}[${at}] labels "${label}", which comes before "${previous!.label}" ` +
+            `(${where.labels}[${previous!.at}]) in the surfaces: list the pairs in surface order`,
+        );
+      }
+      if (index !== undefined) previous = { label, at };
     }
   }
   const surfaceLabels = Object.keys(ranges).filter((label) => ranges[label] !== undefined);
   for (const label of surfaceLabels) {
     if (!labelIndex.has(label)) context.issues.push(`${where.ranges}["${label}"]: no surface is labelled "${label}"`);
   }
-  const gaps = surfaceLabels
+  return surfaceLabels
     .filter((label) => labelIndex.has(label))
     .sort((a, b) => labelIndex.get(a)! - labelIndex.get(b)!)
     .map((label) => {
@@ -452,7 +460,6 @@ function pairGaps<Values>(
       if (text.has(label)) gap.label = text.get(label);
       return gap;
     });
-  return { gaps, labelOrder };
 }
 
 function ingestGaps(
@@ -467,14 +474,7 @@ function ingestGaps(
     context.v1.emptyContainers.push("var");
   }
   if (Array.isArray(data.varLabels) && data.varLabels.length === 0) context.v1.emptyContainers.push("varLabels");
-  const { gaps, labelOrder } = pairGaps<unknown>(
-    ranges,
-    data.varLabels,
-    { ranges: "var", labels: "varLabels" },
-    labelIndex,
-    context,
-  );
-  if (!inSurfaceOrder(labelOrder, labelIndex)) context.v1.varLabelsOrder = labelOrder;
+  const gaps = pairGaps<unknown>(ranges, data.varLabels, { ranges: "var", labels: "varLabels" }, labelIndex, context);
 
   return gaps.map((gap) => {
     const where = `var["${gap.surface}"]`;
@@ -490,7 +490,7 @@ function ingestGaps(
     if (rows.length > 0 && rows[0].length > 0 && rows[0][0] !== surface.d) {
       context.issues.push(
         `surfaces[${labelIndex.get(gap.surface)}].d ${String(surface.d)} differs from ${where}'s first value ` +
-          `${String(rows[0][0])}: V2 takes the gap's d from its first value`,
+          `${String(rows[0][0])}: a variable gap's first value is its surface's d, so write the two alike`,
       );
     }
     return { ...gap, values: rows } as CanonicalGap;
@@ -508,15 +508,13 @@ function ingestAberrationControl(
   if (Array.isArray(control.varLabels) && control.varLabels.length === 0) {
     context.v1.emptyContainers.push("aberrationControl.varLabels");
   }
-  const { gaps, labelOrder } = pairGaps<CanonicalAberrationGap["values"]>(
+  out.gaps = pairGaps<CanonicalAberrationGap["values"]>(
     (control.var ?? {}) as Untyped,
     control.varLabels,
     { ranges: "aberrationControl.var", labels: "aberrationControl.varLabels" },
     labelIndex,
     context,
   );
-  if (!inSurfaceOrder(labelOrder, labelIndex)) context.v1.aberrationVarLabelsOrder = labelOrder;
-  out.gaps = gaps;
   return out as unknown as CanonicalAberrationControl;
 }
 
@@ -626,8 +624,9 @@ function focusListSpelling(list: unknown): V1PublishedStationsSpelling["focus"] 
  * Spread `publishedStations` over the zoom stations, or onto `focus.published` on a prime.
  *
  * A file that leaves the object out takes the schema default, which ingest reads as the V1 declaration it stands for
- * (every zoom station at infinity focus alone) and records as defaulted. A `zoom` list left out, written empty, or
- * naming every station says the same: every station. The spelling the file used is kept for the V1 view.
+ * (every zoom station at infinity focus alone) and records as defaulted. An object that declares neither list, `{}`,
+ * declares the same, as `publishedStationGrid` reads it. A `zoom` list left out, written empty, or naming every
+ * station says the same: every station. The spelling the file used is kept for the V1 view.
  */
 function ingestPublishedStations(
   data: Untyped,
@@ -648,11 +647,8 @@ function ingestPublishedStations(
       context.issues.push(`publishedStations.${field} is not a V1 field`);
     }
   }
+  /* An object that declares neither list, `{}`, is read as the default declaration, which it then spells. */
   const { zoom: zoomList, focus: focusList } = declared;
-  if (zoomList === undefined && focusList === undefined) {
-    context.issues.push(`publishedStations declares neither zoom nor focus stations`);
-    return;
-  }
   if (authored) {
     context.v1.publishedStations = { zoom: zoomListSpelling(zoomList), focus: focusListSpelling(focusList) };
   }

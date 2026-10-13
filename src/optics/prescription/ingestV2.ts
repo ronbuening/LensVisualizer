@@ -424,7 +424,10 @@ function declareMedia(value: unknown, context: IngestContext): DeclaredMedia {
   const byId = new Map<string, { index: number; nd: number }>();
   authored.forEach((medium, index) => {
     const at = `media[${index}]`;
-    const { id, nd } = medium;
+    const { id, name, nd } = medium;
+    if (name !== undefined && (typeof name !== "string" || name === "")) {
+      context.issues.push(`${at}.name must be a non-empty string, or left out`);
+    }
     if (typeof id !== "string" || id === "") {
       context.issues.push(`${at}.id must be a non-empty string`);
       return;
@@ -480,7 +483,9 @@ function ingestSurfaces(authored: readonly Untyped[], facts: SurfaceFacts, conte
 
     if (facts.gapThickness.has(label)) {
       if (has(surface, "d")) {
-        context.issues.push(`${at}.d: the gap after "${label}" takes its thickness from gaps["${label}"].values`);
+        context.issues.push(
+          `${at}.d: the gap after "${label}" takes its thickness from gaps["${label}"].values, so the surface carries no d`,
+        );
       }
       out.d = facts.gapThickness.get(label);
     } else if (has(surface, "d")) {
@@ -1009,6 +1014,17 @@ function schemaOf(input: object): unknown {
   return (input as { schema?: unknown }).schema;
 }
 
+/**
+ * Whether a lens or teleconverter file is V1: one that leaves `schema` out. The dispatchers below and every reader
+ * that treats the two versions apart ask this one rule.
+ *
+ * @param input - a file's default export, as authored
+ * @returns true for a V1 file; a file with any `schema` is not one
+ */
+export function isV1File<File extends object>(input: File): input is Exclude<File, { schema: unknown }> {
+  return schemaOf(input) === undefined;
+}
+
 function refuseSchema(input: object, schema: unknown): never {
   throw new PrescriptionIngestError(keyOf(input as Untyped), [
     `schema ${JSON.stringify(schema)} is no lens-data version: write ${LENS_DATA_V2_SCHEMA}, or leave it out in a V1 file`,
@@ -1023,9 +1039,9 @@ function refuseSchema(input: object, schema: unknown): never {
  * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file
  */
 export function ingestLens(input: LensDataInput | LensDataV2Input): IngestedPrescription<CanonicalLens> {
+  if (isV1File(input)) return ingestLensV1(input);
   const schema = schemaOf(input);
-  if (schema === undefined) return ingestLensV1(input as LensDataInput);
-  if (schema === LENS_DATA_V2_SCHEMA) return ingestLensV2(input as LensDataV2Input);
+  if (schema === LENS_DATA_V2_SCHEMA) return ingestLensV2(input);
   return refuseSchema(input, schema);
 }
 
@@ -1039,8 +1055,8 @@ export function ingestLens(input: LensDataInput | LensDataV2Input): IngestedPres
 export function ingestTeleconverter(
   input: TeleconverterData | TeleconverterDataV2Input,
 ): IngestedPrescription<CanonicalTeleconverter> {
+  if (isV1File(input)) return ingestTeleconverterV1(input);
   const schema = schemaOf(input);
-  if (schema === undefined) return ingestTeleconverterV1(input as TeleconverterData);
-  if (schema === LENS_DATA_V2_SCHEMA) return ingestTeleconverterV2(input as TeleconverterDataV2Input);
+  if (schema === LENS_DATA_V2_SCHEMA) return ingestTeleconverterV2(input);
   return refuseSchema(input, schema);
 }
