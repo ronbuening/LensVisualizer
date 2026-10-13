@@ -289,7 +289,7 @@ const LENS_DATA = {
       nd: 1.56732,
       vd: 42.81,
       fl: 32.988,
-      glass: "S-TIL26 / E-FL6 / H-QF56 class (567/428)",
+      glass: "S-TIL26 / H-QF56 class (567/428)",
       apd: false,
       dPgF: 0.00389,
       role: "Thick positive rear doublet member; closes the optical train before the long back focus.",

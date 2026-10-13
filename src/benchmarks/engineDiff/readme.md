@@ -78,7 +78,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `budgets.ts` | Budgets helper module | none | src/benchmarks | ChangeClass, ComparisonKind, QuantityOrigin, Quantity, QUANTITIES, QuantityId, C2_CRITERIA, budgetOf, +7 more |
 | `captureEntry.ts` | Capture Entry helper module | src/benchmarks (7) | none | classifyCatalogChanges, comparePermittedPairs, createDifferentialRun, dataChangeOf, parseDeclaredExceptions, renderDataImpactMarkdown, renderSummaryMarkdown, decodeValue, +16 more |
-| `compare.ts` | Compare helper module | src/benchmarks (3) | src/benchmarks | ComparableRecord, DifferenceKind, ComparisonName, Finding, StatusCounts, PayloadCounts, DataChange, QuantityTally, +26 more |
+| `compare.ts` | Compare helper module | src/benchmarks (3) | src/benchmarks | ComparableRecord, DifferenceKind, ComparisonName, Finding, StatusCounts, PayloadCounts, DataChange, QuantityTally, +28 more |
 | `payload.ts` | Payload helper module | none | src/benchmarks (2) | EncodedValue, SKIPPED_BACK_POINTER_TAG, encodeValue, decodeValue, sha256Hex, maskBudgetedNumbers, columnize, projectTrace, +11 more |
 | `requests.ts` | Requests helper module | none | src/benchmarks (2) | RequestFamily, CaptureState, LensRef, CaptureRequest, CatalogLens, RequestCatalog, lensId, stateId, +35 more |
 | `seamAdapter.ts` | Seam Adapter helper module | glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/aperture.ts, glob:../../optics/apertureStop.ts, +15 more | src/benchmarks | EngineSeam, RuntimeLens, LensData, TeleconverterData, PreparedState, EngineRay, EngineTraceOptions, EngineTrace, +4 more |

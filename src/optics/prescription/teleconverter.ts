@@ -135,12 +135,16 @@ export function mergeTeleconverterPrescription(
     fromSurface: teleconverterSurfaceLabel(annotation.fromSurface),
     toSurface: teleconverterSurfaceLabel(annotation.toSurface),
   });
-  const hostDoubletText = new Set((host.doublets ?? []).map((annotation) => annotation.text));
+  /* A converter triplet authored "T1" would otherwise repeat the composed element label "T1" on the diagram. */
+  const takenDoubletText = new Set([
+    ...(host.doublets ?? []).map((annotation) => annotation.text),
+    ...elements.slice(host.elements.length).flatMap((element) => element.diagramLabel ?? []),
+  ]);
   const doublets =
     host.doublets || tc.doublets
       ? [
           ...(host.doublets ?? []),
-          ...(tc.doublets ?? []).map((annotation) => remapAnnotation(annotation, hostDoubletText)),
+          ...(tc.doublets ?? []).map((annotation) => remapAnnotation(annotation, takenDoubletText)),
         ]
       : undefined;
 

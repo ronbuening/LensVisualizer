@@ -145,7 +145,7 @@ The four aspherical elements span two glass types:
 
 - **L5 and L11** use Sumita K-SKLD200, an exact 587590 coefficient-backed precision-molding glass.
 - **L10** uses HOYA M-FCD500 (nd = 1.55332), a fluorophosphate glass. Given the production volumes of the Q3 43, PGM is the likely manufacturing method.
-- **L6** is listed at nd = 1.68948, νd = 31.0; the nearest catalog glass is OHARA S-TIM28 (1.68893 / 31.08), which the data file uses as a class label rather than an exact match. OHARA offers L-TIM28 as the PGM variant, suggesting this element is also glass-molded.
+- **L6** is listed at nd = 1.68948, νd = 31.0, the catalog values of OHARA L-TIM28 (1.68948 / 31.02), the low-softening-temperature glass OHARA offers for precision moulding; S-TIM28 is 1.68893 / 31.08. The match suggests this aspherical element is glass-molded.
 
 ---
 

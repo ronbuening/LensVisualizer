@@ -1888,4 +1888,24 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published M-FDS910 formula-1 row (glass for molded optics).",
   },
+  {
+    name: "E-FD1L",
+    vendor: "Hoya",
+    polynomial: [2.8496451, -0.012662471, 0.030196873, 0.0023492982, -0.00019216545, 0.000021946899],
+    nd: 1.71736,
+    vd: 29.5,
+    PgF: 0.604,
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses (HOYA20260707_include_obsolete.agf); vendor formula-1 polynomial for E-FD1L. It shares a six-digit code with another vendor's row, so code6 is omitted.",
+  },
+  {
+    name: "E-FL6",
+    vendor: "Hoya",
+    polynomial: [2.4079653, -0.011135638, 0.015704715, 0.00099186507, -0.000079934653, 0.0000070985473],
+    nd: 1.56732,
+    vd: 42.84,
+    PgF: 0.5743,
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses (HOYA20260707_include_obsolete.agf); vendor formula-1 polynomial for E-FL6. It shares a six-digit code with another vendor's row, so code6 is omitted.",
+  },
 ];

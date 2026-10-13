@@ -244,7 +244,7 @@ const LENS_DATA = {
       nd: 1.68822,
       vd: 31.1,
       fl: -52.3,
-      glass: "L-TIM28(P) class (OHARA, PGM)",
+      glass: "L-TIM28 class, moulded (OHARA, PGM); S-TIM28 is the nearest catalog curve",
       apd: false,
       role: "LGnR — rearmost element; aspherical field corrector for astigmatism, field curvature, distortion.",
     },

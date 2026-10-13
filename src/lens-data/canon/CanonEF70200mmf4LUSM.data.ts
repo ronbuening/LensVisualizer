@@ -78,6 +78,7 @@ const LENS_DATA = {
   apertureMarketing: 4,
   apertureDesign: 4.1,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "JP 2000-284174 A",
   patentAuthors: ["Akihiro Nishio"],

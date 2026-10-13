@@ -229,7 +229,7 @@ const LENS_DATA = {
       nd: 1.68948,
       vd: 31.02,
       fl: -109.8,
-      glass: "S-TIM28 (OHARA)",
+      glass: "L-TIM28 (OHARA)",
       apd: false,
       role: "Final field-flattening element with aspherical rear surface; shapes residual field curvature and astigmatism across the image circle (GR2R).",
     },

@@ -2168,4 +2168,76 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued low-softening-temperature L-LAH81 Sellmeier row.",
   },
+  {
+    name: "L-TIM28",
+    vendor: "Ohara",
+    B: [1.52780829, 0.232776367, 1.71638781],
+    C: [0.0114135883, 0.0559068566, 171.5118],
+    nd: 1.689479,
+    vd: 31.023399,
+    PgF: 0.598713,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for low-softening-temperature L-TIM28. The catalog gives it code 689311, the same as S-TIM28 (nd 1.68893), so code6 is omitted.",
+  },
+  {
+    name: "LAL7",
+    vendor: "Ohara",
+    polynomial: [2.6833808, -0.012303485, 0.015614129, 0.00047439815, -0.000027935643, 0.0000015441332],
+    nd: 1.651597,
+    vd: 58.519433,
+    PgF: 0.5426,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued LAL7. It shares a six-digit code with a current row, so code6 is omitted.",
+  },
+  {
+    name: "LAL8",
+    vendor: "Ohara",
+    polynomial: [2.8795551, -0.01462241, 0.019128502, 0.00061342737, -0.000035439045, 0.0000021550362],
+    nd: 1.712995,
+    vd: 53.845848,
+    PgF: 0.5456,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued LAL8. It shares a six-digit code with a current row, so code6 is omitted.",
+  },
+  {
+    name: "PBH1",
+    vendor: "Ohara",
+    B: [1.55408138, 0.289397861, 1.06727944],
+    C: [0.0120146818, 0.0532883208, 122.863029],
+    nd: 1.717362,
+    vd: 29.513538,
+    PgF: 0.5986,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued PBH1. It shares a six-digit code with a current row, so code6 is omitted.",
+  },
+  {
+    name: "PBH6",
+    vendor: "Ohara",
+    polynomial: [3.120642, -0.011286328, 0.040543249, 0.0033876996, -0.00024180036, 0.000027440285],
+    nd: 1.805177,
+    vd: 25.435012,
+    PgF: 0.61,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued PBH6. It shares a six-digit code with a current row, so code6 is omitted.",
+  },
+  {
+    name: "LAH66",
+    vendor: "Ohara",
+    polynomial: [3.0731081, -0.015043205, 0.023933518, 0.00055696651, -0.000010082346, 0.0000011873265],
+    nd: 1.772499,
+    vd: 49.60134,
+    PgF: 0.5515,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued LAH66. It shares a six-digit code with a current row, so code6 is omitted.",
+  },
+  {
+    name: "LAH53",
+    vendor: "Ohara",
+    polynomial: [3.1735908, -0.014865209, 0.02954021, 0.00098366596, -0.000022979104, 0.0000038043975],
+    nd: 1.806098,
+    vd: 40.948508,
+    PgF: 0.5697,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued LAH53. It shares a six-digit code with a current row, so code6 is omitted.",
+  },
 ];

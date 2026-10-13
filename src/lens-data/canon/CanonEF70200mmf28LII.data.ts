@@ -25,6 +25,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   Semi-diameters are inferred from on-axis marginal and chief-ray   ║
  * ║   paraxial envelopes, then reduced where needed to satisfy          ║
  * ║   renderer gap/sag and edge-thickness constraints.                  ║
+ * ║   Nine rims sat below the real f/2.9 on-axis ray and now stand at    ║
+ * ║   that ray's height at 193.97 mm, where each needs most: 12/13 at    ║
+ * ║   15.7 (were 15.5), 15/16 at 16.3 (15.7), 21 at 17.35 and 22 at      ║
+ * ║   17.34 (16.85), 23 at 17.7 (17.5), 28/29 at 16.5 (15.9). Nothing    ║
+ * ║   else moved. No raised element carried one value on both faces, so  ║
+ * ║   each rose face by face; cemented junctions 14 and 30 clear the ray ║
+ * ║   and keep 18.0 and 16.0. FIG. 4 draws each raised element at or     ║
+ * ║   above its new height, and draws the air pairs 12/13 (L6-L7), 15/16 ║
+ * ║   (L8-L9), 21/22 (L11-L12) and 28/29 (L14-L15) meeting at the rim.   ║
+ * ║   Those pairs take 91.9 / 96.0 / 95.2 / 96.2 % of their gaps and     ║
+ * ║   keep 0.471 / 0.113 / 0.004 / 0.064 mm of air, so gapSagFrac is     ║
+ * ║   0.97. Wide open at infinity all three stations trace f/2.90 on the ║
+ * ║   iris.                                                              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -47,6 +60,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.9,
   lensMounts: ["canon-ef"],
+  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "US 2009/0296231 A1",
   patentAuthors: ["Takashi Shirasuna"],
@@ -411,24 +425,24 @@ const LENS_DATA = {
     { label: "9", R: 50.611, d: 8.6, nd: 1.497, elemId: 5, sd: 24.3 },
     { label: "10", R: 33115.608, d: 1.58, nd: 1.0, elemId: 0, sd: 26.0 },
     { label: "11", R: -1003.993, d: 1.4, nd: 1.804, elemId: 6, sd: 18.5 },
-    { label: "12", R: 34.333, d: 5.79, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "13", R: -81.909, d: 1.4, nd: 1.497, elemId: 7, sd: 15.5 },
+    { label: "12", R: 34.333, d: 5.79, nd: 1.0, elemId: 0, sd: 15.7 },
+    { label: "13", R: -81.909, d: 1.4, nd: 1.497, elemId: 7, sd: 15.7 },
     { label: "14", R: 36.914, d: 5.39, nd: 1.84666, elemId: 8, sd: 18.0 },
-    { label: "15", R: 341.176, d: 2.84, nd: 1.0, elemId: 0, sd: 15.7 },
-    { label: "16", R: -57.998, d: 1.4, nd: 1.6968, elemId: 9, sd: 15.7 },
+    { label: "15", R: 341.176, d: 2.84, nd: 1.0, elemId: 0, sd: 16.3 },
+    { label: "16", R: -57.998, d: 1.4, nd: 1.6968, elemId: 9, sd: 16.3 },
     { label: "17", R: 3742.48, d: 28.81, nd: 1.0, elemId: 0, sd: 17.8 },
     { label: "18", R: 169.934, d: 4.88, nd: 1.6779, elemId: 10, sd: 18.3 },
     { label: "19", R: -93.961, d: 0.15, nd: 1.0, elemId: 0, sd: 18.2 },
     { label: "20", R: 594.797, d: 6.28, nd: 1.43387, elemId: 11, sd: 17.4 },
-    { label: "21", R: -45.332, d: 0.09, nd: 1.0, elemId: 0, sd: 16.85 },
-    { label: "22", R: -44.317, d: 1.6, nd: 1.801, elemId: 12, sd: 16.85 },
-    { label: "23", R: -93.196, d: 18.32, nd: 1.0, elemId: 0, sd: 17.5 },
+    { label: "21", R: -45.332, d: 0.09, nd: 1.0, elemId: 0, sd: 17.35 },
+    { label: "22", R: -44.317, d: 1.6, nd: 1.801, elemId: 12, sd: 17.34 },
+    { label: "23", R: -93.196, d: 18.32, nd: 1.0, elemId: 0, sd: 17.7 },
     { label: "STO", R: 1e15, d: 0.4, nd: 1.0, elemId: 0, sd: 17.31 },
     { label: "25", R: 52.86, d: 3.55, nd: 1.804, elemId: 13, sd: 18.0 },
     { label: "26", R: 160.464, d: 0.2, nd: 1.0, elemId: 0, sd: 17.5 },
     { label: "27", R: 51.23, d: 3.52, nd: 1.7725, elemId: 14, sd: 17.4 },
-    { label: "28", R: 82.622, d: 1.7, nd: 1.0, elemId: 0, sd: 15.9 },
-    { label: "29", R: 4742.17, d: 1.6, nd: 1.74, elemId: 15, sd: 15.9 },
+    { label: "28", R: 82.622, d: 1.7, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "29", R: 4742.17, d: 1.6, nd: 1.74, elemId: 15, sd: 16.5 },
     { label: "30", R: 37.278, d: 7.58, nd: 1.497, elemId: 16, sd: 16.0 },
     { label: "31", R: -114.057, d: 3.2, nd: 1.0, elemId: 0, sd: 15.3 },
     { label: "32", R: 205.849, d: 3.65, nd: 1.80518, elemId: 17, sd: 14.5 },
@@ -504,6 +518,7 @@ const LENS_DATA = {
   maxFstop: 32,
   fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
 
+  gapSagFrac: 0.97, // air pairs 12/13, 15/16, 21/22, 28/29 at the f/2.9 ray height; see header
   scFill: 0.76,
   yScFill: 0.34,
 } satisfies LensDataInput;

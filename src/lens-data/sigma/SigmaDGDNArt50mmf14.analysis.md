@@ -136,7 +136,7 @@ This cemented doublet is net negative and forms the first component of the field
 
 ### L14 — Negative Meniscus, concave to object, 1× Aspherical (GR2R, last optical element)
 
-nd = 1.68948, νd = 31.02. Glass: S-TIM28 (OHARA) — flint. f = −109.8 mm.
+nd = 1.68948, νd = 31.02. Glass: L-TIM28 (OHARA) — low-softening-temperature flint for moulding. f = −109.8 mm.
 
 L14 is the final optical element before the image plane. It is a negative meniscus with a concave object-facing surface (R25 = −35.52 mm, R26 = −68.56 mm). Its rear surface (surface 26) is aspherical with K = 0 and polynomial coefficients through A18, producing a positive sag departure of approximately +290 µm at the rim.
 
@@ -161,7 +161,7 @@ The prescription uses 10 distinct glass types across 14 elements. The glass pale
 | L11 | 2.00100 | 29.13 | TAFD55 (HOYA) | Ultra-high-index positive; minimized Petzval per φ |
 | L12 | 1.94595 | 17.98 | FDS18 (HOYA) | Lateral color correction |
 | L13 | 1.62004 | 36.30 | S-TIM2 (OHARA) | Medium flint; chromatic partner to L12 |
-| L14 | 1.68948 | 31.02 | S-TIM28 (OHARA) | Flint; aspherical field-flattening element |
+| L14 | 1.68948 | 31.02 | L-TIM28 (OHARA) | Flint; aspherical field-flattening element |
 
 The chromatic correction strategy relies on two distinct mechanisms operating at different positions in the lens. In the front group, the L5+L6 cemented doublet provides the primary axial color correction using an SLD crown (L5, νd = 68.62) paired with a short flint (L6, νd = 30.05). In the rear group, the L9+L10 doublet performs a secondary chromatic correction pass with a lanthanum crown (νd = 52.32) and dense flint (νd = 25.15). The most spectrally exotic element is L12 (νd = 17.98), whose ultra-high dispersion contributes to lateral color correction at the image periphery — essential for maintaining color-free corners on the 43 mm full-frame image circle.
 
@@ -330,7 +330,7 @@ Conditional expressions (3), (4), and (6) were independently verified by computi
 1. JP 2023-183894 A, "結像光学系," Sigma Corporation, published December 28, 2023. Inventor: Yukihiro Yamamoto.
 2. Sigma Corporation, "50mm F1.4 DG DN | Art" product page, https://www.sigma-global.com/en/lenses/a023_50_14/ — production specifications: 14 elements / 11 groups, 3 aspherical lenses, 1 SLD element, f = 50 mm, F/1.4, MFD 0.45 m, 11-blade diaphragm, 72 mm filter, HLA autofocus motor.
 3. Sigma Corporation press release, February 7, 2023: "SIGMA Introduces 50mm F1.4 DG DN | Art for Full-Frame Mirrorless Cameras."
-4. OHARA Inc., optical glass catalog — nd/νd reference data for S-TIH6, S-LAH58, S-TIM2, S-TIM28.
+4. OHARA Inc., optical glass catalog — nd/νd reference data for S-TIH6, S-LAH58, S-TIM2, L-TIM28.
 5. Hoya Corporation, optical glass catalog — nd/νd reference data for E-FDS1, E-CF6, E-FD15, TAFD55, FCD515/FCD505.
 
 ## Image-format reference
