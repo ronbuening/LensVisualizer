@@ -81,3 +81,8 @@ Source: Figure 3, PDF page 27; Example 1, Tables 3–5.
 The 600 dpi exact figure was visually inspected. Two automated crops produce inconsistent axial span/axis readings because the short converter outline is surrounded by labels; these readings are rejected. The drawing supports the 14/17/21 mm relative rim ordering. The selected compatible host's corner chief reaches about 12.90/16.09/18.21 mm at the group exits, so an absolute reduction based on the contaminated figure readings is not justified. Existing SDs and the quoted aspheric departure stay unchanged.
 
 Six lens glasses already reach coordinate-compatible catalog curves. Both 0.01 mm cement bodies remain unresolved because 1.51400 / 42.83 has no defensible catalog curve. The Nikon Z TC-1.4x display name, Z mount, counts and authors/assignees are complete. Image format is inherited from the composed host.
+
+
+## 2026-10-14 — Local-viewer review
+
+The magnified local composed diagram was compared with JP2021189311A Figure 3 (PDF page 27). The six lens bodies, two explicit cement films, two doublets and rear asphere agree in order and orientation; the 14/17/21 mm inferred rims are retained. The converter remains fixed through host focus and zoom, with no independent movement law or stop. All six glasses have compatible catalog curves. The cement's N/ν and thickness alone cannot identify a commercial adhesive or its spectral curve, so both films remain unresolved. The joint Konica Minolta, Inc. / Nikon Corporation attribution and Nikon Z mount are correct.

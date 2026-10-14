@@ -6,7 +6,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * Stop: not printed. Placed 1 mm before r14, splitting d13 without changing its total; Nikon's
  * production section draws the iris at about this position and opening.
  * Semi-diameters: inferred from the element proportions of patent Fig. 1 and Nikon's section, within
- * edge-thickness and air-gap limits. Facing r8/r9 rims are 13.1 mm to pass the stated f/3.5
+ * edge-thickness and air-gap limits. The front singlet uses 25.5 mm rims, matching
+ * Fig. 1's slightly taller outline than the following doublet. Facing r8/r9 rims are 13.1 mm to pass the stated f/3.5
  * telephoto beam. Figure 1 draws them nearly meeting; gapSagFrac=0.978 admits their measured
  * 97.59% intrusion while retaining 0.0917 mm physical clearance in the unchanged 3.8 mm gap.
  * Catalog glass labels are spectral proxies, not evidence of the historical supplier or melt.
@@ -184,7 +185,7 @@ const LENS_DATA = {
       d: 5.1,
       nd: 1.62041,
       elemId: 1,
-      sd: 24,
+      sd: 25.5,
     },
     {
       label: "2",
@@ -192,7 +193,7 @@ const LENS_DATA = {
       d: 0.2,
       nd: 1.0,
       elemId: 0,
-      sd: 24,
+      sd: 25.5,
     },
     {
       label: "3",
@@ -354,6 +355,18 @@ const LENS_DATA = {
       elemId: 0,
       sd: 16,
     },
+  ],
+  // Patent Fig. 1 distinguishes four functional groups from nine construction groups.
+  groups: [
+    { text: "G1 (+)", fromSurface: "1", toSurface: "5" },
+    { text: "G2 (−)", fromSurface: "6", toSurface: "10" },
+    { text: "G3 (+)", fromSurface: "11", toSurface: "13" },
+    { text: "G4 (+)", fromSurface: "14", toSurface: "21" },
+  ],
+  doublets: [
+    { text: "D1", fromSurface: "3", toSurface: "5" },
+    { text: "D2", fromSurface: "6", toSurface: "8" },
+    { text: "D3", fromSurface: "11", toSurface: "13" },
   ],
   asph: {},
   var: {

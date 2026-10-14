@@ -143,3 +143,10 @@ Source: Figure 17, PDF page 22; Example 5, Table 5.
 | Design focal-length spec | 30.00–56.51 mm | 30.88–58.55 mm | Header now reports the implemented E4/E5 drawing-derived model consistently with focalLengthDesign. |
 
 The 600 dpi optical rims of the exact Figure 17 were inspected; relative heights agree within about 15%, apart from the already disclosed rear-gap limit. The 5.731 mm facing rims remain unchanged. The patent-to-Tale-83 thickness substitutions remain disclosed rather than being silently reverted. Nikon IX and APS film metadata are present, and the IX-Nikkor display name is correct.
+
+
+## 2026-10-14 — Local-viewer review
+
+The local wide/tele and close-focus diagrams were compared with JP3909533B2 Figure 17 (PDF page 22, rotated). The last element's surfaces 12/13 decrease from 6.3 to 5.6 mm, closer to the roughly 5.26 mm optical-curve estimate. The 5.731 mm facing surfaces 9/10 are retained. The revised last rims preserve the stated axial aperture and APS image-corner chief ray throughout zoom; peripheral vignetting remains modeled.
+
+Two source functional-group brackets replace six fallback movement groups, and the diagram adopts the figure's L11/L12/L21/L22/L23/L24 identifiers. G1 moves objectward for near focus while G2 stays fixed; finite conjugates descend to the reconstructed 350 mm endpoint. During zoom G1 first moves imageward then objectward, while G2 moves objectward. The previously disclosed E4/E5 thickness substitutions and long focal-length result remain. Nikon Corporation, Nikon IX and APS-film metadata are correct.

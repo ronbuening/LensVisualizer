@@ -13,16 +13,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **940** lenses scanned
 - **927** visible lenses scanned
-- **629** lenses fully covered by trusted chromatic data
-- **627** visible lenses fully covered by trusted chromatic data
-- **622** lenses fully covered by strict Sellmeier data
-- **620** visible lenses fully covered by strict Sellmeier data
+- **628** lenses fully covered by trusted chromatic data
+- **626** visible lenses fully covered by trusted chromatic data
+- **621** lenses fully covered by strict Sellmeier data
+- **619** visible lenses fully covered by strict Sellmeier data
 - **7** lenses fully covered only after measured line-index data
 - **7** visible lenses fully covered only after measured line-index data
-- **9956 / 10703** non-air surfaces use strict catalog Sellmeier data
-- **93.0%** strict Sellmeier surface coverage overall
-- **9969 / 10703** non-air surfaces use trusted chromatic data
-- **93.1%** trusted chromatic coverage overall
+- **9941 / 10703** non-air surfaces use strict catalog Sellmeier data
+- **92.9%** strict Sellmeier surface coverage overall
+- **9954 / 10703** non-air surfaces use trusted chromatic data
+- **93.0%** trusted chromatic coverage overall
 - **251 / 303** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -439,7 +439,6 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF 28-105mm f/3.5-4.5 II USM](../../src/lens-data/canon/CanonEF28105mmf3545II.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) | 15/15 | 15 | 15/15 |
-| [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON RF 28-70mm f/2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) | 15/15 | 15 | 15/15 |
@@ -1254,6 +1253,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 302 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 303 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 304 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 305 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
 
 ## Missing Surface Details
 
@@ -3469,4 +3469,18 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10 | Element 6 | abbe | `Unmatched (native nd=1.88000, vd=39.22; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
 | 12 | Element 7 | abbe | `Unmatched (native nd=1.65000, vd=33.89; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
 | 14 | Element 8 | abbe | `Unmatched (native nd=1.88000, vd=39.22; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
+
+### [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) - 0.0% trusted (0/15); 0.0% Sellmeier (0/15) - JP H08-062541 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (source wavelength unspecified; S-TIH6 is a possible d-line catalog class)` | Explicit unmatched/proprietary annotation |
+| 2 | Element 2 | abbe | `Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 3 | abbe | `Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)` | Explicit unmatched/proprietary annotation |
+| 6 | Element 4 | abbe | `Unmatched (source wavelength unspecified; LAH66 is a possible d-line catalog class)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 5 | abbe | `Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 6 | abbe | `Unmatched (source wavelength unspecified; S-TIH53 is a possible d-line catalog class)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 7 | abbe | `Unmatched (source wavelength unspecified; S-BSM14 is a possible d-line catalog class)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 8 | abbe | `Unmatched (source wavelength unspecified; S-FSL5 is a possible d-line catalog class)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 7 more missing surfaces |
 

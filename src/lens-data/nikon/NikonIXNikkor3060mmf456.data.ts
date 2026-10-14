@@ -16,7 +16,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * E4 rear curvature; the patent's R9 = -2986.971 mm is kept.
  * Semi-diameters are inferred from the drawing's optical curve extents. Facing
  * s9/s10 are reduced from 6.300 to 5.731 mm so the patent's 0.582 mm central gap
- * holds within gapSagFrac 0.969999. Stop at patent surface 7; its radius follows
+ * holds within gapSagFrac 0.969999. The final L24 rims are 5.6 mm, closer to the
+ * 5.26 mm optical-curve estimate from Fig. 17; they retain full APS chief coverage
+ * and the stated axial aperture. Stop at patent surface 7; its radius follows
  * the patent f-number schedule 4.09/4.79/5.85.
  * Focus: G1 alone moves objectward (patent ¶0050). The patent prints no near-focus
  * spacings; d4 is solved paraxially for a 350 mm object-to-image distance. d4 at
@@ -54,6 +56,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L11",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.796681,
@@ -64,6 +67,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L12",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.84666,
@@ -74,6 +78,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L21",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.65844,
@@ -84,6 +89,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L22",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.65844,
@@ -94,6 +100,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L23",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.805182,
@@ -104,6 +111,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L24",
       label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.69895,
@@ -207,7 +215,7 @@ const LENS_DATA = {
       d: 2.184,
       nd: 1.69895,
       elemId: 6,
-      sd: 6.3,
+      sd: 5.6,
     },
     {
       label: "13",
@@ -215,8 +223,13 @@ const LENS_DATA = {
       d: 39.36671558324248,
       nd: 1,
       elemId: 0,
-      sd: 6.3,
+      sd: 5.6,
     },
+  ],
+  // Patent Fig. 17: two functional groups, with all six lenses air-separated.
+  groups: [
+    { text: "G1 (−)", fromSurface: "1", toSurface: "4" },
+    { text: "G2 (+)", fromSurface: "5", toSurface: "13" },
   ],
   asph: {},
   var: {

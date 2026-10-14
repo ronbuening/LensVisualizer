@@ -177,3 +177,10 @@ Source: Figure 1, PDF page 2; sole embodiment.
 | L1–L12 glass | Unmatched | N-SK16, E-FD4, SF56A, N-BK7, LAFN7 and F1 proxies | Compatible catalog coordinates with historical supplier/melt unconfirmed. |
 
 The 600 dpi optical-rim inspection supports the r8/r9 increase; the 3.8 mm source gap, all radii and the iris stay unchanged. The other optical rims already follow the figure within drawing uncertainty. Nikon F/full-frame and patent attribution are complete. The analysis removes the superseded f/3.645 clipping claim and describes the current clearance.
+
+
+## 2026-10-14 — Local-viewer review
+
+The local wide/tele and close-focus diagrams were compared with US4398807A Figure 1 (PDF page 2, rotated). The first singlet rims increase from 24.0 to 25.5 mm to follow the figure's taller outline ahead of the 23.6 mm doublet. The 13.1 mm facing variator rims and their positive air clearance remain unchanged.
+
+Four source functional-group brackets and three cemented-doublet brackets are now authored. The movement chart consequently follows the patent's four units instead of nine fallback construction groups. G1 alone moves objectward for near focus; G2 moves imageward during zoom, G3 reverses, and G1/G4 remain fixed at infinity apart from tabular rounding. Finite conjugates are ordered from infinity to the reconstructed 1 m endpoint. Catalog labels remain supplier-neutral spectral proxies. Nippon Kogaku K.K. is retained as the period assignee, already linked to Nikon's corporate history.

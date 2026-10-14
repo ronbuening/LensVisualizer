@@ -102,3 +102,10 @@ Source: Figure 4, PDF page 11; Numerical Example 2, Table 3.
 Source N/ν and all geometry stay unchanged. S-TIH6, S-BSL7, LAH66, S-TIH53, S-BSM14, S-FSL5 and S-LAH60 are explicitly qualified spectral proxies. The source wavelength remains unspecified; d-line tracing remains inferred from the plotted d/g labels and coordinates.
 
 The wide panel's leader lines contaminate automated envelopes. A separate comparison using the printed 135 mm spacing and the clean middle panel gives figure/data ratios 0.86–0.96 with relative shape deviations within about 6%; these do not justify SD changes. The optical rims, excluding leaders and group brackets, were inspected at 600 dpi. Canon EF/full-frame, the display name, counts and inventor/assignee fields are complete.
+
+
+## 2026-10-14 — Local-viewer review
+
+The local viewer was compared at the three published infinity stations with JPH0862541A Figure 4 (PDF page 11), using the 135 mm panel for the clean optical outline. The inferred rims and six functional-group boundaries are retained. G2 IS and G4 remain fixed relative to the image plane; G5 reverses along the calculated zoom path. Focus remains unavailable because the source supplies no near-focus spacings.
+
+The prior pass activated catalog curves despite the unspecified reference line. That classification is corrected: all 15 glasses are explicitly Unmatched, with source N/ν labels and approximate Abbe dispersion in the inspector. The possible d-line catalog classes remain annotations, with no direct catalog-derived C/F/g indices. The repeat in US 2001/0030809 A1 Example 9 also leaves the reference unnamed. No supplier or melt is identified. Canon Inc. is already the canonical source assignee.

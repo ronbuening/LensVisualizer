@@ -68,3 +68,8 @@ Source: Figure 1, PDF page 22; Example 1, Table 1 surfaces 39–46.
 | L23 dispersion | J-LASFH9A label, no curve | Sourced J-LASFH9A catalog curve | Hikari 2025-06-01 catalog, PDF page 151: exact nine-term power series, nd 1.90265 / νd 35.77, d-code 903358. Source νd 35.73 stays unchanged. |
 
 The exact 600 dpi figure shows the uniform 16 mm rims are excessive. Absolute figure readings of about 8–10 mm would clip the stated 21.633 mm image-height chief ray, so the selected group rims retain at least 0.5 mm above the traced chief instead. The full axial beam still clears every surface; off-axis pupil clipping remains modeled, not certified production vignetting. The current J-LASFH9A curve remains distinct from legacy J-LASFH9 (d-code 903357). All five glasses now use catalog dispersion. Nikon F mount, dedicated 800 mm host, attribution and display name are retained.
+
+
+## 2026-10-14 — Local-viewer review
+
+The magnified local composed diagram was compared with JP2013250290A Figure 1 (PDF page 22), converter surfaces 39–46. The 11.0/12.4/13.3 mm group rims from the prior pass remain: the smaller figure-scale estimate would clip the supported host's full-frame chief ray. All five lenses retain compatible catalog curves, including the distinct J-LASFH9A entry; the single ED position remains inferred from Nikon's production diagram. The converter remains stationary during host focus. Nikon Corporation and Nikon F metadata are canonical.

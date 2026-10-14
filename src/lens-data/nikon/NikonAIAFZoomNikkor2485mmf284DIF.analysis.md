@@ -191,13 +191,13 @@ It uses κ directly inside the root; κ = 1 is a spherical base. LensVisualizer 
 
 Unlisted terms are modeled as zero. No even-order replacement fit or prescription scaling is applied. The engine already supports these odd terms in sag, slope, exact intersections and rendering.
 
-At the inferred 13.5 mm radius, surface 6A has sag +0.1419 mm and departure +0.5602 mm from its reference sphere. At 9.4 mm, surface 24A has sag +0.0655 mm and departure −0.2876 mm. Both functions reverse their sag slope within these radii. These reversals follow from the printed coefficients and are retained.
+At the inferred 14.2 mm radius, surface 6A has sag +0.2089 mm and departure +0.6718 mm from its reference sphere. At 9.4 mm, surface 24A has sag +0.0655 mm and departure −0.2876 mm. Both functions reverse their sag slope within these radii. These reversals follow from the printed coefficients and are retained.
 
 ## Model Scope and Limitations
 
 Source radii, thicknesses, refractive indices, coefficients and all focus spacings are unchanged. The wide EFL difference from the 24.700 label is approximately −0.00777 mm; the maximum infinity back-focus residual is under 0.001 mm. No source value is optimized to remove these residuals.
 
-Clear apertures and iris diameter are not published. The semi-diameters are manual Figure 1 estimates checked against Nikon's outline, source-beam clearance and geometry. The 24A/25 rim is 9.4 mm on both faces. The unchanged 25→26 gap has 1.8756 mm maximum shared-band sag intrusion within its 2.0000 mm vertex spacing, leaving 0.1244 mm positive physical clearance; the drawing margin for that gap is therefore 5% instead of the usual 10%. No optical surface changes.
+Clear apertures and iris diameter are not published. The semi-diameters are manual Figure 1 estimates checked against Nikon's outline, source-beam clearance and geometry. The L21 hybrid rim (6A/7/8) is 14.2 mm, increased from 13.5 mm toward Figure 1's larger outline while respecting the steep spherical rear face. A 15.7 mm candidate would put that face at about 78° slope and was rejected. The 24A/25 rim is 9.4 mm on both faces; increasing it to 11.2 mm would overlap surface 26 and was rejected. The unchanged 25→26 gap has 1.8756 mm maximum shared-band sag intrusion within its 2.0000 mm vertex spacing, leaving 0.1244 mm positive physical clearance; the drawing margin for that gap is therefore 5% instead of the usual 10%. No optical surface changes.
 
 The authored stop schedule follows the stated f-numbers; it is an inference, not evidence that the real iris varies with zoom. The model uses Table 1's rounded endpoint f-numbers, 2.8 and 4.1, and Figure 3's middle value, 3.62. The more precise plot legends in Figures 2–4 are 2.79 / 3.62 / 4.12. Both statements are preserved rather than declaring either a source error. At the solved intermediate stations, the f-numbers (2.89 at 27 mm to 4.05 at 75 mm) keep the iris radius interpolated between the printed stations.
 

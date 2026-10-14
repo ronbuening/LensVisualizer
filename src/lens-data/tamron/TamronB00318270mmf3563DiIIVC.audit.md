@@ -156,3 +156,10 @@ Source: Figure 1, PDF page 9 (printed page 8); sole embodiment.
 No SD, mount or format correction is justified. The wide-like diagram was inspected at 600 dpi; its telephoto caption remains contradictory, as previously documented. Optical rims agree with the existing front/variator/relay proportions; hatched resin layers and leader lines are excluded from envelope measurements.
 
 All eighteen glass substrates already reach coordinate-compatible catalog dispersion. Three resin bodies (L4r/L13r/L15r, two distinct nd/νd coordinates) have no defensible catalog curve and stay unresolved. The official Tamron B003 archive confirms Canon EF and Nikon F versions, APS-C coverage and the full AF / Di II / VC / LD / Aspherical / IF / MACRO designation. The display qualifier is capitalized to ASPHERICAL under the catalog naming convention; B003 remains distinguished from the later B008 PZD.
+
+
+## 2026-10-14 — Local-viewer review
+
+The local wide/tele diagrams were compared with JP2010044103A Figure 1 (PDF page 9, rotated), whose geometry matches the wide row despite its telephoto caption. The optical front outline now descends through 29.0/28.5/28.5 mm first-doublet rims and 27.0 mm next-singlet rims, replacing 30.5/30.0 mm. Axial aperture and APS-C image-corner chief coverage remain available throughout zoom. The existing cemented/hybrid component IDs now have drawing brackets as well as inspector membership.
+
+All four groups move objectward overall during zoom; the solved LG2 path retains its roughly 1.2 mm imageward return near tele. Focus remains unavailable because no near spacings are printed. The two LD and one AD positions remain inferred from Tamron's production diagram, not patent-specified identities; the three resin layers retain Abbe fallback. The patents supply no resin trade name or spectral curve to backfill. Tamron Co., Ltd., Canon EF/Nikon F and APS-C metadata are correct.

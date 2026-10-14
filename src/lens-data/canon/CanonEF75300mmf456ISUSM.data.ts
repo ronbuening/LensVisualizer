@@ -24,8 +24,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * section. Front 28 mm radius fits behind the 58 mm filter; off-axis vignetting
  * is expected. R7 is limited to 13.7 mm by the thin R7-R8 air lens.
  * Every var entry repeats its infinity value: the patent gives no focus state.
- * Dispersion uses coordinate-compatible catalog curves, preserving source N/nu.
- * The d-line interpretation remains inferred; no source-measured line indices or supplier is claimed.
+ * Source N/nu leave the reference wavelength unstated. Glasses remain Unmatched;
+ * dispersion uses approximate d-line Abbe estimates, with catalog classes left inactive.
  * The two conditional fo/fr values remain unresolved (see sourceErrata).
  */
 const LENS_DATA = {
@@ -67,11 +67,11 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       fl: -221.388082194,
-      glass: "S-TIH6 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-TIH6 is a possible d-line catalog class)",
       role: "Negative front member of the G1 cemented doublet.",
       cemented: "D1",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 2,
@@ -81,11 +81,11 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.2,
       fl: 134.257507689,
-      glass: "S-BSL7 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)",
       role: "Positive crown partner of the G1 doublet.",
       cemented: "D1",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 3,
@@ -95,10 +95,10 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.2,
       fl: 208.963244531,
-      glass: "S-BSL7 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)",
       role: "Air-separated positive G1 singlet.",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 4,
@@ -108,10 +108,10 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       fl: -59.952879469,
-      glass: "LAH66 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; LAH66 is a possible d-line catalog class)",
       role: "Front negative singlet of the laterally moving IS group G2.",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 5,
@@ -121,11 +121,11 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.2,
       fl: -46.655589497,
-      glass: "S-BSL7 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)",
       role: "Negative crown member of the rear G2 doublet.",
       cemented: "D2",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 6,
@@ -135,11 +135,11 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       fl: 72.533408228,
-      glass: "S-TIH53 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-TIH53 is a possible d-line catalog class)",
       role: "Positive dense-flint member of the G2 doublet.",
       cemented: "D2",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 7,
@@ -149,10 +149,10 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       fl: 58.515790906,
-      glass: "S-BSM14 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-BSM14 is a possible d-line catalog class)",
       role: "Positive G3 crown singlet.",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 8,
@@ -162,11 +162,11 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       fl: 60.552442335,
-      glass: "S-FSL5 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-FSL5 is a possible d-line catalog class)",
       role: "Positive low-dispersion crown member of the G3 doublet.",
       cemented: "D3",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 9,
@@ -176,11 +176,11 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       fl: -55.247823581,
-      glass: "S-LAH60 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-LAH60 is a possible d-line catalog class)",
       role: "Negative high-index partner of the G3 doublet before the stop.",
       cemented: "D3",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 10,
@@ -190,10 +190,10 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       fl: -410.971972268,
-      glass: "S-BSM14 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-BSM14 is a possible d-line catalog class)",
       role: "Weak negative, image-convex G4 singlet; fixed during zoom.",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 11,
@@ -203,11 +203,11 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       fl: 57.128704261,
-      glass: "S-BSM14 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-BSM14 is a possible d-line catalog class)",
       role: "Positive crown member of the G5 doublet.",
       cemented: "D4",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 12,
@@ -217,11 +217,11 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       fl: -102.809620703,
-      glass: "S-TIH6 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-TIH6 is a possible d-line catalog class)",
       role: "Negative flint member of the G5 doublet.",
       cemented: "D4",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 13,
@@ -231,10 +231,10 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.2,
       fl: 147.955687663,
-      glass: "S-BSL7 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-BSL7 is a possible d-line catalog class)",
       role: "Object-convex positive G5 singlet.",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 14,
@@ -244,11 +244,11 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       fl: -30.699716691,
-      glass: "LAH66 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; LAH66 is a possible d-line catalog class)",
       role: "Negative lanthanum-glass member of the rear G6 doublet.",
       cemented: "D5",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
     {
       id: 15,
@@ -258,11 +258,11 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       fl: 66.040722027,
-      glass: "S-TIH6 (d-line spectral proxy; source wavelength and supplier unconfirmed)",
+      glass: "Unmatched (source wavelength unspecified; S-TIH6 is a possible d-line catalog class)",
       role: "Object-convex positive flint member of G6.",
       cemented: "D5",
       indexReferenceNote:
-        "Source N/nu do not name a wavelength. Approximate d-line tracing is inferred from d/g plots and catalog coordinates; the catalog curve is a spectral proxy, not source-measured dispersion.",
+        "Source N/nu do not name a wavelength. Tracing uses an approximate d-line Abbe convention; the possible catalog class does not resolve to a spectral curve until the source reference is established.",
     },
   ],
   surfaces: [

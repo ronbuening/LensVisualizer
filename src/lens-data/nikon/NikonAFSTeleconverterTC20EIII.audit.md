@@ -90,3 +90,8 @@ Source: Figure 3, PDF page 19; Example 2, Table 2.
 All seven glasses now resolve to catalog dispersion. The 600 dpi converter optical rims support the existing 12/14/16 mm relative heights; label contamination is excluded. No SD or aspheric departure changes are justified. The Nikon AF-S TC-20E III name, F mount, counts and compatibility declaration are complete; converters inherit image format from their host rather than carrying a lens-only field.
 
 The existing AF-S 300mm f/2.8 D IF-ED catalog host is independently rim-limited at rear L11 surface 21: stated f/2.88 traces about f/3.45 without the converter, and stated f/5.70 traces about f/6.83 with it. The converter introduces no axial rim clip. This pre-existing host issue is queued in sd-audit-queue Section I; the production analysis now distinguishes it from the source master's f/5.70 result.
+
+
+## 2026-10-14 — Local-viewer review
+
+The magnified local composed diagram was compared with JP2010191211A Figure 3 (PDF page 19), converter surfaces 26–37 relabeled 1–12. The seven glass bodies, triplet, asphere and 12/14/16 mm inferred rims retain the source outline and compatible catalog curves. The converter has no independent focus, zoom or iris; movement and aperture belong to the host. The already queued 300 mm host rear-rim limitation remains a host issue, not a reason to enlarge this converter. Nikon Corporation and Nikon F metadata are canonical.

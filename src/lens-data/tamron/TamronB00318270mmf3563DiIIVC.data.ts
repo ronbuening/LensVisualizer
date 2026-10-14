@@ -35,6 +35,8 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Semi-diameters are inferred from ray clearance and the patent figure, not published. Figure 1
  * is captioned as the telephoto end, but its group spacings match the wide-angle column.
+ * The first doublet uses 29.0/28.5/28.5 mm rims and the next singlet 27.0 mm, following
+ * the drawing's descending front outline; all other inferred rims retain ray clearance.
  * Stabilization (lateral shift of the LG3 rear doublet) is not simulated.
  */
 
@@ -380,7 +382,7 @@ const LENS_DATA = {
       "d": 1.5,
       "nd": 1.84666,
       "elemId": 1,
-      "sd": 30.5
+      "sd": 29.0
     },
     {
       "label": "2",
@@ -388,7 +390,7 @@ const LENS_DATA = {
       "d": 8.0,
       "nd": 1.497,
       "elemId": 2,
-      "sd": 30.5
+      "sd": 28.5
     },
     {
       "label": "3",
@@ -396,7 +398,7 @@ const LENS_DATA = {
       "d": 0.2,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 30.5
+      "sd": 28.5
     },
     {
       "label": "4",
@@ -404,7 +406,7 @@ const LENS_DATA = {
       "d": 4.5,
       "nd": 1.618,
       "elemId": 3,
-      "sd": 30
+      "sd": 27.0
     },
     {
       "label": "5",
@@ -412,7 +414,7 @@ const LENS_DATA = {
       "d": 2.058,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 30
+      "sd": 27.0
     },
     {
       "label": "6A",
@@ -967,6 +969,15 @@ const LENS_DATA = {
       "fromSurface": "28A",
       "toSurface": "35"
     }
+  ],
+  "doublets": [
+    { "text": "C1", "fromSurface": "1", "toSurface": "3" },
+    { "text": "C6", "fromSurface": "6A", "toSurface": "8" },
+    { "text": "C16", "fromSurface": "16", "toSurface": "18" },
+    { "text": "C21", "fromSurface": "21", "toSurface": "23" },
+    { "text": "C24", "fromSurface": "24A", "toSurface": "27" },
+    { "text": "C28", "fromSurface": "28A", "toSurface": "30" },
+    { "text": "C31", "fromSurface": "31", "toSurface": "33" }
   ],
   "closeFocusM": 0.49,
   "focusDescription": "Infinity focus only. The patent focuses by moving the second group (LG2) toward the object, but it prints no near-focus spacings, so no focus movement is modeled: every zoom state stays at infinity focus. The 0.49 m end of the focus scale is Tamron's marketed minimum focus distance and does not move any group.",

@@ -232,3 +232,10 @@ Source: Figure 1, PDF page 13; Example 1, Table 1.
 | L21r resin | Unmatched | Retained | No defensible catalog curve for 1.495210 / 56.34. |
 
 The 600 dpi wide and clean middle panels were compared against their corresponding printed infinity spacings. Some automated L22/Lasp readings sample a neighbouring rim because of their sag and thin gaps; these are rejected after optical-outline inspection. The square 9.4 mm Lasp rim remains bounded by its unchanged gap to surface 26. No SD change is justified. The existing Ai AF / Zoom-Nikkor / D IF name, Nikon F/full-frame metadata, attribution and published finite/macro state qualifications are retained.
+
+
+## 2026-10-14 — Local-viewer review
+
+The local midpoint and endpoint diagrams were compared with JP2000321497A Figure 1 (PDF page 13). Generic component type strings now describe the actual meniscus/biconvex/biconcave shapes, with the Lasp asphere identified. The hybrid L21 rims (6A/7/8) increase from 13.5 to 14.2 mm toward the figure outline, with no drawing trim. A 15.7 mm rear-face candidate gives about 78° slope and is rejected. Lasp stays at 9.4 mm because an 11.2 mm candidate produces about 2.68 mm intrusion into its unchanged 2.00 mm air gap.
+
+G2 alone moves objectward for close focus; all four groups move objectward overall during zoom. The printed near/macro states and their interpolated finite conjugates are correctly ordered. The 50 mm patent macro distance remains closer than the marketed macro specification, as disclosed. All 15 glass bodies have compatible spectral proxies; the hybrid resin remains unresolved because no trade name, line indices or dispersion coefficients are published. Nikon Corporation is already canonical.
