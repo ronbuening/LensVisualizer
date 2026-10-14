@@ -54,7 +54,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `intersect.ts` | Intersect helper module | same folder (5), src/optics/math (2), src/optics/constants.ts, src/optics/types.ts | src/optics/trace (2), src/optics/internal | ClosedFormFallbackReason, SeedRefusal, SurfaceIntersectionFailure, SurfaceIntersectionFailureReason, SurfaceIntersectionOptions, SurfaceIntersectionResult, SurfaceIntersectionSuccess, intersectSurfaceProfile, +2 more |
+| `intersect.ts` | Intersect helper module | same folder (5), src/optics/math (2), src/optics/constants.ts, src/optics/types.ts | src/optics/trace (2), src/optics/internal | ClosedFormFallbackReason, SeedRefusal, SurfaceIntersectionFailure, SurfaceIntersectionFailureReason, SurfaceIntersectionOptions, SurfaceIntersectionResult, SurfaceIntersectionSuccess, intersectSurfaceProfile, +1 more |
 | `intersectConic.ts` | Intersect Conic helper module | same folder (2), src/optics/constants.ts, src/optics/types.ts | same folder | MAX_ROOT_MOVE, MAX_NORMAL_MOVE, intersectConicClosedForm, baseConicRoot |
 | `intersectPlane.ts` | Intersect Plane helper module | same folder, src/optics/constants.ts, src/optics/math, src/optics/types.ts | src/optics/perspective (3), src/optics/trace | RayPlaneIntersection, RayPlaneIntersectionOptions, intersectRayPlane |
 | `intersectTolerance.ts` | Intersect Tolerance helper module | src/optics/types.ts | same folder (2), src/optics/internal | capCoordinateTolerance, sagResidualRoundoff, planeResidualRoundoff |
