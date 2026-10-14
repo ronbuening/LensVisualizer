@@ -2411,9 +2411,6 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 44 | Behind a legacy ghost path's first missed surface, its points and its clipped y are compared for presence, count and finiteness only | [Quantity budgets](#quantity-budgets) |
 | 45 | S3.P2.T1 names a fifth class: a transfer that starts within rounding of the raw target where two surfaces cross beyond their rims | S3.P2.T1 |
 | 46 | The reference spherical primary mirror's far exit-pupil sample is S3.P2.T1's second approved divergence | S3.P2.T1 |
-| 47 | The Samyang XP 35mm f/1.2's raw half-field, decided by a scan miss on A1 and by the closed form's fallback after S3.P2.T1, is S3.P2.T1's third approved divergence | S3.P2.T1 |
-| 48 | S3.P2.T3 merges with its check failing on the Mirotar alone, the approved divergence extended to it | S3.P2.T3 |
-| 49 | Closing #779 on the stack tracer makes the Kinoptik Super Tegea 19mm's last field sample usable: an intended divergence at promotion, with a changelog line | S3.P2.T3 |
 
 Settled on 2026-10-13, reviewing S2.P1.T1:
 
@@ -2423,6 +2420,14 @@ Settled on 2026-10-13, reviewing S2.P1.T1:
 | 48 | A missing `publishedStations` is a schema default: every zoom station published at infinity alone, as `publishedStationGrid` reads it | [Anchors and comparison coverage](#anchors-and-comparison-coverage); S2.P1.T1 |
 | 49 | The order of label pairs is no spelling: ingest refuses pairs out of surface order, and the records keep the file's order | S2.P1.T1 |
 | 50 | Before changing a test whose expectation moves with the two reader fallbacks, S2.P1.T2 lists each one with its old and new values and stops for the maintainer | S2.P1.T2 |
+
+Settled on 2026-10-14, at anchor A2 and building S3.P2.T3:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 51 | The Samyang XP 35mm f/1.2's raw half-field, decided by a scan miss on A1 and by the closed form's fallback after S3.P2.T1, is S3.P2.T1's third approved divergence | S3.P2.T1 |
+| 52 | S3.P2.T3 merges with its check failing on the Mirotar alone, the approved divergence extended to it | S3.P2.T3 |
+| 53 | Closing #779 on the stack tracer makes the Kinoptik Super Tegea 19mm's last field sample usable: an intended divergence at promotion, with a changelog line | S3.P2.T3 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
