@@ -8,8 +8,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * Back focus: Table 1 prints no image-side spacing after s34. The paraxial back focus of the printed prescription is
  * 54.656 / 54.658 / 54.678 mm at the three zoom stations (0.022 mm spread), so the model uses one fixed 54.66 mm.
  * Figure 2, which is to scale, draws about 54.7 mm. The 54.66 mm is derived, not a printed value.
- * Focus: infinity only. The patent names G1Y (L3-L4) as the focus group but prints no travel or close-focus
- * spacings; the marketed 1 m minimum focus (closeFocusM) is metadata, and both focus keyframes repeat infinity.
+ * Focus: estimated internal focusing with only G1Y (L3-L4) moving, as the patent's mechanism specifies.
+ * The patent plots close focus at 1 m object-to-image but prints no near spacings. A paraxial conjugate
+ * solve advances G1Y 13.521832 / 13.528398 / 13.534466 mm toward the object at the three zoom stations,
+ * reducing d4 and increasing d8 equally; all other groups, the iris and the image plane stay fixed.
+ * Thirty-three inverse-distance samples approximate the continuous focus law. These are calculated
+ * reconstruction points, not published travel or certified finite-focus MTF states. At 194 mm the
+ * calculated near magnification is 1:3.566, against the maker's 1:3.57; it is not a fit constraint.
  * Zoom: only the printed 72 / 105 / 194 mm stations are authored. Linear interpolation between them would be up to
  * about 6.3 mm out of focus, so zoomStep 0.5 makes the slider step from station to station.
  * Source inconsistencies: the printed zoom-gap sums are 42.32 / 42.32 / 42.31 mm, and the 0.01 mm tele difference
@@ -34,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * station (13.32-13.33 mm); it is not a printed dimension.
  * nd / vd are as printed. Glass names are the catalog glasses that match them and supply the dispersion curve
  * and dPgF; they do not identify the supplier. The stabilization doublet L15-L16 is modelled centred, and nothing
- * here describes close-focus, stabilized or production MTF performance.
+ * here certifies close-focus, stabilized or production MTF performance.
  */
 const LENS_DATA = {
   key: "tokina-at-x-70-200mm-f4-pro-fx-vcm-s",
@@ -46,7 +51,7 @@ const LENS_DATA = {
     "DESIGN f = 72–194 mm",
     "DESIGN F/4.1",
     "ALL SPHERICAL",
-    "INFINITY FOCUS ONLY",
+    "ESTIMATED G1Y INNER FOCUS TO 1 m",
   ],
   focalLengthMarketing: [70, 200],
   focalLengthDesign: [71.98580960205994, 193.97187363326634],
@@ -622,31 +627,68 @@ const LENS_DATA = {
     },
   ],
   asph: {},
+  focusPositions: [0, 0.03125, 0.0625, 0.09375, 0.125, 0.15625, 0.1875, 0.21875, 0.25, 0.28125, 0.3125, 0.34375, 0.375,
+    0.40625, 0.4375, 0.46875, 0.5, 0.53125, 0.5625, 0.59375, 0.625, 0.65625, 0.6875, 0.71875, 0.75,
+    0.78125, 0.8125, 0.84375, 0.875, 0.90625, 0.9375, 0.96875, 1],
   var: {
+    "4": [
+      [15.25, 14.967621, 14.671799, 14.370161, 14.062512, 13.748646, 13.428347, 13.101388, 12.76753,
+        12.426522, 12.078098, 11.721979, 11.357869, 10.985455, 10.604406, 10.214371, 9.81498, 9.405835,
+        8.986518, 8.556581, 8.115546, 7.662904, 7.198109, 6.720578, 6.229683, 5.724752, 5.205059, 4.669821,
+        4.118191, 3.549252, 2.962009, 2.355376, 1.728168],
+      [15.25, 14.961431, 14.665604, 14.363961, 14.056306, 13.742435, 13.42213, 13.095165, 12.7613,
+        12.420286, 12.071855, 11.715728, 11.351609, 10.979187, 10.598129, 10.208085, 9.808684, 9.399529,
+        8.980201, 8.550252, 8.109204, 7.656549, 7.19174, 6.714194, 6.223284, 5.718336, 5.198626, 4.663369,
+        4.111719, 3.542759, 2.955493, 2.348835, 1.721602],
+      [15.25, 14.955518, 14.659687, 14.35804, 14.050381, 13.736504, 13.416195, 13.089225, 12.755357,
+        12.414337, 12.065902, 11.70977, 11.345647, 10.97322, 10.592157, 10.202108, 9.802702, 9.393542,
+        8.974209, 8.544255, 8.103202, 7.650542, 7.185728, 6.708176, 6.217261, 5.712308, 5.192592, 4.657329,
+        4.105674, 3.536709, 2.949437, 2.342773, 1.715534],
+    ],
     "8": [
-      [2.4, 2.4],
-      [18.3, 18.3],
-      [34.99, 34.99],
+      [2.4, 2.682379, 2.978201, 3.279839, 3.587488, 3.901354, 4.221653, 4.548612, 4.88247, 5.223478,
+        5.571902, 5.928021, 6.292131, 6.664545, 7.045594, 7.435629, 7.83502, 8.244165, 8.663482, 9.093419,
+        9.534454, 9.987096, 10.451891, 10.929422, 11.420317, 11.925248, 12.444941, 12.980179, 13.531809,
+        14.100748, 14.687991, 15.294624, 15.921832],
+      [18.3, 18.588569, 18.884396, 19.186039, 19.493694, 19.807565, 20.12787, 20.454835, 20.7887,
+        21.129714, 21.478145, 21.834272, 22.198391, 22.570813, 22.951871, 23.341915, 23.741316, 24.150471,
+        24.569799, 24.999748, 25.440796, 25.893451, 26.35826, 26.835806, 27.326716, 27.831664, 28.351374,
+        28.886631, 29.438281, 30.007241, 30.594507, 31.201165, 31.828398],
+      [34.99, 35.284482, 35.580313, 35.88196, 36.189619, 36.503496, 36.823805, 37.150775, 37.484643,
+        37.825663, 38.174098, 38.53023, 38.894353, 39.26678, 39.647843, 40.037892, 40.437298, 40.846458,
+        41.265791, 41.695745, 42.136798, 42.589458, 43.054272, 43.531824, 44.022739, 44.527692, 45.047408,
+        45.582671, 46.134326, 46.703291, 47.290563, 47.897227, 48.524466],
     ],
     "16": [
-      [26.06, 26.06],
-      [19.71, 19.71],
-      [1.5, 1.5],
+      [26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06,
+        26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06, 26.06,
+        26.06, 26.06, 26.06, 26.06, 26.06],
+      [19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71,
+        19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71, 19.71,
+        19.71, 19.71, 19.71, 19.71, 19.71],
+      [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5,
+        1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5],
     ],
     "19": [
-      [13.86, 13.86],
-      [4.31, 4.31],
-      [5.82, 5.82],
+      [13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86,
+        13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86, 13.86,
+        13.86, 13.86, 13.86, 13.86, 13.86],
+      [4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31,
+        4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31, 4.31,
+        4.31],
+      [5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82,
+        5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82, 5.82,
+        5.82],
     ],
   },
   varLabels: [
+    ["4", "d4 (G1X–G1Y)"],
     ["8", "d8"],
     ["16", "d16"],
     ["19", "d19"],
   ],
   zoomPositions: [72, 105, 194],
   zoomStep: 0.5,
-  focusStep: 1,
   publishedStations: {
     zoom: [0, 1, 2],
   },
@@ -658,7 +700,7 @@ const LENS_DATA = {
   maxFstop: 32,
   apertureBlades: 9,
   focusDescription:
-    "Infinity focus only. The patent's internal focus group is G1Y (L3–L4), but it prints no focus travel, so focusing is not modelled; the marketed minimum focus distance is 1.0 m. The three zoom stations (72, 105 and 194 mm) are as printed and the zoom slider steps between them, because linearly interpolated in-between positions would be up to 6.3 mm out of focus. Table 1 prints no image-side spacing: the paraxial back focus of the printed prescription is 54.656 / 54.658 / 54.678 mm at the three stations (0.022 mm spread), the model uses one fixed 54.66 mm, and Figure 2, which is to scale, draws about 54.7 mm. The stabilization doublet L15–L16 is shown centred.",
+    "ESTIMATED internal focus: only G1Y (L3–L4) moves, toward the object by 13.522 / 13.528 / 13.534 mm at the three zoom stations for a 1.0 m object-to-image distance. The patent identifies that group and plots 1 m states but prints no focus travel; these spacings are calculated. The front and rear gaps change equally in opposite directions; all other groups, the iris and the image plane stay fixed. Focus interpolates 33 calculated inverse-distance samples. Zoom still steps through the printed 72, 105 and 194 mm stations; its unmodeled intermediate cam would otherwise be up to 6.3 mm out of focus. Back focus stays at the derived 54.66 mm, and the stabilization doublet remains centred.",
   groups: [
     {
       text: "G1",

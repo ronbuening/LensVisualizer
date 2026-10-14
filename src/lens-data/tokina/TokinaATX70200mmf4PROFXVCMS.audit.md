@@ -329,3 +329,22 @@ Files. Data file: twelve `sd` values, 19 `diagramLabel` and 19 `label` strings, 
 Live page after the edits. Viewed at 72, 105 and 194 mm, at the far end of the focus slider, with the group-movement panel at both ends of the zoom range, and with the inspector open on L2, L3, L12 and L18. L1 is a squared block with L2 nested behind it, its front corner bevelled; L3 and L4 stand just below them; L7 and L9 are square with L8's rear corner bevelled between them. Laid over Figure 2 at matched scale, the outlines of G1 and G2 now fall on the drawn lines. Element labels read L1–L19 in two rows, the gap read-out d8 / d16 / d19, and the inspector shows "Element 3 · L3 · APD (inferred)".
 
 Open. Lands are not modelled, so L1's rear corner stands 0.8 mm deeper than drawn, L18's front corners reach 1.4 mm further toward L17 than drawn, and the model passes light at s24 and s31 that the drawn lands would stop. L2 and L8 carry a bevel where the figure draws their outlines running into the neighbour. Figure 2 shows only the wide end. Focus is not modelled. The printed prescription does not reproduce the patent's spherical-aberration plots, so on-axis sharpness at the wide and middle stations is worse in the model than in the patent's figures.
+
+
+## 2026-10-14 — Estimated G1Y focus reconstruction
+
+At the maintainer's request, the static infinity model now reconstructs motion of the source's focus group. JP 5857306 B2 ¶0016–0020 identifies G1Y as L3 and L4 and says that group moves along the axis for focus. The captions of Figures 6–8 specify a 1 m object-to-image distance at the three zoom stations; no close-focus spacings are printed. The official Tokina specification and manual identify front internal focus, 1 m minimum distance and 1:3.57 maximum magnification.
+
+Only d4, before G1Y, and d8, after it, receive opposite focus changes. The L3–L4 internal gaps, G1X, G2–G4, the physical iris, image plane and stabilization centering remain fixed at each zoom station. All printed infinity spacings, radii, glasses and rims remain unchanged.
+
+| Zoom, mm | d4 before, mm | d4 at 1 m, mm | d8 before, mm | d8 at 1 m, mm | G1Y travel toward object, mm |
+|---|---|---|---|---|---|
+| 72 | 15.25 | 1.728168 | 2.40 | 15.921832 | 13.521832 |
+| 105 | 15.25 | 1.721602 | 18.30 | 31.828398 | 13.528398 |
+| 194 | 15.25 | 1.715534 | 34.99 | 48.524466 | 13.534466 |
+
+Derivation: retain the selected zoom station and the existing 54.66 mm image-side gap; change d4 by Δ and d8 by −Δ. Launch a unit-height paraxial ray from an axial object D = 1000/focusT mm ahead of the image (first-vertex distance D − track), and solve its image-plane height to zero inside −14 < Δ < 0 mm. The solution advances G1Y toward the object monotonically. At 1 m the calculated EFLs are 84.8543 / 119.3307 / 162.9407 mm and magnifications −0.104075 / −0.151834 / −0.280449. Tele magnification 1:3.566 agrees with the manufacturer's 1:3.57 as a separate comparison, not a fitting constraint.
+
+Thirty-three equally spaced inverse-distance samples limit interpolated first-order defocus to 0.015 mm over the modeled range, retaining the existing rounded-source infinity offsets (−0.004402 / −0.001952 / +0.017508 mm). The stored finite keyframes reproduce the conjugates within 0.000001 mm; every gap stays positive and the renderer trims no surface in this motion. These numerical checks establish the authored approximation, not production focus mechanics or aberration performance.
+
+The focusStep=1 placeholder is removed so the estimated focus slider is continuous. Zoom still steps through the three printed stations. Specs and focusDescription identify the reconstruction as ESTIMATED; only infinity zoom stations remain published. No finiteConjugates certificate is added. The existing printed spherical-aberration discrepancy and group-power ratio discrepancy remain unresolved.

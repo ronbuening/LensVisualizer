@@ -32,8 +32,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * radius is the height of the real axial f/3.5 marginal ray at the stop plane, not a published size.
  * The camera brochure lists a fixed UVa protective filter. It is not in the patent and is not
  * modeled.
- * Focus: the patent gives the infinity state only. The camera focuses from 0.65 m to infinity
- * by autofocus; that travel is not published, so no focus movement is modeled.
+ * Focus: estimated unit focusing to the brochure's 0.65 m endpoint, interpreted from the image
+ * plane. All four elements and the rear iris translate toward the object; every internal gap stays
+ * fixed. The 1.957535 mm extension is a paraxial conjugate solve of this prescription, not printed
+ * travel or confirmed camera mechanics. Nine inverse-distance samples approximate the continuous
+ * motion; no reconstructed finite state is marked published or certified for finite-focus MTF.
  * The patent names no glass type or supplier. L1 to L3 carry the catalog glass whose ne and νe
  * equal the print (OHARA S-LAH65V and S-TIH6 within 0.000003 and 0.01; HOYA E-FD2 within 0.00001 and 0.02) and trace
  * on that glass's dispersion curve anchored at the printed ne. L4 (1.7167 / 42.89) has no catalog
@@ -64,7 +67,7 @@ const LENS_DATA = {
     "DESIGN f = 33.63 mm",
     "DESIGN F/3.5",
     "ALL SPHERICAL",
-    "INFINITY FOCUS ONLY"
+    "ESTIMATED UNIT FOCUS TO 0.65 m"
   ],
   "focalLengthMarketing": 35,
   "focalLengthDesign": 33.6326,
@@ -208,8 +211,11 @@ const LENS_DATA = {
     }
   ],
   "asph": {},
-  "var": {},
-  "varLabels": [],
+  "focusPositions": [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
+  "var": {
+    "STO": [24.5165, 24.736655, 24.963363, 25.196589, 25.436687, 25.684044, 25.939077, 26.202241, 26.474035]
+  },
+  "varLabels": [["STO", "Stop to image"]],
   "groups": [
     {
       "text": "G1 (+)",
@@ -235,7 +241,7 @@ const LENS_DATA = {
     }
   ],
   "closeFocusM": 0.65,
-  "focusDescription": "Infinity focus only. The patent tabulates the infinity state alone, with the image 24.5165 mm behind the rear stop. The Leica mini II focuses from 0.65 m to infinity by infrared autofocus; the patent does not publish that travel, so no focus movement is modeled.",
+  "focusDescription": "ESTIMATED unit focusing. The complete four-element lens and rear iris move 1.958 mm toward the object at the brochure’s 0.65 m limit, interpreted from the image plane. Travel is calculated from this prescription; the patent prints infinity only and the actual camera mechanism is unconfirmed. Internal gaps stay fixed; intermediate positions interpolate nine calculated inverse-distance samples.",
   "nominalFno": 3.5,
   "fstopSeries": [
     3.5,

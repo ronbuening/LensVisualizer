@@ -337,3 +337,21 @@ The page correctly disables focus movement because no finite-focus spacing is pr
 Catalog backfill. Added OHARA's discontinued PBM22 from the formula-1 coefficients in its all-products Zemax catalog `OHARA_260701.AGF` (2026-07-01), preserving the vendor's coefficients and d-line summary coordinates. Its native e-line pair is 1.652226 / 33.5539. It is available as a named historical alternative; the lens retains E-FD2. Its shared six-digit code is omitted.
 
 LAH65 and TIH6 were also evaluated from the same catalog but withheld: merely adding their names retargeted five existing Canon/Nikon elements whose annotations mention those families. PBM22 alone preserves every existing catalog selection. These alternatives do not settle the production glass supplier, and L4 remains unresolved.
+
+
+## 2026-10-14 — Estimated unit-focus reconstruction
+
+At the maintainer's request, the previous static infinity model now illustrates qualified focus travel. US 5,321,555 A and EP 0 537 469 B1 still supply only the infinity prescription. The Leica Mini II manufacturer brochure (French edition 910 533, PDF page 6) confirms active infrared autofocus and 0.65 m to infinity, but does not identify the moving optical assembly.
+
+Assumption: unit focus, including the rear iris, with the brochure distance interpreted from the image plane. All glass and internal gaps remain fixed. The whole lens moves toward the object by extending only the last gap. This is not confirmation of production camera mechanics.
+
+| Item | Before | After | Evidence / derivation |
+|---|---|---|---|
+| Focus model | Static infinity | Estimated unit focus | Smallest one-motion reconstruction of the existing rigid four-element prescription; mechanism is assumed. |
+| Stop-to-image gap | 24.5165 mm fixed | 24.5165 → 26.474035 mm | Paraxial conjugate solve at 650 mm object-to-image distance. |
+| Authored focus samples | None | Nine inverse-distance points | Calculated interpolation control points; infinity is unchanged. |
+| Near magnification | Unmodeled | −0.058214 | Calculated, about 1:17.18; no manufacturer reproduction ratio was used. |
+
+Derivation: launch a unit-height paraxial ray at the first vertex with slope 1/(D − track), where D = 650/focusT mm and track includes the candidate extension. Solve its height on the authored image plane to zero, translating only the complete assembly. The near solution is 1.957535 mm extension, EFL 33.632604 mm and object-to-first-vertex distance 611.525965 mm. With the stored six-decimal gaps, finite keyframes lie within 0.000001 mm of that conjugate and intermediate first-order defocus stays below 0.0012 mm. Internal clearances and all semi-diameters remain unchanged.
+
+The page calls the model ESTIMATED, and the analysis states the moving-assembly assumption. No finite state is marked source-published and no finiteConjugates certificate is added. Finite-focus MTF remains unavailable. The omitted UVa plate and unresolved L4 dispersion retain their prior limitations.

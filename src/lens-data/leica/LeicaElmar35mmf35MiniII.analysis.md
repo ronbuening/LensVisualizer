@@ -89,9 +89,11 @@ Figure 2C plots the same on-axis curves. Scaled from the ±20 µm ticks of the E
 
 ## Focus Mechanism
 
-The model is fixed at **infinity focus**. The patent gives the infinity state only, with the image 24.5165 mm behind the rear stop, and it tabulates no variable gaps.
+The focus slider now illustrates unit focusing from infinity to the brochure’s 0.65 m limit, interpreted as object-to-image distance. All four elements and the rear iris move together toward the object; their relative gaps and the iris radius stay fixed. This is a model assumption: neither patent nor brochure establishes the camera’s moving assembly or prints its travel. A service drawing would be needed to confirm that mechanism.
 
-The manufacturer brochure specifies active infrared autofocus from 0.65 m to infinity, including an infinity-lock function. It does not state which elements move or give any finite-distance spacings, so no focus movement is modeled. The data file records 0.65 m as the camera's minimum focus distance.
+A paraxial conjugate solve of the corrected prescription gives a 1.957535 mm extension at 0.65 m. The stop-to-image gap grows from 24.5165 to 26.474035 mm, and the object is then 611.526 mm ahead of the first vertex. The calculated magnification is −0.058214 (about 1:17.18); effective focal length remains 33.6326 mm. No radius, internal spacing, glass or infinity image plane is altered.
+
+Nine calculated samples, equally spaced in inverse object-to-image distance, keep the intermediate motion close to that solve. They are reconstructed control points, not source-published states. Finite-focus MTF remains unavailable because the camera’s optical movement is not independently established; the focus movement, ray diagrams and other qualified analyses use the current estimated position.
 
 ## Aperture, Clearances and Image Plane
 

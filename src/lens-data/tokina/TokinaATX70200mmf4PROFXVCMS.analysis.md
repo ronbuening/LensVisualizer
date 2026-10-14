@@ -19,9 +19,9 @@ The match to the production lens is a strong construction-based correlation, not
 3. The SD (FK01) positions highlighted in that diagram correspond to L3, L4 and L12. The patent prints νd = 81.5 at L3/L4 and 81.6 at L12; these values do not identify a supplier.
 4. The printed 72/105/194 mm stations and the patent’s approximately f/4.1 design are close to the marketed 70–200 mm f/4 product. Neither range is substituted for the other. The official release was 2014-05-30, following a 2012 application and 2013 first publication.
 5. A chief ray traced to the 21.63 mm corner of the 24×36 mm frame gives a full field angle of 34.45° at the 72 mm station and 12.42° at the 194 mm station, equal to Tokina’s published angle of view of 34.45°–12.42°.
-6. As a calculation only (no close-focus state is modelled), advancing G1Y by 13.53 mm within the 15.25 mm air space ahead of it focuses the 194 mm station at a 1.0 m object-to-image distance with a paraxial magnification of 1:3.57, the marketed maximum reproduction ratio.
+6. In the estimated focus model, advancing G1Y by 13.53 mm within the 15.25 mm air space ahead of it focuses the 194 mm station at a 1.0 m object-to-image distance with a paraxial magnification of 1:3.57, the marketed maximum reproduction ratio.
 
-The official product is a Nikon F full-frame lens with 19/14 construction, internal focusing, VCM stabilization and nine diaphragm blades. Its 1 m minimum focus, 1:3.57 maximum reproduction ratio, 67 mm filter and 167.5 mm external length are manufacturer specifications, not outputs of the infinity-only model. No teleconverter compatibility is asserted.
+The official product is a Nikon F full-frame lens with 19/14 construction, internal focusing, VCM stabilization and nine diaphragm blades. Its 1 m minimum focus, 1:3.57 maximum reproduction ratio, 67 mm filter and 167.5 mm external length are manufacturer specifications. The estimated focus model uses the 1 m distance as its endpoint; its tele magnification is calculated independently. No teleconverter compatibility is asserted.
 
 ## Optical Architecture
 
@@ -187,7 +187,20 @@ The printed nd and νd are unchanged. Each element traces on the catalog dispers
 
 ## Focus Mechanism and Scope
 
-Focus is not modelled. The patent identifies G1Y as the two-positive-element internal-focus group (¶0016–0020), and the maker describes internal focusing to 1 m. Example 1 includes aberration plots at a 1 m object-to-image distance (Figures 6–8) but prints no focus travel or close-focus spacings, so both focus positions of the model repeat the infinity spacings and the marketed 1.0 m minimum focus is a specification only. The model predicts no focus breathing or reproduction ratio; the 1:3.57 above is a separate paraxial calculation.
+The model now estimates internal focus by translating only G1Y, the two positive elements L3–L4 named in ¶0016–0020. Example 1 includes plots at a 1 m object-to-image distance (Figures 6–8), and the manufacturer gives a 1 m minimum focus and 1:3.57 maximum magnification. Neither source prints the near-focus gaps. The travel below is therefore calculated from the unchanged infinity prescription, not a transcription or a measured production cam.
+
+At each printed zoom station, d4 decreases and d8 increases by the same amount; G1Y moves toward the object while G1X, all later groups, the iris and the image plane stay fixed. G1Y’s own internal spacing is unchanged. The physical iris keeps its infinity setting at the selected zoom station.
+
+| Printed zoom station | G1Y travel toward object, mm | d4 at 1 m, mm | d8 at 1 m, mm | Near EFL, mm | Magnification |
+|---|---|---|---|---|---|
+| 72 mm | 13.521832 | 1.728168 | 15.921832 | 84.8543 | −0.104075 |
+| 105 mm | 13.528398 | 1.721602 | 31.828398 | 119.3307 | −0.151834 |
+| 194 mm | 13.534466 | 1.715534 | 48.524466 | 162.9407 | −0.280449 |
+
+The tele magnification is 1:3.566, close to the manufacturer’s 1:3.57 without fitting to it. The direction follows from solving the finite conjugate with the patent’s stated moving group. Zoom remains limited to the three printed stations.
+
+Thirty-three calculated inverse-distance samples approximate the nonlinear focus travel between infinity and 1 m. Source-rounded infinity gaps are preserved, so their existing 0.004 / 0.002 / 0.018 mm paraxial image-plane offsets remain at infinity. The reconstructed focus states are not marked as published, and finite-focus MTF remains unavailable: the patent’s omitted travel and existing aberration discrepancy prevent treating this reconstruction as a certified optical prescription. Other diagram and analysis outputs at finite focus describe the estimated position.
+
 
 ## Spherical Surfaces and Aperture Model
 
