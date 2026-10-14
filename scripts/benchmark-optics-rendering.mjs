@@ -14,9 +14,10 @@
  * entry once per side, so one entry drives both engines. The base is bundled with this checkout's node_modules
  * while its package-lock.json is the working tree's, and with its own, installed by `npm ci` in the worktree, when
  * the lockfile differs; the record and the summary then say so. A child process then loads both bundles and samples
- * every case on both, the side that goes first alternating from pair to pair. The timed pass is two such
- * processes, which share the measured pairs: the first loads and prepares the base's bundle before the head's, the
- * second the head's before the base's, and their pairs are pooled. Each side's bundle then runs every case once
+ * every case on both, starting each case's warmups and measured pairs with the side loaded first, then
+ * alternating from pair to pair. The timed pass is two such processes, which share the measured pairs: the first
+ * loads and prepares the base's bundle before the head's, the second the head's before the base's, and their pairs
+ * are pooled. Each side's bundle then runs every case once
  * more in a process of its own, untimed, for what each case completed. `--heavy` runs the heavy set of cells in
  * place of the whole matrix. `--memory` runs the scripted memory session and no timed pass: one child process per
  * side, started with `--expose-gc`.

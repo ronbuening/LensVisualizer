@@ -55,13 +55,15 @@ under `runs/`, and the trend report rebuilt. Its timed pass runs in a child proc
 3. It builds one bundle per side with this checkout's Vite and config, whichever packages the base has. Every pass of
    the run loads those two bundles.
 4. The timed pass runs in two child processes, one after the other. Each loads both bundles and samples every
-   case as pairs, one call per side. The base goes first in the first pair and the order swaps with every pair
-   (base>head, head>base, base>head, …). Warmup pairs alternate the same way and are counted apart from the measured
-   pairs, so the first measured pair is base-first whatever the number of warmups.
+   case as pairs, one call per side. Each case's first pair starts with the process's `firstSide`, and the order swaps
+   with every pair: base>head, head>base, … in the base-first process, and head>base, base>head, … in the head-first
+   process. Warmup pairs alternate the same way and are counted apart from the measured pairs, so both start with
+   `firstSide` whatever the number of warmups.
    - The first process loads the base's bundle and prepares the base's lenses, cells and setups before the head's. The
-     second does the head's first. Two copies of one engine in one process do not time alike, and in a run of a ref
-     against itself most cases lean toward one side, which changes with the bundle that was loaded first. The
-     alternation of pairs cancels what changes from pair to pair and nothing that lasts a whole process.
+     second does the head's first. That side also makes each case's first call. Two copies of one engine in one
+     process do not time alike, and in a run of a ref against itself most cases lean toward one side, which changes
+     with the bundle loaded first and the side making each case's first call. The alternation of pairs cancels what
+     changes from pair to pair and nothing that lasts a whole process.
    - The measured pairs are shared as evenly as possible, the extra one going to the first process. Each process runs
      every warmup. `--iterations=15` is 8 pairs in the first process and 7 in the second; `--iterations=1` runs the
      first process alone.
