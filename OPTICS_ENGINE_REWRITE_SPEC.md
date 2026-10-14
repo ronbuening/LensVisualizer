@@ -511,10 +511,10 @@ are unmeasured. Loosening a budget later is itself a C3 change.
 | Unclipped surface hit, image-plane landing | 1e-9 mm | — (traces are not C2) |
 | Clipped, exterior or diagnostic hit | 1e-7 mm, or 1e-12 of the point's own size where that is more | — |
 | Direction cosines | 1e-10 | — |
-| First-order scalars (EFL, BFD, pupil positions and sizes, stop SD) | 1e-12 relative | — |
+| First-order scalars (EFL, BFD, paraxial pupil positions and sizes, stop SD) | 1e-12 relative | — |
 | Chief-ray launch height | 1e-9 mm | Twice the solver's stop-residual tolerance (1e-7 mm today), mapped through ∂y_stop/∂y_launch |
 | Field angle from image height | 1e-10° | Both solutions' image heights within twice the inversion tolerance (1e-4 mm today) |
-| Analysis lengths (focus shifts, blur, field curves, pupil shifts) | 1e-8 mm | The governing solver criterion, propagated by a finite-difference derivative the harness computes |
+| Analysis lengths (focus positions and shifts, axial intercepts, blur, field curves, pupil shifts, the traced exit pupil of a field) | 1e-8 mm, or 1e-10 of the length's own size where that is more | The governing solver criterion, propagated by a finite-difference derivative the harness computes |
 | Percentages (distortion, illumination) | 1e-8 points | As above |
 | MTF modulation | 1e-7 | As above, and never looser than 1e-4 |
 | Weighted bin statistics of a bokeh profile (bin density and energy share, centre and rim density, their ratio) | 1e-10 relative | Same as C1 |
@@ -528,11 +528,42 @@ How `budgets.ts` applies the table:
 - **Relative budgets** bound `|a − b|` by the budget times the larger magnitude. Lengths also have an absolute floor of
   1e-12 mm, so a length at zero has a bound. Ratios such as f-numbers and the Petzval sum have no floor, and neither
   has a weighted bin statistic or a ratio of two analysis lengths.
+  A clipped or diagnostic point and an analysis length have a floor of another kind: the table's absolute budget,
+  which is the whole bound up to the size where the share is more.
 - **A clipped or diagnostic point far from the lens.** The 1e-7 mm of the table is the whole budget for a point
   within 100 m of the lens. Beyond that the bound is 1e-12 of the point's own size. A clipped ray that the legacy
   tracer follows as a ghost path can leave the lens altogether: on one catalog lens its points run from 3.1e8 mm to
   1e250 mm, where adjacent floating-point values are more than 1e-7 mm apart and two engines that agree to rounding
   cannot meet an absolute bound. The first Tier S against A0 failed on that one ray and on nothing else.
+- **An analysis length far from the lens.** The 1e-8 mm of the table is the whole budget for a length under 100 mm.
+  Beyond that the bound is 1e-10 of the length's own size. A focus position, an axial intercept or a traced pupil
+  position is where two rays cross, or where one crosses the axis: a height over a slope. Where the rays are nearly
+  parallel the crossing is metres from the lens, and no absolute bound can be met there. S3.P2.T2 moved no hit by
+  more than 1.2e-11 mm across Tier S and failed on 11 numbers of two lenses, each such a crossing: an off-axis ray
+  of a 70-200 mm zoom on a 1.4x converter that crosses the axis 16 m and 23 m away, moved by 5.7e-8 mm or 2.5e-12
+  of its position, and the traced exit pupil of a near-telecentric field of a compact zoom, 44 m away, moved by
+  5.0e-7 mm or 1.1e-11. Elsewhere in that tier the largest move of an analysis length was 4.9e-9 mm.
+  - **The share reaches some hundreds of metres.** Rounding moves a slope by an amount that does not depend on
+    where the ray crosses, so a crossing z = −y/u moves by z²·δu/y: by the square of its distance. On those two
+    lenses the step moved its crossings by up to 7.3e-16 mm per mm² of distance, which a fixed 1e-10 of the
+    distance holds out to 136 m; the 44 m sample's own rounding, out to 388 m. A crossing beyond that which fails
+    by a few times its budget on rounding alone is this limit, and is brought to the maintainer.
+  - The size is the length's, in mm. A member that restates a length in micrometres or in the px of a drawing is
+    divided by its scale before it is compared, so the bound is the same physical one in any unit.
+  - The rule goes by the value of a member that is a crossing, or a shift or span of crossings. A position along
+    the axis is counted from the first vertex, so the focus positions of a lens more than 100 mm long are past the
+    floor by their coordinate alone: at 250 mm the bound is 2.5e-8 mm.
+  - A member that is no crossing takes no share. The Petzval focus position of a field is the image plane's z plus
+    a closed-form sag, and keeps a plain 1e-8 mm at any size.
+  - The MTF best-focus shift, a solver's output of a fraction of a millimetre, keeps a plain 1e-8 mm.
+  - Under C0 every number is bit-exact, as before. The C2 column stands: a solver criterion carried through a
+    finite-difference derivative grows as the crossing's own conditioning does.
+- **The traced exit pupil of a field is an analysis length.** `samples[].xpZRelLastSurf` of a pupil-aberration
+  profile is where the solved chief ray of one field, traced through the lens, crosses the axis: its height at the
+  last surface over its slope. It is a crossing per field and no paraxial constant. S3.P2.T2 moved it by up to
+  6.6e-13 of itself near the lens and by 1.1e-11 at 44 m. The profile's `paraxialXpZRelLastSurf` and
+  `paraxialEpZRelStop`, the posed lens's intrinsic pupils and the build's pupil constants stay first-order scalars.
+  A sample on the axis repeats the paraxial position. An entrance-pupil sample holds no position.
 - **Fields the table does not name.** Layout lengths, refractive indices and prescription values the engine hands back
   take the first-order budget. Slopes are compared as direction cosines. Count ratios are exact.
 - **Bins of a bokeh profile.** A bokeh footprint weighs each ray by its transmission and sums the weights into the
@@ -596,6 +627,8 @@ How `budgets.ts` applies the table:
   - On the prepared tracer the probes are the engine's own launches. On the stack tracer they are the same two ray
     lines through that tracer's public entry, so a basis ray that fails only from the engine's own start point is
     not shown. A folded lens has no probe.
+  - The exit pupil that a pupil-aberration profile traces for one field is no such constant. It is an analysis
+    length.
 - **Iteration and evaluation counts** are exact under C0, and above it are reported as a histogram of changes.
 - **Non-finite values** compare exactly in every class.
 - **A class is required only above C0.** Under C0 every number is compared bit for bit, classed or not. Under C1 or
@@ -1209,6 +1242,14 @@ promotion, so the V2 authoring documents must not reach it earlier.
       C0, and a ratio of two analysis lengths from 1e-10 to 1e-8 relative. Both are stated under
       [Quantity budgets](#quantity-budgets). Like the settlement before it, this is not a later loosening: the PR
       changes no engine and moves no anchor, and it does not count towards the class of a stage or promotion run.
+    - **S3.P2.T2, the conic-seeded asphere solve,** settled two budgets on 2026-10-13, on its own Tier S run and in a
+      harness PR that follows its engine change (#801): an analysis length went from 1e-8 mm to 1e-8 mm or 1e-10 of
+      its own size where that is more, and the traced exit pupil of a pupil-aberration sample from a first-order
+      scalar to an analysis length. Both are stated under [Quantity budgets](#quantity-budgets). The step's Tier P
+      passed under the table as it stood. Its Tier S failed two of eight shards on 11 numbers of two lenses, each a
+      crossing 16 m to 44 m from the lens, and those 11 pass under the settled budgets. The harness PR changes no
+      engine and moves no anchor. The maintainer settled it before the engine change merged, and merged the step on
+      its Tier P: it is the budget S3.P2.T2 is read against, as the two before it were, and not a later loosening.
     - **S3.P2.T4, the first C2 step.** The C2 budgets. `--class c2` applies the C1 table until this step adds the
       propagated criteria.
     - **The first engine C3.** The cumulative comparison of the anchor rule. `--class c3` reports engine differences
@@ -2215,6 +2256,7 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 38 | S3.P2.T2's coordinate bound is the seeded route's own; the gate inside `selectAsphericCapHit` is unchanged | S3.P2.T2 |
 | 39 | A short chord on a polynomial asphere stays the scan's miss in S3.P2.T2 (#779) | S3.P2.T2 |
 | 40 | A hit that changes between the raw target and the envelope because its incoming ray moved by rounding is a declared transition | S3.P2.T2 |
+| 41 | An analysis length is held to 1e-8 mm, or to 1e-10 of its own size where that is more, and the traced exit pupil of a pupil-aberration sample is an analysis length | [Quantity budgets](#quantity-budgets) |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
