@@ -356,7 +356,13 @@ writes every record that echoes authored data through the same equivalences (`no
      returned on the base data and throws on the head data, which is how a lens that no longer builds shows.
    - A failure is a status that says `failed`: `failed`, `bracket-failed` and `evaluation-failed`. `clipped`,
      `missed-sensor` and the other statuses are outcomes a prescription may move between. The base status need
-     only be no failure, so `clipped` to `failed` blocks as `ok` to `failed` does.
+     only be no failure, so `clipped` to `failed` blocks as `ok` to `failed` does, with one exception.
+   - **A ray's failure after its own first clip does not block.** Where a ray's clip events on the head data show a
+     clip before the intersection that failed, the ray already carried no result, and failing to meet a later
+     surface is a continuation diagnostic. The change is counted and listed as a failure after the ray's first
+     clip. A failure at the ray's first clip, or one without clip events to show the order (a digested nested
+     trace), blocks as before, and so do `bracket-failed` and `evaluation-failed`. The first case was the rebuilt
+     Leica Elmarit-R 28mm (#803): its widened edge field clips a ray at surface 1 that then misses surface 2.
    - A status or a number at a path only one side has does not block, a failure among them included. On the head
      side it is work the base data never did, such as the rays of a sample that used to miss the sensor. On the
      base side it is work no longer done. An array that changed length is paired by index, and the report lists
@@ -515,6 +521,7 @@ are unmeasured. Loosening a budget later is itself a C3 change.
 | Chief-ray launch height | 1e-9 mm | Twice the solver's stop-residual tolerance (1e-7 mm today), mapped through ∂y_stop/∂y_launch |
 | Field angle from image height | 1e-10° | Both solutions' image heights within twice the inversion tolerance (1e-4 mm today) |
 | Analysis lengths (focus positions and shifts, axial intercepts, blur, field curves, pupil shifts, the traced exit pupil of a field) | 1e-8 mm, or 1e-10 of the length's own size where that is more | The governing solver criterion, propagated by a finite-difference derivative the harness computes |
+| Tangential focus from a parabasal pair, and its shifts, differences and spans, in the field-curvature and colour-focus jobs | 1e-7 mm, or 1e-10 of its own size where that is more | As analysis lengths |
 | Percentages (distortion, illumination) | 1e-8 points | As above |
 | MTF modulation | 1e-7 | As above, and never looser than 1e-4 |
 | Weighted bin statistics of a bokeh profile (bin density and energy share, centre and rim density, their ratio) | 1e-10 relative | Same as C1 |
@@ -564,6 +571,30 @@ How `budgets.ts` applies the table:
   6.6e-13 of itself near the lens and by 1.1e-11 at 44 m. The profile's `paraxialXpZRelLastSurf` and
   `paraxialEpZRelStop`, the posed lens's intrinsic pupils and the build's pupil constants stay first-order scalars.
   A sample on the axis repeats the paraxial position. An entrance-pupil sample holds no position.
+- **A tangential focus from a parabasal pair.** The field-curvature analysis finds a tangential focus where a ray
+  0.01 mm from the chief ray in the pupil crosses it, a height over a slope difference. The crossing magnifies the
+  rounding of the last surface's height and slope by about 1/|dU|, roughly 100 times the focal length in mm, so on
+  a lens of 800 mm or more each float64 evaluation is a few 1e-8 mm off: the anchor's own values are up to
+  2.28e-8 mm from the exact crossing of a 60-digit retrace. The first Tier S run to include S3.P2.T1 moved 180
+  such numbers on 8 long lenses and converter pairs by up to 2.52e-8 mm, none of them wrong by more than the
+  anchor was. These members are held to 1e-7 mm, keeping the analysis length's share of their own size above 1 m.
+  - The rows go by job: `computeFieldCurvature`, the `fieldCurvature` and `chromaticFieldCurvature` of
+    `computeFieldCurvatureBundle`, and `chromaticFieldFocusSummary`. The members are the tangential focus
+    positions and shifts, the astigmatic differences, the chromatic tangential shifts, and the spreads, extremes
+    and edge values made of them; a micrometre twin is held to the same physical bound.
+  - Sagittal, full-fan diagnostic and Petzval members keep the analysis length's budget: their own rounding stays
+    under 1e-3 of it. So do the field aberrations of a posed lens, a different computation.
+  - The floor holds while two evaluations' errors add to under 1e-7 mm: the worst case measured is about 0.54 of it.
+  - Under C0 every number is bit-exact, as before.
+- **A legacy ghost path behind its first miss.** The legacy tracer follows a clipped ray on as a ghost path. Once
+  the ray has missed a surface it makes up substitute points, on the surface at the ray's height and off the ray,
+  and runs on from points on a sphere's clamped continuation, so each step compounds rounding: a launch height
+  that S3.P2.T1 made more accurate by 68 ulps moved a point 61 million km out by 3.8e-11 of its size. Nothing in the
+  app reads these points (the app's fans end a ray at a miss: decision 2026-06-22), and the legacy tracer goes in
+  Stage 4. Behind a ray's first missed surface, its ghost points and the clipped y projected from them are compared
+  for presence, count and finiteness only. Everything before the miss keeps its budget: earlier ghost points, the
+  points of the ray, its slope, and its diagnostics, failure and clip reasons. The capture marks each ray's first
+  ghost point after its miss, alike on both sides. Under C0 every number is bit-exact, as before.
 - **Fields the table does not name.** Layout lengths, refractive indices and prescription values the engine hands back
   take the first-order budget. Slopes are compared as direction cosines. Count ratios are exact.
 - **Bins of a bokeh profile.** A bokeh footprint weighs each ray by its transmission and sums the weights into the
@@ -813,7 +844,9 @@ counts are measured at the stage end with a throwaway instrumented build, which 
 
 - Same machine and Node version on both sides. Paired mode times in two child processes. Each holds both engines and
   samples every case in pairs, alternating which side runs first; the two processes load the engines in opposite
-  orders, and their pairs are pooled.
+  orders, each process's first side also starts every case, and their pairs are pooled. A case's first call can run
+  several per cent apart from its second for the whole process, even on two copies of one engine; giving it to each
+  side in one of the two processes is what lets pooling cancel it.
 - At least 2 warmups and 9 measured samples per case, or 15 samples for cases above 100 ms.
 - Raw samples are kept in the run JSON. The statistic for a case is median(head) / median(base). Its interval is a
   percentile bootstrap over pair indices, with 10,000 resamples and a fixed seed.
@@ -1250,6 +1283,13 @@ promotion, so the V2 authoring documents must not reach it earlier.
       crossing 16 m to 44 m from the lens, and those 11 pass under the settled budgets. The harness PR changes no
       engine and moves no anchor. The maintainer settled it before the engine change merged, and merged the step on
       its Tier P: it is the budget S3.P2.T2 is read against, as the two before it were, and not a later loosening.
+    - **S3.P2.T1's Tier S settlement, 2026-10-14.** S3.P2.T1's gate was Tier P. The first Tier S run to include it
+      was the anchor-rule check before the second merge of `main` (#804), against A1, and it failed in five of
+      eight shards. Every failure was traced to S3.P2.T1 alone, and on each the new value is as near the exact one
+      as the old or nearer. The maintainer settled: the tangential parabasal focus and the legacy ghost tail under
+      [Quantity budgets](#quantity-budgets); a fifth class of discrete change and a second approved divergence under
+      S3.P2.T1; and the #779 lines its Tier S shows, declared in that check. This is the Tier S settlement the step
+      never had, not a later loosening: the harness PR changes no engine and moves no anchor.
     - **S3.P2.T4, the first C2 step.** The C2 budgets. `--class c2` applies the C1 table until this step adds the
       propagated criteria.
     - **The first engine C3.** The cumulative comparison of the anchor rule. `--class c3` reports engine differences
@@ -1805,7 +1845,15 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     - a plane at zero gap behind a surface that overlaps it off the axis, lost where the iterative path had stopped
       on the vertex plane;
     - two surfaces on one vertex whose hits the iterative path returned as equal floats. The candidate search keeps
-      the lower index on a tie, so a closed-form root an ulp nearer changes which surface the ray meets.
+      the lower index on a tie, so a closed-form root an ulp nearer changes which surface the ray meets;
+    - a transfer that starts within rounding of the raw target where two surfaces cross beyond their rims, named
+      at its first Tier S run (2026-10-14): the Olympus Zuiko Auto-W 18mm's full-field chief ray meets surface 16
+      4.7e-12 to 4.9e-12 mm past where it crosses 17, and a move of 1.5e-13 mm upstream decides whether the
+      transfer to 17 starts at the raw target.
+  - **Approved divergence, reference spherical primary mirror** (`reference-spherical-primary-mirror`), settled at
+    the same run: the traced exit pupil of one field sample lies 26.9 km from the mirror, beyond the reach of the far
+    analysis length's share, and moved by 1.7e-10 of itself. An exact solve puts the new value nearer: 5.0e-11 of
+    its distance off, against 1.21e-10 for the anchor's. It is read like the Mirotar until the anchor next moves.
   - **Approved divergence, Zeiss Mirotar 500mm f/4.5** (`carl-zeiss-mirotar-500f45`). The last class occurs once in
     the catalog and cannot be declared as transitions.
     - Surfaces "4" and "6" share a vertex and lie 3.8e-15 mm apart at the tested ray. The base returned one float
@@ -2257,6 +2305,11 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 39 | A short chord on a polynomial asphere stays the scan's miss in S3.P2.T2 (#779) | S3.P2.T2 |
 | 40 | A hit that changes between the raw target and the envelope because its incoming ray moved by rounding is a declared transition | S3.P2.T2 |
 | 41 | An analysis length is held to 1e-8 mm, or to 1e-10 of its own size where that is more, and the traced exit pupil of a pupil-aberration sample is an analysis length | [Quantity budgets](#quantity-budgets) |
+| 42 | A ray's failure after its own first clip is counted and listed and does not block a data change | [Anchors and comparison coverage](#anchors-and-comparison-coverage), rule 3 |
+| 43 | A tangential focus from a parabasal pair, and what is made of it in the field-curvature and colour-focus jobs, is held to 1e-7 mm or 1e-10 of its own size | [Quantity budgets](#quantity-budgets) |
+| 44 | Behind a legacy ghost path's first missed surface, its points and its clipped y are compared for presence, count and finiteness only | [Quantity budgets](#quantity-budgets) |
+| 45 | S3.P2.T1 names a fifth class: a transfer that starts within rounding of the raw target where two surfaces cross beyond their rims | S3.P2.T1 |
+| 46 | The reference spherical primary mirror's far exit-pupil sample is S3.P2.T1's second approved divergence | S3.P2.T1 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
@@ -2273,8 +2326,10 @@ Open for the maintainer, none of them needed before promotion:
 - What a glass row added on `main` after promotion does: to the Stage 2 gate, whose base is the promotion merge
   commit, and to the anchor of Stages 6 to 8.
 - Whether an engine C3's anchor is a timing base.
-- Whether a status that turns to a failure from one that held no result either, such as `clipped` to `failed`,
-  should block a data change. It does today, and no catalog change since A0 shows one.
+- The Olympus Zuiko Auto-W 18mm's format-corner field inversion ends, at every station, on the jump in image height
+  where surfaces 16 and 17 cross beyond their rims, so its edge distortion is an artifact on both engines (+106.8%
+  at focus 0; at focus 1, +110.4% on A1 and -3.9% since S3.P2.T1). A C3 that keeps the inversion off a trace
+  discontinuity is needed. Tier F at promotion shows the focus-1 change.
 
 ## Rollback
 

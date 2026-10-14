@@ -829,7 +829,7 @@ describe("paired benchmark record", () => {
     expect(buildPairedSummary(pooled)).toContain(
       "- Samples: 5 measured after 1 warmup per case, both sides in 2 processes (3 with the base bundle loaded and " +
         "prepared first, 2 with the head bundle loaded and prepared first), alternating which side runs first from " +
-        "pair to pair",
+        "pair to pair, starting each case's warmups and measured pairs with the process's first side",
     );
 
     /* One process is pooled with nothing, and only loses the raw heap deltas. */

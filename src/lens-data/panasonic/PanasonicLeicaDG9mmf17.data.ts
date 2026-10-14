@@ -69,8 +69,15 @@ const LENS_DATA = {
       nd: 1.5338,
       vd: 55.6,
       fl: -48.1,
-      glass: "534556 — moldable crown (patent nd=1.53380, nu_d=55.6)",
+      glass:
+        "Unmatched (Panasonic moulding material 1.53380/55.6; no catalog row; line indices from US 2017/0059832 A1)",
+      nC: 1.531,
+      nF: 1.5406,
+      ng: 1.546,
+      dPgF: 0.01204,
       apd: false,
+      apdNote:
+        "nC, nF and ng are the values Panasonic prints for this nd/νd material in US 2017/0059832 A1 (Table 23, P_g,F 0.56232); this patent prints nd and νd only.",
       role: "PGM double-aspheric; corrects coma, astigmatism, and distortion from front group",
     },
     {

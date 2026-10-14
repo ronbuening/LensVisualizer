@@ -23,9 +23,11 @@ import {
   runMemorySession,
   runOpticsRenderingBenchmark,
   runUntimedBenchmarkPass,
+  sampleCell,
   validateBenchmarkCells,
   type OpticsRenderingBenchmarkOptions,
   type PairedBenchmarkBase,
+  type PreparedBenchmarkCell,
 } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
 import { PROFILE_FRACS } from "../../../src/optics/aberration/shared.js";
 
@@ -227,6 +229,61 @@ describe("optics rendering benchmark heavy set", () => {
     ]);
     expect(record.config.scenarios).toEqual(["default", "stopped-close", "interactive-drag"]);
     expect(record.config.scenarioSnapshots?.map(({ id }) => id)).toEqual(record.config.scenarios);
+  });
+});
+
+describe("optics rendering benchmark sampling", () => {
+  it.each([
+    ["base", ["base>head", "head>base", "base>head"]],
+    ["head", ["head>base", "base>head", "head>base"]],
+  ] as const)("starts every case's warmup and measured pairs with %s", (firstSide, warmupOrder) => {
+    /* Fake cells exercise the setup-to-sampling handoff without timing engine work. */
+    const calls: string[] = [];
+    const setups: string[] = [];
+    const cell = (side: "base" | "head") =>
+      ({
+        cases: ["first", "second"].map((id) => ({
+          id,
+          setup: () => setups.push(`${id}:${side}`),
+          run: () => {
+            calls.push(side);
+            return { side };
+          },
+          entry: { status: "error", message: "The case was not sampled." },
+        })),
+      }) as unknown as PreparedBenchmarkCell;
+    const base = cell("base");
+    const head = cell("head");
+
+    sampleCell(head, base, { warmups: 3, iterations: 4, keepSamples: true }, firstSide);
+
+    const pairs = Array.from({ length: calls.length / 2 }, (_, pair) => calls.slice(pair * 2, pair * 2 + 2).join(">"));
+    const measuredOrder = [...warmupOrder, warmupOrder[1]];
+    expect(pairs).toEqual([...warmupOrder, ...measuredOrder, ...warmupOrder, ...measuredOrder]);
+    const setupOrder = firstSide === "base" ? ["base", "head"] : ["head", "base"];
+    expect(setups).toEqual(["first", "second"].flatMap((id) => setupOrder.map((side) => `${id}:${side}`)));
+    for (const [side, prepared] of [
+      ["base", base],
+      ["head", head],
+    ] as const) {
+      for (const { entry } of prepared.cases) {
+        expect(entry).toMatchObject({ status: "ok", stats: { warmups: 3, iterations: 4 }, output: { side } });
+        expect(entry.stats?.samplesMs).toHaveLength(4);
+        expect(entry).not.toHaveProperty("message");
+      }
+    }
+  });
+
+  it.each(["base", "head"] as const)("calls the one unpaired case with firstSide %s", (firstSide) => {
+    const run = vi.fn(() => ({}));
+    const head = {
+      cases: [{ id: "only", run, entry: { status: "error", message: "The case was not sampled." } }],
+    } as unknown as PreparedBenchmarkCell;
+
+    sampleCell(head, undefined, { warmups: 3, iterations: 4, keepSamples: true }, firstSide);
+
+    expect(run).toHaveBeenCalledTimes(7);
+    expect(head.cases[0].entry.stats?.samplesMs).toHaveLength(4);
   });
 });
 

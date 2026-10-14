@@ -606,11 +606,14 @@ export function resolveGlass(glassString: string | undefined): GlassEntry | null
   // entry's best match by source rank, which would discard an entry's
   // earlier code-token match when a later name token also names it (e.g.
   // "517642 — N-BK7") and hand the win to a duplicate-code sibling.
+  // Within one token the untrimmed spelling outranks its hyphen-trimmed prefixes, so "K-CSK120-M" names the
+  // molding-state row and not the base glass "K-CSK120".
   const ranked = rawCandidateMatches(glassString).sort(
     (a, b) =>
       a.tokenRank - b.tokenRank ||
       a.sourceRank - b.sourceRank ||
       a.legacyPreferenceRank - b.legacyPreferenceRank ||
+      b.matchedToken.length - a.matchedToken.length ||
       a.entry.name.localeCompare(b.entry.name),
   );
   return ranked[0]?.entry ?? null;

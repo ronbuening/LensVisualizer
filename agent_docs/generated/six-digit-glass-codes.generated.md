@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **922** lenses scanned
-- **1887** total code-only elements found
-- **1887** elements in this report
+- **935** lenses scanned
+- **1886** total code-only elements found
+- **1886** elements in this report
 - **307** distinct lens files affected
 
 ## Codes by Frequency
@@ -254,7 +254,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 530558 | 1 | 1 | patents/US20130335830A1.pdf | All rows explicitly disposed |
 | 534554 | 1 | 1 | patents/US3737214.pdf | All rows have review records |
 | 534555 | 1 | 1 | patents/US4110006.pdf | All rows explicitly disposed |
-| 534556 | 1 | 1 | patents/US20230367186A1.pdf | All rows have review records |
 | 534557 | 1 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 534559 | 1 | 1 | patents/JP2021015312A.pdf | All rows explicitly disposed |
 | 536412 | 1 | 1 | patents/US8169718.pdf | All rows explicitly disposed |
@@ -2673,7 +2672,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3A | `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)` | 1.53380 / 55.60 | No catalog entry | abbe | patents/US20230367186A1.pdf | Audit-log hit |
 | L6 (Element 6) | 10 | `752251 — dense flint (patent coordinate; vendor unresolved)` | 1.75211 / 25.00 | FF8 (trusted Sellmeier) | sellmeier | patents/US20230367186A1.pdf | Audit-log hit |
 
 ### [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) - US 2010/0194930 A1
