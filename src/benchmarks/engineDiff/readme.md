@@ -28,7 +28,6 @@ flowchart LR
   n_external_glob_______optics_compat_ts["glob:../../optics/compat.ts"]
   n_external_glob_______optics_constants_ts["glob:../../optics/constants.ts"]
   n_external_glob_______optics_geometry_ts["glob:../../optics/geometry.ts"]
-  n_external_glob_______optics_internal_exactSurfaceTrace_ts["glob:../../optics/internal/exactSurfaceTrace.ts"]
   n_external_glob_______optics_layout_ts["glob:../../optics/layout.ts"]
   n_external_glob_______optics_lensMovement_ts["glob:../../optics/lensMovement.ts"]
   n_external_glob_______optics_mtf_ts["glob:../../optics/mtf.ts"]
@@ -52,7 +51,6 @@ flowchart LR
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_compat_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_constants_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_geometry_ts
-  n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_internal_exactSurfaceTrace_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_layout_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_lensMovement_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_mtf_ts
@@ -71,7 +69,7 @@ flowchart LR
 
 - Direct source files: 6
 - Direct subfolders: 0
-- Main outbound areas: src/benchmarks (10), glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/aperture.ts, glob:../../optics/apertureStop.ts, glob:../../optics/asphericComparison.ts, glob:../../optics/buildLens.ts, +14 more
+- Main outbound areas: src/benchmarks (10), glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/aperture.ts, glob:../../optics/apertureStop.ts, glob:../../optics/asphericComparison.ts, glob:../../optics/buildLens.ts, +13 more
 - External consumers: none
 
 ## Files
@@ -83,4 +81,4 @@ flowchart LR
 | `compare.ts` | Compare helper module | src/benchmarks (3) | src/benchmarks | ComparableRecord, DifferenceKind, ComparisonName, Finding, StatusCounts, PayloadCounts, DataChange, QuantityTally, +28 more |
 | `payload.ts` | Payload helper module | none | src/benchmarks (2) | EncodedValue, SKIPPED_BACK_POINTER_TAG, encodeValue, decodeValue, sha256Hex, maskBudgetedNumbers, columnize, projectTrace, +14 more |
 | `requests.ts` | Requests helper module | none | src/benchmarks (2) | RequestFamily, CaptureState, LensRef, CaptureRequest, CatalogLens, RequestCatalog, lensId, stateId, +35 more |
-| `seamAdapter.ts` | Seam Adapter helper module | glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/aperture.ts, glob:../../optics/apertureStop.ts, +16 more | src/benchmarks | EngineSeam, RuntimeLens, LensData, TeleconverterData, PreparedState, EngineRay, EngineTraceOptions, EngineTrace, +7 more |
+| `seamAdapter.ts` | Seam Adapter helper module | glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/aperture.ts, glob:../../optics/apertureStop.ts, +15 more | src/benchmarks | EngineSeam, RuntimeLens, LensData, TeleconverterData, PreparedState, EngineRay, EngineTraceOptions, EngineTrace, +7 more |

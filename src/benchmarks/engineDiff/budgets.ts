@@ -445,14 +445,36 @@ const rayByStatus: QuantitySelector = (leaf) => {
   return memberOf(base, "status") === "ok" && memberOf(head, "status") === "ok" ? "landing" : "clippedHit";
 };
 
-/* A substitute point and every point after it are not ray intersections. Both sides must identify the tail;
- * a record without the capture marker keeps its old budget. */
+function firstLegacyMiss(ray: unknown): unknown {
+  const events = memberOf(memberOf(ray, "diagnostics"), "clipEvents");
+  return Array.isArray(events)
+    ? events.find((event) => memberOf(event, "reason") === "intersection-failure")
+    : undefined;
+}
+
+/* rayTrace's point appender drops non-finite hits, but its diagnostics retain their indexes. Only a complete
+ * alignment can locate a ghost in that hit order; a missing fallback or repeated surface is never sorted by index. */
 const legacyGhostByMiss: QuantitySelector = (leaf) => {
   const depth = leaf.keys.indexOf("ghostPts");
   const index = leaf.keys[depth + 1];
   const behind = (side: readonly unknown[]) => {
-    const first = memberOf(side[depth], "firstGhostPointAfterMiss");
-    return typeof first === "number" && typeof index === "number" && index >= first;
+    const ray = side[depth];
+    const pts = memberOf(ray, "pts");
+    const ghosts = memberOf(ray, "ghostPts");
+    const hits = memberOf(memberOf(ray, "diagnostics"), "hitSurfaceIndexes");
+    const surfaceIdx = memberOf(firstLegacyMiss(ray), "surfaceIdx");
+    if (
+      !Array.isArray(pts) ||
+      pts.length === 0 ||
+      !Array.isArray(ghosts) ||
+      !Array.isArray(hits) ||
+      pts.length - 1 + ghosts.length !== hits.length ||
+      typeof index !== "number" ||
+      typeof surfaceIdx !== "number"
+    )
+      return false;
+    const missPosition = hits.indexOf(surfaceIdx);
+    return missPosition >= 0 && pts.length - 1 + index >= missPosition;
   };
   return behind(leaf.base) && behind(leaf.head) ? "legacyMissTail" : "clippedHit";
 };
@@ -460,8 +482,7 @@ const legacyGhostByMiss: QuantitySelector = (leaf) => {
 /* The stack tracer's result has no status, only `clipped`. */
 const legacyRayByClipFlag: QuantitySelector = (leaf) => {
   const [base, head] = owningObjects(leaf);
-  const behind = (ray: unknown) =>
-    memberOf(ray, "clipped") === true && typeof memberOf(ray, "firstGhostPointAfterMiss") === "number";
+  const behind = (ray: unknown) => memberOf(ray, "clipped") === true && firstLegacyMiss(ray) !== undefined;
   if (behind(base) && behind(head)) return "legacyMissTail";
   return memberOf(base, "clipped") === false && memberOf(head, "clipped") === false ? "landing" : "clippedHit";
 };
@@ -668,7 +689,6 @@ const TABLE: readonly TableRow[] = [
   ["landing", ["traces:legacy.rays[].pts[][]", "traces:legacy.rays[].paraxialImageHeight"]],
   [legacyGhostByMiss, ["traces:legacy.rays[].ghostPts[][]"]],
   [legacyRayByClipFlag, ["traces:legacy.rays[].y"]],
-  ["count", ["traces:legacy.rays[].firstGhostPointAfterMiss"]],
   ["slope", ["traces:legacy.rays[].u"]],
   ["ratio", ["traces:legacy.rays[].transmission"]],
   /* A ray is launched from a pupil height or a chief-ray solve, never from an authored number. */

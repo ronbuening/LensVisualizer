@@ -595,7 +595,7 @@ describe("engineDiff tangential parabasal focus", () => {
 });
 
 describe("engineDiff legacy missed-surface tail", () => {
-  it("pins the finite-tail class and its capture marker", () => {
+  it("pins the finite-tail class and its record selectors", () => {
     expect(QUANTITIES.legacyMissTail).toEqual({
       title: "Legacy points after a missed surface",
       unit: "",
@@ -604,22 +604,30 @@ describe("engineDiff legacy missed-surface tail", () => {
       c2: null,
       origin: "addition",
     });
-    expect(resolveBudgetRule("traces", ["legacy", "rays", "[]", "firstGhostPointAfterMiss"])).toMatchObject({
-      quantity: "count",
-      scale: 1,
-    });
+    for (const path of [["ghostPts", "[]", "[]"], ["y"]]) {
+      expect(resolveBudgetRule("traces", ["legacy", "rays", "[]", ...path])).toMatchObject({ scale: 1 });
+    }
   });
   const ray = {
-    pts: [[0, 1]],
+    pts: [
+      [0, 1],
+      [1, 1],
+    ],
     ghostPts: [
       [10, 20],
       [6.1e16, 3],
     ],
-    firstGhostPointAfterMiss: 1,
     clipped: true,
     y: 6.1e16,
     u: 2,
-    diagnostics: { failureReason: "noBracket", hitSurfaceIndexes: [0, 1], clipEvents: [] },
+    diagnostics: {
+      failureReason: "noBracket",
+      hitSurfaceIndexes: [8, 4, 2],
+      clipEvents: [
+        { reason: "semi-diameter", surfaceIdx: 4, failureReason: null as string | null },
+        { reason: "intersection-failure", surfaceIdx: 2, failureReason: "noBracket" },
+      ],
+    },
   };
   const records = (value: unknown): ComparableRecord[] => [
     { lens: "synthetic", state: DEFAULT_STATE, request: "traces", payload: { ok: true, value: encodeValue(value) } },
@@ -642,6 +650,7 @@ describe("engineDiff legacy missed-surface tail", () => {
       value.y *= 2;
     });
     expect(judge(head).passed).toBe(true);
+    expect(judge(head, "c2").passed).toBe(true);
     expect(judge(head, "c0").passed).toBe(false);
   });
 
@@ -669,30 +678,105 @@ describe("engineDiff legacy missed-surface tail", () => {
         value.pts[0][1] += 1e-5;
       },
       (value: typeof ray) => {
-        value.firstGhostPointAfterMiss = 0;
+        value.diagnostics.clipEvents[1].failureReason = "grazing";
       },
     ])
       expect(judge(moved(edit)).passed).toBe(false);
   });
 
-  it("keeps earlier ghosts and a tail identified on only one side at their existing budgets", () => {
-    expect(
-      judge(
-        moved((value) => {
-          value.ghostPts[0][1] += 2e-7;
+  it("keeps points before the first miss at their existing budget even when a later miss qualifies", () => {
+    const source = structuredClone(ray);
+    source.diagnostics.clipEvents.push({ reason: "intersection-failure", surfaceIdx: 4, failureReason: "noBracket" });
+    const head = structuredClone(source);
+    head.ghostPts[0][1] += 2e-7;
+    expect(judge(records({ legacy: { rays: [head] } }), "c1", records({ legacy: { rays: [source] } })).passed).toBe(
+      false,
+    );
+  });
+
+  it("requires the ghost alignment and first miss position on both sides", () => {
+    for (const edit of [
+      (value: typeof ray) => {
+        value.diagnostics.hitSurfaceIndexes.push(0);
+      },
+      (value: typeof ray) => {
+        value.pts.pop();
+      },
+      (value: typeof ray) => {
+        value.diagnostics.clipEvents.pop();
+      },
+      (value: typeof ray) => {
+        value.diagnostics.clipEvents[1].surfaceIdx = 9;
+      },
+    ]) {
+      const conservative = structuredClone(ray);
+      edit(conservative);
+      const distant = structuredClone(conservative);
+      distant.ghostPts[1][0] *= 2;
+      const plain = records({ legacy: { rays: [conservative] } });
+      const moved = records({ legacy: { rays: [distant] } });
+      expect(judge(moved, "c1", plain).passed).toBe(false);
+      expect(judge(plain, "c1", moved).passed).toBe(false);
+      /* A single qualifying side must still choose the old quantity for the differing point. */
+      for (const [baseRay, headRay] of [
+        [ray, distant],
+        [distant, ray],
+      ]) {
+        const summary = judge(records({ legacy: { rays: [headRay] } }), "c1", records({ legacy: { rays: [baseRay] } }));
+        expect(summary.engine.failures).toContainEqual(
+          expect.objectContaining({
+            path: "legacy.rays[0].ghostPts[1][0]",
+            quantity: "clippedHit",
+          }),
+        );
+      }
+    }
+  });
+
+  it("keeps a point before the miss on either side at its existing budget", () => {
+    const head = structuredClone(ray);
+    head.diagnostics.clipEvents[1].surfaceIdx = 8;
+    head.ghostPts[0][1] += 2e-7;
+    const changed = records({ legacy: { rays: [head] } });
+    for (const [source, target] of [
+      [base, changed],
+      [changed, base],
+    ]) {
+      expect(judge(target, "c1", source).engine.failures).toContainEqual(
+        expect.objectContaining({
+          path: "legacy.rays[0].ghostPts[0][1]",
+          quantity: "clippedHit",
         }),
-      ).passed,
-    ).toBe(false);
-    const noMiss = records({ legacy: { rays: [{ ...ray, firstGhostPointAfterMiss: null }] } });
-    expect(
-      judge(
-        moved((value) => {
-          value.ghostPts[1][0] *= 2;
-        }),
-        "c1",
-        noMiss,
-      ).passed,
-    ).toBe(false);
+      );
+    }
+  });
+
+  it("requires both clipped flags and both misses for the y exemption", () => {
+    for (const edit of [
+      (value: typeof ray) => {
+        value.clipped = false;
+      },
+      (value: typeof ray) => {
+        value.diagnostics.clipEvents.pop();
+      },
+    ]) {
+      const conservative = structuredClone(ray);
+      edit(conservative);
+      const distant = structuredClone(conservative);
+      distant.y *= 2;
+      for (const [baseRay, headRay] of [
+        [ray, distant],
+        [distant, ray],
+      ]) {
+        const summary = judge(records({ legacy: { rays: [headRay] } }), "c1", records({ legacy: { rays: [baseRay] } }));
+        expect(summary.engine.failures).toContainEqual(
+          expect.objectContaining({
+            path: "legacy.rays[0].y",
+            quantity: "clippedHit",
+          }),
+        );
+      }
+    }
   });
 });
 

@@ -610,48 +610,8 @@ const captureTraces: StateCapture = (seam, lens, state) => {
       pupilFractions: ON_AXIS_PUPIL_FRACTIONS,
       rays: ON_AXIS_PUPIL_FRACTIONS.map((fraction) => {
         const heightMm = fraction * pupilSemiDiameterMm;
-        const ray = seam.legacyTraceRay(
-          heightMm,
-          0,
-          lensFrameZ,
-          focusT,
-          zoomT,
-          stopSemiDiameterMm,
-          true,
-          lens,
-          aberrationT,
-        );
-        /* The public tracer drops hit indices and fallback flags. Repeat its launch and options to locate the
-         * substitute-point tail, counting only the finite clipped points it keeps in `ghostPts`. */
-        const stack = seam.legacyTraceSurfaceStack(
-          lens,
-          { y0: heightMm, uy0: 0 },
-          {
-            zPos: lensFrameZ,
-            checkSemiDiameter: true,
-            stopSemiDiameter: stopSemiDiameterMm,
-            ghost: true,
-            stopOnClip: true,
-            leadDistance: lens.rayLead ?? 0,
-          },
-        );
-        const firstMiss = stack.diagnostics.clipEvents.find((event) => event.reason === "intersection-failure");
-        let ghostIndex = 0;
-        let firstGhostPointAfterMiss: number | null = null;
-        let afterMiss = false;
-        for (const hit of stack.hits) {
-          /* A sequential miss can have no fallback point; its next hit still belongs to the tail. Folded hits
-           * are in path order, so surface indices alone cannot put one behind another. */
-          afterMiss ||=
-            hit.fallback ||
-            (!lens.isFoldedOptics && firstMiss?.surfaceIdx != null && hit.surfaceIdx >= firstMiss.surfaceIdx);
-          if (!hit.clipped || !Number.isFinite(hit.point[2]) || !Number.isFinite(hit.point[1])) continue;
-          if (afterMiss && firstGhostPointAfterMiss === null) firstGhostPointAfterMiss = ghostIndex;
-          ghostIndex++;
-        }
         return {
-          ...ray,
-          firstGhostPointAfterMiss,
+          ...seam.legacyTraceRay(heightMm, 0, lensFrameZ, focusT, zoomT, stopSemiDiameterMm, true, lens, aberrationT),
           /* A paraxial landing means something on a sequential refracting path only. */
           paraxialImageHeight: lens.isFoldedOptics
             ? undefined
