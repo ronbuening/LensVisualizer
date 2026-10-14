@@ -485,6 +485,15 @@ The classes in `budgets.ts`:
   profile 1e-10 relative, and a ratio of two analysis lengths 1e-8 relative.
 - A hit's coordinates, and a ray's terminal values, are budgeted as unclipped only when the clip flag or status
   beside them says so on both sides. A flag that differs is a transition of its own.
+- After a legacy fan ray's first missed surface, its substitute ghost points and the clipped `y` projected from
+  them have the `legacyMissTail` class: presence, count and finiteness only above C0. The capture adds
+  `firstGhostPointAfterMiss` only to `traces.legacy.rays[]`, an index into the retained finite `ghostPts` or null
+  when no such tail exists. It repeats the public stack tracer's launch and options through the internal stack
+  tracer to find the miss; a rim clip alone does not qualify. Both records must identify a point as in the tail.
+  Earlier ghosts, `pts`, `u`, diagnostics, failure and clip reasons keep their existing rules; missing metadata
+  keeps the old coordinate budget. C0 stays bit-exact. These off-ray substitutes are unused by the app's prepared
+  tracer fans, which stop at a miss, and the legacy tracer is removed in Stage 4. This is S3.P2.T1's deferred Tier S
+  settlement.
 - A relative budget is `|a − b| ≤ budget · max(|a|, |b|)`, and no less than the class's floor where it has one. A
   floor is an absolute bound in the class's unit.
   - A class whose values may be zero has one: a first-order length, a layout length and a best-fit radius are

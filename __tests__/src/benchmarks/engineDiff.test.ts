@@ -1426,6 +1426,72 @@ describe("engineDiff capture", () => {
     expect(records.filter((record) => !record.payload.ok)).toEqual([]);
   });
 
+  it("captures the first retained ghost after a miss only on legacy fan rays", () => {
+    const seam = resolveSeam();
+    const point = (surfaceIdx: number, clipped: boolean, fallback = false, y = 1) => ({
+      surfaceIdx,
+      clipped,
+      fallback,
+      point: [0, y, surfaceIdx],
+    });
+    const publicTrace = vi.spyOn(seam, "legacyTraceRay").mockReturnValue({
+      pts: [[0, 1]],
+      ghostPts: [
+        [1, 1],
+        [3, 1],
+      ],
+      y: 1,
+      u: 0,
+      clipped: true,
+    } as ReturnType<typeof seam.legacyTraceRay>);
+    const stackTrace =
+      "legacyTraceSurfaceStack" in seam
+        ? vi.spyOn(seam, "legacyTraceSurfaceStack").mockReturnValue({
+            hits: [point(0, false), point(1, true), point(2, true, true, Infinity), point(3, true)],
+            diagnostics: { clipEvents: [{ reason: "intersection-failure", surfaceIdx: 2 }] },
+          } as unknown as ReturnType<typeof seam.legacyTraceSurfaceStack>)
+        : undefined;
+    try {
+      const capture = () =>
+        valueOf(
+          captureRecords(catalogOf(plainTwin), [
+            { lens: { key: plainTwin.key }, state: DEFAULT_STATE, family: "traces" },
+          ])[0],
+        ) as { legacy: { rays: { firstGhostPointAfterMiss: number | null }[] } };
+      const traces = capture();
+      expect(traces.legacy.rays.map((ray) => ray.firstGhostPointAfterMiss)).toEqual(
+        ON_AXIS_PUPIL_FRACTIONS.map(() => 1),
+      );
+      const markerPaths: string[] = [];
+      const walk = (value: unknown, path: string) => {
+        if (value === null || typeof value !== "object") return;
+        for (const [key, child] of Object.entries(value)) {
+          const next = path ? `${path}.${key}` : key;
+          if (key === "firstGhostPointAfterMiss") markerPaths.push(next);
+          walk(child, next);
+        }
+      };
+      walk(traces, "");
+      expect(markerPaths).toEqual(
+        ON_AXIS_PUPIL_FRACTIONS.map((_, index) => `legacy.rays.${index}.firstGhostPointAfterMiss`),
+      );
+      stackTrace?.mockReturnValue({
+        hits: [point(0, false), point(1, true)],
+        diagnostics: { clipEvents: [] },
+      } as unknown as ReturnType<typeof seam.legacyTraceSurfaceStack>);
+      expect(capture().legacy.rays.every((ray) => ray.firstGhostPointAfterMiss === null)).toBe(true);
+      /* A missed surface whose fallback was absent still puts later retained ghosts in the tail. */
+      stackTrace?.mockReturnValue({
+        hits: [point(0, false), point(1, true), point(3, true)],
+        diagnostics: { clipEvents: [{ reason: "intersection-failure", surfaceIdx: 2 }] },
+      } as unknown as ReturnType<typeof seam.legacyTraceSurfaceStack>);
+      expect(capture().legacy.rays.every((ray) => ray.firstGhostPointAfterMiss === 1)).toBe(true);
+    } finally {
+      publicTrace.mockRestore();
+      stackTrace?.mockRestore();
+    }
+  });
+
   it("captures the same bytes on a second run, and one request at a time in reverse order", () => {
     const first = recordDigests(records);
     expect(recordDigests(captureRecords(CATALOG, requests))).toEqual(first);

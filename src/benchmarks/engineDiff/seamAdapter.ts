@@ -21,6 +21,7 @@ const ENGINE_MODULES = {
   chromaticRayFanScaling: import.meta.glob<EngineModule>("../../optics/chromaticRayFanScaling.ts", { eager: true }),
   compat: import.meta.glob<EngineModule>("../../optics/compat.ts", { eager: true }),
   constants: import.meta.glob<EngineModule>("../../optics/constants.ts", { eager: true }),
+  exactSurfaceTrace: import.meta.glob<EngineModule>("../../optics/internal/exactSurfaceTrace.ts", { eager: true }),
   geometry: import.meta.glob<EngineModule>("../../optics/geometry.ts", { eager: true }),
   layout: import.meta.glob<EngineModule>("../../optics/layout.ts", { eager: true }),
   lensDefaults: import.meta.glob<EngineModule>("../../lens-data/defaults.ts", { eager: true }),
@@ -44,6 +45,7 @@ interface EngineModuleTypes {
   chromaticRayFanScaling: typeof import("../../optics/chromaticRayFanScaling.js");
   compat: typeof import("../../optics/compat.js");
   constants: typeof import("../../optics/constants.js");
+  exactSurfaceTrace: typeof import("../../optics/internal/exactSurfaceTrace.js");
   geometry: typeof import("../../optics/geometry.js");
   layout: typeof import("../../optics/layout.js");
   lensDefaults: typeof import("../../lens-data/defaults.js");
@@ -83,6 +85,7 @@ const SEAM_CANDIDATES = {
   channelIndexResolver: [["compat", "channelIndexResolverForState2"]],
   skewImagePlaneIntercept: [["optics", "skewImagePlaneIntercept"]],
   legacyTraceRay: [["rayTrace", "traceRay"]],
+  legacyTraceSurfaceStack: [["exactSurfaceTrace", "traceExactSurfaceStack"]],
   legacyTraceToImage: [["rayTrace", "traceToImage"]],
   doLayout: [["optics", "doLayout"]],
   legacyDoLayout: [["layout", "doLayout"]],

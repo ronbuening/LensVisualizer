@@ -201,6 +201,8 @@ function diffRecords(
     const budget = budgetOf(quantity, changeClass);
     const distance = Math.abs(x - y) / rule.scale;
     switch (kind) {
+      case "finite":
+        return report("number", pattern, a, b, quantity, 0, 0);
       case "exact":
         return report("discrete", pattern, a, b, quantity, distance, 0);
       case "iterations":

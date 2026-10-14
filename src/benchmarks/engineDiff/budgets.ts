@@ -41,11 +41,20 @@ export type ChangeClass = "c0" | "c1" | "c2" | "c3";
  *   at most the budget, 1: the head is the engine a change proposes, and a finite breach the base alone carries is
  *   not one the change made. An infinite share on either side is compared exactly, as every non-finite value is,
  *   and a share on one side against none on the other is a discrete difference.
+ * - `finite`: presence and finiteness only; the finite values are not differenced.
  * - `exact`: `Object.is`. A difference is a discrete transition, listed in the report.
  * - `iterations`: a solver's step or evaluation count. Above C0 a change is tallied as a histogram and does not
  *   fail by itself; what it did to the solver's output shows in that output's own class.
  */
-export type ComparisonKind = "absolute" | "relative" | "slope" | "residual" | "share" | "exact" | "iterations";
+export type ComparisonKind =
+  | "absolute"
+  | "relative"
+  | "slope"
+  | "residual"
+  | "share"
+  | "exact"
+  | "iterations"
+  | "finite";
 
 /** Where a class and its budget come from. */
 export type QuantityOrigin =
@@ -194,6 +203,15 @@ export const QUANTITIES = {
    * is, so the bound is plainly relative. */
   lengthRatio: relative("Ratio of two analysis lengths", 1e-8, "plan"),
 
+  /* Beyond a legacy miss the tracer substitutes points off the ray. No app fan reads that tail. */
+  legacyMissTail: {
+    title: "Legacy points after a missed surface",
+    unit: "",
+    kind: "finite",
+    c1: 0,
+    c2: null,
+    origin: "addition",
+  },
   countRatio: exact("Count ratio", "addition"),
   /* The tolerance a hit was accepted under is the engine's raw target, 1e-12 mm, except at a stalled root. There it
    * is a computed float, the larger of that target and a roundoff envelope: 16·ε times the sum of the ray's
@@ -419,9 +437,24 @@ const rayByStatus: QuantitySelector = (leaf) => {
   return memberOf(base, "status") === "ok" && memberOf(head, "status") === "ok" ? "landing" : "clippedHit";
 };
 
+/* A substitute point and every point after it are not ray intersections. Both sides must identify the tail;
+ * a record without the capture marker keeps its old budget. */
+const legacyGhostByMiss: QuantitySelector = (leaf) => {
+  const depth = leaf.keys.indexOf("ghostPts");
+  const index = leaf.keys[depth + 1];
+  const behind = (side: readonly unknown[]) => {
+    const first = memberOf(side[depth], "firstGhostPointAfterMiss");
+    return typeof first === "number" && typeof index === "number" && index >= first;
+  };
+  return behind(leaf.base) && behind(leaf.head) ? "legacyMissTail" : "clippedHit";
+};
+
 /* The stack tracer's result has no status, only `clipped`. */
 const legacyRayByClipFlag: QuantitySelector = (leaf) => {
   const [base, head] = owningObjects(leaf);
+  const behind = (ray: unknown) =>
+    memberOf(ray, "clipped") === true && typeof memberOf(ray, "firstGhostPointAfterMiss") === "number";
+  if (behind(base) && behind(head)) return "legacyMissTail";
   return memberOf(base, "clipped") === false && memberOf(head, "clipped") === false ? "landing" : "clippedHit";
 };
 
@@ -625,8 +658,9 @@ const TABLE: readonly TableRow[] = [
   ["count", ["traces:**.hits.count", "traces:**.hits.columns.surfaceIndex[]"]],
   /* The RuntimeLens stack tracer, before the rows that go by member name. Its drawn points are the hits. */
   ["landing", ["traces:legacy.rays[].pts[][]", "traces:legacy.rays[].paraxialImageHeight"]],
-  ["clippedHit", ["traces:legacy.rays[].ghostPts[][]"]],
+  [legacyGhostByMiss, ["traces:legacy.rays[].ghostPts[][]"]],
   [legacyRayByClipFlag, ["traces:legacy.rays[].y"]],
+  ["count", ["traces:legacy.rays[].firstGhostPointAfterMiss"]],
   ["slope", ["traces:legacy.rays[].u"]],
   ["ratio", ["traces:legacy.rays[].transmission"]],
   /* A ray is launched from a pupil height or a chief-ray solve, never from an authored number. */

@@ -490,6 +490,108 @@ describe("engineDiff comparison of identical captures", () => {
   });
 });
 
+describe("engineDiff legacy missed-surface tail", () => {
+  it("pins the finite-tail class and its capture marker", () => {
+    expect(QUANTITIES.legacyMissTail).toEqual({
+      title: "Legacy points after a missed surface",
+      unit: "",
+      kind: "finite",
+      c1: 0,
+      c2: null,
+      origin: "addition",
+    });
+    expect(resolveBudgetRule("traces", ["legacy", "rays", "[]", "firstGhostPointAfterMiss"])).toMatchObject({
+      quantity: "count",
+      scale: 1,
+    });
+  });
+  const ray = {
+    pts: [[0, 1]],
+    ghostPts: [
+      [10, 20],
+      [6.1e16, 3],
+    ],
+    firstGhostPointAfterMiss: 1,
+    clipped: true,
+    y: 6.1e16,
+    u: 2,
+    diagnostics: { failureReason: "noBracket", hitSurfaceIndexes: [0, 1], clipEvents: [] },
+  };
+  const records = (value: unknown): ComparableRecord[] => [
+    { lens: "synthetic", state: DEFAULT_STATE, request: "traces", payload: { ok: true, value: encodeValue(value) } },
+  ];
+  const base = records({ legacy: { rays: [ray] } });
+  const moved = (edit: (value: typeof ray) => void) => {
+    const value = structuredClone(ray);
+    edit(value);
+    return records({ legacy: { rays: [value] } });
+  };
+  const judge = (head: ComparableRecord[], changeClass: ChangeClass = "c1", source = base) => {
+    const run = createDifferentialRun({ changeClass, declaredExceptions: [], restricted: true });
+    run.addLens({ lens: "synthetic", dataChange: "unchanged", baseEngine: source, headEngine: head });
+    return run.finish();
+  };
+
+  it("compares finite ghost coordinates and clipped y after the miss without a distance budget", () => {
+    const head = moved((value) => {
+      value.ghostPts[1][0] *= 2;
+      value.y *= 2;
+    });
+    expect(judge(head).passed).toBe(true);
+    expect(judge(head, "c0").passed).toBe(false);
+  });
+
+  it("keeps presence, counts, finiteness and the ray diagnostics gated", () => {
+    for (const edit of [
+      (value: typeof ray) => {
+        value.ghostPts[1][0] = Infinity;
+      },
+      (value: typeof ray) => {
+        value.ghostPts.pop();
+      },
+      (value: typeof ray) => {
+        value.y = NaN;
+      },
+      (value: typeof ray) => {
+        value.diagnostics.failureReason = "grazing";
+      },
+      (value: typeof ray) => {
+        value.diagnostics.hitSurfaceIndexes[1] = 2;
+      },
+      (value: typeof ray) => {
+        value.u += 1e-5;
+      },
+      (value: typeof ray) => {
+        value.pts[0][1] += 1e-5;
+      },
+      (value: typeof ray) => {
+        value.firstGhostPointAfterMiss = 0;
+      },
+    ])
+      expect(judge(moved(edit)).passed).toBe(false);
+  });
+
+  it("keeps earlier ghosts and a tail identified on only one side at their existing budgets", () => {
+    expect(
+      judge(
+        moved((value) => {
+          value.ghostPts[0][1] += 2e-7;
+        }),
+      ).passed,
+    ).toBe(false);
+    const noMiss = records({ legacy: { rays: [{ ...ray, firstGhostPointAfterMiss: null }] } });
+    expect(
+      judge(
+        moved((value) => {
+          value.ghostPts[1][0] *= 2;
+        }),
+        "c1",
+        noMiss,
+      ).passed,
+    ).toBe(false);
+  });
+});
+
 describe("engineDiff drift detection", () => {
   it("has the records its perturbations assume", () => {
     expect(at(SERENAR_RECORDS, "traces", [...RAY, "status"])).toBe("ok");
