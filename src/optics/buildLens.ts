@@ -16,5 +16,6 @@ export { paraxialTrace, realTraceToStop } from "./runtimeLens.js";
 export { ingestLensV1, ingestTeleconverterV1 } from "./prescription/ingestV1.js";
 export { ingestLens, ingestTeleconverter, isV1File } from "./prescription/ingestV2.js";
 export { toLensData, toTeleconverterData } from "./prescription/toLensData.js";
+export { validateAuthoredLensData } from "./prescription/normalizeLensData.js";
 
 export default buildLens2;

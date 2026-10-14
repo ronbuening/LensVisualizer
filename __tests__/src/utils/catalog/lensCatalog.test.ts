@@ -1,14 +1,16 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   ALL_CATALOG_KEYS,
   LENS_CATALOG,
   CATALOG_KEYS,
   COMPARISON_CATALOG_KEYS,
   hasMdForKey,
+  lensNameForKey,
   loadMdForKey,
   resolveOpticalConfigurationKey,
 } from "../../../../src/utils/catalog/lensCatalog.js";
 import buildLens, {
+  ingestLens,
   ingestLensV1,
   ingestTeleconverterV1,
   toLensData,
@@ -24,6 +26,12 @@ import {
 } from "../../../../src/utils/catalog/teleconverterCatalog.js";
 import type { LensDataInput } from "../../../../src/types/optics.js";
 import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
+
+/* Ingest, watched: it still runs, and a test can count the lenses it reads. */
+vi.mock("../../../../src/optics/buildLens.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/optics/buildLens.js")>();
+  return { ...actual, ingestLens: vi.fn(actual.ingestLens) };
+});
 
 /* Every file as authored, by key: what the catalogs read through canonical ingest. */
 const AUTHORED_LENSES = new Map(
@@ -46,6 +54,14 @@ describe("lensCatalog", () => {
     expect(LENS_CATALOG[key].name).toBe("CARL ZEISS HOLOGON 15mm f/8 (Contarex Hologon / Leica M)");
     expect(hasMdForKey(key)).toBe(true);
     expect(await loadMdForKey(key)).toContain("# Carl Zeiss Hologon 15 mm f/8");
+  });
+
+  it("names every listed lens from its file as authored, ingesting none", () => {
+    /* The viewer builds its name map for every listed key on first render; an entry ingests only when it is read. */
+    const ingested = vi.mocked(ingestLens).mock.calls.length;
+    const names = Object.fromEntries(ALL_CATALOG_KEYS.map((key) => [key, lensNameForKey(key)]));
+    expect(vi.mocked(ingestLens).mock.calls.length).toBe(ingested);
+    for (const key of ALL_CATALOG_KEYS) expect(names[key], key).toBe(AUTHORED_LENSES.get(key)!.name);
   });
 
   it("CATALOG_KEYS is non-empty", () => {
@@ -145,6 +161,8 @@ describe("lensCatalog and teleconverterCatalog — canonical ingest", () => {
       expect(LENS_CATALOG[key], key).toBe(entry);
       expect(entry, key).not.toBe(AUTHORED_LENSES.get(key));
       expect(entry, key).toEqual(toLensData(ingestLensV1(AUTHORED_LENSES.get(key)!)));
+      /* The entry is what buildLens ingests again: its own view gives it back. */
+      expect(toLensData(ingestLensV1(entry)), key).toEqual(entry);
     }
     for (const key of ALL_TELECONVERTER_KEYS) {
       const entry = TELECONVERTER_CATALOG[key];

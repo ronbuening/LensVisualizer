@@ -241,9 +241,9 @@ const LENS_DATA = {
   // apertureBlades: 9,                  // optional; reserved for future polygonal bokeh rendering
   // apertureBladeRoundedness: 0.5,      // optional 0–1; 0 = straight, 1 = circular
 
-  /* ── Layout tuning ── override defaults.ts only when the defaults do not frame this lens well.
-   *    See LENS_DATA_SPEC.md § Required but have defaults (from defaults.ts) for svgW/svgH, gapSagFrac,
-   *    rayFractions, offAxisFieldFrac, and the other overridable values. */
+  /* ── Layout tuning ── override the schema defaults only when they do not frame this lens well.
+   *    See LENS_DATA_SPEC.md § Required but have defaults (from src/optics/prescription/defaults.ts) for svgW/svgH,
+   *    gapSagFrac, rayFractions, offAxisFieldFrac, and the other overridable values. */
   scFill:           0.50,   // horizontal fill fraction 0–1 (default 0.55)
   yScFill:          0.30,   // REQUIRED: vertical fill fraction 0–1 (no default)
 } satisfies LensDataInput;

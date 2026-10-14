@@ -40,9 +40,9 @@ const ENGINE_WRITTEN: Readonly<Record<string, string>> = {
 
 const ASPHERIC_KEYS: readonly string[] = ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key);
 
-/** A value copied so the prescription shares nothing with the authored file. */
+/** A value copied so the prescription shares nothing with the authored file; a primitive is its own copy. */
 export function copy<T>(value: T): T {
-  return structuredClone(value);
+  return value !== null && typeof value === "object" ? structuredClone(value) : value;
 }
 
 /** Members that are present and not `undefined`; both formats treat an `undefined` member as an omitted one. */
@@ -81,7 +81,8 @@ export function refuseUnknownFields(
   for (const field of Object.keys(record)) {
     if (record[field] === undefined || Object.hasOwn(known, field)) continue;
     const path = at ? `${at}.${field}` : field;
-    context.issues.push(`${path} ${ENGINE_WRITTEN[field] ?? `is not a ${context.format} field`}`);
+    const why = Object.hasOwn(ENGINE_WRITTEN, field) ? ENGINE_WRITTEN[field] : `is not a ${context.format} field`;
+    context.issues.push(`${path} ${why}`);
   }
 }
 

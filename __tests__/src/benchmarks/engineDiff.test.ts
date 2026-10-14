@@ -2276,14 +2276,17 @@ describe("engineDiff semantic fingerprint", () => {
     const projectedElements = projectBuildConstants(
       {
         elements: [
-          { id: 1, indexReference: "e", apd: "inferred" },
-          { id: 2, indexReference: "d", apd: false },
+          { id: 1, name: "L1", nd: 1.5168, vd: 64.17, indexReference: "e", apd: "inferred" },
+          { id: 2, name: "L2", nd: 1.7, vd: 30, indexReference: "d", apd: false },
         ],
       },
       CHROMATIC_CHANNELS,
       seam.flatRadiusThreshold,
     ).elements;
-    expect(projectedElements).toEqual([{ id: 1, indexReference: "e", apd: "inferred" }, { id: 2 }]);
+    expect(projectedElements).toEqual([
+      { id: 1, name: "L1", nd: 1.5168, vd: 64.17, indexReference: "e", apd: "inferred" },
+      { id: 2, name: "L2", nd: 1.7, vd: 30 },
+    ]);
 
     /* A conjugate 1e-7 from its keyframe is beyond the validator's tolerance, so it is not snapped onto it. */
     const conjugateKey = firstLens((lens) => (lens.finiteConjugates?.length ?? 0) > 0);
@@ -2303,6 +2306,13 @@ describe("engineDiff semantic fingerprint", () => {
     expect(zoomConjugate(0.5 + 7.5e-9)).toBe(0.5 + 7.5e-9);
     expect(zoomConjugate(0.5 + 1e-3)).toBe(0.5 + 1e-3);
     expect(zoomConjugate(1e-12)).toBe(0);
+    /* -0 is a station at 0, written as 0, on a zoom and on a prime; a prime's other values are no station. */
+    expect(zoomConjugate(-0)).toBe(0);
+    const primeConjugate = (zoomT: number) =>
+      (echo({ finiteConjugates: [{ ...conjugate, focusT: 1, zoomT }] })
+        .finiteConjugates as typeof offStation.finiteConjugates)![0].zoomT;
+    expect(primeConjugate(-0)).toBe(0);
+    expect(primeConjugate(1e-12)).toBe(1e-12);
 
     /* Only a derived or scheduled stop loses its semi-diameter: a stop the engine reads keeps it, and so does every
      * other surface and every rear plate, in the file and in the build record's data, where the plates are surfaces. */
@@ -2315,8 +2325,17 @@ describe("engineDiff semantic fingerprint", () => {
     });
     expect(stopRadiusAuthority(plated)).not.toBe("authored");
     expect(echoed.surfaces.find((surface) => surface.label === "STO")!.sd).toBeUndefined();
-    const builtData = projectBuildConstants(seam.buildLens(plated), CHROMATIC_CHANNELS, seam.flatRadiusThreshold)
-      .data as LensData;
+    const builtPlated = seam.buildLens(plated) as unknown as { elements: Record<string, unknown>[] };
+    const projectedPlated = projectBuildConstants(builtPlated, CHROMATIC_CHANNELS, seam.flatRadiusThreshold);
+    const builtData = projectedPlated.data as LensData;
+    /* Every element of the build record keeps every member but a default its echo row holds. */
+    const elementDefaults = new Map(ECHO_DEFAULTS.element.map((row) => [row.v1Field, JSON.stringify(row.value)]));
+    builtPlated.elements.forEach((element, index) => {
+      const kept = Object.fromEntries(
+        Object.entries(element).filter(([field, value]) => elementDefaults.get(field) !== JSON.stringify(value)),
+      );
+      expect((projectedPlated.elements as unknown[])[index], String(element.name)).toEqual(kept);
+    });
     const syntheticSurfaces = builtData.surfaces.filter((surface) => surface.synthetic === "rearPlate");
     expect(syntheticSurfaces.length).toBeGreaterThan(0);
     for (const surface of syntheticSurfaces) expect(surface.sd, surface.label).toBeGreaterThan(0);
