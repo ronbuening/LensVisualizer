@@ -37,6 +37,8 @@ describe("lensSummaries parity with lensCatalog", () => {
       expect(summary, `${key}: missing summary`).toBeDefined();
       expect(summary.name).toBe(data.name);
       expect(summary.maker).toBe(data.maker);
+      expect(summary.aliases).toEqual(data.aliases);
+      expect(summary.manufacturedBy).toEqual(data.manufacturedBy);
       expect(summary.specs).toEqual(data.specs);
       expect(summary.focalLengthMarketing).toEqual(data.focalLengthMarketing);
       expect(summary.apertureMarketing).toBe(data.apertureMarketing);

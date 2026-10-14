@@ -136,6 +136,8 @@ Keep it normalized even when the product's official styling varies by source:
 |-------|------|---------|-------------|
 | `maker` | `string \| null` | | Manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`). Used for maker pages and SEO metadata. If omitted, derived from the lens `name` via prefix matching. Use `null` when the manufacturer is explicitly unconfirmed; this uses the Unattributed catalog category and omits the SEO manufacturer claim. |
 | `publishedAt` | `string` | Git-derived | Optional explicit UTC ISO timestamp (`YYYY-MM-DDTHH:mm:ssZ`) for a newly published replacement model. Overrides inherited file publication history in recent lenses, feeds, and SEO; last-modified remains Git-derived but cannot precede publication. Omit for normal additions and routine corrections. |
+| `aliases` | `LensAliasData[]` | | Alternate marketed identities for the exact modeled optical prescription. See Lens Aliases And Manufacturers below. |
+| `manufacturedBy` | `LensManufacturerData[]` | | Source-backed physical manufacturers of the branded lens. See Lens Aliases And Manufacturers below. |
 | `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
 | `opticalConfiguration` | `object` | | Links complete prescriptions that are switchable optical states of one catalog lens. See Alternate Optical Configurations below. |
 | `acceptsTeleconverters` | `boolean` | | `true` when the lens takes dedicated rear teleconverters made for one of its `lensMounts`. Universal converters ignore this flag. See [TELECONVERTER_DATA_SPEC.md](TELECONVERTER_DATA_SPEC.md). |
@@ -230,6 +232,43 @@ Suggested backfill order:
 2. Sony E, Fujifilm X, Pentax 110/K, Panasonic/Sigma L-mount where obvious.
 3. Fixed-lens cameras by format only.
 4. Historical Zeiss, Leica, and Voigtländer designs after source checks, because variants are common.
+
+## Lens Aliases And Manufacturers
+
+Use `aliases` for alternate marketed identities of the same modeled optical prescription. Allowed kinds are
+`rebrand`, `regional-name`, and `cosmetic-variant`. A related, licensed, jointly developed, or optically similar lens is
+not an alias unless the data file's complete prescription honestly represents both products.
+
+Use `manufacturedBy` only when a source establishes physical manufacture. A patent applicant, assignee, designer,
+corporate parent, or supplier is not automatically the manufacturer. Never derive this field from `patentAssignees`.
+
+```ts
+aliases: [
+  {
+    maker: "Rokinon",
+    name: "ROKINON AF 18mm f/2.8 FE",
+    kind: "regional-name",
+    sources: [{ label: "Rokinon product page", url: "https://example.com/product" }],
+  },
+],
+manufacturedBy: [
+  {
+    maker: "Fujifilm",
+    entity: "Fujinon",
+    sources: [{ label: "Hasselblad lens history", url: "https://example.com/history.pdf" }],
+  },
+],
+```
+
+- `maker` selects the canonical maker-page grouping. `entity` preserves the source's manufacturer name when it differs
+  from that maker label.
+- `sources` is stored directly on each relationship and must contain at least one labeled public HTTP(S) URL.
+- `note` is optional and should contain only a short qualification that cannot be expressed by the typed fields. Put
+  detailed identification reasoning in the companion `.analysis.md` file.
+- Omitted relationship `lensMounts` inherit the top-level mounts. Provide a non-empty list of canonical mount ids only
+  when that alternate identity or manufacturer applies to a different or narrower mount set.
+- Alias names must be unique after search normalization and must not collide with a canonical lens name. Aliases remain
+  on the canonical lens route and do not create selector, sitemap, feed, or publication duplicates.
 
 ## Patent Metadata
 

@@ -14,7 +14,7 @@
 
 import summariesJson from "../../generated/lens-summaries.json";
 import buildMeta from "../../generated/client-metadata.json";
-import type { OpticalConfigurationData } from "../../types/optics.js";
+import type { LensAliasData, LensManufacturerData, OpticalConfigurationData } from "../../types/optics.js";
 import type { LensMountId, ImageFormatId } from "./lensTaxonomy.js";
 
 export interface LensSummary {
@@ -22,6 +22,8 @@ export interface LensSummary {
   name: string;
   /** null explicitly records an unconfirmed manufacturer; omission retains name inference. */
   maker?: string | null;
+  aliases?: readonly LensAliasData[];
+  manufacturedBy?: readonly LensManufacturerData[];
   specs?: string[];
   focalLengthMarketing?: number | [number, number];
   apertureMarketing?: number;

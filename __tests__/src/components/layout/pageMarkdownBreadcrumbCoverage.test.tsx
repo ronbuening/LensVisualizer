@@ -136,6 +136,22 @@ describe("page, markdown, and breadcrumb coverage", () => {
     expect(screen.getAllByText("x").length).toBeGreaterThan(0);
   });
 
+  it.each([
+    { type: "maker", slug: "fujifilm" },
+    { type: "maker", slug: "fujifilm", label: 42 },
+    { type: "maker", label: "Fujifilm" },
+  ])("falls back to the canonical maker for malformed maker navigation (%j)", (source) => {
+    const lensKey = CATALOG_KEYS[0];
+    const lens = LENS_CATALOG[lensKey];
+    const maker = deriveMaker(lens.name, lens.maker);
+    renderBreadcrumb({
+      lensKey,
+      state: makeState({ lens: { lensKeyA: lensKey } as LensState["lens"] }),
+      initialEntry: { pathname: `/lens/${lensKey}/`, state: { lensBreadcrumb: source } },
+    });
+    expect(screen.getByRole("link", { name: maker.display }).getAttribute("href")).toBe(`/makers/${maker.slug}/`);
+  });
+
   it("renders single-lens breadcrumbs with inline theme toggles", () => {
     const dispatch = vi.fn();
     const lensKey = CATALOG_KEYS[0];
@@ -300,6 +316,19 @@ describe("page, markdown, and breadcrumb coverage", () => {
 
     cleanup();
     const teleconverterKey = ALL_TELECONVERTER_KEYS[0];
+    renderBreadcrumb({
+      lensKey,
+      state,
+      initialEntry: {
+        pathname: `/lens/${lensKey}/`,
+        state: { lensBreadcrumb: { type: "maker", slug: "fujifilm", label: "Fujifilm" } },
+      },
+    });
+
+    expect(screen.getByRole("link", { name: "Makers" }).getAttribute("href")).toBe("/makers/");
+    expect(screen.getByRole("link", { name: "Fujifilm" }).getAttribute("href")).toBe("/makers/fujifilm/");
+
+    cleanup();
     renderBreadcrumb({
       lensKey,
       state,

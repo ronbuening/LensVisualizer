@@ -13,12 +13,17 @@ import { TELECONVERTER_SUMMARY_LIST } from "./teleconverterSummaries.js";
 import type { TeleconverterSummary } from "./teleconverterSummaries.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";
 import { catalogCollator } from "./collation.js";
-import { transliterateCatalogText } from "./slugText.js";
+import { normalizeLensSearchText, transliterateCatalogText } from "./slugText.js";
+
+export { normalizeLensSearchText } from "./slugText.js";
 
 export interface LensNameSearchMatch {
   type: "lens";
   key: string;
   data: LensSummary;
+  matchedName: string;
+  matchKind: "canonical" | "alias" | "manufacturer";
+  relationshipLabel?: string;
 }
 
 export interface TeleconverterSearchMatch {
@@ -59,26 +64,6 @@ export function normalizeSearchText(value: string): string {
 function matchesWords(candidate: string, query: string): boolean {
   const words = query.split(" ").filter(Boolean);
   return words.length > 0 && words.every((word) => candidate.includes(word));
-}
-
-/** Preserve optical quantities before punctuation normalization loses their units and decimals. */
-export function normalizeLensSearchText(value: string): string {
-  return transliterateCatalogText(value)
-    .toLocaleLowerCase()
-    .replace(
-      /(?<![\p{L}\p{N}.])(\d+(?:\.\d+)?)\s*(?:[-–—]\s*(\d+(?:\.\d+)?)\s*)?mm\b/gu,
-      (_, start: string, end: string | undefined) =>
-        `${Number(start)}mm${end === undefined ? "" : ` ${Number(end)}mm`}`,
-    )
-    .replace(
-      /\bf\s*\/?\s*(\d+(?:\.\d+)?)(?:\s*[-–—]\s*(\d+(?:\.\d+)?))?/g,
-      (_, start: string, end: string | undefined) => `f${Number(start)}${end === undefined ? "" : ` f${Number(end)}`}`,
-    )
-    .replace(/[^\p{L}\p{N}.]+/gu, " ")
-    .replace(/(?<!\d)\.|\.(?!\d)/g, " ")
-    .replace(/\d+(?:\.\d+)?/g, (number) => String(Number(number)))
-    .trim()
-    .replace(/\s+/g, " ");
 }
 
 function indexLensName(name: string) {
@@ -122,6 +107,36 @@ const SEARCH_LENSES = SUMMARY_KEYS.map((key) => {
   };
 });
 
+const SEARCH_LENS_NAMES = SEARCH_LENSES.flatMap((entry) => {
+  const canonical = {
+    ...entry,
+    matchedName: entry.data.name,
+    matchKind: "canonical" as const,
+    relationshipLabel: undefined,
+    relationPriority: 0,
+  };
+  const aliases = (entry.data.aliases ?? []).map((alias) => ({
+    ...entry,
+    matchedName: alias.name,
+    ...indexLensName(alias.name),
+    matchKind: "alias" as const,
+    relationshipLabel: `Alias of ${entry.data.name}`,
+    relationPriority: 1,
+  }));
+  const manufacturers = (entry.data.manufacturedBy ?? []).map((manufacturer) => {
+    const entity = manufacturer.entity ?? manufacturer.maker;
+    return {
+      ...entry,
+      matchedName: entry.data.name,
+      ...indexLensName(`${entity} ${manufacturer.maker}`),
+      matchKind: "manufacturer" as const,
+      relationshipLabel: `Manufactured by ${entity}`,
+      relationPriority: 2,
+    };
+  });
+  return [canonical, ...aliases, ...manufacturers];
+});
+
 /* Teleconverter names carry the same optical quantities as lens names, so they share the lens-name matcher. */
 const SEARCH_TELECONVERTERS = TELECONVERTER_SUMMARY_LIST.map((data) => ({
   key: data.key,
@@ -139,10 +154,23 @@ export function searchCatalog(query: string): CatalogSearchResults {
   const lensQuery = normalizeLensSearchText(query);
 
   const lensWords = lensQuery.split(" ").filter(Boolean);
-  const lenses = SEARCH_LENSES.filter((entry) => matchesIndexedLens(entry, lensWords))
-    .map((entry) => ({ ...entry, score: matchScore(entry.normalizedName, lensQuery) }))
-    .sort((a, b) => a.score - b.score || catalogCollator.compare(a.data.name, b.data.name))
-    .map(({ key, data }) => ({ type: "lens" as const, key, data }));
+  const rankedLensNames = SEARCH_LENS_NAMES.filter((entry) => matchesIndexedLens(entry, lensWords))
+    .map((entry) => ({
+      ...entry,
+      score: matchScore(entry.normalizedName, lensQuery) * 10 + entry.relationPriority,
+    }))
+    .sort(
+      (a, b) =>
+        a.score - b.score ||
+        catalogCollator.compare(a.matchedName, b.matchedName) ||
+        catalogCollator.compare(a.data.name, b.data.name),
+    );
+  const seenLensKeys = new Set<string>();
+  const lenses = rankedLensNames.flatMap(({ key, data, matchedName, matchKind, relationshipLabel }) => {
+    if (seenLensKeys.has(key)) return [];
+    seenLensKeys.add(key);
+    return [{ type: "lens" as const, key, data, matchedName, matchKind, relationshipLabel }];
+  });
 
   const teleconverters = SEARCH_TELECONVERTERS.filter((entry) => matchesIndexedLens(entry, lensWords))
     .map((entry) => ({ ...entry, score: matchScore(entry.normalizedName, lensQuery) }))
@@ -178,9 +206,9 @@ export function exactSearchTarget(query: string): string | null {
   const compactQuery = normalizedQuery.replaceAll(" ", "");
   const lensQuery = normalizeLensSearchText(query);
 
-  const lensMatches = SEARCH_LENSES.filter(({ normalizedName }) => normalizedName === lensQuery).map(({ key }) =>
-    canonicalPagePath(`/lens/${key}`),
-  );
+  const lensMatches = SEARCH_LENS_NAMES.filter(
+    ({ normalizedName, matchKind }) => matchKind !== "manufacturer" && normalizedName === lensQuery,
+  ).map(({ key }) => canonicalPagePath(`/lens/${key}`));
   const teleconverterMatches = SEARCH_TELECONVERTERS.filter(({ normalizedName }) => normalizedName === lensQuery).map(
     ({ key }) => canonicalPagePath(`/teleconverters/${key}`),
   );

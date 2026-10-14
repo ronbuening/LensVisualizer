@@ -14,6 +14,7 @@ import {
   LENS_SUMMARIES,
 } from "../../utils/catalog/lensSummaries.js";
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
+import { allRelationshipMountIds, lensMakerAssociations } from "../../utils/catalog/lensRelationships.js";
 import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../utils/catalog/lensTaxonomy.js";
 import type {
   CatalogLensEntry,
@@ -79,12 +80,14 @@ function lensAperture(data: LensSummary): number | null {
 function buildCatalogEntries(keys: readonly string[]): CatalogLensEntry[] {
   return keys.map((key) => {
     const data = LENS_SUMMARIES[key];
-    const lensMounts = (data.lensMounts ?? []).map((mountId) => LENS_MOUNT_BY_ID[mountId]);
+    const makerAssociations = lensMakerAssociations(data);
+    const lensMounts = allRelationshipMountIds(data).map((mountId) => LENS_MOUNT_BY_ID[mountId]);
     const imageFormat = data.imageFormat ? IMAGE_FORMAT_BY_ID[data.imageFormat] : null;
     return {
       key,
       data,
       maker: deriveMaker(data.name, data.maker),
+      makerAssociations,
       focalRange: lensFocalRange(data),
       aperture: lensAperture(data),
       patentYear: data.patentYear ?? null,
@@ -140,11 +143,11 @@ export function defaultCustomFilter(bounds: FilterBounds): CustomFilterState {
 export function buildMakerOptions(entries: CatalogLensEntry[]): MakerOption[] {
   const counts = new Map<string, MakerOption>();
   for (const entry of entries) {
-    const existing = counts.get(entry.maker.slug);
-    if (existing) {
-      existing.count++;
-    } else {
-      counts.set(entry.maker.slug, { display: entry.maker.display, slug: entry.maker.slug, count: 1 });
+    const makers = new Map(entry.makerAssociations.map((association) => [association.maker.slug, association.maker]));
+    for (const maker of makers.values()) {
+      const existing = counts.get(maker.slug);
+      if (existing) existing.count++;
+      else counts.set(maker.slug, { display: maker.display, slug: maker.slug, count: 1 });
     }
   }
   return Array.from(counts.values()).sort((a, b) => catalogCollator.compare(a.display, b.display));
@@ -198,9 +201,19 @@ export function buildImageFormatOptions(entries: CatalogLensEntry[]): ImageForma
  * @returns true when the entry should remain visible
  */
 export function matchesCustomFilter(entry: CatalogLensEntry, filter: CustomFilterState, bounds: FilterBounds): boolean {
-  const makerMatch = filter.makerSlugs.length === 0 || filter.makerSlugs.includes(entry.maker.slug);
+  const makerMatch =
+    filter.makerSlugs.length === 0 ||
+    entry.makerAssociations.some((association) => filter.makerSlugs.includes(association.maker.slug));
   const mountMatch =
     filter.lensMountIds.length === 0 || entry.lensMounts.some((mount) => filter.lensMountIds.includes(mount.id));
+  const associationMatch =
+    filter.makerSlugs.length === 0 ||
+    filter.lensMountIds.length === 0 ||
+    entry.makerAssociations.some(
+      (association) =>
+        filter.makerSlugs.includes(association.maker.slug) &&
+        association.lensMounts.some((mountId) => filter.lensMountIds.includes(mountId)),
+    );
   const imageFormatMatch =
     filter.imageFormatIds.length === 0 ||
     (entry.imageFormat !== null && filter.imageFormatIds.includes(entry.imageFormat.id));
@@ -217,7 +230,9 @@ export function matchesCustomFilter(entry: CatalogLensEntry, filter: CustomFilte
       ? filter.patentYearMin === bounds.patentYearMin && filter.patentYearMax === bounds.patentYearMax
       : entry.patentYear >= filter.patentYearMin && entry.patentYear <= filter.patentYearMax;
 
-  return makerMatch && mountMatch && imageFormatMatch && focalMatch && apertureMatch && patentYearMatch;
+  return (
+    makerMatch && mountMatch && associationMatch && imageFormatMatch && focalMatch && apertureMatch && patentYearMatch
+  );
 }
 
 /**
@@ -250,10 +265,13 @@ export function hasActiveCustomFilters(filter: CustomFilterState, bounds: Filter
 export function groupByMaker(entries: CatalogLensEntry[]): MakerGroup[] {
   const groups = new Map<string, MakerGroup>();
   for (const entry of entries) {
-    if (!groups.has(entry.maker.slug)) {
-      groups.set(entry.maker.slug, { display: entry.maker.display, slug: entry.maker.slug, lenses: [] });
+    const makers = new Map(entry.makerAssociations.map((association) => [association.maker.slug, association.maker]));
+    for (const maker of makers.values()) {
+      if (!groups.has(maker.slug)) {
+        groups.set(maker.slug, { display: maker.display, slug: maker.slug, lenses: [] });
+      }
+      groups.get(maker.slug)!.lenses.push(entry);
     }
-    groups.get(entry.maker.slug)!.lenses.push(entry);
   }
   return Array.from(groups.values()).sort((a, b) => catalogCollator.compare(a.display, b.display));
 }

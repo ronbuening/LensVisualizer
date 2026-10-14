@@ -362,6 +362,7 @@ describe("lensJsonLd", () => {
   it("omits the manufacturer claim for an unattributed prescription", () => {
     const ld = lensJsonLd({ ...makeLens(), maker: null }, "prototype");
     expect(ld.about).not.toHaveProperty("manufacturer");
+    expect(ld.about).not.toHaveProperty("brand");
   });
 
   it("includes manufacturer derived from lens name", () => {
@@ -370,6 +371,32 @@ describe("lensJsonLd", () => {
     const about = ld.about as Record<string, unknown>;
     const manufacturer = about.manufacturer as Record<string, unknown>;
     expect(manufacturer.name).toBe("Nikon");
+    expect((about.brand as Record<string, unknown>).name).toBe("Nikon");
+  });
+
+  it("publishes aliases and documented manufacturers without changing the canonical product name", () => {
+    const lens = makeLens({
+      aliases: [
+        {
+          maker: "Alternate",
+          name: "ALTERNATE 50mm f/1.8",
+          kind: "rebrand",
+          sources: [{ label: "Source", url: "https://example.com/alias" }],
+        },
+      ],
+      manufacturedBy: [
+        {
+          maker: "Factory",
+          entity: "Factory Optical Co.",
+          sources: [{ label: "Source", url: "https://example.com/factory" }],
+        },
+      ],
+    });
+    const about = lensJsonLd(lens, "nikkor-z-50mm").about as Record<string, unknown>;
+
+    expect(about.name).toBe(lens.name);
+    expect(about.alternateName).toEqual(["ALTERNATE 50mm f/1.8"]);
+    expect((about.manufacturer as Record<string, unknown>).name).toBe("Factory Optical Co.");
   });
 
   it("description matches lensPageDescription", () => {

@@ -37,3 +37,23 @@ export function stableHash(value: string): string {
   }
   return (hash >>> 0).toString(36);
 }
+
+/** Preserve optical quantities before punctuation normalization loses their units and decimals. */
+export function normalizeLensSearchText(value: string): string {
+  return transliterateCatalogText(value)
+    .toLocaleLowerCase()
+    .replace(
+      /(?<![\p{L}\p{N}.])(\d+(?:\.\d+)?)\s*(?:[-–—]\s*(\d+(?:\.\d+)?)\s*)?mm\b/gu,
+      (_, start: string, end: string | undefined) =>
+        `${Number(start)}mm${end === undefined ? "" : ` ${Number(end)}mm`}`,
+    )
+    .replace(
+      /\bf\s*\/?\s*(\d+(?:\.\d+)?)(?:\s*[-–—]\s*(\d+(?:\.\d+)?))?/g,
+      (_, start: string, end: string | undefined) => `f${Number(start)}${end === undefined ? "" : ` f${Number(end)}`}`,
+    )
+    .replace(/[^\p{L}\p{N}.]+/gu, " ")
+    .replace(/(?<!\d)\.|\.(?!\d)/g, " ")
+    .replace(/\d+(?:\.\d+)?/g, (number) => String(Number(number)))
+    .trim()
+    .replace(/\s+/g, " ");
+}

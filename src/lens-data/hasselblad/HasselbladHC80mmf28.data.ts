@@ -32,6 +32,18 @@ const LENS_DATA = {
   key: "hasselblad-hc-80-f28",
   maker: "Hasselblad",
   name: "HASSELBLAD HC 80mm f/2.8",
+  manufacturedBy: [
+    {
+      maker: "Fujifilm",
+      entity: "Fujinon",
+      sources: [
+        {
+          label: "Hasselblad lens history",
+          url: "https://cdn.hasselblad.com/f/77891/x/c475c39d63/the_evolution_of_lenses.pdf",
+        },
+      ],
+    },
+  ],
   subtitle: "US 2001/0050819 A1 Embodiment 3 — Kazunori Ohno / Fujifilm",
   specs: ["6 ELEMENTS / 6 GROUPS", "f ≈ 80.0 mm", "F/2.8", "2ω ≈ 46°", "ALL-SPHERICAL"],
 

@@ -107,6 +107,30 @@ describe("catalog search", () => {
     expect(matchesLensSearch("Example 18–50mm f/4–5.6", "50mm f1.8")).toBe(false);
     expect(matchesLensSearch("Voigtländer 50mm f/1.8", "voigtlander 50")).toBe(true);
   });
+
+  it("finds alternate marketed names on their canonical lens route", () => {
+    const match = searchCatalog("Rokinon AF 18mm f/2.8 FE").lenses.find(
+      (candidate) => candidate.key === "samyang-af-18mm-f28-fe",
+    );
+
+    expect(match).toMatchObject({
+      matchedName: "ROKINON AF 18mm f/2.8 FE",
+      matchKind: "alias",
+      relationshipLabel: "Alias of SAMYANG AF 18mm f/2.8 FE",
+    });
+    expect(exactSearchTarget("Rokinon AF 18mm f/2.8 FE")).toBe("/lens/samyang-af-18mm-f28-fe/");
+    expect(exactSearchTarget("Rokinon AF 18 mm f2.80 FE")).toBe("/lens/samyang-af-18mm-f28-fe/");
+    expect(searchCatalog("Rokinon 18mm f2.8").lenses).toEqual([expect.objectContaining({ key: match!.key })]);
+    expect(searchCatalog("Rokinon 180mm f2.8").lenses.some(({ key }) => key === match!.key)).toBe(false);
+    expect(searchCatalog("Rokinon 18mm f2").lenses.some(({ key }) => key === match!.key)).toBe(false);
+  });
+
+  it("finds contract manufacturers without treating their names as exact lens targets", () => {
+    expect(searchCatalog("Fujinon").lenses).toEqual(
+      expect.arrayContaining([expect.objectContaining({ key: "hasselblad-hc-80-f28", matchKind: "manufacturer" })]),
+    );
+    expect(exactSearchTarget("Fujinon")).toBeNull();
+  });
 });
 
 describe("author catalog", () => {

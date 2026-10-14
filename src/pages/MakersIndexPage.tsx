@@ -8,7 +8,8 @@ import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
-import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { lensMakerAssociations } from "../utils/catalog/lensRelationships.js";
 import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
@@ -25,12 +26,13 @@ function getAllMakers(): MakerEntry[] {
   const counts = new Map<string, MakerEntry>();
   for (const key of SUMMARY_KEYS) {
     const data = LENS_SUMMARIES[key];
-    const maker = deriveMaker(data.name, data.maker);
-    const existing = counts.get(maker.slug);
-    if (existing) {
-      existing.count++;
-    } else {
-      counts.set(maker.slug, { display: maker.display, slug: maker.slug, count: 1 });
+    const makers = new Map(
+      lensMakerAssociations(data).map((association) => [association.maker.slug, association.maker]),
+    );
+    for (const maker of makers.values()) {
+      const existing = counts.get(maker.slug);
+      if (existing) existing.count++;
+      else counts.set(maker.slug, { display: maker.display, slug: maker.slug, count: 1 });
     }
   }
   return Array.from(counts.values()).sort((a, b) => catalogCollator.compare(a.display, b.display));

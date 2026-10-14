@@ -14,6 +14,7 @@ import type {
   LensMountMetadata,
 } from "../../utils/catalog/lensTaxonomy.js";
 import type { PatentPartyRole } from "../../types/catalog.js";
+import type { LensMakerAssociation } from "../../utils/catalog/lensRelationships.js";
 
 export type GroupMode = "maker" | PatentPartyRole | "focal" | "year-asc" | "year-desc" | "mount" | "format";
 export type LensIndexViewMode = "visible" | "all" | "debug";
@@ -25,6 +26,7 @@ export interface CatalogLensEntry {
     display: string;
     slug: string;
   };
+  makerAssociations: LensMakerAssociation[];
   focalRange: [number, number] | null;
   aperture: number | null;
   patentYear: number | null;

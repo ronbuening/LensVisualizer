@@ -56,6 +56,15 @@ function validBreadcrumbSource(source: LensBreadcrumbSource | undefined): LensBr
   }
   if (source.type === "mount" && isLensMountId(source.id)) return source;
   if (source.type === "format" && isImageFormatId(source.id)) return source;
+  if (
+    source.type === "maker" &&
+    typeof source.slug === "string" &&
+    /^[a-z0-9]+(?:[.-][a-z0-9]+)*$/.test(source.slug) &&
+    typeof source.label === "string" &&
+    source.label.trim().length > 0
+  ) {
+    return source;
+  }
   if (source.type === "teleconverter" && typeof source.id === "string" && TELECONVERTER_CATALOG[source.id]) {
     return source;
   }
@@ -169,6 +178,18 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
                       {maker.display}
                     </Link>
                   )}
+                  <span style={separatorStyle}>/</span>
+                  <span style={{ color: t.body }}>{lensA.name}</span>
+                </>
+              ) : source?.type === "maker" ? (
+                <>
+                  <Link to="/makers/" style={linkStyle}>
+                    Makers
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <Link to={`/makers/${source.slug}/`} style={linkStyle}>
+                    {source.label}
+                  </Link>
                   <span style={separatorStyle}>/</span>
                   <span style={{ color: t.body }}>{lensA.name}</span>
                 </>

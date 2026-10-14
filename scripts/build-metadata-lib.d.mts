@@ -18,6 +18,7 @@ export interface PublicationEntry extends FreshnessEntry {
 export interface LensFreshnessInput {
   key: string;
   makerSlug: string;
+  makerSlugs?: string[];
   lensMountIds?: string[];
   imageFormatId?: string | null;
   freshness: FreshnessEntry;

@@ -10,6 +10,7 @@ import DescriptionPanel from "./DescriptionPanel.js";
 import { ENABLE_ANALYSIS_VIEW } from "../../utils/featureFlags.js";
 import type { Theme } from "../../types/theme.js";
 import type { DesktopView, MobileView } from "../../types/state.js";
+import type { LensData } from "../../types/optics.js";
 
 interface SingleLensContentProps {
   theme: Theme;
@@ -18,6 +19,7 @@ interface SingleLensContentProps {
   showDesktopToggle: boolean;
   mobileView: MobileView;
   lensKey: string;
+  lens?: LensData;
   teleconverterKey?: string | null;
   markdown: string | null | undefined;
 }
@@ -28,6 +30,7 @@ export default function SingleLensContent({
   effectiveDesktopView,
   mobileView,
   lensKey,
+  lens,
   teleconverterKey = null,
   markdown,
 }: SingleLensContentProps) {
@@ -54,7 +57,7 @@ export default function SingleLensContent({
         transition: "background 0.3s",
       }}
     >
-      <DescriptionPanel markdown={markdown} theme={t} />
+      <DescriptionPanel markdown={markdown} theme={t} lens={lens} />
     </div>
   );
 

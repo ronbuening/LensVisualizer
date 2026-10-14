@@ -110,6 +110,10 @@ Catalog modules live under `src/utils/catalog/`, content registries under `src/u
   catalog by hand.
 - `lensSummaries.ts` is generated lightweight metadata (plus freshness lists) for index-style pages, search, and the
   author/assignee/patent catalogs, which must never ship full prescriptions.
+- `lensRelationships.ts` expands sourced aliases and manufacturers into maker/mount associations for catalog pages
+  and filters. Search indexes alternate names and manufacturer entities from the summaries while keeping one result
+  and one canonical route per prescription. The authoring contract lives in `src/lens-data/LENS_DATA_SPEC.md`;
+  `scripts/lens-relationship-validity.mjs` checks catalog-wide name collisions and route memberships at build time.
 - `lensTaxonomy.ts` owns the canonical mount and image-format ids (`src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md`);
   `makerDetails.ts`, `mountDetails.ts`, and `imageFormatDetails.ts` hold the display metadata for taxonomy pages.
 - `patentRecords.ts` is the pure, index-free leaf shared by `patentCatalog.ts` and `authorCatalog.ts`;

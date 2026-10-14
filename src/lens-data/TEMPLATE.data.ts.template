@@ -59,6 +59,20 @@ const LENS_DATA = {
   apertureMarketing:    1.8,            // marketed max f-number
   apertureDesign:       1.85,           // patent/computed max f-number; omit if same as apertureMarketing
   lensMounts:           ["nikon-z"],     // optional; canonical ids from src/utils/catalog/lensTaxonomy.ts only, e.g. ["nikon-z", "sony-fe"]
+  // aliases: [{
+  //   maker: "Alternate Brand",
+  //   name: "ALTERNATE BRAND 50mm f/1.8",
+  //   kind: "rebrand",                    // "rebrand" | "regional-name" | "cosmetic-variant"
+  //   // lensMounts: ["sony-fe"],         // omit to inherit top-level lensMounts
+  //   sources: [{ label: "Official product page", url: "https://example.com/product" }],
+  //   // note: "Short qualification only; detailed reasoning belongs in the analysis file.",
+  // }],
+  // manufacturedBy: [{
+  //   maker: "Contract Manufacturer",
+  //   // entity: "Historical legal or division name",
+  //   // lensMounts: ["nikon-z"],         // omit to inherit top-level lensMounts
+  //   sources: [{ label: "Manufacturing source", url: "https://example.com/source" }],
+  // }],
   imageFormat:          "135-full-frame", // optional; ONE canonical id, e.g. "aps-c", "110", "4x5"; required for perspective-control sampling
   patentNumber:         "US 10,571,651 B2", // jurisdiction + number + kind code; no example/table label
   patentAuthors:        ["Hideki Sakai"],   // inventors in source order, Given Middle Family; [] only when the source names none
