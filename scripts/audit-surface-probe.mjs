@@ -10,9 +10,10 @@
  *                     it — watch for the slope changing sign, which is the
  *                     surface turning over. Never take an `sd` past that height.
  *
- *   --sd <label>=<mm> Run the full validator with those semi-diameters
- *                     substituted (edge thickness, SD ratio, rim slope, conic
- *                     height, cross-gap sag intrusion) without touching the file.
+ *   --sd <label>=<mm> Run the full validator, then canonical ingest, with those
+ *                     semi-diameters substituted (edge thickness, SD ratio, rim
+ *                     slope, conic height, cross-gap sag intrusion) without
+ *                     touching the file.
  *
  * With no flags it validates the file as stored.
  *
@@ -29,8 +30,9 @@ import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
 const { conicPolySag, sag, sagSlopeRaw } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
-const validateLensData = (await import(pathToFileURL(join(ROOT, "src/optics/validateLensData.ts")).href)).default;
-const LENS_DEFAULTS = (await import(pathToFileURL(join(ROOT, "src/lens-data/defaults.ts")).href)).default;
+const { ingestLensV1, toLensData, validateAuthoredLensData } = await import(
+  pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href
+);
 
 const argv = process.argv.slice(2);
 const dataFile = argv[0];
@@ -89,13 +91,23 @@ for (let index = 0; index < argv.length; index++) {
   }
 }
 
-const candidate = structuredClone({ ...LENS_DEFAULTS, ...lens });
+/* The file as authored, with the substituted semi-diameters, checked in the order buildLens checks it: the validator
+ * first, then canonical ingest, whose refusals are errors too. */
+const candidate = structuredClone(lens);
 for (const surface of candidate.surfaces) if (overrides.has(surface.label)) surface.sd = overrides.get(surface.label);
 for (const label of overrides.keys()) {
   if (!candidate.surfaces.some((surface) => surface.label === label)) console.log(`!! no surface labelled "${label}"`);
 }
 
-const errors = validateLensData(candidate);
+let errors = validateAuthoredLensData(candidate);
+if (errors.length === 0) {
+  try {
+    toLensData(ingestLensV1(candidate));
+  } catch (error) {
+    if (!Array.isArray(error?.issues)) throw error;
+    errors = error.issues;
+  }
+}
 if (overrides.size) console.log(`validating with ${[...overrides].map(([l, v]) => `${l}=${v}`).join(" ")}`);
 if (!errors.length) console.log("OK — no validation errors");
 else for (const error of errors) console.log(`ERR ${error}`);

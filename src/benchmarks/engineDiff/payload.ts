@@ -752,7 +752,10 @@ export const ECHO_DEFAULTS: Readonly<Record<"lens" | "element" | "rearPlate", re
   rearPlate: [{ v1Field: "indexReference", value: "d" }],
 };
 
-/** How far a finite conjugate may sit from the station it names: the validator's tolerance. */
+/**
+ * How far a finite conjugate may sit from the station it names: the validator's tolerance, in focus coordinate for
+ * `focusT` and in station index (`zoomT × (n − 1)`) for `zoomT`.
+ */
 const STATION_COORDINATE_TOLERANCE = 1e-8;
 
 function isDefaultValue(row: EchoDefault, value: unknown): boolean {
@@ -775,10 +778,24 @@ function withoutElementDefaults(element: unknown): unknown {
   return isRecord(element) ? withoutDefaults(element, ECHO_DEFAULTS.element) : element;
 }
 
-/** The coordinate in `stations` within the tolerance of `value`, or `value` itself. */
-function snapToStation(value: unknown, stations: readonly number[]): unknown {
+/** The focus keyframe within the tolerance of `value`, or `value` itself. */
+function snapToKeyframe(value: unknown, keyframes: readonly number[]): unknown {
   if (typeof value !== "number") return value;
-  return stations.find((station) => Math.abs(station - value) < STATION_COORDINATE_TOLERANCE) ?? value;
+  return keyframes.find((keyframe) => Math.abs(keyframe - value) < STATION_COORDINATE_TOLERANCE) ?? value;
+}
+
+/**
+ * The coordinate of the zoom station `value` names, or `value` itself. Like the validator, it measures the distance
+ * in station index, not in zoomT, and writes a station at 0 as 0, -0 included; a prime's one station is at 0, and the
+ * validator takes no other value for it. Measured in zoomT before S2.P1.T2; no catalog record moves.
+ */
+function snapToZoomStation(value: unknown, stationCount: number): unknown {
+  if (typeof value !== "number") return value;
+  if (stationCount <= 1) return value === 0 ? 0 : value;
+  const scaled = value * (stationCount - 1);
+  const station = Math.round(scaled);
+  const named = Math.abs(scaled - station) <= STATION_COORDINATE_TOLERANCE && station >= 0 && station < stationCount;
+  return named ? station / (stationCount - 1) + 0 : value;
 }
 
 /**
@@ -793,12 +810,10 @@ function snapToStation(value: unknown, stations: readonly number[]): unknown {
  */
 export function snapConjugate(conjugate: unknown, keyframes: readonly number[], stationCount: number): unknown {
   if (!isRecord(conjugate)) return conjugate;
-  const stations =
-    stationCount <= 1 ? [0] : Array.from({ length: stationCount }, (_, station) => station / (stationCount - 1));
   return {
     ...conjugate,
-    focusT: snapToStation(conjugate.focusT, keyframes),
-    zoomT: snapToStation(conjugate.zoomT, stations),
+    focusT: snapToKeyframe(conjugate.focusT, keyframes),
+    zoomT: snapToZoomStation(conjugate.zoomT, stationCount),
   };
 }
 

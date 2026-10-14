@@ -486,7 +486,7 @@ export interface LensData {
   apertureBladeRoundedness?: number;
 }
 
-/** Fields provided by LENS_DEFAULTS — optional in raw lens data files */
+/** Fields the schema's catalog defaults supply (`src/optics/prescription/defaults.ts`) — optional in raw lens data files */
 type DefaultedFields =
   | "rayFractions"
   | "rayLeadFrac"

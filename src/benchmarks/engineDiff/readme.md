@@ -77,7 +77,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `budgets.ts` | Budgets helper module | none | src/benchmarks | ChangeClass, ComparisonKind, QuantityOrigin, Quantity, QUANTITIES, QuantityId, C2_CRITERIA, budgetOf, +7 more |
-| `captureEntry.ts` | Capture Entry helper module | src/benchmarks (7) | none | classifyCatalogChanges, comparePermittedPairs, createDifferentialRun, dataChangeOf, parseDeclaredExceptions, renderDataImpactMarkdown, renderSummaryMarkdown, decodeValue, +16 more |
+| `captureEntry.ts` | Capture Entry helper module | src/benchmarks (7) | none | classifyCatalogChanges, comparePermittedPairs, createDifferentialRun, dataChangeOf, parseDeclaredExceptions, renderDataImpactMarkdown, renderSummaryMarkdown, decodeValue, +17 more |
 | `compare.ts` | Compare helper module | src/benchmarks (3) | src/benchmarks | ComparableRecord, DifferenceKind, ComparisonName, Finding, StatusCounts, PayloadCounts, DataChange, QuantityTally, +28 more |
 | `payload.ts` | Payload helper module | none | src/benchmarks (2) | EncodedValue, SKIPPED_BACK_POINTER_TAG, encodeValue, decodeValue, sha256Hex, maskBudgetedNumbers, columnize, projectTrace, +14 more |
 | `requests.ts` | Requests helper module | none | src/benchmarks (2) | RequestFamily, CaptureState, LensRef, CaptureRequest, CatalogLens, RequestCatalog, lensId, stateId, +35 more |

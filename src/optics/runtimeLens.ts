@@ -339,6 +339,20 @@ function hasFoldedOptics(data: LensData): boolean {
 }
 
 /**
+ * Throw the validator's messages for lens data it rejects, as `buildLens()` throws them.
+ *
+ * @param data - LENS_DATA object (after defaults merging)
+ * @throws if validation finds any issues
+ */
+export function assertValidLensData(data: LensData): void {
+  const validationErrors = validateLensData(data as Record<string, any>);
+  if (validationErrors.length > 0)
+    throw new Error(
+      `Lens data "${data.key || "?"}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join("\n  • ")}`,
+    );
+}
+
+/**
  * Build a frozen runtime lens object from validated LENS_DATA.
  *
  * Pipeline: validate → resolve label indices → derive optical constants
@@ -353,11 +367,7 @@ function hasFoldedOptics(data: LensData): boolean {
  * @throws        if validation finds any issues
  */
 export default function buildLens(authoredData: LensData): RuntimeLens {
-  const validationErrors = validateLensData(authoredData as Record<string, any>);
-  if (validationErrors.length > 0)
-    throw new Error(
-      `Lens data "${authoredData.key || "?"}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join("\n  • ")}`,
-    );
+  assertValidLensData(authoredData);
 
   /* Rear plates become real traced surfaces here, before any derived constant, so EFL, pupils, field limits,
    * prepared states and every analysis agree; synthetic plates are dropped only from drawn spans and lists. */

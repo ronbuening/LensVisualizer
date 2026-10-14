@@ -764,7 +764,7 @@ describe("makeSurfaceDispersion preference cascade", () => {
     const surfaces: SurfaceData[] = [
       { label: "1", R: 60, d: 6, nd: crown.nd, sd: 12, elemId: 1 },
       { label: "2", R: -45, d: 2.5, nd: flint.nd, sd: 12, elemId: 2 },
-      { label: "3", R: -130, d: 95, nd: 1.0, sd: 12, elemId: 2 },
+      { label: "3", R: -130, d: 95, nd: 1.0, sd: 12, elemId: 0 },
     ];
     const dispersion = surfaces.map((surface) =>
       makeSurfaceDispersion(

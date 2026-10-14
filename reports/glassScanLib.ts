@@ -22,7 +22,7 @@ import {
   type GlassEntry,
 } from "../src/optics/glassCatalog.js";
 import { buildSurfaceDispersionIndex, normalLinePgF, type SurfaceDispersion } from "../src/optics/dispersion.js";
-import LENS_DEFAULTS from "../src/lens-data/defaults.js";
+import { ingestLensV1, toLensData } from "../src/optics/buildLens.js";
 import type { ElementData, LensData, RefractiveIndexReferenceLine, SurfaceData } from "../src/types/optics.js";
 
 /** ΔPgF spread that's plausible across melt variants. */
@@ -61,11 +61,12 @@ export interface LensWalkContext {
 }
 
 /**
- * Walk every registered lens data module: merge defaults, normalize the
- * glass-relevant fields, and visit. Lenses that fail validation are skipped,
- * matching the previous behavior where a throwing `buildLens` skipped the
- * lens (build correctness is tested elsewhere). Returns the number of lenses
- * visited.
+ * Walk every registered lens data module: read it through canonical ingest,
+ * whose V1 view applies the schema defaults, normalize the glass-relevant
+ * fields, and visit. Lenses that ingest refuses or that fail validation are
+ * skipped, matching the previous behavior where a throwing `buildLens`
+ * skipped the lens (build correctness is tested elsewhere). Returns the
+ * number of lenses visited.
  */
 export function walkLensSurfaces(
   modules: Record<string, { default: LensData }>,
@@ -76,8 +77,13 @@ export function walkLensSurfaces(
   for (const [modulePath, mod] of Object.entries(modules)) {
     const raw = mod.default;
     if (!raw?.key) continue;
-    const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
     totalLenses++;
+    let data: LensData;
+    try {
+      data = toLensData(ingestLensV1(raw));
+    } catch {
+      continue;
+    }
 
     if (validateLensData(data).length > 0) continue;
     /* Rear plates are opt-in so element coverage shares stay lens-only; label-compatibility scans include them. */

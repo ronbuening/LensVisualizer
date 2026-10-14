@@ -292,15 +292,29 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
   reads it, and ingest spreads it over the stations as it spreads a declaration. Ingest does not validate; it refuses
   only what the canonical form cannot hold, naming the field and its authored path: two V1 copies that disagree (a
   surface `nd` and its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within
-  1e-8), a zoom field on a prime, `zoomLabels` that are neither `[wide, tele]` nor one per station, `varLabels` (or
-  the ring's) that name no gap or are out of surface order, and fields V1 does not define or only the engine writes.
-  Ingest does not check types, so wrong-typed input the validator refuses (`asph: null`) can fail with a plain
-  `TypeError`.
+  the validator's 1e-8, in station index for `zoomT`), a zoom field on a prime, `zoomLabels` that are neither
+  `[wide, tele]` nor one per station, `varLabels` (or the ring's) that name no gap, are not `[label, text]` pairs or
+  are out of surface order, an `asph` or `var` that is not an object keyed by surface label, and fields V1 does not
+  define or only the engine writes. Ingest does not otherwise check types, so other wrong-typed input can fail with a
+  plain `TypeError`, and `buildLens` asks the validator about every file first. The validator reads `asph: null` and
+  `var: null` as absent, which is why ingest names those itself. Some refusals are stricter than the validator; the
+  plan's S2.P1.T1 lists them. A field added to `LensDataInput` fails the typecheck at `LENS_FIELDS` in `ingestV1.ts`
+  until ingest and the view carry it.
 - `toLensData` (`toLensData.ts`) is the V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
   and `toLensDataInput` gives it back as authored.
-- Nothing in production ingests yet: the catalogs and `buildLens` still spread `src/lens-data/defaults.ts`, whose
-  values `defaults.ts` restates under a test, until S2.P1.T2 routes them through ingest. `buildLens.ts` re-exports
-  the two ingest functions, which the differential harness reads for the semantic fingerprint.
+- Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the
+  defaults table but the validator-first spread below. `buildLens.ts` re-exports the two ingest functions and the two
+  V1 views (`toLensData`, `toTeleconverterData`), the way code outside the engine reaches them until S8.P1.T2.
+  - `buildLens` reads an authored file through ingest and builds its view (`withLensDefaults` in
+    `normalizeLensData.ts`). The validator is asked about every V1 file first; the comment at the spread in
+    `normalizeLensData.ts` says how, and where that exception ends.
+  - A pair `attachTeleconverter()` composed is known only by the `attachedTeleconverter` marker it writes and is
+    built as it is: its host and converter each came through ingest in their catalogs. This is a temporary seam until
+    S5.P1.T4 composes on the canonical form. Rear plates expand after ingest, inside `buildLens`.
+  - The lens and converter catalogs ingest an entry on its first read and keep it, so every read of a key returns
+    the same object. Their key lists read only identity fields, from the files as authored.
+  - The glass scan, the field-coverage and surface-probe audits, and the converter validator's reference host read
+    lens data the same way.
 
 ### Rear Plates
 

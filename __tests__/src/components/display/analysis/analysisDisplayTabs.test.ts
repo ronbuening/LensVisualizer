@@ -12,7 +12,7 @@ import { describe, it, expect } from "vitest";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import buildLens from "../../../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../../../src/lens-data/defaults.js";
+import { catalogLensData } from "../../../optics/testLensFixtures.js";
 import {
   computeAnalysisFieldGeometryAtState,
   anchorLayoutToCamera,
@@ -34,14 +34,14 @@ import themes from "../../../../../src/utils/theme/themes.js";
 import Sonnar50f15Raw from "../../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikonFisheye6mmf28Raw from "../../../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
 import type { DistortionSample } from "../../../../../src/optics/distortionAnalysis.js";
-import type { LensData, RuntimeLens } from "../../../../../src/types/optics.js";
+import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import { createAnalysisComputationContext, prepareRuntimeState } from "../../../../../src/optics/compat.js";
 import { INTERACTIVE_ANALYSIS_SAMPLING } from "../../../../../src/optics/analysis/analysisQuality.js";
 import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/index.js";
 import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 
 function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
+  return buildLens(catalogLensData(raw));
 }
 
 function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {

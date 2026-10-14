@@ -46,8 +46,7 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
-const buildLens = (await load("src/optics/buildLens.ts")).default;
-const LENS_DEFAULTS = (await load("src/lens-data/defaults.ts")).default;
+const { default: buildLens, ingestLensV1, toLensData } = await load("src/optics/buildLens.ts");
 const { computeAnalysisFieldGeometryAtState2, computeFieldGeometryAtState2, solveChiefRay2 } =
   await load("src/optics/field/chiefRay.ts");
 const { isFisheyeProjection2, rectilinearProjectionMaxTraceField2 } = await load("src/optics/field/projection.ts");
@@ -262,15 +261,18 @@ function stationLabel(L, index) {
 }
 
 async function auditLens(file, includeHidden) {
-  const lens = { ...LENS_DEFAULTS, ...(await import(pathToFileURL(file).href)).default };
+  const authored = (await import(pathToFileURL(file).href)).default;
   const rel = relative(LENS_DIR, file);
-  const base = { rel, key: lens.key, name: lens.name };
-  if (lens.visible === false && !includeHidden) return { ...base, skipped: "hidden" };
-  if (lens.opticalPath) return { ...base, skipped: "folded optical path" };
-  if (!(IMAGE_FORMAT_BY_ID[lens.imageFormat] || lens.imageCircleMm))
-    return { ...base, skipped: `no usable imageFormat (${String(lens.imageFormat)})` };
+  const base = { rel, key: authored.key, name: authored.name };
+  if (authored.visible === false && !includeHidden) return { ...base, skipped: "hidden" };
+  if (authored.opticalPath) return { ...base, skipped: "folded optical path" };
+  if (!(IMAGE_FORMAT_BY_ID[authored.imageFormat] || authored.imageCircleMm))
+    return { ...base, skipped: `no usable imageFormat (${String(authored.imageFormat)})` };
+  let lens;
   let L;
   try {
+    /* Canonical ingest's V1 view applies the schema defaults, as the catalog does. */
+    lens = toLensData(ingestLensV1(authored));
     L = buildLens(lens);
   } catch (error) {
     return { ...base, skipped: `buildLens failed: ${error.message}` };

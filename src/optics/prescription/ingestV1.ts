@@ -13,12 +13,13 @@
  *   value of its variable gap (exact agreement), or a finite conjugate and the station it names (the validator's
  *   1e-8);
  * - a shape the canonical records cannot hold: a zoom field on a prime, `zoomLabels` that are neither `[wide, tele]`
- *   nor one per station, `varLabels` (or the ring's) naming a gap that does not exist or out of surface order;
+ *   nor one per station, `varLabels` (or the ring's) naming a gap that does not exist, out of surface order or not
+ *   as `[label, text]` pairs, an `asph` or `var` that is not an object of entries keyed by surface label;
  * - a field V1 does not define, or one only the engine writes.
  * Every reason found is reported at once, in a `PrescriptionIngestError` that names each field and its authored path.
- * Ingest does not check types: input of the wrong type, such as `asph: null`, is the validator's to refuse, and
- * ingest may fail on it with a plain `TypeError`. The input is never modified, and the result shares no object with
- * it.
+ * Ingest does not otherwise check types, and may fail on wrong-typed input with a plain `TypeError`; `buildLens` asks
+ * the validator about every file first. The validator reads `asph: null` and `var: null` as absent, which is why
+ * ingest refuses those two by name. The input is never modified, and the result shares no object with it.
  */
 
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
@@ -68,7 +69,10 @@ import {
 /** Radius the V1 format writes for a flat surface; any other flat radius is kept in provenance. */
 export const V1_FLAT_RADIUS = 1e15;
 
-/** How far a finite conjugate's coordinates may sit from the station they name: the validator's tolerance. */
+/**
+ * How far a finite conjugate's coordinates may sit from the station they name, as the validator measures it: in focus
+ * coordinate for `focusT`, and in station index (`zoomT × (n − 1)`) for `zoomT`.
+ */
 const STATION_COORDINATE_TOLERANCE = 1e-8;
 
 /* ── Field inventories ──
@@ -225,6 +229,14 @@ const REAR_PLATE_FIELDS: Readonly<Record<keyof RearPlateData, true>> = {
   source: true,
 };
 
+const CONJUGATE_FIELDS: Readonly<Record<keyof FiniteConjugate, true>> = {
+  focusT: true,
+  zoomT: true,
+  objectDistanceMm: true,
+  distanceReference: true,
+  source: true,
+};
+
 const ABERRATION_CONTROL_FIELDS: Readonly<Record<keyof AberrationControlConfig, true>> = {
   label: true,
   description: true,
@@ -261,14 +273,23 @@ function createContext(): IngestContext {
   return { issues: [], defaulted: [], ignored: {}, v1: { emptyContainers: [] } };
 }
 
-/** A value copied so the prescription shares nothing with the authored file. */
+/**
+ * A value copied so the prescription shares nothing with the authored file. A string, number, boolean, bigint or
+ * `undefined` is its own copy; anything else goes through `structuredClone`, which refuses a function or a symbol.
+ */
 function copy<T>(value: T): T {
-  return structuredClone(value);
+  const kind = typeof value;
+  return kind === "object" || kind === "function" || kind === "symbol" ? structuredClone(value) : value;
 }
 
 /** Members that are present and not `undefined`; V1 treats an `undefined` member as an omitted one. */
 function has(record: Untyped, field: string): boolean {
   return Object.hasOwn(record, field) && record[field] !== undefined;
+}
+
+/** Whether a value is a plain record: an object that is neither `null` nor an array. */
+function isRecord(value: unknown): value is Untyped {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
 /** Set `target[field]` to a copy of `value` unless the value is `undefined`. */
@@ -285,7 +306,9 @@ function refuseUnknownFields(
   for (const field of Object.keys(record)) {
     if (record[field] === undefined || Object.hasOwn(known, field)) continue;
     const path = at ? `${at}.${field}` : field;
-    context.issues.push(`${path} ${ENGINE_WRITTEN[field] ?? "is not a V1 field"}`);
+    context.issues.push(
+      `${path} ${Object.hasOwn(ENGINE_WRITTEN, field) ? ENGINE_WRITTEN[field] : "is not a V1 field"}`,
+    );
   }
 }
 
@@ -480,7 +503,8 @@ function ingestSurfaces(
       if (elements[element].nd !== nd) {
         context.issues.push(
           `${at}.nd ${String(nd)} differs from elements[${element}].nd ${String(elements[element].nd)}, the element ` +
-            `${at}.elemId names: a surface takes its index from its element, so write the element's nd`,
+            `${at}.elemId names: a surface takes its index from its element, so write the element's nd, or elemId 0 ` +
+            `where air follows`,
         );
       }
     } else {
@@ -494,7 +518,9 @@ function ingestSurfaces(
     return out as unknown as CanonicalSurface;
   });
 
-  if (has(data, "asph")) {
+  if (has(data, "asph") && !isRecord(data.asph)) {
+    context.issues.push(`asph must be an object of aspheric entries keyed by surface label`);
+  } else if (has(data, "asph")) {
     const asph = data.asph as Untyped;
     const labels = Object.keys(asph).filter((label) => asph[label] !== undefined);
     if (labels.length === 0) context.v1.emptyContainers.push("asph");
@@ -538,11 +564,11 @@ function pairGaps<Values>(
   if (labels !== undefined && !Array.isArray(labels)) context.issues.push(`${where.labels} must be a list`);
   for (const [at, pair] of (Array.isArray(labels) ? labels : []).entries()) {
     const [label, value] = Array.isArray(pair) ? pair : [];
-    if (typeof label !== "string" || typeof value !== "string") {
+    if (!Array.isArray(pair) || pair.length !== 2 || typeof label !== "string" || typeof value !== "string") {
       context.issues.push(`${where.labels}[${at}] must be a [label, text] pair`);
     } else if (text.has(label)) {
       context.issues.push(`${where.labels}[${at}] labels "${label}" a second time`);
-    } else if (ranges[label] === undefined) {
+    } else if (!Object.hasOwn(ranges, label) || ranges[label] === undefined) {
       context.issues.push(`${where.labels}[${at}] labels "${label}", which has no ${where.ranges} entry`);
     } else {
       text.set(label, value);
@@ -585,8 +611,10 @@ function ingestGaps(
   surfaces: readonly CanonicalSurface[],
   context: IngestContext,
 ): CanonicalGap[] {
-  const ranges = (has(data, "var") ? data.var : {}) as Untyped;
-  if (has(data, "var") && Object.keys(ranges).every((label) => ranges[label] === undefined)) {
+  const authoredRanges = has(data, "var") && isRecord(data.var);
+  if (has(data, "var") && !authoredRanges) context.issues.push(`var must be an object of gaps keyed by surface label`);
+  const ranges = (authoredRanges ? data.var : {}) as Untyped;
+  if (authoredRanges && Object.keys(ranges).every((label) => ranges[label] === undefined)) {
     context.v1.emptyContainers.push("var");
   }
   if (Array.isArray(data.varLabels) && data.varLabels.length === 0) context.v1.emptyContainers.push("varLabels");
@@ -690,9 +718,22 @@ function ingestZoom(data: Untyped, context: IngestContext): CanonicalZoom | unde
   };
 }
 
-/** Index of the station a coordinate names, within the validator's tolerance, or -1. */
-function stationIndex(coordinates: readonly number[], value: number): number {
-  return coordinates.findIndex((coordinate) => Math.abs(coordinate - value) < STATION_COORDINATE_TOLERANCE);
+/** Index of the focus keyframe a coordinate names, within the validator's tolerance, or -1. */
+function keyframeIndex(keyframes: readonly number[], focusT: number): number {
+  return keyframes.findIndex((keyframe) => Math.abs(keyframe - focusT) < STATION_COORDINATE_TOLERANCE);
+}
+
+/**
+ * Index of the zoom station a coordinate names, or -1. Like the validator, it measures the distance in station index
+ * (`zoomT × (n − 1)`), not in zoomT, takes nothing but 0 on a prime, and names station 0 as 0 for a `zoomT` of -0.
+ * Measured in zoomT before S2.P1.T2; no catalog record moves.
+ */
+function zoomStationIndex(stationCount: number, zoomT: number): number {
+  if (stationCount <= 1) return zoomT === 0 ? 0 : -1;
+  const scaled = zoomT * (stationCount - 1);
+  const station = Math.round(scaled) + 0;
+  const named = Math.abs(scaled - station) <= STATION_COORDINATE_TOLERANCE && station >= 0 && station < stationCount;
+  return named ? station : -1;
 }
 
 function ingestConjugates(
@@ -706,9 +747,10 @@ function ingestConjugates(
     stationCount <= 1 ? [0] : Array.from({ length: stationCount }, (_, station) => station / (stationCount - 1));
   return conjugates.map((conjugate, index) => {
     const at = `focus.conjugates[${index}]`;
+    if (isRecord(conjugate)) refuseUnknownFields(conjugate, CONJUGATE_FIELDS, `finiteConjugates[${index}]`, context);
     const { focusT, zoomT } = conjugate as unknown as FiniteConjugate;
-    const keyframe = stationIndex(keyframes, focusT);
-    const zoomStation = stationCount <= 1 ? (zoomT === 0 ? 0 : -1) : stationIndex(stationCoordinates, zoomT);
+    const keyframe = keyframeIndex(keyframes, focusT);
+    const zoomStation = zoomStationIndex(stationCount, zoomT);
     if (keyframe < 0) context.issues.push(`finiteConjugates[${index}].focusT ${String(focusT)} is no focus keyframe`);
     if (zoomStation < 0) context.issues.push(`finiteConjugates[${index}].zoomT ${String(zoomT)} is no zoom station`);
     /* The engine matches a conjugate to its station within the tolerance and never reads the coordinate itself. */

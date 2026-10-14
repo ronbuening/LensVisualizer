@@ -7,15 +7,9 @@ import {
 } from "../../../src/optics/diagramGeometry.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import nikonPf500Data from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { catalogLensData } from "./testLensFixtures.js";
 import { doLayout, SVG_PATH_SUBDIVISIONS } from "../../../src/optics/optics.js";
-import type {
-  RuntimeLens,
-  AsphericCoefficients,
-  ElementSpan,
-  SurfaceData,
-  LensData,
-} from "../../../src/types/optics.js";
+import type { RuntimeLens, AsphericCoefficients, ElementSpan, SurfaceData } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -676,7 +670,7 @@ describe("computeElementShapes", () => {
         { label: "L2F", R: 1e15, d: 3, nd: 1.5, elemId: 2, sd: 8 },
         { label: "L2R", R: 12, d: 0.3, nd: 1.0, elemId: 0, sd: 8 },
         { label: "M1F", R: 1e15, d: 1, nd: 1.5, elemId: 1, sd: 20, innerSd: 10 },
-        { label: "BYPASS", R: 1e15, d: 1, nd: 1.0, elemId: 1, sd: 8 },
+        { label: "BYPASS", R: 1e15, d: 1, nd: 1.0, elemId: 0, sd: 8 },
         {
           label: "M1R",
           R: 1e15,
@@ -750,7 +744,7 @@ describe("computeElementShapes", () => {
         { label: "L2F", R: 1e15, d: 3, nd: 1.5, elemId: 2, sd: 8 },
         { label: "L2R", R: 12, d: 0.3, nd: 1.0, elemId: 0, sd: 8 },
         { label: "M1F", R: 1e15, d: 1, nd: 1.5, elemId: 1, sd: 20 },
-        { label: "BYPASS", R: 1e15, d: 1, nd: 1.0, elemId: 1, sd: 8 },
+        { label: "BYPASS", R: 1e15, d: 1, nd: 1.0, elemId: 0, sd: 8 },
         {
           label: "M1R",
           R: 1e15,
@@ -830,7 +824,7 @@ describe("computeElementShapes", () => {
   });
 
   it("emits a semantic phase accent without changing the authored spherical profile", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...nikonPf500Data } as LensData);
+    const L = buildLens(catalogLensData(nikonPf500Data));
     const layout = doLayout(0, 0, L);
     const shapes = computeElementShapes(L, layout.z, sx, sy);
     const phaseSurfaceIndex = L.labelIdx["8"];

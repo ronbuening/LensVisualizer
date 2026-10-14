@@ -1,9 +1,8 @@
 import { describe, expect, it } from "vitest";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { solveChiefRay } from "../../../src/optics/fieldGeometry.js";
 import { doLayout, traceRay, traceRayChromatic, traceRayVector, traceSkewRay } from "../../../src/optics/optics.js";
-import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
+import type { RuntimeLens } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 /**
@@ -147,7 +146,7 @@ const REFOCUS_BOUND_MM: Record<string, number> = {
 };
 
 function buildCatalogLens(key: string): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...LENS_CATALOG[key] } as LensData);
+  return buildLens(LENS_CATALOG[key]);
 }
 
 describe("exact trace golden values — refractive designs", () => {

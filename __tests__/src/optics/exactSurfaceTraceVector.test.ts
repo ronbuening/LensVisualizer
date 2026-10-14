@@ -214,7 +214,7 @@ describe("asphere cap tracing and clipping", () => {
       surfaces: [
         { label: "STO", R: 1e15, nd: 1, sd: 2.5, innerSd, d: 1, elemId: 0 },
         { label: "1", R: 50, nd: 1.5, sd: 3, d: 1, elemId: 1 },
-        { label: "2", R: -50, nd: 1, sd: 3, d: 20, elemId: 1 },
+        { label: "2", R: -50, nd: 1, sd: 3, d: 20, elemId: 0 },
       ],
       asph: { STO: coefficients },
     });

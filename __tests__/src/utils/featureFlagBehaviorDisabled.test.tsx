@@ -7,7 +7,7 @@ import ControlsBar from "../../../src/components/layout/ControlsBar.js";
 import DiagramDefs from "../../../src/components/diagram/DiagramDefs.js";
 import DiagramElementLayer from "../../../src/components/diagram/DiagramElementLayer.js";
 import SphericalAberrationSection from "../../../src/components/display/analysis/aberrations/SphericalAberrationSection.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { catalogLensData } from "../optics/testLensFixtures.js";
 import SonnarRaw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import type { SphericalAberrationResult } from "../../../src/optics/aberrationAnalysis.js";
@@ -28,7 +28,7 @@ vi.mock("../../../src/utils/featureFlags.js", async (importOriginal) => {
   };
 });
 
-const data = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
+const data = catalogLensData(SonnarRaw);
 
 function saResult(): SphericalAberrationResult {
   return {

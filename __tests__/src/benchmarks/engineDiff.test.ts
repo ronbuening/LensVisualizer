@@ -9,6 +9,7 @@
 import { describe, expect, it, vi } from "vitest";
 import {
   captureRecords,
+  catalogLensData,
   exportCatalog,
   fingerprintCatalog,
   permittedPairs,
@@ -75,7 +76,7 @@ import {
 } from "../../../src/benchmarks/engineDiff/seamAdapter.js";
 import { MTF_BENCHMARK_CASES, MTF_FINITE_BENCHMARK_CASE } from "../../../src/benchmarks/mtfCases.js";
 import { BENCHMARK_SCENARIOS, DEFAULT_BENCHMARK_LENS_KEYS } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
-import buildLens, { ingestLensV1, ingestTeleconverterV1 } from "../../../src/optics/buildLens.js";
+import buildLens, { ingestLensV1, ingestTeleconverterV1, toLensData } from "../../../src/optics/buildLens.js";
 import {
   ELEMENT_SCHEMA_DEFAULTS,
   LENS_SCHEMA_DEFAULTS,
@@ -590,11 +591,20 @@ describe("engineDiff seam adapter", () => {
     const seam = resolveSeam();
     const optional = resolveOptionalSeam();
     const sources = describeSeam();
-    expect(Object.keys(sources).sort()).toEqual([...Object.keys(seam), ...Object.keys(optional)].sort());
+    const absent = Object.keys(sources).filter(
+      (capability) => sources[capability as keyof typeof sources] === "absent",
+    );
+    expect(Object.keys(sources).sort()).toEqual([...Object.keys(seam), ...Object.keys(optional), ...absent].sort());
     expect(sources.traceRay).toBe("compat.traceEngineRay2");
     expect(seam.buildLens).toBe(buildLens);
-    expect(optional).toEqual({ ingestLens: ingestLensV1, ingestTeleconverter: ingestTeleconverterV1 });
+    expect(optional).toEqual({
+      ingestLens: ingestLensV1,
+      ingestTeleconverter: ingestTeleconverterV1,
+      lensView: toLensData,
+    });
     expect(sources.ingestLens).toBe("buildLens.ingestLensV1");
+    /* S2.P1.T2 deleted the V1 defaults object; the catalog merge at this checkout is ingest and the V1 view. */
+    expect(absent).toEqual(["lensDefaults"]);
   });
 
   it("leaves out an optional capability a ref lacks, without failing the rest", () => {
@@ -650,7 +660,7 @@ describe("engineDiff catalog export", () => {
         .filter(
           (converter) =>
             seam.teleconverterCompatibility(
-              { ...seam.lensDefaults, ...lenses.get(host.key) } as LensData,
+              catalogLensData(lenses.get(host.key)!),
               decodeValue(converter.prescription) as Parameters<typeof seam.teleconverterCompatibility>[1],
             ).ok,
         )
@@ -1582,7 +1592,7 @@ describe("engineDiff capture", () => {
     const converter = decodeValue(
       CATALOG.teleconverters.find((entry) => entry.key === PAIR.teleconverter)!.prescription,
     ) as Parameters<typeof seam.attachTeleconverter>[1];
-    const composed = seam.attachTeleconverter({ ...seam.lensDefaults, ...host }, converter);
+    const composed = seam.attachTeleconverter(catalogLensData(host), converter);
     expect(composition.compatibility.ok).toBe(true);
     expect(composition.prescription).toEqual(throughJson(normalizeAuthoredData(composed, seam.flatRadiusThreshold)));
     expect(composition.prescription.surfaces.length).toBeGreaterThan(host.surfaces.length);
@@ -2018,7 +2028,7 @@ describe("engineDiff semantic fingerprint", () => {
     const flat = lens.surfaces.filter((surface) => Math.abs(surface.R) > seam.flatRadiusThreshold);
     expect(flat.length).toBeGreaterThan(1);
     for (const surface of flat) surface.R = -2e15;
-    expect(stopRadiusAuthority({ ...seam.lensDefaults, ...lens })).toBe("derived");
+    expect(stopRadiusAuthority(catalogLensData(lens))).toBe("derived");
     lens.surfaces.find((surface) => surface.label === "STO")!.sd *= 0.97;
   };
 
@@ -2241,7 +2251,10 @@ describe("engineDiff semantic fingerprint", () => {
     };
     const rows = Object.entries(ECHO_DEFAULTS).flatMap(([kind, list]) => list.map((row) => `${kind}.${row.v1Field}`));
     expect(Object.keys(otherValues).sort()).toEqual([...rows].sort());
-    const withPlates = authoredOf(firstLens((lens) => (lens.rearPlates?.length ?? 0) > 0));
+    /* A prime: on a zoom, a focus row of `publishedStations` is spread over the stations. */
+    const withPlates = authoredOf(
+      firstLens((lens) => (lens.rearPlates?.length ?? 0) > 0 && lens.zoomPositions === undefined),
+    );
     for (const [row, value] of Object.entries(otherValues)) {
       const [kind, field] = row.split(".");
       const lens = structuredClone(withPlates) as unknown as Record<string, unknown> & {
@@ -2255,12 +2268,115 @@ describe("engineDiff semantic fingerprint", () => {
       expect(out[field], row).toEqual(value);
     }
 
+    /* The build record's elements lose only the values their echo-default rows hold. */
+    const projectedElements = projectBuildConstants(
+      {
+        elements: [
+          { id: 1, name: "L1", nd: 1.5168, vd: 64.17, indexReference: "e", apd: "inferred" },
+          { id: 2, name: "L2", nd: 1.7, vd: 30, indexReference: "d", apd: false },
+        ],
+      },
+      CHROMATIC_CHANNELS,
+      seam.flatRadiusThreshold,
+    ).elements;
+    expect(projectedElements).toEqual([
+      { id: 1, name: "L1", nd: 1.5168, vd: 64.17, indexReference: "e", apd: "inferred" },
+      { id: 2, name: "L2", nd: 1.7, vd: 30 },
+    ]);
+
     /* A conjugate 1e-7 from its keyframe is beyond the validator's tolerance, so it is not snapped onto it. */
     const conjugateKey = firstLens((lens) => (lens.finiteConjugates?.length ?? 0) > 0);
     const offStation = structuredClone(authoredOf(conjugateKey));
     const [conjugate] = offStation.finiteConjugates!;
     conjugate.focusT += conjugate.focusT > 0.5 ? -1e-7 : 1e-7;
     expect((echo(offStation).finiteConjugates as typeof offStation.finiteConjugates)![0].focusT).toBe(conjugate.focusT);
+
+    /* zoomT is measured in station index, as the validator measures it: on three stations, 1e-8 of an index is 5e-9
+     * of zoomT. A conjugate within that is snapped onto its station, one beyond it or 1e-3 away is not. */
+    const zoomConjugate = (zoomT: number) =>
+      (echo({
+        zoomPositions: [50, 60, 70],
+        finiteConjugates: [{ ...conjugate, focusT: 1, zoomT }],
+      }).finiteConjugates as typeof offStation.finiteConjugates)![0].zoomT;
+    expect(zoomConjugate(0.5 + 4e-9)).toBe(0.5);
+    expect(zoomConjugate(0.5 + 7.5e-9)).toBe(0.5 + 7.5e-9);
+    expect(zoomConjugate(0.5 + 1e-3)).toBe(0.5 + 1e-3);
+    expect(zoomConjugate(1e-12)).toBe(0);
+    /* -0 is a station at 0, written as 0, on a zoom and on a prime; a prime's other values are no station. */
+    expect(zoomConjugate(-0)).toBe(0);
+    const primeConjugate = (zoomT: number) =>
+      (echo({ finiteConjugates: [{ ...conjugate, focusT: 1, zoomT }] })
+        .finiteConjugates as typeof offStation.finiteConjugates)![0].zoomT;
+    expect(primeConjugate(-0)).toBe(0);
+    expect(primeConjugate(1e-12)).toBe(1e-12);
+
+    /* Only a derived or scheduled stop loses its semi-diameter: a stop the engine reads keeps it, and so does every
+     * other surface and every rear plate, in the file and in the build record's data, where the plates are surfaces. */
+    const plated = structuredClone(withPlates);
+    plated.rearPlates![0].sd = 12.5;
+    const echoed = echo(plated) as unknown as LensData;
+    expect(echoed.rearPlates![0].sd).toBe(12.5);
+    plated.surfaces.forEach((surface, index) => {
+      if (surface.label !== "STO") expect(echoed.surfaces[index].sd, surface.label).toBe(surface.sd);
+    });
+    expect(stopRadiusAuthority(plated)).not.toBe("authored");
+    expect(echoed.surfaces.find((surface) => surface.label === "STO")!.sd).toBeUndefined();
+    const builtPlated = seam.buildLens(plated) as unknown as { elements: Record<string, unknown>[] };
+    const projectedPlated = projectBuildConstants(builtPlated, CHROMATIC_CHANNELS, seam.flatRadiusThreshold);
+    const builtData = projectedPlated.data as LensData;
+    /* Every element of the build record keeps every member but a default its echo row holds. */
+    const elementDefaults = new Map(ECHO_DEFAULTS.element.map((row) => [row.v1Field, JSON.stringify(row.value)]));
+    builtPlated.elements.forEach((element, index) => {
+      const kept = Object.fromEntries(
+        Object.entries(element).filter(([field, value]) => elementDefaults.get(field) !== JSON.stringify(value)),
+      );
+      expect((projectedPlated.elements as unknown[])[index], String(element.name)).toEqual(kept);
+    });
+    const syntheticSurfaces = builtData.surfaces.filter((surface) => surface.synthetic === "rearPlate");
+    expect(syntheticSurfaces.length).toBeGreaterThan(0);
+    for (const surface of syntheticSurfaces) expect(surface.sd, surface.label).toBeGreaterThan(0);
+    const readStop = authoredOf(firstLens((lens) => stopRadiusAuthority(lens) === "authored"));
+    const readStopSd = readStop.surfaces.find((surface) => surface.label === "STO")!.sd;
+    expect((echo(readStop) as unknown as LensData).surfaces.find((surface) => surface.label === "STO")!.sd).toBe(
+      readStopSd,
+    );
+
+    /* `var` is dropped only when it holds no gap; one gap keeps it whole. */
+    const oneGap = { var: { "2": [80, 84] }, varLabels: [["2", "BF"]] };
+    expect(echo(oneGap)).toEqual(oneGap);
+    expect(echo({ var: {} })).toEqual({});
+
+    /* Label pairs come back in the order given, even an order ingest refuses: the records sort nothing. */
+    const outOfOrder: [string, string][] = [
+      ["2", "BF"],
+      ["STO", "D0"],
+    ];
+    const indexedOutOfOrder: [number, string][] = [
+      [2, "BF"],
+      [0, "D0"],
+    ];
+    const reordered = {
+      surfaces: [{ label: "STO" }, { label: "1A" }, { label: "2" }],
+      var: { STO: [1, 1.5], "2": [80, 84] },
+      varLabels: outOfOrder,
+      aberrationControl: { label: "Spherical aberration", var: { STO: [1, 1.5, 2] }, varLabels: outOfOrder },
+    };
+    const reorderedEcho = echo(reordered) as typeof reordered;
+    expect(reorderedEcho.varLabels).toEqual(outOfOrder);
+    expect(reorderedEcho.aberrationControl.varLabels).toEqual(outOfOrder);
+    const reorderedBuild = projectBuildConstants(
+      {
+        data: reordered,
+        varLabels: indexedOutOfOrder,
+        aberrationControl: { label: "Spherical aberration", varLabels: indexedOutOfOrder },
+      },
+      CHROMATIC_CHANNELS,
+      seam.flatRadiusThreshold,
+    ) as { data: typeof reordered; varLabels: unknown; aberrationControl: { varLabels: unknown } };
+    expect(reorderedBuild.data.varLabels).toEqual(outOfOrder);
+    expect(reorderedBuild.data.aberrationControl.varLabels).toEqual(outOfOrder);
+    expect(reorderedBuild.varLabels).toEqual(indexedOutOfOrder);
+    expect(reorderedBuild.aberrationControl.varLabels).toEqual(indexedOutOfOrder);
 
     /* The build record keeps every non-zero asphere term and every label pair, in the file's order. */
     const key = firstLens((lens) => aspheric(lens) && (lens.varLabels?.length ?? 0) >= 2);

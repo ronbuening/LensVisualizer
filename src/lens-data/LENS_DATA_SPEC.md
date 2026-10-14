@@ -84,7 +84,7 @@ propagation, not higher-order or chromatic behavior. See
 | `zoomCloseFocusM` | `number[]` (optional) | Positive object-to-image endpoint distances matching `zoomPositions`; overrides the scalar at each zoom station |
 | `fstopSeries` | `array` | F-stop values for quick-select UI buttons |
 
-### Required but have defaults (from `defaults.ts`)
+### Required but have defaults (from `src/optics/prescription/defaults.ts`)
 
 These are merged automatically. Override only when needed.
 

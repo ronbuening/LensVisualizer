@@ -8,7 +8,7 @@
  * aspheric coefficient V1 requires, `[wide, tele]` zoom labels where only the end stations are labelled.
  *
  * Two forms:
- * - `toLensData` is what the engine consumes, the catalog defaults merged in: the V1 `{ ...LENS_DEFAULTS, ...data }`;
+ * - `toLensData` is what the engine consumes, the catalog defaults merged in, as the V1 catalog spread them;
  * - `toLensDataInput` is the file as authored, which the converter writes back for `--to-version 1`.
  */
 
@@ -46,9 +46,14 @@ import { V1_FLAT_RADIUS } from "./ingestV1.js";
 
 type Untyped = Record<string, unknown>;
 
-/** Set `target[field]` to a copy of `value` unless the value is `undefined`. */
+/**
+ * Set `target[field]` to a copy of `value` unless the value is `undefined`. A string, number, boolean or bigint is its
+ * own copy; anything else goes through `structuredClone`, which refuses a function or a symbol.
+ */
 function put(target: Untyped, field: string, value: unknown): void {
-  if (value !== undefined) target[field] = structuredClone(value);
+  if (value === undefined) return;
+  const kind = typeof value;
+  target[field] = kind === "object" || kind === "function" || kind === "symbol" ? structuredClone(value) : value;
 }
 
 /** What the view writes for one defaulted field. */

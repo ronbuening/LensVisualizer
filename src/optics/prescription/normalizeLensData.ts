@@ -5,9 +5,9 @@
  * state preparation and exact tracing consume the lens.
  */
 
-import buildRuntimeLens from "../runtimeLens.js";
-import LENS_DEFAULTS from "../../lens-data/defaults.js";
-import type { LensData, RuntimeLens, SurfaceData } from "../../types/optics.js";
+import buildRuntimeLens, { assertValidLensData } from "../runtimeLens.js";
+import validateLensData from "../validateLensData.js";
+import type { LensData, LensDataInput, RuntimeLens, SurfaceData } from "../../types/optics.js";
 import type {
   AberrationControlSpec,
   AuthoredRayFans,
@@ -28,15 +28,52 @@ import { compileAnnotations, compileElements } from "./groups.js";
 import { compileSurfaceInteraction, resolvedImagePlaneToPlane3 } from "./interactions.js";
 import { buildSurfaceLabelMap } from "./labels.js";
 import { compileVariableGaps, compileVariableLabels } from "./variables.js";
+import { v1CatalogDefaults } from "./defaults.js";
+import { ingestLensV1 } from "./ingestV1.js";
+import { toLensData } from "./toLensData.js";
 
 /**
- * Apply project lens defaults to a lens data object.
+ * A V1 file as the validator reads it: spread over the catalog defaults.
  *
- * @param data - authored lens data
- * @returns cloned lens data with default fields filled
+ * The validator speaks for the file on every build (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P1.T2). It needs merged data,
+ * and the view would repair what it refuses, so the file is spread over the defaults table to ask it and nothing is
+ * built from the spread: the one spread of the table outside tests. This ends no later than S5.P1.T3, which validates
+ * canonical data; S5.P1.T1, which replaces this module, carries it or ends it.
+ */
+function asTheValidatorReadsIt(data: unknown): LensData {
+  return { ...v1CatalogDefaults(), ...(data as object) } as LensData;
+}
+
+/**
+ * The validator's messages for a V1 file as authored, as `buildLens()` asks them.
+ *
+ * @param data - an authored lens file, with or without the catalog defaults
+ * @returns each message, empty when the validator accepts the file
+ */
+export function validateAuthoredLensData(data: unknown): string[] {
+  return validateLensData(asTheValidatorReadsIt(data));
+}
+
+/**
+ * The lens data `buildLens()` builds from what its caller hands it.
+ *
+ * A pair `attachTeleconverter()` composed is known only by the object that function writes as its marker,
+ * `attachedTeleconverter`, and is built as it is, because its host and converter each came through ingest in their
+ * catalogs. That is a temporary seam until S5.P1.T4 composes on the canonical form. Anything else is a V1 file, which
+ * the validator is asked about first (`asTheValidatorReadsIt`). A file it accepts goes through canonical ingest, which
+ * throws a refusal naming each field and its authored path, and comes back as its V1 view, which applies the schema
+ * defaults: the one place the engine applies them. A catalog entry was ingested by its getter before it got here, so
+ * a catalog file both refuse reports ingest's refusal. Rear plates expand after this, in `buildLens()`.
+ *
+ * @param data - an authored lens file, with or without the catalog defaults, or a composed pair
+ * @returns a fresh copy for the engine to hold
+ * @throws Error with the validator's messages, or ingest's refusal
  */
 export function withLensDefaults(data: LensData): LensData {
-  return structuredClone({ ...LENS_DEFAULTS, ...data }) as LensData;
+  const marker = (data as { attachedTeleconverter?: unknown } | undefined)?.attachedTeleconverter;
+  if (marker !== null && typeof marker === "object") return structuredClone(data);
+  assertValidLensData(asTheValidatorReadsIt(data));
+  return toLensData(ingestLensV1(data as unknown as LensDataInput));
 }
 
 /**

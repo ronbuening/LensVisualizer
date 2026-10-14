@@ -10,6 +10,7 @@
  * resolves, so a hand-typed URL mounts it.
  */
 
+import { ingestTeleconverterV1, toTeleconverterData } from "../../optics/buildLens.js";
 import { attachTeleconverter, teleconverterCompatibility } from "../../optics/teleconverter.js";
 import type { LensData } from "../../types/optics.js";
 import type { TeleconverterData } from "../../types/teleconverter.js";
@@ -24,15 +25,29 @@ export interface TeleconverterOption {
   magnification: number;
 }
 
-/* Eagerly import every teleconverter file — the glob pattern is relative to this file, like lensCatalog.ts. */
+/* Eagerly import every teleconverter file — the glob pattern is relative to this file, like lensCatalog.ts. An entry
+ * is its file read through canonical ingest, on first read and kept, as a lens catalog entry is; the key lists read
+ * the files as authored. A converter pair is composed from a host and a converter that each came through ingest
+ * here and in the lens catalog. */
 const _modules = import.meta.glob<{ default: TeleconverterData }>("../../lens-data/**/*.teleconverter.ts", {
   eager: true,
 });
+const AUTHORED: Record<string, TeleconverterData> = {};
 const TELECONVERTER_CATALOG: Record<string, TeleconverterData> = {};
+const PATH_BY_KEY: Record<string, string> = {};
 for (const [path, mod] of Object.entries(_modules)) {
   const data = mod.default;
   if (data?.key) {
-    TELECONVERTER_CATALOG[data.key] = data;
+    if (Object.hasOwn(PATH_BY_KEY, data.key)) {
+      throw new Error(`Two teleconverter files share the key "${data.key}": ${PATH_BY_KEY[data.key]} and ${path}`);
+    }
+    PATH_BY_KEY[data.key] = path;
+    AUTHORED[data.key] = data;
+    let entry: TeleconverterData | undefined;
+    Object.defineProperty(TELECONVERTER_CATALOG, data.key, {
+      enumerable: true,
+      get: () => (entry ??= toTeleconverterData(ingestTeleconverterV1(data))),
+    });
   } else {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);
   }
@@ -40,16 +55,14 @@ for (const [path, mod] of Object.entries(_modules)) {
 
 /* Every converter including hidden test models. Weakest first, then by display name, so toggle order is stable
  * across lenses. */
-const ALL_TELECONVERTER_KEYS: string[] = Object.keys(TELECONVERTER_CATALOG).sort(
+const ALL_TELECONVERTER_KEYS: string[] = Object.keys(AUTHORED).sort(
   (a, b) =>
-    TELECONVERTER_CATALOG[a].magnification - TELECONVERTER_CATALOG[b].magnification ||
-    catalogCollator.compare(TELECONVERTER_CATALOG[a].name, TELECONVERTER_CATALOG[b].name),
+    AUTHORED[a].magnification - AUTHORED[b].magnification ||
+    catalogCollator.compare(AUTHORED[a].name, AUTHORED[b].name),
 );
 
 /* Published converters, in the same order. */
-const TELECONVERTER_KEYS: string[] = ALL_TELECONVERTER_KEYS.filter(
-  (key) => TELECONVERTER_CATALOG[key].visible !== false,
-);
+const TELECONVERTER_KEYS: string[] = ALL_TELECONVERTER_KEYS.filter((key) => AUTHORED[key].visible !== false);
 
 /* Fit is cached per lens; option arrays are cached per lens and mounted key so callers get a stable identity. */
 const FITTING_BY_LENS = new Map<string, ReadonlyArray<TeleconverterOption>>();

@@ -292,7 +292,7 @@ describe("attachTeleconverter", () => {
 
   it("rescales the first-order metadata buildLens and the controls rely on", () => {
     const hostData = teleconverterHostData({
-      overrides: { focalLengthDesign: 49, focalLengthMarketing: 50, apertureMarketing: 2, zoomLabels: ["x"] },
+      overrides: { focalLengthDesign: 49, focalLengthMarketing: 50, apertureMarketing: 2 },
     });
     const composedData = attachTeleconverter(hostData, tc);
     const composed = build(composedData);
@@ -307,7 +307,7 @@ describe("attachTeleconverter", () => {
     expect(composedData.closeFocusM).toBeCloseTo(0.5 + extensionM, 12);
     expect(composedData.elementCount).toBe(2);
     expect(composedData.acceptsTeleconverters).toBeUndefined();
-    expect(composedData.zoomLabels).toBeUndefined();
+    expect(attachTeleconverter({ ...hostData, zoomLabels: ["x"] }, tc).zoomLabels).toBeUndefined();
     /* The first quick-stop must coincide with wide-open, and the last must survive the `<= maxFstop` filter. */
     expect(Math.abs(composedData.fstopSeries[0] - composed.FOPEN)).toBeLessThanOrEqual(0.001);
     expect(composedData.maxFstop).toBeGreaterThanOrEqual(composedData.fstopSeries[composedData.fstopSeries.length - 1]);

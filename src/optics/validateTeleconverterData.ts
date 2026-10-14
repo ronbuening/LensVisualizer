@@ -9,12 +9,13 @@
  * in the catalog yet, and keeps a host's relaxed `gapSagFrac` / `maxRimAngleDeg` from hiding a converter error.
  */
 
-import LENS_DEFAULTS from "../lens-data/defaults.js";
 import type { LensData } from "../types/optics.js";
 import type { TeleconverterData } from "../types/teleconverter.js";
 import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
+import { ingestLensV1 } from "./prescription/ingestV1.js";
 import { mergeTeleconverterPrescription } from "./prescription/teleconverter.js";
 import { rearPlateAirEquivalentMm, teleconverterGeometry } from "./prescription/teleconverterCompatibility.js";
+import { toLensData } from "./prescription/toLensData.js";
 import validateLensData, { LENS_KEY_PATTERN, validateLensMounts, validateRearPlates } from "./validateLensData.js";
 
 /* Validation operates on untrusted data — a permissive record keeps dynamic-key checks free of casts. */
@@ -53,31 +54,34 @@ const LENS_ONLY_FIELDS = [
 /**
  * Powerless reference host: a single air stop placed so the converter sits a fixed gap behind it.
  *
+ * The host is read through canonical ingest, so it carries the schema defaults a catalog lens carries.
+ *
  * @param tc - teleconverter data with well-formed surfaces
  * @returns host lens data suitable only for structural validation of the merged prescription
  */
 function referenceHost(tc: TeleconverterData): LensData {
-  return {
-    ...LENS_DEFAULTS,
-    key: "teleconverter-reference-host",
-    name: "Teleconverter reference host",
-    lensMounts: tc.lensMounts,
-    closeFocusM: 1,
-    yScFill: 0.5,
-    nominalFno: 8,
-    fstopSeries: [8],
-    elements: [],
-    surfaces: [
-      {
-        label: "STO",
-        R: 1e15,
-        d: tc.masterImageDistanceMm + REFERENCE_JUNCTION_GAP_MM,
-        nd: 1,
-        elemId: 0,
-        sd: Math.max(...tc.surfaces.map((surface) => surface.sd)),
-      },
-    ],
-  } as LensData;
+  return toLensData(
+    ingestLensV1({
+      key: "teleconverter-reference-host",
+      name: "Teleconverter reference host",
+      lensMounts: tc.lensMounts,
+      closeFocusM: 1,
+      yScFill: 0.5,
+      nominalFno: 8,
+      fstopSeries: [8],
+      elements: [],
+      surfaces: [
+        {
+          label: "STO",
+          R: 1e15,
+          d: tc.masterImageDistanceMm + REFERENCE_JUNCTION_GAP_MM,
+          nd: 1,
+          elemId: 0,
+          sd: Math.max(...tc.surfaces.map((surface) => surface.sd)),
+        },
+      ],
+    }),
+  );
 }
 
 /**

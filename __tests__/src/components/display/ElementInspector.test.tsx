@@ -5,7 +5,7 @@ import { render, screen, cleanup } from "@testing-library/react";
 import ElementInspector from "../../../../src/components/display/ElementInspector.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import nikonPf500Data from "../../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
+import { catalogLensData } from "../../optics/testLensFixtures.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 afterEach(() => cleanup());
@@ -186,7 +186,7 @@ describe("ElementInspector", () => {
   });
 
   it("discloses a selected element's diffractive phase surface", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...nikonPf500Data } as LensData);
+    const L = buildLens(catalogLensData(nikonPf500Data));
     const info = L.elements.find((element) => element.id === 6)!;
 
     render(<ElementInspector info={info} L={L} t={mockTheme} showChromatic={false} />);

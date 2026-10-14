@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import validateLensData from "../../../src/optics/validateLensData.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
 import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/geometry/surfaceProfile.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../src/types/asphericSchema.js";
 import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
@@ -25,9 +25,10 @@ vi.mock("../../../src/optics/internal/lensState.js", async (importOriginal) => {
   };
 });
 
+/* The validator's cases include data ingest refuses, so this spreads the raw catalog defaults rather than ingesting. */
 function makeValid(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   return {
-    ...LENS_DEFAULTS,
+    ...v1CatalogDefaults(),
     key: "test",
     name: "Test Lens",
     nominalFno: 2.0,
@@ -387,7 +388,7 @@ describe("validateLensData", () => {
   it("rejects gapSagFrac values that would allow visible overlap", () => {
     const errors = validateLensData(makeValid({ gapSagFrac: 1.1 }));
 
-    expect(LENS_DEFAULTS.gapSagFrac).toBe(0.9);
+    expect(v1CatalogDefaults().gapSagFrac).toBe(0.9);
     expect(errors.some((e) => e.includes('"gapSagFrac"'))).toBe(true);
   });
 
@@ -1795,7 +1796,7 @@ describe("validateLensData — conic h_max", () => {
 
 describe("validateLensData — rim slope check", () => {
   it("keeps the renderer default rim angle synchronized with validation", () => {
-    expect(Math.tan(((LENS_DEFAULTS.maxRimAngleDeg as number) * Math.PI) / 180)).toBeCloseTo(MAX_RIM_SLOPE_TAN);
+    expect(Math.tan(((v1CatalogDefaults().maxRimAngleDeg as number) * Math.PI) / 180)).toBeCloseTo(MAX_RIM_SLOPE_TAN);
   });
 
   it("catches high slope on spherical surface (sd/|R| = 0.92)", () => {

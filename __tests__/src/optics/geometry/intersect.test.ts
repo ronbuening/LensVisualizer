@@ -1450,7 +1450,7 @@ describe("a plane at zero gap behind a curved surface", () => {
           { label: "1", R, nd: 1.0, sd: 15, d: 0, elemId: 0 },
           { label: "STO", R: 1e15, nd: 1.0, sd: 15, d: 1, elemId: 0 },
           { label: "2", R: 50, nd: 1.5168, sd: 15, d: 5, elemId: 1 },
-          { label: "3", R: -50, nd: 1.0, sd: 15, d: 80, elemId: 1 },
+          { label: "3", R: -50, nd: 1.0, sd: 15, d: 80, elemId: 0 },
         ],
       }),
       0,

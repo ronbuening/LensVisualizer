@@ -3,7 +3,7 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import buildLens from "../../../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../../../src/lens-data/defaults.js";
+import { catalogLensData } from "../../../optics/testLensFixtures.js";
 import LensGroupMovementOverlay from "../../../../../src/components/display/overlays/LensGroupMovementOverlay.js";
 import NikonAfpDx70300Raw from "../../../../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.js";
 import NikonZ100400Raw from "../../../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
@@ -11,7 +11,7 @@ import themes from "../../../../../src/utils/theme/themes.js";
 import type { LensData } from "../../../../../src/types/optics.js";
 
 function build(raw: object) {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
+  return buildLens(catalogLensData(raw));
 }
 
 describe("LensGroupMovementOverlay", () => {

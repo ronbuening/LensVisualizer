@@ -123,10 +123,12 @@ export function permittedPairs(
   const seam = resolveSeam();
   const pairs: SerializedCatalog["pairs"] = [];
   for (const host of catalog.lenses) {
-    const hostData = withLensDefaults(seam, decodeValue(host.prescription) as LensData);
+    /* The catalog merge is engine code too: canonical ingest may refuse a host this engine cannot read. */
+    const hostData = outcomeOf(() => catalogLensData(decodeValue(host.prescription) as LensData));
+    if (!hostData.ok) continue;
     for (const converter of catalog.teleconverters) {
       const converterData = decodeValue(converter.prescription) as TeleconverterData;
-      const fit = outcomeOf(() => seam.teleconverterCompatibility(hostData, converterData));
+      const fit = outcomeOf(() => seam.teleconverterCompatibility(hostData.value, converterData));
       if (fit.ok && fit.value.ok) pairs.push({ host: host.key, teleconverter: converter.key });
     }
   }
@@ -258,9 +260,19 @@ export interface PayloadRecord {
   payload: Outcome<EncodedValue>;
 }
 
-/** The catalog merge, with this engine's defaults: what the composer and the fit predicate expect of a host. */
-function withLensDefaults(seam: EngineSeam, authored: LensData): LensData {
-  return { ...seam.lensDefaults, ...authored };
+/**
+ * A lens file as this engine's catalog hands it to the composer and the fit predicate. A ref that still has the V1
+ * defaults object spreads it, as its catalog did; a later ref reads the file through canonical ingest and its V1
+ * view, as its catalog does.
+ *
+ * @param authored - a lens file as authored
+ * @returns the catalog's lens data, on this engine
+ */
+export function catalogLensData(authored: LensData): LensData {
+  const { lensDefaults, ingestLens, lensView } = resolveOptionalSeam();
+  if (lensDefaults) return { ...lensDefaults, ...authored } as LensData;
+  if (ingestLens && lensView) return lensView(ingestLens(authored as Parameters<typeof ingestLens>[0]));
+  throw new Error("engine-diff: this engine has neither the V1 lens defaults nor canonical ingest with its V1 view");
 }
 
 /**
@@ -299,7 +311,7 @@ export function captureRecords(catalog: SerializedCatalog, requests: readonly Ca
   const buildFresh = (lens: LensRef): RuntimeLens =>
     seam.buildLens(
       lens.teleconverter
-        ? seam.attachTeleconverter(withLensDefaults(seam, hostOf(lens)), converterOf(lens.teleconverter))
+        ? seam.attachTeleconverter(catalogLensData(hostOf(lens)), converterOf(lens.teleconverter))
         : hostOf(lens),
     );
 
@@ -314,7 +326,7 @@ export function captureRecords(catalog: SerializedCatalog, requests: readonly Ca
       const converterKey = lens.teleconverter;
       if (!converterKey) throw new Error(`engineDiff: composition was requested of ${lens.key}, which is not a pair`);
       return () => {
-        const host = withLensDefaults(seam, hostOf(lens));
+        const host = catalogLensData(hostOf(lens));
         const converter = converterOf(converterKey);
         return {
           compatibility: seam.teleconverterCompatibility(host, converter),

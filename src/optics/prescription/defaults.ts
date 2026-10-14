@@ -7,9 +7,12 @@
  * therefore ingest to the same prescription and share a semantic fingerprint.
  *
  * V1 applies defaults two ways, and the V1 view (`toLensData.ts`) reproduces both:
- * - `catalog`: the catalog merges them under every lens file (`{ ...LENS_DEFAULTS, ...data }`), so the engine always
- *   sees a value. These are the rows of `src/lens-data/defaults.ts`, which `v1CatalogDefaults()` restates.
+ * - `catalog`: the V1 catalog spread them under every lens file, so the engine always sees a value. The view's merged
+ *   form writes them in, and it is how the catalogs, `buildLens` and the tools apply them.
  * - `engine`: the engine falls back to them where the field is absent, so the merged data keeps the omission.
+ *
+ * Nothing outside tests spreads this table: lens data gets its defaults through ingest and the V1 view. The one
+ * exception is the validator-first spread in `withLensDefaults` (`normalizeLensData.ts`), whose comment says why.
  *
  * Known reader disagreements, left as they are (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P4.T1 spec–code contradictions):
  * `buildLens` reads `lensShiftFrac || 0`, and the chromatic ray-fan summary reads `L.offAxisFieldFrac ?? 0.7`.
@@ -225,7 +228,8 @@ export function defaultValue(row: SchemaDefault): unknown {
 }
 
 /**
- * The defaults the V1 catalog merges under every lens file, as a V1 object: the values of `src/lens-data/defaults.ts`.
+ * The `catalog` rows as a V1 object: what the V1 view merges under every lens file. Tests that need the raw table use
+ * it; lens data gets its defaults through ingest and the V1 view.
  *
  * @returns a fresh object with one member per `catalog` row
  */
