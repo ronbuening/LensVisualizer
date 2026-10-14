@@ -39,8 +39,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * motion; no reconstructed finite state is marked published or certified for finite-focus MTF.
  * The patent names no glass type or supplier. L1 to L3 carry the catalog glass whose ne and νe
  * equal the print (OHARA S-LAH65V and S-TIH6 within 0.000003 and 0.01; HOYA E-FD2 within 0.00001 and 0.02) and trace
- * on that glass's dispersion curve anchored at the printed ne. L4 (1.7167 / 42.89) has no catalog
- * glass closer than 0.00009 in ne and 0.17 in νe, so it stays unmatched on the Abbe model.
+ * on that glass's dispersion curve anchored at the printed ne. L4 uses HOYA LAFL4 as a qualified
+ * spectral proxy: its vendor curve gives ne 1.716614 / νe 43.056, against the printed 1.7167 / 42.89.
+ * It is the only coordinate-compatible row in the reviewed catalogs, but not an exact melt match
+ * or an identified production glass. All four curves are anchored at the patent's printed ne.
  */
 
 const LENS_DATA = {
@@ -140,7 +142,7 @@ const LENS_DATA = {
       "vd": 42.89,
       "indexReference": "e",
       "fl": 16.046751890986677,
-      "glass": "Unmatched (native e-line intermediate-dispersion optical-glass class; supplier unconfirmed)",
+      "glass": "LAFL4 (HOYA spectral proxy; catalog ne 1.716614 / νe 43.056 versus patent ne 1.7167 / νe 42.89; original type and production supplier unconfirmed)",
       "role": "Biconvex positive rear element, 1.2 mm ahead of the rear aperture stop."
     }
   ],

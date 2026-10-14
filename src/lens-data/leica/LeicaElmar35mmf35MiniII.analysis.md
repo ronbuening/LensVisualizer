@@ -67,11 +67,11 @@ Several SF2/PBM22/FD2-family catalog entries lie near the source coordinates. HO
 
 ### L4 — Biconvex Positive Rear Singlet
 
-nₑ = 1.716700, νₑ = 42.89. Glass: Unmatched native e-line intermediate-dispersion optical-glass class; original type and supplier unconfirmed. Standalone-in-air f = +16.0468 mm.
+nₑ = 1.716700, νₑ = 42.89. Glass: LAFL4 (HOYA spectral proxy; original type and production supplier unconfirmed). Standalone-in-air f = +16.0468 mm.
 
 The final positive singlet completes the triplet and stands 1.2 mm before the rear stop. Figure 1 labels it L4; the description's single reference to "L5" is inconsistent with that figure and does not imply a fifth element.
 
-The page image prints 1.716700; text-layer copies reading 1.76700 have dropped a digit. The nearest catalog row, HOYA LAFL4 (nₑ 1.716613, νₑ 43.056), is 0.00009 away in index and 0.17 in Abbe number. That is not a catalog equivalent, so L4 stays unmatched.
+The page image prints 1.716700; text-layer copies reading 1.76700 have dropped a digit. HOYA LAFL4 is the nearest catalog row, at nₑ 1.716614 and νₑ 43.056 from its published polynomial. The differences, −0.0000865 in index and +0.166 in Abbe number, are within the catalog resolver's compatibility window. LAFL4 is the only compatible row among the 670 reviewed repository entries and the 196 rows of HOYA's current catalog including obsolete glasses. It is used as a qualified spectral proxy, rather than an exact match at printed precision or an identification of the production glass.
 
 ## Glass Identification and Spectral Limits
 
@@ -79,13 +79,13 @@ The source table explicitly gives n(546), and Figure 2C labels the e, C′, f′
 
 Catalog data from OHARA, HOYA, Schott, Hikari, CDGM and Sumita were compared. Three of the four printed pairs coincide with a catalog glass. OHARA S-LAH65V (nₑ 1.808107, νₑ 46.338) for L1 and OHARA S-TIH6 (1.812640, 25.220) for L2 agree with the print within 0.000002 in nₑ and 0.01 in νₑ. HOYA E-FD2 (1.652218, 33.584) for L3 differs by one unit in the last printed decimal of each value (1.65222 against 1.65223, 33.58 against 33.57). The data file names these three as catalog equivalents. They are equivalents at the printed precision, not identified suppliers: the patent names no glass, and two printed coordinates cannot single out a maker or a melt.
 
-L4 remains unmatched. Its nearest catalog row, HOYA LAFL4 (1.716613, 43.056), is 0.00009 away in nₑ and 0.17 in νₑ, which is too far to stand as an equivalent.
+L4 now traces on the [vendor-published LAFL4 polynomial](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf). Its Abbe-number residual is about 0.39%, so the curve remains an approximation to the source material. The original type, melt and supplier are still unconfirmed. The earlier unmatched disposition required equality at printed precision; it was unnecessarily strict for a clearly qualified spectral proxy. No patent partial dispersion or line index is invented.
 
 The catalog also preserves OHARA’s discontinued PBM22 curve, at nₑ / νₑ = 1.652226 / 33.554, as a historical alternative for L3. Its availability does not establish the production glass. The selected E-FD2 label and curve remain unchanged.
 
-The patent supplies no C′, F′ or g indices and no partial dispersions. For L1 to L3 the model takes the C′ and F′ indices from the named catalog curve, anchored at the printed nₑ (the printed nₑ plus the catalog's index difference from the e line). L4 uses an estimate from its Abbe number. On that basis the paraxial F′–C′ focus difference is about 0.165 mm, the blue focus nearer the lens, and the f/3.5 rim rays for C′, e and F′ land about 21, 28 and 27 µm from the axis in the e-line paraxial plane.
+The patent supplies no C′, F′ or g indices and no partial dispersions. All four elements now take their spectral indices from the named catalog curves, anchored at the printed nₑ (the printed nₑ plus the catalog's index difference from the e line). For L4 that anchor adds 0.0000865 to the vendor indices; it preserves the patent's e-line power without rescaling the dispersion curve to force its Abbe number. With LAFL4, the paraxial F′–C′ focus difference is about 0.161 mm, compared with 0.165 mm under the previous Abbe fallback. The blue focus is nearer the lens, and the f/3.5 entrance-rim rays for C′, e and F′ land about 21, 28 and 26 µm from the axis in the e-line paraxial plane.
 
-Figure 2C plots the same on-axis curves. Scaled from the ±20 µm ticks of the European print, its C′ curve ends about 20 µm from the axis at the edge of the aperture, and its e and F′ curves, drawn together there, end about 28 µm from it. From 0.4 of the aperture to its edge the model follows the three plotted curves within about 1 µm. The redrawn Figure 2C of the US print sets its ±20 µm ticks about 1.4 times too far apart, while its curves are the same size as the European ones, so the US ticks are not used. No g-line result is quoted, because L4 has no published partial dispersion.
+Figure 2C plots the same on-axis curves. Scaled from the ±20 µm ticks of the European print, its C′ curve ends about 20 µm from the axis at the edge of the aperture, and its e and F′ curves, drawn together there, end about 28 µm from it. The earlier Abbe-fallback comparison followed the three curves within about 1 µm from 0.4 of the aperture to its edge; LAFL4 changes the computed C′ and F′ fan positions by less than 0.8 µm over that range and leaves e unchanged. The redrawn Figure 2C of the US print sets its ±20 µm ticks about 1.4 times too far apart, while its curves are the same size as the European ones, so the US ticks are not used. The g-line trace now uses the LAFL4 proxy; neither the patent's plot nor its missing partial-dispersion data establishes that curve as the original material.
 
 ## Focus Mechanism
 
