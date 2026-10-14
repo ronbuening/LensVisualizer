@@ -41,11 +41,20 @@ export type ChangeClass = "c0" | "c1" | "c2" | "c3";
  *   at most the budget, 1: the head is the engine a change proposes, and a finite breach the base alone carries is
  *   not one the change made. An infinite share on either side is compared exactly, as every non-finite value is,
  *   and a share on one side against none on the other is a discrete difference.
+ * - `finite`: presence and finiteness only; the finite values are not differenced.
  * - `exact`: `Object.is`. A difference is a discrete transition, listed in the report.
  * - `iterations`: a solver's step or evaluation count. Above C0 a change is tallied as a histogram and does not
  *   fail by itself; what it did to the solver's output shows in that output's own class.
  */
-export type ComparisonKind = "absolute" | "relative" | "slope" | "residual" | "share" | "exact" | "iterations";
+export type ComparisonKind =
+  | "absolute"
+  | "relative"
+  | "slope"
+  | "residual"
+  | "share"
+  | "exact"
+  | "iterations"
+  | "finite";
 
 /** Where a class and its budget come from. */
 export type QuantityOrigin =
@@ -194,6 +203,15 @@ export const QUANTITIES = {
    * is, so the bound is plainly relative. */
   lengthRatio: relative("Ratio of two analysis lengths", 1e-8, "plan"),
 
+  /* Beyond a legacy miss the tracer substitutes points off the ray. No app fan reads that tail. */
+  legacyMissTail: {
+    title: "Legacy points after a missed surface",
+    unit: "",
+    kind: "finite",
+    c1: 0,
+    c2: null,
+    origin: "addition",
+  },
   countRatio: exact("Count ratio", "addition"),
   /* The tolerance a hit was accepted under is the engine's raw target, 1e-12 mm, except at a stalled root. There it
    * is a computed float, the larger of that target and a roundoff envelope: 16·ε times the sum of the ray's
@@ -273,6 +291,14 @@ export const QUANTITIES = {
    * at any size. Its two terms are in the same record under rows of their own, the image plane's z as a layout
    * length and the sag as `petzvalShiftMm`. */
   petzvalPosition: absolute("Petzval focus position", "mm", FAR_LENGTH_FLOOR.bound, "derived"),
+  /* A tangential parabasal pair differs in slope by about 0.01 mm over the focal length. On lenses from 800 mm
+   * up, rounding amplified by that small divisor moves the crossing by a few 1e-8 mm even in the anchor. The
+   * S3.P2.T1 Tier S settlement gives these crossings and their shifts and spans a 1e-7 mm floor, keeping the
+   * analysis length's 1e-10 share beyond 1 m. Only the named jobs below compute that pair. */
+  tangentialParabasalFocus: relative("Tangential parabasal focus, 1e-7 mm at least", 1e-10, "addition", {
+    bound: 1e-7,
+    unit: "mm",
+  }),
 
   /* What a solve reports of its own convergence is a contract check, as a hit's residual is: each side must be
    * within the tolerance the solve accepts a residual under, and the two sides are not differenced. The engine
@@ -419,9 +445,45 @@ const rayByStatus: QuantitySelector = (leaf) => {
   return memberOf(base, "status") === "ok" && memberOf(head, "status") === "ok" ? "landing" : "clippedHit";
 };
 
+function firstLegacyMiss(ray: unknown): unknown {
+  const events = memberOf(memberOf(ray, "diagnostics"), "clipEvents");
+  return Array.isArray(events)
+    ? events.find((event) => memberOf(event, "reason") === "intersection-failure")
+    : undefined;
+}
+
+/* rayTrace's point appender drops non-finite hits, but its diagnostics retain their indexes. Only a complete
+ * alignment can locate a ghost in that hit order; a missing fallback or repeated surface is never sorted by index. */
+const legacyGhostByMiss: QuantitySelector = (leaf) => {
+  const depth = leaf.keys.indexOf("ghostPts");
+  const index = leaf.keys[depth + 1];
+  const behind = (side: readonly unknown[]) => {
+    const ray = side[depth];
+    const pts = memberOf(ray, "pts");
+    const ghosts = memberOf(ray, "ghostPts");
+    const hits = memberOf(memberOf(ray, "diagnostics"), "hitSurfaceIndexes");
+    const surfaceIdx = memberOf(firstLegacyMiss(ray), "surfaceIdx");
+    if (
+      !Array.isArray(pts) ||
+      pts.length === 0 ||
+      !Array.isArray(ghosts) ||
+      !Array.isArray(hits) ||
+      pts.length - 1 + ghosts.length !== hits.length ||
+      typeof index !== "number" ||
+      typeof surfaceIdx !== "number"
+    )
+      return false;
+    const missPosition = hits.indexOf(surfaceIdx);
+    return missPosition >= 0 && pts.length - 1 + index >= missPosition;
+  };
+  return behind(leaf.base) && behind(leaf.head) ? "legacyMissTail" : "clippedHit";
+};
+
 /* The stack tracer's result has no status, only `clipped`. */
 const legacyRayByClipFlag: QuantitySelector = (leaf) => {
   const [base, head] = owningObjects(leaf);
+  const behind = (ray: unknown) => memberOf(ray, "clipped") === true && firstLegacyMiss(ray) !== undefined;
+  if (behind(base) && behind(head)) return "legacyMissTail";
   return memberOf(base, "clipped") === false && memberOf(head, "clipped") === false ? "landing" : "clippedHit";
 };
 
@@ -625,7 +687,7 @@ const TABLE: readonly TableRow[] = [
   ["count", ["traces:**.hits.count", "traces:**.hits.columns.surfaceIndex[]"]],
   /* The RuntimeLens stack tracer, before the rows that go by member name. Its drawn points are the hits. */
   ["landing", ["traces:legacy.rays[].pts[][]", "traces:legacy.rays[].paraxialImageHeight"]],
-  ["clippedHit", ["traces:legacy.rays[].ghostPts[][]"]],
+  [legacyGhostByMiss, ["traces:legacy.rays[].ghostPts[][]"]],
   [legacyRayByClipFlag, ["traces:legacy.rays[].y"]],
   ["slope", ["traces:legacy.rays[].u"]],
   ["ratio", ["traces:legacy.rays[].transmission"]],
@@ -789,6 +851,35 @@ const TABLE: readonly TableRow[] = [
    * (`xp.samples[]`) and in the exit-pupil profile computed alone (`samples[]`), which no job captures today. */
   ["analysisLength", ["analysis:**.samples[].xpZRelLastSurf"]],
   ["landing", ["analysis:**.imagePlaneHeights.*"]],
+
+  /* These jobs share the tangential parabasal crossing; the posed field-aberration job and the full-fan
+   * diagnostic foci do not. The rows precede both generic analysis-length rows, including micrometre twins. */
+  [
+    "tangentialParabasalFocus",
+    [
+      "analysis:jobs.computeFieldCurvature.value.{fields,curveFields}[].{tangentialBestFocusZ,tangentialShiftMm,astigmaticDifferenceMm}",
+      "analysis:jobs.computeFieldCurvatureBundle.value.{fieldCurvature,chromaticFieldCurvature}.{fields,curveFields}[].{tangentialBestFocusZ,tangentialShiftMm,astigmaticDifferenceMm}",
+      "analysis:jobs.computeFieldCurvature.value.{fields,curveFields}[].chromaticFieldShifts[].tangentialShiftMm",
+      "analysis:jobs.computeFieldCurvatureBundle.value.{fieldCurvature,chromaticFieldCurvature}.{fields,curveFields}[].chromaticFieldShifts[].tangentialShiftMm",
+      "analysis:jobs.computeFieldCurvature.value.{maxAstigmaticDifferenceMm,edgeTangentialShiftMm,sharedFocusShiftHalfRangeMm,chromaticFocusSpreadMm}",
+      "analysis:jobs.computeFieldCurvatureBundle.value.{fieldCurvature,chromaticFieldCurvature}.{maxAstigmaticDifferenceMm,edgeTangentialShiftMm,sharedFocusShiftHalfRangeMm,chromaticFocusSpreadMm}",
+      "analysis:jobs.chromaticFieldFocusSummary.value.fields[].tangential.{minShiftMm,maxShiftMm,spreadMm}",
+      "analysis:jobs.chromaticFieldFocusSummary.value.fields[].maxFocusSpreadMm",
+      "analysis:jobs.chromaticFieldFocusSummary.value.{maxTangentialSpreadMm,maxFocusSpreadMm,edgeFocusSpreadMm}",
+    ],
+  ],
+  [
+    "tangentialParabasalFocus",
+    [
+      "analysis:jobs.computeFieldCurvature.value.{fields,curveFields}[].astigmaticDifferenceUm",
+      "analysis:jobs.computeFieldCurvatureBundle.value.{fieldCurvature,chromaticFieldCurvature}.{fields,curveFields}[].astigmaticDifferenceUm",
+      "analysis:jobs.computeFieldCurvature.value.maxAstigmaticDifferenceUm",
+      "analysis:jobs.computeFieldCurvatureBundle.value.{fieldCurvature,chromaticFieldCurvature}.maxAstigmaticDifferenceUm",
+      "analysis:jobs.chromaticFieldFocusSummary.value.fields[].tangential.spreadUm",
+      "analysis:jobs.chromaticFieldFocusSummary.value.fields[].maxFocusSpreadUm",
+    ],
+    { scale: 1000 },
+  ],
 
   /* ── Analysis: rows by member name ── */
   /* A micrometre twin restates a millimetre field, times 1000. */

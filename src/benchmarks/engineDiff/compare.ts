@@ -201,6 +201,8 @@ function diffRecords(
     const budget = budgetOf(quantity, changeClass);
     const distance = Math.abs(x - y) / rule.scale;
     switch (kind) {
+      case "finite":
+        return report("number", pattern, a, b, quantity, 0, 0);
       case "exact":
         return report("discrete", pattern, a, b, quantity, distance, 0);
       case "iterations":
@@ -528,12 +530,10 @@ export interface OneSidedCounts {
 export interface ImpactPaths {
   /** Statuses at a path where both sides have one. */
   statuses: {
-    /**
-     * No failure on the base data and a failure on the head data. Each one blocks, whatever the status on the base
-     * data was: one that held a result (`ok`, `usable`, `converged`) or one that held none (`clipped`,
-     * `unbracketed`).
-     */
+    /** No failure on the base data and a failure on the head data, including failures after a ray's first clip. */
     toFailure: number;
+    /** Of those, ray failures after an earlier clip on the head data. Counted, and no gate. */
+    afterFirstClip: number;
     /** A failure on the base data and none on the head data. */
     fromFailure: number;
   };
@@ -576,6 +576,8 @@ export interface ImpactPaths {
    * many paths show it. A run keeps the first `MAX_STATUS_CHANGES` distinct changes of a lens.
    */
   statusChanges: Record<string, number>;
+  /** Of each listed change, the failures after the head ray's first clip. */
+  statusChangesAfterFirstClip: Record<string, number>;
   /** Status differences of any change past those. */
   statusChangesUnlisted: number;
 }
@@ -592,9 +594,9 @@ export interface DataImpact {
   /** The largest difference of each quantity that moved: budgeted numbers first, the furthest past its budget leading. */
   largest: Finding[];
   /**
-   * What blocks the change. A semantic change: every status that turned to a failure, number that turned
-   * non-finite and outcome that turned to a throw, each at a path both sides have (`paths`). A new lens: its build
-   * record, when it threw.
+   * What blocks the change. A semantic change: a status that turned to a failure without evidence of an earlier
+   * clip, a number that turned non-finite and an outcome that turned to a throw, each at a path both sides have
+   * (`paths`). A new lens: its build record, when it threw.
    */
   blocking: number;
   /** The first of them, up to `MAX_IMPACT_BLOCKERS` of each kind. The verdict reads `blocking`, never this list. */
@@ -760,20 +762,32 @@ export interface DifferentialRun {
 
 /* A status that is a failure: one that says `failed`. The engine writes three: `failed` for a traced ray, in a full
  * trace or in the digest of a nested one, `bracket-failed` for a chief-ray solve and `evaluation-failed` for a root
- * solve or a sensor lock. A semantic data change may not turn a status that is none of them into one of them. Every
+ * solve or a sensor lock. A semantic data change may not turn a status that is none of them into one of them, except
+ * where the head ray's clip events show a non-intersection clip before its intersection failure. Every
  * other status is an outcome a prescription can legitimately move between: clipped, missed-sensor, chief-unreachable,
  * outside the projection domain, unbracketed, an iteration limit, a paraxial fallback, unavailable.
  *
- * The rule asks of the base status only that it is no failure, so it also blocks where the base data held no result
- * either: a ray that was `clipped` and is `failed`, a root solve that was `unbracketed` and is `evaluation-failed`.
- * The fans of a traces record are traced on past a rim, so the first is as a rule a vignetted ray that went on to
- * miss a surface. The report marks the status changes that block, and a reader tells those from a result that was
- * lost. */
+ * The fans of a traces record are traced on past a rim. A ray carries no result after its first clip, so a later
+ * intersection failure is a continuation diagnostic, counted and listed without blocking. A failure at the first
+ * clip, or without clip events to prove the order (a nested trace digest), still blocks. The base status need only
+ * be no failure: `clipped` to `failed` without that evidence and `unbracketed` to `evaluation-failed` still block. */
 const FAILED_STATUS = /failed/;
 
 /** Whether a status that changed between the two sides of a data change blocks it. */
 function turnedToFailure(base: string, head: string): boolean {
   return !FAILED_STATUS.test(base) && FAILED_STATUS.test(head);
+}
+
+/** A full ray's clip events are in path order, including folded paths whose surface indexes can decrease. */
+function failureAfterFirstClip(status: string, ray: Record<string, unknown> | undefined): boolean {
+  if (status !== "failed" || !isContainer(ray?.hits)) return false;
+  const diagnostics = ray?.diagnostics as { clipEvents?: { reason?: unknown }[] } | undefined;
+  const events = diagnostics?.clipEvents;
+  if (!Array.isArray(events)) return false;
+  const failedAt = events.findIndex((event) => event?.reason === "intersection-failure");
+  return events.some(
+    (event, index) => index < failedAt && typeof event?.reason === "string" && event.reason !== "intersection-failure",
+  );
 }
 
 /** What a data change may turn from good to bad at a path both sides have, as the members of `ImpactPaths`. */
@@ -785,20 +799,21 @@ const STATUS_CHANGE_ARROW = " -> ";
 
 function emptyImpactPaths(): ImpactPaths {
   return {
-    statuses: { toFailure: 0, fromFailure: 0 },
+    statuses: { toFailure: 0, afterFirstClip: 0, fromFailure: 0 },
     numbers: { toNonFinite: 0, fromNonFinite: 0 },
     outcomes: { toThrown: 0, fromThrown: 0 },
     baseOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
     headOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
     resized: { arrays: 0, listed: [] },
     statusChanges: {},
+    statusChangesAfterFirstClip: {},
     statusChangesUnlisted: 0,
   };
 }
 
 /** How many blockers of one kind a lens's records have shown so far. */
 function blockersOf(paths: ImpactPaths, blocker: ImpactBlocker): number {
-  if (blocker === "statuses") return paths.statuses.toFailure;
+  if (blocker === "statuses") return paths.statuses.toFailure - paths.statuses.afterFirstClip;
   return blocker === "numbers" ? paths.numbers.toNonFinite : paths.outcomes.toThrown;
 }
 
@@ -806,7 +821,8 @@ function blockersOf(paths: ImpactPaths, blocker: ImpactBlocker): number {
  * Judge one pair of records of a semantic data change, path by path, and fold what it finds into the lens's counts.
  *
  * What blocks is at a path both sides have, and turned from good to bad there:
- * - a status that is no failure on the base data and a failure on the head data;
+ * - a status that is no failure on the base data and a failure on the head data, unless the head ray's own clip
+ *   events show a clip before its intersection failure;
  * - a number the engine computed that is finite on the base data and not on the head data;
  * - an outcome, of the record itself or of a job or a probe inside it, that returned on the base data and throws on
  *   the head data.
@@ -866,11 +882,14 @@ function judgeDataChange(
   /* A status is a string in a member named `status` that the engine wrote. */
   const isStatusHere = (value: unknown): value is string =>
     typeof value === "string" && segments[segments.length - 1] === "status" && !authored();
-  const noteStatus = (was: string | null, is: string | null) => {
+  const noteStatus = (was: string | null, is: string | null, afterFirstClip = false) => {
     const change = `${was ?? NO_STATUS}${STATUS_CHANGE_ARROW}${is ?? NO_STATUS}`;
     if (Object.hasOwn(paths.statusChanges, change)) paths.statusChanges[change]++;
     else if (Object.keys(paths.statusChanges).length < MAX_STATUS_CHANGES) paths.statusChanges[change] = 1;
     else paths.statusChangesUnlisted++;
+    if (afterFirstClip && Object.hasOwn(paths.statusChanges, change)) {
+      paths.statusChangesAfterFirstClip[change] = (paths.statusChangesAfterFirstClip[change] ?? 0) + 1;
+    }
   };
 
   /** Count what one side alone holds at the current path and under it. */
@@ -925,7 +944,7 @@ function judgeDataChange(
   };
 
   /** Compare what both sides hold at the current path. */
-  const both = (a: unknown, b: unknown): void => {
+  const both = (a: unknown, b: unknown, headOwner?: Record<string, unknown>): void => {
     if (a === b) return;
     const [aIsArray, bIsArray] = [Array.isArray(a), Array.isArray(b)];
     if (isContainer(a) && isContainer(b) && aIsArray === bIsArray) {
@@ -951,7 +970,7 @@ function judgeDataChange(
       for (const key of Object.keys(members)) {
         keys.push(key);
         segments.push(key);
-        if (Object.hasOwn(others, key)) both(members[key], others[key]);
+        if (Object.hasOwn(others, key)) both(members[key], others[key], others);
         else alone(members[key], "baseOnly");
         segments.pop();
         keys.pop();
@@ -965,11 +984,13 @@ function judgeDataChange(
       return;
     }
     if (isStatusHere(a) && isStatusHere(b)) {
-      noteStatus(a, b);
+      const afterFirstClip = turnedToFailure(a, b) && failureAfterFirstClip(b, headOwner);
+      noteStatus(a, b, afterFirstClip);
       if (turnedToFailure(b, a)) paths.statuses.fromFailure++;
       if (turnedToFailure(a, b)) {
         paths.statuses.toFailure++;
-        block("statuses", pathOf(), a, b);
+        if (afterFirstClip) paths.statuses.afterFirstClip++;
+        else block("statuses", pathOf(), a, b);
       }
       return;
     }
@@ -1092,7 +1113,8 @@ function baseCannotEvaluate(
  * - a format-only data change, two prescriptions on the head engine: any difference, in every class.
  * - a semantic data change, two prescriptions on the head engine, path by path (`judgeDataChange`): a status that
  *   turned to a failure, a computed number that turned non-finite, or a record or job that returned and now throws,
- *   which is how a lens that no longer builds shows. Each is at a path both sides have. What only one side has is
+ *   which is how a lens that no longer builds shows. Each is at a path both sides have. A ray's failure after its
+ *   first clip is counted without blocking where its clip events prove that order. What only one side has is
  *   counted, and everything else is reported for review.
  * - a new lens has no base data, and neither has a converter pair that only the head prescriptions permit: each
  *   blocks only by not building.
@@ -3047,7 +3069,10 @@ const IMPACT_RULE =
   "data's alone is not finite, and where a record, an analysis job or a near-axis probe returned on the base data " +
   "and throws on the head data, which is how a lens that no longer builds shows. A status or a number at a path " +
   "only one side has is counted, failures among them, and blocks nothing: it is work the base data never did, or " +
-  "work the head data no longer does. An array that changed length is paired by index.";
+  "work the head data no longer does. A ray's change to `failed` does not block when its own head-data clip events " +
+  "show a non-intersection clip before the intersection failure, in event order. It is counted and listed as a " +
+  "failure after the ray's first clip. A failure at the first clip, or without clip events to show the order, " +
+  "still blocks; `bracket-failed` and `evaluation-failed` are unchanged. An array that changed length is paired by index.";
 
 /**
  * Findings of a data change as a list: a table cell is cut at 80 characters, and such a finding is its path.
@@ -3115,6 +3140,7 @@ function changedLensTable(changed: readonly DataImpact[]): string[] {
         "Head data only: statuses / failures / non-finite",
         "Base data only: statuses / failures / non-finite",
         "Arrays paired by index",
+        "Failures after the ray's first clip",
       ],
       changed.slice(0, MARKDOWN_SAMPLES).map(({ lens, blocking: blocked, paths }) => {
         const { statuses, numbers, outcomes, headOnly, baseOnly, resized } = paths as ImpactPaths;
@@ -3128,6 +3154,7 @@ function changedLensTable(changed: readonly DataImpact[]): string[] {
           oneSidedCell(headOnly),
           oneSidedCell(baseOnly),
           String(resized.arrays),
+          String(statuses.afterFirstClip),
         ];
       }),
     ),
@@ -3135,7 +3162,7 @@ function changedLensTable(changed: readonly DataImpact[]): string[] {
   ];
 }
 
-/** Whether a status change, as `ImpactPaths.statusChanges` writes one, is a blocker at every path that shows it. */
+/** Whether a status change blocks where it is not a failure after the ray's first clip. */
 function statusChangeBlocks(change: string): boolean {
   const cut = change.indexOf(STATUS_CHANGE_ARROW);
   const [was, is] = [change.slice(0, cut), change.slice(cut + STATUS_CHANGE_ARROW.length)];
@@ -3147,6 +3174,14 @@ function impactPathSection(paths: ImpactPaths): string[] {
   const { statuses, numbers, outcomes, headOnly, baseOnly, resized, statusChanges, statusChangesUnlisted } = paths;
   /* The most frequent first, and code-unit order between equals, so two runs list them alike. */
   const changes = Object.entries(statusChanges).sort(([a, x], [b, y]) => y - x || (a < b ? -1 : 1));
+  const afterFirstClipUnlisted =
+    statuses.afterFirstClip - Object.values(paths.statusChangesAfterFirstClip).reduce((sum, count) => sum + count, 0);
+  const statusRows = (change: string, count: number, afterFirstClip: number, gate: string) => [
+    ...(count > afterFirstClip ? [[change, String(count - afterFirstClip), gate]] : []),
+    ...(afterFirstClip > 0
+      ? [[change, String(afterFirstClip), "does not block: failure after the ray's first clip"]]
+      : []),
+  ];
   const oneSidedRow = (side: string, { statuses: held, failedStatuses, nonFinite }: OneSidedCounts) => [
     side,
     String(held),
@@ -3159,7 +3194,12 @@ function impactPathSection(paths: ImpactPaths): string[] {
     ...table(
       ["At a path both sides have", "Count", "Gate"],
       [
-        ["Statuses turned to a failure from a status that is none", String(statuses.toFailure), "blocks"],
+        [
+          "Statuses turned to a failure from a status that is none",
+          String(statuses.toFailure),
+          statuses.afterFirstClip > 0 ? "blocks except failures after the ray's first clip" : "blocks",
+        ],
+        ["Failures after the ray's first clip", String(statuses.afterFirstClip), "does not block"],
         ["Statuses turned from a failure to a status that is none", String(statuses.fromFailure), ""],
         ["Computed numbers turned from finite to non-finite", String(numbers.toNonFinite), "blocks"],
         ["Computed numbers turned from non-finite to finite", String(numbers.fromNonFinite), ""],
@@ -3193,16 +3233,28 @@ function impactPathSection(paths: ImpactPaths): string[] {
     ...(changes.length > 0
       ? [
           "Every status that differs: a change at a path both sides have, or a status one side has alone " +
-            `(\`${NO_STATUS}\` on the other). A change marked here blocks at each of its paths. The rule asks of ` +
-            "the status on the base data only that it is no failure, so one that held no result there (`clipped`, " +
-            "`unbracketed`) blocks like one that did.",
+            `(\`${NO_STATUS}\` on the other). Failures after the head ray's first clip are listed apart with their ` +
+            "non-blocking gate; both rows together give the total for a change with both kinds of path. Without " +
+            "ordered clip evidence, a status that held no result (`clipped`, `unbracketed`) blocks like one that did.",
           "",
           ...table(
             ["Status on the base data -> on the head data", "Paths", "Gate"],
             [
-              ...changes.map(([change, count]) => [change, String(count), statusChangeBlocks(change) ? "blocks" : ""]),
+              ...changes.flatMap(([change, count]) =>
+                statusRows(
+                  change,
+                  count,
+                  paths.statusChangesAfterFirstClip[change] ?? 0,
+                  statusChangeBlocks(change) ? "blocks" : "",
+                ),
+              ),
               ...(statusChangesUnlisted > 0
-                ? [["any other change", String(statusChangesUnlisted), "see the blockers listed above"]]
+                ? statusRows(
+                    "any other change",
+                    statusChangesUnlisted,
+                    afterFirstClipUnlisted,
+                    "see the blockers listed above",
+                  )
                 : []),
             ],
           ),
