@@ -694,11 +694,33 @@ describe("engineDiff legacy missed-surface tail", () => {
     );
   });
 
-  it("requires the ghost alignment and first miss position on both sides", () => {
+  it("exempts every ghost when a dropped point precedes a first-hit miss", () => {
+    const source = structuredClone(ray);
+    source.pts.pop();
+    source.diagnostics.clipEvents[1].surfaceIdx = 8;
+    const head = structuredClone(source);
+    for (const point of head.ghostPts) point[0] *= 2;
+    expect(judge(records({ legacy: { rays: [head] } }), "c1", records({ legacy: { rays: [source] } })).passed).toBe(
+      true,
+    );
+  });
+
+  it("keeps the lower bound when a point after the miss was dropped", () => {
+    const source = structuredClone(ray);
+    source.diagnostics.hitSurfaceIndexes.push(0);
+    const head = structuredClone(source);
+    head.ghostPts[1][0] *= 2;
+    expect(judge(records({ legacy: { rays: [head] } }), "c1", records({ legacy: { rays: [source] } })).passed).toBe(
+      true,
+    );
+    head.ghostPts[0][1] += 2e-7;
+    expect(
+      judge(records({ legacy: { rays: [head] } }), "c1", records({ legacy: { rays: [source] } })).engine.failures,
+    ).toContainEqual(expect.objectContaining({ path: "legacy.rays[0].ghostPts[0][1]", quantity: "clippedHit" }));
+  });
+
+  it("requires the lower bound and first miss position on both sides", () => {
     for (const edit of [
-      (value: typeof ray) => {
-        value.diagnostics.hitSurfaceIndexes.push(0);
-      },
       (value: typeof ray) => {
         value.pts.pop();
       },
