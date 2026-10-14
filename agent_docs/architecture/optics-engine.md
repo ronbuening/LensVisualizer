@@ -440,12 +440,14 @@ and is their only outside door.
   the base radius it was last built with. A mutable one is re-read on every call. A spread copy of a profile keeps the
   data fields it was copied with, so over mutable coefficients they can disagree with its evaluators.
 - **Not in the module yet.** Sag and slope have no other implementation, but five derived formulas do:
-  - the hit normal of the RuntimeLens stack tracer (`surfaceNormalAtHit()` in `internal/surfaceIntersection.ts`),
-    which differs from `normalFromSlope()` in the last bits and is deleted with that tracer
-    (`OPTICS_ENGINE_REWRITE_SPEC.md`, S4.P2.T4);
+  - the normal of the RuntimeLens stack tracer's ghost fallback point (`surfaceNormalAtHit()` in
+    `internal/surfaceIntersection.ts`), which differs from `normalFromSlope()` in the last bits and is deleted with
+    that tracer (`OPTICS_ENGINE_REWRITE_SPEC.md`, S4.P2.T4); a hit carries the kernel's normal;
   - the conic limit `|R| / sqrt(1 + K)` in `validateLensData.ts` and `diagram/renderDiagnostics.ts`, beside
     `finiteRadiusLimit()`;
   - the "beyond the sphere extent" test `r² > R²` in `trace/sequentialTrace.ts` and `internal/exactSurfaceTrace.ts`;
+    in the stack tracer a fallback point, or a hit on an asphere whose conic domain is wider than `|R|`, can reach it,
+    but no sphere hit does;
   - the base conic as a quadric, with its conic root `w = 1 − κcz`, its domain radius and the turning rate of its
     normal, in `geometry/intersectConic.ts`. The kernel's closed-form roots are built on the profile's `curvature`
     and `conic` and checked against `evaluate` ([Exact Surface Trace](#exact-surface-trace));
@@ -467,7 +469,8 @@ see `agent_docs/decisions.md`):
   adapters in `src/optics/trace/rayAdapters.ts`, so diagram rays, the bounding-sphere vector-launch branches of the
   off-axis and chromatic analyses, and everything else that calls those exports run here.
 - **RuntimeLens-shaped stack tracer** — `traceExactSurfaceStack()` / `traceExactSurfaceStackVector()` in
-  `internal/exactSurfaceTrace.ts`, intersecting through `internal/surfaceIntersection.ts`. Its callers are:
+  `internal/exactSurfaceTrace.ts`, intersecting through `internal/surfaceIntersection.ts`, an adapter over the kernel.
+  Its callers are:
   - `buildLens()` constants in `runtimeLens.ts`: the real-trace stop SD, the real EP/XP basis rays, the half-field
     bisection, the same solves at each zoom station, and the folded branch's pupil basis rays.
   - `rayTrace.ts`, whose tracers all run on this stack. The ones reached from production code are
@@ -489,25 +492,27 @@ the diagram lead: aspheric polynomials diverge outside their clear aperture, and
 otherwise land on that extension. For the same reason `geometry/intersect.ts` evaluates a conic only inside its domain
 radius (`finiteRadiusLimit()`): samples past it count as no surface rather than as the clamped sag, and when a scan
 step crosses the domain edge the edge is bisected and sampled, so a root just inside it still brackets. The closed
-form described below applies the same rule through the sign of the conic root.
+form described below applies the same rule through the sign of the conic root. The stack tracer still makes a
+fallback point after a miss in ghost mode: the vertex-plane crossing's x and y with the clamped sag's z, off the ray.
+It also does so where it once held a rim-clipped hit on the continuation beyond the conic domain.
 
-Aspheric hits are then restricted to the authored cap (`selectAsphericCapHit` in `geometry/intersect.ts`, reached from
-both solvers with the surface's `sd`): the first root inside the radial cylinder `r <= sd`, in ray order, wins over
-any polynomial-continuation root outside it, while a ray with no cap root keeps its exterior hit so aperture clipping
-still reports the first clip. The cap is the authored `sd`, independent of the iris and inner holes, and a
-physical hit blocked by the iris is never skipped for a later clear one. To avoid a second solve, a conservative
-slope certificate (`SurfaceProfile.maxAbsSlope`; `|dz| > maxAbsSlope * |dxy|` makes the sag equation strictly
-monotone over the covered radii) reuses the established hit or proves a cap miss from the cylinder endpoints; any
-uncertified case falls back to an ordered bracket scan of the cylinder interval. In `geometry/intersect.ts` the cap
-does not depend on the unbounded solve succeeding: when that solve finds a bracket and fails to converge on it, the
-cylinder interval is still scanned in ray order, and a root found there is returned. With none found the failure
-stands. The legacy solver reaches the cap only after a successful solve, until it delegates.
+Aspheric hits are then restricted to the authored cap (`selectAsphericCapHit` in `geometry/intersect.ts`, with one
+implementation and one caller, the kernel's iterative path, using the surface's `sd`): the first root inside the
+radial cylinder `r <= sd`, in ray order, wins over any polynomial-continuation root outside it, while a ray with no
+cap root keeps its exterior hit so aperture clipping still reports the first clip. The cap is the authored `sd`,
+independent of the iris and inner holes, and a physical hit blocked by the iris is never skipped for a later clear
+one. To avoid a second solve, a conservative slope certificate (`SurfaceProfile.maxAbsSlope`; `|dz| > maxAbsSlope *
+|dxy|` makes the sag equation strictly monotone over the covered radii) reuses the established hit or proves a cap
+miss from the cylinder endpoints; any uncertified case falls back to an ordered bracket scan of the cylinder interval.
+In `geometry/intersect.ts` the cap does not depend on the unbounded solve succeeding: when that solve finds a bracket
+and fails to converge on it, the cylinder interval is still scanned in ray order, and a root found there is returned.
+With none found the failure stands.
 
 In `geometry/intersect.ts` a polynomial asphere with a cap and default budgets first tries the conic-seeded route
 described below, which returns a cap hit under a slope certificate of its own. That certificate covers every cap
 point of the ray from the lower bound to one step of the bracket scan past the hit, so the hit it returns is the
 same first cap root. Cap selection as described above is what runs when the route refuses, on every call that sets
-a budget, and in the legacy solver, whose only entry to the kernel it is.
+a budget.
 
 The exact tracer in `internal/exactSurfaceTrace.ts` exposes these entry points:
 
@@ -522,14 +527,10 @@ The exact tracer in `internal/exactSurfaceTrace.ts` exposes these entry points:
   It runs a full generalized trace, scans `hits` for the first unclipped requested stop occurrence by default, and
   can select a later repeated stop occurrence when the optical path intentionally crosses the same stop more than once.
 
-Both solve each ray/sag intersection via `internal/surfaceIntersection.ts` and project the outgoing ray back
-to the current surface vertex plane before returning `y`/`u` or `x`/`y`/`ux`/`uy`. `surfaceIntersection.ts`
-splits its finiteness predicate into `isFiniteValueEvaluation` (used by `findBracket` endpoints and samples)
-and `isFiniteEvaluation` (additionally requires non-zero derivative, used inside Newton iteration) so a
-grazing meridional ray whose derivative collapses to zero at the optical axis can still anchor a bracket.
-The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite.
+Both tracers intersect through the kernel; the stack tracer projects the outgoing ray back to the current surface
+vertex plane before returning `y`/`u` or `x`/`y`/`ux`/`uy`.
 
-`geometry/intersect.ts`, the kernel of the prepared-state engine in `src/optics/trace/`, finds a root by profile kind:
+`geometry/intersect.ts`, the intersection kernel, behind both tracers, finds a root by profile kind:
 
 - **Planes** (`flat`, `tilted-plane`) solve analytically.
 - **Spheres and polynomial-free conics** are solved in closed form by `geometry/intersectConic.ts`. A conic is an
@@ -598,14 +599,14 @@ The closed form does not change the contract. It proposes a root, and the root i
   they do on a factory profile (see [Surface Geometry](#surface-geometry) for spread copies over mutable
   coefficients) everywhere but at the edge of the domain, where nothing is decided.
 
-Three outcomes differ from the iterative path's, and the differential harness reads each as a discrete transition:
+Three outcomes differ from the iterative path's for both tracers, and the differential harness reads each as a
+discrete transition:
 
 - **Roots the scan does not resolve.** The closed form finds a chord, or a short span inside the conic's domain,
   that falls between two samples whose residuals share a sign
   ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). It does so only above the slope floors. A
   shallower chord, and any such root on a polynomial asphere, still depends on the scan: the conic-seeded route
-  certifies one scan step past its root, so it never returns a root the scan does not resolve. So does every solve
-  of the legacy solver until it delegates (`OPTICS_ENGINE_REWRITE_SPEC.md`, S3.P2.T3).
+  certifies one scan step past its root, so it never returns a root the scan does not resolve.
 - **The raw target where the iterative path stalls.** Where the rounding of the residual is close to the target,
   from an operand sum of a few hundred mm, the iterative path can stop on a float that evaluates just above the
   target and report the envelope, while the closed-form root evaluates inside the target and is accepted there. The
@@ -621,12 +622,14 @@ Three outcomes differ from the iterative path's, and the differential harness re
 A fourth comes from a hit that moves by an ulp or two. Two surfaces that share a vertex can return the same float for
 a ray near the axis on the iterative path, whose evaluated residual is quantized more coarsely than the surfaces are
 apart there, and floats an ulp or two apart in closed form. The candidate search of the generalized tracer takes the
-nearest hit and keeps the lower surface index on a tie (`findNearestGeneralizedSurfaceHit()` in
-`trace/pathPlanner.ts`), so which of two such surfaces a ray meets can change. On the Zeiss Mirotar 500mm f/4.5 the
-two are the rear face of the second corrector and the secondary mirror coated on it, `3.8e-15` mm apart at
-`5.6e-5` mm from the axis. The closed form puts the mirror's blocked side first there, as the prescription has it,
-where the iterative path had let the ray through; the state's raw half-field, a bisection that ends on such a ray,
-moves by one of its steps.
+nearest hit and keeps the lower surface index on a tie (`findNearestGeneralizedSurfaceHit()` in `trace/pathPlanner.ts`
+and in `internal/exactSurfaceTrace.ts`), so which of two such surfaces a ray meets can change. On the Zeiss Mirotar
+500mm f/4.5 the two are the rear face of the second corrector and the secondary mirror coated on it, `3.8e-15` mm
+apart at `5.6e-5` mm from the axis. The closed form puts the mirror's blocked side first there, as the prescription
+has it, where the iterative path had let the ray through; the state's raw half-field, a bisection that ends on such a
+ray, moves by one of its steps. At the lens's analysis samples, below about `4e-5` mm of vertex radius, the two
+surfaces' `t` are closer than one ulp on every route, so rounding decides which one a ray meets. Both tracers now
+decide it alike; neither resolves the prescription's order at those radii.
 
 The conic-seeded route (`seedAsphereSolve` in `geometry/intersect.ts`) does not change the contract either. It serves
 a polynomial asphere with an authored cap, on a call that sets no budget, and it decides one thing: a hit that the
@@ -724,22 +727,20 @@ where the iterative path returned one, wherever the hit is more than twice the t
 That matters only where the generalized tracer's candidate search chooses between the two surfaces; in a
 sequential trace, or under an explicit `surfaceOrder`, the order is fixed.
 
-On the iterative path both solvers, `geometry/intersect.ts` and the legacy `internal/surfaceIntersection.ts`, share
-the same safeguarded Newton step (rtsafe). A step is accepted only inside the sign-changing bracket and when it moves
-at most half the step before last; otherwise the solver bisects, so grazing and steep-rim roots cannot stall. A zero
-or non-finite derivative bisects instead of failing. `geometry/intersect.ts` takes the sag and slope of each point it
-evaluates from one `SurfaceProfile.evaluate()` call and reuses that pair for the roundoff envelope; the legacy solver
-calls the positional functions. The seeded iteration is separate from it: no bracket, no envelope, and a limit of
-six evaluations.
+The kernel's iterative path uses a safeguarded Newton step (rtsafe). A step is accepted only inside the
+sign-changing bracket and when it moves at most half the step before last; otherwise the solver bisects, so grazing
+and steep-rim roots cannot stall. A zero or non-finite derivative bisects instead of failing. The kernel takes the
+sag and slope of each point it evaluates from one `SurfaceProfile.evaluate()` call and reuses that pair for the
+roundoff envelope. The seeded iteration is separate from it: no bracket, no envelope, and a limit of six evaluations.
 
-Both solvers share a 72-iteration cap (`INTERSECTION_MAX_ITERATIONS`). A root whose residual cannot reach `1e-12` mm
-leaves Newton taking steps of a few ulps, never exactly zero, so it is recognized only once bisection has collapsed
-the bracket to adjacent floats. That takes about log2(width / ulp) steps: 53 for a double, plus the Newton steps
-before it. The worst measured production solve, an exterior hit at a hemisphere's rim, needs 63; a captured legacy
-exterior aperture-clip diagnostic needs 43, and its old 32-step result used the tenfold fallback. Explicit caller
-budgets remain supported. The cap is a measured margin, not a convergence guarantee for arbitrary profiles or bounds.
+The iterative path has one 72-iteration cap (`INTERSECTION_MAX_ITERATIONS`). A root whose residual cannot reach
+`1e-12` mm leaves Newton taking steps of a few ulps, never exactly zero, so it is recognized only once bisection has
+collapsed the bracket to adjacent floats. That takes about log2(width / ulp) steps: 53 for a double, plus the Newton
+steps before it. The worst measured production solve, an exterior hit at a hemisphere's rim, needs 63. Explicit
+caller budgets remain supported. The cap is a measured margin, not a convergence guarantee for arbitrary profiles
+or bounds.
 
-The shipped residual target is `INTERSECTION_TOLERANCE = 1e-12` mm for both solvers and the legacy generalized
+The shipped residual target is `INTERSECTION_TOLERANCE = 1e-12` mm for the kernel and the stack tracer's own
 tilted-plane path. Sag profiles measure axial `z_ray - (vertexZ + sag)`; tilted planes measure signed normal distance
 `n · (point - planePoint)`. Dividing the latter by `n.z` gives the axial residual only for a nonvertical plane;
 normal distance remains the stable convention near vertical. Analytic hits on surface planes (flat and tilted) validate
@@ -766,11 +767,8 @@ terms (even when their sum cancels), vertex position, sag operand magnitudes, an
 conservative slope bound. For aspheres, the absolute-term slope bound also bounds cancelling polynomial terms.
 Analytic planes use the analogous normal-weighted operand bound. Unavailable/nonfinite bounds do not authorize
 acceptance. Successful intersections expose `effectiveTolerance` so diagnostics can distinguish the requested target
-from floor-assisted results; a floor-assisted hit is not a claim of raw `1e-12` mm accuracy. One floor-assisted case is
-not roundoff-limited: beyond `|R|` the legacy solver follows a clamped sag whose clamped slope is not its derivative,
-so Newton stalls away from the root and the slope-scaled envelope accepts residuals up to about `1e-8` mm. Those hits
-are exterior, always clipped, and reported with their `effectiveTolerance`; the production solver rejects that region
-as outside the surface's domain. The former unconditional
+from floor-assisted results; a floor-assisted hit is not a claim of raw `1e-12` mm accuracy. No solve evaluates a
+surface beyond its conic domain. The former unconditional
 tenfold residual allowance after iteration exhaustion is removed; the pending final step is evaluated under the same
 raw-target and stagnation rules. Clear-aperture clipping retains its independent
 `max(1e-9, abs(sd)*1e-12)` mm semantic tolerance.
