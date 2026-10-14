@@ -281,8 +281,9 @@ export interface PairedBenchmarkBase extends Pick<
   /** `prepareBenchmarkLens` of the base bundle: this same file, bundled against the base engine. */
   prepareBenchmarkLens: (lensKey: string) => PreparedBenchmarkLens;
   /**
-   * The side whose lenses and cells this process prepares first, which is the side whose bundle its driver loaded
-   * first. A paired run times in one process of each kind (`planTimedProcesses`). Defaults to the base.
+   * The side whose lenses and cells this process prepares first and which starts each case's warmups and measured
+   * pairs, matching the bundle its driver loaded first. A paired run times in one process of each kind
+   * (`planTimedProcesses`). Defaults to the base.
    */
   firstSide?: TimedProcess["firstSide"];
 }
@@ -2176,9 +2177,13 @@ function createCasePlan(): CasePlan {
 /**
  * Samples every case of a cell: alone, or pair by pair with the same case of the base side's cell.
  *
+ * @param head - the head's cases and the result objects sampling fills
+ * @param base - the base's matching cases, absent for an unpaired run
+ * @param sampling - warmup and measured counts, and whether to keep individual samples
+ * @param firstSide - the side the process prepares and samples first
  * @throws when the two sides lay the cell out as different cases, which only differing lens data can cause
  */
-function sampleCell(
+export function sampleCell(
   head: PreparedBenchmarkCell,
   base: PreparedBenchmarkCell | undefined,
   sampling: SamplingOptions,
@@ -2197,7 +2202,7 @@ function sampleCell(
       () => baseCase?.setup?.(),
       () => headCase.setup?.(),
     );
-    sampleCases(baseCase ? [baseCase, headCase] : [headCase], sampling);
+    sampleCases(baseCase ? [baseCase, headCase] : [headCase], sampling, firstSide);
   });
 }
 
@@ -2213,13 +2218,19 @@ const PAIR_ORDERS = { base: [0, 1], head: [1, 0] };
  * captured into the benchmark entry rather than thrown, allowing one failing category
  * to appear in the report without aborting the full run.
  *
- * A pair is one call of each side. The side that goes first swaps from pair to pair, so neither side always
- * runs second, on whatever the first left in the processor's caches and the collector's nursery. A side that
- * throws is not called again, and the other side is sampled to the end.
+ * A pair is one call of each side. Warmups and measured pairs each start with the process's first side, then
+ * swap from pair to pair, so neither side always runs second, on whatever the first left in the processor's
+ * caches and the collector's nursery. A side that throws is not called again, and the other side is sampled
+ * to the end.
  *
  * @param sides - one case, or the base case and the head case in that order
+ * @param firstSide - the side that starts pair 0 of warmups and of measured samples
  */
-function sampleCases(sides: readonly BenchmarkCase[], { warmups, iterations, keepSamples }: SamplingOptions): void {
+function sampleCases(
+  sides: readonly BenchmarkCase[],
+  { warmups, iterations, keepSamples }: SamplingOptions,
+  firstSide: TimedProcess["firstSide"],
+): void {
   const sampled = sides.map(() => ({
     durations: [] as number[],
     heapDeltas: [] as number[],
@@ -2230,7 +2241,7 @@ function sampleCases(sides: readonly BenchmarkCase[], { warmups, iterations, kee
   resetPerfProbe();
   for (let i = 0; i < warmups + iterations; i++) {
     const order =
-      sides.length === 1 ? UNPAIRED_ORDER : PAIR_ORDERS[pairedSampleOrder(i < warmups ? i : i - warmups)[0]];
+      sides.length === 1 ? UNPAIRED_ORDER : PAIR_ORDERS[pairedSampleOrder(i < warmups ? i : i - warmups, firstSide)[0]];
     for (const side of order) {
       const state = sampled[side];
       if (state.message !== undefined) continue;

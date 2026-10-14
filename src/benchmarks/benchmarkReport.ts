@@ -260,7 +260,7 @@ export interface HeadOnlyMember {
 
 /** One process of the timed pass of a paired run. */
 export interface TimedProcess {
-  /** The side whose bundle the process loaded first, and whose lenses and cells it prepared first. */
+  /** The side loaded and prepared first, which starts pair 0 of each case's warmups and measured samples. */
   firstSide: "base" | "head";
   /** Measured pairs per case that this process sampled. */
   pairs: number;
@@ -281,7 +281,7 @@ export interface ThrownCase {
 
 /** What a paired run concludes from its two sides. */
 export interface BenchmarkComparison {
-  /** The side sampled first in pair 0, of the warmups and of the measured samples; the order swaps every pair. */
+  /** The side that starts pair 0 where no process gives one; each timed process's own is in config.timedProcesses. */
   firstSide: "base";
   bootstrap: { resamples: number; seed: number; confidence: number };
   regressionRule: { ratioLowerBound: number; medianGrowthMs: number };
@@ -638,14 +638,18 @@ export function formatPercent(value: number | null): string {
 /**
  * Which side a paired run samples first in a pair.
  *
- * Warmup pairs and measured pairs are each counted from 0, so the first measured pair is base-first whatever the
+ * Warmup pairs and measured pairs are each counted from 0, so both start with the chosen side whatever the
  * number of warmups, and neither side is always the one that runs on a cache the other just disturbed.
  *
  * @param pairIndex - index of the pair among the warmups, or among the measured samples
+ * @param firstSide - the side that starts pair 0; defaults to base for callers without a process order
  * @returns the two sides in the order they are called
  */
-export function pairedSampleOrder(pairIndex: number): readonly ["base", "head"] | readonly ["head", "base"] {
-  return pairIndex % 2 === 0 ? BASE_FIRST : HEAD_FIRST;
+export function pairedSampleOrder(
+  pairIndex: number,
+  firstSide: TimedProcess["firstSide"] = "base",
+): readonly ["base", "head"] | readonly ["head", "base"] {
+  return (pairIndex % 2 === 0) === (firstSide === "base") ? BASE_FIRST : HEAD_FIRST;
 }
 
 const BASE_FIRST = ["base", "head"] as const;
@@ -655,10 +659,11 @@ const HEAD_FIRST = ["head", "base"] as const;
  * The processes a paired run times in.
  *
  * Two copies of one engine in one process do not time alike. In a run of a ref against itself most cases lean
- * toward one side, and the side changes with the bundle that was loaded and prepared first. The alternation of
- * pairs cancels what changes from pair to pair and nothing that lasts a whole process. So the timed pass runs
- * twice, once with each side first, and the pairs of the two processes are pooled. The measured pairs are shared as
- * evenly as possible, the extra one going to the first process; a process that would measure nothing is not run.
+ * toward one side, and the side changes with the bundle that was loaded and prepared first and made each case's
+ * first call. The alternation of pairs cancels what changes from pair to pair and nothing that lasts a whole
+ * process. So the timed pass runs twice, once with each side first, and the pairs of the two processes are pooled.
+ * The measured pairs are shared as evenly as possible, the extra one going to the first process; a process that
+ * would measure nothing is not run.
  *
  * @param iterations - measured pairs per case over the whole pass
  * @returns the processes in the order they run, each with the side it puts first and its share of the pairs
@@ -1658,7 +1663,8 @@ function describeTimedProcesses(processes: readonly TimedProcess[]): string {
   return (
     `both sides in ${processes.length === 1 ? "one process" : `${processes.length} processes`}` +
     (shares.length > 0 ? ` (${shares.join(", ")})` : "") +
-    `, alternating which side runs first from pair to pair`
+    `, alternating which side runs first from pair to pair, starting each case's warmups and measured pairs ` +
+    `with the process's first side`
   );
 }
 

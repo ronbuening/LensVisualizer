@@ -813,7 +813,9 @@ counts are measured at the stage end with a throwaway instrumented build, which 
 
 - Same machine and Node version on both sides. Paired mode times in two child processes. Each holds both engines and
   samples every case in pairs, alternating which side runs first; the two processes load the engines in opposite
-  orders, and their pairs are pooled.
+  orders, each process's first side also starts every case, and their pairs are pooled. A case's first call can run
+  several per cent apart from its second for the whole process, even on two copies of one engine; giving it to each
+  side in one of the two processes is what lets pooling cancel it.
 - At least 2 warmups and 9 measured samples per case, or 15 samples for cases above 100 ms.
 - Raw samples are kept in the run JSON. The statistic for a case is median(head) / median(base). Its interval is a
   percentile bootstrap over pair indices, with 10,000 resamples and a fixed seed.
