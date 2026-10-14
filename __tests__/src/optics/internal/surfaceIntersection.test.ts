@@ -83,6 +83,68 @@ describe("a ray that only meets the clamped sag beyond the conic domain", () => 
   });
 });
 
+describe("the stack tracer's entry to the kernel", () => {
+  const conic: AsphericCoefficients = { K: -0.5, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+  const quartic: AsphericCoefficients = { K: 0, A4: 1e-5, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+  const ray: SurfaceIntersectionRay = { origin: [0.3, 4, -5], direction: [0.02, 0.05, 2] };
+
+  it.each([
+    { kind: "flat", R: 1e15, asphere: undefined },
+    { kind: "spherical", R: 50, asphere: undefined },
+    { kind: "conic", R: 40, asphere: conic },
+    { kind: "polynomial asphere", R: 40, asphere: quartic },
+  ])("returns the kernel's $kind hit as its own tuples, with the surface index", ({ R, asphere }) => {
+    const L = lensWithSurface(R, asphere);
+    const options = { maxT: 20, refractiveIndex: 1.5 };
+    const kernel = intersectSurfaceProfile(ray, createSurfaceProfile({ R }, asphere), 0, {
+      ...options,
+      clearRadius: 20,
+    });
+    const legacy = intersectSagSurface(ray, 0, 0, L, options);
+    expect(kernel.ok).toBe(true);
+    expect(legacy.ok).toBe(true);
+    if (!kernel.ok || !legacy.ok) return;
+    const { closedFormFallback: _closedForm, ...hit } = kernel;
+    expect(legacy).toEqual({ ...hit, surfaceIdx: 0 });
+    expect(legacy).not.toHaveProperty("closedFormFallback");
+    expect(legacy.point).not.toBe(kernel.point);
+    expect(legacy.normal).not.toBe(kernel.normal);
+    // An explicit budget is the kernel's iterative path here too.
+    expect(intersectSagSurface(ray, 0, 0, L, { ...options, maxIterations: INTERSECTION_MAX_ITERATIONS })).toEqual({
+      ...intersectSurfaceProfile(ray, createSurfaceProfile({ R }, asphere), 0, {
+        ...options,
+        clearRadius: 20,
+        maxIterations: INTERSECTION_MAX_ITERATIONS,
+      }),
+      surfaceIdx: 0,
+    });
+  });
+
+  it("keeps its own failure names", () => {
+    const L = lensWithSurface(50);
+    expect(intersectSagSurface({ origin: [0, 1, -5], direction: [0, 0, 0] }, 0, 0, L, { maxT: 20 })).toEqual({
+      ok: false,
+      surfaceIdx: 0,
+      failureReason: "invalidRayDirection",
+      residual: null,
+      iterations: 0,
+    });
+    expect(intersectSagSurface(axialRay(1), 0, 0, L, { minT: -1, maxT: 20 })).toMatchObject({
+      ok: false,
+      failureReason: "invalidBounds",
+    });
+    expect(intersectSagSurface(axialRay(1), 0, 0, L)).toMatchObject({ ok: false, failureReason: "invalidBounds" });
+  });
+
+  it("solves the sag surface of a surface that carries a tilted interaction normal", () => {
+    // The stack tracer solves a tilted plane itself and never sends one here.
+    const tilted = { S: [{ R: 50, sd: 20, interaction: { type: "reflect", normal: { y: 1, z: 1 } } }], asphByIdx: {} };
+    expect(intersectSagSurface(axialRay(10), 0, 0, tilted, { maxT: 20 })).toEqual(
+      intersectSagSurface(axialRay(10), 0, 0, lensWithSurface(50), { maxT: 20 }),
+    );
+  });
+});
+
 describe("surface intersection helpers", () => {
   it("normalizes finite 3D direction vectors", () => {
     expect(normalizeVector3([3, 4, 0])).toEqual([0.6, 0.8, 0]);
