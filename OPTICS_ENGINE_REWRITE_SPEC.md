@@ -1483,7 +1483,10 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       - a catalog entry is ingested by its getter before `buildLens` sees it, so a catalog file both reject reports
         ingest's refusal. That order is accepted for catalog entries;
       - the exception ends no later than S5.P1.T3, which moves validation onto canonical data. S5.P1.T1 replaces
-        `normalizeLensData.ts`, and carries it or ends it.
+        `normalizeLensData.ts`, and carries it or ends it;
+      - `buildLens.ts` re-exports the spread and its check as `validateAuthoredLensData`, so that
+        `scripts/audit-surface-probe.mjs` asks the validator first as `buildLens` does. The export leaves with the
+        spread, at S5.P1.T1 or S5.P1.T3.
     - The catalogs ingest lazily, memoized per entry: every read of a key returns the same object, because caches key
       on it.
     - `src/lens-data/defaults.ts` is deleted.
