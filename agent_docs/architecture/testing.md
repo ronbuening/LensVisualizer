@@ -542,14 +542,21 @@ The classes in `budgets.ts`:
     plane's z plus the sag of the Petzval sphere at the chief ray's image height: 256 mm from the first vertex on
     a long lens, with no small slope under it. A new member of that kind needs a row of its own ahead of the rows
     by name, which would hand it the share for its name alone.
-  - A parabasal field focus is held tighter than its conditioning implies, and the share does not reach it. The
-    tangential and sagittal focus of a field are where the chief ray meets a ray 0.01 mm from it in the pupil. The
-    two slopes differ by about that height over the focal length, so on a long lens a hit that moves by 1e-13 mm
-    moves the focus by nanometres, while the focus itself is a fraction of a millimetre from the image plane and
-    keeps the floor. S3.P2.T2 moved one such shift, 0.24 mm on a 70-300 mm zoom with a 2x converter, by 4.9e-9 mm,
-    and the span of the channels' foci on another tele zoom by 3.2e-9 mm: half and a third of the budget. A
-    failure there on a step that moves hits by rounding alone may be this, and loosening it is the plan's to
-    settle.
+  - Tangential parabasal foci and their shifts, differences and spans use `tangentialParabasalFocus`: a
+    1e-7 mm floor, and the same 1e-10 share of each value's own size above 1 m. Nearly parallel parabasal rays
+    amplify last-surface height and slope rounding by about 1/|dU|, roughly 100 times the focal length in mm.
+    On lenses from 800 mm up the anchor itself misses an exact crossing by up to 2.28e-8 mm. This is
+    S3.P2.T1's deferred Tier S settlement, scoped by job ahead of both generic analysis-length rows:
+    - `computeFieldCurvature` and `computeFieldCurvatureBundle.{fieldCurvature,chromaticFieldCurvature}`:
+      `{fields,curveFields}[].{tangentialBestFocusZ,tangentialShiftMm,astigmaticDifferenceMm,astigmaticDifferenceUm}`,
+      their `chromaticFieldShifts[].tangentialShiftMm`, and
+      `{maxAstigmaticDifferenceMm,maxAstigmaticDifferenceUm,edgeTangentialShiftMm,sharedFocusShiftHalfRangeMm,chromaticFocusSpreadMm}`.
+    - `chromaticFieldFocusSummary`: `fields[].tangential.{minShiftMm,maxShiftMm,spreadMm,spreadUm}`,
+      `fields[].{maxFocusSpreadMm,maxFocusSpreadUm}` and
+      `{maxTangentialSpreadMm,maxFocusSpreadMm,edgeFocusSpreadMm}`.
+    Micrometre twins use scale 1000 for the same physical bound. Sagittal, full-fan diagnostic and Petzval
+    members keep their existing classes. `computePerspectiveFieldAberrations` is a different computation and
+    is excluded. C0 stays bit-exact.
   - The MTF best-focus shift is a solver's output of a fraction of a millimetre, and keeps a plain 1e-8 mm.
 - The exit pupil that a pupil-aberration profile gives for each field is an analysis length: `xpZRelLastSurf` in
   the `samples[]` of a profile, which is `xp.samples[]` of `computeBothPupilAberrationProfiles`. The engine traces

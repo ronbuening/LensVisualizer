@@ -264,6 +264,7 @@ describe("engineDiff budget table", () => {
       ["effectiveTolerance", 1e-12, null],
       ["layoutLength", 1e-12, lengthFloor],
       ["bestFitRadius", 1e-12, lengthFloor],
+      ["tangentialParabasalFocus", 1e-10, { bound: 1e-7, unit: "mm" }],
       ["refractiveIndex", 1e-12, null],
       ["nonLength", 1e-12, null],
       ["prescription", 1e-12, null],
@@ -361,6 +362,7 @@ describe("engineDiff budget table", () => {
     expect(farFromTheLens.map(({ id, bound, unit, c1 }) => [id, bound, unit, c1, bound / c1])).toEqual([
       ["clippedHit", 1e-7, "mm", 1e-12, expect.closeTo(1e5, 6)],
       ["analysisLength", 1e-8, "mm", 1e-10, 100],
+      ["tangentialParabasalFocus", 1e-7, "mm", 1e-10, expect.closeTo(1000, 9)],
     ]);
     /* Such a floor is itself no looser than the loosest absolute row of its unit. Past its size the class is, by
      * the plan's rule for it and not by oversight: an analysis length 44 m away is allowed 4.4e-6 mm, forty-four
@@ -397,12 +399,10 @@ describe("engineDiff budget table", () => {
       for (const fields of ["fields", "curveFields"]) {
         expect(classOf(...result, fields, "[]", "petzvalBestFocusZ")).toBe("petzvalPosition");
         for (const beside of [
-          "tangentialBestFocusZ",
           "sagittalBestFocusZ",
           "diagnosticTangentialBestFocusZ",
           "diagnosticSagittalBestFocusZ",
           "petzvalShiftMm",
-          "tangentialShiftMm",
         ]) {
           expect(classOf(...result, fields, "[]", beside)).toBe("analysisLength");
         }
@@ -487,6 +487,110 @@ describe("engineDiff comparison of identical captures", () => {
     expect(counts.headEngine.digestedTraces.ok).toBeGreaterThan(0);
     /* The context's jobs, six beside them, and the four readouts the viewer computes outside the context. */
     expect(counts.headEngine.jobs).toEqual({ returned: ANALYSIS_CONTEXT_JOBS.length + 10, threw: 0 });
+  });
+});
+
+describe("engineDiff tangential parabasal focus", () => {
+  const contexts = [
+    ["computeFieldCurvature", "value"],
+    ["computeFieldCurvatureBundle", "value", "fieldCurvature"],
+    ["computeFieldCurvatureBundle", "value", "chromaticFieldCurvature"],
+  ];
+  const ruleAt = (path: string[]) => resolveBudgetRule("analysis", ["jobs", ...path]);
+  const records = (job: string, member: string, value: number): ComparableRecord[] => [
+    {
+      lens: "synthetic",
+      state: DEFAULT_STATE,
+      request: "analysis",
+      payload: { ok: true, value: encodeValue({ jobs: { [job]: { value: { fields: [{ [member]: value }] } } } }) },
+    },
+  ];
+  const judge = (job: string, member: string, position: number, move: number, changeClass: ChangeClass = "c1") => {
+    const run = createDifferentialRun({ changeClass, declaredExceptions: [], restricted: true });
+    run.addLens({
+      lens: "synthetic",
+      dataChange: "unchanged",
+      baseEngine: records(job, member, position),
+      headEngine: records(job, member, position + move),
+    });
+    return run.finish();
+  };
+
+  it("pins the class, units and every job-scoped row", () => {
+    expect(QUANTITIES.tangentialParabasalFocus).toEqual({
+      title: "Tangential parabasal focus, 1e-7 mm at least",
+      unit: "relative",
+      kind: "relative",
+      c1: 1e-10,
+      c2: null,
+      floor: { bound: 1e-7, unit: "mm" },
+      origin: "addition",
+    });
+    for (const changeClass of CLASSES) expect(budgetOf("tangentialParabasalFocus", changeClass)).toBe(1e-10);
+    const covered = (path: string[], scale = 1) =>
+      expect(ruleAt(path)).toMatchObject({ quantity: "tangentialParabasalFocus", scale });
+    for (const context of contexts) {
+      for (const fields of ["fields", "curveFields"]) {
+        for (const member of ["tangentialBestFocusZ", "tangentialShiftMm", "astigmaticDifferenceMm"])
+          covered([...context, fields, "[]", member]);
+        covered([...context, fields, "[]", "astigmaticDifferenceUm"], 1000);
+        covered([...context, fields, "[]", "chromaticFieldShifts", "[]", "tangentialShiftMm"]);
+        for (const member of [
+          "sagittalBestFocusZ",
+          "sagittalShiftMm",
+          "diagnosticTangentialBestFocusZ",
+          "diagnosticTangentialShiftMm",
+          "petzvalShiftMm",
+        ]) {
+          expect(ruleAt([...context, fields, "[]", member])?.quantity).toBe("analysisLength");
+        }
+        expect(ruleAt([...context, fields, "[]", "petzvalBestFocusZ"])?.quantity).toBe("petzvalPosition");
+      }
+      for (const member of [
+        "maxAstigmaticDifferenceMm",
+        "edgeTangentialShiftMm",
+        "sharedFocusShiftHalfRangeMm",
+        "chromaticFocusSpreadMm",
+      ])
+        covered([...context, member]);
+      covered([...context, "maxAstigmaticDifferenceUm"], 1000);
+    }
+    const summary = ["chromaticFieldFocusSummary", "value"];
+    for (const member of ["minShiftMm", "maxShiftMm", "spreadMm"])
+      covered([...summary, "fields", "[]", "tangential", member]);
+    covered([...summary, "fields", "[]", "tangential", "spreadUm"], 1000);
+    covered([...summary, "fields", "[]", "maxFocusSpreadMm"]);
+    covered([...summary, "fields", "[]", "maxFocusSpreadUm"], 1000);
+    for (const member of ["maxTangentialSpreadMm", "maxFocusSpreadMm", "edgeFocusSpreadMm"])
+      covered([...summary, member]);
+    expect(ruleAt([...summary, "fields", "[]", "sagittal", "spreadUm"])).toMatchObject({
+      quantity: "analysisLength",
+      scale: 1000,
+    });
+    expect(ruleAt(["computePerspectiveFieldAberrations", "value", "fields", "[]", "tangentialShiftMm"])?.quantity).toBe(
+      "analysisLength",
+    );
+  });
+
+  it("admits 5e-8 mm only on the named tangential job member", () => {
+    expect(judge("computeFieldCurvature", "tangentialShiftMm", 0, 5e-8).passed).toBe(true);
+    expect(judge("computeFieldCurvature", "sagittalShiftMm", 0, 5e-8).passed).toBe(false);
+    expect(judge("computePerspectiveFieldAberrations", "tangentialShiftMm", 0, 5e-8).passed).toBe(false);
+    expect(judge("computeFieldCurvature", "tangentialShiftMm", 0, 5e-8, "c0").passed).toBe(false);
+  });
+
+  it("holds millimetre and micrometre twins to half and twice the same physical bound", () => {
+    for (const position of [0, 500, 2000]) {
+      const bound = Math.max(1e-7, 1e-10 * position);
+      for (const [member, scale] of [
+        ["astigmaticDifferenceMm", 1],
+        ["astigmaticDifferenceUm", 1000],
+      ] as const) {
+        expect(judge("computeFieldCurvature", member, position * scale, (bound / 2) * scale).passed).toBe(true);
+        expect(judge("computeFieldCurvature", member, position * scale, bound * 2 * scale).passed).toBe(false);
+        expect(judge("computeFieldCurvature", member, position * scale, (bound / 2) * scale, "c0").passed).toBe(false);
+      }
+    }
   });
 });
 
@@ -701,7 +805,7 @@ describe("engineDiff drift detection", () => {
     ["analysis", [...XP_SAMPLE, "xpShiftMm"], "analysisLength", 1],
     /* The Petzval position of a field is no crossing of rays, and has a class of its own at the same 1e-8 mm. */
     ["analysis", [...CURVATURE_FIELD, "petzvalBestFocusZ"], "petzvalPosition", 1],
-    ["analysis", [...CURVATURE_FIELD, "tangentialBestFocusZ"], "analysisLength", 1],
+    ["analysis", [...CURVATURE_FIELD, "sagittalBestFocusZ"], "analysisLength", 1],
     ["analysis", ["jobs", "computeDistortionCurve", "value", 3, "distortionPercent"], "percentage", 1],
     ["analysis", ["jobs", "computeDistortionCurve", "value", 3, "fieldAngleDeg"], "fieldAngle", 1],
     ["analysis", ["jobs", "computeVignettingCurve", "value", 3, "relativeIllumination"], "ratio", 1],
@@ -918,7 +1022,7 @@ describe("engineDiff drift detection", () => {
     expect(budget).toBe(1e-8);
     expect(measure! / budget!).toBeCloseTo(2, 4);
 
-    const traced = moved("tangentialBestFocusZ");
+    const traced = moved("sagittalBestFocusZ");
     expect(traced.passed).toBe(true);
     const tally = traced.engine.quantities.analysisLength!;
     expect(tally).toMatchObject({ differing: 1, beyondBudget: 0 });

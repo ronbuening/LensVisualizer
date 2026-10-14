@@ -291,6 +291,14 @@ export const QUANTITIES = {
    * at any size. Its two terms are in the same record under rows of their own, the image plane's z as a layout
    * length and the sag as `petzvalShiftMm`. */
   petzvalPosition: absolute("Petzval focus position", "mm", FAR_LENGTH_FLOOR.bound, "derived"),
+  /* A tangential parabasal pair differs in slope by about 0.01 mm over the focal length. On lenses from 800 mm
+   * up, rounding amplified by that small divisor moves the crossing by a few 1e-8 mm even in the anchor. The
+   * S3.P2.T1 Tier S settlement gives these crossings and their shifts and spans a 1e-7 mm floor, keeping the
+   * analysis length's 1e-10 share beyond 1 m. Only the named jobs below compute that pair. */
+  tangentialParabasalFocus: relative("Tangential parabasal focus, 1e-7 mm at least", 1e-10, "addition", {
+    bound: 1e-7,
+    unit: "mm",
+  }),
 
   /* What a solve reports of its own convergence is a contract check, as a hit's residual is: each side must be
    * within the tolerance the solve accepts a residual under, and the two sides are not differenced. The engine
@@ -823,6 +831,35 @@ const TABLE: readonly TableRow[] = [
    * (`xp.samples[]`) and in the exit-pupil profile computed alone (`samples[]`), which no job captures today. */
   ["analysisLength", ["analysis:**.samples[].xpZRelLastSurf"]],
   ["landing", ["analysis:**.imagePlaneHeights.*"]],
+
+  /* These jobs share the tangential parabasal crossing; the posed field-aberration job and the full-fan
+   * diagnostic foci do not. The rows precede both generic analysis-length rows, including micrometre twins. */
+  [
+    "tangentialParabasalFocus",
+    [
+      "analysis:jobs.computeFieldCurvature.value.{fields,curveFields}[].{tangentialBestFocusZ,tangentialShiftMm,astigmaticDifferenceMm}",
+      "analysis:jobs.computeFieldCurvatureBundle.value.{fieldCurvature,chromaticFieldCurvature}.{fields,curveFields}[].{tangentialBestFocusZ,tangentialShiftMm,astigmaticDifferenceMm}",
+      "analysis:jobs.computeFieldCurvature.value.{fields,curveFields}[].chromaticFieldShifts[].tangentialShiftMm",
+      "analysis:jobs.computeFieldCurvatureBundle.value.{fieldCurvature,chromaticFieldCurvature}.{fields,curveFields}[].chromaticFieldShifts[].tangentialShiftMm",
+      "analysis:jobs.computeFieldCurvature.value.{maxAstigmaticDifferenceMm,edgeTangentialShiftMm,sharedFocusShiftHalfRangeMm,chromaticFocusSpreadMm}",
+      "analysis:jobs.computeFieldCurvatureBundle.value.{fieldCurvature,chromaticFieldCurvature}.{maxAstigmaticDifferenceMm,edgeTangentialShiftMm,sharedFocusShiftHalfRangeMm,chromaticFocusSpreadMm}",
+      "analysis:jobs.chromaticFieldFocusSummary.value.fields[].tangential.{minShiftMm,maxShiftMm,spreadMm}",
+      "analysis:jobs.chromaticFieldFocusSummary.value.fields[].maxFocusSpreadMm",
+      "analysis:jobs.chromaticFieldFocusSummary.value.{maxTangentialSpreadMm,maxFocusSpreadMm,edgeFocusSpreadMm}",
+    ],
+  ],
+  [
+    "tangentialParabasalFocus",
+    [
+      "analysis:jobs.computeFieldCurvature.value.{fields,curveFields}[].astigmaticDifferenceUm",
+      "analysis:jobs.computeFieldCurvatureBundle.value.{fieldCurvature,chromaticFieldCurvature}.{fields,curveFields}[].astigmaticDifferenceUm",
+      "analysis:jobs.computeFieldCurvature.value.maxAstigmaticDifferenceUm",
+      "analysis:jobs.computeFieldCurvatureBundle.value.{fieldCurvature,chromaticFieldCurvature}.maxAstigmaticDifferenceUm",
+      "analysis:jobs.chromaticFieldFocusSummary.value.fields[].tangential.spreadUm",
+      "analysis:jobs.chromaticFieldFocusSummary.value.fields[].maxFocusSpreadUm",
+    ],
+    { scale: 1000 },
+  ],
 
   /* ── Analysis: rows by member name ── */
   /* A micrometre twin restates a millimetre field, times 1000. */
