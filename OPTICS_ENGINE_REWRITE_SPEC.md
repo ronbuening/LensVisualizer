@@ -943,10 +943,12 @@ flowchart LR
 
 ### Shape
 
-Excerpt of `NikonNikkorZ2450mmf463.data.ts` after conversion; the header comment block is unchanged:
+Excerpt of `NikonNikkorZ2450mmf463.data.ts` as the converter writes it (2026-10-14); the header comment block is
+unchanged, and `// …` marks what the excerpt leaves out:
 
 ```ts
 const LENS_DATA = {
+  /* ── Identity ── */
   schema: 2,
   key: "nikkor-z-24-50-f4-63",
   maker: "Nikon",
@@ -959,6 +961,7 @@ const LENS_DATA = {
     specs: ["11 ELEMENTS / 10 GROUPS", "f = 24.7–48.5 mm", "F/4.08–6.34", "2ω = 82.5°–48.2°", "6 ASPHERICAL SURFACES"],
     elementCount: 11,
     groupCount: 10,
+    /* ── Explicit metadata ── */
     focalLengthMm: { marketing: [24, 50], design: [24.73, 48.5] },
     fNumber: { marketing: 4, design: 4.08 },
   },
@@ -970,9 +973,20 @@ const LENS_DATA = {
     assignees: ["Konica Minolta, Inc.", "Nikon Corporation"],
   },
 
+  /* ── Elements ── */
   elements: [
-    { id: 1, name: "L1a", label: "Element 1", type: "Negative Meniscus", nd: 1.6968, vd: 55.46,
-      focalLengthMm: -28.2, glass: "LAC14 (HOYA)", apd: false, role: "Primary G1 diverging element; convex toward object" },
+    {
+      id: 1,
+      name: "L1a",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.6968,
+      vd: 55.46,
+      focalLengthMm: -28.2,
+      glass: "LAC14 (HOYA)",
+      apd: false,
+      role: "Primary G1 diverging element; convex toward object",
+    },
     // …
   ],
 
@@ -980,16 +994,26 @@ const LENS_DATA = {
     // ── G1: Negative front group (f₁ = −32.86 mm) ──
     { label: "1", R: 71.885, d: 1.2, sd: 15.5, medium: 1 }, // L1a front
     { label: "2", R: 15.312, d: 7.8, sd: 13.5 }, // L1a rear → air
-    { label: "3A", R: -298.152, d: 1.57, sd: 12.7, medium: 2,
-      asphere: { A4: 1.99678e-5, A6: -8.24417e-8, A8: -2.122e-11 } }, // L1b front (asph)
+    {
+      label: "3A",
+      R: -298.152,
+      d: 1.57,
+      sd: 12.7,
+      medium: 2,
+      asphere: { A4: 1.99678e-5, A6: -8.24417e-8, A8: -2.122e-11 },
+    }, // L1b front (asph)
     // …
-    { label: "6", R: 37.81, sd: 12.0 }, // L1c rear → air [VARIABLE: zoom only]; d comes from gaps
+    { label: "6", R: 37.81, sd: 12.0 }, // L1c rear → air [VARIABLE: zoom only]
     // …
-    { label: "STO", R: "flat", d: 3.41 }, // radius derived from the nominal f-number
+
+    // ── Aperture stop (between G2f and G2r) ──
+    { label: "STO", R: "flat", d: 3.41 },
     // …
   ],
 
   zoom: {
+    /* (moved from zoomPositions) ── Zoom positions (3 positions: wide, middle, tele) ── */
+    /* (moved from nominalFno) ── Aperture configuration ── */
     stations: [
       { focalLengthMm: 24.726, nominalFNumber: 4.08, label: "Wide" },
       { focalLengthMm: 34.711, nominalFNumber: 5.115 },
@@ -999,25 +1023,45 @@ const LENS_DATA = {
     step: 0.004,
   },
 
+  /* ── Focus configuration ── */
   focus: {
     closeFocusM: 0.35,
-    description: "Internal focus via G3 (2 elements, stepping motor). …",
+    description:
+      "Internal focus via G3 (2 elements, stepping motor). G3 translates toward image for close focus; …",
   },
 
+  /* (moved from var) ── Variable air spacings ── */
   gaps: {
     // d6: G1–G2 gap (zoom only — identical inf/close at each position)
-    "6": { label: "D6", values: [[19.973, 19.973], [10.326, 10.326], [3.17, 3.17]] },
+    "6": {
+      label: "D6",
+      values: [
+        [19.973, 19.973],
+        [10.326, 10.326],
+        [3.17, 3.17],
+      ],
+    },
     // …
   },
 
-  aperture: { blades: 7, bladeRoundedness: 0.7, fStops: [4.08, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 36], maxFNumber: 36 },
-  groups: [/* unchanged */],
-  doublets: [/* unchanged */],
+  aperture: { fStops: [4.08, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32, 36], maxFNumber: 36, blades: 7, bladeRoundedness: 0.7 },
+
+  /* ── Group and doublet annotations ── */
+  groups: [
+    { text: "G1 (−)", fromSurface: "1", toSurface: "6" },
+    // …
+  ],
+  doublets: [{ text: "D1", fromSurface: "9", toSurface: "12" }],
+
+  /* ── Layout tuning ── */
   layout: { scFill: 0.48, yScFill: 0.38 },
 } satisfies LensDataV2Input;
 ```
 
-The canonical field order is the order shown. The converter prints it, so diffs between files stay comparable.
+**Field order.** The converter prints each record's fields in the declaration order of the V2 types
+(`src/types/lensDataV2.ts`), which the field-mapping table below follows, and opens each top-level group with a blank
+line, so diffs between files stay comparable. `toLensDataV2.ts` writes that order and names the group starts
+(`V2_GROUP_STARTS`) beside it.
 
 ### Field mapping
 
@@ -1109,8 +1153,8 @@ The stop radius has exactly one authority per lens:
   converter's report lists on a stop entry, a leading one included:
   - 288 of the 906 dropped stop entries carry 364 comments; 3 of those entries span several lines.
   - Most comments justify the stop's position, which stays valid because `d` is unchanged.
-  - 75 comments on 73 entries discuss the radius: hand calibrations to an f-number, which the engine now performs, a
-    few figure readings, and section headings that name the f-number.
+  - 75 comments on 73 entries are flagged: hand calibrations to an f-number, which the engine now performs, a few
+    figure readings, and section headings that name the f-number.
   - 180 comment lines elsewhere in 172 files quote the authored radius and name the stop; they go stale when it is
     dropped.
   - The conversion report flags them (S2.P3.T1), and each batch PR resolves them (S2.P5).
@@ -1132,7 +1176,8 @@ The stop radius has exactly one authority per lens:
     exports. The printer writes a computed number back as its expression text (literal text, below).
   - Prints V2 deterministically, then formats it with Prettier's API (`format`, parser `typescript`) under the
     repository's configuration, read once from its root. Never the CLI, which skips `src/lens-data/` and exits 0, and
-    never by the output's path. The V1 direction, `--to-version 1`, lands in S2.P3.T2.
+    never by the output's path. An error from Prettier is a refusal, and so is a repository without a Prettier
+    configuration. The V1 direction, `--to-version 1`, lands in S2.P3.T2.
   - **Literal text.** Each number or string carried over unchanged prints with the source text of its expression: a
     literal, a sign (`fl: +99.5`), a computed number, a `+` chain of strings. Objects and arrays print from structure.
     - The text comes from inside `as`, `satisfies` and parentheses, and those wrappers are dropped (164 in 27 files).
@@ -1151,10 +1196,11 @@ The stop radius has exactly one authority per lens:
   - **The file's frame.** Everything before the statement that declares the exported const is kept byte for byte,
     except the type import, which names `LensDataV2Input` or `TeleconverterDataV2Input` from `types/lensDataV2.js` at
     the import's own `../` depth. From that statement on, the file is printed and formatted: always
-    `const X = {…} satisfies T;` then `export default X;`, the const keeping its name. Any other top-level const sits in
-    that header and stays as written.
-  - **Order.** Fields print in the canonical V2 order. Gaps print in surface order from the canonical list, because a
-    JavaScript object lists integer-like keys first and would move `STO` and `14A` after every numbered gap (199
+    `const X = {…} satisfies T;` then `export default X;`, the const keeping its name, so a file that also exports the
+    const where it declares it (`export const X`, as `SigmaDGDNA35mmf14` does) loses that `export`. Any other top-level
+    const sits in that header and stays as written.
+  - **Gap order.** Fields print in the field order above. Gaps print in surface order from the canonical list, because
+    a JavaScript object lists integer-like keys first and would move `STO` and `14A` after every numbered gap (200
     files); `var` prints the same way going to V1.
   - **Blank lines.** One blank line separates the top-level groups, as in the Shape excerpt, and a row of `surfaces`
     or `elements` keeps a blank line its source had before it or before one of its leading comments.
@@ -1169,6 +1215,8 @@ The stop radius has exactly one authority per lens:
     under the fingerprint's number rule (bit for bit, -0 as 0), compared by `prescriptionDifference` in
     `src/optics/prescription/`. The library returns a refusal as a value beside the report; the temp file, the
     rename and the type-check are S2.P3.T2's.
+  - **The report** is a value the library returns, and whoever runs the converter prints it: files in path order, by
+    repository-relative path, with no dates or timings.
 - **Path correspondence.** The converter carries comments and literal text by where ingest read each value, never by
   a second statement of the field mapping.
   - Asked for them, ingest records source paths in provenance as it reads: the authored path each canonical value,
@@ -1176,10 +1224,9 @@ The stop radius has exactly one authority per lens:
     value the prescription holds in another form (a V1 surface's `nd` and `elemId`, held by its `medium`; a
     conjugate's coordinates, held by its indices); and the home of each V1 container V2 dissolves. Without the
     request the result is unchanged, and each recording site costs one branch.
-  - The homes: `var` and `varLabels` → `gaps`; `asph` → `surfaces`; `zoomPositions`, `zoomLabels`, a per-station
-    `nominalFno`, `zoomCloseFocusM` and `zoomStopSemiDiameters` → `zoom.stations`; `publishedStations` →
-    `focus.published` on a prime and `zoom.stations` on a zoom; the ring's `var` and `varLabels` →
-    `aberrationControl.gaps`.
+  - The homes: `var` and `varLabels` → `gaps`, or `focus` when they hold no gap; each label pair → the gap it names;
+    `asph` → `surfaces`; `zoomPositions`, a per-station `nominalFno`, `zoomCloseFocusM` and `zoomStopSemiDiameters` →
+    `zoom.stations`; `publishedStations` → `focus.published` on a prime and `zoom.stations` on a zoom.
   - The V2 view (`toLensDataV2.ts`) records the canonical path behind each node it writes, and `v2SourceMap` composes
     the two. Records and containers pair as well as values: a surface, an element, a plate and a conjugate with the
     record each becomes, `asph[label]` with its surface's asphere, `var[label]` with its gap.
@@ -1187,16 +1234,24 @@ The stop radius has exactly one authority per lens:
     an element's `nd` takes the element's own token, and a medium's `nd` the token of the first surface that names
     it. A written value has at most one text source, and an index, flag or reference none.
   - The report lists a set-aside value as dropped only when the V2 view did not write it back. No script recognises a
-    dropped stop radius or a zero term by a path's shape or by the label `STO`: ingest says why it set each aside.
+    dropped stop radius or a zero term by a path's shape or by the label `STO`: ingest says why it set each aside, and
+    the source map says how the engine sets a dropped stop's radius.
   - One spelling of a path (`sourcePaths.ts`) serves ingest, the V2 view and the converter's reader: `surfaces[3].R`,
     `zoomPositions[1]`, `asph["3A"].A4`, `gaps["STO"]`.
 - **Comments.** Leading and trailing comments are attached to the authored path they annotate and re-emitted at the
   mapped V2 path; a comment after the last entry of a record or list stays after the last entry of its counterpart.
-  A comment whose node has no V2 counterpart is emitted at the nearest mapped ancestor, or at the home of the
-  container it sat in, leading that node (or ending the file's object, when that is all it finds). It is prefixed
-  `// (moved from <V1 path>)` inside the comment, unless it already begins so, and listed in the conversion report.
-  The converter refuses a file unless every source comment is emitted exactly once. Comments never become data
-  fields.
+  Comments never become data fields.
+  - A comment that led a top-level V1 field leads the V2 record that field opens, when the field is the first member
+    written into that record, and a comment that led the file's first field leads `schema`. Neither is moved nor
+    prefixed. `v2SourceMap` in `toLensDataV2.ts` states the rule.
+  - A comment whose node has no V2 counterpart is emitted at the nearest mapped ancestor, or at the home of the
+    container it sat in, leading that node (or ending the file's object, when that is all it finds). It is prefixed
+    `(moved from <V1 path>)` inside the comment, unless it already begins so, and listed in the conversion report. A
+    run of consecutive comments moved together from one V1 path takes the prefix once, on its first comment; the
+    report lists every comment of the run.
+  - The converter refuses a file unless every source comment, header included, is in the converted file once, as
+    written or with its prefix, and unless formatting left every comment on the node and in the placement the printer
+    gave it, so that converting the output again carries none elsewhere.
 - **Dropped stop radii.** For every dropped stop radius, the conversion report lists:
   - the authored radius as written, then the radius the engine uses in its place, labelled "engine radius" with no
     method, to 0.001 mm:
@@ -1207,12 +1262,13 @@ The stop radius has exactly one authority per lens:
 
     A stop that keeps its `sd` and a teleconverter get no entry. The radii come from `buildLens` on the converted V2
     object (`zoomStopSDs`, else `stopPhysSD`), loaded by its path only when a file drops a stop radius. A build that
-    throws on a file that ingests leaves the first line of its error in their place, and the conversion is not
-    refused;
-  - every comment on that stop entry, with comments that discuss the radius (`sd`, iris, radius, calibration,
-    diameter or an f-number) flagged for review;
-  - "elsewhere in the file": each comment line outside the stop entry that quotes the authored radius and names the
-    stop, `sd`, the iris or the aperture. They are listed only, not rewritten or moved.
+    throws on a file that ingests leaves its error's header and first reason, on one line, in their place, and the
+    conversion is not refused. Only the build is caught: a `buildLens` that cannot load fails the conversion;
+  - every comment on that stop entry, with those that name the radius (`sd`, iris, radius, calibration, diameter or
+    an f-number) flagged for review;
+  - "elsewhere in the file": each comment line outside the stop entry that names the stop, `sd`, a semi-diameter,
+    the iris or the aperture, and quotes the authored radius as written or rounded to the two or more decimals it is
+    quoted with. They are listed only, not rewritten or moved.
 - **V2 to V1** (S2.P3.T2) reads the same relation the other way: the V1 object the V1 view writes is ingested with
   source paths and composed with the V2 source's. A comment on a V2 node V1 has no counterpart for (a station record,
   `zoom`, `focus`, a medium) moves, prefixed, to the V1 node of its nearest mapped ancestor, or to the first V1
@@ -1711,8 +1767,11 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - `scripts/lens-data-convert/{read, print, comments, report, convert}.mjs`, with `.d.mts` declarations for the
       modules tests import
     - `scripts/lens-data-ast.mjs` and its `.d.mts`: `walkLensDataSource` shows the reader the syntax behind each value
-    - the seam loads through `loadLensDataConversion` (`scripts/lens-summaries.mjs`), unchanged, which the converter
-      also calls before it loads `buildLens.ts`
+    - `scripts/lens-summaries.mjs` and its `.d.mts`: the seam loads through `loadLensDataConversion`, whose return type
+      names every export of the seam, and the converter calls it before it loads `buildLens.ts`
+    - `agent_docs/architecture/{optics-engine, public-functions, routing-and-content, testing}.md`
+    - the existing tests `__tests__/src/optics/opticsArchitecture.test.ts`,
+      `__tests__/src/optics/prescription/ingestV2.test.ts` and `__tests__/src/optics/prescription/ingestV2Fixtures.ts`
     - the regenerated readmes of `src/optics/`, `src/optics/prescription/` and `src/types/`
   - **Tests:** synthetic fixtures only (`__tests__/scripts/convertLensData.test.ts` and its source-text fixtures,
     `__tests__/src/optics/prescription/toLensDataV2.test.ts`):
@@ -1729,7 +1788,13 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - station records;
     - media and spans;
     - each S2.P2.T1 fixture pair (a fixed-iris zoom added), converted and ingested to the pair's prescription;
-    - a V2 source given back as written, `// prettier-ignore`, the file's frame, and one refusal of each kind.
+    - every record's member order, on a maximal synthetic lens whose source lists each record's members backwards;
+    - the layout rulings: section banners, the first field's banner on `schema`, an empty `var`'s comments on
+      `focus`, a label pair's on the gap it names, and one prefix for a moved run;
+    - a V2 source given back as written, its comments on `schema` and on published-list items included;
+      `// prettier-ignore`, the whole file; a spread in a list; a literal inside `as const` or parentheses;
+    - the file's frame and each of its refusals, and one refusal of each other kind, among them a comment the
+      converted file does not hold, one it holds twice, and one that formatting gives another node.
   - **Gate:** C0.
 - **S2.P3.T2 CLI and safety.**
   - **Change:** add `scripts/convert-lens-data.mjs` and its `npm run convert:lens-data` script.
