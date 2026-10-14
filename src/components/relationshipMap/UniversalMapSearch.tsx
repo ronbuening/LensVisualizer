@@ -5,13 +5,15 @@ import type {
   UniversalRelationshipNode,
 } from "../../utils/catalog/universalRelationshipGraph.js";
 import { buildUniversalSearchIndex, searchUniversalNodes } from "../../utils/catalog/universalRelationshipSearch.js";
-import { searchInput } from "../../utils/style/styles.js";
+import { searchInput, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 import DropdownPanel, { type DropdownPanelPos } from "../layout/DropdownPanel.js";
 
 interface UniversalMapSearchProps {
   graph: UniversalRelationshipGraph;
   theme: Theme;
   onSelectNode: (nodeId: string) => void;
+  label?: string;
+  compact?: boolean;
 }
 
 function resultDescription(node: UniversalRelationshipNode): string {
@@ -25,7 +27,13 @@ function resultDescription(node: UniversalRelationshipNode): string {
   return node.kind === "family" ? "Corporate family" : "Organization";
 }
 
-export default function UniversalMapSearch({ graph, theme: t, onSelectNode }: UniversalMapSearchProps) {
+export default function UniversalMapSearch({
+  graph,
+  theme: t,
+  onSelectNode,
+  label = "Search the map",
+  compact = false,
+}: UniversalMapSearchProps) {
   const id = useId();
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -82,10 +90,32 @@ export default function UniversalMapSearch({ graph, theme: t, onSelectNode }: Un
   };
 
   return (
-    <div role="search" aria-label="Universal map search" style={{ marginBottom: "0.8rem" }}>
-      <label htmlFor={id} style={{ display: "block", color: t.label, fontSize: "0.75rem", marginBottom: 6 }}>
-        Search the map
+    <div
+      role="search"
+      aria-label={label === "Search the map" ? "Universal map search" : label}
+      style={{ marginBottom: compact ? 0 : "0.8rem", position: "relative" }}
+    >
+      <label
+        htmlFor={id}
+        style={compact ? VISUALLY_HIDDEN : { display: "block", color: t.label, fontSize: "0.75rem", marginBottom: 6 }}
+      >
+        {label}
       </label>
+      {compact && (
+        <svg
+          aria-hidden="true"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke={t.label}
+          strokeWidth="1.8"
+          style={{ position: "absolute", left: 14, top: 15, pointerEvents: "none" }}
+        >
+          <circle cx="10" cy="10" r="6" />
+          <path d="m15 15 5 5" />
+        </svg>
+      )}
       <input
         ref={inputRef}
         id={id}
@@ -96,7 +126,7 @@ export default function UniversalMapSearch({ graph, theme: t, onSelectNode }: Un
         aria-controls={visible ? `${id}-results` : undefined}
         aria-activedescendant={visible && shown[activeIndex] ? `${id}-result-${activeIndex}` : undefined}
         autoComplete="off"
-        placeholder="Entity, inventor, lens, or patent number"
+        placeholder={compact ? "Search a name, lens, or patent…" : "Entity, inventor, lens, or patent number"}
         value={query}
         onChange={(event) => {
           setQuery(event.target.value);
@@ -120,7 +150,13 @@ export default function UniversalMapSearch({ graph, theme: t, onSelectNode }: Un
             );
           } else if (event.key === "Escape" || event.key === "Tab") setOpen(false);
         }}
-        style={{ ...searchInput(t), width: "100%", boxSizing: "border-box", outlineColor: t.sliderAccent }}
+        style={{
+          ...searchInput(t),
+          width: "100%",
+          boxSizing: "border-box",
+          outlineColor: t.sliderAccent,
+          ...(compact ? { minHeight: 48, paddingLeft: 42, borderRadius: 8, background: t.panelBg } : {}),
+        }}
       />
       <DropdownPanel
         ref={panelRef}

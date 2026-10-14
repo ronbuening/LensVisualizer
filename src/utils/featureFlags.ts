@@ -30,3 +30,11 @@ export const ENABLE_ANALYSIS_VIEW = false;
 
 // Remove when cardinal element overlays ship or are abandoned.
 export const ENABLE_CARDINAL_ELEMENTS = true;
+
+// Expose Explore/Research tabs and connection-path queries; otherwise use Full map only.
+// Remove when the additional universal-map views ship or are abandoned.
+export const ENABLE_UNIVERSAL_MAP_EXTRA_VIEWS = true;
+
+// Enable screen-space labels, culling, curved links, and neighborhood framing.
+// False restores the previous full-map presentation. Remove after rollout settles.
+export const ENABLE_REVISED_UNIVERSAL_MAP = true;

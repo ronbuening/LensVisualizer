@@ -21,9 +21,10 @@ interface StaticPageShellProps {
   breadcrumbs: readonly StaticPageBreadcrumb[];
   seo?: ReactNode;
   children: (context: StaticPageShellContext) => ReactNode;
+  maxWidth?: number;
 }
 
-export default function StaticPageShell({ breadcrumbs, seo, children }: StaticPageShellProps) {
+export default function StaticPageShell({ breadcrumbs, seo, children, maxWidth }: StaticPageShellProps) {
   const { theme: t, themeMode, dark, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
   return (
@@ -50,7 +51,9 @@ export default function StaticPageShell({ breadcrumbs, seo, children }: StaticPa
         ))}
       </PageNavBar>
 
-      <main style={PAGE_BASE_STYLE}>{children({ theme: t, dark, highContrast })}</main>
+      <main style={maxWidth ? { ...PAGE_BASE_STYLE, maxWidth } : PAGE_BASE_STYLE}>
+        {children({ theme: t, dark, highContrast })}
+      </main>
     </div>
   );
 }

@@ -6,7 +6,8 @@ import { catalogCollator } from "./collation.js";
 export function buildUniversalSearchIndex(nodes: readonly UniversalRelationshipNode[]) {
   return nodes.map((node) => {
     const normalized = normalizeSearchText(node.name);
-    return { node, normalized, compactPatent: node.kind === "patent" ? normalized.replaceAll(" ", "") : "" };
+    const aliases = node.kind === "patent" ? node.patent.lenses.map((lens) => normalizeSearchText(lens.name)) : [];
+    return { node, normalized, aliases, compactPatent: node.kind === "patent" ? normalized.replaceAll(" ", "") : "" };
   });
 }
 
@@ -16,7 +17,11 @@ export function searchUniversalNodes(index: ReturnType<typeof buildUniversalSear
   const words = normalized.split(" ");
   const compact = normalized.replaceAll(" ", "");
   return index
-    .filter((entry) => words.every((word) => entry.normalized.includes(word)) || entry.compactPatent.includes(compact))
+    .filter(
+      (entry) =>
+        [entry.normalized, ...entry.aliases].some((name) => words.every((word) => name.includes(word))) ||
+        entry.compactPatent.includes(compact),
+    )
     .map((entry) => ({
       ...entry,
       score:

@@ -52,11 +52,13 @@ flowchart LR
   n_src_utils_state_src_utils_state_mtfDataWarnings_ts --> n_external_src_types
   n_src_utils_state_src_utils_state_mtfPreferences_ts --> n_external_src_types
   n_src_utils_state_src_utils_state_preferences_ts --> n_external_src_types
+  n_src_utils_state_src_utils_state_universalMapUrl_ts --> n_external_src_types
   n_src_utils_state_src_utils_state_useLensState_ts --> n_external_src_types
   n_src_utils_state_src_utils_state_usePreferences_ts --> n_external_src_types
   n_src_utils_state_src_utils_state_useURLSync_ts --> n_external_src_types
   n_src_utils_state_src_utils_state_lensReducer_ts --> n_external_src_utils_appConfig_ts
   n_src_utils_state_src_utils_state_lensViewUrlSync_ts --> n_external_src_utils_catalog
+  n_src_utils_state_src_utils_state_universalMapUrl_ts --> n_external_src_utils_catalog
   n_src_utils_state_src_utils_state_lensReducer_ts --> n_external_src_utils_featureFlags_ts
   n_src_utils_state_src_utils_state_lensViewUrlSync_ts --> n_external_src_utils_seo
   n_src_utils_state_src_utils_state_lensReducer_ts --> n_external_src_utils_theme
@@ -69,8 +71,6 @@ flowchart LR
   n_src_utils_state_src_utils_state_parseComparisonParams_ts --> n_src_utils_state_src_utils_state_lensViewUrlState_ts
   n_src_utils_state_src_utils_state_useLensState_ts --> n_src_utils_state_src_utils_state_lensViewUrlState_ts
   n_src_utils_state_src_utils_state_useURLSync_ts --> n_src_utils_state_src_utils_state_lensViewUrlState_ts
-  n_src_utils_state_src_utils_state_useURLSync_ts --> n_src_utils_state_src_utils_state_lensViewUrlSync_ts
-  n_src_utils_state_src_utils_state_lensViewUrlSync_ts --> n_src_utils_state_src_utils_state_parseComparisonParams_ts
   n_src_utils_state_truncated["additional relationships omitted"]
 ```
 
@@ -78,7 +78,7 @@ flowchart LR
 
 - Direct source files: 14
 - Direct subfolders: 0
-- Main outbound areas: same folder (15), src/types (14), src/utils/catalog (5), package:react (4), src/comparison (3), src/optics/lensMovement.ts, src/optics/validateLensData.ts, src/utils/appConfig.ts, +4 more
+- Main outbound areas: same folder (15), src/types (15), src/utils/catalog (6), package:react (4), src/comparison (3), src/optics/lensMovement.ts, src/optics/validateLensData.ts, src/utils/appConfig.ts, +4 more
 - External consumers: src/comparison, src/components/display, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/pages/AuthorsIndexPage.tsx, src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx, +1 more
 
 ## Files
@@ -94,7 +94,7 @@ flowchart LR
 | `mtfPreferences.ts` | Mtf Preferences helper module | src/types | src/components/display (4), src/components/hooks | MtfChartView, MTF_FIELD_STEPS, MtfFieldStepPercent, MTF_CHART_FREQUENCIES, MtfChartFrequency, MtfPreferences, MTF_PREFERENCES_KEY, DEFAULT_MTF_PREFERENCES, +7 more |
 | `parseComparisonParams.ts` | Parse Comparison Params helper module | same folder (2), src/comparison | same folder (2), src/comparison | focalLengthToZoomT, zoomTToFocalLength, buildComparePath, BuildURLSliders, parseLensKeysFromSearch, parseComparisonParams, encodeSliderParams, buildComparisonURL |
 | `preferences.ts` | Preferences helper module | src/types | same folder (2), src/utils/theme (2), src/components/HolidayFavicon.tsx | PREFS_KEY, PREFS_VERSION, loadPrefs |
-| `universalMapUrl.ts` | Universal Map Url helper module | none | src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | universalMapNodeFromHash, universalMapHash |
+| `universalMapUrl.ts` | Universal Map Url helper module | src/types, src/utils/catalog | src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | universalMapNodeFromHash, universalMapHash, universalMapStateFromHash, universalMapStateHash |
 | `useLensState.ts` | React hook module | same folder (4), src/utils/catalog (2), package:react, src/types, src/utils/useMediaQuery.ts | src/components/layout | default, useLensState |
 | `usePreferences.ts` | React hook module | package:react, same folder, src/types | src/components/layout | default, usePreferences |
 | `useURLSync.ts` | React hook module | same folder (3), src/utils/catalog (2), package:react, src/types | src/components/layout | default, useURLSync |
