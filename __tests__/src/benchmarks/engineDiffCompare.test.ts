@@ -2398,6 +2398,163 @@ function catalogOf(...lenses: LensDataInput[]): SerializedCatalog {
   };
 }
 
+describe("engineDiff data failures after a ray's first clip", () => {
+  const clip = { reason: "semi-diameter", surfaceIdx: 0, surfaceLabel: "1", failureReason: null };
+  const failure = { reason: "intersection-failure", surfaceIdx: 1, surfaceLabel: "2", failureReason: "noBracket" };
+  const ray = (status: string, clipEvents: readonly object[] = []) => ({
+    status,
+    hits: { count: 1, columns: {} },
+    diagnostics: { clipEvents },
+  });
+  const record = (value: unknown, request: RequestFamily = "traces"): ComparableRecord => ({
+    lens: "synthetic-clipped-ray",
+    state: DEFAULT_STATE,
+    request,
+    payload: { ok: true, value: encodeValue(value) },
+  });
+  const judge = (base: ComparableRecord, head: ComparableRecord, changeClass: ChangeClass = "c0") => {
+    const run = createDifferentialRun({ changeClass, declaredExceptions: [], restricted: true });
+    const output = run.addLens({
+      lens: head.lens,
+      dataChange: "semantic",
+      baseEngine: structuredClone([head]),
+      headEngine: [head],
+      baseData: [base],
+    });
+    return { summary: run.finish(), output };
+  };
+  const fans = [
+    ...["onAxis", "offAxis", "skew"].map((fan) => ({
+      name: fan,
+      value: (traced: object) => ({ [fan]: { rays: [traced] } }),
+    })),
+    ...["B", "V", "R"].map((channel) => ({
+      name: `chromatic ${channel}`,
+      value: (traced: object) => ({ chromatic: { rays: { [channel]: [traced] } } }),
+    })),
+  ];
+
+  it.each(fans)("counts and reports a clipped ray that fails after an earlier clip in $name", ({ value }) => {
+    for (const changeClass of CLASSES) {
+      const { summary, output } = judge(
+        record(value(ray("clipped", [clip]))),
+        record(value(ray("failed", [clip, failure]))),
+        changeClass,
+      );
+      expect(summary.passed, changeClass).toBe(true);
+      expect(summary.dataImpact[0]).toMatchObject({
+        blocking: 0,
+        blockers: [],
+        paths: {
+          statuses: { toFailure: 1, fromFailure: 0, afterFirstClip: 1 },
+          statusChanges: { "clipped -> failed": 1 },
+          statusChangesAfterFirstClip: { "clipped -> failed": 1 },
+        },
+      });
+      expect(output.failingRecords).toEqual([]);
+      expect(renderDataImpactMarkdown(summary, REPORT_CONTEXT)).toContain(
+        "| clipped -> failed | 1 | does not block: failure after the ray's first clip |",
+      );
+    }
+  });
+
+  it("blocks when the failure is the first clip event, or the head has no ordered evidence", () => {
+    for (const events of [[failure], [failure, clip], [clip], []]) {
+      const { summary } = judge(
+        record({ offAxis: { rays: [ray("clipped", [clip])] } }),
+        record({ offAxis: { rays: [ray("failed", events)] } }),
+      );
+      expect(summary).toMatchObject({ passed: false, dataImpact: [{ blocking: 1 }] });
+    }
+  });
+
+  it("uses the head ray's event order even from ok, across decreasing surface indexes and non-rim clips", () => {
+    for (const reason of ["semi-diameter", "inner-hole", "block-surface"]) {
+      const { summary } = judge(
+        record({ skew: { rays: [ray("ok")] } }),
+        record({ skew: { rays: [ray("failed", [{ ...clip, reason, surfaceIdx: 9 }, failure])] } }),
+      );
+      expect(summary).toMatchObject({ passed: true, dataImpact: [{ blocking: 0 }] });
+      expect(renderDataImpactMarkdown(summary, REPORT_CONTEXT)).toContain(
+        "| ok -> failed | 1 | does not block: failure after the ray's first clip |",
+      );
+    }
+  });
+
+  it("still blocks a digested nested trace whose status turns to failed", () => {
+    const nested = (status: string) =>
+      record({ jobs: { fan: { ok: true, value: { trace: { status, hash: "trace", hitCount: 1 } } } } }, "analysis");
+    const { summary } = judge(nested("clipped"), nested("failed"));
+    expect(summary).toMatchObject({
+      passed: false,
+      dataImpact: [{ blocking: 1, blockers: [{ path: "jobs.fan.value.trace.status" }] }],
+    });
+  });
+
+  it.each(["bracket-failed", "evaluation-failed"])("still blocks %s with earlier clip events", (status) => {
+    const solve = (status: string) => record({ solves: [ray(status, [clip, failure])] }, "chiefSolves");
+    const { summary } = judge(solve("unbracketed"), solve(status));
+    expect(summary).toMatchObject({ passed: false, dataImpact: [{ blocking: 1 }] });
+  });
+
+  it("keeps total status changes and differences, and separates mixed gates in JSON and Markdown", () => {
+    const base = record({ offAxis: { rays: [ray("clipped"), ray("clipped"), ray("ok")] } });
+    const head = record({
+      offAxis: { rays: [ray("failed", [clip, failure]), ray("failed", [failure]), ray("failed", [clip, failure])] },
+    });
+    const { summary, output } = judge(base, head);
+    const impact = JSON.parse(JSON.stringify(summary)).dataImpact[0];
+    expect(impact).toMatchObject({
+      records: 1,
+      recordsDiffering: 1,
+      transitions: 6,
+      blocking: 1,
+      blockers: [{ path: "offAxis.rays[1].status" }],
+      paths: {
+        statuses: { toFailure: 3, fromFailure: 0, afterFirstClip: 2 },
+        statusChanges: { "clipped -> failed": 2, "ok -> failed": 1 },
+        statusChangesAfterFirstClip: { "clipped -> failed": 1, "ok -> failed": 1 },
+      },
+    });
+    expect(output.failingRecords).toHaveLength(1);
+    const report = renderDataImpactMarkdown(summary, REPORT_CONTEXT);
+    expect(report).toContain("| Statuses turned to a failure from a status that is none | 3 |");
+    expect(report).toContain("| Failures after the ray's first clip | 2 | does not block |");
+    expect(report).toContain("| clipped -> failed | 1 | blocks |");
+    expect(report).toContain("| clipped -> failed | 1 | does not block: failure after the ray's first clip |");
+    expect(report).toContain("| ok -> failed | 1 | does not block: failure after the ray's first clip |");
+    expect(renderSummaryMarkdown(summary, REPORT_CONTEXT)).toContain("Failures after the ray's first clip");
+    expect(summary.engine).toMatchObject({ recordsDiffering: 0, failing: 0 });
+
+    /* A crowded status table still counts the non-blocking subset, and it cannot crowd a blocker out of its list. */
+    const crowded = (head: boolean) =>
+      record({
+        beforeFans: Array.from({ length: 64 }, (_, index) => ({ status: `${head ? "head" : "base"}${index}` })),
+        offAxis: {
+          rays: Array.from({ length: 13 }, (_, index) =>
+            ray(head ? "failed" : "clipped", head ? (index < 12 ? [clip, failure] : [failure]) : []),
+          ),
+        },
+      });
+    const unlisted = judge(crowded(false), crowded(true)).summary;
+    expect(unlisted.dataImpact[0]).toMatchObject({
+      blocking: 1,
+      blockers: [{ path: "offAxis.rays[12].status" }],
+      paths: {
+        statuses: { toFailure: 13, afterFirstClip: 12 },
+        statusChangesAfterFirstClip: {},
+        statusChangesUnlisted: 13,
+      },
+    });
+    expect(renderDataImpactMarkdown(unlisted, REPORT_CONTEXT)).toContain(
+      "| any other change | 12 | does not block: failure after the ray's first clip |",
+    );
+    expect(renderDataImpactMarkdown(unlisted, REPORT_CONTEXT)).toContain(
+      "| any other change | 1 | see the blockers listed above |",
+    );
+  });
+});
+
 describe("engineDiff cross-evaluation", () => {
   const key = plainTwin.key;
   const requests: CaptureRequest[] = [
@@ -2433,13 +2590,14 @@ describe("engineDiff cross-evaluation", () => {
   /* A semantic data change is judged path by path. The tests below set a status, a number or an outcome on each
    * side of one. */
   const NO_PATHS = {
-    statuses: { toFailure: 0, fromFailure: 0 },
+    statuses: { toFailure: 0, afterFirstClip: 0, fromFailure: 0 },
     numbers: { toNonFinite: 0, fromNonFinite: 0 },
     outcomes: { toThrown: 0, fromThrown: 0 },
     baseOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
     headOnly: { statuses: 0, failedStatuses: 0, nonFinite: 0 },
     resized: { arrays: 0, listed: [] },
     statusChanges: {},
+    statusChangesAfterFirstClip: {},
     statusChangesUnlisted: 0,
   };
   /** The digest that stands in for a trace nested in an analysis result. */
@@ -2607,7 +2765,7 @@ describe("engineDiff cross-evaluation", () => {
     expect(pathsOf(summary)).toEqual({
       ...NO_PATHS,
       /* The ray of the third channel that failed on the base data and is traced through on the head data. */
-      statuses: { toFailure: 0, fromFailure: 1 },
+      statuses: { toFailure: 0, afterFirstClip: 0, fromFailure: 1 },
       /* Each of the two channels gained a field sample of seven statuses and the digests of its three rays. */
       headOnly: { statuses: 20, failedStatuses: 2, nonFinite: 0 },
       statusChanges: {
@@ -2695,7 +2853,7 @@ describe("engineDiff cross-evaluation", () => {
     /* Every one of those failures is at a path the base data has no status at, and nothing turned to a failure
      * or stopped being finite at a path both sides have. */
     expect(paths).toMatchObject({
-      statuses: { toFailure: 0, fromFailure: 0 },
+      statuses: { toFailure: 0, afterFirstClip: 0, fromFailure: 0 },
       numbers: { toNonFinite: 0 },
       outcomes: { toThrown: 0 },
       baseOnly: { statuses: 0, failedStatuses: 0 },
@@ -2731,7 +2889,7 @@ describe("engineDiff cross-evaluation", () => {
     });
     expect(pathsOf(moved)).toEqual({
       ...NO_PATHS,
-      statuses: { toFailure: 1, fromFailure: 1 },
+      statuses: { toFailure: 1, afterFirstClip: 0, fromFailure: 1 },
       statusChanges: { "ok -> failed": 1, "failed -> ok": 1 },
     });
 
@@ -2765,7 +2923,7 @@ describe("engineDiff cross-evaluation", () => {
     };
     expect(pathsOf(hidden)).toEqual({
       ...NO_PATHS,
-      statuses: { toFailure: 1, fromFailure: 1 },
+      statuses: { toFailure: 1, afterFirstClip: 0, fromFailure: 1 },
       headOnly: { statuses: 1, failedStatuses: 0, nonFinite: 0 },
       resized: resizedFan,
       statusChanges: { "ok -> failed": 1, "failed -> ok": 1, "absent -> ok": 1 },
@@ -2815,7 +2973,7 @@ describe("engineDiff cross-evaluation", () => {
     const missed = evaluate("semantic", shifted, plainRecords);
     expect(missed).toMatchObject({ passed: true, dataImpact: [{ blocking: 0 }] });
     expect(pathsOf(missed)).toMatchObject({
-      statuses: { toFailure: 0, fromFailure: 0 },
+      statuses: { toFailure: 0, afterFirstClip: 0, fromFailure: 0 },
       headOnly: { statuses: 1, failedStatuses: 1 },
       resized: { arrays: 1, listed: listedFan(count, count + 1) },
     });
@@ -2890,7 +3048,7 @@ describe("engineDiff cross-evaluation", () => {
     });
     expect(pathsOf(stopped)).toEqual({
       ...NO_PATHS,
-      statuses: { toFailure: 1, fromFailure: 0 },
+      statuses: { toFailure: 1, afterFirstClip: 0, fromFailure: 0 },
       baseOnly: gone,
       statusChanges: {
         "converged -> evaluation-failed": 1,
@@ -2913,7 +3071,7 @@ describe("engineDiff cross-evaluation", () => {
       const summary = evaluate("semantic", withSamples([channelWithoutRoot(status)]), usable);
       expect(summary.passed, status).toBe(true);
       expect(pathsOf(summary), status).toMatchObject({
-        statuses: { toFailure: 0, fromFailure: 0 },
+        statuses: { toFailure: 0, afterFirstClip: 0, fromFailure: 0 },
         baseOnly: gone,
         statusChanges: { [`converged -> ${status}`]: 1 },
       });
@@ -2937,7 +3095,7 @@ describe("engineDiff cross-evaluation", () => {
       });
       expect(pathsOf(summary), status).toEqual({
         ...NO_PATHS,
-        statuses: { toFailure: 1, fromFailure: 0 },
+        statuses: { toFailure: 1, afterFirstClip: 0, fromFailure: 0 },
         statusChanges: { [`usable -> ${status}`]: 1 },
       });
     }
@@ -2961,10 +3119,8 @@ describe("engineDiff cross-evaluation", () => {
       expect(pathsOf(summary), status).toEqual({ ...NO_PATHS, statusChanges: { [`usable -> ${status}`]: 1 } });
     }
 
-    /* The status on the base data need only be no failure. A ray that was clipped and now fails blocks, and so
-     * does a root solve that found no bracket and now cannot evaluate, although neither held a result on the base
-     * data: the fans of a traces record are traced on past a rim, so such a ray is as a rule a vignetted ray that
-     * went on to miss a surface. The table of status changes says which changes blocked. */
+    /* Without clip events to prove an earlier clip, a failure still blocks from a status that held no result.
+     * Solve failures need no clip evidence. */
     for (const [from, to] of [
       ["clipped", "failed"],
       ["unbracketed", "evaluation-failed"],
@@ -3241,7 +3397,7 @@ describe("engineDiff cross-evaluation", () => {
     expect(many.dataImpact[0].blocking).toBe(25);
     expect(many.dataImpact[0].blockers).toHaveLength(10);
     expect(many.dataImpact[0].blockers[9]).toMatchObject({ path: "samples[0].rayFan.samples[9].trace.status" });
-    expect(pathsOf(many).statuses).toEqual({ toFailure: 25, fromFailure: 0 });
+    expect(pathsOf(many).statuses).toEqual({ toFailure: 25, afterFirstClip: 0, fromFailure: 0 });
     expect(renderDataImpactMarkdown(many, REPORT_CONTEXT)).toContain("### Blocking (first 10 of 25)");
     expect(renderSummaryMarkdown(many, REPORT_CONTEXT)).toContain("### Blocking data changes (first 10 of 25)");
 

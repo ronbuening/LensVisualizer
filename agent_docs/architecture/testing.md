@@ -358,12 +358,16 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
      a sensor lock. Every other status is an outcome a prescription can move between, and a change to one is listed
      and does not block: `clipped`, `missed-sensor`, `chief-unreachable`, `unbracketed`, `iteration-limit`,
      `paraxial-fallback`, `unconverged`, `unavailable` and the out-of-domain statuses.
-     - The status on the base data need only be no failure, so a status that held no result there blocks as one
-       that held one does: a ray that was `clipped` and is `failed`, a root solve that was `unbracketed` and is
-       `evaluation-failed`. The fans of a traces record are traced on past a rim, so the first is as a rule a
-       vignetted ray that went on to miss a surface, and nothing that was good became bad. It blocks all the same,
-       and nothing excuses a data-impact block. The report's table of status changes marks each change that blocks,
-       so a reader tells such a block from a result that was lost.
+     - A ray's change to `failed` does not block when its own head-data `diagnostics.clipEvents` show a clip
+       whose reason is not `intersection-failure` before the intersection failure. The events give path order;
+       surface indexes need not increase on a folded path. Once clipped, a ray carries no result, so a later
+       intersection failure is a continuation diagnostic. This applies to every full-hit fan of a traces record:
+       `onAxis`, `offAxis`, `skew`, and each channel of `chromatic.rays` (B, V, R).
+     - A failure that is the first clip event, or lacks clip events to prove the order, still blocks. Nested
+       trace digests and near-axis probes carry no clip events; the legacy fan has no status. Chief-ray solves,
+       root solves and sensor locks (`bracket-failed`, `evaluation-failed`) are unchanged. The base status need
+       only be no failure, so `clipped` to `failed` without ordered evidence and `unbracketed` to
+       `evaluation-failed` still block. The report marks failures after the ray's first clip as non-blocking.
    - A number the engine computed that is finite on the base data and not on the head data.
    - An outcome that is true on the base data and false on the head data. An outcome is a boolean in a member named
      `ok`: that of the record itself, of an analysis job and of a tracer's near-axis probes, each of which returned
@@ -401,14 +405,18 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
    - **Report.** `data-impact.md` gives for each changed lens:
      - every blocker with its whole path and its two values, each value on one line and cut at 80 characters, the
        first ten of each of the three kinds, under the count of all of them;
-     - how many statuses turned to a failure and from one, how many numbers turned non-finite and finite, and how
+     - how many statuses turned to a failure and from one, including a separate count of failures after a ray's
+       first clip within the total turned to a failure, how many numbers turned non-finite and finite, and how
        many outcomes turned to a throw and from one;
      - the statuses, the failures among them and the computed non-finite numbers at paths only the head data has,
        and the same at paths only the base data has;
      - the arrays paired by index, as under "Paths";
      - every status change as `base -> head` with the number of paths that show it and whether it blocks, `absent`
-       standing for a side with no status there. A run keeps the first 64 distinct changes of a lens and counts the
-       rest together.
+       standing for a side with no status there. Failures after the ray's first clip have their own row with a
+       non-blocking gate and its reason; for a change with both kinds of path, the rows sum to its total. A run
+       keeps the first 64 distinct changes of a lens and counts the rest together, separating these gates there too.
+       `summary.json` keeps the same totals in `paths.statuses.toFailure` and `paths.statusChanges`, with the
+       non-blocking subsets in `paths.statuses.afterFirstClip` and `paths.statusChangesAfterFirstClip`.
 
      `summary.md` has one row of those counts per changed lens, the blocked lenses first and at most 40 of them,
      and the first 40 blockers of the run with their paths. The verdict reads the counts, and no list: a list that
@@ -927,9 +935,12 @@ Three files in the tooling suite hold the harness to its contract.
   and an impact report, and a format-only change that alters a value fails. A semantic change is judged path by path:
   a status that turned to a failure, a number that turned non-finite and a job that now throws each block at a path
   both sides have, behind a change of shape and beside an improvement as well. So does a root solve that turned to a
-  failure with the work behind it gone, and a status that turned to a failure from one that held no result. Failures
-  at paths only the head data has pass and are counted, as is what only the base data has, on a modelled chromatic
-  channel and on the records the engine returns for a catalog lens with one glass unresolved. An array paired by
+  failure with the work behind it gone, and a status that turned to a failure from one that held no result without
+  clip events to show an earlier clip. Synthetic full-hit rays in every fan pass when their head-side event order
+  proves a clip before the failure, from `clipped` or `ok`; first-event failures, digests and solve failures still
+  block, and mixed gates keep their totals and separate report rows. Failures at paths only the head data has pass
+  and are counted, as is what only the base data has, on a modelled chromatic channel and on the records the engine
+  returns for a catalog lens with one glass unresolved. An array paired by
   index is counted and listed, where it hides a status that turned to a failure and where it shows one that did not.
   A status the prescription hands back is left out, a digest is read like any object, the message of a lens that
   does not build is written on one line, and a list that is cut passes nothing. A changed converter is compared
