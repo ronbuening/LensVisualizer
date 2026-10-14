@@ -169,6 +169,17 @@ describe("glass catalog", () => {
     expect(resolveGlass("654337")?.name).toBe("FD9");
   });
 
+  it("FCD1 carries the HOYA dispersion without taking elements from the rows that share code 497816", () => {
+    const entry = resolveGlass("FCD1 (HOYA)")!;
+    const nC = evaluateSellmeier(entry, LINE_NM.C);
+    const nF = evaluateSellmeier(entry, LINE_NM.F);
+    expect(evaluateCatalogAbbeNumber(entry)).toBeCloseTo(81.61, 2);
+    expect((evaluateSellmeier(entry, LINE_NM.g) - nF) / (nF - nC)).toBeCloseTo(0.5389, 3);
+    // These rows are ranked by d-line residual, so FCD1's n(d) has to stay between S-FPL51's and H-FK61's.
+    expect(resolveCompatibleGlass("S-FPL51 (OHARA) / FCD1 (HOYA)", 1.497, 81.54)?.name).toBe("FCD1");
+    expect(resolveCompatibleGlass("497816 class (vendor unresolved)", 1.497, 81.6)?.name).toBe("H-FK61");
+  });
+
   it("L-TIM28P reproduces the published OHARA line indices and Abbe number", () => {
     const entry = resolveGlass("L-TIM28P (OHARA)");
     expect(entry?.name).toBe("L-TIM28P");

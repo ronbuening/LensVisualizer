@@ -47,9 +47,14 @@ import { V1_FLAT_RADIUS } from "./ingestV1.js";
 
 type Untyped = Record<string, unknown>;
 
-/** Set `target[field]` to a copy of `value` unless the value is `undefined`; a primitive is its own copy. */
+/**
+ * Set `target[field]` to a copy of `value` unless the value is `undefined`. A string, number, boolean or bigint is its
+ * own copy; anything else goes through `structuredClone`, which refuses a function or a symbol.
+ */
 function put(target: Untyped, field: string, value: unknown): void {
-  if (value !== undefined) target[field] = value !== null && typeof value === "object" ? structuredClone(value) : value;
+  if (value === undefined) return;
+  const kind = typeof value;
+  target[field] = kind === "object" || kind === "function" || kind === "symbol" ? structuredClone(value) : value;
 }
 
 /** What the view writes for one defaulted field. */

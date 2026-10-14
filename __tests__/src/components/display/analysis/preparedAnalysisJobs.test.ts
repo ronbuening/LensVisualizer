@@ -343,6 +343,51 @@ describe("prepared-state analysis tabs", () => {
     expect(mockComputeDistortionFieldGrid).toHaveBeenCalledWith(preparedState, 5, fieldGeometry);
   });
 
+  it("names the distortion sign: negative is barrel, positive is pincushion", () => {
+    /* distortionPercent = 100 × (real − ideal) / ideal, so the sign fixes the direction. */
+    const renderEdge = (edgePercent: number, referenceKind = "rectilinear") => {
+      mockComputeDistortionCurve.mockReturnValue(
+        distortionSamples.map((sample, index) => ({
+          ...sample,
+          referenceKind,
+          distortionPercent: index === 0 ? 0 : edgePercent,
+        })),
+      );
+      return renderToStaticMarkup(
+        React.createElement(DistortionTab, {
+          L: lens,
+          t: themes.dark,
+          focusT: 0,
+          zoomT: 0,
+          dynamicEFL: 50,
+          currentPhysStopSD: 5,
+          fieldGeometry,
+          preparedState,
+        }),
+      );
+    };
+
+    /* The chart label is the SVG text node; the summary note is the parenthesised one. */
+    const barrel = renderEdge(-1.2);
+    expect(barrel).toContain(">barrel</text>");
+    expect(barrel).toContain("(barrel)");
+    expect(barrel).not.toContain("pincushion");
+
+    const pincushion = renderEdge(1.2);
+    expect(pincushion).toContain(">pincushion</text>");
+    expect(pincushion).toContain("(pincushion)");
+    expect(pincushion).not.toContain(">barrel</text>");
+    expect(pincushion).not.toContain("(barrel)");
+
+    const outward = renderEdge(1.2, "fisheye-equidistant");
+    expect(outward).toContain(">outward residual</text>");
+    expect(outward).toContain("(outward residual)");
+
+    const inward = renderEdge(-1.2, "fisheye-equidistant");
+    expect(inward).toContain(">inward residual</text>");
+    expect(inward).toContain("(inward residual)");
+  });
+
   it("routes optical summary work through the prepared-state job facade", () => {
     const html = renderToStaticMarkup(
       React.createElement(OpticalSummaryTab, {
