@@ -376,12 +376,16 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
      a sensor lock. Every other status is an outcome a prescription can move between, and a change to one is listed
      and does not block: `clipped`, `missed-sensor`, `chief-unreachable`, `unbracketed`, `iteration-limit`,
      `paraxial-fallback`, `unconverged`, `unavailable` and the out-of-domain statuses.
-     - The status on the base data need only be no failure, so a status that held no result there blocks as one
-       that held one does: a ray that was `clipped` and is `failed`, a root solve that was `unbracketed` and is
-       `evaluation-failed`. The fans of a traces record are traced on past a rim, so the first is as a rule a
-       vignetted ray that went on to miss a surface, and nothing that was good became bad. It blocks all the same,
-       and nothing excuses a data-impact block. The report's table of status changes marks each change that blocks,
-       so a reader tells such a block from a result that was lost.
+     - A ray's change to `failed` does not block when its own head-data `diagnostics.clipEvents` show a clip
+       whose reason is not `intersection-failure` before the intersection failure. The events give path order;
+       surface indexes need not increase on a folded path. Once clipped, a ray carries no result, so a later
+       intersection failure is a continuation diagnostic. This applies to every full-hit fan of a traces record:
+       `onAxis`, `offAxis`, `skew`, and each channel of `chromatic.rays` (B, V, R).
+     - A failure that is the first clip event, or lacks clip events to prove the order, still blocks. Nested
+       trace digests and near-axis probes carry no clip events; the legacy fan has no status. Chief-ray solves,
+       root solves and sensor locks (`bracket-failed`, `evaluation-failed`) are unchanged. The base status need
+       only be no failure, so `clipped` to `failed` without ordered evidence and `unbracketed` to
+       `evaluation-failed` still block. The report marks failures after the ray's first clip as non-blocking.
    - A number the engine computed that is finite on the base data and not on the head data.
    - An outcome that is true on the base data and false on the head data. An outcome is a boolean in a member named
      `ok`: that of the record itself, of an analysis job and of a tracer's near-axis probes, each of which returned
@@ -419,14 +423,18 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
    - **Report.** `data-impact.md` gives for each changed lens:
      - every blocker with its whole path and its two values, each value on one line and cut at 80 characters, the
        first ten of each of the three kinds, under the count of all of them;
-     - how many statuses turned to a failure and from one, how many numbers turned non-finite and finite, and how
+     - how many statuses turned to a failure and from one, including a separate count of failures after a ray's
+       first clip within the total turned to a failure, how many numbers turned non-finite and finite, and how
        many outcomes turned to a throw and from one;
      - the statuses, the failures among them and the computed non-finite numbers at paths only the head data has,
        and the same at paths only the base data has;
      - the arrays paired by index, as under "Paths";
      - every status change as `base -> head` with the number of paths that show it and whether it blocks, `absent`
-       standing for a side with no status there. A run keeps the first 64 distinct changes of a lens and counts the
-       rest together.
+       standing for a side with no status there. Failures after the ray's first clip have their own row with a
+       non-blocking gate and its reason; for a change with both kinds of path, the rows sum to its total. A run
+       keeps the first 64 distinct changes of a lens and counts the rest together, separating these gates there too.
+       `summary.json` keeps the same totals in `paths.statuses.toFailure` and `paths.statusChanges`, with the
+       non-blocking subsets in `paths.statuses.afterFirstClip` and `paths.statusChangesAfterFirstClip`.
 
      `summary.md` has one row of those counts per changed lens, the blocked lenses first and at most 40 of them,
      and the first 40 blockers of the run with their paths. The verdict reads the counts, and no list: a list that
@@ -495,6 +503,17 @@ The classes in `budgets.ts`:
   profile 1e-10 relative, and a ratio of two analysis lengths 1e-8 relative.
 - A hit's coordinates, and a ray's terminal values, are budgeted as unclipped only when the clip flag or status
   beside them says so on both sides. A flag that differs is a transition of its own.
+- After a legacy fan ray's first missed surface, its substitute ghost points and the clipped `y` projected from
+  them have the `legacyMissTail` class: presence, count and finiteness only above C0. The comparator reads the first
+  `intersection-failure` in each ray's `diagnostics.clipEvents`, without another trace or an added record member.
+  On both sides, a ghost qualifies only when `pts.length - 1 + ghostPts.length` equals the length of
+  `diagnostics.hitSurfaceIndexes`, and its position `pts.length - 1 + ghostIndex` is at or after the first miss's
+  position in that hit list. `rayTrace.ts` adds the launch point, appends hits in order, and drops non-finite drawn
+  points while the stack diagnostics retain every hit index; a misaligned record keeps its old coordinate budget.
+  The `y` exemption requires both rays to be clipped and both to have an intersection failure. A rim clip alone
+  does not qualify. Earlier ghosts, `pts`, `u`, diagnostics, failure and clip reasons keep their existing rules.
+  C0 stays bit-exact. These off-ray substitutes are unused by the app's prepared tracer fans, which stop at a miss,
+  and the legacy tracer is removed in Stage 4. This is S3.P2.T1's deferred Tier S settlement.
 - A relative budget is `|a − b| ≤ budget · max(|a|, |b|)`, and no less than the class's floor where it has one. A
   floor is an absolute bound in the class's unit.
   - A class whose values may be zero has one: a first-order length, a layout length and a best-fit radius are
@@ -543,14 +562,21 @@ The classes in `budgets.ts`:
     plane's z plus the sag of the Petzval sphere at the chief ray's image height: 256 mm from the first vertex on
     a long lens, with no small slope under it. A new member of that kind needs a row of its own ahead of the rows
     by name, which would hand it the share for its name alone.
-  - A parabasal field focus is held tighter than its conditioning implies, and the share does not reach it. The
-    tangential and sagittal focus of a field are where the chief ray meets a ray 0.01 mm from it in the pupil. The
-    two slopes differ by about that height over the focal length, so on a long lens a hit that moves by 1e-13 mm
-    moves the focus by nanometres, while the focus itself is a fraction of a millimetre from the image plane and
-    keeps the floor. S3.P2.T2 moved one such shift, 0.24 mm on a 70-300 mm zoom with a 2x converter, by 4.9e-9 mm,
-    and the span of the channels' foci on another tele zoom by 3.2e-9 mm: half and a third of the budget. A
-    failure there on a step that moves hits by rounding alone may be this, and loosening it is the plan's to
-    settle.
+  - Tangential parabasal foci and their shifts, differences and spans use `tangentialParabasalFocus`: a
+    1e-7 mm floor, and the same 1e-10 share of each value's own size above 1 m. Nearly parallel parabasal rays
+    amplify last-surface height and slope rounding by about 1/|dU|, roughly 100 times the focal length in mm.
+    On lenses from 800 mm up the anchor itself misses an exact crossing by up to 2.28e-8 mm. This is
+    S3.P2.T1's deferred Tier S settlement, scoped by job ahead of both generic analysis-length rows:
+    - `computeFieldCurvature` and `computeFieldCurvatureBundle.{fieldCurvature,chromaticFieldCurvature}`:
+      `{fields,curveFields}[].{tangentialBestFocusZ,tangentialShiftMm,astigmaticDifferenceMm,astigmaticDifferenceUm}`,
+      their `chromaticFieldShifts[].tangentialShiftMm`, and
+      `{maxAstigmaticDifferenceMm,maxAstigmaticDifferenceUm,edgeTangentialShiftMm,sharedFocusShiftHalfRangeMm,chromaticFocusSpreadMm}`.
+    - `chromaticFieldFocusSummary`: `fields[].tangential.{minShiftMm,maxShiftMm,spreadMm,spreadUm}`,
+      `fields[].{maxFocusSpreadMm,maxFocusSpreadUm}` and
+      `{maxTangentialSpreadMm,maxFocusSpreadMm,edgeFocusSpreadMm}`.
+    Micrometre twins use scale 1000 for the same physical bound. Sagittal, full-fan diagnostic and Petzval
+    members keep their existing classes. `computePerspectiveFieldAberrations` is a different computation and
+    is excluded. C0 stays bit-exact.
   - The MTF best-focus shift is a solver's output of a fraction of a millimetre, and keeps a plain 1e-8 mm.
 - The exit pupil that a pupil-aberration profile gives for each field is an analysis length: `xpZRelLastSurf` in
   the `samples[]` of a profile, which is `xp.samples[]` of `computeBothPupilAberrationProfiles`. The engine traces
@@ -945,9 +971,12 @@ Three files in the tooling suite hold the harness to its contract.
   and an impact report, and a format-only change that alters a value fails. A semantic change is judged path by path:
   a status that turned to a failure, a number that turned non-finite and a job that now throws each block at a path
   both sides have, behind a change of shape and beside an improvement as well. So does a root solve that turned to a
-  failure with the work behind it gone, and a status that turned to a failure from one that held no result. Failures
-  at paths only the head data has pass and are counted, as is what only the base data has, on a modelled chromatic
-  channel and on the records the engine returns for a catalog lens with one glass unresolved. An array paired by
+  failure with the work behind it gone, and a status that turned to a failure from one that held no result without
+  clip events to show an earlier clip. Synthetic full-hit rays in every fan pass when their head-side event order
+  proves a clip before the failure, from `clipped` or `ok`; first-event failures, digests and solve failures still
+  block, and mixed gates keep their totals and separate report rows. Failures at paths only the head data has pass
+  and are counted, as is what only the base data has, on a modelled chromatic channel and on the records the engine
+  returns for a catalog lens with one glass unresolved. An array paired by
   index is counted and listed, where it hides a status that turned to a failure and where it shows one that did not.
   A status the prescription hands back is left out, a digest is read like any object, the message of a lens that
   does not build is written on one line, and a list that is cut passes nothing. A changed converter is compared

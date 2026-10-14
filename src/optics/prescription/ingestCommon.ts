@@ -81,9 +81,13 @@ const ENGINE_WRITTEN: Readonly<Record<string, string>> = {
 
 const ASPHERIC_KEYS: readonly string[] = ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key);
 
-/** A value copied so the prescription shares nothing with the authored file; a primitive is its own copy. */
+/**
+ * A value copied so the prescription shares nothing with the authored file. A string, number, boolean, bigint or
+ * `undefined` is its own copy; anything else goes through `structuredClone`, which refuses a function or a symbol.
+ */
 export function copy<T>(value: T): T {
-  return value !== null && typeof value === "object" ? structuredClone(value) : value;
+  const kind = typeof value;
+  return kind === "object" || kind === "function" || kind === "symbol" ? structuredClone(value) : value;
 }
 
 /** Members that are present and not `undefined`; both formats treat an `undefined` member as an omitted one. */

@@ -134,15 +134,16 @@ function CenteredDistortionContent({
   const edgeSample = samples[samples.length - 1];
   const isProjectionResidual =
     edgeSample.referenceKind === "fisheye-equidistant" || edgeSample.referenceKind === "fisheye-equisolid";
+  /* Positive (real − ideal) is pincushion, negative is barrel; keep in step with DistortionChart. */
   const directionLabel =
     edgeSample.distortionPercent > 0.01
       ? isProjectionResidual
         ? "outward residual"
-        : "barrel"
+        : "pincushion"
       : edgeSample.distortionPercent < -0.01
         ? isProjectionResidual
           ? "inward residual"
-          : "pincushion"
+          : "barrel"
         : "negligible";
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const breathingPercent = Math.abs(infinityEFL) > 1e-9 ? (100 * (dynamicEFL - infinityEFL)) / infinityEFL : 0;

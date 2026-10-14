@@ -224,6 +224,26 @@ describe("canonical prescription: catalog round trip", () => {
     for (const { file, data } of TELECONVERTERS) ingestFrozen(file, data, ingestTeleconverterV1, toTeleconverterData);
     expect(offenders).toEqual([]);
   });
+
+  it("copies no function or symbol: ingest and the view refuse one as structuredClone does", () => {
+    const errorName = (run: () => unknown) => {
+      try {
+        run();
+        return null;
+      } catch (error) {
+        return (error as Error).name;
+      }
+    };
+    const { data } = INGESTED[0];
+    for (const glass of [() => "S-LAH63", Symbol("S-LAH63")]) {
+      const file = structuredClone(data);
+      (file.elements[0] as unknown as Record<string, unknown>).glass = glass;
+      expect(errorName(() => ingestLensV1(file))).toBe("DataCloneError");
+      const ingested = ingestLensV1(data);
+      (ingested.prescription.elements[0] as unknown as Record<string, unknown>).glass = glass;
+      expect(errorName(() => toLensData(ingested))).toBe("DataCloneError");
+    }
+  });
 });
 
 /* ── Schema defaults ── */
