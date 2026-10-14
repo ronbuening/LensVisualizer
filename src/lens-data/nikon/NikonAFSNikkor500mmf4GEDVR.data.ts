@@ -55,6 +55,7 @@ const LENS_DATA = {
   apertureMarketing: 4,
   apertureDesign: 4.08,
   lensMounts: ["nikon-f"],
+  acceptsTeleconverters: true, // Nikon lists this lens as compatible with the AF-S TC-20E III
   imageFormat: "135-full-frame",
   patentNumber: "US 2009/0190239 A1",
   patentAuthors: ["Takashi Suzuki"],

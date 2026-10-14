@@ -22,6 +22,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.88,
   lensMounts: ["nikon-z"],
+  acceptsTeleconverters: true, // Nikon lists Z TELECONVERTER TC-1.4x compatibility
   imageFormat: "135-full-frame",
   patentNumber: "WO 2020/105104 A1",
   patentAuthors: ["Takeru Uehara"],

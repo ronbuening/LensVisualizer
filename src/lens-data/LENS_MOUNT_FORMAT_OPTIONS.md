@@ -74,6 +74,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `minolta-v` | Minolta V | Minolta Vectis APS film mount; usually pairs with `aps-film`. |
 | `nikon-1` | Nikon 1 | Nikon 1 mirrorless mount; usually pairs with `1-inch-type`. |
 | `nikon-f` | Nikon F | Nikon F SLR mount. |
+| `nikon-ix` | Nikon IX | IX-Nikkor lenses for the Pronea APS film SLRs; usually pairs with `aps-film`. |
 | `nikonos` | Nikonos | Nikon/Nikkor underwater camera mount; usually pairs with `135-full-frame`. |
 | `nikonos-rs` | Nikonos RS | Nikonos RS underwater AF SLR mount; usually pairs with `135-full-frame`. |
 | `nikon-s` | Nikon S | Nikon S rangefinder mount; usually pairs with `135-full-frame`. |
@@ -153,7 +154,7 @@ in distortion, vignetting, bokeh, and aberration analysis.
 - Use `four-thirds` for both Four Thirds DSLR and Micro Four Thirds lenses.
 - Use `aps-c` for Canon EF-M, Samsung NX, Fujifilm X, and most Sigma SA digital lenses unless the source explicitly
   describes a different covered field.
-- Use `aps-film` for Minolta Vectis lenses.
+- Use `aps-film` for Minolta Vectis and Nikon IX-Nikkor lenses.
 - Use `half-frame-135` for Olympus Pen F lenses.
 - Use `135-full-frame` for 35 mm SLR and rangefinder mounts unless a narrower or wider covered field is documented.
 - Use `135-panoramic` for Hasselblad XPan / Fujifilm TX lenses.

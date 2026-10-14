@@ -42,6 +42,7 @@ const LENS_DATA = {
   patentYear: 2015,
 
   lensMounts: ["nikon-f"],
+  acceptsTeleconverters: true, // Nikon lists this lens as compatible with the AF-S TC-20E III
   imageFormat: "135-full-frame",
   focalLengthMarketing: 300,
   focalLengthDesign: 293.9146433805661,
