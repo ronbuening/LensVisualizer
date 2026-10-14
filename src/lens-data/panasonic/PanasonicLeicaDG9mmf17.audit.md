@@ -79,3 +79,13 @@ The validator accepts the value and the image-circle floor still reports nothing
 Y at 49.81° with every rim clear, and with the drawn rim the analysis edge reaches the full Four Thirds corner (52.3° →
 10.82 mm, 100%; surface 1 chief ray 12.34 mm there). No aspheric surface changed, and the analysis file quotes no
 surface 1 value.
+
+## 2026-10-13 — L2 line indices from Panasonic's printed values
+
+L2 (nd 1.53380, νd 55.6, aspherical on both faces) carried a code-only label and traced on the Abbe model. The same
+pair stands on double-aspherical elements in three other Panasonic prescriptions in this catalog (Lumix G 25mm f/1.7,
+Lumix G Vario 12-60mm and Lumix S 14-28mm), and US 2017/0059832 A1 prints its line indices in Table 23:
+nC 1.53100, nF 1.54060, ng 1.54600, P_g,F 0.56232. L2 now carries `nC` 1.531, `nF` 1.5406, `ng` 1.546 and `dPgF`
+0.01204, with a label that names the source. This rests on the inference that the pair is one material; US
+2023/0367186 A1 itself prints nd and νd only. No catalog row exists for it, so the element counts as line-index data,
+not as catalog Sellmeier data. No radius, thickness, index, Abbe number or semi-diameter changed.

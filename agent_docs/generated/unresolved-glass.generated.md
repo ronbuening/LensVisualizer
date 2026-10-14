@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **922** lenses scanned
-- **10436** non-air surfaces examined
-- **10446** element glass declarations examined
-- **215** non-explicit-unmatched annotations did not resolve
-- **111** distinct unresolved glass-like tokens found
+- **935** lenses scanned
+- **10633** non-air surfaces examined
+- **10643** element glass declarations examined
+- **218** non-explicit-unmatched annotations did not resolve
+- **110** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -50,7 +50,6 @@ or per-lens patent backfills.
 | 518523 | 1 | 1 | |
 | 520701 | 1 | 1 | |
 | 534554 | 1 | 1 | |
-| 534556 | 1 | 1 | |
 | 545486 | 1 | 1 | |
 | 554381 | 1 | 1 | |
 | 570481 | 1 | 1 | |
@@ -292,10 +291,6 @@ or per-lens patent backfills.
 ### 534554 — 1 occurrence
 
 - [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) 15: `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)`
-
-### 534556 — 1 occurrence
-
-- [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 3A: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`
 
 ### 545486 — 1 occurrence
 

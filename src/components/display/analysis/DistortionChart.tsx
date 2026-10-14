@@ -58,16 +58,18 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
   const isProjectionResidual =
     edgeSample.referenceKind === "fisheye-equidistant" || edgeSample.referenceKind === "fisheye-equisolid";
 
-  /* ── Barrel / pincushion direction ── */
+  /* ── Barrel / pincushion direction ──
+   * distortionPercent = 100 × (real − ideal) / ideal, so a positive value puts the image
+   * point outside the reference height (pincushion) and a negative one inside it (barrel). */
   const dominantDirection =
     edgeSample.distortionPercent > 0.01
       ? isProjectionResidual
         ? "outward residual"
-        : "barrel"
+        : "pincushion"
       : edgeSample.distortionPercent < -0.01
         ? isProjectionResidual
           ? "inward residual"
-          : "pincushion"
+          : "barrel"
         : "";
 
   /* ── Y-axis tick values ── */

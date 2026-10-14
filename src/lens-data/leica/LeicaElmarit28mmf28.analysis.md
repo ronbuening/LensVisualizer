@@ -1,4 +1,4 @@
-# Leica Elmarit-R 28mm f/2.8 — Optical Analysis
+# Leica Elmarit 28mm f/2.8 (11801) — Optical Analysis
 
 **Patent:** US 3,591,257 · Example 3
 **Inventors:** Walter Mandler, Garry Edwards, Erich Wagner (Ernst Leitz Canada, Midland, Ontario)
@@ -10,13 +10,13 @@
 
 ## 1. Historical Context
 
-The Elmarit-R 28mm f/2.8 was introduced at Photokina 1970 as a compact, moderately fast wide-angle lens for the Leicaflex SLR system, combining a 76° diagonal field of view with an f/2.8 maximum aperture in a remarkably small package — just 40mm protrusion from the camera body and 275g in weight.
+The Elmarit 28mm f/2.8 for the Leica M went through several versions. This analysis concerns the second, built by Ernst Leitz Canada from 1972 to 1979 under order number 11801, a number it shares with the nine-element Wetzlar original of 1965. The second version keeps the 76° diagonal field and the f/2.8 aperture in an eight-element, six-group design of about 300 g that focuses to 0.7 m and stops down to f/22.
 
-The patent US 3,591,257 was filed by Walter Mandler, Garry Edwards, and Erich Wagner at Ernst Leitz Canada (ELCAN) in Midland, Ontario. However, the Leica Wiki credits the production lens to Rudolf Ruehl at Leitz Wetzlar (the lens inscription reads "LEITZ WETZLAR"), and the production design differs meaningfully from the patent examples — most notably in its all-air-spaced element arrangement versus the cemented doublets of the patent. The patent secures the general design principle and topology; the production implementation was evidently refined further, possibly by a different team at the parent facility.
+The patent US 3,591,257 was filed by Walter Mandler, Garry Edwards, and Erich Wagner at Ernst Leitz Canada (ELCAN) in Midland, Ontario. The Leica Wiki credits the production lens to the same three designers and dates the design to June 1968, the month of the patent's German priority, and the lens is engraved "LEITZ CANADA". The published section drawing of the production lens shows the sequence of Example 3: two front menisci, a thick cemented doublet, the diaphragm, a meniscus, a second cemented doublet, and a rear meniscus.
 
-The fundamental challenge addressed by this patent is the long-back-focal-distance problem inherent in SLR wide-angle lenses. The Leicaflex's reflex mirror requires adequate clearance behind the lens mount, yet a 28mm focal length yields only 28mm of back focus in a symmetric design. The patent describes an asymmetric, quasi-retrofocus arrangement that achieves a back focal distance equal to approximately two-thirds of the total focal length — sufficient for mirror clearance without resorting to the extreme retrofocus topologies that plagued contemporary designs with severe lateral chromatic aberration.
+The fundamental challenge addressed by this patent is back focal distance. The patent states the problem for single-lens reflex cameras, whose mirror needs clearance behind the lens: inverted-telephoto designs supply the clearance but are hard to correct for lateral color, and near-symmetric designs correct well but leave too short a back focus. It describes an asymmetric, quasi-retrofocus arrangement whose back focal distance is about two-thirds of the focal length without resorting to the extreme retrofocus topologies that plagued contemporary designs with severe lateral chromatic aberration. At 28 mm that is 18.4 mm, far short of what a reflex mirror needs, so Example 3 could only serve a rangefinder camera. There the gain was a rear element that no longer reaches deep into the body: the Leica Wiki notes that this version, unlike the first, can be used on the M5, the CL, and the other metered bodies.
 
-The Elmarit-R 28mm f/2.8 I was produced from 1970 to 1992 with fewer than 50,510 lenses manufactured. It was offered in 2-cam, 3-cam, and R-only variants, with a limited-production Safari green version (approximately 6,000 units) for the Leica R3 Safari.
+Fewer than 7,050 lenses were made, with serial numbers assigned from 1969 to 1978. It was superseded by the third version in 1979.
 
 ## 2. Patent Overview and Example Selection
 
@@ -31,9 +31,9 @@ US 3,591,257 describes the general design principle and provides six numerical e
 | 5 | 8 | ±45° | f/3.4 | Super-wide variant |
 | 6 | 8 | ±50° | f/3.4 | Widest embodiment (described in text only) |
 
-Example 3 is the design most closely corresponding to the production Elmarit-R 28mm f/2.8, with its ±37° half-field angle matching the 76° diagonal coverage of a 28mm lens on the 24×36mm format (computed: 37.7°). All data in this analysis derive from this example unless otherwise stated. A certificate of correction (signed December 14, 1971) corrected one value in Example 6's claim text (f₁ from "−22.8" to "−122.8"). It does not touch Example 3, which carries its own uncorrected misprint in the air gap a₁ (see §3).
+Example 3 is the design most closely corresponding to the production Elmarit 28mm f/2.8 (second version), with its ±37° half-field angle matching the 76° diagonal coverage of a 28mm lens on the 24×36mm format (computed: 37.7°). All data in this analysis derive from this example unless otherwise stated. A certificate of correction (signed December 14, 1971) corrected one value in Example 6's claim text (f₁ from "−22.8" to "−122.8"). It does not touch Example 3, which carries its own uncorrected misprint in the air gap a₁ (see §3).
 
-**Patent-to-production discrepancy:** The 1970 *LEICA Photography* magazine describes the production Elmarit-R 28mm f/2.8 I as "a completely air-spaced eight-element retrofocus design" — 8 elements in 8 groups with no cemented interfaces. Example 3, however, contains two cemented doublets (L3+L4 and L6+L7), yielding 8 elements in 6 groups. The production lens was evidently refined beyond the patent example, uncementing both doublets to create additional degrees of freedom (two extra air–glass interfaces, each adding controllable parameters for aberration correction). This is a common refinement path: the patent secures the general topology and design principle, while the production version is further optimized.
+**Patent-to-production agreement:** The production lens has eight elements in six groups, as Example 3 does, with the two cemented doublets (L3+L4 and L6+L7) in the positions the published section drawing shows. No production prescription is published, so the match is one of construction, designers, and date, not a confirmed identity of every radius. Earlier versions of this analysis attributed Example 3 to the Elmarit-R 28mm f/2.8 of 1970. That lens is a different design, eight air-spaced singlets by Rudolf Rühl (US 3,740,120), with a back focal distance of about 38 mm that this example cannot provide.
 
 ## 3. Prescription Data
 
@@ -96,23 +96,23 @@ The absence of aspherical surfaces places a premium on the designer's ability to
 
 ## 5. Glass Identification
 
-The patent gives only nₑ and νₑ for each glass. It names no glass type and no supplier. Four of the five coordinates match Schott catalog glasses at the e-line: SK16, SF6, F2 and, as a proxy, the LaF10 class. The data therefore label them as catalog equivalents and do not assert a production melt.
+The patent gives only nₑ and νₑ for each glass. It names no glass type and no supplier. All five coordinates have catalog equivalents at the e-line: Schott SK16, SF6 and F2, SUMITA K-LaSFn16 for the LaF21 type and, as a proxy, OHARA S-BAH28 for the LaF10 class. The data therefore label them as catalog equivalents and do not assert a production melt.
 
-| Glass | Elements | nₑ | νₑ | SCHOTT Match | nᵈ | νᵈ | Family |
+| Glass | Elements | nₑ | νₑ | Catalog match | nᵈ | νᵈ | Family |
 |-------|----------|------:|------:|-------------|------:|------:|--------|
 | G1 | L1, L2, L5 | 1.62286 | 60.08 | **SK16** | 1.62041 | 60.32 | Dense barium crown |
-| G2 | L3 | 1.79227 | 47.15 | **Unmatched LaF21-class e-line glass** | 1.78800 | 47.49 | Lanthanum flint; d-line row is comparison only |
+| G2 | L3 | 1.79227 | 47.15 | **K-LaSFn16 (SUMITA; LaF21-type catalog equivalent)** | 1.78830 | 47.42 | Lanthanum flint; catalog curve gives nₑ 1.79226 / νₑ 47.17 |
 | G3 | L4, L7 | 1.81265 | 25.24 | **SF6 (catalog equivalent)** | 1.80518 | 25.43 | Dense flint; Schott SF6 curve reproduces nₑ 1.81265 / νₑ 25.24 exactly |
 | G4 | L6 | 1.72823 | 37.85 | **LaF10 class; S-BAH28 e-line spectral proxy** | 1.72793 | 37.68 at e | Supplier unspecified |
 | G5 | L8 | 1.62408 | 36.11 | **F2 (catalog equivalent)** | 1.62004 | 36.37 | Flint; exact e-line catalog-curve match |
 
 The L4/L7 row was carried for a time as the bare code `813252` because no coefficient-backed match had been verified. The repo's Schott SF6 Sellmeier entry now reproduces the patent pair exactly at the e-line (nₑ = 1.81265, νₑ = 25.24), so the row carries an SF6 catalog-equivalent label. The SK16 label resolves to the N-SK16 coefficients, which are compatible at C′/e/F′. Current SCHOTT "N-" designations are later lead-free reformulations, so legacy names describe a glass family and do not prove a coefficient identity.
 
-**Glass selection rationale:** The design uses only five distinct patent glass coordinates, a modest palette for an eight-element lens. Three elements (L1, L2, L5) share the SK16-class coordinate, and L4/L7 share the SF6-class dense-flint row. The LaF21-class name for L3 describes the glass family only. It is not a resolved catalog identity.
+**Glass selection rationale:** The design uses only five distinct patent glass coordinates, a modest palette for an eight-element lens. Three elements (L1, L2, L5) share the SK16-class coordinate, and L4/L7 share the SF6-class dense-flint row. L3 carries SUMITA K-LaSFn16, a LaF21-type glass whose curve gives nₑ 1.79226 / νₑ 47.17 against the printed 1.79227 / 47.15. Schott's current N-LAF21 (nₑ 1.79195) is a different coordinate and is not used.
 
-The glasses span a deliberate dispersion range. The SK16-class coordinate (νₑ ≈ 60) provides the low-dispersion crown needed for the front menisci and rear singlet. The unmatched LaF21-class row (νₑ ≈ 47) enables the strongly positive L3 element with manageable curvatures. The SF6-class glass (νₑ ≈ 25) is a high-index dense flint used for the negative elements of the cemented doublets. The LaF10-class L6 and catalog-backed F2 L8 provide intermediate dispersion values for the rear group's color correction.
+The glasses span a deliberate dispersion range. The SK16-class coordinate (νₑ ≈ 60) provides the low-dispersion crown needed for the front menisci and rear singlet. The LaF21-type row (νₑ ≈ 47) enables the strongly positive L3 element with manageable curvatures. The SF6-class glass (νₑ ≈ 25) is a high-index dense flint used for the negative elements of the cemented doublets. The LaF10-class L6 and catalog-backed F2 L8 provide intermediate dispersion values for the rear group's color correction.
 
-None of the glasses exhibit significant anomalous partial dispersion (ΔP_{g,F} < 0.009 for all five types). The design relies on classical achromatization through dispersion-contrast pairing of lanthanum flints with dense flints rather than the secondary spectrum correction that would become standard in later apochromatic Leica designs.
+None of the glasses exhibit significant anomalous partial dispersion (|ΔP_{g,F}| below 0.010 for all five types). The design relies on classical achromatization through dispersion-contrast pairing of lanthanum flints with dense flints rather than the secondary spectrum correction that would become standard in later apochromatic Leica designs.
 
 ## 6. Optical Topology and Design Rationale
 
@@ -123,7 +123,7 @@ Object → [Group 1: Negative] → [Group 2: Positive] → (STOP) → [Group 3: 
            L1    L2                L3+L4                           L5  L6+L7  L8
 ```
 
-This is not a pure retrofocus (where BFD/EFL > 1), but a modified quasi-symmetric design with a pronounced negative front group. The BFD/EFL ratio of 0.657 (patent s′/f) yields sufficient mirror clearance at f = 28mm production scale (BFD ≈ 18.4mm within the 47mm flange-to-film registration distance) while keeping the total optical length compact.
+This is not a pure retrofocus (where BFD/EFL > 1), but a modified quasi-symmetric design with a pronounced negative front group. The BFD/EFL ratio of 0.657 (patent s′/f) gives a back focal distance of about 18.4mm at the f = 28mm production scale. With the Leica M's 27.8mm flange-to-film distance, the rear vertex sits about 9.4mm behind the flange, and the total optical length stays compact.
 
 ### Group 1: Front Negative (L1 + L2)
 
@@ -144,12 +144,12 @@ Both menisci use SK16, a dense barium crown with moderately high index (nₑ = 1
 
 | Element | R_front | R_rear | d | Glass | f |
 |---------|--------:|-------:|----:|-------|----:|
-| L3 | +60.10 | −91.20 | 30.72 | Unmatched LaF21-class e-line glass | +50.2 |
+| L3 | +60.10 | −91.20 | 30.72 | K-LaSFn16 (LaF21 type) | +50.2 |
 | L4 | −91.20 | −549.30 | 17.61 | SF6 class | −137 |
 
 **Combined focal length:** f₂ ≈ +71.6 (patent: +71.4)
 
-This cemented doublet is the principal power element of the entire system. L3 is a thick biconvex element using the unmatched LaF21-class e-line coordinate (nₑ = 1.792), which enables strong positive power with moderate surface curvatures. The family name does not assert the modern N-LAF21 d-line Sellmeier row.
+This cemented doublet is the principal power element of the entire system. L3 is a thick biconvex element using the LaF21-type glass (nₑ = 1.792; SUMITA K-LaSFn16 as catalog equivalent), which enables strong positive power with moderate surface curvatures. The modern N-LAF21 row is a different coordinate and is not used.
 
 L4 is a negative meniscus of the SF6-class high-index dense flint (nₑ = 1.813, νₑ = 25.24), cemented to L3. Despite both glasses being classified as flints, the substantial dispersion contrast (Δνₑ ≈ 22) between the moderate-dispersion lanthanum flint L3 and the high-dispersion dense flint L4 provides effective achromatization: L3's positive power with lower dispersion is partially compensated in chromatic terms by L4's negative power with higher dispersion, bringing two wavelengths to a common focus. The nearly flat exit surface (R = −549.30) minimizes the negative contribution of this surface to the Petzval sum while maintaining adequate negative power for color correction.
 
@@ -171,7 +171,7 @@ This group is the most complex, comprising four elements in three subgroups: a s
 |---|--------:|-------:|----:|
 | L5 | −56.39 | −71.58 | 11.29 |
 
-Despite being a meniscus with both surfaces concave toward the object, L5's thick-lens behavior yields a very weakly negative focal length. Its primary role is not power contribution but rather the control of spherical aberration and coma in the diverging beam immediately behind the stop. The SK16 glass (same as the front menisci) provides low dispersion, limiting chromatic contributions. This element acts as a field flattener and coma corrector, intercepting the beam at a height where off-axis rays are well separated from on-axis rays.
+Despite being a meniscus with both surfaces concave toward the object, L5's thick-lens behavior yields a very weakly negative focal length. Its primary role is not power contribution. At the 28 mm scale it sits 2.3 mm behind the stop in the converging beam, where the bundles of all field angles still overlap: at full field the chief ray crosses its front surface 1.6 mm from the axis, inside a 5.5 mm axial beam. It therefore acts mainly on the aperture-dependent aberrations, and its strongly curved front surface is the second-largest negative Petzval contribution in the lens (§7). The SK16 glass (same as the front menisci) provides low dispersion, limiting chromatic contributions.
 
 **L6+L7 — Cemented Doublet (LaF10 + SF6 class, f ≈ +166):**
 
@@ -180,7 +180,7 @@ Despite being a meniscus with both surfaces concave toward the object, L5's thic
 | L6 | +3330.0 | −36.08 | 13.61 | LaF10 | +49.1 |
 | L7 | −36.08 | −100.50 | 6.00 | SF6 class | −72.3 |
 
-L6 has a nearly flat front surface (R₁ = +3330 is effectively planar) and a strongly curved rear surface (R₂ = −36.08). The negative R₂ places the center of curvature to the left, meaning the rear surface is convex toward the image side. The element is therefore geometrically plano-convex (flat front, convex rear toward image), and optically strongly positive (f ≈ +49.1). This geometry places the refractive power at the cemented interface rather than at an air–glass surface, reducing surface reflection losses and ghosting — a practical consideration that Leica's own marketing literature highlighted as contributing to the lens's contrast and flare resistance.
+L6 has a nearly flat front surface (R₁ = +3330 is effectively planar) and a strongly curved rear surface (R₂ = −36.08). The negative R₂ places the center of curvature to the left, meaning the rear surface is convex toward the image side. By the signs of its radii the element is biconvex; in practice it is plano-convex (flat front, convex rear toward image), and taken alone in air it is strongly positive (f ≈ +49.1). In the lens that rear surface is cemented to L7, where the index step is only 0.084 (1.72823 to 1.81265), so the interface itself is weakly negative (about −1/427 at f = 100) and the doublet's net power comes from the L7 rear surface r₁₂ (+1/124). The strongly curved buried surface works on color and on the higher-order aberrations without adding an air–glass reflection.
 
 The LaF10-class/SF6-class pairing mirrors the achromatization strategy of the front doublet (L3+L4), using the dispersion contrast between a moderate-dispersion lanthanum flint and a high-dispersion dense flint (Δνₑ ≈ 13) to provide local chromatic correction in the rear group. S-BAH28 supplies a compatible C′/e/F′ spectral proxy for L6 without asserting the historical supplier.
 
@@ -216,11 +216,9 @@ The design achieves field flattening through a deliberate balance: the strong ne
 
 ## 8. Focus Mechanism
 
-The patent publishes only the infinity state for Example 3. The production Elmarit-R 28mm f/2.8 I uses **unit focusing**, in which the entire optical assembly translates as one unit along the optical axis. The data file models this for the 0.30 m (12 inch) close focus. A paraxial trace at the 0.28 scale gives a calculated extension of about 3.6 mm and a magnification of about 1:7.9 for a 300 mm object-to-image distance. These are derived values, not patent data.
+The patent publishes only the infinity state for Example 3 and describes no moving subgroup. The data file models the production lens as **unit focusing**, in which the entire optical assembly translates as one unit along the optical axis, down to the production minimum of 0.7 m. A paraxial trace at the 0.28 scale gives a calculated extension of about 1.26 mm and a magnification of about 1:22 for a 700 mm object-to-image distance. These are derived values, not patent data, and no source consulted states the focusing mechanism directly.
 
-Unit focusing is the simplest and most mechanically robust approach, but it does not compensate for field curvature changes at close focus distances. The patent's description of elements whose radii are "shorter than the total focal length" positioned near the image plane suggests that the rear group was designed to provide inherent tolerance to the aberration shifts that occur during focus extension.
-
-The successor Elmarit-R 28mm f/2.8 II (1994) introduced a floating element design with an improved 8 element / 7 group configuration, maintaining close-focus performance through differential element motion.
+Unit focusing is the simplest and most mechanically robust approach, but it does not compensate for field curvature changes at close focus distances. The patent's description of elements whose radii are "shorter than the total focal length" positioned near the image plane suggests that the rear group was designed to provide inherent tolerance to the aberration shifts that occur during focus extension. With a minimum distance of 0.7 m the extension is small, a little over 4% of the focal length.
 
 ## 9. Production Scaling
 
@@ -236,13 +234,13 @@ The patent normalizes to f = 100. With a₁ corrected, the e-line trace reproduc
 | Air gap a₂ (L2→L3) | 51.20 | 14.3 mm |
 | L8 thickness | 5.43 | 1.5 mm |
 
-The total protrusion from the camera body (approximately 40mm, per Leica's published specifications) is consistent with the optical length offset by the registration distance. The BFD of 18.4mm provides adequate clearance for the Leicaflex reflex mirror within the 47mm flange-to-film registration distance.
+Against the Leica M's 27.8mm flange-to-film distance, the 72.4mm track places the front vertex about 44.6mm ahead of the flange and the rear vertex about 9.4mm behind it.
 
 ## 10. Design Characteristics and Aberration Strategy
 
 ### 10.1 Retrofocus Ratio
 
-The BFD/EFL ratio of 0.657 (patent s′ = 65.70 at f = 100) places this design in the "moderate retrofocus" category. For comparison, extreme retrofocus designs (20mm f/2.8 class) achieve BFD/EFL ratios of 1.5–2.0 but at the cost of severe lateral chromatic aberration and distortion. Mandler's quasi-symmetric approach keeps the BFD extension modest, which is sufficient for the Leicaflex mirror clearance while preserving good lateral color correction.
+The BFD/EFL ratio of 0.657 (patent s′ = 65.70 at f = 100) places this design in the "moderate retrofocus" category. For comparison, extreme retrofocus designs (20mm f/2.8 class) achieve BFD/EFL ratios of 1.5–2.0 but at the cost of severe lateral chromatic aberration and distortion. Mandler's quasi-symmetric approach keeps the BFD extension modest, which is enough to move the rear element forward for the metered M bodies while preserving good lateral color correction.
 
 ### 10.2 Chromatic Correction
 
@@ -262,17 +260,34 @@ The distortion profile shows a gentle barrel pattern that peaks at intermediate 
 
 The ray fan plots themselves show the combined monochromatic and chromatic aberration residuals at each field point. At the full field (y′ = 21), the fans exhibit moderate higher-order aberrations, consistent with the f/2.8 aperture at 37° half-field.
 
+The image heights are in millimetres at the production focal length, not in the table's f = 100 units: y′ = 21 at f = 28 is a half-field of 36.9°, the table's ±37°. An exact trace of the data file gives distortion of −0.23%, −0.38% and −0.34% at the three heights in the paraxial image plane (−0.17%, −0.32% and −0.28% in the plane of the patent's s′), against the printed −0.24%, −0.41% and −0.39%. The shape is the same, with the maximum near three-quarters field, and the model is 0.01 to 0.05 points smaller.
+
+The fans can be compared as well, although they carry no ordinate scale. Their abscissa fits the ray height in the entrance pupil with ticks of 0.05 f: the axial curves of Fig. 3d end at 3.55 ticks, the f/2.8 semi-aperture. In units of that semi-aperture, the plotted curves and the model's e-line fans in the paraxial image plane have their extremes and zero crossings at these places:
+
+| y′ (mm) | Extremes, patent | Extremes, model | Zero crossings, patent | Zero crossings, model |
+|--------:|------------------|-----------------|------------------------|-----------------------|
+| 0 | ±0.77 to 0.84 | ±0.85 | ±0.95 to 1.0 | ±1.01 |
+| 10.5 | −0.44 / +0.43 to 0.49 | −0.42 / +0.43 | −0.67 / +0.70 | −0.68 / +0.70 |
+| 15.75 | −0.38 / +0.35 | −0.37 / +0.37 | −0.62 / +0.60 | −0.61 / +0.63 |
+| 21 | −0.29 / +0.32 | −0.32 / +0.31 | −0.49 / +0.54 | −0.54 / +0.54 |
+
+On axis this is spherical aberration corrected at the margin with a zonal residual: the model's longitudinal value is −0.14 mm at the 0.85 zone and −0.01 mm at the edge of the aperture, a transverse 21 µm. The patent has no separate astigmatism or field-curvature plot. The slope of the off-axis fans at the chief ray corresponds, in the model, to a tangential focus 0.27, 0.46 and 0.51 mm in front of the paraxial plane at the three heights, balanced over the aperture by the S-shaped higher-order term.
+
+The vertical bars that close each off-axis fan mark the edges of the vignetted bundle: −0.78 / +0.80, −0.68 / +0.70 and −0.59 / +0.60 of the semi-aperture at y′ = 10.5, 15.75 and 21. The three lower-edge rays all meet the L3 front surface 7.66 to 7.69 mm from the axis, just outside the 7.65 mm axial ray, which points to a clear radius of about 7.7 mm there in the designers' calculation. The three upper bars meet at one point between L5 and L6, 5.1 mm from the axis and 0.2 mm inside the axial ray, and could not be assigned to a rim.
+
 ### 10.4 Surface Curvature Graduality
 
-The 1970 *LEICA Photography* article specifically notes that "their surface curvatures are so gradual that reflections are imaged far forward of the film-plane." This is borne out by the prescription: the most strongly curved surfaces (r₁₃ = −34.62, r₁₁ = −36.08) are deeply embedded in the rear group where the beam diameter is small, while the front group surfaces have |R| > 60 — gentle curvatures that suppress ghost reflections. This graduality of curvature, combined with the all-spherical design, would have simplified multicoating — a technology that Leitz was actively advancing in the early 1970s.
+The most strongly curved surfaces (r₁₃ = −34.62, r₁₁ = −36.08) are deeply embedded in the rear group where the beam diameter is small, while the front group surfaces have |R| > 60. These gentle front curvatures keep the angles of incidence moderate across the wide field, which limits higher-order aberrations and the strength of ghost reflections from the large front elements.
 
 ## 11. Semi-Diameter Estimation
 
-The patent does not list semi-diameters. The stored values come from a real-ray trace at the 0.28 production scale, checked against the section drawings in Fig. 6c and Fig. 3. Both drawings are scaled from the r₁→r₁₄ vertex span (483 px = 54.05 mm).
+The patent does not list semi-diameters. The stored values come from a real-ray trace at the 0.28 production scale, checked against the two section drawings of Example 3, Fig. 3 and Fig. 6c. Both are drawn at one scale: the r₁→r₁₄ vertex span is 480 px at 300 dpi for 54.05 mm.
 
-- **Ray requirements.** Every surface clears the f/2.8 axial beam. Every surface also clears the chief ray that reaches the 21.6 mm corner at 37.7°. The front menisci carry the largest chief-ray heights, 14.0 mm at r₁ and 12.1 mm at r₂. The L3 front surface (r₅ = 10.4 mm) is sized for the 20–28° off-axis bundles, which reach 9.4–10.0 mm there. The drawing shows the doublet about 15–20% smaller.
-- **Figure rims.** The drawing gives these rim radii: L1 ≈ 16.1 mm, L2 ≈ 13.4 mm, and L3/L4 ≈ 8.7 mm, drawn as a near-cylinder whose rear face is as tall as its front. L5 is ≈ 6.9 mm, L6/L7 ≈ 8.0 mm, and L8 ≈ 9.7 mm, the largest rear element. The drawing is schematic. L8 and the rear face of L1 are drawn much flatter than their radii allow; a 9.7 mm rim is impossible on r₁₃ = −9.69 mm. Those two surfaces are therefore held inside the rim-slope limit instead of copied.
-- **Corner vignetting.** At full aperture, the full-field bundle is clipped mainly at the rear meniscus and the front menisci. This is ordinary for a 1970 f/2.8 28 mm retrofocus design.
+- **Ray requirements.** Every surface clears the f/2.8 axial beam, which is widest at the L3 front surface (7.65 mm at infinity, 7.61 mm at 0.7 m). Every surface also clears the chief ray that reaches the 21.6 mm corner at 37.7°. The front menisci carry the largest chief-ray heights, 14.0 mm at r₁ and 12.1 mm at r₂.
+- **Figure rims.** Read at the line centres, the drawings give L1 16.1 mm at its front face and about 14.1 mm at its rear face, with a bevelled rim between them, and L2 13.3 / 12.3 mm. The L3+L4 component is a square-cut block of 8.5 mm and the L6+L7 component one of 7.8 mm. L5 is 6.0 mm at its front face and 6.8 mm at the rim, and L8 is 8.1 mm at its front face and 9.4 to 9.7 mm at the rim; both have a chamfered front corner, and L8 is the tallest rear element. Each square-cut block carries one height in the data, 8.7 mm on r₅ to r₇ and 7.4 mm on r₁₀ to r₁₂. The remaining stored values are within about 7% of the drawings.
+- **Vignetting.** With the block square, the L3 front rim trims the outer edge of the oblique bundles from about 15° outward: the site's geometric transmission at full aperture is 96% at 20° and 93% at 29°. Toward the corner the front menisci and the rear meniscus take over, and transmission falls to 53% at 37.8°. This is ordinary for an f/2.8 28 mm retrofocus design of this period.
+
+Until 2026-10 the L3 front surface was held at 10.4 mm so that the 20° to 28° bundles passed whole. That made the front face taller than the drawn block and taller than L8, which the drawings show the other way round. The patent's own ray fans agree with the drawings (§10.3): their limit bars put the edge of the oblique bundles on the L3 front rim, at a clear radius of about 7.7 mm. The data keep the drawn 8.7 mm, so the model still passes a slightly wider bundle in the middle of the field than the patent plots (edge at 0.93 and 0.86 of the semi-aperture at y′ = 10.5 and 15.75, against the plotted 0.78 and 0.68). At full field the plotted edge ray needs 15.7 mm at r₁, where the data have 15.4 mm against a drawn 16.1 mm, so there the model's bundle is narrower than the patent's (0.49 against 0.59).
 
 Earlier estimates capped r₂ at 0.77|R| because of the L1–L2 gap. That cap came from the misprinted 2.8 mm gap and no longer applies at the corrected 5.6 mm.
 
@@ -289,22 +304,22 @@ The six examples in US 3,591,257 represent a systematic exploration of the desig
 | 5 | ±45° | f/3.4 | 2 menisci | Super-wide, speed sacrifice |
 | 6 | ±50° | f/3.4 | 3 menisci | Widest, adds third front meniscus |
 
-The progression reveals Mandler's design strategy: as the field angle increases, additional front menisci are added to distribute the negative power over more surfaces, and the speed is reduced from f/2.8 to f/3.4 for the widest embodiments. Example 3 represents the optimal balance point for a 28mm f/2.8 SLR lens — wide enough for the intended focal length, fast enough for available-light photography, and compact enough for practical use.
+The progression reveals Mandler's design strategy: as the field angle increases, additional front menisci are added to distribute the negative power over more surfaces, and the speed is reduced from f/2.8 to f/3.4 for the widest embodiments. Example 3 represents the optimal balance point for a 28mm f/2.8 lens — wide enough for the intended focal length, fast enough for available-light photography, and compact enough for practical use.
 
 ## 13. Summary of Key Findings
 
 1. **All spherical** — no aspherical surfaces. Aberration control relies entirely on glass selection, element spacing, and the three-group quasi-retrofocus topology.
 
-2. **Five patent glass coordinates**: SK16, LaF21-class, SF6, LaF10-class and F2. The patent gives only e-line values. SK16, SF6 and F2 are catalog equivalents, LaF10 is a spectral proxy, and L3 remains unmatched.
+2. **Five patent glass coordinates**: SK16, LaF21-class, SF6, LaF10-class and F2. The patent gives only e-line values. SK16, SF6, F2 and the LaF21 type (SUMITA K-LaSFn16) are catalog equivalents, and LaF10 is a spectral proxy.
 
-3. **Unit focus** — the entire optical assembly translates for focusing to 0.30m close focus. No floating elements in the patent design (this was added in the 1994 successor).
+3. **Unit focus** — the entire optical assembly is modelled as translating for focusing to the 0.7m production minimum. The patent describes no floating elements.
 
-4. **Moderate retrofocus** — BFD/EFL ≈ 0.66, achieving adequate SLR mirror clearance without the severe lateral color penalties of extreme retrofocus designs.
+4. **Moderate retrofocus** — BFD/EFL ≈ 0.66, an 18.4mm back focus at 28mm: too short for a reflex mirror, but enough to keep the rear element clear of the metered M bodies, without the severe lateral color penalties of extreme retrofocus designs.
 
-5. **Eight elements, six groups** in the patent; the production lens was refined to eight elements in eight groups (all air-spaced) for additional correction degrees of freedom.
+5. **Eight elements, six groups** in the patent and in the production lens, with two cemented doublets.
 
 6. **Petzval radius ≈ 363mm** at production scale (0.28× scaling), yielding a "remarkably flat field" for a 28mm retrofocus design of this era.
 
-7. **Compact execution** — 40mm protrusion, 275g weight, achieved through careful balancing of the front negative group's power distribution and the large air gap (a₂ ≈ 14.3mm at production) that provides the retrofocus extension.
+7. **Compact execution** — about 300g, with the front vertex about 45mm ahead of the M flange, achieved through careful balancing of the front negative group's power distribution and the large air gap (a₂ ≈ 14.3mm at production) that provides the retrofocus extension.
 
 8. **e-line convention and a₁ misprint**: all patent indices are at λ = 546.1 nm per the Leitz convention. The printed a₁ = 9.86 is a misprint for 19.86. With it corrected, the e-line trace reproduces f = 100, s′ = 65.7 and every group focal length. The data file scales the corrected table uniformly by 0.28.
