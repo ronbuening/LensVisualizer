@@ -123,7 +123,9 @@ catalog on 2026-10-13, lens and teleconverter files together; the plan was first
   - 509 files author an empty `asph`.
   - The stop `sd` is required, but the engine overwrites it in 906 of 922 lenses: from `nominalFno` in 904 and from a
     published radius schedule in 2.
-    - On the catalog of 2026-10-09, shrinking all 889 such values then authored to 10% changed no computed value.
+    - Shrinking all 906 such values (906 = 904 + 2, 2026-10-14) to 10% builds every lens identically but for the
+      copy of the file's data the built lens keeps. On the catalog of 2026-10-09, the 889 then authored, shrunk the
+      same way, changed no computed value.
     - The only path that can read them is generated rear-plate rims, and no current lens triggers it.
     - The spec says the authored value sets the entrance pupil.
 - **Fields in the wrong place, or unread.**
@@ -1155,8 +1157,8 @@ The stop radius has exactly one authority per lens:
   - Most comments justify the stop's position, which stays valid because `d` is unchanged.
   - 75 comments on 73 entries are flagged: hand calibrations to an f-number, which the engine now performs, a few
     figure readings, and section headings that name the f-number.
-  - 180 comment lines elsewhere in 172 files quote the authored radius and name the stop; they go stale when it is
-    dropped.
+  - 260 comment lines elsewhere in 252 files name the stop and quote the authored radius, as written or rounded to
+    the decimals they quote (2026-10-14); they go stale when it is dropped.
   - The conversion report flags them (S2.P3.T1), and each batch PR resolves them (S2.P5).
 
 ### Ingest, conversion and comments
