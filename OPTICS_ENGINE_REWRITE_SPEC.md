@@ -596,8 +596,11 @@ How `budgets.ts` applies the table:
   app reads these points (the app's fans end a ray at a miss: decision 2026-06-22), and the legacy tracer goes in
   Stage 4. Behind a ray's first missed surface, its ghost points and the clipped y projected from them are compared
   for presence, count and finiteness only. Everything before the miss keeps its budget: earlier ghost points, the
-  points of the ray, its slope, and its diagnostics, failure and clip reasons. The capture marks each ray's first
-  ghost point after its miss, alike on both sides. Under C0 every number is bit-exact, as before.
+  points of the ray, its slope, and its diagnostics, failure and clip reasons. The comparator finds the miss in each
+  ray's own diagnostics, and a ghost point is behind it when its place among the drawn points is at or after the
+  miss's place among the hits, on both sides. The legacy tracer drops a non-finite point from what it draws, which
+  can only put a later point's true place further on, so the rule never reaches before the miss. Under C0 every
+  number is bit-exact, as before.
 - **Fields the table does not name.** Layout lengths, refractive indices and prescription values the engine hands back
   take the first-order budget. Slopes are compared as direction cosines. Count ratios are exact.
 - **Bins of a bokeh profile.** A bokeh footprint weighs each ray by its transmission and sums the weights into the

@@ -492,10 +492,10 @@ The classes in `budgets.ts`:
 - After a legacy fan ray's first missed surface, its substitute ghost points and the clipped `y` projected from
   them have the `legacyMissTail` class: presence, count and finiteness only above C0. The comparator reads the first
   `intersection-failure` in each ray's `diagnostics.clipEvents`, without another trace or an added record member.
-  On both sides, a ghost qualifies only when `pts.length - 1 + ghostPts.length` equals the length of
-  `diagnostics.hitSurfaceIndexes`, and its position `pts.length - 1 + ghostIndex` is at or after the first miss's
-  position in that hit list. `rayTrace.ts` adds the launch point, appends hits in order, and drops non-finite drawn
-  points while the stack diagnostics retain every hit index; a misaligned record keeps its old coordinate budget.
+  On both sides, a ghost qualifies when its hit-position lower bound `pts.length - 1 + ghostIndex` is at or after
+  the first miss's position in `diagnostics.hitSurfaceIndexes`. `rayTrace.ts` adds the launch point, appends hits in
+  order, and drops non-finite drawn points while the stack diagnostics retain every hit index; dropped points can
+  only move a ghost later in the hit list, so the lower bound remains safe without complete alignment.
   The `y` exemption requires both rays to be clipped and both to have an intersection failure. A rim clip alone
   does not qualify. Earlier ghosts, `pts`, `u`, diagnostics, failure and clip reasons keep their existing rules.
   C0 stays bit-exact. These off-ray substitutes are unused by the app's prepared tracer fans, which stop at a miss,

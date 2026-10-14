@@ -452,8 +452,8 @@ function firstLegacyMiss(ray: unknown): unknown {
     : undefined;
 }
 
-/* rayTrace's point appender drops non-finite hits, but its diagnostics retain their indexes. Only a complete
- * alignment can locate a ghost in that hit order; a missing fallback or repeated surface is never sorted by index. */
+/* rayTrace's point appender drops non-finite hits, but its diagnostics retain their indexes. A ghost's drawn
+ * position is a lower bound on its hit position: dropped points can only move it later, never before the miss. */
 const legacyGhostByMiss: QuantitySelector = (leaf) => {
   const depth = leaf.keys.indexOf("ghostPts");
   const index = leaf.keys[depth + 1];
@@ -468,7 +468,6 @@ const legacyGhostByMiss: QuantitySelector = (leaf) => {
       pts.length === 0 ||
       !Array.isArray(ghosts) ||
       !Array.isArray(hits) ||
-      pts.length - 1 + ghosts.length !== hits.length ||
       typeof index !== "number" ||
       typeof surfaceIdx !== "number"
     )
