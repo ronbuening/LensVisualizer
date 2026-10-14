@@ -119,7 +119,7 @@ const TELECONVERTER_DATA = {
       "nd": 1.58913,
       "vd": 61.16,
       "fl": 87.66308505936138,
-      "glass": "Unmatched (barium crown suited to precision moulding)",
+      "glass": "S-BAL35 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       "role": "Positive meniscus with an aspherical front face, correcting spherical aberration and field curvature."
     },
     {

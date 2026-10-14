@@ -77,7 +77,7 @@ L5 completes the net-positive triplet. Its two bounding spherical radii have equ
 
 ### L6 — Positive aspherical meniscus
 
-nd = 1.58913, νd = 61.16. Glass: Unmatched (barium crown suited to precision moulding). Standalone-air f = +87.663085 mm.
+nd = 1.58913, νd = 61.16. Glass: S-BAL35 spectral proxy (supplier and moulding grade unconfirmed). Standalone-air f = +87.663085 mm.
 
 The object face is source surface 34, model surface 9A. The patent places the asphere behind the cemented group and associates this arrangement with image-surface correction (¶0033–0034). The glass coordinate matches moulding-grade barium crowns, which suggests but does not prove a moulded asphere.
 
@@ -93,7 +93,7 @@ The patent supplies d-line refractive indices and Abbe numbers; it does not name
 
 The compatible palette includes S-TIM2-class flint for L1, S-LAH65V-class glass for L2, E-F2-class flint for L3, S-LAH58/N-LASF31A-class dense flint for L4 and L7, and S-TIL27/LF7-class light flint for L5. These are coordinate-compatible classes, not certificates of supplier identity.
 
-L6 (nd = 1.58913, νd = 61.16) matches moulding barium crowns such as OHARA L-BAL35, a glass this catalog does not carry. It is left unmatched rather than assigned a different glass, so its dispersion is estimated from nd and νd alone.
+L6 (nd = 1.58913, νd = 61.16) uses the coordinate-compatible S-BAL35 catalog curve (nd 1.58913, νd about 61.14) as a spectral proxy. This does not identify the production supplier or establish a moulding grade; L-BAL35 is not silently aliased to S-BAL35. All seven elements now use catalog dispersion.
 
 The model does not claim apochromatic correction or a known production melt. For the other elements the matched catalog glass supplies the dispersion curve as a stand-in for the unknown production glass.
 
@@ -134,6 +134,8 @@ The printed β = 1.97 appears truncated rather than rounded (581.9 / 294.001 = 1
 The semi-diameters are estimates from Figure 3, since the patent publishes no clear apertures: 12 mm for L1 and L2, 14 mm across the triplet, and 16 mm for both rear menisci. They pass the axial beam of hosts down to about F/2.05, and off-axis marginal vignetting at the image corners is kept rather than removed by enlarging the rims.
 
 The patent's master plus this converter computes to f = 582.13 mm with a paraxial back focus of 52.59 mm, against the printed 581.9 mm and 52.5 mm. The printed rows are kept as published; nothing is adjusted to the printed summaries. The master computes to F/2.88 (printed F/2.89), and with the converter the same stop gives F/5.70 (printed 5.7).
+
+The catalog's existing AF-S 300mm f/2.8 D IF-ED host has a separate rim limit at its rear L11 surface 21: its stated f/2.88 beam traces at about f/3.45 even without a converter. The composed model therefore traces about f/6.83 instead of its stated f/5.70. The converter's own rims clear that axial path; the host's inferred rear rim needs a separate source review.
 
 The converter accepts hosts at F/2.8 or slower, following Nikon's rating of autofocus with f/2.8-or-faster AF-S and AF-I lenses. It mounts only on lenses that Nikon lists as compatible, because the rear elements of other lenses can strike the converter's front element.
 

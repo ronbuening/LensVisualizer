@@ -51,19 +51,19 @@ The focal lengths below are calculated for each material body isolated in air us
 
 ### L11n — Negative front member of C1
 
-nd = 1.846660, νd = 23.78. Glass: Unmatched. f = −116.1336 mm.
+nd = 1.846660, νd = 23.78. Glass: S-TIH53 spectral proxy (supplier unconfirmed). f = −116.1336 mm.
 
 The nearly flat object-side surface and positive rear radius form a negative meniscus. Its relatively high dispersion supplies the negative member of the positive front cemented component.
 
 ### L11p — Positive rear member of C1
 
-nd = 1.755000, νd = 52.32. Glass: Unmatched. f = +95.2962 mm.
+nd = 1.755000, νd = 52.32. Glass: S-LAH97 spectral proxy (supplier unconfirmed). f = +95.2962 mm.
 
 It shares surface 2 with L11n and ends at the negative-radius surface 3. The pair's refractive-index and dispersion contrast permits chromatic balancing within G1; no partial-dispersion identity is established.
 
 ### L12 — Positive meniscus
 
-nd = 1.755000, νd = 52.32. Glass: Unmatched. f = +102.4748 mm.
+nd = 1.755000, νd = 52.32. Glass: S-LAH97 spectral proxy (supplier unconfirmed). f = +102.4748 mm.
 
 This second positive component completes the weak-positive front group. Its fixed 0.1000 mm separation from C1 is preserved.
 
@@ -71,7 +71,7 @@ This second positive component completes the weak-positive front group. Its fixe
 
 L21r: nd = 1.495210, νd = 56.34. Material: Unmatched aspheric resin. f = −235.1788 mm.
 
-L21g: nd = 1.834810, νd = 42.72. Glass: Unmatched. f = −20.6299 mm.
+L21g: nd = 1.834810, νd = 42.72. Glass: S-LAH55VS spectral proxy (supplier unconfirmed). f = −20.6299 mm.
 
 The source explicitly describes L21 as a resin/glass hybrid (¶0042). Surface 6A begins the 0.0600 mm resin layer; surface 7 is its interface with the substrate. Surface 8 terminates the substrate. Neither interface is omitted or collapsed into an equivalent spherical surface. The strongly curved rear surface contributes much of this component's negative power.
 
@@ -79,61 +79,61 @@ The first negative component and its odd-order asphere contribute to the correct
 
 ### L22 — Negative singlet
 
-nd = 1.741000, νd = 52.67. Glass: Unmatched. f = −33.1812 mm.
+nd = 1.741000, νd = 52.67. Glass: S-LAL61 spectral proxy (supplier unconfirmed). f = −33.1812 mm.
 
 Its biconcave shape follows L21. The patent identifies the two front negative components of G2 as contributors to wide-angle distortion, astigmatism and coma correction (¶0011).
 
 ### L23p / L23n — Positive cemented component C2
 
-L23p: nd = 1.740770, νd = 27.79. Glass: Unmatched. f = +15.8250 mm.
+L23p: nd = 1.740770, νd = 27.79. Glass: S-TIH13 spectral proxy (supplier unconfirmed). f = +15.8250 mm.
 
-L23n: nd = 1.804000, νd = 46.58. Glass: Unmatched. f = −32.9494 mm.
+L23n: nd = 1.804000, νd = 46.58. Glass: S-LAH65 spectral proxy (supplier unconfirmed). f = −32.9494 mm.
 
 The positive member and negative partner share surface 12. Their net component faces the object with a convex surface. The patent connects this cemented positive component to large-aperture spherical/coma correction and control of the Petzval sum (¶0011). These roles are source-grounded; a named commercial glass equivalence is not.
 
 ### L24 — Negative meniscus
 
-nd = 1.743200, νd = 49.32. Glass: Unmatched. f = −50.8504 mm.
+nd = 1.743200, νd = 49.32. Glass: S-LAM60 spectral proxy (supplier unconfirmed). f = −50.8504 mm.
 
 The concave object-facing meniscus completes G2. The convex air lens between C2 and L24 is part of the architecture discussed in ¶0011. G2 is translated intact for focus.
 
 ### L31 — Positive singlet
 
-nd = 1.603000, νd = 65.47. Glass: Unmatched. f = +66.7119 mm.
+nd = 1.603000, νd = 65.47. Glass: S-PHM53 spectral proxy (supplier unconfirmed). f = +66.7119 mm.
 
 The biconvex singlet begins G3, immediately behind the printed stop. Its separation from the following cemented component is 0.1000 mm.
 
 ### L32p / L32n — Positive cemented component C3
 
-L32p: nd = 1.603000, νd = 65.47. Glass: Unmatched. f = +20.7570 mm.
+L32p: nd = 1.603000, νd = 65.47. Glass: S-PHM53 spectral proxy (supplier unconfirmed). f = +20.7570 mm.
 
-L32n: nd = 1.834000, νd = 37.17. Glass: Unmatched. f = −24.2378 mm.
+L32n: nd = 1.834000, νd = 37.17. Glass: S-LAH60 spectral proxy (supplier unconfirmed). f = −24.2378 mm.
 
 The lower-index positive component and higher-index negative partner share surface 20. Together with L31 they form the positive third moving group.
 
 ### L41 — Positive singlet
 
-nd = 1.743200, νd = 49.32. Glass: Unmatched. f = +25.6407 mm.
+nd = 1.743200, νd = 49.32. Glass: S-LAM60 spectral proxy (supplier unconfirmed). f = +25.6407 mm.
 
 The equal-and-opposite vertex radii make this the approximately symmetric biconvex positive component of G4. The following negative components counter its convergence; ¶0012 and ¶0030 discuss this rear correction arrangement.
 
 ### Lasp — Negative aspheric singlet
 
-nd = 1.744429, νd = 49.52. Glass: Unmatched. f = −64.5229 mm.
+nd = 1.744429, νd = 49.52. Glass: N-LAF35 spectral proxy (supplier unconfirmed). f = −64.5229 mm.
 
 Surface 24A carries the second asphere. The 1.8000 mm body and the following 2.0000 mm air gap are retained. It is a separate component ahead of C4, not a zero-gap third member of that doublet. The application does not establish its manufacturing process.
 
 ### L4n / L4p — Negative cemented component C4
 
-L4n: nd = 1.834000, νd = 37.17. Glass: Unmatched. f = −16.8216 mm.
+L4n: nd = 1.834000, νd = 37.17. Glass: S-LAH60 spectral proxy (supplier unconfirmed). f = −16.8216 mm.
 
-L4p: nd = 1.617200, νd = 54.01. Glass: Unmatched. f = +21.1709 mm.
+L4p: nd = 1.617200, νd = 54.01. Glass: K-SSK1 spectral proxy (supplier unconfirmed). f = +21.1709 mm.
 
 The biconcave negative component and biconvex positive partner share surface 27. Their index difference, 0.2168, is the printed N4n − N4p condition value. The combination supplies a net negative component in the positive fourth group, followed by the source back focus.
 
 ## Glass Identification and Selection
 
-Only d-line indices and Abbe numbers are published for these bodies. No catalog glass name, nC, nF, ng or anomalous partial-dispersion value is supplied. All labels deliberately retain an `Unmatched` disposition rather than assigning commercial names from incomplete coordinate matches. The engine's Abbe dispersion estimate is therefore approximate; this model supports no APO or secondary-spectrum claim.
+Only d-line indices and Abbe numbers are published for these bodies. No catalog glass name, nC, nF, ng or anomalous partial-dispersion value is supplied. Fifteen glass bodies now use coordinate-compatible catalog dispersion curves, with supplier and melt unconfirmed. Lasp uses N-LAF35 as an approximate proxy (catalog nd about 1.74330 versus the source 1.744429); its source index remains unchanged. The L21r hybrid resin has no defensible catalog match and retains the Abbe estimate. These proxy choices support no APO or factory secondary-spectrum claim.
 
 | nd | νd | Bodies |
 |---:|---:|---|
@@ -201,7 +201,7 @@ Clear apertures and iris diameter are not published. The semi-diameters are manu
 
 The authored stop schedule follows the stated f-numbers; it is an inference, not evidence that the real iris varies with zoom. The model uses Table 1's rounded endpoint f-numbers, 2.8 and 4.1, and Figure 3's middle value, 3.62. The more precise plot legends in Figures 2–4 are 2.79 / 3.62 / 4.12. Both statements are preserved rather than declaring either a source error. At the solved intermediate stations, the f-numbers (2.89 at 27 mm to 4.05 at 75 mm) keep the iris radius interpolated between the printed stations.
 
-The inferred model passes the stated axial beam at all three infinity stations and reproduces 21.60 mm chief-ray image height at approximately 42.4° / 22.8° / 14.2° half-field. At all 11 source configurations, an on-axis marginal ray aimed at the retained iris passes every clear aperture. For the finite rows, the launch uses the calculated source conjugate rather than an infinity beam. Those results establish modeled ray access, not full-pupil corner illumination or measured production performance. Rendering and chromatic predictions remain sensitive to the inferred rims, aperture schedule and Abbe-only glasses.
+The inferred model passes the stated axial beam at all three infinity stations and reproduces 21.60 mm chief-ray image height at approximately 42.4° / 22.8° / 14.2° half-field. At all 11 source configurations, an on-axis marginal ray aimed at the retained iris passes every clear aperture. For the finite rows, the launch uses the calculated source conjugate rather than an infinity beam. Those results establish modeled ray access, not full-pupil corner illumination or measured production performance. Rendering and chromatic predictions remain sensitive to the inferred rims, aperture schedule, proxy dispersion and unresolved hybrid resin.
 
 A production identification would require evidence tying the final manufactured prescription to a numerical embodiment; the diagram fit alone does not provide it.
 

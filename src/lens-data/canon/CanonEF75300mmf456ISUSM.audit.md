@@ -89,3 +89,16 @@ Zoom stations: neither the JP publication nor US 2001/0030809 A1 Example 9 print
 Fields changed in this pass: header comment, `subtitle`, `specs`, `patentNumber` (six-digit serial form), L10 `role`, `varLabels` (image gap now "Back focus (computed)"), `focusDescription`, `zoomLabels` (Wide / Tele), and `var`, `zoomPositions`, `nominalFno` and `publishedStations` for the solved stations. In the analysis, process vocabulary was removed, the verification summary became "Model Scope and Limitations", and the zoom-kinematics and aperture text now describe the solved stations.
 
 Open: the printed fo/fr condition values (0.335 / 1.068) still do not reproduce from the literal ¶0033–0035 definitions (see sourceErrata).
+
+
+## 2026-10-14 — Patent-rim, dispersion and metadata audit
+
+Source: Figure 4, PDF page 11; Numerical Example 2, Table 3.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| L1–L15 dispersion | Catalog-derived nC/nF/ng with Unmatched labels | Compatible catalog curves, no direct line fields | Proxy line indices were not source measurements and bypassed catalog resolution. |
+
+Source N/ν and all geometry stay unchanged. S-TIH6, S-BSL7, LAH66, S-TIH53, S-BSM14, S-FSL5 and S-LAH60 are explicitly qualified spectral proxies. The source wavelength remains unspecified; d-line tracing remains inferred from the plotted d/g labels and coordinates.
+
+The wide panel's leader lines contaminate automated envelopes. A separate comparison using the printed 135 mm spacing and the clean middle panel gives figure/data ratios 0.86–0.96 with relative shape deviations within about 6%; these do not justify SD changes. The optical rims, excluding leaders and group brackets, were inspected at 600 dpi. Canon EF/full-frame, the display name, counts and inventor/assignee fields are complete.

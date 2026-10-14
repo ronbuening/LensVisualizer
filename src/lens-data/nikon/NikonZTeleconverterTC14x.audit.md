@@ -72,3 +72,12 @@ Hosts: Nikon's page lists Z 70-180mm f/2.8, Z 70-200mm f/2.8 VR S, Z 100-400mm f
 Fields changed: minHostFno 2.88 → 2.8 (the f/2.8 hosts on Nikon's list; the first-version Z 70-200 at F/2.864 was rejected at 2.88 and passes at 2.8 with no axial clip). Header comment added. Subtitle → "JP 2021-189311 A, Example 1 — production correlation"; specs → "6 ELEMENTS / 4 GROUPS", "1.4× REAR CONVERTER", "1 ASPHERICAL SURFACE / 1 ELEMENT" (the master-correction spec line removed; the misprint is recorded in the header and analysis). Element labels "Element 1–6"; roles added; diagramLabel removed; glass parentheticals → "(coordinate candidate; supplier unconfirmed)", with resolved glass unchanged (E-FD1L, TAFD30, E-FD8, TAFD55, M-BACD12, BSC7, all Hoya); cement layers → "Optical Cement Layer" / "Optical cement (patent nd=1.51400, vd=42.83)", no `cemented` tag and no fl; cemented tags D1 / D2; groups "L11 (+)", "CL2 (−)", "CL1 (−)", "L16 (+)"; doublets "D1: L12 + L13", "D2: L14 + L15". Converter probe output identical before and after. Analysis: process vocabulary and run counts removed, the reference-master rim allowance (not part of the converter) dropped, "Verification" heading renamed to "Model Scope and Limitations".
 
 Open: none for the converter. Host-side: Z 800mm f/6.3 VR S corner coverage.
+
+
+## 2026-10-14 — Patent-rim, dispersion and metadata audit
+
+Source: Figure 3, PDF page 27; Example 1, Tables 3–5.
+
+The 600 dpi exact figure was visually inspected. Two automated crops produce inconsistent axial span/axis readings because the short converter outline is surrounded by labels; these readings are rejected. The drawing supports the 14/17/21 mm relative rim ordering. The selected compatible host's corner chief reaches about 12.90/16.09/18.21 mm at the group exits, so an absolute reduction based on the contaminated figure readings is not justified. Existing SDs and the quoted aspheric departure stay unchanged.
+
+Six lens glasses already reach coordinate-compatible catalog curves. Both 0.01 mm cement bodies remain unresolved because 1.51400 / 42.83 has no defensible catalog curve. The Nikon Z TC-1.4x display name, Z mount, counts and authors/assignees are complete. Image format is inherited from the composed host.

@@ -131,3 +131,15 @@ Engine and validators: surface validation OK; no axial clipping or chief-ray blo
 Fields changed in this pass: key `nikon-ix-nikkor-30-60mm-f4-56-reconstruction` → `nikon-ix-nikkor-30-60mm-f4-56`; name without "RECONSTRUCTION"; `visible: false` removed; `lensMounts` `nikon-f` → `nikon-ix`; subtitle, specs, header comment, focusDescription and the BF variable label reworded. The analysis was reworded, gained a Model Scope section, and lost its private file links and process wording. No optical value changed.
 
 Open: none.
+
+
+## 2026-10-14 — Patent-rim, dispersion and metadata audit
+
+Source: Figure 17, PDF page 22; Example 5, Table 5.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| L1–L6 glass | Unmatched | Q-LASFPH3S, S-TIH53, N-SSK5, S-TIH6 and E-FD15 spectral proxies | Compatible d-line coordinates, supplier/melt unconfirmed. L1 is approximate: Δnd −0.001431, Δνd about −0.12. |
+| Design focal-length spec | 30.00–56.51 mm | 30.88–58.55 mm | Header now reports the implemented E4/E5 drawing-derived model consistently with focalLengthDesign. |
+
+The 600 dpi optical rims of the exact Figure 17 were inspected; relative heights agree within about 15%, apart from the already disclosed rear-gap limit. The 5.731 mm facing rims remain unchanged. The patent-to-Tale-83 thickness substitutions remain disclosed rather than being silently reverted. Nikon IX and APS film metadata are present, and the IX-Nikkor display name is correct.

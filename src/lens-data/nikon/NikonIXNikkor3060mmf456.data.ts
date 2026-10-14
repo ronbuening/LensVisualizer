@@ -33,7 +33,7 @@ const LENS_DATA = {
     "JP 3909533 B2, Example 5 — E4/E5 center thicknesses 2.77/3.40 → 2.59/2.46 mm per Nikon's Tale 83; focal lengths run about 3% long of the patent's",
   specs: [
     "6 ELEMENTS / 6 GROUPS",
-    "DESIGN f = 30.00–56.51 mm",
+    "DESIGN f = 30.88–58.55 mm",
     "DESIGN F/4.09–5.85",
     "ALL SPHERICAL",
     "E4/E5 THICKNESSES FROM NIKON'S TALE 83",
@@ -59,7 +59,7 @@ const LENS_DATA = {
       nd: 1.796681,
       vd: 45.37,
       fl: -22.966594437528315,
-      glass: "Unmatched (patent d-line coordinates; supplier and melt unverified)",
+      glass: "Q-LASFPH3S (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 2,
@@ -69,7 +69,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.82,
       fl: 65.28247573697647,
-      glass: "Unmatched (patent d-line coordinates; supplier and melt unverified)",
+      glass: "S-TIH53 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 3,
@@ -79,7 +79,7 @@ const LENS_DATA = {
       nd: 1.65844,
       vd: 50.84,
       fl: 22.58657734985364,
-      glass: "Unmatched (patent d-line coordinates; supplier and melt unverified)",
+      glass: "N-SSK5 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 4,
@@ -89,7 +89,7 @@ const LENS_DATA = {
       nd: 1.65844,
       vd: 50.84,
       fl: 31.052440550556636,
-      glass: "Unmatched (patent d-line coordinates; supplier and melt unverified)",
+      glass: "N-SSK5 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 5,
@@ -99,7 +99,7 @@ const LENS_DATA = {
       nd: 1.805182,
       vd: 25.35,
       fl: -12.398798597286397,
-      glass: "Unmatched (patent d-line coordinates; supplier and melt unverified)",
+      glass: "S-TIH6 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 6,
@@ -109,7 +109,7 @@ const LENS_DATA = {
       nd: 1.69895,
       vd: 30.04,
       fl: 34.617555506721786,
-      glass: "Unmatched (patent d-line coordinates; supplier and melt unverified)",
+      glass: "E-FD15 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
   ],
   surfaces: [

@@ -54,3 +54,17 @@ Maker diagram: Nikon's TC800-1.25E ED construction image (pic_004.jpg on the 800
 Fields changed in this pass: header comment rewritten in plain terms with run-together numbers fixed (all facts kept; the package's validation-master notes dropped); subtitle "JP2013250290A EXAMPLE1 — PUBLISHED-DESIGN CORRELATION" → "JP 2013-250290 A, Example 1 — production correlation"; specs "1.25×; DEDICATED800mm HOST" and "INFINITY-ONLY SOURCE VALIDATION; INFERRED RIMS" → "1.25× REAR CONVERTER" and "ALL SPHERICAL"; element labels "Source L11…L31" → "Element 1…5"; diagramLabel removed; roles rewritten; glass strings "(catalog-coordinate proxy; supplier unproven)" → "(supplier unconfirmed)", with glass resolution unchanged (checked with trylabel); L21 tagged apd "inferred" with an apdNote citing Nikon's diagram (J-PSKH1 curve θgF ≈ 0.544, above the normal line); cemented "T1" on L21–L23 and the triplet's doublets text "G2 TRIPLET" → "T1". Optics unchanged: tcprobe output on the host was identical before and after. The analysis was reworded throughout. Process vocabulary was removed, a numbered correlation list and a glass table were added, and the "different spacings" statement about the catalog host was corrected. The verification sections became "Model Scope and Limitations".
 
 Open: semi-diameters (16 mm) remain inferred from Figure 1. L23's J-LASFH9A coordinate has no catalog dispersion curve. Host exclusions (incompatibleLensKeys) for other F-mount lenses are left to the integration pass.
+
+
+## 2026-10-14 — Patent-rim, dispersion and metadata audit
+
+Source: Figure 1, PDF page 22; Example 1, Table 1 surfaces 39–46.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| L11 surfaces 1/2 sd | 16 / 16 mm | 11.0 / 11.0 mm | Smaller front singlet in Figure 1; full-frame chief needs at most 10.4784 mm here. |
+| Triplet surfaces 3–6 sd | 16 mm | 12.4 mm | Shared rim kept square; full-frame chief needs at most 11.8471 mm here. |
+| L31 surfaces 7/8 sd | 16 / 16 mm | 13.3 / 13.3 mm | Slightly taller rear element in Figure 1; chief needs at most 12.7987 mm here. |
+| L23 dispersion | J-LASFH9A label, no curve | Sourced J-LASFH9A catalog curve | Hikari 2025-06-01 catalog, PDF page 151: exact nine-term power series, nd 1.90265 / νd 35.77, d-code 903358. Source νd 35.73 stays unchanged. |
+
+The exact 600 dpi figure shows the uniform 16 mm rims are excessive. Absolute figure readings of about 8–10 mm would clip the stated 21.633 mm image-height chief ray, so the selected group rims retain at least 0.5 mm above the traced chief instead. The full axial beam still clears every surface; off-axis pupil clipping remains modeled, not certified production vignetting. The current J-LASFH9A curve remains distinct from legacy J-LASFH9 (d-code 903357). All five glasses now use catalog dispersion. Nikon F mount, dedicated 800 mm host, attribution and display name are retained.

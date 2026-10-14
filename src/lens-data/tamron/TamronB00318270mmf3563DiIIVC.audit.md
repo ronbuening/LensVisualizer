@@ -147,3 +147,12 @@ Fields changed: name → "TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD Aspherical [I
 Zoom stations: linear interpolation between the three printed states left up to −13.5 mm of paraxial defocus (near zoomT 0.85). Ten solved stations were added (13 in all; printed states at indices 0, 6 and 12 in publishedStations, numerically unchanged): LG1, LG3 and LG4 follow a quadratic in log focal length through their printed positions, LG2 is solved for paraxial focus on the fixed image plane, at focal lengths spaced evenly in log f within each interval. Gaps stay positive; worst remaining defocus is 0.92 mm near 240 mm (0.86 mm on a 0.05 zoomT grid). Solved-station f-numbers (3.72–6.28) are those of the near-constant iris. audit:surface reports no errors.
 
 Open: none.
+
+
+## 2026-10-14 — Patent-rim, dispersion and metadata audit
+
+Source: Figure 1, PDF page 9 (printed page 8); sole embodiment.
+
+No SD, mount or format correction is justified. The wide-like diagram was inspected at 600 dpi; its telephoto caption remains contradictory, as previously documented. Optical rims agree with the existing front/variator/relay proportions; hatched resin layers and leader lines are excluded from envelope measurements.
+
+All eighteen glass substrates already reach coordinate-compatible catalog dispersion. Three resin bodies (L4r/L13r/L15r, two distinct nd/νd coordinates) have no defensible catalog curve and stay unresolved. The official Tamron B003 archive confirms Canon EF and Nikon F versions, APS-C coverage and the full AF / Di II / VC / LD / Aspherical / IF / MACRO designation. The display qualifier is capitalized to ASPHERICAL under the catalog naming convention; B003 remains distinguished from the later B008 PZD.

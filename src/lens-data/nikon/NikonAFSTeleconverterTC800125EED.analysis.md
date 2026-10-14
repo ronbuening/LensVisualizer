@@ -59,15 +59,15 @@ nd = 1.581439, νd = 40.96. Glass: J-LF5 class (Hikari; supplier unconfirmed). f
 
 Patent surfaces 42–43 are equal and opposite radii, +38.303 and −38.303 mm, around a 7.5 mm centre thickness. The element is symmetric, but its surroundings are not: it is cemented to two different negative glasses, so its focal length in air describes the element alone, not the power of either cemented interface.
 
-¶0043 attributes a spherical-aberration advantage to the biconvex middle element, and ¶0040–0042 connect the negative–positive–negative cemented construction to image-surface balance and lower sensitivity to decentering. At the 16 mm modeled rim this element has the converter's thinnest edge, about 0.50 mm; its faces would meet at about 16.53 mm radius, which limits how large the converter rims can be drawn.
+¶0043 attributes a spherical-aberration advantage to the biconvex middle element, and ¶0040–0042 connect the negative–positive–negative cemented construction to image-surface balance and lower sensitivity to decentering. At its 12.4 mm modeled rim L22 retains about 3.375 mm edge thickness; its faces would meet at about 16.53 mm radius. The inferred clear rim stays well inside that bound.
 
 ### L23 — Biconcave Negative, Rear Member of G2
 
-nd = 1.902650, νd = 35.73. Glass: J-LASFH9A class (Hikari; supplier unconfirmed; no catalog dispersion curve in the viewer). f = −31.154 mm.
+nd = 1.902650, νd = 35.73. Glass: J-LASFH9A class (Hikari; supplier unconfirmed). f = −31.154 mm.
 
 Patent surfaces 43–44 form the rear negative member of the triplet, the highest-index and most dispersive glass in the converter. With L21 and L22 it gives G2 its net focal length of −36.577 mm. ¶0044–0045 explain the preference for biconcave negative members: they keep the Petzval sum from going too far negative and so hold the mean image surface flat.
 
-J-LASFH9A (1.90265/35.77) is the closest catalog coordinate, but the viewer's glass catalog has no curve for it, so the element's dispersion is modeled from its nd and νd alone.
+J-LASFH9A (1.90265/35.77) is a coordinate-compatible spectral proxy. Its published Hikari nine-term power series now supplies dispersion; the patent νd = 35.73 remains unchanged. The current J-LASFH9A row is distinct from discontinued J-LASFH9 (νd about 35.73, d-code 903357); neither establishes the production supplier or melt.
 
 ### L31 — Biconvex Positive, G3 Terminal Singlet
 
@@ -85,7 +85,7 @@ The patent publishes d-line nd and νd only. Each coordinate was compared with t
 |---|---|---|---|---|
 | L11, L22 | 1.581439 / 40.96 | J-LF5 (Hikari) | 1.58144 / 40.98 | Light flint positives |
 | L21 | 1.593190 / 67.96 | J-PSKH1 (Hikari) | 1.59319 / 67.90 | Low-dispersion phosphate crown; ED (inferred) |
-| L23 | 1.902650 / 35.73 | J-LASFH9A (Hikari) | 1.90265 / 35.77 | Dense lanthanum flint; no curve in the viewer |
+| L23 | 1.902650 / 35.73 | J-LASFH9A (Hikari) | 1.90265 / 35.77 | Dense lanthanum flint; sourced catalog power series |
 | L31 | 1.517420 / 52.25 | J-KF6 (Hikari) | 1.51742 / 52.20 | Crown-flint positive |
 
 The palette pairs a low-dispersion negative front member with a flint positive centre and a dense-flint negative rear member in the triplet, a distributed chromatic and power balance consistent with the patent's condition on νn and its group-power conditions. The patent supplies no partial-dispersion or secondary-spectrum data, so no quantitative full-spectrum claim is made.
@@ -110,7 +110,7 @@ The values also fall within the narrower preferred ranges in ¶0030, ¶0034 and 
 
 ## Model Scope and Limitations
 
-All eight converter surfaces carry an inferred 16 mm semi-diameter. Figure 1 draws the converter elements about as tall as the master's rear group; the patent lists no clear apertures, and these are not barrel measurements. At that height the thinnest edge (L22) is about 0.50 mm, and both air gaps keep positive clearance.
+Figure 1 supports smaller converter rims than the original uniform 16 mm estimate. The model now carries 11.0 mm rims on L11, 12.4 mm on the shared L21–L23 triplet and 13.3 mm on L31. Absolute figure readings around 8–10 mm would clip the chief ray to the stated 21.633 mm image height; each selected group rim instead retains at least 0.5 mm above that ray. The minimum glass edge thickness is about 2.378 mm on L31, and both air gaps keep positive clearance. These are inferred optical apertures, not published clear diameters or barrel measurements.
 
 The patent gives the master's stop position (surface 22) but not its diameter. With the stop sized for the printed master F/5.65772, the combination traces to F/7.07, matching the printed F/7.07229; `minHostFno` is set to that master F-number. On the patent master the axial beam and the chief ray to the printed 21.633 mm image height (half-field ±1.26°) clear every converter rim; outer off-axis pupil rays are clipped, so the model keeps some corner vignetting.
 

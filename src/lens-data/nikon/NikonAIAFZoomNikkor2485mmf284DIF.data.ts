@@ -45,7 +45,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * gap to surface 26 retains 0.1244 mm positive clearance. gapSagFrac=0.95 preserves
  * that geometry with a 5% drawing margin instead of the default 10%; no source
  * optical dimension or engine-wide threshold is changed.
- * Glass identities remain Unmatched; only printed d-line nd/vd are sourced.
+ * Only printed d-line nd/vd are sourced. Catalog curves are coordinate-compatible spectral
+ * proxies, not production-glass identities; the hybrid resin remains unresolved.
  */
 
 export default {
@@ -76,7 +77,7 @@ export default {
       nd: 1.84666,
       vd: 23.78,
       fl: -116.13357532429241,
-      glass: "Unmatched (source nd=1.846660, νd=23.78; commercial identity unverified)",
+      glass: "S-TIH53 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       cemented: "C1",
     },
     {
@@ -89,7 +90,7 @@ export default {
       nd: 1.755,
       vd: 52.32,
       fl: 95.2961743512028,
-      glass: "Unmatched (source nd=1.755000, νd=52.32; commercial identity unverified)",
+      glass: "S-LAH97 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       cemented: "C1",
     },
     {
@@ -102,7 +103,7 @@ export default {
       nd: 1.755,
       vd: 52.32,
       fl: 102.47479621037132,
-      glass: "Unmatched (source nd=1.755000, νd=52.32; commercial identity unverified)",
+      glass: "S-LAH97 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 4,
@@ -127,7 +128,7 @@ export default {
       nd: 1.83481,
       vd: 42.72,
       fl: -20.629857277706215,
-      glass: "Unmatched (source nd=1.834810, νd=42.72; commercial identity unverified)",
+      glass: "S-LAH55VS (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       cemented: "H1",
     },
     {
@@ -140,7 +141,7 @@ export default {
       nd: 1.741,
       vd: 52.67,
       fl: -33.181202365198686,
-      glass: "Unmatched (source nd=1.741000, νd=52.67; commercial identity unverified)",
+      glass: "S-LAL61 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 7,
@@ -152,7 +153,7 @@ export default {
       nd: 1.74077,
       vd: 27.79,
       fl: 15.824973988863153,
-      glass: "Unmatched (source nd=1.740770, νd=27.79; commercial identity unverified)",
+      glass: "S-TIH13 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       cemented: "C2",
     },
     {
@@ -165,7 +166,7 @@ export default {
       nd: 1.804,
       vd: 46.58,
       fl: -32.949363913824804,
-      glass: "Unmatched (source nd=1.804000, νd=46.58; commercial identity unverified)",
+      glass: "S-LAH65 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       cemented: "C2",
     },
     {
@@ -178,7 +179,7 @@ export default {
       nd: 1.7432,
       vd: 49.32,
       fl: -50.85041238712904,
-      glass: "Unmatched (source nd=1.743200, νd=49.32; commercial identity unverified)",
+      glass: "S-LAM60 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 10,
@@ -190,7 +191,7 @@ export default {
       nd: 1.603,
       vd: 65.47,
       fl: 66.71194915762172,
-      glass: "Unmatched (source nd=1.603000, νd=65.47; commercial identity unverified)",
+      glass: "S-PHM53 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 11,
@@ -202,7 +203,7 @@ export default {
       nd: 1.603,
       vd: 65.47,
       fl: 20.757007985997873,
-      glass: "Unmatched (source nd=1.603000, νd=65.47; commercial identity unverified)",
+      glass: "S-PHM53 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       cemented: "C3",
     },
     {
@@ -215,7 +216,7 @@ export default {
       nd: 1.834,
       vd: 37.17,
       fl: -24.23782168932991,
-      glass: "Unmatched (source nd=1.834000, νd=37.17; commercial identity unverified)",
+      glass: "S-LAH60 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       cemented: "C3",
     },
     {
@@ -228,7 +229,7 @@ export default {
       nd: 1.7432,
       vd: 49.32,
       fl: 25.64072742187177,
-      glass: "Unmatched (source nd=1.743200, νd=49.32; commercial identity unverified)",
+      glass: "S-LAM60 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 14,
@@ -240,7 +241,7 @@ export default {
       nd: 1.744429,
       vd: 49.52,
       fl: -64.5229039886504,
-      glass: "Unmatched (source nd=1.744429, νd=49.52; commercial identity unverified)",
+      glass: "N-LAF35 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
     },
     {
       id: 15,
@@ -252,7 +253,7 @@ export default {
       nd: 1.834,
       vd: 37.17,
       fl: -16.821618514018198,
-      glass: "Unmatched (source nd=1.834000, νd=37.17; commercial identity unverified)",
+      glass: "S-LAH60 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       cemented: "C4",
     },
     {
@@ -265,7 +266,7 @@ export default {
       nd: 1.6172,
       vd: 54.01,
       fl: 21.170914335251645,
-      glass: "Unmatched (source nd=1.617200, νd=54.01; commercial identity unverified)",
+      glass: "K-SSK1 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       cemented: "C4",
     },
   ],

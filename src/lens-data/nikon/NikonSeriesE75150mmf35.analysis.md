@@ -101,7 +101,7 @@ The final positive singlet completes the relay and delivers rays into the source
 
 The source gives six distinct nd/νd pairs without supplier or glass trade names. Modern catalog screening finds several compatible equivalents, including N-SK16/S-BSM16 for the repeated 1.62041/60.3 coordinate, SF4-type entries for 1.75520/27.5, and BK7-family entries for 1.51680/64.2. Such equivalence is not evidence of a 1980 supplier, formulation or melt.
 
-The data therefore preserves every source index and Abbe number and labels each glass as unmatched. This indicates that original identity and full spectral dispersion are unverified, not that no compatible catalog glass exists. Spectral tracing uses the project's Abbe approximation. No ED, anomalous partial dispersion or apochromatic performance is established by these coordinates alone.
+The data preserves every source index and Abbe number while using N-SK16 (L1/L2/L6/L7/L9), E-FD4 (L3/L8/L10), SF56A (L4), N-BK7 (L5), LAFN7 (L11) and F1 (L12) as coordinate-compatible spectral proxies. All twelve glasses use catalog dispersion. These curves do not identify the 1980 supplier, formulation or melt. No ED, anomalous partial dispersion or apochromatic performance is established by these coordinates alone.
 
 ## Focus Mechanism
 
@@ -121,11 +121,11 @@ The compact solution reproduces the rounded plot magnifications. A second mathem
 
 The patent gives no stop position. The model places the stop in d13, 1mm before surface 14, fixed relative to Group IV; splitting the gap preserves each printed total. Nikon's production section draws the iris about 1.4mm ahead of L9 with an opening of about 13.7mm radius, in agreement with this position and with the 13.69mm stop radius obtained by setting the source f/3.5 at the wide station.
 
-Clear semi-diameters follow the element proportions of patent Figure 1 and Nikon's section, normalized to a 24mm front rim, within the edge-thickness and air-gap limits of the prescription. The L5/L6 rims are the exception: both drawings show them about as large as the rest of Group II, but the facing surfaces of the 3.8mm air gap between them would nearly touch at that height, so the model keeps 12.59mm rims there.
+Clear semi-diameters follow the element proportions of patent Figure 1 and Nikon's section, normalized to a 24mm front rim, within the edge-thickness and air-gap limits of the prescription. The L5/L6 rims are the exception: both drawings show them about as large as the rest of Group II, but the facing surfaces of the 3.8mm air gap between them nearly touch at that height. Their facing rims are 13.1mm, the smallest tenth-millimetre values that pass the stated axial beam.
 
-At telephoto, passing the full f/3.5 axial beam would need about 13.08mm rims on those facing surfaces, where they come within about 0.1mm of each other. The retained 12.59mm rims clip the outer edge of the telephoto axial beam: the effective aperture is about f/3.645, or 92.18% of the ideal axial pupil area by geometric area alone.
+The facing surfaces retain about 0.0917mm positive clearance at the 13.1mm rims. A lens-specific gapSagFrac of 0.978 admits the measured 97.59% sag intrusion, consistent with Figure 1's nearly meeting rims; the source gap is unchanged. The modeled axial beam now passes at f/3.5 throughout the zoom. This does not establish unvignetted off-axis transmission or a published physical clear aperture.
 
-At the patent's infinity fields of 16.6°, 11.5° and 8.0°, chief rays clear every rim while peripheral rays are vignetted. Geometric transmission at the frame corner is about 44%, 52% and 50% at the wide, middle and telephoto stations. These figures describe the inferred rims, not measured production vignetting.
+At the patent's infinity fields of 16.6°, 11.5° and 8.0°, chief rays clear every rim while peripheral rays are vignetted. Corner throughput depends on the inferred rims and is not measured production vignetting.
 
 ## Model Scope and Limitations
 

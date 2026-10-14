@@ -42,37 +42,37 @@ Standalone thick-element focal lengths use the stored radii, glass index and cen
 
 ### L1 — Negative meniscus
 
-**nd = 1.796681, νd = 45.37; glass: Unmatched (patent coordinates, supplier/melt unverified); standalone f = −22.967 mm.**
+**nd = 1.796681, νd = 45.37; glass: Q-LASFPH3S spectral proxy (supplier/melt unverified); standalone f = −22.967 mm.**
 
 Its negative standalone power dominates the front pair; the object-convex shape and all radii follow the patent.
 
 ### L2 — Positive meniscus
 
-**nd = 1.846660, νd = 23.82; glass: Unmatched (patent coordinates, supplier/melt unverified); standalone f = +65.282 mm.**
+**nd = 1.846660, νd = 23.82; glass: S-TIH53 spectral proxy (supplier/melt unverified); standalone f = +65.282 mm.**
 
 Its positive power partly offsets L1. The combined front pair remains negative; the lower Abbe number is source data, not proof of a chosen supplier.
 
 ### L3 — Biconvex positive
 
-**nd = 1.658440, νd = 50.84; glass: Unmatched (patent coordinates, supplier/melt unverified); standalone f = +22.587 mm.**
+**nd = 1.658440, νd = 50.84; glass: N-SSK5 spectral proxy (supplier/melt unverified); standalone f = +22.587 mm.**
 
 This first rear element precedes the stop. Its center thickness is the patent's.
 
 ### L4 — Biconvex positive
 
-**nd = 1.658440, νd = 50.84; glass: Unmatched (patent coordinates, supplier/melt unverified); standalone f = +31.052 mm.**
+**nd = 1.658440, νd = 50.84; glass: N-SSK5 spectral proxy (supplier/melt unverified); standalone f = +31.052 mm.**
 
 Its center thickness follows Nikon's drawing: 2.591 mm against the patent's 2.766 mm. The very weak negative rear radius is the patent's, although the drawing shows a weak positive curvature.
 
 ### L5 — Biconcave negative
 
-**nd = 1.805182, νd = 25.35; glass: Unmatched (patent coordinates, supplier/melt unverified); standalone f = −12.399 mm.**
+**nd = 1.805182, νd = 25.35; glass: S-TIH6 spectral proxy (supplier/melt unverified); standalone f = −12.399 mm.**
 
 This negative member of the positive rear group has its center thickness from Nikon's drawing: 2.457 mm against the patent's 3.399 mm. Both adjacent air gaps are the patent's.
 
 ### L6 — Positive meniscus
 
-**nd = 1.698950, νd = 30.04; glass: Unmatched (patent coordinates, supplier/melt unverified); standalone f = +34.618 mm.**
+**nd = 1.698950, νd = 30.04; glass: E-FD15 spectral proxy (supplier/melt unverified); standalone f = +34.618 mm.**
 
 The final element retains its patent thickness and two negative signed radii. It is separated by air, not cemented to L5.
 
@@ -80,9 +80,9 @@ The L1/L2 pair provides negative group power; the L3–L6 sequence provides posi
 
 ## Glass Identification and Selection
 
-All d-line indices and Abbe values are the patent's, including six-decimal entries. Glass annotations use `Unmatched (...)`: supplier, melt and factory material are unverified, and no catalog glass is asserted as the production glass. Tale 83 states that only the first element uses a lanthanum glass; L1's nd 1.7967 / νd 45.4 is a lanthanum-flint coordinate, while the other five are barium-crown and dense-flint coordinates, which is consistent with that statement.
+All d-line indices and Abbe values are the patent's, including six-decimal entries. Glass annotations name coordinate-compatible catalog curves as spectral proxies; supplier, melt and factory material remain unverified. L1 uses Q-LASFPH3S approximately (catalog nd 1.79525 / νd 45.25 versus source 1.796681 / 45.37), without changing the source coordinate. Tale 83 states that only the first element uses a lanthanum glass; L1's nd 1.7967 / νd 45.4 is a lanthanum-flint coordinate, while the other five are barium-crown and dense-flint coordinates, which is consistent with that statement.
 
-The model's chromatic analysis uses Abbe-based estimated dispersion from the d-line (587.6 nm) data. No C/F/g indices or anomalous-partial-dispersion data are available, so no anomalous-dispersion performance claim is made.
+All six bodies now use catalog dispersion curves anchored to the retained patent d-line coordinates. No measured production C/F/g indices or source anomalous-partial-dispersion data are available, so no anomalous-dispersion performance claim is made.
 
 ## Focus Mechanism
 

@@ -730,6 +730,27 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; Hikari Optical Glass Catalog 2012, J-LASFH9 page (formula 3 power series, d-code 903357).",
   },
+  {
+    name: "J-LASFH9A",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.49725259, 0],
+      [-0.0137767486, 2],
+      [-0.000124635517, 4],
+      [0.0410568814, -2],
+      [0.000721039098, -4],
+      [0.00013613414, -6],
+      [-0.0000124733129, -8],
+      [0.00000092497468, -10],
+      [0, -12],
+    ],
+    nd: 1.90265,
+    vd: 35.77,
+    PgF: 0.5815,
+    code6: "903358",
+    source:
+      "Hikari Optical Glass Catalog 2025-06-01, PDF page 151, J-LASFH9A nine-term power series; https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf (accessed 2026-10-14). Distinct from discontinued J-LASFH9 (903357).",
+  },
   /* Hikari six-digit code-family additions */
   {
     name: "J-PKH1",

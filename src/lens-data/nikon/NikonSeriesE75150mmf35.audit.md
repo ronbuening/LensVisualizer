@@ -162,3 +162,18 @@ Fields changed in this pass:
 - Wording: header comment, subtitle, specs, focusDescription, element roles and the d13 gap label rewritten in plain terms; analysis stop, rim, vignetting and scope sections updated to match, and the stop statement now cites the Nikon section's iris mark.
 
 Open: production field angle (brochure 31°40′ wide) vs patent 33.2° remains unexplained; the L9/L10 rims (14.0 / 13.5mm) are slightly smaller than both drawings (about 14.0–14.7mm) and were left unchanged.
+
+
+## 2026-10-14 — Patent-rim, dispersion and metadata audit
+
+Source: Figure 1, PDF page 2; sole embodiment.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Surfaces 8/9 sd | 12.59 / 12.59 mm | 13.1 / 13.1 mm | Smallest 0.1 mm rims above the stated telephoto axial-ray heights, 13.09 / 13.07 mm. |
+| gapSagFrac | Default 0.9 | 0.978 | Figure 1 draws these facing rims nearly meeting. Sag intrusion is 3.708313 / 3.8 mm (97.5872%), leaving 0.091687 mm positive clearance. |
+| apertureDesign | Absent | 3.5 | Source prints f/3.5 throughout the zoom. |
+| Display name | NIKON SERIES E 75-150mm f/3.5 | NIKON SERIES E ZOOM 75-150mm f/3.5 | Matches the Series E zoom naming used by the catalog; no Nikkor branding is added. |
+| L1–L12 glass | Unmatched | N-SK16, E-FD4, SF56A, N-BK7, LAFN7 and F1 proxies | Compatible catalog coordinates with historical supplier/melt unconfirmed. |
+
+The 600 dpi optical-rim inspection supports the r8/r9 increase; the 3.8 mm source gap, all radii and the iris stay unchanged. The other optical rims already follow the figure within drawing uncertainty. Nikon F/full-frame and patent attribution are complete. The analysis removes the superseded f/3.645 clipping claim and describes the current clearance.

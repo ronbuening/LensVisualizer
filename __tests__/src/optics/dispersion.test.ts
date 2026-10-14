@@ -225,6 +225,24 @@ describe("glass catalog", () => {
     });
   });
 
+  it("keeps the revised Hikari J-LASFH9A curve distinct from the discontinued J-LASFH9", () => {
+    const revised = resolveCompatibleGlass("J-LASFH9A", 1.90265, 35.73)!;
+    const legacy = resolveCompatibleGlass("J-LASFH9", 1.90265, 35.73)!;
+    expect(revised.name).toBe("J-LASFH9A");
+    expect(legacy.name).toBe("J-LASFH9");
+    expect(resolveGlass("903358")?.name).toBe("J-LASFH9A");
+    expect(resolveGlass("903357")?.name).toBe("J-LASFH9");
+    // Hikari's current page publishes these line indices independently of the power-series coefficients.
+    for (const [line, index] of [
+      ["C", 1.895235],
+      ["F", 1.920469],
+      ["g", 1.935143],
+    ] as const) {
+      expect(Math.abs(evaluateSellmeier(revised, LINE_NM[line]) - index)).toBeLessThan(2e-6);
+    }
+    expect(resolveCompatibleGlass("J-LASFH9A", 1.85, 40.8)).toBeNull();
+  });
+
   it("uses the tightened catalog compatibility window", () => {
     expect(GLASS_ND_TOLERANCE).toBe(0.003);
     expect(GLASS_VD_TOLERANCE).toBe(2);

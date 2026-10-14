@@ -17,9 +17,12 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  * scaled to the marketed 800 mm / 1000 mm.
  *
  * R, d, nd and vd are the patent's values, unscaled; Example 1 has no aspheres.
- * Semi-diameters are inferred: 16 mm on every converter surface, consistent with Figure 1,
- * which draws the converter elements about as tall as the master's rear group. The patent
- * publishes no clear apertures. On the patent master the axial beam and the chief ray to
+ * Semi-diameters are inferred from Figure 1 and limited by the full-frame chief ray:
+ * 11.0 mm on L11, 12.4 mm on the triplet and 13.3 mm on L31, replacing uniform 16 mm
+ * rims. The figure draws a smaller front singlet and a slightly taller rear element, but
+ * matching its apparent absolute radii would clip the 21.633 mm image-height chief ray.
+ * Each group retains at least 0.5 mm clearance above that chief ray; the patent publishes
+ * no clear apertures. On the patent master the axial beam and the chief ray to
  * the 21.633 mm image height clear every converter rim; outer off-axis pupil rays vignette.
  * minHostFno is the patent master's F/5.65772. The patent prints no stop diameter; with the
  * master's stop sized for that F-number the combination traces to F/7.07 (printed 7.07229).
@@ -28,7 +31,7 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  * Nikon makes this converter only for the AF-S NIKKOR 800mm f/5.6E FL ED VR. It is not
  * universal, so a host must declare acceptsTeleconverters.
  * Glass labels name coordinate-compatible catalog glasses, which supply the dispersion
- * curve; supplier and melt are unconfirmed. L23's coordinate has no catalog curve.
+ * curve; supplier and melt are unconfirmed. L23 uses the separately sourced J-LASFH9A curve.
  */
 
 const TELECONVERTER_DATA = {
@@ -126,7 +129,7 @@ const TELECONVERTER_DATA = {
       "d": 3.5,
       "nd": 1.581439,
       "elemId": 1,
-      "sd": 16
+      "sd": 11
     },
     {
       "label": "2",
@@ -134,7 +137,7 @@ const TELECONVERTER_DATA = {
       "d": 2.2,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 16
+      "sd": 11
     },
     {
       "label": "3",
@@ -142,7 +145,7 @@ const TELECONVERTER_DATA = {
       "d": 2.0,
       "nd": 1.59319,
       "elemId": 2,
-      "sd": 16
+      "sd": 12.4
     },
     {
       "label": "4",
@@ -150,7 +153,7 @@ const TELECONVERTER_DATA = {
       "d": 7.5,
       "nd": 1.581439,
       "elemId": 3,
-      "sd": 16
+      "sd": 12.4
     },
     {
       "label": "5",
@@ -158,7 +161,7 @@ const TELECONVERTER_DATA = {
       "d": 2.0,
       "nd": 1.90265,
       "elemId": 4,
-      "sd": 16
+      "sd": 12.4
     },
     {
       "label": "6",
@@ -166,7 +169,7 @@ const TELECONVERTER_DATA = {
       "d": 1.0,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 16
+      "sd": 12.4
     },
     {
       "label": "7",
@@ -174,7 +177,7 @@ const TELECONVERTER_DATA = {
       "d": 4.1,
       "nd": 1.51742,
       "elemId": 5,
-      "sd": 16
+      "sd": 13.3
     },
     {
       "label": "8",
@@ -182,7 +185,7 @@ const TELECONVERTER_DATA = {
       "d": 42.27895,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 16
+      "sd": 13.3
     }
   ],
   "asph": {},

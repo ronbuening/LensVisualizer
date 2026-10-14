@@ -66,95 +66,95 @@ Only the tele station has an optical track/EFL ratio below unity. The first-vert
 
 ## Element-by-Element Analysis
 
-Each focal length below is computed for the individual element in air, including its center thickness. It is not that element's in-situ power inside a cemented pair. The source uses generic N and ν without specifying the reference spectral line. For readability the coordinate slots below are labeled approximate nd/νd; the data file explicitly preserves the uncertainty through Unmatched annotations and indexReferenceNote. The quoted catalog class is a coordinate-compatible dispersion proxy, never proof of a supplier or production melt.
+Each focal length below is computed for the individual element in air, including its center thickness. It is not that element's in-situ power inside a cemented pair. The source uses generic N and ν without specifying the reference spectral line. For readability the coordinate slots below are labeled approximate nd/νd; the data file explicitly preserves the uncertainty through qualified proxy annotations and indexReferenceNote. The quoted catalog class is a coordinate-compatible dispersion proxy, never proof of a supplier or production melt.
 
 ### L1 — Negative Meniscus
 
-Approximate nd = 1.80518, νd = 25.4. Glass: TIH6 class (OHARA legacy; supplier and source line unconfirmed). f = -221.388 mm.
+Approximate nd = 1.80518, νd = 25.4. Glass: S-TIH6 class (catalog spectral proxy; supplier and source line unconfirmed). f = -221.388 mm.
 
 The first two elements share R2. This negative, object-convex front meniscus opposes its positive crown partner. Calling that pairing achromatizing is a conventional first-order interpretation; the patent does not provide element-resolved chromatic sensitivities.
 
 ### L2 — Positive Meniscus
 
-Approximate nd = 1.51633, νd = 64.2. Glass: BSL7 class (OHARA legacy; supplier and source line unconfirmed). f = +134.258 mm.
+Approximate nd = 1.51633, νd = 64.2. Glass: S-BSL7 class (catalog spectral proxy; supplier and source line unconfirmed). f = +134.258 mm.
 
 The weaker rear curvature is positive, so the two surfaces form an object-convex positive meniscus. The interface with L1 must remain one shared surface. Its independent focal length should not be mistaken for the net focal length of the doublet.
 
 ### L3 — Biconvex Positive
 
-Approximate nd = 1.51633, νd = 64.2. Glass: BSL7 class (OHARA legacy; supplier and source line unconfirmed). f = +208.963 mm.
+Approximate nd = 1.51633, νd = 64.2. Glass: S-BSL7 class (catalog spectral proxy; supplier and source line unconfirmed). f = +208.963 mm.
 
 This biconvex crown is separated from L2 by the small printed air gap. It completes the net-positive first functional group. Its clear radius is estimated with the front assembly, not obtained from a published semi-diameter.
 
 ### L4 — Biconcave Negative
 
-Approximate nd = 1.77250, νd = 49.6. Glass: LAH66 class (OHARA legacy; supplier and source line unconfirmed). f = -59.953 mm.
+Approximate nd = 1.77250, νd = 49.6. Glass: LAH66 class (catalog spectral proxy; supplier and source line unconfirmed). f = -59.953 mm.
 
 This negative singlet begins G2. Together with the following cemented pair it moves laterally for stabilization in the patent, while its axial position is fixed at the source zoom stations. The centered model represents only its neutral position.
 
 ### L5 — Biconcave Negative
 
-Approximate nd = 1.51633, νd = 64.2. Glass: BSL7 class (OHARA legacy; supplier and source line unconfirmed). f = -46.656 mm.
+Approximate nd = 1.51633, νd = 64.2. Glass: S-BSL7 class (catalog spectral proxy; supplier and source line unconfirmed). f = -46.656 mm.
 
 The biconcave member is followed directly by L6 at R9. The front crown and rear high-dispersion flint give the pair opposite standalone signs. The narrow air space preceding this element constrains the shared clear radius at R7/R8.
 
 ### L6 — Biconvex Positive
 
-Approximate nd = 1.84666, νd = 23.8. Glass: TIH53 class (OHARA legacy; supplier and source line unconfirmed). f = +72.533 mm.
+Approximate nd = 1.84666, νd = 23.8. Glass: S-TIH53 class (catalog spectral proxy; supplier and source line unconfirmed). f = +72.533 mm.
 
 The positive member ends on the negative-radius R10. G2 remains net negative despite this positive contribution. Its role in reducing decentering aberrations belongs to the compound prescription; no isolated numerical aberration contribution is assigned to this element.
 
 ### L7 — Biconvex Positive
 
-Approximate nd = 1.60311, νd = 60.7. Glass: BSM14 class (OHARA legacy; supplier and source line unconfirmed). f = +58.516 mm.
+Approximate nd = 1.60311, νd = 60.7. Glass: S-BSM14 class (catalog spectral proxy; supplier and source line unconfirmed). f = +58.516 mm.
 
 The first part of G3 is an air-separated biconvex crown. Its position ahead of the stop changes with zoom. It is followed by the second positive crown at a thin air gap whose curvatures open away from each other.
 
 ### L8 — Biconvex Positive
 
-Approximate nd = 1.48749, νd = 70.2. Glass: FSL5 class (OHARA legacy; supplier and source line unconfirmed). f = +60.552 mm.
+Approximate nd = 1.48749, νd = 70.2. Glass: S-FSL5 class (catalog spectral proxy; supplier and source line unconfirmed). f = +60.552 mm.
 
 This positive crown has the largest Abbe number in the prescription. A low-dispersion crown is not by itself evidence of anomalous partial dispersion or an apochromatic design. The rear surface is the shared R14 interface with L9.
 
 ### L9 — Biconcave Negative
 
-Approximate nd = 1.83400, νd = 37.2. Glass: LAH60 class (OHARA legacy; supplier and source line unconfirmed). f = -55.248 mm.
+Approximate nd = 1.83400, νd = 37.2. Glass: S-LAH60 class (catalog spectral proxy; supplier and source line unconfirmed). f = -55.248 mm.
 
 The negative member follows the positive L8 at the cemented interface. The pair is followed by 3.0 mm of air to the stop. This source distance is retained at every zoom station.
 
 ### L10 — Negative Meniscus
 
-Approximate nd = 1.60311, νd = 60.7. Glass: BSM14 class (OHARA legacy; supplier and source line unconfirmed). f = -410.972 mm.
+Approximate nd = 1.60311, νd = 60.7. Glass: S-BSM14 class (catalog spectral proxy; supplier and source line unconfirmed). f = -410.972 mm.
 
 Both radii are negative, and the smaller-magnitude front curvature makes the meniscus weakly negative. Figure 4 shows it behind the stop. Its first vertex is approximately fixed relative to the image through the three source zoom stations.
 
 ### L11 — Biconvex Positive
 
-Approximate nd = 1.60311, νd = 60.7. Glass: BSM14 class (OHARA legacy; supplier and source line unconfirmed). f = +57.129 mm.
+Approximate nd = 1.60311, νd = 60.7. Glass: S-BSM14 class (catalog spectral proxy; supplier and source line unconfirmed). f = +57.129 mm.
 
 The biconvex crown begins G5 and is cemented to L12. G5 moves relative to G4 and G6 during zoom. Its positive compound power includes the following independent singlet rather than just this doublet.
 
 ### L12 — Negative Meniscus
 
-Approximate nd = 1.80518, νd = 25.4. Glass: TIH6 class (OHARA legacy; supplier and source line unconfirmed). f = -102.810 mm.
+Approximate nd = 1.80518, νd = 25.4. Glass: S-TIH6 class (catalog spectral proxy; supplier and source line unconfirmed). f = -102.810 mm.
 
 The image-convex negative meniscus is the flint partner of L11. The two printed negative radii must not be replaced by a biconcave interpretation. The rear air gap to L13 is retained literally.
 
 ### L13 — Positive Meniscus
 
-Approximate nd = 1.51633, νd = 64.2. Glass: BSL7 class (OHARA legacy; supplier and source line unconfirmed). f = +147.956 mm.
+Approximate nd = 1.51633, νd = 64.2. Glass: S-BSL7 class (catalog spectral proxy; supplier and source line unconfirmed). f = +147.956 mm.
 
 The positive object-convex singlet completes G5. Its rear radius is weaker than its front radius. The changing D23 behind it connects this positive assembly to the negative terminal group.
 
 ### L14 — Biconcave Negative
 
-Approximate nd = 1.77250, νd = 49.6. Glass: LAH66 class (OHARA legacy; supplier and source line unconfirmed). f = -30.700 mm.
+Approximate nd = 1.77250, νd = 49.6. Glass: LAH66 class (catalog spectral proxy; supplier and source line unconfirmed). f = -30.700 mm.
 
 The terminal doublet begins with a biconcave, high-index element. The rear partner shares its second face. The negative net power of G6 depends on the two elements and their common boundary.
 
 ### L15 — Positive Meniscus
 
-Approximate nd = 1.80518, νd = 25.4. Glass: TIH6 class (OHARA legacy; supplier and source line unconfirmed). f = +66.041 mm.
+Approximate nd = 1.80518, νd = 25.4. Glass: S-TIH6 class (catalog spectral proxy; supplier and source line unconfirmed). f = +66.041 mm.
 
 The last element is an object-convex positive meniscus with a weakly curved rear face, not a plane. The final air distance is the computed paraxial back focus because the patent does not tabulate it. No cover glass is added to explain that omission.
 
@@ -172,21 +172,27 @@ The difference between these compound powers and the element powers is intention
 
 ## Glass Identification and Dispersion Limits
 
-All seven coordinates were compared with authoritative OHARA, HOYA, Schott, Hikari, Sumita and CDGM catalogs. Several vendors provide equivalent or near-equivalent coordinates. A coherent OHARA legacy set was selected only as a reproducible spectral proxy; its selection does not identify Canon's actual glass suppliers.
+The source N/ν coordinates are retained exactly. Their catalog matches and the d/g aberration-plot labels support an approximate d-line interpretation, although paragraph 0057 does not explicitly define the reference wavelength. Every element now resolves to a coordinate-compatible catalog curve instead of storing catalog-derived nC/nF/ng as if they were measured source indices. Supplier, production melt and source wavelength remain unconfirmed in the annotations and indexReferenceNote.
 
-| Source N | Source ν | Modeled catalog-class proxy | Elements |
+| Source N | Source ν | Catalog spectral proxy | Element |
 |---:|---:|---|---|
-| 1.48749 | 70.2 | FSL5 | L8 |
-| 1.51633 | 64.2 | BSL7 | L2, L3, L5, L13 |
-| 1.60311 | 60.7 | BSM14 | L7, L10, L11 |
-| 1.77250 | 49.6 | LAH66 | L4, L14 |
-| 1.80518 | 25.4 | TIH6 | L1, L12, L15 |
-| 1.83400 | 37.2 | LAH60 | L9 |
-| 1.84666 | 23.8 | TIH53 | L6 |
+| 1.80518 | 25.4 | S-TIH6 | L1 |
+| 1.51633 | 64.2 | S-BSL7 | L2 |
+| 1.51633 | 64.2 | S-BSL7 | L3 |
+| 1.77250 | 49.6 | LAH66 | L4 |
+| 1.51633 | 64.2 | S-BSL7 | L5 |
+| 1.84666 | 23.8 | S-TIH53 | L6 |
+| 1.60311 | 60.7 | S-BSM14 | L7 |
+| 1.48749 | 70.2 | S-FSL5 | L8 |
+| 1.83400 | 37.2 | S-LAH60 | L9 |
+| 1.60311 | 60.7 | S-BSM14 | L10 |
+| 1.60311 | 60.7 | S-BSM14 | L11 |
+| 1.80518 | 25.4 | S-TIH6 | L12 |
+| 1.51633 | 64.2 | S-BSL7 | L13 |
+| 1.77250 | 49.6 | LAH66 | L14 |
+| 1.80518 | 25.4 | S-TIH6 | L15 |
 
-The source N/ν are retained exactly. Direct nC, nF and ng fields are evaluated from the selected catalog polynomials and labeled as approximations. They do not come from the patent. Legacy FSL5, BSL7, BSM14, LAH66, TIH6, LAH60 and TIH53 are not silently equated with similarly named modern S- or L-prefixed glasses. The engine reads the explicit line-index proxy rather than relying on an ambiguous glass-name alias.
-
-The d-line interpretation is supported by the coordinate matches and the d/g labels in the aberration plots, but ¶0057 does not explicitly define it. Consequently the runtime annotation remains Unmatched and its indexReferenceNote explains the approximation. No inferred supplier, anomalous-partial-dispersion coefficient, ED element count or APO-performance claim is made.
+The modern S-prefixed rows are explicitly chosen coordinate-compatible proxies, not aliases asserting identity with the legacy OHARA glasses. LAH66 retains its separately cataloged legacy curve. No inferred anomalous-partial-dispersion coefficient, ED count or APO-performance claim is made.
 
 ## Focus Mechanism and Model Scope
 
@@ -246,7 +252,8 @@ Only the three printed infinity stations carry source authority. The solved inte
 
 ## Sources
 
-- Japan Patent Office, [JPH0862541A](https://patents.google.com/patent/JPH0862541A/ja), cover; ¶0020, ¶0026, ¶0033–0035, ¶0057; Numerical Example 2, Table 3; Figures 3–4 and 11–16.- Canon Camera Museum, [EF75-300mm f/4-5.6 IS USM](https://global.canon/en/c-museum/product/ef330.html), product specifications, six-group/IS description and optical block diagram. Retrieved 8 October 2026.
+- Japan Patent Office, [JPH0862541A](https://patents.google.com/patent/JPH0862541A/ja), cover; ¶0020, ¶0026, ¶0033–0035, ¶0057; Numerical Example 2, Table 3; Figures 3–4 and 11–16.
+- Canon Camera Museum, [EF75-300mm f/4-5.6 IS USM](https://global.canon/en/c-museum/product/ef330.html), product specifications, six-group/IS description and optical block diagram. Retrieved 8 October 2026.
 - [US20010030809A1](https://patents.google.com/patent/US20010030809A1/en), family publication, Example 9 (the same prescription and the same three zoom rows) and inventor metadata. It does not replace the selected Japanese source.
 - OHARA, [optical-glass catalog downloads](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip), July 2026 Zemax catalog, including preserved legacy entries.
 - HOYA, Schott, Hikari, Sumita and CDGM catalogs, used as comparison sources rather than supplier identifications.

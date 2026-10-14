@@ -6,8 +6,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * Stop: not printed. Placed 1 mm before r14, splitting d13 without changing its total; Nikon's
  * production section draws the iris at about this position and opening.
  * Semi-diameters: inferred from the element proportions of patent Fig. 1 and Nikon's section, within
- * edge-thickness and air-gap limits. The L5/L6 rims (12.59 mm) are gap-limited and clip the outer
- * edge of the f/3.5 axial beam at telephoto (effective about f/3.65).
+ * edge-thickness and air-gap limits. Facing r8/r9 rims are 13.1 mm to pass the stated f/3.5
+ * telephoto beam. Figure 1 draws them nearly meeting; gapSagFrac=0.978 admits their measured
+ * 97.59% intrusion while retaining 0.0917 mm physical clearance in the unchanged 3.8 mm gap.
+ * Catalog glass labels are spectral proxies, not evidence of the historical supplier or melt.
  * Zoom: seven intermediate stations (about 82-143 mm) are solved, not printed. Each keeps the printed
  * d5 + d10 + d13 sum (group IV fixed) and solves d13 to hold the paraxial image on the fixed image
  * plane. They cut linear-interpolation defocus from 1.46 mm to 0.09 mm.
@@ -18,13 +20,15 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 const LENS_DATA = {
   key: "nikon-series-e-75-150mm-f35",
-  name: "NIKON SERIES E 75-150mm f/3.5",
+  name: "NIKON SERIES E ZOOM 75-150mm f/3.5",
   maker: "Nikon",
   subtitle: "US 4,398,807 A, sole embodiment — strong production correlation",
   specs: ["12 ELEMENTS / 9 GROUPS", "DESIGN f = 75.02-150.09 mm", "DESIGN F/3.5", "ALL SPHERICAL"],
   focalLengthMarketing: [75, 150],
   focalLengthDesign: [75.024, 150.086],
   apertureMarketing: 3.5,
+  apertureDesign: 3.5,
+  gapSagFrac: 0.978,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "US 4,398,807 A",
@@ -42,7 +46,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       fl: 133.87668,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "N-SK16 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Positive front singlet of the focusing first group",
     },
     {
@@ -53,7 +57,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       fl: 102.08301,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "N-SK16 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Positive crown of the first group's cemented rear component",
       cemented: "D1",
     },
@@ -65,7 +69,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.5,
       fl: -127.18584,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "E-FD4 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Negative flint of the first group's cemented rear component",
       cemented: "D1",
     },
@@ -77,7 +81,7 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.1,
       fl: 66.8251,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "SF56A (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Positive flint meniscus of the variator's cemented doublet",
       cemented: "D2",
     },
@@ -89,7 +93,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       fl: -44.32381,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "N-BK7 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Negative crown of the variator's cemented doublet",
       cemented: "D2",
     },
@@ -101,7 +105,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       fl: -50.50232,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "N-SK16 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Separate negative singlet closing the variator group",
     },
     {
@@ -112,7 +116,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       fl: 40.94488,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "N-SK16 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Positive element of the compensator doublet",
       cemented: "D3",
     },
@@ -124,7 +128,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.5,
       fl: -76.38305,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "E-FD4 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Negative flint meniscus of the compensator doublet",
       cemented: "D3",
     },
@@ -136,7 +140,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       fl: 71.59446,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "N-SK16 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Positive front element of the fixed relay group, just behind the iris",
     },
     {
@@ -147,7 +151,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.5,
       fl: -354.43712,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "E-FD4 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Weak negative flint ahead of the relay's long air space",
     },
     {
@@ -158,7 +162,7 @@ const LENS_DATA = {
       nd: 1.7495,
       vd: 34.96,
       fl: -93.08659,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "LAFN7 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Negative meniscus opening the rear relay pair",
     },
     {
@@ -169,7 +173,7 @@ const LENS_DATA = {
       nd: 1.62588,
       vd: 35.6,
       fl: 105.05374,
-      glass: "Unmatched (patent nd/νd; factory glass identity unverified)",
+      glass: "F1 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
       role: "Positive last element of the fixed relay group",
     },
   ],
@@ -236,7 +240,7 @@ const LENS_DATA = {
       d: 3.8,
       nd: 1.0,
       elemId: 0,
-      sd: 12.59,
+      sd: 13.1,
     },
     {
       label: "9",
@@ -244,7 +248,7 @@ const LENS_DATA = {
       d: 1.2,
       nd: 1.62041,
       elemId: 6,
-      sd: 12.59,
+      sd: 13.1,
     },
     {
       label: "10",

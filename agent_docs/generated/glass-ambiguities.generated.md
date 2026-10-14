@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **935** lenses scanned
-- **10628** glass elements examined
-- **3199** elements have multiple coordinate-compatible candidates
-- **578** lens files are affected
+- **940** lenses scanned
+- **10698** glass elements examined
+- **3212** elements have multiple coordinate-compatible candidates
+- **579** lens files are affected
 - **317** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **208** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1836 |
-| Evidence-source priority | 1026 |
+| Smallest reference-index residual | 1848 |
+| Evidence-source priority | 1027 |
 | Vendor context | 323 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -1189,7 +1189,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-FK5 (Schott) / J-FK5 class` | 1.48749 / 70.41 (d) | N-FK5 — Annotation vendor context matches Schott. | J-FK5 (Hikari, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) L22 |
 | `J-LASF021 / S-LAH71 class` | 1.85026 / 32.35 (d) | J-LASF021 — smallest d-line \|Δn\| (2.9e-8 vs 1.0e-6) | S-LAH71 (Ohara, name) | 1 | [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) L58 |
 | `S-FSL5 (OHARA) / N-FK5 (Schott)` | 1.48749 / 70.30 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 6.5e-8) | S-FSL5 (Ohara, name, vendor ✓) | 1 | [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) L52 |
-| `847238 - dense-flint class` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 4 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) L16 |
+| `847238 - dense-flint class` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 7 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) L16 +1 files |
 | `804396 - lanthanum glass class` | 1.80440 / 39.59 (d) | J-LASF013 — smallest d-line \|Δn\| (2.3e-8 vs 2.5e-7) | S-LAH63Q (Ohara, code, alternate code row)<br>S-LAH63 (Ohara, code, preferred code row) | 1 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) L18 |
 | `697555 - lanthanum-crown class` | 1.69680 / 55.52 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) L21 |
 | `S-BSM81 catalog equivalent (patent 640601; production supplier unspecified)` | 1.64000 / 60.09 (d) | S-BSM81 — direct name evidence outranks six-digit code evidence. | N-LAK21 (Schott, code, preferred code row) | 4 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) L23 +1 files |
@@ -1405,6 +1405,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-KZFS8 (SCHOTT catalog equivalent; OHARA S-NBH8 shares the coordinate)` | 1.72047 / 34.70 (d) | N-KZFS8 — smallest d-line \|Δn\| (3.1e-7 vs 2.9e-6) | S-NBH8 (Ohara, name, vendor ✓) | 1 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) L21 |
 | `S-FPM2 / FCD505 class (ED fluorophosphate; patent nd=1.59319, νd=67.9)` | 1.59319 / 67.90 (d) | FCD505 — smallest d-line \|Δn\| (3.6e-4 vs 2.0e-3) | S-FPM2 (Ohara, name) | 1 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) L15 |
 | `S-FPL51 / FCD1 class (ED fluorophosphate, νd = 82.6)` | 1.49782 / 82.60 (d) | FCD1 — smallest d-line \|Δn\| (8.2e-4 vs 8.2e-4) | S-FPL51 (Ohara, name) | 1 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) L23 |
+| `903358 class; J-LASFH9 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart)` | 1.90265 / 35.77 (d) | J-LASFH9 — direct name evidence outranks six-digit code evidence. | J-LASFH9A (Hikari, code, preferred code row) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L11 |
 | `KZFS-type (near N-KZFS4 / S-NBM51) (inferred coordinate counterpart)` | 1.61266 / 44.46 (d) | N-KZFS4 — smallest d-line \|Δn\| (7.0e-4 vs 7.4e-4) | S-NBM51 (Ohara, name) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L13 |
 | `613445 class; J-KZFH1 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart)` | 1.61266 / 44.46 (d) | J-KZFH1 — direct name evidence outranks six-digit code evidence. | N-KZFS4 (Schott, code, preferred code row) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L25 |
 | `Coordinate counterpart (near S-FPL51 / FCD1) (inferred coordinate counterpart)` | 1.49782 / 82.57 (d) | FCD1 — smallest d-line \|Δn\| (8.2e-4 vs 8.2e-4) | S-FPL51 (Ohara, name) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L26 |
@@ -2218,6 +2219,12 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `773496 — lanthanum-flint class (vendor unresolved)` | 1.77250 / 49.62 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [TAMRON 70-180mm f/2.8 Di III VXD](../../src/lens-data/tamron/TamronA05670180mmf28.data.ts) L16 |
 | `911353 — high-index optical glass (vendor unresolved)` | 1.91082 / 35.25 (d) | H-ZLaF4LA — smallest d-line \|Δn\| (4.2e-8 vs 2.4e-6) | TAFD35 (Hoya, code, preferred code row) | 1 | [TAMRON 70-180mm f/2.8 Di III VXD](../../src/lens-data/tamron/TamronA05670180mmf28.data.ts) L18 |
 | `851401 — high-index optical glass (vendor unresolved)` | 1.85108 / 40.12 (d) | Q-LASFH58S — smallest d-line \|Δn\| (2.3e-8 vs 2.7e-4) | M-TAFD305 (Hoya, code, preferred code row) | 1 | [TAMRON 70-180mm f/2.8 Di III VXD](../../src/lens-data/tamron/TamronA05670180mmf28.data.ts) L19 |
+| `497816 - fluor-crown class (LD)` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 2 | [TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)](../../src/lens-data/tamron/TamronB00318270mmf3563DiIIVC.data.ts) L2 |
+| `618634 - phosphate-crown class (AD)` | 1.61800 / 63.39 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 1.0e-7) | N-PSK53A (Schott, code, alternate code row)<br>PCD4 (Hoya, code, alternate code row)<br>K-PSKn2 (Sumita, code, alternate code row) | 1 | [TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)](../../src/lens-data/tamron/TamronB00318270mmf3563DiIIVC.data.ts) L3 |
+| `804466 - lanthanum-flint class` | 1.80400 / 46.58 (d) | H-ZLaF50D — smallest d-line \|Δn\| (7.2e-9 vs 1.9e-8) | J-LASF015 (Hikari, code, alternate code row)<br>H-ZLaF50E (CDGM, code, alternate code row)<br>S-LAH65 (Ohara, code, preferred code row) | 3 | [TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)](../../src/lens-data/tamron/TamronB00318270mmf3563DiIIVC.data.ts) L4g |
+| `883408 - high-index lanthanum-flint class` | 1.88300 / 40.78 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 1 | [TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)](../../src/lens-data/tamron/TamronB00318270mmf3563DiIIVC.data.ts) L7 |
+| `834372 - lanthanum-flint class` | 1.83400 / 37.17 (d) | J-LASF010 — smallest d-line \|Δn\| (2.3e-8 vs 2.1e-7) | S-LAH60 (Ohara, code, preferred code row) | 1 | [TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)](../../src/lens-data/tamron/TamronB00318270mmf3563DiIIVC.data.ts) L12 |
+| `808228 - dense-flint class` | 1.80810 / 22.80 (d) | S-NPH1 — smallest d-line \|Δn\| (5.3e-6 vs 1.1e-5) | FD225 (Hoya, code, alternate code row) | 1 | [TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)](../../src/lens-data/tamron/TamronB00318270mmf3563DiIIVC.data.ts) L14 |
 | `847238 (vendor-neutral d-line class)` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 3 | [TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO](../../src/lens-data/tamron/TamronA0328200mmf3856.data.ts) L1 |
 | `697555 (vendor-neutral d-line class)` | 1.69680 / 55.50 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO](../../src/lens-data/tamron/TamronA0328200mmf3856.data.ts) L2 |
 | `773496 (vendor-neutral d-line class)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 2 | [TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO](../../src/lens-data/tamron/TamronA0328200mmf3856.data.ts) L3 |

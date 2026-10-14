@@ -257,6 +257,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "J-LAK10",
   "J-LASFH15",
   "J-LASFH9",
+  "J-LASFH9A",
   "FDS18",
   "NBFD3",
   "NBFD11",

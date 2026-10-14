@@ -219,3 +219,16 @@ focusDescription rewritten; header and analysis cleared of review-process wordin
 image-circle and field-coverage audits pass at all 12 stations; no axial clipping or chief-ray blocking.
 
 Open: `closeFocusM` stays 0.181 m (the patent's 50 mm macro row), shorter than the marketed 0.21 m macro distance.
+
+
+## 2026-10-14 — Patent-rim, dispersion and metadata audit
+
+Source: Figure 1, PDF page 13; Example 1, Table 1.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Fifteen glass bodies | Unmatched | Coordinate-compatible catalog proxies | Patent nd/νd are retained; supplier and melt remain unconfirmed. |
+| Lasp | Unmatched | N-LAF35 approximate spectral proxy | nd residual −0.001129 and Abbe residual about −0.12, inside existing coordinate limits; no production identity claim. |
+| L21r resin | Unmatched | Retained | No defensible catalog curve for 1.495210 / 56.34. |
+
+The 600 dpi wide and clean middle panels were compared against their corresponding printed infinity spacings. Some automated L22/Lasp readings sample a neighbouring rim because of their sag and thin gaps; these are rejected after optical-outline inspection. The square 9.4 mm Lasp rim remains bounded by its unchanged gap to surface 26. No SD change is justified. The existing Ai AF / Zoom-Nikkor / D IF name, Nikon F/full-frame metadata, attribution and published finite/macro state qualifications are retained.
