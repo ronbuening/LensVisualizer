@@ -18,7 +18,7 @@
  * - a field V1 does not define, or one only the engine writes.
  * Every reason found is reported at once, in a `PrescriptionIngestError` that names each field and its authored path.
  * Ingest does not otherwise check types, and may fail on wrong-typed input with a plain `TypeError`; `buildLens` asks
- * the validator first on any such throw. The validator reads `asph: null` and `var: null` as absent, which is why
+ * the validator about every file first. The validator reads `asph: null` and `var: null` as absent, which is why
  * ingest refuses those two by name. The input is never modified, and the result shares no object with it.
  *
  * Asked for source paths, ingest records where it read each value as it reads it (`SourcePaths`): the converter
@@ -732,12 +732,13 @@ function keyframeIndex(keyframes: readonly number[], focusT: number): number {
 
 /**
  * Index of the zoom station a coordinate names, or -1. Like the validator, it measures the distance in station index
- * (`zoomT × (n − 1)`), not in zoomT, and takes nothing but 0 on a prime.
+ * (`zoomT × (n − 1)`), not in zoomT, takes nothing but 0 on a prime, and names station 0 as 0 for a `zoomT` of -0.
+ * Measured in zoomT before S2.P1.T2; no catalog record moves.
  */
 function zoomStationIndex(stationCount: number, zoomT: number): number {
   if (stationCount <= 1) return zoomT === 0 ? 0 : -1;
   const scaled = zoomT * (stationCount - 1);
-  const station = Math.round(scaled);
+  const station = Math.round(scaled) + 0;
   const named = Math.abs(scaled - station) <= STATION_COORDINATE_TOLERANCE && station >= 0 && station < stationCount;
   return named ? station : -1;
 }

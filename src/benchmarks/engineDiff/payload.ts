@@ -786,14 +786,16 @@ function snapToKeyframe(value: unknown, keyframes: readonly number[]): unknown {
 
 /**
  * The coordinate of the zoom station `value` names, or `value` itself. Like the validator, it measures the distance
- * in station index, not in zoomT; a prime's one station is at 0, and the validator takes no other value for it.
+ * in station index, not in zoomT, and writes a station at 0 as 0, -0 included; a prime's one station is at 0, and the
+ * validator takes no other value for it. Measured in zoomT before S2.P1.T2; no catalog record moves.
  */
 function snapToZoomStation(value: unknown, stationCount: number): unknown {
-  if (typeof value !== "number" || stationCount <= 1) return value;
+  if (typeof value !== "number") return value;
+  if (stationCount <= 1) return value === 0 ? 0 : value;
   const scaled = value * (stationCount - 1);
   const station = Math.round(scaled);
   const named = Math.abs(scaled - station) <= STATION_COORDINATE_TOLERANCE && station >= 0 && station < stationCount;
-  return named ? station / (stationCount - 1) : value;
+  return named ? station / (stationCount - 1) + 0 : value;
 }
 
 /**

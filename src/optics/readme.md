@@ -30,7 +30,7 @@ flowchart LR
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
   n_src_optics_TypeScript_modules --> |30| n_external_src_types
-  n_src_optics_TypeScript_modules --> |19| n_src_optics_src_optics_prescription
+  n_src_optics_TypeScript_modules --> |20| n_src_optics_src_optics_prescription
   n_src_optics_TypeScript_modules --> |18| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |17| n_src_optics_src_optics_internal
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_glassCatalogEntries
@@ -52,7 +52,7 @@ flowchart LR
 
 - Direct source files: 42
 - Direct subfolders: 15
-- Main outbound areas: src/types (30), src/optics/prescription (19), src/optics/analysis (18), src/optics/internal (17), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), +31 more
+- Main outbound areas: src/types (30), src/optics/prescription (20), src/optics/analysis (18), src/optics/internal (17), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), +31 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +15 more
 
 ## Subfolders
@@ -83,7 +83,7 @@ flowchart LR
 | `aperture.ts` | Aperture helper module | src/optics/compat.ts, src/types | src/comparison, src/components/hooks | fNumberAtStopdown |
 | `apertureStop.ts` | Aperture Stop helper module | src/types | src/benchmarks, src/components/diagram, src/components/hooks, src/optics/field, src/optics/state | wideOpenStopAtZoom |
 | `asphericComparison.ts` | Aspheric Comparison helper module | src/optics/geometry, src/types | src/components/display | DepartureSample, computeAsphericDeparture, computeDepartureProfile, computeBestFitSphereR, peakAbsDeparture, rmsDeparture, nearestSurfaceForClick |
-| `buildLens.ts` | Build Lens module with default export | src/optics/prescription (3), src/optics/compat.ts, src/optics/runtimeLens.ts | src/components/hooks (2), src/utils/catalog (2), src/benchmarks, src/comparison | paraxialTrace, realTraceToStop, ingestLensV1, ingestTeleconverterV1, ingestLens, ingestTeleconverter, isV1File, toLensData, +2 more |
+| `buildLens.ts` | Build Lens module with default export | src/optics/prescription (4), src/optics/compat.ts, src/optics/runtimeLens.ts | src/components/hooks (2), src/utils/catalog (2), src/benchmarks, src/comparison | paraxialTrace, realTraceToStop, ingestLensV1, ingestTeleconverterV1, ingestLens, ingestTeleconverter, isV1File, toLensData, +3 more |
 | `cameraLayout.ts` | Camera Layout helper module | src/types | src/optics/groupMovement.ts, src/optics/optics.ts | CameraAnchoredLayout, anchorLayoutToCamera |
 | `cardinalElements.ts` | Cardinal Elements helper module | src/optics/compat.ts | src/components/diagram (3), src/benchmarks, src/components/hooks, src/components/layout | computeCardinalElements, computeCardinalElementsAtState, CardinalDistance, CardinalElements, CardinalPoint |
 | `chiefRayDiagnostics.ts` | Chief Ray Diagnostics helper module | src/optics/compat.ts | none | getChiefRayDiagnostics, resetChiefRayDiagnostics, ChiefRayStatusCounts, ChiefRayStatus |
@@ -103,7 +103,7 @@ flowchart LR
 | `glassCatalogTypes.ts` | Glass Catalog Types helper module | none | src/optics/glassCatalogEntries (8), src/optics/glassCatalog.ts, src/optics/glassCatalogData.ts | GlassEntry |
 | `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/cameraLayout.ts, src/optics/optics.ts | src/comparison (2), src/components/controls, src/components/display, src/optics/analysis, src/optics/publishedStations.ts | LensMovementGroup, GroupMovementPoint, GroupMovementSeries, GroupMovementAvailability, GroupMovementProfile, getGroupMovementAvailability, isGroupMovementModeAvailable, firstAvailableGroupMovementMode, +2 more |
 | `layout.ts` | Layout helper module | src/optics/focusDistance.ts (2), src/optics/internal (2), src/optics/geometry, src/types | src/optics/aberration (4), src/optics/analysis (4), src/optics/first-order (2), src/optics/chromatic, src/optics/optics.ts, +4 more | SVG_PATH_SUBDIVISIONS, FOCUS_INFINITY_THRESHOLD, renderSag, sagSlope, gapTrimHeight, slopeTrimHeight, thick, doLayout, +13 more |
-| `lensDataConversion.ts` | Lens Data Conversion helper module | src/optics/prescription (5) | none | ingestLens, ingestTeleconverter, toLensDataInput, toTeleconverterData, toLensDataV2Input, toTeleconverterDataV2Input, v2SourceMap, v2Writes, +3 more |
+| `lensDataConversion.ts` | Lens Data Conversion helper module | src/optics/prescription (5) | none | ingestLens, ingestTeleconverter, toLensDataInput, toTeleconverterData, V2_GROUP_STARTS, toLensDataV2Input, toTeleconverterDataV2Input, v2SourceMap, +4 more |
 | `lensMovement.ts` | Lens Movement helper module | src/optics/perspective, src/types | src/optics/perspective (4), src/comparison (2), src/benchmarks, src/components/controls, src/components/diagram, +3 more | LensMovementState, ResolvedLensMovement, LensMovementTransform, MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG, isMovementAxisEnabled, ZERO_LENS_MOVEMENT, perspectiveControlSteps, +5 more |
 | `mtf.ts` | Mtf helper module | src/optics/analysis (3) | src/components/display, src/components/hooks | assessMtfSupport, MTF_FIELDS, MTF_FREQUENCIES, MTF_PHOTOPIC_LINES, resolveMtfSpectrum, computeMtf, computeMtfSteps, resolveMtfGeometry, +3 more |
 | `optics.ts` | Optics helper module | src/optics/compat.ts (4), src/optics/cameraLayout.ts, src/optics/layout.ts, src/optics/opticsFormat.ts, src/optics/rayTrace.ts, +1 more | src/components/display (12), src/optics/analysis (8), src/components/hooks (6), src/comparison (3), src/components/controls (3), +8 more | anchorLayoutToCamera, CameraAnchoredLayout, FOCUS_INFINITY_THRESHOLD, SVG_PATH_SUBDIVISIONS, bAtZoom, epZRelStopAtZoom, gapTrimHeight, halfFieldAtZoom, +70 more |
@@ -118,6 +118,6 @@ flowchart LR
 | `stopObstruction.ts` | Stop Obstruction helper module | src/types | src/optics/optics.ts, src/optics/raySampling.ts | stopInnerBlockedSemiDiameter |
 | `teleconverter.ts` | Teleconverter helper module | src/optics/prescription (2), src/optics/validateTeleconverterData.ts | src/components/diagram, src/utils/catalog | attachTeleconverter, TeleconverterAttachError, teleconverterGroupLabel, teleconverterSurfaceLabel, MIN_TELECONVERTER_GAP_MM, TELECONVERTER_LABEL_PREFIX, teleconverterCompatibility, teleconverterGeometry, +1 more |
 | `types.ts` | Shared TypeScript types | src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/types | src/optics/analysis (21), src/optics/perspective (20), src/components/display (14), src/optics/trace (12), src/optics/geometry (6), +10 more | Vec3, Ray3, Plane3, SagSlope, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, +17 more |
-| `validateLensData.ts` | Validate Lens Data module with default export | src/optics/internal (4), src/optics/prescription (3), src/types (2), src/optics/geometry, src/utils/catalog | src/optics/runtimeLens.ts, src/optics/validateTeleconverterData.ts, src/utils/state | validateRearPlates, validateLensMounts, LENS_KEY_PATTERN, default, validateLensData |
+| `validateLensData.ts` | Validate Lens Data module with default export | src/optics/internal (4), src/optics/prescription (3), src/types (2), src/optics/geometry, src/utils/catalog | src/optics/prescription, src/optics/runtimeLens.ts, src/optics/validateTeleconverterData.ts, src/utils/state | validateRearPlates, validateLensMounts, LENS_KEY_PATTERN, default, validateLensData |
 | `validateTeleconverterData.ts` | Validate Teleconverter Data module with default export | src/optics/prescription (4), src/types (2), src/optics/internal, src/optics/validateLensData.ts | src/optics/teleconverter.ts | default, validateTeleconverterData |
 | `vignetteAnalysis.ts` | Vignette Analysis helper module | src/optics/optics.ts (2), src/optics/analysis, src/optics/projection.ts, src/optics/raySampling.ts, src/types | src/components/display, src/optics/analysis | VignettingSample, computeVignettingCurve |

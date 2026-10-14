@@ -514,10 +514,10 @@ are unmeasured. Loosening a budget later is itself a C3 change.
 | Unclipped surface hit, image-plane landing | 1e-9 mm | — (traces are not C2) |
 | Clipped, exterior or diagnostic hit | 1e-7 mm, or 1e-12 of the point's own size where that is more | — |
 | Direction cosines | 1e-10 | — |
-| First-order scalars (EFL, BFD, pupil positions and sizes, stop SD) | 1e-12 relative | — |
+| First-order scalars (EFL, BFD, paraxial pupil positions and sizes, stop SD) | 1e-12 relative | — |
 | Chief-ray launch height | 1e-9 mm | Twice the solver's stop-residual tolerance (1e-7 mm today), mapped through ∂y_stop/∂y_launch |
 | Field angle from image height | 1e-10° | Both solutions' image heights within twice the inversion tolerance (1e-4 mm today) |
-| Analysis lengths (focus shifts, blur, field curves, pupil shifts) | 1e-8 mm | The governing solver criterion, propagated by a finite-difference derivative the harness computes |
+| Analysis lengths (focus positions and shifts, axial intercepts, blur, field curves, pupil shifts, the traced exit pupil of a field) | 1e-8 mm, or 1e-10 of the length's own size where that is more | The governing solver criterion, propagated by a finite-difference derivative the harness computes |
 | Percentages (distortion, illumination) | 1e-8 points | As above |
 | MTF modulation | 1e-7 | As above, and never looser than 1e-4 |
 | Weighted bin statistics of a bokeh profile (bin density and energy share, centre and rim density, their ratio) | 1e-10 relative | Same as C1 |
@@ -531,11 +531,42 @@ How `budgets.ts` applies the table:
 - **Relative budgets** bound `|a − b|` by the budget times the larger magnitude. Lengths also have an absolute floor of
   1e-12 mm, so a length at zero has a bound. Ratios such as f-numbers and the Petzval sum have no floor, and neither
   has a weighted bin statistic or a ratio of two analysis lengths.
+  A clipped or diagnostic point and an analysis length have a floor of another kind: the table's absolute budget,
+  which is the whole bound up to the size where the share is more.
 - **A clipped or diagnostic point far from the lens.** The 1e-7 mm of the table is the whole budget for a point
   within 100 m of the lens. Beyond that the bound is 1e-12 of the point's own size. A clipped ray that the legacy
   tracer follows as a ghost path can leave the lens altogether: on one catalog lens its points run from 3.1e8 mm to
   1e250 mm, where adjacent floating-point values are more than 1e-7 mm apart and two engines that agree to rounding
   cannot meet an absolute bound. The first Tier S against A0 failed on that one ray and on nothing else.
+- **An analysis length far from the lens.** The 1e-8 mm of the table is the whole budget for a length under 100 mm.
+  Beyond that the bound is 1e-10 of the length's own size. A focus position, an axial intercept or a traced pupil
+  position is where two rays cross, or where one crosses the axis: a height over a slope. Where the rays are nearly
+  parallel the crossing is metres from the lens, and no absolute bound can be met there. S3.P2.T2 moved no hit by
+  more than 1.2e-11 mm across Tier S and failed on 11 numbers of two lenses, each such a crossing: an off-axis ray
+  of a 70-200 mm zoom on a 1.4x converter that crosses the axis 16 m and 23 m away, moved by 5.7e-8 mm or 2.5e-12
+  of its position, and the traced exit pupil of a near-telecentric field of a compact zoom, 44 m away, moved by
+  5.0e-7 mm or 1.1e-11. Elsewhere in that tier the largest move of an analysis length was 4.9e-9 mm.
+  - **The share reaches some hundreds of metres.** Rounding moves a slope by an amount that does not depend on
+    where the ray crosses, so a crossing z = −y/u moves by z²·δu/y: by the square of its distance. On those two
+    lenses the step moved its crossings by up to 7.3e-16 mm per mm² of distance, which a fixed 1e-10 of the
+    distance holds out to 136 m; the 44 m sample's own rounding, out to 388 m. A crossing beyond that which fails
+    by a few times its budget on rounding alone is this limit, and is brought to the maintainer.
+  - The size is the length's, in mm. A member that restates a length in micrometres or in the px of a drawing is
+    divided by its scale before it is compared, so the bound is the same physical one in any unit.
+  - The rule goes by the value of a member that is a crossing, or a shift or span of crossings. A position along
+    the axis is counted from the first vertex, so the focus positions of a lens more than 100 mm long are past the
+    floor by their coordinate alone: at 250 mm the bound is 2.5e-8 mm.
+  - A member that is no crossing takes no share. The Petzval focus position of a field is the image plane's z plus
+    a closed-form sag, and keeps a plain 1e-8 mm at any size.
+  - The MTF best-focus shift, a solver's output of a fraction of a millimetre, keeps a plain 1e-8 mm.
+  - Under C0 every number is bit-exact, as before. The C2 column stands: a solver criterion carried through a
+    finite-difference derivative grows as the crossing's own conditioning does.
+- **The traced exit pupil of a field is an analysis length.** `samples[].xpZRelLastSurf` of a pupil-aberration
+  profile is where the solved chief ray of one field, traced through the lens, crosses the axis: its height at the
+  last surface over its slope. It is a crossing per field and no paraxial constant. S3.P2.T2 moved it by up to
+  6.6e-13 of itself near the lens and by 1.1e-11 at 44 m. The profile's `paraxialXpZRelLastSurf` and
+  `paraxialEpZRelStop`, the posed lens's intrinsic pupils and the build's pupil constants stay first-order scalars.
+  A sample on the axis repeats the paraxial position. An entrance-pupil sample holds no position.
 - **Fields the table does not name.** Layout lengths, refractive indices and prescription values the engine hands back
   take the first-order budget. Slopes are compared as direction cosines. Count ratios are exact.
 - **Bins of a bokeh profile.** A bokeh footprint weighs each ray by its transmission and sums the weights into the
@@ -599,6 +630,8 @@ How `budgets.ts` applies the table:
   - On the prepared tracer the probes are the engine's own launches. On the stack tracer they are the same two ray
     lines through that tracer's public entry, so a basis ray that fails only from the engine's own start point is
     not shown. A folded lens has no probe.
+  - The exit pupil that a pupil-aberration profile traces for one field is no such constant. It is an analysis
+    length.
 - **Iteration and evaluation counts** are exact under C0, and above it are reported as a histogram of changes.
 - **Non-finite values** compare exactly in every class.
 - **A class is required only above C0.** Under C0 every number is compared bit for bit, classed or not. Under C1 or
@@ -1015,7 +1048,7 @@ and position.
 | `publishedStations.zoom` / `.focus` | `zoom.stations[i].published` and `.publishedFocus`; on a prime, `focus.published` | A missing object is the schema default, every zoom station published at infinity alone, and provenance marks it as defaulted. Focus lists hold keyframe indices ≥ 1, and infinity is implied. V1's "zoom omitted or empty means every station" becomes an explicit flag on every station. |
 | `finiteConjugates[]` (`focusT`, `zoomT`) | `focus.conjugates[]` (`zoomStation`, `keyframe`) | Index-addressed. The converter maps each `focusT` to the keyframe it matches within the validator's 1e-8 and refuses otherwise. |
 | `fstopSeries`, `maxFstop`, `apertureStep`, `apertureBlades`, `apertureBladeRoundedness` | `aperture.{fStops, maxFNumber, step, blades, bladeRoundedness}` | |
-| STO `sd` | Kept as `sd` only where the engine uses it: folded and embedded stops, 16 lenses. Otherwise omitted, and the radius is derived. | The engine overwrites the authored value in two ways: with the radius traced from the nominal f-number (904 lenses on 2026-10-13), or with a published schedule (2 lenses), which V2 keeps as `zoom.stations[i].stopSemiDiameter`. The converter lists each dropped value in its conversion report, as provenance rather than semantics. |
+| STO `sd` | Kept as `sd` only where the engine uses it: folded and embedded stops, 16 lenses. Otherwise omitted, and the radius is traced from the design f-number, or taken from the station schedule. | The engine overwrites the authored value in two ways: with the radius traced from the nominal f-number (904 lenses on 2026-10-13), or with a published schedule (2 lenses), which V2 keeps as `zoom.stations[i].stopSemiDiameter`. The converter lists each dropped value in its conversion report, as provenance rather than semantics. |
 | `aberrationControl.var` / `.varLabels` | `aberrationControl.gaps` | Same tuple forms as V1 |
 | `svgW`, `svgH`, `scFill`, `yScFill`, `maxAspectRatio`, `lensShiftFrac` | `layout.*` | |
 | `rayFractions`, `rayLeadFrac`, `offAxisFieldFrac`, `offAxisFractions` | `rays.*` | These feed analyses as well as the diagram |
@@ -1065,11 +1098,13 @@ The stop radius has exactly one authority per lens:
     f/2.91.
   - An authoritative prime radius (`aperture.stopSemiDiameter`) is deferred until a source needs one. It would be a
     new authority row in this table, not a format change.
-- **The 906 authored stop values the engine overwrites are dropped** (2026-10-13). They were never used and never
-  audited: the semi-diameter audit procedure said not to touch `STO`. 62 are more than 20% from the radius the engine
-  uses at the wide station, the one a zoom's authored `sd` is overwritten with; 12 are more than 20% from it at every
-  station. A fixed-iris zoom holds that wide-station radius at every station; a zoom on the default aperture model
-  derives one per station.
+- **The 906 authored stop values the engine overwrites are dropped** (906 = 904 derived + 2 scheduled, 2026-10-13).
+  They were never used and never audited: the semi-diameter audit procedure said not to touch `STO`. 61 of the 904
+  derived stops are more than 20% from the radius the engine derives, a zoom's at its wide station, the one a zoom's
+  authored `sd` is overwritten with; 12 are more than 20% from it at every station. A schedule is never derived, so
+  the scheduled Sony FE 12-24mm f/2.8 GM stands apart: its authored 11.815 mm against its schedule's 8.115 mm. A
+  fixed-iris zoom holds the wide-station radius at every station; a zoom on the default aperture model derives one
+  per station.
 - **Comments on dropped values are reviewed once, during migration.** On 2026-10-13, counting every comment the
   converter's report lists on a stop entry, a leading one included:
   - 288 of the 906 dropped stop entries carry 364 comments; 3 of those entries span several lines.
@@ -1304,6 +1339,14 @@ promotion, so the V2 authoring documents must not reach it earlier.
       C0, and a ratio of two analysis lengths from 1e-10 to 1e-8 relative. Both are stated under
       [Quantity budgets](#quantity-budgets). Like the settlement before it, this is not a later loosening: the PR
       changes no engine and moves no anchor, and it does not count towards the class of a stage or promotion run.
+    - **S3.P2.T2, the conic-seeded asphere solve,** settled two budgets on 2026-10-13, on its own Tier S run and in a
+      harness PR that follows its engine change (#801): an analysis length went from 1e-8 mm to 1e-8 mm or 1e-10 of
+      its own size where that is more, and the traced exit pupil of a pupil-aberration sample from a first-order
+      scalar to an analysis length. Both are stated under [Quantity budgets](#quantity-budgets). The step's Tier P
+      passed under the table as it stood. Its Tier S failed two of eight shards on 11 numbers of two lenses, each a
+      crossing 16 m to 44 m from the lens, and those 11 pass under the settled budgets. The harness PR changes no
+      engine and moves no anchor. The maintainer settled it before the engine change merged, and merged the step on
+      its Tier P: it is the budget S3.P2.T2 is read against, as the two before it were, and not a later loosening.
     - **S3.P2.T4, the first C2 step.** The C2 budgets. `--class c2` applies the C1 table until this step adds the
       propagated criteria.
     - **The first engine C3.** The cumulative comparison of the anchor rule. `--class c3` reports engine differences
@@ -1406,7 +1449,7 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       - a field V1 does not define, or one only the engine writes.
 
       Each refusal names the field and its authored path. Ingest does not otherwise check types, and may fail on
-      wrong-typed input with a plain `TypeError`; from S2.P1.T2 `buildLens` asks the validator first on any throw.
+      wrong-typed input with a plain `TypeError`; from S2.P1.T2 `buildLens` asks the validator about every file first.
       The validator reads `asph: null` and `var: null` as absent, which is why ingest refuses a non-object `asph` or
       `var` by name.
 
@@ -1415,10 +1458,11 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       accepts:
       - a surface `nd` that differs from its element's, and a non-numeric element `nd`, read as one that differs;
       - a surface `d` that differs from its gap's first value by 1e-6 or less;
-      - a zoom field on a prime, and `zoomLabels` whose length is neither 2 nor the station count;
+      - `zoomLabels` or `zoomStep` on a prime, and `zoomLabels` whose length is neither 2 nor the station count;
+      - a surface with no `elemId` where air follows it;
       - an unknown field: at the top level, or on an element, a surface, a rear plate, `aberrationControl` or a
         finite conjugate;
-      - an `asph` or `var` of `null`, a number, a string or an empty list, which it reads as absent;
+      - an `asph` or `var` that is anything but an object;
       - in `varLabels` or the ring's: pairs out of surface order, a pair given twice, a pair for a surface with no
         gap, a pair of three members or whose text is not a string, and `varLabels` that is not a list.
 
@@ -1470,21 +1514,23 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - Once `buildLens` ingests, unmerged data takes the table's `lensShiftFrac` and `offAxisFieldFrac` in place of
       the inline `|| 0` and `?? 0.7`. Before changing a test whose expectation moves, list each one with its old and
       new values and stop for the maintainer.
-    - `buildLens` knows a composed pair only by the `attachedTeleconverter` marker `attachTeleconverter()` writes,
-      never by a flag a caller passes, and builds it without ingest: its host and converter each came through ingest
-      in their catalogs. This is a temporary seam; S5.P1.T4 moves composition onto the canonical form.
+    - `buildLens` knows a composed pair only by the `attachedTeleconverter` marker `attachTeleconverter()` writes, an
+      object, never by a flag a caller passes, and builds it without ingest: its host and converter each came through
+      ingest in their catalogs. This is a temporary seam; S5.P1.T4 moves composition onto the canonical form. A pair
+      composed from a host file without the catalog defaults therefore no longer builds; 31 of the 38 permitted pairs
+      built that way on `engine-next` before this step.
     - Nothing outside tests spreads the defaults table but the validator-first spread below. Lens data gets its
       defaults through ingest and the V1 view. `buildLens.ts` re-exports `toLensData` and `toTeleconverterData` for
       code outside the engine, as the seam guard requires; the re-export is temporary and leaves with the V1 view at
       S8.P1.T2. Test helpers take merged data the same way; a test that needs the raw table imports
       `src/optics/prescription/defaults.ts`.
-    - **The validator speaks first** when `buildLens` is handed a V1 file, and this is the one spread of the table
-      outside tests:
-      - a file the validator rejects throws its messages, whatever ingest or the view threw on it, a `TypeError` on
-        wrong-typed data included, so the message is the one `engine-next` gave;
-      - a file it accepts throws what ingest threw, a refusal naming each field and its authored path;
-      - the validator needs merged data and a refused file has no view, so `withLensDefaults` spreads the table under
-        the file to ask it, and builds nothing from the spread;
+    - **The validator is asked about the file on every build**, before ingest, and this is the one spread of the
+      table outside tests:
+      - `buildLens` spreads the table under every V1 file it is handed and asks the validator first: a file it rejects
+        throws its messages, as on `engine-next`. Asking only when ingest throws let the view repair what the validator
+        refuses, so files `engine-next` refused built;
+      - a file it accepts goes through ingest, which throws a refusal naming each field and its authored path;
+      - nothing is built from the spread, and ingest still does not validate;
       - a catalog entry is ingested by its getter before `buildLens` sees it, so a catalog file both reject reports
         ingest's refusal. That order is accepted for catalog entries;
       - the exception ends no later than S5.P1.T3, which moves validation onto canonical data. S5.P1.T1 replaces
@@ -1493,17 +1539,24 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       on it.
     - `src/lens-data/defaults.ts` is deleted.
   - **Files:**
-    - `src/utils/catalog/{lensCatalog, teleconverterCatalog}.ts`
-    - `src/optics/buildLens.ts`
-    - `src/optics/prescription/normalizeLensData.ts` (`withLensDefaults`)
+    - `src/utils/catalog/{lensCatalog, teleconverterCatalog}.ts`, and `src/components/layout/LensViewer.tsx`, which
+      names its lenses through the catalog's authored-name lookup
+    - `src/optics/buildLens.ts`, `src/optics/runtimeLens.ts` and `src/types/optics.ts`
+    - `src/optics/prescription/{normalizeLensData, ingestV1, toLensData, defaults}.ts` (`withLensDefaults`: the
+      validator first, then ingest)
     - `src/optics/validateTeleconverterData.ts`
+    - `src/benchmarks/engineDiff/{captureEntry, payload, seamAdapter}.ts`
     - `reports/glassScanLib.ts`
-    - `scripts/audit-surface-probe.mjs`
-    - `scripts/audit-field-coverage.mjs`
+    - `scripts/audit-surface-probe.mjs` (the validator first, then ingest) and `scripts/audit-field-coverage.mjs`
+    - `src/lens-data/defaults.ts`, deleted, and `src/lens-data/TEMPLATE.data.ts.template` and
+      `scripts/generate-src-readmes.mjs`, which pointed at it
   - **Tests:** the existing suites, and:
     - a corpus test that reads every lens and converter through its catalog, so a refusal fails CI;
     - every read of a catalog key returns the same object;
-    - every permitted pair is composed from a host and a converter that each came through ingest.
+    - every permitted pair is composed from a host and a converter that each came through ingest;
+    - the viewer's name for every listed key is read without ingesting a lens;
+    - a file the view would repair (an asphere short a coefficient, a schedule with a gap, an unsorted published
+      zoom list, a default written `undefined`, a string for a list) is refused with the validator's message.
   - **Benchmarks:** the first step that can move startup time and retained heap. The PR carries the paired timing and
     memory commands with blank tables, and the maintainer's machine measures them before merge.
   - **Gate:** C0, with Tier P bit-identical.
@@ -2147,6 +2200,7 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     - Rear plates are expanded once, by `prescription/rearPlates.ts`, now operating on canonical data and keeping the
       S2.P2.T1 rim rule.
     - It replaces `internal/lensState.ts`, the `prescription/` compilers and `normalizeLensData.ts`.
+    - It carries S2.P1.T2's validator-first spread into the compiler's entry, or ends it if S5.P1.T3 lands first.
     - `EngineLens` is renamed `CompiledLens`.
   - **Tests:**
     - One compilation and one material resolution per identity, shown by spying on the compiler and the resolver.
@@ -2169,7 +2223,7 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
 - **S5.P1.T3 Validation on canonical and compiled data.**
   - **Change:** `prescription/validate/{schema, references, geometry, aperture, folded, diffractive, controls}.ts`
     replace `validateLensData.ts`, `validateTeleconverterData.ts` and `internal/apertureBands.ts`. Messages keep their
-    authored paths.
+    authored paths. Validation of canonical data ends S2.P1.T2's validator-first spread of the defaults table.
   - **Tests:** the same verdict on every catalog file and every negative fixture in
     `__tests__/src/optics/validateLensData.test.ts`.
   - **Gate:** C0.
@@ -2447,6 +2501,16 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 38 | S3.P2.T2's coordinate bound is the seeded route's own; the gate inside `selectAsphericCapHit` is unchanged | S3.P2.T2 |
 | 39 | A short chord on a polynomial asphere stays the scan's miss in S3.P2.T2 (#779) | S3.P2.T2 |
 | 40 | A hit that changes between the raw target and the envelope because its incoming ray moved by rounding is a declared transition | S3.P2.T2 |
+| 41 | An analysis length is held to 1e-8 mm, or to 1e-10 of its own size where that is more, and the traced exit pupil of a pupil-aberration sample is an analysis length | [Quantity budgets](#quantity-budgets) |
+
+Settled on 2026-10-13, reviewing S2.P1.T1:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 42 | The fingerprint's three readings: an asphere entry with all-zero terms is present, `zoomLabels` and the blade fields are semantic, and a default the engine applies inline equals its omission | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
+| 43 | A missing `publishedStations` is a schema default: every zoom station published at infinity alone, as `publishedStationGrid` reads it | [Anchors and comparison coverage](#anchors-and-comparison-coverage); S2.P1.T1 |
+| 44 | The order of label pairs is no spelling: ingest refuses pairs out of surface order, and the records keep the file's order | S2.P1.T1 |
+| 45 | Before changing a test whose expectation moves with the two reader fallbacks, S2.P1.T2 lists each one with its old and new values and stops for the maintainer | S2.P1.T2 |
 
 The maintainer settled these on 2026-10-13, answering the Stage 2 questions (numbered at the last merge of `engine-next`):
 
@@ -2456,15 +2520,6 @@ The maintainer settled these on 2026-10-13, answering the Stage 2 questions (num
 | — | The engine's own ingest call sites read V2 from S2.P2.T1, telling the versions apart by one predicate | S2.P2.T1 |
 | — | A V2 stop carries `sd` only where its radius is authored, and V2 ingest reads a numeric radius past the flat threshold as flat | [Field mapping](#field-mapping); S2.P2.T1 |
 | — | Ingest records source paths only when asked; the reader records them, not the V1 view, and the converter carries comments and literal text by their composition with the V2 view | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T1 |
-
-Settled on 2026-10-13, reviewing S2.P1.T1 (numbered at the last merge of `engine-next`):
-
-| # | Decision | Where |
-| --- | --- | --- |
-| — | The fingerprint's three readings: an asphere entry with all-zero terms is present, `zoomLabels` and the blade fields are semantic, and a default the engine applies inline equals its omission | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
-| — | A missing `publishedStations` is a schema default: every zoom station published at infinity alone, as `publishedStationGrid` reads it | [Anchors and comparison coverage](#anchors-and-comparison-coverage); S2.P1.T1 |
-| — | The order of label pairs is no spelling: ingest refuses pairs out of surface order, and the records keep the file's order | S2.P1.T1 |
-| — | Before changing a test whose expectation moves with the two reader fallbacks, S2.P1.T2 lists each one with its old and new values and stops for the maintainer | S2.P1.T2 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

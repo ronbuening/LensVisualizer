@@ -942,6 +942,39 @@ describe("canonical prescription: refusals", () => {
       /^surfaces must be a list of objects$/,
     ],
     [
+      "an element field V1 does not define",
+      () => edit(prime, (data) => (untyped(data.elements[0]).bogus = 1)),
+      /^elements\[0\]\.bogus is not a V1 field$/,
+    ],
+    [
+      "a rear-plate field V1 does not define",
+      () =>
+        edit(prime, (data) => {
+          data.rearPlates = [{ thicknessMm: 2, nd: 1.5168, vd: 64.17, gapAfterMm: 1 }];
+          untyped(data.rearPlates[0]).bogus = 1;
+        }),
+      /^rearPlates\[0\]\.bogus is not a V1 field$/,
+    ],
+    [
+      "an aberration-control field V1 does not define",
+      () =>
+        edit(prime, (data) => {
+          data.aberrationControl = { label: "Spherical aberration", var: {} };
+          untyped(data.aberrationControl).bogus = 1;
+        }),
+      /^aberrationControl\.bogus is not a V1 field$/,
+    ],
+    [
+      "a field named for a member every object inherits",
+      () => edit(prime, (data) => Object.assign(data, { toString: "x" })),
+      /^toString is not a V1 field$/,
+    ],
+    [
+      "a label pair whose text is not a string",
+      () => edit(prime, (data) => (untyped(data).varLabels = [["2", 5]])),
+      /^varLabels\[0\] must be a \[label, text\] pair$/,
+    ],
+    [
       "rear plates that are not a list",
       () => edit(prime, (data) => (untyped(data).rearPlates = {})),
       /^rearPlates must be a list$/,
@@ -950,6 +983,27 @@ describe("canonical prescription: refusals", () => {
     const issues = refusal(make());
     expect(issues).toHaveLength(1);
     expect(issues[0]).toMatch(message);
+  });
+
+  it("refuses for a teleconverter as for a lens, naming it", () => {
+    const converter = () => structuredClone(TELECONVERTERS[0].data);
+    const refuse = (data: TeleconverterData): string[] => {
+      try {
+        ingestTeleconverterV1(data);
+      } catch (thrown) {
+        if (thrown instanceof PrescriptionIngestError) return [...thrown.issues];
+        throw thrown;
+      }
+      return [];
+    };
+    const unknown = converter();
+    (unknown as unknown as Record<string, unknown>).zoomPositions = [50, 70];
+    expect(refuse(unknown)).toEqual(["zoomPositions is not a V1 field"]);
+    const nd = converter();
+    const surface = nd.surfaces.findIndex((candidate) => candidate.elemId !== 0);
+    nd.surfaces[surface].nd += 0.01;
+    expect(refuse(nd)).toHaveLength(1);
+    expect(refuse(nd)[0]).toMatch(new RegExp(`^surfaces\\[${surface}\\]\\.nd .* differs from elements\\[\\d+\\]\\.nd`));
   });
 
   it("names an asph or var of null through buildLens, where the validator reads either as absent", () => {
