@@ -18,7 +18,7 @@
  * - a field V1 does not define, or one only the engine writes.
  * Every reason found is reported at once, in a `PrescriptionIngestError` that names each field and its authored path.
  * Ingest does not otherwise check types, and may fail on wrong-typed input with a plain `TypeError`; `buildLens` asks
- * the validator first on any such throw. The validator reads `asph: null` and `var: null` as absent, which is why
+ * the validator about every file first. The validator reads `asph: null` and `var: null` as absent, which is why
  * ingest refuses those two by name. The input is never modified, and the result shares no object with it.
  */
 
@@ -273,9 +273,9 @@ function createContext(): IngestContext {
   return { issues: [], defaulted: [], ignored: {}, v1: { emptyContainers: [] } };
 }
 
-/** A value copied so the prescription shares nothing with the authored file. */
+/** A value copied so the prescription shares nothing with the authored file; a primitive is its own copy. */
 function copy<T>(value: T): T {
-  return structuredClone(value);
+  return value !== null && typeof value === "object" ? structuredClone(value) : value;
 }
 
 /** Members that are present and not `undefined`; V1 treats an `undefined` member as an omitted one. */
@@ -302,7 +302,9 @@ function refuseUnknownFields(
   for (const field of Object.keys(record)) {
     if (record[field] === undefined || Object.hasOwn(known, field)) continue;
     const path = at ? `${at}.${field}` : field;
-    context.issues.push(`${path} ${ENGINE_WRITTEN[field] ?? "is not a V1 field"}`);
+    context.issues.push(
+      `${path} ${Object.hasOwn(ENGINE_WRITTEN, field) ? ENGINE_WRITTEN[field] : "is not a V1 field"}`,
+    );
   }
 }
 
@@ -719,12 +721,13 @@ function keyframeIndex(keyframes: readonly number[], focusT: number): number {
 
 /**
  * Index of the zoom station a coordinate names, or -1. Like the validator, it measures the distance in station index
- * (`zoomT × (n − 1)`), not in zoomT, and takes nothing but 0 on a prime.
+ * (`zoomT × (n − 1)`), not in zoomT, takes nothing but 0 on a prime, and names station 0 as 0 for a `zoomT` of -0.
+ * Measured in zoomT before S2.P1.T2; no catalog record moves.
  */
 function zoomStationIndex(stationCount: number, zoomT: number): number {
   if (stationCount <= 1) return zoomT === 0 ? 0 : -1;
   const scaled = zoomT * (stationCount - 1);
-  const station = Math.round(scaled);
+  const station = Math.round(scaled) + 0;
   const named = Math.abs(scaled - station) <= STATION_COORDINATE_TOLERANCE && station >= 0 && station < stationCount;
   return named ? station : -1;
 }

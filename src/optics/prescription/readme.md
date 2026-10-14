@@ -32,6 +32,7 @@ flowchart LR
   n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_runtimeLens_ts["src/optics/runtimeLens.ts"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
+  n_external_src_optics_validateLensData_ts["src/optics/validateLensData.ts"]
   n_external_src_utils_catalog["src/utils/catalog"]
   n_src_optics_prescription_src_optics_prescription_ingestV1_ts --> |3| n_external_src_types
   n_src_optics_prescription_src_optics_prescription_toLensData_ts --> |3| n_external_src_types
@@ -52,6 +53,7 @@ flowchart LR
   n_src_optics_prescription_src_optics_prescription_groups_ts --> n_external_src_optics_types_ts
   n_src_optics_prescription_src_optics_prescription_interactions_ts --> n_external_src_optics_types_ts
   n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_external_src_optics_types_ts
+  n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_external_src_optics_validateLensData_ts
   n_src_optics_prescription_src_optics_prescription_aspheres_ts --> n_external_src_types
   n_src_optics_prescription_src_optics_prescription_defaults_ts --> n_external_src_types
   n_src_optics_prescription_src_optics_prescription_dispersion_ts --> n_external_src_types
@@ -68,7 +70,6 @@ flowchart LR
   n_src_optics_prescription_src_optics_prescription_ingestV1_ts --> n_src_optics_prescription_src_optics_prescription_canonical_ts
   n_src_optics_prescription_src_optics_prescription_toLensData_ts --> n_src_optics_prescription_src_optics_prescription_canonical_ts
   n_src_optics_prescription_src_optics_prescription_ingestV1_ts --> n_src_optics_prescription_src_optics_prescription_defaults_ts
-  n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_src_optics_prescription_src_optics_prescription_defaults_ts
   n_src_optics_prescription_truncated["additional relationships omitted"]
 ```
 
@@ -76,7 +77,7 @@ flowchart LR
 
 - Direct source files: 14
 - Direct subfolders: 0
-- Main outbound areas: src/types (21), same folder (20), src/optics/types.ts (4), src/optics/geometry (3), src/optics/math (3), src/utils/catalog (3), src/optics/internal (2), src/optics/dispersion.ts, +2 more
+- Main outbound areas: src/types (21), same folder (20), src/optics/types.ts (4), src/optics/geometry (3), src/optics/math (3), src/utils/catalog (3), src/optics/internal (2), src/optics/dispersion.ts, +3 more
 - External consumers: src/optics/buildLens.ts, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/internal, src/optics/runtimeLens.ts, +5 more
 
 ## Files
@@ -91,7 +92,7 @@ flowchart LR
 | `ingestV1.ts` | Ingest V1 helper module | src/types (3), same folder (2), src/optics/geometry | same folder (2), src/optics/buildLens.ts, src/optics/validateTeleconverterData.ts | V1_FLAT_RADIUS, ingestLensV1, ingestTeleconverterV1 |
 | `interactions.ts` | Interactions helper module | src/optics/math, src/optics/types.ts, src/types | same folder | yzNormalToVec3, compileSurfaceInteraction, resolvedImagePlaneToPlane3, imagePlaneDataToPlane3 |
 | `labels.ts` | Labels helper module | src/types | same folder (4) | Optics2LensNormalizationError, buildSurfaceLabelMap, resolveLabel |
-| `normalizeLensData.ts` | Normalize Lens Data helper module | same folder (9), src/optics/geometry, src/optics/math, src/optics/runtimeLens.ts, src/optics/types.ts, +1 more | src/optics/chromatic (2), src/optics/first-order (2), src/optics/compat.ts, src/optics/diagram, src/optics/field, +1 more | withLensDefaults, normalizeLensData, normalizeRuntimeLens |
+| `normalizeLensData.ts` | Normalize Lens Data helper module | same folder (9), src/optics/geometry, src/optics/math, src/optics/runtimeLens.ts, src/optics/types.ts, +2 more | src/optics/chromatic (2), src/optics/first-order (2), src/optics/buildLens.ts, src/optics/compat.ts, src/optics/diagram, +2 more | validateAuthoredLensData, withLensDefaults, normalizeLensData, normalizeRuntimeLens |
 | `rearPlates.ts` | Rear Plates helper module | same folder, src/types, src/utils/catalog | same folder, src/optics/runtimeLens.ts, src/optics/validateLensData.ts | REAR_PLATE_LABEL_PATTERN, rearPlateSurfaceLabels, rearPlateAirEquivalentMm, expandRearPlates, lastLensSurfaceIndex |
 | `teleconverter.ts` | Teleconverter helper module | same folder (2), src/optics/internal (2), src/types (2), src/optics/field, src/utils/catalog | src/optics/teleconverter.ts, src/optics/validateTeleconverterData.ts | TeleconverterAttachError, teleconverterSurfaceLabel, teleconverterGroupLabel, mergeTeleconverterPrescription, attachTeleconverter |
 | `teleconverterCompatibility.ts` | Teleconverter Compatibility helper module | src/types (2) | same folder (2), src/optics/teleconverter.ts, src/optics/validateLensData.ts, src/optics/validateTeleconverterData.ts | TELECONVERTER_LABEL_PREFIX, MIN_TELECONVERTER_GAP_MM, TeleconverterHost, rearPlateAirEquivalentMm, teleconverterGeometry, teleconverterCompatibility |

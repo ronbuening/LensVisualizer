@@ -6,6 +6,7 @@
  */
 
 import buildRuntimeLens, { assertValidLensData } from "../runtimeLens.js";
+import validateLensData from "../validateLensData.js";
 import type { LensData, LensDataInput, RuntimeLens, SurfaceData } from "../../types/optics.js";
 import type {
   AberrationControlSpec,
@@ -32,34 +33,47 @@ import { ingestLensV1 } from "./ingestV1.js";
 import { toLensData } from "./toLensData.js";
 
 /**
+ * A V1 file as the validator reads it: spread over the catalog defaults.
+ *
+ * The validator speaks for the file on every build (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P1.T2). It needs merged data,
+ * and the view would repair what it refuses, so the file is spread over the defaults table to ask it and nothing is
+ * built from the spread: the one spread of the table outside tests. This ends no later than S5.P1.T3, which validates
+ * canonical data; S5.P1.T1, which replaces this module, carries it or ends it.
+ */
+function asTheValidatorReadsIt(data: unknown): LensData {
+  return { ...v1CatalogDefaults(), ...(data as object) } as LensData;
+}
+
+/**
+ * The validator's messages for a V1 file as authored, as `buildLens()` asks them.
+ *
+ * @param data - an authored lens file, with or without the catalog defaults
+ * @returns each message, empty when the validator accepts the file
+ */
+export function validateAuthoredLensData(data: unknown): string[] {
+  return validateLensData(asTheValidatorReadsIt(data));
+}
+
+/**
  * The lens data `buildLens()` builds from what its caller hands it.
  *
- * An authored file goes through canonical ingest and comes back as its V1 view, which applies the schema defaults:
- * the one place the engine applies them. A pair `attachTeleconverter()` composed is known only by the marker that
- * function writes, `attachedTeleconverter`, and is built as it is, because its host and converter each came through
- * ingest in their catalogs. That is a temporary seam until S5.P1.T4 composes on the canonical form. Rear plates
- * expand after this, in `buildLens()`.
+ * A pair `attachTeleconverter()` composed is known only by the object that function writes as its marker,
+ * `attachedTeleconverter`, and is built as it is, because its host and converter each came through ingest in their
+ * catalogs. That is a temporary seam until S5.P1.T4 composes on the canonical form. Anything else is a V1 file, which
+ * the validator is asked about first (`asTheValidatorReadsIt`). A file it accepts goes through canonical ingest, which
+ * throws a refusal naming each field and its authored path, and comes back as its V1 view, which applies the schema
+ * defaults: the one place the engine applies them. A catalog entry was ingested by its getter before it got here, so
+ * a catalog file both refuse reports ingest's refusal. Rear plates expand after this, in `buildLens()`.
  *
  * @param data - an authored lens file, with or without the catalog defaults, or a composed pair
  * @returns a fresh copy for the engine to hold
- * @throws Error with the validator's messages, or what ingest or the view threw
+ * @throws Error with the validator's messages, or ingest's refusal
  */
 export function withLensDefaults(data: LensData): LensData {
-  if (data.attachedTeleconverter !== undefined) return structuredClone(data);
-  try {
-    return toLensData(ingestLensV1(data as unknown as LensDataInput));
-  } catch (error) {
-    /* The validator speaks first when buildLens is handed a V1 file (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P1.T2): a file
-     * it rejects throws its messages, as before ingest, whatever ingest or the view threw on it, a `TypeError` on
-     * wrong-typed data included. A file it accepts throws what ingest threw, a refusal naming each field and its
-     * authored path. The validator needs merged data and a refused file has no view, so the file is spread over the
-     * defaults table to ask it, and nothing is built from the spread: the one spread of the table outside tests. A
-     * catalog entry was ingested by its getter before it got here, so a catalog file both refuse reports ingest's
-     * refusal. This ends no later than S5.P1.T3, which validates canonical data; S5.P1.T1, which replaces this
-     * module, carries it or ends it. */
-    assertValidLensData({ ...v1CatalogDefaults(), ...data } as LensData);
-    throw error;
-  }
+  const marker = (data as { attachedTeleconverter?: unknown } | undefined)?.attachedTeleconverter;
+  if (marker !== null && typeof marker === "object") return structuredClone(data);
+  assertValidLensData(asTheValidatorReadsIt(data));
+  return toLensData(ingestLensV1(data as unknown as LensDataInput));
 }
 
 /**

@@ -1047,7 +1047,7 @@ and position.
 | `publishedStations.zoom` / `.focus` | `zoom.stations[i].published` and `.publishedFocus`; on a prime, `focus.published` | A missing object is the schema default, every zoom station published at infinity alone, and provenance marks it as defaulted. Focus lists hold keyframe indices ≥ 1, and infinity is implied. V1's "zoom omitted or empty means every station" becomes an explicit flag on every station. |
 | `finiteConjugates[]` (`focusT`, `zoomT`) | `focus.conjugates[]` (`zoomStation`, `keyframe`) | Index-addressed. The converter maps each `focusT` to the keyframe it matches within the validator's 1e-8 and refuses otherwise. |
 | `fstopSeries`, `maxFstop`, `apertureStep`, `apertureBlades`, `apertureBladeRoundedness` | `aperture.{fStops, maxFNumber, step, blades, bladeRoundedness}` | |
-| STO `sd` | Kept as `sd` only where the engine uses it: folded and embedded stops, 16 lenses. Otherwise omitted, and the radius is derived. | The engine overwrites the authored value in two ways: with the radius traced from the nominal f-number (904 lenses on 2026-10-13), or with a published schedule (2 lenses), which V2 keeps as `zoom.stations[i].stopSemiDiameter`. The converter lists each dropped value in its conversion report, as provenance rather than semantics. |
+| STO `sd` | Kept as `sd` only where the engine uses it: folded and embedded stops, 16 lenses. Otherwise omitted, and the radius is traced from the design f-number, or taken from the station schedule. | The engine overwrites the authored value in two ways: with the radius traced from the nominal f-number (904 lenses on 2026-10-13), or with a published schedule (2 lenses), which V2 keeps as `zoom.stations[i].stopSemiDiameter`. The converter lists each dropped value in its conversion report, as provenance rather than semantics. |
 | `aberrationControl.var` / `.varLabels` | `aberrationControl.gaps` | Same tuple forms as V1 |
 | `svgW`, `svgH`, `scFill`, `yScFill`, `maxAspectRatio`, `lensShiftFrac` | `layout.*` | |
 | `rayFractions`, `rayLeadFrac`, `offAxisFieldFrac`, `offAxisFractions` | `rays.*` | These feed analyses as well as the diagram |
@@ -1097,9 +1097,11 @@ The stop radius has exactly one authority per lens:
     f/2.91.
   - An authoritative prime radius (`aperture.stopSemiDiameter`) is deferred until a source needs one. It would be a
     new authority row in this table, not a format change.
-- **The 906 authored stop values the engine overwrites are dropped** (2026-10-13). They were never used and never
-  audited: the semi-diameter audit procedure said not to touch `STO`. 62 are more than 20% from the radius the engine
-  uses instead, a zoom's at its wide station.
+- **The 906 authored stop values the engine overwrites are dropped** (906 = 904 derived + 2 scheduled, 2026-10-13).
+  They were never used and never audited: the semi-diameter audit procedure said not to touch `STO`. 61 of the 904
+  derived stops are more than 20% from the radius the engine derives, a zoom's at its wide station. A schedule is
+  never derived, so the scheduled Sony FE 12-24mm f/2.8 GM stands apart: its authored 11.815 mm against its
+  schedule's 8.115 mm.
 - **Comments on dropped values are reviewed once, during migration.**
   - 121 single-line stop entries carry comments, and 20 more stop entries span several lines.
   - Most comments justify the stop's position, which stays valid because `d` is unchanged.
@@ -1356,7 +1358,7 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       - a field V1 does not define, or one only the engine writes.
 
       Each refusal names the field and its authored path. Ingest does not otherwise check types, and may fail on
-      wrong-typed input with a plain `TypeError`; from S2.P1.T2 `buildLens` asks the validator first on any throw.
+      wrong-typed input with a plain `TypeError`; from S2.P1.T2 `buildLens` asks the validator about every file first.
       The validator reads `asph: null` and `var: null` as absent, which is why ingest refuses a non-object `asph` or
       `var` by name.
 
@@ -1365,10 +1367,11 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       accepts:
       - a surface `nd` that differs from its element's, and a non-numeric element `nd`, read as one that differs;
       - a surface `d` that differs from its gap's first value by 1e-6 or less;
-      - a zoom field on a prime, and `zoomLabels` whose length is neither 2 nor the station count;
+      - `zoomLabels` or `zoomStep` on a prime, and `zoomLabels` whose length is neither 2 nor the station count;
+      - a surface with no `elemId` where air follows it;
       - an unknown field: at the top level, or on an element, a surface, a rear plate, `aberrationControl` or a
         finite conjugate;
-      - an `asph` or `var` of `null`, a number, a string or an empty list, which it reads as absent;
+      - an `asph` or `var` that is anything but an object;
       - in `varLabels` or the ring's: pairs out of surface order, a pair given twice, a pair for a surface with no
         gap, a pair of three members or whose text is not a string, and `varLabels` that is not a list.
 
@@ -1420,21 +1423,23 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - Once `buildLens` ingests, unmerged data takes the table's `lensShiftFrac` and `offAxisFieldFrac` in place of
       the inline `|| 0` and `?? 0.7`. Before changing a test whose expectation moves, list each one with its old and
       new values and stop for the maintainer.
-    - `buildLens` knows a composed pair only by the `attachedTeleconverter` marker `attachTeleconverter()` writes,
-      never by a flag a caller passes, and builds it without ingest: its host and converter each came through ingest
-      in their catalogs. This is a temporary seam; S5.P1.T4 moves composition onto the canonical form.
+    - `buildLens` knows a composed pair only by the `attachedTeleconverter` marker `attachTeleconverter()` writes, an
+      object, never by a flag a caller passes, and builds it without ingest: its host and converter each came through
+      ingest in their catalogs. This is a temporary seam; S5.P1.T4 moves composition onto the canonical form. A pair
+      composed from a host file without the catalog defaults therefore no longer builds; 31 of the 38 permitted pairs
+      built that way on `engine-next` before this step.
     - Nothing outside tests spreads the defaults table but the validator-first spread below. Lens data gets its
       defaults through ingest and the V1 view. `buildLens.ts` re-exports `toLensData` and `toTeleconverterData` for
       code outside the engine, as the seam guard requires; the re-export is temporary and leaves with the V1 view at
       S8.P1.T2. Test helpers take merged data the same way; a test that needs the raw table imports
       `src/optics/prescription/defaults.ts`.
-    - **The validator speaks first** when `buildLens` is handed a V1 file, and this is the one spread of the table
-      outside tests:
-      - a file the validator rejects throws its messages, whatever ingest or the view threw on it, a `TypeError` on
-        wrong-typed data included, so the message is the one `engine-next` gave;
-      - a file it accepts throws what ingest threw, a refusal naming each field and its authored path;
-      - the validator needs merged data and a refused file has no view, so `withLensDefaults` spreads the table under
-        the file to ask it, and builds nothing from the spread;
+    - **The validator is asked about the file on every build**, before ingest, and this is the one spread of the
+      table outside tests:
+      - `buildLens` spreads the table under every V1 file it is handed and asks the validator first: a file it rejects
+        throws its messages, as on `engine-next`. Asking only when ingest throws let the view repair what the validator
+        refuses, so files `engine-next` refused built;
+      - a file it accepts goes through ingest, which throws a refusal naming each field and its authored path;
+      - nothing is built from the spread, and ingest still does not validate;
       - a catalog entry is ingested by its getter before `buildLens` sees it, so a catalog file both reject reports
         ingest's refusal. That order is accepted for catalog entries;
       - the exception ends no later than S5.P1.T3, which moves validation onto canonical data. S5.P1.T1 replaces
@@ -1443,17 +1448,24 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       on it.
     - `src/lens-data/defaults.ts` is deleted.
   - **Files:**
-    - `src/utils/catalog/{lensCatalog, teleconverterCatalog}.ts`
-    - `src/optics/buildLens.ts`
-    - `src/optics/prescription/normalizeLensData.ts` (`withLensDefaults`)
+    - `src/utils/catalog/{lensCatalog, teleconverterCatalog}.ts`, and `src/components/layout/LensViewer.tsx`, which
+      names its lenses through the catalog's authored-name lookup
+    - `src/optics/buildLens.ts`, `src/optics/runtimeLens.ts` and `src/types/optics.ts`
+    - `src/optics/prescription/{normalizeLensData, ingestV1, toLensData, defaults}.ts` (`withLensDefaults`: the
+      validator first, then ingest)
     - `src/optics/validateTeleconverterData.ts`
+    - `src/benchmarks/engineDiff/{captureEntry, payload, seamAdapter}.ts`
     - `reports/glassScanLib.ts`
-    - `scripts/audit-surface-probe.mjs`
-    - `scripts/audit-field-coverage.mjs`
+    - `scripts/audit-surface-probe.mjs` (the validator first, then ingest) and `scripts/audit-field-coverage.mjs`
+    - `src/lens-data/defaults.ts`, deleted, and `src/lens-data/TEMPLATE.data.ts.template` and
+      `scripts/generate-src-readmes.mjs`, which pointed at it
   - **Tests:** the existing suites, and:
     - a corpus test that reads every lens and converter through its catalog, so a refusal fails CI;
     - every read of a catalog key returns the same object;
-    - every permitted pair is composed from a host and a converter that each came through ingest.
+    - every permitted pair is composed from a host and a converter that each came through ingest;
+    - the viewer's name for every listed key is read without ingesting a lens;
+    - a file the view would repair (an asphere short a coefficient, a schedule with a gap, an unsorted published
+      zoom list, a default written `undefined`, a string for a list) is refused with the validator's message.
   - **Benchmarks:** the first step that can move startup time and retained heap. The PR carries the paired timing and
     memory commands with blank tables, and the maintainer's machine measures them before merge.
   - **Gate:** C0, with Tier P bit-identical.
@@ -2012,6 +2024,7 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     - Rear plates are expanded once, by `prescription/rearPlates.ts`, now operating on canonical data and keeping the
       S2.P2.T1 rim rule.
     - It replaces `internal/lensState.ts`, the `prescription/` compilers and `normalizeLensData.ts`.
+    - It carries S2.P1.T2's validator-first spread into the compiler's entry, or ends it if S5.P1.T3 lands first.
     - `EngineLens` is renamed `CompiledLens`.
   - **Tests:**
     - One compilation and one material resolution per identity, shown by spying on the compiler and the resolver.
@@ -2034,7 +2047,7 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
 - **S5.P1.T3 Validation on canonical and compiled data.**
   - **Change:** `prescription/validate/{schema, references, geometry, aperture, folded, diffractive, controls}.ts`
     replace `validateLensData.ts`, `validateTeleconverterData.ts` and `internal/apertureBands.ts`. Messages keep their
-    authored paths.
+    authored paths. Validation of canonical data ends S2.P1.T2's validator-first spread of the defaults table.
   - **Tests:** the same verdict on every catalog file and every negative fixture in
     `__tests__/src/optics/validateLensData.test.ts`.
   - **Gate:** C0.
@@ -2314,14 +2327,14 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 40 | A hit that changes between the raw target and the envelope because its incoming ray moved by rounding is a declared transition | S3.P2.T2 |
 | 41 | An analysis length is held to 1e-8 mm, or to 1e-10 of its own size where that is more, and the traced exit pupil of a pupil-aberration sample is an analysis length | [Quantity budgets](#quantity-budgets) |
 
-Settled on 2026-10-13, reviewing S2.P1.T1 (numbered at the last merge of `engine-next`):
+Settled on 2026-10-13, reviewing S2.P1.T1:
 
 | # | Decision | Where |
 | --- | --- | --- |
-| — | The fingerprint's three readings: an asphere entry with all-zero terms is present, `zoomLabels` and the blade fields are semantic, and a default the engine applies inline equals its omission | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
-| — | A missing `publishedStations` is a schema default: every zoom station published at infinity alone, as `publishedStationGrid` reads it | [Anchors and comparison coverage](#anchors-and-comparison-coverage); S2.P1.T1 |
-| — | The order of label pairs is no spelling: ingest refuses pairs out of surface order, and the records keep the file's order | S2.P1.T1 |
-| — | Before changing a test whose expectation moves with the two reader fallbacks, S2.P1.T2 lists each one with its old and new values and stops for the maintainer | S2.P1.T2 |
+| 42 | The fingerprint's three readings: an asphere entry with all-zero terms is present, `zoomLabels` and the blade fields are semantic, and a default the engine applies inline equals its omission | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
+| 43 | A missing `publishedStations` is a schema default: every zoom station published at infinity alone, as `publishedStationGrid` reads it | [Anchors and comparison coverage](#anchors-and-comparison-coverage); S2.P1.T1 |
+| 44 | The order of label pairs is no spelling: ingest refuses pairs out of surface order, and the records keep the file's order | S2.P1.T1 |
+| 45 | Before changing a test whose expectation moves with the two reader fallbacks, S2.P1.T2 lists each one with its old and new values and stops for the maintainer | S2.P1.T2 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

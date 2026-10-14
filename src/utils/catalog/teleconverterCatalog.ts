@@ -34,9 +34,14 @@ const _modules = import.meta.glob<{ default: TeleconverterData }>("../../lens-da
 });
 const AUTHORED: Record<string, TeleconverterData> = {};
 const TELECONVERTER_CATALOG: Record<string, TeleconverterData> = {};
+const PATH_BY_KEY: Record<string, string> = {};
 for (const [path, mod] of Object.entries(_modules)) {
   const data = mod.default;
   if (data?.key) {
+    if (Object.hasOwn(PATH_BY_KEY, data.key)) {
+      throw new Error(`Two teleconverter files share the key "${data.key}": ${PATH_BY_KEY[data.key]} and ${path}`);
+    }
+    PATH_BY_KEY[data.key] = path;
     AUTHORED[data.key] = data;
     let entry: TeleconverterData | undefined;
     Object.defineProperty(TELECONVERTER_CATALOG, data.key, {
