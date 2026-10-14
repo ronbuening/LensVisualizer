@@ -35,6 +35,7 @@ import CanonEF815mmf4LFisheyeRaw from "../../../src/lens-data/canon/CanonEF815mm
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import Hologon15f8Raw from "../../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.js";
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
+import SonyFE1224Raw from "../../../src/lens-data/sony/SonyFE1224mmf28GM.data.js";
 
 vi.mock("../../../src/utils/featureFlags.js", async (importOriginal) => {
   const actual = await importOriginal<typeof import("../../../src/utils/featureFlags.js")>();
@@ -366,6 +367,32 @@ describe("buildLens — error handling", () => {
     expect(() => buildLens(data as unknown as LensData)).toThrow(
       /Missing or empty required array field: "fstopSeries"/,
     );
+  });
+
+  it("asks the validator about every file first, so the view repairs nothing it would refuse", () => {
+    /* Ingest and the view accept each of these, and the view would hand the validator a repaired file. */
+    const asLens = (data: unknown) => data as LensData;
+    const cases: [unknown, RegExp][] = [
+      [
+        makeMinimalData({ asph: { "1": { K: 0, A4: 1e-6, A6: 0, A8: 0, A10: 0, A12: 0 } } }),
+        /asph key "1" is missing finite numeric coefficient A14/,
+      ],
+      [
+        { ...SonyFE1224Raw, zoomStopSemiDiameters: [8.115, undefined, 11.815] },
+        /zoomStopSemiDiameters requires one positive finite radius per zoom station/,
+      ],
+      [
+        { ...SonyFE1224Raw, publishedStations: { zoom: [1, 0] } },
+        /"publishedStations.zoom" must be a non-empty, strictly/,
+      ],
+      [makeMinimalData({ maxFstop: undefined }), /Missing or non-finite required number field: "maxFstop"/],
+      [makeMinimalData({ fstopSeries: "248" }), /Missing or empty required array field: "fstopSeries"/],
+    ];
+    for (const [data, message] of cases) {
+      expect(() => toLensData(ingestLensV1(data as LensDataInput)), String(message)).not.toThrow();
+      expect(() => buildLens(asLens(data)), String(message)).toThrow(message);
+    }
+    expect(() => buildLens(asLens(undefined))).toThrow(/Lens data "\?" has 8 error\(s\)/);
   });
 
   it("throws ingest's refusal, naming the field and its path, for a file the validator accepts", () => {

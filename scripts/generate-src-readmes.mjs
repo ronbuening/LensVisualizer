@@ -76,7 +76,7 @@ const folderRoleOverrides = new Map([
   ],
   [
     "src/lens-data",
-    "auto-discovered lens prescription data, companion analysis notes, audit notes, authoring specs, and shared lens-data defaults",
+    "auto-discovered lens prescription data, companion analysis notes, audit notes, and authoring specs",
   ],
   ["src/mounts", "mount interface data specs and schema consumed by the pure mount renderer and mount pages"],
   [

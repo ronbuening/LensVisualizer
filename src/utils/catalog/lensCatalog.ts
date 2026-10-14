@@ -36,9 +36,14 @@ function identityOfFile(data: LensDataInput | LensDataV2Input): LensIdentity {
 
 const AUTHORED: Record<string, LensIdentity> = {};
 const LENS_CATALOG: Record<string, LensData> = {};
+const PATH_BY_KEY: Record<string, string> = {};
 for (const [path, mod] of Object.entries(_modules)) {
   const data = mod.default;
   if (data?.key) {
+    if (Object.hasOwn(PATH_BY_KEY, data.key)) {
+      throw new Error(`Two lens-data files share the key "${data.key}": ${PATH_BY_KEY[data.key]} and ${path}`);
+    }
+    PATH_BY_KEY[data.key] = path;
     AUTHORED[data.key] = identityOfFile(data);
     let entry: LensData | undefined;
     Object.defineProperty(LENS_CATALOG, data.key, {
@@ -56,6 +61,11 @@ function sortLensKeysByName(keys: string[]): string[] {
 /** A key's identity fields, read without ingesting the lens; an entry added at run time is read as it is. */
 function identityOf(key: string): LensIdentity | undefined {
   return AUTHORED[key] ?? LENS_CATALOG[key];
+}
+
+/** A catalog key's display name, read from its file as authored, so a list of names ingests no lens. */
+function lensNameForKey(key: string): string {
+  return identityOf(key)?.name ?? key;
 }
 
 function isDebugLensKey(key: string): boolean {
@@ -181,6 +191,7 @@ async function loadMdForKey(key: string): Promise<string | null> {
 
 export {
   LENS_CATALOG,
+  lensNameForKey,
   ALL_CATALOG_KEYS,
   CATALOG_KEYS,
   COMPARISON_CATALOG_KEYS,
