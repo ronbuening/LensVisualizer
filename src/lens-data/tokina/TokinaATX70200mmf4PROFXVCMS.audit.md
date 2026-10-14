@@ -202,3 +202,130 @@ Effect on the traced colours, as paraxial back focus per line: the C−d, F−d 
 Analysis text. Two paragraphs changed: the s14–s15 paragraph now states 12.16 / 12.5 mm at 0.96 with the numbers above, and the glass paragraph now says each element traces on its named glass's catalog curve with ΔPgF as that glass's catalog value. No other sentence mentioned stored line indices.
 
 Live render. L9 was viewed at 72 mm on the local page and over Figure 2: a square rim at 12.5 mm, 7 % inside the drawn one, with L8's rear corner stepping down to 12.16 mm beside it and no overlap.
+
+## 2026-10-13 — Second review: diagram, labels and movement
+
+Scope. An independent second look at the lens as the local page draws it, against `patents/JP5857306B2.pdf`: Figure 2 (page 17, Example 1, wide end), Figure 1 (a) / (b) (page 17, wide and tele schematic with the zoom loci), Tables 1–3 (pages 9–10), the description ¶0015–0038 and the aberration plots of Figures 3–5 and 9–11 (pages 18–20). No maker image was viewed; the construction-diagram record above stands (19 elements in 14 groups, 4+5+2+8, SD glass at elements 3, 4 and 12, no aspherical element).
+
+Re-measurement of Figure 2. The 425 × 882 px bilevel raster was read at its native resolution, pixel by pixel. Vertex crossings: s1 at row 851.0, s34 at row 228.0, 623.0 px for the 156.01 mm wide-end track, 3.9933 px/mm. Check spans: s5 to s16 125 px for 31.19 mm (4.008), s17 to the stop 85.5 px for 21.69 mm (3.942), s21 to s34 203.5 px for 51.20 mm (3.975), s1 to the image line 841.0 px for 210.67 mm (3.992). Every vertex crossing that can be read lies within 1.3 px of the prescription (s27 is hidden by lettering). The drawn axis runs along x = 206.43 + 0.00421·y (0.24° skew). Each rim is half the distance between the centres of its left and right edge lines, which is 0.05–0.2 mm below the outer-edge readings of the first pass.
+
+| Element | Figure 2, this reading (mm)                | First pass (mm) | Stored before (mm) | Stored now (mm) |
+| ------- | ------------------------------------------ | --------------- | ------------------ | --------------- |
+| L1      | 31.0, square block, 5.5 mm edge            | 31.2            | 29 / 29            | 31.0 / 31.0     |
+| L2      | 30.2, square, 0.8 mm inside L1             | 30.3            | 28.2 / 28.2        | 28.4 / 30.2     |
+| L3      | 28.85, square                              | 29.0            | 27.0 / 27.0        | 28.9 / 28.9     |
+| L4      | 28.05, square                              | 28.2            | 26.2 / 26.2        | 28.1 / 28.1     |
+| L5      | 16.3                                       | 16.5            | 16.5 / 16.0        | unchanged       |
+| L6      | 15.9, square                               | 16.0            | 16.0 / 16.0        | unchanged       |
+| L7      | 13.7, square                               | 13.8            | 13 / 13.0          | 13.6 / 13.6     |
+| L8      | 13.45                                      | 13.5            | 13.0 / 12.16       | 13.6 / 12.16    |
+| L9      | 13.35, square                              | 13.5            | 12.5 / 12.5        | 13.4 / 13.4     |
+| L10     | 13.9                                       | 13.95           | 14.0 / 14.5        | unchanged       |
+| L11     | 14.15                                      | 14.35           | 14.5 / 14.5        | unchanged       |
+| L12     | 14.45                                      | 14.5            | 14.5 / 14.5        | unchanged       |
+| L13     | 13.9; land on s24 from about 11.4          | 14.0            | 14 / 13.0          | unchanged       |
+| L14     | 12.95, square                              | 13.0            | 13.0 / 13.0        | unchanged       |
+| L15–L16 | 11.4, one rectangle                        | 11.5            | 11.5 / 11.5 / 11.5 | unchanged       |
+| L17     | 13.3                                       | 13.4            | 13.5 / 13.5        | unchanged       |
+| L18     | 14.3; land on s31 from about 12.2          | 14.4            | 14 / 14            | unchanged       |
+| L19     | 15.7                                       | 15.8            | 16 / 16            | unchanged       |
+| Stop    | line drawn to 16.15                        | 16.1            | 16                 | not touched     |
+
+Lands. Figure 2 draws three flat lands. On s2 a horizontal run at rows 818–819 reaches from the 31.0 mm rim in to columns 96 and 323, so the curve ends between 28.5 and 29.4 mm, at the height where s2 and s3 touch (29.04 mm), and L2's rim rests on that land. On s24 the land (rows 389–391) ends at 11.4 mm by its inner end and 11.7–12.0 mm by its axial level. On s31 the land (rows 264–265) ends at 11.5 mm by its inner end and 12.1–12.2 mm by its axial level; the first pass read 12.4 mm. The curve ends of s2 and s24 sit at the edge contact and at the F/4.1 axial ray (12.06 mm), so the lands look like the designer's clear-aperture limits.
+
+Rims changed: twelve surfaces, each to its drawn value. These supersede the G1 and L7–L9 values of the two sections above, and their statements that G1 is held at 0.93 of the drawing and that L7–L9 stay under it.
+
+| Surface   | Before (mm) | After (mm) | Evidence                                                                                             |
+| --------- | ----------- | ---------- | ---------------------------------------------------------------------------------------------------- |
+| s1 / s2   | 29 / 29     | 31.0 / 31.0 | L1 drawn 31.0 with a square 5.5 mm edge (5.67 mm from the prescription at that height)              |
+| s3        | 28.2        | 28.4       | Touching face: the last 0.1 mm step under the 28.49 mm that `gapSagFrac` 0.96 admits beside s2       |
+| s4        | 28.2        | 30.2       | L2's drawn rim                                                                                       |
+| s5 / s6   | 27.0 / 27.0 | 28.9 / 28.9 | L3 drawn 28.85                                                                                      |
+| s7 / s8   | 26.2 / 26.2 | 28.1 / 28.1 | L4 drawn 28.05                                                                                      |
+| s12 / s13 | 13 / 13.0   | 13.6 / 13.6 | L7 drawn 13.7 and L8 13.45; one value for the cemented joint keeps L7 square                        |
+| s15 / s16 | 12.5 / 12.5 | 13.4 / 13.4 | L9 drawn 13.35, square                                                                              |
+
+Judgement on the three open items of the first pass.
+
+- Front group at 0.93 of the drawing. Only one face of the s2 / s3 pair has to stop short of the 29.04 mm contact. Four arrangements were validated and drawn over the figure: the 0.93 scaling; L1 31 / 31 with s3 28.4 and s4 30.2; s1 31 with s2 28.4 and L2 30.2 / 30.2; and s1 31, s2 29, s3 28.4, s4 30.2. The second lies on the drawn outline of both elements, keeps L1 the squared block the figure draws and leaves the smallest gap that the figure does not show (a wedge of air at L2's front corner, 0.09 to 1.55 mm wide). The third and fourth cut a corner 2 to 2.6 mm high and about 5 mm long off L1. With L1 and L2 at their drawn heights, L3 and L4 take theirs and the drawn order 31.0 > 30.2 > 28.9 > 28.1 is kept. The light that G1X passes is still set by the touching face (28.4 mm against 28.2 mm before), so the real limit stays.
+- L7–L9 under the drawing. The s14 / s15 crossing binds only s14 (12.16 mm, between the 12.148 mm axial ray and the 12.18 mm the allowance admits). s12, s13, s15 and s16 are not in contact with anything at their drawn heights, so L7 and L9 now take them, and L8's rear bevel is the only departure from the figure.
+- L18 at 14 / 14. Kept. The figure draws a squared block (land and cylinder), and at 14.0 mm the front face neither wraps nor reaches L17 (its corner stays 1.25 mm behind L17's rim; the figure draws 2.5 mm). The cost of the alternative is quantified below so the owner can choose: ending s31 at the drawn land would bevel L18 and remove light the model now passes.
+
+Illumination cost of ending s31 at 12.4 mm (with s32 at 14.3 mm), on the new rims. The surface audit accepts the pair and no axial beam or chief ray is cut (6.80 and 8.26 mm needed).
+
+| Station | Corner, full pupil (%) | Corner, meridional (%) | 0.83 field, full pupil (%) |
+| ------- | ---------------------- | ---------------------- | -------------------------- |
+| 72 mm   | 68.6 to 64.8           | 65.6 to 60.4           | 84.2 to 84.2               |
+| 105 mm  | 67.0 to 63.1           | 62.5 to 57.3           | 90.2 to 90.2               |
+| 194 mm  | 62.5 to 58.4           | 63.5 to 58.3           | 75.4 to 75.4               |
+
+Ending s31 at 12.2 mm costs about 6 points at the corner instead of 4. For comparison, ending s24 at the 12.1 mm the axial ray needs (its land) would cost 2 to 4 points across the whole field (99.5 to 95.7 % at half field at 72 mm).
+
+Clearance on the new rims. A real-ray trace at F/4.1 with chief rays to 21.63 mm (17.22° / 11.60° / 6.21°) shows no clipped axial beam and no blocked chief ray. Largest axial heights against the rims: s1–s8 23.66 / 23.37 / 23.47 / 23.48 / 24.14 / 23.83 / 23.43 / 23.00 mm against 31.0 / 31.0 / 28.4 / 30.2 / 28.9 / 28.9 / 28.1 / 28.1; s12–s16 12.71 / 12.35 / 12.148 / 12.134 / 12.32 against 13.6 / 13.6 / 12.16 / 13.4 / 13.4. The surface audit reports no errors and the render is not trimmed; the image-circle audit reports no undersized circle; field coverage is 100 % at the three stations; the aperture audit finds all three within 3 % of F/4.1. s2 / s3 compared at 28.4 mm: 1.9160 of 2.01 mm, 95.33 %, 0.094 mm of air (28.49 mm is accepted, 28.5 mm refused). s14 / s15 compared at 12.16 mm: unchanged, 95.64 %, 0.103 mm of air; from 12.16 to 13.4 mm s15 runs 0.10 to 0.88 mm clear of L8's edge. The engine half-field went from 20.77° / 14.24° / 8.89° to 21.17° / 14.33° / 8.89°. EFL 71.9858 mm, F/4.1 and the iris radii 13.3201 / 13.3206 / 13.3308 mm are unchanged.
+
+Vignetting before and after. Meridional values are the engine's wide-open geometric transmission; full-pupil values come from a separate three-dimensional trace of a 0.25 mm grid of rays over the whole beam (the share that clears every rim and the iris, relative to the axial beam; a 0.125 mm grid agrees within 0.1 point).
+
+| Station | Field  | Meridional before (%) | Meridional after (%) | Full pupil before (%) | Full pupil after (%) |
+| ------- | ------ | --------------------- | -------------------- | --------------------- | -------------------- |
+| 72 mm   | 0.67   | 91.7                  | 92.7                 | 94.9                  | 95.5                 |
+| 72 mm   | 0.83   | 78.1                  | 80.2                 | 82.2                  | 84.2                 |
+| 72 mm   | corner | 63.5                  | 65.6                 | 65.7                  | 68.6                 |
+| 105 mm  | 0.67   | 95.8                  | 95.8                 | 99.1                  | 99.5                 |
+| 105 mm  | 0.83   | 82.3                  | 83.3                 | 89.0                  | 90.2                 |
+| 105 mm  | corner | 61.5                  | 62.5                 | 65.1                  | 67.0                 |
+| 194 mm  | 0.5    | 88.5                  | 91.7                 | 89.2                  | 92.5                 |
+| 194 mm  | 0.83   | 74.0                  | 75.0                 | 73.1                  | 75.4                 |
+| 194 mm  | corner | 63.5                  | 63.5                 | 61.1                  | 62.5                 |
+
+The 72 mm gain comes from L7 and L9 (s12 was the first rim met there), the 105 mm gain from G1X and the 194 mm gain from L3–L4. At 194 mm a ray at three quarters of the pupil radius is now first cut at 61 % of the corner field angle, by s3; it was 56 %, by s5. At 0.6 of the corner angle the rays at ±0.75 and ±0.375 of the pupil radius pass at all three stations; before, the +0.75 ray at 194 mm was cut.
+
+Labels and brackets.
+
+| Field                    | Before                | After                                                           | Evidence                                                                                           |
+| ------------------------ | --------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `diagramLabel`           | "1" … "19"            | "L1" … "L19"                                                    | The patent's own designations: L1–L9 lettered in Figure 1 (a), L1–L8 named in ¶0016–0022, legend Li |
+| `label`                  | "Element1" …          | "Element 1" …                                                   | The form every other catalog file uses                                                             |
+| `varLabels`              | D8, D16, D19          | d8, d16, d19                                                    | Table 2 and ¶0032 print d8, d16, d19; the capitals read as members of the doublet series D1–D5     |
+| `groups`                 | G1, G2, G3, G4        | adds "G1Y (focus group)" s5–s8 and "G4Y (stabilizer)" s26–s28   | Figures 1 and 2 bracket G1X / G1Y under G1 and G4X / G4Y / G4Z under G4; ¶0016 and ¶0025           |
+
+G1Y and G4Y are the two sub-groups with a function the reader cannot see from G1–G4; G1X, G4X and G4Z are left unlabelled. On the page the four group names share one row and the two sub-group names sit on the row beneath, under L3–L4 and L15–L16. The label "G1Y (focus)" was tried first and ran into "G1" on the same row. The group-movement panel now lists six rows, the two new ones fixed.
+
+Checked and found correct. Surface ranges of G1 (s1–s8), G2 (s9–s16), G3 (s17–s19) and G4 (s21–s34). Five cemented brackets D1–D5 on s9–s11, s12–s14, s17–s19, s23–s25 and s26–s28, matching the five cemented interfaces s10, s13, s18, s24 and s27 of Table 1. All 19 `type` strings against the signs of the printed radii (L1 +/+ negative meniscus, L2 +/+ positive meniscus as ¶0016 names them, L3 and L4 +/− biconvex, L5 −/− positive meniscus, L6 −/+ biconcave, L7 +/+ negative, L8 +/+ positive, L9 −/+ biconcave, L10 +/− biconvex, L11 −/− negative, L12 +/+ positive, L13 +/+ negative, L14 +/+ positive, L15 −/− positive, L16 −/+ biconcave, L17 +/− biconvex, L18 −/− negative, L19 +/− biconvex). All 19 `role` strings. The stop at s20, 1.5 mm ahead of L12, drawn in Figure 2 as a line at the head of the G4X bracket. No surface is aspherical in Table 1 and none carries an asphere entry or an "A" label. `zoomLabels` Wide / Tele (Table 2 heads its columns wide, middle, tele). Table 1 and Table 2 were read again from the page rasters: all radii, spacings, indices, Abbe numbers and the nine zoom gaps agree with the file.
+
+Tags. `apd: "inferred"` on L3, L4 and L12 is right and "patent" would not be. The patent text never mentions anomalous or low dispersion, partial dispersion or a glass name: a search of its text layer finds none of 異常分散, 部分分散, 低分散 or 蛍石, and the Abbe number appears only as the column アッベ数 vd of the tables (¶0031). Its conditions are Cs2/Cs3, |FG1X/FG1Y|, ndL1 ≥ 1.75 and |FG4Y/FG4| (claim 1, ¶0018–0027); none constrains an Abbe number. Table 1 prints only nd and νd, so the patent offers no further identification of any glass.
+
+Zoom movement, wide → middle → tele, from Table 2 (d8 2.40 / 18.30 / 34.99, d16 26.06 / 19.71 / 1.50, d19 13.86 / 4.31 / 5.82). `zoomPositions` 72 / 105 / 194 ascend and each `var` array lists its stations in that order.
+
+| Group        | 72 → 105 mm        | 105 → 194 mm       | Patent                                                              | Model       |
+| ------------ | ------------------ | ------------------ | ------------------------------------------------------------------- | ----------- |
+| G1           | 0                  | 0                  | Fixed (vertical line in Figure 1)                                   | Fixed       |
+| G2           | 15.90 mm to image  | 16.69 mm to image  | Moves toward the image (¶0021), straight line in Figure 1           | As patent   |
+| G3           | 9.55 mm to image   | 1.52 mm to object  | Locus convex toward the image (¶0021), curved line in Figure 1      | As patent   |
+| Stop and G4  | 0                  | 0.01 mm to object  | Fixed (vertical line); the 0.01 mm is the printed gap-sum rounding  | As printed  |
+
+The live group-movement panel shows the same: G1 and G4 as points, G2 travelling toward the image (maximum travel read-out 32.60 mm, the 32.59 mm of d8 plus the 0.01 mm of the gap sums), and G3's track running toward the image and ending short of its furthest point.
+
+Focus. Not modelled, by decision. The patent names G1Y as the focus group (¶0016) and prints no travel. The focus slider is disabled and labelled "Not modeled", the page at the far end of the slider is identical to infinity, and the focus view of the movement panel is unavailable.
+
+Aberrations against Figures 3–5 (infinity; d-line; printed prescription, apertures ignored).
+
+| Quantity                                              | 72 mm, traced            | 72 mm, Figure 3         | 105 mm, traced           | 105 mm, Figure 4        | 194 mm, traced           | 194 mm, Figure 5        |
+| ----------------------------------------------------- | ------------------------ | ----------------------- | ------------------------ | ----------------------- | ------------------------ | ----------------------- |
+| LSA at 0.5 / 0.75 / 1.0 of the F/4.1 pupil (mm)       | −0.22 / −0.46 / −0.78    | −0.09 / −0.14 / −0.06   | −0.15 / −0.30 / −0.47    | −0.06 / −0.06 / +0.09   | −0.02 / −0.04 / −0.10    | −0.02 / −0.02 / +0.08   |
+| Sagittal focus at 10.8 / 16.2 / 21.6 mm (mm)          | −0.08 / −0.11 / +0.01    | −0.07 / −0.08 / +0.07   | −0.05 / −0.06 / +0.06    | −0.04 / −0.03 / +0.09   | −0.06 / −0.10 / −0.06    | −0.04 / −0.05 / +0.02   |
+| Tangential focus at 10.8 / 16.2 / 21.6 mm (mm)        | −0.09 / −0.14 / −0.11    | 0.00 / 0.00 / −0.03     | −0.02 / −0.05 / −0.12    | 0.00 / −0.01 / −0.14    | −0.04 / −0.11 / −0.23    | 0.00 / −0.02 / −0.22    |
+| Distortion at 21.6 mm (%)                             | −3.07                    | −3.0                    | +0.33                    | +0.3                    | +2.52                    | +2.5                    |
+
+Figure readings are good to about 0.01–0.02 mm (0.0054 mm per native pixel). Distortion agrees. The field curves agree in shape and differ by up to 0.14 mm. Spherical aberration does not agree: the printed prescription is under-corrected by 0.78 mm at the pupil edge at 72 mm and 0.47 mm at 105 mm where the figures stay within 0.14 mm and turn positive at the edge. Third-order sums from the prescription are −0.91 / −0.64 / −0.10 mm, built from G1 −0.12 / −0.56 / −6.50, G2 +1.63 / +2.38 / +8.86, G3 −0.94 / −0.99 / −0.98 and G4 −1.48 at every station. The on-axis fans of Figures 9–11 (±0.1 mm scale) stay within about 0.02 mm; the prescription gives 0.09 mm at 72 mm and 0.06 mm at 105 mm at the pupil edge in the paraxial plane. So two sets of the patent's figures agree with each other and not with Table 1.
+
+Search for a misprint. About 3,900 single-value variants were traced (every digit substitution and adjacent transposition of each printed radius, spacing and index, sign changes, and exchanges of neighbouring radii), then about 430 exchanges of spacings, indices and radii, then each radius, spacing and index varied freely on its own. The filter was the three focal lengths within 0.5 mm of 72 / 105 / 194 and the back focus constant within 0.15 mm across the stations. None brings the three spherical curves together: the best single change (d29 from 3.54 to about 2.3) leaves an rms error of 0.16 mm over nine readings against 0.34 mm as printed. A change inside G4 moves all three curves by the same amount, and the shortfall is 0.72 / 0.56 / 0.18 mm at the pupil edge, so no G4 value can be the cause; no change in G1–G3 that keeps the focal lengths and the constant back focus brings the error below 0.30 mm. No candidate turns |FG4Y/FG4| into 0.540 either. The cause is not identified and no value is changed.
+
+Table 3. Cs2/Cs3 = 1.5295 (printed 1.530), |FG1X/FG1Y| = 9.919 (9.919), ndL1 = 1.80518 (1.805), and |FG4Y/FG4| = 48.91 / 89.96 = 0.5437 against the printed 0.540. The `sourceErrata` entry is confirmed.
+
+Proposed, outside this pass's edit list. A second `sourceErrata` entry, status "unresolved": "Figures 3–5 and 9–11 show far less spherical aberration than the printed prescription traces: d-line longitudinal aberration at the F/4.1 pupil edge is −0.78 / −0.47 / −0.10 mm at 72 / 105 / 194 mm against about −0.06 / +0.09 / +0.08 mm drawn. No single printed value accounts for it; no value is changed."
+
+Files. Data file: twelve `sd` values, 19 `diagramLabel` and 19 `label` strings, three `varLabels`, two added `groups` entries, and the header comment (semi-diameter note rewritten, aberration note added). Analysis: the clear-radius, s14–s15 and vignetting paragraphs follow the new rims, and a paragraph on the aberration plots was added to the source-discrepancy section. No R, d, nd, νd, zoom gap, glass label, `gapSagFrac` or iris value changed.
+
+Live page after the edits. Viewed at 72, 105 and 194 mm, at the far end of the focus slider, with the group-movement panel at both ends of the zoom range, and with the inspector open on L2, L3, L12 and L18. L1 is a squared block with L2 nested behind it, its front corner bevelled; L3 and L4 stand just below them; L7 and L9 are square with L8's rear corner bevelled between them. Laid over Figure 2 at matched scale, the outlines of G1 and G2 now fall on the drawn lines. Element labels read L1–L19 in two rows, the gap read-out d8 / d16 / d19, and the inspector shows "Element 3 · L3 · APD (inferred)".
+
+Open. Lands are not modelled, so L1's rear corner stands 0.8 mm deeper than drawn, L18's front corners reach 1.4 mm further toward L17 than drawn, and the model passes light at s24 and s31 that the drawn lands would stop. L2 and L8 carry a bevel where the figure draws their outlines running into the neighbour. Figure 2 shows only the wide end. Focus is not modelled. The printed prescription does not reproduce the patent's spherical-aberration plots, so on-axis sharpness at the wide and middle stations is worse in the model than in the patent's figures.

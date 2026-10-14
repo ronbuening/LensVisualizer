@@ -171,7 +171,7 @@ This group is the most complex, comprising four elements in three subgroups: a s
 |---|--------:|-------:|----:|
 | L5 | −56.39 | −71.58 | 11.29 |
 
-Despite being a meniscus with both surfaces concave toward the object, L5's thick-lens behavior yields a very weakly negative focal length. Its primary role is not power contribution but rather the control of spherical aberration and coma in the diverging beam immediately behind the stop. The SK16 glass (same as the front menisci) provides low dispersion, limiting chromatic contributions. This element acts as a field flattener and coma corrector, intercepting the beam at a height where off-axis rays are well separated from on-axis rays.
+Despite being a meniscus with both surfaces concave toward the object, L5's thick-lens behavior yields a very weakly negative focal length. Its primary role is not power contribution. At the 28 mm scale it sits 2.3 mm behind the stop in the converging beam, where the bundles of all field angles still overlap: at full field the chief ray crosses its front surface 1.6 mm from the axis, inside a 5.5 mm axial beam. It therefore acts mainly on the aperture-dependent aberrations, and its strongly curved front surface is the second-largest negative Petzval contribution in the lens (§7). The SK16 glass (same as the front menisci) provides low dispersion, limiting chromatic contributions.
 
 **L6+L7 — Cemented Doublet (LaF10 + SF6 class, f ≈ +166):**
 
@@ -180,7 +180,7 @@ Despite being a meniscus with both surfaces concave toward the object, L5's thic
 | L6 | +3330.0 | −36.08 | 13.61 | LaF10 | +49.1 |
 | L7 | −36.08 | −100.50 | 6.00 | SF6 class | −72.3 |
 
-L6 has a nearly flat front surface (R₁ = +3330 is effectively planar) and a strongly curved rear surface (R₂ = −36.08). The negative R₂ places the center of curvature to the left, meaning the rear surface is convex toward the image side. The element is therefore geometrically plano-convex (flat front, convex rear toward image), and optically strongly positive (f ≈ +49.1). This geometry places the refractive power at the cemented interface rather than at an air–glass surface, reducing surface reflection losses and ghosting.
+L6 has a nearly flat front surface (R₁ = +3330 is effectively planar) and a strongly curved rear surface (R₂ = −36.08). The negative R₂ places the center of curvature to the left, meaning the rear surface is convex toward the image side. By the signs of its radii the element is biconvex; in practice it is plano-convex (flat front, convex rear toward image), and taken alone in air it is strongly positive (f ≈ +49.1). In the lens that rear surface is cemented to L7, where the index step is only 0.084 (1.72823 to 1.81265), so the interface itself is weakly negative (about −1/427 at f = 100) and the doublet's net power comes from the L7 rear surface r₁₂ (+1/124). The strongly curved buried surface works on color and on the higher-order aberrations without adding an air–glass reflection.
 
 The LaF10-class/SF6-class pairing mirrors the achromatization strategy of the front doublet (L3+L4), using the dispersion contrast between a moderate-dispersion lanthanum flint and a high-dispersion dense flint (Δνₑ ≈ 13) to provide local chromatic correction in the rear group. S-BAH28 supplies a compatible C′/e/F′ spectral proxy for L6 without asserting the historical supplier.
 
@@ -260,17 +260,34 @@ The distortion profile shows a gentle barrel pattern that peaks at intermediate 
 
 The ray fan plots themselves show the combined monochromatic and chromatic aberration residuals at each field point. At the full field (y′ = 21), the fans exhibit moderate higher-order aberrations, consistent with the f/2.8 aperture at 37° half-field.
 
+The image heights are in millimetres at the production focal length, not in the table's f = 100 units: y′ = 21 at f = 28 is a half-field of 36.9°, the table's ±37°. An exact trace of the data file gives distortion of −0.23%, −0.38% and −0.34% at the three heights in the paraxial image plane (−0.17%, −0.32% and −0.28% in the plane of the patent's s′), against the printed −0.24%, −0.41% and −0.39%. The shape is the same, with the maximum near three-quarters field, and the model is 0.01 to 0.05 points smaller.
+
+The fans can be compared as well, although they carry no ordinate scale. Their abscissa fits the ray height in the entrance pupil with ticks of 0.05 f: the axial curves of Fig. 3d end at 3.55 ticks, the f/2.8 semi-aperture. In units of that semi-aperture, the plotted curves and the model's e-line fans in the paraxial image plane have their extremes and zero crossings at these places:
+
+| y′ (mm) | Extremes, patent | Extremes, model | Zero crossings, patent | Zero crossings, model |
+|--------:|------------------|-----------------|------------------------|-----------------------|
+| 0 | ±0.77 to 0.84 | ±0.85 | ±0.95 to 1.0 | ±1.01 |
+| 10.5 | −0.44 / +0.43 to 0.49 | −0.42 / +0.43 | −0.67 / +0.70 | −0.68 / +0.70 |
+| 15.75 | −0.38 / +0.35 | −0.37 / +0.37 | −0.62 / +0.60 | −0.61 / +0.63 |
+| 21 | −0.29 / +0.32 | −0.32 / +0.31 | −0.49 / +0.54 | −0.54 / +0.54 |
+
+On axis this is spherical aberration corrected at the margin with a zonal residual: the model's longitudinal value is −0.14 mm at the 0.85 zone and −0.01 mm at the edge of the aperture, a transverse 21 µm. The patent has no separate astigmatism or field-curvature plot. The slope of the off-axis fans at the chief ray corresponds, in the model, to a tangential focus 0.27, 0.46 and 0.51 mm in front of the paraxial plane at the three heights, balanced over the aperture by the S-shaped higher-order term.
+
+The vertical bars that close each off-axis fan mark the edges of the vignetted bundle: −0.78 / +0.80, −0.68 / +0.70 and −0.59 / +0.60 of the semi-aperture at y′ = 10.5, 15.75 and 21. The three lower-edge rays all meet the L3 front surface 7.66 to 7.69 mm from the axis, just outside the 7.65 mm axial ray, which points to a clear radius of about 7.7 mm there in the designers' calculation. The three upper bars meet at one point between L5 and L6, 5.1 mm from the axis and 0.2 mm inside the axial ray, and could not be assigned to a rim.
+
 ### 10.4 Surface Curvature Graduality
 
 The most strongly curved surfaces (r₁₃ = −34.62, r₁₁ = −36.08) are deeply embedded in the rear group where the beam diameter is small, while the front group surfaces have |R| > 60. These gentle front curvatures keep the angles of incidence moderate across the wide field, which limits higher-order aberrations and the strength of ghost reflections from the large front elements.
 
 ## 11. Semi-Diameter Estimation
 
-The patent does not list semi-diameters. The stored values come from a real-ray trace at the 0.28 production scale, checked against the section drawings in Fig. 6c and Fig. 3. Both drawings are scaled from the r₁→r₁₄ vertex span (483 px = 54.05 mm).
+The patent does not list semi-diameters. The stored values come from a real-ray trace at the 0.28 production scale, checked against the two section drawings of Example 3, Fig. 3 and Fig. 6c. Both are drawn at one scale: the r₁→r₁₄ vertex span is 480 px at 300 dpi for 54.05 mm.
 
-- **Ray requirements.** Every surface clears the f/2.8 axial beam. Every surface also clears the chief ray that reaches the 21.6 mm corner at 37.7°. The front menisci carry the largest chief-ray heights, 14.0 mm at r₁ and 12.1 mm at r₂. The L3 front surface (r₅ = 10.4 mm) is sized for the 20–28° off-axis bundles, which reach 9.4–10.0 mm there. The drawing shows the doublet about 15–20% smaller.
-- **Figure rims.** The drawing gives these rim radii: L1 ≈ 16.1 mm, L2 ≈ 13.4 mm, and L3/L4 ≈ 8.7 mm, drawn as a near-cylinder whose rear face is as tall as its front. L5 is ≈ 6.9 mm, L6/L7 ≈ 8.0 mm, and L8 ≈ 9.7 mm, the largest rear element. The drawing is schematic. L8 and the rear face of L1 are drawn much flatter than their radii allow; a 9.7 mm rim is impossible on r₁₃ = −9.69 mm. Those two surfaces are therefore held inside the rim-slope limit instead of copied.
-- **Corner vignetting.** At full aperture, the full-field bundle is clipped mainly at the rear meniscus and the front menisci. This is ordinary for an f/2.8 28 mm retrofocus design of this period.
+- **Ray requirements.** Every surface clears the f/2.8 axial beam, which is widest at the L3 front surface (7.65 mm at infinity, 7.61 mm at 0.7 m). Every surface also clears the chief ray that reaches the 21.6 mm corner at 37.7°. The front menisci carry the largest chief-ray heights, 14.0 mm at r₁ and 12.1 mm at r₂.
+- **Figure rims.** Read at the line centres, the drawings give L1 16.1 mm at its front face and about 14.1 mm at its rear face, with a bevelled rim between them, and L2 13.3 / 12.3 mm. The L3+L4 component is a square-cut block of 8.5 mm and the L6+L7 component one of 7.8 mm. L5 is 6.0 mm at its front face and 6.8 mm at the rim, and L8 is 8.1 mm at its front face and 9.4 to 9.7 mm at the rim; both have a chamfered front corner, and L8 is the tallest rear element. Each square-cut block carries one height in the data, 8.7 mm on r₅ to r₇ and 7.4 mm on r₁₀ to r₁₂. The remaining stored values are within about 7% of the drawings.
+- **Vignetting.** With the block square, the L3 front rim trims the outer edge of the oblique bundles from about 15° outward: the site's geometric transmission at full aperture is 96% at 20° and 93% at 29°. Toward the corner the front menisci and the rear meniscus take over, and transmission falls to 53% at 37.8°. This is ordinary for an f/2.8 28 mm retrofocus design of this period.
+
+Until 2026-10 the L3 front surface was held at 10.4 mm so that the 20° to 28° bundles passed whole. That made the front face taller than the drawn block and taller than L8, which the drawings show the other way round. The patent's own ray fans agree with the drawings (§10.3): their limit bars put the edge of the oblique bundles on the L3 front rim, at a clear radius of about 7.7 mm. The data keep the drawn 8.7 mm, so the model still passes a slightly wider bundle in the middle of the field than the patent plots (edge at 0.93 and 0.86 of the semi-aperture at y′ = 10.5 and 15.75, against the plotted 0.78 and 0.68). At full field the plotted edge ray needs 15.7 mm at r₁, where the data have 15.4 mm against a drawn 16.1 mm, so there the model's bundle is narrower than the patent's (0.49 against 0.59).
 
 Earlier estimates capped r₂ at 0.77|R| because of the L1–L2 gap. That cap came from the misprinted 2.8 mm gap and no longer applies at the corrected 5.6 mm.
 

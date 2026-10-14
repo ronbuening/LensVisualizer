@@ -2263,4 +2263,15 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for S-LAL54Q.",
   },
+  /* Historical flint alternative for the native e-line coordinates of the Leica Mini II patent. */
+  {
+    name: "PBM22",
+    vendor: "Ohara",
+    polynomial: [2.6360314, -0.0089450876, 0.025228056, 0.0011120943, -3.7887387e-5, 6.3760973e-6],
+    nd: 1.647689,
+    vd: 33.802937,
+    PgF: 0.5883401824192335,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); discontinued PBM22, vendor formula-1 polynomial (ne 1.652226, νe 33.5539). It shares a six-digit code with a current row, so code6 is omitted.",
+  },
 ];

@@ -25,8 +25,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * the cemented pair (surface 3) polished only to about 4.0 mm, level with the rim of L3, and
  * chamfered from there back to the 6.6 mm rim. Surface 3 therefore carries 4.05 mm while
  * surfaces 1 and 2 keep 6.6 mm; the section draws that chamfer as a straight edge from the
- * cemented rim, without the short cylindrical land Fig. 1 gives L2. The stop radius is the
- * height of the real axial f/3.5 marginal ray at the stop plane, not a published diaphragm size.
+ * cemented rim, without the short cylindrical land Fig. 1 gives L2. The European print of Fig. 1
+ * (EP 0 537 469 B1) is drawn to scale, every vertex spacing within 0.04 mm of the table, and agrees:
+ * 6.6 mm for the front pair, 4.05 mm for L3 and surface 3 polished to about 4.1 mm. Both prints
+ * draw L4 at 3.85 to 3.87 mm; both faces store 3.9 mm, inside the drawing uncertainty. The stop
+ * radius is the height of the real axial f/3.5 marginal ray at the stop plane, not a published size.
  * The camera brochure lists a fixed UVa protective filter. It is not in the patent and is not
  * modeled.
  * Focus: the patent gives the infinity state only. The camera focuses from 0.65 m to infinity
@@ -185,7 +188,7 @@ const LENS_DATA = {
       "d": 3.543,
       "nd": 1.7167,
       "elemId": 4,
-      "sd": 4.0
+      "sd": 3.9
     },
     {
       "label": "7",
@@ -193,7 +196,7 @@ const LENS_DATA = {
       "d": 1.2,
       "nd": 1,
       "elemId": 0,
-      "sd": 4.0
+      "sd": 3.9
     },
     {
       "label": "STO",

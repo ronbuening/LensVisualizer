@@ -238,3 +238,23 @@ Analysis brought in line:
 - US 2017/0059832 A1 is added to the sources as [P3].
 
 The analysis quotes no axial-colour, lateral-colour or secondary-spectrum figure, so no whole-lens chromatic number needed recomputing; the per-element values above are the only chromatic quantities it carries.
+
+
+## 2026-10-14 — Final local-diagram and travel review
+
+Compared the current local page at the wide, middle and tele zoom stations and the infinity/close endpoints with Fig. 5 of `patents/JP6814931B2.pdf`, page 28. This records the pending second-review changes and supersedes the earlier choice to retain oversized front and focus rims for corner illumination.
+
+| Item | Before | Current | Basis |
+|---|---|---|---|
+| Surface 1, L1 | 20.5 mm | 19.3 mm | Centre of the drawn optical rim in the three Fig. 5 panels. |
+| Surfaces 2–3, L2 | 19.5 mm | 18.3 mm | Same figure, preserving the 1 mm step down from L1. |
+| Surfaces 18A–19A, L10 | 5.6 mm | 5.3 mm | Centre of the drawn rim rather than the outside of the stroke; the stated axial beam and chief ray clear. |
+| Cemented-pair labels | D1, D2 | L1+L2, L8+L9 | Names the actual members without introducing patent reference signs that the source does not use. |
+
+The tighter rims retain the source's relative sizes and ordinary field vignetting. L3's concave rear face still ends at 9.2 mm to approximate the drawn land. No published radius, thickness, glass coordinate, gap or stop setting changed. The analysis carries the updated aspheric departures at L10's 5.3 mm rim.
+
+Zoom order is wide → middle → tele (12.4644, 26.8412, 57.7842 mm). The first group initially moves slightly toward the image before extending toward the object at tele, as the figure's paths show. At close focus only L10 moves toward the image, by 0.3659 / 1.1866 / 3.3818 mm; its leading gap grows and its trailing gap shrinks equally. The stop travels with G3. The page shows 25 cm at each printed close endpoint and qualifies interpolated states.
+
+Glass and color: nine elements resolve to coefficient-backed catalog rows, while L7 and L10 retain the explicitly inferred Panasonic line-index data recorded above. No commercial resin identity or patent-listed APD is inferred from those coordinates. The named vendor coefficients of K-CSK120 were re-read from SUMITA's local all-glass Zemax file.
+
+The comparison of off-centre rays with Fig. 6 remains an inference: the patent does not identify its reference ray. Wording in the header and analysis now preserves that uncertainty.

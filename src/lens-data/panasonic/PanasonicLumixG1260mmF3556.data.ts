@@ -18,13 +18,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * 21.033 mm label and the marginal f-number about 4.123 against 4.291. An interpolated close state
  * between wide and middle can focus at about 139 mm object-to-image although all three printed close
  * states are 250 mm. The production 0.20 m minimum focus at the wide end is not modelled.
- * SEMI-DIAMETERS: not printed; measured on the three Fig. 5 panels (wide, middle, tele; 0.144 mm per
- * pixel at 400 dpi, centre of the drawn stroke) and floor-checked by real-ray trace at all six states.
- * L3, L5, L6, L7, L8+L9 and L11 follow the figure to within 0.2 mm; L4 was already there. L3's rear
- * surface stops at 9.2 mm, where the figure's flat rear annulus begins, against 12.2 mm on its front.
- * Two rims stay above the drawing because the drawn radius would cost about ten points of corner
- * illumination: L10 is 5.6 mm, the outer edge of its drawn line (centre 5.3 mm), and L1+L2 stay at
- * 20.5 / 19.5 mm against a drawn 19.3 / 18.3 mm. gapSagFrac stays at its 0.90 default.
+ * SEMI-DIAMETERS: not printed; measured on the three Fig. 5 panels (wide, middle, tele; 0.145 mm per
+ * pixel on the 399 ppi bitmap, centre of the drawn stroke) and floor-checked by real-ray trace at all
+ * six states. Every rim is within about 0.2 mm of the drawing, L1+L2 at 19.3 / 18.3 mm and L10 at
+ * 5.3 mm included. L3's rear surface stops at 9.2 mm, near where the figure's flat rear annulus
+ * begins, against 12.2 mm on its front. The drawn rims vignette the corner bundles: at the edge of the
+ * printed field the share of the iris area that clears every rim is 73 % at wide, 86 % at middle and
+ * 72 % at tele (infinity), limited by L10 and the L3/L4 rims at wide, by L10 at middle and mainly by
+ * L1 at tele. gapSagFrac stays at its 0.90 default.
  * The stop position is printed; its radius is set by a real axial ray for the patent's F-number at
  * each zoom station (4.768 mm at all three), not a published iris diameter.
  * Aspheres: the patent's κ is the standard conic constant of the (1 + κ) form and is zero on every
@@ -41,8 +42,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * Paragraph 0047 calls G5 fixed; the printed BF varies from 14.23623 to 14.23646 mm (0.23 µm) across
  * the three stations, a rounding-level spread kept as printed.
  * Real chief rays at the printed half-field angles reach 9.997, 10.813 and 10.814 mm against the
- * printed image heights 10.000, 10.815 and 10.815 mm. The viewer's half-field at each station is the
- * vignetting limit of the estimated semi-diameters, not the printed ω row.
+ * printed image heights 10.000, 10.815 and 10.815 mm. Rays that cross the iris about 0.09, 0.27 and
+ * -0.11 of its radius off-centre land on the printed heights and also reproduce the edge-of-field
+ * astigmatism of Fig. 6. This is consistent with a reference ray through a vignetted pupil, but
+ * the patent does not identify that ray. The viewer's half-field at each station is the vignetting limit of the
+ * estimated semi-diameters, not the printed ω row.
  */
 
 const LENS_DATA = {
@@ -83,8 +87,8 @@ const LENS_DATA = {
       apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       dPgF: 0.0006373971623230279,
       apd: false,
-      cemented: "D1",
-      role: "Negative meniscus front element of the cemented doublet D1, the positive first group",
+      cemented: "L1+L2",
+      role: "Negative meniscus front element of the cemented doublet L1+L2, the positive first group",
     },
     {
       id: 2,
@@ -99,8 +103,8 @@ const LENS_DATA = {
       apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       dPgF: -0.001534821416379395,
       apd: false,
-      cemented: "D1",
-      role: "Positive meniscus rear element of the cemented doublet D1 in the first group",
+      cemented: "L1+L2",
+      role: "Positive meniscus rear element of the cemented doublet L1+L2 in the first group",
     },
     {
       id: 3,
@@ -194,8 +198,8 @@ const LENS_DATA = {
       apdNote: "dPgF comes from the named glass's catalog dispersion formula; the patent prints nd and νd only.",
       dPgF: 0.0005512198265796853,
       apd: false,
-      cemented: "D2",
-      role: "Negative meniscus front element of the cemented doublet D2 in the third group",
+      cemented: "L8+L9",
+      role: "Negative meniscus front element of the cemented doublet L8+L9 in the third group",
     },
     {
       id: 9,
@@ -210,8 +214,8 @@ const LENS_DATA = {
       apdNote: "Panasonic's construction drawing marks this position as the ED lens, and nd 1.497 / νd 81.6 is a fluorophosphate ED glass; dPgF comes from the named glass's catalog dispersion formula.",
       dPgF: 0.030910738991392517,
       apd: "inferred",
-      cemented: "D2",
-      role: "Low-dispersion biconvex positive rear element of the cemented doublet D2 in the third group",
+      cemented: "L8+L9",
+      role: "Low-dispersion biconvex positive rear element of the cemented doublet L8+L9 in the third group",
     },
     {
       id: 10,
@@ -255,7 +259,7 @@ const LENS_DATA = {
       d: 1.2,
       nd: 1.8061,
       elemId: 1,
-      sd: 20.5,
+      sd: 19.3,
     },
     {
       label: "2",
@@ -263,7 +267,7 @@ const LENS_DATA = {
       d: 8.0,
       nd: 1.5168,
       elemId: 2,
-      sd: 19.5,
+      sd: 18.3,
     },
     {
       label: "3",
@@ -271,7 +275,7 @@ const LENS_DATA = {
       d: 0.7565,
       nd: 1.0,
       elemId: 0,
-      sd: 19.5,
+      sd: 18.3,
     },
     {
       label: "4",
@@ -391,7 +395,7 @@ const LENS_DATA = {
       d: 1.2143,
       nd: 1.5338,
       elemId: 10,
-      sd: 5.6,
+      sd: 5.3,
     },
     {
       label: "19A",
@@ -399,7 +403,7 @@ const LENS_DATA = {
       d: 5.7284,
       nd: 1.0,
       elemId: 0,
-      sd: 5.6,
+      sd: 5.3,
     },
     {
       label: "20",
@@ -557,12 +561,12 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "L1+L2",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "D2",
+      text: "L8+L9",
       fromSurface: "15",
       toSurface: "17",
     },

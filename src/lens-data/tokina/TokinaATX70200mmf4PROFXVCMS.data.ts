@@ -14,17 +14,22 @@ import type { LensDataInput } from "../../types/optics.js";
  * about 6.3 mm out of focus, so zoomStep 0.5 makes the slider step from station to station.
  * Source inconsistencies: the printed zoom-gap sums are 42.32 / 42.32 / 42.31 mm, and the 0.01 mm tele difference
  * is kept as printed. Table 3 prints |FG4Y/FG4| = 0.540 where the prescription traces 0.5437 (sourceErrata).
- * Semi-diameters are estimated from Figure 2 (200 ppi raster, 3.993 px/mm over the s1-s34 vertex span) and
- * floor-checked by real-ray trace at the three stations. L5-L6, G3 and G4 follow the drawn rims, with the drawn
- * cemented-joint steps at L5 / L6, L10 / L11 and L13 / L14. Two air-spaced pairs touch inside the drawn rims: s2 / s3
- * at 29.04 mm (drawn 31.2 / 30.3 mm) and s14 / s15 at 12.43 mm (drawn 13.5 mm). G1 is therefore held at 0.93 of the
- * drawing, keeping the drawn order L1 > L2 > L3 > L4 and square rims, and L7-L9 stay 6-10 % under it. s24 carries
- * L14's 13.0 mm rim (the figure ends that curve near 11.4 mm, below the 12.06 mm the F/4.1 axial ray needs), and
- * L18 keeps one 14.0 mm rim (the flat land drawn outside 12.4 mm on s31 is not modelled). Off-axis vignetting from
- * these rims remains.
+ * Aberration check: the printed prescription reproduces the distortion of Figures 3-5 (-3.1 / +0.3 / +2.5 % at the
+ * corner) but not their spherical aberration. Traced d-line longitudinal aberration at the F/4.1 pupil edge is
+ * -0.78 / -0.47 / -0.10 mm at 72 / 105 / 194 mm where the figures draw about -0.06 / +0.09 / +0.08 mm. No single
+ * printed radius, spacing or index accounts for the difference, so nothing is changed.
+ * Semi-diameters are estimated from Figure 2 (200 ppi raster, 3.993 px/mm over the s1-s34 vertex span, rims read at
+ * the centre of the outline) and floor-checked by real-ray trace at the three stations. Every element follows its
+ * drawn rim: L1 31.0, L2 30.2, L3 28.9, L4 28.1, L7 13.6 and L9 13.4 mm, with the drawn cemented-joint steps at
+ * L5 / L6, L10 / L11 and L13 / L14. Two air-spaced pairs touch inside the drawn rims: s2 / s3 at 29.04 mm and
+ * s14 / s15 at 12.43 mm. In each pair one face stops short of the contact and its element is drawn bevelled there:
+ * s3 ends at 28.4 mm (front of L2) and s14 at 12.16 mm (rear of L8), while L1, L7 and L9 keep the square rims the
+ * figure draws. The figure draws flat lands outside the curved part of s2 (from about 29 mm), s24 (about 11.4 mm)
+ * and s31 (about 12.2-12.4 mm). Lands are not modelled: s2 runs to L1's rim, s24 carries L14's 13.0 mm rim (the
+ * F/4.1 axial ray needs 12.06 mm there) and L18 keeps one 14.0 mm rim. Off-axis vignetting from these rims remains.
  * gapSagFrac 0.96 is the smallest two-decimal value that admits s14 at 12.16 mm (the tele F/4.1 axial ray needs
  * 12.148 mm there) beside s15: the two faces use 95.6 % of the 2.36 mm gap at that height and keep 0.10 mm of
- * air. s15 takes L9's 12.5 mm rear rim, so L9 is square-cut as drawn.
+ * air. It also admits s3 at 28.4 mm beside s2 (95.3 % of the 2.01 mm gap, 0.09 mm of air).
  * Stop: the patent states about F/4.1 and no iris diameter, so the iris radius is computed from F/4.1 at each
  * station (13.32-13.33 mm); it is not a printed dimension.
  * nd / vd are as printed. Glass names are the catalog glasses that match them and supply the dispersion curve
@@ -59,8 +64,8 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Element1",
-      diagramLabel: "1",
+      label: "Element 1",
+      diagramLabel: "L1",
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
@@ -73,8 +78,8 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
-      label: "Element2",
-      diagramLabel: "2",
+      label: "Element 2",
+      diagramLabel: "L2",
       type: "Positive Meniscus",
       nd: 1.603,
       vd: 65.4,
@@ -87,8 +92,8 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
-      label: "Element3",
-      diagramLabel: "3",
+      label: "Element 3",
+      diagramLabel: "L3",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
@@ -104,8 +109,8 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
-      label: "Element4",
-      diagramLabel: "4",
+      label: "Element 4",
+      diagramLabel: "L4",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
@@ -121,8 +126,8 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
-      label: "Element5",
-      diagramLabel: "5",
+      label: "Element 5",
+      diagramLabel: "L5",
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
@@ -136,8 +141,8 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
-      label: "Element6",
-      diagramLabel: "6",
+      label: "Element 6",
+      diagramLabel: "L6",
       type: "Biconcave Negative",
       nd: 1.51633,
       vd: 64.1,
@@ -151,8 +156,8 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
-      label: "Element7",
-      diagramLabel: "7",
+      label: "Element 7",
+      diagramLabel: "L7",
       type: "Negative Meniscus",
       nd: 1.804,
       vd: 46.6,
@@ -166,8 +171,8 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
-      label: "Element8",
-      diagramLabel: "8",
+      label: "Element 8",
+      diagramLabel: "L8",
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
@@ -181,8 +186,8 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
-      label: "Element9",
-      diagramLabel: "9",
+      label: "Element 9",
+      diagramLabel: "L9",
       type: "Biconcave Negative",
       nd: 1.83481,
       vd: 42.7,
@@ -195,8 +200,8 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L10",
-      label: "Element10",
-      diagramLabel: "10",
+      label: "Element 10",
+      diagramLabel: "L10",
       type: "Biconvex Positive",
       nd: 1.6516,
       vd: 58.6,
@@ -210,8 +215,8 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L11",
-      label: "Element11",
-      diagramLabel: "11",
+      label: "Element 11",
+      diagramLabel: "L11",
       type: "Negative Meniscus",
       nd: 1.801,
       vd: 35.0,
@@ -225,8 +230,8 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L12",
-      label: "Element12",
-      diagramLabel: "12",
+      label: "Element 12",
+      diagramLabel: "L12",
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.6,
@@ -242,8 +247,8 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L13",
-      label: "Element13",
-      diagramLabel: "13",
+      label: "Element 13",
+      diagramLabel: "L13",
       type: "Negative Meniscus",
       nd: 1.834,
       vd: 37.2,
@@ -257,8 +262,8 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L14",
-      label: "Element14",
-      diagramLabel: "14",
+      label: "Element 14",
+      diagramLabel: "L14",
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.2,
@@ -272,8 +277,8 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L15",
-      label: "Element15",
-      diagramLabel: "15",
+      label: "Element 15",
+      diagramLabel: "L15",
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
@@ -287,8 +292,8 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L16",
-      label: "Element16",
-      diagramLabel: "16",
+      label: "Element 16",
+      diagramLabel: "L16",
       type: "Biconcave Negative",
       nd: 1.762,
       vd: 40.1,
@@ -302,8 +307,8 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L17",
-      label: "Element17",
-      diagramLabel: "17",
+      label: "Element 17",
+      diagramLabel: "L17",
       type: "Biconvex Positive",
       nd: 1.65844,
       vd: 50.9,
@@ -316,8 +321,8 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L18",
-      label: "Element18",
-      diagramLabel: "18",
+      label: "Element 18",
+      diagramLabel: "L18",
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.8,
@@ -330,8 +335,8 @@ const LENS_DATA = {
     {
       id: 19,
       name: "L19",
-      label: "Element19",
-      diagramLabel: "19",
+      label: "Element 19",
+      diagramLabel: "L19",
       type: "Biconvex Positive",
       nd: 1.70154,
       vd: 41.2,
@@ -349,7 +354,7 @@ const LENS_DATA = {
       d: 2.4,
       nd: 1.80518,
       elemId: 1,
-      sd: 29,
+      sd: 31.0,
     },
     {
       label: "2",
@@ -357,7 +362,7 @@ const LENS_DATA = {
       d: 2.01,
       nd: 1,
       elemId: 0,
-      sd: 29,
+      sd: 31.0,
     },
     {
       label: "3",
@@ -365,7 +370,7 @@ const LENS_DATA = {
       d: 4.71,
       nd: 1.603,
       elemId: 2,
-      sd: 28.2,
+      sd: 28.4,
     },
     {
       label: "4",
@@ -373,7 +378,7 @@ const LENS_DATA = {
       d: 15.25,
       nd: 1,
       elemId: 0,
-      sd: 28.2,
+      sd: 30.2,
     },
     {
       label: "5",
@@ -381,7 +386,7 @@ const LENS_DATA = {
       d: 7.65,
       nd: 1.497,
       elemId: 3,
-      sd: 27.0,
+      sd: 28.9,
     },
     {
       label: "6",
@@ -389,7 +394,7 @@ const LENS_DATA = {
       d: 0.25,
       nd: 1,
       elemId: 0,
-      sd: 27.0,
+      sd: 28.9,
     },
     {
       label: "7",
@@ -397,7 +402,7 @@ const LENS_DATA = {
       d: 5.15,
       nd: 1.497,
       elemId: 4,
-      sd: 26.2,
+      sd: 28.1,
     },
     {
       label: "8",
@@ -405,7 +410,7 @@ const LENS_DATA = {
       d: 2.4,
       nd: 1,
       elemId: 0,
-      sd: 26.2,
+      sd: 28.1,
     },
     {
       label: "9",
@@ -437,7 +442,7 @@ const LENS_DATA = {
       d: 1.4,
       nd: 1.804,
       elemId: 7,
-      sd: 13,
+      sd: 13.6,
     },
     {
       label: "13",
@@ -445,7 +450,7 @@ const LENS_DATA = {
       d: 3.18,
       nd: 1.84666,
       elemId: 8,
-      sd: 13.0,
+      sd: 13.6,
     },
     {
       label: "14",
@@ -461,7 +466,7 @@ const LENS_DATA = {
       d: 1.2,
       nd: 1.83481,
       elemId: 9,
-      sd: 12.5,
+      sd: 13.4,
     },
     {
       label: "16",
@@ -469,7 +474,7 @@ const LENS_DATA = {
       d: 26.06,
       nd: 1,
       elemId: 0,
-      sd: 12.5,
+      sd: 13.4,
     },
     {
       label: "17",
@@ -635,9 +640,9 @@ const LENS_DATA = {
     ],
   },
   varLabels: [
-    ["8", "D8"],
-    ["16", "D16"],
-    ["19", "D19"],
+    ["8", "d8"],
+    ["16", "d16"],
+    ["19", "d19"],
   ],
   zoomPositions: [72, 105, 194],
   zoomStep: 0.5,
@@ -661,6 +666,11 @@ const LENS_DATA = {
       toSurface: "8",
     },
     {
+      text: "G1Y (focus group)",
+      fromSurface: "5",
+      toSurface: "8",
+    },
+    {
       text: "G2",
       fromSurface: "9",
       toSurface: "16",
@@ -674,6 +684,11 @@ const LENS_DATA = {
       text: "G4",
       fromSurface: "21",
       toSurface: "34",
+    },
+    {
+      text: "G4Y (stabilizer)",
+      fromSurface: "26",
+      toSurface: "28",
     },
   ],
   doublets: [

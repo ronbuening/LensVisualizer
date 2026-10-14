@@ -41,14 +41,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
  * ║    Patent does not list SDs. Values are ray-trace estimates checked  ║
- * ║    against Fig. 6c (and Fig. 3), scaled by the r1→r14 vertex span    ║
- * ║    (483 px = 54.05 mm): L1 ≈16.1, L2 ≈13.4, L3/L4 ≈8.7 (drawn as a   ║
- * ║    near-cylinder), L5 ≈6.9, L6/L7 ≈8.0, L8 ≈9.7 mm. The figure is    ║
- * ║    schematic (L8 and the L1 rear face are drawn flatter than their   ║
- * ║    radii allow), so r2/r13 are held inside rim-slope limits. r5      ║
- * ║    stays at 10.4 for the 20–28° off-axis bundles. All values clear   ║
- * ║    the f/2.8 axial beam and the 37.7° full-field chief ray; corner   ║
- * ║    vignetting at full aperture is ordinary for this class.           ║
+ * ║    against Fig. 3 and Fig. 6c, which draw Example 3 at one scale     ║
+ * ║    (r1→r14 = 480 px for 54.05 mm at 300 dpi). Line-centre heights:   ║
+ * ║    L1 16.1 front / 14.1 rear (bevelled), L2 13.3 / 12.3, L3+L4 8.5   ║
+ * ║    and L6+L7 7.8 (square-cut blocks), L5 6.0 / 6.8, L8 8.1 / 9.4–9.7 ║
+ * ║    (chamfered front corner). Each block keeps one height: r5–r7      ║
+ * ║    8.7, r10–r12 7.4. All values clear the f/2.8 axial beam (7.65 mm  ║
+ * ║    at r5) and the 37.7° chief ray. r5 trims the outer edge of the    ║
+ * ║    15–32° bundles, as the limit bars of Figs. 3a–3c show (they fall  ║
+ * ║    on a 7.7 mm clear radius at r5); corner vignetting is ordinary.   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -143,13 +144,13 @@ const LENS_DATA = {
       fl: -167.1,
       glass: "SK16 (Schott catalog equivalent; patent ne 1.62286 / νe 60.08; production supplier unspecified)",
       apd: false,
-      role: "Weakly negative meniscus behind stop — controls spherical aberration and coma in diverging beam; field flattener",
+      role: "Weakly negative thick meniscus 2.3 mm behind the stop, concave toward it — sits in the converging beam; its front surface is the second-largest field-flattening (negative Petzval) contribution",
     },
     {
       id: 6,
       name: "L6",
       label: "Element 6",
-      type: "Plano-Convex Positive",
+      type: "Biconvex Positive (near-plano front)",
       nd: 1.72823,
       vd: 37.85,
       indexReference: "e",
@@ -157,7 +158,7 @@ const LENS_DATA = {
       glass: "LaF10 class; S-BAH28 catalog e-line spectral proxy (production supplier unspecified)",
       apd: false,
       cemented: "D2",
-      role: "Nearly flat front, strongly convex rear — concentrates power at cemented interface to reduce ghosting",
+      role: "Positive member of the rear cemented doublet — nearly flat front, strongly curved cemented rear; the index step there is only 0.084, so the doublet's power arises at the L7 rear surface",
     },
     {
       id: 7,
@@ -199,14 +200,14 @@ const LENS_DATA = {
     { label: "2", R: 17.136, d: 5.561, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "3", R: 28.448, d: 1.52, nd: 1.62286, elemId: 2, sd: 14.0 },
     { label: "4", R: 17.01, d: 14.336, nd: 1.0, elemId: 0, sd: 13.2 },
-    { label: "5", R: 16.828, d: 8.602, nd: 1.79227, elemId: 3, sd: 10.4 },
+    { label: "5", R: 16.828, d: 8.602, nd: 1.79227, elemId: 3, sd: 8.7 },
     { label: "6", R: -25.536, d: 4.931, nd: 1.81265, elemId: 4, sd: 8.7 },
     { label: "7", R: -153.804, d: 0.599, nd: 1.0, elemId: 0, sd: 8.7 },
     { label: "STO", R: 1e15, d: 2.338, nd: 1.0, elemId: 0, sd: 5.9 },
     { label: "8", R: -15.789, d: 3.161, nd: 1.62286, elemId: 5, sd: 6.0 },
     { label: "9", R: -20.042, d: 0.655, nd: 1.0, elemId: 0, sd: 6.4 },
-    { label: "10", R: 932.4, d: 3.811, nd: 1.72823, elemId: 6, sd: 7.3 },
-    { label: "11", R: -10.102, d: 1.68, nd: 1.81265, elemId: 7, sd: 7.3 },
+    { label: "10", R: 932.4, d: 3.811, nd: 1.72823, elemId: 6, sd: 7.4 },
+    { label: "11", R: -10.102, d: 1.68, nd: 1.81265, elemId: 7, sd: 7.4 },
     { label: "12", R: -28.14, d: 3.811, nd: 1.0, elemId: 0, sd: 7.4 },
     { label: "13", R: -9.694, d: 1.52, nd: 1.62408, elemId: 8, sd: 8.2 },
     { label: "14", R: -17.08, d: 18.396, nd: 1.0, elemId: 0, sd: 9.0 },

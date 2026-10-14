@@ -394,8 +394,8 @@ inferred, not patent-specified manufacturing apertures. The rim angle includes t
 | 11A | 5.6 | -45.176108 | 11.219822 |
 | 13A | 5.8 | +1.887847 | 11.445080 |
 | 14A | 5.8 | +28.699674 | 3.445518 |
-| 18A | 5.6 | -108.377564 | 5.721285 |
-| 19A | 5.6 | -161.644336 | 23.718595 |
+| 18A | 5.3 | -89.003348 | 4.641597 |
+| 19A | 5.3 | -131.450222 | 22.823682 |
 
 On the first positive asphere the negative polynomial departure shifts the modeled rim objectward relative to the
 spherical base. The front stabilization asphere stays within about 5 µm of its spherical base over the modeled aperture
@@ -449,19 +449,21 @@ named material. [P1], ¶¶0082–0083.
 ### Clear apertures and vignetting
 
 The patent does not publish clear semi-diameters. The modeled rims are measured on the three panels of Fig. 5 (wide,
-middle and tele, 0.144 mm per pixel) and checked against real-ray envelopes at the printed states. Most rims follow the
-drawing to within 0.2 mm. Two stay above it because the drawn radii would lower the corner illumination by about ten
-points: the focus element is set at the outer edge of its drawn outline (5.6 mm against a centre reading of 5.3 mm), and
-the front doublet stays about 6 % above the drawing (20.5 and 19.5 mm against 19.3 and 18.3 mm). The third element's
-rear surface stops at 9.2 mm, where the drawing's flat rear annulus begins, while its front face reaches 12.2 mm.
+middle and tele, 0.145 mm per pixel) and checked against real-ray envelopes at the printed states. Every rim follows the
+drawing to within about 0.2 mm, the front doublet (19.3 and 18.3 mm) and the focus element (5.3 mm) included. The third
+element's rear surface stops at 9.2 mm, near where the drawing's flat rear annulus begins, while its front face reaches
+12.2 mm.
 
-At these radii the thinnest glass section is 0.348258642 mm, at the rim of L2, and the tightest facing air gap uses
-0.844426078 of its depth, below the default allowance of 0.90; no override is used.
+At these radii the thinnest glass section is the 0.6 mm centre of L8, the rim of L9 is 0.6003 mm thick, and the
+tightest facing air gap uses 0.844426078 of its depth, below the default allowance of 0.90; no override is used.
 
-The axial bundle at each printed f-number and the chief ray to the image corner pass at all six printed states. Some
-rays at the edge of the pupil are clipped at full field, so the model does not claim full-pupil illumination of the
-corner. The estimated radii and derived iris cannot predict the vignetting of a manufactured lens, and positions
-between the printed stations are estimates.
+The axial bundle at each printed f-number and the chief ray to the image corner pass at all six printed states. The
+drawn rims vignette the corner bundles. At the edge of the printed field the share of the iris area whose rays clear
+every rim is about 73 % at the wide station, 86 % at the middle and 72 % at tele at infinity focus, and about 48 % at the
+wide frame corner, which lies beyond the patent's 10.0 mm image height. The focus element and the rims of L3 and L4
+limit the wide bundle, the focus element the middle one, and mainly the front doublet the tele one. The estimated radii
+and derived iris cannot predict the vignetting of a manufactured lens, and positions between the printed stations are
+estimates.
 
 ### Printed precision and the field-height comparison
 
@@ -481,8 +483,11 @@ not used to construct a different one. [P1], ¶0026 and Table 7A.
 
 The budget column is the height change produced by moving every printed input by half of its last digit. All three
 residuals exceed it, so rounding alone does not explain them. The patent lists field angle and image height separately
-and does not state that the stop-centred chief ray defines the height, so the 1–3 µm difference may reflect a different
-height convention. No value is rescaled or adjusted to remove it. [P1], ¶¶0102 and 0107; Table 7A.
+and does not state that the stop-centred chief ray defines the height. A ray that crosses the iris about 0.09 and 0.27
+of its radius off-centre at the wide and middle stations, and 0.11 on the opposite side at tele, lands on the printed
+height; the same ray reproduces the full-field astigmatism of the patent's Fig. 6, which the stop-centred chief ray does
+not. This is consistent with a reference ray through a vignetted pupil; the patent does not identify that ray. No value is rescaled or adjusted.
+[P1], ¶¶0102 and 0107; Table 7A; p. 28, Fig. 6.
 
 ### Field angles in the viewer
 
@@ -494,7 +499,7 @@ default off-axis bundle at 0.6 of the derived half-field.
 | --- | --- | --- | --- | --- |
 | Wide | 41.6837 | 35.845846 | 44.159739 | 21.507508 |
 | Middle | 21.5822 | 26.965131 | 21.594236 | 16.179079 |
-| Tele | 10.4396 | 11.652932 | 10.445239 | 6.991759 |
+| Tele | 10.4396 | 11.149295 | 10.445256 | 6.689577 |
 
 At the wide end the printed ω corresponds to the patent's 10.0 mm image height, short of the 10.82 mm frame corner
 that the analysis field reaches. The derived wide half-field is a paraxial estimate set by the 9.2 mm rear surface of

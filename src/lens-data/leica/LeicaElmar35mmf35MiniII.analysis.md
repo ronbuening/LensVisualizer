@@ -81,6 +81,8 @@ Catalog data from OHARA, HOYA, Schott, Hikari, CDGM and Sumita were compared. Th
 
 L4 remains unmatched. Its nearest catalog row, HOYA LAFL4 (1.716613, 43.056), is 0.00009 away in nₑ and 0.17 in νₑ, which is too far to stand as an equivalent.
 
+The catalog also preserves OHARA’s discontinued PBM22 curve, at nₑ / νₑ = 1.652226 / 33.554, as a historical alternative for L3. Its availability does not establish the production glass. The selected E-FD2 label and curve remain unchanged.
+
 The patent supplies no C′, F′ or g indices and no partial dispersions. For L1 to L3 the model takes the C′ and F′ indices from the named catalog curve, anchored at the printed nₑ (the printed nₑ plus the catalog's index difference from the e line). L4 uses an estimate from its Abbe number. On that basis the paraxial F′–C′ focus difference is about 0.165 mm, the blue focus nearer the lens, and the f/3.5 rim rays for C′, e and F′ land about 21, 28 and 27 µm from the axis in the e-line paraxial plane.
 
 Figure 2C plots the same on-axis curves. Scaled from the ±20 µm ticks of the European print, its C′ curve ends about 20 µm from the axis at the edge of the aperture, and its e and F′ curves, drawn together there, end about 28 µm from it. From 0.4 of the aperture to its edge the model follows the three plotted curves within about 1 µm. The redrawn Figure 2C of the US print sets its ±20 µm ticks about 1.4 times too far apart, while its curves are the same size as the European ones, so the US ticks are not used. No g-line result is quoted, because L4 has no published partial dispersion.
@@ -93,7 +95,7 @@ The manufacturer brochure specifies active infrared autofocus from 0.65 m to inf
 
 ## Aperture, Clearances and Image Plane
 
-The source does not publish clear semi-diameters. Figure 1, scaled from its vertex spacing, draws approximately 6.6 mm for the cemented front group, 4.0 mm for the middle singlet and 3.85 mm for the rear singlet, subject to schematic-drawing uncertainty. It draws the rear face of the front group polished only to about 4.0 mm, level with the rim of L3, and chamfered from there back to the full rim. The model uses 6.6 mm for the front and cemented surfaces, 4.05 mm for the rear face of the front group and for L3, and 4.0 mm for L4. The rendered section shows the chamfer as a straight edge from the cemented rim, without the short cylindrical land that Figure 1 gives L2.
+The source does not publish clear semi-diameters. Figure 1, scaled from its vertex spacing, draws approximately 6.6 mm for the cemented front group, 4.0 mm for the middle singlet and 3.85 mm for the rear singlet, subject to schematic-drawing uncertainty. It draws the rear face of the front group polished only to about 4.0 mm, level with the rim of L3, and chamfered from there back to the full rim. The model uses 6.6 mm for the front and cemented surfaces, 4.05 mm for the rear face of the front group and for L3, and 3.9 mm for L4. The rendered section shows the chamfer as a straight edge from the cemented rim, without the short cylindrical land that Figure 1 gives L2.
 
 The f/3.5 axial ray enters at 4.8047 mm and reaches 3.953 mm on the rear face of L2, 3.929 mm on the front of L3 and 3.811 mm on the front of L4, inside those radii. At the 4.05 mm shared radius the first air gap has 0.6237 mm of sag intrusion into its 0.7000 mm axial spacing, leaving 0.0763 mm of air at the rim.
 
@@ -109,7 +111,7 @@ With the 10.8000 mm lens length and the 25.7165 mm back focus, the model gives B
 
 The fourth condition compares the lateral-color Seidel coefficients F₂ of surfaces 2 and 7, and the patent prints it without absolute-value bars or a normalization. A primary lateral-color calculation gives contributions of nearly equal size and opposite sign (ratio −0.99). That matches the patent's description of the cemented surface compensating the last surface, and in magnitude the ratio lies inside the claimed 0.7 to 1.3 range.
 
-With the third radius corrected, the model reproduces the patent's focal length, image distance and pupil magnification, its distortion plot (within 0.04 percentage points out to 20 mm) and its sagittal field curve (within 0.012 mm out to 12 mm). The tangential curve of Figure 2D is matched less closely, within 0.03 mm out to 15 mm. Beyond about 12 mm the plotted field curves depart from a chief-ray calculation; the bundles there are heavily vignetted, and the patent does not state the reference ray its plots use.
+With the third radius corrected, the model reproduces the patent's focal length, image distance and pupil magnification, its distortion plot (within 0.04 percentage points out to 20 mm) and its sagittal field curve (within 0.012 mm out to 12 mm). The tangential curve of Figure 2D is matched less closely, within 0.03 mm out to 15 mm. Beyond about 12 mm the plotted field curves depart from a calculation along the ray through the stop centre, because the bundles there are heavily vignetted. Along the central ray of the vignetted f/3.5 bundle the model follows both plotted curves over the whole field, the sagittal within 0.04 mm and the tangential within 0.03 mm. The patent does not state the reference ray its plots use.
 
 ## Sources
 

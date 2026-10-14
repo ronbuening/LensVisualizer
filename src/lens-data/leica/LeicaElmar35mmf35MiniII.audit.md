@@ -239,3 +239,101 @@ Analysis changes. The Glass lines of L1 to L3, the candidate sentences under eac
 
 Open: L4 has no catalog curve, so its C′ and F′ indices rest on its Abbe number alone and no g-line result is given for the lens.
 Open: the labels are catalog equivalents at the printed precision. A melt sheet or a maker's glass list would be needed to name the production glasses.
+
+## 2026-10-13 — Second review: diagram, labels and movement
+
+Scope. An independent look at the lens as the local page draws it, beside Fig. 1 of both prints, with every figure dimension measured again. No radius, thickness, index, semi-diameter, label or tag changed. The data-file header gained one note on the European print, and one sentence of the analysis on the field curves was rewritten.
+
+Sources and scale. The page was shot at four times device scale (65.07 px/mm). US 5,321,555 A, PDF page 2, at 300 dpi: vertex crossings at x = 673, 910, 1083, 1158, 1231.5, 1301.5 and 1619.5 px, 946.5 px for 10.8000 mm, 87.64 px/mm. EP 0 537 469 B1, PDF page 6, at 300 dpi: the sheet is rotated 1.58° (the drawn axis falls 24 px over 870 px) and was read in axis-aligned coordinates; vertex crossings at 891.5, 1085.5, 1226, 1275.5, 1348.5, 1406 and 1657 px, 70.9 px/mm. The European drawing is to scale: its six vertex spacings are 2.74, 1.98, 0.70, 1.03, 0.81 and 3.54 mm against the table's 2.73, 2.02, 0.70, 1.005, 0.80 and 3.543. The US sheet is a redrawing that widens the first air gap to 0.86 mm and thins L3 to 0.84 mm.
+
+| Feature (mm) | Stored | US Fig. 1 | EP Fig. 1 |
+|---|---|---|---|
+| Front pair rim, surfaces 1 and 2 | 6.6 | 6.60 | 6.60 |
+| Surface 3, end of the polished face | 4.05 | 3.99 (3.94 above, 4.04 below the axis) | 4.07 to 4.1 |
+| L3 rim | 4.05 | 4.03 | 4.05 (4.03, 4.06) |
+| L4 rim | 4.0 | 3.85 | 3.87 (3.85, 3.89) |
+| Stop half-opening | 3.545 | 3.60 | 3.58 |
+| L2 rear corner, behind the first vertex | not drawn | 4.56 | 4.66 (4.60, 4.72) |
+| L2 cylindrical land | none | 1.3 | 1.4 |
+
+Surface 3, 4.05 against 6.6. Both prints give L2 a cylindrical land from the cemented rim (3.29 mm behind the first vertex) to a corner at 4.56 to 4.66 mm, then a cone, 10° to 13° from the vertical, down to the end of the polished face at about (5.17 mm, 4.0 to 4.1 mm). The section can draw only one straight edge between the two rims of an element, so neither value reproduces it. The trial value 6.6 was shot on the local page and the file restored.
+
+| Measure | Figure | Stored 4.05 | Trial 6.6 |
+|---|---|---|---|
+| Height where the polished face ends | 4.0 to 4.1 | 4.05 | 6.6 |
+| L2 rim thickness at 6.6 mm | 1.3 to 1.4 | 0 | 2.60 |
+| Front-pair rim thickness at 6.6 mm | 2.3 to 2.5 | 1.10 | 3.70 |
+| Rearmost point of L2 against L3's front corner | 0.09 to 0.14 ahead | 0.08 ahead | 0.64 behind, over L3's rim |
+| Outer rear edge, above 4 mm | recedes toward the object | recedes, 36° from the vertical | advances toward the image |
+| Glass area in error, per side (mm²) | 0 | 1.7 missing | 1.5 to 1.6 added |
+| Largest departure of the outline (mm) | 0 | 1.05 to 1.10 | 1.21 to 1.27 |
+
+The drawn corner lies almost midway between the two renderings, so area and rim thickness do not decide. The stored 4.05 keeps the three things the figure states about this face: where the polish ends, the height and shape of the first air space, and L2 standing wholly in front of L3 with its rear edge falling away toward the object. At 6.6 the land returns, twice as long as drawn, but the face becomes a bowl that wraps the front corner of L3, which neither print shows. The stored value is closer overall and is retained. An intermediate 5.3 would lower the mismatch to about 1.1 mm² and 0.7 mm, but it matches no drawn feature: the polished face would be 30 % too tall, the land would still be missing, and the rim would stand 0.23 mm over L3's corner. It was not adopted.
+
+Rays under the two values. The surface validator reports no errors with surface 3 at 6.6 or at 5.3, and neither the axial beam nor the corner chief ray is clipped. Only surfaces 3 and 4 bound the off-axis bundles; L4 down to 3.85 mm and a front rim down to 6.3 mm clip nothing. Counting rays over the whole pupil (an independent skew-ray trace, 401 × 401 grid, share of the pupil that the stop alone would pass, f/3.5) gives 86.5, 73.1, 60.4 and 52.9 % at image heights of 6, 12, 18 and 21.63 mm with 4.05, and 87.1, 74.0, 61.8 and 54.9 % with 6.6. The engine's meridional sweep gives 67.7, 55.7 and 43.8 % at 20.5°, 26.4° and 32.2° with 4.05 and 68.2, 56.8 and 45.3 % with 6.6. The meridional figure alone understates how little the choice matters: surface 3 by itself removes 0.6 to 1.8 % of the pupil.
+
+Other rims. The front pair, L3 and the stop agree with both prints within 1.6 %. L4 is drawn at 3.85 to 3.87 mm in both prints, 3.5 % under the stored 4.0, and 0.955 to 0.957 of L3 where the file has 0.988. That is inside the reading tolerance of the semi-diameter procedure, the order L3, L4, stop is the same, and the value binds no ray, so it is retained. A trial 3.9 on both faces passes the validator, clears the axial ray (3.811 mm on surface 6) and changes no transmission figure.
+
+Labels, brackets and tags, found correct.
+
+- Element names L1 to L4 are the reference signs of Fig. 1 and of EP claim 1. The US description's "back lens element L5" (column 2, line 1) is a misprint for L4; the EP claims print L4.
+- Element types against the signs of R, with the corrected third radius: L1 +11.03 / +39.15, positive meniscus convex to the object; L2 +39.15 / +19.635, negative meniscus convex to the object; L3 −40.80 / +10.47, biconcave; L4 +20.71 / −24.01, biconvex. EP claim 1 reads "a first positive and a second negative lens", a biconcave middle element and a biconvex rear element.
+- The patent names no group symbols. It calls the cemented pair the "first lens group" (US column 2, lines 9 and 22; EP page 2, lines 23 to 27) and the others the middle and rear elements, so G1 (+), G2 (−), G3 (+) over surfaces 1–3, 4–5 and 6–7 are consistent with it; the group focal lengths are +25.03, −12.68 and +16.05 mm.
+- One cemented component, D1 over surfaces 1–3, with both elements carrying it. The page centres the D1 and group labels on those ranges.
+- No aspheric surface and no dispersion tag; the patent designates neither.
+- The stop is surface 8 of the patent, 1.2 mm behind surface 7, and is drawn there, behind L4.
+- The element inspector shows nₑ and νₑ, the stored glass text, focal lengths of +18.21, −50.83, −12.68 and +16.05 mm and roles that are true of each element.
+
+Movement. The patent tabulates one infinity state, and `var` is empty. The focus slider is marked as not modeled, the page at the far end of the slider is identical to the infinity page, and the movement overlay reports that the lens has no modeled focus or zoom movement.
+
+Patent plots against the model, all read from the European sheets at 300 dpi with their rotation (0.4° to 0.9°) removed.
+
+- Spherical aberration, Fig. 2c, on-axis e curve, transverse aberration at 0.6, 0.8 and 1.0 of the aperture: plot 14.2, 26.6 and 27.5 µm; model 14.0, 26.1 and 27.6 µm, a longitudinal −0.161, −0.224 and −0.189 mm.
+- Distortion, Fig. 2a, at 3, 6, 9, 12, 15, 18, 20 and 21 mm: plot +0.105, 0.379, 0.780, 1.254, 1.714, 2.030, 2.102 and 2.078 %; model +0.096, 0.366, 0.765, 1.229, 1.675, 2.005, 2.100 and 2.094 %. The largest difference is 0.04 points. The side labels of Fig. 2c, "4 V", "13 V", "20 V" and "21 V" at 6, 12, 18 and 21 mm, are this distortion in parts per thousand (model 3.7, 12.3, 20.0, 20.9).
+- Field curves, Fig. 2d. The regular ticks of its height axis, 241 px apart, are read as 3 mm; the end mark labelled 21.00 stands 0.74 of an interval above the 18 mm tick.
+
+| Image height (mm) | 3 | 6 | 9 | 12 | 15 | 18 | 20 |
+|---|---|---|---|---|---|---|---|
+| Sagittal, plot (mm) | −0.032 | −0.114 | −0.225 | −0.322 | −0.350 | −0.239 | −0.031 |
+| Model, ray through the stop centre | −0.032 | −0.117 | −0.231 | −0.333 | −0.374 | −0.289 | −0.119 |
+| Model, centre ray of the vignetted bundle | −0.030 | −0.112 | −0.221 | −0.316 | −0.347 | −0.246 | −0.059 |
+| Tangential, plot (mm) | −0.022 | −0.078 | −0.148 | −0.214 | −0.261 | −0.301 | −0.332 |
+| Model, ray through the stop centre | −0.025 | −0.092 | −0.175 | −0.245 | −0.269 | −0.207 | −0.082 |
+| Model, centre ray of the vignetted bundle | −0.021 | −0.076 | −0.143 | −0.198 | −0.236 | −0.275 | −0.322 |
+
+Along the ray through the stop centre the model holds the sagittal curve within 0.010 mm to 12 mm and the tangential within 0.032 mm to 15 mm, then leaves both: the plotted tangential curve keeps falling to −0.34 mm at 20.6 mm where that ray gives −0.03 mm. Along the centre ray of the vignetted f/3.5 fan (midway, in the stop plane, between the last rays the stored rims pass) the model holds the sagittal curve within 0.042 mm and the tangential within 0.028 mm over all 23 and 16 readings. The two curves cross at 17.1 mm in the plot and 17.6 mm in the model, and the sagittal curve returns through zero at 20.2 mm and 20.4 mm. This also accounts for the earlier finding that the plotted tangential curve sat between the two tables below 9 mm. Because that centre ray depends on the rims near the stop, the fit is a check of them; it does not separate 4.05 from 6.6 at surface 3 (0.005 mm apart).
+
+- Relative illumination, Fig. 2b, f/3.52 curve at 3, 6, 9, 12, 15, 18 and 21 mm: plot 91.8, 78.7, 64.4, 50.3, 37.8, 27.0 and 18.6 %; model, integrated over the whole pupil with the image-side solid angle, 91.7, 77.7, 62.5, 48.3, 35.9, 25.9 and 18.3 % (with surface 3 at 6.6: 78.2, 48.9, 26.5 and 18.9 % at 6, 12, 18 and 21 mm). This closes the difference noted in the semi-diameter pass: the 68, 55, 43, 33 and 22 % quoted there are the engine's meridional sweep multiplied by cos⁴ of the object angle, which counts neither the sagittal narrowing of the pupil nor its compression with field.
+- The f/4, f/5.66 and f/8 curves of Fig. 2b are not reproduced and are not used. The f/8 curve reads 98.1, 91.8, 83.4, 72.8 and 61.6 % at 3 to 15 mm. A stop 24.5165 mm ahead of the image cannot give more than cos⁴ of the image-side chief-ray angle, 97.1, 89.0, 77.7, 65.1 and 52.9 %, which is what the model gives; the plotted values follow cos³ of that angle within one point. Measured against that f/8 curve, the plot's wide-open curve is lower than the model's by 1 % at 6 mm, 5 % at 12 mm and 15 % at 18 mm.
+- Ray fans, Fig. 2c. The ends of the tangential e fans, in units of the on-axis pupil radius, are −0.68 and +1.00 at 6 mm, −0.37 and +0.87 at 12 mm, −0.14 and +0.68 at 18 mm, −0.06 and +0.57 at 21 mm. The model gives −0.69 and +0.99, −0.38 and +0.87, −0.16 and +0.69, −0.08 and +0.59 (ray height in the entrance beam times cos² of the field angle, the scale that puts the stop-limited end where the plot has it). The negative ends are the rim of surface 3; with that surface at 6.6 they are −0.70, −0.39, −0.17 and −0.09. At 6 mm the fan ends read −53 µm tangential, −24 µm sagittal and −10 µm sagittal coma, against −52, −23 and −11 µm.
+
+Glass, read again in both prints. The table of US page 7 (column 2) and claim 2 on page 8, and EP claim 2 on pages 3, 4 and 5, give L4 only nₑ = 1.716700 and νₑ = 42.89. Neither publication names a glass, a maker, a second line index or a partial dispersion for any element. The claims bound only L2's index (n₂ > 1.7) and ν₁ − ν₂ > 15, and EP claim 1 adds that the indices of L1 and L2 are nearly identical; nothing bounds L3 or L4. The sentence on a "relatively large ν value and a relatively low refractive index" (US column 2, lines 24 to 28; EP page 2, lines 28 to 30) speaks of the second member of the triplet, L3, not of L4. The assigned glasses satisfy the claims: S-TIH6 has nₑ 1.81264, S-LAH65V less S-TIH6 is 21.12 in νₑ, and the two indices differ by 0.0045.
+
+The only other dispersion evidence is the g curve of Fig. 2c. On axis it separates from its neighbours only near the edge of the aperture, at 26.9 and 24.5 µm for 0.9 and 0.95. With the assigned curves for L1 to L3 the model gives 26.1 and 23.5 µm if L4 has the partial dispersion of HOYA LAFL4 and 26.8 and 24.2 µm if it lies on the normal line. A step of 0.005 in L4's partial dispersion moves the curve 0.7 µm, about the reading error, so the plot does not identify L4.
+
+A note for the glass record, with no label proposed: in the OHARA catalog file that keeps discontinued types, LAH65 (1.808108 / 46.33), TIH6 (1.812640 / 25.23) and PBM22 (1.652226 / 33.55) reproduce the printed 1.808109 / 46.34, 1.812640 / 25.23 and 1.652230 / 33.57 at least as closely as the assigned S-LAH65V, S-TIH6 and E-FD2, which are later catalog generations (not checked against dated catalogs). None of the three is in the repository catalog, so the assigned labels stay. The same file has no glass near 1.7131 / 43.1; HOYA's discontinued LAFL4 remains the only catalog row of that type.
+
+Model after this review, unchanged: focal length 33.6326 mm, f/3.50, engine half-field estimate 28.12°, validator without errors at the default gap fraction, no undersized surface, corner coverage 21.65 mm of 21.65 mm at 32.2°, smallest axial margin 0.097 mm at surface 3.
+
+Maker's drawing. No maker image was viewed. The record above stands: four elements in three groups, a thick cemented front pair with a weakly curved junction convex to the object, a thin biconcave middle lens about 0.66 of the front pair's diameter (model and both patent prints 0.61) and a biconvex rear lens, all spherical, with no special-glass marking.
+
+Open: the 1.3 to 1.4 mm land on L2 cannot be drawn with semi-diameters. It would need an edge profile: a cylinder at 6.6 mm from the cemented rim to 4.6 mm behind the first vertex, then a cone to the polished limit at 4.05 mm.
+Closed 2026-10-14: both L4 faces now use 3.9 mm, following the two drawings without clipping the axial beam.
+Open: the convention of the stopped-down curves of Fig. 2b and the reference ray of Fig. 2d are not stated in the patent; the centre-ray reading of Fig. 2d is inferred from the fit.
+
+
+## 2026-10-14 — Final local-diagram review: L4 rim
+
+Compared the current local diagram with US 5,321,555 A Fig. 1 (PDF page 2) and EP 0 537 469 B1 Fig. 1 (PDF page 6), including a fresh 600 dpi crop of the European figure. Both show the square-cut rear singlet below L3, at 3.85–3.87 mm on the source scale.
+
+| Surface | Before (mm) | After (mm) | Evidence |
+|---|---|---|---|
+| 6, 7 (L4) | 4.0 | 3.9 | Common square rim in both prints; rounded upward from the 3.85–3.87 mm readings. The axial f/3.5 beam reaches 3.811 mm on surface 6, leaving 0.089 mm clearance. |
+
+The first pair retains its polished rear limit at 4.05 mm; extending it to the outer blank radius would wrap L3's front corner. The renderer still approximates the short cylindrical land by a straight edge. The stop and prescription are unchanged.
+
+The page correctly disables focus movement because no finite-focus spacing is printed. L1–L3 retain their native e-line catalog equivalents; L4 stays unresolved. HOYA LAFL4 is near the coordinates, but neither patent identifies it or prints the missing partial dispersion. Its approximate curve is not presented as a completed material identification.
+
+Catalog backfill. Added OHARA's discontinued PBM22 from the formula-1 coefficients in its all-products Zemax catalog `OHARA_260701.AGF` (2026-07-01), preserving the vendor's coefficients and d-line summary coordinates. Its native e-line pair is 1.652226 / 33.5539. It is available as a named historical alternative; the lens retains E-FD2. Its shared six-digit code is omitted.
+
+LAH65 and TIH6 were also evaluated from the same catalog but withheld: merely adding their names retargeted five existing Canon/Nikon elements whose annotations mention those families. PBM22 alone preserves every existing catalog selection. These alternatives do not settle the production glass supplier, and L4 remains unresolved.
