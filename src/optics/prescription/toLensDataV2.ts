@@ -65,11 +65,15 @@ class Writer {
     this.writes = writes;
   }
 
-  /** Write one member; a record or list value is copied whole, as a subtree of its canonical source. */
+  /**
+   * Write one member; a record or list value is copied whole, as a subtree of its canonical source. A function or a
+   * symbol goes through `structuredClone` too, which refuses it.
+   */
   put(target: Untyped, at: string, field: string, value: unknown, from?: string): void {
     if (value === undefined) return;
     const isTree = value !== null && typeof value === "object";
-    target[field] = isTree ? structuredClone(value) : value;
+    const kind = typeof value;
+    target[field] = isTree || kind === "function" || kind === "symbol" ? structuredClone(value) : value;
     this.note(at, field, from, isTree);
   }
 

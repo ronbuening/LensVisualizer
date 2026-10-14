@@ -342,6 +342,21 @@ const MAXIMAL_ZOOM: LensDataV2Input = {
 };
 
 describe("V2 view", () => {
+  it("copies no function or symbol: the view refuses one as structuredClone does", () => {
+    const pair = FIXTURE_PAIRS.find((candidate) => candidate.kind === "lens")!;
+    for (const glass of [() => "S-LAH63", Symbol("S-LAH63")]) {
+      const ingested = ingestLens(pair.v2 as LensDataV2Input);
+      (ingested.prescription.elements[0] as unknown as Record<string, unknown>).glass = glass;
+      let name: string | null = null;
+      try {
+        toLensDataV2Input(ingested);
+      } catch (error) {
+        name = (error as Error).name;
+      }
+      expect(name).toBe("DataCloneError");
+    }
+  });
+
   it("writes every record's members in the declaration order of the V2 types, whatever order the source has", () => {
     const writes = v2Writes();
     const zoom = toLensDataV2Input(ingestLens(reversed(MAXIMAL_ZOOM), { sources: true }), writes);
