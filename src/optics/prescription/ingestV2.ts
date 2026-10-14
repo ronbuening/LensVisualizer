@@ -291,8 +291,8 @@ const CHECKS_FIELDS: Fields<ChecksV2Input> = { gapSagFrac: true, maxRimAngleDeg:
 
 /* ── Context and records ── */
 
-function createContext(request: IngestRequest | undefined): IngestContext {
-  return { format: "V2", issues: [], defaulted: [], ignored: {}, sources: sourcePathsFor(request) };
+function createContext(request: IngestRequest | undefined, data: Untyped): IngestContext {
+  return { format: "V2", issues: [], defaulted: [], ignored: {}, sources: sourcePathsFor(request, data) };
 }
 
 /** Record that each listed member of a V2 record was read where it sits, at its canonical path. */
@@ -552,7 +552,7 @@ function ingestSurfaces(authored: readonly Untyped[], facts: SurfaceFacts, conte
       recordInPlace(context.sources, at, out, SURFACE_READ_FIELDS);
       if (has(surface, "d")) context.sources.read[`${at}.d`] = `${at}.d`;
       if (out.asphere) context.sources.records[`${at}.asphere`] = `${at}.asphere`;
-      context.sources.heldBy[`${at}.medium`] = `${at}.medium`;
+      if (has(surface, "medium")) context.sources.heldBy[`${at}.medium`] = `${at}.medium`;
     }
     return out as unknown as CanonicalSurface;
   });
@@ -723,8 +723,9 @@ function ingestZoom(zoom: Untyped, context: IngestContext): CanonicalZoom {
     put(record, "label", station.label);
     if (context.sources) {
       recordInPlace(context.sources, at, record, ["focalLengthMm", ...EVERY_STATION_OR_NONE, "label"]);
-      context.sources.heldBy[`${at}.published`] = `${at}.published`;
-      context.sources.heldBy[`${at}.publishedFocus`] = `${at}.publishedFocus`;
+      if (has(station, "published")) context.sources.heldBy[`${at}.published`] = `${at}.published`;
+      /* The list is copied as written, so each keyframe index, and a comment on it, keeps its place. */
+      if (has(station, "publishedFocus")) context.sources.read[`${at}.publishedFocus`] = `${at}.publishedFocus`;
     }
     return record as unknown as CanonicalZoomStation;
   });
@@ -889,6 +890,8 @@ function refuseOtherSchema(data: Untyped, context: IngestContext): void {
   if (data.schema !== LENS_DATA_V2_SCHEMA) {
     context.issues.push(`schema must be ${LENS_DATA_V2_SCHEMA} in a V2 file, not ${JSON.stringify(data.schema)}`);
   }
+  /* The prescription holds the version as its format, and the V2 view writes it back as `schema`. */
+  if (context.sources && has(data, "schema")) context.sources.heldBy.schema = "schema";
 }
 
 /* ── Prescriptions ── */
@@ -904,7 +907,7 @@ function refuseOtherSchema(data: Untyped, context: IngestContext): void {
 export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): IngestedPrescription<CanonicalLens> {
   const data = input as unknown as Untyped;
   const key = keyOf(data);
-  const context = createContext(request);
+  const context = createContext(request, data);
   refuseUnknownFields(data, LENS_FIELDS, "", context);
   refuseOtherSchema(data, context);
   requireFields(data, ["key", "name", "focus", "aperture", "layout"], "", context);
@@ -926,7 +929,8 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   put(focus as unknown as Untyped, "description", focusRecord.description);
   if (context.sources) {
     recordReads(context.sources, "focus", "focus", focus as unknown as Untyped, ["closeFocusM", "description"]);
-    context.sources.heldBy["focus.published"] = "focus.published";
+    /* The list is copied as written, so each keyframe index, and a comment on it, keeps its place. */
+    if (has(focusRecord, "published")) context.sources.read["focus.published"] = "focus.published";
   }
   const keyframeCount = Array.isArray(focus.keyframes) ? focus.keyframes.length : 0;
   if (has(focusRecord, "conjugates")) {
@@ -1051,7 +1055,7 @@ export function ingestTeleconverterV2(
 ): IngestedPrescription<CanonicalTeleconverter> {
   const data = input as unknown as Untyped;
   const key = keyOf(data);
-  const context = createContext(request);
+  const context = createContext(request, data);
   refuseUnknownFields(data, TELECONVERTER_FIELDS, "", context);
   refuseOtherSchema(data, context);
   requireFields(data, ["key", "name", "catalog", "magnification", "masterImageDistanceMm"], "", context);

@@ -11,6 +11,12 @@
 
 export { ingestLens, ingestTeleconverter } from "./prescription/ingestV2.js";
 export { toLensDataInput, toTeleconverterData } from "./prescription/toLensData.js";
-export { toLensDataV2Input, toTeleconverterDataV2Input, v2SourceMap, v2Writes } from "./prescription/toLensDataV2.js";
+export {
+  V2_GROUP_STARTS,
+  toLensDataV2Input,
+  toTeleconverterDataV2Input,
+  v2SourceMap,
+  v2Writes,
+} from "./prescription/toLensDataV2.js";
 export { prescriptionDifference } from "./prescription/canonical.js";
 export { childPath, parentPath } from "./prescription/sourcePaths.js";

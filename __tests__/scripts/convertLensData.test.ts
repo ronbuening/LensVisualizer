@@ -11,7 +11,11 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { convertLensDataSource, type ConversionOptions } from "../../scripts/lens-data-convert/convert.mjs";
+import {
+  convertLensDataSource,
+  formatWithPrettier,
+  type ConversionOptions,
+} from "../../scripts/lens-data-convert/convert.mjs";
 import { movedCommentText } from "../../scripts/lens-data-convert/comments.mjs";
 import { formatConversionReport } from "../../scripts/lens-data-convert/report.mjs";
 import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
@@ -22,10 +26,15 @@ import {
   FORMS_REPORT,
   FORMS_V2,
   PRETTIER_IGNORE_FILE,
+  PRETTIER_IGNORE_V2,
   PRIME_MEMBERS,
+  RULINGS_FILE,
+  RULINGS_REPORT,
+  RULINGS_V2,
   TELECONVERTER_FILE,
   TELECONVERTER_V2,
   V2_SOURCE_FILE,
+  V2_ZOOM_SOURCE_FILE,
   ZOOM_FILE,
   ZOOM_REPORT,
   ZOOM_V2,
@@ -112,6 +121,13 @@ describe("printing a converted file", () => {
     expect(text.indexOf("STO: {")).toBeLessThan(text.indexOf('"2": {'));
   });
 
+  it("leads a section with its banner, an empty var's comments focus, and a moved run takes one note", async () => {
+    const { text, report } = await converted(RULINGS_FILE);
+    expect(text).toBe(RULINGS_V2);
+    expect(formatConversionReport([report])).toBe(RULINGS_REPORT);
+    expect((await converted(text)).text).toBe(text);
+  });
+
   it("converts a teleconverter file to its V2 type", async () => {
     const { text, report } = await converted(TELECONVERTER_FILE, { kind: "teleconverter" });
     expect(text).toBe(TELECONVERTER_V2);
@@ -120,30 +136,16 @@ describe("printing a converted file", () => {
 
   it("leaves records under prettier-ignore on one line, unpadded but with their number tokens", async () => {
     const { text } = await converted(PRETTIER_IGNORE_FILE);
-    const elements = text.slice(text.indexOf("  elements: ["), text.indexOf("  surfaces: ["));
-    expect(elements).toBe(
-      [
-        "  elements: [",
-        "    // G1 — front group",
-        "    // prettier-ignore",
-        '    { id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.51680, vd: 64.17, role: ' +
-          '"Front positive element of the fixture\'s only group, written on one line as its source does" },',
-        "    // prettier-ignore",
-        '    { id: 2, name: "L2", label: "Element 2", type: "Negative Meniscus", nd: 1.75520, vd: 27.53, role: ' +
-          '"Rear negative meniscus of the fixture\'s only group, written on one line as its source does" },',
-        "  ],",
-        "",
-        "",
-      ].join("\n"),
-    );
-    expect(text).toContain('{ label: "1", R: 50.00, d: 5, sd: 15, medium: 1 },');
+    expect(text).toBe(PRETTIER_IGNORE_V2);
     expect((await converted(text)).text).toBe(text);
   });
 
-  it("gives a V2 source back as written: its media, zero term and comment at the same paths", async () => {
-    const { text, report } = await converted(V2_SOURCE_FILE);
-    expect(text).toBe(V2_SOURCE_FILE);
-    expect(report).toEqual({ file: FILE, moved: [], stops: [], zeroTerms: [], dropped: [] });
+  it("gives a V2 source back as written: its media, zero term and comments at the same paths", async () => {
+    for (const source of [V2_SOURCE_FILE, V2_ZOOM_SOURCE_FILE]) {
+      const { text, report } = await converted(source);
+      expect(text).toBe(source);
+      expect(report).toEqual({ file: FILE, moved: [], stops: [], zeroTerms: [], dropped: [] });
+    }
   });
 
   it("keeps a sign, Infinity and a respelled exponent, and leaves an undefined member out", async () => {
@@ -155,6 +157,31 @@ describe("printing a converted file", () => {
     expect(text).toContain("      focalLengthMm: +99.5,\n      maxSdRatio: Infinity,\n    },");
     expect(text).toContain('{ label: "1", R: 5.0E+1, d: 5, sd: 15, medium: 1 }, // L1 front');
     expect(text).not.toContain("cemented");
+  });
+
+  it("keeps a wrapped literal's text without its wrapper, and gives a spread's items their values", async () => {
+    const members = PRIME_MEMBERS.replace(
+      "closeFocusM: 0.5,",
+      'closeFocusM: (0.50),\n  imageFormat: "aps-c" as const,',
+    ).replace("fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],", "fstopSeries: [2.0, ...[2.80, 4.0], 5.6],");
+    const { text } = await converted(v1LensFile(members));
+    expect(text).toContain('catalog: { imageFormat: "aps-c" },');
+    expect(text).toContain("focus: { closeFocusM: 0.50 },");
+    expect(text).toContain("fStops: [2.0, 2.8, 4, 5.6]");
+  });
+
+  it("names no undrawn medium of a V1 source, and takes a shared one's text from its first surface", async () => {
+    const members = PRIME_MEMBERS.replace(
+      '{ label: "2", R: -50, d: 80, nd: 1, elemId: 0, sd: 15 },',
+      [
+        '{ label: "2", R: -50, d: 0.01, nd: 1.567320, elemId: 0, sd: 15 },',
+        '    { label: "3", R: -50, d: 2, nd: 1.5168, elemId: 1, sd: 15 },',
+        '    { label: "4", R: -60, d: 0.01, nd: 1.56732, elemId: 0, sd: 15 },',
+        '    { label: "5", R: -70, d: 80, nd: 1, elemId: 0, sd: 15 },',
+      ].join("\n"),
+    );
+    const { text } = await converted(v1LensFile(members));
+    expect(text).toMatch(/media: \[\{ id: "[^"]+", nd: 1\.567320 \}\],/);
   });
 
   it("writes a value reached through another top-level const from its value, and keeps that const as written", async () => {
@@ -174,25 +201,32 @@ describe("printing a converted file", () => {
 });
 
 describe("the stop-radius report", () => {
-  it("carries the first line of the error when the engine cannot build the converted lens", async () => {
+  it("carries the header and first reason of the error when the engine cannot build the converted lens", async () => {
     const failing = async () => ({
       default: () => {
-        throw new Error("Lens data cannot be built:\n  • a reason");
+        throw new Error("Lens data cannot be built:\n  • a reason\n  • another");
       },
     });
     const { report } = await converted(v1LensFile(PRIME_MEMBERS), { loadBuildLens: failing });
-    expect(report.stops[0].engine).toEqual({ error: "Lens data cannot be built:" });
-    expect(formatConversionReport([report])).toContain("engine radius: not computed (Lens data cannot be built:)");
+    expect(report.stops[0].engine).toEqual({ error: "Lens data cannot be built: a reason" });
+    expect(formatConversionReport([report])).toContain(
+      "engine radius: not computed (Lens data cannot be built: a reason)",
+    );
+  });
+
+  it("fails the conversion when buildLens cannot load, rather than reporting no radius", async () => {
+    const unloadable = async () => Promise.reject(new Error("cannot load buildLens"));
+    await expect(convert(v1LensFile(PRIME_MEMBERS), { loadBuildLens: unloadable })).rejects.toThrow(
+      "cannot load buildLens",
+    );
   });
 });
 
 describe("refusals", () => {
   const prime = v1LensFile(PRIME_MEMBERS);
-  /** A formatter that edits Prettier's output, as a broken one might. */
-  const formattedThen = (edit: (text: string) => string) => async (text: string) => {
-    const { format } = await import("prettier");
-    return edit(await format(text, { parser: "typescript", printWidth: 120 }));
-  };
+  /** A formatter that edits the converter's own formatting, as a broken one might. */
+  const formattedThen = (edit: (text: string) => string) => async (text: string) =>
+    edit(await formatWithPrettier(text));
 
   it.each([
     ["a form outside the literal subset", prime.replace("nominalFno: 2", "nominalFno: Math.sqrt(4)"), /cannot be read/],
@@ -206,6 +240,49 @@ describe("refusals", () => {
       "a comment outside the object",
       prime.replace("} satisfies LensDataInput;", "} /* outside */ satisfies LensDataInput;"),
       /the comment at line \d+ sits outside the exported object/,
+    ],
+    [
+      "a comment inside the type import, which the frame rewrites",
+      prime.replace("import type { LensDataInput }", "import type { LensDataInput /* note */ }"),
+      /^the comment at line 1 is not in the converted file: \/\* note \*\/$/,
+    ],
+    [
+      "a comment that formatting gives another node",
+      prime.replace(
+        "fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],",
+        "fstopSeries: [\n    2,\n    /* c */\n    2.8,\n    4,\n  ],",
+      ),
+      /^formatting made the leading comment of aperture\.fStops\[1\] the trailing comment of aperture\.fStops\[0\]: \/\* c \*\/$/,
+    ],
+    [
+      "a converted file ingest refuses",
+      prime.replace('{ label: "1", R: 50, d: 5,', "{ label: 1, R: 50, d: 5,"),
+      /^the converted file does not ingest:\n {2}• /,
+    ],
+    [
+      "a statement after the export",
+      `${prime}const LATER = 1;\n`,
+      /^a statement other than the export follows the exported const$/,
+    ],
+    [
+      "a second declarator",
+      prime.replace("} satisfies LensDataInput;", "} satisfies LensDataInput,\n  OTHER = 1;"),
+      /^the exported const shares its statement with another declaration$/,
+    ],
+    [
+      "an import of more than the type",
+      prime.replace("import type { LensDataInput }", "import type { LensDataInput, SurfaceData }"),
+      /^the import of LensDataInput imports more than the file's type$/,
+    ],
+    [
+      "no top-level const",
+      prime.replace("const LENS_DATA = {", "export default {").replace("\nexport default LENS_DATA;\n", ""),
+      /^the file does not export a top-level const$/,
+    ],
+    [
+      "the type not imported",
+      prime.replace('import type { LensDataInput } from "../../types/optics.js";\n', ""),
+      /^the file does not import LensDataInput$/,
     ],
   ])("%s", async (_kind, text, reason) => {
     const result = await convert(text);
@@ -232,7 +309,12 @@ describe("refusals", () => {
     [
       "a comment dropped",
       formattedThen((text) => text.replace(" // L1 front", "")),
-      /a comment is not written exactly once: \/\/ L1 front/,
+      /^the comment at line \d+ is not in the converted file: \/\/ L1 front$/,
+    ],
+    [
+      "a comment written twice",
+      formattedThen((text) => text.replace(" // L1 front", " // L1 front\n    // L1 front")),
+      /^the converted file holds a comment its source does not, or holds one twice: \/\/ L1 front$/,
     ],
     [
       "another prescription",
@@ -253,11 +335,8 @@ describe("refusals", () => {
         "sd: 5 }, // L1 front",
       ),
     );
-    const format = async (printed: string) => {
-      const { format: prettierFormat } = await import("prettier");
-      const formatted = await prettierFormat(printed, { parser: "typescript", printWidth: 120 });
-      return formatted.replace("d: 5.0, sd: 5,", "sd: 5, d: 5.0,");
-    };
+    const format = async (printed: string) =>
+      (await formatWithPrettier(printed)).replace("d: 5.0, sd: 5,", "sd: 5, d: 5.0,");
     const result = await convert(text, { format });
     expect(result.refusal).toMatch(/^surfaces\[1\]\.d reads back as 5, not 5\.0$/);
   });

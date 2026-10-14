@@ -251,14 +251,14 @@ interface IngestContext extends SharedIngestContext {
   readonly v1: V1Spelling;
 }
 
-function createContext(request: IngestRequest | undefined): IngestContext {
+function createContext(request: IngestRequest | undefined, data: Untyped): IngestContext {
   return {
     format: "V1",
     issues: [],
     defaulted: [],
     ignored: {},
     v1: { emptyContainers: [] },
-    sources: sourcePathsFor(request),
+    sources: sourcePathsFor(request, data),
   };
 }
 
@@ -507,7 +507,8 @@ function pairGaps<Values>(
   context: IngestContext,
 ): { surface: string; label?: string; values: Values }[] {
   const text = new Map<string, string>();
-  const textAt = new Map<string, number>();
+  /* Where each display label was written, kept only for the source paths a caller asked for. */
+  const textAt = context.sources ? new Map<string, number>() : undefined;
   let previous: { label: string; at: number } | undefined;
   if (labels !== undefined && !Array.isArray(labels)) context.issues.push(`${where.labels} must be a list`);
   for (const [at, pair] of (Array.isArray(labels) ? labels : []).entries()) {
@@ -520,7 +521,7 @@ function pairGaps<Values>(
       context.issues.push(`${where.labels}[${at}] labels "${label}", which has no ${where.ranges} entry`);
     } else {
       text.set(label, value);
-      textAt.set(label, at);
+      textAt?.set(label, at);
       const index = labelIndex.get(label);
       const previousIndex = previous && labelIndex.get(previous.label);
       if (index !== undefined && previousIndex !== undefined && index < previousIndex) {
@@ -547,10 +548,15 @@ function pairGaps<Values>(
         values: copy(ranges[label]) as Values,
       };
       if (text.has(label)) gap.label = text.get(label);
-      if (context.sources) {
+      if (context.sources && textAt) {
         const at = itemPath(where.gaps, index);
         context.sources.records[at] = labelPath(where.ranges, label);
-        if (text.has(label)) context.sources.read[`${at}.label`] = `${where.labels}[${textAt.get(label)}][1]`;
+        if (text.has(label)) {
+          /* A pair dissolves into the gap it names: its text is the gap's label, and its comments lead the gap. */
+          const pair = `${where.labels}[${textAt.get(label)}]`;
+          context.sources.read[`${at}.label`] = `${pair}[1]`;
+          context.sources.homes[pair] = at;
+        }
       }
       return gap;
     });
@@ -578,8 +584,10 @@ function ingestGaps(
     context,
   );
   if (context.sources) {
-    if (has(data, "var")) context.sources.homes.var = "gaps";
-    if (data.varLabels !== undefined) context.sources.homes.varLabels = "gaps";
+    /* A `var` that holds no gap dissolves into nothing V2 writes; its comments lead `focus`, which they describe. */
+    const home = gaps.length > 0 ? "gaps" : "focus";
+    if (has(data, "var")) context.sources.homes.var = home;
+    if (data.varLabels !== undefined) context.sources.homes.varLabels = home;
   }
 
   return gaps.map((gap, index) => {
@@ -641,6 +649,15 @@ function ingestAberrationControl(
 
 /* ── Zoom stations, focus and published stations ── */
 
+/**
+ * Record that a station's member was read from an item of a per-station list. The list dissolves into the station
+ * records, which is where its comments go.
+ */
+function readFromList(sources: SourcePaths, field: string, member: string, station: number, at: number): void {
+  sources.homes[field] = "zoom.stations";
+  sources.read[`zoom.stations[${station}].${member}`] = itemPath(field, at);
+}
+
 /** Fields that need zoom stations to live on. */
 const ZOOM_ONLY_FIELDS = ["zoomStopSemiDiameters", "zoomCloseFocusM", "zoomLabels", "zoomApertureModel", "zoomStep"];
 
@@ -663,13 +680,9 @@ function ingestZoom(data: Untyped, context: IngestContext): CanonicalZoom | unde
   const count = positions.length;
   /* `ingestPublishedStations` gives every station its published flags. */
   const stations = positions.map((focalLengthMm) => ({ focalLengthMm }) as CanonicalZoomStation);
-  /* Each per-station list dissolves into the station records, which is where its comments go. */
-  const fromList = (field: string, member: string, station: number, at: number) => {
-    if (!context.sources) return;
-    context.sources.homes[field] = "zoom.stations";
-    context.sources.read[`zoom.stations[${station}].${member}`] = itemPath(field, at);
-  };
-  if (context.sources) positions.forEach((_, station) => fromList("zoomPositions", "focalLengthMm", station, station));
+  const sources = context.sources;
+  if (sources)
+    positions.forEach((_, station) => readFromList(sources, "zoomPositions", "focalLengthMm", station, station));
   const perStation = (field: string, member: keyof CanonicalZoomStation) => {
     const values = data[field];
     if (values === undefined) return;
@@ -679,7 +692,7 @@ function ingestZoom(data: Untyped, context: IngestContext): CanonicalZoom | unde
     }
     values.forEach((value, station) => {
       put(stations[station] as unknown as Untyped, member, value);
-      if (value !== undefined) fromList(field, member, station, station);
+      if (sources && value !== undefined) readFromList(sources, field, member, station, station);
     });
   };
   if (Array.isArray(data.nominalFno)) perStation("nominalFno", "nominalFNumber");
@@ -693,13 +706,15 @@ function ingestZoom(data: Untyped, context: IngestContext): CanonicalZoom | unde
     } else if (labels.length === count) {
       labels.forEach((label, station) => {
         stations[station].label = label;
-        fromList("zoomLabels", "label", station, station);
+        if (sources) readFromList(sources, "zoomLabels", "label", station, station);
       });
     } else {
       stations[0].label = labels[0];
       stations[count - 1].label = labels[1];
-      fromList("zoomLabels", "label", 0, 0);
-      fromList("zoomLabels", "label", count - 1, 1);
+      if (sources) {
+        readFromList(sources, "zoomLabels", "label", 0, 0);
+        readFromList(sources, "zoomLabels", "label", count - 1, 1);
+      }
     }
   }
 
@@ -874,7 +889,7 @@ function ingestPublishedStations(
 export function ingestLensV1(input: LensDataInput, request?: IngestRequest): IngestedPrescription<CanonicalLens> {
   const data = input as unknown as Untyped;
   const key = typeof data.key === "string" ? data.key : "?";
-  const context = createContext(request);
+  const context = createContext(request, data);
   refuseUnknownFields(data, LENS_FIELDS, "", context);
   requireFields(data, ["key", "name", "closeFocusM", "fstopSeries", "yScFill", "nominalFno"], "", context);
   const authoredElements = requireRecords(data, "elements", key);
@@ -1053,7 +1068,7 @@ export function ingestTeleconverterV1(
 ): IngestedPrescription<CanonicalTeleconverter> {
   const data = input as unknown as Untyped;
   const key = typeof data.key === "string" ? data.key : "?";
-  const context = createContext(request);
+  const context = createContext(request, data);
   refuseUnknownFields(data, TELECONVERTER_FIELDS, "", context);
   requireFields(data, ["key", "name", "magnification", "lensMounts", "masterImageDistanceMm"], "", context);
   const authoredElements = requireRecords(data, "elements", key);

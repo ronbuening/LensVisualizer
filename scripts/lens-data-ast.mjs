@@ -73,8 +73,9 @@ function unwrap(node) {
  * @param {ts.SourceFile} sourceFile - the file holding it
  * @param {Map<string, ts.Expression>} constants - the file's top-level `const` initializers
  * @param {Set<string>} resolving - constants being evaluated, to refuse a cycle
- * @param {{ visit: Function, keys: (string | number)[], bound: boolean }} [walk] - the visitor of
- *   `walkLensDataSource`, the keys of this value, and whether it was reached through a top-level const
+ * @param {{ visit: Function, keys: (string | number)[], bound: boolean } | null} [walk] - the visitor of
+ *   `walkLensDataSource`, the keys of this value, and whether it was reached through a top-level const; `null` for
+ *   a value the visitor is not shown, a spread's, whose own keys would collide with the list's or the record's
  * @returns {unknown} the value
  */
 function evaluate(node, sourceFile, constants, resolving, walk) {
@@ -151,7 +152,7 @@ function evaluate(node, sourceFile, constants, resolving, walk) {
       for (const element of node.elements) {
         if (ts.isSpreadElement(element)) {
           /* A spread's items are not shown: their syntax sits elsewhere, under keys of its own. */
-          const spread = recurse(element.expression, undefined);
+          const spread = recurse(element.expression, null);
           if (!Array.isArray(spread)) fail("a spread of something other than an array");
           out.push(...spread);
         } else if (ts.isOmittedExpression(element)) {
@@ -179,7 +180,7 @@ function evaluate(node, sourceFile, constants, resolving, walk) {
         } else if (ts.isShorthandPropertyAssignment(property)) {
           out[property.name.text] = member(property.name.text, property, property.name);
         } else if (ts.isSpreadAssignment(property)) {
-          const spread = recurse(property.expression, undefined);
+          const spread = recurse(property.expression, null);
           if (spread === null || typeof spread !== "object" || Array.isArray(spread)) {
             fail("a spread of something other than an object");
           }

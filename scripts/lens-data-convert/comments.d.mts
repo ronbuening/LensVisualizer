@@ -2,12 +2,19 @@ export function movedCommentText(text: string, from: string): string;
 export function commentKey(text: string): string;
 export function placeComments(source: {
   comments: readonly object[];
-  commentTarget: (authoredPath: string) => { path: string; moved: boolean };
+  commentTarget: (authoredPath: string, leading: boolean) => { path: string; moved: boolean };
   textKept: (authoredPath: string) => boolean;
   isContainer: (v2Path: string) => boolean;
 }): {
   byPath: Map<string, { leading: object[]; trailing: object[]; dangling: object[] }>;
   moved: { from: string; to: string; line: number; text: string }[];
-  emitted: string[];
   unattached: object[];
 };
+export function commentNotCarried(
+  sourceComments: readonly object[],
+  outputComments: readonly object[],
+): string | undefined;
+export function commentReplaced(
+  printedComments: readonly object[],
+  outputComments: readonly object[],
+): string | undefined;

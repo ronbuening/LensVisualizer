@@ -39,9 +39,12 @@ export interface IngestContext {
   readonly sources?: SourcePaths;
 }
 
-/** Empty source paths when the request asks for them, for a new ingest context. */
-export function sourcePathsFor(request: IngestRequest | undefined): SourcePaths | undefined {
-  return request?.sources ? { read: {}, records: {}, heldBy: {}, ignored: {}, homes: {} } : undefined;
+/** Empty source paths when the request asks for them, for a new ingest of `data`, naming its first field. */
+export function sourcePathsFor(request: IngestRequest | undefined, data: unknown): SourcePaths | undefined {
+  if (!request?.sources) return undefined;
+  const file = (data !== null && typeof data === "object" ? data : {}) as Record<string, unknown>;
+  const firstField = Object.keys(file).find((field) => file[field] !== undefined);
+  return { read: {}, records: {}, heldBy: {}, ignored: {}, homes: {}, firstField };
 }
 
 /**

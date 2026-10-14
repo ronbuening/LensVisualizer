@@ -5,6 +5,7 @@
  */
 
 import { describe, expect, it } from "vitest";
+import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../../src/types/asphericSchema.js";
 import { prescriptionDifference } from "../../../../src/optics/prescription/canonical.js";
 import { ingestLens, ingestTeleconverter } from "../../../../src/optics/prescription/ingestV2.js";
 import { childPath, extendPath, parentPath, pathBelow } from "../../../../src/optics/prescription/sourcePaths.js";
@@ -14,7 +15,7 @@ import {
   v2SourceMap,
   v2Writes,
 } from "../../../../src/optics/prescription/toLensDataV2.js";
-import type { LensDataV2Input } from "../../../../src/types/lensDataV2.js";
+import type { LensDataV2Input, TeleconverterDataV2Input } from "../../../../src/types/lensDataV2.js";
 import type { LensDataInput } from "../../../../src/types/optics.js";
 import { FIXTURE_PAIRS, type FixturePair } from "./ingestV2Fixtures.js";
 
@@ -112,7 +113,9 @@ describe("source paths on request", () => {
       zoomLabels: "zoom.stations",
       var: "gaps",
       varLabels: "gaps",
+      "varLabels[0]": "gaps[0]",
     });
+    expect(zoom.firstField).toBe("key");
 
     /* A prime's gap list is the gap's one row; an asph entry is its surface's asphere, its zeros set aside. */
     const keyframes = ingestLens(pairOf("focus keyframes").v1, { sources: true }).provenance.sources!;
@@ -145,6 +148,9 @@ describe("source paths on request", () => {
     expect(media.read["media[0].name"]).toBe("media[1].name");
     expect(media.heldBy["media[1].id"]).toBe("media[0].id");
     expect(media.heldBy["surfaces[0].medium"]).toBe("surfaces[0].medium");
+    expect(media.heldBy["surfaces[1].medium"]).toBeUndefined();
+    expect(media.heldBy.schema).toBe("schema");
+    expect(media.firstField).toBe("schema");
     expect(media.read["surfaces[0].R"]).toBe("surfaces[0].R");
     expect(media.ignored["surfaces[0].R"]).toBeUndefined();
 
@@ -154,10 +160,389 @@ describe("source paths on request", () => {
     expect(zoom.read["zoom.stations[1].nominalFNumber"]).toBe("zoom.stations[1].nominalFNumber");
     expect(zoom.read["surfaces[0].d"]).toBeUndefined();
     expect(zoom.homes).toEqual({});
+
+    /* A published list is copied as written, item by item; nothing is recorded for a member the file leaves out. */
+    const published = ingestLens(pairOf("published stations").v2, { sources: true }).provenance.sources!;
+    expect(published.read["zoom.stations[0].publishedFocus"]).toBe("zoom.stations[0].publishedFocus");
+    expect(published.read["zoom.stations[1].publishedFocus"]).toBeUndefined();
+    expect(published.heldBy["zoom.stations[1].published"]).toBe("zoom.stations[1].published");
+    expect(published.heldBy["zoom.stations[0].published"]).toBeUndefined();
+    const prime = ingestLens(pairOf("published stations (prime)").v2, { sources: true }).provenance.sources!;
+    expect(prime.read["focus.published"]).toBe("focus.published");
+    expect(
+      ingestLens(pairOf("prime").v2, { sources: true }).provenance.sources!.read["focus.published"],
+    ).toBeUndefined();
   });
 });
 
+/** A copy of a file with every record's members in reverse order, so a view that kept the source's order would fail. */
+function reversed<T>(value: T): T {
+  if (Array.isArray(value)) return value.map(reversed) as T;
+  if (value === null || typeof value !== "object") return value;
+  return Object.fromEntries(
+    Object.entries(value)
+      .reverse()
+      .map(([key, member]) => [key, reversed(member)]),
+  ) as T;
+}
+
+/** A zoom that writes every V2 member a lens can hold, each record's members in the order of the V2 types. */
+const MAXIMAL_ZOOM: LensDataV2Input = {
+  schema: 2,
+  key: "fixture-maximal",
+  maker: "Fixture Optical",
+  name: "Fixture 24-100mm f/2-2.8",
+  subtitle: "EVERY FIELD",
+  visible: false,
+  publishedAt: "2026-10-14",
+  catalog: {
+    lensMounts: ["nikon-z"],
+    imageFormat: "135-full-frame",
+    imageCircleMm: 43.3,
+    specs: ["2 ELEMENTS / 2 GROUPS"],
+    elementCount: 2,
+    groupCount: 2,
+    acceptsTeleconverters: true,
+    opticalConfiguration: { groupKey: "fixture", label: "Every field", order: 1 },
+    focalLengthMm: { marketing: [24, 100], design: [24.2, 98] },
+    fNumber: { marketing: 2, design: 2.05 },
+  },
+  source: {
+    patentNumber: "JP 2000-000001 A",
+    patentYear: 2000,
+    authors: ["Ada Lovelace"],
+    assignees: ["Fixture Optical Co., Ltd."],
+    errata: [{ status: "unresolved", note: "A sum the source does not close." }],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      nd: 1.5168,
+      vd: 64.17,
+      indexReference: "e",
+      indexReferenceNote: "Tabulated at e.",
+      focalLengthMm: 48.4,
+      glass: "N-BK7",
+      apd: "patent",
+      apdNote: "Named in the text.",
+      role: "Front positive",
+      diagramLabel: "L1",
+      maxSdRatio: 0.95,
+      absorptionCoefficientPerMm: 0.01,
+      cemented: "D1",
+      dPgF: 0.001,
+      nC: 1.514,
+      nF: 1.522,
+      ng: 1.527,
+      span: ["1", "2"],
+    },
+    { id: 2, name: "L2", label: "Element 2", type: "Negative Meniscus", nd: 1.7552, vd: 27.53, cemented: "D1" },
+  ],
+  media: [{ id: "cement", name: "Cement layer", nd: 1.56732 }],
+  surfaces: [
+    { label: "STO", R: "flat" },
+    {
+      label: "1",
+      R: 50,
+      d: 5,
+      sd: 15,
+      innerSd: 2,
+      medium: 1,
+      asphere: Object.fromEntries(ASPHERIC_COEFFICIENT_SCHEMA.map(({ key }, index) => [key, (index + 1) * 1e-9])),
+      diffractive: {
+        kind: "radial-polynomial",
+        referenceWavelengthNm: 587.6,
+        diffractionOrder: 1,
+        terms: [{ radialPower: 2, coefficient: -1e-4 }],
+      },
+      interaction: { type: "refract" },
+    },
+    { label: "2", R: -50, d: 0.01, sd: 15, medium: "cement" },
+    { label: "3", R: -50, d: 2, sd: 15, medium: 2 },
+    { label: "4", R: -200, sd: 15 },
+  ],
+  zoom: {
+    stations: [
+      {
+        focalLengthMm: 24,
+        nominalFNumber: 2,
+        stopSemiDiameter: 5,
+        closeFocusM: 0.4,
+        label: "Wide",
+        published: true,
+        publishedFocus: [2],
+      },
+      { focalLengthMm: 50, nominalFNumber: 2.4, stopSemiDiameter: 5.5, closeFocusM: 0.5, published: false },
+      { focalLengthMm: 100, nominalFNumber: 2.8, stopSemiDiameter: 6, closeFocusM: 0.6, label: "Tele" },
+    ],
+    apertureModel: "from-nominal-fno",
+    step: 0.002,
+  },
+  focus: {
+    closeFocusM: 0.4,
+    keyframes: [0, 0.5, 1],
+    step: 0.004,
+    description: "Rear focus.",
+    conjugates: [
+      { zoomStation: 2, keyframe: 2, objectDistanceMm: 600, distanceReference: "first-surface", source: "Table 3" },
+    ],
+  },
+  gaps: {
+    STO: { label: "D0", values: [1, 3, 5].map((gap) => [gap, gap, gap]) },
+    "4": {
+      label: "BF",
+      values: [
+        [75, 76, 77],
+        [75, 76.2, 77.4],
+        [75, 76.4, 77.8],
+      ],
+    },
+  },
+  aperture: { fStops: [2, 2.8, 4, 5.6, 8], maxFNumber: 16, step: 0.05, blades: 9, bladeRoundedness: 0.8 },
+  aberrationControl: {
+    label: "Softness",
+    description: "Floating correction.",
+    minLabel: "Sharp",
+    centerLabel: "Normal",
+    maxLabel: "Soft",
+    step: 0.01,
+    gaps: { "3": { label: "D3", values: [1.9, 2.1] } },
+  },
+  projection: { kind: "rectilinear", fullFieldDeg: 84, maxTraceFieldDeg: 42 },
+  perspectiveControl: {
+    shiftRangeMm: [-11.5, 11.5],
+    tiltRangeDeg: [-8.5, 8.5],
+    tiltPivot: { frame: "camera", basis: "rear-vertex-fallback", zOffsetFromImagePlaneMm: -10 },
+  },
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 2,
+      nd: 1.5168,
+      vd: 64.17,
+      glass: "N-BK7",
+      indexReference: "d",
+      dPgF: 0.001,
+      nC: 1.514,
+      nF: 1.522,
+      ng: 1.527,
+      gapAfterMm: 1,
+      sd: 20,
+      source: "Table 1",
+    },
+  ],
+  groups: [{ text: "G1", fromSurface: "1", toSurface: "4" }],
+  doublets: [{ text: "D1", fromSurface: "1", toSurface: "3" }],
+  layout: { svgW: 800, svgH: 400, scFill: 0.5, yScFill: 0.55, maxAspectRatio: 2.5, lensShiftFrac: 0.1 },
+  rays: { rayFractions: [-1, 0, 1], rayLeadFrac: 0.2, offAxisFieldFrac: 0.65, offAxisFractions: [0.5, 1] },
+  checks: { gapSagFrac: 0.4, maxRimAngleDeg: 70 },
+};
+
 describe("V2 view", () => {
+  it("writes every record's members in the declaration order of the V2 types, whatever order the source has", () => {
+    const writes = v2Writes();
+    const zoom = toLensDataV2Input(ingestLens(reversed(MAXIMAL_ZOOM), { sources: true }), writes);
+    const keys = (value: unknown) => Object.keys(value as object);
+    expect(keys(zoom)).toEqual([
+      "schema",
+      "key",
+      "maker",
+      "name",
+      "subtitle",
+      "visible",
+      "publishedAt",
+      "catalog",
+      "source",
+      "elements",
+      "media",
+      "surfaces",
+      "zoom",
+      "focus",
+      "gaps",
+      "aperture",
+      "aberrationControl",
+      "projection",
+      "perspectiveControl",
+      "rearPlates",
+      "groups",
+      "doublets",
+      "layout",
+      "rays",
+      "checks",
+    ]);
+    expect(keys(zoom.catalog)).toEqual([
+      "lensMounts",
+      "imageFormat",
+      "imageCircleMm",
+      "specs",
+      "elementCount",
+      "groupCount",
+      "acceptsTeleconverters",
+      "opticalConfiguration",
+      "focalLengthMm",
+      "fNumber",
+    ]);
+    expect(keys(zoom.catalog!.focalLengthMm)).toEqual(["marketing", "design"]);
+    expect(keys(zoom.catalog!.fNumber)).toEqual(["marketing", "design"]);
+    expect(keys(zoom.source)).toEqual(["patentNumber", "patentYear", "authors", "assignees", "errata"]);
+    expect(keys(zoom.elements[0])).toEqual([
+      "id",
+      "name",
+      "label",
+      "type",
+      "nd",
+      "vd",
+      "indexReference",
+      "indexReferenceNote",
+      "focalLengthMm",
+      "glass",
+      "apd",
+      "apdNote",
+      "role",
+      "diagramLabel",
+      "maxSdRatio",
+      "absorptionCoefficientPerMm",
+      "cemented",
+      "dPgF",
+      "nC",
+      "nF",
+      "ng",
+      "span",
+    ]);
+    expect(keys(zoom.media![0])).toEqual(["id", "name", "nd"]);
+    expect(keys(zoom.surfaces[1])).toEqual([
+      "label",
+      "R",
+      "d",
+      "sd",
+      "innerSd",
+      "medium",
+      "asphere",
+      "diffractive",
+      "interaction",
+    ]);
+    expect(keys(zoom.surfaces[1].asphere)).toEqual(ASPHERIC_COEFFICIENT_SCHEMA.map(({ key }) => key));
+    expect(keys(zoom.zoom)).toEqual(["stations", "apertureModel", "step"]);
+    expect(keys(zoom.zoom!.stations[0])).toEqual([
+      "focalLengthMm",
+      "nominalFNumber",
+      "stopSemiDiameter",
+      "closeFocusM",
+      "label",
+      "published",
+      "publishedFocus",
+    ]);
+    expect(keys(zoom.focus)).toEqual(["closeFocusM", "keyframes", "step", "description", "conjugates"]);
+    expect(keys(zoom.focus.conjugates![0])).toEqual([
+      "zoomStation",
+      "keyframe",
+      "objectDistanceMm",
+      "distanceReference",
+      "source",
+    ]);
+    /* A JavaScript object lists the integer-like label first; the printer takes surface order from the record. */
+    expect(writes.order.gaps).toEqual(["STO", "4"]);
+    expect(keys(zoom.gaps!.STO)).toEqual(["label", "values"]);
+    expect(keys(zoom.aperture)).toEqual(["fStops", "maxFNumber", "step", "blades", "bladeRoundedness"]);
+    expect(keys(zoom.aberrationControl)).toEqual([
+      "label",
+      "description",
+      "minLabel",
+      "centerLabel",
+      "maxLabel",
+      "step",
+      "gaps",
+    ]);
+    expect(keys(zoom.aberrationControl!.gaps["3"])).toEqual(["label", "values"]);
+    expect(keys(zoom.rearPlates![0])).toEqual([
+      "label",
+      "thicknessMm",
+      "nd",
+      "vd",
+      "glass",
+      "indexReference",
+      "dPgF",
+      "nC",
+      "nF",
+      "ng",
+      "gapAfterMm",
+      "sd",
+      "source",
+    ]);
+    expect(keys(zoom.layout)).toEqual(["svgW", "svgH", "scFill", "yScFill", "maxAspectRatio", "lensShiftFrac"]);
+    expect(keys(zoom.rays)).toEqual(["rayFractions", "rayLeadFrac", "offAxisFieldFrac", "offAxisFractions"]);
+    expect(keys(zoom.checks)).toEqual(["gapSagFrac", "maxRimAngleDeg"]);
+
+    /* What a zoom cannot hold: a design f-number for the whole lens, a prime's published keyframes, a folded path,
+     * and a stop placed inside an element. */
+    const prime = toLensDataV2Input(
+      ingestLens(
+        reversed({
+          ...pairOf("published stations (prime)").v2,
+          aperture: { nominalFNumber: 2, fStops: [2, 4], maxFNumber: 16, step: 0.05, blades: 9, bladeRoundedness: 0.8 },
+          focus: { closeFocusM: 0.5, keyframes: [0, 1], step: 0.004, description: "Unit focus.", published: [1] },
+        }),
+      ),
+    );
+    expect(keys(prime.aperture)).toEqual([
+      "nominalFNumber",
+      "fStops",
+      "maxFNumber",
+      "step",
+      "blades",
+      "bladeRoundedness",
+    ]);
+    expect(keys(prime.focus)).toEqual(["closeFocusM", "keyframes", "step", "description", "published"]);
+    const folded = toLensDataV2Input(ingestLens(reversed(pairOf("folded (explicit)").v2)));
+    expect(keys(folded)).toEqual([
+      "schema",
+      "key",
+      "name",
+      "catalog",
+      "elements",
+      "surfaces",
+      "focus",
+      "aperture",
+      "opticalPath",
+      "groups",
+      "layout",
+    ]);
+    const embedded = toLensDataV2Input(ingestLens(reversed(pairOf("stop inside an element").v2)));
+    expect(keys(embedded.surfaces[1])).toEqual(["label", "R", "d", "sd", "medium", "stopPlacement"]);
+
+    const converter = toTeleconverterDataV2Input(
+      ingestTeleconverter(
+        reversed({
+          ...(FIXTURE_PAIRS.find((pair) => pair.kind === "teleconverter")!.v2 as TeleconverterDataV2Input),
+          universal: false,
+          minHostFNumber: 2.8,
+          incompatibleLensKeys: ["fixture-prime"],
+          groups: [{ text: "G1", fromSurface: "1", toSurface: "2" }],
+          doublets: [{ text: "D1", fromSurface: "1", toSurface: "2" }],
+        }),
+      ),
+    );
+    expect(keys(converter)).toEqual([
+      "schema",
+      "key",
+      "name",
+      "catalog",
+      "magnification",
+      "masterImageDistanceMm",
+      "universal",
+      "minHostFNumber",
+      "incompatibleLensKeys",
+      "elements",
+      "surfaces",
+      "groups",
+      "doublets",
+    ]);
+    expect(keys(converter.catalog)).toEqual(["lensMounts", "elementCount", "groupCount"]);
+  });
+
   it.each(FIXTURE_PAIRS.map((pair) => [pair.family, pair] as const))(
     "writes %s from either side as a V2 file that ingests to the pair's prescription",
     (_family, pair) => {
@@ -269,7 +654,9 @@ describe("V2 source map", () => {
     expect(map.commentTarget('var["STO"]')).toEqual({ path: 'gaps["STO"]', moved: false });
     expect(map.commentTarget('var["STO"][1][0]')).toEqual({ path: 'gaps["STO"].values[1][0]', moved: false });
     expect(map.commentTarget("var")).toEqual({ path: "gaps", moved: true });
-    expect(map.commentTarget("varLabels[0]")).toEqual({ path: "gaps", moved: true });
+    /* A label pair dissolves into the gap it names, which its comments lead. */
+    expect(map.commentTarget("varLabels[0]")).toEqual({ path: 'gaps["STO"]', moved: true });
+    expect(map.commentTarget("varLabels[0][1]")).toEqual({ path: 'gaps["STO"].label', moved: false });
     expect(map.commentTarget("zoomPositions")).toEqual({ path: "zoom.stations", moved: true });
     expect(map.commentTarget("zoomPositions[1]")).toEqual({ path: "zoom.stations[1].focalLengthMm", moved: false });
     expect(map.commentTarget("surfaces[0].sd")).toEqual({ path: "surfaces[0]", moved: true });
@@ -277,18 +664,42 @@ describe("V2 source map", () => {
     expect(map.commentTarget("fstopSeries")).toEqual({ path: "aperture.fStops", moved: false });
     expect(map.recordSource("surfaces[2]")).toBe("surfaces[2]");
 
-    /* A container with no counterpart moves to its home; a home V2 leaves out takes the root. */
+    /* A container with no counterpart moves to its home; an empty `var`, from which V2 writes no gap, to `focus`. */
     const prime = viewOf({ ...pairOf("prime"), v1: { ...pairOf("prime").v1, var: {} } }, "v1").map;
     expect(prime.commentTarget('asph["1"]')).toEqual({ path: "surfaces[1].asphere", moved: false });
     expect(prime.commentTarget('asph["1"].A6')).toEqual({ path: "surfaces[1].asphere", moved: true });
     expect(prime.commentTarget("asph")).toEqual({ path: "surfaces", moved: true });
-    expect(prime.commentTarget("var")).toEqual({ path: "", moved: true });
+    expect(prime.commentTarget("var")).toEqual({ path: "focus", moved: true });
+  });
+
+  it("leads the record a top-level field opens with the comment that led the field, and schema with the first's", () => {
+    const { map } = viewOf(pairOf("prime"), "v1");
+    const leading = (path: string) => map.commentTarget(path, true);
+    expect(leading("key")).toEqual({ path: "schema", moved: false });
+    expect(map.commentTarget("key")).toEqual({ path: "key", moved: false });
+    expect(leading("closeFocusM")).toEqual({ path: "focus", moved: false });
+    expect(map.commentTarget("closeFocusM")).toEqual({ path: "focus.closeFocusM", moved: false });
+    expect(leading("focusDescription")).toEqual({ path: "focus.description", moved: false });
+    expect(leading("nominalFno")).toEqual({ path: "aperture", moved: false });
+    expect(leading("scFill")).toEqual({ path: "layout", moved: false });
+    expect(leading("yScFill")).toEqual({ path: "layout.yScFill", moved: false });
+    /* The field opens the record it was written into, and that record does not open its own. */
+    expect(leading("lensMounts")).toEqual({ path: "catalog", moved: false });
+    expect(leading("focalLengthMarketing")).toEqual({ path: "catalog.focalLengthMm", moved: false });
+    /* Only a top-level field's leading comment, and never a moved one. */
+    expect(leading("elements[0].nd")).toEqual({ path: "elements[0].nd", moved: false });
+    expect(leading("asph")).toEqual({ path: "surfaces", moved: true });
+
+    const v2 = viewOf(pairOf("prime"), "v2").map;
+    expect(v2.commentTarget("schema", true)).toEqual({ path: "schema", moved: false });
+    expect(v2.commentTarget("schema")).toEqual({ path: "schema", moved: false });
+    expect(v2.commentTarget("focus", true)).toEqual({ path: "focus", moved: false });
   });
 
   it("lists as dropped each set-aside value the view did not write back", () => {
     const { map } = viewOf(pairOf("prime"), "v1");
     expect(map.dropped).toEqual([
-      { kind: "stopRadius", from: "surfaces[0].sd", canonical: "surfaces[0].sd", value: 15 },
+      { kind: "stopRadius", from: "surfaces[0].sd", canonical: "surfaces[0].sd", value: 15, stop: "prime" },
       { kind: "zeroTerm", from: 'asph["1"].A6', canonical: "surfaces[1].asphere.A6", value: 0 },
       { kind: "zeroTerm", from: 'asph["1"].A10', canonical: "surfaces[1].asphere.A10", value: 0 },
       { kind: "zeroTerm", from: 'asph["1"].A12', canonical: "surfaces[1].asphere.A12", value: 0 },
@@ -315,5 +726,11 @@ describe("prescriptionDifference", () => {
     expect(prescriptionDifference({ s: ["x", "y"] }, { s: ["y", "x"] })).toBe('s[0]: "x" ≠ "y"');
     expect(prescriptionDifference({ s: [1] }, { s: [1, 2] })).toBe("s: 1 items ≠ 2 items");
     expect(prescriptionDifference({ g: { "6": 1 } }, { g: { "6": 2 } })).toBe('g["6"]: 1 ≠ 2');
+  });
+
+  it("names a member only the second holds, a list against a record, and null against a missing member", () => {
+    expect(prescriptionDifference({ a: 1 }, { a: 1, b: 2 })).toBe("b: undefined ≠ 2");
+    expect(prescriptionDifference({ s: [1] }, { s: { "0": 1 } })).toBe('s: [1] ≠ {"0":1}');
+    expect(prescriptionDifference({ a: null }, {})).toBe("a: null ≠ undefined");
   });
 });

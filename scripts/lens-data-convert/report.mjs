@@ -6,8 +6,9 @@
  * - each comment that moved, with the source path it left and the node it now leads;
  * - each stop radius dropped: the authored radius as written, the radius the engine uses in its place (labelled
  *   "engine radius", one per zoom station in station order, one held at every station on a fixed-iris zoom, or the
- *   published "schedule"), every comment on the stop's entry with those that discuss the radius flagged, and each
- *   comment line elsewhere in the file that quotes the authored radius and names the stop;
+ *   published "schedule"), every comment on the stop's entry with those that name the radius flagged, and each
+ *   comment line elsewhere in the file that names the stop and quotes the authored radius, as written or rounded to
+ *   the two or more decimals it is quoted with;
  * - the zero aspheric terms dropped, by aspheric entry;
  * - any other value ingest set aside that the converted file does not hold.
  * The text is deterministic: no dates, timings or absolute paths.
@@ -17,10 +18,20 @@
 const RADIUS_WORDS = /\bsd\b|\biris\b|\bradi(?:us|i)\b|calibrat|diameter|f-?numbers?\b|\bf\/|\bfno\b/i;
 
 /** Words that name the stop. */
-const STOP_WORDS = /\bstops?\b|\bsto\b|\bsd\b|\biris\b|\bapertures?\b/i;
+const STOP_WORDS = /\bstops?\b|\bsto\b|\bsd\b|\bsemi-diameters?\b|\biris\b|\bapertures?\b/i;
 
 /** Decimal numbers in a line of text. */
 const NUMBERS = /\d*\.?\d+(?:[eE][-+]?\d+)?/g;
+
+/**
+ * Whether a number in a comment quotes a radius: equal to it, or written with two or more decimals and equal to the
+ * radius rounded to as many, as a calibration note quotes a computed radius.
+ */
+function quotes(number, radius) {
+  if (Number(number) === radius) return true;
+  const decimals = /^\d*\.(\d+)$/.exec(number)?.[1].length ?? 0;
+  return decimals >= 2 && Number(number) === Number(radius.toFixed(decimals));
+}
 
 /** A comment's lines, each trimmed, joined into one. */
 function oneLine(text) {
@@ -44,7 +55,7 @@ function isWithin(path, ancestor, parentPath) {
  * @param {string} stop.text - the radius as written
  * @param {number} stop.value - its value
  * @param {{ kind: "prime" | "held" | "perStation" | "schedule", radii: number[] } | { error: string }} stop.engine -
- *   the radius the engine uses, or the first line of the error its build threw
+ *   the radius the engine uses, or the header and first reason of the error its build threw
  * @param {import("./read.mjs").ReadComment[]} comments - every comment in the source file
  * @param {(path: string) => string | undefined} parentPath - the engine's path spelling
  * @returns {object} the entry
@@ -58,8 +69,8 @@ export function stopRadiusEntry(stop, comments, parentPath) {
   for (const comment of comments) {
     if (onEntry.includes(comment)) continue;
     comment.text.split("\n").forEach((line, offset) => {
-      const quotes = (line.match(NUMBERS) ?? []).some((number) => Number(number) === stop.value);
-      if (quotes && STOP_WORDS.test(line)) elsewhere.push({ line: comment.line + offset, text: line.trim() });
+      const quoted = (line.match(NUMBERS) ?? []).some((number) => quotes(number, stop.value));
+      if (quoted && STOP_WORDS.test(line)) elsewhere.push({ line: comment.line + offset, text: line.trim() });
     });
   }
   return {

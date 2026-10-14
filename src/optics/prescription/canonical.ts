@@ -441,11 +441,13 @@ export interface SourcePaths {
   ignored: Record<string, { from: string; kind: IgnoredKind }>;
   /**
    * Authored path of each container the canonical form dissolves → the canonical path its comments move to: V1's
-   * `var` and `varLabels` → `gaps`, `asph` → `surfaces`, the per-station lists → `zoom.stations`, `publishedStations` →
-   * `focus.published` on a prime and `zoom.stations` on a zoom, the ring's `var` and `varLabels` →
-   * `aberrationControl.gaps`.
+   * `var` and `varLabels` → `gaps`, or `focus` when they hold no gap, `asph` → `surfaces`, the per-station lists →
+   * `zoom.stations`, `publishedStations` → `focus.published` on a prime and `zoom.stations` on a zoom, the ring's `var`
+   * and `varLabels` → `aberrationControl.gaps`, and each label pair in either → the gap it names.
    */
   homes: Record<string, string>;
+  /** The file's first top-level field, whose leading comments lead `schema` in a V2 file. */
+  firstField?: string;
 }
 
 /** What a caller asks of ingest beyond the prescription and its provenance. */

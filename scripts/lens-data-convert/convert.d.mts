@@ -15,3 +15,5 @@ export interface ConversionResult {
 }
 
 export function convertLensDataSource(content: string, options: ConversionOptions): Promise<ConversionResult>;
+
+export function formatWithPrettier(text: string): Promise<string>;

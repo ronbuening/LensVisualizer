@@ -10,8 +10,10 @@
  * 3. formats the statement that declares the object, and the export after it, with Prettier's API under the
  *    repository's configuration, read once; Prettier never sees the file's header or its path;
  * 4. puts the printer's number tokens back where Prettier respelled them, so `1.05587e-7` stays as written;
- * 5. checks the bytes it would write: every comment once, every number token where the printer put it, and an
- *    ingest of the result equal to the source's prescription under the fingerprint's rules.
+ * 5. checks the bytes it would write: every number token where the printer put it; every comment of the source once,
+ *    header included, as written or with its moved-from note; every comment on the node and in the placement the
+ *    printer gave it, so a second conversion carries it nowhere else; and an ingest of the result equal to the
+ *    source's prescription under the fingerprint's rules.
  *
  * The file around the object keeps its shape: everything before the statement that declares the exported const is
  * kept byte for byte, except the type import, which names the V2 type from `types/lensDataV2.js` at the import's own
@@ -32,7 +34,7 @@ import * as prettier from "prettier";
 import ts from "typescript";
 import { parseLensDataSource } from "../lens-data-ast.mjs";
 import { loadLensDataConversion } from "../lens-summaries.mjs";
-import { commentKey, placeComments } from "./comments.mjs";
+import { commentNotCarried, commentReplaced, placeComments } from "./comments.mjs";
 import { printLensDataObject } from "./print.mjs";
 import { readLensDataFile } from "./read.mjs";
 import { stopRadiusEntry } from "./report.mjs";
@@ -45,15 +47,24 @@ const V2_TYPES = { lens: "LensDataV2Input", teleconverter: "TeleconverterDataV2I
 
 let prettierOptions;
 
-/** The repository's Prettier configuration, read once from its root. */
+/** The repository's Prettier configuration, read once from its root; `null` when there is none. */
 function formatOptions() {
   prettierOptions ??= prettier.resolveConfig(fileURLToPath(new URL("../../package.json", import.meta.url)));
   return prettierOptions;
 }
 
-/** Format the statement that declares the object, and the export after it, as TypeScript. */
-async function formatWithPrettier(text) {
-  return prettier.format(text, { ...(await formatOptions()), parser: "typescript" });
+/**
+ * Format the statement that declares the object, and the export after it, as TypeScript under the repository's
+ * Prettier configuration.
+ *
+ * @param {string} text - the printed statement and export
+ * @returns {Promise<string>} Prettier's text of it
+ * @throws when the repository has no Prettier configuration, which would format at Prettier's own defaults
+ */
+export async function formatWithPrettier(text) {
+  const options = await formatOptions();
+  if (!options) throw new Error("the repository has no Prettier configuration");
+  return prettier.format(text, { ...options, parser: "typescript" });
 }
 
 /**
@@ -166,18 +177,33 @@ function frameOf(read, kind) {
   return { header, name: declarator.name.getText(sourceFile), type };
 }
 
-/** The engine's stop radius for a converted lens, as the report states it. */
-async function engineStopRadius(lens, data, loadBuildLensModule) {
+/** An error's message on one line: its header and its first reason, as `ingest refuses it:` lists reasons. */
+function headerAndFirstReason(error) {
+  const [header, first] = String(error instanceof Error ? error.message : error).split("\n");
+  return first === undefined ? header : `${header} ${first.trim().replace(/^•\s*/, "")}`;
+}
+
+/** A refusal by ingest, every reason on its own line. */
+function ingestRefusal(lead, error) {
+  return error?.issues ? `${lead}:\n  • ${error.issues.join("\n  • ")}` : `${lead}: ${error.message}`;
+}
+
+/**
+ * The engine's stop radius for a converted lens, as the report states it. Only the build is caught: a lens it cannot
+ * build has no radius to state, while a `buildLens` that cannot load fails the conversion.
+ *
+ * @param {"prime" | "held" | "perStation" | "schedule"} kind - how the engine sets the radius, as it says with the
+ *   dropped value
+ */
+async function engineStopRadius(kind, data, loadBuildLensModule) {
+  const { default: buildLens } = await loadBuildLensModule();
+  let built;
   try {
-    const { default: buildLens } = await loadBuildLensModule();
-    const built = buildLens(structuredClone(data));
-    const radii = built.zoomStopSDs ?? [built.stopPhysSD];
-    if (!lens.zoom) return { kind: "prime", radii };
-    if (lens.aperture.stopRadius === "schedule") return { kind: "schedule", radii };
-    return { kind: lens.zoom.apertureModel === "fixed-iris" ? "held" : "perStation", radii };
+    built = buildLens(structuredClone(data));
   } catch (error) {
-    return { error: String(error instanceof Error ? error.message : error).split("\n")[0] };
+    return { error: headerAndFirstReason(error) };
   }
+  return { kind, radii: built.zoomStopSDs ?? [built.stopPhysSD] };
 }
 
 /**
@@ -214,7 +240,7 @@ export async function convertLensDataSource(content, options) {
   try {
     ingested = ingest(read.value, { sources: true });
   } catch (error) {
-    return refuse(error.issues ? `ingest refuses it:\n  • ${error.issues.join("\n  • ")}` : error.message);
+    return refuse(ingestRefusal("ingest refuses it", error));
   }
 
   const writes = conversion.v2Writes();
@@ -243,7 +269,7 @@ export async function convertLensDataSource(content, options) {
 
   const placed = placeComments({
     comments: read.comments,
-    commentTarget: (path) => map.commentTarget(path),
+    commentTarget: (path, leading) => map.commentTarget(path, leading),
     textKept: (path) => kept.has(path),
     isContainer: (path) => containers.has(path),
   });
@@ -258,6 +284,7 @@ export async function convertLensDataSource(content, options) {
     text: (path) => texts.get(path),
     comments: (path) => placed.byPath.get(path),
     blankBefore: (path) => read.nodes.get(map.recordSource(path))?.blankBefore ?? false,
+    opensGroup: (member) => conversion.V2_GROUP_STARTS.includes(member),
     childPath: conversion.childPath,
   });
   const printed = `const ${frame.name} = ${objectText} satisfies ${frame.type};\n\nexport default ${frame.name};\n`;
@@ -281,18 +308,15 @@ export async function convertLensDataSource(content, options) {
       return refuse(`${path || "(root)"} reads back as ${outputTokens.get(path) ?? "nothing"}, not ${tokens}`);
     }
   }
-  const expected = placed.emitted.map(commentKey).sort();
-  const found = outputRead.comments.filter((comment) => comment.placement !== "header").map((c) => commentKey(c.text));
-  found.sort();
-  if (expected.length !== found.length || expected.some((key, index) => key !== found[index])) {
-    const missing = expected.find((key) => !found.includes(key)) ?? found.find((key) => !expected.includes(key));
-    return refuse(`a comment is not written exactly once: ${missing?.split("\n")[0] ?? "(count differs)"}`);
-  }
+  const uncarried = commentNotCarried(read.comments, outputRead.comments);
+  if (uncarried) return refuse(uncarried);
+  const replaced = commentReplaced(printedRead.comments, outputRead.comments);
+  if (replaced) return refuse(replaced);
   let reingested;
   try {
     reingested = ingest(outputRead.value);
   } catch (error) {
-    return refuse(`the converted file does not ingest: ${error.message.split("\n")[0]}`);
+    return refuse(ingestRefusal("the converted file does not ingest", error));
   }
   const difference = conversion.prescriptionDifference(ingested.prescription, reingested.prescription);
   if (difference) return refuse(`the converted file ingests to another prescription: ${difference}`);
@@ -301,7 +325,7 @@ export async function convertLensDataSource(content, options) {
   const zeroTerms = new Map();
   for (const value of map.dropped) {
     if (value.kind === "stopRadius") {
-      const engine = await engineStopRadius(ingested.prescription, data, options.loadBuildLens ?? loadBuildLens);
+      const engine = await engineStopRadius(value.stop, data, options.loadBuildLens ?? loadBuildLens);
       const authored = read.nodes.get(value.from);
       const stop = { from: value.from, text: authored?.text ?? String(value.value), value: value.value, engine };
       report.stops.push(stopRadiusEntry(stop, read.comments, conversion.parentPath));

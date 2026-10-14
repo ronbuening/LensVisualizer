@@ -158,11 +158,49 @@ export const PRETTIER_IGNORE_FILE = v1LensFile(`  key: "fixture-prettier-ignore"
     { label: "4", R: -200, d: 75, nd: 1, elemId: 0, sd: 15 },
   ],`);
 
-/** A V2 file as a person writes one: named media out of first-use order, an explicit zero term, a comment. */
+/**
+ * The layout rulings in one V1 prime: section banners over top-level fields, the file's first field among them, an
+ * inner comment, an empty `var` whose comments say how the lens focuses, a run of comments moved from one path, and
+ * comment lines that quote the stop radius as written and rounded.
+ */
+export const RULINGS_FILE = v1LensFile(`  /* ── Identity ── */
+  key: "fixture-rulings",
+  name: "Fixture 50mm f/2",
+
+  /* ── Focus ── */
+  closeFocusM: /* metres */ 0.5,
+  // Said once, for the whole lens.
+  focusDescription: "Unit focus.",
+
+  /* ── Aperture ── */
+  nominalFno: 2,
+  fstopSeries: [2, 2.8, 4],
+
+  /* ── Layout ── */
+  yScFill: 0.55,
+
+  elements: [{ id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }],
+  surfaces: [
+    { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 12.4987 },
+    { label: "1", R: 50, d: 5, nd: 1.5168, elemId: 1, sd: 15 },
+    { label: "2", R: -50, d: 80, nd: 1, elemId: 0, sd: 15 },
+  ],
+  // Unit focus moves the whole lens, so no air gap varies.
+  // The semi-diameter 12.50 mm was read off the drawing; 12.5 is the round figure.
+  var: {},
+  /* ── Aspheric terms ── */
+  // Every term is written,
+  // as V1 requires.
+  asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },`);
+
+/**
+ * A V2 file as a person writes one: named media out of first-use order, an explicit zero term, and comments, one on
+ * `schema` and one on an item of a published list.
+ */
 export const V2_SOURCE_FILE = `import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
-  schema: 2,
+  schema: 2, // the lens-data version
   key: "fixture-v2-source",
   name: "Fixture 50mm f/2",
 
@@ -185,9 +223,74 @@ const LENS_DATA = {
     { label: "4", R: -200, d: 75, sd: 15 },
   ],
 
-  focus: { closeFocusM: 0.5 },
+  focus: {
+    closeFocusM: 0.5,
+    published: [
+      // the close keyframe
+      1,
+    ],
+  },
 
   aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4] },
+
+  layout: { yScFill: 0.55 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;
+`;
+
+/** A V2 zoom whose comments sit on `schema` and on an item of a station's published keyframes. */
+export const V2_ZOOM_SOURCE_FILE = `import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+const LENS_DATA = {
+  // Written in V2.
+  schema: 2,
+  key: "fixture-v2-zoom",
+  name: "Fixture 24-100mm",
+
+  elements: [{ id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }],
+
+  surfaces: [
+    { label: "STO", R: "flat" },
+    { label: "1", R: 50, d: 5, sd: 15, medium: 1 },
+    { label: "2", R: -50, sd: 15 },
+  ],
+
+  zoom: {
+    stations: [
+      {
+        focalLengthMm: 24,
+        nominalFNumber: 2,
+        published: true,
+        publishedFocus: [
+          1, // the close keyframe at the wide end
+        ],
+      },
+      { focalLengthMm: 50, nominalFNumber: 2.4, published: false },
+      { focalLengthMm: 100, nominalFNumber: 2.8, published: true },
+    ],
+  },
+
+  focus: { closeFocusM: 0.5 },
+
+  gaps: {
+    STO: {
+      values: [
+        [1, 1],
+        [3, 3],
+        [5, 5],
+      ],
+    },
+    "2": {
+      values: [
+        [80, 81],
+        [80, 82],
+        [80, 83],
+      ],
+    },
+  },
+
+  aperture: { fStops: [2, 2.8, 4] },
 
   layout: { yScFill: 0.55 },
 } satisfies LensDataV2Input;
@@ -296,6 +399,100 @@ export const FORMS_REPORT = `src/lens-data/fixture/Fixture.data.ts
     asph["3"]: K, A4, A6, A8, A10, A12, A14
 `;
 
+/** `PRETTIER_IGNORE_FILE` converted. */
+export const PRETTIER_IGNORE_V2 = `import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/** A synthetic lens. */
+
+const LENS_DATA = {
+  schema: 2,
+  key: "fixture-prettier-ignore",
+  name: "Fixture 50mm f/2",
+
+  elements: [
+    // G1 — front group
+    // prettier-ignore
+    { id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.51680, vd: 64.17, role: "Front positive element of the fixture's only group, written on one line as its source does" },
+    // prettier-ignore
+    { id: 2, name: "L2", label: "Element 2", type: "Negative Meniscus", nd: 1.75520, vd: 27.53, role: "Rear negative meniscus of the fixture's only group, written on one line as its source does" },
+  ],
+
+  surfaces: [
+    { label: "STO", R: "flat", d: 1 },
+    { label: "1", R: 50.00, d: 5, sd: 15, medium: 1 },
+    { label: "2", R: -50, d: 1, sd: 15 },
+    { label: "3", R: -40, d: 2, sd: 15, medium: 2 },
+    { label: "4", R: -200, d: 75, sd: 15 },
+  ],
+
+  focus: { closeFocusM: 0.5 },
+
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4] },
+
+  layout: { yScFill: 0.55 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;
+`;
+
+/** `RULINGS_FILE` converted. */
+export const RULINGS_V2 = `import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/** A synthetic lens. */
+
+const LENS_DATA = {
+  /* ── Identity ── */
+  schema: 2,
+  key: "fixture-rulings",
+  name: "Fixture 50mm f/2",
+
+  elements: [{ id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }],
+
+  /* (moved from asph) ── Aspheric terms ── */
+  // Every term is written,
+  // as V1 requires.
+  surfaces: [
+    { label: "STO", R: "flat", d: 1 },
+    { label: "1", R: 50, d: 5, sd: 15, medium: 1, asphere: { A4: 1.25e-6 } },
+    { label: "2", R: -50, d: 80, sd: 15 },
+  ],
+
+  /* ── Focus ── */
+  // (moved from var) Unit focus moves the whole lens, so no air gap varies.
+  // The semi-diameter 12.50 mm was read off the drawing; 12.5 is the round figure.
+  focus: {
+    /* metres */
+    closeFocusM: 0.5,
+    // Said once, for the whole lens.
+    description: "Unit focus.",
+  },
+
+  /* ── Aperture ── */
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4] },
+
+  /* ── Layout ── */
+  layout: { yScFill: 0.55 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;
+`;
+
+/** The report of `RULINGS_FILE`'s conversion. */
+export const RULINGS_REPORT = `src/lens-data/fixture/Fixture.data.ts
+  moved comments:
+    line 28: var → focus: // Unit focus moves the whole lens, so no air gap varies.
+    line 29: var → focus: // The semi-diameter 12.50 mm was read off the drawing; 12.5 is the round figure.
+    line 31: asph → surfaces: /* ── Aspheric terms ── */
+    line 32: asph → surfaces: // Every term is written,
+    line 33: asph → surfaces: // as V1 requires.
+  stop radius dropped: surfaces[0].sd = 12.4987
+    engine radius: 12.303 mm
+    elsewhere in the file:
+      line 29: // The semi-diameter 12.50 mm was read off the drawing; 12.5 is the round figure.
+  zero aspheric terms dropped:
+    asph["1"]: K, A6, A8, A10, A12, A14
+`;
+
 /** `ZOOM_FILE` converted. */
 export const ZOOM_V2 = `import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
@@ -331,9 +528,9 @@ const LENS_DATA = {
     ],
   },
 
-  // (moved from varLabels[0]) before the second gap
   gaps: {
     // The stop gap is the zoom variable.
+    // (moved from varLabels[0]) before the second gap
     STO: {
       label: "D0",
       values: [
@@ -365,7 +562,7 @@ export const ZOOM_REPORT = `src/lens-data/fixture/Fixture.data.ts
   moved comments:
     line 20: surfaces[0].sd → surfaces[0]: // calibrated by hand to the wide f-number
     line 25: zoomPositions → zoom.stations: /* ── Zoom ── */
-    line 42: varLabels[0] → gaps: // before the second gap
+    line 42: varLabels[0] → gaps["STO"]: // before the second gap
   stop radius dropped: surfaces[0].sd = 9.5
     engine radius by station: 12.303, 10.253, 8.788 mm
     comments on the stop entry:

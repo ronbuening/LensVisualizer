@@ -3,9 +3,9 @@
  * says where each part of that file came from.
  *
  * The converter (`scripts/lens-data-convert/`) prints what this view writes, and nothing in the app imports it. The
- * view writes the fields in the V2 order of OPTICS_ENGINE_REWRITE_SPEC.md (Lens data V2, Shape), leaves out a field
- * the source left to the schema, and keeps what provenance says the source wrote that the prescription holds
- * otherwise:
+ * view writes each record's fields in the declaration order of the V2 types (`types/lensDataV2.ts`), names the
+ * top-level members that open a group of the file (`V2_GROUP_STARTS`), leaves out a field the source left to the
+ * schema, and keeps what provenance says the source wrote that the prescription holds otherwise:
  * - from either version, a flat radius written as a number other than `1e15`, and an authored stand-in for a default;
  * - from a V2 source, its media's ids, names and order, and its zero aspheric terms. A V1 source's zero terms are
  *   padding its format required, so they are dropped, and so is the radius of a stop the engine derives.
@@ -267,8 +267,35 @@ function writeGaps(
   });
 }
 
+/**
+ * Top-level members that open a group of a V2 lens or teleconverter file, in the order the view writes them; the
+ * converter prints a blank line before each.
+ */
+export const V2_GROUP_STARTS: readonly string[] = [
+  "catalog",
+  "source",
+  "magnification",
+  "elements",
+  "media",
+  "surfaces",
+  "zoom",
+  "focus",
+  "gaps",
+  "aperture",
+  "aberrationControl",
+  "projection",
+  "opticalPath",
+  "perspectiveControl",
+  "rearPlates",
+  "groups",
+  "layout",
+  "rays",
+  "checks",
+];
+
 function writeIdentity(write: Writer, out: Untyped, prescription: CanonicalPrescription, visiblePath?: string): void {
-  write.put(out, "", "schema", 2);
+  /* Written from the format, under its own path, where a V2 source's `schema` is held. */
+  write.put(out, "", "schema", 2, "schema");
   write.copy(out, "", prescription, "", ["key"]);
   if (Object.hasOwn(prescription, "maker")) write.copy(out, "", prescription, "", ["maker"]);
   write.copy(out, "", prescription, "", ["name", "subtitle"]);
@@ -431,6 +458,12 @@ export function toTeleconverterDataV2Input(
 
 /* ── Composition ── */
 
+/**
+ * How the engine sets a stop radius the V2 file drops: derived on a prime, derived at the wide station and held at
+ * every station of a fixed-iris zoom, derived at each station of any other zoom, or each station's published radius.
+ */
+export type DroppedStopRadius = "prime" | "held" | "perStation" | "schedule";
+
 /** A value ingest set aside that the V2 file does not hold. */
 export interface DroppedValue {
   kind: IgnoredKind;
@@ -439,6 +472,16 @@ export interface DroppedValue {
   /** Canonical path where it would sit. */
   canonical: string;
   value: unknown;
+  /** For a stop radius, how the engine sets the radius in its place. */
+  stop?: DroppedStopRadius;
+}
+
+/** How the engine sets the radius of a stop whose authored `sd` it does not read. */
+function droppedStopRadius(prescription: CanonicalPrescription): DroppedStopRadius {
+  const lens = prescription as CanonicalLens;
+  if (!lens.zoom) return "prime";
+  if (lens.aperture.stopRadius === "schedule") return "schedule";
+  return lens.zoom.apertureModel === "fixed-iris" ? "held" : "perStation";
 }
 
 /** Where each part of a V2 file came from in its source, composed through the canonical prescription. */
@@ -451,8 +494,16 @@ export interface V2SourceMap {
   /**
    * Where a comment on an authored node goes: the node the V2 file wrote from it, or else, moved, the nearest node
    * written from one of its ancestors, or the home of a container the V2 file dissolves.
+   *
+   * A comment that leads a top-level field of the source is a banner over what follows, so it leads the outermost V2
+   * record that field opens: the record whose first written member the field became, and so on outward while that
+   * record is in turn the first member written into its own. A comment that leads the source's first field leads
+   * `schema`, which opens the V2 file. Neither is moved.
+   *
+   * @param authoredPath - the node the comment annotates in the source
+   * @param leading - whether the comment leads that node
    */
-  commentTarget(authoredPath: string): { path: string; moved: boolean };
+  commentTarget(authoredPath: string, leading?: boolean): { path: string; moved: boolean };
   /** The authored record a written record was read from: `surfaces[3]` for V2 `surfaces[3]`. */
   recordSource(v2Path: string): string | undefined;
   /** Each value ingest set aside that the V2 file does not hold, in the order ingest met them. */
@@ -522,12 +573,35 @@ export function v2SourceMap(ingested: IngestedPrescription, writes: V2Writes): V
     }
     return "";
   };
+  const carried = (authoredPath: string): { path: string; moved: boolean } => {
+    for (let path: string | undefined = authoredPath; path !== undefined; path = parentPath(path)) {
+      const canonical = canonicalOf(path);
+      const written = canonical === undefined ? undefined : v2Of(canonical);
+      if (written !== undefined) return { path: written, moved: path !== authoredPath };
+      const home = homes.get(path);
+      if (home !== undefined) return { path: nearestWritten(home), moved: true };
+    }
+    return { path: "", moved: true };
+  };
+  /* The outermost record a written node opens, below the file's own members: the node itself when it opens none. */
+  const opened = (v2Path: string): string => {
+    let at = v2Path;
+    for (let record = parentPath(at); record !== undefined && record !== ""; record = parentPath(at)) {
+      const first = writes.order[record]?.[0];
+      if (first === undefined || childPath(record, first) !== at) break;
+      at = record;
+    }
+    return at;
+  };
 
   const restored = new Set(writes.restored);
   const dropped: DroppedValue[] = [];
   for (const [canonical, entry] of Object.entries(sources.ignored)) {
     if (restored.has(canonical)) continue;
-    dropped.push({ ...entry, canonical, value: ingested.provenance.ignored[canonical] });
+    const value = ingested.provenance.ignored[canonical];
+    if (entry.kind === "stopRadius")
+      dropped.push({ ...entry, canonical, value, stop: droppedStopRadius(ingested.prescription) });
+    else dropped.push({ ...entry, canonical, value });
   }
 
   return {
@@ -536,15 +610,11 @@ export function v2SourceMap(ingested: IngestedPrescription, writes: V2Writes): V
       if (canonical === undefined) return undefined;
       return readExact.get(canonical) ?? ignoredFrom.get(canonical) ?? follow(canonical, readExact, readExact);
     },
-    commentTarget(authoredPath) {
-      for (let path: string | undefined = authoredPath; path !== undefined; path = parentPath(path)) {
-        const canonical = canonicalOf(path);
-        const written = canonical === undefined ? undefined : v2Of(canonical);
-        if (written !== undefined) return { path: written, moved: path !== authoredPath };
-        const home = homes.get(path);
-        if (home !== undefined) return { path: nearestWritten(home), moved: true };
-      }
-      return { path: "", moved: true };
+    commentTarget(authoredPath, leading = false) {
+      const target = carried(authoredPath);
+      if (!leading || target.moved || parentPath(authoredPath) !== "") return target;
+      if (authoredPath === sources.firstField) return { path: "schema", moved: false };
+      return { path: opened(target.path), moved: false };
     },
     recordSource(v2Path) {
       const canonical = writes.from[v2Path];
