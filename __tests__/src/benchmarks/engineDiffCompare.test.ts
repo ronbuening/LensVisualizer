@@ -262,10 +262,14 @@ describe("build pupil crossing budgets", () => {
     }
   });
 
-  it("gives a build pupil no absolute floor", () => {
-    const source = sourceOf({ epZRelStop: 0 });
-    const moved = withChange("build", ["epZRelStop"], () => 1e-13, source);
-    for (const changeClass of ["c1", "c2"] as const) expect(compare(changeClass, moved, source).passed).toBe(false);
+  it("keeps the first-order 1e-12 mm floor for a build pupil near its reference surface", () => {
+    // fujifilm-fujinon-xf-18-55-f28-4-r-lm-ois at the middle station: 0.3 mm from the stop, moved by 3.8e-13 mm.
+    const source = sourceOf({ zoomEpZRelStops: [-13.66, 0.29820907788709405, 21.59] });
+    const at = (z: number) => withChange("build", ["zoomEpZRelStops", 1], () => z, source);
+    for (const changeClass of ["c1", "c2"] as const) {
+      expect(compare(changeClass, at(0.29820907788747064), source).passed).toBe(true);
+      expect(compare(changeClass, at(0.29820907788709405 + 2e-12), source).passed).toBe(false);
+    }
   });
 });
 
@@ -324,8 +328,8 @@ describe("engineDiff budget table", () => {
       ["binnedStatistic", 1e-10, null],
       /* One spot extent over another is 1 or more, and a span ratio is zero only for a footprint with no rays. */
       ["lengthRatio", 1e-8, null],
-      /* A build pupil has no absolute floor, near or far from the lens. */
-      ["buildPupil", 1e-12, null],
+      /* A near build pupil keeps the first-order length floor; a far one's share is at least 1e-8 mm. */
+      ["buildPupil", 1e-12, lengthFloor],
       ["farBuildPupil", 1e-10, null],
       /* A hit's effective tolerance is a length that is never below the engine's 1e-12 mm target. */
       ["effectiveTolerance", 1e-12, null],
@@ -418,6 +422,7 @@ describe("engineDiff budget table", () => {
     const atZero = floored.filter(({ bound, c1 }) => bound === c1);
     expect(atZero.map(({ id, bound, unit }) => [id, bound, unit])).toEqual([
       ["firstOrder", 1e-12, "mm"],
+      ["buildPupil", 1e-12, "mm"],
       ["layoutLength", 1e-12, "mm"],
       ["bestFitRadius", 1e-12, "mm"],
       ["ratio", 1e-10, ""],

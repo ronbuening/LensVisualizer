@@ -655,8 +655,8 @@ The classes in `budgets.ts`:
 - Layout lengths, refractive indices, the scalars that are no lengths and a prescription handed back take the
   first-order relative budget. Smooth ratios take 1e-10.
 - The pupil positions and sizes the engine builds from its two near-axis rays keep 1e-12 relative, or 1e-10 of
-  the compared member's own size when the pupil is more than 100 mm from the lens, whichever is more, with no
-  absolute floor. A position's distance is its own magnitude; a size reads its pupil's sibling position at the
+  the compared member's own size when the pupil is more than 100 mm from the lens, whichever is more, with the
+  first-order length floor of 1e-12 mm. A position's distance is its own magnitude; a size reads its pupil's sibling position at the
   same zoom station (`EP.epSD` reads `epZRelStop`, `xpSD` reads `xpZRelLastSurf`, and `zoomXpSDs[]` reads
   `zoomXpZRelLastSurfs[]`), taking the larger distance of the two sides. `zoomEPs[]`, the nominal entrance-pupil
   radius (focal length over twice the f-number), is no crossing and stays a first-order scalar. Under C0 all remain bit-exact. The budget is not divided by the 1e-4 of those rays: both rays' slopes
