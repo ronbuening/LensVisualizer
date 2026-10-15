@@ -2,8 +2,9 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import PlanarRaw from "../../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.js";
-import { traceExactSurfaceStack } from "../../../src/optics/internal/exactSurfaceTrace.js";
-import { traceSurfacesParaxial } from "../../../src/optics/internal/traceSurfaces.js";
+import { traceFixtureSlope } from "./traceGeometryFixtures.js";
+
+import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "../../../src/optics/math/paraxial.js";
 import {
   PLANAR_REFERENCE_PATH,
   decideChiefRay,
@@ -47,17 +48,16 @@ function pinned(name: (typeof PUPIL_PINS)[number] | (typeof FIELD_PINS)[number])
 function engineHalfFieldBisection(): { start: number; passes: (degrees: number) => boolean } {
   const lens = { S: L.S, asphByIdx: L.asphByIdx };
   const delta = 1e-4;
-  const stopHeight = (y0: number, uy0: number): number =>
-    traceExactSurfaceStack(lens, { y0, uy0 }, { stopAt: L.stopIdx }).y;
+  const stopHeight = (y0: number, uy0: number): number => traceFixtureSlope(lens, { y0, uy0 }, { stopAt: L.stopIdx }).y;
   const epRatio = stopHeight(0, delta) / delta / (stopHeight(delta, 0) / delta);
   const passes = (degrees: number): boolean => {
     const slope = -Math.tan((degrees * Math.PI) / 180);
-    const trace = traceExactSurfaceStack(
+    const trace = traceFixtureSlope(
       lens,
       { y0: -epRatio * slope, uy0: slope },
       { skipLastTransfer: true, recordHeights: true, checkSemiDiameter: true },
     );
-    return trace.failureReason === null && Number.isFinite(trace.y) && !trace.clipped;
+    return trace.failureReason === null && Number.isFinite(trace.y) && !(trace.status !== "ok");
   };
 
   const heights = (y0: number, u0: number): number[] =>

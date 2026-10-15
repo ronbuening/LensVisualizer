@@ -9,7 +9,7 @@ import {
   type BokehPupilSample,
   type BokehRadialProfile,
 } from "../../aberration/types.js";
-import { sampleCircularPupil } from "../../rayTrace.js";
+import { sampleCircularPupil } from "../../analysis/sampling.js";
 import type { Vec3 } from "../../types.js";
 import {
   sampleSensorLockedFields,

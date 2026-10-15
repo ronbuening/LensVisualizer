@@ -12,7 +12,6 @@ import {
 } from "../../../../src/optics/geometry/intersect.js";
 import { capCoordinateTolerance } from "../../../../src/optics/geometry/intersectTolerance.js";
 import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
-import { intersectSagSurface } from "../../../../src/optics/internal/surfaceIntersection.js";
 import { ulpOf } from "../../../../src/optics/math/numerics.js";
 import { dot, normalize } from "../../../../src/optics/math/vector.js";
 import { evaluateAperture } from "../../../../src/optics/trace/aperture.js";
@@ -204,7 +203,7 @@ describe("Optics engine surface intersections", () => {
 });
 
 // Small shared-engine regression: a sixth-order continuation has an exterior root before the authored cap.
-// This must remain independent of a catalog prescription and exercise both intersection entry points.
+// This must remain independent of a catalog prescription and exercise cap selection in the production kernel.
 describe("authored asphere cap selection", () => {
   const asphere: AsphericCoefficients = { K: 0, A4: 0.04, A6: -0.004, A8: 0, A10: 0, A12: 0, A14: 0 };
   const profile = createSurfaceProfile({ R: 1e15 }, asphere);
@@ -213,20 +212,11 @@ describe("authored asphere cap selection", () => {
   it("replaces an exterior polynomial root with the first cap hit", () => {
     const exterior = intersectSurfaceProfile(ray, profile, 0, { maxT: 15 });
     const physical = intersectSurfaceProfile(ray, profile, 0, { maxT: 15, clearRadius: 2.5 });
-    const legacy = intersectSagSurface(
-      { origin: [...ray.origin], direction: [...ray.direction] },
-      0,
-      0,
-      { S: [{ R: 1e15, sd: 2.5 }], asphByIdx: { 0: asphere } },
-      { maxT: 15 },
-    );
     expect(exterior.ok && exterior.radius).toBeCloseTo(3.417823094641, 8);
-    for (const hit of [physical, legacy]) {
-      expect(hit.ok).toBe(true);
-      if (!hit.ok) continue;
-      expect(hit.radius).toBeCloseTo(2.076820214007, 8);
-      expect(hit.point[2]).toBeCloseTo(0.423179785993, 8);
-    }
+    expect(physical.ok).toBe(true);
+    if (!physical.ok) return;
+    expect(physical.radius).toBeCloseTo(2.076820214007, 8);
+    expect(physical.point[2]).toBeCloseTo(0.423179785993, 8);
   });
 
   it("preserves exterior first-clip geometry when the ray misses the cap", () => {

@@ -498,11 +498,10 @@ describe("engineDiff budget table", () => {
   });
 
   it("resolves a path by its first matching row, and leaves an unknown member unclassified", () => {
-    /* A legacy ray's height is budgeted by its own clip flag, ahead of the row for every other ray's `y`. */
-    const legacy = resolveBudgetRule("traces", ["legacy", "rays", "[]", "y"]);
-    const prepared = resolveBudgetRule("traces", ["onAxis", "rays", "[]", "y"]);
-    expect(typeof legacy?.quantity).toBe("function");
-    expect(legacy?.quantity).not.toBe(prepared?.quantity);
+    /* Hit flags select a coordinate's class before generic point rows. */
+    expect(
+      typeof resolveBudgetRule("traces", ["onAxis", "rays", "[]", "hits", "columns", "point", "[]", "[]"])?.quantity,
+    ).toBe("function");
     expect(resolveBudgetRule("analysis", ["jobs", "x", "value", "spanUm"])).toMatchObject({
       quantity: "analysisLength",
       scale: 1000,
@@ -666,210 +665,78 @@ describe("engineDiff tangential parabasal focus", () => {
   });
 });
 
-describe("engineDiff legacy missed-surface tail", () => {
-  it("pins the finite-tail class and its record selectors", () => {
-    expect(QUANTITIES.legacyMissTail).toEqual({
-      title: "Legacy points after a missed surface",
-      unit: "",
-      kind: "finite",
-      c1: 0,
-      c2: null,
-      origin: "addition",
-    });
-    for (const path of [["ghostPts", "[]", "[]"], ["y"]]) {
-      expect(resolveBudgetRule("traces", ["legacy", "rays", "[]", ...path])).toMatchObject({ scale: 1 });
+describe("engineDiff retired legacy capture", () => {
+  const record = (value: object): PayloadRecord => ({
+    lens: "synthetic-retirement",
+    state: DEFAULT_STATE,
+    request: "traces",
+    payload: { ok: true, value: encodeValue(value) },
+  });
+  const production = { onAxis: { rays: [{ y: 1 }] }, nearAxisProbes: { applicable: true, prepared: { ok: true } } };
+  const old = {
+    ...production,
+    legacy: { rays: [{ pts: [[0, 1]], ghostPts: [], y: 1, u: 0, transmission: 1 }] },
+    nearAxisProbes: { ...production.nearAxisProbes, legacy: { ok: true, value: { returned: true } } },
+  };
+
+  it("retires only base-side legacy fan and probe members, without mutating either capture", () => {
+    for (const value of [
+      old,
+      { ...old, nearAxisProbes: production.nearAxisProbes },
+      {
+        ...production,
+        nearAxisProbes: old.nearAxisProbes,
+      },
+    ]) {
+      const base = [record(value)];
+      const head = [record(production)];
+      const before = JSON.stringify([base, head]);
+      for (const changeClass of CLASSES) {
+        const summary = compare(changeClass, head, base);
+        expect(summary.passed).toBe(true);
+        expect(summary.engine).toMatchObject({ records: 1, recordsDiffering: 0, numbersDiffering: 0, failing: 0 });
+        expect(summary.counts.baseEngine).toEqual(summary.counts.headEngine);
+      }
+      expect(JSON.stringify([base, head])).toBe(before);
     }
   });
-  const ray = {
-    pts: [
-      [0, 1],
-      [1, 1],
-    ],
-    ghostPts: [
-      [10, 20],
-      [6.1e16, 3],
-    ],
-    clipped: true,
-    y: 6.1e16,
-    u: 2,
-    diagnostics: {
-      failureReason: "noBracket",
-      hitSurfaceIndexes: [8, 4, 2],
-      clipEvents: [
-        { reason: "semi-diameter", surfaceIdx: 4, failureReason: null as string | null },
-        { reason: "intersection-failure", surfaceIdx: 2, failureReason: "noBracket" },
+
+  it("keeps additions, shared legacy values, missing parents and unrelated removals inside C0", () => {
+    const cases: [object, object][] = [
+      [production, old],
+      [old, { ...old, legacy: { rays: [] } }],
+      [old, { onAxis: production.onAxis }],
+      [{ ...old, another: 1 }, production],
+      [{ ...old, nearAxisProbes: { ...old.nearAxisProbes, another: 1 } }, production],
+      [old, { ...production, onAxis: { rays: [{ y: 1 + Number.EPSILON }] } }],
+      [
+        { ...production, legacy: 1 },
+        { ...production, legacy: null },
       ],
-    },
-  };
-  const records = (value: unknown): ComparableRecord[] => [
-    { lens: "synthetic", state: DEFAULT_STATE, request: "traces", payload: { ok: true, value: encodeValue(value) } },
-  ];
-  const base = records({ legacy: { rays: [ray] } });
-  const moved = (edit: (value: typeof ray) => void) => {
-    const value = structuredClone(ray);
-    edit(value);
-    return records({ legacy: { rays: [value] } });
-  };
-  const judge = (head: ComparableRecord[], changeClass: ChangeClass = "c1", source = base) => {
-    const run = createDifferentialRun({ changeClass, declaredExceptions: [], restricted: true });
-    run.addLens({ lens: "synthetic", dataChange: "unchanged", baseEngine: source, headEngine: head });
-    return run.finish();
-  };
-
-  it("compares finite ghost coordinates and clipped y after the miss without a distance budget", () => {
-    const head = moved((value) => {
-      value.ghostPts[1][0] *= 2;
-      value.y *= 2;
-    });
-    expect(judge(head).passed).toBe(true);
-    expect(judge(head, "c2").passed).toBe(true);
-    expect(judge(head, "c0").passed).toBe(false);
+    ];
+    for (const [base, head] of cases) expect(compare("c0", [record(head)], [record(base)]).passed).toBe(false);
+    expect(() => compare("c0", [], [record(old)])).toThrow("same requests in the same order");
+    const threw: PayloadRecord = {
+      ...record(production),
+      payload: { ok: false, error: { name: "Error", message: "capture" } },
+    };
+    expect(compare("c0", [threw], [record(old)]).passed).toBe(false);
   });
 
-  it("keeps presence, counts, finiteness and the ray diagnostics gated", () => {
-    for (const edit of [
-      (value: typeof ray) => {
-        value.ghostPts[1][0] = Infinity;
-      },
-      (value: typeof ray) => {
-        value.ghostPts.pop();
-      },
-      (value: typeof ray) => {
-        value.y = NaN;
-      },
-      (value: typeof ray) => {
-        value.diagnostics.failureReason = "grazing";
-      },
-      (value: typeof ray) => {
-        value.diagnostics.hitSurfaceIndexes[1] = 2;
-      },
-      (value: typeof ray) => {
-        value.u += 1e-5;
-      },
-      (value: typeof ray) => {
-        value.pts[0][1] += 1e-5;
-      },
-      (value: typeof ray) => {
-        value.diagnostics.clipEvents[1].failureReason = "grazing";
-      },
-    ])
-      expect(judge(moved(edit)).passed).toBe(false);
-  });
-
-  it("keeps points before the first miss at their existing budget even when a later miss qualifies", () => {
-    const source = structuredClone(ray);
-    source.diagnostics.clipEvents.push({ reason: "intersection-failure", surfaceIdx: 4, failureReason: "noBracket" });
-    const head = structuredClone(source);
-    head.ghostPts[0][1] += 2e-7;
-    expect(judge(records({ legacy: { rays: [head] } }), "c1", records({ legacy: { rays: [source] } })).passed).toBe(
-      false,
-    );
-  });
-
-  it("exempts every ghost when a dropped point precedes a first-hit miss", () => {
-    const source = structuredClone(ray);
-    source.pts.pop();
-    source.diagnostics.clipEvents[1].surfaceIdx = 8;
-    const head = structuredClone(source);
-    for (const point of head.ghostPts) point[0] *= 2;
-    expect(judge(records({ legacy: { rays: [head] } }), "c1", records({ legacy: { rays: [source] } })).passed).toBe(
-      true,
-    );
-  });
-
-  it("keeps the lower bound when a point after the miss was dropped", () => {
-    const source = structuredClone(ray);
-    source.diagnostics.hitSurfaceIndexes.push(0);
-    const head = structuredClone(source);
-    head.ghostPts[1][0] *= 2;
-    expect(judge(records({ legacy: { rays: [head] } }), "c1", records({ legacy: { rays: [source] } })).passed).toBe(
-      true,
-    );
-    head.ghostPts[0][1] += 2e-7;
-    expect(
-      judge(records({ legacy: { rays: [head] } }), "c1", records({ legacy: { rays: [source] } })).engine.failures,
-    ).toContainEqual(expect.objectContaining({ path: "legacy.rays[0].ghostPts[0][1]", quantity: "clippedHit" }));
-  });
-
-  it("requires the lower bound and first miss position on both sides", () => {
-    for (const edit of [
-      (value: typeof ray) => {
-        value.pts.pop();
-      },
-      (value: typeof ray) => {
-        value.diagnostics.clipEvents.pop();
-      },
-      (value: typeof ray) => {
-        value.diagnostics.clipEvents[1].surfaceIdx = 9;
-      },
-    ]) {
-      const conservative = structuredClone(ray);
-      edit(conservative);
-      const distant = structuredClone(conservative);
-      distant.ghostPts[1][0] *= 2;
-      const plain = records({ legacy: { rays: [conservative] } });
-      const moved = records({ legacy: { rays: [distant] } });
-      expect(judge(moved, "c1", plain).passed).toBe(false);
-      expect(judge(plain, "c1", moved).passed).toBe(false);
-      /* A single qualifying side must still choose the old quantity for the differing point. */
-      for (const [baseRay, headRay] of [
-        [ray, distant],
-        [distant, ray],
-      ]) {
-        const summary = judge(records({ legacy: { rays: [headRay] } }), "c1", records({ legacy: { rays: [baseRay] } }));
-        expect(summary.engine.failures).toContainEqual(
-          expect.objectContaining({
-            path: "legacy.rays[0].ghostPts[1][0]",
-            quantity: "clippedHit",
-          }),
-        );
-      }
-    }
-  });
-
-  it("keeps a point before the miss on either side at its existing budget", () => {
-    const head = structuredClone(ray);
-    head.diagnostics.clipEvents[1].surfaceIdx = 8;
-    head.ghostPts[0][1] += 2e-7;
-    const changed = records({ legacy: { rays: [head] } });
-    for (const [source, target] of [
-      [base, changed],
-      [changed, base],
-    ]) {
-      expect(judge(target, "c1", source).engine.failures).toContainEqual(
-        expect.objectContaining({
-          path: "legacy.rays[0].ghostPts[0][1]",
-          quantity: "clippedHit",
-        }),
-      );
-    }
-  });
-
-  it("requires both clipped flags and both misses for the y exemption", () => {
-    for (const edit of [
-      (value: typeof ray) => {
-        value.clipped = false;
-      },
-      (value: typeof ray) => {
-        value.diagnostics.clipEvents.pop();
-      },
-    ]) {
-      const conservative = structuredClone(ray);
-      edit(conservative);
-      const distant = structuredClone(conservative);
-      distant.y *= 2;
-      for (const [baseRay, headRay] of [
-        [ray, distant],
-        [distant, ray],
-      ]) {
-        const summary = judge(records({ legacy: { rays: [headRay] } }), "c1", records({ legacy: { rays: [baseRay] } }));
-        expect(summary.engine.failures).toContainEqual(
-          expect.objectContaining({
-            path: "legacy.rays[0].y",
-            quantity: "clippedHit",
-          }),
-        );
-      }
+  it("does not retire members from format-only or semantic data comparisons", () => {
+    for (const dataChange of ["format", "semantic"] as const) {
+      const run = createDifferentialRun({ changeClass: "c0", declaredExceptions: [], restricted: true });
+      run.addLens({
+        lens: "synthetic-retirement",
+        dataChange,
+        baseEngine: [record(old)],
+        headEngine: [record(production)],
+        baseData: [record(old)],
+      });
+      const summary = run.finish();
+      expect(summary.engine.recordsDiffering).toBe(0);
+      if (dataChange === "format") expect(summary.formatOnly.failing).toBeGreaterThan(0);
+      else expect(summary.dataImpact[0].recordsDiffering).toBe(1);
     }
   });
 });
@@ -1363,14 +1230,13 @@ describe("engineDiff drift detection", () => {
   });
 
   it("holds a diagnostic point to 1e-7 mm near the lens and to 1e-12 of its size far from it", () => {
-    /* A clipped ray that the stack tracer follows as a ghost path can leave the lens: on one catalog lens its points
-     * run from 3.1e8 mm outwards, and two engines that agree to rounding differ there by more than 1e-7 mm. */
-    const ghost: Path = ["legacy", "rays", 1, "ghostPts"];
-    const withGhostPoint = (y: number) => withChange("traces", ghost, () => [[1, y]]);
-    const run = (base: number, head: number) => compare("c1", withGhostPoint(head), withGhostPoint(base));
+    const point: Path = ["onAxis", "rays", 1, "terminalPoint"];
+    const clipped = withChange("traces", ["onAxis", "rays", 1, "status"], () => "clipped");
+    const withDiagnosticPoint = (y: number) => withChange("traces", point, () => [0, y, 1], clipped);
+    const run = (base: number, head: number) => compare("c1", withDiagnosticPoint(head), withDiagnosticPoint(base));
     const failed = (summary: RunSummary) =>
       summary.engine.failures.map(({ kind, quantity, path }) => ({ kind, quantity, path }));
-    const breach = [{ kind: "number", quantity: "clippedHit", path: "legacy.rays[1].ghostPts[0][1]" }];
+    const breach = [{ kind: "number", quantity: "clippedHit", path: "onAxis.rays[1].terminalPoint[1]" }];
 
     /* Near the lens the bound is the plan's 1e-7 mm, whatever the point's size up to 100 m. */
     expect(failed(run(12, 12 + 5e-8))).toEqual([]);
@@ -1387,7 +1253,7 @@ describe("engineDiff drift detection", () => {
     expect(failed(run(3.3473764502675636e55, 3.35e55))).toEqual(breach);
 
     /* Under C0 every number is exact, far or near. */
-    expect(compare("c0", withGhostPoint(310512819.87209314), withGhostPoint(far)).passed).toBe(false);
+    expect(compare("c0", withDiagnosticPoint(310512819.87209314), withDiagnosticPoint(far)).passed).toBe(false);
   });
 
   it("budgets a hit as clipped when either side's flag says so, and lists the flag as a transition", () => {
@@ -2509,9 +2375,9 @@ describe("engineDiff drift detection", () => {
     });
   });
 
-  it("fails a near-axis probe that stops returning, on either tracer", () => {
+  it("fails a production near-axis probe that stops returning", () => {
     /* The engine builds its pupil constants from two near-axis rays and takes another value, unflagged, when one
-     * fails. The `traces` record traces two such rays on each tracer, so a ray that stops returning is a status and
+     * fails. The `traces` record traces two such rays on the production tracer, so a ray that stops returning is a status and
      * not a number to budget. */
     const probes: Path = ["nearAxisProbes"];
     expect(at(SERENAR_RECORDS, "traces", probes)).toEqual({
@@ -2523,23 +2389,11 @@ describe("engineDiff drift detection", () => {
           chief: { status: "ok", failureReason: null, y: expect.any(Number) },
         },
       },
-      legacy: {
-        ok: true,
-        value: {
-          marginal: { clipped: false, failureReason: null, returned: true },
-          chief: { clipped: false, failureReason: null, returned: true },
-        },
-      },
     });
     const prepared = withChange("traces", [...probes, "prepared", "value", "chief"], () => ({
       status: "failed",
       failureReason: "noConvergedIntersection",
       y: encodeValue(Number.NaN),
-    }));
-    const legacy = withChange("traces", [...probes, "legacy", "value", "marginal"], () => ({
-      clipped: true,
-      failureReason: "noConvergedIntersection",
-      returned: false,
     }));
     /* A launch that threw: the copy of the engine's launch met a prepared state it cannot read. */
     const threw = withChange("traces", [...probes, "prepared"], () => ({
@@ -2554,23 +2408,13 @@ describe("engineDiff drift detection", () => {
         { request: "traces", path: `${at0}.status`, kind: "discrete", quantity: null },
         { request: "traces", path: `${at0}.y`, kind: "nonFinite", quantity: "clippedHit" },
       ]);
-      expect(pathsAndKinds(compare(changeClass, legacy)), changeClass).toEqual([
-        ["nearAxisProbes.legacy.value.marginal.clipped", "discrete"],
-        ["nearAxisProbes.legacy.value.marginal.failureReason", "discrete"],
-        ["nearAxisProbes.legacy.value.marginal.returned", "discrete"],
-      ]);
       /* The status alone, with nothing else to show for it. */
-      for (const [tracer, member, value] of [
-        ["prepared", "status", "failed"],
-        ["legacy", "returned", false],
-      ] as const) {
-        const alone = withChange("traces", [...probes, tracer, "value", "marginal", member], () => value);
-        expect(pathsAndKinds(compare(changeClass, alone)), changeClass).toEqual([
-          [`nearAxisProbes.${tracer}.value.marginal.${member}`, "discrete"],
-        ]);
-      }
+      const alone = withChange("traces", [...probes, "prepared", "value", "marginal", "status"], () => "failed");
+      expect(pathsAndKinds(compare(changeClass, alone)), changeClass).toEqual([
+        ["nearAxisProbes.prepared.value.marginal.status", "discrete"],
+      ]);
       /* A launch that threw on one engine fails as the outcome of that tracer's probes, and of nothing else: the
-       * other tracer's probes and every ray of the record are still compared. */
+       * every ray of the record is still compared. */
       expect(pathsAndKinds(compare(changeClass, threw)), changeClass).toEqual([
         ["nearAxisProbes.prepared.ok", "discrete"],
         ["nearAxisProbes.prepared.value", "shape"],
@@ -4990,7 +4834,6 @@ describe("engineDiff declared transitions", () => {
     expect(at(LIGHT, "traces", [...RAY, "hits", "count"])).toBe(11);
     expect(at(LIGHT, "traces", [...RAY, "hits", "columns", "clipped"])).toEqual(new Array(11).fill(false));
     expect(at(LIGHT, "traces", [...RAY, "imagePoint"])).toHaveLength(2);
-    expect(at(LIGHT, "traces", ["legacy", "rays", 1, "clipped"])).toBe(false);
     expect(OTHER_LENS).not.toBe(SERENAR);
   });
 
@@ -5342,14 +5185,45 @@ describe("engineDiff declared transitions", () => {
     ]);
   });
 
+  it("gives no numbers permission to a legacy ray that an older bundle still holds", () => {
+    const source: PayloadRecord[] = [
+      {
+        lens: SERENAR,
+        state: DEFAULT_STATE,
+        request: "traces",
+        payload: {
+          ok: true,
+          value: encodeValue({
+            legacy: {
+              rays: [
+                {
+                  clipped: false,
+                  pts: [[0, 1]],
+                  ghostPts: [[0, 1]],
+                  y: 1,
+                  u: 0.1,
+                  transmission: 1,
+                },
+              ],
+            },
+          }),
+        },
+      },
+    ];
+    const ray: Path = ["legacy", "rays", 0];
+    const clipped = withChange("traces", [...ray, "clipped"], () => true, source);
+    const line = lineOf(clipped, source).replace(/\.$/, ", numbers.");
+    expect(QUANTITIES).not.toHaveProperty("legacyMissTail");
+    for (const field of [["pts", 0, 1], ["ghostPts", 0, 1], ["y"], ["u"], ["transmission"]] as const) {
+      const changed = withChange("traces", [...ray, ...field], (value) => Number(value) + 1, clipped);
+      const { summary } = judge("c1", changed, describing([line]), source);
+      expect(summary.passed, field.join(".")).toBe(false);
+      expect(summary.transitions.declared[0].excusedNumbers).toBe(0);
+    }
+  });
+
   it("takes the fields `numbers` permits from the budget table's rows for a ray's terminal values", () => {
-    const legacy: Path = ["legacy", "rays", 1];
-    /* The stack tracer has no status: its ray clips by a flag, and draws the rest of its path as ghost points. */
-    const ghosted = (source: readonly PayloadRecord[]) =>
-      withChange("traces", [...legacy, "ghostPts"], () => [[1, 2]], source);
-    const legacyBase = ghosted(LIGHT);
-    const legacyClipped = withChange("traces", [...legacy, "clipped"], () => true, legacyBase);
-    const cases: [permitted: boolean, path: Path, by: number, legacyRay?: true][] = [
+    const cases: [permitted: boolean, path: Path, by: number][] = [
       [true, [...RAY, "terminalPoint", 1], 5e-7],
       [true, [...RAY, "terminalDirection", 1], 1e-6],
       [true, [...RAY, "imagePoint", 1], 5e-7],
@@ -5357,27 +5231,18 @@ describe("engineDiff declared transitions", () => {
       [true, [...RAY, "y"], 5e-7],
       [true, [...RAY, "ux"], 1e-6],
       [true, [...RAY, "uy"], 1e-6],
-      [true, [...legacy, "pts", 3, 1], 1e-6, true],
-      [true, [...legacy, "ghostPts", 0, 1], 5e-7, true],
-      [true, [...legacy, "y"], 5e-7, true],
-      [true, [...legacy, "u"], 1e-6, true],
       /* What the ray was launched with, what it met on the way, and a height no surface of it decides. */
       [false, [...RAY, "input", "origin", 1], 5e-7],
       [false, [...RAY, "input", "direction", 1], 1e-6],
       [false, [...RAY, "hits", "columns", "point", HIT, 1], 5e-7],
       [false, [...RAY, "hits", "columns", "normal", HIT, 1], 1e-6],
       [false, [...RAY, "hits", "columns", "radius", HIT], 5e-7],
-      [false, [...legacy, "paraxialImageHeight"], 1e-6, true],
     ];
-    /* The medium a ray ended in and the stack tracer's transmission follow from where the ray ended too, so a ray
+    /* The medium a ray ended in follows from where the ray ended too, so a ray
      * that newly stops or completes inside glass can be declared. */
-    cases.push(
-      [true, [...RAY, "finalMedium"], 1e-6],
-      [true, [...RAY, "diagnostics", "finalMedium"], 1e-6],
-      [true, [...legacy, "transmission"], 1e-6, true],
-    );
-    for (const [permitted, path, by, legacyRay] of cases) {
-      const [base, transition] = legacyRay ? [legacyBase, legacyClipped] : [LIGHT, statusOnly()];
+    cases.push([true, [...RAY, "finalMedium"], 1e-6], [true, [...RAY, "diagnostics", "finalMedium"], 1e-6]);
+    for (const [permitted, path, by] of cases) {
+      const [base, transition] = [LIGHT, statusOnly()];
       const name = path.join(".");
       /* Every one of these fields has a row of the budget table: the list names rows, and adds no class. */
       expect(
@@ -5397,7 +5262,6 @@ describe("engineDiff declared transitions", () => {
       expect(summary.transitions.declared[0].excusedNumbers, name).toBe(permitted ? 1 : 0);
     }
     /* The harness names the status of a unit that has one, and otherwise its first difference in path order. */
-    expect(lineOf(legacyClipped, legacyBase)).toContain("`legacy.rays[1].clipped`: `false` -> `true`; digest ");
     const reasoned = withChange("traces", [...RAY, "failureReason"], () => "noBracket", statusOnly());
     expect(lineOf(reasoned)).toContain('`onAxis.rays[1].status`: `"ok"` -> `"clipped"`; digest ');
   });
@@ -5679,10 +5543,10 @@ describe("engineDiff declared transitions", () => {
   });
 
   it("writes a number set against another type as a word, so its digits are no part of the line", () => {
-    const height: Path = ["legacy", "rays", 1, "paraxialImageHeight"];
+    const height: Path = ["onAxis", "rays", 1, "imagePoint", 1];
     const gone = withChange("traces", height, () => null);
     const line = lineOf(gone, SERENAR_RECORDS);
-    expect(line).toContain("`legacy.rays[1].paraxialImageHeight`: `number` -> `null`; digest ");
+    expect(line).toContain("`onAxis.rays[1].imagePoint[1]`: `number` -> `null`; digest ");
     /* Another base, one ulp away, finds the same transition and the same line. */
     const nudged = withChange("traces", height, (value) => Number(value) * (1 + Number.EPSILON));
     expect(lineOf(gone, nudged)).toBe(line);
@@ -6146,8 +6010,7 @@ describe("engineDiff declared transitions", () => {
     /* The label alone is declared as before, with `numbers` or without. */
     expect(judge("c1", relabelled, describing([line.replace(/\.$/, ", numbers.")])).summary.passed).toBe(true);
 
-    /* Each of these differences is such a sign, in a ray of the surface tracer or of the stack tracer. */
-    const legacy: Path = ["legacy", "rays", 1];
+    /* Each of these differences is such a sign in a production ray. */
     const signs: [Path, (value: unknown) => unknown, number: Path][] = [
       [[...RAY, "status"], () => "clipped", [...RAY, "y"]],
       [[...RAY, "failureReason"], () => "noBracket", [...RAY, "y"]],
@@ -6165,11 +6028,6 @@ describe("engineDiff declared transitions", () => {
       [[...RAY, "diagnostics", "reachedImagePlane"], () => true, [...RAY, "y"]],
       [[...RAY, "diagnostics", "hitSurfaceIndexes", HIT], () => 99, [...RAY, "y"]],
       [[...RAY, "diagnostics", "clipEvents"], () => [{ surfaceIdx: 2, reason: "semi-diameter" }], [...RAY, "y"]],
-      [[...legacy, "clipped"], () => true, [...legacy, "y"]],
-      [[...legacy, "pts"], (points) => (points as unknown[]).slice(0, -1), [...legacy, "y"]],
-      [[...legacy, "ghostPts"], () => [[1, 2]], [...legacy, "y"]],
-      [[...legacy, "diagnostics", "failureReason"], () => "noBracket", [...legacy, "y"]],
-      [[...legacy, "diagnostics", "hitSurfaceIndexes"], (hits) => (hits as unknown[]).slice(0, -1), [...legacy, "y"]],
     ];
     for (const [path, change, number] of signs) {
       const name = path.join(".");

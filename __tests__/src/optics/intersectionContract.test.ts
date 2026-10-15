@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
-import { traceExactSurfaceStackVector } from "../../../src/optics/internal/exactSurfaceTrace.js";
-import {
-  intersectSagSurface,
-  normalizeVector3,
-  type SurfaceIntersectionRay,
-} from "../../../src/optics/internal/surfaceIntersection.js";
+import { normalize as normalizeVector3 } from "../../../src/optics/math/vector.js";
+import type { Ray3 as SurfaceIntersectionRay } from "../../../src/optics/types.js";
 import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSurfaceProfile } from "../../../src/optics/geometry/intersect.js";
 import { planeResidualRoundoff, sagResidualRoundoff } from "../../../src/optics/geometry/intersectTolerance.js";
@@ -15,16 +11,16 @@ import type { AsphericCoefficients } from "../../../src/types/optics.js";
 import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
 
 /**
- * Intersection accuracy contract (architecture/optics-engine.md, Exact Surface Trace), pinned for every solver that
- * implements it. The legacy arm goes when internal/surfaceIntersection.ts is deleted.
+ * Intersection accuracy contract (architecture/optics-engine.md, Exact Surface Trace), pinned for the
+ * production intersection kernel and traversal.
  */
 
 function axialRay(y: number, z = -5): SurfaceIntersectionRay {
   return { origin: [0, y, z], direction: [0, 0, 1] };
 }
 
-// Keep these analytic cases shared by both engines: the default accuracy is a shipped contract.
-describe.each(["production", "legacy"] as const)("%s intersection accuracy", (engine) => {
+// The default accuracy is a shipped contract.
+describe("production intersection accuracy", () => {
   const intersect = (
     ray: SurfaceIntersectionRay,
     R: number,
@@ -32,10 +28,7 @@ describe.each(["production", "legacy"] as const)("%s intersection accuracy", (en
     options: { minT?: number; maxT: number; maxIterations?: number; tolerance?: number },
     asphere?: AsphericCoefficients,
     sd?: number,
-  ) =>
-    engine === "production"
-      ? intersectSurfaceProfile(ray, createSurfaceProfile({ R }, asphere), vertexZ, { ...options, clearRadius: sd })
-      : intersectSagSurface(ray, 0, vertexZ, { S: [{ R, sd }], asphByIdx: asphere ? { 0: asphere } : {} }, options);
+  ) => intersectSurfaceProfile(ray, createSurfaceProfile({ R }, asphere), vertexZ, { ...options, clearRadius: sd });
 
   it("refines a bracket endpoint that met the former 1e-9 default", () => {
     const root = 5 + sag(1, 5);
@@ -224,19 +217,8 @@ describe("tilted mirror accuracy", () => {
   ])("checks normal-distance residual without dividing by normal.z ($z)", (normal) => {
     const ray: SurfaceIntersectionRay = { origin: [0, 1, 3], direction: [0, -1, 0] };
     const production = intersectSurfaceProfile(ray, createTiltedPlaneProfile(normal), 1, { maxT: 10 });
-    const legacy = traceExactSurfaceStackVector(
-      {
-        S: [{ label: "M", R: 1e15, nd: 1, d: 1, sd: 10, interaction: { type: "reflect", normal } }],
-        asphByIdx: {},
-        opticalPath: { mode: "sequential", surfaceOrder: [0], surfaceLabels: ["M"], maxInteractions: 4 },
-        isFoldedOptics: true,
-      },
-      ray,
-      { zPos: [1], launchBoundT: 10 },
-    );
     expect(production.ok).toBe(true);
-    expect(legacy.hits).toHaveLength(1);
-    const points = [...(production.ok ? [production.point] : []), legacy.hits[0].point];
+    const points = production.ok ? [production.point] : [];
     for (const point of points) {
       const residual = (normal.y * point[1] + normal.z * (point[2] - 1)) / Math.hypot(normal.y, normal.z);
       expect(Math.abs(residual)).toBeLessThanOrEqual(1e-12);
@@ -303,10 +285,8 @@ describe("trace hit records", () => {
     const zPos = doLayout(0, 0, L).z;
     const ray: SurfaceIntersectionRay = { origin: [0, 1, zPos[0] - 5], direction: [0, 0, 1] };
     const engine = traceEngineRay2(prepareRuntimeState(L, 0, 0), ray, { checkSemiDiameter: true });
-    const legacy = traceExactSurfaceStackVector(L, ray, { zPos, checkSemiDiameter: true });
     expect(engine.hits.length).toBeGreaterThan(1);
-    expect(legacy.hits).toHaveLength(engine.hits.length);
-    for (const hit of [...engine.hits, ...legacy.hits]) {
+    for (const hit of engine.hits) {
       expect(hit.effectiveTolerance).toBeGreaterThanOrEqual(1e-12);
       expect(Math.abs(hit.residual!)).toBeLessThanOrEqual(hit.effectiveTolerance!);
     }

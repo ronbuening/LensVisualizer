@@ -1,14 +1,11 @@
 import { describe, expect, it } from "vitest";
-import {
-  intersectSagSurface,
-  normalizeVector3,
-  surfaceNormalAtHit,
-  type SurfaceIntersectionRay,
-} from "../../../../src/optics/internal/surfaceIntersection.js";
+import { normalize as normalizeVector3 } from "../../../../src/optics/math/vector.js";
+import type { SurfaceIntersectionOptions } from "../../../../src/optics/geometry/intersect.js";
+import type { Ray3 as SurfaceIntersectionRay } from "../../../../src/optics/types.js";
 import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/constants.js";
 import { conicPolySag, createSurfaceProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSurfaceProfile, seedAsphereSolve } from "../../../../src/optics/geometry/intersect.js";
-import { traceExactSurfaceStackVector } from "../../../../src/optics/internal/exactSurfaceTrace.js";
+import { traceFixtureVector } from "../traceGeometryFixtures.js";
 import type { AsphericCoefficients, RuntimeLens } from "../../../../src/types/optics.js";
 
 function lensWithSurface(R: number, asph?: AsphericCoefficients): RuntimeLens {
@@ -37,7 +34,7 @@ describe("a ray that only meets the clamped sag beyond the conic domain", () => 
       A12: -3.29805e-18,
       A14: -5.97602e-23,
     };
-    const surface = { label: "1A", R: 40.765, d: 4.89, nd: 1.90525, sd: 27 };
+    const surface = { elemId: 1, label: "1A", R: 40.765, d: 4.89, nd: 1.90525, sd: 27 };
     const lens = { S: [surface], asphByIdx: { 0: asphere } };
     const ray: SurfaceIntersectionRay = {
       origin: [-4.3626017234355216e-15, -43.94943189209652, -10.312310421674399],
@@ -54,94 +51,23 @@ describe("a ray that only meets the clamped sag beyond the conic domain", () => 
     expect(production).toEqual(
       intersectSurfaceProfile(ray, profile, 0, { ...capped, maxIterations: INTERSECTION_MAX_ITERATIONS }),
     );
-    // The stack tracer's entry returns that result under its own shape, with any budget: no iteration count turns
-    // the continuation into a surface.
-    const rejected = { ...production, surfaceIdx: 0 };
-    expect(intersectSagSurface(ray, 0, 0, lens, options)).toEqual(rejected);
-    expect(intersectSagSurface(ray, 0, 0, lens, { ...options, maxIterations: 32 })).toEqual(rejected);
-    expect(intersectSagSurface(ray, 0, 0, lens, { ...options, maxIterations: 4096 })).toEqual(rejected);
+    for (const maxIterations of [32, 4096]) {
+      expect(intersectSurfaceProfile(ray, profile, 0, { ...capped, maxIterations })).toEqual(production);
+    }
     // The trace ends on the miss. It used to hold one hit there, clipped by the semi-diameter.
     const traceOptions = { zPos: [0], checkSemiDiameter: true, stopOnClip: true };
-    const trace = traceExactSurfaceStackVector(lens, ray, traceOptions);
+    const trace = traceFixtureVector(lens, ray, traceOptions);
     expect(trace.failureReason).toBe("noBracket");
-    expect(trace.clipped).toBe(true);
+    expect(trace.status !== "ok").toBe(true);
     expect(trace.hits).toHaveLength(0);
     expect(trace.diagnostics.clipEvents).toEqual([
       { surfaceIdx: 0, surfaceLabel: "1A", reason: "intersection-failure", failureReason: "noBracket" },
     ]);
-    // A ghost trace goes on from the stack tracer's fallback point, which is flagged as one and is no hit.
-    const ghost = traceExactSurfaceStackVector(lens, ray, { ...traceOptions, ghost: true });
+    // Production misses terminate without a fabricated fallback hit, including ghost requests.
+    const ghost = traceFixtureVector(lens, ray, { ...traceOptions, ghost: true });
     expect(ghost.failureReason).toBe("noBracket");
-    expect(ghost.hits).toHaveLength(1);
-    expect(ghost.hits[0]).toMatchObject({
-      clipped: true,
-      fallback: true,
-      failureReason: "noBracket",
-      residual: null,
-      effectiveTolerance: null,
-    });
-  });
-});
-
-describe("the stack tracer's entry to the kernel", () => {
-  const conic: AsphericCoefficients = { K: -0.5, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
-  const quartic: AsphericCoefficients = { K: 0, A4: 1e-5, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
-  const ray: SurfaceIntersectionRay = { origin: [0.3, 4, -5], direction: [0.02, 0.05, 2] };
-
-  it.each([
-    { kind: "flat", R: 1e15, asphere: undefined },
-    { kind: "spherical", R: 50, asphere: undefined },
-    { kind: "conic", R: 40, asphere: conic },
-    { kind: "polynomial asphere", R: 40, asphere: quartic },
-  ])("returns the kernel's $kind hit as its own tuples, with the surface index", ({ R, asphere }) => {
-    const L = lensWithSurface(R, asphere);
-    const options = { maxT: 20, refractiveIndex: 1.5 };
-    const kernel = intersectSurfaceProfile(ray, createSurfaceProfile({ R }, asphere), 0, {
-      ...options,
-      clearRadius: 20,
-    });
-    const legacy = intersectSagSurface(ray, 0, 0, L, options);
-    expect(kernel.ok).toBe(true);
-    expect(legacy.ok).toBe(true);
-    if (!kernel.ok || !legacy.ok) return;
-    const { closedFormFallback: _closedForm, ...hit } = kernel;
-    expect(legacy).toEqual({ ...hit, surfaceIdx: 0 });
-    expect(legacy).not.toHaveProperty("closedFormFallback");
-    expect(legacy.point).not.toBe(kernel.point);
-    expect(legacy.normal).not.toBe(kernel.normal);
-    // An explicit budget is the kernel's iterative path here too.
-    expect(intersectSagSurface(ray, 0, 0, L, { ...options, maxIterations: INTERSECTION_MAX_ITERATIONS })).toEqual({
-      ...intersectSurfaceProfile(ray, createSurfaceProfile({ R }, asphere), 0, {
-        ...options,
-        clearRadius: 20,
-        maxIterations: INTERSECTION_MAX_ITERATIONS,
-      }),
-      surfaceIdx: 0,
-    });
-  });
-
-  it("keeps its own failure names", () => {
-    const L = lensWithSurface(50);
-    expect(intersectSagSurface({ origin: [0, 1, -5], direction: [0, 0, 0] }, 0, 0, L, { maxT: 20 })).toEqual({
-      ok: false,
-      surfaceIdx: 0,
-      failureReason: "invalidRayDirection",
-      residual: null,
-      iterations: 0,
-    });
-    expect(intersectSagSurface(axialRay(1), 0, 0, L, { minT: -1, maxT: 20 })).toMatchObject({
-      ok: false,
-      failureReason: "invalidBounds",
-    });
-    expect(intersectSagSurface(axialRay(1), 0, 0, L)).toMatchObject({ ok: false, failureReason: "invalidBounds" });
-  });
-
-  it("solves the sag surface of a surface that carries a tilted interaction normal", () => {
-    // The stack tracer solves a tilted plane itself and never sends one here.
-    const tilted = { S: [{ R: 50, sd: 20, interaction: { type: "reflect", normal: { y: 1, z: 1 } } }], asphByIdx: {} };
-    expect(intersectSagSurface(axialRay(10), 0, 0, tilted, { maxT: 20 })).toEqual(
-      intersectSagSurface(axialRay(10), 0, 0, lensWithSurface(50), { maxT: 20 }),
-    );
+    expect(ghost.status).toBe("failed");
+    expect(ghost.hits).toHaveLength(0);
   });
 });
 
@@ -153,7 +79,7 @@ describe("surface intersection helpers", () => {
 
   it("intersects a flat surface analytically", () => {
     const L = lensWithSurface(1e15);
-    const result = intersectSagSurface(axialRay(2), 0, 0, L, { maxT: 10, refractiveIndex: 1.5 });
+    const result = intersectFixture(axialRay(2), 0, L, { maxT: 10, refractiveIndex: 1.5 });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
@@ -169,7 +95,7 @@ describe("surface intersection helpers", () => {
     const R = 50;
     const h = 10;
     const L = lensWithSurface(R);
-    const result = intersectSagSurface(axialRay(h), 0, 0, L, { maxT: 20 });
+    const result = intersectFixture(axialRay(h), 0, L, { maxT: 20 });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
@@ -183,7 +109,7 @@ describe("surface intersection helpers", () => {
     const asph: AsphericCoefficients = { K: -0.5, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
     const h = 8;
     const L = lensWithSurface(40, asph);
-    const result = intersectSagSurface(axialRay(h), 0, 0, L, { maxT: 20 });
+    const result = intersectFixture(axialRay(h), 0, L, { maxT: 20 });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
@@ -194,7 +120,7 @@ describe("surface intersection helpers", () => {
   it("intersects a polynomial aspheric sag surface", () => {
     const asph: AsphericCoefficients = { K: 0, A4: 1e-3, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
     const L = lensWithSurface(1e15, asph);
-    const result = intersectSagSurface({ origin: [2, 0, -1], direction: [0, 0, 1] }, 0, 0, L, { maxT: 5 });
+    const result = intersectFixture({ origin: [2, 0, -1], direction: [0, 0, 1] }, 0, L, { maxT: 5 });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
@@ -206,7 +132,7 @@ describe("surface intersection helpers", () => {
   it("intersects an odd-order aspheric sag surface at the analytic A3 height", () => {
     const asph: AsphericCoefficients = { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0, A3: 1e-3 };
     const L = lensWithSurface(1e15, asph);
-    const result = intersectSagSurface({ origin: [2, 0, -1], direction: [0, 0, 1] }, 0, 0, L, { maxT: 5 });
+    const result = intersectFixture({ origin: [2, 0, -1], direction: [0, 0, 1] }, 0, L, { maxT: 5 });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
@@ -230,7 +156,7 @@ describe("surface intersection helpers", () => {
     const L = lensWithSurface(40, asph);
     const direction = normalizeVector3([0.1, 0.05, 1]);
     expect(direction).not.toBeNull();
-    const result = intersectSagSurface({ origin: [0, 0, -10], direction: direction! }, 0, 0, L, { maxT: 25 });
+    const result = intersectFixture({ origin: [0, 0, -10], direction: direction! }, 0, L, { maxT: 25 });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
@@ -240,7 +166,7 @@ describe("surface intersection helpers", () => {
 
   it("reports no bracket when the bounded segment cannot reach the surface", () => {
     const L = lensWithSurface(1e15);
-    const result = intersectSagSurface(axialRay(0), 0, 10, L, { maxT: 5 });
+    const result = intersectFixture(axialRay(0), 10, L, { maxT: 5 });
 
     expect(result.ok).toBe(false);
     if (result.ok) return;
@@ -249,7 +175,7 @@ describe("surface intersection helpers", () => {
 
   it("reports no convergence when iteration budget is exhausted", () => {
     const L = lensWithSurface(50);
-    const result = intersectSagSurface(axialRay(5), 0, 0, L, { maxT: 20, maxIterations: 0 });
+    const result = intersectFixture(axialRay(5), 0, L, { maxT: 20, maxIterations: 0 });
 
     expect(result.ok).toBe(false);
     if (result.ok) return;
@@ -262,7 +188,7 @@ describe("surface intersection helpers", () => {
     // the algorithm runs bracket-finding and correctly reports `noBracket`
     // instead of pre-emptively rejecting as `invalidRayDirection`.
     const L = lensWithSurface(1e15);
-    const result = intersectSagSurface({ origin: [0, 0, -1], direction: [1, 0, 0] }, 0, 0, L, { maxT: 5 });
+    const result = intersectFixture({ origin: [0, 0, -1], direction: [1, 0, 0] }, 0, L, { maxT: 5 });
 
     expect(result.ok).toBe(false);
     if (result.ok) return;
@@ -276,7 +202,7 @@ describe("surface intersection helpers", () => {
     const vertexZ = 67.46;
     const origin: [number, number, number] = [-2.2042, -14.9501, 57.7633];
     const direction = normalizeVector3([-0.01696, -0.44528, 0.89523])!;
-    const result = intersectSagSurface({ origin, direction }, 0, vertexZ, lensWithSurface(R), { maxT: 22.6 });
+    const result = intersectFixture({ origin, direction }, vertexZ, lensWithSurface(R), { maxT: 22.6 });
 
     const offset = [origin[0], origin[1], origin[2] - (vertexZ + R)];
     const b = offset[0] * direction[0] + offset[1] * direction[1] + offset[2] * direction[2];
@@ -292,8 +218,8 @@ describe("surface intersection helpers", () => {
 
   it("computes rotationally symmetric normals at hit points", () => {
     const L = lensWithSurface(50);
-    const positive = surfaceNormalAtHit(3, 4, 0, L);
-    const negative = surfaceNormalAtHit(-3, 4, 0, L);
+    const positive = createSurfaceProfile(L.S[0]).normalAt([3, 4, sag(5, 50)], 0);
+    const negative = createSurfaceProfile(L.S[0]).normalAt([-3, 4, sag(5, 50)], 0);
 
     expect(positive[0]).toBeCloseTo(-negative[0], 12);
     expect(positive[1]).toBeCloseTo(negative[1], 12);
@@ -301,7 +227,7 @@ describe("surface intersection helpers", () => {
   });
 });
 
-describe("intersectSagSurface — past-forward-cone rays (PR 8 surgery)", () => {
+describe("production grazing and backward intersections", () => {
   // Spherical surface with R=50, vertex at z=0. Analytic sag at r=21.79 is 5.0
   // (verified: 475 / (50 + sqrt(2500 - 475)) = 475/95 = 5).
   const R = 50;
@@ -313,7 +239,7 @@ describe("intersectSagSurface — past-forward-cone rays (PR 8 surgery)", () => 
     // The analytic geometry also guards the backward/grazing launch convention.
     const expectedY = Math.sqrt(475);
     const expectedT = 30 - expectedY;
-    const result = intersectSagSurface({ origin: [0, 30, 5], direction: [0, -1, 0] }, 0, 0, L, { maxT: 30 });
+    const result = intersectFixture({ origin: [0, 30, 5], direction: [0, -1, 0] }, 0, L, { maxT: 30 });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
@@ -326,7 +252,7 @@ describe("intersectSagSurface — past-forward-cone rays (PR 8 surgery)", () => 
   it("traces a backward ray with direction[2] < 0 to the analytic intersection", () => {
     // Ray at y=30, traveling in -z from z=100. Sphere surface at r=30 has sag=10.
     // Expected intersection: t = 100 - 10 = 90, point (0, 30, 10).
-    const result = intersectSagSurface({ origin: [0, 30, 100], direction: [0, 0, -1] }, 0, 0, L, { maxT: 200 });
+    const result = intersectFixture({ origin: [0, 30, 100], direction: [0, 0, -1] }, 0, L, { maxT: 200 });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
@@ -338,12 +264,41 @@ describe("intersectSagSurface — past-forward-cone rays (PR 8 surgery)", () => 
 
   it("bit-identical convergence for a steep forward-cone ray (regression check)", () => {
     // Ray at y=30 from z=-100 toward +z. Hits sphere at (0, 30, 10), so t=110.
-    const result = intersectSagSurface({ origin: [0, 30, -100], direction: [0, 0, 1] }, 0, 0, L, { maxT: 200 });
+    const result = intersectFixture({ origin: [0, 30, -100], direction: [0, 0, 1] }, 0, L, { maxT: 200 });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect(result.t).toBeCloseTo(110, 9);
     expect(result.point[1]).toBeCloseTo(30, 9);
     expect(result.point[2]).toBeCloseTo(10, 9);
+  });
+});
+
+function intersectFixture(
+  ray: SurfaceIntersectionRay,
+  vertexZ: number,
+  lens: Pick<RuntimeLens, "S" | "asphByIdx">,
+  options: SurfaceIntersectionOptions = {},
+) {
+  return intersectSurfaceProfile(ray, createSurfaceProfile(lens.S[0], lens.asphByIdx[0]), vertexZ, {
+    ...options,
+    clearRadius: lens.S[0].sd,
+  });
+}
+
+describe("production intersection input failures", () => {
+  it("rejects invalid directions and bounds", () => {
+    const profile = createSurfaceProfile({ R: 50 });
+    expect(
+      intersectSurfaceProfile({ origin: [0, 1, -5], direction: [0, 0, 0] }, profile, 0, { maxT: 20 }),
+    ).toMatchObject({ ok: false, failureReason: "invalidDirection", residual: null, iterations: 0 });
+    expect(intersectSurfaceProfile(axialRay(1), profile, 0, { minT: -1, maxT: 20 })).toMatchObject({
+      ok: false,
+      failureReason: "invalidBounds",
+    });
+    expect(intersectSurfaceProfile(axialRay(1), profile, 0)).toMatchObject({
+      ok: false,
+      failureReason: "invalidBounds",
+    });
   });
 });

@@ -9,7 +9,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_optics_analysis["src/optics/analysis"]
-    n_src_optics_analysis_TypeScript_modules["TypeScript modules (30)"]
+    n_src_optics_analysis_TypeScript_modules["TypeScript modules (31)"]
   end
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
@@ -59,10 +59,10 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 30
+- Direct source files: 31
 - Direct subfolders: 0
 - Main outbound areas: same folder (51), src/optics/types.ts (21), src/types (19), src/optics/perspective (10), src/optics/chromatic (9), src/optics/trace (9), src/optics/optics.ts (8), src/optics/field (5), +15 more
-- External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/mtf.ts, src/optics/vignetteAnalysis.ts
+- External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/mtf.ts, src/optics/optics.ts, src/optics/perspective, +1 more
 
 ## Files
 
@@ -96,5 +96,6 @@ flowchart LR
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
 | `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (5) | zPosForPreparedAnalysis2 |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/optics.ts, src/optics/pupilAberration.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | PUPIL_ABERRATION_SAMPLE_COUNT_2, computeBothPupilAberrationProfilesForState2, computePupilAberrationProfile2, computeExitPupilAberrationProfile2, computeBothPupilAberrationProfiles2 |
+| `sampling.ts` | Sampling helper module | none | src/optics/aberration (6), src/optics/perspective (2), src/optics/optics.ts | OrthogonalPupilSample, CircularPupilSample, DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT, DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, sampleOrthogonalPupilFan, sampleCircularPupil |
 | `summary.ts` | Summary helper module | src/optics/first-order, src/optics/focusDistance.ts, src/optics/layout.ts, src/optics/optics.ts, src/optics/types.ts | same folder, src/optics/compat.ts | OpticalSummaryMetrics2, computeOpticalSummaryForState2 |
 | `vignetting.ts` | Vignetting helper module | same folder (2), src/optics/optics.ts, src/optics/types.ts, src/optics/vignetteAnalysis.ts, src/types | same folder, src/optics/compat.ts | computeVignettingCurveForState2, computeVignettingCurve2 |

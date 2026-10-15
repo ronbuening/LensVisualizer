@@ -12,12 +12,8 @@
  * future aperture-blade-shape masking (polygonal bokeh).
  */
 
-import {
-  sampleCircularPupil,
-  skewImagePlaneIntercept,
-  type CircularPupilSample,
-  type SkewImagePlaneIntercept,
-} from "../rayTrace.js";
+import { sampleCircularPupil, type CircularPupilSample } from "../analysis/sampling.js";
+import { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../trace/rayAdapters.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,
