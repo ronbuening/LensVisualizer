@@ -65,6 +65,7 @@ const LENS_DATA = {
   focalLengthDesign: 490.56,
   apertureMarketing: 4,
   apertureDesign: 4.1,
+  acceptsTeleconverters: true, // Canon lists this host with Extender EF2x I/II/III.
   lensMounts: ["canon-ef"],
   imageFormat: "135-full-frame",
   patentNumber: "US 6,115,188 A",

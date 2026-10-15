@@ -93,3 +93,9 @@ L72 (1.77373 / 49.4, two aspherical surfaces) equals no row at either line. At t
 - Paraxial focus against the green channel at the wide end, before: red +55 µm, blue +98 µm, violet +376 µm, with the reference trace 257 µm short of green. The twelve d-line proxies traced green at their catalog nd, 0.0002 to 0.0027 away from the stored indices. Now: red +70 µm, blue +14 µm, violet +79 µm, and green equals the reference trace.
 - The reference trace is unchanged. The engine build reports the same focal lengths (72.1054 / 119.679 / 192.9921 mm), f-numbers (4.12 / 4.36 / 4.14), stop radii, pupils, half-fields and Petzval sum before and after.
 - Choosing S-LAM7 for L11, S-LAH59 for L41 or TAFD5F for L62 instead moves no channel focus by more than 4 µm.
+
+## Detachable teleconverters — 2026-10-14
+
+Sony's [SEL70200G2 specifications](https://www.sony.co.uk/electronics/support/lenses-e-mount-lenses/sel70200g2/specifications) explicitly support SEL14TC and SEL20TC. This second-generation Macro model now declares converter acceptance; the original 70–200mm F4 G remains undeclared. Both compositions build at every zoom station and retain host movement and iris, with a 5.320 mm minimum junction gap, no converter render trim, no additional axial clip and no loss of native corner-chief coverage.
+
+This is a native prescription geometry check. The host uses e-line indices and both converters use d-line indices; unresolved L72 prevents their conversion to one physical reference wavelength. The composed MTF therefore retains its mixed-reference unavailability guard. No glass identity, reference index, dispersion curve or semi-diameter was changed to enable the attachment.

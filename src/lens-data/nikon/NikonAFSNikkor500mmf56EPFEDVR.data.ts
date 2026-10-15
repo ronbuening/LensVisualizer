@@ -26,8 +26,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * tabulate clear apertures. Figure 3 was rendered at 600 dpi and measured on
  * its 7.5 px/mm axial scale; groups whose outline differed by at least about
  * 15% were rescaled while the figure-noise-level front and final groups were
- * retained. The values also satisfy the published F/5.75019 pupil, edge,
- * slope, cross-gap, image-circle, and 2.51062-degree half-field constraints.
+ * retained. Edge, slope and cross-gap constraints are satisfied, but rear
+ * surface 10 clips the full F/5.75019 axial beam (about F/6.48 transmitted).
+ * The stop preserves the published pupil; see the analysis for this rim limit.
  *
  * The patent publishes nd, vd, and theta_gF. `dPgF` is derived from the patent
  * theta_gF coordinate. Catalog-compatible nC/nF/ng values are taken from the
@@ -55,6 +56,7 @@ const LENS_DATA = {
   focalLengthDesign: 489.70405,
   apertureMarketing: 5.6,
   apertureDesign: 5.75019,
+  acceptsTeleconverters: true, // Nikon lists TC-20E III; autofocus limitations depend on host and camera.
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   projection: {

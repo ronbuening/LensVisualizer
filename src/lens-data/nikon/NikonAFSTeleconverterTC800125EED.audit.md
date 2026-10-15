@@ -73,3 +73,7 @@ The exact 600 dpi figure shows the uniform 16 mm rims are excessive. Absolute fi
 ## 2026-10-14 — Local-viewer review
 
 The magnified local composed diagram was compared with JP2013250290A Figure 1 (PDF page 22), converter surfaces 39–46. The 11.0/12.4/13.3 mm group rims from the prior pass remain: the smaller figure-scale estimate would clip the supported host's full-frame chief ray. All five lenses retain compatible catalog curves, including the distinct J-LASFH9A entry; the single ED position remains inferred from Nikon's production diagram. The converter remains stationary during host focus. Nikon Corporation and Nikon F metadata are canonical.
+
+## Dedicated-host guard — 2026-10-14
+
+The newly declared 500mm f/5.6E PF and 180–400mm internal-converter-in configuration meet this converter's numerical f-number cutoff, but TC800-1.25E ED is dedicated to the 800mm f/5.6E host. Both are explicitly excluded so broader TC-20E III declarations do not expose this dedicated converter on unrelated lenses. Its sole offered host remains unchanged.

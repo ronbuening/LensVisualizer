@@ -16,7 +16,7 @@ This guide gathers those first-party articles in one place. Each company page li
 
 ## Browse by Company
 
-- **[Nikon — NIKKOR: The Thousand and One Nights](/articles/nikon-thousand-and-one-nights-index)** — all 98 tales in Nikon's current English index plus Research Report papers, the Frontiers of Vision series, and corporate lens technology and design features.
+- **[Nikon — NIKKOR: The Thousand and One Nights](/articles/nikon-thousand-and-one-nights-index)** — all 99 tales in Nikon's current English index plus Research Report papers, the Frontiers of Vision series, and corporate lens technology and design features.
 - **[Fujifilm — One Lens, One Story](/articles/fujifilm-one-lens-one-story-index)** — One Lens, One Story, The History of FUJINON, FUJINON Speed Lenses, and a GFX100RF fixed-lens development chapter.
 - **[SIGMA — Ohsone's Anecdotes](/articles/sigma-ohsones-anecdotes-index)** — Ohsone's ten product tales and the eight-part GROUND BREAKING history series.
 - **[Panasonic — LUMIX Lens Development Stories](/articles/panasonic-lumix-development-stories-index)** — Optical Design Department essays, LEICA DG Lens Stories, and other official developer features.
@@ -32,6 +32,6 @@ This guide gathers those first-party articles in one place. Each company page li
 
 The index is intentionally narrower than a general photography reading list. A collection must be hosted by the manufacturer, recur across multiple articles or chapters, and concentrate on lens design, manufacture, or product history. Press releases, specifications, reviews, ambassador galleries, and ordinary marketing pages are excluded.
 
-The match standard for Surface & Stop links is equally strict. A link appears only when the catalog contains the same lens generation, not merely a successor with the same focal length and aperture.
+The match standard for Surface & Stop links is equally strict. A link appears only when the catalog contains the same lens generation, not merely a successor with the same focal length and aperture. ZEISS's naming papers are indexed separately by design family, with their catalog examples labeled as such.
 
 This is a maintained research index, not an archive of the manufacturers' text. Links and catalog matches are periodically rechecked.

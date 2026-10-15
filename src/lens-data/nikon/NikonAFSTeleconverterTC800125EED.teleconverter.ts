@@ -49,6 +49,12 @@ const TELECONVERTER_DATA = {
   ],
   "magnification": 1.25,
   "minHostFno": 5.65772,
+  // Dedicated to the AF-S 800mm f/5.6E. These TC-20E III hosts also pass the speed guard,
+  // but Nikon does not list them for the dedicated TC800 converter.
+  "incompatibleLensKeys": [
+    "nikon-af-s-nikkor-500mm-f56e-pf-ed-vr",
+    "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in"
+  ],
   "masterImageDistanceMm": 48.78327522813489,
   "patentNumber": "JP 2013-250290 A",
   "patentAuthors": [

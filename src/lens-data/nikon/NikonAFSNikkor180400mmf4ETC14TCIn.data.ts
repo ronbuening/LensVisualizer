@@ -64,6 +64,7 @@ const LENS_DATA = {
   focalLengthDesign: [257.052, 548.825],
   apertureMarketing: 5.6,
   apertureDesign: 5.744299827765631,
+  acceptsTeleconverters: true, // Nikon lists TC-20E III; autofocus limitations depend on host and camera.
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "WO 2019/131993 A1",

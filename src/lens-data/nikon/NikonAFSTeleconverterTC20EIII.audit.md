@@ -95,3 +95,11 @@ The existing AF-S 300mm f/2.8 D IF-ED catalog host is independently rim-limited 
 ## 2026-10-14 — Local-viewer review
 
 The magnified local composed diagram was compared with JP2010191211A Figure 3 (PDF page 19), converter surfaces 26–37 relabeled 1–12. The seven glass bodies, triplet, asphere and 12/14/16 mm inferred rims retain the source outline and compatible catalog curves. The converter has no independent focus, zoom or iris; movement and aperture belong to the host. The already queued 300 mm host rear-rim limitation remains a host issue, not a reason to enlarge this converter. Nikon Corporation and Nikon F metadata are canonical.
+
+## Additional catalog hosts — 2026-10-14
+
+The [Nikon AF-S compatibility chart](https://www.nikonusa.com/content/tc-chart-usa) lists the 500mm f/5.6E PF ED VR and 180–400mm f/4E TC1.4 FL ED VR. The [120–300mm f/2.8E lens manual](https://download.nikonimglib.com/archive4/VV6vI003rIgu04VZ07434ZjLAx30/AFS120-300_2.8EFLEDSRVR_JP(3M_DL)02.pdf) lists TC-20E III among its compatible accessories. All three now declare acceptance, including the 180–400mm's internal-converter-in configuration. Nikon warns that AF is unavailable with TC-20E III when the 180–400mm's built-in converter is engaged; this catalog models optical fit, not AF operation.
+
+All authored zoom stations build with no converter render trim or additional axial clipping, and no loss of native corner coverage relative to the bare host. Minimum junction gaps: 15.506 mm (500mm PF), 5.929 mm (120–300mm), and 3.951 / 3.937 mm (180–400mm out / in). The 500mm PF's declared field reaches about 98.5% of the format corner with or without the converter; its existing host rim 10 also restricts the full advertised axial pupil (f/5.75 traces about f/6.48). These host limitations are preserved and queued separately.
+
+The supported AI AF-S 400mm f/2.8D IF-ED II remains withheld: its bare rear rim 22 restricts the stated f/2.88 beam to about f/3.76, and the mounted model clips the shared 80%-radius aperture probe before reaching the converter. This needs an exact-source host-rim review.

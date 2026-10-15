@@ -87,6 +87,7 @@ const LENS_DATA = {
   focalLengthMarketing: [70, 200],
   focalLengthDesign: [72.105394, 192.992121],
   apertureMarketing: 4,
+  acceptsTeleconverters: true, // Sony lists SEL14TC and SEL20TC for the Macro G OSS II.
   lensMounts: ["sony-fe"],
   imageFormat: "135-full-frame",
   patentNumber: "WO 2024/247472 A1",
