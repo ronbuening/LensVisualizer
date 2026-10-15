@@ -448,7 +448,7 @@ four, composed with their catalog prescriptions, give 101.0 / 165.1 / 271.5 mm a
 ray clear at every zoom station. Any other production host still requires its own compatible geometry and
 supported declaration. The converter’s lack of an internal stop makes that distinction particularly important.
 
-Sony also [lists SEL14TC for the FE 70–200mm F4 Macro G OSS II](https://www.sony.co.uk/electronics/support/lenses-e-mount-lenses/sel70200g2/specifications). Its native prescription composition retains the stop and corner-chief coverage at every zoom station, with no converter render trim. This host uses e-line indices while the converter uses d-line indices; one unresolved host glass prevents a common-wavelength conversion, so composed MTF remains unavailable. Geometric fit does not resolve that spectral limitation.
+Sony also [lists SEL14TC for the FE 70–200mm F4 Macro G OSS II](https://www.sony.co.uk/electronics/support/lenses-e-mount-lenses/sel70200g2/specifications). Its native prescription composition retains the stop and corner-chief coverage at every zoom station, with no converter render trim. This host uses e-line indices while the converter uses d-line indices. All nineteen host glasses now have catalog curves after the MC-TAF115 backfill, permitting common-wavelength conversion. Composed simulated MTF uses L72’s qualified spectral proxy; its supplier and annealing remain unconfirmed.
 
 Finally, aperture admission is not image-quality validation. The native monochromatic calculations retain
 longitudinal and first-order residuals at the prescribed plane, while the uncertain spectral surrogates prevent

@@ -75,7 +75,7 @@ Catalog νd reproduces every printed Abbe number at one decimal. E-CF6 (52.15) a
 - L53: L-LAH91 is a moulding glass, on a two-asphere element.
 - All eighteen names are in the site catalog and resolve at the e line; no catalog row had to be added.
 
-### What stays Unmatched
+### Earlier unmatched disposition for L72 (superseded below)
 
 L72 (1.77373 / 49.4, two aspherical surfaces) equals no row at either line. At the e line the nearest rows with its Abbe number are HOYA MC-TAF101-100 (1.77273, 0.00100 below) and M-TAF105 (1.77622, 0.00249 above); OHARA L-LAH87 is 0.00044 away in index but 2.0 lower in νd. At the d line HOYA M-TAF401 is 0.00004 away in index but 2.2 lower in νd. Its earlier M-TAF105 label was a d-line proxy 0.00123 away and is dropped. The HOYA MC-TAF115 record lists nd 1.77705 while its own coefficients give 1.77047, so it was not considered.
 
@@ -98,4 +98,12 @@ L72 (1.77373 / 49.4, two aspherical surfaces) equals no row at either line. At t
 
 Sony's [SEL70200G2 specifications](https://www.sony.co.uk/electronics/support/lenses-e-mount-lenses/sel70200g2/specifications) explicitly support SEL14TC and SEL20TC. This second-generation Macro model now declares converter acceptance; the original 70–200mm F4 G remains undeclared. Both compositions build at every zoom station and retain host movement and iris, with a 5.320 mm minimum junction gap, no converter render trim, no additional axial clip and no loss of native corner-chief coverage.
 
-This is a native prescription geometry check. The host uses e-line indices and both converters use d-line indices; unresolved L72 prevents their conversion to one physical reference wavelength. The composed MTF therefore retains its mixed-reference unavailability guard. No glass identity, reference index, dispersion curve or semi-diameter was changed to enable the attachment.
+This attachment review checked native prescription geometry. At that point L72 was unresolved, preventing the mixed d/e composition’s common-wavelength conversion. The later glass backfill below supersedes that spectral limitation; converter acceptance itself did not change any optical coordinates or semi-diameters.
+
+## MC-TAF115 spectral proxy — 2026-10-14
+
+A fresh source pass found a coherent standard MC-TAF115 row in [HOYA MC20251106.xlsx](https://www.hoya-opticalworld.com/common/mc/MC20251106.xlsx), sheet1 row 149. The six formula-3 coefficients are 3.0645313, −0.01369384, 0.024574301, 0.00039557144, 0.000010739241 and 0.00000012049528. They compute nd = 1.770473085, νd = 49.461842 and ne = 1.774183281, agreeing with the workbook’s 1.77047 / 49.46 summary. The 2026-07-07 AGF NM index 1.777047 is inconsistent with that same curve; it was the reason the prior audit rejected this type. The workbook resolves that catalog-source inconsistency without fitting coefficients or changing a source index. The conflicting AGF six-digit code is omitted from the new catalog entry.
+
+L72 now uses this standard curve as a qualified spectral proxy: Δne = +0.000453281 and Δνd = +0.061842 from the printed 1.77373 / 49.4. It remains a near match, with supplier, melt and annealing unconfirmed. No annealing-specific row or interpolation is used to approach the printed coordinate. All nineteen elements now have catalog curves (previously eighteen); only eighteen match the index to the printed precision.
+
+The native runtime surfaces, focal lengths, f-numbers, iris and pupil schedules are unchanged. SEL14TC and SEL20TC compositions can now convert all glasses to one physical wavelength for simulated MTF; the result is conditioned on this proxy’s dispersion rather than proof of the production glass. The mixed-reference guard itself is unchanged.

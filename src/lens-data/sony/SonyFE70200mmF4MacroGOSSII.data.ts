@@ -344,7 +344,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote: "Patent heads this column ndi and states the d line, but 18 of its 19 indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
       fl: -48.399,
-      glass: "Unmatched (printed coordinates; nearest e-line rows are HOYA MC-TAF101-100 at 1.77273 and M-TAF105 at 1.77622; no vendor row at either line)",
+      glass: "MC-TAF115 spectral proxy (catalog ne=1.77418 versus source 1.77373; supplier and annealing unconfirmed)",
     },
   ],
 

@@ -155,7 +155,7 @@ L71 is the positive front singlet of the final functional group G7. Table 8 plac
 
 ### L72 — Biconcave Negative, two aspherical surfaces
 
-ne = 1.77373, νd = 49.4. Glass: Unmatched (printed coordinates; no vendor row at either the d or the e line). f = −48.399 mm.
+ne = 1.77373, νd = 49.4. Glass: MC-TAF115 spectral proxy (catalog ne = 1.77418 versus printed 1.77373; supplier and annealing unconfirmed). f = −48.399 mm.
 
 L72 is the negative rear singlet and carries the two rear aspherical surfaces 33A and 34A. In combination with L71 it leaves G7 only weakly negative, approximately −381.91 mm focal length. Surface 34A is the final modeled refracting surface; the base rear spacing from that vertex to the image plane is 31.32 mm.
 
@@ -165,7 +165,7 @@ The Example-2 table supplies a refractive index and an Abbe number for each elem
 
 The patent's own condition tables agree. ¶0037 defines Nnp and νnp as the d-line index and Abbe number of L61. Table 36 prints them as 1.81 and 22.76, and Table 37 prints Nnp + 0.1·νnp = 4.08; the Table 6 index of L61, 1.81643, gives 4.09. HOYA FD225, whose ne is 1.81643, has nd 1.80809 and νd 22.76, which give 4.084. Table 37 also prints Np3 = 1.76 for L31, whose Table 6 index 1.76760 rounds to 1.77 (the other Table 37 entries are rounded, not truncated); OHARA S-LAH96, whose ne is 1.76760, has nd 1.76385.
 
-HOYA (including obsolete glasses), OHARA, SUMITA, HIKARI, SCHOTT and CDGM catalog data were checked at both lines. HOYA and OHARA both list a glass at the printed pair of L12/L13, L22, L24, L41, L61 and L62; the HOYA name is used there because HOYA covers the most elements of this lens (thirteen, six of them matched by no OHARA row). L11, L23, L31, L53 and L71 match OHARA rows only. L11's pair is shared by OHARA S-NBH51 and S-LAM7, which have the same ne and the same one-decimal Abbe number; S-NBH51 is used. L53's match, L-LAH91, is a low-softening-point moulding glass on a two-asphere element. L72, the other two-asphere element, matches no row at either line and keeps an explicit Unmatched disposition; the nearest e-line rows with its Abbe number are HOYA MC-TAF101-100 (1.77273) and M-TAF105 (1.77622).
+HOYA (including obsolete glasses), OHARA, SUMITA, HIKARI, SCHOTT and CDGM catalog data were checked at both lines. HOYA and OHARA both list a glass at the printed pair of L12/L13, L22, L24, L41, L61 and L62; the HOYA name is used there because HOYA covers the most elements of this lens (thirteen, six of them matched by no OHARA row). L11, L23, L31, L53 and L71 match OHARA rows only. L11's pair is shared by OHARA S-NBH51 and S-LAM7, which have the same ne and the same one-decimal Abbe number; S-NBH51 is used. L53's match, L-LAH91, is a low-softening-point moulding glass on a two-asphere element. L72, the other two-asphere element, has no exact public glass identification. It uses the standard MC-TAF115 row in [HOYA’s molding-glass workbook](https://www.hoya-opticalworld.com/common/mc/MC20251106.xlsx), sheet1 row 149, as a spectral proxy. The workbook’s nd = 1.77047 and six dispersion coefficients are consistent, while the AGF header’s 1.777047 disagrees with those coefficients. The curve gives ne = 1.774183 and νd = 49.46184, differing from the source by +0.000453 and +0.06184. This qualified near match is anchored to the printed e-line index; it does not identify a supplier, melt or cooling rate. No cooling-rate-specific row is selected or interpolated.
 
 | Element | Printed n (e line) | Printed νd | Catalog glass | Catalog ne / νd | Catalog nd |
 |---|---:|---:|---|---|---:|
@@ -185,9 +185,9 @@ HOYA (including obsolete glasses), OHARA, SUMITA, HIKARI, SCHOTT and CDGM catalo
 | L61 | 1.81643 | 22.8 | HOYA FD225 | 1.81643 / 22.76 | 1.80809 |
 | L62 | 1.83945 | 42.7 | HOYA TAFD5G | 1.83945 / 42.72 | 1.83481 |
 | L71 | 1.67717 | 38.3 | OHARA S-NBH52V | 1.67717 / 38.26 | 1.67300 |
-| L72 | 1.77373 | 49.4 | Unmatched | no vendor row at either line | — |
+| L72 | 1.77373 | 49.4 | HOYA MC-TAF115 spectral proxy | 1.77418 / 49.46 | 1.77047 |
 
-The eighteen named elements trace on their catalog dispersion curves, anchored to the printed index. L72 uses the Abbe estimate. Every element is traced at the same lines (C′, e, F′ and g), which requires all nineteen to share the e reference. Because the Abbe number in each e-referenced slot is the printed d-line value (catalog νe is 0.2 to 0.4 lower), the estimated dispersion of L72 is understated by under 1 %. The matches identify catalog coordinates; they do not establish Sony's supplier or melt.
+All nineteen elements now trace on catalog dispersion curves anchored to their printed e-line indices. Eighteen reproduce the catalog index to the printed precision; L72 uses the qualified MC-TAF115 proxy described above. The printed νd values remain unchanged, and the catalog curves supply wavelength dependence at C′, e, F′ and g. Curve coverage is not an exact-glass or production-supplier identification. With a d-line teleconverter attached, every glass now has a curve for the common-reference conversion; simulated MTF retains the uncertainty of the L72 proxy.
 
 The matched glasses span fluorophosphate and phosphate crowns (FCD1, FCD705, PCD51), lanthanum crowns and flints, and dense flints (FDS24, FD225). The patent publishes no partial-dispersion data, so no APO, Super ED, ED, or fluorite-equivalent claim is attached to an individual element on patent evidence; the inferred APD display tags on L12, L13, L42 and L52 rest on the matched catalog curves. Sony's production literature separately states that the marketed lens contains ED and Super ED elements; the patent does not say which Example-2 elements, if any, correspond to those production materials.
 
@@ -294,7 +294,7 @@ The data file retains every printed index and Abbe value and treats the index co
 | L61 | 1.81643 / 22.8 | FD225 (HOYA) |
 | L62 | 1.83945 / 42.7 | TAFD5G (HOYA) |
 | L71 | 1.67717 / 38.3 | S-NBH52V (OHARA) |
-| L72 | 1.77373 / 49.4 | none; Abbe estimate |
+| L72 | 1.77373 / 49.4 | MC-TAF115 spectral proxy; catalog ne differs by +0.000453 |
 
 ### Diagram glass classifications
 

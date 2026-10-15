@@ -22,7 +22,7 @@ Sony identifies an E-mount, full-frame converter with nominal 2× magnification 
 
 The announcement's intended host was SEL70200GM; that historical statement is not an exhaustive current compatibility list. Sony warns that incompatible rear optics or adapter parts can collide, including the named SEL70200G and LA-EA4 exclusions. The modeled mount identifier `sony-fe` and minimum host f-number 2.8 do not establish universal compatibility. Five catalog hosts declare the converter: FE 70-200mm F2.8 GM OSS, FE 70-200mm F2.8 GM OSS II, FE 400mm F2.8 GM OSS, FE 400-800mm F6.3-8 G OSS and FE 70-200mm F4 Macro G OSS II. [2, 4]
 
-Sony's [SEL70200G2 specifications](https://www.sony.co.uk/electronics/support/lenses-e-mount-lenses/sel70200g2/specifications) explicitly support SEL20TC. The Macro G OSS II native prescription composition preserves the host stop and corner-chief coverage at every zoom station, without converter render trim. Its e-line host indices and this converter's d-line indices cannot be converted to a common wavelength while one host glass is unresolved, so the composed MTF remains unavailable.
+Sony's [SEL70200G2 specifications](https://www.sony.co.uk/electronics/support/lenses-e-mount-lenses/sel70200g2/specifications) explicitly support SEL20TC. The Macro G OSS II native prescription composition preserves the host stop and corner-chief coverage at every zoom station, without converter render trim. Its e-line host indices and this converter's d-line indices can now be converted to a common wavelength after the MC-TAF115 backfill. Composed simulated MTF depends on L72’s qualified spectral proxy, with supplier and annealing unconfirmed.
 
 ## Optical Architecture
 
