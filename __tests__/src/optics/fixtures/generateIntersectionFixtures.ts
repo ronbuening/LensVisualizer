@@ -282,7 +282,7 @@ const CASES: readonly FixtureCase[] = [
   {
     id: "sphere-hemisphere-rim",
     kind: "sphere",
-    covers: "exterior hit at a hemisphere's rim, where the bracket must collapse to adjacent floats",
+    covers: "exterior hit at a hemisphere's rim, where Newton's corrections stall on the residual's rounding",
     R: -36.4652369171381,
     sd: 32.1266972069614,
     origin: [0, 36.90213507972658, -36.573912873864174],

@@ -340,8 +340,9 @@ export type QuantityId = keyof typeof QUANTITIES;
 /**
  * The plan's C2 column, for the rows where it is a criterion rather than a number. Each is a solver criterion
  * carried through a derivative, which two payloads alone cannot supply, so no C2 budget is derived from them here:
- * under C2 these classes, like every other, are held to their C1 budget until the first C2 step adds the
- * propagation. The plan gives no C2 budget for traces at all (a trace change is never C2).
+ * under C2 these classes, like every other, are held to their C1 budget until S6.P2.T1 adds the propagation
+ * before its engine change, the first whose solver output can move beyond a C1 budget. The plan gives no C2
+ * budget for traces at all (a trace change is never C2).
  */
 export const C2_CRITERIA: Partial<Record<QuantityId, string>> = {
   chiefLaunch: "twice the solver's stop-residual tolerance, mapped through ∂y_stop/∂y_launch",
