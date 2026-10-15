@@ -1305,8 +1305,9 @@ promotion, so the V2 authoring documents must not reach it earlier.
       [Quantity budgets](#quantity-budgets); a fifth class of discrete change and a second approved divergence under
       S3.P2.T1; and the #779 lines its Tier S shows, declared in that check. This is the Tier S settlement the step
       never had, not a later loosening: the harness PR changes no engine and moves no anchor.
-    - **S3.P2.T4, the first C2 step.** The C2 budgets. `--class c2` applies the C1 table until this step adds the
-      propagated criteria.
+    - **S6.P2.T1, `solveScalarRoot`.** Its harness PR adds the propagated C2 criteria before its engine change,
+      because it is the first step whose solver output can move beyond a C1 budget; S3.P2.T4's differences sit
+      inside the C1 budgets (on the Tier P workload no payload number moves), so its `--class c2` applies the C1 table.
     - **The first engine C3.** The cumulative comparison of the anchor rule. `--class c3` reports engine differences
       and does not fail on them, so "nothing outside the cumulative budgets except the declared differences" is not
       yet a gate.
@@ -2030,13 +2031,27 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     visible change on the lens's field-curvature and colour tabs gets a changelog line.
 - **S3.P2.T4 Roundoff-limited roots without bracket collapse.**
   - **Change:** with one kernel left, a Newton correction of a few ulps whose residual is inside the envelope counts
-    as a stall, and a fixed point the envelope rejects fails at once. `INTERSECTION_MAX_ITERATIONS` then drops to the
-    smallest value the fixtures need. The acceptance bound does not change: the raw target first, then
-    `max(tolerance, envelope)` only at a stall. The documented contract's raw-target-first rule gains the third stall
-    case in the same PR.
+    as a stall, and a fixed point the envelope rejects fails at once. `INTERSECTION_MAX_ITERATIONS` stays 72, as the
+    maintainer ruled: the fixtures need 23, and Tier P's slowest solves, four Zeiss ZX1 analysis solves making slow
+    progress on an asphere's polynomial continuation, need 71, so a cap under 71 loses rays. The acceptance bound does
+    not change: the raw target first, then `max(tolerance, envelope)` only at a stall.
+  - **As built:** the three stalls are a Newton correction that cannot change t; a safeguarded midpoint that cannot
+    advance; and, after a Newton step, a correction of at most four ulps of the evaluated point's largest coordinate
+    (or of t where larger), pointing the same way and more than half as long. The first two are accepted under the
+    envelope or fail at once. A creep outside the envelope goes on; inside it, the next safeguarded point is
+    evaluated once if the budget permits, and wins if it meets the raw target, otherwise the stalled point is
+    returned under the envelope. That evaluation counts as the next iteration. The pending step after the cap uses
+    the same raw-target and three stall rules, including the bracket update. The ulps are the coordinates' because
+    the residual is computed from them: the rim's corrections are 19 and 95 ulps of t, but 0.15 and 0.74 of its
+    coordinates. A reversed correction is not a stall. The ZX1 solves needed 72 until the pending step gained the
+    midpoint check.
   - **Tests:** the rim root in `intersectionContract.test.ts` converges without bisecting to adjacent floats; an
-    unusable slope bound fails on the iteration it stalls.
-  - **Gate:** C2.
+    unusable slope bound fails on the iteration it stalls. Regressions pin attainable raw-target refinement after
+    a creep, the pending step's midpoint fixed point, and coordinate ulps at the binade edges and non-finite inputs.
+  - **Gate:** C2, on the C1 table. On the Tier P workload no payload number moves. Of its 67,757,438 solves, four
+    of the Fujifilm GF 80mm f/1.7 end one iteration sooner on the same float; no t moves, and no solve changes route,
+    fails, or flips between the raw target and the envelope. The rim root takes 24 iterations, not 50, and lands
+    nearer a 220-digit reference root (15.6 ulps from it, against 50.4).
 
 **Stage 3 gate:**
 
@@ -2183,6 +2198,7 @@ under the rule in [Integration model](#integration-model). Stages 6 to 8, and Ph
     - Status diagnostics move to `diagnostics/`, keyed by compiled identity rather than `L.data.key`.
   - **Gate:** C0. Supersede the caching half of decision 2026-05-20; its memoization rationale stands.
 - **S6.P2.T1 `solveScalarRoot`.**
+  - **Harness, before the engine change:** its own PR adds the propagated C2 criteria S1.P2.T2 left open.
   - **Change:** scan outward from the seed, and once bracketed use Brent's method (Brent, *Algorithms for Minimization
     without Derivatives*, 1973, ch. 4). Residual and interval criteria and null-domain splitting are unchanged.
   - **Affected callers:** perspective chief solves, sensor targeting and MTF field solves. This is a solver change, not
@@ -2431,6 +2447,13 @@ Settled on 2026-10-14, at anchor A2 and building S3.P2.T3:
 | 51 | The Samyang XP 35mm f/1.2's raw half-field, decided by a scan miss on A1 and by the closed form's fallback after S3.P2.T1, is S3.P2.T1's third approved divergence | S3.P2.T1 |
 | 52 | S3.P2.T3 merges with its check failing on the Mirotar alone, the approved divergence extended to it | S3.P2.T3 |
 | 53 | Closing #779 on the stack tracer makes the Kinoptik Super Tegea 19mm's last field sample usable: an intended divergence at promotion, with a changelog line | S3.P2.T3 |
+
+Settled on 2026-10-14, designing S3.P2.T4:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 57 | `INTERSECTION_MAX_ITERATIONS` stays 72: the fixtures need 23 and Tier P's slowest solves 71 | S3.P2.T4 |
+| 58 | The propagated C2 criteria move to S6.P2.T1, the first step whose solver output can move beyond a C1 budget; S3.P2.T4 runs under `--class c2`, applying the C1 table | S3.P2.T4 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
