@@ -576,8 +576,9 @@ export type Outcome<Value> =
   | { ok: false; error: { name: string; message: string; reason?: string; section?: string } };
 
 /**
- * Keep distortion samples at their pre-envelope path so captures from older engines compare them numerically.
- * Corner metadata is a separate outcome, present only when the engine returns the new envelope.
+ * Keep distortion samples at their pre-envelope path so captures from older engines compare them numerically. The
+ * corner status the envelope adds is not recorded: no anchor before A3 has one, so it would be a one-sided job on
+ * every state that asks for distortion. A harness change after the anchor that includes it can record it.
  */
 export function recordAnalysisJob(
   jobs: Record<string, Outcome<unknown>>,
@@ -586,9 +587,7 @@ export function recordAnalysisJob(
 ): void {
   const value = outcome.ok ? outcome.value : undefined;
   if (job === "computeDistortionCurve" && isRecord(value) && Array.isArray(value.samples) && "corner" in value) {
-    const { samples, ...corner } = value;
-    jobs[job] = { ok: true, value: samples };
-    jobs.computeDistortionCorner = { ok: true, value: corner };
+    jobs[job] = { ok: true, value: value.samples };
   } else {
     jobs[job] = outcome;
   }

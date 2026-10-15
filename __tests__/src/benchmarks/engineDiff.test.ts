@@ -124,15 +124,12 @@ describe("analysis job capture shapes", () => {
   });
 
   it.each([{ curve: samples }, { curve: [] }])(
-    "splits an envelope's samples from its head-only corner metadata",
+    "records an envelope's samples and leaves its corner status out",
     ({ curve }) => {
       const jobs: Record<string, Outcome<unknown>> = {};
       const value = { samples: curve, ...metadata };
       recordAnalysisJob(jobs, "computeDistortionCurve", { ok: true, value });
-      expect(jobs).toEqual({
-        computeDistortionCurve: { ok: true, value: curve },
-        computeDistortionCorner: { ok: true, value: metadata },
-      });
+      expect(jobs).toEqual({ computeDistortionCurve: { ok: true, value: curve } });
       expect(jobs.computeDistortionCurve.ok && jobs.computeDistortionCurve.value).toBe(curve);
       expect(value).toEqual({ samples: curve, ...metadata });
     },
@@ -152,7 +149,7 @@ describe("analysis job capture shapes", () => {
     }
   });
 
-  it("compares legacy and envelope sample numbers while reporting only the corner as a new job", () => {
+  it("compares legacy and envelope sample numbers number by number, with no shape change", () => {
     const record = (value: unknown): PayloadRecord => {
       const jobs: Record<string, Outcome<unknown>> = {};
       recordAnalysisJob(jobs, "computeDistortionCurve", { ok: true, value });
@@ -170,8 +167,8 @@ describe("analysis job capture shapes", () => {
     const { engine } = run.finish();
     expect(engine.numbersDiffering).toBe(1);
     expect(engine.quantities.percentage?.differing).toBe(1);
-    expect(engine.differences.shape).toBe(1);
-    expect(engine.transitionSamples.map(({ path }) => path)).toEqual(["jobs.computeDistortionCorner"]);
+    expect(engine.differences.shape).toBe(0);
+    expect(engine.transitionSamples).toEqual([]);
   });
 });
 
@@ -1783,7 +1780,6 @@ describe("engineDiff capture", () => {
         .jobs;
     const expectedJobs = [
       ...ANALYSIS_CONTEXT_JOBS,
-      "computeDistortionCorner",
       "computeFieldCurvature",
       "groupMovement.focus",
       "groupMovement.zoom",
