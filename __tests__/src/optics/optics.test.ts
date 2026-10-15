@@ -1,3 +1,5 @@
+import { traceParaxialSurfaces2 } from "../../../src/optics/math/paraxial.js";
+import { stateSurfaces } from "../../../src/optics/layout.js";
 import { describe, it, expect } from "vitest";
 import {
   sagSlope,
@@ -8,7 +10,6 @@ import {
   traceRay,
   traceRayChromatic,
   computeChromaticRayFanSpread,
-  traceToImage,
   conjugateK,
   eflAtZoom,
   eflAtFocus,
@@ -167,11 +168,11 @@ describe("traceRay — exact Snell", () => {
     const { z: zPos, imgZ } = doLayout(0, 0, L);
     const h = 0.1; // very small height
     const { y: yReal, u: uReal } = traceRay(h, 0, zPos, 0, 0, 15, false, L);
-    // traceRay stops at last surface; traceToImage propagates through final gap
+    // Compare the exact trace with the paraxial reference after its final gap transfer.
     // Extrapolate real ray to image plane for comparison
     const lastSurfZ = zPos[L.N - 1];
     const yRealAtImage = yReal + (imgZ - lastSurfZ) * uReal;
-    const yParax = traceToImage(h, 0, 0, 0, L);
+    const yParax = paraxialImageHeight(h, 0, 0, 0, L);
     expect(yRealAtImage).toBeCloseTo(yParax, 3);
   });
 
@@ -184,7 +185,7 @@ describe("traceRay — exact Snell", () => {
     const lastSurfZ = zPos[L.N - 1];
     const yRealAtImage = yReal + (imgZ - lastSurfZ) * uReal;
     // Paraxial image height
-    const yParax = traceToImage(h, 0, 0, 0, L);
+    const yParax = paraxialImageHeight(h, 0, 0, 0, L);
     // Real ray at paraxial image plane should differ from paraxial (spherical aberration)
     expect(Math.abs(yRealAtImage - yParax)).toBeGreaterThan(0.01);
   });
@@ -447,7 +448,7 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   it("paraxial and exact rays agree for small heights", () => {
     const h = 0.01; // very small ray height
     const { y: yExact, u: uExact } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
-    const yParax = traceToImage(h, 0, 0, 0, L);
+    const yParax = paraxialImageHeight(h, 0, 0, 0, L);
     const yExactAtImage = yExact + (imgZ - zPos[L.N - 1]) * uExact;
     expect(yExactAtImage).toBeCloseTo(yParax, 2);
   });
@@ -732,3 +733,9 @@ describe("effectiveFNumber", () => {
     expect(isFinite(effF)).toBe(true);
   });
 });
+
+function paraxialImageHeight(y0: number, u0: number, focusT: number, zoomT: number, L: RuntimeLens): number {
+  const surfaces = stateSurfaces(focusT, zoomT, L);
+  const trace = traceParaxialSurfaces2(surfaces, y0, u0);
+  return trace.y + surfaces[surfaces.length - 1].d * trace.u;
+}

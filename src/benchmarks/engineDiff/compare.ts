@@ -201,8 +201,6 @@ function diffRecords(
     const budget = budgetOf(quantity, changeClass);
     const distance = Math.abs(x - y) / rule.scale;
     switch (kind) {
-      case "finite":
-        return report("number", pattern, a, b, quantity, 0, 0);
       case "exact":
         return report("discrete", pattern, a, b, quantity, distance, 0);
       case "iterations":
@@ -413,6 +411,42 @@ function countRecord(record: ComparableRecord, counts: PayloadCounts): number {
     for (const job of Object.values(jobs)) counts.jobs[job.ok === true ? "returned" : "threw"]++;
   }
   return counts.numbers - numbersBefore;
+}
+
+/**
+ * Project an older capture onto the retired legacy-trace schema for engine drift alone.
+ *
+ * S4.P2.T4 retires these two members, not their records. Drop a base member only where the successful head object
+ * exists and lacks it; additions, missing parents and every other missing member still compare normally. Both
+ * inputs stay intact so a driver may keep their original payloads as evidence.
+ */
+function withoutRetiredLegacyCapture(base: ComparableRecord, head: ComparableRecord): ComparableRecord {
+  if (base.request !== "traces" || !base.payload.ok || !head.payload.ok) return base;
+  const before = base.payload.value;
+  const after = head.payload.value;
+  const isObject = (value: EncodedValue): value is { [key: string]: EncodedValue } =>
+    isContainer(value) && !Array.isArray(value);
+  if (!isObject(before) || !isObject(after)) return base;
+  let value = before;
+  if (Object.hasOwn(before, "legacy") && !Object.hasOwn(after, "legacy")) {
+    value = { ...value };
+    delete value.legacy;
+  }
+  const probesBefore = before.nearAxisProbes;
+  const probesAfter = after.nearAxisProbes;
+  if (
+    probesBefore !== undefined &&
+    probesAfter !== undefined &&
+    isObject(probesBefore) &&
+    isObject(probesAfter) &&
+    Object.hasOwn(probesBefore, "legacy") &&
+    !Object.hasOwn(probesAfter, "legacy")
+  ) {
+    const probes = { ...probesBefore };
+    delete probes.legacy;
+    value = { ...value, nearAxisProbes: probes };
+  }
+  return value === before ? base : { ...base, payload: { ok: true, value } };
 }
 
 /* ── A differential run ── */
@@ -1290,6 +1324,7 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
     if (!sameRequests(baseEngine, headEngine) || (needsBaseData && !(baseData && sameRequests(baseData, headEngine)))) {
       throw new Error(`engineDiff: the captures of ${lens} do not answer the same requests in the same order`);
     }
+    baseEngine = baseEngine.map((record, index) => withoutRetiredLegacyCapture(record, headEngine[index]));
     const firstPart = !met.has(lens);
     met.add(lens);
     const lines = {
@@ -1874,13 +1909,12 @@ const OUTCOME_MEMBERS = ["ok", "value", "error"] as const;
 /*
  * What `numbers` permits beyond budget in a declared unit: the fields of a traced ray that have no counterpart once
  * the ray ends on another surface or stops. They are the fields of the budget table's trace rows for the terminal
- * point and direction, the image-plane landing and the slopes, and for the stack tracer's drawn points, height and
- * slope, each named as that table names it under its ray. The medium a ray ended in, on the ray and in its
- * diagnostics, and the stack tracer's transmission are among them: both follow from where the ray ended, so a ray
- * that newly stops or completes inside glass has no counterpart for them either. A hit's coordinates are not among
- * them: a hit that both sides have is the same hit.
+ * point and direction, the image-plane landing and the slopes. The medium a ray ended in, on the ray and in its
+ * diagnostics, follows from where the ray ended too. A hit that both sides have is still the same hit.
  */
 const NO_COUNTERPART_FAMILY: RequestFamily = "traces";
+/* Only the production fans have terminal fields whose numbers a transition may excuse. */
+const PRODUCTION_RAY_UNIT = /^(?:(?:onAxis|offAxis|skew)\.rays\[\]|chromatic\.rays\.[RGBV]\[\])$/;
 const NO_COUNTERPART_FIELDS: ReadonlySet<string> = new Set([
   "terminalPoint[]",
   "terminalDirection[]",
@@ -1889,12 +1923,8 @@ const NO_COUNTERPART_FIELDS: ReadonlySet<string> = new Set([
   "y",
   "ux",
   "uy",
-  "pts[][]",
-  "ghostPts[][]",
-  "u",
   "finalMedium",
   "diagnostics.finalMedium",
-  "transmission",
 ]);
 
 /**
@@ -1914,7 +1944,7 @@ function patternOf(path: string): string {
 }
 
 function hasNoCounterpart(family: RequestFamily, pattern: string, unit: string): boolean {
-  if (family !== NO_COUNTERPART_FAMILY) return false;
+  if (family !== NO_COUNTERPART_FAMILY || !PRODUCTION_RAY_UNIT.test(patternOf(unit))) return false;
   const ray = patternOf(unit);
   return pattern.startsWith(`${ray}.`) && NO_COUNTERPART_FIELDS.has(pattern.slice(ray.length + 1));
 }
@@ -1923,8 +1953,7 @@ function hasNoCounterpart(family: RequestFamily, pattern: string, unit: string):
  * Those fields have no counterpart only once the ray ended on another surface or stopped, so `numbers` is honoured
  * only in a unit whose own discrete and shape differences show that: the ray's outcome, where it ended, how many
  * hits it has and on which surfaces, a clip, fallback or failure flag of a hit, or a clip event. Each is named as it
- * sits under its ray, for the surface tracer and for the stack tracer, which has no hit records and shows the same
- * by its drawn points and its diagnostics. A label, a tolerance or an input that differs shows no such thing, and
+ * sits under its production ray. A label, a tolerance or an input that differs shows no such thing, and
  * neither does a hit column that one side lacks: a column that changed length changed the hit count with it.
  */
 const ENDED_ELSEWHERE: ReadonlySet<string> = new Set([
@@ -1940,8 +1969,6 @@ const ENDED_ELSEWHERE: ReadonlySet<string> = new Set([
   "hits.columns.fallback[]",
   "hits.columns.failureReason[]",
   "hits.columns.clipReason[]",
-  "pts",
-  "ghostPts",
   "diagnostics.clipped",
   "diagnostics.failureReason",
   "diagnostics.terminationReason",
@@ -1954,7 +1981,7 @@ const ENDED_ELSEWHERE: ReadonlySet<string> = new Set([
 const CLIP_EVENT = /^diagnostics\.clipEvents(?:$|[.[])/;
 
 function showsAnotherEnd(family: RequestFamily, unit: string, { path }: UnitDifference): boolean {
-  if (family !== NO_COUNTERPART_FAMILY) return false;
+  if (family !== NO_COUNTERPART_FAMILY || !PRODUCTION_RAY_UNIT.test(patternOf(unit))) return false;
   const member = patternOf(path).slice(patternOf(unit).length + 1);
   return ENDED_ELSEWHERE.has(member) || CLIP_EVENT.test(member);
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { traceExactSurfaceStack, type ExactTraceLens } from "../../../../src/optics/internal/exactSurfaceTrace.js";
+import { traceFixtureSlope } from "../traceGeometryFixtures.js";
 import { sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import type { SurfaceData } from "../../../../src/types/optics.js";
 
@@ -9,11 +9,11 @@ const flatSurfaces = [
   { label: "3", R: 1e15, nd: 1.0, d: 10, sd: 10, elemId: 0 },
 ] satisfies SurfaceData[];
 
-describe("traceExactSurfaceStack", () => {
+describe("production sequential traversal", () => {
   it("matches vertex-plane transfer through flat air surfaces", () => {
-    const result = traceExactSurfaceStack({ S: flatSurfaces, asphByIdx: {} }, { y0: 1, uy0: 0.2 }, { stopAt: 1 });
+    const result = traceFixtureSlope({ S: flatSurfaces, asphByIdx: {} }, { y0: 1, uy0: 0.2 }, { stopAt: 1 });
 
-    expect(result.clipped).toBe(false);
+    expect(result.status).toBe("ok");
     expect(result.y).toBeCloseTo(2, 10);
     expect(result.uy).toBeCloseTo(0.2, 10);
   });
@@ -24,24 +24,24 @@ describe("traceExactSurfaceStack", () => {
       { label: "2", R: -50, nd: 1.0, d: 80, sd: 15, elemId: 0 },
     ] satisfies SurfaceData[];
 
-    const result = traceExactSurfaceStack(
+    const result = traceFixtureSlope(
       { S: surfaces, asphByIdx: {} },
       { y0: 5, uy0: 0 },
       { zPos: [0, 5], leadDistance: 5 },
     );
 
-    expect(result.clipped).toBe(false);
+    expect(result.status).toBe("ok");
     expect(result.hits[0].point[2]).toBeCloseTo(sag(5, 50), 8);
     expect(result.hits[0].radius).toBeCloseTo(5, 10);
   });
 
   it("honors stopAt, skipLastTransfer, and recorded heights", () => {
-    const transferred = traceExactSurfaceStack(
+    const transferred = traceFixtureSlope(
       { S: flatSurfaces, asphByIdx: {} },
       { y0: 1, uy0: 0.1 },
       { stopAt: 2, recordHeights: true },
     );
-    const skipped = traceExactSurfaceStack(
+    const skipped = traceFixtureSlope(
       { S: flatSurfaces, asphByIdx: {} },
       { y0: 1, uy0: 0.1 },
       { stopAt: 2, skipLastTransfer: true, recordHeights: true },
@@ -54,24 +54,24 @@ describe("traceExactSurfaceStack", () => {
 
   it("marks semi-diameter clipping without discarding finite terminal coordinates", () => {
     const clippedSurfaces = flatSurfaces.map((surface) => ({ ...surface, sd: 1 }));
-    const result = traceExactSurfaceStack(
+    const result = traceFixtureSlope(
       { S: clippedSurfaces, asphByIdx: {} },
       { y0: 2, uy0: 0.1 },
       { checkSemiDiameter: true },
     );
 
-    expect(result.clipped).toBe(true);
+    expect(result.status).not.toBe("ok");
     expect(isFinite(result.y)).toBe(true);
     expect(isFinite(result.uy)).toBe(true);
   });
 
   it("clips at the semi-diameter itself, with no margin a lens object could widen it by", () => {
     /* `clipMargin` once multiplied every clip radius; a lens object that still carries one must not move the clip. */
-    const margined = { S: flatSurfaces, asphByIdx: {}, clipMargin: 1.05 } as ExactTraceLens;
-    const trace = (y0: number) => traceExactSurfaceStack(margined, { y0, uy0: 0 }, { checkSemiDiameter: true });
+    const margined = { S: flatSurfaces, asphByIdx: {}, clipMargin: 1.05 };
+    const trace = (y0: number) => traceFixtureSlope(margined, { y0, uy0: 0 }, { checkSemiDiameter: true });
 
-    expect(trace(9.999).clipped).toBe(false);
-    expect(trace(10.001).clipped).toBe(true);
+    expect(trace(9.999).status).toBe("ok");
+    expect(trace(10.001).status).not.toBe("ok");
   });
 
   it("reports intersection or refraction failure as a clipped failed trace", () => {
@@ -80,13 +80,13 @@ describe("traceExactSurfaceStack", () => {
       { label: "2", R: 1e15, nd: 1.0, d: 10, sd: 20, elemId: 0 },
     ] satisfies SurfaceData[];
 
-    const result = traceExactSurfaceStack(
+    const result = traceFixtureSlope(
       { S: surfaces, asphByIdx: {} },
       { y0: 9, uy0: 0.5 },
       { zPos: [0, 5], checkSemiDiameter: true, leadDistance: 1 },
     );
 
-    expect(result.clipped).toBe(true);
+    expect(result.status).not.toBe("ok");
     expect(result.failureReason).not.toBeNull();
   });
 });

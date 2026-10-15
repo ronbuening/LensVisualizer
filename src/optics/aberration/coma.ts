@@ -10,7 +10,7 @@ import {
   sampleOrthogonalPupilFan,
   type CircularPupilSample,
   type OrthogonalPupilSample,
-} from "../rayTrace.js";
+} from "../analysis/sampling.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,

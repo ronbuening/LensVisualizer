@@ -6,7 +6,8 @@
 
 import { computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState } from "../field/fieldGeometry.js";
 import { thick } from "../layout.js";
-import { sampleCircularPupil, skewImagePlaneIntercept } from "../rayTrace.js";
+import { sampleCircularPupil } from "../analysis/sampling.js";
+import { skewImagePlaneIntercept } from "../trace/rayAdapters.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type {
   BokehPoint,

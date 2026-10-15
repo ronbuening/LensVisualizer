@@ -10,12 +10,6 @@ import {
   traceSkewRay as tracePreparedSkewRay,
   traceSkewRayChromatic as tracePreparedSkewRayChromatic,
 } from "../../../src/optics/optics.js";
-import {
-  traceRay as traceCompatibilityRay,
-  traceRayChromatic as traceCompatibilityRayChromatic,
-  traceSkewRay as traceCompatibilitySkewRay,
-  traceSkewRayChromatic as traceCompatibilitySkewRayChromatic,
-} from "../../../src/optics/rayTrace.js";
 import { findNearestGeneralizedSurfaceHit } from "../../../src/optics/trace/pathPlanner.js";
 import { traceSequential } from "../../../src/optics/trace/sequentialTrace.js";
 import { build } from "./testLensFixtures.js";
@@ -28,7 +22,7 @@ import { build } from "./testLensFixtures.js";
  * Phase Fresnel lens's first-order and per-channel numbers. This file covers
  * the remaining engine contracts around a sequential diffractive surface,
  * using the catalog's only production diffractive design as the fixture: the
- * compatibility and prepared tracers agree at every channel, a same-index
+ * meridional and skew launches retain phase power at every channel, a same-index
  * phase plate is never skipped as a passive surface, and a diffraction order
  * that cannot propagate fails with a typed reason instead of NaN geometry.
  */
@@ -37,41 +31,49 @@ const PHASE_SURFACE_LABEL = "8";
 const L = build(PfRaw);
 
 describe("sequential diffractive surface", () => {
-  it("keeps compatibility and prepared exact traces aligned at every chromatic channel", () => {
+  it("keeps meridional and skew traces finite and wavelength-dependent at every channel", () => {
     const layout = doLayout(0, 0, L);
     const args = [20, 0, layout.z, 0, 0, L.stopPhysSD, false, L] as const;
-    const compatibility = traceCompatibilityRay(...args);
     const prepared = tracePreparedRay(...args);
     expect(prepared.clipped).toBe(false);
-    expect(prepared.y).toBeCloseTo(compatibility.y, 9);
-    expect(prepared.u).toBeCloseTo(compatibility.u, 9);
-
+    const skewArgs = [0, 20, 0, 0, 0, 0, L.stopPhysSD, false, L] as const;
+    const skew = tracePreparedSkewRay(...skewArgs);
+    expect(skew.clipped).toBe(false);
+    expect(skew.x).toBe(0);
+    expect(skew.y).toBeCloseTo(prepared.y, 9);
+    expect(skew.uy).toBeCloseTo(prepared.u, 9);
+    // A rotationally symmetric phase surface must rotate a nonzero sagittal launch with the ray.
+    const radialHeight = Math.hypot(3, 10);
+    const radialArgs = [radialHeight, 0, layout.z, 0, 0, L.stopPhysSD, false, L] as const;
+    const skewRadialArgs = [3, 10, 0, 0, 0, 0, L.stopPhysSD, false, L] as const;
+    const radial = tracePreparedRay(...radialArgs);
+    const skewRadial = tracePreparedSkewRay(...skewRadialArgs);
+    expect(skewRadial.clipped).toBe(false);
+    expect(skewRadial.x).toBeCloseTo((radial.y * 3) / radialHeight, 9);
+    expect(skewRadial.y).toBeCloseTo((radial.y * 10) / radialHeight, 9);
+    expect(skewRadial.ux).toBeCloseTo((radial.u * 3) / radialHeight, 9);
+    expect(skewRadial.uy).toBeCloseTo((radial.u * 10) / radialHeight, 9);
+    const slopes = new Set<number>();
     for (const channel of ["R", "G", "B", "V"] as const) {
-      const compatibilityChromatic = traceCompatibilityRayChromatic(...args, channel);
-      const preparedChromatic = tracePreparedRayChromatic(...args, channel);
-      expect(preparedChromatic.clipped).toBe(compatibilityChromatic.clipped);
-      expect(preparedChromatic.y).toBeCloseTo(compatibilityChromatic.y, 9);
-      expect(preparedChromatic.u).toBeCloseTo(compatibilityChromatic.u, 9);
+      const meridional = tracePreparedRayChromatic(...args, channel);
+      const chromaticSkew = tracePreparedSkewRayChromatic(...skewArgs, channel);
+      expect(meridional.clipped).toBe(false);
+      expect(chromaticSkew.clipped).toBe(false);
+      expect(chromaticSkew.x).toBe(0);
+      expect(chromaticSkew.y).toBeCloseTo(meridional.y, 9);
+      expect(chromaticSkew.uy).toBeCloseTo(meridional.u, 9);
+      expect(Number.isFinite(meridional.u)).toBe(true);
+      const radial = tracePreparedRayChromatic(...radialArgs, channel);
+      const skewRadial = tracePreparedSkewRayChromatic(...skewRadialArgs, channel);
+      expect(radial.clipped).toBe(false);
+      expect(skewRadial.clipped).toBe(false);
+      expect(skewRadial.x).toBeCloseTo((radial.y * 3) / radialHeight, 9);
+      expect(skewRadial.y).toBeCloseTo((radial.y * 10) / radialHeight, 9);
+      expect(skewRadial.ux).toBeCloseTo((radial.u * 3) / radialHeight, 9);
+      expect(skewRadial.uy).toBeCloseTo((radial.u * 10) / radialHeight, 9);
+      slopes.add(meridional.u);
     }
-
-    const skewArgs = [3, 10, 0, 0, 0, 0, L.stopPhysSD, false, L] as const;
-    const compatibilitySkew = traceCompatibilitySkewRay(...skewArgs);
-    const preparedSkew = tracePreparedSkewRay(...skewArgs);
-    expect(preparedSkew.clipped).toBe(false);
-    expect(preparedSkew.x).toBeCloseTo(compatibilitySkew.x, 9);
-    expect(preparedSkew.y).toBeCloseTo(compatibilitySkew.y, 9);
-    expect(preparedSkew.ux).toBeCloseTo(compatibilitySkew.ux, 9);
-    expect(preparedSkew.uy).toBeCloseTo(compatibilitySkew.uy, 9);
-
-    for (const channel of ["R", "G", "B", "V"] as const) {
-      const compatibilitySkewChromatic = traceCompatibilitySkewRayChromatic(...skewArgs, channel);
-      const preparedSkewChromatic = tracePreparedSkewRayChromatic(...skewArgs, channel);
-      expect(preparedSkewChromatic.clipped).toBe(compatibilitySkewChromatic.clipped);
-      expect(preparedSkewChromatic.x).toBeCloseTo(compatibilitySkewChromatic.x, 9);
-      expect(preparedSkewChromatic.y).toBeCloseTo(compatibilitySkewChromatic.y, 9);
-      expect(preparedSkewChromatic.ux).toBeCloseTo(compatibilitySkewChromatic.ux, 9);
-      expect(preparedSkewChromatic.uy).toBeCloseTo(compatibilitySkewChromatic.uy, 9);
-    }
+    expect(slopes.size).toBe(4);
   });
 
   it("keeps a same-index phase plate active in automatic generalized path selection", () => {
