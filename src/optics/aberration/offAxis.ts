@@ -5,12 +5,11 @@
  * field-curvature, distortion, and vignetting analysis.
  */
 
+import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../trace/chiefRelative.js";
 import {
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
-  traceChiefRelativeSkewRay,
-  traceChiefRelativeSkewRayChromatic,
   type CircularPupilSample,
   type OrthogonalPupilSample,
   type SkewImagePlaneIntercept,

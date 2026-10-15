@@ -31,7 +31,13 @@ import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
 import MinoltaSTFRaw from "../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
-import { apertureAt, build, sharedApoLanthar50f2, sharedNikkorZ70200 } from "../testLensFixtures.js";
+import {
+  apertureAt,
+  build,
+  buildSimplePositiveElementLens,
+  sharedApoLanthar50f2,
+  sharedNikkorZ70200,
+} from "../testLensFixtures.js";
 import type { RuntimeLens, LensData } from "../../../../src/types/optics.js";
 import type { BokehPoint } from "../../../../src/optics/aberration/types.js";
 
@@ -683,4 +689,37 @@ describe("focus tracking for internal-focus lens (Nikon Z 135)", () => {
     expect(rmsValues[0]).toBeGreaterThan(rmsValues[1]);
     expect(rmsValues[1]).toBeGreaterThan(rmsValues[2]);
   });
+});
+
+it("keeps mechanical pupil weights separate from chief-relative bulk transmission", () => {
+  const base = buildSimplePositiveElementLens();
+  const plateData = base.data;
+  const transparent = build(plateData);
+  const alpha = 0.2;
+  const absorbing = build({
+    ...plateData,
+    elements: plateData.elements.map((element) => ({ ...element, absorptionCoefficientPerMm: alpha })),
+  });
+  const trace = (L: RuntimeLens) => {
+    const { z, imgZ } = doLayout(0, 0, L);
+    return computeBokehFieldFootprint(L, z, 0, 0, 2, 1, 0, imgZ + 10)!;
+  };
+  const clear = trace(transparent);
+  const attenuated = trace(absorbing);
+  expect(clear).not.toBeNull();
+  expect(attenuated).not.toBeNull();
+  expect(clear.passedRays).toBeLessThan(clear.totalRays);
+  expect(attenuated.pupilFootprint).toEqual(clear.pupilFootprint);
+  expect(attenuated.points.length).toBe(clear.points.length);
+  expect(attenuated.points.length).toBe(clear.passedRays);
+  for (let i = 0; i < clear.points.length; i++) {
+    const { z } = doLayout(0, 0, transparent);
+    const ray = traceRay(clear.points[i].pupilRadius * 2, 0, z, 0, 0, 1, true, transparent);
+    const entry = ray.pts[2];
+    const exit = ray.pts[3];
+    const distance = Math.hypot(exit[0] - entry[0], exit[1] - entry[1]);
+    expect(attenuated.points[i].weight).toBeCloseTo(clear.points[i].weight * Math.exp(-alpha * distance), 12);
+    expect(attenuated.points[i].sagittalOffset).toBe(clear.points[i].sagittalOffset);
+    expect(attenuated.points[i].tangentialOffset).toBe(clear.points[i].tangentialOffset);
+  }
 });

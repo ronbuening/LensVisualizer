@@ -24,6 +24,7 @@ import {
 import { computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "../../../src/optics/aberration/offAxis.js";
 import {
   buildChromaticPositiveElementLens,
+  buildVariableStopGapLens,
   buildSimplePositiveElementLens,
   sharedApoLanthar50f2,
   sharedSonnar50f15,
@@ -152,21 +153,66 @@ describe("traceChiefRelativeSkewRay", () => {
     const viaWrapper = traceChiefRelativeSkewRay(xFrac, yFrac, yChief, fieldSlope, epSD, 0, 0, 15, false, L);
     const viaDirect = traceSkewRay(xFrac * epSD, yChief + yFrac * epSD, 0, fieldSlope, 0, 0, 15, false, L);
 
-    expect(viaWrapper.x).toBeCloseTo(viaDirect.x, 12);
-    expect(viaWrapper.y).toBeCloseTo(viaDirect.y, 12);
-    expect(viaWrapper.ux).toBeCloseTo(viaDirect.ux, 12);
-    expect(viaWrapper.uy).toBeCloseTo(viaDirect.uy, 12);
+    expect(viaWrapper).toEqual(viaDirect);
   });
 
   it("routes chromatic chief-relative launches through the channel adapter", () => {
     const Lchrom = buildChromaticPositiveElementLens("test-chief-relative-skew-chromatic");
     const viaWrapper = traceChiefRelativeSkewRayChromatic(0.25, -0.2, 1.5, -0.02, 8, 0, 0, 15, false, Lchrom, "B");
-    const viaDirect = traceSkewRayChromatic(2, -0.1, 0, -0.02, 0, 0, 15, false, Lchrom, "B");
+    const viaDirect = traceSkewRayChromatic(0.25 * 8, 1.5 + -0.2 * 8, 0, -0.02, 0, 0, 15, false, Lchrom, "B");
 
-    expect(viaWrapper.x).toBeCloseTo(viaDirect.x, 12);
-    expect(viaWrapper.y).toBeCloseTo(viaDirect.y, 12);
-    expect(viaWrapper.ux).toBeCloseTo(viaDirect.ux, 12);
-    expect(viaWrapper.uy).toBeCloseTo(viaDirect.uy, 12);
+    expect(viaWrapper).toEqual(viaDirect);
+  });
+
+  it("exports the trace module through the stable public barrel", async () => {
+    const direct = await import("../../../src/optics/trace/chiefRelative.js");
+    expect(direct.traceChiefRelativeSkewRay).toBe(traceChiefRelativeSkewRay);
+    expect(direct.traceChiefRelativeSkewRayChromatic).toBe(traceChiefRelativeSkewRayChromatic);
+  });
+
+  it.each([0, 7, -3])("forwards every field and channel with rayLead=%s", (rayLead) => {
+    const L = buildVariableStopGapLens(
+      [
+        [1, 2],
+        [2, 3],
+        [3, 4],
+      ],
+      "test-chief-relative-controls",
+    );
+    const lens = { ...L, rayLead };
+    for (const ghost of [false, true]) {
+      for (const stopSD of [undefined, 0.1, 8]) {
+        for (const channel of [undefined, "R", "G", "B", "V"] as const) {
+          const args = [0.3, -0.2, 1.5, -0.02, 8, 0.4, 0.7, stopSD, ghost, lens] as const;
+          const launch = [0.3 * 8, 1.5 + -0.2 * 8, 0, -0.02, 0.4, 0.7, stopSD, ghost, lens] as const;
+          const result = channel
+            ? traceChiefRelativeSkewRayChromatic(...args, channel, 0.6)
+            : traceChiefRelativeSkewRay(...args, 0.6);
+          const expected = channel ? traceSkewRayChromatic(...launch, channel, 0.6) : traceSkewRay(...launch, 0.6);
+          expect(result).toEqual(expected);
+          expect(Number.isFinite(result.transmission)).toBe(true);
+          expect(result.clipped).toBe(rayLead < 0 || stopSD === 0.1);
+          if (rayLead < 0) {
+            // A negative lead starts after the flat first surface; production never backtracks to it.
+            expect(result).toEqual({ x: 0.3 * 8, y: 1.5 + -0.2 * 8, ux: 0, uy: -0.02, clipped: true, transmission: 1 });
+          }
+        }
+      }
+    }
+  });
+
+  it.each([NaN, Infinity, -Infinity])("uses preparation's finite-control contract (%s)", (invalid) => {
+    for (const controls of [
+      [invalid, 0, 0],
+      [0, invalid, 0],
+      [0, 0, invalid],
+    ]) {
+      const [focus, zoom, aberration] = controls;
+      expect(() => traceChiefRelativeSkewRay(0, 0, 0, 0, 1, focus, zoom, 15, false, L, aberration)).toThrow(/finite/);
+      expect(() =>
+        traceChiefRelativeSkewRayChromatic(0, 0, 0, 0, 1, focus, zoom, 15, false, L, "B", aberration),
+      ).toThrow(/finite/);
+    }
   });
 });
 

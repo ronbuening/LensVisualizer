@@ -5,6 +5,7 @@
  * implementation files only when needed.
  */
 
+export { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "./trace/chiefRelative.js";
 export { anchorLayoutToCamera, type CameraAnchoredLayout } from "./cameraLayout.js";
 export {
   FOCUS_INFINITY_THRESHOLD,
@@ -81,8 +82,6 @@ export {
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
-  traceChiefRelativeSkewRay,
-  traceChiefRelativeSkewRayChromatic,
   traceToImage,
   type CircularPupilSample,
   type OrthogonalPupilSample,

@@ -21,7 +21,15 @@ import {
   diffractiveParaxialPower,
   radialPhaseKick,
 } from "../../../src/optics/math/diffractivePhase.js";
-import { doLayout, traceRay, traceRayVector } from "../../../src/optics/optics.js";
+import {
+  doLayout,
+  traceRay,
+  traceRayVector,
+  traceSkewRay,
+  traceSkewRayChromatic,
+  traceChiefRelativeSkewRay,
+  traceChiefRelativeSkewRayChromatic,
+} from "../../../src/optics/optics.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 
 const LAUNCH_HEIGHTS = [8, 5, 2];
@@ -211,4 +219,18 @@ describe("folded diffractive fixture — refractive control", () => {
       expect(Math.abs(withPhase - withoutPhase), `h=${h}`).toBeGreaterThan(1);
     }
   });
+});
+
+it("routes chief-relative generalized phase rays through the production channel adapters", () => {
+  const L = buildFixture();
+  const mono = traceChiefRelativeSkewRay(0, 0.5, 1, 0, 8, 0, 0, L.stopPhysSD, true, L);
+  expect(mono).toEqual(traceSkewRay(0, 1 + 0.5 * 8, 0, 0, 0, 0, L.stopPhysSD, true, L));
+  expect(mono.clipped).toBe(false);
+  const channels = (["R", "G", "B", "V"] as const).map((channel) => {
+    const ray = traceChiefRelativeSkewRayChromatic(0, 0.5, 1, 0, 8, 0, 0, L.stopPhysSD, true, L, channel);
+    expect(ray).toEqual(traceSkewRayChromatic(0, 1 + 0.5 * 8, 0, 0, 0, 0, L.stopPhysSD, true, L, channel));
+    expect(ray.clipped).toBe(false);
+    return ray;
+  });
+  expect(channels[0].uy).not.toBe(channels[2].uy);
 });
