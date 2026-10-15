@@ -6,7 +6,7 @@ import {
   type PerspectiveTraceContext,
 } from "../../../../src/optics/perspective/trace.js";
 import { createSensorBasis } from "../../../../src/optics/perspective/sensorBasis.js";
-import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { stateWithRuntimeZ, traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
 import type { Plane3, Ray3, Vec3 } from "../../../../src/optics/types.js";
 import type { TiltPivot } from "../../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
@@ -73,6 +73,30 @@ describe("perspective trace foundation", () => {
     expect(context.cacheKey).not.toBe(unanchored.cacheKey);
     expect(Object.isFrozen(context)).toBe(true);
     expect(Object.isFrozen(context.sensorPlane)).toBe(true);
+  });
+
+  it("refreshes trace geometry for translated, nonuniform and partial camera vertices", () => {
+    for (const L of [buildSimplePositiveElementLens(), buildLens(LENS_CATALOG["reference-newtonian-side-focus"])]) {
+      const base = prepareRuntimeState(L, 0, 0);
+      const original = base.traceGeometry;
+      expect(original).toBeDefined();
+      expect(stateWithRuntimeZ(base, [])).toBe(base);
+      expect(stateWithRuntimeZ(base, [...base.z])).toBe(base);
+      for (const z of [base.z.map((v) => v + 12), base.z.map((v, i) => v + 12 + i), [12]]) {
+        const shifted = stateWithRuntimeZ(base, z);
+        expect(shifted.traceGeometry).not.toBe(original);
+        expect(shifted.traceGeometry.surfaces).toBe(shifted.surfaces);
+        expect(shifted.traceGeometry.z).toBe(shifted.z);
+        expect(shifted.traceGeometry.imagePlane).toBe(shifted.imagePlane);
+        expect(shifted.traceGeometry.pathPlan).toBe(original.pathPlan);
+        expect(shifted.imagePlane.point[2]).toBe(L.isFoldedOptics ? base.imgZ : base.imgZ + 12);
+        expect(stateWithRuntimeZ(base, z)).toBe(shifted);
+      }
+      expect(base.traceGeometry).toBe(original);
+      expect(original.surfaces).toBe(base.surfaces);
+      expect(original.z).toBe(base.z);
+      expect(base.z[0]).toBe(0);
+    }
   });
 
   it("inverse-transforms the launch before tracing, then returns camera-space physical hits", () => {

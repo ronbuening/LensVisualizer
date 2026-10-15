@@ -10,7 +10,7 @@ import type {
   FoldedPathTraceTermination,
 } from "../../types/optics.js";
 import type { SurfaceIntersectionFailureReason } from "../geometry/intersect.js";
-import type { Ray3, Vec3 } from "../types.js";
+import type { CompiledStateSurface, PathSpec, Plane3, Ray3, Vec3 } from "../types.js";
 
 /** Failure reason emitted by exact tracing after intersection and interaction steps. */
 export type TraceFailureReason =
@@ -97,4 +97,21 @@ export interface TraceDiagnosticsInput {
   clipEvents: import("../../types/optics.js").FoldedPathClipEvent[];
   autoSteps: import("../../types/optics.js").FoldedPathAutoStepDiagnostics[];
   loopKey: string | null;
+}
+
+/** Exact traversal over indexed optical geometry, independent of lens ownership. */
+export type TraceTraversal = (geometry: TraceGeometry, input: Ray3, options?: TraceOptions) => EngineTraceResult;
+
+/** Immutable view of prepared coordinates and the traversal selected for their lifetime. */
+export interface TraceGeometry {
+  readonly surfaces: readonly CompiledStateSurface[];
+  readonly z: readonly number[];
+  readonly stopSurfaceIndex: number;
+  readonly imagePlane: Plane3;
+  readonly pathPlan: PathSpec;
+  readonly traversal: Readonly<{
+    kind: "sequential" | "generalized";
+    full: TraceTraversal;
+    partial: TraceTraversal;
+  }>;
 }

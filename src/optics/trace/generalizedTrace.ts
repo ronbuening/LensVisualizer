@@ -10,7 +10,7 @@ import type {
   FoldedPathClipEvent,
   FoldedPathTraceTermination,
 } from "../../types/optics.js";
-import type { CompiledStateSurface, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import type { CompiledStateSurface, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture, isInsideActiveAperture } from "./aperture.js";
 import { pushClipEvent, surfaceLabel } from "./foldedDiagnostics.js";
 import {
@@ -31,25 +31,8 @@ import {
   loopStateKey,
   targetedSurfaceMaxT,
 } from "./pathPlanner.js";
-import type { EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
+import type { TraceGeometry, EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
 import { finalizeTraceResult, normalizeTraceDirection, projectCoordinateToZ } from "./utils.js";
-
-/**
- * Decide whether a trace needs generalized folded-path traversal.
- *
- * @param state - prepared optical state
- * @param stopAt - optional sequential stop target
- * @returns true when surface order, reflections, blockers, or folded metadata require generalized tracing
- */
-export function shouldUseGeneralizedTrace(state: PreparedOpticalState, stopAt: number | undefined): boolean {
-  if (stopAt !== undefined) return false;
-  return (
-    state.lens.flags.isFoldedOptics ||
-    Boolean(state.lens.opticalPath.surfaceOrder?.length) ||
-    state.lens.opticalPath.mode === "auto" ||
-    state.surfaces.some((surface) => surface.interaction.type !== "refract")
-  );
-}
 
 /**
  * Trace a ray through explicit or auto-discovered generalized optical paths.
@@ -57,7 +40,7 @@ export function shouldUseGeneralizedTrace(state: PreparedOpticalState, stopAt: n
  * Unlike sequential tracing, this path may repeat surfaces, reflect, skip passive
  * same-index hits, and terminate on an arbitrary image plane.
  *
- * @param state - prepared optical state
+ * @param geometry - indexed trace geometry
  * @param input - ray origin and direction
  * @param options - aperture, ghost, chromatic, and launch-bound controls
  * @returns engine trace result with folded diagnostics and hit history
@@ -88,9 +71,9 @@ function passiveClipReason(
 function recordClippedHit(
   hits: TraceHit[],
   clipEvents: FoldedPathClipEvent[],
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
   surfaceIndex: number,
-  geometry: {
+  hitGeometry: {
     point: Vec3;
     normal: Vec3;
     incidentDirection: Vec3;
@@ -100,16 +83,16 @@ function recordClippedHit(
   },
   clipReason: "inactive-side-block" | "block-surface" | "semi-diameter",
 ): void {
-  pushClipEvent(clipEvents, state, surfaceIndex, clipReason);
+  pushClipEvent(clipEvents, geometry, surfaceIndex, clipReason);
   hits.push({
     surfaceIndex,
-    surfaceLabel: surfaceLabel(state, surfaceIndex),
-    point: geometry.point,
-    normal: geometry.normal,
-    incidentDirection: geometry.incidentDirection,
-    radius: geometry.radius,
-    residual: geometry.residual,
-    effectiveTolerance: geometry.effectiveTolerance,
+    surfaceLabel: surfaceLabel(geometry, surfaceIndex),
+    point: hitGeometry.point,
+    normal: hitGeometry.normal,
+    incidentDirection: hitGeometry.incidentDirection,
+    radius: hitGeometry.radius,
+    residual: hitGeometry.residual,
+    effectiveTolerance: hitGeometry.effectiveTolerance,
     clipped: true,
     fallback: false,
     failureReason: null,
@@ -117,11 +100,7 @@ function recordClippedHit(
   });
 }
 
-export function traceGeneralized(
-  state: PreparedOpticalState,
-  input: Ray3,
-  options: TraceOptions = {},
-): EngineTraceResult {
+export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: TraceOptions = {}): EngineTraceResult {
   const direction0 = options.directionNormalized ? input.direction : normalizeTraceDirection(input.direction);
   if (
     !direction0 ||
@@ -130,7 +109,7 @@ export function traceGeneralized(
     !Number.isFinite(direction0[2])
   ) {
     return finalizeTraceResult({
-      state,
+      geometry,
       input,
       hits: [],
       heights: null,
@@ -160,15 +139,15 @@ export function traceGeneralized(
     wavelengthNm = DEFAULT_PHASE_WAVELENGTH_NM,
   } = options;
 
-  const explicitOrder = state.lens.opticalPath.surfaceOrder ?? null;
-  const maxInteractions = state.lens.opticalPath.maxInteractions ?? Math.max(state.surfaces.length + 1, 1);
+  const explicitOrder = geometry.pathPlan.surfaceOrder ?? null;
+  const maxInteractions = geometry.pathPlan.maxInteractions ?? Math.max(geometry.surfaces.length + 1, 1);
   const heights: number[] | null = recordHeights ? [] : null;
   const hits: TraceHit[] = [];
   const clipEvents: FoldedPathClipEvent[] = [];
   const autoSteps: FoldedPathAutoStepDiagnostics[] = [];
   const seenAutoStates = new Set<string>();
   const reflectiveSurfaceIndexes = new Set(
-    state.surfaces.flatMap((surface, index) => (surface.interaction.type === "reflect" ? [index] : [])),
+    geometry.surfaces.flatMap((surface, index) => (surface.interaction.type === "reflect" ? [index] : [])),
   );
 
   let origin: Vec3 = [input.origin[0], input.origin[1], input.origin[2]];
@@ -187,30 +166,32 @@ export function traceGeneralized(
     /* In auto mode the image plane competes with candidate surfaces; explicit
      * paths only consider it after the requested surface sequence is exhausted. */
     const imageHit =
-      !explicitOrder || explicitCursor >= explicitOrder.length ? intersectImagePlane(origin, direction, state) : null;
+      !explicitOrder || explicitCursor >= explicitOrder.length
+        ? intersectImagePlane(origin, direction, geometry)
+        : null;
     let nextSurfaceIndex: number | null = null;
     let nextSurfaceHit: ReturnType<typeof intersectStateSurface> | null = null;
 
     if (explicitOrder && explicitCursor < explicitOrder.length) {
       nextSurfaceIndex = explicitOrder[explicitCursor++];
-      const maxT = targetedSurfaceMaxT(state, nextSurfaceIndex, origin, direction, launchBoundT);
-      nextSurfaceHit = intersectStateSurface({ origin, direction }, state, nextSurfaceIndex, {
+      const maxT = targetedSurfaceMaxT(geometry, nextSurfaceIndex, origin, direction, launchBoundT);
+      nextSurfaceHit = intersectStateSurface({ origin, direction }, geometry, nextSurfaceIndex, {
         maxT,
         refractiveIndex: n,
       });
     } else if (
-      state.lens.opticalPath.mode === "auto" ||
+      geometry.pathPlan.mode === "auto" ||
       (explicitOrder !== null && explicitCursor >= explicitOrder.length)
     ) {
       const next = findNearestGeneralizedSurfaceHit(
         origin,
         direction,
-        state,
+        geometry,
         launchBoundT,
         n,
         indexAtSurface,
         terminalSurfaceIndex,
-        state.lens.opticalPath.mode === "auto" ? undefined : reflectiveSurfaceIndexes,
+        geometry.pathPlan.mode === "auto" ? undefined : reflectiveSurfaceIndexes,
       );
       autoSteps.push({ step: interactionCount, skippedCandidates: next.skippedCandidates });
       nextSurfaceIndex = next.surfaceIndex;
@@ -234,7 +215,7 @@ export function traceGeneralized(
         terminationReason = "image-plane";
       } else {
         terminationReason =
-          explicitOrder && explicitCursor >= explicitOrder.length && state.lens.opticalPath.mode !== "auto"
+          explicitOrder && explicitCursor >= explicitOrder.length && geometry.pathPlan.mode !== "auto"
             ? "explicit-path-complete"
             : "no-next-surface";
       }
@@ -247,11 +228,11 @@ export function traceGeneralized(
       clipped = true;
       failureReason = nextSurfaceHit.failureReason;
       terminationReason = "trace-failure";
-      pushClipEvent(clipEvents, state, nextSurfaceIndex, "intersection-failure", nextSurfaceHit.failureReason);
+      pushClipEvent(clipEvents, geometry, nextSurfaceIndex, "intersection-failure", nextSurfaceHit.failureReason);
       break;
     }
 
-    const surface = state.surfaces[nextSurfaceIndex];
+    const surface = geometry.surfaces[nextSurfaceIndex];
     const point = nextSurfaceHit.point;
     const normal = nextSurfaceHit.normal;
     const radius = nextSurfaceHit.radius;
@@ -265,7 +246,7 @@ export function traceGeneralized(
 
     const side = incidentSideFor(direction, normal);
     const sideActive = isSurfaceSideActive(surface, side);
-    const aperture = evaluateAperture(state, surface, radius, stopSemiDiameter);
+    const aperture = evaluateAperture(geometry, surface, radius, stopSemiDiameter);
     const withinAperture = isInsideActiveAperture(aperture);
 
     if (!sideActive || surface.interaction.type === "block" || !withinAperture) {
@@ -281,7 +262,7 @@ export function traceGeneralized(
         recordClippedHit(
           hits,
           clipEvents,
-          state,
+          geometry,
           nextSurfaceIndex,
           { point, normal, incidentDirection, radius, residual, effectiveTolerance },
           clipReason,
@@ -295,7 +276,7 @@ export function traceGeneralized(
 
     hits.push({
       surfaceIndex: nextSurfaceIndex,
-      surfaceLabel: surfaceLabel(state, nextSurfaceIndex),
+      surfaceLabel: surfaceLabel(geometry, nextSurfaceIndex),
       point,
       normal,
       incidentDirection,
@@ -314,14 +295,14 @@ export function traceGeneralized(
         clipped = true;
         failureReason = "invalidDirection";
         terminationReason = "trace-failure";
-        pushClipEvent(clipEvents, state, nextSurfaceIndex, "intersection-failure", failureReason);
+        pushClipEvent(clipEvents, geometry, nextSurfaceIndex, "intersection-failure", failureReason);
         hits[hits.length - 1] = { ...hits[hits.length - 1], clipped: true, failureReason };
         if (!ghost) break;
       } else {
         direction = reflected;
       }
     } else {
-      const nn = resolvedNextIndex(nextSurfaceIndex, side, surface, state.surfaces, indexAtSurface);
+      const nn = resolvedNextIndex(nextSurfaceIndex, side, surface, geometry.surfaces, indexAtSurface);
       if (nn !== n || surface.diffractive) {
         const orientedNormal = orientedRefractionNormal(normal, side);
         const interaction = interactRefractiveSurface(direction, orientedNormal, point, n, nn, surface, wavelengthNm);
@@ -329,7 +310,7 @@ export function traceGeneralized(
           clipped = true;
           failureReason = interaction.failure.failureReason;
           terminationReason = "trace-failure";
-          pushClipEvent(clipEvents, state, nextSurfaceIndex, interaction.failure.clipReason, failureReason);
+          pushClipEvent(clipEvents, geometry, nextSurfaceIndex, interaction.failure.clipReason, failureReason);
           hits[hits.length - 1] = {
             ...hits[hits.length - 1],
             clipped: true,
@@ -349,14 +330,14 @@ export function traceGeneralized(
       outgoingDirection: [direction[0], direction[1], direction[2]],
     };
 
-    if (state.lens.opticalPath.mode === "auto") {
+    if (geometry.pathPlan.mode === "auto") {
       const stateKey = loopStateKey(nextSurfaceIndex, point, direction, n);
       if (seenAutoStates.has(stateKey)) {
         clipped = true;
         failureReason = "loopDetected";
         terminationReason = "loop-detected";
         loopKey = stateKey;
-        pushClipEvent(clipEvents, state, nextSurfaceIndex, "loop-detected");
+        pushClipEvent(clipEvents, geometry, nextSurfaceIndex, "loop-detected");
         hits[hits.length - 1] = { ...hits[hits.length - 1], clipped: true, clipReason: "loop-detected" };
         break;
       }
@@ -369,11 +350,11 @@ export function traceGeneralized(
   if (terminationReason === "max-interactions") {
     clipped = true;
     failureReason = failureReason ?? "maxInteractions";
-    pushClipEvent(clipEvents, state, terminalSurfaceIndex >= 0 ? terminalSurfaceIndex : null, "max-interactions");
+    pushClipEvent(clipEvents, geometry, terminalSurfaceIndex >= 0 ? terminalSurfaceIndex : null, "max-interactions");
   }
 
   return finalizeTraceResult({
-    state,
+    geometry,
     input: { origin: input.origin, direction: direction0 },
     hits,
     heights,

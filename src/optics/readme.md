@@ -39,8 +39,8 @@ flowchart LR
   n_src_optics_TypeScript_modules --> |5| n_src_optics_src_optics_geometry
   n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_diagram
   n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_field
+  n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_trace
   n_src_optics_TypeScript_modules --> |3| n_src_optics_src_optics_first_order
-  n_src_optics_TypeScript_modules --> |3| n_src_optics_src_optics_trace
   n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_state
   n_src_optics_TypeScript_modules --> n_external_src_utils_catalog
   n_src_optics_TypeScript_modules --> n_external_src_utils_featureFlags_ts
@@ -116,7 +116,7 @@ flowchart LR
 | `spectralLines.ts` | Spectral Lines helper module | none | src/optics/analysis (2), src/optics/chromatic (2), src/optics/constants.ts, src/optics/glassCatalog.ts, src/optics/math | LINE_NM |
 | `stopObstruction.ts` | Stop Obstruction helper module | src/types | src/optics/optics.ts, src/optics/raySampling.ts | stopInnerBlockedSemiDiameter |
 | `teleconverter.ts` | Teleconverter helper module | src/optics/prescription (2), src/optics/validateTeleconverterData.ts | src/components/diagram, src/utils/catalog | attachTeleconverter, TeleconverterAttachError, teleconverterGroupLabel, teleconverterSurfaceLabel, MIN_TELECONVERTER_GAP_MM, TELECONVERTER_LABEL_PREFIX, teleconverterCompatibility, teleconverterGeometry, +1 more |
-| `types.ts` | Shared TypeScript types | src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/types | src/optics/analysis (21), src/optics/perspective (20), src/components/display (14), src/optics/trace (12), src/optics/geometry (6), +10 more | Vec3, Ray3, Plane3, SagSlope, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, +17 more |
+| `types.ts` | Shared TypeScript types | src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/optics/trace, src/types | src/optics/analysis (21), src/optics/perspective (20), src/components/display (14), src/optics/trace (11), src/optics/geometry (6), +10 more | Vec3, Ray3, Plane3, SagSlope, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, +17 more |
 | `validateLensData.ts` | Validate Lens Data module with default export | src/optics/internal (4), src/optics/prescription (2), src/types (2), src/optics/geometry, src/utils/catalog | src/optics/prescription, src/optics/runtimeLens.ts, src/optics/validateTeleconverterData.ts, src/utils/state | validateRearPlates, validateLensMounts, LENS_KEY_PATTERN, default, validateLensData |
 | `validateTeleconverterData.ts` | Validate Teleconverter Data module with default export | src/optics/prescription (4), src/types (2), src/optics/internal, src/optics/validateLensData.ts | src/optics/teleconverter.ts | default, validateTeleconverterData |
 | `vignetteAnalysis.ts` | Vignette Analysis helper module | src/optics/optics.ts (2), src/optics/analysis, src/optics/projection.ts, src/optics/raySampling.ts, src/types | src/components/display, src/optics/analysis | VignettingSample, computeVignettingCurve |

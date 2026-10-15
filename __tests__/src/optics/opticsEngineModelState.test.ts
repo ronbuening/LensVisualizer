@@ -177,6 +177,33 @@ describe("Optics engine prepared state", () => {
     expect(first.cacheKey).toContain(engine.key);
   });
 
+  it("owns one frozen trace geometry per prepared state without copying optical records", () => {
+    const runtime = buildLens2(LENS_CATALOG["nikon-z-24-70f4s"]);
+    const engine = engineLensFromRuntime(runtime);
+    const cache = createPreparedStateCache();
+    const first = prepareState(engine, 0, 0, 0, { cache });
+    const geometry = first.traceGeometry;
+    expect(geometry).toBeDefined();
+    expect(geometry.surfaces).toBe(first.surfaces);
+    expect(geometry.z).toBe(first.z);
+    expect(geometry.imagePlane).toBe(first.imagePlane);
+    expect(geometry.pathPlan).toBe(engine.opticalPath);
+    expect(geometry.stopSurfaceIndex).toBe(engine.stop.surfaceIndex);
+    expect(Object.isFrozen(geometry)).toBe(true);
+    expect(Object.isFrozen(geometry.traversal)).toBe(true);
+    expect(prepareState(engine, 0, 0, 0, { cache }).traceGeometry).toBe(geometry);
+    for (const controls of [
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 0.5],
+    ]) {
+      expect(prepareState(engine, controls[0], controls[1], controls[2], { cache }).traceGeometry).not.toBe(geometry);
+    }
+    expect(prepareState(engine, 0, 0).traceGeometry).not.toBe(geometry);
+    const other = buildLens2(LENS_CATALOG["nikon-z-24-70f4s"]);
+    expect(prepareRuntimeState(other, 0, 0).traceGeometry).not.toBe(prepareRuntimeState(runtime, 0, 0).traceGeometry);
+  });
+
   it("keeps EngineLens parity-recoverable from ordinary buildLens runtimes", () => {
     const runtime = buildLens(LENS_CATALOG["varisoft-rokkor-85f28"]);
     const engine = engineLensFromRuntime(runtime);

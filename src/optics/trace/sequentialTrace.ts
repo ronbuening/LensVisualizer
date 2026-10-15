@@ -1,19 +1,19 @@
 /**
  * Sequential exact tracer — left-to-right real-ray traversal for ordinary refractive lenses.
  *
- * Uses prepared state and surface profiles for the default optical path while delegating
- * folded systems to the generalized tracer.
+ * Uses indexed trace geometry and surface profiles for the ordinary optical path.
+ * Geometry construction selects generalized traversal for folded systems.
  */
 
 import type { FoldedPathClipEvent } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
-import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import type { Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { pushClipEvent } from "./foldedDiagnostics.js";
 import { interactRefractiveSurface } from "./interactions.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
 import { intersectStateSurface, sequentialSurfaceMaxT, sequentialSurfaceMinT } from "./pathPlanner.js";
-import type { EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
+import type { TraceGeometry, EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
 import {
   clampTraceCount,
   finalizeTraceResult,
@@ -28,16 +28,12 @@ import {
  * Each surface hit is solved against its exact sag profile, then refracted with
  * vector Snell's law. Folded systems use generalizedTrace instead.
  *
- * @param state - prepared optical state
+ * @param geometry - indexed trace geometry
  * @param input - ray origin and direction
  * @param options - stop, aperture, ghost, and chromatic trace controls
  * @returns engine trace result with hits, clipping, and terminal ray state
  */
-export function traceSequential(
-  state: PreparedOpticalState,
-  input: Ray3,
-  options: TraceOptions = {},
-): EngineTraceResult {
+export function traceSequential(geometry: TraceGeometry, input: Ray3, options: TraceOptions = {}): EngineTraceResult {
   const direction0 = options.directionNormalized ? input.direction : normalizeTraceDirection(input.direction);
   if (
     !direction0 ||
@@ -45,7 +41,7 @@ export function traceSequential(
     !Number.isFinite(direction0[1]) ||
     !Number.isFinite(direction0[2])
   ) {
-    return failedBeforeHit(state, input, "invalidDirection");
+    return failedBeforeHit(geometry, input, "invalidDirection");
   }
 
   const {
@@ -61,7 +57,7 @@ export function traceSequential(
     wavelengthNm = DEFAULT_PHASE_WAVELENGTH_NM,
   } = options;
 
-  const total = state.surfaces.length;
+  const total = geometry.surfaces.length;
   const tracedCount = clampTraceCount(stopAt ?? total, total);
   const heights: number[] | null = recordHeights ? [] : null;
   const hits: TraceHit[] = [];
@@ -76,17 +72,17 @@ export function traceSequential(
   let failureReason: TraceFailureReason | null = null;
 
   for (let i = 0; i < tracedCount; i++) {
-    const surface = state.surfaces[i];
-    const minT = sequentialSurfaceMinT(state, i, origin, direction);
-    const maxT = Math.max(minT, sequentialSurfaceMaxT(state, i, origin, direction, launchBoundT));
-    const hit = intersectStateSurface({ origin, direction }, state, i, { minT, maxT, refractiveIndex: n });
+    const surface = geometry.surfaces[i];
+    const minT = sequentialSurfaceMinT(geometry, i, origin, direction);
+    const maxT = Math.max(minT, sequentialSurfaceMaxT(geometry, i, origin, direction, launchBoundT));
+    const hit = intersectStateSurface({ origin, direction }, geometry, i, { minT, maxT, refractiveIndex: n });
 
     if (!hit.ok) {
       // A miss is terminal even in ghost mode: prior hits still display, while
       // fabricated fallback points can create unbounded SVG paths.
       clipped = true;
       failureReason = hit.failureReason;
-      pushClipEvent(clipEvents, state, i, "intersection-failure", hit.failureReason);
+      pushClipEvent(clipEvents, geometry, i, "intersection-failure", hit.failureReason);
       break;
     }
 
@@ -101,12 +97,12 @@ export function traceSequential(
     }
 
     const incidentDirection: Vec3 = [direction[0], direction[1], direction[2]];
-    const aperture = evaluateAperture(state, surface, radius, stopSemiDiameter);
+    const aperture = evaluateAperture(geometry, surface, radius, stopSemiDiameter);
     let clipReason: TraceHit["clipReason"] | undefined;
     if (checkSemiDiameter && aperture.state !== "inside") {
       clipped = true;
       clipReason = aperture.state === "inside-hole" ? "inner-hole" : "semi-diameter";
-      pushClipEvent(clipEvents, state, i, clipReason);
+      pushClipEvent(clipEvents, geometry, i, clipReason);
     }
 
     const hitClipped = clipped;
@@ -142,7 +138,7 @@ export function traceSequential(
         if (interaction.failure) {
           clipped = true;
           failureReason = interaction.failure.failureReason;
-          pushClipEvent(clipEvents, state, i, interaction.failure.clipReason, failureReason);
+          pushClipEvent(clipEvents, geometry, i, interaction.failure.clipReason, failureReason);
           traceHit.clipped = true;
           traceHit.failureReason = failureReason;
           traceHit.clipReason = interaction.failure.clipReason;
@@ -162,7 +158,7 @@ export function traceSequential(
 
   const returnVertexIndex = resolveReturnVertexIndex(stopAt, skipLastTransfer, terminalSurfaceIndex, total);
   const result = finalizeTraceResult({
-    state,
+    geometry,
     input: { origin: input.origin, direction: direction0 },
     hits,
     heights,
@@ -182,14 +178,10 @@ export function traceSequential(
   return options.recordOpticalPath ? { ...result, opticalPathLengthMm } : result;
 }
 
-function failedBeforeHit(
-  state: PreparedOpticalState,
-  input: Ray3,
-  failureReason: TraceFailureReason,
-): EngineTraceResult {
+function failedBeforeHit(geometry: TraceGeometry, input: Ray3, failureReason: TraceFailureReason): EngineTraceResult {
   const direction: Vec3 = [input.direction[0], input.direction[1], input.direction[2]];
   return finalizeTraceResult({
-    state,
+    geometry,
     input,
     hits: [],
     heights: null,

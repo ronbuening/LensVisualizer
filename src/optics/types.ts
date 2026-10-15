@@ -5,6 +5,7 @@
  * tracing, prepared-state caches, field launch, and first-order analysis.
  */
 
+import type { TraceGeometry } from "./trace/types.js";
 import type { DispersionQuality } from "./dispersion.js";
 import type { GlassEntry } from "./glassCatalog.js";
 import type {
@@ -268,6 +269,7 @@ export interface CompiledStateSurface extends Omit<CompiledSurface, "d"> {
  * coordinate; folded systems may have an image plane whose normal is not +z.
  */
 export interface PreparedOpticalState {
+  readonly traceGeometry: TraceGeometry;
   lens: EngineLens;
   focusT: number;
   zoomT: number;

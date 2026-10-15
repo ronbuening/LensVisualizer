@@ -1,3 +1,4 @@
+import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
 import PfRaw from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
@@ -86,7 +87,7 @@ describe("sequential diffractive surface", () => {
     const candidate = findNearestGeneralizedSurfaceHit(
       [0, 5, phaseZ - 5],
       [0, 0, 1],
-      state,
+      state.traceGeometry,
       undefined,
       precedingIndex,
       undefined,
@@ -113,8 +114,13 @@ describe("sequential diffractive surface", () => {
         index === phaseSurfaceIndex ? { ...surface, diffractive: extremePhase } : surface,
       ),
     };
+    extremeState.traceGeometry = createTraceGeometry({
+      ...state.traceGeometry,
+      surfaces: extremeState.surfaces,
+      isFoldedOptics: state.lens.flags.isFoldedOptics,
+    });
     const result = traceSequential(
-      extremeState,
+      extremeState.traceGeometry,
       { origin: [0, 20, state.surfaces[0].z - 100], direction: [0, 0, 1] },
       { wavelengthNm: 587.6 },
     );

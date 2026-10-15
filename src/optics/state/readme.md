@@ -16,11 +16,13 @@ flowchart LR
   n_external_src_optics_apertureStop_ts["src/optics/apertureStop.ts"]
   n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_prescription["src/optics/prescription"]
+  n_external_src_optics_trace["src/optics/trace"]
   n_external_src_types["src/types"]
   n_src_optics_state_src_optics_state_prepareState_ts --> |2| n_external_src_optics_types_ts
   n_src_optics_state_src_optics_state_prepareState_ts --> n_external_src_optics_apertureStop_ts
   n_src_optics_state_src_optics_state_prepareState_ts --> n_external_src_optics_math
   n_src_optics_state_src_optics_state_prepareState_ts --> n_external_src_optics_prescription
+  n_src_optics_state_src_optics_state_prepareState_ts --> n_external_src_optics_trace
   n_src_optics_state_src_optics_state_cache_ts --> n_external_src_optics_types_ts
   n_src_optics_state_src_optics_state_prepareState_ts --> n_external_src_types
   n_src_optics_state_src_optics_state_prepareState_ts --> n_src_optics_state_src_optics_state_cache_ts
@@ -30,7 +32,7 @@ flowchart LR
 
 - Direct source files: 2
 - Direct subfolders: 0
-- Main outbound areas: src/optics/types.ts (3), same folder, src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, src/types
+- Main outbound areas: src/optics/types.ts (3), same folder, src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, src/optics/trace, src/types
 - External consumers: src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/trace
 
 ## Files
@@ -38,4 +40,4 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `cache.ts` | Cache helper module | src/optics/types.ts | same folder, src/optics/compat.ts | PreparedStateCache, createPreparedStateCache |
-| `prepareState.ts` | Prepare State helper module | src/optics/types.ts (2), same folder, src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, +1 more | src/optics/first-order (2), src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/trace | PrepareStateOptions, preparedStateCacheKey, prepareState |
+| `prepareState.ts` | Prepare State helper module | src/optics/types.ts (2), same folder, src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, +2 more | src/optics/first-order (2), src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/trace | PrepareStateOptions, preparedStateCacheKey, prepareState |
