@@ -6,10 +6,7 @@ import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import { prepareState } from "../../../src/optics/state/prepareState.js";
 import { createPerspectiveTraceContext } from "../../../src/optics/perspective/trace.js";
 import buildLens from "../../../src/optics/buildLens.js";
-import {
-  traceExactSurfaceStack,
-  traceExactSurfaceStackVector,
-} from "../../../src/optics/internal/exactSurfaceTrace.js";
+import { traceFixtureSlope, traceFixtureVector } from "./traceGeometryFixtures.js";
 import {
   doLayout,
   solveChiefRay,
@@ -32,7 +29,7 @@ function lensFor(key: string): RuntimeLens {
   return buildLens(LENS_CATALOG[key]);
 }
 
-describe("traceExactSurfaceStackVector", () => {
+describe("production vector traversal", () => {
   it.each(LENS_KEYS)("matches slope entry for %s across moderate fields", (key) => {
     const L = lensFor(key);
     const zFirst = 0;
@@ -42,8 +39,8 @@ describe("traceExactSurfaceStackVector", () => {
         const thetaRad = (fieldDeg * Math.PI) / 180;
         const uy0 = -Math.tan(thetaRad);
 
-        const slope = traceExactSurfaceStack(L, { y0, uy0 }, { leadDistance: 0, checkSemiDiameter: true });
-        const vector = traceExactSurfaceStackVector(
+        const slope = traceFixtureSlope(L, { y0, uy0 }, { leadDistance: 0, checkSemiDiameter: true });
+        const vector = traceFixtureVector(
           L,
           { origin: [0, y0, zFirst], direction: [0, -Math.sin(thetaRad), Math.cos(thetaRad)] },
           { checkSemiDiameter: true },
@@ -53,7 +50,7 @@ describe("traceExactSurfaceStackVector", () => {
         expect(vector.y).toBeCloseTo(slope.y, 10);
         expect(vector.ux).toBeCloseTo(slope.ux, 10);
         expect(vector.uy).toBeCloseTo(slope.uy, 10);
-        expect(vector.clipped).toBe(slope.clipped);
+        expect(vector.status).toBe(slope.status);
         expect(vector.hits.length).toBe(slope.hits.length);
         expect(vector.failureReason).toBe(slope.failureReason);
       }
@@ -63,12 +60,8 @@ describe("traceExactSurfaceStackVector", () => {
   it("preserves recorded heights between slope and vector entries", () => {
     const L = lensFor("nokton-50f1");
     const thetaRad = (15 * Math.PI) / 180;
-    const slope = traceExactSurfaceStack(
-      L,
-      { y0: 0, uy0: -Math.tan(thetaRad) },
-      { leadDistance: 0, recordHeights: true },
-    );
-    const vector = traceExactSurfaceStackVector(
+    const slope = traceFixtureSlope(L, { y0: 0, uy0: -Math.tan(thetaRad) }, { leadDistance: 0, recordHeights: true });
+    const vector = traceFixtureVector(
       L,
       { origin: [0, 0, 0], direction: [0, -Math.sin(thetaRad), Math.cos(thetaRad)] },
       { recordHeights: true },
@@ -87,19 +80,19 @@ describe("traceExactSurfaceStackVector", () => {
     const thetaRad = (20 * Math.PI) / 180;
     const stopAt = L.stopIdx;
 
-    const slope = traceExactSurfaceStack(
+    const slope = traceFixtureSlope(
       L,
       { y0: 0, uy0: -Math.tan(thetaRad) },
       { leadDistance: 0, stopAt, skipLastTransfer: true },
     );
-    const vector = traceExactSurfaceStackVector(
+    const vector = traceFixtureVector(
       L,
       { origin: [0, 0, 0], direction: [0, -Math.sin(thetaRad), Math.cos(thetaRad)] },
       { stopAt, skipLastTransfer: true },
     );
 
-    expect(vector.terminalSurfaceIdx).toBe(slope.terminalSurfaceIdx);
-    expect(vector.returnVertexIdx).toBe(slope.returnVertexIdx);
+    expect(vector.terminalSurfaceIndex).toBe(slope.terminalSurfaceIndex);
+    expect(vector.returnVertexIndex).toBe(slope.returnVertexIndex);
     expect(vector.y).toBeCloseTo(slope.y, 10);
     expect(vector.uy).toBeCloseTo(slope.uy, 10);
   });
@@ -234,25 +227,16 @@ describe("asphere cap tracing and clipping", () => {
       surfaces: capState.surfaces,
       isFoldedOptics: state.lens.flags.isFoldedOptics,
     });
-    const capLens = { ...L, S: L.S.map((surface, i) => (i === 0 ? { ...surface, sd: 2.5, innerSd } : surface)) };
     const prepared = traceEngineRay2(capState, ray, {
       launchBoundT: 4,
       checkSemiDiameter: true,
       stopSemiDiameter: innerSd ? 2.5 : 1.5,
       stopOnClip: true,
     });
-    const legacy = traceExactSurfaceStackVector(capLens, ray, {
-      launchBoundT: 4,
-      checkSemiDiameter: true,
-      stopSemiDiameter: innerSd ? 2.5 : 1.5,
-      stopOnClip: true,
-    });
-    for (const result of [prepared, legacy]) {
-      expect(result.hits).toHaveLength(1);
-      expect(result.hits[0].radius).toBeCloseTo(2, 8);
-      expect(result.hits[0].clipped).toBe(true);
-      expect(result.hits[0].clipReason).toBe(innerSd ? "inner-hole" : "semi-diameter");
-    }
+    expect(prepared.hits).toHaveLength(1);
+    expect(prepared.hits[0].radius).toBeCloseTo(2, 8);
+    expect(prepared.hits[0].clipped).toBe(true);
+    expect(prepared.hits[0].clipReason).toBe(innerSd ? "inner-hole" : "semi-diameter");
   });
 });
 

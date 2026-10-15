@@ -13,7 +13,7 @@
  * How to change a list: "Architecture Guards" in agent_docs/architecture/testing.md.
  */
 
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -735,6 +735,17 @@ describe("optics architecture guards", () => {
   });
 
   describe("import cycles", () => {
+    it("keeps the retired trace stack deleted", () => {
+      for (const module of [
+        "internal/exactSurfaceTrace.ts",
+        "internal/surfaceIntersection.ts",
+        "internal/traceSurfaces.ts",
+        "rayTrace.ts",
+      ]) {
+        expect(existsSync(join(OPTICS_ROOT, module)), module).toBe(false);
+      }
+    });
+
     it("finds no runtime import cycle outside CYCLE_LEGACY, and no stale legacy entry", () => {
       const graph = opticsRuntimeGraph();
       const cyclic = new Set(importCycles(graph).flat());

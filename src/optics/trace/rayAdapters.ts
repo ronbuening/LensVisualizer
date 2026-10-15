@@ -568,3 +568,36 @@ export function stateWithRuntimeZ(state: PreparedOpticalState, zPos: readonly nu
   byZ.set(zPos, shiftedState);
   return shiftedState;
 }
+
+/** Image-plane intercept for a skew ray in sagittal/meridional millimeters. */
+export interface SkewImagePlaneIntercept {
+  x: number;
+  y: number;
+}
+
+/**
+ * Project a skew ray from the last surface to the image plane.
+ *
+ * @param x - sagittal coordinate at the last surface in mm
+ * @param y - meridional coordinate at the last surface in mm
+ * @param ux - sagittal slope dx/dz
+ * @param uy - meridional slope dy/dz
+ * @param lastSurfZ - last surface vertex z coordinate in mm
+ * @param imagePlaneZ - image-plane z coordinate in mm
+ * @returns image-plane intercept, or null for non-finite projection
+ */
+export function skewImagePlaneIntercept(
+  x: number,
+  y: number,
+  ux: number,
+  uy: number,
+  lastSurfZ: number,
+  imagePlaneZ: number,
+): SkewImagePlaneIntercept | null {
+  const dz = imagePlaneZ - lastSurfZ;
+  const imagePoint = {
+    x: x + ux * dz,
+    y: y + uy * dz,
+  };
+  return isFinite(imagePoint.x) && isFinite(imagePoint.y) ? imagePoint : null;
+}

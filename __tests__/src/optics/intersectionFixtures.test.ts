@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { FLAT_R_THRESHOLD, createSurfaceProfile } from "../../../src/optics/geometry/surfaceProfile.js";
-import { intersectSagSurface } from "../../../src/optics/internal/surfaceIntersection.js";
 import { intersectSurfaceProfile, type SurfaceIntersectionSuccess } from "../../../src/optics/geometry/intersect.js";
 import { sagResidualRoundoff } from "../../../src/optics/geometry/intersectTolerance.js";
 import type { SurfaceProfile } from "../../../src/optics/types.js";
@@ -17,10 +16,8 @@ import {
 } from "./fixtures/generateIntersectionFixtures.js";
 
 /**
- * Both entries to the intersection kernel against roots computed outside the engine to 60 decimals
- * (fixtures/generateIntersectionFixtures.ts), held to the documented contract (architecture/optics-engine.md, Exact
- * Surface Trace). The legacy arm is the stack tracer's entry, internal/surfaceIntersection.ts, which translates its
- * call to the kernel's; it goes when that file is deleted.
+ * Production kernel against roots computed outside the engine to 60 decimals
+ * (fixtures/generateIntersectionFixtures.ts), held to the documented Exact Surface Trace contract.
  */
 
 const committedText = readFileSync(INTERSECTION_FIXTURE_PATH, "utf-8");
@@ -32,7 +29,7 @@ const { fixtures } = JSON.parse(committedText) as IntersectionFixtureFile;
  */
 const RESIDUAL_TARGET = 1e-12;
 
-const SOLVERS = ["production", "legacy"] as const;
+const SOLVERS = ["production"] as const;
 type Solver = (typeof SOLVERS)[number];
 
 interface ExpectedFinding {
@@ -55,20 +52,12 @@ interface ExpectedFinding {
  */
 const EXPECTED_FINDINGS: readonly ExpectedFinding[] = [];
 
-function solve(solver: Solver, { surface, ray, bounds }: IntersectionFixture, profile: SurfaceProfile) {
-  const sd = surface.sd ?? undefined;
-  const asphere = surface.asphere ?? undefined;
-  // The stored direction is the float64-normalized one. Production skips normalizing, as the trace does; the legacy
-  // entry leaves it to the kernel, which divides this direction by exactly 1.
-  return solver === "production"
-    ? intersectSurfaceProfile(ray, profile, surface.vertexZ, { ...bounds, directionNormalized: true, clearRadius: sd })
-    : intersectSagSurface(
-        ray,
-        0,
-        surface.vertexZ,
-        { S: [{ R: surface.R, sd }], asphByIdx: asphere ? { 0: asphere } : {} },
-        bounds,
-      );
+function solve(_solver: Solver, { surface, ray, bounds }: IntersectionFixture, profile: SurfaceProfile) {
+  return intersectSurfaceProfile(ray, profile, surface.vertexZ, {
+    ...bounds,
+    directionNormalized: true,
+    clearRadius: surface.sd ?? undefined,
+  });
 }
 
 type Hit = Pick<SurfaceIntersectionSuccess, "t" | "point" | "radius" | "residual" | "effectiveTolerance">;

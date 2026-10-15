@@ -341,7 +341,7 @@ states, the exact tracer, chromatic dispersion and all analyses see the plate, w
 `RuntimeLens.data` holds the expanded data, so normalization stays index-aligned.
 
 A plate without a published `sd` gets a generated rim marked `clips: false`. The aperture checks (`activeSemiDiameter`
-in `trace/aperture.ts` and its legacy twin in `internal/exactSurfaceTrace.ts`) and the paraxial half-field estimates
+in `trace/aperture.ts`) and the paraxial half-field estimates
 (`buildLens`, `computeFieldGeometryAtState2`) skip it, so the plate never clips a ray or limits the field at any rim
 size. The rim, 1.5 × the larger of the largest authored `sd` and the image semi-diagonal, still extends the envelopes
 that ray launch and intersection bounds read from surface rims. The `sd` of a stop whose radius is not authored does
@@ -456,7 +456,7 @@ and is their only outside door.
   and the seed of a polynomial-asphere solve ([Exact Surface Trace](#exact-surface-trace)). A tilted plane's `sag`
   and `evaluate` read their argument as signed y, not as a radius.
 - **Positional functions.** `sag(h, R)`, `conicPolySag(h, R, asph)`, and `sagSlopeRaw(h, R, asph)` serve callers that
-  hold a radius and coefficients instead of a prepared surface: the RuntimeLens stack tracer, validation, layout, the
+  hold a radius and coefficients instead of a prepared surface: validation, layout, the
   aspheric-comparison helpers, and scripts.
 - **One arithmetic.** The module header fixes the association. The conic term and the even and odd polynomial sums are
   separate addends, and each sum is one Horner chain in h² from the highest nonzero coefficient, with slots taken from
@@ -469,15 +469,11 @@ and is their only outside door.
 - **Coefficients.** A frozen coefficient object is compiled once, and one aspheric profile is cached for it: that of
   the base radius it was last built with. A mutable one is re-read on every call. A spread copy of a profile keeps the
   data fields it was copied with, so over mutable coefficients they can disagree with its evaluators.
-- **Not in the module yet.** Sag and slope have no other implementation, but five derived formulas do:
-  - the normal of the RuntimeLens stack tracer's ghost fallback point (`surfaceNormalAtHit()` in
-    `internal/surfaceIntersection.ts`), which differs from `normalFromSlope()` in the last bits and is deleted with
-    that tracer (`OPTICS_ENGINE_REWRITE_SPEC.md`, S4.P2.T4); a hit carries the kernel's normal;
+- **Not in the module yet.** Sag and slope have no other implementation, but four derived formulas do:
   - the conic limit `|R| / sqrt(1 + K)` in `validateLensData.ts` and `diagram/renderDiagnostics.ts`, beside
     `finiteRadiusLimit()`;
-  - the "beyond the sphere extent" test `r² > R²` in `trace/sequentialTrace.ts` and `internal/exactSurfaceTrace.ts`;
-    in the stack tracer a fallback point, or a hit on an asphere whose conic domain is wider than `|R|`, can reach it,
-    but no sphere hit does;
+  - the "beyond the sphere extent" test `r² > R²` in `trace/sequentialTrace.ts`, which can be reached by
+    an asphere whose conic domain is wider than `|R|`, but not by a sphere hit;
   - the base conic as a quadric, with its conic root `w = 1 − κcz`, its domain radius and the turning rate of its
     normal, in `geometry/intersectConic.ts`. The kernel's closed-form roots are built on the profile's `curvature`
     and `conic` and checked against `evaluate` ([Exact Surface Trace](#exact-surface-trace));
@@ -491,10 +487,10 @@ Exact tracing is the only trace path. `traceRay()`, `traceRayChromatic()`, `trac
 have no mode/options surface — every call resolves to an exact trace. The legacy vertex-plane tracer has
 been removed; do not reintroduce a `RayTraceOptions` parameter or a `traceMode` flag.
 
-Two exact tracers implement that path, sharing the refract-or-fail step in `trace/interactions.ts` (they stay separate;
-see `agent_docs/decisions.md`):
+The prepared-state engine in `src/optics/trace/` implements that path, with sequential and generalized traversal
+sharing the refract-or-fail step in `trace/interactions.ts`:
 
-- **Prepared-state engine** — the sequential/generalized tracer in `src/optics/trace/`. The `optics.ts` exports
+- **Production adapters and construction** — the `optics.ts` exports
   `traceRay()`, `traceRayChromatic()`, `traceSkewRay()`, `traceSkewRayChromatic()`, and their `*Vector` forms are the
   adapters in `src/optics/trace/rayAdapters.ts`, so diagram rays, the bounding-sphere vector-launch branches of the
   off-axis and chromatic analyses, and everything else that calls those exports run here. The chief-relative
@@ -512,10 +508,9 @@ see `agent_docs/decisions.md`):
   exists, preserving the five conservative zero-lead axial probes, aperture checks and explicit-plane requirement.
   It still skips auto paths and repeated surface orders; malformed probe-surface compilation returns validation
   errors alongside the schema errors rather than throwing.
-- **RuntimeLens-shaped stack tracer** — `traceExactSurfaceStack()` / `traceExactSurfaceStackVector()` in
-  `internal/exactSurfaceTrace.ts`, intersecting through `internal/surfaceIntersection.ts`, an adapter over the kernel.
-  `rayTrace.ts` retains its legacy tracers for compatibility tests and the differential harness; production
-  analyses use that module's pupil samplers and image-plane intercept helper, not its tracers.
+- **Analysis helpers** — deterministic pupil patterns, constants and sample types live in `analysis/sampling.ts`;
+  the skew image-plane intercept lives in `trace/rayAdapters.ts`. Public callers use the `optics.ts` barrel.
+  Paraxial references use `math/paraxial.ts` over current state surfaces and apply the final image gap explicitly.
 
 Each `PreparedOpticalState` owns a frozen `TraceGeometry` view (`trace/types.ts`), built by `trace/geometry.ts`.
 It shares the state's surface, z and image-plane references and the lens's path metadata, with the stop index and
@@ -526,15 +521,12 @@ selected sequential or generalized tracer, while a defined `stopAt` selects sequ
 The active perspective guard reads the cached traversal kind; the geometry-level stop helper requests generalized
 traversal explicitly and serves prepared-state, state-pupil and folded build-time stop probes. Prepared-state cache
 hits reuse the view, and coordinate overrides rebuild it from the exact new records without changing cache keys or
-ownership. The RuntimeLens-shaped stack retains its existing dispatch for compatibility tests and the differential
-harness until its deletion.
+ownership.
 
 Chief-relative scalar launches retain their first-vertex pupil offsets and delegate preparation and tracing to
-`trace/rayAdapters.ts`. For finite nonnegative ray leads their origins equal the old stack's; production's first
-search starts at the later of the origin and `z0 - |sag(sd)| - 1`, rather than always searching from the origin.
-Negative leads are used verbatim (the old stack clamped them to zero), so they can start beyond the first surface
-and miss it. Controls follow production preparation: focus/zoom and aberration controls are clamped to their
-supported ranges, and non-finite controls throw `Optics2PreparationError` with code `invalid-control`. Runtime
+`trace/rayAdapters.ts`. The first search starts at the later of the origin and `z0 - |sag(sd)| - 1`.
+Negative leads are used verbatim and can start beyond the first surface and miss it. Controls follow production
+preparation: focus/zoom and aberration controls are clamped to their supported ranges, and non-finite controls throw `Optics2PreparationError` with code `invalid-control`. Runtime
 lenses must remain immutable for the adapter's identity-based preparation cache.
 
 In the prepared-state engine, surface-intersection misses are terminal in both the sequential and generalized paths,
@@ -547,9 +539,7 @@ the diagram lead: aspheric polynomials diverge outside their clear aperture, and
 otherwise land on that extension. For the same reason `geometry/intersect.ts` evaluates a conic only inside its domain
 radius (`finiteRadiusLimit()`): samples past it count as no surface rather than as the clamped sag, and when a scan
 step crosses the domain edge the edge is bisected and sampled, so a root just inside it still brackets. The closed
-form described below applies the same rule through the sign of the conic root. The stack tracer still makes a
-fallback point after a miss in ghost mode: the vertex-plane crossing's x and y with the clamped sag's z, off the ray.
-It also does so where it once held a rim-clipped hit on the continuation beyond the conic domain.
+form described below applies the same rule through the sign of the conic root.
 
 Aspheric hits are then restricted to the authored cap (`selectAsphericCapHit` in `geometry/intersect.ts`, with one
 implementation and one caller, the kernel's iterative path, using the surface's `sd`): the first root inside the
@@ -569,23 +559,13 @@ point of the ray from the lower bound to one step of the bracket scan past the h
 same first cap root. Cap selection as described above is what runs when the route refuses, on every call that sets
 a budget.
 
-The exact tracer in `internal/exactSurfaceTrace.ts` exposes these entry points:
+`traceEngineRay2(state, ray, options)` accepts a vector-native launch against prepared geometry. The public
+slope adapters normalize `[ux0, uy0, 1]` and apply the configured lead distance. Grazing or backward vector
+launches use a finite `launchBoundT`, typically `2 × launchRadiusMm` for bounding-sphere launches.
+`traceGeometryToStop(geometry, ray, stopIdx, options)` runs generalized traversal and selects the requested
+unclipped stop occurrence, including a later occurrence on repeated folded paths.
 
-- `traceExactSurfaceStack({ x0, y0, ux0, uy0 }, options)` — slope launch, normalizes
-  `[ux0, uy0, 1]` into a `Vector3` direction and applies the configured lead distance.
-- `traceExactSurfaceStackVector({ origin, direction }, options)` — vector-native launch for callers that
-  already have a 3D ray. Direction must be normalized. For forward-cone rays (`direction[2] > 0`) the
-  per-surface bracket bound is z-projected; for grazing or backward rays the caller must supply
-  `launchBoundT` so the intersection search has a finite parametric bound (typically `2 × launchRadiusMm`
-  for bounding-sphere launches). The slope entry is a thin adapter that calls into this core.
-- `traceToStopViaGeneralized(lens, input, stopIdx, options)` — helper for folded callers that need a stop hit.
-  It runs a full generalized trace, scans `hits` for the first unclipped requested stop occurrence by default, and
-  can select a later repeated stop occurrence when the optical path intentionally crosses the same stop more than once.
-
-Both tracers intersect through the kernel; the stack tracer projects the outgoing ray back to the current surface
-vertex plane before returning `y`/`u` or `x`/`y`/`ux`/`uy`.
-
-`geometry/intersect.ts`, the intersection kernel, behind both tracers, finds a root by profile kind:
+`geometry/intersect.ts`, the shared intersection kernel, finds a root by profile kind:
 
 - **Planes** (`flat`, `tilted-plane`) solve analytically.
 - **Spheres and polynomial-free conics** are solved in closed form by `geometry/intersectConic.ts`. A conic is an
@@ -654,7 +634,7 @@ The closed form does not change the contract. It proposes a root, and the root i
   they do on a factory profile (see [Surface Geometry](#surface-geometry) for spread copies over mutable
   coefficients) everywhere but at the edge of the domain, where nothing is decided.
 
-Three outcomes differ from the iterative path's for both tracers, and the differential harness reads each as a
+Three outcomes differ from the iterative path's for production traversal, and the differential harness reads each as a
 discrete transition:
 
 - **Roots the scan does not resolve.** The closed form finds a chord, or a short span inside the conic's domain,
@@ -677,9 +657,8 @@ discrete transition:
 A fourth comes from a hit that moves by an ulp or two. Two surfaces that share a vertex can return the same float for
 a ray near the axis on the iterative path, whose evaluated residual is quantized more coarsely than the surfaces are
 apart there, and floats an ulp or two apart in closed form. The candidate search of the generalized tracer takes the
-nearest hit and keeps the lower surface index on a tie (`findNearestGeneralizedSurfaceHit()` in `trace/pathPlanner.ts`
-and in `internal/exactSurfaceTrace.ts`), so which of two such surfaces a ray meets can change. On the Zeiss Mirotar
-500mm f/4.5 the two are the rear face of the second corrector and the secondary mirror coated on it, `3.8e-15` mm
+nearest hit and keeps the lower surface index on a tie (`findNearestGeneralizedSurfaceHit()` in
+`trace/pathPlanner.ts`), so which of two such surfaces a ray meets can change. On the Zeiss Mirotar 500mm f/4.5 the two are the rear face of the second corrector and the secondary mirror coated on it, `3.8e-15` mm
 apart at `5.6e-5` mm from the axis. The closed form puts the mirror's blocked side first there, as the prescription
 has it, where the iterative path had let the ray through; the state's raw half-field, a bisection that ends on such a
 ray, moves by one of its steps. At the lens's analysis samples, below about `4e-5` mm of vertex radius, the two
@@ -794,8 +773,7 @@ Tier P solves, four Zeiss ZX1 analysis solves making slow progress on an asphere
 Explicit caller budgets remain supported. The cap is a measured margin, not a convergence guarantee for arbitrary
 profiles or bounds.
 
-The shipped residual target is `INTERSECTION_TOLERANCE = 1e-12` mm for the kernel and the stack tracer's own
-tilted-plane path. Sag profiles measure axial `z_ray - (vertexZ + sag)`; tilted planes measure signed normal distance
+The shipped residual target is `INTERSECTION_TOLERANCE = 1e-12` mm for all production intersections. Sag profiles measure axial `z_ray - (vertexZ + sag)`; tilted planes measure signed normal distance
 `n · (point - planePoint)`. Dividing the latter by `n.z` gives the axial residual only for a nonvertical plane;
 normal distance remains the stable convention near vertical. Analytic hits on surface planes (flat and tilted) validate
 their returned residual, including after bound clamping. `intersectRayPlane` in `geometry/intersectPlane.ts`, which
@@ -906,7 +884,7 @@ phiD(λ)  = -2 · C2 · scale(λ)                      [equivalent paraxial powe
   renormalized; it is exactly zero on axis and keeps the same global radial sign from either side, so a reversed ray
   retraces its path.
 - `interactRefractiveSurface()` in `trace/interactions.ts` is the single refract-or-fail step shared by the sequential
-  tracer, the generalized/folded tracer, and `internal/exactSurfaceTrace.ts`. It runs the phase kernel even when
+  and generalized/folded tracers. It runs the phase kernel even when
   `nIn === nOut` (phase plates must not fall into the same-index skip), and when `|pT,out| > nOut` it returns the typed
   `nonPropagatingDiffractionOrder` failure / `non-propagating-diffraction-order` clip reason instead of fabricating a
   ray.
@@ -952,7 +930,7 @@ Folded systems opt into the generalized exact tracer through lens data, not thro
   plane for folded systems, and ray traces terminate at the plane rather than assuming the final right-hand BFD.
 
 `traceRay*` remains the public caller surface for diagram rays. Focused optics tests can import
-`internal/exactSurfaceTrace.ts` to inspect generalized-path details such as hit labels, terminal direction, final medium,
+`trace/rayAdapters.ts` (`traceEngineRay2`) or geometry traversal to inspect generalized-path details such as hit labels, terminal direction, final medium,
 and whether the explicit image plane was reached.
 
 Analysis support is deliberately incremental. Spherical aberration, pupil aberration, and mirror-safe blur/bokeh helpers
@@ -1162,7 +1140,7 @@ stations: any non-neutral setting is off-station.
 
 `aberrationAnalysis.ts` re-exports helpers from `src/optics/aberration/`.
 Because that barrel is consumed by prepared-state analysis adapters, implementation modules under
-`src/optics/aberration/` should import lower-level engine sources directly (`field/`, `layout.ts`, `rayTrace.ts`,
+`src/optics/aberration/` should import lower-level engine sources directly (`field/`, `layout.ts`, `analysis/sampling.ts`, `trace/`,
 `trace/`, and `field/projection.ts`) instead of routing through public barrels such as `optics.ts` or `projection.ts`.
 Keep those public barrels stable for app/test callers, but avoid using them inside the re-exported aberration modules so
 `compat.ts` and `aberrationAnalysis.ts` do not form an initialization cycle.

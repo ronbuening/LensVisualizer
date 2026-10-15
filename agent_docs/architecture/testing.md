@@ -26,7 +26,8 @@ Coverage configuration lives in `vite.config.js` and includes:
 Most tests mirror the files they cover:
 
 - `src/components/display/analysis/AberrationsPanel.tsx` -> `__tests__/src/components/display/analysis/AberrationsPanel.test.tsx`
-- `src/optics/internal/exactSurfaceTrace.ts` -> `__tests__/src/optics/internal/exactSurfaceTrace.test.ts`
+- `src/optics/trace/geometry.ts` and traversal -> `__tests__/src/optics/trace/geometryTraversal.test.ts`, `productionTraceVector.test.ts`, `mirrorOptics.test.ts`
+- `src/optics/geometry/intersect.ts` -> `__tests__/src/optics/geometry/traversalIntersection.test.ts`, `intersectionContract.test.ts`, `intersectionFixtures.test.ts`
 - `src/pages/lensIndex/catalog.ts` -> `__tests__/src/pages/lensIndex/lensIndexCatalog.test.ts`
 
 Keep tests that cover generated metadata, build scripts, or public assets in the matching top-level test area:
