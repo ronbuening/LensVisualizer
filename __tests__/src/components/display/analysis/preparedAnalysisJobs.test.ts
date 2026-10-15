@@ -306,7 +306,11 @@ describe("prepared-state analysis tabs", () => {
     mockComputeChromaticRayFanAnalysis.mockReset();
     mockComputeChromaticRayFanAnalysis.mockReturnValue(chromaticRayFanAnalysis);
     mockComputeDistortionCurve.mockReset();
-    mockComputeDistortionCurve.mockReturnValue(distortionSamples);
+    mockComputeDistortionCurve.mockReturnValue({
+      samples: distortionSamples,
+      corner: { status: "reached" },
+      cornerImageHeight: 10,
+    });
     mockComputeDistortionFieldGrid.mockReset();
     mockComputeDistortionFieldGrid.mockReturnValue(distortionFieldGrid);
     mockComputeFieldCurvatureBundle.mockReset();
@@ -343,16 +347,46 @@ describe("prepared-state analysis tabs", () => {
     expect(mockComputeDistortionFieldGrid).toHaveBeenCalledWith(preparedState, 5, fieldGeometry);
   });
 
+  it("keeps an unavailable corner separate from the last traced height", () => {
+    mockComputeDistortionCurve.mockReturnValue({
+      samples: distortionSamples.map((sample) => ({
+        ...sample,
+        normalizedImageHeight: sample.normalizedImageHeight * 0.6,
+      })),
+      corner: { status: "unreachable", reason: "trace-failure" },
+      cornerImageHeight: 16.67,
+    });
+    const html = renderToStaticMarkup(
+      React.createElement(DistortionTab, {
+        L: lens,
+        t: themes.dark,
+        focusT: 0,
+        zoomT: 0,
+        dynamicEFL: 50,
+        currentPhysStopSD: 5,
+        preparedState,
+      }),
+    );
+    expect(html).toContain("CORNER");
+    expect(html).toContain("Unavailable");
+    expect(html).toContain("No complete chief ray reaches the corner");
+    expect(html).toContain("LAST TRACED HEIGHT");
+    expect(html).toContain("Last traced: +1.20%");
+    expect(html).toContain("Image height (% of edge)");
+  });
+
   it("names the distortion sign: negative is barrel, positive is pincushion", () => {
     /* distortionPercent = 100 × (real − ideal) / ideal, so the sign fixes the direction. */
     const renderEdge = (edgePercent: number, referenceKind = "rectilinear") => {
-      mockComputeDistortionCurve.mockReturnValue(
-        distortionSamples.map((sample, index) => ({
+      mockComputeDistortionCurve.mockReturnValue({
+        corner: { status: "reached" },
+        cornerImageHeight: 10,
+        samples: distortionSamples.map((sample, index) => ({
           ...sample,
           referenceKind,
           distortionPercent: index === 0 ? 0 : edgePercent,
         })),
-      );
+      });
       return renderToStaticMarkup(
         React.createElement(DistortionTab, {
           L: lens,

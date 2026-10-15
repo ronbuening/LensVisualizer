@@ -7,6 +7,8 @@
 export {
   chiefRayImageHeight2,
   chiefRayImageHeightAccurate2,
+  invertChiefRayImageHeights,
+  type ImageHeightInversionResult,
   computeAnalysisFieldGeometryAtState2,
   computeFieldGeometryAtState2,
   conjugateK2,

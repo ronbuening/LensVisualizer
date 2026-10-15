@@ -1,7 +1,7 @@
 /**
  * Distortion analysis adapter — prepared-state and RuntimeLens wrappers for distortion sampling.
  *
- * Lets engine-native callers reuse prepared state while preserving the legacy RuntimeLens function signatures.
+ * Lets engine-native callers reuse prepared state while preserving the RuntimeLens call arguments.
  */
 
 import { computeDistortionCurve, computeDistortionFieldGrid } from "../distortionAnalysis.js";
@@ -22,7 +22,7 @@ import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
  * @param dynamicEFL - current effective focal length in mm
  * @param currentPhysStopSD - physical stop semi-diameter in mm
  * @param fieldGeometry - optional solved-chief-ray field geometry for the same state
- * @returns sampled distortion curve across the current half field
+ * @returns sampled distortion curve and explicit format-corner reachability
  */
 export function computeDistortionCurveForState2(
   state: PreparedOpticalState,
@@ -81,7 +81,7 @@ export function computeDistortionFieldGridForState2(
  * @param currentPhysStopSD - physical stop semi-diameter in mm
  * @param fieldGeometry - optional solved-chief-ray field geometry
  * @param aberrationT - normalized aberration spacing slider
- * @returns sampled distortion curve
+ * @returns sampled distortion curve and explicit format-corner reachability
  */
 export function computeDistortionCurve2(
   L: RuntimeLens,

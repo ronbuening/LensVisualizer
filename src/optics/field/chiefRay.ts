@@ -220,14 +220,11 @@ export function computeAnalysisFieldGeometryAtState2(
   );
   if (!Number.isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) <= maxImageHeight + 1e-9) return bounded;
 
-  const formatHalfFieldDeg = solveFieldAngleForImageHeightAccurate2(
+  // Field geometry retains its historic inversion; distortion validates individual
+  // rays later without changing the geometry or target heights of other analyses.
+  const formatHalfFieldDeg = solveFieldAngleForImageHeightLookup2(
     maxImageHeight,
-    zPos,
-    focusT,
-    zoomT,
-    L,
-    bounded,
-    aberrationT,
+    buildAccurateFieldHeightLookup2(zPos, focusT, zoomT, L, bounded, aberrationT),
   );
   if (formatHalfFieldDeg === null || !Number.isFinite(formatHalfFieldDeg)) return bounded;
 
@@ -819,16 +816,22 @@ function chiefRayImageHeightAccurateWithTransfer2(
   geometry: FieldGeometryState2 | undefined,
   aberrationT: number,
   imagePlaneTransfer: number,
+  onFailure?: () => void,
 ): number {
   const launch = projectionLaunchSlopeForField2(L, fieldAngleDeg);
   const solve = solveChiefRay2(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
   if (solve.vectorLaunch) {
     const trace = traceRayVector2(solve.vectorLaunch, zPos, undefined, false, L, focusT, zoomT, aberrationT);
+    if (!L.isFoldedOptics && (trace.diagnostics?.failureReason || trace.diagnostics?.terminalSurfaceIndex !== L.N - 1))
+      onFailure?.();
     if (trace.clipped) return NaN;
     if (L.isFoldedOptics && trace.reachedImagePlane) return foldedRayImagePlaneCoordinate2(trace, L);
     return trace.y + trace.u * imagePlaneTransfer;
   }
   const trace = traceRay2(solve.yLaunch, launch.uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
+  if (!L.isFoldedOptics && (trace.diagnostics?.failureReason || trace.diagnostics?.terminalSurfaceIndex !== L.N - 1)) {
+    onFailure?.();
+  }
   if (L.isFoldedOptics && trace.reachedImagePlane) return foldedRayImagePlaneCoordinate2(trace, L);
   return trace.y + trace.u * imagePlaneTransfer;
 }
@@ -854,51 +857,9 @@ export function solveFieldAngleForImageHeightAccurate2(
   geometry?: FieldGeometryState2,
   aberrationT = 0,
 ): number | null {
-  if (!Number.isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12) return 0;
-  const geom = geometry ?? computeFieldGeometryAtState2(focusT, zoomT, L, aberrationT);
-  if (!Number.isFinite(geom.halfFieldDeg) || geom.halfFieldDeg <= 0) return null;
-  const target = -Math.abs(targetImageHeight);
-  const imageHeightAt = (deg: number) => chiefRayImageHeightAccurate2(deg, zPos, focusT, zoomT, L, geom, aberrationT);
-  const bracketSegments = Math.max(Math.ceil(geom.halfFieldDeg), 20);
-  const segmentAngles: number[] = [];
-  const segmentHeights: number[] = [];
-  for (let i = 0; i <= bracketSegments; i++) {
-    const angleDeg = (i / bracketSegments) * geom.halfFieldDeg;
-    const height = imageHeightAt(angleDeg);
-    if (!Number.isFinite(height)) continue;
-    segmentAngles.push(angleDeg);
-    segmentHeights.push(height);
-  }
-
-  let lo = -1;
-  let hi = -1;
-  for (let i = 0; i < segmentAngles.length - 1; i++) {
-    const hLo = segmentHeights[i];
-    const hHi = segmentHeights[i + 1];
-    if ((hLo >= target && hHi <= target) || (hLo <= target && hHi >= target)) {
-      lo = i;
-      hi = i + 1;
-      break;
-    }
-  }
-  if (lo < 0) return null;
-
-  let loAngle = segmentAngles[lo];
-  let hiAngle = segmentAngles[hi];
-  let loHeight = segmentHeights[lo];
-  for (let i = 0; i < 40; i++) {
-    const mid = (loAngle + hiAngle) / 2;
-    const yMid = imageHeightAt(mid);
-    if (!Number.isFinite(yMid)) return null;
-    if (Math.abs(yMid - target) < 1e-4) return mid;
-    if ((loHeight >= target && yMid <= target) || (loHeight <= target && yMid >= target)) {
-      hiAngle = mid;
-    } else {
-      loAngle = mid;
-      loHeight = yMid;
-    }
-  }
-  return (loAngle + hiAngle) / 2;
+  if (solveTrivialImageHeightTarget2(targetImageHeight) === 0) return 0;
+  const [result] = invertChiefRayImageHeights([targetImageHeight], zPos, focusT, zoomT, L, geometry, aberrationT);
+  return result.status === "reached" ? result.fieldAngleDeg : null;
 }
 
 /**
@@ -916,19 +877,59 @@ export function solveFieldAnglesForImageHeightsAccurate2(
   geometry?: FieldGeometryState2,
   aberrationT = 0,
 ): Array<number | null> {
+  return invertChiefRayImageHeights(targetImageHeights, zPos, focusT, zoomT, L, geometry, aberrationT).map((result) =>
+    result.status === "reached" ? result.fieldAngleDeg : null,
+  );
+}
+
+/** Each target is validated independently; earlier failed samples do not exclude later fields. */
+export type ImageHeightInversionResult =
+  | { status: "reached"; fieldAngleDeg: number }
+  | { status: "unreachable"; reason: "trace-failure" | "height-miss" | "field-limit"; fieldAngleDeg?: number };
+
+/** Preserve the original inversion path, then check its own ray against the existing height tolerance. */
+export function invertChiefRayImageHeights(
+  targetImageHeights: readonly number[],
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry?: FieldGeometryState2,
+  aberrationT = 0,
+): ImageHeightInversionResult[] {
   const geom = geometry ?? computeFieldGeometryAtState2(focusT, zoomT, L, aberrationT);
   if (!Number.isFinite(geom.halfFieldDeg) || geom.halfFieldDeg <= 0) {
-    return targetImageHeights.map(solveTrivialImageHeightTarget2);
+    return targetImageHeights.map((target) =>
+      solveTrivialImageHeightTarget2(target) === 0
+        ? { status: "reached", fieldAngleDeg: 0 }
+        : { status: "unreachable", reason: "field-limit" },
+    );
   }
-
   const lookup = buildAccurateFieldHeightLookup2(zPos, focusT, zoomT, L, geom, aberrationT);
-  return targetImageHeights.map((targetImageHeight) => solveFieldAngleForImageHeightLookup2(targetImageHeight, lookup));
+  return targetImageHeights.map((target) => {
+    if (solveTrivialImageHeightTarget2(target) === 0) return { status: "reached", fieldAngleDeg: 0 };
+    const angle = solveFieldAngleForImageHeightLookup2(target, lookup);
+    if (angle === null)
+      return { status: "unreachable", reason: lookup.hasTraceFailure() ? "trace-failure" : "field-limit" };
+    // Folded distortion stays guarded in the UI; retain its existing inversion fallback.
+    if (L.isFoldedOptics) return { status: "reached", fieldAngleDeg: angle };
+    // Successful bisections already traced this exact angle. Only the exhausted 40-step
+    // fallback needs another ray, so ordinary samples keep their exact floats and ray work.
+    const ray = lookup.lastRay();
+    const height = ray.fieldAngleDeg === angle ? ray.imageHeight : lookup.imageHeightAt(angle);
+    if (lookup.lastRay().failed) return { status: "unreachable", reason: "trace-failure", fieldAngleDeg: angle };
+    if (!Number.isFinite(height) || Math.abs(height + Math.abs(target)) >= 1e-4)
+      return { status: "unreachable", reason: "height-miss", fieldAngleDeg: angle };
+    return { status: "reached", fieldAngleDeg: angle };
+  });
 }
 
 interface AccurateFieldHeightLookup2 {
   segmentAngles: number[];
   segmentHeights: number[];
   imageHeightAt: (fieldAngleDeg: number) => number;
+  lastRay: () => { fieldAngleDeg: number; imageHeight: number; failed: boolean };
+  hasTraceFailure: () => boolean;
 }
 
 function buildAccurateFieldHeightLookup2(
@@ -940,8 +941,11 @@ function buildAccurateFieldHeightLookup2(
   aberrationT: number,
 ): AccurateFieldHeightLookup2 {
   const imagePlaneTransfer = lastThicknessAtState(focusT, zoomT, L, aberrationT);
-  const imageHeightAt = (fieldAngleDeg: number): number =>
-    chiefRayImageHeightAccurateWithTransfer2(
+  let lastRay = { fieldAngleDeg: NaN, imageHeight: NaN, failed: false };
+  let hasTraceFailure = false;
+  const imageHeightAt = (fieldAngleDeg: number): number => {
+    let failed = false;
+    const imageHeight = chiefRayImageHeightAccurateWithTransfer2(
       fieldAngleDeg,
       zPos,
       focusT,
@@ -950,11 +954,19 @@ function buildAccurateFieldHeightLookup2(
       geometry,
       aberrationT,
       imagePlaneTransfer,
+      () => {
+        failed = true;
+      },
     );
+    lastRay = { fieldAngleDeg, imageHeight, failed };
+    hasTraceFailure ||= failed;
+    return imageHeight;
+  };
   const bracketSegments = Math.max(Math.ceil(geometry.halfFieldDeg), 20);
   const segmentAngles: number[] = [];
   const segmentHeights: number[] = [];
-
+  // Keep even finite partial-trace heights in the historic bracket table. Removing
+  // them would change the bisection path (and floats) of otherwise valid targets.
   for (let i = 0; i <= bracketSegments; i++) {
     const angleDeg = (i / bracketSegments) * geometry.halfFieldDeg;
     const height = imageHeightAt(angleDeg);
@@ -962,8 +974,13 @@ function buildAccurateFieldHeightLookup2(
     segmentAngles.push(angleDeg);
     segmentHeights.push(height);
   }
-
-  return { segmentAngles, segmentHeights, imageHeightAt };
+  return {
+    segmentAngles,
+    segmentHeights,
+    imageHeightAt,
+    lastRay: () => lastRay,
+    hasTraceFailure: () => hasTraceFailure,
+  };
 }
 
 function solveFieldAngleForImageHeightLookup2(

@@ -18,6 +18,7 @@ import {
   projectBuildConstants,
   projectTrace,
   radiusOrFlat,
+  recordAnalysisJob,
   semanticFingerprint,
   snapConjugate,
   type EncodedValue,
@@ -713,7 +714,12 @@ const captureAnalysis: StateCapture = (seam, lens, state) => {
   /* Jobs run in this order on one context, as the drawer's sections share one. A job that throws (a centered
    * section while the lens is moved, a perspective job on a lens with no image format) is an outcome of its own. */
   const jobs: Record<string, Outcome<unknown>> = {};
-  for (const job of ANALYSIS_CONTEXT_JOBS) jobs[job] = outcomeOf(() => context[job]());
+  for (const job of ANALYSIS_CONTEXT_JOBS)
+    recordAnalysisJob(
+      jobs,
+      job,
+      outcomeOf(() => context[job]()),
+    );
   /* The single field-curvature job has no context accessor; the state registry is its only entry. */
   jobs.computeFieldCurvature = outcomeOf(() =>
     seam.analysisJobsForState.computeFieldCurvature(

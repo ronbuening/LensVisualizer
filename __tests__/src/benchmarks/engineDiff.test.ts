@@ -18,7 +18,7 @@ import {
   type PayloadRecord,
   type SerializedCatalog,
 } from "../../../src/benchmarks/engineDiff/captureEntry.js";
-import { comparePermittedPairs } from "../../../src/benchmarks/engineDiff/compare.js";
+import { comparePermittedPairs, createDifferentialRun } from "../../../src/benchmarks/engineDiff/compare.js";
 import {
   ECHO_DEFAULTS,
   FLAT_RADIUS_MARKER,
@@ -30,10 +30,12 @@ import {
   normalizeAuthoredData,
   outcomeOf,
   projectBuildConstants,
+  recordAnalysisJob,
   semanticFingerprint,
   sha256Hex,
   stopRadiusAuthority,
   type EncodedValue,
+  type Outcome,
   type SemanticProjection,
 } from "../../../src/benchmarks/engineDiff/payload.js";
 import {
@@ -108,6 +110,67 @@ const MAKSUTOV = "reference-maksutov-cassegrain-meniscus";
 /** The one converter pair in Tier P: the analysis row's representative. */
 const PAIR = FEATURE_REPRESENTATIVES.find(({ feature }) => feature === "converter-pair")!.lens;
 const PAIR_ID = lensId(PAIR);
+
+describe("analysis job capture shapes", () => {
+  const samples = [{ fieldAngleDeg: -0, distortionPercent: 1.25 }];
+  const metadata = { corner: { status: "unreachable", reason: "height-miss" }, cornerImageHeight: 21.65 };
+
+  it("keeps an older engine's distortion array at the existing value path", () => {
+    const jobs: Record<string, Outcome<unknown>> = {};
+    const outcome = { ok: true, value: samples } as const;
+    recordAnalysisJob(jobs, "computeDistortionCurve", outcome);
+    expect(jobs).toEqual({ computeDistortionCurve: outcome });
+    expect(jobs.computeDistortionCurve).toBe(outcome);
+  });
+
+  it.each([{ curve: samples }, { curve: [] }])(
+    "records an envelope's samples and leaves its corner status out",
+    ({ curve }) => {
+      const jobs: Record<string, Outcome<unknown>> = {};
+      const value = { samples: curve, ...metadata };
+      recordAnalysisJob(jobs, "computeDistortionCurve", { ok: true, value });
+      expect(jobs).toEqual({ computeDistortionCurve: { ok: true, value: curve } });
+      expect(jobs.computeDistortionCurve.ok && jobs.computeDistortionCurve.value).toBe(curve);
+      expect(value).toEqual({ samples: curve, ...metadata });
+    },
+  );
+
+  it("preserves other jobs, errors and unrecognized distortion values", () => {
+    for (const [job, outcome] of [
+      ["computeOtherCurve", { ok: true, value: { samples, ...metadata } }],
+      ["computeDistortionCurve", { ok: false, error: { name: "Error", message: "failed" } }],
+      ["computeDistortionCurve", { ok: true, value: null }],
+      ["computeDistortionCurve", { ok: true, value: { samples } }],
+    ] as [string, Outcome<unknown>][]) {
+      const jobs: Record<string, Outcome<unknown>> = {};
+      recordAnalysisJob(jobs, job, outcome);
+      expect(jobs).toEqual({ [job]: outcome });
+      expect(jobs[job]).toBe(outcome);
+    }
+  });
+
+  it("compares legacy and envelope sample numbers number by number, with no shape change", () => {
+    const record = (value: unknown): PayloadRecord => {
+      const jobs: Record<string, Outcome<unknown>> = {};
+      recordAnalysisJob(jobs, "computeDistortionCurve", { ok: true, value });
+      return {
+        lens: "synthetic-distortion",
+        state: DEFAULT_STATE,
+        request: "analysis",
+        payload: { ok: true, value: encodeValue({ jobs }) },
+      };
+    };
+    const base = record(samples);
+    const head = record({ samples: [{ ...samples[0], distortionPercent: 1.5 }], ...metadata });
+    const run = createDifferentialRun({ changeClass: "c3", declaredExceptions: [], restricted: true });
+    run.addLens({ lens: base.lens, dataChange: "unchanged", baseEngine: [base], headEngine: [head] });
+    const { engine } = run.finish();
+    expect(engine.numbersDiffering).toBe(1);
+    expect(engine.quantities.percentage?.differing).toBe(1);
+    expect(engine.differences.shape).toBe(0);
+    expect(engine.transitionSamples).toEqual([]);
+  });
+});
 
 const throughJson = (value: unknown): unknown =>
   decodeValue(JSON.parse(JSON.stringify(encodeValue(value))) as EncodedValue);
