@@ -7,9 +7,12 @@
  * half-field refinement.
  */
 
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   traceParaxialRay,
+  computeFieldGeometryAtState,
+  computeAnalysisFieldGeometryAtState,
+  invertChiefRayImageHeights,
   solveChiefRay,
   solveFieldAngleForImageHeight,
   solveFieldAngleForImageHeightAccurate,
@@ -19,7 +22,10 @@ import {
   doLayout,
   traceRay,
 } from "../../../src/optics/optics.js";
-import { build, sharedApoLanthar50f2, sharedNikkorZ70200 } from "./testLensFixtures.js";
+import * as rayAdapters from "../../../src/optics/trace/rayAdapters.js";
+import SonyRX100Raw from "../../../src/lens-data/sony/ZeissVarioSonnarT9072mmf2845SonyDSCRX100M67.data.js";
+import Olympus18Raw from "../../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.js";
+import { build, buildSimplePositiveElementLens, sharedApoLanthar50f2, sharedNikkorZ70200 } from "./testLensFixtures.js";
 
 /* ── traceParaxialRay ── */
 
@@ -229,5 +235,64 @@ describe("traceRay — first-surface hit search", () => {
       expect(ray.clipped).toBe(false);
       expect(Math.abs(ray.pts[1][1])).toBeLessThan(12);
     }
+  });
+});
+
+/* Each inverted target must have its own complete ray within the height tolerance. */
+describe("per-target image-height inversion", () => {
+  it("rejects a target in a height gap while retaining valid targets after the jump", () => {
+    const L = buildSimplePositiveElementLens();
+    const { z } = doLayout(0, 0, L);
+    const geometry = { ...computeFieldGeometryAtState(0, 0, L), halfFieldDeg: 20 };
+    const traceRay = rayAdapters.traceRay2;
+    // Isolate target residual validation from intersection failures and aperture policy.
+    const trace = vi.spyOn(rayAdapters, "traceRay2").mockImplementation((...args) => {
+      const result = traceRay(...args);
+      const angle = (Math.atan(-args[1]) * 180) / Math.PI;
+      return { ...result, y: -angle - (angle >= 12 ? 10 : 0), u: 0 };
+    });
+    try {
+      expect(chiefRayImageHeightAccurate(11, z, 0, 0, L, geometry)).toBeCloseTo(-11, 10);
+      expect(chiefRayImageHeightAccurate(13, z, 0, 0, L, geometry)).toBeCloseTo(-23, 10);
+      expect(solveFieldAngleForImageHeightAccurate(11.999, z, 0, 0, L, geometry)).not.toBeNull();
+      expect(solveFieldAngleForImageHeightAccurate(25, z, 0, 0, L, geometry)).toBeCloseTo(15, 3);
+      const [inside, gap, beyond] = invertChiefRayImageHeights([10, 15, 25], z, 0, 0, L, geometry);
+      expect(inside.status).toBe("reached");
+      expect(gap.status).toBe("unreachable");
+      expect(beyond.status).toBe("reached");
+      if (gap.status !== "unreachable") throw new Error("Expected unreachable height");
+    } finally {
+      trace.mockRestore();
+    }
+  });
+
+  it("drops the RX100 failed middle target while retaining later complete rays", () => {
+    const L = build(SonyRX100Raw);
+    const { z } = doLayout(0, 0, L);
+    expect(Number.isFinite(chiefRayImageHeightAccurate(30, z, 0, 0, L))).toBe(true);
+    const solve = solveChiefRay(30.5, 0, 0, L);
+    expect(
+      traceRay(solve.yLaunch, -Math.tan((30.5 * Math.PI) / 180), z, 0, 0, undefined, true, L).diagnostics
+        ?.failureReason,
+    ).toBeDefined();
+    expect(Number.isFinite(chiefRayImageHeightAccurate(31, z, 0, 0, L))).toBe(true);
+    const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+    const edgeTarget = Math.abs(chiefRayImageHeightAccurate(geometry.halfFieldDeg, z, 0, 0, L, geometry));
+    const [bad, later, corner] = invertChiefRayImageHeights([4.758, edgeTarget, 7.93], z, 0, 0, L, geometry);
+    expect(bad.status).toBe("unreachable");
+    expect(later.status).toBe("reached");
+    expect(corner.status).toBe("unreachable");
+  });
+
+  it.each([0, 1])("rejects a format corner beyond a failed chief ray at focus %s", (focusT) => {
+    const L = build(Olympus18Raw);
+    const { z } = doLayout(focusT, 0, L);
+    expect(solveFieldAngleForImageHeightAccurate(21.65, z, focusT, 0, L)).toBeNull();
+    expect(solveFieldAnglesForImageHeightsAccurate([10, 21.65], z, focusT, 0, L)[1]).toBeNull();
+    const solve = solveChiefRay(43, focusT, 0, L);
+    expect(
+      traceRay(solve.yLaunch, -Math.tan((43 * Math.PI) / 180), z, focusT, 0, undefined, true, L).diagnostics
+        ?.failureReason,
+    ).toBeDefined();
   });
 });

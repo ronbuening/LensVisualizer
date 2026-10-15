@@ -2544,8 +2544,12 @@ Open for the maintainer, none of them needed before promotion:
 - Whether an engine C3's anchor is a timing base.
 - The Olympus Zuiko Auto-W 18mm's format-corner field inversion ends, at every station, on the jump in image height
   where surfaces 16 and 17 cross beyond their rims, so its edge distortion is an artifact on both engines (+106.8%
-  at focus 0; at focus 1, +110.4% on A1 and -3.9% since S3.P2.T1). A C3 that keeps the inversion off a trace
-  discontinuity is needed. Tier F at promotion shows the focus-1 change.
+  at focus 0; at focus 1, +110.4% on A1 and -3.9% since S3.P2.T1). **Settled (maintainer, 2026-10-15):** each
+  distortion sample must have its own complete chief ray within the existing 1e-4 mm inversion tolerance. Drop
+  invalid samples individually, retain later valid samples, and suppress the corner figure only when its own
+  inversion has no valid ray. Keep the original brackets, bisection, floats, normalization, Edge figure and label
+  at every all-valid station. This C3 filters invalid samples; S6.P2.T2 (object-plane and bounding-sphere chief
+  solves) owns the chief-solve bracket-failed fallback jumps. Tier F at promotion shows the earlier focus-1 change.
 - A sphere or conic root that the closed form leaves near tangency (`nearTangency`) goes to the 24-sample scan, which
   can miss a short chord (#779): the Samyang XP 35mm's field shows it. A C3 that solves such a root without the scan
   is needed. The harness report's solver table also samples only its first 40 failures, which hid that lens.

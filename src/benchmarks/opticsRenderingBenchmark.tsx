@@ -1325,7 +1325,7 @@ function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   output.perspectiveAnalysisJobs = 0;
 
   if (!L.isFoldedOptics) {
-    output.distortionSamples = completed("distortionCurve", analysisContext.computeDistortionCurve()).length;
+    output.distortionSamples = completed("distortionCurve", analysisContext.computeDistortionCurve().samples).length;
     output.distortionGridLines = completed("distortionGrid", analysisContext.computeDistortionFieldGrid()).lines.length;
     output.vignettingSamples = completed("vignetting", analysisContext.computeVignettingCurve()).length;
   } else {
@@ -1490,8 +1490,8 @@ function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): Benchma
     snapshot.fieldGeometry ?? undefined,
     snapshot.analysisSampling,
   );
-  completed("distortionCurve", samples);
-  return { distortionSamples: samples.length };
+  completed("distortionCurve", samples.samples);
+  return { distortionSamples: samples.samples.length };
 }
 
 /** Measures the distortion field-grid helper used by the analysis drawer. */

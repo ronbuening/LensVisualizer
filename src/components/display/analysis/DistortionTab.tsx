@@ -93,7 +93,7 @@ function CenteredDistortionContent({
   preparedState,
   analysisContext,
 }: CenteredDistortionContentProps) {
-  const samples = useMemo(
+  const result = useMemo(
     () =>
       probe(
         "computeDistortionCurve",
@@ -123,10 +123,14 @@ function CenteredDistortionContent({
     [analysisContext, preparedState, currentPhysStopSD, fieldGeometry],
   );
 
+  const { samples, corner } = result;
+  const cornerAvailable = corner.status === "reached" || corner.reason === "field-limit";
   if (samples.length < 2) {
     return (
       <div style={{ color: t.muted, fontSize: 10, padding: "8px 0", transition: "color 0.3s" }}>
-        Unable to compute distortion curve for this lens state.
+        {cornerAvailable
+          ? "Unable to compute distortion curve for this lens state."
+          : `Corner distortion unavailable — ${corner.reason === "trace-failure" ? "chief-ray trace failed" : "chief ray missed its target height"} at the corner.`}
       </div>
     );
   }
@@ -162,7 +166,7 @@ function CenteredDistortionContent({
             : "Computed against a near-axis rectilinear reference at fixed image height. The curve stays 1D, while the field grid below now traces real chief-ray image positions across the current image circle against that same rectilinear reference. Focus breathing is reported separately from distortion."}
         </span>
       </div>
-      <DistortionChart samples={samples} t={t} />
+      <DistortionChart partial={!cornerAvailable} samples={samples} t={t} />
       <div style={{ marginTop: 12, display: "grid", gap: 4 }}>
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
           Traced field grid
@@ -184,12 +188,26 @@ function CenteredDistortionContent({
         }}
       >
         <AnalysisMetricRow
-          label="Edge"
-          value={`${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`}
-          note={`(${directionLabel})`}
+          label={cornerAvailable ? "Edge" : "Corner"}
+          value={
+            cornerAvailable
+              ? `${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`
+              : "Unavailable"
+          }
+          note={
+            cornerAvailable
+              ? `(${directionLabel})`
+              : corner.reason === "trace-failure"
+                ? "No complete chief ray reaches the corner"
+                : "Chief ray missed its target height at the corner"
+          }
           t={t}
         />
-        <AnalysisMetricRow label="Height" value={`${Math.abs(edgeSample.imageHeight).toFixed(1)} mm`} t={t} />
+        <AnalysisMetricRow
+          label={cornerAvailable ? "Height" : "Last traced height"}
+          value={`${Math.abs(edgeSample.imageHeight).toFixed(1)} mm`}
+          t={t}
+        />
         <AnalysisMetricRow label="Angle" value={`${edgeSample.fieldAngleDeg.toFixed(1)}°`} t={t} />
         <AnalysisMetricRow
           label="Breathing"
