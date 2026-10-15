@@ -7,11 +7,10 @@
 
 import buildRuntimeLens, { assertValidLensData } from "../runtimeLens.js";
 import validateLensData from "../validateLensData.js";
-import type { LensData, LensDataInput, RuntimeLens, SurfaceData } from "../../types/optics.js";
+import type { LensData, LensDataInput, RuntimeLens } from "../../types/optics.js";
 import type {
   AberrationControlSpec,
   AuthoredRayFans,
-  CompiledSurface,
   DisplaySpec,
   EngineLens,
   EngineLensFlags,
@@ -20,12 +19,11 @@ import type {
   StopSpec,
   VariableSpec,
 } from "../types.js";
-import { createSurfaceProfile } from "../geometry/surfaceProfile.js";
-import { compileDiffractivePhase } from "../math/diffractivePhase.js";
+import { compileSurfaces } from "./surfaces.js";
 import { compileAspheres } from "./aspheres.js";
 import { compileSurfaceDispersions } from "./dispersion.js";
 import { compileAnnotations, compileElements } from "./groups.js";
-import { compileSurfaceInteraction, resolvedImagePlaneToPlane3 } from "./interactions.js";
+import { resolvedImagePlaneToPlane3 } from "./interactions.js";
 import { buildSurfaceLabelMap } from "./labels.js";
 import { compileVariableGaps, compileVariableLabels } from "./variables.js";
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
@@ -154,35 +152,6 @@ function normalizeRuntimeLensUncached(runtime: RuntimeLens): EngineLens {
     perspectiveControl: runtime.perspectiveControl,
     flags: compileFlags(runtime),
   });
-}
-
-function compileSurfaces(
-  runtimeSurfaces: readonly SurfaceData[],
-  sourceSurfaces: readonly SurfaceData[],
-  aspheresByIndex: Readonly<Record<number, NonNullable<CompiledSurface["asphere"]>>>,
-): readonly CompiledSurface[] {
-  return Object.freeze(
-    runtimeSurfaces.map((surface, physicalIndex) => {
-      const asphere = aspheresByIndex[physicalIndex] ?? null;
-      return Object.freeze({
-        physicalIndex,
-        label: surface.label,
-        R: surface.R,
-        d: surface.d,
-        nd: surface.nd,
-        sd: surface.sd,
-        innerSd: surface.innerSd ?? null,
-        clips: surface.clips !== false,
-        elemId: surface.elemId,
-        stopPlacement: surface.stopPlacement ?? null,
-        asphere,
-        diffractive: compileDiffractivePhase(surface.diffractive),
-        interaction: compileSurfaceInteraction(surface.interaction),
-        profile: createSurfaceProfile(surface, asphere ?? undefined),
-        source: Object.freeze({ ...sourceSurfaces[physicalIndex] }),
-      });
-    }),
-  );
 }
 
 function compileStop(runtime: RuntimeLens): StopSpec {
