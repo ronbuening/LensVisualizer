@@ -2160,6 +2160,11 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
   - **Change:** these traces in `runtimeLens.ts` run on a `TraceGeometry` built from the authored surfaces: stop SD,
     EP/XP basis rays, the half-field bisection, zoom stations, and the folded branch.
   - **Gate:** C1.
+  - **As built:** `runtimeLens.ts` builds geometry directly from plate-expanded authored surfaces, sharing the surface
+    compiler with runtime normalization. Stop sizing, real pupil bases, baseline/station field bisections and folded
+    pupils use production traversal; aperture views are rebuilt after stop sizing. Folded stop lookup shares the
+    geometry-level helper with prepared states, including launch-plane stops. Paraxial math and pupil fallbacks stay
+    unchanged; no partial runtime lens, preparation cycle or new cache is needed.
 - **S4.P2.T3 Pupil baselines and folded validation probe.**
   - **Change:** the remaining legacy callers move to the production stack: `pupilAberration.ts` `traceStateSurfacesReal`
     and `validateLensData.ts` `validateFoldedImagePlaneReachability`.
