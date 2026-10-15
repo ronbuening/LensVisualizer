@@ -85,6 +85,32 @@ describe.each(["production", "legacy"] as const)("%s intersection accuracy", (en
     expect(Math.abs(hit.residual)).toBeLessThanOrEqual(hit.effectiveTolerance);
   });
 
+  it("tries the next safeguarded point before accepting a creep under the envelope", () => {
+    const hit = intersect(
+      { origin: [1.70000013, 0, 8352.099999999999], direction: [-1, 0, 0] },
+      1e15,
+      0,
+      { maxT: 3e-7 },
+      { K: 0, A4: 1000, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 },
+    );
+    expect(hit).toMatchObject({ ok: true, residual: 0, effectiveTolerance: 1e-12, iterations: 4 });
+  });
+
+  it("checks the safeguarded midpoint fixed point on the pending final step", () => {
+    const ray: SurfaceIntersectionRay = { origin: [1.1, 0, 10000.000000000002], direction: [-1, 0, 0] };
+    const asphere = { K: 0, A4: 10000, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+    const full = intersect(ray, 1e15, 0, { maxT: 0.2 }, asphere);
+    expect(full.ok).toBe(true);
+    if (!full.ok) return;
+    expect(intersect(ray, 1e15, 0, { maxT: 0.2, maxIterations: 2 }, asphere)).toMatchObject({
+      ok: true,
+      t: full.t,
+      residual: 1.8189894035458565e-12,
+      effectiveTolerance: full.effectiveTolerance,
+      iterations: 2,
+    });
+  });
+
   it("uses the tightened parametric bounds for an analytic plane", () => {
     expect(intersect(axialRay(1), 1e15, 0, { maxT: 5 - 1e-10 })).toMatchObject({
       ok: false,
@@ -167,26 +193,26 @@ describe.each(["production", "legacy"] as const)("%s intersection accuracy", (en
     });
   });
 
-  it("collapses the bracket on a roundoff-limited rim root within the default budget", () => {
-    // Exterior hit at a hemisphere's rim. Newton's steps there are a few ulps, never zero, so the root is
-    // accepted only once bisection reaches adjacent floats; 48 iterations were too few in both solvers.
+  it("converges on a roundoff-limited rim root without bisecting to adjacent floats", () => {
+    /* Exterior hit at a hemisphere's rim. The residual rounds in steps of about 6e-12 mm on 36 mm coordinates, so
+     * Newton's corrections are 19 and 95 ulps of t, under one ulp of those coordinates, and never zero. Two in a
+     * row that point the same way and do not halve are a stall. Bisecting the 5.8 mm scan bracket to adjacent
+     * floats instead took 50 iterations, and failed at 48. */
     const R = -36.4652369171381;
     const sd = 32.1266972069614;
     const ray: SurfaceIntersectionRay = {
       origin: [0, 36.90213507972658, -36.573912873864174],
       direction: [0, -0.9558022906274851, 0.2940101719860258],
     };
-    expect(intersect(ray, R, 0, { maxT: 150, maxIterations: 48 }, undefined, sd)).toMatchObject({
-      ok: false,
-      failureReason: "noConvergedIntersection",
-    });
     const hit = intersect(ray, R, 0, { maxT: 150 }, undefined, sd);
     expect(hit.ok).toBe(true);
     if (!hit.ok) return;
-    expect(hit.iterations).toBeGreaterThan(48);
+    expect(hit.iterations).toBeLessThanOrEqual(25);
     expect(hit.radius).toBeGreaterThan(sd);
     expect(hit.effectiveTolerance).toBeGreaterThan(1e-12);
     expect(Math.abs(hit.residual)).toBeLessThanOrEqual(hit.effectiveTolerance);
+    // The bisection-only answer was 50 ulps of t from the exact root (0.45711046816240262); the stall's is nearer.
+    expect(Math.abs(hit.t - 0.4571104681624026)).toBeLessThan(Math.abs(0.4571104681624054 - 0.4571104681624026));
   });
 });
 
@@ -234,10 +260,15 @@ describe("roundoff envelope authorization", () => {
     { bound: "NaN", maxAbsSlope: () => NaN },
     { bound: "infinite", maxAbsSlope: () => Infinity },
     { bound: "negative", maxAbsSlope: () => -1 },
-  ])("never accepts it with a $bound slope bound", ({ maxAbsSlope }) => {
+  ])("never accepts it with a $bound slope bound, and fails on the iteration it stalls", ({ maxAbsSlope }) => {
+    const accepted = intersectSurfaceProfile(ray, profile, 0, { maxT: 0.2 });
+    expect(accepted.ok).toBe(true);
+    // The same stall with no usable envelope: nothing after it can do better, so the solve ends there.
     expect(intersectSurfaceProfile(ray, { ...profile, maxAbsSlope }, 0, { maxT: 0.2 })).toMatchObject({
       ok: false,
       failureReason: "noConvergedIntersection",
+      residual: accepted.ok ? accepted.residual : NaN,
+      iterations: accepted.iterations,
     });
   });
 });
