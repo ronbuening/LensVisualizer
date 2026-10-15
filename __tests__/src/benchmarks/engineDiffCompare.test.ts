@@ -205,6 +205,70 @@ const profileStatistics = (footprint: Path): Path[] => [
 const distinctWeights = (records: readonly PayloadRecord[], footprint: Path): number =>
   new Set((at(records, "analysis", [...footprint, "points"]) as { weight: number }[]).map(({ weight }) => weight)).size;
 
+describe("build pupil crossing budgets", () => {
+  const sourceOf = (value: Record<string, unknown>): PayloadRecord[] => [
+    {
+      ...SERENAR_RECORDS.find((record) => record.request === "build")!,
+      payload: { ok: true, value: encodeValue(value) },
+    },
+  ];
+
+  it.each<[string, number, number]>([
+    ["zoomXpSDs", 824.0849329739009, 824.0849329751197],
+    ["zoomXpZRelLastSurfs", -3954.3177310179767, -3954.317731023834],
+  ])("accepts the cumulative Olympus %s rounding above C0", (member, base, head) => {
+    const source = sourceOf({
+      zoomXpSDs: [8, 8, 824.0849329739009],
+      zoomXpZRelLastSurfs: [-30, -30, -3954.3177310179767],
+    });
+    const moved = withChange("build", [member, 2], () => head, source);
+    expect(at(source, "build", [member, 2])).toBe(base);
+    for (const changeClass of ["c1", "c2"] as const) expect(compare(changeClass, moved, source).passed).toBe(true);
+    expect(compare("c0", moved, source).passed).toBe(false);
+  });
+
+  it.each<[Path, Record<string, unknown>]>([
+    [["epZRelStop"], { epZRelStop: -4000 }],
+    [["xpZRelLastSurf"], { xpZRelLastSurf: -4000 }],
+    [["zoomEpZRelStops", 2], { zoomEpZRelStops: [30, 30, -4000] }],
+    [["zoomXpZRelLastSurfs", 2], { zoomXpZRelLastSurfs: [30, 30, -4000] }],
+    [["EP", "epSD"], { EP: { epSD: 0.25 }, epZRelStop: -4000 }],
+    [["xpSD"], { xpSD: 0.25, xpZRelLastSurf: -4000 }],
+    [["zoomXpSDs", 2], { zoomXpSDs: [8, 8, 0.25], zoomXpZRelLastSurfs: [30, 30, -4000] }],
+  ])("holds %j to its own size's crossing share when its pupil is far", (path, value) => {
+    const source = sourceOf(value);
+    const moved = (share: number) => withChange("build", path, (n) => Number(n) * (1 + share), source);
+    for (const changeClass of ["c1", "c2"] as const) {
+      expect(compare(changeClass, moved(0.5e-10), source).passed).toBe(true);
+      expect(compare(changeClass, moved(2e-10), source).passed).toBe(false);
+      expect(compare(changeClass, source, moved(0.5e-10)).passed).toBe(true);
+    }
+    expect(compare("c0", moved(0.5e-10), source).passed).toBe(false);
+  });
+
+  it.each<[Path, Record<string, unknown>]>([
+    [["epZRelStop"], { epZRelStop: 30 }],
+    [["xpZRelLastSurf"], { xpZRelLastSurf: 30 }],
+    [["EP", "epSD"], { EP: { epSD: 824 }, epZRelStop: 30 }],
+    [["xpSD"], { xpSD: 824, xpZRelLastSurf: -100 }],
+    [["zoomXpSDs", 2], { zoomXpSDs: [8, 8, 824], zoomXpZRelLastSurfs: [-4000, -4000, 30] }],
+    [["xpSD"], { xpSD: 824 }],
+  ])("keeps %j at the first-order share when its own pupil is near or unknown", (path, value) => {
+    const source = sourceOf(value);
+    for (const changeClass of ["c1", "c2"] as const) {
+      const moved = (share: number) => withChange("build", path, (n) => Number(n) * (1 + share), source);
+      expect(compare(changeClass, moved(2e-12), source).passed).toBe(false);
+      expect(compare(changeClass, moved(0.5e-12), source).passed).toBe(true);
+    }
+  });
+
+  it("gives a build pupil no absolute floor", () => {
+    const source = sourceOf({ epZRelStop: 0 });
+    const moved = withChange("build", ["epZRelStop"], () => 1e-13, source);
+    for (const changeClass of ["c1", "c2"] as const) expect(compare(changeClass, moved, source).passed).toBe(false);
+  });
+});
+
 /* ── budgets.ts ── */
 
 describe("engineDiff budget table", () => {
@@ -260,6 +324,9 @@ describe("engineDiff budget table", () => {
       ["binnedStatistic", 1e-10, null],
       /* One spot extent over another is 1 or more, and a span ratio is zero only for a footprint with no rays. */
       ["lengthRatio", 1e-8, null],
+      /* A build pupil has no absolute floor, near or far from the lens. */
+      ["buildPupil", 1e-12, null],
+      ["farBuildPupil", 1e-10, null],
       /* A hit's effective tolerance is a length that is never below the engine's 1e-12 mm target. */
       ["effectiveTolerance", 1e-12, null],
       ["layoutLength", 1e-12, lengthFloor],
@@ -278,8 +345,8 @@ describe("engineDiff budget table", () => {
     expect(classOf("mtf", "result", "aperture", "tracedFNumber")).toBe("nonLength");
     expect(classOf("analysis", "jobs", "computeOpticalSummary", "value", "effectiveFNumber")).toBe("nonLength");
     expect(classOf("build", "EFL")).toBe("firstOrder");
-    expect(classOf("build", "EP", "epSD")).toBe("firstOrder");
-    expect(classOf("build", "epZRelStop")).toBe("firstOrder");
+    expect(classOf("build", "EP", "epSD")).toEqual(expect.any(Function));
+    expect(classOf("build", "epZRelStop")).toEqual(expect.any(Function));
     expect(classOf("fieldGeometry", "raw", "epRatio")).toBe("firstOrder");
     /* A prescription handed back has no one unit, and holds asphere coefficients far below any floor of a length. */
     expect(classOf("build", "data", "asph", "3", "A10")).toBe("prescription");
@@ -1264,20 +1331,18 @@ describe("engineDiff drift detection", () => {
     const intrinsic: Path = ["jobs", "computePerspectivePupilAnalysis", "value", "intrinsic"];
     expect(classOf("analysis", [...intrinsic, "exit", "zRelativeToLastSurfaceMm"])).toBe("firstOrder");
     expect(classOf("analysis", [...intrinsic, "entrance", "zRelativeToStopMm"])).toBe("firstOrder");
-    for (const constant of ["xpZRelLastSurf", "epZRelStop"]) expect(classOf("build", [constant])).toBe("firstOrder");
+    for (const constant of ["xpZRelLastSurf", "epZRelStop"]) {
+      expect(classOf("build", [constant])).toEqual(expect.any(Function));
+    }
     for (const stations of ["zoomXpZRelLastSurfs", "zoomEpZRelStops"]) {
-      expect(classOf("build", [stations, 0])).toBe("firstOrder");
+      expect(classOf("build", [stations, 0])).toEqual(expect.any(Function));
     }
 
     /* The compact zoom's move is 1.14e-11 of the position. A sample takes it, as the test above holds. On a
-     * paraxial position it is eleven times the budget: the profile's, the build's exit pupil and its entrance
-     * pupil. Rounding in the last bits passes there, as it did. */
+     * profile's paraxial position it is eleven times the budget. The build constants take the crossing share,
+     * tested above. Rounding in the last bits passes on the profile's constant, as it did. */
     const [base, head] = [-44222.18817793754, -44222.188177433614];
-    const paraxial: [RequestFamily, Path][] = [
-      ["analysis", paraxialZ],
-      ["build", ["xpZRelLastSurf"]],
-      ["build", ["epZRelStop"]],
-    ];
+    const paraxial: [RequestFamily, Path][] = [["analysis", paraxialZ]];
     for (const [request, path] of paraxial) {
       const set = (value: number) => withChange(request, path, () => value);
       const moved = compare("c1", set(head), set(base));
@@ -1624,12 +1689,13 @@ describe("engineDiff drift detection", () => {
     ]);
     expect(compare("c1", coefficient(3e-19 * (1 + 4 * Number.EPSILON)), coefficient(3e-19)).passed).toBe(true);
 
-    /* A length keeps its floor of 1e-12 mm: at zero, and below 1 mm, that is the bound. */
-    const pupil = (z: number) => withChange("build", ["epZRelStop"], () => z);
-    expect(compare("c1", pupil(5e-13), pupil(0)).passed).toBe(true);
-    expect(compare("c1", pupil(2e-12), pupil(0)).passed).toBe(false);
-    expect(compare("c1", pupil(0.5 + 5e-13), pupil(0.5)).passed).toBe(true);
-    expect(compare("c1", pupil(0.5 * (1 + 1e-10)), pupil(0.5)).passed).toBe(false);
+    /* A first-order length keeps its floor of 1e-12 mm: at zero, and below 1 mm, that is the bound.
+     * The build pupil constants have no floor, as tested above. */
+    const bfd = (z: number) => withChange("build", ["B"], () => z);
+    expect(compare("c1", bfd(5e-13), bfd(0)).passed).toBe(true);
+    expect(compare("c1", bfd(2e-12), bfd(0)).passed).toBe(false);
+    expect(compare("c1", bfd(0.5 + 5e-13), bfd(0.5)).passed).toBe(true);
+    expect(compare("c1", bfd(0.5 * (1 + 1e-10)), bfd(0.5)).passed).toBe(false);
   });
 
   it("accepts the rounding in the weighted bins of an absorbing lens, and holds the counts beside them exact", () => {

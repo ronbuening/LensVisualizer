@@ -654,9 +654,13 @@ The classes in `budgets.ts`:
     an analysis length.
 - Layout lengths, refractive indices, the scalars that are no lengths and a prescription handed back take the
   first-order relative budget. Smooth ratios take 1e-10.
-- The pupil positions and sizes the engine builds from its two near-axis rays keep the first-order budget. It is
-  not divided by the 1e-4 of those rays: both rays' slopes scale with it, and the quotient removes it. What no
-  budget shows is a basis ray that failed, and the probes of the traces record show that. The exit pupil a
+- The pupil positions and sizes the engine builds from its two near-axis rays keep 1e-12 relative, or 1e-10 of
+  the compared member's own size when the pupil is more than 100 mm from the lens, whichever is more, with no
+  absolute floor. A position's distance is its own magnitude; a size reads its pupil's sibling position at the
+  same zoom station (`EP.epSD` reads `epZRelStop`, `xpSD` reads `xpZRelLastSurf`, and `zoomXpSDs[]` reads
+  `zoomXpZRelLastSurfs[]`), taking the larger distance of the two sides. `zoomEPs[]`, the nominal entrance-pupil
+  radius (focal length over twice the f-number), is no crossing and stays a first-order scalar. Under C0 all remain bit-exact. The budget is not divided by the 1e-4 of those rays: both rays' slopes
+  scale with it, and the quotient removes it. What no budget shows is a basis ray that failed, and the probes of the traces record show that. The exit pupil a
   pupil-aberration profile traces for one field is no such constant, and is an analysis length.
 - The output of a fixed-step bisection or a bracketed search is held to the quantity table's row for its kind: a
   half-field is a field angle (1e-10°), the MTF best-focus shift an analysis length under 100 mm (1e-8 mm), and
