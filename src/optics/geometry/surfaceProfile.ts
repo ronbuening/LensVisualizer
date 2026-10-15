@@ -4,9 +4,9 @@
  * Both trace stacks, validation, layout, the diagram and the audit scripts read a surface's sag and slope from this
  * module. The positional functions (`sag`, `conicPolySag`, `sagSlopeRaw`) serve callers that hold a radius and
  * coefficients; profile objects serve callers that hold a prepared surface, and add the normal, the domain radius and
- * the slope bound. For those three the module is not the only home: the RuntimeLens stack tracer builds its own hit
- * normal (`internal/surfaceIntersection.ts`), validation and the render diagnostics each compute a conic limit, and
- * the MTF ray classifier samples a slope bound.
+ * the slope bound. For those three the module is not the only home: the RuntimeLens stack tracer builds its own
+ * fallback-point normal (`internal/surfaceIntersection.ts`), validation and the render diagnostics each compute a
+ * conic limit, and the MTF ray classifier samples a slope bound.
  *
  * One arithmetic is used throughout, so `evaluate(r)` equals `sag(r)` and `slope(r)` bit for bit, and a positional
  * function equals the profile method of the same surface:

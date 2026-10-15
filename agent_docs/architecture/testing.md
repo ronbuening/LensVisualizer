@@ -116,16 +116,17 @@ Existing tests cover:
   chief-ray, and folded-fixture values for reference designs, plus Schott datasheet anchors for N-BK7/SF6 in
   `dispersion.test.ts`. These complement the finite/unclipped catalog smoke test — if a pin moves, absolute trace or
   catalog behavior changed; investigate before re-pinning.
-- High-precision intersection fixtures (`intersectionFixtures.test.ts`): both intersection solvers are held to the
-  documented contract on sphere, conic and asphere roots computed outside the engine, for the exact float64 inputs the
-  solvers receive. `__tests__/src/optics/fixtures/generateIntersectionFixtures.ts` holds the case table and writes
-  `__tests__/src/optics/fixtures/intersectionFixtures.json` with 60 decimals, on the BigInt fixed-point arithmetic in
-  `__tests__/src/optics/fixtures/fixedPoint.ts`. After editing the table, regenerate by running the generator through
-  the import hook (`node --import ./scripts/ts-js-specifier-hook-register.mjs <generator path>`); the test fails while
-  the committed file is stale. Every float64 the generator writes comes from correctly rounded IEEE 754 operations, not
-  from `Math.hypot` or another function the language leaves to the JavaScript runtime, so the file regenerates to the
-  same bytes on any machine. A fixture the solvers fail stays in the file and is listed in the test's expected-findings
-  table, which asserts the failure until the engine change that fixes it removes the entry.
+- High-precision intersection fixtures (`intersectionFixtures.test.ts`): both entries to the intersection kernel are
+  held to the documented contract on sphere, conic and asphere roots computed outside the engine, for the exact
+  float64 inputs the entries receive. `__tests__/src/optics/fixtures/generateIntersectionFixtures.ts` holds the case
+  table and writes `__tests__/src/optics/fixtures/intersectionFixtures.json` with 60 decimals, on the BigInt
+  fixed-point arithmetic in `__tests__/src/optics/fixtures/fixedPoint.ts`. After editing the table, regenerate by
+  running the generator through the import hook (`node --import ./scripts/ts-js-specifier-hook-register.mjs <generator
+  path>`); the test fails while the committed file is stale. Every float64 the generator writes comes from correctly
+  rounded IEEE 754 operations, not from `Math.hypot` or another function the language leaves to the JavaScript
+  runtime, so the file regenerates to the same bytes on any machine. A fixture either entry fails stays in the file
+  and is listed in the test's expected-findings table, which asserts the failure until the engine change that fixes it
+  removes the entry. The table is empty.
   `geometry/intersectConic.test.ts` reads the same file to hold which path answered each sphere and conic solve: the
   closed form from one profile evaluation, or the iterative path with the reason for the fallback.
   `geometry/intersect.test.ts` reads it to hold which path answers each asphere fixture: the conic-seeded route, by
@@ -502,10 +503,10 @@ The classes in `budgets.ts`:
 - After a legacy fan ray's first missed surface, its substitute ghost points and the clipped `y` projected from
   them have the `legacyMissTail` class: presence, count and finiteness only above C0. The comparator reads the first
   `intersection-failure` in each ray's `diagnostics.clipEvents`, without another trace or an added record member.
-  On both sides, a ghost qualifies only when `pts.length - 1 + ghostPts.length` equals the length of
-  `diagnostics.hitSurfaceIndexes`, and its position `pts.length - 1 + ghostIndex` is at or after the first miss's
-  position in that hit list. `rayTrace.ts` adds the launch point, appends hits in order, and drops non-finite drawn
-  points while the stack diagnostics retain every hit index; a misaligned record keeps its old coordinate budget.
+  On both sides, a ghost qualifies when its hit-position lower bound `pts.length - 1 + ghostIndex` is at or after
+  the first miss's position in `diagnostics.hitSurfaceIndexes`. `rayTrace.ts` adds the launch point, appends hits in
+  order, and drops non-finite drawn points while the stack diagnostics retain every hit index; dropped points can
+  only move a ghost later in the hit list, so the lower bound remains safe without complete alignment.
   The `y` exemption requires both rays to be clipped and both to have an intersection failure. A rim clip alone
   does not qualify. Earlier ghosts, `pts`, `u`, diagnostics, failure and clip reasons keep their existing rules.
   C0 stays bit-exact. These off-ray substitutes are unused by the app's prepared tracer fans, which stop at a miss,
