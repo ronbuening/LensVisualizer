@@ -1,7 +1,10 @@
+import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
 import { build } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
+import { prepareState } from "../../../src/optics/state/prepareState.js";
+import { createPerspectiveTraceContext } from "../../../src/optics/perspective/trace.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import {
   traceExactSurfaceStack,
@@ -225,6 +228,11 @@ describe("asphere cap tracing and clipping", () => {
       ...state,
       surfaces: state.surfaces.map((surface, i) => (i === 0 ? { ...surface, sd: 2.5, innerSd } : surface)),
     };
+    capState.traceGeometry = createTraceGeometry({
+      ...state.traceGeometry,
+      surfaces: capState.surfaces,
+      isFoldedOptics: state.lens.flags.isFoldedOptics,
+    });
     const capLens = { ...L, S: L.S.map((surface, i) => (i === 0 ? { ...surface, sd: 2.5, innerSd } : surface)) };
     const prepared = traceEngineRay2(capState, ray, {
       launchBoundT: 4,
@@ -244,5 +252,95 @@ describe("asphere cap tracing and clipping", () => {
       expect(result.hits[0].clipped).toBe(true);
       expect(result.hits[0].clipReason).toBe(innerSd ? "inner-hole" : "semi-diameter");
     }
+  });
+});
+
+describe("prepared traversal selection", () => {
+  it.each([
+    ["apo-lanthar-50f2", "sequential"],
+    ["reference-spherical-primary-mirror", "generalized"],
+    ["reference-mangin-second-surface-mirror", "generalized"],
+    ["reference-annular-ring-blocker", "generalized"],
+  ] as const)("caches %s traversal and keeps defined stopAt requests sequential", (key, kind) => {
+    const state = prepareRuntimeState(lensFor(key), 0, 0);
+    const geometry = state.traceGeometry;
+    expect(geometry).toBeDefined();
+    expect(geometry.traversal.kind).toBe(kind);
+    const input = { origin: [0, 1, -5], direction: [0, 0, 1] } as const;
+    const full = traceEngineRay2(state, input, { recordHeights: true, recordOpticalPath: true });
+    expect(full.diagnostics.terminationReason === "sequential-return").toBe(kind === "sequential");
+    for (const stopAt of [0, 1, 1.5, NaN, Infinity, -Infinity]) {
+      for (const skipLastTransfer of [false, true]) {
+        const result = traceEngineRay2(state, input, {
+          stopAt,
+          skipLastTransfer,
+          recordHeights: true,
+          recordOpticalPath: true,
+        });
+        const count = Number.isFinite(stopAt)
+          ? Math.min(state.surfaces.length, Math.max(0, Math.round(stopAt)))
+          : state.surfaces.length;
+        expect(result.diagnostics.terminationReason).toBe("sequential-return");
+        expect(result.returnVertexIndex).toBe(
+          count <= 0 ? 0 : Math.min(skipLastTransfer ? count - 1 : count, state.surfaces.length - 1),
+        );
+        expect(result.heights?.length).toBe(result.hits.length);
+        expect(result.opticalPathLengthMm).toBeDefined();
+      }
+    }
+    expect(state.traceGeometry).toBe(geometry);
+  });
+
+  it("classifies geometry once rather than once per fan ray or active perspective guard", () => {
+    for (const key of ["apo-lanthar-50f2", "reference-spherical-primary-mirror"]) {
+      const base = prepareRuntimeState(lensFor(key), 0, 0);
+      let classificationReads = 0;
+      const lens = {
+        ...base.lens,
+        flags: {
+          ...base.lens.flags,
+          get isFoldedOptics() {
+            classificationReads++;
+            return base.lens.flags.isFoldedOptics;
+          },
+        },
+      };
+      const state = prepareState(lens, 0, 0);
+      const context = createPerspectiveTraceContext({ preparedState: state, movement: { shiftMm: 1, tiltDeg: 0 } });
+      const before = classificationReads;
+      expect(before).toBeGreaterThan(0);
+      for (const y of [0, 0.1, 0.2]) {
+        const input = { origin: [0, y, -5], direction: [0, 0, 1] } as const;
+        traceEngineRay2(state, input);
+        if (base.lens.flags.isFoldedOptics) {
+          expect(() => context.traceRay(input)).toThrow("sequential optical paths only");
+        } else {
+          context.traceRay(input);
+        }
+        context.traceRay(input, { stopAt: 1 });
+      }
+      expect(classificationReads).toBe(before);
+    }
+
+    const base = prepareRuntimeState(lensFor("apo-lanthar-50f2"), 0, 0);
+    let scans = 0;
+    const surfaces = new Proxy(base.surfaces, {
+      get(target, property, receiver) {
+        if (property === "some") scans++;
+        return Reflect.get(target, property, receiver);
+      },
+    });
+    const geometry = createTraceGeometry({ ...base.traceGeometry, surfaces, isFoldedOptics: false });
+    expect(scans).toBe(1);
+    const state = { ...base, surfaces, traceGeometry: geometry };
+    for (const y of [0, 0.1, 0.2]) traceEngineRay2(state, { origin: [0, y, -5], direction: [0, 0, 1] });
+    expect(scans).toBe(1);
+    expect(state.traceGeometry).toBe(geometry);
+
+    const blocker = base.surfaces.map((surface, i) =>
+      i === 0 ? { ...surface, interaction: { ...surface.interaction, type: "block" as const } } : surface,
+    );
+    const blocking = createTraceGeometry({ ...geometry, surfaces: blocker, isFoldedOptics: false });
+    expect(blocking.traversal.kind).toBe("generalized");
   });
 });

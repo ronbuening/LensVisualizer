@@ -6,7 +6,7 @@
  */
 
 import { wideOpenStopAtZoom } from "../apertureStop.js";
-
+import { createTraceGeometry } from "../trace/geometry.js";
 import type { AberrationVarRange, VarRange } from "../../types/optics.js";
 import { clamp, formatCacheNumber, normalizeControlT } from "../math/numerics.js";
 import type { PreparedStateCache } from "./cache.js";
@@ -94,6 +94,14 @@ export function prepareState(
   ) as readonly CompiledStateSurface[];
   const frozenZ = Object.freeze([...z]);
   const state = Object.freeze({
+    traceGeometry: createTraceGeometry({
+      surfaces,
+      z: frozenZ,
+      imagePlane,
+      stopSurfaceIndex: lens.stop.surfaceIndex,
+      pathPlan: lens.opticalPath,
+      isFoldedOptics: lens.flags.isFoldedOptics,
+    }),
     lens,
     focusT,
     zoomT,

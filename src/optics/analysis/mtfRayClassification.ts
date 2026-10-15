@@ -71,7 +71,7 @@ export function provesApertureMiss(
 ): boolean {
   const surface = state.surfaces[trace.terminalSurfaceIndex + 1];
   if (!surface) return false;
-  const aperture = evaluateAperture(state, surface, 0, stopRadius).semiDiameter;
+  const aperture = evaluateAperture(state.traceGeometry, surface, 0, stopRadius).semiDiameter;
   if (aperture === null || !(aperture > 0)) return false;
   const origin = trace.terminalPoint;
   const [dx, dy, dz] = trace.terminalDirection;

@@ -10,7 +10,6 @@ import { intersectRayPlane, type RayPlaneIntersection } from "../geometry/inters
 import { directionFromMeridionalSlope, directionFromSkewSlope, dot, subtract } from "../math/vector.js";
 import type { Plane3, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
-import { shouldUseGeneralizedTrace } from "../trace/generalizedTrace.js";
 import { stateWithRuntimeZ, traceEngineRay2 } from "../trace/rayAdapters.js";
 import type { EngineTraceResult, TraceHit, TraceOptions } from "../trace/types.js";
 import { directionSlopes } from "../trace/utils.js";
@@ -124,7 +123,11 @@ export function tracePerspectiveRay(
   input: Ray3,
   options: PerspectiveTraceOptions = {},
 ): PerspectiveTraceResult {
-  if (context.pose.active && options.stopAt === undefined && shouldUseGeneralizedTrace(context.state, undefined)) {
+  if (
+    context.pose.active &&
+    options.stopAt === undefined &&
+    context.state.traceGeometry.traversal.kind === "generalized"
+  ) {
     throw new PerspectiveTraceUnsupportedError(
       "Full perspective-control tracing currently supports sequential optical paths only",
     );

@@ -9,14 +9,13 @@ import { directionFromMeridionalSlope, directionFromSkewSlope } from "../math/ve
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
 import { prepareState } from "../state/prepareState.js";
 import type { CompiledStateSurface, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
-import { shouldUseGeneralizedTrace, traceGeneralized } from "./generalizedTrace.js";
+import { createTraceGeometry } from "./geometry.js";
 import {
   engineTraceToRuntimeRayResult,
   engineTraceToRuntimeSkewResult,
   vectorLeadPoint,
   type RuntimeSkewRayTraceResult,
 } from "./runtimeRayResult.js";
-import { traceSequential } from "./sequentialTrace.js";
 import type { EngineTraceResult, TraceOptions } from "./types.js";
 import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../constants.js";
 
@@ -65,8 +64,9 @@ export function traceEngineRay2(
   input: Ray3,
   options: TraceOptions = {},
 ): EngineTraceResult {
-  if (shouldUseGeneralizedTrace(state, options.stopAt)) return traceGeneralized(state, input, options);
-  return traceSequential(state, input, options);
+  const geometry = state.traceGeometry;
+  const traverse = options.stopAt === undefined ? geometry.traversal.full : geometry.traversal.partial;
+  return traverse(geometry, input, options);
 }
 
 /**
@@ -547,10 +547,20 @@ export function stateWithRuntimeZ(state: PreparedOpticalState, zPos: readonly nu
         ...state.imagePlane,
         point: Object.freeze([state.imagePlane.point[0], state.imagePlane.point[1], imgZ] as const),
       });
+  const frozenSurfaces = Object.freeze(surfaces);
+  const frozenZ = Object.freeze([...zPos]);
   const shiftedState = Object.freeze({
     ...state,
-    surfaces: Object.freeze(surfaces),
-    z: Object.freeze([...zPos]),
+    surfaces: frozenSurfaces,
+    z: frozenZ,
+    traceGeometry: createTraceGeometry({
+      surfaces: frozenSurfaces,
+      z: frozenZ,
+      imagePlane,
+      stopSurfaceIndex: state.lens.stop.surfaceIndex,
+      pathPlan: state.lens.opticalPath,
+      isFoldedOptics: state.lens.flags.isFoldedOptics,
+    }),
     imagePlane,
     imgZ,
     totalTrack: state.lens.flags.isFoldedOptics ? state.totalTrack : imgZ - shiftedFirstZ,

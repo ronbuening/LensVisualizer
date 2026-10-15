@@ -512,6 +512,17 @@ see `agent_docs/decisions.md`):
     `aberrationT ≠ 0`.
   - `validateFoldedImagePlaneReachability()` in `validateLensData.ts`.
 
+Each `PreparedOpticalState` owns a frozen `TraceGeometry` view (`trace/types.ts`), built by `trace/geometry.ts`.
+It shares the state's surface, z and image-plane references and the lens's path metadata, with the stop index and
+indexed `surface.nd` values; chromatic indices and physical stop-radius overrides remain request options. Sequential
+and generalized traversal, path planning, aperture checks and trace diagnostics consume this view without a lens
+reference. The factory classifies geometry once and stores full and partial traversal entries: full rays use the
+selected sequential or generalized tracer, while a defined `stopAt` selects sequential partial traversal per request.
+The active perspective guard reads the cached traversal kind; the generalized stop helper still requests generalized
+traversal explicitly. Prepared-state cache hits reuse the view, and coordinate overrides rebuild it from the exact new
+records without changing cache keys or ownership. The RuntimeLens-shaped stack retains its existing dispatch until
+its remaining callers migrate.
+
 In the prepared-state engine, surface-intersection misses are terminal in both the sequential and generalized paths,
 including ghost-mode diagram traces: the result preserves already solved hits for display and diagnostics, but does not
 fabricate fallback surface points after a miss. Aperture/semi-diameter clips remain distinct from misses; ghost mode

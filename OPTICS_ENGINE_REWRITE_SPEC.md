@@ -2164,6 +2164,8 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
   - **Change:** `trace/sequentialTrace.ts`, `trace/generalizedTrace.ts` and `trace/pathPlanner.ts` take `TraceGeometry`.
     `PreparedOpticalState` provides one. The sequential/generalized dispatch is decided once per geometry, not per ray.
   - **Gate:** C0.
+  - **As built:** Geometry caches full and partial traversal entries, keeping the `stopAt` request check per request
+    while choosing sequential or generalized traversal once per geometry.
 - **S4.P2.T1 Chief-relative skew rays on the production stack.**
   - **Change:** `traceChiefRelativeSkewRay` and its chromatic variant move to `trace/`. That moves their callers onto
     the production stack: `aberration/offAxis.ts` (scalar path), `aberration/fieldCurvature.ts` (parabasal rays),
