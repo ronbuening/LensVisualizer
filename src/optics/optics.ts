@@ -34,6 +34,8 @@ export {
 export {
   chiefRayImageHeight2 as chiefRayImageHeight,
   chiefRayImageHeightAccurate2 as chiefRayImageHeightAccurate,
+  invertChiefRayImageHeights,
+  type ImageHeightInversionResult,
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   computeBoundingSphereLaunchRadiusMm2 as computeBoundingSphereLaunchRadiusMm,
   computeBoundingSphereVectorFieldLaunch2 as computeBoundingSphereVectorFieldLaunch,

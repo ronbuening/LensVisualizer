@@ -1175,10 +1175,20 @@ primers aligned to that convention.
 
 `distortionAnalysis.ts` computes:
 
-- `computeDistortionCurve()` - 1D distortion curve from center to edge. Residual is measured against the lens's
-  declared projection (rectilinear, fisheye-equidistant, or fisheye-equisolid), not always rectilinear. The
-  image-height solver uses `chiefRayImageHeightAccurate`, so it can consume vector chief rays when `solveChiefRay`
-  returns a bounding-sphere launch.
+- `computeDistortionCurve()` - historical center-to-edge samples with independent ray validation.
+  The shared inversion keeps the original coarse brackets, 40-step bisection and 1e-4 mm success tolerance.
+  Each returned ray must complete and reach its own target within that tolerance; invalid samples are dropped,
+  and later valid samples remain. An earlier failure or height jump does not exclude a later field. The corner
+  is unavailable only when its own inversion has no valid ray. Retained samples keep their original target heights,
+  floats and normalization; stations with all samples valid keep the exact Edge figure and label. Trace diagnostics
+  are observed on rays already traced; only a 40-step fallback needs a final height check. A distinct format-corner
+  target for rectilinear curves is checked independently when needed, including the raw field if the analysis field
+  stops short. Fisheye Edge reporting keeps the historic last bracketed target. Ordinary
+  design/aperture limits retain Edge reporting; no earlier failure vetoes a corner ray that reaches its target. No continuity scan or
+  synthetic last-valid endpoint is used. The chief-solve fallback discontinuities belong to S6.P2.T2 (object-plane
+  and bounding-sphere chief solves); this guard only excludes invalid distortion samples. Scalar rim continuation,
+  vector aperture clipping and the Distortion-tab folded-system guard are retained. Residuals use the declared
+  rectilinear/equidistant/equisolid projection; vector chief launches remain supported.
 - `computeDistortionFieldGrid()` - traced 2D chief-ray field grid. The internal `resolveDistortionGridLaunch`
   helper forks on `reference.projectionReference.kind`: rectilinear uses the image-space Cartesian sampler +
   inverse-map; fisheye kinds sample angular Cartesian and forward-map through

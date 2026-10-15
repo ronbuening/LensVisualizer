@@ -18,7 +18,8 @@ import {
   computeFieldGeometryAtState,
   skewImagePlaneIntercept,
   solveChiefRay,
-  solveFieldAnglesForImageHeightsAccurate,
+  invertChiefRayImageHeights,
+  type ImageHeightInversionResult,
   thick,
   traceSkewRay,
   traceSkewRayVector,
@@ -37,13 +38,14 @@ import {
 import type { FieldGeometryState, SkewRayTraceResult } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
 import type { AnalysisSamplingOptions } from "./analysis/analysisQuality.js";
+import { resolveImageFormatMetadata } from "../utils/catalog/lensTaxonomy.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample point on the distortion curve. */
 export interface DistortionSample {
   /** Object-space field angle in degrees (0 = on-axis). */
   fieldAngleDeg: number;
-  /** Normalized image height from center to current edge (0..1). */
+  /** Normalized height to the historical edge (0..1). */
   normalizedImageHeight: number;
   /** Current image height on the sensor/image plane (mm, signed). */
   imageHeight: number;
@@ -59,6 +61,13 @@ export interface DistortionSample {
   referenceKind?: ProjectionReferenceKind;
   /** Human-readable ideal-reference label. */
   referenceLabel?: string;
+}
+
+/** Independently validated historical edge samples and corner inversion status. */
+export interface DistortionCurveResult {
+  samples: DistortionSample[];
+  corner: ImageHeightInversionResult;
+  cornerImageHeight: number;
 }
 
 /** One point in the traced 2D distortion field grid. */
@@ -114,6 +123,7 @@ function computeDistortionReference(
   zoomT: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
+  allowFailedEdge = false,
 ): DistortionReference | null {
   if (L.N < 1) return null;
 
@@ -158,7 +168,7 @@ function computeDistortionReference(
     geometry,
     aberrationT,
   );
-  if (!isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) < 1e-9) return null;
+  if (!allowFailedEdge && (!isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) < 1e-9)) return null;
 
   const scaleProbeAngleDeg = Math.min(Math.max(geometry.halfFieldDeg * 0.01, 0.02), 0.5);
   const probeImageHeight = chiefRayImageHeight(scaleProbeAngleDeg, zPos, focusT, zoomT, L, geometry, aberrationT);
@@ -201,7 +211,7 @@ function computeDistortionReference(
  * @param zoomT           — zoom slider [0..1]
  * @param dynamicEFL      — retained for compatibility with existing callers
  * @param currentPhysStopSD — retained for compatibility with existing callers
- * @returns                  array of DistortionSample, or empty if tracing fails
+ * @returns                  valid historical edge samples and independent corner status
  */
 export function computeDistortionCurve(
   L: RuntimeLens,
@@ -213,19 +223,28 @@ export function computeDistortionCurve(
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
   sampling: AnalysisSamplingOptions = {},
-): DistortionSample[] {
-  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT);
-  if (reference === null) return [];
+): DistortionCurveResult {
+  const cornerImageHeight = (L.data?.imageCircleMm ?? resolveImageFormatMetadata(L.data?.imageFormat).diagonalMm) / 2;
+  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT, !L.isFoldedOptics);
+  if (reference === null)
+    return {
+      samples: [],
+      corner: { status: "unreachable", reason: "field-limit" },
+      cornerImageHeight,
+    };
 
   const samples: DistortionSample[] = [];
   const sampleCount = clampedSampleCount(sampling.distortionCurveSampleCount, SAMPLE_COUNT, 3);
-  const edgeAbsHeight = Math.abs(reference.edgeImageHeight);
+  const edgeAbsHeight = Number.isFinite(reference.edgeImageHeight)
+    ? Math.abs(reference.edgeImageHeight)
+    : cornerImageHeight;
   const targetImageHeights = Array.from(
     { length: sampleCount - 1 },
     (_, index) => -edgeAbsHeight * ((index + 1) / (sampleCount - 1)),
   );
-  const solvedFieldAngles = solveFieldAnglesForImageHeightsAccurate(
-    targetImageHeights,
+  const separateCorner = !isFisheyeProjection(L.projection) && Math.abs(edgeAbsHeight - cornerImageHeight) >= 1e-4;
+  const inversions = invertChiefRayImageHeights(
+    separateCorner ? [...targetImageHeights, -cornerImageHeight] : targetImageHeights,
     zPos,
     focusT,
     zoomT,
@@ -234,6 +253,30 @@ export function computeDistortionCurve(
     aberrationT,
   );
 
+  // The historic Edge is the last target for which the old inversion returned an
+  // angle, including an invalid ray now rejected. Unbracketed outer targets were
+  // already omitted by the original curve and must not rename a valid Edge.
+  const edge =
+    inversions.slice(0, sampleCount - 1).findLast((result) => result.fieldAngleDeg !== undefined) ??
+    inversions[sampleCount - 2];
+  let formatCorner = separateCorner ? inversions.at(-1)! : edge;
+  if (separateCorner && formatCorner.status === "unreachable" && formatCorner.reason === "field-limit") {
+    const rawGeometry = computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+    if (rawGeometry.halfFieldDeg > reference.geometry.halfFieldDeg) {
+      [formatCorner] = invertChiefRayImageHeights(
+        [-cornerImageHeight],
+        zPos,
+        focusT,
+        zoomT,
+        L,
+        rawGeometry,
+        aberrationT,
+      );
+    }
+  }
+  // Preserve ordinary design/aperture-limited Edge reporting. A numerical failure
+  // only suppresses the corner when the corner's own inversion has no valid ray.
+  const corner = formatCorner.status === "unreachable" && formatCorner.reason === "field-limit" ? edge : formatCorner;
   for (let i = 0; i < sampleCount; i++) {
     const normalizedImageHeight = i / (sampleCount - 1);
     if (i === 0) {
@@ -253,8 +296,9 @@ export function computeDistortionCurve(
 
     const targetIndex = i - 1;
     const realHeight = targetImageHeights[targetIndex];
-    const fieldAngleDeg = solvedFieldAngles[targetIndex];
-    if (fieldAngleDeg == null || !isFinite(fieldAngleDeg)) continue;
+    const inversion = inversions[targetIndex];
+    if (inversion.status === "unreachable") continue;
+    const fieldAngleDeg = inversion.fieldAngleDeg;
 
     const thetaRad = (fieldAngleDeg * Math.PI) / 180;
     const idealHeight = -projectionImageHeightForAngle(reference.projectionReference, thetaRad);
@@ -277,7 +321,7 @@ export function computeDistortionCurve(
     });
   }
 
-  return samples;
+  return { samples, corner, cornerImageHeight };
 }
 
 /**

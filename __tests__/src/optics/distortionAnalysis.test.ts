@@ -1,7 +1,11 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
+import * as rayAdapters from "../../../src/optics/trace/rayAdapters.js";
+import Canon14Raw from "../../../src/lens-data/canon/CanonEF14mmf28L.data.js";
+import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import { computeDistortionCurve, computeDistortionFieldGrid } from "../../../src/optics/distortionAnalysis.js";
 import {
   computeAnalysisFieldGeometryAtState,
+  chiefRayImageHeightAccurate,
   doLayout,
   eflAtFocus,
   skewImagePlaneIntercept,
@@ -9,14 +13,117 @@ import {
   thick,
   traceSkewRay,
 } from "../../../src/optics/optics.js";
+import SigmaMacro180Raw from "../../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.js";
+import Olympus18Raw from "../../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.js";
 import NikonZ135Raw from "../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonZ100400Raw from "../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
 import NikonFisheye6mmf28Raw from "../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
 import MinoltaAF100MacroRaw from "../../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
-import { apertureAt, build, sharedApoLanthar50f2, sharedNikkorZ70200, sharedSonnar50f15 } from "./testLensFixtures.js";
+import {
+  apertureAt,
+  build,
+  buildVariableStopGapLens,
+  sharedApoLanthar50f2,
+  sharedNikkorZ70200,
+  sharedSonnar50f15,
+} from "./testLensFixtures.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 describe("computeDistortionCurve", () => {
+  it.each([0, 1])("drops failed samples and reports the Olympus corner unavailable at focus %s", (focusT) => {
+    const L = build(Olympus18Raw);
+    const { z } = doLayout(focusT, 0, L);
+    const result = computeDistortionCurve(L, z, focusT, 0, L.EFL, L.stopPhysSD);
+    expect(result.corner.status).toBe("unreachable");
+    expect(result.cornerImageHeight).toBe(21.65);
+    expect(result.samples.length).toBeGreaterThan(1);
+    if (focusT === 0) expect(result.samples.length).toBeLessThan(21);
+    for (const sample of result.samples) {
+      expect(
+        Math.abs(chiefRayImageHeightAccurate(sample.fieldAngleDeg, z, focusT, 0, L) - sample.realHeight),
+      ).toBeLessThan(1e-4);
+    }
+  });
+
+  function curveAcrossJump() {
+    const L = buildVariableStopGapLens([1, 1], "test-distortion-jump", undefined, { imageCircleMm: 60 });
+    const { z } = doLayout(0, 0, L);
+    const geometry = { ...computeAnalysisFieldGeometryAtState(0, 0, L), halfFieldDeg: 20 };
+    const traceRay = rayAdapters.traceRay2;
+    const trace = vi.spyOn(rayAdapters, "traceRay2").mockImplementation((...args) => {
+      const result = traceRay(...args);
+      const angle = (Math.atan(-args[1]) * 180) / Math.PI;
+      return { ...result, y: -angle - (angle >= 12 ? 10 : 0), u: 0 };
+    });
+    try {
+      return computeDistortionCurve(L, z, 0, 0, L.EFL, L.stopPhysSD, geometry, 0, { distortionCurveSampleCount: 4 });
+    } finally {
+      trace.mockRestore();
+    }
+  }
+
+  it("keeps a valid corner available after an earlier height jump", () => {
+    const result = curveAcrossJump();
+    expect(result.corner.status).toBe("reached");
+    expect(result.samples.at(-1)!.imageHeight).toBeCloseTo(-30, 10);
+    expect(result.samples.at(-1)!.normalizedImageHeight).toBe(1);
+  });
+
+  it("drops an invalid middle sample and retains valid samples on both sides", () => {
+    const result = curveAcrossJump();
+    expect(result.samples.map((sample) => Math.round(sample.imageHeight))).toEqual([0, -10, -30]);
+    expect(result.samples.map((sample) => sample.normalizedImageHeight)).toEqual([0, 1 / 3, 1]);
+  });
+
+  // Captured from engine-next 98355c00: every sample float, and the number of scalar height-trace calls. The calls'
+  // own arguments are not pinned: a launch height from V8's math functions can differ by an ulp between platforms.
+  // The field-limited Canon keeps its -2.58% Edge at 21.08 mm, short of the 21.65 mm corner.
+  it.each([
+    {
+      data: ApoLantharRaw,
+      samples: "a45d10a73ff20b965f1d9390339b67a9c9a725343a84364f3b04fb89f5402e77",
+      count: 242,
+    },
+    {
+      data: Canon14Raw,
+      samples: "444b8d9fa2e8446e85052afd3eb6f47bcbf4629bdbf5cc86b82d1da464ce2649",
+      count: 272,
+    },
+  ])("preserves sample bits and ray count for $data.key", async ({ data, samples, count }) => {
+    const digest = async (value: unknown) => {
+      const text = JSON.stringify(value, (_key, entry) => {
+        if (typeof entry !== "number") return entry;
+        const bytes = new Uint8Array(8);
+        new DataView(bytes.buffer).setFloat64(0, entry);
+        return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+      });
+      const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+      return Array.from(new Uint8Array(hash), (byte) => byte.toString(16).padStart(2, "0")).join("");
+    };
+    const L = build(data);
+    const { z } = doLayout(0, 0, L);
+    const scalar = vi.spyOn(rayAdapters, "traceRay2");
+    const vector = vi.spyOn(rayAdapters, "traceRayVector2");
+    try {
+      const result = computeDistortionCurve(L, z, 0, 0, L.EFL, L.stopPhysSD);
+      expect(result.corner.status).toBe("reached");
+      expect(await digest(result.samples)).toBe(samples);
+      expect(scalar).toHaveBeenCalledTimes(count);
+      expect(vector).not.toHaveBeenCalled();
+    } finally {
+      scalar.mockRestore();
+      vector.mockRestore();
+    }
+  });
+
+  it("keeps the axis finite when the projection inverse cannot supply an angle", () => {
+    const L = build(SigmaMacro180Raw);
+    const { z } = doLayout(1, 0, L);
+    const { samples } = computeDistortionCurve(L, z, 1, 0, L.EFL, L.stopPhysSD);
+    expect(samples.length).toBeGreaterThan(0);
+    expect(samples[0].idealFieldAngleDeg).toBe(0);
+  });
+
   /* ── Basic curve shape ── */
 
   it("returns at least 9 samples for Sonnar 50/1.5", () => {
@@ -25,7 +132,7 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
     expect(samples.length).toBeGreaterThanOrEqual(9);
   });
 
@@ -35,7 +142,7 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
     expect(samples[0].fieldAngleDeg).toBe(0);
     expect(samples[0].distortionPercent).toBe(0);
   });
@@ -46,7 +153,7 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
     expect(samples.length).toBeGreaterThan(1);
 
     const halfField = computeAnalysisFieldGeometryAtState(0, 0, L).halfFieldDeg;
@@ -62,7 +169,7 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
     for (const s of samples) {
       expect(isFinite(s.fieldAngleDeg)).toBe(true);
       expect(isFinite(s.distortionPercent)).toBe(true);
@@ -81,7 +188,7 @@ describe("computeDistortionCurve", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 0, 0, 0, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 0, 0, 0, currentPhysStopSD);
     expect(samples.length).toBeGreaterThanOrEqual(9);
   });
 
@@ -109,7 +216,7 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 1, L);
     const { currentPhysStopSD } = apertureAt(L, 1, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 0, 1, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 0, 1, dynamicEFL, currentPhysStopSD);
     expect(samples.length).toBeGreaterThanOrEqual(9);
     expect(samples[0].distortionPercent).toBe(0);
   });
@@ -122,7 +229,7 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
     const edgeSample = samples[samples.length - 1];
     /* Just verify it's non-zero — specific direction depends on lens design */
     expect(edgeSample.distortionPercent).not.toBe(0);
@@ -134,7 +241,7 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
     for (let i = 1; i < samples.length; i++) {
       expect(samples[i].fieldAngleDeg).toBeGreaterThan(samples[i - 1].fieldAngleDeg);
     }
@@ -146,7 +253,7 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
     for (let i = 1; i < samples.length; i++) {
       expect(Math.abs(samples[i].imageHeight)).toBeGreaterThan(Math.abs(samples[i - 1].imageHeight));
       expect(samples[i].normalizedImageHeight).toBeGreaterThan(samples[i - 1].normalizedImageHeight);
@@ -159,7 +266,7 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(1, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 1, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 1, 0, dynamicEFL, currentPhysStopSD);
     const maxAbs = samples.reduce((m, s) => Math.max(m, Math.abs(s.distortionPercent)), 0);
     expect(maxAbs).toBeLessThan(10);
   });
@@ -170,7 +277,7 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(1, 1, L);
     const { currentPhysStopSD } = apertureAt(L, 1, 0);
 
-    const samples = computeDistortionCurve(L, zPos, 1, 1, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, 1, 1, dynamicEFL, currentPhysStopSD);
     const maxAbs = samples.reduce((m, s) => Math.max(m, Math.abs(s.distortionPercent)), 0);
     expect(maxAbs).toBeLessThan(15);
   });
@@ -186,7 +293,7 @@ describe("computeDistortionCurve", () => {
     // skip the paraxial-chief-ray bisection that would narrow it).
     expect(geometry.halfFieldDeg).toBeCloseTo(110, 6);
 
-    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD, geometry);
+    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD, geometry);
     // Samples that can't be solved past the slope-launch cap (~89°) drop out
     // naturally; the curve covers the slope-launchable range and labels
     // everything against the fisheye-equidistant reference.
@@ -250,7 +357,7 @@ describe("computeDistortionFieldGrid", () => {
     const dynamicEFL = eflAtFocus(focusT, zoomT, L);
     const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
 
-    const samples = computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD);
     const edgeSample = samples[samples.length - 1];
     const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD);
     const centerLine = grid.lines.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 0);

@@ -184,6 +184,8 @@ export { traceToStopViaGeneralized2 } from "./trace/stopTrace.js";
 export {
   chiefRayImageHeight2,
   chiefRayImageHeightAccurate2,
+  invertChiefRayImageHeights,
+  type ImageHeightInversionResult,
   computeAnalysisFieldGeometryAtState2,
   computeBoundingSphereLaunchRadiusMm2,
   computeBoundingSphereVectorFieldLaunch2,

@@ -203,9 +203,10 @@ export const QUANTITIES = {
    * is, so the bound is plainly relative. */
   lengthRatio: relative("Ratio of two analysis lengths", 1e-8, "plan"),
 
-  /* Build pupils are crossings of the traced basis rays. Their near bound has no absolute floor; the far bound
-   * uses the analysis crossing's share without its 1e-8 mm floor (`buildPupilByDistance`). */
-  buildPupil: relative("Build pupil constant", 1e-12, "derived"),
+  /* Build pupils are crossings of the traced basis rays. The near class keeps the first-order
+   * scalar's 1e-12 mm floor, so a pupil near its reference surface has a bound; the far class applies only beyond
+   * 100 mm, where its share is at least 1e-8 mm, and needs none (`buildPupilByDistance`). */
+  buildPupil: relative("Build pupil constant", 1e-12, "derived", LENGTH_FLOOR),
   farBuildPupil: relative("Build pupil constant beyond 100 mm", 1e-10, "derived"),
 
   /* Beyond a legacy miss the tracer substitutes points off the ray. No app fan reads that tail. */
@@ -541,7 +542,7 @@ const binsByRayWeight: QuantitySelector = (leaf) => {
  * epZRelStop, xpSD uses xpZRelLastSurf, and zoomXpSDs[i] uses zoomXpZRelLastSurfs[i]; zoomEPs is the nominal
  * entrance-pupil radius, focal length over twice the f-number, and stays a first-order scalar. Each zoom position uses its own magnitude at that station. Either side beyond 100 mm
  * takes the crossing share; a missing or non-finite position supplies no far distance. The share multiplies the
- * compared member's own magnitude, never the sibling's, and neither class has an absolute floor. */
+ * compared member's own magnitude, never the sibling's, and the near class keeps the first-order 1e-12 mm floor. */
 function buildPupilByDistance(position?: string): QuantitySelector {
   return (leaf) => {
     const depth = leaf.keys.length - 1;
