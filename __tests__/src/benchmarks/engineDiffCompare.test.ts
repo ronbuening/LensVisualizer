@@ -485,8 +485,8 @@ describe("engineDiff comparison of identical captures", () => {
     expect(ok + clipped + failed).toBe(22);
     expect(ok).toBeGreaterThan(0);
     expect(counts.headEngine.digestedTraces.ok).toBeGreaterThan(0);
-    /* The context's jobs, six beside them, and the four readouts the viewer computes outside the context. */
-    expect(counts.headEngine.jobs).toEqual({ returned: ANALYSIS_CONTEXT_JOBS.length + 10, threw: 0 });
+    /* The context's jobs, the split corner metadata, six beside them, and the viewer's four readouts. */
+    expect(counts.headEngine.jobs).toEqual({ returned: ANALYSIS_CONTEXT_JOBS.length + 11, threw: 0 });
   });
 });
 
@@ -851,7 +851,7 @@ describe("engineDiff drift detection", () => {
     const reversed = (value: unknown) => [...(value as unknown[])].reverse();
     for (const [request, path] of [
       ["traces", ["onAxis", "rays"]],
-      ["analysis", ["jobs", "computeDistortionCurve", "value", "samples"]],
+      ["analysis", ["jobs", "computeDistortionCurve", "value"]],
       ["mtf", ["result", "fields"]],
     ] as [RequestFamily, Path][]) {
       const head = withChange(request, path, reversed);
@@ -912,8 +912,8 @@ describe("engineDiff drift detection", () => {
     /* The Petzval position of a field is no crossing of rays, and has a class of its own at the same 1e-8 mm. */
     ["analysis", [...CURVATURE_FIELD, "petzvalBestFocusZ"], "petzvalPosition", 1],
     ["analysis", [...CURVATURE_FIELD, "sagittalBestFocusZ"], "analysisLength", 1],
-    ["analysis", ["jobs", "computeDistortionCurve", "value", "samples", 3, "distortionPercent"], "percentage", 1],
-    ["analysis", ["jobs", "computeDistortionCurve", "value", "samples", 3, "fieldAngleDeg"], "fieldAngle", 1],
+    ["analysis", ["jobs", "computeDistortionCurve", "value", 3, "distortionPercent"], "percentage", 1],
+    ["analysis", ["jobs", "computeDistortionCurve", "value", 3, "fieldAngleDeg"], "fieldAngle", 1],
     ["analysis", ["jobs", "computeVignettingCurve", "value", 3, "relativeIllumination"], "ratio", 1],
     ["analysis", ["jobs", "effectiveFNumber", "value"], "nonLength", 1],
     ["build", ["petzvalSum"], "nonLength", 1],

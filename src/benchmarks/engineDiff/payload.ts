@@ -576,6 +576,25 @@ export type Outcome<Value> =
   | { ok: false; error: { name: string; message: string; reason?: string; section?: string } };
 
 /**
+ * Keep distortion samples at their pre-envelope path so captures from older engines compare them numerically.
+ * Corner metadata is a separate outcome, present only when the engine returns the new envelope.
+ */
+export function recordAnalysisJob(
+  jobs: Record<string, Outcome<unknown>>,
+  job: string,
+  outcome: Outcome<unknown>,
+): void {
+  const value = outcome.ok ? outcome.value : undefined;
+  if (job === "computeDistortionCurve" && isRecord(value) && Array.isArray(value.samples) && "corner" in value) {
+    const { samples, ...corner } = value;
+    jobs[job] = { ok: true, value: samples };
+    jobs.computeDistortionCorner = { ok: true, value: corner };
+  } else {
+    jobs[job] = outcome;
+  }
+}
+
+/**
  * Run one computation and record how it ended.
  *
  * @param compute - the engine work
