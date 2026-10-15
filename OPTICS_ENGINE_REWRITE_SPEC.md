@@ -581,6 +581,10 @@ How `budgets.ts` applies the table:
   last surface over its slope. It is a crossing per field and no paraxial constant. S3.P2.T2 moved it by up to
   6.6e-13 of itself near the lens and by 1.1e-11 at 44 m. The profile's `paraxialXpZRelLastSurf` and
   `paraxialEpZRelStop`, the posed lens's intrinsic pupils and the build's pupil constants stay first-order scalars.
+  A build pupil position or size traced from the basis rays keeps 1e-12 relative, or 1e-10 of the compared
+  member's own size when the pupil lies more than 100 mm from the lens, whichever is more, with no absolute
+  floor (a position uses its own magnitude, a size its sibling position at the same station, taking the larger
+  distance of the two sides; C0 remains bit-exact), refining decision 30.
   A sample on the axis repeats the paraxial position. An entrance-pupil sample holds no position.
 - **A tangential focus from a parabasal pair.** The field-curvature analysis finds a tangential focus where a ray
   0.01 mm from the chief ray in the pupil crosses it, a height over a slope difference. The crossing magnifies the
@@ -2818,19 +2822,25 @@ Settled on 2026-10-15, building S4.P2.T1:
 | --- | --- | --- |
 | 60 | Three legacy chromatic faults on seven folded lenses are S4.P2.T1's approved divergence, with a changelog line at promotion | S4.P2.T1 |
 
+Settled on 2026-10-15, at the A3 cumulative check:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 61 | A build pupil position or size traced from the basis rays keeps 1e-12 relative, or 1e-10 of its own size where the pupil lies more than 100 mm from the lens, whichever is more, without an absolute floor; near pupils keep 1e-12 and C0 stays bit-exact, refining decision 30 | [Quantity budgets](#quantity-budgets) |
+
 The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 questions:
 
 | # | Decision | Where |
 | --- | --- | --- |
-| 61 | Going to V1, a stop without `sd` takes the engine's radius to 0.001 mm (a zoom's at the wide station, a scheduled zoom's first schedule value), which V1 ingest sets aside; a file whose radius cannot be derived is refused, and `LensDataInput` stays as it is | S2.P3.T2 |
-| 62 | Nothing is written for an input already at `--to-version`, under `--output` too, which holds only the converted files | S2.P3.T2 |
-| 63 | The V1 print order and `V1_GROUP_STARTS` are stated beside the V1 view, whose own key order stays | S2.P3.T2 |
-| 64 | Collisions compare paths after `realpath`, as directories and without regard to case; `--output` publishes by link, so a destination made after the check is not overwritten | S2.P3.T2 |
-| 65 | A failed rename or a signal while writing puts back every input already replaced, from a backup beside it, and a run refuses while a backup is left | S2.P3.T2 |
-| 66 | The command line reads CR LF as LF and writes LF; a lone CR is refused | S2.P3.T2 |
-| 67 | The type-check reads each converted text at the path it will be written to | S2.P3.T2 |
-| 68 | The V2-to-V1 comment mapping is engine-owned, and the round trip is tested for semantic identity and each comment once, not for bytes | S2.P3.T2 |
-| 69 | The command line's tests are in `npm test` beside the library's | S2.P3.T2 |
+| 62 | Going to V1, a stop without `sd` takes the engine's radius to 0.001 mm (a zoom's at the wide station, a scheduled zoom's first schedule value), which V1 ingest sets aside; a file whose radius cannot be derived is refused, and `LensDataInput` stays as it is | S2.P3.T2 |
+| 63 | Nothing is written for an input already at `--to-version`, under `--output` too, which holds only the converted files | S2.P3.T2 |
+| 64 | The V1 print order and `V1_GROUP_STARTS` are stated beside the V1 view, whose own key order stays | S2.P3.T2 |
+| 65 | Collisions compare paths after `realpath`, as directories and without regard to case; `--output` publishes by link, so a destination made after the check is not overwritten | S2.P3.T2 |
+| 66 | A failed rename or a signal while writing puts back every input already replaced, from a backup beside it, and a run refuses while a backup is left | S2.P3.T2 |
+| 67 | The command line reads CR LF as LF and writes LF; a lone CR is refused | S2.P3.T2 |
+| 68 | The type-check reads each converted text at the path it will be written to | S2.P3.T2 |
+| 69 | The V2-to-V1 comment mapping is engine-owned, and the round trip is tested for semantic identity and each comment once, not for bytes | S2.P3.T2 |
+| 70 | The command line's tests are in `npm test` beside the library's | S2.P3.T2 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

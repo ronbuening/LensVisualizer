@@ -203,6 +203,11 @@ export const QUANTITIES = {
    * is, so the bound is plainly relative. */
   lengthRatio: relative("Ratio of two analysis lengths", 1e-8, "plan"),
 
+  /* Build pupils are crossings of the traced basis rays. Their near bound has no absolute floor; the far bound
+   * uses the analysis crossing's share without its 1e-8 mm floor (`buildPupilByDistance`). */
+  buildPupil: relative("Build pupil constant", 1e-12, "derived"),
+  farBuildPupil: relative("Build pupil constant beyond 100 mm", 1e-10, "derived"),
+
   /* Beyond a legacy miss the tracer substitutes points off the ray. No app fan reads that tail. */
   legacyMissTail: {
     title: "Legacy points after a missed surface",
@@ -530,6 +535,31 @@ const binsByRayWeight: QuantitySelector = (leaf) => {
   return "binnedStatistic";
 };
 
+/* A build pupil keeps 1e-12 of max(|a|, |b|), or 1e-10 of that same member's size when its distance from the
+ * lens exceeds 100 mm, whichever is more. Distance for a position is its own magnitude: epZRelStop is relative
+ * to the stop, xpZRelLastSurf to the last surface. A size reads that position from its sibling: EP.epSD uses
+ * epZRelStop, xpSD uses xpZRelLastSurf, and zoomXpSDs[i] uses zoomXpZRelLastSurfs[i]; zoomEPs is the nominal
+ * entrance-pupil radius, focal length over twice the f-number, and stays a first-order scalar. Each zoom position uses its own magnitude at that station. Either side beyond 100 mm
+ * takes the crossing share; a missing or non-finite position supplies no far distance. The share multiplies the
+ * compared member's own magnitude, never the sibling's, and neither class has an absolute floor. */
+function buildPupilByDistance(position?: string): QuantitySelector {
+  return (leaf) => {
+    const depth = leaf.keys.length - 1;
+    const key = leaf.keys[depth];
+    const distanceOf = (side: readonly unknown[]) => {
+      const sibling = position === undefined ? undefined : memberOf(side[0], position);
+      const value =
+        position === undefined
+          ? memberOf(side[depth], key)
+          : typeof key === "number"
+            ? memberOf(sibling, key)
+            : sibling;
+      return typeof value === "number" && Number.isFinite(value) ? Math.abs(value) : 0;
+    };
+    return Math.max(distanceOf(leaf.base), distanceOf(leaf.head)) > 100 ? "farBuildPupil" : "buildPupil";
+  };
+}
+
 /* ── The table ── */
 
 /** One row of the budget table as the comparator applies it. */
@@ -582,14 +612,16 @@ const TABLE: readonly TableRow[] = [
     "firstOrder",
     [
       "build:{EFL,B,apertureReferenceFocalLength}",
-      "build:EP.epSD",
-      "build:{epZRelStop,xpZRelLastSurf,xpSD,stopPhysSD,stopHousingSD}",
+      "build:{stopPhysSD,stopHousingSD}",
       "build:{zoomEFLs,zoomBs,zoomEPs,zoomStopSDs}[]",
-      "build:{zoomEpZRelStops,zoomXpZRelLastSurfs,zoomXpSDs}[]",
       /* The stop's radius is the engine's own; the other radii are authored and never move. */
       "build:S[].sd",
     ],
   ],
+  [buildPupilByDistance(), ["build:{epZRelStop,xpZRelLastSurf}", "build:{zoomEpZRelStops,zoomXpZRelLastSurfs}[]"]],
+  [buildPupilByDistance("epZRelStop"), ["build:EP.epSD"]],
+  [buildPupilByDistance("xpZRelLastSurf"), ["build:xpSD"]],
+  [buildPupilByDistance("zoomXpZRelLastSurfs"), ["build:zoomXpSDs[]"]],
   /* The f-number, the ratio of the marginal ray's height at the stop to its height at the pupil, the Petzval sum
    * in 1/mm, the drawing scales in px per mm and the sine and tangent of the largest rim angle. */
   [
