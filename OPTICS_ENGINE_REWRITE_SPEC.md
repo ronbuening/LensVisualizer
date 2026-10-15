@@ -1700,8 +1700,9 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       - **Shape:** `schema` other than 2; a field V2 does not define, or one only the engine writes; a required field
         left out; a record that is not an object, a list that is not a list, or a list entry that is not an object
         (a zoom station among them, which the station rules then pass over); `elements` or `surfaces` that is not a
-        list of objects, which stops ingest at once. The shared rules of `ingestCommon.ts` add the aspheres' and
-        rear plates' own.
+        list of objects, which stops ingest at once; a hole in any list V2 ingest checks entry by entry, refused as
+        `null` in its place is. From the shared rules of `ingestCommon.ts`: an `asphere` that is not an object, or a
+        term that is no aspheric coefficient; `rearPlates` that is not a list, or a plate that is not an object.
       - **Elements and media:** an element `id` that is not a positive integer, since V1 reads 0 as air; a surface
         medium naming no element or medium, or neither an element id nor a media id; a medium without a non-empty
         `id`, with an `nd` that is not a number, with a field other than `id`, `name` and `nd`, or with a `name` that

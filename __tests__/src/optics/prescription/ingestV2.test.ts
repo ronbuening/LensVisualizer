@@ -2,9 +2,10 @@
  * V2 ingest: the V1/V2 fixture pairs, dispatch on `schema`, V2 defaults, the refusals V2 adds, and derived stops
  * without an `sd`.
  *
- * Each fixture pair writes one prescription in both versions; the two must share a semantic fingerprint and build to
- * the same lens. The offender sweep removes every derived or scheduled stop's authored `sd` from the catalog and
- * requires the rebuilt lenses to stay bit-identical, which is what lets V2 drop those values.
+ * Each fixture pair writes one prescription in both versions; the two must share a semantic fingerprint. Each of the
+ * 18 lens pairs must build to the same lens, and the converter pair, which builds only on a host, must give the same V1
+ * views. The offender sweep removes every derived or scheduled stop's authored `sd` from the catalog and requires the
+ * rebuilt lenses to stay bit-identical, which is what lets V2 drop those values.
  */
 
 import { describe, expect, it } from "vitest";
@@ -66,6 +67,15 @@ function refusalsOf(file: object, ingest: (file: never) => unknown = ingestLensV
     if (thrown instanceof PrescriptionIngestError) return thrown.issues;
     throw thrown;
   }
+}
+
+/** `list` with a hole at `index`: no entry there at all, which array methods skip. */
+function withHole<T>(list: readonly T[], index: number): T[] {
+  const out = new Array<T>(list.length);
+  list.forEach((value, at) => {
+    if (at !== index) out[at] = value;
+  });
+  return out;
 }
 
 /** The harness's build record: every constant the build derives, with its authored-data echo normalized. */
@@ -278,6 +288,37 @@ describe("V2 refusals name the authored path", () => {
     ["a list that is not a list", "prime", (file) => (file.media = {}), "media must be a list"],
     ["a required field left out", "prime", (file) => delete file.aperture.fStops, "aperture.fStops is required"],
     [
+      "elements that are not a list of objects",
+      "prime",
+      (file) => (file.elements = {}),
+      "elements must be a list of objects",
+    ],
+    [
+      "surfaces that are not a list of objects",
+      "prime",
+      (file) => (file.surfaces = [5]),
+      "surfaces must be a list of objects",
+    ],
+    [
+      "an asphere that is not an object",
+      "prime",
+      (file) => (file.surfaces[1].asphere = 5),
+      "surfaces[1].asphere must be an object of aspheric coefficients",
+    ],
+    [
+      "a term that is no aspheric coefficient",
+      "prime",
+      (file) => (file.surfaces[1].asphere.B4 = 1e-6),
+      "surfaces[1].asphere.B4 is not an aspheric coefficient",
+    ],
+    ["rear plates that are not a list", "rear plates", (file) => (file.rearPlates = {}), "rearPlates must be a list"],
+    [
+      "a rear plate that is not an object",
+      "rear plates",
+      (file) => (file.rearPlates[0] = 5),
+      "rearPlates[0] must be an object",
+    ],
+    [
       "an element id that is not a positive integer",
       "prime",
       (file) => {
@@ -460,6 +501,12 @@ describe("V2 refusals name the authored path", () => {
       "focus.keyframes must be a list of at least two numbers",
     ],
     [
+      "a hole in the focus keyframes",
+      "focus keyframes",
+      (file) => (file.focus.keyframes = withHole(file.focus.keyframes, 1)),
+      "focus.keyframes must be a list of at least two numbers",
+    ],
+    [
       "a station field on some stations but not all",
       "zoom",
       (file) => delete file.zoom.stations[1].closeFocusM,
@@ -488,6 +535,12 @@ describe("V2 refusals name the authored path", () => {
       "a zoom station that is not an object",
       "zoom",
       (file) => (file.zoom.stations[1] = null),
+      "zoom.stations[1] must be an object",
+    ],
+    [
+      "a hole in the zoom stations",
+      "published stations",
+      (file) => (file.zoom.stations = withHole(file.zoom.stations, 1)),
       "zoom.stations[1] must be an object",
     ],
     [
@@ -606,6 +659,37 @@ describe("V2 refusals name the authored path", () => {
 
   it.each(refusals)("refuses %s", (_description, family, edit, issue) => {
     expect(refusalsOf(editedV2(family, edit))).toEqual([issue]);
+  });
+
+  /** Each list V2 ingest checks entry by entry, edited by `at` to hold a hole, or `null`, at one index. */
+  type ListSite = [
+    list: string,
+    family: string,
+    edit: (file: Record<string, any>, at: (list: unknown[], index: number) => unknown[]) => void,
+  ];
+  const listSites: ListSite[] = [
+    ["zoom.stations", "published stations", (file, at) => (file.zoom.stations = at(file.zoom.stations, 1))],
+    ["focus.keyframes", "focus keyframes", (file, at) => (file.focus.keyframes = at(file.focus.keyframes, 1))],
+    ["media", "media", (file, at) => (file.media = at(file.media, 0))],
+    ["focus.conjugates", "conjugates", (file, at) => (file.focus.conjugates = at(file.focus.conjugates, 0))],
+    ["elements", "media", (file, at) => (file.elements = at(file.elements, 1))],
+    ["surfaces", "prime", (file, at) => (file.surfaces = at(file.surfaces, 1))],
+    ["a gap's rows", "zoom", (file, at) => (file.gaps.STO.values = at(file.gaps.STO.values, 1))],
+    ["a gap row", "focus keyframes", (file, at) => (file.gaps["2"].values[0] = at(file.gaps["2"].values[0], 1))],
+    [
+      "a station's publishedFocus",
+      "published stations",
+      (file, at) => (file.zoom.stations[0].publishedFocus = at([1, 1], 1)),
+    ],
+    ["focus.published", "published stations (prime)", (file, at) => (file.focus.published = at([1, 1], 1))],
+    ["rearPlates", "rear plates", (file, at) => (file.rearPlates = at(file.rearPlates, 0))],
+  ];
+
+  it.each(listSites)("refuses a hole in %s as it refuses null", (_list, family, edit) => {
+    const withNull = (list: unknown[], index: number) => list.map((value, at) => (at === index ? null : value));
+    const holed = refusalsOf(editedV2(family, (file) => edit(file, withHole)));
+    expect(holed.length).toBeGreaterThan(0);
+    expect(holed).toEqual(refusalsOf(editedV2(family, (file) => edit(file, withNull))));
   });
 
   it("refuses a teleconverter's source errata, which V1 holds for a lens alone", () => {

@@ -337,6 +337,19 @@ function nested(
   return value;
 }
 
+/**
+ * A list with each hole read as `undefined`, and anything else as it is. Array methods skip a hole, so V2 ingest reads a
+ * list through this wherever it checks the entries, and refuses a hole as it refuses `null`.
+ */
+function everyIndex(value: unknown): unknown {
+  return Array.isArray(value) ? Array.from(value) : value;
+}
+
+/** Whether `value` is a list of numbers at every index. */
+function isNumberListAtEveryIndex(value: unknown): value is number[] {
+  return isNumberList(everyIndex(value));
+}
+
 /** A list of records at `path`, each one's unknown members refused; `[]` when absent or not a list. */
 function records(
   value: unknown,
@@ -350,7 +363,7 @@ function records(
     return [];
   }
   if (context.sources) context.sources.records[path] = path;
-  return value.map((entry, index) => {
+  return Array.from(value as unknown[], (entry, index) => {
     if (!isRecord(entry)) {
       context.issues.push(`${path}[${index}] must be an object`);
       return {};
@@ -680,9 +693,9 @@ function ingestGaps(
 ): CanonicalGap[] {
   return keyedGaps(value, "gaps", GAP_FIELDS, labelIndex, context).map((gap) => {
     const at = `${labelPath("gaps", gap.surface)}.values`;
-    const rows = gap.values;
+    const rows = everyIndex(gap.values);
     if (rows === undefined) return { ...gap, values: [] } as CanonicalGap;
-    if (!Array.isArray(rows) || !rows.every(isNumberList)) {
+    if (!Array.isArray(rows) || !rows.every(isNumberListAtEveryIndex)) {
       context.issues.push(`${at} must be one row of thicknesses per zoom station`);
       return { ...gap, values: [] } as CanonicalGap;
     }
@@ -780,7 +793,7 @@ function ingestZoom(zoom: Untyped, context: IngestContext): { zoom: CanonicalZoo
 /** Whether a published-keyframe list holds strictly increasing keyframe indices beyond infinity. */
 function isPublishedFocusList(value: unknown, keyframeCount: number): value is number[] {
   return (
-    isNumberList(value) &&
+    isNumberListAtEveryIndex(value) &&
     value.every((keyframe, at) => isIndexIn(keyframe, 1, keyframeCount - 1) && (at === 0 || keyframe > value[at - 1]))
   );
 }
@@ -803,7 +816,7 @@ function ingestPublishedStations(
       ? "a list of focus keyframe indices"
       : `strictly increasing focus keyframe indices (1..${keyframeCount - 1})`;
   const isPublishedList = (value: unknown) =>
-    keyframeCount === undefined ? isNumberList(value) : isPublishedFocusList(value, keyframeCount);
+    keyframeCount === undefined ? isNumberListAtEveryIndex(value) : isPublishedFocusList(value, keyframeCount);
   if (!zoom || !stations) {
     if (!has(focusRecord, "published")) context.defaulted.push(lensDefault("publishedStations").path);
     else if (!isPublishedList(focusRecord.published)) {
@@ -941,8 +954,8 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   refuseUnknownFields(data, LENS_FIELDS, "", context);
   refuseOtherSchema(data, context);
   requireFields(data, ["key", "name", "focus", "aperture", "layout"], "", context);
-  const authoredElements = requireRecords(data, "elements", key);
-  const authoredSurfaces = requireRecords(data, "surfaces", key);
+  const authoredElements = requireRecords({ elements: everyIndex(data.elements) }, "elements", key);
+  const authoredSurfaces = requireRecords({ surfaces: everyIndex(data.surfaces) }, "surfaces", key);
   const labelIndex = labelIndexOf(authoredSurfaces, context);
 
   const zoomRecord = nested(data, "zoom", "", ZOOM_FIELDS, context);
@@ -954,7 +967,7 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   requireFields(focusRecord, ["closeFocusM"], "focus", context);
   const keyframes = withDefault(focusRecord, "focus.keyframes", context);
   /* Counted once, from the checked list. A refused list leaves the count unknown, and nothing is counted against it. */
-  const keyframeCount = isNumberList(keyframes) && keyframes.length >= 2 ? keyframes.length : undefined;
+  const keyframeCount = isNumberListAtEveryIndex(keyframes) && keyframes.length >= 2 ? keyframes.length : undefined;
   if (keyframeCount === undefined) context.issues.push(`focus.keyframes must be a list of at least two numbers`);
   const focus: CanonicalFocus = {
     closeFocusM: focusRecord.closeFocusM as number,
@@ -1051,7 +1064,7 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   const control = nested(data, "aberrationControl", "", ABERRATION_CONTROL_FIELDS, context);
   if (control) lens.aberrationControl = ingestAberrationControl(control, labelIndex, context);
   for (const field of ["projection", "opticalPath", "perspectiveControl"]) put(lens, field, data[field]);
-  if (has(data, "rearPlates")) lens.rearPlates = ingestRearPlates(data.rearPlates, context);
+  if (has(data, "rearPlates")) lens.rearPlates = ingestRearPlates(everyIndex(data.rearPlates), context);
   put(lens, "groups", data.groups);
   put(lens, "doublets", data.doublets);
   lens.layout = display.layout;
@@ -1087,8 +1100,8 @@ export function ingestTeleconverterV2(
   refuseUnknownFields(data, TELECONVERTER_FIELDS, "", context);
   refuseOtherSchema(data, context);
   requireFields(data, ["key", "name", "catalog", "magnification", "masterImageDistanceMm"], "", context);
-  const authoredElements = requireRecords(data, "elements", key);
-  const authoredSurfaces = requireRecords(data, "surfaces", key);
+  const authoredElements = requireRecords({ elements: everyIndex(data.elements) }, "elements", key);
+  const authoredSurfaces = requireRecords({ surfaces: everyIndex(data.surfaces) }, "surfaces", key);
   const labelIndex = labelIndexOf(authoredSurfaces, context);
 
   const elements = ingestElements(authoredElements, labelIndex, context);
@@ -1125,7 +1138,7 @@ export function ingestTeleconverterV2(
   converter.elements = elements;
   converter.media = media;
   converter.surfaces = surfaces;
-  if (has(data, "rearPlates")) converter.rearPlates = ingestRearPlates(data.rearPlates, context);
+  if (has(data, "rearPlates")) converter.rearPlates = ingestRearPlates(everyIndex(data.rearPlates), context);
   put(converter, "groups", data.groups);
   put(converter, "doublets", data.doublets);
   if (context.sources) {
