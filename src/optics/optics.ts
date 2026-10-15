@@ -83,12 +83,11 @@ export {
   DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
-  skewImagePlaneIntercept,
-  traceToImage,
   type CircularPupilSample,
   type OrthogonalPupilSample,
-  type SkewImagePlaneIntercept,
-  type SkewRayTraceResult,
-} from "./rayTrace.js";
+} from "./analysis/sampling.js";
+export { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "./trace/rayAdapters.js";
 export { stopInnerBlockedSemiDiameter } from "./stopObstruction.js";
 export { formatDist, formatFNumber, formatPetzvalRadius, marketedApertureNote } from "./opticsFormat.js";
+
+export type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "./trace/runtimeRayResult.js";

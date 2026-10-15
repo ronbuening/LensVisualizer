@@ -5,16 +5,15 @@
  * field-curvature, distortion, and vignetting analysis.
  */
 
+import type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "../trace/runtimeRayResult.js";
 import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../trace/chiefRelative.js";
 import {
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
-  skewImagePlaneIntercept,
   type CircularPupilSample,
   type OrthogonalPupilSample,
-  type SkewImagePlaneIntercept,
-  type SkewRayTraceResult,
-} from "../rayTrace.js";
+} from "../analysis/sampling.js";
+import { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../trace/rayAdapters.js";
 import { bAtZoom, halfFieldAtZoom, thick, tracingHalfFieldAtZoom, yRatioAtZoom } from "../layout.js";
 import {
   computeFieldGeometryAtState2 as computeFieldGeometryAtState,

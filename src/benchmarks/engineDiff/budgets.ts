@@ -41,20 +41,11 @@ export type ChangeClass = "c0" | "c1" | "c2" | "c3";
  *   at most the budget, 1: the head is the engine a change proposes, and a finite breach the base alone carries is
  *   not one the change made. An infinite share on either side is compared exactly, as every non-finite value is,
  *   and a share on one side against none on the other is a discrete difference.
- * - `finite`: presence and finiteness only; the finite values are not differenced.
  * - `exact`: `Object.is`. A difference is a discrete transition, listed in the report.
  * - `iterations`: a solver's step or evaluation count. Above C0 a change is tallied as a histogram and does not
  *   fail by itself; what it did to the solver's output shows in that output's own class.
  */
-export type ComparisonKind =
-  | "absolute"
-  | "relative"
-  | "slope"
-  | "residual"
-  | "share"
-  | "exact"
-  | "iterations"
-  | "finite";
+export type ComparisonKind = "absolute" | "relative" | "slope" | "residual" | "share" | "exact" | "iterations";
 
 /** Where a class and its budget come from. */
 export type QuantityOrigin =
@@ -104,11 +95,8 @@ function relative(title: string, c1: number, origin: QuantityOrigin, floor?: Qua
  * the same number. */
 const LENGTH_FLOOR = { bound: 1e-12, unit: "mm" } as const;
 
-/* The floor of the class of clipped, exterior and diagnostic points: the plan's 1e-7 mm, which is the whole budget
- * for any point within 100 m of the lens. Beyond that the class is relative, at 1e-12 of the point's own size. A
- * clipped ray that the legacy tracer follows as a ghost path can leave the lens altogether, and its points then
- * run to 1e8 mm and far past it, where two adjacent floating-point values are more than 1e-7 mm apart and no
- * absolute bound can be met. */
+/* The plan's clipped, exterior and diagnostic point budget: 1e-7 mm within 100 m of the lens, and 1e-12 of
+ * the point's own size beyond it. At large coordinates adjacent floats can exceed the absolute bound. */
 const FAR_POINT_FLOOR = { bound: 1e-7, unit: "mm" } as const;
 
 /* The floor of the class of analysis lengths: the plan's 1e-8 mm, which is the whole budget for a length under
@@ -209,15 +197,6 @@ export const QUANTITIES = {
   buildPupil: relative("Build pupil constant", 1e-12, "derived", LENGTH_FLOOR),
   farBuildPupil: relative("Build pupil constant beyond 100 mm", 1e-10, "derived"),
 
-  /* Beyond a legacy miss the tracer substitutes points off the ray. No app fan reads that tail. */
-  legacyMissTail: {
-    title: "Legacy points after a missed surface",
-    unit: "",
-    kind: "finite",
-    c1: 0,
-    c2: null,
-    origin: "addition",
-  },
   countRatio: exact("Count ratio", "addition"),
   /* The tolerance a hit was accepted under is the engine's raw target, 1e-12 mm, except at a stalled root. There it
    * is a computed float, the larger of that target and a roundoff envelope: 16·ε times the sum of the ray's
@@ -452,47 +431,6 @@ const rayByStatus: QuantitySelector = (leaf) => {
   return memberOf(base, "status") === "ok" && memberOf(head, "status") === "ok" ? "landing" : "clippedHit";
 };
 
-function firstLegacyMiss(ray: unknown): unknown {
-  const events = memberOf(memberOf(ray, "diagnostics"), "clipEvents");
-  return Array.isArray(events)
-    ? events.find((event) => memberOf(event, "reason") === "intersection-failure")
-    : undefined;
-}
-
-/* rayTrace's point appender drops non-finite hits, but its diagnostics retain their indexes. A ghost's drawn
- * position is a lower bound on its hit position: dropped points can only move it later, never before the miss. */
-const legacyGhostByMiss: QuantitySelector = (leaf) => {
-  const depth = leaf.keys.indexOf("ghostPts");
-  const index = leaf.keys[depth + 1];
-  const behind = (side: readonly unknown[]) => {
-    const ray = side[depth];
-    const pts = memberOf(ray, "pts");
-    const ghosts = memberOf(ray, "ghostPts");
-    const hits = memberOf(memberOf(ray, "diagnostics"), "hitSurfaceIndexes");
-    const surfaceIdx = memberOf(firstLegacyMiss(ray), "surfaceIdx");
-    if (
-      !Array.isArray(pts) ||
-      pts.length === 0 ||
-      !Array.isArray(ghosts) ||
-      !Array.isArray(hits) ||
-      typeof index !== "number" ||
-      typeof surfaceIdx !== "number"
-    )
-      return false;
-    const missPosition = hits.indexOf(surfaceIdx);
-    return missPosition >= 0 && pts.length - 1 + index >= missPosition;
-  };
-  return behind(leaf.base) && behind(leaf.head) ? "legacyMissTail" : "clippedHit";
-};
-
-/* The stack tracer's result has no status, only `clipped`. */
-const legacyRayByClipFlag: QuantitySelector = (leaf) => {
-  const [base, head] = owningObjects(leaf);
-  const behind = (ray: unknown) => memberOf(ray, "clipped") === true && firstLegacyMiss(ray) !== undefined;
-  if (behind(base) && behind(head)) return "legacyMissTail";
-  return memberOf(base, "clipped") === false && memberOf(head, "clipped") === false ? "landing" : "clippedHit";
-};
-
 /**
  * Class a solve's residual by the status of the solve it belongs to.
  *
@@ -718,12 +656,6 @@ const TABLE: readonly TableRow[] = [
   ["intersectionResidual", ["traces:**.hits.columns.residual[]"], { tolerance: "effectiveTolerance" }],
   [toleranceByBranch, ["traces:**.hits.columns.effectiveTolerance[]"]],
   ["count", ["traces:**.hits.count", "traces:**.hits.columns.surfaceIndex[]"]],
-  /* The RuntimeLens stack tracer, before the rows that go by member name. Its drawn points are the hits. */
-  ["landing", ["traces:legacy.rays[].pts[][]", "traces:legacy.rays[].paraxialImageHeight"]],
-  [legacyGhostByMiss, ["traces:legacy.rays[].ghostPts[][]"]],
-  [legacyRayByClipFlag, ["traces:legacy.rays[].y"]],
-  ["slope", ["traces:legacy.rays[].u"]],
-  ["ratio", ["traces:legacy.rays[].transmission"]],
   /* A ray is launched from a pupil height or a chief-ray solve, never from an authored number. */
   ["chiefLaunch", ["traces:**.input.origin[]"]],
   ["directionCosine", ["traces:**.input.direction[]", "traces:**.terminalDirection[]"]],

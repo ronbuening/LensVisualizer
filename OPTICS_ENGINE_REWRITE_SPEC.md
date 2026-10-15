@@ -143,7 +143,10 @@ catalog on 2026-10-13, lens and teleconverter files together; the plan was first
   against A0 passed under C1 in all 8 shards. **A2** is `6da1d95c`, the merge commit of #804 (the second merge of
   `main`: four catalog glasses and HOYA FCD1's vendor curve), tagged `optics-rewrite/a2`. Its Tier S check against A1,
   the first Tier S run to include S3.P2.T1, failed until #806 settled S3.P2.T1's Tier S; it then failed only on
-  S3.P2.T1's three approved divergences, as ruled.
+  S3.P2.T1's three approved divergences, as ruled. **A3** is `fd9c6f48`, the merge commit of #815 (the first engine
+  C3: the distortion curve keeps invalid chief rays off it), tagged `optics-rewrite/a3`. Its cumulative Tier S
+  against A2, under C2 with the 90 lines declared since A2, failed only on the approved divergences of S3.P2.T1,
+  S3.P2.T3 and S4.P2.T1, after #816 and #817 settled the build pupils' budget.
 - Every differential comparison and speed measurement uses A0 or a later anchor (see
   [Anchors and comparison coverage](#anchors-and-comparison-coverage)), or the promotion merge commit for the
   Stage 2 gate alone. R0 is measured once, in S1.P1.T1, only to size the contract's own cost.
@@ -404,8 +407,8 @@ writes every record that echoes authored data through the same equivalences (`no
    - **What a line excuses.** The discrete and shape differences of its unit, when the named difference and the
      digest are what the run found. With `numbers` it also excuses, in that unit only, numbers beyond budget in the
      fields that have no counterpart once a ray ends on another surface or stops: the terminal point and direction,
-     the image-plane landing and slopes, the medium the ray ended in, and the legacy tracer's `pts`, `ghostPts`,
-     `y`, `u` and transmission. `numbers` counts only where the unit's own differences show that the ray ended
+     the image-plane landing and slopes, and the medium the ray ended in. Only production fan ray units qualify.
+     `numbers` counts only where the unit's own differences show that the ray ended
      elsewhere, and it permits without asserting. A line never excuses an aggregate, a number in any other field, a
      non-finite mismatch, a number with no class or a residual outside its tolerance.
    - **Common hits and the head side.** Where a ray's hit columns changed length, the hits both sides still have
@@ -601,18 +604,6 @@ How `budgets.ts` applies the table:
     under 1e-3 of it. So do the field aberrations of a posed lens, a different computation.
   - The floor holds while two evaluations' errors add to under 1e-7 mm: the worst case measured is about 0.54 of it.
   - Under C0 every number is bit-exact, as before.
-- **A legacy ghost path behind its first miss.** The legacy tracer follows a clipped ray on as a ghost path. Once
-  the ray has missed a surface it makes up substitute points, on the surface at the ray's height and off the ray,
-  and runs on from points on a sphere's clamped continuation, so each step compounds rounding: a launch height
-  that S3.P2.T1 made more accurate by 68 ulps moved a point 61 million km out by 3.8e-11 of its size. Nothing in the
-  app reads these points (the app's fans end a ray at a miss: decision 2026-06-22), and the legacy tracer goes in
-  Stage 4. Behind a ray's first missed surface, its ghost points and the clipped y projected from them are compared
-  for presence, count and finiteness only. Everything before the miss keeps its budget: earlier ghost points, the
-  points of the ray, its slope, and its diagnostics, failure and clip reasons. The comparator finds the miss in each
-  ray's own diagnostics, and a ghost point is behind it when its place among the drawn points is at or after the
-  miss's place among the hits, on both sides. The legacy tracer drops a non-finite point from what it draws, which
-  can only put a later point's true place further on, so the rule never reaches before the miss. Under C0 every
-  number is bit-exact, as before.
 - **Fields the table does not name.** Layout lengths, refractive indices and prescription values the engine hands back
   take the first-order budget. Slopes are compared as direction cosines. Count ratios are exact.
 - **Bins of a bokeh profile.** A bokeh footprint weighs each ray by its transmission and sums the weights into the
@@ -671,11 +662,8 @@ How `budgets.ts` applies the table:
   - The budget is not divided by 1e-4. A hit that moves along its ray inside the 1e-12 mm contract moves a stop
     height by that distance times a slope, and both rays' slopes scale with 1e-4, which the quotient removes.
   - When one of those rays fails, the engine takes another value with no flag in any payload. The `traces` record
-    therefore traces two such rays as probes on each tracer, and a probe that stops returning is an exact status
-    difference.
-  - On the prepared tracer the probes are the engine's own launches. On the stack tracer they are the same two ray
-    lines through that tracer's public entry, so a basis ray that fails only from the engine's own start point is
-    not shown. A folded lens has no probe.
+    therefore probes the production tracer's two basis rays, and a probe that stops returning is an exact status
+    difference. Their launches are the prepared tracer's own. A folded lens has no probe.
   - The exit pupil that a pupil-aberration profile traces for one field is no such constant. It is an analysis
     length.
 - **Iteration and evaluation counts** are exact under C0, and above it are reported as a histogram of changes.
@@ -743,7 +731,7 @@ shrinks by documented stratification; its assertions never do.
 
 | Tier | Lenses | States | Requests |
 | --- | --- | --- | --- |
-| **P** | Every catalog lens, visible and hidden | First and last zoom station, infinity focus, wide open | Build constants; layout; meridional fans on- and off-axis, a skew fan and a chromatic fan, each with terminal points and full hits, and one on-axis fan through the legacy tracer; field geometry; chief solves at 0, 0.5 and 1 of the analysis half-field |
+| **P** | Every catalog lens, visible and hidden | First and last zoom station, infinity focus, wide open | Build constants; layout; meridional fans on- and off-axis, a skew fan and a chromatic fan, each with terminal points and full hits; field geometry; chief solves at 0, 0.5 and 1 of the analysis half-field |
 | | The 15 benchmark lenses plus one representative of each feature: fisheye; folded auto and explicit-order paths; diffractive; bulk absorption; rear plates; a converter pair; PC shift + tilt; finite conjugate; fixed-iris zoom; aberration control. Also every lens whose data changed, and every pair of a changed host or converter | The default state, plus one feature state where the default leaves the feature idle: the moved pose, the finite conjugate, the aberration ring at its end | Every analysis job, perspective jobs included; geometric MTF at a 32-cell grid |
 | **S** | All, and every permitted converter pair | Every authored zoom × focus station (about 3,400 states) × {wide open, one stop-down ratio}; for an `aberrationControl` lens also the ring's other positions, both ends of a centered ring or the far end of a two-position one; a pair at every station of its host | Everything in Tier P's first row |
 | | A stratified set of about 100 lenses: every Tier P analysis lens, one lens per projection kind, every folded lens, every PC lens, every diffractive and absorbing lens, one lens per rear-plate maker, every converter pair, and 10 drawn by a fixed seed | Their authored stations, wide open; a PC lens also in the moved pose | Every analysis job; MTF at both methods and three spectra on the MTF benchmark lenses |
@@ -2429,18 +2417,43 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
   - **Change:** the remaining legacy callers move to the production stack: `pupilAberration.ts` `traceStateSurfacesReal`
     and `validateLensData.ts` `validateFoldedImagePlaneReachability`.
   - **Gate:** C1.
+  - **As built:** state pupil bases reuse prepared `TraceGeometry`, preserving first-vertex launches, stop lookup,
+    pupil algebra and fallbacks; folded validation compiles authored probe surfaces directly before runtime
+    construction, reporting malformed surface compilation as validation errors. Both use production traversal
+    without a new registry entry, cache or preparation cycle.
 - **S4.P2.T4 Delete the legacy stack.**
+  - **Harness, in its own C0 PR ahead of deletion** (maintainer ruling, 2026-10-15), following S3.P1.T1's
+    separate harness PR #785: retire the legacy on-axis fan and near-axis probes from every tier's `traces`
+    payload, the `legacyTraceRay` / `legacyTraceToImage` seam entries and their module, `legacyMissTail` and its
+    selectors/rows, and the legacy ray's `numbers` permission (`pts`, `ghostPts`, `y`, `u`, `transmission`). Keep
+    production probes and the unrelated legacy layout, aspheric and bar-scaling readouts. Remove the now-stale
+    `rayTrace.ts` entry from the architecture guard's `SEAM_LEGACY` list. Update harness tests,
+    the Quantity budgets rules and `agent_docs/architecture/testing.md`; no optics source changes in this PR.
+    An older capture's base-only `traces.legacy` and `traces.nearAxisProbes.legacy` are omitted only where the
+    corresponding successful head object exists and lacks that key, for engine drift alone. All retained members,
+    additions, other missing members and record identities/order stay inside C0. The driver already copies the
+    head harness to both engines; a pre/post capture-bundle Tier P run also verifies the retired payload schema.
+    The deletion PR then passes C0 against this harness with no request for deleted exports.
   - **Change:**
-    - repoint the remaining importers of `internal/traceSurfaces.ts` (`validateTeleconverterData.ts` and
-      `prescription/teleconverter.ts`) to `math/paraxial.ts`;
+    - repoint the remaining importers of `internal/traceSurfaces.ts` (`validateTeleconverterData.ts`,
+      `prescription/teleconverter.ts` and `layout.ts`) to `math/paraxial.ts`;
     - delete `internal/exactSurfaceTrace.ts`, `internal/surfaceIntersection.ts`, `internal/traceSurfaces.ts`, and the
       `rayTrace.ts` tracers and `traceToImage`;
-    - move the pupil samplers to `analysis/sampling.ts`;
-    - port `__tests__/src/optics/internal/*`, `mirrorOptics.test.ts`, `exactSurfaceTraceVector.test.ts`,
-      and `planarPupilReference.test.ts` to the production stack, and drop the
-      legacy arms of `intersectionContract.test.ts` and `intersectionFixtures.test.ts`;
+    - move the pupil samplers, their constants and sample types to `analysis/sampling.ts`; repoint their
+      aberration, perspective-analysis and `optics.ts` importers. Move the live image-plane intercept/types to a
+      production helper, remove `optics.ts`'s `traceToImage` re-export and empty `rayTrace.ts`'s facade;
+    - port `__tests__/src/optics/internal/{exactSurfaceTrace,surfaceIntersection}.test.ts`, `mirrorOptics.test.ts`,
+      `exactSurfaceTraceVector.test.ts` and `planarPupilReference.test.ts` to the production stack, and drop the
+      legacy arms of `intersectionContract.test.ts`, `intersectionFixtures.test.ts` and `geometry/intersect.test.ts`.
+      Port the direct `rayTrace.ts` imports in `skewRay.test.ts` and `diffractiveTrace.test.ts` to production,
+      preserving independent sampling, chromatic and skew coverage. Replace `optics.test.ts`'s three
+      `traceToImage` calls with the state-surface paraxial reference from `math/paraxial.ts`, retaining the final
+      gap transfer. `internal/opticsInternals.test.ts` stays: it covers lens-state helpers;
     - supersede decision 2026-08-04 (the two tracer stacks) in `agent_docs/decisions.md`, and rewrite "Exact Surface
       Trace" in `agent_docs/architecture/optics-engine.md` to describe the one remaining tracer.
+  - **As built:** the four legacy modules are deleted; paraxial callers use `math/paraxial.ts`, unchanged samplers
+    live in `analysis/sampling.ts`, and the intercept helper lives in `trace/rayAdapters.ts`. Traversal, intersection,
+    folded, vector, chromatic and paraxial-reference tests exercise production; the two-stack exclusion is superseded.
   - **Gate:** C0.
 - **S4.P3.T1 Capture policy.**
   - **Change:** `trace/capture.ts` chooses terminal-only, hits, or diagnostics before the loop. A terminal-only trace
@@ -2760,7 +2773,7 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 27 | Above C0 a nested trace is judged by its contract and its flags; how far its coordinates moved is reported and not budgeted | [Quantity budgets](#quantity-budgets) |
 | 28 | A PR declares its discrete transitions in its description, and a stage run takes them as an input assembled by hand | [Anchors and comparison coverage](#anchors-and-comparison-coverage), rule 5 |
 | 29 | A hit's `effectiveTolerance` is held to 1e-12 relative above C0 | [Quantity budgets](#quantity-budgets) |
-| 30 | The pupil constants keep the first-order budget, and two near-axis rays are probed on each tracer | [Quantity budgets](#quantity-budgets) |
+| 30 | The pupil constants keep the first-order budget, and two near-axis rays are probed on the production tracer | [Quantity budgets](#quantity-budgets) |
 | 31 | A C1 step may update a test that pins rounding-level bits, listing each pin | [Numerical contract](#numerical-contract) |
 | 32 | S3.P1.T1 moves and fuses only: four profile kinds, both sphere clamps, and only aspheric numbers move | S3.P1.T1 |
 | 33 | A merge of `main` that changes what the engine computes moves the anchor, after a Tier S check of everything since the old one | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
@@ -2774,7 +2787,7 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | 41 | An analysis length is held to 1e-8 mm, or to 1e-10 of its own size where that is more, and the traced exit pupil of a pupil-aberration sample is an analysis length | [Quantity budgets](#quantity-budgets) |
 | 42 | A ray's failure after its own first clip is counted and listed and does not block a data change | [Anchors and comparison coverage](#anchors-and-comparison-coverage), rule 3 |
 | 43 | A tangential focus from a parabasal pair, and what is made of it in the field-curvature and colour-focus jobs, is held to 1e-7 mm or 1e-10 of its own size | [Quantity budgets](#quantity-budgets) |
-| 44 | Behind a legacy ghost path's first missed surface, its points and its clipped y are compared for presence, count and finiteness only | [Quantity budgets](#quantity-budgets) |
+| 44 | The legacy fan, probes and their special rules retire in the harness PR before legacy-stack deletion | S4.P2.T4 |
 | 45 | S3.P2.T1 names a fifth class: a transfer that starts within rounding of the raw target where two surfaces cross beyond their rims | S3.P2.T1 |
 | 46 | The reference spherical primary mirror's far exit-pupil sample is S3.P2.T1's second approved divergence | S3.P2.T1 |
 
