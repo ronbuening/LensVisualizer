@@ -17,9 +17,11 @@ import {
 } from "../aberration/offAxis.js";
 import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../field/fieldGeometry.js";
 import type { FieldGeometryState } from "../optics.js";
-import { traceChiefRelativeSkewRayChromatic } from "../rayTrace.js";
+import { traceChiefRelativeSkewRayChromatic } from "../trace/chiefRelative.js";
 import { traceSkewRayVectorChromatic2 } from "../trace/rayAdapters.js";
 import { thick } from "../layout.js";
+import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { prepareState } from "../state/prepareState.js";
 import type {
   ChromaticChannel,
   ChromaticRayFanSpread,
@@ -115,7 +117,11 @@ function currentImagePlaneZ(
   aberrationT: number,
 ): number | null {
   if (L.N < 1) return null;
-  if (L.isFoldedOptics) return isFinite(L.imagePlane.z) ? L.imagePlane.z : null;
+  if (L.isFoldedOptics) {
+    // Match the trace's plane: an inferred folded image plane follows the current focus spacing.
+    const imagePlaneZ = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT).imgZ;
+    return isFinite(imagePlaneZ) ? imagePlaneZ : null;
+  }
   const imagePlaneZ = zPos[L.N - 1] + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   return isFinite(imagePlaneZ) ? imagePlaneZ : null;
 }

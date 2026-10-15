@@ -497,17 +497,17 @@ see `agent_docs/decisions.md`):
 - **Prepared-state engine** — the sequential/generalized tracer in `src/optics/trace/`. The `optics.ts` exports
   `traceRay()`, `traceRayChromatic()`, `traceSkewRay()`, `traceSkewRayChromatic()`, and their `*Vector` forms are the
   adapters in `src/optics/trace/rayAdapters.ts`, so diagram rays, the bounding-sphere vector-launch branches of the
-  off-axis and chromatic analyses, and everything else that calls those exports run here.
+  off-axis and chromatic analyses, and everything else that calls those exports run here. The chief-relative
+  scalar wrappers in `trace/chiefRelative.ts` use the same adapters: scalar off-axis bundles, field-curvature
+  parabasal rays, and scalar chromatic fans now run here too, including the coma, spherical blur-character,
+  bokeh, and chromatic field analyses that consume them.
 - **RuntimeLens-shaped stack tracer** — `traceExactSurfaceStack()` / `traceExactSurfaceStackVector()` in
   `internal/exactSurfaceTrace.ts`, intersecting through `internal/surfaceIntersection.ts`, an adapter over the kernel.
   Its callers are:
   - `buildLens()` constants in `runtimeLens.ts`: the real-trace stop SD, the real EP/XP basis rays, the half-field
     bisection, the same solves at each zoom station, and the folded branch's pupil basis rays.
-  - `rayTrace.ts`, whose tracers all run on this stack. The ones reached from production code are
-    `traceChiefRelativeSkewRay()` / `traceChiefRelativeSkewRayChromatic()`: the scalar-geometry branch of
-    `aberration/offAxis.ts` (`traceOffAxisChiefRay()`, `traceOffAxisBundleFromSamples()`), the parabasal rays in
-    `aberration/fieldCurvature.ts`, and the scalar branch of `analysis/chromatic.ts`. Coma, spherical, bokeh
-    footprints, and chromatic field analysis inherit it through those off-axis helpers.
+  - `rayTrace.ts` retains legacy tracers for compatibility tests and the differential harness; production
+    analyses use its pupil samplers and image-plane intercept helper, not its tracers.
   - `traceStateSurfacesReal()` in `pupilAberration.ts`: state pupil baselines away from infinity focus or with
     `aberrationT ≠ 0`.
   - `validateFoldedImagePlaneReachability()` in `validateLensData.ts`.
@@ -522,6 +522,14 @@ The active perspective guard reads the cached traversal kind; the generalized st
 traversal explicitly. Prepared-state cache hits reuse the view, and coordinate overrides rebuild it from the exact new
 records without changing cache keys or ownership. The RuntimeLens-shaped stack retains its existing dispatch until
 its remaining callers migrate.
+
+Chief-relative scalar launches retain their first-vertex pupil offsets and delegate preparation and tracing to
+`trace/rayAdapters.ts`. For finite nonnegative ray leads their origins equal the old stack's; production's first
+search starts at the later of the origin and `z0 - |sag(sd)| - 1`, rather than always searching from the origin.
+Negative leads are used verbatim (the old stack clamped them to zero), so they can start beyond the first surface
+and miss it. Controls follow production preparation: focus/zoom and aberration controls are clamped to their
+supported ranges, and non-finite controls throw `Optics2PreparationError` with code `invalid-control`. Runtime
+lenses must remain immutable for the adapter's identity-based preparation cache.
 
 In the prepared-state engine, surface-intersection misses are terminal in both the sequential and generalized paths,
 including ghost-mode diagram traces: the result preserves already solved hits for display and diagnostics, but does not

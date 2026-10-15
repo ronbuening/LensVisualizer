@@ -33,11 +33,11 @@ flowchart LR
 - Direct source files: 2
 - Direct subfolders: 0
 - Main outbound areas: src/optics/types.ts (3), same folder, src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, src/optics/trace, src/types
-- External consumers: src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/trace
+- External consumers: src/optics/analysis, src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/trace
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `cache.ts` | Cache helper module | src/optics/types.ts | same folder, src/optics/compat.ts | PreparedStateCache, createPreparedStateCache |
-| `prepareState.ts` | Prepare State helper module | src/optics/types.ts (2), same folder, src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, +2 more | src/optics/first-order (2), src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/trace | PrepareStateOptions, preparedStateCacheKey, prepareState |
+| `prepareState.ts` | Prepare State helper module | src/optics/types.ts (2), same folder, src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, +2 more | src/optics/first-order (2), src/optics/analysis, src/optics/compat.ts, src/optics/diagram, src/optics/field, +1 more | PrepareStateOptions, preparedStateCacheKey, prepareState |

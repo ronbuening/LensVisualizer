@@ -4,6 +4,7 @@
  * Uses state-aware off-axis bundles and chromatic field shifts to summarize Petzval-like focus bend for display tabs.
  */
 
+import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../trace/chiefRelative.js";
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import type { ChromaticFieldShift, FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
 import {
@@ -11,11 +12,7 @@ import {
   FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
 } from "./types.js";
-import {
-  sampleOrthogonalPupilFan,
-  traceChiefRelativeSkewRay,
-  traceChiefRelativeSkewRayChromatic,
-} from "../rayTrace.js";
+import { sampleOrthogonalPupilFan } from "../rayTrace.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,

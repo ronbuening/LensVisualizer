@@ -15,8 +15,8 @@ flowchart LR
   n_external_src_types["src/types"]
   n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
-  n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_trace["src/optics/trace"]
+  n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_field["src/optics/field"]
   n_external_src_optics_layout_ts["src/optics/layout.ts"]
   n_external_src_optics_aberration["src/optics/aberration"]
@@ -28,16 +28,17 @@ flowchart LR
   n_external_src_optics_focusDistance_ts["src/optics/focusDistance.ts"]
   n_external_src_optics_geometry["src/optics/geometry"]
   n_external_src_optics_groupMovement_ts["src/optics/groupMovement.ts"]
+  n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
-  n_external_src_optics_rayTrace_ts["src/optics/rayTrace.ts"]
+  n_external_src_optics_state["src/optics/state"]
   n_external_src_optics_vignetteAnalysis_ts["src/optics/vignetteAnalysis.ts"]
   n_external_src_utils_catalog["src/utils/catalog"]
   n_src_optics_analysis_TypeScript_modules --> |21| n_external_src_optics_types_ts
   n_src_optics_analysis_TypeScript_modules --> |19| n_external_src_types
   n_src_optics_analysis_TypeScript_modules --> |10| n_external_src_optics_perspective
   n_src_optics_analysis_TypeScript_modules --> |9| n_external_src_optics_chromatic
+  n_src_optics_analysis_TypeScript_modules --> |9| n_external_src_optics_trace
   n_src_optics_analysis_TypeScript_modules --> |8| n_external_src_optics_optics_ts
-  n_src_optics_analysis_TypeScript_modules --> |8| n_external_src_optics_trace
   n_src_optics_analysis_TypeScript_modules --> |5| n_external_src_optics_field
   n_src_optics_analysis_TypeScript_modules --> |4| n_external_src_optics_layout_ts
   n_src_optics_analysis_TypeScript_modules --> |3| n_external_src_optics_aberration
@@ -49,8 +50,9 @@ flowchart LR
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_focusDistance_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_geometry
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_groupMovement_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_prescription
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_pupilAberration_ts
-  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_rayTrace_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_state
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_vignetteAnalysis_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_utils_catalog
 ```
@@ -59,7 +61,7 @@ flowchart LR
 
 - Direct source files: 30
 - Direct subfolders: 0
-- Main outbound areas: same folder (51), src/optics/types.ts (21), src/types (19), src/optics/perspective (10), src/optics/chromatic (9), src/optics/optics.ts (8), src/optics/trace (8), src/optics/field (5), +14 more
+- Main outbound areas: same folder (51), src/optics/types.ts (21), src/types (19), src/optics/perspective (10), src/optics/chromatic (9), src/optics/trace (9), src/optics/optics.ts (8), src/optics/field (5), +15 more
 - External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/mtf.ts, src/optics/vignetteAnalysis.ts
 
 ## Files
@@ -73,7 +75,7 @@ flowchart LR
 | `analysisQuality.ts` | Analysis Quality helper module | none | same folder (7), src/optics/aberration (4), src/benchmarks, src/components/layout, src/optics/distortionAnalysis.ts, +1 more | AnalysisQuality, AnalysisSamplingOptions, INTERACTIVE_ANALYSIS_SAMPLING, analysisSamplingForQuality |
 | `asphericComparison.ts` | Aspheric Comparison helper module | src/optics/geometry, src/types | src/optics/compat.ts | DepartureSample2, computeAsphericDeparture2, computeDepartureProfile2, computeBestFitSphereR2, peakAbsDeparture2, rmsDeparture2, nearestSurfaceForClick2 |
 | `bokeh.ts` | Bokeh helper module | same folder, src/optics/aberration, src/optics/types.ts | same folder, src/optics/compat.ts | computeBestFocusZForState2, computeBokehPreviewPairForState2, computeBestFocusZ2, computeBokehPreview2, computeBokehPreviewPair2, buildBokehDensityGrid2, buildBokehRadialProfile2, classifyBokehBrightnessCharacter2, +1 more |
-| `chromatic.ts` | Chromatic helper module | src/optics/chromatic (4), src/optics/aberration (2), same folder, src/optics/field, src/optics/layout.ts, +5 more | same folder, src/optics/compat.ts | ChromaticAnalysisOptions, ChromaticAnalysisResult, LateralColorChannelSample, LateralColorCurveResult, LateralColorFieldSample, LongitudinalChromaticFocusResult, LongitudinalChromaticFocusSample, ChromaticRayFanAnalysisOptions2, +11 more |
+| `chromatic.ts` | Chromatic helper module | src/optics/chromatic (4), src/optics/aberration (2), src/optics/trace (2), same folder, src/optics/field, +6 more | same folder, src/optics/compat.ts | ChromaticAnalysisOptions, ChromaticAnalysisResult, LateralColorChannelSample, LateralColorCurveResult, LateralColorFieldSample, LongitudinalChromaticFocusResult, LongitudinalChromaticFocusSample, ChromaticRayFanAnalysisOptions2, +11 more |
 | `chromaticRayFanScaling.ts` | Chromatic Ray Fan Scaling helper module | src/types | src/optics/compat.ts | REFERENCE_LOCA_MM_2, ChromaticBarResult2, computeLocaBarOffsets2 |
 | `distortion.ts` | Distortion helper module | same folder (2), src/optics/distortionAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | computeDistortionCurveForState2, computeDistortionFieldGridForState2, computeDistortionCurve2, computeDistortionFieldGrid2 |
 | `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/groupMovement.ts, src/optics/types.ts | src/optics/compat.ts | computeGroupMovementProfileForState2, computeGroupMovementProfile2, firstAvailableGroupMovementMode2, getGroupMovementAvailability2, inferLensMovementGroups2, isGroupMovementModeAvailable2 |
