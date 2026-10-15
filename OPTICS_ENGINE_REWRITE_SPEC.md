@@ -141,7 +141,10 @@ catalog on 2026-10-13, lens and teleconverter files together; the plan was first
   against A0 passed under C1 in all 8 shards. **A2** is `6da1d95c`, the merge commit of #804 (the second merge of
   `main`: four catalog glasses and HOYA FCD1's vendor curve), tagged `optics-rewrite/a2`. Its Tier S check against A1,
   the first Tier S run to include S3.P2.T1, failed until #806 settled S3.P2.T1's Tier S; it then failed only on
-  S3.P2.T1's three approved divergences, as ruled.
+  S3.P2.T1's three approved divergences, as ruled. **A3** is `fd9c6f48`, the merge commit of #815 (the first engine
+  C3: the distortion curve keeps invalid chief rays off it), tagged `optics-rewrite/a3`. Its cumulative Tier S
+  against A2, under C2 with the 90 lines declared since A2, failed only on the approved divergences of S3.P2.T1,
+  S3.P2.T3 and S4.P2.T1, after #816 and #817 settled the build pupils' budget.
 - Every differential comparison and speed measurement uses A0 or a later anchor (see
   [Anchors and comparison coverage](#anchors-and-comparison-coverage)), or the promotion merge commit for the
   Stage 2 gate alone. R0 is measured once, in S1.P1.T1, only to size the contract's own cost.
@@ -2169,6 +2172,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
   - **Change:** the remaining legacy callers move to the production stack: `pupilAberration.ts` `traceStateSurfacesReal`
     and `validateLensData.ts` `validateFoldedImagePlaneReachability`.
   - **Gate:** C1.
+  - **As built:** state pupil bases reuse prepared `TraceGeometry`, preserving first-vertex launches, stop lookup,
+    pupil algebra and fallbacks; folded validation compiles authored probe surfaces directly before runtime
+    construction, reporting malformed surface compilation as validation errors. Both use production traversal
+    without a new registry entry, cache or preparation cycle.
 - **S4.P2.T4 Delete the legacy stack.**
   - **Change:**
     - repoint the remaining importers of `internal/traceSurfaces.ts` (`validateTeleconverterData.ts` and
