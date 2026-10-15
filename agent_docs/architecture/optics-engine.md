@@ -743,16 +743,15 @@ sequential trace, or under an explicit `surfaceOrder`, the order is fixed.
 
 The kernel's iterative path uses a safeguarded Newton step (rtsafe). A step is accepted only inside the
 sign-changing bracket and when it moves at most half the step before last; otherwise the solver bisects, so grazing
-and steep-rim roots cannot stall. A zero or non-finite derivative bisects instead of failing. The kernel takes the
+and steep-rim roots stay bracketed. A zero or non-finite derivative bisects instead of failing. The kernel takes the
 sag and slope of each point it evaluates from one `SurfaceProfile.evaluate()` call and reuses that pair for the
 roundoff envelope. The seeded iteration is separate from it: no bracket, no envelope, and a limit of six evaluations.
 
-The iterative path has one 72-iteration cap (`INTERSECTION_MAX_ITERATIONS`). A root whose residual cannot reach
-`1e-12` mm leaves Newton taking steps of a few ulps, never exactly zero, so it is recognized only once bisection has
-collapsed the bracket to adjacent floats. That takes about log2(width / ulp) steps: 53 for a double, plus the Newton
-steps before it. The worst measured production solve, an exterior hit at a hemisphere's rim, needs 63. Explicit
-caller budgets remain supported. The cap is a measured margin, not a convergence guarantee for arbitrary profiles
-or bounds.
+The iterative path has one 72-iteration cap (`INTERSECTION_MAX_ITERATIONS`). The fixtures need 23: the
+hemisphere-rim root stalls at its 24th evaluation, which the pending step after the cap still judges. The slowest
+Tier P solves, four Zeiss ZX1 analysis solves making slow progress on an asphere's polynomial continuation, need 71.
+Explicit caller budgets remain supported. The cap is a measured margin, not a convergence guarantee for arbitrary
+profiles or bounds.
 
 The shipped residual target is `INTERSECTION_TOLERANCE = 1e-12` mm for the kernel and the stack tracer's own
 tilted-plane path. Sag profiles measure axial `z_ray - (vertexZ + sag)`; tilted planes measure signed normal distance
@@ -773,18 +772,26 @@ bounds its two roundings apart, each in its own unit: the transverse coordinates
 and the residual's envelope against 31/32 of the requested tolerance. The conservative slope/radius safety margins of
 both remain proof guards, not acceptance limits.
 
-Iterative curved solves attempt the raw target at every bracket sample and Newton evaluation. Only when a Newton
-correction cannot change the floating-point ray parameter, or the safeguarded midpoint cannot advance within its
-floating-point bracket, may the residual use the
-operand-based roundoff envelope in `geometry/intersectTolerance.ts`. It includes absolute `origin` and `direction*t`
-terms (even when their sum cancels), vertex position, sag operand magnitudes, and transverse error multiplied by a
-conservative slope bound. For aspheres, the absolute-term slope bound also bounds cancelling polynomial terms.
+Iterative curved solves attempt the raw target at every bracket sample and Newton evaluation. The residual may use
+the operand-based roundoff envelope in `geometry/intersectTolerance.ts` only at a stall, of which there are three: a
+Newton correction cannot change the floating-point ray parameter; the safeguarded midpoint cannot advance within its
+floating-point bracket; or, after a Newton step, the next correction is at most four ulps of the evaluated point's
+largest coordinate (or of t where that is larger), points the same way and is more than half as long. The first two
+are fixed points: the point is accepted under the envelope, or the solve fails at once with
+`noConvergedIntersection`. The third is Newton creeping on the residual's rounding, which is set by the coordinates
+the residual is computed from; it is a stall only where the residual is inside the envelope, and otherwise the solve
+goes on. Before accepting a creep under the envelope, the solver evaluates the next safeguarded point once if an
+evaluation remains, counting it as the next iteration. If it meets the raw target, that point is returned;
+otherwise the stalled point is returned under the envelope. A reversed correction is not a stall. The envelope
+includes absolute `origin` and `direction*t` terms (even when their sum cancels), vertex position, sag operand
+magnitudes, and transverse error multiplied by a conservative slope bound. For aspheres, the absolute-term slope bound also bounds cancelling polynomial terms.
 Analytic planes use the analogous normal-weighted operand bound. Unavailable/nonfinite bounds do not authorize
 acceptance. Successful intersections expose `effectiveTolerance` so diagnostics can distinguish the requested target
 from floor-assisted results; a floor-assisted hit is not a claim of raw `1e-12` mm accuracy. No solve evaluates a
 surface beyond its conic domain. The former unconditional
 tenfold residual allowance after iteration exhaustion is removed; the pending final step is evaluated under the same
-raw-target and stagnation rules. Clear-aperture clipping retains its independent
+raw-target and three stall rules, including the bracket update and safeguarded midpoint check. It cannot spend a
+further evaluation on a creep. Clear-aperture clipping retains its independent
 `max(1e-9, abs(sd)*1e-12)` mm semantic tolerance.
 
 ### Bulk Absorption And Apodization

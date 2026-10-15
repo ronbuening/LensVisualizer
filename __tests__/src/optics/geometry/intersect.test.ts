@@ -13,6 +13,7 @@ import {
 import { capCoordinateTolerance } from "../../../../src/optics/geometry/intersectTolerance.js";
 import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSagSurface } from "../../../../src/optics/internal/surfaceIntersection.js";
+import { ulpOf } from "../../../../src/optics/math/numerics.js";
 import { dot, normalize } from "../../../../src/optics/math/vector.js";
 import { evaluateAperture } from "../../../../src/optics/trace/aperture.js";
 import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
@@ -408,12 +409,10 @@ describe("cap search after a failed unbounded solve", () => {
   const ray = { origin: [0, 16, -12] as Vec3, direction: [0, -0.6, 0.8] as Vec3 };
 
   it("finds the cap root although the solve cannot converge outside the cap", () => {
-    // Without a cap the exterior root is the answer, and the solve runs out of iterations on it.
-    expect(intersectSurfaceProfile(ray, noisy(), 0, { maxT: 20 })).toMatchObject({
-      ok: false,
-      failureReason: "noConvergedIntersection",
-      iterations: INTERSECTION_MAX_ITERATIONS,
-    });
+    // Without a cap the exterior root is the answer; its bracket collapses outside the envelope and the solve fails.
+    const unbounded = intersectSurfaceProfile(ray, noisy(), 0, { maxT: 20 });
+    expect(unbounded).toMatchObject({ ok: false, failureReason: "noConvergedIntersection" });
+    expect(unbounded.iterations).toBeLessThan(INTERSECTION_MAX_ITERATIONS);
     const hit = intersectSurfaceProfile(ray, noisy(), 0, { maxT: 20, clearRadius: sd });
     const reference = intersectSurfaceProfile(ray, clean, 0, { maxT: 20, clearRadius: sd });
     expect(reference.ok && reference.radius).toBeCloseTo(6.478819365544, 9);
@@ -425,11 +424,9 @@ describe("cap search after a failed unbounded solve", () => {
     /* The ray enters the cap at t = 10 and meets its root there at t = 15.9, so these bounds leave the cap search
      * two millimetres of cap with no root in them. Its own result, a scan that found no bracket, is not the
      * answer: the failure of the unbounded solve is. */
-    expect(intersectSurfaceProfile(ray, noisy(), 0, { maxT: 12, clearRadius: sd })).toMatchObject({
-      ok: false,
-      failureReason: "noConvergedIntersection",
-      iterations: INTERSECTION_MAX_ITERATIONS,
-    });
+    const kept = intersectSurfaceProfile(ray, noisy(), 0, { maxT: 12, clearRadius: sd });
+    expect(kept).toMatchObject({ ok: false, failureReason: "noConvergedIntersection" });
+    expect(kept.iterations).toBeLessThan(INTERSECTION_MAX_ITERATIONS);
     expect(intersectSurfaceProfile(ray, clean, 0, { maxT: 12, clearRadius: sd })).toMatchObject({ ok: true });
   });
 
@@ -1594,5 +1591,26 @@ describe("the closed-form diagnostic stays on the kernel's result", () => {
     );
     expect(searched.hits.some((hit) => hit.surfaceLabel === "MB")).toBe(true);
     expect(diagnosticPaths(searched)).toEqual([]);
+  });
+});
+
+describe("coordinate ulps for Newton stalls", () => {
+  it.each([
+    [1, Number.EPSILON],
+    [2 - Number.EPSILON, Number.EPSILON],
+    [2, 2 * Number.EPSILON],
+    [Number.MAX_VALUE * (1 - 1e-14), 2 ** 971],
+    [Number.MAX_VALUE, 2 ** 971],
+    [2 ** -1022, Number.MIN_VALUE],
+    [Number.MIN_VALUE, Number.MIN_VALUE],
+    [128 * Number.MIN_VALUE, Number.MIN_VALUE],
+    [0, Number.MIN_VALUE],
+  ])("reads the binade spacing at ±%s", (value, expected) => {
+    expect(ulpOf(value)).toBe(expected);
+    expect(ulpOf(-value)).toBe(expected);
+  });
+
+  it.each([Infinity, -Infinity, NaN])("does not authorize a stall at %s", (value) => {
+    expect(ulpOf(value)).toBeNaN();
   });
 });

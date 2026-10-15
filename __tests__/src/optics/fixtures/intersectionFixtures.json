@@ -646,7 +646,7 @@
     {
       "id": "sphere-hemisphere-rim",
       "kind": "sphere",
-      "covers": "exterior hit at a hemisphere's rim, where the bracket must collapse to adjacent floats",
+      "covers": "exterior hit at a hemisphere's rim, where Newton's corrections stall on the residual's rounding",
       "surface": {
         "R": -36.4652369171381,
         "asphere": null,
