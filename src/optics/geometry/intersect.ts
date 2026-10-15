@@ -17,7 +17,7 @@ import {
   VECTOR_EPSILON,
 } from "../constants.js";
 import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../types.js";
-import { clamp } from "../math/numerics.js";
+import { clamp, ulpOf } from "../math/numerics.js";
 import { dot, normalize, subtract } from "../math/vector.js";
 import { MAX_NORMAL_MOVE, MAX_ROOT_MOVE, baseConicRoot, intersectConicClosedForm } from "./intersectConic.js";
 import { capCoordinateTolerance, planeResidualRoundoff, sagResidualRoundoff } from "./intersectTolerance.js";
@@ -67,6 +67,14 @@ const SEED_ENVELOPE_SHARE = 31 / 32;
 /** Smallest normal double. A square below it has lost digits, and is zero for an operand under about 1.5e-162. */
 const SMALLEST_NORMAL = 2 ** -1022;
 
+/**
+ * Largest Newton correction the iterative path reads as the residual's rounding once it stops shrinking, in ulps
+ * of the evaluated point's largest coordinate (or of t where that is larger). The residual is computed from those
+ * coordinates, so its rounding moves the root by about their ulp; a correction this small that points the same
+ * way as the Newton step before it and is more than half as long makes no progress the residual can resolve.
+ */
+const NEWTON_STALL_ULPS = 4;
+
 interface SurfaceEvaluation {
   t: number;
   point: Vec3;
@@ -86,7 +94,7 @@ interface SurfaceEvaluation {
  * root when the profile evaluates within the raw residual target at it, and the result says how that went through
  * `closedFormFallback`. A polynomial asphere with a clear radius takes the point of the conic-seeded route where
  * that route certifies it. The rest, and every solve those two hand back, use a safeguarded Newton iteration
- * inside a sign-changing bracket, so grazing and steep-rim roots remain bounded and cannot stall.
+ * inside a sign-changing bracket, so grazing and steep-rim roots stay bracketed.
  *
  * @param ray - origin and direction in engine coordinates
  * @param profile - surface sag/normal evaluator
@@ -614,12 +622,26 @@ function intersectProfile(
     );
   };
 
-  for (let iterations = 1; iterations <= maxIterations; iterations++) {
+  // A stalled point: accepted under the envelope, or null.
+  const envelopeHit = (value: SurfaceEvaluation, iterations: number): SurfaceIntersectionResult | null => {
+    const effectiveTolerance = roundoffTolerance(value);
+    return Math.abs(value.value) <= effectiveTolerance
+      ? makeSuccess(value, profile, vertexZ, effectiveTolerance, refractiveIndex, iterations)
+      : null;
+  };
+  // Whether t was reached by a Newton step, which `lastStep` then holds.
+  let lastStepWasNewton = false;
+
+  let pendingCreepHit: SurfaceIntersectionResult | null = null;
+  // The extra evaluation checks the pending step under the same rules without extending the caller's budget.
+  for (let iteration = 0; iteration <= maxIterations; iteration++) {
+    const iterations = Math.min(iteration + 1, maxIterations);
     const current = evalAt(t);
-    if (!isFiniteValueEvaluation(current)) return failure("noConvergedIntersection", null, iterations);
-    if (Math.abs(current.value) <= tolerance) {
+    if (isFiniteValueEvaluation(current) && Math.abs(current.value) <= tolerance) {
       return makeSuccess(current, profile, vertexZ, tolerance, refractiveIndex, iterations);
     }
+    if (pendingCreepHit) return { ...pendingCreepHit, iterations };
+    if (!isFiniteValueEvaluation(current)) return failure("noConvergedIntersection", null, iterations);
 
     if (sameSign(current.value, fLo)) {
       lo = t;
@@ -629,43 +651,35 @@ function intersectProfile(
     }
 
     const newtonT = isFiniteEvaluation(current) ? t - current.value / current.derivative : NaN;
-    // A correction smaller than one representable t cannot improve this point.
-    // Try the raw target first; use the operand-based envelope only at a stall.
-    if (newtonT === t) {
-      const effectiveTolerance = roundoffTolerance(current);
-      if (Math.abs(current.value) <= effectiveTolerance) {
-        return makeSuccess(current, profile, vertexZ, effectiveTolerance, refractiveIndex, iterations);
-      }
-    }
+    /* The raw target was tried first; the envelope applies only at a stall. A correction too small to move t
+     * leaves a fixed point, and one of a few coordinate ulps that has stopped shrinking after a Newton step is
+     * the residual's rounding, not distance to the root. A fixed point the envelope rejects fails at once; a
+     * creep it rejects goes on. */
+    if (newtonT === t)
+      return envelopeHit(current, iterations) ?? failure("noConvergedIntersection", current.value, iterations);
     const acceptNewton =
       isFinite(newtonT) && newtonT > lo && newtonT < hi && Math.abs(newtonT - t) <= Math.abs(stepBeforeLast) / 2;
     const nextT = acceptNewton ? newtonT : lo + (hi - lo) / 2;
     // The safeguarded midpoint can round to this endpoint even when the raw
     // Newton correction differs: an adjacent-float bracket cannot shrink further.
-    if (nextT === t) {
-      const effectiveTolerance = roundoffTolerance(current);
-      if (Math.abs(current.value) <= effectiveTolerance) {
-        return makeSuccess(current, profile, vertexZ, effectiveTolerance, refractiveIndex, iterations);
+    if (nextT === t)
+      return envelopeHit(current, iterations) ?? failure("noConvergedIntersection", current.value, iterations);
+    if (lastStepWasNewton && isRoundoffCreep(current, newtonT - t, lastStep)) {
+      const hit = envelopeHit(current, iterations);
+      if (hit) {
+        if (iteration === maxIterations) return hit;
+        // A few-ulp creep can still reach the raw target at the next safeguarded point. Try it once, budget permitting.
+        pendingCreepHit = hit;
       }
     }
+    if (iteration === maxIterations) return failure("noConvergedIntersection", current.value, iterations);
     stepBeforeLast = lastStep;
     lastStep = acceptNewton ? newtonT - t : (hi - lo) / 2;
+    lastStepWasNewton = acceptNewton;
     t = nextT;
   }
 
-  // Evaluate the pending step; discarding it can lose the last Newton improvement.
-  const finalEval = evalAt(t);
-  if (isFiniteValueEvaluation(finalEval) && Math.abs(finalEval.value) <= tolerance) {
-    return makeSuccess(finalEval, profile, vertexZ, tolerance, refractiveIndex, maxIterations);
-  }
-  if (isFiniteEvaluation(finalEval) && t - finalEval.value / finalEval.derivative === t) {
-    const effectiveTolerance = roundoffTolerance(finalEval);
-    if (Math.abs(finalEval.value) <= effectiveTolerance) {
-      return makeSuccess(finalEval, profile, vertexZ, effectiveTolerance, refractiveIndex, maxIterations);
-    }
-  }
-
-  return failure("noConvergedIntersection", isFiniteValueEvaluation(finalEval) ? finalEval.value : null, maxIterations);
+  return failure("noConvergedIntersection", null, maxIterations);
 }
 
 function intersectProfilePlane(
@@ -895,6 +909,23 @@ function isFiniteEvaluation(evaluation: SurfaceEvaluation): boolean {
 
 function sameSign(a: number, b: number): boolean {
   return a < 0 === b < 0;
+}
+
+/**
+ * Whether a Newton correction is creeping on the residual's rounding: no longer than `NEWTON_STALL_ULPS` ulps of
+ * the evaluated point's largest coordinate or of t, the same sign as the Newton step that reached t, and more
+ * than half as long. Near a simple root Newton's corrections shrink far faster than that.
+ *
+ * @param evaluation - the evaluation at t
+ * @param step - the rounded Newton correction from t
+ * @param previous - the Newton step that reached t
+ */
+function isRoundoffCreep(evaluation: SurfaceEvaluation, step: number, previous: number): boolean {
+  const size = Math.abs(step);
+  if (!(size > Math.abs(previous) / 2) || !sameSign(step, previous)) return false;
+  const [x, y, z] = evaluation.point;
+  const scale = Math.max(Math.abs(evaluation.t), Math.abs(x), Math.abs(y), Math.abs(z));
+  return size <= NEWTON_STALL_ULPS * ulpOf(scale);
 }
 
 function addRay(origin: Vec3, direction: Vec3, t: number): Vec3 {

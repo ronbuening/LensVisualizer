@@ -603,10 +603,10 @@ describe("closed-form fallbacks", () => {
     expect(expectFallback(strong, "failedValidation")).toMatchObject({ ok: true, t: 0 });
   });
 
-  it("falls back at the edge of the conic's domain, with the whole iteration budget", () => {
+  it("falls back at the edge of the conic's domain, and the iterative path stalls on the rim root", () => {
     const result = expectFallback(fixtureSolve("sphere-hemisphere-rim"), "domainEdge");
-    // The rim root is accepted only once bisection collapses the bracket, past the old 48-step cap.
-    expect(result.ok && result.iterations).toBeGreaterThan(48);
+    // Newton's corrections stop shrinking on the residual's rounding long before bisection could collapse the bracket.
+    expect(result.ok && result.iterations).toBeLessThanOrEqual(25);
     expect(result.ok && result.effectiveTolerance).toBeGreaterThan(1e-12);
   });
 
