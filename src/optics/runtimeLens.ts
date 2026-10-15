@@ -21,12 +21,16 @@ import {
 import { buildSurfaceDispersionIndex } from "./dispersion.js";
 import { FLAT_R_THRESHOLD } from "./geometry/surfaceProfile.js";
 import {
-  traceSurfacesParaxial,
-  type ParaxialSurfaceTraceOptions,
-  type RealSurfaceTraceResult,
-} from "./internal/traceSurfaces.js";
-import { traceExactSurfaceStack, traceToStopViaGeneralized } from "./internal/exactSurfaceTrace.js";
-import type { ExactTraceLens, ExactSurfaceTraceResult } from "./internal/exactSurfaceTrace.js";
+  traceParaxialSurfaces2 as traceSurfacesParaxial,
+  type ParaxialTraceOptions as ParaxialSurfaceTraceOptions,
+} from "./math/paraxial.js";
+import { createTraceGeometry } from "./trace/geometry.js";
+import { traceGeometryToStop } from "./trace/stopTrace.js";
+import type { EngineTraceResult, TraceGeometry, TraceOptions } from "./trace/types.js";
+import type { Ray3 } from "./types.js";
+import { directionFromMeridionalSlope } from "./math/vector.js";
+import { compileSurfaces } from "./prescription/surfaces.js";
+import { resolvedImagePlaneToPlane3 } from "./prescription/interactions.js";
 import {
   fisheyeProjectionFocalLengthAtZoom2 as fisheyeProjectionFocalLengthAtZoom,
   fisheyeProjectionMaxTraceFieldAtZoom2 as fisheyeProjectionMaxTraceFieldAtZoom,
@@ -86,7 +90,7 @@ interface RealTraceToStopResult {
  *
  * Unlike paraxialTrace which uses the linear u' = (n·u − y·φ)/n' formula,
  * this applies exact Snell's law with aspheric surface normals — matching
- * the rendering engine (_traceRayCore in optics.ts).  Returns both the ray
+ * the production tracer in trace/. Returns both the ray
  * height and slope at the target surface.
  *
  * Used to compute corrected entrance pupil SD and z-position that account
@@ -94,14 +98,8 @@ interface RealTraceToStopResult {
  *
  * @returns { y, u } at the target surface, or { y: NaN, u: NaN } on TIR
  */
-function realTraceToStopFull(
-  S: SurfaceData[],
-  asphByIdx: Record<number, AsphericCoefficients>,
-  y0: number,
-  u0: number,
-  stopIdx: number,
-): RealTraceToStopResult {
-  const result = traceSurfaceStackReal(S, asphByIdx, y0, u0, { stopAt: stopIdx });
+function realTraceToStopFull(geometry: TraceGeometry, y0: number, u0: number, stopIdx: number): RealTraceToStopResult {
+  const result = traceSurfaceStackReal(geometry, y0, u0, { stopAt: stopIdx });
   return { y: result.y, u: result.u };
 }
 
@@ -111,6 +109,20 @@ function realTraceToStopFull(
  *
  * @returns ray height at the stop surface, or NaN on TIR
  */
+function realTraceStopHeight(geometry: TraceGeometry, y0: number, u0: number, stopIdx: number): number {
+  return realTraceToStopFull(geometry, y0, u0, stopIdx).y;
+}
+
+/**
+ * Trace authored surfaces to a stop before a runtime lens exists.
+ *
+ * @param S - physical surfaces, in mm
+ * @param asphByIdx - coefficients indexed by physical surface
+ * @param y0 - launch height at the first vertex plane, in mm
+ * @param u0 - meridional launch slope
+ * @param stopIdx - target surface index, excluded from refraction
+ * @returns height at the stop plane, or NaN on a failed trace
+ */
 function realTraceToStop(
   S: SurfaceData[],
   asphByIdx: Record<number, AsphericCoefficients>,
@@ -118,7 +130,13 @@ function realTraceToStop(
   u0: number,
   stopIdx: number,
 ): number {
-  return realTraceToStopFull(S, asphByIdx, y0, u0, stopIdx).y;
+  const opticalPath: ResolvedOpticalPath = {
+    mode: "sequential",
+    surfaceOrder: null,
+    surfaceLabels: null,
+    maxInteractions: S.length + 1,
+  };
+  return realTraceStopHeight(buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath), y0, u0, stopIdx);
 }
 
 /** Result of a real ray trace through the full system with per-surface heights. */
@@ -190,8 +208,8 @@ function computePupilGeometry({
   return { epZRelStop, xpZRelLastSurf, xpSD };
 }
 
-function foldedPupilBasisRay(result: ExactSurfaceTraceResult): PupilBasisRay {
-  if (result.failureReason !== null || result.clipped) return { y: NaN, u: NaN, z: NaN };
+function foldedPupilBasisRay(result: EngineTraceResult): PupilBasisRay {
+  if (result.failureReason !== null || result.status === "clipped") return { y: NaN, u: NaN, z: NaN };
   const lastHit = [...result.hits].reverse().find((hit) => !hit.fallback && hit.failureReason === null);
   if (!lastHit) return { y: NaN, u: NaN, z: NaN };
   const direction = lastHit.outgoingDirection ?? result.terminalDirection;
@@ -211,13 +229,8 @@ function foldedPupilBasisRay(result: ExactSurfaceTraceResult): PupilBasisRay {
  *
  * @returns { y, u } at the last surface, or { y: NaN, u: NaN } on TIR
  */
-function realTraceFullSystem(
-  S: SurfaceData[],
-  asphByIdx: Record<number, AsphericCoefficients>,
-  y0: number,
-  u0: number,
-): RealTraceToStopResult {
-  const r = realTraceFullSystemDetailed(S, asphByIdx, y0, u0);
+function realTraceFullSystem(geometry: TraceGeometry, y0: number, u0: number): RealTraceToStopResult {
+  const r = realTraceFullSystemDetailed(geometry, y0, u0);
   return { y: r.y, u: r.u };
 }
 
@@ -226,13 +239,8 @@ function realTraceFullSystem(
  * per-surface height recording and vignetting clip detection.
  * Used for exit pupil computation and half-field refinement.
  */
-function realTraceFullSystemDetailed(
-  S: SurfaceData[],
-  asphByIdx: Record<number, AsphericCoefficients>,
-  y0: number,
-  u0: number,
-): RealTraceFullResult {
-  const result: RealSurfaceTraceResult = traceSurfaceStackReal(S, asphByIdx, y0, u0, {
+function realTraceFullSystemDetailed(geometry: TraceGeometry, y0: number, u0: number): RealTraceFullResult {
+  const result = traceSurfaceStackReal(geometry, y0, u0, {
     skipLastTransfer: true,
     recordHeights: true,
     checkSemiDiameter: true,
@@ -245,38 +253,59 @@ function realTraceFullSystemDetailed(
   };
 }
 
-interface ExactStackOptions {
-  stopAt?: number;
-  skipLastTransfer?: boolean;
-  recordHeights?: boolean;
-  checkSemiDiameter?: boolean;
-}
-
 function traceSurfaceStackReal(
-  S: SurfaceData[],
-  asphByIdx: Record<number, AsphericCoefficients>,
+  geometry: TraceGeometry,
   y0: number,
   u0: number,
-  options: ExactStackOptions,
-): RealSurfaceTraceResult {
-  const result = traceExactSurfaceStack(
-    { S, asphByIdx },
-    { y0, uy0: u0 },
-    {
-      stopAt: options.stopAt,
-      skipLastTransfer: options.skipLastTransfer,
-      recordHeights: options.recordHeights,
-      checkSemiDiameter: options.checkSemiDiameter,
-    },
-  );
+  options: TraceOptions,
+): RealTraceFullResult {
+  const result = traceBuildRay(geometry, y0, u0, options);
   const failed = result.failureReason !== null;
   return {
     y: failed ? NaN : result.y,
     u: failed ? NaN : result.uy,
-    n: result.n,
-    clipped: result.clipped,
-    heights: result.heights,
+    clipped: result.status !== "ok",
+    heights: result.heights ? [...result.heights] : [],
   };
+}
+
+/* Construction cannot prepare a RuntimeLens: these traces derive the constants it would need. */
+function buildTraceGeometry(
+  S: SurfaceData[],
+  asphByIdx: Record<number, AsphericCoefficients>,
+  stopIdx: number,
+  opticalPath: ResolvedOpticalPath,
+  imagePlane?: ResolvedImagePlane,
+): TraceGeometry {
+  const z = [0];
+  for (let i = 0; i < S.length - 1; i++) z.push(z[i] + S[i].d);
+  const surfaces = compileSurfaces(S, S, asphByIdx);
+  return createTraceGeometry({
+    surfaces: Object.freeze(surfaces.map((surface, i) => Object.freeze({ ...surface, base: surface, z: z[i] }))),
+    z: Object.freeze(z),
+    stopSurfaceIndex: stopIdx,
+    imagePlane: resolvedImagePlaneToPlane3(
+      imagePlane ?? { z: z[S.length - 1] + S[S.length - 1].d, y: 0, normal: { z: 1, y: 0 }, label: "IMG" },
+    ),
+    pathPlan: opticalPath,
+    isFoldedOptics: imagePlane !== undefined,
+  });
+}
+
+function buildRayInput(geometry: TraceGeometry, y0: number, u0: number, lead: number): Ray3 {
+  return {
+    origin: [0, y0 - u0 * lead, geometry.z[0] - lead],
+    direction: directionFromMeridionalSlope(u0) ?? [NaN, NaN, NaN],
+  };
+}
+
+function traceBuildRay(geometry: TraceGeometry, y0: number, u0: number, options: TraceOptions = {}): EngineTraceResult {
+  /* Preserve the first-vertex slope launch used to derive the existing constants. Folded basis rays start there. */
+  const first = geometry.surfaces[0];
+  const lead = geometry.traversal.kind === "generalized" ? 0 : Math.max(1, Math.abs(first.profile.sag(first.sd)) + 1);
+  const input = buildRayInput(geometry, y0, u0, lead);
+  const traverse = options.stopAt === undefined ? geometry.traversal.full : geometry.traversal.partial;
+  return traverse(geometry, input, options);
 }
 
 function resolveProjection(data: LensData): LensProjectionConfig {
@@ -430,28 +459,23 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     const stopPhysSD = S[stopIdx].sd;
     const nominalEPSD = referenceFocalLength / (2 * baseNomFno);
     const fallbackYRatio = stopPhysSD > 0 ? stopPhysSD / Math.max(nominalEPSD, 1e-12) : 1;
-    const foldedTraceLens: ExactTraceLens = {
-      S,
-      asphByIdx,
-      stopIdx,
-      opticalPath,
-      imagePlane,
-      isFoldedOptics: true,
-    };
+    const foldedGeometry = buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath, imagePlane);
     let EP: EntrancePupil = { epSD: nominalEPSD, yRatio: fallbackYRatio };
     let B = 0;
     let epZRelStop = 0;
     let xpZRelLastSurf = 0;
     let xpSD = EP.epSD;
     const realEpDelta = 1e-4;
-    const foldedMarginalStop = traceToStopViaGeneralized(foldedTraceLens, { y0: realEpDelta, uy0: 0 }, stopIdx, {
-      zPos: z,
-      leadDistance: 0,
-    });
-    const foldedChiefStop = traceToStopViaGeneralized(foldedTraceLens, { y0: 0, uy0: realEpDelta }, stopIdx, {
-      zPos: z,
-      leadDistance: 0,
-    });
+    const foldedMarginalStop = traceGeometryToStop(
+      foldedGeometry,
+      buildRayInput(foldedGeometry, realEpDelta, 0, 0),
+      stopIdx,
+    );
+    const foldedChiefStop = traceGeometryToStop(
+      foldedGeometry,
+      buildRayInput(foldedGeometry, 0, realEpDelta, 0),
+      stopIdx,
+    );
     if (
       foldedMarginalStop.found &&
       foldedChiefStop.found &&
@@ -461,12 +485,8 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     ) {
       const realYRatio = foldedMarginalStop.y / realEpDelta;
       const realB = foldedChiefStop.y / realEpDelta;
-      const foldedMarginalFull = foldedPupilBasisRay(
-        traceExactSurfaceStack(foldedTraceLens, { y0: realEpDelta, uy0: 0 }, { zPos: z, leadDistance: 0 }),
-      );
-      const foldedChiefFull = foldedPupilBasisRay(
-        traceExactSurfaceStack(foldedTraceLens, { y0: 0, uy0: realEpDelta }, { zPos: z, leadDistance: 0 }),
-      );
+      const foldedMarginalFull = foldedPupilBasisRay(traceBuildRay(foldedGeometry, realEpDelta, 0));
+      const foldedChiefFull = foldedPupilBasisRay(traceBuildRay(foldedGeometry, 0, realEpDelta));
       const foldedLastZ = finitePupilBasisRay(foldedMarginalFull)
         ? foldedMarginalFull.z
         : finitePupilBasisRay(foldedChiefFull)
@@ -641,12 +661,15 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
   const apertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, 0) ?? nomEFL;
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
   const nominalEPSD = apertureReferenceFocalLength / (2 * baseNomFno);
-  const nomRealY = realTraceToStop(S, asphByIdx, nominalEPSD, 0, stopIdx);
+  let geometry = buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath);
+  const nomRealY = realTraceStopHeight(geometry, nominalEPSD, 0, stopIdx);
   if (data.zoomStopSemiDiameters) {
     S[stopIdx].sd = data.zoomStopSemiDiameters[0];
   } else if (!preserveAuthoredStopSD) {
     S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
   }
+
+  geometry = buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath);
 
   /* ── Optical constants ──
    *  EFL: trace a unit-height marginal ray (y=1, u=0) and read off the
@@ -682,8 +705,8 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
    * Falls back to paraxial if the real traces hit TIR. */
   const zStopBaseline = sumSurfaceThicknesses(S, stopIdx);
   const realEpDelta = 1e-4;
-  const realMarginal = realTraceToStopFull(S, asphByIdx, realEpDelta, 0, stopIdx);
-  const realChief = realTraceToStopFull(S, asphByIdx, 0, realEpDelta, stopIdx);
+  const realMarginal = realTraceToStopFull(geometry, realEpDelta, 0, stopIdx);
+  const realChief = realTraceToStopFull(geometry, 0, realEpDelta, stopIdx);
   const realYRatio = isFinite(realMarginal.y) ? realMarginal.y / realEpDelta : epTrace.y;
   const realB = isFinite(realChief.y) ? realChief.y / realEpDelta : B;
 
@@ -692,8 +715,8 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
    * rays with exact refraction, then combine to find the chief ray that
    * passes through the stop center.  Back-project from the last surface
    * to find XP position and size.  Falls back to paraxial on TIR. */
-  const realMargFull = realTraceFullSystem(S, asphByIdx, realEpDelta, 0);
-  const realChiefFull = realTraceFullSystem(S, asphByIdx, 0, realEpDelta);
+  const realMargFull = realTraceFullSystem(geometry, realEpDelta, 0);
+  const realChiefFull = realTraceFullSystem(geometry, 0, realEpDelta);
   const chiefFull = paraxialTrace(S, 0, 1, { skipLastTransfer: true });
   const xpNumer = -(epTrace.y * chiefFull.y - eflTrace.y * B);
   const xpDenom = epTrace.y * chiefFull.u - eflTrace.u * B;
@@ -766,7 +789,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     // eslint-disable-next-line no-restricted-syntax -- slope-launch vignetting bisection (see comment above); feeds tracingHalfField only, diagram field launch still goes through projection.ts
     const uTest = -Math.tan((deg * Math.PI) / 180);
     const yIn = -epRatio * uTest;
-    const result = realTraceFullSystemDetailed(S, asphByIdx, yIn, uTest);
+    const result = realTraceFullSystemDetailed(geometry, yIn, uTest);
     return isFinite(result.y) && !result.clipped;
   };
   let halfFieldBisected = halfFieldParaxial;
@@ -863,7 +886,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
   const rayHeights = data.rayFractions.map((f: number) => f * EP.epSD);
   const rayLead = totalTrack * data.rayLeadFrac;
   const maxFrac = Math.max(...data.rayFractions.map(Math.abs));
-  const outerRealY = realTraceToStop(S, asphByIdx, maxFrac * nominalEPSD, 0, stopIdx);
+  const outerRealY = realTraceStopHeight(geometry, maxFrac * nominalEPSD, 0, stopIdx);
   const outerRatio = isFinite(outerRealY) && Math.abs(stopPhysSD) > 1e-15 ? Math.abs(outerRealY) / stopPhysSD : maxFrac;
   const bladeStubFrac = Math.max(0.02, 1 - outerRatio);
   const prevSD = stopIdx > 0 ? S[stopIdx - 1].sd : stopPhysSD;
@@ -922,12 +945,14 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
       const zZoomT = zoomIndexToT(zi, nz);
       const zApertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, zZoomT) ?? zEfl;
       const zNomEP = zApertureReferenceFocalLength / (2 * zNomFno);
-      const zRealY = realTraceToStop(tmpS, asphByIdx, zNomEP, 0, stopIdx);
+      let stationGeometry = buildTraceGeometry(tmpS, asphByIdx, stopIdx, opticalPath);
+      const zRealY = realTraceStopHeight(stationGeometry, zNomEP, 0, stopIdx);
       const stationStopSD =
         data.zoomStopSemiDiameters?.[zi] ??
         Math.abs(isFinite(zRealY) && Math.abs(zRealY) > 1e-15 ? zRealY : zNomEP * epT.y);
       if (data.zoomStopSemiDiameters) tmpS[stopIdx].sd = stationStopSD;
       else if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
+      stationGeometry = buildTraceGeometry(tmpS, asphByIdx, stopIdx, opticalPath);
       zoomStopSDs?.push(stationStopSD);
       zoomEPs.push(zNomEP);
       zoomYRatios.push(epT.y);
@@ -938,16 +963,16 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
 
       /* Pupil positions at this zoom position — real (Snell's law) traces */
       const zStopBaselineZ = sumSurfaceThicknesses(tmpS, stopIdx);
-      const zRealMarg = realTraceToStopFull(tmpS, asphByIdx, realEpDelta, 0, stopIdx);
-      const zRealChief = realTraceToStopFull(tmpS, asphByIdx, 0, realEpDelta, stopIdx);
+      const zRealMarg = realTraceToStopFull(stationGeometry, realEpDelta, 0, stopIdx);
+      const zRealChief = realTraceToStopFull(stationGeometry, 0, realEpDelta, stopIdx);
       const zRealYRatio = isFinite(zRealMarg.y) ? zRealMarg.y / realEpDelta : epT.y;
       const zRealB = isFinite(zRealChief.y) ? zRealChief.y / realEpDelta : zBValue;
       const zEpRelStop = Math.abs(zRealYRatio) > 1e-9 ? zRealB / zRealYRatio - zStopBaselineZ : 0;
       zoomEpZRelStops.push(zEpRelStop);
 
       /* Exit pupil — real full-system two-ray decomposition */
-      const zRealMargFull = realTraceFullSystem(tmpS, asphByIdx, realEpDelta, 0);
-      const zRealChiefFull = realTraceFullSystem(tmpS, asphByIdx, 0, realEpDelta);
+      const zRealMargFull = realTraceFullSystem(stationGeometry, realEpDelta, 0);
+      const zRealChiefFull = realTraceFullSystem(stationGeometry, 0, realEpDelta);
       if (isFinite(zRealMargFull.y) && isFinite(zRealChiefFull.y)) {
         const zmY = zRealMargFull.y / realEpDelta,
           zmU = zRealMargFull.u / realEpDelta;
@@ -991,7 +1016,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
         // eslint-disable-next-line no-restricted-syntax -- slope-launch vignetting bisection (see comment above); feeds zoomTracingHalfFields only, diagram field launch still goes through projection.ts
         const uTest = -Math.tan((deg * Math.PI) / 180);
         const yIn = -zEpRatio * uTest;
-        const result = realTraceFullSystemDetailed(tmpS, asphByIdx, yIn, uTest);
+        const result = realTraceFullSystemDetailed(stationGeometry, yIn, uTest);
         return isFinite(result.y) && !result.clipped;
       };
       let zHalfFieldBisected = zHalfFieldParaxial;
