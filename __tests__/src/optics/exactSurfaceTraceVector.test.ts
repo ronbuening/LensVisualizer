@@ -1,6 +1,6 @@
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
-import { build } from "./testLensFixtures.js";
+import { build, buildMissAfterFirstHitLens, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import { prepareState } from "../../../src/optics/state/prepareState.js";
@@ -17,6 +17,7 @@ import {
   traceRayChromatic,
   traceRayVector,
   traceRayVectorChromatic,
+  traceChiefRelativeSkewRay,
   traceSkewRay,
   traceSkewRayVector,
 } from "../../../src/optics/optics.js";
@@ -342,5 +343,65 @@ describe("prepared traversal selection", () => {
     );
     const blocking = createTraceGeometry({ ...geometry, surfaces: blocker, isFoldedOptics: false });
     expect(blocking.traversal.kind).toBe("generalized");
+  });
+});
+
+describe("chief-relative physical traces", () => {
+  it("selects the first authored cap root before a later definite miss", () => {
+    const base = buildSimplePositiveElementLens();
+    const surfaces = [
+      { label: "CAP", R: 1e15, nd: 1, sd: 2.5, d: 10, elemId: 0 },
+      { label: "STO", R: 1e15, nd: 1, sd: 20, d: 10, elemId: 0 },
+      { label: "MISS", R: 1, nd: 1, sd: 0.5, d: 10, elemId: 0 },
+    ];
+    // Isolate cap/root order from build-time pupil sizing and the afocal-system refusal.
+    const L = {
+      ...base,
+      S: surfaces,
+      stopIdx: 1,
+      labelIdx: { CAP: 0, STO: 1, MISS: 2 },
+      data: { ...base.data, surfaces, asph: { CAP: { K: 0, A4: 0.04, A6: -0.004, A8: 0, A10: 0, A12: 0, A14: 0 } } },
+    };
+    const lens = { ...L, rayLead: 5 };
+    const state = prepareRuntimeState(lens, 0, 0);
+    const trace = traceEngineRay2(
+      state,
+      { origin: [0, 7.5, -5], direction: [0, -1, 1] },
+      {
+        checkSemiDiameter: true,
+        stopSemiDiameter: 20,
+        ghost: true,
+        stopOnClip: true,
+      },
+    );
+    expect(trace.hits[0].radius).toBeCloseTo(2.076820214007, 8);
+    expect(trace.hits[0].point[2]).toBeCloseTo(0.423179785993, 8);
+    expect(trace.hits.map((hit) => hit.surfaceIndex)).toEqual([0, 1]);
+    expect(trace.status).not.toBe("ok");
+    const relative = traceChiefRelativeSkewRay(0, 0, 2.5, -1, 1, 0, 0, 20, true, lens);
+    expect(relative.clipped).toBe(true);
+    expect(relative.y).toBe(trace.y);
+    expect(relative.uy).toBe(trace.uy);
+    expect(relative.transmission).toBe(1);
+  });
+
+  it.each([false, true])("terminates a subsequent miss without fabricated ghost hits (%s)", (ghost) => {
+    const L = buildMissAfterFirstHitLens();
+    const state = prepareRuntimeState(L, 0, 0);
+    const trace = traceEngineRay2(
+      state,
+      { origin: [0, 30, 0], direction: [0, 0, 1] },
+      {
+        checkSemiDiameter: true,
+        stopSemiDiameter: 100,
+        ghost,
+        stopOnClip: true,
+      },
+    );
+    expect(trace.hits).toHaveLength(1);
+    expect(trace.hits[0].surfaceIndex).toBe(0);
+    expect(trace.status).not.toBe("ok");
+    const relative = traceChiefRelativeSkewRay(0, 0, 30, 0, 1, 0, 0, 100, ghost, L);
+    expect(relative).toEqual({ x: 0, y: 30, ux: 0, uy: 0, clipped: true, transmission: 1 });
   });
 });

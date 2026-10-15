@@ -2394,6 +2394,24 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     `analysis/chromatic.ts` (scalar branch), and through them coma, spherical aberration, bokeh and chromatic field
     analysis.
   - **Gate:** C1. The legacy path recomputed z per ray and differs in its lead distance; list any discrete transition.
+  - **As built:** the wrappers live in `trace/chiefRelative.ts` and delegate unchanged launches to the existing
+    production skew adapters. Nonnegative leads have identical origins; the first-surface search window differs.
+    Negative leads stay unclamped and controls follow production preparation, including finite-control errors.
+    No state-bound API or adapter change was needed; the Change's caller scope is unchanged. The chromatic fan's
+    reducer reads the plane each ray ended on, which moves with focus on a folded lens.
+  - **Approved divergence, three legacy chromatic faults** (2026-10-15). The step moves the off-axis chromatic ray fan
+    and field focus summary of seven folded lenses off the legacy tracer, which had three faults; with each fault
+    patched in a scratch copy of the legacy tracer, the two stacks agree within the C1 budgets:
+    - on a mirror's return pass the legacy tracer took the index of the wrong surface's medium
+      (`resolvedNextIndex`): `carl-zeiss-mirotar-500f45`, `minolta-af-reflex-500mm-f8`,
+      `nikon-reflex-nikkor-c-500mm-f8`, `nikon-reflex-nikkor-1000mm-f11`, `nikon-reflex-nikkor-500mm-f8-new`;
+    - it clipped rays on surfaces extended past their finite apertures, so `vivitar-s1-450-f45`'s off-axis spread
+      was null (four rays reach the image now);
+    - at close focus it ended `nikon-reflex-nikkor-500mm-f8-new`'s rays on the static image plane (143.216 mm)
+      rather than the focused one (151.266 mm), shortening the authored rear gap by 8.05 mm.
+
+    The step merges with its checks failing on these lenses alone. A changelog line at promotion says the off-axis
+    chromatic figures of these mirror lenses were corrected.
 - **S4.P2.T2 Build-time traces on the production stack.**
   - **Change:** these traces in `runtimeLens.ts` run on a `TraceGeometry` built from the authored surfaces: stop SD,
     EP/XP basis rays, the half-field bisection, zoom stations, and the folded branch.
@@ -2789,19 +2807,25 @@ The maintainer also settled this on 2026-10-13, answering the Stage 2 questions:
 | --- | --- | --- |
 | 59 | Ingest records source paths only when asked; the reader records them, not the V1 view, and the converter carries comments and literal text by their composition with the V2 view | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T1 |
 
+Settled on 2026-10-15, building S4.P2.T1:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 60 | Three legacy chromatic faults on seven folded lenses are S4.P2.T1's approved divergence, with a changelog line at promotion | S4.P2.T1 |
+
 The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 questions:
 
 | # | Decision | Where |
 | --- | --- | --- |
-| 60 | Going to V1, a stop without `sd` takes the engine's radius to 0.001 mm (a zoom's at the wide station, a scheduled zoom's first schedule value), which V1 ingest sets aside; a file whose radius cannot be derived is refused, and `LensDataInput` stays as it is | S2.P3.T2 |
-| 61 | Nothing is written for an input already at `--to-version`, under `--output` too, which holds only the converted files | S2.P3.T2 |
-| 62 | The V1 print order and `V1_GROUP_STARTS` are stated beside the V1 view, whose own key order stays | S2.P3.T2 |
-| 63 | Collisions compare paths after `realpath`, as directories and without regard to case; `--output` publishes by link, so a destination made after the check is not overwritten | S2.P3.T2 |
-| 64 | A failed rename or a signal while writing puts back every input already replaced, from a backup beside it, and a run refuses while a backup is left | S2.P3.T2 |
-| 65 | The command line reads CR LF as LF and writes LF; a lone CR is refused | S2.P3.T2 |
-| 66 | The type-check reads each converted text at the path it will be written to | S2.P3.T2 |
-| 67 | The V2-to-V1 comment mapping is engine-owned, and the round trip is tested for semantic identity and each comment once, not for bytes | S2.P3.T2 |
-| 68 | The command line's tests are in `npm test` beside the library's | S2.P3.T2 |
+| 61 | Going to V1, a stop without `sd` takes the engine's radius to 0.001 mm (a zoom's at the wide station, a scheduled zoom's first schedule value), which V1 ingest sets aside; a file whose radius cannot be derived is refused, and `LensDataInput` stays as it is | S2.P3.T2 |
+| 62 | Nothing is written for an input already at `--to-version`, under `--output` too, which holds only the converted files | S2.P3.T2 |
+| 63 | The V1 print order and `V1_GROUP_STARTS` are stated beside the V1 view, whose own key order stays | S2.P3.T2 |
+| 64 | Collisions compare paths after `realpath`, as directories and without regard to case; `--output` publishes by link, so a destination made after the check is not overwritten | S2.P3.T2 |
+| 65 | A failed rename or a signal while writing puts back every input already replaced, from a backup beside it, and a run refuses while a backup is left | S2.P3.T2 |
+| 66 | The command line reads CR LF as LF and writes LF; a lone CR is refused | S2.P3.T2 |
+| 67 | The type-check reads each converted text at the path it will be written to | S2.P3.T2 |
+| 68 | The V2-to-V1 comment mapping is engine-owned, and the round trip is tested for semantic identity and each comment once, not for bytes | S2.P3.T2 |
+| 69 | The command line's tests are in `npm test` beside the library's | S2.P3.T2 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
