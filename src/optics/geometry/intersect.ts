@@ -480,8 +480,8 @@ function capInterval(
   return { minT, maxT };
 }
 
-/** Select an authored cap after an established successful solve, avoiding a second old solve. */
-export function selectAsphericCapHit(
+/** Select an authored cap after an established successful solve of the iterative path. */
+function selectAsphericCapHit(
   ray: Ray3,
   profile: SurfaceProfile,
   vertexZ: number,
